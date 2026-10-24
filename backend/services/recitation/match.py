@@ -2,7 +2,7 @@
 
 Nothing here records, listens, or opens a file. Text in, ranked ayahs out, which
 is what makes it testable without a microphone: the hard cases are typed in as
-strings in tests/test_recitation.py.
+strings in tests/recitation/test_recitation.py.
 
 Why matching has to be fuzzy
 ----------------------------

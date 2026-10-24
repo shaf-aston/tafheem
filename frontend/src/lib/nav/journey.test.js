@@ -109,6 +109,12 @@ describe('resume', () => {
     const link = { tab: 'mem', value: '2:6' }
     expect(resume({ steps: blank, at: 1 }, link, undefined)).toEqual({ steps: [STEPS[0], link], at: 1 })
   })
+
+  it('a place on another tab goes after a tab opened with nothing, which stays a step of its own', () => {
+    const blank = [STEPS[1], { tab: 'mem', value: null }]
+    const link = { tab: 'daleel', value: 'patience' }
+    expect(resume({ steps: blank, at: 1 }, link, undefined)).toEqual({ steps: [...blank, link], at: 2 })
+  })
 })
 
 describe('lastOn', () => {
@@ -155,7 +161,7 @@ describe('nearest, at the edge of fitting', () => {
 // The journey proper, against a browser history kept in memory: entries, the
 // one we sit on, and popstate sent when the arrow moves us. The module keeps
 // its state between calls, as a page does, so each case loads it fresh.
-const JOURNEY_TABS = [{ id: 'dict' }, { id: 'quran' }]
+const JOURNEY_TABS = [{ id: 'dict' }, { id: 'quran' }, { id: 'grow', ownHome: true }]
 
 function browserAt(search) {
   const entries = [{ state: null, url: new URL(`https://tafheem.test/app${search}`) }]
@@ -265,6 +271,15 @@ describe('the journey and the back arrow', () => {
     expect(browser.history.replaceState).toHaveBeenCalledTimes(1)
     expect(browser.history.pushState).not.toHaveBeenCalled()
     expect(browser.history.state.step).toBe(0)
+  })
+
+  it('keeps a home tab opened with nothing as a step of its own, so back returns to it', async () => {
+    const { browser, journey } = await freshJourney('?tab=grow')
+    expect(journey.visit('grow', 'basics/lesson')).toBe(true)
+    expect(browser.history.pushState).toHaveBeenCalledTimes(1)
+    expect(browser.history.replaceState).not.toHaveBeenCalled()
+    expect(browser.history.state.step).toBe(1)
+    expect([journey.ownsHome('grow'), journey.ownsHome('dict')]).toEqual([true, false])
   })
 
   it('jumps back to a walked step by the distance from here', async () => {

@@ -6,7 +6,7 @@
  */
 import { getAyahEditions, quranAyahQuery } from '../../api'
 
-export const ENGLISH_EDITION = 'saheeh-en'
+const ENGLISH_EDITION = 'saheeh-en'
 
 export const ayahQueries = (surah, ayah) => [
   quranAyahQuery(surah, ayah),

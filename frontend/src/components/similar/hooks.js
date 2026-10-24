@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import { similarAyahQuery, similarSurahQuery } from '../../api'
-import { fetchSummary, recordAttempt } from '../../lib/learner/progress'
+import { summaryQuery, useRecord } from '../../lib/learner/record'
 import { pairsOf } from '../../lib/similar/similar'
 import copy from '../../config/similar.json'
 
@@ -23,14 +23,14 @@ export function usePair(pair) {
 
 /** Each pair's standing in the progress store, and the way to file a finished drill. */
 export function useMastery() {
-  const client = useQueryClient()
-  const key = ['progress', copy.module]
-  const summary = useQuery({ queryKey: key, queryFn: () => fetchSummary(copy.module), retry: false })
+  const record = useRecord()
+  const summary = useQuery({ ...summaryQuery(copy.module), retry: false })
   const byId = useMemo(() => new Map((summary.data ?? []).map((row) => [row.item, row])), [summary.data])
   const standing = (id) => (byId.get(id)?.due ? 'due' : byId.get(id)?.known ? 'known' : 'new')
   const file = async (id, correct) => {
-    await recordAttempt({ module: copy.module, item: id, correct })
-    client.invalidateQueries({ queryKey: key })
+    // A drill is over once filed, so its standing is re-read at once.
+    await record.file({ module: copy.module, item: id, correct })
+    record.refresh(copy.module)
   }
   return { standing, file }
 }

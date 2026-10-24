@@ -17,7 +17,9 @@
     "T": "ط",
     "S": "ص",
     "D": "ض",
-    "dh": "ذ"
+    "dh": "ذ",
+    "g": "ڭ",
+    "Z": "ظ"
   },
   "lessons": [
     {
@@ -1804,6 +1806,1653 @@
             "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فاتتني الطيارة شنو ندير\"."
           },
           "tip": "\"شنو ندير\" is \"what do I do\", using \"شنو\" for \"what\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "where-is-the-national-museum",
+          "arabic": "فِين كَايْن الْمَتْحَف الْوَطَنِي؟",
+          "transliteration": "feen kaayn l-mat7af l-waTani?",
+          "reply": {
+            "arabic": "قْرِيب، فْالشَّارِع الْكْبِير",
+            "transliteration": "qreeb, f-sh-shaari3 l-kbeer",
+            "english": "Close by, on the main street."
+          }
+        },
+        {
+          "slot": "how-do-i-get-to-the-old-city",
+          "arabic": "كِيفَاش نْوْصَل لْلْمْدِينَة الْقْدِيمَة؟",
+          "transliteration": "keefaash nwSel l-l-mdeena l-qdeema?",
+          "reply": {
+            "arabic": "خُود الطْرَامْوَاي، قْرِيبَة",
+            "transliteration": "khood T-Traamwaay, qreeba",
+            "english": "Take the tram, it's close."
+          }
+        },
+        {
+          "slot": "how-much-is-the-entry-ticket",
+          "arabic": "بْشْحَال الْبِيِّي دْيَال الدّْخُول؟",
+          "transliteration": "b-sh7aal l-biyyi dyaal d-dkhool?",
+          "reply": {
+            "arabic": "عْشْرِين دَرْهَم لْلْوَاحْد",
+            "transliteration": "3eshreen derham l-l-waa7ed",
+            "english": "Twenty dirhams each."
+          }
+        },
+        {
+          "slot": "what-are-the-opening-hours",
+          "arabic": "فُوقَاش كَيْحْلّْو وْفُوقَاش كَيْسْدّْو؟",
+          "transliteration": "fooqaash kay7ellu w fooqaash kaysseddu?",
+          "english": "When do they open and when do they close?",
+          "reply": {
+            "arabic": "مْن تْسْعَة دْيَال الصّْبَاح حْتَّى سْتَّة دْيَال الْعْشِيَّة",
+            "transliteration": "mn tes3a dyaal S-Sbaa7 7tta setta dyaal l-3sheyya",
+            "english": "From nine in the morning until six in the evening."
+          }
+        },
+        {
+          "slot": "walk-straight-then-turn-left",
+          "arabic": "سِير نِيشَان، وْمْن بْعْد دُور عْلَى لِيسَر",
+          "transliteration": "seer neeshaan, w mn b3d door 3la leesar"
+        },
+        {
+          "slot": "i-want-a-guided-tour",
+          "arabic": "بْغِيت نْدِير جَوْلَة مْعَا شِي ڭِيد",
+          "transliteration": "bghit ndeer jawla m3a shi geed",
+          "english": "I want to do a tour with a guide"
+        },
+        {
+          "slot": "can-i-take-photos-here",
+          "arabic": "وَاش نْقْدَر نْصَوّْر هْنَا؟",
+          "transliteration": "waash nqder nSawwer hna?",
+          "reply": {
+            "arabic": "إِيه، وَلَكِن بْلَا فْلَاش",
+            "transliteration": "eeyeh, walakin bla flaash",
+            "english": "Yes, but without flash."
+          }
+        },
+        {
+          "slot": "where-is-the-grand-mosque",
+          "arabic": "فِين كَايْن الْجَامْع الْكْبِير؟",
+          "transliteration": "feen kaayn l-jaame3 l-kbeer?"
+        },
+        {
+          "slot": "can-visitors-enter-the-mosque",
+          "arabic": "وَاش الزُّوَّار يْقْدْرُو يْدْخْلُو لْلْجَامْع؟",
+          "transliteration": "waash z-zuwwaar yqedru ydkhlu l-l-jaame3?",
+          "reply": {
+            "arabic": "إِيه، مْعَا الْجَوْلَة، بَرَّا وْقَات الصّْلَاة",
+            "transliteration": "eeyeh, m3a l-jawla, barra wqaat S-Slaa",
+            "english": "Yes, with the tour, outside prayer times."
+          }
+        },
+        {
+          "slot": "please-take-off-your-shoes-at-the-entrance",
+          "arabic": "عَافَاك، حَيّْد الصّْبَّاط فْالْمَدْخَل",
+          "transliteration": "3afaak, 7ayyed S-Sebbaat f-l-madkhal"
+        },
+        {
+          "slot": "where-is-the-castle",
+          "arabic": "فِين كَايْنَة الْقَصْبَة؟",
+          "transliteration": "feen kaayna l-qaSba?",
+          "english": "Where is the kasbah (old fortress)?"
+        },
+        {
+          "slot": "how-beautiful-this-place-is",
+          "arabic": "شْحَال زْوِينَة هَادْ الْبْلَاصَة!",
+          "transliteration": "sh7aal zweena had l-blaaSa!"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hamza",
+          "arabic": "السلام عليكم، هادا هو المتحف ديال الآثار؟",
+          "transliteration": "s-salaamu 3alaykum, haada huwa l-mat7af dyaal l-aathaar?",
+          "english": "Peace be upon you, is this the antiquities museum?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "وعليكم السلام، إيه، مرحبا بيك",
+          "transliteration": "w 3alaykum s-salaam, eeyeh, mer7ba beek",
+          "english": "And upon you peace, yes, welcome."
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "how-much-is-the-entry-ticket"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "how-much-is-the-entry-ticket",
+          "reply": true
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "what-are-the-opening-hours"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "what-are-the-opening-hours",
+          "reply": true
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "i-want-a-guided-tour"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "كاين ڭيد كيبدا الجولة فالعشرة، ودابا كاينين بزاف ديال السياح",
+          "transliteration": "kaayn geed kaybda l-jawla f-l-3ashra, w daaba kaayneen bzzaaf dyaal s-syyaa7",
+          "english": "There's a guide who starts the tour at ten, and right now there are a lot of tourists."
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "can-i-take-photos-here"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "can-i-take-photos-here",
+          "reply": true
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "ومن بعد بغيت نمشي للقصبة، كيفاش نوصل ليها؟",
+          "transliteration": "w mn b3d bghit nemshi l-l-qaSba, keefaash nwSel leeha?",
+          "english": "And after that I want to go to the kasbah, how do I get there?"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "سير نيشان، ومن بعد دور على ليسر، وغادي تبان ليك. المنظر تما زوين بزاف",
+          "transliteration": "seer neeshaan, w mn b3d door 3la leesar, w ghaadi tbaan leek. l-manDar temma zween bzzaaf",
+          "english": "Walk straight, then turn left, and you'll see it. The view there is very beautiful."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بْشْحَال الْبِيِّي دْيَال الدّْخُول؟",
+            "transliteration": "b-sh7aal l-biyyi dyaal d-dkhool?",
+            "english": "How much is the entry ticket?"
+          },
+          "response": {
+            "arabic": "عْشْرِين دَرْهَم لْلْوَاحْد",
+            "transliteration": "3eshreen derham l-l-waa7ed",
+            "english": "Twenty dirhams each."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فُوقَاش كَيْحْلّْو وْفُوقَاش كَيْسْدّْو؟",
+            "transliteration": "fooqaash kay7ellu w fooqaash kaysseddu?",
+            "english": "When do they open and when do they close?"
+          },
+          "response": {
+            "arabic": "مْن تْسْعَة دْيَال الصّْبَاح حْتَّى سْتَّة دْيَال الْعْشِيَّة",
+            "transliteration": "mn tes3a dyaal S-Sbaa7 7tta setta dyaal l-3sheyya",
+            "english": "From nine in the morning until six in the evening."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش نْقْدَر نْصَوّْر هْنَا؟",
+            "transliteration": "waash nqder nSawwer hna?",
+            "english": "Can I take photos here?"
+          },
+          "response": {
+            "arabic": "إِيه، وَلَكِن بْلَا فْلَاش",
+            "transliteration": "eeyeh, walakin bla flaash",
+            "english": "Yes, but without flash."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كِيفَاش نْوْصَل لْلْمْدِينَة الْقْدِيمَة؟",
+            "transliteration": "keefaash nwSel l-l-mdeena l-qdeema?",
+            "english": "How do I get to the old city?"
+          },
+          "response": {
+            "arabic": "سِير نِيشَان، وْمْن بْعْد دُور عْلَى لِيسَر",
+            "transliteration": "seer neeshaan, w mn b3d door 3la leesar",
+            "english": "Walk straight, then turn left."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش الزُّوَّار يْقْدْرُو يْدْخْلُو لْلْجَامْع؟",
+            "transliteration": "waash z-zuwwaar yqedru ydkhlu l-l-jaame3?",
+            "english": "Can visitors enter the mosque?"
+          },
+          "response": {
+            "arabic": "إِيه، مْعَا الْجَوْلَة، بَرَّا وْقَات الصّْلَاة",
+            "transliteration": "eeyeh, m3a l-jawla, barra wqaat S-Slaa",
+            "english": "Yes, with the tour, outside prayer times."
+          }
+        }
+      ],
+      "culture": "Most mosques in Morocco are open to Muslims only, but the Hassan II Mosque in Casablanca welcomes visitors on guided tours outside prayer times, with shoes taken off at the entrance. In Rabat people walk through the old medina to the Kasbah of the Oudayas for the view over the sea, and an official guide (ڭيد) can be hired at most big sites.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "At the ticket office you ask: \"بشحال البيي ديال الدخول؟\" The clerk answers that it is twenty dirhams each. Write the clerk's answer.",
+          "answer": "عْشْرِين دَرْهَم لْلْوَاحْد",
+          "accepted": [
+            "عْشْرِين دَرْهَم لْلْوَاحْد",
+            "3eshreen derham l-l-waa7ed",
+            "عشرين درهم للواحد",
+            "عشرين درهم",
+            "عشرين درهم للراس"
+          ],
+          "too_formal": {
+            "item": "عشرون درهما للشخص",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"عشرين درهم للواحد\"."
+          },
+          "tip": "\"للواحد\" means per person; \"للراس\" (per head) is also heard."
+        },
+        {
+          "id": "unit-15.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A visitor asks: \"واش نقدر نصور هنا؟\" Say yes, but without flash.",
+          "answer": "إِيه، وَلَكِن بْلَا فْلَاش",
+          "accepted": [
+            "إِيه، وَلَكِن بْلَا فْلَاش",
+            "eeyeh, walakin bla flaash",
+            "إيه، ولكن بلا فلاش",
+            "إيه، بلا فلاش",
+            "واخا، ولكن بلا فلاش"
+          ],
+          "too_formal": {
+            "item": "نعم، ولكن بدون فلاش",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"إيه، ولكن بلا فلاش\"."
+          },
+          "tip": "\"بلا\" is the everyday word for without."
+        },
+        {
+          "id": "unit-15.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"سير ___، ومن بعد دور على ليسر.\" Meaning: Walk straight, then turn left.",
+          "answer": "نيشان",
+          "accepted": [
+            "نيشان",
+            "neeshaan",
+            "نيشان نيشان",
+            "قدام"
+          ],
+          "too_formal": {
+            "item": "مستقيما",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"نيشان\"."
+          },
+          "tip": "\"نيشان\" means straight ahead; \"ليسر\" is left and \"ليمن\" is right."
+        },
+        {
+          "id": "unit-15.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عافاك، حيد ___ فالمدخل.\" Meaning: Please take off your shoes at the entrance.",
+          "answer": "الصباط",
+          "accepted": [
+            "الصباط",
+            "S-Sebbaat",
+            "صباط",
+            "السباط"
+          ],
+          "too_formal": {
+            "item": "الحذاء",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الصباط\"."
+          },
+          "tip": "\"الصباط\" is the everyday word for shoes."
+        },
+        {
+          "id": "unit-15.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How do I get to the old city?\"",
+          "answer": "كِيفَاش نْوْصَل لْلْمْدِينَة الْقْدِيمَة؟",
+          "accepted": [
+            "كِيفَاش نْوْصَل لْلْمْدِينَة الْقْدِيمَة؟",
+            "keefaash nwSel l-l-mdeena l-qdeema?",
+            "كيفاش نوصل للمدينة القديمة؟",
+            "كيفاش نمشي للمدينة القديمة؟",
+            "فين كاينة المدينة القديمة؟"
+          ],
+          "too_formal": {
+            "item": "كيف أصل إلى المدينة القديمة؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"كيفاش نوصل للمدينة القديمة؟\"."
+          },
+          "tip": "\"كيفاش\" is how; \"ل\" before the place means to."
+        },
+        {
+          "id": "unit-15.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How beautiful this place is!\"",
+          "answer": "شْحَال زْوِينَة هَادْ الْبْلَاصَة!",
+          "accepted": [
+            "شْحَال زْوِينَة هَادْ الْبْلَاصَة!",
+            "sh7aal zweena had l-blaaSa!",
+            "شحال زوينة هاد البلاصة!",
+            "شحال زوينة هاد البلاصة",
+            "هاد البلاصة زوينة بزاف"
+          ],
+          "too_formal": {
+            "item": "ما أجمل هذا المكان!",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"شحال زوينة هاد البلاصة!\"."
+          },
+          "tip": "\"البلاصة\" (place) is feminine, so it takes \"زوينة\"."
+        },
+        {
+          "id": "unit-15.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which one asks \"Can visitors enter the mosque?\"",
+          "answer": "وَاش الزُّوَّار يْقْدْرُو يْدْخْلُو لْلْجَامْع؟",
+          "accepted": [
+            "وَاش الزُّوَّار يْقْدْرُو يْدْخْلُو لْلْجَامْع؟",
+            "waash z-zuwwaar yqedru ydkhlu l-l-jaame3?",
+            "واش الزوار يقدرو يدخلو للجامع؟",
+            "واش الزوار يقدرو يدخلو الجامع؟"
+          ],
+          "too_formal": {
+            "item": "هل يمكن للزوار دخول المسجد؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واش الزوار يقدرو يدخلو للجامع؟\"."
+          },
+          "tip": "In Darija the mosque is usually \"الجامع\".",
+          "options": [
+            "وَاش الزُّوَّار يْقْدْرُو يْدْخْلُو لْلْجَامْع؟",
+            "فين كاين الجامع الكبير؟",
+            "واش نقدر نصور هنا؟",
+            "بشحال البيي ديال الدخول؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"I want to do a tour with a guide\"?",
+          "answer": "بْغِيت نْدِير جَوْلَة مْعَا شِي ڭِيد",
+          "accepted": [
+            "بْغِيت نْدِير جَوْلَة مْعَا شِي ڭِيد",
+            "bghit ndeer jawla m3a shi geed",
+            "بغيت ندير جولة مع شي ڭيد",
+            "بغيت ندير جولة مع شي مرشد",
+            "بغيت جولة مع ڭيد"
+          ],
+          "too_formal": {
+            "item": "أريد جولة مع مرشد",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بغيت ندير جولة مع شي ڭيد\"."
+          },
+          "tip": "\"ڭيد\" (from French guide) is what people say at Moroccan sites; \"مرشد\" is the formal word.",
+          "options": [
+            "بْغِيت نْدِير جَوْلَة مْعَا شِي ڭِيد",
+            "فين كاينة القصبة؟",
+            "عافاك، حيد الصباط",
+            "شحال زوينة هاد البلاصة!"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Where is the national museum?\"",
+          "answer": "فِين كَايْن الْمَتْحَف الْوَطَنِي؟",
+          "accepted": [
+            "فِين كَايْن الْمَتْحَف الْوَطَنِي؟",
+            "feen kaayn l-mat7af l-waTani?",
+            "فين كاين المتحف الوطني؟",
+            "فين كاين المتحف الوطني"
+          ],
+          "too_formal": {
+            "item": "أين المتحف الوطني؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فين كاين المتحف الوطني؟\"."
+          },
+          "tip": "\"فين كاين\" is where is (for a masculine place).",
+          "words": [
+            "فِين",
+            "كَايْن",
+            "الْمَتْحَف",
+            "الْوَطَنِي؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Where is the grand mosque?\"",
+          "answer": "فِين كَايْن الْجَامْع الْكْبِير؟",
+          "accepted": [
+            "فِين كَايْن الْجَامْع الْكْبِير؟",
+            "feen kaayn l-jaame3 l-kbeer?",
+            "فين كاين الجامع الكبير؟",
+            "فين كاين الجامع الكبير"
+          ],
+          "too_formal": {
+            "item": "أين المسجد الكبير؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فين كاين الجامع الكبير؟\"."
+          },
+          "tip": "The adjective comes after the noun and also takes \"ال\".",
+          "words": [
+            "فِين",
+            "كَايْن",
+            "الْجَامْع",
+            "الْكْبِير؟"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "the-sea-is-beautiful-today",
+          "arabic": "الْبْحَر زْوِين الْيُوم",
+          "transliteration": "l-b7er zween l-yoom"
+        },
+        {
+          "slot": "where-can-we-sit-on-the-sand",
+          "arabic": "فِين نْقْدْرُو نْڭْلْسُو فْالرّْمْلَة؟",
+          "transliteration": "feen nqedru ngelsu f-r-rmla?",
+          "reply": {
+            "arabic": "هْنَا حْدَا الْبَارَاسُول، كَايْن الظّْل",
+            "transliteration": "hna 7da l-baaraasol, kaayn Z-Zell",
+            "english": "Here next to the beach umbrella, there's shade."
+          }
+        },
+        {
+          "slot": "i-want-to-swim",
+          "arabic": "بْغِيت نْعُوم",
+          "transliteration": "bghit n3oom",
+          "reply": {
+            "arabic": "وَاخَّا، وَلَكِن بْقَا قْرِيب لْلشّْط",
+            "transliteration": "waakhkha, walakin bqa qreeb l-sh-shaTT",
+            "english": "OK, but stay close to the shore."
+          }
+        },
+        {
+          "slot": "is-the-water-cold",
+          "arabic": "وَاش الْمَا بَارْد؟",
+          "transliteration": "waash l-maa baared?",
+          "reply": {
+            "arabic": "شْوِيَّة، وَلَكِن مْزْيَان",
+            "transliteration": "shwiyya, walakin mezyaan",
+            "english": "A little, but it's nice."
+          }
+        },
+        {
+          "slot": "is-it-safe-to-swim-here",
+          "arabic": "وَاش مَا فِيهَاش خْطَر نْعُومُو هْنَا؟",
+          "transliteration": "waash ma feehaash khaTar n3oomu hna?",
+          "english": "Is it safe (lit. no danger) to swim here?",
+          "reply": {
+            "arabic": "إِيه، وَلَكِن غِير بِين الرَّايَات",
+            "transliteration": "eeyeh, walakin ghir been r-raayaat",
+            "english": "Yes, but only between the flags."
+          }
+        },
+        {
+          "slot": "where-is-the-lifeguard",
+          "arabic": "فِين كَايْن الْمُنْقِذ؟",
+          "transliteration": "feen kaayn l-munqidh?"
+        },
+        {
+          "slot": "the-waves-are-high-today",
+          "arabic": "الْمُوج طَالْع بْزَّاف الْيُوم",
+          "transliteration": "l-mooj Taale3 bzzaaf l-yoom"
+        },
+        {
+          "slot": "i-want-to-rent-a-beach-umbrella",
+          "arabic": "بْغِيت نْكْرِي وَاحْد الْبَارَاسُول",
+          "transliteration": "bghit nekri waa7ed l-baaraasol",
+          "reply": {
+            "arabic": "عْشْرِين دَرْهَم لْلنّْهَار",
+            "transliteration": "3eshreen derham l-n-nhaar",
+            "english": "Twenty dirhams for the day."
+          }
+        },
+        {
+          "slot": "do-you-have-sunscreen",
+          "arabic": "وَاش عَنْدْك كْرِيم الشّْمْس؟",
+          "transliteration": "waash 3andek kreem sh-shems?",
+          "reply": {
+            "arabic": "إِيه، فْالسَّاك",
+            "transliteration": "eeyeh, f-s-saak",
+            "english": "Yes, in the bag."
+          }
+        },
+        {
+          "slot": "the-weather-is-very-hot",
+          "arabic": "الْجّْو سْخُون بْزَّاف",
+          "transliteration": "j-jaww skhoon bzzaaf"
+        },
+        {
+          "slot": "drink-plenty-of-water",
+          "arabic": "شْرَب بْزَّاف دْيَال الْمَا",
+          "transliteration": "shreb bzzaaf dyaal l-maa"
+        },
+        {
+          "slot": "the-children-are-building-a-sandcastle",
+          "arabic": "الدّْرَارِي كَيْبْنِيو قْصَر دْيَال الرّْمْلَة",
+          "transliteration": "d-draari kaybniw qSer dyaal r-rmla"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Salma",
+          "slot": "the-sea-is-beautiful-today"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "the-weather-is-very-hot"
+        },
+        {
+          "speaker": "Salma",
+          "slot": "where-can-we-sit-on-the-sand"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "where-can-we-sit-on-the-sand",
+          "reply": true
+        },
+        {
+          "speaker": "Salma",
+          "slot": "is-it-safe-to-swim-here"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "is-it-safe-to-swim-here",
+          "reply": true
+        },
+        {
+          "speaker": "Salma",
+          "slot": "the-waves-are-high-today"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "ما تخافيش، غادي نبقى حدا الدراري، والمنقذ تما فوق الكرسي",
+          "transliteration": "ma tkhaafeesh, ghaadi nebqa 7da d-draari, w l-munqidh temma fooq l-kursi",
+          "english": "Don't worry, I'll stay next to the kids, and the lifeguard is over there on the chair."
+        },
+        {
+          "speaker": "Salma",
+          "slot": "do-you-have-sunscreen"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "do-you-have-sunscreen",
+          "reply": true
+        },
+        {
+          "speaker": "Salma",
+          "slot": "the-children-are-building-a-sandcastle"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "تبارك الله! ولكن خاصهم يشربو بزاف ديال الما، الشمس قوية",
+          "transliteration": "tbaarek llaah! walakin khaSShum yshrbu bzzaaf dyaal l-maa, sh-shems qwiyya",
+          "english": "God bless them! But they need to drink plenty of water, the sun is strong."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فِين نْقْدْرُو نْڭْلْسُو فْالرّْمْلَة؟",
+            "transliteration": "feen nqedru ngelsu f-r-rmla?",
+            "english": "Where can we sit on the sand?"
+          },
+          "response": {
+            "arabic": "هْنَا حْدَا الْبَارَاسُول، كَايْن الظّْل",
+            "transliteration": "hna 7da l-baaraasol, kaayn Z-Zell",
+            "english": "Here next to the beach umbrella, there's shade."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش الْمَا بَارْد؟",
+            "transliteration": "waash l-maa baared?",
+            "english": "Is the water cold?"
+          },
+          "response": {
+            "arabic": "شْوِيَّة، وَلَكِن مْزْيَان",
+            "transliteration": "shwiyya, walakin mezyaan",
+            "english": "A little, but it's nice."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بْغِيت نْكْرِي وَاحْد الْبَارَاسُول",
+            "transliteration": "bghit nekri waa7ed l-baaraasol",
+            "english": "I want to rent a beach umbrella"
+          },
+          "response": {
+            "arabic": "عْشْرِين دَرْهَم لْلنّْهَار",
+            "transliteration": "3eshreen derham l-n-nhaar",
+            "english": "Twenty dirhams for the day."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش عَنْدْك كْرِيم الشّْمْس؟",
+            "transliteration": "waash 3andek kreem sh-shems?",
+            "english": "Do you have sunscreen?"
+          },
+          "response": {
+            "arabic": "إِيه، فْالسَّاك",
+            "transliteration": "eeyeh, f-s-saak",
+            "english": "Yes, in the bag."
+          }
+        }
+      ],
+      "culture": "In summer Moroccan families head to the beaches near Casablanca and Rabat, rent a parasol (باراسول) for the day and spend the afternoon on the sand together, with women and girls in modest beachwear. Atlantic waves can be strong, so people swim only between the flags where the lifeguards keep watch.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your son says: \"بغيت نعوم\". Say OK, but stay close to the shore.",
+          "answer": "وَاخَّا، وَلَكِن بْقَا قْرِيب لْلشّْط",
+          "accepted": [
+            "وَاخَّا، وَلَكِن بْقَا قْرِيب لْلشّْط",
+            "waakhkha, walakin bqa qreeb l-sh-shaTT",
+            "واخا، ولكن بقا قريب للشط",
+            "واخا، بقا قريب للشط",
+            "واخا، ولكن ما تبعدش"
+          ],
+          "too_formal": {
+            "item": "حسنا، لكن ابق قريبا من الشاطئ",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واخا، ولكن بقا قريب للشط\"."
+          },
+          "tip": "\"واخا\" is the everyday OK; \"الشط\" is the shore."
+        },
+        {
+          "id": "unit-15.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "You ask the attendant: \"بغيت نكري واحد الباراسول\". He says twenty dirhams for the day. Write his answer.",
+          "answer": "عْشْرِين دَرْهَم لْلنّْهَار",
+          "accepted": [
+            "عْشْرِين دَرْهَم لْلنّْهَار",
+            "3eshreen derham l-n-nhaar",
+            "عشرين درهم للنهار",
+            "عشرين درهم",
+            "عشرين درهم النهار كامل"
+          ],
+          "too_formal": {
+            "item": "عشرون درهما لليوم",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"عشرين درهم للنهار\"."
+          },
+          "tip": "\"النهار\" is the day; \"اليوم\" means today."
+        },
+        {
+          "id": "unit-15.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الموج ___ بزاف اليوم.\" Meaning: The waves are high today.",
+          "answer": "طالع",
+          "accepted": [
+            "طالع",
+            "Taale3",
+            "طالعين"
+          ],
+          "too_formal": {
+            "item": "مرتفع",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"طالع\"."
+          },
+          "tip": "\"طالع\" (going up) is how Moroccans describe a rough sea."
+        },
+        {
+          "id": "unit-15.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"واش ___ بارد؟\" Meaning: Is the water cold?",
+          "answer": "الما",
+          "accepted": [
+            "الما",
+            "l-maa",
+            "لما"
+          ],
+          "too_formal": {
+            "item": "الماء",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الما\"."
+          },
+          "tip": "\"الما\" drops the final hamza of \"الماء\"."
+        },
+        {
+          "id": "unit-15.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to swim.\"",
+          "answer": "بْغِيت نْعُوم",
+          "accepted": [
+            "بْغِيت نْعُوم",
+            "bghit n3oom",
+            "بغيت نعوم"
+          ],
+          "too_formal": {
+            "item": "أريد أن أسبح",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بغيت نعوم\"."
+          },
+          "tip": "\"بغيت\" + verb is the everyday way to say what you want to do."
+        },
+        {
+          "id": "unit-15.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"The weather is very hot.\"",
+          "answer": "الْجّْو سْخُون بْزَّاف",
+          "accepted": [
+            "الْجّْو سْخُون بْزَّاف",
+            "j-jaww skhoon bzzaaf",
+            "الجو سخون بزاف",
+            "كاين الصهد بزاف",
+            "الصهد بزاف"
+          ],
+          "too_formal": {
+            "item": "الجو حار جدا",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الجو سخون بزاف\"."
+          },
+          "tip": "\"بزاف\" means very and comes after the adjective; \"الصهد\" is the heat."
+        },
+        {
+          "id": "unit-15.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"Drink plenty of water\"?",
+          "answer": "شْرَب بْزَّاف دْيَال الْمَا",
+          "accepted": [
+            "شْرَب بْزَّاف دْيَال الْمَا",
+            "shreb bzzaaf dyaal l-maa",
+            "شرب بزاف ديال الما",
+            "شرب الما بزاف"
+          ],
+          "too_formal": {
+            "item": "اشرب الكثير من الماء",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"شرب بزاف ديال الما\"."
+          },
+          "tip": "\"بزاف ديال\" means a lot of.",
+          "options": [
+            "شْرَب بْزَّاف دْيَال الْمَا",
+            "واش الما بارد؟",
+            "بغيت نعوم",
+            "الجو سخون بزاف"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which one asks \"Where is the lifeguard?\"",
+          "answer": "فِين كَايْن الْمُنْقِذ؟",
+          "accepted": [
+            "فِين كَايْن الْمُنْقِذ؟",
+            "feen kaayn l-munqidh?",
+            "فين كاين المنقذ؟",
+            "فين كاين المنقذ"
+          ],
+          "tip": "\"فين كاين\" asks where something or someone is.",
+          "options": [
+            "فِين كَايْن الْمُنْقِذ؟",
+            "فين نقدرو نڭلسو فالرملة؟",
+            "واش عندك كريم الشمس؟",
+            "فين كاين الجامع الكبير؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"The children are building a sandcastle.\"",
+          "answer": "الدّْرَارِي كَيْبْنِيو قْصَر دْيَال الرّْمْلَة",
+          "accepted": [
+            "الدّْرَارِي كَيْبْنِيو قْصَر دْيَال الرّْمْلَة",
+            "d-draari kaybniw qSer dyaal r-rmla",
+            "الدراري كيبنيو قصر ديال الرملة",
+            "الدراري كيبنيو قصر ديال الرمل"
+          ],
+          "too_formal": {
+            "item": "الأطفال يبنون قصرا من الرمل",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الدراري كيبنيو قصر ديال الرملة\"."
+          },
+          "tip": "\"الدراري\" means the children; \"كي\" marks an action happening now.",
+          "words": [
+            "الدّْرَارِي",
+            "كَيْبْنِيو",
+            "قْصَر",
+            "دْيَال",
+            "الرّْمْلَة"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Do you have sunscreen?\"",
+          "answer": "وَاش عَنْدْك كْرِيم الشّْمْس؟",
+          "accepted": [
+            "وَاش عَنْدْك كْرِيم الشّْمْس؟",
+            "waash 3andek kreem sh-shems?",
+            "واش عندك كريم الشمس؟",
+            "واش عندك كريم ديال الشمس؟"
+          ],
+          "too_formal": {
+            "item": "هل عندك واقي الشمس؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واش عندك كريم الشمس؟\"."
+          },
+          "tip": "\"واش\" turns a sentence into a yes/no question.",
+          "words": [
+            "وَاش",
+            "عَنْدْك",
+            "كْرِيم",
+            "الشّْمْس؟"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-07",
+      "phrases": [
+        {
+          "slot": "i-want-a-souvenir-for-my-family",
+          "arabic": "بْغِيت شِي تْذْكَار لْلْعَائِلَة دْيَالِي",
+          "transliteration": "bghit shi tedkaar l-l-3aa2ila dyaali",
+          "reply": {
+            "arabic": "عَنْدْنَا بْزَّاف دْيَال الْحْوَايْج التّْقْلِيدِيَّة",
+            "transliteration": "3andna bzzaaf dyaal l-7waayej t-taqleediyya",
+            "english": "We have lots of traditional things."
+          }
+        },
+        {
+          "slot": "do-you-have-good-dates",
+          "arabic": "وَاش عَنْدْك تْمَر مْزْيَان؟",
+          "transliteration": "waash 3andek tmer mezyaan?",
+          "reply": {
+            "arabic": "عَنْدِي الْمْجْهُول دْيَال تَافِيلَالْت",
+            "transliteration": "3andi l-mejhool dyaal taafeelaalt",
+            "english": "I have Medjool dates from Tafilalet."
+          }
+        },
+        {
+          "slot": "i-want-a-box-of-spices-as-a-gift",
+          "arabic": "بْغِيت عَلْبَة دْيَال الْعْطْرِيَّة، هْدِيَّة",
+          "transliteration": "bghit 3elba dyaal l-3eTriyya, hdiyya"
+        },
+        {
+          "slot": "what-is-this-perfume",
+          "arabic": "شْنُو هَادْ الْعْطَر؟",
+          "transliteration": "shnoo had l-3Ter?",
+          "reply": {
+            "arabic": "هَادَا مِسْك، رِيحْتُو زْوِينَة",
+            "transliteration": "haada misk, ree7tu zweena",
+            "english": "This is musk, it smells lovely."
+          }
+        },
+        {
+          "slot": "i-want-a-small-bottle-of-oud-oil",
+          "arabic": "بْغِيت قْنِينَة صْغِيرَة دْيَال دْهْن الْعُود",
+          "transliteration": "bghit qenneena Sgheera dyaal dehn l-3ood"
+        },
+        {
+          "slot": "is-this-handmade",
+          "arabic": "وَاش هَادْشِي مْعْمُول بْالْيْد؟",
+          "transliteration": "waash haadshi ma3mool b-l-yedd?",
+          "reply": {
+            "arabic": "إِيه، خْدْمَة تْقْلِيدِيَّة دْيَال فَاس",
+            "transliteration": "eeyeh, khedma taqleediyya dyaal faas",
+            "english": "Yes, traditional work from Fes."
+          }
+        },
+        {
+          "slot": "i-want-a-prayer-rug",
+          "arabic": "بْغِيت وَاحْد السّْجَّادَة",
+          "transliteration": "bghit waa7ed s-sejjaada"
+        },
+        {
+          "slot": "this-wooden-box-is-beautiful",
+          "arabic": "هَادْ الْعَلْبَة دْيَال الْخْشَب زْوِينَة",
+          "transliteration": "had l-3elba dyaal l-khshab zweena"
+        },
+        {
+          "slot": "a-lower-price-if-i-buy-two",
+          "arabic": "إِلَى شْرِيت جُوج، تْنْقّْص لِيا فْالتّْمَن؟",
+          "transliteration": "ila shreet jooj, tnaqqeS leeya f-t-tmen?",
+          "english": "If I buy two, will you lower the price for me?",
+          "reply": {
+            "arabic": "مَاشِي مُشْكِل، غَادِي نْدِير لِيك تْمَن مْزْيَان",
+            "transliteration": "maashi mushkil, ghaadi ndeer leek tmen mezyaan",
+            "english": "No problem, I'll give you a good price."
+          }
+        },
+        {
+          "slot": "can-you-wrap-it-as-a-gift",
+          "arabic": "وَاش تْقْدَر تْلْفّْهَا لِيا هْدِيَّة؟",
+          "transliteration": "waash tqder tleffha leeya hdiyya?",
+          "reply": {
+            "arabic": "مَرْحْبَا، دْقِيقَة",
+            "transliteration": "mer7ba, dqeeqa",
+            "english": "Gladly, one minute."
+          }
+        },
+        {
+          "slot": "i-want-a-silk-scarf-for-my-sister",
+          "arabic": "بْغِيت فُولَار دْيَال الْحْرِير لْخْتِي",
+          "transliteration": "bghit foolaar dyaal l-7reer l-khti"
+        },
+        {
+          "slot": "this-is-a-gift-for-my-mother",
+          "arabic": "هَادِي هْدِيَّة لْمِّي، إِن شَاء اللَّه تْعْجْبْهَا",
+          "transliteration": "haadi hdiyya l-mmi, inshaa2 llaah t3jebha"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Salma",
+          "slot": "i-want-a-souvenir-for-my-family"
+        },
+        {
+          "speaker": "Shopkeeper",
+          "slot": "i-want-a-souvenir-for-my-family",
+          "reply": true
+        },
+        {
+          "speaker": "Salma",
+          "slot": "what-is-this-perfume"
+        },
+        {
+          "speaker": "Shopkeeper",
+          "slot": "what-is-this-perfume",
+          "reply": true
+        },
+        {
+          "speaker": "Salma",
+          "slot": "i-want-a-small-bottle-of-oud-oil"
+        },
+        {
+          "speaker": "Shopkeeper",
+          "arabic": "هاهي، وهادا الصابون البلدي هدية من عندي",
+          "transliteration": "haahiya, w haada S-Saaboon l-beldi hdiyya mn 3endi",
+          "english": "Here it is, and this traditional soap is a gift from me."
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "الله يخليك! وبغيت فولار ديال الحرير لختي",
+          "transliteration": "Allah ykhalleek! w bghit foolaar dyaal l-7reer l-khti",
+          "english": "God keep you! And I want a silk scarf for my sister."
+        },
+        {
+          "speaker": "Shopkeeper",
+          "arabic": "عندنا الحمر والزرق، شوفي",
+          "transliteration": "3andna l-7mer w z-zreq, shoofi",
+          "english": "We have red and blue ones, have a look."
+        },
+        {
+          "speaker": "Salma",
+          "slot": "a-lower-price-if-i-buy-two"
+        },
+        {
+          "speaker": "Shopkeeper",
+          "slot": "a-lower-price-if-i-buy-two",
+          "reply": true
+        },
+        {
+          "speaker": "Salma",
+          "arabic": "واحد لختي، والزرق هدية لمي، إن شاء الله تعجبها",
+          "transliteration": "waa7ed l-khti, w z-zreq hdiyya l-mmi, inshaa2 llaah t3jebha",
+          "english": "One for my sister, and the blue one is a gift for my mother, I hope she likes it."
+        },
+        {
+          "speaker": "Shopkeeper",
+          "arabic": "إن شاء الله تعجبها. نلفهم ليك هدية؟",
+          "transliteration": "inshaa2 llaah t3jebha. nleffhum leek hdiyya?",
+          "english": "I hope she likes it. Shall I wrap them as gifts for you?"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وَاش عَنْدْك تْمَر مْزْيَان؟",
+            "transliteration": "waash 3andek tmer mezyaan?",
+            "english": "Do you have good dates?"
+          },
+          "response": {
+            "arabic": "عَنْدِي الْمْجْهُول دْيَال تَافِيلَالْت",
+            "transliteration": "3andi l-mejhool dyaal taafeelaalt",
+            "english": "I have Medjool dates from Tafilalet."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْنُو هَادْ الْعْطَر؟",
+            "transliteration": "shnoo had l-3Ter?",
+            "english": "What is this perfume?"
+          },
+          "response": {
+            "arabic": "هَادَا مِسْك، رِيحْتُو زْوِينَة",
+            "transliteration": "haada misk, ree7tu zweena",
+            "english": "This is musk, it smells lovely."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش هَادْشِي مْعْمُول بْالْيْد؟",
+            "transliteration": "waash haadshi ma3mool b-l-yedd?",
+            "english": "Is this handmade?"
+          },
+          "response": {
+            "arabic": "إِيه، خْدْمَة تْقْلِيدِيَّة دْيَال فَاس",
+            "transliteration": "eeyeh, khedma taqleediyya dyaal faas",
+            "english": "Yes, traditional work from Fes."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِلَى شْرِيت جُوج، تْنْقّْص لِيا فْالتّْمَن؟",
+            "transliteration": "ila shreet jooj, tnaqqeS leeya f-t-tmen?",
+            "english": "If I buy two, will you lower the price?"
+          },
+          "response": {
+            "arabic": "مَاشِي مُشْكِل، غَادِي نْدِير لِيك تْمَن مْزْيَان",
+            "transliteration": "maashi mushkil, ghaadi ndeer leek tmen mezyaan",
+            "english": "No problem, I'll give you a good price."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش تْقْدَر تْلْفّْهَا لِيا هْدِيَّة؟",
+            "transliteration": "waash tqder tleffha leeya hdiyya?",
+            "english": "Can you wrap it as a gift?"
+          },
+          "response": {
+            "arabic": "مَرْحْبَا، دْقِيقَة",
+            "transliteration": "mer7ba, dqeeqa",
+            "english": "Gladly, one minute."
+          }
+        }
+      ],
+      "culture": "In the souks of Fes, Marrakech and the Rabat medina, bargaining is normal and friendly: buying two of something is the classic way to ask for a lower price. Favourite things to take home are spices (العطرية), Medjool dates, traditional black soap, thuya-wood boxes from Essaouira, copper trays and prayer rugs, and a small extra gift from the seller is common.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-07.reply.01",
+          "type": "reply",
+          "prompt": "You ask: \"إلى شريت جوج، تنقص ليا فالتمن؟\" The shopkeeper agrees. Write his answer.",
+          "answer": "مَاشِي مُشْكِل، غَادِي نْدِير لِيك تْمَن مْزْيَان",
+          "accepted": [
+            "مَاشِي مُشْكِل، غَادِي نْدِير لِيك تْمَن مْزْيَان",
+            "maashi mushkil, ghaadi ndeer leek tmen mezyaan",
+            "ماشي مشكل، غادي ندير ليك تمن مزيان",
+            "ماشي مشكل",
+            "واخا، غادي نقص ليك"
+          ],
+          "too_formal": {
+            "item": "لا مشكلة، سأعطيك سعرا جيدا",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"ماشي مشكل، غادي ندير ليك تمن مزيان\"."
+          },
+          "tip": "\"ماشي مشكل\" is the everyday no problem; \"التمن\" is the price."
+        },
+        {
+          "id": "unit-15.lesson-07.reply.02",
+          "type": "reply",
+          "prompt": "You ask: \"واش عندك تمر مزيان؟\" The seller says he has Medjool dates from Tafilalet. Write his answer.",
+          "answer": "عَنْدِي الْمْجْهُول دْيَال تَافِيلَالْت",
+          "accepted": [
+            "عَنْدِي الْمْجْهُول دْيَال تَافِيلَالْت",
+            "3andi l-mejhool dyaal taafeelaalt",
+            "عندي المجهول ديال تافيلالت",
+            "عندي المجهول",
+            "إيه، عندي المجهول"
+          ],
+          "too_formal": {
+            "item": "لدي تمر المجهول من تافيلالت",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"عندي المجهول ديال تافيلالت\"."
+          },
+          "tip": "Tafilalet in the south-east is Morocco's best-known date region."
+        },
+        {
+          "id": "unit-15.lesson-07.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بغيت علبة ديال ___، هدية.\" Meaning: I want a box of spices as a gift.",
+          "answer": "العطرية",
+          "accepted": [
+            "العطرية",
+            "l-3eTriyya",
+            "لعطرية",
+            "التوابل"
+          ],
+          "too_formal": {
+            "item": "البهارات",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"العطرية\"."
+          },
+          "tip": "\"العطرية\" is the everyday Moroccan word for spices."
+        },
+        {
+          "id": "unit-15.lesson-07.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بغيت ___ ديال الحرير لختي.\" Meaning: I want a silk scarf for my sister.",
+          "answer": "فولار",
+          "accepted": [
+            "فولار",
+            "foolaar",
+            "فولارة",
+            "زيف"
+          ],
+          "too_formal": {
+            "item": "وشاح",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"فولار\"."
+          },
+          "tip": "\"فولار\" comes from French foulard; \"لختي\" means for my sister."
+        },
+        {
+          "id": "unit-15.lesson-07.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is this handmade?\"",
+          "answer": "وَاش هَادْشِي مْعْمُول بْالْيْد؟",
+          "accepted": [
+            "وَاش هَادْشِي مْعْمُول بْالْيْد؟",
+            "waash haadshi ma3mool b-l-yedd?",
+            "واش هادشي معمول باليد؟",
+            "واش هادا معمول باليد؟",
+            "واش هادي خدمة اليد؟"
+          ],
+          "too_formal": {
+            "item": "هل هذا مصنوع يدويا؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واش هادشي معمول باليد؟\"."
+          },
+          "tip": "\"هادشي\" means this (thing) in general."
+        },
+        {
+          "id": "unit-15.lesson-07.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want a prayer rug.\"",
+          "answer": "بْغِيت وَاحْد السّْجَّادَة",
+          "accepted": [
+            "بْغِيت وَاحْد السّْجَّادَة",
+            "bghit waa7ed s-sejjaada",
+            "بغيت واحد السجادة",
+            "بغيت سجادة",
+            "بغيت شي سجادة"
+          ],
+          "too_formal": {
+            "item": "أريد سجادة صلاة",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بغيت واحد السجادة\"."
+          },
+          "tip": "\"واحد\" + the noun with \"ال\" is the everyday way to say a/an."
+        },
+        {
+          "id": "unit-15.lesson-07.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"This wooden box is beautiful\"?",
+          "answer": "هَادْ الْعَلْبَة دْيَال الْخْشَب زْوِينَة",
+          "accepted": [
+            "هَادْ الْعَلْبَة دْيَال الْخْشَب زْوِينَة",
+            "had l-3elba dyaal l-khshab zweena",
+            "هاد العلبة ديال الخشب زوينة",
+            "هاد الصندوق ديال الخشب زوين"
+          ],
+          "too_formal": {
+            "item": "هذا الصندوق الخشبي جميل",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"هاد العلبة ديال الخشب زوينة\"."
+          },
+          "tip": "\"العلبة\" is feminine, so it is \"زوينة\".",
+          "options": [
+            "هَادْ الْعَلْبَة دْيَال الْخْشَب زْوِينَة",
+            "شنو هاد العطر؟",
+            "بغيت واحد السجادة",
+            "واش عندك تمر مزيان؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-07.choose.02",
+          "type": "choose",
+          "prompt": "Which one asks \"Can you wrap it as a gift?\"",
+          "answer": "وَاش تْقْدَر تْلْفّْهَا لِيا هْدِيَّة؟",
+          "accepted": [
+            "وَاش تْقْدَر تْلْفّْهَا لِيا هْدِيَّة؟",
+            "waash tqder tleffha leeya hdiyya?",
+            "واش تقدر تلفها ليا هدية؟",
+            "واش تقدر تلفها ليا كادو؟",
+            "لفها ليا هدية عافاك"
+          ],
+          "too_formal": {
+            "item": "هل يمكنك تغليفها كهدية؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"واش تقدر تلفها ليا هدية؟\"."
+          },
+          "tip": "\"كادو\" (from French cadeau) is often used instead of \"هدية\".",
+          "options": [
+            "وَاش تْقْدَر تْلْفّْهَا لِيا هْدِيَّة؟",
+            "واش هادشي معمول باليد؟",
+            "بغيت شي تذكار للعائلة ديالي",
+            "شنو هاد العطر؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-07.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"I want a small bottle of oud oil.\"",
+          "answer": "بْغِيت قْنِينَة صْغِيرَة دْيَال دْهْن الْعُود",
+          "accepted": [
+            "بْغِيت قْنِينَة صْغِيرَة دْيَال دْهْن الْعُود",
+            "bghit qenneena Sgheera dyaal dehn l-3ood",
+            "بغيت قنينة صغيرة ديال دهن العود",
+            "بغيت قنينة صغيرة ديال العود"
+          ],
+          "too_formal": {
+            "item": "أريد قارورة صغيرة من دهن العود",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"بغيت قنينة صغيرة ديال دهن العود\"."
+          },
+          "tip": "\"ديال\" links the bottle to what is in it.",
+          "words": [
+            "بْغِيت",
+            "قْنِينَة",
+            "صْغِيرَة",
+            "دْيَال",
+            "دْهْن",
+            "الْعُود"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-07.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"This is a gift for my mother, I hope she likes it.\"",
+          "answer": "هَادِي هْدِيَّة لْمِّي، إِن شَاء اللَّه تْعْجْبْهَا",
+          "accepted": [
+            "هَادِي هْدِيَّة لْمِّي، إِن شَاء اللَّه تْعْجْبْهَا",
+            "haadi hdiyya l-mmi, inshaa2 llaah t3jebha",
+            "هادي هدية لمي، إن شاء الله تعجبها",
+            "هادي هدية لماما، إن شاء الله تعجبها"
+          ],
+          "too_formal": {
+            "item": "هذه هدية لأمي، أتمنى أن تعجبها",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"هادي هدية لمي، إن شاء الله تعجبها\"."
+          },
+          "tip": "\"لمي\" = for my mother; \"إن شاء الله\" is how Moroccans say I hope.",
+          "words": [
+            "هَادِي",
+            "هْدِيَّة",
+            "لْمِّي،",
+            "إِن",
+            "شَاء",
+            "اللَّه",
+            "تْعْجْبْهَا"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-08",
+      "phrases": [
+        {
+          "slot": "where-are-you-going-this-holiday",
+          "arabic": "فِين غَادِي تْمْشِي فْهَادْ الْعُطْلَة؟",
+          "transliteration": "feen ghaadi temshi f-had l-3oTla?",
+          "reply": {
+            "arabic": "غَادِي نْمْشِيو لْلصّْوِيرَة",
+            "transliteration": "ghaadi nemshiw l-S-Sweera",
+            "english": "We're going to Essaouira."
+          }
+        },
+        {
+          "slot": "how-long-does-your-holiday-last",
+          "arabic": "شْحَال كَتْدُوم الْعُطْلَة دْيَالْك؟",
+          "transliteration": "sh7aal katdoom l-3oTla dyaalek?",
+          "reply": {
+            "arabic": "خْمْسْطَاشْر يُوم",
+            "transliteration": "khmesTaashr yoom",
+            "english": "Fifteen days."
+          }
+        },
+        {
+          "slot": "we-are-travelling-with-the-whole-family",
+          "arabic": "غَادِي نْسَافْرُو مْعَا الْعَائِلَة كَامْلَة",
+          "transliteration": "ghaadi nsaafru m3a l-3aa2ila kaamla"
+        },
+        {
+          "slot": "we-booked-a-house-near-the-beach",
+          "arabic": "حْجْزْنَا دَار قْرِيبَة مْن الْبْلَاج",
+          "transliteration": "7jezna daar qreeba mn l-plaaj"
+        },
+        {
+          "slot": "i-will-take-my-camera-with-me",
+          "arabic": "غَادِي نْدِّي مْعَايَا الْكَامِيرَا دْيَالِي",
+          "transliteration": "ghaadi nddi m3aaya l-kaameera dyaali"
+        },
+        {
+          "slot": "what-a-beautiful-view",
+          "arabic": "وَاه، مَنْظَر زْوِين بْزَّاف!",
+          "transliteration": "waah, manDar zween bzzaaf!",
+          "english": "Wow, a very beautiful view!"
+        },
+        {
+          "slot": "can-you-take-a-photo-of-us",
+          "arabic": "عَافَاك، وَاش تْقْدَر تْصَوّْرْنَا؟",
+          "transliteration": "3afaak, waash tqder tSawwerna?",
+          "reply": {
+            "arabic": "مَرْحْبَا، وْقْفُو حْدَا الْبْحَر",
+            "transliteration": "mer7ba, wqfu 7da l-b7er",
+            "english": "Gladly, stand by the sea."
+          }
+        },
+        {
+          "slot": "the-sunset-is-beautiful-here",
+          "arabic": "الْغْرُوب زْوِين بْزَّاف هْنَا",
+          "transliteration": "l-ghroob zween bzzaaf hna"
+        },
+        {
+          "slot": "send-me-the-photos-on-my-phone",
+          "arabic": "صِيفْط لِيا التّْصَاوْر فْالتِّيلِيفُون",
+          "transliteration": "seefeT leeya t-tSaawer f-t-teleefoon"
+        },
+        {
+          "slot": "how-was-your-trip",
+          "arabic": "كِيفَاش دَازْت الرّْحْلَة؟",
+          "transliteration": "keefaash daazt r-ri7la?",
+          "reply": {
+            "arabic": "دَازْت مْزْيَانَة، تْمْتّْعْنَا بْزَّاف",
+            "transliteration": "daazt mezyaana, tmette3na bzzaaf",
+            "english": "It went well, we enjoyed it a lot."
+          }
+        },
+        {
+          "slot": "the-sea-is-very-calm",
+          "arabic": "الْبْحَر هَادْي بْزَّاف",
+          "transliteration": "l-b7er haadi bzzaaf"
+        },
+        {
+          "slot": "we-came-back-safe-thank-god",
+          "arabic": "رْجْعْنَا بْالسّْلَامَة، الْحَمْدُ لِلَّه",
+          "transliteration": "rje3na b-s-slaama, l-7amdu lillaah"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "slot": "where-are-you-going-this-holiday"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "where-are-you-going-this-holiday",
+          "reply": true
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "زوينة! مع من غادي تمشي؟",
+          "transliteration": "zweena! m3a mn ghaadi temshi?",
+          "english": "Lovely! Who are you going with?"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "we-are-travelling-with-the-whole-family"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "how-long-does-your-holiday-last"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "how-long-does-your-holiday-last",
+          "reply": true
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وشنو هو البلان؟ فين غادي تسكنو؟",
+          "transliteration": "w shnoo huwa l-plaan? feen ghaadi tseknu?",
+          "english": "And what's the plan? Where will you stay?"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "we-booked-a-house-near-the-beach"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "مزيان! الغروب تما زوين بزاف، والبحر كيكون هادي فالعشية",
+          "transliteration": "mezyaan! l-ghroob temma zween bzzaaf, w l-b7er kaykoon haadi f-l-3sheyya",
+          "english": "Great! The sunset there is very beautiful, and the sea is calm in the evening."
+        },
+        {
+          "speaker": "Samir",
+          "slot": "i-will-take-my-camera-with-me"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "send-me-the-photos-on-my-phone"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "واخا، وإن شاء الله نرجعو بالسلامة",
+          "transliteration": "waakhkha, w inshaa2 llaah nrej3u b-s-slaama",
+          "english": "OK, and God willing we'll come back safely."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فِين غَادِي تْمْشِي فْهَادْ الْعُطْلَة؟",
+            "transliteration": "feen ghaadi temshi f-had l-3oTla?",
+            "english": "Where are you going this holiday?"
+          },
+          "response": {
+            "arabic": "غَادِي نْمْشِيو لْلصّْوِيرَة",
+            "transliteration": "ghaadi nemshiw l-S-Sweera",
+            "english": "We're going to Essaouira."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْحَال كَتْدُوم الْعُطْلَة دْيَالْك؟",
+            "transliteration": "sh7aal katdoom l-3oTla dyaalek?",
+            "english": "How long does your holiday last?"
+          },
+          "response": {
+            "arabic": "خْمْسْطَاشْر يُوم",
+            "transliteration": "khmesTaashr yoom",
+            "english": "Fifteen days."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عَافَاك، وَاش تْقْدَر تْصَوّْرْنَا؟",
+            "transliteration": "3afaak, waash tqder tSawwerna?",
+            "english": "Can you take a photo of us, please?"
+          },
+          "response": {
+            "arabic": "مَرْحْبَا، وْقْفُو حْدَا الْبْحَر",
+            "transliteration": "mer7ba, wqfu 7da l-b7er",
+            "english": "Gladly, stand by the sea."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كِيفَاش دَازْت الرّْحْلَة؟",
+            "transliteration": "keefaash daazt r-ri7la?",
+            "english": "How was your trip?"
+          },
+          "response": {
+            "arabic": "دَازْت مْزْيَانَة، تْمْتّْعْنَا بْزَّاف",
+            "transliteration": "daazt mezyaana, tmette3na bzzaaf",
+            "english": "It went well, we enjoyed it a lot."
+          }
+        }
+      ],
+      "culture": "Many Moroccan families take their summer leave (الكونجي) together and rent a house by the sea in places like Essaouira, Agadir or the Mediterranean coast, often joined by relatives living abroad. Photos are shared straight away in the family WhatsApp group, and on the return everyone is greeted with \"الحمد لله على السلامة\".",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-08.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: \"كيفاش دازت الرحلة؟\" Say it went well and you enjoyed it a lot.",
+          "answer": "دَازْت مْزْيَانَة، تْمْتّْعْنَا بْزَّاف",
+          "accepted": [
+            "دَازْت مْزْيَانَة، تْمْتّْعْنَا بْزَّاف",
+            "daazt mezyaana, tmette3na bzzaaf",
+            "دازت مزيانة، تمتعنا بزاف",
+            "دازت مزيانة",
+            "زوينة بزاف، تمتعنا"
+          ],
+          "too_formal": {
+            "item": "كانت جيدة، استمتعنا كثيرا",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"دازت مزيانة، تمتعنا بزاف\"."
+          },
+          "tip": "\"دازت\" (it passed) is how Moroccans say how something went."
+        },
+        {
+          "id": "unit-15.lesson-08.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: \"شحال كتدوم العطلة ديالك؟\" Say fifteen days.",
+          "answer": "خْمْسْطَاشْر يُوم",
+          "accepted": [
+            "خْمْسْطَاشْر يُوم",
+            "khmesTaashr yoom",
+            "خمسطاشر يوم",
+            "خمستاشر يوم",
+            "جوج سيمانات"
+          ],
+          "too_formal": {
+            "item": "خمسة عشر يوما",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"خمسطاشر يوم\"."
+          },
+          "tip": "After ten, Darija keeps the noun singular: خمسطاشر يوم."
+        },
+        {
+          "id": "unit-15.lesson-08.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"___ ليا التصاور فالتيليفون.\" Meaning: Send me the photos on my phone.",
+          "answer": "صيفط",
+          "accepted": [
+            "صيفط",
+            "seefeT",
+            "صيفطلي",
+            "سيفط"
+          ],
+          "too_formal": {
+            "item": "أرسل",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"صيفط\"."
+          },
+          "tip": "\"صيفط\" is the everyday Moroccan verb for send."
+        },
+        {
+          "id": "unit-15.lesson-08.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"البحر ___ بزاف.\" Meaning: The sea is very calm.",
+          "answer": "هادي",
+          "accepted": [
+            "هادي",
+            "haadi",
+            "هادئ"
+          ],
+          "too_formal": {
+            "item": "ساكن",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"هادي\"."
+          },
+          "tip": "Here \"هادي\" is calm; the same spelling also means this (feminine)."
+        },
+        {
+          "id": "unit-15.lesson-08.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"We booked a house near the beach.\"",
+          "answer": "حْجْزْنَا دَار قْرِيبَة مْن الْبْلَاج",
+          "accepted": [
+            "حْجْزْنَا دَار قْرِيبَة مْن الْبْلَاج",
+            "7jezna daar qreeba mn l-plaaj",
+            "حجزنا دار قريبة من البلاج",
+            "كرينا دار قريبة من البلاج",
+            "حجزنا دار حدا البلاج"
+          ],
+          "too_formal": {
+            "item": "حجزنا منزلا قريبا من الشاطئ",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"حجزنا دار قريبة من البلاج\"."
+          },
+          "tip": "\"البلاج\" (from French plage) is the beach; \"دار\" is a house."
+        },
+        {
+          "id": "unit-15.lesson-08.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"We came back safe, thank God.\"",
+          "answer": "رْجْعْنَا بْالسّْلَامَة، الْحَمْدُ لِلَّه",
+          "accepted": [
+            "رْجْعْنَا بْالسّْلَامَة، الْحَمْدُ لِلَّه",
+            "rje3na b-s-slaama, l-7amdu lillaah",
+            "رجعنا بالسلامة، الحمد لله",
+            "رجعنا بالسلامة والحمد لله"
+          ],
+          "too_formal": {
+            "item": "عدنا سالمين والحمد لله",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"رجعنا بالسلامة، الحمد لله\"."
+          },
+          "tip": "\"بالسلامة\" is safely; the reply is usually \"الحمد لله على السلامة\"."
+        },
+        {
+          "id": "unit-15.lesson-08.choose.01",
+          "type": "choose",
+          "prompt": "Which one asks \"Can you take a photo of us?\"",
+          "answer": "عَافَاك، وَاش تْقْدَر تْصَوّْرْنَا؟",
+          "accepted": [
+            "عَافَاك، وَاش تْقْدَر تْصَوّْرْنَا؟",
+            "3afaak, waash tqder tSawwerna?",
+            "عافاك، واش تقدر تصورنا؟",
+            "واش تقدر تصورنا عافاك؟",
+            "عافاك صورنا"
+          ],
+          "too_formal": {
+            "item": "هل يمكنك أن تلتقط لنا صورة؟",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"عافاك، واش تقدر تصورنا؟\"."
+          },
+          "tip": "\"صور\" + \"نا\" = photograph us.",
+          "options": [
+            "عَافَاك، وَاش تْقْدَر تْصَوّْرْنَا؟",
+            "صيفط ليا التصاور فالتيليفون",
+            "الغروب زوين بزاف هنا",
+            "كيفاش دازت الرحلة؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-08.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"I will take my camera with me\"?",
+          "answer": "غَادِي نْدِّي مْعَايَا الْكَامِيرَا دْيَالِي",
+          "accepted": [
+            "غَادِي نْدِّي مْعَايَا الْكَامِيرَا دْيَالِي",
+            "ghaadi nddi m3aaya l-kaameera dyaali",
+            "غادي ندي معايا الكاميرا ديالي",
+            "غادي ندي الكاميرا معايا"
+          ],
+          "too_formal": {
+            "item": "سآخذ الكاميرا معي",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"غادي ندي معايا الكاميرا ديالي\"."
+          },
+          "tip": "\"ندي\" means I take (with me); \"معايا\" is with me.",
+          "options": [
+            "غَادِي نْدِّي مْعَايَا الْكَامِيرَا دْيَالِي",
+            "غادي نسافرو مع العائلة كاملة",
+            "حجزنا دار قريبة من البلاج",
+            "رجعنا بالسلامة، الحمد لله"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-08.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"We are travelling with the whole family.\"",
+          "answer": "غَادِي نْسَافْرُو مْعَا الْعَائِلَة كَامْلَة",
+          "accepted": [
+            "غَادِي نْسَافْرُو مْعَا الْعَائِلَة كَامْلَة",
+            "ghaadi nsaafru m3a l-3aa2ila kaamla",
+            "غادي نسافرو مع العائلة كاملة",
+            "غانسافرو مع العائلة كاملة"
+          ],
+          "too_formal": {
+            "item": "سنسافر مع العائلة كلها",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"غادي نسافرو مع العائلة كاملة\"."
+          },
+          "tip": "\"كاملة\" after the noun means whole.",
+          "words": [
+            "غَادِي",
+            "نْسَافْرُو",
+            "مْعَا",
+            "الْعَائِلَة",
+            "كَامْلَة"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-08.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"The sunset is beautiful here.\"",
+          "answer": "الْغْرُوب زْوِين بْزَّاف هْنَا",
+          "accepted": [
+            "الْغْرُوب زْوِين بْزَّاف هْنَا",
+            "l-ghroob zween bzzaaf hna",
+            "الغروب زوين بزاف هنا",
+            "الغروب زوين هنا"
+          ],
+          "too_formal": {
+            "item": "الغروب جميل هنا",
+            "feedback": "This is correct formal Arabic, but everyday Moroccan speech says \"الغروب زوين بزاف هنا\"."
+          },
+          "tip": "\"زوين\" is the everyday word for beautiful.",
+          "words": [
+            "الْغْرُوب",
+            "زْوِين",
+            "بْزَّاف",
+            "هْنَا"
+          ]
         }
       ]
     }

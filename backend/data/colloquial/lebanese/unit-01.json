@@ -1710,6 +1710,844 @@
           "tip": "\"عالطول\" also means \"right away\"."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "this-is-my-brother",
+          "arabic": "هَيْدا خَيِّي",
+          "transliteration": "hayda khayyi"
+        },
+        {
+          "slot": "this-is-my-father",
+          "arabic": "هَيْدا بَيِّي",
+          "transliteration": "hayda bayyi"
+        },
+        {
+          "slot": "this-is-my-mother",
+          "arabic": "هَيْدي إِمِّي",
+          "transliteration": "hayde 2emmi"
+        },
+        {
+          "slot": "do-you-have-brothers-and-sisters-to-a-man",
+          "arabic": "عِنْدَك إِخْوِة وْخَوات؟",
+          "transliteration": "3andak ekhwe w khawaat?"
+        },
+        {
+          "slot": "i-have-two-brothers-and-a-sister",
+          "arabic": "عِنْدي تْنَيْن إِخْوِة وْإِخْت",
+          "transliteration": "3andi tnein ekhwe w 2ekht"
+        },
+        {
+          "slot": "how-many-people-are-in-your-family-to-a-man",
+          "arabic": "قَدِّيش إِنْتُو بِالعِيلِة؟",
+          "transliteration": "2addeesh intu bel-3eele?",
+          "reply": {
+            "arabic": "نِحْنا سِتِّة",
+            "transliteration": "ni7na sette",
+            "english": "We're six."
+          }
+        },
+        {
+          "slot": "my-family-is-big",
+          "arabic": "عِيلْتي كْبِيرِة",
+          "transliteration": "3eelti kbeere"
+        },
+        {
+          "slot": "this-is-my-friend-samer",
+          "arabic": "هَيْدا صاحْبي سامِر",
+          "transliteration": "hayda Saa7bi saamer"
+        },
+        {
+          "slot": "i-d-like-to-introduce-you-to-my-father-to-a-man",
+          "arabic": "بَدِّي عَرّْفَك عَلى بَيِّي",
+          "transliteration": "baddi 3arrfak 3ala bayyi"
+        },
+        {
+          "slot": "a-pleasure",
+          "arabic": "تْشَرَّفْنا",
+          "transliteration": "tsharrafna",
+          "reply": {
+            "arabic": "الشَّرَف إِلي",
+            "transliteration": "esh-sharaf eli",
+            "english": "The honour is mine."
+          }
+        },
+        {
+          "slot": "how-old-are-you-to-a-man",
+          "arabic": "قَدِّيش عُمْرَك؟",
+          "transliteration": "2addeesh 3omrak?",
+          "reply": {
+            "arabic": "عُمْري خَمْسَة وْعِشْرين سِنِة",
+            "transliteration": "3omri khamse w 3eshreen sene",
+            "english": "I'm twenty-five."
+          }
+        },
+        {
+          "slot": "my-father-works-as-a-teacher",
+          "arabic": "بَيِّي بْيِشْتِغِل أُسْتاذ",
+          "transliteration": "bayyi byeshtghel ostaaz"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "أهلا عمر، كيفك؟",
+          "transliteration": "ahla 3omar, keefak?",
+          "english": "Hi Omar, how are you?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "منيح، الحمدلله. ومين هيدا معك؟",
+          "transliteration": "mnee7, el-7amdella. w meen hayda ma3ak?",
+          "english": "Fine, thank God. And who is this with you?"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "this-is-my-brother"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "a-pleasure"
+        },
+        {
+          "speaker": "Ziad",
+          "slot": "a-pleasure",
+          "reply": true
+        },
+        {
+          "speaker": "Omar",
+          "slot": "how-old-are-you-to-a-man"
+        },
+        {
+          "speaker": "Ziad",
+          "slot": "how-old-are-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Omar",
+          "slot": "how-many-people-are-in-your-family-to-a-man"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "how-many-people-are-in-your-family-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Karim",
+          "slot": "i-have-two-brothers-and-a-sister"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "ما شالله، عيلتك كبيرة!",
+          "transliteration": "ma shalla, 3eeltak kbeere!",
+          "english": "Masha Allah, your family is big!"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "إيه، وبيّي بيشتغل أستاذ بالمدرسة هون.",
+          "transliteration": "eh, w bayyi byeshtghel ostaaz bel-madrase hoon.",
+          "english": "Yes, and my father works as a teacher at the school here."
+        },
+        {
+          "speaker": "Karim",
+          "slot": "i-d-like-to-introduce-you-to-my-father-to-a-man"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "أكيد، بكلّ سرور.",
+          "transliteration": "akeed, b-kell suroor.",
+          "english": "Of course, with pleasure."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هيدا خيّي زياد.",
+            "transliteration": "hayda khayyi ziyaad.",
+            "english": "This is my brother Ziad."
+          },
+          "response": {
+            "arabic": "تشرّفنا.",
+            "transliteration": "tsharrafna.",
+            "english": "A pleasure."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قدّيش إنتو بالعيلة؟",
+            "transliteration": "2addeesh intu bel-3eele?",
+            "english": "How many are you in the family?"
+          },
+          "response": {
+            "arabic": "نحنا خمسة.",
+            "transliteration": "ni7na khamse.",
+            "english": "We're five."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قدّيش عمرك؟",
+            "transliteration": "2addeesh 3omrak?",
+            "english": "How old are you?"
+          },
+          "response": {
+            "arabic": "عمري تلاتين سنة.",
+            "transliteration": "3omri tlaateen sene.",
+            "english": "I'm thirty."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو بيشتغل بيّك؟",
+            "transliteration": "shu byeshtghel bayyak?",
+            "english": "What does your father do?"
+          },
+          "response": {
+            "arabic": "بيّي بيشتغل أستاذ.",
+            "transliteration": "bayyi byeshtghel ostaaz.",
+            "english": "My father works as a teacher."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك إخوة وخوات؟",
+            "transliteration": "3andak ekhwe w khawaat?",
+            "english": "Do you have brothers and sisters?"
+          },
+          "response": {
+            "arabic": "إيه، عندي خيّ وإختين.",
+            "transliteration": "eh, 3andi khayy w 2ekhtein.",
+            "english": "Yes, I have a brother and two sisters."
+          }
+        }
+      ],
+      "culture": "In Beirut you introduce someone with \"hayda\" for a man and \"hayde\" for a woman, and the answer is \"tsharrafna\" (we are honoured), to which the newcomer says \"esh-sharaf eli\". Asking how many siblings you have or what your father does is ordinary friendly talk, and at home people call their parents \"baba\" and \"mama\" while \"bayyi\" and \"2emmi\" are used when talking about them.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Someone introduces his brother: \"هيدا خيّي زياد.\" Say it is a pleasure.",
+          "answer": "تْشَرَّفْنا",
+          "accepted": [
+            "تْشَرَّفْنا",
+            "تشرفنا",
+            "tsharrafna",
+            "تشرّفنا",
+            "تشرفنا كتير"
+          ],
+          "too_formal": {
+            "item": "تشرفت بمعرفتك",
+            "feedback": "Correct but formal. In conversation people just say tsharrafna."
+          },
+          "tip": "The newcomer answers tsharrafna with \"esh-sharaf eli\"."
+        },
+        {
+          "id": "unit-01.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: \"قدّيش إنتو بالعيلة؟\" Say you are six.",
+          "answer": "نِحْنا سِتِّة",
+          "accepted": [
+            "نِحْنا سِتِّة",
+            "نحنا ستة",
+            "نحنا ستّة",
+            "ni7na sette",
+            "ستة",
+            "sette"
+          ],
+          "too_formal": {
+            "item": "عدد أفراد أسرتي ستة",
+            "feedback": "A written sentence. Out loud you just say ni7na sette."
+          },
+          "tip": "ni7na (نحنا) is the Lebanese \"we\"."
+        },
+        {
+          "id": "unit-01.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"هيدا _____ سامر.\" Meaning: This is my friend Samer.",
+          "answer": "صاحْبي",
+          "accepted": [
+            "صاحْبي",
+            "صاحبي",
+            "Saa7bi",
+            "رفيقي",
+            "rfee2i"
+          ],
+          "too_formal": {
+            "item": "صديقي",
+            "feedback": "Sadee2i is understood, but everyday Lebanese says Saa7bi or rfee2i."
+          },
+          "tip": "For a woman friend: Saa7beti."
+        },
+        {
+          "id": "unit-01.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عيلتي _____.\" Meaning: My family is big.",
+          "answer": "كْبِيرِة",
+          "accepted": [
+            "كْبِيرِة",
+            "كبيرة",
+            "كبيره",
+            "kbeere"
+          ],
+          "too_formal": {
+            "item": "أسرتي كبيرة",
+            "feedback": "usra is written Arabic. Speech says 3eele."
+          },
+          "tip": "3eele is feminine, so the adjective ends in -e: kbeere."
+        },
+        {
+          "id": "unit-01.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"This is my brother.\"",
+          "answer": "هَيْدا خَيِّي",
+          "accepted": [
+            "هَيْدا خَيِّي",
+            "هيدا خيي",
+            "هيدا خيّي",
+            "hayda khayyi"
+          ],
+          "too_formal": {
+            "item": "هذا أخي",
+            "feedback": "hadha and akhi are written Arabic. Beirut says hayda khayyi."
+          },
+          "tip": "khayy is brother; khayyi is my brother."
+        },
+        {
+          "id": "unit-01.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Do you have brothers and sisters?\" (to a man)",
+          "answer": "عِنْدَك إِخْوِة وْخَوات؟",
+          "accepted": [
+            "عِنْدَك إِخْوِة وْخَوات؟",
+            "عندك إخوة وخوات؟",
+            "عندك اخوة وخوات",
+            "3andak ekhwe w khawaat?",
+            "3andak ekhwe w khawaat",
+            "عندك إخوة؟",
+            "3andak ekhwe?"
+          ],
+          "too_formal": {
+            "item": "هل لديك إخوة؟",
+            "feedback": "hal and ladayka are written Arabic. Ask with 3andak and your voice."
+          },
+          "tip": "To a woman: 3andik ekhwe w khawaat?"
+        },
+        {
+          "id": "unit-01.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How old are you?\" (to a man)",
+          "answer": "قَدِّيش عُمْرَك؟",
+          "accepted": [
+            "قَدِّيش عُمْرَك؟",
+            "قديش عمرك؟",
+            "قدّيش عمرك",
+            "أديش عمرك",
+            "2addeesh 3omrak?",
+            "2addeesh 3omrak",
+            "addeesh 3omrak"
+          ],
+          "too_formal": {
+            "item": "كم عمرك؟",
+            "feedback": "Understood everywhere, but in Beirut 2addeesh is the usual \"how much / how many\"."
+          },
+          "tip": "To a woman: 2addeesh 3omrik?"
+        },
+        {
+          "id": "unit-01.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"father\"?",
+          "options": [
+            "بَيّ",
+            "خَيّ",
+            "إِمّ",
+            "إِبِن"
+          ],
+          "answer": "بَيّ",
+          "accepted": [
+            "بَيّ",
+            "بي",
+            "bayy"
+          ],
+          "too_formal": {
+            "item": "أب",
+            "feedback": "ab is the written word. Lebanese say bayy, or baba at home."
+          },
+          "tip": "khayy is brother, 2imm is mother, 2ibin is son."
+        },
+        {
+          "id": "unit-01.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"This is my mother\"?",
+          "options": [
+            "هَيْدي إِمِّي",
+            "هَيْدا بَيِّي",
+            "هَيْدا خَيِّي",
+            "هَيْدي إِخْتي"
+          ],
+          "answer": "هَيْدي إِمِّي",
+          "accepted": [
+            "هَيْدي إِمِّي",
+            "هيدي امي",
+            "هيدي إمّي",
+            "hayde 2emmi"
+          ],
+          "tip": "hayde is for a woman, hayda for a man."
+        },
+        {
+          "id": "unit-01.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"أستاذ / بيّي / بيشتغل\".",
+          "answer": "بَيِّي بْيِشْتِغِل أُسْتاذ",
+          "accepted": [
+            "بَيِّي بْيِشْتِغِل أُسْتاذ",
+            "بيي بيشتغل أستاذ",
+            "بيّي بيشتغل أستاذ",
+            "bayyi byeshtghel ostaaz"
+          ],
+          "too_formal": {
+            "item": "أبي يعمل معلماً",
+            "feedback": "Written Arabic. Speech says bayyi byeshtghel ostaaz."
+          },
+          "tip": "The job comes straight after the verb, with no ending."
+        },
+        {
+          "id": "unit-01.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"على / بدّي / بيّي / عرّفك\".",
+          "answer": "بَدِّي عَرّْفَك عَلى بَيِّي",
+          "accepted": [
+            "بَدِّي عَرّْفَك عَلى بَيِّي",
+            "بدي عرفك على بيي",
+            "بدّي عرّفك على بيّي",
+            "baddi 3arrfak 3ala bayyi"
+          ],
+          "too_formal": {
+            "item": "أريد أن أعرفك على أبي",
+            "feedback": "ureed an is written Arabic. Lebanese say baddi."
+          },
+          "tip": "baddi (I want) comes first, then the verb with no \"an\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "which-city-are-you-from-to-a-man",
+          "arabic": "مِن أَيَّا مَدِينِة إِنْتَ؟",
+          "transliteration": "min ayya madeene inte?"
+        },
+        {
+          "slot": "i-m-from-damascus",
+          "arabic": "أَنا مِن الشَّام",
+          "transliteration": "ana min esh-shaam"
+        },
+        {
+          "slot": "i-m-from-egypt",
+          "arabic": "أَنا مِن مِصِر",
+          "transliteration": "ana min meSr"
+        },
+        {
+          "slot": "what-is-your-nationality-to-a-man",
+          "arabic": "شُو جِنْسِيّْتَك؟",
+          "transliteration": "shu jensiyytak?"
+        },
+        {
+          "slot": "my-nationality-is-syrian",
+          "arabic": "جِنْسِيّْتي سُورِيِّة",
+          "transliteration": "jensiyyti sooriyye"
+        },
+        {
+          "slot": "where-do-you-live-to-a-man",
+          "arabic": "وَيْن ساكِن؟",
+          "transliteration": "wein saaken?",
+          "reply": {
+            "arabic": "ساكِن بِالحَمْرا",
+            "transliteration": "saaken bel-7amra",
+            "english": "I live in Hamra."
+          }
+        },
+        {
+          "slot": "i-live-in-amman",
+          "arabic": "أَنا ساكِن بْعَمَّان",
+          "transliteration": "ana saaken b3ammaan"
+        },
+        {
+          "slot": "which-languages-do-you-speak-to-a-man",
+          "arabic": "أَيَّا لُغات بْتِحْكي؟",
+          "transliteration": "ayya lughaat bte7ki?"
+        },
+        {
+          "slot": "i-speak-arabic-and-english",
+          "arabic": "بِحْكي عَرَبي وْإِنْكْلِيزي",
+          "transliteration": "be7ki 3arabi w ingleezi"
+        },
+        {
+          "slot": "i-m-here-on-a-visit",
+          "arabic": "أَنا هَوْن بْزِيارَة",
+          "transliteration": "ana hoon bziyaara"
+        },
+        {
+          "slot": "is-this-your-first-visit-to-a-man",
+          "arabic": "هَيْدي أَوَّل زِيارَة إِلَك؟",
+          "transliteration": "hayde awwal ziyaara elak?",
+          "reply": {
+            "arabic": "إيه، أَوَّل مَرَّة",
+            "transliteration": "eh, awwal marra",
+            "english": "Yes, it's the first time."
+          }
+        },
+        {
+          "slot": "welcome-to-our-city-to-a-man",
+          "arabic": "أَهْلا وْسَهْلا فِيك بْبَيْروت",
+          "transliteration": "ahla w sahla feek b-beirut",
+          "english": "Welcome to Beirut. (to a man)",
+          "reply": {
+            "arabic": "أَهْلا فِيك",
+            "transliteration": "ahla feek",
+            "english": "Thank you, the welcome is yours."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rami",
+          "arabic": "مرحبا، إنت مش من هون، صح؟",
+          "transliteration": "mar7aba, inte mish min hoon, Sa77?",
+          "english": "Hello, you're not from here, are you?"
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "لأ، أنا مش لبناني.",
+          "transliteration": "la2, ana mish lebnaani.",
+          "english": "No, I'm not Lebanese."
+        },
+        {
+          "speaker": "Rami",
+          "slot": "which-city-are-you-from-to-a-man"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "i-m-from-damascus"
+        },
+        {
+          "speaker": "Rami",
+          "slot": "where-do-you-live-to-a-man"
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "بس هلّق أنا ساكن بعمّان.",
+          "transliteration": "bass halla2 ana saaken b3ammaan.",
+          "english": "But now I live in Amman."
+        },
+        {
+          "speaker": "Rami",
+          "slot": "is-this-your-first-visit-to-a-man"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "is-this-your-first-visit-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "أنا هون بزيارة لعند عمّي.",
+          "transliteration": "ana hoon bziyaara la-3and 3ammi.",
+          "english": "I'm here visiting my uncle."
+        },
+        {
+          "speaker": "Rami",
+          "slot": "welcome-to-our-city-to-a-man"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "welcome-to-our-city-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Rami",
+          "slot": "which-languages-do-you-speak-to-a-man"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "i-speak-arabic-and-english"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "أنا كمان، وبحكي شوي فرنساوي متل كتير ناس هون.",
+          "transliteration": "ana kamaan, w be7ki shwayy frensaawi metl ktiir naas hoon.",
+          "english": "Me too, and I speak a bit of French like lots of people here."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "منين إنت؟",
+            "transliteration": "mneen inte?",
+            "english": "Where are you from?"
+          },
+          "response": {
+            "arabic": "أنا من مصر.",
+            "transliteration": "ana min meSr.",
+            "english": "I'm from Egypt."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو جنسيّتك؟",
+            "transliteration": "shu jensiyytak?",
+            "english": "What is your nationality?"
+          },
+          "response": {
+            "arabic": "جنسيّتي سوريّة.",
+            "transliteration": "jensiyyti sooriyye.",
+            "english": "My nationality is Syrian."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين ساكن؟",
+            "transliteration": "wein saaken?",
+            "english": "Where do you live?"
+          },
+          "response": {
+            "arabic": "ساكن بالأشرفية.",
+            "transliteration": "saaken bel-ashrafiyye.",
+            "english": "I live in Achrafieh."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أيّا لغات بتحكي؟",
+            "transliteration": "ayya lughaat bte7ki?",
+            "english": "Which languages do you speak?"
+          },
+          "response": {
+            "arabic": "بحكي عربي وإنكليزي.",
+            "transliteration": "be7ki 3arabi w ingleezi.",
+            "english": "I speak Arabic and English."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هيدي أوّل زيارة إلك؟",
+            "transliteration": "hayde awwal ziyaara elak?",
+            "english": "Is this your first visit?"
+          },
+          "response": {
+            "arabic": "لأ، هيدي تاني مرّة.",
+            "transliteration": "la2, hayde taani marra.",
+            "english": "No, this is the second time."
+          }
+        }
+      ],
+      "culture": "Lebanese call Damascus \"esh-shaam\" rather than \"dimashq\", and they often ask which town or village your family comes from, because roots matter. Many Beirutis switch between Arabic, English and French in one sentence, and a visitor is welcomed with \"ahla w sahla\", answered with \"ahla feek\".",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks: \"شو جنسيّتك؟\" Say your nationality is Syrian.",
+          "answer": "جِنْسِيّْتي سُورِيِّة",
+          "accepted": [
+            "جِنْسِيّْتي سُورِيِّة",
+            "جنسيتي سورية",
+            "جنسيّتي سوريّة",
+            "jensiyyti sooriyye",
+            "أنا سوري",
+            "ana soori"
+          ],
+          "too_formal": {
+            "item": "جنسيتي هي السورية",
+            "feedback": "Written style. Speech says jensiyyti sooriyye or just ana soori."
+          },
+          "tip": "jensiyye is feminine, so Syrian takes -e: sooriyye."
+        },
+        {
+          "id": "unit-01.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"أهلا وسهلا فيك ببيروت.\" Answer warmly.",
+          "answer": "أَهْلا فِيك",
+          "accepted": [
+            "أَهْلا فِيك",
+            "أهلا فيك",
+            "اهلا فيك",
+            "ahla feek",
+            "أهلين فيك",
+            "ahlein feek"
+          ],
+          "too_formal": {
+            "item": "شكراً جزيلاً على الترحيب",
+            "feedback": "Polite but stiff. The set answer is ahla feek."
+          },
+          "tip": "To a woman: ahla feeki."
+        },
+        {
+          "id": "unit-01.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"من أيّا _____ إنت؟\" Meaning: Which city are you from?",
+          "answer": "مَدِينِة",
+          "accepted": [
+            "مَدِينِة",
+            "مدينة",
+            "مدينه",
+            "madeene"
+          ],
+          "too_formal": {
+            "item": "من أيّ مدينةٍ أنت؟",
+            "feedback": "The written question. Lebanese ask min ayya madeene inte?"
+          },
+          "tip": "ayya (أيّا) is the Lebanese \"which\"."
+        },
+        {
+          "id": "unit-01.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بحكي _____ وإنكليزي.\" Meaning: I speak Arabic and English.",
+          "answer": "عَرَبي",
+          "accepted": [
+            "عَرَبي",
+            "عربي",
+            "3arabi"
+          ],
+          "too_formal": {
+            "item": "العربية",
+            "feedback": "al-3arabiyya is the written name. In speech the language is just 3arabi."
+          },
+          "tip": "Languages are said like the adjective: 3arabi, ingleezi, frensaawi."
+        },
+        {
+          "id": "unit-01.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm from Damascus.\"",
+          "answer": "أَنا مِن الشَّام",
+          "accepted": [
+            "أَنا مِن الشَّام",
+            "أنا من الشام",
+            "انا من الشام",
+            "ana min esh-shaam",
+            "ana min eshshaam",
+            "أنا من دمشق",
+            "ana min dimashq"
+          ],
+          "tip": "Lebanese usually call Damascus esh-shaam."
+        },
+        {
+          "id": "unit-01.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What is your nationality?\" (to a man)",
+          "answer": "شُو جِنْسِيّْتَك؟",
+          "accepted": [
+            "شُو جِنْسِيّْتَك؟",
+            "شو جنسيتك؟",
+            "شو جنسيّتك",
+            "shu jensiyytak?",
+            "shu jensiyytak"
+          ],
+          "too_formal": {
+            "item": "ما جنسيتك؟",
+            "feedback": "maa is written Arabic. Lebanese ask with shu."
+          },
+          "tip": "To a woman: shu jensiyytik?"
+        },
+        {
+          "id": "unit-01.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where do you live?\" (to a man)",
+          "answer": "وَيْن ساكِن؟",
+          "accepted": [
+            "وَيْن ساكِن؟",
+            "وين ساكن؟",
+            "وين ساكن",
+            "wein saaken?",
+            "wein saaken",
+            "ween saaken",
+            "وين بتسكن؟",
+            "wein btoskon?"
+          ],
+          "too_formal": {
+            "item": "أين تسكن؟",
+            "feedback": "ayna is written Arabic. Speech says wein."
+          },
+          "tip": "To a woman: wein saakne?"
+        },
+        {
+          "id": "unit-01.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"nationality\"?",
+          "options": [
+            "جِنْسِيِّة",
+            "لُغَة",
+            "زِيَارَة",
+            "بَلَد"
+          ],
+          "answer": "جِنْسِيِّة",
+          "accepted": [
+            "جِنْسِيِّة",
+            "جنسية",
+            "jensiyye"
+          ],
+          "tip": "lugha is language, ziyaara is visit, balad is country."
+        },
+        {
+          "id": "unit-01.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"I speak Arabic and English\"?",
+          "options": [
+            "بِحْكي عَرَبي وْإِنْكْلِيزي",
+            "بِفْهَم عَرَبي وْإِنْكْلِيزي",
+            "بِحْكي عَرَبي وْفْرَنْساوي",
+            "بِكْتُب عَرَبي وْإِنْكْلِيزي"
+          ],
+          "answer": "بِحْكي عَرَبي وْإِنْكْلِيزي",
+          "accepted": [
+            "بِحْكي عَرَبي وْإِنْكْلِيزي",
+            "بحكي عربي وإنكليزي",
+            "be7ki 3arabi w ingleezi",
+            "بحكي عربي وانجليزي"
+          ],
+          "too_formal": {
+            "item": "أتكلم العربية والإنجليزية",
+            "feedback": "Written Arabic. Speech says be7ki 3arabi w ingleezi."
+          },
+          "tip": "be7ki is \"I speak\", from 7aka."
+        },
+        {
+          "id": "unit-01.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"ساكن / أنا / بعمّان\".",
+          "answer": "أَنا ساكِن بْعَمَّان",
+          "accepted": [
+            "أَنا ساكِن بْعَمَّان",
+            "أنا ساكن بعمان",
+            "أنا ساكن بعمّان",
+            "ana saaken b3ammaan"
+          ],
+          "too_formal": {
+            "item": "أسكن في عمّان",
+            "feedback": "Written Arabic. Speech says ana saaken b3ammaan."
+          },
+          "tip": "A woman says ana saakne b3ammaan."
+        },
+        {
+          "id": "unit-01.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"أوّل / زيارة / هيدي / إلك\".",
+          "answer": "هَيْدي أَوَّل زِيارَة إِلَك؟",
+          "accepted": [
+            "هَيْدي أَوَّل زِيارَة إِلَك؟",
+            "هيدي أول زيارة إلك؟",
+            "هيدي أوّل زيارة إلك",
+            "hayde awwal ziyaara elak?",
+            "hayde awwal ziyaara elak"
+          ],
+          "too_formal": {
+            "item": "هل هذه زيارتك الأولى؟",
+            "feedback": "Written Arabic. Speech says hayde awwal ziyaara elak?"
+          },
+          "tip": "hayde, not hayda, because ziyaara is feminine."
+        }
+      ]
     }
   ],
   "challenge": {

@@ -47,7 +47,7 @@ const isPlace = (one, tabs) =>
  * on a known tab, and no step repeated straight after itself (visit() never
  * records one, so a record with one was not written by this app).
  */
-export function fitsSession(steps, tabs) {
+function fitsSession(steps, tabs) {
   return Array.isArray(steps) && steps.length > 0 && steps.length <= MAX_STEPS
     && steps.every((one, index) => isPlace(one, tabs) && !samePlace(one, steps[index - 1]))
 }

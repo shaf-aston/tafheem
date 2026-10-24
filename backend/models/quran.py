@@ -108,7 +108,7 @@ class Printing(BaseModel):
 
 class MushafPage(BaseModel):
     """One printed page, line by line. A line is ["ayah", [[surah, ayah, "words"], …]],
-    ["surah", surah] for a surah's name, or ["basmala"] (scripts/build_mushaf.py)."""
+    ["surah", surah] for a surah's name, or ["basmala"] (scripts/quran/build_mushaf.py)."""
     page: int
     lines: list[list]
 

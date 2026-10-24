@@ -276,7 +276,7 @@
   60% { opacity: 1; }
   100% { transform: rotate(var(--a)) translateY(-58px); }
 }
-.grow-done-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
+.grow-done-stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 10px; width: 100%; }
 .grow-done-stats div { display: grid; gap: 2px; padding: 12px 8px; border-radius: var(--radius-lg); border: 2px solid color-mix(in srgb, var(--w) 30%, var(--border)); background: var(--surface); }
 .grow-done-stats dt { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
 .grow-done-stats dd { font-size: var(--type-title); font-weight: 800; color: var(--w); }
@@ -355,11 +355,10 @@
 .grow-lesson-top .grow-x { flex-shrink: 0; }
 .grow-done-missed li p { margin: 2px 0; text-align: right; }
 
-/* The page opening: stats, today, then its next steps rise in one after another,
-   as every tab's blocks do (.rise-in; --i is the stagger step). */
-.grow-stats > :nth-child(2) { --i: 1; }
-.grow-stats > :nth-child(3), .grow-today { --i: 2; }
-.grow-nexts > :nth-child(1) { --i: 3; }
-.grow-nexts > :nth-child(2) { --i: 4; }
-.grow-nexts > :nth-child(3) { --i: 5; }
-.grow-nexts > :nth-child(n + 4) { --i: 6; }
+/* A screen of Grow (home, a world, a part, a lesson) arrives as one piece: one short fade from near full, worn by
+   GrowPanel's keyed wrapper, as a pop-up's tiles ride its box (components.css). Each block replaying its own staggered
+   rise from arrive-from washed the whole page pale and then darkened it block by block, on every tap and every back.
+   A lesson's own card still rises (.grow-card): that is the answer to a tap inside the screen, not a new screen. */
+.grow-screen { --fade-from: 0.85; }
+.grow-screen .rise-in, .grow-screen .grow-world-tile { animation: none; }
+

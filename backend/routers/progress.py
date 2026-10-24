@@ -16,6 +16,7 @@ from contextlib import contextmanager
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
+from backend.identity import DEVICE, NAMED, OWN, TYPED, USER
 from backend.models.progress import (
     Account,
     AccountNames,
@@ -41,7 +42,6 @@ from backend.models.progress import (
     Shelf,
     SignUpIn,
 )
-from backend.identity import NAMED, TYPED, USER
 from backend.services.learner import progress_store
 from backend.services.learner.username import GUEST, clean_name
 
@@ -53,9 +53,9 @@ _TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner'
 
 @router.post("/attempts", response_model=AttemptSaved)
 async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
-    """File one answer; return its XP and new totals. The shared guest record earns none."""
-    named = user != GUEST
-    earns = named and attempt.correct and progress_store.earns(attempt.module, attempt.item, user, attempt.tz)
+    """File one answer; return its XP and new totals. Only the old shared record earns none: it is many people's."""
+    own = user != GUEST
+    earns = own and attempt.correct and progress_store.earns(attempt.module, attempt.item, user, attempt.tz)
     row_id = progress_store.record(
         module=attempt.module,
         item=attempt.item,
@@ -67,7 +67,7 @@ async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
     return AttemptSaved(
         id=row_id,
         earned=get_settings().rewards_xp_per_answer if earns else 0,
-        rewards=Rewards(**progress_store.rewards(user, attempt.tz)) if named else None,
+        rewards=Rewards(**progress_store.rewards(user, attempt.tz)) if own else None,
     )
 
 
@@ -116,8 +116,8 @@ def get_overview(tz: int = _TZ, user: str = USER) -> Overview:
 
 
 @router.get("/rewards", response_model=Rewards)
-def get_rewards(tz: int = _TZ, user: str = NAMED) -> Rewards:
-    """XP, level, streak. Cheap (no FSRS replay), for the header."""
+def get_rewards(tz: int = _TZ, user: str = OWN) -> Rewards:
+    """XP, level, streak, for an account or a device's guest. Cheap (no FSRS replay), for the header."""
     return Rewards(**progress_store.rewards(user, tz))
 
 
@@ -133,15 +133,16 @@ def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
 
 
 @router.post("/signup", response_model=Account)
-async def sign_up(body: SignUpIn, user: str = TYPED) -> Account:
+async def sign_up(body: SignUpIn, user: str = TYPED, device: str = DEVICE) -> Account:
     """Take a free username; the account handed back holds its one spelling, which the page keeps.
 
-    `keep` moves the guest's answers onto it.
+    `keep` moves this device's guest answers onto it. A page that names no device (one cached from before
+    devices had ids) keeps nothing: the shared record it wrote to holds every such guest's answers, not its own.
     """
     if not progress_store.sign_up(user):
         raise HTTPException(status_code=409, detail="That username is taken")
-    if body.keep:
-        progress_store.claim_guest(user)
+    if body.keep and device != GUEST:
+        progress_store.claim_guest(user, device)
     return Account(**progress_store.account(user))
 
 

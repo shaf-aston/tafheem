@@ -66,7 +66,7 @@ export const mushafPagesQuery = (printing, surah) => ({
 // page. Its own request, not part of the surah above: it is wanted only where
 // the words are drawn separately, and an ayah the two sources disagree about is
 // simply absent rather than mis-aligned.
-export const getSurahGlosses = (surah) =>
+const getSurahGlosses = (surah) =>
   api.get(`/quran/surah/${surah}/glosses`).then((r) => r.data)
 export const surahGlossesQuery = (surah) => ({ queryKey: ['surah-glosses', surah], queryFn: () => getSurahGlosses(surah) })
 
@@ -87,7 +87,7 @@ export const translationsQuery = { queryKey: ['quran-editions', 'translation'], 
  * the panel asks for the one book it is showing and lets the cache keep the
  * others once they have been read.
  */
-export const getSurahEdition = (surah, id) =>
+const getSurahEdition = (surah, id) =>
   api.get(`/quran/editions/surah/${surah}`, { params: { id } }).then((r) => r.data)
 export const surahEditionQuery = (surah, id) => ({ queryKey: ['surah-edition', surah, id], queryFn: () => getSurahEdition(surah, id) })
 
@@ -149,18 +149,22 @@ export const generatePractice = (sentence) =>
   api.post('/practice', { sentence }).then((r) => r.data)
 
 // A short AI sentence made only of this learner's learnt words, each one checked.
-export const getCheckedSentence = () =>
+export const makeCheckedSentence = () =>
   api.post('/practice/checked', {}).then((r) => r.data)
 
 // The teacher's exercise library: every tag, every exercise, and a count per
 // tag. Small and fixed, so it is fetched whole once and filtered on the
 // frontend rather than re-asked per tag.
+// One Grow world served whole by the backend (routers/grow.py): its levels, paths and units. The Prayer world reads it.
+export const getGrowWorld = (id) =>
+  api.get(`/grow/worlds/${id}`).then((r) => r.data)
+
 export const getTamreen = () =>
   api.get('/tamreen').then((r) => r.data)
 
 // The teacher's Nahw notes, every topic whole. Fixed for the life of the
 // backend and hidden on the page, never here, so it is fetched once.
-export const getNotes = () =>
+const getNotes = () =>
   api.get('/notes').then((r) => r.data)
 export const notesQuery = { queryKey: ['notes'], queryFn: getNotes }
 
@@ -357,12 +361,6 @@ export const listen = (recording, { match = false, recite = false, fusha = true,
 export const checkReading = (recording, { heard = '', check = [], ...how } = {}) =>
   postRecording('/listen/check', recording, { heard, check: check.join(',') }, how)
 
-// How sure the ear is of each word of `expected`, a phrase that is not an ayah
-// (Grow's takbir, tashahhud and the rest), from the same recording `listen`
-// wrote `heard` down from. One number per word, in order.
-export const checkText = (recording, { heard = '', expected = '', ...how } = {}) =>
-  postRecording('/listen/check-text', recording, { heard, expected }, how)
-
 // Where lib/recite/journal.js's trail of reciting events goes. Its own constant
 // because sendBeacon cannot go through axios and needs the full path, not
 // just what api.post's baseURL would fill in.
@@ -398,10 +396,10 @@ export const colloquialImageUrl = (file) =>
 
 // Verses that read almost the same as this one (mutashabihat), with the words
 // that differ marked. A surah's groups say which ayahs have twins at all.
-export const getSimilar = (surah, ayah) =>
+const getSimilar = (surah, ayah) =>
   api.get(`/quran/similar/${surah}/${ayah}`).then((r) => r.data)
 
-export const getSimilarSurah = (surah) =>
+const getSimilarSurah = (surah) =>
   api.get(`/quran/similar/surah/${surah}`).then((r) => r.data)
 
 // The same two as queries, one key each wherever they are read or fetched ahead.

@@ -83,7 +83,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
           No dictionary data on this machine, so every search would come back empty.
           Build it with{' '}
           <Code>
-            python backend/scripts/build_dictionary.py
+            python backend/scripts/dictionary/build_dictionary.py
           </Code>
         </ErrorAlert>
       )}

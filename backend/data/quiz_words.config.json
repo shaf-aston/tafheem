@@ -1,5 +1,5 @@
 {
-  "_comment": "Knobs for the quiz word build (python backend/scripts/build_lexicon.py). Everything that decides whether a Qur'anic word is fair to quiz on lives here, not in the script.",
+  "_comment": "Knobs for the quiz word build (python backend/scripts/quiz/build_lexicon.py). Everything that decides whether a Qur'anic word is fair to quiz on lives here, not in the script.",
   "_juz_api": "The only thing not already on this machine: which ayahs each juz holds. Fetched once and kept in data/quran/juz.json, so every later run is offline.",
   "juz-api": "https://api.quran.com/api/v4/juzs",
   "_anki_decks": "Anki decks of everyday vocabulary, read for their verb and noun cards. Each sits in backend/data/, stripped of its media (audio/images are not vocabulary data and are not kept). Read in this order, each merging into what came before, so a word two decks both teach becomes one row keeping the first one's English; which is why the newer, per-book decks are listed before the old bulk one covering all four books at once: a word they share should keep the newer deck's wording, not be overwritten back to the older one. bayna-yadayk.apkg is read last and so only fills in book 2, which no newer per-book deck yet replaces. A word any of them teaches that is already in one of the Qur'anic sets is left out rather than merged: it is already being asked there.",

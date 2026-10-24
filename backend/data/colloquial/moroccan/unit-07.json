@@ -15,7 +15,11 @@
     "e": "ـِ قصيرة خفيفة (شوا)",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "T": "ط",
+    "D": "ض",
+    "S": "ص",
+    "j": "ج"
   },
   "lessons": [
     {
@@ -1513,6 +1517,830 @@
             "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
           },
           "tip": "The day comes first, then the verb, then the place."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "what-do-you-do-in-your-free-time",
+          "arabic": "آشْ كَدِّير فْوْقْت الْفْرَاغ؟",
+          "transliteration": "aash kaddeer f weqt lfraagh?",
+          "reply": {
+            "arabic": "كَنْقْرَا وْكَنْخْرُج مْعَ صْحَابِي",
+            "transliteration": "kan9ra w kankhroj m3a S7aabi",
+            "english": "I read and go out with my friends."
+          }
+        },
+        {
+          "slot": "my-hobby-is-reading",
+          "arabic": "الْهِوَايَة دْيَالِي هِيَ الْقْرَايَة",
+          "transliteration": "lhiwaaya dyaali hiya l9raaya"
+        },
+        {
+          "slot": "i-read-a-book-every-week",
+          "arabic": "كَنْقْرَا كْتَاب كُلّ سِيمَانَة",
+          "transliteration": "kan9ra ktaab koll simaana"
+        },
+        {
+          "slot": "i-like-cooking",
+          "arabic": "كَنْبْغِي الطّْيَابَة",
+          "transliteration": "kanbghi TTyaaba"
+        },
+        {
+          "slot": "i-cooked-dinner-for-my-family-yesterday",
+          "arabic": "الْبَارَح طَيّْبْت الْعْشَا لْلْعَائِلَة دْيَالِي",
+          "transliteration": "lbaare7 Tayyebt l3sha l l3aa2ila dyaali"
+        },
+        {
+          "slot": "do-you-like-arabic-calligraphy",
+          "arabic": "وَاش كَتْبْغِي الْخَطّ الْعَرْبِي؟",
+          "transliteration": "waash katbghi lkhaTT l3arabi?",
+          "reply": {
+            "arabic": "إِيه، بْزَّاف",
+            "transliteration": "eeh, bzzaaf",
+            "english": "Yes, a lot."
+          }
+        },
+        {
+          "slot": "i-m-learning-to-write-calligraphy",
+          "arabic": "كَنْتْعَلّْم نْكْتَب الْخَطّ الْعَرْبِي",
+          "transliteration": "kant3allem nkteb lkhaTT l3arabi"
+        },
+        {
+          "slot": "i-climb-mountains-with-my-friends",
+          "arabic": "كَنْطْلَع لْلْجْبَال مْعَ صْحَابِي",
+          "transliteration": "kanTle3 l ljbaal m3a S7aabi"
+        },
+        {
+          "slot": "i-grow-flowers-in-the-garden",
+          "arabic": "كَنْغْرَس النّْوَّار فَالْجْنَان",
+          "transliteration": "kanghres nnuwwaar f ljnaan"
+        },
+        {
+          "slot": "do-you-have-time-this-evening",
+          "arabic": "وَاش عَنْدَك الْوَقْت هَادْ الْعْشِيَّة؟",
+          "transliteration": "waash 3ndek lweqt haad l3shiyya?",
+          "reply": {
+            "arabic": "إِيه، عْلَاش؟",
+            "transliteration": "eeh, 3laash?",
+            "english": "Yes, why?"
+          }
+        },
+        {
+          "slot": "i-spend-my-time-with-my-family",
+          "arabic": "كَنْدُوّْز الْوَقْت دْيَالِي مْعَ الْعَائِلَة",
+          "transliteration": "kandowwez lweqt dyaali m3a l3aa2ila"
+        },
+        {
+          "slot": "time-passes-quickly-when-i-read",
+          "arabic": "الْوَقْت كَيْدُوز بِالزّْرْبَة مْلِّي كَنْقْرَا",
+          "transliteration": "lweqt kaydooz bzzerba mlli kan9ra"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hamza",
+          "slot": "what-do-you-do-in-your-free-time"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "my-hobby-is-reading"
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "بصح؟ شحال كتقرا؟",
+          "transliteration": "bSse77? sh7aal kat9ra?",
+          "english": "Really? How much do you read?"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "i-read-a-book-every-week"
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "ما شاء الله! أنا ما كنقراش بزاف.",
+          "transliteration": "maa shaa2 llaah! ana ma kan9raash bzzaaf.",
+          "english": "Masha Allah! I don't read much."
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "time-passes-quickly-when-i-read"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "i-like-cooking"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "مزيان! شنو كطيب؟",
+          "transliteration": "mzyaan! shnu kaTTayyeb?",
+          "english": "Nice! What do you cook?"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "i-cooked-dinner-for-my-family-yesterday"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "شنو طيبتي؟",
+          "transliteration": "shnu Tayyebti?",
+          "english": "What did you cook?"
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "طاجين بالدجاج والزيتون. وانتا، واش كتبغي الخط العربي؟",
+          "transliteration": "Taajeen b ddjaaj w zzeetoon. w nta, waash katbghi lkhaTT l3arabi?",
+          "english": "A chicken and olive tagine. And you, do you like Arabic calligraphy?"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "i-m-learning-to-write-calligraphy"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "do-you-have-time-this-evening"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "do-you-have-time-this-evening",
+          "reply": true
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "يالاه نمشيو لمعرض الخط فالمدينة القديمة.",
+          "transliteration": "yallaah nmshiw l ma3raD lkhaTT f lmdeena l9deema.",
+          "english": "Let's go to the calligraphy exhibition in the old medina."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "واخا، يالاه!",
+          "transliteration": "waakha, yallaah!",
+          "english": "Okay, let's go!"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "آشْ كَدِّير فْوْقْت الْفْرَاغ؟",
+            "transliteration": "aash kaddeer f weqt lfraagh?",
+            "english": "What do you do in your free time?"
+          },
+          "response": {
+            "arabic": "كَنْقْرَا وْكَنْخْرُج مْعَ صْحَابِي",
+            "transliteration": "kan9ra w kankhroj m3a S7aabi",
+            "english": "I read and go out with my friends."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش كَتْبْغِي الْخَطّ الْعَرْبِي؟",
+            "transliteration": "waash katbghi lkhaTT l3arabi?",
+            "english": "Do you like Arabic calligraphy?"
+          },
+          "response": {
+            "arabic": "إِيه، بْزَّاف",
+            "transliteration": "eeh, bzzaaf",
+            "english": "Yes, a lot."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش عَنْدَك الْوَقْت هَادْ الْعْشِيَّة؟",
+            "transliteration": "waash 3ndek lweqt haad l3shiyya?",
+            "english": "Do you have time this evening?"
+          },
+          "response": {
+            "arabic": "لَا، مَا عَنْدِيش الْوَقْت",
+            "transliteration": "la, ma 3ndeesh lweqt",
+            "english": "No, I don't have time."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "آش كَتْقْرَا؟",
+            "transliteration": "aash kat9ra?",
+            "english": "What do you read?"
+          },
+          "response": {
+            "arabic": "كَنْقْرَا الرِّوَايَات",
+            "transliteration": "kan9ra rriwaayaat",
+            "english": "I read novels."
+          }
+        }
+      ],
+      "culture": "Free time in Casablanca and Rabat is often spent in a cafe with friends, walking on the seafront in the evening, or with family at the weekend. Morocco has its own style of Arabic handwriting, the Maghribi script, and many young people go hiking in the Atlas mountains in spring.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Your friend asks: \"آش كدير فوقت الفراغ؟\" Say you read and go out with your friends.",
+          "answer": "كَنْقْرَا وْكَنْخْرُج مْعَ صْحَابِي",
+          "accepted": [
+            "كَنْقْرَا وْكَنْخْرُج مْعَ صْحَابِي",
+            "كنقرا وكنخرج مع صحابي",
+            "kan9ra w kankhroj m3a S7aabi",
+            "كنقرا",
+            "كنقرا وكنخرج مع اصحابي"
+          ],
+          "too_formal": {
+            "item": "أقرأ وأخرج مع أصدقائي",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"كن\" in front of a verb means I do it as a habit."
+        },
+        {
+          "id": "unit-07.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Your friend asks: \"واش عندك الوقت هاد العشية؟\" Say no, you don't have time.",
+          "answer": "لَا، مَا عَنْدِيش الْوَقْت",
+          "accepted": [
+            "لَا، مَا عَنْدِيش الْوَقْت",
+            "لا، ما عنديش الوقت",
+            "la, ma 3ndeesh lweqt",
+            "لا ما عنديش الوقت",
+            "ما عنديش الوقت"
+          ],
+          "too_formal": {
+            "item": "لا، ليس لدي وقت",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "Darija wraps \"not\" around the word: \"ما ... ش\"."
+        },
+        {
+          "id": "unit-07.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الهواية ديالي هي _____.\" Meaning: My hobby is reading.",
+          "answer": "القراية",
+          "accepted": [
+            "القراية",
+            "l9raaya",
+            "الْقْرَايَة",
+            "لقراية"
+          ],
+          "too_formal": {
+            "item": "المطالعة",
+            "feedback": "\"المطالعة\" is the school word; in speech reading is \"القراية\"."
+          },
+          "tip": "\"قرا\" is to read and \"القراية\" is reading, also studying."
+        },
+        {
+          "id": "unit-07.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الوقت كيدوز _____ ملي كنقرا.\" Meaning: Time passes quickly when I read.",
+          "answer": "بالزربة",
+          "accepted": [
+            "بالزربة",
+            "bzzerba",
+            "بِالزّْرْبَة",
+            "بسرعة"
+          ],
+          "too_formal": {
+            "item": "بسرعة كبيرة",
+            "feedback": "\"بسرعة\" is understood, but \"بالزربة\" is the everyday Darija."
+          },
+          "tip": "\"زرب\" is to hurry."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I like cooking.\"",
+          "answer": "كَنْبْغِي الطّْيَابَة",
+          "accepted": [
+            "كَنْبْغِي الطّْيَابَة",
+            "كنبغي الطيابة",
+            "kanbghi TTyaaba",
+            "كنبغي نطيب"
+          ],
+          "too_formal": {
+            "item": "أحب الطبخ",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"طيب\" is to cook; \"الطيابة\" is cooking."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I grow flowers in the garden.\"",
+          "answer": "كَنْغْرَس النّْوَّار فَالْجْنَان",
+          "accepted": [
+            "كَنْغْرَس النّْوَّار فَالْجْنَان",
+            "كنغرس النوار فالجنان",
+            "kanghres nnuwwaar f ljnaan",
+            "كنغرس النوار فالجردة"
+          ],
+          "too_formal": {
+            "item": "أزرع الزهور في الحديقة",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "Flowers are \"النوار\"; a garden is \"جنان\" or \"جردة\"."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I spend my time with my family.\"",
+          "answer": "كَنْدُوّْز الْوَقْت دْيَالِي مْعَ الْعَائِلَة",
+          "accepted": [
+            "كَنْدُوّْز الْوَقْت دْيَالِي مْعَ الْعَائِلَة",
+            "كندوز الوقت ديالي مع العائلة",
+            "kandowwez lweqt dyaali m3a l3aa2ila",
+            "كندوز الوقت مع العائلة",
+            "كندوز وقتي مع العائلة"
+          ],
+          "too_formal": {
+            "item": "أقضي وقتي مع عائلتي",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"دوز\" is to spend (time), from \"داز\", to pass."
+        },
+        {
+          "id": "unit-07.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"I climb mountains with my friends\"?",
+          "answer": "كَنْطْلَع لْلْجْبَال مْعَ صْحَابِي",
+          "options": [
+            "كَنْطْلَع لْلْجْبَال مْعَ صْحَابِي",
+            "كَنْقْرَا كْتَاب كُلّ سِيمَانَة",
+            "كَنْبْغِي الطّْيَابَة",
+            "كَنْدُوّْز الْوَقْت دْيَالِي مْعَ الْعَائِلَة"
+          ],
+          "accepted": [
+            "كَنْطْلَع لْلْجْبَال مْعَ صْحَابِي",
+            "kanTle3 l ljbaal m3a S7aabi",
+            "كنطلع للجبال مع صحابي"
+          ],
+          "too_formal": {
+            "item": "أتسلق الجبال مع أصدقائي",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"طلع\" is to go up, to climb."
+        },
+        {
+          "id": "unit-07.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"week\" in Darija?",
+          "answer": "سِيمَانَة",
+          "options": [
+            "سِيمَانَة",
+            "الْعْشِيَّة",
+            "الْبَارَح",
+            "صْبَاح"
+          ],
+          "accepted": [
+            "سِيمَانَة",
+            "simaana",
+            "سيمانة",
+            "سيمانه"
+          ],
+          "too_formal": {
+            "item": "أسبوع",
+            "feedback": "\"أسبوع\" is MSA; Darija uses \"سيمانة\" from French semaine."
+          },
+          "tip": "Every week is \"كل سيمانة\"."
+        },
+        {
+          "id": "unit-07.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: I'm learning to write Arabic calligraphy.",
+          "answer": "كَنْتْعَلّْم نْكْتَب الْخَطّ الْعَرْبِي",
+          "accepted": [
+            "كَنْتْعَلّْم نْكْتَب الْخَطّ الْعَرْبِي",
+            "كنتعلم نكتب الخط العربي",
+            "kant3allem nkteb lkhaTT l3arabi",
+            "كنتعلم الخط العربي"
+          ],
+          "too_formal": {
+            "item": "أتعلم كتابة الخط العربي",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "Two verbs follow each other with no \"أن\" between them."
+        },
+        {
+          "id": "unit-07.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: Yesterday I cooked dinner for my family.",
+          "answer": "الْبَارَح طَيّْبْت الْعْشَا لْلْعَائِلَة دْيَالِي",
+          "accepted": [
+            "الْبَارَح طَيّْبْت الْعْشَا لْلْعَائِلَة دْيَالِي",
+            "البارح طيبت العشا للعائلة ديالي",
+            "lbaare7 Tayyebt l3sha l l3aa2ila dyaali",
+            "طيبت العشا للعائلة ديالي البارح"
+          ],
+          "too_formal": {
+            "item": "طبخت العشاء لعائلتي أمس",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"البارح\" is yesterday; \"العشا\" is dinner."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "do-you-play-sports",
+          "arabic": "وَاش كَتْلْعَب شِي رِيَاضَة؟",
+          "transliteration": "waash katl3eb shi riyaaDa?",
+          "reply": {
+            "arabic": "إِيه، كَنْلْعَب الْكُورَة",
+            "transliteration": "eeh, kanl3eb lkoora",
+            "english": "Yes, I play football."
+          }
+        },
+        {
+          "slot": "i-play-football-with-my-friends",
+          "arabic": "كَنْلْعَب الْكُورَة مْعَ صْحَابِي",
+          "transliteration": "kanl3eb lkoora m3a S7aabi"
+        },
+        {
+          "slot": "which-team-do-you-support",
+          "arabic": "أَشْمَن فَرِيق كَتْشْجّْع؟",
+          "transliteration": "ashmen free9 katshejje3?",
+          "reply": {
+            "arabic": "كَنْشْجّْع الْوِدَاد",
+            "transliteration": "kanshejje3 lwidaad",
+            "english": "I support Wydad."
+          }
+        },
+        {
+          "slot": "the-match-starts-at-eight",
+          "arabic": "الْمَاتْش كَيْبْدَا مْعَ التّْمْنْيَة",
+          "transliteration": "lmaatsh kaybda m3a ttmenya"
+        },
+        {
+          "slot": "i-run-every-morning",
+          "arabic": "كَنْجْرِي كُلّ صْبَاح",
+          "transliteration": "kanjri koll Sbaa7"
+        },
+        {
+          "slot": "i-lift-weights-at-the-gym",
+          "arabic": "كَنْرْفَع الْحْدِيد فَالسَّال",
+          "transliteration": "kanrfe3 l7deed f ssaal"
+        },
+        {
+          "slot": "archery-is-my-favourite-sport",
+          "arabic": "الرّْمَايَة هِيَ الرِّيَاضَة اللِّي كَنْبْغِي كْتَر",
+          "transliteration": "rrmaaya hiya rriyaaDa lli kanbghi ktar"
+        },
+        {
+          "slot": "i-ride-a-horse-on-friday",
+          "arabic": "كَنْرْكَب الْعُود نْهَار الْجُمْعَة",
+          "transliteration": "kanrkeb l3ood nhaar jjem3a"
+        },
+        {
+          "slot": "i-ride-my-bicycle-in-the-park",
+          "arabic": "كَنْرْكَب الْبِيسْكْلِيت دْيَالِي فَالْحْدِيقَة",
+          "transliteration": "kanrkeb lbeeskleet dyaali f l7dee9a"
+        },
+        {
+          "slot": "i-m-tired-i-need-water",
+          "arabic": "عْيِيت، خَاصّْنِي الْمَا",
+          "transliteration": "3yeet, khaSSni lma"
+        },
+        {
+          "slot": "exercise-is-good-for-health",
+          "arabic": "الرِّيَاضَة مْزْيَانَة لْلصّْحَّة",
+          "transliteration": "rriyaaDa mzyaana l SSe77a"
+        },
+        {
+          "slot": "shall-we-walk-together-after-the-prayer",
+          "arabic": "نْتْمْشَّاوْ مْعَ بْعْضْيَاتْنَا مْن بْعْد الصّْلَاة؟",
+          "transliteration": "ntmeshshaw m3a b3Dyaatna mn b3d SSlaa?",
+          "reply": {
+            "arabic": "وَاخَّا، مْن بْعْد الْعْصَر",
+            "transliteration": "waakha, mn b3d l3Ser",
+            "english": "Okay, after the afternoon prayer."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Amine",
+          "slot": "do-you-play-sports"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "do-you-play-sports",
+          "reply": true
+        },
+        {
+          "speaker": "Amine",
+          "arabic": "فين كتلعب؟",
+          "transliteration": "feen katl3eb?",
+          "english": "Where do you play?"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "فالتيران ديال الحومة، كل سبت.",
+          "transliteration": "f tteeraan dyaal l7awma, koll sebt.",
+          "english": "On the neighbourhood pitch, every Saturday."
+        },
+        {
+          "speaker": "Amine",
+          "slot": "which-team-do-you-support"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "which-team-do-you-support",
+          "reply": true
+        },
+        {
+          "speaker": "Amine",
+          "arabic": "أنا رجاوي! والليلة كاين الديربي.",
+          "transliteration": "ana rjaawi! w lleela kaayn ddeerbi.",
+          "english": "I'm a Raja fan! And tonight is the derby."
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "the-match-starts-at-eight"
+        },
+        {
+          "speaker": "Amine",
+          "arabic": "إن شاء الله نتفرجو فيه جميع.",
+          "transliteration": "inshaa2 llaah ntferrjo feeh jmee3.",
+          "english": "God willing we'll watch it together."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "وانتا، شنو كدير باش تبقى فالفورمة؟",
+          "transliteration": "w nta, shnu kaddeer baash tb9a f lfoorma?",
+          "english": "And you, what do you do to stay fit?"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "i-run-every-morning"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "i-lift-weights-at-the-gym"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "exercise-is-good-for-health"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "shall-we-walk-together-after-the-prayer"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "shall-we-walk-together-after-the-prayer",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وَاش كَتْلْعَب شِي رِيَاضَة؟",
+            "transliteration": "waash katl3eb shi riyaaDa?",
+            "english": "Do you play sports?"
+          },
+          "response": {
+            "arabic": "إِيه، كَنْلْعَب الْكُورَة",
+            "transliteration": "eeh, kanl3eb lkoora",
+            "english": "Yes, I play football."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَشْمَن فَرِيق كَتْشْجّْع؟",
+            "transliteration": "ashmen free9 katshejje3?",
+            "english": "Which team do you support?"
+          },
+          "response": {
+            "arabic": "كَنْشْجّْع الرَّجَاء",
+            "transliteration": "kanshejje3 rrajaa2",
+            "english": "I support Raja."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فُوقَاش كَيْبْدَا الْمَاتْش؟",
+            "transliteration": "foo9aash kaybda lmaatsh?",
+            "english": "When does the match start?"
+          },
+          "response": {
+            "arabic": "مْعَ التّْمْنْيَة",
+            "transliteration": "m3a ttmenya",
+            "english": "At eight."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نْتْمْشَّاوْ مْن بْعْد الصّْلَاة؟",
+            "transliteration": "ntmeshshaw mn b3d SSlaa?",
+            "english": "Shall we walk after the prayer?"
+          },
+          "response": {
+            "arabic": "وَاخَّا، مْن بْعْد الْعْصَر",
+            "transliteration": "waakha, mn b3d l3Ser",
+            "english": "Okay, after the afternoon prayer."
+          }
+        }
+      ],
+      "culture": "Football is the great passion: in Casablanca nearly everyone is either for Wydad or for Raja, and their derby stops the city. Horse riding has deep roots in Morocco through the tbourida, the traditional display of riders firing powder together, and in the evening many people walk or jog along the seafront.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your friend asks: \"واش كتلعب شي رياضة؟\" Say yes, you play football.",
+          "answer": "إِيه، كَنْلْعَب الْكُورَة",
+          "accepted": [
+            "إِيه، كَنْلْعَب الْكُورَة",
+            "إيه، كنلعب الكورة",
+            "eeh, kanl3eb lkoora",
+            "إيه كنلعب الكورة",
+            "كنلعب الكورة"
+          ],
+          "too_formal": {
+            "item": "نعم، ألعب كرة القدم",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "Football is simply \"الكورة\", the ball."
+        },
+        {
+          "id": "unit-07.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Your friend says: \"نتمشاو مع بعضياتنا من بعد الصلاة؟\" Say okay, after the afternoon prayer.",
+          "answer": "وَاخَّا، مْن بْعْد الْعْصَر",
+          "accepted": [
+            "وَاخَّا، مْن بْعْد الْعْصَر",
+            "واخا، من بعد العصر",
+            "waakha, mn b3d l3Ser",
+            "واخا من بعد العصر",
+            "واخا"
+          ],
+          "too_formal": {
+            "item": "حسنا، بعد صلاة العصر",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"واخا\" is the Moroccan okay."
+        },
+        {
+          "id": "unit-07.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عييت، _____ الما.\" Meaning: I'm tired, I need water.",
+          "answer": "خاصني",
+          "accepted": [
+            "خاصني",
+            "khaSSni",
+            "خَاصّْنِي",
+            "خصني"
+          ],
+          "too_formal": {
+            "item": "أحتاج",
+            "feedback": "\"أحتاج\" is MSA; Darija says \"خاصني\" (I need)."
+          },
+          "tip": "\"خاصك\" is you need, \"خاصو\" he needs."
+        },
+        {
+          "id": "unit-07.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"كنركب _____ نهار الجمعة.\" Meaning: I ride a horse on Friday.",
+          "answer": "العود",
+          "accepted": [
+            "العود",
+            "l3ood",
+            "الْعُود",
+            "لعود"
+          ],
+          "too_formal": {
+            "item": "الحصان",
+            "feedback": "\"الحصان\" is MSA; in Morocco a horse is \"عود\"."
+          },
+          "tip": "A mare is \"عودة\"."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I run every morning.\"",
+          "answer": "كَنْجْرِي كُلّ صْبَاح",
+          "accepted": [
+            "كَنْجْرِي كُلّ صْبَاح",
+            "كنجري كل صباح",
+            "kanjri koll Sbaa7",
+            "كنجري كل نهار فالصباح"
+          ],
+          "too_formal": {
+            "item": "أركض كل صباح",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"جرى\" is to run."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I lift weights at the gym.\"",
+          "answer": "كَنْرْفَع الْحْدِيد فَالسَّال",
+          "accepted": [
+            "كَنْرْفَع الْحْدِيد فَالسَّال",
+            "كنرفع الحديد فالسال",
+            "kanrfe3 l7deed f ssaal",
+            "كنرفع الحديد فالجيم",
+            "كندير الموسكلاج فالسال"
+          ],
+          "too_formal": {
+            "item": "أرفع الأثقال في النادي الرياضي",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "Many say \"كندير الموسكلاج\" (from French musculation)."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Exercise is good for health.\"",
+          "answer": "الرِّيَاضَة مْزْيَانَة لْلصّْحَّة",
+          "accepted": [
+            "الرِّيَاضَة مْزْيَانَة لْلصّْحَّة",
+            "الرياضة مزيانة للصحة",
+            "rriyaaDa mzyaana l SSe77a",
+            "الرياضة مزيانة"
+          ],
+          "too_formal": {
+            "item": "الرياضة مفيدة للصحة",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"مزيان\" is good; with a feminine word it is \"مزيانة\"."
+        },
+        {
+          "id": "unit-07.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"The match starts at eight\"?",
+          "answer": "الْمَاتْش كَيْبْدَا مْعَ التّْمْنْيَة",
+          "options": [
+            "الْمَاتْش كَيْبْدَا مْعَ التّْمْنْيَة",
+            "كَنْجْرِي كُلّ صْبَاح",
+            "كَنْلْعَب الْكُورَة مْعَ صْحَابِي",
+            "أَشْمَن فَرِيق كَتْشْجّْع؟"
+          ],
+          "accepted": [
+            "الْمَاتْش كَيْبْدَا مْعَ التّْمْنْيَة",
+            "lmaatsh kaybda m3a ttmenya",
+            "الماتش كيبدا مع التمنية"
+          ],
+          "too_formal": {
+            "item": "تبدأ المباراة في الساعة الثامنة",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"مع\" before a time means at, around."
+        },
+        {
+          "id": "unit-07.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"bicycle\"?",
+          "answer": "بِيسْكْلِيت",
+          "options": [
+            "بِيسْكْلِيت",
+            "عُود",
+            "كُورَة",
+            "مَاتْش"
+          ],
+          "accepted": [
+            "بِيسْكْلِيت",
+            "beeskleet",
+            "بيسكليت",
+            "بشكليط"
+          ],
+          "too_formal": {
+            "item": "دراجة",
+            "feedback": "\"دراجة\" is MSA; Moroccans say \"بيسكليت\" or \"بشكليط\"."
+          },
+          "tip": "From French bicyclette."
+        },
+        {
+          "id": "unit-07.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: Archery is my favourite sport.",
+          "answer": "الرّْمَايَة هِيَ الرِّيَاضَة اللِّي كَنْبْغِي كْتَر",
+          "accepted": [
+            "الرّْمَايَة هِيَ الرِّيَاضَة اللِّي كَنْبْغِي كْتَر",
+            "الرماية هي الرياضة اللي كنبغي كتر",
+            "rrmaaya hiya rriyaaDa lli kanbghi ktar",
+            "الرماية هي الرياضة اللي كنبغي كثر"
+          ],
+          "too_formal": {
+            "item": "الرماية هي رياضتي المفضلة",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"اللي كنبغي كتر\" is \"that I like most\"."
+        },
+        {
+          "id": "unit-07.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: I ride my bicycle in the park.",
+          "answer": "كَنْرْكَب الْبِيسْكْلِيت دْيَالِي فَالْحْدِيقَة",
+          "accepted": [
+            "كَنْرْكَب الْبِيسْكْلِيت دْيَالِي فَالْحْدِيقَة",
+            "كنركب البيسكليت ديالي فالحديقة",
+            "kanrkeb lbeeskleet dyaali f l7dee9a",
+            "كنركب البشكليط ديالي فالحديقة"
+          ],
+          "too_formal": {
+            "item": "أركب دراجتي في الحديقة",
+            "feedback": "This is correct Modern Standard Arabic, not how it is said in Darija."
+          },
+          "tip": "\"ديالي\" (my) comes after the thing owned."
         }
       ]
     }

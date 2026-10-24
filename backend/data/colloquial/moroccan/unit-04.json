@@ -16,7 +16,11 @@
     "oo": "و طويلة",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "T": "ط",
+    "D": "ض",
+    "S": "ص",
+    "e": "حركة قصيرة خفيفة (شوا)"
   },
   "lessons": [
     {
@@ -1594,6 +1598,829 @@
             "feedback": "MSA uses am for or; Darija says wla."
           },
           "tip": "wla means or."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-d-like-a-chicken-burger-and-fries",
+          "arabic": "بْغِيت وَاحْد الْهَامْبُورْغَر دْيَال الدّْجَاج وْالْفْرِيت",
+          "transliteration": "bgheet waa7ed lhaamburgher dyaal ddjaaj w lfreet"
+        },
+        {
+          "slot": "are-you-eating-here-or-taking-it-with-you",
+          "arabic": "غَادِي تَاكُل هْنَا وَلَّا غَادِي تْدِّيه؟",
+          "transliteration": "ghaadi taakol hna wlla ghaadi tddeeh?",
+          "reply": {
+            "arabic": "غَادِي نْدِّيه مْعَايَا",
+            "transliteration": "ghaadi nddeeh m3aaya",
+            "english": "I'll take it with me."
+          }
+        },
+        {
+          "slot": "i-want-a-pizza-to-take-away",
+          "arabic": "بْغِيت بِيتْزَا نْدِّيهَا مْعَايَا",
+          "transliteration": "bgheet beetza nddeeha m3aaya"
+        },
+        {
+          "slot": "i-ll-eat-here",
+          "arabic": "غَادِي نَاكُل هْنَا",
+          "transliteration": "ghaadi naakol hna"
+        },
+        {
+          "slot": "which-size-do-you-want-small-medium-or-large",
+          "arabic": "أَشْمَن مْقَاس بْغِيتِي: صْغِير، وَسْط وَلَّا كْبِير؟",
+          "transliteration": "ashmen mqaas bgheeti: Sgheer, wesT wlla kbeer?"
+        },
+        {
+          "slot": "a-large-cola-please",
+          "arabic": "كُوكَا كْبِيرَة، عَافَاك",
+          "transliteration": "kooka kbeera, 3afaak"
+        },
+        {
+          "slot": "without-ice-please",
+          "arabic": "بْلَا تْلْج، عَافَاك",
+          "transliteration": "bla tlej, 3afaak"
+        },
+        {
+          "slot": "do-you-have-a-kids-meal",
+          "arabic": "وَاش عَنْدْكُم وَجْبَة الدّْرَارِي؟",
+          "transliteration": "waash 3endkom wajbat ddraari?",
+          "reply": {
+            "arabic": "إِيه، فِيهَا هَامْبُورْغَر صْغِير، فْرِيت وْعْصِير",
+            "transliteration": "eeh, feeha haamburgher Sgheer, freet w 3Seer",
+            "english": "Yes, it has a small burger, fries and juice."
+          }
+        },
+        {
+          "slot": "extra-ketchup-please",
+          "arabic": "زِيد لِيَّا الْكَاتْشُوب، عَافَاك",
+          "transliteration": "zeed leeya lkaatshoob, 3afaak"
+        },
+        {
+          "slot": "how-long-will-the-order-take",
+          "arabic": "شْحَال دْيَال الْوَقْت غَادِي يَاخُد الطّْلَب؟",
+          "transliteration": "sh7aal dyaal lweqt ghaadi yaakhod TTalab?",
+          "reply": {
+            "arabic": "عْشْر دْقَايْق",
+            "transliteration": "3shr dqaayeq",
+            "english": "Ten minutes."
+          }
+        },
+        {
+          "slot": "is-the-meat-halal",
+          "arabic": "وَاش اللّْحَم حْلَال؟",
+          "transliteration": "waash lle7m 7laal?"
+        },
+        {
+          "slot": "please-put-it-in-a-bag",
+          "arabic": "دِيرُو لِيَّا فْسَاك، عَافَاك",
+          "transliteration": "deeroo leeya f saak, 3afaak"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Younes",
+          "arabic": "مرحبا، شنو بغيتي؟",
+          "transliteration": "mar7ba, shnu bgheeti?",
+          "english": "Hello, what would you like?"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "i-d-like-a-chicken-burger-and-fries"
+        },
+        {
+          "speaker": "Younes",
+          "slot": "which-size-do-you-want-small-medium-or-large"
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "الوسط، عافاك.",
+          "transliteration": "lwesT, 3afaak.",
+          "english": "The medium, please."
+        },
+        {
+          "speaker": "Younes",
+          "arabic": "وشنو بغيتي تشرب؟",
+          "transliteration": "w shnu bgheeti tsherb?",
+          "english": "And what would you like to drink?"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "a-large-cola-please"
+        },
+        {
+          "speaker": "Younes",
+          "slot": "are-you-eating-here-or-taking-it-with-you"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "are-you-eating-here-or-taking-it-with-you",
+          "reply": true
+        },
+        {
+          "speaker": "Younes",
+          "arabic": "شي حاجة أخرى؟",
+          "transliteration": "shi 7aaja okhra?",
+          "english": "Anything else?"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "do-you-have-a-kids-meal"
+        },
+        {
+          "speaker": "Younes",
+          "slot": "do-you-have-a-kids-meal",
+          "reply": true
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "مزيان، زيد واحد.",
+          "transliteration": "mzyaan, zeed waa7ed.",
+          "english": "Good, add one."
+        },
+        {
+          "speaker": "Younes",
+          "arabic": "واخا. المجموع ستة وتسعين درهم.",
+          "transliteration": "waakha. lmajmoo3 stta w tes3een derhem.",
+          "english": "Okay. That's ninety-six dirhams in all."
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "how-long-will-the-order-take"
+        },
+        {
+          "speaker": "Younes",
+          "slot": "how-long-will-the-order-take",
+          "reply": true
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "please-put-it-in-a-bag"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وَاش اللّْحَم حْلَال؟",
+            "transliteration": "waash lle7m 7laal?",
+            "english": "Is the meat halal?"
+          },
+          "response": {
+            "arabic": "إِيه، كُلْشِي حْلَال",
+            "transliteration": "eeh, kulshi 7laal",
+            "english": "Yes, everything is halal."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَشْمَن مْقَاس بْغِيتِي؟",
+            "transliteration": "ashmen mqaas bgheeti?",
+            "english": "Which size do you want?"
+          },
+          "response": {
+            "arabic": "كْبِير، عَافَاك",
+            "transliteration": "kbeer, 3afaak",
+            "english": "Large, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "غَادِي تَاكُل هْنَا وَلَّا غَادِي تْدِّيه؟",
+            "transliteration": "ghaadi taakol hna wlla ghaadi tddeeh?",
+            "english": "Are you eating here or taking it with you?"
+          },
+          "response": {
+            "arabic": "غَادِي نَاكُل هْنَا",
+            "transliteration": "ghaadi naakol hna",
+            "english": "I'll eat here."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْحَال دْيَال الْوَقْت غَادِي يَاخُد الطّْلَب؟",
+            "transliteration": "sh7aal dyaal lweqt ghaadi yaakhod TTalab?",
+            "english": "How long will the order take?"
+          },
+          "response": {
+            "arabic": "رْبْع سَاعَة",
+            "transliteration": "rbe3 saa3a",
+            "english": "A quarter of an hour."
+          }
+        }
+      ],
+      "culture": "In Casablanca and Rabat fast food means burgers and pizza but also shawarma, panini and Moroccan tacos, and at the counter many people use the French \"sur place\" (to eat in) and \"à emporter\" (to take away). Meat sold in Morocco is halal, so the question is rarely asked, and ordering by delivery app is now very common in both cities.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "The cashier asks: \"غادي تاكل هنا ولا غادي تديه؟\" Say you'll eat here.",
+          "answer": "غَادِي نَاكُل هْنَا",
+          "accepted": [
+            "غَادِي نَاكُل هْنَا",
+            "غادي ناكل هنا",
+            "ghaadi naakol hna",
+            "هنا",
+            "غادي ناكل هنا، عافاك"
+          ],
+          "too_formal": {
+            "item": "سآكل هنا",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "\"غادي\" in front of a verb makes it future: I'm going to."
+        },
+        {
+          "id": "unit-04.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "The cashier asks: \"شي حاجة أخرى؟\" Ask for extra ketchup.",
+          "answer": "زِيد لِيَّا الْكَاتْشُوب، عَافَاك",
+          "accepted": [
+            "زِيد لِيَّا الْكَاتْشُوب، عَافَاك",
+            "زيد ليا الكاتشوب عافاك",
+            "zeed leeya lkaatshoob, 3afaak",
+            "زيد ليا الكاتشوب",
+            "زيد الكاتشوب عافاك"
+          ],
+          "too_formal": {
+            "item": "أريد المزيد من الكاتشب من فضلك",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "\"زيد ليا\" means add more for me."
+        },
+        {
+          "id": "unit-04.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ تلج، عافاك.\" Meaning: Without ice, please.",
+          "answer": "بلا",
+          "accepted": [
+            "بلا",
+            "bla",
+            "بْلَا"
+          ],
+          "too_formal": {
+            "item": "بدون",
+            "feedback": "\"بدون\" is understood but bookish; Darija says \"بلا\"."
+          },
+          "tip": "\"بلا\" means without."
+        },
+        {
+          "id": "unit-04.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"كوكا _____، عافاك.\" Meaning: A large cola, please.",
+          "answer": "كبيرة",
+          "accepted": [
+            "كبيرة",
+            "kbeera",
+            "كْبِيرَة"
+          ],
+          "too_formal": {
+            "item": "كبيرة الحجم",
+            "feedback": "Too wordy; the adjective alone is enough."
+          },
+          "tip": "Cola (كوكا) is treated as feminine, so the adjective ends in ة."
+        },
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want a pizza to take away.\"",
+          "answer": "بْغِيت بِيتْزَا نْدِّيهَا مْعَايَا",
+          "accepted": [
+            "بْغِيت بِيتْزَا نْدِّيهَا مْعَايَا",
+            "بغيت بيتزا نديها معايا",
+            "bgheet beetza nddeeha m3aaya",
+            "بغيت بيتزا امبورتي",
+            "بغيت بيتزا ندّيها"
+          ],
+          "too_formal": {
+            "item": "أريد بيتزا سفري",
+            "feedback": "\"سفري\" is Gulf and Levantine; in Morocco you take it with you (نديها معايا) or say à emporter."
+          },
+          "tip": "\"ندّي\" is to take away with you."
+        },
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is the meat halal?\"",
+          "answer": "وَاش اللّْحَم حْلَال؟",
+          "accepted": [
+            "وَاش اللّْحَم حْلَال؟",
+            "واش اللحم حلال؟",
+            "waash lle7m 7laal?",
+            "واش اللحم حلال"
+          ],
+          "too_formal": {
+            "item": "هل اللحم حلال؟",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "\"واش\" turns a sentence into a yes or no question."
+        },
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Please put it in a bag.\"",
+          "answer": "دِيرُو لِيَّا فْسَاك، عَافَاك",
+          "accepted": [
+            "دِيرُو لِيَّا فْسَاك، عَافَاك",
+            "ديرو ليا فساك عافاك",
+            "deeroo leeya f saak, 3afaak",
+            "ديرو ليا فشي ساك",
+            "ديرو ليا فميكا عافاك"
+          ],
+          "too_formal": {
+            "item": "ضعه في كيس من فضلك",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "\"دير\" (put, do) is the all-purpose Darija verb; \"ميكا\" is a plastic bag."
+        },
+        {
+          "id": "unit-04.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which one asks \"Which size do you want?\"",
+          "answer": "أَشْمَن مْقَاس بْغِيتِي: صْغِير، وَسْط وَلَّا كْبِير؟",
+          "options": [
+            "أَشْمَن مْقَاس بْغِيتِي: صْغِير، وَسْط وَلَّا كْبِير؟",
+            "وَاش اللّْحَم حْلَال؟",
+            "شْحَال دْيَال الْوَقْت غَادِي يَاخُد الطّْلَب؟",
+            "وَاش عَنْدْكُم وَجْبَة الدّْرَارِي؟"
+          ],
+          "accepted": [
+            "أَشْمَن مْقَاس بْغِيتِي: صْغِير، وَسْط وَلَّا كْبِير؟",
+            "ashmen mqaas bgheeti: Sgheer, wesT wlla kbeer?",
+            "أشمن مقاس بغيتي؟",
+            "أشمن مقاس بغيتي صغير وسط ولا كبير"
+          ],
+          "too_formal": {
+            "item": "أي حجم تريد؟",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "\"ولا\" means or."
+        },
+        {
+          "id": "unit-04.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"fries\"?",
+          "answer": "فْرِيت",
+          "options": [
+            "فْرِيت",
+            "صُوص",
+            "سَاك",
+            "تْلْج"
+          ],
+          "accepted": [
+            "فْرِيت",
+            "freet",
+            "فريت"
+          ],
+          "too_formal": {
+            "item": "بطاطس مقلية",
+            "feedback": "MSA; Moroccans use the French word \"فريت\"."
+          },
+          "tip": "From French frites."
+        },
+        {
+          "id": "unit-04.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: Do you have a kids' meal?",
+          "answer": "وَاش عَنْدْكُم وَجْبَة الدّْرَارِي؟",
+          "accepted": [
+            "وَاش عَنْدْكُم وَجْبَة الدّْرَارِي؟",
+            "واش عندكم وجبة الدراري؟",
+            "waash 3endkom wajbat ddraari?",
+            "واش عندكم منيو دالدراري؟"
+          ],
+          "too_formal": {
+            "item": "هل لديكم وجبة للأطفال؟",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "\"الدراري\" are children; one child is \"دري\"."
+        },
+        {
+          "id": "unit-04.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: How long will the order take?",
+          "answer": "شْحَال دْيَال الْوَقْت غَادِي يَاخُد الطّْلَب؟",
+          "accepted": [
+            "شْحَال دْيَال الْوَقْت غَادِي يَاخُد الطّْلَب؟",
+            "شحال ديال الوقت غادي ياخد الطلب؟",
+            "sh7aal dyaal lweqt ghaadi yaakhod TTalab?",
+            "شحال غادي ياخد الطلب؟"
+          ],
+          "too_formal": {
+            "item": "كم من الوقت سيستغرق الطلب؟",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "\"شحال ديال الوقت\" is how much time."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "thank-you-for-the-invitation",
+          "arabic": "شُكْرًا عْلَى الْعْرْضَة",
+          "transliteration": "shukran 3la l3erDa"
+        },
+        {
+          "slot": "i-am-honoured-by-your-invitation",
+          "arabic": "تْشَرّْفْت بِالْعْرْضَة دْيَالْك",
+          "transliteration": "tsherreft bl3erDa dyaalek"
+        },
+        {
+          "slot": "please-come-in-and-sit-down",
+          "arabic": "تْفَضّْل، دْخُل وْجْلْس",
+          "transliteration": "tfeDDel, dkhol w jles"
+        },
+        {
+          "slot": "bismillah-in-the-name-of-allah",
+          "arabic": "بِسْمِ اللَّه",
+          "transliteration": "bismillaah"
+        },
+        {
+          "slot": "eat-with-your-right-hand",
+          "arabic": "كُول بْيْدّْك الْيْمْنَى",
+          "transliteration": "kool b yeddek lymna"
+        },
+        {
+          "slot": "please-take-some-more",
+          "arabic": "زِيد كُول شْوِيَّة",
+          "transliteration": "zeed kool shwiyya",
+          "reply": {
+            "arabic": "بَارَاكَا، اللَّه يْخْلِّيك",
+            "transliteration": "baaraaka, llaah ykhalleek",
+            "english": "That's enough, thank you."
+          }
+        },
+        {
+          "slot": "thank-allah-i-m-full",
+          "arabic": "الْحَمْدُ لِلَّه، شْبْعْت",
+          "transliteration": "l7amdu lillaah, shbe3t"
+        },
+        {
+          "slot": "may-allah-reward-you-well",
+          "arabic": "اللَّه يْجَازِيك بِخِير",
+          "transliteration": "llaah yjaazeek bkheer",
+          "reply": {
+            "arabic": "بْالصّْحَّة وْالرَّاحَة",
+            "transliteration": "bSSe77a w rraa7a",
+            "english": "With health and ease."
+          }
+        },
+        {
+          "slot": "how-delicious-this-food-is",
+          "arabic": "شْحَال بْنِينَة هَادْ الْمَاكْلَة!",
+          "transliteration": "sh7aal bneena haad lmaakla!"
+        },
+        {
+          "slot": "please-pass-me-the-water",
+          "arabic": "عْطِينِي الْمَا، عَافَاك",
+          "transliteration": "3Teeni lma, 3afaak"
+        },
+        {
+          "slot": "shall-we-have-tea-after-the-meal",
+          "arabic": "نْشْرْبُو أَتَاي مْن بْعْد الْمَاكْلَة؟",
+          "transliteration": "nsherbu ataay mn b3d lmaakla?"
+        },
+        {
+          "slot": "next-time-it-s-on-us",
+          "arabic": "الْمَرَّة الْجَّايَة عَنْدْنَا، إِن شَاء اللَّه",
+          "transliteration": "lmerra jjaaya 3endna, inshaa2 llaah",
+          "english": "Next time it's at our place, God willing."
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "arabic": "مرحبا بيك آ أمين، الدار دارك.",
+          "transliteration": "mar7ba beek a Ameen, ddaar daarek.",
+          "english": "Welcome, Amine, make yourself at home."
+        },
+        {
+          "speaker": "Amine",
+          "slot": "thank-you-for-the-invitation"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "please-come-in-and-sit-down"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "i-am-honoured-by-your-invitation"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الله يعز قدرك. يالاه، الماكلة واجدة.",
+          "transliteration": "llaah y3ezz qedrek. yallaah, lmaakla waajda.",
+          "english": "You're too kind. Come on, the food is ready."
+        },
+        {
+          "speaker": "Amine",
+          "slot": "bismillah-in-the-name-of-allah"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "آ آدم، كول بيدك اليمنى آ وليدي.",
+          "transliteration": "a Aadam, kool b yeddek lymna a wleedi.",
+          "english": "Adam, eat with your right hand, son."
+        },
+        {
+          "speaker": "Amine",
+          "slot": "how-delicious-this-food-is"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "please-take-some-more"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "please-take-some-more",
+          "reply": true
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "والله ما تحشم، زيد!",
+          "transliteration": "wallaah ma t7shem, zeed!",
+          "english": "Really, don't be shy, have more!"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "thank-allah-i-m-full"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "shall-we-have-tea-after-the-meal"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "may-allah-reward-you-well"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "may-allah-reward-you-well",
+          "reply": true
+        },
+        {
+          "speaker": "Amine",
+          "slot": "next-time-it-s-on-us"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "زِيد كُول شْوِيَّة",
+            "transliteration": "zeed kool shwiyya",
+            "english": "Have some more."
+          },
+          "response": {
+            "arabic": "الْحَمْدُ لِلَّه، شْبْعْت",
+            "transliteration": "l7amdu lillaah, shbe3t",
+            "english": "Thank God, I'm full."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "اللَّه يْجَازِيك بِخِير",
+            "transliteration": "llaah yjaazeek bkheer",
+            "english": "May Allah reward you well."
+          },
+          "response": {
+            "arabic": "بْالصّْحَّة وْالرَّاحَة",
+            "transliteration": "bSSe77a w rraa7a",
+            "english": "With health and ease."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نْشْرْبُو أَتَاي مْن بْعْد الْمَاكْلَة؟",
+            "transliteration": "nsherbu ataay mn b3d lmaakla?",
+            "english": "Shall we have tea after the meal?"
+          },
+          "response": {
+            "arabic": "إِيه، مْزْيَان",
+            "transliteration": "eeh, mzyaan",
+            "english": "Yes, good."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شُكْرًا عْلَى الْعْرْضَة",
+            "transliteration": "shukran 3la l3erDa",
+            "english": "Thank you for the invitation."
+          },
+          "response": {
+            "arabic": "مَرْحْبَا بِيك دِيمَا",
+            "transliteration": "mar7ba beek deema",
+            "english": "You're always welcome."
+          }
+        }
+      ],
+      "culture": "A Moroccan host offers more food again and again, and a guest usually refuses a couple of times before giving in. After the meal guests say \"الله يخلف\" or \"الله يجازيك بخير\" and the host answers \"بالصحة والراحة\"; the meal often ends with mint tea (أتاي) poured by the host.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your host says: \"زيد كول شوية.\" Say thank God, you're full.",
+          "answer": "الْحَمْدُ لِلَّه، شْبْعْت",
+          "accepted": [
+            "الْحَمْدُ لِلَّه، شْبْعْت",
+            "الحمد لله شبعت",
+            "l7amdu lillaah, shbe3t",
+            "شبعت الحمد لله",
+            "باراكا الله يخليك"
+          ],
+          "too_formal": {
+            "item": "الحمد لله، لقد شبعت",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "\"شبعت\" is I'm full; a woman says the same."
+        },
+        {
+          "id": "unit-04.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "You thank your host: \"الله يجازيك بخير.\" What does the host answer?",
+          "answer": "بْالصّْحَّة وْالرَّاحَة",
+          "accepted": [
+            "بْالصّْحَّة وْالرَّاحَة",
+            "بالصحة والراحة",
+            "bSSe77a w rraa7a",
+            "بالصحة",
+            "وإياك"
+          ],
+          "too_formal": {
+            "item": "وجزاك الله خيرا",
+            "feedback": "Correct and pious, but bookish; the everyday Moroccan host's answer is \"بالصحة والراحة\"."
+          },
+          "tip": "\"بالصحة\" wishes the guest good health from the food."
+        },
+        {
+          "id": "unit-04.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"شكرا على _____.\" Meaning: Thank you for the invitation.",
+          "answer": "العرضة",
+          "accepted": [
+            "العرضة",
+            "l3erDa",
+            "الْعْرْضَة",
+            "لعرضة"
+          ],
+          "too_formal": {
+            "item": "الدعوة",
+            "feedback": "\"الدعوة\" is understood but in Darija an invitation to eat is \"العرضة\"."
+          },
+          "tip": "\"عرض\" is to invite someone to a meal."
+        },
+        {
+          "id": "unit-04.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"شحال _____ هاد الماكلة!\" Meaning: How delicious this food is!",
+          "answer": "بنينة",
+          "accepted": [
+            "بنينة",
+            "bneena",
+            "بْنِينَة",
+            "بنينه"
+          ],
+          "too_formal": {
+            "item": "لذيذة",
+            "feedback": "\"لذيذ\" is understood but formal; Moroccans say \"بنين\"."
+          },
+          "tip": "\"الماكلة\" is feminine, so it is \"بنينة\"."
+        },
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Please pass me the water.\"",
+          "answer": "عْطِينِي الْمَا، عَافَاك",
+          "accepted": [
+            "عْطِينِي الْمَا، عَافَاك",
+            "عطيني الما عافاك",
+            "3Teeni lma, 3afaak",
+            "عافاك عطيني الما",
+            "دوز ليا الما عافاك"
+          ],
+          "too_formal": {
+            "item": "ناولني الماء من فضلك",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "Water is \"الما\" in Darija."
+        },
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (to a man): \"Please come in and sit down.\"",
+          "answer": "تْفَضّْل، دْخُل وْجْلْس",
+          "accepted": [
+            "تْفَضّْل، دْخُل وْجْلْس",
+            "تفضل دخل وجلس",
+            "tfeDDel, dkhol w jles",
+            "تفضل دخل جلس",
+            "دخل جلس"
+          ],
+          "too_formal": {
+            "item": "تفضل بالدخول والجلوس",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "To a woman: \"تفضلي، دخلي وجلسي\"."
+        },
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Shall we have tea after the meal?\"",
+          "answer": "نْشْرْبُو أَتَاي مْن بْعْد الْمَاكْلَة؟",
+          "accepted": [
+            "نْشْرْبُو أَتَاي مْن بْعْد الْمَاكْلَة؟",
+            "نشربو أتاي من بعد الماكلة؟",
+            "nsherbu ataay mn b3d lmaakla?",
+            "نشربو أتاي من بعد الماكلة",
+            "نشربو أتاي؟"
+          ],
+          "too_formal": {
+            "item": "هل نشرب الشاي بعد الطعام؟",
+            "feedback": "MSA; Moroccan tea is \"أتاي\" and food is \"الماكلة\"."
+          },
+          "tip": "The \"و\" at the end of \"نشربو\" means we."
+        },
+        {
+          "id": "unit-04.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which one does a guest say before starting to eat?",
+          "answer": "بِسْمِ اللَّه",
+          "options": [
+            "بِسْمِ اللَّه",
+            "الْحَمْدُ لِلَّه، شْبْعْت",
+            "بْالصّْحَّة وْالرَّاحَة",
+            "زِيد كُول شْوِيَّة"
+          ],
+          "accepted": [
+            "بِسْمِ اللَّه",
+            "bismillaah",
+            "بسم الله"
+          ],
+          "tip": "Say it before eating; if you forget, say \"بسم الله أوله وآخره\"."
+        },
+        {
+          "id": "unit-04.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Next time it's at our place\"?",
+          "answer": "الْمَرَّة الْجَّايَة عَنْدْنَا، إِن شَاء اللَّه",
+          "options": [
+            "الْمَرَّة الْجَّايَة عَنْدْنَا، إِن شَاء اللَّه",
+            "تْشَرّْفْت بِالْعْرْضَة دْيَالْك",
+            "شُكْرًا عْلَى الْعْرْضَة",
+            "تْفَضّْل، دْخُل وْجْلْس"
+          ],
+          "accepted": [
+            "الْمَرَّة الْجَّايَة عَنْدْنَا، إِن شَاء اللَّه",
+            "lmerra jjaaya 3endna, inshaa2 llaah",
+            "المرة الجاية عندنا إن شاء الله",
+            "المرة الجاية عندنا"
+          ],
+          "too_formal": {
+            "item": "في المرة القادمة عندنا",
+            "feedback": "Correct Modern Standard Arabic, but not how it is said at a counter in Casablanca or Rabat."
+          },
+          "tip": "\"الجاية\" means the coming one, the next."
+        },
+        {
+          "id": "unit-04.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: Eat with your right hand.",
+          "answer": "كُول بْيْدّْك الْيْمْنَى",
+          "words": [
+            "كُول",
+            "بْيْدّْك",
+            "الْيْمْنَى"
+          ],
+          "accepted": [
+            "كُول بْيْدّْك الْيْمْنَى",
+            "كول بيدك اليمنى",
+            "kool b yeddek lymna",
+            "كول بليمنى"
+          ],
+          "too_formal": {
+            "item": "كل بيدك اليمنى",
+            "feedback": "Nearly the same; Darija says \"كول\" with a long vowel."
+          },
+          "tip": "\"يدّك\" is your hand."
+        },
+        {
+          "id": "unit-04.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: I am honoured by your invitation.",
+          "answer": "تْشَرّْفْت بِالْعْرْضَة دْيَالْك",
+          "accepted": [
+            "تْشَرّْفْت بِالْعْرْضَة دْيَالْك",
+            "تشرفت بالعرضة ديالك",
+            "tsherreft bl3erDa dyaalek",
+            "تشرفت بالعرضة"
+          ],
+          "too_formal": {
+            "item": "تشرفت بدعوتك",
+            "feedback": "Correct MSA wording; Darija uses \"العرضة ديالك\"."
+          },
+          "tip": "\"ديالك\" means your."
         }
       ]
     }

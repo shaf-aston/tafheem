@@ -49,7 +49,7 @@ describe('the glossary', () => {
     expect(typeLabel('punc')).toBe('punc')
   })
 
-  // Completeness against what the backend prints: tests/test_rule_engine.py.
+  // Completeness against what the backend prints: tests/nahw/test_rule_engine.py.
   it('lists every term once, each with Arabic and a meaning', () => {
     const terms = GLOSSARY.flatMap((section) => section.terms)
     expect(new Set(terms.map((t) => t.arabic)).size).toBe(terms.length)

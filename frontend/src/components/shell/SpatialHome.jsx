@@ -21,7 +21,7 @@ import ArabicText from '../ui/ArabicText'
 import CommandField from './CommandField'
 import CommandResults from './CommandResults'
 import Mascot from '../ui/Mascot'
-import TabMark from '../ui/TabMark'
+import TabMark from './TabMark'
 
 const NAME = 'sh'
 

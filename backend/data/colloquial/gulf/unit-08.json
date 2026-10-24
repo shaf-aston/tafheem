@@ -1559,6 +1559,816 @@
           "tip": "بـ + الفعل = I will"
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "which-grade-are-you-in-to-a-boy",
+          "arabic": "إِنْت فِي أَي صَف؟",
+          "transliteration": "inta fi ay Saff?",
+          "reply": {
+            "arabic": "فِي الصَّف الْخَامِس",
+            "transliteration": "fiS-Saff il-khaamis",
+            "english": "In fifth grade."
+          }
+        },
+        {
+          "slot": "where-is-my-school-bag",
+          "arabic": "وِين شَنْطَتِي؟",
+          "transliteration": "wain shanTati?"
+        },
+        {
+          "slot": "the-teacher-is-in-the-classroom",
+          "arabic": "الْأُسْتَاذ فِي الْفَصِل",
+          "transliteration": "il-ustaadh fil-faSil"
+        },
+        {
+          "slot": "open-your-book-to-page-ten-to-a-boy",
+          "arabic": "افْتَح كِتَابَك صَفْحَة عَشَرَة",
+          "transliteration": "ifta7 kitaabak Saf7a 3ashara"
+        },
+        {
+          "slot": "write-the-lesson-on-the-board-to-a-boy",
+          "arabic": "اكْتِب الدَّرْس عَلَى السَّبُّورَة",
+          "transliteration": "iktib id-dars 3ala s-sabboora"
+        },
+        {
+          "slot": "did-you-do-your-homework-to-a-boy",
+          "arabic": "سَوَّيْت الْوَاجِب؟",
+          "transliteration": "sawwait il-waajib?",
+          "reply": {
+            "arabic": "إِي، خَلَّصْته",
+            "transliteration": "ee, khallaSta",
+            "english": "Yes, I finished it."
+          }
+        },
+        {
+          "slot": "i-forgot-my-pen",
+          "arabic": "نِسِيت قَلَمِي",
+          "transliteration": "niseet galami"
+        },
+        {
+          "slot": "the-break-is-at-ten-o-clock",
+          "arabic": "الْفُسْحَة السَّاعَة عَشْر",
+          "transliteration": "il-fus7a is-saa3a 3ashr"
+        },
+        {
+          "slot": "may-i-go-to-the-bathroom-to-a-teacher",
+          "arabic": "أُسْتَاذ، مُمْكِن أَرُوح الْحَمَّام؟",
+          "transliteration": "ustaadh, mumkin aroo7 il-7ammaam?"
+        },
+        {
+          "slot": "when-does-the-school-day-end",
+          "arabic": "الدَّوَام مَتَى يْخَلِّص؟",
+          "transliteration": "id-dawaam mita ykhalliS?",
+          "reply": {
+            "arabic": "السَّاعَة وَحْدَة وْنُص",
+            "transliteration": "is-saa3a wa7da w nuSS",
+            "english": "At half past one."
+          }
+        },
+        {
+          "slot": "don-t-forget-the-school-uniform-to-a-boy",
+          "arabic": "لَا تِنْسَى الزِّي الْمَدْرَسِي",
+          "transliteration": "la tinsa iz-zayy il-madrasi"
+        },
+        {
+          "slot": "my-son-is-a-diligent-student",
+          "arabic": "وَلَدِي طَالِب مُجْتَهِد",
+          "transliteration": "waladi Taalib mujtahid"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Abu Fahad",
+          "arabic": "يلا فهد، تأخرنا!",
+          "transliteration": "yalla Fahad, t2akharna!",
+          "english": "Come on Fahad, we're late!"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "where-is-my-school-bag"
+        },
+        {
+          "speaker": "Abu Fahad",
+          "arabic": "هناك، جنب الباب.",
+          "transliteration": "hinaak, jamb il-baab.",
+          "english": "Over there, by the door."
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "لقيتها!",
+          "transliteration": "ligeetha!",
+          "english": "Found it!"
+        },
+        {
+          "speaker": "Abu Fahad",
+          "slot": "did-you-do-your-homework-to-a-boy"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "did-you-do-your-homework-to-a-boy",
+          "reply": true
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "i-forgot-my-pen"
+        },
+        {
+          "speaker": "Abu Fahad",
+          "arabic": "خذ قلمي.",
+          "transliteration": "khidh galami.",
+          "english": "Take my pen."
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "مشكور يبه.",
+          "transliteration": "mashkoor yuba.",
+          "english": "Thanks, Dad."
+        },
+        {
+          "speaker": "Abu Fahad",
+          "slot": "when-does-the-school-day-end"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "when-does-the-school-day-end",
+          "reply": true
+        },
+        {
+          "speaker": "Abu Fahad",
+          "arabic": "زين، أنا بمرك الساعة وحدة ونص. وسلم على الأستاذ!",
+          "transliteration": "zain, ana bamurrak is-saa3a wa7da w nuSS. w sallim 3ala l-ustaadh!",
+          "english": "Good, I'll pick you up at half past one. And say hello to the teacher!"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إنت في أي صف؟",
+            "transliteration": "inta fi ay Saff?",
+            "english": "Which grade are you in?"
+          },
+          "response": {
+            "arabic": "في الصف الرابع.",
+            "transliteration": "fiS-Saff ir-raabi3.",
+            "english": "In fourth grade."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "سويت الواجب؟",
+            "transliteration": "sawwait il-waajib?",
+            "english": "Did you do your homework?"
+          },
+          "response": {
+            "arabic": "لا، للحين.",
+            "transliteration": "la, lil7een.",
+            "english": "No, not yet."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الفسحة متى؟",
+            "transliteration": "il-fus7a mita?",
+            "english": "When is the break?"
+          },
+          "response": {
+            "arabic": "الساعة عشر.",
+            "transliteration": "is-saa3a 3ashr.",
+            "english": "At ten o'clock."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين الأستاذ؟",
+            "transliteration": "wain il-ustaadh?",
+            "english": "Where is the teacher?"
+          },
+          "response": {
+            "arabic": "في الفصل.",
+            "transliteration": "fil-faSil.",
+            "english": "In the classroom."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شلون ولدك في المدرسة؟",
+            "transliteration": "shloon waladak fil-madrasa?",
+            "english": "How is your son doing at school?"
+          },
+          "response": {
+            "arabic": "ما شاء الله، طالب مجتهد.",
+            "transliteration": "maa shaa allah, Taalib mujtahid.",
+            "english": "Masha Allah, he's a hard-working student."
+          }
+        }
+      ],
+      "culture": "في مدارس الخليج الطلاب ينادون المدرس 'أستاذ' والمدرسة 'أبلة'، والمدارس الحكومية عادة للأولاد بروحهم وللبنات بروحهم. الدوام يبدأ بدري مع طابور الصباح، وفي الفسحة الطلاب يشترون ريوقهم من المقصف.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "الأستاذ سألك: إنت في أي صف؟ قول إنك في الصف الخامس.",
+          "answer": "فِي الصَّف الْخَامِس",
+          "accepted": [
+            "فِي الصَّف الْخَامِس",
+            "في الصف الخامس",
+            "الصف الخامس",
+            "fiS-Saff il-khaamis",
+            "خامس"
+          ],
+          "too_formal": {
+            "item": "أنا في الصف الخامس الابتدائي",
+            "feedback": "صحيحة لكنها رسمية، الطالب يقول بس في الصف الخامس"
+          },
+          "tip": "صف = grade"
+        },
+        {
+          "id": "unit-08.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "___ قلمي (I forgot my pen)",
+          "answer": "نسيت",
+          "accepted": [
+            "نسيت",
+            "نِسِيت",
+            "niseet"
+          ],
+          "too_formal": {
+            "item": "لقد نسيت",
+            "feedback": "فصحى، الخليجي يقول بس نسيت"
+          },
+          "tip": "نسى = to forget"
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Open your book to page ten. (to a boy)",
+          "answer": "افْتَح كِتَابَك صَفْحَة عَشَرَة",
+          "accepted": [
+            "افْتَح كِتَابَك صَفْحَة عَشَرَة",
+            "افتح كتابك صفحة عشرة",
+            "افتح الكتاب صفحة عشرة",
+            "ifta7 kitaabak Saf7a 3ashara"
+          ],
+          "too_formal": {
+            "item": "افتح كتابك على الصفحة العاشرة",
+            "feedback": "فصحى، في الفصل يقولون صفحة عشرة"
+          },
+          "tip": "للبنت: افتحي كتابچ"
+        },
+        {
+          "id": "unit-08.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "كيف تقول 'The break is at ten o'clock'؟",
+          "answer": "الْفُسْحَة السَّاعَة عَشْر",
+          "accepted": [
+            "الْفُسْحَة السَّاعَة عَشْر",
+            "الفسحة الساعة عشر",
+            "il-fus7a is-saa3a 3ashr",
+            "الاستراحة الساعة عشر"
+          ],
+          "options": [
+            "الْفُسْحَة السَّاعَة عَشْر",
+            "الدَّوَام مَتَى يْخَلِّص؟",
+            "نِسِيت قَلَمِي",
+            "الْأُسْتَاذ فِي الْفَصِل"
+          ],
+          "too_formal": {
+            "item": "موعد الاستراحة في الساعة العاشرة",
+            "feedback": "فصحى، الطلاب يقولون الفسحة"
+          },
+          "tip": "الفسحة = the school break"
+        },
+        {
+          "id": "unit-08.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "اكتب الدرس على السبورة",
+          "accepted": [
+            "اكتب الدرس على السبورة",
+            "اكْتِب الدَّرْس عَلَى السَّبُّورَة",
+            "iktib id-dars 3ala s-sabboora"
+          ],
+          "words": [
+            "اكتب",
+            "الدرس",
+            "على",
+            "السبورة"
+          ],
+          "too_formal": {
+            "item": "دوّن الدرس على اللوح",
+            "feedback": "فصحى، الخليجي يقول اكتب والسبورة"
+          },
+          "tip": "سبورة = board"
+        },
+        {
+          "id": "unit-08.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "أبوك سألك: سويت الواجب؟ قول إي، خلصته.",
+          "answer": "إِي، خَلَّصْته",
+          "accepted": [
+            "إِي، خَلَّصْته",
+            "إي خلصته",
+            "إي، سويته",
+            "ee, khallaSta"
+          ],
+          "too_formal": {
+            "item": "نعم، أنهيته",
+            "feedback": "فصحى، الخليجي يقول إي وخلصته"
+          },
+          "tip": "خلّص = to finish"
+        },
+        {
+          "id": "unit-08.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "الدوام متى ___؟ (When does the school day end?)",
+          "answer": "يخلص",
+          "accepted": [
+            "يخلص",
+            "يْخَلِّص",
+            "ykhalliS",
+            "يخلّص"
+          ],
+          "too_formal": {
+            "item": "ينتهي",
+            "feedback": "فصحى، الخليجي يقول يخلص"
+          },
+          "tip": "الدوام = school or work hours"
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "My son is a diligent student.",
+          "answer": "وَلَدِي طَالِب مُجْتَهِد",
+          "accepted": [
+            "وَلَدِي طَالِب مُجْتَهِد",
+            "ولدي طالب مجتهد",
+            "waladi Taalib mujtahid",
+            "ولدي مجتهد"
+          ],
+          "too_formal": {
+            "item": "ابني تلميذ مثابر",
+            "feedback": "فصحى، الخليجي يقول ولدي"
+          },
+          "tip": "للبنت: بنتي طالبة مجتهدة"
+        },
+        {
+          "id": "unit-08.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "شنو يقول الطالب للأستاذ إذا يبي يروح الحمام؟",
+          "answer": "أُسْتَاذ، مُمْكِن أَرُوح الْحَمَّام؟",
+          "accepted": [
+            "أُسْتَاذ، مُمْكِن أَرُوح الْحَمَّام؟",
+            "أستاذ ممكن أروح الحمام",
+            "ustaadh, mumkin aroo7 il-7ammaam"
+          ],
+          "options": [
+            "أُسْتَاذ، مُمْكِن أَرُوح الْحَمَّام؟",
+            "وِين شَنْطَتِي؟",
+            "إِنْت فِي أَي صَف؟",
+            "لَا تِنْسَى الزِّي الْمَدْرَسِي"
+          ],
+          "too_formal": {
+            "item": "هل تسمح لي بالذهاب إلى دورة المياه؟",
+            "feedback": "فصحى رسمية وايد، الطالب يقول ممكن أروح الحمام"
+          },
+          "tip": "ممكن = may I"
+        },
+        {
+          "id": "unit-08.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "لا تنسى الزي المدرسي",
+          "accepted": [
+            "لا تنسى الزي المدرسي",
+            "لَا تِنْسَى الزِّي الْمَدْرَسِي",
+            "la tinsa iz-zayy il-madrasi"
+          ],
+          "words": [
+            "لا",
+            "تنسى",
+            "الزي",
+            "المدرسي"
+          ],
+          "too_formal": {
+            "item": "إياك أن تنسى الزي المدرسي",
+            "feedback": "فصحى، الخليجي يقول لا تنسى"
+          },
+          "tip": "لا + الفعل = don't"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "please-introduce-yourself-to-a-man",
+          "arabic": "عَرِّفْنَا عَلَى نَفْسَك لَو سَمَحْت",
+          "transliteration": "3arrifna 3ala nafsak law sama7t"
+        },
+        {
+          "slot": "this-is-my-cv",
+          "arabic": "هَذِي سِيرْتِي الذَّاتِيَّة",
+          "transliteration": "hadhi seerti idh-dhaatiyya"
+        },
+        {
+          "slot": "i-graduated-from-the-faculty-of-engineering",
+          "arabic": "تْخَرَّجْت مِن كُلِّيَّة الْهَنْدَسَة",
+          "transliteration": "tkharrajt min kulliyyat il-handasa"
+        },
+        {
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma",
+          "arabic": "كَم سَنَة خِبْرَة عِنْدَك؟",
+          "transliteration": "kam sana khibra 3indak?",
+          "reply": {
+            "arabic": "عِنْدِي خَمْس سِنِين خِبْرَة",
+            "transliteration": "3indi khams sneen khibra",
+            "english": "I have five years of experience."
+          }
+        },
+        {
+          "slot": "why-do-you-want-to-work-with-us-to-a-man",
+          "arabic": "لِيش تَبِي تِشْتَغِل وِيَّانَا؟",
+          "transliteration": "leesh tibi tishtaghil wiyyaana?"
+        },
+        {
+          "slot": "i-speak-arabic-and-english",
+          "arabic": "أَتْكَلَّم عَرَبِي وْإِنْجْلِيزِي",
+          "transliteration": "atkallam 3arabi w injleezi"
+        },
+        {
+          "slot": "what-are-your-strengths-to-a-man",
+          "arabic": "شِنُو نِقَاط قُوِّتَك؟",
+          "transliteration": "shinu nigaaT guwwatak?"
+        },
+        {
+          "slot": "i-work-well-with-the-team",
+          "arabic": "أَشْتَغِل زِين مَع الْفَرِيق",
+          "transliteration": "ashtaghil zain ma3 il-fareeg"
+        },
+        {
+          "slot": "what-salary-do-you-expect-to-a-man",
+          "arabic": "كَم الرَّاتِب اللِّي تِتْوَقَّعَه؟",
+          "transliteration": "kam ir-raatib illi titwagga3ah?"
+        },
+        {
+          "slot": "when-can-you-start-to-a-man",
+          "arabic": "مَتَى تِقْدَر تِبْدَا؟",
+          "transliteration": "mita tigdar tibda?",
+          "reply": {
+            "arabic": "مِن الشَّهَر الْجَاي",
+            "transliteration": "min ish-shahar ij-jaay",
+            "english": "From next month."
+          }
+        },
+        {
+          "slot": "we-will-call-you-next-week",
+          "arabic": "بِنِتِّصِل فِيك الْأُسْبُوع الْجَاي",
+          "transliteration": "binittiSil feek il-isboo3 ij-jaay"
+        },
+        {
+          "slot": "thank-you-for-your-time-to-a-man",
+          "arabic": "مَشْكُور عَلَى وَقْتَك",
+          "transliteration": "mashkoor 3ala wagtak",
+          "reply": {
+            "arabic": "الْعَفُو",
+            "transliteration": "il-3afu",
+            "english": "You're welcome."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Nasser",
+          "arabic": "حياك الله، تفضل استريح.",
+          "transliteration": "7ayyaak allah, tfaDDal istarii7.",
+          "english": "Welcome, please have a seat."
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "الله يحييك.",
+          "transliteration": "allah y7ayyeek.",
+          "english": "God keep you."
+        },
+        {
+          "speaker": "Nasser",
+          "slot": "please-introduce-yourself-to-a-man"
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "أنا سلطان، عمري ستة وعشرين سنة، وهذي سيرتي.",
+          "transliteration": "ana sulTaan, 3umri sitta w 3ishreen sana, w hadhi seerti.",
+          "english": "I'm Sultan, I'm twenty-six, and this is my CV."
+        },
+        {
+          "speaker": "Nasser",
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma"
+        },
+        {
+          "speaker": "Sultan",
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma",
+          "reply": true
+        },
+        {
+          "speaker": "Nasser",
+          "slot": "why-do-you-want-to-work-with-us-to-a-man"
+        },
+        {
+          "speaker": "Sultan",
+          "arabic": "لأن شركتكم معروفة، وأبي أتطور.",
+          "transliteration": "li2an sharikatkum ma3roofa, w abi atTawwar.",
+          "english": "Because your company is well known, and I want to grow."
+        },
+        {
+          "speaker": "Nasser",
+          "slot": "what-are-your-strengths-to-a-man"
+        },
+        {
+          "speaker": "Sultan",
+          "slot": "i-work-well-with-the-team"
+        },
+        {
+          "speaker": "Nasser",
+          "slot": "when-can-you-start-to-a-man"
+        },
+        {
+          "speaker": "Sultan",
+          "slot": "when-can-you-start-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Nasser",
+          "slot": "we-will-call-you-next-week"
+        },
+        {
+          "speaker": "Sultan",
+          "slot": "thank-you-for-your-time-to-a-man"
+        },
+        {
+          "speaker": "Nasser",
+          "slot": "thank-you-for-your-time-to-a-man",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عرفنا على نفسك.",
+            "transliteration": "3arrifna 3ala nafsak.",
+            "english": "Tell us about yourself."
+          },
+          "response": {
+            "arabic": "أنا مهندس، تخرجت من سنتين.",
+            "transliteration": "ana muhandis, tkharrajt min santain.",
+            "english": "I'm an engineer, I graduated two years ago."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم سنة خبرة عندك؟",
+            "transliteration": "kam sana khibra 3indak?",
+            "english": "How many years of experience do you have?"
+          },
+          "response": {
+            "arabic": "ثلاث سنين.",
+            "transliteration": "thalaath sneen.",
+            "english": "Three years."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تتكلم إنجليزي؟",
+            "transliteration": "titkallam injleezi?",
+            "english": "Do you speak English?"
+          },
+          "response": {
+            "arabic": "إي، زين.",
+            "transliteration": "ee, zain.",
+            "english": "Yes, well."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "متى تقدر تبدا؟",
+            "transliteration": "mita tigdar tibda?",
+            "english": "When can you start?"
+          },
+          "response": {
+            "arabic": "من الحين.",
+            "transliteration": "min il7een.",
+            "english": "Right now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شنو نقاط قوتك؟",
+            "transliteration": "shinu nigaaT guwwatak?",
+            "english": "What are your strengths?"
+          },
+          "response": {
+            "arabic": "أتعلم بسرعة.",
+            "transliteration": "at3allam bsur3a.",
+            "english": "I learn quickly."
+          }
+        }
+      ],
+      "culture": "في المقابلات بالخليج الرجال عادة يلبسون الدشداشة أو الكندورة مع الغترة، والمقابلة تبدأ بالسلام وأحياناً بفنجان قهوة. السؤال عن الراتب يجي في آخر المقابلة، وفي الكويت كثير يقولون 'المعاش' بدل 'الراتب'.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "المدير سألك: كم سنة خبرة عندك؟ قول عندك خمس سنين.",
+          "answer": "عِنْدِي خَمْس سِنِين خِبْرَة",
+          "accepted": [
+            "عِنْدِي خَمْس سِنِين خِبْرَة",
+            "عندي خمس سنين خبرة",
+            "خمس سنين",
+            "3indi khams sneen khibra"
+          ],
+          "too_formal": {
+            "item": "لدي خبرة خمس سنوات",
+            "feedback": "فصحى، الخليجي يقول عندي وسنين"
+          },
+          "tip": "سنين = years"
+        },
+        {
+          "id": "unit-08.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "___ من كلية الهندسة (I graduated from the faculty of engineering)",
+          "answer": "تخرجت",
+          "accepted": [
+            "تخرجت",
+            "تْخَرَّجْت",
+            "tkharrajt",
+            "تخرّجت"
+          ],
+          "too_formal": {
+            "item": "حصلت على شهادتي",
+            "feedback": "فصحى، الخليجي يقول تخرجت"
+          },
+          "tip": "تخرج = to graduate"
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Why do you want to work with us? (to a man)",
+          "answer": "لِيش تَبِي تِشْتَغِل وِيَّانَا؟",
+          "accepted": [
+            "لِيش تَبِي تِشْتَغِل وِيَّانَا؟",
+            "ليش تبي تشتغل ويانا",
+            "ليش تبي تشتغل معانا؟",
+            "leesh tibi tishtaghil wiyyaana"
+          ],
+          "too_formal": {
+            "item": "لماذا ترغب في العمل معنا؟",
+            "feedback": "فصحى، الخليجي يقول ليش وتبي"
+          },
+          "tip": "ويانا = with us"
+        },
+        {
+          "id": "unit-08.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "كيف تقول 'I work well with the team'؟",
+          "answer": "أَشْتَغِل زِين مَع الْفَرِيق",
+          "accepted": [
+            "أَشْتَغِل زِين مَع الْفَرِيق",
+            "أشتغل زين مع الفريق",
+            "ashtaghil zain ma3 il-fareeg"
+          ],
+          "options": [
+            "أَشْتَغِل زِين مَع الْفَرِيق",
+            "شِنُو نِقَاط قُوِّتَك؟",
+            "مَشْكُور عَلَى وَقْتَك",
+            "هَذِي سِيرْتِي الذَّاتِيَّة"
+          ],
+          "too_formal": {
+            "item": "أجيد العمل ضمن فريق",
+            "feedback": "فصحى، الخليجي يقول أشتغل زين"
+          },
+          "tip": "زين = well, good"
+        },
+        {
+          "id": "unit-08.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "بنتصل فيك الأسبوع الجاي",
+          "accepted": [
+            "بنتصل فيك الأسبوع الجاي",
+            "بِنِتِّصِل فِيك الْأُسْبُوع الْجَاي",
+            "binittiSil feek il-isboo3 ij-jaay"
+          ],
+          "words": [
+            "بنتصل",
+            "فيك",
+            "الأسبوع",
+            "الجاي"
+          ],
+          "too_formal": {
+            "item": "سنتواصل معك في الأسبوع القادم",
+            "feedback": "فصحى، الخليجي يقول بنتصل والجاي"
+          },
+          "tip": "بـ قبل الفعل = will"
+        },
+        {
+          "id": "unit-08.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "المدير سألك: متى تقدر تبدا؟ قول من الشهر الجاي.",
+          "answer": "مِن الشَّهَر الْجَاي",
+          "accepted": [
+            "مِن الشَّهَر الْجَاي",
+            "من الشهر الجاي",
+            "min ish-shahar ij-jaay",
+            "الشهر الجاي"
+          ],
+          "too_formal": {
+            "item": "اعتباراً من الشهر القادم",
+            "feedback": "فصحى رسمية، الخليجي يقول الشهر الجاي"
+          },
+          "tip": "الجاي = next, coming"
+        },
+        {
+          "id": "unit-08.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "شنو نقاط ___؟ (What are your strengths?)",
+          "answer": "قوتك",
+          "accepted": [
+            "قوتك",
+            "قُوِّتَك",
+            "guwwatak",
+            "قوّتك"
+          ],
+          "too_formal": {
+            "item": "مواطن قوتك",
+            "feedback": "فصحى، الخليجي يقول نقاط قوتك"
+          },
+          "tip": "للبنت: قوتچ"
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Please introduce yourself. (to a man)",
+          "answer": "عَرِّفْنَا عَلَى نَفْسَك لَو سَمَحْت",
+          "accepted": [
+            "عَرِّفْنَا عَلَى نَفْسَك لَو سَمَحْت",
+            "عرفنا على نفسك لو سمحت",
+            "عرفنا على نفسك",
+            "3arrifna 3ala nafsak law sama7t"
+          ],
+          "too_formal": {
+            "item": "تفضل بتقديم نفسك",
+            "feedback": "فصحى رسمية، الخليجي يقول عرفنا على نفسك"
+          },
+          "tip": "عرّف = to introduce"
+        },
+        {
+          "id": "unit-08.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "شنو تقول للمدير في آخر المقابلة؟",
+          "answer": "مَشْكُور عَلَى وَقْتَك",
+          "accepted": [
+            "مَشْكُور عَلَى وَقْتَك",
+            "مشكور على وقتك",
+            "mashkoor 3ala wagtak"
+          ],
+          "options": [
+            "مَشْكُور عَلَى وَقْتَك",
+            "كَم الرَّاتِب اللِّي تِتْوَقَّعَه؟",
+            "لِيش تَبِي تِشْتَغِل وِيَّانَا؟",
+            "مَتَى تِقْدَر تِبْدَا؟"
+          ],
+          "too_formal": {
+            "item": "أشكرك على إتاحة الوقت",
+            "feedback": "فصحى، الخليجي يقول مشكور على وقتك"
+          },
+          "tip": "للمرأة: مشكورة على وقتچ"
+        },
+        {
+          "id": "unit-08.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الجملة",
+          "answer": "كم الراتب اللي تتوقعه؟",
+          "accepted": [
+            "كم الراتب اللي تتوقعه؟",
+            "كم الراتب اللي تتوقعه",
+            "كَم الرَّاتِب اللِّي تِتْوَقَّعَه؟",
+            "kam ir-raatib illi titwagga3ah",
+            "كم المعاش اللي تتوقعه؟"
+          ],
+          "words": [
+            "كم",
+            "الراتب",
+            "اللي",
+            "تتوقعه؟"
+          ],
+          "too_formal": {
+            "item": "ما هو الراتب الذي تتوقعه؟",
+            "feedback": "فصحى، الخليجي يقول كم واللي"
+          },
+          "tip": "اللي = which, that"
+        }
+      ]
     }
   ],
   "challenge": {

@@ -16,7 +16,13 @@
     "oo": "و طويلة",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "S": "ص",
+    "T": "ط",
+    "D": "ض",
+    "th": "ث",
+    "dh": "ذ",
+    "j": "ج"
   },
   "lessons": [
     {
@@ -1574,6 +1580,846 @@
             "feedback": "فصحى، العراقي يگول شوية"
           },
           "tip": "شوية = a little"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "which-grade-are-you-in-to-a-boy",
+          "arabic": "بْيَا صَفّ إِنْتَ؟",
+          "transliteration": "b-yaa Saff inta?",
+          "reply": {
+            "arabic": "بِالصَّفّ الرَّابِع",
+            "transliteration": "biS-Saff ir-raabi3",
+            "english": "In the fourth grade."
+          }
+        },
+        {
+          "slot": "where-is-my-school-bag",
+          "arabic": "وِين چَنْطَتِي؟",
+          "transliteration": "ween chanTati?"
+        },
+        {
+          "slot": "the-teacher-is-in-the-classroom",
+          "arabic": "الأُسْتَاذ بِالصَّفّ",
+          "transliteration": "il-ustaadh biS-Saff"
+        },
+        {
+          "slot": "open-your-book-to-page-ten-to-a-boy",
+          "arabic": "اِفْتَح كْتَابَك عَلَى صَفْحَة عَشْرَة",
+          "transliteration": "ifta7 ktaabak 3ala Saf7a 3ashra"
+        },
+        {
+          "slot": "write-the-lesson-on-the-board-to-a-boy",
+          "arabic": "اِكْتِب الدَّرِس عَالسَّبُّورَة",
+          "transliteration": "iktib id-daris 3as-sabboora"
+        },
+        {
+          "slot": "did-you-do-your-homework-to-a-boy",
+          "arabic": "سَوِّيت وَاجْبَك؟",
+          "transliteration": "sawweet waajbak?",
+          "reply": {
+            "arabic": "إِي، خَلَّصْتَه",
+            "transliteration": "ee, khallaSta",
+            "english": "Yes, I finished it."
+          }
+        },
+        {
+          "slot": "i-forgot-my-pen",
+          "arabic": "نِسِيت گَلَمِي",
+          "transliteration": "niseet galami"
+        },
+        {
+          "slot": "the-break-is-at-ten-o-clock",
+          "arabic": "الفُرْصَة السَّاعَة عَشْرَة",
+          "transliteration": "il-furSa is-saa3a 3ashra"
+        },
+        {
+          "slot": "may-i-go-to-the-bathroom-to-a-teacher",
+          "arabic": "أُسْتَاذ، أَگْدَر أَرُوح لِلتُّوَالِيت؟",
+          "transliteration": "ustaadh, agdar aroo7 lit-tuwaaleet?",
+          "reply": {
+            "arabic": "إِي، رُوح",
+            "transliteration": "ee, roo7",
+            "english": "Yes, go."
+          }
+        },
+        {
+          "slot": "when-does-the-school-day-end",
+          "arabic": "شْوَكِت يِخْلَص الدَّوَام؟",
+          "transliteration": "shwakit yikhlaS id-dawaam?"
+        },
+        {
+          "slot": "don-t-forget-the-school-uniform-to-a-boy",
+          "arabic": "لَا تِنْسَى اليُونِيفُورْم",
+          "transliteration": "la tinsa il-yooniform"
+        },
+        {
+          "slot": "my-son-is-a-diligent-student",
+          "arabic": "اِبْنِي طَالِب مُجْتَهِد",
+          "transliteration": "ibni Taalib mujtahid"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Umm Ali",
+          "slot": "did-you-do-your-homework-to-a-boy"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "did-you-do-your-homework-to-a-boy",
+          "reply": true
+        },
+        {
+          "speaker": "Ali",
+          "slot": "where-is-my-school-bag"
+        },
+        {
+          "speaker": "Umm Ali",
+          "arabic": "يمّ الباب.",
+          "transliteration": "yamm il-baab.",
+          "english": "By the door."
+        },
+        {
+          "speaker": "Umm Ali",
+          "slot": "don-t-forget-the-school-uniform-to-a-boy"
+        },
+        {
+          "speaker": "Teacher",
+          "slot": "open-your-book-to-page-ten-to-a-boy"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-forgot-my-pen"
+        },
+        {
+          "speaker": "Teacher",
+          "arabic": "خذ هذا الگلم.",
+          "transliteration": "khudh haadha il-galam.",
+          "english": "Take this pen."
+        },
+        {
+          "speaker": "Teacher",
+          "slot": "write-the-lesson-on-the-board-to-a-boy"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "may-i-go-to-the-bathroom-to-a-teacher"
+        },
+        {
+          "speaker": "Teacher",
+          "slot": "may-i-go-to-the-bathroom-to-a-teacher",
+          "reply": true
+        },
+        {
+          "speaker": "Ali",
+          "slot": "when-does-the-school-day-end"
+        },
+        {
+          "speaker": "Teacher",
+          "arabic": "الساعة وحدة ونص.",
+          "transliteration": "is-saa3a wi7da w nuSS.",
+          "english": "At half past one."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بيا صف إنت؟",
+            "transliteration": "b-yaa Saff inta?",
+            "english": "Which grade are you in?"
+          },
+          "response": {
+            "arabic": "بالصف الرابع.",
+            "transliteration": "biS-Saff ir-raabi3.",
+            "english": "In the fourth grade."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "سويت واجبك؟",
+            "transliteration": "sawweet waajbak?",
+            "english": "Did you do your homework?"
+          },
+          "response": {
+            "arabic": "إي، خلصته.",
+            "transliteration": "ee, khallaSta.",
+            "english": "Yes, I finished it."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الفرصة شوكت؟",
+            "transliteration": "il-furSa shwakit?",
+            "english": "When is the break?"
+          },
+          "response": {
+            "arabic": "الساعة عشرة.",
+            "transliteration": "is-saa3a 3ashra.",
+            "english": "At ten o'clock."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شوكت يخلص الدوام؟",
+            "transliteration": "shwakit yikhlaS id-dawaam?",
+            "english": "When does the school day end?"
+          },
+          "response": {
+            "arabic": "الساعة وحدة ونص.",
+            "transliteration": "is-saa3a wi7da w nuSS.",
+            "english": "At half past one."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين چنطتي؟",
+            "transliteration": "ween chanTati?",
+            "english": "Where is my school bag?"
+          },
+          "response": {
+            "arabic": "يمّ الباب.",
+            "transliteration": "yamm il-baab.",
+            "english": "By the door."
+          }
+        }
+      ],
+      "culture": "Iraqi pupils call a male teacher \"أستاذ\" and a female teacher \"ست\", and stand up when the teacher comes in. The school day is \"الدوام\" and the break is \"الفرصة\"; many Baghdad schools run a morning and an afternoon shift.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Your mother asks: \"سويت واجبك؟\" Say yes, you finished it.",
+          "answer": "إي، خلصته",
+          "accepted": [
+            "إي، خلصته",
+            "اي خلصته",
+            "إي، سويته",
+            "ee, khallaSta"
+          ],
+          "too_formal": {
+            "item": "نعم، أنهيته",
+            "feedback": "This is written Arabic; Iraqis say \"خلّصته\"."
+          },
+          "tip": "\"خلّص\" means to finish."
+        },
+        {
+          "id": "unit-08.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A teacher asks a boy: \"بيا صف إنت؟\" Answer that he is in the fourth grade.",
+          "answer": "بالصف الرابع",
+          "accepted": [
+            "بالصف الرابع",
+            "الصف الرابع",
+            "رابع",
+            "biS-Saff ir-raabi3"
+          ],
+          "too_formal": {
+            "item": "أنا في الصف الرابع الابتدائي",
+            "feedback": "Correct but long; in speech \"بالصف الرابع\" is enough."
+          },
+          "tip": "\"ب\" joined to a word means \"in\"."
+        },
+        {
+          "id": "unit-08.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"افتح كتابك على _____ عشرة.\" Meaning: Open your book to page ten.",
+          "answer": "صفحة",
+          "accepted": [
+            "صفحة",
+            "صفحه",
+            "Saf7a"
+          ],
+          "tip": "\"صفحة\" is a page."
+        },
+        {
+          "id": "unit-08.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ الساعة عشرة.\" Meaning: The break is at ten o'clock.",
+          "answer": "الفرصة",
+          "accepted": [
+            "الفرصة",
+            "الاستراحة",
+            "il-furSa"
+          ],
+          "too_formal": {
+            "item": "الاستراحة",
+            "feedback": "Understood, but Iraqi schools call the break \"الفرصة\"."
+          },
+          "tip": "\"الفرصة\" is the school break."
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I forgot my pen.\"",
+          "answer": "نسيت گلمي",
+          "accepted": [
+            "نسيت گلمي",
+            "نسيت قلمي",
+            "niseet galami"
+          ],
+          "too_formal": {
+            "item": "لقد نسيت قلمي",
+            "feedback": "\"لقد\" is written Arabic; speech says just \"نسيت\"."
+          },
+          "tip": "In Baghdad the ق of \"قلم\" is said g."
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"When does the school day end?\"",
+          "answer": "شوكت يخلص الدوام؟",
+          "accepted": [
+            "شوكت يخلص الدوام؟",
+            "شوكت يخلص الدوام",
+            "الدوام شوكت يخلص؟",
+            "shwakit yikhlaS id-dawaam?"
+          ],
+          "too_formal": {
+            "item": "متى ينتهي اليوم الدراسي؟",
+            "feedback": "This is written Arabic; Iraqis ask about \"الدوام\" with \"شوكت\"."
+          },
+          "tip": "\"الدوام\" is the school or working day."
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My son is a diligent student.\"",
+          "answer": "ابني طالب مجتهد",
+          "accepted": [
+            "ابني طالب مجتهد",
+            "إبني طالب مجتهد",
+            "ابني شاطر",
+            "ibni Taalib mujtahid"
+          ],
+          "too_formal": {
+            "item": "إن ابني طالب مجتهد",
+            "feedback": "\"إن\" is written Arabic; speech starts with the noun."
+          },
+          "tip": "For a daughter: \"بنتي طالبة مجتهدة\"."
+        },
+        {
+          "id": "unit-08.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase means \"Write the lesson on the board\" (to a boy)?",
+          "options": [
+            "اكتب الدرس عالسبورة",
+            "افتح كتابك على صفحة عشرة",
+            "لا تنسى اليونيفورم",
+            "نسيت گلمي"
+          ],
+          "answer": "اكتب الدرس عالسبورة",
+          "accepted": [
+            "اكتب الدرس عالسبورة",
+            "اكتب الدرس على السبورة",
+            "iktib id-daris 3as-sabboora"
+          ],
+          "too_formal": {
+            "item": "اكتب الدرس على اللوح",
+            "feedback": "Understood, but Iraqi classrooms say \"سبورة\"."
+          },
+          "tip": "\"عال\" is short for \"على ال\"."
+        },
+        {
+          "id": "unit-08.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "How does a pupil ask the teacher to go to the bathroom?",
+          "options": [
+            "أستاذ، أگدر أروح للتواليت؟",
+            "شوكت يخلص الدوام؟",
+            "وين چنطتي؟",
+            "بيا صف إنت؟"
+          ],
+          "answer": "أستاذ، أگدر أروح للتواليت؟",
+          "accepted": [
+            "أستاذ، أگدر أروح للتواليت؟",
+            "أستاذ اگدر اروح للتواليت",
+            "ustaadh, agdar aroo7 lit-tuwaaleet?"
+          ],
+          "too_formal": {
+            "item": "هل يمكنني الذهاب إلى دورة المياه؟",
+            "feedback": "This is formal; pupils say \"أگدر أروح\"."
+          },
+          "tip": "To a female teacher pupils say \"ست\"."
+        },
+        {
+          "id": "unit-08.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"بالصف / الأستاذ\"",
+          "answer": "الأستاذ بالصف",
+          "accepted": [
+            "الأستاذ بالصف",
+            "الاستاذ بالصف",
+            "المدرس بالصف",
+            "il-ustaadh biS-Saff"
+          ],
+          "too_formal": {
+            "item": "المعلم موجود في الصف",
+            "feedback": "This is formal; in speech \"الأستاذ بالصف\"."
+          },
+          "tip": "No word for \"is\" is needed."
+        },
+        {
+          "id": "unit-08.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"اليونيفورم / تنسى / لا\"",
+          "answer": "لا تنسى اليونيفورم",
+          "accepted": [
+            "لا تنسى اليونيفورم",
+            "لا تنسى الزي",
+            "la tinsa il-yooniform"
+          ],
+          "too_formal": {
+            "item": "لا تنسَ الزي المدرسي",
+            "feedback": "Correct but formal; at home people say \"لا تنسى اليونيفورم\"."
+          },
+          "tip": "To a girl: \"لا تنسين\"."
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is my school bag?\"",
+          "answer": "وين چنطتي؟",
+          "accepted": [
+            "وين چنطتي؟",
+            "وين جنطتي",
+            "وين چنطتي",
+            "ween chanTati?"
+          ],
+          "too_formal": {
+            "item": "أين حقيبتي المدرسية؟",
+            "feedback": "This is written Arabic; Iraqis say \"چنطة\" for a bag."
+          },
+          "tip": "\"چنطة\" is any bag; a school bag is \"چنطة المدرسة\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "please-introduce-yourself-to-a-man",
+          "arabic": "تْفَضَّل، عَرِّفْنَا بْنَفْسَك",
+          "transliteration": "tfaDDal, 3arrifna b-nafsak"
+        },
+        {
+          "slot": "this-is-my-cv",
+          "arabic": "هَاي سِيرْتِي الذَّاتِيَّة",
+          "transliteration": "haay seerti idh-dhaatiyya"
+        },
+        {
+          "slot": "i-graduated-from-the-faculty-of-engineering",
+          "arabic": "تْخَرَّجِت مِن كُلِّيَّة الهَنْدَسَة",
+          "transliteration": "tkharrajit min kulliyyat il-handasa"
+        },
+        {
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma",
+          "arabic": "چَم سَنَة خِبْرَة عِنْدَك؟",
+          "transliteration": "cham sana khibra 3indak?",
+          "reply": {
+            "arabic": "عِنْدِي خَمِس سْنِين خِبْرَة",
+            "transliteration": "3indi khamis sneen khibra",
+            "english": "I have five years of experience."
+          }
+        },
+        {
+          "slot": "why-do-you-want-to-work-with-us-to-a-man",
+          "arabic": "لِيش تْرِيد تِشْتُغُل وِيَّانَا؟",
+          "transliteration": "leesh treed tishtughul wiyyaana?"
+        },
+        {
+          "slot": "i-speak-arabic-and-english",
+          "arabic": "أَحْچِي عَرَبِي وْإِنْگْلِيزِي",
+          "transliteration": "a7chi 3arabi w ingileezi"
+        },
+        {
+          "slot": "what-are-your-strengths-to-a-man",
+          "arabic": "شِنُو نُقَاط القُوَّة عِنْدَك؟",
+          "transliteration": "shinu nugaaT il-guwwa 3indak?"
+        },
+        {
+          "slot": "i-work-well-with-the-team",
+          "arabic": "أَشْتُغُل زِين وِيَّا الفَرِيگ",
+          "transliteration": "ashtughul zeen wiyya il-fareeg"
+        },
+        {
+          "slot": "what-salary-do-you-expect-to-a-man",
+          "arabic": "شْگَدّ رَاتِب تِتْوَقَّع؟",
+          "transliteration": "shgadd raatib titwagga3?",
+          "reply": {
+            "arabic": "مَلْيُون دِينَار بِالشَّهَر",
+            "transliteration": "malyoon deenaar bish-shahar",
+            "english": "A million dinars a month."
+          }
+        },
+        {
+          "slot": "when-can-you-start-to-a-man",
+          "arabic": "شْوَكِت تِگْدَر تِبْدِي؟",
+          "transliteration": "shwakit tigdar tibdi?",
+          "reply": {
+            "arabic": "مِن أَوَّل الشَّهَر",
+            "transliteration": "min awwal ish-shahar",
+            "english": "From the start of the month."
+          }
+        },
+        {
+          "slot": "we-will-call-you-next-week",
+          "arabic": "رَاح نِتَّصِل بِيك الأُسْبُوع الجَّاي",
+          "transliteration": "raa7 nittiSil beek il-usboo3 ij-jaay"
+        },
+        {
+          "slot": "thank-you-for-your-time-to-a-man",
+          "arabic": "مَشْكُور عَلَى وَكْتَك",
+          "transliteration": "mashkoor 3ala waktak"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hameed",
+          "slot": "please-introduce-yourself-to-a-man"
+        },
+        {
+          "speaker": "Yaseen",
+          "arabic": "اسمي ياسين، عمري ثمانية وعشرين سنة.",
+          "transliteration": "ismi yaaseen, 3umri thmaanya w 3ishreen sana.",
+          "english": "My name is Yaseen, I'm twenty-eight."
+        },
+        {
+          "speaker": "Yaseen",
+          "slot": "i-graduated-from-the-faculty-of-engineering"
+        },
+        {
+          "speaker": "Yaseen",
+          "slot": "this-is-my-cv"
+        },
+        {
+          "speaker": "Hameed",
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma"
+        },
+        {
+          "speaker": "Yaseen",
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma",
+          "reply": true
+        },
+        {
+          "speaker": "Hameed",
+          "slot": "why-do-you-want-to-work-with-us-to-a-man"
+        },
+        {
+          "speaker": "Yaseen",
+          "arabic": "شركتكم كلّش معروفة، وأريد أتعلّم بيها.",
+          "transliteration": "shirkatkum kullish ma3roofa, w areed at3allam beeha.",
+          "english": "Your company is very well known, and I want to learn there."
+        },
+        {
+          "speaker": "Hameed",
+          "slot": "what-are-your-strengths-to-a-man"
+        },
+        {
+          "speaker": "Yaseen",
+          "slot": "i-work-well-with-the-team"
+        },
+        {
+          "speaker": "Yaseen",
+          "slot": "i-speak-arabic-and-english"
+        },
+        {
+          "speaker": "Hameed",
+          "slot": "what-salary-do-you-expect-to-a-man"
+        },
+        {
+          "speaker": "Yaseen",
+          "slot": "what-salary-do-you-expect-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Hameed",
+          "slot": "when-can-you-start-to-a-man"
+        },
+        {
+          "speaker": "Yaseen",
+          "slot": "when-can-you-start-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Hameed",
+          "slot": "we-will-call-you-next-week"
+        },
+        {
+          "speaker": "Yaseen",
+          "slot": "thank-you-for-your-time-to-a-man"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "چم سنة خبرة عندك؟",
+            "transliteration": "cham sana khibra 3indak?",
+            "english": "How many years of experience do you have?"
+          },
+          "response": {
+            "arabic": "ثلاث سنين.",
+            "transliteration": "thlath sneen.",
+            "english": "Three years."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شوكت تگدر تبدي؟",
+            "transliteration": "shwakit tigdar tibdi?",
+            "english": "When can you start?"
+          },
+          "response": {
+            "arabic": "من الأسبوع الجاي.",
+            "transliteration": "min il-usboo3 ij-jaay.",
+            "english": "From next week."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش تريد تشتغل ويانا؟",
+            "transliteration": "leesh treed tishtughul wiyyaana?",
+            "english": "Why do you want to work with us?"
+          },
+          "response": {
+            "arabic": "لأن شركتكم كلّش زينة.",
+            "transliteration": "li2ann shirkatkum kullish zeena.",
+            "english": "Because your company is very good."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شنو نقاط القوة عندك؟",
+            "transliteration": "shinu nugaaT il-guwwa 3indak?",
+            "english": "What are your strengths?"
+          },
+          "response": {
+            "arabic": "أتعلّم بسرعة.",
+            "transliteration": "at3allam b-sur3a.",
+            "english": "I learn quickly."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "راح نتصل بيك الأسبوع الجاي.",
+            "transliteration": "raa7 nittiSil beek il-usboo3 ij-jaay.",
+            "english": "We will call you next week."
+          },
+          "response": {
+            "arabic": "إن شاء الله، مشكور.",
+            "transliteration": "inshaallah, mashkoor.",
+            "english": "God willing, thank you."
+          }
+        }
+      ],
+      "culture": "Job interviews in Baghdad are polite and fairly formal: the interviewer is called \"أستاذ\", and a few office words such as \"سيرة ذاتية\" and \"نقاط القوة\" come from written Arabic, but the talk itself is Baghdadi. Salaries are discussed in Iraqi dinars per month.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "The interviewer asks: \"چم سنة خبرة عندك؟\" Say you have five years of experience.",
+          "answer": "عندي خمس سنين خبرة",
+          "accepted": [
+            "عندي خمس سنين خبرة",
+            "خمس سنين",
+            "عندي خمس سنوات خبرة",
+            "3indi khamis sneen khibra"
+          ],
+          "too_formal": {
+            "item": "لدي خبرة خمس سنوات",
+            "feedback": "This is written Arabic; speech uses \"عندي\" and \"سنين\"."
+          },
+          "tip": "\"سنين\" is the spoken plural of \"سنة\"."
+        },
+        {
+          "id": "unit-08.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "The interviewer asks: \"شوكت تگدر تبدي؟\" Say from the start of the month.",
+          "answer": "من أول الشهر",
+          "accepted": [
+            "من أول الشهر",
+            "من اول الشهر",
+            "أول الشهر",
+            "min awwal ish-shahar"
+          ],
+          "too_formal": {
+            "item": "أستطيع البدء مع بداية الشهر",
+            "feedback": "This is formal; in speech \"من أول الشهر\"."
+          },
+          "tip": "\"أول\" means first or the start of."
+        },
+        {
+          "id": "unit-08.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"تخرجت من كلية _____.\" Meaning: I graduated from the faculty of engineering.",
+          "answer": "الهندسة",
+          "accepted": [
+            "الهندسة",
+            "الهندسه",
+            "il-handasa"
+          ],
+          "tip": "\"كلية\" is a faculty or college."
+        },
+        {
+          "id": "unit-08.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أشتغل زين _____ الفريگ.\" Meaning: I work well with the team.",
+          "answer": "ويا",
+          "accepted": [
+            "ويا",
+            "ويّا",
+            "wiyya"
+          ],
+          "too_formal": {
+            "item": "مع",
+            "feedback": "Understood, but Iraqis say \"ويّا\" for \"with\"."
+          },
+          "tip": "\"ويّا\" (wiyya) is the Iraqi \"with\"."
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Why do you want to work with us?\" (to a man)",
+          "answer": "ليش تريد تشتغل ويانا؟",
+          "accepted": [
+            "ليش تريد تشتغل ويانا؟",
+            "ليش تريد تشتغل ويانا",
+            "ليش تريد تشتغل ويّانا؟",
+            "leesh treed tishtughul wiyyaana?"
+          ],
+          "too_formal": {
+            "item": "لماذا تريد العمل معنا؟",
+            "feedback": "This is written Arabic; Iraqis ask \"ليش\" and say \"ويّانا\"."
+          },
+          "tip": "\"ليش\" means \"why\"."
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I speak Arabic and English.\"",
+          "answer": "أحچي عربي وإنگليزي",
+          "accepted": [
+            "أحچي عربي وإنگليزي",
+            "احچي عربي وانگليزي",
+            "أحچي عربي وإنكليزي",
+            "a7chi 3arabi w ingileezi"
+          ],
+          "too_formal": {
+            "item": "أتكلم العربية والإنجليزية",
+            "feedback": "This is written Arabic; Iraqis say \"أحچي\"."
+          },
+          "tip": "\"حچى\" is the Iraqi verb for \"to speak\"."
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"We will call you next week.\"",
+          "answer": "راح نتصل بيك الأسبوع الجاي",
+          "accepted": [
+            "راح نتصل بيك الأسبوع الجاي",
+            "راح نتصل بيك الاسبوع الجاي",
+            "raa7 nittiSil beek il-usboo3 ij-jaay"
+          ],
+          "too_formal": {
+            "item": "سنتصل بك الأسبوع القادم",
+            "feedback": "This is written Arabic; Iraqis say \"راح\" and \"الجاي\"."
+          },
+          "tip": "\"الجاي\" means \"the coming\", next."
+        },
+        {
+          "id": "unit-08.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which question asks a man \"What salary do you expect?\"",
+          "options": [
+            "شگد راتب تتوقع؟",
+            "چم سنة خبرة عندك؟",
+            "شوكت تگدر تبدي؟",
+            "شنو نقاط القوة عندك؟"
+          ],
+          "answer": "شگد راتب تتوقع؟",
+          "accepted": [
+            "شگد راتب تتوقع؟",
+            "شكد راتب تتوقع",
+            "shgadd raatib titwagga3?"
+          ],
+          "too_formal": {
+            "item": "كم الراتب الذي تتوقعه؟",
+            "feedback": "This is formal; Iraqis ask with \"شگد\"."
+          },
+          "tip": "\"راتب\" is a salary."
+        },
+        {
+          "id": "unit-08.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means \"This is my CV\"?",
+          "options": [
+            "هاي سيرتي الذاتية",
+            "تفضل، عرفنا بنفسك",
+            "مشكور على وكتك",
+            "تخرجت من كلية الهندسة"
+          ],
+          "answer": "هاي سيرتي الذاتية",
+          "accepted": [
+            "هاي سيرتي الذاتية",
+            "هاي السي في مالتي",
+            "haay seerti idh-dhaatiyya"
+          ],
+          "too_formal": {
+            "item": "هذه سيرتي الذاتية",
+            "feedback": "\"هذه\" is written Arabic; Iraqis say \"هاي\"."
+          },
+          "tip": "Many people also say \"السي في\"."
+        },
+        {
+          "id": "unit-08.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"بنفسك / عرفنا / تفضل\"",
+          "answer": "تفضل عرفنا بنفسك",
+          "accepted": [
+            "تفضل عرفنا بنفسك",
+            "تفضل، عرفنا بنفسك",
+            "tfaDDal, 3arrifna b-nafsak"
+          ],
+          "too_formal": {
+            "item": "تفضل بتقديم نفسك",
+            "feedback": "This is formal; in speech \"عرّفنا بنفسك\"."
+          },
+          "tip": "To a woman: \"تفضلي، عرفينا بنفسچ\"."
+        },
+        {
+          "id": "unit-08.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"وكتك / على / مشكور\"",
+          "answer": "مشكور على وكتك",
+          "accepted": [
+            "مشكور على وكتك",
+            "مشكور على وقتك",
+            "mashkoor 3ala waktak"
+          ],
+          "too_formal": {
+            "item": "شكراً لك على وقتك الثمين",
+            "feedback": "Correct but formal; \"مشكور على وكتك\" is the everyday thanks."
+          },
+          "tip": "To a woman: \"مشكورة على وكتچ\"."
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What are your strengths?\" (to a man)",
+          "answer": "شنو نقاط القوة عندك؟",
+          "accepted": [
+            "شنو نقاط القوة عندك؟",
+            "شنو نقاط القوة عندك",
+            "شنو نقاط قوتك؟",
+            "shinu nugaaT il-guwwa 3indak?"
+          ],
+          "too_formal": {
+            "item": "ما هي نقاط قوتك؟",
+            "feedback": "\"ما هي\" is written Arabic; Iraqis ask \"شنو\"."
+          },
+          "tip": "\"شنو\" (shinu) is the Iraqi \"what\"."
         }
       ]
     }

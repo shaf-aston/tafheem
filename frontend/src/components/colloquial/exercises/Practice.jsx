@@ -1,5 +1,5 @@
 // Practice: one exercise at a time under a row of answer squares.
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import AnswerSquare from '../../ui/AnswerSquare'
 import SmallButton from '../../ui/SmallButton'
@@ -14,6 +14,10 @@ export default function Practice({ exercises }) {
   const answered = current.id in results
   const right = Object.values(results).filter((r) => r.correct).length
   const finished = Object.keys(results).length === exercises.length
+  // Next takes focus once an answer is in, so Enter moves on as on the Quiz board;
+  // without scrolling, so the answer stays where the learner is looking.
+  const nextButton = useRef(null)
+  useEffect(() => { if (answered) nextButton.current?.focus({ preventScroll: true }) }, [answered, at])
   const status = (id) => (!(id in results) ? '' : results[id].correct ? 'right' : 'wrong')
 
   return (
@@ -42,7 +46,7 @@ export default function Practice({ exercises }) {
           <span className="type-small text-[var(--text-dim)]">
             {finished ? `${right} of ${exercises.length} right` : `${Object.keys(results).length} of ${exercises.length} done`}
           </span>
-          {answered && at < exercises.length - 1 && <SmallButton onClick={() => setAt(at + 1)}>Next exercise →</SmallButton>}
+          {answered && at < exercises.length - 1 && <SmallButton ref={nextButton} onClick={() => setAt(at + 1)}>Next exercise →</SmallButton>}
         </div>
       </div>
     </div>

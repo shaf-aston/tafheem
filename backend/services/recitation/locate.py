@@ -12,7 +12,7 @@ Sure means no other place fits nearly as well: the first words of 2:255 are
 also all of 3:2, and until the reciter says more the two tie. Measured on
 1,050 Groq readings: in 4-word pieces 1,501 placed right, 0 wrong, 589 not
 sure; whole readings 965, 0, 85; everyday Arabic sure 0 of 20
-(backend/scripts/score_place.py; recitation_place_margin, recitation_place_fit).
+(backend/scripts/recitation/score_place.py; recitation_place_margin, recitation_place_fit).
 """
 from __future__ import annotations
 

@@ -3,7 +3,7 @@
 A small multilingual sentence model turns text into a vector of numbers; texts
 that mean the same land close, in Arabic or English ("lose your temper" near
 "do not get angry"). Every hadith's English is turned once, by
-scripts/build_hadith_meaning.py, into hadith_meaning.db; a question is turned
+scripts/hadith/build_hadith_meaning.py, into hadith_meaning.db; a question is turned
 at search time (~30ms) and compared with all of them.
 
 The model runs on onnxruntime with the publisher's own int8 build, so no torch.

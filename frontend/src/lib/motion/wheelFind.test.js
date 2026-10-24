@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import surahs from '../../data/surahs.json'
+import surahs from '../quran/surahs.json'
 import { wheelFind } from './wheelFind'
 
 const options = surahs.map((s) => ({ id: s.n, label: s.en, keys: [s.ar] }))

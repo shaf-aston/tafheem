@@ -1,6 +1,6 @@
 /** The Hadith world: an-Nawawi's Forty (public/grow/nawawi40.json), record under module 'nawawi40'. */
 import { useLessonWorld } from './useLessonWorld'
-import { MODULE, SOURCE_URL, hadithCards, keyOfHadith } from './hadithLesson'
+import { SOURCE_URL, hadithCards, keyOfHadith } from './hadithLesson'
 
 async function load() {
   const response = await fetch(SOURCE_URL)
@@ -10,5 +10,5 @@ async function load() {
 }
 
 export function useHadithWorld(world) {
-  return useLessonWorld({ world, module: MODULE, load, keyOf: keyOfHadith, cards: hadithCards })
+  return useLessonWorld({ world, load, keyOf: keyOfHadith, cards: hadithCards })
 }

@@ -5,7 +5,7 @@
  * the plain one: pull when the page starts or someone logs in, push a moment
  * after any change. The last device to change something wins, which is enough
  * for one person moving between a phone and a laptop. The guest has no shelf
- * on the server: the guest record is shared, so it stays on its device.
+ * on the server: a guest is one device, so it stays on that device.
  */
 import { api } from '../../api'
 import CONFIG from '../../config/profile.json'
@@ -16,7 +16,7 @@ const URL = '/progress/saved'
 const headers = (name) => ({ headers: profileHeaders(name) })
 
 /** Send this account's whole shelf now. Resolves whether it landed; never rejects. */
-export const pushShelf = (name = getProfile()) =>
+const pushShelf = (name = getProfile()) =>
   api.put(URL, { data: shelfOf(name) }, headers(name)).then(() => true, () => false)
 
 /**

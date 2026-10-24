@@ -8,12 +8,13 @@
  * is backend/services/colloquial/exercises/registry.py; the two must name the
  * same five types.
  *
- * Every renderer is handed the same four things and nothing else:
+ * Every renderer is handed the same five things and nothing else:
  *   exercise  the exercise as the API sent it
  *   value     what the learner has entered or picked so far
  *   onChange  hand back the new value
  *   status    '' while answering, then 'right' or 'wrong', and the renderer
  *             becomes read-only rather than being swapped for a different one
+ *   accent    the host's colour, for what lights up under the pointer
  * That contract is what lets a renderer be reused from anywhere, including
  * outside the Colloquial tab.
  */

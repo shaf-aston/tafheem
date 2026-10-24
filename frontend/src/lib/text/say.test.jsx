@@ -19,6 +19,7 @@ import { fillIn, sayIn } from './say'
 const SOURCES = [
   '../../components/quiz/QuizPanel.jsx',
   '../../components/quiz/QuizBoard.jsx',
+  '../../components/quiz/QuizOption.jsx',
   '../../components/quiz/QuizInsights.jsx',
   '../../components/quiz/QuizExample.jsx',
   '../../components/quiz/PracticeSentence.jsx',

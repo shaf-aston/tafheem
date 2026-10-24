@@ -25,7 +25,7 @@ What already exists (so we extend, never duplicate):
 - `components/hadith/TermGuide` lists the usul glossary (`backend/data/usul/usul.json`,
   `/api/usul/guide`) flat, inside the chain sheet only.
 - `lib/shell/manhajData` + `ManhajView`: creed and fiqh schools compared on fixed questions (tags).
-- OpenITI books (`backend/data/books/openiti*`, `scripts/import_openiti.py`): Usul al-Shashi is
+- OpenITI books (`backend/data/books/openiti*`, `scripts/daleel/import_openiti.py`): Usul al-Shashi is
   already imported; Tahawi's Matn al-Aqida is in the folder but not listed. Daleel searches them.
 - `ui/Skeleton`, `EmptyState`, `ErrorAlert`: the uniform loading / empty / error states.
 - `docs/architecture/frontend.md`: keyframe dedupe (Phase B) partly done, 44 keyframes left.
@@ -214,7 +214,7 @@ Contracts:
 - `store.glossary()` → same tree in API shape (`arabic, en, meaning, lugha, quote, source, page, kind,
   kids, confuse[{arabic, why, axis}]`, group `by`); `store.glossary_faults()` → list of strings
   (dup ar; confuse target not a term; kind unknown to `rulings`); the app stops on faults at load,
-  `tests/test_usul_glossary.py` covers each fault.
+  `tests/hadith/test_usul_glossary.py` covers each fault.
 - `lib/termsChart.js` (pure) → glossary → `{root, branches[{ar, en, c, kids:[[ar,en]]}]}` for
   `chartTree`/`PbsChart`, colours from `theme.json` `pbs` hues by group index; `termAt(glossary,
   arabic)` → the term + its group; tested, mutation-checked.
@@ -273,7 +273,7 @@ Each track: lint + 1700 tests + audit re-run → PR → CI → squash merge → 
 - Track C cut to **two worlds: jawhara (Ashʿarī) + wasitiyya (Salafi)**, ≥ 2 parts, ≥ 3 lessons,
   ≥ 16 cards each; Usul al-Shashi next run; Memorise entry for the Jawhara is the stretch.
 - The Jawhara is written into `books/openiti/` in OpenITI shape (`build_jawhara.py`, 21 slips
-  corrected, `tests/test_jawhara.py`), so neither the book test nor the importer changes; it joins
+  corrected, `tests/scripts/test_jawhara.py`), so neither the book test nor the importer changes; it joins
   Daleel under a new `aqida-books` collection with Tahawi and the Wasitiyya.
 - Midnight `text-dim` floor test also keeps |Lc(text)| − |Lc(text-dim)| ≥ 15.
 

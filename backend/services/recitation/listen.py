@@ -182,7 +182,7 @@ def _engine(name: str):
     )
     # A folder inside backend/ is loaded as it is, and a broken one fails here with its own error;
     # anything else is a model name, "repo@revision" pinning one upload of a tuned ear
-    # (scripts/finetune_ear/cloud.py --ship), so a new upload is a new name, never a stale copy.
+    # (scripts/recitation/finetune_ear/cloud.py --ship), so a new upload is a new name, never a stale copy.
     folder = confined("recitation_model", name)
     if folder.is_dir():
         _models[name] = WhisperModel(str(folder), **build)

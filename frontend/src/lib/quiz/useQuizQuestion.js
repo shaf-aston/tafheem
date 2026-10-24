@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { fetchReviewItems } from '../learner/progress'
+import { reviewQuery } from '../learner/record'
 import { buildQuestion, DIRECTIONS, makeRandom } from './quiz'
 import { allWordsQuery, bankInfo, moduleFor, QUIZ, sentencesQuery, wordsFor } from './quizBanks'
 import { ayahQueries } from './quizAyah'
@@ -57,11 +57,7 @@ export function useQuizQuestion(setup, round) {
   // round asks has to hold still while it is played, but the count on a
   // control the player is not looking at is only ever news, and a control
   // reading "1" while four are waiting is worse than one that moves.
-  const review = useQuery({
-    queryKey: ['quiz-review', language],
-    queryFn: () => fetchReviewItems(moduleFor(language)),
-    refetchOnWindowFocus: false,
-  })
+  const review = useQuery(reviewQuery(moduleFor(language)))
   const owed = review.data?.length ?? 0
 
   // How many questions this selection can actually ask. A question is keyed on

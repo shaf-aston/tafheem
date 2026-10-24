@@ -2,19 +2,22 @@
  * Curated verbs grouped by form (باب). Each card carries enough data to show a
  * result the instant it is clicked, so browsing costs nothing.
  */
-import { SARF_PRESETS } from '../../data/sarfPresets'
+import { SARF_PRESETS } from '../../lib/nahw/sarfPresets'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'
 
 const TOTAL = SARF_PRESETS.reduce((n, g) => n + g.words.length, 0)
 
-export default function PresetsDrawer({ onPick, accent }) {
+// Open while the box is empty, folded once an answer is showing: open, its 28
+// cards sat between the box and the answer and pushed the answer a phone's
+// two screens down. A reader who opens it again to browse keeps it open.
+export default function PresetsDrawer({ onPick, accent, answered = false }) {
   return (
     <Disclosure
       framed
       tone="strong"
-      defaultOpen
+      defaultOpen={!answered}
       label={(
         <span className="flex items-baseline justify-between gap-2">
           <span className="flex items-baseline gap-2">

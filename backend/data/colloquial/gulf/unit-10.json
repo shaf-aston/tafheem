@@ -22,7 +22,8 @@
     "S": "ص",
     "D": "ض",
     "T": "ط",
-    "Dh": "ظ"
+    "Dh": "ظ",
+    "ch": "چ (چاي = chaay، وكاف المؤنث في عندچ = 3indich)"
   },
   "lessons": [
     {
@@ -1575,6 +1576,850 @@
             "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
           },
           "tip": "«على حسب» تعني depends on."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "the-rain-is-heavy-today",
+          "arabic": "المطر قوي وايد اليوم",
+          "transliteration": "il-maTar gawi waayid il-yoom"
+        },
+        {
+          "slot": "the-sky-is-covered-with-clouds",
+          "arabic": "السما كلها غيم",
+          "transliteration": "is-sama kullha ghaym"
+        },
+        {
+          "slot": "the-storm-is-strong-tonight",
+          "arabic": "العاصفة قوية الليلة",
+          "transliteration": "il-3aaSfa gawiyya il-leela"
+        },
+        {
+          "slot": "there-is-lightning-and-thunder",
+          "arabic": "في برق ورعد",
+          "transliteration": "fee barg w ra3d"
+        },
+        {
+          "slot": "water-flooded-the-street",
+          "arabic": "الموية غرّقت الشارع",
+          "transliteration": "il-mooya gharragat ish-shaari3"
+        },
+        {
+          "slot": "the-wind-is-strong-and-the-trees-are-shaking",
+          "arabic": "الهوا قوي والشجر يتهزّ",
+          "transliteration": "il-hawa gawi w ish-shajar yithazz"
+        },
+        {
+          "slot": "the-rain-stopped",
+          "arabic": "المطر وقّف",
+          "transliteration": "il-maTar waggaf"
+        },
+        {
+          "slot": "stay-home-until-the-storm-passes",
+          "arabic": "اقعد في البيت لين تمر العاصفة",
+          "transliteration": "ig3ad fil-beet leen tmurr il-3aaSfa",
+          "reply": {
+            "arabic": "إن شاء الله، ما بطلع",
+            "transliteration": "in shaa Allah, ma baTla3",
+            "english": "God willing, I won't go out."
+          }
+        },
+        {
+          "slot": "i-got-soaked-by-the-rain",
+          "arabic": "تبلّلت كلّي من المطر",
+          "transliteration": "tballalt kulli min il-maTar",
+          "reply": {
+            "arabic": "سلامات! بدّل هدومك لا تمرض",
+            "transliteration": "salaamaat! baddil hdoomak la timraD",
+            "english": "Oh no! Change your clothes so you don't get ill."
+          }
+        },
+        {
+          "slot": "the-electricity-was-cut-because-of-the-storm",
+          "arabic": "الكهربا انقطعت بسبب العاصفة",
+          "transliteration": "il-kahraba ingiTa3at b-sabab il-3aaSfa"
+        },
+        {
+          "slot": "the-road-is-slippery-after-the-rain",
+          "arabic": "الطريق زلق بعد المطر",
+          "transliteration": "iT-Tareeg zalig ba3d il-maTar"
+        },
+        {
+          "slot": "thank-allah-for-this-rain",
+          "arabic": "الحمد لله على هالمطر",
+          "transliteration": "il-7amdu lillah 3ala hal-maTar",
+          "reply": {
+            "arabic": "اللَّهُمَّ صَيِّبًا نَافِعًا",
+            "transliteration": "allaahumma Sayyiban naafi3an",
+            "english": "O Allah, let it be a beneficial rain."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "سيف",
+          "slot": "the-sky-is-covered-with-clouds"
+        },
+        {
+          "speaker": "عبدالله",
+          "slot": "there-is-lightning-and-thunder"
+        },
+        {
+          "speaker": "سيف",
+          "arabic": "سمعت إن العاصفة بتكون قوية الليلة",
+          "transliteration": "smi3t inn il-3aaSfa bitkoon gawiyya il-leela",
+          "english": "I heard the storm will be strong tonight."
+        },
+        {
+          "speaker": "عبدالله",
+          "arabic": "بتطلع الحين يا سيف؟",
+          "transliteration": "bitiTla3 il7een ya Seef?",
+          "english": "Are you going out now, Saif?"
+        },
+        {
+          "speaker": "سيف",
+          "arabic": "لا، بقعد في البيت لين تمر العاصفة",
+          "transliteration": "la, bag3ad fil-beet leen tmurr il-3aaSfa",
+          "english": "No, I'll stay home until the storm passes."
+        },
+        {
+          "speaker": "عبدالله",
+          "arabic": "زين تسوي. أنا أمس طلعت بدون شمسية",
+          "transliteration": "zeen tsawwi. ana ams Tila3t bidoon shamsiyya",
+          "english": "Good call. Yesterday I went out without an umbrella."
+        },
+        {
+          "speaker": "عبدالله",
+          "slot": "i-got-soaked-by-the-rain"
+        },
+        {
+          "speaker": "سيف",
+          "slot": "i-got-soaked-by-the-rain",
+          "reply": true
+        },
+        {
+          "speaker": "سيف",
+          "arabic": "والموية غرّقت الشارع عندكم؟",
+          "transliteration": "w il-mooya gharragat ish-shaari3 3indkum?",
+          "english": "And did the water flood the street where you are?"
+        },
+        {
+          "speaker": "عبدالله",
+          "arabic": "إيه، والكهربا انقطعت ساعتين",
+          "transliteration": "eeh, w il-kahraba ingiTa3at saa3teen",
+          "english": "Yes, and the electricity was cut for two hours."
+        },
+        {
+          "speaker": "سيف",
+          "arabic": "لا قدّر الله! والحين المطر وقّف؟",
+          "transliteration": "la gaddar Allah! w il7een il-maTar waggaf?",
+          "english": "God forbid! And has the rain stopped now?"
+        },
+        {
+          "speaker": "عبدالله",
+          "arabic": "إيه وقّف شوي، بس الطريق زلق، دير بالك",
+          "transliteration": "eeh waggaf shwayy, bass iT-Tareeg zalig, deer baalak",
+          "english": "Yes, it's stopped for a bit, but the road is slippery, be careful."
+        },
+        {
+          "speaker": "سيف",
+          "slot": "thank-allah-for-this-rain"
+        },
+        {
+          "speaker": "عبدالله",
+          "slot": "thank-allah-for-this-rain",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بتطلع الحين؟",
+            "transliteration": "bitiTla3 il7een?",
+            "english": "Are you going out now?"
+          },
+          "response": {
+            "arabic": "لا، بقعد في البيت لين تمر العاصفة",
+            "transliteration": "la, bag3ad fil-beet leen tmurr il-3aaSfa",
+            "english": "No, I'll stay home until the storm passes."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شفيك مبلول؟",
+            "transliteration": "shfeek mablool?",
+            "english": "Why are you wet?"
+          },
+          "response": {
+            "arabic": "تبلّلت كلّي من المطر",
+            "transliteration": "tballalt kulli min il-maTar",
+            "english": "I got soaked by the rain."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الكهربا عندكم زينة؟",
+            "transliteration": "il-kahraba 3indkum zeena?",
+            "english": "Is your electricity all right?"
+          },
+          "response": {
+            "arabic": "لا، انقطعت بسبب العاصفة",
+            "transliteration": "la, ingiTa3at b-sabab il-3aaSfa",
+            "english": "No, it was cut because of the storm."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "دير بالك، الطريق زلق",
+            "transliteration": "deer baalak, iT-Tareeg zalig",
+            "english": "Be careful, the road is slippery."
+          },
+          "response": {
+            "arabic": "إن شاء الله، بسوق على هوني",
+            "transliteration": "in shaa Allah, basoog 3ala hooni",
+            "english": "God willing, I'll drive slowly."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "المطر وقّف؟",
+            "transliteration": "il-maTar waggaf?",
+            "english": "Has the rain stopped?"
+          },
+          "response": {
+            "arabic": "إيه، الحمد لله وقّف",
+            "transliteration": "eeh, il-7amdu lillah waggaf",
+            "english": "Yes, thank God, it stopped."
+          }
+        }
+      ],
+      "culture": "Rain is rare in the Gulf, so it is greeted with الحمد لله and the du'a اللَّهُمَّ صَيِّبًا نَافِعًا, which Muslims say in every dialect, and families often go out to see the wadis and the desert after it. Because there is little drainage, streets flood fast, schools may switch to learning from home, and police warn people away from the سيل, the torrent that fills a wadi.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك سألك: «بتطلع الحين؟» والعاصفة قوية. قله لا، بتقعد في البيت لين تمر العاصفة.",
+          "answer": "لا، بقعد في البيت لين تمر العاصفة",
+          "accepted": [
+            "لا، بقعد في البيت لين تمر العاصفة",
+            "la, bag3ad fil-beet leen tmurr il-3aaSfa",
+            "لا، بقعد في البيت لين تخلص العاصفة",
+            "لا، بقعد بالبيت لين تمر العاصفة",
+            "لا، بجلس في البيت لين تمر العاصفة"
+          ],
+          "too_formal": {
+            "item": "لا، سأبقى في المنزل حتى تمر العاصفة",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«لين» تعني until في الخليج."
+        },
+        {
+          "id": "unit-10.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "صاحبك قال: «تبلّلت كلّي من المطر». رد عليه وقله يبدّل هدومه.",
+          "answer": "سلامات! بدّل هدومك لا تمرض",
+          "accepted": [
+            "سلامات! بدّل هدومك لا تمرض",
+            "salaamaat! baddil hdoomak la timraD",
+            "سلامات، بدّل هدومك",
+            "سلامات! غيّر هدومك لا تمرض",
+            "سلامات، غيّر ملابسك"
+          ],
+          "too_formal": {
+            "item": "سلامتك، غيّر ثيابك كي لا تمرض",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«سلامات» تنقال لما حد يصير له شي."
+        },
+        {
+          "id": "unit-10.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "كمّل الجملة: «الطريق _____ بعد المطر.» المعنى: The road is slippery after the rain.",
+          "answer": "زلق",
+          "accepted": [
+            "زلق",
+            "zalig",
+            "زلگ"
+          ],
+          "tip": "«زلق» تعني slippery."
+        },
+        {
+          "id": "unit-10.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "كمّل الجملة: «الكهربا _____ بسبب العاصفة.» المعنى: The electricity was cut because of the storm.",
+          "answer": "انقطعت",
+          "accepted": [
+            "انقطعت",
+            "ingiTa3at",
+            "قطعت",
+            "طفت"
+          ],
+          "too_formal": {
+            "item": "انقطع التيار الكهربائي",
+            "feedback": "«التيار الكهربائي» is news language; people just say «الكهربا»."
+          },
+          "tip": "«الكهربا» بدون همزة في آخرها."
+        },
+        {
+          "id": "unit-10.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للهجة الخليجية: «There is lightning and thunder.»",
+          "answer": "في برق ورعد",
+          "accepted": [
+            "في برق ورعد",
+            "fee barg w ra3d",
+            "فيه برق ورعد",
+            "في رعد وبرق"
+          ],
+          "too_formal": {
+            "item": "هناك برق ورعد",
+            "feedback": "«هناك» is written Arabic; in speech it is «في»."
+          },
+          "tip": "«في» هنا تعني there is."
+        },
+        {
+          "id": "unit-10.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للهجة الخليجية: «The rain stopped.»",
+          "answer": "المطر وقّف",
+          "accepted": [
+            "المطر وقّف",
+            "il-maTar waggaf",
+            "المطر وقف",
+            "وقّف المطر",
+            "المطر خلص"
+          ],
+          "too_formal": {
+            "item": "توقف هطول المطر",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«وقّف» تنقال للمطر وللسيارة."
+        },
+        {
+          "id": "unit-10.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "أي كلمة معناها lightning؟",
+          "answer": "برق",
+          "accepted": [
+            "برق",
+            "barg"
+          ],
+          "tip": "«برق» lightning و«رعد» thunder.",
+          "options": [
+            "برق",
+            "رعد",
+            "غيم",
+            "غبار"
+          ]
+        },
+        {
+          "id": "unit-10.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "أي جملة معناها: The storm is strong tonight؟",
+          "answer": "العاصفة قوية الليلة",
+          "accepted": [
+            "العاصفة قوية الليلة",
+            "il-3aaSfa gawiyya il-leela",
+            "العاصفة الليلة قوية"
+          ],
+          "too_formal": {
+            "item": "العاصفة شديدة هذه الليلة",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«قوية» مؤنث لأن «العاصفة» مؤنثة.",
+          "options": [
+            "العاصفة قوية الليلة",
+            "المطر وقّف",
+            "الهوا خفيف اليوم",
+            "السما صافية الليلة"
+          ]
+        },
+        {
+          "id": "unit-10.lesson-05.choose.03",
+          "type": "choose",
+          "prompt": "المطر نزل والشوارع غرقت. شو تقول؟",
+          "answer": "الحمد لله على هالمطر",
+          "accepted": [
+            "الحمد لله على هالمطر",
+            "il-7amdu lillah 3ala hal-maTar",
+            "الحمد لله على المطر"
+          ],
+          "tip": "«هالمطر» = هذا المطر.",
+          "options": [
+            "الحمد لله على هالمطر",
+            "الجو حار وايد",
+            "الطريق فاضي",
+            "ما في غيم"
+          ]
+        },
+        {
+          "id": "unit-10.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الكلمات: «قوي / اليوم / المطر / وايد»",
+          "answer": "المطر قوي وايد اليوم",
+          "accepted": [
+            "المطر قوي وايد اليوم",
+            "il-maTar gawi waayid il-yoom",
+            "اليوم المطر قوي وايد"
+          ],
+          "too_formal": {
+            "item": "المطر غزير جداً اليوم",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«وايد» تعني very.",
+          "words": [
+            "المطر",
+            "قوي",
+            "وايد",
+            "اليوم"
+          ]
+        },
+        {
+          "id": "unit-10.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الكلمات: «يتهزّ / الهوا / والشجر / قوي»",
+          "answer": "الهوا قوي والشجر يتهزّ",
+          "accepted": [
+            "الهوا قوي والشجر يتهزّ",
+            "il-hawa gawi w ish-shajar yithazz",
+            "الهوا قوي والشجر يتهز"
+          ],
+          "too_formal": {
+            "item": "الرياح شديدة والأشجار تهتز",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«الهوا» تعني the wind.",
+          "words": [
+            "الهوا",
+            "قوي",
+            "والشجر",
+            "يتهزّ"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "what-s-the-temperature-tomorrow",
+          "arabic": "كم درجة الحرارة باچر؟",
+          "transliteration": "kam darajat il-7araara baachir?"
+        },
+        {
+          "slot": "the-temperature-will-be-thirty-degrees",
+          "arabic": "الحرارة بتكون ثلاثين درجة",
+          "transliteration": "il-7araara bitkoon thalaatheen daraja"
+        },
+        {
+          "slot": "the-weather-will-be-sunny-all-week",
+          "arabic": "الجو بيكون مشمس طول الأسبوع",
+          "transliteration": "ij-jaw bykoon mshammis Tool il-usboo3"
+        },
+        {
+          "slot": "rain-is-expected-on-friday",
+          "arabic": "يتوقعون مطر يوم الجمعة",
+          "transliteration": "yitwagga3oon maTar yoom ij-jim3a"
+        },
+        {
+          "slot": "the-temperature-will-drop-at-night",
+          "arabic": "الحرارة بتنزل في الليل",
+          "transliteration": "il-7araara bitinzil fil-leel"
+        },
+        {
+          "slot": "the-weather-will-be-better-tomorrow",
+          "arabic": "الجو باچر بيكون أحسن",
+          "transliteration": "ij-jaw baachir bykoon a7san",
+          "reply": {
+            "arabic": "عسى، تعبنا من الغبار",
+            "transliteration": "3asa, ti3abna min il-ghubaar",
+            "english": "Let's hope so, we're tired of the dust."
+          }
+        },
+        {
+          "slot": "the-bulletin-says-snow-will-fall",
+          "arabic": "النشرة تقول بينزل ثلج",
+          "transliteration": "in-nashra tgool biyinzil thalj"
+        },
+        {
+          "slot": "are-the-forecasts-always-accurate",
+          "arabic": "التوقعات دايماً مضبوطة؟",
+          "transliteration": "it-tawagu3aat daayman maDbooTa?",
+          "reply": {
+            "arabic": "مو دايماً، بس تفيد",
+            "transliteration": "mu daayman, bass tfeed",
+            "english": "Not always, but they help."
+          }
+        },
+        {
+          "slot": "i-check-the-weather-on-my-phone",
+          "arabic": "أشيّك على الجو في تلفوني",
+          "transliteration": "asheyyik 3ala ij-jaw fi tilifooni"
+        },
+        {
+          "slot": "the-weather-will-be-cloudy-with-light-rain",
+          "arabic": "الجو بيكون غيم ومطر خفيف",
+          "transliteration": "ij-jaw bykoon ghaym w maTar khafeef"
+        },
+        {
+          "slot": "the-humidity-is-high-this-week",
+          "arabic": "الرطوبة عالية هالأسبوع",
+          "transliteration": "ir-rTooba 3aalya hal-usboo3"
+        },
+        {
+          "slot": "listen-to-the-news-bulletin-to-a-man",
+          "arabic": "اسمع نشرة الأخبار",
+          "transliteration": "isma3 nashrat il-akhbaar",
+          "reply": {
+            "arabic": "إن شاء الله، بسمعها الصبح",
+            "transliteration": "in shaa Allah, basma3ha iS-SubH",
+            "english": "God willing, I'll listen to it in the morning."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "ناصر",
+          "slot": "what-s-the-temperature-tomorrow"
+        },
+        {
+          "speaker": "حصة",
+          "slot": "the-temperature-will-be-thirty-degrees"
+        },
+        {
+          "speaker": "ناصر",
+          "arabic": "زين، والجو بيكون مشمس؟",
+          "transliteration": "zeen, w ij-jaw bykoon mshammis?",
+          "english": "Good, and will it be sunny?"
+        },
+        {
+          "speaker": "حصة",
+          "arabic": "إيه، طول الأسبوع. بس يتوقعون مطر يوم الجمعة",
+          "transliteration": "eeh, Tool il-usboo3. bass yitwagga3oon maTar yoom ij-jim3a",
+          "english": "Yes, all week. But rain is expected on Friday."
+        },
+        {
+          "speaker": "ناصر",
+          "arabic": "شلون عرفتي؟",
+          "transliteration": "shloon 3arafti?",
+          "english": "How did you know?"
+        },
+        {
+          "speaker": "حصة",
+          "slot": "i-check-the-weather-on-my-phone"
+        },
+        {
+          "speaker": "ناصر",
+          "slot": "are-the-forecasts-always-accurate"
+        },
+        {
+          "speaker": "حصة",
+          "slot": "are-the-forecasts-always-accurate",
+          "reply": true
+        },
+        {
+          "speaker": "ناصر",
+          "arabic": "والليل شلون؟",
+          "transliteration": "w il-leel shloon?",
+          "english": "And what about the night?"
+        },
+        {
+          "speaker": "حصة",
+          "slot": "the-temperature-will-drop-at-night"
+        },
+        {
+          "speaker": "ناصر",
+          "arabic": "يعني آخذ جاكيت وياي",
+          "transliteration": "ya3ni aakhidh jaakeet wiyyaay",
+          "english": "So I'll take a jacket with me."
+        },
+        {
+          "speaker": "حصة",
+          "slot": "listen-to-the-news-bulletin-to-a-man"
+        },
+        {
+          "speaker": "ناصر",
+          "slot": "listen-to-the-news-bulletin-to-a-man",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كم درجة الحرارة باچر؟",
+            "transliteration": "kam darajat il-7araara baachir?",
+            "english": "What's the temperature tomorrow?"
+          },
+          "response": {
+            "arabic": "ثلاثين درجة",
+            "transliteration": "thalaatheen daraja",
+            "english": "Thirty degrees."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو تقول النشرة؟",
+            "transliteration": "shu tgool in-nashra?",
+            "english": "What does the bulletin say?"
+          },
+          "response": {
+            "arabic": "يتوقعون مطر باچر",
+            "transliteration": "yitwagga3oon maTar baachir",
+            "english": "Rain is expected tomorrow."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "التوقعات دايماً مضبوطة؟",
+            "transliteration": "it-tawagu3aat daayman maDbooTa?",
+            "english": "Are the forecasts always accurate?"
+          },
+          "response": {
+            "arabic": "مو دايماً، بس تفيد",
+            "transliteration": "mu daayman, bass tfeed",
+            "english": "Not always, but they help."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الجو بيكون مشمس؟",
+            "transliteration": "ij-jaw bykoon mshammis?",
+            "english": "Will it be sunny?"
+          },
+          "response": {
+            "arabic": "إيه، طول الأسبوع",
+            "transliteration": "eeh, Tool il-usboo3",
+            "english": "Yes, all week."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شلون الرطوبة هالأسبوع؟",
+            "transliteration": "shloon ir-rTooba hal-usboo3?",
+            "english": "How is the humidity this week?"
+          },
+          "response": {
+            "arabic": "عالية وايد",
+            "transliteration": "3aalya waayid",
+            "english": "Very high."
+          }
+        }
+      ],
+      "culture": "In the Gulf the forecast that matters most is heat, humidity and dust: summer days pass 45 degrees Celsius and coastal humidity is the daily complaint. People check the national weather centre's app or the TV bulletin, which uses words such as يتوقعون and درجة الحرارة; snow is only news when it touches the high mountains such as Jebel Jais in Ras Al Khaimah.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "حد سألك: «كم درجة الحرارة باچر؟». قله ثلاثين درجة.",
+          "answer": "ثلاثين درجة",
+          "accepted": [
+            "ثلاثين درجة",
+            "thalaatheen daraja",
+            "بتكون ثلاثين درجة",
+            "الحرارة بتكون ثلاثين درجة",
+            "ثلاثين"
+          ],
+          "too_formal": {
+            "item": "ستكون درجة الحرارة ثلاثين درجة مئوية",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«ثلاثين» بالياء في الكلام."
+        },
+        {
+          "id": "unit-10.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "صاحبك سألك: «التوقعات دايماً مضبوطة؟». قله مو دايماً، بس تفيد.",
+          "answer": "مو دايماً، بس تفيد",
+          "accepted": [
+            "مو دايماً، بس تفيد",
+            "mu daayman, bass tfeed",
+            "مب دايماً، بس تفيد",
+            "مو دايم، بس تفيد",
+            "مو دايماً"
+          ],
+          "too_formal": {
+            "item": "ليست دائماً دقيقة، لكنها مفيدة",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«مو» (الكويت) و«مب» (الإمارات) تعني not."
+        },
+        {
+          "id": "unit-10.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "كمّل الجملة: «_____ مطر يوم الجمعة.» المعنى: Rain is expected on Friday.",
+          "answer": "يتوقعون",
+          "accepted": [
+            "يتوقعون",
+            "yitwagga3oon",
+            "متوقعين",
+            "يقولون"
+          ],
+          "too_formal": {
+            "item": "يُتوقع هطول أمطار",
+            "feedback": "«هطول أمطار» is the newsreader's phrase; in talk people say «يتوقعون مطر»."
+          },
+          "tip": "«يتوقعون» = they expect."
+        },
+        {
+          "id": "unit-10.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "كمّل الجملة: «الحرارة _____ في الليل.» المعنى: The temperature will drop at night.",
+          "answer": "بتنزل",
+          "accepted": [
+            "بتنزل",
+            "bitinzil",
+            "راح تنزل",
+            "بتقل",
+            "تنزل"
+          ],
+          "too_formal": {
+            "item": "ستنخفض",
+            "feedback": "«تنخفض» is bulletin Arabic; in speech it is «تنزل»."
+          },
+          "tip": "«بـ» قبل الفعل تعني will."
+        },
+        {
+          "id": "unit-10.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للهجة الخليجية: «What's the temperature tomorrow?»",
+          "answer": "كم درجة الحرارة باچر؟",
+          "accepted": [
+            "كم درجة الحرارة باچر؟",
+            "kam darajat il-7araara baachir?",
+            "كم درجة الحرارة باجر؟",
+            "كم الحرارة باچر؟",
+            "كم الحرارة باكر؟",
+            "كم درجة الحرارة باكر؟"
+          ],
+          "too_formal": {
+            "item": "ما درجة الحرارة غداً؟",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«باچر» تعني tomorrow، والچ تنطق ch."
+        },
+        {
+          "id": "unit-10.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للهجة الخليجية: «The weather will be better tomorrow.»",
+          "answer": "الجو باچر بيكون أحسن",
+          "accepted": [
+            "الجو باچر بيكون أحسن",
+            "ij-jaw baachir bykoon a7san",
+            "باچر الجو بيكون أحسن",
+            "الجو باجر بيكون أحسن",
+            "الجو باچر راح يكون أحسن"
+          ],
+          "too_formal": {
+            "item": "سيكون الطقس أفضل غداً",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«أحسن» تعني better."
+        },
+        {
+          "id": "unit-10.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "أي كلمة معناها degree؟",
+          "answer": "درجة",
+          "accepted": [
+            "درجة",
+            "daraja"
+          ],
+          "tip": "«درجة الحرارة» = the temperature.",
+          "options": [
+            "درجة",
+            "نشرة",
+            "رطوبة",
+            "أسبوع"
+          ]
+        },
+        {
+          "id": "unit-10.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "أي جملة معناها: The weather will be cloudy with light rain؟",
+          "answer": "الجو بيكون غيم ومطر خفيف",
+          "accepted": [
+            "الجو بيكون غيم ومطر خفيف",
+            "ij-jaw bykoon ghaym w maTar khafeef"
+          ],
+          "too_formal": {
+            "item": "سيكون الجو غائماً مع أمطار خفيفة",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«غيم» تعني clouds أو cloudy.",
+          "options": [
+            "الجو بيكون غيم ومطر خفيف",
+            "الجو بيكون مشمس طول الأسبوع",
+            "الرطوبة عالية هالأسبوع",
+            "الحرارة بتنزل في الليل"
+          ]
+        },
+        {
+          "id": "unit-10.lesson-06.choose.03",
+          "type": "choose",
+          "prompt": "شو تقول لرجّال عشان يعرف الأخبار؟",
+          "answer": "اسمع نشرة الأخبار",
+          "accepted": [
+            "اسمع نشرة الأخبار",
+            "isma3 nashrat il-akhbaar",
+            "اسمع الأخبار"
+          ],
+          "tip": "«اسمع» للرجّال و«اسمعي» للحرمة.",
+          "options": [
+            "اسمع نشرة الأخبار",
+            "اسمعي نشرة الأخبار",
+            "أشيّك على الجو في تلفوني",
+            "النشرة تقول بينزل ثلج"
+          ]
+        },
+        {
+          "id": "unit-10.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الكلمات: «طول / مشمس / الجو / الأسبوع / بيكون»",
+          "answer": "الجو بيكون مشمس طول الأسبوع",
+          "accepted": [
+            "الجو بيكون مشمس طول الأسبوع",
+            "ij-jaw bykoon mshammis Tool il-usboo3",
+            "طول الأسبوع الجو بيكون مشمس"
+          ],
+          "too_formal": {
+            "item": "سيكون الجو مشمساً طوال الأسبوع",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«طول الأسبوع» = all week.",
+          "words": [
+            "الجو",
+            "بيكون",
+            "مشمس",
+            "طول",
+            "الأسبوع"
+          ]
+        },
+        {
+          "id": "unit-10.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الكلمات: «تلفوني / الجو / على / أشيّك / في»",
+          "answer": "أشيّك على الجو في تلفوني",
+          "accepted": [
+            "أشيّك على الجو في تلفوني",
+            "asheyyik 3ala ij-jaw fi tilifooni",
+            "أشيك على الجو في تلفوني",
+            "أشيّك على الجو في جوالي"
+          ],
+          "too_formal": {
+            "item": "أتحقق من حالة الطقس عبر هاتفي",
+            "feedback": "Same meaning, but it sounds like a news report or a textbook, not everyday Khaleeji speech."
+          },
+          "tip": "«أشيّك» من الإنجليزي check.",
+          "words": [
+            "أشيّك",
+            "على",
+            "الجو",
+            "في",
+            "تلفوني"
+          ]
         }
       ]
     }

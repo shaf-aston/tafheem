@@ -1,4 +1,4 @@
-import { Activity, Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
+import { Activity, useCallback, useEffect, useRef, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/nav/tabs'
@@ -25,10 +25,6 @@ import InstallBanner from './components/shell/InstallBanner'
 import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
 
-// The Map carries every chart's data (~100 kB), so it is fetched the first time
-// it opens rather than with the page everyone loads.
-const MapPanel = lazy(() => import('./components/shell/MapPanel'))
-
 const queryClient = new QueryClient({
   // The data is fixed for the life of the backend: keep every answer, so a
   // second visit is instant and a fetch-ahead (lib/api/warm) is never repeated.
@@ -50,12 +46,9 @@ const openTab = (id) => {
 function AppContent() {
   const { activeTab, alive, handoffs, switchTab, said, round, strip, dock, placeInDock } = useTabNavigation()
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [mapOpen, setMapOpen] = useState(false)
-  // Mounted from its first opening on, so closing it keeps its place.
-  const [mapSeen, setMapSeen] = useState(false)
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
-  const tools = useTools(TOOLS, { map: () => { setMapSeen(true); setMapOpen(true) } })
+  const tools = useTools(TOOLS, switchTab)
   const { status } = useHealth()
   const accent = accentOf(activeTab)
 
@@ -120,7 +113,7 @@ function AppContent() {
               onClick={tools.run[tool.id]}
               title={tool.label}
               aria-label={tool.aria}
-              aria-haspopup={tool.dialog ? 'dialog' : undefined}
+              aria-current={tool.tab && tool.tab === activeTab ? 'page' : undefined}
               className={`icon-button${tool.phone === 'more' ? ' phone-hide' : ''}`}
             >
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -200,7 +193,8 @@ function AppContent() {
             column of its own, which is why a list of thirteen sources wrapped
             into a stripe while two thirds of the page sat empty beside it. */}
         <div className="shell space-y-5">
-          {activeTab !== HOME && <SourceFooter tab={activeTab} offline={status === 'error'} onSeeAll={() => setSettingsOpen(true)} />}
+          {/* Home is every tab; a hidden tab (Map, Kit) reads no source of its own. */}
+          {activeTab !== HOME && LISTED.some((tab) => tab.id === activeTab) && <SourceFooter tab={activeTab} offline={status === 'error'} onSeeAll={() => setSettingsOpen(true)} />}
 
           {/* The colophon, on the same pane as the page and only as wide as its
               words, so the backdrop still shows around it. */}
@@ -212,11 +206,6 @@ function AppContent() {
         </div>
       </footer>
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
-      {mapSeen && (
-        <Suspense fallback={null}>
-          <MapPanel open={mapOpen} onClose={() => setMapOpen(false)} />
-        </Suspense>
-      )}
       <SpatialHome
         open={spatialOpen}
         onClose={() => setSpatialOpen(false)}
@@ -245,7 +234,7 @@ function AppContent() {
               <button
                 key={tool.id}
                 type="button"
-                aria-haspopup={tool.dialog ? 'dialog' : undefined}
+                aria-current={tool.tab && tool.tab === activeTab ? 'page' : undefined}
                 aria-describedby={tool.hint ? `${tool.id}-hint` : undefined}
                 onClick={() => { if (!tools.staysOpen(tool)) setSectionsOpen(false); tools.run[tool.id]() }}
                 className="tap min-h-11 rounded-[var(--radius-sm)] border border-[var(--border)] type-body font-medium"

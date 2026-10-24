@@ -5,12 +5,13 @@
  *
  * Where you stopped comes from the journey (lib/nav/journey.js), never a list
  * written here; with no history, the first fixed tab (lib/nav/tabs.js) stands in. The progress under each card is the overview the profile reads,
- * filed to tabs by lib/nav/moduleTab.js. The line is the header's own command line.
+ * filed to tabs by lib/nav/moduleTab.js. Under the card, one step in Grow picked for this learner (GrowNext).
+ * The line is the header's own command line.
  */
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { fetchOverview } from '../../lib/learner/progress'
+import { overviewQuery } from '../../lib/learner/record'
 import { getProfile } from '../../lib/learner/profile'
 import { useHealth } from '../../lib/api/useHealth'
 import { resumePlace, useJourney } from '../../lib/nav/journey'
@@ -21,6 +22,8 @@ import { progressText } from '../../lib/shell/homeCopy'
 import { copy as offlineCopy, noSignal } from '../../lib/shell/offline'
 import knobs from '../../config/home.json'
 import { useMedia, PHONE } from '../../lib/hooks/useMedia'
+import { levelOf } from '../../lib/learner/learnerLevel'
+import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
 
 import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -29,6 +32,7 @@ import CommandField from '../shell/CommandField'
 import CommandResults from '../shell/CommandResults'
 import LogInButton from '../profile/LogInButton'
 import LevelPicker from '../level/LevelPicker'
+import GrowNext from './GrowNext'
 import ModuleCard from './ModuleCard'
 import ResumeCard from './ResumeCard'
 import StatsButton from './StatsButton'
@@ -44,8 +48,9 @@ const SHOWN_GROUPS = GROUPS.filter((group) => group.id !== START && OTHERS.some(
 export default function HomePanel({ accent, onGo }) {
   const phone = useMedia(PHONE)
   const [name] = useState(getProfile)
-  const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview, enabled: !!name, retry: false })
+  const overview = useQuery(overviewQuery(name))
   const { steps } = useJourney()
+  const level = levelOf(useLearnerLevel().level)?.grow ?? null
   const health = useHealth()
   const line = useCommandLine(LISTED, (row) => onGo(row.tabId, row.value))
   const sums = progressByTab(overview.data?.modules)
@@ -57,6 +62,12 @@ export default function HomePanel({ accent, onGo }) {
   const resume = resumePlace(steps, LISTED, HOME)
   const first = !resume
   const lead = tabOf(resume?.tab ?? FALLBACK[0])
+  // One step in Grow picked from the record, unless it is the place on the card. With no path walked (a new visit),
+  // only one the learner was studying: what fits the level is the picker's to offer.
+  const next = (
+    <GrowNext modules={overview.data?.modules} level={level} copy={copy} onGo={onGo} studiedOnly={first}
+      skip={!first && lead.id === 'grow' ? resume.value : undefined} />
+  )
   const card = (tab, at) => (
     <ModuleCard key={tab.id} tab={tab} accent={accentOf(tab.id)} index={at} progressText={progressText(sums[tab.id])} onOpen={onGo} />
   )
@@ -81,7 +92,8 @@ export default function HomePanel({ accent, onGo }) {
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_var(--layout-rail)] lg:gap-8 lg:items-start">
         <div className="space-y-6">
           <div className="cb" data-wide>
-            <CommandField line={line} name={NAME} placeholder={phone ? copy['placeholder-phone'] : copy.placeholder} showing={showing} />
+            <CommandField line={line} name={NAME} placeholder={phone ? copy['placeholder-phone'] : copy.placeholder} showing={showing}
+              trailing={!line.query && <ArabicText as="span" size="sm" className="cb-hint-ar" aria-hidden="true">{copy['placeholder-ar']}</ArabicText>} />
             {showing && (
               <CommandResults id={`${NAME}-results`} name={NAME} rows={line.rows} tabs={LISTED} colorOf={accentOf}
                 active={line.active} onHover={line.setActive} onPick={line.run}
@@ -92,11 +104,14 @@ export default function HomePanel({ accent, onGo }) {
           {/* The quiet word sits in the room beside the card and scrolls with the page. */}
           <div className="md:flex md:items-center md:gap-6">
             <div className="space-y-4 md:max-w-2xl md:flex-[3] min-w-0">
+              {/* A returning learner on a new visit (no path walked) sees what they were studying above the picker. */}
+              {first && next}
               {/* A first visit asks how much Arabic you know, and starts there; after that, where you stopped. */}
               {first
                 ? <LevelPicker copy={copy} onGo={onGo} />
                 : <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume.value} label={copy['resume-label']} goLabel={copy['resume-go']}
                   progressText={progressText(sums[lead.id])} onGo={onGo} />}
+              {!first && next}
               {!name && (
                 <p className="flex lg:hidden flex-wrap items-center gap-x-3 gap-y-2 text-[var(--text-dim)]">
                   <span>{copy.guest}</span>

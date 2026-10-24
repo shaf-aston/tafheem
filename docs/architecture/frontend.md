@@ -46,7 +46,9 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 | `lib/<tab>/` | everything only that tab uses, e.g. `lib/quiz/useQuizRound.js`, `lib/nahw/govArc.js` |
 
 `components/ui/` is the kit (buttons, chips, `SearchBox`, `SectionHeader`,
-`Disclosure`, …). Text sizes come from `type-*` classes (`config/theme.json`
+`Disclosure`, …): only parts two or more tabs draw. A part one tab draws sits
+in that tab's `components/` folder, and its data (JSON, presets) in that tab's
+`lib/` folder; there is no `src/data/`. Text sizes come from `type-*` classes (`config/theme.json`
 → `styles/text.css`); `eyebrow` is the one small caps label. A panel never
 sets `text-xs`/`text-sm` of its own.
 

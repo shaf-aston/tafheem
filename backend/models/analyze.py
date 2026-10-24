@@ -35,7 +35,7 @@ ROLE_KEYS = frozenset({
 
 
 # Every word type a card can carry, as frontend/src/config/grammar.json `types` names them
-# (punc is the one the page never labels). tests/test_rule_engine.py holds the two together.
+# (punc is the one the page never labels). tests/nahw/test_rule_engine.py holds the two together.
 WORD_TYPES = frozenset({"ism", "fi'l", "harf", "damir", "zarf", "punc"})
 
 

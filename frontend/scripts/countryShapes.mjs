@@ -1,7 +1,7 @@
 /**
- * Draws src/data/countryShapes.json: a simplified outline of every country in
+ * Draws src/lib/colloquial/countryShapes.json: a simplified outline of every country in
  * and around the Arab world, for the small maps on the Colloquial dialect cards
- * (components/ui/CountryMap.jsx).
+ * (components/colloquial/CountryMap.jsx).
  *
  * Run once; the output is committed and the app needs none of this:
  *
@@ -16,7 +16,7 @@ import { createRequire } from 'node:module'
 import { feature } from 'topojson-client'
 import { presimplify, simplify, quantile } from 'topojson-simplify'
 
-import { project } from '../src/lib/shell/countryMap.js'
+import { project } from '../src/lib/colloquial/countryMap.js'
 
 const require = createRequire(import.meta.url)
 const world = JSON.parse(readFileSync(require.resolve('world-atlas/countries-50m.json'), 'utf8'))
@@ -73,6 +73,6 @@ for (const f of feature(simple, simple.objects.countries).features) {
   }
 }
 if (unnamed.length) throw new Error(`No code for: ${unnamed.join('; ')}`)
-const file = new URL('../src/data/countryShapes.json', import.meta.url)
+const file = new URL('../src/lib/colloquial/countryShapes.json', import.meta.url)
 writeFileSync(file, JSON.stringify({ _about: 'Natural Earth 1:50m country outlines (public domain), simplified and projected by scripts/countryShapes.mjs. Do not edit by hand.', countries: out }) + '\n')
 console.log(Object.keys(out).length, 'countries,', readFileSync(file).length, 'bytes')

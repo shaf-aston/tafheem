@@ -1528,6 +1528,816 @@
           "tip": "You can also just raise a hand and say il7isaab."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-d-like-a-chicken-burger-and-fries",
+          "arabic": "أَبِي بَرْجَر دْجَاج وْفْرَايْز",
+          "transliteration": "abi burjar dijaaj w fraayz"
+        },
+        {
+          "slot": "are-you-eating-here-or-taking-it-with-you",
+          "arabic": "سَفَرِي وَلَّا مَحَلِّي؟",
+          "transliteration": "safari walla ma7alli?",
+          "english": "Takeaway or eating in?"
+        },
+        {
+          "slot": "i-want-a-pizza-to-take-away",
+          "arabic": "أَبِي بِيتْزَا سَفَرِي",
+          "transliteration": "abi beetza safari"
+        },
+        {
+          "slot": "i-ll-eat-here",
+          "arabic": "بَاكِل هِنِي",
+          "transliteration": "baakil hini"
+        },
+        {
+          "slot": "which-size-do-you-want-small-medium-or-large",
+          "arabic": "أَي حَجِم تَبِي؟ صَغِير، وَسَط وَلَّا كَبِير؟",
+          "transliteration": "ay 7ajim tibi? 9agheer, wasa6 walla kabeer?",
+          "reply": {
+            "arabic": "وَسَط",
+            "transliteration": "wasa6",
+            "english": "Medium."
+          }
+        },
+        {
+          "slot": "a-large-cola-please",
+          "arabic": "كُولَا كَبِير لَو سَمَحْت",
+          "transliteration": "koola kabeer law samaht"
+        },
+        {
+          "slot": "without-ice-please",
+          "arabic": "بِدُون ثَلِج لَو سَمَحْت",
+          "transliteration": "bidoon thalij law samaht"
+        },
+        {
+          "slot": "do-you-have-a-kids-meal",
+          "arabic": "عِنْدَكُم وَجْبَة أَطْفَال؟",
+          "transliteration": "3indkum wajbat a6faal?"
+        },
+        {
+          "slot": "extra-ketchup-please",
+          "arabic": "زِيَادَة كَاتْشَب لَو سَمَحْت",
+          "transliteration": "ziyaada kaatshab law samaht"
+        },
+        {
+          "slot": "how-long-will-the-order-take",
+          "arabic": "الطَّلَب كَم يَاخِذ وَقِت؟",
+          "transliteration": "i6-6alab kam yaakhith wagit?",
+          "reply": {
+            "arabic": "عَشْر دَقَايِق",
+            "transliteration": "3ashr dagaayig",
+            "english": "Ten minutes."
+          }
+        },
+        {
+          "slot": "is-the-meat-halal",
+          "arabic": "اللَّحَم حَلَال؟",
+          "transliteration": "illa7am 7alaal?",
+          "reply": {
+            "arabic": "إِي، كِلَّه حَلَال",
+            "transliteration": "ee, killah 7alaal",
+            "english": "Yes, it's all halal."
+          }
+        },
+        {
+          "slot": "please-put-it-in-a-bag",
+          "arabic": "حُطَّه فِي كِيس لَو سَمَحْت",
+          "transliteration": "7u66ah fi kees law samaht"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cashier",
+          "arabic": "هلا، شو تبي؟",
+          "transliteration": "hala, shu tibi?",
+          "english": "Hi, what would you like?"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "i-d-like-a-chicken-burger-and-fries"
+        },
+        {
+          "speaker": "Cashier",
+          "slot": "are-you-eating-here-or-taking-it-with-you"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "i-ll-eat-here"
+        },
+        {
+          "speaker": "Cashier",
+          "arabic": "تبي معاه بارد؟",
+          "transliteration": "tibi ma3aah baarid?",
+          "english": "Do you want a cold drink with it?"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "a-large-cola-please"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "without-ice-please"
+        },
+        {
+          "speaker": "Cashier",
+          "arabic": "أبشر. شي ثاني؟",
+          "transliteration": "abshir. shay thaani?",
+          "english": "Certainly. Anything else?"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "do-you-have-a-kids-meal"
+        },
+        {
+          "speaker": "Cashier",
+          "arabic": "إي، فيه وجبة أطفال بالدجاج.",
+          "transliteration": "ee, fii wajbat a6faal bid-dijaaj.",
+          "english": "Yes, there's a kids' meal with chicken."
+        },
+        {
+          "speaker": "Hamad",
+          "arabic": "زين، وحدة سفري حق ولدي، وحطها في كيس.",
+          "transliteration": "zain, wi7da safari 7agg waladi, w 7u66ha fi kees.",
+          "english": "Good, one to take away for my son, and put it in a bag."
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "how-long-will-the-order-take"
+        },
+        {
+          "speaker": "Cashier",
+          "slot": "how-long-will-the-order-take",
+          "reply": true
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "extra-ketchup-please"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "سفري ولا محلي؟",
+            "transliteration": "safari walla ma7alli?",
+            "english": "Takeaway or eating in?"
+          },
+          "response": {
+            "arabic": "سفري لو سمحت.",
+            "transliteration": "safari law samaht.",
+            "english": "Takeaway, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أي حجم تبي؟",
+            "transliteration": "ay 7ajim tibi?",
+            "english": "Which size do you want?"
+          },
+          "response": {
+            "arabic": "كبير.",
+            "transliteration": "kabeer.",
+            "english": "Large."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تبي ثلج؟",
+            "transliteration": "tibi thalij?",
+            "english": "Do you want ice?"
+          },
+          "response": {
+            "arabic": "لا، بدون ثلج.",
+            "transliteration": "la, bidoon thalij.",
+            "english": "No, without ice."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندكم توصيل؟",
+            "transliteration": "3indkum taw9eel?",
+            "english": "Do you deliver?"
+          },
+          "response": {
+            "arabic": "إي، التوصيل ببلاش.",
+            "transliteration": "ee, it-taw9eel bilaash.",
+            "english": "Yes, delivery is free."
+          }
+        }
+      ],
+      "culture": "At any Gulf counter the first question is \"سفري ولا محلي؟\" (takeaway or eating in), and late-night shawarma and burgers are often ordered by car from the drive-through or delivered. Sizes are just as often said in English: سمول، ميديم، لارج.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means 'takeaway'?",
+          "answer": "سَفَرِي",
+          "accepted": [
+            "سَفَرِي",
+            "safari",
+            "سفري"
+          ],
+          "options": [
+            "سَفَرِي",
+            "مَحَلِّي",
+            "وَسَط",
+            "ثَلِج"
+          ],
+          "too_formal": {
+            "item": "طعام للأخذ إلى الخارج",
+            "feedback": "Bookish; safari is the word on every Gulf menu."
+          },
+          "tip": "safari comes from safar (travel): food that travels with you."
+        },
+        {
+          "id": "unit-04.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which one asks 'Is the meat halal?'",
+          "answer": "اللَّحَم حَلَال؟",
+          "accepted": [
+            "اللَّحَم حَلَال؟",
+            "illa7am 7alaal",
+            "اللحم حلال"
+          ],
+          "options": [
+            "اللَّحَم حَلَال؟",
+            "عِنْدَكُم وَجْبَة أَطْفَال؟",
+            "الطَّلَب كَم يَاخِذ وَقِت؟",
+            "سَفَرِي وَلَّا مَحَلِّي؟"
+          ],
+          "too_formal": {
+            "item": "هل هذا اللحم مذبوح على الطريقة الإسلامية؟",
+            "feedback": "MSA and long; 7alaal? is enough."
+          },
+          "tip": "In the Gulf the answer is nearly always yes; it is a useful question when travelling."
+        },
+        {
+          "id": "unit-04.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "سفري ولا محلي؟ (safari walla ma7alli?) Say you'll eat here.",
+          "answer": "بَاكِل هِنِي",
+          "accepted": [
+            "بَاكِل هِنِي",
+            "باكل هني",
+            "محلي",
+            "baakil hini",
+            "ma7alli"
+          ],
+          "too_formal": {
+            "item": "سآكل هنا",
+            "feedback": "MSA sa-; the Gulf future is ba-: baakil."
+          },
+          "tip": "ba- before a verb means 'will'; hini is 'here'."
+        },
+        {
+          "id": "unit-04.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "أي حجم تبي؟ صغير، وسط ولا كبير؟ Ask for medium.",
+          "answer": "وَسَط",
+          "accepted": [
+            "وَسَط",
+            "وسط",
+            "wasa6",
+            "ميديم",
+            "وسط لو سمحت"
+          ],
+          "too_formal": {
+            "item": "الحجم المتوسط من فضلك",
+            "feedback": "MSA; one word does it at the counter."
+          },
+          "tip": "Many people simply say the English size: ميديم."
+        },
+        {
+          "id": "unit-04.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "بدون ___ لو سمحت (Without ice, please.)",
+          "answer": "ثلج",
+          "accepted": [
+            "ثلج",
+            "thalij",
+            "ثَلِج"
+          ],
+          "too_formal": {
+            "item": "مكعبات الثلج",
+            "feedback": "Bookish; thalij alone is what people say."
+          },
+          "tip": "bidoon + noun = without."
+        },
+        {
+          "id": "unit-04.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "___ كاتشب لو سمحت (Extra ketchup, please.)",
+          "answer": "زيادة",
+          "accepted": [
+            "زيادة",
+            "ziyaada",
+            "زِيَادَة",
+            "زياده"
+          ],
+          "too_formal": {
+            "item": "كمية إضافية من",
+            "feedback": "MSA; ziyaada is the everyday 'extra'."
+          },
+          "tip": "ziyaada comes before the thing you want more of."
+        },
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "I want a pizza to take away.",
+          "answer": "أَبِي بِيتْزَا سَفَرِي",
+          "accepted": [
+            "أَبِي بِيتْزَا سَفَرِي",
+            "أبي بيتزا سفري",
+            "أبغى بيتزا سفري",
+            "abi beetza safari"
+          ],
+          "too_formal": {
+            "item": "أريد بيتزا للأخذ",
+            "feedback": "MSA ureed; the Gulf says abi or abgha."
+          },
+          "tip": "abi = I want."
+        },
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Do you have a kids' meal?",
+          "answer": "عِنْدَكُم وَجْبَة أَطْفَال؟",
+          "accepted": [
+            "عِنْدَكُم وَجْبَة أَطْفَال؟",
+            "عندكم وجبة أطفال",
+            "عندكم وجبة اطفال؟",
+            "3indkum wajbat a6faal"
+          ],
+          "too_formal": {
+            "item": "هل لديكم وجبة للأطفال؟",
+            "feedback": "MSA; 3indkum is the spoken 'do you have'."
+          },
+          "tip": "3indkum (you all have) is used for a shop or restaurant."
+        },
+        {
+          "id": "unit-04.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: I'd like a chicken burger and fries.",
+          "answer": "أبي برجر دجاج وفرايز",
+          "accepted": [
+            "أبي برجر دجاج وفرايز",
+            "أَبِي بَرْجَر دْجَاج وْفْرَايْز",
+            "abi burjar dijaaj w fraayz",
+            "أبي برجر دجاج وبطاط"
+          ],
+          "words": [
+            "أبي",
+            "برجر",
+            "دجاج",
+            "وفرايز"
+          ],
+          "too_formal": {
+            "item": "أود شطيرة برجر بالدجاج مع البطاطا المقلية",
+            "feedback": "Far too formal for a fast-food counter."
+          },
+          "tip": "The kind of burger comes after the word burjar."
+        },
+        {
+          "id": "unit-04.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: Please put it in a bag.",
+          "answer": "حطه في كيس لو سمحت",
+          "accepted": [
+            "حطه في كيس لو سمحت",
+            "حُطَّه فِي كِيس لَو سَمَحْت",
+            "7u66ah fi kees law samaht"
+          ],
+          "words": [
+            "حطه",
+            "في",
+            "كيس",
+            "لو سمحت"
+          ],
+          "too_formal": {
+            "item": "ضعه في كيس من فضلك",
+            "feedback": "MSA da3hu; the Gulf says 7u66ah."
+          },
+          "tip": "7u66 is 'put'; -ah is 'it'."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "thank-you-for-the-invitation",
+          "arabic": "مَشْكُور عَلَى الْعَزِيمَة",
+          "transliteration": "mashkoor 3ala l3azeema",
+          "reply": {
+            "arabic": "حَيَّاك، الْبِيت بِيتَك",
+            "transliteration": "7ayyaak, ilbeet beetak",
+            "english": "You're welcome, the house is yours."
+          }
+        },
+        {
+          "slot": "i-am-honoured-by-your-invitation",
+          "arabic": "تِشَرَّفْت بْعَزِيمْتَك",
+          "transliteration": "tisharraft b3azeemtak"
+        },
+        {
+          "slot": "please-come-in-and-sit-down",
+          "arabic": "حَيَّاك، تْفَضَّل اقْعِد",
+          "transliteration": "7ayyaak, tfaddal ig3ad"
+        },
+        {
+          "slot": "bismillah-in-the-name-of-allah",
+          "arabic": "بِسْم الله",
+          "transliteration": "bismillah"
+        },
+        {
+          "slot": "eat-with-your-right-hand",
+          "arabic": "كِل بِإِيدَك الْيِمِين",
+          "transliteration": "kil b-eedak il-yimeen"
+        },
+        {
+          "slot": "please-take-some-more",
+          "arabic": "تْفَضَّل، خِذ زِيَادَة",
+          "transliteration": "tfaddal, khith ziyaada"
+        },
+        {
+          "slot": "thank-allah-i-m-full",
+          "arabic": "الْحَمْدِلله، شَبْعَان",
+          "transliteration": "il7amdilla, shab3aan"
+        },
+        {
+          "slot": "may-allah-reward-you-well",
+          "arabic": "جَزَاك الله خِير",
+          "transliteration": "jazaak allah khair",
+          "reply": {
+            "arabic": "وِيَّاك",
+            "transliteration": "wiyyaak",
+            "english": "And you too."
+          }
+        },
+        {
+          "slot": "how-delicious-this-food-is",
+          "arabic": "هَالْأَكِل وَايِد لَذِيذ!",
+          "transliteration": "hal-akil waayid litheeth!",
+          "reply": {
+            "arabic": "بِالْعَافْيَة",
+            "transliteration": "bil3aafya",
+            "english": "Enjoy it (lit. with health)."
+          }
+        },
+        {
+          "slot": "please-pass-me-the-water",
+          "arabic": "عَطْنِي الْمَاي لَو سَمَحْت",
+          "transliteration": "3a6ni ilmaay law samaht"
+        },
+        {
+          "slot": "shall-we-have-tea-after-the-meal",
+          "arabic": "نِشْرَب چَاي بَعْد الْأَكِل؟",
+          "transliteration": "nishrab chaay ba3d il-akil?"
+        },
+        {
+          "slot": "next-time-it-s-on-us",
+          "arabic": "الْمَرَّة الْجَايَة عَلَيْنَا",
+          "transliteration": "ilmarra ijjaaya 3alaina"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Fahad",
+          "slot": "please-come-in-and-sit-down"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "thank-you-for-the-invitation"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "thank-you-for-the-invitation",
+          "reply": true
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "i-am-honoured-by-your-invitation"
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "الشرف لي. تفضل، الغدا جاهز، مد إيدك.",
+          "transliteration": "ishsharaf li. tfaddal, ilghada jaahiz, midd eedak.",
+          "english": "The honour is mine. Please, lunch is ready, help yourself."
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "bismillah-in-the-name-of-allah"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "how-delicious-this-food-is"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "how-delicious-this-food-is",
+          "reply": true
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "please-pass-me-the-water"
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "تفضل الماي. وكل زين، لا تستحي!",
+          "transliteration": "tfaddal ilmaay. w kil zain, la tisti7i!",
+          "english": "Here's the water. And eat well, don't be shy!"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "please-take-some-more"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "thank-allah-i-m-full"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "shall-we-have-tea-after-the-meal"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "may-allah-reward-you-well"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "may-allah-reward-you-well",
+          "reply": true
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "next-time-it-s-on-us"
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "إن شاء الله، تامر أمر.",
+          "transliteration": "in shaa allah, taamir amr.",
+          "english": "God willing, as you wish."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مشكور على العزيمة.",
+            "transliteration": "mashkoor 3ala l3azeema.",
+            "english": "Thank you for the invitation."
+          },
+          "response": {
+            "arabic": "حياك، البيت بيتك.",
+            "transliteration": "7ayyaak, ilbeet beetak.",
+            "english": "You're welcome, the house is yours."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تبي زيادة؟",
+            "transliteration": "tibi ziyaada?",
+            "english": "Do you want more?"
+          },
+          "response": {
+            "arabic": "لا، الحمدلله شبعت.",
+            "transliteration": "la, il7amdilla shiba3t.",
+            "english": "No, thank God, I'm full."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الأكل وايد لذيذ!",
+            "transliteration": "il-akil waayid litheeth!",
+            "english": "The food is very tasty!"
+          },
+          "response": {
+            "arabic": "بالعافية.",
+            "transliteration": "bil3aafya.",
+            "english": "Enjoy it."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نشرب چاي؟",
+            "transliteration": "nishrab chaay?",
+            "english": "Shall we have tea?"
+          },
+          "response": {
+            "arabic": "إي، يا ليت.",
+            "transliteration": "ee, ya leet.",
+            "english": "Yes, I'd love that."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "جزاك الله خير.",
+            "transliteration": "jazaak allah khair.",
+            "english": "May God reward you."
+          },
+          "response": {
+            "arabic": "وياك.",
+            "transliteration": "wiyyaak.",
+            "english": "And you too."
+          }
+        }
+      ],
+      "culture": "A Gulf host keeps pressing food on a guest (\"مد إيدك\", \"خذ زيادة\") and it is polite to refuse once with \"الحمدلله\" before stopping. Arabic coffee and dates usually come first and tea after the meal, and eating with the right hand is the Sunnah taught to every child.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which one means 'Thank you for the invitation'?",
+          "answer": "مَشْكُور عَلَى الْعَزِيمَة",
+          "accepted": [
+            "مَشْكُور عَلَى الْعَزِيمَة",
+            "mashkoor 3ala l3azeema",
+            "مشكور على العزيمة"
+          ],
+          "options": [
+            "مَشْكُور عَلَى الْعَزِيمَة",
+            "جَزَاك الله خِير",
+            "الْمَرَّة الْجَايَة عَلَيْنَا",
+            "تْفَضَّل، خِذ زِيَادَة"
+          ],
+          "too_formal": {
+            "item": "شكراً لك على دعوتك الكريمة",
+            "feedback": "MSA da3wa; the Gulf word for an invitation to eat is 3azeema."
+          },
+          "tip": "3azeema is an invitation to a meal; 3azam is to invite."
+        },
+        {
+          "id": "unit-04.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "The host says 'خذ زيادة'. Which answer says you are full?",
+          "answer": "الْحَمْدِلله، شَبْعَان",
+          "accepted": [
+            "الْحَمْدِلله، شَبْعَان",
+            "il7amdilla, shab3aan",
+            "الحمدلله شبعان",
+            "الحمدلله شبعت"
+          ],
+          "options": [
+            "الْحَمْدِلله، شَبْعَان",
+            "بِسْم الله",
+            "عَطْنِي الْمَاي لَو سَمَحْت",
+            "نِشْرَب چَاي بَعْد الْأَكِل؟"
+          ],
+          "too_formal": {
+            "item": "لقد شبعت والحمد لله",
+            "feedback": "Correct but bookish; il7amdilla, shab3aan is the table reply."
+          },
+          "tip": "A woman says shab3aana."
+        },
+        {
+          "id": "unit-04.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "جزاك الله خير (jazaak allah khair)",
+          "answer": "وِيَّاك",
+          "accepted": [
+            "وِيَّاك",
+            "وياك",
+            "wiyyaak",
+            "وإياك"
+          ],
+          "too_formal": {
+            "item": "وجزاك الله خيراً أيضاً",
+            "feedback": "Fine, but the quick spoken answer is wiyyaak."
+          },
+          "tip": "wiyyaak means 'and you'; to a woman: wiyyaach."
+        },
+        {
+          "id": "unit-04.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Your guest says: هالأكل وايد لذيذ! Answer as the host.",
+          "answer": "بِالْعَافْيَة",
+          "accepted": [
+            "بِالْعَافْيَة",
+            "بالعافية",
+            "bil3aafya",
+            "بالعافية عليك"
+          ],
+          "too_formal": {
+            "item": "هنيئاً مريئاً",
+            "feedback": "Classical; bil3aafya is what a host says."
+          },
+          "tip": "bil3aafya wishes health with the food."
+        },
+        {
+          "id": "unit-04.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "المرة الجاية ___ (ilmarra ijjaaya ___) Next time it's on us.",
+          "answer": "علينا",
+          "accepted": [
+            "علينا",
+            "3alaina",
+            "عَلَيْنَا"
+          ],
+          "too_formal": {
+            "item": "سنستضيفكم في المرة القادمة",
+            "feedback": "MSA; 3alaina is the warm promise."
+          },
+          "tip": "3ala + ina = on us; 3alay = on me."
+        },
+        {
+          "id": "unit-04.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "عطني ___ لو سمحت (3a6ni ___ law samaht) Pass me the water, please.",
+          "answer": "الماي",
+          "accepted": [
+            "الماي",
+            "ilmaay",
+            "الْمَاي",
+            "ماي"
+          ],
+          "too_formal": {
+            "item": "الماء",
+            "feedback": "MSA al-maa2; the Gulf says maay."
+          },
+          "tip": "maay is water in the Gulf."
+        },
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Please come in and sit down.",
+          "answer": "حَيَّاك، تْفَضَّل اقْعِد",
+          "accepted": [
+            "حَيَّاك، تْفَضَّل اقْعِد",
+            "حياك تفضل اقعد",
+            "تفضل اقعد",
+            "تفضل استريح",
+            "7ayyaak, tfaddal ig3ad"
+          ],
+          "too_formal": {
+            "item": "تفضل بالدخول والجلوس",
+            "feedback": "MSA; a host says 7ayyaak, tfaddal."
+          },
+          "tip": "تفضل استريح (rest yourself) is another Gulf way to say sit down."
+        },
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Shall we have tea after the meal?",
+          "answer": "نِشْرَب چَاي بَعْد الْأَكِل؟",
+          "accepted": [
+            "نِشْرَب چَاي بَعْد الْأَكِل؟",
+            "نشرب چاي بعد الأكل",
+            "نشرب شاي بعد الأكل؟",
+            "nishrab chaay ba3d il-akil"
+          ],
+          "too_formal": {
+            "item": "هل نتناول الشاي بعد الطعام؟",
+            "feedback": "MSA; the Gulf says nishrab chaay."
+          },
+          "tip": "chaay is spelt with چ, the ch sound."
+        },
+        {
+          "id": "unit-04.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: Eat with your right hand.",
+          "answer": "كل بإيدك اليمين",
+          "accepted": [
+            "كل بإيدك اليمين",
+            "كِل بِإِيدَك الْيِمِين",
+            "kil b-eedak il-yimeen",
+            "كل بيمينك"
+          ],
+          "words": [
+            "كل",
+            "بإيدك",
+            "اليمين"
+          ],
+          "too_formal": {
+            "item": "تناول الطعام بيدك اليمنى",
+            "feedback": "MSA; parents say kil b-eedak il-yimeen."
+          },
+          "tip": "Said mostly to children at the table."
+        },
+        {
+          "id": "unit-04.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: How delicious this food is!",
+          "answer": "هالأكل وايد لذيذ",
+          "accepted": [
+            "هالأكل وايد لذيذ",
+            "هَالْأَكِل وَايِد لَذِيذ!",
+            "hal-akil waayid litheeth",
+            "الأكل وايد لذيذ"
+          ],
+          "words": [
+            "هالأكل",
+            "وايد",
+            "لذيذ"
+          ],
+          "too_formal": {
+            "item": "ما ألذ هذا الطعام",
+            "feedback": "Classical exclamation; the Gulf uses waayid."
+          },
+          "tip": "hal- is a short 'this'; waayid is 'very'."
+        }
+      ]
     }
   ],
   "challenge": {

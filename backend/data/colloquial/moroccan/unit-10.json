@@ -14,7 +14,10 @@
     "D": "ض",
     "aa": "ا طويلة",
     "ee": "ي طويلة",
-    "oo": "و طويلة"
+    "oo": "و طويلة",
+    "e": "حركة قصيرة خفيفة (شوا)",
+    "j": "ج",
+    "g": "ڭ (مثل gate، في بعض الكلمات)"
   },
   "lessons": [
     {
@@ -1563,6 +1566,763 @@
             "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
           },
           "tip": "\"على حساب الجو\" كتجي فالآخر."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "the-rain-is-heavy-today",
+          "arabic": "الشتا كتصب بزاف اليوم",
+          "transliteration": "shta katSobb bzaaf lyoom"
+        },
+        {
+          "slot": "the-sky-is-covered-with-clouds",
+          "arabic": "السما مغيّمة كاملة",
+          "transliteration": "ssma mghayyma kaamla"
+        },
+        {
+          "slot": "the-storm-is-strong-tonight",
+          "arabic": "العاصفة قوية هاد الليلة",
+          "transliteration": "l3aaSifa qwiyya had llila"
+        },
+        {
+          "slot": "there-is-lightning-and-thunder",
+          "arabic": "كاين البرق والرعد",
+          "transliteration": "kayn lberq w rre3d"
+        },
+        {
+          "slot": "water-flooded-the-street",
+          "arabic": "الما غرّق الزنقة",
+          "transliteration": "lma gherreq zzenqa"
+        },
+        {
+          "slot": "the-wind-is-strong-and-the-trees-are-shaking",
+          "arabic": "الريح قوية والشجر كيتهزّ",
+          "transliteration": "rree7 qwiyya w shshjer kaythezz"
+        },
+        {
+          "slot": "the-rain-stopped",
+          "arabic": "حبسات الشتا",
+          "transliteration": "7bsaat shta",
+          "reply": {
+            "arabic": "دابا نقدرو نخرجو",
+            "transliteration": "daba nqdro nkhrjo",
+            "english": "Now we can go out."
+          }
+        },
+        {
+          "slot": "stay-home-until-the-storm-passes",
+          "arabic": "بقا فالدار حتى تدوز العاصفة",
+          "transliteration": "bqa fddaar 7tta tdooz l3aaSifa",
+          "reply": {
+            "arabic": "واخا، ما غاديش نخرج",
+            "transliteration": "wakha, ma ghaadish nkhrej",
+            "english": "OK, I won't go out."
+          }
+        },
+        {
+          "slot": "i-got-soaked-by-the-rain",
+          "arabic": "تفزّڭت بالشتا",
+          "transliteration": "tfezzegt bshta"
+        },
+        {
+          "slot": "the-electricity-was-cut-because-of-the-storm",
+          "arabic": "تقطع الضو بسباب العاصفة",
+          "transliteration": "tqTTe3 DDaw bsbaab l3aaSifa"
+        },
+        {
+          "slot": "the-road-is-slippery-after-the-rain",
+          "arabic": "الطريق زليقة من بعد الشتا",
+          "transliteration": "TTreeq zleeqa men ba3d shta",
+          "reply": {
+            "arabic": "واخا، غادي نرد البال",
+            "transliteration": "wakha, ghaadi nredd lbaal",
+            "english": "OK, I'll be careful."
+          }
+        },
+        {
+          "slot": "thank-allah-for-this-rain",
+          "arabic": "الحمد لله على هاد الشتا",
+          "transliteration": "l7amdu lillah 3la had shta",
+          "reply": {
+            "arabic": "الله يكثّر الخير",
+            "transliteration": "Allah ykettar lkheer",
+            "english": "May Allah increase the good."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ayoub",
+          "arabic": "آلو مهدي، فين نتا دابا؟",
+          "transliteration": "alo Mehdi, feen nta daba?",
+          "english": "Hello Mehdi, where are you now?"
+        },
+        {
+          "speaker": "Mehdi",
+          "arabic": "فالدار. وانت، كيداير مع هاد الجو؟",
+          "transliteration": "fddaar. w nta, kidaayer m3a had ljaw?",
+          "english": "At home. And you, how are you doing in this weather?"
+        },
+        {
+          "speaker": "Ayoub",
+          "slot": "i-got-soaked-by-the-rain"
+        },
+        {
+          "speaker": "Mehdi",
+          "slot": "the-rain-is-heavy-today"
+        },
+        {
+          "speaker": "Ayoub",
+          "arabic": "إيه، والما غرّق الزنقة ديالنا بحال شي سيل",
+          "transliteration": "eeh, w lma gherreq zzenqa dyaalna b7aal shi seyl",
+          "english": "Yes, and water flooded our street like a torrent."
+        },
+        {
+          "speaker": "Mehdi",
+          "arabic": "وحنا تقطعات الكهربا، كنتسناو الضو يرجع",
+          "transliteration": "w 7na tqeTT3aat lkahrba, kantsennaw DDaw yrje3",
+          "english": "And our electricity was cut, we're waiting for the power to come back."
+        },
+        {
+          "speaker": "Ayoub",
+          "arabic": "واش غادي تخرج تشري شي حاجة؟",
+          "transliteration": "waash ghaadi tkhrej tshri shi 7aaja?",
+          "english": "Are you going out to buy something?"
+        },
+        {
+          "speaker": "Mehdi",
+          "arabic": "بغيت نمشي للحانوت، ولكن الريح قوية والشجر كيتهزّ بزاف",
+          "transliteration": "bghit nemshi l l7aanoot, walakin rree7 qwiyya w shshjer kaythezz bzaaf",
+          "english": "I want to go to the shop, but the wind is strong and the trees are shaking a lot."
+        },
+        {
+          "speaker": "Ayoub",
+          "slot": "stay-home-until-the-storm-passes"
+        },
+        {
+          "speaker": "Mehdi",
+          "slot": "stay-home-until-the-storm-passes",
+          "reply": true
+        },
+        {
+          "speaker": "Ayoub",
+          "arabic": "قالو فالميتيو غدا غادي يكون الضباب، ولكن الشتا غادي توقف",
+          "transliteration": "qaalo flmeteeyo ghedda ghaadi ykoon DDbaab, walakin shta ghaadi twqef",
+          "english": "The forecast said there will be fog tomorrow, but the rain will stop."
+        },
+        {
+          "speaker": "Mehdi",
+          "slot": "thank-allah-for-this-rain"
+        },
+        {
+          "speaker": "Ayoub",
+          "slot": "thank-allah-for-this-rain",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "واش غادي تخرج دابا؟",
+            "transliteration": "waash ghaadi tkhrej daba?",
+            "english": "Are you going out now?"
+          },
+          "response": {
+            "arabic": "لا، غادي نبقى فالدار حتى تدوز العاصفة",
+            "transliteration": "la, ghaadi nbqa fddaar 7tta tdooz l3aaSifa",
+            "english": "No, I'll stay home until the storm passes."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مالك فازڭ هكا؟",
+            "transliteration": "maalek faazeg hakka?",
+            "english": "Why are you soaked like that?"
+          },
+          "response": {
+            "arabic": "تفزّڭت بالشتا فالطريق",
+            "transliteration": "tfezzegt bshta fTTreeq",
+            "english": "I got soaked by the rain on the way."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش تقطع الضو عندكم؟",
+            "transliteration": "waash tqTTe3 DDaw 3endkom?",
+            "english": "Did the electricity go off at your place?"
+          },
+          "response": {
+            "arabic": "إيه، بسباب العاصفة",
+            "transliteration": "eeh, bsbaab l3aaSifa",
+            "english": "Yes, because of the storm."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "رد البال، الطريق زليقة",
+            "transliteration": "redd lbaal, TTreeq zleeqa",
+            "english": "Be careful, the road is slippery."
+          },
+          "response": {
+            "arabic": "واخا، شكرا",
+            "transliteration": "wakha, shukran",
+            "english": "OK, thanks."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش حبسات الشتا؟",
+            "transliteration": "waash 7bsaat shta?",
+            "english": "Has the rain stopped?"
+          },
+          "response": {
+            "arabic": "إيه، حبسات دابا",
+            "transliteration": "eeh, 7bsaat daba",
+            "english": "Yes, it has stopped now."
+          }
+        }
+      ],
+      "culture": "Rain is a blessing in Morocco after dry years: when it comes people say \"الحمد لله\" and \"الله يكثّر الخير\", and when it is late mosques hold صلاة الاستسقاء, the prayer for rain. Heavy autumn storms flood low streets in Casablanca and cut the power (\"تقطع الضو\"), so people stay home until it passes. \"الحمد لله\" is the shared Islamic formula, said the same in every dialect.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك سولك: «واش غادي تخرج دابا؟» والعاصفة قوية. قول ليه لا، غادي تبقى فالدار حتى تدوز العاصفة.",
+          "answer": "لا، غادي نبقى فالدار حتى تدوز العاصفة",
+          "accepted": [
+            "لا، غادي نبقى فالدار حتى تدوز العاصفة",
+            "لا، غادي نبقى فالدار",
+            "لا، غادي نبقى فالدار حتى تفوت العاصفة",
+            "لا، حتى تدوز العاصفة",
+            "la, ghaadi nbqa fddaar 7tta tdooz l3aaSifa"
+          ],
+          "too_formal": {
+            "item": "لا، سأبقى في البيت حتى تمر العاصفة",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«تدوز» و«تفوت» بجوج معناهم passes."
+        },
+        {
+          "id": "unit-10.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "واحد قال ليك: «رد البال، الطريق زليقة من بعد الشتا». جاوبو.",
+          "answer": "واخا، غادي نرد البال",
+          "accepted": [
+            "واخا، غادي نرد البال",
+            "واخا، شكرا",
+            "غادي نرد البال",
+            "واخا",
+            "wakha, ghaadi nredd lbaal"
+          ],
+          "too_formal": {
+            "item": "شكرا، سأنتبه",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«رد البال» معناها be careful."
+        },
+        {
+          "id": "unit-10.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "كمل الجملة: «السما _____ كاملة.» المعنى: covered with clouds",
+          "answer": "مغيمة",
+          "accepted": [
+            "مغيمة",
+            "مغيّمة",
+            "mghayyma"
+          ],
+          "too_formal": {
+            "item": "ملبدة بالغيوم",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«مغيمة» جات من «الغيم»."
+        },
+        {
+          "id": "unit-10.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "كمل الجملة: «_____ الشتا.» المعنى: The rain stopped.",
+          "answer": "حبسات",
+          "accepted": [
+            "حبسات",
+            "وقفات",
+            "7bsaat",
+            "wqfaat"
+          ],
+          "too_formal": {
+            "item": "توقف",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«حبسات» هي لي كتقال بزاف، و«وقفات» حتى هي صحيحة."
+        },
+        {
+          "id": "unit-10.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للدارجة: \"There is lightning and thunder.\"",
+          "answer": "كاين البرق والرعد",
+          "accepted": [
+            "كاين البرق والرعد",
+            "كاين البرق و الرعد",
+            "كاين الرعد والبرق",
+            "kayn lberq w rre3d"
+          ],
+          "too_formal": {
+            "item": "هناك برق ورعد",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«كاين» معناها there is."
+        },
+        {
+          "id": "unit-10.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للدارجة: \"The electricity was cut because of the storm.\"",
+          "answer": "تقطع الضو بسباب العاصفة",
+          "accepted": [
+            "تقطع الضو بسباب العاصفة",
+            "تقطعات الكهربا بسباب العاصفة",
+            "تقطع الضو بسبب العاصفة",
+            "مشا الضو بسباب العاصفة",
+            "tqTTe3 DDaw bsbaab l3aaSifa"
+          ],
+          "too_formal": {
+            "item": "انقطعت الكهرباء بسبب العاصفة",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "فالدارجة كيقولو «الضو» على الكهربا ديال الدار."
+        },
+        {
+          "id": "unit-10.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "شنو كتقول إلا رجعتي للدار مبلول من الشتا؟",
+          "answer": "تفزّڭت بالشتا",
+          "accepted": [
+            "تفزّڭت بالشتا",
+            "تفزڭت بالشتا",
+            "تفزگت بالشتا",
+            "تفزكت بالشتا",
+            "tfezzegt bshta"
+          ],
+          "options": [
+            "تفزّڭت بالشتا",
+            "حبسات الشتا",
+            "السما مغيّمة كاملة",
+            "كاين البرق والرعد"
+          ],
+          "tip": "«فازڭ» معناها مبلول بزاف."
+        },
+        {
+          "id": "unit-10.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "شنو معنى «الما غرّق الزنقة»؟",
+          "answer": "Water flooded the street.",
+          "accepted": [
+            "Water flooded the street."
+          ],
+          "options": [
+            "Water flooded the street.",
+            "The road is slippery.",
+            "The rain stopped.",
+            "The sky is clear."
+          ],
+          "tip": "«الزنقة» هي the street."
+        },
+        {
+          "id": "unit-10.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الكلمات: «الليلة / قوية / العاصفة / هاد»",
+          "answer": "العاصفة قوية هاد الليلة",
+          "accepted": [
+            "العاصفة قوية هاد الليلة",
+            "هاد الليلة العاصفة قوية",
+            "l3aaSifa qwiyya had llila"
+          ],
+          "too_formal": {
+            "item": "العاصفة شديدة هذه الليلة",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«هاد الليلة» = tonight."
+        },
+        {
+          "id": "unit-10.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الكلمات: «الشتا / على / الحمد / هاد / لله»",
+          "answer": "الحمد لله على هاد الشتا",
+          "accepted": [
+            "الحمد لله على هاد الشتا",
+            "l7amdu lillah 3la had shta"
+          ],
+          "too_formal": {
+            "item": "الحمد لله على هذا المطر",
+            "feedback": "Correct, but \"هذا\" and \"المطر\" are MSA; Darija says \"هاد الشتا\"."
+          },
+          "tip": "«الحمد لله» كتقال بحال بحال فكل اللهجات."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "what-s-the-temperature-tomorrow",
+          "arabic": "شحال غادي تكون الحرارة غدا؟",
+          "transliteration": "sh7aal ghaadi tkoon l7araara ghedda?",
+          "reply": {
+            "arabic": "قالو فالميتيو خمسة وعشرين درجة",
+            "transliteration": "qaalo flmeteeyo khamsa w 3shreen daraja",
+            "english": "The forecast said twenty-five degrees."
+          }
+        },
+        {
+          "slot": "the-temperature-will-be-thirty-degrees",
+          "arabic": "الحرارة غادي توصل لتلاتين درجة",
+          "transliteration": "l7araara ghaadi twSel l tlaateen daraja"
+        },
+        {
+          "slot": "the-weather-will-be-sunny-all-week",
+          "arabic": "الجو غادي يكون مشمّس السيمانة كاملة",
+          "transliteration": "ljaw ghaadi ykoon mshemmes ssimaana kaamla"
+        },
+        {
+          "slot": "rain-is-expected-on-friday",
+          "arabic": "كيتوقعو الشتا نهار الجمعة",
+          "transliteration": "kaytwaqq3o shta nhaar jjem3a"
+        },
+        {
+          "slot": "the-temperature-will-drop-at-night",
+          "arabic": "الحرارة غادي تنزل فالليل",
+          "transliteration": "l7araara ghaadi tenzel flleel"
+        },
+        {
+          "slot": "the-weather-will-be-better-tomorrow",
+          "arabic": "غدا الجو غادي يكون حسن",
+          "transliteration": "ghedda ljaw ghaadi ykoon 7sen",
+          "reply": {
+            "arabic": "إن شاء الله",
+            "transliteration": "in shaa2 Allah",
+            "english": "God willing."
+          }
+        },
+        {
+          "slot": "the-bulletin-says-snow-will-fall",
+          "arabic": "النشرة كتقول غادي يطيح الثلج",
+          "transliteration": "nnashra katqool ghaadi yTee7 ttelj"
+        },
+        {
+          "slot": "are-the-forecasts-always-accurate",
+          "arabic": "واش التوقعات ديما مضبوطة؟",
+          "transliteration": "waash ttwaqqo3aat dima maDbooTa?",
+          "reply": {
+            "arabic": "لا، ماشي ديما",
+            "transliteration": "la, maashi dima",
+            "english": "No, not always."
+          }
+        },
+        {
+          "slot": "i-check-the-weather-on-my-phone",
+          "arabic": "كنشوف الميتيو فالتيليفون ديالي",
+          "transliteration": "kanshoof lmeteeyo ftteleefoon dyaali"
+        },
+        {
+          "slot": "the-weather-will-be-cloudy-with-light-rain",
+          "arabic": "غادي يكون الجو مغيّم مع شي شتا خفيفة",
+          "transliteration": "ghaadi ykoon ljaw mghayyem m3a shi shta khfeefa"
+        },
+        {
+          "slot": "the-humidity-is-high-this-week",
+          "arabic": "كاينة الرطوبة بزاف هاد السيمانة",
+          "transliteration": "kayna rrTooba bzaaf had ssimaana"
+        },
+        {
+          "slot": "listen-to-the-news-bulletin-to-a-man",
+          "arabic": "سمع النشرة ديال الخبار",
+          "transliteration": "sme3 nnashra dyaal lkhbaar",
+          "reply": {
+            "arabic": "واخا، دابا نشعل التلفزة",
+            "transliteration": "wakha, daba nsha33el ttelfaza",
+            "english": "OK, I'll turn on the TV now."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Imane",
+          "arabic": "خديجة، بغيت نصبن الزرابي غدا. شفتي الميتيو؟",
+          "transliteration": "Khadija, bghit nSebben zzraabi ghedda. shefti lmeteeyo?",
+          "english": "Khadija, I want to wash the rugs tomorrow. Did you see the forecast?"
+        },
+        {
+          "speaker": "Khadija",
+          "arabic": "تسناي، دابا نشوف فالتيليفون",
+          "transliteration": "tsennay, daba nshoof ftteleefoon",
+          "english": "Wait, I'll look on the phone now."
+        },
+        {
+          "speaker": "Imane",
+          "slot": "what-s-the-temperature-tomorrow"
+        },
+        {
+          "speaker": "Khadija",
+          "slot": "what-s-the-temperature-tomorrow",
+          "reply": true
+        },
+        {
+          "speaker": "Imane",
+          "arabic": "مزيان! وواش غادي تشتي؟",
+          "transliteration": "mzyaan! w waash ghaadi teshti?",
+          "english": "Good! And is it going to rain?"
+        },
+        {
+          "speaker": "Khadija",
+          "slot": "rain-is-expected-on-friday"
+        },
+        {
+          "speaker": "Imane",
+          "arabic": "غدا الخميس، يعني ما كاين مشكل",
+          "transliteration": "ghedda lkhmees, ya3ni ma kayn mushkil",
+          "english": "Tomorrow is Thursday, so there's no problem."
+        },
+        {
+          "speaker": "Khadija",
+          "arabic": "إيه، ولكن رد البال، الحرارة غادي تنزل فالليل",
+          "transliteration": "eeh, walakin redd lbaal, l7araara ghaadi tenzel flleel",
+          "english": "Yes, but be careful, the temperature will drop at night."
+        },
+        {
+          "speaker": "Imane",
+          "slot": "are-the-forecasts-always-accurate"
+        },
+        {
+          "speaker": "Khadija",
+          "slot": "are-the-forecasts-always-accurate",
+          "reply": true
+        },
+        {
+          "speaker": "Imane",
+          "arabic": "إيوا غادي نسمع النشرة ديال الخبار فالعشية باش نتأكد",
+          "transliteration": "iwa ghaadi nsme3 nnashra dyaal lkhbaar fl3sheeya baash nt2akked",
+          "english": "Well, I'll listen to the news bulletin in the evening to make sure."
+        },
+        {
+          "speaker": "Khadija",
+          "arabic": "مزيان، إن شاء الله يكون الجو زوين",
+          "transliteration": "mzyaan, in shaa2 Allah ykoon ljaw zween",
+          "english": "Good, God willing the weather will be nice."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شحال غادي تكون الحرارة غدا؟",
+            "transliteration": "sh7aal ghaadi tkoon l7araara ghedda?",
+            "english": "What will the temperature be tomorrow?"
+          },
+          "response": {
+            "arabic": "غادي توصل لتلاتين درجة",
+            "transliteration": "ghaadi twSel l tlaateen daraja",
+            "english": "It will reach thirty degrees."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش غادي تشتي هاد السيمانة؟",
+            "transliteration": "waash ghaadi teshti had ssimaana?",
+            "english": "Is it going to rain this week?"
+          },
+          "response": {
+            "arabic": "إيه، كيتوقعو الشتا نهار الجمعة",
+            "transliteration": "eeh, kaytwaqq3o shta nhaar jjem3a",
+            "english": "Yes, rain is expected on Friday."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين كتشوف الميتيو؟",
+            "transliteration": "feen katshoof lmeteeyo?",
+            "english": "Where do you check the forecast?"
+          },
+          "response": {
+            "arabic": "فالتيليفون ديالي",
+            "transliteration": "ftteleefoon dyaali",
+            "english": "On my phone."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش التوقعات ديما دقيقة؟",
+            "transliteration": "waash ttwaqqo3aat dima dqeeqa?",
+            "english": "Are the forecasts always accurate?"
+          },
+          "response": {
+            "arabic": "لا، ماشي ديما",
+            "transliteration": "la, maashi dima",
+            "english": "No, not always."
+          }
+        }
+      ],
+      "culture": "Moroccans call the forecast \"الميتيو\", from French météo, and check it on the phone or in the bulletin after the evening news, which gives the highest and lowest temperature city by city. Snow falls in winter on the Middle Atlas around Ifrane and Azrou, and the bulletin warns when mountain roads may close.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "صاحبتك سولاتك: «شحال غادي تكون الحرارة غدا؟». قول ليها تلاتين درجة.",
+          "answer": "غادي توصل لتلاتين درجة",
+          "accepted": [
+            "غادي توصل لتلاتين درجة",
+            "تلاتين درجة",
+            "الحرارة غادي توصل لتلاتين درجة",
+            "غادي تكون تلاتين درجة",
+            "ghaadi twSel l tlaateen daraja"
+          ],
+          "too_formal": {
+            "item": "ستكون درجة الحرارة ثلاثين درجة",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«تلاتين» هي thirty فالدارجة."
+        },
+        {
+          "id": "unit-10.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "واحد سولك: «واش التوقعات ديما مضبوطة؟». قول ليه لا، ماشي ديما.",
+          "answer": "لا، ماشي ديما",
+          "accepted": [
+            "لا، ماشي ديما",
+            "لا ماشي ديما",
+            "ماشي ديما",
+            "la, maashi dima"
+          ],
+          "too_formal": {
+            "item": "لا، ليست دائما دقيقة",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«ديما» معناها always."
+        },
+        {
+          "id": "unit-10.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "كمل الجملة: «الحرارة غادي _____ فالليل.» المعنى: drop",
+          "answer": "تنزل",
+          "accepted": [
+            "تنزل",
+            "تهبط",
+            "tenzel"
+          ],
+          "too_formal": {
+            "item": "تنخفض",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«نزل» ضد «طلع»."
+        },
+        {
+          "id": "unit-10.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "كمل الجملة: «كيتوقعو الشتا نهار _____.» المعنى: Friday",
+          "answer": "الجمعة",
+          "accepted": [
+            "الجمعة",
+            "جمعة",
+            "jjem3a"
+          ],
+          "tip": "«نهار الجمعة» = on Friday."
+        },
+        {
+          "id": "unit-10.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للدارجة: \"The weather will be better tomorrow.\"",
+          "answer": "غدا الجو غادي يكون حسن",
+          "accepted": [
+            "غدا الجو غادي يكون حسن",
+            "الجو غادي يكون حسن غدا",
+            "غدا الجو غادي يكون أحسن",
+            "ghedda ljaw ghaadi ykoon 7sen"
+          ],
+          "too_formal": {
+            "item": "سيكون الطقس أفضل غدا",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«حسن» فالدارجة معناها better."
+        },
+        {
+          "id": "unit-10.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للدارجة: \"I check the weather on my phone.\"",
+          "answer": "كنشوف الميتيو فالتيليفون ديالي",
+          "accepted": [
+            "كنشوف الميتيو فالتيليفون ديالي",
+            "كنشوف الميتيو فالتيليفون",
+            "كنشوف الجو فالتيليفون ديالي",
+            "كنتأكد من الميتيو فالتيليفون ديالي",
+            "kanshoof lmeteeyo ftteleefoon dyaali"
+          ],
+          "too_formal": {
+            "item": "أتحقق من الطقس على هاتفي",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«ديالي» معناها my."
+        },
+        {
+          "id": "unit-10.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "أشمن جملة معناها \"Rain is expected on Friday\"؟",
+          "answer": "كيتوقعو الشتا نهار الجمعة",
+          "accepted": [
+            "كيتوقعو الشتا نهار الجمعة"
+          ],
+          "options": [
+            "كيتوقعو الشتا نهار الجمعة",
+            "الحرارة غادي تنزل فالليل",
+            "الجو غادي يكون مشمّس السيمانة كاملة",
+            "كاينة الرطوبة بزاف هاد السيمانة"
+          ],
+          "tip": "«كيتوقعو» جات من «توقع»."
+        },
+        {
+          "id": "unit-10.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "شنو كتقول لصاحبك (راجل) باش يسمع النشرة؟",
+          "answer": "سمع النشرة ديال الخبار",
+          "accepted": [
+            "سمع النشرة ديال الخبار"
+          ],
+          "options": [
+            "سمع النشرة ديال الخبار",
+            "سمعي النشرة ديال الخبار",
+            "كنشوف الميتيو فالتيليفون ديالي",
+            "النشرة كتقول غادي يطيح الثلج"
+          ],
+          "tip": "للراجل «سمع»، وللمرا «سمعي»."
+        },
+        {
+          "id": "unit-10.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الكلمات: «كاملة / غادي / الجو / مشمّس / السيمانة / يكون»",
+          "answer": "الجو غادي يكون مشمّس السيمانة كاملة",
+          "accepted": [
+            "الجو غادي يكون مشمّس السيمانة كاملة",
+            "الجو غادي يكون مشمس السيمانة كاملة",
+            "السيمانة كاملة الجو غادي يكون مشمس",
+            "ljaw ghaadi ykoon mshemmes ssimaana kaamla"
+          ],
+          "too_formal": {
+            "item": "سيكون الطقس مشمسا طوال الأسبوع",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«السيمانة» جات من الفرنسية semaine."
+        },
+        {
+          "id": "unit-10.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الكلمات: «الثلج / كتقول / النشرة / يطيح / غادي»",
+          "answer": "النشرة كتقول غادي يطيح الثلج",
+          "accepted": [
+            "النشرة كتقول غادي يطيح الثلج",
+            "nnashra katqool ghaadi yTee7 ttelj"
+          ],
+          "too_formal": {
+            "item": "النشرة تقول إن الثلج سيتساقط",
+            "feedback": "Correct, but this is Modern Standard Arabic or a written style, not how it is said in Darija."
+          },
+          "tip": "«يطيح» معناها falls."
         }
       ]
     }

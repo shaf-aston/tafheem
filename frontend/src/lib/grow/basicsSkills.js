@@ -19,7 +19,11 @@ import { weave } from './lesson'
 import { ADDRESSED, PERSONS, arabicOptions, englishOptions, possessiveTable, verbTable } from './wordForms'
 
 const EVERYONE = PERSONS.map((person) => person.id)
-const MINE_TAIL = 'A word with an ending never takes ال as well, and a final ة is written ت before it.'
+// Taught whole; asked on a word with no ة, the ة half is left off (ruleFor).
+const TA_CLAUSE = ', and a final ة is written ت before it.'
+const MINE_TAIL = `A word with an ending never takes ال as well${TA_CLAUSE}`
+// What a misspelt form (wordForms.js `wrong:al:*`, `wrong:ta:*`) got wrong.
+const MISSPELT = { al: 'A word with an ending never takes ال as well.', ta: 'A final ة is written ت before an ending.' }
 
 const own = (id, end, said, pool, to = '') => ({
   id, key: `mine:${id}`, base: 'bare', persons: [null], pool: [...pool.map((one) => `mine:${one}`), `wrong:al:${id}`, `wrong:ta:${id}`],
@@ -167,6 +171,23 @@ const record = (item, direction, asked, word, person) => ({
   module: MODULE, item: item.id, context: { world: MODULE, skill: item.skill, direction, word: asked.ar, from: word.id, ...(person && { person }) },
 })
 
+/** The marker's rule as said of one word: the ة half of "my, his, her" only for a word that ends in ة. */
+const ruleFor = (marker, word) =>
+  marker.key.startsWith('mine:') && !plain(word.ar).endsWith('ة') ? marker.rule.replace(TA_CLAUSE, '.') : marker.rule
+
+/** A rule's first sentence: what the addition says. */
+const leadOf = (rule) => rule.slice(0, rule.indexOf('. ') + 1) || rule
+
+/** For each wrong option, the answer and what that pick is: another form's meaning and the rule's lead, or the misspelling. */
+function wrongWhy(options, table, said, rule) {
+  const wrong = options.filter((option) => option.id !== 'right').map(({ id }) => {
+    const [head, kind] = id.split(':')
+    const one = table.find((entry) => entry.key === id)
+    return [id, `${said} ${head === 'wrong' ? MISSPELT[kind] : `${one.ar} is “${one.en}”. ${leadOf(rule)}`}`]
+  })
+  return Object.fromEntries(wrong)
+}
+
 /** "she wrote" → pick the Arabic, and كَتَبَتْ → pick the English: each on its own verb (or noun) and person. */
 export function markerAsks(item, isNew, random) {
   const ask = (direction) => {
@@ -174,15 +195,18 @@ export function markerAsks(item, isNew, random) {
     const person = pick(item.marker.persons, random)
     const { table, key, asked, pool } = drawn(item, word, person, direction)
     const toArabic = direction === 'to-arabic'
+    const options = (toArabic ? arabicOptions : englishOptions)(table, key, pool, random)
+    const said = `${asked.ar} = ${asked.en}.`
     return {
       kind: 'choose',
       id: `${toArabic ? 'pick' : 'read'}:${item.id}`,
       tag: tagOf(isNew),
       ask: toArabic ? `Which one is “${asked.en}”?` : 'What does it mean?',
       ...(toArabic ? { arabic: true } : { ar: asked.ar }),
-      options: (toArabic ? arabicOptions : englishOptions)(table, key, pool, random),
+      options,
       answer: 'right',
-      why: `${asked.ar} = ${asked.en}. ${item.marker.rule}`,
+      why: `${said} ${ruleFor(item.marker, word)}`,
+      wrong: wrongWhy(options, table, said, item.marker.rule),
       record: record(item, direction, asked, word, person),
     }
   }

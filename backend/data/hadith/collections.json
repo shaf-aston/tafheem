@@ -2,7 +2,7 @@
   "_about": [
     "Every hadith collection the module knows about, and how to build one, in the order the tab lists them.",
     "Adding a collection is an entry here plus a run of",
-    "scripts/fetch_hadith_collections.py and scripts/build_hadith_index.py; no code changes.",
+    "scripts/hadith/fetch_hadith_collections.py and scripts/hadith/build_hadith_index.py; no code changes.",
     "short is the name the picker shows; arabic and arabic_short are the same two names in Arabic, so a search can name it either way. cite is the citation URL template sunnah.com uses, {number} filled with the hadith's own number.",
     "sahih marks a collection whose every hadith is graded sahih by the scholars, so its hadiths carry no grade of their own."
   ],

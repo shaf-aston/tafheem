@@ -5,6 +5,10 @@ names every book quoted, and data/grow/worlds/<world>/ holds a world's paths
 and units, one file each. Nothing here judges a recitation (that is /api/listen/check
 and /check-text) and nothing here makes a ruling: every ruling in the files
 is a scholar's own sentence, quoted.
+
+The Grow tab's Prayer world reads /worlds/prayer (frontend lib/grow/usePrayerWorld.js):
+its phrases to say, from wudu to the adhkar, become lessons there. /paths is
+the same paths alone, kept for any caller that wants only them.
 """
 from __future__ import annotations
 

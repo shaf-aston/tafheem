@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { landingOf, placeOf, valueOf } from './growPlace'
+import { landingOf, nameOf, placeOf, valueOf } from './growPlace'
 
 const WORLDS = ['words', 'prayer', 'quran', 'hadith']
 const LESSONS = ['words', 'quran', 'hadith']
@@ -66,5 +66,20 @@ describe('landingOf', () => {
   it('leaves home and worlds where they are, with nothing to resume', () => {
     expect(landingOf({ at: 'home' })).toEqual({ view: { at: 'home' }, resume: null })
     expect(landingOf({ at: 'world', id: 'fiqh' }).resume).toBeNull()
+  })
+})
+
+describe('nameOf', () => {
+  const NAMED = [{ id: 'basics', name: 'Basics' }, { id: 'fiqh', name: 'Fiqh' }]
+  it('says a place the way a reader would, never as an address', () => {
+    expect(nameOf('basics', NAMED)).toBe('Basics')
+    expect(nameOf('basics/lesson', NAMED)).toBe('Basics lesson')
+    expect(nameOf('fiqh/tahara', NAMED)).toBe('Fiqh')
+    expect(nameOf('fiqh/tahara/wudu', NAMED)).toBe('Fiqh lesson')
+    expect(nameOf('fiqh/review', NAMED)).toBe('Fiqh review')
+  })
+  it('names nothing for home or an unknown world', () => {
+    expect(nameOf(null, NAMED)).toBeNull()
+    expect(nameOf('nowhere/lesson', NAMED)).toBeNull()
   })
 })

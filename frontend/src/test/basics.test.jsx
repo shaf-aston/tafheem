@@ -2,7 +2,7 @@
 // Grow's Basics world on the real word file: a tap from Home goes straight into the first lesson, which says what ال is,
 // teaches "the book", then asks it both ways; every answer is filed under module 'basics'. A page load on the same address
 // lands on Grow's home with the lesson offered instead.
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 
 import { renderScreen } from './render'
@@ -36,6 +36,15 @@ const hero = () => screen.findByRole('heading', { level: 3, name: /Your first st
 
 describe('basics', () => {
   beforeEach(() => localStorage.clear())
+
+  it('a world opens at its top, not where Grow\'s page was scrolled to', async () => {
+    renderScreen(home(), { routes: routes() })
+    await hero()
+    const scrolled = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    fireEvent.click(document.querySelector('.grow-world-tile'))
+    await waitFor(() => expect(scrolled).toHaveBeenCalledWith(expect.objectContaining({ top: 0 })))
+    scrolled.mockRestore()
+  })
 
   it('a tap from another tab opens the first lesson on what ال is, then asks "the book" both ways', async () => {
     const filed = []
@@ -99,7 +108,8 @@ describe('basics', () => {
 
     expect(screen.getByText(/^Which one is “my .+”\?$/)).toBeTruthy()
     expect(screen.getAllByRole('radio')).toHaveLength(3)
-    fireEvent.click(screen.getAllByRole('radio')[0])
+    // The options are shuffled; the right one has neither ال nor a final ة before the ending.
+    fireEvent.click(screen.getAllByRole('radio').find((option) => !/^ال|ة/.test(option.textContent.trim())))
     click('Check')
     expect(screen.getByRole('status').textContent).toMatch(/on the end means “my”/)
     await waitFor(() => expect(filed.at(-1)).toMatchObject({

@@ -10,7 +10,7 @@ import manifest from '../../../public/grow/backdrops/manifest.json'
 export const SUBJECTS = ['architecture', 'nature-no-animals', 'objects', 'geometry', 'calligraphy', 'sky', 'water']
 
 /** Where the manifest's files are served from. */
-export const BACKDROPS_URL = '/grow/backdrops/'
+const BACKDROPS_URL = '/grow/backdrops/'
 
 /** Every backdrop by id, as the manifest has it. */
 export const BACKDROPS = manifest.backdrops

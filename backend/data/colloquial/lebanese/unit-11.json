@@ -14,7 +14,14 @@
     "oo": "و طويلة",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "T": "ط",
+    "S": "ص",
+    "D": "ض",
+    "Z": "ظ",
+    "dh": "ذ",
+    "th": "ث",
+    "q": "ق"
   },
   "lessons": [
     {
@@ -1736,6 +1743,825 @@
             "feedback": "Opposite meaning; in a Lebanese home people say it the everyday way shown as the answer."
           },
           "tip": "\"ma3 is-salaame\" is the standard goodbye."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "ramadan-kareem-welcome",
+          "arabic": "رَمَضَان كَرِيم، أَهْلًا وْسَهْلًا",
+          "transliteration": "ramaDaan kariim, ahla w sahla",
+          "reply": {
+            "arabic": "الله أَكْرَم",
+            "transliteration": "allah akram",
+            "english": "God is more generous."
+          }
+        },
+        {
+          "slot": "come-in-the-call-to-prayer-is-near",
+          "arabic": "تْفَضَّل، قَرَّب الأَذَان",
+          "transliteration": "tfaDDal, 2arrab el2adaan"
+        },
+        {
+          "slot": "it-is-time-to-break-the-fast",
+          "arabic": "صَار وَقْت الإِفْطَار",
+          "transliteration": "Saar wa2t el2efTaar"
+        },
+        {
+          "slot": "let-us-break-our-fast-with-dates-and-water",
+          "arabic": "يَلّا نِفْطُر عَالتَّمِر وَالمَيّ",
+          "transliteration": "yalla nefTor 3attamer w elmayy"
+        },
+        {
+          "slot": "the-thirst-is-gone-the-veins-are-wet-and-the-rew",
+          "arabic": "ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ",
+          "transliteration": "dhahaba eZZama2u wabtallati l3uruuqu wa thabata l2ajru in shaa2 allaah"
+        },
+        {
+          "slot": "please-take-some-soup",
+          "arabic": "تْفَضَّل، خُود شْوَيّة شُورْبَة",
+          "transliteration": "tfaDDal, khod shwayyet shorba"
+        },
+        {
+          "slot": "may-allah-accept-our-fasting-and-yours",
+          "arabic": "تَقَبَّلَ اللَّهُ صِيَامَنَا وَصِيَامَكُم",
+          "transliteration": "taqabbala llaahu Siyaamana wa Siyaamakum",
+          "reply": {
+            "arabic": "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُم",
+            "transliteration": "taqabbala llaahu minna wa minkum",
+            "english": "May Allah accept from us and from you."
+          }
+        },
+        {
+          "slot": "the-table-is-ready-please-come",
+          "arabic": "السُّفْرَة جَاهْزِة، تْفَضَّلُوا",
+          "transliteration": "essufra jaahze, tfaDDalu"
+        },
+        {
+          "slot": "take-another-date",
+          "arabic": "خُود كَمَان تَمْرَة",
+          "transliteration": "khod kamaan tamra"
+        },
+        {
+          "slot": "we-pray-maghrib-first-then-we-eat",
+          "arabic": "مْنْصَلّي المَغْرِب أَوَّل وَبَعْدَيْن مْنَاكُل",
+          "transliteration": "mnSalli elmaghreb awwal w ba3dein mnaakol"
+        },
+        {
+          "slot": "i-fasted-all-day-and-i-am-very-hungry",
+          "arabic": "صُمْت كِلّ النْهَار وَأَنَا جُوعَان كْتِير",
+          "transliteration": "Sumt kell ennhaar w ana jou3aan ktiir"
+        },
+        {
+          "slot": "may-allah-bless-you-for-the-invitation-to-iftar",
+          "arabic": "الله يْبَارِك فِيكُن عَالدَّعْوِة عَالإِفْطَار",
+          "transliteration": "allah ybaarek fiikon 3adda3we 3al2efTaar",
+          "reply": {
+            "arabic": "صَحْتَيْن وَعَافْيِة، شَرَّفْتْنَا",
+            "transliteration": "Sa7tein w 3aafye, sharraftna",
+            "english": "To your health, you honoured us."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ahmad",
+          "slot": "ramadan-kareem-welcome"
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "ramadan-kareem-welcome",
+          "reply": true
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "come-in-the-call-to-prayer-is-near"
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "i-fasted-all-day-and-i-am-very-hungry"
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "وأنا كمان صايم وعطشان كتير. إصبر شوي، هلّق منسمع الأذان",
+          "transliteration": "w ana kamaan Saayem w 3aTshaan ktiir. 2eSbor shwayy, halla2 mnesma3 el2adaan",
+          "english": "I'm fasting too and very thirsty. Wait a little, we'll hear the call to prayer now."
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "it-is-time-to-break-the-fast"
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "let-us-break-our-fast-with-dates-and-water"
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "the-thirst-is-gone-the-veins-are-wet-and-the-rew"
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "may-allah-accept-our-fasting-and-yours"
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "may-allah-accept-our-fasting-and-yours",
+          "reply": true
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "we-pray-maghrib-first-then-we-eat"
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "the-table-is-ready-please-come"
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "شو هالسفرة! في كمان قطايف؟",
+          "transliteration": "shu hassufra! fi kamaan 2aTaayef?",
+          "english": "What a table! Are there qatayef too?"
+        },
+        {
+          "speaker": "Ahmad",
+          "arabic": "أكيد، بس أوّل خود شوية شوربة عدس",
+          "transliteration": "akiid, bas awwal khod shwayyet shorbet 3adas",
+          "english": "Of course, but first take some lentil soup."
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "may-allah-bless-you-for-the-invitation-to-iftar"
+        },
+        {
+          "speaker": "Ahmad",
+          "slot": "may-allah-bless-you-for-the-invitation-to-iftar",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "تَقَبَّلَ اللَّهُ صِيَامَنَا وَصِيَامَكُم",
+            "transliteration": "taqabbala llaahu Siyaamana wa Siyaamakum",
+            "english": "May Allah accept our fasting and yours."
+          },
+          "response": {
+            "arabic": "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُم",
+            "transliteration": "taqabbala llaahu minna wa minkum",
+            "english": "May Allah accept from us and from you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بتحبّ التمر؟",
+            "transliteration": "bti7ebb ettamer?",
+            "english": "Do you like dates?"
+          },
+          "response": {
+            "arabic": "إي، كتير",
+            "transliteration": "ee, ktiir",
+            "english": "Yes, a lot."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "صُمت اليوم؟",
+            "transliteration": "Sumt elyoom?",
+            "english": "Did you fast today?"
+          },
+          "response": {
+            "arabic": "إي، الحمد لله",
+            "transliteration": "ee, il7amdu lillaah",
+            "english": "Yes, praise be to Allah."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إيمتى الأذان؟",
+            "transliteration": "eemta el2adaan?",
+            "english": "When is the call to prayer?"
+          },
+          "response": {
+            "arabic": "بعد عشر دقايق",
+            "transliteration": "ba3d 3ashr d2aaye2",
+            "english": "In ten minutes."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو بتاكل عالسحور؟",
+            "transliteration": "shu btaakol 3asso7oor?",
+            "english": "What do you eat for the pre-dawn meal?"
+          },
+          "response": {
+            "arabic": "شوية لبنة وخبز ومي كتير",
+            "transliteration": "shwayyet labne w khobez w mayy ktiir",
+            "english": "A little labneh, bread and plenty of water."
+          }
+        }
+      ],
+      "culture": "In Beirut the fast is broken at the sunset call to prayer with dates and water, then lentil soup and fattoush, and qatayef are the sweet of Ramadan. The du'a \"ذهب الظمأ\" and \"تقبّل الله منّا ومنكم\" are said in the same words in every dialect, and giving iftar to a fasting guest is counted a good deed, so hosts invite gladly.",
+      "exercises": [
+        {
+          "id": "unit-11.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Your host says: \"تقبّل الله صيامنا وصيامكم.\" Reply.",
+          "answer": "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُم",
+          "accepted": [
+            "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُم",
+            "تقبل الله منا ومنكم",
+            "تقبّل الله منّا ومنكن",
+            "منّا ومنكم",
+            "taqabbala llaahu minna wa minkum"
+          ],
+          "tip": "This reply is a set formula shared across all dialects, so it stays as it is."
+        },
+        {
+          "id": "unit-11.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "You were invited to iftar. Thank your hosts for the invitation.",
+          "answer": "الله يبارك فيكن عالدعوة",
+          "accepted": [
+            "الله يبارك فيكن عالدعوة",
+            "الله يْبَارِك فِيكُن عَالدَّعْوِة عَالإِفْطَار",
+            "الله يبارك فيكن عالدعوة عالإفطار",
+            "يسلمو عالدعوة",
+            "كتّر خيركن عالدعوة",
+            "allah ybaarek fiikon 3adda3we"
+          ],
+          "too_formal": {
+            "item": "بارك الله فيكم على دعوة الإفطار",
+            "feedback": "Correct and polite, but in Beirut people say \"الله يبارك فيكن\"."
+          },
+          "tip": "\"فيكن\" is \"in you all\", addressed to the whole family."
+        },
+        {
+          "id": "unit-11.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"صار وقت _____.\" (It is time to break the fast.)",
+          "answer": "الإفطار",
+          "accepted": [
+            "الإفطار",
+            "الإِفْطَار",
+            "الافطار",
+            "الفطور",
+            "el2efTaar"
+          ],
+          "too_formal": {
+            "item": "حان وقت الإفطار",
+            "feedback": "Correct but formal; \"صار وقت\" is the spoken \"it's time for\"."
+          },
+          "tip": "\"صار\" here means \"it has become\"."
+        },
+        {
+          "id": "unit-11.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"يلّا نفطر عالتمر و_____.\" (Let us break our fast with dates and water.)",
+          "answer": "المي",
+          "accepted": [
+            "المي",
+            "المَيّ",
+            "الميّ",
+            "المية",
+            "elmayy"
+          ],
+          "too_formal": {
+            "item": "الماء",
+            "feedback": "This is the written word; in speech water is \"مي\"."
+          },
+          "tip": "\"مي\" is the everyday word for water."
+        },
+        {
+          "id": "unit-11.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (to a man): \"Please, take some soup.\"",
+          "answer": "تْفَضَّل، خُود شْوَيّة شُورْبَة",
+          "accepted": [
+            "تْفَضَّل، خُود شْوَيّة شُورْبَة",
+            "تفضل خود شوية شوربة",
+            "تفضّل، خود شوربة",
+            "تفضّل، خود شوي شوربة",
+            "tfaDDal, khod shwayyet shorba"
+          ],
+          "too_formal": {
+            "item": "تفضّل، خذ بعض الحساء",
+            "feedback": "Correct but formal; \"خود\" and \"شوربة\" are the spoken words."
+          },
+          "tip": "To a woman: \"تفضّلي، خدي\"."
+        },
+        {
+          "id": "unit-11.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (a man speaking): \"I fasted all day and I am very hungry.\"",
+          "answer": "صُمْت كِلّ النْهَار وَأَنَا جُوعَان كْتِير",
+          "accepted": [
+            "صُمْت كِلّ النْهَار وَأَنَا جُوعَان كْتِير",
+            "صمت كل النهار وأنا جوعان كتير",
+            "صمت كل النهار وجوعان كتير",
+            "Sumt kell ennhaar w ana jou3aan ktiir"
+          ],
+          "too_formal": {
+            "item": "صمتُ اليوم كلّه وأنا جائع جدًّا",
+            "feedback": "Correct but formal; \"جوعان\" and \"كتير\" are the spoken words."
+          },
+          "tip": "A woman says \"جوعانة\"."
+        },
+        {
+          "id": "unit-11.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"It is time to break the fast\"?",
+          "answer": "صَار وَقْت الإِفْطَار",
+          "accepted": [
+            "صَار وَقْت الإِفْطَار",
+            "صار وقت الإفطار",
+            "Saar wa2t el2efTaar"
+          ],
+          "options": [
+            "صَار وَقْت الإِفْطَار",
+            "قرّب الأذان",
+            "السفرة جاهزة",
+            "خود كمان تمرة"
+          ],
+          "tip": "\"قرّب الأذان\" means the call to prayer is near, not here yet."
+        },
+        {
+          "id": "unit-11.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"pre-dawn meal\"?",
+          "answer": "سحور",
+          "accepted": [
+            "سحور",
+            "سُحُور",
+            "so7oor"
+          ],
+          "options": [
+            "سحور",
+            "إفطار",
+            "قطايف",
+            "مغرب"
+          ],
+          "tip": "\"إفطار\" is the meal at sunset, \"سحور\" the one before dawn."
+        },
+        {
+          "id": "unit-11.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put in order: \"مناكل / أوّل / منصلّي / وبعدين / المغرب\"",
+          "answer": "منصلّي المغرب أوّل وبعدين مناكل",
+          "accepted": [
+            "منصلّي المغرب أوّل وبعدين مناكل",
+            "مْنْصَلّي المَغْرِب أَوَّل وَبَعْدَيْن مْنَاكُل",
+            "منصلي المغرب أول وبعدين مناكل",
+            "mnSalli elmaghreb awwal w ba3dein mnaakol"
+          ],
+          "too_formal": {
+            "item": "نصلّي المغرب أولًا ثمّ نأكل",
+            "feedback": "Correct but formal; \"من\" before the verb marks \"we\"."
+          },
+          "tip": "\"وبعدين\" is the spoken \"and then\"."
+        },
+        {
+          "id": "unit-11.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put in order: \"تفضّلوا / جاهزة / السفرة\"",
+          "answer": "السفرة جاهزة تفضّلوا",
+          "accepted": [
+            "السفرة جاهزة تفضّلوا",
+            "السُّفْرَة جَاهْزِة، تْفَضَّلُوا",
+            "السفرة جاهزة، تفضلوا",
+            "essufra jaahze, tfaDDalu"
+          ],
+          "too_formal": {
+            "item": "المائدة جاهزة، تفضّلوا",
+            "feedback": "Correct but formal; the table set for a meal is \"السفرة\"."
+          },
+          "tip": "\"تفضّلوا\" invites everyone at once."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "you-will-sleep-at-our-house-tonight-no-problem",
+          "arabic": "رَح تْنَام عِنْدْنَا اللَّيْلَة، مَا فِي مِشْكِلِة",
+          "transliteration": "ra7 tnaam 3endna elleele, ma fi mushkle"
+        },
+        {
+          "slot": "this-is-your-room",
+          "arabic": "هَيْدِي أُوضْتَك",
+          "transliteration": "haydi ooDtak",
+          "reply": {
+            "arabic": "يِسْلَمُو، كْتِير حِلْوِة",
+            "transliteration": "yeslamo, ktiir 7elwe",
+            "english": "Thank you, it's very nice."
+          }
+        },
+        {
+          "slot": "i-put-clean-towels-on-the-bed-for-you",
+          "arabic": "حَطَّيْتِلَّك فُوَط نْضَاف عَالتَّخْت",
+          "transliteration": "7aTTeytellak fuwaT nDaaf 3attakht"
+        },
+        {
+          "slot": "here-are-folded-blankets-in-case-you-feel-cold",
+          "arabic": "هَوْدِي بَطَّانِيَّات مْطَبّقَة إِذَا بْرِدْت",
+          "transliteration": "hawdi baTTaaniyyaat mTabba2a iza bredet"
+        },
+        {
+          "slot": "do-you-need-anything-else",
+          "arabic": "بِدَّك شِي تَانِي؟",
+          "transliteration": "baddak shi taani?",
+          "reply": {
+            "arabic": "لَأ، كَتِّر خَيْرَك، كِلّ شِي مَوْجُود",
+            "transliteration": "la2, katter kheirak, kell shi mawjuud",
+            "english": "No, thank you, everything is here."
+          }
+        },
+        {
+          "slot": "where-is-the-bathroom",
+          "arabic": "وَيْن الحَمَّام؟",
+          "transliteration": "ween el7ammaam?"
+        },
+        {
+          "slot": "here-is-a-new-toothbrush-for-you",
+          "arabic": "هَيْدِي فَرْشَايِة سْنَان جْدِيدِة إِلَك",
+          "transliteration": "haydi farshaayet snaan jdiide elak"
+        },
+        {
+          "slot": "what-time-do-you-want-to-wake-up",
+          "arabic": "أَيّ سَاعَة بِدَّك تِصْحَى؟",
+          "transliteration": "ayy saa3a baddak teS7a?"
+        },
+        {
+          "slot": "i-will-wake-you-up-for-the-dawn-prayer",
+          "arabic": "بْفَيّقَك عَصَلَاة الفَجِر",
+          "transliteration": "bfayy2ak 3aSalaat elfajer"
+        },
+        {
+          "slot": "did-you-sleep-well",
+          "arabic": "نِمْت مْنِيح؟",
+          "transliteration": "nemt mnii7?",
+          "reply": {
+            "arabic": "إي، الحَمْدُ لِلَّه",
+            "transliteration": "ee, il7amdu lillaah",
+            "english": "Yes, praise be to Allah."
+          }
+        },
+        {
+          "slot": "sleep-well",
+          "arabic": "تْصْبَح عَلَى خَيْر، نَام مْنِيح",
+          "transliteration": "tesba7 3ala kheir, naam mnii7",
+          "english": "Good night, sleep well.",
+          "reply": {
+            "arabic": "وِإنْتَ مِن أَهْلُو",
+            "transliteration": "w enta min ahlo",
+            "english": "And you too."
+          }
+        },
+        {
+          "slot": "may-allah-honour-you-you-honoured-me-greatly",
+          "arabic": "الله يِكْرْمَك، وَاللهِ مَا قَصَّرْت",
+          "transliteration": "allah yekermak, wallaahi ma 2aSSart",
+          "english": "May Allah honour you, you truly did everything for me."
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ziad",
+          "slot": "you-will-sleep-at-our-house-tonight-no-problem"
+        },
+        {
+          "speaker": "Hussein",
+          "arabic": "الله يخلّيك يا زياد، ما بدّي تعّبكن",
+          "transliteration": "allah ykhalliik ya Ziad, ma baddi ta33ebkon",
+          "english": "Thank you Ziad, I don't want to trouble you."
+        },
+        {
+          "speaker": "Ziad",
+          "arabic": "ولو، ما في تعب أبدًا. تفضّل لهون",
+          "transliteration": "wlaw, ma fi ta3ab abadan. tfaDDal la hoon",
+          "english": "Come on, no trouble at all. This way."
+        },
+        {
+          "speaker": "Ziad",
+          "slot": "this-is-your-room"
+        },
+        {
+          "speaker": "Hussein",
+          "slot": "this-is-your-room",
+          "reply": true
+        },
+        {
+          "speaker": "Hussein",
+          "slot": "where-is-the-bathroom"
+        },
+        {
+          "speaker": "Ziad",
+          "arabic": "تاني باب عاليمين",
+          "transliteration": "taani baab 3alyamiin",
+          "english": "The second door on the right."
+        },
+        {
+          "speaker": "Ziad",
+          "slot": "i-put-clean-towels-on-the-bed-for-you"
+        },
+        {
+          "speaker": "Hussein",
+          "arabic": "يسلمو إيديك. الليل بارد شوي هون بالضيعة",
+          "transliteration": "yeslamo iideik. elleil baared shwayy hoon biDDay3a",
+          "english": "Thank you. The night is a bit cold here in the village."
+        },
+        {
+          "speaker": "Ziad",
+          "slot": "here-are-folded-blankets-in-case-you-feel-cold"
+        },
+        {
+          "speaker": "Ziad",
+          "slot": "what-time-do-you-want-to-wake-up"
+        },
+        {
+          "speaker": "Hussein",
+          "arabic": "قبل الفجر بشوي، بدّي صلّي",
+          "transliteration": "2abl elfajer bshwayy, baddi Salli",
+          "english": "A little before dawn, I want to pray."
+        },
+        {
+          "speaker": "Ziad",
+          "slot": "i-will-wake-you-up-for-the-dawn-prayer"
+        },
+        {
+          "speaker": "Ziad",
+          "slot": "sleep-well"
+        },
+        {
+          "speaker": "Hussein",
+          "slot": "sleep-well",
+          "reply": true
+        },
+        {
+          "speaker": "Ziad",
+          "slot": "did-you-sleep-well"
+        },
+        {
+          "speaker": "Hussein",
+          "arabic": "إي، الحمد لله، التخت كتير مريح",
+          "transliteration": "ee, il7amdu lillaah, ettakht ktiir mrii7",
+          "english": "Yes, praise be to Allah, the bed is very comfortable."
+        },
+        {
+          "speaker": "Hussein",
+          "slot": "may-allah-honour-you-you-honoured-me-greatly"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بِدَّك شِي تَانِي؟",
+            "transliteration": "baddak shi taani?",
+            "english": "Do you need anything else?"
+          },
+          "response": {
+            "arabic": "لَأ، كَتِّر خَيْرَك، كِلّ شِي مَوْجُود",
+            "transliteration": "la2, katter kheirak, kell shi mawjuud",
+            "english": "No, thank you, everything is here."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نِمْت مْنِيح؟",
+            "transliteration": "nemt mnii7?",
+            "english": "Did you sleep well?"
+          },
+          "response": {
+            "arabic": "إي، الحَمْدُ لِلَّه",
+            "transliteration": "ee, il7amdu lillaah",
+            "english": "Yes, praise be to Allah."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَيْن الحَمَّام؟",
+            "transliteration": "ween el7ammaam?",
+            "english": "Where is the bathroom?"
+          },
+          "response": {
+            "arabic": "تاني باب عاليمين",
+            "transliteration": "taani baab 3alyamiin",
+            "english": "The second door on the right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَيّ سَاعَة بِدَّك تِصْحَى؟",
+            "transliteration": "ayy saa3a baddak teS7a?",
+            "english": "What time do you want to wake up?"
+          },
+          "response": {
+            "arabic": "قبل الفجر بشوي",
+            "transliteration": "2abl elfajer bshwayy",
+            "english": "A little before dawn."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بدّك مخدّة تانية؟",
+            "transliteration": "baddak mkhadde taanye?",
+            "english": "Do you want another pillow?"
+          },
+          "response": {
+            "arabic": "لأ، هيك مرتاح",
+            "transliteration": "la2, heik mertaa7",
+            "english": "No, I'm comfortable like this."
+          }
+        }
+      ],
+      "culture": "A Lebanese host, in the city or up in the village, gives a guest the best room with fresh sheets and a heavy blanket, and will not hear of a hotel. In the morning the guest thanks the family with \"الله يكرمك، ما قصّرت\", and \"الحمد لله\" in the reply is said the same way in every dialect.",
+      "exercises": [
+        {
+          "id": "unit-11.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your host asks: \"نمت منيح؟\" Say yes, praise be to Allah.",
+          "answer": "إي، الحمد لله",
+          "accepted": [
+            "إي، الحمد لله",
+            "إي، الحَمْدُ لِلَّه",
+            "إي الحمد لله",
+            "إيه، الحمد لله",
+            "الحمد لله",
+            "ee, il7amdu lillaah"
+          ],
+          "too_formal": {
+            "item": "نعم، الحمد لله",
+            "feedback": "Correct, but \"نعم\" is formal; \"إي\" is the spoken \"yes\"."
+          },
+          "tip": "\"الحمد لله\" is shared across all dialects."
+        },
+        {
+          "id": "unit-11.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Your host says: \"هيدي أوضتك.\" Thank him.",
+          "answer": "يسلمو، كتير حلوة",
+          "accepted": [
+            "يسلمو، كتير حلوة",
+            "يِسْلَمُو، كْتِير حِلْوِة",
+            "يسلمو كتير حلوة",
+            "يسلمو",
+            "كتّر خيرك",
+            "الله يخلّيك",
+            "yeslamo, ktiir 7elwe"
+          ],
+          "too_formal": {
+            "item": "شكرًا جزيلًا، الغرفة جميلة",
+            "feedback": "Correct but formal; \"يسلمو\" is the everyday thanks."
+          },
+          "tip": "\"أوضة\" is feminine, so \"حلو\" becomes \"حلوة\"."
+        },
+        {
+          "id": "unit-11.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"وين _____؟\" (Where is the bathroom?)",
+          "answer": "الحمّام",
+          "accepted": [
+            "الحمّام",
+            "الحَمَّام",
+            "الحمام",
+            "el7ammaam"
+          ],
+          "too_formal": {
+            "item": "أين الحمّام؟",
+            "feedback": "Correct but formal; the spoken \"where\" is \"وين\"."
+          },
+          "tip": "\"وين\" is \"where\"."
+        },
+        {
+          "id": "unit-11.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بفيّقك عَصلاة _____.\" (I will wake you up for the dawn prayer.)",
+          "answer": "الفجر",
+          "accepted": [
+            "الفجر",
+            "الفَجِر",
+            "الفجِر",
+            "elfajer"
+          ],
+          "too_formal": {
+            "item": "سأوقظك لصلاة الفجر",
+            "feedback": "Correct but formal; \"بفيّقك\" is the spoken \"I will wake you\"."
+          },
+          "tip": "\"فيّق\" is to wake someone up."
+        },
+        {
+          "id": "unit-11.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (to a man): \"Do you need anything else?\"",
+          "answer": "بِدَّك شِي تَانِي؟",
+          "accepted": [
+            "بِدَّك شِي تَانِي؟",
+            "بدك شي تاني؟",
+            "بدك شي تاني",
+            "بدّك شي كمان؟",
+            "baddak shi taani?"
+          ],
+          "too_formal": {
+            "item": "هل تحتاج إلى شيء آخر؟",
+            "feedback": "Correct but formal; \"بدّك\" is the spoken \"you want\"."
+          },
+          "tip": "To a woman: \"بدّك\" is said \"baddik\"."
+        },
+        {
+          "id": "unit-11.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (to a man): \"What time do you want to wake up?\"",
+          "answer": "أَيّ سَاعَة بِدَّك تِصْحَى؟",
+          "accepted": [
+            "أَيّ سَاعَة بِدَّك تِصْحَى؟",
+            "أي ساعة بدك تصحى؟",
+            "أي ساعة بدّك تفيق؟",
+            "إيمتى بدّك تصحى؟",
+            "ayy saa3a baddak teS7a?"
+          ],
+          "too_formal": {
+            "item": "في أيّ ساعة تريد أن تستيقظ؟",
+            "feedback": "Correct but formal; \"تصحى\" is the spoken \"wake up\"."
+          },
+          "tip": "\"تفيق\" is also heard for \"wake up\"."
+        },
+        {
+          "id": "unit-11.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Here are folded blankets in case you feel cold\"?",
+          "answer": "هَوْدِي بَطَّانِيَّات مْطَبّقَة إِذَا بْرِدْت",
+          "accepted": [
+            "هَوْدِي بَطَّانِيَّات مْطَبّقَة إِذَا بْرِدْت",
+            "هودي بطانيات مطبقة إذا بردت",
+            "hawdi baTTaaniyyaat mTabba2a iza bredet"
+          ],
+          "options": [
+            "هَوْدِي بَطَّانِيَّات مْطَبّقَة إِذَا بْرِدْت",
+            "حطّيتلّك فوط نضاف عالتخت",
+            "هيدي فرشاية سنان جديدة إلك",
+            "هيدي أوضتك"
+          ],
+          "tip": "\"هودي\" is \"these\", and \"مطبّق\" is \"folded\"."
+        },
+        {
+          "id": "unit-11.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"pillow\"?",
+          "answer": "مخدّة",
+          "accepted": [
+            "مخدّة",
+            "مخدة",
+            "mkhadde"
+          ],
+          "options": [
+            "مخدّة",
+            "فرشة",
+            "شراشف",
+            "مفتاح"
+          ],
+          "tip": "\"فرشة\" is a mattress and \"شراشف\" are bed sheets."
+        },
+        {
+          "id": "unit-11.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put in order: \"الفجر / بفيّقك / عَصلاة\"",
+          "answer": "بفيّقك عَصلاة الفجر",
+          "accepted": [
+            "بفيّقك عَصلاة الفجر",
+            "بْفَيّقَك عَصَلَاة الفَجِر",
+            "بفيقك عصلاة الفجر",
+            "بفيّقك عصلاة الفجر",
+            "bfayy2ak 3aSalaat elfajer"
+          ],
+          "too_formal": {
+            "item": "سأوقظك لصلاة الفجر",
+            "feedback": "Correct but formal; \"ب\" on the verb here means \"I will\"."
+          },
+          "tip": "\"عَـ\" is the short spoken form of \"على\", here \"for\"."
+        },
+        {
+          "id": "unit-11.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: \"ما في مشكلة / الليلة / رح تنام عندنا\"",
+          "answer": "رح تنام عندنا الليلة ما في مشكلة",
+          "accepted": [
+            "رح تنام عندنا الليلة ما في مشكلة",
+            "رَح تْنَام عِنْدْنَا اللَّيْلَة، مَا فِي مِشْكِلِة",
+            "رح تنام عندنا الليلة، ما في مشكلة",
+            "ra7 tnaam 3endna elleele, ma fi mushkle"
+          ],
+          "words": [
+            "رح تنام عندنا",
+            "الليلة",
+            "ما في مشكلة"
+          ],
+          "too_formal": {
+            "item": "ستنام عندنا الليلة، لا مشكلة",
+            "feedback": "Correct but formal; \"رح\" marks the future and \"ما في\" is \"there isn't\"."
+          },
+          "tip": "\"عندنا\" means \"at our place\"."
         }
       ]
     }

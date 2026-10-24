@@ -10,7 +10,7 @@
  * whole of Ayat al-Kursi, the longest ayah in the Qur'an, arrives in a third of
  * a second.
  *
- * Who recites and where their recordings sit is data/reciters.json, never here.
+ * Who recites and where their recordings sit is lib/quran/reciters.json, never here.
  *
  * One player for the whole app, not one per ayah. A reading view holds 286
  * ayahs, and 286 audio elements is 286 things the browser has to keep; more to
@@ -18,7 +18,7 @@
  * first, which it cannot do if each one owns its own player and knows nothing
  * of the others.
  */
-import config from '../../data/reciters.json'
+import config from './reciters.json'
 
 export const RECITERS = config.reciters
 

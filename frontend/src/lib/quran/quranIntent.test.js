@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import surahs from '../../data/surahs.json'
+import surahs from './surahs.json'
 import words from '../../../public/words/words.json'
 import { KIND, readQuranQuery } from './quranIntent'
 

@@ -100,7 +100,7 @@ A dialect gives its Arabic in its own `<dialect>/words.json`, once per id:
   unit is one id in both.
 
 The loader checks all of this on start and stops on any fault. To review a
-dialect's words, `python -m backend.scripts.colloquial_word_bank dump <dialect>`
+dialect's words, `python -m backend.scripts.colloquial.colloquial_word_bank dump <dialect>`
 prints them topic by topic, `id | english | arabic | transliteration`, each word
 once. Edit the last two columns and `load <dialect> <file>` puts it back, checked
 as above, all or nothing.

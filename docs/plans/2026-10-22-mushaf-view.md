@@ -23,7 +23,7 @@ Printings, in order of who asks for them most: **Madani 1421 (KFGQPC V2, 604 pag
 
 ### What already exists here
 
-- `services/quran/layout.py` + `scripts/build_quran_layout.py`: **ayah → page** for Madani 604, from `api.quran.com`. Only Memorise uses it (`lib/memorise/memorise.js` `pagesOf`). No line data.
+- `services/quran/layout.py` + `scripts/quran/build_quran_layout.py`: **ayah → page** for Madani 604, from `api.quran.com`. Only Memorise uses it (`lib/memorise/memorise.js` `pagesOf`). No line data.
 - Text is Unicode in `Scheherazade New` (OFL), with the mushaf spelling and the tanween-meem rule (`arabic_text.mushaf_words`).
 - `data/quran/editions.json` already imports QUL sqlite exports (`qul-tafsir`, `qul-translation`), so a `qul-layout` format fits the existing pattern.
 
@@ -73,13 +73,13 @@ Reader ──> Tafheem (web app) ──> Tafheem API ──> (build time only) a
 ```
 frontend (Vercel) ──GET /api/quran/mushaf…──> backend (FastAPI, Oracle) ──reads──> mushaf.db (sqlite, built)
 frontend ──GET /fonts/mushaf/{id}/p{n}.woff2──> static site
-scripts/build_mushaf.py ──writes──> mushaf.db   (run by hand, like build_quran_layout.py)
+scripts/quran/build_mushaf.py ──writes──> mushaf.db   (run by hand, like build_quran_layout.py)
 ```
 
 ### Level 3 · Components (one owner, one reason each)
 ```
 data/quran/mushafs.json        which printings exist: id, name, pages, lines, script, source, credit
-scripts/build_mushaf.py        harvest a printing into mushaf.db (sources: quran-api | qul-layout)
+scripts/quran/build_mushaf.py        harvest a printing into mushaf.db (sources: quran-api | qul-layout)
 services/quran/mushaf.py             the only opener of mushaf.db; absorbs quran_layout.py (ayah→page is a query on it)
 routers/quran.py (+3 routes)   list · page · locate
 lib/mushaf.js                  fetch + cache pages, prefetch ±1, page-font loader (FontFace)

@@ -1,7 +1,7 @@
 """Verbally similar verses (mutashabihat): the catalogue, and a finder for what it misses.
 
 The catalogue (data/quran/mutashabihat.json) is what scholars recorded, built by
-scripts/build_mutashabihat.py. The finder is a 2-word shingle index over the
+scripts/quran/build_mutashabihat.py. The finder is a 2-word shingle index over the
 whole Qur'an, built lazily on first call. It only ever proposes; a proposal is
 never added to the catalogue without a person reading it.
 

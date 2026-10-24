@@ -23,26 +23,26 @@ cd frontend && npm test && npm run lint  # frontend
 ### Data the app needs (built once, never committed)
 
 ```bash
-python backend/scripts/build_quran_corpus.py   # downloads + indexes the Qur'anic grammar
-python backend/scripts/build_quran_meanings.py # the word-by-word meaning of every word, English and Urdu, so a surah reads offline
-python backend/scripts/build_quran_search_index.py # makes the Qur'an searchable with no network, from corpus.db
-python backend/scripts/build_quran_layout.py   # which page of the Madani mushaf each ayah is on
-python backend/scripts/build_quran_tafsir.py   # a scholar's commentary on each ayah, as plain text
-python backend/scripts/fetch_quran_editions.py  # downloads the tafsirs and translations named in data/quran/editions.json
-python backend/scripts/import_quran_editions.py # those files into one library, one book per manifest entry
-python backend/scripts/build_dictionary.py     # needs the Wiktionary dump, see its docstring
-python backend/scripts/build_tarkeeb.py …      # the recorded tarkeeb, see its docstring for the two downloads
-python backend/scripts/build_root_meanings.py  # Ibn Faris's origin sense for 4,738 roots (needs access-parser)
+python backend/scripts/quran/build_quran_corpus.py   # downloads + indexes the Qur'anic grammar
+python backend/scripts/quran/build_quran_meanings.py # the word-by-word meaning of every word, English and Urdu, so a surah reads offline
+python backend/scripts/quran/build_quran_search_index.py # makes the Qur'an searchable with no network, from corpus.db
+python backend/scripts/quran/build_quran_layout.py   # which page of the Madani mushaf each ayah is on
+python backend/scripts/quran/build_quran_tafsir.py   # a scholar's commentary on each ayah, as plain text
+python backend/scripts/quran/fetch_quran_editions.py  # downloads the tafsirs and translations named in data/quran/editions.json
+python backend/scripts/quran/import_quran_editions.py # those files into one library, one book per manifest entry
+python backend/scripts/dictionary/build_dictionary.py     # needs the Wiktionary dump, see its docstring
+python backend/scripts/nahw/build_tarkeeb.py …      # the recorded tarkeeb, see its docstring for the two downloads
+python backend/scripts/dictionary/build_root_meanings.py  # Ibn Faris's origin sense for 4,738 roots (needs access-parser)
 python -m backend.scripts.build_lane_verbs     # every Form I bab Lane's Lexicon states, from lexicons.db
-python backend/scripts/build_lexicon.py        # one table of every quiz word (needs the dictionary above)
-python backend/scripts/backfill_root_english.py # optional: put the Maqayees entries into English ahead of time (needs an AI backend)
-python backend/scripts/build_urdu_links.py     # what each quiz word's letters mean in Urdu; candidates for a person to check
-python backend/scripts/export_quiz_words.py    # that table as the three files the quiz fetches
-python backend/scripts/build_asbab.py          # al-Suyuti's Lubab al-Nuqul, cut into one asbab al-nuzul passage per ayah
-python backend/scripts/build_tamreen.py save|build # the Tamreen form quizzes as a tagged library; the browser half is tamreen_harvest.js
-python backend/scripts/build_daleel_index.py   # every book into one searchable index (the whole thing, never --only)
-python backend/scripts/build_daleel_index.py --words # just the word table, added to the index already there
-python backend/scripts/build_daleel_index.py --meta  # just the source/book table, added to the index already there
+python backend/scripts/quiz/build_lexicon.py        # one table of every quiz word (needs the dictionary above)
+python backend/scripts/dictionary/backfill_root_english.py # optional: put the Maqayees entries into English ahead of time (needs an AI backend)
+python backend/scripts/quiz/build_urdu_links.py     # what each quiz word's letters mean in Urdu; candidates for a person to check
+python backend/scripts/quiz/export_quiz_words.py    # that table as the three files the quiz fetches
+python backend/scripts/quran/build_asbab.py          # al-Suyuti's Lubab al-Nuqul, cut into one asbab al-nuzul passage per ayah
+python backend/scripts/nahw/build_tamreen.py save|build # the Tamreen form quizzes as a tagged library; the browser half is tamreen_harvest.js
+python backend/scripts/daleel/build_daleel_index.py   # every book into one searchable index (the whole thing, never --only)
+python backend/scripts/daleel/build_daleel_index.py --words # just the word table, added to the index already there
+python backend/scripts/daleel/build_daleel_index.py --meta  # just the source/book table, added to the index already there
 python -m backend.services.daleel صبر --explain     # ask the built index from a terminal: hits, terms, ms per step (--json, --book)
 ```
 
@@ -55,7 +55,7 @@ Core flow and the short glossary are in `CORE-FLOW.md`; this is what it leaves o
 - **Reading a word.** `arabic_text.words()` decides what a word is (a token with an Arabic letter, reading marks taken off), so a pause sign or ayah number gets no card. `morphology.py` runs CAMeL, falling back to Qalsadi then PyArabic. `morphology.pick` takes one reading per word (the parser's BERT when loaded, the MLE otherwise); cards and parser share it. It is a guess and is labelled one. `mask.py` overrules parser links the book settles. Each word carries a `role_key` checked against `models/analyze.py ROLE_KEYS`; `lib/nahw/roleColors.js` turns it into a theme token and reads nothing else.
 - **Tarkeeb.** Two sources, the badge says which: `tarkeeb_store.py` (what scholars recorded, `data/tarkeeb/tarkeeb.db`) and, where that has nothing, `tarkeeb.py` from the corpus tags (a governing word like إِنَّ or كَانَ decides the case of its ism and khabar; a caseless word is placed by position). Every Arabic term either reads is in `data/nahw_rules/tarkeeb.json`; `tarkeeb_examples.py` serves book trees from `data/tarkeeb/examples/`. `lib/nahw/tarkeebLayout.js` works out every brace from the tree's shape alone; `TarkeebDiagram.jsx` draws it. A join that cannot be made is drawn open. One Nahw page draws the tree above the i'raab cards from the same reading; reading order: Treebank record, then the parser, then the rules. Changing how the treebank is read means rebuilding `tarkeeb.db` (`build_tarkeeb.py`).
 - **Qur'an.** English gloss: `quran_meanings.py` (`meanings.db`, network as fallback). Two files because two sources under two licences. Search is `services/quran/search/`: Quran.com, or `data/quran/search.db` built from the corpus; the result says which answered. `GET /api/quran/surah/{n}` returns text and English in two local queries; word-by-word grammar (about 2MB a surah) is fetched only for the ayah opened (`components/quran/QuranReader.jsx`). `GET /api/quran/editions`, `/editions/{surah}/{ayah}` (one ayah across books), `/editions/surah/{n}?id=` (one book across a surah). `AyahTafsir.jsx` fetches nothing until opened; a passage over a run of ayahs is stored once. Memorise deals a printed mushaf page: `quran_layout.py` reads `data/quran/layout.db`, `get_surah` hands the page down, `lib/memorise/memorise.js` groups by it (word count when the build is absent).
-- **Root and bab.** `GET /api/quran/root/{root}` lists every place a root occurs. Bab sources: `data/sarf/lane_verbs.json` (`build_lane_verbs`) and Wiktionary, wired in `services/sarf/sources/SOURCES` (its `README.md` says how to add one), merged by `verb_forms.babs_of()`; agreeing books are both cited, disagreeing babs stay separate. A word neither book records shows only the form picker. A weak, doubled or hamzated root is named and refused rather than conjugated wrongly; يَمْدُدُ becomes يَمُدُّ. `verb_reader.py` reads a typed verb back; Nahw asks it which command اِجْلِسِي is when the dictionary has no reading. `tests/test_conjugation.py` pins tables to the book.
+- **Root and bab.** `GET /api/quran/root/{root}` lists every place a root occurs. Bab sources: `data/sarf/lane_verbs.json` (`build_lane_verbs`) and Wiktionary, wired in `services/sarf/sources/SOURCES` (its `README.md` says how to add one), merged by `verb_forms.babs_of()`; agreeing books are both cited, disagreeing babs stay separate. A word neither book records shows only the form picker. A weak, doubled or hamzated root is named and refused rather than conjugated wrongly; يَمْدُدُ becomes يَمُدُّ. `verb_reader.py` reads a typed verb back; Nahw asks it which command اِجْلِسِي is when the dictionary has no reading. `tests/sarf/test_conjugation.py` pins tables to the book.
 - **Timelines.** Five stretches from the Prophets to the Day of Judgement, filterable by science (Seerah, Stories of the Prophets, 'Aqidah). `data/timelines/library.json` declares what a section may point at; one file per section under `sections/` holds events. `services/text/refs.py` (shared with Dawah) checks references on load: an event out of order, an `until` pointing backwards or a Qur'an reference past its surah stops the app and names the event. `lib/timeline/` works it out: `steps.js` (folding, lanes), `map.js` (projection, pins, names), `address.js` (the `?q=` place), `look.js` (hues, labels), `time.js` (the time bar: where each event sits, by true years or evenly, and the route walked so far, drawn on the map as the bar is dragged). Qur'an references open the Qur'an tab. Asbab: `services/quran/asbab_split.py` cuts al-Suyuti's Lubab into reports, stored as two editions (`asbab-lubab-ar`, English beside it), linked to an event by **named** wording or **period** (Makkan or Madinan surah, `services/quran/asbab.py`). A report matching no single ayah goes to `data/quran/asbab-unmatched.json`.
 
 ### More terms
@@ -74,7 +74,7 @@ Core flow and the short glossary are in `CORE-FLOW.md`; this is what it leaves o
 
 ### Reciting detail
 
-Ears are tried in the order `listening_ears` names, `here` last as it needs no key or internet; a rejected key strikes an ear off for the run (`services/core/fallback.py`). The words only place the reciter on the page (`place.py`); the mark comes from the local model's sureness (`recite_sure` on `/api/health`) against `sure-at` in `frontend/src/config/recite.json`. Where in the Qur'an a reading is comes from the words (`recitation/locate.py`, `near` is the open page): a surely-elsewhere reading jumps the page there, or asks first while words are hidden. Words and vowels only; tajweed is not checked. Quiet reciters: `lib/speech/dictation.js` calls a voice anything above the quietest that microphone has heard, `recitation/loudness.py` lifts soft recordings. `lib/speech/microphone.js` is the only place a microphone is opened. Plan and open work: `RECITE-PLAN.md`.
+Ears are tried in the order `listening_ears` names, `here` last as it needs no key or internet; a rejected key strikes an ear off for the run (`services/core/fallback.py`). The words only place the reciter on the page (`place.py`); the mark comes from the local model's sureness (`recite_sure` on `/api/health`) against `sure-at` in `frontend/src/config/recite.json`. Where in the Qur'an a reading is comes from the words (`recitation/locate.py`, `near` is the open page): a surely-elsewhere reading jumps the page there, or asks first while words are hidden. Words and vowels only; tajweed is not checked. Quiet reciters: `lib/speech/dictation.js` calls a voice anything above the quietest that microphone has heard, `recitation/loudness.py` lifts soft recordings. `lib/speech/microphone.js` is the only place a microphone is opened. Plan and open work: `docs/plans/2026-09-05-recite.md`.
 
 ### More places
 
@@ -101,7 +101,7 @@ docstring, and never committed. The Qur'an builds come first: `build_quran_corpu
 
 Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
 
-- **Colloquial**: spoken Arabic by dialect. `data/colloquial/spine.json` is the one course outline (units, lessons, phrase slots with English and pictures); a dialect is a folder filling it, a unit one JSON file, an exercise kind one file per end (`services/colloquial/exercises`, `components/colloquial/exercises/registry.js`); pictures are fetched by `scripts/fetch_colloquial_images.py` and approved one by one.
+- **Colloquial**: spoken Arabic by dialect. `data/colloquial/spine.json` is the one course outline (units, lessons, phrase slots with English and pictures); a dialect is a folder filling it, a unit one JSON file, an exercise kind one file per end (`services/colloquial/exercises`, `components/colloquial/exercises/registry.js`); pictures are fetched by `scripts/colloquial/fetch_colloquial_images.py` and approved one by one.
 - **Entry / book root**: what one book prints under one headword. A word's entry comes from
   Wiktionary (`dictionary_service.py`), a root's from a classical book: Maqayees via
   `root_meaning.py`, all four on the shelf via `lexicons.py`. The **book root** is the root as
@@ -118,7 +118,7 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
   `recite_ear`, `recite_sure`).
 - **Voice**: anything that says a word aloud, the ear's opposite. `lib/speech/speak.js` tries
   them in `frontend/src/config/speak.json`'s order: `recorded` (a reciter from quran.com, for
-  Qur'an words mapped by `scripts/build_word_audio.py`), `server` (FastPitch via
+  Qur'an words mapped by `scripts/quiz/build_word_audio.py`), `server` (FastPitch via
   `/api/speak`, `services/speech.py`) and `browser` (the device). `ui/SpeakButton` is
   the one button; it names the voice that spoke.
 - **Recitation / reading**: Qur'an said aloud. A **reading** is one request about one
@@ -137,11 +137,11 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
   (`lemma.py`, CAMeL), numbers matched however written, misspellings swapped by `repair.py`
   (fewest slips, most common word in everyday writing via `services/text/spelling.py`, so a real word the hadith
   never use is kept, not "fixed"), and hadith close in meaning merged in by `meaning.py`
-  (multilingual sentence model on onnxruntime; vectors from `scripts/build_hadith_meaning.py`).
-  Scored by `scripts/score_hadith_search.py` against `data/hadith/search_yardstick.json`.
+  (multilingual sentence model on onnxruntime; vectors from `scripts/hadith/build_hadith_meaning.py`).
+  Scored by `scripts/hadith/score_hadith_search.py` against `data/hadith/search_yardstick.json`.
 - `services/hadith/mushkil_split.py` cuts al-Tahawi's Mushkil al-Athar into issues (hadith that seem to
-  conflict); `scripts/build_mushkil.py` writes `data/hadith/mushkil-tahawi.json`. No tab reads it yet.
-- Weak points on a chain: `scripts/build_usul.py` levels each narrator's grade in `rijal.db` against Ibn Hajar's
+  conflict); `scripts/hadith/build_mushkil.py` writes `data/hadith/mushkil-tahawi.json`. No tab reads it yet.
+- Weak points on a chain: `scripts/hadith/build_usul.py` levels each narrator's grade in `rijal.db` against Ibn Hajar's
   twelve (`services/hadith/usul/level.py`, words in `data/usul/usul.json`) and writes the small, git-tracked `data/usul/usul.db`.
   `services/hadith/usul/store.py` reads it; `GET /api/rijal/chains/...` carries `notes` and `scale`; `lib/weak.js` ranks them and
   `hadith/ChainDrawing` and `hadith/WeakPoints` show them. A grade no term reads is listed in the gap table, never guessed.

@@ -36,6 +36,15 @@ export const valueOf = (view) => {
   return null
 }
 
+/** A tab value as a reader says it, for Home's "Where you stopped": "Basics", "Basics lesson", "Fiqh review"; null for home. */
+export function nameOf(value, worlds) {
+  const [id, ...steps] = (value ?? '').split('/').filter(Boolean)
+  const world = worlds.find((one) => one.id === id)
+  if (!world) return null
+  if (steps.at(-1) === REVIEW) return `${world.name} review`
+  return steps[0] === LESSON || steps.length > 1 ? `${world.name} lesson` : world.name
+}
+
 /**
  * Where Grow opens for an address: a lesson's cards are not in the address, so a page that opens on one (a reload, a
  * fresh visit to the saved tab) lands on home and offers the lesson as `resume`; the lesson itself starts on that tap.

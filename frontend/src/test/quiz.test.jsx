@@ -43,6 +43,16 @@ describe('the quiz by level', () => {
     expect(readRaw('basics-begun')).toBe('on')
   })
 
+  it('rests when a Basics lesson is left with ×, and starts another only when asked', async () => {
+    writeRaw(LEVEL_KEY, 'beginner')
+    renderScreen(<QuizPanel accent="#0a7" onProgress={() => {}} />, { routes: { 'GET /progress/summary': { items: [] } } })
+    await screen.findByText('means “the”', {}, { timeout: 3000 })
+    fireEvent.click(screen.getByRole('button', { name: 'Leave the lesson' }))
+    expect(screen.queryByRole('progressbar')).toBeNull()
+    fireEvent.click(await screen.findByRole('button', { name: 'Start a lesson' }))
+    expect(await screen.findByRole('progressbar', {}, { timeout: 3000 })).toBeTruthy()
+  })
+
   it('keeps words for a learner past the basics', async () => {
     writeRaw(LEVEL_KEY, 'intermediate')
     const { container } = renderScreen(<QuizPanel accent="#0a7" onProgress={() => {}} />)

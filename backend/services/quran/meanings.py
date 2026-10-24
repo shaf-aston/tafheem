@@ -3,7 +3,7 @@
 This module is the only thing that opens meanings.db. Everything else asks it,
 the same rule quran_corpus.py follows for the grammar, for the same reason.
 
-Built by scripts/build_quran_meanings.py. If it has never been run the database
+Built by scripts/quran/build_quran_meanings.py. If it has never been run the database
 is simply absent, and `is_built()` is False: callers then fall back to fetching
 one ayah at a time over the network, which is what the app did before. Nothing
 here fails loudly for a missing file, because a missing file is a valid state;

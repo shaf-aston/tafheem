@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { fill } from '../../lib/shell/homeCopy'
-import { fetchLeaderboard } from '../../lib/learner/progress'
+import { leaderboardQuery } from '../../lib/learner/record'
 import { rankOf, shareOf } from '../../lib/learner/rewards'
 import { useProgressFacts } from '../../lib/learner/useProgressFacts'
 import { colorFor } from '../../theme'
@@ -40,7 +40,7 @@ export default function StatsRail({ name }) {
 function Facts({ name }) {
   const [open, setOpen] = useState(false)
   const { module, account, overview, stats, learnt, covered, rewards } = useProgressFacts(name)
-  const board = useQuery({ queryKey: ['leaderboard', module], queryFn: () => fetchLeaderboard(module) })
+  const board = useQuery(leaderboardQuery(module))
   const streak = overview.data?.streak
   return (
     <>

@@ -7,7 +7,7 @@
  * same number of words. One number, one place, three readers.
  *
  * Every word the quiz can ask about lives in one table, built by
- * backend/scripts/build_lexicon.py and shipped as three files under
+ * backend/scripts/quiz/build_lexicon.py and shipped as three files under
  * public/words/: every word once in words.json, and cuts.json saying which
  * words are in each cut, as positions into that array.
  *
@@ -20,7 +20,7 @@
  * the same topic, the same verb pattern, or the same surah.
  */
 import settings from '../../config/quiz.json'
-import { fetchReviewItems, fetchSummary } from '../learner/progress'
+import { fetchReviewItems } from '../learner/progress'
 
 export const QUIZ = {
   optionCount: settings['option-count'],
@@ -151,11 +151,6 @@ export async function allWords() {
 // spelling each, so a refresh of one is a refresh of all.
 export const allWordsQuery = { queryKey: ['quiz-words', 'all'], queryFn: allWords }
 export const coverageQuery = { queryKey: ['quiz-coverage'], queryFn: coverage }
-export const progressQuery = (language) => ({
-  queryKey: ['quiz-progress', language],
-  queryFn: () => fetchSummary(moduleFor(language)),
-  refetchOnWindowFocus: false,
-})
 
 /**
  * The words to quiz on: a whole set, one group inside it, or the review pile.

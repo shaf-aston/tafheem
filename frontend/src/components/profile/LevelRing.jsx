@@ -1,6 +1,6 @@
 /**
  * The level on the profile button: a thin ring, the number inside, a fading "+10".
- * Logged-in only: the shared guest record has no XP.
+ * A guest wears one too, for their device's XP (docs/plans/2026-10-24-device-guest.md §8).
  */
 import { colorFor } from '../../theme'
 import { rankOf, shareOf } from '../../lib/learner/rewards'

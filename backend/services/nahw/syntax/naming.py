@@ -2,7 +2,7 @@
 (the only evidence for case and for a passive verb), in the words a nahw book uses.
 
 Reads the tokens `correct` has already corrected; reaches no network or model, so the same
-tokens always give the same roles. Scored by `backend/scripts/score_iraab.py`; the numbers are
+tokens always give the same roles. Scored by `backend/scripts/nahw/score_iraab.py`; the numbers are
 quoted once, in this package's `__init__.py`.
 """
 from __future__ import annotations

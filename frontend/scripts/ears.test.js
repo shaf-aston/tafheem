@@ -139,7 +139,7 @@ const audioOf = async ({ reciter, ayah: [surah, ayah] }) => {
  * file is also the *right* text: imlaei is the plain vowelled spelling the ear
  * writes and the page checks against, where Uthmani counts right words wrong.
  */
-// Fetched, not tracked (backend/scripts/fetch_recitation_checks.py): without it the run is skipped.
+// Fetched, not tracked (backend/scripts/recitation/fetch_recitation_checks.py): without it the run is skipped.
 const QURAN_FILE = new URL('../../backend/data/quran/imlaei.json', import.meta.url)
 const QURAN = existsSync(QURAN_FILE) ? JSON.parse(readFileSync(QURAN_FILE, 'utf8')) : null
 const textOf = async ([surah, ayah]) => {

@@ -5,15 +5,17 @@
  * Adding a lessons world = a worlds.json entry + a hook in `lessons` (a config of lib/grow/useLessonWorld.js);
  * a book world = an entry of kind `book`, nothing more (its data: lib/grow/useBookWorld.js): parts, then lessons, each one address deeper.
  */
-import { useEffect, useEffectEvent, useState } from 'react'
+import { useState } from 'react'
 
-import config from '../../config/worlds.json'
-import { colorFor } from '../../theme'
 import { nextAfter } from '../../lib/grow/bookLesson'
 import { landingOf, placeOf, valueOf } from '../../lib/grow/growPlace'
+import { WORLDS, worldOf } from '../../lib/grow/worlds'
 import { goBack } from '../../lib/nav/journey'
+import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 import { getProfile } from '../../lib/learner/profile'
 import { useHadithWorld } from '../../lib/grow/useHadithWorld'
+import { usePrayerWorld } from '../../lib/grow/usePrayerWorld'
+import { useLessonSession } from '../../lib/grow/useLessonSession'
 import { useArrival } from '../../lib/nav/useArrival'
 import { useBasicsWorld } from '../../lib/grow/useBasicsWorld'
 import { LAST_BOOK, REVIEW, useBookWorlds } from '../../lib/grow/useBookWorld'
@@ -25,9 +27,8 @@ import BookWorld from './BookWorld'
 import GrowHome from './GrowHome'
 import LessonRunner from './LessonRunner'
 import LessonWorld from './LessonWorld'
+import { Skeleton } from '../ui/Skeleton'
 
-const WORLDS = config.worlds.map((world) => ({ ...world, accent: colorFor('world', world.id) }))
-const worldOf = (id) => WORLDS.find((world) => world.id === id)
 const WORLD_IDS = WORLDS.filter((world) => world.live).map((world) => world.id)
 const BOOKS = WORLDS.filter((world) => world.kind === 'book')
 const BOOK_IDS = BOOKS.map((world) => world.id)
@@ -51,9 +52,10 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
     words: useWordsWorld(worldOf('words')),
     hadith: useHadithWorld(worldOf('hadith')),
     quran: useQuranWorld(worldOf('quran')),
+    prayer: usePrayerWorld(worldOf('prayer')),
   }
   const placeAt = (value) => placeOf(value, WORLD_IDS, Object.keys(lessons), BOOK_IDS)
-  // { at: 'home' } | { at: 'world', id, part? } | { at: 'lesson', id, part?, lesson?, cards?, inApp? }; a lesson without cards deals them once its world is ready.
+  // { at: 'home' } | { at: 'world', id, part? } | { at: 'lesson', id, part?, lesson?, inApp? }; a lesson's cards are the session's (below).
   // Grow opening on a lesson's saved address (a reload, the tab reopened) lands on home with that lesson offered (landingOf);
   // its answers are kept either way. A lesson handed in by a tap elsewhere (Home's "Start the basics") starts at once.
   const [landed] = useState(() => (handed ? { view: placeAt(incoming), resume: null } : landingOf(placeAt(incoming))))
@@ -66,28 +68,20 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   // A book world fetches the part files the view needs (its open part, the lesson's, a review's).
   const books = useBookWorlds(BOOKS, view)
   const sourceOf = (id) => books[id] ?? lessons[id]
-  // A lesson's cards: a book world's by the lesson's id, once its part is in; any other world's next lesson.
-  const deal = (at) => (books[at.id] ? books[at.id].makeLesson(at.lesson) : lessons[at.id].makeLesson())
-  const dealable = (id) => (books[id] ? books[id].dealable : lessons[id].ready)
-  if (view.at === 'lesson' && !view.cards && dealable(view.id)) {
-    const cards = deal(view)
-    // A lesson the book does not have, or a review with nothing due: that world's page instead.
-    setView(cards?.length ? { ...view, cards } : { at: 'world', id: view.id, ...(view.part && { part: view.part }) })
-  }
-
-  // Leaving a lesson by any way (Continue, ×, the back arrow, on to the next lesson): its answers are saved, so re-read
-  // that world's record.
+  // A lesson's cards: a book world's by the lesson's id, once its part is in; any other world's next lesson. Dealt and
+  // held by the session, which re-reads the world's record once the lesson is left by any way (Continue, ×, the back
+  // arrow, on to the next lesson).
   const playing = view.at === 'lesson' ? `${view.id}/${view.lesson ?? ''}` : null
-  const refreshWorld = useEffectEvent((id) => sourceOf(id).refresh())
-  // And a world that keeps "begun" on the device (the Basics) is told once its lesson is on screen.
-  const beginWorld = useEffectEvent((id) => sourceOf(id).began?.())
-  const dealt = Boolean(view.cards)
-  useEffect(() => {
-    if (!playing || !dealt) return
-    const id = playing.split('/')[0]
-    beginWorld(id)
-    return () => refreshWorld(id)
-  }, [playing, dealt])
+  const cards = useLessonSession(sourceOf, playing && { world: view.id, key: playing },
+    (world) => (books[view.id] ? world.makeLesson(view.lesson) : world.makeLesson()))
+  // A lesson the book does not have, or a review with nothing due: that world's page instead.
+  if (cards && !cards.length) setView({ at: 'world', id: view.id, ...(view.part && { part: view.part }) })
+
+  // Which screen this is. Each one arrives as one piece (styles/growWorlds.css .grow-screen), fading in once rather than
+  // every block replaying its own rise, which washed the page pale on every tap; and opens at its top, as a fresh page
+  // would: the tab's scroll was kept, so a world opened from low on Grow's page landed on its footer while its top filled in.
+  const screenKey = view.at === 'lesson' ? `lesson/${playing}` : valueOf(view) ?? 'home'
+  useOpenAtTop(screenKey)
 
   const [, rememberBook] = useRemembered(LAST_BOOK, BOOK_IDS, '')
   const go = (next) => {
@@ -98,8 +92,8 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   }
   const home = () => go({ at: 'home' })
   const open = (id) => go({ at: 'world', id })
-  const start = (id) => go({ at: 'lesson', id, cards: lessons[id].makeLesson(), inApp: true })
-  // Dealt once the lesson's part is in (above); a part already open has it at once.
+  // Dealt by the session once the world can (a book's part in, the record caught up); a part already open has it at once.
+  const start = (id) => go({ at: 'lesson', id, inApp: true })
   const startBook = (id, lesson, part) => go({ at: 'lesson', id, lesson, ...(part && { part }), inApp: true })
   // Back to where the lesson was started from; a lesson opened by its address has nowhere to go back to, so its world (a book's part).
   const finished = () => {
@@ -118,18 +112,22 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   }
 
   let screen
-  if (view.at === 'lesson' && view.cards) {
+  if (view.at === 'lesson' && cards?.length) {
     screen = (
-      <LessonRunner key={playing} cards={view.cards} accent={worldOf(view.id).accent} rewards={rewards} next={nextOf()} onLeave={finished} />
+      <LessonRunner key={playing} cards={cards} accent={worldOf(view.id).accent} rewards={rewards} guest={!name} next={nextOf()} onLeave={finished} />
     )
+  } else if (view.at === 'lesson' && !sourceOf(view.id).error) {
+    // Being dealt (a part still coming, the record catching up with the last lesson): the lesson's shape, not a flash of
+    // its world. A world that could not load is shown, with its error.
+    screen = <Skeleton late className="h-96 w-full" />
   } else if (view.at !== 'home') {
     const world = worldOf(view.id)
     screen = SCREENS[world.kind]({ world, lessons, books, view, back: home, go, start, startBook })
   } else {
     screen = (
-      <GrowHome worlds={WORLDS} rewards={rewards} lessons={lessons} books={books} resume={resume} onResume={() => go(resume)}
+      <GrowHome worlds={WORLDS} rewards={rewards} guest={!name} lessons={lessons} books={books} resume={resume} onResume={() => go(resume)}
         onOpen={open} onStart={start} onStartBook={startBook} />
     )
   }
-  return <div className="panel">{screen}</div>
+  return <div key={screenKey} className="panel grow-screen fade-in">{screen}</div>
 }

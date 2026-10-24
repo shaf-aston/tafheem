@@ -141,6 +141,17 @@
 .cb[data-open] .cb-key { opacity: 0; }
 
 
+/* Home's second placeholder, in Arabic at the far end (right, where Arabic starts), so both languages read as welcome.
+   Gone once anything is typed, as a placeholder is; it never takes a click from the box. */
+.cb-hint-ar {
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: var(--text-faint);
+  pointer-events: none;
+  line-height: 1;
+}
+
+
 /* No keyboard shortcut on a touch screen, and the room is the placeholder's. */
 @media (pointer: coarse) { .cb-key { display: none; } }
 

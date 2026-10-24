@@ -6,7 +6,7 @@
     "  name    what the picker says.",
     "  script  which face draws it: the frontend maps it to a font (styles/components.css .mushaf).",
     "  source  the sources.json entry that credits it.",
-    "The files are built by backend/scripts/build_mushaf.py and read by backend/services/quran/mushaf.py."
+    "The files are built by backend/scripts/quran/build_mushaf.py and read by backend/services/quran/mushaf.py."
   ],
   "printings": [
     {"id": "madani-1421", "name": "Madani 1421", "pages": 604, "lines": 15, "script": "qpc-hafs", "source": "mushaf"}

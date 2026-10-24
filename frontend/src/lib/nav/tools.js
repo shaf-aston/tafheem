@@ -3,7 +3,8 @@
  * `phone: 'more'` hides it on phones and lists it in the More sheet instead;
  * `phone: 'both'` keeps it on the phone's bar and lists it in More too.
  * Moving a tool between the bar and More is one word here. What a tool does
- * is App's (`run` names its handler), so this file stays data. `done` is what a
+ * is App's (`run` names its handler), so this file stays data. `tab`: the tool
+ * opens that tab. `done` is what a
  * tool shows for a moment after it worked. Start over is not here: it lives
  * with Delete account, in the profile's danger zone.
  */
@@ -22,7 +23,8 @@ export const TOOLS = [
     id: 'map',
     label: 'Map',
     aria: 'Open the map: a high-level overview',
-    dialog: true,
+    // Its own tab, hidden from the tab lists: this button is the way in.
+    tab: 'map',
     paths: ['M9 3 3 5.5v15L9 18l6 2.5L21 18V3l-6 2.5L9 3Z', 'M9 3v15M15 5.5v15'],
     phone: 'both',
   },

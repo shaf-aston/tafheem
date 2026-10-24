@@ -1,9 +1,12 @@
-import { renderToStaticMarkup } from 'react-dom/server'
+import { renderToStaticMarkup as markup } from 'react-dom/server'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { describe, expect, it } from 'vitest'
 import ExerciseHost from './ExerciseHost'
 import { exerciseOf } from './registry'
 
 const base = { id: 'u.l.x.01', prompt: 'Say hello', answer: 'مرحبا', accepted: ['مرحبا'] }
+// Inside the page's cache, as in the app: an answer is filed through it (lib/learner/record).
+const renderToStaticMarkup = (node) => markup(<QueryClientProvider client={new QueryClient()}>{node}</QueryClientProvider>)
 const draw = (exercise) => renderToStaticMarkup(<ExerciseHost exercise={exercise} />)
 
 describe('exercise registry', () => {
@@ -24,7 +27,6 @@ describe('ExerciseHost', () => {
   it('draws each type with its prompt and a disabled Check', () => {
     const types = {
       reply: {},
-      choose: { options: ['مرحبا', 'شكرا', 'يلا'] },
       reorder: { answer: 'شو اسمك', accepted: ['شو اسمك'] },
     }
     for (const [type, extra] of Object.entries(types)) {
@@ -32,6 +34,17 @@ describe('ExerciseHost', () => {
       expect(html).toContain('Say hello')
       expect(html).toContain('disabled')
     }
+  })
+  it('a choice is the Quiz tab\'s numbered options, marked on the pick with no Check', () => {
+    const html = draw({ ...base, type: 'choose', options: ['مرحبا', 'شكرا', 'يلا'] })
+    expect(html).toContain('Say hello')
+    expect(html).toContain('class="rise-in option')
+    expect(html).not.toContain('Check')
+    const marked = renderToStaticMarkup(
+      <ExerciseHost exercise={{ ...base, type: 'choose', options: ['مرحبا', 'شكرا', 'يلا'] }} saved={{ correct: false, value: 'شكرا' }} />,
+    )
+    expect(marked).toContain('Not this')
+    expect(marked).toContain('Answer')
   })
   it('an unknown type is a visible note, not blank', () => {
     expect(draw({ ...base, type: 'telepathy' })).toContain('cannot show yet')

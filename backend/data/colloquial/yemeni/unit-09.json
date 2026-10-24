@@ -14,7 +14,9 @@
     "oo": "و طويلة",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "th": "ث",
+    "dh": "ذ"
   },
   "lessons": [
     {
@@ -1534,6 +1536,729 @@
             "feedback": "Adds a formal opener and intensifier not part of the plain description."
           },
           "tip": "The body part with its possessive ending comes first, then the description."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "do-you-have-an-appointment-to-a-man",
+          "arabic": "معك موعد؟",
+          "transliteration": "ma3ak maw3id?",
+          "reply": {
+            "arabic": "إيه، الساعة أربع",
+            "transliteration": "eeh, as-saa3a arba3",
+            "english": "Yes, at four o'clock."
+          }
+        },
+        {
+          "slot": "open-your-mouth-to-a-man",
+          "arabic": "افتح فمّك",
+          "transliteration": "ifta7 fammak"
+        },
+        {
+          "slot": "my-tooth-hurts-when-i-drink-something-cold",
+          "arabic": "سنّي يوجعني لما أشرب شي بارد",
+          "transliteration": "sinni yooja3ni lamma ashrab shi baarid"
+        },
+        {
+          "slot": "you-have-a-cavity-to-a-man",
+          "arabic": "معك تسوّس في السن",
+          "transliteration": "ma3ak tasawwus fi s-sinn"
+        },
+        {
+          "slot": "we-ll-take-an-x-ray",
+          "arabic": "شانصوّر أشعة",
+          "transliteration": "shaa-nSawwir ashi33a"
+        },
+        {
+          "slot": "i-ll-give-you-an-injection-so-you-won-t-feel-pai",
+          "arabic": "شاعطيك إبرة عشان ما تحسّش بالوجع",
+          "transliteration": "shaa-3Teek ibra 3ashaan ma ti7issish bil-waja3"
+        },
+        {
+          "slot": "rinse-your-mouth-with-water-to-a-man",
+          "arabic": "تمضمض بالماء",
+          "transliteration": "tmaDmaD bil-maa2"
+        },
+        {
+          "slot": "don-t-eat-anything-for-two-hours-to-a-man",
+          "arabic": "لا تاكلش أيّ شي لمدة ساعتين",
+          "transliteration": "la taakulsh ayy shi li-muddat saa3atayn"
+        },
+        {
+          "slot": "which-tooth-hurts-you-to-a-man",
+          "arabic": "أيّ سن يوجعك؟",
+          "transliteration": "ayy sinn yooja3ak?",
+          "reply": {
+            "arabic": "هذا، تحت على اليمين",
+            "transliteration": "haadha, ta7t 3ala l-yameen",
+            "english": "This one, at the bottom on the right."
+          }
+        },
+        {
+          "slot": "i-brush-my-teeth-twice-a-day",
+          "arabic": "أفرّش أسناني مرتين في اليوم",
+          "transliteration": "afarrish asnaani marratayn fi l-yawm"
+        },
+        {
+          "slot": "does-this-hurt-you-to-a-man",
+          "arabic": "هذا يوجعك؟",
+          "transliteration": "haadha yooja3ak?",
+          "reply": {
+            "arabic": "إيه، يوجعني قوي",
+            "transliteration": "eeh, yooja3ni gawi",
+            "english": "Yes, it hurts a lot."
+          }
+        },
+        {
+          "slot": "do-i-need-braces",
+          "arabic": "أنا محتاج تقويم أسنان؟",
+          "transliteration": "ana mi7taaj tagweem asnaan?",
+          "reply": {
+            "arabic": "لا، ما تحتاجش",
+            "transliteration": "la, ma ti7taajsh",
+            "english": "No, you don't need them."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "الدكتور",
+          "arabic": "قوّيت يا عمر.",
+          "transliteration": "gawwayt yaa 3umar.",
+          "english": "Welcome, Omar."
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "عافاك يا دكتور.",
+          "transliteration": "3aafaak yaa daktoor.",
+          "english": "Thank you, doctor."
+        },
+        {
+          "speaker": "عمر",
+          "slot": "my-tooth-hurts-when-i-drink-something-cold"
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "which-tooth-hurts-you-to-a-man"
+        },
+        {
+          "speaker": "عمر",
+          "slot": "which-tooth-hurts-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "open-your-mouth-to-a-man"
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "does-this-hurt-you-to-a-man"
+        },
+        {
+          "speaker": "عمر",
+          "slot": "does-this-hurt-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "you-have-a-cavity-to-a-man"
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "i-ll-give-you-an-injection-so-you-won-t-feel-pai"
+        },
+        {
+          "speaker": "الدكتور",
+          "arabic": "خلاص، تمّت الحشوة.",
+          "transliteration": "khalaaS, tammat al-7ashwa.",
+          "english": "Done, the filling is finished."
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "rinse-your-mouth-with-water-to-a-man"
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "don-t-eat-anything-for-two-hours-to-a-man"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "معك موعد؟",
+            "transliteration": "ma3ak maw3id?",
+            "english": "Do you have an appointment?"
+          },
+          "response": {
+            "arabic": "إيه، الساعة أربع.",
+            "transliteration": "eeh, as-saa3a arba3.",
+            "english": "Yes, at four o'clock."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أيّ سن يوجعك؟",
+            "transliteration": "ayy sinn yooja3ak?",
+            "english": "Which tooth hurts you?"
+          },
+          "response": {
+            "arabic": "هذا، تحت على اليمين.",
+            "transliteration": "haadha, ta7t 3ala l-yameen.",
+            "english": "This one, at the bottom on the right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هذا يوجعك؟",
+            "transliteration": "haadha yooja3ak?",
+            "english": "Does this hurt?"
+          },
+          "response": {
+            "arabic": "إيه، يوجعني قوي.",
+            "transliteration": "eeh, yooja3ni gawi.",
+            "english": "Yes, it hurts a lot."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أنا محتاج تقويم أسنان؟",
+            "transliteration": "ana mi7taaj tagweem asnaan?",
+            "english": "Do I need braces?"
+          },
+          "response": {
+            "arabic": "لا، ما تحتاجش.",
+            "transliteration": "la, ma ti7taajsh.",
+            "english": "No, you don't need them."
+          }
+        }
+      ],
+      "culture": "Many Yemenis clean their teeth with a مسواك (miswak), a twig of the arak tree, following the Prophet's practice, and you will see it sold outside mosques in Sana'a. Patients also often ask the dentist whether a treatment breaks the fast, so appointments in Ramadan are usually booked after iftar.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "The receptionist asks: \"معك موعد؟\" Say yes, at four o'clock.",
+          "answer": "إيه، الساعة أربع",
+          "accepted": [
+            "إيه، الساعة أربع",
+            "إيه الساعة أربع",
+            "ايه الساعة اربع",
+            "الساعة أربع",
+            "eeh, as-saa3a arba3"
+          ],
+          "tip": "\"إيه\" is \"yes\" in Sana'a."
+        },
+        {
+          "id": "unit-09.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "The dentist asks: \"هذا يوجعك؟\" Say yes, it hurts a lot.",
+          "answer": "إيه، يوجعني قوي",
+          "accepted": [
+            "إيه، يوجعني قوي",
+            "إيه يوجعني قوي",
+            "يوجعني قوي",
+            "إيه، يوجعني كثير",
+            "eeh, yooja3ni gawi"
+          ],
+          "tip": "\"قوي\" after a verb means \"a lot\"."
+        },
+        {
+          "id": "unit-09.lesson-05.reply.03",
+          "type": "reply",
+          "prompt": "The dentist asks: \"أيّ سن يوجعك؟\" Point and say: this one, at the bottom on the right.",
+          "answer": "هذا، تحت على اليمين",
+          "accepted": [
+            "هذا، تحت على اليمين",
+            "هذا تحت على اليمين",
+            "هذا، تحت يمين",
+            "haadha, ta7t 3ala l-yameen"
+          ],
+          "tip": "\"تحت\" is below, \"فوق\" is above."
+        },
+        {
+          "id": "unit-09.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"سنّي _____ لما أشرب شي بارد.\" (My tooth hurts when I drink something cold.)",
+          "answer": "يوجعني",
+          "accepted": [
+            "يوجعني",
+            "يوجعنى",
+            "yooja3ni"
+          ],
+          "too_formal": {
+            "item": "يؤلمني",
+            "feedback": "\"يؤلمني\" is formal; say \"يوجعني\"."
+          },
+          "tip": "\"يوجعني\" is \"it hurts me\"."
+        },
+        {
+          "id": "unit-09.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"لا تاكلش أيّ شي لمدة _____.\" (Don't eat anything for two hours.)",
+          "answer": "ساعتين",
+          "accepted": [
+            "ساعتين",
+            "saa3atayn"
+          ],
+          "tip": "Two of something takes \"ـين\": \"ساعتين\", \"يومين\"."
+        },
+        {
+          "id": "unit-09.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Open your mouth.\" (to a man)",
+          "answer": "افتح فمّك",
+          "accepted": [
+            "افتح فمّك",
+            "افتح فمك",
+            "ifta7 fammak"
+          ],
+          "tip": "To a woman: \"افتحي فمّش\"."
+        },
+        {
+          "id": "unit-09.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I brush my teeth twice a day.\"",
+          "answer": "أفرّش أسناني مرتين في اليوم",
+          "accepted": [
+            "أفرّش أسناني مرتين في اليوم",
+            "افرش اسناني مرتين في اليوم",
+            "أفرّش أسناني مرتين باليوم",
+            "afarrish asnaani marratayn fi l-yawm"
+          ],
+          "tip": "\"فرّش\" is to brush."
+        },
+        {
+          "id": "unit-09.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"We'll take an X-ray.\"",
+          "answer": "شانصوّر أشعة",
+          "accepted": [
+            "شانصوّر أشعة",
+            "شانصور أشعة",
+            "شنصوّر أشعة",
+            "shaa-nSawwir ashi33a"
+          ],
+          "too_formal": {
+            "item": "سنجري صورة بالأشعة",
+            "feedback": "This is formal; say \"شانصوّر أشعة\"."
+          },
+          "tip": "\"شا\" marks the future for \"I\" and \"we\" in Sana'a."
+        },
+        {
+          "id": "unit-09.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence tells a man \"Rinse your mouth with water\"?",
+          "answer": "تمضمض بالماء",
+          "options": [
+            "تمضمض بالماء",
+            "افتح فمّك",
+            "معك موعد؟",
+            "هذا يوجعك؟"
+          ],
+          "accepted": [
+            "تمضمض بالماء",
+            "tmaDmaD bil-maa2"
+          ],
+          "tip": "\"تمضمض\" is the same word used for wudu."
+        },
+        {
+          "id": "unit-09.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"You have a cavity\"?",
+          "answer": "معك تسوّس في السن",
+          "options": [
+            "معك تسوّس في السن",
+            "أنا محتاج تقويم أسنان؟",
+            "أيّ سن يوجعك؟",
+            "شانصوّر أشعة"
+          ],
+          "accepted": [
+            "معك تسوّس في السن",
+            "ma3ak tasawwus fi s-sinn"
+          ],
+          "tip": "\"معك\" is \"you have\"."
+        },
+        {
+          "id": "unit-09.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"تقويم / محتاج / أنا / أسنان\".",
+          "answer": "أنا محتاج تقويم أسنان",
+          "accepted": [
+            "أنا محتاج تقويم أسنان",
+            "انا محتاج تقويم اسنان",
+            "ana mi7taaj tagweem asnaan"
+          ],
+          "tip": "Start with \"أنا\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "i-need-an-ambulance",
+          "arabic": "أشتي سيارة إسعاف",
+          "transliteration": "ashti sayyaarat is3aaf"
+        },
+        {
+          "slot": "where-is-the-emergency-room",
+          "arabic": "فين الطوارئ؟",
+          "transliteration": "feen aT-Tawaari2?",
+          "reply": {
+            "arabic": "في الدور الأول، على اليمين",
+            "transliteration": "fi d-door al-awwal, 3ala l-yameen",
+            "english": "On the first floor, on the right."
+          }
+        },
+        {
+          "slot": "my-father-had-an-accident",
+          "arabic": "أبي وقع له حادث",
+          "transliteration": "abi waga3 lah 7aadith"
+        },
+        {
+          "slot": "register-his-name-at-the-reception-desk-to-a-man",
+          "arabic": "سجّل اسمه في الاستقبال",
+          "transliteration": "sajjil ismuh fi l-istigbaal"
+        },
+        {
+          "slot": "he-needs-to-stay-in-the-hospital-for-two-days",
+          "arabic": "لازم يجلس في المستشفى يومين",
+          "transliteration": "laazim yijlis fi l-mustashfa yawmayn"
+        },
+        {
+          "slot": "which-room-is-he-in",
+          "arabic": "في أيّ غرفة هو؟",
+          "transliteration": "fi ayy ghurfa huw?",
+          "reply": {
+            "arabic": "غرفة رقم خمسة",
+            "transliteration": "ghurfa ragam khamsa",
+            "english": "Room number five."
+          }
+        },
+        {
+          "slot": "what-are-the-visiting-hours",
+          "arabic": "متى وقت الزيارة؟",
+          "transliteration": "mata wagt az-ziyaara?",
+          "reply": {
+            "arabic": "من العصر للمغرب",
+            "transliteration": "min al-3aSr lil-maghrib",
+            "english": "From the afternoon prayer to the sunset prayer."
+          }
+        },
+        {
+          "slot": "i-ll-measure-his-temperature",
+          "arabic": "شاقيس حرارته",
+          "transliteration": "shaa-gees 7araaratuh"
+        },
+        {
+          "slot": "the-operation-will-take-two-hours",
+          "arabic": "العملية عتطوّل ساعتين",
+          "transliteration": "al-3amaliyya 3a-tTawwil saa3atayn"
+        },
+        {
+          "slot": "i-m-worried-about-him-a-man-speaking",
+          "arabic": "أنا قلقان عليه",
+          "transliteration": "ana galgaan 3alayh"
+        },
+        {
+          "slot": "praise-be-to-allah-he-is-fine-now",
+          "arabic": "الحمد لله، هو بخير ذلحين",
+          "transliteration": "al-7amdu lillaah, huw bi-khayr dhal7een"
+        },
+        {
+          "slot": "when-can-he-leave-the-hospital",
+          "arabic": "متى يقدر يخرج من المستشفى؟",
+          "transliteration": "mata yigdar yikhruj min al-mustashfa?",
+          "reply": {
+            "arabic": "بعد يومين، إن شاء الله",
+            "transliteration": "ba3d yawmayn, in shaa2 allaah",
+            "english": "In two days, God willing."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "سامي",
+          "arabic": "يا أخي، ساعدني!",
+          "transliteration": "yaa akhi, saa3idni!",
+          "english": "Brother, help me!"
+        },
+        {
+          "speaker": "سامي",
+          "slot": "my-father-had-an-accident"
+        },
+        {
+          "speaker": "سامي",
+          "slot": "where-is-the-emergency-room"
+        },
+        {
+          "speaker": "الممرّض",
+          "slot": "where-is-the-emergency-room",
+          "reply": true
+        },
+        {
+          "speaker": "الممرّض",
+          "slot": "register-his-name-at-the-reception-desk-to-a-man"
+        },
+        {
+          "speaker": "الممرّض",
+          "slot": "i-ll-measure-his-temperature"
+        },
+        {
+          "speaker": "الدكتور",
+          "arabic": "رجله مكسورة، ولازم عملية.",
+          "transliteration": "rijluh maksoora, w laazim 3amaliyya.",
+          "english": "His leg is broken, and he needs an operation."
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "the-operation-will-take-two-hours"
+        },
+        {
+          "speaker": "سامي",
+          "slot": "i-m-worried-about-him-a-man-speaking"
+        },
+        {
+          "speaker": "الدكتور",
+          "arabic": "لا تخافش، العملية سهلة.",
+          "transliteration": "la tkhaafsh, al-3amaliyya sahla.",
+          "english": "Don't worry, the operation is simple."
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "praise-be-to-allah-he-is-fine-now"
+        },
+        {
+          "speaker": "سامي",
+          "slot": "when-can-he-leave-the-hospital"
+        },
+        {
+          "speaker": "الدكتور",
+          "slot": "when-can-he-leave-the-hospital",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فين الطوارئ؟",
+            "transliteration": "feen aT-Tawaari2?",
+            "english": "Where is the emergency room?"
+          },
+          "response": {
+            "arabic": "في الدور الأول، على اليمين.",
+            "transliteration": "fi d-door al-awwal, 3ala l-yameen.",
+            "english": "On the first floor, on the right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "في أيّ غرفة هو؟",
+            "transliteration": "fi ayy ghurfa huw?",
+            "english": "Which room is he in?"
+          },
+          "response": {
+            "arabic": "غرفة رقم خمسة.",
+            "transliteration": "ghurfa ragam khamsa.",
+            "english": "Room number five."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "متى وقت الزيارة؟",
+            "transliteration": "mata wagt az-ziyaara?",
+            "english": "What are the visiting hours?"
+          },
+          "response": {
+            "arabic": "من العصر للمغرب.",
+            "transliteration": "min al-3aSr lil-maghrib.",
+            "english": "From the afternoon prayer to the sunset prayer."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "متى يقدر يخرج من المستشفى؟",
+            "transliteration": "mata yigdar yikhruj min al-mustashfa?",
+            "english": "When can he leave the hospital?"
+          },
+          "response": {
+            "arabic": "بعد يومين، إن شاء الله.",
+            "transliteration": "ba3d yawmayn, in shaa2 allaah.",
+            "english": "In two days, God willing."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كيف حاله ذلحين؟",
+            "transliteration": "kayf 7aaluh dhal7een?",
+            "english": "How is he now?"
+          },
+          "response": {
+            "arabic": "الحمد لله، هو بخير.",
+            "transliteration": "al-7amdu lillaah, huw bi-khayr.",
+            "english": "Praise be to God, he is fine."
+          }
+        }
+      ],
+      "culture": "Visiting the sick (عيادة المريض) is a strong duty in Yemen, so hospital rooms fill with relatives and neighbours. Visitors say \"ما تشوف شر\" or \"سلامات\" and pray \"الله يشفيه\". Families often stay with the patient day and night and bring home-cooked food.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "You ask: \"فين الطوارئ؟\" The nurse answers. Give his answer: on the first floor, on the right.",
+          "answer": "في الدور الأول، على اليمين",
+          "accepted": [
+            "في الدور الأول، على اليمين",
+            "في الدور الأول على اليمين",
+            "الدور الأول، على اليمين",
+            "fi d-door al-awwal, 3ala l-yameen"
+          ],
+          "tip": "\"دور\" is a floor."
+        },
+        {
+          "id": "unit-09.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "A visitor asks: \"متى وقت الزيارة؟\" Say from the afternoon prayer to the sunset prayer.",
+          "answer": "من العصر للمغرب",
+          "accepted": [
+            "من العصر للمغرب",
+            "من العصر إلى المغرب",
+            "من العصر الى المغرب",
+            "min al-3aSr lil-maghrib"
+          ],
+          "tip": "Times are often given by the prayers."
+        },
+        {
+          "id": "unit-09.lesson-06.reply.03",
+          "type": "reply",
+          "prompt": "A relative asks: \"متى يقدر يخرج من المستشفى؟\" Say in two days, God willing.",
+          "answer": "بعد يومين، إن شاء الله",
+          "accepted": [
+            "بعد يومين، إن شاء الله",
+            "بعد يومين إن شاء الله",
+            "بعد يومين",
+            "ba3d yawmayn, in shaa2 allaah"
+          ],
+          "tip": "Add \"إن شاء الله\" when talking about the future."
+        },
+        {
+          "id": "unit-09.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الحمد لله، هو بخير _____.\" (Praise be to God, he is fine now.)",
+          "answer": "ذلحين",
+          "accepted": [
+            "ذلحين",
+            "ذالحين",
+            "dhal7een"
+          ],
+          "too_formal": {
+            "item": "الآن",
+            "feedback": "\"الآن\" is formal; say \"ذلحين\"."
+          },
+          "tip": "\"ذلحين\" is the Sana'ani \"now\"."
+        },
+        {
+          "id": "unit-09.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ سيارة إسعاف.\" (I need an ambulance.)",
+          "answer": "أشتي",
+          "accepted": [
+            "أشتي",
+            "اشتي",
+            "ashti"
+          ],
+          "tip": "\"أشتي\" is \"I want\" or \"I need\" in Sana'a."
+        },
+        {
+          "id": "unit-09.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My father had an accident.\"",
+          "answer": "أبي وقع له حادث",
+          "accepted": [
+            "أبي وقع له حادث",
+            "ابي وقع له حادث",
+            "أبي صار له حادث",
+            "abi waga3 lah 7aadith"
+          ],
+          "tip": "\"وقع له\" is \"happened to him\"."
+        },
+        {
+          "id": "unit-09.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm worried about him.\" (a man speaking)",
+          "answer": "أنا قلقان عليه",
+          "accepted": [
+            "أنا قلقان عليه",
+            "انا قلقان عليه",
+            "قلقان عليه",
+            "ana galgaan 3alayh"
+          ],
+          "tip": "A woman says \"قلقانة\"."
+        },
+        {
+          "id": "unit-09.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"The operation will take two hours.\"",
+          "answer": "العملية عتطوّل ساعتين",
+          "accepted": [
+            "العملية عتطوّل ساعتين",
+            "العملية عتطول ساعتين",
+            "العملية شتطوّل ساعتين",
+            "al-3amaliyya 3a-tTawwil saa3atayn"
+          ],
+          "too_formal": {
+            "item": "ستستغرق العملية ساعتين",
+            "feedback": "This is formal; say \"العملية عتطوّل ساعتين\"."
+          },
+          "tip": "For \"he\", \"she\" and \"they\", Sana'a marks the future with \"عـ\"."
+        },
+        {
+          "id": "unit-09.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence tells a man to register the patient's name at reception?",
+          "answer": "سجّل اسمه في الاستقبال",
+          "options": [
+            "سجّل اسمه في الاستقبال",
+            "شاقيس حرارته",
+            "في أيّ غرفة هو؟",
+            "لازم يجلس في المستشفى يومين"
+          ],
+          "accepted": [
+            "سجّل اسمه في الاستقبال",
+            "sajjil ismuh fi l-istigbaal"
+          ],
+          "tip": "\"سجّل\" is \"register!\" to a man."
+        },
+        {
+          "id": "unit-09.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"I'll measure his temperature\"?",
+          "answer": "شاقيس حرارته",
+          "options": [
+            "شاقيس حرارته",
+            "أنا قلقان عليه",
+            "متى وقت الزيارة؟",
+            "أشتي سيارة إسعاف"
+          ],
+          "accepted": [
+            "شاقيس حرارته",
+            "shaa-gees 7araaratuh"
+          ],
+          "tip": "\"شا\" + \"أقيس\" gives \"شاقيس\"."
+        },
+        {
+          "id": "unit-09.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"في / يومين / يجلس / لازم / المستشفى\".",
+          "answer": "لازم يجلس في المستشفى يومين",
+          "accepted": [
+            "لازم يجلس في المستشفى يومين",
+            "laazim yijlis fi l-mustashfa yawmayn"
+          ],
+          "tip": "Start with \"لازم\" (he must)."
         }
       ]
     }

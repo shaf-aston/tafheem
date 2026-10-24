@@ -4,7 +4,7 @@ Study Arabic and the Qur'an in one app: grammar of a typed sentence, the Qur'an 
 grammar and tafsir, roots and conjugation, a dictionary, quizzes, timelines, and reciting
 checked word by word. Offline by default, and every answer says where it came from.
 More: `docs/core-flow-detail.md` (long notes), `docs/glossary/` (per module; `nahw-flow.md` is the i'raab
-engine, stage by stage, kept true by its test), `RECITE-PLAN.md` (reciting rules), `docs/strategy/README.md`.
+engine, stage by stage, kept true by its test), `docs/plans/2026-09-05-recite.md` (reciting rules), `docs/strategy/README.md`.
 
 ## Run it
 
@@ -15,10 +15,10 @@ cd frontend && npm run dev                                 # frontend, open http
 venv/Scripts/python -m pytest tests -q                     # backend tests
 venv/Scripts/python -m backend.scripts.worktree new|remove NAME|ci  # ready copy, data linked from ../tafheem-data; drop it safely; or tests with no data, as CI
 cd frontend && npm test && npm run lint                    # frontend tests
-EAR=http://127.0.0.1:8000 node frontend/scripts/probe-ear.mjs  # reciting, end to end
-venv/Scripts/python -m backend.scripts.score_iraab [--set checked]  # i'raab roles vs the books, or the 72 checked sentences
-venv/Scripts/python -m backend.scripts.score_mutashabihat  # similar-verse finder vs the benchmark
-venv/Scripts/python -m backend.scripts.analyze "جملة" [--api URL] [--json]  # one sentence's cards and tree; stdin takes one per line
+EAR=http://127.0.0.1:8000 node frontend/scripts/probes/probe-ear.mjs  # reciting, end to end
+venv/Scripts/python -m backend.scripts.nahw.score_iraab [--set checked]  # i'raab roles vs the books, or the 72 checked sentences
+venv/Scripts/python -m backend.scripts.quran.score_mutashabihat  # similar-verse finder vs the benchmark
+venv/Scripts/python -m backend.scripts.nahw.analyze "جملة" [--api URL] [--json]  # one sentence's cards and tree; stdin takes one per line
 ```
 
 ## Open first
@@ -28,7 +28,7 @@ Folders, top down (one domain = one folder, same name on both sides):
 ```
 frontend/src/
   config/        one JSON per feature; the only place a number or a label is hardcoded
-  components/    one folder per tab (nahw/, quran/, …) + ui/ (kit shared by all) + shell/ (header, settings, offline)
+  components/    one folder per tab (nahw/, quran/, …) + ui/ (kit two or more tabs draw) + shell/ (header, settings, offline)
   lib/           one folder per tab (same names as components/) + the shared ones:
     nav/         tabs registry, URL ↔ tab, journey, dock/recent rules, command line
     api/         axios client errors, health, sources, warm-up
@@ -45,7 +45,12 @@ backend/
     core/        startup, fallback, rate limit, read-only db, provenance, timing
     text/        arabic_text, harakat, spelling, markup, fts, refs
   data/          the files the services read; built by scripts/
-  scripts/       builders, one per data file
+  scripts/       builders and scorers, one folder per domain (quran/, hadith/, nahw/, recitation/, quiz/, …);
+                 a domain with one script keeps it at the root, beside worktree.py and time_search.py
+tests/           same folders as services/ (nahw/, quran/, …) + core/ (config, headers, deploy)
+                 + scripts/ (builders); a domain with one test file keeps it at the root
+frontend/scripts/  node tools: country drawings, icons, contrast, the ears bench; probes/ drive the real app
+docs/            architecture/, glossary/, plans/ (dated), strategy/, colloquial/, prototypes/ (HTML mock-ups)
 ```
 
 Rule of thumb: a file about one tab lives in that tab's folder on both sides;
@@ -66,11 +71,12 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | hadith | `components/hadith/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `lib/hadith/useNarrators.js` | `routers/hadith.py` | `services/hadith/` (`rijal/`, `usul/` inside) | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
 | dict | `components/dictionary/DictionaryPanel.jsx` | `searchDictionary` | `routers/dictionary.py` | `services/dictionary/service.py` | `data/arabic_dictionary.json`, `data/lexicons.db` |
 | mem | `components/memorise/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/memorise/books.js`) | `routers/quran.py` | `services/quran/mutashabihat.py`, `services/quran/service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
-| grow | `components/grow/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow/lesson.js` builds the steps | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
+| grow | `components/grow/GrowPanel.jsx` | `getGrowWorld` (Prayer); the other worlds read `frontend/public/grow/` | `routers/grow.py` | none: the route serves the files; `lib/grow/lesson.js` paces, `lib/grow/<world>Lesson.js` builds the cards | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
 | quiz | `components/quiz/QuizPanel.jsx` | `lib/quiz/quizBanks.js`, `fetchReviewItems` (`lib/learner/progress.js`) | `routers/progress.py` | `services/learner/progress_store.py` | `frontend/public/words/`, `data/progress.db` |
 | timelines | `components/timelines/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py`, `services/text/refs.py`, `services/quran/asbab.py` | `data/timelines/` |
 | dawah | `components/dawah/DawahPanel.jsx` | `dawahQuery` | `routers/dawah.py` | `services/dawah.py` | `data/dawah/dawah.json` |
 | colloq | `components/colloquial/ColloquialPanel.jsx` | `colloquialQuery`, `colloquialUnitQuery` | `routers/colloquial.py` | `services/colloquial/loader.py` | `data/colloquial/` |
+| map | `components/map/MapPanel.jsx` (charts: `shell/PbsChart` over `lib/shell/pbsTree`; methodologies: `map/ManhajView` over `lib/map/manhajData`) | none (hidden, the header's Map button; places `/app/map/07/2`, `/app/map/manhaj/creed/ibadi/ashari`, `lib/map/mapPlace.js`) | none | none | none |
 | kit | `components/kit/KitPanel.jsx` | none (hidden, `/app/kit`) | none | none | none |
 
 Nahw has more views: Tamreen (`getTamreen`, `routers/tamreen.py`, `services/nahw/tamreen.py`), Notes
@@ -78,7 +84,7 @@ Nahw has more views: Tamreen (`getTamreen`, `routers/tamreen.py`, `services/nahw
 (`getTarkeebExamples`, `routers/tarkeeb.py`, `services/nahw/tarkeeb_examples.py`). Reciting (Mem, Grow)
 is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.jsx`, `lib/hadith/useNarrators.js`,
 `rijalChainsQuery`, `routers/hadith.py` `get_chains`, `services/hadith/usul/store.py`, usul.db tables
-`note` and `link` (built by `scripts/build_usul.py`); `lib/hadith/weak.js` ranks and counts them in the page.
+`note` and `link` (built by `scripts/hadith/build_usul.py`); `lib/hadith/weak.js` ranks and counts them in the page.
 
 ## Core flow
 
@@ -98,7 +104,7 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
    hand-tagged corpus; `quran_service.py` joins it with the English gloss. Tafsirs and
    translations are **editions**, all in `data/quran/library.db`, read only by
    `quran_library.py` and named only in `data/quran/editions.json`. Verses that read alike:
-   `data/quran/mutashabihat.json` (`scripts/build_mutashabihat.py`), read by
+   `data/quran/mutashabihat.json` (`scripts/quran/build_mutashabihat.py`), read by
    `services/quran/mutashabihat.py`, which also proposes pairs the books missed.
 4. **The root is the spine.** One answer to "which root", `services/dictionary/roots.py`, asked by Sarf,
    Nahw, the dictionary, the Qur'an's root search and Daleel: the corpus, then the dictionary's
@@ -125,7 +131,11 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
 - **I'raab**: one word's case and why. **Tarkeeb**: which words join into a unit, as a bracket tree.
 - **Root**: the three letters a word is built from; the link every tab shares (`services/dictionary/roots.py`).
 - **Bab**: a verb's vowel pattern or form, read from Lane or Wiktionary, never worked out.
-- **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound; the Trial ear is taught, judged and shipped by `backend/scripts/finetune_ear/README.md`.
+- **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound; the Trial ear is taught, judged and shipped by `backend/scripts/recitation/finetune_ear/README.md`.
 - **Source**: `verified`, `derived` or `guessed`, carried by every answer.
 - **Weak point**: a flagged narrator or link in a chain; `notes` and `links` in code (`docs/glossary/hadith.md`).
 - **Token**: a theme value in `frontend/src/config/theme.json`; components use `var(--...)`, never a literal.
+- **Search words**: `?q=` is what a search sends, `query` is what the answer echoes back, `asked` is the
+  text as the reader typed it, before any cleaning. Qur'an: `surah` and `ayah` (the large majority already);
+  `verse` and `chapter` are for poetry and hadith books. New code follows these; old names that are stored
+  or come from outside (URL params, the `verse` search table, upstream payloads) stay as they are.

@@ -25,7 +25,7 @@ import SentenceMeaning from '../dictionary/SentenceMeaning'
 import WordPeek from './WordPeek'
 import WordCard from './WordCard'
 import ArabicText from '../ui/ArabicText'
-import BookPath from '../ui/BookPath'
+import BookPath from './BookPath'
 import CopyButton from '../ui/CopyButton'
 import Disclosure from '../ui/Disclosure'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -79,6 +79,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
         <SearchBox
           id="iraab-input"
           label="Arabic sentence"
+          verb="analyse"
           placeholder="اكتب جملة عربية هنا..."
           value={sentence}
           onChange={setSentence}

@@ -19,7 +19,8 @@
     "Z": "ظ",
     "aa": "ا طويلة",
     "ee": "ي طويلة",
-    "oo": "و طويلة"
+    "oo": "و طويلة",
+    "j": "ج"
   },
   "lessons": [
     {
@@ -1580,6 +1581,803 @@
             "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
           },
           "tip": "\"طول ما\" تعني \"ما دام\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "the-rain-is-heavy-today",
+          "arabic": "المطر اليوم كلّش گوي",
+          "transliteration": "ilmuTar iyyoom kullish gawi"
+        },
+        {
+          "slot": "the-sky-is-covered-with-clouds",
+          "arabic": "السما كلها غيم",
+          "transliteration": "issama kullha gheem"
+        },
+        {
+          "slot": "the-storm-is-strong-tonight",
+          "arabic": "العاصفة گوية الليلة",
+          "transliteration": "il3aaSifa gawya illeela",
+          "reply": {
+            "arabic": "الله يستر",
+            "transliteration": "allah yistur",
+            "english": "May God protect us."
+          }
+        },
+        {
+          "slot": "there-is-lightning-and-thunder",
+          "arabic": "أكو برگ ورعد",
+          "transliteration": "aku barig w ra3ad"
+        },
+        {
+          "slot": "water-flooded-the-street",
+          "arabic": "الماي غرّگ الشارع",
+          "transliteration": "ilmaay gharrag ishshaari3"
+        },
+        {
+          "slot": "the-wind-is-strong-and-the-trees-are-shaking",
+          "arabic": "الهوا كلّش گوي والشجر دا يهتز",
+          "transliteration": "ilhawa kullish gawi w ishshajar da yihtazz"
+        },
+        {
+          "slot": "the-rain-stopped",
+          "arabic": "المطر وگف",
+          "transliteration": "ilmuTar wigaf",
+          "reply": {
+            "arabic": "زين، هسّه نگدر نطلع",
+            "transliteration": "zeen, hassa nigdar niTla3",
+            "english": "Good, now we can go out."
+          }
+        },
+        {
+          "slot": "stay-home-until-the-storm-passes",
+          "arabic": "خلّيك بالبيت لحد ما تمرّ العاصفة",
+          "transliteration": "khalleek bilbeet li7add ma tmurr il3aaSifa"
+        },
+        {
+          "slot": "i-got-soaked-by-the-rain",
+          "arabic": "صرت كلّي مبلول من المطر",
+          "transliteration": "Sirit kulli mablool min ilmuTar"
+        },
+        {
+          "slot": "the-electricity-was-cut-because-of-the-storm",
+          "arabic": "الكهربا انگطعت بسبب العاصفة",
+          "transliteration": "ilkahraba ingiT3at bsabab il3aaSifa"
+        },
+        {
+          "slot": "the-road-is-slippery-after-the-rain",
+          "arabic": "الطريگ يزلّگ بعد المطر",
+          "transliteration": "iTTareeg yzallig ba3d ilmuTar"
+        },
+        {
+          "slot": "thank-allah-for-this-rain",
+          "arabic": "الحمد لله على هالمطر",
+          "transliteration": "il7amdu lillaah 3ala halmuTar",
+          "reply": {
+            "arabic": "اللّهمّ صيّباً نافعاً",
+            "transliteration": "allaahumma Sayyiban naafi3an",
+            "english": "O Allah, make it a beneficial rain."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Haider",
+          "arabic": "ألو مصطفى، شلون الدنيا عدكم هسّه؟",
+          "transliteration": "aloo muSTafa, shloon iddinya 3idkum hassa?",
+          "english": "Hello Mustafa, what's the weather like at your place now?"
+        },
+        {
+          "speaker": "Mustafa",
+          "slot": "there-is-lightning-and-thunder"
+        },
+        {
+          "speaker": "Haider",
+          "slot": "the-storm-is-strong-tonight"
+        },
+        {
+          "speaker": "Mustafa",
+          "slot": "the-storm-is-strong-tonight",
+          "reply": true
+        },
+        {
+          "speaker": "Haider",
+          "slot": "i-got-soaked-by-the-rain"
+        },
+        {
+          "speaker": "Mustafa",
+          "arabic": "ليش؟ ما أخذت شمسية وياك؟",
+          "transliteration": "leesh? ma akhadhit shamsiyya wiyyaak?",
+          "english": "Why? Didn't you take an umbrella with you?"
+        },
+        {
+          "speaker": "Haider",
+          "arabic": "أخذت، بس الهوا كسرها",
+          "transliteration": "akhadhit, bas ilhawa kisarha",
+          "english": "I did, but the wind broke it."
+        },
+        {
+          "speaker": "Mustafa",
+          "slot": "the-electricity-was-cut-because-of-the-storm"
+        },
+        {
+          "speaker": "Haider",
+          "arabic": "وعدنا هم، دا نشغّل المولدة",
+          "transliteration": "w 3idna hamm, da nshaghghil ilmawlida",
+          "english": "Same here, we're running the generator."
+        },
+        {
+          "speaker": "Mustafa",
+          "slot": "water-flooded-the-street"
+        },
+        {
+          "speaker": "Haider",
+          "slot": "stay-home-until-the-storm-passes"
+        },
+        {
+          "speaker": "Mustafa",
+          "arabic": "إن شاء الله، وإنت هم دير بالك باچر من الطريگ",
+          "transliteration": "in shaa2 allah, w inta hamm deer baalak baachir min iTTareeg",
+          "english": "God willing, and you too, mind the road tomorrow."
+        },
+        {
+          "speaker": "Haider",
+          "slot": "thank-allah-for-this-rain"
+        },
+        {
+          "speaker": "Mustafa",
+          "slot": "thank-allah-for-this-rain",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شلون المطر عدكم؟",
+            "transliteration": "shloon ilmuTar 3idkum?",
+            "english": "How's the rain at your place?"
+          },
+          "response": {
+            "arabic": "المطر اليوم كلّش گوي",
+            "transliteration": "ilmuTar iyyoom kullish gawi",
+            "english": "The rain is very heavy today."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش إنت مبلول؟",
+            "transliteration": "leesh inta mablool?",
+            "english": "Why are you wet?"
+          },
+          "response": {
+            "arabic": "لزمني المطر بالطريگ",
+            "transliteration": "lizamni ilmuTar biTTareeg",
+            "english": "The rain caught me on the way."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إجت الكهربا؟",
+            "transliteration": "ijat ilkahraba?",
+            "english": "Has the electricity come back?"
+          },
+          "response": {
+            "arabic": "لا، لهسّه مگطوعة",
+            "transliteration": "la, lihassa magToo3a",
+            "english": "No, it's still cut."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أطلع هسّه؟",
+            "transliteration": "aTla3 hassa?",
+            "english": "Shall I go out now?"
+          },
+          "response": {
+            "arabic": "لا، خلّيك بالبيت لحد ما تمرّ العاصفة",
+            "transliteration": "la, khalleek bilbeet li7add ma tmurr il3aaSifa",
+            "english": "No, stay home until the storm passes."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وگف المطر؟",
+            "transliteration": "wigaf ilmuTar?",
+            "english": "Has the rain stopped?"
+          },
+          "response": {
+            "arabic": "إي، هسّه وگف",
+            "transliteration": "ee, hassa wigaf",
+            "english": "Yes, it just stopped."
+          }
+        }
+      ],
+      "culture": "ببغداد المطر مو هواية، فلمن تمطر گوي الشوارع تغرگ بسرعة والكهربا تنگطع، والناس يشغّلون المولدة. وبالصيف أكثر شي يجي عجاج وغبرة بدل المطر. ولمن ينزل المطر يگولون «الحمد لله» و«اللّهمّ صيّباً نافعاً»، وهذا دعاء مشترك بكل اللهجات.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "صديقك يسألك: \"أطلع هسّه؟\" والعاصفة گوية. گوله يبقى بالبيت لحد ما تمرّ العاصفة.",
+          "answer": "خلّيك بالبيت لحد ما تمرّ العاصفة",
+          "accepted": [
+            "خلّيك بالبيت لحد ما تمرّ العاصفة",
+            "خليك بالبيت لحد ما تمر العاصفة",
+            "لا، خليك بالبيت لحد ما تمر العاصفة",
+            "اگعد بالبيت لحد ما تمر العاصفة",
+            "khalleek bilbeet li7add ma tmurr il3aaSifa"
+          ],
+          "too_formal": {
+            "item": "ابقَ في المنزل حتى تمرّ العاصفة",
+            "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
+          },
+          "tip": "\"خلّيك\" تعني \"ابقَ\"، ولبنت تگول \"خلّيچ\"."
+        },
+        {
+          "id": "unit-10.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "صديقك يگول: \"الحمد لله على هالمطر\". جاوبه بالدعاء المعروف.",
+          "answer": "اللّهمّ صيّباً نافعاً",
+          "accepted": [
+            "اللّهمّ صيّباً نافعاً",
+            "اللهم صيبا نافعا",
+            "اللهم صيباً نافعاً",
+            "allaahumma Sayyiban naafi3an"
+          ],
+          "tip": "هذا دعاء مشترك بكل اللهجات، ينگال مثل ما هو بلا تغيير."
+        },
+        {
+          "id": "unit-10.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "كمل الجملة: \"المطر _____.\" المعنى: The rain stopped.",
+          "answer": "وگف",
+          "accepted": [
+            "وگف",
+            "وقف",
+            "بطّل",
+            "wigaf"
+          ],
+          "too_formal": {
+            "item": "توقّف",
+            "feedback": "Correct but formal; spoken Iraqi says \"وگف\" with a g sound."
+          },
+          "tip": "\"وگف\" تنلفظ wigaf، والگاف هنا g."
+        },
+        {
+          "id": "unit-10.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "كمل الجملة: \"الكهربا _____ بسبب العاصفة.\" المعنى: The electricity was cut because of the storm.",
+          "answer": "انگطعت",
+          "accepted": [
+            "انگطعت",
+            "انقطعت",
+            "گطعت",
+            "راحت",
+            "ingiT3at"
+          ],
+          "tip": "بالعراق يگولون هم \"راحت الكهربا\" و\"إجت الكهربا\"."
+        },
+        {
+          "id": "unit-10.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للهجة العراقية: \"There is lightning and thunder.\"",
+          "answer": "أكو برگ ورعد",
+          "accepted": [
+            "أكو برگ ورعد",
+            "اكو برگ ورعد",
+            "أكو برق ورعد",
+            "أكو رعد وبرگ",
+            "aku barig w ra3ad"
+          ],
+          "too_formal": {
+            "item": "هناك برقٌ ورعد",
+            "feedback": "Correct meaning, but \"هناك\" is Modern Standard Arabic; Iraqis say \"أكو\"."
+          },
+          "tip": "\"أكو\" تعني \"يوجد\"، و\"ماكو\" عكسها."
+        },
+        {
+          "id": "unit-10.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للهجة العراقية: \"I got soaked by the rain.\"",
+          "answer": "صرت كلّي مبلول من المطر",
+          "accepted": [
+            "صرت كلّي مبلول من المطر",
+            "صرت كلي مبلول من المطر",
+            "صرت مبلول من المطر",
+            "تبللت من المطر",
+            "Sirit kulli mablool min ilmuTar"
+          ],
+          "too_formal": {
+            "item": "ابتللتُ بالمطر",
+            "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
+          },
+          "tip": "البنت تگول \"صرت كلّي مبلولة\"."
+        },
+        {
+          "id": "unit-10.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "أي كلمة تعني \"lightning\"؟",
+          "answer": "برگ",
+          "accepted": [
+            "برگ",
+            "برق",
+            "barig"
+          ],
+          "options": [
+            "برگ",
+            "رعد",
+            "ضباب",
+            "غبرة"
+          ],
+          "tip": "\"برگ\" هو \"برق\"، والگاف تنلفظ g."
+        },
+        {
+          "id": "unit-10.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "شتگول إذا الماي غطّى الشارع بعد المطر؟",
+          "answer": "الماي غرّگ الشارع",
+          "accepted": [
+            "الماي غرّگ الشارع",
+            "الماي غرگ الشارع",
+            "ilmaay gharrag ishshaari3"
+          ],
+          "options": [
+            "الماي غرّگ الشارع",
+            "المطر وگف",
+            "السما كلها غيم",
+            "الطريگ يزلّگ"
+          ],
+          "too_formal": {
+            "item": "غمرت المياه الشارع",
+            "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
+          },
+          "tip": "\"ماي\" هو \"ماء\" بالعراقي."
+        },
+        {
+          "id": "unit-10.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الكلمات لتصير جملة: \"الليلة / گوية / العاصفة\"",
+          "answer": "العاصفة گوية الليلة",
+          "accepted": [
+            "العاصفة گوية الليلة",
+            "الليلة العاصفة گوية",
+            "il3aaSifa gawya illeela"
+          ],
+          "words": [
+            "الليلة",
+            "گوية",
+            "العاصفة"
+          ],
+          "too_formal": {
+            "item": "العاصفةُ قويةٌ الليلة",
+            "feedback": "Correct meaning, but with a q sound it sounds formal; Iraqis say \"گوية\"."
+          },
+          "tip": "\"گوي\" للمذكر و\"گوية\" للمؤنث، والعاصفة مؤنث."
+        },
+        {
+          "id": "unit-10.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الكلمات لتصير جملة: \"المطر / بعد / يزلّگ / الطريگ\"",
+          "answer": "الطريگ يزلّگ بعد المطر",
+          "accepted": [
+            "الطريگ يزلّگ بعد المطر",
+            "الطريگ يزلگ بعد المطر",
+            "بعد المطر الطريگ يزلّگ",
+            "iTTareeg yzallig ba3d ilmuTar"
+          ],
+          "words": [
+            "المطر",
+            "بعد",
+            "يزلّگ",
+            "الطريگ"
+          ],
+          "too_formal": {
+            "item": "الطريقُ زلقٌ بعد المطر",
+            "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
+          },
+          "tip": "\"يزلّگ\" يعني الواحد ممكن يزلگ ويوگع."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "what-s-the-temperature-tomorrow",
+          "arabic": "شگد درجة الحرارة باچر؟",
+          "transliteration": "shgadd darajat il7araara baachir?",
+          "reply": {
+            "arabic": "ما أدري، خل أشوف بالموبايل",
+            "transliteration": "ma adri, khal ashoof bilmobaayl",
+            "english": "I don't know, let me look on the phone."
+          }
+        },
+        {
+          "slot": "the-temperature-will-be-thirty-degrees",
+          "arabic": "درجة الحرارة راح تكون ثلاثين",
+          "transliteration": "darajat il7araara raa7 tkoon thalaatheen"
+        },
+        {
+          "slot": "the-weather-will-be-sunny-all-week",
+          "arabic": "الجو راح يكون مشمس كل الأسبوع",
+          "transliteration": "ijjaw raa7 ykoon mushmis kull ilusboo3"
+        },
+        {
+          "slot": "rain-is-expected-on-friday",
+          "arabic": "يتوگعون مطر يوم الجمعة",
+          "transliteration": "yitwagg3oon muTar yoom ijjum3a"
+        },
+        {
+          "slot": "the-temperature-will-drop-at-night",
+          "arabic": "بالليل الحرارة راح تنزل",
+          "transliteration": "billeel il7araara raa7 tinzil"
+        },
+        {
+          "slot": "the-weather-will-be-better-tomorrow",
+          "arabic": "باچر الجو راح يكون أحسن",
+          "transliteration": "baachir ijjaw raa7 ykoon a7san"
+        },
+        {
+          "slot": "the-bulletin-says-snow-will-fall",
+          "arabic": "النشرة تگول راح ينزل ثلج",
+          "transliteration": "innashra tgool raa7 yinzil thalij"
+        },
+        {
+          "slot": "are-the-forecasts-always-accurate",
+          "arabic": "التوقعات دايماً مضبوطة؟",
+          "transliteration": "ittawaqqu3aat daayman maDbooTa?",
+          "reply": {
+            "arabic": "مو دايماً، بس تفيد",
+            "transliteration": "mu daayman, bas tfeed",
+            "english": "Not always, but they help."
+          }
+        },
+        {
+          "slot": "i-check-the-weather-on-my-phone",
+          "arabic": "آني أشوف الجو بالموبايل مالي",
+          "transliteration": "aani ashoof ijjaw bilmobaayl maali"
+        },
+        {
+          "slot": "the-weather-will-be-cloudy-with-light-rain",
+          "arabic": "الجو راح يكون مغيّم ويا مطر خفيف",
+          "transliteration": "ijjaw raa7 ykoon mghayyim wiyya muTar khafeef"
+        },
+        {
+          "slot": "the-humidity-is-high-this-week",
+          "arabic": "الرطوبة عالية هالأسبوع",
+          "transliteration": "irruTooba 3aalya halusboo3",
+          "reply": {
+            "arabic": "إي، الواحد يعرگ هواية",
+            "transliteration": "ee, ilwaa7id yi3rag hawaaya",
+            "english": "Yes, you sweat a lot."
+          }
+        },
+        {
+          "slot": "listen-to-the-news-bulletin-to-a-man",
+          "arabic": "اسمع نشرة الأخبار",
+          "transliteration": "isma3 nashrat ilakhbaar"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "slot": "what-s-the-temperature-tomorrow"
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "what-s-the-temperature-tomorrow",
+          "reply": true
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "زين، شوفي",
+          "transliteration": "zeen, shoofi",
+          "english": "OK, have a look."
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "the-temperature-will-be-thirty-degrees"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "بس ثلاثين؟ هاي كلّش حلوة. والمطر؟",
+          "transliteration": "bas thalaatheen? haay kullish 7ilwa. w ilmuTar?",
+          "english": "Only thirty? That's very nice. And the rain?"
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "rain-is-expected-on-friday"
+        },
+        {
+          "speaker": "Noor",
+          "slot": "are-the-forecasts-always-accurate"
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "are-the-forecasts-always-accurate",
+          "reply": true
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "وبالليل شلون؟ أريد أطلع ويا أهلي",
+          "transliteration": "w billeel shloon? areed aTla3 wiyya ahli",
+          "english": "And how about at night? I want to go out with my family."
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "the-temperature-will-drop-at-night"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "زين، راح آخذ جاكيت وياي",
+          "transliteration": "zeen, raa7 aakhudh jaakit wiyyaay",
+          "english": "OK, I'll take a jacket with me."
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "the-weather-will-be-better-tomorrow"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "إن شاء الله، لأن هسّه الجو كلّش حار",
+          "transliteration": "in shaa2 allah, li2an hassa ijjaw kullish 7aarr",
+          "english": "God willing, because right now the weather is very hot."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شگد درجة الحرارة باچر؟",
+            "transliteration": "shgadd darajat il7araara baachir?",
+            "english": "What's the temperature tomorrow?"
+          },
+          "response": {
+            "arabic": "ثلاثين درجة",
+            "transliteration": "thalaatheen daraja",
+            "english": "Thirty degrees."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شنو تگول النشرة؟",
+            "transliteration": "shinu tgool innashra?",
+            "english": "What does the bulletin say?"
+          },
+          "response": {
+            "arabic": "يتوگعون مطر باچر",
+            "transliteration": "yitwagg3oon muTar baachir",
+            "english": "They expect rain tomorrow."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "التوقعات مضبوطة؟",
+            "transliteration": "ittawaqqu3aat maDbooTa?",
+            "english": "Are the forecasts accurate?"
+          },
+          "response": {
+            "arabic": "مو دايماً",
+            "transliteration": "mu daayman",
+            "english": "Not always."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الجو راح يكون مشمس؟",
+            "transliteration": "ijjaw raa7 ykoon mushmis?",
+            "english": "Will it be sunny?"
+          },
+          "response": {
+            "arabic": "إي، كل الأسبوع",
+            "transliteration": "ee, kull ilusboo3",
+            "english": "Yes, all week."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "منين تعرف الجو؟",
+            "transliteration": "mneen ti3ruf ijjaw?",
+            "english": "How do you know the weather?"
+          },
+          "response": {
+            "arabic": "آني أشوف الجو بالموبايل مالي",
+            "transliteration": "aani ashoof ijjaw bilmobaayl maali",
+            "english": "I check the weather on my phone."
+          }
+        }
+      ],
+      "culture": "بالعراق الصيف يوصل لخمسين درجة، فالناس يتابعون درجة الحرارة كل يوم، وأحياناً تتعطل الدوامات من شدة الحر. النشرة الجوية تنگال بالفصحى، بس الناس يحچون عنها بالعراقي مثل «يگولون باچر مطر». والثلج نادر ببغداد، ينزل أكثر شي بجبال الشمال.",
+      "exercises": [
+        {
+          "id": "unit-10.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "صديقك يسألك: \"شگد درجة الحرارة باچر؟\" جاوبه إنها ثلاثين.",
+          "answer": "ثلاثين درجة",
+          "accepted": [
+            "ثلاثين درجة",
+            "ثلاثين",
+            "راح تكون ثلاثين",
+            "درجة الحرارة راح تكون ثلاثين",
+            "thalaatheen daraja"
+          ],
+          "too_formal": {
+            "item": "ستكون ثلاثين درجة",
+            "feedback": "Correct meaning, but \"ستكون\" is Modern Standard Arabic; Iraqis say \"راح تكون\"."
+          },
+          "tip": "\"شگد\" تعني \"كم\"."
+        },
+        {
+          "id": "unit-10.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "واحد يسألك: \"التوقعات دايماً مضبوطة؟\" گوله مو دايماً.",
+          "answer": "مو دايماً",
+          "accepted": [
+            "مو دايماً",
+            "مو دايما",
+            "مو دايماً، بس تفيد",
+            "لا، مو دايماً",
+            "mu daayman"
+          ],
+          "too_formal": {
+            "item": "ليست دائماً",
+            "feedback": "Correct meaning, but \"ليست\" is Modern Standard Arabic; Iraqis say \"مو\"."
+          },
+          "tip": "\"مو\" تنفي الصفة والاسم، و\"ما\" تنفي الفعل."
+        },
+        {
+          "id": "unit-10.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "كمل الجملة: \"_____ مطر يوم الجمعة.\" المعنى: Rain is expected on Friday.",
+          "answer": "يتوگعون",
+          "accepted": [
+            "يتوگعون",
+            "يتوقعون",
+            "yitwagg3oon"
+          ],
+          "too_formal": {
+            "item": "يُتوقّع هطول",
+            "feedback": "This is newsreader Arabic; in speech Iraqis say \"يتوگعون\", they expect."
+          },
+          "tip": "\"يتوگعون\" يعني \"هم يتوقعون\"، أصحاب النشرة."
+        },
+        {
+          "id": "unit-10.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "كمل الجملة: \"بالليل الحرارة راح _____.\" المعنى: The temperature will drop at night.",
+          "answer": "تنزل",
+          "accepted": [
+            "تنزل",
+            "تهبط",
+            "tinzil"
+          ],
+          "too_formal": {
+            "item": "تنخفض",
+            "feedback": "Correct but formal; in speech the temperature \"تنزل\"."
+          },
+          "tip": "وإذا الحرارة تزيد يگولون \"تصعد\"."
+        },
+        {
+          "id": "unit-10.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للهجة العراقية: \"What's the temperature tomorrow?\"",
+          "answer": "شگد درجة الحرارة باچر؟",
+          "accepted": [
+            "شگد درجة الحرارة باچر؟",
+            "شگد درجة الحرارة باچر",
+            "شقد درجة الحرارة باچر",
+            "باچر شگد درجة الحرارة",
+            "shgadd darajat il7araara baachir?"
+          ],
+          "too_formal": {
+            "item": "ما درجة الحرارة غداً؟",
+            "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
+          },
+          "tip": "\"باچر\" هي \"غداً\" بالعراقي."
+        },
+        {
+          "id": "unit-10.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للهجة العراقية: \"The weather will be better tomorrow.\"",
+          "answer": "باچر الجو راح يكون أحسن",
+          "accepted": [
+            "باچر الجو راح يكون أحسن",
+            "الجو راح يكون أحسن باچر",
+            "باچر الجو أحسن",
+            "baachir ijjaw raa7 ykoon a7san"
+          ],
+          "too_formal": {
+            "item": "سيكون الطقس أفضل غداً",
+            "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
+          },
+          "tip": "\"راح\" قبل الفعل يعني المستقبل."
+        },
+        {
+          "id": "unit-10.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "أي كلمة تعني \"degree\" بالنشرة الجوية؟",
+          "answer": "درجة",
+          "accepted": [
+            "درجة",
+            "daraja"
+          ],
+          "options": [
+            "درجة",
+            "أسبوع",
+            "رطوبة",
+            "نشرة"
+          ],
+          "tip": "\"درجة الحرارة\" تعني temperature."
+        },
+        {
+          "id": "unit-10.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "أي جملة تعني \"The weather will be cloudy with light rain\"؟",
+          "answer": "الجو راح يكون مغيّم ويا مطر خفيف",
+          "accepted": [
+            "الجو راح يكون مغيّم ويا مطر خفيف",
+            "الجو راح يكون مغيم ويا مطر خفيف",
+            "ijjaw raa7 ykoon mghayyim wiyya muTar khafeef"
+          ],
+          "options": [
+            "الجو راح يكون مغيّم ويا مطر خفيف",
+            "الجو راح يكون مشمس كل الأسبوع",
+            "الرطوبة عالية هالأسبوع",
+            "النشرة تگول راح ينزل ثلج"
+          ],
+          "too_formal": {
+            "item": "سيكون الجو غائماً مع أمطار خفيفة",
+            "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
+          },
+          "tip": "\"ويا\" تعني \"مع\"."
+        },
+        {
+          "id": "unit-10.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب الكلمات لتصير جملة: \"باچر / الحرارة / درجة / شگد\"",
+          "answer": "شگد درجة الحرارة باچر",
+          "accepted": [
+            "شگد درجة الحرارة باچر",
+            "شگد درجة الحرارة باچر؟",
+            "باچر شگد درجة الحرارة",
+            "shgadd darajat il7araara baachir"
+          ],
+          "words": [
+            "باچر",
+            "الحرارة",
+            "درجة",
+            "شگد"
+          ],
+          "too_formal": {
+            "item": "ما درجة الحرارة غداً",
+            "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
+          },
+          "tip": "كلمة السؤال \"شگد\" تجي بالأول."
+        },
+        {
+          "id": "unit-10.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب الكلمات لتصير جملة: \"الأسبوع / كل / مشمس / يكون / راح / الجو\"",
+          "answer": "الجو راح يكون مشمس كل الأسبوع",
+          "accepted": [
+            "الجو راح يكون مشمس كل الأسبوع",
+            "كل الأسبوع الجو راح يكون مشمس",
+            "ijjaw raa7 ykoon mushmis kull ilusboo3"
+          ],
+          "words": [
+            "الأسبوع",
+            "كل",
+            "مشمس",
+            "يكون",
+            "راح",
+            "الجو"
+          ],
+          "too_formal": {
+            "item": "سيكون الجو مشمساً طوال الأسبوع",
+            "feedback": "Correct meaning, but this is Modern Standard Arabic and sounds like a written text, not everyday Iraqi speech."
+          },
+          "tip": "\"كل الأسبوع\" تعني \"طوال الأسبوع\"."
         }
       ]
     }

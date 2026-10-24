@@ -13,7 +13,11 @@
     "aa": "ا طويلة",
     "ee": "ي طويلة",
     "oo": "و طويلة",
-    "e": "حركة قصيرة خفيفة (شوا)"
+    "e": "حركة قصيرة خفيفة (شوا)",
+    "T": "ط",
+    "S": "ص",
+    "D": "ض",
+    "j": "ج"
   },
   "lessons": [
     {
@@ -1470,6 +1474,766 @@
             "غير إشاعة"
           ],
           "tip": "\"مازال\" = not yet, still."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-traveled-to-another-city-last-week",
+          "arabic": "سافرت لمدينة خرا السيمانة اللي فاتت",
+          "transliteration": "saafert l-mdeena khra s-simaana lli faatet",
+          "reply": {
+            "arabic": "فين مشيتي؟",
+            "transliteration": "feen mshiti?",
+            "english": "Where did you go?"
+          }
+        },
+        {
+          "slot": "i-took-the-train-from-the-main-station",
+          "arabic": "خديت الطرين من المحطة الكبيرة",
+          "transliteration": "khdeet T-Treen men l-m7aTTa l-kbeera"
+        },
+        {
+          "slot": "i-bought-the-ticket-the-day-before",
+          "arabic": "شريت البيي نهار قبل",
+          "transliteration": "shreet l-biyyi nhaar qbel"
+        },
+        {
+          "slot": "i-packed-my-suitcase-the-night-before",
+          "arabic": "وجّدت الفاليزة ديالي الليلة اللي قبل",
+          "transliteration": "wejjedt l-faaleeza dyaali l-leela lli qbel"
+        },
+        {
+          "slot": "the-journey-took-four-hours",
+          "arabic": "الطريق دات ربع سوايع",
+          "transliteration": "T-Treeq daat rbe3 swaaye3",
+          "reply": {
+            "arabic": "طويلة بزاف!",
+            "transliteration": "Twila bzaaf!",
+            "english": "That's very long!"
+          }
+        },
+        {
+          "slot": "i-sat-next-to-the-window",
+          "arabic": "ڭلست حدا الشرجم",
+          "transliteration": "glest 7da sh-sherjem"
+        },
+        {
+          "slot": "i-saw-green-fields-and-mountains",
+          "arabic": "شفت فدادن خضرين وجبال",
+          "transliteration": "sheft fdaaden khoDreen w jbaal"
+        },
+        {
+          "slot": "we-arrived-after-noon",
+          "arabic": "وصلنا من بعد الظهر",
+          "transliteration": "wSelna men ba3d D-Dohr"
+        },
+        {
+          "slot": "i-stayed-in-a-small-hotel-near-the-sea",
+          "arabic": "بقيت فواحد الأوطيل صغير قريب من البحر",
+          "transliteration": "bqeet f-waa7ed l-ooTeel Sgheer qreeb men l-b7er"
+        },
+        {
+          "slot": "i-took-many-photos",
+          "arabic": "خديت بزاف ديال التصاور",
+          "transliteration": "khdeet bzaaf dyaal t-tSaawer"
+        },
+        {
+          "slot": "i-tried-the-local-food",
+          "arabic": "جربت الماكلة البلدية ديالهم",
+          "transliteration": "jerrebt l-maakla l-beldiyya dyaalhom"
+        },
+        {
+          "slot": "i-came-back-tired-but-happy",
+          "arabic": "رجعت عيان ولكن فرحان",
+          "transliteration": "rje3t 3yaan walakin fer7aan",
+          "reply": {
+            "arabic": "الحمد لله على السلامة",
+            "transliteration": "l-7amdu lillaah 3la s-slaama",
+            "english": "Thank God you're back safely."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Bilal",
+          "arabic": "فين كنتي أ عمر؟ ما بانش",
+          "transliteration": "feen kenti a 3omar? maa baansh",
+          "english": "Where were you, Omar? You disappeared."
+        },
+        {
+          "speaker": "Omar",
+          "slot": "i-traveled-to-another-city-last-week"
+        },
+        {
+          "speaker": "Bilal",
+          "slot": "i-traveled-to-another-city-last-week",
+          "reply": true
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "مشيت لطنجة",
+          "transliteration": "msheet l-Tanja",
+          "english": "I went to Tangier."
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "بالطرين ولا بالكار؟",
+          "transliteration": "b-T-Treen wlla b-l-kaar?",
+          "english": "By train or by coach?"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "i-took-the-train-from-the-main-station"
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "شحال دات الطريق؟",
+          "transliteration": "sh7aal daat T-Treeq?",
+          "english": "How long did the journey take?"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "the-journey-took-four-hours"
+        },
+        {
+          "speaker": "Bilal",
+          "slot": "the-journey-took-four-hours",
+          "reply": true
+        },
+        {
+          "speaker": "Omar",
+          "slot": "i-saw-green-fields-and-mountains"
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "وجربتي الماكلة ديالهم؟",
+          "transliteration": "w jerrebti l-maakla dyaalhom?",
+          "english": "And did you try their food?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "إيه، البيصارة ديال طنجة بنينة بزاف",
+          "transliteration": "eeh, l-beeSaara dyaal Tanja bneena bzaaf",
+          "english": "Yes, Tangier's bissara is delicious."
+        },
+        {
+          "speaker": "Omar",
+          "slot": "i-came-back-tired-but-happy"
+        },
+        {
+          "speaker": "Bilal",
+          "slot": "i-came-back-tired-but-happy",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فين سافرتي؟",
+            "transliteration": "feen saaferti?",
+            "english": "Where did you travel?"
+          },
+          "response": {
+            "arabic": "سافرت لطنجة السيمانة اللي فاتت",
+            "transliteration": "saafert l-Tanja s-simaana lli faatet",
+            "english": "I travelled to Tangier last week."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كيفاش مشيتي؟",
+            "transliteration": "kifaash mshiti?",
+            "english": "How did you go?"
+          },
+          "response": {
+            "arabic": "خديت الطرين من المحطة الكبيرة",
+            "transliteration": "khdeet T-Treen men l-m7aTTa l-kbeera",
+            "english": "I took the train from the main station."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين بقيتي؟",
+            "transliteration": "feen bqeeti?",
+            "english": "Where did you stay?"
+          },
+          "response": {
+            "arabic": "فواحد الأوطيل صغير قريب من البحر",
+            "transliteration": "f-waa7ed l-ooTeel Sgheer qreeb men l-b7er",
+            "english": "In a small hotel near the sea."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كيف كانت الطريق؟",
+            "transliteration": "kif kaanet T-Treeq?",
+            "english": "How was the journey?"
+          },
+          "response": {
+            "arabic": "طويلة، ولكن شفت فدادن خضرين وجبال",
+            "transliteration": "Twila, walakin sheft fdaaden khoDreen w jbaal",
+            "english": "Long, but I saw green fields and mountains."
+          }
+        }
+      ],
+      "culture": "Trains link Casablanca, Rabat, Tangier, Fes and Marrakech, and the high-speed Al Boraq has made the trip north short. Someone back from a journey is greeted with \"الحمد لله على السلامة\", and the traveller often brings a small gift from the city they visited.",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك قال ليك: \"سافرت لمدينة خرا السيمانة اللي فاتت\". سولو فين مشا.",
+          "answer": "فين مشيتي؟",
+          "accepted": [
+            "فين مشيتي؟",
+            "فين مشيتي",
+            "فين سافرتي؟",
+            "لفين مشيتي؟",
+            "feen mshiti?"
+          ],
+          "too_formal": {
+            "item": "إلى أين ذهبت؟",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"feen\" means where."
+        },
+        {
+          "id": "unit-16.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "صاحبك رجع من السفر وقال: \"رجعت عيان ولكن فرحان\". جاوبو.",
+          "answer": "الحمد لله على السلامة",
+          "accepted": [
+            "الحمد لله على السلامة",
+            "الحمد لله على سلامتك",
+            "l-7amdu lillaah 3la s-slaama"
+          ],
+          "too_formal": {
+            "item": "حمدا لله على سلامتك",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "The standard welcome for anyone back from a trip."
+        },
+        {
+          "id": "unit-16.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "كمل: \"خديت ___ من المحطة الكبيرة.\" المعنى: the train",
+          "answer": "الطرين",
+          "accepted": [
+            "الطرين",
+            "طرين",
+            "التران",
+            "T-Treen"
+          ],
+          "too_formal": {
+            "item": "القطار",
+            "feedback": "\"القطار\" is MSA; Darija says \"الطرين\"."
+          },
+          "tip": "From French train."
+        },
+        {
+          "id": "unit-16.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "كمل: \"شريت ___ نهار قبل.\" المعنى: the ticket",
+          "answer": "البيي",
+          "accepted": [
+            "البيي",
+            "بيي",
+            "البييه",
+            "l-biyyi"
+          ],
+          "too_formal": {
+            "item": "التذكرة",
+            "feedback": "\"التذكرة\" is MSA; Darija says \"البيي\"."
+          },
+          "tip": "From French billet."
+        },
+        {
+          "id": "unit-16.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للدارجة: \"I took many photos.\"",
+          "answer": "خديت بزاف ديال التصاور",
+          "accepted": [
+            "خديت بزاف ديال التصاور",
+            "خديت بزاف د التصاور",
+            "صورت بزاف",
+            "خديت التصاور بزاف",
+            "khdeet bzaaf dyaal t-tSaawer"
+          ],
+          "too_formal": {
+            "item": "التقطت صورا كثيرة",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"taSweera\" is one photo, \"tSaawer\" many."
+        },
+        {
+          "id": "unit-16.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للدارجة: \"We arrived after noon.\"",
+          "answer": "وصلنا من بعد الظهر",
+          "accepted": [
+            "وصلنا من بعد الظهر",
+            "وصلنا مور الظهر",
+            "وصلنا من بعد الطناش",
+            "wSelna men ba3d D-Dohr"
+          ],
+          "too_formal": {
+            "item": "وصلنا بعد الظهر",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"men ba3d\" and \"mor\" both mean after."
+        },
+        {
+          "id": "unit-16.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "أشمن جملة معناها \"I stayed in a small hotel near the sea\"؟",
+          "answer": "بقيت فواحد الأوطيل صغير قريب من البحر",
+          "accepted": [
+            "بقيت فواحد الأوطيل صغير قريب من البحر"
+          ],
+          "options": [
+            "بقيت فواحد الأوطيل صغير قريب من البحر",
+            "ڭلست حدا الشرجم",
+            "وجّدت الفاليزة ديالي الليلة اللي قبل",
+            "شفت فدادن خضرين وجبال"
+          ],
+          "tip": "\"ooTeel\" comes from French hôtel."
+        },
+        {
+          "id": "unit-16.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "شنو معنى \"ڭلست حدا الشرجم\"؟",
+          "answer": "I sat next to the window.",
+          "accepted": [
+            "I sat next to the window."
+          ],
+          "options": [
+            "I sat next to the window.",
+            "I slept on the train.",
+            "I opened the window.",
+            "I stood by the door."
+          ],
+          "tip": "\"sherjem\" is a window; \"7da\" means next to."
+        },
+        {
+          "id": "unit-16.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب: \"دات / سوايع / الطريق / ربع\"",
+          "answer": "الطريق دات ربع سوايع",
+          "accepted": [
+            "الطريق دات ربع سوايع",
+            "T-Treeq daat rbe3 swaaye3"
+          ],
+          "too_formal": {
+            "item": "استغرقت الرحلة أربع ساعات",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"daat\" here means took (time)."
+        },
+        {
+          "id": "unit-16.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب: \"فرحان / رجعت / ولكن / عيان\"",
+          "answer": "رجعت عيان ولكن فرحان",
+          "accepted": [
+            "رجعت عيان ولكن فرحان",
+            "rje3t 3yaan walakin fer7aan"
+          ],
+          "too_formal": {
+            "item": "عدت متعبا لكن سعيدا",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "A woman says \"3yaana walakin fer7aana\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "i-have-good-news-for-you",
+          "arabic": "عندي ليك واحد الخبر مزيان",
+          "transliteration": "3endi leek waa7ed l-khbar mzyaan",
+          "reply": {
+            "arabic": "خير إن شاء الله؟",
+            "transliteration": "kheer in shaa2 Allaah?",
+            "english": "Good news, God willing?"
+          }
+        },
+        {
+          "slot": "i-passed-the-exam",
+          "arabic": "نجحت فالامتحان!",
+          "transliteration": "nja7t f-l-imti7aan!",
+          "reply": {
+            "arabic": "مبروك! تبارك الله عليك",
+            "transliteration": "mabrook! tbaarek Allaah 3leek",
+            "english": "Congratulations! Well done, bless you."
+          }
+        },
+        {
+          "slot": "i-got-the-job",
+          "arabic": "قبلوني فالخدمة",
+          "transliteration": "qbelooni f-l-khedma",
+          "english": "They took me on for the job."
+        },
+        {
+          "slot": "we-will-have-a-new-baby-allah-willing",
+          "arabic": "غادي يتزاد عندنا بيبي جديد إن شاء الله",
+          "transliteration": "ghaadi yetzaad 3endna bebe jdeed in shaa2 Allaah"
+        },
+        {
+          "slot": "my-brother-got-engaged-yesterday",
+          "arabic": "خويا خطب البارح",
+          "transliteration": "khooya khTeb l-baare7"
+        },
+        {
+          "slot": "we-bought-a-new-house",
+          "arabic": "شرينا دار جديدة",
+          "transliteration": "shreena daar jdeeda"
+        },
+        {
+          "slot": "my-father-came-back-from-the-hospital-and-he-is",
+          "arabic": "بابا رجع من السبيطار وهو بخير دابا",
+          "transliteration": "baaba rje3 men s-sbeeTaar w huwa b-kheer daaba",
+          "reply": {
+            "arabic": "الحمد لله على سلامتو",
+            "transliteration": "l-7amdu lillaah 3la slaamtu",
+            "english": "Thank God he is safe and well."
+          }
+        },
+        {
+          "slot": "praise-be-to-allah-this-is-a-great-blessing",
+          "arabic": "الحمد لله، هادي نعمة كبيرة",
+          "transliteration": "l-7amdu lillaah, haadi ne3ma kbeera"
+        },
+        {
+          "slot": "congratulations-i-am-very-happy-for-you-to-a-man",
+          "arabic": "مبروك، فرحت ليك بزاف",
+          "transliteration": "mabrook, fr7t leek bzaaf",
+          "reply": {
+            "arabic": "الله يبارك فيك",
+            "transliteration": "Allaah ybaarek feek",
+            "english": "May Allah bless you."
+          }
+        },
+        {
+          "slot": "may-allah-bless-it-for-you",
+          "arabic": "الله يبارك ليك فيها",
+          "transliteration": "Allaah ybaarek leek feeha"
+        },
+        {
+          "slot": "when-did-you-hear-the-news",
+          "arabic": "إمتا سمعتي الخبر؟",
+          "transliteration": "imta sme3ti l-khbar?"
+        },
+        {
+          "slot": "let-us-celebrate-together-this-evening",
+          "arabic": "يلا نحتافلو جميع هاد العشية",
+          "transliteration": "yallah n7tafelo jmee3 had l-3shiyya"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Karim",
+          "slot": "i-have-good-news-for-you"
+        },
+        {
+          "speaker": "Anas",
+          "slot": "i-have-good-news-for-you",
+          "reply": true
+        },
+        {
+          "speaker": "Karim",
+          "slot": "i-got-the-job"
+        },
+        {
+          "speaker": "Anas",
+          "slot": "congratulations-i-am-very-happy-for-you-to-a-man"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "congratulations-i-am-very-happy-for-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Anas",
+          "slot": "when-did-you-hear-the-news"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الصباح، عيطو ليا من الشركة",
+          "transliteration": "S-Sbaa7, 3ayyTo liyya men sh-sharika",
+          "english": "This morning, the company called me."
+        },
+        {
+          "speaker": "Anas",
+          "slot": "my-brother-got-engaged-yesterday"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "مبروك عليه! الله يكمل بالخير",
+          "transliteration": "mabrook 3leeh! Allaah ykemmel b-kheer",
+          "english": "Congratulations to him! May Allah complete it with good."
+        },
+        {
+          "speaker": "Anas",
+          "slot": "my-father-came-back-from-the-hospital-and-he-is"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "my-father-came-back-from-the-hospital-and-he-is",
+          "reply": true
+        },
+        {
+          "speaker": "Anas",
+          "slot": "praise-be-to-allah-this-is-a-great-blessing"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "let-us-celebrate-together-this-evening"
+        },
+        {
+          "speaker": "Anas",
+          "arabic": "يلا، نجيبو الحلوة ونمشيو عند الواليدين",
+          "transliteration": "yallah, njeebo l-7elwa w nemshiw 3end l-waalideen",
+          "english": "Yes, let's bring sweets and go to our parents."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عندي ليك واحد الخبر مزيان",
+            "transliteration": "3endi leek waa7ed l-khbar mzyaan",
+            "english": "I have good news for you."
+          },
+          "response": {
+            "arabic": "خير إن شاء الله؟",
+            "transliteration": "kheer in shaa2 Allaah?",
+            "english": "Good news, God willing?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نجحت فالامتحان!",
+            "transliteration": "nja7t f-l-imti7aan!",
+            "english": "I passed the exam!"
+          },
+          "response": {
+            "arabic": "مبروك! تبارك الله عليك",
+            "transliteration": "mabrook! tbaarek Allaah 3leek",
+            "english": "Congratulations! Well done, bless you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شرينا دار جديدة",
+            "transliteration": "shreena daar jdeeda",
+            "english": "We bought a new house."
+          },
+          "response": {
+            "arabic": "الله يبارك ليك فيها",
+            "transliteration": "Allaah ybaarek leek feeha",
+            "english": "May Allah bless it for you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بابا رجع من السبيطار",
+            "transliteration": "baaba rje3 men s-sbeeTaar",
+            "english": "My father came back from the hospital."
+          },
+          "response": {
+            "arabic": "الحمد لله على سلامتو",
+            "transliteration": "l-7amdu lillaah 3la slaamtu",
+            "english": "Thank God he is safe and well."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إمتا سمعتي الخبر؟",
+            "transliteration": "imta sme3ti l-khbar?",
+            "english": "When did you hear the news?"
+          },
+          "response": {
+            "arabic": "البارح فالعشية",
+            "transliteration": "l-baare7 f-l-3shiyya",
+            "english": "Yesterday afternoon."
+          }
+        }
+      ],
+      "culture": "Good news in Morocco is announced with \"عندي ليك خبر مزيان\" and met with \"خير إن شاء الله؟\". A new house, a job or an engagement gets \"مبروك\" and \"الله يبارك ليك فيها\", and families mark it by sharing sweets or a couscous with relatives and neighbours. الحمد لله is the shared formula in every dialect.",
+      "exercises": [
+        {
+          "id": "unit-16.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك قال ليك: \"عندي ليك واحد الخبر مزيان\". جاوبو.",
+          "answer": "خير إن شاء الله؟",
+          "accepted": [
+            "خير إن شاء الله؟",
+            "خير إن شاء الله",
+            "خير ان شاء الله؟",
+            "kheer in shaa2 Allaah?"
+          ],
+          "too_formal": {
+            "item": "ما هو الخبر؟",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "Moroccans greet any news with \"kheer in shaa2 Allaah\", hoping it is good."
+        },
+        {
+          "id": "unit-16.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "صاحبك قال ليك: \"شرينا دار جديدة\". دعي ليه بالبركة.",
+          "answer": "الله يبارك ليك فيها",
+          "accepted": [
+            "الله يبارك ليك فيها",
+            "مبروك، الله يبارك ليك فيها",
+            "الله يبارك ليك",
+            "مبروك عليك الدار",
+            "Allaah ybaarek leek feeha"
+          ],
+          "too_formal": {
+            "item": "بارك الله لك فيها",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"feeha\" refers to the house, which is feminine."
+        },
+        {
+          "id": "unit-16.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "كمل: \"خويا ___ البارح.\" المعنى: got engaged",
+          "answer": "خطب",
+          "accepted": [
+            "خطب",
+            "khTeb"
+          ],
+          "too_formal": {
+            "item": "تمت خطبته",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"khTeb\" means he got engaged; for a woman, \"tkhaTbat\"."
+        },
+        {
+          "id": "unit-16.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "كمل: \"بابا رجع من ___ وهو بخير دابا.\" المعنى: the hospital",
+          "answer": "السبيطار",
+          "accepted": [
+            "السبيطار",
+            "سبيطار",
+            "الصبيطار",
+            "s-sbeeTaar"
+          ],
+          "too_formal": {
+            "item": "المستشفى",
+            "feedback": "\"المستشفى\" is MSA; Darija says \"السبيطار\"."
+          },
+          "tip": "From Spanish/French hospital."
+        },
+        {
+          "id": "unit-16.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للدارجة: \"I passed the exam!\"",
+          "answer": "نجحت فالامتحان!",
+          "accepted": [
+            "نجحت فالامتحان!",
+            "نجحت فالامتحان",
+            "نجحت فلامتحان",
+            "نجحت فالإمتحان",
+            "nja7t f-l-imti7aan!"
+          ],
+          "too_formal": {
+            "item": "لقد نجحت في الامتحان",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"f-\" is the short form of \"fi\", in."
+        },
+        {
+          "id": "unit-16.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "ترجم للدارجة: \"We bought a new house.\"",
+          "answer": "شرينا دار جديدة",
+          "accepted": [
+            "شرينا دار جديدة",
+            "شرينا واحد الدار جديدة",
+            "shreena daar jdeeda"
+          ],
+          "too_formal": {
+            "item": "اشترينا بيتا جديدا",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"daar\" is a house or home."
+        },
+        {
+          "id": "unit-16.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "أشمن جملة كتقولها لصاحبك (راجل) باش تبارك ليه؟",
+          "answer": "مبروك، فرحت ليك بزاف",
+          "accepted": [
+            "مبروك، فرحت ليك بزاف"
+          ],
+          "options": [
+            "مبروك، فرحت ليك بزاف",
+            "إمتا سمعتي الخبر؟",
+            "خويا خطب البارح",
+            "قبلوني فالخدمة"
+          ],
+          "tip": "To a woman: \"fr7t leeki bzaaf\"."
+        },
+        {
+          "id": "unit-16.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "شنو معنى \"غادي يتزاد عندنا بيبي جديد إن شاء الله\"؟",
+          "answer": "We will have a new baby, Allah willing.",
+          "accepted": [
+            "We will have a new baby, Allah willing."
+          ],
+          "options": [
+            "We will have a new baby, Allah willing.",
+            "We bought a new house.",
+            "My brother got engaged.",
+            "We will travel soon."
+          ],
+          "tip": "\"tzaad\" means to be born."
+        },
+        {
+          "id": "unit-16.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب: \"هاد / نحتافلو / العشية / يلا / جميع\"",
+          "answer": "يلا نحتافلو جميع هاد العشية",
+          "accepted": [
+            "يلا نحتافلو جميع هاد العشية",
+            "yallah n7tafelo jmee3 had l-3shiyya"
+          ],
+          "too_formal": {
+            "item": "هيا نحتفل معا هذا المساء",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"l-3shiyya\" is the late afternoon and evening."
+        },
+        {
+          "id": "unit-16.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب: \"كبيرة / الحمد / نعمة / هادي / لله\"",
+          "answer": "الحمد لله، هادي نعمة كبيرة",
+          "accepted": [
+            "الحمد لله، هادي نعمة كبيرة",
+            "الحمد لله هادي نعمة كبيرة",
+            "l-7amdu lillaah, haadi ne3ma kbeera"
+          ],
+          "words": [
+            "الحمد",
+            "لله،",
+            "هادي",
+            "نعمة",
+            "كبيرة"
+          ],
+          "too_formal": {
+            "item": "الحمد لله، هذه نعمة عظيمة",
+            "feedback": "Correct but bookish; everyday Darija says it differently."
+          },
+          "tip": "\"haadi\" is this (feminine)."
         }
       ]
     }

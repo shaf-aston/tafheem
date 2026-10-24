@@ -68,7 +68,7 @@ rsync -a --delete backend/data/colloquial/ /home/ubuntu/tafheem/backend/data/col
 # The few frontend files the backend reads at runtime, kept at the same paths:
 # the quiz's words for checked practice sentences (services/learner/sentence_check.py) and the Jazariyya poem
 # (services/daleel/sources/jazariyya.py), and the voices' shared pace (services/speech.py). Without the words, Make one was a 500.
-# tests/test_deploy_files.py fails if the backend starts reading another.
+# tests/core/test_deploy_files.py fails if the backend starts reading another.
 rsync -aR frontend/public/words/words.json frontend/public/words/coverage.json \
 	frontend/public/jazariyya/poem.json frontend/src/config/speak.json /home/ubuntu/tafheem/
 cp requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
@@ -81,16 +81,16 @@ cp requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
 H=/home/ubuntu/tafheem
 HD=$H/backend/data/hadith
 for key in $("$H/venv/bin/python" -c "import json;print(' '.join(k for k in json.load(open('$HD/collections.json')) if not k.startswith('_')))"); do
-	if [ ! -f "$HD/$key.json" ] || [ "$H/backend/scripts/fetch_hadith_collections.py" -nt "$HD/$key.json" ]; then
-		(cd "$H" && venv/bin/python backend/scripts/fetch_hadith_collections.py "$key") || echo "hadith: fetching $key failed, kept the old copy"
+	if [ ! -f "$HD/$key.json" ] || [ "$H/backend/scripts/hadith/fetch_hadith_collections.py" -nt "$HD/$key.json" ]; then
+		(cd "$H" && venv/bin/python backend/scripts/hadith/fetch_hadith_collections.py "$key") || echo "hadith: fetching $key failed, kept the old copy"
 	fi
 done
-if [ ! -f "$H/backend/data/hadith.db" ] || [ -n "$(find "$HD" "$H/backend/scripts/build_hadith_index.py" "$H"/backend/services/hadith/{chain,words,lemma}.py -newer "$H/backend/data/hadith.db" -print -quit)" ]; then
-	(cd "$H" && venv/bin/python backend/scripts/build_hadith_index.py)
+if [ ! -f "$H/backend/data/hadith.db" ] || [ -n "$(find "$HD" "$H/backend/scripts/hadith/build_hadith_index.py" "$H"/backend/services/hadith/{chain,words,lemma}.py -newer "$H/backend/data/hadith.db" -print -quit)" ]; then
+	(cd "$H" && venv/bin/python backend/scripts/hadith/build_hadith_index.py)
 fi
 # Meaning vectors: the build itself knows what changed (text, model, length), re-encodes only
 # that, and takes seconds when nothing did. Low priority, so the live site stays quick.
-(cd "$H" && nice -n 19 venv/bin/python backend/scripts/build_hadith_meaning.py) || echo "hadith: meaning build failed, search runs on words alone"
+(cd "$H" && nice -n 19 venv/bin/python backend/scripts/hadith/build_hadith_meaning.py) || echo "hadith: meaning build failed, search runs on words alone"
 (cd frontend && npm ci --silent && npm run build)
 rm -rf /home/ubuntu/site.new
 cp -r frontend/dist /home/ubuntu/site.new
