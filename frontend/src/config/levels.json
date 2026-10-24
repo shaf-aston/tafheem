@@ -1,7 +1,7 @@
 {
-  "_comment": "How much Arabic a learner knows, shown as \"Your Arabic\" (Grow's \"Level 3\" is XP, a different thing). Chosen on Home's first visit or at sign-up, kept on the account's shelf (key `storage-key`), changeable in Settings and the profile until the answers settle it (lib/learner/learnerLevel.js). `start`: the tab and place Home's picker opens. `grow`: the world Grow's Today leads with. `quiz-bank`: the Quiz's set until another is picked. `proof`: the modules whose answers show this level is mastered; the top level has none, nothing is above it.",
+  "_comment": "How much Arabic a learner knows, shown as \"Your Arabic\" (Grow's \"Level 3\" is XP, a different thing). Chosen on Home's first visit or at sign-up, kept on the account's shelf (key `storage-key`), changeable in Settings and the profile until the answers settle it (lib/learner/learnerLevel.js). `start`: the tab and place Home's picker opens. `grow`: the world Grow's Today leads with. `quiz-bank`: the Quiz's set until another is picked. `proof`: the Grow worlds (worlds.json ids) whose records show this level is mastered, in every meaning language; the top level has none, nothing is above it.",
   "storage-key": "level",
-  "_comment-evidence": "A tier counts once its proof modules hold `min-answers` answers: `pass` or more right moves the learner past it, under `fail` puts them back on it.",
+  "_comment-evidence": "A tier counts once its proof worlds' records hold `min-answers` answers: `pass` or more right moves the learner past it, under `fail` puts them back on it.",
   "min-answers": 30,
   "pass": 0.8,
   "fail": 0.6,
@@ -37,8 +37,7 @@
       "quiz-bank": "quranic",
       "proof-label": "word quiz",
       "proof": [
-        "quiz",
-        "quiz:ur"
+        "words"
       ]
     },
     {

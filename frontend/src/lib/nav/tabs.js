@@ -14,11 +14,8 @@ import { colorFor } from '../../theme'
 import { colloquialQuery, dawahQuery, daleelBooksQuery, hadithOpen, timelinesQuery } from '../../api'
 import { load } from '../api/warm'
 import { memoriseOpen } from '../memorise/books'
-import { table } from '../quiz/quizBanks'
+import { MODULE as QUIZ_MODULE, table } from '../quiz/quizBanks'
 import { WORDS_MODULE } from '../colloquial/wordPractice'
-import { MODULE as BASICS_MODULE } from '../grow/alifLam'
-import { MODULE as HADITH_MODULE } from '../grow/hadithLesson'
-import { MODULE as QURAN_MODULE } from '../grow/quranLesson'
 import { panel } from './panel'
 import grow from '../../config/worlds.json'
 import { quranOpen } from '../quran/quranOpen'
@@ -63,9 +60,9 @@ export const GROUPS = [
   { id: 'more',     label: 'Explore' },
 ]
 
-// What Grow files its answers under: the Basics, hadith and Qur'an worlds' own names, and
-// each book world's `module` as worlds.json declares it, so a new book needs no edit here.
-const GROW_MODULES = [BASICS_MODULE, HADITH_MODULE, QURAN_MODULE, ...grow.worlds.filter((world) => world.module).map((world) => world.module)]
+// What Grow files its answers under: each world's `module` as worlds.json names it, so a new
+// world needs no edit here. Not the Words world's: it files under the Quiz's own record.
+const GROW_MODULES = grow.worlds.map((world) => world.module).filter((module) => module && module !== QUIZ_MODULE)
 
 export const TABS = [
   { id: 'home',   label: 'Home',       short: 'Home',   arabic: 'البداية', emblem: 'home', Component: HomePanel, ownsHealth: true, blurb: "Where you left off, your progress, and every tab", group: 'start' },

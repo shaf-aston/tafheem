@@ -13,7 +13,8 @@
     "src/lib/grow/basicsSkills.js",
     "src/lib/learner/learnerLevel.js",
     "src/lib/grow/useLessonSession.js",
-    "src/lib/learner/record.js"
+    "src/lib/learner/record.js",
+    "src/lib/grow/worlds.js"
   ],
   "ignorePatterns": [
     "dist",

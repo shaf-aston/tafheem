@@ -1,5 +1,5 @@
 /**
- * Any lessons world's data: its items (`load` → { order, all }), the learner's record for `module`
+ * Any lessons world's data: its items (`load` → { order, all }), the learner's record (the world's `module`)
  * (server summary: seen, due, known), the next lesson's picks, the stage, `items` (each with its status, for a scene), and the cards on demand.
  * Configs: lib/grow/useBasicsWorld.js, lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js; numbers from worlds.json.
  */
@@ -9,7 +9,8 @@ import { useQuery } from '@tanstack/react-query'
 import { itemsOf, lessonItems, stageOf } from './lesson'
 import { summaryQuery, useRecord } from '../learner/record'
 
-export function useLessonWorld({ world, module, load, keyOf, cards }) {
+export function useLessonWorld({ world, load, keyOf, cards }) {
+  const { module } = world
   const { refresh } = useRecord()
   const source = useQuery({ queryKey: ['grow-source', world.id], queryFn: load, staleTime: Infinity })
   const summary = useQuery(summaryQuery(module))

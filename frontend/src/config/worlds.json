@@ -1,9 +1,10 @@
 {
-  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/grow/useBasicsWorld.js, lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `book` = BookWorld (a book's parts, then a part's lessons) from `source` (lib/grow/useBookWorld.js), answers filed under `module`. `backdrop` (optional) names a picture in public/grow/backdrops/manifest.json to fade in behind the world's screen (components/grow/WorldBackdrop.jsx); lib/backdrops.test.js checks it exists. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
+  "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/grow/useBasicsWorld.js, lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js), `book` = BookWorld (a book's parts, then a part's lessons) from `source` (lib/grow/useBookWorld.js). `module`: the record every world files its answers under, named here only (lib/grow/worlds.js); never renamed, since saved answers keep it. Words files under the Quiz's own record, `quiz`. `backdrop` (optional) names a picture in public/grow/backdrops/manifest.json to fade in behind the world's screen (components/grow/WorldBackdrop.jsx); lib/backdrops.test.js checks it exists. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
   "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called. `surahs` (Quran): the surahs the items come from, in order.",
   "worlds": [
     {
       "id": "basics",
+      "module": "basics",
       "name": "Basics",
       "arabic": "أساسيات",
       "scene": "First steps",
@@ -26,6 +27,7 @@
     },
     {
       "id": "words",
+      "module": "quiz",
       "name": "Words",
       "arabic": "كلمات",
       "scene": "The Meadow",
@@ -94,6 +96,7 @@
     },
     {
       "id": "quran",
+      "module": "quran-ayat",
       "name": "Quran",
       "arabic": "قرآن",
       "scene": "The Night Sky",
@@ -142,6 +145,7 @@
     },
     {
       "id": "hadith",
+      "module": "nawawi40",
       "name": "Hadith",
       "arabic": "حديث",
       "scene": "The Library",

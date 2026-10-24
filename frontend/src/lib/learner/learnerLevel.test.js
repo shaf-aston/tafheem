@@ -61,6 +61,15 @@ describe('classify', () => {
     expect(result.basis).toEqual({ id: 'intermediate', answers: 40, share: 0.85 })
   })
 
+  it('counts a meaning language no one listed as its record', () => {
+    expect(classify('beginner', [row('quiz:fr', 40, 40)]).level).toBe('advanced')
+    expect(classify('beginner', [row('quizzes', 40, 40)]).settled).toBe(false)
+  })
+
+  it('reads each tier’s proof as the records its worlds file under', () => {
+    expect(RULES.levels.map((level) => level.proof)).toEqual([['basics'], ['quiz'], []])
+  })
+
   it('stops at the top level', () => {
     expect(classify('advanced', [row('quiz', 40, 40)]).level).toBe('advanced')
   })

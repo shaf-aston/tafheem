@@ -5,8 +5,9 @@
 import { getQuranSurah } from '../../api'
 import { gapOf } from '../quiz/gap'
 import { weave } from './lesson'
+import { moduleOf } from './worlds'
 
-export const MODULE = 'quran-ayat'
+export const MODULE = moduleOf('quran')
 export const keyOfAyah = (ayah) => `${ayah.surah}:${ayah.ayah}`
 
 /** The ayahs of `surahs`, flat, in the given order. */
