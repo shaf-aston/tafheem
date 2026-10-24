@@ -1,6 +1,7 @@
 /**
  * One exercise, whatever its type: the prompt, the renderer for its type, the
- * Check button and what follows it. The only reader of exercises/registry,
+ * Check button (none for a pick, which is marked as it is made) and what
+ * follows it. The only reader of exercises/registry,
  * so nothing else knows how a type is drawn or marked.
  *
  * `onDone(correct, value)` lets a caller move on and keep the answer; `saved`
@@ -10,7 +11,7 @@
  * records it alike; an exercise naming its own `progress` ({module, item}) is
  * filed there instead, as a word drill is filed under the word. An exercise with `say` is heard: its prompt gets a speaker.
  */
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { hasAnswer } from '../../../lib/colloquial/answer'
 import { useRecord } from '../../../lib/learner/record'
@@ -27,6 +28,8 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
   const [value, setValue] = useState(() => saved?.value ?? kind?.blank ?? '')
   const [status, setStatus] = useState(() => statusOf(saved))
   const startedAt = useRef(null)
+  // A kind marked as it is picked has no first keystroke to start the clock, so it starts on sight.
+  useEffect(() => { if (kind?.instant) startedAt.current = Date.now() }, [kind])
 
   if (!kind) {
     return (
@@ -36,12 +39,17 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
     )
   }
 
-  const check = () => {
-    const correct = kind.judge(exercise, value)
+  const check = (given = value) => {
+    const correct = kind.judge(exercise, given)
     setStatus(correct ? 'right' : 'wrong')
     const { module = 'colloq', item = exercise.id } = exercise.progress ?? {}
     file({ module, item, correct, ms: startedAt.current && Date.now() - startedAt.current })
-    onDone?.(correct, value)
+    onDone?.(correct, given)
+  }
+  const change = (next) => {
+    startedAt.current ??= Date.now()
+    setValue(next)
+    if (kind.instant) check(next)
   }
 
   // A correct-but-bookish answer is a note, never a mark against the learner.
@@ -54,8 +62,8 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
         {exercise.say && <SpeakButton text={exercise.say} early />}
         {exercise.prompt}
       </p>
-      <kind.Renderer exercise={exercise} value={value} onChange={(next) => { startedAt.current ??= Date.now(); setValue(next) }} status={status} />
-      {!status && (
+      <kind.Renderer exercise={exercise} value={value} onChange={change} status={status} accent={accent} />
+      {!status && !kind.instant && (
         <PrimaryButton accent={accent} disabled={!hasAnswer(value)} onClick={check}>
           Check
         </PrimaryButton>

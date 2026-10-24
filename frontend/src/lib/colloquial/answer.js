@@ -51,8 +51,9 @@ export const bankOf = (exercise) =>
 /** Typed: goes through isRight. */
 export const TYPED = { blank: '', judge: (exercise, value) => isRight(value, exercise.accepted) }
 
-/** Picked: must match exactly, because a picked option cannot be mistyped. */
-export const PICKED = { blank: '', judge: (exercise, value) => value === exercise.answer }
+/** Picked: must match exactly, because a picked option cannot be mistyped. And
+ *  `instant`: the pick is the answer, marked as it is made, as on the Quiz board. */
+export const PICKED = { blank: '', instant: true, judge: (exercise, value) => value === exercise.answer }
 
 /** Arranged: a list of words, joined here and then goes through isRight. */
 export const ARRANGED = { blank: [], judge: (exercise, value) => isRight(value.join(' '), exercise.accepted) }
