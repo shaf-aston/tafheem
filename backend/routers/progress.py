@@ -16,7 +16,7 @@ from contextlib import contextmanager
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
-from backend.identity import DEVICE, NAMED, TYPED, USER
+from backend.identity import DEVICE, NAMED, OWN, TYPED, USER
 from backend.models.progress import (
     Account,
     AccountNames,
@@ -43,7 +43,7 @@ from backend.models.progress import (
     SignUpIn,
 )
 from backend.services.learner import progress_store
-from backend.services.learner.username import GUEST, clean_name, is_guest
+from backend.services.learner.username import GUEST, clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
@@ -53,9 +53,9 @@ _TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner'
 
 @router.post("/attempts", response_model=AttemptSaved)
 async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
-    """File one answer; return its XP and new totals. A guest record earns none."""
-    named = not is_guest(user)
-    earns = named and attempt.correct and progress_store.earns(attempt.module, attempt.item, user, attempt.tz)
+    """File one answer; return its XP and new totals. Only the old shared record earns none: it is many people's."""
+    own = user != GUEST
+    earns = own and attempt.correct and progress_store.earns(attempt.module, attempt.item, user, attempt.tz)
     row_id = progress_store.record(
         module=attempt.module,
         item=attempt.item,
@@ -67,7 +67,7 @@ async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
     return AttemptSaved(
         id=row_id,
         earned=get_settings().rewards_xp_per_answer if earns else 0,
-        rewards=Rewards(**progress_store.rewards(user, attempt.tz)) if named else None,
+        rewards=Rewards(**progress_store.rewards(user, attempt.tz)) if own else None,
     )
 
 
@@ -116,8 +116,8 @@ def get_overview(tz: int = _TZ, user: str = USER) -> Overview:
 
 
 @router.get("/rewards", response_model=Rewards)
-def get_rewards(tz: int = _TZ, user: str = NAMED) -> Rewards:
-    """XP, level, streak. Cheap (no FSRS replay), for the header."""
+def get_rewards(tz: int = _TZ, user: str = OWN) -> Rewards:
+    """XP, level, streak, for an account or a device's guest. Cheap (no FSRS replay), for the header."""
     return Rewards(**progress_store.rewards(user, tz))
 
 

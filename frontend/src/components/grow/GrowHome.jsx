@@ -231,7 +231,7 @@ function Resume({ world, onResume }) {
   )
 }
 
-export default function GrowHome({ worlds, rewards, lessons, books, resume, onResume, onOpen, onStart, onStartBook }) {
+export default function GrowHome({ worlds, rewards, guest, lessons, books, resume, onResume, onOpen, onStart, onStartBook }) {
   const statusOf = {
     ...Object.fromEntries(Object.entries(lessons).map(([id, state]) => [id, stageStatus(state)])),
     ...Object.fromEntries(Object.entries(books).map(([id, state]) => [id, bookStatus(state)])),
@@ -241,7 +241,7 @@ export default function GrowHome({ worlds, rewards, lessons, books, resume, onRe
     <div className="grow-home">
       {/* No trail: Grow draws its own ways back (a world's back arrow, a lesson's ×), and its places are not words. */}
       <SectionHeader tab="grow" subtitle={say('A little every day, in every part of the app.')} history={false}
-        aside={rewards ? null : <LogInButton>{say('Log in to keep your XP')}</LogInButton>} />
+        aside={guest ? <LogInButton>{say('Log in to keep your XP on any device')}</LogInButton> : null} />
       {resume && <Resume world={worldOf(resume.id)} onResume={onResume} />}
       {/* Today's lesson first, where a phone's first screen shows it; the level, streak and goal under it. */}
       <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />

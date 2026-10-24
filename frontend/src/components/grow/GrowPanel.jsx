@@ -108,7 +108,7 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   let screen
   if (view.at === 'lesson' && cards?.length) {
     screen = (
-      <LessonRunner key={playing} cards={cards} accent={worldOf(view.id).accent} rewards={rewards} next={nextOf()} onLeave={finished} />
+      <LessonRunner key={playing} cards={cards} accent={worldOf(view.id).accent} rewards={rewards} guest={!name} next={nextOf()} onLeave={finished} />
     )
   } else if (view.at === 'lesson' && !sourceOf(view.id).error) {
     // Being dealt (a part still coming, the record catching up with the last lesson): the lesson's shape, not a flash of
@@ -119,7 +119,7 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
     screen = SCREENS[world.kind]({ world, lessons, books, view, back: home, go, start, startBook })
   } else {
     screen = (
-      <GrowHome worlds={WORLDS} rewards={rewards} lessons={lessons} books={books} resume={resume} onResume={() => go(resume)}
+      <GrowHome worlds={WORLDS} rewards={rewards} guest={!name} lessons={lessons} books={books} resume={resume} onResume={() => go(resume)}
         onOpen={open} onStart={start} onStartBook={startBook} />
     )
   }

@@ -46,5 +46,5 @@ export default function BasicsRound({ say }) {
   }
   if (!cards) return <Skeleton className="h-64 w-full" />
   if (!cards.length) return <EmptyState>{say('Every Basics step learnt and nothing due. Try the Qur’anic words next.')}</EmptyState>
-  return <LessonRunner key={round} cards={cards} accent={BASICS.accent} rewards={rewards} onLeave={another} onQuit={() => setResting(true)} />
+  return <LessonRunner key={round} cards={cards} accent={BASICS.accent} rewards={rewards} guest={!name} onLeave={another} onQuit={() => setResting(true)} />
 }

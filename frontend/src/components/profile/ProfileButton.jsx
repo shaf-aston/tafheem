@@ -25,7 +25,14 @@ export default function ProfileButton() {
   })
   useQuery({ queryKey: ['account-check', name], queryFn: check, enabled: !!name, retry: false })
   const { rewards, gain } = useRewards(name)
-  if (!name) return <LogInButton quiet />
+  if (!name) {
+    return (
+      <span className="flex items-center gap-1.5 shrink-0">
+        <LevelRing rewards={rewards} gain={gain} />
+        <LogInButton quiet />
+      </span>
+    )
+  }
 
   return (
     <>
