@@ -10,6 +10,5 @@ export function useWordsWorld(world) {
     load: async () => ({ order: await wordsFor(world.lesson.bank), all: await allWords() }),
     keyOf: keyOfWord,
     cards: wordCards,
-    alsoRefresh: ['quiz-review', 'quiz-progress'],
   })
 }

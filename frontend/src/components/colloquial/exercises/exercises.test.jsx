@@ -1,9 +1,12 @@
-import { renderToStaticMarkup } from 'react-dom/server'
+import { renderToStaticMarkup as markup } from 'react-dom/server'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { describe, expect, it } from 'vitest'
 import ExerciseHost from './ExerciseHost'
 import { exerciseOf } from './registry'
 
 const base = { id: 'u.l.x.01', prompt: 'Say hello', answer: 'مرحبا', accepted: ['مرحبا'] }
+// Inside the page's cache, as in the app: an answer is filed through it (lib/learner/record).
+const renderToStaticMarkup = (node) => markup(<QueryClientProvider client={new QueryClient()}>{node}</QueryClientProvider>)
 const draw = (exercise) => renderToStaticMarkup(<ExerciseHost exercise={exercise} />)
 
 describe('exercise registry', () => {

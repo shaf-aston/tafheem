@@ -4,7 +4,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useRef, useState } from 'react'
 
-import { fetchSummary, recordAttempt } from '../../../lib/learner/progress'
+import { summaryQuery, useRecord } from '../../../lib/learner/record'
 import { QUIZ } from '../../../lib/quiz/quizBanks'
 import { fillIn, sayIn } from '../../../lib/text/say'
 import { useQuizRound } from '../../../lib/quiz/useQuizRound'
@@ -20,6 +20,7 @@ const CARD = 'rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(-
 
 // Frozen when it opens, so an answer saved mid-round does not reshuffle the round.
 function Round({ words, rows, dialect, offline, onRestart }) {
+  const { file } = useRecord()
   const [plan] = useState(() => reviewOf(words, rows, dialect))
   const [questions] = useState(() => reviewQuestions(plan.session, words, dialect))
   const [at, setAt] = useState(0)
@@ -29,7 +30,7 @@ function Round({ words, rows, dialect, offline, onRestart }) {
   const saving = useRef(Promise.resolve())
   const round = useQuizRound({
     question: questions[at] ?? null,
-    onAnswer: ({ question, correct, ms }) => { saving.current = recordAttempt({ module: WORDS_MODULE, item: question.answerId, correct, ms }) },
+    onAnswer: ({ question, correct, ms }) => { saving.current = file({ module: WORDS_MODULE, item: question.answerId, correct, ms }) },
     onNext: () => setAt((n) => n + 1),
     autoNext,
     setAutoNext,
@@ -82,12 +83,10 @@ function Round({ words, rows, dialect, offline, onRestart }) {
 
 export default function WordReview({ words, dialect }) {
   const summary = useQuery({
-    queryKey: ['progress', WORDS_MODULE],
-    queryFn: () => fetchSummary(WORDS_MODULE),
+    ...summaryQuery(WORDS_MODULE),
     // The app keeps answers forever by default; what is due changes with every answer.
     staleTime: 0,
     refetchOnMount: 'always',
-    refetchOnWindowFocus: false,
     retry: false,
   })
   // Fetching as well as pending: coming back to Review must not plan from the last visit's answers.

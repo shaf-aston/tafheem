@@ -4,15 +4,15 @@
  * Configs: lib/grow/useBasicsWorld.js, lib/useWordsWorld.js, lib/useHadithWorld.js, lib/useQuranWorld.js; numbers from worlds.json.
  */
 import { useMemo } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import { itemsOf, lessonItems, stageOf } from './lesson'
-import { fetchSummary } from '../learner/progress'
+import { summaryQuery, useRecord } from '../learner/record'
 
-export function useLessonWorld({ world, module, load, keyOf, cards, alsoRefresh = [] }) {
-  const client = useQueryClient()
+export function useLessonWorld({ world, module, load, keyOf, cards }) {
+  const { refresh } = useRecord()
   const source = useQuery({ queryKey: ['grow-source', world.id], queryFn: load, staleTime: Infinity })
-  const summary = useQuery({ queryKey: ['grow-summary', module], queryFn: () => fetchSummary(module) })
+  const summary = useQuery(summaryQuery(module))
   const { lesson, stages } = world
 
   const state = useMemo(() => {
@@ -37,10 +37,7 @@ export function useLessonWorld({ world, module, load, keyOf, cards, alsoRefresh 
     retry: () => { source.refetch(); summary.refetch() },
     ...(state ?? { dueCount: 0, items: [] }),
     makeLesson: (random = Math.random) => cards(state.next, source.data.all, random),
-    // After a lesson: re-read this record and any view that shares it.
-    refresh: () => {
-      client.invalidateQueries({ queryKey: ['grow-summary', module] })
-      for (const key of alsoRefresh) client.invalidateQueries({ queryKey: [key] })
-    },
+    // After a lesson: re-read this record (every screen reading it shares the one cache entry).
+    refresh: () => refresh(module),
   }
 }

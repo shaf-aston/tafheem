@@ -5,11 +5,11 @@
  * GrowPanel's (its address); `dealable` says the cards for it are in. The book is static: when the learner's record cannot
  * be read (the server is down), the lessons still show and play, as if nothing were answered yet (`offline`). Rules: lib/grow/bookLesson.js; entry: worlds.json.
  */
-import { useQueries, useQueryClient } from '@tanstack/react-query'
+import { useQueries } from '@tanstack/react-query'
 
 import { lessonCards, partOfLesson, partsDue, partsOf, reviewCards } from './bookLesson'
 import { indexPath, partPath } from './bookSplit'
-import { fetchSummary } from '../learner/progress'
+import { summaryQuery, useRecord } from '../learner/record'
 
 /** Where the book world last studied is remembered (GrowPanel writes it, Grow home leads with it). */
 export const LAST_BOOK = 'grow-last-book'
@@ -46,12 +46,12 @@ function stateOf(index, record) {
 
 /** Every book world's data, by id: one entry per world in `worlds` (worlds.json's entries of kind `book`). */
 export function useBookWorlds(worlds, view) {
-  const client = useQueryClient()
+  const { refresh } = useRecord()
   const sources = useQueries({
     queries: worlds.map((world) => ({ queryKey: ['grow-source', world.id], queryFn: () => load(indexPath(world.source)), staleTime: Infinity })),
   })
   const summaries = useQueries({
-    queries: worlds.map((world) => ({ queryKey: ['grow-summary', world.module], queryFn: () => fetchSummary(world.module), retry: 1 })),
+    queries: worlds.map((world) => ({ ...summaryQuery(world.module), retry: 1 })),
   })
   const records = summaries.map((summary) => summary.data ?? (summary.isError ? NOTHING : null))
   const states = worlds.map((_, i) => stateOf(sources[i].data, records[i]))
@@ -80,7 +80,7 @@ export function useBookWorlds(worlds, view) {
       makeLesson: (lessonId, random = Math.random) => (!state ? null : lessonId === REVIEW
         ? reviewCards(withCards, state.due, world, random)
         : lessonCards(withCards, lessonId, world, random)),
-      refresh: () => client.invalidateQueries({ queryKey: ['grow-summary', world.module] }),
+      refresh: () => refresh(world.module),
     }]
   }))
 }

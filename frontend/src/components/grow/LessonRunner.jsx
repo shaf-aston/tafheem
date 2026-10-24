@@ -9,7 +9,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { requeue } from '../../lib/grow/lesson'
-import { recordAttempt } from '../../lib/learner/progress'
+import { useRecord } from '../../lib/learner/record'
 import { rankOf, shareOf } from '../../lib/learner/rewards'
 import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/ArabicText'
@@ -19,6 +19,7 @@ import { kindOf } from './exercises'
 const say = sayIn('en')
 
 export default function LessonRunner({ cards: first, accent, rewards, next: after, onLeave }) {
+  const { file } = useRecord()
   const [cards, setCards] = useState(first)
   const [at, setAt] = useState(0)
   const [value, setValue] = useState(null)
@@ -88,7 +89,7 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
     if (!right) setCards(requeue(cards, at))
     if (!right && !card.again && card.ask) setMissed((was) => [...was, { id: card.id, ask: card.ask, ar: lineOf(card), why: card.why }])
     const ms = Math.max(0, Math.round(event.timeStamp - started.current))
-    recordAttempt({ ...card.record, correct: right, ms }).then(({ earned = 0 }) => {
+    file({ ...card.record, correct: right, ms }).then(({ earned = 0 }) => {
       if (earned) setTally((was) => ({ ...was, earned: was.earned + earned }))
     })
   }
