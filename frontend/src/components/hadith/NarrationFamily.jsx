@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { narrationFamilyQuery } from '../../api'
-import { familyTree } from '../../lib/familyTree'
+import { familyTree } from '../../lib/hadith/familyTree'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'

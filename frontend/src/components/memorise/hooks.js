@@ -10,11 +10,11 @@ import {
 import { readViewParam, writeViewParams } from '../../lib/tabUrl'
 import { useSlide, useSwipe } from '../../lib/useSwipe'
 import { scrollToEl } from '../../lib/scrollToEl'
-import { useReciting } from '../../lib/useReciting'
+import { useReciting } from '../../lib/memorise/useReciting'
 import { useSetting } from '../../lib/settings'
 import { warm } from '../../lib/warm'
 import { useArrivalEffect } from '../../lib/useArrival'
-import recite from '../../recite.json'
+import recite from '../../config/recite.json'
 
 // The setting itself, not a copy of one of its numbers. Every id here comes
 // from DIFFICULTIES, so a miss means memorise.json names a default that is not

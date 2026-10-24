@@ -4,7 +4,7 @@
  * Draws the registry, decides nothing, like TabStrip. Holding the current tab
  * opens its jump fan (lib/jumpFan.js).
  */
-import { JUMPS, useJumpFan } from '../../lib/jumpFan'
+import { JUMPS, useJumpFan } from '../../lib/shell/jumpFan'
 import { ahead } from '../../lib/warm'
 
 import MoreIcon from '../ui/MoreIcon'

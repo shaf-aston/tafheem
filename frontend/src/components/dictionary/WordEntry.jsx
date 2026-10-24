@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { rootBabsQuery } from '../../api'
-import { entrySpans } from '../../lib/entrySpan'
+import { entrySpans } from '../../lib/dictionary/entrySpan'
 import { plainPronunciation } from '../../lib/pronounce'
 import { useSetting } from '../../lib/settings'
 

@@ -6,7 +6,7 @@
  * lib/recitingSession.js; api.js stays the only place that knows the URL.
  */
 import { JOURNAL_PATH, postJournal } from '../api'
-import config from '../recite.json'
+import config from '../config/recite.json'
 
 const FLUSH_MS = config['journal-flush-ms']
 const BATCH = config['journal-batch']

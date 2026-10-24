@@ -8,7 +8,7 @@
  * filed under the name (lib/stored.js), and a reload is the one way every panel
  * reads the new person's at once.
  */
-import CONFIG from '../profile.json'
+import CONFIG from '../config/profile.json'
 import { forgetDevice, readDevice, writeDevice } from './stored'
 
 /** The saved name, or '' when nobody has typed one on this device. */

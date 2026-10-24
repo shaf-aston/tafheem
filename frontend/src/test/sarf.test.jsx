@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import SarfPanel from '../components/SarfPanel'
+import SarfPanel from '../components/sarf/SarfPanel'
 
 const KATABA = {
   word: 'كتب',

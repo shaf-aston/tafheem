@@ -23,9 +23,9 @@ import ArabicText from '../ui/ArabicText'
 import ManhajView from '../ui/ManhajView'
 import PbsChart from './PbsChart'
 import { closeOnBackdrop, useModal } from '../../lib/useModal'
-import { anchoredScroll, pinchedZoom, usePinch } from '../../lib/usePinch'
+import { anchoredScroll, pinchedZoom, usePinch } from '../../lib/shell/usePinch'
 import { CHARTS } from '../../lib/pbsData'
-import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'
+import { chartTree, nodeAt, viewConfig } from '../../lib/shell/pbsTree'
 
 const ZOOM_MIN = 0.7
 const ZOOM_MAX = 3

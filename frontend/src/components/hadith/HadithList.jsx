@@ -8,9 +8,9 @@ import { useQuery } from '@tanstack/react-query'
 
 import { hadithBookQuery } from '../../api'
 import { holdAtTop, scrollToEl, useOpenAtTop } from '../../lib/scrollToEl'
-import { topicOf } from '../../lib/hadithGrade'
+import { topicOf } from '../../lib/hadith/hadithGrade'
 import { useRememberedFlag } from '../../lib/useRemembered'
-import { useSideBySide } from '../../lib/useSideBySide'
+import { useSideBySide } from '../../lib/hadith/useSideBySide'
 
 import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -21,7 +21,7 @@ import { AnalyzerSkeleton } from '../ui/Skeleton'
 import ReadingOptions from '../ui/ReadingOptions'
 import SheetLink from '../ui/SheetLink'
 import HadithCards from './HadithCards'
-import { useHideChain } from '../../lib/useHideChain'
+import { useHideChain } from '../../lib/hadith/useHideChain'
 
 /** How far down the page you are, drawn into `ref` without re-rendering per scroll. */
 function useReadingRail(ref) {

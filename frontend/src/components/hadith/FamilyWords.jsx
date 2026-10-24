@@ -3,7 +3,7 @@
  * words that match another telling's only once the dots are gone dotted, the other telling's word beside them.
  * Neutral on purpose: a difference is shown, never called an addition or a mistake. Tapping the letter opens that hadith.
  */
-import { markedRuns } from '../../lib/familyWords'
+import { markedRuns } from '../../lib/hadith/familyWords'
 
 import ArabicText from '../ui/ArabicText'
 import PartLetter from './PartLetter'

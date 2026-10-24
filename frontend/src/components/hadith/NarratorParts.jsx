@@ -5,7 +5,7 @@
  */
 import { useState } from 'react'
 
-import HADITH from '../../hadith.json'
+import HADITH from '../../config/hadith.json'
 import { toneOf } from '../../lib/rijal'
 
 import { errorStatus } from '../../lib/apiError'

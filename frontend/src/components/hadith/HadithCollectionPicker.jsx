@@ -2,7 +2,7 @@
  * Which collection is open, by its short name. Absent while only one is
  * indexed rather than shown as a one-choice control.
  */
-import { useHadithCollections } from '../../lib/useHadithCollections'
+import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
 
 import Segmented from '../ui/Segmented'
 

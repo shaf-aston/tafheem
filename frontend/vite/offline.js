@@ -1,5 +1,5 @@
 /**
- * The offline plan, made from what the build actually wrote (src/offline.json says the rules).
+ * The offline plan, made from what the build actually wrote (src/config/offline.json says the rules).
  *
  * After the build, every file in dist is sorted: a pack claims it, core-skip drops it, or it is
  * core. The plan goes two places: into sw.js (vite/sw.template.js), which saves the core on the
@@ -11,7 +11,7 @@ import { createHash } from 'node:crypto'
 import { readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 
-import knobs from '../src/offline.json' with { type: 'json' }
+import knobs from '../src/config/offline.json' with { type: 'json' }
 
 const TEMPLATE = join(import.meta.dirname, 'sw.template.js')
 const OUT = { worker: 'sw.js', plan: 'offline-files.json' }

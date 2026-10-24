@@ -1,5 +1,5 @@
 /** The Quran world's picture, The Night Sky: a constellation per surah, a star per ayah, bright once known. */
-import { starsOf } from '../../../lib/sky'
+import { starsOf } from '../../../lib/grow/sky'
 import { sayIn } from '../../../lib/say'
 import ArabicText from '../../ui/ArabicText'
 

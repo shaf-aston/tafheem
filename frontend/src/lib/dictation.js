@@ -2,7 +2,7 @@
  * When a recording should stop itself. Pure, so it is tested without a microphone.
  * watchForVoice below meters a live microphone; the rest decides what the meter means.
  */
-import config from '../dictation.json'
+import config from '../config/dictation.json'
 
 /**
  * Loud enough to be a voice rather than the room.

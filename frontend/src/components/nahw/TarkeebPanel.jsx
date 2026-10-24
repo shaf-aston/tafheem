@@ -7,8 +7,8 @@ import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getTarkeebExamples } from '../../api'
-import { exampleMatches } from '../../lib/exampleSearch'
-import { buildIraabExportText } from '../../lib/iraabExport'
+import { exampleMatches } from '../../lib/nahw/exampleSearch'
+import { buildIraabExportText } from '../../lib/nahw/iraabExport'
 import { useInView } from '../../lib/useInView'
 import { useRemembered } from '../../lib/useRemembered'
 import { useTarkeebView } from '../../lib/useTarkeebView'
@@ -22,8 +22,8 @@ import ErrorAlert from '../ui/ErrorAlert'
 import { GoButton } from '../ui/RootActions'
 import SourceBadge from '../ui/SourceBadge'
 import { Skeleton } from '../ui/Skeleton'
-import TarkeebFigure from '../TarkeebFigure'
-import TarkeebTools from '../TarkeebTools'
+import TarkeebFigure from './tarkeeb/TarkeebFigure'
+import TarkeebTools from './tarkeeb/TarkeebTools'
 
 // Browsed by grammar topic, shared by every book, so a second book teaching kana
 // lands under the same chip. The book chips appear only with more than one book.

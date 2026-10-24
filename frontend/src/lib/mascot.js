@@ -4,7 +4,7 @@
  * Mirrors theme.js: config in one file, one reader, components ask this module
  * rather than importing the JSON themselves.
  */
-import config from '../mascot.json'
+import config from '../config/mascot.json'
 
 export const captionFor = (mood) => config.captions[mood] ?? config.captions.idle
 

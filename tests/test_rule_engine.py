@@ -369,7 +369,7 @@ def test_word_types_are_the_pages():
     import json
     from pathlib import Path
     from backend.models.analyze import WORD_TYPES
-    labelled = json.loads((Path(__file__).parent.parent / "frontend/src/grammar.json").read_text(encoding="utf-8"))["types"]
+    labelled = json.loads((Path(__file__).parent.parent / "frontend/src/config/grammar.json").read_text(encoding="utf-8"))["types"]
     assert WORD_TYPES - {"punc"} == set(labelled)
     for sentence in (VERBAL, NOMINAL, "جَاءَ الَّذِي نَجَحَ، هُوَ فِي البَيْتِ"):
         assert {w["type"] for w in _read(sentence)["words"]} <= WORD_TYPES
@@ -385,7 +385,7 @@ def test_the_glossary_explains_every_term_the_page_prints():
     from backend.services.nahw_book import role_table
     from backend.services.syntax.naming import ROLES
     root = Path(__file__).parent.parent
-    grammar = json.loads((root / "frontend/src/grammar.json").read_text(encoding="utf-8"))
+    grammar = json.loads((root / "frontend/src/config/grammar.json").read_text(encoding="utf-8"))
     tarkeeb = json.loads((root / "backend/data/nahw_rules/tarkeeb.json").read_text(encoding="utf-8"))["terms"]
     entries = [*grammar["types"].values(), *grammar["cases"].values(),
                *(t for s in grammar["sections"] for t in s.get("terms", []))]

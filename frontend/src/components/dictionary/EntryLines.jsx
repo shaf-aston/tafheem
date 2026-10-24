@@ -11,7 +11,7 @@
  */
 import { useCallback, useState } from 'react'
 
-import { entryLines } from '../../lib/entryLines'
+import { entryLines } from '../../lib/dictionary/entryLines'
 import { useRememberedFlag } from '../../lib/useRemembered'
 
 import { Line } from './EntryArabic'

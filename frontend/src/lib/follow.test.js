@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import config from '../recite.json'
+import config from '../config/recite.json'
 import { bySound, CHECK, follow, isOfPage, joinWindows, MISSED, SAID, WAITING, wordsHeard, WRONG } from './follow'
 
 // Al-Fatihah 1:6-7, the run the prototype recites, as the page holds it.

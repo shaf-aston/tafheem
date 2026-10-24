@@ -15,7 +15,7 @@ import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { getRootEntryEnglish, getRootEntryLines, getRootMeaning } from '../../api'
-import config from '../../dictionary.json'
+import config from '../../config/dictionary.json'
 import { BROKEN, MISSING, READY } from '../../lib/loadStatus'
 import { useHealth } from '../../lib/useHealth'
 import { useRemembered } from '../../lib/useRemembered'

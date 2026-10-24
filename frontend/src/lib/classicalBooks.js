@@ -9,7 +9,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { getLexicons } from '../api'
-import config from '../dictionary.json'
+import config from '../config/dictionary.json'
 
 export const MAQAYEES = 'maqayees'
 

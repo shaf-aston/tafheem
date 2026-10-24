@@ -19,7 +19,7 @@
 import { Fragment } from 'react'
 
 import { plainPronunciation } from '../../lib/pronounce'
-import { synonymGloss } from '../../lib/synonymGloss'
+import { synonymGloss } from '../../lib/dictionary/synonymGloss'
 
 import ArabicText from '../ui/ArabicText'
 

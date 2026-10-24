@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { ayahEnd } from '../../lib/ayahEnd'
-import { useRecitedWord } from '../../lib/useRecitedWord'
+import { ayahEnd } from '../../lib/quran/ayahEnd'
+import { useRecitedWord } from '../../lib/quran/useRecitedWord'
 
 import GlossedAyah from './GlossedAyah'
 

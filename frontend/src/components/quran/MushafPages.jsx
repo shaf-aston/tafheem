@@ -12,7 +12,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { mushafPagesQuery } from '../../api'
 import surahs from '../../data/surahs.json'
-import { isCentred, pageFontPx, wordsOf } from '../../lib/mushafFit'
+import { isCentred, pageFontPx, wordsOf } from '../../lib/quran/mushafFit'
 import { themeVariable } from '../../theme'
 import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import config from '../dictation.json'
+import config from '../config/dictation.json'
 import { freshSamples, isVoice, quietLimitMs } from './dictation'
 
 describe('when a recording stops itself', () => {

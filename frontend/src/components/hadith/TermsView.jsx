@@ -11,7 +11,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { usulGuideQuery } from '../../api'
 import { layoutChart } from '../../lib/pbsLayout'
-import { branchChart, MIN_SCALE, termAt, termsChart, wholeWidth } from '../../lib/termsChart'
+import { branchChart, MIN_SCALE, termAt, termsChart, wholeWidth } from '../../lib/hadith/termsChart'
 import { useOpenAtTop } from '../../lib/scrollToEl'
 import { atLeast, SHELL_MAX, TERMS_TREE_MIN, useMedia } from '../../lib/useMedia'
 

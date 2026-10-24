@@ -1,7 +1,7 @@
 /**
  * The app on this phone with no signal: the worker that saves it, and the packs a reader can add.
  *
- * The rules are src/offline.json; vite/offline.js turns them into the built plan
+ * The rules are src/config/offline.json; vite/offline.js turns them into the built plan
  * (/offline-files.json), and vite/sw.template.js serves from what is saved. This file starts the
  * worker and keeps the packs: each is its own cache, filled here and read by the worker, so
  * removing one is deleting one cache. What shows it (components/shell/OfflinePanel.jsx) draws and
@@ -9,7 +9,7 @@
  */
 import { useSyncExternalStore } from 'react'
 
-import knobs from '../offline.json'
+import knobs from '../config/offline.json'
 import { fill } from './homeCopy'
 
 export const { copy, packs: PACKS } = knobs

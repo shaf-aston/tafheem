@@ -6,7 +6,7 @@
  */
 import { useEffect, useEffectEvent, useState } from 'react'
 
-import config from '../../worlds.json'
+import config from '../../config/worlds.json'
 import { colorFor } from '../../theme'
 import { getProfile } from '../../lib/profile'
 import { useBasicsWorld } from '../../lib/useBasicsWorld'

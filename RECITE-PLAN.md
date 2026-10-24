@@ -30,9 +30,9 @@ How it was built: git history.
    back to the shared one. `services/ai/` never touches the listening keys.
 6. **Groq's per-minute allowance is the ceiling**, not the hours. The pacing
    numbers (`step-s`, `asks-per-minute`, `window-s`, `pause-s`) are config in
-   `frontend/src/recite.json`; read the values and the reasons there, never copy
+   `frontend/src/config/recite.json`; read the values and the reasons there, never copy
    them here.
-7. **Silence is never sent.** `voice-level` in `frontend/src/dictation.json`
+7. **Silence is never sent.** `voice-level` in `frontend/src/config/dictation.json`
    gates it: a silent window costs the local engine many seconds and returns
    nothing.
 8. **Nothing is marked until the reciter is on the page.** `anchor-words` in

@@ -1,6 +1,6 @@
 /**
  * Tafheem's offline worker. vite/offline.js writes the plan in at build, in place of the PLAN placeholder below;
- * src/offline.json holds the rules it was made from.
+ * src/config/offline.json holds the rules it was made from.
  *
  *  - The core (code, styles, fonts, icons) is saved when the worker installs, so /app opens with no signal.
  *  - Hashed files never change, so a saved one is used as is.

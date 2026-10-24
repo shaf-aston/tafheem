@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import config from '../session.json'
+import config from '../config/session.json'
 import { loadSession, parseSession, saveSession, serialise } from './session'
 
 const TABS = ['dict', 'daleel', 'quran']

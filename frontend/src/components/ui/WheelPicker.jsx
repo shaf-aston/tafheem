@@ -15,7 +15,7 @@
 import { useEffect, useId, useRef, useState } from 'react'
 
 import { wheelFind } from '../../lib/wheelFind'
-import theme from '../../theme.json'
+import theme from '../../config/theme.json'
 import ArabicText from './ArabicText'
 
 // Card height in px (input, five wheel rows, padding) with a little air.

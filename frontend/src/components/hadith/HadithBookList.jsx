@@ -8,7 +8,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { hadithBookQuery, hadithBooksQuery } from '../../api'
 import { themeVariable } from '../../theme'
 import { onHover, warm } from '../../lib/warm'
-import { topicOf } from '../../lib/hadithGrade'
+import { topicOf } from '../../lib/hadith/hadithGrade'
 import { useOpenAtTop } from '../../lib/scrollToEl'
 
 import ArabicText from '../ui/ArabicText'

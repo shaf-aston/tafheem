@@ -10,7 +10,7 @@ import { visit } from '../lib/journey'
 import { HOME, LISTED } from '../lib/tabs'
 import { LEVEL_KEY, LEVELS, levelOf } from '../lib/learnerLevel'
 import { readRaw, writeRaw } from '../lib/stored'
-import knobs from '../home.json'
+import knobs from '../config/home.json'
 
 describe('Home', () => {
   it('on a first visit asks how much Arabic you know, one row a level', () => {

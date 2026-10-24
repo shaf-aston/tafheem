@@ -1,5 +1,5 @@
 // The lesson's phrases as a mosaic; every FEATURE_EVERY-th tile is a large one.
-import settings from '../../../colloquial.json'
+import settings from '../../../config/colloquial.json'
 import Face, { FOCUS } from '../parts/Face'
 
 const FEATURE_EVERY = settings['feature-every']

@@ -8,7 +8,7 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import QURAN from '../../quran.json'
+import QURAN from '../../config/quran.json'
 
 const { 'hold-ms': HOLD_MS, 'hint-ms': HINT_MS, drag: DRAG, still: STILL } = QURAN['no-touch']
 const SAY = 'Scroll by the side strip only, so your finger never touches the Qur\'an\'s words. '

@@ -30,26 +30,26 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | Tab | Screen | Data call | Route | Logic | Data |
 |---|---|---|---|---|---|
 | home | `components/home/HomePanel.jsx` | `fetchOverview` (`lib/progress.js`) | `routers/progress.py` | `services/progress_store.py` | `data/progress.db` |
-| nahw | `components/NahwPanel.jsx` | `analyzeIraab` | `routers/analyze.py` | `services/iraab.py`, `services/syntax/` | `data/nahw_rules/`, `data/tarkeeb/tarkeeb.db` |
-| sarf | `components/SarfPanel.jsx` | `analyzeMorphology`, `conjugateForm` | `routers/morphology.py` | `services/conjugation.py`, `services/sarf/` | `data/sarf/` |
-| quran | `components/QuranLookup.jsx` | `quranSurahQuery` (`lib/quranOpen.js`), `searchQuran` | `routers/quran.py` | `services/quran_service.py`, `services/quran_corpus.py` | `data/quran/corpus.db`, `data/quran/library.db` |
-| daleel | `components/DaleelPanel.jsx` | `findDaleel`, `daleelBooksQuery` | `routers/daleel.py` | `services/daleel/search.py` | `data/daleel.db` |
-| hadith | `components/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `lib/useNarrators.js` | `routers/hadith.py` | `services/hadith/` (`rijal/`, `usul/` inside) | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
-| dict | `components/Dictionary.jsx` | `searchDictionary` | `routers/dictionary.py` | `services/dictionary_service.py` | `data/arabic_dictionary.json`, `data/lexicons.db` |
-| mem | `components/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/books.js`) | `routers/quran.py` | `services/mutashabihat.py`, `services/quran_service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
-| grow | `components/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow.js` steps | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
-| quiz | `components/QuizPanel.jsx` | `lib/quizBanks.js`, `fetchReviewItems` (`lib/progress.js`) | `routers/progress.py` | `services/progress_store.py` | `frontend/public/words/`, `data/progress.db` |
-| timelines | `components/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py`, `services/refs.py`, `services/asbab.py` | `data/timelines/` |
-| dawah | `components/DawahPanel.jsx` | `dawahQuery` | `routers/dawah.py` | `services/dawah.py` | `data/dawah/dawah.json` |
-| colloq | `components/ColloquialPanel.jsx` | `colloquialQuery`, `colloquialUnitQuery` | `routers/colloquial.py` | `services/colloquial/loader.py` | `data/colloquial/` |
-| kit | `components/KitPanel.jsx` | none (hidden, `/app/kit`) | none | none | none |
+| nahw | `components/nahw/NahwPanel.jsx` | `analyzeIraab` | `routers/analyze.py` | `services/iraab.py`, `services/syntax/` | `data/nahw_rules/`, `data/tarkeeb/tarkeeb.db` |
+| sarf | `components/sarf/SarfPanel.jsx` | `analyzeMorphology`, `conjugateForm` | `routers/morphology.py` | `services/conjugation.py`, `services/sarf/` | `data/sarf/` |
+| quran | `components/quran/QuranPanel.jsx` | `quranSurahQuery` (`lib/quranOpen.js`), `searchQuran` | `routers/quran.py` | `services/quran_service.py`, `services/quran_corpus.py` | `data/quran/corpus.db`, `data/quran/library.db` |
+| daleel | `components/daleel/DaleelPanel.jsx` | `findDaleel`, `daleelBooksQuery` | `routers/daleel.py` | `services/daleel/search.py` | `data/daleel.db` |
+| hadith | `components/hadith/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `lib/hadith/useNarrators.js` | `routers/hadith.py` | `services/hadith/` (`rijal/`, `usul/` inside) | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
+| dict | `components/dictionary/DictionaryPanel.jsx` | `searchDictionary` | `routers/dictionary.py` | `services/dictionary_service.py` | `data/arabic_dictionary.json`, `data/lexicons.db` |
+| mem | `components/memorise/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/books.js`) | `routers/quran.py` | `services/mutashabihat.py`, `services/quran_service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
+| grow | `components/grow/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow/grow.js` steps | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
+| quiz | `components/quiz/QuizPanel.jsx` | `lib/quizBanks.js`, `fetchReviewItems` (`lib/progress.js`) | `routers/progress.py` | `services/progress_store.py` | `frontend/public/words/`, `data/progress.db` |
+| timelines | `components/timelines/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py`, `services/refs.py`, `services/asbab.py` | `data/timelines/` |
+| dawah | `components/dawah/DawahPanel.jsx` | `dawahQuery` | `routers/dawah.py` | `services/dawah.py` | `data/dawah/dawah.json` |
+| colloq | `components/colloquial/ColloquialPanel.jsx` | `colloquialQuery`, `colloquialUnitQuery` | `routers/colloquial.py` | `services/colloquial/loader.py` | `data/colloquial/` |
+| kit | `components/kit/KitPanel.jsx` | none (hidden, `/app/kit`) | none | none | none |
 
 Nahw has more views: Tamreen (`getTamreen`, `routers/tamreen.py`, `services/tamreen.py`), Notes
 (`getNotes`, `routers/nahw_notes.py`, `services/nahw_notes.py`) and Tarkeeb examples
 (`getTarkeebExamples`, `routers/tarkeeb.py`, `services/tarkeeb_examples.py`). Reciting (Mem, Grow)
-is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.jsx`, `lib/useNarrators.js`,
+is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.jsx`, `lib/hadith/useNarrators.js`,
 `rijalChainsQuery`, `routers/hadith.py` `get_chains`, `services/hadith/usul/store.py`, usul.db tables
-`note` and `link` (built by `scripts/build_usul.py`); `lib/weak.js` ranks and counts them in the page.
+`note` and `link` (built by `scripts/build_usul.py`); `lib/hadith/weak.js` ranks and counts them in the page.
 
 ## Core flow
 
@@ -99,4 +99,4 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
 - **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound; the Trial ear is taught, judged and shipped by `backend/scripts/finetune_ear/README.md`.
 - **Source**: `verified`, `derived` or `guessed`, carried by every answer.
 - **Weak point**: a flagged narrator or link in a chain; `notes` and `links` in code (`docs/glossary/hadith.md`).
-- **Token**: a theme value in `frontend/src/theme.json`; components use `var(--...)`, never a literal.
+- **Token**: a theme value in `frontend/src/config/theme.json`; components use `var(--...)`, never a literal.

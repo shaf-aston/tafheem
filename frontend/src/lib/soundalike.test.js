@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import config from '../recite.json'
+import config from '../config/recite.json'
 import { soundFold, soundsTheSame } from './soundalike'
 
 describe('a word written two ways is never a near miss', () => {

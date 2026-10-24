@@ -3,7 +3,7 @@
  * The tiers, their proof modules and the thresholds are levels.json's; this file is only the rule, kept pure so
  * it can be tested on its own. The learner's answers come from the progress overview (one row per module).
  */
-import config from '../levels.json'
+import config from '../config/levels.json'
 
 /** The levels.json numbers this rule reads, by the names the code uses. */
 export const RULES = {

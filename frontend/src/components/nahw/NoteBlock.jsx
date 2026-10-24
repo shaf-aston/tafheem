@@ -7,7 +7,7 @@
  * note: `hidden` and `revealed` decide what shows, the text stays the text.
  */
 import { isArabic } from '../../lib/arabicText'
-import { parseMarked, stripMarks } from '../../lib/notes'
+import { parseMarked, stripMarks } from '../../lib/nahw/notes'
 import { notePageUrl } from '../../api'
 
 import ArabicText from '../ui/ArabicText'

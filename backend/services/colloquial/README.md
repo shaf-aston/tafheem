@@ -33,7 +33,7 @@ backend/services/colloquial/             the reading
 backend/routers/colloquial.py            the routes, typed by schema.py
 
 frontend/src/                            the drawing
-  components/ColloquialPanel.jsx         the tab: where the reader is, and which level to draw
+  components/colloquial/ColloquialPanel.jsx         the tab: where the reader is, and which level to draw
   components/colloquial/
     course/         the lists above a topic: Lists (dialects, units, topics), Cards, Trail
     topic/          one topic: TopicView and its sections (Dialogue, Pairs, Mosaic, Sheet, OtherDialects)

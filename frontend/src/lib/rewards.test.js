@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import config from '../rewards.json'
+import config from '../config/rewards.json'
 import { announce, onEarned, rankOf, shareOf, tz } from './rewards'
 
 describe('rankOf', () => {

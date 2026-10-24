@@ -6,7 +6,7 @@
  * the direction marks), so a piece needs the slices that
  * fall inside it, counted from the piece's own start. Pure: no React.
  */
-import HADITH from '../hadith.json'
+import HADITH from '../config/hadith.json'
 
 import { CHAIN, MARKS, QUOTED, chainLinks } from './hadithWords'
 

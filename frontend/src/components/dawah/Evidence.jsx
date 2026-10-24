@@ -1,4 +1,4 @@
-import TimelineRefs from '../TimelineRefs'
+import TimelineRefs from '../timelines/TimelineRefs'
 
 // The evidence under a claim: a label, its references, and a note where a reference does not fit.
 export default function Evidence({ refs, note, library, accent, onGo, label }) {

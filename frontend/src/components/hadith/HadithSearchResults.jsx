@@ -12,8 +12,8 @@
  * each a tap to his page. A search that only names a collection ("bukhari") opens it.
  */
 import { searchHadith } from '../../api'
-import { useHadithCollections } from '../../lib/useHadithCollections'
-import { useNarratorMatches } from '../../lib/useNarrators'
+import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
+import { useNarratorMatches } from '../../lib/hadith/useNarrators'
 import { useSearch } from '../../lib/useSearch'
 
 import Chip from '../ui/Chip'

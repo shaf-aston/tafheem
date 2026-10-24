@@ -51,7 +51,7 @@
  * would be something after an hour, so an hour of reciting is many calls of one
  * page each and never one call of the lot.
  */
-import config from '../recite.json'
+import config from '../config/recite.json'
 import { sameSpokenWord } from './arabicText'
 import { soundsTheSame } from './soundalike'
 

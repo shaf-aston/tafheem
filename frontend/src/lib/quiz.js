@@ -23,7 +23,7 @@
  */
 
 import { shuffled } from './shuffle'
-import settings from '../quiz.json'
+import settings from '../config/quiz.json'
 
 /**
  * The languages a meaning can be shown in, and the one thing about each that the

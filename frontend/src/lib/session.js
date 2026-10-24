@@ -12,7 +12,7 @@
  * tested without a browser. The same bounds gate the save, so a stored record
  * is always one the app itself could have walked.
  */
-import config from '../session.json'
+import config from '../config/session.json'
 import { forgetKey, readRaw, writeRaw } from './stored'
 
 const KEY = config['storage-key']

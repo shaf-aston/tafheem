@@ -1,5 +1,5 @@
-import { useHideChain } from '../../lib/useHideChain'
-import { useSideBySide } from '../../lib/useSideBySide'
+import { useHideChain } from '../../lib/hadith/useHideChain'
+import { useSideBySide } from '../../lib/hadith/useSideBySide'
 
 import ReadingOptions from '../ui/ReadingOptions'
 

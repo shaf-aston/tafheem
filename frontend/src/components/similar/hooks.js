@@ -4,7 +4,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { similarAyahQuery, similarSurahQuery } from '../../api'
 import { fetchSummary, recordAttempt } from '../../lib/progress'
 import { pairsOf } from '../../lib/similar'
-import copy from '../../similar.json'
+import copy from '../../config/similar.json'
 
 /** Every pair to learn in one surah (lib/similar.js pairsOf). */
 export function useSurahPairs(surah) {

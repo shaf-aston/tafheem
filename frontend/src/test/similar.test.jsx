@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import SimilarPanel from '../components/SimilarPanel'
+import SimilarPanel from '../components/similar/SimilarPanel'
 import AyahStudy from '../components/quran/AyahStudy'
 
 const SURAH = {
