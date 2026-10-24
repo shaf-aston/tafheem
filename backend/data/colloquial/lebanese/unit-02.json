@@ -862,6 +862,2455 @@
           "tip": "\"جوعان\" is hungry, \"عطشان\" is thirsty."
         }
       ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "how-old-are-you-to-a-man",
+          "arabic": "قَدِّيش عُمْرَك؟",
+          "transliteration": "2addeesh 3omrak؟",
+          "reply": {
+            "arabic": "عُمْرِي تْلاتِين سَنَة",
+            "transliteration": "3omri tlaateen sane",
+            "english": "I am thirty years old."
+          }
+        },
+        {
+          "slot": "i-am-married-male-speaker",
+          "arabic": "أَنَا مِتْجَوِّز",
+          "transliteration": "ana metjawwez"
+        },
+        {
+          "slot": "i-have-two-children",
+          "arabic": "عِنْدِي وَلَدَين",
+          "transliteration": "3andi waladayn"
+        },
+        {
+          "slot": "where-does-your-family-live",
+          "arabic": "وَيْن عِيلْتَك سَاكْنِة؟",
+          "transliteration": "wayn 3eeltak saakne؟",
+          "reply": {
+            "arabic": "سَاكْنِين بِصَيْدَا",
+            "transliteration": "saakneen b Sayda",
+            "english": "They live in Sidon."
+          }
+        },
+        {
+          "slot": "what-is-your-job-to-a-man",
+          "arabic": "شُو بِتِشْتِغِل؟",
+          "transliteration": "shoo bteshtghel؟",
+          "reply": {
+            "arabic": "أَنَا مُهَنْدِس",
+            "transliteration": "ana muhandes",
+            "english": "I am an engineer."
+          }
+        },
+        {
+          "slot": "he-is-tall",
+          "arabic": "هُوّ طَوِيل",
+          "transliteration": "huwwe Taweel"
+        },
+        {
+          "slot": "she-is-kind",
+          "arabic": "هِيّ طَيِّبِة",
+          "transliteration": "hiyye Tayyibe"
+        },
+        {
+          "slot": "he-is-funny",
+          "arabic": "هُوّ ظَرِيف",
+          "transliteration": "huwwe Zareef"
+        },
+        {
+          "slot": "my-older-brother",
+          "arabic": "خَيِّي الكْبِير",
+          "transliteration": "khayyi l-kbeer"
+        },
+        {
+          "slot": "my-younger-sister",
+          "arabic": "إِخْتِي الزْغِيرِة",
+          "transliteration": "2ekhti zzgheere"
+        },
+        {
+          "slot": "my-cousin-my-father-s-brother-s-son",
+          "arabic": "إِبِن عَمِّي",
+          "transliteration": "ibn 3ammi"
+        },
+        {
+          "slot": "my-grandparents",
+          "arabic": "جِدِّي وسِتِّي",
+          "transliteration": "jiddi w setti"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Lina",
+          "slot": "how-old-are-you-to-a-man"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "how-old-are-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "إنت متجوّز؟",
+          "transliteration": "enta metjawwez؟",
+          "english": "Are you married?"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "i-am-married-male-speaker"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "i-have-two-children"
+        },
+        {
+          "speaker": "Lina",
+          "slot": "where-does-your-family-live"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "where-does-your-family-live",
+          "reply": true
+        },
+        {
+          "speaker": "Lina",
+          "slot": "what-is-your-job-to-a-man"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "what-is-your-job-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "خيّي الكبير دكتور ببيروت. هو طويل وظريف كتير.",
+          "transliteration": "khayyi l-kbeer doktor b Bayroot. huwwe Taweel w Zareef ktiir.",
+          "english": "My older brother is a doctor in Beirut. He is tall and very funny."
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "ما شاء الله. وإختك الزغيرة؟",
+          "transliteration": "ma sha2 allah. w 2ekhtak zzgheere؟",
+          "english": "Masha Allah. And your younger sister?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "هيي طيّبة وهادية، وجدّي وستّي بيحبّوها كتير.",
+          "transliteration": "hiyye Tayyibe w haadye, w jiddi w setti byi7ebbooha ktiir.",
+          "english": "She is kind and calm, and my grandfather and grandmother love her very much."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "قدّيش عمرك؟",
+            "transliteration": "2addeesh 3omrak؟",
+            "english": "How old are you? (to a man)"
+          },
+          "response": {
+            "arabic": "عمري تلاتين سنة.",
+            "transliteration": "3omri tlaateen sane.",
+            "english": "I am thirty years old."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك ولاد؟",
+            "transliteration": "3andak wlaad؟",
+            "english": "Do you have children? (to a man)"
+          },
+          "response": {
+            "arabic": "إي، عندي ولدين.",
+            "transliteration": "ee, 3andi waladayn.",
+            "english": "Yes, I have two children."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين عيلتك ساكنة؟",
+            "transliteration": "wayn 3eeltak saakne؟",
+            "english": "Where does your family live?"
+          },
+          "response": {
+            "arabic": "ساكنين بصيدا.",
+            "transliteration": "saakneen b Sayda.",
+            "english": "They live in Sidon."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو بتشتغل؟",
+            "transliteration": "shoo bteshtghel؟",
+            "english": "What do you do for work? (to a man)"
+          },
+          "response": {
+            "arabic": "أنا مهندس.",
+            "transliteration": "ana muhandes.",
+            "english": "I am an engineer."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إنت متجوّز؟",
+            "transliteration": "enta metjawwez؟",
+            "english": "Are you married? (to a man)"
+          },
+          "response": {
+            "arabic": "إي، أنا متجوّز وعندي ولدين.",
+            "transliteration": "ee, ana metjawwez w 3andi waladayn.",
+            "english": "Yes, I am married and I have two children."
+          }
+        }
+      ],
+      "culture": "In Lebanon, age, work and where the family lives are ordinary small talk even with someone you have just met, and a man who mentions his children is usually answered with \"ما شاء الله\". A father's brother's son is \"إبن عمّي\" and a mother's brother's son is \"إبن خالي\", and \"الكبير\" and \"الزغير\" are how you say older and younger.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"قدّيش عمرك؟\" Say you are thirty years old.",
+          "answer": "عمري تلاتين سنة",
+          "accepted": [
+            "عمري تلاتين سنة",
+            "عمري تلاتين سنه",
+            "عمري تلاتين",
+            "عمري 30 سنة",
+            "عمري 30 سنه",
+            "تلاتين سنة",
+            "تلاتين سنه",
+            "3omri tlaateen sane"
+          ],
+          "too_formal": {
+            "item": "عمري ثلاثون عاماً",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"عمري تلاتين سنة\"."
+          },
+          "tip": "\"قدّيش عمرك؟\" literally asks \"how much is your age\"; the answer starts with \"عمري\" (my age)."
+        },
+        {
+          "id": "unit-02.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"شو بتشتغل؟\" Say you are an engineer. (You are a man.)",
+          "answer": "أنا مهندس",
+          "accepted": [
+            "أنا مهندس",
+            "مهندس",
+            "بشتغل مهندس",
+            "ana muhandes"
+          ],
+          "too_formal": {
+            "item": "أعمل مهندساً",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"أنا مهندس\" or \"بشتغل مهندس\"."
+          },
+          "tip": "\"شو بتشتغل؟\" asks a man; to a woman it is \"شو بتشتغلي؟\"."
+        },
+        {
+          "id": "unit-02.lesson-03.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks you: \"وين عيلتك ساكنة؟\" Say they live in Sidon.",
+          "answer": "ساكنين بصيدا",
+          "accepted": [
+            "ساكنين بصيدا",
+            "ساكنين في صيدا",
+            "بصيدا",
+            "عيلتي ساكنة بصيدا",
+            "عيلتي ساكنه بصيدا",
+            "عايشين بصيدا",
+            "saakneen b Sayda"
+          ],
+          "too_formal": {
+            "item": "يسكنون في صيدا",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"ساكنين بصيدا\"."
+          },
+          "tip": "\"ساكنين\" is the plural of \"ساكن\" (living in), because you are speaking about the whole family."
+        },
+        {
+          "id": "unit-02.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"هيي _____ كتير.\" Meaning: She is very kind.",
+          "answer": "طيّبة",
+          "accepted": [
+            "طيّبة",
+            "طيبة",
+            "طيبه",
+            "لطيفة",
+            "لطيفه",
+            "Tayyibe"
+          ],
+          "too_formal": {
+            "item": "هي لطيفة جداً",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"هيي طيّبة كتير\"."
+          },
+          "tip": "An adjective for a woman ends in \"-ة\": \"طيّب\" for a man, \"طيّبة\" for a woman."
+        },
+        {
+          "id": "unit-02.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عندي _____.\" Meaning: I have two children.",
+          "answer": "ولدين",
+          "accepted": [
+            "ولدين",
+            "ولادين",
+            "waladayn"
+          ],
+          "too_formal": {
+            "item": "طفلان",
+            "feedback": "This is the formal dual; everyday Lebanese speech says \"ولدين\"."
+          },
+          "tip": "\"-ين\" at the end makes the dual, the same way \"إخت\" becomes \"إختين\"."
+        },
+        {
+          "id": "unit-02.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My cousin is funny.\" (my father's brother's son)",
+          "answer": "إبن عمي ظريف",
+          "accepted": [
+            "إبن عمي ظريف",
+            "ابن عمي ظريف",
+            "إبن عمّي ظريف",
+            "ابن عمي ظريف كتير",
+            "ibn 3ammi Zareef"
+          ],
+          "too_formal": {
+            "item": "ابن عمي مرح",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"إبن عمّي ظريف\"."
+          },
+          "tip": "\"ظريف\" is the everyday word for funny or charming."
+        },
+        {
+          "id": "unit-02.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I am married.\" (male speaker)",
+          "answer": "أنا متجوّز",
+          "accepted": [
+            "أنا متجوّز",
+            "أنا متجوز",
+            "متجوز",
+            "متجوّز",
+            "ana metjawwez"
+          ],
+          "too_formal": {
+            "item": "أنا متزوج",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"متجوّز\"."
+          },
+          "tip": "A woman says \"متجوّزة\"."
+        },
+        {
+          "id": "unit-02.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"tall\"?",
+          "options": [
+            "طويل",
+            "قصير",
+            "تخين",
+            "رفيع"
+          ],
+          "answer": "طويل",
+          "accepted": [
+            "طويل",
+            "Taweel"
+          ],
+          "too_formal": {
+            "item": "طويل القامة",
+            "feedback": "This is a longer, more formal way to say it; everyday speech just says \"طويل\"."
+          },
+          "tip": "\"طويل\" is tall, \"قصير\" is short."
+        },
+        {
+          "id": "unit-02.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means \"my younger sister\"?",
+          "options": [
+            "إختي الزغيرة",
+            "إختي الكبيرة",
+            "خيّي الكبير",
+            "خيّي الزغير"
+          ],
+          "answer": "إختي الزغيرة",
+          "accepted": [
+            "إختي الزغيرة",
+            "إختي الزغيره",
+            "اختي الزغيرة",
+            "اختي الزغيره",
+            "اختي الصغيرة",
+            "اختي الصغيره",
+            "2ekhti zzgheere"
+          ],
+          "too_formal": {
+            "item": "أختي الصغرى",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"إختي الزغيرة\"."
+          },
+          "tip": "\"الزغيرة\" (small) is the everyday way to say younger for a girl in the family."
+        },
+        {
+          "id": "unit-02.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"ساكنة / عيلتك / وين؟\"",
+          "answer": "وين عيلتك ساكنة؟",
+          "accepted": [
+            "وين عيلتك ساكنة؟",
+            "وين عيلتك ساكنه؟",
+            "وين عيلتك ساكنة",
+            "وين عيلتك ساكنه",
+            "وين ساكنة عيلتك؟",
+            "وين ساكنه عيلتك؟",
+            "وين ساكنة عيلتك",
+            "wayn 3eeltak saakne"
+          ],
+          "too_formal": {
+            "item": "أين تسكن عائلتك؟",
+            "feedback": "This is formal Arabic rather than the everyday spoken question."
+          },
+          "tip": "The question word \"وين\" comes first."
+        },
+        {
+          "id": "unit-02.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"كتير / طويل / هو\"",
+          "answer": "هو طويل كتير",
+          "accepted": [
+            "هو طويل كتير",
+            "هو كتير طويل",
+            "هوي طويل كتير",
+            "huwwe Taweel ktiir"
+          ],
+          "too_formal": {
+            "item": "هو طويل جداً",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"كتير\" for \"very\"."
+          },
+          "tip": "\"كتير\" means \"very\" or \"a lot\" and usually comes after the adjective."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "breakfast-is-at-eight",
+          "arabic": "الفْطُور السَّاعَة تْمَانْيِة",
+          "transliteration": "l-fTour s-saa3a tmaanye"
+        },
+        {
+          "slot": "what-is-for-lunch",
+          "arabic": "شُو في عَ الغَدَا؟",
+          "transliteration": "shoo fi 3a l-ghada؟",
+          "reply": {
+            "arabic": "في سَمَك ورُزّ",
+            "transliteration": "fi samak w rizz",
+            "english": "There is fish and rice."
+          }
+        },
+        {
+          "slot": "the-food-is-ready",
+          "arabic": "الأَكِل جَاهِز",
+          "transliteration": "l-2akel jaahez",
+          "reply": {
+            "arabic": "يَلَّا، جَايِين",
+            "transliteration": "yalla, jaayeen",
+            "english": "Okay, we are coming."
+          }
+        },
+        {
+          "slot": "dinner-is-at-nine",
+          "arabic": "العَشَا السَّاعَة تِسْعَة",
+          "transliteration": "l-3asha s-saa3a tes3a"
+        },
+        {
+          "slot": "this-is-delicious",
+          "arabic": "هَيْدَا لَذِيذ",
+          "transliteration": "heyda lazeez"
+        },
+        {
+          "slot": "i-am-full-male-speaker",
+          "arabic": "أَنَا شَبْعَان",
+          "transliteration": "ana shab3aan"
+        },
+        {
+          "slot": "more-please",
+          "arabic": "شْوَيّ كَمَان لَو سَمَحْت",
+          "transliteration": "shwayy kamaan law samaht",
+          "reply": {
+            "arabic": "أَكِيد، تْفَضَّل",
+            "transliteration": "akeed, tfaddal",
+            "english": "Of course, here you are."
+          }
+        },
+        {
+          "slot": "help-me-cook-to-a-man",
+          "arabic": "سَاعِدْنِي بِالطَّبْخ",
+          "transliteration": "saa3edni bTTabkh"
+        },
+        {
+          "slot": "set-the-table-to-a-man",
+          "arabic": "حُطّ السُّفْرَة",
+          "transliteration": "7uTT s-sufra"
+        },
+        {
+          "slot": "pass-me-the-salt-to-a-man",
+          "arabic": "نَاوِلْنِي المِلِح",
+          "transliteration": "naawelni l-mele7"
+        },
+        {
+          "slot": "i-do-not-eat-meat",
+          "arabic": "مَا بَاكُل لَحْمِة",
+          "transliteration": "ma baakol la7me"
+        },
+        {
+          "slot": "clear-the-table-to-a-man",
+          "arabic": "لِمّ السُّفْرَة",
+          "transliteration": "lemm s-sufra"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ali",
+          "slot": "what-is-for-lunch"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "what-is-for-lunch",
+          "reply": true
+        },
+        {
+          "speaker": "Mama",
+          "slot": "help-me-cook-to-a-man"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "أكيد يا ماما. شو بدّك أعمل؟",
+          "transliteration": "akeed yaa maama. shoo beddik 2a3mel؟",
+          "english": "Of course, Mama. What do you want me to do?"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "set-the-table-to-a-man"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "the-food-is-ready"
+        },
+        {
+          "speaker": "Baba",
+          "slot": "pass-me-the-salt-to-a-man"
+        },
+        {
+          "speaker": "Baba",
+          "slot": "this-is-delicious"
+        },
+        {
+          "speaker": "Mama",
+          "arabic": "بالهنا والشفا. بدّك أكتر؟",
+          "transliteration": "bilhana wishshifa. beddak aktar؟",
+          "english": "Enjoy it. Do you want more?"
+        },
+        {
+          "speaker": "Baba",
+          "slot": "more-please"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-am-full-male-speaker"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "clear-the-table-to-a-man"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "ماما، الفطور بكرا الساعة كم؟",
+          "transliteration": "maama, l-fTour bukra s-saa3a kam؟",
+          "english": "Mama, what time is breakfast tomorrow?"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "breakfast-is-at-eight"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو في ع الغدا؟",
+            "transliteration": "shoo fi 3a l-ghada؟",
+            "english": "What are we eating for lunch?"
+          },
+          "response": {
+            "arabic": "في سمك ورز.",
+            "transliteration": "fi samak w rizz.",
+            "english": "There is fish and rice."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الأكل جاهز.",
+            "transliteration": "l-2akel jaahez.",
+            "english": "The food is ready."
+          },
+          "response": {
+            "arabic": "يلّا، جايين.",
+            "transliteration": "yalla, jaayeen.",
+            "english": "Okay, we are coming."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شوي كمان لو سمحت.",
+            "transliteration": "shwayy kamaan law samaht.",
+            "english": "More, please."
+          },
+          "response": {
+            "arabic": "أكيد، تفضّل.",
+            "transliteration": "akeed, tfaddal.",
+            "english": "Of course, here you are."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بدّك لحمة؟",
+            "transliteration": "beddak la7me؟",
+            "english": "Do you want meat? (to a man)"
+          },
+          "response": {
+            "arabic": "لأ، ما باكل لحمة.",
+            "transliteration": "la2, ma baakol la7me.",
+            "english": "No, I do not eat meat."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الفطور الساعة كم؟",
+            "transliteration": "l-fTour s-saa3a kam؟",
+            "english": "What time is breakfast?"
+          },
+          "response": {
+            "arabic": "الفطور الساعة تمانية.",
+            "transliteration": "l-fTour s-saa3a tmaanye.",
+            "english": "Breakfast is at eight."
+          }
+        }
+      ],
+      "culture": "In many Lebanese homes the big meal of the day is lunch, eaten around the \"سفرة\" with the dishes shared, and a host will keep offering more even after you say no. To the person who cooked you say \"يسلمو إيديكي\" (may your hands be well, to a woman), and she answers \"صحتين\" or \"بالهنا والشفا\".",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "Your mother asks: \"بدّك أكتر؟\" Politely say you would like a little more.",
+          "answer": "شوي كمان لو سمحت",
+          "accepted": [
+            "شوي كمان لو سمحت",
+            "شوي كمان",
+            "شوي كمان من فضلك",
+            "بدّي شوي كمان",
+            "بدي شوي كمان",
+            "كمان شوي لو سمحت",
+            "shwayy kamaan law samaht"
+          ],
+          "too_formal": {
+            "item": "المزيد من فضلك",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"شوي كمان\"."
+          },
+          "tip": "\"شوي\" (a little) with \"كمان\" (more) is the everyday way to ask for more."
+        },
+        {
+          "id": "unit-02.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "A guest offers you meat. Say you do not eat meat.",
+          "answer": "ما باكل لحمة",
+          "accepted": [
+            "ما باكل لحمة",
+            "ما باكل لحمه",
+            "أنا ما باكل لحمة",
+            "أنا ما باكل لحمه",
+            "ما بآكل لحمة",
+            "ما بآكل لحمه",
+            "ما باكل لحم",
+            "ma baakol la7me"
+          ],
+          "too_formal": {
+            "item": "لا آكل اللحم",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"ما باكل لحمة\"."
+          },
+          "tip": "\"ما\" before the verb makes it negative: \"باكل\" (I eat) becomes \"ما باكل\"."
+        },
+        {
+          "id": "unit-02.lesson-04.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks: \"شو في ع الغدا؟\" Say there is fish and rice.",
+          "answer": "في سمك ورز",
+          "accepted": [
+            "في سمك ورز",
+            "في رز وسمك",
+            "فيه سمك ورز",
+            "fi samak w rizz"
+          ],
+          "too_formal": {
+            "item": "سنأكل الأرز والسمك",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"في سمك ورز\"."
+          },
+          "tip": "\"في\" here means \"there is\"."
+        },
+        {
+          "id": "unit-02.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الأكل _____.\" Meaning: The food is ready.",
+          "answer": "جاهز",
+          "accepted": [
+            "جاهز",
+            "jaahez"
+          ],
+          "too_formal": {
+            "item": "الطعام جاهز",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"الأكل جاهز\"."
+          },
+          "tip": "For \"food\" the everyday word is \"أكل\", not \"طعام\"."
+        },
+        {
+          "id": "unit-02.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"ناولني _____.\" Meaning: Pass me the salt.",
+          "answer": "الملح",
+          "accepted": [
+            "الملح",
+            "ملح",
+            "l-mele7"
+          ],
+          "too_formal": {
+            "item": "أعطني الملح",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"ناولني الملح\"."
+          },
+          "tip": "\"ناولني\" is the usual way to ask someone to pass you something at the table."
+        },
+        {
+          "id": "unit-02.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"This is delicious.\"",
+          "answer": "هيدا لذيذ",
+          "accepted": [
+            "هيدا لذيذ",
+            "هيدا لذيذ كتير",
+            "هيدا طيّب",
+            "هيدا طيب",
+            "هيدا طيب كتير",
+            "heyda lazeez"
+          ],
+          "too_formal": {
+            "item": "هذا لذيذ",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"هيدا\" for \"this\"."
+          },
+          "tip": "\"هيدا\" is \"this\" for a masculine thing; \"هيدي\" for a feminine one. \"طيّب\" is also very common for tasty food."
+        },
+        {
+          "id": "unit-02.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Help me cook.\" (to a man)",
+          "answer": "ساعدني بالطبخ",
+          "accepted": [
+            "ساعدني بالطبخ",
+            "ساعدني بالطبخة",
+            "ساعدني بالطبخه",
+            "saa3edni bTTabkh"
+          ],
+          "too_formal": {
+            "item": "ساعدني في الطبخ",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"بالطبخ\" (with the cooking)."
+          },
+          "tip": "\"ب\" joins with the word: \"ب\" + \"الطبخ\" = \"بالطبخ\"."
+        },
+        {
+          "id": "unit-02.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"full\" (after eating, said by a man)?",
+          "options": [
+            "شبعان",
+            "جوعان",
+            "عطشان",
+            "جاهز"
+          ],
+          "answer": "شبعان",
+          "accepted": [
+            "شبعان",
+            "shab3aan"
+          ],
+          "too_formal": {
+            "item": "أنا ممتلئ",
+            "feedback": "This is not how a full stomach is described; everyday speech says \"شبعان\"."
+          },
+          "tip": "\"شبعان\" is full, \"جوعان\" is hungry."
+        },
+        {
+          "id": "unit-02.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means \"Dinner is at nine\"?",
+          "options": [
+            "العشا الساعة تسعة",
+            "الغدا الساعة تسعة",
+            "العشا الساعة تمانية",
+            "الفطور الساعة تمانية"
+          ],
+          "answer": "العشا الساعة تسعة",
+          "accepted": [
+            "العشا الساعة تسعة",
+            "العشا الساعه تسعه",
+            "l-3asha s-saa3a tes3a"
+          ],
+          "tip": "\"عشا\" is dinner, \"غدا\" is lunch, \"فطور\" is breakfast."
+        },
+        {
+          "id": "unit-02.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"جاهز / الأكل\"",
+          "answer": "الأكل جاهز",
+          "accepted": [
+            "الأكل جاهز",
+            "جاهز الأكل",
+            "l-2akel jaahez"
+          ],
+          "tip": "In a simple sentence the noun comes first, then the adjective."
+        },
+        {
+          "id": "unit-02.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"السفرة / حُطّ\"",
+          "answer": "حطّ السفرة",
+          "accepted": [
+            "حطّ السفرة",
+            "حط السفرة",
+            "حط السفره",
+            "7uTT s-sufra"
+          ],
+          "too_formal": {
+            "item": "جهّز المائدة",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"السفرة\" for the table."
+          },
+          "tip": "\"سفرة\" is the table laid for a meal."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "where-do-you-live-to-a-man",
+          "arabic": "وَيْن سَاكِن؟",
+          "transliteration": "wayn saaken؟",
+          "reply": {
+            "arabic": "سَاكِن بِالحَمْرَا",
+            "transliteration": "saaken bl-7amra",
+            "english": "I live in Hamra."
+          }
+        },
+        {
+          "slot": "i-live-in-a-flat",
+          "arabic": "بِسْكُن بِشَقَّة",
+          "transliteration": "bseken b sha22a"
+        },
+        {
+          "slot": "i-live-in-a-house",
+          "arabic": "بِسْكُن بِبَيْت",
+          "transliteration": "bseken b beit"
+        },
+        {
+          "slot": "we-live-near-the-mosque",
+          "arabic": "مْنِسْكُن قَرِيب مِن الجَامِع",
+          "transliteration": "mnesken 2reeb min l-jaame3"
+        },
+        {
+          "slot": "i-live-in-a-village",
+          "arabic": "بِسْكُن بِضَيْعَة",
+          "transliteration": "bseken b Day3a"
+        },
+        {
+          "slot": "what-is-your-address-to-a-man",
+          "arabic": "شُو عِنْوَانَك؟",
+          "transliteration": "shoo 3enwaanak؟",
+          "reply": {
+            "arabic": "عِنْوَانِي شَارِع الحَمْرَا، عِمَارَة خَمْسَة",
+            "transliteration": "3enwaani shaare3 l-7amra, 3emaare khamse",
+            "english": "My address is Hamra Street, building five."
+          }
+        },
+        {
+          "slot": "how-long-have-you-lived-here-to-a-man",
+          "arabic": "مِن قَدِّيش سَاكِن هُون؟",
+          "transliteration": "min 2addeesh saaken hoon؟",
+          "reply": {
+            "arabic": "مِن خَمِس سْنِين",
+            "transliteration": "min khamis sneen",
+            "english": "For five years."
+          }
+        },
+        {
+          "slot": "is-it-far-from-here",
+          "arabic": "بْعِيد مِن هُون؟",
+          "transliteration": "b3eed min hoon؟",
+          "reply": {
+            "arabic": "لَأ، قْرِيب",
+            "transliteration": "la2, 2reeb",
+            "english": "No, it is near."
+          }
+        },
+        {
+          "slot": "do-you-like-your-neighbourhood-to-a-man",
+          "arabic": "بِتْحِبّ حَيَّك؟",
+          "transliteration": "bti7ebb 7ayyak؟"
+        },
+        {
+          "slot": "i-moved-here-from-the-village",
+          "arabic": "نَقَلْت لَهُون مِن الضَّيْعَة",
+          "transliteration": "na2alet la hoon min eD-Day3a"
+        },
+        {
+          "slot": "my-neighbour-is-nice-male-neighbour",
+          "arabic": "جَارِي لَطِيف",
+          "transliteration": "jaari laTeef"
+        },
+        {
+          "slot": "which-city-are-you-from-to-a-man",
+          "arabic": "مِن أَيّ مَدِينِة إِنْت؟",
+          "transliteration": "min ayy madeene enta؟",
+          "reply": {
+            "arabic": "أَنَا مِن بَيْرُوت",
+            "transliteration": "ana min Bayroot",
+            "english": "I am from Beirut."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Nour",
+          "slot": "which-city-are-you-from-to-a-man"
+        },
+        {
+          "speaker": "Samer",
+          "slot": "which-city-are-you-from-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Nour",
+          "slot": "where-do-you-live-to-a-man"
+        },
+        {
+          "speaker": "Samer",
+          "slot": "where-do-you-live-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Nour",
+          "slot": "how-long-have-you-lived-here-to-a-man"
+        },
+        {
+          "speaker": "Samer",
+          "slot": "how-long-have-you-lived-here-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Nour",
+          "slot": "do-you-like-your-neighbourhood-to-a-man"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "إي، كتير.",
+          "transliteration": "ee, ktiir.",
+          "english": "Yes, very much."
+        },
+        {
+          "speaker": "Samer",
+          "slot": "my-neighbour-is-nice-male-neighbour"
+        },
+        {
+          "speaker": "Samer",
+          "slot": "we-live-near-the-mosque"
+        },
+        {
+          "speaker": "Nour",
+          "slot": "is-it-far-from-here"
+        },
+        {
+          "speaker": "Samer",
+          "slot": "is-it-far-from-here",
+          "reply": true
+        },
+        {
+          "speaker": "Nour",
+          "slot": "what-is-your-address-to-a-man"
+        },
+        {
+          "speaker": "Samer",
+          "slot": "what-is-your-address-to-a-man",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين ساكن؟",
+            "transliteration": "wayn saaken؟",
+            "english": "Where do you live? (to a man)"
+          },
+          "response": {
+            "arabic": "ساكن بالحمرا.",
+            "transliteration": "saaken bl-7amra.",
+            "english": "I live in Hamra."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "من قدّيش ساكن هون؟",
+            "transliteration": "min 2addeesh saaken hoon؟",
+            "english": "How long have you lived here? (to a man)"
+          },
+          "response": {
+            "arabic": "من خمس سنين.",
+            "transliteration": "min khamis sneen.",
+            "english": "For five years."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو عنوانك؟",
+            "transliteration": "shoo 3enwaanak؟",
+            "english": "What is your address? (to a man)"
+          },
+          "response": {
+            "arabic": "عنواني شارع الحمرا، عمارة خمسة.",
+            "transliteration": "3enwaani shaare3 l-7amra, 3emaare khamse.",
+            "english": "My address is Hamra Street, building five."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "من أي مدينة إنت؟",
+            "transliteration": "min ayy madeene enta؟",
+            "english": "Which city are you from? (to a man)"
+          },
+          "response": {
+            "arabic": "أنا من بيروت.",
+            "transliteration": "ana min Bayroot.",
+            "english": "I am from Beirut."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بعيد من هون؟",
+            "transliteration": "b3eed min hoon؟",
+            "english": "Is it far from here?"
+          },
+          "response": {
+            "arabic": "لأ، قريب.",
+            "transliteration": "la2, 2reeb.",
+            "english": "No, it is near."
+          }
+        }
+      ],
+      "culture": "In Lebanon people often say the area they live in, like \"الحمرا\", rather than a full street address, and many families who live in the city still have a home in the \"ضيعة\", the village the family comes from, where they go at the weekend. Neighbours are close and visit each other, and \"الجار قبل الدار\" (the neighbour before the house) is a well-known saying.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"وين ساكن؟\" Say you live in Hamra. (You are a man.)",
+          "answer": "ساكن بالحمرا",
+          "accepted": [
+            "ساكن بالحمرا",
+            "بسكن بالحمرا",
+            "ساكن في الحمرا",
+            "بالحمرا",
+            "saaken bl-7amra"
+          ],
+          "too_formal": {
+            "item": "أسكن في الحمرا",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"ساكن بالحمرا\" or \"بسكن بالحمرا\"."
+          },
+          "tip": "A woman says \"ساكنة\" instead of \"ساكن\"."
+        },
+        {
+          "id": "unit-02.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"من قدّيش ساكن هون؟\" Say for five years.",
+          "answer": "من خمس سنين",
+          "accepted": [
+            "من خمس سنين",
+            "خمس سنين",
+            "من خمس سنوات",
+            "min khamis sneen"
+          ],
+          "too_formal": {
+            "item": "منذ خمس سنوات",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"من خمس سنين\"."
+          },
+          "tip": "After numbers from three to ten the plural \"سنين\" (years) is used."
+        },
+        {
+          "id": "unit-02.lesson-05.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks you: \"بعيد من هون؟\" Say no, it is near.",
+          "answer": "لأ، قريب",
+          "accepted": [
+            "لأ، قريب",
+            "لأ قريب",
+            "لا، قريب",
+            "لا قريب",
+            "قريب",
+            "la2, 2reeb"
+          ],
+          "too_formal": {
+            "item": "لا، إنه قريب",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"لأ، قريب\"."
+          },
+          "tip": "\"لأ\" is the everyday word for \"no\"."
+        },
+        {
+          "id": "unit-02.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بسكن ب_____.\" Meaning: I live in a village.",
+          "answer": "ضيعة",
+          "accepted": [
+            "ضيعة",
+            "ضيعه",
+            "قرية",
+            "قريه",
+            "Day3a"
+          ],
+          "too_formal": {
+            "item": "أسكن في قرية",
+            "feedback": "\"قرية\" is understood, but the everyday Lebanese word is \"ضيعة\"."
+          },
+          "tip": "\"ضيعة\" is the village, and often the family's own home village."
+        },
+        {
+          "id": "unit-02.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"جاري _____.\" Meaning: My neighbour is nice.",
+          "answer": "لطيف",
+          "accepted": [
+            "لطيف",
+            "طيّب",
+            "طيب",
+            "laTeef"
+          ],
+          "too_formal": {
+            "item": "جاري ودود",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"لطيف\" or \"طيّب\"."
+          },
+          "tip": "A woman neighbour would be \"جارتي لطيفة\"."
+        },
+        {
+          "id": "unit-02.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I live in a flat.\"",
+          "answer": "بسكن بشقة",
+          "accepted": [
+            "بسكن بشقة",
+            "بسكن بشقه",
+            "بسكن بشقّة",
+            "ساكن بشقة",
+            "ساكن بشقه",
+            "ساكنة بشقة",
+            "ساكنه بشقه",
+            "ساكن بشقّة",
+            "bseken b sha22a"
+          ],
+          "too_formal": {
+            "item": "أسكن في شقة",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"بسكن بشقة\"."
+          },
+          "tip": "\"ب\" (in) joins the next word, and the \"بـ\" of \"بسكن\" is the present-tense prefix."
+        },
+        {
+          "id": "unit-02.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"What is your address?\" (to a man)",
+          "answer": "شو عنوانك؟",
+          "accepted": [
+            "شو عنوانك؟",
+            "شو عنوانك",
+            "shoo 3enwaanak"
+          ],
+          "too_formal": {
+            "item": "ما هو عنوانك؟",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"شو\" for \"what\"."
+          },
+          "tip": "\"شو\" is the everyday Lebanese \"what\"."
+        },
+        {
+          "id": "unit-02.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"village\"?",
+          "options": [
+            "ضيعة",
+            "مدينة",
+            "شارع",
+            "جامع"
+          ],
+          "answer": "ضيعة",
+          "accepted": [
+            "ضيعة",
+            "ضيعه",
+            "Day3a"
+          ],
+          "tip": "\"ضيعة\" is village, \"مدينة\" is city."
+        },
+        {
+          "id": "unit-02.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which phrase means \"We live near the mosque\"?",
+          "options": [
+            "منسكن قريب من الجامع",
+            "منسكن بعيد عن الجامع",
+            "بسكن قريب من السوق",
+            "بسكن بشقة"
+          ],
+          "answer": "منسكن قريب من الجامع",
+          "accepted": [
+            "منسكن قريب من الجامع",
+            "mnesken 2reeb min l-jaame3"
+          ],
+          "tip": "The \"من\" at the start of \"منسكن\" is the prefix for \"we\"."
+        },
+        {
+          "id": "unit-02.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"ساكن / وين؟\"",
+          "answer": "وين ساكن؟",
+          "accepted": [
+            "وين ساكن؟",
+            "وين ساكن",
+            "ساكن وين؟",
+            "ساكن وين",
+            "wayn saaken"
+          ],
+          "too_formal": {
+            "item": "أين تسكن؟",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"وين ساكن؟\"."
+          },
+          "tip": "\"وين\" (where) comes first."
+        },
+        {
+          "id": "unit-02.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"إنت / مدينة / أي / من؟\"",
+          "answer": "من أي مدينة إنت؟",
+          "accepted": [
+            "من أي مدينة إنت؟",
+            "من أي مدينه إنت؟",
+            "من أي مدينة إنت",
+            "من أي مدينه إنت",
+            "إنت من أي مدينة؟",
+            "إنت من أي مدينه؟",
+            "إنت من أي مدينة",
+            "min ayy madeene enta"
+          ],
+          "too_formal": {
+            "item": "من أي مدينة أنت؟",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"إنت\" for \"you\"."
+          },
+          "tip": "\"إنت\" is \"you\" (to a man), \"إنتي\" to a woman."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "my-house-is-big",
+          "arabic": "بَيْتِي كْبِير",
+          "transliteration": "beiti kbeer"
+        },
+        {
+          "slot": "our-house-is-old",
+          "arabic": "بَيْتْنَا قَدِيم",
+          "transliteration": "beitna 2adeem"
+        },
+        {
+          "slot": "the-flat-is-new",
+          "arabic": "الشَّقَّة جْدِيدِة",
+          "transliteration": "sh-sha22a jdeede"
+        },
+        {
+          "slot": "the-house-is-beautiful",
+          "arabic": "البَيْت حِلْو",
+          "transliteration": "l-beit 7elo",
+          "reply": {
+            "arabic": "الله يْخَلِّيك",
+            "transliteration": "allah ykhalleek",
+            "english": "Thank you. (lit. may God keep you; the usual reply to a compliment)"
+          }
+        },
+        {
+          "slot": "the-living-room-is-spacious",
+          "arabic": "الصَّالُون وَاسِع",
+          "transliteration": "S-Saloon waasi3"
+        },
+        {
+          "slot": "the-flat-is-bright",
+          "arabic": "الشَّقَّة مْنَوَّرَة",
+          "transliteration": "sh-sha22a mnawwara"
+        },
+        {
+          "slot": "the-street-is-quiet",
+          "arabic": "الشَّارِع هَادِي",
+          "transliteration": "sh-shaare3 haadi"
+        },
+        {
+          "slot": "how-many-floors-does-your-house-have-to-a-man",
+          "arabic": "قَدِّيش في طَوَابِق بِبَيْتَك؟",
+          "transliteration": "2addeesh fi Tawaabe2 b beitak؟",
+          "reply": {
+            "arabic": "في طَابِقَين",
+            "transliteration": "fi Taabe2ayn",
+            "english": "There are two floors."
+          }
+        },
+        {
+          "slot": "how-many-rooms-does-the-flat-have",
+          "arabic": "قَدِّيش في أُوَض بِالشَّقَّة؟",
+          "transliteration": "2addeesh fi owad bish-sha22a؟",
+          "reply": {
+            "arabic": "في تْلات أُوَض",
+            "transliteration": "fi tlet owad",
+            "english": "There are three rooms."
+          }
+        },
+        {
+          "slot": "we-have-a-small-garden",
+          "arabic": "عِنَّا جْنِينِة زْغِيرِة",
+          "transliteration": "3enna jneene zgheere"
+        },
+        {
+          "slot": "we-sit-on-the-roof",
+          "arabic": "مْنِقْعُد عَ السَّطِح",
+          "transliteration": "mni23od 3a s-saT7"
+        },
+        {
+          "slot": "the-market-is-near-my-house",
+          "arabic": "السُّوق قْرِيب مِن بَيْتِي",
+          "transliteration": "s-soo2 2reeb min beiti"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Mariam",
+          "slot": "the-house-is-beautiful"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "the-house-is-beautiful",
+          "reply": true
+        },
+        {
+          "speaker": "Mariam",
+          "slot": "how-many-floors-does-your-house-have-to-a-man"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "how-many-floors-does-your-house-have-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "وكيف الصالون؟",
+          "transliteration": "w keef S-Saloon؟",
+          "english": "And how is the living room?"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "the-living-room-is-spacious"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "we-have-a-small-garden"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "وبتقعدوا برّا؟",
+          "transliteration": "w bti23do barra؟",
+          "english": "And do you sit outside?"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "we-sit-on-the-roof"
+        },
+        {
+          "speaker": "Hassan",
+          "slot": "the-street-is-quiet"
+        },
+        {
+          "speaker": "Mariam",
+          "arabic": "ما شاء الله، كتير مرتاحين.",
+          "transliteration": "ma sha2 allah, ktiir mertaa7een.",
+          "english": "Masha Allah, you are very comfortable."
+        },
+        {
+          "speaker": "Hassan",
+          "arabic": "الحمدلله.",
+          "transliteration": "l7amdulla.",
+          "english": "Thank God."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "البيت حلو.",
+            "transliteration": "l-beit 7elo.",
+            "english": "The house is beautiful."
+          },
+          "response": {
+            "arabic": "الله يخلّيك.",
+            "transliteration": "allah ykhalleek.",
+            "english": "Thank you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قدّيش في طوابق ببيتك؟",
+            "transliteration": "2addeesh fi Tawaabe2 b beitak؟",
+            "english": "How many floors does your house have? (to a man)"
+          },
+          "response": {
+            "arabic": "في طابقين.",
+            "transliteration": "fi Taabe2ayn.",
+            "english": "There are two floors."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قدّيش في أوض بالشقة؟",
+            "transliteration": "2addeesh fi owad bish-sha22a؟",
+            "english": "How many rooms does the flat have?"
+          },
+          "response": {
+            "arabic": "في تلات أوض.",
+            "transliteration": "fi tlet owad.",
+            "english": "There are three rooms."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الشارع هادي؟",
+            "transliteration": "sh-shaare3 haadi؟",
+            "english": "Is the street quiet?"
+          },
+          "response": {
+            "arabic": "إي، كتير هادي.",
+            "transliteration": "ee, ktiir haadi.",
+            "english": "Yes, very quiet."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "السوق قريب من بيتك؟",
+            "transliteration": "s-soo2 2reeb min beitak؟",
+            "english": "Is the market near your house?"
+          },
+          "response": {
+            "arabic": "إي، السوق قريب من بيتي.",
+            "transliteration": "ee, s-soo2 2reeb min beiti.",
+            "english": "Yes, the market is near my house."
+          }
+        }
+      ],
+      "culture": "A Lebanese home is usually described by its rooms, \"شقة بتلات أوض\", and by its floors, and families often sit on the balcony or the roof in the evening. When a guest praises your home you answer \"الله يخلّيك\", and \"البيت بيتك\" (the house is yours) is what a host says to make a visitor feel welcome.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "A guest says to you: \"البيت حلو كتير.\" Reply politely.",
+          "answer": "الله يخلّيك",
+          "accepted": [
+            "الله يخلّيك",
+            "الله يخليك",
+            "تكرم عينك",
+            "البيت بيتك",
+            "allah ykhalleek"
+          ],
+          "too_formal": {
+            "item": "شكراً لك",
+            "feedback": "This is a plain formal thanks; the usual reply to a compliment is \"الله يخلّيك\"."
+          },
+          "tip": "\"الله يخلّيك\" is the polite reply to a compliment, and \"تكرم عينك\" works too."
+        },
+        {
+          "id": "unit-02.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"قدّيش في طوابق ببيتك؟\" Say there are two floors.",
+          "answer": "في طابقين",
+          "accepted": [
+            "في طابقين",
+            "طابقين",
+            "بيتنا طابقين",
+            "fi Taabe2ayn"
+          ],
+          "too_formal": {
+            "item": "يوجد طابقان",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"في طابقين\"."
+          },
+          "tip": "\"-ين\" at the end of \"طابق\" makes the dual: two floors."
+        },
+        {
+          "id": "unit-02.lesson-06.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks you: \"قدّيش في أوض بالشقة؟\" Say there are three rooms.",
+          "answer": "في تلات أوض",
+          "accepted": [
+            "في تلات أوض",
+            "في ثلات أوض",
+            "تلات أوض",
+            "فيها تلات أوض",
+            "fi tlet owad"
+          ],
+          "too_formal": {
+            "item": "يوجد ثلاث غرف",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"في تلات أوض\"."
+          },
+          "tip": "The plural of \"أوضة\" is \"أوض\"."
+        },
+        {
+          "id": "unit-02.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بيتنا _____.\" Meaning: Our house is old.",
+          "answer": "قديم",
+          "accepted": [
+            "قديم",
+            "2adeem"
+          ],
+          "too_formal": {
+            "item": "بيتنا عتيق",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"بيتنا قديم\"."
+          },
+          "tip": "\"قديم\" is old (not new); for a person's age you say \"عجوز\" or \"كبير\"."
+        },
+        {
+          "id": "unit-02.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الصالون _____.\" Meaning: The living room is spacious.",
+          "answer": "واسع",
+          "accepted": [
+            "واسع",
+            "كبير",
+            "waasi3"
+          ],
+          "too_formal": {
+            "item": "الصالون فسيح",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"واسع\"."
+          },
+          "tip": "\"واسع\" means wide or spacious."
+        },
+        {
+          "id": "unit-02.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"The flat is bright.\"",
+          "answer": "الشقة منوّرة",
+          "accepted": [
+            "الشقة منوّرة",
+            "الشقة منورة",
+            "الشقه منوره",
+            "الشقة فيها ضو",
+            "الشقه فيها ضو",
+            "sh-sha22a mnawwara"
+          ],
+          "too_formal": {
+            "item": "الشقة مضيئة",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"منوّرة\"."
+          },
+          "tip": "\"منوّرة\" literally means \"lit up\", and it is also what you say to a guest who \"lights up\" your house."
+        },
+        {
+          "id": "unit-02.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"We have a small garden.\"",
+          "answer": "عنا جنينة زغيرة",
+          "accepted": [
+            "عنا جنينة زغيرة",
+            "عنا جنينه زغيره",
+            "عنّا جنينة زغيرة",
+            "عنا جنينة صغيرة",
+            "عنا جنينه صغيره",
+            "3enna jneene zgheere"
+          ],
+          "too_formal": {
+            "item": "لدينا حديقة صغيرة",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"عنّا\" for \"we have\" and \"جنينة\" for a garden."
+          },
+          "tip": "\"عنّا\" means \"we have\"; \"عندي\" is \"I have\"."
+        },
+        {
+          "id": "unit-02.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase means \"The flat is new\"?",
+          "options": [
+            "الشقة جديدة",
+            "الشقة قديمة",
+            "الشقة منوّرة",
+            "الشارع هادي"
+          ],
+          "answer": "الشقة جديدة",
+          "accepted": [
+            "الشقة جديدة",
+            "الشقه جديده",
+            "sh-sha22a jdeede"
+          ],
+          "tip": "\"جديد\" is new, \"قديم\" is old."
+        },
+        {
+          "id": "unit-02.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"roof\"?",
+          "options": [
+            "سطح",
+            "شباك",
+            "باب",
+            "جنينة"
+          ],
+          "answer": "سطح",
+          "accepted": [
+            "سطح",
+            "saT7"
+          ],
+          "tip": "\"سطح\" is the roof; people sit on it in the evening."
+        },
+        {
+          "id": "unit-02.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"قريب / السوق / بيتي / من\"",
+          "answer": "السوق قريب من بيتي",
+          "accepted": [
+            "السوق قريب من بيتي",
+            "s-soo2 2reeb min beiti"
+          ],
+          "too_formal": {
+            "item": "السوق قريب من منزلي",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"بيت\" for house."
+          },
+          "tip": "\"بيت\" is the everyday word for house or home."
+        },
+        {
+          "id": "unit-02.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"ع / منقعد / السطح\"",
+          "answer": "منقعد ع السطح",
+          "accepted": [
+            "منقعد ع السطح",
+            "منقعد عالسطح",
+            "منقعد عَ السطح",
+            "mni23od 3a s-saT7"
+          ],
+          "too_formal": {
+            "item": "نجلس على السطح",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"منقعد\" for \"we sit\"."
+          },
+          "tip": "\"ع\" is the everyday short form of \"على\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-07",
+      "phrases": [
+        {
+          "slot": "this-is-the-living-room",
+          "arabic": "هَيْدَا الصَّالُون",
+          "transliteration": "heyda S-Saloon"
+        },
+        {
+          "slot": "where-is-the-kitchen",
+          "arabic": "وَيْن المَطْبَخ؟",
+          "transliteration": "wayn l-maTbakh؟",
+          "reply": {
+            "arabic": "هُونِيك، جَنْب الصَّالُون",
+            "transliteration": "hoonik, janb S-Saloon",
+            "english": "Over there, next to the living room."
+          }
+        },
+        {
+          "slot": "this-is-my-bedroom",
+          "arabic": "هَيْدِي أُوضِة نُومِي",
+          "transliteration": "heyde ooDet noomi"
+        },
+        {
+          "slot": "where-is-the-bathroom",
+          "arabic": "وَيْن الحَمَّام؟",
+          "transliteration": "wayn l-7ammaam؟",
+          "reply": {
+            "arabic": "أَوَّل بَاب عَ اليَمِين",
+            "transliteration": "awwal baab 3a l-yemeen",
+            "english": "The first door on the right."
+          }
+        },
+        {
+          "slot": "go-to-the-garden-to-a-man",
+          "arabic": "رُوح عَ الجْنِينِة",
+          "transliteration": "rooh 3a l-jneene"
+        },
+        {
+          "slot": "the-guest-room-is-ready",
+          "arabic": "أُوضِة الضْيُوف جَاهْزِة",
+          "transliteration": "ooDet D-Dyoof jaahze"
+        },
+        {
+          "slot": "the-bedrooms-are-upstairs",
+          "arabic": "أُوَض النُّوم فُوق",
+          "transliteration": "owad n-noom foo2"
+        },
+        {
+          "slot": "where-are-the-stairs",
+          "arabic": "وَيْن الدَّرَج؟",
+          "transliteration": "wayn d-daraj؟",
+          "reply": {
+            "arabic": "قُدَّام البَاب",
+            "transliteration": "2uddaam l-baab",
+            "english": "In front of the door."
+          }
+        },
+        {
+          "slot": "the-living-room-is-downstairs",
+          "arabic": "الصَّالُون تَحِت",
+          "transliteration": "S-Saloon ta7et"
+        },
+        {
+          "slot": "the-balcony-is-next-to-the-bedroom",
+          "arabic": "البَلْكُون جَنْب أُوضِة النُّوم",
+          "transliteration": "l-balkoon janb ooDet n-noom"
+        },
+        {
+          "slot": "lets-go-up-to-the-roof",
+          "arabic": "يَلَّا نِطْلَع عَ السَّطِح",
+          "transliteration": "yalla nuTla3 3a s-saT7"
+        },
+        {
+          "slot": "the-door-is-closed",
+          "arabic": "البَاب مْسَكَّر",
+          "transliteration": "l-baab msakkar"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hasan",
+          "slot": "this-is-the-living-room"
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "where-is-the-kitchen"
+        },
+        {
+          "speaker": "Hasan",
+          "slot": "where-is-the-kitchen",
+          "reply": true
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "where-is-the-bathroom"
+        },
+        {
+          "speaker": "Hasan",
+          "slot": "where-is-the-bathroom",
+          "reply": true
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "where-are-the-stairs"
+        },
+        {
+          "speaker": "Hasan",
+          "slot": "where-are-the-stairs",
+          "reply": true
+        },
+        {
+          "speaker": "Hasan",
+          "slot": "the-bedrooms-are-upstairs"
+        },
+        {
+          "speaker": "Hasan",
+          "slot": "the-guest-room-is-ready"
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "تسلم، كتير تعبتك.",
+          "transliteration": "teslam, ktiir ta3abtak.",
+          "english": "Thank you, I have put you to a lot of trouble."
+        },
+        {
+          "speaker": "Hasan",
+          "arabic": "حبيبي، البيت بيتك.",
+          "transliteration": "7abeebi, l-beit beitak.",
+          "english": "My dear, the house is yours."
+        },
+        {
+          "speaker": "Hasan",
+          "slot": "lets-go-up-to-the-roof"
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "يلّا.",
+          "transliteration": "yalla.",
+          "english": "Come on then."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين المطبخ؟",
+            "transliteration": "wayn l-maTbakh؟",
+            "english": "Where is the kitchen?"
+          },
+          "response": {
+            "arabic": "هونيك، جنب الصالون.",
+            "transliteration": "hoonik, janb S-Saloon.",
+            "english": "Over there, next to the living room."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين الحمّام؟",
+            "transliteration": "wayn l-7ammaam؟",
+            "english": "Where is the bathroom?"
+          },
+          "response": {
+            "arabic": "أول باب ع اليمين.",
+            "transliteration": "awwal baab 3a l-yemeen.",
+            "english": "The first door on the right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين الدرج؟",
+            "transliteration": "wayn d-daraj؟",
+            "english": "Where are the stairs?"
+          },
+          "response": {
+            "arabic": "قدّام الباب.",
+            "transliteration": "2uddaam l-baab.",
+            "english": "In front of the door."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أوضة الضيوف جاهزة؟",
+            "transliteration": "ooDet D-Dyoof jaahze؟",
+            "english": "Is the guest room ready?"
+          },
+          "response": {
+            "arabic": "إي، جاهزة.",
+            "transliteration": "ee, jaahze.",
+            "english": "Yes, it is ready."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الباب مسكّر؟",
+            "transliteration": "l-baab msakkar؟",
+            "english": "Is the door closed?"
+          },
+          "response": {
+            "arabic": "لأ، مفتوح.",
+            "transliteration": "la2, maftoo7.",
+            "english": "No, it is open."
+          }
+        }
+      ],
+      "culture": "In a Lebanese home the \"صالون\" is the best sitting room, kept for guests, and it is the first room a visitor is shown into; the host then says \"البيت بيتك\" (the house is yours). People say \"فوق\" and \"تحت\" for upstairs and downstairs, and in summer the family often goes up to the roof or out on the balcony.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-07.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"وين المطبخ؟\" Say it is over there, next to the living room.",
+          "answer": "هونيك، جنب الصالون",
+          "accepted": [
+            "هونيك، جنب الصالون",
+            "هونيك جنب الصالون",
+            "هونيك",
+            "جنب الصالون",
+            "hoonik, janb S-Saloon"
+          ],
+          "too_formal": {
+            "item": "هناك بجانب الصالون",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"هونيك\" for \"over there\"."
+          },
+          "tip": "\"هونيك\" means \"over there\"; \"هون\" is \"here\"."
+        },
+        {
+          "id": "unit-02.lesson-07.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"وين الحمّام؟\" Say it is the first door on the right.",
+          "answer": "أول باب ع اليمين",
+          "accepted": [
+            "أول باب ع اليمين",
+            "أول باب على اليمين",
+            "اول باب عاليمين",
+            "أول باب عاليمين",
+            "awwal baab 3a l-yemeen"
+          ],
+          "too_formal": {
+            "item": "الباب الأول على اليمين",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"أول باب ع اليمين\"."
+          },
+          "tip": "\"ع اليمين\" is on the right, \"ع الشمال\" is on the left."
+        },
+        {
+          "id": "unit-02.lesson-07.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks you: \"أوضة الضيوف جاهزة؟\" Say yes, it is ready.",
+          "answer": "إي، جاهزة",
+          "accepted": [
+            "إي، جاهزة",
+            "إي، جاهزه",
+            "إي جاهزة",
+            "إي جاهزه",
+            "جاهزة",
+            "جاهزه",
+            "ee, jaahze"
+          ],
+          "too_formal": {
+            "item": "نعم، إنها جاهزة",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"إي، جاهزة\"."
+          },
+          "tip": "An adjective for a room (\"أوضة\") ends in \"-ة\", so \"جاهزة\"."
+        },
+        {
+          "id": "unit-02.lesson-07.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الباب _____.\" Meaning: The door is closed.",
+          "answer": "مسكّر",
+          "accepted": [
+            "مسكّر",
+            "مسكر",
+            "مسكّرة",
+            "مسكرة",
+            "مسكره",
+            "msakkar"
+          ],
+          "too_formal": {
+            "item": "الباب مغلق",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"مسكّر\"."
+          },
+          "tip": "\"سكّر\" is the everyday verb \"to close\", so the door is \"مسكّر\"."
+        },
+        {
+          "id": "unit-02.lesson-07.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أوض النوم _____.\" Meaning: The bedrooms are upstairs.",
+          "answer": "فوق",
+          "accepted": [
+            "فوق",
+            "فوقاني",
+            "foo2"
+          ],
+          "too_formal": {
+            "item": "في الطابق العلوي",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"فوق\" for upstairs."
+          },
+          "tip": "\"فوق\" (above, upstairs) and \"تحت\" (below, downstairs) are used constantly."
+        },
+        {
+          "id": "unit-02.lesson-07.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"This is the living room.\"",
+          "answer": "هيدا الصالون",
+          "accepted": [
+            "هيدا الصالون",
+            "هاد الصالون",
+            "هيدا هو الصالون",
+            "heyda S-Saloon"
+          ],
+          "too_formal": {
+            "item": "هذه غرفة الجلوس",
+            "feedback": "This is a formal term; the everyday word is \"صالون\"."
+          },
+          "tip": "\"هيدا\" is \"this\" for a masculine word, and \"هيدي\" for a feminine one."
+        },
+        {
+          "id": "unit-02.lesson-07.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Go to the garden.\" (to a man)",
+          "answer": "روح ع الجنينة",
+          "accepted": [
+            "روح ع الجنينة",
+            "روح ع الجنينه",
+            "روح عالجنينة",
+            "روح عالجنينه",
+            "روح على الجنينة",
+            "روح على الجنينه",
+            "rooh 3a l-jneene"
+          ],
+          "too_formal": {
+            "item": "اذهب إلى الحديقة",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"روح ع الجنينة\"."
+          },
+          "tip": "To a woman: \"روحي ع الجنينة\"."
+        },
+        {
+          "id": "unit-02.lesson-07.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase means \"Where are the stairs?\"",
+          "options": [
+            "وين الدرج؟",
+            "وين المطبخ؟",
+            "وين الحمّام؟",
+            "وين الباب؟"
+          ],
+          "answer": "وين الدرج؟",
+          "accepted": [
+            "وين الدرج؟",
+            "وين الدرج",
+            "wayn d-daraj"
+          ],
+          "tip": "\"وين\" starts every \"where\" question."
+        },
+        {
+          "id": "unit-02.lesson-07.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"downstairs\"?",
+          "options": [
+            "تحت",
+            "فوق",
+            "جنب",
+            "ورا"
+          ],
+          "answer": "تحت",
+          "accepted": [
+            "تحت",
+            "ta7et"
+          ],
+          "tip": "\"تحت\" is below or downstairs, \"فوق\" is above or upstairs."
+        },
+        {
+          "id": "unit-02.lesson-07.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"نطلع / يلّا / ع / السطح\"",
+          "answer": "يلّا نطلع ع السطح",
+          "accepted": [
+            "يلّا نطلع ع السطح",
+            "يلا نطلع ع السطح",
+            "يلّا نطلع عالسطح",
+            "يلا نطلع عالسطح",
+            "yalla nuTla3 3a s-saT7"
+          ],
+          "too_formal": {
+            "item": "هيا نصعد إلى السطح",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"يلّا نطلع\"."
+          },
+          "tip": "\"يلّا\" means \"let's go\" and \"نطلع\" is \"we go up\"."
+        },
+        {
+          "id": "unit-02.lesson-07.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"جنب / البلكون / أوضة / النوم\"",
+          "answer": "البلكون جنب أوضة النوم",
+          "accepted": [
+            "البلكون جنب أوضة النوم",
+            "البلكون جنب أوضه النوم",
+            "البلكون جنب أوضة نوم",
+            "البلكون جنب أوضه نوم",
+            "l-balkoon janb ooDet n-noom"
+          ],
+          "too_formal": {
+            "item": "الشرفة بجانب غرفة النوم",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"بلكون\" and \"أوضة النوم\"."
+          },
+          "tip": "\"جنب\" means \"next to\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-08",
+      "phrases": [
+        {
+          "slot": "there-is-a-bed-in-the-room",
+          "arabic": "في تَخْت بِالأُوضَة",
+          "transliteration": "fi takht bil-ooDa"
+        },
+        {
+          "slot": "the-sofa-is-comfortable",
+          "arabic": "الكَنَبِة مْرِيحَة",
+          "transliteration": "l-kanabe mrii7a"
+        },
+        {
+          "slot": "where-is-the-remote-control",
+          "arabic": "وَيْن الرِّيمُوت؟",
+          "transliteration": "wayn r-reemoot؟",
+          "reply": {
+            "arabic": "عَ الكَنَبِة",
+            "transliteration": "3a l-kanabe",
+            "english": "On the sofa."
+          }
+        },
+        {
+          "slot": "where-is-the-key",
+          "arabic": "وَيْن المُفْتَاح؟",
+          "transliteration": "wayn l-muftaa7؟",
+          "reply": {
+            "arabic": "عَ الطَّاوْلِة",
+            "transliteration": "3a T-Taawle",
+            "english": "On the table."
+          }
+        },
+        {
+          "slot": "switch-on-the-light-to-a-man",
+          "arabic": "وَلِّع الضَّوّ",
+          "transliteration": "walle3 d-Daww"
+        },
+        {
+          "slot": "switch-off-the-light-to-a-man",
+          "arabic": "طَفِّي الضَّوّ",
+          "transliteration": "Taffi d-Daww"
+        },
+        {
+          "slot": "open-the-window-to-a-man",
+          "arabic": "اِفْتَح الشُّبَّاك",
+          "transliteration": "efta7 sh-shubbaak"
+        },
+        {
+          "slot": "close-the-window-to-a-man",
+          "arabic": "سَكِّر الشُّبَّاك",
+          "transliteration": "sakker sh-shubbaak"
+        },
+        {
+          "slot": "i-need-a-blanket",
+          "arabic": "لَازِمْنِي بَطَّانِيِّة",
+          "transliteration": "laazemni baTTaaniyye",
+          "reply": {
+            "arabic": "حَاضِر، هَلَّق بِجِيبْلَك",
+            "transliteration": "7aaDer, halla2 bjiiblak",
+            "english": "Right away, I will bring you one."
+          }
+        },
+        {
+          "slot": "the-washing-machine-does-not-work",
+          "arabic": "الغَسَّالِة مَا بِتِشْتِغِل",
+          "transliteration": "l-ghassaale ma btishteghel",
+          "reply": {
+            "arabic": "بُكْرَا مْنِجِيب حَدَا يْصَلِّحْها",
+            "transliteration": "bukra mnjiib 7ada ySalle7a",
+            "english": "Tomorrow we will get someone to fix it."
+          }
+        },
+        {
+          "slot": "switch-on-the-fan-to-a-man",
+          "arabic": "شَغِّل المَرْوَحَة",
+          "transliteration": "shaghghel l-marwa7a"
+        },
+        {
+          "slot": "the-mirror-is-next-to-the-door",
+          "arabic": "المْرَايِة جَنْب البَاب",
+          "transliteration": "l-mraaye janb l-baab"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ali",
+          "slot": "where-is-the-remote-control"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "where-is-the-remote-control",
+          "reply": true
+        },
+        {
+          "speaker": "Ali",
+          "slot": "the-sofa-is-comfortable"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "switch-on-the-fan-to-a-man"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-need-a-blanket"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "i-need-a-blanket",
+          "reply": true
+        },
+        {
+          "speaker": "Mama",
+          "slot": "there-is-a-bed-in-the-room"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "close-the-window-to-a-man"
+        },
+        {
+          "speaker": "Mama",
+          "slot": "switch-off-the-light-to-a-man"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "تصبحي على خير يا ماما.",
+          "transliteration": "tSba7i 3ala khayr yaa maama.",
+          "english": "Good night, Mama."
+        },
+        {
+          "speaker": "Mama",
+          "arabic": "وإنت من أهل الخير.",
+          "transliteration": "w enta min ahl l-khayr.",
+          "english": "And may you be among the people of good."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين الريموت؟",
+            "transliteration": "wayn r-reemoot؟",
+            "english": "Where is the remote control?"
+          },
+          "response": {
+            "arabic": "ع الكنبة.",
+            "transliteration": "3a l-kanabe.",
+            "english": "On the sofa."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين المفتاح؟",
+            "transliteration": "wayn l-muftaa7؟",
+            "english": "Where is the key?"
+          },
+          "response": {
+            "arabic": "ع الطاولة.",
+            "transliteration": "3a T-Taawle.",
+            "english": "On the table."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لازمني بطّانية.",
+            "transliteration": "laazemni baTTaaniyye.",
+            "english": "I need a blanket."
+          },
+          "response": {
+            "arabic": "حاضر، هلّق بجيبلك.",
+            "transliteration": "7aaDer, halla2 bjiiblak.",
+            "english": "Right away, I will bring you one."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الغسّالة ما بتشتغل.",
+            "transliteration": "l-ghassaale ma btishteghel.",
+            "english": "The washing machine does not work."
+          },
+          "response": {
+            "arabic": "بكرا منجيب حدا يصلّحها.",
+            "transliteration": "bukra mnjiib 7ada ySalle7a.",
+            "english": "Tomorrow we will get someone to fix it."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ولّع الضو.",
+            "transliteration": "walle3 d-Daww.",
+            "english": "Switch on the light. (to a man)"
+          },
+          "response": {
+            "arabic": "حاضر.",
+            "transliteration": "7aaDer.",
+            "english": "Right away."
+          }
+        }
+      ],
+      "culture": "Lebanese say \"ولّع\" and \"طفّي\" for switching a light on and off, and \"شغّل\" for a fan or a machine. Power cuts are common in Lebanon, so \"الكهربا راحت\" (the electricity has gone) is a sentence you will hear, and many homes run a generator for the hours without it.",
+      "exercises": [
+        {
+          "id": "unit-02.lesson-08.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"وين الريموت؟\" Say it is on the sofa.",
+          "answer": "ع الكنبة",
+          "accepted": [
+            "ع الكنبة",
+            "ع الكنبه",
+            "عالكنبة",
+            "عالكنبه",
+            "على الكنبة",
+            "على الكنبه",
+            "ع الكنباية",
+            "ع الكنبايه",
+            "عالكنباية",
+            "عالكنبايه",
+            "3a l-kanabe"
+          ],
+          "too_formal": {
+            "item": "على الأريكة",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"ع الكنبة\"."
+          },
+          "tip": "\"ع\" is the short form of \"على\" (on)."
+        },
+        {
+          "id": "unit-02.lesson-08.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"وين المفتاح؟\" Say it is on the table.",
+          "answer": "ع الطاولة",
+          "accepted": [
+            "ع الطاولة",
+            "ع الطاوله",
+            "عالطاولة",
+            "عالطاوله",
+            "على الطاولة",
+            "على الطاوله",
+            "3a T-Taawle"
+          ],
+          "too_formal": {
+            "item": "على الطاولة",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"ع الطاولة\"."
+          },
+          "tip": "\"طاولة\" is the table."
+        },
+        {
+          "id": "unit-02.lesson-08.reply.03",
+          "type": "reply",
+          "prompt": "Someone says: \"الغسّالة ما بتشتغل.\" Say tomorrow we will get someone to fix it.",
+          "answer": "بكرا منجيب حدا يصلّحها",
+          "accepted": [
+            "بكرا منجيب حدا يصلّحها",
+            "بكرا منجيب حدا يصلحها",
+            "بكرا منجيب مين يصلحها",
+            "bukra mnjiib 7ada ySalle7a"
+          ],
+          "too_formal": {
+            "item": "غداً نحضر من يصلحها",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"بكرا\" and \"منجيب\"."
+          },
+          "tip": "\"بكرا\" is tomorrow, and \"حدا\" is someone."
+        },
+        {
+          "id": "unit-02.lesson-08.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"ولّع _____.\" Meaning: Switch on the light.",
+          "answer": "الضو",
+          "accepted": [
+            "الضو",
+            "الضوّ",
+            "الضوء",
+            "d-Daww"
+          ],
+          "too_formal": {
+            "item": "شغّل النور",
+            "feedback": "\"الضو\" is the everyday word for light, and \"ولّع\" for switching it on."
+          },
+          "tip": "\"ولّع\" is the usual verb for switching on a light."
+        },
+        {
+          "id": "unit-02.lesson-08.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"المراية جنب _____.\" Meaning: The mirror is next to the door.",
+          "answer": "الباب",
+          "accepted": [
+            "الباب",
+            "باب",
+            "l-baab"
+          ],
+          "too_formal": {
+            "item": "المرآة بجانب الباب",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"مراية\" and \"جنب\"."
+          },
+          "tip": "\"جنب\" means \"next to\"."
+        },
+        {
+          "id": "unit-02.lesson-08.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I need a blanket.\"",
+          "answer": "لازمني بطانية",
+          "accepted": [
+            "لازمني بطانية",
+            "لازمني بطانيه",
+            "لازمني بطّانية",
+            "بحتاج بطانية",
+            "بحتاج بطانيه",
+            "بدّي بطانية",
+            "بدي بطانية",
+            "بدي بطانيه",
+            "laazemni baTTaaniyye"
+          ],
+          "too_formal": {
+            "item": "أحتاج إلى بطانية",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"لازمني\" (it is necessary for me)."
+          },
+          "tip": "\"لازمني\" is the everyday way to say \"I need\"; \"بدّي\" (I want) is also used."
+        },
+        {
+          "id": "unit-02.lesson-08.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Open the window.\" (to a man)",
+          "answer": "افتح الشباك",
+          "accepted": [
+            "افتح الشباك",
+            "إفتح الشباك",
+            "افتحلي الشباك",
+            "efta7 sh-shubbaak"
+          ],
+          "too_formal": {
+            "item": "افتح النافذة",
+            "feedback": "\"نافذة\" is the formal word for window; everyday speech says \"شباك\"."
+          },
+          "tip": "\"شباك\" is the everyday word for window."
+        },
+        {
+          "id": "unit-02.lesson-08.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase means \"Switch off the light\"?",
+          "options": [
+            "طفّي الضو",
+            "ولّع الضو",
+            "سكّر الشباك",
+            "افتح الشباك"
+          ],
+          "answer": "طفّي الضو",
+          "accepted": [
+            "طفّي الضو",
+            "طفي الضو",
+            "Taffi d-Daww"
+          ],
+          "tip": "\"طفّي\" is switch off, \"ولّع\" is switch on."
+        },
+        {
+          "id": "unit-02.lesson-08.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"fan\"?",
+          "options": [
+            "مروحة",
+            "غسّالة",
+            "مراية",
+            "سجّادة"
+          ],
+          "answer": "مروحة",
+          "accepted": [
+            "مروحة",
+            "مروحه",
+            "marwa7a"
+          ],
+          "tip": "\"مروحة\" is the fan; you \"شغّل\" it."
+        },
+        {
+          "id": "unit-02.lesson-08.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"بالأوضة / تخت / في\"",
+          "answer": "في تخت بالأوضة",
+          "accepted": [
+            "في تخت بالأوضة",
+            "في تخت بالأوضه",
+            "fi takht bil-ooDa"
+          ],
+          "too_formal": {
+            "item": "يوجد سرير في الغرفة",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"تخت\" for bed."
+          },
+          "tip": "\"تخت\" is the everyday word for bed."
+        },
+        {
+          "id": "unit-02.lesson-08.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: \"بتشتغل / الغسّالة / ما\"",
+          "answer": "الغسّالة ما بتشتغل",
+          "accepted": [
+            "الغسّالة ما بتشتغل",
+            "الغسالة ما بتشتغل",
+            "الغساله ما بتشتغل",
+            "l-ghassaale ma btishteghel"
+          ],
+          "too_formal": {
+            "item": "الغسالة لا تعمل",
+            "feedback": "This is formal written Arabic; everyday Lebanese speech says \"ما بتشتغل\"."
+          },
+          "tip": "\"ما\" before the verb makes it negative."
+        }
+      ]
     }
   ],
   "challenge": {
