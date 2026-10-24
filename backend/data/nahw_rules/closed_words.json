@@ -143,7 +143,7 @@
   },
   "extra_ba": {
    "ar": "الباء الزائدة",
-   "_comment": "A باء written onto a word that holds a place of its own: the word is مجرور in its letters and stands in its place's case (Tasheel: حروف الجر الزائدة). `on`: the verb it hangs on, the parser's link of the باء to it (`rel`), the place (`role`, a roles.json name) and the case of that place (`place_case`). `alone`: only when nothing else is the verb's doer: كفى بالله شهيدًا, but in كفى بالمرء كذبًا أن يحدّث the masdar أن يحدّث is the doer and بالمرء a plain جار ومجرور.",
+   "_comment": "A باء written onto a word that holds a place of its own: the word is مجرور in its letters and stands in its place's case (Tasheel: حروف الجر الزائدة). `on`: the verb it hangs on, the parser's link of the باء to it (`rel`), the place (`role`, a roles.json name) and the case of that place (`place_case`). `alone`: only when nothing else is the verb's doer: كفى بالله شهيدًا, but in كفى بالمرء كذبًا أن يحدّث the masdar أن يحدّث is the doer and بالمرء a plain جار ومجرور. ما is ما الحجازية, which works like ليس (Ibn Aqil on وبعد ما وليس جرّ البا الخبر): مَا اللَّهُ بِغَافِلٍ, its khabar behind the باء (facts.Sentence._hijazi).",
    "words": [
     "ب"
    ],
@@ -158,6 +158,11 @@
      "alone": true
     },
     "ليس": {
+     "rel": "PRD",
+     "role": "خبر كان",
+     "place_case": "a"
+    },
+    "ما": {
      "rel": "PRD",
      "role": "خبر كان",
      "place_case": "a"

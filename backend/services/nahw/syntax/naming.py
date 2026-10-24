@@ -205,17 +205,19 @@ def _kaffa(n: Named) -> None:
 
 
 def _extra_ba(n: Named) -> None:
-    """كفى بالله شهيدًا، ليس الشديد بالصرعة: the باء is زائدة and its word holds the place of the
-    verb's doer or khabar (data: closed_words extra_ba). The word keeps its jarr, the case it shows;
+    """كفى بالله شهيدًا، ليس الشديد بالصرعة، ما الله بغافل: the باء is زائدة and its word holds the place of the
+    verb's doer or khabar, or ما الحجازية's khabar (data: closed_words extra_ba). The word keeps its jarr, the case it shows;
     its role is its place, and the reason says both."""
     found, bases, tokens, s = n.found, n.bases, n.tokens, n.s
     index = {token["id"]: i for i, token in enumerate(bases)}
     for i, token in enumerate(bases):
         ba, entry = s.head(token), found[i]
-        verb = s.head(ba) if ba else None
+        # مَا اللَّهُ بِغَافِلٍ: the khabar of ما الحجازية is the ما's (Sentence._hijazi), wherever the parser hung the باء
+        hijazi = bool(s.hijazi and token is s.hijazi[2] and ba)
+        verb = s.hijazi[0] if hijazi else s.head(ba) if ba else None
         rule = extra_ba_on(strip_diacritics(verb["lemma"])) if verb and verb["id"] in index else None
-        if not (rule and entry["role"] == NAMED.majroor and is_extra_ba(ba["form"].strip("+"))
-                and ba["rel"] == rule["rel"]):
+        if not (rule and is_extra_ba(ba["form"].strip("+"))
+                and (hijazi or (entry["role"] == NAMED.majroor and ba["rel"] == rule["rel"]))):
             continue
         # كفى بالمرء كذبًا أن يحدّث: another doer (a subject, or the masdar أن makes) leaves the باء a plain one
         if rule.get("alone") and any(t["id"] != ba["id"] and t["head"] == verb["id"] and t["rel"] == "SBJ" for t in tokens) \
@@ -382,6 +384,10 @@ def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None =
     works only on that word (`onto`, what it shows) and the words hung below it."""
     if token.get("reading"):
         return token["reading"]["family"]
+    # مَا رَبُّكَ بِظَلَّامٍ، لَسْتُ بِغَافِلٍ: ما الحجازية (Sentence._hijazi) and ليس, never تامة, are كان's
+    # whatever their خبر shows; a jarr behind a باء shows nothing of كان
+    if s and ((s.hijazi and token is s.hijazi[0]) or is_one(token["lemma"], "kana", "always_defective")):
+        return s.family(token)
     linked = set().union(onto or set(), *(said for other, said in zip(bases, shown)
                          if other["head"] == token["id"] or (onto is None and other["id"] == token["head"])))
     family = next((family for family, card in family_cards()

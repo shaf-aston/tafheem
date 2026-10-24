@@ -270,3 +270,26 @@ def test_the_recorded_tarkeeb_marks_every_unchecked_wording():
         nahw_book.tarkeeb_rules()["terms"][key]["ar"]
         for key in nahw_book.tarkeeb_rules()["terms"]
     }
+
+
+# أَلَيْسَ ٱللَّهُ بِأَحْكَمِ (95:8): the question hamza carries the word's arrow, ليس hangs on it
+AT_TIN_8 = [
+    row(0, 1, "أَ", "INTG", "حرف استفهام", "root", 0, segment="PREFIX"),
+    row(1, 1, "لَيْسَ", "V", "فعل", "استفهام", 0),
+    row(2, 2, "ٱللَّهُ", "PN", "اسم علم", "اسم ليس", 1),
+    row(3, 3, "بِ", "P", "حرف جر", "خبر ليس", 1, segment="PREFIX"),
+    row(4, 3, "أَحْكَمِ", "N", "اسم", "مجرور", 3),
+]
+
+
+def test_a_word_whose_stem_is_a_verb_is_a_verb_behind_its_question_hamza():
+    tree, columns = drawn(AT_TIN_8)
+    assert columns["أَلَيْسَ"]["role"] == term("fil")
+    assert tree["label"] == term("jumlah_filiyyah")
+
+
+def test_a_word_of_two_stems_is_what_its_first_says():
+    # بِئْسَمَا: بئس, then ما written onto it
+    rows = [row(0, 1, "بِئْسَ", "V", "فعل", "root", 0), row(1, 1, "مَا", "REL", "اسم موصول", "فاعل", 0)]
+    words, _ = build_tarkeeb._words_of(rows, SETTINGS)
+    assert words[0]["pos"] == "V"

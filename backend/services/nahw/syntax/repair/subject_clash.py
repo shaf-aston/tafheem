@@ -1,9 +1,9 @@
 """Repair 2: a word hung on a verb's subject that the typed vowels forbid there is the verb's object."""
 from __future__ import annotations
 
-from backend.services.nahw.book import is_mabni, is_one
+from backend.services.nahw.book import extra_ba_on, is_mabni, is_one
 from backend.services.nahw.syntax.facts import (
-    Sentence, attached_pronoun, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, typed_case_of, noun_tagged, subject_link, works_as_verb)
+    Sentence, attached_pronoun, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, typed_case_of, noun_tagged, subject_link, works_as_verb)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -88,7 +88,8 @@ def kana_subject(tokens: list[dict]) -> None:
     """لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so
     a word the parser made the خبر that the reader typed in raf', with no اسم beside it, is the
     اسم; what the parser hung on it after it (here بِالصُّرَعَةِ) is the خبر. So too when the
-    parser had the اسم right but hung the خبر on it (لَيْسَ الطَّالِبُ بِكَسُولٍ), leaving كان none."""
+    parser had the اسم right but hung the خبر on it (لَيْسَ الطَّالِبُ بِكَسُولٍ), leaving كان none,
+    or hung the باء that carries it on the verb as a modifier (لَسْتُ بِغَافِلٍ)."""
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
@@ -103,6 +104,14 @@ def kana_subject(tokens: list[dict]) -> None:
         if told:
             told["head"], told["rel"] = verb["id"], "PRD"
         s = Sentence(tokens)
+    # لَسْتُ بِغَافِلٍ: its اسم is the تُ written onto it, and the باء the parser hung on it as a modifier
+    # carries its خبر (data: closed_words extra_ba `on`); بِالْبَيْتِ أَحَدٌ after it is a خبر before its اسم
+    for ba in tokens:
+        verb, noun = s.head(ba), next((k for k in s.kids(ba) if k["rel"] == "OBJ"), None)
+        rule = verb and noun and s.family(verb) == "kana" and extra_ba_on(verb["lemma"])
+        if rule and ba["rel"] == "MOD" and verb["id"] < ba["id"] and khabar_behind_ba(ba, noun) \
+                and not any(k["rel"] == rule["rel"] or (subject_link(k) and k["id"] > ba["id"]) for k in s.kids(verb)):
+            ba["rel"] = rule["rel"]
 
 
 def zanna_pair(tokens: list[dict]) -> None:

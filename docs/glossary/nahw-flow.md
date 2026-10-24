@@ -36,7 +36,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - since_jarr: a built time word that is also a preposition (مُنْذُ أَمْسِ، مُذْ شَهْرٍ) before a noun → the preposition, the noun its majrur (`backend/services/nahw/syntax/repair/typed.py`)
 - asked_man: an opening مَنْ with no verb in the sentence → the question word, not the relative (`backend/services/nahw/syntax/repair/asked.py`)
 - subject_clash: second noun after a raf' subject → the verb's object (`backend/services/nahw/syntax/repair/subject_clash.py`)
-- kana_subject: a raf' noun right after كان/ليس, with a later predicate → كان's subject, not its khabar; a خبر the parser hung on the subject → كان's khabar (`backend/services/nahw/syntax/repair/subject_clash.py`)
+- kana_subject: a raf' noun right after كان/ليس, with a later predicate → كان's subject, not its khabar; a خبر the parser hung on the subject → كان's khabar; a باء hung on لست as a modifier → the باء of ليس's khabar (لَسْتُ بِغَافِلٍ) (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - zanna_pair: under ظن and its sisters, a nasb noun the parser kept as the subject of the nasb word after it → the verb's first object, that word its second (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - praise_specified: after نعم/بئس, an indefinite nasb noun → the verb's تمييز (its doer a hidden pronoun), the raf' noun after → the one praised (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - doer_after_object: a subject typed in nasb with a raf' word hung on it → the object, that word the doer (`backend/services/nahw/syntax/repair/subject_clash.py`)
@@ -54,7 +54,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - hal_clause: و + a raf' pronoun + a verb → a hal clause, the pronoun its mubtada (`backend/services/nahw/syntax/repair/hal.py`)
 - nasab: name + ابن/بن + noun → صفة and مضاف chain; next noun = خبر in a verbless sentence (`backend/services/nahw/syntax/repair/nasab.py`)
 - untied_command: a command read as a jazm condition's answer (إن تضربْ أضربْ) with no فاء on it → jussive present, جواب الشرط (`backend/services/nahw/syntax/repair/answer.py`)
-- stamp: particle families from the particle decision tree (`backend/services/nahw/syntax/particles.py`, `backend/data/nahw_rules/particle_tree.json`)
+- stamp: particle families from the particle decision tree; a place the parser gave the لام of emphasis → the word it is written onto (إِنَّ هَذَا لَسِحْرٌ) (`backend/services/nahw/syntax/particles.py`, `backend/data/nahw_rules/particle_tree.json`)
 <!-- /list -->
 
 Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` → `vetoes`):

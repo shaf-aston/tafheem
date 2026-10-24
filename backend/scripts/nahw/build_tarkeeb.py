@@ -141,18 +141,24 @@ def _words_of(rows: list[dict], settings: dict) -> tuple[list[dict], dict[int, i
     # A word's own job is the one its stem carries; a prefix like ٱل has none.
     kinds = settings["particle_kinds"]
     by_token = {int(row["token_id"]): row for row in rows}
+    stemmed: set[int] = set()
     for row in rows:
         if row["rel_label_ar"] in settings["not_a_relation"]:
             continue
         word = words[belongs[int(row["token_id"])]]
         # Every piece that has a job, in written order: أَفَلَا is three.
         word.setdefault("pieces", []).append(row["pos_ar"])
+        # أَلَيْسَ: the question hamza carries the word's arrow, but its stem says what the word is, a verb;
+        # بِئْسَمَا is two stems, and the first is the word's
+        if "STEM" in row["features"].split("|") and id(word) not in stemmed:
+            stemmed.add(id(word))
+            word["pos"] = row["pos"]
         if "relation" in word:
             continue
         word["relation"] = row["rel_label_ar"]
         word["head"] = belongs.get(int(row["ref_token_id"]))
         word["constituent"] = row["constituent_label"]
-        word["pos"] = row["pos"]
+        word.setdefault("pos", row["pos"])
         if word["relation"] != settings["root"]:
             head = by_token.get(int(row["ref_token_id"]))
             word["states_head"] = _states_particle(word["relation"], head, kinds)

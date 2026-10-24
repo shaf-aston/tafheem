@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import doer_written_in, frames, is_one
+from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
 
@@ -27,6 +27,14 @@ def praised_noun(token: dict, s: "Sentence") -> bool:
     doer = next((k for k in s.kids(verb) if k["id"] < token["id"] and noun_tagged(k) and (k["rel"] == "TMZ" or (
                  k["rel"] in NOUN_LINKS and typed_or_parsed_case(k) == "u"))), None)
     return bool(doer and (token["rel"] in NOUN_LINKS or (token["rel"] == "MOD" and head is doer)))
+
+
+def khabar_behind_ba(ba: dict, noun: dict) -> bool:
+    """مَا اللَّهُ بِغَافِلٍ، لَسْتُ بِغَافِلٍ: a زائدة باء written onto the khabar of ما or ليس (Ibn Aqil on
+    وبعد ما وليس جرّ البا الخبر); a word with ال after the باء, unless a participle, is a plain
+    jar-majrur (ما زيدٌ بالبيت), while an annexed one is the khabar still (أَلَسْتُ بِرَبِّكُمْ)."""
+    return is_prefix(ba) and is_extra_ba(ba["form"].strip("+")) and noun_tagged(noun) \
+        and (noun.get("stt") != "d" or is_participle(noun))
 
 
 class Sentence:
@@ -81,12 +89,16 @@ class Sentence:
         words = [t for t in self.tokens if not is_suffix(t)]
         while words and is_prefix(words[0]):
             words.pop(0)  # وَما زيدٌ قائمًا: a وَ or فَ written onto it opens nothing else
-        # its ism is marfu': ما أحسنَ زيدًا is the ما of wonder
-        if not (self.verbless and len(words) >= 3 and words[0]["lemma"] == "ما"
-                and noun_tagged(words[1]) and typed_or_parsed_case(words[1]) != "a"):
+        # its ism is marfu': ما أحسنَ زيدًا is the ما of wonder; the fatha of a built أنتَ is no nasb
+        if not (self.verbless and len(words) >= 3 and words[0]["lemma"] == "ما" and noun_tagged(words[1])
+                and (is_mabni(words[1].get("pos_camel", "")) or typed_or_parsed_case(words[1]) != "a")):
             return None
         khabar = next((t for t in words[2:] if noun_tagged(t) and t.get("stt") == "i"
                        and typed_or_parsed_case(t) == "a"), None)
+        # مَا اللَّهُ بِغَافِلٍ: its khabar may stand behind a زائدة باء, jarr in its letters (data:
+        # closed_words extra_ba `on`); a word with ال after the باء is a plain jar-majrur (ما زيدٌ بالبيت)
+        if not khabar and extra_ba_on(words[0]["lemma"]) and len(words) >= 4 and khabar_behind_ba(words[2], words[3]):
+            khabar = words[3]
         return (words[0], words[1], khabar) if khabar else None
 
     def head(self, token: dict) -> dict | None:
