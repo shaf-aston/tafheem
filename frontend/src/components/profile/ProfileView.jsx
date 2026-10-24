@@ -9,7 +9,8 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { startOver } from '../../lib/nav/journey'
 import { logOut } from '../../lib/learner/profile'
-import { deleteAccount, fetchLeaderboard, setPublic } from '../../lib/learner/progress'
+import { deleteAccount, setPublic } from '../../lib/learner/progress'
+import { accountQuery, everyRanking, leaderboardQuery } from '../../lib/learner/record'
 import { forgetShelf } from '../../lib/store/shelf'
 import { ARMED_MS, useMoment } from '../../lib/hooks/useMoment'
 import { useProgressFacts } from '../../lib/learner/useProgressFacts'
@@ -64,10 +65,10 @@ function Fact({ name, value, className = '' }) {
 /** The global ranking, with the switch that takes you out of it (you still see your own row). */
 function Global({ name, module, account }) {
   const client = useQueryClient()
-  const board = useQuery({ queryKey: ['leaderboard', module], queryFn: () => fetchLeaderboard(module) })
+  const board = useQuery(leaderboardQuery(module))
   const toggle = async (shown) => {
-    client.setQueryData(['account', name], await setPublic(shown))
-    await client.invalidateQueries({ queryKey: ['leaderboard'] })
+    client.setQueryData(accountQuery(name).queryKey, await setPublic(shown))
+    await client.invalidateQueries(everyRanking)
   }
   return (
     <div className="space-y-2">

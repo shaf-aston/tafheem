@@ -1,7 +1,7 @@
 """What the classical dictionaries say about a root, read from data/lexicons.db.
 
 The only thing that opens that database. It is built once by
-scripts/build_lexicons.py, which is also where the books, their licences and the
+scripts/dictionary/build_lexicons.py, which is also where the books, their licences and the
 reason each one is readable at all are written down.
 
 This is not root_meaning and does not replace it. That module answers one

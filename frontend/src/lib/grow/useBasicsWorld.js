@@ -4,7 +4,7 @@
  */
 import { useLessonWorld } from './useLessonWorld'
 import { useRememberedFlag } from '../store/useRemembered'
-import { MODULE, keyOfBasic } from './alifLam'
+import { keyOfBasic } from './alifLam'
 import { basicsCards, pathItems } from './basicsSkills'
 
 export const SOURCE_URL = '/grow/basics.json'
@@ -25,15 +25,16 @@ async function load() {
   return { order: items, all: items }
 }
 
-// Whether the Basics have begun is kept on the device, not read from the record: every guest shares one record, and
-// another guest's answers must neither skip this one's opening card nor move their Today on to the Basics.
+// Whether the Basics have begun is kept on the device, not read from the record: a page from before guests had a
+// device's own record shares one, and another guest's answers must neither skip this one's opening card nor move
+// their Today on to the Basics.
 const BEGUN = 'basics-begun'
 
 export function useBasicsWorld(world) {
   const [begunHere, setBegunHere] = useRememberedFlag(BEGUN, false)
   // The first lesson on this device opens on what ال is.
   const cards = (picked, all, random) => basicsCards(picked, random, !begunHere)
-  const state = useLessonWorld({ world, module: MODULE, load, keyOf: keyOfBasic, cards })
+  const state = useLessonWorld({ world, load, keyOf: keyOfBasic, cards })
   // GrowPanel calls `began` once a Basics lesson is on screen.
   return { ...state, begunHere, began: () => setBegunHere(true) }
 }

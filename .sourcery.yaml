@@ -10,4 +10,4 @@ ignore:
   - node_modules
   - frontend/dist
   - backend/data
-  - prototypes
+  - docs/prototypes

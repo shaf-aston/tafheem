@@ -28,7 +28,7 @@ Commands to run the app, the tests and the data builds: `CORE-FLOW.md` (Run it) 
 
 - `CORE-FLOW.md`: what it does, the flow, the glossary
 - `docs/core-flow-detail.md`: long notes; `docs/glossary/`: per module
-- `RECITE-PLAN.md`: reciting rules and open work
+- `docs/plans/2026-09-05-recite.md`: reciting rules and open work
 - `docs/strategy/README.md`: product strategy
 
 ## Troubleshooting
@@ -37,7 +37,7 @@ Commands to run the app, the tests and the data builds: `CORE-FLOW.md` (Run it) 
 |---|---|
 | `GROQ_API_KEY not set` | only needed for AI features; add it to `.env` and restart |
 | `Ayah not found` | surah is 1 to 114; check the ayah number |
-| Empty dictionary | build it: `python backend/scripts/build_dictionary.py` |
+| Empty dictionary | build it: `python backend/scripts/dictionary/build_dictionary.py` |
 
 ## Data and licensing
 

@@ -2,7 +2,7 @@
  * Curated verbs grouped by form (باب). Each card carries enough data to show a
  * result the instant it is clicked, so browsing costs nothing.
  */
-import { SARF_PRESETS } from '../../data/sarfPresets'
+import { SARF_PRESETS } from '../../lib/nahw/sarfPresets'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'

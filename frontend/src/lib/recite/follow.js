@@ -334,7 +334,7 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  * said right: a wrong vowel has the same letters, and the transcript cannot see
  * it. Measured on 390 marked recordings heard by Groq, at 0.9 this caught
  * 58% of vowel slips where needing the transcript to miss too caught 16%, for
- * 3.3% of right words marked against 2.0%; it now sits at 0.95 (backend/scripts/sweep_sureness.py).
+ * 3.3% of right words marked against 2.0%; it now sits at 0.95 (backend/scripts/recitation/sweep_sureness.py).
  */
 export const bySound = (marks, scores) => {
   const sureAt = config['sure-at']

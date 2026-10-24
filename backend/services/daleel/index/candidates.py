@@ -65,7 +65,7 @@ def candidates(
     # of this is a two-letter word reading as "no book says this".
     if short_terms and not has_table(conn, "word"):
         log.warning("this index has no word table, so %d short term(s) cannot be "
-                    "searched; run: python backend/scripts/build_daleel_index.py --words",
+                    "searched; run: python backend/scripts/daleel/build_daleel_index.py --words",
                     len(short_terms))
         short_terms = []
 

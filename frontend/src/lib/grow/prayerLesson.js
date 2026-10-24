@@ -7,8 +7,9 @@
 import { bare, gapOf } from '../quiz/gap'
 import { weave } from './lesson'
 import { shuffled } from '../text/shuffle'
+import { moduleOf } from './worlds'
 
-export const MODULE = 'prayer'
+export const MODULE = moduleOf('prayer')
 export const keyOfPhrase = (phrase) => phrase.id
 
 /** The phrases of a served world, in its paths' order; words said twice (the takbir, again in the 33s) are one phrase. */

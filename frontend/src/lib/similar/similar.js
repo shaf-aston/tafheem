@@ -5,7 +5,7 @@
  * [start, end) over the ayah split on whitespace. The page works per word, so
  * spans become one flag per word here and nowhere else.
  */
-import surahs from '../../data/surahs.json'
+import surahs from '../quran/surahs.json'
 import config from '../../config/similar.json'
 
 /** One true/false per word: is it inside any span. Spans may overlap or run past the end. */

@@ -18,7 +18,10 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.scripts.build_daleel_index import _META_SCHEMA, fill_meta  # noqa: E402
+from backend.scripts.daleel.build_daleel_index import (  # noqa: E402
+    _META_SCHEMA,
+    fill_meta,
+)
 from backend.services.daleel import catalogue, search  # noqa: E402
 from backend.services.daleel.index import connection, share  # noqa: E402
 

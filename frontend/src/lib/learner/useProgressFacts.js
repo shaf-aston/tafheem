@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { shareOf } from '../quiz/coverage'
-import { fetchAccount, fetchOverview } from './progress'
+import { accountQuery, overviewQuery } from './record'
 import { MEANINGS } from '../quiz/quiz'
 import { moduleFor, QUIZ } from '../quiz/quizBanks'
 import { useQuizCoverage } from '../quiz/useQuizCoverage'
@@ -18,8 +18,8 @@ import { useRewards } from './useRewards'
 export function useProgressFacts(name) {
   const [language] = useRemembered('quiz-language', Object.keys(MEANINGS), QUIZ.language)
   const module = moduleFor(language)
-  const account = useQuery({ queryKey: ['account', name], queryFn: fetchAccount, enabled: !!name })
-  const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview, enabled: !!name })
+  const account = useQuery(accountQuery(name))
+  const overview = useQuery(overviewQuery(name))
   const { stats, learnt, share } = useQuizCoverage(language)
   const { rewards, gain } = useRewards(name)
   // Nothing learnt covers nothing; something learnt waits for the word table.

@@ -2,7 +2,8 @@ import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { coverageOf, learntOf } from './coverage'
-import { allWordsQuery, coverageQuery, progressQuery, QUIZ } from './quizBanks'
+import { summaryQuery } from '../learner/record'
+import { allWordsQuery, coverageQuery, moduleFor, QUIZ } from './quizBanks'
 
 /**
  * The quiz record, its learnt rows, and how much of the Qur'an they cover.
@@ -11,7 +12,7 @@ import { allWordsQuery, coverageQuery, progressQuery, QUIZ } from './quizBanks'
  * fetched once something is learnt; `share` is null until then.
  */
 export function useQuizCoverage(language = QUIZ.language) {
-  const stats = useQuery(progressQuery(language))
+  const stats = useQuery(summaryQuery(moduleFor(language)))
   const learnt = useMemo(() => learntOf(stats.data), [stats.data])
   const any = learnt.length > 0
   const words = useQuery({ ...allWordsQuery, enabled: any })

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.scripts.build_lexicon import anki_note
+from backend.scripts.quiz.build_lexicon import anki_note
 
 SPEC = {
     "word_type": "noun",

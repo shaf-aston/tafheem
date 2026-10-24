@@ -13,7 +13,7 @@
 import { useRef, useState } from 'react'
 
 import { hasAnswer } from '../../../lib/colloquial/answer'
-import { recordAttempt } from '../../../lib/learner/progress'
+import { useRecord } from '../../../lib/learner/record'
 import ArabicText from '../../ui/ArabicText'
 import PrimaryButton from '../../ui/PrimaryButton'
 import SpeakButton from '../../ui/SpeakButton'
@@ -22,6 +22,7 @@ import { exerciseOf } from './registry'
 const statusOf = (saved) => (!saved ? '' : saved.correct ? 'right' : 'wrong')
 
 export default function ExerciseHost({ exercise, accent, saved, onDone }) {
+  const { file } = useRecord()
   const kind = exerciseOf(exercise.type)
   const [value, setValue] = useState(() => saved?.value ?? kind?.blank ?? '')
   const [status, setStatus] = useState(() => statusOf(saved))
@@ -39,7 +40,7 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
     const correct = kind.judge(exercise, value)
     setStatus(correct ? 'right' : 'wrong')
     const { module = 'colloq', item = exercise.id } = exercise.progress ?? {}
-    recordAttempt({ module, item, correct, ms: startedAt.current && Date.now() - startedAt.current })
+    file({ module, item, correct, ms: startedAt.current && Date.now() - startedAt.current })
     onDone?.(correct, value)
   }
 

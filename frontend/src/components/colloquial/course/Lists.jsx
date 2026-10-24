@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 import { colloquialUnitQuery } from '../../../api'
 import { unitNumber } from '../../../lib/colloquial/place'
 import { colorAt, colorFor } from '../../../theme'
-import { CountryIcons, CountryMap } from '../../ui/CountryMap'
+import { CountryIcons, CountryMap } from '../CountryMap'
 import WordBank from '../words/WordBank'
 import { Card, Grid, UnitCard } from './Cards'
 

@@ -14,12 +14,10 @@ import { colorFor } from '../../theme'
 import { colloquialQuery, dawahQuery, daleelBooksQuery, hadithOpen, timelinesQuery } from '../../api'
 import { load } from '../api/warm'
 import { memoriseOpen } from '../memorise/books'
-import { table } from '../quiz/quizBanks'
+import { MODULE as QUIZ_MODULE, table } from '../quiz/quizBanks'
 import { WORDS_MODULE } from '../colloquial/wordPractice'
-import { MODULE as BASICS_MODULE } from '../grow/alifLam'
-import { MODULE as HADITH_MODULE } from '../grow/hadithLesson'
-import { MODULE as QURAN_MODULE } from '../grow/quranLesson'
 import { panel } from './panel'
+import { nameOf } from '../grow/growPlace'
 import grow from '../../config/worlds.json'
 import { quranOpen } from '../quran/quranOpen'
 import { similarOpen } from '../similar/similarOpen'
@@ -49,7 +47,10 @@ const KitPanel = panel(() => import('../../components/kit/KitPanel'))
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
 // `modules`: other names its answers are filed under in the progress store, so a
 //   progress row can say which tab it came from.
+// `place`: the tab's value as a reader says it (Home's "Where you stopped"), for a tab whose value is an address, not a word.
 // `ownsHealth`: draws its own offline state, so the app-wide backend banner stays off it.
+// `ownHome`: opened with nothing in hand it shows a page of its own (Grow's home), so the journey keeps that
+//   as a step and back returns to it, rather than filling it in with the first place (lib/nav/journey.js).
 // `hidden`: reachable by URL only (journey and the panel mapping read TABS), left out of
 //   everything a person browses; those read LISTED.
 // Home is first, so it is where a visit with no saved place opens.
@@ -63,9 +64,9 @@ export const GROUPS = [
   { id: 'more',     label: 'Explore' },
 ]
 
-// What Grow files its answers under: the Basics, hadith and Qur'an worlds' own names, and
-// each book world's `module` as worlds.json declares it, so a new book needs no edit here.
-const GROW_MODULES = [BASICS_MODULE, HADITH_MODULE, QURAN_MODULE, ...grow.worlds.filter((world) => world.module).map((world) => world.module)]
+// What Grow files its answers under: each world's `module` as worlds.json names it, so a new
+// world needs no edit here. Not the Words world's: it files under the Quiz's own record.
+const GROW_MODULES = grow.worlds.map((world) => world.module).filter((module) => module && module !== QUIZ_MODULE)
 
 export const TABS = [
   { id: 'home',   label: 'Home',       short: 'Home',   arabic: 'البداية', emblem: 'home', Component: HomePanel, ownsHealth: true, blurb: "Where you left off, your progress, and every tab", group: 'start' },
@@ -80,7 +81,7 @@ export const TABS = [
   // Similar verses, متشابهات: telling look-alike ayat apart, next to learning them by heart.
   { id: 'similar', label: 'Similar',        short: 'Similar', arabic: 'متشابهات', emblem: 'similar', Component: SimilarPanel, open: similarOpen, study: true, blurb: "Tell look-alike verses apart, and drill the wording", group: 'practise' },
   // Grow, نبات (3:37): a little every day: words, fiqh, Quran and hadith.
-  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   emblem: 'words', Component: GrowPanel, study: true, blurb: "A little every day: words, fiqh, Quran and hadith", group: 'practise', modules: GROW_MODULES },
+  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   emblem: 'words', Component: GrowPanel, study: true, blurb: "A little every day: words, fiqh, Quran and hadith", group: 'practise', modules: GROW_MODULES, ownHome: true, place: (value) => nameOf(value, grow.worlds) },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', emblem: 'quiz', Component: QuizPanel, open: table, blurb: "Practise words and meanings, and review what is due", group: 'practise' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', emblem: 'timelines', Component: TimelinesPanel, open: load(timelinesQuery), study: true, blurb: "See events and their ayat laid out in order", group: 'more' },
   { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   emblem: 'dawah', Component: DawahPanel, open: load(dawahQuery), study: true, blurb: "Answers to common questions, with the evidence", group: 'more' },

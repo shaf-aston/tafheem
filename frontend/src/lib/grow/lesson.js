@@ -40,7 +40,7 @@ export function weave({ fresh, reviews }, { teach, asks }) {
 export function requeue(cards, at) {
   const card = cards[at]
   if (card.again) return cards
-  return [...cards, { ...card, id: `${card.id}:again`, again: true }]
+  return [...cards, { ...card, id: `${card.id}:again`, again: true, ...(card.tag && { tag: 'Again' }) }]
 }
 
 /** The current stage (0-based) for `learnt` items, how far into it, and its size; `done` past the last. */

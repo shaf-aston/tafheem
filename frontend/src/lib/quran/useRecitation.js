@@ -16,7 +16,7 @@
 import { useCallback } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import config from '../../data/reciters.json'
+import config from './reciters.json'
 import { RECITERS, ayahAudioUrl } from './ayahAudio'
 
 /** The measured times for one whole surah, keyed by ayah. */

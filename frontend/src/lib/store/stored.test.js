@@ -1,8 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { forgetProgress } from '../learner/progress'
 import {
-  fillShelf, forgetKey, forgetProgressKeys, onChange, onReplaced, progressKey, readRaw, readSaved, shelfOf, writeRaw, writeSaved,
+  fillShelf, forgetKey, forgetSaved, forgetProgressKeys, onChange, onReplaced, progressKey, readRaw, readSaved, shelfOf, writeRaw, writeSaved,
 } from './stored'
+
+vi.mock('../learner/progress', () => ({ forgetProgress: vi.fn(async () => ({ deleted: true })) }))
 
 let data
 beforeEach(() => {
@@ -87,6 +90,28 @@ describe('filed under who is logged in', () => {
     fillShelf('amina', { z: '9' })
     expect(shelfOf('amina')).toEqual({ z: '9' })
     expect(shelfOf('bilal')).toEqual({ b: '2' })
+  })
+
+  it('the device\'s own keys are nobody\'s shelf, so sign-up never copies them into an account', () => {
+    data.set('guest', 'ab'.repeat(16))
+    data.set('recorder-key', 'sk-1')
+    data.set('install-dismissed', '1')
+    data.set('c', '3')
+    expect(shelfOf('')).toEqual({ c: '3' })
+  })
+
+  it('a guest\'s Start over keeps the device id, so the server wipe reaches this device\'s record', async () => {
+    vi.stubGlobal('location', { reload: vi.fn() })
+    data.set('guest', 'ab'.repeat(16))
+    data.set('recorder-key', 'sk-1')
+    data.set('install-dismissed', '1')
+    data.set('c', '3')
+    let held
+    forgetProgress.mockImplementationOnce(async () => { held = data.get('guest'); return { deleted: true } })
+    await forgetSaved()
+    expect(held).toBe('ab'.repeat(16))
+    expect([...data.keys()]).toEqual(['guest', 'recorder-key', 'install-dismissed'])
+    expect(location.reload).toHaveBeenCalledOnce()
   })
 
   it('tells listeners of every change, so the shelf can be sent', () => {

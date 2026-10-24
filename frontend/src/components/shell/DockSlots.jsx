@@ -4,7 +4,7 @@
  * by the whole slot; letting a tab go over a slot puts it there (lib/nav/dock.js).
  * Draws what it is given and decides nothing.
  */
-import TabMark from '../ui/TabMark'
+import TabMark from './TabMark'
 
 export default function DockSlots({ size, tabs, colorOf, drag, grip }) {
   return (

@@ -20,7 +20,7 @@
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import ArabicText from '../ui/ArabicText'
-import ManhajView from '../ui/ManhajView'
+import ManhajView from './ManhajView'
 import PbsChart from './PbsChart'
 import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
 import { anchoredScroll, pinchedZoom, usePinch } from '../../lib/shell/usePinch'

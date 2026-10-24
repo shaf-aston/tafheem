@@ -14,7 +14,7 @@ ayahs it covers. Asking about any ayah of a run returns that whole passage and
 says which ayahs it was written about, because a reader handed commentary on ten
 ayahs is entitled to know that is what they are reading.
 
-Built by scripts/import_quran_editions.py. If it has never been run the file is
+Built by scripts/quran/import_quran_editions.py. If it has never been run the file is
 simply absent, `is_built()` is False, and the app shows no books at all rather
 than an empty panel. A missing file is a valid state; it means "not imported yet".
 

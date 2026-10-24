@@ -16,7 +16,7 @@ from backend.services.quran import service as quran_service
 
 pytestmark = pytest.mark.skipif(
     not quran_corpus.is_loaded(),
-    reason="corpus.db not built, run backend/scripts/build_quran_corpus.py",
+    reason="corpus.db not built, run backend/scripts/quran/build_quran_corpus.py",
 )
 
 # Al-Fatiha, the longest surah, one with a FAM tag, and the shortest.
@@ -51,7 +51,7 @@ def test_reading_view_carries_the_text() -> None:
 
 @pytest.mark.skipif(
     not quran_meanings.is_built(),
-    reason="meanings.db not built, run backend/scripts/build_quran_meanings.py",
+    reason="meanings.db not built, run backend/scripts/quran/build_quran_meanings.py",
 )
 class TestTheEnglish:
     def test_a_word_is_numbered_the_same_as_the_corpus_numbers_it(self) -> None:

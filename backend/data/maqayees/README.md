@@ -5,8 +5,8 @@ authored**: rebuild it rather than editing it.
 
 ```bash
 pip install access-parser
-python backend/scripts/build_root_meanings.py            # downloads the book
-python backend/scripts/build_root_meanings.py book.bok  # or re-cuts a local copy
+python backend/scripts/dictionary/build_root_meanings.py            # downloads the book
+python backend/scripts/dictionary/build_root_meanings.py book.bok  # or re-cuts a local copy
 ```
 
 Restart the backend afterwards; the file is read once at startup. The
@@ -54,7 +54,7 @@ entry for `أه` that way.
 `english_entries.json` is a cache, not a source. Putting an entry into English
 costs a call to a model and gives the same answer each time, so each one is kept
 once it has been made, by a reader pressing the button, or by
-`backend/scripts/backfill_root_english.py` doing the whole book ahead of time.
+`backend/scripts/dictionary/backfill_root_english.py` doing the whole book ahead of time.
 Deleting the file loses nothing but the time it took to make.
 
 A reading in it is badged "the book's own words, put into English", because it
@@ -180,7 +180,7 @@ stronger.
     *al-wisāda*, the cushion.
   - The first sentence of the whole-entry translation in `english_entries.json`,
     badged `maqayees_translation`. Made from the typed Arabic with the Arabic in
-    front of it, one entry at a time, by `scripts/backfill_root_english.py`.
+    front of it, one entry at a time, by `scripts/dictionary/backfill_root_english.py`.
   Ibn Fāris always opens by naming the letters and stating the one sense, so
   these two say the same thing, and `services/dictionary/root_gloss.py` prefers the second
   wherever it exists, which is also how the wrong and thin glosses above get

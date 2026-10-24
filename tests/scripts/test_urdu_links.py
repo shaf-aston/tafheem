@@ -6,7 +6,7 @@ and that a shared gloss word is what separates a cognate from a trap.
 """
 from __future__ import annotations
 
-from backend.scripts.build_urdu_links import fold, meaning_words, verdict_for
+from backend.scripts.quiz.build_urdu_links import fold, meaning_words, verdict_for
 
 
 def word(ar: str, en: str) -> dict:

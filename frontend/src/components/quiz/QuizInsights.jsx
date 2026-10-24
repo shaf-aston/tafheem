@@ -53,8 +53,8 @@ const seconds = (ms) => `${(ms / 1000).toFixed(1)}s`
 
 export default function QuizInsights({ accent, language }) {
   const say = sayIn(language)
-  // Re-read whenever an answer has been filed: QuizPanel invalidates
-  // 'quiz-progress' once an answer is saved, so the figures on the bar follow
+  // Re-read whenever an answer has been filed: the Quiz refreshes its module's
+  // record once an answer is saved (lib/learner/record), so the figures on the bar follow
   // the store. Keyed by language, since each language is its own module.
   const { stats, learnt, covering, share } = useQuizCoverage(language)
   // The word table always, not only once something is learnt: the open panel lists every word answered.

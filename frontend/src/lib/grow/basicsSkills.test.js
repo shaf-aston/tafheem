@@ -115,6 +115,29 @@ describe('markerAsks', () => {
     expect(card.why).toBe(`${right} = ${card.ask.match(/“(.+)”/)[1]}. ${SKILLS.future.markers[0].rule}`)
   })
 
+  it('tells a wrong pick what it picked: another form and its meaning, or the misspelling', () => {
+    const seen = new Set()
+    for (let seed = 1; seed <= 60; seed += 1) {
+      for (const card of markerAsks(itemOf('mine:his'), true, makeRandom(seed))) {
+        const said = card.why.slice(0, card.why.indexOf('.') + 1)
+        const wrongIds = card.options.filter((option) => option.id !== 'right').map((option) => option.id)
+        expect(Object.keys(card.wrong).sort()).toEqual(wrongIds.sort())
+        for (const [id, line] of Object.entries(card.wrong)) {
+          expect(line.startsWith(`${said} `)).toBe(true)
+          const kind = id.startsWith('wrong:al:') ? 'al' : id.startsWith('wrong:ta:') ? 'ta' : 'form'
+          seen.add(kind)
+          if (kind === 'al') expect(line).toMatch(/never takes ال as well\.$/)
+          if (kind === 'ta') expect(line).toMatch(/A final ة is written ت before an ending\.$/)
+          if (kind === 'form') expect(line).toMatch(/ is “.+”\. ـهُ on the end means “his”\.$/)
+        }
+        // The ة half of the rule only where the word has a ة to change.
+        const word = itemOf('mine:his').words.find((one) => one.id === card.record.context.from)
+        expect(card.why.includes('ة is written ت'), word.ar).toBe(letters(word.ar).endsWith('ة'))
+      }
+    }
+    expect([...seen].sort()).toEqual(['al', 'form', 'ta'])
+  })
+
   it('draws different verbs and persons across lessons (the addition is learnt, not one word)', () => {
     const asked = new Set()
     const persons = new Set()

@@ -4,12 +4,13 @@
  * sums the XP the server reported, how many were right first time, and how long the lesson took, recaps what was missed,
  * and offers the next lesson (`next`: its title and `go`) when there is one. Enter presses the footer's button (Check or
  * Continue), also from an answer option, and takes the focus once an answer is checked; leaving mid-lesson asks first
- * (focus in the question, Escape to stay), since it starts over.
+ * (focus in the question, Escape to stay), since it starts over. `onLeave` is the way on from the end screen; `onQuit`,
+ * when given, is where the × goes instead (the Quiz rests there rather than dealing the next lesson).
  */
 import { useEffect, useRef, useState } from 'react'
 
 import { requeue } from '../../lib/grow/lesson'
-import { recordAttempt } from '../../lib/learner/progress'
+import { useRecord } from '../../lib/learner/record'
 import { rankOf, shareOf } from '../../lib/learner/rewards'
 import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/ArabicText'
@@ -18,7 +19,8 @@ import { kindOf } from './exercises'
 
 const say = sayIn('en')
 
-export default function LessonRunner({ cards: first, accent, rewards, next: after, onLeave }) {
+export default function LessonRunner({ cards: first, accent, rewards, next: after, onLeave, onQuit = onLeave }) {
+  const { file } = useRecord()
   const [cards, setCards] = useState(first)
   const [at, setAt] = useState(0)
   const [value, setValue] = useState(null)
@@ -86,9 +88,9 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
       ...(!card.again && { asked: was.asked + 1, right: was.right + (right ? 1 : 0) }),
     }))
     if (!right) setCards(requeue(cards, at))
-    if (!right && !card.again && card.ask) setMissed((was) => [...was, { id: card.id, ask: card.ask, ar: lineOf(card), why: card.why }])
+    if (!right && !card.again && card.ask) setMissed((was) => [...was, { id: card.id, ask: card.ask, ar: lineOf(card), why: card.why && kind.correction(card, value) }])
     const ms = Math.max(0, Math.round(event.timeStamp - started.current))
-    recordAttempt({ ...card.record, correct: right, ms }).then(({ earned = 0 }) => {
+    file({ ...card.record, correct: right, ms }).then(({ earned = 0 }) => {
       if (earned) setTally((was) => ({ ...was, earned: was.earned + earned }))
     })
   }
@@ -104,7 +106,7 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
   return (
     <div className="grow-lesson" style={{ '--w': accent }}>
       <div className="grow-lesson-top">
-        <button ref={x} type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (tally.asked ? setLeaving(true) : onLeave())}>
+        <button ref={x} type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (tally.asked ? setLeaving(true) : onQuit())}>
           <span aria-hidden="true">×</span>
         </button>
         <span className="grow-lesson-bar" role="progressbar" aria-valuemin={0} aria-valuemax={cards.length} aria-valuenow={at}
@@ -117,7 +119,7 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
       {leaving && (
         <div className="grow-leave" role="alertdialog" aria-modal="true" aria-labelledby="grow-leave-h">
           <p id="grow-leave-h">{say('Leave this lesson? Your answers are saved, but it starts again from the first card.')}</p>
-          <button type="button" onClick={onLeave}>{say('Leave')}</button>
+          <button type="button" onClick={onQuit}>{say('Leave')}</button>
           <button ref={stay} type="button" className="grow-leave-stay" onClick={keepGoing}>{say('Keep going')}</button>
         </div>
       )}
@@ -131,7 +133,8 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
           <p role="status" className="grow-lesson-say">
             {result === 'right'
               ? [say('Right!'), kind.because?.(card)].filter(Boolean).join(' ')
-              : `${kind.correction(card)} ${say('It comes back at the end.')}`}
+              // A card comes back once: its second miss says only the answer.
+              : [kind.correction(card, value), !card.again && say('It comes back at the end.')].filter(Boolean).join(' ')}
           </p>
         )}
         {asks && !result
@@ -165,7 +168,8 @@ function LessonDone({ tally, took, missed, accent, rewards, next, onLeave }) {
       </div>
       <p className="grow-done-title">{say('Lesson done')}</p>
       <dl className="grow-done-stats">
-        <div><dt>{say('XP')}</dt><dd className="tabular-nums">+{earned}</dd></div>
+        {/* A guest earns no XP yet, so no "+0": the line below says how to earn it. */}
+        {rewards && <div><dt>{say('XP')}</dt><dd className="tabular-nums">+{earned}</dd></div>}
         <div><dt>{say('Right first time')}</dt><dd className="tabular-nums">{right}/{asked}</dd></div>
         <div><dt>{say('Time')}</dt><dd className="tabular-nums">{clock(took)}</dd></div>
       </dl>
@@ -176,7 +180,7 @@ function LessonDone({ tally, took, missed, accent, rewards, next, onLeave }) {
           <span className="grow-lesson-bar" aria-hidden="true"><i style={{ width: `${100 * shareOf(rewards)}%` }} /></span>
         </div>
       )}
-      {!rewards && <p className="grow-hint">{say('Log in to keep your XP and streak on any device.')}</p>}
+      {!rewards && <p className="grow-hint">{say('Log in to earn XP and keep a streak on any device.')}</p>}
       {missed.length > 0 && (
         <section className="grow-done-missed" aria-labelledby="grow-missed-h">
           <h4 id="grow-missed-h">{say('What you missed')}</h4>

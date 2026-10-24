@@ -1,8 +1,8 @@
 """Ear bench: the maths and the keep rule, on tiny sets checked by hand."""
 import pytest
 
-from backend.scripts.ear_bench import keep, measures
-from backend.scripts.ear_bench.measures import Word
+from backend.scripts.recitation.ear_bench import keep, measures
+from backend.scripts.recitation.ear_bench.measures import Word
 
 
 def _words(rows, rec="r"):

@@ -7,7 +7,7 @@ what the ear wrote down, and sureness is asked only there.
 
 The transcript places the recording and nothing more: every word inside the
 stretch is then judged on sound, so a misheard word inside it is still judged.
-Same placing as backend/scripts/score_recitation_checker.py, where the
+Same placing as backend/scripts/recitation/score_recitation_checker.py, where the
 three-band rule was measured.
 """
 from __future__ import annotations

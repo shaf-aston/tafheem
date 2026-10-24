@@ -26,7 +26,7 @@ import sqlite3
 
 import pytest
 
-from backend.scripts.import_quran_editions import (
+from backend.scripts.quran.import_quran_editions import (
     check,
     read_app_tafsir_db,
     read_ayah_json,

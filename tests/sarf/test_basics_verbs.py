@@ -11,7 +11,7 @@ import re
 
 import pytest
 
-from backend.scripts import build_basics_verbs as B
+from backend.scripts.grow import build_basics_verbs as B
 from backend.services.sarf import verb_forms
 
 SOURCE = json.loads(B.SOURCE.read_text(encoding="utf-8"))

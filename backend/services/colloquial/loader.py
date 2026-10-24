@@ -17,7 +17,7 @@ draw nothing at all; a missing accepted list would mark every other spelling of
 the right answer wrong. Any of those stops the app and names the unit.
 
 The shape itself is written in prose in data/colloquial/FORMAT.md, and
-docs/colloquial-authoring-prompt.md is what generates a unit in that shape.
+docs/colloquial/authoring-prompt.md is what generates a unit in that shape.
 """
 from __future__ import annotations
 

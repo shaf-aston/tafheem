@@ -2,7 +2,7 @@
   "_about": [
     "Searches people really type, each with the wording that marks the hadith they mean.",
     "A search scores when a hit in its top 10 matches `english` (regex, case-insensitive) or `arabic` (regex over the folded Arabic: no marks, ة as ه).",
-    "Scored by backend/scripts/score_hadith_search.py. Any change to hadith search must move this score, not a handful of tried words."
+    "Scored by backend/scripts/hadith/score_hadith_search.py. Any change to hadith search must move this score, not a handful of tried words."
   ],
   "searches": [
     {"q": "man who killed 99 people", "kind": "number", "english": "killed ninety[- ]nine"},

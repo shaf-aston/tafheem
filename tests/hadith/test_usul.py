@@ -15,7 +15,7 @@ from fastapi.testclient import TestClient
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.main import app  # noqa: E402
-from backend.scripts import build_rijal, build_usul  # noqa: E402
+from backend.scripts.hadith import build_rijal, build_usul  # noqa: E402
 from backend.services.hadith import loader  # noqa: E402
 from backend.services.hadith.rijal import store as rijal_store  # noqa: E402
 from backend.services.hadith.usul import store as usul_store  # noqa: E402

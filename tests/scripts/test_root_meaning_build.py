@@ -9,7 +9,7 @@ import json
 
 import pytest
 
-from backend.scripts.build_root_meanings import (
+from backend.scripts.dictionary.build_root_meanings import (
     Config,
     DATA,
     attach_english,
@@ -101,7 +101,7 @@ def test_a_gloss_reaches_the_entry_however_either_side_spells_the_root(cfg, tmp_
     """The book files أخ and the gloss is filed under اخ. Matching the letters as
     typed lost 407 real glosses to that difference alone."""
     monkeypatch.setattr(
-        "backend.scripts.build_root_meanings.sidecar",
+        "backend.scripts.dictionary.build_root_meanings.sidecar",
         lambda name: {"اخ": {"core_meaning_english": "brotherhood"}},
     )
     book = {"أخ": {"core_meaning": "الأخوة"}}
@@ -121,7 +121,7 @@ def test_a_gloss_two_roots_could_belong_to_is_given_to_neither(cfg, monkeypatch)
     was written for دفأ, warmth.
     """
     monkeypatch.setattr(
-        "backend.scripts.build_root_meanings.sidecar",
+        "backend.scripts.dictionary.build_root_meanings.sidecar",
         lambda name: {"هنا": {"core_meaning_english": "here"}},
     )
     book = {"هنأ": {"core_meaning": "إصابة الخير"}, "هنا": {"core_meaning": "المعتل"}}
@@ -133,7 +133,7 @@ def test_a_gloss_two_roots_could_belong_to_is_given_to_neither(cfg, monkeypatch)
 def test_a_gloss_still_reaches_a_root_nothing_else_could_claim(cfg, monkeypatch):
     """The rule above must not cost the 4,561 glosses that are unambiguous."""
     monkeypatch.setattr(
-        "backend.scripts.build_root_meanings.sidecar",
+        "backend.scripts.dictionary.build_root_meanings.sidecar",
         lambda name: {"هنا": {"core_meaning_english": "here"}},
     )
     book = {"هنا": {"core_meaning": "المعتل"}}
@@ -143,7 +143,7 @@ def test_a_gloss_still_reaches_a_root_nothing_else_could_claim(cfg, monkeypatch)
 
 def test_an_empty_gloss_is_not_attached(cfg, monkeypatch):
     monkeypatch.setattr(
-        "backend.scripts.build_root_meanings.sidecar",
+        "backend.scripts.dictionary.build_root_meanings.sidecar",
         lambda name: {"كتب": {"core_meaning_english": "   "}},
     )
     book = {"كتب": {"core_meaning": "الجمع"}}

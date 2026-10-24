@@ -9,7 +9,7 @@ import { themeVariable } from '../../theme'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'
-import SheetLink from '../ui/SheetLink'
+import SheetLink from './SheetLink'
 
 export default function TermGuide({ groups, onTerms, accent }) {
   return (

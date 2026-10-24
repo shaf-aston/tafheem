@@ -1,7 +1,7 @@
 """The Qur'an's tarkeeb as scholars recorded it, read from data/tarkeeb/tarkeeb.db.
 
 The only thing that opens that database. It is built once by
-scripts/build_tarkeeb.py from the Quranic Treebank; see that script for where
+scripts/nahw/build_tarkeeb.py from the Quranic Treebank; see that script for where
 the data comes from and what it has to pass before it is written.
 
 Not every ayah is in here. An ayah whose arrows cross cannot be drawn as

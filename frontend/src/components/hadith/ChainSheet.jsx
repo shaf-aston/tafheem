@@ -19,7 +19,7 @@ import BottomSheet from '../ui/BottomSheet'
 import ChainDrawing from './ChainDrawing'
 import CloseButton from '../ui/CloseButton'
 import ScholarRulings from './ScholarRulings'
-import SheetLink from '../ui/SheetLink'
+import SheetLink from './SheetLink'
 import TermGuide from './TermGuide'
 import WeakPoints from './WeakPoints'
 

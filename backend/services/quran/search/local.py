@@ -1,6 +1,6 @@
 """Search the Qur'an from the index on this machine. No network, ever.
 
-Built by backend/scripts/build_quran_search_index.py out of the hand-tagged
+Built by backend/scripts/quran/build_quran_search_index.py out of the hand-tagged
 corpus the app already ships, so what is found here is the corpus's own text.
 
 The two sharp edges are the same ones Daleel hit, and are handled the same way,

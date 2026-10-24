@@ -117,7 +117,16 @@ describe('toArabicCard', () => {
     const texts = Object.fromEntries(card.options.map((option) => [option.id, option.text]))
     expect(texts).toEqual({ right: nfc('الْكِتَاب'), bare: nfc('كِتَاب'), tanween: nfc('الْكِتَابٌ') })
     expect(card.record).toEqual({ module: MODULE, item: 'book', context: { world: 'basics', direction: 'to-arabic', word: nfc('كِتَاب') } })
-    expect(card.why).toBe(`${nfc('الْكِتَاب')} = the book. ال is joined to the front of the word, and a word with ال never ends in -un (ٌ).`)
+    expect(card.why).toBe(`${nfc('الْكِتَاب')} = the book. ال is joined to the front of the word, and a word with ال never ends in -un (ـٌ).`)
+    // A wrong pick hears what that pick got wrong, after the answer.
+    expect(card.wrong).toEqual({
+      bare: `${nfc('الْكِتَاب')} = the book. ${nfc('كِتَاب')} has no ال: it is “a book”.`,
+      tanween: `${nfc('الْكِتَاب')} = the book. ال and the -un ending (ـٌ) never go together.`,
+    })
+  })
+  it('names the mistake of a word written apart from its ال, or spelt as heard', () => {
+    expect(toArabicCard(book, true, fixed(0.7)).wrong.apart).toBe(`${nfc('الْكِتَاب')} = the book. ال is joined to the front of the word, never written apart.`)
+    expect(toArabicCard(sun, true, fixed(0.7)).wrong.heard).toBe(`${nfc('الشَّمْس')} = the sun. The ل is not said before ش, but it is still written.`)
   })
   it('says why a sun word’s ل is written though not said', () => {
     const card = toArabicCard(sun, false, fixed(0.7))
