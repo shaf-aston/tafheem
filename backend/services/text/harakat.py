@@ -350,7 +350,13 @@ def past_passive_shape(word: str) -> bool:
     letter, last = marked[-1]
     closes = "َ" in last or SUKUN in last or (
         letter == "ت" and marked[-2][0] != "ا" and last <= {"ِ"})
-    return any("ِ" in marks for _, marks in marked[1:-1]) and closes
+    inside = marked[1:-1]
+    kasra = max((i for i, (_, marks) in enumerate(inside) if "ِ" in marks), default=None)
+    # the letter joined to the last takes the kasra (Alfiyya: فَأَوَّلَ الفِعْلِ اضْمُمَنْ وَالمُتَّصِلْ بِالآخِرِ
+    # اكْسِرْ); those before it are sakin or take the first's damma (تُدُحْرِجَ، اُسْتُحْلِيَ، تُغُوفِلَ, Ibn
+    # Aqil), so none before it has a fatha or an alif: سُلْطَانِيَ is a noun with ياء المتكلم on it
+    return kasra is not None and closes and not any(
+        "َ" in marks or letter == "ا" for letter, marks in inside[:kasra])
 
 
 ROOT_PLACES = "فعل"  # in a shape (أَفْعَلَ), the letters that stand for the root's

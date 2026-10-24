@@ -91,7 +91,7 @@ def opens_condition(tags: list[dict]) -> dict | None:
     it opens, never إنّ, whose noun must come straight after it. closed_words.json."""
     if len(tags) < 2 or tags[1].get("pos") != "verb":
         return None
-    frame = condition_of(strip_diacritics(tags[0].get("word", "")))
+    frame = condition_of(tags[0].get("word", ""))
     return frame if frame and not frame["noun"] else None  # مَنْ، ما: syntax.condition decides
 
 

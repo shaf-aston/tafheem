@@ -23,8 +23,8 @@ def takes_tamyeez(token: dict, s: Sentence) -> bool:
 
 def _doer_by_extra_ba(token: dict, verb: dict) -> bool:
     """كَفَى بِاللَّهِ: the doer comes after a زائدة باء, hung on the verb as the book's rule says."""
-    rule = extra_ba_on(strip_diacritics(verb["lemma"]))
-    return bool(rule and rule["role"] == NAMED.fail and token["rel"] == rule["rel"] and is_extra_ba(token["form"].strip("+")))
+    rule = extra_ba_on(verb["lemma"])
+    return bool(rule and rule["role"] == NAMED.fail and token["rel"] == rule["rel"] and is_extra_ba(token["form"]))
 
 
 def completes_kaada(token: dict, s: Sentence) -> bool:

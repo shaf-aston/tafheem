@@ -13,13 +13,13 @@ from __future__ import annotations
 
 from backend.services.nahw.book import (book_spelling, card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
-from backend.services.nahw.syntax.facts import (Sentence, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
-                                          is_nasab, is_verb, read_as, excepted_after_la, shown_cases, noun_tagged,
+from backend.services.nahw.syntax.facts import (Sentence, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
+                                          is_nasab, is_verb, read_as, reading, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.nahw.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
 from backend.services.nahw.syntax.doer import DOER, doer as _doer, person_key as _person, persons as _persons
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import SHADDA, five_verb_nun, has_tanween, letters, own_letters
+from backend.services.text.harakat import SHADDA, has_tanween, letters, own_letters
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
@@ -93,14 +93,14 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
     a particle read one way of several (particles.stamp) by that reading's name."""
     if family in FRAMES["leaf_by_family"] and role != NAMED.harf:
         card = CARDS.get(family, {})
-        named = card.get("named_as", {}).get(book_spelling(strip_diacritics(token["form"])), card.get("named"))
+        named = card.get("named_as", {}).get(book_spelling(token["form"]), card.get("named"))
         return FRAMES["leaf_by_family"][family].format(named=named)
     if role == NAMED.harf and (reading := token.get("reading")):
         card = CARDS.get(reading["family"], {})
         word = strip_diacritics(token["form"]).strip("+")
         return reading["named"] or card.get("chart") or card.get("chart_as", {}).get(word) or card.get("named_as", {}).get(
             word, card.get("named", role))
-    if family is None and role == NAMED.harf and is_prefix(token) and is_one(strip_diacritics(token["form"]), "atf"):
+    if family is None and role == NAMED.harf and is_prefix(token) and is_one(token["form"], "atf"):
         family = "atf"  # وَمَنْ شاء: a وَ written onto a new sentence is named by its letters, as its card is
     card = CARDS.get(family) or {}
     word = strip_diacritics(token["form"]).strip("+")
@@ -124,16 +124,11 @@ def _command_name(token: dict, drawn: list[dict], family_of: dict) -> str | None
     return None
 
 
-def _read(token: dict) -> str | None:
-    """The family particles.stamp read the word as, if it read it."""
-    return (token.get("reading") or {}).get("family")
-
-
 def _sentence_label(roles: dict[int, str | None], tokens: list[dict], named: list[dict]) -> str:
     # مَنْ شاء فليصمه، لو كنتُ ... لأمرتُ: a condition opens it (syntax.condition)
     if named and named[0].get("condition", {}).get("part") == "opener":
         return CONDITION
-    if wonder := next((FRAMES["sentence_by_family"][_read(t)] for t in tokens if _read(t) in FRAMES["sentence_by_family"]), None):
+    if wonder := next((FRAMES["sentence_by_family"][reading(t)] for t in tokens if reading(t) in FRAMES["sentence_by_family"]), None):
         return term_ar(wonder)  # ما أحسن زيدًا
     if any("interrog" in t.get("pos_camel", "") for t in tokens):
         return QUESTION
@@ -340,7 +335,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         role, at_gov = role_of.get(token["id"]), found.get("governor")
         if not role or at_gov is None or family_of.get(bases[at_gov]["id"]) not in SISTERS:
             continue
-        mother, sister = SISTERS[family_of[bases[at_gov]["id"]]], book_spelling(strip_diacritics(bases[at_gov]["lemma"]))
+        mother, sister = SISTERS[family_of[bases[at_gov]["id"]]], book_spelling(bases[at_gov]["lemma"])
         if role.endswith(f" {mother}") and sister != mother:
             name_of[token["id"]] = f"{role.removesuffix(mother)}{sister}"
             if job_of.get(token["id"]) == role:
@@ -385,7 +380,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if (word in masdar["words"] and SHADDA not in token["form"] and (placed := job_by_place(token))
                 and kind_of_ma.get(token["id"], "masdar") == "masdar"
                 and any(t["head"] == token["id"] and role_of[t["id"]] == NAMED.fil for t in drawn)):
-            name_of[token["id"]] = (masdar["named_by_word"].get(word) or (token.get("reading") or {}).get("named")
+            name_of[token["id"]] = (masdar["named_by_word"].get(word) or reading(token, "named")
                                     or CARDS[masdar["family"]]["named"])
             label_of[token["id"]] = masdar["label"]
             job_of[token["id"]], place_of[token["id"]] = placed[0], in_place(placed[1])
@@ -402,7 +397,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # اللهُ أكبرُ inside a longer sentence: a مبتدأ with its خبر hung on it is a sentence too,
     # and so is لا النافية للجنس with its noun
     nominal |= {token["id"] for token in drawn if token["head"] in by_id and (
-        _read(token) == "la_jins" or (role_of[token["id"]] == NAMED.mubtada and any(
+        reading(token) == "la_jins" or (role_of[token["id"]] == NAMED.mubtada and any(
             t["head"] == token["id"] and role_of[t["id"]] == NAMED.khabar for t in drawn)))}
     after_waw = FRAMES["clause_after_waw"]
     for token in drawn:
@@ -441,8 +436,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                  if job_of[token["id"]] == NAMED.silah and token["id"] not in place_of}
     clauses = {token["id"] for token in drawn if job_of[token["id"]] == NAMED.silah} | set(place_of) | nominal | replies
     for token in drawn:
-        if _read(token) in FRAMES["unit_by_family"]:
-            label_of[token["id"]] = term_ar(FRAMES["unit_by_family"][_read(token)])
+        if reading(token) in FRAMES["unit_by_family"]:
+            label_of[token["id"]] = term_ar(FRAMES["unit_by_family"][reading(token)])
     # قال: لا إله إلا الله: the sentence a verb of saying hangs as its object is its مقول القول
     saying = FRAMES["said_clause"]
     for token in drawn:
@@ -470,7 +465,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             head = by_id[head]["head"]
         return head
 
-    unit_less = {t["id"] for t in drawn if _read(t) in FRAMES["unit_less"]}
+    unit_less = {t["id"] for t in drawn if reading(t) in FRAMES["unit_less"]}
     roots = []
     for token in drawn:
         up = parent(token)
@@ -509,7 +504,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     for i, found in enumerate(named):
         if found.get("condition", {}).get("part") != "opener" or found["condition"]["answer"] is None:
             continue
-        condition = condition_of(strip_diacritics(bases[i]["form"]))
+        condition = condition_of(bases[i]["form"])
         opener, verb, answer = (bases[i], bases[found["condition"]["verb"]], bases[found["condition"]["answer"]])
         if not condition["noun"]:
             name_of[opener["id"]] = condition["opener"]  # إن: حرف شرط جازم; a noun keeps its place
