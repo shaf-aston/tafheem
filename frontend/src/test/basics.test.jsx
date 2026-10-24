@@ -99,7 +99,8 @@ describe('basics', () => {
 
     expect(screen.getByText(/^Which one is “my .+”\?$/)).toBeTruthy()
     expect(screen.getAllByRole('radio')).toHaveLength(3)
-    fireEvent.click(screen.getAllByRole('radio')[0])
+    // The options are shuffled; the right one has neither ال nor a final ة before the ending.
+    fireEvent.click(screen.getAllByRole('radio').find((option) => !/^ال|ة/.test(option.textContent.trim())))
     click('Check')
     expect(screen.getByRole('status').textContent).toMatch(/on the end means “my”/)
     await waitFor(() => expect(filed.at(-1)).toMatchObject({
