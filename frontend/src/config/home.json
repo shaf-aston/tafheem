@@ -17,7 +17,13 @@
     "learnt": "{learnt} learnt",
     "answers-one": "{n} answer",
     "answers-many": "{n} answers",
-    "guest-go": "Log in"
+    "guest-go": "Log in",
+    "next-label": "Next in Grow",
+    "next-go": "Start",
+    "next-recent": "You were learning this",
+    "next-level": "Fits your level",
+    "next-due-one": "1 question to review",
+    "next-due-many": "{n} questions to review"
   },
   "stats": {
     "_comment": "The progress column beside Home's tiles (wide screens) and the small button that opens the profile instead (phones). {n}, {next} are filled in by the code.",
@@ -40,5 +46,11 @@
       "M16 20v-6",
       "M21 20H3"
     ]
+  },
+  "suggest": {
+    "_comment": "Home's Grow suggestion (lib/grow/suggest.js). A world's score: 0.5^(days since its last answer / half-life-days) × log2(1 + answers) × (1 + share wrong), plus level-fit for the world the learner's level starts from. A book offers its review once review-at questions are due, else its next lesson.",
+    "half-life-days": 3,
+    "level-fit": 1,
+    "review-at": 4
   }
 }
