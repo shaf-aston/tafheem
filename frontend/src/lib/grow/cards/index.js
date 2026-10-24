@@ -6,7 +6,7 @@
  *   action  a posture, ticked off by hand
  *
  * A kind exports `check`, which gets the recording, the transcript, the card
- * and its page (lib/grow.js pageOf) and answers the ear's sureness per word;
+ * and its page and answers the ear's sureness per word;
  * or `byHand`, when the reader says when they are done. Later a kind will
  * also offer `exercisesFrom(card)`, the exercises it can be practised as.
  */

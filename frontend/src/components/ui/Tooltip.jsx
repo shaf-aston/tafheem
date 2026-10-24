@@ -32,7 +32,7 @@ export default function Tooltip({ text, children, below = false }) {
           ${below ? 'top-full mt-2' : 'bottom-full mb-2'}
           px-2.5 py-1.5 rounded-[var(--radius-sm)] shadow-xl
           bg-[var(--surface-hi)] border border-[var(--border-hi)]
-          text-[var(--text)] text-xs leading-snug whitespace-normal w-max max-w-[min(240px,80vw)] text-center
+          text-[var(--text)] type-label leading-snug whitespace-normal w-max max-w-[min(240px,80vw)] text-center
           transition-opacity duration-[calc(var(--motion-instant-ms)*1ms)] ${visible ? 'opacity-100' : 'opacity-0'}`}
       />
     </span>

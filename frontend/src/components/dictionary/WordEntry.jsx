@@ -35,7 +35,7 @@ export function ReadAsNote({ readAs }) {
   )
 }
 
-export default function Results({ data, accent, onGo, onLookup, aside = null }) {
+export default function WordEntry({ data, accent, onGo, onLookup, aside = null }) {
   // The badge at the top right opens the references behind the bab names.
   const [refs, setRefs] = useState(false)
   if (data.results.length === 0) {

@@ -38,7 +38,7 @@ import SpeakButton from '../ui/SpeakButton'
 import StatusNote from '../ui/StatusNote'
 import Tooltip from '../ui/Tooltip'
 import TranslationStrip from '../ui/TranslationStrip'
-import TwinCards from '../ui/TwinCard'
+import TwinCards from '../ui/TwinCards'
 import WheelPicker from '../ui/WheelPicker'
 
 // A value drawn as a swatch: a literal colour or a reference to a colour token.

@@ -26,6 +26,30 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 | Config | `theme.json` → `theme.js` → CSS variables; `settings.json` | Colours, Arabic size ladder, motion durations |
 | Style | `styles/motion.css` + per-feature CSS | Animations, 52 keyframes |
 
+## Folder Map
+
+`lib/` has no root files. Every folder is either a tab (same name as its
+`components/` folder) or one of nine shared folders. Finding a file: know the tab
+→ open its folder; shared by tabs → one of these.
+
+| Folder | Holds |
+|---|---|
+| `lib/nav/` | `tabs.js` registry, `tabUrl`, `journey`, `session`, `recent`/`dock` bar rules, `useTabNavigation`, shortcuts, command line, arrival |
+| `lib/api/` | `apiError`, `useHealth`, `useSources`, `warm` |
+| `lib/store/` | `stored` (localStorage), `settings`, `useRemembered`, `shelf` |
+| `lib/learner/` | `progress`, `profile`, `rewards`, `learnerLevel` and their hooks |
+| `lib/motion/` | `motion`, `useReveal`, `useTilt`, `useInView`, `useSwipe`, `scrollToEl`, `useRail`, `wheelFind` |
+| `lib/text/` | `arabicText`, `editDistance`, `shuffle`, `verse`, `say`, `confidence` |
+| `lib/speech/` | `speak`, `pronounce`, `microphone`, `dictation`, `soundalike` |
+| `lib/theme/` | `accent`, `colorScheme`, `tone` |
+| `lib/hooks/` | `useMedia`, `useModal`, `useMoment`, `useSlowPending`, `useSearch` |
+| `lib/<tab>/` | everything only that tab uses, e.g. `lib/quiz/useQuizRound.js`, `lib/nahw/govArc.js` |
+
+`components/ui/` is the kit (buttons, chips, `SearchBox`, `SectionHeader`,
+`Disclosure`, …). Text sizes come from `type-*` classes (`config/theme.json`
+→ `styles/text.css`); `eyebrow` is the one small caps label. A panel never
+sets `text-xs`/`text-sm` of its own.
+
 ## Visual Architecture
 
 ```mermaid

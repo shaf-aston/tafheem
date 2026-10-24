@@ -20,7 +20,7 @@ export default function PrimaryButton({
       onClick={onClick}
       disabled={disabled}
       style={{ '--c': accent, '--cta-fill': accent }}
-      className={`cta w-full py-3 text-sm ${disabled ? '' : 'glow'}`}
+      className={`cta w-full py-3 type-ui ${disabled ? '' : 'glow'}`}
     >
       {loading && (
         <span

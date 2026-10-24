@@ -14,7 +14,7 @@ function Lines({ hue, kicker, title, gloss, arabic, note, more, image }) {
     <>
       {image && <PhrasePicture phrase={{ image }} alt="" className="float-end ms-3 w-12 h-12 rounded-[var(--radius-md)]" />}
       <span className="flex items-baseline justify-between gap-3">
-        <span className="type-micro uppercase tracking-[0.18em]" style={{ color: hue }}>{kicker}</span>
+        <span className="eyebrow" style={{ color: hue }}>{kicker}</span>
         {arabic && <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text-dim)]">{arabic}</span>}
       </span>
       <span className="block type-ui font-semibold text-[var(--text)] mt-1">{title}</span>
@@ -80,7 +80,7 @@ export function UnitCard({ hue, index, unit, onClick }) {
   return (
     <div style={lookOf(hue, index)} className="rise-in lift press relative grid grid-rows-[auto_auto_1fr] px-5 py-4 rounded-[var(--radius-lg)] border">
       <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`stretch absolute inset-0 rounded-[var(--radius-lg)] ${FOCUS}`} />
-      <span className="flex items-baseline justify-between gap-3 type-micro uppercase tracking-[0.18em]">
+      <span className="flex items-baseline justify-between gap-3 eyebrow">
         <span style={{ color: hue }}>Unit {number}</span>
         <span className="text-[var(--text-faint)]">{unit.lessons.length} topics</span>
       </span>

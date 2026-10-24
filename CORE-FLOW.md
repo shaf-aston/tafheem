@@ -23,6 +23,35 @@ venv/Scripts/python -m backend.scripts.analyze "جملة" [--api URL] [--json]  
 
 ## Open first
 
+Folders, top down (one domain = one folder, same name on both sides):
+
+```
+frontend/src/
+  config/        one JSON per feature; the only place a number or a label is hardcoded
+  components/    one folder per tab (nahw/, quran/, …) + ui/ (kit shared by all) + shell/ (header, settings, offline)
+  lib/           one folder per tab (same names as components/) + the shared ones:
+    nav/         tabs registry, URL ↔ tab, journey, dock/recent rules, command line
+    api/         axios client errors, health, sources, warm-up
+    store/       localStorage helpers, settings, shelf
+    learner/     progress, profile, rewards, level
+    motion/      reveal, tilt, swipe, scroll, rails
+    text/        Arabic text helpers, edit distance, shuffle, verse refs
+    speech/      speak, pronounce, microphone, dictation
+    theme/       accent, colour scheme, tone
+    hooks/       small React hooks with no domain (media, modal, search, slow-pending)
+backend/
+  routers/       one file per tab; thin, they call a service
+  services/      one package per tab (quran/, nahw/, sarf/, dictionary/, hadith/, daleel/, learner/, …) + the shared ones:
+    core/        startup, fallback, rate limit, read-only db, provenance, timing
+    text/        arabic_text, harakat, spelling, markup, fts, refs
+  data/          the files the services read; built by scripts/
+  scripts/       builders, one per data file
+```
+
+Rule of thumb: a file about one tab lives in that tab's folder on both sides;
+a file two tabs share lives in one of the shared folders above, never at the root.
+
+
 One row per tab (`frontend/src/lib/nav/tabs.js`). Screen and Data call are under `frontend/src/`;
 Route, Logic and Data are under `backend/` (Data: `frontend/` where said). The `.db` files and
 built `.json` files are made by `backend/scripts/` and are not in git.
@@ -37,7 +66,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | hadith | `components/hadith/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `lib/hadith/useNarrators.js` | `routers/hadith.py` | `services/hadith/` (`rijal/`, `usul/` inside) | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
 | dict | `components/dictionary/DictionaryPanel.jsx` | `searchDictionary` | `routers/dictionary.py` | `services/dictionary/service.py` | `data/arabic_dictionary.json`, `data/lexicons.db` |
 | mem | `components/memorise/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/memorise/books.js`) | `routers/quran.py` | `services/quran/mutashabihat.py`, `services/quran/service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
-| grow | `components/grow/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow/grow.js` steps | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
+| grow | `components/grow/GrowPanel.jsx` | `growPathsQuery` | `routers/grow.py` | none: the route serves the file; `lib/grow/lesson.js` builds the steps | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
 | quiz | `components/quiz/QuizPanel.jsx` | `lib/quiz/quizBanks.js`, `fetchReviewItems` (`lib/learner/progress.js`) | `routers/progress.py` | `services/learner/progress_store.py` | `frontend/public/words/`, `data/progress.db` |
 | timelines | `components/timelines/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py`, `services/text/refs.py`, `services/quran/asbab.py` | `data/timelines/` |
 | dawah | `components/dawah/DawahPanel.jsx` | `dawahQuery` | `routers/dawah.py` | `services/dawah.py` | `data/dawah/dawah.json` |

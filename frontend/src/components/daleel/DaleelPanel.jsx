@@ -161,7 +161,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
         <SearchBox
           id="daleel-input"
           label="Arabic or English"
-          hint="Enter to search, or say it"
+          verb="search"
           placeholder="الصبر or patience"
           value={query}
           onChange={setQuery}

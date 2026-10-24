@@ -54,6 +54,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
       <SearchBox
         id="hadith-search-input"
         label="Arabic or English"
+        verb="search"
         placeholder="patience, الصبر…"
         value={query}
         onChange={setQuery}

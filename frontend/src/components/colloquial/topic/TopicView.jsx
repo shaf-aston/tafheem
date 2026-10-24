@@ -15,7 +15,7 @@ function Act({ kicker, title, children }) {
   return (
     <section className="space-y-4">
       <header>
-        <p className="type-micro uppercase tracking-[0.18em] text-[var(--primary)]">{kicker}</p>
+        <p className="eyebrow text-[var(--primary)]">{kicker}</p>
         <h3 className="type-ui font-semibold text-[var(--text)]">{title}</h3>
       </header>
       {children}
@@ -50,7 +50,7 @@ function Scene({ unit, lesson, number, place }) {
         {/* Headed like the unit page above it, so a topic says its own name, not only the trail. */}
         <header className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Topic {number}</p>
+            <p className="eyebrow text-[var(--text-faint)]">Topic {number}</p>
             <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
           </div>
           <WordBank unit={unit} at={number - 1} />
@@ -81,7 +81,7 @@ function Scene({ unit, lesson, number, place }) {
       </div>
       <div className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden">
         <TranslationStrip pad="px-5 py-5">
-          <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)] mb-2">Good to know</p>
+          <p className="eyebrow text-[var(--text-faint)] mb-2">Good to know</p>
           <p className="type-body text-[var(--text)] leading-relaxed">{lesson.culture}</p>
         </TranslationStrip>
       </div>

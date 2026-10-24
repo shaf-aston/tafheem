@@ -59,7 +59,7 @@ export default function SectionHeader({ tab, title, arabic, subtitle, emblem, as
           {history && <Trail nameOf={nameOf} />}
         </div>
       </div>
-      {subtitle && <p className={`text-[var(--text-dim)] text-sm leading-snug mt-1 ${answered ? 'max-sm:hidden' : ''}`}>{subtitle}</p>}
+      {subtitle && <p className={`text-[var(--text-dim)] type-ui leading-snug mt-1 ${answered ? 'max-sm:hidden' : ''}`}>{subtitle}</p>}
     </div>
   )
 }

@@ -25,7 +25,7 @@ import SearchBox from '../ui/SearchBox'
 import SectionHeader from '../ui/SectionHeader'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 import { CorrectedNote } from '../ui/StatusNote'
-import Results, { ReadAsNote } from './WordEntry'
+import WordEntry, { ReadAsNote } from './WordEntry'
 import Code from '../ui/Code'
 
 /**
@@ -104,7 +104,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
         <SearchBox
           id="dict-input"
           label="Arabic or English"
-          hint="Enter to search, or say it"
+          verb="search"
           placeholder="Search كتب or book"
           value={query}
           onChange={setQuery}
@@ -153,7 +153,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
       {/* The classical books sit under every word card, three or four screens
           down on a phone; this is the way to them without the scroll. */}
       {shown?.results && (
-        <Results data={shown} accent={accent} onGo={onGo} onLookup={submit}
+        <WordEntry data={shown} accent={accent} onGo={onGo} onLookup={submit}
           aside={shown.lang === 'ar' && (
             <button
               type="button"

@@ -16,7 +16,7 @@ function Side({ item, label, flipped, hidden, back }) {
       style={{ ...TURN, transform: `rotateY(${flipped !== back ? 180 : 0}deg)` }}
       className={`${FACE} ${back ? 'border-[var(--border-hi)] bg-[var(--surface-hi)]' : 'border-[var(--border)] bg-[var(--surface)]'}`}
     >
-      <span className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{label}</span>
+      <span className="eyebrow text-[var(--text-faint)]">{label}</span>
       <ArabicText as="span" size="base" className="block text-[var(--text)]">{item.arabic}</ArabicText>
       <Spelling>{item.transliteration}</Spelling>
       <span className="type-small text-[var(--text)]">{item.english}</span>

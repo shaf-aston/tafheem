@@ -43,7 +43,7 @@ export default function Popover({ label, title, align = 'end', children }) {
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen((was) => !was)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium
+        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full type-label font-medium
           bg-[var(--surface)] border border-[var(--border)] text-[var(--text-dim)]
           hover:text-[var(--text)] hover:border-[var(--border-hi)] transition-colors"
       >
