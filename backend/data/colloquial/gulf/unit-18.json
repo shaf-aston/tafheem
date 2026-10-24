@@ -1,0 +1,1806 @@
+{
+  "unit": "unit-18",
+  "dialect": "Gulf Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "th": "ث",
+    "dh": "ذ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "S": "ص",
+    "D": "ض",
+    "T": "ط",
+    "Z": "ظ",
+    "g": "ق (تُنطق غالباً كالجيم المصرية في الخليج)",
+    "q": "ق (في الصيغ الثابتة والفصحى)",
+    "j": "ج",
+    "ch": "چ / ك في صيغة المؤنث (عليچ = 3aleech)",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "i-am-looking-for-a-flat",
+          "arabic": "أَدَوِّر شِقَّة لِلإِيجَار",
+          "transliteration": "adawwir shigga lil-eejaar"
+        },
+        {
+          "slot": "how-much-is-the-rent",
+          "arabic": "بِكَم الإِيجَار فِي الشَّهَر؟",
+          "transliteration": "bikam il-eejaar fi ish-shahar?",
+          "reply": {
+            "arabic": "أَلْفَيْن وِخَمْسُمِيَّة دِرْهَم فِي الشَّهَر",
+            "transliteration": "alfeen w khamsimiyya dirham fi ish-shahar",
+            "english": "Two thousand five hundred dirhams a month."
+          }
+        },
+        {
+          "slot": "how-many-bedrooms",
+          "arabic": "كَم غُرْفَة نُوم فِيها؟",
+          "transliteration": "kam ghurfat noom feeha?",
+          "reply": {
+            "arabic": "فِيها غُرْفَتَين وِصَالَة",
+            "transliteration": "feeha ghurfatain w Saala",
+            "english": "It has two bedrooms and a living hall."
+          }
+        },
+        {
+          "slot": "which-floor",
+          "arabic": "فِي أَيّ دَوْر؟",
+          "transliteration": "fi ay door?",
+          "reply": {
+            "arabic": "فِي الدَّوْر الثَّالِث",
+            "transliteration": "fi id-door ith-thaalith",
+            "english": "On the third floor."
+          }
+        },
+        {
+          "slot": "is-there-a-lift",
+          "arabic": "فِيه لِيفْت؟",
+          "transliteration": "feeh lift?",
+          "reply": {
+            "arabic": "إِي، فِيه لِيفْت",
+            "transliteration": "ee, feeh lift",
+            "english": "Yes, there is a lift."
+          }
+        },
+        {
+          "slot": "are-water-and-electricity-included",
+          "arabic": "الإِيجَار شَامِل المَاي وِالكَهْرَبَا؟",
+          "transliteration": "il-eejaar shaamil il-maay w il-kahrabaa?",
+          "reply": {
+            "arabic": "لَا، الكَهْرَبَا عَلَى حِسَابَك",
+            "transliteration": "la, il-kahrabaa 3ala 7isaabak",
+            "english": "No, the electricity is on you."
+          }
+        },
+        {
+          "slot": "can-i-view-the-flat",
+          "arabic": "أَقْدَر أَشُوف الشِّقَّة؟",
+          "transliteration": "agdar ashoof ish-shigga?",
+          "reply": {
+            "arabic": "إِي، تَعَال بُكْرَة العَصْر",
+            "transliteration": "ee, ta3aal bukra il-3aSr",
+            "english": "Yes, come tomorrow afternoon."
+          }
+        },
+        {
+          "slot": "how-much-is-the-deposit",
+          "arabic": "كَم التَّأْمِين؟",
+          "transliteration": "kam it-ta2meen?",
+          "reply": {
+            "arabic": "مِثْل إِيجَار شَهَر",
+            "transliteration": "mithl eejaar shahar",
+            "english": "The same as one month's rent."
+          }
+        },
+        {
+          "slot": "i-want-a-one-year-lease",
+          "arabic": "أَبِي عَقْد سَنَة",
+          "transliteration": "abi 3agd sana"
+        },
+        {
+          "slot": "when-can-i-move-in",
+          "arabic": "مَتَى أَقْدَر أَنْتَقِل؟",
+          "transliteration": "mita agdar antigil?",
+          "reply": {
+            "arabic": "مِن أَوَّل الشَّهَر",
+            "transliteration": "min awwal ish-shahar",
+            "english": "From the beginning of the month."
+          }
+        },
+        {
+          "slot": "i-will-take-it",
+          "arabic": "زَيْن، بَاخُذْهَا",
+          "transliteration": "zain, baakhidha"
+        },
+        {
+          "slot": "here-are-the-keys",
+          "arabic": "تَفَضَّل، هَذِي مَفَاتِيح الشِّقَّة",
+          "transliteration": "tfaDDal, hadhi mafaateeh ish-shigga"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Salem",
+          "slot": "i-am-looking-for-a-flat"
+        },
+        {
+          "speaker": "Landlord",
+          "arabic": "حياك الله، عندي شقة زينة",
+          "transliteration": "7ayyaak allah, 3indi shigga zeena",
+          "english": "Welcome, I have a nice flat."
+        },
+        {
+          "speaker": "Salem",
+          "slot": "how-much-is-the-rent"
+        },
+        {
+          "speaker": "Landlord",
+          "slot": "how-much-is-the-rent",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "how-many-bedrooms"
+        },
+        {
+          "speaker": "Landlord",
+          "slot": "how-many-bedrooms",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "are-water-and-electricity-included"
+        },
+        {
+          "speaker": "Landlord",
+          "slot": "are-water-and-electricity-included",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "is-there-a-lift"
+        },
+        {
+          "speaker": "Landlord",
+          "slot": "is-there-a-lift",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "can-i-view-the-flat"
+        },
+        {
+          "speaker": "Landlord",
+          "slot": "can-i-view-the-flat",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "how-much-is-the-deposit"
+        },
+        {
+          "speaker": "Landlord",
+          "slot": "how-much-is-the-deposit",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "i-want-a-one-year-lease"
+        },
+        {
+          "speaker": "Salem",
+          "slot": "i-will-take-it"
+        },
+        {
+          "speaker": "Salem",
+          "slot": "when-can-i-move-in"
+        },
+        {
+          "speaker": "Landlord",
+          "slot": "when-can-i-move-in",
+          "reply": true
+        },
+        {
+          "speaker": "Landlord",
+          "slot": "here-are-the-keys"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بكم الإيجار في الشهر؟",
+            "transliteration": "bikam il-eejaar fi ish-shahar?",
+            "english": "How much is the rent a month?"
+          },
+          "response": {
+            "arabic": "ألفين وخمسمية درهم في الشهر.",
+            "transliteration": "alfeen w khamsimiyya dirham fi ish-shahar.",
+            "english": "Two thousand five hundred dirhams a month."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم غرفة نوم فيها؟",
+            "transliteration": "kam ghurfat noom feeha?",
+            "english": "How many bedrooms does it have?"
+          },
+          "response": {
+            "arabic": "فيها غرفتين وصالة.",
+            "transliteration": "feeha ghurfatain w Saala.",
+            "english": "It has two bedrooms and a living hall."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "في أي دور؟",
+            "transliteration": "fi ay door?",
+            "english": "Which floor is it on?"
+          },
+          "response": {
+            "arabic": "في الدور الثالث.",
+            "transliteration": "fi id-door ith-thaalith.",
+            "english": "On the third floor."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الإيجار شامل الماي والكهربا؟",
+            "transliteration": "il-eejaar shaamil il-maay w il-kahrabaa?",
+            "english": "Is the rent including water and electricity?"
+          },
+          "response": {
+            "arabic": "لا، الكهربا على حسابك.",
+            "transliteration": "la, il-kahrabaa 3ala 7isaabak.",
+            "english": "No, the electricity is on you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم التأمين؟",
+            "transliteration": "kam it-ta2meen?",
+            "english": "How much is the deposit?"
+          },
+          "response": {
+            "arabic": "مثل إيجار شهر.",
+            "transliteration": "mithl eejaar shahar.",
+            "english": "The same as one month's rent."
+          }
+        }
+      ],
+      "culture": "In the Gulf a flat is often described by its rooms: \"غرفتين وصالة\" means two bedrooms and a living hall. Rent is usually agreed for a year in a written lease (عقد إيجار), and a deposit (تأمين) is paid that is returned at the end if nothing is damaged. Always ask whether water and electricity are included before you sign.",
+      "exercises": [
+        {
+          "id": "unit-18.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "You hear: \"أقدر أشوف الشقة؟\" Say: Yes, come tomorrow afternoon.",
+          "answer": "إي، تعال بكرة العصر",
+          "accepted": [
+            "إي، تعال بكرة العصر",
+            "ee, ta3aal bukra il-3aSr",
+            "إي تعال بكرة العصر",
+            "إي، تعال بكرة"
+          ],
+          "too_formal": {
+            "item": "نَعَمْ، تَعَالَ غَدًا بَعْدَ الظُّهْر",
+            "feedback": "Written-style; speech says \"إي\" and \"بكرة\"."
+          },
+          "tip": "To a woman: \"تعالي\"."
+        },
+        {
+          "id": "unit-18.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "You hear: \"كم التأمين؟\" Say: The same as one month's rent.",
+          "answer": "مثل إيجار شهر",
+          "accepted": [
+            "مثل إيجار شهر",
+            "mithl eejaar shahar",
+            "إيجار شهر"
+          ],
+          "too_formal": {
+            "item": "يُعَادِلُ إِيجَارَ شَهْرٍ وَاحِد",
+            "feedback": "Written style; speech just says \"مثل إيجار شهر\"."
+          },
+          "tip": "\"مثل\" means like or the same as."
+        },
+        {
+          "id": "unit-18.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أدور شقة _____\" Meaning: I am looking for a flat to rent.",
+          "answer": "للإيجار",
+          "accepted": [
+            "للإيجار",
+            "لِلإِيجَار",
+            "lil-eejaar",
+            "للايجار"
+          ],
+          "tip": "\"أدور\" is the Gulf \"I look for\"."
+        },
+        {
+          "id": "unit-18.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أبي عقد _____\" Meaning: I want a one-year lease.",
+          "answer": "سنة",
+          "accepted": [
+            "سنة",
+            "سَنَة",
+            "sana",
+            "سنه"
+          ],
+          "too_formal": {
+            "item": "أُرِيدُ عَقْدَ إِيجَارٍ لِسَنَة",
+            "feedback": "\"أريد\" is written style; speech says \"أبي\"."
+          },
+          "tip": "\"أبي\" means I want."
+        },
+        {
+          "id": "unit-18.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"How many bedrooms does it have?\"",
+          "answer": "كم غرفة نوم فيها؟",
+          "accepted": [
+            "كم غرفة نوم فيها؟",
+            "kam ghurfat noom feeha",
+            "كم غرفة نوم فيها",
+            "كم غرفة نوم فيه؟"
+          ],
+          "too_formal": {
+            "item": "كَمْ غُرْفَةَ نَوْمٍ فِيهَا؟",
+            "feedback": "Close to written Arabic in its vowel endings; the spoken question is the same words without them."
+          },
+          "tip": "People also say \"غرفتين وصالة\" for a two-bedroom flat."
+        },
+        {
+          "id": "unit-18.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is the rent including water and electricity?\"",
+          "answer": "الإيجار شامل الماي والكهربا؟",
+          "accepted": [
+            "الإيجار شامل الماي والكهربا؟",
+            "il-eejaar shaamil il-maay w il-kahrabaa",
+            "الإيجار شامل الماي والكهرباء؟",
+            "الايجار شامل الماي والكهربا"
+          ],
+          "too_formal": {
+            "item": "هَلِ الْمَاءُ وَالْكَهْرَبَاءُ مَشْمُولَانِ؟",
+            "feedback": "This is formal Arabic (or a bookish form); everyday Gulf speech says it differently."
+          },
+          "tip": "\"الكهربا\" is the spoken electricity."
+        },
+        {
+          "id": "unit-18.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Can I view the flat?\"",
+          "answer": "أقدر أشوف الشقة؟",
+          "accepted": [
+            "أقدر أشوف الشقة؟",
+            "agdar ashoof ish-shigga",
+            "أقدر أعاين الشقة؟"
+          ],
+          "options": [
+            "أقدر أشوف الشقة؟",
+            "كم التأمين؟",
+            "فيه ليفت؟",
+            "أبي عقد سنة"
+          ],
+          "too_formal": {
+            "item": "هَلْ أَسْتَطِيعُ مُعَايَنَةَ الشَّقَّة؟",
+            "feedback": "This is formal Arabic (or a bookish form); everyday Gulf speech says it differently."
+          },
+          "tip": "\"شوف\" is the everyday word for see or view."
+        },
+        {
+          "id": "unit-18.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"I will take it\"?",
+          "answer": "زين، باخذها",
+          "accepted": [
+            "زين، باخذها",
+            "zain, baakhidha",
+            "زين باخذها",
+            "زين، بآخذها",
+            "خلاص باخذها"
+          ],
+          "options": [
+            "زين، باخذها",
+            "مثل إيجار شهر",
+            "في الدور الثالث",
+            "متى أقدر أنتقل؟"
+          ],
+          "too_formal": {
+            "item": "سَآخُذُهَا",
+            "feedback": "Written future with \"سـ\"; speech uses \"ب\"."
+          },
+          "tip": "\"ب\" before the verb is the future."
+        },
+        {
+          "id": "unit-18.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Is there a lift?\"",
+          "answer": "فيه ليفت؟",
+          "accepted": [
+            "فيه ليفت؟",
+            "feeh lift",
+            "فيه ليفت"
+          ],
+          "words": [
+            "فيه",
+            "ليفت؟"
+          ],
+          "too_formal": {
+            "item": "هَلْ يُوجَدُ مِصْعَد؟",
+            "feedback": "\"مصعد\" is the written word; speech says \"ليفت\"."
+          },
+          "tip": "\"فيه\" means there is."
+        },
+        {
+          "id": "unit-18.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"How much is the rent a month?\"",
+          "answer": "بكم الإيجار في الشهر؟",
+          "accepted": [
+            "بكم الإيجار في الشهر؟",
+            "bikam il-eejaar fi ish-shahar",
+            "بكم الإيجار بالشهر؟"
+          ],
+          "words": [
+            "بكم",
+            "الإيجار",
+            "في",
+            "الشهر؟"
+          ],
+          "too_formal": {
+            "item": "كَمِ الْإِيجَارُ الشَّهْرِيّ؟",
+            "feedback": "This is formal Arabic (or a bookish form); everyday Gulf speech says it differently."
+          },
+          "tip": "\"بكم\" asks the price."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "this-is-the-living-room",
+          "arabic": "هَذِي الصَّالَة",
+          "transliteration": "hadhi iS-Saala"
+        },
+        {
+          "slot": "where-is-the-kitchen",
+          "arabic": "وِين المَطْبَخ؟",
+          "transliteration": "ween il-maTbakh?",
+          "reply": {
+            "arabic": "هَنَاك، جَنْب الصَّالَة",
+            "transliteration": "hanaak, jamb iS-Saala",
+            "english": "Over there, next to the hall."
+          }
+        },
+        {
+          "slot": "how-many-bathrooms",
+          "arabic": "كَم حَمَّام فِي الشِّقَّة؟",
+          "transliteration": "kam 7ammaam fi ish-shigga?",
+          "reply": {
+            "arabic": "حَمَّامَين",
+            "transliteration": "7ammaamain",
+            "english": "Two bathrooms."
+          }
+        },
+        {
+          "slot": "the-bedroom-is-spacious",
+          "arabic": "غُرْفَة النُّوم وَاسْعَة",
+          "transliteration": "ghurfat in-noom waas3a"
+        },
+        {
+          "slot": "is-the-flat-furnished",
+          "arabic": "الشِّقَّة مَفْرُوشَة؟",
+          "transliteration": "ish-shigga mafroosha?",
+          "reply": {
+            "arabic": "لَا، مَا فِيها أَثَاث",
+            "transliteration": "la, ma feeha athaath",
+            "english": "No, it has no furniture."
+          }
+        },
+        {
+          "slot": "there-is-a-sofa",
+          "arabic": "فِيه كَنَبَة فِي الصَّالَة",
+          "transliteration": "feeh kanaba fiS-Saala"
+        },
+        {
+          "slot": "i-need-a-new-bed",
+          "arabic": "أَبِي سَرِير جَدِيد",
+          "transliteration": "abi sareer jideed"
+        },
+        {
+          "slot": "put-the-table-here",
+          "arabic": "حُطّ الطَّاوْلَة هْنِي",
+          "transliteration": "7uTT iT-Taawla hni",
+          "english": "Put the table here (to a man)"
+        },
+        {
+          "slot": "where-is-the-wardrobe",
+          "arabic": "وِين الدُّولَاب؟",
+          "transliteration": "ween id-doolaab?",
+          "reply": {
+            "arabic": "فِي غُرْفَة النُّوم",
+            "transliteration": "fi ghurfat in-noom",
+            "english": "In the bedroom."
+          }
+        },
+        {
+          "slot": "does-the-air-conditioner-work",
+          "arabic": "المُكَيِّف شَغَّال؟",
+          "transliteration": "il-mukayyif shaghghaal?",
+          "reply": {
+            "arabic": "إِي، شَغَّال وَبَارِد",
+            "transliteration": "ee, shaghghaal w baarid",
+            "english": "Yes, it works and it is cold."
+          }
+        },
+        {
+          "slot": "the-light-does-not-work",
+          "arabic": "الضُّو مَا يِشْتَغِل",
+          "transliteration": "iD-Daw ma yishtaghil"
+        },
+        {
+          "slot": "where-do-i-put-the-fridge",
+          "arabic": "وِين أَحُطّ الثَّلَّاجَة؟",
+          "transliteration": "ween a7uTT ith-thallaaja?",
+          "reply": {
+            "arabic": "فِي المَطْبَخ، جَنْب البَاب",
+            "transliteration": "fil-maTbakh, jamb il-baab",
+            "english": "In the kitchen, next to the door."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Agent",
+          "slot": "this-is-the-living-room"
+        },
+        {
+          "speaker": "Maha",
+          "slot": "where-is-the-kitchen"
+        },
+        {
+          "speaker": "Agent",
+          "slot": "where-is-the-kitchen",
+          "reply": true
+        },
+        {
+          "speaker": "Maha",
+          "slot": "how-many-bathrooms"
+        },
+        {
+          "speaker": "Agent",
+          "slot": "how-many-bathrooms",
+          "reply": true
+        },
+        {
+          "speaker": "Agent",
+          "slot": "the-bedroom-is-spacious"
+        },
+        {
+          "speaker": "Maha",
+          "slot": "is-the-flat-furnished"
+        },
+        {
+          "speaker": "Agent",
+          "slot": "is-the-flat-furnished",
+          "reply": true
+        },
+        {
+          "speaker": "Maha",
+          "slot": "does-the-air-conditioner-work"
+        },
+        {
+          "speaker": "Agent",
+          "slot": "does-the-air-conditioner-work",
+          "reply": true
+        },
+        {
+          "speaker": "Maha",
+          "slot": "i-need-a-new-bed"
+        },
+        {
+          "speaker": "Maha",
+          "slot": "where-is-the-wardrobe"
+        },
+        {
+          "speaker": "Agent",
+          "slot": "where-is-the-wardrobe",
+          "reply": true
+        },
+        {
+          "speaker": "Maha",
+          "slot": "where-do-i-put-the-fridge"
+        },
+        {
+          "speaker": "Agent",
+          "slot": "where-do-i-put-the-fridge",
+          "reply": true
+        },
+        {
+          "speaker": "Maha",
+          "arabic": "زين، الشقة حلوة",
+          "transliteration": "zain, ish-shigga 7ilwa",
+          "english": "Good, the flat is nice."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين المطبخ؟",
+            "transliteration": "ween il-maTbakh?",
+            "english": "Where is the kitchen?"
+          },
+          "response": {
+            "arabic": "هناك، جنب الصالة.",
+            "transliteration": "hanaak, jamb iS-Saala.",
+            "english": "Over there, next to the hall."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم حمام في الشقة؟",
+            "transliteration": "kam 7ammaam fi ish-shigga?",
+            "english": "How many bathrooms are in the flat?"
+          },
+          "response": {
+            "arabic": "حمامين.",
+            "transliteration": "7ammaamain.",
+            "english": "Two bathrooms."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الشقة مفروشة؟",
+            "transliteration": "ish-shigga mafroosha?",
+            "english": "Is the flat furnished?"
+          },
+          "response": {
+            "arabic": "لا، ما فيها أثاث.",
+            "transliteration": "la, ma feeha athaath.",
+            "english": "No, it has no furniture."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "المكيف شغال؟",
+            "transliteration": "il-mukayyif shaghghaal?",
+            "english": "Does the air conditioner work?"
+          },
+          "response": {
+            "arabic": "إي، شغال وبارد.",
+            "transliteration": "ee, shaghghaal w baarid.",
+            "english": "Yes, it works and it is cold."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين الدولاب؟",
+            "transliteration": "ween id-doolaab?",
+            "english": "Where is the wardrobe?"
+          },
+          "response": {
+            "arabic": "في غرفة النوم.",
+            "transliteration": "fi ghurfat in-noom.",
+            "english": "In the bedroom."
+          }
+        }
+      ],
+      "culture": "Gulf homes often have a مجلس (majlis), a room kept for receiving guests, as well as the family living area called الصالة. A flat may be rented furnished (مفروشة) or empty, so ask exactly what stays, such as the fridge, the wardrobes and the air conditioners; in the Gulf heat, working air conditioning is the first thing people check.",
+      "exercises": [
+        {
+          "id": "unit-18.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "You hear: \"الشقة مفروشة؟\" Say: No, it has no furniture.",
+          "answer": "لا، ما فيها أثاث",
+          "accepted": [
+            "لا، ما فيها أثاث",
+            "la, ma feeha athaath",
+            "لا ما فيها أثاث",
+            "لا، فاضية"
+          ],
+          "too_formal": {
+            "item": "لَا، لَيْسَ فِيهَا أَثَاث",
+            "feedback": "\"ليس\" is written style; speech uses \"ما\"."
+          },
+          "tip": "\"ما\" makes a sentence negative."
+        },
+        {
+          "id": "unit-18.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "You hear: \"المكيف شغال؟\" Say: Yes, it works and it is cold.",
+          "answer": "إي، شغال وبارد",
+          "accepted": [
+            "إي، شغال وبارد",
+            "ee, shaghghaal w baarid",
+            "إي شغال وبارد",
+            "إي، يشتغل وبارد"
+          ],
+          "too_formal": {
+            "item": "نَعَمْ، يَعْمَلُ جَيِّدًا",
+            "feedback": "Written style; speech says \"شغال\" and \"إي\"."
+          },
+          "tip": "\"شغال\" is working."
+        },
+        {
+          "id": "unit-18.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"وين _____؟\" Meaning: Where is the wardrobe?",
+          "answer": "الدولاب",
+          "accepted": [
+            "الدولاب",
+            "الدُّولَاب",
+            "id-doolaab",
+            "الخزانة"
+          ],
+          "too_formal": {
+            "item": "خِزَانَةُ الْمَلَابِس",
+            "feedback": "\"خزانة الملابس\" is a written-style phrase; Gulf speech says \"الدولاب\"."
+          },
+          "tip": "\"دولاب\" is a wardrobe or cupboard."
+        },
+        {
+          "id": "unit-18.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"فيه كنبة في _____\" Meaning: There is a sofa in the hall.",
+          "answer": "الصالة",
+          "accepted": [
+            "الصالة",
+            "الصَّالَة",
+            "iS-Saala",
+            "الصاله",
+            "المجلس"
+          ],
+          "tip": "\"الصالة\" is the family living hall; \"المجلس\" is the guest room."
+        },
+        {
+          "id": "unit-18.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"I need a new bed\"",
+          "answer": "أبي سرير جديد",
+          "accepted": [
+            "أبي سرير جديد",
+            "abi sareer jideed",
+            "أبغى سرير جديد",
+            "أحتاج سرير جديد"
+          ],
+          "too_formal": {
+            "item": "أَحْتَاجُ إِلَى سَرِيرٍ جَدِيد",
+            "feedback": "\"أحتاج إلى\" is written style; speech says \"أبي\"."
+          },
+          "tip": "\"أبي\" is I want, and also covers I need here."
+        },
+        {
+          "id": "unit-18.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"The light does not work\"",
+          "answer": "الضو ما يشتغل",
+          "accepted": [
+            "الضو ما يشتغل",
+            "iD-Daw ma yishtaghil",
+            "النور ما يشتغل",
+            "الضو مو شغال"
+          ],
+          "too_formal": {
+            "item": "الْمِصْبَاحُ لَا يَعْمَل",
+            "feedback": "\"مصباح\" and \"لا يعمل\" are written style."
+          },
+          "tip": "\"الضو\" is the light."
+        },
+        {
+          "id": "unit-18.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Where do I put the fridge?\"",
+          "answer": "وين أحط الثلاجة؟",
+          "accepted": [
+            "وين أحط الثلاجة؟",
+            "ween a7uTT ith-thallaaja"
+          ],
+          "options": [
+            "وين أحط الثلاجة؟",
+            "وين الدولاب؟",
+            "وين المطبخ؟",
+            "كم حمام في الشقة؟"
+          ],
+          "too_formal": {
+            "item": "أَيْنَ أَضَعُ الثَّلَّاجَة؟",
+            "feedback": "This is formal Arabic (or a bookish form); everyday Gulf speech says it differently."
+          },
+          "tip": "\"حط\" is to put."
+        },
+        {
+          "id": "unit-18.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"The bedroom is spacious\"?",
+          "answer": "غرفة النوم واسعة",
+          "accepted": [
+            "غرفة النوم واسعة",
+            "ghurfat in-noom waas3a",
+            "غرفة النوم واسعه"
+          ],
+          "options": [
+            "غرفة النوم واسعة",
+            "فيه كنبة في الصالة",
+            "هذي الصالة",
+            "أبي سرير جديد"
+          ],
+          "too_formal": {
+            "item": "غُرْفَةُ النَّوْمِ وَاسِعَة",
+            "feedback": "Correct but with written vowel endings; speech drops them."
+          },
+          "tip": "\"واسعة\" is spacious."
+        },
+        {
+          "id": "unit-18.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Put the table here\" (to a man)",
+          "answer": "حط الطاولة هني",
+          "accepted": [
+            "حط الطاولة هني",
+            "7uTT iT-Taawla hni",
+            "حط الطاولة هنا"
+          ],
+          "words": [
+            "حط",
+            "الطاولة",
+            "هني"
+          ],
+          "too_formal": {
+            "item": "ضَعِ الطَّاوِلَةَ هُنَا",
+            "feedback": "\"ضع\" and \"هنا\" are written style."
+          },
+          "tip": "To a woman: \"حطي الطاولة هني\"."
+        },
+        {
+          "id": "unit-18.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"How many bathrooms are in the flat?\"",
+          "answer": "كم حمام في الشقة؟",
+          "accepted": [
+            "كم حمام في الشقة؟",
+            "kam 7ammaam fi ish-shigga",
+            "كم حمام بالشقة؟"
+          ],
+          "words": [
+            "كم",
+            "حمام",
+            "في",
+            "الشقة؟"
+          ],
+          "too_formal": {
+            "item": "كَمْ حَمَّامًا فِي الشَّقَّة؟",
+            "feedback": "The written question puts the noun in a special ending; speech does not."
+          },
+          "tip": "\"كم\" asks how many."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "the-tap-is-leaking",
+          "arabic": "الحَنَفِيَّة تِنِزّ مَاي",
+          "transliteration": "il-7anafiyya tinizz maay",
+          "reply": {
+            "arabic": "بَصَلِّحْها الحِين",
+            "transliteration": "baSalli7ha il-7een",
+            "english": "I will fix it now."
+          }
+        },
+        {
+          "slot": "the-light-bulb-does-not-work",
+          "arabic": "اللَّمْبَة مَا تِشْتَغِل",
+          "transliteration": "il-lamba ma tishtaghil"
+        },
+        {
+          "slot": "the-power-is-out-in-the-house",
+          "arabic": "رَاحَت الكَهْرَبَا فِي البَيْت",
+          "transliteration": "raa7at il-kahrabaa fil-bayt"
+        },
+        {
+          "slot": "where-is-the-toolbox",
+          "arabic": "وِين صُنْدُوق العُدَّة؟",
+          "transliteration": "ween Sandoog il-3idda?",
+          "reply": {
+            "arabic": "فِي المَخْزَن",
+            "transliteration": "fil-makhzan",
+            "english": "In the storeroom."
+          }
+        },
+        {
+          "slot": "pass-me-the-screwdriver",
+          "arabic": "عَطْنِي المِفَكّ",
+          "transliteration": "3aTni il-mifakk",
+          "english": "Pass me the screwdriver (to a man)"
+        },
+        {
+          "slot": "i-need-a-hammer-and-nails",
+          "arabic": "أَبِي مَطْرَقَة وَمَسَامِير",
+          "transliteration": "abi maTraga w masaameer"
+        },
+        {
+          "slot": "the-door-does-not-close-well",
+          "arabic": "البَاب مَا يِسَكِّر زَيْن",
+          "transliteration": "il-baab ma yisakkir zain"
+        },
+        {
+          "slot": "the-lock-is-broken",
+          "arabic": "القِفْل مَكْسُور",
+          "transliteration": "il-gifl maksoor"
+        },
+        {
+          "slot": "can-you-fix-it",
+          "arabic": "تِقْدَر تْصَلِّحَه؟",
+          "transliteration": "tigdar tSallihah?",
+          "english": "Can you fix it? (to a man)",
+          "reply": {
+            "arabic": "إِي، بَاحَاوِل",
+            "transliteration": "ee, ba7aawil",
+            "english": "Yes, I will try."
+          }
+        },
+        {
+          "slot": "call-the-plumber-if-needed",
+          "arabic": "اِتَّصِل عَلَى السَّبَّاك إِذَا لَازِم",
+          "transliteration": "ittaSil 3ala is-sabbaak idha laazim",
+          "english": "Call the plumber if needed (to a man)"
+        },
+        {
+          "slot": "how-much-is-the-cost",
+          "arabic": "بِكَم التَّصْلِيح؟",
+          "transliteration": "bikam it-taSleeH?",
+          "reply": {
+            "arabic": "خَمْسِين دِرْهَم",
+            "transliteration": "khamseen dirham",
+            "english": "Fifty dirhams."
+          }
+        },
+        {
+          "slot": "thanks-it-works-now",
+          "arabic": "يَعْطِيك العَافِيَة، اِشْتَغَل الحِين",
+          "transliteration": "ya3Teek il-3aafya, ishtaghal il-7een",
+          "reply": {
+            "arabic": "الله يْعَافِيك",
+            "transliteration": "allah y3aafeek",
+            "english": "May God keep you well."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Salem",
+          "slot": "the-light-bulb-does-not-work"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "where-is-the-toolbox"
+        },
+        {
+          "speaker": "Salem",
+          "slot": "where-is-the-toolbox",
+          "reply": true
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "pass-me-the-screwdriver"
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "تفضل. والباب بعد ما يسكر زين",
+          "transliteration": "tfaDDal. w il-baab ba3ad ma yisakkir zain",
+          "english": "Here you are. And the door does not close well either."
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "i-need-a-hammer-and-nails"
+        },
+        {
+          "speaker": "Salem",
+          "slot": "the-lock-is-broken"
+        },
+        {
+          "speaker": "Salem",
+          "slot": "the-tap-is-leaking"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "call-the-plumber-if-needed"
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "الحين أتصل عليه",
+          "transliteration": "il-7een attaSil 3aleeh",
+          "english": "I will call him now."
+        },
+        {
+          "speaker": "Salem",
+          "slot": "can-you-fix-it"
+        },
+        {
+          "speaker": "Plumber",
+          "slot": "can-you-fix-it",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "how-much-is-the-cost"
+        },
+        {
+          "speaker": "Plumber",
+          "slot": "how-much-is-the-cost",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "thanks-it-works-now"
+        },
+        {
+          "speaker": "Plumber",
+          "slot": "thanks-it-works-now",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "الحنفية تنز ماي",
+            "transliteration": "il-7anafiyya tinizz maay",
+            "english": "The tap is leaking water."
+          },
+          "response": {
+            "arabic": "بصلحها الحين.",
+            "transliteration": "baSalli7ha il-7een.",
+            "english": "I will fix it now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين صندوق العدة؟",
+            "transliteration": "ween Sandoog il-3idda?",
+            "english": "Where is the toolbox?"
+          },
+          "response": {
+            "arabic": "في المخزن.",
+            "transliteration": "fil-makhzan.",
+            "english": "In the storeroom."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تقدر تصلحه؟",
+            "transliteration": "tigdar tSallihah?",
+            "english": "Can you fix it?"
+          },
+          "response": {
+            "arabic": "إي، باحاول.",
+            "transliteration": "ee, ba7aawil.",
+            "english": "Yes, I will try."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بكم التصليح؟",
+            "transliteration": "bikam it-taSleeH?",
+            "english": "How much is the repair?"
+          },
+          "response": {
+            "arabic": "خمسين درهم.",
+            "transliteration": "khamseen dirham.",
+            "english": "Fifty dirhams."
+          }
+        }
+      ],
+      "culture": "In a rented flat you tell the landlord or the building's guard (حارس العمارة) about a fault, and for bigger jobs you call a plumber (سبّاك) or an electrician (كهربائي). A small repair is often done by a brother or a friend first, and the helper is thanked with يعطيك العافية, answered by الله يعافيك. It is polite to ask the cost before the work starts.",
+      "exercises": [
+        {
+          "id": "unit-18.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "You hear: \"تقدر تصلحه؟\" Say: Yes, I will try.",
+          "answer": "إي، باحاول",
+          "accepted": [
+            "إي، باحاول",
+            "ee, ba7aawil",
+            "إي باحاول",
+            "إي، بحاول",
+            "إي أحاول"
+          ],
+          "too_formal": {
+            "item": "نَعَمْ، سَأُحَاوِل",
+            "feedback": "Written style; speech uses \"ب\" for the future."
+          },
+          "tip": "\"باحاول\" is I will try."
+        },
+        {
+          "id": "unit-18.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "You hear: \"يعطيك العافية، اشتغل الحين\". Say the usual reply.",
+          "answer": "الله يعافيك",
+          "accepted": [
+            "الله يعافيك",
+            "allah y3aafeek",
+            "الله يعطيك العافية",
+            "العفو"
+          ],
+          "tip": "\"يعطيك العافية\" is the everyday thank-you for work done."
+        },
+        {
+          "id": "unit-18.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"القفل _____\" Meaning: The lock is broken.",
+          "answer": "مكسور",
+          "accepted": [
+            "مكسور",
+            "مَكْسُور",
+            "maksoor",
+            "خربان"
+          ],
+          "tip": "\"مكسور\" is broken."
+        },
+        {
+          "id": "unit-18.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"اتصل _____ السباك إذا لازم\" Meaning: Call the plumber if needed.",
+          "answer": "على",
+          "accepted": [
+            "على",
+            "3ala",
+            "عَلَى",
+            "عالسباك"
+          ],
+          "too_formal": {
+            "item": "اِتَّصِلْ بِالسَّبَّاك",
+            "feedback": "\"اتصل بـ\" is the written pattern; Gulf speech says \"اتصل على\"."
+          },
+          "tip": "\"اتصل على\" is call (someone)."
+        },
+        {
+          "id": "unit-18.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"The power is out in the house\"",
+          "answer": "راحت الكهربا في البيت",
+          "accepted": [
+            "راحت الكهربا في البيت",
+            "raa7at il-kahrabaa fil-bayt",
+            "راحت الكهربا بالبيت",
+            "راحت الكهربا",
+            "الكهربا قاطعة"
+          ],
+          "too_formal": {
+            "item": "الْكَهْرَبَاءُ مَقْطُوعَةٌ فِي الْبَيْت",
+            "feedback": "Written style; speech says \"راحت الكهربا\"."
+          },
+          "tip": "\"راحت\" literally: it went."
+        },
+        {
+          "id": "unit-18.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"The door does not close well\"",
+          "answer": "الباب ما يسكر زين",
+          "accepted": [
+            "الباب ما يسكر زين",
+            "il-baab ma yisakkir zain",
+            "الباب ما يسكّر زين",
+            "الباب ما ينسكر زين"
+          ],
+          "too_formal": {
+            "item": "الْبَابُ لَا يُغْلَقُ جَيِّدًا",
+            "feedback": "\"يغلق\" and \"جيدا\" are written style; speech says \"يسكر\" and \"زين\"."
+          },
+          "tip": "\"سكّر\" is to close."
+        },
+        {
+          "id": "unit-18.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Pass me the screwdriver\"?",
+          "answer": "عطني المفك",
+          "accepted": [
+            "عطني المفك",
+            "3aTni il-mifakk"
+          ],
+          "options": [
+            "عطني المفك",
+            "وين صندوق العدة؟",
+            "أبي مطرقة ومسامير",
+            "القفل مكسور"
+          ],
+          "too_formal": {
+            "item": "نَاوِلْنِي الْمِفَكّ",
+            "feedback": "\"ناولني\" is written style; speech says \"عطني\"."
+          },
+          "tip": "To a woman: \"عطيني\"."
+        },
+        {
+          "id": "unit-18.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which question means \"How much is the cost?\"",
+          "answer": "بكم التصليح؟",
+          "accepted": [
+            "بكم التصليح؟",
+            "bikam it-taSleeH",
+            "كم الحساب؟",
+            "بكم التصليح"
+          ],
+          "options": [
+            "بكم التصليح؟",
+            "تقدر تصلحه؟",
+            "وين صندوق العدة؟",
+            "اللمبة ما تشتغل"
+          ],
+          "too_formal": {
+            "item": "كَمِ التَّكْلِفَة؟",
+            "feedback": "\"التكلفة\" is written style."
+          },
+          "tip": "\"بكم\" asks the price."
+        },
+        {
+          "id": "unit-18.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"The light bulb does not work\"",
+          "answer": "اللمبة ما تشتغل",
+          "accepted": [
+            "اللمبة ما تشتغل",
+            "il-lamba ma tishtaghil"
+          ],
+          "words": [
+            "اللمبة",
+            "ما",
+            "تشتغل"
+          ],
+          "too_formal": {
+            "item": "الْمِصْبَاحُ لَا يَعْمَل",
+            "feedback": "Written style."
+          },
+          "tip": "\"ما\" before the verb makes it negative."
+        },
+        {
+          "id": "unit-18.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Where is the toolbox?\"",
+          "answer": "وين صندوق العدة؟",
+          "accepted": [
+            "وين صندوق العدة؟",
+            "ween Sandoog il-3idda"
+          ],
+          "words": [
+            "وين",
+            "صندوق",
+            "العدة؟"
+          ],
+          "too_formal": {
+            "item": "أَيْنَ صُنْدُوقُ الْعُدَّة؟",
+            "feedback": "This is formal Arabic (or a bookish form); everyday Gulf speech says it differently."
+          },
+          "tip": "\"وين\" always opens the question."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "we-are-your-new-neighbours",
+          "arabic": "إِحْنَا جِيرَانْكُم الجُدُد",
+          "transliteration": "i7na jeeraankum ij-judud",
+          "reply": {
+            "arabic": "هَلَا وَاللَّه، حَيَّاكُم اللَّه",
+            "transliteration": "hala wallah, 7ayyaakum allah",
+            "english": "Welcome, you are most welcome."
+          }
+        },
+        {
+          "slot": "which-flat-do-you-live-in",
+          "arabic": "فِي أَيّ شِقَّة تِسْكُن؟",
+          "transliteration": "fi ay shigga tiskun?",
+          "english": "Which flat do you live in? (to a man)",
+          "reply": {
+            "arabic": "فِي الشِّقَّة اللِّي فُوقَكُم",
+            "transliteration": "fi ish-shigga illi foogkum",
+            "english": "In the flat above you."
+          }
+        },
+        {
+          "slot": "we-live-in-the-flat-next-door",
+          "arabic": "إِحْنَا سَاكْنِين فِي الشِّقَّة اللِّي جَنْبَكُم",
+          "transliteration": "i7na saakneen fi ish-shigga illi jambkum"
+        },
+        {
+          "slot": "i-brought-you-some-food",
+          "arabic": "جِبْت لَكُم شْوَيَّة أَكِل",
+          "transliteration": "jibt lakum shwayyat akil",
+          "reply": {
+            "arabic": "تِسْلَم إِيدَك، اللَّه يَعْطِيك العَافِيَة",
+            "transliteration": "tislam eedak, allah ya3Teek il-3aafya",
+            "english": "God bless your hands, thank you."
+          }
+        },
+        {
+          "slot": "may-i-borrow-a-ladder",
+          "arabic": "أَقْدَر أَسْتَلِف مِنْكُم سُلَّم؟",
+          "transliteration": "agdar astilif minkum sullam?",
+          "reply": {
+            "arabic": "إِي أَكِيد، تَفَضَّل",
+            "transliteration": "ee akeed, tfaDDal",
+            "english": "Yes of course, please."
+          }
+        },
+        {
+          "slot": "i-apologise-for-the-disturbance",
+          "arabic": "آسِف عَلَى الإِزْعَاج",
+          "transliteration": "aasif 3ala l-iz3aaj",
+          "english": "I apologise for the disturbance (said by a man)",
+          "reply": {
+            "arabic": "وَلَا يُهِمَّك",
+            "transliteration": "wala yhimmak",
+            "english": "Don't worry about it."
+          }
+        },
+        {
+          "slot": "will-you-receive-our-mail-while-we-travel",
+          "arabic": "تِسْتَلِم لَنَا البَرِيد وِإِحْنَا مُسَافْرِين؟",
+          "transliteration": "tistalim lana il-bareed w i7na msaafreen?",
+          "reply": {
+            "arabic": "أَبْشِر",
+            "transliteration": "abshir",
+            "english": "Consider it done."
+          }
+        },
+        {
+          "slot": "where-do-we-put-the-rubbish",
+          "arabic": "وِين نِحُطّ الزِّبَالَة؟",
+          "transliteration": "ween ni7uTT iz-zibaala?",
+          "reply": {
+            "arabic": "فِي الحَاوِيَة اللِّي تَحْت",
+            "transliteration": "fil-7aawya illi ta7t",
+            "english": "In the bin outside downstairs."
+          }
+        },
+        {
+          "slot": "could-you-move-your-car-please",
+          "arabic": "لَو سَمَحْت، مُمْكِن تْحَرِّك سَيَّارَتَك؟",
+          "transliteration": "law samaHt, mumkin t7arrik sayyaaratak?",
+          "english": "Could you move your car, please? (to a man)",
+          "reply": {
+            "arabic": "أَبْشِر، الحِين أَحَرِّكْها",
+            "transliteration": "abshir, il-7een a7arrikha",
+            "english": "Of course, I'll move it now."
+          }
+        },
+        {
+          "slot": "come-and-have-tea-with-us",
+          "arabic": "تَعَال اشْرَب چَاي عِنْدَنَا",
+          "transliteration": "ta3aal ishrab chaay 3indana",
+          "english": "Come and have tea with us (to a man)",
+          "reply": {
+            "arabic": "إِنْ شَاءَ اللهُ، بِنْمُرّ عَلَيْكُم",
+            "transliteration": "in shaa2a Allaah, binmurr 3aleekum",
+            "english": "God willing, we will drop by."
+          }
+        },
+        {
+          "slot": "our-neighbour-is-ill-we-will-visit-him",
+          "arabic": "جَارْنَا مَرِيض، بِنْزُورَه",
+          "transliteration": "jaarna mareeD, binzoorah"
+        },
+        {
+          "slot": "a-neighbour-has-a-right-over-us",
+          "arabic": "الجَار لَه حَقّ عَلَيْنَا",
+          "transliteration": "ij-jaar lah 7agg 3aleena",
+          "reply": {
+            "arabic": "صَدَقْت",
+            "transliteration": "Sadagt",
+            "english": "You are right."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Salem",
+          "slot": "we-are-your-new-neighbours"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "we-are-your-new-neighbours",
+          "reply": true
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "which-flat-do-you-live-in"
+        },
+        {
+          "speaker": "Salem",
+          "slot": "we-live-in-the-flat-next-door"
+        },
+        {
+          "speaker": "Salem",
+          "slot": "i-brought-you-some-food"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "i-brought-you-some-food",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "i-apologise-for-the-disturbance"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "i-apologise-for-the-disturbance",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "may-i-borrow-a-ladder"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "may-i-borrow-a-ladder",
+          "reply": true
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "come-and-have-tea-with-us"
+        },
+        {
+          "speaker": "Salem",
+          "slot": "come-and-have-tea-with-us",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "slot": "will-you-receive-our-mail-while-we-travel"
+        },
+        {
+          "speaker": "Hamad",
+          "slot": "will-you-receive-our-mail-while-we-travel",
+          "reply": true
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "الله يجزاك خير",
+          "transliteration": "allah yijzaak khayr",
+          "english": "May God reward you with good."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "في أي شقة تسكن؟",
+            "transliteration": "fi ay shigga tiskun?",
+            "english": "Which flat do you live in?"
+          },
+          "response": {
+            "arabic": "في الشقة اللي فوقكم.",
+            "transliteration": "fi ish-shigga illi foogkum.",
+            "english": "In the flat above you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين نحط الزبالة؟",
+            "transliteration": "ween ni7uTT iz-zibaala?",
+            "english": "Where do we put the rubbish?"
+          },
+          "response": {
+            "arabic": "في الحاوية اللي تحت.",
+            "transliteration": "fil-7aawya illi ta7t.",
+            "english": "In the bin outside downstairs."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أقدر أستلف منكم سلم؟",
+            "transliteration": "agdar astilif minkum sullam?",
+            "english": "May I borrow a ladder from you?"
+          },
+          "response": {
+            "arabic": "إي أكيد، تفضل.",
+            "transliteration": "ee akeed, tfaDDal.",
+            "english": "Yes of course, please."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تعال اشرب چاي عندنا",
+            "transliteration": "ta3aal ishrab chaay 3indana",
+            "english": "Come and have tea with us."
+          },
+          "response": {
+            "arabic": "إن شاء الله، بنمر عليكم.",
+            "transliteration": "in shaa2a Allaah, binmurr 3aleekum.",
+            "english": "God willing, we will drop by."
+          }
+        }
+      ],
+      "culture": "In Islam a neighbour has a great right. The Prophet (peace be upon him) said that Jibril kept advising him about the neighbour until he thought the neighbour would be made an heir. Gulf neighbours share food, visit one another when ill and say \"أبشر\" when asked a favour. Sending a dish to the new family next door is a common way to start a friendship.",
+      "exercises": [
+        {
+          "id": "unit-18.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "A neighbour says: \"جبت لكم شوية أكل\". Say thank you the Gulf way: God bless your hands.",
+          "answer": "تسلم إيدك",
+          "accepted": [
+            "تسلم إيدك",
+            "tislam eedak",
+            "تسلم يدينك",
+            "الله يعطيك العافية",
+            "تسلم إيدك، الله يعطيك العافية"
+          ],
+          "too_formal": {
+            "item": "جَزَاكَ اللَّهُ خَيْرًا",
+            "feedback": "A fixed formula that is also fine, but \"تسلم إيدك\" is the warm everyday reply for food."
+          },
+          "tip": "To a woman: \"تسلم إيدچ\"."
+        },
+        {
+          "id": "unit-18.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "You hear: \"لو سمحت، ممكن تحرك سيارتك؟\" Say: Of course, I'll move it now.",
+          "answer": "أبشر، الحين أحركها",
+          "accepted": [
+            "أبشر، الحين أحركها",
+            "abshir, il-7een a7arrikha",
+            "أبشر الحين أحركها",
+            "حاضر، الحين أحركها"
+          ],
+          "too_formal": {
+            "item": "حَاضِر، سَأُحَرِّكُهَا الْآن",
+            "feedback": "\"الآن\" is written style; Gulf speech says \"الحين\"."
+          },
+          "tip": "\"أبشر\" means consider it done."
+        },
+        {
+          "id": "unit-18.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أقدر أستلف منكم _____؟\" Meaning: May I borrow a ladder from you?",
+          "answer": "سلم",
+          "accepted": [
+            "سلم",
+            "سُلَّم",
+            "sullam",
+            "السلم"
+          ],
+          "tip": "\"سلم\" is a ladder."
+        },
+        {
+          "id": "unit-18.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"وين نحط _____؟\" Meaning: Where do we put the rubbish?",
+          "answer": "الزبالة",
+          "accepted": [
+            "الزبالة",
+            "الزِّبَالَة",
+            "iz-zibaala",
+            "الزباله",
+            "النفايات"
+          ],
+          "too_formal": {
+            "item": "النُّفَايَات",
+            "feedback": "\"النفايات\" is written style; Gulf speech says \"الزبالة\"."
+          },
+          "tip": "\"حط\" is to put."
+        },
+        {
+          "id": "unit-18.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"We are your new neighbours\"",
+          "answer": "إحنا جيرانكم الجدد",
+          "accepted": [
+            "إحنا جيرانكم الجدد",
+            "i7na jeeraankum ij-judud",
+            "احنا جيرانكم الجدد",
+            "نحن جيرانكم الجدد"
+          ],
+          "too_formal": {
+            "item": "نَحْنُ جِيرَانُكُمُ الْجُدُد",
+            "feedback": "\"نحن\" is written style; speech says \"إحنا\"."
+          },
+          "tip": "\"جيران\" is neighbours."
+        },
+        {
+          "id": "unit-18.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Our neighbour is ill, we will visit him\"",
+          "answer": "جارنا مريض، بنزوره",
+          "accepted": [
+            "جارنا مريض، بنزوره",
+            "jaarna mareeD, binzoorah",
+            "جارنا مريض بنزوره",
+            "جارنا مريض، راح نزوره"
+          ],
+          "too_formal": {
+            "item": "جَارُنَا مَرِيض، سَنَزُورُهُ",
+            "feedback": "\"سـ\" for the future is written style; speech uses \"ب\"."
+          },
+          "tip": "\"بـ\" before a verb is the future."
+        },
+        {
+          "id": "unit-18.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Come and have tea with us\"?",
+          "answer": "تعال اشرب چاي عندنا",
+          "accepted": [
+            "تعال اشرب چاي عندنا",
+            "ta3aal ishrab chaay 3indana",
+            "تعال اشرب شاي عندنا",
+            "تعال اشرب چاي معنا"
+          ],
+          "options": [
+            "تعال اشرب چاي عندنا",
+            "أبشر",
+            "جبت لكم شوية أكل",
+            "إحنا ساكنين في الشقة اللي جنبكم"
+          ],
+          "too_formal": {
+            "item": "تَعَالَ اشْرَبِ الشَّايَ مَعَنَا",
+            "feedback": "Written style with \"الشاي\" and \"معنا\"."
+          },
+          "tip": "To a woman: \"تعالي\"; to several: \"تعالوا\"."
+        },
+        {
+          "id": "unit-18.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"A neighbour has a right over us\"?",
+          "answer": "الجار له حق علينا",
+          "accepted": [
+            "الجار له حق علينا",
+            "ij-jaar lah 7agg 3aleena"
+          ],
+          "options": [
+            "الجار له حق علينا",
+            "آسف على الإزعاج",
+            "وين نحط الزبالة؟",
+            "أقدر أستلف منكم سلم؟"
+          ],
+          "too_formal": {
+            "item": "لِلْجَارِ حَقٌّ عَلَيْنَا",
+            "feedback": "Fine, but the spoken version is \"الجار له حق علينا\"."
+          },
+          "tip": "\"حق\" is a right."
+        },
+        {
+          "id": "unit-18.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Which flat do you live in?\" (to a man)",
+          "answer": "في أي شقة تسكن؟",
+          "accepted": [
+            "في أي شقة تسكن؟",
+            "fi ay shigga tiskun",
+            "في أي شقة تسكن"
+          ],
+          "words": [
+            "في",
+            "أي",
+            "شقة",
+            "تسكن؟"
+          ],
+          "too_formal": {
+            "item": "فِي أَيِّ شَقَّةٍ تَسْكُن؟",
+            "feedback": "Fine, but with written vowel endings."
+          },
+          "tip": "\"أي\" means which."
+        },
+        {
+          "id": "unit-18.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"We live in the flat next door\"",
+          "answer": "إحنا ساكنين في الشقة اللي جنبكم",
+          "accepted": [
+            "إحنا ساكنين في الشقة اللي جنبكم",
+            "i7na saakneen fi ish-shigga illi jambkum",
+            "احنا ساكنين في الشقة اللي جنبكم"
+          ],
+          "words": [
+            "إحنا",
+            "ساكنين",
+            "في",
+            "الشقة",
+            "اللي",
+            "جنبكم"
+          ],
+          "too_formal": {
+            "item": "نَسْكُنُ فِي الشَّقَّةِ الْمُجَاوِرَة",
+            "feedback": "\"المجاورة\" is written style; speech says \"اللي جنبكم\"."
+          },
+          "tip": "\"اللي\" means which or that."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "Viewing a Flat",
+    "instructions": "Write and act out a conversation of at least 10 lines where you ask a landlord about a flat for rent. Ask the monthly rent, the number of bedrooms, the floor and whether there is a lift, ask whether water and electricity are included, ask to view the flat and whether it is furnished, find the kitchen, and say what you decide. Use at least 8 target phrases from Unit 18.",
+    "required_elements": [
+      "A question about the rent or the number of bedrooms with بكم or كم.",
+      "A question about the floor, the lift or whether water and electricity are included.",
+      "A request to see the flat with أقدر أشوف.",
+      "A question about the kitchen or the furniture with وين or مفروشة.",
+      "A closing decision with باخذها or أبي عقد سنة."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Salem",
+          "arabic": "السلام عليكم. أدور شقة للإيجار. بكم الإيجار في الشهر؟",
+          "transliteration": "as-salaamu 3alaykum. adawwir shigga lil-eejaar. bikam il-eejaar fi ish-shahar?",
+          "english": "Peace be upon you. I am looking for a flat to rent. How much is the rent a month?"
+        },
+        {
+          "speaker": "Landlord",
+          "arabic": "وعليكم السلام. ألفين وخمسمية درهم، وفيها غرفتين وصالة.",
+          "transliteration": "wa 3alaykum is-salaam. alfeen w khamsimiyya dirham, w feeha ghurfatain w Saala.",
+          "english": "And peace be upon you. Two thousand five hundred dirhams, and it has two bedrooms and a hall."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "في أي دور؟ وفيه ليفت؟",
+          "transliteration": "fi ay door? w feeh lift?",
+          "english": "Which floor? And is there a lift?"
+        },
+        {
+          "speaker": "Landlord",
+          "arabic": "في الدور الثاني، وفيه ليفت.",
+          "transliteration": "fi id-door ith-thaani, w feeh lift.",
+          "english": "On the second floor, and there is a lift."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "الإيجار شامل الماي والكهربا؟",
+          "transliteration": "il-eejaar shaamil il-maay w il-kahrabaa?",
+          "english": "Is the rent including water and electricity?"
+        },
+        {
+          "speaker": "Landlord",
+          "arabic": "لا، الماي والكهربا على حسابك.",
+          "transliteration": "la, il-maay w il-kahrabaa 3ala 7isaabak.",
+          "english": "No, the water and electricity are on you."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "أقدر أشوف الشقة؟ والشقة مفروشة؟",
+          "transliteration": "agdar ashoof ish-shigga? w ish-shigga mafroosha?",
+          "english": "Can I view the flat? And is it furnished?"
+        },
+        {
+          "speaker": "Landlord",
+          "arabic": "تفضل. لا، ما فيها أثاث. المطبخ جنب الصالة.",
+          "transliteration": "tfaDDal. la, ma feeha athaath. il-maTbakh jamb iS-Saala.",
+          "english": "Please. No, it has no furniture. The kitchen is next to the hall."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "الشقة حلوة وواسعة. زين، باخذها. أبي عقد سنة.",
+          "transliteration": "ish-shigga 7ilwa w waas3a. zain, baakhidha. abi 3agd sana.",
+          "english": "The flat is nice and spacious. Good, I will take it. I want a one-year lease."
+        },
+        {
+          "speaker": "Landlord",
+          "arabic": "تمام. تفضل، هذي مفاتيح الشقة.",
+          "transliteration": "tamaam. tfaDDal, hadhi mafaateeh ish-shigga.",
+          "english": "Fine. Here are the keys to the flat."
+        },
+        {
+          "speaker": "Salem",
+          "arabic": "مشكور، الله يعطيك العافية.",
+          "transliteration": "mashkoor, allah ya3Teek il-3aafya.",
+          "english": "Thank you, God give you strength."
+        }
+      ]
+    }
+  }
+}

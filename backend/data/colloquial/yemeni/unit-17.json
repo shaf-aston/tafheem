@@ -1,0 +1,1998 @@
+{
+  "unit": "unit-17",
+  "dialect": "Yemeni Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ",
+    "g": "ق (تُنطق g)",
+    "dh": "ذ",
+    "th": "ث",
+    "q": "ق (في الأدعية والقرآن)",
+    "T": "ط",
+    "S": "ص",
+    "D": "ض",
+    "Z": "ظ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "when-is-the-adhan",
+          "arabic": "مَتَى الأَذَان؟",
+          "transliteration": "mata al-adhaan?",
+          "reply": {
+            "arabic": "بَعْد عَشْر دَقَايِق",
+            "transliteration": "ba3d 3ashr dagaayig",
+            "english": "In ten minutes."
+          }
+        },
+        {
+          "slot": "which-prayer-is-next",
+          "arabic": "إِيش الصَّلَاة الجَايَة؟",
+          "transliteration": "eesh aS-Salaa al-jaaya?",
+          "reply": {
+            "arabic": "صَلَاةُ العَصْر",
+            "transliteration": "Salaatu al-3aSr",
+            "english": "The afternoon prayer (Asr)."
+          }
+        },
+        {
+          "slot": "where-is-the-masjid",
+          "arabic": "فِين أَقْرَب جَامِع؟",
+          "transliteration": "feen agrab jaami3?",
+          "reply": {
+            "arabic": "فِي آخِر الشَّارِع",
+            "transliteration": "fi aakhir ash-shaari3",
+            "english": "At the end of the street."
+          }
+        },
+        {
+          "slot": "where-is-the-mens-entrance",
+          "arabic": "فِين مَدْخَل الرِّجَال؟",
+          "transliteration": "feen madkhal ar-rijaal?",
+          "reply": {
+            "arabic": "مِنَ البَاب الكَبِير",
+            "transliteration": "min al-baab al-kabeer",
+            "english": "Through the big door."
+          }
+        },
+        {
+          "slot": "where-is-the-womens-entrance",
+          "arabic": "فِين مَدْخَل النِّسَاء؟",
+          "transliteration": "feen madkhal an-nisaa2?",
+          "reply": {
+            "arabic": "مِنَ البَاب اللِّي عَلَى الجَنْب",
+            "transliteration": "min al-baab illi 3ala l-janb",
+            "english": "Through the door on the side."
+          }
+        },
+        {
+          "slot": "lets-pray-in-congregation",
+          "arabic": "يَاللَّه نُصَلِّي جَمَاعَة",
+          "transliteration": "yaa-llah nuSalli jamaa3a"
+        },
+        {
+          "slot": "when-is-the-iqamah",
+          "arabic": "مَتَى الإِقَامَة؟",
+          "transliteration": "mata al-igaama?",
+          "reply": {
+            "arabic": "بَعْدَ الأَذَان بِرُبْع سَاعَة",
+            "transliteration": "ba3d al-adhaan bi-rub3 saa3a",
+            "english": "A quarter of an hour after the adhan."
+          }
+        },
+        {
+          "slot": "the-iqamah-has-been-called",
+          "arabic": "أَقَامُوا، الصَّلَاة عَتَبْدَأ ذَلْحِين",
+          "transliteration": "agaamu, aS-Salaa 3a-tabda2 dhal7een"
+        },
+        {
+          "slot": "i-am-late-can-i-join",
+          "arabic": "أَنَا مُتَأَخِّر، أَقْدَر أَدْخُل مَعَكُم؟",
+          "transliteration": "ana muta2akhkhir, agdar adkhul ma3akum?",
+          "reply": {
+            "arabic": "إِيه، اُدْخُل فِي الصَّفّ",
+            "transliteration": "eeh, udkhul fi S-Saff",
+            "english": "Yes, join the row."
+          }
+        },
+        {
+          "slot": "i-missed-a-rakah",
+          "arabic": "فَاتَتْنِي رَكْعَة",
+          "transliteration": "faatatni rak3a"
+        },
+        {
+          "slot": "i-will-make-up-what-i-missed",
+          "arabic": "شَاكَمِّل اللِّي فَاتَنِي بَعْدَ السَّلَام",
+          "transliteration": "shaa-kammil illi faatani ba3d as-salaam"
+        },
+        {
+          "slot": "may-allah-accept",
+          "arabic": "تَقَبَّلَ اللهُ",
+          "transliteration": "taqabbala Allaah",
+          "reply": {
+            "arabic": "مِنَّا وَمِنْكُمْ",
+            "transliteration": "minnaa wa minkum",
+            "english": "From us and from you."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "صالح",
+          "arabic": "السَّلَامُ عَلَيْكُمْ",
+          "transliteration": "as-salaamu 3alaykum",
+          "english": "Peace be upon you."
+        },
+        {
+          "speaker": "ياسر",
+          "arabic": "وَعَلَيْكُمُ السَّلَامُ وَرَحْمَةُ اللهِ",
+          "transliteration": "wa 3alaykumu as-salaamu wa ra7matu Allaah",
+          "english": "And peace and God's mercy be upon you."
+        },
+        {
+          "speaker": "صالح",
+          "slot": "where-is-the-masjid"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "where-is-the-masjid",
+          "reply": true
+        },
+        {
+          "speaker": "صالح",
+          "slot": "which-prayer-is-next"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "which-prayer-is-next",
+          "reply": true
+        },
+        {
+          "speaker": "صالح",
+          "slot": "when-is-the-iqamah"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "when-is-the-iqamah",
+          "reply": true
+        },
+        {
+          "speaker": "صالح",
+          "slot": "lets-pray-in-congregation"
+        },
+        {
+          "speaker": "صالح",
+          "slot": "where-is-the-mens-entrance"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "where-is-the-mens-entrance",
+          "reply": true
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "the-iqamah-has-been-called"
+        },
+        {
+          "speaker": "صالح",
+          "slot": "i-am-late-can-i-join"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "i-am-late-can-i-join",
+          "reply": true
+        },
+        {
+          "speaker": "صالح",
+          "slot": "i-missed-a-rakah"
+        },
+        {
+          "speaker": "ياسر",
+          "arabic": "مَا عَلَيْش، كَمِّل اللِّي فَاتَك",
+          "transliteration": "ma 3alaysh, kammil illi faatak",
+          "english": "Never mind, complete what you missed."
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "may-allah-accept"
+        },
+        {
+          "speaker": "صالح",
+          "slot": "may-allah-accept",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَتَى الأَذَان؟",
+            "transliteration": "mata al-adhaan?",
+            "english": "When is the adhan?"
+          },
+          "response": {
+            "arabic": "بَعْد عَشْر دَقَايِق",
+            "transliteration": "ba3d 3ashr dagaayig",
+            "english": "In ten minutes."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إِيش الصَّلَاة الجَايَة؟",
+            "transliteration": "eesh aS-Salaa al-jaaya?",
+            "english": "Which prayer is next?"
+          },
+          "response": {
+            "arabic": "صَلَاةُ العَصْر",
+            "transliteration": "Salaatu al-3aSr",
+            "english": "The afternoon prayer (Asr)."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَتَى الإِقَامَة؟",
+            "transliteration": "mata al-igaama?",
+            "english": "When is the iqamah?"
+          },
+          "response": {
+            "arabic": "بَعْدَ الأَذَان بِرُبْع سَاعَة",
+            "transliteration": "ba3d al-adhaan bi-rub3 saa3a",
+            "english": "A quarter of an hour after the adhan."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِين مَدْخَل النِّسَاء؟",
+            "transliteration": "feen madkhal an-nisaa2?",
+            "english": "Where is the women's entrance?"
+          },
+          "response": {
+            "arabic": "مِنَ البَاب اللِّي عَلَى الجَنْب",
+            "transliteration": "min al-baab illi 3ala l-janb",
+            "english": "Through the door on the side."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَنَا مُتَأَخِّر، أَقْدَر أَدْخُل مَعَكُم؟",
+            "transliteration": "ana muta2akhkhir, agdar adkhul ma3akum?",
+            "english": "I am late, can I join?"
+          },
+          "response": {
+            "arabic": "إِيه، اُدْخُل فِي الصَّفّ",
+            "transliteration": "eeh, udkhul fi S-Saff",
+            "english": "Yes, join the row."
+          }
+        }
+      ],
+      "culture": "The adhan calls people to each of the five daily prayers, and the iqamah, said just before the prayer starts, tells them to stand in rows. In Yemen a mosque is usually called a جَامِع. Someone who joins late prays with the imam, then stands and completes what he missed after the imam's salaam.",
+      "exercises": [
+        {
+          "id": "unit-17.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"مَتَى الإِقَامَة؟\" Say a quarter of an hour after the adhan.",
+          "answer": "بَعْدَ الأَذَان بِرُبْع سَاعَة",
+          "accepted": [
+            "بَعْدَ الأَذَان بِرُبْع سَاعَة",
+            "بعد الأذان بربع ساعة",
+            "بعد الأذان بربع ساعه",
+            "ba3d al-adhaan bi-rub3 saa3a"
+          ],
+          "too_formal": {
+            "item": "بَعْدَ الأَذَانِ بِخَمْسَ عَشْرَةَ دَقِيقَة",
+            "feedback": "Formal written Arabic; in Sana'a people say \"بِرُبْع سَاعَة\"."
+          },
+          "tip": "\"رُبْع سَاعَة\" is a quarter of an hour."
+        },
+        {
+          "id": "unit-17.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "You hear: \"تَقَبَّلَ اللهُ\". Answer with the usual reply.",
+          "answer": "مِنَّا وَمِنْكُمْ",
+          "accepted": [
+            "مِنَّا وَمِنْكُمْ",
+            "منا ومنكم",
+            "minnaa wa minkum"
+          ],
+          "tip": "The fixed wording of du'a is classical Arabic and the same in every dialect; the usual answer is \"minnaa wa minkum\"."
+        },
+        {
+          "id": "unit-17.lesson-01.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks you: \"فِين أَقْرَب جَامِع؟\" Say at the end of the street.",
+          "answer": "فِي آخِر الشَّارِع",
+          "accepted": [
+            "فِي آخِر الشَّارِع",
+            "في آخر الشارع",
+            "fi aakhir ash-shaari3"
+          ],
+          "too_formal": {
+            "item": "عِنْدَ آخِرِ الشَّارِع",
+            "feedback": "Formal written Arabic; in Sana'a people say \"فِي آخِر الشَّارِع\"."
+          },
+          "tip": "\"آخِر\" is the end, the last part."
+        },
+        {
+          "id": "unit-17.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"فِين مَدْخَل _____؟\" (Where is the men's entrance?)",
+          "answer": "الرِّجَال",
+          "accepted": [
+            "الرِّجَال",
+            "الرجال",
+            "رجال",
+            "ar-rijaal"
+          ],
+          "tip": "\"رِجَال\" are men; \"نِسَاء\" are women."
+        },
+        {
+          "id": "unit-17.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أَنَا مُتَأَخِّر، _____ أَدْخُل مَعَكُم؟\" (I am late, can I join?)",
+          "answer": "أَقْدَر",
+          "accepted": [
+            "أَقْدَر",
+            "أقدر",
+            "agdar"
+          ],
+          "too_formal": {
+            "item": "أَسْتَطِيع",
+            "feedback": "Formal written Arabic; in Sana'a people say \"أَقْدَر\"."
+          },
+          "tip": "ق is said as g in Sana'a: \"agdar\" means \"I can\"."
+        },
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I missed a rak'ah.\"",
+          "answer": "فَاتَتْنِي رَكْعَة",
+          "accepted": [
+            "فَاتَتْنِي رَكْعَة",
+            "فاتتني ركعة",
+            "فاتتني ركعه",
+            "فاتني ركعة",
+            "فاتني ركعه",
+            "faatni rak3a",
+            "faatatni rak3a"
+          ],
+          "tip": "\"فَاتَ\" is to pass by: the rak'ah passed me by."
+        },
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I will complete what I missed after the salaam.\"",
+          "answer": "شَاكَمِّل اللِّي فَاتَنِي بَعْدَ السَّلَام",
+          "accepted": [
+            "شَاكَمِّل اللِّي فَاتَنِي بَعْدَ السَّلَام",
+            "شاكمل اللي فاتني بعد السلام",
+            "شاكمل ما فاتني بعد السلام",
+            "shaa-kammil illi faatani ba3d as-salaam"
+          ],
+          "too_formal": {
+            "item": "سَأُتِمُّ مَا فَاتَنِي بَعْدَ التَّسْلِيم",
+            "feedback": "Formal written Arabic; in Sana'a people say \"شَاكَمِّل اللِّي فَاتَنِي\"."
+          },
+          "tip": "For \"I\" and \"we\" the future is \"شا-\": \"شاكمّل\" is \"I will complete\"."
+        },
+        {
+          "id": "unit-17.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the nearest masjid?\"",
+          "answer": "فِين أَقْرَب جَامِع؟",
+          "accepted": [
+            "فِين أَقْرَب جَامِع؟",
+            "فين أقرب جامع؟",
+            "فين أقرب جامع",
+            "فِين أَقْرَب جَامِع",
+            "فين أقرب مسجد",
+            "وين أقرب جامع",
+            "feen agrab jaami3?"
+          ],
+          "too_formal": {
+            "item": "أَيْنَ الْمَسْجِدُ الْقَرِيب؟",
+            "feedback": "Formal written Arabic; in Sana'a people say \"فِين أَقْرَب جَامِع؟\"."
+          },
+          "tip": "\"فِين\" is where, and \"جَامِع\" is the everyday word for a mosque."
+        },
+        {
+          "id": "unit-17.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"The iqamah has been called, the prayer is starting\"?",
+          "options": [
+            "أَقَامُوا، الصَّلَاة عَتَبْدَأ ذَلْحِين",
+            "مَتَى الأَذَان؟",
+            "تَقَبَّلَ اللهُ",
+            "فَاتَتْنِي رَكْعَة"
+          ],
+          "answer": "أَقَامُوا، الصَّلَاة عَتَبْدَأ ذَلْحِين",
+          "accepted": [
+            "أَقَامُوا، الصَّلَاة عَتَبْدَأ ذَلْحِين",
+            "أقاموا، الصلاة عتبدأ ذلحين",
+            "أقاموا الصلاة عتبدأ ذلحين",
+            "أَقَامُوا الصَّلَاة عَتَبْدَأ ذَلْحِين",
+            "أقاموا، الصلاه عتبدأ ذلحين",
+            "أقاموا الصلاه عتبدأ ذلحين",
+            "agaamu, aS-Salaa 3a-tabda2 dhal7een"
+          ],
+          "tip": "\"عَـ\" before a verb makes the future for \"it\"."
+        },
+        {
+          "id": "unit-17.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"Where is the women's entrance?\"",
+          "options": [
+            "فِين مَدْخَل النِّسَاء؟",
+            "فِين مَدْخَل الرِّجَال؟",
+            "فِين أَقْرَب جَامِع؟",
+            "مَتَى الإِقَامَة؟"
+          ],
+          "answer": "فِين مَدْخَل النِّسَاء؟",
+          "accepted": [
+            "فِين مَدْخَل النِّسَاء؟",
+            "فين مدخل النساء؟",
+            "فين مدخل النساء",
+            "فِين مَدْخَل النِّسَاء",
+            "feen madkhal an-nisaa2?"
+          ],
+          "tip": "\"مَدْخَل\" is an entrance; \"نِسَاء\" are women."
+        },
+        {
+          "id": "unit-17.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Let's pray in congregation\"",
+          "answer": "يَاللَّه نُصَلِّي جَمَاعَة",
+          "accepted": [
+            "يَاللَّه نُصَلِّي جَمَاعَة",
+            "يالله نصلي جماعة",
+            "يالله نصلي جماعه",
+            "yaa-llah nuSalli jamaa3a"
+          ],
+          "too_formal": {
+            "item": "هَيَّا نُصَلِّي جَمَاعَةً",
+            "feedback": "Formal written Arabic; in Sana'a people say \"يَاللَّه نُصَلِّي جَمَاعَة\"."
+          },
+          "tip": "\"يَاللَّه\" means \"come on\"."
+        },
+        {
+          "id": "unit-17.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Which prayer is next?\"",
+          "answer": "إِيش الصَّلَاة الجَايَة؟",
+          "accepted": [
+            "إِيش الصَّلَاة الجَايَة؟",
+            "إيش الصلاة الجاية؟",
+            "إيش الصلاة الجاية",
+            "إِيش الصَّلَاة الجَايَة",
+            "إيش الصلاه الجايه؟",
+            "إيش الصلاه الجايه",
+            "eesh aS-Salaa al-jaaya?"
+          ],
+          "too_formal": {
+            "item": "مَا الصَّلَاةُ الْقَادِمَة؟",
+            "feedback": "Formal written Arabic; in Sana'a people say \"إِيش الصَّلَاة الجَايَة؟\"."
+          },
+          "tip": "\"إِيش\" is the Sana'ani \"what\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "where-is-the-wudu-area",
+          "arabic": "فِين مَكَان الوُضُوء؟",
+          "transliteration": "feen makaan al-wuDoo2?",
+          "reply": {
+            "arabic": "جَنْب الحَمَّامَات",
+            "transliteration": "janb al-7ammaamaat",
+            "english": "Next to the toilets."
+          }
+        },
+        {
+          "slot": "i-want-to-make-wudu",
+          "arabic": "أَشْتِي أَتَوَضَّأ",
+          "transliteration": "ashti atawaDDa2"
+        },
+        {
+          "slot": "is-there-water",
+          "arabic": "فِيه مَاي؟",
+          "transliteration": "feeh maay?",
+          "reply": {
+            "arabic": "إِيه، المَاي مَوْجُود",
+            "transliteration": "eeh, al-maay mawjood",
+            "english": "Yes, there is water."
+          }
+        },
+        {
+          "slot": "where-is-the-shoe-rack",
+          "arabic": "فِين رَفّ الجِزَم؟",
+          "transliteration": "feen raff al-jizam?",
+          "reply": {
+            "arabic": "عِنْدَ البَاب",
+            "transliteration": "3ind al-baab",
+            "english": "By the door."
+          }
+        },
+        {
+          "slot": "put-your-shoes-on-the-rack",
+          "arabic": "حُطّ جَزْمَتَك عَلَى الرَّفّ",
+          "transliteration": "7uTT jazmatak 3ala r-raff"
+        },
+        {
+          "slot": "clothes-must-be-clean",
+          "arabic": "لَازِم تَكُون الثِّيَاب نَظِيفَة",
+          "transliteration": "laazim takoon ath-thiyaab naDheefa"
+        },
+        {
+          "slot": "where-is-the-prayer-rug",
+          "arabic": "فِين سَجَّادَة الصَّلَاة؟",
+          "transliteration": "feen sajjaadat aS-Salaa?",
+          "reply": {
+            "arabic": "فِيه سَجَّادَات فِي الرُّكْن",
+            "transliteration": "feeh sajjaadaat fi r-rukn",
+            "english": "There are rugs in the corner."
+          }
+        },
+        {
+          "slot": "which-way-is-the-qibla",
+          "arabic": "فِين جِهَة القِبْلَة؟",
+          "transliteration": "feen jihat al-gibla?",
+          "reply": {
+            "arabic": "القِبْلَة عَلَى اليَمِين",
+            "transliteration": "al-gibla 3ala l-yameen",
+            "english": "The qibla is to the right."
+          }
+        },
+        {
+          "slot": "do-you-have-a-qibla-compass",
+          "arabic": "مَعَك بُوصْلَة القِبْلَة؟",
+          "transliteration": "ma3ak boosla al-gibla?",
+          "reply": {
+            "arabic": "إِيه، تَفَضَّل",
+            "transliteration": "eeh, tafaDDal",
+            "english": "Yes, here you are."
+          }
+        },
+        {
+          "slot": "please-silence-your-phone",
+          "arabic": "مِنْ فَضْلَك، حُطّ تِلِفُونَك عَلَى الصَّامِت",
+          "transliteration": "min faDlak, 7uTT tilifoonak 3ala S-Saamit",
+          "reply": {
+            "arabic": "نَاهِي، شُكْرًا",
+            "transliteration": "naahi, shukran",
+            "english": "OK, thank you."
+          }
+        },
+        {
+          "slot": "i-forgot-to-silence-my-phone",
+          "arabic": "نَسِيت أَحُطّ تِلِفُونِي عَلَى الصَّامِت",
+          "transliteration": "naseet a7uTT tilifooni 3ala S-Saamit",
+          "reply": {
+            "arabic": "مَا عَلَيْش، حُطُّه ذَلْحِين",
+            "transliteration": "ma 3alaysh, 7uTTuh dhal7een",
+            "english": "Never mind, put it on silent now."
+          }
+        },
+        {
+          "slot": "where-can-i-leave-my-bag",
+          "arabic": "فِين أَحُطّ شَنْطَتِي؟",
+          "transliteration": "feen a7uTT shanTati?",
+          "reply": {
+            "arabic": "فِيه خِزَانَة جَنْب البَاب",
+            "transliteration": "feeh khizaana janb al-baab",
+            "english": "There is a locker next to the door."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "ياسر",
+          "slot": "i-want-to-make-wudu"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "where-is-the-wudu-area"
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "where-is-the-wudu-area",
+          "reply": true
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "is-there-water"
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "is-there-water",
+          "reply": true
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "clothes-must-be-clean"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "where-is-the-shoe-rack"
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "where-is-the-shoe-rack",
+          "reply": true
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "put-your-shoes-on-the-rack"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "where-is-the-prayer-rug"
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "where-is-the-prayer-rug",
+          "reply": true
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "which-way-is-the-qibla"
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "which-way-is-the-qibla",
+          "reply": true
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "please-silence-your-phone"
+        },
+        {
+          "speaker": "ياسر",
+          "slot": "please-silence-your-phone",
+          "reply": true
+        },
+        {
+          "speaker": "عبد الله",
+          "arabic": "جَزَاكَ اللهُ خَيْرًا",
+          "transliteration": "jazaaka Allaahu khayran",
+          "english": "May Allah reward you with good."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فِين مَكَان الوُضُوء؟",
+            "transliteration": "feen makaan al-wuDoo2?",
+            "english": "Where is the wudu area?"
+          },
+          "response": {
+            "arabic": "جَنْب الحَمَّامَات",
+            "transliteration": "janb al-7ammaamaat",
+            "english": "Next to the toilets."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِيه مَاي؟",
+            "transliteration": "feeh maay?",
+            "english": "Is there water?"
+          },
+          "response": {
+            "arabic": "إِيه، المَاي مَوْجُود",
+            "transliteration": "eeh, al-maay mawjood",
+            "english": "Yes, there is water."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِين رَفّ الجِزَم؟",
+            "transliteration": "feen raff al-jizam?",
+            "english": "Where is the shoe rack?"
+          },
+          "response": {
+            "arabic": "عِنْدَ البَاب",
+            "transliteration": "3ind al-baab",
+            "english": "By the door."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِين جِهَة القِبْلَة؟",
+            "transliteration": "feen jihat al-gibla?",
+            "english": "Which way is the qibla?"
+          },
+          "response": {
+            "arabic": "القِبْلَة عَلَى اليَمِين",
+            "transliteration": "al-gibla 3ala l-yameen",
+            "english": "The qibla is to the right."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِين أَحُطّ شَنْطَتِي؟",
+            "transliteration": "feen a7uTT shanTati?",
+            "english": "Where can I leave my bag?"
+          },
+          "response": {
+            "arabic": "فِيه خِزَانَة جَنْب البَاب",
+            "transliteration": "feeh khizaana janb al-baab",
+            "english": "There is a locker next to the door."
+          }
+        }
+      ],
+      "culture": "Wudu is the washing done before prayer, and a masjid keeps a place for it, usually near the toilets. Shoes come off at the door, clothes should be clean and modest, and phones go on silent so no one's prayer is disturbed. The qibla is the direction of the Kaaba in Makkah.",
+      "exercises": [
+        {
+          "id": "unit-17.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"فِيه مَاي؟\" Say yes, there is water.",
+          "answer": "إِيه، المَاي مَوْجُود",
+          "accepted": [
+            "إِيه، المَاي مَوْجُود",
+            "إيه، الماي موجود",
+            "إيه الماي موجود",
+            "إِيه المَاي مَوْجُود",
+            "إيه فيه ماي",
+            "إيه، فيه ماي",
+            "إيه، الماء موجود",
+            "إيه الماء موجود",
+            "eeh, al-maay mawjood"
+          ],
+          "too_formal": {
+            "item": "نَعَمْ، الْمَاءُ مُتَوَفِّر",
+            "feedback": "Formal written Arabic; in Sana'a people say \"إِيه\" for yes and \"مَاي\" for water."
+          },
+          "tip": "\"مَاي\" is water in Sana'a."
+        },
+        {
+          "id": "unit-17.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"مِنْ فَضْلَك، حُطّ تِلِفُونَك عَلَى الصَّامِت\". Agree politely.",
+          "answer": "نَاهِي، شُكْرًا",
+          "accepted": [
+            "نَاهِي، شُكْرًا",
+            "ناهي، شكرا",
+            "ناهي شكرا",
+            "نَاهِي شُكْرًا",
+            "ناهي",
+            "حاضر، شكرًا",
+            "حاضر، شكرا",
+            "حاضر شكرا",
+            "حاضر شكرًا",
+            "naahi, shukran"
+          ],
+          "tip": "\"نَاهِي\" is the Sana'ani \"OK\"."
+        },
+        {
+          "id": "unit-17.lesson-02.reply.03",
+          "type": "reply",
+          "prompt": "Someone says: \"نَسِيت أَحُطّ تِلِفُونِي عَلَى الصَّامِت\". Say never mind, put it on silent now.",
+          "answer": "مَا عَلَيْش، حُطُّه ذَلْحِين",
+          "accepted": [
+            "مَا عَلَيْش، حُطُّه ذَلْحِين",
+            "ما عليش، حطه ذلحين",
+            "ما عليش حطه ذلحين",
+            "مَا عَلَيْش حُطُّه ذَلْحِين",
+            "حطه ذلحين",
+            "ma 3alaysh, 7uTTuh dhal7een"
+          ],
+          "tip": "\"ذَلْحِين\" is \"now\" and \"مَا…ش\" makes the negative."
+        },
+        {
+          "id": "unit-17.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ أَتَوَضَّأ.\" (I want to make wudu.)",
+          "answer": "أَشْتِي",
+          "accepted": [
+            "أَشْتِي",
+            "أشتي",
+            "اشتي",
+            "ashti"
+          ],
+          "too_formal": {
+            "item": "أُرِيدُ أَنْ",
+            "feedback": "Formal written Arabic; in Sana'a people say \"أَشْتِي\"."
+          },
+          "tip": "\"أَشْتِي\" is \"I want\" in Sana'a."
+        },
+        {
+          "id": "unit-17.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"فِين رَفّ _____؟\" (Where is the shoe rack?)",
+          "answer": "الجِزَم",
+          "accepted": [
+            "الجِزَم",
+            "الجزم",
+            "الجزمة",
+            "الجزمه",
+            "al-jizam"
+          ],
+          "too_formal": {
+            "item": "الأَحْذِيَة",
+            "feedback": "Formal written Arabic; in Sana'a people say \"جِزَم\" for shoes."
+          },
+          "tip": "\"جَزْمَة\" is a shoe and \"جِزَم\" are shoes."
+        },
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the wudu area?\"",
+          "answer": "فِين مَكَان الوُضُوء؟",
+          "accepted": [
+            "فِين مَكَان الوُضُوء؟",
+            "فين مكان الوضوء؟",
+            "فين مكان الوضوء",
+            "فِين مَكَان الوُضُوء",
+            "feen makaan al-wuDoo2?"
+          ],
+          "too_formal": {
+            "item": "أَيْنَ مَكَانُ الوُضُوء؟",
+            "feedback": "Formal written Arabic; in Sana'a people say \"فِين مَكَان الوُضُوء؟\"."
+          },
+          "tip": "\"مَكَان الوُضُوء\" is the place of wudu."
+        },
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Put your shoes on the rack.\" (to a man)",
+          "answer": "حُطّ جَزْمَتَك عَلَى الرَّفّ",
+          "accepted": [
+            "حُطّ جَزْمَتَك عَلَى الرَّفّ",
+            "حط جزمتك على الرف",
+            "حط جزمتك عالرف",
+            "7uTT jazmatak 3ala r-raff"
+          ],
+          "too_formal": {
+            "item": "ضَعْ حِذَاءَكَ عَلَى الرَّفّ",
+            "feedback": "Formal written Arabic; in Sana'a people say \"حُطّ جَزْمَتَك\"."
+          },
+          "tip": "To a man the ending is \"ـك\": \"جَزْمَتَك\"."
+        },
+        {
+          "id": "unit-17.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Put your shoes on the rack.\" (to a woman)",
+          "answer": "حُطِّي جَزْمَتِش عَلَى الرَّفّ",
+          "accepted": [
+            "حُطِّي جَزْمَتِش عَلَى الرَّفّ",
+            "حطي جزمتش على الرف",
+            "حطي جزمتك على الرف",
+            "حطي جزمتش عالرف",
+            "7uTTi jazmatish 3ala r-raff"
+          ],
+          "tip": "To a woman Sana'a ends the word with \"ـش\": \"جَزْمَتِش\"."
+        },
+        {
+          "id": "unit-17.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"Where is the prayer rug?\"",
+          "options": [
+            "فِين سَجَّادَة الصَّلَاة؟",
+            "فِين رَفّ الجِزَم؟",
+            "فِين مَكَان الوُضُوء؟",
+            "فِين أَحُطّ شَنْطَتِي؟"
+          ],
+          "answer": "فِين سَجَّادَة الصَّلَاة؟",
+          "accepted": [
+            "فِين سَجَّادَة الصَّلَاة؟",
+            "فين سجادة الصلاة؟",
+            "فين سجادة الصلاة",
+            "فِين سَجَّادَة الصَّلَاة",
+            "فين سجاده الصلاه؟",
+            "فين سجاده الصلاه",
+            "feen sajjaadat aS-Salaa?"
+          ],
+          "tip": "\"سَجَّادَة\" is a rug."
+        },
+        {
+          "id": "unit-17.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"Clothes must be clean\"?",
+          "options": [
+            "لَازِم تَكُون الثِّيَاب نَظِيفَة",
+            "مَعَك بُوصْلَة القِبْلَة؟",
+            "فِيه مَاي؟",
+            "أَشْتِي أَتَوَضَّأ"
+          ],
+          "answer": "لَازِم تَكُون الثِّيَاب نَظِيفَة",
+          "accepted": [
+            "لَازِم تَكُون الثِّيَاب نَظِيفَة",
+            "لازم تكون الثياب نظيفة",
+            "لازم تكون الثياب نظيفه",
+            "لازم تكون الهدوم نظيفة",
+            "لازم تكون الهدوم نظيفه",
+            "laazim takoon ath-thiyaab naDheefa"
+          ],
+          "tip": "\"ثِيَاب\" are clothes; \"هُدُوم\" is also heard."
+        },
+        {
+          "id": "unit-17.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"I want to make wudu\"",
+          "answer": "أَشْتِي أَتَوَضَّأ",
+          "accepted": [
+            "أَشْتِي أَتَوَضَّأ",
+            "أشتي أتوضأ",
+            "ashti atawaDDa2"
+          ],
+          "tip": "The verb comes straight after \"أَشْتِي\", with no \"أَنْ\"."
+        },
+        {
+          "id": "unit-17.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Where can I leave my bag?\"",
+          "answer": "فِين أَحُطّ شَنْطَتِي؟",
+          "accepted": [
+            "فِين أَحُطّ شَنْطَتِي؟",
+            "فين أحط شنطتي؟",
+            "فين أحط شنطتي",
+            "فِين أَحُطّ شَنْطَتِي",
+            "feen a7uTT shanTati?"
+          ],
+          "too_formal": {
+            "item": "أَيْنَ أَضَعُ حَقِيبَتِي؟",
+            "feedback": "Formal written Arabic; in Sana'a people say \"فِين أَحُطّ شَنْطَتِي؟\"."
+          },
+          "tip": "\"شَنْطَة\" is the everyday word for a bag."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "when-is-the-friday-prayer",
+          "arabic": "مَتَى صَلَاة الجُمْعَة؟",
+          "transliteration": "mata Salaat al-jum3a?",
+          "reply": {
+            "arabic": "عِنْدَ الظُّهْر",
+            "transliteration": "3ind aZ-Zuhr",
+            "english": "At midday."
+          }
+        },
+        {
+          "slot": "lets-go-early-to-jumuah",
+          "arabic": "يَاللَّه نَرُوح الجُمْعَة بَدْرِي",
+          "transliteration": "yaa-llah naroo7 al-jum3a badri"
+        },
+        {
+          "slot": "i-have-washed-and-put-on-clean-clothes",
+          "arabic": "اِغْتَسَلْت وَلَبَسْت ثِيَاب نَظِيفَة",
+          "transliteration": "ightasalt wa labast thiyaab naDheefa"
+        },
+        {
+          "slot": "the-khutbah-will-begin-soon",
+          "arabic": "الخُطْبَة عَتَبْدَأ بَعْدَ شْوَيَّة",
+          "transliteration": "al-khuTba 3a-tabda2 ba3d shwayya"
+        },
+        {
+          "slot": "who-is-the-imam-today",
+          "arabic": "مَنْ الإِمَام اليَوْم؟",
+          "transliteration": "man al-imaam al-yawm?",
+          "reply": {
+            "arabic": "الشَّيْخ خَالِد، عَيَخْطُب وَيُصَلِّي بِنَا",
+            "transliteration": "ash-shaykh khaalid, 3a-yakhTub wa yuSalli binaa",
+            "english": "Sheikh Khalid, he will give the khutbah and lead us."
+          }
+        },
+        {
+          "slot": "listen-quietly-to-the-khutbah",
+          "arabic": "اِسْمَعُوا الخُطْبَة بِهُدُوء",
+          "transliteration": "ismaa3oo al-khuTba bi-hudoo2"
+        },
+        {
+          "slot": "is-there-an-empty-place",
+          "arabic": "فِيه مَكَان فَاضِي؟",
+          "transliteration": "feeh makaan faaDi?",
+          "reply": {
+            "arabic": "إِيه، تَفَضَّل، فِيه مَكَان هُنَا فِي الصَّفّ الثَّانِي",
+            "transliteration": "eeh, tafaDDal, feeh makaan hunaa fi S-Saff ath-thaani",
+            "english": "Yes, please, there is a place here in the second row."
+          }
+        },
+        {
+          "slot": "please-move-closer-together",
+          "arabic": "قَرِّبُوا شْوَيَّة، مِنْ فَضْلِكُم",
+          "transliteration": "garriboo shwayya, min faDlikum"
+        },
+        {
+          "slot": "blessed-friday",
+          "arabic": "جُمُعَةٌ مُبَارَكَة",
+          "transliteration": "jumu3atun mubaaraka",
+          "reply": {
+            "arabic": "وَأَنْتَ بِخَيْر، جُمُعَةٌ مُبَارَكَة",
+            "transliteration": "wa anta bi-khayr, jumu3atun mubaaraka",
+            "english": "And you are well, blessed Friday."
+          }
+        },
+        {
+          "slot": "may-god-accept-from-us-and-you",
+          "arabic": "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ",
+          "transliteration": "taqabbala Allaahu minnaa wa minkum",
+          "reply": {
+            "arabic": "آمِين، وَمِنْكُمْ",
+            "transliteration": "aameen, wa minkum",
+            "english": "Ameen, and from you too."
+          }
+        },
+        {
+          "slot": "may-god-reward-you-with-good",
+          "arabic": "جَزَاكَ اللَّهُ خَيْرًا",
+          "transliteration": "jazaaka Allaahu khayran",
+          "reply": {
+            "arabic": "وَإِيَّاكَ",
+            "transliteration": "wa iyyaaka",
+            "english": "And you too."
+          }
+        },
+        {
+          "slot": "i-will-pray-the-sunnah-after-jumuah",
+          "arabic": "شَاصَلِّي السُّنَّة بَعْدَ الجُمْعَة",
+          "transliteration": "shaa-Salli as-sunna ba3d al-jum3a"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "عمر",
+          "arabic": "السَّلَامُ عَلَيْكُمْ يَا يُوسُف",
+          "transliteration": "as-salaamu 3alaykum yaa yoosuf",
+          "english": "Peace be upon you, Yusuf."
+        },
+        {
+          "speaker": "يوسف",
+          "arabic": "وَعَلَيْكُمُ السَّلَام",
+          "transliteration": "wa 3alaykumu as-salaam",
+          "english": "And peace be upon you."
+        },
+        {
+          "speaker": "عمر",
+          "slot": "when-is-the-friday-prayer"
+        },
+        {
+          "speaker": "يوسف",
+          "slot": "when-is-the-friday-prayer",
+          "reply": true
+        },
+        {
+          "speaker": "عمر",
+          "slot": "lets-go-early-to-jumuah"
+        },
+        {
+          "speaker": "يوسف",
+          "slot": "i-have-washed-and-put-on-clean-clothes"
+        },
+        {
+          "speaker": "عمر",
+          "slot": "who-is-the-imam-today"
+        },
+        {
+          "speaker": "يوسف",
+          "slot": "who-is-the-imam-today",
+          "reply": true
+        },
+        {
+          "speaker": "عمر",
+          "slot": "is-there-an-empty-place"
+        },
+        {
+          "speaker": "أخ",
+          "slot": "is-there-an-empty-place",
+          "reply": true
+        },
+        {
+          "speaker": "عمر",
+          "slot": "please-move-closer-together"
+        },
+        {
+          "speaker": "يوسف",
+          "slot": "may-god-reward-you-with-good"
+        },
+        {
+          "speaker": "أخ",
+          "slot": "may-god-reward-you-with-good",
+          "reply": true
+        },
+        {
+          "speaker": "أخ",
+          "slot": "the-khutbah-will-begin-soon"
+        },
+        {
+          "speaker": "أخ",
+          "slot": "listen-quietly-to-the-khutbah"
+        },
+        {
+          "speaker": "عمر",
+          "slot": "may-god-accept-from-us-and-you"
+        },
+        {
+          "speaker": "يوسف",
+          "slot": "may-god-accept-from-us-and-you",
+          "reply": true
+        },
+        {
+          "speaker": "عمر",
+          "slot": "blessed-friday"
+        },
+        {
+          "speaker": "يوسف",
+          "slot": "blessed-friday",
+          "reply": true
+        },
+        {
+          "speaker": "يوسف",
+          "slot": "i-will-pray-the-sunnah-after-jumuah"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَتَى صَلَاة الجُمْعَة؟",
+            "transliteration": "mata Salaat al-jum3a?",
+            "english": "When is the Friday prayer?"
+          },
+          "response": {
+            "arabic": "عِنْدَ الظُّهْر",
+            "transliteration": "3ind aZ-Zuhr",
+            "english": "At midday."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَنْ الإِمَام اليَوْم؟",
+            "transliteration": "man al-imaam al-yawm?",
+            "english": "Who is the imam today?"
+          },
+          "response": {
+            "arabic": "الشَّيْخ خَالِد، عَيَخْطُب وَيُصَلِّي بِنَا",
+            "transliteration": "ash-shaykh khaalid, 3a-yakhTub wa yuSalli binaa",
+            "english": "Sheikh Khalid, he will give the khutbah and lead us."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِيه مَكَان فَاضِي؟",
+            "transliteration": "feeh makaan faaDi?",
+            "english": "Is there an empty place?"
+          },
+          "response": {
+            "arabic": "إِيه، تَفَضَّل، فِيه مَكَان هُنَا فِي الصَّفّ الثَّانِي",
+            "transliteration": "eeh, tafaDDal, feeh makaan hunaa fi S-Saff ath-thaani",
+            "english": "Yes, please, there is a place here in the second row."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "جُمُعَةٌ مُبَارَكَة",
+            "transliteration": "jumu3atun mubaaraka",
+            "english": "Blessed Friday"
+          },
+          "response": {
+            "arabic": "وَأَنْتَ بِخَيْر، جُمُعَةٌ مُبَارَكَة",
+            "transliteration": "wa anta bi-khayr, jumu3atun mubaaraka",
+            "english": "And you are well, blessed Friday."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ",
+            "transliteration": "taqabbala Allaahu minnaa wa minkum",
+            "english": "May Allah accept from us and from you"
+          },
+          "response": {
+            "arabic": "آمِين، وَمِنْكُمْ",
+            "transliteration": "aameen, wa minkum",
+            "english": "Ameen, and from you too."
+          }
+        }
+      ],
+      "culture": "Jumu'ah takes the place of the Dhuhr prayer on Friday and is prayed in congregation after the khutbah. People often bathe, wear clean clothes and come early, listen quietly during the khutbah, and fill the rows by moving closer together. Afterwards they greet each other with جُمُعَةٌ مُبَارَكَة.",
+      "exercises": [
+        {
+          "id": "unit-17.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "Someone says: \"جُمُعَةٌ مُبَارَكَة\". Reply.",
+          "answer": "وَأَنْتَ بِخَيْر، جُمُعَةٌ مُبَارَكَة",
+          "accepted": [
+            "وَأَنْتَ بِخَيْر، جُمُعَةٌ مُبَارَكَة",
+            "وأنت بخير، جمعة مباركة",
+            "وأنت بخير جمعة مباركة",
+            "وَأَنْتَ بِخَيْر جُمُعَةٌ مُبَارَكَة",
+            "وأنت بخير، جمعه مباركه",
+            "وأنت بخير جمعه مباركه",
+            "جمعة مباركة",
+            "جمعه مباركه",
+            "جمعة مباركة لك أيضا",
+            "جمعه مباركه لك أيضا",
+            "وأنت بخير",
+            "wa anta bi-khayr, jumu3atun mubaaraka"
+          ],
+          "tip": "Return the wish; \"جُمُعَةٌ مُبَارَكَة\" is fixed wording."
+        },
+        {
+          "id": "unit-17.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "Someone says: \"جَزَاكَ اللَّهُ خَيْرًا\". Reply.",
+          "answer": "وَإِيَّاكَ",
+          "accepted": [
+            "وَإِيَّاكَ",
+            "وإياك",
+            "وإياك يا أخي",
+            "wa iyyaak",
+            "wa iyyaaka"
+          ],
+          "tip": "Fixed wording shared by all dialects. To a woman: \"جَزَاكِ اللَّهُ خَيْرًا\", and she answers \"وَإِيَّاكِ\"."
+        },
+        {
+          "id": "unit-17.lesson-03.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks you: \"مَنْ الإِمَام اليَوْم؟\" Say Sheikh Khalid will give the khutbah and lead us.",
+          "answer": "الشَّيْخ خَالِد، عَيَخْطُب وَيُصَلِّي بِنَا",
+          "accepted": [
+            "الشَّيْخ خَالِد، عَيَخْطُب وَيُصَلِّي بِنَا",
+            "الشيخ خالد، عيخطب ويصلي بنا",
+            "الشيخ خالد عيخطب ويصلي بنا",
+            "الشَّيْخ خَالِد عَيَخْطُب وَيُصَلِّي بِنَا",
+            "ash-shaykh khaalid, 3a-yakhTub wa yuSalli binaa"
+          ],
+          "too_formal": {
+            "item": "الشَّيْخُ خَالِدٌ سَيَخْطُبُ وَيَؤُمُّنَا",
+            "feedback": "Formal written Arabic; in Sana'a people say \"عَيَخْطُب\"."
+          },
+          "tip": "\"عَـ\" before a verb is the future for \"he\"."
+        },
+        {
+          "id": "unit-17.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الخُطْبَة _____ بَعْدَ شْوَيَّة.\" (The khutbah will begin soon.)",
+          "answer": "عَتَبْدَأ",
+          "accepted": [
+            "عَتَبْدَأ",
+            "عتبدأ",
+            "عتبدا",
+            "عتبدي",
+            "3a-tabda2"
+          ],
+          "too_formal": {
+            "item": "سَتَبْدَأ",
+            "feedback": "Formal written Arabic; in Sana'a people say \"عَتَبْدَأ\"."
+          },
+          "tip": "For \"it\" and \"they\" Sana'a marks the future with \"عَـ\"."
+        },
+        {
+          "id": "unit-17.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"اِغْتَسَلْت وَلَبَسْت _____ نَظِيفَة.\" (I bathed and put on clean clothes.)",
+          "answer": "ثِيَاب",
+          "accepted": [
+            "ثِيَاب",
+            "ثياب",
+            "ثياباً",
+            "ثيابا",
+            "هدوم",
+            "thiyaab"
+          ],
+          "tip": "\"ثِيَاب\" means clothes."
+        },
+        {
+          "id": "unit-17.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Let us go early to Jumu'ah.\"",
+          "answer": "يَاللَّه نَرُوح الجُمْعَة بَدْرِي",
+          "accepted": [
+            "يَاللَّه نَرُوح الجُمْعَة بَدْرِي",
+            "يالله نروح الجمعة بدري",
+            "يالله نروح الجمعه بدري",
+            "يلا نروح الجمعة بدري",
+            "يلا نروح الجمعه بدري",
+            "yaa-llah naroo7 al-jum3a badri"
+          ],
+          "too_formal": {
+            "item": "هَيَّا نَذْهَبْ إِلَى الجُمْعَةِ مُبَكِّرِين",
+            "feedback": "Formal written Arabic; in Sana'a people say \"نَرُوح\" and \"بَدْرِي\"."
+          },
+          "tip": "\"بَدْرِي\" is early."
+        },
+        {
+          "id": "unit-17.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I will pray the sunnah after the Friday prayer.\"",
+          "answer": "شَاصَلِّي السُّنَّة بَعْدَ الجُمْعَة",
+          "accepted": [
+            "شَاصَلِّي السُّنَّة بَعْدَ الجُمْعَة",
+            "شاصلي السنة بعد الجمعة",
+            "شاصلي السنه بعد الجمعه",
+            "شا أصلي السنة بعد الجمعة",
+            "شا أصلي السنه بعد الجمعه",
+            "shaa-Salli as-sunna ba3d al-jum3a"
+          ],
+          "too_formal": {
+            "item": "سَأُصَلِّي السُّنَّةَ بَعْدَ الجُمْعَة",
+            "feedback": "Formal written Arabic; in Sana'a people say \"شَاصَلِّي\"."
+          },
+          "tip": "\"شا-\" makes the future for \"I\": \"شَاصَلِّي\"."
+        },
+        {
+          "id": "unit-17.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is there an empty place?\"",
+          "answer": "فِيه مَكَان فَاضِي؟",
+          "accepted": [
+            "فِيه مَكَان فَاضِي؟",
+            "فيه مكان فاضي؟",
+            "فيه مكان فاضي",
+            "فِيه مَكَان فَاضِي",
+            "فيه مكان فارغ",
+            "feeh makaan faaDi?"
+          ],
+          "too_formal": {
+            "item": "هَلْ يُوجَدُ مَكَانٌ فَارِغ؟",
+            "feedback": "Formal written Arabic; in Sana'a people say \"فِيه مَكَان فَاضِي؟\"."
+          },
+          "tip": "\"فِيه\" means \"is there\"."
+        },
+        {
+          "id": "unit-17.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"Listen quietly to the khutbah\"?",
+          "options": [
+            "اِسْمَعُوا الخُطْبَة بِهُدُوء",
+            "الخُطْبَة عَتَبْدَأ بَعْدَ شْوَيَّة",
+            "جُمُعَةٌ مُبَارَكَة",
+            "مَنْ الإِمَام اليَوْم؟"
+          ],
+          "answer": "اِسْمَعُوا الخُطْبَة بِهُدُوء",
+          "accepted": [
+            "اِسْمَعُوا الخُطْبَة بِهُدُوء",
+            "اسمعوا الخطبة بهدوء",
+            "اسمعوا الخطبه بهدوء",
+            "أنصتوا للخطبة",
+            "أنصتوا للخطبه",
+            "ismaa3oo al-khuTba bi-hudoo2"
+          ],
+          "tip": "Said to a group, so the verb ends in \"وا\"."
+        },
+        {
+          "id": "unit-17.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"Please, move closer together a little\"?",
+          "options": [
+            "قَرِّبُوا شْوَيَّة، مِنْ فَضْلِكُم",
+            "فِيه مَكَان فَاضِي؟",
+            "اِغْتَسَلْت وَلَبَسْت ثِيَاب نَظِيفَة",
+            "مَتَى صَلَاة الجُمْعَة؟"
+          ],
+          "answer": "قَرِّبُوا شْوَيَّة، مِنْ فَضْلِكُم",
+          "accepted": [
+            "قَرِّبُوا شْوَيَّة، مِنْ فَضْلِكُم",
+            "قربوا شوية، من فضلكم",
+            "قربوا شوية من فضلكم",
+            "قَرِّبُوا شْوَيَّة مِنْ فَضْلِكُم",
+            "قربوا شويه، من فضلكم",
+            "قربوا شويه من فضلكم",
+            "garriboo shwayya, min faDlikum"
+          ],
+          "tip": "Rows are filled by closing the gaps."
+        },
+        {
+          "id": "unit-17.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Who is the imam today?\"",
+          "answer": "مَنْ الإِمَام اليَوْم؟",
+          "accepted": [
+            "مَنْ الإِمَام اليَوْم؟",
+            "من الإمام اليوم؟",
+            "من الإمام اليوم",
+            "مَنْ الإِمَام اليَوْم",
+            "مين الإمام اليوم",
+            "مين إمام اليوم",
+            "man al-imaam al-yawm?"
+          ],
+          "tip": "\"مَنْ\" asks about a person."
+        },
+        {
+          "id": "unit-17.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Let us go early to Jumu'ah\"",
+          "answer": "يَاللَّه نَرُوح الجُمْعَة بَدْرِي",
+          "accepted": [
+            "يَاللَّه نَرُوح الجُمْعَة بَدْرِي",
+            "يالله نروح الجمعة بدري",
+            "يالله نروح الجمعه بدري",
+            "yaa-llah naroo7 al-jum3a badri"
+          ],
+          "tip": "\"يَاللَّه\" opens an invitation."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "when-is-the-quran-class",
+          "arabic": "مَتَى حَلْقَة القُرْآن؟",
+          "transliteration": "mata 7alqat al-qur2aan?",
+          "reply": {
+            "arabic": "بَعْدَ صَلَاة المَغْرِب",
+            "transliteration": "ba3d Salaat al-maghrib",
+            "english": "After the Maghrib prayer."
+          }
+        },
+        {
+          "slot": "i-want-to-join-the-circle",
+          "arabic": "أَشْتِي أَدْخُل الحَلْقَة",
+          "transliteration": "ashti adkhul al-7alqa"
+        },
+        {
+          "slot": "may-i-ask-you-a-question-teacher",
+          "arabic": "أَقْدَر أَسْأَلَك سُؤَال يَا أُسْتَاذ؟",
+          "transliteration": "agdar as2alak su2aal yaa ustaadh?",
+          "reply": {
+            "arabic": "تَفَضَّل، اِسْأَل",
+            "transliteration": "tafaDDal, is2al",
+            "english": "Please, ask."
+          }
+        },
+        {
+          "slot": "could-you-repeat-the-verse",
+          "arabic": "تِقْدَر تُعِيد الآيَة، مِنْ فَضْلَك؟",
+          "transliteration": "tigdar tu3eed al-aaya, min faDlak?"
+        },
+        {
+          "slot": "i-am-memorising-surat-al-mulk",
+          "arabic": "أَنَا أَحْفَظ سُورَة المُلْك",
+          "transliteration": "ana a7faZ sooratal-mulk",
+          "reply": {
+            "arabic": "مَا شَاءَ اللَّه، بَارَكَ اللَّهُ فِيك",
+            "transliteration": "maa shaa2a Allaah, baaraka Allaahu feek",
+            "english": "As Allah willed, may Allah bless you."
+          }
+        },
+        {
+          "slot": "i-want-to-recite-what-i-memorised-to-you",
+          "arabic": "أَشْتِي أُسَمِّع لَك اللِّي حَفِظْت",
+          "transliteration": "ashti usammi3 lak illi 7afiZt",
+          "reply": {
+            "arabic": "تَفَضَّل، اِبْدَأ",
+            "transliteration": "tafaDDal, ibda2",
+            "english": "Please, begin."
+          }
+        },
+        {
+          "slot": "where-is-the-timetable-of-lessons",
+          "arabic": "فِين جَدْوَل الدُّرُوس؟",
+          "transliteration": "feen jadwal ad-duroos?",
+          "reply": {
+            "arabic": "عَلَى لَوْحَة الإِعْلَانَات عِنْدَ البَاب",
+            "transliteration": "3ala lawa7at al-i3laanaat 3ind al-baab",
+            "english": "On the notice board by the door."
+          }
+        },
+        {
+          "slot": "i-want-to-sign-up-my-son-for-the-childrens-circle",
+          "arabic": "أَشْتِي أُسَجِّل اِبْنِي فِي حَلْقَة الجُهَّال",
+          "transliteration": "ashti usajjil ibni fi 7alqat al-juhhaal",
+          "reply": {
+            "arabic": "تَفَضَّل، عَبِّي الاِسْتِمَارَة",
+            "transliteration": "tafaDDal, 3abbi l-istimaara",
+            "english": "Please, fill in the form."
+          }
+        },
+        {
+          "slot": "how-old-is-the-child",
+          "arabic": "كَم عُمْر الجَاهِل؟",
+          "transliteration": "kam 3umr al-jaahil?",
+          "reply": {
+            "arabic": "عُمْرُه سَبْع سِنِين",
+            "transliteration": "3umruh sab3 sineen",
+            "english": "He is seven years old."
+          }
+        },
+        {
+          "slot": "may-i-borrow-a-mushaf",
+          "arabic": "أَقْدَر أَسْتَلِف مُصْحَف؟",
+          "transliteration": "agdar astalif mus7af?",
+          "reply": {
+            "arabic": "إِيه، تِلْقَاه عَلَى الرَّفّ",
+            "transliteration": "eeh, tilgaah 3ala r-raff",
+            "english": "Yes, you will find one on the shelf."
+          }
+        },
+        {
+          "slot": "where-is-the-mosque-library",
+          "arabic": "فِين مَكْتَبَة الجَامِع؟",
+          "transliteration": "feen maktabat al-jaami3?",
+          "reply": {
+            "arabic": "فِي الدَّوْر الأَوَّل",
+            "transliteration": "fi d-dawr al-awwal",
+            "english": "On the first floor."
+          }
+        },
+        {
+          "slot": "i-will-return-the-mushaf-tomorrow",
+          "arabic": "شَارَجَّع المُصْحَف بُكْرَة إِنْ شَاءَ اللَّه",
+          "transliteration": "shaa-rajja3 al-mus7af bukra in shaa2a Allaah"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "أحمد",
+          "arabic": "السَّلَامُ عَلَيْكُمْ يَا أُسْتَاذ",
+          "transliteration": "as-salaamu 3alaykum yaa ustaadh",
+          "english": "Peace be upon you, teacher."
+        },
+        {
+          "speaker": "الأستاذ",
+          "arabic": "وَعَلَيْكُمُ السَّلَام",
+          "transliteration": "wa 3alaykumu as-salaam",
+          "english": "And peace be upon you."
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "when-is-the-quran-class"
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "when-is-the-quran-class",
+          "reply": true
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "i-want-to-join-the-circle"
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "where-is-the-timetable-of-lessons"
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "where-is-the-timetable-of-lessons",
+          "reply": true
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "i-am-memorising-surat-al-mulk"
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "i-am-memorising-surat-al-mulk",
+          "reply": true
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "i-want-to-recite-what-i-memorised-to-you"
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "i-want-to-recite-what-i-memorised-to-you",
+          "reply": true
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "may-i-ask-you-a-question-teacher"
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "may-i-ask-you-a-question-teacher",
+          "reply": true
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "could-you-repeat-the-verse"
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "i-want-to-sign-up-my-son-for-the-childrens-circle"
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "i-want-to-sign-up-my-son-for-the-childrens-circle",
+          "reply": true
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "how-old-is-the-child"
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "how-old-is-the-child",
+          "reply": true
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "where-is-the-mosque-library"
+        },
+        {
+          "speaker": "أمين المكتبة",
+          "slot": "where-is-the-mosque-library",
+          "reply": true
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "may-i-borrow-a-mushaf"
+        },
+        {
+          "speaker": "أمين المكتبة",
+          "slot": "may-i-borrow-a-mushaf",
+          "reply": true
+        },
+        {
+          "speaker": "أحمد",
+          "slot": "i-will-return-the-mushaf-tomorrow"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مَتَى حَلْقَة القُرْآن؟",
+            "transliteration": "mata 7alqat al-qur2aan?",
+            "english": "When is the Qur'an class?"
+          },
+          "response": {
+            "arabic": "بَعْدَ صَلَاة المَغْرِب",
+            "transliteration": "ba3d Salaat al-maghrib",
+            "english": "After the Maghrib prayer."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِين جَدْوَل الدُّرُوس؟",
+            "transliteration": "feen jadwal ad-duroos?",
+            "english": "Where is the timetable of lessons?"
+          },
+          "response": {
+            "arabic": "عَلَى لَوْحَة الإِعْلَانَات عِنْدَ البَاب",
+            "transliteration": "3ala lawa7at al-i3laanaat 3ind al-baab",
+            "english": "On the notice board by the door."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كَم عُمْر الجَاهِل؟",
+            "transliteration": "kam 3umr al-jaahil?",
+            "english": "How old is the child?"
+          },
+          "response": {
+            "arabic": "عُمْرُه سَبْع سِنِين",
+            "transliteration": "3umruh sab3 sineen",
+            "english": "He is seven years old."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِين مَكْتَبَة الجَامِع؟",
+            "transliteration": "feen maktabat al-jaami3?",
+            "english": "Where is the mosque library?"
+          },
+          "response": {
+            "arabic": "فِي الدَّوْر الأَوَّل",
+            "transliteration": "fi d-dawr al-awwal",
+            "english": "On the first floor."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَقْدَر أَسْتَلِف مُصْحَف؟",
+            "transliteration": "agdar astalif mus7af?",
+            "english": "May I borrow a mushaf?"
+          },
+          "response": {
+            "arabic": "إِيه، تِلْقَاه عَلَى الرَّفّ",
+            "transliteration": "eeh, tilgaah 3ala r-raff",
+            "english": "Yes, you will find one on the shelf."
+          }
+        }
+      ],
+      "culture": "Many masjids run Qur'an circles (حَلْقَات) for adults and children, often after Maghrib, where each student recites from memory to the teacher, who is called أُسْتَاذ or شَيْخ. The mushaf is handled with respect: held with clean hands, kept off the floor and put back on its shelf after use.",
+      "exercises": [
+        {
+          "id": "unit-17.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"كَم عُمْر الجَاهِل؟\" Say he is seven years old.",
+          "answer": "عُمْرُه سَبْع سِنِين",
+          "accepted": [
+            "عُمْرُه سَبْع سِنِين",
+            "عمره سبع سنين",
+            "عمره سبع سنوات",
+            "3umruh sab3 sineen"
+          ],
+          "too_formal": {
+            "item": "عُمْرُهُ سَبْعُ سَنَوَات",
+            "feedback": "Formal written Arabic; in Sana'a people say \"سَبْع سِنِين\"."
+          },
+          "tip": "\"جَاهِل\" is a child in Sana'a; \"سِنِين\" are years."
+        },
+        {
+          "id": "unit-17.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "You are the teacher. A student says: \"أَنَا أَحْفَظ سُورَة المُلْك\". Praise him.",
+          "answer": "مَا شَاءَ اللَّه، بَارَكَ اللَّهُ فِيك",
+          "accepted": [
+            "مَا شَاءَ اللَّه، بَارَكَ اللَّهُ فِيك",
+            "ما شاء الله، بارك الله فيك",
+            "ما شاء الله بارك الله فيك",
+            "مَا شَاءَ اللَّه بَارَكَ اللَّهُ فِيك",
+            "maa shaa2a Allaah, baaraka Allaahu feek"
+          ],
+          "tip": "Praise with \"maa shaa2a Allaah\"; the fixed wording is the same in every dialect."
+        },
+        {
+          "id": "unit-17.lesson-04.reply.03",
+          "type": "reply",
+          "prompt": "Someone asks you: \"مَتَى حَلْقَة القُرْآن؟\" Say after the Maghrib prayer.",
+          "answer": "بَعْدَ صَلَاة المَغْرِب",
+          "accepted": [
+            "بَعْدَ صَلَاة المَغْرِب",
+            "بعد صلاة المغرب",
+            "بعد صلاه المغرب",
+            "ba3d Salaat al-maghrib"
+          ],
+          "tip": "Times are often given by the prayers."
+        },
+        {
+          "id": "unit-17.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أَشْتِي أُسَجِّل ابْنِي فِي حَلْقَة _____.\" (I want to sign up my son for the children's circle.)",
+          "answer": "الجُهَّال",
+          "accepted": [
+            "الجُهَّال",
+            "الجهال",
+            "الأطفال",
+            "الاطفال",
+            "al-juhhaal"
+          ],
+          "too_formal": {
+            "item": "الأَطْفَال",
+            "feedback": "Formal written Arabic; in Sana'a people say \"الجُهَّال\"."
+          },
+          "tip": "\"جَاهِل\" is a child, \"جُهَّال\" are children."
+        },
+        {
+          "id": "unit-17.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أَقْدَر _____ مُصْحَف؟\" (May I borrow a mushaf?)",
+          "answer": "أَسْتَلِف",
+          "accepted": [
+            "أَسْتَلِف",
+            "أستلف",
+            "استلف",
+            "أستعير",
+            "astalif"
+          ],
+          "too_formal": {
+            "item": "أَسْتَعِير",
+            "feedback": "Formal written Arabic; in Sana'a people say \"أَسْتَلِف\"."
+          },
+          "tip": "\"اِسْتَلَف\" is to borrow."
+        },
+        {
+          "id": "unit-17.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I am memorising Surat al-Mulk.\"",
+          "answer": "أَنَا أَحْفَظ سُورَة المُلْك",
+          "accepted": [
+            "أَنَا أَحْفَظ سُورَة المُلْك",
+            "أنا أحفظ سورة الملك",
+            "أنا أحفظ سوره الملك",
+            "أحفظ سورة الملك",
+            "أحفظ سوره الملك",
+            "انا احفظ سورة الملك",
+            "انا احفظ سوره الملك",
+            "ana a7faZ soorat al-mulk",
+            "ana a7faZ sooratal-mulk"
+          ],
+          "tip": "\"أَحْفَظ\" is to memorise."
+        },
+        {
+          "id": "unit-17.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"May I ask you a question, teacher?\"",
+          "answer": "أَقْدَر أَسْأَلَك سُؤَال يَا أُسْتَاذ؟",
+          "accepted": [
+            "أَقْدَر أَسْأَلَك سُؤَال يَا أُسْتَاذ؟",
+            "أقدر أسألك سؤال يا أستاذ؟",
+            "أقدر أسألك سؤال يا أستاذ",
+            "أَقْدَر أَسْأَلَك سُؤَال يَا أُسْتَاذ",
+            "اقدر اسألك سؤال يا أستاذ",
+            "أقدر أسألك يا أستاذ",
+            "agdar as2alak su2aal yaa ustaadh?"
+          ],
+          "too_formal": {
+            "item": "هَلْ أَسْتَطِيعُ أَنْ أَسْأَلَكَ سُؤَالًا يَا أُسْتَاذ؟",
+            "feedback": "Formal written Arabic; in Sana'a people say \"أَقْدَر أَسْأَلَك\"."
+          },
+          "tip": "\"أَقْدَر\" is \"can I\" and ق is said as g."
+        },
+        {
+          "id": "unit-17.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to recite to you what I have memorised.\"",
+          "answer": "أَشْتِي أُسَمِّع لَك اللِّي حَفِظْت",
+          "accepted": [
+            "أَشْتِي أُسَمِّع لَك اللِّي حَفِظْت",
+            "أشتي أسمع لك اللي حفظت",
+            "أشتي أسمّع لك ما حفظت",
+            "أشتي أسمع لك ما حفظت",
+            "ashti usammi3 lak illi 7afiZt"
+          ],
+          "too_formal": {
+            "item": "أُرِيدُ أَنْ أُسَمِّعَ لَكَ مَا حَفِظْتُ",
+            "feedback": "Formal written Arabic; in Sana'a people say \"أَشْتِي\" and \"اللِّي\"."
+          },
+          "tip": "\"أُسَمِّع لَك\" is the word for reciting to a teacher."
+        },
+        {
+          "id": "unit-17.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"Where is the timetable of lessons?\"",
+          "options": [
+            "فِين جَدْوَل الدُّرُوس؟",
+            "فِين مَكْتَبَة الجَامِع؟",
+            "كَم عُمْر الجَاهِل؟",
+            "مَتَى حَلْقَة القُرْآن؟"
+          ],
+          "answer": "فِين جَدْوَل الدُّرُوس؟",
+          "accepted": [
+            "فِين جَدْوَل الدُّرُوس؟",
+            "فين جدول الدروس؟",
+            "فين جدول الدروس",
+            "فِين جَدْوَل الدُّرُوس",
+            "feen jadwal ad-duroos?"
+          ],
+          "tip": "\"جَدْوَل\" is a timetable."
+        },
+        {
+          "id": "unit-17.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"Where is the mosque library?\"",
+          "options": [
+            "فِين مَكْتَبَة الجَامِع؟",
+            "أَقْدَر أَسْتَلِف مُصْحَف؟",
+            "فِين جَدْوَل الدُّرُوس؟",
+            "أَنَا أَحْفَظ سُورَة المُلْك"
+          ],
+          "answer": "فِين مَكْتَبَة الجَامِع؟",
+          "accepted": [
+            "فِين مَكْتَبَة الجَامِع؟",
+            "فين مكتبة الجامع؟",
+            "فين مكتبة الجامع",
+            "فِين مَكْتَبَة الجَامِع",
+            "فين مكتبه الجامع؟",
+            "فين مكتبه الجامع",
+            "فين مكتبة المسجد",
+            "فين مكتبه المسجد",
+            "feen maktabat al-jaami3?"
+          ],
+          "tip": "\"جَامِع\" is the everyday word for a mosque."
+        },
+        {
+          "id": "unit-17.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"I will return the mushaf tomorrow, Allah willing\"",
+          "answer": "شَارَجَّع المُصْحَف بُكْرَة إِنْ شَاءَ اللَّه",
+          "accepted": [
+            "شَارَجَّع المُصْحَف بُكْرَة إِنْ شَاءَ اللَّه",
+            "شارجع المصحف بكرة إن شاء الله",
+            "شارجع المصحف بكره إن شاء الله",
+            "shaa-rajja3 al-mus7af bukra in shaa2a Allaah"
+          ],
+          "too_formal": {
+            "item": "سَأُعِيدُ الْمُصْحَفَ غَدًا إِنْ شَاءَ اللَّه",
+            "feedback": "Formal written Arabic; in Sana'a people say \"شَارَجَّع\" and \"بُكْرَة\"."
+          },
+          "tip": "\"إِنْ شَاءَ اللَّه\" closes a promise about the future."
+        },
+        {
+          "id": "unit-17.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"When is the Qur'an class?\"",
+          "answer": "مَتَى حَلْقَة القُرْآن؟",
+          "accepted": [
+            "مَتَى حَلْقَة القُرْآن؟",
+            "متى حلقة القرآن؟",
+            "متى حلقة القرآن",
+            "مَتَى حَلْقَة القُرْآن",
+            "متى حلقه القرآن؟",
+            "متى حلقه القرآن",
+            "إمتى حلقة القرآن",
+            "إمتى حلقه القرآن",
+            "mata 7alqat al-qur2aan?"
+          ],
+          "tip": "\"مَتَى\" comes first."
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "A visit to the masjid",
+    "instructions": "Write and act out a conversation of at least 10 lines in Sana'ani Arabic. Ask about the next prayer and the iqamah, find the wudu area, put your shoes on the rack, ask where the qibla is, agree to put your phone on silent, and say what you do when you are late. Use at least 8 phrases from Unit 17.",
+    "required_elements": [
+      "A question about the next prayer or the iqamah, using إِيش or مَتَى.",
+      "A question with فِين about the wudu area, the entrance, the shoe rack or the qibla.",
+      "أَشْتِي to say what you want, for example أَشْتِي أَتَوَضَّأ.",
+      "A polite request or reply about the phone, with مِنْ فَضْلَك or نَاهِي.",
+      "A missed rak'ah explained with فَاتَتْنِي and a closing تَقَبَّلَ اللهُ with its reply مِنَّا وَمِنْكُمْ."
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "ياسر",
+          "arabic": "السَّلَامُ عَلَيْكُمْ. إِيش الصَّلَاة الجَايَة؟",
+          "transliteration": "as-salaamu 3alaykum. eesh aS-Salaa al-jaaya?",
+          "english": "Peace be upon you. Which prayer is next?"
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "وَعَلَيْكُمُ السَّلَام. صَلَاةُ المَغْرِب، وَالإِقَامَة بَعْدَ عَشْر دَقَايِق.",
+          "transliteration": "wa 3alaykumu as-salaam. Salaatu al-maghrib, wa al-igaama ba3d 3ashr dagaayig.",
+          "english": "And peace be upon you. The Maghrib prayer, and the iqamah is in ten minutes."
+        },
+        {
+          "speaker": "ياسر",
+          "arabic": "أَشْتِي أَتَوَضَّأ. فِين مَكَان الوُضُوء؟",
+          "transliteration": "ashti atawaDDa2. feen makaan al-wuDoo2?",
+          "english": "I want to make wudu. Where is the wudu area?"
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "جَنْب الحَمَّامَات. وَحُطّ جَزْمَتَك عَلَى الرَّفّ عِنْدَ البَاب.",
+          "transliteration": "janb al-7ammaamaat. wa 7uTT jazmatak 3ala r-raff 3ind al-baab.",
+          "english": "Next to the toilets. And put your shoes on the rack by the door."
+        },
+        {
+          "speaker": "ياسر",
+          "arabic": "شُكْرًا. فِين جِهَة القِبْلَة؟",
+          "transliteration": "shukran. feen jihat al-gibla?",
+          "english": "Thanks. Which way is the qibla?"
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "القِبْلَة عَلَى اليَمِين. وَمِنْ فَضْلَك، حُطّ تِلِفُونَك عَلَى الصَّامِت.",
+          "transliteration": "al-gibla 3ala l-yameen. wa min faDlak, 7uTT tilifoonak 3ala S-Saamit.",
+          "english": "The qibla is to the right. And please put your phone on silent."
+        },
+        {
+          "speaker": "ياسر",
+          "arabic": "نَاهِي. فِين مَدْخَل الرِّجَال؟",
+          "transliteration": "naahi. feen madkhal ar-rijaal?",
+          "english": "OK. Where is the men's entrance?"
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "مِنَ البَاب الكَبِير. أَقَامُوا، الصَّلَاة عَتَبْدَأ ذَلْحِين.",
+          "transliteration": "min al-baab al-kabeer. agaamu, aS-Salaa 3a-tabda2 dhal7een.",
+          "english": "Through the big door. They have called the iqamah, the prayer is starting now."
+        },
+        {
+          "speaker": "ياسر",
+          "arabic": "فَاتَتْنِي رَكْعَة لِأَنِّي دَخَلْت مُتَأَخِّر.",
+          "transliteration": "faatatni rak3a li-annani dakhalt muta2akhkhir.",
+          "english": "I missed a rak'ah because I came in late."
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "مَا عَلَيْش، كَمِّل اللِّي فَاتَك. تَقَبَّلَ اللهُ.",
+          "transliteration": "ma 3alaysh, kammil illi faatak. taqabbala Allaah.",
+          "english": "Never mind, complete what you missed. May Allah accept it from you."
+        },
+        {
+          "speaker": "ياسر",
+          "arabic": "مِنَّا وَمِنْكُمْ. جَزَاكَ اللهُ خَيْرًا.",
+          "transliteration": "minnaa wa minkum. jazaaka Allaahu khayran.",
+          "english": "From us and from you. May Allah reward you with good."
+        }
+      ]
+    }
+  }
+}
