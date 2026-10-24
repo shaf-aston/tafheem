@@ -11,6 +11,7 @@ import { nextAfter } from '../../lib/grow/bookLesson'
 import { landingOf, placeOf, valueOf } from '../../lib/grow/growPlace'
 import { WORLDS, worldOf } from '../../lib/grow/worlds'
 import { goBack } from '../../lib/nav/journey'
+import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 import { getProfile } from '../../lib/learner/profile'
 import { useHadithWorld } from '../../lib/grow/useHadithWorld'
 import { usePrayerWorld } from '../../lib/grow/usePrayerWorld'
@@ -76,6 +77,12 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   // A lesson the book does not have, or a review with nothing due: that world's page instead.
   if (cards && !cards.length) setView({ at: 'world', id: view.id, ...(view.part && { part: view.part }) })
 
+  // Which screen this is. Each one arrives as one piece (styles/growWorlds.css .grow-screen), fading in once rather than
+  // every block replaying its own rise, which washed the page pale on every tap; and opens at its top, as a fresh page
+  // would: the tab's scroll was kept, so a world opened from low on Grow's page landed on its footer while its top filled in.
+  const screenKey = view.at === 'lesson' ? `lesson/${playing}` : valueOf(view) ?? 'home'
+  useOpenAtTop(screenKey)
+
   const [, rememberBook] = useRemembered(LAST_BOOK, BOOK_IDS, '')
   const go = (next) => {
     setResume(null)
@@ -122,8 +129,5 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
         onOpen={open} onStart={start} onStartBook={startBook} />
     )
   }
-  // Each screen arrives as one piece (styles/growWorlds.css .grow-screen): keyed by where it is, so a new screen fades in once
-  // and its blocks do not each replay their own rise, which washed the whole page pale on every tap.
-  const screenKey = view.at === 'lesson' ? `lesson/${playing}` : valueOf(view) ?? 'home'
   return <div key={screenKey} className="panel grow-screen fade-in">{screen}</div>
 }
