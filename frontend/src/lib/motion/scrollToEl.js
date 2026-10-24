@@ -2,7 +2,7 @@
  * The one way the app scrolls something into view: always a glide, unless the
  * reader turned motion off (lib/motion/motion) or the target is far (motion.glide-screens). Presets name the intent, not the browser flag.
  */
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 
 import theme from '../../config/theme.json'
 import { motionOff } from './motion'
@@ -72,12 +72,20 @@ export function useOpenAtTop(...keys) {
  * the top; coming back up lands where the reader left that screen, as the browser's back would.
  */
 export function useOpenAtTopKeepBack(key, depth) {
-  const was = useRef({ depth, places: [] })
+  const places = useRef([])
+  const at = useRef({ depth, y: 0 })
+  // The place as last scrolled by the reader: by the time a screen has changed, a shorter one has already pulled the
+  // scroll up, but the scroll event saying so only comes on the next frame.
   useEffect(() => {
-    const { depth: from, places } = was.current
-    places[from] = globalThis.scrollY
-    was.current.depth = depth
-    if (depth < from && places[depth]) return holdAt(places[depth])
-    scrollToTop()
+    const keep = () => { at.current.y = globalThis.scrollY }
+    addEventListener('scroll', keep, { passive: true })
+    return () => removeEventListener('scroll', keep)
+  }, [])
+  useLayoutEffect(() => {
+    const { depth: from, y } = at.current
+    places.current[from] = y
+    at.current.depth = depth
+    const back = depth < from && places.current[depth]
+    return back ? holdAt(back) : scrollToTop()
   }, [key, depth])
 }

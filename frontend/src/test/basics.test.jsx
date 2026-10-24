@@ -51,6 +51,7 @@ describe('basics', () => {
     await hero()
     const scrolled = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
     window.scrollY = 500
+    fireEvent.scroll(window)
     fireEvent.click(document.querySelector('.grow-world-tile'))
     await waitFor(() => expect(scrolled).toHaveBeenCalledWith(expect.objectContaining({ top: 0 })))
     fireEvent.click(document.querySelector('.grow-back'))
