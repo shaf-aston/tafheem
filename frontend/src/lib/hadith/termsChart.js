@@ -6,6 +6,7 @@
  * the Map's sciences and would graft their sub-topics onto these. Every box is tappable (a third `true`), since
  * a tap on a term opens its card; the chart is two levels, so a term's own kids show only in `branchChart`.
  */
+import knobs from '../../config/pbsChart.json'
 import { layoutChart } from '../shell/pbsLayout'
 import { HUE } from '../shell/pbsData'
 
@@ -53,7 +54,7 @@ export function termAt(glossary, arabic) {
 }
 
 /** The smallest label PbsChart draws, in px (the English sub-label of a term box). */
-export const SMALLEST_LABEL = 9.5
+export const SMALLEST_LABEL = Math.min(...Object.values(knobs.levels).map((level) => level['sub-size']))
 /** The smallest the chart is drawn, as a share of its own width: its smallest label stays at 12px or more. */
 export const MIN_SCALE = 12 / SMALLEST_LABEL
 /** The page width, in px, from which the whole tree draws at MIN_SCALE without scrolling sideways. */
