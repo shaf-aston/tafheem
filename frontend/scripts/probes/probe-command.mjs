@@ -1,7 +1,7 @@
 /**
  * Drive the command line and the launcher in a real browser.
  *
- *   node scripts/probe-command.mjs
+ *   node scripts/probes/probe-command.mjs
  *
  * Not a test. The unit tests prove the classifier; this proves that typing into
  * the running page actually lands on the right tab with the right thing loaded,

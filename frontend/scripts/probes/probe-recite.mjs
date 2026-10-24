@@ -2,7 +2,7 @@
  * Memorise > Recite it, clicked through rather than assumed. Needs the dev
  * server and the backend up.
  *
- *   node scripts/probe-recite.mjs
+ *   node scripts/probes/probe-recite.mjs
  *
  * Two things it proves, both of which only exist on the running page: pressing
  * a word starts the recitation there, so the words above it stay printed and

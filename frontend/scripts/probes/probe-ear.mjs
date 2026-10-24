@@ -3,7 +3,7 @@
  * al-Fatihah are the microphone, the page records them, the backend hears
  * them, and the page marks the words.
  *
- *   EAR=http://127.0.0.1:8011 node scripts/probe-ear.mjs
+ *   EAR=http://127.0.0.1:8011 node scripts/probes/probe-ear.mjs
  *
  * Knobs, all by environment:
  *   EAR    the backend to hear it; 8011 started with RECITATION_HOSTED=false

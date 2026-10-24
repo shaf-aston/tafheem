@@ -5,7 +5,7 @@
  * where a word's ink is taller than that, its marks run into the neighbouring
  * line. Run it before changing --font-quran or the line height.
  *
- *   node scripts/probe-quran-script.mjs        (dev server and backend running)
+ *   node scripts/probes/probe-quran-script.mjs        (dev server and backend running)
  *
  * Measured 2026-10: Amiri Quran p99 2.46em (tangled lines), Scheherazade New 1.87em.
  * Coverage is the other half of the check: every character the text uses must be

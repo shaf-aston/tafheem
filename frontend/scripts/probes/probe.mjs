@@ -1,9 +1,9 @@
 /**
  * Drive the running app in a real browser and report what it actually did.
  *
- *   node scripts/probe.mjs                 # the Quran tab, look up 2:21
- *   node scripts/probe.mjs quran 2 21
- *   node scripts/probe.mjs back            # the back arrow, on the Sarf tab
+ *   node scripts/probes/probe.mjs                 # the Quran tab, look up 2:21
+ *   node scripts/probes/probe.mjs quran 2 21
+ *   node scripts/probes/probe.mjs back            # the back arrow, on the Sarf tab
  *
  * Not a test. The test suite proves the parts; this proves the running page,
  * which is the only place a broken request, a crashed render or a bad layout

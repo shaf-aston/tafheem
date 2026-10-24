@@ -2,7 +2,7 @@
  * Does the walked path survive a reload? Clicked through, not assumed. Needs
  * the dev server and the backend up.
  *
- *   node scripts/probe-session.mjs
+ *   node scripts/probes/probe-session.mjs
  */
 import { chromium } from 'playwright'
 

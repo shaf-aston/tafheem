@@ -1,7 +1,7 @@
 /**
  * Prove a username is one record across devices.
  *
- *   node scripts/probe-profiles.mjs
+ *   node scripts/probes/probe-profiles.mjs
  *
  * Needs the app on :5173 and the backend on :8000. Two browser contexts stand
  * in for a phone and a laptop: they share nothing but the server. A signs up,

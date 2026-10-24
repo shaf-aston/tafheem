@@ -2,7 +2,7 @@
  * Type a surah name and ayah into the Quran tab and the header bar, in a real
  * browser, and confirm the right ayah opens.
  *
- *   node scripts/probe-surahref.mjs
+ *   node scripts/probes/probe-surahref.mjs
  */
 import { chromium } from 'playwright'
 

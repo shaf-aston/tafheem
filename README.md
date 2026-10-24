@@ -28,7 +28,7 @@ Commands to run the app, the tests and the data builds: `CORE-FLOW.md` (Run it) 
 
 - `CORE-FLOW.md`: what it does, the flow, the glossary
 - `docs/core-flow-detail.md`: long notes; `docs/glossary/`: per module
-- `RECITE-PLAN.md`: reciting rules and open work
+- `docs/plans/2026-09-05-recite.md`: reciting rules and open work
 - `docs/strategy/README.md`: product strategy
 
 ## Troubleshooting

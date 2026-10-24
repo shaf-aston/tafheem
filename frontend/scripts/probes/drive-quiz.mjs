@@ -1,7 +1,7 @@
 /**
  * Drive the quiz tab in a real browser and prove the progress feature works.
  *
- *   node scripts/drive-quiz.mjs
+ *   node scripts/probes/drive-quiz.mjs
  *
  * Not a test: the suites prove the parts. This answers questions in the running
  * page, on purpose getting some wrong, and then checks that a wrong word lands

@@ -12,7 +12,7 @@ tests/
 tunnel/
 deploy/
 docs/
-prototypes/
+docs/prototypes/
 requirements.txt
 pytest.ini
 start.sh

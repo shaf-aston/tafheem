@@ -2,7 +2,7 @@
  * The way back, clicked through: the address bar, the browser's own arrow, and
  * the trail line beside the title. Needs the dev server and the backend up.
  *
- *   node scripts/probe-trail.mjs
+ *   node scripts/probes/probe-trail.mjs
  */
 import { chromium } from 'playwright'
 

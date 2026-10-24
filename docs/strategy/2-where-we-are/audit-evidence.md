@@ -73,7 +73,7 @@ Complexity: L (auth + privacy + UI), M for anonymous device-id user (cheap fix t
 
 ## 8. Recitation feedback — PARTIAL/EXISTS for words; tajweed MISSING in serving path
 Evidence
-- RECITE-PLAN.md milestones M0-M10 (headings lines 39-278; M3 "two ears", M5 marks, M6 strip, M7 hidden words + reciting). Standing rules (L9-33): fold spellings first, five states, nothing marks instantly, 20 req/min Groq ceiling, "No paid provider, no card, ever" (L282).
+- docs/plans/2026-09-05-recite.md milestones M0-M10 (headings lines 39-278; M3 "two ears", M5 marks, M6 strip, M7 hidden words + reciting). Standing rules (L9-33): fold spellings first, five states, nothing marks instantly, 20 req/min Groq ceiling, "No paid provider, no card, ever" (L282).
 - services/recitation/: ears.py (hosted Groq -> letters -> here Whisper, 60s rest on failure, per-minute limiter), hosted.py, letters.py (tilawa FastConformer ONNX, data/models/tilawa 85MB, MIT/CC-BY), locate.py (place recitation on the page), place.py, match.py, listen.py (434 lines; /api/listen, /api/listen/check "how sure of each word"), loudness.py, spelling.py, recording.py. Journal: services/learner/journal.py + lib/recite/journal.js -> logs/recite-journal.jsonl joined by X-Reading-Id.
 - Client follower: lib/recite/follow.js (alignment with COSTS from recite.json, states at :57-70), soundalike.js, recitingSession.js, ReciteStrip.jsx.
 - Tuned thresholds recorded in config.py:70-190 comments (e.g. >=0.9 sure of 74% right words imlaei vs 51% Uthmani; sureness "worst-but-one" 3.2% marked though right at 61% vowel-slips caught; 1,950 recordings / 6,832 judged words).
@@ -94,7 +94,7 @@ Complexity: S-M to add ids/prereq edges to nahw_notes blocks and tag roles; the 
 - Backend offline by design (README.md:7, CORE-FLOW.md "Offline by default"); data built locally (1.6 GB DBs, deploy/README.md:3-4).
 - Frontend: NO service worker (searched serviceWorker, workbox, VitePWA in package.json, vite.config.js, public/, index.html: none); only public/app.webmanifest. No IndexedDB (grep indexedDB in frontend/src: none). localStorage via lib/store/stored.js (readSaved/writeSaved, progressKey prefix, forgetProgressKeys:61), useRemembered.js, useHistory.js (lookup history), settings.js, session.js (journey trail saved with version, parseSession), journey.js (browser history-based trail), recent.js, Grow record, quiz best streak (QuizPanel.jsx:98).
 - Server-side learner state: only progress.db (single 'local' user, see 7). Grow record = client-only; attempts = server-only; neither syncs.
-- frontend probes: scripts/probe-persistence.mjs, probe-session.mjs, probe-trail.mjs test persistence.
+- frontend probes: scripts/probes/probe-persistence.mjs, probe-session.mjs, probe-trail.mjs test persistence.
 - On-device ears: tilawa ONNX and Whisper run on the backend machine, not the phone; "offline" means local to the server.
 Complexity: M (service worker + IndexedDB queue for attempts), L if the heavy models must run on-device.
 
@@ -133,7 +133,7 @@ Committed unless "built": sizes from du.
 - hadith/: collections.json (manifest), search_yardstick.json (benchmark). Collections themselves BUILT from fawazahmed0/hadith-api; mushkil-tahawi.json BUILT from OpenITI.
 - rijal/rijal.json config only; rijal.db BUILT from sunnah.com (scraped with browser impersonation, 1s pace: ToS/licence risk worth flagging).
 - books/ (35MB): openiti-books.json + openiti/ (OpenITI classical texts, open licence), english-titles.json; lexicons.db (Lisan, Taj, Lane; BUILT).
-- timelines/ (744KB): library.json + sections/ (written with Claude; "guessed"); dawah/dawah.json (IslamQA-based replies researched with Claude; "guessed"); colloquial/ (25MB: spine.json, 9 dialect folders, images; Claude-written, "no native speaker has checked", Levanti etc. unusable commercially per docs/colloquial-research.md).
+- timelines/ (744KB): library.json + sections/ (written with Claude; "guessed"); dawah/dawah.json (IslamQA-based replies researched with Claude; "guessed"); colloquial/ (25MB: spine.json, 9 dialect folders, images; Claude-written, "no native speaker has checked", Levanti etc. unusable commercially per docs/colloquial/research.md).
 - recitation_checks/ (1.3MB committed): reports + phoneme_results.jsonl + uthmani_check.jsonl (derived from a reviewer-marked recitation dataset; sources.json inside).
 - *.apkg (4 Bayna Yadayk Anki decks, 1.2MB+): third-party textbook decks (licence unclear, flag).
 - urdu_links etc. above. Dictionary JSON (arabic_dictionary.json), lexicon.db, progress.db: built/runtime, not committed.

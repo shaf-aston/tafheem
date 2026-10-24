@@ -1,7 +1,7 @@
 /**
  * Does the page work out where somebody started reciting, without being told?
  *
- *   node scripts/probe-start.mjs
+ *   node scripts/probes/probe-start.mjs
  *
  * The suites prove follow.js answers `began` for lists of strings. This proves
  * the running page acts on it: the microphone is a real one Chrome fakes, and
