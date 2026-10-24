@@ -81,7 +81,8 @@ export default function HomePanel({ accent, onGo }) {
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_var(--layout-rail)] lg:gap-8 lg:items-start">
         <div className="space-y-6">
           <div className="cb" data-wide>
-            <CommandField line={line} name={NAME} placeholder={phone ? copy['placeholder-phone'] : copy.placeholder} showing={showing} />
+            <CommandField line={line} name={NAME} placeholder={phone ? copy['placeholder-phone'] : copy.placeholder} showing={showing}
+              trailing={!line.query && <ArabicText as="span" size="sm" className="cb-hint-ar" aria-hidden="true">{copy['placeholder-ar']}</ArabicText>} />
             {showing && (
               <CommandResults id={`${NAME}-results`} name={NAME} rows={line.rows} tabs={LISTED} colorOf={accentOf}
                 active={line.active} onHover={line.setActive} onPick={line.run}

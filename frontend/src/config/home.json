@@ -5,6 +5,8 @@
     "title-first": "Start here.",
     "placeholder": "Type an ayah, a word, @root or a sentence",
     "placeholder-phone": "Ayah, word, @root…",
+    "_placeholder-ar": "Said at the box's right end while it is empty, so a reader sees at once that Arabic may be typed too.",
+    "placeholder-ar": "اكتب بالعربية",
     "resume-label": "Where you stopped",
     "resume-go": "Continue",
     "fork-label": "How much Arabic do you know?",
