@@ -5,9 +5,9 @@
  * Shared words stay quiet; differing words take the tab accent. The states are
  * the page's usual ones, so the panel and the kit page draw the same thing.
  */
-import { wordsOf } from '../../lib/memorise'
-import { flagsOnPage, placeLine, wordFlags } from '../../lib/similar'
-import { smartError } from '../../lib/apiError'
+import { wordsOf } from '../../lib/memorise/memorise'
+import { flagsOnPage, placeLine, wordFlags } from '../../lib/similar/similar'
+import { smartError } from '../../lib/api/apiError'
 
 import ArabicText from './ArabicText'
 import EmptyState from './EmptyState'

@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 from typing import Iterable
 
-from backend.services.arabic_text import normalize_root
+from backend.services.text.arabic_text import normalize_root
 from backend.services.daleel.sources.model import Passage
 
 _DICTIONARY = Path(__file__).resolve().parents[3] / "data" / "arabic_dictionary.json"

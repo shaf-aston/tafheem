@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import ErrorAlert from '../ui/ErrorAlert'
-import { copy, noSignal } from '../../lib/offline'
+import { copy, noSignal } from '../../lib/shell/offline'
 
 // Telling a visitor to start a server on their own machine only makes sense on
 // the machine the server would run on.

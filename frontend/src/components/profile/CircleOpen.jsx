@@ -10,7 +10,7 @@ import { useQuery } from '@tanstack/react-query'
 import {
   deleteCircle, fetchCircle, fetchLeaderboard, fetchMemberOverview, inviteMember, leaveCircle, moveCircle, removeMember,
   setRole,
-} from '../../lib/progress'
+} from '../../lib/learner/progress'
 
 import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'

@@ -2,8 +2,8 @@
 
     python backend/scripts/export_recordings.py
 
-services/recordings.py keeps each take on the server. This puts them where
-lib/speak.js's "person" voice looks (speak.json voices.person): one MP3 per
+services/recitation/recordings.py keeps each take on the server. This puts them where
+lib/speech/speak.js's "person" voice looks (speak.json voices.person): one MP3 per
 word, and voice_audio.json mapping the word to its file. Run it, then commit
 the folder; files for words no longer recorded are removed.
 """
@@ -16,7 +16,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import recordings
+from backend.services.recitation import recordings
 
 OUT = recordings.ROOT / "frontend/public/words/voice"
 MAP = recordings.ROOT / "frontend/public/words/voice_audio.json"

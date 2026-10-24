@@ -1,4 +1,4 @@
-import { answerParts, partPicks } from '../../../lib/tamreen'
+import { answerParts, partPicks } from '../../../lib/nahw/tamreen'
 
 import TamreenAnswerNote from '../TamreenAnswerNote'
 import TamreenSentence, { TamreenLegend } from '../TamreenSentence'

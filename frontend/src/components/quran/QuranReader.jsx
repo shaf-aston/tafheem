@@ -14,8 +14,8 @@
  * rows is drawn first (AyahList), and rows off the screen are not laid out
  * (.surah-row).
  */
-import { learntWords } from '../../lib/coverage'
-import { FIRST_SURAH, LAST_SURAH } from '../../lib/surahRef'
+import { learntWords } from '../../lib/quiz/coverage'
+import { FIRST_SURAH, LAST_SURAH } from '../../lib/quran/surahRef'
 import { useMushaf } from '../../lib/quran/useMushaf'
 import { useSurahPlace } from '../../lib/quran/useSurahPlace'
 import { useSurahReading } from '../../lib/quran/useSurahReading'

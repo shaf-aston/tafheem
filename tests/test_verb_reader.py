@@ -1,7 +1,8 @@
-"""A typed verb read back into sarf's table (services/verb_reader.py)."""
+"""A typed verb read back into sarf's table (services/sarf/verb_reader.py)."""
 import pytest
 
-from backend.services import conjugation, verb_reader
+from backend.services.sarf import conjugation
+from backend.services.sarf import verb_reader
 
 
 @pytest.mark.parametrize("radicals", ["كتب", "قول", "سير", "دعو", "رمي", "وعد", "مدد", "وقي", "أمر", "أخذ", "سأل", "قرأ", "دخل", "صبر", "ثبت", "سكن", "وهب"])

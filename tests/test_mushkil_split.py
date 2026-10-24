@@ -6,7 +6,7 @@ prints and by data/hadith/mushkil-unplaced.json.
 
 Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
-from backend.services import mushkil_split
+from backend.services.hadith import mushkil_split
 
 BOOK = """######OpenITI#
 #META# 000.SortField :: X

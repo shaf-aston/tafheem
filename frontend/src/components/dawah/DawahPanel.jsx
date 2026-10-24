@@ -12,11 +12,11 @@
  * IslamQA fatwa is linked at the foot as further reading.
  */
 import { useState } from 'react'
-import { useArrivalWhenReady } from '../../lib/useArrival'
+import { useArrivalWhenReady } from '../../lib/nav/useArrival'
 import { useQuery } from '@tanstack/react-query'
 
 import { dawahQuery } from '../../api'
-import { useRemembered } from '../../lib/useRemembered'
+import { useRemembered } from '../../lib/store/useRemembered'
 import { matches } from '../../lib/dawah/dawahSearch'
 import knobs from '../../config/dawah.json'
 

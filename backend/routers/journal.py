@@ -18,7 +18,7 @@ from pydantic import ValidationError
 
 from backend.config import get_settings
 from backend.models.journal import JournalBatch
-from backend.services import journal
+from backend.services.learner import journal
 
 router = APIRouter(prefix="/api/journal", tags=["journal"])
 

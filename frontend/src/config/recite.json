@@ -1,5 +1,5 @@
 {
-  "_comment": "Following someone as they recite. The rules that use these numbers are in lib/soundalike.js and lib/follow.js; this file is only what the numbers are. Nothing here decides which engine listens: that is backend config, because the key and the model live there.",
+  "_comment": "Following someone as they recite. The rules that use these numbers are in lib/speech/soundalike.js and lib/recite/follow.js; this file is only what the numbers are. Nothing here decides which engine listens: that is backend config, because the key and the model live there.",
 
   "_comment-orange": "Letters a microphone confuses with each other. Each line is one group, and any letter in a group counts as any other when deciding whether a word that came back wrong is a near miss rather than a mistake. This runs AFTER the spelling fold in arabicText.js, never instead of it: مَٰلِكِ and مالك are one word and must never reach this rule at all.",
 
@@ -75,12 +75,12 @@
   "_check-queue-max": "The most sureness checks held waiting to be sent. Past it the oldest not-yet-sent one is dropped to make room; the one already in flight is never touched.",
   "check-queue-max": 8,
 
-  "_journal-flush-ms": "How often lib/journal.js sends whatever it is holding, if reciting has not already filled a batch.",
+  "_journal-flush-ms": "How often lib/recite/journal.js sends whatever it is holding, if reciting has not already filled a batch.",
   "journal-flush-ms": 2000,
 
-  "_journal-batch": "How many events lib/journal.js sends in one call, and the queue length that triggers an early flush rather than waiting for journal-flush-ms. The backend accepts up to 50 per call; well under that leaves room for a burst mid-flush.",
+  "_journal-batch": "How many events lib/recite/journal.js sends in one call, and the queue length that triggers an early flush rather than waiting for journal-flush-ms. The backend accepts up to 50 per call; well under that leaves room for a burst mid-flush.",
   "journal-batch": 20,
 
-  "_journal-queue-max": "The most events lib/journal.js holds before it starts dropping the newest rather than growing without bound. A crash worth reading about is not a crash worth running out of memory for first.",
+  "_journal-queue-max": "The most events lib/recite/journal.js holds before it starts dropping the newest rather than growing without bound. A crash worth reading about is not a crash worth running out of memory for first.",
   "journal-queue-max": 200
 }

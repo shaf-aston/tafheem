@@ -1,6 +1,6 @@
 /** Complete the hadith: its key line with one word blanked, four words to choose from. */
 import ArabicText from '../../ui/ArabicText'
-import { sayIn } from '../../../lib/say'
+import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')
 

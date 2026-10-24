@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 
 import theme from './config/theme.json'
 import { THEME_NAMES, colorAt, colorFor, resolveTheme, themeChoices, tokenGroups } from './theme'
-import { apca, contrast, oklch } from './lib/tone'
+import { apca, contrast, oklch } from './lib/theme/tone'
 
 const SRC = fileURLToPath(new URL('.', import.meta.url))
 const HEX = /^#[0-9a-f]{6}$/i

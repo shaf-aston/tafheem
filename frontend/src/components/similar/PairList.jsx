@@ -1,5 +1,5 @@
-import { fill, whereOf } from '../../lib/similar'
-import { ahead } from '../../lib/warm'
+import { fill, whereOf } from '../../lib/similar/similar'
+import { ahead } from '../../lib/api/warm'
 import copy from '../../config/similar.json'
 
 const LABEL = { new: copy['label-new'], due: copy['label-due'], known: copy['label-known'] }

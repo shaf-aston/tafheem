@@ -19,8 +19,8 @@ import Segmented from '../ui/Segmented'
 import SmallButton from '../ui/SmallButton'
 import settings from '../../config/timelines.json'
 import { nearest, positions, scaleModes, yearTicks } from '../../lib/timelines/time'
-import { useMedia, PHONE } from '../../lib/useMedia'
-import { useRemembered } from '../../lib/useRemembered'
+import { useMedia, PHONE } from '../../lib/hooks/useMedia'
+import { useRemembered } from '../../lib/store/useRemembered'
 
 const { scrub: SCRUB } = settings
 // The range input's resolution: fine enough that a drag feels continuous.

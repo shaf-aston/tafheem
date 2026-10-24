@@ -4,8 +4,8 @@
  */
 import { useState } from 'react'
 
-import { lessonsOf } from '../../lib/bookLesson'
-import { sayIn } from '../../lib/say'
+import { lessonsOf } from '../../lib/grow/bookLesson'
+import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/ArabicText'
 
 const say = sayIn('en')

@@ -1,5 +1,5 @@
 {
-  "_comment": "The Similar tab (components/similar/SimilarPanel.jsx): its words and its knobs; its name is in lib/tabs.js. The rules are in lib/similar.js; the pairs come from the backend's catalogue.",
+  "_comment": "The Similar tab (components/similar/SimilarPanel.jsx): its words and its knobs; its name is in lib/nav/tabs.js. The rules are in lib/similar/similar.js; the pairs come from the backend's catalogue.",
   "subtitle": "Verses that read almost alike: see what tells them apart, then learn which wording is where",
   "module": "similar",
   "default-surah": 2,

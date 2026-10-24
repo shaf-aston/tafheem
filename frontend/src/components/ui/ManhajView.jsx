@@ -5,13 +5,13 @@
  * A group's page answers its family's fixed questions. With nothing to compare
  * against, each answer lists who else in the family holds it; with a second
  * group picked, answers sit side by side and the rows where they differ are
- * marked. Every "same/different" comes from lib/manhajData's tags; this file
+ * marked. Every "same/different" comes from lib/shell/manhajData's tags; this file
  * judges nothing itself.
  */
 import { useState } from 'react'
 
 import ArabicText from './ArabicText'
-import { FAMILIES, differs, sharedWith } from '../../lib/manhajData'
+import { FAMILIES, differs, sharedWith } from '../../lib/shell/manhajData'
 
 export default function ManhajView() {
   const [familyId, setFamilyId] = useState(FAMILIES[0].id)

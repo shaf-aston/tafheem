@@ -4,8 +4,8 @@ import { useQuery } from '@tanstack/react-query'
 
 import { rootBabsQuery } from '../../api'
 import { entrySpans } from '../../lib/dictionary/entrySpan'
-import { plainPronunciation } from '../../lib/pronounce'
-import { useSetting } from '../../lib/settings'
+import { plainPronunciation } from '../../lib/speech/pronounce'
+import { useSetting } from '../../lib/store/settings'
 
 import SenseBands from './SenseBands'
 import WordGrid from './WordGrid'

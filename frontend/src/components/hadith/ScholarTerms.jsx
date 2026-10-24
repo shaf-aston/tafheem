@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { usulTermsQuery } from '../../api'
-import { useOpenAtTop } from '../../lib/scrollToEl'
+import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 
 import Chip from '../ui/Chip'
 import ChipRow from '../ui/ChipRow'

@@ -7,12 +7,12 @@
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { startOver } from '../../lib/journey'
-import { logOut } from '../../lib/profile'
-import { deleteAccount, fetchLeaderboard, setPublic } from '../../lib/progress'
-import { forgetShelf } from '../../lib/shelf'
-import { ARMED_MS, useMoment } from '../../lib/useMoment'
-import { useProgressFacts } from '../../lib/useProgressFacts'
+import { startOver } from '../../lib/nav/journey'
+import { logOut } from '../../lib/learner/profile'
+import { deleteAccount, fetchLeaderboard, setPublic } from '../../lib/learner/progress'
+import { forgetShelf } from '../../lib/store/shelf'
+import { ARMED_MS, useMoment } from '../../lib/hooks/useMoment'
+import { useProgressFacts } from '../../lib/learner/useProgressFacts'
 
 import CirclesView from './CirclesView'
 import ModuleRows from './ModuleRows'

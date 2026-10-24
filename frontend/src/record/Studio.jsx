@@ -7,7 +7,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { canRecord, CANNOT_RECORD, createRecorder, openMicrophone, refusal } from '../lib/microphone'
+import { canRecord, CANNOT_RECORD, createRecorder, openMicrophone, refusal } from '../lib/speech/microphone'
 
 const KEY = 'recorder-key'
 const BATCH = 20

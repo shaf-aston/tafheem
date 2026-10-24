@@ -7,7 +7,7 @@
  * behind a hover. The wording comes from the backend, which reads it from
  * data/sources.json; nothing here decides what a source is called.
  */
-import { levelOf } from '../../lib/confidence'
+import { levelOf } from '../../lib/text/confidence'
 
 export default function SourceBadge({ source, className = '' }) {
   if (!source) return null

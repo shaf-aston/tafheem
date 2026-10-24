@@ -29,11 +29,17 @@ from backend.models.quran import (
     SurahPages,
 )
 from backend.models.tarkeeb import TarkeebTree
-from backend.services import arabic_text, provenance, quran_library, quran_service
-from backend.services import mushaf, mutashabihat, quran_search
-from backend.services import iraab
-from backend.services import tarkeeb_store, tree_columns
-from backend.services.refs import SURAHS
+from backend.services.text import arabic_text
+from backend.services.core import provenance
+from backend.services.quran import library as quran_library
+from backend.services.quran import service as quran_service
+from backend.services.quran import mushaf
+from backend.services.quran import mutashabihat
+from backend.services.quran import search as quran_search
+from backend.services.nahw import iraab
+from backend.services.nahw import tarkeeb_store
+from backend.services.nahw import tree_columns
+from backend.services.text.refs import SURAHS
 from backend.utils import normalize_text, search_query
 
 logger = logging.getLogger(__name__)

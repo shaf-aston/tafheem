@@ -1,14 +1,14 @@
 /**
  * One tap to say the voice got a word wrong. Files what was last heard (the
  * text, which voice, what speed) through the same feedback box as "Report a
- * problem" (lib/progress.js), under module "voice", so the words to fix are
+ * problem" (lib/learner/progress.js), under module "voice", so the words to fix are
  * the ones people actually heard wrong, not guesses. Shown once a word has
  * been heard, keyed on the question by its caller so it resets with it.
  */
 import { useState } from 'react'
 
-import { leaveFeedback } from '../../lib/progress'
-import { lastHeard } from '../../lib/speak'
+import { leaveFeedback } from '../../lib/learner/progress'
+import { lastHeard } from '../../lib/speech/speak'
 
 export default function SoundedWrong({ className = '' }) {
   const [state, setState] = useState('') // '' | 'unheard' | 'sending' | 'sent' | 'failed'

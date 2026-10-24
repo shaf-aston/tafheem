@@ -9,7 +9,7 @@ from __future__ import annotations
 import pytest
 from fastapi import HTTPException
 
-from backend.services.arabic_text import unpunctuated, words
+from backend.services.text.arabic_text import unpunctuated, words
 from backend.utils import search_query
 
 

@@ -7,7 +7,7 @@
 import { useState } from 'react'
 
 import settings from '../../../config/colloquial.json'
-import { shuffled } from '../../../lib/shuffle'
+import { shuffled } from '../../../lib/text/shuffle'
 import ArabicText from '../../ui/ArabicText'
 import SmallButton from '../../ui/SmallButton'
 import { FOCUS } from '../parts/Face'

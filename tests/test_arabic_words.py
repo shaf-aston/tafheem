@@ -2,7 +2,7 @@
 
 Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
-from backend.services.arabic_text import spelled_out, words
+from backend.services.text.arabic_text import spelled_out, words
 
 AYAH = "يُرِيدُ ٱللَّهُ أَن يُخَفِّفَ عَنكُمْ ۚ وَخُلِقَ ٱلْإِنسَـٰنُ ضَعِيفًۭا ٢٨"
 

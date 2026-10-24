@@ -18,7 +18,7 @@
  *
  * Pure: strings in, true or false out.
  */
-import { foldForSearch as fold } from '../arabicText'
+import { foldForSearch as fold } from '../text/arabicText'
 
 /**
  * True when this example answers to what was typed. Empty text matches every

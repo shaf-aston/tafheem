@@ -35,7 +35,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import get_settings  # noqa: E402, needs the path above
 from backend.services import ai as ai_service  # noqa: E402
-from backend.services import root_english, root_gloss, root_meaning  # noqa: E402
+from backend.services.dictionary import root_meaning  # noqa: E402
+from backend.services.dictionary import root_english
+from backend.services.dictionary import root_gloss
 
 
 def entries_to_do(limit: int | None, by_line: bool) -> list[tuple[str, str | list[str]]]:

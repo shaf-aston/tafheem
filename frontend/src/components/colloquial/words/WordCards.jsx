@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 import { isRight } from '../../../lib/colloquial/answer'
-import { useSlide, useSwipe } from '../../../lib/useSwipe'
+import { useSlide, useSwipe } from '../../../lib/motion/useSwipe'
 import ArabicText from '../../ui/ArabicText'
 import MicButton from '../../ui/MicButton'
 import SmallButton from '../../ui/SmallButton'

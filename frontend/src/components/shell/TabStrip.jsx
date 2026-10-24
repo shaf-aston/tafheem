@@ -4,7 +4,7 @@
  */
 import { useRef } from 'react'
 
-import { ahead } from '../../lib/warm'
+import { ahead } from '../../lib/api/warm'
 import ArabicText from '../ui/ArabicText'
 import KeyHint from './KeyHint'
 
@@ -17,7 +17,7 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
     // auto too, and the 1px underline below the strip would then raise a
-    // scrollbar. `tabs` is already the strip (lib/recent.js): fixed tabs plus
+    // scrollbar. `tabs` is already the strip (lib/nav/recent.js): fixed tabs plus
     // the recent ones, so it never outgrows the row; wrap is only the fallback.
     //
     // The labels are type-body, the same size as the English being read

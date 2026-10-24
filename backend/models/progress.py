@@ -38,7 +38,7 @@ class AttemptIn(BaseModel):
 
 
 class Rewards(BaseModel):
-    """XP and level (services/rewards.py)."""
+    """XP and level (services/learner/rewards.py)."""
 
     xp: int
     xpToday: int

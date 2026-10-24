@@ -8,7 +8,7 @@
  */
 import { useEffect, useState } from 'react'
 
-import { closeOnBackdrop, useModal } from '../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
 
 export default function BottomSheet({ label, onClose, className = '', children }) {
   const dialog = useModal(true)

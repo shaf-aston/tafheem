@@ -12,9 +12,9 @@ import { useQuery } from '@tanstack/react-query'
 
 import { notesQuery } from '../../api'
 import { NOTES, cardsOf, rolesUsed } from '../../lib/nahw/notes'
-import { scrollToEl } from '../../lib/scrollToEl'
-import { readViewParam, writeViewParams } from '../../lib/tabUrl'
-import { useRemembered, useRememberedFlag } from '../../lib/useRemembered'
+import { scrollToEl } from '../../lib/motion/scrollToEl'
+import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
+import { useRemembered, useRememberedFlag } from '../../lib/store/useRemembered'
 
 import NoteBlock from './NoteBlock'
 import NoteCards from './NoteCards'

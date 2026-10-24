@@ -16,7 +16,7 @@ import zlib
 import pytest
 
 from backend.scripts import build_lexicons as builder
-from backend.services import lexicons
+from backend.services.dictionary import lexicons
 
 
 # ── how a book is read ───────────────────────────────────────────────────────

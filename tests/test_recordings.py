@@ -10,7 +10,7 @@ from pydantic import SecretStr
 
 from backend.config import get_settings
 from backend.main import create_app
-from backend.services import recordings
+from backend.services.recitation import recordings
 
 # Tidying a take runs ffmpeg; a machine without it cannot check that part.
 needs_ffmpeg = pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="ffmpeg is not installed")

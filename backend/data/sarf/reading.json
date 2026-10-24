@@ -1,5 +1,5 @@
 {
-  "_comment": "How services/verb_reader.py reads a typed verb back into sarf's table. It builds the table once for each stand-in root below, turns every word in it into a shape whose stand-in letters are blanks, and matches the typed word against those shapes; the root a shape gives is then conjugated for real, so the table stays the only judge.",
+  "_comment": "How services/sarf/verb_reader.py reads a typed verb back into sarf's table. It builds the table once for each stand-in root below, turns every word in it into a shape whose stand-in letters are blanks, and matches the typed word against those shapes; the root a shape gives is then conjugated for real, so the table stays the only judge.",
   "_placeholders": "The letters that stand for the root in the stand-ins, first root letter first. No rule in ilal.json names any of them, and none is ever part of a prefix or an ending, so a stand-in's table is every sound root's table with other letters.",
   "placeholders": "فقرب",
   "_stand-ins": "One root of each kind the rules shape (conjugation.conjugates): sound, hollow by و and ي, weak-ended by و and ي, و- and ي-first, doubled, two weak letters apart, the hamza in each place, and a last letter that is also an ending's first (ثَبَتُّ، سَكَنَّا). Their weak letters and hamzas are real letters, kept in the shape.",

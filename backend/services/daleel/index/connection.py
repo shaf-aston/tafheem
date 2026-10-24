@@ -5,7 +5,7 @@ import logging
 import sqlite3
 
 from backend.config import data_path
-from backend.services.readonly_db import ReadOnlyDb
+from backend.services.core.readonly_db import ReadOnlyDb
 
 log = logging.getLogger(__name__)
 

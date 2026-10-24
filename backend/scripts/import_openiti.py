@@ -47,7 +47,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services.arabic_text import bare_letters  # noqa: E402
+from backend.services.text.arabic_text import bare_letters  # noqa: E402
 
 _ROOT = Path(__file__).resolve().parents[1] / "data" / "books"
 _MANIFEST = _ROOT / "openiti-books.json"

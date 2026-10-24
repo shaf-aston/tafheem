@@ -2,8 +2,8 @@
  * What a recited word's mark means in a sentence, and which part of the word
  * the ear doubted. Pure, so the card that shows them has nothing to decide.
  */
-import { bareForm, sameSpokenWord } from '../arabicText'
-import { CHECK, MISSED, SAID, WAITING, WRONG } from '../follow'
+import { bareForm, sameSpokenWord } from '../text/arabicText'
+import { CHECK, MISSED, SAID, WAITING, WRONG } from '../recite/follow'
 
 /**
  * One plain sentence for why a word is marked as it is. `underlined` is whether

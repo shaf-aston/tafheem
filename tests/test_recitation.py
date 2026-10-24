@@ -26,7 +26,7 @@ import numpy as np
 import pytest
 
 from backend.config import get_settings
-from backend.services import quran_corpus
+from backend.services.quran import corpus as quran_corpus
 from backend.services.recitation import listen, match
 
 
@@ -516,7 +516,7 @@ def test_an_unknown_startup_step_stops_startup(monkeypatch):
     import pytest
 
     from backend.config import get_settings
-    from backend.services import startup
+    from backend.services.core import startup
 
     monkeypatch.setattr(get_settings(), "startup_wait", [])
     monkeypatch.setattr(get_settings(), "startup_background", ["colloquail"])

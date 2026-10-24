@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 
-import { useAnswerKeys } from '../useAnswerKeys'
-import { answerParts, buildQueue, KINDS, narrowQueue, partPicks, scoreOf, SHOWS, statusOf, TAMREEN } from '../tamreen'
+import { useAnswerKeys } from '../quiz/useAnswerKeys'
+import { answerParts, buildQueue, KINDS, narrowQueue, partPicks, scoreOf, SHOWS, statusOf, TAMREEN } from './tamreen'
 import { useAnswers } from './tamreenAnswers'
-import { readViewParam, writeViewParams } from '../tabUrl'
-import { useRemembered, useRememberedFlag } from '../useRemembered'
+import { readViewParam, writeViewParams } from '../nav/tabUrl'
+import { useRemembered, useRememberedFlag } from '../store/useRemembered'
 
 /**
  * Everything the Tamreen practise panel holds: which topic, type and show are

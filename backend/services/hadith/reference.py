@@ -20,7 +20,7 @@ from typing import Callable
 
 from backend.config import get_settings
 from backend.services.hadith.words import ARABIC_WORD, ENGLISH_WORD, MAX_NUMBER, without_article
-from backend.services.spelling import allowed, fold, slips
+from backend.services.text.spelling import allowed, fold, slips
 
 # What parts the typed words: "bukhari:2", "Sahih al-Bukhari", "prayer, bukhari".
 _PARTS = re.compile(r"[\s:/#,;.!?()\[\]\"\-،؛؟]+")

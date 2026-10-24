@@ -5,7 +5,7 @@
  */
 import Chip from './Chip'
 import ChipRow from './ChipRow'
-import { isArabic } from '../../lib/arabicText'
+import { isArabic } from '../../lib/text/arabicText'
 
 export default function RecentRow({ items, accent, onPick, mono = false, label = 'Recent' }) {
   // The same word twice is one thing looked up twice, not two things. The store

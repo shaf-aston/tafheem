@@ -1,7 +1,7 @@
 """Striking off a grammar backend whose key has been rejected.
 
 The ears already had this proved next door (test_recitation_ears.py). This is
-the same rule on the other side of services/fallback, and it had a hole: Groq's
+the same rule on the other side of services/core/fallback, and it had a hole: Groq's
 own error was caught and re-raised as a plain ValueError, which carries no HTTP
 status, so the chain above never learned the key was dead and every single
 request paid a full round trip to be told so again.
@@ -17,7 +17,7 @@ import pytest
 from groq import APIStatusError
 
 from backend.services.ai.groq_backend import GroqBackend
-from backend.services.fallback import permanent_failure
+from backend.services.core.fallback import permanent_failure
 
 
 def rejected(status: int) -> APIStatusError:

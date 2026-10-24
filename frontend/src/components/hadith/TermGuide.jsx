@@ -1,6 +1,6 @@
 /**
  * Words and what they mean, in groups, laid out as GrammarGlossary lays out the grammar terms.
- * Fed the chain words (lib/hadithWords CHAIN: how each one says the hadith was received, a group's
+ * Fed the chain words (lib/hadith/hadithWords CHAIN: how each one says the hadith was received, a group's
  * `way` wearing the colour the chain drawing gives it) and the terms of the science (the usul guide:
  * each also has its English name and the sentence that defines it, behind its book and page). `onTerms`, if given,
  * adds a link to the Terms view's tree.

@@ -4,8 +4,8 @@ from __future__ import annotations
 import re
 from typing import Iterator
 
-from backend.services import fts
-from backend.services.arabic_text import has_arabic
+from backend.services.text import fts
+from backend.services.text.arabic_text import has_arabic
 
 # Whatever Arabic writes joined on in front of a word: and, so, with, for, like,
 # the, and لل, which is ل and ال with the alef dropped.

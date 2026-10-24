@@ -22,7 +22,7 @@ invented and none is guessed at from the prose.
 
 Each root is written once, under the spelling the editor used. Matching a
 reader's spelling to it is the reader's side of the job and belongs to the
-lookup in services/root_meaning.py, not to a second copy of the entry here.
+lookup in services/dictionary/root_meaning.py, not to a second copy of the entry here.
 """
 from __future__ import annotations
 
@@ -37,7 +37,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services.root_meaning import read_fold  # noqa: E402, needs the path above
+from backend.services.dictionary.root_meaning import read_fold  # noqa: E402, needs the path above
 
 DATA = Path(__file__).resolve().parent.parent / "data" / "maqayees"
 OUT = DATA / "roots.json"

@@ -1,13 +1,13 @@
 import { Activity, Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/tabs'
-import { firstThese, idle, inTurn } from './lib/warm'
-import { useHealth } from './lib/useHealth'
-import { moodFrom } from './lib/mood'
-import { TOOLS } from './lib/tools'
-import { useTabNavigation } from './lib/useTabNavigation'
-import { useTools } from './lib/useTools'
+import { FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/nav/tabs'
+import { firstThese, idle, inTurn } from './lib/api/warm'
+import { useHealth } from './lib/api/useHealth'
+import { moodFrom } from './lib/shell/mood'
+import { TOOLS } from './lib/nav/tools'
+import { useTabNavigation } from './lib/nav/useTabNavigation'
+import { useTools } from './lib/nav/useTools'
 
 import Backdrop from './components/shell/Backdrop'
 import BackendBanner from './components/shell/BackendBanner'
@@ -31,12 +31,12 @@ const MapPanel = lazy(() => import('./components/shell/MapPanel'))
 
 const queryClient = new QueryClient({
   // The data is fixed for the life of the backend: keep every answer, so a
-  // second visit is instant and a fetch-ahead (lib/warm) is never repeated.
+  // second visit is instant and a fetch-ahead (lib/api/warm) is never repeated.
   defaultOptions: { queries: { retry: 1, staleTime: Infinity, gcTime: 30 * 60_000 } },
 })
 
 // Logs how long each tab's opening data took, `[open] hadith 212ms`; 0ms = already cached.
-// The tab's code comes too (lib/tabs.js `panel`); a failed fetch is tried again on opening.
+// The tab's code comes too (lib/nav/tabs.js `panel`); a failed fetch is tried again on opening.
 const openTab = (id) => {
   const tab = TABS.find((t) => t.id === id)
   const code = tab?.Component.preload?.().catch(() => {})
@@ -60,7 +60,7 @@ function AppContent() {
   const accent = accentOf(activeTab)
 
   // Every tab's opening data, fetched once the page is idle, one tab at a time
-  // so a tab pressed meanwhile is not queued behind all the others (lib/warm).
+  // so a tab pressed meanwhile is not queued behind all the others (lib/api/warm).
   // The bar's tabs go first: on a slow phone the queue takes seconds, and a tab
   // that has to wait its turn opened in ~430ms where one fetched ahead took ~160ms.
   const openingDock = useRef(dock)
@@ -112,7 +112,7 @@ function AppContent() {
               })}
             />
           </button>
-          {/* Tools from lib/tools.js. */}
+          {/* Tools from lib/nav/tools.js. */}
           {TOOLS.map(tools.now).map((tool) => (
             <button
               key={tool.id}

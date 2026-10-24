@@ -2,7 +2,7 @@
  * Where a hadith's chain may be weak, ranked by how weak.
  *
  * The server sends a note for each weak narrator in a hadith (`at`, `level`,
- * `kind`, `grade`) and the twelve levels once (`scale`). lib/rijal linked pins
+ * `kind`, `grade`) and the twelve levels once (`scale`). lib/hadith/rijal linked pins
  * each note to the narrator it names in the drawn chain, as a member's `note`; this
  * turns those into a ranked list. It also sends the links a source puts in
  * doubt (`ties`, pinned the same way) with what each kind says (`rules`); those

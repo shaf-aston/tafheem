@@ -7,7 +7,8 @@ from fastapi import APIRouter
 
 
 from backend.models.tarkeeb import TarkeebExampleBook, TarkeebExamples
-from backend.services import provenance, tarkeeb_examples
+from backend.services.core import provenance
+from backend.services.nahw import tarkeeb_examples
 
 router = APIRouter(prefix="/api/tarkeeb", tags=["tarkeeb"])
 

@@ -13,7 +13,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithBooksQuery } from '../../api'
-import { narrated } from '../../lib/hadithWords'
+import { narrated } from '../../lib/hadith/hadithWords'
 import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
 
 import ArabicText from '../ui/ArabicText'

@@ -27,9 +27,9 @@ import logging
 from functools import lru_cache
 
 from backend.config import data_path, get_settings
-from backend.services import quran_corpus
-from backend.services.refs import SURAHS
-from backend.services.timing import timed
+from backend.services.quran import corpus as quran_corpus
+from backend.services.text.refs import SURAHS
+from backend.services.core.timing import timed
 from backend.services.recitation import ears, letters, listen, locate, match, place
 # Re-exported so a caller catches them from the package it already talks
 # to. Which piece in here raises which is this package's own business,

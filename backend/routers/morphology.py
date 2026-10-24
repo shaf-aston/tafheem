@@ -26,7 +26,10 @@ from backend.models.morphology import (
 
 )
 from backend.services import ai as ai_service
-from backend.services import conjugation, morphology, provenance, sarf_word
+from backend.services.sarf import conjugation
+from backend.services.sarf import morphology
+from backend.services.core import provenance
+from backend.services.sarf import answer as sarf_word
 from backend.utils import call_service, normalize_text, require_arabic
 
 logger = logging.getLogger(__name__)

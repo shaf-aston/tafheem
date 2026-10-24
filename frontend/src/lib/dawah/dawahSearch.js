@@ -1,7 +1,7 @@
 // Search over the dawah questions: every word typed must appear somewhere in
 // the question, its reply, its point headings, its address or its topic.
 // Latin and Arabic letters count; vowel marks do not, so الصبر finds الصَّبْر.
-import { foldForSearch } from '../arabicText'
+import { foldForSearch } from '../text/arabicText'
 
 const fold = (text) => foldForSearch(text).replace(/[^a-z0-9؀-ۿ ]/g, ' ')
 

@@ -19,8 +19,8 @@ import AsbabPanel from './AsbabPanel'
 import { sectionLook } from '../../lib/timelines/look'
 import { pinsOf } from '../../lib/timelines/map'
 import { placeOfStep } from '../../lib/timelines/steps'
-import { scrollToEl } from '../../lib/scrollToEl'
-import { useRememberedFlag } from '../../lib/useRemembered'
+import { scrollToEl } from '../../lib/motion/scrollToEl'
+import { useRememberedFlag } from '../../lib/store/useRemembered'
 
 const ACCENT = 'var(--tl-acc)'
 

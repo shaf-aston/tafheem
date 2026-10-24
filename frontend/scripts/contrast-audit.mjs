@@ -127,7 +127,7 @@ function inPage() {
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-sandbox'] })
 const probe = await browser.newPage()
 await probe.goto(`${APP}/app`, { waitUntil: 'networkidle' })
-const ids = await probe.evaluate(async () => (await import('/src/lib/tabs.js')).LISTED.map((t) => t.id))
+const ids = await probe.evaluate(async () => (await import('/src/lib/nav/tabs.js')).LISTED.map((t) => t.id))
 await probe.close()
 const SCREENS = [
   ...ids.map((id) => ({ name: id, path: id === 'home' ? '/app' : `/app/${id}` })),

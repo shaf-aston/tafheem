@@ -8,7 +8,7 @@ sync copies.
 import re
 from pathlib import Path
 
-from backend.services import sentence_check
+from backend.services.learner import sentence_check
 
 ROOT = Path(__file__).resolve().parents[1]
 SYNC = (ROOT / "deploy" / "sync.sh").read_text("utf-8")

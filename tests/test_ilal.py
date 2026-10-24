@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import conjugation
+from backend.services.sarf import conjugation
 
 
 def madi(radicals: str) -> str:
@@ -85,7 +85,7 @@ def test_every_rule_has_both_a_function_and_an_entry() -> None:
     """
     import json
 
-    from backend.services import conjugation
+    from backend.services.sarf import conjugation
     from backend.services.sarf import ilal
 
     with open(conjugation._ILAL, encoding="utf-8") as handle:
@@ -101,7 +101,7 @@ def test_a_rule_that_changed_nothing_is_not_recorded_as_having_fired() -> None:
     book leaves them written apart. مَدَّ, the row above it, is the nearest cell
     where the same rule does fire, and it must be recorded there.
     """
-    from backend.services import conjugation
+    from backend.services.sarf import conjugation
     from backend.services.sarf import ilal, word
 
     def fired(slot: str, ending: str) -> list[str]:

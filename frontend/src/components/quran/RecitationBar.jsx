@@ -1,7 +1,7 @@
-import { ahead } from '../../lib/warm'
+import { ahead } from '../../lib/api/warm'
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
-import { RECITERS, nowPlaying, play, prefetch, stop, watch, watchEnd } from '../../lib/ayahAudio'
+import { RECITERS, nowPlaying, play, prefetch, stop, watch, watchEnd } from '../../lib/quran/ayahAudio'
 import WheelPicker from '../ui/WheelPicker'
 
 // The reciters as the dropdown's choices, each with its Arabic name beside it.

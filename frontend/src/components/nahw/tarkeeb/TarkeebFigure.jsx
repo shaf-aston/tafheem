@@ -1,4 +1,4 @@
-import { closeOnBackdrop, useModal } from '../../../lib/useModal'
+import { closeOnBackdrop, useModal } from '../../../lib/hooks/useModal'
 
 import TarkeebDiagram from './TarkeebDiagram'
 import CloseButton from '../../ui/CloseButton'

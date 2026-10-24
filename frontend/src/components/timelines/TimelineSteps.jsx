@@ -23,7 +23,7 @@ import TimelineHadith from './TimelineHadith'
 import TimelineRefs from './TimelineRefs'
 import { TRAD } from '../../lib/timelines/look'
 import { canFold, pathRows, readingOrder, stepIds } from '../../lib/timelines/steps'
-import { scrollToEl } from '../../lib/scrollToEl'
+import { scrollToEl } from '../../lib/motion/scrollToEl'
 
 /** The fold arrow on both fold controls: down when open, turned right when shut. */
 function FoldMark({ shut }) {

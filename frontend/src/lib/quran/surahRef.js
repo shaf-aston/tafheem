@@ -1,0 +1,140 @@
+/**
+ * Reading "Nisa 45" as a place: surah An-Nisa, ayah 45.
+ *
+ * Pure: text in, matches out. The Quran tab's box and the header command bar
+ * both ask this, so they can never disagree about what a typed name means.
+ *
+ * A name is matched the way a person types it, not the way the mushaf prints
+ * it: no "an-", no apostrophes, doubled vowels collapsed ("Nisaa"), i and e
+ * treated alike ("Yaseen"). The number after a name is always the ayah, and a
+ * lone number is a surah. Matches are ranked exact, then prefix, then anywhere
+ * in the name, then one or two typos away, so callers can choose how loose to be.
+ */
+import surahs from '../../data/surahs.json'
+import { bareForm, isArabic } from '../text/arabicText'
+import { editDistance } from '../text/editDistance'
+
+/** The first surah's number. */
+export const FIRST_SURAH = 1
+
+/** The last surah's number. */
+export const LAST_SURAH = surahs.length
+
+/** "1:3" as every tab writes an ayah. */
+export const AYAH_REF = /^(\d+):(\d+)$/
+
+/** An ayah that is really in the Qur'an, so a mistyped one is never remembered. */
+export const isAyah = ({ surah, ayah }) => ayah >= 1 && ayah <= (surahs[surah - 1]?.ayahs ?? 0)
+
+/** The 114 surahs as wheel choices (ui/WheelPicker), for every wheel that picks a surah. */
+export const SURAH_CHOICES = surahs.map((s) => ({ id: s.n, label: `${s.n}. ${s.en}`, hint: s.ar, keys: [s.ar] }))
+
+/** How close a match is. Lower is closer; callers pick the loosest they accept. */
+export const CLOSE = { exact: 0, prefix: 1, inside: 2, typo: 3 }
+
+const FILLER = /\b(surah|surat|sura|chapter|ayah|ayat|aya|verse|v|no|number)\b\.?/g
+const ARABIC_DIGITS = '٠١٢٣٤٥٦٧٨٩'
+const ARABIC_ARTICLE = /^ال/
+// The first word of an English name, the article when the Arabic name has one (An-Nisa, النساء).
+const FIRST_WORD = /^[^-\s]+[-\s]/
+
+const digitsToLatin = (text) => text.replace(/[٠-٩]/g, (d) => ARABIC_DIGITS.indexOf(d))
+
+/** Letters only, doubles collapsed, e/o folded to i/u: how a name sounds. */
+const foldLatin = (text) =>
+  text.toLowerCase().replace(/[^a-z]/g, '').replace(/(.)\1+/g, '$1').replace(/e/g, 'i').replace(/o/g, 'u')
+
+// A surah's name as a keyboard types it: ة and ه, ى and ي are one key's
+// difference ("البقره"). Folded for these 114 names only, where no two collide;
+// bareForm leaves them apart because across the word lists they would.
+const foldArabic = (text) =>
+  bareForm(text).replace(/[^؀-ۿ]/g, '').replace(/ة/g, 'ه').replace(/ى/g, 'ي')
+
+/** Every spelling one surah answers to: with and without its article. */
+const keys = surahs.map((s) => {
+  const ar = foldArabic(s.ar)
+  const en = [foldLatin(s.en), ARABIC_ARTICLE.test(ar) ? foldLatin(s.en.replace(FIRST_WORD, '')) : '']
+  return { s, latin: en, arabic: [ar, ar.replace(ARABIC_ARTICLE, '')] }
+})
+
+/** How many typos a name of this length may have and still be recognised. */
+const allowedTypos = (length) => (length <= 4 ? 0 : length <= 7 ? 1 : 2)
+
+// Tiers looser than `loosest` are never computed: the typo tier is the costly one.
+function closeness(needle, spellings, loosest) {
+  let best = Infinity
+  for (const spelling of spellings) {
+    if (!spelling) continue
+    let score = Infinity
+    if (spelling === needle) score = CLOSE.exact
+    else if (needle.length >= 2 && spelling.startsWith(needle)) score = CLOSE.prefix
+    else if (needle.length >= 3 && spelling.includes(needle)) score = CLOSE.inside
+    else if (loosest >= CLOSE.typo && editDistance(needle, spelling) <= allowedTypos(needle.length)) score = CLOSE.typo
+    best = Math.min(best, score)
+  }
+  return best
+}
+
+/** Surahs a typed name could mean, closest first, at most `limit`, none looser than `loosest`. */
+export function surahsNamed(name, limit = 5, loosest = CLOSE.typo) {
+  const arabic = isArabic(name)
+  const needle = arabic ? foldArabic(name).replace(ARABIC_ARTICLE, '') : foldLatin(name)
+  if (!needle) return []
+  return keys
+    .map(({ s, latin, arabic: ar }) => ({ ...s, close: closeness(needle, arabic ? ar : latin, loosest) }))
+    .filter((m) => m.close <= loosest)
+    .sort((a, b) => a.close - b.close || a.n - b.n)
+    .slice(0, limit)
+}
+
+/**
+ * What a typed line names. `ayah` is null when only a surah was given.
+ * `matches` is empty when nothing was recognised.
+ */
+export function readSurahRef(text, loosest = CLOSE.typo) {
+  const line = digitsToLatin(text ?? '').toLowerCase().replace(FILLER, ' ').trim()
+  if (!line) return { matches: [], ayah: null }
+
+  const bare = /^(\d{1,3})(?:\s*[:.,،٬\s-]\s*(\d{1,3}))?$/.exec(line)
+  if (bare) {
+    const surah = surahs[Number(bare[1]) - 1]
+    const ayah = bare[2] ? Number(bare[2]) : null
+    return { matches: surah ? [{ ...surah, close: CLOSE.exact }] : [], ayah }
+  }
+
+  const numbers = line.match(/\d{1,3}/g)
+  const ayah = numbers ? Number(numbers[numbers.length - 1]) : null
+  return { matches: surahsNamed(line.replace(/[\d:.,،٬-]+/g, ' '), 5, loosest), ayah }
+}
+
+/** Why an ayah number cannot be opened in this surah, or null when it can. */
+export function ayahProblem(surah, ayah) {
+  if (ayah === null) return null
+  if (ayah < 1) return 'Ayahs start at 1'
+  if (ayah > surah.ayahs) return `${surah.en} has ${surah.ayahs} ayahs`
+  return null
+}
+
+/** Every real place a line names (surah and an ayah that exists), closest first. */
+export function placesNamed(text) {
+  const { matches, ayah } = readSurahRef(text, CLOSE.inside)
+  if (ayah === null) return []
+  return matches
+    .filter((m) => !ayahProblem(m, ayah))
+    .map((m) => ({ surah: m, ayah, ref: `${m.n}:${ayah}` }))
+}
+
+/** For a typed "name number" whose surah is clear but whose ayah does not exist: why, else null. */
+export function placeProblem(text) {
+  const { matches: [m], ayah } = readSurahRef(text, CLOSE.inside)
+  return m ? ayahProblem(m, ayah) : null
+}
+
+/**
+ * The ayah a Qur'an reference opens on: the first of its range, or the first of
+ * the surah. The Qur'an tab reads one ayah at a time (surahRef's AYAH_REF).
+ */
+export function firstAyah(ref) {
+  const [surah, ayahs = '1'] = ref.split(':')
+  return `${surah}:${ayahs.split('-')[0]}`
+}

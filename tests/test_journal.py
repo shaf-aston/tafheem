@@ -17,7 +17,7 @@ from fastapi.testclient import TestClient
 
 from backend.config import get_settings
 from backend.main import app
-from backend.services import journal
+from backend.services.learner import journal
 
 client = TestClient(app)
 

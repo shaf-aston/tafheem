@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { listen } from '../../api'
 import config from '../../config/dictation.json'
-import { watchForVoice } from '../../lib/dictation'
-import { CANNOT_RECORD, canRecord, createRecorder, openMicrophone, refusal } from '../../lib/microphone'
-import { useSetting } from '../../lib/settings'
+import { watchForVoice } from '../../lib/speech/dictation'
+import { CANNOT_RECORD, canRecord, createRecorder, openMicrophone, refusal } from '../../lib/speech/microphone'
+import { useSetting } from '../../lib/store/settings'
 import MicMark from './MicMark'
 
 /**

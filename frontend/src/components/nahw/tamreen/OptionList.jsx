@@ -1,4 +1,4 @@
-import { gradeRule } from '../../../lib/tamreen'
+import { gradeRule } from '../../../lib/nahw/tamreen'
 
 import { MARK_LABEL, STATUS_CLASS } from './marks'
 import OptionText from './OptionText'

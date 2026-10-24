@@ -1,7 +1,7 @@
 import { Fragment, useRef } from 'react'
 
-import { isQuranic, recitedForm } from '../../lib/arabicText'
-import { wordsOf } from '../../lib/memorise'
+import { isQuranic, recitedForm } from '../../lib/text/arabicText'
+import { wordsOf } from '../../lib/memorise/memorise'
 
 import ArabicText from '../ui/ArabicText'
 import AyahNumber from './AyahNumber'

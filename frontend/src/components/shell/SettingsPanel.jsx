@@ -9,15 +9,15 @@
  * to close and the backdrop for free, none of which is worth hand-writing.
  */
 
-import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/settings'
-import { useHealth } from '../../lib/useHealth'
-import { closeOnBackdrop, useModal } from '../../lib/useModal'
-import { levelOf } from '../../lib/confidence'
-import { forgetSaved } from '../../lib/stored'
-import { useSources } from '../../lib/useSources'
-import { ARMED_MS, useMoment } from '../../lib/useMoment'
+import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/store/settings'
+import { useHealth } from '../../lib/api/useHealth'
+import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
+import { levelOf } from '../../lib/text/confidence'
+import { forgetSaved } from '../../lib/store/stored'
+import { useSources } from '../../lib/api/useSources'
+import { ARMED_MS, useMoment } from '../../lib/hooks/useMoment'
 
-import { useInstall } from '../../lib/install'
+import { useInstall } from '../../lib/shell/install'
 import { InstallSteps } from './InstallBanner'
 import OfflinePanel from './OfflinePanel'
 import Disclosure from '../ui/Disclosure'
@@ -103,7 +103,7 @@ export default function SettingsPanel({ open, onClose }) {
 /**
  * Putting the app on this phone's home screen, offered here whether or not the
  * banner was closed, so "not now" never means never. Absent where it cannot be
- * done or is already done (lib/install.js decides).
+ * done or is already done (lib/shell/install.js decides).
  */
 function InstallPanel() {
   const { kind } = useInstall()
@@ -137,7 +137,7 @@ function FooterButton({ onClick, danger = false, disabled = false, title, childr
 
 /**
  * What is kept on this device: reset the switches above, or forget the lot
- * (lib/stored.js).
+ * (lib/store/stored.js).
  *
  * Clearing takes two clicks and has no undo; one click is the click made by
  * accident on the way to Close. Armed, it disarms after a few seconds rather
@@ -146,7 +146,7 @@ function FooterButton({ onClick, danger = false, disabled = false, title, childr
  * The warning replaces the line already there instead of appearing under the
  * button, so nothing moves as it arrives. It names everything that goes,
  * quiz answers included: they live on the machine, and the wipe reaches them
- * through lib/stored.js.
+ * through lib/store/stored.js.
  */
 function StorageFooter() {
   const [asking, setAsking] = useMoment(ARMED_MS, false)
@@ -227,7 +227,7 @@ const hostOf = (url) => new URL(url).hostname.replace(/^www\./, '')
 
 /**
  * Every source the app rests on: name, trust level, one line, link.
- * Wording lives in data/sources.json; trust wording in lib/confidence.js.
+ * Wording lives in data/sources.json; trust wording in lib/text/confidence.js.
  */
 function SourceList() {
   const { sources, isPending, isError } = useSources()

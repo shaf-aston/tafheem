@@ -35,7 +35,7 @@
  * different control.
  */
 import ClearButton from './ClearButton'
-import { isArabic } from '../../lib/arabicText'
+import { isArabic } from '../../lib/text/arabicText'
 
 export default function SearchBox({
   id,

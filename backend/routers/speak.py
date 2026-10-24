@@ -14,7 +14,7 @@ from starlette.concurrency import run_in_threadpool
 from backend.config import get_settings
 from backend.services import speech
 from backend.services.colloquial import loader as colloquial
-from backend.services.ratelimit import PerMinute, visitor
+from backend.services.core.ratelimit import PerMinute, visitor
 
 router = APIRouter(prefix="/api/speak", tags=["speak"])
 
@@ -48,7 +48,7 @@ async def speak(request: Request, text: str = Query(..., min_length=1), accent: 
     # A named speed only (speak.json `speeds`), so no one can ask for a new file per decimal place.
     if speed not in speech.SPEEDS:
         raise HTTPException(422, "Unknown speed")
-    # lib/speak.js's `prepare` marks a word made ahead of a press, so a press goes first.
+    # lib/speech/speak.js's `prepare` marks a word made ahead of a press, so a press goes first.
     pressed = request.headers.get("x-speak-ahead") != "1"
     try:
         audio = await run_in_threadpool(speech.say, text, pressed, first, speech.SPEEDS[speed])

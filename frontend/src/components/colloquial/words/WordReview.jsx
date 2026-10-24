@@ -1,14 +1,14 @@
 // Spaced review: the topic's words that are about to be forgotten, then the ones
 // never tried, quizzed on the Quiz tab's own board. What is due comes from the
-// app's one review schedule (lib/progress), which every word answer feeds.
+// app's one review schedule (lib/learner/progress), which every word answer feeds.
 import { useQuery } from '@tanstack/react-query'
 import { useRef, useState } from 'react'
 
-import { fetchSummary, recordAttempt } from '../../../lib/progress'
-import { QUIZ } from '../../../lib/quizBanks'
-import { fillIn, sayIn } from '../../../lib/say'
-import { useQuizRound } from '../../../lib/useQuizRound'
-import { useRememberedFlag } from '../../../lib/useRemembered'
+import { fetchSummary, recordAttempt } from '../../../lib/learner/progress'
+import { QUIZ } from '../../../lib/quiz/quizBanks'
+import { fillIn, sayIn } from '../../../lib/text/say'
+import { useQuizRound } from '../../../lib/quiz/useQuizRound'
+import { useRememberedFlag } from '../../../lib/store/useRemembered'
 import { WORDS_MODULE, reviewOf, reviewQuestions } from '../../../lib/colloquial/wordPractice'
 import QuizBoard from '../../quiz/QuizBoard'
 import SmallButton from '../../ui/SmallButton'

@@ -21,8 +21,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import verb_forms  # noqa: E402, needs the path above
-from backend.services.arabic_text import (  # noqa: E402
+from backend.services.sarf import verb_forms  # noqa: E402, needs the path above
+from backend.services.text.arabic_text import (  # noqa: E402
     as_root_letters,
     root_letters_in_order,
     strip_diacritics,

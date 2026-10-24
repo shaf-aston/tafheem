@@ -14,7 +14,8 @@ from __future__ import annotations
 import sqlite3
 from typing import Iterable
 
-from backend.services import quran_corpus, quran_meanings
+from backend.services.quran import corpus as quran_corpus
+from backend.services.quran import meanings as quran_meanings
 from backend.services.daleel.sources.model import Passage
 
 

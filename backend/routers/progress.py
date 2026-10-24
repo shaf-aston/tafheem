@@ -1,7 +1,7 @@
 """What a learner has answered, and what it says about them.
 
 Thin on purpose: every rule about what counts as still-to-review, and every
-piece of SQL, lives in services/progress_store.py. This file only turns a
+piece of SQL, lives in services/learner/progress_store.py. This file only turns a
 request into a call and the answer into a response model.
 
 Nothing here knows what an item is. The quiz sends the id of a meaning; the
@@ -42,8 +42,8 @@ from backend.models.progress import (
     SignUpIn,
 )
 from backend.identity import NAMED, TYPED, USER
-from backend.services import progress_store
-from backend.services.username import GUEST, clean_name
+from backend.services.learner import progress_store
+from backend.services.learner.username import GUEST, clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 

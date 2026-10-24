@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { FIRST_SURAH, LAST_SURAH } from '../surahRef'
-import { useMedia } from '../useMedia'
-import { scrollToEl } from '../scrollToEl'
-import { showRow } from '../surahRows'
-import { useSlide, useSwipe } from '../useSwipe'
+import { FIRST_SURAH, LAST_SURAH } from './surahRef'
+import { useMedia } from '../hooks/useMedia'
+import { scrollToEl } from '../motion/scrollToEl'
+import { showRow } from './surahRows'
+import { useSlide, useSwipe } from '../motion/useSwipe'
 import QURAN from '../../config/quran.json'
 
 const { split: SPLIT } = QURAN

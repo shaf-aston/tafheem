@@ -17,9 +17,11 @@ from __future__ import annotations
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import conjugation, verb_forms, verb_sources
-from backend.services import dictionary_service as service
-from backend.services.verb_sources import wiktionary
+from backend.services.sarf import conjugation
+from backend.services.sarf import verb_forms
+from backend.services.sarf import sources as verb_sources
+from backend.services.dictionary import service
+from backend.services.sarf.sources import wiktionary
 
 client = TestClient(app)
 

@@ -64,7 +64,7 @@ class SurahAyah(BaseModel):
     # The page of the 604-page Madani mushaf this ayah begins on. None where the
     # layout has never been built, which is what tells a reader to fall back to
     # sizing a page by word count rather than printing a page number that is a
-    # guess. See services/quran_layout.py.
+    # guess. See services/quran/layout.py.
     page: int | None = None
 
 

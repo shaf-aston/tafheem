@@ -7,11 +7,11 @@
     "related": true
   },
   "mutate": [
-    "src/lib/alifLam.js",
-    "src/lib/lesson.js",
-    "src/lib/wordForms.js",
-    "src/lib/basicsSkills.js",
-    "src/lib/learnerLevel.js"
+    "src/lib/grow/alifLam.js",
+    "src/lib/grow/lesson.js",
+    "src/lib/grow/wordForms.js",
+    "src/lib/grow/basicsSkills.js",
+    "src/lib/learner/learnerLevel.js"
   ],
   "ignorePatterns": [
     "dist",

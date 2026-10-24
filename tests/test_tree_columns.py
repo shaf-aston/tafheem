@@ -1,5 +1,5 @@
 """The chart is always sent cut words: a connector glued onto a word gets its own column."""
-from backend.services import tree_columns
+from backend.services.nahw import tree_columns
 
 
 def test_the_api_cuts_a_glued_connector_into_its_own_column():

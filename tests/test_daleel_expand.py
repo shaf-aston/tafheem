@@ -146,7 +146,7 @@ def test_wildcards_are_not_treated_as_search_syntax():
     """
     from backend.services.daleel.index.candidates import is_a_word as _is_a_word
     from backend.services.daleel.search import search
-    from backend.services.fts import quoted
+    from backend.services.text.fts import quoted
 
     assert not _is_a_word("%") and not _is_a_word("_")
     assert _is_a_word("في")

@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 
 from backend.models.common import Source
 from backend.models.tarkeeb import TarkeebTree
-from backend.services.arabic_text import shown_root
+from backend.services.text.arabic_text import shown_root
 
 
 # Trust-boundary caps: user text flows into LLM prompts and NLP engines, 

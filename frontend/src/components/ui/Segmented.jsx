@@ -17,7 +17,7 @@
  * `fill` spreads the choices across the full width, equally, for a row that is
  * the main switch of a screen (log in or sign up) rather than a small filter.
  */
-import { useMedia, PHONE } from '../../lib/useMedia'
+import { useMedia, PHONE } from '../../lib/hooks/useMedia'
 
 export default function Segmented({
   label, options, value, onChange, accent, captioned = false, wrap = false, fill = false, compact = false, className = '', title,

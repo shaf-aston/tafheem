@@ -17,7 +17,7 @@ from pathlib import Path
 
 import pytest
 
-from backend.services import conjugation
+from backend.services.sarf import conjugation
 from backend.services.sarf import word as W
 
 FIXTURES = Path(__file__).parent / "fixtures" / "treasures"

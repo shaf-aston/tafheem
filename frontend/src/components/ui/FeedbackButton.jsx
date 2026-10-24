@@ -4,7 +4,7 @@
  * Resets when the question changes, so a note never lands on the wrong one.
  */
 import { useState } from 'react'
-import { leaveFeedback } from '../../lib/progress'
+import { leaveFeedback } from '../../lib/learner/progress'
 import Popover from './Popover'
 import PrimaryButton from './PrimaryButton'
 

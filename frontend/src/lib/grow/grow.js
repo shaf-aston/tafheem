@@ -17,10 +17,10 @@
  *     own Done makes it learnt;
  * */
 import config from '../../config/grow.json'
-import { sameSpokenWord } from '../arabicText'
-import { CHECK, MISSED, SAID, WAITING, WRONG, bySound, follow, wordsHeard } from '../follow'
-import { wordsOf } from '../memorise'
-import { soundsTheSame } from '../soundalike'
+import { sameSpokenWord } from '../text/arabicText'
+import { CHECK, MISSED, SAID, WAITING, WRONG, bySound, follow, wordsHeard } from '../recite/follow'
+import { wordsOf } from '../memorise/memorise'
+import { soundsTheSame } from '../speech/soundalike'
 import recite from '../../config/recite.json'
 
 /**

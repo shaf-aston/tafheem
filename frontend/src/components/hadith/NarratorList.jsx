@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { narratorListQuery } from '../../api'
-import { useOpenAtTop } from '../../lib/scrollToEl'
+import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'

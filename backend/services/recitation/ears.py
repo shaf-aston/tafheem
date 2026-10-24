@@ -49,10 +49,10 @@ import time
 from abc import ABC, abstractmethod
 
 from backend.config import get_settings
-from backend.services import journal
-from backend.services.fallback import Retirable, permanent_failure, retry_after
+from backend.services.learner import journal
+from backend.services.core.fallback import Retirable, permanent_failure, retry_after
 from backend.services.recitation import hosted, letters, listen
-from backend.services.timing import timed
+from backend.services.core.timing import timed
 
 log = logging.getLogger(__name__)
 

@@ -24,8 +24,9 @@ import zlib
 from collections import defaultdict
 from pathlib import Path
 
-from backend.services import conjugation, verb_forms
-from backend.services.arabic_text import normalize_root
+from backend.services.sarf import conjugation
+from backend.services.sarf import verb_forms
+from backend.services.text.arabic_text import normalize_root
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 LEXICONS = DATA / "lexicons.db"
@@ -34,7 +35,7 @@ DICTIONARY = DATA / "arabic_dictionary.json"
 
 FSI, PDI = "⁨", "⁩"  # the bidi isolates the dump wraps every Arabic run in
 RUN = re.compile(f"{FSI}([^{PDI}]+){PDI}")
-# A form heading, anchored as frontend/src/lib/laneEntry.js anchors it.
+# A form heading, anchored as frontend/src/lib/dictionary/laneEntry.js anchors it.
 HEADING = re.compile(f"(?:^|(?<=[.:)\\]{PDI}]\\s))(\\d{{1,2}}) (?={FSI})")
 # "aor. ⁨X⁩" then any number of ", and ⁨Y⁩"; "aor. as above" has no run and is skipped.
 AOR = re.compile(f"\\[?aor\\.\\s*{FSI}([^{PDI}]+){PDI}((?:\\s*(?:,|and|or)\\s*{FSI}[^{PDI}]+{PDI})*)")

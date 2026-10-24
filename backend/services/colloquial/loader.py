@@ -26,7 +26,7 @@ import logging
 from functools import lru_cache
 
 from backend.config import data_path
-from backend.services import provenance
+from backend.services.core import provenance
 from backend.services.colloquial import schema, wordlist
 from backend.services.colloquial.exercises import registry
 

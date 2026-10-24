@@ -1,11 +1,11 @@
 /**
  * Settings' offline section: whether the app itself is saved, and the packs a reader can add
- * or remove. Draws lib/offline.js; every word is src/config/offline.json's.
+ * or remove. Draws lib/shell/offline.js; every word is src/config/offline.json's.
  */
 import { useEffect } from 'react'
 
-import { coreLine, copy, getPack, loadPacks, PACKS, removePack, sizeLabel, useOffline } from '../../lib/offline'
-import { fill } from '../../lib/homeCopy'
+import { coreLine, copy, getPack, loadPacks, PACKS, removePack, sizeLabel, useOffline } from '../../lib/shell/offline'
+import { fill } from '../../lib/shell/homeCopy'
 import SmallButton from '../ui/SmallButton'
 
 export default function OfflinePanel() {

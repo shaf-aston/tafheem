@@ -1,4 +1,4 @@
-"""chain_of must agree, case for case, with the chainOf cases in frontend/src/lib/hadithWords.test.js."""
+"""chain_of must agree, case for case, with the chainOf cases in frontend/src/lib/hadith/hadithWords.test.js."""
 from __future__ import annotations
 
 import re

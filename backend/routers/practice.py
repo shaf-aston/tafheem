@@ -1,7 +1,7 @@
 """Practice question generation endpoint.
 
 Questions are filled from data/practice/templates.json with the sentence's own
-i'raab (services/iraab.py), so every answer is the book's rules, never a model's.
+i'raab (services/nahw/iraab.py), so every answer is the book's rules, never a model's.
 
 The questions are filed in progress.db as they leave
 (`_answer`), under the source the page shows, so there is one way out and one
@@ -25,7 +25,12 @@ from backend.models.practice import (
     PracticeResponse,
 )
 from backend.identity import USER
-from backend.services import ai, iraab, practice_service, progress_store, provenance, sentence_check
+from backend.services import ai
+from backend.services.nahw import iraab
+from backend.services.nahw import practice as practice_service
+from backend.services.learner import progress_store
+from backend.services.core import provenance
+from backend.services.learner import sentence_check
 from backend.utils import Timings, arabic_sentence
 
 logger = logging.getLogger(__name__)

@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
 
-import { placeProblem, placesNamed } from '../../lib/surahRef'
+import { placeProblem, placesNamed } from '../../lib/quran/surahRef'
 import { GoButton } from './RootActions'
 
 // "Nisa 45" typed into a tab's search box names an ayah, not a phrase: offer to
-// open it. The reading is lib/surahRef's, so every tab agrees on what counts.
+// open it. The reading is lib/quran/surahRef's, so every tab agrees on what counts.
 export default function PlaceLinks({ query, onGo, accent }) {
   const places = useMemo(() => placesNamed(query), [query])
   if (!onGo) return null

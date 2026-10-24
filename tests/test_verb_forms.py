@@ -3,7 +3,8 @@ which entry, and the reading/merge rules the router relies on.
 """
 from __future__ import annotations
 
-from backend.services import conjugation, verb_forms
+from backend.services.sarf import conjugation
+from backend.services.sarf import verb_forms
 
 
 def test_plain_form_and_vowels():
@@ -204,7 +205,8 @@ def test_record_rejects_form_i_whose_only_bab_is_unknown():
 def test_every_bab_source_is_registered_and_credited():
     """A source babs.json names but nobody wired, or nobody credits, is a
     reading with no way to say where it came from."""
-    from backend.services import provenance, verb_sources
+    from backend.services.core import provenance
+    from backend.services.sarf import sources as verb_sources
 
     named = set(conjugation.babs()["sources"])
     credited = {row["key"] for row in provenance.all_sources()}

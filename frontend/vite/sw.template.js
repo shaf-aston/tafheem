@@ -7,7 +7,7 @@
  *  - Other files (word lists, books) are shown from the phone at once and refreshed behind.
  *  - Server answers named in `keep` are asked for fresh; the saved copy stands in when there is
  *    no signal, the server is down, or it is slower than `wait` ms.
- *  - Packs are saved by the page (src/lib/offline.js) into their own caches; this only reads them.
+ *  - Packs are saved by the page (src/lib/shell/offline.js) into their own caches; this only reads them.
  */
 const PLAN = self.__PLAN__
 const CORE = `tafheem-core-${PLAN.version}`

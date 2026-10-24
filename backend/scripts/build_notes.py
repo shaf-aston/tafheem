@@ -8,7 +8,7 @@ puts the topic's names and its Tamreen links from `notes.json` on top.
     python backend/scripts/build_notes.py [note-id ...]
 
 Fails loud on two blocks sharing an id, on a topic with a gap in its pages,
-and on anything the app itself would refuse to load (services/nahw_notes.py),
+and on anything the app itself would refuse to load (services/nahw/notes.py),
 because each of those means a chunk was read wrongly and would otherwise only
 show up when the page is opened.
 """
@@ -21,7 +21,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from backend.services.nahw_notes import topic_faults  # noqa: E402  (the same check the app runs)
+from backend.services.nahw.notes import topic_faults  # noqa: E402  (the same check the app runs)
 
 ROOT = Path(__file__).resolve().parents[1] / "data" / "nahw_notes"
 PARTS_DIR = ROOT / "topics" / "_parts"

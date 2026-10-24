@@ -7,7 +7,7 @@ import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import App from '../App'
-import { levelOf } from '../lib/learnerLevel'
+import { levelOf } from '../lib/learner/learnerLevel'
 
 describe('first visit', () => {
   it('hands a beginner from Home straight into the Basics lesson', async () => {

@@ -24,8 +24,8 @@ from collections import Counter
 from dataclasses import dataclass, field
 
 from backend.config import get_settings
-from backend.services import fts
-from backend.services.arabic_text import has_arabic
+from backend.services.text import fts
+from backend.services.text.arabic_text import has_arabic
 from backend.services.hadith import meaning, reference, repair, words
 from backend.services.hadith.lemma import lemma
 from backend.services.hadith.loader import books, db, is_built, numbered, share

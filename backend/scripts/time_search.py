@@ -34,9 +34,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import dictionary_service  # noqa: E402, needs the path above
+from backend.services.dictionary import service as dictionary_service  # noqa: E402, needs the path above
 from backend.config import get_settings  # noqa: E402
-from backend.services import quran_search  # noqa: E402
+from backend.services.quran import search as quran_search  # noqa: E402
 
 # Ten words a learner would really search: common Qur'anic nouns and verbs, one
 # two-letter word (أب) because a trigram index cannot see those, and one word

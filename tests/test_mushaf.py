@@ -10,8 +10,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import create_app
-from backend.services import mushaf
-from backend.services.mushaf import DATA_DIR
+from backend.services.quran import mushaf
+from backend.services.quran.mushaf import DATA_DIR
 
 PRINTING = "madani-1421"
 

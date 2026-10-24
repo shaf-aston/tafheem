@@ -14,10 +14,10 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { getQuranRoot, searchQuran } from '../../api'
-import { AYAH_REF, isAyah } from '../../lib/surahRef'
-import { useArrival, useArrivalEffect } from '../../lib/useArrival'
-import { useHistory } from '../../lib/useHistory'
-import { isArabic } from '../../lib/arabicText'
+import { AYAH_REF, isAyah } from '../../lib/quran/surahRef'
+import { useArrival, useArrivalEffect } from '../../lib/nav/useArrival'
+import { useHistory } from '../../lib/nav/useHistory'
+import { isArabic } from '../../lib/text/arabicText'
 
 import QuranSeal from './QuranSeal'
 import EmptyState from '../ui/EmptyState'
@@ -56,7 +56,7 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
   const { history: recent, push: remember } = useHistory('quran-history')
 
   // An ayah opened is a place reached, written the way every other tab writes
-  // one, so the trail and the back arrow can carry it. See lib/journey.js.
+  // one, so the trail and the back arrow can carry it. See lib/nav/journey.js.
   // Only an ayah asked for and really there: one played or scrolled past is not a visit.
   const visit = (place) => {
     if (!isAyah(place)) return
@@ -77,7 +77,7 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
 
   // The page follows an arrival during the render. App no longer remounts this
   // panel for one, that remount faded the whole page back in and read as a
-  // flash (see lib/useArrival), and what the last arrival left open is not
+  // flash (see lib/nav/useArrival), and what the last arrival left open is not
   // about this one: a surah left open for reading would sit on top of the ayah
   // just asked for, and a list of heard ayahs would sit under it.
   // `arrived` above is the ayah address this word parses into, if any; this is

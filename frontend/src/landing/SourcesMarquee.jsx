@@ -1,4 +1,4 @@
-import { useInView } from '../lib/useInView'
+import { useInView } from '../lib/motion/useInView'
 
 const SOURCES = [
   "Lisan al-Arab", "Taj al-Arus", "Lane's Lexicon", 'Maqayis al-Lugha', '34 classical books',

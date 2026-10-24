@@ -39,7 +39,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import arabic_text, nahw_book, quran_corpus, tarkeeb_store  # noqa: E402
+from backend.services.nahw import tarkeeb_store  # noqa: E402
+from backend.services.text import arabic_text
+from backend.services.nahw import book as nahw_book
+from backend.services.quran import corpus as quran_corpus
 
 DATABASE = Path(__file__).parent.parent / "data" / "tarkeeb" / "tarkeeb.db"
 

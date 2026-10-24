@@ -2,7 +2,7 @@
  * Which meaning is this word? The quiz's own question; marks right/wrong once checked.
  */
 import ArabicText from '../../ui/ArabicText'
-import { sayIn } from '../../../lib/say'
+import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')
 

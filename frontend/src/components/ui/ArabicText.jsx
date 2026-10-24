@@ -14,12 +14,12 @@
  * Qur'an text is recognised by its own marks (isQuranic) and flagged
  * data-script="quran" for the face drawn for them, and every piece of text
  * inside is given the tatweel a small alef stands on (seatSmallAlef). No page
- * has to remember to ask for either. A line of verse marked " % " between its halves is set as a Bayt (lib/verse).
+ * has to remember to ask for either. A line of verse marked " % " between its halves is set as a Bayt (lib/text/verse).
  */
 import { cloneElement, isValidElement } from 'react'
 
-import { isQuranic, seatSmallAlef, textOf } from '../../lib/arabicText'
-import { hemistichs, isVerse } from '../../lib/verse'
+import { isQuranic, seatSmallAlef, textOf } from '../../lib/text/arabicText'
+import { hemistichs, isVerse } from '../../lib/text/verse'
 import Bayt from './Bayt'
 
 const SIZES = { tiny: 'arabic-tiny', sm: 'arabic-sm', base: 'arabic', lg: 'arabic-lg' }

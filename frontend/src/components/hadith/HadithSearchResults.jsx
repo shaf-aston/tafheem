@@ -14,7 +14,7 @@
 import { searchHadith } from '../../api'
 import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
 import { useNarratorMatches } from '../../lib/hadith/useNarrators'
-import { useSearch } from '../../lib/useSearch'
+import { useSearch } from '../../lib/hooks/useSearch'
 
 import Chip from '../ui/Chip'
 import ChipRow from '../ui/ChipRow'

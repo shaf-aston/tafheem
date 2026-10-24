@@ -11,15 +11,15 @@
  * --motion-scale to 0, under prefers-reduced-motion, or while the tab is
  * hidden, so it costs nothing when nobody can see it move. It also holds
  * still, tint change included, for the moment a tab switches and while the
- * page scrolls (lib/backdropHold).
+ * page scrolls (lib/motion/backdropHold).
  * data-frames counts
  * drawn frames, which is how a probe proves it stopped.
  */
 import { useEffect, useRef } from 'react'
 
 import { pickColor, seed, seedMarks, step, stepMarks } from '../../lib/shell/bokeh'
-import { heldFor, holdBackdrop } from '../../lib/backdropHold'
-import { motionOff } from '../../lib/motion'
+import { heldFor, holdBackdrop } from '../../lib/motion/backdropHold'
+import { motionOff } from '../../lib/motion/motion'
 
 const MAX_DPR = 1.5
 // Held still while anything scrolls, and this long after: a scroll is where a

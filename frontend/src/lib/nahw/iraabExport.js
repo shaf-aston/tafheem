@@ -2,8 +2,8 @@
  * Render an I'raab analysis result as plain text suitable for the clipboard.
  * Terms print in Arabic, as on the page: مرفوع, not "raf'".
  */
-import { reading } from '../grammarTerms'
-import { GAP, kids, pieces } from '../tarkeebLayout'
+import { reading } from './grammarTerms'
+import { GAP, kids, pieces } from './tarkeebLayout'
 
 // The columns a node covers, in reading order (children come sorted). A word no one
 // wrote (the ثابت a jar-majroor hangs on) stays out of the typed text around it.

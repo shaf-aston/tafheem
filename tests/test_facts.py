@@ -1,5 +1,5 @@
 """The `follows` axis: one sentence per follower (tabi'), and the words that only look like one."""
-from backend.services.syntax import facts, walker
+from backend.services.nahw.syntax import facts, walker
 from tests.test_naming import VERB, clitic, named, token
 
 

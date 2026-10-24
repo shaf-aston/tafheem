@@ -9,8 +9,8 @@
  * keep .rise-in. All three stand at elevation e1.
  * A button unless `as` says otherwise.
  */
-import { useTilt } from '../../lib/useTilt'
-import { useReveal } from '../../lib/useReveal'
+import { useTilt } from '../../lib/motion/useTilt'
+import { useReveal } from '../../lib/motion/useReveal'
 
 const VARIANT = {
   tab: 'tile tile-wash e1 tilt press min-h-[var(--layout-tile)] flex flex-col justify-start gap-2 text-left',

@@ -8,7 +8,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import nahw_notes
+from backend.services.nahw import notes as nahw_notes
 
 ROLES = {"term", "ruling", "condition", "label", "example"}
 

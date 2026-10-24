@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
 
 import { colorFor } from '../../theme'
-import { makeRandom } from '../../lib/memorise'
-import { drillOf, fill, whereOf } from '../../lib/similar'
+import { makeRandom } from '../../lib/memorise/memorise'
+import { drillOf, fill, whereOf } from '../../lib/similar/similar'
 import copy from '../../config/similar.json'
 
 import ArabicText from '../ui/ArabicText'

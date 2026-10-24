@@ -3,7 +3,7 @@
  * and any doubt a reviewer has about the marking. Shared so Practise (after checking) and Browse (after Show
  * answer) print the same note the same way.
  */
-import { doubtsOf, proseParts } from '../../lib/tamreen'
+import { doubtsOf, proseParts } from '../../lib/nahw/tamreen'
 
 const BY_LABEL = { teacher: 'Teacher', claude: 'AI-written' }
 

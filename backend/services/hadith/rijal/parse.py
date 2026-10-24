@@ -11,7 +11,7 @@ import re
 
 from bs4 import BeautifulSoup, NavigableString
 
-from backend.services.arabic_text import marks_in_order
+from backend.services.text.arabic_text import marks_in_order
 
 _REFERENCE = re.compile(r"^/\w+:(\d+)([a-z]*)$")
 _NARRATOR = re.compile(r"^/narrator/(\d+)$")

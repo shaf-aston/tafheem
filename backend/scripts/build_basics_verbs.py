@@ -3,7 +3,7 @@
     python backend/scripts/build_basics_verbs.py          # write it
     python backend/scripts/build_basics_verbs.py --check  # fail if the shipped file is stale
 
-Every Arabic form comes from backend/services/conjugation.py, the same engine the
+Every Arabic form comes from backend/services/sarf/conjugation.py, the same engine the
 Sarf tab draws its tables with; data/grow/basics_verbs.json only names the verbs
 (root, باب) and their English. Seven persons, the ones a beginner meets first
 (هو هي هم أنتَ أنتم أنا نحن cover 98.9% of the Qur'an's past verbs), each with:
@@ -14,7 +14,7 @@ Sarf tab draws its tables with; data/grow/basics_verbs.json only names the verbs
   juss      تَكْتُبْ      مجزوم, after لَمْ and the لا of "don't": the engine's نهي without its لَا
   command   اُكْتُبْ      أمر, for the two "you" persons only
 
-The particles (سَ سَوْفَ لا لَمْ لَنْ مَا) are put in front by the browser (lib/wordForms.js).
+The particles (سَ سَوْفَ لا لَمْ لَنْ مَا) are put in front by the browser (lib/grow/wordForms.js).
 """
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from backend.services import conjugation  # noqa: E402
+from backend.services.sarf import conjugation  # noqa: E402
 
 SOURCE = ROOT / "backend/data/grow/basics_verbs.json"
 OUT = ROOT / "frontend/public/grow/basics-verbs.json"

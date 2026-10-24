@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CHECK, MISSED, SAID, WRONG } from '../follow'
+import { CHECK, MISSED, SAID, WRONG } from '../recite/follow'
 import { byHand } from './cards'
 import {
   afterRecitation, becomesLearnt, daysOf, isClean, isLearnt, judge, pageOf, tally, today,

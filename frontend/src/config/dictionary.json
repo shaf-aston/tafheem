@@ -30,7 +30,7 @@
     "rest-lines": 6
   },
   "classical": {
-    "_comment": "The classical dictionaries under a root (Dictionary.jsx, ClassicalRoot), one book shown at a time from one switch. books is the order of the switch and each book's short name on it, by the id the backend files it under; maqayees is Ibn Faris's Maqayees al-Lugha, the rest come from /dictionary/lexicons. A book the backend sends that is not listed here goes at the end under its own title. lib/classicalBooks.js is the only reader.",
+    "_comment": "The classical dictionaries under a root (Dictionary.jsx, ClassicalRoot), one book shown at a time from one switch. books is the order of the switch and each book's short name on it, by the id the backend files it under; maqayees is Ibn Faris's Maqayees al-Lugha, the rest come from /dictionary/lexicons. A book the backend sends that is not listed here goes at the end under its own title. lib/dictionary/classicalBooks.js is the only reader.",
     "books": [
       { "id": "maqayees", "label": "Ibn Faris" },
       { "id": "lisan", "label": "Lisan al-Arab" },

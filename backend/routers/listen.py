@@ -13,7 +13,7 @@ wrote the words down, and a reciter reading on must never wait for it.
 
 Every request is filed under a reading id, the page's own (`X-Reading-Id`) when
 it sent one, otherwise one made here, echoed back on every answer so the page
-can ask again with the id it was given. The recite journal (services/journal)
+can ask again with the id it was given. The recite journal (services/learner/journal)
 uses it to line server-side and page-side events up as one story.
 """
 from __future__ import annotations
@@ -32,7 +32,8 @@ from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
 from backend.models.listen import Heard, HeardAyah, HeardPlace, Sureness, TextSureness
-from backend.services import journal, recitation
+from backend.services import recitation
+from backend.services.learner import journal
 from backend.services.recitation import NotInstalled, Unreadable
 from backend.services.recitation.recording import kind_of
 
@@ -315,7 +316,7 @@ async def listen_check(
     mid-way: once past `_turn` it holds the turn to the end even if the page
     gives up on it (see the is_disconnected check above `_turn`, which only
     catches one still waiting). The page never sends more than one check at a
-    time (lib/recitingSession.js), which is what bounds the cost.
+    time (lib/recite/recitingSession.js), which is what bounds the cost.
     """
     settings = get_settings()
     with _filing(request, response, "check") as filed:

@@ -99,7 +99,7 @@ class Quran(BaseSettings):
     quran_imlaei_path: str = "data/quran/imlaei.json"
     # Verbally similar verses (mutashabihat). The catalogue is built by
     # scripts/build_mutashabihat.py; the rest tune the finder in
-    # services/mutashabihat.py, judged by scripts/score_mutashabihat.py.
+    # services/quran/mutashabihat.py, judged by scripts/score_mutashabihat.py.
     mutashabihat_path: str = "data/quran/mutashabihat.json"
     # Words per shingle. Two reached 77% pair recall over the benchmark.
     mutashabihat_shingle_size: int = Field(2, ge=1)
@@ -288,7 +288,7 @@ class Speech(BaseSettings):
     # in and out over speech_fade_ms, so it starts and stops without a click.
     speech_peak: float = Field(default=0.9, gt=0, le=1)
     speech_fade_ms: int = Field(default=8, ge=0, le=100)
-    # The recording studio (services/recordings.py): who may add a person's voice for a word.
+    # The recording studio (services/recitation/recordings.py): who may add a person's voice for a word.
     # Empty turns the studio off. A recording is at most recording_max_kb, and is saved
     # trimmed of the quiet around it, with speech_lead_ms put back on each side.
     recorder_key: SecretStr = SecretStr("")
@@ -307,7 +307,7 @@ class Speech(BaseSettings):
 class Journal(BaseSettings):
     """The recitation journal file and its limits."""
 
-    # See services/journal.py. Relative to the project root (folder holding backend/), unlike data_path's paths: it sits beside backend.log.
+    # See services/learner/journal.py. Relative to the project root (folder holding backend/), unlike data_path's paths: it sits beside backend.log.
     journal_path: str = "logs/recite-journal.jsonl"
     journal_max_kb: int = Field(default=5120, gt=0)
     # Older rotated files are deleted, which keeps the log folder bounded.
@@ -347,7 +347,7 @@ class Daleel(BaseSettings):
     daleel_max_books: int = Field(default=40, gt=0)
     # Longer than the longest book name with room to spare; a longer one matches nothing.
     daleel_max_book_chars: int = Field(default=120, gt=0)
-    # No minimum-word-length setting here on purpose: it is a property of SQLite's trigram tokenizer and lives in services/fts.py.
+    # No minimum-word-length setting here on purpose: it is a property of SQLite's trigram tokenizer and lives in services/text/fts.py.
     # A duplicate here once switched off typo tolerance silently when only one copy changed.
 
 
@@ -399,7 +399,7 @@ class Hadith(BaseSettings):
     # A hadith is read in full, so a long results page stops being read.
     hadith_result_limit: int = 20
     # A typed word no search knows is swapped for the likeliest meant word
-    # (services/spelling.py): at most this many slips per letter (a quarter:
+    # (services/text/spelling.py): at most this many slips per letter (a quarter:
     # one in a short word, two in a long one), each slip costing this much
     # log-frequency, so a word a slip further must be that much more common.
     spelling_edits_per_letter: float = 0.25
@@ -407,11 +407,11 @@ class Hadith(BaseSettings):
     spelling_min_letters: int = 3
     spelling_edit_cost: float = 3.0
     # How common a hadith word is: this much its share of everyday writing
-    # (services/spelling.py everyday), the rest its share of the hadith. Everyday
+    # (services/text/spelling.py everyday), the rest its share of the hadith. Everyday
     # writing keeps real words the hadith never use ("jail") from being "fixed".
     hadith_repair_everyday_weight: float = 0.9
     # English letters spell a long Arabic vowel doubled (dawood, jibreel); undoing
-    # them is one slip in all (services/spelling.py slips), not one per letter.
+    # them is one slip in all (services/text/spelling.py slips), not one per letter.
     spelling_long_vowels: dict[str, str] = {"ee": "i", "oo": "u", "ou": "u", "aa": "a"}
     # A collection's name words that the hadith themselves use at least this
     # share of the time ("muslim", مسلم) read as words, not the name, unless the
@@ -448,7 +448,7 @@ class Progress(BaseSettings):
     # Slower answers keep right/wrong but skip timing averages: past two minutes the question likely sat open,
     # and one such value buries every real answer around it.
     progress_timing_cap_ms: int = 120_000
-    # FSRS-6 spaced review (services/review_schedule.py): the chance of still remembering a word
+    # FSRS-6 spaced review (services/learner/review_schedule.py): the chance of still remembering a word
     # when it comes due. Higher means more reviews; both knobs must be inside (0, 1).
     progress_review_retention: float = 0.9
     # A word counts as known once it has left learning and the chance of recalling it is at least this.
@@ -459,11 +459,11 @@ class Progress(BaseSettings):
     progress_learning_hours: int = 24
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
     progress_busy_timeout_ms: int = 5000
-    # XP per right answer, once per item per day (services/rewards.py).
+    # XP per right answer, once per item per day (services/learner/rewards.py).
     rewards_xp_per_answer: int = Field(default=10, gt=0)
     # Level n needs this × n XP to reach n + 1.
     rewards_level_step: int = Field(default=100, gt=0)
-    # Accounts (services/username.py): a username, no password. Longest name allowed after cleaning.
+    # Accounts (services/learner/username.py): a username, no password. Longest name allowed after cleaning.
     username_max: int = 40
     # Largest shelf (everything the page keeps for one account) the server takes, in bytes.
     saved_max_bytes: int = Field(default=512_000, gt=0)
@@ -471,11 +471,11 @@ class Progress(BaseSettings):
     beta_list_accounts: bool = True
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20
-    # Circle kinds (services/progress_store.py): each kind's members_see_details flag. True: every joined
+    # Circle kinds (services/learner/progress_store.py): each kind's members_see_details flag. True: every joined
     # member sees every other member's full overview; False: only admins (and admins of circles above) do.
     circle_kinds: dict[str, bool] = {"friends": True, "family": False, "class": False, "team": False}
     circle_name_max: int = Field(default=60, gt=0)
-    # Checked practice sentences (services/sentence_check.py): AI tries per request,
+    # Checked practice sentences (services/learner/sentence_check.py): AI tries per request,
     # learnt words needed before asking, and particles any sentence may use.
     sentence_max_tries: int = Field(default=3, gt=0)
     sentence_min_learnt: int = Field(default=10, gt=0)
@@ -505,7 +505,7 @@ class Server(BaseSettings):
     # Declared because .env sets PORT and this class forbids unknown keys; dropping it fails startup.
     # The running port comes from the --port flag start.sh passes to uvicorn.
     port: int = 8000
-    # Startup loaders by name (services/startup.py STEPS). wait: done before the first request is served.
+    # Startup loaders by name (services/core/startup.py STEPS). wait: done before the first request is served.
     startup_wait: list[str] = ["dictionary", "root_meanings"]
     # background: started and left to finish, so the first use finds them loaded. Drop a name on a small machine:
     # recitation ~1s, 150MB (first recitation loads it instead); nahw_parser ~110MB ONNX + CAMeL BERT, ~600MB, ~8s+;

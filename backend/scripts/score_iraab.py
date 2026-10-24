@@ -54,8 +54,8 @@ from collections import Counter
 from functools import partial
 from pathlib import Path
 
-from backend.services.arabic_text import bare_letters, strip_diacritics, words
-from backend.services.nahw_book import book_file, family_cards, named_roles, role_table
+from backend.services.text.arabic_text import bare_letters, strip_diacritics, words
+from backend.services.nahw.book import book_file, family_cards, named_roles, role_table
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 KEY = json.loads((DATA / "nahw_rules" / "answer_key.json").read_text(encoding="utf-8"))

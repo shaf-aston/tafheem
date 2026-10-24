@@ -15,13 +15,13 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query'
 
 import { daleelBooksQuery, findDaleel } from '../../api'
 import settings from '../../config/daleel.json'
-import { isArabic, mostlyArabic } from '../../lib/arabicText'
-import { isAyah } from '../../lib/surahRef'
-import { plainEntry } from '../../lib/laneEntry'
+import { isArabic, mostlyArabic } from '../../lib/text/arabicText'
+import { isAyah } from '../../lib/quran/surahRef'
+import { plainEntry } from '../../lib/dictionary/laneEntry'
 import { markedPieces, withMarks } from '../../lib/memorise/marked'
-import { sourcesFor, useSources } from '../../lib/useSources'
-import { useSearch } from '../../lib/useSearch'
-import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/useLaneTidy'
+import { sourcesFor, useSources } from '../../lib/api/useSources'
+import { useSearch } from '../../lib/hooks/useSearch'
+import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/dictionary/useLaneTidy'
 
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
@@ -68,7 +68,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
 
   // A question that came back is a place reached: Recent, the trail, and the
   // address bar all record it. Which books were searched is not in it; that is
-  // a filter on the answer, not a different question. See lib/journey.js.
+  // a filter on the answer, not a different question. See lib/nav/journey.js.
   // An arriving question (another tab, the back arrow) is asked of every book.
   const { query, setQuery, history, mutation, submit: ask, clear, shown: data } = useSearch({
     historyKey: 'daleel-history', ask: findDaleel, onVisit, incoming, arrival,
@@ -114,7 +114,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   const { sources } = useSources()
   // Stale results under a spinner is a state a reader has no way to name; the
   // skeleton fully replaces them instead of sitting on top, except through a
-  // return (lib/useSearch).
+  // return (lib/hooks/useSearch).
   const hits = inBookOrder(answer?.hits ?? [], sourcesFor(sources, 'daleel'))
   // Each book's shelf (Qur'an, Tafsir, Dictionary…), as the catalogue files it.
   const shelfOf = new Map(catalogue.map((book) => [book.source, book.category]))

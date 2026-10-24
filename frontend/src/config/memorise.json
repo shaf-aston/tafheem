@@ -1,5 +1,5 @@
 {
-  "_comment": "Memorise behaviour knobs. The books are in lib/books.js and the rules that use these numbers are in lib/memorise.js; this file is only what those numbers are, so changing how much a page holds or how many words a gap offers is an edit here and nowhere else.",
+  "_comment": "Memorise behaviour knobs. The books are in lib/memorise/books.js and the rules that use these numbers are in lib/memorise/memorise.js; this file is only what those numbers are, so changing how much a page holds or how many words a gap offers is an edit here and nowhere else.",
 
   "_comment-page": "About how many words a page holds before the next line starts a new one. Sized from the 15-line Madani mushaf, which is the script this app already renders, so a page here holds about what one of its pages holds: 15 lines of roughly nine words. A book whose lines are not ayah-shaped sets its own wordsPerPage in books.js.",
   "page-words": 135,

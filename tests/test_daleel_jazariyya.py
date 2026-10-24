@@ -19,7 +19,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from backend.services import provenance  # noqa: E402
+from backend.services.core import provenance  # noqa: E402
 from backend.services.daleel.sources import jazariyya  # noqa: E402
 
 _POEM = {

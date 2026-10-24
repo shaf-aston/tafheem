@@ -19,7 +19,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import iraab, nahw_book, quran_corpus, tarkeeb_store  # noqa: E402
+from backend.services.nahw import tarkeeb_store  # noqa: E402
+from backend.services.nahw import iraab
+from backend.services.nahw import book as nahw_book
+from backend.services.quran import corpus as quran_corpus
 
 TERMS = nahw_book.tarkeeb_rules()["terms"]
 EXACT = {TERMS[k]["ar"]: k for k in ("fail", "naib_fail", "mafool", "mubtada", "khabar")}

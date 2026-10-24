@@ -88,7 +88,7 @@ class GroqBackend(AIBackend):
                 if self._is_auth(exc):
                     # The status is carried over by hand, and the SDK's own error
                     # is left behind on purpose. Two reasons, and both matter:
-                    # services/fallback strikes a backend off by the status on
+                    # services/core/fallback strikes a backend off by the status on
                     # the error, so a plain ValueError meant a rejected key was
                     # retried on every request for the life of the run; and the
                     # SDK's error holds the request that made it, headers and

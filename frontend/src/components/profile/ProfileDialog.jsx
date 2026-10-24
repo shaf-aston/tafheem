@@ -7,12 +7,12 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { smartError } from '../../lib/apiError'
-import { getProfile, logInAs } from '../../lib/profile'
-import { fetchAccountNames, logIn, signUp } from '../../lib/progress'
-import { LEVEL_KEY } from '../../lib/learnerLevel'
-import { copyGuestShelf, pullShelf, startShelf } from '../../lib/shelf'
-import { readRaw } from '../../lib/stored'
+import { smartError } from '../../lib/api/apiError'
+import { getProfile, logInAs } from '../../lib/learner/profile'
+import { fetchAccountNames, logIn, signUp } from '../../lib/learner/progress'
+import { LEVEL_KEY } from '../../lib/learner/learnerLevel'
+import { copyGuestShelf, pullShelf, startShelf } from '../../lib/store/shelf'
+import { readRaw } from '../../lib/store/stored'
 
 import BottomSheet from '../ui/BottomSheet'
 import PrimaryButton from '../ui/PrimaryButton'

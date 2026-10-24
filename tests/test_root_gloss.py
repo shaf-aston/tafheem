@@ -11,7 +11,7 @@ import json
 
 import pytest
 
-from backend.services import root_gloss
+from backend.services.dictionary import root_gloss
 
 REAL = [
     ("The letters hamza, bā', and dāl, in their formation, point to length of time and to "
@@ -63,7 +63,7 @@ def test_every_stored_translation_yields_an_opening_that_says_something():
     allowed through, and only those: a gloss that says nothing has to be matched
     by an entry that says nothing.
     """
-    from backend.services.root_english import STORE_FILE
+    from backend.services.dictionary.root_english import STORE_FILE
 
     if not STORE_FILE.is_file():
         pytest.skip("no translations kept on this machine yet")

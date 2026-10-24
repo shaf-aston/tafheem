@@ -9,7 +9,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { getCheckedSentence } from '../../api'
-import { smartError } from '../../lib/apiError'
+import { smartError } from '../../lib/api/apiError'
 
 import ArabicText from '../ui/ArabicText'
 import SmallButton from '../ui/SmallButton'

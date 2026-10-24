@@ -21,7 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services import spelling  # noqa: E402
+from backend.services.text import spelling  # noqa: E402
 from backend.services.hadith import search  # noqa: E402
 
 TOP = 10

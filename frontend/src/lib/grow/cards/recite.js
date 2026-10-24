@@ -5,7 +5,7 @@
  * on that ayah's words (lib/grow.js pageOf).
  */
 import { checkReading, checkText } from '../../../api'
-import { byPlace, scoreOf } from '../../recitingSession'
+import { byPlace, scoreOf } from '../../recite/recitingSession'
 
 export const check = async (recording, heard, card, page, trial) => {
   if (card.ayahs.length) {

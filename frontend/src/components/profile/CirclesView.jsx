@@ -9,8 +9,8 @@
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { smartError } from '../../lib/apiError'
-import { answerInvite, createCircle, fetchCircles } from '../../lib/progress'
+import { smartError } from '../../lib/api/apiError'
+import { answerInvite, createCircle, fetchCircles } from '../../lib/learner/progress'
 
 import CircleOpen from './CircleOpen'
 import SearchBox from '../ui/SearchBox'

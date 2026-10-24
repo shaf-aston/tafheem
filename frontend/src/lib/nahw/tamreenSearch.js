@@ -16,8 +16,8 @@
  *
  * Pure: strings in, a match verdict out.
  */
-import { foldForSearch as fold } from '../arabicText'
-import { editDistance } from '../editDistance'
+import { foldForSearch as fold } from '../text/arabicText'
+import { editDistance } from '../text/editDistance'
 import settings from '../../config/tamreen.json'
 
 // fold already turns punctuation into spaces: "(state)" is the word state.

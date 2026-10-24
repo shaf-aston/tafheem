@@ -3,7 +3,7 @@
 مُنْتَصِرًا is in no dictionary. The search used to answer "No entries. Try the
 bare root", and the root cards asked Maqayees about منتصرا, letters no root
 book files. The Nahw and Sarf tabs read the same word as مُنْتَصِر of نصر; the
-dictionary now asks the same reader (services/morphology.py) before it gives up.
+dictionary now asks the same reader (services/sarf/morphology.py) before it gives up.
 """
 from __future__ import annotations
 
@@ -11,8 +11,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import create_app
-from backend.services import dictionary_service as service
-from backend.services import morphology
+from backend.services.dictionary import service
+from backend.services.sarf import morphology
 
 
 def entry(arabic: str, root: str, meaning: str) -> dict:

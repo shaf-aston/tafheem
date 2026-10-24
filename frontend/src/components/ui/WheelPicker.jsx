@@ -1,7 +1,7 @@
 /**
  * The app's one dropdown: a pill that opens a small floating wheel of choices.
  * Spin it, or, on a long list, type and it spins there ("nis" or "4" lands on
- * An-Nisa, lib/wheelFind). The option in the middle band is the one Enter picks.
+ * An-Nisa, lib/motion/wheelFind). The option in the middle band is the one Enter picks.
  *
  * Same words as ui/Segmented: options [{ id, label, hint?, keys?, disabled? }],
  * value is the chosen id, onChange gets the new one. hint prints faint at the
@@ -14,7 +14,7 @@
  */
 import { useEffect, useId, useRef, useState } from 'react'
 
-import { wheelFind } from '../../lib/wheelFind'
+import { wheelFind } from '../../lib/motion/wheelFind'
 import theme from '../../config/theme.json'
 import ArabicText from './ArabicText'
 

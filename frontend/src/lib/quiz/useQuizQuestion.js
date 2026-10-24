@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { fetchReviewItems } from '../progress'
-import { buildQuestion, DIRECTIONS, makeRandom } from '../quiz'
-import { allWordsQuery, bankInfo, moduleFor, QUIZ, sentencesQuery, wordsFor } from '../quizBanks'
-import { ayahQueries } from '../quizAyah'
+import { fetchReviewItems } from '../learner/progress'
+import { buildQuestion, DIRECTIONS, makeRandom } from './quiz'
+import { allWordsQuery, bankInfo, moduleFor, QUIZ, sentencesQuery, wordsFor } from './quizBanks'
+import { ayahQueries } from './quizAyah'
 
 /**
  * The question on screen and the words it is drawn from, for what `setup`

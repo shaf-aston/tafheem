@@ -13,7 +13,7 @@
 import { Component, useState } from 'react'
 
 import { tokenGroups, variableName } from '../../theme'
-import { CONFIDENCE } from '../../lib/confidence'
+import { CONFIDENCE } from '../../lib/text/confidence'
 import mascot from '../../config/mascot.json'
 
 import ArabicText from '../ui/ArabicText'

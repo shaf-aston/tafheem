@@ -3,7 +3,7 @@
  * (a surah, or a surah and an ayah) or the words of the mushaf.
  *
  * Pure, and the only place that decides it, so the box, its hint line and the
- * tests can never disagree. The reading of names and numbers is lib/surahRef's;
+ * tests can never disagree. The reading of names and numbers is lib/quran/surahRef's;
  * this only decides which of the two questions the line is.
  *
  * The boundary leans towards the words. A wrong guess of "place" throws the
@@ -16,8 +16,8 @@
  *     ("النساء ٤٥", "سورة الكهف")
  * Diacritics always mean a quote: nobody vowels a surah's name to find it.
  */
-import { hasDiacritics, isArabic, untrailed } from '../arabicText'
-import { CLOSE, ayahProblem, readSurahRef, surahsNamed } from '../surahRef'
+import { hasDiacritics, isArabic, untrailed } from '../text/arabicText'
+import { CLOSE, ayahProblem, readSurahRef, surahsNamed } from './surahRef'
 
 /** The kinds of question; `none` is an empty box. */
 export const KIND = { none: 'none', ayah: 'ayah', surah: 'surah', text: 'text' }

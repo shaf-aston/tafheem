@@ -24,18 +24,16 @@ from backend.models.dictionary import (
 )
 from backend.models.morphology import VerbVerdict
 from backend.services import ai as ai_service
-from backend.services import (
-    dictionary_service,
-    lexicons,
-    provenance,
-    root_english,
-    root_gloss,
-    root_meaning,
-    roots,
-    sentence_meaning,
-    verb_forms,
-)
-from backend.services.arabic_text import has_arabic, normalize_root, not_arabic
+from backend.services.dictionary import service as dictionary_service
+from backend.services.dictionary import lexicons
+from backend.services.core import provenance
+from backend.services.dictionary import root_english
+from backend.services.dictionary import root_gloss
+from backend.services.dictionary import root_meaning
+from backend.services.dictionary import roots
+from backend.services.dictionary import sentence_meaning
+from backend.services.sarf import verb_forms
+from backend.services.text.arabic_text import has_arabic, normalize_root, not_arabic
 from backend.utils import arabic_sentence, call_service, english_sentence, normalize_text, require_arabic, search_query
 
 router = APIRouter(prefix="/api/dictionary", tags=["dictionary"])
@@ -177,7 +175,7 @@ async def get_lexicons(root: Root) -> LexiconsResponse:
 
     The long answer to the short one root-meaning gives. Thin on purpose: which
     books exist and how a root is matched to an entry are both decided in
-    services/lexicons.py; this hands each entry its book's source.
+    services/dictionary/lexicons.py; this hands each entry its book's source.
     """
     state = lexicons.status()
     # A worker thread: a common root is a hundred kilobytes to unpack.
