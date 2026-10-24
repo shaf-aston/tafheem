@@ -30,6 +30,8 @@ def test_as_said_takes_the_picks_word_else_the_typed():
     ("وَمَا أَدْرَاكَ مَا هِيَهْ", 3, "هِيَ"),  # a pronoun
     ("هَلَكَ عَنِّي سُلْطَانِيَهْ", 2, "سُلْطَانِيَ"),  # a noun with ياء المتكلم
     ("لِمَهْ", 0, "لِمَ"),  # ما of question under جر
+    ("عَلَامَهْ", 0, "عَلَامَ"),  # the same, read as a particle
+    ("نَحْنَهْ", 0, None),  # نَحْنُ is built on damma: no reading is the vowels typed
     ("أَخَذْتُ كِتَابَهْ", 1, None),  # takes i'rab: its ه is the pronoun
 ])
 def test_pick_reads_the_word_without_it_only_when_built(sentence, at, said):

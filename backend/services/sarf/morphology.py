@@ -715,13 +715,12 @@ def as_said(tokens: list[str], picks: list[dict]) -> list[str]:
 def _without_sakt(tokens: list[str], i: int, disambiguator=None) -> tuple[str, list[dict]] | None:
     """مَالِيَهْ، هِيَهْ: a word with a هاء السكت's shape is read as said joined to the next, without
     it (Mufassal: إذا أدرجت قلت مالي), when what is left is built on its vowel (closed_words
-    haa_sakt): a pronoun, a question or pointing word, a particle, or a noun with ياء المتكلم."""
+    haa_sakt): a pronoun, a question or pointing word (لِمَ، عَلَامَ), or a word with ياء المتكلم."""
     if not (rest := sakt_off(tokens[i])):
         return None
     ranked = (_ranked([*tokens[:i], rest, *tokens[i + 1:]], disambiguator) or [[]] * len(tokens))[i]
     found = _reading(rest, ranked)
-    pos = found.get("pos", "")
-    built = is_mabni(pos) or pos.startswith("part") or str(found.get("enc0", "")).startswith("1s")
+    built = is_mabni(found.get("pos", "")) or str(found.get("enc0", "")).startswith("1s")
     return (rest, ranked) if built and _agreeing(rest, ranked) else None
 
 
