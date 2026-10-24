@@ -391,6 +391,19 @@ def _emphasis_lam(tokens: list[dict], s: facts.Sentence) -> None:
             token["reading"] = {"family": "ghair_amila_other", "named": named["ل"], "kind": "harf", "book": None}
 
 
+def _emphasis_lam_frees_its_word(tokens: list[dict]) -> None:
+    """إِنَّ هَذَا لَسِحْرٌ، إِنَّ اللَّهَ لَغَفُورٌ: the لام of emphasis (_emphasis_lam) governs nothing, so
+    a place the parser gave it (here خبر إنّ) is the place of the word it is written onto, and the لام
+    hangs on that word, as in إِنَّ زَيْدًا لَجَالِسٌ."""
+    for lam, word in zip(tokens, tokens[1:]):
+        if (lam.get("reading") or {}).get("family") != "ghair_amila_other" or lam["form"] != "ل+" \
+                or lam["head"] in (0, word["id"]):
+            continue  # لَزَيْدٌ قَائِمٌ: a لام the sentence rests on took no other word's place
+        if word["head"] == lam["id"]:
+            word["head"], word["rel"] = lam["head"], lam["rel"]
+        lam["head"], lam["rel"] = word["id"], "MOD"
+
+
 def _hasr_frees_its_words(tokens: list[dict]) -> None:
     """لا تعبدوا إلا الله: the إلا of restriction excepts nothing, so the word the parser hung on
     it belongs to the verb above it, as in ما ضربتُ إلا زيدًا (Tasheel 3.8.7 p85)."""
@@ -490,6 +503,7 @@ def stamp(tokens: list[dict]) -> None:
             token.update(retag)
     _merged(tokens, s)
     _emphasis_lam(tokens, s)
+    _emphasis_lam_frees_its_word(tokens)
     _hasr_frees_its_words(tokens)
     _wonder_settles_its_words(tokens)
     _asks_settles_its_words(tokens)

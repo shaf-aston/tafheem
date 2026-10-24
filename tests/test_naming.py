@@ -651,3 +651,69 @@ def test_a_word_on_kanas_subject_stays_when_kana_has_its_khabar():
                  token(3, "من", "من", "PRT", 2, "MOD", pos_camel="prep"),
                  token(4, "المدرسة", "مدرسة", "NOM", 3, "OBJ", stt="d", cas="g"),
                  token(5, "مجتهدا", "مجتهد", "NOM", 1, "PRD", cas="a"))[2] == (2, "MOD")
+
+
+def test_a_ba_hung_on_laysa_with_its_ism_written_onto_it_carries_its_khabar():
+    # لَسْتُ بِغَافِلٍ: the اسم is the تُ, so the باء the parser left a modifier is ليس's خبر
+    assert _kana(token(1, "لست", "ليس", "VRB", 0, "---", **VERB),
+                 token(2, "ب+", "ب", "PRT", 1, "MOD", pos_camel="prep"),
+                 token(3, "غافل", "غافل", "NOM", 2, "OBJ", cas="g"))[1] == (1, "PRD")
+
+
+@pytest.mark.parametrize("noun, subject_after", [("البيت", False), ("البيت", True), ("بيت", True)])
+def test_a_ba_on_laysa_stays_a_modifier_before_its_ism_or_on_a_word_with_al(noun, subject_after):
+    # لَسْتُ بِالْبَيْتِ is a plain jar-majrur; لَيْسَ بِبَيْتٍ أَحَدٌ puts the خبر before its اسم
+    toks = [token(1, "ليس", "ليس", "VRB", 0, "---", **VERB),
+            token(2, "ب+", "ب", "PRT", 1, "MOD", pos_camel="prep"),
+            token(3, noun, noun, "NOM", 2, "OBJ", cas="g", stt="d" if noun.startswith("ال") else "i")]
+    if subject_after:
+        toks.append(token(4, "أحد", "أحد", "NOM", 1, "SBJ"))
+    assert _kana(*toks)[1] == (1, "MOD")
+
+
+def _hijazi(*toks):
+    found = facts.Sentence(list(toks)).hijazi
+    return [t["id"] for t in found] if found else None
+
+
+def test_the_khabar_of_ma_may_stand_behind_an_extra_ba():
+    # مَا اللَّهُ بِغَافِلٍ، وَمَا أَنَا بِطَارِدِ الْمُؤْمِنِينَ: the word after the باء is ما's خبر
+    ma, allah = token(1, "ما", "ما", "PRT", 4, "MOD"), token(2, "الله", "الله", "PROP", 4, "SBJ")
+    ba = token(3, "ب+", "ب+", "PRT", 0, "---", pos_camel="prep")
+    assert _hijazi(ma, allah, ba, token(4, "غافل", "غافل", "NOM", 3, "OBJ", cas="g")) == [1, 2, 4]
+    assert _hijazi(ma, allah, ba, token(4, "طارد", "طارد", "NOM", 3, "OBJ", cas="g", stt="c")) == [1, 2, 4]
+    # مَا زَيْدٌ بِالْبَيْتِ: a word with ال after the باء is a plain jar-majrur, and ما governs nothing
+    assert _hijazi(ma, allah, ba, token(4, "البيت", "بيت", "NOM", 3, "OBJ", cas="g", stt="d")) is None
+
+
+def test_the_fatha_a_built_pronoun_ends_on_is_no_nasb_for_ma():
+    # مَا أَنْتَ بِمُؤْمِنٍ: أنتَ is built on its fatha, still ما's marfu' اسم
+    assert _hijazi(token(1, "ما", "ما", "NOM", 4, "MOD"),
+                   token(2, "أنت", "أنت", "NOM", 3, "SBJ", pos_camel="pron", typed="أَنْتَ", cas="n"),
+                   token(3, "ب+", "ب+", "PRT", 0, "---", pos_camel="prep"),
+                   token(4, "مؤمن", "مؤمن", "NOM", 3, "OBJ", cas="g")) == [1, 2, 4]
+
+
+def test_ma_and_laysa_are_kanas_with_their_khabar_behind_an_extra_ba():
+    # the ما and the ليس govern even though nothing linked to them shows a كان case
+    ma = named(["مَا", "رَبُّكَ", "بِظَلَّامٍ"],
+               [token(1, "ما", "ما", "NOM", 4, "MOD"), token(2, "رب", "رب", "NOM", 4, "SBJ", stt="c"),
+                token(3, "+ك", "+ك", "NOM", 2, "IDF", token_type="enc0", cas="g"),
+                token(4, "ب+", "ب+", "PRT", 0, "---", pos_camel="prep", token_type="prc1"),
+                token(5, "ظلام", "ظلام", "NOM", 4, "OBJ", cas="g")])
+    laysa = named(["لَسْتُ", "بِغَافِلٍ"],
+                  [token(1, "لست", "ليس", "VRB", 0, "---", **VERB),
+                   token(2, "ب+", "ب+", "PRT", 1, "MOD", pos_camel="prep", token_type="prc1"),
+                   token(3, "غافل", "غافل", "NOM", 2, "OBJ", cas="g")])
+    for found in (ma, laysa):
+        assert (found[0]["family"], found[-1]["role"], found[-1]["by_place"]) == ("kana", "خبر كان", True)
+        assert found[-1]["attached"][0]["named"] == "حرف جر زائد"
+
+
+def test_the_place_the_parser_gave_an_emphasis_lam_is_its_words():
+    # إِنَّ هَذَا لَسِحْرٌ: the لام governs nothing, so سحر is خبر إنّ and the لام hangs on it
+    words = ["إِنَّ", "هَذَا", "لَسِحْرٌ"]
+    toks = [token(1, "إن", "إن", "PRT", 0, "---"), token(2, "هذا", "هذا", "NOM", 1, "SBJ"),
+            token(3, "ل+", "ل+", "PRT", 1, "PRD", token_type="prc1"), token(4, "سحر", "سحر", "NOM", 3, "OBJ")]
+    assert roles(words, toks)[2] == "خبر إن"
+    assert [(t["head"], t["rel"]) for t in toks[2:]] == [(4, "MOD"), (1, "PRD")]
