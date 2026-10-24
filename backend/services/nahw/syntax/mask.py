@@ -99,6 +99,21 @@ def _listed_preposition_takes_majrur(toks, heads, rels) -> None:
         heads[d], rels[d] = d, "OBJ"
 
 
+def _preposition_over_its_noun(toks, heads, rels) -> None:
+    """أَلَيْسَ اللَّهُ بِكَافٍ: a حرف جر governs the noun after it, so the noun hangs under the
+    preposition and the pair takes the noun's place (Tasheel 1.7 p18). The parser may hang the
+    preposition under its own noun instead; the two are swapped. The noun is in jarr: the لام of إِنَّ ... لَسِحْرًا
+    is no preposition."""
+    for d, dep in enumerate(toks[:-1], 1):
+        noun = toks[d]
+        if not (dep["pos"] == "PRT" and heads[d - 1] == d + 1
+                and is_one(strip_diacritics(dep["form"]).strip("+"), "jarr") and noun_tagged(noun)
+                and "i" in (noun.get("case"), CAMEL_CASE.get(noun.get("cas")))):
+            continue
+        heads[d - 1], rels[d - 1] = heads[d], rels[d]
+        heads[d], rels[d] = d, "OBJ"
+
+
 def _topic_carries_its_verb(toks, heads, rels) -> None:
     """الوَلَدُ يَكْتُبُ: a noun before its verb is the mubtada and the verb's clause its
     khabar (Tasheel 1.4.4 p11), so the verb hangs on the noun. The parser, barred from
@@ -186,6 +201,7 @@ def _exception_word_by_case(toks, heads, rels) -> None:
 _LINKS = {"pointer_heads_its_noun": _pointer_heads_its_noun,
           "ma_cancels_inna": _ma_cancels_inna,
           "listed_preposition_takes_majrur": _listed_preposition_takes_majrur,
+          "preposition_over_its_noun": _preposition_over_its_noun,
           "topic_carries_its_verb": _topic_carries_its_verb,
           "exception_word_by_case": _exception_word_by_case,
           "inner_sentence": _inner_sentence}

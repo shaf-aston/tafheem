@@ -627,3 +627,27 @@ def test_one_test_says_when_a_word_does_a_verbs_work():
     passive = token(3, "مفتوح", "مَفْتُوح", "NOM", 0, "---", pattern="مَ1ْ2ُو3")
     noun = token(4, "بيت", "بَيْت", "NOM", 0, "---", pos_camel="noun")
     assert [works_as_verb(t) for t in (verb, active, passive, noun)] == ["active", "active", "passive", None]
+
+
+def _kana(*toks):
+    from backend.services.nahw.syntax.repair.subject_clash import kana_subject
+    toks = list(toks)
+    kana_subject(toks)
+    return [(t["head"], t["rel"]) for t in toks]
+
+
+def test_a_khabar_the_parser_hung_on_kanas_subject_is_kanas_khabar():
+    # لَيْسَ الطَّالِبُ بِكَسُولٍ: بِـ hung on the subject, so ليس had no khabar
+    assert _kana(token(1, "ليس", "ليس", "VRB", 0, "---", **VERB),
+                 token(2, "الطالب", "طالب", "NOM", 1, "SBJ", stt="d"),
+                 token(3, "ب+", "ب", "PRT", 2, "MOD", pos_camel="prep"),
+                 token(4, "كسول", "كسول", "NOM", 3, "OBJ", cas="g"))[2] == (1, "PRD")
+
+
+def test_a_word_on_kanas_subject_stays_when_kana_has_its_khabar():
+    # كَانَ الطَّالِبُ مِنَ الْمَدْرَسَةِ مُجْتَهِدًا: مجتهدًا is the khabar; مِنَ stays on الطالب
+    assert _kana(token(1, "كان", "كان", "VRB", 0, "---", **VERB),
+                 token(2, "الطالب", "طالب", "NOM", 1, "SBJ", stt="d"),
+                 token(3, "من", "من", "PRT", 2, "MOD", pos_camel="prep"),
+                 token(4, "المدرسة", "مدرسة", "NOM", 3, "OBJ", stt="d", cas="g"),
+                 token(5, "مجتهدا", "مجتهد", "NOM", 1, "PRD", cas="a"))[2] == (2, "MOD")

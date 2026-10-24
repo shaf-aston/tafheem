@@ -83,6 +83,30 @@ def test_a_pronoun_on_the_same_word_is_no_majrur():
     assert toks[1]["pos"] == "NOM"
 
 
+def test_a_joined_preposition_hung_under_its_noun_takes_its_place():
+    # أَلَيْسَ اللَّهُ بِكَافٍ: the parser hung بِ under كافٍ, the khabar; the letter is the khabar and كافٍ its majrur
+    toks = [tok("VRB", form="ليس"), tok("PROP", form="الله"), tok("PRT", pos_camel="prep", form="ب+"),
+            tok("NOM", form="كاف", stt="i", cas="g")]
+    assert linked(toks, [0, 1, 4, 1], ["---", "SBJ", "MOD", "PRD"]) == ([0, 1, 1, 3], ["---", "SBJ", "PRD", "OBJ"])
+
+
+def test_a_preposition_already_over_its_noun_is_unchanged():
+    toks = [tok("VRB", form="مررت"), tok("PRT", pos_camel="prep", form="ب+"), tok("PROP", form="زيد")]
+    assert linked(toks, [0, 1, 2], ["---", "MOD", "OBJ"]) == ([0, 1, 2], ["---", "MOD", "OBJ"])
+
+
+def test_a_lam_before_a_noun_not_in_jarr_is_no_preposition():
+    # إِنَّ مِنَ الْبَيَانِ لَسِحْرًا: the لام of emphasis, its noun in nasb
+    toks = [tok("PRT", pos_camel="prep", form="ل+"), tok("NOM", form="سحرا", cas="a")]
+    assert linked(toks, [2, 0], ["MOD", "---"]) == ([2, 0], ["MOD", "---"])
+
+
+def test_a_letter_that_is_no_preposition_is_left_under_its_word():
+    # فَ+ joins, it governs nothing: hung on its word, a noun in jarr, it stays
+    toks = [tok("PRT", pos_camel="conj", form="ف+"), tok("NOM", form="عبد", cas="g")]
+    assert linked(toks, [2, 0], ["MOD", "---"]) == ([2, 0], ["MOD", "---"])
+
+
 def test_a_noun_before_its_verb_carries_the_verb():
     # الولدُ يكتبُ, drawn with the noun under its verb as a bare topic
     toks = [tok("NOM", stt="d"), tok("VRB", pos_camel="verb")]

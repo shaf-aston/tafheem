@@ -5,6 +5,7 @@
   "verb_subject_follows": true,
   "pointer_heads_its_noun": true,
   "listed_preposition_takes_majrur": true,
+  "preposition_over_its_noun": true,
   "topic_carries_its_verb": true,
   "inner_sentence": true,
   "ma_cancels_inna": true,
