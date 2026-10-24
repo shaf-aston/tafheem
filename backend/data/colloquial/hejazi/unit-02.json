@@ -119,8 +119,8 @@
         },
         {
           "speaker": "أَحْمَد",
-          "arabic": "وَيْنِهِمْ هَسَّع؟",
-          "transliteration": "waynihum hassa3?",
+          "arabic": "فِينهم دَحِين؟",
+          "transliteration": "feenhum da7een?",
           "english": "Where are they now?"
         },
         {
@@ -203,8 +203,8 @@
         },
         {
           "pair": {
-            "arabic": "وَيْنِ أَخُوك هَسَّع؟",
-            "transliteration": "wayn akhuuk hassa3?",
+            "arabic": "فِين أَخُوك دَحِين؟",
+            "transliteration": "feen akhuuk da7een?",
             "english": "Where is your brother now?"
           },
           "response": {
@@ -407,7 +407,7 @@
         {
           "id": "unit-02.lesson-01.reply.03",
           "type": "reply",
-          "prompt": "Someone asks: \"وَيْنِ أَخُوك هَسَّع؟\" about your brother. Say he is in Riyadh.",
+          "prompt": "Someone asks: \"فِين أَخُوك دَحِين؟\" about your brother. Say he is in Riyadh.",
           "answer": "فِي الرِّيَاض",
           "accepted": [
             "فِي الرِّيَاض",
@@ -442,13 +442,13 @@
         },
         {
           "slot": "i-want-to-eat",
-          "arabic": "أَبِي آكُل",
-          "transliteration": "abi aakul"
+          "arabic": "أَبْغَى آكُل",
+          "transliteration": "abgha aakul"
         },
         {
           "slot": "i-want-to-drink-water",
-          "arabic": "أَبِي أَشْرَب مَي",
-          "transliteration": "abi ashrab may"
+          "arabic": "أَبْغَى أَشْرَب مَوِيَّة",
+          "transliteration": "abgha ashrab mooya"
         },
         {
           "slot": "what-do-you-like-to-eat",
@@ -504,8 +504,8 @@
       "dialogue": [
         {
           "speaker": "سَالِم",
-          "arabic": "جُوعَان كَثِير، أَبِي آكُل شَي.",
-          "transliteration": "joo3aan ktheer, abi aakul shay.",
+          "arabic": "جُوعَان مَرَّة، أَبْغَى آكُل شَي.",
+          "transliteration": "joo3aan marra, abgha aakul shay.",
           "english": "I'm very hungry, I want to eat something."
         },
         {
@@ -518,20 +518,20 @@
         },
         {
           "speaker": "نُور",
-          "arabic": "تَمَام، وَإِيشْ تَبِي تَشْرَب؟",
-          "transliteration": "tamaam, w eesh tibi tashrab?",
+          "arabic": "تَمَام، وَإِيشْ تَبْغَى تَشْرَب؟",
+          "transliteration": "tamaam, w eesh tibgha tashrab?",
           "english": "Okay, and what do you want to drink?"
         },
         {
           "speaker": "سَالِم",
-          "arabic": "أَبِي قَهْوَة، وَإِنْتِ؟",
-          "transliteration": "abi qahwa, w inti?",
+          "arabic": "أَبْغَى قَهْوَة، وَإِنْتِ؟",
+          "transliteration": "abgha qahwa, w inti?",
           "english": "I want coffee, and you?"
         },
         {
           "speaker": "نُور",
-          "arabic": "أَنَا أَبِي شَاي.",
-          "transliteration": "ana abi shay.",
+          "arabic": "أَنَا أَبْغَى شَاي.",
+          "transliteration": "ana abgha shay.",
           "english": "I want tea."
         },
         {
@@ -653,7 +653,7 @@
           "accepted": [
             "جُوعَان",
             "جوعان",
-            "جوعان كثير"
+            "جوعان مرة"
           ],
           "too_formal": {
             "item": "أَنَا جَائِع",
@@ -665,17 +665,17 @@
           "id": "unit-02.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want to eat something.\"",
-          "answer": "أَبِي آكُل شَي",
+          "answer": "أَبْغَى آكُل شَي",
           "accepted": [
-            "أَبِي آكُل شَي",
-            "ابي اكل شي",
-            "ابي اكل شي."
+            "أَبْغَى آكُل شَي",
+            "أبغى اكل شي",
+            "أبغى اكل شي."
           ],
           "too_formal": {
             "item": "أُرِيدُ أَنْ آكُل شَيْئَاً",
-            "feedback": "This is formal Arabic; everyday Hejazi speech uses \"ابي\" directly before the verb."
+            "feedback": "This is formal Arabic; everyday Hejazi speech uses \"أبغى\" directly before the verb."
           },
-          "tip": "\"ابي\" plus a verb is the everyday pattern for \"I want to...\"."
+          "tip": "\"أبغى\" plus a verb is the everyday pattern for \"I want to...\"."
         },
         {
           "id": "unit-02.lesson-02.choose.01",
@@ -718,7 +718,7 @@
         {
           "id": "unit-02.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"أَبِي _____ مَي.\" Meaning: I want to drink water.",
+          "prompt": "Complete: \"أَبْغَى _____ مَوِيَّة.\" Meaning: I want to drink water.",
           "answer": "أَشْرَب",
           "accepted": [
             "أَشْرَب",
@@ -727,9 +727,9 @@
           ],
           "too_formal": {
             "item": "أُرْغَبُ فِي أَنْ أَشْرَب",
-            "feedback": "This is formal Arabic; everyday speech simply says \"ابي اشرب\"."
+            "feedback": "This is formal Arabic; everyday speech simply says \"أبغى اشرب\"."
           },
-          "tip": "After \"ابي\", the verb comes in its plain present form: \"ابي اشرب\". Water is \"ماي\"."
+          "tip": "After \"أبغى\", the verb comes in its plain present form: \"أبغى اشرب\". Water is \"موية\"."
         },
         {
           "id": "unit-02.lesson-02.reply.02",
@@ -3507,7 +3507,7 @@
       "A question about family using كَمْ نَاسِ فِي أَهْلِك؟ or similar.",
       "A description of at least one family member using أمي, أبوي, أخوي, أختي, زوجي, مرتي, ولدي, or بنتي.",
       "A statement of hunger or thirst using جوعان, جوعانة, or عطشان.",
-      "An order or offer of food or drink using أبي آكل or أبي اشرب.",
+      "An order or offer of food or drink using أبغى آكل or أبغى اشرب.",
       "One of the fixed exchanges: بِالْعَافِيَة / اللَّهُ يُعَافِيك, or صِحَّة وَعَافِيَة / اللَّهُ يُعَافِيك.",
       "A request for the bill using الْحِسَاب لَوْ سَمَحْت or كَمْ الْحِسَاب؟",
       "Both a masculine-address form (such as كَمْ نَاسِ فِي أَهْلِك؟) and a feminine-address form (such as كَمْ نَاسِ فِي أَهْلِك؟)."
@@ -3546,8 +3546,8 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "جُوعَانَة كَثِير، أَبِك تَاكُل شَي؟",
-          "transliteration": "joo3aana ktheer, abik taakul shay?",
+          "arabic": "جُوعَانَة مَرَّة، تِبْغَى تَاكُل شَي؟",
+          "transliteration": "joo3aana marra, tibgha taakul shay?",
           "english": "I'm very hungry, do you want to eat something?"
         },
         {
@@ -3558,14 +3558,14 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "وَإِيشْ تَبِي تَشْرَب؟",
-          "transliteration": "w eesh tibi tashrab?",
+          "arabic": "وَإِيشْ تَبْغَى تَشْرَب؟",
+          "transliteration": "w eesh tibgha tashrab?",
           "english": "And what do you want to drink?"
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "أَبِي قَهْوَة.",
-          "transliteration": "abi qahwa.",
+          "arabic": "أَبْغَى قَهْوَة.",
+          "transliteration": "abgha qahwa.",
           "english": "I want coffee."
         },
         {

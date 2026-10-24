@@ -39,8 +39,8 @@
         },
         {
           "slot": "what-time-is-it-now",
-          "arabic": "إِيش السَّاعَة دَحِين؟",
-          "transliteration": "eesh is-saa3a daheen?"
+          "arabic": "إِيش السَّاعَة ذَلْحِين؟",
+          "transliteration": "eesh is-saa3a dhal7een?"
         },
         {
           "slot": "it-s-seven-o-clock",
@@ -54,8 +54,8 @@
         },
         {
           "slot": "i-want-coffee-first-thing",
-          "arabic": "أَبِي قَهْوَة بِدْرِي",
-          "transliteration": "abi 2ahwa bidri"
+          "arabic": "أَشْتِي قَهْوَة بِدْرِي",
+          "transliteration": "ashti 2ahwa bidri"
         },
         {
           "slot": "i-washed-my-face",
@@ -109,8 +109,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "إيش الساعة دحين؟",
-          "transliteration": "eesh is-saa3a daheen?",
+          "arabic": "إيش الساعة ذلحين؟",
+          "transliteration": "eesh is-saa3a dhal7een?",
           "english": "What time is it now?"
         },
         {
@@ -121,8 +121,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "يالله، لازم أروح الشغل، أبي قهوة بدري.",
-          "transliteration": "yalla, laazim aru7 ash-shughl, abi 2ahwa bidri.",
+          "arabic": "يالله، لازم أروح الشغل، أشتي قهوة بدري.",
+          "transliteration": "yalla, laazim aru7 ash-shughl, ashti 2ahwa bidri.",
           "english": "Come on, I have to go to work, I want coffee first."
         },
         {
@@ -133,8 +133,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "يعطيك العافية، بشوفك بالمسية.",
-          "transliteration": "ya3Tiik il-3aafya, bshuufak bil-masya.",
+          "arabic": "يعطيك العافية، شاشوفك بالمسية.",
+          "transliteration": "ya3Tiik il-3aafya, shaashuufak bil-masya.",
           "english": "Thank you, see you in the evening."
         },
         {
@@ -171,8 +171,8 @@
         },
         {
           "pair": {
-            "arabic": "إِيش السَّاعَة دَحِين؟",
-            "transliteration": "eesh is-saa3a daheen?",
+            "arabic": "إِيش السَّاعَة ذَلْحِين؟",
+            "transliteration": "eesh is-saa3a dhal7een?",
             "english": "What time is it now?"
           },
           "response": {
@@ -195,8 +195,8 @@
         },
         {
           "pair": {
-            "arabic": "أَبِي قَهْوَة بِدْرِي؟",
-            "transliteration": "abi 2ahwa bidri?",
+            "arabic": "أَشْتِي قَهْوَة بِدْرِي؟",
+            "transliteration": "ashti 2ahwa bidri?",
             "english": "Do you want coffee first thing?"
           },
           "response": {
@@ -239,7 +239,7 @@
         {
           "id": "unit-07.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "Someone asks you: \"إيش الساعة دحين؟\" Answer that it's seven o'clock.",
+          "prompt": "Someone asks you: \"إيش الساعة ذلحين؟\" Answer that it's seven o'clock.",
           "answer": "الساعَة سَبْعَة",
           "accepted": [
             "الساعَة سَبْعَة",
@@ -255,7 +255,7 @@
         {
           "id": "unit-07.lesson-01.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete the sentence: \"أَبِي _____ بِدْرِي.\" English meaning: I want coffee first thing.",
+          "prompt": "Complete the sentence: \"أَشْتِي _____ بِدْرِي.\" English meaning: I want coffee first thing.",
           "answer": "قهوة",
           "accepted": [
             "قهوة",
@@ -319,22 +319,22 @@
           "type": "choose",
           "prompt": "How do you ask \"What time is it now?\" in Yemeni?",
           "options": [
-            "إيش الساعة دحين؟",
+            "إيش الساعة ذلحين؟",
             "كم الساعة الحين؟",
-            "شنو الساعة هسع؟",
-            "ويش الوقت دحين؟"
+            "إيش الساعة هسع؟",
+            "ويش الوقت ذلحين؟"
           ],
-          "answer": "إيش الساعة دحين؟",
+          "answer": "إيش الساعة ذلحين؟",
           "accepted": [
-            "إيش الساعة دحين؟",
-            "إيش الساعة دحين",
-            "ويش الساعة دحين"
+            "إيش الساعة ذلحين؟",
+            "إيش الساعة ذلحين",
+            "ويش الساعة ذلحين"
           ],
           "too_formal": {
             "item": "ما هو الوقت الآن؟",
-            "feedback": "This is Modern Standard Arabic. In Yemeni we say \"إيش\" or \"ويش\" for \"what\" and \"دحين\" for \"now\"."
+            "feedback": "This is Modern Standard Arabic. In Yemeni we say \"إيش\" or \"ويش\" for \"what\" and \"ذلحين\" for \"now\"."
           },
-          "tip": "\"إيش\" and \"ويش\" are both Yemeni ways to say \"what\". \"دحين\" is Yemeni for \"now\", not \"هسع\" or \"الحين\"."
+          "tip": "\"إيش\" and \"ويش\" are both Yemeni ways to say \"what\". \"ذلحين\" is Yemeni for \"now\", not \"هسع\" or \"الحين\"."
         },
         {
           "id": "unit-07.lesson-01.choose.02",
@@ -359,31 +359,31 @@
         {
           "id": "unit-07.lesson-01.reorder.01",
           "type": "reorder",
-          "prompt": "Arrange the words to make a sentence: \"أبي / قهوة / بدري\"",
-          "answer": "أَبِي قَهْوَة بِدْرِي",
+          "prompt": "Arrange the words to make a sentence: \"أشتي / قهوة / بدري\"",
+          "answer": "أَشْتِي قَهْوَة بِدْرِي",
           "accepted": [
-            "أبي قهوة بدري",
-            "أَبِي قَهْوَة بِدْرِي"
+            "أشتي قهوة بدري",
+            "أَشْتِي قَهْوَة بِدْرِي"
           ],
           "too_formal": {
             "item": "أريد القهوة في الصباح الباكر",
-            "feedback": "This is more formal. The spoken version is simpler: \"أبي قهوة بدري\"."
+            "feedback": "This is more formal. The spoken version is simpler: \"أشتي قهوة بدري\"."
           },
           "tip": "The word order is: \"I want\" + \"coffee\" + \"early\"."
         },
         {
           "id": "unit-07.lesson-01.reorder.02",
           "type": "reorder",
-          "prompt": "Arrange the words to make a question: \"دحين / الساعة / إيش\"",
-          "answer": "إِيش الساعة دحين؟",
+          "prompt": "Arrange the words to make a question: \"ذلحين / الساعة / إيش\"",
+          "answer": "إِيش الساعة ذلحين؟",
           "accepted": [
-            "إِيش الساعة دحين؟",
-            "إيش الساعة دحين",
-            "ويش الساعة دحين"
+            "إِيش الساعة ذلحين؟",
+            "إيش الساعة ذلحين",
+            "ويش الساعة ذلحين"
           ],
           "too_formal": {
             "item": "كم عدد الساعات الآن؟",
-            "feedback": "This wording is too formal. The natural spoken form is \"إيش الساعة دحين\"."
+            "feedback": "This wording is too formal. The natural spoken form is \"إيش الساعة ذلحين\"."
           },
           "tip": "The word order is: \"what\" + \"the time\" + \"now?\""
         }
@@ -404,8 +404,8 @@
         },
         {
           "slot": "i-m-hungry-i-want-to-eat-something",
-          "arabic": "أَنَا جُوْعَان، أَبِي أَكُول شَي",
-          "transliteration": "ana joo3aan, abi akool shay"
+          "arabic": "أَنَا جُوْعَان، أَشْتِي أَكُول شَي",
+          "transliteration": "ana joo3aan, ashti akool shay"
         },
         {
           "slot": "where-do-you-have-lunch",
@@ -414,8 +414,8 @@
         },
         {
           "slot": "i-m-a-bit-tired-now",
-          "arabic": "أَنَا تَعْبَان شْوَيَّة دَحِين",
-          "transliteration": "ana ta3baan shwayya daheen"
+          "arabic": "أَنَا تَعْبَان شْوَيَّة ذَلْحِين",
+          "transliteration": "ana ta3baan shwayya dhal7een"
         },
         {
           "slot": "i-have-to-finish-this-task-before-noon",
@@ -439,13 +439,13 @@
         },
         {
           "slot": "i-have-a-lot-of-work-now",
-          "arabic": "عِنْدِي شُغْل كَثِير دَحِين",
-          "transliteration": "3indi shughl katheer daheen"
+          "arabic": "عِنْدِي شُغْل كَثِير ذَلْحِين",
+          "transliteration": "3indi shughl katheer dhal7een"
         },
         {
           "slot": "i-ll-call-you-in-the-afternoon",
-          "arabic": "بَسْتُود عَلَيْك الْعَصْر",
-          "transliteration": "bastaWid 3aleek il-3aSr"
+          "arabic": "شَاسْتُود عَلَيْك الْعَصْر",
+          "transliteration": "shaastaWid 3aleek il-3aSr"
         },
         {
           "slot": "i-finished-my-work-early-today",
@@ -486,8 +486,8 @@
         },
         {
           "speaker": "علي",
-          "arabic": "تمام، أنا جوعان، بدي أروح للغدا.",
-          "transliteration": "tamaam, ana joo3aan, badi aru7 lil-ghida.",
+          "arabic": "تمام، أنا جوعان، أشتي أروح للغدا.",
+          "transliteration": "tamaam, ana joo3aan, ashti aru7 lil-ghida.",
           "english": "Okay, I'm hungry, I want to get lunch."
         },
         {
@@ -510,8 +510,8 @@
         },
         {
           "speaker": "علي",
-          "arabic": "باستود عليك العصر.",
-          "transliteration": "bastaWid 3aleek il-3aSr.",
+          "arabic": "شاستود عليك العصر.",
+          "transliteration": "shaastaWid 3aleek il-3aSr.",
           "english": "I'll call you in the afternoon."
         },
         {
@@ -560,8 +560,8 @@
         },
         {
           "pair": {
-            "arabic": "عِنْدِي شُغْل كَثِير دَحِين.",
-            "transliteration": "3indi shughl katheer daheen.",
+            "arabic": "عِنْدِي شُغْل كَثِير ذَلْحِين.",
+            "transliteration": "3indi shughl katheer dhal7een.",
             "english": "I have a lot of work now."
           },
           "response": {
@@ -572,8 +572,8 @@
         },
         {
           "pair": {
-            "arabic": "بَاسْتُود عَلَيْك الْعَصْر",
-            "transliteration": "bastaWid 3aleek il-3aSr",
+            "arabic": "شَاسْتُود عَلَيْك الْعَصْر",
+            "transliteration": "shaastaWid 3aleek il-3aSr",
             "english": "I'll call you in the afternoon."
           },
           "response": {
@@ -583,7 +583,7 @@
           }
         }
       ],
-      "culture": "In Yemeni workplaces, greetings and small talk about arrival are important. A midday break for lunch with colleagues is common. Yemenis often use the phrase \"دحين\" (now) when talking about current situations or pressing tasks.",
+      "culture": "In Yemeni workplaces, greetings and small talk about arrival are important. A midday break for lunch with colleagues is common. Yemenis often use the phrase \"ذلحين\" (now) when talking about current situations or pressing tasks.",
       "exercises": [
         {
           "id": "unit-07.lesson-02.reply.01",
@@ -605,7 +605,7 @@
         {
           "id": "unit-07.lesson-02.reply.02",
           "type": "reply",
-          "prompt": "Someone says: \"عندي شغل كثير دحين\". Show understanding.",
+          "prompt": "Someone says: \"عندي شغل كثير ذلحين\". Show understanding.",
           "answer": "يا الله، شغل كثير",
           "accepted": [
             "يا الله، شغل كثير",
@@ -622,7 +622,7 @@
         {
           "id": "unit-07.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"أَنَا جُوْعَان، أَبِي _____ شَي.\" English: I'm hungry, I want to eat something.",
+          "prompt": "Complete: \"أَنَا جُوْعَان، أَشْتِي _____ شَي.\" English: I'm hungry, I want to eat something.",
           "answer": "اكول",
           "accepted": [
             "اكول",
@@ -638,16 +638,16 @@
           "id": "unit-07.lesson-02.fill_blank.02",
           "type": "fill_blank",
           "prompt": "Complete: \"عِنْدِي شُغْل كَثِير _____.\" English: I have a lot of work now.",
-          "answer": "دحين",
+          "answer": "ذلحين",
           "accepted": [
-            "دحين",
+            "ذلحين",
             "داحين"
           ],
           "too_formal": {
             "item": "الآن",
-            "feedback": "This is Modern Standard Arabic. Yemenis say \"دحين\" for \"now\"."
+            "feedback": "This is Modern Standard Arabic. Yemenis say \"ذلحين\" for \"now\"."
           },
-          "tip": "\"دحين\" is Yemeni for \"now\". Remember: not \"هسع\" (Iraqi) and not \"الحين\" (Gulf)."
+          "tip": "\"ذلحين\" is Yemeni for \"now\". Remember: not \"هسع\" (Iraqi) and not \"الحين\" (Gulf)."
         },
         {
           "id": "unit-07.lesson-02.translate_to_arabic.01",
@@ -669,23 +669,23 @@
           "id": "unit-07.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'm a bit tired now.\"",
-          "answer": "أَنَا تَعْبَان شْوَيَّة دَحِين",
+          "answer": "أَنَا تَعْبَان شْوَيَّة ذَلْحِين",
           "accepted": [
-            "أَنَا تَعْبَان شْوَيَّة دَحِين",
-            "أنا تعبان شوية دحين",
-            "تعبان شوية دحين",
+            "أَنَا تَعْبَان شْوَيَّة ذَلْحِين",
+            "أنا تعبان شوية ذلحين",
+            "تعبان شوية ذلحين",
             "أنا تعبان شوية"
           ],
           "too_formal": {
             "item": "أشعر بالتعب قليلاً الآن",
-            "feedback": "This is formal written Arabic. Yemenis say \"أنا تعبان شوية دحين\"."
+            "feedback": "This is formal written Arabic. Yemenis say \"أنا تعبان شوية ذلحين\"."
           },
-          "tip": "\"تعبان\" means \"tired\" and \"شوية\" means \"a bit\". Use \"دحين\" for \"now\"."
+          "tip": "\"تعبان\" means \"tired\" and \"شوية\" means \"a bit\". Use \"ذلحين\" for \"now\"."
         },
         {
           "id": "unit-07.lesson-02.choose.01",
           "type": "choose",
-          "prompt": "What does \"دحين\" mean in Yemeni?",
+          "prompt": "What does \"ذلحين\" mean in Yemeni?",
           "options": [
             "Now",
             "Later",
@@ -698,9 +698,9 @@
           ],
           "too_formal": {
             "item": "Later",
-            "feedback": "No, \"دحين\" is Yemeni for \"now\", not \"later\". It's an important word to distinguish from \"هسع\" (Iraqi) and \"الحين\" (Gulf)."
+            "feedback": "No, \"ذلحين\" is Yemeni for \"now\", not \"later\". It's an important word to distinguish from \"هسع\" (Iraqi) and \"الحين\" (Gulf)."
           },
-          "tip": "\"دحين\" is the Yemeni word for \"now\". Learn to recognize it clearly."
+          "tip": "\"ذلحين\" is the Yemeni word for \"now\". Learn to recognize it clearly."
         },
         {
           "id": "unit-07.lesson-02.choose.02",
@@ -770,13 +770,13 @@
         },
         {
           "slot": "what-will-we-eat-for-dinner",
-          "arabic": "إِيش رَايِح نَاكُول الْعِشَا؟",
-          "transliteration": "eesh raay7 naakool il-3isha?"
+          "arabic": "إِيش شَانَاكُول الْعِشَا؟",
+          "transliteration": "eesh shaanaakool il-3isha?"
         },
         {
           "slot": "i-want-to-shower",
-          "arabic": "أَبِي اسْتَحَمِّ",
-          "transliteration": "abi istahamma"
+          "arabic": "أَشْتِي اسْتَحَمِّ",
+          "transliteration": "ashti istahamma"
         },
         {
           "slot": "i-got-very-tired-today",
@@ -785,8 +785,8 @@
         },
         {
           "slot": "do-we-want-to-watch-a-series",
-          "arabic": "نَبِي نِتْفَرَّج عَلَى مَسَلسِل؟",
-          "transliteration": "nabi nitfarraj 3ala masalsal?"
+          "arabic": "نَشْتِي نِتْفَرَّج عَلَى مَسَلسِل؟",
+          "transliteration": "nishti nitfarraj 3ala masalsal?"
         },
         {
           "slot": "let-s-go-out-for-a-little-walk",
@@ -800,13 +800,13 @@
         },
         {
           "slot": "i-want-to-call-my-family",
-          "arabic": "أَبِي اسْتُود عَلَى أَهْلِي",
-          "transliteration": "abi astaaWid 3ala ahli"
+          "arabic": "أَشْتِي اسْتُود عَلَى أَهْلِي",
+          "transliteration": "ashti astaaWid 3ala ahli"
         },
         {
           "slot": "i-ll-sleep-early-tonight",
-          "arabic": "بِنَام بِدْرِي اللَّيْلَة",
-          "transliteration": "binam bidri il-leela"
+          "arabic": "شَانَام بِدْرِي اللَّيْلَة",
+          "transliteration": "shaanaam bidri il-leela"
         },
         {
           "slot": "good-night",
@@ -840,14 +840,14 @@
         },
         {
           "speaker": "أحمد",
-          "arabic": "تمام، ترتاح شوية. إيش رايح ناكول العشا؟",
-          "transliteration": "tamaam, tartaa7 shwayya. eesh raay7 naakool il-3isha?",
+          "arabic": "تمام، ترتاح شوية. إيش شاناكول العشا؟",
+          "transliteration": "tamaam, tartaa7 shwayya. eesh shaanaakool il-3isha?",
           "english": "That's okay, rest a bit. What are we going to eat for dinner?"
         },
         {
           "speaker": "هند",
-          "arabic": "أنا ما عندي فكرة، أنت شنو بتقول؟",
-          "transliteration": "ana ma 3indi fikra, ant shnu bitqool?",
+          "arabic": "أنا ما عندي فكرة، أنت إيش تقول؟",
+          "transliteration": "ana ma 3indi fikra, ant eesh tqool?",
           "english": "I have no idea, what do you think?"
         },
         {
@@ -864,14 +864,14 @@
         },
         {
           "speaker": "أحمد",
-          "arabic": "ماشي، أنا بصلي وبفتح التلفاز.",
-          "transliteration": "mashi, ana baSalli w baftah it-tilfiZaaz.",
+          "arabic": "ماشي، أنا شاصلي وشافتح التلفاز.",
+          "transliteration": "mashi, ana shaaSalli w shaaftah it-tilfiZaaz.",
           "english": "Okay, I'll pray and turn on the TV."
         },
         {
           "speaker": "هند",
-          "arabic": "نبي نتفرج على مسلسل بعدين.",
-          "transliteration": "nabi nitfarraj 3ala masalsal ba3dayn.",
+          "arabic": "نشتي نتفرج على مسلسل بعدين.",
+          "transliteration": "nishti nitfarraj 3ala masalsal ba3dayn.",
           "english": "We want to watch a series after."
         },
         {
@@ -882,14 +882,14 @@
         },
         {
           "speaker": "هند",
-          "arabic": "بدي استود على أهلي قبل ما نطلع.",
-          "transliteration": "badi astaaWid 3ala ahli 2abal ma nItla3.",
+          "arabic": "أشتي استود على أهلي قبل ما نطلع.",
+          "transliteration": "ashti astaaWid 3ala ahli 2abal ma nItla3.",
           "english": "I want to call my family before we go out."
         },
         {
           "speaker": "أحمد",
-          "arabic": "تمام، خذي وقتك. أنا بنام بدري اليل.",
-          "transliteration": "tamaam, khadi wa2tik. ana binam bidri il-layl.",
+          "arabic": "تمام، خذي وقتك. أنا شانام بدري اليل.",
+          "transliteration": "tamaam, khadi wa2tik. ana shaanaam bidri il-layl.",
           "english": "Okay, take your time. I'll sleep early tonight."
         }
       ],
@@ -908,8 +908,8 @@
         },
         {
           "pair": {
-            "arabic": "إِيش رَايِح نَاكُول الْعِشَا؟",
-            "transliteration": "eesh raay7 naakool il-3isha?",
+            "arabic": "إِيش شَانَاكُول الْعِشَا؟",
+            "transliteration": "eesh shaanaakool il-3isha?",
             "english": "What are we going to eat for dinner?"
           },
           "response": {
@@ -920,8 +920,8 @@
         },
         {
           "pair": {
-            "arabic": "أَبِي اسْتَحَمِّ",
-            "transliteration": "abi istahamma",
+            "arabic": "أَشْتِي اسْتَحَمِّ",
+            "transliteration": "ashti istahamma",
             "english": "I want to shower."
           },
           "response": {
@@ -944,8 +944,8 @@
         },
         {
           "pair": {
-            "arabic": "نَبِي نِتْفَرَّج عَلَى مَسَلسِل.",
-            "transliteration": "nabi nitfarraj 3ala masalsal.",
+            "arabic": "نَشْتِي نِتْفَرَّج عَلَى مَسَلسِل.",
+            "transliteration": "nishti nitfarraj 3ala masalsal.",
             "english": "We want to watch a series."
           },
           "response": {
@@ -993,7 +993,7 @@
         {
           "id": "unit-07.lesson-03.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"إِيش رَايِح نَاكُول _____.\" English: What are we going to eat for dinner?",
+          "prompt": "Complete: \"إِيش شَانَاكُول _____.\" English: What are we going to eat for dinner?",
           "answer": "العشا",
           "accepted": [
             "العشا",
@@ -1040,17 +1040,17 @@
           "id": "unit-07.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want to shower.\"",
-          "answer": "أَبِي اسْتَحَمِّ",
+          "answer": "أَشْتِي اسْتَحَمِّ",
           "accepted": [
-            "أَبِي اسْتَحَمِّ",
-            "ابي استحم",
-            "بدي استحم"
+            "أَشْتِي اسْتَحَمِّ",
+            "اشتي استحم",
+            "أشتي استحم"
           ],
           "too_formal": {
             "item": "أريد الاستحمام",
-            "feedback": "This is more formal. Yemenis say \"أبي استحم\"."
+            "feedback": "This is more formal. Yemenis say \"أشتي استحم\"."
           },
-          "tip": "\"أبي\" means \"I want\" and \"استحم\" means \"shower\"."
+          "tip": "\"أشتي\" means \"I want\" and \"استحم\" means \"shower\"."
         },
         {
           "id": "unit-07.lesson-03.choose.01",
@@ -1149,13 +1149,13 @@
         },
         {
           "slot": "on-wednesday-i-work-until-the-evening",
-          "arabic": "يَوْم الأَرْبِعَة بِشْتَغِل لِحْدِّ الْمَسِيَة",
-          "transliteration": "yom il-arba3a bishtighel li7ad il-masya"
+          "arabic": "يَوْم الأَرْبِعَة أَشْتَغِل لِحْدِّ الْمَسِيَة",
+          "transliteration": "yom il-arba3a ashtighel li7ad il-masya"
         },
         {
           "slot": "on-thursday-i-see-my-friends",
-          "arabic": "يَوْم الخَمِيس بِشُوف أَصْحَابِي",
-          "transliteration": "yom il-khamis bishouf aS7aabi"
+          "arabic": "يَوْم الخَمِيس أَشُوف أَصْحَابِي",
+          "transliteration": "yom il-khamis ashoof aS7aabi"
         },
         {
           "slot": "friday-is-the-day-of-prayer-and-rest",
@@ -1169,8 +1169,8 @@
         },
         {
           "slot": "what-do-you-plan-to-do-on-the-weekend",
-          "arabic": "إِيش رَايِح تْعَمِّل يَوْم الجُمْعَة وَالسَّبْت؟",
-          "transliteration": "eesh raay7 t3ammel yom il-jum3a wis-sabt?"
+          "arabic": "إِيش عَتْعَمِّل يَوْم الجُمْعَة وَالسَّبْت؟",
+          "transliteration": "eesh 3at3ammel yom il-jum3a wis-sabt?"
         },
         {
           "slot": "i-have-work-every-day-except-friday-and-saturday",
@@ -1203,14 +1203,14 @@
         },
         {
           "speaker": "خديجة",
-          "arabic": "تمام، أنا يوم الأربعة بشتغل لحد المسية.",
-          "transliteration": "tamaam, ana yom il-arba3a bishtighel li7ad il-masya.",
+          "arabic": "تمام، أنا يوم الأربعة أشتغل لحد المسية.",
+          "transliteration": "tamaam, ana yom il-arba3a ashtighel li7ad il-masya.",
           "english": "Okay, I work on Wednesday until the evening."
         },
         {
           "speaker": "يوسف",
-          "arabic": "وأنا يوم الخميس بشوف أصحابي.",
-          "transliteration": "w ana yom il-khamis bishouf aS7aabi.",
+          "arabic": "وأنا يوم الخميس أشوف أصحابي.",
+          "transliteration": "w ana yom il-khamis ashoof aS7aabi.",
           "english": "And I see my friends on Thursday."
         },
         {
@@ -1251,8 +1251,8 @@
         },
         {
           "speaker": "خديجة",
-          "arabic": "إيش رايح تعمل يوم الجمعة والسبت؟",
-          "transliteration": "eesh raay7 t3ammel yom il-jum3a wis-sabt?",
+          "arabic": "إيش عتعمل يوم الجمعة والسبت؟",
+          "transliteration": "eesh 3at3ammel yom il-jum3a wis-sabt?",
           "english": "What do you plan to do on Friday and Saturday?"
         },
         {
@@ -1289,8 +1289,8 @@
         },
         {
           "pair": {
-            "arabic": "إِيش رَايِح تْعَمِّل يَوْم السَّبْت؟",
-            "transliteration": "eesh raay7 t3ammel yom is-sabt?",
+            "arabic": "إِيش عَتْعَمِّل يَوْم السَّبْت؟",
+            "transliteration": "eesh 3at3ammel yom is-sabt?",
             "english": "What will you do on Saturday?"
           },
           "response": {
@@ -1345,7 +1345,7 @@
         {
           "id": "unit-07.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "Someone asks: \"إيش رايح تعمل يوم الجمعة؟\" Suggest something relaxing.",
+          "prompt": "Someone asks: \"إيش عتعمل يوم الجمعة؟\" Suggest something relaxing.",
           "answer": "نام وراحة",
           "accepted": [
             "نام وراحة",
@@ -2208,9 +2208,9 @@
     "instructions": "Create a conversation between two people about their daily routine. Use at least these elements: greet someone in the morning or evening, ask about the time, mention work or activities, and say goodbye. The conversation should be at least 8 exchanges long.",
     "required_elements": [
       "A greeting (morning or evening)",
-      "A question about the time using \"إيش الساعة دحين؟\"",
+      "A question about the time using \"إيش الساعة ذلحين؟\"",
       "At least one mention of work or a daily activity",
-      "The phrase \"أبي\" or \"بدي\" (I want)",
+      "The phrase \"أشتي\" (I want)",
       "A day of the week",
       "A goodbye"
     ],
@@ -2230,8 +2230,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "الحمد لله تمام، إيش الساعة دحين؟",
-          "transliteration": "il-7amdulillah tamaam, eesh is-saa3a daheen?",
+          "arabic": "الحمد لله تمام، إيش الساعة ذلحين؟",
+          "transliteration": "il-7amdulillah tamaam, eesh is-saa3a dhal7een?",
           "english": "Thank God, I'm fine. What time is it now?"
         },
         {
@@ -2242,8 +2242,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "يالله، لازم أروح الشغل، أبي قهوة بدري.",
-          "transliteration": "yalla, laazim aru7 ash-shughl, abi 2ahwa bidri.",
+          "arabic": "يالله، لازم أروح الشغل، أشتي قهوة بدري.",
+          "transliteration": "yalla, laazim aru7 ash-shughl, ashti 2ahwa bidri.",
           "english": "Come on, I have to go to work. I want coffee first."
         },
         {
@@ -2254,8 +2254,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "تمام، بشوفك بالمسية. مع السلامة.",
-          "transliteration": "tamaam, bshuufak bil-masya. ma3 is-salama.",
+          "arabic": "تمام، شاشوفك بالمسية. مع السلامة.",
+          "transliteration": "tamaam, shaashuufak bil-masya. ma3 is-salama.",
           "english": "Okay, see you in the evening. Goodbye."
         },
         {

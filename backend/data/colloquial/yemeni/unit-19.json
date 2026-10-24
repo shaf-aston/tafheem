@@ -70,8 +70,8 @@
         },
         {
           "slot": "where-s-the-atm",
-          "arabic": "فِين الصَّرَّاف الآلِي؟",
-          "transliteration": "feen aS-Sarraaf al-aali?",
+          "arabic": "وِين الصَّرَّاف الآلِي؟",
+          "transliteration": "ween aS-Sarraaf al-aali?",
           "reply": {
             "arabic": "جَنْب البَاب",
             "transliteration": "janb al-baab",
@@ -110,8 +110,8 @@
         },
         {
           "slot": "where-do-i-sign",
-          "arabic": "فِين أُوَقِّع؟",
-          "transliteration": "feen uwaggi3?",
+          "arabic": "وِين أُوَقِّع؟",
+          "transliteration": "ween uwaggi3?",
           "reply": {
             "arabic": "هُنَا، عَلَى الخَطّ",
             "transliteration": "hunaa, 3ala l-khaTT",
@@ -229,8 +229,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين الصَّرَّاف الآلِي؟",
-            "transliteration": "feen aS-Sarraaf al-aali?",
+            "arabic": "وِين الصَّرَّاف الآلِي؟",
+            "transliteration": "ween aS-Sarraaf al-aali?",
             "english": "Where's the ATM?"
           },
           "response": {
@@ -329,14 +329,15 @@
           "id": "unit-19.lesson-01.choose.01",
           "type": "choose",
           "prompt": "Which sentence means \"Where's the ATM?\"",
-          "answer": "فِين الصَّرَّاف الآلِي؟",
+          "answer": "وِين الصَّرَّاف الآلِي؟",
           "options": [
-            "فِين الصَّرَّاف الآلِي؟",
+            "وِين الصَّرَّاف الآلِي؟",
             "أَشْتِي أُودِع هَذَا المَبْلَغ",
             "الجِهَاز بَلَع الكَرْت حَقِّي",
-            "فِين أُوَقِّع؟"
+            "وِين أُوَقِّع؟"
           ],
           "accepted": [
+            "وِين الصَّرَّاف الآلِي؟",
             "فِين الصَّرَّاف الآلِي؟",
             "فين الصراف الآلي؟",
             "فِين الصَّرَّاف الآلِي",
@@ -344,7 +345,7 @@
             "feen aS-Sarraaf al-aali?",
             "feen aS-Sarraaf al-aali"
           ],
-          "tip": "\"فِين\" is \"where\"; \"الصَّرَّاف\" is the cash machine."
+          "tip": "\"وِين\" is \"where\"; \"الصَّرَّاف\" is the cash machine."
         },
         {
           "id": "unit-19.lesson-01.choose.02",
@@ -455,8 +456,8 @@
       "phrases": [
         {
           "slot": "where-s-the-post-office",
-          "arabic": "فِين مَكْتَب البَرِيد؟",
-          "transliteration": "feen maktab al-bareed?",
+          "arabic": "وِين مَكْتَب البَرِيد؟",
+          "transliteration": "ween maktab al-bareed?",
           "reply": {
             "arabic": "فِي آخِر الشَّارِع",
             "transliteration": "fi aakhir ash-shaari3",
@@ -535,8 +536,8 @@
         },
         {
           "slot": "where-s-the-mailbox",
-          "arabic": "فِين صُنْدُوق البَرِيد؟",
-          "transliteration": "feen Sunduug al-bareed?",
+          "arabic": "وِين صُنْدُوق البَرِيد؟",
+          "transliteration": "ween Sunduug al-bareed?",
           "reply": {
             "arabic": "قُدَّام المَكْتَب",
             "transliteration": "guddaam al-maktab",
@@ -631,8 +632,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فِين مَكْتَب البَرِيد؟",
-            "transliteration": "feen maktab al-bareed?",
+            "arabic": "وِين مَكْتَب البَرِيد؟",
+            "transliteration": "ween maktab al-bareed?",
             "english": "Where's the post office?"
           },
           "response": {
@@ -734,8 +735,9 @@
           "id": "unit-19.lesson-02.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where's the mailbox?\"",
-          "answer": "فِين صُنْدُوق البَرِيد",
+          "answer": "وِين صُنْدُوق البَرِيد",
           "accepted": [
+            "وِين صُنْدُوق البَرِيد",
             "فِين صُنْدُوق البَرِيد",
             "فين صندوق البريد",
             "فين صندوق البريد؟",
@@ -752,7 +754,7 @@
           "options": [
             "اُكْتُب العِنْوَان هُنَا",
             "أَشْتِي طَابِع لَوْ سَمَحْت",
-            "فِين مَكْتَب البَرِيد؟",
+            "وِين مَكْتَب البَرِيد؟",
             "كَم وَزْن الطَّرْد؟"
           ],
           "accepted": [
@@ -824,7 +826,7 @@
         {
           "id": "unit-19.lesson-02.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "Complete: \"فِين _____ البَرِيد؟\" (Where is the mailbox?)",
+          "prompt": "Complete: \"وِين _____ البَرِيد؟\" (Where is the mailbox?)",
           "answer": "صُنْدُوق",
           "accepted": [
             "صُنْدُوق",
@@ -836,7 +838,7 @@
         {
           "id": "unit-19.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "Someone asks you: \"فِين مَكْتَب البَرِيد؟\" Say: at the end of the street.",
+          "prompt": "Someone asks you: \"وِين مَكْتَب البَرِيد؟\" Say: at the end of the street.",
           "answer": "فِي آخِر الشَّارِع",
           "accepted": [
             "فِي آخِر الشَّارِع",
@@ -1322,8 +1324,8 @@
           "arabic": "اِتَّصِل بِالشُّرْطَة",
           "transliteration": "ittaSil bish-shurTa",
           "reply": {
-            "arabic": "فِين أَنْتَ؟",
-            "transliteration": "feen anta?",
+            "arabic": "وِين أَنْتَ؟",
+            "transliteration": "ween anta?",
             "english": "Where are you?"
           }
         },
@@ -1354,8 +1356,8 @@
         },
         {
           "slot": "where-is-the-nearest-hospital",
-          "arabic": "فِين أَقْرَب مُسْتَشْفَى؟",
-          "transliteration": "feen agrab mustashfa?",
+          "arabic": "وِين أَقْرَب مُسْتَشْفَى؟",
+          "transliteration": "ween agrab mustashfa?",
           "reply": {
             "arabic": "عَلَى بُعْد خَمْس دَقَايِق",
             "transliteration": "3ala bu3d khams dagaayig",
@@ -1505,8 +1507,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين أَقْرَب مُسْتَشْفَى؟",
-            "transliteration": "feen agrab mustashfa?",
+            "arabic": "وِين أَقْرَب مُسْتَشْفَى؟",
+            "transliteration": "ween agrab mustashfa?",
             "english": "Where is the nearest hospital?"
           },
           "response": {
@@ -1604,14 +1606,15 @@
           "id": "unit-19.lesson-04.choose.02",
           "type": "choose",
           "prompt": "Which sentence means \"Where is the nearest hospital?\"",
-          "answer": "فِين أَقْرَب مُسْتَشْفَى؟",
+          "answer": "وِين أَقْرَب مُسْتَشْفَى؟",
           "options": [
-            "فِين أَقْرَب مُسْتَشْفَى؟",
+            "وِين أَقْرَب مُسْتَشْفَى؟",
             "إِيش رَقْم الطَّوَارِئ؟",
             "أَنَا مُحْتَاج دُكْتُور",
             "اِتَّصِل بِالشُّرْطَة"
           ],
           "accepted": [
+            "وِين أَقْرَب مُسْتَشْفَى؟",
             "فِين أَقْرَب مُسْتَشْفَى؟",
             "فين أقرب مستشفى؟",
             "فِين أَقْرَب مُسْتَشْفَى",
@@ -1638,15 +1641,16 @@
         {
           "id": "unit-19.lesson-04.reorder.02",
           "type": "reorder",
-          "prompt": "Put the words in order: \"فِين / أَقْرَب / مُسْتَشْفَى\".",
-          "answer": "فِين أَقْرَب مُسْتَشْفَى",
+          "prompt": "Put the words in order: \"وِين / أَقْرَب / مُسْتَشْفَى\".",
+          "answer": "وِين أَقْرَب مُسْتَشْفَى",
           "accepted": [
+            "وِين أَقْرَب مُسْتَشْفَى",
             "فِين أَقْرَب مُسْتَشْفَى",
             "فين أقرب مستشفى",
             "فين اقرب مستشفى؟",
             "feen agrab mustashfa"
           ],
-          "tip": "Start with \"فِين\"."
+          "tip": "Start with \"وِين\"."
         },
         {
           "id": "unit-19.lesson-04.fill_blank.01",
@@ -1692,7 +1696,7 @@
         {
           "id": "unit-19.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "You ask for the police and the operator asks: \"فِين أَنْتَ؟\" Say: this is the address.",
+          "prompt": "You ask for the police and the operator asks: \"وِين أَنْتَ؟\" Say: this is the address.",
           "answer": "هَذَا هُو العِنْوَان",
           "accepted": [
             "هَذَا هُو العِنْوَان",
@@ -1713,8 +1717,8 @@
           "arabic": "صَارَ حَادِث",
           "transliteration": "Saara 7aadith",
           "reply": {
-            "arabic": "فِين؟",
-            "transliteration": "feen?",
+            "arabic": "وِين؟",
+            "transliteration": "ween?",
             "english": "Where?"
           }
         },
@@ -1902,8 +1906,8 @@
             "english": "There has been an accident."
           },
           "response": {
-            "arabic": "فِين؟",
-            "transliteration": "feen?",
+            "arabic": "وِين؟",
+            "transliteration": "ween?",
             "english": "Where?"
           }
         },
@@ -2172,8 +2176,8 @@
         },
         {
           "slot": "where-did-you-see-him-last",
-          "arabic": "فِين شُفْتُه آخِر مَرَّة؟",
-          "transliteration": "feen shuftuh aakhir marra?",
+          "arabic": "وِين شُفْتُه آخِر مَرَّة؟",
+          "transliteration": "ween shuftuh aakhir marra?",
           "reply": {
             "arabic": "عِنْد مَدْخَل السُّوق",
             "transliteration": "3ind madkhal as-soog",
@@ -2192,8 +2196,8 @@
         },
         {
           "slot": "where-is-the-information-desk",
-          "arabic": "فِين مَكْتَب الاسْتِعْلَامَات؟",
-          "transliteration": "feen maktab al-isti3laamaat?",
+          "arabic": "وِين مَكْتَب الاسْتِعْلَامَات؟",
+          "transliteration": "ween maktab al-isti3laamaat?",
           "reply": {
             "arabic": "فِي الدَّوْر الأَرْضِي",
             "transliteration": "fi d-dawr al-arDi",
@@ -2371,8 +2375,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين شُفْتُه آخِر مَرَّة؟",
-            "transliteration": "feen shuftuh aakhir marra?",
+            "arabic": "وِين شُفْتُه آخِر مَرَّة؟",
+            "transliteration": "ween shuftuh aakhir marra?",
             "english": "Where did you see him last?"
           },
           "response": {
@@ -2455,14 +2459,15 @@
           "id": "unit-19.lesson-06.choose.01",
           "type": "choose",
           "prompt": "Which sentence means \"Where is the information desk?\"",
-          "answer": "فِين مَكْتَب الاسْتِعْلَامَات؟",
+          "answer": "وِين مَكْتَب الاسْتِعْلَامَات؟",
           "options": [
-            "فِين مَكْتَب الاسْتِعْلَامَات؟",
+            "وِين مَكْتَب الاسْتِعْلَامَات؟",
             "فِيه حَارِس أَمْن هُنَا؟",
             "هَذِي صُورَتُه",
             "لَقَيْنَاه!"
           ],
           "accepted": [
+            "وِين مَكْتَب الاسْتِعْلَامَات؟",
             "فِين مَكْتَب الاسْتِعْلَامَات؟",
             "فين مكتب الاستعلامات؟",
             "فِين مَكْتَب الاسْتِعْلَامَات",
@@ -2470,7 +2475,7 @@
             "feen maktab al-isti3laamaat?",
             "feen maktab al-isti3laamaat"
           ],
-          "tip": "\"فِين\" is \"where\"."
+          "tip": "\"وِين\" is \"where\"."
         },
         {
           "id": "unit-19.lesson-06.choose.02",
@@ -2505,15 +2510,16 @@
         {
           "id": "unit-19.lesson-06.reorder.02",
           "type": "reorder",
-          "prompt": "Put the words in order: \"فِين / شُفْتُه / آخِر / مَرَّة\".",
-          "answer": "فِين شُفْتُه آخِر مَرَّة",
+          "prompt": "Put the words in order: \"وِين / شُفْتُه / آخِر / مَرَّة\".",
+          "answer": "وِين شُفْتُه آخِر مَرَّة",
           "accepted": [
+            "وِين شُفْتُه آخِر مَرَّة",
             "فِين شُفْتُه آخِر مَرَّة",
             "فين شفته آخر مرة",
             "فين شفته آخر مرة؟",
             "feen shuftuh aakhir marra"
           ],
-          "tip": "Start with \"فِين\"."
+          "tip": "Start with \"وِين\"."
         },
         {
           "id": "unit-19.lesson-06.fill_blank.01",
@@ -2558,7 +2564,7 @@
         {
           "id": "unit-19.lesson-06.reply.02",
           "type": "reply",
-          "prompt": "The guard asks: \"فِين شُفْتُه آخِر مَرَّة؟\" Say: at the market entrance.",
+          "prompt": "The guard asks: \"وِين شُفْتُه آخِر مَرَّة؟\" Say: at the market entrance.",
           "answer": "عِنْد مَدْخَل السُّوق",
           "accepted": [
             "عِنْد مَدْخَل السُّوق",
@@ -2577,7 +2583,7 @@
     "instructions": "Write and act out a conversation of at least 10 lines in Sana'ani Arabic. You withdraw cash at the bank, ask where the post office is, ask the cost of sending a parcel, and top up your phone balance. Use at least 8 phrases from Unit 19.",
     "required_elements": [
       "A request at the bank with أَشْتِي أَسْحَب فُلُوس كَاش.",
-      "A question about the post office with فِين.",
+      "A question about the post office with وِين.",
       "A question about a price with بِكَم.",
       "A request to top up the phone balance with أَشْتِي أَشْحَن رَصِيد.",
       "A polite word such as لَوْ سَمَحْت or شُكْرًا."
@@ -2598,8 +2604,8 @@
         },
         {
           "speaker": "يوسف",
-          "arabic": "مِيَّة أَلْف رِيَال. وَفِين مَكْتَب البَرِيد لَوْ سَمَحْت؟",
-          "transliteration": "miyya alf riyaal. wa feen maktab al-bareed law sama7t?",
+          "arabic": "مِيَّة أَلْف رِيَال. وَوِين مَكْتَب البَرِيد لَوْ سَمَحْت؟",
+          "transliteration": "miyya alf riyaal. wa ween maktab al-bareed law sama7t?",
           "english": "A hundred thousand riyals. And where is the post office, please?"
         },
         {

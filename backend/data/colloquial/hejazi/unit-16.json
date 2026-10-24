@@ -27,8 +27,8 @@
       "phrases": [
         {
           "slot": "what-did-you-do-yesterday",
-          "arabic": "شُو سَوَّيْتِ أَمْس؟",
-          "transliteration": "shu sawwaiti ams?",
+          "arabic": "إِيش سَوَّيْتِ أَمْس؟",
+          "transliteration": "eesh sawwaiti ams?",
           "reply": {
             "arabic": "أَمْس رُحْتِ السُّوقِ",
             "transliteration": "ams ru7ti s-soo2",
@@ -37,8 +37,8 @@
         },
         {
           "slot": "yesterday-was-a-very-long-day",
-          "arabic": "أَمْس كَانَ يَوْمٌ طَوِيلٌ كِتِير",
-          "transliteration": "ams kaan yawm Taaweel kteer"
+          "arabic": "أَمْس كَانَ يَوْمٌ طَوِيلٌ مَرَّة",
+          "transliteration": "ams kaan yawm Taaweel marra"
         },
         {
           "slot": "i-woke-up-late-yesterday",
@@ -47,8 +47,8 @@
         },
         {
           "slot": "where-were-you-last-night",
-          "arabic": "وَيْنِك كِنْتِ أَمْس بِاللَّيْلِ؟",
-          "transliteration": "weenik kinti ams bil-leel?",
+          "arabic": "فِينِك كِنْتِ أَمْس بِاللَّيْلِ؟",
+          "transliteration": "feenik kinti ams bil-leel?",
           "reply": {
             "arabic": "كِنْتِ قَاعِدَة بِالْبَيْتِ",
             "transliteration": "kinti gaa3da bil-beet",
@@ -62,8 +62,8 @@
         },
         {
           "slot": "who-did-you-see-yesterday",
-          "arabic": "مِنّ شُفْتِ أَمْس؟",
-          "transliteration": "min shufti ams?",
+          "arabic": "مِين شُفْتِ أَمْس؟",
+          "transliteration": "meen shufti ams?",
           "reply": {
             "arabic": "شُفْتِ خَالِتِي بِالصُّدْفَةِ",
             "transliteration": "shufti khaalti biS-Sudfa",
@@ -102,8 +102,8 @@
         },
         {
           "slot": "yesterday-the-weather-was-very-nice",
-          "arabic": "أَمْس الْجَوّ كَانَ حِلْوٌ كِتِير",
-          "transliteration": "ams il-jaw kaan 7ilw kteer"
+          "arabic": "أَمْس الْجَوّ كَانَ حِلْوٌ مَرَّة",
+          "transliteration": "ams il-jaw kaan 7ilw marra"
         },
         {
           "slot": "why-didn-t-you-come-yesterday",
@@ -119,14 +119,14 @@
       "dialogue": [
         {
           "speaker": "محمود",
-          "arabic": "سَلَامٌ، فَاطِمَةِ، شِنُّو أَخْبَارِك؟",
-          "transliteration": "assalaam, Fatima, shinu akhbaarik?",
+          "arabic": "سَلَامٌ، فَاطِمَةِ، إِيش أَخْبَارِك؟",
+          "transliteration": "assalaam, Fatima, eesh akhbaarik?",
           "english": "Hi Fatima, how are you?"
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "وَ عَلَيْكُمِ السَّلَامِ، تَمَامٌ الْحَمْدُ لِلَّهِ. وَ إِنْتِ وَيْنِك كِنْتِ أَمْس؟",
-          "transliteration": "w-3aleikum assalaam, tamaam il-7amdulillah. w-inta weenik kinti ams?",
+          "arabic": "وَ عَلَيْكُمِ السَّلَامِ، تَمَامٌ الْحَمْدُ لِلَّهِ. وَ إِنْتِ فِينِك كِنْتِ أَمْس؟",
+          "transliteration": "w-3aleikum assalaam, tamaam il-7amdulillah. w-inta feenik kinti ams?",
           "english": "Hi, fine thank God. Where were you yesterday?"
         },
         {
@@ -155,8 +155,8 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "شُو اشْتَرَيْتِ؟",
-          "transliteration": "shu ishtarait?",
+          "arabic": "إِيش اشْتَرَيْتِ؟",
+          "transliteration": "eesh ishtarait?",
           "english": "What did you buy?"
         },
         {
@@ -167,8 +167,8 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "تَمَامٌ، وَ بَعْدَيْنِ شُو سَوَّيْتِ؟",
-          "transliteration": "tamaam, w-ba3deen shu sawwaiti?",
+          "arabic": "تَمَامٌ، وَ بَعْدَيْنِ إِيش سَوَّيْتِ؟",
+          "transliteration": "tamaam, w-ba3deen eesh sawwaiti?",
           "english": "Ok, and then what did you do?"
         },
         {
@@ -179,8 +179,8 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "كِتِير حِلْوٌ. أَنَا نِمْتِ بِدْرِي أَمْس مِنِ التَّعَبِ",
-          "transliteration": "kteer 7ilw. ana nimti bidri ams mit-ta3ab",
+          "arabic": "مَرَّة حِلْوٌ. أَنَا نِمْتِ بِدْرِي أَمْس مِنِ التَّعَبِ",
+          "transliteration": "marra 7ilw. ana nimti bidri ams mit-ta3ab",
           "english": "Very nice. I slept early yesterday from tiredness."
         },
         {
@@ -193,8 +193,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شُو سَوَّيْتِ أَمْس؟",
-            "transliteration": "shu sawwaiti ams?",
+            "arabic": "إِيش سَوَّيْتِ أَمْس؟",
+            "transliteration": "eesh sawwaiti ams?",
             "english": "What did you do yesterday?"
           },
           "response": {
@@ -205,8 +205,8 @@
         },
         {
           "pair": {
-            "arabic": "وَيْنِك كِنْتِ السَّاعَةِ سَبْعَةِ أَمْس؟",
-            "transliteration": "weenik kinti s-saa3a saba3a ams?",
+            "arabic": "فِينِك كِنْتِ السَّاعَةِ سَبْعَةِ أَمْس؟",
+            "transliteration": "feenik kinti s-saa3a saba3a ams?",
             "english": "Where were you at seven o'clock yesterday?"
           },
           "response": {
@@ -240,12 +240,12 @@
           }
         }
       ],
-      "culture": "In Hejazi communities, أمس is the everyday word for yesterday; the MSA أمس is also used and understood. Asking شُو سَوَّيْتِ أَمْس؟ is a natural way to catch up with a friend or family member, especially after work or school. The culture values family time and visiting friends, so it is common to ask about what someone did yesterday.",
+      "culture": "In Hejazi communities, أمس is the everyday word for yesterday; the MSA أمس is also used and understood. Asking إِيش سَوَّيْتِ أَمْس؟ is a natural way to catch up with a friend or family member, especially after work or school. The culture values family time and visiting friends, so it is common to ask about what someone did yesterday.",
       "exercises": [
         {
           "id": "unit-16.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "صَاحِبِتِك تِسْأَلِك: \"شُو سَوَّيْتِ أَمْس؟\". جَاوِبِي إِنِّك رُحْتِ السُّوقِ.",
+          "prompt": "صَاحِبِتِك تِسْأَلِك: \"إِيش سَوَّيْتِ أَمْس؟\". جَاوِبِي إِنِّك رُحْتِ السُّوقِ.",
           "answer": "أَمْس رُحْتِ السُّوقِ",
           "accepted": [
             "أَمْس رُحْتِ السُّوقِ",
@@ -261,7 +261,7 @@
         {
           "id": "unit-16.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "بِتِسْأَلِك: \"وَيْنِك كِنْتِ أَمْس بِاللَّيْلِ؟\". جَاوِبِي إِنِّك كِنْتِ بِالْبَيْتِ.",
+          "prompt": "بِتِسْأَلِك: \"فِينِك كِنْتِ أَمْس بِاللَّيْلِ؟\". جَاوِبِي إِنِّك كِنْتِ بِالْبَيْتِ.",
           "answer": "كِنْتِ بِالْبَيْتِ",
           "accepted": [
             "كِنْتِ بِالْبَيْتِ",
@@ -341,27 +341,27 @@
           "id": "unit-16.lesson-01.choose.01",
           "type": "choose",
           "prompt": "أَيُّ جُمْلَةٌ مَعْنَاهَا \"Where were you yesterday at night?\"؟",
-          "answer": "وَيْنِك كِنْتِ أَمْس بِاللَّيْلِ؟",
+          "answer": "فِينِك كِنْتِ أَمْس بِاللَّيْلِ؟",
           "accepted": [
-            "وَيْنِك كِنْتِ أَمْس بِاللَّيْلِ؟",
-            "weenik kinti ams bil-leel?"
+            "فِينِك كِنْتِ أَمْس بِاللَّيْلِ؟",
+            "feenik kinti ams bil-leel?"
           ],
           "options": [
-            "وَيْنِك كِنْتِ أَمْس بِاللَّيْلِ؟",
-            "وَيْنِك كِنْتِ الْيَوْمِ فِي الصَّبَاحِ؟",
-            "شُو سَوَّيْتِ أَمْس بِاللَّيْلِ؟",
+            "فِينِك كِنْتِ أَمْس بِاللَّيْلِ؟",
+            "فِينِك كِنْتِ الْيَوْمِ فِي الصَّبَاحِ؟",
+            "إِيش سَوَّيْتِ أَمْس بِاللَّيْلِ؟",
             "كِيفِ كِنْتِ أَمْس؟"
           ],
           "too_formal": {
             "item": "أَيْنَ كُنْتِ أَمْسِ لَيْلًا؟",
             "feedback": "Correct MSA but very formal; Hejazi says وَيْنِك."
           },
-          "tip": "\"وَيْنِك\" = where were you (casual)."
+          "tip": "\"فِينِك\" = where were you (casual)."
         },
         {
           "id": "unit-16.lesson-01.choose.02",
           "type": "choose",
-          "prompt": "شُو مَعْنَى \"نِمْتِ بِدْرِي أَمْس\"؟",
+          "prompt": "إِيش مَعْنَى \"نِمْتِ بِدْرِي أَمْس\"؟",
           "answer": "I slept early yesterday.",
           "accepted": [
             "I slept early yesterday.",
@@ -452,13 +452,13 @@
         },
         {
           "slot": "i-used-to-be-very-afraid-of-the-dark-when-i-was-",
-          "arabic": "كِنْتِ خَايِفَةِ كِتِير مِنِ الظُّلُمَةِ لَمَّا كِنْتِ صَغِيرَةِ",
-          "transliteration": "kinti khayfa kteer min iZ-Zuluma lamma kinti Sghira"
+          "arabic": "كِنْتِ خَايِفَةِ مَرَّة مِنِ الظُّلُمَةِ لَمَّا كِنْتِ صَغِيرَةِ",
+          "transliteration": "kinti khayfa marra min iZ-Zuluma lamma kinti Sghira"
         },
         {
           "slot": "my-teacher-at-school-was-very-kind",
-          "arabic": "مُعَلِّمَتِي بِالْمَدْرَسَةِ كَانَتْ طَيِّبَةِ كِتِير",
-          "transliteration": "mu3allimati bil-madrasa kanat Tayyiba kteer"
+          "arabic": "مُعَلِّمَتِي بِالْمَدْرَسَةِ كَانَتْ طَيِّبَةِ مَرَّة",
+          "transliteration": "mu3allimati bil-madrasa kanat Tayyiba marra"
         },
         {
           "slot": "we-used-to-walk-to-school-together-every-day",
@@ -551,16 +551,16 @@
         },
         {
           "speaker": "سَارَة",
-          "arabic": "فِي هَاتِ الْأَيَّامِ الْحَيَاةِ كَانَتْ أَبْسَطِ كِتِير مِنِ الْآنِ.",
-          "transliteration": "fi hat il-ayyam il-7ayat kanat abSaT kteer min il-aan.",
+          "arabic": "فِي هَاتِ الْأَيَّامِ الْحَيَاةِ كَانَتْ أَبْسَطِ كِتِير مِنِ دَحِين.",
+          "transliteration": "fi hat il-ayyam il-7ayat kanat abSaT kteer min da7een.",
           "english": "Back then life was much simpler than now."
         }
       ],
       "de_book": [
         {
           "pair": {
-            "arabic": "لَمَّا كِنْتِ صَغِيرَةِ، شُو كِنْتِ تِحِبِّي تِلْعَبِي؟",
-            "transliteration": "lamma kinti Sghira, shu kinti ti7ibee til3abi?",
+            "arabic": "لَمَّا كِنْتِ صَغِيرَةِ، إِيش كِنْتِ تِحِبِّي تِلْعَبِي؟",
+            "transliteration": "lamma kinti Sghira, eesh kinti ti7ibee til3abi?",
             "english": "When you were young, what did you love to play?"
           },
           "response": {
@@ -583,8 +583,8 @@
         },
         {
           "pair": {
-            "arabic": "مِنّ كَانَتْ أَحْسَنِ صَحِيبَةِ عِنْدِك؟",
-            "transliteration": "min kanat a7san sa7iba 3indik?",
+            "arabic": "مِين كَانَتْ أَحْسَنِ صَحِيبَةِ عِنْدِك؟",
+            "transliteration": "meen kanat a7san sa7iba 3indik?",
             "english": "Who was your best friend?"
           },
           "response": {
@@ -595,8 +595,8 @@
         },
         {
           "pair": {
-            "arabic": "شُو كِنْتِ تِحْلِمِي تِصِيرِي لَمَّا تِكْبِري؟",
-            "transliteration": "shu kinti ti7lami tSeeri lamma tikbri?",
+            "arabic": "إِيش كِنْتِ تِحْلِمِي تِصِيرِي لَمَّا تِكْبِري؟",
+            "transliteration": "eesh kinti ti7lami tSeeri lamma tikbri?",
             "english": "What did you dream of becoming when you grew up?"
           },
           "response": {
@@ -611,7 +611,7 @@
         {
           "id": "unit-16.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "وَالِدَتِك تِسْأَلِك: \"لَمَّا كِنْتِ صَغِيرَةِ، شُو كِنْتِ تِحِبِّي تِلْعَبِي؟\". جَاوِبِي إِنِّك كِنْتِ تِحِبِّي كُرَةِ.",
+          "prompt": "وَالِدَتِك تِسْأَلِك: \"لَمَّا كِنْتِ صَغِيرَةِ، إِيش كِنْتِ تِحِبِّي تِلْعَبِي؟\". جَاوِبِي إِنِّك كِنْتِ تِحِبِّي كُرَةِ.",
           "answer": "كِنْتِ أَحِبِّ الْكُرَةِ",
           "accepted": [
             "كِنْتِ أَحِبِّ الْكُرَةِ",
@@ -715,7 +715,7 @@
           "options": [
             "كِنَّا نِلْعَبِ مَعَ بَعْضِنَا كُلِّ يَوْمٌ",
             "كِنَّا نِرُوحِ الْمَدْرَسَةِ كُلِّ لَيْلَةِ",
-            "كِنْتِ أَحْلِمِ أِنِّي أِصِير الآن",
+            "كِنْتِ أَحْلِمِ أِنِّي أِصِير دَحِين",
             "جِدَّتِي لَمْ تِحْكِي لَنَا قِصَصٌ"
           ],
           "too_formal": {
@@ -727,7 +727,7 @@
         {
           "id": "unit-16.lesson-02.choose.02",
           "type": "choose",
-          "prompt": "شُو مَعْنَى \"فِي هَاتِ الْأَيَّامِ الْحَيَاةِ كَانَتْ أَبْسَطِ\"؟",
+          "prompt": "إِيش مَعْنَى \"فِي هَاتِ الْأَيَّامِ الْحَيَاةِ كَانَتْ أَبْسَطِ\"؟",
           "answer": "Back then life was simpler.",
           "accepted": [
             "Back then life was simpler.",
@@ -845,20 +845,20 @@
       "dialogue": [
         {
           "speaker": "فَهْد",
-          "arabic": "أَهْلَا نُورَةِ، شِنُّو أَخْبَارِك؟ شَكْلِك تَعْبَانَة",
-          "transliteration": "ahla Nura, shinu akhbarik? shaklak ta3baana",
+          "arabic": "أَهْلَا نُورَةِ، إِيش أَخْبَارِك؟ شَكْلِك تَعْبَانَة",
+          "transliteration": "ahla Nura, eesh akhbarik? shaklak ta3baana",
           "english": "Hi Noora, what's up? You look tired."
         },
         {
           "speaker": "نُورَة",
-          "arabic": "أَمْس كَانَ يَوْمٌ مُوّ حِلْوٌ! جَوَّالِي انْكَسَرِ.",
-          "transliteration": "ams kaan yawm muu 7ilw! jawwali inkasar.",
+          "arabic": "أَمْس كَانَ يَوْمٌ مُو حِلْوٌ! جَوَّالِي انْكَسَرِ.",
+          "transliteration": "ams kaan yawm mu 7ilw! jawwali inkasar.",
           "english": "Yesterday was not a good day at all! My phone broke."
         },
         {
           "speaker": "فَهْد",
-          "arabic": "لَا، شُو صَارِ؟",
-          "transliteration": "la, shu Saar?",
+          "arabic": "لَا، إِيش صَارِ؟",
+          "transliteration": "la, eesh Saar?",
           "english": "No, what happened?"
         },
         {
@@ -869,8 +869,8 @@
         },
         {
           "speaker": "فَهْد",
-          "arabic": "اللَّهُ يُعِينِك! وَ الدَّوَامِ شِنُّو؟",
-          "transliteration": "allah yu3inik! w-id-dawaam shinu?",
+          "arabic": "اللَّهُ يُعِينِك! وَ الدَّوَامِ إِيش؟",
+          "transliteration": "allah yu3inik! w-id-dawaam eesh?",
           "english": "God help you! And how was work?"
         },
         {
@@ -919,8 +919,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شُو صَارِ لَك؟",
-            "transliteration": "shu Saar lak?",
+            "arabic": "إِيش صَارِ لَك؟",
+            "transliteration": "eesh Saar lak?",
             "english": "What happened to you?"
           },
           "response": {
@@ -943,8 +943,8 @@
         },
         {
           "pair": {
-            "arabic": "وَيْنِ شَنْطَتِك؟",
-            "transliteration": "ween shanTtak?",
+            "arabic": "فِين شَنْطَتِك؟",
+            "transliteration": "feen shanTtak?",
             "english": "Where is your bag?"
           },
           "response": {
@@ -955,8 +955,8 @@
         },
         {
           "pair": {
-            "arabic": "شُو صَارِ فِي اللَّابْتُوبِ؟",
-            "transliteration": "shu Saar fil-laabtoop?",
+            "arabic": "إِيش صَارِ فِي اللَّابْتُوبِ؟",
+            "transliteration": "eesh Saar fil-laabtoop?",
             "english": "What happened to the laptop?"
           },
           "response": {
@@ -1056,7 +1056,7 @@
           "accepted": [
             "نِمْتِ زِيَادَةِ وَ مَا سِمِعْتِ الْمُنَبِّهِ",
             "nimt ziyada w-ma simt il-munabbih",
-            "نِمْتِ وَايِد وَ مَا سِمِعْتِ الْمُنَبِّهِ"
+            "نِمْتِ مَرَّة وَ مَا سِمِعْتِ الْمُنَبِّهِ"
           ],
           "too_formal": {
             "item": "اسْتَغْرَقْتِ فِي النَّوْمِ وَ لَمْ أَسْمَعِ الْمُنَبِّهَ",
@@ -1088,7 +1088,7 @@
         {
           "id": "unit-16.lesson-03.choose.02",
           "type": "choose",
-          "prompt": "شُو مَعْنَى \"شَنْطَتِي ضَاعَتْ فِي الْمَطَارِ\"؟",
+          "prompt": "إِيش مَعْنَى \"شَنْطَتِي ضَاعَتْ فِي الْمَطَارِ\"؟",
           "answer": "My bag got lost at the airport.",
           "accepted": [
             "My bag got lost at the airport.",
@@ -1158,8 +1158,8 @@
         },
         {
           "slot": "who-told-you-this-news",
-          "arabic": "مِنّ قَالِ لِك هَالْخَبَرِ؟",
-          "transliteration": "min gaal lik hal-khabar?",
+          "arabic": "مِين قَالِ لِك هَالْخَبَرِ؟",
+          "transliteration": "meen gaal lik hal-khabar?",
           "reply": {
             "arabic": "صَاحِبِي قَالِ لِي",
             "transliteration": "sa7ibi gaal li",
@@ -1173,13 +1173,13 @@
         },
         {
           "slot": "we-re-not-sure-yet-it-might-just-be-a-rumor",
-          "arabic": "مُوّ مِتَأَكِّدِينِ لِحِينِ، يِمْكِنِ بَسِ إِشَاعَةِ",
-          "transliteration": "muu muta2akkideen li7een, yimkin bas isha3a"
+          "arabic": "مُو مِتَأَكِّدِينِ لِسَّه، يِمْكِنِ بَسِ إِشَاعَةِ",
+          "transliteration": "mu muta2akkideen lissa, yimkin bas isha3a"
         },
         {
           "slot": "you-won-t-believe-what-happened-yesterday-in-the",
-          "arabic": "مَا بِتِصَدِّقِي شُو صَارِ أَمْس بِالْحَيِّ",
-          "transliteration": "ma bitsaddihi shu Saar ams bil-7ay"
+          "arabic": "مَا بِتِصَدِّقِي إِيش صَارِ أَمْس بِالْحَيِّ",
+          "transliteration": "ma bitsaddihi eesh Saar ams bil-7ay"
         },
         {
           "slot": "my-sister-got-married-last-month",
@@ -1193,8 +1193,8 @@
         },
         {
           "slot": "what-s-the-latest-news-with-you",
-          "arabic": "شُو آخِرِ أَخْبَارِك؟",
-          "transliteration": "shu aakhir akhbaarak?"
+          "arabic": "إِيش آخِرِ أَخْبَارِك؟",
+          "transliteration": "eesh aakhir akhbaarak?"
         },
         {
           "slot": "don-t-tell-anyone-but-i-heard-they-re-going-to-t",
@@ -1203,27 +1203,27 @@
         },
         {
           "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
-          "arabic": "كُلِّ هَاي كِلَامِ النَّاسِ، أَنَا مَا أَدْرِي إِذَا صِحِيحِ وَ لَا لَا",
-          "transliteration": "kill hay kilaam in-nas, ana ma adri idha Si7ee7 w-la la"
+          "arabic": "كُلِّ دِي كِلَامِ النَّاسِ، أَنَا مَا أَدْرِي إِذَا صِحِيحِ وَ لَا لَا",
+          "transliteration": "kill di kilaam in-nas, ana ma adri idha Si7ee7 w-la la"
         }
       ],
       "dialogue": [
         {
           "speaker": "عَلِي",
-          "arabic": "لَطِيفَةِ، شِنُّو أَخْبَارِك؟ شُو سَوَّيْتِ أَمْس؟",
-          "transliteration": "Latifa, shinu akhbarik? shu sawwait ams?",
+          "arabic": "لَطِيفَةِ، إِيش أَخْبَارِك؟ إِيش سَوَّيْتِ أَمْس؟",
+          "transliteration": "Latifa, eesh akhbarik? eesh sawwait ams?",
           "english": "Latifa, what's up? What did you do yesterday?"
         },
         {
           "speaker": "لَطِيفَة",
-          "arabic": "أَهْلَا عَلِي! مَا بِتِصَدِّقِ شُو صَارِ لِي أَمْس!",
-          "transliteration": "ahla 3ali! ma bitsaddiq shu Saar li ams!",
+          "arabic": "أَهْلَا عَلِي! مَا بِتِصَدِّقِ إِيش صَارِ لِي أَمْس!",
+          "transliteration": "ahla 3ali! ma bitsaddiq eesh Saar li ams!",
           "english": "Hi Ali! You won't believe what happened to me yesterday!"
         },
         {
           "speaker": "عَلِي",
-          "arabic": "شُو صَارِ؟ قُولِي لِي!",
-          "transliteration": "shu Saar? guuli li!",
+          "arabic": "إِيش صَارِ؟ قُولِي لِي!",
+          "transliteration": "eesh Saar? guuli li!",
           "english": "What happened? Tell me!"
         },
         {
@@ -1252,20 +1252,20 @@
         },
         {
           "speaker": "لَطِيفَة",
-          "arabic": "صَحِيحِ؟ مِنّ قَالِ لِك؟",
-          "transliteration": "Sa7ee7? min gaal lik?",
+          "arabic": "صَحِيحِ؟ مِين قَالِ لِك؟",
+          "transliteration": "Sa7ee7? meen gaal lik?",
           "english": "Really? Who told you?"
         },
         {
           "speaker": "عَلِي",
-          "arabic": "صَاحِبِي قَالِ لِي، بَسِ مُوّ مِتَأَكِّدِ لِحِينِ.",
-          "transliteration": "sa7ibi gaal li, bas muu muta2akkid li7een.",
+          "arabic": "صَاحِبِي قَالِ لِي، بَسِ مُو مِتَأَكِّدِ لِسَّه.",
+          "transliteration": "sa7ibi gaal li, bas mu muta2akkid lissa.",
           "english": "My friend told me, but I'm not sure yet."
         },
         {
           "speaker": "لَطِيفَة",
-          "arabic": "خَبَرِ حِلْوِ إِذَا صَحِيحِ! بَسِ أَمْس كَانَ يَوْمٌ مُوّ حِلْوِ، يَا حَرَامِ عَلَيِّ.",
-          "transliteration": "khabar 7ilw idha Sa7ee7! bas ams kaan yawm muu 7ilw, ya 7araam 3alayya.",
+          "arabic": "خَبَرِ حِلْوِ إِذَا صَحِيحِ! بَسِ أَمْس كَانَ يَوْمٌ مُو حِلْوِ، يَا حَرَامِ عَلَيِّ.",
+          "transliteration": "khabar 7ilw idha Sa7ee7! bas ams kaan yawm mu 7ilw, ya 7araam 3alayya.",
           "english": "Nice news if it's true! But yesterday was not a nice day, poor me."
         },
         {
@@ -1295,15 +1295,15 @@
             "english": "Do you have any news?"
           },
           "response": {
-            "arabic": "إِي، عِنْدِي خَبَرِ كِتِير حِلْوِ!",
-            "transliteration": "ee, 3indi khabar kteer 7ilw!",
+            "arabic": "إِي، عِنْدِي خَبَرِ مَرَّة حِلْوِ!",
+            "transliteration": "ee, 3indi khabar marra 7ilw!",
             "english": "Yes, I have some great news!"
           }
         },
         {
           "pair": {
-            "arabic": "مِنّ قَالِ لِك؟",
-            "transliteration": "min gaal lik?",
+            "arabic": "مِين قَالِ لِك؟",
+            "transliteration": "meen gaal lik?",
             "english": "Who told you?"
           },
           "response": {
@@ -1319,13 +1319,13 @@
             "english": "Are you sure about the news?"
           },
           "response": {
-            "arabic": "مُوّ مِتَأَكِّدَة، يِمْكِنِ بَسِ إِشَاعَةِ",
-            "transliteration": "muu muta2akkida, yimkin bas isha3a",
+            "arabic": "مُو مِتَأَكِّدَة، يِمْكِنِ بَسِ إِشَاعَةِ",
+            "transliteration": "mu muta2akkida, yimkin bas isha3a",
             "english": "I'm not sure, it might just be a rumor."
           }
         }
       ],
-      "culture": "Sharing news and gossip is a normal part of social bonding in Hejazi communities. The phrase \"سِمِعْتِ إِنِّ\" (I heard that) is commonly used to introduce news, whether certain or not. It is polite to qualify uncertain information with phrases like \"مُوّ مِتَأَكِّدِ\" (I'm not sure) or \"يِمْكِنِ بَسِ إِشَاعَةِ\" (it might just be a rumor) to show honesty. The phrase \"يَا حَرَامِ\" (poor, how sad) is used sympathetically when hearing about someone's misfortune.",
+      "culture": "Sharing news and gossip is a normal part of social bonding in Hejazi communities. The phrase \"سِمِعْتِ إِنِّ\" (I heard that) is commonly used to introduce news, whether certain or not. It is polite to qualify uncertain information with phrases like \"مُو مِتَأَكِّدِ\" (I'm not sure) or \"يِمْكِنِ بَسِ إِشَاعَةِ\" (it might just be a rumor) to show honesty. The phrase \"يَا حَرَامِ\" (poor, how sad) is used sympathetically when hearing about someone's misfortune.",
       "exercises": [
         {
           "id": "unit-16.lesson-04.reply.01",
@@ -1335,7 +1335,7 @@
           "accepted": [
             "صَحِيحِ؟!",
             "Sa7ee7?!",
-            "مِنّ قَالِ لِك؟"
+            "مِين قَالِ لِك؟"
           ],
           "too_formal": {
             "item": "هَلْ هَذَا صَحِيحٌ حَقًّا؟",
@@ -1351,7 +1351,7 @@
           "accepted": [
             "قُولِي لِي!",
             "guuli li!",
-            "شُو الْخَبَرِ؟"
+            "إِيش الْخَبَرِ؟"
           ],
           "too_formal": {
             "item": "أَخْبِرِينِي بِهِ",
@@ -1378,16 +1378,16 @@
           "id": "unit-16.lesson-04.fill_blank.02",
           "type": "fill_blank",
           "prompt": "أَكْمِلِي: \"_____ مِتَأَكِّدَة مِنِ الْخَبَرِ.\" الْمَعْنَى: I'm not sure about the news.",
-          "answer": "مُوّ",
+          "answer": "مُو",
           "accepted": [
-            "مُوّ",
+            "مُو",
             "muu"
           ],
           "too_formal": {
             "item": "لَسْتُ",
-            "feedback": "Correct MSA but formal; Hejazi uses مُوّ for negation."
+            "feedback": "Correct MSA but formal; Hejazi uses مُو for negation."
           },
-          "tip": "\"مُوّ\" = not (in Hejazi)."
+          "tip": "\"مُو\" = not (in Hejazi)."
         },
         {
           "id": "unit-16.lesson-04.translate_to_arabic.01",
@@ -1409,15 +1409,15 @@
           "id": "unit-16.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "تَرْجِمِي: \"I'm not sure if it's true or not.\"",
-          "answer": "أَنَا مُوّ مِتَأَكِّدَة إِذَا صِحِيحِ وَ لَا لَا",
+          "answer": "أَنَا مُو مِتَأَكِّدَة إِذَا صِحِيحِ وَ لَا لَا",
           "accepted": [
-            "أَنَا مُوّ مِتَأَكِّدَة إِذَا صِحِيحِ وَ لَا لَا",
-            "ana muu muta2akkida idha Si7ee7 w-la la",
-            "مُوّ مِتَأَكِّدَة صِحِيحِ وَ لَا لَا"
+            "أَنَا مُو مِتَأَكِّدَة إِذَا صِحِيحِ وَ لَا لَا",
+            "ana mu muta2akkida idha Si7ee7 w-la la",
+            "مُو مِتَأَكِّدَة صِحِيحِ وَ لَا لَا"
           ],
           "too_formal": {
             "item": "لَسْتُ مُتَأَكِّدَةً إِنْ كَانَ صَحِيحًا أَمْ لَا",
-            "feedback": "Correct MSA; Hejazi uses مُوّ and إِذَا."
+            "feedback": "Correct MSA; Hejazi uses مُو and إِذَا."
           },
           "tip": "\"إِذَا صِحِيحِ وَ لَا لَا\" = if it's true or not."
         },
@@ -1425,15 +1425,15 @@
           "id": "unit-16.lesson-04.choose.01",
           "type": "choose",
           "prompt": "أَيُّ جُمْلَةٌ صَحِيحَة؟",
-          "answer": "مَا بِتِصَدِّقِي شُو صَارِ أَمْس",
+          "answer": "مَا بِتِصَدِّقِي إِيش صَارِ أَمْس",
           "accepted": [
-            "مَا بِتِصَدِّقِي شُو صَارِ أَمْس",
-            "ma bitsaddihi shu Saar ams"
+            "مَا بِتِصَدِّقِي إِيش صَارِ أَمْس",
+            "ma bitsaddihi eesh Saar ams"
           ],
           "options": [
-            "مَا بِتِصَدِّقِي شُو صَارِ أَمْس",
-            "مَا صَدَّقِي شُو صَارِ اليَوْمِ",
-            "بِتِصَدِّقِي شُو صَارِ غَدِ",
+            "مَا بِتِصَدِّقِي إِيش صَارِ أَمْس",
+            "مَا صَدَّقِي إِيش صَارِ اليَوْمِ",
+            "بِتِصَدِّقِي إِيش صَارِ غَدِ",
             "صَدَّقِي إِنِّي صَارِ أَمْس"
           ],
           "too_formal": {
@@ -1445,7 +1445,7 @@
         {
           "id": "unit-16.lesson-04.choose.02",
           "type": "choose",
-          "prompt": "شُو مَعْنَى \"يِمْكِنِ بَسِ إِشَاعَةِ\"؟",
+          "prompt": "إِيش مَعْنَى \"يِمْكِنِ بَسِ إِشَاعَةِ\"؟",
           "answer": "It might just be a rumor.",
           "accepted": [
             "It might just be a rumor.",
@@ -1462,33 +1462,33 @@
         {
           "id": "unit-16.lesson-04.reorder.01",
           "type": "reorder",
-          "prompt": "رَتِّبِي الْجُمْلَةِ: مَا بِتِصَدِّقِي شُو صَارِ أَمْس بِالْحَيِّ",
-          "answer": "مَا بِتِصَدِّقِي شُو صَارِ أَمْس بِالْحَيِّ",
+          "prompt": "رَتِّبِي الْجُمْلَةِ: مَا بِتِصَدِّقِي إِيش صَارِ أَمْس بِالْحَيِّ",
+          "answer": "مَا بِتِصَدِّقِي إِيش صَارِ أَمْس بِالْحَيِّ",
           "accepted": [
-            "مَا بِتِصَدِّقِي شُو صَارِ أَمْس بِالْحَيِّ",
-            "ma bitsaddihi shu Saar ams bil-7ay",
-            "شُو صَارِ أَمْس بِالْحَيِّ مَا بِتِصَدِّقِي"
+            "مَا بِتِصَدِّقِي إِيش صَارِ أَمْس بِالْحَيِّ",
+            "ma bitsaddihi eesh Saar ams bil-7ay",
+            "إِيش صَارِ أَمْس بِالْحَيِّ مَا بِتِصَدِّقِي"
           ],
           "words": [
             "مَا بِتِصَدِّقِي",
-            "شُو صَارِ",
+            "إِيش صَارِ",
             "أَمْس",
             "بِالْحَيِّ"
           ],
-          "tip": "Word order can vary; both \"مَا بِتِصَدِّقِي شُو صَارِ أَمْس بِالْحَيِّ\" and \"شُو صَارِ أَمْس بِالْحَيِّ\" work."
+          "tip": "Word order can vary; both \"مَا بِتِصَدِّقِي إِيش صَارِ أَمْس بِالْحَيِّ\" and \"إِيش صَارِ أَمْس بِالْحَيِّ\" work."
         },
         {
           "id": "unit-16.lesson-04.reorder.02",
           "type": "reorder",
-          "prompt": "رَتِّبِي الْجُمْلَةِ: كُلِّ هَاي كِلَامِ النَّاسِ أَنَا مَا أَدْرِي",
-          "answer": "كُلِّ هَاي كِلَامِ النَّاسِ، أَنَا مَا أَدْرِي",
+          "prompt": "رَتِّبِي الْجُمْلَةِ: كُلِّ دِي كِلَامِ النَّاسِ أَنَا مَا أَدْرِي",
+          "answer": "كُلِّ دِي كِلَامِ النَّاسِ، أَنَا مَا أَدْرِي",
           "accepted": [
-            "كُلِّ هَاي كِلَامِ النَّاسِ، أَنَا مَا أَدْرِي",
-            "kill hay kilaam in-nas, ana ma adri",
-            "أَنَا مَا أَدْرِي، كُلِّ هَاي كِلَامِ النَّاسِ"
+            "كُلِّ دِي كِلَامِ النَّاسِ، أَنَا مَا أَدْرِي",
+            "kill di kilaam in-nas, ana ma adri",
+            "أَنَا مَا أَدْرِي، كُلِّ دِي كِلَامِ النَّاسِ"
           ],
           "words": [
-            "كُلِّ هَاي",
+            "كُلِّ دِي",
             "كِلَامِ النَّاسِ",
             "أَنَا",
             "مَا أَدْرِي"
@@ -2266,7 +2266,7 @@
     "title": "Tell Me What Happened",
     "instructions": "Write and say a short Hejazi Arabic conversation of at least 10 lines between two people catching up. It must include asking what happened yesterday, an answer in the past tense, a childhood memory, one thing that went wrong, and one piece of news or gossip you heard. Use at least 8 target phrases from Unit 16 and include both a masculine-address form and a feminine-address form.",
     "required_elements": [
-      "A question about yesterday using أَمْس and شُو سَوَّيْتِ or شُو صَارِ.",
+      "A question about yesterday using أَمْس and إِيش سَوَّيْتِ or إِيش صَارِ.",
       "An answer describing something that happened, using a past-tense verb.",
       "A memory from childhood using لَمَّا كِنْتِ صَغِيرَةِ or كِنَّا.",
       "Something that went wrong, using a word like انْكَسَرِ, ضَاعَتْ, or تَأَخَّرْتِ.",
@@ -2279,20 +2279,20 @@
       "dialogue": [
         {
           "speaker": "محمود",
-          "arabic": "سَلَامٌ، نُورَةِ، شِنُّو أَخْبَارِك؟ شُو سَوَّيْتِ أَمْس؟",
-          "transliteration": "assalaam, Nura, shinu akhbarik? shu sawwait ams?",
+          "arabic": "سَلَامٌ، نُورَةِ، إِيش أَخْبَارِك؟ إِيش سَوَّيْتِ أَمْس؟",
+          "transliteration": "assalaam, Nura, eesh akhbarik? eesh sawwait ams?",
           "english": "Hi Noora, how are you? What did you do yesterday?"
         },
         {
           "speaker": "نُورَة",
-          "arabic": "أَهْلَا محمود! مَا بِتِصَدِّقِ شُو صَارِ لِي أَمْس!",
-          "transliteration": "ahla Mahmoud! ma bitsaddiq shu Saar li ams!",
+          "arabic": "أَهْلَا محمود! مَا بِتِصَدِّقِ إِيش صَارِ لِي أَمْس!",
+          "transliteration": "ahla Mahmoud! ma bitsaddiq eesh Saar li ams!",
           "english": "Hi Mahmoud! You won't believe what happened to me yesterday!"
         },
         {
           "speaker": "محمود",
-          "arabic": "شُو صَارِ؟ قُولِي!",
-          "transliteration": "shu Saar? guuli!",
+          "arabic": "إِيش صَارِ؟ قُولِي!",
+          "transliteration": "eesh Saar? guuli!",
           "english": "What happened? Tell me!"
         },
         {
@@ -2321,14 +2321,14 @@
         },
         {
           "speaker": "نُورَة",
-          "arabic": "صَحِيحِ؟! مِنّ قَالِ لِك؟",
-          "transliteration": "Sa7ee7?! min gaal lik?",
+          "arabic": "صَحِيحِ؟! مِين قَالِ لِك؟",
+          "transliteration": "Sa7ee7?! meen gaal lik?",
           "english": "Really?! Who told you?"
         },
         {
           "speaker": "محمود",
-          "arabic": "صَاحِبِي قَالِ لِي، بَسِ مُوّ مِتَأَكِّدِ لِحِينِ إِذَا صِحِيحِ وَ لَا لَا.",
-          "transliteration": "sa7ibi gaal li, bas muu muta2akkid li7een idha Sa7ee7 w-la la.",
+          "arabic": "صَاحِبِي قَالِ لِي، بَسِ مُو مِتَأَكِّدِ لِسَّه إِذَا صِحِيحِ وَ لَا لَا.",
+          "transliteration": "sa7ibi gaal li, bas mu muta2akkid lissa idha Sa7ee7 w-la la.",
           "english": "My friend told me, but I'm not sure yet if it's true or not."
         },
         {

@@ -14,7 +14,9 @@
     "oo": "و طويلة",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "g": "ق (تُنطق g)",
+    "dh": "ذ"
   },
   "lessons": [
     {
@@ -118,8 +120,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "وين أخوك الحين؟",
-          "transliteration": "ween akhuuk al7een?",
+          "arabic": "وين أخوك ذلحين؟",
+          "transliteration": "ween akhuuk dhal7een?",
           "english": "Where is your brother now?"
         },
         {
@@ -160,8 +162,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "شنو اسم ولدك؟",
-          "transliteration": "shinu ism wildak?",
+          "arabic": "إيش اسم ولدك؟",
+          "transliteration": "eesh ism wildak?",
           "english": "What's your son's name?"
         },
         {
@@ -198,8 +200,8 @@
         },
         {
           "pair": {
-            "arabic": "شنو اسم ولدك؟",
-            "transliteration": "shinu ism wildak?",
+            "arabic": "إيش اسم ولدك؟",
+            "transliteration": "eesh ism wildak?",
             "english": "What's your son's name?"
           },
           "response": {
@@ -210,8 +212,8 @@
         },
         {
           "pair": {
-            "arabic": "وين أخوك الحين؟",
-            "transliteration": "ween akhuuk al7een?",
+            "arabic": "وين أخوك ذلحين؟",
+            "transliteration": "ween akhuuk dhal7een?",
             "english": "Where is your brother now?"
           },
           "response": {
@@ -381,7 +383,7 @@
         {
           "id": "unit-02.lesson-01.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "Complete: \"شنو اسم _____؟\" Meaning: What's your son's name? (to a man)",
+          "prompt": "Complete: \"إيش اسم _____؟\" Meaning: What's your son's name? (to a man)",
           "answer": "ولدك",
           "accepted": [
             "ولدك",
@@ -413,7 +415,7 @@
         {
           "id": "unit-02.lesson-01.reply.03",
           "type": "reply",
-          "prompt": "Someone asks: \"وين أخوك الحين؟\" Say he is in Taiz.",
+          "prompt": "Someone asks: \"وين أخوك ذلحين؟\" Say he is in Taiz.",
           "answer": "في تعز",
           "accepted": [
             "في تعز",
@@ -448,18 +450,18 @@
         },
         {
           "slot": "i-want-to-eat",
-          "arabic": "أبي آكل",
-          "transliteration": "abi aakil"
+          "arabic": "أشتي آكل",
+          "transliteration": "ashti aakil"
         },
         {
           "slot": "i-want-to-drink-water",
-          "arabic": "أبي اشرب ماي",
-          "transliteration": "abi ashrab maay"
+          "arabic": "أشتي اشرب ماي",
+          "transliteration": "ashti ashrab maay"
         },
         {
           "slot": "what-do-you-like-to-eat",
-          "arabic": "شنو تحب تاكل؟",
-          "transliteration": "shinu ti7ibb taakil?"
+          "arabic": "إيش تحب تاكل؟",
+          "transliteration": "eesh ti7ibb taakil?"
         },
         {
           "slot": "i-like-falafel",
@@ -483,8 +485,8 @@
         },
         {
           "slot": "how-much-is-the-bill",
-          "arabic": "قديش الحساب؟",
-          "transliteration": "gadish il-7isaab?"
+          "arabic": "كم الحساب؟",
+          "transliteration": "kam il-7isaab?"
         },
         {
           "slot": "to-your-health-said-to-someone-after-they-finish",
@@ -510,8 +512,8 @@
       "dialogue": [
         {
           "speaker": "علي",
-          "arabic": "جوعان وايد، أبي آكل شي.",
-          "transliteration": "joo3aan waayid, abi aakil shi.",
+          "arabic": "جوعان قوي، أشتي آكل شي.",
+          "transliteration": "joo3aan gawi, ashti aakil shi.",
           "english": "I'm very hungry, I want to eat something."
         },
         {
@@ -520,26 +522,26 @@
         },
         {
           "speaker": "علي",
-          "arabic": "أحب الفلافل وايد.",
-          "transliteration": "a7ibb il-falafil waayid.",
+          "arabic": "أحب الفلافل قوي.",
+          "transliteration": "a7ibb il-falafil gawi.",
           "english": "I like falafel a lot."
         },
         {
           "speaker": "ليلى",
-          "arabic": "تمام، وشنو تبي تشرب؟",
-          "transliteration": "tamaam, w shinu tibi tishrab?",
+          "arabic": "تمام، وإيش تشتي تشرب؟",
+          "transliteration": "tamaam, w eesh tishti tishrab?",
           "english": "Okay, and what do you want to drink?"
         },
         {
           "speaker": "علي",
-          "arabic": "أبي قهوة، وإنتِ؟",
-          "transliteration": "abi gahwa, w inti?",
+          "arabic": "أشتي قهوة، وإنتِ؟",
+          "transliteration": "ashti gahwa, w inti?",
           "english": "I want coffee, and you?"
         },
         {
           "speaker": "ليلى",
-          "arabic": "أنا أبي شاي.",
-          "transliteration": "ana abi shay.",
+          "arabic": "أنا أشتي شاي.",
+          "transliteration": "ana ashti shay.",
           "english": "I want tea."
         },
         {
@@ -590,8 +592,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو تحب تاكل؟",
-            "transliteration": "shinu ti7ibb taakil?",
+            "arabic": "إيش تحب تاكل؟",
+            "transliteration": "eesh ti7ibb taakil?",
             "english": "What do you like to eat?"
           },
           "response": {
@@ -646,7 +648,7 @@
           "answer": "جوعان",
           "accepted": [
             "جوعان",
-            "جوعان وايد",
+            "جوعان قوي",
             "جوعان شديد"
           ],
           "too_formal": {
@@ -659,17 +661,17 @@
           "id": "unit-02.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want to eat something.\"",
-          "answer": "أبي آكل شي",
+          "answer": "أشتي آكل شي",
           "accepted": [
-            "أبي آكل شي",
-            "أبي آكل شي.",
-            "أبي اكل شي"
+            "أشتي آكل شي",
+            "أشتي آكل شي.",
+            "أشتي اكل شي"
           ],
           "too_formal": {
             "item": "أريد أن آكل شيئاً",
-            "feedback": "This is formal Arabic; everyday speech uses \"أبي\" directly before the verb."
+            "feedback": "This is formal Arabic; everyday speech uses \"أشتي\" directly before the verb."
           },
-          "tip": "\"أبي\" plus a verb is the everyday pattern for \"I want to...\"."
+          "tip": "\"أشتي\" plus a verb is the everyday pattern for \"I want to...\"."
         },
         {
           "id": "unit-02.lesson-02.choose.01",
@@ -696,11 +698,11 @@
         {
           "id": "unit-02.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "Someone asks you: \"شنو تحب تاكل؟\" Say you like falafel.",
+          "prompt": "Someone asks you: \"إيش تحب تاكل؟\" Say you like falafel.",
           "answer": "أحب الفلافل",
           "accepted": [
             "أحب الفلافل",
-            "أحب الفلافل وايد",
+            "أحب الفلافل قوي",
             "أحب الفلافل."
           ],
           "too_formal": {
@@ -712,7 +714,7 @@
         {
           "id": "unit-02.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"أبي اشرب _____.\" Meaning: I want to drink water.",
+          "prompt": "Complete: \"أشتي اشرب _____.\" Meaning: I want to drink water.",
           "answer": "ماي",
           "accepted": [
             "ماي",
@@ -721,9 +723,9 @@
           ],
           "too_formal": {
             "item": "أرغب في شرب الماء",
-            "feedback": "This is formal Arabic; everyday speech simply says \"أبي اشرب ماي\"."
+            "feedback": "This is formal Arabic; everyday speech simply says \"أشتي اشرب ماي\"."
           },
-          "tip": "After \"أبي\", the verb comes in its plain form: \"أبي اشرب ماي\". Water is \"ماي\" in Yemeni."
+          "tip": "After \"أشتي\", the verb comes in its plain form: \"أشتي اشرب ماي\". Water is \"ماي\" in Yemeni."
         },
         {
           "id": "unit-02.lesson-02.reply.02",
@@ -777,33 +779,33 @@
           "id": "unit-02.lesson-02.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How much is the bill?\"",
-          "answer": "قديش الحساب؟",
+          "answer": "كم الحساب؟",
           "accepted": [
-            "قديش الحساب؟",
-            "قديش الحساب",
-            "بقديش الحساب؟"
+            "كم الحساب؟",
+            "كم الحساب",
+            "بكم الحساب؟"
           ],
           "too_formal": {
             "item": "كم قيمة الفاتورة؟",
             "feedback": "This is a formal written question; the spoken version is much shorter."
           },
-          "tip": "\"قديش\" is the everyday word for \"how much\"."
+          "tip": "\"كم\" is the everyday word for \"how much\"."
         },
         {
           "id": "unit-02.lesson-02.reorder.01",
           "type": "reorder",
-          "prompt": "Put these words in a natural order: \"تاكل / تحب / شنو؟\"",
-          "answer": "شنو تحب تاكل؟",
+          "prompt": "Put these words in a natural order: \"تاكل / تحب / إيش؟\"",
+          "answer": "إيش تحب تاكل؟",
           "accepted": [
-            "شنو تحب تاكل؟",
-            "شنو تحب تاكل",
-            "شنو تحب تاكلي؟"
+            "إيش تحب تاكل؟",
+            "إيش تحب تاكل",
+            "إيش تحب تاكلي؟"
           ],
           "too_formal": {
             "item": "ماذا تحب أن تأكل؟",
             "feedback": "This is formal Arabic rather than the everyday spoken question."
           },
-          "tip": "Question word first is natural: \"شنو + تحب + تاكل؟\""
+          "tip": "Question word first is natural: \"إيش + تحب + تاكل؟\""
         },
         {
           "id": "unit-02.lesson-02.choose.02",
@@ -818,7 +820,7 @@
           "answer": "عطشان",
           "accepted": [
             "عطشان",
-            "عطشان وايد"
+            "عطشان قوي"
           ],
           "too_formal": {
             "item": "ظمآن",
@@ -858,8 +860,8 @@
         },
         {
           "slot": "where-does-your-family-live",
-          "arabic": "فين تسكن عايلتك؟",
-          "transliteration": "feen taskun 3aaylatak؟",
+          "arabic": "وين تسكن عايلتك؟",
+          "transliteration": "ween taskun 3aaylatak؟",
           "reply": {
             "arabic": "ساكنين في صنعاء",
             "transliteration": "saakniin fi San3aa",
@@ -1005,8 +1007,8 @@
         },
         {
           "pair": {
-            "arabic": "فين تسكن عايلتك؟",
-            "transliteration": "feen taskun 3aaylatak؟",
+            "arabic": "وين تسكن عايلتك؟",
+            "transliteration": "ween taskun 3aaylatak؟",
             "english": "Where does your family live?"
           },
           "response": {
@@ -1084,7 +1086,7 @@
         {
           "id": "unit-02.lesson-03.reply.03",
           "type": "reply",
-          "prompt": "Someone asks you: \"فين تسكن عايلتك؟\" Say they live in Sana'a.",
+          "prompt": "Someone asks you: \"وين تسكن عايلتك؟\" Say they live in Sana'a.",
           "answer": "ساكنين في صنعاء",
           "accepted": [
             "ساكنين في صنعاء",
@@ -1237,20 +1239,18 @@
         {
           "id": "unit-02.lesson-03.reorder.01",
           "type": "reorder",
-          "prompt": "Put these words in a natural order: \"عايلتك / تسكن / فين؟\"",
-          "answer": "فين تسكن عايلتك؟",
+          "prompt": "Put these words in a natural order: \"عايلتك / تسكن / وين؟\"",
+          "answer": "وين تسكن عايلتك؟",
           "accepted": [
-            "فين تسكن عايلتك؟",
-            "فين تسكن عايلتك",
             "وين تسكن عايلتك؟",
             "وين تسكن عايلتك",
-            "feen taskun 3aaylatak"
+            "ween taskun 3aaylatak"
           ],
           "too_formal": {
             "item": "أين تسكن عائلتك؟",
             "feedback": "This is formal Arabic rather than the everyday spoken question."
           },
-          "tip": "The question word \"فين\" comes first."
+          "tip": "The question word \"وين\" comes first."
         },
         {
           "id": "unit-02.lesson-03.reorder.02",
@@ -1501,7 +1501,7 @@
         {
           "id": "unit-02.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "Your mother asks: \"تبغى زيادة؟\" Politely ask for more.",
+          "prompt": "Your mother asks: \"تشتي زيادة؟\" Politely ask for more.",
           "answer": "زيادة لو سمحت",
           "accepted": [
             "زيادة لو سمحت",
@@ -1512,8 +1512,8 @@
             "زياده",
             "أبغى زيادة",
             "أبغى زياده",
-            "أبي زيادة",
-            "أبي زياده",
+            "أشتي زيادة",
+            "أشتي زياده",
             "ziyaada law sama7t"
           ],
           "too_formal": {
@@ -1723,8 +1723,8 @@
       "phrases": [
         {
           "slot": "where-do-you-live-to-a-man",
-          "arabic": "فين تسكن؟",
-          "transliteration": "feen taskun؟",
+          "arabic": "وين تسكن؟",
+          "transliteration": "ween taskun؟",
           "reply": {
             "arabic": "أسكن في حدة",
             "transliteration": "askun fi 7adda",
@@ -1879,8 +1879,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فين تسكن؟",
-            "transliteration": "feen taskun؟",
+            "arabic": "وين تسكن؟",
+            "transliteration": "ween taskun؟",
             "english": "Where do you live? (to a man)"
           },
           "response": {
@@ -1943,7 +1943,7 @@
         {
           "id": "unit-02.lesson-05.reply.01",
           "type": "reply",
-          "prompt": "Someone asks you: \"فين تسكن؟\" Say you live in Hadda. (You are a man.)",
+          "prompt": "Someone asks you: \"وين تسكن؟\" Say you live in Hadda. (You are a man.)",
           "answer": "أسكن في حدة",
           "accepted": [
             "أسكن في حدة",
@@ -2088,8 +2088,6 @@
           "accepted": [
             "إيش عنوانك؟",
             "إيش عنوانك",
-            "شنو عنوانك؟",
-            "شنو عنوانك",
             "ايش عنوانك",
             "eesh 3inwaanak"
           ],
@@ -2137,20 +2135,20 @@
         {
           "id": "unit-02.lesson-05.reorder.01",
           "type": "reorder",
-          "prompt": "Put these words in a natural order: \"تسكن / فين؟\"",
-          "answer": "فين تسكن؟",
+          "prompt": "Put these words in a natural order: \"تسكن / وين؟\"",
+          "answer": "وين تسكن؟",
           "accepted": [
-            "فين تسكن؟",
-            "فين تسكن",
-            "تسكن فين؟",
-            "تسكن فين",
-            "feen taskun"
+            "وين تسكن؟",
+            "وين تسكن",
+            "تسكن وين؟",
+            "تسكن وين",
+            "ween taskun"
           ],
           "too_formal": {
             "item": "أين تسكن؟",
-            "feedback": "This is formal written Arabic; everyday Yemeni speech says \"فين تسكن؟\"."
+            "feedback": "This is formal written Arabic; everyday Yemeni speech says \"وين تسكن؟\"."
           },
-          "tip": "\"فين\" (where) comes first."
+          "tip": "\"وين\" (where) comes first."
         },
         {
           "id": "unit-02.lesson-05.reorder.02",
@@ -2612,8 +2610,8 @@
         },
         {
           "slot": "where-is-the-kitchen",
-          "arabic": "فين المطبخ؟",
-          "transliteration": "feen il-maTbakh؟",
+          "arabic": "وين المطبخ؟",
+          "transliteration": "ween il-maTbakh؟",
           "reply": {
             "arabic": "هناك، جنب الصالة",
             "transliteration": "hunaak, janb aS-Saala",
@@ -2627,8 +2625,8 @@
         },
         {
           "slot": "where-is-the-bathroom",
-          "arabic": "فين الحمام؟",
-          "transliteration": "feen il-7ammaam؟",
+          "arabic": "وين الحمام؟",
+          "transliteration": "ween il-7ammaam؟",
           "reply": {
             "arabic": "أول باب على اليمين",
             "transliteration": "awwal baab 3ala l-yameen",
@@ -2657,8 +2655,8 @@
         },
         {
           "slot": "where-are-the-stairs",
-          "arabic": "فين الدرج؟",
-          "transliteration": "feen id-daraj؟",
+          "arabic": "وين الدرج؟",
+          "transliteration": "ween id-daraj؟",
           "reply": {
             "arabic": "قدام الباب",
             "transliteration": "guddaam il-baab",
@@ -2751,8 +2749,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فين المطبخ؟",
-            "transliteration": "feen il-maTbakh؟",
+            "arabic": "وين المطبخ؟",
+            "transliteration": "ween il-maTbakh؟",
             "english": "Where is the kitchen?"
           },
           "response": {
@@ -2763,8 +2761,8 @@
         },
         {
           "pair": {
-            "arabic": "فين الحمام؟",
-            "transliteration": "feen il-7ammaam؟",
+            "arabic": "وين الحمام؟",
+            "transliteration": "ween il-7ammaam؟",
             "english": "Where is the bathroom?"
           },
           "response": {
@@ -2775,8 +2773,8 @@
         },
         {
           "pair": {
-            "arabic": "فين الدرج؟",
-            "transliteration": "feen id-daraj؟",
+            "arabic": "وين الدرج؟",
+            "transliteration": "ween id-daraj؟",
             "english": "Where are the stairs?"
           },
           "response": {
@@ -2815,7 +2813,7 @@
         {
           "id": "unit-02.lesson-07.reply.01",
           "type": "reply",
-          "prompt": "Someone asks you: \"فين المطبخ؟\" Say it is over there, next to the hall.",
+          "prompt": "Someone asks you: \"وين المطبخ؟\" Say it is over there, next to the hall.",
           "answer": "هناك، جنب الصالة",
           "accepted": [
             "هناك، جنب الصالة",
@@ -2836,7 +2834,7 @@
         {
           "id": "unit-02.lesson-07.reply.02",
           "type": "reply",
-          "prompt": "Someone asks you: \"فين الحمام؟\" Say it is the first door on the right.",
+          "prompt": "Someone asks you: \"وين الحمام؟\" Say it is the first door on the right.",
           "answer": "أول باب على اليمين",
           "accepted": [
             "أول باب على اليمين",
@@ -2963,20 +2961,18 @@
           "type": "choose",
           "prompt": "Which phrase means \"Where are the stairs?\"",
           "options": [
-            "فين الدرج؟",
-            "فين المطبخ؟",
-            "فين الحمام؟",
-            "فين الباب؟"
+            "وين الدرج؟",
+            "وين المطبخ؟",
+            "وين الحمام؟",
+            "وين الباب؟"
           ],
-          "answer": "فين الدرج؟",
+          "answer": "وين الدرج؟",
           "accepted": [
-            "فين الدرج؟",
-            "فين الدرج",
             "وين الدرج؟",
             "وين الدرج",
-            "feen id-daraj"
+            "ween id-daraj"
           ],
-          "tip": "\"فين\" starts every \"where\" question."
+          "tip": "\"وين\" starts every \"where\" question."
         },
         {
           "id": "unit-02.lesson-07.choose.02",
@@ -3045,8 +3041,8 @@
         },
         {
           "slot": "where-is-the-remote-control",
-          "arabic": "فين الريموت؟",
-          "transliteration": "feen ir-reemoot؟",
+          "arabic": "وين الريموت؟",
+          "transliteration": "ween ir-reemoot؟",
           "reply": {
             "arabic": "على الكنبة",
             "transliteration": "3ala l-kanaba",
@@ -3055,8 +3051,8 @@
         },
         {
           "slot": "where-is-the-key",
-          "arabic": "فين المفتاح؟",
-          "transliteration": "feen il-miftaa7؟",
+          "arabic": "وين المفتاح؟",
+          "transliteration": "ween il-miftaa7؟",
           "reply": {
             "arabic": "على الطاولة",
             "transliteration": "3ala T-Taawila",
@@ -3175,8 +3171,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فين الريموت؟",
-            "transliteration": "feen ir-reemoot؟",
+            "arabic": "وين الريموت؟",
+            "transliteration": "ween ir-reemoot؟",
             "english": "Where is the remote control?"
           },
           "response": {
@@ -3187,8 +3183,8 @@
         },
         {
           "pair": {
-            "arabic": "فين المفتاح؟",
-            "transliteration": "feen il-miftaa7؟",
+            "arabic": "وين المفتاح؟",
+            "transliteration": "ween il-miftaa7؟",
             "english": "Where is the key?"
           },
           "response": {
@@ -3239,7 +3235,7 @@
         {
           "id": "unit-02.lesson-08.reply.01",
           "type": "reply",
-          "prompt": "Someone asks you: \"فين الريموت؟\" Say it is on the sofa.",
+          "prompt": "Someone asks you: \"وين الريموت؟\" Say it is on the sofa.",
           "answer": "على الكنبة",
           "accepted": [
             "على الكنبة",
@@ -3259,7 +3255,7 @@
         {
           "id": "unit-02.lesson-08.reply.02",
           "type": "reply",
-          "prompt": "Someone asks you: \"فين المفتاح؟\" Say it is on the table.",
+          "prompt": "Someone asks you: \"وين المفتاح؟\" Say it is on the table.",
           "answer": "على الطاولة",
           "accepted": [
             "على الطاولة",
@@ -3356,8 +3352,8 @@
             "احتاج بطانيه",
             "أبغى بطانية",
             "أبغى بطانيه",
-            "أبي بطانية",
-            "أبي بطانيه",
+            "أشتي بطانية",
+            "أشتي بطانيه",
             "محتاج بطانية",
             "محتاج بطانيه",
             "a7taaj baTaaniyya"
@@ -3463,9 +3459,9 @@
       "A question about family using عندك عايلة؟ or كم أنتم في العايلة؟",
       "A description of at least one family member using أمي, أبوي, أخوي, أختي, زوجي, مرتي, ولدي, or بنتي.",
       "A statement of hunger or thirst using جوعان, جوعانة, or عطشان.",
-      "An order or offer of food or drink using أبي آكل or أبي اشرب.",
+      "An order or offer of food or drink using أشتي آكل or أشتي اشرب.",
       "The fixed exchange بِالْعَافِيَة / الله يَعْطِيك الْعَافِيَة, or نُعيماً / الله يَعْطِيك الْعَافِيَة.",
-      "A request for the bill using الحساب لو سمحت or قديش الحساب؟",
+      "A request for the bill using الحساب لو سمحت or كم الحساب؟",
       "Both a masculine-address form (such as عندك) and a feminine-address form (such as عندك)."
     ],
     "model": {
@@ -3502,8 +3498,8 @@
         },
         {
           "speaker": "سارة",
-          "arabic": "جوعانة وايد، تبي تاكل شي؟",
-          "transliteration": "joo3aana waayid, tibi taakil shi?",
+          "arabic": "جوعانة قوي، تشتي تاكل شي؟",
+          "transliteration": "joo3aana gawi, tishti taakil shi?",
           "english": "I'm very hungry, do you want to eat something?"
         },
         {
@@ -3514,14 +3510,14 @@
         },
         {
           "speaker": "سارة",
-          "arabic": "وشنو تبي تشرب؟",
-          "transliteration": "w shinu tibi tishrab?",
+          "arabic": "وإيش تشتي تشرب؟",
+          "transliteration": "w eesh tishti tishrab?",
           "english": "And what do you want to drink?"
         },
         {
           "speaker": "حسين",
-          "arabic": "أبي قهوة.",
-          "transliteration": "abi gahwa.",
+          "arabic": "أشتي قهوة.",
+          "transliteration": "ashti gahwa.",
           "english": "I want coffee."
         },
         {
@@ -3550,8 +3546,8 @@
         },
         {
           "speaker": "حسين",
-          "arabic": "قديش الحساب؟",
-          "transliteration": "gadish il-7isaab?",
+          "arabic": "كم الحساب؟",
+          "transliteration": "kam il-7isaab?",
           "english": "How much is the bill?"
         },
         {

@@ -35,8 +35,8 @@
         },
         {
           "slot": "what-s-wrong-with-you-to-a-man",
-          "arabic": "شْنُو فِيكَ؟",
-          "transliteration": "shnoo fika?"
+          "arabic": "إِيش فِيكَ؟",
+          "transliteration": "eesh fika?"
         },
         {
           "slot": "i-m-happy-today-m",
@@ -60,13 +60,13 @@
         },
         {
           "slot": "i-m-very-tired-m",
-          "arabic": "أَنَا تَعْبَان وَايْد",
-          "transliteration": "ana ta3baan wayid"
+          "arabic": "أَنَا تَعْبَان قَوِي",
+          "transliteration": "ana ta3baan gawi"
         },
         {
           "slot": "i-m-hungry-i-want-to-eat-something",
-          "arabic": "أَنَا جَايِعْ، أَبِي آكُل حَاجْ",
-          "transliteration": "ana jaa3i, abi aakol 7aaj"
+          "arabic": "أَنَا جَايِعْ، أَشْتِي آكُل حَاجْ",
+          "transliteration": "ana jaa3i, ashti aakol 7aaj"
         },
         {
           "slot": "i-m-worried-about-the-exam",
@@ -105,8 +105,8 @@
         },
         {
           "speaker": "عمرو",
-          "arabic": "شْنُو فِيكَ؟ فِيه حَاجْ مَضَايِقَكْ؟",
-          "transliteration": "shnoo fika? feeh 7aaj madhaayigak?",
+          "arabic": "إِيش فِيكَ؟ فِيه حَاجْ مَضَايِقَكْ؟",
+          "transliteration": "eesh fika? feeh 7aaj madhaayigak?",
           "english": "What's wrong? Is something bothering you?"
         },
         {
@@ -135,8 +135,8 @@
         },
         {
           "speaker": "أحمد",
-          "arabic": "تَمَام، وَأَنَا جَايِعْ وَايْد، أَبِي آكُل حَاجْ",
-          "transliteration": "tamaam, w ana jaa3i wayid, abi aakol 7aaj",
+          "arabic": "تَمَام، وَأَنَا جَايِعْ قَوِي، أَشْتِي آكُل حَاجْ",
+          "transliteration": "tamaam, w ana jaa3i gawi, ashti aakol 7aaj",
           "english": "Good, and I'm very hungry, I want to eat something."
         },
         {
@@ -167,8 +167,8 @@
         },
         {
           "pair": {
-            "arabic": "شْنُو فِيكَ؟",
-            "transliteration": "shnoo fika?",
+            "arabic": "إِيش فِيكَ؟",
+            "transliteration": "eesh fika?",
             "english": "What's wrong? (m)"
           },
           "response": {
@@ -184,8 +184,8 @@
             "english": "Are you happy today?"
           },
           "response": {
-            "arabic": "أَيْوَه، وَايْدْ مَرْيُوحْ",
-            "transliteration": "aywah, wayid maryoo7",
+            "arabic": "أَيْوَه، مَرْيُوحْ قَوِي",
+            "transliteration": "aywah, maryoo7 gawi",
             "english": "Yes, very happy."
           }
         },
@@ -202,7 +202,7 @@
           }
         }
       ],
-      "culture": "In Yemen when asked \"كيفك؟\" people answer with \"الحمد لله\" or \"بخير\" out of habit, whatever they feel, and a close friend or family member will push further with \"شنو فيك؟\" if they seem worried. Saying you're \"حزين\" or \"تعبان\" plainly is normal only with people close to you.",
+      "culture": "In Yemen when asked \"كيفك؟\" people answer with \"الحمد لله\" or \"بخير\" out of habit, whatever they feel, and a close friend or family member will push further with \"إيش فيك؟\" if they seem worried. Saying you're \"حزين\" or \"تعبان\" plainly is normal only with people close to you.",
       "exercises": [
         {
           "id": "unit-13.lesson-01.reply.01",
@@ -223,7 +223,7 @@
         {
           "id": "unit-13.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "Someone says: \"شْنُو فِيكَ؟\". Give a natural reply.",
+          "prompt": "Someone says: \"إِيش فِيكَ؟\". Give a natural reply.",
           "answer": "حَاجْ مَا، بَسْ تَعْبَان شْوَيَّة",
           "accepted": [
             "حَاجْ مَا، بَسْ تَعْبَان شْوَيَّة",
@@ -239,7 +239,7 @@
         {
           "id": "unit-13.lesson-01.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"أَنَا ___ وَايْدْ، أَبِي آكُل حَاجْ.\" Meaning: I'm very hungry, I want to eat something.",
+          "prompt": "Complete: \"أَنَا ___ قَوِي، أَشْتِي آكُل حَاجْ.\" Meaning: I'm very hungry, I want to eat something.",
           "answer": "جَايِعْ",
           "accepted": [
             "جَايِعْ",
@@ -272,11 +272,11 @@
           "id": "unit-13.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'm very happy today.\"",
-          "answer": "أَنَا مَرْيُوحْ وَايْدْ الْيَوْمَ",
+          "answer": "أَنَا مَرْيُوحْ قَوِي الْيَوْمَ",
           "accepted": [
-            "أَنَا مَرْيُوحْ وَايْدْ الْيَوْمَ",
-            "أَنَا مَرْيُوحَة وَايْدْ الْيَوْمَ",
-            "مَرْيُوحْ وَايْدْ الْيَوْمَ"
+            "أَنَا مَرْيُوحْ قَوِي الْيَوْمَ",
+            "أَنَا مَرْيُوحَة قَوِي الْيَوْمَ",
+            "مَرْيُوحْ قَوِي الْيَوْمَ"
           ],
           "too_formal": {
             "item": "أَنَا سَعِيدٌ جِدًّا الْيَوْمَ",
@@ -349,12 +349,12 @@
         {
           "id": "unit-13.lesson-01.reorder.01",
           "type": "reorder",
-          "prompt": "Put these words in a natural order: \"وَايْدْ / الْيَوْمَ / مَرْيُوحْ / أَنَا\".",
-          "answer": "أَنَا مَرْيُوحْ وَايْدْ الْيَوْمَ",
+          "prompt": "Put these words in a natural order: \"قَوِي / الْيَوْمَ / مَرْيُوحْ / أَنَا\".",
+          "answer": "أَنَا مَرْيُوحْ قَوِي الْيَوْمَ",
           "accepted": [
-            "أَنَا مَرْيُوحْ وَايْدْ الْيَوْمَ",
-            "أَنَا مَرْيُوحَة وَايْدْ الْيَوْمَ",
-            "أَنَا مَرْيُوحْ الْيَوْمَ وَايْدْ"
+            "أَنَا مَرْيُوحْ قَوِي الْيَوْمَ",
+            "أَنَا مَرْيُوحَة قَوِي الْيَوْمَ",
+            "أَنَا مَرْيُوحْ الْيَوْمَ قَوِي"
           ],
           "too_formal": {
             "item": "أَنَا سَعِيدٌ جِدًّا هَذَا الْيَوْمَ",
@@ -364,7 +364,7 @@
           "words": [
             "أَنَا",
             "مَرْيُوحْ",
-            "وَايْدْ",
+            "قَوِي",
             "الْيَوْمَ"
           ]
         },
@@ -427,8 +427,8 @@
         },
         {
           "slot": "no-it-s-not-like-that",
-          "arabic": "لَا، مُو هِيكَ",
-          "transliteration": "la, mu heeka"
+          "arabic": "لَا، مِش كَذَا",
+          "transliteration": "la, mish kadha"
         },
         {
           "slot": "i-don-t-agree-with-you",
@@ -437,8 +437,8 @@
         },
         {
           "slot": "that-s-not-true-correct",
-          "arabic": "هَاد مُو صَحِيحْ",
-          "transliteration": "haad mu sa7ee7"
+          "arabic": "هَذَا مِش صَحِيحْ",
+          "transliteration": "haadha mish sa7ee7"
         },
         {
           "slot": "in-my-opinion",
@@ -465,26 +465,26 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "يِمْكِنْ، بَسْ الْجَوّْ حَارّْ وَايْدْ",
-          "transliteration": "yimkin, bas il-jaw 7arr wayid",
+          "arabic": "يِمْكِنْ، بَسْ الْجَوّْ حَارّْ قَوِي",
+          "transliteration": "yimkin, bas il-jaw 7arr gawi",
           "english": "Maybe, but the weather is very hot."
         },
         {
           "speaker": "سلمى",
-          "arabic": "أَنْتَ صَحِيحْ. شْنُو رَأْيَكْ فِي السّاحَةْ؟",
-          "transliteration": "anta sa7ee7. shnoo ra2yak fi is-saa7a?",
+          "arabic": "أَنْتَ صَحِيحْ. إِيش رَأْيَكْ فِي السّاحَةْ؟",
+          "transliteration": "anta sa7ee7. eesh ra2yak fi is-saa7a?",
           "english": "You're right. What's your opinion of the square?"
         },
         {
           "speaker": "محمود",
-          "arabic": "لَا، مُو هِيكَ. السّاحَةْ مِلْيَانَة نَاسْ يَوْمْ الْجُمْعَةْ",
-          "transliteration": "la, mu heeka. is-saa7a milyaana nas yoom il-jum3a",
+          "arabic": "لَا، مِش كَذَا. السّاحَةْ مِلْيَانَة نَاسْ يَوْمْ الْجُمْعَةْ",
+          "transliteration": "la, mish kadha. is-saa7a milyaana nas yoom il-jum3a",
           "english": "No, not like that, the square is full of people on Friday."
         },
         {
           "speaker": "سلمى",
-          "arabic": "صَحِيحْ، هَاد صَحِيحْ. خَلِّنَا نِرُوحْ بَعْدْ الْعَصِرْ",
-          "transliteration": "sa7ee7, haad sa7ee7. khallna niroo7 ba3d il-3asr",
+          "arabic": "صَحِيحْ، هَذَا صَحِيحْ. خَلِّنَا نِرُوحْ بَعْدْ الْعَصِرْ",
+          "transliteration": "sa7ee7, haadha sa7ee7. khallna niroo7 ba3d il-3asr",
           "english": "True, that's right. Let's go after the afternoon prayer."
         },
         {
@@ -527,8 +527,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شْنُو رَأْيَكْ؟",
-            "transliteration": "shnoo ra2yak?",
+            "arabic": "إِيش رَأْيَكْ؟",
+            "transliteration": "eesh ra2yak?",
             "english": "What's your opinion? (m)"
           },
           "response": {
@@ -539,8 +539,8 @@
         },
         {
           "pair": {
-            "arabic": "هَاد صَحِيحْ؟",
-            "transliteration": "haad sa7ee7?",
+            "arabic": "هَذَا صَحِيحْ؟",
+            "transliteration": "haadha sa7ee7?",
             "english": "Is this right?"
           },
           "response": {
@@ -556,8 +556,8 @@
             "english": "It's hot today."
           },
           "response": {
-            "arabic": "أَنْتَ صَحِيحْ، حَارّْ وَايْدْ",
-            "transliteration": "anta sa7ee7, 7arr wayid",
+            "arabic": "أَنْتَ صَحِيحْ، حَارّْ قَوِي",
+            "transliteration": "anta sa7ee7, 7arr gawi",
             "english": "You're right, very hot."
           }
         },
@@ -579,11 +579,11 @@
         {
           "id": "unit-13.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "Someone says: \"شْنُو رَأْيَكْ؟\". Give a natural reply.",
+          "prompt": "Someone says: \"إِيش رَأْيَكْ؟\". Give a natural reply.",
           "answer": "بِرَأْيِي مَنْيِحَةْ",
           "accepted": [
             "بِرَأْيِي مَنْيِحَةْ",
-            "بِرَأْيِي وَايْدْ مَنْيِحَةْ",
+            "بِرَأْيِي مَنْيِحَةْ قَوِي",
             "مَنْيِحَةْ بِرَأْيِي"
           ],
           "too_formal": {
@@ -606,12 +606,12 @@
             "item": "كَلَّا، لَا أُوَافِقُكَ الرَّأْيَ",
             "feedback": "Formal negation \"كلا\"; \"لا\" is the spoken word for no."
           },
-          "tip": "\"مو موافق\" is another way to say it."
+          "tip": "\"مش موافق\" is another way to say it."
         },
         {
           "id": "unit-13.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"___ صَحِيحْ، هِيكَ أَحْسَنْ.\" Meaning: You're right, this is better.",
+          "prompt": "Complete: \"___ صَحِيحْ، كَذَا أَحْسَنْ.\" Meaning: You're right, this is better.",
           "answer": "أَنْتَ",
           "accepted": [
             "أَنْتَ",
@@ -698,7 +698,7 @@
         {
           "id": "unit-13.lesson-02.choose.02",
           "type": "choose",
-          "prompt": "\"هَاد مُو صَحِيحْ\" means:",
+          "prompt": "\"هَذَا مِش صَحِيحْ\" means:",
           "answer": "That's not right / correct.",
           "accepted": [
             "That's not right / correct.",
@@ -710,7 +710,7 @@
             "item": "هَذَا غَيْرُ صَحِيحٍ عَلَى الْإِطْلَاقِ",
             "feedback": "That's a formal restatement, not the plain meaning asked for."
           },
-          "tip": "\"مو\" is the everyday negation used before nouns and adjectives.",
+          "tip": "\"مش\" is the everyday negation used before nouns and adjectives.",
           "options": [
             "That's not right / correct.",
             "That's exactly right.",
@@ -776,13 +776,13 @@
         },
         {
           "slot": "why-don-t-you-try-this",
-          "arabic": "لِيشْ مَا تِجَرِّبْ هَاد؟",
-          "transliteration": "leesh ma tijarrib haad?"
+          "arabic": "لِيشْ مَا تِجَرِّبْ هَذَا؟",
+          "transliteration": "leesh ma tijarrib haadha?"
         },
         {
           "slot": "if-i-were-you-i-d-do-this",
-          "arabic": "لَوْ كُنْتَ مَكَانِي كُنْتَ سَوِّيتْ هِيكَ",
-          "transliteration": "law kunta makani kunta sawweet heeka"
+          "arabic": "لَوْ كُنْتَ مَكَانِي كُنْتَ سَوِّيتْ كَذَا",
+          "transliteration": "law kunta makani kunta sawweet kadha"
         },
         {
           "slot": "listen-to-my-advice-to-a-man",
@@ -796,8 +796,8 @@
         },
         {
           "slot": "it-won-t-hurt-you-to-try",
-          "arabic": "مَا رَح يِضْرِّكَ تِجَرِّبْ",
-          "transliteration": "ma ra7 yidarrik tijarrib"
+          "arabic": "مَا عَيِضْرِّكَش تِجَرِّبْ",
+          "transliteration": "ma 3a-yidarrikash tijarrib"
         },
         {
           "slot": "try-this-medicine",
@@ -811,8 +811,8 @@
         },
         {
           "slot": "i-advise-you-not-to-do-this",
-          "arabic": "أَنَا بِنَصِحَكْ مَا تَسْوِي هِيكَ",
-          "transliteration": "ana binsa7ak ma tasawi heeka"
+          "arabic": "أَنَا بِنَصِحَكْ مَا تَسْوِي كَذَا",
+          "transliteration": "ana binsa7ak ma tasawi kadha"
         },
         {
           "slot": "stay-calm-and-don-t-rush",
@@ -823,8 +823,8 @@
       "dialogue": [
         {
           "speaker": "منى",
-          "arabic": "شْنُو فِيكَ يَا فَهَدْ؟ شَكْلَكَ تَعْبَان",
-          "transliteration": "shnoo fika ya fahad? shaklak ta3baan",
+          "arabic": "إِيش فِيكَ يَا فَهَدْ؟ شَكْلَكَ تَعْبَان",
+          "transliteration": "eesh fika ya fahad? shaklak ta3baan",
           "english": "What's wrong, Fahad? You look tired."
         },
         {
@@ -841,8 +841,8 @@
         },
         {
           "speaker": "فهد",
-          "arabic": "مَا أَبِي، أَكِيدْ حَاجْ بَسِيطَةْ",
-          "transliteration": "ma abi, akeed 7aaj basi6a",
+          "arabic": "مَا أَشْتِيش، أَكِيدْ حَاجْ بَسِيطَةْ",
+          "transliteration": "ma ashteesh, akeed 7aaj basi6a",
           "english": "I don't want to, it's surely something simple."
         },
         {
@@ -865,8 +865,8 @@
         },
         {
           "speaker": "فهد",
-          "arabic": "تَمَام، بَسْ مَا فِيهْ وَقِتْ، عِنْدِي شُغِلْ وَايْدْ",
-          "transliteration": "tamaam, bas ma feeh wa2it, 3indi shughil wayid",
+          "arabic": "تَمَام، بَسْ مَا فِيهْ وَقِتْ، عِنْدِي شُغِلْ كَثِير",
+          "transliteration": "tamaam, bas ma feeh wa2it, 3indi shughil katheer",
           "english": "OK, but there's no time, I have a lot of work."
         },
         {
@@ -891,8 +891,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "أَنَا تَعْبَان وَايْدْ",
-            "transliteration": "ana ta3baan wayid",
+            "arabic": "أَنَا تَعْبَان قَوِي",
+            "transliteration": "ana ta3baan gawi",
             "english": "I'm very tired."
           },
           "response": {
@@ -903,8 +903,8 @@
         },
         {
           "pair": {
-            "arabic": "لِيشْ مَا تِجَرِّبْ هَاد؟",
-            "transliteration": "leesh ma tijarrib haad?",
+            "arabic": "لِيشْ مَا تِجَرِّبْ هَذَا؟",
+            "transliteration": "leesh ma tijarrib haadha?",
             "english": "Why don't you try this?"
           },
           "response": {
@@ -915,8 +915,8 @@
         },
         {
           "pair": {
-            "arabic": "شْنُو تِنْصَحْنِي؟",
-            "transliteration": "shnoo tinsah ni?",
+            "arabic": "إِيش تِنْصَحْنِي؟",
+            "transliteration": "eesh tinsah ni?",
             "english": "What do you advise me?"
           },
           "response": {
@@ -1068,7 +1068,7 @@
         {
           "id": "unit-13.lesson-03.reply.02",
           "type": "reply",
-          "prompt": "Someone says: \"أَنَا تَعْبَان وَايْدْ\". Give a natural piece of advice.",
+          "prompt": "Someone says: \"أَنَا تَعْبَان قَوِي\". Give a natural piece of advice.",
           "answer": "لَازِمْ تِرْتَاحْ شْوَيَّةْ",
           "accepted": [
             "لَازِمْ تِرْتَاحْ شْوَيَّةْ",
@@ -1136,8 +1136,8 @@
         },
         {
           "slot": "this-isn-t-what-i-ordered-m",
-          "arabic": "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
-          "transliteration": "haad ma hoo illi talabtiih"
+          "arabic": "هَذَا مَا هُوّْ اللِّي طَلَبْتِهْ",
+          "transliteration": "haadha ma hoo illi talabtiih"
         },
         {
           "slot": "there-s-a-mistake-in-the-bill",
@@ -1151,13 +1151,13 @@
         },
         {
           "slot": "the-order-is-very-late",
-          "arabic": "الطَّلَبْ مِتَأَخِّرْ وَايْدْ",
-          "transliteration": "it-talab mit2akhkhir wayid"
+          "arabic": "الطَّلَبْ مِتَأَخِّرْ قَوِي",
+          "transliteration": "it-talab mit2akhkhir gawi"
         },
         {
           "slot": "i-don-t-mean-to-bother-you-but-this-is-important",
-          "arabic": "مَا قَصْدِي أُزْعِجَكْ، بَسْ هَاد مُهِمّْ",
-          "transliteration": "ma 2asdi uz3ijak, bas haad muhimm"
+          "arabic": "مَا قَصْدِي أُزْعِجَكْ، بَسْ هَذَا مُهِمّْ",
+          "transliteration": "ma 2asdi uz3ijak, bas haadha muhimm"
         },
         {
           "slot": "can-you-refund-my-money",
@@ -1166,8 +1166,8 @@
         },
         {
           "slot": "this-isn-t-the-same-as-what-i-saw-in-the-picture",
-          "arabic": "هَاد مَا هُوّْ مِثِلْ اللِّي شُفْتِهْ بِالصّورَةْ",
-          "transliteration": "haad ma hoo mithl illi shuftih bis-suura"
+          "arabic": "هَذَا مَا هُوّْ مِثِلْ اللِّي شُفْتِهْ بِالصّورَةْ",
+          "transliteration": "haadha ma hoo mithl illi shuftih bis-suura"
         },
         {
           "slot": "can-you-help-me-with-this-matter",
@@ -1176,8 +1176,8 @@
         },
         {
           "slot": "there-s-no-problem-but-i-d-like-to-clarify-m",
-          "arabic": "مَا فِي مِشْكِلَةْ، بَسْ أَبِي أُوَضِّحْ",
-          "transliteration": "ma fi mishkila, bas abi awaDDe7"
+          "arabic": "مَا فِي مِشْكِلَةْ، بَسْ أَشْتِي أُوَضِّحْ",
+          "transliteration": "ma fi mishkila, bas ashti awaDDe7"
         }
       ],
       "dialogue": [
@@ -1187,26 +1187,26 @@
         },
         {
           "speaker": "علي",
-          "arabic": "تَفَضَّلْ، شْنُو الْمِشْكِلَةْ؟",
-          "transliteration": "tafaDDal, shnoo il-mishkila?",
+          "arabic": "تَفَضَّلْ، إِيش الْمِشْكِلَةْ؟",
+          "transliteration": "tafaDDal, eesh il-mishkila?",
           "english": "Go ahead, what's the problem?"
         },
         {
           "speaker": "يوسف",
-          "arabic": "آسِفْ عَلَى الْإِزْعَاجْ، بَسْ هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
-          "transliteration": "asif 3ala l-iz3aaj, bas haad ma hoo illi talabtiih",
+          "arabic": "آسِفْ عَلَى الْإِزْعَاجْ، بَسْ هَذَا مَا هُوّْ اللِّي طَلَبْتِهْ",
+          "transliteration": "asif 3ala l-iz3aaj, bas haadha ma hoo illi talabtiih",
           "english": "Sorry to bother you, but this isn't what I ordered."
         },
         {
           "speaker": "علي",
-          "arabic": "آسِفْ وَايْدْ، شْنُو طَلَبْتَ؟",
-          "transliteration": "asif wayid, shnoo talabta?",
+          "arabic": "آسِفْ قَوِي، إِيش طَلَبْتَ؟",
+          "transliteration": "asif gawi, eesh talabta?",
           "english": "Very sorry, what did you order?"
         },
         {
           "speaker": "يوسف",
-          "arabic": "طَلَبْتُ دَجَاجْ مَشْوِي، وَهَاد لَحِمْ",
-          "transliteration": "talabtu dijaj mashwi, w haad la7im",
+          "arabic": "طَلَبْتُ دَجَاجْ مَشْوِي، وَهَذَا لَحِمْ",
+          "transliteration": "talabtu dijaj mashwi, w haadha la7im",
           "english": "I ordered grilled chicken, and this is meat."
         },
         {
@@ -1254,15 +1254,15 @@
             "english": "Excuse me, can you help me?"
           },
           "response": {
-            "arabic": "تَفَضَّلْ، شْنُو بِتَبِي؟",
-            "transliteration": "tafaDDal, shnoo bitabi?",
+            "arabic": "تَفَضَّلْ، إِيش تِشْتِي؟",
+            "transliteration": "tafaDDal, eesh tishti?",
             "english": "Go ahead, what do you want?"
           }
         },
         {
           "pair": {
-            "arabic": "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
-            "transliteration": "haad ma hoo illi talabtiih",
+            "arabic": "هَذَا مَا هُوّْ اللِّي طَلَبْتِهْ",
+            "transliteration": "haadha ma hoo illi talabtiih",
             "english": "This isn't what I ordered."
           },
           "response": {
@@ -1304,7 +1304,7 @@
           "prompt": "Which sentence opens a polite complaint (to a man)?",
           "options": [
             "لَوْ سَمَحْتَ، فِي مِشْكِلَةْ صَغِيرَةْ",
-            "هَاد مَرْيُوحْ وَايْدْ",
+            "هَذَا مَرْيُوحْ قَوِي",
             "أَنَا مُوَافِقْ",
             "شُكْرًا، اللَّهُ يِعْطِيكَ الْعَافِيَةْ"
           ],
@@ -1345,16 +1345,17 @@
         {
           "id": "unit-13.lesson-04.reorder.01",
           "type": "reorder",
-          "prompt": "Put these words in a natural order: \"طَلَبْتِهْ / اللِّي / هُوّْ / مَا / هَاد\".",
-          "answer": "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
+          "prompt": "Put these words in a natural order: \"طَلَبْتِهْ / اللِّي / هُوّْ / مَا / هَذَا\".",
+          "answer": "هَذَا مَا هُوّْ اللِّي طَلَبْتِهْ",
           "accepted": [
+            "هَذَا مَا هُوّْ اللِّي طَلَبْتِهْ",
             "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
             "هاد ما هو اللي طلبته",
             "هَاد مَا هُوّْ اللِّي طَلَبْتَ"
           ],
           "too_formal": {
             "item": "هَذَا لَيْسَ مَا طَلَبْتُهُ",
-            "feedback": "Formal; speakers say \"مو اللي\"."
+            "feedback": "Formal; speakers say \"مش اللي\"."
           },
           "tip": "\"اللي\" means what or which; \"ما هو\" is the spoken not."
         },
@@ -1393,7 +1394,7 @@
         {
           "id": "unit-13.lesson-04.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "Complete: \"الطَّلَبْ ___ وَايْدْ.\" Meaning: The order is very late.",
+          "prompt": "Complete: \"الطَّلَبْ ___ قَوِي.\" Meaning: The order is very late.",
           "answer": "مِتَأَخِّرْ",
           "accepted": [
             "مِتَأَخِّرْ",
@@ -1402,20 +1403,20 @@
           ],
           "too_formal": {
             "item": "الطَّلَبُ تَأَخِّرَ كَثِيرًا",
-            "feedback": "Formal; \"متأخر وايد\" is how it is said."
+            "feedback": "Formal; \"متأخر قوي\" is how it is said."
           },
-          "tip": "\"وايد\" after an adjective means very."
+          "tip": "\"قوي\" after an adjective means very."
         },
         {
           "id": "unit-13.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "A waiter says: \"تَفَضَّلْ، شْنُو الْمِشْكِلَةْ؟\". Give a natural reply.",
+          "prompt": "A waiter says: \"تَفَضَّلْ، إِيش الْمِشْكِلَةْ؟\". Give a natural reply.",
           "answer": "فِي غَلِطَةْ بِالْحِسَابْ",
           "accepted": [
             "فِي غَلِطَةْ بِالْحِسَابْ",
             "هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
             "الْأَكِل بَارِدْ شْوَيَّةْ",
-            "الطَّلَبْ مِتَأَخِّرْ وَايْدْ"
+            "الطَّلَبْ مِتَأَخِّرْ قَوِي"
           ],
           "too_formal": {
             "item": "يُوجَدُ خَطَأٌ فِي الْفَاتُورَةِ",
@@ -2223,8 +2224,8 @@
         },
         {
           "speaker": "عمر",
-          "arabic": "أَنَا شْوَيَّة قَلِقْ، عِنْدِي شُغِلْ وَايْدْ",
-          "transliteration": "ana shwayya 2ali2, 3indi shughil wayid",
+          "arabic": "أَنَا شْوَيَّة قَلِقْ، عِنْدِي شُغِلْ كَثِير",
+          "transliteration": "ana shwayya 2ali2, 3indi shughil katheer",
           "english": "I'm a little worried, I have a lot of work."
         },
         {
@@ -2241,20 +2242,20 @@
         },
         {
           "speaker": "هالة",
-          "arabic": "تَمَام، تَمّْ، وَأَنَا جَايِعَة وَايْدْ",
-          "transliteration": "tamaam, tamm, w ana jaa3a wayid",
+          "arabic": "تَمَام، تَمّْ، وَأَنَا جَايِعَة قَوِي",
+          "transliteration": "tamaam, tamm, w ana jaa3a gawi",
           "english": "OK, that works, and I'm very hungry."
         },
         {
           "speaker": "عمر",
-          "arabic": "لَوْ سَمَحْتَ، هَاد مَا هُوّْ اللِّي طَلَبْتِهْ",
-          "transliteration": "law sama7t, haad ma hoo illi talabtiih",
+          "arabic": "لَوْ سَمَحْتَ، هَذَا مَا هُوّْ اللِّي طَلَبْتِهْ",
+          "transliteration": "law sama7t, haadha ma hoo illi talabtiih",
           "english": "Excuse me, this isn't what I ordered."
         },
         {
           "speaker": "الخادم",
-          "arabic": "آسِفْ وَايْدْ، أَغَيِّرُهُ لَكْ الْآنْ",
-          "transliteration": "asif wayid, aghayyyirah lak il-aan",
+          "arabic": "آسِفْ قَوِي، أَغَيِّرُهُ لَكْ الْآنْ",
+          "transliteration": "asif gawi, aghayyyirah lak il-aan",
           "english": "Very sorry, I'll change it for you now."
         },
         {

@@ -83,7 +83,7 @@
     "straight-ahead": {"english": "straight ahead", "group": "directions", "image": "emoji/2b06.svg"},
     "to-turn": {"english": "to turn", "group": "actions"},
     "to-walk": {"english": "to walk", "group": "actions", "search_term": "people walking on sidewalk", "image": "words/to-walk.jpg"},
-    "family": {"english": "family", "group": "family", "search_term": "happy family portrait", "image": "words/family.jpg"},
+    "family": {"english": "family", "group": "family", "search_term": "happy family portrait"},
     "father": {"english": "father", "group": "family", "search_term": "father with child", "image": "words/father.jpg"},
     "mother": {"english": "mother", "group": "family", "search_term": "mother holding baby", "image": "words/mother.jpg"},
     "parents": {"english": "parents", "group": "family", "search_term": "parents family portrait"},

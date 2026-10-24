@@ -230,23 +230,43 @@
     "search_term": "rain clouds"
   },
   "l06-p07-snowflakes.jpg": {
-    "id": "bbf122d8-16f2-490b-9803-d8da045bb35f",
+    "id": "25b1e753-66a3-4319-9ad6-a37737d3e602",
     "title": "Snowflake Ice",
     "creator": "Aaron Burden",
     "license": "cc0",
     "license_version": "1.0",
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/snowflake-ice-X585MHTU4P",
+    "foreign_landing_url": "https://stocksnap.io/photo/snowflake-ice-PMTRLRBGPU",
     "search_term": "snowflakes"
   },
   "l06-p12-old-radio.jpg": {
-    "id": "e928fd43-03e0-49d8-951d-8cc77fdef480",
-    "title": "collection old radios old telephone",
+    "id": "af169c95-3780-4d7f-9272-a17dda3489a7",
+    "title": "Old radio",
     "creator": null,
     "license": "cc0",
     "license_version": "1.0",
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/3337374/free-photo-image-phone-vintage-telephone",
+    "foreign_landing_url": "https://www.rawpixel.com/image/5938680/old-radio",
     "search_term": "old radio"
+  },
+  "l06-p03-weather-forecast-chart.jpg": {
+    "id": "ed67ae14-9a23-4c4d-bc75-c9518831c923",
+    "title": "tidal currents are key to planning un-supported voyages in these waters",
+    "creator": "Dale Simonson",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/45877650@N00/19142059491",
+    "search_term": "weather forecast chart"
+  },
+  "l06-p09-smartphone-weather-app.jpg": {
+    "id": "5d6d66f6-5642-4386-8578-84fa12add44c",
+    "title": "iPhone",
+    "creator": "William Hook",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/83542829@N00/2830322349",
+    "search_term": "smartphone weather app"
   }
 }

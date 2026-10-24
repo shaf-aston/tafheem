@@ -13,7 +13,8 @@
     "2a": "أ / همزة في بداية الكلمة",
     "aa": "ا طويلة",
     "ee": "ي طويلة",
-    "oo": "و طويلة"
+    "oo": "و طويلة",
+    "g": "ق (تُنطق g)"
   },
   "lessons": [
     {
@@ -31,11 +32,11 @@
         },
         {
           "slot": "i-want-a-kilo-of-tomatoes-please",
-          "arabic": "أَبِي كِيلُو بَندُورَة لَو سَمَحْت",
-          "transliteration": "abi kilo bandoora law samaht",
+          "arabic": "أَشْتِي كِيلُو بَندُورَة لَو سَمَحْت",
+          "transliteration": "ashti kilo bandoora law samaht",
           "reply": {
-            "arabic": "تِكْرَم عَيْنَك، دَلْوَقْتِي أَوْزِنْهَا لَك",
-            "transliteration": "tikram 3aynak, dilwa2ti awzinha lak",
+            "arabic": "تِكْرَم عَيْنَك، ذَلْحِين أَوْزِنْهَا لَك",
+            "transliteration": "tikram 3aynak, dhal7een awzinha lak",
             "english": "Right away, I'll weigh it for you now"
           }
         },
@@ -54,15 +55,15 @@
           "arabic": "عِندَك بَصَل وَتُوم؟",
           "transliteration": "3indak basal w toom?",
           "reply": {
-            "arabic": "أَيْوَة، كَم تَبِي مِنّْن؟",
-            "transliteration": "aywah, kam tabi minon?",
+            "arabic": "أَيْوَة، كَم تَشْتِي مِنّْن؟",
+            "transliteration": "aywah, kam tishti minon?",
             "english": "Yes, how much of each do you want?"
           }
         },
         {
           "slot": "i-want-half-a-kilo-of-potatoes",
-          "arabic": "أَبِي نِصّ كِيلُو بَطَاطَا",
-          "transliteration": "abi nuss kilo batata"
+          "arabic": "أَشْتِي نِصّ كِيلُو بَطَاطَا",
+          "transliteration": "ashti nuss kilo batata"
         },
         {
           "slot": "is-this-cucumber-fresh-or-not",
@@ -121,8 +122,8 @@
         },
         {
           "slot": "that-s-enough-like-that-thanks",
-          "arabic": "دَا يِكْفِي هَيْك، شُكْرًا",
-          "transliteration": "da yikfi heyk, shukran"
+          "arabic": "دَا يِكْفِي كَذَا، شُكْرًا",
+          "transliteration": "da yikfi kadha, shukran"
         }
       ],
       "dialogue": [
@@ -140,8 +141,8 @@
         },
         {
           "speaker": "زَبُون",
-          "arabic": "أَبِي كِيلُو بَندُورَة وَكِيلُو خِيَار",
-          "transliteration": "abi kilo bandoora w kilo khyar",
+          "arabic": "أَشْتِي كِيلُو بَندُورَة وَكِيلُو خِيَار",
+          "transliteration": "ashti kilo bandoora w kilo khyar",
           "english": "I want a kilo of tomatoes and a kilo of cucumbers"
         },
         {
@@ -158,8 +159,8 @@
         },
         {
           "speaker": "بَيَّاع",
-          "arabic": "أَيْوَة، كَم تَبِي؟",
-          "transliteration": "aywah, kam tabi?",
+          "arabic": "أَيْوَة، كَم تَشْتِي؟",
+          "transliteration": "aywah, kam tishti?",
           "english": "Yes, how much do you want?"
         },
         {
@@ -225,8 +226,8 @@
         },
         {
           "pair": {
-            "arabic": "تَبِي شُنْطَة وِلَّا اثْنَيْن؟",
-            "transliteration": "tabi shunta wla ithnayn?",
+            "arabic": "تَشْتِي شُنْطَة وِلَّا اثْنَيْن؟",
+            "transliteration": "tishti shunta wla ithnayn?",
             "english": "Do you want one bag or two?"
           },
           "response": {
@@ -248,12 +249,12 @@
           }
         }
       ],
-      "culture": "عِند السَّبّاع بِالسُّوق اليمني بِتَحْكِي السّلام الكامل قَبْل مَا تَسْأَل عَن السِّعْر، وَمِن الأَدَب إِنْ تَسْأَل كَم البِضاعة وَتُبّ تِفَاوِض عَالسِّعْر خَفِيف. لمّا تَدْفَع وتَاخِد غِرَاضَك، بِتَقُول اللَّه يِبَارِك فِيك وهُو بِيّرُدّ عَلَيْك، هَيْك الطّريقة بِتِتحكّى دَايِم بِسُوق الخُضِر اليمني.",
+      "culture": "عِند السَّبّاع بِالسُّوق اليمني بِتَحْكِي السّلام الكامل قَبْل مَا تَسْأَل عَن السِّعْر، وَمِن الأَدَب إِنْ تَسْأَل كَم البِضاعة وَتُبّ تِفَاوِض عَالسِّعْر خَفِيف. لمّا تَدْفَع وتَاخِد غِرَاضَك، بِتَقُول اللَّه يِبَارِك فِيك وهُو بِيّرُدّ عَلَيْك، كَذَا الطّريقة بِتِتحكّى دَايِم بِسُوق الخُضِر اليمني.",
       "exercises": [
         {
           "id": "unit-03.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "البَيَّاع سَأَلَك: أَبِي كِيلُو وِلَّا كِيلُوَيْن بَندُورَة؟",
+          "prompt": "البَيَّاع سَأَلَك: أَشْتِي كِيلُو وِلَّا كِيلُوَيْن بَندُورَة؟",
           "answer": "كِيلُو يِكْفِي",
           "accepted": [
             "كِيلُو يِكْفِي",
@@ -262,7 +263,7 @@
           ],
           "too_formal": {
             "item": "كيلوغرام واحد يكفيني",
-            "feedback": "فصيحة لكن في السوق اليمني ما حدا يقول هيك، المتعارف عليه كيلو يكفي"
+            "feedback": "فصيحة لكن في السوق اليمني ما حدا يقول كذا، المتعارف عليه كيلو يكفي"
           },
           "tip": "بالسوق اليمني بيقولوا كيلو مش كيلوغرام"
         },
@@ -301,7 +302,7 @@
         {
           "id": "unit-03.lesson-01.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "أَبِي ___ كِيلُو بَطَاطَا",
+          "prompt": "أَشْتِي ___ كِيلُو بَطَاطَا",
           "answer": "نِصّ",
           "accepted": [
             "نِصّ",
@@ -365,7 +366,7 @@
             "بِكَم السِّعْر؟",
             "كَم السَّاعَة؟",
             "وَيْن الْبَيْت؟",
-            "شُو اسْمَك؟"
+            "إِيش اسْمَك؟"
           ]
         },
         {
@@ -394,17 +395,17 @@
           "id": "unit-03.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "رَتِّب الْجُمْلَة: I want a kilo of tomatoes please",
-          "answer": "أَبِي كِيلُو بَندُورَة لَو سَمَحْت",
+          "answer": "أَشْتِي كِيلُو بَندُورَة لَو سَمَحْت",
           "accepted": [
-            "أَبِي كِيلُو بَندُورَة لَو سَمَحْت",
-            "أبي كيلو بندورة لو سمحت",
-            "abi kilo bandoora law samaht"
+            "أَشْتِي كِيلُو بَندُورَة لَو سَمَحْت",
+            "أشتي كيلو بندورة لو سمحت",
+            "ashti kilo bandoora law samaht"
           ],
           "too_formal": {
             "item": "أريد كيلو من البندورة من فضلك",
-            "feedback": "فصيحة، في اليمن العامية بنقول أبي مش أريد"
+            "feedback": "فصيحة، في اليمن العامية بنقول أشتي مش أريد"
           },
-          "tip": "أَبِي = I want"
+          "tip": "أَشْتِي = I want"
         },
         {
           "id": "unit-03.lesson-01.reorder.02",
@@ -429,11 +430,11 @@
       "phrases": [
         {
           "slot": "i-want-a-fresh-bundle-of-bread",
-          "arabic": "أَبِي رِبْطَة خُبْز طَازَة",
-          "transliteration": "abi ribta khubz taza",
+          "arabic": "أَشْتِي رِبْطَة خُبْز طَازَة",
+          "transliteration": "ashti ribta khubz taza",
           "reply": {
-            "arabic": "دَلْوَقْتِي طَالِعَة مِن التَّنّور",
-            "transliteration": "dilwa2ti tali3a min it-tannur",
+            "arabic": "ذَلْحِين طَالِعَة مِن التَّنّور",
+            "transliteration": "dhal7een tali3a min it-tannur",
             "english": "Just out of the oven"
           }
         },
@@ -449,8 +450,8 @@
         },
         {
           "slot": "i-want-a-kilo-of-ground-meat",
-          "arabic": "أَبِي كِيلُو لَحْمَة مَفْرُومَة",
-          "transliteration": "abi kilo lahma mafrooma",
+          "arabic": "أَشْتِي كِيلُو لَحْمَة مَفْرُومَة",
+          "transliteration": "ashti kilo lahma mafrooma",
           "reply": {
             "arabic": "ضَأْن وِلَّا بَقَر؟",
             "transliteration": "da2n wla ba2ar?",
@@ -464,18 +465,18 @@
         },
         {
           "slot": "i-want-half-a-kilo-of-kofta",
-          "arabic": "أَبِي نِصّ كِيلُو كُفْتَة",
-          "transliteration": "abi nuss kilo kufta",
+          "arabic": "أَشْتِي نِصّ كِيلُو كُفْتَة",
+          "transliteration": "ashti nuss kilo kufta",
           "reply": {
-            "arabic": "دَلْوَقْتِي بِحَضِّرْهَا لَك",
-            "transliteration": "dilwa2ti ba-haddirha lak",
+            "arabic": "ذَلْحِين شَاحَضِّرْهَا لَك",
+            "transliteration": "dhal7een shaahaddirha lak",
             "english": "I'll prepare it now"
           }
         },
         {
           "slot": "is-the-bakery-open-now",
-          "arabic": "التَّنّور فَاتِح دَلْوَقْتِي؟",
-          "transliteration": "it-tannur fati7 dilwa2ti?",
+          "arabic": "التَّنّور فَاتِح ذَلْحِين؟",
+          "transliteration": "it-tannur fati7 dhal7een?",
           "reply": {
             "arabic": "أَيْوَة، فَاتِح مِن الصُّبِح",
             "transliteration": "aywah, fati7 min is-subuh",
@@ -484,8 +485,8 @@
         },
         {
           "slot": "do-you-want-pita-bread-or-markook",
-          "arabic": "تَبِي خُبْز عَرَبِي وِلَّا صِاج؟",
-          "transliteration": "tabi khubz 3arabi wla saj?"
+          "arabic": "تَشْتِي خُبْز عَرَبِي وِلَّا صِاج؟",
+          "transliteration": "tishti khubz 3arabi wla saj?"
         },
         {
           "slot": "cut-the-meat-into-small-pieces-for-me",
@@ -509,8 +510,8 @@
         },
         {
           "slot": "this-bread-is-very-hot",
-          "arabic": "دَا الْخُبْز سَاخِن وَايِد",
-          "transliteration": "da il-khubz sa-khin wa-ayd",
+          "arabic": "دَا الْخُبْز سَاخِن قَوِي",
+          "transliteration": "da il-khubz sa-khin gawi",
           "reply": {
             "arabic": "خَلِّيه شْوَيّ يَبْرُد",
             "transliteration": "khallih shway yabrud",
@@ -552,14 +553,14 @@
         },
         {
           "speaker": "خَبَّاز",
-          "arabic": "دَلْوَقْتِي طَالِعَة مِن التَّنّور، تِفَضَّل",
-          "transliteration": "dilwa2ti tali3a min it-tannur, tfaddal",
+          "arabic": "ذَلْحِين طَالِعَة مِن التَّنّور، تِفَضَّل",
+          "transliteration": "dhal7een tali3a min it-tannur, tfaddal",
           "english": "Just out, here you go"
         },
         {
           "speaker": "زَبُون",
-          "arabic": "تِكْرَم عَيْنَك. أَبِي أَرُوح عِند الْجَزَّار كَمَان",
-          "transliteration": "tikram 3aynak. abi aruuh 3ind il-jazzar kaman",
+          "arabic": "تِكْرَم عَيْنَك. أَشْتِي أَرُوح عِند الْجَزَّار كَمَان",
+          "transliteration": "tikram 3aynak. ashti aruuh 3ind il-jazzar kaman",
           "english": "I also need the butcher"
         },
         {
@@ -574,8 +575,8 @@
         },
         {
           "speaker": "جَزَّار",
-          "arabic": "ضَأْن وِلَّا بَقَر تَبِي؟",
-          "transliteration": "da2n wla ba2ar tabi?",
+          "arabic": "ضَأْن وِلَّا بَقَر تَشْتِي؟",
+          "transliteration": "da2n wla ba2ar tishti?",
           "english": "Lamb or beef?"
         },
         {
@@ -586,8 +587,8 @@
         },
         {
           "speaker": "جَزَّار",
-          "arabic": "تِكْرَم عَيْنَك، دَلْوَقْتِي أَفْرِمُهَا لَك",
-          "transliteration": "tikram 3aynak, dilwa2ti afrumha lak",
+          "arabic": "تِكْرَم عَيْنَك، ذَلْحِين أَفْرِمُهَا لَك",
+          "transliteration": "tikram 3aynak, dhal7een afrumha lak",
           "english": "Grinding now"
         },
         {
@@ -606,13 +607,13 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "تَبِي خُبْز عَرَبِي وِلَّا صِاج؟",
-            "transliteration": "tabi khubz 3arabi wla saj?",
+            "arabic": "تَشْتِي خُبْز عَرَبِي وِلَّا صِاج؟",
+            "transliteration": "tishti khubz 3arabi wla saj?",
             "english": "Pita or flatbread?"
           },
           "response": {
-            "arabic": "أَبِي عَرَبِي",
-            "transliteration": "abi 3arabi",
+            "arabic": "أَشْتِي عَرَبِي",
+            "transliteration": "ashti 3arabi",
             "english": "Pita"
           }
         },
@@ -642,8 +643,8 @@
         },
         {
           "pair": {
-            "arabic": "تَبِي أَقَطِّعْ لَك اللَّحْمَة؟",
-            "transliteration": "tabi aqatta3 lak il-lahma?",
+            "arabic": "تَشْتِي أَقَطِّعْ لَك اللَّحْمَة؟",
+            "transliteration": "tishti aqatta3 lak il-lahma?",
             "english": "Cut it for you?"
           },
           "response": {
@@ -658,7 +659,7 @@
         {
           "id": "unit-03.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "الْجَزَّار سَأَلَك: ضَأْن وِلَّا بَقَر تَبِي؟",
+          "prompt": "الْجَزَّار سَأَلَك: ضَأْن وِلَّا بَقَر تَشْتِي؟",
           "answer": "ضَأْن أَحْسَن",
           "accepted": [
             "ضَأْن أَحْسَن",
@@ -690,7 +691,7 @@
         {
           "id": "unit-03.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أَبِي ___ كِيلُو كُفْتَة",
+          "prompt": "أَشْتِي ___ كِيلُو كُفْتَة",
           "answer": "نِصّ",
           "accepted": [
             "نِصّ",
@@ -739,22 +740,22 @@
           "id": "unit-03.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "This bread is very hot",
-          "answer": "دَا الْخُبْز سَاخِن وَايِد",
+          "answer": "دَا الْخُبْز سَاخِن قَوِي",
           "accepted": [
-            "دَا الْخُبْز سَاخِن وَايِد",
-            "دا الخبز ساخن وايد",
-            "da il-khubz sa-khin wa-ayd"
+            "دَا الْخُبْز سَاخِن قَوِي",
+            "دا الخبز ساخن قوي",
+            "da il-khubz sa-khin gawi"
           ],
           "too_formal": {
             "item": "إن هذا الخبز ساخن جداً",
             "feedback": "فصيحة"
           },
-          "tip": "وَايِد = very"
+          "tip": "قَوِي = very"
         },
         {
           "id": "unit-03.lesson-02.choose.01",
           "type": "choose",
-          "prompt": "شُو بِتَسْأَل الْجَزَّار قَبْل مَا تَطْلُب اللَّحْمَة؟",
+          "prompt": "إِيش بِتَسْأَل الْجَزَّار قَبْل مَا تَطْلُب اللَّحْمَة؟",
           "answer": "ضَأْن وِلَّا بَقَر؟",
           "accepted": [
             "ضَأْن وِلَّا بَقَر؟",
@@ -769,7 +770,7 @@
           "options": [
             "ضَأْن وِلَّا بَقَر؟",
             "وَيْن الْفُرْن؟",
-            "شُو السَّاعَة؟",
+            "إِيش السَّاعَة؟",
             "كِيفَك الْيَوْم؟"
           ]
         },
@@ -799,11 +800,11 @@
           "id": "unit-03.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "رَتِّب الْجُمْلَة: I want a fresh bundle of bread",
-          "answer": "أَبِي رِبْطَة خُبْز طَازَة",
+          "answer": "أَشْتِي رِبْطَة خُبْز طَازَة",
           "accepted": [
-            "أَبِي رِبْطَة خُبْز طَازَة",
-            "أبي ربطة خبز طازة",
-            "abi ribta khubz taza"
+            "أَشْتِي رِبْطَة خُبْز طَازَة",
+            "أشتي ربطة خبز طازة",
+            "ashti ribta khubz taza"
           ],
           "too_formal": {
             "item": "أريد ربطة من الخبز الطازج",
@@ -834,18 +835,18 @@
       "phrases": [
         {
           "slot": "what-are-you-going-to-cook-today",
-          "arabic": "شُو رَح تِطْبُخِي الْيَوْم؟",
-          "transliteration": "shu ra7 tetbukhi il-yom?",
+          "arabic": "إِيش عَتِطْبُخِي الْيَوْم؟",
+          "transliteration": "eesh 3atetbukhi il-yom?",
           "reply": {
-            "arabic": "رَح أَعْمَل مِجَدَّرَة",
-            "transliteration": "ra7 a3mel mjaddara",
+            "arabic": "شَاعْمَل مِجَدَّرَة",
+            "transliteration": "shaa3mel mjaddara",
             "english": "Mjaddara"
           }
         },
         {
           "slot": "we-need-to-put-the-rice-in-the-water",
-          "arabic": "لَازِم نِحِط الرِّزّ بِالْمَيّ",
-          "transliteration": "lazim nhet ir-rizz bil-mayy"
+          "arabic": "لَازِم نِحِط الرِّزّ بِالْمَاي",
+          "transliteration": "lazim nhet ir-rizz bil-maay"
         },
         {
           "slot": "did-you-put-enough-salt",
@@ -864,8 +865,8 @@
         },
         {
           "slot": "the-food-is-boiling",
-          "arabic": "الْأَكْل عِمّ يِغْلِي",
-          "transliteration": "il-akel 3am yighli",
+          "arabic": "الْأَكْل يِغْلِي",
+          "transliteration": "il-akel yighli",
           "reply": {
             "arabic": "خَفِّف النَّار شْوَيّ",
             "transliteration": "khaffif en-nar shway",
@@ -879,11 +880,11 @@
         },
         {
           "slot": "what-s-the-recipe-you-want-to-make",
-          "arabic": "شُو الْوَصْفَة اللِي تَبِي تِعْمَلِيهَا؟",
-          "transliteration": "shu il-wasfa elli tabi ta3milha?",
+          "arabic": "إِيش الْوَصْفَة اللِي تَشْتِي تِعْمَلِيهَا؟",
+          "transliteration": "eesh il-wasfa elli tishti ta3milha?",
           "reply": {
-            "arabic": "أَبِي أَعْمَل يَخْنَة بَامِيَة",
-            "transliteration": "abi a3mel yakhne bamya",
+            "arabic": "أَشْتِي أَعْمَل يَخْنَة بَامِيَة",
+            "transliteration": "ashti a3mel yakhne bamya",
             "english": "Okra stew"
           }
         },
@@ -904,8 +905,8 @@
         },
         {
           "slot": "how-long-does-it-need-to-stay-on-the-fire",
-          "arabic": "قَدِّيش لَازِم يِقْعُد عَالنَّار؟",
-          "transliteration": "qaddish lazim yo2ud 3an-nar?",
+          "arabic": "كَم لَازِم يِقْعُد عَالنَّار؟",
+          "transliteration": "kam lazim yo2ud 3an-nar?",
           "reply": {
             "arabic": "نِصّ سَاعَة تَقْرِيبًا",
             "transliteration": "nuss sa3a ta2riban",
@@ -926,20 +927,20 @@
       "dialogue": [
         {
           "speaker": "الْأُم",
-          "arabic": "شُو رَح تِسَاعِدِينِي بِالطَّبْخ الْيَوْم؟",
-          "transliteration": "shu ra7 tsa3dini bet-tabkh il-yom?",
+          "arabic": "إِيش عَتِسَاعِدِينِي بِالطَّبْخ الْيَوْم؟",
+          "transliteration": "eesh 3atsa3dini bet-tabkh il-yom?",
           "english": "Help cooking?"
         },
         {
           "speaker": "الْبِنْت",
-          "arabic": "أَيْوَة، شُو رَح نِعْمَل؟",
-          "transliteration": "aywah, shu ra7 ni3mel?",
+          "arabic": "أَيْوَة، إِيش شَانِعْمَل؟",
+          "transliteration": "aywah, eesh shaani3mel?",
           "english": "Sure what"
         },
         {
           "speaker": "الْأُم",
-          "arabic": "رَح نِعْمَل مِجَدَّرَة وَسَلَطَة",
-          "transliteration": "ra7 ni3mel mjaddara w salata",
+          "arabic": "شَانِعْمَل مِجَدَّرَة وَسَلَطَة",
+          "transliteration": "shaani3mel mjaddara w salata",
           "english": "Mjaddara and salad"
         },
         {
@@ -950,26 +951,26 @@
         },
         {
           "speaker": "الْأُم",
-          "arabic": "فِي الدَّولَاب، وَحِطِّي الْمَيّ عِمّ تِغْلِي",
-          "transliteration": "fi id-dolab, w hitti il-mayy 3am tighli",
+          "arabic": "فِي الدَّولَاب، وَحِطِّي الْمَاي تِغْلِي",
+          "transliteration": "fi id-dolab, w hitti il-maay tighli",
           "english": "Cabinet put water boil"
         },
         {
           "speaker": "الْبِنْت",
-          "arabic": "حَطِّيت الْمَيّ عَالنَّار",
-          "transliteration": "hattayt il-mayy 3an-nar",
+          "arabic": "حَطِّيت الْمَاي عَالنَّار",
+          "transliteration": "hattayt il-maay 3an-nar",
           "english": "Water on fire"
         },
         {
           "speaker": "الْأُم",
-          "arabic": "مَنِيح، دَلْوَقْتِي زِيدِي شْوَيّ بَصَل مَقْلِي",
-          "transliteration": "mni7, dilwa2ti zidi shway basal ma2li",
+          "arabic": "مَنِيح، ذَلْحِين زِيدِي شْوَيّ بَصَل مَقْلِي",
+          "transliteration": "mni7, dhal7een zidi shway basal ma2li",
           "english": "Good now add fried onion"
         },
         {
           "speaker": "الْبِنْت",
-          "arabic": "تَمَام، بَعْدَيْن شُو؟",
-          "transliteration": "tamam, ba3dayn shu?",
+          "arabic": "تَمَام، بَعْدَيْن إِيش؟",
+          "transliteration": "tamam, ba3dayn eesh?",
           "english": "Then what"
         },
         {
@@ -980,8 +981,8 @@
         },
         {
           "speaker": "الْبِنْت",
-          "arabic": "قَدِّيش لَازِم يِقْعُد؟",
-          "transliteration": "qaddish lazim yo2ud?",
+          "arabic": "كَم لَازِم يِقْعُد؟",
+          "transliteration": "kam lazim yo2ud?",
           "english": "How long"
         },
         {
@@ -992,21 +993,21 @@
         },
         {
           "speaker": "الْبِنْت",
-          "arabic": "اللَّه يِبَارِك فِيك، رَح أَحَضِّر السَّلَطَة",
-          "transliteration": "alla ybarek fik, ra7 a-hadddir is-salata",
+          "arabic": "اللَّه يِبَارِك فِيك، شَاحَضِّر السَّلَطَة",
+          "transliteration": "alla ybarek fik, shaahadddir is-salata",
           "english": "I'll prep salad"
         }
       ],
       "de_book": [
         {
           "pair": {
-            "arabic": "شُو رَح تِطْبُخِي الْيَوْم؟",
-            "transliteration": "shu ra7 tetbukhi il-yom?",
+            "arabic": "إِيش عَتِطْبُخِي الْيَوْم؟",
+            "transliteration": "eesh 3atetbukhi il-yom?",
             "english": "Cook today?"
           },
           "response": {
-            "arabic": "رَح أَعْمَل يَخْنَة بَامِيَة",
-            "transliteration": "ra7 a3mel yakhne bamya",
+            "arabic": "شَاعْمَل يَخْنَة بَامِيَة",
+            "transliteration": "shaa3mel yakhne bamya",
             "english": "Okra stew"
           }
         },
@@ -1036,18 +1037,18 @@
         },
         {
           "pair": {
-            "arabic": "مِين رَح يِغْسِل الصُّحُون؟",
-            "transliteration": "min ra7 yighsel is-shu7un?",
+            "arabic": "مِين عَيِغْسِل الصُّحُون؟",
+            "transliteration": "min 3ayighsel is-shu7un?",
             "english": "Who dishes?"
           },
           "response": {
-            "arabic": "أَنَا رَح أَغْسِلَهَا بَعْدِ الْأَكْل",
-            "transliteration": "ana ra7 aghaslha ba3d il-akel",
+            "arabic": "أَنَا شَاغْسِلَهَا بَعْدِ الْأَكْل",
+            "transliteration": "ana shaaghaslha ba3d il-akel",
             "english": "I'll after eating"
           }
         }
       ],
-      "culture": "الطَّبْخ بِالْبَيْت اليمني عَادَة شَيّ مُشْتَرَك بَيْن الْأُم وَالْبِنَات، وَكُلّ وَاحِدَة إِلَهَا دَوْر. الطَّبْخات اليمنية تُشْتَهِر بِالْبُهَارات وَالطُّعْم الْقَوِي. لَمّا الْأَكْل يِنْتَهِي، تِقُول الْأَم أَو الْبِنَات هَنِيئًا لَك أَو بِالْهَنَا، وهَيْك الطَّرِيقَة الْعَادِيَّة فِي كُلّ الْبُيُوت اليمنية.",
+      "culture": "الطَّبْخ بِالْبَيْت اليمني عَادَة شَيّ مُشْتَرَك بَيْن الْأُم وَالْبِنَات، وَكُلّ وَاحِدَة إِلَهَا دَوْر. الطَّبْخات اليمنية تُشْتَهِر بِالْبُهَارات وَالطُّعْم الْقَوِي. لَمّا الْأَكْل يِنْتَهِي، تِقُول الْأَم أَو الْبِنَات هَنِيئًا لَك أَو بِالْهَنَا، وكَذَا الطَّرِيقَة الْعَادِيَّة فِي كُلّ الْبُيُوت اليمنية.",
       "exercises": [
         {
           "id": "unit-03.lesson-03.reply.01",
@@ -1084,7 +1085,7 @@
         {
           "id": "unit-03.lesson-03.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "لَازِم نِحِط الرِّزّ ___ الْمَيّ",
+          "prompt": "لَازِم نِحِط الرِّزّ ___ الْمَاي",
           "answer": "ب",
           "accepted": [
             "ب",
@@ -1148,12 +1149,12 @@
         {
           "id": "unit-03.lesson-03.choose.01",
           "type": "choose",
-          "prompt": "شُو بِتَقُول لِحَدّا طَبَخ أَكْلَة زَاكِيَة؟",
-          "answer": "دَا لَذِيذ وَايِد",
+          "prompt": "إِيش بِتَقُول لِحَدّا طَبَخ أَكْلَة زَاكِيَة؟",
+          "answer": "دَا لَذِيذ قَوِي",
           "accepted": [
-            "دَا لَذِيذ وَايِد",
-            "دا لذيذ وايد",
-            "da ladhidh wa-ayd"
+            "دَا لَذِيذ قَوِي",
+            "دا لذيذ قوي",
+            "da ladhidh gawi"
           ],
           "too_formal": {
             "item": "هذا طعام شهي جداً",
@@ -1161,7 +1162,7 @@
           },
           "tip": "لَذِيذ = delicious",
           "options": [
-            "دَا لَذِيذ وَايِد",
+            "دَا لَذِيذ قَوِي",
             "اللَّه يِبَارِك فِيك",
             "مَبْرُوك",
             "تِصْبَح عَلَى خَيْر"
@@ -1171,11 +1172,11 @@
           "id": "unit-03.lesson-03.choose.02",
           "type": "choose",
           "prompt": "تَرْجِم: put the water to boil",
-          "answer": "حِطِّي الْمَيّ عِمّ تِغْلِي",
+          "answer": "حِطِّي الْمَاي تِغْلِي",
           "accepted": [
-            "حِطِّي الْمَيّ عِمّ تِغْلِي",
+            "حِطِّي الْمَاي تِغْلِي",
             "حطي الماء يغلي",
-            "hitti il-mayy yighli"
+            "hitti il-maay yighli"
           ],
           "too_formal": {
             "item": "ضعي الماء ليغلي",
@@ -1183,7 +1184,7 @@
           },
           "tip": "يِغْلِي = boil",
           "options": [
-            "حِطِّي الْمَيّ عِمّ تِغْلِي",
+            "حِطِّي الْمَاي تِغْلِي",
             "اغْسِلِي الصُّحُون",
             "اقْطَعِي الْبَصَل",
             "زِيدِي الْمِلْح"
@@ -1193,17 +1194,17 @@
           "id": "unit-03.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "رَتِّب الْجُمْلَة: What are you going to cook today?",
-          "answer": "شُو رَح تِطْبُخِي الْيَوْم؟",
+          "answer": "إِيش عَتِطْبُخِي الْيَوْم؟",
           "accepted": [
-            "شُو رَح تِطْبُخِي الْيَوْم؟",
-            "شو رح تطبخي اليوم؟",
-            "shu ra7 tetbukhi il-yom?"
+            "إِيش عَتِطْبُخِي الْيَوْم؟",
+            "إيش عتطبخي اليوم؟",
+            "eesh 3atetbukhi il-yom?"
           ],
           "too_formal": {
             "item": "ماذا ستطبخين اليوم؟",
             "feedback": "فصيحة"
           },
-          "tip": "رَح"
+          "tip": "شَا (for I/we) and عَ (for you/he/she/they) before the verb make the future."
         },
         {
           "id": "unit-03.lesson-03.reorder.02",
@@ -1228,8 +1229,8 @@
       "phrases": [
         {
           "slot": "i-love-fava-beans-a-lot",
-          "arabic": "أَنَا بِحِبّ الْفُول وَايِد",
-          "transliteration": "ana ba7eb il-ful wa-ayd",
+          "arabic": "أَنَا أَحِبّ الْفُول قَوِي",
+          "transliteration": "ana a7ebb il-ful gawi",
           "reply": {
             "arabic": "مَنِيح، بِالْهَنَا",
             "transliteration": "mni7, bil-hana",
@@ -1256,8 +1257,8 @@
           "arabic": "أَنْتَ تِحِبّ الْأَكْل الْحَار؟",
           "transliteration": "inta ta7eb il-akel il-har?",
           "reply": {
-            "arabic": "أَيْوَة، أَحِبّه وَايِد",
-            "transliteration": "aywah, a7ebbo wa-ayd",
+            "arabic": "أَيْوَة، أَحِبّه قَوِي",
+            "transliteration": "aywah, a7ebbo gawi",
             "english": "Love it"
           }
         },
@@ -1278,8 +1279,8 @@
         },
         {
           "slot": "what-s-your-favorite-dish",
-          "arabic": "شُو الْأَكْلَة الْمِفَضَّلَة عِندَك؟",
-          "transliteration": "shu il-a2la il-mfaddla 3indak?",
+          "arabic": "إِيش الْأَكْلَة الْمِفَضَّلَة عِندَك؟",
+          "transliteration": "eesh il-a2la il-mfaddla 3indak?",
           "reply": {
             "arabic": "الْمَقْلُوبَة، مَا فِي مِثْلَهَا",
             "transliteration": "il-ma2luba, ma fi mithla",
@@ -1316,8 +1317,8 @@
           "arabic": "دَا الْأَكْل مَا يُعْجِبْنِي",
           "transliteration": "da il-akel ma yu3jebni",
           "reply": {
-            "arabic": "لِيش، شُو فِيه؟",
-            "transliteration": "laysh, shu fih?",
+            "arabic": "لِيش، إِيش فِيه؟",
+            "transliteration": "laysh, eesh fih?",
             "english": "Why what"
           }
         }
@@ -1337,8 +1338,8 @@
         },
         {
           "speaker": "سَامِر",
-          "arabic": "تَمَام، شُو تِفَضِّلِين؟",
-          "transliteration": "tamam, shu tfaddlin?",
+          "arabic": "تَمَام، إِيش تِفَضِّلِين؟",
+          "transliteration": "tamam, eesh tfaddlin?",
           "english": "Prefer"
         },
         {
@@ -1349,14 +1350,14 @@
         },
         {
           "speaker": "سَامِر",
-          "arabic": "أَنَا كَمَان أَحِبّهَا وَايِد",
-          "transliteration": "ana kaman a7ebba wa-ayd",
+          "arabic": "أَنَا كَمَان أَحِبّهَا قَوِي",
+          "transliteration": "ana kaman a7ebba gawi",
           "english": "Me too love"
         },
         {
           "speaker": "لَيْلَى",
-          "arabic": "وَأَنْتَ، شُو الَّذِي مَا تِحِبّ؟",
-          "transliteration": "w inta, shu il-ladhi ma ta7eb?",
+          "arabic": "وَأَنْتَ، إِيش الَّذِي مَا تِحِبّ؟",
+          "transliteration": "w inta, eesh il-ladhi ma ta7eb?",
           "english": "You what not like"
         },
         {
@@ -1379,8 +1380,8 @@
         },
         {
           "speaker": "لَيْلَى",
-          "arabic": "تَمَام، شُو أَكْلَتَك الْمِفَضَّلَة؟",
-          "transliteration": "tamam, shu a2litak il-mfaddla?",
+          "arabic": "تَمَام، إِيش أَكْلَتَك الْمِفَضَّلَة؟",
+          "transliteration": "tamam, eesh a2litak il-mfaddla?",
           "english": "Favorite"
         },
         {
@@ -1404,15 +1405,15 @@
             "english": "Like spicy?"
           },
           "response": {
-            "arabic": "أَيْوَة، أَحِبّه وَايِد",
-            "transliteration": "aywah, a7ebbo wa-ayd",
+            "arabic": "أَيْوَة، أَحِبّه قَوِي",
+            "transliteration": "aywah, a7ebbo gawi",
             "english": "Very much"
           }
         },
         {
           "pair": {
-            "arabic": "شُو الْأَكْلَة الْمِفَضَّلَة عِندَك؟",
-            "transliteration": "shu il-a2la il-mfaddla 3indak?",
+            "arabic": "إِيش الْأَكْلَة الْمِفَضَّلَة عِندَك؟",
+            "transliteration": "eesh il-a2la il-mfaddla 3indak?",
             "english": "Favorite dish?"
           },
           "response": {
@@ -1452,22 +1453,22 @@
           "id": "unit-03.lesson-04.reply.01",
           "type": "reply",
           "prompt": "سَامِر سَأَلَك: أَنْتَ تِحِبّ الْأَكْل الْحَار؟",
-          "answer": "أَيْوَة، أَحِبّه وَايِد",
+          "answer": "أَيْوَة، أَحِبّه قَوِي",
           "accepted": [
-            "أَيْوَة، أَحِبّه وَايِد",
-            "ايوة، احبه وايد",
-            "aywah, a7ebbo wa-ayd"
+            "أَيْوَة، أَحِبّه قَوِي",
+            "ايوة، احبه قوي",
+            "aywah, a7ebbo gawi"
           ],
           "too_formal": {
             "item": "نعم، أحبه كثيراً",
             "feedback": "فصيحة"
           },
-          "tip": "أَيْوَة = yes وَايِد = lot"
+          "tip": "أَيْوَة = yes قَوِي = lot"
         },
         {
           "id": "unit-03.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "حَدّا سَأَلَك: شُو الْأَكْلَة الْمِفَضَّلَة عِندَك؟",
+          "prompt": "حَدّا سَأَلَك: إِيش الْأَكْلَة الْمِفَضَّلَة عِندَك؟",
           "answer": "الْمَقْلُوبَة، مَا فِي مِثْلَهَا",
           "accepted": [
             "الْمَقْلُوبَة، مَا فِي مِثْلَهَا",
@@ -1483,18 +1484,18 @@
         {
           "id": "unit-03.lesson-04.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أَنَا بِحِبّ الْفُول ___",
-          "answer": "وَايِد",
+          "prompt": "أَنَا أَحِبّ الْفُول ___",
+          "answer": "قَوِي",
           "accepted": [
-            "وَايِد",
-            "وايد",
-            "wa-ayd"
+            "قَوِي",
+            "قوي",
+            "gawi"
           ],
           "too_formal": {
             "item": "كثيراً",
             "feedback": "فصيحة"
           },
-          "tip": "وَايِد = very much"
+          "tip": "قَوِي = very much"
         },
         {
           "id": "unit-03.lesson-04.fill_blank.02",
@@ -1547,7 +1548,7 @@
         {
           "id": "unit-03.lesson-04.choose.01",
           "type": "choose",
-          "prompt": "شُو بِتَقُول لِحَدّا بَعْد مَا يِقُول إِنَّه يِحِبّ أَكْلَة؟",
+          "prompt": "إِيش بِتَقُول لِحَدّا بَعْد مَا يِقُول إِنَّه يِحِبّ أَكْلَة؟",
           "answer": "بِالْهَنَا",
           "accepted": [
             "بِالْهَنَا",
@@ -1585,7 +1586,7 @@
             "أَنَا أَحِبّ الْفُول",
             "أَنَا أَكْرَه الْفُول",
             "أَنَا لَا أَعْرِف الْفُول",
-            "الْفُول غَالِي وَايِد"
+            "الْفُول غَالِي قَوِي"
           ]
         },
         {
@@ -1652,12 +1653,12 @@
         },
         {
           "slot": "i-want-this",
-          "arabic": "أَبِي هَذَا",
-          "transliteration": "abi haatha"
+          "arabic": "أَشْتِي هَذَا",
+          "transliteration": "ashti haatha"
         },
         {
           "slot": "lower-it-a-little-to-a-man-when-bargaining",
-          "arabic": "أَنْزِلْ شُوَي",
+          "arabic": "أَنْزِلْ إِيشَي",
           "transliteration": "anzil shway"
         },
         {
@@ -1721,8 +1722,8 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "غَالِي كَتِير! أَنْزِلْ شُوَي.",
-          "transliteration": "ghaali ktiir! anzil shway.",
+          "arabic": "غَالِي كَثِير! أَنْزِلْ إِيشَي.",
+          "transliteration": "ghaali kathiir! anzil shway.",
           "english": "Too expensive! Lower it a little."
         },
         {
@@ -1757,8 +1758,8 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "الأَزْرَق أَحْلَى، أَبِي هَذَا.",
-          "transliteration": "il-azra2 a7la, abi haatha.",
+          "arabic": "الأَزْرَق أَحْلَى، أَشْتِي هَذَا.",
+          "transliteration": "il-azra2 a7la, ashti haatha.",
           "english": "The blue one is nicer, I want this one."
         },
         {
@@ -1769,8 +1770,8 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "شُكْراً كَتِير.",
-          "transliteration": "shukran ktiir.",
+          "arabic": "شُكْراً كَثِير.",
+          "transliteration": "shukran kathiir.",
           "english": "Thank you very much."
         }
       ],
@@ -1794,7 +1795,7 @@
             "english": "Is there a discount?"
           },
           "response": {
-            "arabic": "شُوَي بَس.",
+            "arabic": "إِيشَي بَس.",
             "transliteration": "shway bas.",
             "english": "Only a little."
           }
@@ -1813,7 +1814,7 @@
         },
         {
           "pair": {
-            "arabic": "أَنْزِلْ شُوَي.",
+            "arabic": "أَنْزِلْ إِيشَي.",
             "transliteration": "anzil shway.",
             "english": "Lower it a little."
           },
@@ -1869,9 +1870,9 @@
           "id": "unit-03.lesson-05.reply.01",
           "type": "reply",
           "prompt": "The seller tells you a high price. Ask them to lower it a little.",
-          "answer": "أَنْزِلْ شُوَي",
+          "answer": "أَنْزِلْ إِيشَي",
           "accepted": [
-            "أَنْزِلْ شُوَي",
+            "أَنْزِلْ إِيشَي",
             "أنزل شوي",
             "anzil shway",
             "انزل شوي"
@@ -1919,17 +1920,17 @@
         {
           "id": "unit-03.lesson-05.reorder.01",
           "type": "reorder",
-          "prompt": "Put these words in a natural order: \"هذا / غالي / كتير\"",
-          "answer": "هذا غالي كتير",
+          "prompt": "Put these words in a natural order: \"هذا / غالي / كثير\"",
+          "answer": "هذا غالي كثير",
           "accepted": [
-            "هذا غالي كتير",
-            "haatha ghaali ktiir"
+            "هذا غالي كثير",
+            "haatha ghaali kathiir"
           ],
           "too_formal": {
             "item": "هذا غالٍ جداً",
             "feedback": "This is formal Arabic wording rather than the everyday Yemeni spoken sentence."
           },
-          "tip": "\"كتير\" after an adjective strengthens it: \"غالي كتير\"."
+          "tip": "\"كثير\" after an adjective strengthens it: \"غالي كثير\"."
         },
         {
           "id": "unit-03.lesson-05.choose.02",
@@ -2096,8 +2097,8 @@
         },
         {
           "speaker": "زَبُون",
-          "arabic": "تَمَام، أَبِي كِيلُو وَاحِد",
-          "transliteration": "tamam, abi kilo wa7d",
+          "arabic": "تَمَام، أَشْتِي كِيلُو وَاحِد",
+          "transliteration": "tamam, ashti kilo wa7d",
           "english": "One kilo"
         },
         {

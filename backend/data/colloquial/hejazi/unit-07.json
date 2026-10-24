@@ -146,8 +146,8 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "يَعْطِيكِ الْعَافِيَة، بَشُوفِك الْمَسَا.",
-          "transliteration": "ya3Tiik il-3aafya, bashoofik il-masa.",
+          "arabic": "يَعْطِيكِ الْعَافِيَة، حَشُوفِك الْمَسَا.",
+          "transliteration": "ya3Tiik il-3aafya, 7ashoofik il-masa.",
           "english": "Thanks, see you in the evening."
         },
         {
@@ -312,7 +312,6 @@
           "answer": "لِسَّه نَعْسَان",
           "accepted": [
             "لِسَّه نَعْسَان",
-            "بَعِدِني نَعْسَان",
             "lissa na3saan"
           ],
           "too_formal": {
@@ -402,8 +401,8 @@
         },
         {
           "slot": "where-do-you-have-lunch",
-          "arabic": "وِيِن تِتْغَدَّى؟",
-          "transliteration": "ween titghadda?",
+          "arabic": "فِين تِتْغَدَّى؟",
+          "transliteration": "feen titghadda?",
           "reply": {
             "arabic": "عِنْد الْبَيْت",
             "transliteration": "3ind il-beet",
@@ -437,8 +436,8 @@
         },
         {
           "slot": "what-s-the-news-today",
-          "arabic": "شُو الأَخْبَار الْيَوم؟",
-          "transliteration": "shoo il-akhbaar il-yoom?"
+          "arabic": "إِيش الأَخْبَار الْيَوم؟",
+          "transliteration": "eesh il-akhbaar il-yoom?"
         },
         {
           "slot": "i-have-a-lot-of-work-now",
@@ -447,8 +446,8 @@
         },
         {
           "slot": "i-ll-call-you-in-the-afternoon",
-          "arabic": "رَح أَتَّصِل فِيك بَعِد الظُّهْر",
-          "transliteration": "ra7 attaSil fiik ba3d iZ-Zuhur"
+          "arabic": "حَاتَّصِل عَلَيْك بَعِد الظُّهْر",
+          "transliteration": "7aattaSil 3aleek ba3d iZ-Zuhur"
         },
         {
           "slot": "i-finished-my-work-early-today",
@@ -495,14 +494,14 @@
         },
         {
           "speaker": "نُور",
-          "arabic": "تِمَام، رَح أَدُور عَلَيْك بَعِد الظُّهْر.",
-          "transliteration": "tammam, ra7 adoor 3aleek ba3d iZ-Zuhur.",
+          "arabic": "تِمَام، حَادُور عَلَيْك بَعِد الظُّهْر.",
+          "transliteration": "tammam, 7aadoor 3aleek ba3d iZ-Zuhur.",
           "english": "Okay, I'll look for you in the afternoon."
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "زَيْن، رَح أَتَّصِل فِيك إِذَا خَلَّصْتُ بِدْرِي.",
-          "transliteration": "zayn, ra7 attaSil fiik iza khallast bdri.",
+          "arabic": "زَيْن، حَاتَّصِل عَلَيْك إِذَا خَلَّصْتُ بِدْرِي.",
+          "transliteration": "zayn, 7aattaSil 3aleek iza khallast bdri.",
           "english": "Great, I'll call you if I finish early."
         },
         {
@@ -527,8 +526,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وِيِن تِتْغَدَّى؟",
-            "transliteration": "ween titghadda?",
+            "arabic": "فِين تِتْغَدَّى؟",
+            "transliteration": "feen titghadda?",
             "english": "Where do you have lunch?"
           },
           "response": {
@@ -551,8 +550,8 @@
         },
         {
           "pair": {
-            "arabic": "شُو الأَخْبَار الْيَوم؟",
-            "transliteration": "shoo il-akhbaar il-yoom?",
+            "arabic": "إِيش الأَخْبَار الْيَوم؟",
+            "transliteration": "eesh il-akhbaar il-yoom?",
             "english": "What's the news today?"
           },
           "response": {
@@ -574,12 +573,12 @@
           }
         }
       ],
-      "culture": "In Hejazi offices, colleagues often gather for lunch together and tea breaks are common. Saying \"تِعْبَان\" (tired) openly is natural and not seen as complaining, and people use \"رَح\" for the future tense.",
+      "culture": "In Hejazi offices, colleagues often gather for lunch together and tea breaks are common. Saying \"تِعْبَان\" (tired) openly is natural and not seen as complaining, and people use \"حـ\" for the future tense.",
       "exercises": [
         {
           "id": "unit-07.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "A coworker asks: \"وين تتغدى؟\" Reply that you eat at home.",
+          "prompt": "A coworker asks: \"فين تتغدى؟\" Reply that you eat at home.",
           "answer": "عِنْد الْبَيْت",
           "accepted": [
             "عِنْد الْبَيْت",
@@ -647,7 +646,6 @@
           "answer": "عِنْدِي شُغْل كِتِير دِحِين",
           "accepted": [
             "عِنْدِي شُغْل كِتِير دِحِين",
-            "فِي عِنْدِي شُغْل كِتِير دِحِين",
             "شُغْلِي كِتِير دِحِين"
           ],
           "too_formal": {
@@ -660,17 +658,15 @@
           "id": "unit-07.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'll call you in the afternoon.\"",
-          "answer": "رَح أَتَّصِل فِيك بَعِد الظُّهْر",
+          "answer": "حَاتَّصِل عَلَيْك بَعِد الظُّهْر",
           "accepted": [
-            "رَح أَتَّصِل فِيك بَعِد الظُّهْر",
-            "رَح أَتَّصِل عَلَيْك بَعِد الظُّهْر",
-            "بَاتَّصِل فِيك بَعِد الظُّهْر"
+            "حَاتَّصِل عَلَيْك بَعِد الظُّهْر"
           ],
           "too_formal": {
             "item": "سَأَتَّصِل بِك بَعْدَ الظُّهْر",
-            "feedback": "Correct meaning, but \"رَح\" instead of \"سـ\" is what marks it as spoken Hejazi."
+            "feedback": "Correct meaning, but \"حـ\" instead of \"سـ\" is what marks it as spoken Hejazi."
           },
-          "tip": "\"رَح\" before a verb is the everyday future marker."
+          "tip": "\"حـ\" before a verb is the everyday future marker."
         },
         {
           "id": "unit-07.lesson-02.translate_to_arabic.03",
@@ -769,8 +765,8 @@
         },
         {
           "slot": "what-will-we-eat-for-dinner",
-          "arabic": "شُو رَح نِتْعَشَّى؟",
-          "transliteration": "shoo ra7 nit3asha?"
+          "arabic": "إِيش حَنِتْعَشَّى؟",
+          "transliteration": "eesh ra7 nit3asha?"
         },
         {
           "slot": "i-want-to-shower",
@@ -799,13 +795,13 @@
         },
         {
           "slot": "i-want-to-call-my-family",
-          "arabic": "أَبْغَى أَتَّصِل فِي أَهْلِي",
-          "transliteration": "abgha attaSil fi ahli"
+          "arabic": "أَبْغَى أَتَّصِل عَلَى أَهْلِي",
+          "transliteration": "abgha attaSil 3ala ahli"
         },
         {
           "slot": "i-ll-sleep-early-tonight",
-          "arabic": "رَح نِيم بِدْرِي اللَّيْلَة",
-          "transliteration": "ra7 niim bdri il-leela"
+          "arabic": "حَنِنَام بِدْرِي اللَّيْلَة",
+          "transliteration": "7aninaam bdri il-leela"
         },
         {
           "slot": "good-night",
@@ -872,14 +868,14 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "إِي، بَس رَح نِيم بِدْرِي اللَّيْلَة.",
-          "transliteration": "ee, bas ra7 niim bdri il-leela.",
+          "arabic": "إِي، بَس حَنِنَام بِدْرِي اللَّيْلَة.",
+          "transliteration": "ee, bas 7aninaam bdri il-leela.",
           "english": "Yes, but I'll sleep early tonight."
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "تِمَام، أَبْغَى أَتَّصِل فِي أَهْلِي قَبْل مَا نِيم.",
-          "transliteration": "tammam, abgha attaSil fi ahli 2abl ma niim.",
+          "arabic": "تِمَام، أَبْغَى أَتَّصِل عَلَى أَهْلِي قَبْل مَا نِنَام.",
+          "transliteration": "tammam, abgha attaSil 3ala ahli 2abl ma ninaam.",
           "english": "Okay, I want to call my family before we sleep."
         },
         {
@@ -1025,15 +1021,15 @@
           "id": "unit-07.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'll sleep early tonight.\"",
-          "answer": "رَح نِيم بِدْرِي اللَّيْلَة",
+          "answer": "حَنِنَام بِدْرِي اللَّيْلَة",
           "accepted": [
-            "رَح نِيم بِدْرِي اللَّيْلَة",
-            "رَح نِيم بِدْرِي اللِّيل",
-            "ra7 niim bdri il-leela"
+            "حَنِنَام بِدْرِي اللَّيْلَة",
+            "حَنِنَام بِدْرِي اللَّيْل",
+            "7aninaam bdri il-leela"
           ],
           "too_formal": {
             "item": "سَأَنَام مُبَكِّرًا هَذِهِ اللَّيْلَة",
-            "feedback": "Correct meaning, but \"رَح\" and \"بِدْرِي\" are what mark it as spoken."
+            "feedback": "Correct meaning, but \"حَـ\" and \"بِدْرِي\" are what mark it as spoken."
           },
           "tip": "\"اللَّيْلَة\" means \"tonight\", not \"the night\" in general."
         },
@@ -1144,8 +1140,8 @@
         },
         {
           "slot": "on-thursday-i-see-my-friends",
-          "arabic": "يَوم الْخَمِيس بِشُوف رُفَايِقِي",
-          "transliteration": "yom il-khamis bishuuf rufaa2i"
+          "arabic": "يَوم الْخَمِيس حَشُوف رُفَايِقِي",
+          "transliteration": "yom il-khamis 7ashuuf rufaa2i"
         },
         {
           "slot": "friday-is-the-day-of-prayer-and-rest",
@@ -1159,8 +1155,8 @@
         },
         {
           "slot": "what-do-you-plan-to-do-on-the-weekend",
-          "arabic": "شُو نَاوِي تِعْمَل نِهَايَة الأِسْبُوع؟",
-          "transliteration": "shoo nawi ti3mal nihayat il-isboo3?"
+          "arabic": "إِيش نَاوِي تِسْوِي نِهَايَة الأِسْبُوع؟",
+          "transliteration": "eesh nawi tiswi nihayat il-isboo3?"
         },
         {
           "slot": "i-have-work-every-day-except-friday-and-saturday",
@@ -1190,8 +1186,8 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "بَعِدِني مَا قَرَّرْتُ، لَيِش، عِنْدِك فِكْرَة؟",
-          "transliteration": "ba3dini ma 2arrart, leesh, 3indik fikra?",
+          "arabic": "لِسَّه مَا قَرَّرْتُ، لَيِش، عِنْدِك فِكْرَة؟",
+          "transliteration": "lissa ma 2arrart, leesh, 3indik fikra?",
           "english": "I haven't decided yet, why, do you have an idea?"
         },
         {
@@ -1208,8 +1204,8 @@
         },
         {
           "speaker": "نُور",
-          "arabic": "مَش الْجُمْعَة يَوم رَاحَة عِنْدِك؟",
-          "transliteration": "mash ij-jum3a yom raa7a 3indak?",
+          "arabic": "مُو الْجُمْعَة يَوم رَاحَة عِنْدِك؟",
+          "transliteration": "mu ij-jum3a yom raa7a 3indak?",
           "english": "Isn't Friday a day off for you?"
         },
         {
@@ -1232,8 +1228,8 @@
         },
         {
           "speaker": "نُور",
-          "arabic": "تِمَام، يَوم الْخَمِيس بِشُوف رُفَايِقِي، بَعِدَيْن الْجُمْعَة بِصْلِي وَبِيرْتَاح.",
-          "transliteration": "tammam, yom il-khamis bishuuf rufaa2i, ba3dayn ij-jum3a biSalli w biyrtaa7.",
+          "arabic": "تِمَام، يَوم الْخَمِيس حَشُوف رُفَايِقِي، بَعِدَيْن الْجُمْعَة حَصَلِّي وَحَيِرْتَاح.",
+          "transliteration": "tammam, yom il-khamis 7ashuuf rufaa2i, ba3dayn ij-jum3a 7aSalli w 7ayirtaa7.",
           "english": "Okay, Thursday I see my friends, then Friday I pray and rest."
         },
         {
@@ -1264,8 +1260,8 @@
         },
         {
           "pair": {
-            "arabic": "شُو نَاوِي تِعْمَل نِهَايَة الأِسْبُوع؟",
-            "transliteration": "shoo nawi ti3mal nihayat il-isboo3?",
+            "arabic": "إِيش نَاوِي تِسْوِي نِهَايَة الأِسْبُوع؟",
+            "transliteration": "eesh nawi tiswi nihayat il-isboo3?",
             "english": "What do you plan to do on the weekend?"
           },
           "response": {
@@ -1276,8 +1272,8 @@
         },
         {
           "pair": {
-            "arabic": "الْيَوم شُو يَوم؟",
-            "transliteration": "il-yoom shoo yoom?",
+            "arabic": "الْيَوم إِيش يَوم؟",
+            "transliteration": "il-yoom eesh yoom?",
             "english": "What day is today?"
           },
           "response": {
@@ -1308,8 +1304,7 @@
           "answer": "يَوم التِّلَات",
           "accepted": [
             "يَوم التِّلَات",
-            "التِّلَات",
-            "بِيَوم التِّلَات"
+            "التِّلَات"
           ],
           "too_formal": {
             "item": "سَيُعْقَد الاجْتِمَاع يَوم الثُّلَاثَاء",
@@ -1320,7 +1315,7 @@
         {
           "id": "unit-07.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "Someone asks: \"الْيَوم شُو يَوم؟\" Say today is Sunday.",
+          "prompt": "Someone asks: \"الْيَوم إِيش يَوم؟\" Say today is Sunday.",
           "answer": "الْيَوم يَوم الأَحَد",
           "accepted": [
             "الْيَوم يَوم الأَحَد",
@@ -1356,7 +1351,6 @@
           "answer": "نِرُوح",
           "accepted": [
             "نِرُوح",
-            "بِنْرُوح",
             "رَايِحِين"
           ],
           "too_formal": {
@@ -1440,16 +1434,15 @@
           "type": "choose",
           "prompt": "Which sentence means \"What do you plan to do on the weekend?\"",
           "options": [
-            "شُو نَاوِي تِعْمَل نِهَايَة الأِسْبُوع؟",
-            "شُو نَاوِي تِعْمَل بُكْرَة؟",
-            "وِيِن رَايِح دِحِين؟",
+            "إِيش نَاوِي تِسْوِي نِهَايَة الأِسْبُوع؟",
+            "إِيش نَاوِي تِسْوِي بُكْرَة؟",
+            "فِين رَايِح دِحِين؟",
             "إِيشْ يَوْم الاجْتِمَاع؟"
           ],
-          "answer": "شُو نَاوِي تِعْمَل نِهَايَة الأِسْبُوع؟",
+          "answer": "إِيش نَاوِي تِسْوِي نِهَايَة الأِسْبُوع؟",
           "accepted": [
-            "شُو نَاوِي تِعْمَل نِهَايَة الأِسْبُوع؟",
-            "شُو نَاوِي تِسْوِي نِهَايَة الأِسْبُوع؟",
-            "shoo nawi ti3mal nihayat il-isboo3?"
+            "إِيش نَاوِي تِسْوِي نِهَايَة الأِسْبُوع؟",
+            "eesh nawi tiswi nihayat il-isboo3?"
           ],
           "too_formal": {
             "item": "مَاذَا تَنْوِي أَنْ تَفْعَل فِي عُطْلَة نِهَايَة الأِسْبُوع؟",
@@ -2264,8 +2257,8 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "تِمَام، إِيشْ يَوْمِك رَح تِرْجَع؟",
-          "transliteration": "tammam, eesh yomak ra7 tirja3?",
+          "arabic": "تِمَام، أَيّ يَوْم حَتِرْجَع؟",
+          "transliteration": "tammam, ayy yom 7atirja3?",
           "english": "Okay, when will you be back?"
         },
         {
@@ -2294,20 +2287,20 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "تِمَام، شُو نَاوِي تِعْمَل نِهَايَة الأِسْبُوع؟",
-          "transliteration": "tammam, shoo nawi ti3mal nihayat il-isboo3?",
+          "arabic": "تِمَام، إِيش نَاوِي تِسْوِي نِهَايَة الأِسْبُوع؟",
+          "transliteration": "tammam, eesh nawi tiswi nihayat il-isboo3?",
           "english": "Great, what do you plan to do on the weekend?"
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "يَوم الْخَمِيس بِشُوف رُفَايِقِي، وَيَوم السَّبْت نِرُوح السُّوق.",
-          "transliteration": "yom il-khamis bishuuf rufaa2i, w yom is-sabt niruuh is-soo2.",
+          "arabic": "يَوم الْخَمِيس حَشُوف رُفَايِقِي، وَيَوم السَّبْت نِرُوح السُّوق.",
+          "transliteration": "yom il-khamis 7ashuuf rufaa2i, w yom is-sabt niruuh is-soo2.",
           "english": "On Thursday I see my friends, and on Saturday we go to the market."
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "تِصْبَح عَلَى خَيْر، بَشُوفِك بُكْرَة.",
-          "transliteration": "tiSba7 3ala kheer, bashoofak bukra.",
+          "arabic": "تِصْبَح عَلَى خَيْر، حَشُوفِك بُكْرَة.",
+          "transliteration": "tiSba7 3ala kheer, 7ashoofak bukra.",
           "english": "Good night, see you tomorrow."
         },
         {

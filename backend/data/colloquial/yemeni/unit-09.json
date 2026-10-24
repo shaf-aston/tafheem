@@ -16,7 +16,8 @@
     "3e": "عِ",
     "3o": "عُ",
     "th": "ث",
-    "dh": "ذ"
+    "dh": "ذ",
+    "g": "ق (تُنطق g)"
   },
   "lessons": [
     {
@@ -27,8 +28,8 @@
           "arabic": "كيفك اليوم؟",
           "transliteration": "keefak alyoom?",
           "reply": {
-            "arabic": "مو زين اليوم",
-            "transliteration": "mu zeen alyoom",
+            "arabic": "مش زين اليوم",
+            "transliteration": "mish zeen alyoom",
             "english": "Not good today"
           }
         },
@@ -44,8 +45,8 @@
         },
         {
           "slot": "what-happened-to-you-to-a-man",
-          "arabic": "شنو سار فيك؟",
-          "transliteration": "shnu saar feek?",
+          "arabic": "إيش سار فيك؟",
+          "transliteration": "eesh saar feek?",
           "reply": {
             "arabic": "ما أدري، أنا تعبان شوي",
             "transliteration": "ma adri, ana ta3baan shwayy",
@@ -117,14 +118,14 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "وعليكم السّلام، مو زيّن اليوم",
-          "transliteration": "wa 3alaikum assalam, mu zayyin alyoom",
+          "arabic": "وعليكم السّلام، مش زيّن اليوم",
+          "transliteration": "wa 3alaikum assalam, mish zayyin alyoom",
           "english": "Hi, not so good today"
         },
         {
           "speaker": "علي",
-          "arabic": "ليش؟ شنو سار فيك؟",
-          "transliteration": "leesh? shnu saar feek?",
+          "arabic": "ليش؟ إيش سار فيك؟",
+          "transliteration": "leesh? eesh saar feek?",
           "english": "Why, what happened to you?"
         },
         {
@@ -165,8 +166,8 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "تمام، بحخذ راحة وبشوف شنو يصير",
-          "transliteration": "tamaam, ba khudh raa7a w bashouf shnu yaSeer",
+          "arabic": "تمام، بحخذ راحة وبشوف إيش يصير",
+          "transliteration": "tamaam, ba khudh raa7a w bashouf eesh yaSeer",
           "english": "Okay, I'll rest and see how things go"
         },
         {
@@ -190,15 +191,15 @@
             "english": "How are you today? (to a man)"
           },
           "response": {
-            "arabic": "مو زين اليوم، أنا تعبان",
-            "transliteration": "mu zayyin alyoom, ana ta3baan",
+            "arabic": "مش زين اليوم، أنا تعبان",
+            "transliteration": "mish zayyin alyoom, ana ta3baan",
             "english": "Not good, I'm tired"
           }
         },
         {
           "pair": {
-            "arabic": "شنو سار فيك؟",
-            "transliteration": "shnu saar feek?",
+            "arabic": "إيش سار فيك؟",
+            "transliteration": "eesh saar feek?",
             "english": "What happened to you?"
           },
           "response": {
@@ -221,8 +222,8 @@
         },
         {
           "pair": {
-            "arabic": "تبي تروح للدكتور؟",
-            "transliteration": "tbi troo7 lad-doktoor?",
+            "arabic": "تشتي تروح للدكتور؟",
+            "transliteration": "tishti troo7 lad-doktoor?",
             "english": "Do you want to go to the doctor?"
           },
           "response": {
@@ -238,8 +239,9 @@
           "id": "unit-09.lesson-01.reply.01",
           "type": "reply",
           "prompt": "Someone asks you: \"كيفك اليوم؟\" and you feel bad. Reply naturally.",
-          "answer": "مو زين اليوم",
+          "answer": "مش زين اليوم",
           "accepted": [
+            "مش زين اليوم",
             "مو زين اليوم",
             "مو زيّن",
             "أنا تعبان"
@@ -248,12 +250,12 @@
             "item": "لست بخير اليوم",
             "feedback": "This is closer to written Arabic than the relaxed spoken answer."
           },
-          "tip": "\"مو زين\" is the everyday way to say you're not feeling great."
+          "tip": "\"مش زين\" is the everyday way to say you're not feeling great."
         },
         {
           "id": "unit-09.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "A friend says: \"شنو سار فيك؟\" Tell them you have a headache.",
+          "prompt": "A friend says: \"إيش سار فيك؟\" Tell them you have a headache.",
           "answer": "عندي صداع",
           "accepted": [
             "عندي صداع",
@@ -422,8 +424,8 @@
         },
         {
           "slot": "i-want-pills-for-the-fever",
-          "arabic": "أَبِي حُبُوب للحَرَارَة",
-          "transliteration": "abi huboob lil7arara"
+          "arabic": "أَشْتِي حُبُوب للحَرَارَة",
+          "transliteration": "ashti huboob lil7arara"
         },
         {
           "slot": "do-you-have-cough-syrup",
@@ -432,8 +434,8 @@
         },
         {
           "slot": "how-much-does-this-medicine-cost",
-          "arabic": "قَدِّش سِعْر هَالدَّوَا؟",
-          "transliteration": "addish si3r haddawa?",
+          "arabic": "كَمْ سِعْر هَالدَّوَا؟",
+          "transliteration": "kam si3r haddawa?",
           "reply": {
             "arabic": "خَمْسَة آلاف رِيَال",
             "transliteration": "khamsa aalaf riyal",
@@ -467,8 +469,8 @@
         },
         {
           "slot": "i-want-something-for-allergies",
-          "arabic": "أَبِي حَاجَة للحَسَاسِيَّة",
-          "transliteration": "abi 7aaja lil7asasiyya"
+          "arabic": "أَشْتِي حَاجَة للحَسَاسِيَّة",
+          "transliteration": "ashti 7aaja lil7asasiyya"
         },
         {
           "slot": "do-you-have-band-aids",
@@ -523,8 +525,8 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "زين، وأبي شراب كحة كمان إذا في",
-          "transliteration": "zayyin, w abi sharaab ku77a kimaan idha fi",
+          "arabic": "زين، وأشتي شراب كحة كمان إذا في",
+          "transliteration": "zayyin, w ashti sharaab ku77a kimaan idha fi",
           "english": "Good, and I also want cough syrup if you have any"
         },
         {
@@ -547,8 +549,8 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "قديش سعر الاثنين مع بعض؟",
-          "transliteration": "addish si3r il-ithneen ma3 ba3D?",
+          "arabic": "كم سعر الاثنين مع بعض؟",
+          "transliteration": "kam si3r il-ithneen ma3 ba3D?",
           "english": "How much for the two together?"
         },
         {
@@ -597,8 +599,8 @@
         },
         {
           "pair": {
-            "arabic": "قديش سعر هالدوا؟",
-            "transliteration": "addish si3r haddawa?",
+            "arabic": "كم سعر هالدوا؟",
+            "transliteration": "kam si3r haddawa?",
             "english": "How much does this medicine cost?"
           },
           "response": {
@@ -625,7 +627,7 @@
         {
           "id": "unit-09.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "You walk into a pharmacy. The pharmacist says: \"أهلا، شنو تبي؟\" Ask if they have medicine for a headache.",
+          "prompt": "You walk into a pharmacy. The pharmacist says: \"أهلا، إيش تشتي؟\" Ask if they have medicine for a headache.",
           "answer": "عندك دوا للصداع؟",
           "accepted": [
             "عندك دوا للصداع؟",
@@ -670,7 +672,7 @@
         {
           "id": "unit-09.lesson-02.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "Complete: \"أبي حاجة _____.\" English meaning: I want something for allergies.",
+          "prompt": "Complete: \"أشتي حاجة _____.\" English meaning: I want something for allergies.",
           "answer": "للحساسية",
           "accepted": [
             "للحساسية",
@@ -680,7 +682,7 @@
             "item": "لمعالجة الحساسية",
             "feedback": "Adds a formal word for \"to treat\" that is not used in the simple spoken request."
           },
-          "tip": "\"أبي حاجة لـ...\" is the pattern for \"I want something for [a problem]\"."
+          "tip": "\"أشتي حاجة لـ...\" is the pattern for \"I want something for [a problem]\"."
         },
         {
           "id": "unit-09.lesson-02.translate_to_arabic.01",
@@ -701,16 +703,17 @@
           "id": "unit-09.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"How much does this medicine cost?\"",
-          "answer": "قديش سعر هالدوا؟",
+          "answer": "كم سعر هالدوا؟",
           "accepted": [
+            "كم سعر هالدوا؟",
             "قديش سعر هالدوا؟",
             "قديش سعر هذا الدوا؟"
           ],
           "too_formal": {
             "item": "كم يبلغ سعر هذا الدواء؟",
-            "feedback": "\"كم يبلغ\" is formal written phrasing; \"قديش\" is what is said in a shop."
+            "feedback": "\"كم يبلغ\" is formal written phrasing; plain \"كم\" is what is said in a shop."
           },
-          "tip": "\"قديش\" asks the price directly; \"هالدوا\" is \"this medicine\" said quickly."
+          "tip": "\"كم\" asks the price directly; \"هالدوا\" is \"this medicine\" said quickly."
         },
         {
           "id": "unit-09.lesson-02.choose.01",
@@ -724,8 +727,8 @@
           "options": [
             "لازم وصفة؟",
             "عندك بلاستر؟",
-            "قديش سعر هالدوا؟",
-            "أبي حبوب للحرارة"
+            "كم سعر هالدوا؟",
+            "أشتي حبوب للحرارة"
           ],
           "too_formal": {
             "item": "هل تستلزم وصفة طبية؟",
@@ -744,9 +747,9 @@
           ],
           "options": [
             "الله يسلمك",
-            "قديش سعر هالدوا",
-            "أبي حبوب للحرارة",
-            "شنو سار فيك"
+            "كم سعر هالدوا",
+            "أشتي حبوب للحرارة",
+            "إيش سار فيك"
           ],
           "too_formal": {
             "item": "شكراً جزيلاً على اهتمامك",
@@ -807,8 +810,8 @@
         },
         {
           "slot": "what-hurts-you-doctor-asking-a-man",
-          "arabic": "شَنْو يُوجِعَك؟",
-          "transliteration": "shnu yooja3ak?",
+          "arabic": "إِيش يُوجِعَك؟",
+          "transliteration": "eesh yooja3ak?",
           "reply": {
             "arabic": "رَاسِي يُوجِعْنِي",
             "transliteration": "rasi yooja3ni",
@@ -817,8 +820,8 @@
         },
         {
           "slot": "since-when-have-you-been-feeling-like-this-to-a-",
-          "arabic": "مِنْ إِيمَتَى وَإِنْتَ حَاسِس هَيِك؟",
-          "transliteration": "min eemta w inta 7assis hayk?",
+          "arabic": "مِنْ إِيمَتَى وَإِنْتَ حَاسِس كَذَا؟",
+          "transliteration": "min eemta w inta 7assis kadha?",
           "reply": {
             "arabic": "مِنْ يَوْمَيْن تَقْرِيباً",
             "transliteration": "min yomeen taqriban",
@@ -884,8 +887,8 @@
       "dialogue": [
         {
           "speaker": "الدكتور",
-          "arabic": "أهلا، تفضل اجلس. شنو يوجعك؟",
-          "transliteration": "ahlan, tafaDDal ijlis. shnu yooja3ak?",
+          "arabic": "أهلا، تفضل اجلس. إيش يوجعك؟",
+          "transliteration": "ahlan, tafaDDal ijlis. eesh yooja3ak?",
           "english": "Welcome, please sit down. What hurts you?"
         },
         {
@@ -896,8 +899,8 @@
         },
         {
           "speaker": "الدكتور",
-          "arabic": "من إيمتى وإنت حاس هيك بالضبط؟",
-          "transliteration": "min eemta w inta 7assis hayk biD-DabT?",
+          "arabic": "من إيمتى وإنت حاس كذا بالضبط؟",
+          "transliteration": "min eemta w inta 7assis kadha biD-DabT?",
           "english": "Since exactly when have you been feeling like this?"
         },
         {
@@ -908,8 +911,8 @@
         },
         {
           "speaker": "الدكتور",
-          "arabic": "تمام، خذ نفس عميق منشان أفحصك",
-          "transliteration": "tamaam, khudh nafas 3ameek minshan af7aSak",
+          "arabic": "تمام، خذ نفس عميق عشان أفحصك",
+          "transliteration": "tamaam, khudh nafas 3ameek 3ashaan af7aSak",
           "english": "Okay, take a deep breath so I can examine you"
         },
         {
@@ -932,8 +935,8 @@
         },
         {
           "speaker": "الدكتور",
-          "arabic": "زين، لازم تسوي تحليلات دم منشان نتأكد",
-          "transliteration": "zayyin, laazim tisawi ta7lilat damm minshan nit2akkad",
+          "arabic": "زين، لازم تسوي تحليلات دم عشان نتأكد",
+          "transliteration": "zayyin, laazim tisawi ta7lilat damm 3ashaan nit2akkad",
           "english": "Good, you need to do blood tests to make sure"
         },
         {
@@ -958,8 +961,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو يوجعك؟",
-            "transliteration": "shnu yooja3ak?",
+            "arabic": "إيش يوجعك؟",
+            "transliteration": "eesh yooja3ak?",
             "english": "What hurts you? (to a man)"
           },
           "response": {
@@ -970,8 +973,8 @@
         },
         {
           "pair": {
-            "arabic": "من إيمتى وإنت حاس هيك؟",
-            "transliteration": "min eemta w inta 7assis hayk?",
+            "arabic": "من إيمتى وإنت حاس كذا؟",
+            "transliteration": "min eemta w inta 7assis kadha?",
             "english": "Since when do you feel like this?"
           },
           "response": {
@@ -1010,7 +1013,7 @@
         {
           "id": "unit-09.lesson-03.reply.01",
           "type": "reply",
-          "prompt": "The doctor asks a man: \"شنو يوجعك؟\" Say that your head hurts.",
+          "prompt": "The doctor asks a man: \"إيش يوجعك؟\" Say that your head hurts.",
           "answer": "راسي يوجعني",
           "accepted": [
             "راسي يوجعني",
@@ -1130,7 +1133,7 @@
           "options": [
             "سلامتك، ارتاح على نفسك",
             "عندي موعد مع الدكتور",
-            "شنو يوجعك",
+            "إيش يوجعك",
             "عندك حساسية من أي دوا"
           ],
           "too_formal": {
@@ -1142,21 +1145,21 @@
         {
           "id": "unit-09.lesson-03.reorder.01",
           "type": "reorder",
-          "prompt": "Put these words in a natural order: \"يوجعك / شنو\".",
-          "answer": "شنو يوجعك",
+          "prompt": "Put these words in a natural order: \"يوجعك / إيش\".",
+          "answer": "إيش يوجعك",
           "accepted": [
-            "شنو يوجعك",
-            "شنو يوجعك؟"
+            "إيش يوجعك",
+            "إيش يوجعك؟"
           ],
           "words": [
-            "شنو",
+            "إيش",
             "يوجعك"
           ],
           "too_formal": {
             "item": "أين يكمن الألم لديك؟",
             "feedback": "Formal clinical phrasing, not the direct spoken question."
           },
-          "tip": "Question word \"شنو\" (what) comes first."
+          "tip": "Question word \"إيش\" (what) comes first."
         },
         {
           "id": "unit-09.lesson-03.reorder.02",
@@ -1247,8 +1250,8 @@
       "dialogue": [
         {
           "speaker": "نور",
-          "arabic": "مرحبا أمل، شنو فيك؟ شكلك تعبانة",
-          "transliteration": "mar7aba amal, shnu feek? shaklak ta3baana",
+          "arabic": "مرحبا أمل، إيش فيك؟ شكلك تعبانة",
+          "transliteration": "mar7aba amal, eesh feek? shaklak ta3baana",
           "english": "Hi Amal, what's wrong, you look tired"
         },
         {
@@ -1295,8 +1298,8 @@
         },
         {
           "speaker": "نور",
-          "arabic": "وشنو صار برجلك؟ شكلها متورمة",
-          "transliteration": "w shnu saar b-rijlak? shaklha mutawarmma",
+          "arabic": "وإيش صار برجلك؟ شكلها متورمة",
+          "transliteration": "w eesh saar b-rijlak? shaklha mutawarmma",
           "english": "And what happened to your leg? It looks swollen"
         },
         {
@@ -1333,8 +1336,8 @@
         },
         {
           "pair": {
-            "arabic": "شنو صار برجلك؟",
-            "transliteration": "shnu saar b-rijlak?",
+            "arabic": "إيش صار برجلك؟",
+            "transliteration": "eesh saar b-rijlak?",
             "english": "What happened to your leg? (to a woman)"
           },
           "response": {
@@ -1357,8 +1360,8 @@
         },
         {
           "pair": {
-            "arabic": "شنو يوجعك، راسك لا ظهرك؟",
-            "transliteration": "shnu yooja3ak, rasak la dahrak?",
+            "arabic": "إيش يوجعك، راسك لا ظهرك؟",
+            "transliteration": "eesh yooja3ak, rasak la dahrak?",
             "english": "What hurts you, your head or your back?"
           },
           "response": {
@@ -1388,7 +1391,7 @@
         {
           "id": "unit-09.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "A friend asks: \"شنو صار برجلك؟\" Say it's swollen.",
+          "prompt": "A friend asks: \"إيش صار برجلك؟\" Say it's swollen.",
           "answer": "رجلي متورمة",
           "accepted": [
             "رجلي متورمة",
@@ -1905,8 +1908,8 @@
         },
         {
           "slot": "where-is-the-emergency-room",
-          "arabic": "فين الطوارئ؟",
-          "transliteration": "feen aT-Tawaari2?",
+          "arabic": "وين الطوارئ؟",
+          "transliteration": "ween aT-Tawaari2?",
           "reply": {
             "arabic": "في الدور الأول، على اليمين",
             "transliteration": "fi d-door al-awwal, 3ala l-yameen",
@@ -2044,8 +2047,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فين الطوارئ؟",
-            "transliteration": "feen aT-Tawaari2?",
+            "arabic": "وين الطوارئ؟",
+            "transliteration": "ween aT-Tawaari2?",
             "english": "Where is the emergency room?"
           },
           "response": {
@@ -2108,7 +2111,7 @@
         {
           "id": "unit-09.lesson-06.reply.01",
           "type": "reply",
-          "prompt": "You ask: \"فين الطوارئ؟\" The nurse answers. Give his answer: on the first floor, on the right.",
+          "prompt": "You ask: \"وين الطوارئ؟\" The nurse answers. Give his answer: on the first floor, on the right.",
           "answer": "في الدور الأول، على اليمين",
           "accepted": [
             "في الدور الأول، على اليمين",
@@ -2267,11 +2270,11 @@
     "title": "A Visit to the Doctor and the Pharmacy",
     "instructions": "Write and act out a conversation of at least 10 lines where you tell a friend or a doctor how you feel, describe at least two symptoms using body-part words, and then go to the pharmacy to get medicine. Use at least 8 target phrases from Unit 9 and include both a masculine-address and a feminine-address form somewhere in your conversation.",
     "required_elements": [
-      "A question about how someone feels, like كيفك or شنو سار فيك.",
+      "A question about how someone feels, like كيفك or إيش سار فيك.",
       "At least two symptoms named with body-part words, such as راسي or بطني.",
       "A mention of حرارة or صداع or another specific complaint.",
       "A question asking since when the person has felt this way, using من إيمتى.",
-      "A pharmacy or doctor request using عندك or أبي.",
+      "A pharmacy or doctor request using عندك or أشتي.",
       "A question about a prescription using وصفة.",
       "Instructions for taking medicine, such as مرتين باليوم.",
       "A closing wish using سلامتك and its reply الله يسلمك."
@@ -2280,8 +2283,8 @@
       "dialogue": [
         {
           "speaker": "محمود",
-          "arabic": "السلام عليكم يا فاطمة، شنو فيك؟ شكلك تعبانة",
-          "transliteration": "assalam 3alaikum ya Fatima, shnu feek? shaklak ta3baana",
+          "arabic": "السلام عليكم يا فاطمة، إيش فيك؟ شكلك تعبانة",
+          "transliteration": "assalam 3alaikum ya Fatima, eesh feek? shaklak ta3baana",
           "english": "Hi Fatima, what's wrong, you look tired"
         },
         {
@@ -2310,14 +2313,14 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "إي، بروح الحين، وبعدين بمر على الصيدلية",
-          "transliteration": "ee, broo7 il-7een. w ba3deen bamurr 3ala iS-Saydaliyya",
+          "arabic": "إي، بروح ذلحين، وبعدين بمر على الصيدلية",
+          "transliteration": "ee, broo7 dhal7een. w ba3deen bamurr 3ala iS-Saydaliyya",
           "english": "Yes, I'll go now. After that I'll stop by the pharmacy"
         },
         {
           "speaker": "الدكتور",
-          "arabic": "شنو يوجعك؟",
-          "transliteration": "shnu yooja3ak?",
+          "arabic": "إيش يوجعك؟",
+          "transliteration": "eesh yooja3ak?",
           "english": "What hurts you?"
         },
         {

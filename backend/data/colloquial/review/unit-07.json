@@ -1,74 +1,53 @@
 {
   "found": [
     {
-      "lesson": 6,
-      "phrase": 2,
-      "english": "I play football with my friends.",
-      "search_term": "soccer ball on grass",
+      "lesson": 4,
+      "phrase": 8,
+      "english": "On Saturday we go to the market.",
+      "search_term": "street market",
       "candidates": [
         {
-          "id": "2520f4c6-f9b4-440c-b516-06d460aecefa",
-          "title": "Still Items",
-          "creator": "Markus Spiske",
+          "id": "90e82d93-7d76-497f-99af-79de94deaece",
+          "title": "Free street market photo",
+          "creator": null,
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/still-items-KTQZYM7YXM",
-          "thumbnail": "https://api.openverse.org/v1/images/2520f4c6-f9b4-440c-b516-06d460aecefa/thumb/"
+          "foreign_landing_url": "https://www.rawpixel.com/image/5924489/photo-image-public-domain-people-free",
+          "thumbnail": "https://api.openverse.org/v1/images/90e82d93-7d76-497f-99af-79de94deaece/thumb/"
         },
         {
-          "id": "5cae03a8-57d3-4617-933e-8325c2a6fb68",
-          "title": "Soccer Ball",
-          "creator": "Michal Jarmoluk",
+          "id": "9d6af427-8484-4a34-b0fe-7c56e9cad78e",
+          "title": "Food street market",
+          "creator": null,
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/soccer-ball-LHHL7FKKVD",
-          "thumbnail": "https://api.openverse.org/v1/images/5cae03a8-57d3-4617-933e-8325c2a6fb68/thumb/"
+          "foreign_landing_url": "https://www.rawpixel.com/image/6038723/photo-image-public-domain-food-free",
+          "thumbnail": "https://api.openverse.org/v1/images/9d6af427-8484-4a34-b0fe-7c56e9cad78e/thumb/"
         },
         {
-          "id": "7857d5a2-209d-4f84-9648-caff3ade7fde",
-          "title": "Soccer Ball",
-          "creator": "Michal Jarmoluk",
+          "id": "cdbb712f-ffa4-4cf2-80cb-afbca1511870",
+          "title": "Fruits street market, United Kingdom",
+          "creator": null,
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/soccer-ball-FN9W4V6TK5",
-          "thumbnail": "https://api.openverse.org/v1/images/7857d5a2-209d-4f84-9648-caff3ade7fde/thumb/"
+          "foreign_landing_url": "https://www.rawpixel.com/image/6113543/photo-image-public-domain-shape-person",
+          "thumbnail": "https://api.openverse.org/v1/images/cdbb712f-ffa4-4cf2-80cb-afbca1511870/thumb/"
         },
         {
-          "id": "9675598e-bd9e-4365-8562-af4cc4a7905e",
-          "title": "Soccer Ball",
-          "creator": "Michal Jarmoluk",
+          "id": "c32b3101-113a-4f18-adf9-b610bdd8c2df",
+          "title": "London street market Eric Lee",
+          "creator": "museumofnewzealand",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/soccer-ball-1Q2U0J72YG",
-          "thumbnail": "https://api.openverse.org/v1/images/9675598e-bd9e-4365-8562-af4cc4a7905e/thumb/"
+          "foreign_landing_url": "https://www.rawpixel.com/image/9868021/london-street-market-eric-lee-johnson",
+          "thumbnail": "https://api.openverse.org/v1/images/c32b3101-113a-4f18-adf9-b610bdd8c2df/thumb/"
         }
       ]
     }
   ],
-  "needs_search_term": [
-    {
-      "lesson": 6,
-      "phrase": 1,
-      "english": "Do you play sports?"
-    },
-    {
-      "lesson": 6,
-      "phrase": 3,
-      "english": "Which team do you support?"
-    },
-    {
-      "lesson": 6,
-      "phrase": 11,
-      "english": "Exercise is good for health."
-    },
-    {
-      "lesson": 6,
-      "phrase": 12,
-      "english": "Shall we walk together after the prayer?"
-    }
-  ]
+  "needs_search_term": []
 }

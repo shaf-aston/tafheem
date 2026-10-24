@@ -89,13 +89,13 @@
         },
         {
           "slot": "where-are-you-from-to-a-man",
-          "arabic": "مِنْ وَيْن إِنْتَ؟",
-          "transliteration": "min ween inta?"
+          "arabic": "مِنْ فِين إِنْتَ؟",
+          "transliteration": "min feen inta?"
         },
         {
           "slot": "where-are-you-from-to-a-woman",
-          "arabic": "مِنْ وَيْن إِنْتِي؟",
-          "transliteration": "min ween inti?"
+          "arabic": "مِنْ فِين إِنْتِي؟",
+          "transliteration": "min feen inti?"
         }
       ],
       "dialogue": [
@@ -151,8 +151,8 @@
         },
         {
           "speaker": "Salim",
-          "arabic": "أَنَا مِنْ جَدَّة. وَإِنْتِي مِنْ وَيْن؟",
-          "transliteration": "ana min Jadda. wa inti min ween?",
+          "arabic": "أَنَا مِنْ جَدَّة. وَإِنْتِي مِنْ فِين؟",
+          "transliteration": "ana min Jadda. wa inti min feen?",
           "english": "I'm from Jeddah. And where are you from?"
         },
         {
@@ -189,8 +189,8 @@
         },
         {
           "pair": {
-            "arabic": "مِنْ وَيْن إِنْتِي؟",
-            "transliteration": "min ween inti?",
+            "arabic": "مِنْ فِين إِنْتِي؟",
+            "transliteration": "min feen inti?",
             "english": "Where are you from?"
           },
           "response": {
@@ -282,16 +282,16 @@
           "type": "choose",
           "prompt": "Which sentence means \"Where are you from?\" when speaking to a woman?",
           "options": [
-            "مِنْ وَيْن إِنْتَ؟",
-            "مِنْ وَيْن إِنْتِي؟",
+            "مِنْ فِين إِنْتَ؟",
+            "مِنْ فِين إِنْتِي؟",
             "إِسْمِك إِيش؟",
             "كَيْفِك؟"
           ],
-          "answer": "مِنْ وَيْن إِنْتِي؟",
+          "answer": "مِنْ فِين إِنْتِي؟",
           "accepted": [
-            "مِنْ وَيْن إِنْتِي؟",
-            "مِنْ وَيْن إِنْتِيّ؟",
-            "min ween inti?"
+            "مِنْ فِين إِنْتِي؟",
+            "مِنْ فِين إِنْتِيّ؟",
+            "min feen inti?"
           ],
           "too_formal": {
             "item": "مِنْ أَيِّ بَلَدٍ أَنْتِ؟",
@@ -402,7 +402,7 @@
         {
           "id": "unit-01.lesson-01.reply.04",
           "type": "reply",
-          "prompt": "You are a man. Someone asks: \"مِنْ وَيْن إِنْتَ؟\" Say that you are from Medina.",
+          "prompt": "You are a man. Someone asks: \"مِنْ فِين إِنْتَ؟\" Say that you are from Medina.",
           "answer": "أَنَا مِنْ الْمَدِينَة",
           "accepted": [
             "أَنَا مِنْ الْمَدِينَة",
@@ -472,8 +472,8 @@
         },
         {
           "slot": "i-want-some-water",
-          "arabic": "أَبْغَى مَايْ",
-          "transliteration": "abgha may"
+          "arabic": "أَبْغَى مَوِيَّة",
+          "transliteration": "abgha mooya"
         },
         {
           "slot": "is-it-possible-can-i",
@@ -500,20 +500,20 @@
         },
         {
           "speaker": "Fatima",
-          "arabic": "إِي، طَبْعًا. شُ اللِي أَبْغَاه؟",
-          "transliteration": "ee, taba3an. shu illi abghaah?",
+          "arabic": "إِي، طَبْعًا. إِيش اللِّي تِبْغَاه؟",
+          "transliteration": "ee, taba3an. eesh illi tibghaah?",
           "english": "Yes, of course. What do you need?"
         },
         {
           "speaker": "Mohammed",
-          "arabic": "أَبْغَى مَايْ، لَوْ سَمَحْتِي.",
-          "transliteration": "abgha may, law samahti.",
+          "arabic": "أَبْغَى مَوِيَّة، لَوْ سَمَحْتِي.",
+          "transliteration": "abgha mooya, law samahti.",
           "english": "I'd like some water, please."
         },
         {
           "speaker": "Fatima",
-          "arabic": "طَيِّب، هَسَّع.",
-          "transliteration": "tayyib, hassa3",
+          "arabic": "طَيِّب، دَحِين.",
+          "transliteration": "tayyib, da7een",
           "english": "Okay, right away."
         },
         {
@@ -526,8 +526,8 @@
         },
         {
           "speaker": "Mohammed",
-          "arabic": "لَوْ سَمَحْتِي، وَيْنْ الْحَمَّام؟",
-          "transliteration": "law samahti, ween il-hammam?",
+          "arabic": "لَوْ سَمَحْتِي، فِين الْحَمَّام؟",
+          "transliteration": "law samahti, feen il-hammam?",
           "english": "Excuse me, where is the bathroom?"
         },
         {
@@ -574,8 +574,8 @@
         },
         {
           "pair": {
-            "arabic": "أَبْغَى مَايْ.",
-            "transliteration": "abgha may.",
+            "arabic": "أَبْغَى مَوِيَّة.",
+            "transliteration": "abgha mooya.",
             "english": "I'd like some water."
           },
           "response": {
@@ -644,7 +644,7 @@
         {
           "id": "unit-01.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"_____ سَمَحْتِي، وَيْنْ الْحَمَّام؟\"",
+          "prompt": "Complete: \"_____ سَمَحْتِي، فِين الْحَمَّام؟\"",
           "answer": "لَوْ",
           "accepted": [
             "لَوْ",
@@ -696,11 +696,11 @@
           "id": "unit-01.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want some water.\"",
-          "answer": "أَبْغَى مَايْ",
+          "answer": "أَبْغَى مَوِيَّة",
           "accepted": [
-            "أَبْغَى مَايْ",
-            "أبغى ماي",
-            "أَبْغَى مَايْ شَوَيْ"
+            "أَبْغَى مَوِيَّة",
+            "أبغى موية",
+            "أَبْغَى مَوِيَّة شَوَيْ"
           ],
           "too_formal": {
             "item": "أُرِيدُ بَعْضَ الْمَاء",
@@ -869,8 +869,8 @@
         },
         {
           "slot": "now",
-          "arabic": "هَسَّع",
-          "transliteration": "hassa3"
+          "arabic": "دَحِين",
+          "transliteration": "da7een"
         },
         {
           "slot": "we-ll-see-you-tomorrow-to-a-man",
@@ -1003,7 +1003,7 @@
           }
         }
       ],
-      "culture": "In casual Hejazi speech, time is often discussed with simple whole-hour expressions rather than a full formal sentence. \"بَكْرَة\" and \"هَسَّع\" are especially common everyday words for planning and talking about the immediate future and present.",
+      "culture": "In casual Hejazi speech, time is often discussed with simple whole-hour expressions rather than a full formal sentence. \"بَكْرَة\" and \"دَحِين\" are especially common everyday words for planning and talking about the immediate future and present.",
       "exercises": [
         {
           "id": "unit-01.lesson-03.translate_to_arabic.01",
@@ -1044,7 +1044,7 @@
           "options": [
             "الْيَوْمْ",
             "بَكْرَة",
-            "هَسَّع",
+            "دَحِين",
             "أَمْسِ"
           ],
           "answer": "بَكْرَة",
@@ -1056,7 +1056,7 @@
             "item": "غَدًا",
             "feedback": "This is standard formal Arabic; Hejazi speech uses \"بَكْرَة\"."
           },
-          "tip": "Remember the three basic time words: الْيَوْمْ, هَسَّع, بَكْرَة."
+          "tip": "Remember the three basic time words: الْيَوْمْ, دَحِين, بَكْرَة."
         },
         {
           "id": "unit-01.lesson-03.fill_blank.01",
@@ -1126,19 +1126,19 @@
           "options": [
             "بَكْرَة",
             "الْيَوْمْ",
-            "هَسَّع",
+            "دَحِين",
             "أَمْسِ"
           ],
-          "answer": "هَسَّع",
+          "answer": "دَحِين",
           "accepted": [
-            "هَسَّع",
-            "هسع"
+            "دَحِين",
+            "دحين"
           ],
           "too_formal": {
             "item": "حَالِيًّا",
-            "feedback": "This is understandable, but it is more formal than the everyday Hejazi \"هَسَّع\"."
+            "feedback": "This is understandable, but it is more formal than the everyday Hejazi \"دَحِين\"."
           },
-          "tip": "\"هَسَّع\" is one of the most frequent everyday Hejazi time words."
+          "tip": "\"دَحِين\" is one of the most frequent everyday Hejazi time words."
         },
         {
           "id": "unit-01.lesson-03.translate_to_arabic.04",
@@ -1209,13 +1209,13 @@
       "phrases": [
         {
           "slot": "where-is-the-market",
-          "arabic": "وَيْنْ السُّوق؟",
-          "transliteration": "ween is-sooq?"
+          "arabic": "فِين السُّوق؟",
+          "transliteration": "feen is-sooq?"
         },
         {
           "slot": "where-is-the-nearest-shop",
-          "arabic": "وَيْنْ أَقْرَبْ مَحَل؟",
-          "transliteration": "ween aqrab ma7al?"
+          "arabic": "فِين أَقْرَبْ مَحَل؟",
+          "transliteration": "feen aqrab ma7al?"
         },
         {
           "slot": "from-here",
@@ -1281,8 +1281,8 @@
       "dialogue": [
         {
           "speaker": "Khaled",
-          "arabic": "لَوْ سَمَحْتِي، وَيْنْ السُّوق؟",
-          "transliteration": "law samahti, ween is-sooq?",
+          "arabic": "لَوْ سَمَحْتِي، فِين السُّوق؟",
+          "transliteration": "law samahti, feen is-sooq?",
           "english": "Excuse me, where is the market?"
         },
         {
@@ -1319,8 +1319,8 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "إِي، وَبَعْدَيْنْ بِتِشُوفْ السُّوق عَلَى يِسَارْك.",
-          "transliteration": "ee, wa ba3dayn bitshoofas-sooq 3ala yasarik.",
+          "arabic": "إِي، وَبَعْدَيْنْ حَتِشُوفْ السُّوق عَلَى يِسَارْك.",
+          "transliteration": "ee, wa ba3dayn 7atishoof is-sooq 3ala yasarik.",
           "english": "Yes, then you'll see the market on your left."
         },
         {
@@ -1329,8 +1329,8 @@
         },
         {
           "speaker": "Dina",
-          "arabic": "لَا، قَرِيب كَتِير.",
-          "transliteration": "la, qareeb katheer.",
+          "arabic": "لَا، قَرِيب مَرَّة.",
+          "transliteration": "la, qareeb marra.",
           "english": "No, very close."
         },
         {
@@ -1349,8 +1349,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وَيْنْ السُّوق؟",
-            "transliteration": "ween is-sooq?",
+            "arabic": "فِين السُّوق؟",
+            "transliteration": "feen is-sooq?",
             "english": "Where is the market?"
           },
           "response": {
@@ -1366,8 +1366,8 @@
             "english": "Is it far?"
           },
           "response": {
-            "arabic": "لَا، قَرِيب كَتِير.",
-            "transliteration": "la, qareeb katheer.",
+            "arabic": "لَا، قَرِيب مَرَّة.",
+            "transliteration": "la, qareeb marra.",
             "english": "No, very close."
           }
         },
@@ -1402,16 +1402,16 @@
           "id": "unit-01.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where is the market?\"",
-          "answer": "وَيْنْ السُّوق؟",
+          "answer": "فِين السُّوق؟",
           "accepted": [
-            "وَيْنْ السُّوق؟",
-            "وين السوق؟"
+            "فِين السُّوق؟",
+            "فين السوق؟"
           ],
           "too_formal": {
             "item": "أَيْنَ السُّوق؟",
-            "feedback": "This is standard Arabic. \"وَيْنْ السُّوق؟\" is the natural colloquial Hejazi form."
+            "feedback": "This is standard Arabic. \"فِين السُّوق؟\" is the natural colloquial Hejazi form."
           },
-          "tip": "\"وَيْنْ\" is one of the first location words to learn for Hejazi conversation."
+          "tip": "\"فِين\" is one of the first location words to learn for Hejazi conversation."
         },
         {
           "id": "unit-01.lesson-04.choose.01",
@@ -1468,17 +1468,17 @@
           "id": "unit-01.lesson-04.reply.01",
           "type": "reply",
           "prompt": "Someone asks whether the market is far. Tell them it is very close.",
-          "answer": "لَا، قَرِيب كَتِير",
+          "answer": "لَا، قَرِيب مَرَّة",
           "accepted": [
-            "لَا، قَرِيب كَتِير",
-            "لا قريب كثير",
+            "لَا، قَرِيب مَرَّة",
+            "لا قريب مرة",
             "قَرِيب"
           ],
           "too_formal": {
             "item": "كَلَّا، إِنَّهُ قَرِيبٌ جِدًّا",
             "feedback": "This uses formal vocabulary and structure; the everyday reply is much shorter."
           },
-          "tip": "\"كَتِير\" often follows an adjective to make it stronger: \"قَرِيب كَتِير\"."
+          "tip": "\"مَرَّة\" often follows an adjective to make it stronger: \"قَرِيب مَرَّة\"."
         },
         {
           "id": "unit-01.lesson-04.translate_to_arabic.03",
@@ -1502,7 +1502,7 @@
           "options": [
             "هُنَا",
             "هُنَاكْ",
-            "هَسَّع",
+            "دَحِين",
             "بَكْرَة"
           ],
           "answer": "هُنَاكْ",
@@ -1519,17 +1519,17 @@
         {
           "id": "unit-01.lesson-04.reorder.01",
           "type": "reorder",
-          "prompt": "Put the words in a natural order: \"السُّوق / وَيْنْ\".",
-          "answer": "وَيْنْ السُّوق؟",
+          "prompt": "Put the words in a natural order: \"السُّوق / فِين\".",
+          "answer": "فِين السُّوق؟",
           "accepted": [
-            "وَيْنْ السُّوق؟",
-            "وين السوق؟"
+            "فِين السُّوق؟",
+            "فين السوق؟"
           ],
           "too_formal": {
             "item": "أَيْنَ السُّوق؟",
             "feedback": "This is formal Arabic rather than the target colloquial pattern."
           },
-          "tip": "A location question often starts with \"وَيْنْ\"."
+          "tip": "A location question often starts with \"فِين\"."
         },
         {
           "id": "unit-01.lesson-04.translate_to_arabic.04",
@@ -2423,13 +2423,13 @@
     "required_elements": [
       "A natural greeting using مَرْحَبَا, أَهْلَا, or أَهْلًا وَسَهْلًا.",
       "A name question and a name answer.",
-      "A question using مِنْ وَيْنْ and a place answer.",
+      "A question using مِنْ فِين and a place answer.",
       "A polite request using لَوْ سَمَحْتَ or لَوْ سَمَحْتِي.",
       "A response using إِي، طَبْعًا or a natural equivalent.",
       "A thank-you exchange using شُكْرًا and عَفْوًا.",
       "A time question using السَّاعَةْ كَمْ؟.",
       "A future plan using بَكْرَة.",
-      "A direction question using وَيْنْ.",
+      "A direction question using فِين.",
       "At least two direction phrases such as عَلَى يِمِينْك, عَلَى يِسَارْك, عَلَى طُولْ, هُنَا, or هُنَاكْ."
     ],
     "model": {
@@ -2460,8 +2460,8 @@
         },
         {
           "speaker": "Salim",
-          "arabic": "وَأَنَا كَمَان. مِنْ وَيْن إِنْتِي؟",
-          "transliteration": "wa ana kaman. min ween inti?",
+          "arabic": "وَأَنَا كَمَان. مِنْ فِين إِنْتِي؟",
+          "transliteration": "wa ana kaman. min feen inti?",
           "english": "Me too. Where are you from?"
         },
         {
@@ -2478,14 +2478,14 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "إِي، طَبْعًا. شُ اللِي أَبْغَاه؟",
-          "transliteration": "ee, taba3an. shu illi abghaah?",
+          "arabic": "إِي، طَبْعًا. إِيش اللِّي تِبْغَاه؟",
+          "transliteration": "ee, taba3an. eesh illi tibghaah?",
           "english": "Yes, of course. What do you need?"
         },
         {
           "speaker": "Salim",
-          "arabic": "وَيْنْ السُّوق؟",
-          "transliteration": "ween is-sooq?",
+          "arabic": "فِين السُّوق؟",
+          "transliteration": "feen is-sooq?",
           "english": "Where is the market?"
         },
         {
@@ -2502,8 +2502,8 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "لَا، قَرِيب كَتِير. السَّاعَةْ كَمْ بِدِّك تَرُوح؟",
-          "transliteration": "la, qareeb katheer. is-sa3a kam biddak troo7?",
+          "arabic": "لَا، قَرِيب مَرَّة. السَّاعَةْ كَمْ تِبْغَى تِرُوح؟",
+          "transliteration": "la, qareeb marra. is-sa3a kam tibgha troo7?",
           "english": "No, it's very close. What time do you want to go?"
         },
         {

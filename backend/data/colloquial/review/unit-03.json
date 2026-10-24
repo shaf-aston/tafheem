@@ -1,0 +1,68 @@
+{
+  "found": [
+    {
+      "lesson": 2,
+      "phrase": 5,
+      "english": "I want half a kilo of kofta",
+      "search_term": "raw kofta meat",
+      "candidates": []
+    },
+    {
+      "lesson": 2,
+      "phrase": 7,
+      "english": "Do you want pita bread or markook?",
+      "search_term": "markook thin bread",
+      "candidates": []
+    },
+    {
+      "lesson": 2,
+      "phrase": 9,
+      "english": "Do you have ready-made kibbeh?",
+      "search_term": "kibbeh on a plate",
+      "candidates": [
+        {
+          "id": "f309755f-98cc-4f52-be26-a873f3277120",
+          "title": "Cena privata libanese",
+          "creator": "fugzu",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/70253321@N00/16768445977",
+          "thumbnail": "https://api.openverse.org/v1/images/f309755f-98cc-4f52-be26-a873f3277120/thumb/"
+        },
+        {
+          "id": "89365290-ae3a-4bdb-b7da-2c96fa006b04",
+          "title": "Cena privata libanese",
+          "creator": "fugzu",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/70253321@N00/16768453307",
+          "thumbnail": "https://api.openverse.org/v1/images/89365290-ae3a-4bdb-b7da-2c96fa006b04/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "phrase": 2,
+      "english": "I don't like raw tomatoes",
+      "search_term": "raw sliced tomatoes",
+      "candidates": []
+    },
+    {
+      "lesson": 4,
+      "phrase": 6,
+      "english": "I love Damascene sweets",
+      "search_term": "tray of Damascene sweets",
+      "candidates": []
+    },
+    {
+      "lesson": 4,
+      "phrase": 7,
+      "english": "What's your favorite dish?",
+      "search_term": "maqluba dish",
+      "candidates": []
+    }
+  ],
+  "needs_search_term": []
+}

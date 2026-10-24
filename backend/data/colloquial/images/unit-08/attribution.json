@@ -210,13 +210,13 @@
     "search_term": "ballpoint pen"
   },
   "l06-p02-cv-document.jpg": {
-    "id": "10b1ba40-7ba6-4335-8ca5-cc528118e883",
-    "title": "Curriculum Vitae",
-    "creator": "the Italian voice",
+    "id": "c7bca8b5-1eef-49cf-985c-82dae4ad3d28",
+    "title": "TiddlyRésumé",
+    "creator": "psd",
     "license": "by",
     "license_version": "2.0",
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/77476789@N00/2304874364",
+    "foreign_landing_url": "https://www.flickr.com/photos/45581782@N00/3055756907",
     "search_term": "CV document"
   },
   "l06-p03-graduation-certificate.jpg": {
@@ -248,5 +248,15 @@
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "foreign_landing_url": "https://www.rawpixel.com/image/5962808/free-public-domain-cc0-photo",
     "search_term": "wall calendar"
+  },
+  "l06-p06-english-arabic-dictionary.jpg": {
+    "id": "9b8553d1-33a7-44b3-a673-61598f980a09",
+    "title": "100331-F-7797P-001",
+    "creator": "Offutt Air Force Base",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/61438875@N03/6512406847",
+    "search_term": "English Arabic dictionary"
   }
 }

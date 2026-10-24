@@ -101,8 +101,8 @@
         },
         {
           "slot": "where-were-you-why-didn-t-you-come-to-celebrate-",
-          "arabic": "وَيْنَكُم؟ لِيش مَا جِيتُو تِعَيَّدُو مَعَنَا؟",
-          "transliteration": "weinkum? leish ma jiitoo ti3ayyidoo ma3ana?"
+          "arabic": "فِينكُم؟ لِيش مَا جِيتُو تِعَيَّدُو مَعَنَا؟",
+          "transliteration": "feenkum? leish ma jiitoo ti3ayyidoo ma3ana?"
         },
         {
           "slot": "may-god-give-you-all-eid-money-said-jokingly",
@@ -137,8 +137,8 @@
         },
         {
           "speaker": "سَارَة",
-          "arabic": "شُكْرًا، شُو هَاي الرِّيحَة الحِلْوَة؟",
-          "transliteration": "shukran, shu hay il-rii7a l-hilwa?",
+          "arabic": "شُكْرًا، إِيش هَالرِّيحَة الحِلْوَة؟",
+          "transliteration": "shukran, eesh hal-rii7a l-hilwa?",
           "english": "Thanks, what's this lovely smell?"
         },
         {
@@ -149,8 +149,8 @@
         },
         {
           "speaker": "سَارَة",
-          "arabic": "اللَّهُ يُعْطِيكِ العَافِيَة، أَبِي وَاحِدَة!",
-          "transliteration": "allah yu3teek l-3aafya, abi wa7da!",
+          "arabic": "اللَّهُ يُعْطِيكِ العَافِيَة، أَبْغَى وَاحِدَة!",
+          "transliteration": "allah yu3teek l-3aafya, abgha wa7da!",
           "english": "God give you strength, I want one!"
         },
         {
@@ -161,14 +161,14 @@
         },
         {
           "speaker": "سَارَة",
-          "arabic": "وَ الوَلاد وَيْنُهُم؟",
-          "transliteration": "w-il-walad wenahum?",
+          "arabic": "وَ الوَلاد فِينُهُم؟",
+          "transliteration": "w-il-walad feenhum?",
           "english": "Where are the kids?"
         },
         {
           "speaker": "أُمّ أَحْمَد",
-          "arabic": "رَايِحِينَ صَلاةُ العِيد مَعَ أَبُوهُم، الحِينَ بِرْجَعُو",
-          "transliteration": "raayHeen salaat l-3eed ma3 abuuhum, il-7een bireja3oo",
+          "arabic": "رَايِحِينَ صَلاةُ العِيد مَعَ أَبُوهُم، دَحِين بِرْجَعُو",
+          "transliteration": "raayHeen salaat l-3eed ma3 abuuhum, da7een bireja3oo",
           "english": "They went to the Eid prayer with their father, they'll be back soon"
         },
         {
@@ -239,7 +239,7 @@
         {
           "id": "unit-14.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "حَدّا قَالَك عِيدٌ مُبارَك، شُو بِتِرِدّ عَلَيْه؟",
+          "prompt": "حَد قَالَك عِيدٌ مُبارَك، إِيش بِتِرِدّ عَلَيْه؟",
           "answer": "اللَّهُ يُبارِكُ فيكَ",
           "accepted": [
             "اللَّهُ يُبارِكُ فيكَ",
@@ -250,7 +250,7 @@
             "item": "تَقَبَّلَ اللَّهُ مِنَّا وَ مِنْكُمْ صَالِحَ الأَعْمَال",
             "feedback": "رِدّ فَصِيح طَوِيل بِيتِقَال بِالخُطَب، مش بِالحَكِي اليَومِي."
           },
-          "tip": "هَالرِدّ بِيتِقَال لأَيّ حَدّا مِهْمَا كَان جِنْسُو."
+          "tip": "هَالرِدّ بِيتِقَال لأَيّ حَد مِهْمَا كَان جِنْسُو."
         },
         {
           "id": "unit-14.lesson-01.fill_blank.01",
@@ -287,7 +287,7 @@
         {
           "id": "unit-14.lesson-01.choose.01",
           "type": "choose",
-          "prompt": "شُو اسْم الفُلُوس يِلِّي يِعْطُوهَا الكِبَار لِلوِلاد بِالعِيد؟",
+          "prompt": "إِيش اسْم الفُلُوس يِلِّي يِعْطُوهَا الكِبَار لِلوِلاد بِالعِيد؟",
           "options": [
             "عِيدِيَّة",
             "هَدِيَّة",
@@ -325,7 +325,7 @@
         {
           "id": "unit-14.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "عَسَاكِ مِنْ عَوَادُو، شُو مِمْكِن تِرِدِّي؟",
+          "prompt": "عَسَاكِ مِنْ عَوَادُو، إِيش مِمْكِن تِرِدِّي؟",
           "answer": "اللَّهُ يِحْفَظِك",
           "accepted": [
             "اللَّهُ يِحْفَظِك",
@@ -336,7 +336,7 @@
             "item": "أَعَادَهُ اللَّهُ عَلَيْنَا وَ عَلَيْكُمْ بِاليُمْنِ وَالبَرَكَات",
             "feedback": "جُمْلَة فَصِيحَة طَوِيلَة، نَادِر تِنْحَكَى هِيك بِالحَكِي اليَومِي."
           },
-          "tip": "هَاد رِدّ بَسِيط وَ سَرِيع بِيتِقَال بِأَيّ مُنَاسَبَة مُشَابِهَة."
+          "tip": "دَا رِدّ بَسِيط وَ سَرِيع بِيتِقَال بِأَيّ مُنَاسَبَة مُشَابِهَة."
         },
         {
           "id": "unit-14.lesson-01.fill_blank.02",
@@ -352,7 +352,7 @@
             "item": "أَرْتَدِي",
             "feedback": "كِلْمَة فَصِيحَة، بِالحِجَاز يِقُولُو أِلْبَس أَو لاَبِس."
           },
-          "tip": "قَاعِد قَبْل الفِعْل تَعْنِي إِنّك تِسْوِي الشَّي الحِينَ."
+          "tip": "قَاعِد قَبْل الفِعْل تَعْنِي إِنّك تِسْوِي الشَّي دَحِين."
         },
         {
           "id": "unit-14.lesson-01.translate_to_arabic.02",
@@ -373,7 +373,7 @@
         {
           "id": "unit-14.lesson-01.choose.02",
           "type": "choose",
-          "prompt": "شُو بِيحِضِّرُو كِتِير مِنَ البُيُوت لِلعِيد؟",
+          "prompt": "إِيش بِيحِضِّرُو كِتِير مِنَ البُيُوت لِلعِيد؟",
           "options": [
             "مَعَمُول وَ كَعْك",
             "الخُبْز وَ الزَّيْت",
@@ -521,8 +521,8 @@
         },
         {
           "speaker": "لَيْلَى",
-          "arabic": "اللَّهُ يُعْطِيكِ العَافِيَة، وَيْنِ بِتِفْطُرِي اليَوْم؟",
-          "transliteration": "allah yu3teek l-3aafya, ween bitefteri l-yoom?",
+          "arabic": "اللَّهُ يُعْطِيكِ العَافِيَة، فِين بِتِفْطُرِي اليَوْم؟",
+          "transliteration": "allah yu3teek l-3aafya, feen bitefteri l-yoom?",
           "english": "God give you strength, where will you break the fast today?"
         },
         {
@@ -533,14 +533,14 @@
         },
         {
           "speaker": "لَيْلَى",
-          "arabic": "يَا إِلاَهِي، بِلَعِت رِيقِي، أَنَا بِدِّي أَجَرِّب القَطَايِف تِبْعِهَا",
-          "transliteration": "ya ilahi, bila3et rii2i, ana biddi ajarrib l-2ataayef teba3a",
+          "arabic": "يَا إِلاَهِي، بِلَعِت رِيقِي، أَنَا أَبْغَى أَجَرِّب القَطَايِف تِبْعِهَا",
+          "transliteration": "ya ilahi, bila3et rii2i, ana abgha ajarrib l-2ataayef teba3a",
           "english": "Wow, my mouth is watering, I want to try her qatayef"
         },
         {
           "speaker": "هُدَى",
-          "arabic": "تِعَالِي مَعَنَا لَوْ بِدِّك، فِي مَكَان إِلَك عَالسِّفْرَة",
-          "transliteration": "ti3aali ma3ana law biddik, fi makaan ilak 3as-sifra",
+          "arabic": "تِعَالِي مَعَنَا لَوْ تَبْغَى، فِي مَكَان لَك عَالسِّفْرَة",
+          "transliteration": "ti3aali ma3ana law tabgha, fi makaan lak 3as-sifra",
           "english": "Come with us if you want, there's a place for you at the table"
         },
         {
@@ -617,7 +617,7 @@
         {
           "id": "unit-14.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "حَدّا قَالَك رَمَضَانُ كَرِيم، شُو بِتِرِدّ عَلَيْه؟",
+          "prompt": "حَد قَالَك رَمَضَانُ كَرِيم، إِيش بِتِرِدّ عَلَيْه؟",
           "answer": "اللَّهُ أَكْرَم",
           "accepted": [
             "اللَّهُ أَكْرَم",
@@ -665,7 +665,7 @@
         {
           "id": "unit-14.lesson-02.choose.01",
           "type": "choose",
-          "prompt": "شُو بِيسَمُّو الأَكْلَة يِلِّي بِتِنُوكَل قَبْلَ الفَجْرِ بِوَقْتِ الصِّيَام؟",
+          "prompt": "إِيش بِيسَمُّو الأَكْلَة يِلِّي بِتِنُوكَل قَبْلَ الفَجْرِ بِوَقْتِ الصِّيَام؟",
           "options": [
             "السَّحُور",
             "الفِطْرُ",
@@ -698,12 +698,12 @@
             "item": "نَحْنُ بِصَدَدِ التَّحْضِيرِ لِلإِفْطَارِ",
             "feedback": "جُمْلَة فَصِيحَة طَوِيلَة، بِالحِجَاز أَقْصَر وَ أَبْسَط."
           },
-          "tip": "قَاعِدِينَ قَبْلَ الفِعْل تَعْنِي الاسْتِمْرَارِيَّة هَالحِين."
+          "tip": "قَاعِدِينَ قَبْلَ الفِعْل تَعْنِي الاسْتِمْرَارِيَّة دَحِين."
         },
         {
           "id": "unit-14.lesson-02.reply.02",
           "type": "reply",
-          "prompt": "تَقَبَّلَ اللَّهُ صِيَامُكُم، شُو بِتِرِدّ؟",
+          "prompt": "تَقَبَّلَ اللَّهُ صِيَامُكُم، إِيش بِتِرِدّ؟",
           "answer": "مِنَّا وَ مِنْكُم",
           "accepted": [
             "مِنَّا وَ مِنْكُم",
@@ -714,7 +714,7 @@
             "item": "تَقَبَّلَ اللَّهُ مِنَّا وَ مِنْكُمْ صَالِحَ الأَعْمَال",
             "feedback": "الجُمْلَة الكَامِلَة الفَصِيحَة، بِالحَكِي اليَومِي مُخْتَصَرِهَا."
           },
-          "tip": "هَالرِدّ بِيتِقَال بَس إِذَا حَدّا قَالَك تَقَبَّلَ اللَّهُ صِيَامُكُم قَبْلَهَا."
+          "tip": "هَالرِدّ بِيتِقَال بَس إِذَا حَد قَالَك تَقَبَّلَ اللَّهُ صِيَامُكُم قَبْلَهَا."
         },
         {
           "id": "unit-14.lesson-02.fill_blank.02",
@@ -751,7 +751,7 @@
         {
           "id": "unit-14.lesson-02.choose.02",
           "type": "choose",
-          "prompt": "شُو اسْمُ الحِلْوِ المَشْهُور بِرَمَضَانَ يِلِّي هُو فَطَايِرُ مَحْشِيَّة جَوْز أَوْ قَشْطَة؟",
+          "prompt": "إِيش اسْمُ الحِلْوِ المَشْهُور بِرَمَضَانَ يِلِّي هُو فَطَايِرُ مَحْشِيَّة جَوْز أَوْ قَشْطَة؟",
           "options": [
             "قَطَايِف",
             "كُنَافَة",
@@ -838,8 +838,8 @@
         },
         {
           "slot": "the-wedding-stage-decoration-is-very-beautiful",
-          "arabic": "الكُوشَة حِلْوَة كِتِير",
-          "transliteration": "l-koosha hilwa ktiir"
+          "arabic": "الكُوشَة حِلْوَة مَرَّة",
+          "transliteration": "l-koosha hilwa marra"
         },
         {
           "slot": "the-wedding-procession-is-coming",
@@ -868,8 +868,8 @@
         },
         {
           "slot": "what-gift-did-you-bring-them",
-          "arabic": "شُو جِبْتِ لَهُم هَدِيَّة؟",
-          "transliteration": "shu jibt lahum hadiyya?",
+          "arabic": "إِيش جِبْتِ لَهُم هَدِيَّة؟",
+          "transliteration": "eesh jibt lahum hadiyya?",
           "reply": {
             "arabic": "جِبْتُ لَهُم فُلُوس",
             "transliteration": "jibt lahum fuloos",
@@ -892,8 +892,8 @@
         },
         {
           "speaker": "نُوَّة",
-          "arabic": "اللَّهُ يُسَعِّدُكِ وَ يُوَفِّقِك. شُو بِتِلْبِسِينَ؟",
-          "transliteration": "allah yusa33idik w-ywaffiqik. shu bitlbiseen?",
+          "arabic": "اللَّهُ يُسَعِّدُكِ وَ يُوَفِّقِك. إِيش بِتِلْبِسِينَ؟",
+          "transliteration": "allah yusa33idik w-ywaffiqik. eesh bitlbiseen?",
           "english": "May God make you happy and grant you success. What will you wear?"
         },
         {
@@ -910,14 +910,14 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "الصَّالَة مِتِحَضِّرَة وَالكُوشَة حِلْوَة كِتِير",
-          "transliteration": "s-sala mi7addera w-l-koosha hilwa ktiir",
+          "arabic": "الصَّالَة مِتِحَضِّرَة وَالكُوشَة حِلْوَة مَرَّة",
+          "transliteration": "s-sala mi7addera w-l-koosha hilwa marra",
           "english": "The hall is ready and the stage is very beautiful"
         },
         {
           "speaker": "نُوَّة",
-          "arabic": "حِلْوَة وَايِد! وَالزَّفَّة إِمْتَى تِبْدَأ؟",
-          "transliteration": "hilwa waaid! w-z-zaffe emta tibda?",
+          "arabic": "حِلْوَة مَرَّة! وَالزَّفَّة إِمْتَى تِبْدَأ؟",
+          "transliteration": "hilwa marra! w-z-zaffe emta tibda?",
           "english": "Very beautiful! And when does the procession start?"
         },
         {
@@ -940,8 +940,8 @@
         },
         {
           "speaker": "نُوَّة",
-          "arabic": "تَمَام، شُو جِبْتِ لَهُم هَدِيَّة؟",
-          "transliteration": "tmam, shu jibt lahum hadiyya?",
+          "arabic": "تَمَام، إِيش جِبْتِ لَهُم هَدِيَّة؟",
+          "transliteration": "tmam, eesh jibt lahum hadiyya?",
           "english": "Okay, what gift did you bring them?"
         },
         {
@@ -1006,7 +1006,7 @@
         {
           "id": "unit-14.lesson-03.reply.01",
           "type": "reply",
-          "prompt": "حَدّا قَالَك مَبْرُوك العِرْس، شُو بِتِرِدّ عَلَيْه؟",
+          "prompt": "حَد قَالَك مَبْرُوك العِرْس، إِيش بِتِرِدّ عَلَيْه؟",
           "answer": "اللَّهُ يُبارِكُ فيكَ",
           "accepted": [
             "اللَّهُ يُبارِكُ فيكَ",
@@ -1017,7 +1017,7 @@
             "item": "بَارَكَ اللَّهُ فِيكَ وَجَزَاكَ خَيْرًا",
             "feedback": "كَلاَم فَصِيح رَسْمِي، بِالحِجَاز يِقُولُو شِي أَقْصَر."
           },
-          "tip": "هَالرِدّ بِيتِقَال لأَيّ حَدّا مِهْمَا كَان جِنْسُو."
+          "tip": "هَالرِدّ بِيتِقَال لأَيّ حَد مِهْمَا كَان جِنْسُو."
         },
         {
           "id": "unit-14.lesson-03.fill_blank.01",
@@ -1033,7 +1033,7 @@
             "item": "عِقْبَالَكِ فِي القَرِيبِ العَاجِل",
             "feedback": "إِضَافَة فَصِيحَة، مش جُزْء مِنَ التَّعْبِيرِ اليَومِي."
           },
-          "tip": "عِنْدِك بِتِتَغَيَّرُ حَسَب جِنْس وَ عَدَد اللِّي عَمّ تِحْكِي مَعُو."
+          "tip": "عِنْدِك بِتِتَغَيَّرُ حَسَب جِنْس وَ عَدَد اللِّي تِحْكِي مَعُو."
         },
         {
           "id": "unit-14.lesson-03.translate_to_arabic.01",
@@ -1042,8 +1042,7 @@
           "answer": "عِرْسُهُم إِمْتَى؟",
           "accepted": [
             "عِرْسُهُم إِمْتَى؟",
-            "3irsuhum emta?",
-            "عِرْسُهُم إِيمْتَى؟"
+            "3irsuhum emta?"
           ],
           "too_formal": {
             "item": "مَتَى مَوْعِدُ زِفَافِهِم؟",
@@ -1054,7 +1053,7 @@
         {
           "id": "unit-14.lesson-03.choose.01",
           "type": "choose",
-          "prompt": "شُو بِيسَمُّو الرَّقْصَة الشَّعْبِيَّة يِلِّي بِيرْقُصُو بِالعِرْس؟",
+          "prompt": "إِيش بِيسَمُّو الرَّقْصَة الشَّعْبِيَّة يِلِّي بِيرْقُصُو بِالعِرْس؟",
           "options": [
             "الدَّبْكَة",
             "الرَّاقِصَة",
@@ -1092,7 +1091,7 @@
         {
           "id": "unit-14.lesson-03.reply.02",
           "type": "reply",
-          "prompt": "عِقْبَالِك، شُو بِتِرِدِّي؟",
+          "prompt": "عِقْبَالِك، إِيش بِتِرِدِّي؟",
           "answer": "يَا رَبّ مِنْ عِنْدِك",
           "accepted": [
             "يَا رَبّ مِنْ عِنْدِك",
@@ -1140,7 +1139,7 @@
         {
           "id": "unit-14.lesson-03.choose.02",
           "type": "choose",
-          "prompt": "شُو بِيسَمُّو المَكَان يِلِّي العَرُوسِينَ بِيوقِفُو فِيهِ؟",
+          "prompt": "إِيش بِيسَمُّو المَكَان يِلِّي العَرُوسِينَ بِيوقِفُو فِيهِ؟",
           "options": [
             "الكُوشَة",
             "الصَّالَة",
@@ -1242,8 +1241,8 @@
         },
         {
           "slot": "what-gift-do-you-want",
-          "arabic": "شُو بِتِبِّي هَدِيَّة؟",
-          "transliteration": "shu btbi hadiyya?"
+          "arabic": "إِيش تَبْغَى هَدِيَّة؟",
+          "transliteration": "eesh tabgha hadiyya?"
         },
         {
           "slot": "birthday-party",
@@ -1282,13 +1281,13 @@
         },
         {
           "speaker": "رَامِي",
-          "arabic": "صِرْتُ خَمْسَة وَ عِشْرِين، حِسِّيتُ حَالِي كِبِرْتُ هَالحِينَ",
-          "transliteration": "sirtu khamsa w-3ashreen, hissitu hali kibert hal7een",
+          "arabic": "صِرْتُ خَمْسَة وَ عِشْرِين، حِسِّيتُ حَالِي كِبِرْتُ دَحِين",
+          "transliteration": "sirtu khamsa w-3ashreen, hissitu hali kibert da7een",
           "english": "I turned twenty-five, I feel like I've gotten old now"
         },
         {
           "speaker": "مَايَا",
-          "arabic": "هَهَا لاَ لَسِّا شَبّ، مَبْرُوك عَلَيْك",
+          "arabic": "هَهَا لاَ لِسَّه شَبّ، مَبْرُوك عَلَيْك",
           "transliteration": "haha la lissa shabb, mabrook 3aleik",
           "english": "Haha no you're still young, congratulations"
         },
@@ -1300,20 +1299,20 @@
         },
         {
           "speaker": "مَايَا",
-          "arabic": "أَكِيد بِرُوح، عَمّ يِحَضِّرُو الكَيْك؟",
-          "transliteration": "akeed biroo7, 3am yi7adru l-kaik?",
+          "arabic": "أَكِيد بِرُوح، يِحَضِّرُو الكَيْك؟",
+          "transliteration": "akeed biroo7, yi7adru l-kaik?",
           "english": "Of course I'll come, are they preparing the cake?"
         },
         {
           "speaker": "رَامِي",
-          "arabic": "إِيه، أُخْتِي عَمّ تِحَضِّرُو هَالحِينَ",
-          "transliteration": "eeh, ukhti 3am ti7addru hal7een",
+          "arabic": "إِيه، أُخْتِي تِحَضِّرُو دَحِين",
+          "transliteration": "eeh, ukhti ti7addru da7een",
           "english": "Yes, my sister is preparing it now"
         },
         {
           "speaker": "مَايَا",
-          "arabic": "وَ شُو بِتِبِّي هَدِيَّة؟",
-          "transliteration": "w-shu btbi hadiyya?",
+          "arabic": "وَ إِيش تَبْغَى هَدِيَّة؟",
+          "transliteration": "w-eesh tabgha hadiyya?",
           "english": "And what gift do you want?"
         },
         {
@@ -1379,12 +1378,12 @@
           }
         }
       ],
-      "culture": "بِالحِجَاز الفِرَاح بِيحْتِفِلُو بِعِيدِ الِميلاَدِ بِكَيْك وَشُمُوع مِثْلِ بِكُلِّ مَكَان، بَس التَّهْنِئَة الأَهَم بِتِضَلّ اللَّهُ يُطَوِّل عُمُرِك، وَهَاي العِبَارَة يِقُولُوهَا لأَيّ حَدّا مِنْ يِحِبُّو وَيِتِمَنّاوُ العُمُرُ الطَّوِيل مش بَس بِعِيدِ ميلاَدُو.",
+      "culture": "بِالحِجَاز الفِرَاح بِيحْتِفِلُو بِعِيدِ الِميلاَدِ بِكَيْك وَشُمُوع مِثْلِ بِكُلِّ مَكَان، بَس التَّهْنِئَة الأَهَم بِتِضَلّ اللَّهُ يُطَوِّل عُمُرِك، وَدِي العِبَارَة يِقُولُوهَا لأَيّ حَد مِنْ يِحِبُّو وَيِتِمَنّاوُ العُمُرُ الطَّوِيل مش بَس بِعِيدِ ميلاَدُو.",
       "exercises": [
         {
           "id": "unit-14.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "حَدّا قَالَك عِيدُ مِيلاَدٍ سَعِيد، شُو بِتِرِدّ عَلَيْه؟",
+          "prompt": "حَد قَالَك عِيدُ مِيلاَدٍ سَعِيد، إِيش بِتِرِدّ عَلَيْه؟",
           "answer": "اللَّهُ يُسَلِّمُك",
           "accepted": [
             "اللَّهُ يُسَلِّمُك",
@@ -1411,7 +1410,7 @@
             "item": "انْفَخْ فِي الشُّمُوعِ لِإِطْفَائِهَا",
             "feedback": "وَصْفٌ فَصِيحٌ طَوِيلٌ، بِالحِجَاز أَمْرٌ قَصِير طُفِّ."
           },
-          "tip": "بِيتِطْفَى الشُّمُوعُ بِنَفْخَة وَاحِدَة وَ الكُلّ عَمّ يِغَنُّو."
+          "tip": "بِيتِطْفَى الشُّمُوعُ بِنَفْخَة وَاحِدَة وَ الكُلّ يِغَنُّو."
         },
         {
           "id": "unit-14.lesson-04.translate_to_arabic.01",
@@ -1432,7 +1431,7 @@
         {
           "id": "unit-14.lesson-04.choose.01",
           "type": "choose",
-          "prompt": "شُو بِيقُولُو لِحَدّا حَصَل عِنْدُو تَرْقِيَة بِالشُّغْل؟",
+          "prompt": "إِيش بِيقُولُو لِحَد حَصَل عِنْدُو تَرْقِيَة بِالشُّغْل؟",
           "options": [
             "مَبْرُوك التَّرْقِيَة",
             "مَبْرُوك الشُّغْل",
@@ -1470,7 +1469,7 @@
         {
           "id": "unit-14.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "كُلّ سَنَة وَ إِنْتَ طَيِّب، شُو بِتِرِدّ؟",
+          "prompt": "كُلّ سَنَة وَ إِنْتَ طَيِّب، إِيش بِتِرِدّ؟",
           "answer": "وَ إِنْتَ طَيِّب",
           "accepted": [
             "وَ إِنْتَ طَيِّب",
@@ -1481,7 +1480,7 @@
             "item": "وَ أَنْتَ بِأَلْفِ خَيْر",
             "feedback": "صِيَاغَة فَصِيحَة بَدِيلَة، مش الرِّدّ الشَّائِعُ بِالحِجَاز."
           },
-          "tip": "الرِّدّ بِيتِغَيَّرُ حَسَب جِنْسِ اللِّي عَمّ تِحْكِي مَعُو، طَيِّب أَو طَيِّبَة."
+          "tip": "الرِّدّ بِيتِغَيَّرُ حَسَب جِنْسِ اللِّي تِحْكِي مَعُو، طَيِّب أَو طَيِّبَة."
         },
         {
           "id": "unit-14.lesson-04.fill_blank.02",
@@ -1503,22 +1502,22 @@
           "id": "unit-14.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "What gift do you want?",
-          "answer": "شُو بِتِبِّي هَدِيَّة؟",
+          "answer": "إِيش تَبْغَى هَدِيَّة؟",
           "accepted": [
-            "شُو بِتِبِّي هَدِيَّة؟",
-            "shu btbi hadiyya?",
-            "شُو بِتِحِب تِأْخُذ هَدِيَّة؟"
+            "إِيش تَبْغَى هَدِيَّة؟",
+            "eesh tabgha hadiyya?",
+            "إِيش بِتِحِب تِأْخُذ هَدِيَّة؟"
           ],
           "too_formal": {
             "item": "مَا الهَدِيَّة التِي تَرْغَبُ بِهَا؟",
             "feedback": "صِيَاغَة فَصِيحَة طَوِيلَة، بِالحِجَاز أَبْسَط وَ أَقْصَر."
           },
-          "tip": "بِتِبِّي تَعْنِي رَاغِبُ بِالحِجَاز."
+          "tip": "تَبْغَى تَعْنِي رَاغِبُ بِالحِجَاز."
         },
         {
           "id": "unit-14.lesson-04.choose.02",
           "type": "choose",
-          "prompt": "شُو بِيقُولُو لِحَدّا بِيتِمَنّاوُ عُمُرٌ طَوِيل؟",
+          "prompt": "إِيش بِيقُولُو لِحَد بِيتِمَنّاوُ عُمُرٌ طَوِيل؟",
           "options": [
             "اللَّهُ يُطَوِّل عُمُرِك",
             "عُمُرِك يِطُول",
@@ -1535,7 +1534,7 @@
             "item": "أَطَالَ اللَّهُ فِي عُمُرِك",
             "feedback": "جُمْلَة فَصِيحَة قَدِيمَة، بِالحِجَاز أَكْثَرُ شُيُوعًا اللَّهُ يُطَوِّل."
           },
-          "tip": "هَاي العِبَارَةُ بِيتِقَالُهَا بِمُنَاسَبَات كِتِير مش بَس عِيدَ الميلاَد."
+          "tip": "هَالعِبَارَةُ بِيتِقَالُهَا بِمُنَاسَبَات كِتِير مش بَس عِيدَ الميلاَد."
         },
         {
           "id": "unit-14.lesson-04.reorder.02",
@@ -3810,8 +3809,8 @@
         },
         {
           "speaker": "خَالِد",
-          "arabic": "اللَّهُ يِحْفَظُو إِلَك وَ عِقْبَالِي كَمَان",
-          "transliteration": "allah yi7fathuh ilak w-3o2baali kamaan",
+          "arabic": "اللَّهُ يِحْفَظُو لَك وَ عِقْبَالِي كَمَان",
+          "transliteration": "allah yi7fathuh lak w-3o2baali kamaan",
           "english": "May God keep it for you, and may it be my turn too"
         },
         {
