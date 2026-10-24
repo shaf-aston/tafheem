@@ -102,9 +102,9 @@ export default function HomePanel({ accent, onGo }) {
             )}
           </div>
 
-          {/* The quiet word sits in the room beside the card (under it on a phone) and scrolls with the page. */}
-          <div className="md:flex md:items-center md:gap-6">
-            <div className="space-y-4 md:max-w-2xl md:flex-[3] min-w-0">
+          {/* The quiet word sits in the room beside the card, on a phone as on a laptop, and scrolls with the page. */}
+          <div className="flex items-center gap-3 md:gap-6">
+            <div className="space-y-4 md:max-w-2xl flex-1 md:flex-[3] min-w-0">
               {/* A returning learner on a new visit (no path walked) sees what they were studying above the picker. */}
               {first && next}
               {/* A first visit asks how much Arabic you know, and starts there; after that, where you stopped. */}
@@ -120,7 +120,8 @@ export default function HomePanel({ accent, onGo }) {
                 </p>
               )}
             </div>
-            <FahmWord className="mx-auto mt-2 md:mt-0 w-full max-w-[13rem] md:max-w-[20rem] md:flex-1 min-w-0 select-none" />
+            {/* On a phone the first visit's three tall level cards need the full width, so the word waits for a wider screen there. */}
+            <FahmWord className={`${first ? 'hidden md:block' : 'w-24'} shrink-0 md:w-auto md:shrink md:flex-1 md:max-w-[20rem] min-w-0 select-none`} />
           </div>
 
           <section className="space-y-4" aria-labelledby="home-all">
