@@ -6,8 +6,9 @@
 import { gapOf } from '../quiz/gap'
 import { weave } from './lesson'
 import { shuffled } from '../text/shuffle'
+import { moduleOf } from './worlds'
 
-export const MODULE = 'nawawi40'
+export const MODULE = moduleOf('hadith')
 export const SOURCE_URL = '/grow/nawawi40.json'
 export const keyOfHadith = (hadith) => String(hadith.n)
 

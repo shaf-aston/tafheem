@@ -4,7 +4,7 @@
  */
 import { useLessonWorld } from './useLessonWorld'
 import { useRememberedFlag } from '../store/useRemembered'
-import { MODULE, keyOfBasic } from './alifLam'
+import { keyOfBasic } from './alifLam'
 import { basicsCards, pathItems } from './basicsSkills'
 
 export const SOURCE_URL = '/grow/basics.json'
@@ -33,7 +33,7 @@ export function useBasicsWorld(world) {
   const [begunHere, setBegunHere] = useRememberedFlag(BEGUN, false)
   // The first lesson on this device opens on what ال is.
   const cards = (picked, all, random) => basicsCards(picked, random, !begunHere)
-  const state = useLessonWorld({ world, module: MODULE, load, keyOf: keyOfBasic, cards })
+  const state = useLessonWorld({ world, load, keyOf: keyOfBasic, cards })
   // GrowPanel calls `began` once a Basics lesson is on screen.
   return { ...state, begunHere, began: () => setBegunHere(true) }
 }

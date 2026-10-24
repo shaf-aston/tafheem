@@ -20,7 +20,7 @@
  * the same topic, the same verb pattern, or the same surah.
  */
 import settings from '../../config/quiz.json'
-import { fetchReviewItems, fetchSummary } from '../learner/progress'
+import { fetchReviewItems } from '../learner/progress'
 
 export const QUIZ = {
   optionCount: settings['option-count'],
@@ -151,11 +151,6 @@ export async function allWords() {
 // spelling each, so a refresh of one is a refresh of all.
 export const allWordsQuery = { queryKey: ['quiz-words', 'all'], queryFn: allWords }
 export const coverageQuery = { queryKey: ['quiz-coverage'], queryFn: coverage }
-export const progressQuery = (language) => ({
-  queryKey: ['quiz-progress', language],
-  queryFn: () => fetchSummary(moduleFor(language)),
-  refetchOnWindowFocus: false,
-})
 
 /**
  * The words to quiz on: a whole set, one group inside it, or the review pile.

@@ -6,14 +6,15 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { fetchOverview } from './progress'
 import { getProfile } from './profile'
 import { LEVEL_IDS, LEVEL_KEY, classify } from './learnerLevel'
+import { overviewQuery } from './record'
 import { useRemembered } from '../store/useRemembered'
 
 export function useLearnerLevel() {
   const [name] = useState(getProfile)
   const [chosen, choose] = useRemembered(LEVEL_KEY, LEVEL_IDS, '')
-  const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview, enabled: !!name, retry: false })
-  return { ...classify(chosen, overview.data?.modules), chosen, choose, guest: !name }
+  const overview = useQuery(overviewQuery(name))
+  // `known`: the answers are in (or there are none to wait for), so the level will not move on its own until more come.
+  return { ...classify(chosen, overview.data?.modules), chosen, choose, guest: !name, known: !name || overview.isFetched }
 }

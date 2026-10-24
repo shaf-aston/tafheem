@@ -3,7 +3,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { DOCK, FIXED, LISTED, RECENT, TABS } from './tabs'
 import { useDock } from './dock'
 import { keepRecent, useStrip } from './recent'
-import { lastPlaceOn, onJump, startJourney, visit } from './journey'
+import { lastPlaceOn, onJump, ownsHome, startJourney, visit } from './journey'
 import { holdBackdrop } from '../motion/backdropHold'
 import { useTabShortcuts } from './useTabShortcuts'
 import { holdAt, scrollToTop } from '../motion/scrollToEl'
@@ -75,7 +75,7 @@ export function useTabNavigation() {
     setAlive(aliveRef.current)
     if (!arrive && kept) return
     // `handed`: brought by a tap elsewhere, not the tab's own saved place reopened.
-    const handoff = value ? { value, at: ++arrivals, handed: Boolean(arrive) } : null
+    const handoff = value || arrive ? { value, at: ++arrivals, handed: Boolean(arrive) } : null
     setHandoffs((all) => ({ ...all, [id]: handoff }))
   }, [])
 
@@ -106,9 +106,10 @@ export function useTabNavigation() {
 
   // The trail and the browser's back arrow are the same list; this follows the
   // arrow: a step returned to is handed back to its panel exactly like a
-  // hand-off, which is what makes it load that word again.
+  // hand-off, which is what makes it load that word again. A step with no word is
+  // one too on a tab whose blank is its own home: back from a Grow lesson is Grow's page.
   useEffect(() => {
-    return onJump((step) => show(step.tab, step.value, step.value != null))
+    return onJump((step) => show(step.tab, step.value, step.value != null || ownsHome(step.tab)))
   }, [show])
 
   // Each panel's own way to report where it got to, and how a round is going:

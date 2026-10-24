@@ -1,13 +1,14 @@
 /**
  * How much Arabic a learner knows: what they said (`chosen`, '' for nothing yet) until their answers say more.
- * The tiers, their proof modules and the thresholds are levels.json's; this file is only the rule, kept pure so
+ * The tiers, their proof worlds and the thresholds are levels.json's; this file is only the rule, kept pure so
  * it can be tested on its own. The learner's answers come from the progress overview (one row per module).
  */
 import config from '../../config/levels.json'
+import { moduleOf } from '../grow/worlds'
 
-/** The levels.json numbers this rule reads, by the names the code uses. */
+/** The levels.json numbers this rule reads, by the names the code uses; a tier's proof as the records its worlds file under. */
 export const RULES = {
-  levels: config.levels,
+  levels: config.levels.map((level) => ({ ...level, proof: level.proof.map(moduleOf) })),
   minAnswers: config['min-answers'],
   pass: config.pass,
   fail: config.fail,
@@ -19,9 +20,10 @@ export const LEVEL_KEY = config['storage-key']
 export const LEVEL_COPY = config.copy
 export const levelOf = (id) => LEVELS.find((level) => level.id === id) ?? null
 
-/** One tier's answers over its proof modules: how many, and the share right. */
+/** One tier's answers over its proof modules: how many, and the share right. A module answered in another meaning
+ *  language ("quiz:ur") is its record's, as lib/nav/moduleTab.js reads it, so a new language counts as proof too. */
 function tally(proof, modules) {
-  const rows = modules.filter((row) => proof.includes(row.module))
+  const rows = modules.filter((row) => proof.includes(row.module.split(':')[0]))
   const answers = rows.reduce((sum, row) => sum + row.attempts, 0)
   const right = rows.reduce((sum, row) => sum + row.correct, 0)
   return { answers, share: answers ? right / answers : 0 }

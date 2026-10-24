@@ -497,3 +497,18 @@ def test_the_overview_counts_every_module_and_the_days_in_a_row():
     assert [(m["module"], m["attempts"], m["correct"]) for m in body["modules"]] == [("quiz", 3, 2), ("quiz:ur", 1, 1)]
     assert (body["attempts"], body["correct"], body["streak"]) == (4, 3, 2)  # today and yesterday; day 3 is past a gap
     assert client.get("/api/progress/overview").json()["streak"] == 0
+
+
+def test_the_overview_counts_what_is_learnt_in_each_module_on_its_own():
+    """One item id in two modules is two records: right twice a day apart is learnt in one, a lucky guess in the other."""
+    signup("Amina")
+    db = progress_store._db()
+    with db:
+        for module, item, days in [("quiz", "a", 2), ("basics", "a", 2), ("basics", "b", 2), ("quiz", "a", 1),
+                                   ("basics", "b", 1)]:
+            db.execute("INSERT INTO attempts (user, module, item, correct, at) VALUES ('amina', ?, ?, 1, "
+                       "datetime('now', ?))", (module, item, f"-{days} days"))
+    body = client.get("/api/progress/overview", headers=as_("Amina")).json()
+    assert {m["module"]: m["learnt"] for m in body["modules"]} == {"basics": 1, "quiz": 1}
+    assert body["learnt"] == 2
+    assert [progress_store.learnt(module, "amina") for module in ("basics", "quiz", "nahw")] == [1, 1, 0]

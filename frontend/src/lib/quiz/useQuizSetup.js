@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { DIRECTIONS, MEANINGS } from './quiz'
@@ -39,7 +39,12 @@ export function useQuizSetup() {
   const directions = useMemo(() => directionsIn(language), [language])
   const direction = directions.includes(savedDirection) ? savedDirection : directions[0]
   // Until a set is picked here, the learner's level picks it (levels.json `quiz-bank`): a beginner's Basics.
-  const levelBank = levelOf(useLearnerLevel().level)?.['quiz-bank']
+  // Held once the answers are in, so answers filed mid-round that move the level do not swap the set under the player;
+  // a level picked by hand is followed at once.
+  const learner = useLearnerLevel()
+  const [held, hold] = useState(null)
+  if (learner.known && (!held || held.chosen !== learner.chosen)) hold({ chosen: learner.chosen, level: learner.level })
+  const levelBank = levelOf(held?.level ?? learner.level)?.['quiz-bank']
   const [bankId, setBankId] = useRemembered('quiz-bank', BANK_IDS, levelBank ?? QUIZ.bank)
   const [autoNext, setAutoNext] = useRememberedFlag('quiz-auto-next', QUIZ.autoNext)
   const bank = BANKS[bankId]

@@ -11,8 +11,9 @@
  * Words come from public/grow/basics.json (bare, vowelled, no ال); the path they sit on is lib/grow/basicsSkills.js.
  */
 import { shuffled } from '../text/shuffle'
+import { moduleOf } from './worlds'
 
-export const MODULE = 'basics'
+export const MODULE = moduleOf('basics')
 
 // The fourteen letters ال's ل blends into (ash-shams); the other fourteen keep it (al-qamar).
 export const SUN_LETTERS = new Set([...'تثدذرزسشصضطظلن'])

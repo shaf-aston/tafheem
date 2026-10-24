@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
-import { useQueryClient } from '@tanstack/react-query'
 
-import { recordAttempt } from '../learner/progress'
+import { useRecord } from '../learner/record'
 import { moduleFor } from './quizBanks'
 import { progressKey, useSavedState } from '../store/stored'
 import { useRemembered } from '../store/useRemembered'
@@ -18,7 +17,7 @@ const NO_SCORE = { right: 0, total: 0, streak: 0 }
  */
 export function useQuizScore(setup) {
   const { language, bankId, groupId, direction } = setup
-  const client = useQueryClient()
+  const { file, refresh } = useRecord()
   // Set once if the store cannot be reached, so a session is never silently
   // saved to nowhere: without it the review list is mysteriously empty later.
   const [saving, setSaving] = useState(true)
@@ -36,8 +35,9 @@ export function useQuizScore(setup) {
   // the question in front of you. Sent as measured, however long; which timings
   // are honest enough to average is the store's rule, not this tab's.
   const record = ({ question: asked, correct: wasRight, ms }) => {
-    recordAttempt({
-      module: moduleFor(language),
+    const module = moduleFor(language)
+    file({
+      module,
       item: asked.answerId,
       correct: wasRight,
       ms,
@@ -48,10 +48,7 @@ export function useQuizScore(setup) {
       // Review control, and the reading at the foot of the page. Both are
       // re-read; the words of the round being played are not, so the question
       // in front of you cannot change underneath your hand.
-      if (result.saved) {
-        client.invalidateQueries({ queryKey: ['quiz-review'] })
-        client.invalidateQueries({ queryKey: ['quiz-progress'] })
-      }
+      if (result.saved) refresh(module)
     })
 
     // One answer, one streak, worked out here rather than inside the state

@@ -10,7 +10,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { fetchOverview } from '../../lib/learner/progress'
+import { overviewQuery } from '../../lib/learner/record'
 import { getProfile } from '../../lib/learner/profile'
 import { useHealth } from '../../lib/api/useHealth'
 import { resumePlace, useJourney } from '../../lib/nav/journey'
@@ -44,7 +44,7 @@ const SHOWN_GROUPS = GROUPS.filter((group) => group.id !== START && OTHERS.some(
 export default function HomePanel({ accent, onGo }) {
   const phone = useMedia(PHONE)
   const [name] = useState(getProfile)
-  const overview = useQuery({ queryKey: ['overview', name], queryFn: fetchOverview, enabled: !!name, retry: false })
+  const overview = useQuery(overviewQuery(name))
   const { steps } = useJourney()
   const health = useHealth()
   const line = useCommandLine(LISTED, (row) => onGo(row.tabId, row.value))
