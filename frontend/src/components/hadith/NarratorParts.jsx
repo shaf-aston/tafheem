@@ -20,7 +20,7 @@ const { site: SITE, generations: GENERATIONS, tones: TONES } = HADITH.narrator
 const count = (n, noun) => `${n} ${noun}${n === 1 ? '' : 's'}`
 
 /** How sunnah.com grades him, in the colour of his rank. */
-export function GradePill({ rank, children, size = 'sm' }) {
+function GradePill({ rank, children, size = 'sm' }) {
   const tone = toneOf(rank)
   return (
     <ArabicText
@@ -287,7 +287,7 @@ export function NarratorError({ error, onRetry }) {
  * One tappable row set as sunnah.com lists a narrator's people and hadith: the
  * Arabic on the right, with an optional dot after it, and the English on the left.
  */
-export function PairRow({ en, ar, dot, title, hint, onClick }) {
+function PairRow({ en, ar, dot, title, hint, onClick }) {
   return (
     <button
       type="button"

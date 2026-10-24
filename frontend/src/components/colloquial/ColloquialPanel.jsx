@@ -16,7 +16,7 @@ import { TABS } from '../../lib/nav/tabs'
 import { useArrivalWhenReady } from '../../lib/nav/useArrival'
 import { warm } from '../../lib/api/warm'
 import { DialectList, TopicList, UnitList } from './course/Lists'
-import { Switch, Trail } from './course/Trail'
+import { Breadcrumbs, DialectSwitch } from './course/Breadcrumbs'
 import TopicView from './topic/TopicView'
 import WordsView from './words/WordsView'
 import ErrorAlert from '../ui/ErrorAlert'
@@ -70,8 +70,8 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
       {/* At the top the subtitle already says these are the dialects: the trail starts one step down. */}
       {catalogue.data && dialect && (
         <div className="flex flex-wrap items-center gap-3 pb-5 border-b border-[var(--border)]">
-          <Trail steps={steps} />
-          {dialects.length > 1 && <Switch dialects={dialects} current={dialect.key} onPick={(key) => go(switchPlace(place, key, dialects))} />}
+          <Breadcrumbs steps={steps} />
+          {dialects.length > 1 && <DialectSwitch dialects={dialects} current={dialect.key} onPick={(key) => go(switchPlace(place, key, dialects))} />}
         </div>
       )}
 

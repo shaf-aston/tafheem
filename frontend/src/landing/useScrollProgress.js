@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 // How far through a sticky track the reader is: 0 at its top, 1 once its
 // bottom reaches the viewport's.
-export const trackProgress = (r) => {
+const trackProgress = (r) => {
   const travel = r.height - innerHeight
   return travel > 0 ? -r.top / travel : 0
 }

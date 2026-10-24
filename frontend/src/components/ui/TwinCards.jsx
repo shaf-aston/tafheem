@@ -35,7 +35,7 @@ export function TwinRow({ label, words, flags, accent }) {
   )
 }
 
-export function TwinCard({ mine, text, partner, accent }) {
+function TwinCard({ mine, text, partner, accent }) {
   const mineWords = wordsOf(mine.text)
   const theirWords = wordsOf(partner.text)
   return (

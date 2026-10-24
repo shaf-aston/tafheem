@@ -14,7 +14,7 @@
 import config from '../../config/dictionary.json'
 
 /** The gap between the two halves of a verse, as the book writes it. */
-export const VERSE_GAP = ' ... '
+const VERSE_GAP = ' ... '
 
 /**
  * Split an entry body into its lines.

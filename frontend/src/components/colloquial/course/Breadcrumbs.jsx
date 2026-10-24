@@ -4,7 +4,7 @@ import WheelPicker from '../../ui/WheelPicker'
 import { FOCUS } from '../parts/Face'
 
 // Where you are, each earlier step a button back to it.
-export function Trail({ steps }) {
+export function Breadcrumbs({ steps }) {
   return (
     <nav aria-label="Where you are" className="flex flex-wrap items-center gap-x-2 gap-y-1 type-small">
       {steps.map((step, i) => {
@@ -25,7 +25,7 @@ export function Trail({ steps }) {
 // A quiet switch for learners who know more than one dialect: every dialect
 // walks the same spine, so the same unit and topic are there to land on. A unit
 // the other dialect has not written yet drops back to its unit list.
-export function Switch({ dialects, current, onPick }) {
+export function DialectSwitch({ dialects, current, onPick }) {
   return (
     <div className="ms-auto flex items-center gap-2 type-small text-[var(--text-faint)]">
       <span className="hidden sm:inline">Same place in</span>
