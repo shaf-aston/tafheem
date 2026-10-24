@@ -671,6 +671,16 @@ def test_a_ba_on_laysa_stays_a_modifier_before_its_ism_or_on_a_word_with_al(noun
     assert _kana(*toks)[1] == (1, "MOD")
 
 
+def test_a_ba_before_laysa_or_not_hung_as_a_modifier_is_left_as_parsed():
+    # بِسَيْفٍ لَسْتُ أَضْرِبُ: a باء before ليس is no خبر the تُ waits for
+    assert _kana(token(1, "ب+", "ب", "PRT", 3, "MOD", pos_camel="prep"),
+                 token(2, "سيف", "سيف", "NOM", 1, "OBJ", cas="g"),
+                 token(3, "لست", "ليس", "VRB", 0, "---", **VERB))[0] == (3, "MOD")
+    # only a باء the parser left a modifier is moved into the خبر
+    assert _kana(token(1, "لست", "ليس", "VRB", 0, "---", **VERB),
+                 token(2, "ب+", "ب", "PRT", 1, "OBJ", pos_camel="prep"),
+                 token(3, "غافل", "غافل", "NOM", 2, "OBJ", cas="g"))[1] == (1, "OBJ")
+
 def _hijazi(*toks):
     found = facts.Sentence(list(toks)).hijazi
     return [t["id"] for t in found] if found else None

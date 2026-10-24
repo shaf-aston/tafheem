@@ -58,6 +58,7 @@ def test_a_bare_inna_keeps_its_own_name():
     ("مَا اللَّهُ بِغَافِلٍ", "بِغَافِلٍ", "خبر ما"),
     ("وَمَا رَبُّكَ بِظَلَّامٍ لِلْعَبِيدِ", "بِظَلَّامٍ", "خبر ما"),
     ("مَا أَنْتَ بِمُؤْمِنٍ", "بِمُؤْمِنٍ", "خبر ما"),
+    ("مَا أَنْتَ بِالْكَاذِبِ", "بِالْكَاذِبِ", "خبر ما"),  # a participle keeps its ال and is the khabar still
     ("لَسْتُ بِغَافِلٍ", "بِغَافِلٍ", "خبر ليس"),
     ("أَلَسْتُ بِرَبِّكُمْ", "بِرَبِّكُمْ", "خبر ليس"),
 ])
@@ -67,6 +68,7 @@ def test_the_khabar_of_ma_and_laysa_behind_an_extra_ba(sentence, word, role):
 
 
 @pytest.mark.parametrize("sentence, word, role", [("مَا زَيْدٌ بِالْبَيْتِ", "بِالْبَيْتِ", "مجرور"),
+                                                  ("مَا زَيْدٌ كَأَسَدٍ", "كَأَسَدٍ", "مجرور"),  # the كاف is no extra باء
                                                   ("مَا أَنْتَ إِلَّا بَشَرٌ", "أَنْتَ", "مبتدأ"),
                                                   ("مَا أَحْسَنَ زَيْدًا", "زَيْدًا", "مفعول به")])
 def test_ma_governs_nothing_without_its_khabar(sentence, word, role):
@@ -76,3 +78,8 @@ def test_ma_governs_nothing_without_its_khabar(sentence, word, role):
 @pytest.mark.parametrize("sentence, word", [("إِنَّ هَذَا لَسِحْرٌ", "لَسِحْرٌ"), ("إِنَّ اللَّهَ لَغَفُورٌ", "لَغَفُورٌ")])
 def test_the_word_under_an_emphasis_lam_is_the_khabar_of_inna(sentence, word):
     assert card(sentence, word)["role"] == "خبر إن"
+
+
+def test_a_lam_the_sentence_rests_on_leaves_its_word_the_mubtada():
+    # لَزَيْدٌ قَائِمٌ: the لام heads the sentence and took no other word's place
+    assert card("لَزَيْدٌ قَائِمٌ", "لَزَيْدٌ")["role"] == "مبتدأ"
