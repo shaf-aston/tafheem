@@ -31,6 +31,7 @@ def test_ma_at_the_start_is_read_by_what_follows(sentence, said):
 
 @pytest.mark.parametrize("sentence, word, role, place", [
     ("لَيْسَ الطَّالِبُ بِكَسُولٍ", "بِكَسُولٍ", "خبر ليس", "منصوب محلًا"),
+    ("أَلَيْسَ اللَّهُ بِكَافٍ عَبْدَهُ", "بِكَافٍ", "خبر ليس", "منصوب محلًا"),  # the parser hung the باء under its noun
     ("كَفَى بِالْمَوْتِ وَاعِظًا", "بِالْمَوْتِ", "فاعل", "مرفوع محلًا"),
 ])
 def test_a_word_after_an_extra_ba_holds_its_place(sentence, word, role, place):

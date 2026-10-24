@@ -87,15 +87,17 @@ def object_after_tanween(tokens: list[dict]) -> None:
 def kana_subject(tokens: list[dict]) -> None:
     """لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so
     a word the parser made the خبر that the reader typed in raf', with no اسم beside it, is the
-    اسم; what the parser hung on it after it (here بِالصُّرَعَةِ) is the خبر."""
+    اسم; what the parser hung on it after it (here بِالصُّرَعَةِ) is the خبر. So too when the
+    parser had the اسم right but hung the خبر on it (لَيْسَ الطَّالِبُ بِكَسُولٍ), leaving كان none."""
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
-        if not (verb and token["rel"] == "PRD" and s.family(verb) == "kana" and verb["id"] < token["id"]
-                and noun_tagged(token) and typed_case_of(token) == "u"
-                and not any(subject_link(k) for k in s.kids(verb))):
+        if not (verb and s.family(verb) == "kana" and verb["id"] < token["id"] and noun_tagged(token)):
             continue
-        token["rel"] = "SBJ"
+        if token["rel"] == "PRD" and typed_case_of(token) == "u" and not any(subject_link(k) for k in s.kids(verb)):
+            token["rel"] = "SBJ"
+        elif not (subject_link(token) and not any(k["rel"] == "PRD" for k in s.kids(verb))):
+            continue
         told = next((k for k in s.kids(token) if k["id"] > token["id"] and k["rel"] == "MOD"
                      and (k["pos"] == "PRT" or typed_case_of(k) == "a")), None)
         if told:

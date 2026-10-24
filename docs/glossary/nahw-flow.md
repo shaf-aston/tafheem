@@ -36,7 +36,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/sy
 - since_jarr: a built time word that is also a preposition (مُنْذُ أَمْسِ، مُذْ شَهْرٍ) before a noun → the preposition, the noun its majrur (`backend/services/syntax/repair/typed.py`)
 - asked_man: an opening مَنْ with no verb in the sentence → the question word, not the relative (`backend/services/syntax/repair/asked.py`)
 - subject_clash: second noun after a raf' subject → the verb's object (`backend/services/syntax/repair/subject_clash.py`)
-- kana_subject: a raf' noun right after كان/ليس, with a later predicate → كان's subject, not its khabar (`backend/services/syntax/repair/subject_clash.py`)
+- kana_subject: a raf' noun right after كان/ليس, with a later predicate → كان's subject, not its khabar; a خبر the parser hung on the subject → كان's khabar (`backend/services/syntax/repair/subject_clash.py`)
 - zanna_pair: under ظن and its sisters, a nasb noun the parser kept as the subject of the nasb word after it → the verb's first object, that word its second (`backend/services/syntax/repair/subject_clash.py`)
 - praise_specified: after نعم/بئس, an indefinite nasb noun → the verb's تمييز (its doer a hidden pronoun), the raf' noun after → the one praised (`backend/services/syntax/repair/subject_clash.py`)
 - doer_after_object: a subject typed in nasb with a raf' word hung on it → the object, that word the doer (`backend/services/syntax/repair/subject_clash.py`)
@@ -63,6 +63,7 @@ Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` �
 - pointer_heads_its_noun: هذا الكتابُ → the pointer takes the pair's place
 - ma_cancels_inna: إنّما → ما stops إنّ working
 - listed_preposition_takes_majrur: رُبَّ رجلٍ → listed word becomes حرف جر
+- preposition_over_its_noun: أليس اللهُ بكافٍ → a حرف جر the parser hung under its jarr noun heads it
 - topic_carries_its_verb: الولدُ يكتبُ → noun is mubtadaʾ, verb clause its khabar
 - exception_word_by_case: خلا/عدا/حاشا read by the next noun's vowel
 - inner_sentence: زيدٌ أبوه عالمٌ → a mini sentence as khabar or ṣila
