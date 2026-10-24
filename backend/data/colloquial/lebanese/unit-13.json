@@ -14,7 +14,11 @@
     "oo": "و طويلة",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "T": "ط",
+    "S": "ص",
+    "D": "ض",
+    "Z": "ظ"
   },
   "lessons": [
     {
@@ -1521,6 +1525,830 @@
             "غِلَط",
             "بِالْحِسَاب"
           ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "thank-you-very-much",
+          "arabic": "مِرْسِي كْتِير",
+          "transliteration": "mersi ktiir"
+        },
+        {
+          "slot": "may-allah-reward-you-with-good-to-a-man",
+          "arabic": "جَزَاكَ اللَّهُ خَيْرًا",
+          "transliteration": "jazaaka llaahu khayran",
+          "reply": {
+            "arabic": "وَإِيَّاكَ",
+            "transliteration": "wa iyyaak",
+            "english": "And you too."
+          }
+        },
+        {
+          "slot": "may-allah-reward-you-with-good-to-a-woman",
+          "arabic": "جَزَاكِ اللَّهُ خَيْرًا",
+          "transliteration": "jazaaki llaahu khayran",
+          "reply": {
+            "arabic": "وَإِيَّاكِ",
+            "transliteration": "wa iyyaaki",
+            "english": "And you too."
+          }
+        },
+        {
+          "slot": "may-allah-bless-you-to-a-man",
+          "arabic": "بَارَكَ اللَّهُ فِيكَ",
+          "transliteration": "baaraka llaahu fiik",
+          "reply": {
+            "arabic": "وَفِيكَ بَارَكَ اللَّه",
+            "transliteration": "wa fiika baaraka llaah",
+            "english": "And may He bless you too."
+          }
+        },
+        {
+          "slot": "congratulations",
+          "arabic": "مَبْرُوك",
+          "transliteration": "mabruuk",
+          "reply": {
+            "arabic": "الله يْبَارِك فِيك",
+            "transliteration": "allah ybaarek fiik",
+            "english": "May God bless you."
+          }
+        },
+        {
+          "slot": "congratulations-on-your-success",
+          "arabic": "مَبْرُوك النَّجَاح",
+          "transliteration": "mabruuk ennajaa7"
+        },
+        {
+          "slot": "masha-allah-excellent-work",
+          "arabic": "مَا شَاءَ اللَّه، شُغْل مُمْتَاز",
+          "transliteration": "maa shaa2 allaah, shoghl mumtaaz"
+        },
+        {
+          "slot": "i-am-very-grateful-to-you-m",
+          "arabic": "أَنَا مَمْنُونَك كْتِير",
+          "transliteration": "ana mamnuunak ktiir"
+        },
+        {
+          "slot": "you-are-very-kind-to-a-man",
+          "arabic": "إِنْتَ كْتِير ذُوق",
+          "transliteration": "enta ktiir zoo2"
+        },
+        {
+          "slot": "i-will-never-forget-your-kindness-to-a-man",
+          "arabic": "عُمْرِي مَا بِنْسَى مَعْرُوفَك",
+          "transliteration": "3omri ma bensa ma3ruufak"
+        },
+        {
+          "slot": "praise-be-to-allah-everything-is-fine",
+          "arabic": "الحَمْدُ لِلَّه، كِلّ شِي مْنِيح",
+          "transliteration": "il7amdu lillaah, kell shi mnii7"
+        },
+        {
+          "slot": "don-t-mention-it-it-was-my-duty",
+          "arabic": "وَلَو، هَيْدَا وَاجْبِي",
+          "transliteration": "wlaw, hayda waajbi"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rana",
+          "slot": "congratulations-on-your-success"
+        },
+        {
+          "speaker": "Hiba",
+          "arabic": "الله يبارك فيكِ يا رنا، الحمد لله",
+          "transliteration": "allah ybaarek fiiki ya Rana, il7amdu lillaah",
+          "english": "God bless you, Rana, praise be to Allah."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "ما شاء الله، تعبتي كتير وطلعتي مبدعة",
+          "transliteration": "maa shaa2 allaah, t3ebti ktiir w Tle3ti mebde3a",
+          "english": "Masha'Allah, you worked very hard and it came out brilliant."
+        },
+        {
+          "speaker": "Hiba",
+          "arabic": "أنا ممنونتِك كتير، ساعدتيني بالدرس",
+          "transliteration": "ana mamnuuntik ktiir, saa3adtiini bedders",
+          "english": "I am very grateful to you, you helped me study."
+        },
+        {
+          "speaker": "Rana",
+          "slot": "don-t-mention-it-it-was-my-duty"
+        },
+        {
+          "speaker": "Hiba",
+          "arabic": "عمري ما بنسى معروفِك، إنتِ كتير طيّبة",
+          "transliteration": "3omri ma bensa ma3ruufik, enti ktiir Tayybe",
+          "english": "I will never forget your kindness, you are very kind."
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "تسلميلي",
+          "transliteration": "teslamiili",
+          "english": "Bless you."
+        },
+        {
+          "speaker": "Hiba",
+          "slot": "may-allah-reward-you-with-good-to-a-woman"
+        },
+        {
+          "speaker": "Rana",
+          "slot": "may-allah-reward-you-with-good-to-a-woman",
+          "reply": true
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "كيفها إمّك؟",
+          "transliteration": "keefa emmik?",
+          "english": "How is your mother?"
+        },
+        {
+          "speaker": "Hiba",
+          "slot": "praise-be-to-allah-everything-is-fine"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "ما شاء الله، ألف مبروك إلِك ولإمّك",
+          "transliteration": "maa shaa2 allaah, alf mabruuk elik w la emmik",
+          "english": "Masha'Allah, many congratulations to you and your mother."
+        },
+        {
+          "speaker": "Hiba",
+          "slot": "thank-you-very-much"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "جَزَاكَ اللَّهُ خَيْرًا",
+            "transliteration": "jazaaka llaahu khayran",
+            "english": "May Allah reward you with good."
+          },
+          "response": {
+            "arabic": "وَإِيَّاكَ",
+            "transliteration": "wa iyyaak",
+            "english": "And you too."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مَبْرُوك النَّجَاح",
+            "transliteration": "mabruuk ennajaa7",
+            "english": "Congratulations on your success."
+          },
+          "response": {
+            "arabic": "الله يْبَارِك فِيك",
+            "transliteration": "allah ybaarek fiik",
+            "english": "May God bless you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "مِرْسِي كْتِير",
+            "transliteration": "mersi ktiir",
+            "english": "Thank you very much."
+          },
+          "response": {
+            "arabic": "وَلَو، هَيْدَا وَاجْبِي",
+            "transliteration": "wlaw, hayda waajbi",
+            "english": "Don't mention it, it was my duty."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كيفك؟",
+            "transliteration": "keefak?",
+            "english": "How are you?"
+          },
+          "response": {
+            "arabic": "الحَمْدُ لِلَّه، كِلّ شِي مْنِيح",
+            "transliteration": "il7amdu lillaah, kell shi mnii7",
+            "english": "Praise be to Allah, everything is fine."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو رأيك بالمشروع؟",
+            "transliteration": "shu ra2yak bilmashruu3?",
+            "english": "What do you think of the project?"
+          },
+          "response": {
+            "arabic": "مَا شَاءَ اللَّه، شُغْل مُمْتَاز",
+            "transliteration": "maa shaa2 allaah, shoghl mumtaaz",
+            "english": "Masha'Allah, excellent work."
+          }
+        }
+      ],
+      "culture": "Beirutis thank with \"مرسي\", \"يسلمو\" or \"ممنونك\", and answer thanks with \"ولو\". The religious formulas, \"جزاك الله خيرًا\", \"بارك الله فيك\", \"ما شاء الله\" and \"الحمد لله\", are said in the same words in every dialect, and \"ما شاء الله\" is said when praising so that the praise carries no envy.",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A friend says: \"جزاك الله خيرًا.\" Reply.",
+          "answer": "وإيّاك",
+          "accepted": [
+            "وإيّاك",
+            "وَإِيَّاكَ",
+            "وإياك",
+            "wa iyyaak"
+          ],
+          "tip": "This reply is a set formula shared across all dialects; to a woman it is \"وإيّاكِ\"."
+        },
+        {
+          "id": "unit-13.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A friend says: \"مبروك النجاح.\" Say may God bless you.",
+          "answer": "الله يبارك فيك",
+          "accepted": [
+            "الله يبارك فيك",
+            "الله يْبَارِك فِيك",
+            "الله يبارك فيكِ",
+            "بارك الله فيك",
+            "allah ybaarek fiik"
+          ],
+          "tip": "\"الله يبارك فيك\" is the everyday answer to \"مبروك\"."
+        },
+        {
+          "id": "unit-13.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"جزاكَ اللهُ _____.\" (May Allah reward you with good, to a man.)",
+          "answer": "خيرًا",
+          "accepted": [
+            "خيرًا",
+            "خَيْرًا",
+            "خيرا",
+            "khayran"
+          ],
+          "tip": "The formula is said exactly the same way in every dialect."
+        },
+        {
+          "id": "unit-13.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أنا _____ كتير.\" (I am very grateful to you, a man speaking.)",
+          "answer": "ممنونك",
+          "accepted": [
+            "ممنونك",
+            "مَمْنُونَك",
+            "ممنونَك",
+            "mamnuunak"
+          ],
+          "too_formal": {
+            "item": "ممتنّ لك",
+            "feedback": "This is the written word; in Beirut \"grateful to you\" is \"ممنونك\"."
+          },
+          "tip": "A woman says \"ممنونتك\"."
+        },
+        {
+          "id": "unit-13.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Congratulations on your success.\"",
+          "answer": "مَبْرُوك النَّجَاح",
+          "accepted": [
+            "مَبْرُوك النَّجَاح",
+            "مبروك النجاح",
+            "مبروك عالنجاح",
+            "ألف مبروك النجاح",
+            "mabruuk ennajaa7"
+          ],
+          "too_formal": {
+            "item": "مبارك نجاحك",
+            "feedback": "Correct but formal; \"مبروك\" is what everyone says."
+          },
+          "tip": "\"ألف مبروك\", \"a thousand congratulations\", is warmer still."
+        },
+        {
+          "id": "unit-13.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (to a man): \"I will never forget your kindness.\"",
+          "answer": "عُمْرِي مَا بِنْسَى مَعْرُوفَك",
+          "accepted": [
+            "عُمْرِي مَا بِنْسَى مَعْرُوفَك",
+            "عمري ما بنسى معروفك",
+            "ما رح إنسى معروفك",
+            "3omri ma bensa ma3ruufak"
+          ],
+          "too_formal": {
+            "item": "لن أنسى معروفك أبدًا",
+            "feedback": "Correct but formal; \"عمري ما\" is the spoken \"never\"."
+          },
+          "tip": "\"عمري ما\" literally means \"in all my life, not\"."
+        },
+        {
+          "id": "unit-13.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Don't mention it, it was my duty.\"",
+          "answer": "وَلَو، هَيْدَا وَاجْبِي",
+          "accepted": [
+            "وَلَو، هَيْدَا وَاجْبِي",
+            "ولو، هيدا واجبي",
+            "ولو هيدا واجبي",
+            "ولو، واجبي",
+            "wlaw, hayda waajbi"
+          ],
+          "too_formal": {
+            "item": "لا شكر على واجب",
+            "feedback": "Correct and heard, but \"ولو\" is the everyday Beirut answer."
+          },
+          "tip": "\"ولو\" on its own already means \"don't mention it\"."
+        },
+        {
+          "id": "unit-13.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Praise be to Allah, everything is fine\"?",
+          "answer": "الحَمْدُ لِلَّه، كِلّ شِي مْنِيح",
+          "accepted": [
+            "الحَمْدُ لِلَّه، كِلّ شِي مْنِيح",
+            "الحمد لله، كل شي منيح",
+            "il7amdu lillaah, kell shi mnii7"
+          ],
+          "options": [
+            "الحَمْدُ لِلَّه، كِلّ شِي مْنِيح",
+            "ما شاء الله، شغل ممتاز",
+            "ولو، هيدا واجبي",
+            "مرسي كتير"
+          ],
+          "tip": "\"كلّ شي\" is the spoken \"everything\"."
+        },
+        {
+          "id": "unit-13.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"You are very kind\" (to a man)?",
+          "answer": "إِنْتَ كْتِير ذُوق",
+          "accepted": [
+            "إِنْتَ كْتِير ذُوق",
+            "إنت كتير ذوق",
+            "إنتَ كتير طيّب",
+            "enta ktiir zoo2"
+          ],
+          "options": [
+            "إِنْتَ كْتِير ذُوق",
+            "أنا ممنونك كتير",
+            "مبروك النجاح",
+            "عمري ما بنسى معروفك"
+          ],
+          "too_formal": {
+            "item": "أنت كريم جدًّا",
+            "feedback": "Correct but formal; \"ذوق\" is how Beirutis praise kindness."
+          },
+          "tip": "\"ذوق\" means tact and good manners."
+        },
+        {
+          "id": "unit-13.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put in order: \"معروفك / ما / عمري / بنسى\"",
+          "answer": "عمري ما بنسى معروفك",
+          "accepted": [
+            "عمري ما بنسى معروفك",
+            "عُمْرِي مَا بِنْسَى مَعْرُوفَك",
+            "3omri ma bensa ma3ruufak"
+          ],
+          "too_formal": {
+            "item": "لن أنسى معروفك أبدًا",
+            "feedback": "Correct but formal; \"عمري ما\" comes first in speech."
+          },
+          "tip": "To a woman: \"معروفِك\"."
+        },
+        {
+          "id": "unit-13.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the pieces in order: \"شغل / ما شاء الله / ممتاز\"",
+          "answer": "ما شاء الله شغل ممتاز",
+          "accepted": [
+            "ما شاء الله شغل ممتاز",
+            "مَا شَاءَ اللَّه، شُغْل مُمْتَاز",
+            "ما شاء الله، شغل ممتاز",
+            "maa shaa2 allaah, shoghl mumtaaz"
+          ],
+          "words": [
+            "ما شاء الله",
+            "شغل",
+            "ممتاز"
+          ],
+          "too_formal": {
+            "item": "ما شاء الله، عملٌ رائع",
+            "feedback": "Correct but formal; \"شغل\" is the spoken word for work."
+          },
+          "tip": "\"ما شاء الله\" stays the same in every dialect."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "i-am-sorry-m",
+          "arabic": "أَنَا آسِف",
+          "transliteration": "ana aasef"
+        },
+        {
+          "slot": "i-am-sorry-f",
+          "arabic": "أَنَا آسْفِة",
+          "transliteration": "ana aasfe",
+          "reply": {
+            "arabic": "وَلَا يْهِمِّك",
+            "transliteration": "wala yhemmik",
+            "english": "Don't worry about it."
+          }
+        },
+        {
+          "slot": "forgive-me-i-made-a-mistake",
+          "arabic": "سَامِحْنِي، غْلِطْت",
+          "transliteration": "saame7ni, ghleTt",
+          "reply": {
+            "arabic": "مْسَامْحَك",
+            "transliteration": "msaam7ak",
+            "english": "I forgive you."
+          }
+        },
+        {
+          "slot": "it-is-my-fault",
+          "arabic": "الحَقّ عَلَيِّ",
+          "transliteration": "el7a22 3alayyi"
+        },
+        {
+          "slot": "i-did-not-mean-it",
+          "arabic": "مَا كَان قَصْدِي",
+          "transliteration": "ma kaan 2aSdi"
+        },
+        {
+          "slot": "i-apologize-for-being-late",
+          "arabic": "بَعْتِذِر عَالتَّأْخِير",
+          "transliteration": "ba3tezer 3atta2khiir",
+          "reply": {
+            "arabic": "وَلَا يْهِمَّك، المْهِمّ إِنَّك إِجِيت",
+            "transliteration": "wala yhemmak, elmhemm ennak ejiit",
+            "english": "Never mind, what matters is that you came."
+          }
+        },
+        {
+          "slot": "i-broke-your-cup-i-am-very-sorry-m",
+          "arabic": "كَسَرْت فِنْجَانَك، أَنَا كْتِير آسِف",
+          "transliteration": "kasart fenjaanak, ana ktiir aasef"
+        },
+        {
+          "slot": "no-harm-done-it-is-a-small-matter",
+          "arabic": "مَا صَار شِي، القِصّة بَسِيطَة",
+          "transliteration": "ma Saar shi, el2eSSa basiiTa"
+        },
+        {
+          "slot": "may-allah-forgive-us-all",
+          "arabic": "غَفَرَ اللَّهُ لَنَا جَمِيعًا",
+          "transliteration": "ghafara llaahu lanaa jamii3an"
+        },
+        {
+          "slot": "i-accept-your-apology-to-a-man",
+          "arabic": "قْبِلْت اعْتِذَارَك",
+          "transliteration": "2belt e3tizaarak"
+        },
+        {
+          "slot": "don-t-be-sad-it-happens-to-everyone-to-a-man",
+          "arabic": "مَا تِزْعَل، بْتِصِير مَع الكِلّ",
+          "transliteration": "ma tez3al, btSiir ma3 elkell"
+        },
+        {
+          "slot": "i-will-be-more-careful-next-time",
+          "arabic": "المَرّة الجَايِة بَنْتِبِه أَكْتَر",
+          "transliteration": "elmarra ejjaaye bentebeh aktar"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ali",
+          "slot": "i-am-sorry-m"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "شو صار؟",
+          "transliteration": "shu Saar?",
+          "english": "What happened?"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-broke-your-cup-i-am-very-sorry-m"
+        },
+        {
+          "speaker": "Rami",
+          "slot": "no-harm-done-it-is-a-small-matter"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-did-not-mean-it"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "it-is-my-fault"
+        },
+        {
+          "speaker": "Rami",
+          "slot": "don-t-be-sad-it-happens-to-everyone-to-a-man"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "forgive-me-i-made-a-mistake"
+        },
+        {
+          "speaker": "Rami",
+          "slot": "forgive-me-i-made-a-mistake",
+          "reply": true
+        },
+        {
+          "speaker": "Rami",
+          "slot": "may-allah-forgive-us-all"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "وبعتذر كمان عالتأخير مبارح، كانت الطريق زحمة",
+          "transliteration": "w ba3tezer kamaan 3atta2khiir mbaare7, kaanet eTTarii2 za7me",
+          "english": "And I also apologise for being late yesterday, the road was jammed."
+        },
+        {
+          "speaker": "Rami",
+          "slot": "i-apologize-for-being-late",
+          "reply": true
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-will-be-more-careful-next-time"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "يلّا، تعا نشرب فنجان قهوة",
+          "transliteration": "yalla, ta3a neshrab fenjaan 2ahwe",
+          "english": "Come on, let's have a cup of coffee."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أَنَا آسِف",
+            "transliteration": "ana aasef",
+            "english": "I am sorry."
+          },
+          "response": {
+            "arabic": "مَا صَار شِي، القِصّة بَسِيطَة",
+            "transliteration": "ma Saar shi, el2eSSa basiiTa",
+            "english": "No harm done, it is a small matter."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بتقبل اعتذاري؟",
+            "transliteration": "bte2bal e3tizaari?",
+            "english": "Do you accept my apology?"
+          },
+          "response": {
+            "arabic": "إي، قبلت اعتذارك",
+            "transliteration": "ee, 2belt e3tizaarak",
+            "english": "Yes, I accept your apology."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش تأخّرت؟",
+            "transliteration": "leesh t2akhkhart?",
+            "english": "Why were you late?"
+          },
+          "response": {
+            "arabic": "بعتذر عالتأخير، الطريق كانت زحمة",
+            "transliteration": "ba3tezer 3atta2khiir, eTTarii2 kaanet za7me",
+            "english": "I apologise for being late, the road was jammed."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "سَامِحْنِي، غْلِطْت",
+            "transliteration": "saame7ni, ghleTt",
+            "english": "Forgive me, I made a mistake."
+          },
+          "response": {
+            "arabic": "مْسَامْحَك",
+            "transliteration": "msaam7ak",
+            "english": "I forgive you."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كان قصدك؟",
+            "transliteration": "kaan 2aSdak?",
+            "english": "Did you mean it?"
+          },
+          "response": {
+            "arabic": "لأ، ما كانت نيّتي هيك",
+            "transliteration": "la2, ma kaanet niyyti heek",
+            "english": "No, that wasn't my intention."
+          }
+        }
+      ],
+      "culture": "In Beirut people own up quickly with \"الحق عليّ\" or \"ما كان قصدي\", and young people often just say \"سوري\"; the other person answers \"ولا يهمّك\" or \"مسامحك\". A quick, forgiving reply is valued, and \"غفر الله لنا جميعًا\" is a du'a said in the same words in every dialect.",
+      "exercises": [
+        {
+          "id": "unit-13.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your friend says: \"أنا آسف.\" Say no harm done, it is a small matter.",
+          "answer": "ما صار شي، القصّة بسيطة",
+          "accepted": [
+            "ما صار شي، القصّة بسيطة",
+            "مَا صَار شِي، القِصّة بَسِيطَة",
+            "ما صار شي القصة بسيطة",
+            "ما صار شي",
+            "ولا يهمّك",
+            "ma Saar shi, el2eSSa basiiTa"
+          ],
+          "too_formal": {
+            "item": "لا بأس، الأمر بسيط",
+            "feedback": "Correct but formal; \"ما صار شي\" is the spoken \"nothing happened\"."
+          },
+          "tip": "\"القصّة\" is \"the matter\", literally \"the story\"."
+        },
+        {
+          "id": "unit-13.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Your friend says: \"سامحني، غلطت.\" Say you forgive him.",
+          "answer": "مسامحك",
+          "accepted": [
+            "مسامحك",
+            "مْسَامْحَك",
+            "ولا يهمّك، مسامحك",
+            "msaam7ak"
+          ],
+          "too_formal": {
+            "item": "سامحتك",
+            "feedback": "Correct but stiff; \"مسامحك\" is how it is said."
+          },
+          "tip": "Said to a woman it is \"مسامحِك\"; a woman speaking says \"مسامحتك\"."
+        },
+        {
+          "id": "unit-13.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بعتذر _____.\" (I apologise for being late.)",
+          "answer": "عالتأخير",
+          "accepted": [
+            "عالتأخير",
+            "عَالتَّأْخِير",
+            "ع التأخير",
+            "على التأخير",
+            "3atta2khiir"
+          ],
+          "too_formal": {
+            "item": "عن التأخّر",
+            "feedback": "This is the written form; in speech it is \"عالتأخير\"."
+          },
+          "tip": "\"بعتذر\" is the spoken \"I apologise\"."
+        },
+        {
+          "id": "unit-13.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"سامحني، _____.\" (Forgive me, I made a mistake.)",
+          "answer": "غلطت",
+          "accepted": [
+            "غلطت",
+            "غْلِطْت",
+            "ghleTt"
+          ],
+          "too_formal": {
+            "item": "أخطأت",
+            "feedback": "This is the written verb; in speech \"make a mistake\" is \"غلط\"."
+          },
+          "tip": "\"غلطة\" is \"a mistake\"."
+        },
+        {
+          "id": "unit-13.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I did not mean it.\"",
+          "answer": "مَا كَان قَصْدِي",
+          "accepted": [
+            "مَا كَان قَصْدِي",
+            "ما كان قصدي",
+            "مش قصدي",
+            "ma kaan 2aSdi"
+          ],
+          "too_formal": {
+            "item": "لم أقصد ذلك",
+            "feedback": "Correct but formal; \"ما كان قصدي\" is the spoken way."
+          },
+          "tip": "\"قصدي\" is \"my intention\", said with a hamza: \"2aSdi\"."
+        },
+        {
+          "id": "unit-13.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (a man to a man): \"I broke your cup, I am very sorry.\"",
+          "answer": "كَسَرْت فِنْجَانَك، أَنَا كْتِير آسِف",
+          "accepted": [
+            "كَسَرْت فِنْجَانَك، أَنَا كْتِير آسِف",
+            "كسرت فنجانك، أنا كتير آسف",
+            "كسرت فنجانك، آسف كتير",
+            "كسرت كبّايتك، أنا كتير آسف",
+            "kasart fenjaanak, ana ktiir aasef"
+          ],
+          "too_formal": {
+            "item": "كسرت كوبك، أنا آسف جدًّا",
+            "feedback": "Correct but formal; \"كتير\" is the spoken \"very\"."
+          },
+          "tip": "A woman says \"أنا كتير آسفة\"."
+        },
+        {
+          "id": "unit-13.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (to a man): \"Don't be sad, it happens to everyone.\"",
+          "answer": "مَا تِزْعَل، بْتِصِير مَع الكِلّ",
+          "accepted": [
+            "مَا تِزْعَل، بْتِصِير مَع الكِلّ",
+            "ما تزعل، بتصير مع الكل",
+            "ما تزعل بتصير مع الكل",
+            "ma tez3al, btSiir ma3 elkell"
+          ],
+          "too_formal": {
+            "item": "لا تحزن، هذا يحدث للجميع",
+            "feedback": "Correct but formal; \"ما تزعل\" is the spoken \"don't be upset\"."
+          },
+          "tip": "To a woman: \"ما تزعلي\"."
+        },
+        {
+          "id": "unit-13.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"I accept your apology\" (to a man)?",
+          "answer": "قْبِلْت اعْتِذَارَك",
+          "accepted": [
+            "قْبِلْت اعْتِذَارَك",
+            "قبلت اعتذارك",
+            "2belt e3tizaarak"
+          ],
+          "options": [
+            "قْبِلْت اعْتِذَارَك",
+            "بعتذر عالتأخير",
+            "الحق عليّ",
+            "ما كان قصدي"
+          ],
+          "tip": "\"قبل\" is \"to accept\", said with a hamza: \"2ebel\"."
+        },
+        {
+          "id": "unit-13.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"It is my fault\"?",
+          "answer": "الحَقّ عَلَيِّ",
+          "accepted": [
+            "الحَقّ عَلَيِّ",
+            "الحق عليّ",
+            "الحق علي",
+            "الغلطة غلطتي",
+            "el7a22 3alayyi"
+          ],
+          "options": [
+            "الحَقّ عَلَيِّ",
+            "ما صار شي",
+            "مسامحك",
+            "ما تزعل"
+          ],
+          "too_formal": {
+            "item": "هذا خطئي",
+            "feedback": "Correct but formal; \"الحق عليّ\" is the everyday Lebanese way."
+          },
+          "tip": "\"الحق عليّ\" literally means \"the blame is on me\"."
+        },
+        {
+          "id": "unit-13.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put in order: \"الكلّ / ما تزعل / مع / بتصير\"",
+          "answer": "ما تزعل بتصير مع الكلّ",
+          "accepted": [
+            "ما تزعل بتصير مع الكلّ",
+            "مَا تِزْعَل، بْتِصِير مَع الكِلّ",
+            "ما تزعل، بتصير مع الكل",
+            "ma tez3al, btSiir ma3 elkell"
+          ],
+          "words": [
+            "ما تزعل",
+            "بتصير",
+            "مع",
+            "الكلّ"
+          ],
+          "too_formal": {
+            "item": "لا تحزن، هذا يحدث للجميع",
+            "feedback": "Correct but formal; \"بتصير\" is the spoken \"it happens\"."
+          },
+          "tip": "\"الكلّ\" means \"everyone\"."
+        },
+        {
+          "id": "unit-13.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put in order: \"بنتبه / المرّة / أكتر / الجاية\"",
+          "answer": "المرّة الجاية بنتبه أكتر",
+          "accepted": [
+            "المرّة الجاية بنتبه أكتر",
+            "المَرّة الجَايِة بَنْتِبِه أَكْتَر",
+            "المرة الجاية بنتبه أكتر",
+            "بنتبه أكتر المرّة الجاية",
+            "elmarra ejjaaye bentebeh aktar"
+          ],
+          "too_formal": {
+            "item": "سأكون أكثر حذرًا في المرّة القادمة",
+            "feedback": "Correct but formal; \"الجاية\" is the spoken \"next\"."
+          },
+          "tip": "\"أكتر\" is \"more\", with ث said as ت."
         }
       ]
     }

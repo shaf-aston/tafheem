@@ -17,7 +17,8 @@
     "2": "ء",
     "aa": "ا طويلة",
     "ee": "ي طويلة",
-    "oo": "و طويلة"
+    "oo": "و طويلة",
+    "Z": "ظ"
   },
   "lessons": [
     {
@@ -1538,6 +1539,1591 @@
             "feedback": "صحيحة بس فصحى ورسمية هواية، مو هيچ يحچون بالحچي اليومي"
           },
           "tip": "اكو = there is"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "where-is-the-national-museum",
+          "arabic": "وين المتحف الوطني؟",
+          "transliteration": "ween il-mat7af il-wa6ani?"
+        },
+        {
+          "slot": "how-do-i-get-to-the-old-city",
+          "arabic": "شلون أوصل للمدينة القديمة؟",
+          "transliteration": "shloon awSal lil-madeena il-gadeema?"
+        },
+        {
+          "slot": "how-much-is-the-entry-ticket",
+          "arabic": "بيش تذكرة الدخول؟",
+          "transliteration": "beesh tathkarat id-dukhool?"
+        },
+        {
+          "slot": "what-are-the-opening-hours",
+          "arabic": "شنو أوقات الدوام؟",
+          "transliteration": "shinu awgaat id-dawaam?",
+          "reply": {
+            "arabic": "من الثمانية الصبح لحد الثنتين الظهر",
+            "transliteration": "min ith-thmaanya iS-Sub7 li-7add ith-thinteen iZ-Zuhur",
+            "english": "From eight in the morning until two in the afternoon"
+          }
+        },
+        {
+          "slot": "walk-straight-then-turn-left",
+          "arabic": "امشي گبالك، بعدين لف عاليسار",
+          "transliteration": "imshi gbaalak, ba3deen liff 3al-yisaar"
+        },
+        {
+          "slot": "i-want-a-guided-tour",
+          "arabic": "أريد جولة ويّا مرشد",
+          "transliteration": "areed jawla wiyya murshid"
+        },
+        {
+          "slot": "can-i-take-photos-here",
+          "arabic": "أگدر أصوّر هنا؟",
+          "transliteration": "agdar aSawwir hnaa?",
+          "reply": {
+            "arabic": "إي، بس بلا فلاش",
+            "transliteration": "ee, bass bila flaash",
+            "english": "Yes, but without the flash"
+          }
+        },
+        {
+          "slot": "where-is-the-grand-mosque",
+          "arabic": "وين الجامع الچبير؟",
+          "transliteration": "ween ij-jaami3 ich-chibeer?"
+        },
+        {
+          "slot": "can-visitors-enter-the-mosque",
+          "arabic": "يگدرون الزوّار يدخلون الجامع؟",
+          "transliteration": "yigdaroon iz-zuwwaar yidkhuloon ij-jaami3?",
+          "reply": {
+            "arabic": "إي، بغير أوقات الصلاة",
+            "transliteration": "ee, b-ghayr awgaat iS-Salaa",
+            "english": "Yes, outside prayer times"
+          }
+        },
+        {
+          "slot": "please-take-off-your-shoes-at-the-entrance",
+          "arabic": "لو سمحت، اشلع قندرتك بالمدخل",
+          "transliteration": "law sama7t, ishla3 gundartak bil-madkhal"
+        },
+        {
+          "slot": "where-is-the-castle",
+          "arabic": "وين القلعة؟",
+          "transliteration": "ween il-gal3a?"
+        },
+        {
+          "slot": "how-beautiful-this-place-is",
+          "arabic": "شگد حلو هالمكان!",
+          "transliteration": "shgad 7ilu hal-makaan!",
+          "reply": {
+            "arabic": "إي والله، من أحلى المعالم",
+            "transliteration": "ee wallaa, min a7la il-ma3aalim",
+            "english": "Yes indeed, it's one of the most beautiful sights"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Noor",
+          "arabic": "السلام عليكم، لو سمحت وين المتحف الوطني؟",
+          "transliteration": "is-salaamu 3alaykum, law sama7t ween il-mat7af il-wa6ani?",
+          "english": "Peace be upon you, excuse me, where is the national museum?"
+        },
+        {
+          "speaker": "Passer-by",
+          "arabic": "وعليكم السلام. امشَي گبالچ، بعدين لفّي عاليسار",
+          "transliteration": "w-3alaykum is-salaam. imshay gbaalich, ba3deen liffi 3al-yisaar",
+          "english": "And peace be upon you. Walk straight, then turn left"
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "شكراً. بعيد؟",
+          "transliteration": "shukran. ba3eed?",
+          "english": "Thanks. Is it far?"
+        },
+        {
+          "speaker": "Passer-by",
+          "arabic": "لا، خمس دقايق مشي",
+          "transliteration": "la, khams dagaayig mashi",
+          "english": "No, five minutes on foot"
+        },
+        {
+          "speaker": "Noor",
+          "slot": "how-much-is-the-entry-ticket"
+        },
+        {
+          "speaker": "Ticket clerk",
+          "arabic": "خمسة آلاف للكبار، وألفين للجهّال",
+          "transliteration": "khamsat aalaaf lil-kbaar, w-alfeen lij-jihhaal",
+          "english": "Five thousand for adults and two thousand for children"
+        },
+        {
+          "speaker": "Noor",
+          "slot": "what-are-the-opening-hours"
+        },
+        {
+          "speaker": "Ticket clerk",
+          "slot": "what-are-the-opening-hours",
+          "reply": true
+        },
+        {
+          "speaker": "Noor",
+          "slot": "can-i-take-photos-here"
+        },
+        {
+          "speaker": "Ticket clerk",
+          "slot": "can-i-take-photos-here",
+          "reply": true
+        },
+        {
+          "speaker": "Noor",
+          "arabic": "ووين الجامع الچبير؟ أريد أزوره بعد المتحف",
+          "transliteration": "w-ween ij-jaami3 ich-chibeer? areed azoora ba3d il-mat7af",
+          "english": "And where is the grand mosque? I want to visit it after the museum"
+        },
+        {
+          "speaker": "Ticket clerk",
+          "arabic": "قريب، يمّنا. بس اشلعي قندرتچ بالمدخل",
+          "transliteration": "gareeb, yammna. bass ishla3i gundartich bil-madkhal",
+          "english": "It's close, right by us. But take off your shoes at the entrance"
+        },
+        {
+          "speaker": "Noor",
+          "slot": "how-beautiful-this-place-is"
+        },
+        {
+          "speaker": "Ticket clerk",
+          "slot": "how-beautiful-this-place-is",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين المتحف الوطني؟",
+            "transliteration": "ween il-mat7af il-wa6ani?",
+            "english": "Where is the national museum?"
+          },
+          "response": {
+            "arabic": "امشي گبالك، بعدين لف عاليسار",
+            "transliteration": "imshi gbaalak, ba3deen liff 3al-yisaar",
+            "english": "Walk straight, then turn left"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شنو أوقات الدوام؟",
+            "transliteration": "shinu awgaat id-dawaam?",
+            "english": "What are the opening hours?"
+          },
+          "response": {
+            "arabic": "من الثمانية الصبح لحد الثنتين الظهر",
+            "transliteration": "min ith-thmaanya iS-Sub7 li-7add ith-thinteen iZ-Zuhur",
+            "english": "From eight in the morning until two in the afternoon"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أگدر أصوّر هنا؟",
+            "transliteration": "agdar aSawwir hnaa?",
+            "english": "Can I take photos here?"
+          },
+          "response": {
+            "arabic": "إي، بس بلا فلاش",
+            "transliteration": "ee, bass bila flaash",
+            "english": "Yes, but without the flash"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "يگدرون الزوّار يدخلون الجامع؟",
+            "transliteration": "yigdaroon iz-zuwwaar yidkhuloon ij-jaami3?",
+            "english": "Can visitors enter the mosque?"
+          },
+          "response": {
+            "arabic": "إي، بغير أوقات الصلاة",
+            "transliteration": "ee, b-ghayr awgaat iS-Salaa",
+            "english": "Yes, outside prayer times"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شگد حلو هالمكان!",
+            "transliteration": "shgad 7ilu hal-makaan!",
+            "english": "How beautiful this place is!"
+          },
+          "response": {
+            "arabic": "إي والله، من أحلى المعالم",
+            "transliteration": "ee wallaa, min a7la il-ma3aalim",
+            "english": "Yes indeed, it's one of the most beautiful sights"
+          }
+        }
+      ],
+      "culture": "Iraqis call opening hours \"الدوام\", the same word as working hours, so ask \"شنو أوقات الدوام؟\" before you set off. Big mosques in Baghdad welcome visitors outside prayer times: shoes come off at the door (\"اشلع القندرة\"), and women cover their hair and dress modestly.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A tourist asks you: \"وين المتحف الوطني؟\". Tell him to walk straight, then turn left.",
+          "answer": "امشي گبالك، بعدين لف عاليسار",
+          "accepted": [
+            "امشي گبالك، بعدين لف عاليسار",
+            "imshi gbaalak, ba3deen liff 3al-yisaar",
+            "امشي گبالك بعدين لف عاليسار",
+            "امشي كبالك بعدين لف عاليسار",
+            "امشي عدل وبعدين لف يسار"
+          ],
+          "too_formal": {
+            "item": "امشِ مباشرة ثم انعطف يساراً",
+            "feedback": "This is formal Arabic; Iraqis say \"امشي گبالك\" and \"لف\"."
+          },
+          "tip": "\"گبالك\" is straight ahead of you; to a woman it is \"امشَي گبالچ، لفّي\"."
+        },
+        {
+          "id": "unit-15.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "At the museum you ask \"أگدر أصوّر هنا؟\". The guard says yes, but no flash. What does he say?",
+          "answer": "إي، بس بلا فلاش",
+          "accepted": [
+            "إي، بس بلا فلاش",
+            "ee, bass bila flaash",
+            "اي بس بلا فلاش",
+            "إي بس بدون فلاش",
+            "ee bass bduun flaash"
+          ],
+          "too_formal": {
+            "item": "نعم، لكن دون فلاش",
+            "feedback": "\"نعم\" and \"لكن\" are formal; Iraqis say \"إي، بس\"."
+          },
+          "tip": "\"بلا\" means without."
+        },
+        {
+          "id": "unit-15.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "____ تذكرة الدخول؟ (How much is the entry ticket?)",
+          "answer": "بيش",
+          "accepted": [
+            "بيش",
+            "beesh",
+            "بيشْ",
+            "شگد سعر"
+          ],
+          "too_formal": {
+            "item": "بكم",
+            "feedback": "\"بكم\" is formal; Iraqis say \"بيش\"."
+          },
+          "tip": "\"بيش\" is the Iraqi way to ask how much."
+        },
+        {
+          "id": "unit-15.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "لو سمحت، اشلع ____ بالمدخل (Please take off your shoes at the entrance)",
+          "answer": "قندرتك",
+          "accepted": [
+            "قندرتك",
+            "gundartak",
+            "القندرة",
+            "حذاءك"
+          ],
+          "too_formal": {
+            "item": "حذاءك",
+            "feedback": "Understood, but in Baghdad shoes are \"قندرة\"."
+          },
+          "tip": "\"قندرة\" is the Iraqi word for shoe; \"اشلع\" is take off."
+        },
+        {
+          "id": "unit-15.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: How do I get to the old city?",
+          "answer": "شلون أوصل للمدينة القديمة؟",
+          "accepted": [
+            "شلون أوصل للمدينة القديمة؟",
+            "shloon awSal lil-madeena il-gadeema?",
+            "shloon awSal lil-madeena il-gadeema",
+            "شلون أوصل للمدينة القديمة",
+            "شلون اروح للمدينة القديمة؟"
+          ],
+          "too_formal": {
+            "item": "كيف أصل إلى المدينة القديمة؟",
+            "feedback": "\"كيف\" and \"إلى\" are formal; Iraqis say \"شلون\" and \"لـ\"."
+          },
+          "tip": "\"شلون\" is how; the ق of \"القديمة\" is said g."
+        },
+        {
+          "id": "unit-15.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: I want a tour with a guide",
+          "answer": "أريد جولة ويّا مرشد",
+          "accepted": [
+            "أريد جولة ويّا مرشد",
+            "areed jawla wiyya murshid",
+            "اريد جولة ويا مرشد",
+            "أريد جولة ويا دليل"
+          ],
+          "too_formal": {
+            "item": "أريد جولة مع مرشد سياحي",
+            "feedback": "\"مع\" is formal; Iraqis say \"ويّا\"."
+          },
+          "tip": "\"أريد\" is the Iraqi I want; \"ويّا\" is with."
+        },
+        {
+          "id": "unit-15.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which one asks if visitors can go into the mosque?",
+          "answer": "يگدرون الزوّار يدخلون الجامع؟",
+          "accepted": [
+            "يگدرون الزوّار يدخلون الجامع؟",
+            "yigdaroon iz-zuwwaar yidkhuloon ij-jaami3?",
+            "يكدرون الزوار يدخلون الجامع؟"
+          ],
+          "tip": "\"يگدرون\" is they can; \"جامع\" is the everyday word for mosque.",
+          "options": [
+            "يگدرون الزوّار يدخلون الجامع؟",
+            "وين الجامع الچبير؟",
+            "أگدر أصوّر هنا؟",
+            "وين القلعة؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "What do Iraqis call a museum's opening hours?",
+          "answer": "الدوام",
+          "accepted": [
+            "الدوام",
+            "id-dawaam",
+            "دوام",
+            "أوقات الدوام"
+          ],
+          "tip": "\"الدوام\" is also a person's working hours.",
+          "options": [
+            "الدوام",
+            "الجولة",
+            "المدخل",
+            "المعالم"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: Where is the grand mosque?",
+          "answer": "وين الجامع الچبير؟",
+          "accepted": [
+            "وين الجامع الچبير؟",
+            "ween ij-jaami3 ich-chibeer?",
+            "ween ij-jaami3 ich-chibeer",
+            "وين الجامع الكبير؟"
+          ],
+          "too_formal": {
+            "item": "أين المسجد الكبير؟",
+            "feedback": "\"أين\" is formal; Iraqis say \"وين\"."
+          },
+          "tip": "In Baghdad the ك of \"كبير\" is often said ch: \"چبير\"."
+        },
+        {
+          "id": "unit-15.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange: How beautiful this place is!",
+          "answer": "شگد حلو هالمكان!",
+          "accepted": [
+            "شگد حلو هالمكان!",
+            "shgad 7ilu hal-makaan!",
+            "shgad 7ilu hal-makaan",
+            "شكد حلو هالمكان",
+            "شگد حلو هالمكان"
+          ],
+          "too_formal": {
+            "item": "ما أجمل هذا المكان!",
+            "feedback": "This is formal; Iraqis say \"شگد حلو\"."
+          },
+          "tip": "\"هالـ\" is short for \"هذا الـ\", this.",
+          "words": [
+            "شگد",
+            "حلو",
+            "هالمكان!"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "the-sea-is-beautiful-today",
+          "arabic": "البحر حلو اليوم",
+          "transliteration": "il-ba7ar 7ilu il-yoom"
+        },
+        {
+          "slot": "where-can-we-sit-on-the-sand",
+          "arabic": "وين نگعد عالرمل؟",
+          "transliteration": "ween nig3ud 3ar-ramul?"
+        },
+        {
+          "slot": "i-want-to-swim",
+          "arabic": "أريد أسبح",
+          "transliteration": "areed asba7"
+        },
+        {
+          "slot": "is-the-water-cold",
+          "arabic": "الماي بارد؟",
+          "transliteration": "il-maay baarid?",
+          "reply": {
+            "arabic": "لا، دافي وحلو",
+            "transliteration": "la, daafi w-7ilu",
+            "english": "No, it's warm and nice"
+          }
+        },
+        {
+          "slot": "is-it-safe-to-swim-here",
+          "arabic": "السباحة هنا أمان؟",
+          "transliteration": "is-sibaa7a hnaa amaan?",
+          "reply": {
+            "arabic": "إي، بس دير بالك من الموج",
+            "transliteration": "ee, bass deer baalak min il-mooj",
+            "english": "Yes, but watch out for the waves"
+          }
+        },
+        {
+          "slot": "where-is-the-lifeguard",
+          "arabic": "وين المنقذ؟",
+          "transliteration": "ween il-mungith?"
+        },
+        {
+          "slot": "the-waves-are-high-today",
+          "arabic": "الموج عالي اليوم",
+          "transliteration": "il-mooj 3aali il-yoom"
+        },
+        {
+          "slot": "i-want-to-rent-a-beach-umbrella",
+          "arabic": "أريد أأجّر شمسيّة",
+          "transliteration": "areed a2ajjir shamsiyya"
+        },
+        {
+          "slot": "do-you-have-sunscreen",
+          "arabic": "عندك كريم شمس؟",
+          "transliteration": "3indak kreem shamis?",
+          "reply": {
+            "arabic": "إي، تفضّل",
+            "transliteration": "ee, tfaDDal",
+            "english": "Yes, here you are"
+          }
+        },
+        {
+          "slot": "the-weather-is-very-hot",
+          "arabic": "الجو كلّش حار",
+          "transliteration": "ij-jaw kullish 7aarr"
+        },
+        {
+          "slot": "drink-plenty-of-water",
+          "arabic": "اشرب ماي هواية",
+          "transliteration": "ishrab maay hwaaya"
+        },
+        {
+          "slot": "the-children-are-building-a-sandcastle",
+          "arabic": "الجهّال دا يبنون قلعة رمل",
+          "transliteration": "ij-jihhaal da-yibnoon gal3at ramul"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Omar",
+          "slot": "the-sea-is-beautiful-today"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "إي، بس الجو كلّش حار. وين نگعد؟",
+          "transliteration": "ee, bass ij-jaw kullish 7aarr. ween nig3ud?",
+          "english": "Yes, but the weather is very hot. Where do we sit?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "خلّي نأجّر شمسيّة يم الماي",
+          "transliteration": "khalli n2ajjir shamsiyya yamm il-maay",
+          "english": "Let's rent a beach umbrella near the water"
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "عندك كريم شمس للجهّال؟",
+          "transliteration": "3indak kreem shamis lij-jihhaal?",
+          "english": "Do you have sunscreen for the children?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "إي، يمّي. يلّا جهّال، حطّوا الكريم أول",
+          "transliteration": "ee, yammi. yalla jihhaal, 7u66u il-kreem awwal",
+          "english": "Yes, I have it. Come on, kids, put the cream on first"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وإنتي هم، اشربي ماي هواية",
+          "transliteration": "w-inti hamm, ishrabi maay hwaaya",
+          "english": "And you too, drink plenty of water"
+        },
+        {
+          "speaker": "Huda",
+          "slot": "where-is-the-lifeguard"
+        },
+        {
+          "speaker": "Lifeguard",
+          "arabic": "آني هنا خالة، شتحتاجين؟",
+          "transliteration": "aani hnaa khaala, shti7taajeen?",
+          "english": "I'm here, ma'am, what do you need?"
+        },
+        {
+          "speaker": "Huda",
+          "slot": "is-it-safe-to-swim-here"
+        },
+        {
+          "speaker": "Lifeguard",
+          "arabic": "إي، بس الموج شويّة عالي اليوم، لا تبعدون عن الشاطئ",
+          "transliteration": "ee, bass il-mooj shwayya 3aali il-yoom, la tib3idoon 3an ish-shaa6i",
+          "english": "Yes, but the waves are a bit high today, don't go far from the shore"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "is-the-water-cold"
+        },
+        {
+          "speaker": "Lifeguard",
+          "slot": "is-the-water-cold",
+          "reply": true
+        },
+        {
+          "speaker": "Huda",
+          "arabic": "الحمد لله. يلّا نبني قلعة رمل ويّا الجهّال",
+          "transliteration": "il-7amdu lillaah. yalla nibni gal3at ramul wiyya ij-jihhaal",
+          "english": "Thank God. Come on, let's build a sandcastle with the kids"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "الماي بارد؟",
+            "transliteration": "il-maay baarid?",
+            "english": "Is the water cold?"
+          },
+          "response": {
+            "arabic": "لا، دافي وحلو",
+            "transliteration": "la, daafi w-7ilu",
+            "english": "No, it's warm and nice"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "السباحة هنا أمان؟",
+            "transliteration": "is-sibaa7a hnaa amaan?",
+            "english": "Is it safe to swim here?"
+          },
+          "response": {
+            "arabic": "إي، بس دير بالك من الموج",
+            "transliteration": "ee, bass deer baalak min il-mooj",
+            "english": "Yes, but watch out for the waves"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك كريم شمس؟",
+            "transliteration": "3indak kreem shamis?",
+            "english": "Do you have sunscreen?"
+          },
+          "response": {
+            "arabic": "إي، تفضّل",
+            "transliteration": "ee, tfaDDal",
+            "english": "Yes, here you are"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الجو كلّش حار",
+            "transliteration": "ij-jaw kullish 7aarr",
+            "english": "The weather is very hot"
+          },
+          "response": {
+            "arabic": "اشرب ماي هواية",
+            "transliteration": "ishrab maay hwaaya",
+            "english": "Drink plenty of water"
+          }
+        }
+      ],
+      "culture": "Iraq's own coast is short, so many Baghdad families picnic on the banks of the Tigris or at a lake, and save the sea for a holiday trip. Families sit together under a \"شمسيّة\", women swim fully covered in women-only areas or not at all, and everyone keeps out of the midday sun.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your friend says: \"الجو كلّش حار\". Tell him to drink plenty of water.",
+          "answer": "اشرب ماي هواية",
+          "accepted": [
+            "اشرب ماي هواية",
+            "ishrab maay hwaaya",
+            "اشرب مي هواية",
+            "اشرب ماي كثير",
+            "اشربي ماي هواية",
+            "ishrabi maay hwaaya"
+          ],
+          "too_formal": {
+            "item": "اشرب الماء كثيراً",
+            "feedback": "\"الماء\" and \"كثيراً\" are formal; Iraqis say \"ماي هواية\"."
+          },
+          "tip": "\"هواية\" is a lot; to a woman say \"اشربي\"."
+        },
+        {
+          "id": "unit-15.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "You ask the lifeguard \"السباحة هنا أمان؟\". He says yes, but watch the waves. What does he say?",
+          "answer": "إي، بس دير بالك من الموج",
+          "accepted": [
+            "إي، بس دير بالك من الموج",
+            "ee, bass deer baalak min il-mooj",
+            "اي بس دير بالك من الموج",
+            "إي بس انتبه من الموج"
+          ],
+          "too_formal": {
+            "item": "نعم، لكن انتبه للأمواج",
+            "feedback": "This is formal; Iraqis say \"إي، بس دير بالك\"."
+          },
+          "tip": "\"دير بالك\" is watch out; to a woman \"ديري بالچ\"."
+        },
+        {
+          "id": "unit-15.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "أريد أأجّر ____ (I want to rent a beach umbrella)",
+          "answer": "شمسيّة",
+          "accepted": [
+            "شمسيّة",
+            "shamsiyya",
+            "شمسية",
+            "مظلة"
+          ],
+          "too_formal": {
+            "item": "مظلة شاطئ",
+            "feedback": "Correct but bookish; at the beach Iraqis ask for a \"شمسيّة\"."
+          },
+          "tip": "A sun or beach umbrella is a \"شمسيّة\" in Iraqi speech; \"مظلة\" is understood too."
+        },
+        {
+          "id": "unit-15.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "الجهّال ____ يبنون قلعة رمل (The children are building a sandcastle)",
+          "answer": "دا",
+          "accepted": [
+            "دا",
+            "da",
+            "دَ"
+          ],
+          "tip": "\"دا\" before a verb means it is happening right now."
+        },
+        {
+          "id": "unit-15.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: Where can we sit on the sand?",
+          "answer": "وين نگعد عالرمل؟",
+          "accepted": [
+            "وين نگعد عالرمل؟",
+            "ween nig3ud 3ar-ramul?",
+            "ween nig3ud 3ar-ramul",
+            "وين نكعد عالرمل",
+            "وين نگعد على الرمل؟"
+          ],
+          "too_formal": {
+            "item": "أين نجلس على الرمل؟",
+            "feedback": "\"أين\" and \"نجلس\" are formal; Iraqis say \"وين نگعد\"."
+          },
+          "tip": "\"نگعد\" is we sit; the ق is said g."
+        },
+        {
+          "id": "unit-15.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: I want to swim",
+          "answer": "أريد أسبح",
+          "accepted": [
+            "أريد أسبح",
+            "areed asba7",
+            "اريد اسبح",
+            "reed asba7",
+            "ريد أسبح"
+          ],
+          "too_formal": {
+            "item": "أريد أن أسبح",
+            "feedback": "The \"أن\" is formal; Iraqis drop it."
+          },
+          "tip": "\"أريد\" is often shortened to \"ريد\" in quick speech."
+        },
+        {
+          "id": "unit-15.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which one asks whether the water is cold?",
+          "answer": "الماي بارد؟",
+          "accepted": [
+            "الماي بارد؟",
+            "il-maay baarid?",
+            "الماي بارد"
+          ],
+          "tip": "\"ماي\" is water in Iraqi speech.",
+          "options": [
+            "الماي بارد؟",
+            "وين المنقذ؟",
+            "الموج عالي اليوم",
+            "البحر حلو اليوم"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"The waves are high today\"?",
+          "answer": "الموج عالي اليوم",
+          "accepted": [
+            "الموج عالي اليوم",
+            "il-mooj 3aali il-yoom"
+          ],
+          "tip": "\"موج\" is waves, one \"موجة\".",
+          "options": [
+            "الجو كلّش حار",
+            "الموج عالي اليوم",
+            "عندك كريم شمس؟",
+            "أريد أسبح"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: Do you have sunscreen? (to a man)",
+          "answer": "عندك كريم شمس؟",
+          "accepted": [
+            "عندك كريم شمس؟",
+            "3indak kreem shamis?",
+            "3indak kreem shamis",
+            "عندك كريم شمس",
+            "عندچ كريم شمس؟"
+          ],
+          "too_formal": {
+            "item": "هل معك كريم واقٍ من الشمس؟",
+            "feedback": "This is formal; Iraqis say \"عندك كريم شمس؟\"."
+          },
+          "tip": "To a woman: \"عندچ كريم شمس؟\"."
+        },
+        {
+          "id": "unit-15.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange: The weather is very hot",
+          "answer": "الجو كلّش حار",
+          "accepted": [
+            "الجو كلّش حار",
+            "ij-jaw kullish 7aarr",
+            "الجو كلش حار",
+            "الدنيا كلّش حر"
+          ],
+          "too_formal": {
+            "item": "الجو حار جداً",
+            "feedback": "\"جداً\" is formal; Iraqis say \"كلّش\"."
+          },
+          "tip": "\"كلّش\" is the Iraqi word for very."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-07",
+      "phrases": [
+        {
+          "slot": "i-want-a-souvenir-for-my-family",
+          "arabic": "أريد تذكار لأهلي",
+          "transliteration": "areed tithkaar l-ahli",
+          "reply": {
+            "arabic": "عندي هواية أشياء، تفضّل اختار",
+            "transliteration": "3indi hwaaya ashyaa2, tfaDDal ikhtaar",
+            "english": "I have lots of things, go ahead and choose"
+          }
+        },
+        {
+          "slot": "do-you-have-good-dates",
+          "arabic": "عندك تمر زين؟",
+          "transliteration": "3indak tamur zeen?",
+          "reply": {
+            "arabic": "إي، تفضّل ذوگ",
+            "transliteration": "ee, tfaDDal thoog",
+            "english": "Yes, go ahead and taste"
+          }
+        },
+        {
+          "slot": "i-want-a-box-of-spices-as-a-gift",
+          "arabic": "أريد علبة بهارات هديّة",
+          "transliteration": "areed 3ilbat bahaaraat hadiyya"
+        },
+        {
+          "slot": "what-is-this-perfume",
+          "arabic": "شنو هذا العطر؟",
+          "transliteration": "shinu haatha il-3i6ir?",
+          "reply": {
+            "arabic": "هذا عود طبيعي",
+            "transliteration": "haatha 3ood 6abee3i",
+            "english": "This is natural oud"
+          }
+        },
+        {
+          "slot": "i-want-a-small-bottle-of-oud-oil",
+          "arabic": "أريد قنينة صغيرة دهن عود",
+          "transliteration": "areed ginneena Sgheera dihin 3ood"
+        },
+        {
+          "slot": "is-this-handmade",
+          "arabic": "هذا شغل إيد؟",
+          "transliteration": "haatha shughul eed?",
+          "reply": {
+            "arabic": "إي، شغل إيد مية بالمية",
+            "transliteration": "ee, shughul eed meeya bil-meeya",
+            "english": "Yes, handmade one hundred percent"
+          }
+        },
+        {
+          "slot": "i-want-a-prayer-rug",
+          "arabic": "أريد سجّادة صلاة",
+          "transliteration": "areed sajjaadat Salaa"
+        },
+        {
+          "slot": "this-wooden-box-is-beautiful",
+          "arabic": "هذا الصندوگ الخشبي حلو",
+          "transliteration": "haatha iS-Sandoog il-khashabi 7ilu"
+        },
+        {
+          "slot": "a-lower-price-if-i-buy-two",
+          "arabic": "إذا أشتري ثنين، تنطيني بسعر أرخص؟",
+          "transliteration": "itha ashtiri thneen, tin6eeni b-si3ir arkhaS?",
+          "reply": {
+            "arabic": "تدلّل، أنزّلك شويّة",
+            "transliteration": "tdallal, anazzil-lak shwayya",
+            "english": "As you wish, I'll take a bit off for you"
+          }
+        },
+        {
+          "slot": "can-you-wrap-it-as-a-gift",
+          "arabic": "تگدر تلفّه هديّة؟",
+          "transliteration": "tigdar tliffa hadiyya?",
+          "reply": {
+            "arabic": "على عيني",
+            "transliteration": "3ala 3eeni",
+            "english": "With pleasure (lit. on my eye)"
+          }
+        },
+        {
+          "slot": "i-want-a-silk-scarf-for-my-sister",
+          "arabic": "أريد شال حرير لأختي",
+          "transliteration": "areed shaal 7areer l-ukhti"
+        },
+        {
+          "slot": "this-is-a-gift-for-my-mother",
+          "arabic": "هاي هديّة لأمّي، إن شاء الله تعجبها",
+          "transliteration": "haay hadiyya l-ummi, in shaa allaa ti3jibha",
+          "reply": {
+            "arabic": "أكيد تعجبها، ذوگك حلو",
+            "transliteration": "akeed ti3jibha, thoogak 7ilu",
+            "english": "She'll surely like it, you have good taste"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Samer",
+          "arabic": "السلام عليكم، أريد تذكار لأهلي",
+          "transliteration": "is-salaamu 3alaykum, areed tithkaar l-ahli",
+          "english": "Peace be upon you, I want a souvenir for my family"
+        },
+        {
+          "speaker": "Abu Khalid",
+          "slot": "i-want-a-souvenir-for-my-family",
+          "reply": true
+        },
+        {
+          "speaker": "Samer",
+          "slot": "do-you-have-good-dates"
+        },
+        {
+          "speaker": "Abu Khalid",
+          "slot": "do-you-have-good-dates",
+          "reply": true
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "كلّش طيّب! آخذ علبة. وشنو هذا العطر؟",
+          "transliteration": "kullish 6ayyib! aakhuth 3ilba. w-shinu haatha il-3i6ir?",
+          "english": "Very tasty! I'll take a box. And what is this perfume?"
+        },
+        {
+          "speaker": "Abu Khalid",
+          "arabic": "هذا عود طبيعي، ريحته كلّش حلوة",
+          "transliteration": "haatha 3ood 6abee3i, ree7ta kullish 7ilwa",
+          "english": "This is natural oud, its scent is lovely"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "وهذا الصندوگ شغل إيد؟",
+          "transliteration": "w-haatha iS-Sandoog shughul eed?",
+          "english": "And is this box handmade?"
+        },
+        {
+          "speaker": "Abu Khalid",
+          "slot": "is-this-handmade",
+          "reply": true
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "أريد سجّادة صلاة هم. إذا أشتري ثنين، تنطيني بسعر أرخص؟",
+          "transliteration": "areed sajjaadat Salaa hamm. itha ashtiri thneen, tin6eeni b-si3ir arkhaS?",
+          "english": "I want a prayer rug too. If I buy two, will you give me a lower price?"
+        },
+        {
+          "speaker": "Abu Khalid",
+          "slot": "a-lower-price-if-i-buy-two",
+          "reply": true
+        },
+        {
+          "speaker": "Samer",
+          "slot": "can-you-wrap-it-as-a-gift"
+        },
+        {
+          "speaker": "Abu Khalid",
+          "slot": "can-you-wrap-it-as-a-gift",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هذا شغل إيد؟",
+            "transliteration": "haatha shughul eed?",
+            "english": "Is this handmade?"
+          },
+          "response": {
+            "arabic": "إي، شغل إيد مية بالمية",
+            "transliteration": "ee, shughul eed meeya bil-meeya",
+            "english": "Yes, handmade one hundred percent"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إذا أشتري ثنين، تنطيني بسعر أرخص؟",
+            "transliteration": "itha ashtiri thneen, tin6eeni b-si3ir arkhaS?",
+            "english": "Will you give me a lower price if I buy two?"
+          },
+          "response": {
+            "arabic": "تدلّل، أنزّلك شويّة",
+            "transliteration": "tdallal, anazzil-lak shwayya",
+            "english": "As you wish, I'll take a bit off for you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شنو هذا العطر؟",
+            "transliteration": "shinu haatha il-3i6ir?",
+            "english": "What is this perfume?"
+          },
+          "response": {
+            "arabic": "هذا عود طبيعي",
+            "transliteration": "haatha 3ood 6abee3i",
+            "english": "This is natural oud"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك تمر زين؟",
+            "transliteration": "3indak tamur zeen?",
+            "english": "Do you have good dates?"
+          },
+          "response": {
+            "arabic": "إي، تفضّل ذوگ",
+            "transliteration": "ee, tfaDDal thoog",
+            "english": "Yes, go ahead and taste"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تگدر تلفّه هديّة؟",
+            "transliteration": "tigdar tliffa hadiyya?",
+            "english": "Can you wrap it as a gift?"
+          },
+          "response": {
+            "arabic": "على عيني",
+            "transliteration": "3ala 3eeni",
+            "english": "With pleasure"
+          }
+        }
+      ],
+      "culture": "In Baghdad visitors buy gifts in the old markets: copper trays in Souq al-Safafeer, and dates, spices and cloth in al-Shorja. Iraqi dates such as برحي and خستاوي are a favourite gift, sellers often let you taste first, and gentle bargaining is answered with \"تدلّل\" or \"على عيني\".",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-07.reply.01",
+          "type": "reply",
+          "prompt": "You ask the seller: \"تگدر تلفّه هديّة؟\". He says \"with pleasure\". What does he say?",
+          "answer": "على عيني",
+          "accepted": [
+            "على عيني",
+            "3ala 3eeni",
+            "على عيوني",
+            "3ala 3yooni",
+            "تدلّل",
+            "tdallal"
+          ],
+          "too_formal": {
+            "item": "بكل سرور",
+            "feedback": "This is formal; an Iraqi seller says \"على عيني\" or \"تدلّل\"."
+          },
+          "tip": "\"على عيني\" (lit. on my eye) is a warm Iraqi yes."
+        },
+        {
+          "id": "unit-15.lesson-07.reply.02",
+          "type": "reply",
+          "prompt": "You say: \"هاي هديّة لأمّي، إن شاء الله تعجبها\". The seller reassures you. What does he say?",
+          "answer": "أكيد تعجبها، ذوگك حلو",
+          "accepted": [
+            "أكيد تعجبها، ذوگك حلو",
+            "akeed ti3jibha, thoogak 7ilu",
+            "أكيد تعجبها",
+            "akeed ti3jibha",
+            "إن شاء الله تعجبها"
+          ],
+          "too_formal": {
+            "item": "بالتأكيد ستعجبها",
+            "feedback": "This is formal; Iraqis say \"أكيد تعجبها\"."
+          },
+          "tip": "\"ذوگ\" is taste, with the Iraqi g for ق."
+        },
+        {
+          "id": "unit-15.lesson-07.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "هذا شغل ____؟ (Is this handmade?)",
+          "answer": "إيد",
+          "accepted": [
+            "إيد",
+            "eed",
+            "ايد",
+            "يد"
+          ],
+          "too_formal": {
+            "item": "مصنوع يدوياً",
+            "feedback": "Correct but bookish; Iraqis say \"شغل إيد\"."
+          },
+          "tip": "\"شغل إيد\" (hand work) is the everyday way to say handmade."
+        },
+        {
+          "id": "unit-15.lesson-07.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "إذا أشتري ثنين، ____ بسعر أرخص؟ (Will you give me a lower price if I buy two?)",
+          "answer": "تنطيني",
+          "accepted": [
+            "تنطيني",
+            "tin6eeni",
+            "تعطيني",
+            "ti36eeni"
+          ],
+          "too_formal": {
+            "item": "هل تعطيني سعراً أقل",
+            "feedback": "This is formal; Iraqis say \"تنطيني بسعر أرخص\"."
+          },
+          "tip": "\"تنطيني\" is the Baghdad form of \"تعطيني\", give me."
+        },
+        {
+          "id": "unit-15.lesson-07.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: I want a silk scarf for my sister",
+          "answer": "أريد شال حرير لأختي",
+          "accepted": [
+            "أريد شال حرير لأختي",
+            "areed shaal 7areer l-ukhti",
+            "اريد شال حرير لاختي",
+            "أريد شال حرير لخيتي"
+          ],
+          "too_formal": {
+            "item": "أريد وشاحاً حريرياً لأختي",
+            "feedback": "\"وشاح\" is formal; Iraqis say \"شال\"."
+          },
+          "tip": "\"شال\" is a scarf or shawl."
+        },
+        {
+          "id": "unit-15.lesson-07.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: I want a small bottle of oud oil",
+          "answer": "أريد قنينة صغيرة دهن عود",
+          "accepted": [
+            "أريد قنينة صغيرة دهن عود",
+            "areed ginneena Sgheera dihin 3ood",
+            "أريد غرشة صغيرة دهن عود",
+            "areed gharsha Sgheera dihin 3ood",
+            "اريد قنينة صغيرة دهن عود"
+          ],
+          "too_formal": {
+            "item": "أريد زجاجة صغيرة من دهن العود",
+            "feedback": "\"زجاجة\" is formal; Iraqis say \"قنينة\" or \"غرشة\"."
+          },
+          "tip": "A bottle is \"قنينة\" or \"غرشة\" in Iraqi speech."
+        },
+        {
+          "id": "unit-15.lesson-07.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"This wooden box is beautiful\"?",
+          "answer": "هذا الصندوگ الخشبي حلو",
+          "accepted": [
+            "هذا الصندوگ الخشبي حلو",
+            "haatha iS-Sandoog il-khashabi 7ilu",
+            "هذا الصندوق الخشبي حلو"
+          ],
+          "tip": "\"صندوگ\" is a box or chest, with the Iraqi g.",
+          "options": [
+            "هذا الصندوگ الخشبي حلو",
+            "أريد علبة بهارات هديّة",
+            "أريد سجّادة صلاة",
+            "هذا شغل إيد؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-07.choose.02",
+          "type": "choose",
+          "prompt": "Which one asks the seller if he has good dates?",
+          "answer": "عندك تمر زين؟",
+          "accepted": [
+            "عندك تمر زين؟",
+            "3indak tamur zeen?",
+            "عندك تمر زين"
+          ],
+          "tip": "\"زين\" is good in Iraqi speech.",
+          "options": [
+            "شنو هذا العطر؟",
+            "عندك تمر زين؟",
+            "أريد تذكار لأهلي",
+            "تگدر تلفّه هديّة؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-07.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: I want a box of spices as a gift",
+          "answer": "أريد علبة بهارات هديّة",
+          "accepted": [
+            "أريد علبة بهارات هديّة",
+            "areed 3ilbat bahaaraat hadiyya",
+            "اريد علبة بهارات هدية",
+            "أريد علبة بهارات للهدية"
+          ],
+          "too_formal": {
+            "item": "أريد علبة بهارات للهدية",
+            "feedback": "Fine too; the plain form \"هديّة\" at the end is more natural."
+          },
+          "tip": "\"علبة\" is a box or tin."
+        },
+        {
+          "id": "unit-15.lesson-07.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange: I want a prayer rug",
+          "answer": "أريد سجّادة صلاة",
+          "accepted": [
+            "أريد سجّادة صلاة",
+            "areed sajjaadat Salaa",
+            "اريد سجادة صلاة",
+            "ريد سجادة صلاة"
+          ],
+          "too_formal": {
+            "item": "أودّ شراء سجادة صلاة",
+            "feedback": "This is formal; Iraqis say \"أريد\"."
+          },
+          "tip": "\"سجّادة\" is a rug; \"سجّادة صلاة\" is a prayer rug."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-08",
+      "phrases": [
+        {
+          "slot": "where-are-you-going-this-holiday",
+          "arabic": "وين راح تروح بالعطلة؟",
+          "transliteration": "ween raa7 trooH bil-3u6la?",
+          "reply": {
+            "arabic": "راح أسافر للبحر",
+            "transliteration": "raa7 asaafir lil-ba7ar",
+            "english": "I'm going to travel to the sea"
+          }
+        },
+        {
+          "slot": "how-long-does-your-holiday-last",
+          "arabic": "إجازتك شگد؟",
+          "transliteration": "ijaaztak shgad?",
+          "reply": {
+            "arabic": "أسبوعين",
+            "transliteration": "isboo3een",
+            "english": "Two weeks"
+          }
+        },
+        {
+          "slot": "we-are-travelling-with-the-whole-family",
+          "arabic": "راح نسافر ويّا العايلة كلها",
+          "transliteration": "raa7 nsaafir wiyya il-3aayla kullha"
+        },
+        {
+          "slot": "we-booked-a-house-near-the-beach",
+          "arabic": "حجزنا بيت يم الشاطئ",
+          "transliteration": "7jazna beet yamm ish-shaa6i"
+        },
+        {
+          "slot": "i-will-take-my-camera-with-me",
+          "arabic": "راح آخذ الكاميرا وياي",
+          "transliteration": "raa7 aakhuth il-kaameera wiyyaay"
+        },
+        {
+          "slot": "what-a-beautiful-view",
+          "arabic": "شنو هالمنظر الحلو!",
+          "transliteration": "shinu hal-manZar il-7ilu!"
+        },
+        {
+          "slot": "can-you-take-a-photo-of-us",
+          "arabic": "تگدر تصوّرنا؟",
+          "transliteration": "tigdar tSawwirna?",
+          "reply": {
+            "arabic": "أكيد، اوگفوا هناك",
+            "transliteration": "akeed, oogfu hnaak",
+            "english": "Sure, stand over there"
+          }
+        },
+        {
+          "slot": "the-sunset-is-beautiful-here",
+          "arabic": "الغروب حلو هنا",
+          "transliteration": "il-ghuroob 7ilu hnaa"
+        },
+        {
+          "slot": "send-me-the-photos-on-my-phone",
+          "arabic": "دزّلي الصور عالتلفون",
+          "transliteration": "dizz-li iS-Suwar 3at-talafoon",
+          "reply": {
+            "arabic": "هسّه أدزهن",
+            "transliteration": "hassa adizzhin",
+            "english": "I'll send them now"
+          }
+        },
+        {
+          "slot": "how-was-your-trip",
+          "arabic": "شلونها السفرة؟",
+          "transliteration": "shloonha is-safra?",
+          "reply": {
+            "arabic": "كلّش حلوة، انبسطنا هواية",
+            "transliteration": "kullish 7ilwa, inbisa6na hwaaya",
+            "english": "Really lovely, we had a great time"
+          }
+        },
+        {
+          "slot": "the-sea-is-very-calm",
+          "arabic": "البحر كلّش هادي",
+          "transliteration": "il-ba7ar kullish haadi"
+        },
+        {
+          "slot": "we-came-back-safe-thank-god",
+          "arabic": "رجعنا سالمين، الحمد لله",
+          "transliteration": "rja3na saalmeen, il-7amdu lillaah",
+          "reply": {
+            "arabic": "الحمد لله على السلامة",
+            "transliteration": "il-7amdu lillaah 3ala is-salaama",
+            "english": "Thank God for your safe return"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Omar",
+          "arabic": "وين رايحين بالعطلة يا رنا؟",
+          "transliteration": "ween raay7een bil-3u6la ya rana?",
+          "english": "Where are you all going this holiday, Rana?"
+        },
+        {
+          "speaker": "Rana",
+          "slot": "we-are-travelling-with-the-whole-family"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "للبحر؟ وإجازتكم شگد؟",
+          "transliteration": "lil-ba7ar? w-ijaazatkum shgad?",
+          "english": "To the sea? And how long is your holiday?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "أسبوعين. حجزنا بيت يم الشاطئ",
+          "transliteration": "isboo3een. 7jazna beet yamm ish-shaa6i",
+          "english": "Two weeks. We booked a house near the beach"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "حلو! راح تاخذين الكاميرا وياچ؟",
+          "transliteration": "7ilu! raa7 taakhtheen il-kaameera wiyyaach?",
+          "english": "Nice! Will you take the camera with you?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "أكيد، وراح أدزّلك الصور",
+          "transliteration": "akeed, w-raa7 adizz-lak iS-Suwar",
+          "english": "Of course, and I'll send you the photos"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "الحمد لله على السلامة يا رنا! شلونها السفرة؟",
+          "transliteration": "il-7amdu lillaah 3ala is-salaama ya rana! shloonha is-safra?",
+          "english": "Welcome back, Rana, thank God you're safe! How was the trip?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "كلّش حلوة، انبسطنا هواية، ورجعنا سالمين الحمد لله",
+          "transliteration": "kullish 7ilwa, inbisa6na hwaaya, w-rja3na saalmeen il-7amdu lillaah",
+          "english": "Really lovely, we had a great time, and we came back safe, thank God"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "عندچ صور؟",
+          "transliteration": "3indich Suwar?",
+          "english": "Do you have photos?"
+        },
+        {
+          "speaker": "Rana",
+          "arabic": "إي، باوع! البحر چان كلّش هادي",
+          "transliteration": "ee, baawi3! il-ba7ar chaan kullish haadi",
+          "english": "Yes, look! The sea was very calm"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "صدگ حلو. دزّيلي الصور عالتلفون",
+          "transliteration": "Sidg 7ilu. dizzee-li iS-Suwar 3at-talafoon",
+          "english": "Really nice. Send me the photos on my phone"
+        },
+        {
+          "speaker": "Rana",
+          "slot": "send-me-the-photos-on-my-phone",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين راح تروح بالعطلة؟",
+            "transliteration": "ween raa7 trooH bil-3u6la?",
+            "english": "Where are you going this holiday?"
+          },
+          "response": {
+            "arabic": "راح أسافر للبحر",
+            "transliteration": "raa7 asaafir lil-ba7ar",
+            "english": "I'm going to travel to the sea"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شلونها السفرة؟",
+            "transliteration": "shloonha is-safra?",
+            "english": "How was your trip?"
+          },
+          "response": {
+            "arabic": "كلّش حلوة، انبسطنا هواية",
+            "transliteration": "kullish 7ilwa, inbisa6na hwaaya",
+            "english": "Really lovely, we had a great time"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تگدر تصوّرنا؟",
+            "transliteration": "tigdar tSawwirna?",
+            "english": "Can you take a photo of us?"
+          },
+          "response": {
+            "arabic": "أكيد، اوگفوا هناك",
+            "transliteration": "akeed, oogfu hnaak",
+            "english": "Sure, stand over there"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "رجعنا سالمين، الحمد لله",
+            "transliteration": "rja3na saalmeen, il-7amdu lillaah",
+            "english": "We came back safe, thank God"
+          },
+          "response": {
+            "arabic": "الحمد لله على السلامة",
+            "transliteration": "il-7amdu lillaah 3ala is-salaama",
+            "english": "Thank God for your safe return"
+          }
+        }
+      ],
+      "culture": "Iraqi families usually travel together, and someone back from a trip is greeted with \"الحمد لله على السلامة\". Photos are sent straight away with \"دزّلي الصور\"; asking a stranger to take a group photo is fine, but photographing other families, especially women, without asking is not.",
+      "exercises": [
+        {
+          "id": "unit-15.lesson-08.reply.01",
+          "type": "reply",
+          "prompt": "A friend says: \"رجعنا سالمين، الحمد لله\". Reply.",
+          "answer": "الحمد لله على السلامة",
+          "accepted": [
+            "الحمد لله على السلامة",
+            "il-7amdu lillaah 3ala is-salaama",
+            "الحمدلله على السلامة",
+            "الحمد لله على سلامتكم",
+            "il-7amdu lillaah 3ala salaamatkum"
+          ],
+          "too_formal": {
+            "item": "حمداً لله على سلامتكم",
+            "feedback": "This is formal; Iraqis say \"الحمد لله على السلامة\"."
+          },
+          "tip": "This is the standard welcome for anyone back from a journey."
+        },
+        {
+          "id": "unit-15.lesson-08.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"شلونها السفرة؟\". Say it was really lovely and you had a great time.",
+          "answer": "كلّش حلوة، انبسطنا هواية",
+          "accepted": [
+            "كلّش حلوة، انبسطنا هواية",
+            "kullish 7ilwa, inbisa6na hwaaya",
+            "كلش حلوة انبسطنا هواية",
+            "كلّش حلوة",
+            "kullish 7ilwa"
+          ],
+          "too_formal": {
+            "item": "كانت رائعة واستمتعنا كثيراً",
+            "feedback": "This is formal; Iraqis say \"انبسطنا هواية\"."
+          },
+          "tip": "\"انبسطنا\" is we enjoyed ourselves."
+        },
+        {
+          "id": "unit-15.lesson-08.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "____ الصور عالتلفون (Send me the photos on my phone)",
+          "answer": "دزّلي",
+          "accepted": [
+            "دزّلي",
+            "dizz-li",
+            "دزلي",
+            "دزّيلي",
+            "dizzee-li"
+          ],
+          "too_formal": {
+            "item": "أرسل لي",
+            "feedback": "\"أرسل\" is formal; Iraqis say \"دزّلي\"."
+          },
+          "tip": "\"دز\" is the Iraqi verb for send; to a woman \"دزّيلي\"."
+        },
+        {
+          "id": "unit-15.lesson-08.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "البحر ____ هادي (The sea is very calm)",
+          "answer": "كلّش",
+          "accepted": [
+            "كلّش",
+            "kullish",
+            "كلش"
+          ],
+          "too_formal": {
+            "item": "جداً",
+            "feedback": "\"جداً\" is formal; Iraqis say \"كلّش\"."
+          },
+          "tip": "\"كلّش\" comes before the adjective, like very."
+        },
+        {
+          "id": "unit-15.lesson-08.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: We are travelling with the whole family",
+          "answer": "راح نسافر ويّا العايلة كلها",
+          "accepted": [
+            "راح نسافر ويّا العايلة كلها",
+            "raa7 nsaafir wiyya il-3aayla kullha",
+            "راح نسافر ويا العايلة كلها",
+            "دا نسافر ويا العايلة كلها",
+            "راح نسافر ويا كل العايلة"
+          ],
+          "too_formal": {
+            "item": "سنسافر مع العائلة كلها",
+            "feedback": "\"سـ\" and \"مع\" are formal; Iraqis say \"راح نسافر ويّا\"."
+          },
+          "tip": "\"ويّا\" is with; \"العايلة\" is the family."
+        },
+        {
+          "id": "unit-15.lesson-08.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: Can you take a photo of us? (to a man)",
+          "answer": "تگدر تصوّرنا؟",
+          "accepted": [
+            "تگدر تصوّرنا؟",
+            "tigdar tSawwirna?",
+            "tigdar tSawwirna",
+            "تكدر تصورنا؟",
+            "تگدر تصورنا",
+            "تگدرين تصوّرينا؟"
+          ],
+          "too_formal": {
+            "item": "هل تستطيع أن تلتقط لنا صورة؟",
+            "feedback": "This is formal; Iraqis say \"تگدر تصوّرنا؟\"."
+          },
+          "tip": "To a woman: \"تگدرين تصوّرينا؟\"."
+        },
+        {
+          "id": "unit-15.lesson-08.choose.01",
+          "type": "choose",
+          "prompt": "Which one asks how long someone's holiday is?",
+          "answer": "إجازتك شگد؟",
+          "accepted": [
+            "إجازتك شگد؟",
+            "ijaaztak shgad?",
+            "إجازتك شكد؟",
+            "اجازتك شگد"
+          ],
+          "tip": "\"شگد\" is how much or how long.",
+          "options": [
+            "إجازتك شگد؟",
+            "وين راح تروح بالعطلة؟",
+            "شلونها السفرة؟",
+            "تگدر تصوّرنا؟"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-08.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"What a beautiful view!\"?",
+          "answer": "شنو هالمنظر الحلو!",
+          "accepted": [
+            "شنو هالمنظر الحلو!",
+            "shinu hal-manZar il-7ilu!",
+            "شنو هالمنظر الحلو"
+          ],
+          "tip": "\"شنو\" can start an exclamation as well as a question.",
+          "options": [
+            "الغروب حلو هنا",
+            "البحر كلّش هادي",
+            "شنو هالمنظر الحلو!",
+            "حجزنا بيت يم الشاطئ"
+          ]
+        },
+        {
+          "id": "unit-15.lesson-08.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: We booked a house near the beach",
+          "answer": "حجزنا بيت يم الشاطئ",
+          "accepted": [
+            "حجزنا بيت يم الشاطئ",
+            "7jazna beet yamm ish-shaa6i",
+            "حجزنا بيت يم البحر",
+            "حجزنا بيت قريب عالشاطئ"
+          ],
+          "too_formal": {
+            "item": "حجزنا بيتاً قرب الشاطئ",
+            "feedback": "\"قرب\" is formal; Iraqis say \"يم\"."
+          },
+          "tip": "\"يم\" is the Iraqi word for next to or near."
+        },
+        {
+          "id": "unit-15.lesson-08.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange: I will take my camera with me",
+          "answer": "راح آخذ الكاميرا وياي",
+          "accepted": [
+            "راح آخذ الكاميرا وياي",
+            "raa7 aakhuth il-kaameera wiyyaay",
+            "راح اخذ الكاميرا وياي",
+            "راح آخذ كاميرتي وياي"
+          ],
+          "too_formal": {
+            "item": "سآخذ معي الكاميرا",
+            "feedback": "\"سـ\" and \"معي\" are formal; Iraqis say \"راح\" and \"وياي\"."
+          },
+          "tip": "\"وياي\" is with me."
         }
       ]
     }

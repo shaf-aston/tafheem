@@ -18,7 +18,8 @@
     "T": "ط",
     "S": "ص",
     "D": "ض",
-    "Z": "ظ"
+    "Z": "ظ",
+    "dh": "ذ"
   },
   "lessons": [
     {
@@ -1694,6 +1695,2535 @@
           "words": [
             "طْفِي",
             "الشَّمْعَات"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "may-god-bless-the-newborn-for-you-to-a-man",
+          "arabic": "اللَّهُ يْبَارْك لِيك فِيه",
+          "transliteration": "Allah ybaarek leek feeh",
+          "reply": {
+            "arabic": "اللَّهُ يْبَارْك فِيك",
+            "transliteration": "Allah ybaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "may-the-newborn-be-the-delight-of-your-eyes-to-a-man",
+          "arabic": "اللَّهُ يْفَرّْحْك بِيه",
+          "transliteration": "Allah yfarr7ek beeh",
+          "english": "May God make you happy with him (to a man)",
+          "reply": {
+            "arabic": "آمِين، اللَّهُ يْخَلِّيك",
+            "transliteration": "aameen, Allah ykhalleek",
+            "english": "Amen, God keep you"
+          }
+        },
+        {
+          "slot": "may-god-make-him-righteous",
+          "arabic": "اللَّهُ يْجْعْلُو مْن الصَّالْحِين",
+          "transliteration": "Allah yj3elu mn S-Saal7een",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        },
+        {
+          "slot": "may-god-raise-him-well",
+          "arabic": "يْتْرَبَّى فْعَزّْكُم",
+          "transliteration": "ytrebba f-3ezzkum",
+          "english": "May he grow up in your care (lit. in your glory)",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        },
+        {
+          "slot": "thank-god-the-mother-and-baby-are-safe",
+          "arabic": "الْحَمْدُ لِلَّه، الْمَامَا وْالْبِيبِي سَالْمِين",
+          "transliteration": "l-7amdu lillaah, l-maama w l-beebi saalmeen"
+        },
+        {
+          "slot": "what-did-you-name-him-to-a-man",
+          "arabic": "شْنُو سْمِّيتِيه؟",
+          "transliteration": "shnoo semmeeteeh?",
+          "reply": {
+            "arabic": "سْمِّيتُو يُوسُف",
+            "transliteration": "semmeetu yoosef",
+            "english": "I named him Youssef"
+          }
+        },
+        {
+          "slot": "we-named-him-after-his-grandfather",
+          "arabic": "سْمِّينَاه عْلَى جْدُّو",
+          "transliteration": "semmeenaah 3la jeddu"
+        },
+        {
+          "slot": "the-baby-looks-like-his-father",
+          "arabic": "الْبِيبِي كَيْشْبَه لْبَّاه بْزَّاف",
+          "transliteration": "l-beebi kaychbeh l-baah bzzaaf"
+        },
+        {
+          "slot": "we-came-to-visit-the-mother-and-baby",
+          "arabic": "جِينَا نْزُورُو الْمَامَا وْالْبِيبِي",
+          "transliteration": "jeena nzooru l-maama w l-beebi"
+        },
+        {
+          "slot": "this-is-the-baby-s-cradle",
+          "arabic": "هَادَا السّْرِير دْيَال الْبِيبِي",
+          "transliteration": "haada s-sreer dyaal l-beebi",
+          "english": "This is the baby's bed (cradle)"
+        },
+        {
+          "slot": "a-gift-for-the-newborn",
+          "arabic": "هَادِي هْدِيَّة صْغِيرَة لِلْبِيبِي",
+          "transliteration": "haadi hdiyya Sgheera l-l-beebi",
+          "english": "Here's a little gift for the baby",
+          "reply": {
+            "arabic": "اللَّهُ يْجَازِيك بْخِير، مَا كَان عْلَاش",
+            "transliteration": "Allah yjaazeek b-kheer, ma kaan 3laash",
+            "english": "May God reward you, there was no need"
+          }
+        },
+        {
+          "slot": "i-ask-god-to-keep-him-safe-for-you-both",
+          "arabic": "اللَّهُ يْحْفْظُو لِيكُم",
+          "transliteration": "Allah y7feDu leekum",
+          "english": "May God keep him safe for you",
+          "reply": {
+            "arabic": "آمِين، اللَّهُ يْجَازِيك بْخِير",
+            "transliteration": "aameen, Allah yjaazeek b-kheer",
+            "english": "Amen, may God reward you"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "كريم",
+          "arabic": "السلام عليكم، مبروك ما جاك آ حمزة!",
+          "transliteration": "s-salaamu 3alaykum, mabrook ma jaak a 7amza!",
+          "english": "Peace be upon you, congratulations on the new arrival, Hamza!"
+        },
+        {
+          "speaker": "حمزة",
+          "arabic": "وعليكم السلام، الله يبارك فيك، شكرا على الزيارة",
+          "transliteration": "w 3alaykum s-salaam, Allah ybaarek feek, shukran 3la z-zyaara",
+          "english": "And upon you peace, God bless you, thanks for the visit"
+        },
+        {
+          "speaker": "كريم",
+          "slot": "what-did-you-name-him-to-a-man"
+        },
+        {
+          "speaker": "حمزة",
+          "arabic": "سميتو إدريس، على سمية جدو",
+          "transliteration": "semmeetu idrees, 3la smiyt jeddu",
+          "english": "I named him Idris, after his grandfather's name"
+        },
+        {
+          "speaker": "كريم",
+          "slot": "may-god-raise-him-well"
+        },
+        {
+          "speaker": "حمزة",
+          "slot": "may-god-raise-him-well",
+          "reply": true
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "أجي نشوفو... الله يبارك! البيبي كيشبه لباه بزاف، ناعس بحالك",
+          "transliteration": "aji nshoofu... Allah ybaarek! l-beebi kaychbeh l-baah bzzaaf, naa3es b7aalek",
+          "english": "Let me see him... God bless! The baby looks a lot like his father, he sleeps just like you"
+        },
+        {
+          "speaker": "حمزة",
+          "arabic": "هادشي لي كيقولو كاملين",
+          "transliteration": "haadshi lli kayqoolu kaamleen",
+          "english": "That's what everyone says"
+        },
+        {
+          "speaker": "كريم",
+          "arabic": "وكيدايرة مراتك؟",
+          "transliteration": "w keedaayra mraatek?",
+          "english": "And how is your wife?"
+        },
+        {
+          "speaker": "حمزة",
+          "slot": "thank-god-the-mother-and-baby-are-safe"
+        },
+        {
+          "speaker": "كريم",
+          "slot": "a-gift-for-the-newborn"
+        },
+        {
+          "speaker": "حمزة",
+          "slot": "a-gift-for-the-newborn",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مبروك ما جاك",
+            "transliteration": "mabrook ma jaak",
+            "english": "Congratulations on the new arrival"
+          },
+          "response": {
+            "arabic": "اللَّهُ يْبَارْك فِيك",
+            "transliteration": "Allah ybaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْنُو سْمِّيتِيه؟",
+            "transliteration": "shnoo semmeeteeh?",
+            "english": "What did you name him?"
+          },
+          "response": {
+            "arabic": "سْمِّيتُو يُوسُف",
+            "transliteration": "semmeetu yoosef",
+            "english": "I named him Youssef"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "يْتْرَبَّى فْعَزّْكُم",
+            "transliteration": "ytrebba f-3ezzkum",
+            "english": "May he grow up in your care"
+          },
+          "response": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَادِي هْدِيَّة صْغِيرَة لِلْبِيبِي",
+            "transliteration": "haadi hdiyya Sgheera l-l-beebi",
+            "english": "Here's a little gift for the baby"
+          },
+          "response": {
+            "arabic": "اللَّهُ يْجَازِيك بْخِير، مَا كَان عْلَاش",
+            "transliteration": "Allah yjaazeek b-kheer, ma kaan 3laash",
+            "english": "May God reward you, there was no need"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "اللَّهُ يْحْفْظُو لِيكُم",
+            "transliteration": "Allah y7feDu leekum",
+            "english": "May God keep him safe for you"
+          },
+          "response": {
+            "arabic": "آمِين، اللَّهُ يْجَازِيك بْخِير",
+            "transliteration": "aameen, Allah yjaazeek b-kheer",
+            "english": "Amen, may God reward you"
+          }
+        }
+      ],
+      "culture": "فالمغرب كيقولو للوالدين \"مبروك ما جاك\" و\"يتربى فعزكم\"، والعائلة والجيران كيزورو الماما والبيبي فالأيام الأولى وكيجيبو الهدايا. فالنهار السابع كتكون العقيقة، كيتذبح الحولي وكيتسمى البيبي، وبزاف ديال الناس كيسميو على الجد.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "واحد قال ليك \"الله يبارك ليك فيه\" على البيبي ديالك، شنو كتجاوب؟",
+          "answer": "اللَّهُ يْبَارْك فِيك",
+          "accepted": [
+            "اللَّهُ يْبَارْك فِيك",
+            "Allah ybaarek feek",
+            "الله يبارك فيك",
+            "الله يبارك فيكم",
+            "Allah ybaarek feekum"
+          ],
+          "too_formal": {
+            "item": "بارك الله فيك",
+            "feedback": "صيغة فصيحة، فالدارجة كنقولو \"الله يبارك فيك\"."
+          },
+          "tip": "\"الله يبارك فيك\" كتجاوب بيها على أي تهنئة."
+        },
+        {
+          "id": "unit-14.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "صاحبك سولك \"شنو سميتيه؟\"، قول ليه سميتو يوسف.",
+          "answer": "سْمِّيتُو يُوسُف",
+          "accepted": [
+            "سْمِّيتُو يُوسُف",
+            "semmeetu yoosef",
+            "سميتو يوسف",
+            "سميناه يوسف",
+            "semmeenaah yoosef",
+            "سميتو يوسف آ صاحبي"
+          ],
+          "too_formal": {
+            "item": "سميته يوسف",
+            "feedback": "\"سميته\" فصيحة، فالدارجة كنقولو \"سميتو\"."
+          },
+          "tip": "الواو فآخر \"سميتو\" معناها \"هو\"."
+        },
+        {
+          "id": "unit-14.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "يتربى ف____ (May he grow up in your care)",
+          "answer": "عزكم",
+          "accepted": [
+            "عزكم",
+            "3ezzkum",
+            "عزك",
+            "3ezzek"
+          ],
+          "too_formal": {
+            "item": "أنبته الله نباتا حسنا",
+            "feedback": "دعاء فصيح، فالدارجة كيقولو \"يتربى فعزكم\"."
+          },
+          "tip": "\"عزكم\" هنا معناها الهنا والخير ديال العائلة."
+        },
+        {
+          "id": "unit-14.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "البيبي كيشبه ____ بزاف (The baby looks a lot like his father)",
+          "answer": "لباه",
+          "accepted": [
+            "لباه",
+            "l-baah",
+            "لبّاه",
+            "لبوه",
+            "l-booh"
+          ],
+          "too_formal": {
+            "item": "أباه",
+            "feedback": "\"أباه\" فصيحة، فالدارجة كنقولو \"باه\"."
+          },
+          "tip": "\"باه\" = باباه، يعني الأب ديالو."
+        },
+        {
+          "id": "unit-14.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "What did you name him? (to a man)",
+          "answer": "شْنُو سْمِّيتِيه؟",
+          "accepted": [
+            "شْنُو سْمِّيتِيه؟",
+            "shnoo semmeeteeh?",
+            "شنو سميتيه",
+            "آش سميتيه؟",
+            "ash semmeeteeh?"
+          ],
+          "too_formal": {
+            "item": "ماذا سميته؟",
+            "feedback": "سؤال فصيح، فالدارجة كنقولو \"شنو سميتيه؟\"."
+          },
+          "tip": "سميتيه = سميتي + ه (هو)."
+        },
+        {
+          "id": "unit-14.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "May God keep him safe for you",
+          "answer": "اللَّهُ يْحْفْظُو لِيكُم",
+          "accepted": [
+            "اللَّهُ يْحْفْظُو لِيكُم",
+            "Allah y7feDu leekum",
+            "الله يحفظو ليكم",
+            "الله يحفظو ليك",
+            "الله يخليه ليكم"
+          ],
+          "too_formal": {
+            "item": "أسأل الله أن يحفظه لكما",
+            "feedback": "جملة فصيحة طويلة، فالدارجة كيكفي \"الله يحفظو ليكم\"."
+          },
+          "tip": "\"ليكم\" كتقال للأب والأم بجوج."
+        },
+        {
+          "id": "unit-14.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "شنو كتقول ملي كتعطي هدية للبيبي؟",
+          "answer": "هَادِي هْدِيَّة صْغِيرَة لِلْبِيبِي",
+          "accepted": [
+            "هَادِي هْدِيَّة صْغِيرَة لِلْبِيبِي",
+            "haadi hdiyya Sgheera l-l-beebi",
+            "هادي هدية صغيرة للبيبي",
+            "هادا كادو صغير للبيبي"
+          ],
+          "too_formal": {
+            "item": "هذه هدية للمولود",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "\"كادو\" حتى هي كتقال فبلاصة \"هدية\".",
+          "options": [
+            "هَادِي هْدِيَّة صْغِيرَة لِلْبِيبِي",
+            "الله يرحمو",
+            "بصحتك",
+            "فين كاين الجامع؟"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "شنو كيتقال للوالدين باش تدعي للبيبي يكبر فالخير؟",
+          "answer": "يْتْرَبَّى فْعَزّْكُم",
+          "accepted": [
+            "يْتْرَبَّى فْعَزّْكُم",
+            "ytrebba f-3ezzkum",
+            "يتربى فعزكم",
+            "يتربى فعزك"
+          ],
+          "too_formal": {
+            "item": "أنبته الله نباتا حسنا",
+            "feedback": "دعاء فصيح."
+          },
+          "tip": "\"يتربى فعزكم\" من أكثر الدعوات لي كتقال للمولود فالمغرب.",
+          "options": [
+            "يْتْرَبَّى فْعَزّْكُم",
+            "الله يشافيك",
+            "حج مبرور",
+            "الله يسمح ليه"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب: We named him after his grandfather",
+          "answer": "سْمِّينَاه عْلَى جْدُّو",
+          "accepted": [
+            "سْمِّينَاه عْلَى جْدُّو",
+            "semmeenaah 3la jeddu",
+            "سميناه على جدو",
+            "سميناه على سمية جدو"
+          ],
+          "too_formal": {
+            "item": "سميناه على اسم جده",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "\"على\" هنا معناها \"على سمية\".",
+          "words": [
+            "سْمِّينَاه",
+            "عْلَى",
+            "جْدُّو"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب: We came to visit the mother and the baby",
+          "answer": "جِينَا نْزُورُو الْمَامَا وْالْبِيبِي",
+          "accepted": [
+            "جِينَا نْزُورُو الْمَامَا وْالْبِيبِي",
+            "jeena nzooru l-maama w l-beebi",
+            "جينا نزورو الماما والبيبي",
+            "جينا نشوفو الماما والبيبي"
+          ],
+          "too_formal": {
+            "item": "جئنا لزيارة الأم والمولود",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "\"جينا\" = جئنا، و\"نزورو\" كيجي من بعدها بلا \"باش\".",
+          "words": [
+            "جِينَا",
+            "نْزُورُو",
+            "الْمَامَا",
+            "وْالْبِيبِي"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "congratulations-on-graduating",
+          "arabic": "مْبْرُوك عْلِيك التَّخَرُّج",
+          "transliteration": "mabrook 3leek t-takharruj",
+          "reply": {
+            "arabic": "اللَّهُ يْبَارْك فِيك",
+            "transliteration": "Allah ybaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "congratulations-on-passing-the-exam",
+          "arabic": "مْبْرُوك عْلِيك، نْجَحْتِي فْالِامْتِحَان",
+          "transliteration": "mabrook 3leek, nja7ti f-l-imti7aan",
+          "english": "Congratulations, you passed the exam",
+          "reply": {
+            "arabic": "اللَّهُ يْبَارْك فِيك، هَادَا فْضْل اللَّه",
+            "transliteration": "Allah ybaarek feek, haada faDl llaah",
+            "english": "God bless you, this is God's grace"
+          }
+        },
+        {
+          "slot": "i-passed-all-my-exams",
+          "arabic": "نْجَحْت فْالِامْتِحَانَات كَامْلِين",
+          "transliteration": "nja7t f-l-imti7aanaat kaamleen"
+        },
+        {
+          "slot": "the-results-came-out-today",
+          "arabic": "النّْتِيجَة خْرْجَات الْيُوم",
+          "transliteration": "n-nateeja khrjaat l-yoom",
+          "english": "The result came out today"
+        },
+        {
+          "slot": "what-is-your-result-to-a-man",
+          "arabic": "شْنُو هِيَ النّْتِيجَة دْيَالْك؟",
+          "transliteration": "shnoo hiya n-nateeja dyaalek?",
+          "reply": {
+            "arabic": "جْبْت سْطَّاش فْالْمُعَدَّل، الْحَمْدُ لِلَّه",
+            "transliteration": "jebt seTTaash f-l-mu3addal, l-7amdu lillaah",
+            "english": "I got sixteen out of twenty, thank God"
+          }
+        },
+        {
+          "slot": "graduation-ceremony",
+          "arabic": "حْفْلَة التَّخَرُّج",
+          "transliteration": "7efla t-takharruj"
+        },
+        {
+          "slot": "graduation-cap",
+          "arabic": "الطَّاقِيَة دْيَال التَّخَرُّج",
+          "transliteration": "T-Taaqiya dyaal t-takharruj"
+        },
+        {
+          "slot": "he-got-a-new-job",
+          "arabic": "لْقَى خْدْمَة جْدِيدَة",
+          "transliteration": "lqa khedma jdeeda"
+        },
+        {
+          "slot": "congratulations-on-the-new-job",
+          "arabic": "مْبْرُوك الْخْدْمَة الْجْدِيدَة",
+          "transliteration": "mabrook l-khedma l-jdeeda",
+          "reply": {
+            "arabic": "اللَّهُ يْجَازِيك بْخِير",
+            "transliteration": "Allah yjaazeek b-kheer",
+            "english": "May God reward you"
+          }
+        },
+        {
+          "slot": "may-god-grant-you-success-to-a-man",
+          "arabic": "اللَّهُ يْوَفّْقْك",
+          "transliteration": "Allah ywaffqek",
+          "reply": {
+            "arabic": "آمِين، اللَّهُ يْخَلِّيك",
+            "transliteration": "aameen, Allah ykhalleek",
+            "english": "Amen, God keep you"
+          }
+        },
+        {
+          "slot": "we-are-proud-of-you-to-a-man",
+          "arabic": "حْنَا مْفْتَاخْرِين بِيك",
+          "transliteration": "7na mftakhreen beek",
+          "reply": {
+            "arabic": "اللَّهُ يْخَلِّيكُم، هَادْشِي بْفْضْل الدّْعَاوِي دْيَالْكُم",
+            "transliteration": "Allah ykhalleekum, haadshi b-faDl d-d3aawi dyaalkum",
+            "english": "God keep you, this is thanks to your prayers"
+          }
+        },
+        {
+          "slot": "may-god-open-the-doors-of-good-for-you-to-a-man",
+          "arabic": "اللَّهُ يْفْتَح عْلِيك أَبْوَاب الْخِير",
+          "transliteration": "Allah yefta7 3leek abwaab l-kheer",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "مهدي",
+          "arabic": "آ أنس، واش خرجات النتيجة؟",
+          "transliteration": "a anas, waash khrjaat n-nateeja?",
+          "english": "Anas, did the result come out?"
+        },
+        {
+          "speaker": "أنس",
+          "arabic": "إيه، خرجات اليوم الصباح، ونجحت فالامتحانات كاملين!",
+          "transliteration": "eeyeh, khrjaat l-yoom S-Sbaa7, w nja7t f-l-imti7aanaat kaamleen!",
+          "english": "Yes, it came out this morning, and I passed all my exams!"
+        },
+        {
+          "speaker": "مهدي",
+          "slot": "what-is-your-result-to-a-man"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "what-is-your-result-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "مهدي",
+          "arabic": "تبارك الله عليك! كنتي الأول فالقسم؟",
+          "transliteration": "tbaarek llaah 3leek! kunti l-lawwel f-l-qism?",
+          "english": "God bless you! Were you top of the class?"
+        },
+        {
+          "speaker": "أنس",
+          "arabic": "إيه، وغادي يعطيوني جائزة فحفلة التخرج",
+          "transliteration": "eeyeh, w ghaadi y3Teewni jaa2iza f-7eflat t-takharruj",
+          "english": "Yes, and they're going to give me a prize at the graduation ceremony"
+        },
+        {
+          "speaker": "مهدي",
+          "slot": "we-are-proud-of-you-to-a-man"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "we-are-proud-of-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "مهدي",
+          "arabic": "فوقاش الحفلة؟ نجي إن شاء الله",
+          "transliteration": "fooqaash l-7efla? nji inshaa2 llaah",
+          "english": "When is the ceremony? I'll come, God willing"
+        },
+        {
+          "speaker": "أنس",
+          "arabic": "نهار الخميس الجاي. وزيد، لقيت خدمة جديدة فكازا",
+          "transliteration": "nhaar l-khmees j-jaay. w zeed, lqeet khedma jdeeda f-kaaza",
+          "english": "Next Thursday. And also, I found a new job in Casablanca"
+        },
+        {
+          "speaker": "مهدي",
+          "slot": "congratulations-on-the-new-job"
+        },
+        {
+          "speaker": "أنس",
+          "slot": "congratulations-on-the-new-job",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مْبْرُوك عْلِيك التَّخَرُّج",
+            "transliteration": "mabrook 3leek t-takharruj",
+            "english": "Congratulations on graduating"
+          },
+          "response": {
+            "arabic": "اللَّهُ يْبَارْك فِيك",
+            "transliteration": "Allah ybaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْنُو هِيَ النّْتِيجَة دْيَالْك؟",
+            "transliteration": "shnoo hiya n-nateeja dyaalek?",
+            "english": "What is your result?"
+          },
+          "response": {
+            "arabic": "جْبْت سْطَّاش فْالْمُعَدَّل، الْحَمْدُ لِلَّه",
+            "transliteration": "jebt seTTaash f-l-mu3addal, l-7amdu lillaah",
+            "english": "I got sixteen out of twenty, thank God"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "اللَّهُ يْوَفّْقْك",
+            "transliteration": "Allah ywaffqek",
+            "english": "May God grant you success"
+          },
+          "response": {
+            "arabic": "آمِين، اللَّهُ يْخَلِّيك",
+            "transliteration": "aameen, Allah ykhalleek",
+            "english": "Amen, God keep you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "حْنَا مْفْتَاخْرِين بِيك",
+            "transliteration": "7na mftakhreen beek",
+            "english": "We are proud of you"
+          },
+          "response": {
+            "arabic": "اللَّهُ يْخَلِّيكُم، هَادْشِي بْفْضْل الدّْعَاوِي دْيَالْكُم",
+            "transliteration": "Allah ykhalleekum, haadshi b-faDl d-d3aawi dyaalkum",
+            "english": "God keep you, this is thanks to your prayers"
+          }
+        }
+      ],
+      "culture": "فالمغرب النجاح فالباكالوريا والتخرج كيتحتافل بيهم بالزغاريد والحلوة، والعائلة كتقول \"مبروك\" و\"الله يوفقك\". النقطة كتكون على عشرين، والتلميذ لي جاب الأول كياخد جائزة، والخدمة الأولى كتفرح بيها العائلة كاملة.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك قال ليك \"الله يوفقك\"، شنو كتجاوب؟",
+          "answer": "آمِين، اللَّهُ يْخَلِّيك",
+          "accepted": [
+            "آمِين، اللَّهُ يْخَلِّيك",
+            "aameen, Allah ykhalleek",
+            "آمين، الله يخليك",
+            "آمين",
+            "آمين، الله يبارك فيك"
+          ],
+          "too_formal": {
+            "item": "آمين وإياك",
+            "feedback": "جواب فصيح، فالدارجة كنقولو \"آمين، الله يخليك\"."
+          },
+          "tip": "\"الله يخليك\" معناها الله يحفظك، وكتقال بزاف كشكر."
+        },
+        {
+          "id": "unit-14.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "صاحبك سولك \"شنو هي النتيجة ديالك؟\"، قول ليه جبتي سطاش فالمعدل.",
+          "answer": "جْبْت سْطَّاش فْالْمُعَدَّل، الْحَمْدُ لِلَّه",
+          "accepted": [
+            "جْبْت سْطَّاش فْالْمُعَدَّل، الْحَمْدُ لِلَّه",
+            "jebt seTTaash f-l-mu3addal, l-7amdu lillaah",
+            "جبت سطاش فالمعدل",
+            "جبت سطاش، الحمد لله",
+            "جبت سطاش على عشرين"
+          ],
+          "too_formal": {
+            "item": "حصلت على ستة عشر",
+            "feedback": "جملة فصيحة، فالدارجة كنقولو \"جبت سطاش\"."
+          },
+          "tip": "\"سطاش\" = ستة عشر، والنقطة فالمغرب على عشرين."
+        },
+        {
+          "id": "unit-14.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "لقى ____ جديدة (He got a new job)",
+          "answer": "خدمة",
+          "accepted": [
+            "خدمة",
+            "khedma",
+            "خدمه"
+          ],
+          "too_formal": {
+            "item": "وظيفة",
+            "feedback": "\"وظيفة\" مفهومة، ولكن فالهضرة العادية كنقولو \"خدمة\"."
+          },
+          "tip": "\"لقى\" معناها وجد، و\"خدمة\" هي العمل."
+        },
+        {
+          "id": "unit-14.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "النتيجة ____ اليوم (The result came out today)",
+          "answer": "خرجات",
+          "accepted": [
+            "خرجات",
+            "khrjaat",
+            "خرجت",
+            "طلعات"
+          ],
+          "too_formal": {
+            "item": "ظهرت",
+            "feedback": "\"ظهرت\" فصيحة، فالدارجة كنقولو \"خرجات\"."
+          },
+          "tip": "\"خرجات\" للمؤنث حيت \"النتيجة\" مؤنثة."
+        },
+        {
+          "id": "unit-14.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "I passed all my exams",
+          "answer": "نْجَحْت فْالِامْتِحَانَات كَامْلِين",
+          "accepted": [
+            "نْجَحْت فْالِامْتِحَانَات كَامْلِين",
+            "nja7t f-l-imti7aanaat kaamleen",
+            "نجحت فالامتحانات كاملين",
+            "نجحت فكاع الامتحانات",
+            "نجحت فالامتحانات كلهم"
+          ],
+          "too_formal": {
+            "item": "نجحت في جميع الامتحانات",
+            "feedback": "\"جميع\" فصيحة، فالدارجة كنقولو \"كاملين\" ولا \"كاع\"."
+          },
+          "tip": "\"كاملين\" كتجي من بعد الكلمة: الامتحانات كاملين."
+        },
+        {
+          "id": "unit-14.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "May God open the doors of good for you (to a man)",
+          "answer": "اللَّهُ يْفْتَح عْلِيك أَبْوَاب الْخِير",
+          "accepted": [
+            "اللَّهُ يْفْتَح عْلِيك أَبْوَاب الْخِير",
+            "Allah yefta7 3leek abwaab l-kheer",
+            "الله يفتح عليك أبواب الخير",
+            "الله يفتح عليك"
+          ],
+          "too_formal": {
+            "item": "فتح الله لك أبواب الخير",
+            "feedback": "صيغة فصيحة، فالدارجة كنقولو \"الله يفتح عليك\"."
+          },
+          "tip": "\"الله يفتح عليك\" بوحدها حتى هي كتقال بزاف."
+        },
+        {
+          "id": "unit-14.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "شنو كتقول لواحد لقى خدمة جديدة؟",
+          "answer": "مْبْرُوك الْخْدْمَة الْجْدِيدَة",
+          "accepted": [
+            "مْبْرُوك الْخْدْمَة الْجْدِيدَة",
+            "mabrook l-khedma l-jdeeda",
+            "مبروك الخدمة الجديدة",
+            "مبروك عليك الخدمة"
+          ],
+          "too_formal": {
+            "item": "مبارك عليك الوظيفة الجديدة",
+            "feedback": "صيغة فصيحة."
+          },
+          "tip": "\"مبروك\" + الحاجة الجديدة.",
+          "options": [
+            "مْبْرُوك الْخْدْمَة الْجْدِيدَة",
+            "الله يرحمو",
+            "لا بأس، طهور إن شاء الله",
+            "حج مبرور"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "شنو كتقول لصاحبك باش تبين ليه بلي فرحان بنجاحو؟",
+          "answer": "حْنَا مْفْتَاخْرِين بِيك",
+          "accepted": [
+            "حْنَا مْفْتَاخْرِين بِيك",
+            "7na mftakhreen beek",
+            "حنا مفتاخرين بيك",
+            "حنا فرحانين بيك"
+          ],
+          "too_formal": {
+            "item": "نحن فخورون بك",
+            "feedback": "جملة فصيحة، فالدارجة كنقولو \"حنا مفتاخرين بيك\"."
+          },
+          "tip": "\"حنا\" = نحن.",
+          "options": [
+            "حْنَا مْفْتَاخْرِين بِيك",
+            "ما غاديش نطول عليك",
+            "سقطت فالامتحان",
+            "الله يصبركم"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب: Congratulations, you passed the exam",
+          "answer": "مْبْرُوك عْلِيك، نْجَحْتِي فْالِامْتِحَان",
+          "accepted": [
+            "مْبْرُوك عْلِيك، نْجَحْتِي فْالِامْتِحَان",
+            "mabrook 3leek, nja7ti f-l-imti7aan",
+            "مبروك عليك، نجحتي فالامتحان",
+            "مبروك، نجحتي فالامتحان"
+          ],
+          "too_formal": {
+            "item": "مبروك نجاحك في الامتحان",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "\"نجحتي\" كتقال للراجل وللمرا بنفس الشكل.",
+          "words": [
+            "مْبْرُوك",
+            "عْلِيك،",
+            "نْجَحْتِي",
+            "فْالِامْتِحَان"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب: He got a new job",
+          "answer": "لْقَى خْدْمَة جْدِيدَة",
+          "accepted": [
+            "لْقَى خْدْمَة جْدِيدَة",
+            "lqa khedma jdeeda",
+            "لقى خدمة جديدة"
+          ],
+          "too_formal": {
+            "item": "حصل على وظيفة جديدة",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "الفعل \"لقى\" كيجي أول الجملة.",
+          "words": [
+            "لْقَى",
+            "خْدْمَة",
+            "جْدِيدَة"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-07",
+      "phrases": [
+        {
+          "slot": "thank-god-for-your-safety-to-a-man",
+          "arabic": "الْحَمْدُ لِلَّه عْلَى السّْلَامَة آ الْحَاجّ",
+          "transliteration": "l-7amdu lillaah 3la s-slaama a l-7aajj",
+          "english": "Thank God for your safe return, Hajj (to a man)",
+          "reply": {
+            "arabic": "اللَّهُ يْسَلّْمْك",
+            "transliteration": "Allah ysellmek",
+            "english": "May God keep you safe"
+          }
+        },
+        {
+          "slot": "hajj-mabroor-an-accepted-pilgrimage",
+          "arabic": "حَجٌّ مَبْرُور",
+          "transliteration": "7ajjun mabroor",
+          "reply": {
+            "arabic": "آمِين، وْعْقْبَال عَنْدْك",
+            "transliteration": "aameen, w 3uqbaal 3andek",
+            "english": "Amen, and may it be your turn next"
+          }
+        },
+        {
+          "slot": "your-effort-is-appreciated-to-a-group",
+          "arabic": "سَعْيُكُمْ مَشْكُور",
+          "transliteration": "sa3yukum mashkoor",
+          "reply": {
+            "arabic": "اللَّهُ يْجَازِيكُم بْخِير",
+            "transliteration": "Allah yjaazeekum b-kheer",
+            "english": "May God reward you all"
+          }
+        },
+        {
+          "slot": "your-sins-are-forgiven-to-a-group",
+          "arabic": "ذَنْبُكُمْ مَغْفُور",
+          "transliteration": "dhanbukum maghfoor",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        },
+        {
+          "slot": "how-did-you-find-makkah-to-a-man",
+          "arabic": "كِيفَاش لْقِيتِي مَكَّة؟",
+          "transliteration": "keefaash lqeeti mekka?",
+          "reply": {
+            "arabic": "أَحْسَن أَيَّام فْعْمْرِي",
+            "transliteration": "a7san ayyaam f-3omri",
+            "english": "The best days of my life"
+          }
+        },
+        {
+          "slot": "did-you-visit-the-prophet-s-mosque-to-a-man",
+          "arabic": "وَاش زُرْتِي الْمَسْجِد النَّبَوِي؟",
+          "transliteration": "waash zerti l-masjid n-nabawi?"
+        },
+        {
+          "slot": "we-circled-the-kaaba",
+          "arabic": "طْفْنَا بْالْكَعْبَة",
+          "transliteration": "Tefna b-l-ka3ba"
+        },
+        {
+          "slot": "this-is-zamzam-water",
+          "arabic": "هَادَا مَا زَمْزَم",
+          "transliteration": "haada maa zemzem"
+        },
+        {
+          "slot": "i-brought-you-dates-and-zamzam",
+          "arabic": "جِبْت لِيكُم التّْمَر وْمَا زَمْزَم",
+          "transliteration": "jebt leekum t-tmer w maa zemzem",
+          "reply": {
+            "arabic": "اللَّهُ يْجَازِيك بْخِير آ الْحَاجّ",
+            "transliteration": "Allah yjaazeek b-kheer a l-7aajj",
+            "english": "May God reward you, Hajj"
+          }
+        },
+        {
+          "slot": "may-god-accept-it-from-you-to-a-man",
+          "arabic": "تَقَبَّلَ اللَّهُ مِنْك",
+          "transliteration": "taqabbala llaahu mink",
+          "reply": {
+            "arabic": "مِنَّا وَمِنْكُم",
+            "transliteration": "minna wa minkum",
+            "english": "From us and from you"
+          }
+        },
+        {
+          "slot": "may-god-grant-us-a-visit-to-his-house",
+          "arabic": "اللَّهُ يْكْتْب لِينَا زْيَارَة بِيت اللَّه",
+          "transliteration": "Allah yekteb leena zyaarat beet llaah",
+          "reply": {
+            "arabic": "آمِين يَا رَبّ",
+            "transliteration": "aameen ya rabb",
+            "english": "Amen, O Lord"
+          }
+        },
+        {
+          "slot": "pray-for-us-to-a-man",
+          "arabic": "دْعِي مْعَانَا",
+          "transliteration": "d3i m3aana",
+          "reply": {
+            "arabic": "إِن شَاء اللَّه، مَا نْسَاكُمْش",
+            "transliteration": "inshaa2 llaah, ma nsaakumsh",
+            "english": "God willing, I won't forget you"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "رشيد",
+          "slot": "thank-god-for-your-safety-to-a-man"
+        },
+        {
+          "speaker": "الحاج عبد السلام",
+          "slot": "thank-god-for-your-safety-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "رشيد",
+          "arabic": "حج مبرور، وسعي مشكور، وذنب مغفور",
+          "transliteration": "7ajjun mabroor, wa sa3yun mashkoor, wa dhanbun maghfoor",
+          "english": "May your Hajj be accepted, your effort appreciated and your sins forgiven"
+        },
+        {
+          "speaker": "الحاج عبد السلام",
+          "arabic": "آمين، وعقبال عندك. تفضل، ڭلس",
+          "transliteration": "aameen, w 3uqbaal 3andek. tfaDDal, gles",
+          "english": "Amen, and may it be your turn. Please, sit down"
+        },
+        {
+          "speaker": "رشيد",
+          "slot": "how-did-you-find-makkah-to-a-man"
+        },
+        {
+          "speaker": "الحاج عبد السلام",
+          "arabic": "أحسن أيام فعمري. وقفنا فعرفة فالإحرام وبكيت بزاف",
+          "transliteration": "a7san ayyaam f-3omri. wqefna f-3arafa f-l-i7raam w bkeet bzzaaf",
+          "english": "The best days of my life. We stood at Arafah in ihram and I cried a lot"
+        },
+        {
+          "speaker": "رشيد",
+          "slot": "did-you-visit-the-prophet-s-mosque-to-a-man"
+        },
+        {
+          "speaker": "الحاج عبد السلام",
+          "arabic": "إيه، صليت فيه الجمعة، الحمد لله. خود، هادا ما زمزم وهادا التمر",
+          "transliteration": "eeyeh, Salleet feeh j-jem3a, l-7amdu lillaah. khood, haada maa zemzem w haada t-tmer",
+          "english": "Yes, I prayed the Friday prayer there, thank God. Here, this is zamzam water and these are dates"
+        },
+        {
+          "speaker": "رشيد",
+          "arabic": "الله يجازيك بخير. تقبل الله منك آ الحاج",
+          "transliteration": "Allah yjaazeek b-kheer. taqabbala llaahu mink a l-7aajj",
+          "english": "May God reward you. May God accept it from you, Hajj"
+        },
+        {
+          "speaker": "الحاج عبد السلام",
+          "slot": "may-god-accept-it-from-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "رشيد",
+          "slot": "may-god-grant-us-a-visit-to-his-house"
+        },
+        {
+          "speaker": "الحاج عبد السلام",
+          "arabic": "آمين يا رب، وما ننساكش فالدعاء",
+          "transliteration": "aameen ya rabb, w ma nnsaaksh f-d-du3aa2",
+          "english": "Amen, O Lord, and I won't forget you in my prayers"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "الْحَمْدُ لِلَّه عْلَى السّْلَامَة",
+            "transliteration": "l-7amdu lillaah 3la s-slaama",
+            "english": "Thank God for your safe return"
+          },
+          "response": {
+            "arabic": "اللَّهُ يْسَلّْمْك",
+            "transliteration": "Allah ysellmek",
+            "english": "May God keep you safe"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "حَجٌّ مَبْرُور",
+            "transliteration": "7ajjun mabroor",
+            "english": "May your Hajj be accepted"
+          },
+          "response": {
+            "arabic": "آمِين، وْعْقْبَال عَنْدْك",
+            "transliteration": "aameen, w 3uqbaal 3andek",
+            "english": "Amen, and may it be your turn next"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كِيفَاش لْقِيتِي مَكَّة؟",
+            "transliteration": "keefaash lqeeti mekka?",
+            "english": "How did you find Makkah?"
+          },
+          "response": {
+            "arabic": "أَحْسَن أَيَّام فْعْمْرِي",
+            "transliteration": "a7san ayyaam f-3omri",
+            "english": "The best days of my life"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تَقَبَّلَ اللَّهُ مِنْك",
+            "transliteration": "taqabbala llaahu mink",
+            "english": "May God accept it from you"
+          },
+          "response": {
+            "arabic": "مِنَّا وَمِنْكُم",
+            "transliteration": "minna wa minkum",
+            "english": "From us and from you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "دْعِي مْعَانَا",
+            "transliteration": "d3i m3aana",
+            "english": "Pray for us"
+          },
+          "response": {
+            "arabic": "إِن شَاء اللَّه، مَا نْسَاكُمْش",
+            "transliteration": "inshaa2 llaah, ma nsaakumsh",
+            "english": "God willing, I won't forget you"
+          }
+        }
+      ],
+      "culture": "فالمغرب ملي كيرجع الحاج، العائلة والجيران كيستقبلوه فالدار بـ\"الحمد لله على السلامة\" و\"حج مبرور وسعي مشكور وذنب مغفور\"، وهاد الصيغة كتقال كيف ما هي فجميع البلدان العربية. الحاج كيعطي للضياف ما زمزم والتمر، والناس كيوليو يعيطو ليه \"الحاج\" ولا \"الحاجة\" وكيطلبو منو يدعي معاهم.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-07.reply.01",
+          "type": "reply",
+          "prompt": "واحد قال ليك \"الحمد لله على السلامة آ الحاج\"، شنو كتجاوب؟",
+          "answer": "اللَّهُ يْسَلّْمْك",
+          "accepted": [
+            "اللَّهُ يْسَلّْمْك",
+            "Allah ysellmek",
+            "الله يسلمك",
+            "الله يسلمك آ خويا",
+            "الله يسلمكم"
+          ],
+          "too_formal": {
+            "item": "سلمك الله",
+            "feedback": "صيغة فصيحة، فالدارجة كنقولو \"الله يسلمك\"."
+          },
+          "tip": "\"الله يسلمك\" هو الجواب ديال \"الحمد لله على السلامة\" ديما."
+        },
+        {
+          "id": "unit-14.lesson-07.reply.02",
+          "type": "reply",
+          "prompt": "الحاج قال ليك \"تقبل الله منك\"، شنو كتجاوب؟",
+          "answer": "مِنَّا وَمِنْكُم",
+          "accepted": [
+            "مِنَّا وَمِنْكُم",
+            "minna wa minkum",
+            "منا ومنكم",
+            "منا ومنك",
+            "تقبل الله منا ومنكم"
+          ],
+          "tip": "\"تقبل الله منا ومنكم\" صيغة إسلامية مشتركة بين جميع اللهجات، كتقال كيف ما هي."
+        },
+        {
+          "id": "unit-14.lesson-07.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "حج ____، وسعي مشكور، وذنب مغفور",
+          "answer": "مبرور",
+          "accepted": [
+            "مبرور",
+            "mabroor"
+          ],
+          "tip": "هاد الدعاء ديال الحاج مشترك بين جميع اللهجات، كيتقال بالفصحى كيف ما هو."
+        },
+        {
+          "id": "unit-14.lesson-07.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "طفنا ب____ (We circled the Kaaba)",
+          "answer": "الكعبة",
+          "accepted": [
+            "الكعبة",
+            "l-ka3ba",
+            "لكعبة"
+          ],
+          "too_formal": {
+            "item": "طفنا حول الكعبة",
+            "feedback": "\"حول\" فصيحة، فالدارجة كنقولو \"طفنا بالكعبة\"."
+          },
+          "tip": "\"طاف ب\" معناها دار على الكعبة فالطواف."
+        },
+        {
+          "id": "unit-14.lesson-07.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "This is zamzam water",
+          "answer": "هَادَا مَا زَمْزَم",
+          "accepted": [
+            "هَادَا مَا زَمْزَم",
+            "haada maa zemzem",
+            "هادا ما زمزم",
+            "هادا الما ديال زمزم"
+          ],
+          "too_formal": {
+            "item": "هذا ماء زمزم",
+            "feedback": "\"هذا\" و\"ماء\" فصيحة، فالدارجة كنقولو \"هادا ما\"."
+          },
+          "tip": "\"ما\" فالدارجة هي الماء."
+        },
+        {
+          "id": "unit-14.lesson-07.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Pray for us (to a man)",
+          "answer": "دْعِي مْعَانَا",
+          "accepted": [
+            "دْعِي مْعَانَا",
+            "d3i m3aana",
+            "دعي معانا",
+            "دعي لينا",
+            "d3i leena"
+          ],
+          "too_formal": {
+            "item": "ادع لنا",
+            "feedback": "صيغة فصيحة، فالدارجة كنقولو \"دعي معانا\"."
+          },
+          "tip": "\"دعي معانا\" بالحرف \"ادع معنا\"، وكتعني ادع لنا."
+        },
+        {
+          "id": "unit-14.lesson-07.choose.01",
+          "type": "choose",
+          "prompt": "شنو كتقول للحاج باش يدعي ليك؟",
+          "answer": "دْعِي مْعَانَا",
+          "accepted": [
+            "دْعِي مْعَانَا",
+            "d3i m3aana",
+            "دعي معانا",
+            "دعي لينا"
+          ],
+          "too_formal": {
+            "item": "ادع لنا",
+            "feedback": "صيغة فصيحة."
+          },
+          "tip": "كتطلبها من أي واحد رجع من الحج ولا العمرة.",
+          "options": [
+            "دْعِي مْعَانَا",
+            "الله يشافيك",
+            "مبروك ما جاك",
+            "ما تحزنش"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-07.choose.02",
+          "type": "choose",
+          "prompt": "شنو كيتقال لجماعة رجعو من الحج على التعب ديالهم؟",
+          "answer": "سَعْيُكُمْ مَشْكُور",
+          "accepted": [
+            "سَعْيُكُمْ مَشْكُور",
+            "sa3yukum mashkoor",
+            "سعيكم مشكور",
+            "سعي مشكور"
+          ],
+          "tip": "\"سعيكم مشكور\" صيغة مشتركة بين جميع اللهجات، كتقال كيف ما هي.",
+          "options": [
+            "سَعْيُكُمْ مَشْكُور",
+            "البركة فراسكم",
+            "الله يسهل عليك",
+            "بشحال هادا؟"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-07.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب: How did you find Makkah? (to a man)",
+          "answer": "كِيفَاش لْقِيتِي مَكَّة؟",
+          "accepted": [
+            "كِيفَاش لْقِيتِي مَكَّة؟",
+            "keefaash lqeeti mekka?",
+            "كيفاش لقيتي مكة",
+            "كيف لقيتي مكة؟"
+          ],
+          "too_formal": {
+            "item": "كيف وجدت مكة؟",
+            "feedback": "سؤال فصيح."
+          },
+          "tip": "\"لقيتي\" = وجدت، للراجل وللمرا.",
+          "words": [
+            "كِيفَاش",
+            "لْقِيتِي",
+            "مَكَّة؟"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-07.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب: I brought you dates and zamzam water",
+          "answer": "جِبْت لِيكُم التّْمَر وْمَا زَمْزَم",
+          "accepted": [
+            "جِبْت لِيكُم التّْمَر وْمَا زَمْزَم",
+            "jebt leekum t-tmer w maa zemzem",
+            "جبت ليكم التمر وما زمزم",
+            "جبت ليكم التمر والما ديال زمزم"
+          ],
+          "too_formal": {
+            "item": "أحضرت لكم تمرا وماء زمزم",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "\"جبت\" = أحضرت.",
+          "words": [
+            "جِبْت",
+            "لِيكُم",
+            "التّْمَر",
+            "وْمَا",
+            "زَمْزَم"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-08",
+      "phrases": [
+        {
+          "slot": "we-belong-to-god-and-to-him-we-return",
+          "arabic": "إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ",
+          "transliteration": "innaa lillaahi wa innaa ilayhi raaji3oon"
+        },
+        {
+          "slot": "may-god-magnify-your-reward-condolence",
+          "arabic": "عَظَّمَ اللَّهُ أَجْرَكُمْ",
+          "transliteration": "3aZZama llaahu ajrakum",
+          "reply": {
+            "arabic": "آمِين، اللَّهُ يْجَازِيكُم بْخِير",
+            "transliteration": "aameen, Allah yjaazeekum b-kheer",
+            "english": "Amen, may God reward you"
+          }
+        },
+        {
+          "slot": "may-god-have-mercy-on-him",
+          "arabic": "اللَّهُ يْرْحْمُو",
+          "transliteration": "Allah yr7emu",
+          "reply": {
+            "arabic": "آمِين، وْيْرْحَم جْمِيع الْمُسْلِمِين",
+            "transliteration": "aameen, w yr7em jamee3 l-muslimeen",
+            "english": "Amen, and may He have mercy on all Muslims"
+          }
+        },
+        {
+          "slot": "may-god-house-him-in-spacious-gardens",
+          "arabic": "أَسْكَنَهُ اللَّهُ فَسِيحَ جَنَّاتِهِ",
+          "transliteration": "askanahu llaahu fasee7a jannaatih",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        },
+        {
+          "slot": "may-god-forgive-him",
+          "arabic": "اللَّهُ يْسْمْح لِيه",
+          "transliteration": "Allah ysme7 leeh",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        },
+        {
+          "slot": "my-sincere-condolences-to-the-family",
+          "arabic": "الْبَرَكَة فْرَاسْكُم",
+          "transliteration": "l-baraka f-raaskum",
+          "english": "My condolences to you all (lit. the blessing is in your heads)"
+        },
+        {
+          "slot": "may-god-grant-you-patience-and-comfort",
+          "arabic": "اللَّهُ يْصَبّْرْكُم وْيْخَفّْف عْلِيكُم",
+          "transliteration": "Allah ySabberkum w ykhaffef 3leekum",
+          "english": "May God give you patience and lighten your grief",
+          "reply": {
+            "arabic": "آمِين، اللَّهُ يْجَازِيك بْخِير",
+            "transliteration": "aameen, Allah yjaazeek b-kheer",
+            "english": "Amen, may God reward you"
+          }
+        },
+        {
+          "slot": "may-god-reward-your-effort-reply-to-mourners",
+          "arabic": "شَكَرَ اللَّهُ سَعْيَكُمْ",
+          "transliteration": "shakara llaahu sa3yakum",
+          "reply": {
+            "arabic": "هَادَا وَاجِب",
+            "transliteration": "haada waajib",
+            "english": "It's a duty"
+          }
+        },
+        {
+          "slot": "when-is-the-funeral-prayer",
+          "arabic": "فُوقَاش صْلَاة الْجْنَازَة؟",
+          "transliteration": "fooqaash Slaat l-jnaaza?",
+          "reply": {
+            "arabic": "مْن بْعْد صْلَاة الظّْهَر",
+            "transliteration": "mn b3d Slaat Z-Zhar",
+            "english": "After the noon prayer"
+          }
+        },
+        {
+          "slot": "we-will-attend-the-janazah-god-willing",
+          "arabic": "غَادِي نْحْضْرُو لِلْجْنَازَة إِن شَاء اللَّه",
+          "transliteration": "ghaadi n7Dru l-l-jnaaza inshaa2 llaah"
+        },
+        {
+          "slot": "where-will-the-burial-be",
+          "arabic": "فِين غَادِي يْدْفْنُوه؟",
+          "transliteration": "feen ghaadi ydfnooh?",
+          "english": "Where will they bury him?",
+          "reply": {
+            "arabic": "فْالْمْقْبْرَة لِّي حْدَا الْجَامْع",
+            "transliteration": "f-l-meqbra lli 7da l-jaame3",
+            "english": "In the cemetery next to the mosque"
+          }
+        },
+        {
+          "slot": "he-was-a-good-man-condolence",
+          "arabic": "كَان رَاجْل مْزْيَان",
+          "transliteration": "kaan raajel mezyaan"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "عبد الله",
+          "arabic": "إنا لله وإنا إليه راجعون آ عمر، وصلني الخبار ديال الوالد",
+          "transliteration": "innaa lillaahi wa innaa ilayhi raaji3oon a 3omar, wSelni l-khbaar dyaal l-waalid",
+          "english": "We belong to God and to Him we return, Omar. The news about your father reached me"
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "إنا لله وإنا إليه راجعون. الله يجازيك بخير على الجية",
+          "transliteration": "innaa lillaahi wa innaa ilayhi raaji3oon. Allah yjaazeek b-kheer 3la j-jeeya",
+          "english": "We belong to God and to Him we return. May God reward you for coming"
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "may-god-magnify-your-reward-condolence"
+        },
+        {
+          "speaker": "عمر",
+          "slot": "may-god-magnify-your-reward-condolence",
+          "reply": true
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "may-god-have-mercy-on-him"
+        },
+        {
+          "speaker": "عمر",
+          "slot": "may-god-have-mercy-on-him",
+          "reply": true
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "he-was-a-good-man-condolence"
+        },
+        {
+          "speaker": "عمر",
+          "arabic": "وكان كيبغيك بزاف. صلاة الجنازة من بعد الظهر فالجامع الكبير",
+          "transliteration": "w kaan kaybgheek bzzaaf. Slaat l-jnaaza mn b3d Z-Zhar f-l-jaame3 l-kbeer",
+          "english": "And he loved you very much. The funeral prayer is after the noon prayer in the big mosque"
+        },
+        {
+          "speaker": "عبد الله",
+          "slot": "we-will-attend-the-janazah-god-willing"
+        },
+        {
+          "speaker": "عمر",
+          "slot": "may-god-reward-your-effort-reply-to-mourners"
+        },
+        {
+          "speaker": "عبد الله",
+          "arabic": "هادا واجب آ عمر. الله يصبركم ويخفف عليكم",
+          "transliteration": "haada waajib a 3omar. Allah ySabberkum w ykhaffef 3leekum",
+          "english": "It's a duty, Omar. May God give you patience and lighten your grief"
+        },
+        {
+          "speaker": "عمر",
+          "slot": "may-god-grant-you-patience-and-comfort",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عَظَّمَ اللَّهُ أَجْرَكُمْ",
+            "transliteration": "3aZZama llaahu ajrakum",
+            "english": "May God magnify your reward"
+          },
+          "response": {
+            "arabic": "آمِين، اللَّهُ يْجَازِيكُم بْخِير",
+            "transliteration": "aameen, Allah yjaazeekum b-kheer",
+            "english": "Amen, may God reward you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "اللَّهُ يْرْحْمُو",
+            "transliteration": "Allah yr7emu",
+            "english": "May God have mercy on him"
+          },
+          "response": {
+            "arabic": "آمِين، وْيْرْحَم جْمِيع الْمُسْلِمِين",
+            "transliteration": "aameen, w yr7em jamee3 l-muslimeen",
+            "english": "Amen, and may He have mercy on all Muslims"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شَكَرَ اللَّهُ سَعْيَكُمْ",
+            "transliteration": "shakara llaahu sa3yakum",
+            "english": "May God reward your effort"
+          },
+          "response": {
+            "arabic": "هَادَا وَاجِب",
+            "transliteration": "haada waajib",
+            "english": "It's a duty"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فُوقَاش صْلَاة الْجْنَازَة؟",
+            "transliteration": "fooqaash Slaat l-jnaaza?",
+            "english": "When is the funeral prayer?"
+          },
+          "response": {
+            "arabic": "مْن بْعْد صْلَاة الظّْهَر",
+            "transliteration": "mn b3d Slaat Z-Zhar",
+            "english": "After the noon prayer"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَسْكَنَهُ اللَّهُ فَسِيحَ جَنَّاتِهِ",
+            "transliteration": "askanahu llaahu fasee7a jannaatih",
+            "english": "May God house him in His spacious gardens"
+          },
+          "response": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        }
+      ],
+      "culture": "فالمغرب كيقولو لعائلة الميت \"البركة فراسكم\" و\"عظم الله أجركم\"، والكلام كيكون قليل وبالحنان. الدفن كيكون بالزربة، غالبا نفس النهار من بعد صلاة الجنازة فالجامع، والعزا كيدوم تلات أيام فالدار والجيران كيجيبو الماكلة للعائلة. \"إنا لله وإنا إليه راجعون\" آية من القرآن وكتقال كيف ما هي.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-08.reply.01",
+          "type": "reply",
+          "prompt": "واحد قال ليك فالعزا \"عظم الله أجركم\"، شنو كتجاوب؟",
+          "answer": "آمِين، اللَّهُ يْجَازِيكُم بْخِير",
+          "accepted": [
+            "آمِين، اللَّهُ يْجَازِيكُم بْخِير",
+            "aameen, Allah yjaazeekum b-kheer",
+            "آمين، الله يجازيكم بخير",
+            "آمين، الله يجازيك بخير",
+            "وأحسن الله عزاءكم"
+          ],
+          "tip": "\"عظم الله أجركم\" صيغة تعزية مشتركة بين جميع اللهجات، كتقال كيف ما هي؛ والجواب بالدارجة \"الله يجازيكم بخير\"."
+        },
+        {
+          "id": "unit-14.lesson-08.reply.02",
+          "type": "reply",
+          "prompt": "واحد سولك \"فوقاش صلاة الجنازة؟\"، قول ليه من بعد صلاة الظهر.",
+          "answer": "مْن بْعْد صْلَاة الظّْهَر",
+          "accepted": [
+            "مْن بْعْد صْلَاة الظّْهَر",
+            "mn b3d Slaat Z-Zhar",
+            "من بعد صلاة الظهر",
+            "من بعد الظهر",
+            "مور الظهر"
+          ],
+          "too_formal": {
+            "item": "بعد صلاة الظهر",
+            "feedback": "\"بعد\" بوحدها فصيحة، فالدارجة كنقولو \"من بعد\"."
+          },
+          "tip": "\"من بعد\" و\"مور\" بجوج معناهم بعد."
+        },
+        {
+          "id": "unit-14.lesson-08.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "إنا لله وإنا إليه ____",
+          "answer": "راجعون",
+          "accepted": [
+            "راجعون",
+            "raaji3oon"
+          ],
+          "tip": "هادي آية من القرآن، كتقال كيف ما هي فجميع اللهجات بلا تبديل."
+        },
+        {
+          "id": "unit-14.lesson-08.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "الله ____ ليه (May God forgive him)",
+          "answer": "يسمح",
+          "accepted": [
+            "يسمح",
+            "ysme7",
+            "يسامح"
+          ],
+          "too_formal": {
+            "item": "غفر الله له",
+            "feedback": "صيغة فصيحة، فالدارجة اليومية كنقولو \"الله يسمح ليه\"."
+          },
+          "tip": "\"سمح\" فالدارجة معناها غفر وعفا."
+        },
+        {
+          "id": "unit-14.lesson-08.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "We will attend the funeral, God willing",
+          "answer": "غَادِي نْحْضْرُو لِلْجْنَازَة إِن شَاء اللَّه",
+          "accepted": [
+            "غَادِي نْحْضْرُو لِلْجْنَازَة إِن شَاء اللَّه",
+            "ghaadi n7Dru l-l-jnaaza inshaa2 llaah",
+            "غادي نحضرو للجنازة إن شاء الله",
+            "غادي نحضرو الجنازة إن شاء الله",
+            "غانحضرو للجنازة إن شاء الله"
+          ],
+          "too_formal": {
+            "item": "سنحضر الجنازة إن شاء الله",
+            "feedback": "جملة فصيحة، فالدارجة كنقولو \"غادي نحضرو\"."
+          },
+          "tip": "\"غادي\" قبل الفعل كتدل على المستقبل."
+        },
+        {
+          "id": "unit-14.lesson-08.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "May God have mercy on him",
+          "answer": "اللَّهُ يْرْحْمُو",
+          "accepted": [
+            "اللَّهُ يْرْحْمُو",
+            "Allah yr7emu",
+            "الله يرحمو",
+            "الله يرحمه",
+            "رحمه الله"
+          ],
+          "tip": "\"الله يرحمو\" هي لي كتقال فالهضرة، و\"رحمه الله\" بالفصحى حتى هي مفهومة ومقبولة."
+        },
+        {
+          "id": "unit-14.lesson-08.choose.01",
+          "type": "choose",
+          "prompt": "شنو كيقولو المغاربة لعائلة الميت فالعزا؟",
+          "answer": "الْبَرَكَة فْرَاسْكُم",
+          "accepted": [
+            "الْبَرَكَة فْرَاسْكُم",
+            "l-baraka f-raaskum",
+            "البركة فراسكم",
+            "البركة فراسك"
+          ],
+          "too_formal": {
+            "item": "أتقدم إليكم بخالص التعازي",
+            "feedback": "جملة فصيحة رسمية، فالعزا كيقولو \"البركة فراسكم\"."
+          },
+          "tip": "\"البركة فراسكم\" تعزية مغربية: البركة باقية فيكم أنتوما لي بقيتو.",
+          "options": [
+            "الْبَرَكَة فْرَاسْكُم",
+            "مبروك ما جاك",
+            "بصحتك",
+            "عقبال عندك"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-08.choose.02",
+          "type": "choose",
+          "prompt": "العائلة كتشكر الناس لي جاو للعزا. شنو كيقولو؟",
+          "answer": "شَكَرَ اللَّهُ سَعْيَكُمْ",
+          "accepted": [
+            "شَكَرَ اللَّهُ سَعْيَكُمْ",
+            "shakara llaahu sa3yakum",
+            "شكر الله سعيكم",
+            "الله يجازيكم بخير"
+          ],
+          "tip": "\"شكر الله سعيكم\" صيغة مشتركة بين جميع اللهجات، كتقال كيف ما هي.",
+          "options": [
+            "شَكَرَ اللَّهُ سَعْيَكُمْ",
+            "حج مبرور",
+            "الله يفتح عليك",
+            "سير نيشان"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-08.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب: When is the funeral prayer?",
+          "answer": "فُوقَاش صْلَاة الْجْنَازَة؟",
+          "accepted": [
+            "فُوقَاش صْلَاة الْجْنَازَة؟",
+            "fooqaash Slaat l-jnaaza?",
+            "فوقاش صلاة الجنازة",
+            "فوقتاش صلاة الجنازة؟"
+          ],
+          "too_formal": {
+            "item": "متى صلاة الجنازة؟",
+            "feedback": "\"متى\" فصيحة، فالدارجة كنقولو \"فوقاش\"."
+          },
+          "tip": "\"فوقاش\" = متى.",
+          "words": [
+            "فُوقَاش",
+            "صْلَاة",
+            "الْجْنَازَة؟"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-08.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب: He was a good man",
+          "answer": "كَان رَاجْل مْزْيَان",
+          "accepted": [
+            "كَان رَاجْل مْزْيَان",
+            "kaan raajel mezyaan",
+            "كان راجل مزيان",
+            "كان راجل الله يرحمو"
+          ],
+          "too_formal": {
+            "item": "كان رجلا طيبا",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "\"مزيان\" = طيب، زوين فالأخلاق.",
+          "words": [
+            "كَان",
+            "رَاجْل",
+            "مْزْيَان"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-09",
+      "phrases": [
+        {
+          "slot": "no-harm-a-purification-god-willing",
+          "arabic": "لَا بَأْسَ، طَهُورٌ إِنْ شَاءَ اللَّهُ",
+          "transliteration": "laa ba2sa, Tahoorun in shaa2a llaah",
+          "reply": {
+            "arabic": "اللَّهُ يْبَارْك فِيك",
+            "transliteration": "Allah ybaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "slot": "may-god-heal-you",
+          "arabic": "اللَّهُ يْشَافِيك",
+          "transliteration": "Allah yshaafeek",
+          "reply": {
+            "arabic": "آمِين، اللَّهُ يْجَازِيك بْخِير",
+            "transliteration": "aameen, Allah yjaazeek b-kheer",
+            "english": "Amen, may God reward you"
+          }
+        },
+        {
+          "slot": "get-well-wish-your-safety",
+          "arabic": "لَابَاس عْلِيك",
+          "transliteration": "laabaas 3leek",
+          "english": "Get well soon (lit. no harm on you)",
+          "reply": {
+            "arabic": "الْحَمْدُ لِلَّه، اللَّهُ يْخَلِّيك",
+            "transliteration": "l-7amdu lillaah, Allah ykhalleek",
+            "english": "Thank God, God keep you"
+          }
+        },
+        {
+          "slot": "how-are-you-feeling-today",
+          "arabic": "كِيفَاش كَتْحَسّ رَاسْك الْيُوم؟",
+          "transliteration": "keefaash kat7ess raask l-yoom?",
+          "reply": {
+            "arabic": "الْحَمْدُ لِلَّه، حْسَن مْن الْبَارْح",
+            "transliteration": "l-7amdu lillaah, 7sen mn l-baare7",
+            "english": "Thank God, better than yesterday"
+          }
+        },
+        {
+          "slot": "what-did-the-doctor-say",
+          "arabic": "شْنُو قَال لِيك الطّْبِيب؟",
+          "transliteration": "shnoo qaal leek T-Tbeeb?",
+          "reply": {
+            "arabic": "قَال لِيا خَاصّْنِي الرَّاحَة سِيمَانَة",
+            "transliteration": "qaal leeya khaSSni r-raa7a seemaana",
+            "english": "He told me I need a week of rest"
+          }
+        },
+        {
+          "slot": "when-will-you-leave-the-hospital",
+          "arabic": "فُوقَاش غَادِي تْخْرُج مْن السّْبِيطَار؟",
+          "transliteration": "fooqaash ghaadi tkhrej mn s-sbeeTaar?",
+          "reply": {
+            "arabic": "غْدَّا إِن شَاء اللَّه",
+            "transliteration": "ghedda inshaa2 llaah",
+            "english": "Tomorrow, God willing"
+          }
+        },
+        {
+          "slot": "i-brought-you-some-fruit",
+          "arabic": "جِبْت لِيك شْوِيَّة دْيَال الْفَاكْيَة",
+          "transliteration": "jebt leek shwiyya dyaal l-faakya",
+          "reply": {
+            "arabic": "عْلَاش عْيِّيتِي رَاسْك؟ اللَّهُ يْخَلِّيك",
+            "transliteration": "3laash 3yyeeti raask? Allah ykhalleek",
+            "english": "Why did you trouble yourself? God keep you"
+          }
+        },
+        {
+          "slot": "this-bouquet-is-for-you",
+          "arabic": "هَادِي بَاقَة دْيَال الْوَرْد لِيك",
+          "transliteration": "haadi baaqa dyaal l-werd leek",
+          "reply": {
+            "arabic": "زْوِينَة بْزَّاف! شُكْرًا",
+            "transliteration": "zweena bzzaaf! shukran",
+            "english": "It's very beautiful! Thank you"
+          }
+        },
+        {
+          "slot": "i-will-not-stay-long",
+          "arabic": "مَا غَادِيش نْطَوّْل عْلِيك",
+          "transliteration": "ma ghaadeesh nTawwel 3leek",
+          "reply": {
+            "arabic": "بِالْعْكْس، الزّْيَارَة دْيَالْك فْرّْحَاتْنِي",
+            "transliteration": "bi-l-3aks, z-zyaara dyaalek farr7aatni",
+            "english": "On the contrary, your visit made me happy"
+          }
+        },
+        {
+          "slot": "rest-and-do-not-tire-yourself",
+          "arabic": "رْتَاح وْمَا تْعْيِّيش رَاسْك",
+          "transliteration": "rtaa7 w ma t3ayyeesh raask"
+        },
+        {
+          "slot": "thank-you-for-visiting-me",
+          "arabic": "شُكْرًا عْلَى الزّْيَارَة دْيَالْك",
+          "transliteration": "shukran 3la z-zyaara dyaalek",
+          "reply": {
+            "arabic": "هَادَا وَاجِب",
+            "transliteration": "haada waajib",
+            "english": "It's a duty"
+          }
+        },
+        {
+          "slot": "we-ask-god-to-grant-you-wellbeing",
+          "arabic": "اللَّهُ يْعْطِيك الصّْحَّة وْالْعَافْيَة",
+          "transliteration": "Allah y3Teek S-Sa77a w l-3aafya",
+          "english": "May God give you health and wellbeing",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "يونس",
+          "arabic": "السلام عليكم آ حسن. لا بأس، طهور إن شاء الله",
+          "transliteration": "s-salaamu 3alaykum a 7asan. laa ba2sa, Tahoorun in shaa2a llaah",
+          "english": "Peace be upon you, Hassan. No harm, it is a purification, God willing"
+        },
+        {
+          "speaker": "حسن",
+          "arabic": "وعليكم السلام، الله يجازيك بخير على الزيارة",
+          "transliteration": "w 3alaykum s-salaam, Allah yjaazeek b-kheer 3la z-zyaara",
+          "english": "And upon you peace, may God reward you for the visit"
+        },
+        {
+          "speaker": "يونس",
+          "slot": "how-are-you-feeling-today"
+        },
+        {
+          "speaker": "حسن",
+          "slot": "how-are-you-feeling-today",
+          "reply": true
+        },
+        {
+          "speaker": "يونس",
+          "slot": "what-did-the-doctor-say"
+        },
+        {
+          "speaker": "حسن",
+          "arabic": "قال ليا غادي نخرج من السبيطار غدا إن شاء الله، ولكن باقي عيان شوية",
+          "transliteration": "qaal leeya ghaadi nkhrej mn s-sbeeTaar ghedda inshaa2 llaah, walakin baaqi 3yyaan shwiyya",
+          "english": "He told me I'll leave the hospital tomorrow, God willing, but I'm still a bit tired"
+        },
+        {
+          "speaker": "يونس",
+          "arabic": "الحمد لله، طمنتيني. جبت ليك شوية ديال الفاكية",
+          "transliteration": "l-7amdu lillaah, Tammenteeni. jebt leek shwiyya dyaal l-faakya",
+          "english": "Thank God, you've reassured me. I brought you some fruit"
+        },
+        {
+          "speaker": "حسن",
+          "slot": "i-brought-you-some-fruit",
+          "reply": true
+        },
+        {
+          "speaker": "يونس",
+          "slot": "i-will-not-stay-long"
+        },
+        {
+          "speaker": "حسن",
+          "slot": "i-will-not-stay-long",
+          "reply": true
+        },
+        {
+          "speaker": "يونس",
+          "arabic": "الله يشافيك آ حسن، ولاباس عليك",
+          "transliteration": "Allah yshaafeek a 7asan, w laabaas 3leek",
+          "english": "May God heal you, Hassan, and get well soon"
+        },
+        {
+          "speaker": "حسن",
+          "arabic": "آمين، الله يبارك فيك آ يونس",
+          "transliteration": "aameen, Allah ybaarek feek a yoones",
+          "english": "Amen, God bless you, Younes"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "لَا بَأْسَ، طَهُورٌ إِنْ شَاءَ اللَّهُ",
+            "transliteration": "laa ba2sa, Tahoorun in shaa2a llaah",
+            "english": "No harm, it is a purification, God willing"
+          },
+          "response": {
+            "arabic": "اللَّهُ يْبَارْك فِيك",
+            "transliteration": "Allah ybaarek feek",
+            "english": "God bless you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "اللَّهُ يْشَافِيك",
+            "transliteration": "Allah yshaafeek",
+            "english": "May God heal you"
+          },
+          "response": {
+            "arabic": "آمِين، اللَّهُ يْجَازِيك بْخِير",
+            "transliteration": "aameen, Allah yjaazeek b-kheer",
+            "english": "Amen, may God reward you"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كِيفَاش كَتْحَسّ رَاسْك الْيُوم؟",
+            "transliteration": "keefaash kat7ess raask l-yoom?",
+            "english": "How are you feeling today?"
+          },
+          "response": {
+            "arabic": "الْحَمْدُ لِلَّه، حْسَن مْن الْبَارْح",
+            "transliteration": "l-7amdu lillaah, 7sen mn l-baare7",
+            "english": "Thank God, better than yesterday"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شُكْرًا عْلَى الزّْيَارَة دْيَالْك",
+            "transliteration": "shukran 3la z-zyaara dyaalek",
+            "english": "Thank you for visiting me"
+          },
+          "response": {
+            "arabic": "هَادَا وَاجِب",
+            "transliteration": "haada waajib",
+            "english": "It's a duty"
+          }
+        }
+      ],
+      "culture": "زيارة المريض فالمغرب واجب، وكيقولو ليه \"لا بأس، طهور إن شاء الله\"، وهاد الكلام جا عن النبي صلى الله عليه وسلم ملي كان كيزور المريض، وكيتقال كيف ما هو. من بعد كيزيدو بالدارجة \"لاباس عليك\" و\"الله يشافيك\". الزيارة كتكون قصيرة باش يرتاح المريض، والناس كيجيبو الفاكية ولا الورد ولا العصير.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-09.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك المريض قال ليك \"شكرا على الزيارة ديالك\"، شنو كتجاوب؟",
+          "answer": "هَادَا وَاجِب",
+          "accepted": [
+            "هَادَا وَاجِب",
+            "haada waajib",
+            "هادا واجب",
+            "هادا واجب علينا",
+            "هادشي واجب"
+          ],
+          "too_formal": {
+            "item": "لا شكر على واجب",
+            "feedback": "جملة فصيحة، فالدارجة كيكفي \"هادا واجب\"."
+          },
+          "tip": "\"واجب\" هنا معناها حق عليا نزورك."
+        },
+        {
+          "id": "unit-14.lesson-09.reply.02",
+          "type": "reply",
+          "prompt": "قلتي للمريض \"الله يشافيك\"، شنو غادي يجاوبك؟",
+          "answer": "آمِين، اللَّهُ يْجَازِيك بْخِير",
+          "accepted": [
+            "آمِين، اللَّهُ يْجَازِيك بْخِير",
+            "aameen, Allah yjaazeek b-kheer",
+            "آمين، الله يجازيك بخير",
+            "آمين",
+            "آمين، الله يخليك"
+          ],
+          "too_formal": {
+            "item": "آمين، جزاك الله خيرا",
+            "feedback": "\"جزاك الله خيرا\" مفهومة، ولكن فالدارجة كنقولو \"الله يجازيك بخير\"."
+          },
+          "tip": "\"الله يجازيك بخير\" هي \"جزاك الله خيرا\" بالدارجة."
+        },
+        {
+          "id": "unit-14.lesson-09.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "____ عليك (Get well soon)",
+          "answer": "لاباس",
+          "accepted": [
+            "لاباس",
+            "laabaas",
+            "لا باس"
+          ],
+          "tip": "\"لاباس عليك\" كتقال للمريض، و\"لاباس\" بوحدها حتى هي معناها \"بخير\"."
+        },
+        {
+          "id": "unit-14.lesson-09.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "فوقاش غادي تخرج من ____؟ (When will you leave the hospital?)",
+          "answer": "السبيطار",
+          "accepted": [
+            "السبيطار",
+            "s-sbeeTaar",
+            "سبيطار",
+            "الصبيطار"
+          ],
+          "too_formal": {
+            "item": "المستشفى",
+            "feedback": "\"المستشفى\" مفهومة، ولكن فالهضرة اليومية كنقولو \"السبيطار\"."
+          },
+          "tip": "\"السبيطار\" جات من الفرنسية hôpital."
+        },
+        {
+          "id": "unit-14.lesson-09.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "What did the doctor say?",
+          "answer": "شْنُو قَال لِيك الطّْبِيب؟",
+          "accepted": [
+            "شْنُو قَال لِيك الطّْبِيب؟",
+            "shnoo qaal leek T-Tbeeb?",
+            "شنو قال ليك الطبيب؟",
+            "آش قال ليك الطبيب؟",
+            "شنو قال ليك الدكتور؟"
+          ],
+          "too_formal": {
+            "item": "ماذا قال الطبيب؟",
+            "feedback": "سؤال فصيح، فالدارجة كنقولو \"شنو قال ليك الطبيب؟\"."
+          },
+          "tip": "\"ليك\" = لك، والمغاربة كيقولو حتى \"الدكتور\"."
+        },
+        {
+          "id": "unit-14.lesson-09.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "I won't stay long",
+          "answer": "مَا غَادِيش نْطَوّْل عْلِيك",
+          "accepted": [
+            "مَا غَادِيش نْطَوّْل عْلِيك",
+            "ma ghaadeesh nTawwel 3leek",
+            "ما غاديش نطول عليك",
+            "ما غانطولش عليك",
+            "ما غاديش نطول"
+          ],
+          "too_formal": {
+            "item": "لن أطيل عليك",
+            "feedback": "جملة فصيحة، فالدارجة كنقولو \"ما غاديش نطول عليك\"."
+          },
+          "tip": "النفي بالدارجة: ما ... ش."
+        },
+        {
+          "id": "unit-14.lesson-09.choose.01",
+          "type": "choose",
+          "prompt": "شنو كيقول اللي كيزور مريض، كيف ما قال النبي صلى الله عليه وسلم؟",
+          "answer": "لَا بَأْسَ، طَهُورٌ إِنْ شَاءَ اللَّهُ",
+          "accepted": [
+            "لَا بَأْسَ، طَهُورٌ إِنْ شَاءَ اللَّهُ",
+            "laa ba2sa, Tahoorun in shaa2a llaah",
+            "لا بأس، طهور إن شاء الله",
+            "لا بأس طهور إن شاء الله"
+          ],
+          "tip": "هاد الكلام جا فالحديث، وكيتقال كيف ما هو فجميع اللهجات.",
+          "options": [
+            "لَا بَأْسَ، طَهُورٌ إِنْ شَاءَ اللَّهُ",
+            "مبروك عليك التخرج",
+            "البحر زوين اليوم",
+            "بشحال هادا؟"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-09.choose.02",
+          "type": "choose",
+          "prompt": "شنو كتقول ملي كتعطي الورد للمريض؟",
+          "answer": "هَادِي بَاقَة دْيَال الْوَرْد لِيك",
+          "accepted": [
+            "هَادِي بَاقَة دْيَال الْوَرْد لِيك",
+            "haadi baaqa dyaal l-werd leek",
+            "هادي باقة ديال الورد ليك",
+            "هادا بوكي ديال الورد ليك"
+          ],
+          "too_formal": {
+            "item": "هذه باقة ورد لك",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "بزاف ديال المغاربة كيقولو حتى \"بوكي\" للباقة.",
+          "options": [
+            "هَادِي بَاقَة دْيَال الْوَرْد لِيك",
+            "الله يرحمو",
+            "حج مبرور",
+            "سقطت فالامتحان"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-09.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب: Rest and don't tire yourself",
+          "answer": "رْتَاح وْمَا تْعْيِّيش رَاسْك",
+          "accepted": [
+            "رْتَاح وْمَا تْعْيِّيش رَاسْك",
+            "rtaa7 w ma t3ayyeesh raask",
+            "رتاح وما تعييش راسك",
+            "ارتاح وما تعييش راسك"
+          ],
+          "too_formal": {
+            "item": "ارتح ولا تتعب نفسك",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "\"راسك\" هنا معناها نفسك.",
+          "words": [
+            "رْتَاح",
+            "وْمَا",
+            "تْعْيِّيش",
+            "رَاسْك"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-09.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب: How are you feeling today?",
+          "answer": "كِيفَاش كَتْحَسّ رَاسْك الْيُوم؟",
+          "accepted": [
+            "كِيفَاش كَتْحَسّ رَاسْك الْيُوم؟",
+            "keefaash kat7ess raask l-yoom?",
+            "كيفاش كتحس راسك اليوم",
+            "كيداير اليوم؟"
+          ],
+          "too_formal": {
+            "item": "كيف حالك اليوم؟",
+            "feedback": "سؤال فصيح."
+          },
+          "tip": "\"كتحس راسك\" = تشعر بنفسك.",
+          "words": [
+            "كِيفَاش",
+            "كَتْحَسّ",
+            "رَاسْك",
+            "الْيُوم؟"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-10",
+      "phrases": [
+        {
+          "slot": "i-am-sorry-to-hear-this-news",
+          "arabic": "أَنَا آسْف بْزَّاف عْلَى هَادْ الْخْبَار",
+          "transliteration": "ana aasef bzzaaf 3la had l-khbaar"
+        },
+        {
+          "slot": "what-happened-tell-me",
+          "arabic": "شْنُو وْقَع؟ عَاوْد لِيا",
+          "transliteration": "shnoo wqe3? 3aawed leeya",
+          "english": "What happened? Tell me",
+          "reply": {
+            "arabic": "طْرْدُونِي مْن الْخْدْمَة",
+            "transliteration": "Terdooni mn l-khedma",
+            "english": "They fired me from work"
+          }
+        },
+        {
+          "slot": "be-patient-god-is-with-the-patient",
+          "arabic": "صْبَر، إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+          "transliteration": "Sber, inna llaaha ma3a S-Saabireen"
+        },
+        {
+          "slot": "everything-is-by-gods-decree",
+          "arabic": "كُلْشِي مْكْتُوب مْن عَنْد اللَّه",
+          "transliteration": "kolshi mektoob mn 3end llaah",
+          "english": "Everything is written by God",
+          "reply": {
+            "arabic": "الْحَمْدُ لِلَّهِ عَلَى كُلِّ حَال",
+            "transliteration": "l-7amdu lillaahi 3alaa kulli 7aal",
+            "english": "Praise God in every situation"
+          }
+        },
+        {
+          "slot": "god-decreed-and-what-he-wills-he-does",
+          "arabic": "قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ",
+          "transliteration": "qaddara llaahu wa maa shaa2a fa3al"
+        },
+        {
+          "slot": "perhaps-there-is-good-in-it",
+          "arabic": "يْمْكَن فِيهَا شِي خِير",
+          "transliteration": "yemken feeha shi kheer",
+          "reply": {
+            "arabic": "إِن شَاء اللَّه",
+            "transliteration": "inshaa2 llaah",
+            "english": "God willing"
+          }
+        },
+        {
+          "slot": "how-can-i-help-you",
+          "arabic": "كِيفَاش نْقْدَر نْعَاوْنْك؟",
+          "transliteration": "keefaash nqder n3aawnek?",
+          "reply": {
+            "arabic": "كَافِينِي غِير تْكُون حْدَايَا",
+            "transliteration": "kaafeeni ghir tkoon 7daaya",
+            "english": "It's enough for me that you're by my side"
+          }
+        },
+        {
+          "slot": "i-am-with-you-whenever-you-need-me",
+          "arabic": "أَنَا مْعَاك، إِلَى احْتَاجِيتِي شِي حَاجَة عَيّْط لِيا",
+          "transliteration": "ana m3aak, ila 7taajeeti shi 7aaja 3ayyeT leeya",
+          "english": "I'm with you; if you need anything, call me",
+          "reply": {
+            "arabic": "اللَّهُ يْجَازِيك بْخِير",
+            "transliteration": "Allah yjaazeek b-kheer",
+            "english": "May God reward you"
+          }
+        },
+        {
+          "slot": "i-lost-my-job-today",
+          "arabic": "خْسْرْت الْخْدْمَة دْيَالِي الْيُوم",
+          "transliteration": "khsert l-khedma dyaali l-yoom",
+          "reply": {
+            "arabic": "اللَّهُ يْعَوّْضْك بْخِير مْنْهَا",
+            "transliteration": "Allah y3awwDek b-kheer mennha",
+            "english": "May God give you something better in its place"
+          }
+        },
+        {
+          "slot": "i-failed-the-exam",
+          "arabic": "سْقْطْت فْالِامْتِحَان",
+          "transliteration": "sqeTt f-l-imti7aan",
+          "reply": {
+            "arabic": "مَا عْلِيهْش، تْقْدَر تْعَاوْدُو الْعَام الْجَاي",
+            "transliteration": "ma 3leehsh, tqder t3aawdu l-3aam j-jaay",
+            "english": "Never mind, you can retake it next year"
+          }
+        },
+        {
+          "slot": "do-not-be-sad-try-again",
+          "arabic": "مَا تْحْزْنْش، حَاوْل عَاوْتَانِي",
+          "transliteration": "ma t7zensh, 7aawel 3aawtaani",
+          "reply": {
+            "arabic": "إِن شَاء اللَّه",
+            "transliteration": "inshaa2 llaah",
+            "english": "God willing"
+          }
+        },
+        {
+          "slot": "god-will-make-it-easy-for-you",
+          "arabic": "اللَّهُ يْسَهّْل عْلِيك",
+          "transliteration": "Allah ysahhel 3leek",
+          "english": "May God make it easy for you",
+          "reply": {
+            "arabic": "آمِين",
+            "transliteration": "aameen",
+            "english": "Amen"
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "رضا",
+          "arabic": "مالك آ بلال؟ وجهك حزين",
+          "transliteration": "maalek a bilaal? wejhek 7zeen",
+          "english": "What's wrong, Bilal? Your face looks sad"
+        },
+        {
+          "speaker": "بلال",
+          "slot": "i-lost-my-job-today"
+        },
+        {
+          "speaker": "رضا",
+          "slot": "i-am-sorry-to-hear-this-news"
+        },
+        {
+          "speaker": "بلال",
+          "arabic": "كانت صدمة كبيرة ليا",
+          "transliteration": "kaanet Sadma kbeera leeya",
+          "english": "It was a big shock for me"
+        },
+        {
+          "speaker": "رضا",
+          "slot": "what-happened-tell-me"
+        },
+        {
+          "speaker": "بلال",
+          "arabic": "الشركة سدات واحد الفرع وخرجات بزاف ديال الخدامة",
+          "transliteration": "sh-sharika seddaat waa7ed l-far3 w kherrjaat bzzaaf dyaal l-khddaama",
+          "english": "The company closed a branch and let a lot of workers go"
+        },
+        {
+          "speaker": "رضا",
+          "slot": "be-patient-god-is-with-the-patient"
+        },
+        {
+          "speaker": "بلال",
+          "arabic": "الحمد لله على كل حال، ولكن خايف على العائلة ديالي",
+          "transliteration": "l-7amdu lillaahi 3alaa kulli 7aal, walakin khaayef 3la l-3aa2ila dyaali",
+          "english": "Praise God in every situation, but I'm worried about my family"
+        },
+        {
+          "speaker": "رضا",
+          "arabic": "قدر الله وما شاء فعل، ويمكن فيها شي خير ليك",
+          "transliteration": "qaddara llaahu wa maa shaa2a fa3al, w yemken feeha shi kheer leek",
+          "english": "God decreed, and what He wills He does, and perhaps there is good in it for you"
+        },
+        {
+          "speaker": "بلال",
+          "slot": "perhaps-there-is-good-in-it",
+          "reply": true
+        },
+        {
+          "speaker": "رضا",
+          "slot": "how-can-i-help-you"
+        },
+        {
+          "speaker": "بلال",
+          "arabic": "كافيني غير تكون حدايا، وإلى سمعتي بشي خدمة قول ليا",
+          "transliteration": "kaafeeni ghir tkoon 7daaya, w ila sme3ti b-shi khedma qool leeya",
+          "english": "It's enough that you're by my side, and if you hear of a job, tell me"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "خْسْرْت الْخْدْمَة دْيَالِي الْيُوم",
+            "transliteration": "khsert l-khedma dyaali l-yoom",
+            "english": "I lost my job today"
+          },
+          "response": {
+            "arabic": "اللَّهُ يْعَوّْضْك بْخِير مْنْهَا",
+            "transliteration": "Allah y3awwDek b-kheer mennha",
+            "english": "May God give you something better in its place"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كِيفَاش نْقْدَر نْعَاوْنْك؟",
+            "transliteration": "keefaash nqder n3aawnek?",
+            "english": "How can I help you?"
+          },
+          "response": {
+            "arabic": "كَافِينِي غِير تْكُون حْدَايَا",
+            "transliteration": "kaafeeni ghir tkoon 7daaya",
+            "english": "It's enough for me that you're by my side"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كُلْشِي مْكْتُوب مْن عَنْد اللَّه",
+            "transliteration": "kolshi mektoob mn 3end llaah",
+            "english": "Everything is written by God"
+          },
+          "response": {
+            "arabic": "الْحَمْدُ لِلَّهِ عَلَى كُلِّ حَال",
+            "transliteration": "l-7amdu lillaahi 3alaa kulli 7aal",
+            "english": "Praise God in every situation"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "سْقْطْت فْالِامْتِحَان",
+            "transliteration": "sqeTt f-l-imti7aan",
+            "english": "I failed the exam"
+          },
+          "response": {
+            "arabic": "مَا عْلِيهْش، تْقْدَر تْعَاوْدُو الْعَام الْجَاي",
+            "transliteration": "ma 3leehsh, tqder t3aawdu l-3aam j-jaay",
+            "english": "Never mind, you can retake it next year"
+          }
+        }
+      ],
+      "culture": "فالمغرب ملي كتوقع لشي واحد شي مصيبة، الناس كيفكروه بالصبر وبلي \"كلشي مكتوب\"، وكيقولو \"قدر الله وما شاء فعل\" و\"الله يسهل\". \"إن الله مع الصابرين\" من القرآن و\"قدر الله وما شاء فعل\" من الحديث، بجوج كيتقالو كيف ما هما. الصاحب الحقيقي ما كيعطيش غير الكلام: كيعاون، كيسول على شي خدمة، ولا كيبقى حداك.",
+      "exercises": [
+        {
+          "id": "unit-14.lesson-10.reply.01",
+          "type": "reply",
+          "prompt": "صاحبك قال ليك \"خسرت الخدمة ديالي اليوم\"، واسيه.",
+          "answer": "اللَّهُ يْعَوّْضْك بْخِير مْنْهَا",
+          "accepted": [
+            "اللَّهُ يْعَوّْضْك بْخِير مْنْهَا",
+            "Allah y3awwDek b-kheer mennha",
+            "الله يعوضك بخير منها",
+            "الله يعوض",
+            "الله يعوضك"
+          ],
+          "too_formal": {
+            "item": "سيعوضك الله خيرا",
+            "feedback": "جملة فصيحة، فالدارجة كنقولو \"الله يعوضك بخير منها\"."
+          },
+          "tip": "\"الله يعوض\" كتقال على أي حاجة ضاعت."
+        },
+        {
+          "id": "unit-14.lesson-10.reply.02",
+          "type": "reply",
+          "prompt": "صاحبك قال ليك \"سقطت فالامتحان\"، شنو كتقول ليه؟",
+          "answer": "مَا عْلِيهْش، تْقْدَر تْعَاوْدُو الْعَام الْجَاي",
+          "accepted": [
+            "مَا عْلِيهْش، تْقْدَر تْعَاوْدُو الْعَام الْجَاي",
+            "ma 3leehsh, tqder t3aawdu l-3aam j-jaay",
+            "ما عليهش، تقدر تعاودو العام الجاي",
+            "ما عليهش، عاودو العام الجاي",
+            "ما تحزنش، حاول عاوتاني"
+          ],
+          "too_formal": {
+            "item": "يمكنك أن تعيد المحاولة",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "\"ما عليهش\" = لا بأس، ماشي مشكل."
+        },
+        {
+          "id": "unit-14.lesson-10.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "ما تحزنش، حاول ____ (Don't be sad, try again)",
+          "answer": "عاوتاني",
+          "accepted": [
+            "عاوتاني",
+            "3aawtaani",
+            "عاود تاني",
+            "مرة خرى"
+          ],
+          "too_formal": {
+            "item": "مرة أخرى",
+            "feedback": "مفهومة، ولكن فالدارجة كنقولو \"عاوتاني\" ولا \"مرة خرى\"."
+          },
+          "tip": "\"عاوتاني\" = مرة أخرى."
+        },
+        {
+          "id": "unit-14.lesson-10.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "____ وقع؟ عاود ليا (What happened? Tell me)",
+          "answer": "شنو",
+          "accepted": [
+            "شنو",
+            "shnoo",
+            "آش",
+            "ash"
+          ],
+          "too_formal": {
+            "item": "ماذا",
+            "feedback": "\"ماذا\" فصيحة، فالدارجة كنقولو \"شنو\" ولا \"آش\"."
+          },
+          "tip": "\"عاود ليا\" معناها احكي ليا."
+        },
+        {
+          "id": "unit-14.lesson-10.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Everything is written by God",
+          "answer": "كُلْشِي مْكْتُوب مْن عَنْد اللَّه",
+          "accepted": [
+            "كُلْشِي مْكْتُوب مْن عَنْد اللَّه",
+            "kolshi mektoob mn 3end llaah",
+            "كلشي مكتوب من عند الله",
+            "كلشي مكتوب",
+            "كلشي بقدر الله"
+          ],
+          "too_formal": {
+            "item": "كل شيء بقدر الله",
+            "feedback": "جملة فصيحة، فالدارجة كنقولو \"كلشي مكتوب\"."
+          },
+          "tip": "\"المكتوب\" هو القدر فالهضرة المغربية."
+        },
+        {
+          "id": "unit-14.lesson-10.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "How can I help you? (to a man)",
+          "answer": "كِيفَاش نْقْدَر نْعَاوْنْك؟",
+          "accepted": [
+            "كِيفَاش نْقْدَر نْعَاوْنْك؟",
+            "keefaash nqder n3aawnek?",
+            "كيفاش نقدر نعاونك؟",
+            "كيفاش نعاونك؟",
+            "شنو نقدر ندير ليك؟"
+          ],
+          "too_formal": {
+            "item": "كيف أستطيع أن أساعدك؟",
+            "feedback": "سؤال فصيح، فالدارجة كنقولو \"كيفاش نقدر نعاونك؟\"."
+          },
+          "tip": "\"عاون\" = ساعد."
+        },
+        {
+          "id": "unit-14.lesson-10.choose.01",
+          "type": "choose",
+          "prompt": "صاحبك فمصيبة. شنو كتقول ليه باش يصبر؟",
+          "answer": "صْبَر، إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+          "accepted": [
+            "صْبَر، إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+            "Sber, inna llaaha ma3a S-Saabireen",
+            "صبر، إن الله مع الصابرين",
+            "إن الله مع الصابرين"
+          ],
+          "tip": "\"إن الله مع الصابرين\" آية من القرآن، كتقال كيف ما هي فجميع اللهجات.",
+          "options": [
+            "صْبَر، إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+            "مبروك الخدمة الجديدة",
+            "عيد مبارك سعيد",
+            "بشحال هادا؟"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-10.choose.02",
+          "type": "choose",
+          "prompt": "شنو كيقولو المسلمين ملي كتوقع شي حاجة ما كانتش فالحساب؟",
+          "answer": "قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ",
+          "accepted": [
+            "قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ",
+            "qaddara llaahu wa maa shaa2a fa3al",
+            "قدر الله وما شاء فعل",
+            "قدر الله"
+          ],
+          "tip": "\"قدر الله وما شاء فعل\" جات فالحديث، وكتقال كيف ما هي فجميع اللهجات.",
+          "options": [
+            "قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ",
+            "تبارك الله عليك",
+            "مبروك ما جاك",
+            "بالصحة والراحة"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-10.reorder.01",
+          "type": "reorder",
+          "prompt": "رتب: Don't be sad, try again",
+          "answer": "مَا تْحْزْنْش، حَاوْل عَاوْتَانِي",
+          "accepted": [
+            "مَا تْحْزْنْش، حَاوْل عَاوْتَانِي",
+            "ma t7zensh, 7aawel 3aawtaani",
+            "ما تحزنش، حاول عاوتاني",
+            "ما تحزنش، عاود حاول"
+          ],
+          "too_formal": {
+            "item": "لا تحزن، حاول مرة أخرى",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "النهي: ما + الفعل + ش.",
+          "words": [
+            "مَا",
+            "تْحْزْنْش،",
+            "حَاوْل",
+            "عَاوْتَانِي"
+          ]
+        },
+        {
+          "id": "unit-14.lesson-10.reorder.02",
+          "type": "reorder",
+          "prompt": "رتب: Perhaps there is good in it",
+          "answer": "يْمْكَن فِيهَا شِي خِير",
+          "accepted": [
+            "يْمْكَن فِيهَا شِي خِير",
+            "yemken feeha shi kheer",
+            "يمكن فيها شي خير",
+            "يمكن فيها الخير"
+          ],
+          "too_formal": {
+            "item": "لعل فيه خيرا",
+            "feedback": "جملة فصيحة."
+          },
+          "tip": "\"شي\" = بعض، شيء من.",
+          "words": [
+            "يْمْكَن",
+            "فِيهَا",
+            "شِي",
+            "خِير"
           ]
         }
       ]

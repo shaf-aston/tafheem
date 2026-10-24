@@ -1517,6 +1517,739 @@
           "tip": "\"دابا\" is now."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-ll-send-you-a-message",
+          "arabic": "غادي نصيفط ليك ميساج",
+          "transliteration": "ghaadi nSiyfeT leek meesaaj"
+        },
+        {
+          "slot": "did-you-get-my-message",
+          "arabic": "واش وصلك الميساج ديالي؟",
+          "transliteration": "waash wSlek l-meesaaj dyaali?",
+          "reply": {
+            "arabic": "إيه، وصلني",
+            "transliteration": "eeh, wSelni",
+            "english": "Yes, I got it."
+          }
+        },
+        {
+          "slot": "i-didn-t-see-your-message",
+          "arabic": "ما شفتش الميساج ديالك",
+          "transliteration": "maa sheftsh l-meesaaj dyaalek"
+        },
+        {
+          "slot": "send-me-the-location",
+          "arabic": "صيفط ليا اللوكاليزاسيون",
+          "transliteration": "SiyfeT liyya l-lokaalizaasyoon"
+        },
+        {
+          "slot": "send-me-a-photo",
+          "arabic": "صيفط ليا تصويرة",
+          "transliteration": "SiyfeT liyya taSweera"
+        },
+        {
+          "slot": "i-ll-write-to-you-on-the-app",
+          "arabic": "غادي نكتب ليك فلابليكاسيون",
+          "transliteration": "ghaadi nekteb leek f-l-aplikaasyoon"
+        },
+        {
+          "slot": "did-you-read-my-message",
+          "arabic": "واش قريتي الميساج ديالي؟",
+          "transliteration": "waash qriti l-meesaaj dyaali?",
+          "reply": {
+            "arabic": "إيه، دابا نرد عليك",
+            "transliteration": "eeh, daaba nredd 3leek",
+            "english": "Yes, I'll reply to you now."
+          }
+        },
+        {
+          "slot": "write-to-me-when-you-arrive",
+          "arabic": "كتب ليا ملي توصل",
+          "transliteration": "kteb liyya melli twSel",
+          "reply": {
+            "arabic": "إن شاء الله",
+            "transliteration": "in shaa2 Allaah",
+            "english": "God willing."
+          }
+        },
+        {
+          "slot": "i-ll-send-a-voice-message",
+          "arabic": "غادي نصيفط ميساج صوتي",
+          "transliteration": "ghaadi nSiyfeT meesaaj Sawti"
+        },
+        {
+          "slot": "the-message-wasn-t-sent",
+          "arabic": "الميساج ما تصيفطش",
+          "transliteration": "l-meesaaj maa tSiyfeTsh"
+        },
+        {
+          "slot": "the-internet-is-weak",
+          "arabic": "الكونيكسيون ضعيفة",
+          "transliteration": "l-koneksyoon Da3eefa"
+        },
+        {
+          "slot": "i-ll-reply-to-you-later",
+          "arabic": "غادي نرد عليك من بعد",
+          "transliteration": "ghaadi nredd 3leek men ba3d"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hamza",
+          "arabic": "آلو ياسين، بغيت نتلاقاو العشية فالدار الجديدة",
+          "transliteration": "aaloo Yaaseen, bghit ntlaaqaw l-3shiyya f-d-daar j-jdeeda",
+          "english": "Hello Yassine, I want us to meet this afternoon at the new house."
+        },
+        {
+          "speaker": "Yassine",
+          "slot": "send-me-the-location"
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "صيفطتها ليك دابا. واش وصلاتك؟",
+          "transliteration": "SiyfeTtha leek daaba. waash wSlaatek?",
+          "english": "I've just sent it. Did it reach you?"
+        },
+        {
+          "speaker": "Yassine",
+          "slot": "i-didn-t-see-your-message"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "the-message-wasn-t-sent"
+        },
+        {
+          "speaker": "Yassine",
+          "arabic": "حتى عندي الريزو ضعيف هنا",
+          "transliteration": "7tta 3endi r-rezo Da3eef hna",
+          "english": "The network is weak here for me too."
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "والباتري ديالي قربات تسالي، خاصني نشارجي",
+          "transliteration": "w l-baatri dyaali qerbaat tsaali, khaaSSni nshaarji",
+          "english": "And my battery is almost dead, I need to charge."
+        },
+        {
+          "speaker": "Yassine",
+          "slot": "send-me-a-photo"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "i-ll-send-a-voice-message"
+        },
+        {
+          "speaker": "Yassine",
+          "arabic": "مزيان، دابا وصلني كلشي",
+          "transliteration": "mzyaan, daaba wSelni kullshi",
+          "english": "Good, now I've got everything."
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "write-to-me-when-you-arrive"
+        },
+        {
+          "speaker": "Yassine",
+          "slot": "write-to-me-when-you-arrive",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "واش وصلك الميساج ديالي؟",
+            "transliteration": "waash wSlek l-meesaaj dyaali?",
+            "english": "Did you get my message?"
+          },
+          "response": {
+            "arabic": "إيه، وصلني",
+            "transliteration": "eeh, wSelni",
+            "english": "Yes, I got it."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "علاش ما رديتيش عليا؟",
+            "transliteration": "3laash maa radditish 3liyya?",
+            "english": "Why didn't you reply to me?"
+          },
+          "response": {
+            "arabic": "سمح ليا، ما شفتش الميساج ديالك",
+            "transliteration": "sme7 liyya, maa sheftsh l-meesaaj dyaalek",
+            "english": "Sorry, I didn't see your message."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش قريتي شنو كتبو فالكروب؟",
+            "transliteration": "waash qriti shnu ktbo f-l-groop?",
+            "english": "Did you read what they wrote in the group?"
+          },
+          "response": {
+            "arabic": "لا، باقي ما قريتش",
+            "transliteration": "laa, baaqi maa qritsh",
+            "english": "No, I haven't read it yet."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش تقدر تعيط ليا دابا؟",
+            "transliteration": "waash tqder t3ayyeT liyya daaba?",
+            "english": "Can you call me now?"
+          },
+          "response": {
+            "arabic": "لا، غادي نرد عليك من بعد",
+            "transliteration": "laa, ghaadi nredd 3leek men ba3d",
+            "english": "No, I'll reply to you later."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "علاش الميساج ما تصيفطش؟",
+            "transliteration": "3laash l-meesaaj maa tSiyfeTsh?",
+            "english": "Why wasn't the message sent?"
+          },
+          "response": {
+            "arabic": "الريزو ضعيف هنا",
+            "transliteration": "r-rezo Da3eef hna",
+            "english": "The network is weak here."
+          }
+        }
+      ],
+      "culture": "Moroccans often text Darija in Latin letters with numbers, 3 for ع and 7 for ح, the same habit as this course's spelling, and voice notes (\"ڤوكال\") are everywhere because they are quicker than typing. Family groups (الكروب) carry the news of the day and Jumu'a greetings, and most app words come from French: ميساج, لوكاليزاسيون, شارجي.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: \"واش وصلك الميساج ديالي؟\". Say yes, you got it.",
+          "answer": "إيه، وصلني",
+          "accepted": [
+            "إيه، وصلني",
+            "إيه وصلني",
+            "وصلني",
+            "eeh, wSelni"
+          ],
+          "too_formal": {
+            "item": "نعم، وصلتني الرسالة",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"wSelni\" means it reached me."
+        },
+        {
+          "id": "unit-12.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: \"علاش ما رديتيش عليا؟\". Say you didn't see their message.",
+          "answer": "ما شفتش الميساج ديالك",
+          "accepted": [
+            "ما شفتش الميساج ديالك",
+            "سمح ليا، ما شفتش الميساج ديالك",
+            "ما شفتش الميساج",
+            "maa sheftsh l-meesaaj dyaalek"
+          ],
+          "too_formal": {
+            "item": "لم أر رسالتك",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"maa ... sh\" around the verb makes it negative."
+        },
+        {
+          "id": "unit-12.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"___ ليا تصويرة\" (Send me a photo.)",
+          "answer": "صيفط",
+          "accepted": [
+            "صيفط",
+            "سيفط",
+            "SiyfeT"
+          ],
+          "too_formal": {
+            "item": "أرسل",
+            "feedback": "\"أرسل\" is MSA; Darija says \"صيفط\"."
+          },
+          "tip": "To a woman: \"صيفطي\"."
+        },
+        {
+          "id": "unit-12.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الكونيكسيون ___\" (The internet is weak.)",
+          "answer": "ضعيفة",
+          "accepted": [
+            "ضعيفة",
+            "ضعيف",
+            "Da3eefa"
+          ],
+          "tip": "\"الكونيكسيون\" is feminine, so \"ضعيفة\"."
+        },
+        {
+          "id": "unit-12.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Write to me when you arrive.\" (to a man)",
+          "answer": "كتب ليا ملي توصل",
+          "accepted": [
+            "كتب ليا ملي توصل",
+            "كتب ليا فاش توصل",
+            "kteb liyya melli twSel"
+          ],
+          "too_formal": {
+            "item": "اكتب لي عندما تصل",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"melli\" and \"faash\" both mean when."
+        },
+        {
+          "id": "unit-12.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'll reply to you later.\"",
+          "answer": "غادي نرد عليك من بعد",
+          "accepted": [
+            "غادي نرد عليك من بعد",
+            "نرد عليك من بعد",
+            "غادي نجاوبك من بعد",
+            "ghaadi nredd 3leek men ba3d"
+          ],
+          "too_formal": {
+            "item": "سأرد عليك لاحقا",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"men ba3d\" means later."
+        },
+        {
+          "id": "unit-12.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"The message wasn't sent\"?",
+          "answer": "الميساج ما تصيفطش",
+          "accepted": [
+            "الميساج ما تصيفطش"
+          ],
+          "options": [
+            "الميساج ما تصيفطش",
+            "ما شفتش الميساج ديالك",
+            "واش قريتي الميساج ديالي؟",
+            "غادي نصيفط ليك ميساج"
+          ],
+          "tip": "\"tSiyfeT\" is the passive: it was sent."
+        },
+        {
+          "id": "unit-12.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "\"صيفط ليا اللوكاليزاسيون\" means:",
+          "answer": "Send me the location.",
+          "accepted": [
+            "Send me the location."
+          ],
+          "options": [
+            "Send me the location.",
+            "Send me a photo.",
+            "Charge your phone.",
+            "Read my message."
+          ],
+          "tip": "\"lokaalizaasyoon\" comes from French localisation."
+        },
+        {
+          "id": "unit-12.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: Did you read my message?",
+          "answer": "واش قريتي الميساج ديالي؟",
+          "accepted": [
+            "واش قريتي الميساج ديالي؟",
+            "واش قريتي الميساج ديالي",
+            "waash qriti l-meesaaj dyaali?"
+          ],
+          "words": [
+            "واش",
+            "قريتي",
+            "الميساج",
+            "ديالي؟"
+          ],
+          "too_formal": {
+            "item": "هل قرأت رسالتي؟",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"waash\" opens a yes/no question."
+        },
+        {
+          "id": "unit-12.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange: I'll send a voice message.",
+          "answer": "غادي نصيفط ميساج صوتي",
+          "accepted": [
+            "غادي نصيفط ميساج صوتي",
+            "ghaadi nSiyfeT meesaaj Sawti"
+          ],
+          "too_formal": {
+            "item": "سأرسل رسالة صوتية",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "Many people simply say \"ڤوكال\" for a voice message."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "can-we-do-a-video-call",
+          "arabic": "واش نقدرو نعيطو بالفيديو؟",
+          "transliteration": "waash nqedro n3ayyTo b-l-vidyo?",
+          "reply": {
+            "arabic": "إيه، عطيني خمسة دقايق",
+            "transliteration": "eeh, 3Teeni khamsa dqaayeq",
+            "english": "Yes, give me five minutes."
+          }
+        },
+        {
+          "slot": "i-ll-send-you-the-link",
+          "arabic": "غادي نصيفط ليك اللينك",
+          "transliteration": "ghaadi nSiyfeT leek l-leenk"
+        },
+        {
+          "slot": "can-you-see-me",
+          "arabic": "واش كتشوفني؟",
+          "transliteration": "waash katshoofni?",
+          "reply": {
+            "arabic": "إيه، كنشوفك مزيان",
+            "transliteration": "eeh, kanshoofek mzyaan",
+            "english": "Yes, I can see you well."
+          }
+        },
+        {
+          "slot": "i-can-t-hear-you",
+          "arabic": "ما كنسمعكش",
+          "transliteration": "maa kansme3eksh"
+        },
+        {
+          "slot": "can-you-hear-me-well",
+          "arabic": "واش كتسمعني مزيان؟",
+          "transliteration": "waash katsme3ni mzyaan?",
+          "reply": {
+            "arabic": "إيه، الصوت واضح",
+            "transliteration": "eeh, S-Sawt waaDe7",
+            "english": "Yes, the sound is clear."
+          }
+        },
+        {
+          "slot": "turn-on-the-camera",
+          "arabic": "شعل الكاميرا",
+          "transliteration": "sha33el l-kaamira"
+        },
+        {
+          "slot": "turn-off-the-microphone",
+          "arabic": "طفي الميكرو",
+          "transliteration": "Teffi l-mikro"
+        },
+        {
+          "slot": "the-sound-is-choppy",
+          "arabic": "الصوت مقطّع",
+          "transliteration": "S-Sawt mqeTTa3"
+        },
+        {
+          "slot": "wait-the-screen-froze",
+          "arabic": "تسنى، الشاشة تبلوكات",
+          "transliteration": "tsenna, sh-shaasha tblookaat"
+        },
+        {
+          "slot": "i-ll-leave-and-join-again",
+          "arabic": "غادي نخرج ونعاود ندخل",
+          "transliteration": "ghaadi nkhrej w n3aawed nedkhel"
+        },
+        {
+          "slot": "let-me-share-my-screen",
+          "arabic": "خليني نبارطاجي الشاشة ديالي",
+          "transliteration": "khalleeni nbaarTaaji sh-shaasha dyaali"
+        },
+        {
+          "slot": "i-ll-move-closer-to-the-router",
+          "arabic": "غادي نقرّب للروتر",
+          "transliteration": "ghaadi nqerreb l-r-rooter"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Youssef",
+          "slot": "can-we-do-a-video-call"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "can-we-do-a-video-call",
+          "reply": true
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "i-ll-send-you-the-link"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "وصلني، دابا ندخل",
+          "transliteration": "wSelni, daaba nedkhel",
+          "english": "Got it, I'm joining now."
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "can-you-hear-me-well"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "the-sound-is-choppy"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "i-ll-move-closer-to-the-router"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "دابا الصوت واضح، ولكن ما كنشوفكش",
+          "transliteration": "daaba S-Sawt waaDe7, walakin maa kanshoofeksh",
+          "english": "Now the sound is clear, but I can't see you."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "سمح ليا، دابا نشعل الكاميرا",
+          "transliteration": "sme7 liyya, daaba nsha33el l-kaamira",
+          "english": "Sorry, I'll turn on the camera now."
+        },
+        {
+          "speaker": "Samir",
+          "slot": "wait-the-screen-froze"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "i-ll-leave-and-join-again"
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "مزيان، دابا كلشي واضح",
+          "transliteration": "mzyaan, daaba kullshi waaDe7",
+          "english": "Good, now everything is clear."
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "let-me-share-my-screen"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "واش كتشوفني؟",
+            "transliteration": "waash katshoofni?",
+            "english": "Can you see me?"
+          },
+          "response": {
+            "arabic": "إيه، كنشوفك مزيان",
+            "transliteration": "eeh, kanshoofek mzyaan",
+            "english": "Yes, I can see you well."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "واش كتسمعني مزيان؟",
+            "transliteration": "waash katsme3ni mzyaan?",
+            "english": "Can you hear me well?"
+          },
+          "response": {
+            "arabic": "لا، الصوت مقطّع",
+            "transliteration": "laa, S-Sawt mqeTTa3",
+            "english": "No, the sound is choppy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين اللينك؟",
+            "transliteration": "feen l-leenk?",
+            "english": "Where is the link?"
+          },
+          "response": {
+            "arabic": "صيفطتو ليك فالكروب",
+            "transliteration": "SiyfeTto leek f-l-groop",
+            "english": "I sent it to you in the group."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "علاش ما شعلتيش الكاميرا؟",
+            "transliteration": "3laash maa sha33altish l-kaamira?",
+            "english": "Why didn't you turn on the camera?"
+          },
+          "response": {
+            "arabic": "الكونيكسيون ضعيفة",
+            "transliteration": "l-koneksyoon Da3eefa",
+            "english": "The internet is weak."
+          }
+        }
+      ],
+      "culture": "Video calls keep Moroccan families close to relatives abroad in France, Spain and Italy, and many call the grandparents after Friday couscous. Call talk is full of French loans: الكاميرا, الميكرو, اللينك, تبلوكات for froze and نبارطاجي for share.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: \"واش كتسمعني مزيان؟\". Say yes, the sound is clear.",
+          "answer": "إيه، الصوت واضح",
+          "accepted": [
+            "إيه، الصوت واضح",
+            "إيه الصوت واضح",
+            "إيه، كنسمعك مزيان",
+            "eeh, S-Sawt waaDe7"
+          ],
+          "too_formal": {
+            "item": "نعم، الصوت واضح",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"waaDe7\" means clear."
+        },
+        {
+          "id": "unit-12.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: \"واش نقدرو نعيطو بالفيديو؟\". Say yes, give me five minutes.",
+          "answer": "إيه، عطيني خمسة دقايق",
+          "accepted": [
+            "إيه، عطيني خمسة دقايق",
+            "إيه عطيني خمسة دقايق",
+            "إيه، خمسة دقايق",
+            "eeh, 3Teeni khamsa dqaayeq"
+          ],
+          "too_formal": {
+            "item": "نعم، أعطني خمس دقائق",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"3Teeni\" means give me."
+        },
+        {
+          "id": "unit-12.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"___ الكاميرا\" (Turn on the camera.)",
+          "answer": "شعل",
+          "accepted": [
+            "شعل",
+            "شعّل",
+            "sha33el"
+          ],
+          "too_formal": {
+            "item": "شغّل",
+            "feedback": "\"شغّل\" is heard in the Mashriq; Moroccans say \"شعل\"."
+          },
+          "tip": "To turn off: \"طفي\"."
+        },
+        {
+          "id": "unit-12.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"تسنى، الشاشة ___\" (Wait, the screen froze.)",
+          "answer": "تبلوكات",
+          "accepted": [
+            "تبلوكات",
+            "tblookaat"
+          ],
+          "too_formal": {
+            "item": "تجمدت",
+            "feedback": "\"تجمدت\" is MSA; Moroccans use the French loan \"تبلوكات\"."
+          },
+          "tip": "From French bloquer: \"tblooka\" for a man or thing, \"tblookaat\" for a feminine noun."
+        },
+        {
+          "id": "unit-12.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I can't hear you.\"",
+          "answer": "ما كنسمعكش",
+          "accepted": [
+            "ما كنسمعكش",
+            "ما كنسمعكش مزيان",
+            "maa kansme3eksh"
+          ],
+          "too_formal": {
+            "item": "لا أسمعك",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"ka-\" plus \"maa ... sh\": ما كنسمعكش."
+        },
+        {
+          "id": "unit-12.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'll leave and join again.\"",
+          "answer": "غادي نخرج ونعاود ندخل",
+          "accepted": [
+            "غادي نخرج ونعاود ندخل",
+            "نخرج ونعاود ندخل",
+            "غادي نخرج ونرجع ندخل",
+            "ghaadi nkhrej w n3aawed nedkhel"
+          ],
+          "too_formal": {
+            "item": "سأخرج وأنضم مرة أخرى",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"n3aawed\" means I do again."
+        },
+        {
+          "id": "unit-12.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Turn off the microphone\"?",
+          "answer": "طفي الميكرو",
+          "accepted": [
+            "طفي الميكرو"
+          ],
+          "options": [
+            "طفي الميكرو",
+            "شعل الكاميرا",
+            "الصوت مقطّع",
+            "غادي نصيفط ليك اللينك"
+          ],
+          "tip": "\"Teffi\" is turn off, \"sha33el\" is turn on."
+        },
+        {
+          "id": "unit-12.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "\"خليني نبارطاجي الشاشة ديالي\" means:",
+          "answer": "Let me share my screen.",
+          "accepted": [
+            "Let me share my screen."
+          ],
+          "options": [
+            "Let me share my screen.",
+            "Can you see me?",
+            "The screen froze.",
+            "I'll send you the link."
+          ],
+          "tip": "\"nbaarTaaji\" comes from French partager."
+        },
+        {
+          "id": "unit-12.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Arrange: I'll move closer to the router.",
+          "answer": "غادي نقرّب للروتر",
+          "accepted": [
+            "غادي نقرّب للروتر",
+            "غادي نقرب للروتر",
+            "ghaadi nqerreb l-r-rooter"
+          ],
+          "too_formal": {
+            "item": "سأقترب من الراوتر",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "Many people say \"الموديم\" for the box too."
+        },
+        {
+          "id": "unit-12.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Arrange: Can you hear me well?",
+          "answer": "واش كتسمعني مزيان؟",
+          "accepted": [
+            "واش كتسمعني مزيان؟",
+            "واش كتسمعني مزيان",
+            "waash katsme3ni mzyaan?"
+          ],
+          "words": [
+            "واش",
+            "كتسمعني",
+            "مزيان؟"
+          ],
+          "too_formal": {
+            "item": "هل تسمعني جيدا؟",
+            "feedback": "Correct formal Arabic, but everyday Moroccan speech says it differently."
+          },
+          "tip": "\"mzyaan\" here means well."
+        }
+      ]
     }
   ],
   "challenge": {

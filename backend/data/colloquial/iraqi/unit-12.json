@@ -19,7 +19,10 @@
     "ch": "چ",
     "j": "ج",
     "th": "ث",
-    "dh": "ذ / ظ / ض"
+    "dh": "ذ / ظ / ض",
+    "S": "ص",
+    "D": "ض",
+    "T": "ط"
   },
   "lessons": [
     {
@@ -1581,6 +1584,782 @@
             "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
           },
           "tip": "«أول ما» means as soon as."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-ll-send-you-a-message",
+          "arabic": "راح أدزّلك رسالة",
+          "transliteration": "raa7 adizzlak risaala"
+        },
+        {
+          "slot": "did-you-get-my-message",
+          "arabic": "وصلتك رسالتي؟",
+          "transliteration": "wuSlatak risaalti?",
+          "reply": {
+            "arabic": "إي، هسّه وصلتني",
+            "transliteration": "ee, hassa wuSlatni",
+            "english": "Yes, it just reached me."
+          }
+        },
+        {
+          "slot": "i-didn-t-see-your-message",
+          "arabic": "ما شفت رسالتك",
+          "transliteration": "ma shift risaaltak"
+        },
+        {
+          "slot": "send-me-the-location",
+          "arabic": "دزّلي الموقع",
+          "transliteration": "dizzli il-mawgi3"
+        },
+        {
+          "slot": "send-me-a-photo",
+          "arabic": "دزّلي صورة",
+          "transliteration": "dizzli Soora"
+        },
+        {
+          "slot": "i-ll-write-to-you-on-the-app",
+          "arabic": "راح أكتبلك عالتطبيق",
+          "transliteration": "raa7 aktiblak 3at-taTbeeq"
+        },
+        {
+          "slot": "did-you-read-my-message",
+          "arabic": "گريت رسالتي؟",
+          "transliteration": "greet risaalti?",
+          "reply": {
+            "arabic": "لا، لهسّه ما گريتها",
+            "transliteration": "laa, lihassa ma greetha",
+            "english": "No, I haven't read it yet."
+          }
+        },
+        {
+          "slot": "write-to-me-when-you-arrive",
+          "arabic": "اكتبلي من توصل",
+          "transliteration": "iktibli min tooSal"
+        },
+        {
+          "slot": "i-ll-send-a-voice-message",
+          "arabic": "راح أدزّ فويس",
+          "transliteration": "raa7 adizz foys"
+        },
+        {
+          "slot": "the-message-wasn-t-sent",
+          "arabic": "الرسالة ما راحت",
+          "transliteration": "ir-risaala ma raa7at"
+        },
+        {
+          "slot": "the-internet-is-weak",
+          "arabic": "النت كلّش ضعيف",
+          "transliteration": "in-net kullish Da3eef",
+          "reply": {
+            "arabic": "إي، الشبكة هنا مو زينة",
+            "transliteration": "ee, ish-shabaka hnaa muu zeena",
+            "english": "Yes, the network here isn't good."
+          }
+        },
+        {
+          "slot": "i-ll-reply-to-you-later",
+          "arabic": "أجاوبك بعدين",
+          "transliteration": "ajaawbak ba3dein"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Mahdi",
+          "slot": "did-you-get-my-message"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-didn-t-see-your-message"
+        },
+        {
+          "speaker": "Mahdi",
+          "slot": "the-message-wasn-t-sent"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "the-internet-is-weak"
+        },
+        {
+          "speaker": "Mahdi",
+          "slot": "the-internet-is-weak",
+          "reply": true
+        },
+        {
+          "speaker": "Ali",
+          "slot": "send-me-the-location"
+        },
+        {
+          "speaker": "Mahdi",
+          "arabic": "أكيد، وهم أشرحلك الطريگ بفويس",
+          "transliteration": "akeed, w hamm ashra7lak iT-Tareeg bfoys",
+          "english": "Sure, and I'll explain the way in a voice note too."
+        },
+        {
+          "speaker": "Ali",
+          "slot": "send-me-a-photo"
+        },
+        {
+          "speaker": "Mahdi",
+          "slot": "did-you-read-my-message"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "إي، هسّه گريتها، شكراً",
+          "transliteration": "ee, hassa greetha, shukran",
+          "english": "Yes, I've just read it, thanks."
+        },
+        {
+          "speaker": "Mahdi",
+          "slot": "write-to-me-when-you-arrive"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-ll-write-to-you-on-the-app"
+        },
+        {
+          "speaker": "Mahdi",
+          "arabic": "تمام، الله وياك",
+          "transliteration": "tamaam, alla wiyyaak",
+          "english": "Fine, God be with you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وصلتك رسالتي؟",
+            "transliteration": "wuSlatak risaalti?",
+            "english": "Did you get my message?"
+          },
+          "response": {
+            "arabic": "إي، هسّه وصلتني",
+            "transliteration": "ee, hassa wuSlatni",
+            "english": "Yes, it just reached me."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش ما جاوبت؟",
+            "transliteration": "leesh ma jaawabit?",
+            "english": "Why didn't you reply?"
+          },
+          "response": {
+            "arabic": "النت كلّش ضعيف",
+            "transliteration": "in-net kullish Da3eef",
+            "english": "The internet is very weak."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين بيتكم؟",
+            "transliteration": "ween beetkum?",
+            "english": "Where is your house?"
+          },
+          "response": {
+            "arabic": "هسّه أدزّلك الموقع",
+            "transliteration": "hassa adizzlak il-mawgi3",
+            "english": "I'll send you the location now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شحنت موبايلك؟",
+            "transliteration": "shi7anit mobaaylak?",
+            "english": "Did you charge your phone?"
+          },
+          "response": {
+            "arabic": "لا، البطارية خالصة",
+            "transliteration": "laa, il-baTTaariyya khaalSa",
+            "english": "No, the battery is dead."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إنت بمجموعة العايلة؟",
+            "transliteration": "inta bmajmoo3at il-3aayla?",
+            "english": "Are you in the family group?"
+          },
+          "response": {
+            "arabic": "إي، ضافوني البارحة",
+            "transliteration": "ee, Daafooni il-baar7a",
+            "english": "Yes, they added me yesterday."
+          }
+        }
+      ],
+      "culture": "Iraqis send a lot of voice notes, called «فويس», instead of typing, and the everyday verb for sending anything is «دزّ». Family and neighbourhood groups are where news, condolences and Friday greetings are shared, and a chat with an older relative still opens with «السلام عليكم».",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Your friend asks: «وصلتك رسالتي؟». Say yes, it just reached you.",
+          "answer": "إي، هسّه وصلتني",
+          "accepted": [
+            "إي، هسّه وصلتني",
+            "إي هسه وصلتني",
+            "اي، هسه وصلتني",
+            "إي، وصلتني",
+            "ee, hassa wuSlatni"
+          ],
+          "too_formal": {
+            "item": "نعم، وصلتني الآن",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«إي» is yes and «هسّه» is now."
+        },
+        {
+          "id": "unit-12.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Your friend asks: «گريت رسالتي؟». Say no, not yet.",
+          "answer": "لا، لهسّه ما گريتها",
+          "accepted": [
+            "لا، لهسّه ما گريتها",
+            "لا لهسه ما گريتها",
+            "لهسه ما گريتها",
+            "لا، لهسه ما قريتها",
+            "laa, lihassa ma greetha"
+          ],
+          "too_formal": {
+            "item": "لا، لم أقرأها بعد",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«لهسّه» means until now, so «لهسّه ما» is not yet."
+        },
+        {
+          "id": "unit-12.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: «_____ صورة.» Meaning: Send me a photo.",
+          "answer": "دزّلي",
+          "accepted": [
+            "دزّلي",
+            "دزلي",
+            "dizzli"
+          ],
+          "too_formal": {
+            "item": "أرسل لي",
+            "feedback": "Correct but written; in Baghdad «دزّ» is the verb for sending."
+          },
+          "tip": "To a woman: «دزّيلي»."
+        },
+        {
+          "id": "unit-12.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: «النت كلّش _____.» Meaning: The internet is very weak.",
+          "answer": "ضعيف",
+          "accepted": [
+            "ضعيف",
+            "Da3eef"
+          ],
+          "tip": "«كلّش» means very."
+        },
+        {
+          "id": "unit-12.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: «Write to me when you arrive.» (to a man)",
+          "answer": "اكتبلي من توصل",
+          "accepted": [
+            "اكتبلي من توصل",
+            "اكتبلي لمن توصل",
+            "اكتب لي من توصل",
+            "iktibli min tooSal"
+          ],
+          "too_formal": {
+            "item": "اكتب لي عندما تصل",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«من» before a verb here means when."
+        },
+        {
+          "id": "unit-12.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: «I'll reply to you later.» (to a man)",
+          "answer": "أجاوبك بعدين",
+          "accepted": [
+            "أجاوبك بعدين",
+            "اجاوبك بعدين",
+            "بعدين أجاوبك",
+            "راح أجاوبك بعدين",
+            "ajaawbak ba3dein"
+          ],
+          "too_formal": {
+            "item": "سأرد عليك لاحقاً",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«بعدين» means later."
+        },
+        {
+          "id": "unit-12.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which one means «The message wasn't sent»?",
+          "answer": "الرسالة ما راحت",
+          "accepted": [
+            "الرسالة ما راحت",
+            "ir-risaala ma raa7at"
+          ],
+          "options": [
+            "الرسالة ما راحت",
+            "ما شفت رسالتك",
+            "دزّلي الموقع",
+            "راح أدزّ فويس"
+          ],
+          "too_formal": {
+            "item": "لم تُرسَل الرسالة",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«ما» negates a verb."
+        },
+        {
+          "id": "unit-12.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "What do Iraqis usually call a voice message?",
+          "answer": "فويس",
+          "accepted": [
+            "فويس",
+            "رسالة صوتية",
+            "foys"
+          ],
+          "options": [
+            "فويس",
+            "موقع",
+            "صورة",
+            "شبكة"
+          ],
+          "tip": "«رسالة صوتية» is also understood, but «فويس» is what you hear."
+        },
+        {
+          "id": "unit-12.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: «رسالة / أدزّلك / راح».",
+          "answer": "راح أدزّلك رسالة",
+          "accepted": [
+            "راح أدزّلك رسالة",
+            "راح ادزلك رسالة",
+            "raa7 adizzlak risaala"
+          ],
+          "words": [
+            "رسالة",
+            "أدزّلك",
+            "راح"
+          ],
+          "too_formal": {
+            "item": "سأرسل لك رسالة",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«راح» before a verb marks the future."
+        },
+        {
+          "id": "unit-12.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: «عالتطبيق / أكتبلك / راح».",
+          "answer": "راح أكتبلك عالتطبيق",
+          "accepted": [
+            "راح أكتبلك عالتطبيق",
+            "راح اكتبلك عالتطبيق",
+            "راح أكتبلك على التطبيق",
+            "raa7 aktiblak 3at-taTbeeq"
+          ],
+          "words": [
+            "عالتطبيق",
+            "أكتبلك",
+            "راح"
+          ],
+          "too_formal": {
+            "item": "سأكتب لك على التطبيق",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«عال» is short for «على ال»."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "can-we-do-a-video-call",
+          "arabic": "نگدر نسوّي مكالمة فيديو؟",
+          "transliteration": "nigdar nsawwi mukaalamat feedyo?",
+          "reply": {
+            "arabic": "أكيد، ليش لا",
+            "transliteration": "akeed, leesh laa",
+            "english": "Sure, why not."
+          }
+        },
+        {
+          "slot": "i-ll-send-you-the-link",
+          "arabic": "راح أدزّلك الرابط",
+          "transliteration": "raa7 adizzlak ir-raabiT"
+        },
+        {
+          "slot": "can-you-see-me",
+          "arabic": "دا تشوفني؟",
+          "transliteration": "da tshoofni?",
+          "reply": {
+            "arabic": "إي، أشوفك زين",
+            "transliteration": "ee, ashoofak zeen",
+            "english": "Yes, I see you well."
+          }
+        },
+        {
+          "slot": "i-can-t-hear-you",
+          "arabic": "ما دا أسمعك",
+          "transliteration": "ma da asma3ak"
+        },
+        {
+          "slot": "can-you-hear-me-well",
+          "arabic": "تسمعني زين؟",
+          "transliteration": "tisma3ni zeen?",
+          "reply": {
+            "arabic": "هسّه إي، صوتك واضح",
+            "transliteration": "hassa ee, Sootak waaDi7",
+            "english": "Now yes, your voice is clear."
+          }
+        },
+        {
+          "slot": "turn-on-the-camera",
+          "arabic": "شغّل الكاميرا",
+          "transliteration": "shaghghil il-kaamera"
+        },
+        {
+          "slot": "turn-off-the-microphone",
+          "arabic": "طفّي المايك",
+          "transliteration": "Taffi il-maayk"
+        },
+        {
+          "slot": "the-sound-is-choppy",
+          "arabic": "الصوت دا يگطّع",
+          "transliteration": "iS-Soot da ygaTTi3"
+        },
+        {
+          "slot": "wait-the-screen-froze",
+          "arabic": "اصبر، الشاشة علّگت",
+          "transliteration": "iSbur, ish-shaasha 3allagat"
+        },
+        {
+          "slot": "i-ll-leave-and-join-again",
+          "arabic": "راح أطلع وأدخل مرة ثانية",
+          "transliteration": "raa7 aTla3 w adkhul marra thaanya"
+        },
+        {
+          "slot": "let-me-share-my-screen",
+          "arabic": "خلّي أشارك الشاشة مالتي",
+          "transliteration": "khalli ashaarik ish-shaasha maalti"
+        },
+        {
+          "slot": "i-ll-move-closer-to-the-router",
+          "arabic": "راح أگرّب عالراوتر",
+          "transliteration": "raa7 agarrib 3ar-raawtar"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yasir",
+          "slot": "can-we-do-a-video-call"
+        },
+        {
+          "speaker": "Muntadhar",
+          "slot": "can-we-do-a-video-call",
+          "reply": true
+        },
+        {
+          "speaker": "Yasir",
+          "slot": "i-ll-send-you-the-link"
+        },
+        {
+          "speaker": "Muntadhar",
+          "slot": "turn-on-the-camera"
+        },
+        {
+          "speaker": "Yasir",
+          "slot": "can-you-see-me"
+        },
+        {
+          "speaker": "Muntadhar",
+          "slot": "can-you-see-me",
+          "reply": true
+        },
+        {
+          "speaker": "Yasir",
+          "slot": "can-you-hear-me-well"
+        },
+        {
+          "speaker": "Muntadhar",
+          "slot": "the-sound-is-choppy"
+        },
+        {
+          "speaker": "Yasir",
+          "slot": "i-ll-move-closer-to-the-router"
+        },
+        {
+          "speaker": "Muntadhar",
+          "slot": "wait-the-screen-froze"
+        },
+        {
+          "speaker": "Yasir",
+          "slot": "i-ll-leave-and-join-again"
+        },
+        {
+          "speaker": "Muntadhar",
+          "slot": "can-you-hear-me-well",
+          "reply": true
+        },
+        {
+          "speaker": "Yasir",
+          "slot": "let-me-share-my-screen"
+        },
+        {
+          "speaker": "Muntadhar",
+          "arabic": "تفضّل، دا أشوفها",
+          "transliteration": "tfaDDal, da ashoofha",
+          "english": "Go ahead, I can see it."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "دا تشوفني؟",
+            "transliteration": "da tshoofni?",
+            "english": "Can you see me?"
+          },
+          "response": {
+            "arabic": "إي، أشوفك زين",
+            "transliteration": "ee, ashoofak zeen",
+            "english": "Yes, I see you well."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تسمعني زين؟",
+            "transliteration": "tisma3ni zeen?",
+            "english": "Can you hear me well?"
+          },
+          "response": {
+            "arabic": "لا، الصوت دا يگطّع",
+            "transliteration": "laa, iS-Soot da ygaTTi3",
+            "english": "No, the sound is choppy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين الرابط؟",
+            "transliteration": "ween ir-raabiT?",
+            "english": "Where's the link?"
+          },
+          "response": {
+            "arabic": "هسّه أدزّه",
+            "transliteration": "hassa adizzah",
+            "english": "I'll send it now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ليش الشاشة سودة؟",
+            "transliteration": "leesh ish-shaasha sooda?",
+            "english": "Why is the screen black?"
+          },
+          "response": {
+            "arabic": "نسيت أشغّل الكاميرا",
+            "transliteration": "niseet ashaghghil il-kaamera",
+            "english": "I forgot to turn on the camera."
+          }
+        }
+      ],
+      "culture": "Many Baghdadi families have relatives abroad, and a weekly video call, often on Friday or at Eid, keeps grandparents close to grandchildren. A call opens with «شلونكم؟ شلون صحتكم؟» before anyone fixes the sound, and when the power or the internet drops people just wait a minute and call back.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your cousin asks: «دا تشوفني؟». Say yes, you see him well.",
+          "answer": "إي، أشوفك زين",
+          "accepted": [
+            "إي، أشوفك زين",
+            "إي اشوفك زين",
+            "اي، اشوفك زين",
+            "أشوفك زين",
+            "ee, ashoofak zeen"
+          ],
+          "too_formal": {
+            "item": "نعم، أراك بوضوح",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«شاف» is the everyday verb for to see."
+        },
+        {
+          "id": "unit-12.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Your cousin asks: «تسمعني زين؟». Say no, the sound is choppy.",
+          "answer": "لا، الصوت دا يگطّع",
+          "accepted": [
+            "لا، الصوت دا يگطّع",
+            "لا الصوت دا يگطع",
+            "الصوت دا يگطع",
+            "لا، الصوت دا يقطع",
+            "laa, iS-Soot da ygaTTi3"
+          ],
+          "too_formal": {
+            "item": "لا، الصوت متقطع",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«دا» before a verb means it is happening now."
+        },
+        {
+          "id": "unit-12.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: «اصبر، الشاشة _____.» Meaning: Wait, the screen froze.",
+          "answer": "علّگت",
+          "accepted": [
+            "علّگت",
+            "علگت",
+            "علقت",
+            "3allagat"
+          ],
+          "too_formal": {
+            "item": "تجمّدت",
+            "feedback": "Correct but formal; Iraqis say a screen «علّگت», got stuck."
+          },
+          "tip": "«معلّگ» means stuck or frozen."
+        },
+        {
+          "id": "unit-12.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: «_____ المايك.» Meaning: Turn off the microphone. (to a man)",
+          "answer": "طفّي",
+          "accepted": [
+            "طفّي",
+            "طفي",
+            "Taffi"
+          ],
+          "too_formal": {
+            "item": "أغلق",
+            "feedback": "Correct but formal; for switching off Iraqis say «طفّي»."
+          },
+          "tip": "Its opposite is «شغّل», turn on."
+        },
+        {
+          "id": "unit-12.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: «I can't hear you.» (to a man)",
+          "answer": "ما دا أسمعك",
+          "accepted": [
+            "ما دا أسمعك",
+            "ما دا اسمعك",
+            "ما أسمعك",
+            "ما اسمعك",
+            "ma da asma3ak"
+          ],
+          "too_formal": {
+            "item": "لا أسمعك",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "To a woman: «ما دا أسمعچ»."
+        },
+        {
+          "id": "unit-12.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: «I'll move closer to the router.»",
+          "answer": "راح أگرّب عالراوتر",
+          "accepted": [
+            "راح أگرّب عالراوتر",
+            "راح اگرب عالراوتر",
+            "راح أگرّب على الراوتر",
+            "راح أقرب عالراوتر",
+            "raa7 agarrib 3ar-raawtar"
+          ],
+          "too_formal": {
+            "item": "سأقترب من جهاز الراوتر",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«گرّب» means to come closer."
+        },
+        {
+          "id": "unit-12.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which one means «Turn on the camera»?",
+          "answer": "شغّل الكاميرا",
+          "accepted": [
+            "شغّل الكاميرا",
+            "شغل الكاميرا",
+            "shaghghil il-kaamera"
+          ],
+          "options": [
+            "شغّل الكاميرا",
+            "طفّي المايك",
+            "دا تشوفني؟",
+            "اصبر، الشاشة علّگت"
+          ],
+          "too_formal": {
+            "item": "قم بتشغيل الكاميرا",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "To a woman: «شغّلي الكاميرا»."
+        },
+        {
+          "id": "unit-12.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which one means «I'll leave and join again»?",
+          "answer": "راح أطلع وأدخل مرة ثانية",
+          "accepted": [
+            "راح أطلع وأدخل مرة ثانية",
+            "راح اطلع وادخل مرة ثانية",
+            "raa7 aTla3 w adkhul marra thaanya"
+          ],
+          "options": [
+            "راح أطلع وأدخل مرة ثانية",
+            "راح أدزّلك الرابط",
+            "خلّي أشارك الشاشة مالتي",
+            "نگدر نسوّي مكالمة فيديو؟"
+          ],
+          "too_formal": {
+            "item": "سأغادر وأنضم مجدداً",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«مرة ثانية» means again."
+        },
+        {
+          "id": "unit-12.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: «مالتي / الشاشة / أشارك / خلّي».",
+          "answer": "خلّي أشارك الشاشة مالتي",
+          "accepted": [
+            "خلّي أشارك الشاشة مالتي",
+            "خلي اشارك الشاشة مالتي",
+            "khalli ashaarik ish-shaasha maalti"
+          ],
+          "words": [
+            "مالتي",
+            "الشاشة",
+            "أشارك",
+            "خلّي"
+          ],
+          "too_formal": {
+            "item": "دعني أشارك شاشتي",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«مالتي» means mine, for a feminine noun."
+        },
+        {
+          "id": "unit-12.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in a natural order: «فيديو / مكالمة / نسوّي / نگدر».",
+          "answer": "نگدر نسوّي مكالمة فيديو",
+          "accepted": [
+            "نگدر نسوّي مكالمة فيديو",
+            "نگدر نسوي مكالمة فيديو",
+            "نگدر نسوي مكالمة فيديو؟",
+            "nigdar nsawwi mukaalamat feedyo"
+          ],
+          "words": [
+            "فيديو",
+            "مكالمة",
+            "نسوّي",
+            "نگدر"
+          ],
+          "too_formal": {
+            "item": "هل يمكننا إجراء مكالمة فيديو",
+            "feedback": "Correct Arabic, but this is the formal or written version, not what is said in Baghdad."
+          },
+          "tip": "«سوّى» means to do or make."
         }
       ]
     }

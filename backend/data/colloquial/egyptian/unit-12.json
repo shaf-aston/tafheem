@@ -12,7 +12,9 @@
     "2": "ء / ق (في مصر القاف همزة)",
     "aa": "ا طويلة",
     "ee": "ي طويلة",
-    "oo": "و طويلة"
+    "oo": "و طويلة",
+    "S": "ص",
+    "D": "ض"
   },
   "lessons": [
     {
@@ -1562,6 +1564,790 @@
             "feedback": "Correct meaning, but a longer written-style sentence."
           },
           "tip": "\"هقوله\" (I'll tell him) opens it, then the time clause \"أول ما يوصل\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-ll-send-you-a-message",
+          "arabic": "هَبْعَتْلَك رِسَالَة",
+          "transliteration": "hab3atlak resaala"
+        },
+        {
+          "slot": "did-you-get-my-message",
+          "arabic": "رِسَالْتِي وِصْلِتْلَك؟",
+          "transliteration": "resalti weSletlak?",
+          "reply": {
+            "arabic": "أَيْوَه، لِسَّه وَاصْلَة",
+            "transliteration": "aywa, lessa waSla",
+            "english": "Yes, it just arrived."
+          }
+        },
+        {
+          "slot": "i-didn-t-see-your-message",
+          "arabic": "مَا شُفْتِش رِسَالْتَك",
+          "transliteration": "ma shoftesh resaltak"
+        },
+        {
+          "slot": "send-me-the-location",
+          "arabic": "اِبْعَتْلِي اللُّوكِيشِن",
+          "transliteration": "eb3atli el-lokeishen"
+        },
+        {
+          "slot": "send-me-a-photo",
+          "arabic": "اِبْعَتْلِي صُورَة",
+          "transliteration": "eb3atli Soora"
+        },
+        {
+          "slot": "i-ll-write-to-you-on-the-app",
+          "arabic": "هَكْتِبْلَك عَلَى التَّطْبِيق",
+          "transliteration": "hakteblak 3at-taTbee2"
+        },
+        {
+          "slot": "did-you-read-my-message",
+          "arabic": "قَرِيت رِسَالْتِي؟",
+          "transliteration": "2areet resalti?",
+          "reply": {
+            "arabic": "لَأ، لِسَّه مَا قَرِيتْهَاش",
+            "transliteration": "la2, lessa ma 2areet-haash",
+            "english": "No, I haven't read it yet."
+          }
+        },
+        {
+          "slot": "write-to-me-when-you-arrive",
+          "arabic": "اِكْتِبْلِي لَمَّا تُوصَل",
+          "transliteration": "ektebli lamma tooSal",
+          "reply": {
+            "arabic": "حَاضِر، أَوِّل مَا أُوصَل",
+            "transliteration": "7aaDer, awwel ma awSal",
+            "english": "Sure, as soon as I arrive."
+          }
+        },
+        {
+          "slot": "i-ll-send-a-voice-message",
+          "arabic": "هَبْعَتْلَك فُويْس",
+          "transliteration": "hab3atlak voys"
+        },
+        {
+          "slot": "the-message-wasn-t-sent",
+          "arabic": "الرِّسَالَة مَا اتْبَعَتِتْش",
+          "transliteration": "er-resaala ma etba3atetsh"
+        },
+        {
+          "slot": "the-internet-is-weak",
+          "arabic": "النِّت ضَعِيف",
+          "transliteration": "en-net Da3eef"
+        },
+        {
+          "slot": "i-ll-reply-to-you-later",
+          "arabic": "هَرُدّ عَلِيك بَعْدِين",
+          "transliteration": "harodd 3aleek ba3deen"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rami",
+          "slot": "did-you-get-my-message"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "لأ، ما شفتش رسالتك. مفيش شبكة هنا والإنترنت ضعيف",
+          "transliteration": "la2, ma shoftesh resaltak. mafeesh shabaka hena wel-enternet Da3eef",
+          "english": "No, I didn't see your message. There's no signal here and the internet is weak."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "يمكن الرسالة ما اتبعتتش. هبعتهالك تاني",
+          "transliteration": "yemken er-resaala ma etba3atetsh. hab3at-haalak taani",
+          "english": "Maybe the message wasn't sent. I'll send it to you again."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "ماشي. وابعتلي الموقع كمان",
+          "transliteration": "maashi. w eb3atli el-maw2e3 kamaan",
+          "english": "Okay. And send me the location too."
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "حاضر، وهبعتلك فويس أشرحلك الطريق",
+          "transliteration": "7aaDer, w hab3atlak voys ashra7lak eT-Taree2",
+          "english": "Sure, and I'll send you a voice message explaining the way."
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "send-me-a-photo"
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "ماشي، هبعتها على الجروب",
+          "transliteration": "maashi, hab3at-ha 3al-groob",
+          "english": "Okay, I'll send it on the group."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "البطارية خلصت تقريبًا، هشحن الموبايل وأرد عليك",
+          "transliteration": "el-baTTareyya khelSet ta2reeban, hash7an el-mobaayl w arodd 3aleek",
+          "english": "My battery's almost dead, I'll charge my phone and reply to you."
+        },
+        {
+          "speaker": "Rami",
+          "slot": "write-to-me-when-you-arrive"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "write-to-me-when-you-arrive",
+          "reply": true
+        },
+        {
+          "speaker": "Rami",
+          "arabic": "تمام. ولو النت فصل؟",
+          "transliteration": "tamaam. w law en-net faSal?",
+          "english": "Great. And if the internet cuts out?"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "ما تقلقش، هكتبلك على التطبيق أول ما ألاقي شبكة",
+          "transliteration": "ma t2la2sh, hakteblak 3at-taTbee2 awwel ma la2i shabaka",
+          "english": "Don't worry, I'll write to you on the app as soon as I find a signal."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "رسالتي وصلتلك؟",
+            "transliteration": "resalti weSletlak?",
+            "english": "Did you get my message?"
+          },
+          "response": {
+            "arabic": "أيوه، استلمتها الصبح",
+            "transliteration": "aywa, estalamt-ha eS-Sob7",
+            "english": "Yes, I received it this morning."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قريت رسالتي؟",
+            "transliteration": "2areet resalti?",
+            "english": "Did you read my message?"
+          },
+          "response": {
+            "arabic": "لسه ما قريتهاش",
+            "transliteration": "lessa ma 2areet-haash",
+            "english": "I haven't read it yet."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "ما رديتش عليا ليه؟",
+            "transliteration": "ma raddeetsh 3alayya leeh?",
+            "english": "Why didn't you reply to me?"
+          },
+          "response": {
+            "arabic": "ما شفتش رسالتك، معلش",
+            "transliteration": "ma shoftesh resaltak, ma3lesh",
+            "english": "I didn't see your message, sorry."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هتكتبلي لما توصل؟",
+            "transliteration": "hatektebli lamma tooSal?",
+            "english": "Will you write to me when you arrive?"
+          },
+          "response": {
+            "arabic": "أكيد، هكتبلك على التطبيق",
+            "transliteration": "akeed, hakteblak 3at-taTbee2",
+            "english": "Of course, I'll write to you on the app."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "سمعت الرسالة الصوتية؟",
+            "transliteration": "seme3t er-resaala eS-Sowteyya?",
+            "english": "Did you hear the voice message?"
+          },
+          "response": {
+            "arabic": "لأ، النت ضعيف",
+            "transliteration": "la2, en-net Da3eef",
+            "english": "No, the internet is weak."
+          }
+        }
+      ],
+      "culture": "Many Egyptians send voice notes, called فويس, rather than typing, and say لوكيشن for a shared location. Friends type Egyptian in Arabic letters or in \"Franco\", Latin letters with numbers such as 3 for ع and 7 for ح, while formal messages to work or a teacher are kept more careful.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: \"رسالتي وصلتلك؟\". Say yes, it just arrived.",
+          "answer": "أَيْوَه، لِسَّه وَاصْلَة",
+          "accepted": [
+            "أَيْوَه، لِسَّه وَاصْلَة",
+            "أيوه لسه واصلة",
+            "أيوه، لسه واصلة",
+            "أيوه وصلت",
+            "aywa, lessa waSla"
+          ],
+          "too_formal": {
+            "item": "نعم، وصلتني للتو",
+            "feedback": "Written Arabic; \"لسه\" is the spoken \"just\"."
+          },
+          "tip": "\"لسه\" before a participle means it has just happened."
+        },
+        {
+          "id": "unit-12.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: \"قريت رسالتي؟\". Say no, you haven't read it yet.",
+          "answer": "لَأ، لِسَّه مَا قَرِيتْهَاش",
+          "accepted": [
+            "لَأ، لِسَّه مَا قَرِيتْهَاش",
+            "لأ لسه ما قريتهاش",
+            "لسه ما قريتهاش",
+            "لأ، لسه",
+            "la2, lessa ma 2areet-haash"
+          ],
+          "too_formal": {
+            "item": "لا، لم أقرأها بعد",
+            "feedback": "\"لم\" is written; spoken Egyptian wraps the verb in ما…ش."
+          },
+          "tip": "ما…ش wraps the verb: ما قريتهاش = I didn't read it."
+        },
+        {
+          "id": "unit-12.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"ما _____ رسالتك\" (I didn't see your message.)",
+          "answer": "شفتش",
+          "accepted": [
+            "شفتش",
+            "شُفْتِش",
+            "shoftesh"
+          ],
+          "too_formal": {
+            "item": "لم أرَ",
+            "feedback": "\"لم أر\" is written Arabic; Cairo says \"ما شفتش\"."
+          },
+          "tip": "The final ش is part of the negation ما…ش."
+        },
+        {
+          "id": "unit-12.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"النت _____\" (The internet is weak.)",
+          "answer": "ضعيف",
+          "accepted": [
+            "ضعيف",
+            "ضَعِيف",
+            "Da3eef"
+          ],
+          "tip": "\"النت\" is everyday Egyptian for الإنترنت."
+        },
+        {
+          "id": "unit-12.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian: \"Send me a photo.\" (to a man)",
+          "answer": "اِبْعَتْلِي صُورَة",
+          "accepted": [
+            "اِبْعَتْلِي صُورَة",
+            "ابعتلي صورة",
+            "ابعتلي صوره",
+            "eb3atli Soora"
+          ],
+          "too_formal": {
+            "item": "أرسل لي صورة",
+            "feedback": "\"أرسل\" is written; Egyptians say \"ابعت\"."
+          },
+          "tip": "To a woman: ابعتيلي صورة."
+        },
+        {
+          "id": "unit-12.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian: \"The message wasn't sent.\"",
+          "answer": "الرِّسَالَة مَا اتْبَعَتِتْش",
+          "accepted": [
+            "الرِّسَالَة مَا اتْبَعَتِتْش",
+            "الرسالة ما اتبعتتش",
+            "الرسالة متبعتتش",
+            "الرسالة مااتبعتتش",
+            "er-resaala ma etba3atetsh"
+          ],
+          "too_formal": {
+            "item": "لم تُرسل الرسالة",
+            "feedback": "Written Arabic; spoken Egyptian uses ما…ش and \"اتبعتت\"."
+          },
+          "tip": "\"اتبعت\" = was sent."
+        },
+        {
+          "id": "unit-12.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"I'll send a voice message\"?",
+          "answer": "هبعتلك فويس",
+          "accepted": [
+            "هبعتلك فويس",
+            "هبعتلك رسالة صوتية",
+            "hab3atlak voys"
+          ],
+          "options": [
+            "هبعتلك فويس",
+            "ابعتلي صورة",
+            "هرد عليك بعدين",
+            "النت ضعيف"
+          ],
+          "tip": "\"فويس\" is what people say; the full word is رسالة صوتية."
+        },
+        {
+          "id": "unit-12.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence asks \"Did you read my message?\"",
+          "answer": "قريت رسالتي؟",
+          "accepted": [
+            "قريت رسالتي؟",
+            "2areet resalti?"
+          ],
+          "options": [
+            "قريت رسالتي؟",
+            "رسالتي وصلتلك؟",
+            "ابعتلي اللوكيشن",
+            "اكتبلي لما توصل"
+          ],
+          "too_formal": {
+            "item": "هل قرأت رسالتي؟",
+            "feedback": "Written Arabic; Egyptians drop هل and say \"قريت\"."
+          },
+          "tip": "A question in Egyptian is often just a statement with a rising voice."
+        },
+        {
+          "id": "unit-12.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"توصل / اكتبلي / لما\"",
+          "answer": "اكتبلي لما توصل",
+          "accepted": [
+            "اكتبلي لما توصل",
+            "اِكْتِبْلِي لَمَّا تُوصَل",
+            "ektebli lamma tooSal"
+          ],
+          "words": [
+            "اكتبلي",
+            "لما",
+            "توصل"
+          ],
+          "too_formal": {
+            "item": "اكتب لي عندما تصل",
+            "feedback": "\"عندما\" is written; Egyptians say \"لما\"."
+          },
+          "tip": "\"لما\" = when."
+        },
+        {
+          "id": "unit-12.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"بعدين / هرد / عليك\"",
+          "answer": "هرد عليك بعدين",
+          "accepted": [
+            "هرد عليك بعدين",
+            "هَرُدّ عَلِيك بَعْدِين",
+            "harodd 3aleek ba3deen"
+          ],
+          "words": [
+            "هرد",
+            "عليك",
+            "بعدين"
+          ],
+          "too_formal": {
+            "item": "سأرد عليك لاحقًا",
+            "feedback": "\"لاحقًا\" is written; Egyptians say \"بعدين\"."
+          },
+          "tip": "\"بعدين\" = later."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "can-we-do-a-video-call",
+          "arabic": "مُمْكِن نِعْمِل مُكَالْمِة فِيدْيُو؟",
+          "transliteration": "momken ne3mel mokalmet video?",
+          "reply": {
+            "arabic": "طَبْعًا، هَبْعَتْلَك اللِّينْك",
+            "transliteration": "Tab3an, hab3atlak el-link",
+            "english": "Of course, I'll send you the link."
+          }
+        },
+        {
+          "slot": "i-ll-send-you-the-link",
+          "arabic": "هَبْعَتْلَك اللِّينْك",
+          "transliteration": "hab3atlak el-link"
+        },
+        {
+          "slot": "can-you-see-me",
+          "arabic": "شَايِفْنِي؟",
+          "transliteration": "shayefni?",
+          "reply": {
+            "arabic": "أَيْوَه، شَايْفَك كُوَيِّس",
+            "transliteration": "aywa, shayfak kwayyes",
+            "english": "Yes, I can see you well."
+          }
+        },
+        {
+          "slot": "i-can-t-hear-you",
+          "arabic": "مِش سَامْعَك",
+          "transliteration": "mesh sam3ak"
+        },
+        {
+          "slot": "can-you-hear-me-well",
+          "arabic": "سَامْعِنِي كُوَيِّس؟",
+          "transliteration": "sam3eni kwayyes?",
+          "reply": {
+            "arabic": "لَأ، الصُّوت بِيْقَطَّع",
+            "transliteration": "la2, eS-Soot beye2aTTa3",
+            "english": "No, the sound is choppy."
+          }
+        },
+        {
+          "slot": "turn-on-the-camera",
+          "arabic": "شَغَّل الْكَامِيرَا",
+          "transliteration": "shaghghal el-kamera"
+        },
+        {
+          "slot": "turn-off-the-microphone",
+          "arabic": "طَفِّي الْمَايْك",
+          "transliteration": "Taffi el-mayk"
+        },
+        {
+          "slot": "the-sound-is-choppy",
+          "arabic": "الصُّوت بِيْقَطَّع",
+          "transliteration": "eS-Soot beye2aTTa3"
+        },
+        {
+          "slot": "wait-the-screen-froze",
+          "arabic": "اِسْتَنَّى، الشَّاشَة هَنِّجِت",
+          "transliteration": "estanna, esh-shaasha hannaget"
+        },
+        {
+          "slot": "i-ll-leave-and-join-again",
+          "arabic": "هَخْرُج وَأَدْخُل تَانِي",
+          "transliteration": "hakhrog w adkhol taani"
+        },
+        {
+          "slot": "let-me-share-my-screen",
+          "arabic": "خَلِّينِي أَشَارِك الشَّاشَة",
+          "transliteration": "khalleeni ashaarek esh-shaasha"
+        },
+        {
+          "slot": "i-ll-move-closer-to-the-router",
+          "arabic": "هَقَرَّب مِن الرَّاوْتَر",
+          "transliteration": "ha2arrab men er-rawter"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Khaled",
+          "slot": "can-we-do-a-video-call"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "can-we-do-a-video-call",
+          "reply": true
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "اللينك وصل. شغل الكاميرا لو سمحت",
+          "transliteration": "el-link weSel. shaghghal el-kamera law sama7t",
+          "english": "The link arrived. Turn on the camera, please."
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "can-you-see-me"
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "أيوه، الصورة واضحة، بس مش سامعك",
+          "transliteration": "aywa, eS-Soora waD7a, bas mesh sam3ak",
+          "english": "Yes, the picture is clear, but I can't hear you."
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "استنى، هلبس السماعة. سامعني كويس دلوقتي؟",
+          "transliteration": "estanna, halbes es-sammaa3a. sam3eni kwayyes delwa2ti?",
+          "english": "Wait, I'll put on my headphones. Can you hear me well now?"
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "the-sound-is-choppy"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "i-ll-move-closer-to-the-router"
+        },
+        {
+          "speaker": "Khaled",
+          "slot": "wait-the-screen-froze"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "i-ll-leave-and-join-again"
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "أهو، دلوقتي الصوت واضح",
+          "transliteration": "aho, delwa2ti eS-Soot waaDe7",
+          "english": "There, now the sound is clear."
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "let-me-share-my-screen"
+        },
+        {
+          "speaker": "Khaled",
+          "arabic": "تمام. وطفي المايك لما ما تتكلمش، فيه دوشة عندك",
+          "transliteration": "tamaam. w Taffi el-mayk lamma ma tetkallemsh, feeh dawsha 3andak",
+          "english": "Great. And turn off the mic when you're not talking, there's noise at your end."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "ممكن نعمل مكالمة فيديو؟",
+            "transliteration": "momken ne3mel mokalmet video?",
+            "english": "Can we do a video call?"
+          },
+          "response": {
+            "arabic": "ماشي، بعد العشا",
+            "transliteration": "maashi, ba3d el-3asha",
+            "english": "Okay, after dinner."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شايفني؟",
+            "transliteration": "shayefni?",
+            "english": "Can you see me?"
+          },
+          "response": {
+            "arabic": "أيوه، شايفك كويس",
+            "transliteration": "aywa, shayfak kwayyes",
+            "english": "Yes, I can see you well."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "سامعني كويس؟",
+            "transliteration": "sam3eni kwayyes?",
+            "english": "Can you hear me well?"
+          },
+          "response": {
+            "arabic": "لأ، الصوت بيقطع",
+            "transliteration": "la2, eS-Soot beye2aTTa3",
+            "english": "No, the sound is choppy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الصورة وقفت ليه؟",
+            "transliteration": "eS-Soora we2fet leeh?",
+            "english": "Why did the picture stop?"
+          },
+          "response": {
+            "arabic": "الشاشة هنجت",
+            "transliteration": "esh-shaasha hannaget",
+            "english": "The screen froze."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الكلام مش واضح",
+            "transliteration": "el-kalaam mesh waaDe7",
+            "english": "The talking isn't clear."
+          },
+          "response": {
+            "arabic": "استنى، هقرب من الراوتر",
+            "transliteration": "estanna, ha2arrab men er-rawter",
+            "english": "Wait, I'll move closer to the router."
+          }
+        }
+      ],
+      "culture": "Video calls keep Cairo families close to relatives working in the Gulf or abroad, and a call opens with greetings and إزيك before anyone fixes the sound. Egyptians borrow English tech words freely: لينك, مايك, شير, and هنّج (from \"hang\") for a frozen screen.",
+      "exercises": [
+        {
+          "id": "unit-12.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: \"ممكن نعمل مكالمة فيديو؟\". Agree and say you'll send the link.",
+          "answer": "طَبْعًا، هَبْعَتْلَك اللِّينْك",
+          "accepted": [
+            "طَبْعًا، هَبْعَتْلَك اللِّينْك",
+            "طبعا هبعتلك اللينك",
+            "طبعًا، هبعتلك اللينك",
+            "ماشي، هبعتلك اللينك",
+            "Tab3an, hab3atlak el-link"
+          ],
+          "too_formal": {
+            "item": "بالتأكيد، سأرسل لك الرابط",
+            "feedback": "\"سأرسل\" and \"الرابط\" are written; Egyptians say \"هبعتلك اللينك\"."
+          },
+          "tip": "To a woman: هبعتلِك اللينك (hab3atlek)."
+        },
+        {
+          "id": "unit-12.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: \"سامعني كويس؟\". Say no, the sound is choppy.",
+          "answer": "لَأ، الصُّوت بِيْقَطَّع",
+          "accepted": [
+            "لَأ، الصُّوت بِيْقَطَّع",
+            "لأ الصوت بيقطع",
+            "لأ، الصوت بيقطع",
+            "الصوت بيقطع",
+            "la2, eS-Soot beye2aTTa3"
+          ],
+          "too_formal": {
+            "item": "لا، الصوت متقطع",
+            "feedback": "\"متقطع\" is written; Egyptians say \"بيقطع\"."
+          },
+          "tip": "\"بيقطع\" = keeps cutting out."
+        },
+        {
+          "id": "unit-12.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"سامعني _____؟\" (Can you hear me well?)",
+          "answer": "كويس",
+          "accepted": [
+            "كويس",
+            "كُوَيِّس",
+            "kwayyes"
+          ],
+          "too_formal": {
+            "item": "جيدًا",
+            "feedback": "\"جيدًا\" is written Arabic; Cairo says \"كويس\"."
+          },
+          "tip": "\"كويس\" = well / good."
+        },
+        {
+          "id": "unit-12.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"مش _____\" (I can't hear you.) (a man speaking)",
+          "answer": "سامعك",
+          "accepted": [
+            "سامعك",
+            "سَامْعَك",
+            "sam3ak"
+          ],
+          "too_formal": {
+            "item": "لا أسمعك",
+            "feedback": "Written Arabic; Egyptians say \"مش سامعك\"."
+          },
+          "tip": "A woman says: مش سامعاك."
+        },
+        {
+          "id": "unit-12.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian: \"Can you see me?\" (to a man)",
+          "answer": "شَايِفْنِي؟",
+          "accepted": [
+            "شَايِفْنِي؟",
+            "شايفني؟",
+            "شايفني",
+            "shayefni?"
+          ],
+          "too_formal": {
+            "item": "هل تراني؟",
+            "feedback": "Written Arabic; Egyptians use the participle \"شايفني\"."
+          },
+          "tip": "To a woman: شايفاني؟"
+        },
+        {
+          "id": "unit-12.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Egyptian: \"I'll move closer to the router.\"",
+          "answer": "هَقَرَّب مِن الرَّاوْتَر",
+          "accepted": [
+            "هَقَرَّب مِن الرَّاوْتَر",
+            "هقرب من الراوتر",
+            "ha2arrab men er-rawter"
+          ],
+          "too_formal": {
+            "item": "سأقترب من الراوتر",
+            "feedback": "\"سأقترب\" is written; Egyptians say \"هقرب\"."
+          },
+          "tip": "\"هـ\" before the verb marks the future."
+        },
+        {
+          "id": "unit-12.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"The sound is choppy\"?",
+          "answer": "الصوت بيقطع",
+          "accepted": [
+            "الصوت بيقطع",
+            "eS-Soot beye2aTTa3"
+          ],
+          "options": [
+            "الصوت بيقطع",
+            "الشاشة هنجت",
+            "مش سامعك",
+            "طفي المايك"
+          ],
+          "tip": "\"هنجت\" = froze, said of a screen or a phone."
+        },
+        {
+          "id": "unit-12.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Turn on the camera\"? (to a man)",
+          "answer": "شغل الكاميرا",
+          "accepted": [
+            "شغل الكاميرا",
+            "shaghghal el-kamera"
+          ],
+          "options": [
+            "شغل الكاميرا",
+            "طفي المايك",
+            "خليني أشارك الشاشة",
+            "هبعتلك اللينك"
+          ],
+          "too_formal": {
+            "item": "شغِّل آلة التصوير",
+            "feedback": "Nobody says \"آلة التصوير\"; it is \"الكاميرا\"."
+          },
+          "tip": "To a woman: شغلي الكاميرا."
+        },
+        {
+          "id": "unit-12.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"تاني / هخرج / وأدخل\"",
+          "answer": "هخرج وأدخل تاني",
+          "accepted": [
+            "هخرج وأدخل تاني",
+            "هَخْرُج وَأَدْخُل تَانِي",
+            "hakhrog w adkhol taani"
+          ],
+          "words": [
+            "هخرج",
+            "وأدخل",
+            "تاني"
+          ],
+          "too_formal": {
+            "item": "سأخرج ثم أدخل من جديد",
+            "feedback": "Written Arabic; \"تاني\" is the spoken \"again\"."
+          },
+          "tip": "\"تاني\" = again."
+        },
+        {
+          "id": "unit-12.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"الشاشة / أشارك / خليني\"",
+          "answer": "خليني أشارك الشاشة",
+          "accepted": [
+            "خليني أشارك الشاشة",
+            "خَلِّينِي أَشَارِك الشَّاشَة",
+            "خليني أعمل شير للشاشة",
+            "khalleeni ashaarek esh-shaasha"
+          ],
+          "words": [
+            "خليني",
+            "أشارك",
+            "الشاشة"
+          ],
+          "too_formal": {
+            "item": "دعني أشارك شاشتي",
+            "feedback": "\"دعني\" is written; Egyptians say \"خليني\"."
+          },
+          "tip": "\"خليني\" = let me."
         }
       ]
     }
