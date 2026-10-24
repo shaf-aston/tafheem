@@ -1,0 +1,2554 @@
+{
+  "unit": "unit-19",
+  "dialect": "Hejazi Arabic",
+  "transliteration_key": {
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء",
+    "2a": "أ / همزة في بداية الكلمة",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة",
+    "3a": "عَ",
+    "3e": "عِ",
+    "3o": "عُ",
+    "j": "ج",
+    "S": "ص",
+    "g": "ق (g)",
+    "T": "ط",
+    "D": "ض",
+    "th": "ث",
+    "dh": "ذ",
+    "q": "ق (as in Islamic formulas)",
+    "Z": "ظ"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01",
+      "phrases": [
+        {
+          "slot": "i-want-to-open-a-bank-account",
+          "arabic": "أبغى أفتح حساب في البنك",
+          "transliteration": "abgha afta7 7isaab fil-bank",
+          "reply": {
+            "arabic": "اتفضّل، عبّي الاستمارة دي",
+            "transliteration": "itfaDDal, 3abbi il-istimaara di",
+            "english": "Please, fill in this form."
+          }
+        },
+        {
+          "slot": "do-you-have-your-id-card",
+          "arabic": "معاك هويّتك؟",
+          "transliteration": "ma3aak huwiyyatak?",
+          "reply": {
+            "arabic": "إيوه، اتفضّل",
+            "transliteration": "eewa, itfaDDal",
+            "english": "Yes, here you are."
+          }
+        },
+        {
+          "slot": "i-want-to-withdraw-some-cash",
+          "arabic": "أبغى أسحب كاش",
+          "transliteration": "abgha as7ab kaash",
+          "reply": {
+            "arabic": "كم تبغى؟",
+            "transliteration": "kam tabgha?",
+            "english": "How much do you want?"
+          }
+        },
+        {
+          "slot": "i-want-to-deposit-this-amount",
+          "arabic": "أبغى أودع المبلغ دا",
+          "transliteration": "abgha oodi3 il-mablagh da",
+          "reply": {
+            "arabic": "لحظة، حعدّه",
+            "transliteration": "la7Za, 7a3uddu",
+            "english": "One moment, I'll count it."
+          }
+        },
+        {
+          "slot": "where-s-the-atm",
+          "arabic": "فين الصرّاف الآلي؟",
+          "transliteration": "feen iS-Sarraaf il-aali?",
+          "reply": {
+            "arabic": "جنب الباب",
+            "transliteration": "janb il-baab",
+            "english": "Next to the door."
+          }
+        },
+        {
+          "slot": "the-machine-swallowed-my-card",
+          "arabic": "الماكينة بلعت كرتي",
+          "transliteration": "il-makeena bal3at karti",
+          "reply": {
+            "arabic": "حنطلّع لك كرت جديد",
+            "transliteration": "7anTalli3 lak kart jadeed",
+            "english": "We'll issue you a new card."
+          }
+        },
+        {
+          "slot": "i-want-to-transfer-money-to-this-account",
+          "arabic": "أبغى أحوّل مبلغ للحساب دا",
+          "transliteration": "abgha a7awwil mablagh lil-7isaab da",
+          "reply": {
+            "arabic": "عطني رقم الحساب",
+            "transliteration": "3aTni ragam il-7isaab",
+            "english": "Give me the account number."
+          }
+        },
+        {
+          "slot": "how-much-is-the-transfer-fee",
+          "arabic": "كم رسوم التحويل؟",
+          "transliteration": "kam rusoom it-ta7weel?",
+          "reply": {
+            "arabic": "خمسة ريال",
+            "transliteration": "khamsa riyaal",
+            "english": "Five riyals."
+          }
+        },
+        {
+          "slot": "i-want-to-exchange-some-dollars",
+          "arabic": "أبغى أبدّل دولارات",
+          "transliteration": "abgha abaddil dolaaraat",
+          "reply": {
+            "arabic": "سعر الصرف اليوم كويّس",
+            "transliteration": "si3r iS-Sarf il-yoom kwayyis",
+            "english": "Today's exchange rate is good."
+          }
+        },
+        {
+          "slot": "where-do-i-sign",
+          "arabic": "فين أوقّع؟",
+          "transliteration": "feen awaggi3?",
+          "reply": {
+            "arabic": "هنا، على الخط",
+            "transliteration": "hina, 3ala il-khaTT",
+            "english": "Here, on the line."
+          }
+        },
+        {
+          "slot": "i-want-a-statement-of-my-account",
+          "arabic": "أبغى كشف حساب",
+          "transliteration": "abgha kashf 7isaab"
+        },
+        {
+          "slot": "here-s-your-receipt",
+          "arabic": "اتفضّل، دا إيصالك",
+          "transliteration": "itfaDDal, da eeSaalak",
+          "reply": {
+            "arabic": "الله يعطيك العافية",
+            "transliteration": "allah yi3Teek il-3aafya",
+            "english": "Thank you (God give you wellbeing)."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yusuf",
+          "arabic": "السلام عليكم",
+          "transliteration": "assalaamu 3alaykum",
+          "english": "Peace be upon you."
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "وعليكم السلام. اتفضّل، إيش أقدر أخدمك؟",
+          "transliteration": "wa 3alaykum is-salaam. itfaDDal, eesh agdar akhdimak?",
+          "english": "And peace be upon you. Please, how can I help you?"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-want-to-open-a-bank-account"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "i-want-to-open-a-bank-account",
+          "reply": true
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "do-you-have-your-id-card"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "do-you-have-your-id-card",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-want-to-deposit-this-amount"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "i-want-to-deposit-this-amount",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-want-to-transfer-money-to-this-account"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "i-want-to-transfer-money-to-this-account",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "how-much-is-the-transfer-fee"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "how-much-is-the-transfer-fee",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "where-s-the-atm"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "where-s-the-atm",
+          "reply": true
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "here-s-your-receipt"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "here-s-your-receipt",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "معاك هويّتك؟",
+            "transliteration": "ma3aak huwiyyatak?",
+            "english": "Do you have your ID card?"
+          },
+          "response": {
+            "arabic": "إيوه، اتفضّل",
+            "transliteration": "eewa, itfaDDal",
+            "english": "Yes, here you are."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أبغى أسحب كاش",
+            "transliteration": "abgha as7ab kaash",
+            "english": "I want to withdraw some cash."
+          },
+          "response": {
+            "arabic": "كم تبغى؟",
+            "transliteration": "kam tabgha?",
+            "english": "How much do you want?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم رسوم التحويل؟",
+            "transliteration": "kam rusoom it-ta7weel?",
+            "english": "How much is the transfer fee?"
+          },
+          "response": {
+            "arabic": "خمسة ريال",
+            "transliteration": "khamsa riyaal",
+            "english": "Five riyals."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين الصرّاف الآلي؟",
+            "transliteration": "feen iS-Sarraaf il-aali?",
+            "english": "Where's the ATM?"
+          },
+          "response": {
+            "arabic": "جنب الباب",
+            "transliteration": "janb il-baab",
+            "english": "Next to the door."
+          }
+        }
+      ],
+      "culture": "Saudi banks usually work from Sunday to Thursday, since the weekend is Friday and Saturday, and you need your هويّة (ID) or your إقامة or passport to open an account. Cash is still common, so a الصرّاف (ATM) is never far away, and people thank the clerk with الله يعطيك العافية, which is answered الله يعافيك.",
+      "exercises": [
+        {
+          "id": "unit-19.lesson-01.reply.01",
+          "type": "reply",
+          "prompt": "The clerk asks: \"معاك هويّتك؟\" Say yes, here you are.",
+          "answer": "إيوه، اتفضّل",
+          "accepted": [
+            "إيوه، اتفضّل",
+            "eewa, itfaDDal",
+            "ايوه اتفضل",
+            "إيوه، اتفضل",
+            "أيوه، اتفضّل",
+            "اتفضّل"
+          ],
+          "too_formal": {
+            "item": "نعم، تفضّل",
+            "feedback": "نعم and تفضّل are written forms. At the counter you say إيوه، اتفضّل."
+          },
+          "tip": "إيوه (eewa) is \"yes\" in Hejazi."
+        },
+        {
+          "id": "unit-19.lesson-01.reply.02",
+          "type": "reply",
+          "prompt": "The clerk gives you the receipt: \"اتفضّل، دا إيصالك.\" Thank him.",
+          "answer": "الله يعطيك العافية",
+          "accepted": [
+            "الله يعطيك العافية",
+            "allah yi3Teek il-3aafya",
+            "يعطيك العافية",
+            "الله يعطيك العافيه",
+            "شكرا",
+            "شكرًا",
+            "شكرا لك"
+          ],
+          "tip": "الله يعطيك العافية is what you say to anyone who has served you. The answer is الله يعافيك."
+        },
+        {
+          "id": "unit-19.lesson-01.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أبغى أسحب _____.\" (I want to withdraw some cash.)",
+          "answer": "كاش",
+          "accepted": [
+            "كاش",
+            "kaash"
+          ],
+          "tip": "كاش (kaash) is the everyday word for cash."
+        },
+        {
+          "id": "unit-19.lesson-01.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"كم رسوم _____؟\" (How much is the transfer fee?)",
+          "answer": "التحويل",
+          "accepted": [
+            "التحويل",
+            "it-ta7weel",
+            "تحويل"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-01.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to open a bank account.\"",
+          "answer": "أبغى أفتح حساب في البنك",
+          "accepted": [
+            "أبغى أفتح حساب في البنك",
+            "abgha afta7 7isaab fil-bank",
+            "ابغى افتح حساب في البنك",
+            "أبغى أفتح حساب",
+            "أبغى افتح حساب في البنك"
+          ],
+          "too_formal": {
+            "item": "أريد فتح حساب مصرفي",
+            "feedback": "أريد and مصرفي are written Arabic. Hejazi says أبغى أفتح حساب في البنك."
+          },
+          "tip": "أبغى (abgha) is \"I want\" in Hejazi."
+        },
+        {
+          "id": "unit-19.lesson-01.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the ATM?\"",
+          "answer": "فين الصرّاف الآلي؟",
+          "accepted": [
+            "فين الصرّاف الآلي؟",
+            "feen iS-Sarraaf il-aali?",
+            "فين الصراف الآلي",
+            "فين الصراف الالي؟",
+            "فين الصراف؟",
+            "فين الصرّاف"
+          ],
+          "too_formal": {
+            "item": "أين الصرّاف الآلي؟",
+            "feedback": "أين is the written \"where\". Hejazi asks with فين."
+          }
+        },
+        {
+          "id": "unit-19.lesson-01.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to exchange some dollars.\"",
+          "answer": "أبغى أبدّل دولارات",
+          "accepted": [
+            "أبغى أبدّل دولارات",
+            "abgha abaddil dolaaraat",
+            "أبغى أصرّف دولارات",
+            "ابغى اصرف دولارات",
+            "أبغى أبدل دولارات",
+            "abgha aSarrif dolaaraat"
+          ],
+          "too_formal": {
+            "item": "أريد أن أبدّل دولارات",
+            "feedback": "أريد أن is written Arabic. Spoken: أبغى أبدّل."
+          },
+          "tip": "Many people say أصرّف (aSarrif) for changing money."
+        },
+        {
+          "id": "unit-19.lesson-01.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"The machine swallowed my card\"?",
+          "options": [
+            "الماكينة بلعت كرتي",
+            "أبغى أودع المبلغ دا",
+            "فين أوقّع؟",
+            "معاك هويّتك؟"
+          ],
+          "answer": "الماكينة بلعت كرتي",
+          "accepted": [
+            "الماكينة بلعت كرتي",
+            "il-makeena bal3at karti"
+          ],
+          "tip": "كرت (kart) is \"card\"."
+        },
+        {
+          "id": "unit-19.lesson-01.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Where do I sign?\"",
+          "options": [
+            "فين أوقّع؟",
+            "أبغى أفتح حساب في البنك",
+            "معاك هويّتك؟",
+            "أبغى كشف حساب"
+          ],
+          "answer": "فين أوقّع؟",
+          "accepted": [
+            "فين أوقّع؟",
+            "feen awaggi3?"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-01.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"دا / أحوّل / للحساب / أبغى / مبلغ\" (I want to transfer an amount to this account.)",
+          "answer": "أبغى أحوّل مبلغ للحساب دا",
+          "accepted": [
+            "أبغى أحوّل مبلغ للحساب دا",
+            "abgha a7awwil mablagh lil-7isaab da",
+            "ابغى احول مبلغ للحساب دا"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-01.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"الآلي؟ / فين / الصرّاف\" (Where is the ATM?)",
+          "answer": "فين الصرّاف الآلي؟",
+          "accepted": [
+            "فين الصرّاف الآلي؟",
+            "feen iS-Sarraaf il-aali?",
+            "فين الصراف الآلي",
+            "فين الصراف الآلي؟"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-02",
+      "phrases": [
+        {
+          "slot": "where-s-the-post-office",
+          "arabic": "فين مكتب البريد؟",
+          "transliteration": "feen maktab il-bareed?",
+          "reply": {
+            "arabic": "في آخر الشارع",
+            "transliteration": "fi aakhir ish-shaari3",
+            "english": "At the end of the street."
+          }
+        },
+        {
+          "slot": "i-want-to-send-a-parcel-to-my-country",
+          "arabic": "أبغى أبعت طرد لبلدي",
+          "transliteration": "abgha ab3at Tard li-baladi",
+          "reply": {
+            "arabic": "حطّه على الميزان",
+            "transliteration": "7uTTu 3ala il-meezaan",
+            "english": "Put it on the scale."
+          }
+        },
+        {
+          "slot": "how-much-does-the-parcel-weigh",
+          "arabic": "كم وزن الطرد؟",
+          "transliteration": "kam wazn iT-Tard?",
+          "reply": {
+            "arabic": "تلاتة كيلو",
+            "transliteration": "talaata keelo",
+            "english": "Three kilos."
+          }
+        },
+        {
+          "slot": "how-much-is-the-shipping",
+          "arabic": "كم الشحن؟",
+          "transliteration": "kam ish-shahn?",
+          "reply": {
+            "arabic": "عشرين ريال",
+            "transliteration": "3ishreen riyaal",
+            "english": "Twenty riyals."
+          }
+        },
+        {
+          "slot": "how-long-does-it-take-to-arrive",
+          "arabic": "يوصل في كم يوم؟",
+          "transliteration": "yooSal fi kam yoom?",
+          "reply": {
+            "arabic": "حوالي أسبوعين",
+            "transliteration": "7awaali usboo3een",
+            "english": "About two weeks."
+          }
+        },
+        {
+          "slot": "i-want-to-send-a-letter",
+          "arabic": "أبغى أبعت خطاب",
+          "transliteration": "abgha ab3at khiTaab"
+        },
+        {
+          "slot": "i-want-a-stamp-please",
+          "arabic": "أبغى طابع بريد لو سمحت",
+          "transliteration": "abgha Taabi3 bareed law sama7t"
+        },
+        {
+          "slot": "i-want-to-send-it-by-registered-mail",
+          "arabic": "أبغى أبعته بريد مسجّل",
+          "transliteration": "abgha ab3atu bareed musajjal"
+        },
+        {
+          "slot": "write-the-address-here",
+          "arabic": "اكتب العنوان هنا",
+          "transliteration": "uktub il-3inwaan hina"
+        },
+        {
+          "slot": "has-my-parcel-arrived",
+          "arabic": "وصل طردي؟",
+          "transliteration": "wiSil Tardi?",
+          "reply": {
+            "arabic": "استنّى، حشوف",
+            "transliteration": "istanna, 7ashoof",
+            "english": "Wait, I'll check."
+          }
+        },
+        {
+          "slot": "where-s-the-mailbox",
+          "arabic": "فين صندوق البريد؟",
+          "transliteration": "feen Sandoog il-bareed?",
+          "reply": {
+            "arabic": "قدّام المكتب",
+            "transliteration": "guddaam il-maktab",
+            "english": "In front of the office."
+          }
+        },
+        {
+          "slot": "can-i-track-the-parcel",
+          "arabic": "أقدر أتتبّع الطرد؟",
+          "transliteration": "agdar atatabba3 iT-Tard?",
+          "reply": {
+            "arabic": "إيوه، دا رقم التتبّع",
+            "transliteration": "eewa, da ragam it-tatabbu3",
+            "english": "Yes, this is the tracking number."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yusuf",
+          "arabic": "السلام عليكم",
+          "transliteration": "assalaamu 3alaykum",
+          "english": "Peace be upon you."
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "وعليكم السلام. اتفضّل.",
+          "transliteration": "wa 3alaykum is-salaam. itfaDDal.",
+          "english": "And peace be upon you. Please."
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-want-to-send-a-parcel-to-my-country"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "i-want-to-send-a-parcel-to-my-country",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "how-much-is-the-shipping"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "تلاتة كيلو، والشحن عشرين ريال.",
+          "transliteration": "talaata keelo, wash-shahn 3ishreen riyaal.",
+          "english": "Three kilos, and the shipping is twenty riyals."
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "how-long-does-it-take-to-arrive"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "how-long-does-it-take-to-arrive",
+          "reply": true
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "write-the-address-here"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-want-a-stamp-please"
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "اتفضّل. تبغى حاجة تانية؟",
+          "transliteration": "itfaDDal. tabgha 7aaja taanya?",
+          "english": "Here you are. Do you want anything else?"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "can-i-track-the-parcel"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "can-i-track-the-parcel",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "where-s-the-mailbox"
+        },
+        {
+          "speaker": "Clerk",
+          "slot": "where-s-the-mailbox",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "الله يعطيك العافية",
+          "transliteration": "allah yi3Teek il-3aafya",
+          "english": "Thank you (God give you wellbeing)."
+        },
+        {
+          "speaker": "Clerk",
+          "arabic": "الله يعافيك. مع السلامة.",
+          "transliteration": "allah yi3aafeek. ma3a is-salaama.",
+          "english": "And you. Goodbye."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كم الشحن؟",
+            "transliteration": "kam ish-shahn?",
+            "english": "How much is the shipping?"
+          },
+          "response": {
+            "arabic": "عشرين ريال",
+            "transliteration": "3ishreen riyaal",
+            "english": "Twenty riyals."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "يوصل في كم يوم؟",
+            "transliteration": "yooSal fi kam yoom?",
+            "english": "How long does it take to arrive?"
+          },
+          "response": {
+            "arabic": "حوالي أسبوعين",
+            "transliteration": "7awaali usboo3een",
+            "english": "About two weeks."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين مكتب البريد؟",
+            "transliteration": "feen maktab il-bareed?",
+            "english": "Where's the post office?"
+          },
+          "response": {
+            "arabic": "في آخر الشارع",
+            "transliteration": "fi aakhir ish-shaari3",
+            "english": "At the end of the street."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أقدر أتتبّع الطرد؟",
+            "transliteration": "agdar atatabba3 iT-Tard?",
+            "english": "Can I track the parcel?"
+          },
+          "response": {
+            "arabic": "إيوه، دا رقم التتبّع",
+            "transliteration": "eewa, da ragam it-tatabbu3",
+            "english": "Yes, this is the tracking number."
+          }
+        }
+      ],
+      "culture": "The post office, البريد, also sells stamps and the clerk weighs your parcel at the counter to set the price. In Saudi Arabia every home and shop has a National Address (العنوان الوطني), a short code the clerk will often ask for when you write the address, and many people also use a private courier for quick parcels abroad.",
+      "exercises": [
+        {
+          "id": "unit-19.lesson-02.reply.01",
+          "type": "reply",
+          "prompt": "The customer asks: \"يوصل في كم يوم؟\" You are the clerk. Say: about two weeks.",
+          "answer": "حوالي أسبوعين",
+          "accepted": [
+            "حوالي أسبوعين",
+            "7awaali usboo3een",
+            "حوالي اسبوعين",
+            "أسبوعين"
+          ],
+          "too_formal": {
+            "item": "تقريبًا أسبوعان",
+            "feedback": "تقريبًا and أسبوعان are written forms. Spoken: حوالي أسبوعين."
+          }
+        },
+        {
+          "id": "unit-19.lesson-02.reply.02",
+          "type": "reply",
+          "prompt": "You ask: \"وصل طردي؟\" The clerk says: wait, I'll check.",
+          "answer": "استنّى، حشوف",
+          "accepted": [
+            "استنّى، حشوف",
+            "istanna, 7ashoof",
+            "استنى حشوف",
+            "استنّى، حاشوف",
+            "استنى، حشوف"
+          ],
+          "too_formal": {
+            "item": "انتظر، سأتحقّق",
+            "feedback": "انتظر and سأتحقّق are written Arabic. Hejazi: استنّى، حشوف."
+          },
+          "tip": "To a woman: استنّي، حشوف (istanni, 7ashoof)."
+        },
+        {
+          "id": "unit-19.lesson-02.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أبغى أبعت _____.\" (I want to send a letter.)",
+          "answer": "خطاب",
+          "accepted": [
+            "خطاب",
+            "khiTaab"
+          ],
+          "tip": "بعت (ba3at) is \"to send\"."
+        },
+        {
+          "id": "unit-19.lesson-02.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"كم _____؟\" (How much is the shipping?)",
+          "answer": "الشحن",
+          "accepted": [
+            "الشحن",
+            "ish-shahn",
+            "شحن"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-02.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to send a parcel to my country.\"",
+          "answer": "أبغى أبعت طرد لبلدي",
+          "accepted": [
+            "أبغى أبعت طرد لبلدي",
+            "abgha ab3at Tard li-baladi",
+            "ابغى ابعت طرد لبلدي",
+            "أبغى أبعت طرد إلى بلدي"
+          ],
+          "too_formal": {
+            "item": "أريد أن أرسل طردًا إلى بلدي",
+            "feedback": "أريد أن أرسل is written Arabic. Hejazi says أبغى أبعت."
+          }
+        },
+        {
+          "id": "unit-19.lesson-02.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want a stamp, please.\"",
+          "answer": "أبغى طابع بريد لو سمحت",
+          "accepted": [
+            "أبغى طابع بريد لو سمحت",
+            "abgha Taabi3 bareed law sama7t",
+            "ابغى طابع لو سمحت",
+            "أبغى طابع لو سمحت",
+            "أبغى طابع بريد من فضلك"
+          ],
+          "too_formal": {
+            "item": "أريد طابعًا بريديًّا من فضلك",
+            "feedback": "أريد and بريديًّا are written Arabic. At the counter: أبغى طابع بريد لو سمحت."
+          },
+          "tip": "لو سمحت (law sama7t) is the everyday \"please\" when asking someone."
+        },
+        {
+          "id": "unit-19.lesson-02.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Write the address here.\" (to a man)",
+          "answer": "اكتب العنوان هنا",
+          "accepted": [
+            "اكتب العنوان هنا",
+            "uktub il-3inwaan hina"
+          ],
+          "tip": "To a woman: اكتبي العنوان هنا (uktubi il-3inwaan hina)."
+        },
+        {
+          "id": "unit-19.lesson-02.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Where is the mailbox?\"",
+          "options": [
+            "فين صندوق البريد؟",
+            "فين مكتب البريد؟",
+            "أبغى أبعت خطاب",
+            "أبغى طابع بريد لو سمحت"
+          ],
+          "answer": "فين صندوق البريد؟",
+          "accepted": [
+            "فين صندوق البريد؟",
+            "feen Sandoog il-bareed?"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-02.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Has my parcel arrived?\"",
+          "options": [
+            "وصل طردي؟",
+            "أقدر أتتبّع الطرد؟",
+            "كم الشحن؟",
+            "يوصل في كم يوم؟"
+          ],
+          "answer": "وصل طردي؟",
+          "accepted": [
+            "وصل طردي؟",
+            "wiSil Tardi?",
+            "وصل طردي"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-02.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"مسجّل / بريد / أبغى / أبعته\" (I want to send it by registered mail.)",
+          "answer": "أبغى أبعته بريد مسجّل",
+          "accepted": [
+            "أبغى أبعته بريد مسجّل",
+            "abgha ab3atu bareed musajjal",
+            "ابغى ابعته بريد مسجل",
+            "أبغى أبعته بريد مسجل"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-02.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"هنا / العنوان / اكتب\" (Write the address here.)",
+          "answer": "اكتب العنوان هنا",
+          "accepted": [
+            "اكتب العنوان هنا",
+            "uktub il-3inwaan hina"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-03",
+      "phrases": [
+        {
+          "slot": "i-want-to-buy-a-sim-card",
+          "arabic": "أبغى أشتري شريحة",
+          "transliteration": "abgha ashtari shree7a",
+          "reply": {
+            "arabic": "اتفضّل، معاك جواز السفر؟",
+            "transliteration": "itfaDDal, ma3aak jawaaz is-safar?",
+            "english": "Please, do you have your passport?"
+          }
+        },
+        {
+          "slot": "i-want-an-internet-package",
+          "arabic": "أبغى باقة إنترنت",
+          "transliteration": "abgha baaga internet",
+          "reply": {
+            "arabic": "كم جيجا تبغى؟",
+            "transliteration": "kam jeega tabgha?",
+            "english": "How many gigabytes do you want?"
+          }
+        },
+        {
+          "slot": "how-much-is-this-package",
+          "arabic": "كم سعر الباقة دي؟",
+          "transliteration": "kam si3r il-baaga di?",
+          "reply": {
+            "arabic": "مية ريال في الشهر",
+            "transliteration": "miyya riyaal fish-shahr",
+            "english": "A hundred riyals a month."
+          }
+        },
+        {
+          "slot": "how-long-is-it-valid",
+          "arabic": "كم صلاحيّتها؟",
+          "transliteration": "kam SalaaHiyyatha?",
+          "reply": {
+            "arabic": "تلاتين يوم",
+            "transliteration": "talaateen yoom",
+            "english": "Thirty days."
+          }
+        },
+        {
+          "slot": "i-want-to-top-up-my-balance",
+          "arabic": "أبغى أشحن رصيدي",
+          "transliteration": "abgha ash7an raSeedi",
+          "reply": {
+            "arabic": "كم تبغى تشحن؟",
+            "transliteration": "kam tabgha tash7an?",
+            "english": "How much do you want to add?"
+          }
+        },
+        {
+          "slot": "does-this-phone-take-two-sim-cards",
+          "arabic": "الجوّال دا يشتغل بشريحتين؟",
+          "transliteration": "il-jawwaal da yishtaghil bi-shree7ateen?",
+          "reply": {
+            "arabic": "إيوه، فيه مكانين",
+            "transliteration": "eewa, feeh makaaneen",
+            "english": "Yes, it has two slots."
+          }
+        },
+        {
+          "slot": "my-phone-screen-is-broken",
+          "arabic": "شاشة جوّالي مكسورة",
+          "transliteration": "shaashit jawwaali maksoora",
+          "reply": {
+            "arabic": "نقدر نصلّحها",
+            "transliteration": "nagdar nSalla7ha",
+            "english": "We can repair it."
+          }
+        },
+        {
+          "slot": "how-much-is-the-repair",
+          "arabic": "كم التصليح؟",
+          "transliteration": "kam it-taSlee7?",
+          "reply": {
+            "arabic": "خمسين ريال",
+            "transliteration": "khamseen riyaal",
+            "english": "Fifty riyals."
+          }
+        },
+        {
+          "slot": "i-want-a-new-charger",
+          "arabic": "أبغى شاحن جديد",
+          "transliteration": "abgha shaa7in jadeed"
+        },
+        {
+          "slot": "the-signal-is-weak-here",
+          "arabic": "الشبكة ضعيفة هنا",
+          "transliteration": "ish-shabaka Da3eefa hina"
+        },
+        {
+          "slot": "can-the-service-be-activated-today",
+          "arabic": "ممكن تتفعّل الخدمة اليوم؟",
+          "transliteration": "mumkin titfa33al il-khidma il-yoom?",
+          "reply": {
+            "arabic": "إيوه، خلال ساعة",
+            "transliteration": "eewa, khilaal saa3a",
+            "english": "Yes, within an hour."
+          }
+        },
+        {
+          "slot": "what-is-my-new-phone-number",
+          "arabic": "إيش رقمي الجديد؟",
+          "transliteration": "eesh ragmi il-jadeed?",
+          "reply": {
+            "arabic": "دا رقمك، احفظه",
+            "transliteration": "da ragamak, i7fazu",
+            "english": "This is your number, save it."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yusuf",
+          "arabic": "السلام عليكم",
+          "transliteration": "assalaamu 3alaykum",
+          "english": "Peace be upon you."
+        },
+        {
+          "speaker": "Seller",
+          "arabic": "وعليكم السلام. اتفضّل.",
+          "transliteration": "wa 3alaykum is-salaam. itfaDDal.",
+          "english": "And peace be upon you. Please."
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-want-to-buy-a-sim-card"
+        },
+        {
+          "speaker": "Seller",
+          "slot": "i-want-to-buy-a-sim-card",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "إيوه، اتفضّل جوازي.",
+          "transliteration": "eewa, itfaDDal jawaazi.",
+          "english": "Yes, here is my passport."
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-want-an-internet-package"
+        },
+        {
+          "speaker": "Seller",
+          "slot": "i-want-an-internet-package",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "عشرة جيجا.",
+          "transliteration": "3ashara jeega.",
+          "english": "Ten gigabytes."
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "how-much-is-this-package"
+        },
+        {
+          "speaker": "Seller",
+          "slot": "how-much-is-this-package",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "how-long-is-it-valid"
+        },
+        {
+          "speaker": "Seller",
+          "slot": "how-long-is-it-valid",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "can-the-service-be-activated-today"
+        },
+        {
+          "speaker": "Seller",
+          "slot": "can-the-service-be-activated-today",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "تمام، الله يعطيك العافية.",
+          "transliteration": "tamaam, allah yi3Teek il-3aafya.",
+          "english": "Fine, thank you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "كم سعر الباقة دي؟",
+            "transliteration": "kam si3r il-baaga di?",
+            "english": "How much is this package?"
+          },
+          "response": {
+            "arabic": "مية ريال في الشهر",
+            "transliteration": "miyya riyaal fish-shahr",
+            "english": "A hundred riyals a month."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم صلاحيّتها؟",
+            "transliteration": "kam SalaaHiyyatha?",
+            "english": "How long is it valid?"
+          },
+          "response": {
+            "arabic": "تلاتين يوم",
+            "transliteration": "talaateen yoom",
+            "english": "Thirty days."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الجوّال دا يشتغل بشريحتين؟",
+            "transliteration": "il-jawwaal da yishtaghil bi-shree7ateen?",
+            "english": "Does this phone take two SIM cards?"
+          },
+          "response": {
+            "arabic": "إيوه، فيه مكانين",
+            "transliteration": "eewa, feeh makaaneen",
+            "english": "Yes, it has two slots."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم التصليح؟",
+            "transliteration": "kam it-taSlee7?",
+            "english": "How much is the repair?"
+          },
+          "response": {
+            "arabic": "خمسين ريال",
+            "transliteration": "khamseen riyaal",
+            "english": "Fifty riyals."
+          }
+        }
+      ],
+      "culture": "In Saudi Arabia the phone is called الجوّال, and a SIM is registered in your name, so the seller asks for your ID, iqama or passport. Most people top up their balance with a recharge card or an app, and internet packages are sold by the month. Phone shops also repair screens and sell chargers and cases.",
+      "exercises": [
+        {
+          "id": "unit-19.lesson-03.reply.01",
+          "type": "reply",
+          "prompt": "The seller asks: \"كم جيجا تبغى؟\" Say: ten gigabytes.",
+          "answer": "عشرة جيجا",
+          "accepted": [
+            "عشرة جيجا",
+            "3ashara jeega",
+            "عشر جيجا",
+            "عشرة جيجات"
+          ],
+          "tip": "جيجا (jeega) is short for gigabyte."
+        },
+        {
+          "id": "unit-19.lesson-03.reply.02",
+          "type": "reply",
+          "prompt": "You ask: \"ممكن تتفعّل الخدمة اليوم؟\" The seller answers yes, within an hour. Say it as the seller.",
+          "answer": "إيوه، خلال ساعة",
+          "accepted": [
+            "إيوه، خلال ساعة",
+            "eewa, khilaal saa3a",
+            "ايوه خلال ساعة",
+            "إيوه، خلال ساعه"
+          ],
+          "too_formal": {
+            "item": "نعم، خلال ساعة",
+            "feedback": "نعم is the written yes. In the shop: إيوه، خلال ساعة."
+          }
+        },
+        {
+          "id": "unit-19.lesson-03.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أبغى أشحن _____.\" (I want to top up my balance.)",
+          "answer": "رصيدي",
+          "accepted": [
+            "رصيدي",
+            "raSeedi",
+            "رصيد"
+          ],
+          "tip": "رصيد (raSeed) is \"balance\"."
+        },
+        {
+          "id": "unit-19.lesson-03.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"شاشة جوّالي _____.\" (My phone screen is broken.)",
+          "answer": "مكسورة",
+          "accepted": [
+            "مكسورة",
+            "maksoora",
+            "مكسوره"
+          ],
+          "tip": "مكسورة ends in -a because شاشة is feminine."
+        },
+        {
+          "id": "unit-19.lesson-03.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to buy a SIM card.\"",
+          "answer": "أبغى أشتري شريحة",
+          "accepted": [
+            "أبغى أشتري شريحة",
+            "abgha ashtari shree7a",
+            "ابغى اشتري شريحة",
+            "أبغى شريحة"
+          ],
+          "too_formal": {
+            "item": "أريد شراء شريحة اتصال",
+            "feedback": "أريد شراء and شريحة اتصال are written Arabic. Spoken: أبغى أشتري شريحة."
+          }
+        },
+        {
+          "id": "unit-19.lesson-03.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How long is it valid?\"",
+          "answer": "كم صلاحيّتها؟",
+          "accepted": [
+            "كم صلاحيّتها؟",
+            "kam SalaaHiyyatha?",
+            "كم صلاحيتها",
+            "كم صلاحيتها؟",
+            "كم مدّة الصلاحية؟"
+          ],
+          "too_formal": {
+            "item": "كم مدّة الصلاحية؟",
+            "feedback": "مدّة الصلاحية is the written phrase. In the shop: كم صلاحيّتها؟"
+          }
+        },
+        {
+          "id": "unit-19.lesson-03.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"The signal is weak here.\"",
+          "answer": "الشبكة ضعيفة هنا",
+          "accepted": [
+            "الشبكة ضعيفة هنا",
+            "ish-shabaka Da3eefa hina",
+            "الشبكه ضعيفه هنا",
+            "الإشارة ضعيفة هنا"
+          ],
+          "tip": "People say الشبكة (the network) for phone signal. إشارة is the dictionary word."
+        },
+        {
+          "id": "unit-19.lesson-03.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"I want a new charger\"?",
+          "options": [
+            "أبغى شاحن جديد",
+            "أبغى أشتري شريحة",
+            "شاشة جوّالي مكسورة",
+            "الشبكة ضعيفة هنا"
+          ],
+          "answer": "أبغى شاحن جديد",
+          "accepted": [
+            "أبغى شاحن جديد",
+            "abgha shaa7in jadeed"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-03.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Does this phone take two SIM cards?\"",
+          "options": [
+            "الجوّال دا يشتغل بشريحتين؟",
+            "كم صلاحيّتها؟",
+            "كم سعر الباقة دي؟",
+            "أبغى أشحن رصيدي"
+          ],
+          "answer": "الجوّال دا يشتغل بشريحتين؟",
+          "accepted": [
+            "الجوّال دا يشتغل بشريحتين؟",
+            "il-jawwaal da yishtaghil bi-shree7ateen?",
+            "الجوال دا يشتغل بشريحتين"
+          ],
+          "tip": "دا (da) is \"this\" for a masculine thing like الجوّال."
+        },
+        {
+          "id": "unit-19.lesson-03.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"مكسورة / جوّالي / شاشة\" (My phone screen is broken.)",
+          "answer": "شاشة جوّالي مكسورة",
+          "accepted": [
+            "شاشة جوّالي مكسورة",
+            "shaashit jawwaali maksoora",
+            "شاشة جوالي مكسورة"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-03.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"إنترنت / أبغى / باقة\" (I want an internet package.)",
+          "answer": "أبغى باقة إنترنت",
+          "accepted": [
+            "أبغى باقة إنترنت",
+            "abgha baaga internet",
+            "ابغى باقة انترنت"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-04",
+      "phrases": [
+        {
+          "slot": "help-me",
+          "arabic": "ساعدوني!",
+          "transliteration": "saa3idooni!",
+          "reply": {
+            "arabic": "إيش صار؟",
+            "transliteration": "eesh Saar?",
+            "english": "What happened?"
+          }
+        },
+        {
+          "slot": "call-an-ambulance",
+          "arabic": "اتصل بالإسعاف",
+          "transliteration": "ittaSil bil-is3aaf",
+          "reply": {
+            "arabic": "حتّصل دحين",
+            "transliteration": "7attaSil da7een",
+            "english": "I'll call now."
+          }
+        },
+        {
+          "slot": "call-the-police",
+          "arabic": "اتصل بالشرطة",
+          "transliteration": "ittaSil bish-shurTa",
+          "reply": {
+            "arabic": "فينك؟",
+            "transliteration": "feenak?",
+            "english": "Where are you?"
+          }
+        },
+        {
+          "slot": "call-the-fire-brigade",
+          "arabic": "اتصل بالدفاع المدني",
+          "transliteration": "ittaSil bid-difaa3 il-madani"
+        },
+        {
+          "slot": "i-need-a-doctor",
+          "arabic": "أبغى دكتور",
+          "transliteration": "abgha duktoor",
+          "reply": {
+            "arabic": "الدكتور جاي",
+            "transliteration": "id-duktoor jaay",
+            "english": "The doctor is coming."
+          }
+        },
+        {
+          "slot": "there-is-a-fire",
+          "arabic": "فيه حريق",
+          "transliteration": "feeh 7areeq",
+          "reply": {
+            "arabic": "اطلع من المبنى",
+            "transliteration": "uTla3 min il-mabna",
+            "english": "Get out of the building."
+          }
+        },
+        {
+          "slot": "where-is-the-nearest-hospital",
+          "arabic": "فين أقرب مستشفى؟",
+          "transliteration": "feen agrab mustashfa?",
+          "reply": {
+            "arabic": "خمس دقايق من هنا",
+            "transliteration": "khamas dagaayig min hina",
+            "english": "Five minutes from here."
+          }
+        },
+        {
+          "slot": "what-is-the-emergency-number",
+          "arabic": "إيش رقم الطوارئ؟",
+          "transliteration": "eesh ragm iT-Tawaari2?"
+        },
+        {
+          "slot": "please-hurry",
+          "arabic": "بسرعة لو سمحت",
+          "transliteration": "bisur3a law sama7t",
+          "reply": {
+            "arabic": "إحنا في الطريق",
+            "transliteration": "i7na fiT-Tareeg",
+            "english": "We are on the way."
+          }
+        },
+        {
+          "slot": "i-don-t-speak-arabic-well",
+          "arabic": "ما أتكلّم عربي كويّس",
+          "transliteration": "ma atkallam 3arabi kwayyis",
+          "reply": {
+            "arabic": "ولا يهمّك، تكلّم براحة",
+            "transliteration": "wala yihimmak, takallam bi-raa7a",
+            "english": "It's fine, speak slowly."
+          }
+        },
+        {
+          "slot": "this-is-the-address",
+          "arabic": "دا العنوان",
+          "transliteration": "da il-3inwaan"
+        },
+        {
+          "slot": "stay-on-the-line",
+          "arabic": "خلّيك معاي على الخط",
+          "transliteration": "khallik ma3aay 3ala il-khaTT"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yusuf",
+          "arabic": "ألو، أبغى إسعاف!",
+          "transliteration": "alloo, abgha is3aaf!",
+          "english": "Hello, I need an ambulance!"
+        },
+        {
+          "speaker": "Operator",
+          "slot": "help-me",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-don-t-speak-arabic-well"
+        },
+        {
+          "speaker": "Operator",
+          "slot": "i-don-t-speak-arabic-well",
+          "reply": true
+        },
+        {
+          "speaker": "Operator",
+          "slot": "call-the-police",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "this-is-the-address"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "please-hurry"
+        },
+        {
+          "speaker": "Operator",
+          "slot": "please-hurry",
+          "reply": true
+        },
+        {
+          "speaker": "Operator",
+          "slot": "stay-on-the-line"
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "تمام. وفيه حريق كمان!",
+          "transliteration": "tamaam. wa feeh 7areeq kamaan!",
+          "english": "Okay. And there is a fire too!"
+        },
+        {
+          "speaker": "Operator",
+          "slot": "there-is-a-fire",
+          "reply": true
+        },
+        {
+          "speaker": "Operator",
+          "arabic": "حنرسل الشرطة كمان. لا تخاف.",
+          "transliteration": "7anarsil ish-shurTa kamaan. la takhaaf.",
+          "english": "We'll send the police too. Don't be afraid."
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "where-is-the-nearest-hospital"
+        },
+        {
+          "speaker": "Operator",
+          "slot": "where-is-the-nearest-hospital",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "اتصل بالإسعاف",
+            "transliteration": "ittaSil bil-is3aaf",
+            "english": "Call an ambulance."
+          },
+          "response": {
+            "arabic": "حتّصل دحين",
+            "transliteration": "7attaSil da7een",
+            "english": "I'll call now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "اتصل بالشرطة",
+            "transliteration": "ittaSil bish-shurTa",
+            "english": "Call the police."
+          },
+          "response": {
+            "arabic": "فينك؟",
+            "transliteration": "feenak?",
+            "english": "Where are you?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فيه حريق",
+            "transliteration": "feeh 7areeq",
+            "english": "There is a fire."
+          },
+          "response": {
+            "arabic": "اطلع من المبنى",
+            "transliteration": "uTla3 min il-mabna",
+            "english": "Get out of the building."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بسرعة لو سمحت",
+            "transliteration": "bisur3a law sama7t",
+            "english": "Please hurry."
+          },
+          "response": {
+            "arabic": "إحنا في الطريق",
+            "transliteration": "i7na fiT-Tareeg",
+            "english": "We are on the way."
+          }
+        }
+      ],
+      "culture": "In Saudi Arabia the ambulance, الإسعاف of the Red Crescent, is 997, the police are 999 and the fire service, الدفاع المدني, is 998; in the Makkah and Madinah regions the single number 911 reaches all of them. Say where you are first, because the operator needs the address before anything else, and keep the line open. In a real scare people also shout الحقوني, which means the same as ساعدوني.",
+      "exercises": [
+        {
+          "id": "unit-19.lesson-04.reply.01",
+          "type": "reply",
+          "prompt": "You shout: \"ساعدوني!\" and someone runs over. He asks what happened. Say what he says.",
+          "answer": "إيش صار؟",
+          "accepted": [
+            "إيش صار؟",
+            "eesh Saar?",
+            "ايش صار",
+            "إيش صار",
+            "إيش حصل؟"
+          ],
+          "too_formal": {
+            "item": "ماذا حدث؟",
+            "feedback": "ماذا حدث is written Arabic. In the street: إيش صار؟"
+          },
+          "tip": "إيش (eesh) is \"what\" in Hejazi."
+        },
+        {
+          "id": "unit-19.lesson-04.reply.02",
+          "type": "reply",
+          "prompt": "The caller says: \"بسرعة لو سمحت.\" You are the operator. Say: we are on the way.",
+          "answer": "إحنا في الطريق",
+          "accepted": [
+            "إحنا في الطريق",
+            "i7na fiT-Tareeg",
+            "احنا في الطريق",
+            "إحنا جايين"
+          ],
+          "too_formal": {
+            "item": "نحن في الطريق",
+            "feedback": "نحن is the written \"we\". Hejazi says إحنا."
+          }
+        },
+        {
+          "id": "unit-19.lesson-04.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أبغى _____.\" (I need a doctor.)",
+          "answer": "دكتور",
+          "accepted": [
+            "دكتور",
+            "duktoor",
+            "دكتورة",
+            "doktoor"
+          ],
+          "tip": "To ask for a woman doctor say دكتورة (duktoora)."
+        },
+        {
+          "id": "unit-19.lesson-04.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"إيش رقم _____؟\" (What is the emergency number?)",
+          "answer": "الطوارئ",
+          "accepted": [
+            "الطوارئ",
+            "iT-Tawaari2",
+            "طوارئ"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-04.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Call an ambulance.\" (to a man)",
+          "answer": "اتصل بالإسعاف",
+          "accepted": [
+            "اتصل بالإسعاف",
+            "ittaSil bil-is3aaf",
+            "اتصل بالاسعاف",
+            "كلّم الإسعاف"
+          ],
+          "tip": "To a woman: اتصلي بالإسعاف (ittaSli bil-is3aaf)."
+        },
+        {
+          "id": "unit-19.lesson-04.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I don't speak Arabic well.\"",
+          "answer": "ما أتكلّم عربي كويّس",
+          "accepted": [
+            "ما أتكلّم عربي كويّس",
+            "ma atkallam 3arabi kwayyis",
+            "ما اتكلم عربي كويس",
+            "ما أتكلم عربي كويس",
+            "ما أتكلّم عربي مرّة كويّس"
+          ],
+          "too_formal": {
+            "item": "لا أتكلّم العربية جيّدًا",
+            "feedback": "لا, العربية and جيّدًا are written forms. Spoken: ما أتكلّم عربي كويّس."
+          }
+        },
+        {
+          "id": "unit-19.lesson-04.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"There is a fire.\"",
+          "answer": "فيه حريق",
+          "accepted": [
+            "فيه حريق",
+            "feeh 7areeq",
+            "في حريق",
+            "فيه حريقة"
+          ],
+          "too_formal": {
+            "item": "هناك حريق",
+            "feedback": "هناك is written Arabic. Spoken Hejazi uses فيه for \"there is\"."
+          }
+        },
+        {
+          "id": "unit-19.lesson-04.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Where is the nearest hospital?\"",
+          "options": [
+            "فين أقرب مستشفى؟",
+            "أبغى دكتور",
+            "فيه حريق",
+            "إيش رقم الطوارئ؟"
+          ],
+          "answer": "فين أقرب مستشفى؟",
+          "accepted": [
+            "فين أقرب مستشفى؟",
+            "feen agrab mustashfa?",
+            "فين أقرب مستشفى"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-04.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence tells someone to call the police?",
+          "options": [
+            "اتصل بالشرطة",
+            "اتصل بالإسعاف",
+            "اتصل بالدفاع المدني",
+            "خلّيك معاي على الخط"
+          ],
+          "answer": "اتصل بالشرطة",
+          "accepted": [
+            "اتصل بالشرطة",
+            "ittaSil bish-shurTa"
+          ],
+          "tip": "In Saudi Arabia the police number is 999."
+        },
+        {
+          "id": "unit-19.lesson-04.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"سمحت / بسرعة / لو\" (Please hurry.)",
+          "answer": "بسرعة لو سمحت",
+          "accepted": [
+            "بسرعة لو سمحت",
+            "bisur3a law sama7t"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-04.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"كويّس / عربي / أتكلّم / ما\" (I don't speak Arabic well.)",
+          "answer": "ما أتكلّم عربي كويّس",
+          "accepted": [
+            "ما أتكلّم عربي كويّس",
+            "ma atkallam 3arabi kwayyis",
+            "ما اتكلم عربي كويس"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "there-has-been-an-accident",
+          "arabic": "صار حادث",
+          "transliteration": "Saar 7aadis",
+          "reply": {
+            "arabic": "فين؟",
+            "transliteration": "feen?",
+            "english": "Where?"
+          }
+        },
+        {
+          "slot": "is-anyone-hurt",
+          "arabic": "فيه حد مصاب؟",
+          "transliteration": "feeh 7ad muSaab?",
+          "reply": {
+            "arabic": "إيوه، شخص واحد",
+            "transliteration": "eewa, shakhS waa7id",
+            "english": "Yes, one person."
+          }
+        },
+        {
+          "slot": "my-car-hit-another-car",
+          "arabic": "سيّارتي ضربت سيّارة تانية",
+          "transliteration": "sayyaarti Darabat sayyaara taanya",
+          "reply": {
+            "arabic": "إنت بخير؟",
+            "transliteration": "inta bikhayr?",
+            "english": "Are you alright?"
+          }
+        },
+        {
+          "slot": "i-am-fine-thank-allah",
+          "arabic": "أنا بخير، الْحَمْدُ لِلَّهِ",
+          "transliteration": "ana bikhayr, al-7amdu lillaah",
+          "reply": {
+            "arabic": "الْحَمْدُ لِلَّهِ على السلامة",
+            "transliteration": "al-7amdu lillaah 3ala is-salaama",
+            "english": "Thank Allah you are safe."
+          }
+        },
+        {
+          "slot": "do-not-move",
+          "arabic": "لا تتحرّك",
+          "transliteration": "la tit7arrak",
+          "reply": {
+            "arabic": "طيّب",
+            "transliteration": "Tayyib",
+            "english": "Okay."
+          }
+        },
+        {
+          "slot": "my-leg-hurts",
+          "arabic": "رجلي توجعني",
+          "transliteration": "rijli tooja3ni",
+          "reply": {
+            "arabic": "حناخدك المستشفى",
+            "transliteration": "7anaakhudak il-mustashfa",
+            "english": "We'll take you to the hospital."
+          }
+        },
+        {
+          "slot": "bring-the-first-aid-kit",
+          "arabic": "جيب شنطة الإسعاف",
+          "transliteration": "jeeb shanTat il-is3aaf",
+          "reply": {
+            "arabic": "هي دي",
+            "transliteration": "hiyya di",
+            "english": "Here it is."
+          }
+        },
+        {
+          "slot": "i-need-a-bandage",
+          "arabic": "أبغى رباط",
+          "transliteration": "abgha ribaaT",
+          "reply": {
+            "arabic": "اتفضّل",
+            "transliteration": "itfaDDal",
+            "english": "Here you are."
+          }
+        },
+        {
+          "slot": "please-call-my-family",
+          "arabic": "كلّم أهلي لو سمحت",
+          "transliteration": "kallim ahli law sama7t",
+          "reply": {
+            "arabic": "إيش رقمهم؟",
+            "transliteration": "eesh ragamhum?",
+            "english": "What is their number?"
+          }
+        },
+        {
+          "slot": "i-want-a-report-from-the-police",
+          "arabic": "أبغى تقرير من الشرطة",
+          "transliteration": "abgha tagreer min ish-shurTa",
+          "reply": {
+            "arabic": "حنكتبه دحين",
+            "transliteration": "7anaktibu da7een",
+            "english": "We'll write it now."
+          }
+        },
+        {
+          "slot": "this-is-my-insurance-card",
+          "arabic": "دا كرت تأميني",
+          "transliteration": "da kart ta2meeni"
+        },
+        {
+          "slot": "did-you-see-what-happened",
+          "arabic": "شفت اللي صار؟",
+          "transliteration": "shuft illi Saar?",
+          "reply": {
+            "arabic": "إيوه، شفت كل حاجة",
+            "transliteration": "eewa, shuft kull 7aaja",
+            "english": "Yes, I saw everything."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yusuf",
+          "slot": "there-has-been-an-accident"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "my-car-hit-another-car"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "is-anyone-hurt"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "is-anyone-hurt",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "my-leg-hurts"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "do-not-move"
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "حتّصل بالإسعاف.",
+          "transliteration": "7attaSil bil-is3aaf.",
+          "english": "I'll call the ambulance."
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "bring-the-first-aid-kit"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "bring-the-first-aid-kit",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "please-call-my-family"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "please-call-my-family",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "دا الرقم.",
+          "transliteration": "da ir-ragam.",
+          "english": "This is the number."
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-am-fine-thank-allah"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "i-am-fine-thank-allah",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "i-want-a-report-from-the-police"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "i-want-a-report-from-the-police",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "this-is-my-insurance-card"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فيه حد مصاب؟",
+            "transliteration": "feeh 7ad muSaab?",
+            "english": "Is anyone hurt?"
+          },
+          "response": {
+            "arabic": "إيوه، شخص واحد",
+            "transliteration": "eewa, shakhS waa7id",
+            "english": "Yes, one person."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أنا بخير، الْحَمْدُ لِلَّهِ",
+            "transliteration": "ana bikhayr, al-7amdu lillaah",
+            "english": "I am fine, thank Allah."
+          },
+          "response": {
+            "arabic": "الْحَمْدُ لِلَّهِ على السلامة",
+            "transliteration": "al-7amdu lillaah 3ala is-salaama",
+            "english": "Thank Allah you are safe."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "رجلي توجعني",
+            "transliteration": "rijli tooja3ni",
+            "english": "My leg hurts."
+          },
+          "response": {
+            "arabic": "حناخدك المستشفى",
+            "transliteration": "7anaakhudak il-mustashfa",
+            "english": "We'll take you to the hospital."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أبغى تقرير من الشرطة",
+            "transliteration": "abgha tagreer min ish-shurTa",
+            "english": "I want a report from the police."
+          },
+          "response": {
+            "arabic": "حنكتبه دحين",
+            "transliteration": "7anaktibu da7een",
+            "english": "We'll write it now."
+          }
+        }
+      ],
+      "culture": "After an accident do not move an injured person, and keep calm. In Saudi Arabia the ambulance is 997 and traffic police 993, and for a minor accident between cars, insurers send someone from نجم (Najm) to write the accident report, which the insurance company needs before it pays. Someone who comes through safely is told الحمد لله على السلامة, answered الله يسلّمك.",
+      "exercises": [
+        {
+          "id": "unit-19.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks: \"إنت بخير؟\" Say: I am fine, thank Allah.",
+          "answer": "أنا بخير، الْحَمْدُ لِلَّهِ",
+          "accepted": [
+            "أنا بخير، الْحَمْدُ لِلَّهِ",
+            "ana bikhayr, al-7amdu lillaah",
+            "أنا بخير الحمد لله",
+            "انا بخير الحمد لله",
+            "أنا بخير، الحمد لله",
+            "أنا كويّس، الحمد لله"
+          ],
+          "tip": "الحمد لله is fixed wording, the same in every dialect. The helper answers الحمد لله على السلامة, and you reply الله يسلّمك."
+        },
+        {
+          "id": "unit-19.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "The helper asks: \"فيه حد مصاب؟\" Say: yes, one person.",
+          "answer": "إيوه، شخص واحد",
+          "accepted": [
+            "إيوه، شخص واحد",
+            "eewa, shakhS waa7id",
+            "ايوه شخص واحد",
+            "إيوه، واحد",
+            "إيوه شخص واحد"
+          ],
+          "too_formal": {
+            "item": "نعم، شخص واحد",
+            "feedback": "نعم is the written yes. Spoken: إيوه، شخص واحد."
+          }
+        },
+        {
+          "id": "unit-19.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أبغى _____.\" (I need a bandage.)",
+          "answer": "رباط",
+          "accepted": [
+            "رباط",
+            "ribaaT",
+            "ضماد"
+          ],
+          "tip": "ضماد (Dimaad) is the medical word; people ask for رباط."
+        },
+        {
+          "id": "unit-19.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"لا _____.\" (Do not move.)",
+          "answer": "تتحرّك",
+          "accepted": [
+            "تتحرّك",
+            "tit7arrak",
+            "تتحرك"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"There has been an accident.\"",
+          "answer": "صار حادث",
+          "accepted": [
+            "صار حادث",
+            "Saar 7aadis",
+            "صار حادثة",
+            "فيه حادث",
+            "حصل حادث"
+          ],
+          "too_formal": {
+            "item": "وقع حادث",
+            "feedback": "وقع is the written verb. Hejazi says صار, as in إيش صار؟"
+          }
+        },
+        {
+          "id": "unit-19.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My leg hurts.\"",
+          "answer": "رجلي توجعني",
+          "accepted": [
+            "رجلي توجعني",
+            "rijli tooja3ni",
+            "رجلي تعورني"
+          ],
+          "too_formal": {
+            "item": "تؤلمني رجلي",
+            "feedback": "تؤلمني is the written verb. In speech pain is وجع: توجعني."
+          }
+        },
+        {
+          "id": "unit-19.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want a report from the police.\"",
+          "answer": "أبغى تقرير من الشرطة",
+          "accepted": [
+            "أبغى تقرير من الشرطة",
+            "abgha tagreer min ish-shurTa",
+            "ابغى تقرير من الشرطة",
+            "أبغى تقرير من المرور"
+          ],
+          "too_formal": {
+            "item": "أريد تقريرًا من الشرطة",
+            "feedback": "أريد and تقريرًا are written Arabic. Spoken: أبغى تقرير."
+          }
+        },
+        {
+          "id": "unit-19.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Bring the first aid kit\"?",
+          "options": [
+            "جيب شنطة الإسعاف",
+            "صار حادث",
+            "أبغى رباط",
+            "دا كرت تأميني"
+          ],
+          "answer": "جيب شنطة الإسعاف",
+          "accepted": [
+            "جيب شنطة الإسعاف",
+            "jeeb shanTat il-is3aaf"
+          ],
+          "tip": "جيب (jeeb) is \"bring\" in Hejazi. To a woman: جيبي."
+        },
+        {
+          "id": "unit-19.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Do not move\"?",
+          "options": [
+            "لا تتحرّك",
+            "فيه حد مصاب؟",
+            "رجلي توجعني",
+            "كلّم أهلي لو سمحت"
+          ],
+          "answer": "لا تتحرّك",
+          "accepted": [
+            "لا تتحرّك",
+            "la tit7arrak",
+            "لا تتحرك"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"مصاب؟ / حد / فيه\" (Is anyone hurt?)",
+          "answer": "فيه حد مصاب؟",
+          "accepted": [
+            "فيه حد مصاب؟",
+            "feeh 7ad muSaab?",
+            "فيه حد مصاب"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"سمحت / أهلي / لو / كلّم\" (Please call my family.)",
+          "answer": "كلّم أهلي لو سمحت",
+          "accepted": [
+            "كلّم أهلي لو سمحت",
+            "kallim ahli law sama7t",
+            "كلم أهلي لو سمحت"
+          ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "my-child-is-lost",
+          "arabic": "عيّلي تايه",
+          "transliteration": "3ayyili taayih",
+          "reply": {
+            "arabic": "كم عمره؟",
+            "transliteration": "kam 3umru?",
+            "english": "How old is he?"
+          }
+        },
+        {
+          "slot": "he-is-five-years-old",
+          "arabic": "عمره خمس سنين",
+          "transliteration": "3umru khamas sineen",
+          "reply": {
+            "arabic": "وإيش لابس؟",
+            "transliteration": "w eesh laabis?",
+            "english": "And what is he wearing?"
+          }
+        },
+        {
+          "slot": "he-is-wearing-a-red-shirt",
+          "arabic": "لابس قميص أحمر",
+          "transliteration": "laabis gameeS a7mar",
+          "reply": {
+            "arabic": "معاك صورة؟",
+            "transliteration": "ma3aak Soora?",
+            "english": "Do you have a photo?"
+          }
+        },
+        {
+          "slot": "where-did-you-see-him-last",
+          "arabic": "فين شفته آخر مرّة؟",
+          "transliteration": "feen shuftu aakhir marra?",
+          "reply": {
+            "arabic": "عند مدخل السوق",
+            "transliteration": "3ind madkhal is-soog",
+            "english": "At the market entrance."
+          }
+        },
+        {
+          "slot": "please-help-me-find-him",
+          "arabic": "ساعدني أدوّر عليه",
+          "transliteration": "saa3idni adawwir 3alay",
+          "reply": {
+            "arabic": "حندوّر مع بعض",
+            "transliteration": "7anadawwir ma3 ba3D",
+            "english": "We'll search together."
+          }
+        },
+        {
+          "slot": "where-is-the-information-desk",
+          "arabic": "فين مكتب الاستعلامات؟",
+          "transliteration": "feen maktab il-isti3laamaat?",
+          "reply": {
+            "arabic": "في الدور الأرضي",
+            "transliteration": "fid-door il-arDi",
+            "english": "On the ground floor."
+          }
+        },
+        {
+          "slot": "please-announce-it-on-the-loudspeaker",
+          "arabic": "نادوا عليه في المايك لو سمحت",
+          "transliteration": "naadu 3alay fil-maayk law sama7t",
+          "reply": {
+            "arabic": "حنعلن دحين",
+            "transliteration": "7ana3lin da7een",
+            "english": "We'll announce it now."
+          }
+        },
+        {
+          "slot": "is-there-a-security-guard-here",
+          "arabic": "فيه حارس أمن هنا؟",
+          "transliteration": "feeh 7aaris amn hina?",
+          "reply": {
+            "arabic": "إيوه، عند البوّابة",
+            "transliteration": "eewa, 3ind il-bawwaaba",
+            "english": "Yes, at the gate."
+          }
+        },
+        {
+          "slot": "have-you-seen-a-small-child",
+          "arabic": "شفت عيّل صغير؟",
+          "transliteration": "shuft 3ayyil Sagheer?",
+          "reply": {
+            "arabic": "لا، آسف",
+            "transliteration": "la, aasif",
+            "english": "No, sorry."
+          }
+        },
+        {
+          "slot": "this-is-his-photo",
+          "arabic": "دي صورته",
+          "transliteration": "di Sooratu"
+        },
+        {
+          "slot": "we-found-him",
+          "arabic": "لقيناه!",
+          "transliteration": "ligeenaah!",
+          "reply": {
+            "arabic": "الْحَمْدُ لِلَّهِ!",
+            "transliteration": "al-7amdu lillaah!",
+            "english": "Thank Allah!"
+          }
+        },
+        {
+          "slot": "thank-you-for-your-help",
+          "arabic": "شكرًا على مساعدتك",
+          "transliteration": "shukran 3ala musaa3adtak",
+          "reply": {
+            "arabic": "العفو، ولا يهمّك",
+            "transliteration": "al-3afw, wala yihimmak",
+            "english": "Don't mention it."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yusuf",
+          "arabic": "السلام عليكم",
+          "transliteration": "assalaamu 3alaykum",
+          "english": "Peace be upon you."
+        },
+        {
+          "speaker": "Guard",
+          "arabic": "وعليكم السلام. إيش صار؟",
+          "transliteration": "wa 3alaykum is-salaam. eesh Saar?",
+          "english": "And peace be upon you. What happened?"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "my-child-is-lost"
+        },
+        {
+          "speaker": "Guard",
+          "slot": "my-child-is-lost",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "he-is-five-years-old"
+        },
+        {
+          "speaker": "Guard",
+          "slot": "he-is-five-years-old",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "he-is-wearing-a-red-shirt"
+        },
+        {
+          "speaker": "Guard",
+          "slot": "he-is-wearing-a-red-shirt",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "this-is-his-photo"
+        },
+        {
+          "speaker": "Guard",
+          "slot": "where-did-you-see-him-last"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "where-did-you-see-him-last",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "please-announce-it-on-the-loudspeaker"
+        },
+        {
+          "speaker": "Guard",
+          "slot": "please-announce-it-on-the-loudspeaker",
+          "reply": true
+        },
+        {
+          "speaker": "Guard",
+          "arabic": "شوف هناك، لقيناه!",
+          "transliteration": "shoof hunaak, ligeenaah!",
+          "english": "Look over there, we found him!"
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "we-found-him",
+          "reply": true
+        },
+        {
+          "speaker": "Yusuf",
+          "slot": "thank-you-for-your-help"
+        },
+        {
+          "speaker": "Guard",
+          "slot": "thank-you-for-your-help",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عيّلي تايه",
+            "transliteration": "3ayyili taayih",
+            "english": "My child is lost."
+          },
+          "response": {
+            "arabic": "كم عمره؟",
+            "transliteration": "kam 3umru?",
+            "english": "How old is he?"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين شفته آخر مرّة؟",
+            "transliteration": "feen shuftu aakhir marra?",
+            "english": "Where did you see him last?"
+          },
+          "response": {
+            "arabic": "عند مدخل السوق",
+            "transliteration": "3ind madkhal is-soog",
+            "english": "At the market entrance."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فين مكتب الاستعلامات؟",
+            "transliteration": "feen maktab il-isti3laamaat?",
+            "english": "Where is the information desk?"
+          },
+          "response": {
+            "arabic": "في الدور الأرضي",
+            "transliteration": "fid-door il-arDi",
+            "english": "On the ground floor."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شكرًا على مساعدتك",
+            "transliteration": "shukran 3ala musaa3adtak",
+            "english": "Thank you for your help."
+          },
+          "response": {
+            "arabic": "العفو، ولا يهمّك",
+            "transliteration": "al-3afw, wala yihimmak",
+            "english": "Don't mention it."
+          }
+        }
+      ],
+      "culture": "In a mall or a crowded place, go straight to the security guard or the information desk, who can call the child's name on the loudspeaker. Around the Haram and in big markets, families agree on a meeting point before they go in, and children should know their father's name and phone number. The police number in Saudi Arabia is 999.",
+      "exercises": [
+        {
+          "id": "unit-19.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "The guard asks: \"كم عمره؟\" Say: he is five years old.",
+          "answer": "عمره خمس سنين",
+          "accepted": [
+            "عمره خمس سنين",
+            "3umru khamas sineen",
+            "عمره خمس سنوات",
+            "عمره خمسة سنين",
+            "عنده خمس سنين"
+          ],
+          "too_formal": {
+            "item": "عمره خمس سنوات",
+            "feedback": "سنوات is the written plural. Spoken Hejazi: سنين."
+          }
+        },
+        {
+          "id": "unit-19.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Someone shouts: \"لقيناه!\" Say: Praise be to Allah!",
+          "answer": "الْحَمْدُ لِلَّهِ!",
+          "accepted": [
+            "الْحَمْدُ لِلَّهِ!",
+            "al-7amdu lillaah!",
+            "الحمد لله",
+            "الحمد لله!",
+            "الحمدلله"
+          ],
+          "tip": "الحمد لله is fixed wording, the same in every dialect."
+        },
+        {
+          "id": "unit-19.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عمره خمس _____.\" (He is five years old.)",
+          "answer": "سنين",
+          "accepted": [
+            "سنين",
+            "sineen",
+            "سنوات"
+          ],
+          "tip": "After numbers 3 to 10 Hejazi speech uses the plural سنين."
+        },
+        {
+          "id": "unit-19.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"فين مكتب _____؟\" (Where is the information desk?)",
+          "answer": "الاستعلامات",
+          "accepted": [
+            "الاستعلامات",
+            "il-isti3laamaat",
+            "الإستعلامات"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My child is lost.\"",
+          "answer": "عيّلي تايه",
+          "accepted": [
+            "عيّلي تايه",
+            "3ayyili taayih",
+            "عيلي تايه",
+            "ولدي تايه",
+            "ابني تايه",
+            "عيّلي ضايع"
+          ],
+          "too_formal": {
+            "item": "طفلي ضائع",
+            "feedback": "طفلي and ضائع are written forms. Spoken: عيّلي تايه."
+          },
+          "tip": "For a girl: بنتي تايهة (bintee taayha)."
+        },
+        {
+          "id": "unit-19.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"He is wearing a red shirt.\"",
+          "answer": "لابس قميص أحمر",
+          "accepted": [
+            "لابس قميص أحمر",
+            "laabis gameeS a7mar",
+            "لابس قميص احمر",
+            "هو لابس قميص أحمر",
+            "لابس تيشرت أحمر"
+          ],
+          "too_formal": {
+            "item": "يلبس قميصًا أحمر",
+            "feedback": "يلبس قميصًا is written Arabic. Speech uses لابس: لابس قميص أحمر."
+          },
+          "tip": "A girl: لابسة (laabsa)."
+        },
+        {
+          "id": "unit-19.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Please help me find him.\" (to a man)",
+          "answer": "ساعدني أدوّر عليه",
+          "accepted": [
+            "ساعدني أدوّر عليه",
+            "saa3idni adawwir 3alay",
+            "ساعدني ادور عليه",
+            "ساعدني أدوّر عليه لو سمحت"
+          ],
+          "too_formal": {
+            "item": "ساعدني في البحث عنه",
+            "feedback": "البحث عنه is written Arabic. People say أدوّر عليه, \"I look for him\"."
+          },
+          "tip": "To a woman: ساعديني (saa3idini)."
+        },
+        {
+          "id": "unit-19.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"Where is the information desk?\"",
+          "options": [
+            "فين مكتب الاستعلامات؟",
+            "لابس قميص أحمر",
+            "نادوا عليه في المايك لو سمحت",
+            "فيه حارس أمن هنا؟"
+          ],
+          "answer": "فين مكتب الاستعلامات؟",
+          "accepted": [
+            "فين مكتب الاستعلامات؟",
+            "feen maktab il-isti3laamaat?",
+            "فين مكتب الاستعلامات"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Where did you see him last?\"",
+          "options": [
+            "فين شفته آخر مرّة؟",
+            "ساعدني أدوّر عليه",
+            "شفت عيّل صغير؟",
+            "عيّلي تايه"
+          ],
+          "answer": "فين شفته آخر مرّة؟",
+          "accepted": [
+            "فين شفته آخر مرّة؟",
+            "feen shuftu aakhir marra?",
+            "فين شفته آخر مرة"
+          ],
+          "tip": "To a woman: فين شفتيه آخر مرّة؟ (feen shufteeh aakhir marra?)"
+        },
+        {
+          "id": "unit-19.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"عليه / أدوّر / ساعدني\" (Please help me find him.)",
+          "answer": "ساعدني أدوّر عليه",
+          "accepted": [
+            "ساعدني أدوّر عليه",
+            "saa3idni adawwir 3alay",
+            "ساعدني ادور عليه"
+          ]
+        },
+        {
+          "id": "unit-19.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"مساعدتك / على / شكرًا\" (Thank you for your help.)",
+          "answer": "شكرًا على مساعدتك",
+          "accepted": [
+            "شكرًا على مساعدتك",
+            "shukran 3ala musaa3adtak",
+            "شكرا على مساعدتك"
+          ]
+        }
+      ]
+    }
+  ],
+  "challenge": {
+    "title": "A morning of errands",
+    "instructions": "Write a short conversation in Hejazi in which you withdraw cash at the bank, ask where the post office is and what a parcel costs, and top up your phone balance. Thank the person at the end.",
+    "required_elements": [
+      "a request at the bank such as أبغى أسحب كاش",
+      "a question about the post office with فين",
+      "a question about a price with كم",
+      "a request to top up the phone balance with أبغى أشحن رصيدي",
+      "a polite word such as لو سمحت or الله يعطيك العافية"
+    ],
+    "model": {
+      "dialogue": [
+        {
+          "speaker": "Yusuf",
+          "arabic": "السلام عليكم. أبغى أسحب كاش.",
+          "transliteration": "assalaamu 3alaykum. abgha as7ab kaash.",
+          "english": "Peace be upon you. I want to withdraw some cash."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وعليكم السلام. كم تبغى؟",
+          "transliteration": "wa 3alaykum is-salaam. kam tabgha?",
+          "english": "And peace be upon you. How much do you want?"
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "مية ريال. وفين مكتب البريد لو سمحت؟",
+          "transliteration": "miyya riyaal. wa feen maktab il-bareed law sama7t?",
+          "english": "A hundred riyals. And where is the post office, please?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "في آخر الشارع، جنب محل الجوّالات.",
+          "transliteration": "fi aakhir ish-shaari3, janb ma7all il-jawwaalaat.",
+          "english": "At the end of the street, next to the phone shop."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "أبغى أبعت طرد. كم الشحن؟",
+          "transliteration": "abgha ab3at Tard. kam ish-shahn?",
+          "english": "I want to send a parcel. How much is the shipping?"
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "عشرين ريال.",
+          "transliteration": "3ishreen riyaal.",
+          "english": "Twenty riyals."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "وأبغى كمان أشحن رصيدي.",
+          "transliteration": "wa abgha kamaan ash7an raSeedi.",
+          "english": "I also want to top up my balance."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "اتفضّل. كم تبغى تشحن؟",
+          "transliteration": "itfaDDal. kam tabgha tash7an?",
+          "english": "Please. How much do you want to add?"
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "خمسين ريال. الله يعطيك العافية.",
+          "transliteration": "khamseen riyaal. allah yi3Teek il-3aafya.",
+          "english": "Fifty riyals. Thank you."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "الله يعافيك.",
+          "transliteration": "allah yi3aafeek.",
+          "english": "And you."
+        },
+        {
+          "speaker": "Yusuf",
+          "arabic": "جَزَاكَ اللَّهُ خَيْرًا.",
+          "transliteration": "jazaaka allaahu khayran.",
+          "english": "May Allah reward you with good."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وَإِيَّاكَ.",
+          "transliteration": "wa iyyaaka.",
+          "english": "And you too."
+        }
+      ]
+    }
+  }
+}
