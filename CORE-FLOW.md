@@ -131,3 +131,7 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
 - **Source**: `verified`, `derived` or `guessed`, carried by every answer.
 - **Weak point**: a flagged narrator or link in a chain; `notes` and `links` in code (`docs/glossary/hadith.md`).
 - **Token**: a theme value in `frontend/src/config/theme.json`; components use `var(--...)`, never a literal.
+- **Search words**: `?q=` is what a search sends, `query` is what the answer echoes back, `asked` is the
+  text as the reader typed it, before any cleaning. Qur'an: `surah` and `ayah` (the large majority already);
+  `verse` and `chapter` are for poetry and hadith books. New code follows these; old names that are stored
+  or come from outside (URL params, the `verse` search table, upstream payloads) stay as they are.
