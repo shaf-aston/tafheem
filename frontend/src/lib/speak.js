@@ -11,7 +11,7 @@
  * Recordings share lib/ayahAudio.js's one player, so a word stops an ayah and
  * an ayah stops a word: never two sounds at once.
  */
-import config from '../speak.json'
+import config from '../config/speak.json'
 import { play, stop as stopAudio, watch } from './ayahAudio'
 import { settingOf } from './settings'
 

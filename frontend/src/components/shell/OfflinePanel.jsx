@@ -1,6 +1,6 @@
 /**
  * Settings' offline section: whether the app itself is saved, and the packs a reader can add
- * or remove. Draws lib/offline.js; every word is src/offline.json's.
+ * or remove. Draws lib/offline.js; every word is src/config/offline.json's.
  */
 import { useEffect } from 'react'
 

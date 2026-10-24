@@ -10,7 +10,7 @@
 import { useMemo } from 'react'
 
 import { hasDiacritics } from '../../lib/arabicText'
-import { KIND, readQuranQuery } from '../../lib/quranIntent'
+import { KIND, readQuranQuery } from '../../lib/quran/quranIntent'
 import { ayahProblem } from '../../lib/surahRef'
 
 import ArabicText from '../ui/ArabicText'

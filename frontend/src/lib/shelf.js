@@ -8,7 +8,7 @@
  * on the server: the guest record is shared, so it stays on its device.
  */
 import { api } from '../api'
-import CONFIG from '../profile.json'
+import CONFIG from '../config/profile.json'
 import { getProfile, profileHeaders } from './profile'
 import { fillShelf, onChange, shelfOf } from './stored'
 

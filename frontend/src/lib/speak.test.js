@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import config from '../speak.json'
+import config from '../config/speak.json'
 
 const played = []
 let refuse = () => false

@@ -11,7 +11,7 @@
  * (lib/tone.js). Switching looks rewrites the same variables on :root, so
  * nothing downstream knows there is more than one.
  */
-import theme from './theme.json'
+import theme from './config/theme.json'
 import { tonePalette } from './lib/tone'
 import { colorScheme } from './lib/colorScheme'
 

@@ -34,8 +34,8 @@
 
 import { recitedForm, sameSpokenWord } from './arabicText'
 import { shuffled } from './shuffle'
-import config from '../memorise.json'
-import quiz from '../quiz.json'
+import config from '../config/memorise.json'
+import quiz from '../config/quiz.json'
 
 /**
  * Every number this file works to, and nothing else. They live in

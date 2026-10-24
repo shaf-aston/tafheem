@@ -6,7 +6,7 @@
  * the words, and someone who does not opens the glossary at the foot of the
  * page once, rather than meeting the same paragraph on every hover.
  */
-import config from '../grammar.json'
+import config from '../config/grammar.json'
 
 const CASES = config.cases
 const TYPES = config.types

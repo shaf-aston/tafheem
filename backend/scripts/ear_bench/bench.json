@@ -1,5 +1,5 @@
 {
-  "_comment": "Knobs for grading an ear. The word rule (config recitation_sure_of_word) and the cut the app ships (frontend/src/recite.json sure-at) are read from where they live, never copied here.",
+  "_comment": "Knobs for grading an ear. The word rule (config recitation_sure_of_word) and the cut the app ships (frontend/src/config/recite.json sure-at) are read from where they live, never copied here.",
   "draws": 400,
   "seed": 7,
   "_judged-on": "Recordings no training has used: id prefixes. The al-Ikhlas set taught v13, so its clean clips are not a fair test.",

@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react'
 import { colorFor } from '../../theme'
 import { makeRandom } from '../../lib/memorise'
 import { drillOf, fill, whereOf } from '../../lib/similar'
-import copy from '../../similar.json'
+import copy from '../../config/similar.json'
 
 import ArabicText from '../ui/ArabicText'
 import EmptyState from '../ui/EmptyState'

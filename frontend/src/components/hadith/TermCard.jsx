@@ -12,7 +12,7 @@ import CloseButton from '../ui/CloseButton'
 import Disclosure from '../ui/Disclosure'
 import SheetLink from '../ui/SheetLink'
 import TermHadith from './TermHadith'
-import { termAt } from '../../lib/termsChart'
+import { termAt } from '../../lib/hadith/termsChart'
 
 const Label = ({ children }) => (
   <h3 className="type-tiny uppercase tracking-[0.14em] text-[var(--text-faint)] mt-5 mb-2">{children}</h3>

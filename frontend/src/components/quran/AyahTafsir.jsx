@@ -30,7 +30,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getAyahEditions, getQuranEditions } from '../../api'
-import { passageLabel } from '../../lib/tafsir'
+import { passageLabel } from '../../lib/quran/tafsir'
 import { useRemembered } from '../../lib/useRemembered'
 
 import ArabicText from '../ui/ArabicText'

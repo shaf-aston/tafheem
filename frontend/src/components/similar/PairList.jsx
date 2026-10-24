@@ -1,6 +1,6 @@
 import { fill, whereOf } from '../../lib/similar'
 import { ahead } from '../../lib/warm'
-import copy from '../../similar.json'
+import copy from '../../config/similar.json'
 
 const LABEL = { new: copy['label-new'], due: copy['label-due'], known: copy['label-known'] }
 const TONE = { new: 'var(--text-faint)', due: 'var(--primary-hi)', known: 'var(--success)' }

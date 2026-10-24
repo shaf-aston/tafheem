@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import copy from '../similar.json'
+import copy from '../config/similar.json'
 import { similarOpen } from './similarOpen'
 
 const groups = { groups: [{ pairs: [['2:35', '7:19'], ['7:161', '2:58']] }] }

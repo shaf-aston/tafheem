@@ -8,7 +8,7 @@
  * there to redo tomorrow. Grading and narrowing live in lib/tamreen.
  */
 import { KINDS, SHOWS, statusOf } from '../../lib/tamreen'
-import { useTamreenPractise } from '../../lib/useTamreenPractise'
+import { useTamreenPractise } from '../../lib/nahw/useTamreenPractise'
 
 import PrimaryButton from '../ui/PrimaryButton'
 import SmallButton from '../ui/SmallButton'

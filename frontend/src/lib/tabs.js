@@ -20,25 +20,25 @@ import { MODULE as BASICS_MODULE } from './alifLam'
 import { MODULE as HADITH_MODULE } from './hadithLesson'
 import { MODULE as QURAN_MODULE } from './quranLesson'
 import { panel } from './panel'
-import grow from '../worlds.json'
+import grow from '../config/worlds.json'
 import { quranOpen } from './quranOpen'
 import { similarOpen } from './similarOpen'
 
 const HomePanel = panel(() => import('../components/home/HomePanel'))
-const Dictionary = panel(() => import('../components/Dictionary'))
-const QuizPanel = panel(() => import('../components/QuizPanel'))
-const QuranLookup = panel(() => import('../components/QuranLookup'))
-const MemorisePanel = panel(() => import('../components/MemorisePanel'))
-const SimilarPanel = panel(() => import('../components/SimilarPanel'))
-const SarfPanel = panel(() => import('../components/SarfPanel'))
-const NahwPanel = panel(() => import('../components/NahwPanel'))
-const DaleelPanel = panel(() => import('../components/DaleelPanel'))
-const HadithPanel = panel(() => import('../components/HadithPanel'))
-const TimelinesPanel = panel(() => import('../components/TimelinesPanel'))
-const DawahPanel = panel(() => import('../components/DawahPanel'))
-const ColloquialPanel = panel(() => import('../components/ColloquialPanel'))
-const GrowPanel = panel(() => import('../components/GrowPanel'))
-const KitPanel = panel(() => import('../components/KitPanel'))
+const DictionaryPanel = panel(() => import('../components/dictionary/DictionaryPanel'))
+const QuizPanel = panel(() => import('../components/quiz/QuizPanel'))
+const QuranPanel = panel(() => import('../components/quran/QuranPanel'))
+const MemorisePanel = panel(() => import('../components/memorise/MemorisePanel'))
+const SimilarPanel = panel(() => import('../components/similar/SimilarPanel'))
+const SarfPanel = panel(() => import('../components/sarf/SarfPanel'))
+const NahwPanel = panel(() => import('../components/nahw/NahwPanel'))
+const DaleelPanel = panel(() => import('../components/daleel/DaleelPanel'))
+const HadithPanel = panel(() => import('../components/hadith/HadithPanel'))
+const TimelinesPanel = panel(() => import('../components/timelines/TimelinesPanel'))
+const DawahPanel = panel(() => import('../components/dawah/DawahPanel'))
+const ColloquialPanel = panel(() => import('../components/colloquial/ColloquialPanel'))
+const GrowPanel = panel(() => import('../components/grow/GrowPanel'))
+const KitPanel = panel(() => import('../components/kit/KitPanel'))
 
 // `study`: read closely, so the text-size setting applies.
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together.
@@ -71,11 +71,11 @@ export const TABS = [
   { id: 'home',   label: 'Home',       short: 'Home',   arabic: 'البداية', emblem: 'home', Component: HomePanel, ownsHealth: true, blurb: "Where you left off, your progress, and every tab", group: 'start' },
   { id: 'nahw',   label: 'Nahw',       short: 'Nahw',   arabic: 'نحو',    emblem: 'nahw', Component: NahwPanel,   study: true, half: true, blurb: "Type a sentence: every word's role and the reason", group: 'arabic' },
   { id: 'sarf',   label: 'Sarf',       short: 'Sarf',   arabic: 'صرف',    emblem: 'sarf', Component: SarfPanel,   study: true, half: true, blurb: "Conjugate any root, or read a verb back", group: 'arabic' },
-  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', emblem: 'quran', Component: QuranLookup, open: quranOpen, study: true, blurb: "Read, search and study the Qur'an word by word", group: 'read' },
+  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', emblem: 'quran', Component: QuranPanel, open: quranOpen, study: true, blurb: "Read, search and study the Qur'an word by word", group: 'read' },
   // Daleel finds a passage, Dictionary a word: reached for together.
   { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   emblem: 'daleel', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, blurb: "Find the passage that speaks to your question", group: 'read' },
   { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', emblem: 'hadith', Component: HadithPanel, open: hadithOpen, study: true, blurb: "Search hadith, with narrators and grading", group: 'read' },
-  { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  emblem: 'dict', Component: Dictionary,  study: true, blurb: "Look up an Arabic word, root or meaning", group: 'arabic' },
+  { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  emblem: 'dict', Component: DictionaryPanel, study: true, blurb: "Look up an Arabic word, root or meaning", group: 'arabic' },
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    emblem: 'mem', Component: MemorisePanel, open: memoriseOpen, study: true, blurb: "Learn verses by heart and check your recital", group: 'practise' },
   // Similar verses, متشابهات: telling look-alike ayat apart, next to learning them by heart.
   { id: 'similar', label: 'Similar',        short: 'Similar', arabic: 'متشابهات', emblem: 'similar', Component: SimilarPanel, open: similarOpen, study: true, blurb: "Tell look-alike verses apart, and drill the wording", group: 'practise' },

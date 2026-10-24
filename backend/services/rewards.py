@@ -2,7 +2,7 @@
 
 - A right answer earns `xp_per_answer` once per item per local day; wrong earns 0.
 - Level n needs `level_step * n` XP to reach n + 1.
-Level names live in frontend/src/rewards.json.
+Level names live in frontend/src/config/rewards.json.
 """
 from __future__ import annotations
 

@@ -2,7 +2,7 @@
  * XP on the page: the learner's clock, level names, and the earn announcer.
  * The server counts (services/rewards.py); recordAttempt calls `announce`, so every tab earns for free.
  */
-import config from '../rewards.json'
+import config from '../config/rewards.json'
 
 /** Minutes east of UTC, so "today" is the learner's day. */
 export const tz = (now = new Date()) => -now.getTimezoneOffset() || 0

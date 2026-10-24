@@ -13,7 +13,7 @@
  * Pure functions throughout: exercise data and a reader's picks in, a grading
  * shape out. No React, no fetching, no randomness.
  */
-import settings from '../tamreen.json'
+import settings from '../config/tamreen.json'
 
 /** Every setting the practise panel reads, the way quizBanks maps quiz.json. */
 export const TAMREEN = {

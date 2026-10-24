@@ -4,7 +4,7 @@
  * to Fruit with you on it, shown at once rather than behind a tap.
  */
 import { colorFor } from '../../theme'
-import config from '../../rewards.json'
+import config from '../../config/rewards.json'
 import { rankOf, shareOf } from '../../lib/rewards'
 import { Skeleton } from '../ui/Skeleton'
 

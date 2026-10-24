@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import MemorisePanel from '../components/MemorisePanel'
+import MemorisePanel from '../components/memorise/MemorisePanel'
 
 // Every word on the page is the same word, so whichever ones are taken out,
 // the right answer to each is known.

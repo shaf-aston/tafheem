@@ -92,7 +92,7 @@ _HAS_WORDS = re.compile(r"[^.،؛:\s]")
 _CLAIM_END = re.compile(r"(?<=\.)\s+")
 
 # The gap the book prints down the middle of a verse, between its two halves.
-# The same string the card's layout looks for (frontend/src/lib/entryLines.js).
+# The same string the card's layout looks for (frontend/src/lib/dictionary/entryLines.js).
 VERSE_GAP = " ... "
 
 

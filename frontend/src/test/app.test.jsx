@@ -6,7 +6,7 @@ import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import App from '../App'
-import home from '../home.json'
+import home from '../config/home.json'
 
 describe('app shell', () => {
   it('opens on Home when nothing is saved', async () => {

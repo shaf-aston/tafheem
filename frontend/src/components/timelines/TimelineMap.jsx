@@ -1,7 +1,7 @@
 /**
  * Where a section's events happened, drawn only.
  *
- * Every number comes from lib/timeline/map (the projection, the pin size, the
+ * Every number comes from lib/timelines/map (the projection, the pin size, the
  * label spacing) and every colour from the theme, so this file decides nothing.
  * The land is Natural Earth's 1:50m outline from the backend's library.json.
  * A pin can hold several nearby places; pressing it again steps to its next
@@ -14,9 +14,9 @@
  */
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 
-import settings from '../../timelines.json'
-import { fitView, labelGap, labelText, landBounds, pinsOf, placeLabels, projection } from '../../lib/timeline/map'
-import { routeTo } from '../../lib/timeline/time'
+import settings from '../../config/timelines.json'
+import { fitView, labelGap, labelText, landBounds, pinsOf, placeLabels, projection } from '../../lib/timelines/map'
+import { routeTo } from '../../lib/timelines/time'
 
 const { map: MAP } = settings
 

@@ -10,7 +10,7 @@
  * With the reader's reduce-motion setting on, or the Animations switch off
  * (lib/motion.js), a loop is shown as its poster instead, so nothing moves.
  */
-import { backdropOf } from '../../lib/backdrops'
+import { backdropOf } from '../../lib/grow/backdrops'
 import { motionOff } from '../../lib/motion'
 
 export default function Backdrop({ id }) {

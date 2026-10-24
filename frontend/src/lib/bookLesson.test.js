@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
-import worlds from '../worlds.json'
+import worlds from '../config/worlds.json'
 import { cardOf, firstOpen, lessonCards, lessonsOf, nextAfter, partsOf, reviewCards, statusOf } from './bookLesson'
 
 const PUBLIC = join(import.meta.dirname, '../../public')

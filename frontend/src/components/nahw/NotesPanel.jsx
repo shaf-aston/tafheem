@@ -11,7 +11,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { notesQuery } from '../../api'
-import { NOTES, cardsOf, rolesUsed } from '../../lib/notes'
+import { NOTES, cardsOf, rolesUsed } from '../../lib/nahw/notes'
 import { scrollToEl } from '../../lib/scrollToEl'
 import { readViewParam, writeViewParams } from '../../lib/tabUrl'
 import { useRemembered, useRememberedFlag } from '../../lib/useRemembered'

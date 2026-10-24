@@ -19,7 +19,7 @@
  * come from, which makes a round harder on purpose: every option is then from
  * the same topic, the same verb pattern, or the same surah.
  */
-import settings from '../quiz.json'
+import settings from '../config/quiz.json'
 import { fetchReviewItems, fetchSummary } from './progress'
 
 export const QUIZ = {

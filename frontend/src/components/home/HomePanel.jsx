@@ -19,7 +19,7 @@ import { useCommandLine } from '../../lib/useCommandLine'
 import { accentOf, FIXED, GROUPS, HOME, LISTED, START } from '../../lib/tabs'
 import { progressText } from '../../lib/homeCopy'
 import { copy as offlineCopy, noSignal } from '../../lib/offline'
-import knobs from '../../home.json'
+import knobs from '../../config/home.json'
 import { useMedia, PHONE } from '../../lib/useMedia'
 
 import ArabicText from '../ui/ArabicText'

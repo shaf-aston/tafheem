@@ -27,8 +27,8 @@
  * promise ui/MicButton.jsx makes for a single spoken word.
  */
 import * as api from '../api'
-import dictationConfig from '../dictation.json'
-import config from '../recite.json'
+import dictationConfig from '../config/dictation.json'
+import config from '../config/recite.json'
 import * as dictation from './dictation'
 import { CHECK, SAID, follow, isOfPage, joinWindows, wordsHeard } from './follow'
 import * as journal from './journal'

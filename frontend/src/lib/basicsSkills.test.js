@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import data from '../../public/grow/basics.json'
 import verbsData from '../../public/grow/basics-verbs.json'
-import worlds from '../worlds.json'
+import worlds from '../config/worlds.json'
 import { INTRO, definite, keyOfBasic } from './alifLam'
 import { OWNED, SKILLS, basicsCards, markerAsks, pathItems, teachMarker } from './basicsSkills'
 import { makeRandom } from './quiz'

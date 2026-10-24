@@ -4,7 +4,7 @@
  * on sunnah.com. Which verdict leads, and which colour it wears, is
  * lib/hadithGrade reading hadith.json; this file only draws.
  */
-import { familyOf, leadGrade } from '../../lib/hadithGrade'
+import { familyOf, leadGrade } from '../../lib/hadith/hadithGrade'
 
 import Popover from '../ui/Popover'
 

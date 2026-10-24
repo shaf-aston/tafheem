@@ -12,7 +12,7 @@ import { fetchLeaderboard } from '../../lib/progress'
 import { rankOf, shareOf } from '../../lib/rewards'
 import { useProgressFacts } from '../../lib/useProgressFacts'
 import { colorFor } from '../../theme'
-import knobs from '../../home.json'
+import knobs from '../../config/home.json'
 
 import LogInButton from '../profile/LogInButton'
 import ProfileDialog from '../profile/ProfileDialog'

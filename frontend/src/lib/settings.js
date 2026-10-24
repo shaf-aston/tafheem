@@ -16,7 +16,7 @@
  */
 import { useSyncExternalStore } from 'react'
 
-import config from '../settings.json'
+import config from '../config/settings.json'
 import {
   FIRST_CHOICE, applyTheme, followDevice, followsDevice, rememberTheme, resolveTheme, themeChoices, themeVariable,
 } from '../theme'

@@ -4,11 +4,11 @@
  * one stronger. Pressing the chosen one again goes back to the board.
  *
  * Which picture and hue each section wears is timelines.json's, read through
- * lib/timeline/look; the card look is timelines/TileCard.
+ * lib/timelines/look; the card look is timelines/TileCard.
  */
 import ArabicText from '../ui/ArabicText'
 import TileCard from './TileCard'
-import { sectionLook } from '../../lib/timeline/look'
+import { sectionLook } from '../../lib/timelines/look'
 
 export default function TimelineBoard({ sections, current = null, onPick }) {
   if (current) {

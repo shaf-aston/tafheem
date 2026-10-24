@@ -121,7 +121,7 @@ always draws every row.
 
 Status: Quiz done (steps 0 and 1). `QuizPanel` is 184 lines (was 510): it joins
 `useQuizSetup`, `useQuizQuestion`, `useQuizRound` and `useQuizScore` and draws
-the page; the setup line is `quiz/QuizSetup`, the note is `lib/quizNote` (tested).
+the page; the setup line is `quiz/QuizSetup`, the note is `lib/quiz/quizNote` (tested).
 Memorise step 2 done: `MemorisePanel.jsx` is 322 lines (was 621); `Line`, `Gap`,
 `RecitedWord` and `SimilarCards` are each their own file in `memorise/`. Lint
 does not catch a JSX component left unimported, so the move was checked by
@@ -130,7 +130,7 @@ Pick from 4, Recite, Check) on old and new code. Step 3: `hooks.test.jsx` covers
 `useGaps`, `useBookPage`, `useAnswers` and `useHowYouAnswer`; `hooks.js` stays one
 file (454 lines, every hook tested), since splitting it now buys nothing.
 Sarf done: `SarfPanel.jsx` is 76 lines (was 551); the word, the three requests
-and the table they add up to are `lib/useSarf`, and the result, gardaan, cards
+and the table they add up to are `lib/sarf/useSarf`, and the result, gardaan, cards
 and titles are each their own file in `sarf/`. `test/sarf.test.jsx` types a
 word and finds its root and its table cell.
 
@@ -141,7 +141,7 @@ draws; `useSurahReading` holds the text, glosses, translation and recitation,
 and `test/quranReader.test.jsx` steps a surah and swaps the translation.
 
 Tamreen practise split: `TamreenPractise.jsx` is 191 lines (was 456) and only
-draws; its state and effects are `lib/useTamreenPractise`, and the option list,
+draws; its state and effects are `lib/nahw/useTamreenPractise`, and the option list,
 grid, rule and sentence questions are their own files in `nahw/tamreen/`. Checked by
 the same tag scan and a line-by-line diff; `test/tamreen.test.jsx` answers two.
 

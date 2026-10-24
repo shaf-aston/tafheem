@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { listen } from '../../api'
-import config from '../../dictation.json'
+import config from '../../config/dictation.json'
 import { watchForVoice } from '../../lib/dictation'
 import { CANNOT_RECORD, canRecord, createRecorder, openMicrophone, refusal } from '../../lib/microphone'
 import { useSetting } from '../../lib/settings'

@@ -17,8 +17,8 @@ import { fillIn, sayIn } from './say'
 // quizBanks is in here because the set and cut names are interface words the
 // panel renders through say(), even though they are declared beside the data.
 const SOURCES = [
-  '../components/QuizPanel.jsx',
-  '../components/QuizBoard.jsx',
+  '../components/quiz/QuizPanel.jsx',
+  '../components/quiz/QuizBoard.jsx',
   '../components/quiz/QuizInsights.jsx',
   '../components/quiz/QuizExample.jsx',
   '../components/quiz/PracticeSentence.jsx',
@@ -26,7 +26,7 @@ const SOURCES = [
   '../components/quiz/QuizSetup.jsx',
   '../components/ui/AutoAdvanceToggle.jsx',
   './quizBanks.js',
-  './quizNote.js',
+  './quiz/quizNote.js',
 ]
 const code = SOURCES.map((path) => readFileSync(new URL(path, import.meta.url), 'utf8')).join('\n')
 

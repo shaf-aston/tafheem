@@ -6,7 +6,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import GrowPanel from '../components/GrowPanel'
+import GrowPanel from '../components/grow/GrowPanel'
 import { definite } from '../lib/alifLam'
 import { pathItems } from '../lib/basicsSkills'
 import { LEVEL_KEY } from '../lib/learnerLevel'

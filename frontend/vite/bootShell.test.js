@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import theme from '../src/theme.json'
+import theme from '../src/config/theme.json'
 import { bootShellPlugin } from './bootShell'
 
 const run = (html) => bootShellPlugin.transformIndexHtml.handler(html)

@@ -1,5 +1,5 @@
 /** Home's small text helpers: filling {n}-style lines from home.json, a progress line. */
-import knobs from '../home.json'
+import knobs from '../config/home.json'
 
 const { copy } = knobs
 

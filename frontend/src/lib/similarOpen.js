@@ -5,7 +5,7 @@
  * here, ahead of the tap, instead of one after the other once the tab is open.
  */
 import { similarAyahQuery, similarSurahQuery } from '../api'
-import copy from '../similar.json'
+import copy from '../config/similar.json'
 import { lastPlaceOn } from './journey'
 import { firstPair, pairsOf } from './similar'
 import { parsePlace } from './similarPlace'

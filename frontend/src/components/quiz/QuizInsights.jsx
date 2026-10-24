@@ -25,7 +25,7 @@ import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { shareOf } from '../../lib/coverage'
-import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../../lib/insights'
+import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../../lib/quiz/insights'
 import { sayIn } from '../../lib/say'
 import { allWordsQuery, groupsFor, QUIZ } from '../../lib/quizBanks'
 import { useQuizCoverage } from '../../lib/useQuizCoverage'

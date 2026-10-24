@@ -3,10 +3,10 @@ import { createPortal } from 'react-dom'
 
 import { ayahAudioUrl, play, playFrom } from '../../lib/ayahAudio'
 import { CHECK, MISSED, SAID, WRONG } from '../../lib/follow'
-import { weakParts, whyOf } from '../../lib/markWhy'
+import { weakParts, whyOf } from '../../lib/memorise/markWhy'
 import { LOOK, WAITING_LOOK } from '../../lib/reciteColors'
 import { PHONE, useMedia } from '../../lib/useMedia'
-import config from '../../recite.json'
+import config from '../../config/recite.json'
 
 import ArabicText from '../ui/ArabicText'
 import { hitArea } from '../ui/hitArea'

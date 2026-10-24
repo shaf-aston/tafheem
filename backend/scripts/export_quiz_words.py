@@ -43,7 +43,7 @@ CONFIG = json.loads((DATA / "quiz_words.config.json").read_text("utf-8"))
 JUZ_CACHE = QURAN / "juz.json"
 # A question shows this many options, so a group needs this many of a type to
 # ask a word of that type on its own.
-OPTION_COUNT = json.loads((ROOT / "frontend" / "src" / "quiz.json").read_text("utf-8"))["option-count"]
+OPTION_COUNT = json.loads((ROOT / "frontend" / "src" / "config" / "quiz.json").read_text("utf-8"))["option-count"]
 USER_AGENT = "tafheem export_quiz_words"
 # Ayahs where the printed text and the corpus disagree on the word count, so a
 # word position there may not match the printed word (see quran_service.py).

@@ -16,7 +16,7 @@
  */
 import { useCallback, useMemo, useSyncExternalStore } from 'react'
 
-import PROFILE from '../profile.json'
+import PROFILE from '../config/profile.json'
 import { forgetProgress } from './progress'
 
 // Usernames never hold "@" (services/username.py), and no bare key starts with it.

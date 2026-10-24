@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import TarkeebDiagram from '../components/TarkeebDiagram'
+import TarkeebDiagram from '../components/nahw/tarkeeb/TarkeebDiagram'
 
 // Six words, each joined to the rest one level further down: five rows.
 const deep = (word, last) => (word === last

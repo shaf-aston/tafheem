@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import theme from '../theme.json'
+import theme from '../config/theme.json'
 import { themeChoices, themeVariable } from '../theme'
 import { SETTINGS, applySettings, resetSettings, setSetting } from './settings'
 

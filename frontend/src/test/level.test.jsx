@@ -8,7 +8,7 @@ import { renderScreen } from './render'
 import LevelSetting from '../components/level/LevelSetting'
 import { LEVEL_COPY, LEVEL_KEY, RULES } from '../lib/learnerLevel'
 import { forgetDevice, readRaw, writeDevice } from '../lib/stored'
-import CONFIG from '../profile.json'
+import CONFIG from '../config/profile.json'
 
 const overview = (modules) => ({ modules, attempts: 0, correct: 0, learnt: 0, streak: 0 })
 const row = (module, attempts, correct) => ({ module, attempts, correct, learnt: 0, lastAt: '2026-10-23T00:00:00Z' })

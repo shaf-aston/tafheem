@@ -4,7 +4,7 @@
  */
 import { useEffect } from 'react'
 
-import theme from '../theme.json'
+import theme from '../config/theme.json'
 import { motionOff } from './motion'
 
 const ALIGN = { nearest: 'nearest', top: 'start', center: 'center' }

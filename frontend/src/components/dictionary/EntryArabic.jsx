@@ -2,7 +2,7 @@
  * The Arabic of a Maqayees entry, laid out the way the book lays it out.
  * Shared by the card's passages and the line-by-line views.
  */
-import { entryLines } from '../../lib/entryLines'
+import { entryLines } from '../../lib/dictionary/entryLines'
 
 import ArabicText from '../ui/ArabicText'
 

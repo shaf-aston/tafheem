@@ -17,7 +17,7 @@
  */
 import { useEffect, useRef } from 'react'
 
-import { pickColor, seed, seedMarks, step, stepMarks } from '../../lib/bokeh'
+import { pickColor, seed, seedMarks, step, stepMarks } from '../../lib/shell/bokeh'
 import { heldFor, holdBackdrop } from '../../lib/backdropHold'
 import { motionOff } from '../../lib/motion'
 

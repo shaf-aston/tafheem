@@ -18,7 +18,7 @@ import { glossAt, whereOf } from '../../lib/similar'
 import { parsePlace } from '../../lib/similarPlace'
 import { useRemembered } from '../../lib/useRemembered'
 import { useTranslation } from '../../lib/useTranslation'
-import copy from '../../similar.json'
+import copy from '../../config/similar.json'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'

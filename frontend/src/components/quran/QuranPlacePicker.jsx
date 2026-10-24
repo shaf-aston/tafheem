@@ -11,7 +11,7 @@
 import { useState } from 'react'
 
 import surahs from '../../data/surahs.json'
-import { JUZ_COUNT, juzOf, juzStart } from '../../lib/juz'
+import { JUZ_COUNT, juzOf, juzStart } from '../../lib/quran/juz'
 import { SURAH_CHOICES } from '../../lib/surahRef'
 import WheelPicker from '../ui/WheelPicker'
 

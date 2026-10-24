@@ -25,7 +25,7 @@
 import { useId, useMemo, useState } from 'react'
 import { flushSync } from 'react-dom'
 
-import { paragraphs } from '../../lib/entryLines'
+import { paragraphs } from '../../lib/dictionary/entryLines'
 import { laneEntry } from '../../lib/laneEntry'
 import { useLexicons } from '../../lib/classicalBooks'
 import { BROKEN, MISSING, READY } from '../../lib/loadStatus'

@@ -5,7 +5,7 @@
 import { useState } from 'react'
 
 import { ahead } from '../../lib/warm'
-import { useDrag } from '../../lib/useDrag'
+import { useDrag } from '../../lib/shell/useDrag'
 import { closeOnBackdrop, useModal } from '../../lib/useModal'
 import ArabicText from '../ui/ArabicText'
 import TabGroups from '../ui/TabGroups'

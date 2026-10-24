@@ -70,7 +70,7 @@ rsync -a --delete backend/data/colloquial/ /home/ubuntu/tafheem/backend/data/col
 # (services/daleel/sources/jazariyya.py), and the voices' shared pace (services/speech.py). Without the words, Make one was a 500.
 # tests/test_deploy_files.py fails if the backend starts reading another.
 rsync -aR frontend/public/words/words.json frontend/public/words/coverage.json \
-	frontend/public/jazariyya/poem.json frontend/src/speak.json /home/ubuntu/tafheem/
+	frontend/public/jazariyya/poem.json frontend/src/config/speak.json /home/ubuntu/tafheem/
 cp requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q --no-deps -r requirements-nodeps.txt

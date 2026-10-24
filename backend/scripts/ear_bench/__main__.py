@@ -12,7 +12,7 @@ from backend.scripts.ear_bench.words import RIGHT, SLIPS, labelled
 from backend.scripts.rescore_recitation import HERE
 
 KNOBS = json.loads((Path(__file__).parent / "bench.json").read_text(encoding="utf-8"))
-RECITE = Path(__file__).resolve().parents[3] / "frontend" / "src" / "recite.json"
+RECITE = Path(__file__).resolve().parents[3] / "frontend" / "src" / "config" / "recite.json"
 REPORT = HERE / "bench.txt"
 
 

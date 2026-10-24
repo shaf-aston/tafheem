@@ -4,7 +4,7 @@
  * Open on arrival, always. Reading is what this is for, and a reader who has to
  * click six times to see six steps has been charged for the thing he came to
  * do. Folding is for skimming a long event, so only a step worth skipping can
- * fold (lib/timeline/steps canFold: it holds moments, runs long, or is marked
+ * fold (lib/timelines/steps canFold: it holds moments, runs long, or is marked
  * aside), an aside arrives folded, and one "Fold all" button at the top folds them all.
  *
  * "Walk through" reads the run one step at a time: the step being read is lit,
@@ -20,9 +20,9 @@ import { useEffect, useRef, useState } from 'react'
 import ArabicText from '../ui/ArabicText'
 import SmallButton from '../ui/SmallButton'
 import TimelineHadith from './TimelineHadith'
-import TimelineRefs from '../TimelineRefs'
-import { TRAD } from '../../lib/timeline/look'
-import { canFold, pathRows, readingOrder, stepIds } from '../../lib/timeline/steps'
+import TimelineRefs from './TimelineRefs'
+import { TRAD } from '../../lib/timelines/look'
+import { canFold, pathRows, readingOrder, stepIds } from '../../lib/timelines/steps'
 import { scrollToEl } from '../../lib/scrollToEl'
 
 /** The fold arrow on both fold controls: down when open, turned right when shut. */

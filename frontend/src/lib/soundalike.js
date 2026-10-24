@@ -14,7 +14,7 @@
  *
  * Pure. No React, no microphone, no network: every hard case is two strings.
  */
-import config from '../recite.json'
+import config from '../config/recite.json'
 import { recitedForms, sameSpokenWord } from './arabicText'
 
 // Every letter in a group becomes the group's first letter, so the whole group

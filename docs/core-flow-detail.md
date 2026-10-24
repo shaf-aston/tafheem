@@ -74,13 +74,13 @@ Core flow and the short glossary are in `CORE-FLOW.md`; this is what it leaves o
 
 ### Reciting detail
 
-Ears are tried in the order `listening_ears` names, `here` last as it needs no key or internet; a rejected key strikes an ear off for the run (`services/fallback.py`). The words only place the reciter on the page (`place.py`); the mark comes from the local model's sureness (`recite_sure` on `/api/health`) against `sure-at` in `frontend/src/recite.json`. Where in the Qur'an a reading is comes from the words (`recitation/locate.py`, `near` is the open page): a surely-elsewhere reading jumps the page there, or asks first while words are hidden. Words and vowels only; tajweed is not checked. Quiet reciters: `lib/dictation.js` calls a voice anything above the quietest that microphone has heard, `recitation/loudness.py` lifts soft recordings. `lib/microphone.js` is the only place a microphone is opened. Plan and open work: `RECITE-PLAN.md`.
+Ears are tried in the order `listening_ears` names, `here` last as it needs no key or internet; a rejected key strikes an ear off for the run (`services/fallback.py`). The words only place the reciter on the page (`place.py`); the mark comes from the local model's sureness (`recite_sure` on `/api/health`) against `sure-at` in `frontend/src/config/recite.json`. Where in the Qur'an a reading is comes from the words (`recitation/locate.py`, `near` is the open page): a surely-elsewhere reading jumps the page there, or asks first while words are hidden. Words and vowels only; tajweed is not checked. Quiet reciters: `lib/dictation.js` calls a voice anything above the quietest that microphone has heard, `recitation/loudness.py` lifts soft recordings. `lib/microphone.js` is the only place a microphone is opened. Plan and open work: `RECITE-PLAN.md`.
 
 ### More places
 
 - `backend/models/`: Pydantic shapes, one file per router, `common.py` for `Source` and `Correction`.
-- `frontend/src/theme.json` + `settings.json`: every visual token and reader setting; `theme.js` and `lib/settings.js` are their only readers, both writing CSS variables onto `:root`.
-- `lib/journey.js` is where the reader has been; `lib/tabUrl.js` is the only writer of the address bar; `lib/session.js` the only reader and writer of the saved path (knobs in `frontend/src/session.json`). A place is a tab plus what it was opened with, never a result.
+- `frontend/src/config/theme.json` + `settings.json`: every visual token and reader setting; `theme.js` and `lib/settings.js` are their only readers, both writing CSS variables onto `:root`.
+- `lib/journey.js` is where the reader has been; `lib/tabUrl.js` is the only writer of the address bar; `lib/session.js` the only reader and writer of the saved path (knobs in `frontend/src/config/session.json`). A place is a tab plus what it was opened with, never a result.
 - `lib/` shared vocabularies, one file each: `roleColors.js`, `loadStatus.js`, `verbClass.js`.
 - `services/arabic_text.py` owns "is this Arabic?" and root spelling; `normalize_root` keeps Arabic letters rather than dropping a separator list.
 - `backend/data/lexicon.db`: one row per quiz word, from `vocabulary.json`, `quranic-words.json` and the corpus. Derived: rebuild it, and correct a type in `word_kinds.json`. `frontend/public/words/` holds it as `words.json` and `cuts.json` (positions into it), so no word is stored twice.
@@ -117,15 +117,15 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
   whose key is rejected is dropped for the run. `/api/health` names them (`ear`,
   `recite_ear`, `recite_sure`).
 - **Voice**: anything that says a word aloud, the ear's opposite. `lib/speak.js` tries
-  them in `frontend/src/speak.json`'s order: `recorded` (a reciter from quran.com, for
+  them in `frontend/src/config/speak.json`'s order: `recorded` (a reciter from quran.com, for
   Qur'an words mapped by `scripts/build_word_audio.py`), `server` (FastPitch via
   `/api/speak`, `services/speech.py`) and `browser` (the device). `ui/SpeakButton` is
   the one button; it names the voice that spoke.
 - **Recitation / reading**: Qur'an said aloud. A **reading** is one request about one
   phrase, with a reading number (`X-Reading-Id`) that the page and server both log. The
   words only place the reciter on the page; the mark comes from this computer's sureness,
-  and the reciter's checking level (`frontend/src/recite.json`) says how strict to be.
-- **Tier / nodeState**: Grow's levels (Level 1, 2, 3; `frontend/src/grow.json`,
+  and the reciter's checking level (`frontend/src/config/recite.json`) says how strict to be.
+- **Tier / nodeState**: Grow's levels (Level 1, 2, 3; `frontend/src/config/grow.json`,
   a path names its tier in its file under `data/grow/worlds/prayer/paths/`), and where one circle on its map stands:
   `locked`, `open`, `started` or `learnt` (`lib/grow.js`, drawn by `components/grow/`).
 
