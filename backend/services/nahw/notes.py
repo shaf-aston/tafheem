@@ -2,7 +2,7 @@
 
 The only thing that reads data/nahw_notes. One file per topic under topics/,
 written by reading the teacher's own pages, which are rendered beside them in
-images/ by scripts/render_note_pages.py so any line can be checked against the
+images/ by scripts/nahw/render_note_pages.py so any line can be checked against the
 handwriting.
 
 A topic is a list of blocks in page order: a heading, a rule in prose, a table,

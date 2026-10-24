@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import Reveal from '../components/ui/Reveal'
+import Reveal from './Reveal'
 import { useInView } from '../lib/motion/useInView'
 import { CLIPS } from './assets/clips.js'
 import { reducedMotion } from '../lib/motion/motion.js'

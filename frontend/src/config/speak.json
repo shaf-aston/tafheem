@@ -10,12 +10,12 @@
   "repeatSpeed": "slow",
   "voices": {
     "person": {
-      "_comment": "One teacher saying each quiz word, recorded in the studio (record.html) and copied out by backend/scripts/export_recordings.py. First, because a person beats any made voice.",
+      "_comment": "One teacher saying each quiz word, recorded in the studio (record.html) and copied out by backend/scripts/speech/export_recordings.py. First, because a person beats any made voice.",
       "map": "/words/voice_audio.json",
       "host": "/words/voice/"
     },
     "recorded": {
-      "_comment": "A real reciter saying the word alone, from quran.com's word-by-word audio. Only Qur'an words; the map is built by backend/scripts/build_word_audio.py.",
+      "_comment": "A real reciter saying the word alone, from quran.com's word-by-word audio. Only Qur'an words; the map is built by backend/scripts/quiz/build_word_audio.py.",
       "map": "/words/word_audio.json",
       "host": "https://audio.qurancdn.com/"
     },

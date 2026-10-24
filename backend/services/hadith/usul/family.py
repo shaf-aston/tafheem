@@ -1,6 +1,6 @@
 """Versions of one hadith number compared: the narrators at each place of the chains, and the words one telling alone has.
 
-Pure: no I/O. Knobs are usul.json `family`; the build (scripts/build_usul.py) writes the results to usul.db and
+Pure: no I/O. Knobs are usul.json `family`; the build (scripts/hadith/build_usul.py) writes the results to usul.db and
 store.py reads them back.
 
 Places: chains are lined up from the Companion end, because they differ in length at the compiler end. A place

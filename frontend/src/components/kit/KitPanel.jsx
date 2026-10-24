@@ -227,7 +227,7 @@ function Elements({ accent }) {
           <State label="empty"><EmptyState>Nothing here yet.</EmptyState></State>
           <State label="error"><ErrorAlert title="Could not load">The backend did not answer.</ErrorAlert></State>
           <State label="error, inline"><ErrorAlert title="Failed" inline>Try again in a moment.</ErrorAlert></State>
-          <State label="no index"><IndexNotBuilt command="python backend/scripts/build_hadith_index.py" /></State>
+          <State label="no index"><IndexNotBuilt command="python backend/scripts/hadith/build_hadith_index.py" /></State>
         </div>
       </Demo>
 

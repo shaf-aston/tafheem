@@ -7,8 +7,8 @@ import { scrollToEl } from '../../lib/motion/scrollToEl'
 import AnswerSquare from '../ui/AnswerSquare'
 import ArabicText from '../ui/ArabicText'
 import AutoAdvanceToggle from '../ui/AutoAdvanceToggle'
-import NoteBadge, { NoteReason } from '../ui/NoteBadge'
-import SoundedWrong from '../ui/SoundedWrong'
+import NoteBadge, { NoteReason } from './NoteBadge'
+import SoundedWrong from './SoundedWrong'
 import SpeakButton from '../ui/SpeakButton'
 
 // Arabic and Urdu are both read right to left and both go through ArabicText;
@@ -106,7 +106,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
   return (
     <div ref={card} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-5 space-y-4 scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
       <div className="relative flex items-center justify-center">
-        {/* Whatever this question needs said before you answer (ui/NoteBadge). */}
+        {/* Whatever this question needs said before you answer (quiz/NoteBadge). */}
         {note && <NoteBadge note={note} open={noteOpen} onToggle={() => setNoteOpen((o) => !o)} />}
         <div className="text-center space-y-1">
           <div className="eyebrow">

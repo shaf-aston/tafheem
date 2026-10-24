@@ -443,7 +443,7 @@ def test_a_weak_radical_left_unpinned_is_still_one_root():
 
 
 def _reason(sentence: str, word: str) -> str:
-    from backend.scripts.score_iraab import routed
+    from backend.scripts.nahw.score_iraab import routed
     return next(w["reason"] for w in routed(sentence, None)["words"] if w["word"] == word)
 
 

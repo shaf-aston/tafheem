@@ -1,7 +1,7 @@
 """The Tamreen exercises: a teacher's Google Form quizzes, kept as a library.
 
 The only thing that reads data/tamreen. One file per exercise under
-exercises/, built by scripts/build_tamreen.py; the tags every question is
+exercises/, built by scripts/nahw/build_tamreen.py; the tags every question is
 filed under live in tags.json and are shared, so "is the واو حالية covered?"
 is one question over every exercise, and nothing here names any exercise.
 

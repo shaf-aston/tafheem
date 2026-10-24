@@ -7,7 +7,7 @@
  * same number of words. One number, one place, three readers.
  *
  * Every word the quiz can ask about lives in one table, built by
- * backend/scripts/build_lexicon.py and shipped as three files under
+ * backend/scripts/quiz/build_lexicon.py and shipped as three files under
  * public/words/: every word once in words.json, and cuts.json saying which
  * words are in each cut, as positions into that array.
  *

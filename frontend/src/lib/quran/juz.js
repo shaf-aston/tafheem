@@ -1,10 +1,10 @@
 /**
  * The thirty ajza': where each starts, and which one a place falls in.
  *
- * Pure. The start points are data/juz.json, a copy of the backend's juz file
+ * Pure. The start points are lib/quran/juz.json, a copy of the backend's juz file
  * cut down to what the Quran tab's picker needs; juz.test.js keeps them equal.
  */
-import juz from '../../data/juz.json'
+import juz from './juz.json'
 
 export const JUZ_COUNT = juz.starts.length
 

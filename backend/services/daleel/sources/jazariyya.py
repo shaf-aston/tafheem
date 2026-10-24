@@ -15,7 +15,7 @@ from the browser with no backend in the way, and its README tells the reader to
 edit it there. It is read here rather than copied so there is still exactly one
 copy of the poem; two would drift the first time a verse was corrected. Read
 once at index build time, never while a search is being answered, the same
-crossing backend/scripts/export_quiz_words.py already makes in the other
+crossing backend/scripts/quiz/export_quiz_words.py already makes in the other
 direction.
 
 The English is ours, not the poet's and not a translator's: a short gloss of

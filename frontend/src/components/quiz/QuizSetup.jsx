@@ -2,7 +2,7 @@ import { DIRECTIONS, MEANINGS } from '../../lib/quiz/quiz'
 import { BANKS, QUIZ, WHOLE_SET_SCOPES } from '../../lib/quiz/quizBanks'
 
 import Segmented from '../ui/Segmented'
-import SettingsPill from '../ui/SettingsPill'
+import SettingsPill from './SettingsPill'
 import WheelPicker from '../ui/WheelPicker'
 
 /**

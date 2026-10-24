@@ -37,5 +37,5 @@ def is_built() -> bool:
         return True
 
     log.warning("this index has no passage_meta table, so no search can run; "
-                "run: python backend/scripts/build_daleel_index.py --meta")
+                "run: python backend/scripts/daleel/build_daleel_index.py --meta")
     return False

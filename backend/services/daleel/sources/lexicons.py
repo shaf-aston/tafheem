@@ -2,7 +2,7 @@
 
 One adapter, instantiated once per source, the same shape as OpenItiSource and
 LibrarySource. Which books exist is data/lexicons.db, built by
-scripts/build_lexicons.py; this file names none of them, so a dictionary added
+scripts/dictionary/build_lexicons.py; this file names none of them, so a dictionary added
 to that build is searchable here without a line of code being written. That is
 the whole point of doing it this way: the registry asks the books which sources
 they carry, and grows a source for each.

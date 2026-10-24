@@ -7,7 +7,7 @@ Mukhtasar al-Quduri.
 """
 from __future__ import annotations
 
-from backend.scripts.import_openiti import parse
+from backend.scripts.daleel.import_openiti import parse
 
 _HEADER = "######OpenITI#\n#META# bk: x\n#META#Header#End#\n"
 

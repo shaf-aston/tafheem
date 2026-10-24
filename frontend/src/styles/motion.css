@@ -153,7 +153,7 @@
    (reveal-*, tilt-*) and shadow (e1-e3) groups.
 
    .reveal waits, invisible, until it scrolls into view, then plays rise-in once
-   with the rise knobs set to the reveal tokens. ui/Reveal.jsx adds .in when the
+   with the rise knobs set to the reveal tokens. landing/Reveal.jsx adds .in when the
    element enters (an IntersectionObserver, so it also works where CSS scroll
    timelines do not, and honours the Animations switch through the same
    durations as .rise-in). --i staggers neighbours, capped at reveal-cap.

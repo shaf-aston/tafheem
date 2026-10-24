@@ -1,4 +1,4 @@
-"""Grow's Hadith world data (frontend/public/grow/nawawi40.json, built by backend/scripts/build_nawawi40.py).
+"""Grow's Hadith world data (frontend/public/grow/nawawi40.json, built by backend/scripts/grow/build_nawawi40.py).
 
 Every key line must be an exact quote of its hadith, in both languages: no word is the app's own.
 

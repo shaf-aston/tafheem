@@ -19,7 +19,7 @@ import TopicIcon from '../ui/TopicIcon'
 import ChainSheet from './ChainSheet'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 import ReadingOptions from '../ui/ReadingOptions'
-import SheetLink from '../ui/SheetLink'
+import SheetLink from './SheetLink'
 import HadithCards from './HadithCards'
 import { useHideChain } from '../../lib/hadith/useHideChain'
 

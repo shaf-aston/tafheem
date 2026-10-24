@@ -15,7 +15,7 @@ from backend.services.quran import corpus as quran_corpus
 
 pytestmark = pytest.mark.skipif(
     not quran_corpus.is_loaded(),
-    reason="corpus.db not built, run backend/scripts/build_quran_corpus.py",
+    reason="corpus.db not built, run backend/scripts/quran/build_quran_corpus.py",
 )
 
 

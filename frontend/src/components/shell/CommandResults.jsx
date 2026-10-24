@@ -15,7 +15,7 @@
  * a page, so the prefix has to differ.
  */
 import ArabicText from '../ui/ArabicText'
-import TabMark from '../ui/TabMark'
+import TabMark from './TabMark'
 import { grouped, rowId } from '../../lib/nav/commandRoutes'
 
 export default function CommandResults({

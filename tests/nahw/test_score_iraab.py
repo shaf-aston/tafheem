@@ -1,7 +1,7 @@
 """The answer key compares roles by family, whichever way each side spells them."""
 import re
 
-from backend.scripts.score_iraab import (
+from backend.scripts.nahw.score_iraab import (
     KEY, book_sentences, disagreements, family, fresh_sentences, held_out, routed,
     sign_matches)
 from backend.services.nahw.syntax.naming import ROLES
@@ -113,7 +113,7 @@ def test_cards_and_picture_speak_one_vocabulary():
 def test_the_check_fails_on_a_drop_or_a_crash_and_passes_level(monkeypatch, tmp_path):
     from collections import Counter
 
-    from backend.scripts import score_iraab
+    from backend.scripts.nahw import score_iraab
     base = {name: 10 for name in score_iraab.EXACT}
     (tmp_path / "b.json").write_text(__import__("json").dumps(base))
     monkeypatch.setattr(score_iraab, "BASELINE", tmp_path / "b.json")

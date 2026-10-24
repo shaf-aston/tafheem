@@ -8,7 +8,7 @@ Not IP. Not exciting. **Everything else is blocked without it.** Total size: S t
 | 0.2 | **Log the wrong option picked**: `picked` plus *what kind of wrong option it was* | The diagnosis in Pick 1 is impossible without it | `QuizPanel.jsx:317`. `context` is free-form JSON already, so no schema change | S |
 | 0.3 | **Record attempts from more tabs**: Memorise, Tamreen, Nahw practice | Today only Quiz, Grow and Colloquial write attempts | the same `recordAttempt` call | S each |
 | 0.4 | **CI**: run the ~2,000 existing tests on every push | No CI today. Trust in the engine needs it | GitHub Actions | S |
-| 0.5 | **Publish accuracy numbers**: run `score_iraab.py` on the held-out sets, write the result into a committed file, show it on the landing page | "Every answer has proof" needs a headline number: "x% of roles right on 258 blind sentences, y% shown as a gap, z% confident-wrong" | `backend/scripts/score_iraab.py`, `data/nahw_rules/*_sentences.json` | S |
+| 0.5 | **Publish accuracy numbers**: run `score_iraab.py` on the held-out sets, write the result into a committed file, show it on the landing page | "Every answer has proof" needs a headline number: "x% of roles right on 258 blind sentences, y% shown as a gap, z% confident-wrong" | `backend/scripts/nahw/score_iraab.py`, `data/nahw_rules/*_sentences.json` | S |
 | 0.6 | **Licence audit** (see decision D1) | Can't sell, raise money or claim database right on data we can't use commercially | `data/sources.json` already lists every source, so add a `commercial: yes/no/ask` field | S to do, ? to resolve |
 
 ## Done when

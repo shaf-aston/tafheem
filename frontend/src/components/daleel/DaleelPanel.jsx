@@ -197,7 +197,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
         <ErrorAlert title="Search failed" error={mutation.error} fallback="Could not reach the backend." onRetry={() => submit()} />
       )}
 
-      {data?.ready === false && <IndexNotBuilt command="python backend/scripts/build_daleel_index.py" />}
+      {data?.ready === false && <IndexNotBuilt command="python backend/scripts/daleel/build_daleel_index.py" />}
 
       {/* With a filter on, the sentence has to name the limit. "Nothing in the
           books" while nine books out of ten were excluded is a claim about the

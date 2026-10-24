@@ -10,6 +10,6 @@ folder per step, each opening with a docstring that maps it:
     match/          pure word rules: ranking, typo distance, marking the words found
     sources/        the books, one adapter each; registry.py lists them
 
-Served by `routers/daleel.py`; `scripts/build_daleel_index.py` builds the index
+Served by `routers/daleel.py`; `scripts/daleel/build_daleel_index.py` builds the index
 from `sources/`. Try any query without the app: `python -m backend.services.daleel صبر`.
 """

@@ -10,7 +10,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.scripts import build_usul
+from backend.scripts.hadith import build_usul
 from backend.services.hadith.usul import books, match, names, ruling
 from backend.services.hadith.usul.books import Entry
 from backend.services.hadith.usul.rule import rule

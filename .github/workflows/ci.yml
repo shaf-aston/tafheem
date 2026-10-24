@@ -62,7 +62,7 @@ jobs:
         run: python -m pytest tests/nahw/test_rule_engine.py tests/nahw/test_attached_pieces.py tests/nahw/test_catib_onnx.py tests/nahw/test_practice_questions.py tests/nahw/test_nahw_rules_sukun_kafa_khabar.py tests/nahw/test_nahw_held_out.py tests/nahw/test_question_noun_and_participle.py -q
       - name: Scores no lower than the baseline
         if: steps.model.outputs.ready == 'true'
-        run: python -m backend.scripts.score_iraab --check
+        run: python -m backend.scripts.nahw.score_iraab --check
 
   frontend:
     runs-on: ubuntu-latest

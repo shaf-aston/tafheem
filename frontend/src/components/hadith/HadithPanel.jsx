@@ -132,11 +132,11 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         <ErrorAlert title="No collection is built yet">
           Fetch and build one with{' '}
           <Code>
-            python backend/scripts/fetch_hadith_collections.py
+            python backend/scripts/hadith/fetch_hadith_collections.py
           </Code>{' '}
           then{' '}
           <Code>
-            python backend/scripts/build_hadith_index.py
+            python backend/scripts/hadith/build_hadith_index.py
           </Code>
         </ErrorAlert>
       </div>

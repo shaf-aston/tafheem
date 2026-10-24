@@ -9,7 +9,7 @@ import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 import config from '../../config/recite.json'
 
 import ArabicText from '../ui/ArabicText'
-import { hitArea } from '../ui/hitArea'
+import { hitArea } from './hitArea'
 
 const LEAD_IN_S = config['card-lead-in-s']
 const EDGE_PX = config['card-edge-px']

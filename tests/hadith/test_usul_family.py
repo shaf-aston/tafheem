@@ -16,7 +16,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.scripts import build_rijal, build_usul  # noqa: E402
+from backend.scripts.hadith import build_rijal, build_usul  # noqa: E402
 from backend.services.hadith.usul import family  # noqa: E402
 from backend.services.hadith.usul.rule import rule  # noqa: E402
 

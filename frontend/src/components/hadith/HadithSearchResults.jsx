@@ -79,7 +79,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
         <ErrorAlert title="Search failed" error={mutation.error} fallback="Could not reach the backend." onRetry={() => submit()} />
       )}
 
-      {data?.ready === false && <IndexNotBuilt command="python backend/scripts/build_hadith_index.py" />}
+      {data?.ready === false && <IndexNotBuilt command="python backend/scripts/hadith/build_hadith_index.py" />}
 
       {mutation.isPending && <AnalyzerSkeleton />}
 

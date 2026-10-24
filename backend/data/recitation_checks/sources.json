@@ -3,8 +3,8 @@
     "Real people reciting, with their mistakes marked by a person. The proof that",
     "the recitation checker catches a slip and passes a right word, rather than a",
     "claim tested on professional reciters only.",
-    "Fetched into downloads/ by backend/scripts/fetch_recitation_checks.py, scored by",
-    "backend/scripts/score_recitation_checker.py. Nothing here is used by the app."
+    "Fetched into downloads/ by backend/scripts/recitation/fetch_recitation_checks.py, scored by",
+    "backend/scripts/recitation/score_recitation_checker.py. Nothing here is used by the app."
   ],
   "sets": [
     {
@@ -42,6 +42,6 @@
     ]
   },
   "letters": {
-    "what": "Which letters each ear mishears, from readings already saved, by backend/scripts/letters_missed.py into letters-report.txt. Costs nothing: no recording is opened and no model is loaded."
+    "what": "Which letters each ear mishears, from readings already saved, by backend/scripts/recitation/letters_missed.py into letters-report.txt. Costs nothing: no recording is opened and no model is loaded."
   }
 }

@@ -25,7 +25,7 @@ from backend.services.daleel.index.connection import is_built
 def main(argv: list[str] | None = None) -> int:
     args = _arguments(argv)
     if not is_built():
-        print("daleel.db is not built: python backend/scripts/build_daleel_index.py", file=sys.stderr)
+        print("daleel.db is not built: python backend/scripts/daleel/build_daleel_index.py", file=sys.stderr)
         return 1
 
     hits, timings, expansion = _timed(args.query, args.limit, catalogue.known_books(args.book))

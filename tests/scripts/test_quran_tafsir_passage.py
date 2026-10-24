@@ -6,7 +6,7 @@ only during a four-hour harvest.
 """
 from __future__ import annotations
 
-from backend.scripts.build_quran_tafsir import read_passage
+from backend.scripts.quran.build_quran_tafsir import read_passage
 
 
 def test_a_passage_about_one_ayah_covers_only_that_ayah():

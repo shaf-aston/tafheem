@@ -4,7 +4,7 @@ This module is the only thing that opens layout.db. Everything else asks it,
 the same rule quran_corpus.py and quran_meanings.py follow, for the same reason.
 
 The printing is the 604-page Madani mushaf, the one whose script this app
-already renders. Built by scripts/build_quran_layout.py. If it has never been
+already renders. Built by scripts/quran/build_quran_layout.py. If it has never been
 run the database is simply absent: callers then have no page numbers and fall
 back to sizing a page by word count, which is what the app did before. A
 missing file is a valid state, it means "not built yet".

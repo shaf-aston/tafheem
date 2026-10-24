@@ -1,5 +1,5 @@
 {
-  "_about": "What each quiz word's letters mean in Urdu, against what they mean in Arabic. Built by backend/scripts/build_urdu_links.py from two Wiktionary dumps. EVERY ENTRY IS A CANDIDATE: the test is word overlap between two English glosses and it is often wrong. urdu_links.overrides.json says which are real, and only those reach the screen.",
+  "_about": "What each quiz word's letters mean in Urdu, against what they mean in Arabic. Built by backend/scripts/quiz/build_urdu_links.py from two Wiktionary dumps. EVERY ENTRY IS A CANDIDATE: the test is word overlap between two English glosses and it is often wrong. urdu_links.overrides.json says which are real, and only those reach the screen.",
   "links": [
     {
       "ar": "آخَر",

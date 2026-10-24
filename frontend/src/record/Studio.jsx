@@ -1,7 +1,7 @@
 /**
  * The recording studio. One word at a time: Record (Space) → hear it back →
  * Keep (Enter) or Redo (R). Kept takes go to POST /api/recordings, which trims
- * them; backend/scripts/export_recordings.py then makes them the "person" voice.
+ * them; backend/scripts/speech/export_recordings.py then makes them the "person" voice.
  *
  * The key is the server's recorder_key, kept in this browser only.
  */

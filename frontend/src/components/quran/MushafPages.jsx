@@ -11,7 +11,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { mushafPagesQuery } from '../../api'
-import surahs from '../../data/surahs.json'
+import surahs from '../../lib/quran/surahs.json'
 import { isCentred, pageFontPx, wordsOf } from '../../lib/quran/mushafFit'
 import { themeVariable } from '../../theme'
 import ErrorAlert from '../ui/ErrorAlert'
