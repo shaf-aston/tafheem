@@ -10,7 +10,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import PRESENT_PREFIX, has_tanween, letters
+from backend.services.text.harakat import PRESENT_PREFIX, SUKUN, has_tanween, letters
 
 RULES = Path(__file__).parent.parent.parent / "data" / "nahw_rules"
 
@@ -130,6 +130,22 @@ def joined_off(word: str) -> tuple[str, ...]:
                 ending = next((said for bare, said in kept["farika"].items() if back and stem.endswith(bare)), "")
                 found.append((len(front + back), stem[:-1] + ending if ending else stem))
     return tuple(dict.fromkeys(stem for _, stem in sorted(found, key=lambda peeled: peeled[0])))
+
+
+def sakt_off(word: str) -> str | None:
+    """The typed word without a هاء السكت, when it has that shape: a sakin ه after a letter
+    with fatha (مَالِيَهْ، هِيَهْ، لِمَهْ). Whether it is one is the rest's reading: only a word
+    built on its vowel takes it (closed_words haa_sakt); on one that takes i'rab (كِتَابَهْ) the ه
+    is a pronoun."""
+    marked = letters(word)
+    if len(marked) > 1 and marked[-1] == (_closed()["families"]["haa_sakt"]["letter"], {SUKUN}) and "َ" in marked[-2][1]:
+        return word[:word.rindex(marked[-1][0])]
+    return None
+
+
+def sakt_said() -> str:
+    """What a card says of the هاء السكت it shows (closed_words haa_sakt)."""
+    return _closed()["families"]["haa_sakt"]["said"]
 
 
 @lru_cache(maxsize=None)

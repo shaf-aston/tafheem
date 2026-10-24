@@ -1080,6 +1080,13 @@
    "_farika": "The alif after the plural و is written only at the word's end (تَخَافُوا, تَخَافُوهُمْ): with the pronoun off it comes back.",
    "farika": {"و": "وا"}
   },
+  "haa_sakt": {
+   "ar": "هاء السكت",
+   "effect": "a ه added in a pause after a word built on a vowel, to keep that vowel: a حرف with no place in the sentence, the word read as it is without it",
+   "_book": "Awdah al-Masalik (الوقف، هاء السكت): ياء المتكلم and هي، هو built on fatha (مَا هِيَهْ، مَالِيَهْ، سُلْطَانِيَهْ), and ما of question under جر (لِمَهْ); never a word that takes i'rab (جَاءَ زَيْدٌ) nor a sakin one. Mufassal: it is sakin, moving it is a fault.",
+   "letter": "ه",
+   "said": "والهاء للسكت حرف مبني على السكون لا محل له من الإعراب"
+  },
   "ismfil": {
    "ar": "أسماء الأفعال",
    "effect": "a noun that does the work of a verb; past-meaning ones give raf' to the noun after, command-meaning ones give nasb",

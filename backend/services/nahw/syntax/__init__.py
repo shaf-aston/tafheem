@@ -17,6 +17,7 @@ from contextlib import suppress
 
 from backend.config import get_settings
 from backend.services.core import provenance
+from backend.services.sarf.morphology import as_said
 from backend.services.text.arabic_text import words as split_words
 from backend.services.nahw.syntax import teacher, tree
 from backend.services.nahw.syntax.repair import correct
@@ -79,7 +80,8 @@ def read(sentence: str, picks: list[dict]) -> dict:
     Both come back empty when the parser is off or cannot manage the sentence;
     `failed` then says it broke, so a crash is not mistaken for words it cannot name.
     """
-    typed = split_words(sentence)
+    written = split_words(sentence)
+    typed = as_said(written, picks)
     nothing = {"roles": [{"role": None, "case": None} for _ in typed], "tree": None}
     if not typed or not get_settings().catib_parser_enabled:
         return nothing
@@ -112,6 +114,10 @@ def read(sentence: str, picks: list[dict]) -> dict:
                 if not job:
                     word["named"] = tree.FRAMES["masdar"]["named_by_word"]["ما"]
                 word.pop("gap", None)
+        for i, (said, word) in enumerate(zip(typed, written)):
+            if said != word:  # مَالِيَهْ, read as مَالِيَ: its last column shows the هاء السكت as typed
+                last = max(at for at, of in enumerate(drawn["written"]) if of == i)
+                drawn["words"][last] += word[len(said):]
         drawn["source"] = provenance.of("nahw")  # worked out here, not looked up
         read = {"roles": found, "tree": drawn if tree.is_drawable(drawn) else None}
         if get_settings().show_parse:

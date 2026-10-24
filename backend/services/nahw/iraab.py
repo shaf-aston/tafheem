@@ -19,6 +19,7 @@ from backend.config import get_settings
 
 from backend.services.text.arabic_text import strip_diacritics, words
 from backend.services.nahw import card_wording
+from backend.services.nahw.card_wording.reason import Reason
 from backend.services.sarf import morphology
 from backend.services.core import provenance
 from backend.services.quran import corpus as quran_corpus
@@ -28,7 +29,7 @@ from backend.services.nahw import syntax
 from backend.services.nahw import tarkeeb_store
 from backend.services.nahw import tree_columns
 from backend.services.text.harakat import CASE_LETTER, CASE_NAME, typed_case
-from backend.services.nahw.book import case_of, is_object_stem, reason, teacher_rules
+from backend.services.nahw.book import case_of, is_object_stem, reason, sakt_said, teacher_rules
 from backend.services.nahw.syntax.tree import names_a_sentence as names_a_sentence
 from backend.services.nahw.syntax.naming import NAMED, role_key
 
@@ -53,13 +54,26 @@ def _read(sentence: str, recorded: bool) -> dict:
     parsed = record or syntax.read(sentence, picks)
     tree = _drawn(record) if record else parsed["tree"]
     return {
-        "words": cards(tags, parsed["roles"]),
+        "words": _paused(cards(tags, parsed["roles"]), words(sentence), picks),
         "summary": label if tree and names_a_sentence(label := tree["tree"].get("label")) else None,
         "source": provenance.of("treebank" if record else "nahw"),
         "tree": tree,
         "parse": parsed.get("parse"),
         "read_failed": bool(parsed.get("failed")),
     }
+
+
+def _paused(cards: list[dict], written: list[str], picks: list[dict]) -> list[dict]:
+    """مَالِيَهْ: a card read the word as said joined (مَالِيَ, morphology.pick); it shows the word as
+    written, and says what its هاء السكت is."""
+    if len(cards) != len(written):
+        return cards
+    for card, word, picked in zip(cards, written, picks):
+        if picked.get("said"):
+            said = Reason.read(card["reason"])
+            said.extras.append(sakt_said())
+            card.update(word=word, reason=said.text())
+    return cards
 
 
 def ayah_tree(surah: int, ayah: int) -> dict:

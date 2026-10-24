@@ -20,7 +20,7 @@ from typing import Any, NamedTuple
 from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services.sarf import noun_reader
 from backend.services.sarf import verb_reader
-from backend.services.nahw.book import book_words, is_built_word, is_mabni, is_one, six_noun_case
+from backend.services.nahw.book import book_words, is_built_word, is_mabni, is_one, sakt_off, six_noun_case
 from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -618,9 +618,13 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         return [{} for _ in tokens]
 
     steps = []  # each word's vowels as evidence, and its ranked readings
-    for token, ranked, after in zip(tokens, all_ranked, [*tokens[1:], ""], strict=True):
+    paused = {}  # a هاء السكت's word: the word as said joined (مَالِيَهْ → مَالِيَ)
+    for i, (token, ranked, after) in enumerate(zip(tokens, all_ranked, [*tokens[1:], ""], strict=True)):
         # a kasra that may be a moved sukun is no evidence for the reading
         evidence = token[:-1] if moved_for_wasl(token, after) else token
+        if said := _without_sakt(tokens, i, disambiguator):
+            evidence, ranked = said
+            paused[i] = evidence
         if unread(ranked) and (twin := verb_reader.known_as(token)) and (twin_ranked := _ranked([twin], disambiguator)):
             # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
             ranked, evidence = twin_ranked[0], twin
@@ -697,7 +701,28 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             if verb:
                 out[i] = verb
                 break
+    for i, said in paused.items():
+        out[i] = {**out[i], "said": said}
     return out
+
+
+def as_said(tokens: list[str], picks: list[dict]) -> list[str]:
+    """The words as said joined to the next, which the parser and the cards read: a هاء السكت's
+    word without it (pick reads مَالِيَهْ as مَالِيَ), every other word as typed."""
+    return [picked.get("said") or token for token, picked in zip(tokens, picks, strict=True)]
+
+
+def _without_sakt(tokens: list[str], i: int, disambiguator=None) -> tuple[str, list[dict]] | None:
+    """مَالِيَهْ، هِيَهْ: a word with a هاء السكت's shape is read as said joined to the next, without
+    it (Mufassal: إذا أدرجت قلت مالي), when what is left is built on its vowel (closed_words
+    haa_sakt): a pronoun, a question or pointing word, a particle, or a noun with ياء المتكلم."""
+    if not (rest := sakt_off(tokens[i])):
+        return None
+    ranked = (_ranked([*tokens[:i], rest, *tokens[i + 1:]], disambiguator) or [[]] * len(tokens))[i]
+    found = _reading(rest, ranked)
+    pos = found.get("pos", "")
+    built = is_mabni(pos) or pos.startswith("part") or str(found.get("enc0", "")).startswith("1s")
+    return (rest, ranked) if built and _agreeing(rest, ranked) else None
 
 
 def _asked_reading(typed: str, disambiguator=None) -> dict | None:
@@ -756,6 +781,7 @@ def analyze_sentence(sentence: str, picks: list[dict] | None = None) -> list[dic
 
     if _CAMEL_AVAILABLE:
         picks = picks or pick(tokens)
+        tokens = as_said(tokens, picks)
         before = ["", *map(strip_diacritics, tokens[:-1])]
         return [_analysis_dict_from_camel(t, a, b, n) if a else analyze_word(t)
                 for t, a, b, n in zip(tokens, picks, before, [*tokens[1:], ""], strict=True)]
