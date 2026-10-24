@@ -33,7 +33,7 @@ def khabar_behind_ba(ba: dict, noun: dict) -> bool:
     """مَا اللَّهُ بِغَافِلٍ، لَسْتُ بِغَافِلٍ: a زائدة باء written onto the khabar of ما or ليس (Ibn Aqil on
     وبعد ما وليس جرّ البا الخبر); a word with ال after the باء, unless a participle, is a plain
     jar-majrur (ما زيدٌ بالبيت), while an annexed one is the khabar still (أَلَسْتُ بِرَبِّكُمْ)."""
-    return is_prefix(ba) and is_extra_ba(ba["form"].strip("+")) and noun_tagged(noun) \
+    return is_prefix(ba) and is_extra_ba(ba["form"]) and noun_tagged(noun) \
         and (noun.get("stt") != "d" or is_participle(noun))
 
 

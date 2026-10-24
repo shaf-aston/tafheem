@@ -62,19 +62,23 @@ def attached_pronoun(token: dict) -> bool:
     return token.get("pos_camel") == "pron" and is_suffix(token)
 
 
+def reading(token: dict | None, key: str = "family") -> str | None:
+    """What particles.stamp read the word as (its family, kind, named, sense), if it read it."""
+    return ((token or {}).get("reading") or {}).get(key)
+
+
 def read_as(token: dict, family: str) -> bool:
     """The word works as one of this family: by the one reading particles.stamp gave it
     (لا before a bare noun in nasb is the لا of genus, never a joining word), else by the
     family's list, for a word with one reading only."""
-    reading = token.get("reading")
-    if reading:
-        return reading["family"] == family
+    if read := reading(token):
+        return read == family
     return family not in token.get("judged", ()) and is_one(token["lemma"], family)
 
 
 def is_verb(token: dict) -> bool:
-    if token.get("reading"):
-        return token["reading"]["kind"] == "fil"  # أَلَا is a particle, whatever the parser tagged it
+    if kind := reading(token, "kind"):
+        return kind == "fil"  # أَلَا is a particle, whatever the parser tagged it
     if has_tanween(token.get("typed")):
         return False  # a verb never carries tanween, whatever the parser tagged it
     if verb_tagged(token):  # VRB-PASS is a verb too
@@ -189,8 +193,8 @@ def shown_cases(token: dict) -> set[str]:
 def is_preposition(token: dict) -> bool:
     """A particle of the book's list of حروف الجر, or one the parser tags a preposition; a word
     particles.stamp read one way (حتى before إذا is no جر) is what that reading says."""
-    reading = token.get("reading")
-    return token["pos"] == "PRT" and (reading["family"] == "jarr" if reading else token.get("pos_camel") == "prep" or read_as(token, "jarr"))
+    read = reading(token)
+    return token["pos"] == "PRT" and (read == "jarr" if read else token.get("pos_camel") == "prep" or read_as(token, "jarr"))
 
 
 def typed_or_parsed_case(token: dict) -> str | None:

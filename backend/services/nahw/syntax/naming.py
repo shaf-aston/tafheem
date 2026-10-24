@@ -11,7 +11,7 @@ from typing import NamedTuple, TypedDict
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import (
-    extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
+    book_spelling, extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
     book_map, book_merges, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
 from backend.services.nahw.syntax import condition, facts, walker
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
@@ -160,8 +160,8 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
              "aspect": token.get("asp") if role == NAMED.fil else None,
              "printed": frames()["passive"]["verb"] if role == NAMED.fil and facts.is_passive(token) else None,
              "family": _family(token, bases, shown, s=s) if role in (NAMED.fil, NAMED.harf, NAMED.harf_jarr) else None,
-             "named": (token.get("reading") or {}).get("named"),
-             "sense": (token.get("reading") or {}).get("sense"),  # the dictionary class its English is read in
+             "named": facts.reading(token, "named"),
+             "sense": facts.reading(token, "sense"),  # the dictionary class its English is read in
              "book": book_path(found.path, found.book) if found else None,
              # محمدُ بنُ عبدِ اللهِ: the books also read the ابن as عطف بيان or بدل
              "also": book_map("nasab", "also") if role == NAMED.sifah and facts.is_nasab(token)
@@ -200,7 +200,7 @@ def _kaffa(n: Named) -> None:
     """إنما، كأنما: a particle that is an إن sister with ما written onto it (data: closed_words
     inna `kaffa`) leaves the sister on its entry; card_wording names the pair."""
     for entry, typed in zip(n.found, n.words):
-        if entry["role"] == NAMED.harf and (sister := kaffa_sister(strip_diacritics(typed))):
+        if entry["role"] == NAMED.harf and (sister := kaffa_sister(typed)):
             entry["kaffa"] = sister
 
 
@@ -215,8 +215,8 @@ def _extra_ba(n: Named) -> None:
         # مَا اللَّهُ بِغَافِلٍ: the khabar of ما الحجازية is the ما's (Sentence._hijazi), wherever the parser hung the باء
         hijazi = bool(s.hijazi and token is s.hijazi[2] and ba)
         verb = s.hijazi[0] if hijazi else s.head(ba) if ba else None
-        rule = extra_ba_on(strip_diacritics(verb["lemma"])) if verb and verb["id"] in index else None
-        if not (rule and is_extra_ba(ba["form"].strip("+"))
+        rule = extra_ba_on(verb["lemma"]) if verb and verb["id"] in index else None
+        if not (rule and is_extra_ba(ba["form"])
                 and (hijazi or (entry["role"] == NAMED.majroor and ba["rel"] == rule["rel"]))):
             continue
         # كفى بالمرء كذبًا أن يحدّث: another doer (a subject, or the masdar أن makes) leaves the باء a plain one
@@ -242,7 +242,7 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
         if any(is_one(bare, family) or is_one(bare + "ا", family) or facts.listed(token, family) for family in ("zarf_zaman", "zarf_makan")) \
                 or bare in kinds["time"]:
             return kinds["idafa"]["fi"]  # مكرُ الليلِ
-        bare = strip_diacritics(token["lemma"]).strip("+")
+        bare = book_spelling(token["lemma"])
         return kinds["idafa"]["min" if bare in kinds["material"] else "lam"]
     if role == NAMED.fail and s.described_doer and token is s.described_doer[2]:
         return kinds["fail"]["sadda"]  # ما ذاهبٌ المسلمون
@@ -252,7 +252,7 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
         pronoun = any(facts.attached_pronoun(k) for k in s.kids(token))
         if not pronoun:
             return kinds["badal"]["kul"]
-        bare = strip_diacritics(token["lemma"]).strip("+")
+        bare = book_spelling(token["lemma"])
         return kinds["badal"]["baad" if bare in kinds["part"] else "ishtimal"]
     return None
 
@@ -382,8 +382,8 @@ def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None =
     shows on a word linked to it. A listed word that governs nothing here (the لا of a plain negation)
     keeps its plain name, unless particles.stamp read it. A piece written onto a word (وَ، بِـ، لْـ)
     works only on that word (`onto`, what it shows) and the words hung below it."""
-    if token.get("reading"):
-        return token["reading"]["family"]
+    if family := facts.reading(token):
+        return family
     # مَا رَبُّكَ بِظَلَّامٍ، لَسْتُ بِغَافِلٍ: ما الحجازية (Sentence._hijazi) and ليس, never تامة, are كان's
     # whatever their خبر shows; a jarr behind a باء shows nothing of كان
     if s and ((s.hijazi and token is s.hijazi[0]) or is_one(token["lemma"], "kana", "always_defective")):
@@ -475,10 +475,10 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
     `typed` is the word as paused on (harakat.paused); `before` the base token before it."""
     particle = before["base"] if before else ""
     dropped_nun = five_verb_nun(typed, token.get("stuck_on", 0), token.get("weak_last")) == "dropped"
-    read = (before or {}).get("reading") or {}  # أَلَّا: the nasb أنْ with a لا merged in
+    read, named = facts.reading(before), facts.reading(before, "named")  # أَلَّا: the nasb أنْ with a لا merged in
     for family, case in (("jazm", "jazm"), ("nasb_mudari", "nasb")):
         if is_one(particle, family, "before_a_present_verb") or (dropped_nun and is_one(particle, family)) \
-                or (read.get("family") == family and read.get("named") in {m["named"] for m in book_merges(family).values()}):
+                or (read == family and named in {m["named"] for m in book_merges(family).values()}):
             return case
     stuck_on = token.get("stuck_on", 0)
     if stilled(typed, token["base"], stuck_on, token.get("weak_last")):

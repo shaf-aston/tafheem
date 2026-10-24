@@ -45,11 +45,11 @@ def book_map(family: str, part: str) -> dict[str, str]:
 
 def extra_ba_on(verb: str) -> dict | None:
     """كفى، ليس: the rule a زائدة باء on this verb follows (rel, role, place_case, alone), or none."""
-    return _closed()["families"]["extra_ba"]["on"].get(verb)
+    return _closed()["families"]["extra_ba"]["on"].get(book_spelling(verb))
 
 
 def is_extra_ba(letter: str) -> bool:
-    return letter in _closed()["families"]["extra_ba"]["words"]
+    return book_spelling(letter) in _closed()["families"]["extra_ba"]["words"]
 
 
 def extra_ba_named() -> str:
@@ -76,7 +76,7 @@ def doer_written_in(lemma: str, family: str) -> bool:
 
 def kaffa_sister(word: str) -> str | None:
     """إنما → إن: the إن sister a كافة ما is written onto, for a bare word; none otherwise."""
-    family = _closed()["families"]["inna"]
+    family, word = _closed()["families"]["inna"], book_spelling(word)
     ma = family["kaffa"]["ma"]
     return word[:-len(ma)] if word.endswith(ma) and word[:-len(ma)] in family["words"] else None
 
@@ -92,10 +92,13 @@ def book_merges(family: str) -> dict:
     return _closed()["families"][family].get("merges", {})
 
 
+@lru_cache(maxsize=8192)
 def book_spelling(lemma: str) -> str:
-    """The parser's lemma as the book writes it: an attached clitic's '+' aside, and
-    the wasl alif ٱ (ٱنفك) written ا (انفك)."""
-    return lemma.strip("+").replace("ٱ", "ا")
+    """The parser's lemma or form as the book writes it: bare letters (the maddah and the
+    Quran's small marks off too, which the parser's own cleaning keeps), an attached clitic's
+    '+' aside, and the wasl alif ٱ (ٱنفك) written ا (انفك). Every question this module asks
+    of a word spells it so first: a caller passes the token's lemma or form as it is."""
+    return strip_diacritics(lemma).strip("+").replace("ٱ", "ا")
 
 
 def is_one(lemma: str, family: str, part: str = "words") -> bool:
@@ -154,7 +157,7 @@ def only_adverb(lemma: str) -> bool:
     """On the book's time or place list and on no other family's: إذ، قبل، مع are nouns
     (ظروف) whatever a parser tags them; لمّا, also a particle of jazm, is not settled here."""
     families = _closed()["families"]
-    word = lemma.strip("+")
+    word = book_spelling(lemma)
     return any(word in families[f]["words"] for f in ADVERB_FAMILIES) and not any(
         word in kept.get("words", []) for name, kept in families.items() if name not in ADVERB_FAMILIES)
 
@@ -162,7 +165,7 @@ def only_adverb(lemma: str) -> bool:
 def is_built_word(lemma: str) -> bool:
     """أمس، حيث، الآن: a time or place word built on one ending (closed_words `built`); and
     حيثما، أينما، متى, a condition's time or place word, built whether or not an answer follows."""
-    word = lemma.strip("+")
+    word = book_spelling(lemma)
     opened = condition_of(word)
     return any(word in book_words(f, "built") for f in ADVERB_FAMILIES) or bool(
         opened and opened["adverb"] and opened["built"])
@@ -173,7 +176,7 @@ def six_noun_case(base: str, lemma: str) -> str | None:
     لِأَخِيهِ), from the bare base word (joined letters and pronoun off) and its lemma.
     A lemma ending in a case letter (CAMeL's أبو، the book's ذو، فو) carries it on its stem."""
     by_letter = book_map("six_nouns", "case_by_letter")
-    lemma = strip_diacritics(lemma)
+    lemma = book_spelling(lemma)
     one_of = lemma in book_words("six_nouns") or lemma[:-1] in book_words("six_nouns")
     stem = lemma[:-1] if lemma[-1:] in by_letter else lemma
     if not one_of or bare_letters(base[:-1]) != bare_letters(stem):
@@ -259,7 +262,7 @@ def condition_of(word: str) -> dict | None:
     `adverb` whether it names a time or a place (متى، أينما), `built` whether it is مبني
     (every conditional word but أيّ), `shared` whether a relative or a question word has its
     letters too (مَنْ، ما، متى), so only an answer shows it opens a condition (إذا has none)."""
-    frame = frames()["condition"]
+    frame, word = frames()["condition"], book_spelling(word)
     words = _closed()["families"]
     # a member whose condition differs from its family's lays its own over it (لولا: before a noun)
     return next(({**frame, **own, **own.get("by_word", {}).get(word, {}), "family": family, "noun": part == "conditional_nouns",

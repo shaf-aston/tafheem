@@ -269,7 +269,7 @@ def _as_command(word: str, a: dict, before: str, after: str) -> dict:
     tense; sarf's own table names the command (verb_reader), by the same rules the
     Sarf tab conjugates with. Only a verb or a noun is overruled: لَمْ and مِنْ have a
     command's shape too, and أَفْضَلُ is a comparative whatever sarf can build."""
-    if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(strip_diacritics(a.get("lex") or "")):
+    if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(a.get("lex") or ""):
         return a  # مُنْذُ أَمْسِ: a built time word is never the command its letters spell
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
     root = root_in_arabic(a.get("root") or "", a.get("lex") or "")  # a verb or a noun, so rooted

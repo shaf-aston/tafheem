@@ -3,7 +3,6 @@ untied verb the parser read as a command, after a جازم condition and its ver
 in jazm: its أ is the speaker's, not a command's hamza."""
 from __future__ import annotations
 
-from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import condition_of
 from backend.services.nahw.syntax.facts import is_prefix, is_verb
 
@@ -11,7 +10,7 @@ from backend.services.nahw.syntax.facts import is_prefix, is_verb
 def untied_command(tokens: list[dict]) -> None:
     words = [t for t in tokens if not t["form"].endswith("+") and not t["form"].startswith("+")]
     for i, opener in enumerate(words[:-2]):
-        frame = condition_of(strip_diacritics(opener["form"]))
+        frame = condition_of(opener["form"])
         if not frame or not frame.get("case") or not is_verb(words[i + 1]):
             continue
         answer = words[i + 2]

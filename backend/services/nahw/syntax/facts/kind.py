@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import letters
 from backend.services.nahw.book import book_map, is_one
-from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_suffix, is_verb, read_as
+from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_suffix, is_verb, read_as, reading
 from backend.services.nahw.syntax.facts.sentence import Sentence, verb_above
 
 
@@ -85,8 +85,8 @@ def _kind(token: dict, s: Sentence) -> str:
     whatever the parser tagged it, so that test comes before the verb test."""
     if is_called_noun(token) or is_object_pronoun(token):
         return "ism"
-    if token.get("reading"):
-        return token["reading"]["kind"]  # إذا before a verb is a ظرف, أَلَا a حرف
+    if kind := reading(token, "kind"):
+        return kind  # إذا before a verb is a ظرف, أَلَا a حرف
     if negates(token, s):
         return "harf"
     if token["pos"] == "PRT" or joins_clauses(token, s) or (s.hijazi and token is s.hijazi[0]) \
