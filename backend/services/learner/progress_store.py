@@ -169,6 +169,9 @@ _EARNED_TODAY = (
 
 _ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ? ORDER BY id"
 
+# Every answer one learner gave, in every module, for the overview's learnt counts in one read.
+_EVERY_ANSWER = "SELECT module, item, at, correct FROM attempts WHERE user = ? ORDER BY id"
+
 
 def _db() -> sqlite3.Connection:
     """One read-write connection per thread, with the file made if it is missing.
@@ -352,7 +355,19 @@ def account_names() -> list[str]:
 
 def learnt(module: str, name: str) -> int:
     """How many items this name has learnt in `module`: the leaderboard's measure."""
-    return sum(row["known"] for row in summary(module, name))
+    now = datetime.now(timezone.utc)
+    return sum(review_schedule.is_known(card, now) for card in _replay(module, name).values())
+
+
+def _learnt_everywhere(user: str) -> dict[str, int]:
+    """`learnt` for every module this learner answered in, from one read of their answers: the overview is read
+    again after every answer, so it does not replay module by module."""
+    now = datetime.now(timezone.utc)
+    cards = _fold(_db().execute(_EVERY_ANSWER, (user,)), lambda row: (row["module"], row["item"]))
+    counts: dict[str, int] = {}
+    for (module, _item), card in cards.items():
+        counts[module] = counts.get(module, 0) + review_schedule.is_known(card, now)
+    return counts
 
 
 def _shift(minutes: int) -> str:
@@ -388,8 +403,9 @@ def overview(user: str, minutes: int = 0) -> dict:
 
     Learnt is the leaderboard's measure. Streak counts the learner's days.
     """
+    known = _learnt_everywhere(user)
     modules = [
-        {**dict(row), "learnt": learnt(row["module"], user),
+        {**dict(row), "learnt": known.get(row["module"], 0),
          "last_at": datetime.fromisoformat(row["last_at"]).replace(tzinfo=timezone.utc).isoformat()}
         for row in _db().execute(_MODULES, (user,))
     ]
@@ -726,13 +742,18 @@ def summary(module: str, user: str = GUEST) -> list[dict]:
 
 
 def _replay(module: str, user: str) -> dict:
-    """Each item's FSRS card, folded from its saved answers in the order given.
+    """Each item's FSRS card in `module`."""
+    return _fold(_db().execute(_ANSWERS, (user, module)), lambda row: row["item"])
+
+
+def _fold(rows, key) -> dict:
+    """An FSRS card per `key(row)`, folded from saved answers in the order given.
     `at` is UTC text with no zone, so the zone is added here."""
-    answers: dict[str, list[tuple[datetime, bool]]] = {}
-    for row in _db().execute(_ANSWERS, (user, module)):
+    answers: dict = {}
+    for row in rows:
         at = datetime.fromisoformat(row["at"]).replace(tzinfo=timezone.utc)
-        answers.setdefault(row["item"], []).append((at, bool(row["correct"])))
-    return {item: review_schedule.card_of(rows) for item, rows in answers.items()}
+        answers.setdefault(key(row), []).append((at, bool(row["correct"])))
+    return {found: review_schedule.card_of(rows) for found, rows in answers.items()}
 
 
 def review_items(module: str, user: str = GUEST) -> list[str]:
