@@ -1,17 +1,17 @@
 /**
  * One science's product-breakdown tree, drawn only.
  *
- * Every position comes from lib/pbsLayout (root box, branch boxes, kid boxes,
+ * Every position comes from lib/shell/pbsLayout (root box, branch boxes, kid boxes,
  * every connector), and every chrome colour from the theme; a branch's own
  * accent (`c.bar`/`c.head`/`c.fill`) is content, carried straight from
- * lib/pbsData, the same way TimelineMap takes its accent from a prop rather
+ * lib/shell/pbsData, the same way TimelineMap takes its accent from a prop rather
  * than deciding one. This file decides no position and no colour of its own.
  *
  * SVG text sets `lang`/`dir` directly rather than through ArabicText: a tight,
  * many-sizes diagram needs the pixel sizes tuned for it, not the prose size
  * ladder ArabicText hands out elsewhere in the app.
  */
-import { layoutChart } from '../../lib/pbsLayout'
+import { layoutChart } from '../../lib/shell/pbsLayout'
 
 const M_ = 18
 

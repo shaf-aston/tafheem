@@ -7,7 +7,7 @@
  * science's tree, from PbsChart), and the methodologies view (ManhajView), a
  * separate card below the nine since schools and movements are not a science. A box with deeper topics zooms: the chart
  * redraws with that box as root, and a breadcrumb walks back up. Content is
- * lib/pbsTree over lib/pbsData; this file only holds which view and which
+ * lib/pbsTree over lib/shell/pbsData; this file only holds which view and which
  * zoom path are showing.
  *
  * A native <dialog> is used for the same reason as SettingsPanel: focus
@@ -22,10 +22,10 @@ import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import ArabicText from '../ui/ArabicText'
 import ManhajView from '../ui/ManhajView'
 import PbsChart from './PbsChart'
-import { closeOnBackdrop, useModal } from '../../lib/useModal'
-import { anchoredScroll, pinchedZoom, usePinch } from '../../lib/usePinch'
-import { CHARTS } from '../../lib/pbsData'
-import { chartTree, nodeAt, viewConfig } from '../../lib/pbsTree'
+import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
+import { anchoredScroll, pinchedZoom, usePinch } from '../../lib/shell/usePinch'
+import { CHARTS } from '../../lib/shell/pbsData'
+import { chartTree, nodeAt, viewConfig } from '../../lib/shell/pbsTree'
 
 const ZOOM_MIN = 0.7
 const ZOOM_MAX = 3

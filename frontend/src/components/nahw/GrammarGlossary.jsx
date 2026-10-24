@@ -5,7 +5,7 @@
  * the English is: a reader who needs it opens it once, a reader who does not
  * never sees a paragraph under every tag. Every term comes from grammar.json.
  */
-import { GLOSSARY } from '../../lib/grammarTerms'
+import { GLOSSARY } from '../../lib/nahw/grammarTerms'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'

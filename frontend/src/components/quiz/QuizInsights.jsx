@@ -24,11 +24,11 @@
 import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { shareOf } from '../../lib/coverage'
-import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../../lib/insights'
-import { sayIn } from '../../lib/say'
-import { allWordsQuery, groupsFor, QUIZ } from '../../lib/quizBanks'
-import { useQuizCoverage } from '../../lib/useQuizCoverage'
+import { shareOf } from '../../lib/quiz/coverage'
+import { byCategory, hardestWords, joinStats, overall, slowestWords } from '../../lib/quiz/insights'
+import { sayIn } from '../../lib/text/say'
+import { allWordsQuery, groupsFor, QUIZ } from '../../lib/quiz/quizBanks'
+import { useQuizCoverage } from '../../lib/quiz/useQuizCoverage'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'

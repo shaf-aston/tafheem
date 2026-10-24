@@ -9,8 +9,8 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import { isArabic } from '../../lib/arabicText'
-import { NOTES, runOf } from '../../lib/notes'
+import { isArabic } from '../../lib/text/arabicText'
+import { NOTES, runOf } from '../../lib/nahw/notes'
 
 import ArabicText from '../ui/ArabicText'
 import EmptyState from '../ui/EmptyState'

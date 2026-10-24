@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getTamreen } from '../../api'
-import { readViewParam, writeViewParams } from '../../lib/tabUrl'
-import { useRemembered } from '../../lib/useRemembered'
+import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
+import { useRemembered } from '../../lib/store/useRemembered'
 
 import Segmented from '../ui/Segmented'
 import ErrorAlert from '../ui/ErrorAlert'

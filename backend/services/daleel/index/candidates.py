@@ -15,7 +15,7 @@ import sqlite3
 from typing import TYPE_CHECKING
 
 from backend.config import get_settings
-from backend.services import fts
+from backend.services.text import fts
 
 from backend.services.daleel.index.connection import has_table
 from backend.services.daleel.index.row import COLUMNS, IndexedPassage

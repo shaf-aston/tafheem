@@ -9,15 +9,15 @@
  * to close and the backdrop for free, none of which is worth hand-writing.
  */
 
-import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/settings'
-import { useHealth } from '../../lib/useHealth'
-import { closeOnBackdrop, useModal } from '../../lib/useModal'
-import { levelOf } from '../../lib/confidence'
-import { forgetSaved } from '../../lib/stored'
-import { useSources } from '../../lib/useSources'
-import { ARMED_MS, useMoment } from '../../lib/useMoment'
+import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/store/settings'
+import { useHealth } from '../../lib/api/useHealth'
+import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
+import { levelOf } from '../../lib/text/confidence'
+import { forgetSaved } from '../../lib/store/stored'
+import { useSources } from '../../lib/api/useSources'
+import { ARMED_MS, useMoment } from '../../lib/hooks/useMoment'
 
-import { useInstall } from '../../lib/install'
+import { useInstall } from '../../lib/shell/install'
 import { InstallSteps } from './InstallBanner'
 import OfflinePanel from './OfflinePanel'
 import Disclosure from '../ui/Disclosure'
@@ -63,7 +63,7 @@ export default function SettingsPanel({ open, onClose }) {
 
         {/* The learner's level is the account's, not the device's: kept on its shelf, not in settings.json. */}
         <section aria-label="Learning" className="space-y-4">
-          <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Learning</h3>
+          <h3 className="eyebrow text-[var(--text-faint)]">Learning</h3>
           <LevelSetting />
         </section>
 
@@ -71,7 +71,7 @@ export default function SettingsPanel({ open, onClose }) {
           const settings = all.filter((setting) => !setting['needs-health'] || health[setting['needs-health']])
           return settings.length > 0 && (
             <section key={section} aria-label={section} className="space-y-4">
-              <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{section}</h3>
+              <h3 className="eyebrow text-[var(--text-faint)]">{section}</h3>
               {settings.map((setting) => (
                 <Setting key={setting.key} setting={setting} />
               ))}
@@ -103,13 +103,13 @@ export default function SettingsPanel({ open, onClose }) {
 /**
  * Putting the app on this phone's home screen, offered here whether or not the
  * banner was closed, so "not now" never means never. Absent where it cannot be
- * done or is already done (lib/install.js decides).
+ * done or is already done (lib/shell/install.js decides).
  */
 function InstallPanel() {
   const { kind } = useInstall()
   return kind !== 'none' && (
     <section aria-label="App" className="space-y-2">
-      <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">App</h3>
+      <h3 className="eyebrow text-[var(--text-faint)]">App</h3>
       <div className="flex items-center gap-3 type-small text-[var(--text-dim)]">
         <InstallSteps kind={kind} />
       </div>
@@ -137,7 +137,7 @@ function FooterButton({ onClick, danger = false, disabled = false, title, childr
 
 /**
  * What is kept on this device: reset the switches above, or forget the lot
- * (lib/stored.js).
+ * (lib/store/stored.js).
  *
  * Clearing takes two clicks and has no undo; one click is the click made by
  * accident on the way to Close. Armed, it disarms after a few seconds rather
@@ -146,7 +146,7 @@ function FooterButton({ onClick, danger = false, disabled = false, title, childr
  * The warning replaces the line already there instead of appearing under the
  * button, so nothing moves as it arrives. It names everything that goes,
  * quiz answers included: they live on the machine, and the wipe reaches them
- * through lib/stored.js.
+ * through lib/store/stored.js.
  */
 function StorageFooter() {
   const [asking, setAsking] = useMoment(ARMED_MS, false)
@@ -227,7 +227,7 @@ const hostOf = (url) => new URL(url).hostname.replace(/^www\./, '')
 
 /**
  * Every source the app rests on: name, trust level, one line, link.
- * Wording lives in data/sources.json; trust wording in lib/confidence.js.
+ * Wording lives in data/sources.json; trust wording in lib/text/confidence.js.
  */
 function SourceList() {
   const { sources, isPending, isError } = useSources()

@@ -3,7 +3,7 @@
  *
  * The Recent row answers "what have I looked up lately"; this answers "how did I
  * get here", which is the question a reader has after following a synonym three
- * words deep. It is drawn from lib/journey.js, the same list the browser's back
+ * words deep. It is drawn from lib/nav/journey.js, the same list the browser's back
  * arrow moves through, so the two can never point at different places.
  *
  * Three weights, one line: where you are, what is behind, and what is ahead
@@ -14,9 +14,9 @@
  * The tab comes from the journey, not from a prop: it sits inside SectionHeader,
  * which is drawn by every panel and knows nothing about tabs.
  */
-import { goBack, jumpTo, nearest, tabNow, trailFor, useJourney } from '../../lib/journey'
-import { isArabic } from '../../lib/arabicText'
-import { TRAIL_STEPS } from '../../lib/session'
+import { goBack, jumpTo, nearest, tabNow, trailFor, useJourney } from '../../lib/nav/journey'
+import { isArabic } from '../../lib/text/arabicText'
+import { TRAIL_STEPS } from '../../lib/nav/session'
 
 import ArabicText from './ArabicText'
 

@@ -19,7 +19,7 @@ source: the benchmark's verse text is Tanzil's spelling, not ours, so its word
 positions would point at the wrong words.
 
 Rejected: finding pairs here by an algorithm. This file only joins what people
-recorded; the finder in services/mutashabihat.py proposes the rest for review.
+recorded; the finder in services/quran/mutashabihat.py proposes the rest for review.
 """
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services import mutashabihat  # noqa: E402
+from backend.services.quran import mutashabihat  # noqa: E402
 
 SOURCES_DIR = "downloads/mutashabihat"
 BENCHMARK = "benchmark"

@@ -12,7 +12,7 @@ from typing import Any, Callable, TypeVar
 from fastapi import HTTPException
 
 from backend.config import get_settings
-from backend.services.arabic_text import has_arabic, spelled_out, unpunctuated, words
+from backend.services.text.arabic_text import has_arabic, spelled_out, unpunctuated, words
 
 logger = logging.getLogger(__name__)
 

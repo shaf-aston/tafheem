@@ -7,7 +7,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 
 import { renderScreen } from '../../test/render'
-import { MIN_SCALE, SMALLEST_LABEL } from '../../lib/termsChart'
+import { MIN_SCALE, SMALLEST_LABEL } from '../../lib/hadith/termsChart'
 import TermsView from './TermsView'
 
 const term = (arabic, en, more = {}) => ({ arabic, en, meaning: `${en} means this.`, lugha: '', quote: '', source: 'Taqrib', page: 'p. 4', kind: '', answers: {}, confuse: [], kids: [], ...more })

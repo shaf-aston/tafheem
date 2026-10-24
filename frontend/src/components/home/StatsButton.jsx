@@ -5,7 +5,7 @@
  */
 import { useState } from 'react'
 
-import knobs from '../../home.json'
+import knobs from '../../config/home.json'
 import ProfileDialog from '../profile/ProfileDialog'
 
 const { stats: copy } = knobs

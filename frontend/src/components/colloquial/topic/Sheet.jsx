@@ -1,7 +1,7 @@
 // The focused view of one phrase: big picture, its words, the reply, and prev/next (or a swipe).
 import { useEffect } from 'react'
 
-import { useSlide, useSwipe } from '../../../lib/useSwipe'
+import { useSlide, useSwipe } from '../../../lib/motion/useSwipe'
 
 import ArabicText from '../../ui/ArabicText'
 import BottomSheet from '../../ui/BottomSheet'
@@ -52,7 +52,7 @@ export default function Sheet({ phrases, at, onAt, onClose, place }) {
 
             {phrase.reply && (
               <div className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] px-4 py-3 text-center space-y-1">
-                <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">They answer</p>
+                <p className="eyebrow text-[var(--text-faint)]">They answer</p>
                 <ArabicText as="p" size="base" className="text-[var(--text)]">{phrase.reply.arabic}</ArabicText>
                 <div className="flex flex-wrap items-center justify-center gap-x-2">
                   <Spelling>{phrase.reply.transliteration}</Spelling>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useWheelX } from '../../lib/useWheelX'
+import { useWheelX } from '../../lib/quran/useWheelX'
 
 /**
  * Every ayah's number in one sideways strip, to jump straight to one. It

@@ -1,4 +1,4 @@
-import { scrollToEl } from '../lib/scrollToEl'
+import { scrollToEl } from '../lib/motion/scrollToEl'
 import links from './links.json'
 import AyahDiagram from './AyahDiagram.jsx'
 import ayah from './assets/ayahDiagram.json'

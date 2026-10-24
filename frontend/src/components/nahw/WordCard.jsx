@@ -1,0 +1,168 @@
+/**
+ * One word's full grammar and root, shown inline. Shared by Nahw's word grid and
+ * AyahStudy's word chips so the two cannot show different facts.
+ *
+ * Not a dialog: an overlay put half the card off screen at the line's right edge
+ * and covered the next line's words. Escape closes it and opening moves focus and
+ * scroll to it; there is no backdrop or focus trap.
+ *
+ * It opens right under the chip that was tapped, and both callers' chips
+ * already carry the word, its part of speech, its meaning and its role, so the
+ * card does not draw them again: it starts at what the chip could not hold.
+ * The word stays in its label for a screen reader.
+ */
+import { useEffect, useRef } from 'react'
+
+import { caseLabel, isUnnamed, typeLabel } from '../../lib/nahw/grammarTerms'
+import { roleVar } from '../../lib/nahw/roleColors'
+import { scrollToEl } from '../../lib/motion/scrollToEl'
+import ArabicText from '../ui/ArabicText'
+import BookPath from '../ui/BookPath'
+import RootActions from '../ui/RootActions'
+
+// A word of these types has no root by nature; any other rootless word is one
+// the dictionary failed on (جاء: a hamza CAMeL leaves as a placeholder).
+const ROOTLESS = new Set(['harf', 'damir'])
+
+export default function WordCard({ word, onClose, onGo, exclude }) {
+  const cardRef = useRef(null)
+  const key = word?.role_key
+  const hasPieces = word?.segments?.length > 1
+  const unsure = isUnnamed(word)
+
+  useEffect(() => {
+    if (!word) return
+    cardRef.current?.focus()
+    scrollToEl(cardRef.current, 'nearest')
+  }, [word])
+
+  useEffect(() => {
+    if (!word) return
+    const onKeyDown = (e) => {
+      // Claimed, so a view around the card does not close on the same press.
+      if (e.key === 'Escape') { e.preventDefault(); onClose() }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [word, onClose])
+
+  if (!word) return null
+
+  return (
+    <div
+      ref={cardRef}
+      tabIndex={-1}
+      role="group"
+      aria-label={`${word.word || word.arabic}: grammar`}
+      style={{ '--c': roleVar(key) }}
+      className="fade-in role glow rounded-[var(--radius-lg)] p-4
+        bg-[var(--surface)] border space-y-2.5 outline-none"
+    >
+      <div className="flex justify-end">
+        <button
+          type="button"
+          onClick={onClose}
+          className="type-small text-[var(--text-faint)] hover:text-[var(--text)]
+            underline underline-offset-2 transition-colors"
+        >
+          Close
+        </button>
+      </div>
+
+      {/* Only when the source speaks in sentences (segments/lemma) rather than
+          case/sign pairs; a corpus word with no grammar array still says so. */}
+      {(word.grammar || word.segments || word.lemma) && (
+        word.grammar?.length
+          ? <ArabicText as="p" size="sm" className="text-[var(--text)] leading-relaxed">{word.grammar.join(' · ')}</ArabicText>
+          : <p className="type-small text-[var(--text)]">No grammar recorded for this word.</p>
+      )}
+
+      {word.lemma && (
+        <p className="type-small text-[var(--text-faint)]">
+          Dictionary form{' '}
+          <ArabicText className="text-[var(--text-dim)]">{word.lemma}</ArabicText>
+        </p>
+      )}
+
+      {/* How the word is built up, when it is more than one piece: the
+          prefix, the word, the ending, each with its own job. */}
+      {hasPieces && (
+        <ul className="space-y-0.5">
+          {word.segments.map((piece, i) => (
+            <li key={i} className="type-small text-[var(--text-faint)] flex gap-1.5">
+              <ArabicText className="text-[var(--text-dim)] shrink-0">
+                {piece.arabic}
+              </ArabicText>
+              <ArabicText size="tiny">{piece.grammar.join(' · ')}</ArabicText>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {(word.root || word.type || word.case || word.sign) && (
+        <div className="grid grid-cols-2 gap-2.5 type-small">
+          {word.root && <Detail label="Root" value={word.root} arabic />}
+          {word.type && <Detail label="Type" value={typeLabel(word.type)} arabic />}
+          {word.case && <Detail label="Case" value={caseLabel(word.case)} arabic />}
+          {word.sign && <Detail label="Sign" value={word.sign} arabic />}
+        </div>
+      )}
+
+      {/* A dash for the role is the analyser saying "not sure": what sits in
+          these two panels is then the rule that stopped it, not a proof. */}
+      {word.reason && (
+        unsure
+          ? <Panel label="Why no name (لماذا لا اسم)" accent><ArabicText as="p" size="sm">{word.reason}</ArabicText></Panel>
+          : (
+            <Panel label="Proof (الدليل)" accent>
+              <ArabicText as="p" size="sm">{word.reason}</ArabicText>
+              <BookPath path={word.book} />
+            </Panel>
+          )
+      )}
+      {word.notes && <Panel label={unsure ? 'In plain words' : 'Notes'}>{word.notes}</Panel>}
+
+      {/* The root is a doorway, not just a fact: from here the same root
+          can be conjugated, defined, or found in the Qur'an. */}
+      {!word.root && (
+        <p className="type-small text-[var(--text-faint)]">
+          {ROOTLESS.has(word.type) || (word.case === 'mabni' && word.type !== "fi'l")
+            ? 'No root: particles, pronouns and pointing words are not built from one.'
+            : "Root not found: the dictionary could not settle this word's root."}
+        </p>
+      )}
+      {word.root && onGo && (
+        <RootActions root={word.root} onGo={onGo} exclude={exclude} className="pt-0.5" />
+      )}
+    </div>
+  )
+}
+
+function Detail({ label, value, arabic }) {
+  return (
+    <div className="rounded-[var(--radius-sm)] p-3 bg-[var(--surface-hi)]">
+      <div className="eyebrow mb-1">{label}</div>
+      {arabic
+        ? <ArabicText className="text-[var(--text)]">{value}</ArabicText>
+        : <div className="text-[var(--text)]">{value}</div>}
+    </div>
+  )
+}
+
+function Panel({ label, accent = false, children }) {
+  return (
+    <div
+      className="mt-1 p-3 rounded-[var(--radius-sm)] type-small text-[var(--text)]"
+      style={{
+        background: accent
+          ? 'color-mix(in srgb, var(--c) 10%, transparent)'
+          : 'var(--surface-hi)',
+      }}
+    >
+      {/* text-dim, not text-faint: this label sits on a tinted panel, where the
+          fainter token drops below the 4.5:1 contrast minimum. */}
+      <div className="eyebrow text-[var(--text-dim)] mb-1">{label}</div>
+      {children}
+    </div>
+  )
+}

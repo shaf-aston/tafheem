@@ -11,7 +11,7 @@ from functools import lru_cache
 from backend.config import data_path, get_settings
 from backend.services.hadith import loader
 from backend.services.hadith.chain import chain_of
-from backend.services.readonly_db import ReadOnlyDb
+from backend.services.core.readonly_db import ReadOnlyDb
 from backend.services.hadith.usul.books import page_label
 from backend.services.hadith.usul.rule import rule
 

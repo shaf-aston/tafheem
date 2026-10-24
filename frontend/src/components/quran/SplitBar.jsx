@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import QURAN from '../../quran.json'
+import QURAN from '../../config/quran.json'
 
 const { split: SPLIT } = QURAN
 const { least: LEAST, full: FULL } = SPLIT

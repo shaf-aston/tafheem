@@ -8,7 +8,7 @@
  * so a screen's error state is part of what a smoke test sees. A plain fetch
  * is for the app's own static files (the word banks), so it is answered from
  * public/ on disk: the screen gets the real files it would get in the browser,
- * a book world's split index and parts included (lib/bookSplit.js).
+ * a book world's split index and parts included (lib/grow/bookSplit.js).
  *
  * Needs `// @vitest-environment happy-dom` at the top of the test file; the
  * rest of the suite stays on node.
@@ -21,7 +21,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { cleanup, render, renderHook } from '@testing-library/react'
 
 import { api } from '../api'
-import { servedFile } from '../lib/bookSplit'
+import { servedFile } from '../lib/grow/bookSplit'
 
 afterEach(cleanup)
 

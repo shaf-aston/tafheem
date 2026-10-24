@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, renderHook, waitFor } from '@testing-library/react'
 
 import { renderWithBackend } from '../../test/render'
-import { CHOICES, wordsOf } from '../../lib/memorise'
+import { CHOICES, wordsOf } from '../../lib/memorise/memorise'
 import { useAnswers, useBookPage, useGaps, useHowYouAnswer, usePageSteps, withinPart } from './hooks'
 
 // Two surahs: the first over two printed pages, the second on one.

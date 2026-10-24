@@ -7,7 +7,7 @@
  *   because     why, said after a right answer too (optional)
  * A checked card carries `record` ({ module, item, context }), what the progress store files it under.
  */
-import { sayIn } from '../../../lib/say'
+import { sayIn } from '../../../lib/text/say'
 import AyahCard from './AyahCard'
 import ChooseCard from './ChooseCard'
 import GapCard from './GapCard'
@@ -22,7 +22,7 @@ import TeachCard from './TeachCard'
 const say = sayIn('en')
 const picked = (value) => value != null
 const sameSet = (a, b) => a.length === b.length && a.every((one) => b.includes(one))
-// A book world's question says why, right or wrong (lib/bookLesson.js).
+// A book world's question says why, right or wrong (lib/grow/bookLesson.js).
 const why = (card) => card.why
 
 export const KINDS = {

@@ -6,9 +6,9 @@ import json
 import re
 from pathlib import Path
 
-from backend.services.syntax import mask, teacher
-from backend.services.syntax.facts import AXES
-from backend.services.syntax.repair import correct
+from backend.services.nahw.syntax import mask, teacher
+from backend.services.nahw.syntax.facts import AXES
+from backend.services.nahw.syntax.repair import correct
 
 ROOT = Path(__file__).resolve().parents[1]
 DOC = (ROOT / "docs/glossary/nahw-flow.md").read_text(encoding="utf-8")

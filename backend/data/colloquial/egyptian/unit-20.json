@@ -1,0 +1,37 @@
+{
+  "unit": "unit-20",
+  "dialect": "Egyptian Arabic",
+  "transliteration_key": {
+    "T": "ط",
+    "sh": "ش",
+    "kh": "خ",
+    "gh": "غ",
+    "g": "ج (في مصر تُنطق g مثل gate)",
+    "3": "ع",
+    "7": "ح",
+    "2": "ء / ق (في مصر القاف همزة)",
+    "aa": "ا طويلة",
+    "ee": "ي طويلة",
+    "oo": "و طويلة"
+  },
+  "lessons": [
+    {
+      "lesson": "lesson-01"
+    },
+    {
+      "lesson": "lesson-02"
+    },
+    {
+      "lesson": "lesson-03"
+    },
+    {
+      "lesson": "lesson-04"
+    },
+    {
+      "lesson": "lesson-05"
+    },
+    {
+      "lesson": "lesson-06"
+    }
+  ]
+}

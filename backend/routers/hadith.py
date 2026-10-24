@@ -29,7 +29,7 @@ from backend.models.hadith import (
     UsulTerm,
     UsulTermHadith,
 )
-from backend.services import provenance
+from backend.services.core import provenance
 from backend.services.hadith import loader
 from backend.services.hadith.chain import cut_of
 from backend.services.hadith import search as hadith_search

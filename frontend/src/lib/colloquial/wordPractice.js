@@ -3,14 +3,14 @@
  *   wordDrills       every word once, for Quiz mode (hosted by Practice and ExerciseHost)
  *   reviewOf         which words are due, from the progress store's words summary
  *   reviewQuestions  the due words as Quiz-board questions, for Review
- * Both pick their wrong options with lib/quiz's buildQuestion, so the Quiz tab's
+ * Both pick their wrong options with lib/quiz/quiz's buildQuestion, so the Quiz tab's
  * rules hold here too: a word of the same group first, never a synonym of the answer.
  * Every answer is filed under the word (WORDS_MODULE, wordKey), so the schedule
  * learns the word whichever mode or topic asked it. Pure and seeded: the same
  * words always make the same questions, and a rerender reshuffles nothing.
  */
-import { buildQuestion, makeRandom } from '../quiz'
-import { QUIZ } from '../quizBanks'
+import { buildQuestion, makeRandom } from '../quiz/quiz'
+import { QUIZ } from '../quiz/quizBanks'
 
 export const WORDS_MODULE = 'words'
 export const wordKey = (dialect, word) => `${dialect}:${word.arabic}`

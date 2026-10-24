@@ -1,7 +1,7 @@
 import { useDeferredValue, useLayoutEffect } from 'react'
 
-import { rowAt, showRow } from '../../lib/surahRows'
-import QURAN from '../../quran.json'
+import { rowAt, showRow } from '../../lib/quran/surahRows'
+import QURAN from '../../config/quran.json'
 
 const { 'first-paint-rows': FIRST_PAINT_ROWS } = QURAN
 

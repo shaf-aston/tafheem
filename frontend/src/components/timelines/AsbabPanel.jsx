@@ -15,7 +15,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { asbabQuery, getAyahEditions } from '../../api'
-import { bySurah, matching, needsSearch, quotedWords, reportsIn } from '../../lib/asbabList'
+import { bySurah, matching, needsSearch, quotedWords, reportsIn } from '../../lib/timelines/asbabList'
 
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'

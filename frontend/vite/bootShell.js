@@ -11,9 +11,9 @@
  * The landing page does not, and is always the base look.
  */
 import { readFileSync } from 'node:fs'
-import { colorScheme } from '../src/lib/colorScheme.js'
+import { colorScheme } from '../src/lib/theme/colorScheme.js'
 
-const theme = JSON.parse(readFileSync(new URL('../src/theme.json', import.meta.url), 'utf8'))
+const theme = JSON.parse(readFileSync(new URL('../src/config/theme.json', import.meta.url), 'utf8'))
 const { base, 'hint-key': HINT_KEY, device, looks } = theme.themes
 
 const ground = (selector, bg) => `${selector} { background: ${bg}; }`

@@ -5,10 +5,10 @@
  */
 import { useState } from 'react'
 
-import HADITH from '../../hadith.json'
-import { toneOf } from '../../lib/rijal'
+import HADITH from '../../config/hadith.json'
+import { toneOf } from '../../lib/hadith/rijal'
 
-import { errorStatus } from '../../lib/apiError'
+import { errorStatus } from '../../lib/api/apiError'
 
 import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'

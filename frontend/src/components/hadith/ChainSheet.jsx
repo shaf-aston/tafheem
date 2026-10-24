@@ -13,7 +13,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { usulGuideQuery } from '../../api'
-import { CHAIN } from '../../lib/hadithWords'
+import { CHAIN } from '../../lib/hadith/hadithWords'
 
 import BottomSheet from '../ui/BottomSheet'
 import ChainDrawing from './ChainDrawing'

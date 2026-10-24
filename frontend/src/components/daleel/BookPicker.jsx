@@ -34,8 +34,8 @@
  */
 import { useEffect, useMemo, useState } from 'react'
 
-import { nameMatches } from '../../lib/bookSearch'
-import { isArabic } from '../../lib/arabicText'
+import { nameMatches } from '../../lib/daleel/bookSearch'
+import { isArabic } from '../../lib/text/arabicText'
 
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'

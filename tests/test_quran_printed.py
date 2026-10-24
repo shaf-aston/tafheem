@@ -4,7 +4,7 @@ Run: python -m pytest tests/test_quran_printed.py
 """
 from __future__ import annotations
 
-from backend.services.quran_service import as_printed
+from backend.services.quran.service import as_printed
 
 
 def test_a_stop_sign_on_a_word_is_shown():
@@ -21,7 +21,7 @@ def test_nothing_stored_leaves_the_corpus_text():
 
 
 def test_a_tanween_meem_is_dropped_unless_a_ba_follows():
-    from backend.services.arabic_text import mushaf_words
+    from backend.services.text.arabic_text import mushaf_words
     # 4:112: إِثْمًۭا before ثُمَّ is printed plain.
     assert mushaf_words(["إِثْمًۭا", "ثُمَّ"]) == ["إِثْمًا", "ثُمَّ"]
     # 4:58: iqlab, the meem stays.
@@ -34,7 +34,7 @@ def test_a_tanween_meem_is_dropped_unless_a_ba_follows():
 
 
 def test_the_reader_and_the_word_rows_get_the_printed_meems(monkeypatch):
-    from backend.services import quran_service as qs
+    from backend.services.quran import service as qs
 
     texts = [(112, "أَوْ إِثْمًۭا ثُمَّ"), (113, "سَمِيعًۢا بَصِيرًا أَحَدٌۢ")]
     monkeypatch.setattr(qs.quran_corpus, "ayah_texts", lambda surah: texts)

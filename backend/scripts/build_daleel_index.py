@@ -25,9 +25,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services import provenance  # noqa: E402, needs the path above
+from backend.services.core import provenance  # noqa: E402, needs the path above
 from backend.services.daleel.sources import registry  # noqa: E402
-from backend.services.arabic_text import both_spellings  # noqa: E402
+from backend.services.text.arabic_text import both_spellings  # noqa: E402
 
 # `book` is carried, not searched: it is what the book filter matches on, and
 # a reader typing a question is asking about the text, not about titles. A

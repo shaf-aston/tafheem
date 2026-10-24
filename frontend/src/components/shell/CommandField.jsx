@@ -14,7 +14,7 @@
  * the words in an empty box, and whatever sits at the right-hand end, which in
  * the header is the Ctrl K badge and in the launcher is nothing.
  */
-import { rowId } from '../../lib/commandRoutes'
+import { rowId } from '../../lib/nav/commandRoutes'
 
 export default function CommandField({
   line, name, inputRef, placeholder, onFocus, showing = false, trailing = null,

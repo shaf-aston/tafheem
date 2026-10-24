@@ -1,6 +1,6 @@
 """I'raab (grammatical case and function) analysis endpoint.
 
-Thin: the reading itself is services/iraab.py, the book's rules and the parser,
+Thin: the reading itself is services/nahw/iraab.py, the book's rules and the parser,
 offline. No AI: a word the rules cannot settle is shown as a gap, never guessed.
 """
 from __future__ import annotations
@@ -12,8 +12,8 @@ from fastapi import APIRouter, Depends, HTTPException, Request, Response
 
 from backend.models.analyze import AnalyzeRequest, AnalyzeResponse, WordAnalysis
 
-from backend.services import iraab
-from backend.services.ratelimit import PerMinute, visitor
+from backend.services.nahw import iraab
+from backend.services.core.ratelimit import PerMinute, visitor
 from backend.utils import Timings, arabic_sentence
 
 logger = logging.getLogger(__name__)

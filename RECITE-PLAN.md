@@ -8,7 +8,7 @@ How it was built: git history.
 ## Standing rules, decided and not to be re-opened
 
 1. **Fold first, compare second.** مَٰلِكِ and مالك are the same word: the small
-   standing alef is a full alef. `recitedForms` in `frontend/src/lib/arabicText.js`
+   standing alef is a full alef. `recitedForms` in `frontend/src/lib/text/arabicText.js`
    returns both spellings. Every comparison runs *after* that folding. A rule that
    fires on a difference in writing is a bug, not a near-miss. Same for ٱ against ا,
    ى against ي, and the tatweel.
@@ -30,9 +30,9 @@ How it was built: git history.
    back to the shared one. `services/ai/` never touches the listening keys.
 6. **Groq's per-minute allowance is the ceiling**, not the hours. The pacing
    numbers (`step-s`, `asks-per-minute`, `window-s`, `pause-s`) are config in
-   `frontend/src/recite.json`; read the values and the reasons there, never copy
+   `frontend/src/config/recite.json`; read the values and the reasons there, never copy
    them here.
-7. **Silence is never sent.** `voice-level` in `frontend/src/dictation.json`
+7. **Silence is never sent.** `voice-level` in `frontend/src/config/dictation.json`
    gates it: a silent window costs the local engine many seconds and returns
    nothing.
 8. **Nothing is marked until the reciter is on the page.** `anchor-words` in
@@ -73,6 +73,6 @@ letters that sound alike, so widening it is a decision, not a fix.
 ## Not doing
 
 - No paid provider, no card, ever.
-- No second copy of the Qur'an: the page comes from `lib/books.js` as it already does.
+- No second copy of the Qur'an: the page comes from `lib/memorise/books.js` as it already does.
 - No guessing which ayah you are on. The page is open, so this is lining up
   against known words, not searching all 6,236.

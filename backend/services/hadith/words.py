@@ -11,7 +11,7 @@ import re
 
 from num2words import num2words
 
-from backend.services.spelling import fold
+from backend.services.text.spelling import fold
 
 ARABIC_WORD = re.compile("[ء-ي]{2,}")
 ENGLISH_WORD = re.compile("[a-z]{2,}")

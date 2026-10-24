@@ -15,7 +15,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from backend.routers import dictionary as router_module
-from backend.services import lexicons
+from backend.services.dictionary import lexicons
 from tests.test_dictionary_hamza_search import took  # noqa: F401, the fixture
 from tests.test_lexicons import shelf  # noqa: F401, the fixture
 

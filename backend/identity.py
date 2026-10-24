@@ -6,8 +6,8 @@ no password; that is agreed. No header is the shared guest record.
 
 A FastAPI dependency, not middleware: only the routes that read or write one
 learner's record ask for it, so the Qur'an, dictionary and the rest never pay
-for a lookup. The spelling rules live in services/username.py, the accounts
-table in services/progress_store.py; this file only joins them to a request.
+for a lookup. The spelling rules live in services/learner/username.py, the accounts
+table in services/learner/progress_store.py; this file only joins them to a request.
 """
 from __future__ import annotations
 
@@ -15,8 +15,8 @@ from urllib.parse import unquote
 
 from fastapi import Depends, Header, HTTPException
 
-from backend.services import progress_store
-from backend.services.username import GUEST, clean_name
+from backend.services.learner import progress_store
+from backend.services.learner.username import GUEST, clean_name
 
 
 PROFILE_HEADER = "X-Tafheem-Profile"

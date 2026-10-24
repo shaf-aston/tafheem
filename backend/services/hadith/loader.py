@@ -10,8 +10,8 @@ import json
 from functools import lru_cache, wraps
 
 from backend.config import data_path
-from backend.services.arabic_text import has_arabic
-from backend.services.readonly_db import ReadOnlyDb
+from backend.services.text.arabic_text import has_arabic
+from backend.services.core.readonly_db import ReadOnlyDb
 
 
 def is_built() -> bool:

@@ -5,8 +5,9 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import iraab, morphology
-from backend.services.syntax.catib_onnx import files_present
+from backend.services.nahw import iraab
+from backend.services.sarf import morphology
+from backend.services.nahw.syntax.catib_onnx import files_present
 
 # Reading a sentence needs CAMeL's data and the parser's model files, neither in git.
 needs_parser = pytest.mark.skipif(

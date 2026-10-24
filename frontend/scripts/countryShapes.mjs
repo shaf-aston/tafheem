@@ -16,7 +16,7 @@ import { createRequire } from 'node:module'
 import { feature } from 'topojson-client'
 import { presimplify, simplify, quantile } from 'topojson-simplify'
 
-import { project } from '../src/lib/countryMap.js'
+import { project } from '../src/lib/shell/countryMap.js'
 
 const require = createRequire(import.meta.url)
 const world = JSON.parse(readFileSync(require.resolve('world-atlas/countries-50m.json'), 'utf8'))

@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 
 import { colloquialCompareQuery } from '../../../api'
-import { useSetting } from '../../../lib/settings'
+import { useSetting } from '../../../lib/store/settings'
 import ArabicText from '../../ui/ArabicText'
 import ErrorAlert from '../../ui/ErrorAlert'
 import { Skeleton } from '../../ui/Skeleton'

@@ -1,5 +1,5 @@
 {
- "_about": "Basics verbs: sound Form I, everyday. Arabic is never typed here: backend/scripts/build_basics_verbs.py conjugates each root with backend/services/conjugation.py. English: base / past / he-form, checked by hand.",
+ "_about": "Basics verbs: sound Form I, everyday. Arabic is never typed here: backend/scripts/build_basics_verbs.py conjugates each root with backend/services/sarf/conjugation.py. English: base / past / he-form, checked by hand.",
  "verbs": [
   {
    "id": "write",

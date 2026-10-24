@@ -5,9 +5,9 @@ import { afterEach, describe, expect, it } from 'vitest'
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import QuizPanel from '../components/QuizPanel'
-import { LEVEL_KEY } from '../lib/learnerLevel'
-import { readRaw, writeRaw } from '../lib/stored'
+import QuizPanel from '../components/quiz/QuizPanel'
+import { LEVEL_KEY } from '../lib/learner/learnerLevel'
+import { readRaw, writeRaw } from '../lib/store/stored'
 
 describe('quiz', () => {
   it('answers a question', async () => {

@@ -6,7 +6,7 @@
  */
 import { useQuery } from '@tanstack/react-query'
 
-import { sentencesQuery } from '../../lib/quizBanks'
+import { sentencesQuery } from '../../lib/quiz/quizBanks'
 
 import ArabicText from '../ui/ArabicText'
 import Mark from '../ui/Mark'

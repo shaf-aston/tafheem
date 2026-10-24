@@ -1,9 +1,9 @@
 import { colorFor } from '../../theme'
-import { kindOf, opening, whereOf, wordFlags, wordsAt } from '../../lib/similar'
-import copy from '../../similar.json'
+import { kindOf, opening, whereOf, wordFlags, wordsAt } from '../../lib/similar/similar'
+import copy from '../../config/similar.json'
 
 import ArabicText from '../ui/ArabicText'
-import { TwinRow } from '../ui/TwinCard'
+import { TwinRow } from '../ui/TwinCards'
 import Why from './Why'
 
 const MINE = colorFor('similar', 'mine')

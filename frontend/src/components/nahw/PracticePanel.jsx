@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { errorMessage } from '../../lib/apiError'
+import { errorMessage } from '../../lib/api/apiError'
 
 import SourceBadge from '../ui/SourceBadge'
 

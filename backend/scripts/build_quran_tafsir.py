@@ -42,7 +42,7 @@ import httpx
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services.markup import as_text  # noqa: E402, needs the path above
+from backend.services.text.markup import as_text  # noqa: E402, needs the path above
 
 DATA_DIR = Path(__file__).parent.parent / "data" / "quran"
 DATABASE = DATA_DIR / "tafsir.db"

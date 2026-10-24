@@ -15,7 +15,7 @@ from dataclasses import dataclass
 from typing import Callable
 
 from backend.config import get_settings
-from backend.services import fts
+from backend.services.text import fts
 
 from backend.services.daleel.index.candidates import candidates
 from backend.services.daleel.index.connection import db
@@ -88,7 +88,7 @@ def search(
 
 
 def warm() -> None:
-    """One English and one Arabic search, run at startup (services/startup).
+    """One English and one Arabic search, run at startup (services/core/startup).
 
     The first search after a restart otherwise loads what expanding a question
     needs, the English word forms and the root reader among them, and reads the

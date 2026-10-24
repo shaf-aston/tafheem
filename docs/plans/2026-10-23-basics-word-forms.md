@@ -22,7 +22,7 @@ Work out the full set of criteria, not just these examples. Reuse what exists, d
 | F2 | Questions both ways: "which one is 'she wrote'?" (3 Arabic options) and "what does كَتَبَتْ mean?" (3 English options) | both card types for every marker |
 | F3 | **Wrong options are never also right.** An option is wrong only if no reading of it is the asked meaning (تَكْتُبُ = she writes *and* you write; لَمْ يَكْتُبْ = مَا كَتَبَ = he didn't write; سَيَكْتُبُ = سَوْفَ يَكْتُبُ) | property test over every verb, person and marker |
 | F4 | Wrong options are the same word in its other forms, or the same word formed wrongly (*لَمْ كَتَبَ, *سَكَتَبَ, *الْكِتَابُهُ) | per-marker unit tests; every option contains the word's root letters |
-| F5 | Verb Arabic comes from the app's own engine (`backend/services/conjugation.py`) and nothing is typed by hand | build script plus a freshness test: the shipped JSON equals a fresh build |
+| F5 | Verb Arabic comes from the app's own engine (`backend/services/sarf/conjugation.py`) and nothing is typed by hand | build script plus a freshness test: the shipped JSON equals a fresh build |
 | F6 | The English is hand-checked per verb (write / wrote / writes); per-person wording comes from templates | data test: three forms for each verb |
 | F7 | One Basics world with one path. The skills are interleaved with the ال words in a data-defined order; existing ال progress ids are unchanged | path test; ids of the existing 128 words unchanged |
 | F8 | The marker is what is learned: the verb or noun on each card is drawn at random from the list, so the learner generalises instead of memorising | cards for one marker draw different verbs |
@@ -118,11 +118,11 @@ SPA → static `/grow/*.json` and the progress API.
 ★ backend/data/grow/basics_verbs.json    curated: root, bab, English {base, past, s3}
 ★ backend/scripts/build_basics_verbs.py  engine → frontend/public/grow/basics-verbs.json (7 persons × past/present/subj/juss, command)
 ★ tests/test_basics_verbs.py             fresh build == shipped; bab == babs_of; shapes
-★ lib/wordForms.js (pure)                a verb's table and a noun's possessive table → entries {key, ar, en};
+★ lib/grow/wordForms.js (pure)                a verb's table and a noun's possessive table → entries {key, ar, en};
                                          readings; ambiguity-safe option pickers
-★ lib/basicsSkills.js (pure)             SKILLS: markers, teach/asks per skill; path → ordered items; basicsCards
-  lib/alifLam.js                         the 'al' skill (unchanged logic)
-  lib/useBasicsWorld.js                  loads both JSON files and builds the path
+★ lib/grow/basicsSkills.js (pure)             SKILLS: markers, teach/asks per skill; path → ordered items; basicsCards
+  lib/grow/alifLam.js                         the 'al' skill (unchanged logic)
+  lib/grow/useBasicsWorld.js                  loads both JSON files and builds the path
   TeachCard                              ★ optional `note` line (the marker's rule)
   public/grow/basics.json                ★ `path`
   worlds.json                            stages over every item

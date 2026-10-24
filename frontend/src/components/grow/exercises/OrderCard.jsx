@@ -1,5 +1,5 @@
 /** Tap the steps in order; tap a placed step to take it back. Once checked, each place shows right or wrong. */
-import { sayIn } from '../../../lib/say'
+import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')
 

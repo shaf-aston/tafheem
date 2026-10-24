@@ -13,7 +13,7 @@ import { useId } from 'react'
 
 import flagFile from '../../data/countryFlags.json'
 import shapes from '../../data/countryShapes.json'
-import { project, touches, viewOf } from '../../lib/countryMap'
+import { project, touches, viewOf } from '../../lib/shell/countryMap'
 
 const { countries } = shapes
 const { flags } = flagFile

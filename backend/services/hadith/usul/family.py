@@ -24,7 +24,7 @@ from collections import Counter
 from typing import NamedTuple
 
 from backend.services.hadith.usul.rung import in_chain, walk
-from backend.services.spelling import fold
+from backend.services.text.spelling import fold
 
 _LETTERS = re.compile("[^ء-ي]")
 

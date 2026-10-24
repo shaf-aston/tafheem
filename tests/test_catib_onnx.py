@@ -1,13 +1,13 @@
-"""Smoke tests for the torch-free CATiB parser (backend/services/syntax/catib_onnx.py).
+"""Smoke tests for the torch-free CATiB parser (backend/services/nahw/syntax/catib_onnx.py).
 
 Skips cleanly, rather than failing, when the model files have not been
 dropped into backend/data/parser/ (see catib_onnx.py's docstring).
 """
 import pytest
 
-from backend.services import morphology
-from backend.services.syntax import catib_onnx
-from backend.services.syntax.catib_onnx import parse
+from backend.services.sarf import morphology
+from backend.services.nahw.syntax import catib_onnx
+from backend.services.nahw.syntax.catib_onnx import parse
 from tests.nahw_helpers import needs_parser
 
 pytestmark = needs_parser

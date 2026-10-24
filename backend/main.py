@@ -18,11 +18,17 @@ from backend.routers import (
     recordings, speak, tamreen, tarkeeb, timelines,
 )
 from backend.services import ai as ai_service
-from backend.services import dictionary_service, provenance, quran_service, recitation, root_meaning, speech, startup, syntax
+from backend.services import recitation, speech
+from backend.services.dictionary import service as dictionary_service
+from backend.services.core import provenance
+from backend.services.quran import service as quran_service
+from backend.services.dictionary import root_meaning
+from backend.services.core import startup
+from backend.services.nahw import syntax
 from backend.services.hadith.usul import store as usul
-from backend.services.morphology import get_engine_name
+from backend.services.sarf.morphology import get_engine_name
 from backend.identity import PROFILE_HEADER
-from backend.services.username import GUEST
+from backend.services.learner.username import GUEST
 
 # Answers that are the same for everyone and change only when the app does, so
 # a browser or Vercel's edge may keep them for a day. An allow-list, not a
@@ -153,7 +159,7 @@ def create_app() -> FastAPI:
 
     @app.get("/api/health")
     async def health(response: Response) -> dict:
-        # 503 until the background loads finish: see services/startup.py's `loading`.
+        # 503 until the background loads finish: see services/core/startup.py's `loading`.
         if startup.loading:
             response.status_code = 503
         return {
@@ -180,7 +186,7 @@ def create_app() -> FastAPI:
             "recite_trial": recitation.listen.trial_model(),
             "recite_sure": recitation.ears.named("here").name(reciting=True),
             # How many readings a minute the page may ask for, all keys
-            # together; lib/recitingSession.js paces itself by it.
+            # together; lib/recite/recitingSession.js paces itself by it.
             "listen_per_minute": recitation.ears.per_minute(),
             "corpus_loaded": quran_service.is_loaded(),
             "dictionary_loaded": dictionary_service.is_loaded(),

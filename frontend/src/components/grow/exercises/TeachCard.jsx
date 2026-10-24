@@ -3,7 +3,7 @@
  * (Basics: the word without ال, or the form an addition changes); `note` (optional) says the rule in a line.
  */
 import ArabicText from '../../ui/ArabicText'
-import { sayIn } from '../../../lib/say'
+import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')
 

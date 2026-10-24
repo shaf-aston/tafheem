@@ -18,7 +18,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from backend.main import app  # noqa: E402
 from backend.scripts.build_hadith_index import _SCHEMA, index_text  # noqa: E402
 from backend.scripts import build_hadith_meaning  # noqa: E402
-from backend.services import morphology, spelling  # noqa: E402
+from backend.services.text import spelling  # noqa: E402
+from backend.services.sarf import morphology
 from backend.services.hadith import loader, meaning, search, words  # noqa: E402
 
 _ROWS = [

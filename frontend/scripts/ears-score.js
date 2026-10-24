@@ -6,7 +6,7 @@
  * this function has to import it from somewhere that isn't itself a
  * benchmark describe block.
  */
-import { follow, isOfPage, wordsHeard } from '../src/lib/follow'
+import { follow, isOfPage, wordsHeard } from '../src/lib/recite/follow'
 
 /**
  * A pause mark stands on its own between two words, with a space on each side:

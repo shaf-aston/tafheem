@@ -13,7 +13,7 @@
 import { useRef, useState } from 'react'
 
 import { hasAnswer } from '../../../lib/colloquial/answer'
-import { recordAttempt } from '../../../lib/progress'
+import { recordAttempt } from '../../../lib/learner/progress'
 import ArabicText from '../../ui/ArabicText'
 import PrimaryButton from '../../ui/PrimaryButton'
 import SpeakButton from '../../ui/SpeakButton'

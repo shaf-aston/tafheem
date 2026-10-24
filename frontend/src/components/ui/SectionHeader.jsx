@@ -17,14 +17,14 @@
  * bottom bar.
  *
  * `tab` is the tab's id: its name, Arabic name and emblem then come from the
- * registry (lib/tabs.js), the one place they are written, so renaming a tab is
+ * registry (lib/nav/tabs.js), the one place they are written, so renaming a tab is
  * one edit. `title`, `arabic` and `emblem` passed as well win, for a panel that
  * names a step rather than itself.
  */
 import ArabicText from './ArabicText'
 import Emblem from './Emblem'
 import Trail from './Trail'
-import { TABS } from '../../lib/tabs'
+import { TABS } from '../../lib/nav/tabs'
 
 export default function SectionHeader({ tab, title, arabic, subtitle, emblem, aside = null, nameOf, history = true, answered = false }) {
   const named = tab ? TABS.find((t) => t.id === tab) : null
@@ -59,7 +59,7 @@ export default function SectionHeader({ tab, title, arabic, subtitle, emblem, as
           {history && <Trail nameOf={nameOf} />}
         </div>
       </div>
-      {subtitle && <p className={`text-[var(--text-dim)] text-sm leading-snug mt-1 ${answered ? 'max-sm:hidden' : ''}`}>{subtitle}</p>}
+      {subtitle && <p className={`text-[var(--text-dim)] type-ui leading-snug mt-1 ${answered ? 'max-sm:hidden' : ''}`}>{subtitle}</p>}
     </div>
   )
 }

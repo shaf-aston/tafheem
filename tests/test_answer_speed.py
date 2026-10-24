@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import iraab
+from backend.services.nahw import iraab
 from backend.utils import Timings
 from tests.nahw_helpers import needs_parser
 

@@ -1,9 +1,9 @@
 """card_wording passes on hand-made cards: no parser, no CAMeL, so each rule is seen alone."""
 from __future__ import annotations
 
-from backend.services import card_wording
-from backend.services.card_wording import condition, counting, names, pieces
-from backend.services.card_wording.reason import Reason
+from backend.services.nahw import card_wording
+from backend.services.nahw.card_wording import condition, counting, names, pieces
+from backend.services.nahw.card_wording.reason import Reason
 
 
 def test_the_sister_names_the_reason():

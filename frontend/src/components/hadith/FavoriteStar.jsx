@@ -1,5 +1,5 @@
 /**
- * Star a hadith, kept in this browser (lib/useHadithFavorites). Its own small
+ * Star a hadith, kept in this browser (lib/hadith/useHadithFavorites). Its own small
  * file because the browse list, the search results and the Starred view all
  * need it.
  */

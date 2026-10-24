@@ -1,7 +1,7 @@
 /** The Hadith world's picture, The Library: a spine per hadith, filled when known; tap one for its key line. */
 import { useState } from 'react'
 
-import { sayIn } from '../../../lib/say'
+import { sayIn } from '../../../lib/text/say'
 import ArabicText from '../../ui/ArabicText'
 
 const say = sayIn('en')

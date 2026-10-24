@@ -2,15 +2,15 @@
  * The dock along the bottom while you recite: the microphone, what it is
  * hearing, how far through the page you are, and help when you are stuck.
  *
- * It holds no rules. Every state on it was decided by lib/follow.js; this only
+ * It holds no rules. Every state on it was decided by lib/recite/follow.js; this only
  * says what each one looks like, and the colours are the app's own tokens so
  * orange here is the orange everywhere else in the app.
  *
  * The microphone is the one big thing on it, because starting is the one thing
  * this screen is for. Everything else is quieter and sits around it.
  */
-import { CHECK, MISSED, SAID, WRONG } from '../../lib/follow'
-import { LOOK, verdictOf } from '../../lib/reciteColors'
+import { CHECK, MISSED, SAID, WRONG } from '../../lib/recite/follow'
+import { LOOK, verdictOf } from '../../lib/recite/reciteColors'
 
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'

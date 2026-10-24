@@ -10,7 +10,8 @@ from fastapi.testclient import TestClient
 
 from backend.main import app
 from backend.scripts import build_lane_verbs
-from backend.services import conjugation, verb_sources
+from backend.services.sarf import conjugation
+from backend.services.sarf import sources as verb_sources
 
 client = TestClient(app)
 

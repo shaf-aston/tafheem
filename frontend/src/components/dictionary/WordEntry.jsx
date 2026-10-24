@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { rootBabsQuery } from '../../api'
-import { entrySpans } from '../../lib/entrySpan'
-import { plainPronunciation } from '../../lib/pronounce'
-import { useSetting } from '../../lib/settings'
+import { entrySpans } from '../../lib/dictionary/entrySpan'
+import { plainPronunciation } from '../../lib/speech/pronounce'
+import { useSetting } from '../../lib/store/settings'
 
 import SenseBands from './SenseBands'
 import WordGrid from './WordGrid'
@@ -35,7 +35,7 @@ export function ReadAsNote({ readAs }) {
   )
 }
 
-export default function Results({ data, accent, onGo, onLookup, aside = null }) {
+export default function WordEntry({ data, accent, onGo, onLookup, aside = null }) {
   // The badge at the top right opens the references behind the bab names.
   const [refs, setRefs] = useState(false)
   if (data.results.length === 0) {

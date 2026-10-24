@@ -1,9 +1,9 @@
 """The naming layer reads links plus typed vowels, so both are tested without a model."""
 import pytest
 
-from backend.services.syntax import facts, naming
-from backend.services.syntax.repair import correct
-from backend.services.harakat import typed_case, typed_passive
+from backend.services.nahw.syntax import facts, naming
+from backend.services.nahw.syntax.repair import correct
+from backend.services.text.harakat import typed_case, typed_passive
 
 
 def named(words, tokens):
@@ -99,7 +99,7 @@ def test_nothing_is_guessed_when_the_split_does_not_line_up(words):
 # ── أَفَلَا يَعْلَمُ إِذَا بُعْثِرَ مَا فِي الْقُبُورِ: what the parser path got wrong ──
 
 def test_a_reading_that_contradicts_the_typed_vowels_does_not_agree():
-    from backend.services.harakat import vowel_agreement
+    from backend.services.text.harakat import vowel_agreement
     assert vowel_agreement("أَفَلَا", "آفِلاً") is None      # kasra and tanween the reader did not type
     assert vowel_agreement("أَفَلَا", "أَفَلا") is not None
     assert vowel_agreement("الْقُبُورِ", "القُبُورَ") is None  # the case typed is jarr
@@ -107,7 +107,7 @@ def test_a_reading_that_contradicts_the_typed_vowels_does_not_agree():
 
 
 def test_the_parser_keeps_the_best_reading_that_agrees_with_the_vowels():
-    from backend.services.morphology import _reading
+    from backend.services.sarf.morphology import _reading
     readings = [{"diac": "آفِلاً", "atbtok": "آفِلاً", "pos": "noun"},
                 {"diac": "افلا", "atbtok": "NOAN", "pos": "noun_prop"},
                 {"diac": "أَفَلا", "atbtok": "أَفَلا", "pos": "verb"}]
@@ -316,7 +316,7 @@ def test_a_definite_fatha_hung_on_a_verb_is_its_object(typed, stt, role):
 
 
 def test_every_role_the_code_names_is_declared_in_roles_json():
-    from backend.services.nahw_book import clause_of, named_roles, role_units
+    from backend.services.nahw.book import clause_of, named_roles, role_units
     declared = set(naming.ROLES)
     used = set(vars(named_roles()).values())
     for unit in role_units():
@@ -329,7 +329,7 @@ def test_every_role_the_code_names_is_declared_in_roles_json():
 
 def test_a_word_is_split_where_its_tokenisation_splits_it(monkeypatch):
     # ثُلْثَ_+هُ comes tagged NOM alone; its pronoun is still its own token
-    from backend.services.syntax import catib_onnx
+    from backend.services.nahw.syntax import catib_onnx
     monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
         ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
     _split_word = catib_onnx._split_word
@@ -340,7 +340,7 @@ def test_a_word_is_split_where_its_tokenisation_splits_it(monkeypatch):
 
 def test_a_word_joined_in_front_is_split_with_its_own_tag(monkeypatch):
     # ف+_ليست comes tagged PRT alone, the فاء's tag; ليست is still a verb
-    from backend.services.syntax import catib_onnx
+    from backend.services.nahw.syntax import catib_onnx
     monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
         ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
     reading = {"atbtok": "فَ+_لَيْسَتِ", "catib6": "PRT", "ud": "CCONJ", "pos": "verb", "lex": "لَيْس", "asp": "p"}
@@ -621,7 +621,7 @@ def test_a_noun_before_la_is_the_mubtada():
 
 
 def test_one_test_says_when_a_word_does_a_verbs_work():
-    from backend.services.syntax.facts import works_as_verb
+    from backend.services.nahw.syntax.facts import works_as_verb
     verb = token(1, "فتح", "فَتَح", "VRB", 0, "---", **VERB)
     active = token(2, "كريم", "كَرِيم", "NOM", 0, "---", ud="ADJ")
     passive = token(3, "مفتوح", "مَفْتُوح", "NOM", 0, "---", pattern="مَ1ْ2ُو3")
@@ -630,7 +630,7 @@ def test_one_test_says_when_a_word_does_a_verbs_work():
 
 
 def _kana(*toks):
-    from backend.services.syntax.repair.subject_clash import kana_subject
+    from backend.services.nahw.syntax.repair.subject_clash import kana_subject
     toks = list(toks)
     kana_subject(toks)
     return [(t["head"], t["rel"]) for t in toks]

@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 
 import MicMark from '../components/ui/MicMark'
-import { roleVar } from '../lib/roleColors'
-import theme from '../theme.json'
+import { roleVar } from '../lib/nahw/roleColors'
+import theme from '../config/theme.json'
 import GovPanel from './GovPanel.jsx'
 import links from './links.json'
 import RootPanel from './RootPanel.jsx'

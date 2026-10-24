@@ -4,15 +4,15 @@
  */
 import { useState } from 'react'
 
-import { ahead } from '../../lib/warm'
-import { useDrag } from '../../lib/useDrag'
-import { closeOnBackdrop, useModal } from '../../lib/useModal'
+import { ahead } from '../../lib/api/warm'
+import { useDrag } from '../../lib/shell/useDrag'
+import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
 import ArabicText from '../ui/ArabicText'
 import TabGroups from '../ui/TabGroups'
 import Tile from '../ui/Tile'
 import DockSlots from './DockSlots'
 
-// `dock` is the ids on the phone bar, `onDock(id, slot)` changes it (lib/dock.js);
+// `dock` is the ids on the phone bar, `onDock(id, slot)` changes it (lib/nav/dock.js);
 // both left out, there is no bar to edit. Editing is the phone's: the strip a
 // wider screen has is its own rule.
 export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, dock, onDock, onHover, children }) {

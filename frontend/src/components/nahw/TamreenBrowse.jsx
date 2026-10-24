@@ -5,8 +5,8 @@
  */
 import { useMemo, useState } from 'react'
 
-import { answerParts, doubtsOf, labelOf, rowName } from '../../lib/tamreen'
-import { tagMatches } from '../../lib/tamreenSearch'
+import { answerParts, doubtsOf, labelOf, rowName } from '../../lib/nahw/tamreen'
+import { tagMatches } from '../../lib/nahw/tamreenSearch'
 
 import SearchBox from '../ui/SearchBox'
 import Disclosure from '../ui/Disclosure'

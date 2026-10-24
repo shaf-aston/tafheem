@@ -7,7 +7,8 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 
 from backend.models.nahw_notes import NoteLibrary
-from backend.services import nahw_notes, provenance
+from backend.services.nahw import notes as nahw_notes
+from backend.services.core import provenance
 
 router = APIRouter(prefix="/api/notes", tags=["notes"])
 

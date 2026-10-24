@@ -47,7 +47,7 @@ from backend.scripts.ear_bench.words import labelled  # noqa: E402
 from backend.scripts.rescore_recitation import HERE, pieces_path  # noqa: E402
 
 RULES = ("worst", "worst-but-one", "mean")
-# The rule and flag-below of each level in frontend/src/recite.json.
+# The rule and flag-below of each level in frontend/src/config/recite.json.
 LEVELS = {"standard": 0.95}
 CUTS = (0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 0.7, 0.8, 0.9, 0.95)
 SWEEP = HERE / "sweep.txt"

@@ -1,11 +1,11 @@
 /**
  * Settings' offline section: whether the app itself is saved, and the packs a reader can add
- * or remove. Draws lib/offline.js; every word is src/offline.json's.
+ * or remove. Draws lib/shell/offline.js; every word is src/config/offline.json's.
  */
 import { useEffect } from 'react'
 
-import { coreLine, copy, getPack, loadPacks, PACKS, removePack, sizeLabel, useOffline } from '../../lib/offline'
-import { fill } from '../../lib/homeCopy'
+import { coreLine, copy, getPack, loadPacks, PACKS, removePack, sizeLabel, useOffline } from '../../lib/shell/offline'
+import { fill } from '../../lib/shell/homeCopy'
 import SmallButton from '../ui/SmallButton'
 
 export default function OfflinePanel() {
@@ -14,7 +14,7 @@ export default function OfflinePanel() {
 
   return (
     <section aria-label={copy.title} className="space-y-3">
-      <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{copy.title}</h3>
+      <h3 className="eyebrow text-[var(--text-faint)]">{copy.title}</h3>
       <p className="type-small text-[var(--text-dim)] leading-snug" aria-live="polite">
         {!supported ? copy.unsupported : core === 'ready' && plan ? coreLine(plan.coreBytes) : copy['core-saving']}
       </p>

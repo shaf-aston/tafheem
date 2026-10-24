@@ -5,11 +5,11 @@ import { describe, expect, it } from 'vitest'
 import { screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import Dictionary from '../components/Dictionary'
-import MemorisePanel from '../components/MemorisePanel'
-import NahwPanel from '../components/NahwPanel'
-import QuizPanel from '../components/QuizPanel'
-import QuranLookup from '../components/QuranLookup'
+import Dictionary from '../components/dictionary/DictionaryPanel'
+import MemorisePanel from '../components/memorise/MemorisePanel'
+import NahwPanel from '../components/nahw/NahwPanel'
+import QuizPanel from '../components/quiz/QuizPanel'
+import QuranLookup from '../components/quran/QuranPanel'
 
 const SCREENS = [
   ['Quiz', QuizPanel],

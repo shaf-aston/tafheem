@@ -12,8 +12,8 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import { useCommandLine } from '../../lib/useCommandLine'
-import { PHONE, useMedia } from '../../lib/useMedia'
+import { useCommandLine } from '../../lib/nav/useCommandLine'
+import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 import CommandField from './CommandField'
 import CommandResults from './CommandResults'
 

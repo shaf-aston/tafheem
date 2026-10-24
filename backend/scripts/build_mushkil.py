@@ -11,7 +11,7 @@ model, decides what belongs together. Writes beside the other hadith data:
     data/hadith/mushkil-tahawi.json     the issues
     data/hadith/mushkil-unplaced.json   every paragraph the cutter could not place
 
-The rule itself is backend/services/mushkil_split.py, which is pure and tested.
+The rule itself is backend/services/hadith/mushkil_split.py, which is pure and tested.
 Ibn Qutaybah's Tawil Mukhtalaf al-Hadith is in the same OpenITI folder and is not
 read yet.
 """
@@ -27,7 +27,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services import mushkil_split  # noqa: E402
+from backend.services.hadith import mushkil_split  # noqa: E402
 
 # Where OpenITI's pri-data sits on this computer.
 BOOK_DEFAULT = Path.home() / "Downloads/OpenITI-pri-data_v9/0321Tahawi.SharhMushkilAthar.JK007043-ara1"

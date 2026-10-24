@@ -23,7 +23,7 @@
  */
 import { useRef, useState } from 'react'
 
-import { plainPronunciation } from '../../lib/pronounce'
+import { plainPronunciation } from '../../lib/speech/pronounce'
 
 import ArabicText from '../ui/ArabicText'
 import Pronunciation from '../ui/Pronunciation'

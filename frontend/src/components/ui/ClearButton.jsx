@@ -7,7 +7,7 @@ export default function ClearButton({ onClick, label, className = '' }) {
       title={label}
       onClick={onClick}
       className={`absolute text-[var(--text-faint)] hover:text-[var(--text)] transition-colors
-        text-sm leading-none w-6 h-6 grid place-items-center rounded-full
+        type-ui leading-none w-6 h-6 grid place-items-center rounded-full
         hover:bg-[var(--surface-hi)] ${className}`}
     >
       ✕

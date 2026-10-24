@@ -19,7 +19,7 @@ import logging
 import sqlite3
 from typing import NamedTuple
 
-from backend.services import fts
+from backend.services.text import fts
 
 from backend.services.daleel.index.connection import db, has_table
 from backend.services.daleel.index.row import COLUMNS, IndexedPassage

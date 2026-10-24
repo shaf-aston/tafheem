@@ -7,7 +7,7 @@ could not be checked word for word against a book file like the others. Arabic W
 poem, vowelled, public domain (the author died 1041 AH). Its wikitext is kept as it was fetched in
 data/books/wikisource/jawhara.wikitext; this script turns it into the shape every other book file
 has (`### | ` headings, one `# ` line per bayt, the two hemistichs joined by OpenITI's ` % ` verse
-mark), so lib/bookLesson.test.js and import_openiti.py read it unchanged.
+mark), so lib/grow/bookLesson.test.js and import_openiti.py read it unchanged.
 
 The Wikisource copy has typing slips. Each is corrected here, by hand, as a pair the file must
 contain exactly once (FIXES), so a fix that stops matching is noticed rather than silently skipped.

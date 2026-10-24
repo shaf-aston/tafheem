@@ -19,7 +19,7 @@ is its first ayah, at-Tawbah has none). Checked below for the whole printing:
 
 The answer is a small JSON file kept in git (backend/data/quran/mushaf/), not a
 database, so the server's sync copies it like any other tracked data file.
-services/mushaf.py is the only reader of it. Safe to re-run: written to a
+services/quran/mushaf.py is the only reader of it. Safe to re-run: written to a
 temporary file and swapped in only once every check has passed.
 """
 from __future__ import annotations
@@ -162,7 +162,7 @@ def build() -> None:
     temporary = OUT.with_suffix(".building")
     payload = {
         "_about": "Madani 1421 (KFGQPC V2), 604 pages. Built by backend/scripts/build_mushaf.py from "
-                  "api.quran.com (line_v2, text_qpc_hafs); read only by backend/services/mushaf.py.",
+                  "api.quran.com (line_v2, text_qpc_hafs); read only by backend/services/quran/mushaf.py.",
         "pages": pages,
     }
     temporary.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

@@ -6,7 +6,7 @@
  * orbit launcher shows the same rows the same way, and two copies of this would
  * have drifted apart the first time a group was renamed.
  *
- * It decides nothing. Rows come from lib/commandRoutes, colours from the theme,
+ * It decides nothing. Rows come from lib/nav/commandRoutes, colours from the theme,
  * and picking one is the caller's business.
  *
  * `name` prefixes the row ids. Focus stays in the caller's box while the arrows
@@ -16,7 +16,7 @@
  */
 import ArabicText from '../ui/ArabicText'
 import TabMark from '../ui/TabMark'
-import { grouped, rowId } from '../../lib/commandRoutes'
+import { grouped, rowId } from '../../lib/nav/commandRoutes'
 
 export default function CommandResults({
   rows, tabs, colorOf, active = 0, onPick, onHover, onRail, railTab, id, name = 'cb',

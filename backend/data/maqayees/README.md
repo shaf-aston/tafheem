@@ -80,7 +80,7 @@ it currently adds nothing, kept because the next reading of the scan may.
 
 `build.json` and `spelling.json` are why the script holds no tuning value of its
 own: re-cut the book differently by editing them, not the code. Both the builder
-and `services/root_meaning.py` read `spelling.json`, so the file and the search
+and `services/dictionary/root_meaning.py` read `spelling.json`, so the file and the search
 can never disagree about what أ and ا are.
 
 ## The shape of the file
@@ -182,7 +182,7 @@ stronger.
     badged `maqayees_translation`. Made from the typed Arabic with the Arabic in
     front of it, one entry at a time, by `scripts/backfill_root_english.py`.
   Ibn Fāris always opens by naming the letters and stating the one sense, so
-  these two say the same thing, and `services/root_gloss.py` prefers the second
+  these two say the same thing, and `services/dictionary/root_gloss.py` prefers the second
   wherever it exists, which is also how the wrong and thin glosses above get
   retired one root at a time. The first is the fallback, and it shrinks as the whole-book
   translation run proceeds.

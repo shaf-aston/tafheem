@@ -13,11 +13,11 @@ import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
 import TopicIcon from '../ui/TopicIcon'
 import TimelineHadith from './TimelineHadith'
-import TimelineRefs from '../TimelineRefs'
+import TimelineRefs from './TimelineRefs'
 import TimelineSteps from './TimelineSteps'
 import TimelineWhere from './TimelineWhere'
-import { printedBy } from '../../lib/hadithWords'
-import { NO_DATE, TRAD, isDated, sectionLook } from '../../lib/timeline/look'
+import { printedBy } from '../../lib/hadith/hadithWords'
+import { NO_DATE, TRAD, isDated, sectionLook } from '../../lib/timelines/look'
 
 export default function TimelineEvent({ section, event, library, accent, onGo, here, onHere, onPick, at }) {
   const place = event.place ? library.places[event.place] : null

@@ -9,14 +9,14 @@
  * failure-reason-retry trio is written here once instead of on every page.
  * `children` add anything page-specific after the reason.
  */
-import { smartError } from '../../lib/apiError'
+import { smartError } from '../../lib/api/apiError'
 import RetryButton from './RetryButton'
 
 export default function ErrorAlert({ title, error, fallback, onRetry, children, inline = false }) {
   return (
     <div
       role="alert"
-      className={`rise-in rounded-[var(--radius-md)] text-sm border border-[var(--danger-edge)] bg-[var(--danger-wash)] text-[var(--danger)] ${
+      className={`rise-in rounded-[var(--radius-md)] type-ui border border-[var(--danger-edge)] bg-[var(--danger-wash)] text-[var(--danger)] ${
         inline ? 'px-4 py-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1' : 'p-4 space-y-2'
       }`}
     >

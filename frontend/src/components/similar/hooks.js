@@ -2,11 +2,11 @@ import { useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { similarAyahQuery, similarSurahQuery } from '../../api'
-import { fetchSummary, recordAttempt } from '../../lib/progress'
-import { pairsOf } from '../../lib/similar'
-import copy from '../../similar.json'
+import { fetchSummary, recordAttempt } from '../../lib/learner/progress'
+import { pairsOf } from '../../lib/similar/similar'
+import copy from '../../config/similar.json'
 
-/** Every pair to learn in one surah (lib/similar.js pairsOf). */
+/** Every pair to learn in one surah (lib/similar/similar.js pairsOf). */
 export function useSurahPairs(surah) {
   const query = useQuery(similarSurahQuery(surah))
   const pairs = useMemo(() => pairsOf(query.data, surah), [query.data, surah])

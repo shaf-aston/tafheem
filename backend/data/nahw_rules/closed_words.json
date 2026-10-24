@@ -1,7 +1,7 @@
 {
- "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw_book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word. 'card' on a governing family: what a member is named on its own card (named), what it does (does), and the effect on a word linked to it that proves it governs here (governs: a governor or follower answer of services/syntax/facts.py, or a verb's case), and a member's own name where the book gives one (named_as), shorter on the bracket picture where the book's chart says less (chart, chart_as); read by naming._family and signs.py.",
+ "_comment": "The book's closed word lists (Tasheel al-Nahw), the only place they are written. Words are lemmas without harakat, as the parser spells them. Read by services/nahw/book.py; naming.py decides roles from these lists plus the parser's links. 'ambiguous' says when a listed word is something else, which is why the code also checks the links around the word. 'card' on a governing family: what a member is named on its own card (named), what it does (does), and the effect on a word linked to it that proves it governs here (governs: a governor or follower answer of services/nahw/syntax/facts.py, or a verb's case), and a member's own name where the book gives one (named_as), shorter on the bracket picture where the book's chart says less (chart, chart_as); read by naming._family and signs.py.",
  "vetoes": {
-  "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked, and links it settles outright, written over the parser's tree after (mask.book_links). true = on. Read by services/syntax/mask.py.",
+  "_comment": "Links the book rules out, removed from the parser's choices before its tree is picked, and links it settles outright, written over the parser's tree after (mask.book_links). true = on. Read by services/nahw/syntax/mask.py.",
   "verb_subject_follows": true,
   "pointer_heads_its_noun": true,
   "listed_preposition_takes_majrur": true,
@@ -174,7 +174,7 @@
    "masdar_ma": ["ما"],
    "_timed_comment": "ما المصدرية الظرفية: ما standing for a span of time, before لم or the verb دام (البيعان بالخيار ما لم يتفرقا، ما دمت حيا)",
    "timed_ma_before": ["لم", "دام"],
-   "effect": "before a noun in nasb a past verb that never changes (فعل ماضٍ جامد), its doer hidden (هو) and the noun its object; before a noun in jarr a preposition and the noun its majrur; after ما only the verb. Read by services/syntax/mask.py from the noun's typed case",
+   "effect": "before a noun in nasb a past verb that never changes (فعل ماضٍ جامد), its doer hidden (هو) and the noun its object; before a noun in jarr a preposition and the noun its majrur; after ما only the verb. Read by services/nahw/syntax/mask.py from the noun's typed case",
    "words": [
     "خلا",
     "عدا",
@@ -413,8 +413,8 @@
    "idhan_after": ["و", "ف"],
    "idhan_between": ["لا"],
    "idhan_oath": ["و"],
-   "_idhan": "إذن answers and gives the result (حرف جواب وجزاء); it also puts the present verb in nasb when it opens the answer (only و or ف before it) and the verb follows it directly, a negating لا or an oath (و and the sworn-by noun) allowed between (Tasheel 4.1.1 p99, Alfiyya). After و or ف it may work or not; when the verb shows its raf' (the nun of the five verbs kept, a damma) it has not worked. `idhan_after` is what may stand before it, `idhan_between` what may stand between it and the verb, `idhan_oath` the و of an oath (services/syntax/particles.py, the idhan tree).",
-   "_before_a_present_verb": "the ones that settle an unvowelled present verb as منصوب when it comes straight after them; the rest need a reading of the sentence (services/syntax/naming.py)",
+   "_idhan": "إذن answers and gives the result (حرف جواب وجزاء); it also puts the present verb in nasb when it opens the answer (only و or ف before it) and the verb follows it directly, a negating لا or an oath (و and the sworn-by noun) allowed between (Tasheel 4.1.1 p99, Alfiyya). After و or ف it may work or not; when the verb shows its raf' (the nun of the five verbs kept, a damma) it has not worked. `idhan_after` is what may stand before it, `idhan_between` what may stand between it and the verb, `idhan_oath` the و of an oath (services/nahw/syntax/particles.py, the idhan tree).",
+   "_before_a_present_verb": "the ones that settle an unvowelled present verb as منصوب when it comes straight after them; the rest need a reading of the sentence (services/nahw/syntax/naming.py)",
    "words": [
     "أن",
     "لن",
@@ -452,10 +452,10 @@
    "conditional_adverbs": ["متى", "أيان", "أين", "أنى", "حيثما", "أينما"],
    "conditional_inflected": ["أي"],
    "_conditional_inflected": "the one conditional noun that takes a case ending (أيُّ، أيَّ، أيِّ); every other is built (مبني), in the place of its case (Tasheel)",
-   "_conditional_adverbs": "the conditional nouns that name a time or a place: each stands in the place of a ظرف, منصوب (Tasheel). The others (مَنْ، ما، مهما) stand as the مبتدأ when their verb already has its object (services/syntax/naming.py)",
-   "_conditional_nouns": "the conditional nouns (Tasheel: the jazm conditionals other than إن and إذما). Each has rivals (relative, question), so one opens a condition only when it leads its clause, a verb comes straight after, and an answer follows (services/syntax/condition.py)",
-   "_conditional_particles": "the conditional particles (the other conditionals are nouns): with a verb straight after, a condition opens; its first verb is فعل الشرط and its answer جواب الشرط, both in jazm or in its place (services/rule_engine.py)",
-   "_before_a_present_verb": "the ones that settle an unvowelled present verb as مجزوم when it comes straight after them; لا and the conditionals need a reading of the sentence (services/syntax/naming.py)",
+   "_conditional_adverbs": "the conditional nouns that name a time or a place: each stands in the place of a ظرف, منصوب (Tasheel). The others (مَنْ، ما، مهما) stand as the مبتدأ when their verb already has its object (services/nahw/syntax/naming.py)",
+   "_conditional_nouns": "the conditional nouns (Tasheel: the jazm conditionals other than إن and إذما). Each has rivals (relative, question), so one opens a condition only when it leads its clause, a verb comes straight after, and an answer follows (services/nahw/syntax/condition.py)",
+   "_conditional_particles": "the conditional particles (the other conditionals are nouns): with a verb straight after, a condition opens; its first verb is فعل الشرط and its answer جواب الشرط, both in jazm or in its place (services/nahw/rule_engine.py)",
+   "_before_a_present_verb": "the ones that settle an unvowelled present verb as مجزوم when it comes straight after them; لا and the conditionals need a reading of the sentence (services/nahw/syntax/naming.py)",
    "words": [
     "لم",
     "لما",
@@ -596,7 +596,7 @@
   },
   "wonder": {
    "ar": "التعجب: ما أفعلَه",
-   "_comment": "The wonder form (Tasheel 1.4.2 p8): ما, a past verb of the shape أَفْعَلَ / أَفَلَّ (doubled root) / أَفْعَى (weak last letter) and a noun in nasb. The shape is read from the letters, with ف ع ل standing for the root; a vowel the reader typed must be the shape's (أَكْرَمَ fits, أُكْرِمَ does not), a vowel left off is not held against it. Read by services/syntax/particles.py.",
+   "_comment": "The wonder form (Tasheel 1.4.2 p8): ما, a past verb of the shape أَفْعَلَ / أَفَلَّ (doubled root) / أَفْعَى (weak last letter) and a noun in nasb. The shape is read from the letters, with ف ع ل standing for the root; a vowel the reader typed must be the shape's (أَكْرَمَ fits, أُكْرِمَ does not), a vowel left off is not held against it. Read by services/nahw/syntax/particles.py.",
    "shapes": ["أَفْعَلَ", "أَفَلَّ", "أَفْعَى"],
    "card": {
     "named": "جامد للتعجب",
@@ -608,12 +608,12 @@
   "istifham": {
    "ar": "أدوات الاستفهام",
    "effect": "turns the sentence into a question; the particles govern nothing, the nouns take a role in the sentence (subject, object, adverb, ...)",
-   "_before_verb": "The place a question noun fills when it opens a verb clause whose verb has no object of its own (Tasheel 2.4.7 p47): what or how many is asked is the object (ماذا قرأت، كم كتابًا قرأت), how is the hal (كيف جئت), when and where the maf'ul fihi (متى سافر، أين جلس). Read by services/syntax/facts.py.",
+   "_before_verb": "The place a question noun fills when it opens a verb clause whose verb has no object of its own (Tasheel 2.4.7 p47): what or how many is asked is the object (ماذا قرأت، كم كتابًا قرأت), how is the hal (كيف جئت), when and where the maf'ul fihi (متى سافر، أين جلس). Read by services/nahw/syntax/facts.py.",
    "before_verb": {"ماذا": "object", "كم": "object", "كيف": "state", "متى": "place_time", "أين": "place_time", "أيان": "place_time"},
    "inflected": ["أي"],
    "heads": ["ما", "من", "ماذا", "كم"],
-   "_heads": "question nouns that are no ظرف or hal: with a noun after them they are the mubtada and that noun the khabar (مَنْ أبوك، ما هي، القارعة ما القارعة: Sibawayh, on Ibn Aqil's Alfiyya; notes, Musnad p12). متى، أين، كيف stand for a time, place or state, so they are the khabar brought to the front (متى السفرُ). Read by services/syntax/facts/sentence.py.",
-   "_inflected": "the one question noun that takes a case ending and a مضاف إليه (أيُّ الأعمالِ أفضلُ: أيّ the mubtada, الأعمال its مضاف إليه); every other is built, and the noun hung on it is what is asked about (متى السفرُ: السفر the mubtada). Read by services/syntax/facts.py.",
+   "_heads": "question nouns that are no ظرف or hal: with a noun after them they are the mubtada and that noun the khabar (مَنْ أبوك، ما هي، القارعة ما القارعة: Sibawayh, on Ibn Aqil's Alfiyya; notes, Musnad p12). متى، أين، كيف stand for a time, place or state, so they are the khabar brought to the front (متى السفرُ). Read by services/nahw/syntax/facts/sentence.py.",
+   "_inflected": "the one question noun that takes a case ending and a مضاف إليه (أيُّ الأعمالِ أفضلُ: أيّ the mubtada, الأعمال its مضاف إليه); every other is built, and the noun hung on it is what is asked about (متى السفرُ: السفر the mubtada). Read by services/nahw/syntax/facts.py.",
    "words": [
     "أ",
     "هل",

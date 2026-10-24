@@ -25,7 +25,7 @@ import { dirname } from 'node:path'
 
 const APP = process.env.APP ?? 'http://localhost:5179'
 const OUT = process.argv[2] ?? '/tmp/claude-0/-home-user-tafheem/63aa7e0c-a3d9-5d26-8892-e806af562f7b/scratchpad/contrast/report.json'
-const theme = JSON.parse(readFileSync(new URL('../src/theme.json', import.meta.url)))
+const theme = JSON.parse(readFileSync(new URL('../src/config/theme.json', import.meta.url)))
 const HINT_KEY = theme.themes['hint-key']
 const pick = (env, all) => (process.env[env] ? process.env[env].split(',') : all)
 const LOOKS = pick('LOOKS', Object.keys(theme.themes.looks))
@@ -127,7 +127,7 @@ function inPage() {
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-sandbox'] })
 const probe = await browser.newPage()
 await probe.goto(`${APP}/app`, { waitUntil: 'networkidle' })
-const ids = await probe.evaluate(async () => (await import('/src/lib/tabs.js')).LISTED.map((t) => t.id))
+const ids = await probe.evaluate(async () => (await import('/src/lib/nav/tabs.js')).LISTED.map((t) => t.id))
 await probe.close()
 const SCREENS = [
   ...ids.map((id) => ({ name: id, path: id === 'home' ? '/app' : `/app/${id}` })),

@@ -18,7 +18,7 @@ from pydantic import SecretStr
 
 from backend.config import get_settings
 from backend.main import app
-from backend.services import journal
+from backend.services.learner import journal
 from backend.services.recitation import ears
 
 SOUND = b"pretend this is a recording"

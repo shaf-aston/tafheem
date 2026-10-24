@@ -1,7 +1,8 @@
 """A word's whole Sarf answer, called without the web layer."""
 import pytest
 
-from backend.services import morphology, sarf_word
+from backend.services.sarf import morphology
+from backend.services.sarf import answer as sarf_word
 
 
 @pytest.mark.skipif(not morphology._CAMEL_AVAILABLE, reason="CAMeL data not installed")

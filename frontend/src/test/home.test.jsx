@@ -6,11 +6,11 @@ import { act, fireEvent, screen, within } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import HomePanel from '../components/home/HomePanel'
-import { visit } from '../lib/journey'
-import { HOME, LISTED } from '../lib/tabs'
-import { LEVEL_KEY, LEVELS, levelOf } from '../lib/learnerLevel'
-import { readRaw, writeRaw } from '../lib/stored'
-import knobs from '../home.json'
+import { visit } from '../lib/nav/journey'
+import { HOME, LISTED } from '../lib/nav/tabs'
+import { LEVEL_KEY, LEVELS, levelOf } from '../lib/learner/learnerLevel'
+import { readRaw, writeRaw } from '../lib/store/stored'
+import knobs from '../config/home.json'
 
 describe('Home', () => {
   it('on a first visit asks how much Arabic you know, one row a level', () => {

@@ -3,24 +3,24 @@
  * its group, all in view. The level lives behind the header's profile button,
  * not here.
  *
- * Where you stopped comes from the journey (lib/journey.js), never a list
- * written here; with no history, the first fixed tab (lib/tabs.js) stands in. The progress under each card is the overview the profile reads,
- * filed to tabs by lib/moduleTab.js. The line is the header's own command line.
+ * Where you stopped comes from the journey (lib/nav/journey.js), never a list
+ * written here; with no history, the first fixed tab (lib/nav/tabs.js) stands in. The progress under each card is the overview the profile reads,
+ * filed to tabs by lib/nav/moduleTab.js. The line is the header's own command line.
  */
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { fetchOverview } from '../../lib/progress'
-import { getProfile } from '../../lib/profile'
-import { useHealth } from '../../lib/useHealth'
-import { resumePlace, useJourney } from '../../lib/journey'
-import { progressByTab } from '../../lib/moduleTab'
-import { useCommandLine } from '../../lib/useCommandLine'
-import { accentOf, FIXED, GROUPS, HOME, LISTED, START } from '../../lib/tabs'
-import { progressText } from '../../lib/homeCopy'
-import { copy as offlineCopy, noSignal } from '../../lib/offline'
-import knobs from '../../home.json'
-import { useMedia, PHONE } from '../../lib/useMedia'
+import { fetchOverview } from '../../lib/learner/progress'
+import { getProfile } from '../../lib/learner/profile'
+import { useHealth } from '../../lib/api/useHealth'
+import { resumePlace, useJourney } from '../../lib/nav/journey'
+import { progressByTab } from '../../lib/nav/moduleTab'
+import { useCommandLine } from '../../lib/nav/useCommandLine'
+import { accentOf, FIXED, GROUPS, HOME, LISTED, START } from '../../lib/nav/tabs'
+import { progressText } from '../../lib/shell/homeCopy'
+import { copy as offlineCopy, noSignal } from '../../lib/shell/offline'
+import knobs from '../../config/home.json'
+import { useMedia, PHONE } from '../../lib/hooks/useMedia'
 
 import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'

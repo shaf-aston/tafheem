@@ -9,12 +9,12 @@
  * One rule, as sunnah.com draws it: the chain is quiet, what it carries is in
  * full ink. The split is the server's own (`cut`), and the English's
  * "Narrated X:" line is quiet the same way. Nothing guesses who is speaking
- * (lib/hadithWords says why), and the book's own quote marks stand as printed.
+ * (lib/hadith/hadithWords says why), and the book's own quote marks stand as printed.
  */
 import ArabicText from './ArabicText'
 import ShowRest from './ShowRest'
-import { chainAndBody, narrated } from '../../lib/hadithWords'
-import { runs, told, withoutMarks } from '../../lib/rijal'
+import { chainAndBody, narrated } from '../../lib/hadith/hadithWords'
+import { runs, told, withoutMarks } from '../../lib/hadith/rijal'
 
 import NarratorLink from './NarratorLink'
 import { themeVariable } from '../../theme'
@@ -50,9 +50,9 @@ function Spans({ text, names = [], onNarrator, from = null }) {
 /**
  * `action` is a slot beside the number: a favorite star or a collection badge.
  * `hideChain` drops the chain of narrators but the one who tells the hadith:
- * lib/rijal told finds where the chain ends, from `cut` (the server's [teller_at, body_at]). The English
+ * lib/hadith/rijal told finds where the chain ends, from `cut` (the server's [teller_at, body_at]). The English
  * "Narrated X:" line already names only that one, so it stays.
- * `names` are the narrators named in the Arabic (lib/rijal); with the chain
+ * `names` are the narrators named in the Arabic (lib/hadith/rijal); with the chain
  * hidden, the teller and anyone named after him keep theirs.
  * `footer` sits under the text: the other narrations of this number.
  * `split` sets English left and Arabic right on a wide screen, as sunnah.com does; a phone stacks them, English on top.

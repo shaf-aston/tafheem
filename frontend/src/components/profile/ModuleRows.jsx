@@ -1,5 +1,5 @@
 /** One row per module someone answered in: words learnt, answers given, the last day. */
-import { labelOf } from '../../lib/moduleTab'
+import { labelOf } from '../../lib/nav/moduleTab'
 
 import ErrorAlert from '../ui/ErrorAlert'
 import { Skeleton } from '../ui/Skeleton'

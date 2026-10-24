@@ -1,0 +1,39 @@
+{
+  "_comment": "Dawah tab knobs and wording, read only by components/dawah/DawahPanel.jsx and components/dawah/. Content lives in backend/data/dawah.",
+  "_comment-mode": "reading-mode is how the reasoning opens before the reader picks: 'steps' reveals one point per press, 'all' shows every point. The reader's own pick is remembered.",
+  "reading-mode": "steps",
+  "_comment-depth-lines": "depth-lines is how many lines of the in-depth discussion show before 'Read the full discussion'.",
+  "depth-lines": 6,
+  "modes": [
+    {
+      "id": "steps",
+      "label": "Step by step"
+    },
+    {
+      "id": "all",
+      "label": "All at once"
+    }
+  ],
+  "copy": {
+    "subtitle": "Clear answers to the questions most often asked about Islam, each with its evidence.",
+    "search": "Find a question",
+    "search-hint": "e.g. who created God, hijab, sword",
+    "no-match": "No question matches that. Try fewer words.",
+    "questions": "Questions",
+    "load-failed": "Could not load the dawah answers",
+    "unreachable": "The answers could not be reached.",
+    "short": "In short",
+    "copy": "Copy",
+    "reasoning": "The reasoning",
+    "depth": "In depth",
+    "depth-more": "Read the full discussion",
+    "depth-less": "Show less",
+    "mode-label": "How to read the reasoning",
+    "evidence": "Evidence",
+    "next-point": "Next point",
+    "point-count": "{shown} of {total}",
+    "read-more": "Read more:",
+    "previous": "Previous",
+    "next-question": "Next question"
+  }
+}

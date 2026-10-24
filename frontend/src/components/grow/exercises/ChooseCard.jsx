@@ -1,8 +1,8 @@
 /** One answer from a few: a case to judge, or a gap in the book's sentence (`ar` with ____). */
 import ArabicText from '../../ui/ArabicText'
 import Bayt from '../../ui/Bayt'
-import { hemistichs } from '../../../lib/verse'
-import { sayIn } from '../../../lib/say'
+import { hemistichs } from '../../../lib/text/verse'
+import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')
 

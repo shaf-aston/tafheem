@@ -1,13 +1,13 @@
 """Cutting the Lubab into reports, and placing each on its ayah.
 
 Hand-built miniatures rather than the real book: each one is a rule in
-services/asbab_split, and a rule that stops working fails here by name. The
+services/quran/asbab_split, and a rule that stops working fails here by name. The
 shipped file is checked separately, by the counts build_asbab.py prints and by
 data/quran/asbab-unmatched.json, which lists every report it refused to place.
 
 Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
-from backend.services import asbab_split
+from backend.services.quran import asbab_split
 
 NAMES = {2: "البقرة", 8: "الأنفال", 9: "التوبة"}
 ALIASES = {"براءة": 9}

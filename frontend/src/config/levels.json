@@ -1,0 +1,66 @@
+{
+  "_comment": "How much Arabic a learner knows, shown as \"Your Arabic\" (Grow's \"Level 3\" is XP, a different thing). Chosen on Home's first visit or at sign-up, kept on the account's shelf (key `storage-key`), changeable in Settings and the profile until the answers settle it (lib/learner/learnerLevel.js). `start`: the tab and place Home's picker opens. `grow`: the world Grow's Today leads with. `quiz-bank`: the Quiz's set until another is picked. `proof`: the modules whose answers show this level is mastered; the top level has none, nothing is above it.",
+  "storage-key": "level",
+  "_comment-evidence": "A tier counts once its proof modules hold `min-answers` answers: `pass` or more right moves the learner past it, under `fail` puts them back on it.",
+  "min-answers": 30,
+  "pass": 0.8,
+  "fail": 0.6,
+  "levels": [
+    {
+      "id": "beginner",
+      "label": "Beginner",
+      "title": "New to Arabic",
+      "arabic": "ال",
+      "blurb": "Start with the basics: what ال, “the”, does to a word.",
+      "start": [
+        "grow",
+        "basics/lesson"
+      ],
+      "grow": "basics",
+      "quiz-bank": "basics",
+      "proof-label": "Basics",
+      "proof": [
+        "basics"
+      ]
+    },
+    {
+      "id": "intermediate",
+      "label": "Intermediate",
+      "title": "I can read Arabic",
+      "arabic": "كَلِمَة",
+      "blurb": "Learn the words the Qur’an uses most, a few each day.",
+      "start": [
+        "grow",
+        "words/lesson"
+      ],
+      "grow": "words",
+      "quiz-bank": "quranic",
+      "proof-label": "word quiz",
+      "proof": [
+        "quiz",
+        "quiz:ur"
+      ]
+    },
+    {
+      "id": "advanced",
+      "label": "Advanced",
+      "title": "I know many words",
+      "arabic": "نَحْو",
+      "blurb": "Grammar from al-Ajurrumiyya, then the books and the Qur’an.",
+      "start": [
+        "grow",
+        "nahw"
+      ],
+      "grow": "nahw",
+      "quiz-bank": "all",
+      "proof": []
+    }
+  ],
+  "copy": {
+    "_comment": "The control in Settings, the profile and the sign-up sheet. {share}, {n} and {proof} are filled in by the code.",
+    "label": "Your Arabic",
+    "help": "Grow and the Quiz start from here. Change it until your answers show where you are.",
+    "settled": "Set by your answers: {share}% right over {n} {proof} answers.",
+    "guest": "Log in and your answers will confirm it."
+  }
+}

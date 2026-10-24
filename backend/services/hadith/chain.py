@@ -1,7 +1,7 @@
 """The Arabic of a hadith as parts: the chain of narrators, the one who tells it, and the hadith it carries.
 
 The one cutter: the app, the index and the usul build all take the cut from chain_of, by the rule in
-data/hadith/chain.json, which the page also builds in (lib/hadithWords.js). Pure but for that one read.
+data/hadith/chain.json, which the page also builds in (lib/hadith/hadithWords.js). Pure but for that one read.
 """
 from __future__ import annotations
 

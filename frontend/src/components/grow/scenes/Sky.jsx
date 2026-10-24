@@ -1,6 +1,6 @@
 /** The Quran world's picture, The Night Sky: a constellation per surah, a star per ayah, bright once known. */
-import { starsOf } from '../../../lib/sky'
-import { sayIn } from '../../../lib/say'
+import { starsOf } from '../../../lib/grow/sky'
+import { sayIn } from '../../../lib/text/say'
 import ArabicText from '../../ui/ArabicText'
 
 const say = sayIn('en')

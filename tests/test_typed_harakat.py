@@ -4,8 +4,8 @@ Each test pairs the case that fires with the nearest one that must not, since
 the parser is fed letters only and the same links come back for both.
 """
 
-from backend.services import harakat
-from backend.services.syntax import tree
+from backend.services.text import harakat
+from backend.services.nahw.syntax import tree
 from tests.test_naming import named, roles, token
 from tests.test_syntax_tree import built
 
@@ -137,7 +137,7 @@ def test_a_command_moved_to_kasra_is_still_built_on_the_sukun():
 
 
 def test_the_light_lakin_joins_and_the_shadda_one_is_the_inna_sister():
-    from backend.services.syntax.facts import is_light
+    from backend.services.nahw.syntax.facts import is_light
     assert is_light({"typed": "لَكِنْ"})
     assert is_light({"typed": "لَكِنِ"})  # the sukun moved to a kasra before ال
     assert not is_light({"typed": "لَكِنَّ"})
@@ -145,8 +145,8 @@ def test_the_light_lakin_joins_and_the_shadda_one_is_the_inna_sister():
 
 
 def test_the_six_nouns_show_their_case_by_a_letter():
-    from backend.services.syntax.facts import typed_case_of
-    from backend.services.arabic_text import strip_diacritics
+    from backend.services.nahw.syntax.facts import typed_case_of
+    from backend.services.text.arabic_text import strip_diacritics
     # the parser's base word: the typed letters less the attached pronoun's
     six = lambda typed, lemma="أب", stuck_on=0: typed_case_of(
         {"typed": typed, "lemma": lemma, "stuck_on": stuck_on,
@@ -167,7 +167,7 @@ def test_a_word_before_its_noun_is_no_sifa():
 
 
 def test_a_noun_sharing_a_verbs_lemma_governs_nothing():
-    from backend.services.syntax.facts import Sentence
+    from backend.services.nahw.syntax.facts import Sentence
     noun = token(2, "علم", "علم", "NOM", 1, "OBJ", stt="c", cas="a")
     verb = token(1, "علمت", "علم", "VRB", 0, "---", **VERB)
     second = token(3, "نافعا", "نافع", "NOM", 1, "MOD", stt="i", cas="a")

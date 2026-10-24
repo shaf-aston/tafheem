@@ -1,4 +1,4 @@
-import { verbClass } from '../../lib/verbClass'
+import { verbClass } from '../../lib/sarf/verbClass'
 
 import { Skeleton } from '../ui/Skeleton'
 import SourceBadge from '../ui/SourceBadge'

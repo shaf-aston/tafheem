@@ -1,5 +1,5 @@
-import { recitedForm } from '../../lib/arabicText'
-import { isRight } from '../../lib/memorise'
+import { recitedForm } from '../../lib/text/arabicText'
+import { isRight } from '../../lib/memorise/memorise'
 
 import ArabicText from '../ui/ArabicText'
 import WheelPicker from '../ui/WheelPicker'

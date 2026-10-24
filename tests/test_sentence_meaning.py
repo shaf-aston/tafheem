@@ -11,8 +11,12 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import ai, iraab, morphology, progress_store, sentence_meaning
-from backend.services import quran_search
+from backend.services import ai
+from backend.services.nahw import iraab
+from backend.services.sarf import morphology
+from backend.services.learner import progress_store
+from backend.services.dictionary import sentence_meaning
+from backend.services.quran import search as quran_search
 
 
 def _word(word, pos, state="na", gloss=""):
@@ -130,6 +134,6 @@ def test_an_ayah_slice_stands_on_its_own(cut, shown) -> None:
 
 
 def test_words_with_no_arabic_are_named_not_dropped() -> None:
-    from backend.services.arabic_text import not_arabic, words
+    from backend.services.text.arabic_text import not_arabic, words
     typed = "x كتاب hello، ١٢ ۖ"
     assert words(typed) == ["كتاب"] and not_arabic(typed) == ["x", "hello"]

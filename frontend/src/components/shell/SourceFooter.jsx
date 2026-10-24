@@ -23,8 +23,8 @@
  * source can be trusted, in the same colours the badges beside answers use, so
  * the list says something a run of names could not.
  */
-import { levelOf } from '../../lib/confidence'
-import { sourcesFor, useSources } from '../../lib/useSources'
+import { levelOf } from '../../lib/text/confidence'
+import { sourcesFor, useSources } from '../../lib/api/useSources'
 
 export default function SourceFooter({ tab, offline, onSeeAll }) {
   const { sources, isPending, isError } = useSources()
@@ -60,7 +60,7 @@ export default function SourceFooter({ tab, offline, onSeeAll }) {
     // columns as the width allows, so every name starts on the same line and
     // no column begins with a label instead of a source. See-all ends it.
     <div className="space-y-2">
-      <h2 className="type-micro uppercase tracking-[0.14em] text-[var(--text-faint)] leading-relaxed">
+      <h2 className="eyebrow text-[var(--text-faint)] leading-relaxed">
         References
       </h2>
       <ul className="grid gap-x-6 gap-y-1 [grid-template-columns:repeat(auto-fill,minmax(11rem,1fr))]">

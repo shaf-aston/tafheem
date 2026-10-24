@@ -1,10 +1,10 @@
 /**
  * "Your Arabic": the learner's level as a three-way choice, in Settings, the profile and the sign-up sheet. Free to
- * change until the answers settle it (lib/learnerLevel.js); then it shows the level and the answers that set it.
+ * change until the answers settle it (lib/learner/learnerLevel.js); then it shows the level and the answers that set it.
  */
-import { fill } from '../../lib/homeCopy'
-import { LEVEL_COPY, LEVELS, levelOf } from '../../lib/learnerLevel'
-import { useLearnerLevel } from '../../lib/useLearnerLevel'
+import { fill } from '../../lib/shell/homeCopy'
+import { LEVEL_COPY, LEVELS, levelOf } from '../../lib/learner/learnerLevel'
+import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
 import Segmented from '../ui/Segmented'
 
 const OPTIONS = LEVELS.map((level) => ({ id: level.id, label: level.label }))

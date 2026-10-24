@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 
 from backend.models.common import Source
 from backend.models.tarkeeb import TarkeebTree
-from backend.services.arabic_text import shown_root
+from backend.services.text.arabic_text import shown_root
 
 
 # Trust-boundary caps: user text flows into LLM prompts and NLP engines, 
@@ -34,7 +34,7 @@ ROLE_KEYS = frozenset({
 })
 
 
-# Every word type a card can carry, as frontend/src/grammar.json `types` names them
+# Every word type a card can carry, as frontend/src/config/grammar.json `types` names them
 # (punc is the one the page never labels). tests/test_rule_engine.py holds the two together.
 WORD_TYPES = frozenset({"ism", "fi'l", "harf", "damir", "zarf", "punc"})
 

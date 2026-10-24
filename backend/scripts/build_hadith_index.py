@@ -22,7 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services import spelling  # noqa: E402
+from backend.services.text import spelling  # noqa: E402
 from backend.services.hadith import words  # noqa: E402
 from backend.services.hadith.chain import chain_of  # noqa: E402
 from backend.services.hadith.lemma import lemma  # noqa: E402
@@ -75,7 +75,7 @@ CREATE TABLE word (
 ) WITHOUT ROWID;
 
 -- Each word, and each word with one letter dropped, so a misspelling finds the
--- words one slip from it (or a doubled long vowel off) by plain lookup (services/spelling.py).
+-- words one slip from it (or a doubled long vowel off) by plain lookup (services/text/spelling.py).
 CREATE TABLE deletion (
     variant  TEXT NOT NULL,
     spelling TEXT NOT NULL,

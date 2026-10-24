@@ -4,7 +4,7 @@
  * Dragging only previews (onPreview), so the map and the bar follow the finger
  * while the reader below stays put; letting go opens the nearest event
  * (onPick). Arrow keys, Home and End, and the two buttons open the next event
- * at once. Where each event sits, and the year marks, are lib/timeline/time's.
+ * at once. Where each event sits, and the year marks, are lib/timelines/time's.
  *
  * A dated section can be spread by true years or evenly, remembered; the
  * others are even only, so the choice is not offered. A phone is even only:
@@ -17,10 +17,10 @@ import { useState } from 'react'
 
 import Segmented from '../ui/Segmented'
 import SmallButton from '../ui/SmallButton'
-import settings from '../../timelines.json'
-import { nearest, positions, scaleModes, yearTicks } from '../../lib/timeline/time'
-import { useMedia, PHONE } from '../../lib/useMedia'
-import { useRemembered } from '../../lib/useRemembered'
+import settings from '../../config/timelines.json'
+import { nearest, positions, scaleModes, yearTicks } from '../../lib/timelines/time'
+import { useMedia, PHONE } from '../../lib/hooks/useMedia'
+import { useRemembered } from '../../lib/store/useRemembered'
 
 const { scrub: SCRUB } = settings
 // The range input's resolution: fine enough that a drag feels continuous.

@@ -7,8 +7,8 @@
  */
 import { useEffect, useRef } from 'react'
 
-import { caseLabel } from '../../lib/grammarTerms'
-import { roleVar } from '../../lib/roleColors'
+import { caseLabel } from '../../lib/nahw/grammarTerms'
+import { roleVar } from '../../lib/nahw/roleColors'
 import ArabicText from '../ui/ArabicText'
 import CloseButton from '../ui/CloseButton'
 

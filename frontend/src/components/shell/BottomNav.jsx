@@ -1,11 +1,11 @@
 /**
- * The phone's tab bar: the reader's dock (lib/dock.js) plus More, pinned where the
+ * The phone's tab bar: the reader's dock (lib/nav/dock.js) plus More, pinned where the
  * thumb rests. Phones only; a wider screen keeps the TabStrip in the header.
  * Draws the registry, decides nothing, like TabStrip. Holding the current tab
  * opens its jump fan (lib/jumpFan.js).
  */
-import { JUMPS, useJumpFan } from '../../lib/jumpFan'
-import { ahead } from '../../lib/warm'
+import { JUMPS, useJumpFan } from '../../lib/shell/jumpFan'
+import { ahead } from '../../lib/api/warm'
 
 import MoreIcon from '../ui/MoreIcon'
 import TabMark from '../ui/TabMark'

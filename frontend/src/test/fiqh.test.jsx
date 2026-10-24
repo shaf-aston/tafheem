@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import GrowPanel from '../components/GrowPanel'
+import GrowPanel from '../components/grow/GrowPanel'
 
 const click = (name) => fireEvent.click(screen.getByRole('button', { name }))
 const option = (name) => screen.getByRole('radio', { name })

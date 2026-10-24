@@ -1,4 +1,4 @@
-"""The indexed word a misspelt one was meant to be (the rule: services/spelling.py).
+"""The indexed word a misspelt one was meant to be (the rule: services/text/spelling.py).
 
 Candidates come from the index's `deletion` table (each indexed word, and it
 with one letter dropped), the stored form of spelling.Vocabulary's filing, so
@@ -13,7 +13,7 @@ from __future__ import annotations
 import sqlite3
 
 from backend.config import get_settings
-from backend.services import spelling
+from backend.services.text import spelling
 from backend.services.hadith import loader
 
 

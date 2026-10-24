@@ -49,7 +49,7 @@
 }
 
 
-/* Qur'an text, flagged by ArabicText and the tarkeeb diagram (lib/arabicText
+/* Qur'an text, flagged by ArabicText and the tarkeeb diagram (lib/text/arabicText
    isQuranic). The face itself, not the token: a diagram word inherits its
    container's already-resolved font, so a token swap there changes nothing.
    A flag on a line or passage reaches every Arabic word inside it: judged word

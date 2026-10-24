@@ -8,17 +8,17 @@
  *
  * A look is the groups as written with a named theme's overrides laid over,
  * key by key, except the toned groups (palette, pbs), which each look tones for its own grounds
- * (lib/tone.js). Switching looks rewrites the same variables on :root, so
+ * (lib/theme/tone.js). Switching looks rewrites the same variables on :root, so
  * nothing downstream knows there is more than one.
  */
-import theme from './theme.json'
-import { tonePalette } from './lib/tone'
-import { colorScheme } from './lib/colorScheme'
+import theme from './config/theme.json'
+import { tonePalette } from './lib/theme/tone'
+import { colorScheme } from './lib/theme/colorScheme'
 
 const UNPREFIXED_GROUP = 'color'
 const PRIVATE_KEY = '_'
 const PALETTE_GROUP = 'palette'
-/** Groups whose colours each look tones (lib/tone.js); their other keys pass through. */
+/** Groups whose colours each look tones (lib/theme/tone.js); their other keys pass through. */
 const TONED_GROUPS = [PALETTE_GROUP, 'pbs']
 const isColor = (value) => typeof value === 'string' && value.startsWith('#')
 const THEMES_GROUP = 'themes'

@@ -16,9 +16,9 @@ import { useQueryClient } from '@tanstack/react-query'
 import ArabicText from '../ui/ArabicText'
 import TileCard from './TileCard'
 import { asbabQuery } from '../../api'
-import { useRail } from '../../lib/useRail'
-import { onHover } from '../../lib/warm'
-import { NO_DATE, eventIcon, isDated, sectionLook } from '../../lib/timeline/look'
+import { useRail } from '../../lib/motion/useRail'
+import { onHover } from '../../lib/api/warm'
+import { NO_DATE, eventIcon, isDated, sectionLook } from '../../lib/timelines/look'
 
 const WEAK = 'weakchain'
 

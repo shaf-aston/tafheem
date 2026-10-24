@@ -16,7 +16,7 @@ import json
 
 import pytest
 
-from backend.services import dictionary_service as service
+from backend.services.dictionary import service
 
 
 @pytest.fixture

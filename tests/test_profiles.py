@@ -15,8 +15,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import progress_store
-from backend.services.username import clean_name
+from backend.services.learner import progress_store
+from backend.services.learner.username import clean_name
 
 client = TestClient(app)
 

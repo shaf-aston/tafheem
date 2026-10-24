@@ -11,5 +11,5 @@
  * retry, and the two must not look alike.
  */
 export default function EmptyState({ children }) {
-  return <p className="text-sm text-[var(--text-dim)] text-center py-8">{children}</p>
+  return <p className="type-ui text-[var(--text-dim)] text-center py-8">{children}</p>
 }

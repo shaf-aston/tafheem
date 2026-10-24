@@ -7,7 +7,7 @@ misspelt word still shares most of them with the word meant.
 """
 from __future__ import annotations
 
-from backend.services import fts
+from backend.services.text import fts
 
 from backend.services.daleel.match.words import PROCLITIC_AT_START, WORDS
 

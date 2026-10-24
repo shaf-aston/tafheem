@@ -12,9 +12,9 @@
  * each a tap to his page. A search that only names a collection ("bukhari") opens it.
  */
 import { searchHadith } from '../../api'
-import { useHadithCollections } from '../../lib/useHadithCollections'
-import { useNarratorMatches } from '../../lib/useNarrators'
-import { useSearch } from '../../lib/useSearch'
+import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
+import { useNarratorMatches } from '../../lib/hadith/useNarrators'
+import { useSearch } from '../../lib/hooks/useSearch'
 
 import Chip from '../ui/Chip'
 import ChipRow from '../ui/ChipRow'
@@ -54,6 +54,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
       <SearchBox
         id="hadith-search-input"
         label="Arabic or English"
+        verb="search"
         placeholder="patience, الصبر…"
         value={query}
         onChange={setQuery}

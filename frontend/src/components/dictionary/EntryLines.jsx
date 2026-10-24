@@ -11,8 +11,8 @@
  */
 import { useCallback, useState } from 'react'
 
-import { entryLines } from '../../lib/entryLines'
-import { useRememberedFlag } from '../../lib/useRemembered'
+import { entryLines } from '../../lib/dictionary/entryLines'
+import { useRememberedFlag } from '../../lib/store/useRemembered'
 
 import { Line } from './EntryArabic'
 import SmallButton from '../ui/SmallButton'

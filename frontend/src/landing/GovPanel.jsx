@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 
-import { arc } from '../lib/govArc'
-import { roleVar } from '../lib/roleColors'
+import { arc } from '../lib/nahw/govArc'
+import { roleVar } from '../lib/nahw/roleColors'
 import { DEMO_WORDS, GOVERNS } from './storyData.js'
 
 const clamp = (v) => Math.max(0, Math.min(1, v))

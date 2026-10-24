@@ -19,7 +19,7 @@ import { forwardRef, useState } from 'react'
 
 const TONE = {
   quiet: 'type-small text-[var(--text-faint)] hover:text-[var(--text)]',
-  strong: 'text-sm font-medium text-[var(--text)] hover:text-[var(--text)]',
+  strong: 'type-ui font-medium text-[var(--text)] hover:text-[var(--text)]',
 }
 
 const Disclosure = forwardRef(function Disclosure(

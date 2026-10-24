@@ -4,7 +4,7 @@
 
 Quran.com has a recording of every Qur'an word on its own. A quiz word found in
 the Qur'an can therefore be spoken by a real reciter instead of a synthetic
-voice. lib/speak.js reads the output as a plain lookup, so all spelling logic
+voice. lib/speech/speak.js reads the output as a plain lookup, so all spelling logic
 lives here, once.
 
 Words come from quran.com's own word list (cached in

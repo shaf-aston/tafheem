@@ -5,10 +5,10 @@ from the frontend review. Paths are relative to `frontend/src`.
 
 ## User Flow
 
-open `/app/<tab>/<place>` → `lib/tabUrl.js` reads the path → `App.jsx` shows the tab
-→ the registry `lib/tabs.js` lazy-loads that tab's panel → the panel asks for data
+open `/app/<tab>/<place>` → `lib/nav/tabUrl.js` reads the path → `App.jsx` shows the tab
+→ the registry `lib/nav/tabs.js` lazy-loads that tab's panel → the panel asks for data
 through react-query → `api.js` → backend `/api`. Moving to another tab goes through
-the same `show()`, and `lib/journey.js` records it for back and forward. With no saved
+the same `show()`, and `lib/nav/journey.js` records it for back and forward. With no saved
 place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every tab from the registry.
 
 ## Core Parts
@@ -16,15 +16,39 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 | Layer | Part | Job |
 |---|---|---|
 | Entry | `App.jsx` (259 lines) | Shell: draws the header, the panels and the overlays; the logic is in the hooks it calls |
-| Entry | `lib/tabUrl.js`, `lib/journey.js` | Path URL ↔ tab, back/forward |
-| Core | `lib/tabs.js` | One registry: every tab, its label, icon, colour, panel |
-| Core | `components/home/HomePanel.jsx`, `lib/moduleTab.js` | Home: the first screen, one card per tab from the registry with the learner's progress, Continue, and the command line; `moduleTab` files a progress module under its tab |
+| Entry | `lib/nav/tabUrl.js`, `lib/nav/journey.js` | Path URL ↔ tab, back/forward |
+| Core | `lib/nav/tabs.js` | One registry: every tab, its label, icon, colour, panel |
+| Core | `components/home/HomePanel.jsx`, `lib/nav/moduleTab.js` | Home: the first screen, one card per tab from the registry with the learner's progress, Continue, and the command line; `moduleTab` files a progress module under its tab |
 | Core | Nav surfaces: `ui/TabStrip`, `ui/BottomNav`, `SectionsMenu`, `SpatialHome`, `CommandBar` | Five ways to move between tabs, all read the registry |
-| Core | `lib/useTabNavigation.js` over `lib/recent.js` (wide-screen strip) and `lib/dock.js` (phone bar) | Every way between tabs; which tabs each bar shows, one rule per screen (ADR-2) |
-| Core | Panels: `MemorisePanel` + `memorise/hooks.js`, `QuizPanel` + `QuizBoard` + `lib/useQuizRound.js`, `TarkeebDiagram`, … | The screens |
-| Data | `api.js`, `lib/quizBanks.js` | axios client, query keys shared by react-query |
+| Core | `lib/nav/useTabNavigation.js` over `lib/nav/recent.js` (wide-screen strip) and `lib/nav/dock.js` (phone bar) | Every way between tabs; which tabs each bar shows, one rule per screen (ADR-2) |
+| Core | Panels: `MemorisePanel` + `memorise/hooks.js`, `QuizPanel` + `QuizBoard` + `lib/quiz/useQuizRound.js`, `TarkeebDiagram`, … | The screens |
+| Data | `api.js`, `lib/quiz/quizBanks.js` | axios client, query keys shared by react-query |
 | Config | `theme.json` → `theme.js` → CSS variables; `settings.json` | Colours, Arabic size ladder, motion durations |
 | Style | `styles/motion.css` + per-feature CSS | Animations, 52 keyframes |
+
+## Folder Map
+
+`lib/` has no root files. Every folder is either a tab (same name as its
+`components/` folder) or one of nine shared folders. Finding a file: know the tab
+→ open its folder; shared by tabs → one of these.
+
+| Folder | Holds |
+|---|---|
+| `lib/nav/` | `tabs.js` registry, `tabUrl`, `journey`, `session`, `recent`/`dock` bar rules, `useTabNavigation`, shortcuts, command line, arrival |
+| `lib/api/` | `apiError`, `useHealth`, `useSources`, `warm` |
+| `lib/store/` | `stored` (localStorage), `settings`, `useRemembered`, `shelf` |
+| `lib/learner/` | `progress`, `profile`, `rewards`, `learnerLevel` and their hooks |
+| `lib/motion/` | `motion`, `useReveal`, `useTilt`, `useInView`, `useSwipe`, `scrollToEl`, `useRail`, `wheelFind` |
+| `lib/text/` | `arabicText`, `editDistance`, `shuffle`, `verse`, `say`, `confidence` |
+| `lib/speech/` | `speak`, `pronounce`, `microphone`, `dictation`, `soundalike` |
+| `lib/theme/` | `accent`, `colorScheme`, `tone` |
+| `lib/hooks/` | `useMedia`, `useModal`, `useMoment`, `useSlowPending`, `useSearch` |
+| `lib/<tab>/` | everything only that tab uses, e.g. `lib/quiz/useQuizRound.js`, `lib/nahw/govArc.js` |
+
+`components/ui/` is the kit (buttons, chips, `SearchBox`, `SectionHeader`,
+`Disclosure`, …). Text sizes come from `type-*` classes (`config/theme.json`
+→ `styles/text.css`); `eyebrow` is the one small caps label. A panel never
+sets `text-xs`/`text-sm` of its own.
 
 ## Visual Architecture
 
@@ -113,7 +137,7 @@ always draws every row.
    floor it scrolls as it does today.
 1. Fold deep levels: show only the top N rows of names (N in `theme.json`); the
    folded lower rows open from a "▸ more" chip. The open/closed state sits in
-   `lib/useTarkeebView.js` next to split/merged and maximise.
+   `lib/nahw/useTarkeebView.js` next to split/merged and maximise.
 2. Unit tests in `tarkeebLayout.test.js` for the fold (levels count from the
    leaves, so "deep" is measured from `levels.length`).
 
@@ -121,7 +145,7 @@ always draws every row.
 
 Status: Quiz done (steps 0 and 1). `QuizPanel` is 184 lines (was 510): it joins
 `useQuizSetup`, `useQuizQuestion`, `useQuizRound` and `useQuizScore` and draws
-the page; the setup line is `quiz/QuizSetup`, the note is `lib/quizNote` (tested).
+the page; the setup line is `quiz/QuizSetup`, the note is `lib/quiz/quizNote` (tested).
 Memorise step 2 done: `MemorisePanel.jsx` is 322 lines (was 621); `Line`, `Gap`,
 `RecitedWord` and `SimilarCards` are each their own file in `memorise/`. Lint
 does not catch a JSX component left unimported, so the move was checked by
@@ -130,7 +154,7 @@ Pick from 4, Recite, Check) on old and new code. Step 3: `hooks.test.jsx` covers
 `useGaps`, `useBookPage`, `useAnswers` and `useHowYouAnswer`; `hooks.js` stays one
 file (454 lines, every hook tested), since splitting it now buys nothing.
 Sarf done: `SarfPanel.jsx` is 76 lines (was 551); the word, the three requests
-and the table they add up to are `lib/useSarf`, and the result, gardaan, cards
+and the table they add up to are `lib/sarf/useSarf`, and the result, gardaan, cards
 and titles are each their own file in `sarf/`. `test/sarf.test.jsx` types a
 word and finds its root and its table cell.
 
@@ -141,7 +165,7 @@ draws; `useSurahReading` holds the text, glosses, translation and recitation,
 and `test/quranReader.test.jsx` steps a surah and swaps the translation.
 
 Tamreen practise split: `TamreenPractise.jsx` is 191 lines (was 456) and only
-draws; its state and effects are `lib/useTamreenPractise`, and the option list,
+draws; its state and effects are `lib/nahw/useTamreenPractise`, and the option list,
 grid, rule and sentence questions are their own files in `nahw/tamreen/`. Checked by
 the same tag scan and a line-by-line diff; `test/tamreen.test.jsx` answers two.
 
@@ -163,12 +187,12 @@ screens.
 Re-read before building, the plan changed. The surfaces are not five ways to do
 one job: the strip is the wide screen's bar, the bottom bar is the phone's, All
 sections is the one list (and where the phone bar is arranged), and the header
-search and the launcher share `useCommandLine`. Every one reads `lib/tabs.js`.
+search and the launcher share `useCommandLine`. Every one reads `lib/nav/tabs.js`.
 What was tangled was the code behind them, all inside `App.jsx`.
 
-Status: done. `lib/useTabNavigation` owns every way between tabs (active, kept
+Status: done. `lib/nav/useTabNavigation` owns every way between tabs (active, kept
 alive, hand-offs, back arrow, number keys, strip, dock, the practice report for
-the pen); `lib/useTools` the tools' armed and done looks; `shell/StatusPill` and
+the pen); `lib/nav/useTools` the tools' armed and done looks; `shell/StatusPill` and
 `shell/BackendBanner` (which owns its own dismissal) moved out. `App.jsx` is 259
 lines (was 435) and only draws. `src/test/app.test.jsx` opens the whole app and
 switches tab. The same Playwright run of every shell action gives the same

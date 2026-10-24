@@ -11,11 +11,11 @@ class Source(BaseModel):
     answer so the UI never shows a claim without saying who made it."""
     key: str
     label: str
-    confidence: str   # verified | derived | translated | guessed, see lib/confidence.js
+    confidence: str   # verified | derived | translated | guessed, see lib/text/confidence.js
     detail: str
 
 
 class Correction(BaseModel):
-    """A typed word the search did not know, and the known word searched in its place (services/spelling.py)."""
+    """A typed word the search did not know, and the known word searched in its place (services/text/spelling.py)."""
     typed: str
     used: str

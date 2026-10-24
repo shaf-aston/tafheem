@@ -40,7 +40,7 @@ The only model kept on the live path is listening to recitation, where the input
 
 ## Why this is trustworthy
 
-1. **Facts** carry their source (already true: `services/provenance.py`).
+1. **Facts** carry their source (already true: `services/core/provenance.py`).
 2. **Rules** carry the rule id and book page (already true: walker → `naming_tree.json` page).
 3. **Words** (AI) get a *proof object* and must return text whose every term is in that proof.
    A whitelist checker enforces it. A failed check falls back to the plain template. AI can make an

@@ -11,8 +11,9 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import morphology, sentence_meaning
-from backend.services.harakat import NO_ANALYSIS
+from backend.services.sarf import morphology
+from backend.services.dictionary import sentence_meaning
+from backend.services.text.harakat import NO_ANALYSIS
 from tests.nahw_helpers import cards, needs_parser
 
 # What CAMeL lists for إن, likeliest first: أَنَّ comes before both readings spelled إن.
@@ -84,7 +85,7 @@ def test_lamma_before_a_past_verb_is_read_as_lamma() -> None:
     ("عما", "ما"), ("كلما", "ما"),  # joined letters the book has no word for: the ما stands
 ])
 def test_a_word_is_the_books_word_it_is_written_as(written, word) -> None:
-    from backend.services.syntax import particles
+    from backend.services.nahw.syntax import particles
     assert particles._lemma({"lemma": "ما", "form": written}) == word
 
 
@@ -96,6 +97,7 @@ def test_no_word_shows_camels_mark_as_english() -> None:
 @pytest.mark.skipif(not morphology._CAMEL_AVAILABLE, reason="CAMeL data not installed")
 def test_a_lone_words_meaning_is_its_own_not_its_joined_letters(monkeypatch) -> None:
     """The Sarf page's meaning, when the dictionary has none: وَكَتَبَ means "write", not "and"."""
-    from backend.services import dictionary_service, sarf_word
+    from backend.services.dictionary import service as dictionary_service
+    from backend.services.sarf import answer as sarf_word
     monkeypatch.setattr(dictionary_service, "meaning_of", lambda word: None)
     assert "write" in sarf_word.analyze("وَكَتَبَ", None).meaning

@@ -1,4 +1,4 @@
-"""services/roots.py: one answer to "what is this word's root?" for every tab.
+"""services/dictionary/roots.py: one answer to "what is this word's root?" for every tab.
 
 Five places used to answer it, each its own way, and قالوا had a root in none:
 CAMeL writes ق#ل for it and the app threw that away, so Sarf had no table for
@@ -14,7 +14,13 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import create_app
-from backend.services import arabic_text, dictionary_service, morphology, nahw_book, quran_corpus, roots, sarf_word
+from backend.services.text import arabic_text
+from backend.services.dictionary import service as dictionary_service
+from backend.services.sarf import morphology
+from backend.services.nahw import book as nahw_book
+from backend.services.quran import corpus as quran_corpus
+from backend.services.dictionary import roots
+from backend.services.sarf import answer as sarf_word
 from backend.services.daleel.query.lexicon import DictionaryLexicon
 
 

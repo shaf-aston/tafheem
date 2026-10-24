@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from functools import lru_cache
 
-from backend.services.arabic_text import bare_letters
+from backend.services.text.arabic_text import bare_letters
 
 # A grade is split on spaces; what is left of a word once these are off is its letters.
 _EDGE = "،؛؟.,:;()[]«»\"'"

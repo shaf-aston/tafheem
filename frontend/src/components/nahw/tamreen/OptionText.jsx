@@ -1,4 +1,4 @@
-import { labelOf } from '../../../lib/tamreen'
+import { labelOf } from '../../../lib/nahw/tamreen'
 
 import ArabicText from '../../ui/ArabicText'
 

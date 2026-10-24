@@ -6,7 +6,7 @@
  * waits behind its book's name. The server sends only what the books hold, so a
  * narrator they do not mention gets no empty group, and none while usul.db is not built.
  */
-import HADITH from '../../hadith.json'
+import HADITH from '../../config/hadith.json'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'

@@ -24,7 +24,7 @@ from backend.config import get_settings
 from backend.services import speech
 
 COURSE = Path(__file__).resolve().parents[1] / "data" / "colloquial"
-# The quiz's files, as the page loads them (frontend lib/speak.js and QuizExample.jsx).
+# The quiz's files, as the page loads them (frontend lib/speech/speak.js and QuizExample.jsx).
 WORDS = Path(__file__).resolve().parents[2] / "frontend" / "public" / "words"
 
 
@@ -58,7 +58,7 @@ def said() -> list[tuple[str, str | None]]:
             found.add((speech.tidy(word["ar"]), None))
     for arabic, _english in json.loads((WORDS / "sentences.json").read_text(encoding="utf-8"))["sentences"].values():
         found.add((speech.tidy(spoken_sentence(arabic)), None))
-    # Whatever a reciter says (lib/speak.js tries recordings first, with no accent) never reaches this voice.
+    # Whatever a reciter says (lib/speech/speak.js tries recordings first, with no accent) never reaches this voice.
     found = {(text, voice) for text, voice in found if voice or text not in recorded}
     return sorted((pair for pair in found if pair[0] and len(pair[0]) <= get_settings().speech_max_chars), key=lambda p: (p[0], p[1] or ""))
 

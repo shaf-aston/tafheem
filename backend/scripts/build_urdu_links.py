@@ -47,7 +47,7 @@ import httpx
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from backend.services.arabic_text import strip_diacritics  # noqa: E402
+from backend.services.text.arabic_text import strip_diacritics  # noqa: E402
 
 DATA = Path(__file__).parent.parent / "data"
 ARABIC_DUMP = DATA / "wiktionary-arabic.jsonl"

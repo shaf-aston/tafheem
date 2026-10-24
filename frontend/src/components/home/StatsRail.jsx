@@ -2,17 +2,17 @@
  * Home's progress column on a wide screen: the few figures that say how you are
  * doing (level, streak, words learnt, how much of the Qur'an, answers) and the
  * top of the ranking, with the way into the full profile. Figures from
- * lib/useProgressFacts, the same the profile shows; words from home.json `stats`.
+ * lib/learner/useProgressFacts, the same the profile shows; words from home.json `stats`.
  */
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { fill } from '../../lib/homeCopy'
-import { fetchLeaderboard } from '../../lib/progress'
-import { rankOf, shareOf } from '../../lib/rewards'
-import { useProgressFacts } from '../../lib/useProgressFacts'
+import { fill } from '../../lib/shell/homeCopy'
+import { fetchLeaderboard } from '../../lib/learner/progress'
+import { rankOf, shareOf } from '../../lib/learner/rewards'
+import { useProgressFacts } from '../../lib/learner/useProgressFacts'
 import { colorFor } from '../../theme'
-import knobs from '../../home.json'
+import knobs from '../../config/home.json'
 
 import LogInButton from '../profile/LogInButton'
 import ProfileDialog from '../profile/ProfileDialog'

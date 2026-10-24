@@ -21,7 +21,7 @@ import numpy as np
 
 from backend.config import data_path, get_settings
 from backend.services.recitation.listen import NotInstalled, engine_lock
-from backend.services.timing import timed
+from backend.services.core.timing import timed
 
 log = logging.getLogger(__name__)
 

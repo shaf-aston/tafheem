@@ -6,11 +6,11 @@
  */
 import { useEffect, useEffectEvent, useState } from 'react'
 
-import config from '../../worlds.json'
+import config from '../../config/worlds.json'
 import { colorFor } from '../../theme'
-import { getProfile } from '../../lib/profile'
-import { useBasicsWorld } from '../../lib/useBasicsWorld'
-import { useRewards } from '../../lib/useRewards'
+import { getProfile } from '../../lib/learner/profile'
+import { useBasicsWorld } from '../../lib/grow/useBasicsWorld'
+import { useRewards } from '../../lib/learner/useRewards'
 import LessonRunner from '../grow/LessonRunner'
 import EmptyState from '../ui/EmptyState'
 import ErrorAlert from '../ui/ErrorAlert'

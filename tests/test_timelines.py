@@ -13,7 +13,8 @@ from fastapi.testclient import TestClient
 
 from backend.config import data_path
 from backend.main import app
-from backend.services import asbab, timelines
+from backend.services import timelines
+from backend.services.quran import asbab
 
 LIBRARY = {
     "sciences": [{"key": "seerah", "name": "Seerah", "arabic": "السيرة"}],

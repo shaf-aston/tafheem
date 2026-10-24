@@ -7,7 +7,7 @@
  *
  * An entry from a build that kept no lines (`blocks` empty) shows its plain text.
  */
-import { withoutButton } from '../../lib/rijal'
+import { withoutButton } from '../../lib/hadith/rijal'
 
 import ArabicText from '../ui/ArabicText'
 

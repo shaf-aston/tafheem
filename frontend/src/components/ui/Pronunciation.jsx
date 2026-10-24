@@ -21,7 +21,7 @@
  * something a reader sounds out; a grid card, which packs many words into a
  * line, keeps the label size.
  */
-import { plainPronunciation } from '../../lib/pronounce'
+import { plainPronunciation } from '../../lib/speech/pronounce'
 
 const SIZES = { small: 'type-small', body: 'type-body' }
 

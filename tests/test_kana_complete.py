@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services.nahw_book import book_spelling, is_one
+from backend.services.nahw.book import book_spelling, is_one
 from tests.nahw_helpers import cards, needs_parser
 
 

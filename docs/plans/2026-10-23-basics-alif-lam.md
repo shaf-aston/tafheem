@@ -15,7 +15,7 @@ Who: someone brand new to Arabic. They may read the letters slowly, or barely. T
 | R5 | Every answer, right or wrong, shows the correct form and why | the `choose` kind's `why` is set on every card |
 | R6 | Progress, review and stages reuse the existing engine (server FSRS record, requeue, XP) | no new scheduler; `useLessonWorld` config only |
 | R7 | No Qur'an or hadith text passes through this | words come only from `public/grow/basics.json` |
-| R8 | Logic proven by mutation testing | Stryker on `lib/alifLam.js`: score ≥ 80% |
+| R8 | Logic proven by mutation testing | Stryker on `lib/grow/alifLam.js`: score ≥ 80% |
 | R9 | Fits 375 px wide; axe shows no serious or critical issues; works RTL | Playwright + axe on Home's first visit and on a lesson |
 
 ## 2 · Research (summary; sources in the two research reports)
@@ -48,7 +48,7 @@ Who: someone brand new to Arabic. They may read the letters slowly, or barely. T
 
 | | Speed (to value) | Quality | UX | Maintainable | Novelty | Σ |
 |---|---|---|---|---|---|---|
-| **A · "Basics" lessons world in Grow + a fork on Home's first visit**: pure `lib/alifLam.js` builds the cards, the existing engine runs them | 4 | 4: pure generator, mutation-tested | 3: reuses Grow's look; own colour, emblem, teach cards | 4: one config hook + one pure module | 2 | **17** |
+| **A · "Basics" lessons world in Grow + a fork on Home's first visit**: pure `lib/grow/alifLam.js` builds the cards, the existing engine runs them | 4 | 4: pure generator, mutation-tested | 3: reuses Grow's look; own colour, emblem, teach cards | 4: one config hook + one pure module | 2 | **17** |
 | B · Its own "Beginner" tab, with its own runner and a Leitner box in localStorage | 1 | 3 | 4: a fully separate feel; guest record kept on the device | 1: a second lesson engine, scheduler and XP path | 3 | 12 |
 | C · A `book` world of hand-written choose cards | 3: no code | 2: distractors typed by hand per word, drift | 3 | 2: 2 × N cards to keep in sync | 0 | 10 |
 
@@ -77,7 +77,7 @@ worlds.json ★ entry · theme.json ★ world colour · Emblem ★ art 'basics' 
 ```
 Every ★ maps up to one Level 2 box (the SPA). There are no new containers.
 
-### Level 4 · Contracts (`frontend/src/lib/alifLam.js`, pure, no React)
+### Level 4 · Contracts (`frontend/src/lib/grow/alifLam.js`, pure, no React)
 
 ```js
 SUN_LETTERS: Set<string>                 // ت ث د ذ ر ز س ش ص ض ط ظ ل ن

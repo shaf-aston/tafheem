@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { keepPreviousData } from '@tanstack/react-query'
 
-import { profileHeaders } from './lib/profile'
+import { profileHeaders } from './lib/learner/profile'
 
 export const api = axios.create({
   baseURL: '/api',
@@ -336,7 +336,7 @@ export const daleelBooksQuery = {
 // known to be out of date before it comes back, and on this machine waiting
 // for it costs the seconds it takes to read.
 // `reading` names this one request, as `X-Reading-Id`, so the server's own
-// log and lib/journal.js's trail can be lined up on the same reading.
+// log and lib/recite/journal.js's trail can be lined up on the same reading.
 // Every recording goes to the server this one way. `trial` is sent only when on,
 // so a server without a trial model never sees the word.
 const postRecording = (path, recording, params, { trial, signal, reading } = {}) => {
@@ -353,7 +353,7 @@ export const listen = (recording, { match = false, recite = false, fusha = true,
 // How sure the ear is of each word of `check`'s ayahs (as "1:1"), scored from
 // the same recording `listen` already wrote `heard` down from. Its own request
 // so a slow score never holds back the words a reciter is already reading by;
-// see lib/recitingSession.js for how the two are paced against each other.
+// see lib/recite/recitingSession.js for how the two are paced against each other.
 export const checkReading = (recording, { heard = '', check = [], ...how } = {}) =>
   postRecording('/listen/check', recording, { heard, check: check.join(',') }, how)
 
@@ -363,13 +363,13 @@ export const checkReading = (recording, { heard = '', check = [], ...how } = {})
 export const checkText = (recording, { heard = '', expected = '', ...how } = {}) =>
   postRecording('/listen/check-text', recording, { heard, expected }, how)
 
-// Where lib/journal.js's trail of reciting events goes. Its own constant
+// Where lib/recite/journal.js's trail of reciting events goes. Its own constant
 // because sendBeacon cannot go through axios and needs the full path, not
 // just what api.post's baseURL would fill in.
 export const JOURNAL_PATH = '/api/journal'
 
 // A batch of what reciting did. 204 back, nothing to read, so nothing chains
-// off it; lib/journal.js only cares whether the call threw.
+// off it; lib/recite/journal.js only cares whether the call threw.
 export const postJournal = (events) => api.post('/journal', { events })
 
 // The spoken dialects with their unit and lesson titles, and nothing else: the

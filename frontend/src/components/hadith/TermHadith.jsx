@@ -6,7 +6,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { usulTermQuery } from '../../api'
-import { useHadithCollections } from '../../lib/useHadithCollections'
+import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
 
 import Chip from '../ui/Chip'
 import ChipRow from '../ui/ChipRow'

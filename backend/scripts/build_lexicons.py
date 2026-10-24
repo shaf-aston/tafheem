@@ -77,9 +77,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from backend.services import markup  # noqa: E402
-from backend.services.arabic_text import normalize_root  # noqa: E402
-from backend.services.root_meaning import read_fold  # noqa: E402
+from backend.services.text import markup  # noqa: E402
+from backend.services.text.arabic_text import normalize_root  # noqa: E402
+from backend.services.dictionary.root_meaning import read_fold  # noqa: E402
 
 _BACKEND = Path(__file__).resolve().parents[1]
 _OPENITI = Path(r"C:\Users\Shaf\Downloads\OpenITI-pri-data_v9")

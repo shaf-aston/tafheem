@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import conjugation
+from backend.services.sarf import conjugation
 from backend.services.sarf import word as W
 
 ROOTS = {3: "كرم", 4: "دحرج"}

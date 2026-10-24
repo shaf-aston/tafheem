@@ -51,7 +51,7 @@ import time
 import numpy as np
 
 from backend.config import confined, get_settings
-from backend.services.timing import timed
+from backend.services.core.timing import timed
 
 log = logging.getLogger(__name__)
 

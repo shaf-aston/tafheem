@@ -1,11 +1,11 @@
 /**
- * Hear this word. A small speaker icon; lib/speak.js picks the voice.
+ * Hear this word. A small speaker icon; lib/speech/speak.js picks the voice.
  */
-import { ahead } from '../../lib/warm'
+import { ahead } from '../../lib/api/warm'
 import { useEffect, useRef, useState } from 'react'
 
-import { useAccent } from '../../lib/accent'
-import { prepare, speak, stop } from '../../lib/speak'
+import { useAccent } from '../../lib/theme/accent'
+import { prepare, speak, stop } from '../../lib/speech/speak'
 
 // `ref` reaches the button itself, so a keyboard shortcut can press it; `shortcut`
 // names that key in the tooltip. `early` readies the voice on arrival, for a

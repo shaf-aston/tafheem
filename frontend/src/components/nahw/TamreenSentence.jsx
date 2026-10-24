@@ -3,7 +3,7 @@
  * underline for a possible حال, green for a possible ذو الحال. One definition
  * so Practise and Browse draw the same sentence the same way.
  */
-import { markedWords, sentenceLines } from '../../lib/tamreen'
+import { markedWords, sentenceLines } from '../../lib/nahw/tamreen'
 import ArabicText from '../ui/ArabicText'
 
 export function TamreenLegend() {

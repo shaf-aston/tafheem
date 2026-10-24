@@ -55,7 +55,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from backend.services.arabic_text import bare_letters  # noqa: E402
+from backend.services.text.arabic_text import bare_letters  # noqa: E402
 
 ROOT = Path(__file__).parent.parent.parent
 DATA = ROOT / "backend" / "data"
