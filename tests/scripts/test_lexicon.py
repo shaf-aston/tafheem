@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pytest
 
-from backend.scripts.build_lexicon import (
+from backend.scripts.quiz.build_lexicon import (
     ARABIC_LETTER,
     Lexicon,
     Word,
@@ -25,7 +25,7 @@ from backend.scripts.build_lexicon import (
     only_new_words,
     type_of,
 )
-from backend.scripts.export_quiz_words import already_taught, surah_counts
+from backend.scripts.quiz.export_quiz_words import already_taught, surah_counts
 
 
 @pytest.mark.parametrize(
@@ -155,7 +155,7 @@ def test_the_shipped_files_came_from_the_table_as_it_stands_now() -> None:
     shipped = json.loads(EXPORT.read_text("utf-8"))["builtFrom"]
     assert shipped == stored, (
         "frontend/public/words/ is from an older build of lexicon.db, "
-        "run: python backend/scripts/export_quiz_words.py"
+        "run: python backend/scripts/quiz/export_quiz_words.py"
     )
 
 

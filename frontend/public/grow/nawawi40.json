@@ -1,5 +1,5 @@
 {
- "_comment": "Built by backend/scripts/build_nawawi40.py. Do not edit by hand.",
+ "_comment": "Built by backend/scripts/grow/build_nawawi40.py. Do not edit by hand.",
  "source": {
   "name": "Forty Hadith of an-Nawawi",
   "url": "https://github.com/fawazahmed0/hadith-api"

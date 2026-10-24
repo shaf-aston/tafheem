@@ -140,4 +140,4 @@ Roles the tree can give:
 ## Checking a change
 
 - Unit tests: `tests/nahw/test_naming.py`, `tests/nahw/test_syntax_tree.py`, `tests/nahw/test_teacher.py`.
-- Live: `python -m backend.scripts.score_iraab --set probe --api URL --show 50` (50 keyed sentences, `backend/data/nahw_rules/probe_sentences.json`).
+- Live: `python -m backend.scripts.nahw.score_iraab --set probe --api URL --show 50` (50 keyed sentences, `backend/data/nahw_rules/probe_sentences.json`).

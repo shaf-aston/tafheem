@@ -29,7 +29,7 @@ backend/services/colloquial/             the reading
   loader.py         the files → the catalogue, a unit, a comparison
   wordlist.py       a topic's word ids → each dialect's Arabic
   exercises/        one file per exercise type + registry.py (the union the schema names)
-  wordcheck.py      is a word in an independent reference (scripts/check_colloquial_words.py)
+  wordcheck.py      is a word in an independent reference (scripts/colloquial/check_colloquial_words.py)
 backend/routers/colloquial.py            the routes, typed by schema.py
 
 frontend/src/                            the drawing
@@ -50,4 +50,4 @@ frontend/src/                            the drawing
   the data has a key the schema drops.
 - An exercise type → one file in backend `exercises/` and one in frontend `exercises/`, a line in each registry.
 - A dialect → its entry in dialects.json, a folder of units, its words.json.
-- A word's picture → its id in images/emoji/chosen.json, then `scripts/emoji_pictures.py`.
+- A word's picture → its id in images/emoji/chosen.json, then `scripts/colloquial/emoji_pictures.py`.

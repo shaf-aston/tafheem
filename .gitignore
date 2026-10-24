@@ -119,14 +119,14 @@ credentials.json
 # The recorded tarkeeb is the exception: 15 MB, and its source (the treebank's
 # .rar) cannot be unpacked on the server, so it ships with the code and the
 # server's sync copies it like any other tracked data file. Rebuild it with
-# backend/scripts/build_tarkeeb.py whenever that script or tarkeeb.json changes.
+# backend/scripts/nahw/build_tarkeeb.py whenever that script or tarkeeb.json changes.
 !backend/data/tarkeeb/tarkeeb.db
 
 # The weak-points file is small (under 1 MB) and built from rijal.db, which stays off GitHub,
-# so a host cannot rebuild it. Rebuild with backend/scripts/build_usul.py whenever
+# so a host cannot rebuild it. Rebuild with backend/scripts/hadith/build_usul.py whenever
 # usul.json or rijal.db changes.
 !backend/data/usul/usul.db
-# The narrator books it is built from: downloaded by backend/scripts/fetch_usul.py.
+# The narrator books it is built from: downloaded by backend/scripts/hadith/fetch_usul.py.
 backend/data/usul/books/
 
 # Large datasets / media
@@ -199,28 +199,28 @@ backend/data/wiktionary-arabic.jsonl
 backend/data/arabic_dictionary.json
 
 # One table of every quiz word, and the files the quiz fetches from it:
-# backend/scripts/build_lexicon.py then backend/scripts/export_quiz_words.py.
+# backend/scripts/quiz/build_lexicon.py then backend/scripts/quiz/export_quiz_words.py.
 # The words themselves are authored in backend/data/vocabulary.json and
 # quranic-words.json and corrected in word_kinds.json, which are committed.
 backend/data/lexicon.db
 # frontend/public/words/ is committed on purpose: it is built from
 # lexicon.db, which stays off GitHub, so a host cannot rebuild it.
 
-# Qur'anic corpus: rebuilt by backend/scripts/build_quran_corpus.py
+# Qur'anic corpus: rebuilt by backend/scripts/quran/build_quran_corpus.py
 backend/data/quran/quran-morphology.txt
 backend/data/quran/corpus.db
 
-# Word-by-word English: rebuilt by backend/scripts/build_quran_meanings.py
+# Word-by-word English: rebuilt by backend/scripts/quran/build_quran_meanings.py
 backend/data/quran/meanings.db
 
 # The Qur'an's library: every tafsir and translation, in one file.
-# The downloads are third-party books fetched by backend/scripts/fetch_quran_editions.py;
-# library.db is rebuilt from them by backend/scripts/import_quran_editions.py.
+# The downloads are third-party books fetched by backend/scripts/quran/fetch_quran_editions.py;
+# library.db is rebuilt from them by backend/scripts/quran/import_quran_editions.py.
 # editions.json, which names them, IS committed: it is the manifest, not data.
 backend/data/quran/downloads/
 backend/data/quran/library.db
 
-# Marked recitations and their text, fetched by backend/scripts/fetch_recitation_checks.py.
+# Marked recitations and their text, fetched by backend/scripts/recitation/fetch_recitation_checks.py.
 # sources.json, which names them, IS committed.
 backend/data/recitation_checks/downloads/
 # The plain-spelling Qur'an the reciting check needs, fetched by the same script.
@@ -255,9 +255,9 @@ backend/data/rijal/pages/
 
 # Spoken words, remade on demand by services/speech.py.
 backend/data/speech_cache/
-# The studio's takes, kept on the server; scripts/export_recordings.py ships them.
+# The studio's takes, kept on the server; scripts/speech/export_recordings.py ships them.
 backend/data/recordings/
-# quran.com word list, fetched once by backend/scripts/build_word_audio.py.
+# quran.com word list, fetched once by backend/scripts/quiz/build_word_audio.py.
 backend/data/quran/wbw_words.json
 
 # Ear training results fetched from Kaggle (models are hundreds of MB)

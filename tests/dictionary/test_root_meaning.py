@@ -538,7 +538,7 @@ def test_lines_put_as_shipped_land_in_the_tracked_file(kept):
 
 
 def test_chunks_keep_whole_lines_within_the_budget():
-    from backend.scripts.backfill_root_english import chunks
+    from backend.scripts.dictionary.backfill_root_english import chunks
 
     assert chunks(["aa", "bb", "cc"], 4) == [["aa", "bb"], ["cc"]]
     # A line over the budget is a chunk of its own, never split or dropped.

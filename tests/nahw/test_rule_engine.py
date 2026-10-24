@@ -194,7 +194,7 @@ def _read(sentence: str) -> dict:
     return iraab.analyze(sentence)
 
 
-# One card field each, found by typing the sentence in (backend/scripts/analyze.py).
+# One card field each, found by typing the sentence in (backend/scripts/nahw/analyze.py).
 CARDS = [
     ("زَارَنَا صَدِيقِي أَمْسِ", 2, "sign", "مبني على الكسر"),  # a built ظرف says the vowel it is built on
     ("ذَهَبَ الطَّالِبُ إِلَى المَدْرَسَةِ", 2, "sign", "مبني على السكون"),  # a particle ending in a long letter

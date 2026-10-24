@@ -309,7 +309,7 @@ def test_pictures_are_proposed_then_approved_by_a_person(tmp_path, monkeypatch):
 
     import httpx
 
-    from backend.scripts import fetch_colloquial_images as fetch
+    from backend.scripts.colloquial import fetch_colloquial_images as fetch
 
     spine = {"units": [{"unit": "unit-01", "title": "t", "lessons": [{"lesson": "lesson-01", "title": "t", "phrases": [
         {"slot": "hello", "english": "Hello.", "search_term": "waving hand"},
@@ -345,7 +345,7 @@ def test_a_word_picture_is_searched_by_its_own_term_and_kept_in_words_json(tmp_p
 
     import httpx
 
-    from backend.scripts import fetch_colloquial_images as fetch
+    from backend.scripts.colloquial import fetch_colloquial_images as fetch
     from backend.services.colloquial import wordlist
 
     spine = {"units": [{"unit": "unit-02", "title": "t", "lessons": [{"lesson": "lesson-01", "title": "t", "phrases": [],
@@ -506,7 +506,7 @@ def test_an_unwritten_unit_compares_as_none_and_an_unknown_lesson_404s(monkeypat
 
 
 def test_a_word_list_breaking_a_rule_is_refused_and_nothing_is_written():
-    from backend.scripts import colloquial_word_bank as word_bank
+    from backend.scripts.colloquial import colloquial_word_bank as word_bank
     path = loader.data_path("colloquial_dir") / "damascene" / wordlist.FILE
     before = path.read_bytes()
     broken = word_bank.dump("damascene") + "\nnot a word line\nghost | ghost | بيت | beet\n"
@@ -516,7 +516,7 @@ def test_a_word_list_breaking_a_rule_is_refused_and_nothing_is_written():
 
 
 def test_a_dumped_word_list_reads_back_as_the_words_on_disk():
-    from backend.scripts import colloquial_word_bank as word_bank
+    from backend.scripts.colloquial import colloquial_word_bank as word_bank
     for folder in ("damascene", "fusha"):
         words, said = word_bank._read(word_bank.dump(folder))
         assert said == [] and words == wordlist.said_in(folder)

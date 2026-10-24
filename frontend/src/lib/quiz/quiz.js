@@ -254,7 +254,7 @@ export function buildQuestion(bank, {
     attached: Boolean(answer.attached),
     // What these letters mean to someone who reads Urdu, where a person has
     // checked. Null on nearly every word, which is the honest state: see
-    // backend/scripts/build_urdu_links.py.
+    // backend/scripts/quiz/build_urdu_links.py.
     urdu: answer.urdu ?? null,
     options,
   }

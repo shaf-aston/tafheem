@@ -2,7 +2,7 @@
 
 This module is the only reader of backend/data/quran/mushaf/. The printings are
 listed in printings.json; each one's lines are its own file, built by
-scripts/build_mushaf.py. A printing whose file is missing is simply not offered,
+scripts/quran/build_mushaf.py. A printing whose file is missing is simply not offered,
 which is what a reader sees before the file has been built: the ayah list alone.
 """
 from __future__ import annotations

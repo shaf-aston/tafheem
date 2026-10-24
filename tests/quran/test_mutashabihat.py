@@ -4,7 +4,7 @@ from __future__ import annotations
 import pytest
 
 from backend.config import data_path
-from backend.scripts.build_mutashabihat import merge
+from backend.scripts.quran.build_mutashabihat import merge
 from backend.services.quran import mutashabihat
 
 fetched = pytest.mark.skipif(

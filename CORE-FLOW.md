@@ -16,9 +16,9 @@ venv/Scripts/python -m pytest tests -q                     # backend tests
 venv/Scripts/python -m backend.scripts.worktree new|remove NAME|ci  # ready copy, data linked from ../tafheem-data; drop it safely; or tests with no data, as CI
 cd frontend && npm test && npm run lint                    # frontend tests
 EAR=http://127.0.0.1:8000 node frontend/scripts/probe-ear.mjs  # reciting, end to end
-venv/Scripts/python -m backend.scripts.score_iraab [--set checked]  # i'raab roles vs the books, or the 72 checked sentences
-venv/Scripts/python -m backend.scripts.score_mutashabihat  # similar-verse finder vs the benchmark
-venv/Scripts/python -m backend.scripts.analyze "جملة" [--api URL] [--json]  # one sentence's cards and tree; stdin takes one per line
+venv/Scripts/python -m backend.scripts.nahw.score_iraab [--set checked]  # i'raab roles vs the books, or the 72 checked sentences
+venv/Scripts/python -m backend.scripts.quran.score_mutashabihat  # similar-verse finder vs the benchmark
+venv/Scripts/python -m backend.scripts.nahw.analyze "جملة" [--api URL] [--json]  # one sentence's cards and tree; stdin takes one per line
 ```
 
 ## Open first
@@ -80,7 +80,7 @@ Nahw has more views: Tamreen (`getTamreen`, `routers/tamreen.py`, `services/nahw
 (`getTarkeebExamples`, `routers/tarkeeb.py`, `services/nahw/tarkeeb_examples.py`). Reciting (Mem, Grow)
 is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.jsx`, `lib/hadith/useNarrators.js`,
 `rijalChainsQuery`, `routers/hadith.py` `get_chains`, `services/hadith/usul/store.py`, usul.db tables
-`note` and `link` (built by `scripts/build_usul.py`); `lib/hadith/weak.js` ranks and counts them in the page.
+`note` and `link` (built by `scripts/hadith/build_usul.py`); `lib/hadith/weak.js` ranks and counts them in the page.
 
 ## Core flow
 
@@ -100,7 +100,7 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
    hand-tagged corpus; `quran_service.py` joins it with the English gloss. Tafsirs and
    translations are **editions**, all in `data/quran/library.db`, read only by
    `quran_library.py` and named only in `data/quran/editions.json`. Verses that read alike:
-   `data/quran/mutashabihat.json` (`scripts/build_mutashabihat.py`), read by
+   `data/quran/mutashabihat.json` (`scripts/quran/build_mutashabihat.py`), read by
    `services/quran/mutashabihat.py`, which also proposes pairs the books missed.
 4. **The root is the spine.** One answer to "which root", `services/dictionary/roots.py`, asked by Sarf,
    Nahw, the dictionary, the Qur'an's root search and Daleel: the corpus, then the dictionary's
@@ -127,7 +127,7 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
 - **I'raab**: one word's case and why. **Tarkeeb**: which words join into a unit, as a bracket tree.
 - **Root**: the three letters a word is built from; the link every tab shares (`services/dictionary/roots.py`).
 - **Bab**: a verb's vowel pattern or form, read from Lane or Wiktionary, never worked out.
-- **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound; the Trial ear is taught, judged and shipped by `backend/scripts/finetune_ear/README.md`.
+- **Edition**: one tafsir or translation hung on the ayahs. **Ear / voice**: sound to words, words to sound; the Trial ear is taught, judged and shipped by `backend/scripts/recitation/finetune_ear/README.md`.
 - **Source**: `verified`, `derived` or `guessed`, carried by every answer.
 - **Weak point**: a flagged narrator or link in a chain; `notes` and `links` in code (`docs/glossary/hadith.md`).
 - **Token**: a theme value in `frontend/src/config/theme.json`; components use `var(--...)`, never a literal.

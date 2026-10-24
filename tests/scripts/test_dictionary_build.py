@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-from backend.scripts.build_dictionary import OUTPUT, senses_of, synonyms_of
+from backend.scripts.dictionary.build_dictionary import OUTPUT, senses_of, synonyms_of
 
 
 def _sense(gloss, *synonyms):
@@ -60,7 +60,7 @@ def test_a_repeated_definition_does_not_shift_the_ones_after_it():
 
 
 built = pytest.mark.skipif(
-    not Path(OUTPUT).is_file(), reason="dictionary not built, run scripts/build_dictionary.py"
+    not Path(OUTPUT).is_file(), reason="dictionary not built, run scripts/dictionary/build_dictionary.py"
 )
 
 

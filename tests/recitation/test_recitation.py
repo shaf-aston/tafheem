@@ -62,7 +62,7 @@ def segment(text, no_speech=0.0, sure=1.0):
 
 needs_corpus = pytest.mark.skipif(
     not quran_corpus.is_loaded(),
-    reason="corpus.db not built, run backend/scripts/build_quran_corpus.py",
+    reason="corpus.db not built, run backend/scripts/quran/build_quran_corpus.py",
 )
 
 
@@ -467,7 +467,7 @@ def test_letter_report_blames_the_ear_for_swaps_and_drops_only():
     """
     from collections import Counter
 
-    from backend.scripts.letters_missed import _as_arabic, compare
+    from backend.scripts.recitation.letters_missed import _as_arabic, compare
 
     swaps, seen, dropped, added = Counter(), Counter(), Counter(), Counter()
     # Said "دار", heard "تار": one letter swapped, nothing else.

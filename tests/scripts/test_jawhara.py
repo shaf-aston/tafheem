@@ -1,4 +1,4 @@
-"""The Jawhara file build (scripts/build_jawhara.py) is sound and its text is clean.
+"""The Jawhara file build (scripts/daleel/build_jawhara.py) is sound and its text is clean.
 
 The poem is the one book not from OpenITI, so this is where its shape is held: 144 bayts of two
 halves under plain headings, no tatweel, no editor's brackets, no doubled haraka and no sukun
@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-from backend.scripts import build_jawhara as build
+from backend.scripts.daleel import build_jawhara as build
 
 HARAKA = "[ً-ْ]"
 

@@ -25,7 +25,7 @@ What already exists (so we extend, never duplicate):
 - `components/hadith/TermGuide` lists the usul glossary (`backend/data/usul/usul.json`,
   `/api/usul/guide`) flat, inside the chain sheet only.
 - `lib/shell/manhajData` + `ManhajView`: creed and fiqh schools compared on fixed questions (tags).
-- OpenITI books (`backend/data/books/openiti*`, `scripts/import_openiti.py`): Usul al-Shashi is
+- OpenITI books (`backend/data/books/openiti*`, `scripts/daleel/import_openiti.py`): Usul al-Shashi is
   already imported; Tahawi's Matn al-Aqida is in the folder but not listed. Daleel searches them.
 - `ui/Skeleton`, `EmptyState`, `ErrorAlert`: the uniform loading / empty / error states.
 - `docs/architecture/frontend.md`: keyframe dedupe (Phase B) partly done, 44 keyframes left.

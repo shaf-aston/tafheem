@@ -146,7 +146,7 @@ def test_the_page_marks_a_word_made_ahead(monkeypatch, tmp_path):
 
 
 def test_premade_lines_cover_the_quiz_too():
-    from backend.scripts.premake_speech import WORDS, said, spoken_sentence
+    from backend.scripts.speech.premake_speech import WORDS, said, spoken_sentence
     import json
     todo = {text for text, voice in said() if voice is None}
     sentences = json.loads((WORDS / "sentences.json").read_text(encoding="utf-8"))["sentences"]
@@ -169,7 +169,7 @@ def test_what_is_only_written_is_not_said():
 
 def test_every_line_the_app_speaks_is_one_the_voice_takes():
     from backend.routers.speak import ARABIC
-    from backend.scripts.premake_speech import lines
+    from backend.scripts.speech.premake_speech import lines
     assert [text for text in lines() if not ARABIC.fullmatch(text)] == []
 
 

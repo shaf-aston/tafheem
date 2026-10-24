@@ -1,5 +1,5 @@
 {
- "_comment": "What the teacher checks once a sentence is read (services/nahw/syntax/teacher.py). Each check has an on/off switch and the reason shown to the reader when it fires: 'ar' is the book's wording, 'en' the plain one. A word a check flags loses its name and is drawn as a gap, because a dash is better than a confident wrong name. Switch a check off here and rescore with backend/scripts/score_iraab.py.",
+ "_comment": "What the teacher checks once a sentence is read (services/nahw/syntax/teacher.py). Each check has an on/off switch and the reason shown to the reader when it fires: 'ar' is the book's wording, 'en' the plain one. A word a check flags loses its name and is drawn as a gap, because a dash is better than a confident wrong name. Switch a check off here and rescore with backend/scripts/nahw/score_iraab.py.",
  "case_of_role": {
   "_comment": "The case each role takes (u = raf', a = nasb, i = jarr). A vowel the reader typed that says otherwise contradicts the role. The called noun (منادى) takes nasb only when it is the first word of an idafa. `a_when_unseen`: roles that take nasb when the ending shows no case (سِوَى, or the ـِينَ of الْمُجَاهِرِينَ, which is nasb or jarr alike).",
   "u": ["فاعل", "نائب فاعل", "مبتدأ", "خبر", "اسم كان", "خبر إن", "اسم كاد"],

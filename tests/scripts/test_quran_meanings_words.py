@@ -10,7 +10,7 @@ about the two passes meeting on the word they both gloss.
 """
 from __future__ import annotations
 
-from backend.scripts.build_quran_meanings import Harvest, meaning_rows, read_verse
+from backend.scripts.quran.build_quran_meanings import Harvest, meaning_rows, read_verse
 
 
 def empty() -> Harvest:

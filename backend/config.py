@@ -86,11 +86,11 @@ class Quran(BaseSettings):
     quran_search_source: str = "auto"
     # Deliberately far below quran_timeout_seconds: waiting past a second is worse than the local answer.
     quran_search_timeout_seconds: float = 4.0
-    # Built by backend/scripts/build_quran_search_index.py, never written while serving.
+    # Built by backend/scripts/quran/build_quran_search_index.py, never written while serving.
     quran_search_index_path: str = "data/quran/search.db"
     # Some roots occur over a thousand times; list is capped, true total still shown.
     root_occurrence_limit: int = 50
-    # Built by backend/scripts/import_quran_editions.py, never written while serving.
+    # Built by backend/scripts/quran/import_quran_editions.py, never written while serving.
     # The manifest is the only place a book is named; adding one needs no code change.
     quran_library_path: str = "data/quran/library.db"
     quran_editions_path: str = "data/quran/editions.json"
@@ -98,8 +98,8 @@ class Quran(BaseSettings):
     # >=0.9 sure of 74% of right words in this spelling vs 51% in Uthmani. Fetched by fetch_recitation_checks.py.
     quran_imlaei_path: str = "data/quran/imlaei.json"
     # Verbally similar verses (mutashabihat). The catalogue is built by
-    # scripts/build_mutashabihat.py; the rest tune the finder in
-    # services/quran/mutashabihat.py, judged by scripts/score_mutashabihat.py.
+    # scripts/quran/build_mutashabihat.py; the rest tune the finder in
+    # services/quran/mutashabihat.py, judged by scripts/quran/score_mutashabihat.py.
     mutashabihat_path: str = "data/quran/mutashabihat.json"
     # Words per shingle. Two reached 77% pair recall over the benchmark.
     mutashabihat_shingle_size: int = Field(2, ge=1)
@@ -112,7 +112,7 @@ class Quran(BaseSettings):
     # Floor, not exact count: tafsirs skip ayahs (Ibn Kathir, the fullest, reaches 6,011 of 6,236).
     # Below it the download broke. A partial-coverage book (juz-thirty commentary) is added by lowering this.
     quran_tafsir_ayah_floor: int = 3000
-    # Fetched once by backend/scripts/build_asbab.py; timelines use it to place reports that name no event.
+    # Fetched once by backend/scripts/quran/build_asbab.py; timelines use it to place reports that name no event.
     quran_surah_type_path: str = "data/quran/surah-type.json"
     # Written by the same script; lets the panel say how many reports are not shown.
     asbab_unmatched_path: str = "data/quran/asbab-unmatched.json"
@@ -190,12 +190,12 @@ class Listening(BaseSettings):
     # Chosen over plain "base" on 36 mid-surah ayahs (310 words, frontend/scripts/ears.test.js):
     # this scored 8.1% error at 2050ms/ayah on this CPU; base 42.6% at 1504ms. Groq whisper-large-v3-turbo also 8.1%.
     # Over 16 recitations "base" beat "small" (both right first 15/16; 26s vs 64s), so smaller wins; sloppy words are absorbed by the matching.
-    # A folder works too. To try a model tuned by scripts/finetune_ear, put in .env:
+    # A folder works too. To try a model tuned by scripts/recitation/finetune_ear, put in .env:
     #   RECITATION_MODEL=data/models/finetune-ear/ear-tuned
     #   LISTENING_EARS=here          (else Groq answers first and the folder is only the fallback)
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
     # Empty means no trial offered. Loaded like recitation_model; a learner's "Trial" listening hears
-    # and checks with it alone. Written and pushed by scripts/finetune_ear/cloud.py --ship; each of
+    # and checks with it alone. Written and pushed by scripts/recitation/finetune_ear/cloud.py --ship; each of
     # its commits carries the scores that won (git log backend/config.py).
     recitation_trial_model: str = "shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a"
     # Search boxes are dictation, and the Qur'an model knows no other words:
@@ -222,7 +222,7 @@ class Listening(BaseSettings):
     # The transcript now only says where on the page you are, so dropping words just breaks the run that finds the place.
     # Measured on 30 marked recordings, 0.94 vs 0.0:
     #   2708ms vs 1292ms per recording; placed 97% vs 100%; whole ayah found 57% vs 87%; words judged 84% vs 93%.
-    # See backend/scripts/time_placing.py.
+    # See backend/scripts/recitation/time_placing.py.
     recitation_word_min: float = 0.0
     # Bring quiet recitations up before listening (services/recitation/loudness.py): voice, silence trim and word
     # sureness are all judged against a fixed idea of loudness. Target is mean level; 0.06 is an ordinary laptop-mic speaking level.
@@ -297,7 +297,7 @@ class Speech(BaseSettings):
     speech_max_chars: int = Field(default=120, gt=0)
     speech_rest_s: float = Field(default=60.0, gt=0)
     # A word is ~25 KB, a dialogue line a few hundred; the oldest go first past this.
-    # Every line made ahead (scripts/premake_speech.py: Colloquial, quiz words, example sentences) is ~1.9 GB, so this leaves room past it.
+    # Every line made ahead (scripts/speech/premake_speech.py: Colloquial, quiz words, example sentences) is ~1.9 GB, so this leaves room past it.
     speech_cache_max_mb: float = Field(default=3000.0, gt=0)
     # Asks a minute per visitor; a phrase counts one ask per speech_chars_per_ask letters.
     speech_per_minute: int = Field(default=60, gt=0)
@@ -320,7 +320,7 @@ class Journal(BaseSettings):
 class Daleel(BaseSettings):
     """Daleel search and Grow's paths."""
 
-    # Rebuilt by backend/scripts/build_daleel_index.py, never written while serving.
+    # Rebuilt by backend/scripts/daleel/build_daleel_index.py, never written while serving.
     daleel_index_path: str = "data/daleel.db"
     # Hand-written: sources.json and worlds/<id>/, read once. See routers/grow.py.
     grow_dir: str = "data/grow"
@@ -369,15 +369,15 @@ class Hadith(BaseSettings):
     # paragraphs the cutter could not place. Both written by build_mushkil.py.
     mushkil_path: str = "data/hadith/mushkil-tahawi.json"
     mushkil_unplaced_path: str = "data/hadith/mushkil-unplaced.json"
-    # Written by scripts/fetch_hadith_collections.py.
+    # Written by scripts/hadith/fetch_hadith_collections.py.
     hadith_dir: str = "data/hadith"
-    # Built from hadith_dir by scripts/build_hadith_index.py. Never written while serving.
+    # Built from hadith_dir by scripts/hadith/build_hadith_index.py. Never written while serving.
     hadith_index_path: str = "data/hadith.db"
-    # Narrators of the hadith chains, read from sunnah.com by scripts/fetch_rijal.py (knobs in rijal_dir/rijal.json).
+    # Narrators of the hadith chains, read from sunnah.com by scripts/hadith/fetch_rijal.py (knobs in rijal_dir/rijal.json).
     rijal_dir: str = "data/rijal"
     # Raw pages the fetch cached; build_rijal.py reads them, the app never does.
     rijal_pages_dir: str = "data/rijal/pages"
-    # Built by scripts/build_rijal.py. Never written while serving.
+    # Built by scripts/hadith/build_rijal.py. Never written while serving.
     rijal_index_path: str = "data/rijal.db"
     # Narrators one search lists.
     rijal_result_limit: int = Field(default=20, gt=0)
@@ -388,13 +388,13 @@ class Hadith(BaseSettings):
     rijal_hadith_limit: int = Field(default=5000, gt=0)
     # Words of each one's text that list shows after the chain, as sunnah.com opens it.
     rijal_opening_words: int = Field(default=12, gt=0)
-    # Weak points on the chains: the rule and its words, and the file built from rijal.db with them (scripts/build_usul.py).
+    # Weak points on the chains: the rule and its words, and the file built from rijal.db with them (scripts/hadith/build_usul.py).
     usul_dir: str = "data/usul"
     usul_index_path: str = "data/usul/usul.db"
     # Hadith one page of a ruling's list shows, and the most a request may ask for.
     usul_term_page: int = Field(default=60, gt=0)
     usul_term_max: int = Field(default=200, gt=0)
-    # The narrator books (Taqrib, Ta'rif, Jami', Mukhtalitin) scripts/fetch_usul.py downloads; build_usul.py reads them, the app never does.
+    # The narrator books (Taqrib, Ta'rif, Jami', Mukhtalitin) scripts/hadith/fetch_usul.py downloads; build_usul.py reads them, the app never does.
     usul_books_dir: str = "data/usul/books"
     # A hadith is read in full, so a long results page stops being read.
     hadith_result_limit: int = 20
@@ -425,7 +425,7 @@ class Hadith(BaseSettings):
     # Chapters offered beside the hits, counted from where the hits fall.
     hadith_chapter_hints: int = 5
     # Search by meaning (services/hadith/meaning.py). Built from hadith_index_path by
-    # scripts/build_hadith_meaning.py; absent means words alone. Chosen on the
+    # scripts/hadith/build_hadith_meaning.py; absent means words alone. Chosen on the
     # yardstick: mpnet-base 64/70 (loose 17/22) vs MiniLM-L12 61 (14), e5-small 60,
     # potion 55, words alone 54. Costs ~3x MiniLM to build; a search 54 -> 61ms on a desktop.
     hadith_meaning_path: str = "data/hadith_meaning.db"

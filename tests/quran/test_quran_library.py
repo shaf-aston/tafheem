@@ -34,7 +34,7 @@ KINDS = {"tafsir", "translation", "asbab"}
 
 needs_library = pytest.mark.skipif(
     not quran_library.is_built(),
-    reason="library.db not imported, run backend/scripts/import_quran_editions.py",
+    reason="library.db not imported, run backend/scripts/quran/import_quran_editions.py",
 )
 
 

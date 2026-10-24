@@ -1,5 +1,5 @@
 {
- "_about": "Words whose emoji has another name than the word, each chosen by hand and looked at once (scripts/emoji_pictures.py). Only where the emoji shows that word; no people, nothing for God, angels or prophets, no other faiths' symbols, no alcohol or pork.",
+ "_about": "Words whose emoji has another name than the word, each chosen by hand and looked at once (scripts/colloquial/emoji_pictures.py). Only where the emoji shows that word; no people, nothing for God, angels or prophets, no other faiths' symbols, no alcohol or pork.",
  "chosen": {
   "above": "up arrow",
   "accident": "collision",

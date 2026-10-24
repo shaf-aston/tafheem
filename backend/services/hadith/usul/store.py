@@ -1,6 +1,6 @@
 """Read usul.db: where a chain's weak narrators are named, the scale they sit on, and what scholars said of a hadith.
 
-The only reader of usul.db. Built by scripts/build_usul.py, never written
+The only reader of usul.db. Built by scripts/hadith/build_usul.py, never written
 while serving. Missing is a valid state: a hadith then looks as it did before
 weak points, with no notes and no scale.
 """

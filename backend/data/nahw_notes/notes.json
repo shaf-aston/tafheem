@@ -1,5 +1,5 @@
 {
-  "_note": "The teacher's Year 3 Nahw theory notes. `pdf` is the file inside the folder given to `backend/scripts/render_note_pages.py`; `id` is the folder/slug used everywhere else. `tamreen` names the Tamreen exercise slugs that test this topic.",
+  "_note": "The teacher's Year 3 Nahw theory notes. `pdf` is the file inside the folder given to `backend/scripts/nahw/render_note_pages.py`; `id` is the folder/slug used everywhere else. `tamreen` names the Tamreen exercise slugs that test this topic.",
   "render": {
     "dpi": 150,
     "max_width": 1600

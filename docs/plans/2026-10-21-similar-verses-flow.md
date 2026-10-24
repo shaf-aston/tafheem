@@ -6,7 +6,7 @@ Date 2026-10-21 · `/plan-build` on https://tafheem-app.vercel.app/app/similar
 
 | Question | Finding |
 |---|---|
-| Where do the pairs come from | Two places. (a) The *Quran-Similarities* benchmark (github.com/ambaqasah/mutashabihat, GPL-3.0): 2,229 pairs taken from two classical books on the subject, **Hidāyat al-Murtāb** (al-Sakhāwī) and **Tatimmat al-Bayān**. (b) A hafiz's list (Waqar144) built from Qari Idrees al-Asim's work. Merged by `backend/scripts/build_mutashabihat.py`: 3,156 pairs in 509 groups, 540 pairs recorded by both. |
+| Where do the pairs come from | Two places. (a) The *Quran-Similarities* benchmark (github.com/ambaqasah/mutashabihat, GPL-3.0): 2,229 pairs taken from two classical books on the subject, **Hidāyat al-Murtāb** (al-Sakhāwī) and **Tatimmat al-Bayān**. (b) A hafiz's list (Waqar144) built from Qari Idrees al-Asim's work. Merged by `backend/scripts/quran/build_mutashabihat.py`: 3,156 pairs in 509 groups, 540 pairs recorded by both. |
 | Are the highlighted words right | Worked out here on our own text with difflib on folded words (`services/mutashabihat.diff`), never copied from the benchmark's Tanzil text, so word positions cannot drift. Unit tests cover replacement, addition, order swap, pause marks. |
 | Spot check of pairs every hafiz knows | 2:58/7:161, 2:173/16:115, 2:48/2:123, 6:151/17:31, 2:136/3:84, 2:34/7:11 → all present. 3:50/43:63 (فاتقوا الله وأطيعون) → missing. Coverage is strong but not total; the finder (`propose`) exists to fill gaps for review. |
 | Coverage | 72 surahs have pairs; 40 short surahs (and al-Fatiha) have none, which matches the books (they list the long surahs). |

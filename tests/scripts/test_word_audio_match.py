@@ -2,7 +2,7 @@
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "backend/scripts"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "backend/scripts/quiz"))
 from build_word_audio import audio_path, matches
 
 same = matches

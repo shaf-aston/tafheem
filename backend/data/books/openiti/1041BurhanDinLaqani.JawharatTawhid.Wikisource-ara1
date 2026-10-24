@@ -7,7 +7,7 @@
 #META# 020.BookTITLE	:: جوهرة التوحيد
 #META# 040.EdPUBLISHER	:: Arabic Wikisource, ضبط جلال علي الجهاني; public domain
 #META# 041.EdURL	:: https://ar.wikisource.org/wiki/الجوهرة_في_التوحيد
-#META# 090.Note	:: Written by backend/scripts/build_jawhara.py from data/books/wikisource/jawhara.wikitext; the slips it corrects are listed there.
+#META# 090.Note	:: Written by backend/scripts/daleel/build_jawhara.py from data/books/wikisource/jawhara.wikitext; the slips it corrects are listed there.
 #META#Header#End#
 ### | المقدمة
 # الحَمْدُ لِلّهِ عَلَى صِلاَتِهِ % ثُمَّ سَلاَمُ اللهِ مَعْ صَلاَتِهِ

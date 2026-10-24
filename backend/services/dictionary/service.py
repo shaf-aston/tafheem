@@ -1,6 +1,6 @@
 """Arabic-English dictionary: indexed lookup by word, root or meaning.
 
-Built from Wiktionary (CC BY-SA) by scripts/build_dictionary.py. Hans Wehr is
+Built from Wiktionary (CC BY-SA) by scripts/dictionary/build_dictionary.py. Hans Wehr is
 under copyright and is deliberately not shipped.
 """
 
@@ -61,7 +61,7 @@ def load_dictionary() -> None:
         return
 
     if not _DICTIONARY_JSON.exists():
-        logger.warning("arabic_dictionary.json not found. Run scripts/build_dictionary.py")
+        logger.warning("arabic_dictionary.json not found. Run scripts/dictionary/build_dictionary.py")
         _loaded = True
         return
 

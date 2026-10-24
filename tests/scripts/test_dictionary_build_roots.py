@@ -4,7 +4,12 @@ Run: python -m pytest tests/scripts/test_dictionary_build_roots.py
 """
 from __future__ import annotations
 
-from backend.scripts.build_dictionary import fits, inherit_roots, root_of, source_words
+from backend.scripts.dictionary.build_dictionary import (
+    fits,
+    inherit_roots,
+    root_of,
+    source_words,
+)
 
 
 def test_the_word_named_in_the_etymology_is_read_bare():

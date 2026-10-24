@@ -42,7 +42,7 @@ import SourceBadge from '../ui/SourceBadge'
 
 /** How the three kinds of nothing are told apart. Never one sentence for all. */
 const NOTHING = {
-  [MISSING]: 'The dictionaries are not built on this machine yet. Run backend/scripts/build_lexicons.py.',
+  [MISSING]: 'The dictionaries are not built on this machine yet. Run backend/scripts/dictionary/build_lexicons.py.',
   [BROKEN]: 'The dictionaries are here but could not be read. The rest of the page is unaffected.',
   [READY]: 'None of these books has an entry under these letters.',
 }

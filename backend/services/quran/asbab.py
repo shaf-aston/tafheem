@@ -45,7 +45,7 @@ def _unplaced() -> int:
 
     Kept in front of the reader rather than in a file nobody opens: a panel that
     quietly holds nine reports out of ten is a panel that lies by omission.
-    Written by scripts/build_asbab.py, which is also where the reports are.
+    Written by scripts/quran/build_asbab.py, which is also where the reports are.
     """
     path = data_path("asbab_unmatched_path")
     if not path.exists():

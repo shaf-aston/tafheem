@@ -16,7 +16,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.scripts import build_tarkeeb
+from backend.scripts.nahw import build_tarkeeb
 from backend.services.nahw import book as nahw_book
 from backend.services.nahw import syntax
 from backend.services.nahw import tarkeeb_store

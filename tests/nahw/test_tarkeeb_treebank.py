@@ -7,7 +7,7 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 import pytest
 
-from backend.scripts import build_tarkeeb
+from backend.scripts.nahw import build_tarkeeb
 from backend.services.text import arabic_text
 from backend.services.nahw import book as nahw_book
 from backend.services.nahw import tarkeeb_store

@@ -15,7 +15,7 @@ import zlib
 
 import pytest
 
-from backend.scripts import build_lexicons as builder
+from backend.scripts.dictionary import build_lexicons as builder
 from backend.services.dictionary import lexicons
 
 

@@ -1,6 +1,6 @@
 """Read hadith.db: collections, their books, and the hadiths in each book.
 
-The only reader of hadith.db. Built by scripts/build_hadith_index.py, never
+The only reader of hadith.db. Built by scripts/hadith/build_hadith_index.py, never
 written while serving. Missing is a valid state, same as daleel.db before it
 is built: the router says so rather than pretending the collection is empty.
 """

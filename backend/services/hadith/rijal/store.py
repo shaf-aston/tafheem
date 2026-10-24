@@ -1,6 +1,6 @@
 """Read rijal.db: narrators, who they taught and learnt from, and where each is named in the hadith.
 
-The only reader of rijal.db. Built by scripts/build_rijal.py, never written
+The only reader of rijal.db. Built by scripts/hadith/build_rijal.py, never written
 while serving. Missing is a valid state: the router says "not built" rather
 than pretending nobody narrated anything.
 """
