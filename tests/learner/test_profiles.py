@@ -155,14 +155,7 @@ def test_signup_with_a_bad_name_says_why():
     assert response.json()["detail"] == "Names use letters, numbers, spaces, - _ ."
 
 
-def test_keep_moves_this_devices_old_answers_to_the_name():
-    answer(None, "to-write")
-    answer(None, "to-read", correct=False)
-    answer("Bilal", "to-go")
-    assert signup("Amina", keep=True).json()["answers"] == 2
-    assert items("Amina") == ["to-read", "to-write"]
-    assert items(None) == []
-    assert items("Bilal") == ["to-go"]
+# Keep moves the signing-up device's own guest answers: tests/learner/test_device_guest.py.
 
 
 def test_without_keep_old_answers_stay_unnamed():

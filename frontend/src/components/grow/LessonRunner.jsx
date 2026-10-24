@@ -168,7 +168,7 @@ function LessonDone({ tally, took, missed, accent, rewards, next, onLeave }) {
       </div>
       <p className="grow-done-title">{say('Lesson done')}</p>
       <dl className="grow-done-stats">
-        {/* A guest earns no XP (the shared guest record), so no "+0": the line below says how to earn it. */}
+        {/* A guest earns no XP yet, so no "+0": the line below says how to earn it. */}
         {rewards && <div><dt>{say('XP')}</dt><dd className="tabular-nums">+{earned}</dd></div>}
         <div><dt>{say('Right first time')}</dt><dd className="tabular-nums">{right}/{asked}</dd></div>
         <div><dt>{say('Time')}</dt><dd className="tabular-nums">{clock(took)}</dd></div>

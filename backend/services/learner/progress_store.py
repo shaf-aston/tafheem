@@ -13,9 +13,10 @@ id refers to is the caller's business, and the caller already holds the table
 that says so; copying those tags in here would make a second copy that goes
 stale every time the word list is rebuilt.
 
-`user` is the learner's username (services/learner/username.py), or GUEST for answers
-given while nobody is logged in. The questions table is a cache of AI answers
-shared by everyone, so it stays under GUEST and claim_guest leaves it alone.
+`user` is the learner's username (services/learner/username.py), or a guest record for
+answers given while nobody is logged in: the device's own ("guest:<id>"), or GUEST from a
+page that names no device. The questions table is a cache of AI answers shared by
+everyone, so it stays under GUEST and claim_guest leaves it alone.
 """
 from __future__ import annotations
 
@@ -25,9 +26,9 @@ import threading
 from datetime import datetime, timedelta, timezone
 
 from backend.config import data_path, get_settings
-from backend.services.learner import rewards as reward_rules
 from backend.services.learner import review_schedule
-from backend.services.learner.username import GUEST
+from backend.services.learner import rewards as reward_rules
+from backend.services.learner.username import DEVICE, GUEST
 
 _local = threading.local()
 
@@ -80,10 +81,10 @@ CREATE TABLE IF NOT EXISTS saved (
     data TEXT NOT NULL,
     at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
--- Names typed before sign-up existed are accounts already, so their owners can log in.
+-- Names typed before sign-up existed are accounts already, so their owners can log in. Guest records never are.
 INSERT OR IGNORE INTO accounts (name, at)
     SELECT user, MIN(at) FROM (SELECT user, at FROM attempts UNION ALL SELECT user, at FROM feedback)
-    WHERE user NOT IN ('{GUEST}', '') GROUP BY user;
+    WHERE user NOT IN ('{GUEST}', '') AND user NOT LIKE '{DEVICE}%' GROUP BY user;
 """
 
 # Changes to tables that already exist, in order; PRAGMA user_version counts how many ran.
@@ -702,12 +703,40 @@ def _tidy(db: sqlite3.Connection, circle: int) -> None:
         _drop(db, circle)
 
 
-def claim_guest(user: str) -> None:
-    """Move the guest's answers and reports onto `user`."""
+def claim_guest(user: str, guest: str = GUEST) -> None:
+    """Move one guest record's answers and reports (the signing-up device's) onto `user`."""
     db = _db()
     with db:
-        db.execute("UPDATE attempts SET user = ? WHERE user = ?", (user, GUEST))
-        db.execute("UPDATE feedback SET user = ? WHERE user = ?", (user, GUEST))
+        db.execute("UPDATE attempts SET user = ? WHERE user = ?", (user, guest))
+        db.execute("UPDATE feedback SET user = ? WHERE user = ?", (user, guest))
+
+
+# Device records whose newest answer is older than the cut-off. A range, not LIKE, so the (user, …) index serves it:
+# ";" is the character after ":", so this is every key that starts with DEVICE.
+_IDLE_DEVICES = (f"SELECT user FROM attempts WHERE user >= '{DEVICE}' AND user < '{DEVICE[:-1]};' "
+                 "GROUP BY user HAVING MAX(at) < datetime('now', ?)")
+
+
+def sweep_guests(days: int) -> int:
+    """Delete the answers of every device record not answered in for `days`; returns how many went.
+
+    Nobody can come back for them once the device's id is gone, and a device still in use keeps all
+    of it, its oldest answers too. Their reports are kept, under nobody (''), as delete_account
+    keeps them; a device that only ever reported has no answers to sweep. Accounts and the shared
+    GUEST record are never touched. Two statements in one write transaction, each choosing the idle
+    devices itself, so an answer landing meanwhile waits for the lock and is never deleted with them.
+    """
+    db = _db()
+    since = (f"-{days} days",)
+    with db:
+        db.execute(f"UPDATE feedback SET user = '' WHERE user IN ({_IDLE_DEVICES})", since)
+        deleted = db.execute(f"DELETE FROM attempts WHERE user IN ({_IDLE_DEVICES})", since).rowcount
+    return int(deleted)
+
+
+def sweep() -> int:
+    """`sweep_guests` at the configured age, for the startup step."""
+    return sweep_guests(get_settings().progress_guest_days)
 
 
 def summary(module: str, user: str = GUEST) -> list[dict]:

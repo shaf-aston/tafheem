@@ -27,7 +27,7 @@ export const summaryQuery = (module) => ({ queryKey: [RECORD, 'summary', module]
 /** The items in `module` due for review now, longest-waiting first. */
 export const reviewQuery = (module) => ({ queryKey: [RECORD, 'review', module], queryFn: () => fetchReviewItems(module), ...QUIET })
 
-/** Every module answered in, with the streak; signed-in only (every guest shares one record). */
+/** Every module answered in, with the streak; signed-in only until guests earn XP (docs/plans/2026-10-24-device-guest.md §8). */
 export const overviewQuery = (name) => ({ queryKey: [RECORD, 'overview', name], queryFn: fetchOverview, enabled: !!name, retry: false })
 
 /** The profile's `{ name, joined, answers }`. */

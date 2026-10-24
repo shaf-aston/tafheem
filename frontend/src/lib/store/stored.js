@@ -8,7 +8,8 @@
  * other's settings or records, and logging in switches all of it at once with
  * no panel knowing. One account's keys are its shelf, which lib/store/shelf.js copies
  * to the server so the name brings it to any device. The username itself is
- * the device's, not anyone's shelf, so it is the one key read bare (readDevice).
+ * the device's, not anyone's shelf, so it is read bare (readDevice), and so is the device's guest id
+ * (lib/learner/profile.js deviceId): neither is ever wiped by Start over or copied into an account.
  *
  * Quiz answers are rows in a database on the machine, not in the browser, so
  * they go through lib/learner/progress.js first; "clear it all" has to mean Review
@@ -62,7 +63,7 @@ const owner = () => readDevice(PROFILE.storageKey)
 /** Where a key is filed for `name`. */
 const filed = (key, name = owner()) => (name ? `${MARK}${name}/${key}` : key)
 
-/** Every key `name` has, bare. The guest's are the bare keys other than the username. */
+/** Every key `name` has, bare. The guest's are the bare keys other than the username and the device's id. */
 function ownKeys(name = owner()) {
   try {
     const all = Array.from({ length: store()?.length ?? 0 }, (_, index) => store().key(index))
@@ -70,7 +71,7 @@ function ownKeys(name = owner()) {
       const head = filed('', name)
       return all.filter((key) => key?.startsWith(head)).map((key) => key.slice(head.length))
     }
-    return all.filter((key) => key && !key.startsWith(MARK) && key !== PROFILE.storageKey)
+    return all.filter((key) => key && !key.startsWith(MARK) && key !== PROFILE.storageKey && key !== PROFILE.deviceKey)
   } catch {
     return []
   }
