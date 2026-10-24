@@ -2,7 +2,7 @@
  * The one way the app scrolls something into view: always a glide, unless the
  * reader turned motion off (lib/motion/motion) or the target is far (motion.glide-screens). Presets name the intent, not the browser flag.
  */
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 import theme from '../../config/theme.json'
 import { motionOff } from './motion'
@@ -65,4 +65,19 @@ export function scrollToTop() {
  */
 export function useOpenAtTop(...keys) {
   useEffect(scrollToTop, keys)
+}
+
+/**
+ * useOpenAtTop for screens one inside another (Grow: home 0 → world 1 → part 2 → lesson 3): going deeper opens at
+ * the top; coming back up lands where the reader left that screen, as the browser's back would.
+ */
+export function useOpenAtTopKeepBack(key, depth) {
+  const was = useRef({ depth, places: [] })
+  useEffect(() => {
+    const { depth: from, places } = was.current
+    places[from] = globalThis.scrollY
+    was.current.depth = depth
+    if (depth < from && places[depth]) return holdAt(places[depth])
+    scrollToTop()
+  }, [key, depth])
 }

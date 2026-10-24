@@ -46,6 +46,19 @@ describe('basics', () => {
     scrolled.mockRestore()
   })
 
+  it('back to Grow\'s page lands where the reader left it', async () => {
+    renderScreen(home(), { routes: routes() })
+    await hero()
+    const scrolled = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+    window.scrollY = 500
+    fireEvent.click(document.querySelector('.grow-world-tile'))
+    await waitFor(() => expect(scrolled).toHaveBeenCalledWith(expect.objectContaining({ top: 0 })))
+    fireEvent.click(document.querySelector('.grow-back'))
+    await waitFor(() => expect(scrolled).toHaveBeenCalledWith(expect.objectContaining({ top: 500 })))
+    scrolled.mockRestore()
+    window.scrollY = 0
+  })
+
   it('a tap from another tab opens the first lesson on what ال is, then asks "the book" both ways', async () => {
     const filed = []
     renderScreen(<GrowPanel incoming="basics/lesson" arrival={1} handed onVisit={() => {}} />, { routes: routes(filed) })
