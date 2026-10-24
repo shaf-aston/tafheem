@@ -15,7 +15,11 @@
     "oo": "و طويلة",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "T": "ط",
+    "D": "ض",
+    "S": "ص",
+    "e": "حركة قصيرة خفيفة (شوا)"
   },
   "lessons": [
     {
@@ -1532,6 +1536,823 @@
             "feedback": "فصحى، المغربي كيقول غادي نحاول"
           },
           "tip": "غادي + نحاول + فعل"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "which-grade-are-you-in-to-a-boy",
+          "arabic": "فْأَشْمَن قِسْم كَتْقْرَا؟",
+          "transliteration": "f ashmen qism katqra?",
+          "reply": {
+            "arabic": "أَنَا فَالْخَامْسَة",
+            "transliteration": "ana f lkhaamsa",
+            "english": "I'm in fifth year."
+          }
+        },
+        {
+          "slot": "where-is-my-school-bag",
+          "arabic": "فِين الْمَحْفْظَة دْيَالِي؟",
+          "transliteration": "feen lme7fDa dyaali?"
+        },
+        {
+          "slot": "the-teacher-is-in-the-classroom",
+          "arabic": "الْأُسْتَاذ فَالْقِسْم",
+          "transliteration": "lustaad f lqism"
+        },
+        {
+          "slot": "open-your-book-to-page-ten-to-a-boy",
+          "arabic": "حَلّ الْكْتَاب دْيَالْك فَالصّْفْحَة عْشْرَة",
+          "transliteration": "7ell lktaab dyaalek f SSef7a 3ashra"
+        },
+        {
+          "slot": "write-the-lesson-on-the-board-to-a-boy",
+          "arabic": "كْتَب الدَّرْس فَالسَّبُّورَة",
+          "transliteration": "kteb dders f ssebboora"
+        },
+        {
+          "slot": "did-you-do-your-homework-to-a-boy",
+          "arabic": "وَاش دَرْتِي الْوَاجِبَات دْيَالْك؟",
+          "transliteration": "waash derti lwaajibaat dyaalek?",
+          "reply": {
+            "arabic": "إِيه، سَالِيتْهُم",
+            "transliteration": "eeh, saaleet-hom",
+            "english": "Yes, I finished them."
+          }
+        },
+        {
+          "slot": "i-forgot-my-pen",
+          "arabic": "نْسِيت السْتِيلُو دْيَالِي",
+          "transliteration": "nseet ssteelo dyaali"
+        },
+        {
+          "slot": "the-break-is-at-ten-o-clock",
+          "arabic": "الِاسْتِرَاحَة مْعَ الْعَشْرَة",
+          "transliteration": "listiraa7a m3a l3ashra"
+        },
+        {
+          "slot": "may-i-go-to-the-bathroom-to-a-teacher",
+          "arabic": "أُسْتَاذ، وَاش نْقْدَر نْمْشِي لْبِيت الْمَا؟",
+          "transliteration": "ustaad, waash nqder nmshi l beet lma?"
+        },
+        {
+          "slot": "when-does-the-school-day-end",
+          "arabic": "فُوقَاش كَتْسَالِي الْقْرَايَة؟",
+          "transliteration": "fooqaash katsaali lqraaya?",
+          "reply": {
+            "arabic": "مْعَ الْخَمْسَة دْيَال الْعْشِيَّة",
+            "transliteration": "m3a lkhamsa dyaal l3shiyya",
+            "english": "At five in the afternoon."
+          }
+        },
+        {
+          "slot": "don-t-forget-the-school-uniform-to-a-boy",
+          "arabic": "مَا تْنْسَاش الْبْلُوزَة",
+          "transliteration": "ma tensaash lblooza"
+        },
+        {
+          "slot": "my-son-is-a-diligent-student",
+          "arabic": "وْلْدِي تِلْمِيذ مُجْتَهِد",
+          "transliteration": "weldi tilmeedh mujtahid"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "مريم",
+          "arabic": "نوض آ آدم، راه الوقت!",
+          "transliteration": "noD a Aadam, raah lweqt!",
+          "english": "Get up, Adam, it's time!"
+        },
+        {
+          "speaker": "آدم",
+          "slot": "where-is-my-school-bag"
+        },
+        {
+          "speaker": "مريم",
+          "arabic": "حدا الباب. وواش درتي الواجبات ديالك؟",
+          "transliteration": "7da lbaab. w waash derti lwaajibaat dyaalek?",
+          "english": "By the door. And did you do your homework?"
+        },
+        {
+          "speaker": "آدم",
+          "slot": "did-you-do-your-homework-to-a-boy",
+          "reply": true
+        },
+        {
+          "speaker": "مريم",
+          "slot": "don-t-forget-the-school-uniform-to-a-boy"
+        },
+        {
+          "speaker": "آدم",
+          "arabic": "واخا آ ماما.",
+          "transliteration": "waakha a maama.",
+          "english": "Okay, Mum."
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "open-your-book-to-page-ten-to-a-boy"
+        },
+        {
+          "speaker": "آدم",
+          "slot": "i-forgot-my-pen"
+        },
+        {
+          "speaker": "الأستاذ",
+          "arabic": "خود هاد الستيلو.",
+          "transliteration": "khood haad ssteelo.",
+          "english": "Take this pen."
+        },
+        {
+          "speaker": "آدم",
+          "arabic": "شكرا آ أستاذ.",
+          "transliteration": "shukran a ustaad.",
+          "english": "Thank you, sir."
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "write-the-lesson-on-the-board-to-a-boy"
+        },
+        {
+          "speaker": "آدم",
+          "slot": "may-i-go-to-the-bathroom-to-a-teacher"
+        },
+        {
+          "speaker": "الأستاذ",
+          "arabic": "دابا لا، تسنى شوية.",
+          "transliteration": "daaba la, tsenna shwiyya.",
+          "english": "Not now, wait a little."
+        },
+        {
+          "speaker": "آدم",
+          "arabic": "فوقاش الاستراحة؟",
+          "transliteration": "fooqaash listiraa7a?",
+          "english": "When is the break?"
+        },
+        {
+          "speaker": "الأستاذ",
+          "slot": "the-break-is-at-ten-o-clock"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فْأَشْمَن قِسْم كَتْقْرَا؟",
+            "transliteration": "f ashmen qism katqra?",
+            "english": "Which year are you in?"
+          },
+          "response": {
+            "arabic": "أَنَا فَالْخَامْسَة",
+            "transliteration": "ana f lkhaamsa",
+            "english": "I'm in fifth year."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش دَرْتِي الْوَاجِبَات دْيَالْك؟",
+            "transliteration": "waash derti lwaajibaat dyaalek?",
+            "english": "Did you do your homework?"
+          },
+          "response": {
+            "arabic": "إِيه، سَالِيتْهُم",
+            "transliteration": "eeh, saaleet-hom",
+            "english": "Yes, I finished them."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فُوقَاش كَتْسَالِي الْقْرَايَة؟",
+            "transliteration": "fooqaash katsaali lqraaya?",
+            "english": "When does the school day end?"
+          },
+          "response": {
+            "arabic": "مْعَ الْخَمْسَة دْيَال الْعْشِيَّة",
+            "transliteration": "m3a lkhamsa dyaal l3shiyya",
+            "english": "At five in the afternoon."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كِيدَايْر وْلْدْك فَالْقْرَايَة؟",
+            "transliteration": "keedaayer weldek f lqraaya?",
+            "english": "How is your son doing at school?"
+          },
+          "response": {
+            "arabic": "وْلْدِي تِلْمِيذ مُجْتَهِد",
+            "transliteration": "weldi tilmeedh mujtahid",
+            "english": "My son is a diligent student."
+          }
+        }
+      ],
+      "culture": "فالمغرب، التلاميذ كيلبسو البلوزة فوق الحوايج ديالهم، وبزاف ديال المدارس كيطلبوها كل نهار. التلميذ كيعيط للمعلم «أستاذ» وللمعلمة «أستاذة»، والوالدين كيسولو ديما على الواجبات والنقط.",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "وَاش دَرْتِي الْوَاجِبَات دْيَالْك؟",
+          "answer": "إِيه، سَالِيتْهُم",
+          "accepted": [
+            "إِيه، سَالِيتْهُم",
+            "إيه، ساليتهم",
+            "eeh, saaleet-hom",
+            "إيه ساليتهم",
+            "إيه درتهم"
+          ],
+          "too_formal": {
+            "item": "نعم، أنهيتها",
+            "feedback": "فصحى، المغربي كيقول ساليتهم"
+          },
+          "tip": "سالا = to finish"
+        },
+        {
+          "id": "unit-08.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "فْأَشْمَن قِسْم كَتْقْرَا؟ (Say you're in fifth year.)",
+          "answer": "أَنَا فَالْخَامْسَة",
+          "accepted": [
+            "أَنَا فَالْخَامْسَة",
+            "أنا فالخامسة",
+            "ana f lkhaamsa",
+            "فالخامسة",
+            "أنا فالخامسة ابتدائي"
+          ],
+          "too_formal": {
+            "item": "أدرس في السنة الخامسة",
+            "feedback": "فصحى، المغربي كيقول غير: أنا فالخامسة"
+          },
+          "tip": "ف + the year number"
+        },
+        {
+          "id": "unit-08.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "_____ الكتاب ديالك فالصفحة عشرة (Open your book to page ten.)",
+          "answer": "حل",
+          "accepted": [
+            "حل",
+            "7ell",
+            "حَلّ",
+            "فتح"
+          ],
+          "too_formal": {
+            "item": "افتح",
+            "feedback": "فصحى، المغربي كيقول حل"
+          },
+          "tip": "حل = open; فتح is also said"
+        },
+        {
+          "id": "unit-08.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "_____ الستيلو ديالي (I forgot my pen.)",
+          "answer": "نسيت",
+          "accepted": [
+            "نسيت",
+            "nseet",
+            "نْسِيت"
+          ],
+          "too_formal": {
+            "item": "لقد نسيت",
+            "feedback": "فصحى، المغربي كيقول غير نسيت"
+          },
+          "tip": "نسا = to forget"
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "The teacher is in the classroom.",
+          "answer": "الْأُسْتَاذ فَالْقِسْم",
+          "accepted": [
+            "الْأُسْتَاذ فَالْقِسْم",
+            "الأستاذ فالقسم",
+            "lustaad f lqism",
+            "الأستاذ راه فالقسم"
+          ],
+          "too_formal": {
+            "item": "المعلم في الفصل",
+            "feedback": "فصحى، المغربي كيقول الأستاذ والقسم"
+          },
+          "tip": "قسم = classroom"
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Don't forget the school uniform. (to a boy)",
+          "answer": "مَا تْنْسَاش الْبْلُوزَة",
+          "accepted": [
+            "مَا تْنْسَاش الْبْلُوزَة",
+            "ما تنساش البلوزة",
+            "ma tensaash lblooza",
+            "متنساش البلوزة"
+          ],
+          "too_formal": {
+            "item": "لا تنس الزي المدرسي",
+            "feedback": "فصحى، المغربي كيقول ما تنساش البلوزة"
+          },
+          "tip": "ما ... ش = don't"
+        },
+        {
+          "id": "unit-08.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "May I go to the bathroom? (to a teacher)",
+          "answer": "أُسْتَاذ، وَاش نْقْدَر نْمْشِي لْبِيت الْمَا؟",
+          "accepted": [
+            "أُسْتَاذ، وَاش نْقْدَر نْمْشِي لْبِيت الْمَا؟",
+            "أستاذ، واش نقدر نمشي لبيت الما؟",
+            "ustaad, waash nqder nmshi l beet lma?",
+            "واش نقدر نمشي لبيت الما؟",
+            "أستاذ واش نمشي لبيت الما"
+          ],
+          "too_formal": {
+            "item": "هل يمكنني الذهاب إلى الحمام؟",
+            "feedback": "فصحى، المغربي كيقول واش نقدر نمشي"
+          },
+          "tip": "بيت الما = bathroom, toilet"
+        },
+        {
+          "id": "unit-08.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"Where is my school bag?\"",
+          "answer": "فِين الْمَحْفْظَة دْيَالِي؟",
+          "options": [
+            "فِين الْمَحْفْظَة دْيَالِي؟",
+            "نْسِيت السْتِيلُو دْيَالِي",
+            "الْأُسْتَاذ فَالْقِسْم",
+            "مَا تْنْسَاش الْبْلُوزَة"
+          ],
+          "accepted": [
+            "فِين الْمَحْفْظَة دْيَالِي؟",
+            "feen lme7fDa dyaali?",
+            "فين المحفظة ديالي؟",
+            "فين الكارطابل ديالي؟"
+          ],
+          "too_formal": {
+            "item": "أين محفظتي؟",
+            "feedback": "فصحى، المغربي كيقول فين و ديالي"
+          },
+          "tip": "Many children say الكارطابل, from French cartable"
+        },
+        {
+          "id": "unit-08.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"pen\"?",
+          "answer": "سْتِيلُو",
+          "options": [
+            "سْتِيلُو",
+            "كَرَّاس",
+            "سَبُّورَة",
+            "بْلُوزَة"
+          ],
+          "accepted": [
+            "سْتِيلُو",
+            "steelo",
+            "ستيلو",
+            "الستيلو"
+          ],
+          "too_formal": {
+            "item": "قلم",
+            "feedback": "مفهومة، ولكن المغربي كيقول ستيلو"
+          },
+          "tip": "From French stylo"
+        },
+        {
+          "id": "unit-08.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Write the lesson on the board. (to a boy)",
+          "answer": "كْتَب الدَّرْس فَالسَّبُّورَة",
+          "accepted": [
+            "كْتَب الدَّرْس فَالسَّبُّورَة",
+            "كتب الدرس فالسبورة",
+            "kteb dders f ssebboora",
+            "كتب الدرس فالتابلو"
+          ],
+          "too_formal": {
+            "item": "اكتب الدرس على السبورة",
+            "feedback": "فصحى، المغربي كيقول كتب و فالسبورة"
+          },
+          "tip": "ف = on, in"
+        },
+        {
+          "id": "unit-08.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "My son is a diligent student.",
+          "answer": "وْلْدِي تِلْمِيذ مُجْتَهِد",
+          "accepted": [
+            "وْلْدِي تِلْمِيذ مُجْتَهِد",
+            "ولدي تلميذ مجتهد",
+            "weldi tilmeedh mujtahid",
+            "ولدي قاري مزيان"
+          ],
+          "too_formal": {
+            "item": "ابني تلميذ مجتهد",
+            "feedback": "فصحى، المغربي كيقول ولدي"
+          },
+          "tip": "ولد = son; ولدي = my son"
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "please-introduce-yourself-to-a-man",
+          "arabic": "عَرّْفْنَا بْرَاسْك، عَافَاك",
+          "transliteration": "3errefna b raasek, 3afaak"
+        },
+        {
+          "slot": "this-is-my-cv",
+          "arabic": "هَادَا هُوَ السِّي فِي دْيَالِي",
+          "transliteration": "haada huwa ssee vee dyaali"
+        },
+        {
+          "slot": "i-graduated-from-the-faculty-of-engineering",
+          "arabic": "تْخَرّْجْت مْن كُلِّيَّة الْهَنْدَسَة",
+          "transliteration": "tkherrejt mn kulliyyat lhandasa"
+        },
+        {
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma",
+          "arabic": "شْحَال عَنْدَك دْيَال سْنِين دْيَال الْخِبْرَة؟",
+          "transliteration": "sh7aal 3ndek dyaal sneen dyaal lkhibra?",
+          "reply": {
+            "arabic": "عَنْدِي تْلَات سْنِين دْيَال الْخِبْرَة",
+            "transliteration": "3ndi tlaat sneen dyaal lkhibra",
+            "english": "I have three years of experience."
+          }
+        },
+        {
+          "slot": "why-do-you-want-to-work-with-us-to-a-man",
+          "arabic": "عْلَاش بْغِيتِي تْخْدَم مْعَانَا؟",
+          "transliteration": "3laash bgheeti tkhdem m3aana?"
+        },
+        {
+          "slot": "i-speak-arabic-and-english",
+          "arabic": "كَنْهْضَر الْعَرْبِيَّة وْالنّْڭْلِيزِيَّة",
+          "transliteration": "kanhDer l3arbiyya w nngleeziyya"
+        },
+        {
+          "slot": "what-are-your-strengths-to-a-man",
+          "arabic": "شْنُو هُمَا نُقَط الْقُوَّة دْيَالْك؟",
+          "transliteration": "shnu huma nuqaT lquwwa dyaalek?"
+        },
+        {
+          "slot": "i-work-well-with-the-team",
+          "arabic": "كَنْخْدَم مْزْيَان مْعَ الْفَرِيق",
+          "transliteration": "kankhdem mzyaan m3a lfareeq"
+        },
+        {
+          "slot": "what-salary-do-you-expect-to-a-man",
+          "arabic": "شْحَال بَاغِي تْشْدّ فَالشّْهَر؟",
+          "transliteration": "sh7aal baaghi tshedd f shshher?",
+          "reply": {
+            "arabic": "تْقْرِيبًا سْتَّة آلَاف دَرْهَم",
+            "transliteration": "tqreeban stta aalaaf derhem",
+            "english": "About six thousand dirhams."
+          }
+        },
+        {
+          "slot": "when-can-you-start-to-a-man",
+          "arabic": "فُوقَاش تْقْدَر تْبْدَا؟",
+          "transliteration": "fooqaash tqder tbda?",
+          "reply": {
+            "arabic": "مْن الشّْهَر الْجَّاي",
+            "transliteration": "mn shsher jjaay",
+            "english": "From next month."
+          }
+        },
+        {
+          "slot": "we-will-call-you-next-week",
+          "arabic": "غَادِي نْعَيّْطُو لِيك السِّيمَانَة الْجَّايَة",
+          "transliteration": "ghaadi n3ayyTu leek ssimaana jjaaya"
+        },
+        {
+          "slot": "thank-you-for-your-time-to-a-man",
+          "arabic": "شُكْرًا عْلَى الْوَقْت دْيَالْك",
+          "transliteration": "shukran 3la lweqt dyaalek"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "إدريس",
+          "arabic": "مرحبا، تفضل جلس.",
+          "transliteration": "mar7ba, tfeDDel jles.",
+          "english": "Welcome, please sit down."
+        },
+        {
+          "speaker": "ياسين",
+          "slot": "this-is-my-cv"
+        },
+        {
+          "speaker": "إدريس",
+          "slot": "please-introduce-yourself-to-a-man"
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "سميتي ياسين العلمي، عندي ستة وعشرين عام، وتخرجت من كلية الهندسة فالرباط.",
+          "transliteration": "smeeti Yaaseen l3almi, 3ndi stta w 3shreen 3aam, w tkherrejt mn kulliyyat lhandasa f rrbaaT.",
+          "english": "My name is Yassine Alami, I'm twenty-six, and I graduated from the faculty of engineering in Rabat."
+        },
+        {
+          "speaker": "إدريس",
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma"
+        },
+        {
+          "speaker": "ياسين",
+          "slot": "how-many-years-of-experience-do-you-have-to-a-ma",
+          "reply": true
+        },
+        {
+          "speaker": "إدريس",
+          "slot": "why-do-you-want-to-work-with-us-to-a-man"
+        },
+        {
+          "speaker": "ياسين",
+          "arabic": "الشركة ديالكم معروفة، وبغيت نتعلم بزاف.",
+          "transliteration": "shsharika dyaalkom ma3roofa, w bgheet nt3allem bzzaaf.",
+          "english": "Your company is well known, and I want to learn a lot."
+        },
+        {
+          "speaker": "إدريس",
+          "slot": "what-are-your-strengths-to-a-man"
+        },
+        {
+          "speaker": "ياسين",
+          "slot": "i-work-well-with-the-team"
+        },
+        {
+          "speaker": "إدريس",
+          "slot": "what-salary-do-you-expect-to-a-man"
+        },
+        {
+          "speaker": "ياسين",
+          "slot": "what-salary-do-you-expect-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "إدريس",
+          "slot": "when-can-you-start-to-a-man"
+        },
+        {
+          "speaker": "ياسين",
+          "slot": "when-can-you-start-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "إدريس",
+          "slot": "we-will-call-you-next-week"
+        },
+        {
+          "speaker": "ياسين",
+          "slot": "thank-you-for-your-time-to-a-man"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عَرّْفْنَا بْرَاسْك، عَافَاك",
+            "transliteration": "3errefna b raasek, 3afaak",
+            "english": "Please introduce yourself."
+          },
+          "response": {
+            "arabic": "سْمِيتِي يَاسِين، تْخَرّْجْت مْن كُلِّيَّة الْهَنْدَسَة",
+            "transliteration": "smeeti Yaaseen, tkherrejt mn kulliyyat lhandasa",
+            "english": "My name is Yassine, I graduated from the faculty of engineering."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْحَال عَنْدَك دْيَال سْنِين دْيَال الْخِبْرَة؟",
+            "transliteration": "sh7aal 3ndek dyaal sneen dyaal lkhibra?",
+            "english": "How many years of experience do you have?"
+          },
+          "response": {
+            "arabic": "عَنْدِي جُوج سْنِين",
+            "transliteration": "3ndi jooj sneen",
+            "english": "I have two years."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فُوقَاش تْقْدَر تْبْدَا؟",
+            "transliteration": "fooqaash tqder tbda?",
+            "english": "When can you start?"
+          },
+          "response": {
+            "arabic": "غْدَّا إِلَا بْغِيتُو",
+            "transliteration": "ghedda ila bgheetu",
+            "english": "Tomorrow if you like."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْنُو هُمَا نُقَط الْقُوَّة دْيَالْك؟",
+            "transliteration": "shnu huma nuqaT lquwwa dyaalek?",
+            "english": "What are your strengths?"
+          },
+          "response": {
+            "arabic": "كَنْخْدَم مْزْيَان مْعَ الْفَرِيق",
+            "transliteration": "kankhdem mzyaan m3a lfareeq",
+            "english": "I work well with the team."
+          }
+        }
+      ],
+      "culture": "فالمغرب، المقابلة ديال الخدمة كتكون بالدارجة وبالفرنسية، وبزاف ديال الشركات كيسولو على الفرنسية والنڭليزية. المرشح كيلبس لبسة رسمية، كيسلم، وكيتسنى حتى يقولو ليه «تفضل جلس».",
+      "exercises": [
+        {
+          "id": "unit-08.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "شْحَال عَنْدَك دْيَال سْنِين دْيَال الْخِبْرَة؟ (Say three years.)",
+          "answer": "عَنْدِي تْلَات سْنِين دْيَال الْخِبْرَة",
+          "accepted": [
+            "عَنْدِي تْلَات سْنِين دْيَال الْخِبْرَة",
+            "عندي تلات سنين ديال الخبرة",
+            "3ndi tlaat sneen dyaal lkhibra",
+            "عندي تلات سنين",
+            "تلات سنين"
+          ],
+          "too_formal": {
+            "item": "لدي ثلاث سنوات من الخبرة",
+            "feedback": "فصحى، المغربي كيقول عندي تلات سنين"
+          },
+          "tip": "عندي = I have"
+        },
+        {
+          "id": "unit-08.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "فُوقَاش تْقْدَر تْبْدَا؟ (Say from next month.)",
+          "answer": "مْن الشّْهَر الْجَّاي",
+          "accepted": [
+            "مْن الشّْهَر الْجَّاي",
+            "من الشهر الجاي",
+            "mn shsher jjaay",
+            "الشهر الجاي",
+            "من الشهر الجاي إن شاء الله"
+          ],
+          "too_formal": {
+            "item": "ابتداء من الشهر القادم",
+            "feedback": "فصحى، المغربي كيقول الشهر الجاي"
+          },
+          "tip": "الجاي = next, coming"
+        },
+        {
+          "id": "unit-08.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "_____ براسك، عافاك (Please introduce yourself.)",
+          "answer": "عرفنا",
+          "accepted": [
+            "عرفنا",
+            "3errefna",
+            "عَرّْفْنَا"
+          ],
+          "too_formal": {
+            "item": "قدم نفسك",
+            "feedback": "فصحى، المغربي كيقول عرفنا براسك"
+          },
+          "tip": "براسك = yourself"
+        },
+        {
+          "id": "unit-08.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "كنخدم مزيان مع _____ (I work well with the team.)",
+          "answer": "الفريق",
+          "accepted": [
+            "الفريق",
+            "lfareeq",
+            "الْفَرِيق",
+            "الإكيب"
+          ],
+          "too_formal": {
+            "item": "فريق العمل",
+            "feedback": "مفهومة، ولكن غير الفريق كافية"
+          },
+          "tip": "Many also say الإكيب, from French équipe"
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Why do you want to work with us? (to a man)",
+          "answer": "عْلَاش بْغِيتِي تْخْدَم مْعَانَا؟",
+          "accepted": [
+            "عْلَاش بْغِيتِي تْخْدَم مْعَانَا؟",
+            "علاش بغيتي تخدم معانا؟",
+            "3laash bgheeti tkhdem m3aana?",
+            "علاش باغي تخدم معانا؟"
+          ],
+          "too_formal": {
+            "item": "لماذا تريد العمل معنا؟",
+            "feedback": "فصحى، المغربي كيقول علاش و بغيتي"
+          },
+          "tip": "علاش = why"
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "We will call you next week.",
+          "answer": "غَادِي نْعَيّْطُو لِيك السِّيمَانَة الْجَّايَة",
+          "accepted": [
+            "غَادِي نْعَيّْطُو لِيك السِّيمَانَة الْجَّايَة",
+            "غادي نعيطو ليك السيمانة الجاية",
+            "ghaadi n3ayyTu leek ssimaana jjaaya",
+            "نعيطو ليك السيمانة الجاية"
+          ],
+          "too_formal": {
+            "item": "سنتصل بك الأسبوع القادم",
+            "feedback": "فصحى، المغربي كيقول نعيطو ليك"
+          },
+          "tip": "عيط ل = to call someone"
+        },
+        {
+          "id": "unit-08.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "I speak Arabic and English.",
+          "answer": "كَنْهْضَر الْعَرْبِيَّة وْالنّْڭْلِيزِيَّة",
+          "accepted": [
+            "كَنْهْضَر الْعَرْبِيَّة وْالنّْڭْلِيزِيَّة",
+            "كنهضر العربية والنڭليزية",
+            "kanhDer l3arbiyya w nngleeziyya",
+            "كنهضر العربية والانجليزية",
+            "كنهضر العربية والنجليزية"
+          ],
+          "too_formal": {
+            "item": "أتكلم العربية والإنجليزية",
+            "feedback": "فصحى، المغربي كيقول كنهضر"
+          },
+          "tip": "هضر = to speak"
+        },
+        {
+          "id": "unit-08.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which one asks \"What salary do you expect?\"",
+          "answer": "شْحَال بَاغِي تْشْدّ فَالشّْهَر؟",
+          "options": [
+            "شْحَال بَاغِي تْشْدّ فَالشّْهَر؟",
+            "فُوقَاش تْقْدَر تْبْدَا؟",
+            "عْلَاش بْغِيتِي تْخْدَم مْعَانَا؟",
+            "شْنُو هُمَا نُقَط الْقُوَّة دْيَالْك؟"
+          ],
+          "accepted": [
+            "شْحَال بَاغِي تْشْدّ فَالشّْهَر؟",
+            "sh7aal baaghi tshedd f shshher?",
+            "شحال باغي تشد فالشهر؟"
+          ],
+          "too_formal": {
+            "item": "ما هو الراتب الذي تتوقعه؟",
+            "feedback": "فصحى، المغربي كيقول شحال باغي تشد"
+          },
+          "tip": "تشد = to earn, take home"
+        },
+        {
+          "id": "unit-08.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"Thank you for your time\"?",
+          "answer": "شُكْرًا عْلَى الْوَقْت دْيَالْك",
+          "options": [
+            "شُكْرًا عْلَى الْوَقْت دْيَالْك",
+            "هَادَا هُوَ السِّي فِي دْيَالِي",
+            "عَرّْفْنَا بْرَاسْك، عَافَاك",
+            "غَادِي نْعَيّْطُو لِيك السِّيمَانَة الْجَّايَة"
+          ],
+          "accepted": [
+            "شُكْرًا عْلَى الْوَقْت دْيَالْك",
+            "shukran 3la lweqt dyaalek",
+            "شكرا على الوقت ديالك"
+          ],
+          "too_formal": {
+            "item": "شكرا على وقتك",
+            "feedback": "مفهومة، ولكن المغربي كيقول الوقت ديالك"
+          },
+          "tip": "ديالك = your"
+        },
+        {
+          "id": "unit-08.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "I graduated from the faculty of engineering.",
+          "answer": "تْخَرّْجْت مْن كُلِّيَّة الْهَنْدَسَة",
+          "accepted": [
+            "تْخَرّْجْت مْن كُلِّيَّة الْهَنْدَسَة",
+            "تخرجت من كلية الهندسة",
+            "tkherrejt mn kulliyyat lhandasa"
+          ],
+          "too_formal": {
+            "item": "لقد تخرجت من كلية الهندسة",
+            "feedback": "فصحى، المغربي كيقول غير تخرجت"
+          },
+          "tip": "تخرج = to graduate"
+        },
+        {
+          "id": "unit-08.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "This is my CV.",
+          "answer": "هَادَا هُوَ السِّي فِي دْيَالِي",
+          "accepted": [
+            "هَادَا هُوَ السِّي فِي دْيَالِي",
+            "هادا هو السي في ديالي",
+            "haada huwa ssee vee dyaali",
+            "هادا السي في ديالي"
+          ],
+          "too_formal": {
+            "item": "هذه سيرتي الذاتية",
+            "feedback": "فصحى، المغربي كيقول السي في ديالي"
+          },
+          "tip": "Moroccans use the French CV"
         }
       ]
     }

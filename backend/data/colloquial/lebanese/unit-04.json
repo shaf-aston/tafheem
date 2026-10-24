@@ -1554,6 +1554,845 @@
           "tip": "The b- on badfa3 is the plain present."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "i-d-like-a-chicken-burger-and-fries",
+          "arabic": "بَدِّي تْشِيكِن بُرْغَر مَع بَطاطا",
+          "transliteration": "baddi tshiken burger ma3 baTaaTa"
+        },
+        {
+          "slot": "are-you-eating-here-or-taking-it-with-you",
+          "arabic": "بْتاكُل هَوْن وَلَّا سَفَري؟",
+          "transliteration": "btaakol hoon willa sefri?",
+          "reply": {
+            "arabic": "سَفَري، إِذا بِتْريد",
+            "transliteration": "sefri, iza bitreed",
+            "english": "Takeaway, please."
+          }
+        },
+        {
+          "slot": "i-want-a-pizza-to-take-away",
+          "arabic": "بَدِّي بِيتْزا سَفَري",
+          "transliteration": "baddi pitza sefri"
+        },
+        {
+          "slot": "i-ll-eat-here",
+          "arabic": "باكُل هَوْن",
+          "transliteration": "baakol hoon"
+        },
+        {
+          "slot": "which-size-do-you-want-small-medium-or-large",
+          "arabic": "أَيَّا حَجِم بَدَّك؟ زْغِير، وَسَط وَلَّا كْبِير؟",
+          "transliteration": "ayya 7ajm baddak? zgheer, wasaT willa kbeer?",
+          "reply": {
+            "arabic": "وَسَط، إِذا بِتْريد",
+            "transliteration": "wasaT, iza bitreed",
+            "english": "Medium, please."
+          }
+        },
+        {
+          "slot": "a-large-cola-please",
+          "arabic": "كُولا كْبِيرِة، إِذا بِتْريد",
+          "transliteration": "koola kbeere, iza bitreed"
+        },
+        {
+          "slot": "without-ice-please",
+          "arabic": "بَلا تَلِج، إِذا بِتْريد",
+          "transliteration": "bala telj, iza bitreed"
+        },
+        {
+          "slot": "do-you-have-a-kids-meal",
+          "arabic": "عِنْدكُن وَجْبِة أَطْفال؟",
+          "transliteration": "3endkon wajbet aTfaal?"
+        },
+        {
+          "slot": "extra-ketchup-please",
+          "arabic": "كاتْشاب زْيادِة، إِذا بِتْريد",
+          "transliteration": "kaatshab zyaade, iza bitreed"
+        },
+        {
+          "slot": "how-long-will-the-order-take",
+          "arabic": "قَدِّيش بَدُّو وَقِت الطَّلَب؟",
+          "transliteration": "2addeesh baddo wa2et eT-Talab?",
+          "reply": {
+            "arabic": "شِي عَشْر دْقايِق",
+            "transliteration": "shi 3ashr d2aaye2",
+            "english": "About ten minutes."
+          }
+        },
+        {
+          "slot": "is-the-meat-halal",
+          "arabic": "اللَّحْمِة حَلال؟",
+          "transliteration": "el-la7me 7alaal?"
+        },
+        {
+          "slot": "please-put-it-in-a-bag",
+          "arabic": "حُطِّلي ياه بْكِيس، إِذا بِتْريد",
+          "transliteration": "7oTTelli yaah b-kees, iza bitreed"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Hadi",
+          "arabic": "أهلا، شو بدّك؟",
+          "transliteration": "ahla, shu baddak?",
+          "english": "Hi, what would you like?"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "i-d-like-a-chicken-burger-and-fries"
+        },
+        {
+          "speaker": "Hadi",
+          "slot": "are-you-eating-here-or-taking-it-with-you"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "i-ll-eat-here"
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "وشو بدّك تشرب؟",
+          "transliteration": "w shu baddak teshrab?",
+          "english": "And what would you like to drink?"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "a-large-cola-please"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "without-ice-please"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وابني معي.",
+          "transliteration": "w ebni ma3i.",
+          "english": "And my son is with me."
+        },
+        {
+          "speaker": "Karim",
+          "slot": "do-you-have-a-kids-meal"
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "إيه، فيها برغر زغير وبطاطا وبوظة.",
+          "transliteration": "eh, feeha burger zgheer w baTaaTa w booZa.",
+          "english": "Yes, it has a small burger, fries and ice cream."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "منيح، بدّي وحدة. وسؤال:",
+          "transliteration": "mnee7, baddi wa7de. w su2aal:",
+          "english": "Good, I'll have one. And a question:"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "is-the-meat-halal"
+        },
+        {
+          "speaker": "Hadi",
+          "arabic": "إيه، كلّ اللحمة عنّا حلال.",
+          "transliteration": "eh, kell el-la7me 3enna 7alaal.",
+          "english": "Yes, all our meat is halal."
+        },
+        {
+          "speaker": "Karim",
+          "slot": "how-long-will-the-order-take"
+        },
+        {
+          "speaker": "Hadi",
+          "slot": "how-long-will-the-order-take",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "هون ولّا سفري؟",
+            "transliteration": "hoon willa sefri?",
+            "english": "Here or takeaway?"
+          },
+          "response": {
+            "arabic": "سفري.",
+            "transliteration": "sefri.",
+            "english": "Takeaway."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أيّا حجم بدّك؟",
+            "transliteration": "ayya 7ajm baddak?",
+            "english": "Which size do you want?"
+          },
+          "response": {
+            "arabic": "كبير.",
+            "transliteration": "kbeer.",
+            "english": "Large."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندكن وجبة أطفال؟",
+            "transliteration": "3endkon wajbet aTfaal?",
+            "english": "Do you have a kids' meal?"
+          },
+          "response": {
+            "arabic": "إيه، في.",
+            "transliteration": "eh, fee.",
+            "english": "Yes, there is."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "قدّيش بدّو وقت؟",
+            "transliteration": "2addeesh baddo wa2et?",
+            "english": "How long will it take?"
+          },
+          "response": {
+            "arabic": "ربع ساعة.",
+            "transliteration": "rob3 saa3a.",
+            "english": "A quarter of an hour."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بتعملو توصيل؟",
+            "transliteration": "bta3emlo tawSeel?",
+            "english": "Do you deliver?"
+          },
+          "response": {
+            "arabic": "إيه، عالبيت بنصّ ساعة.",
+            "transliteration": "eh, 3al-beit b-noSS saa3a.",
+            "english": "Yes, to your home in half an hour."
+          }
+        }
+      ],
+      "culture": "In Beirut \"sefri\" is the word for takeaway, and nearly every snack shop delivers by scooter, often called simply \"delivery\". Shawarma and falafel sandwiches are the classic fast food, and fast-food words such as burger, pizza and \"tshiken\" are said as in English.",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "The cashier asks: \"هون ولّا سفري؟\" Say takeaway, please.",
+          "answer": "سَفَري، إِذا بِتْريد",
+          "accepted": [
+            "سَفَري، إِذا بِتْريد",
+            "سفري",
+            "سفري، إذا بتريد",
+            "sefri",
+            "sefri, iza bitreed",
+            "سفري من فضلك",
+            "sefri min faDlak"
+          ],
+          "too_formal": {
+            "item": "أريد أن آخذه معي",
+            "feedback": "Correct but long and written. At the counter one word does it: sefri."
+          },
+          "tip": "sefri literally means \"for travelling\"."
+        },
+        {
+          "id": "unit-04.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "You ask how long the order will take. The cashier answers \"about ten minutes\". What does he say?",
+          "answer": "شِي عَشْر دْقايِق",
+          "accepted": [
+            "شِي عَشْر دْقايِق",
+            "شي عشر دقايق",
+            "shi 3ashr d2aaye2",
+            "عشر دقايق",
+            "3ashr d2aaye2"
+          ],
+          "too_formal": {
+            "item": "سيستغرق الطلب عشر دقائق تقريباً",
+            "feedback": "A written sentence. Speech says shi 3ashr d2aaye2."
+          },
+          "tip": "shi before a number means \"about\"."
+        },
+        {
+          "id": "unit-04.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بدّي بيتزا _____.\" Meaning: I want a pizza to take away.",
+          "answer": "سَفَري",
+          "accepted": [
+            "سَفَري",
+            "سفري",
+            "sefri"
+          ],
+          "too_formal": {
+            "item": "للأخذ",
+            "feedback": "A menu-board word. Lebanese say sefri."
+          },
+          "tip": "sefri goes after the food you order."
+        },
+        {
+          "id": "unit-04.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ تلج، إذا بتريد.\" Meaning: Without ice, please.",
+          "answer": "بَلا",
+          "accepted": [
+            "بَلا",
+            "بلا",
+            "bala",
+            "بدون",
+            "bidoon"
+          ],
+          "too_formal": {
+            "item": "من غير",
+            "feedback": "min gheir is understood, but Lebanese mostly say bala."
+          },
+          "tip": "bala is the everyday \"without\": bala basal, bala telj."
+        },
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'll eat here.\"",
+          "answer": "باكُل هَوْن",
+          "accepted": [
+            "باكُل هَوْن",
+            "باكل هون",
+            "baakol hoon",
+            "رح اكل هون",
+            "ra7 ekol hoon"
+          ],
+          "too_formal": {
+            "item": "سآكل هنا",
+            "feedback": "Written future. Speech says baakol hoon."
+          },
+          "tip": "hoon is \"here\" in Lebanese."
+        },
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is the meat halal?\"",
+          "answer": "اللَّحْمِة حَلال؟",
+          "accepted": [
+            "اللَّحْمِة حَلال؟",
+            "اللحمة حلال؟",
+            "اللحمة حلال",
+            "el-la7me 7alaal?",
+            "el-la7me 7alaal",
+            "la7me 7alaal?"
+          ],
+          "too_formal": {
+            "item": "هل اللحم حلال؟",
+            "feedback": "hal and la7m are written forms. Speech says el-la7me 7alaal? with a rising voice."
+          },
+          "tip": "A yes/no question needs no question word, only the voice going up."
+        },
+        {
+          "id": "unit-04.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Please put it in a bag.\"",
+          "answer": "حُطِّلي ياه بْكِيس، إِذا بِتْريد",
+          "accepted": [
+            "حُطِّلي ياه بْكِيس، إِذا بِتْريد",
+            "حطلي ياه بكيس",
+            "حطّلي ياه بكيس إذا بتريد",
+            "7oTTelli yaah b-kees",
+            "7oTTelli yaah b-kees, iza bitreed",
+            "حطّلي ياه بكيس من فضلك"
+          ],
+          "too_formal": {
+            "item": "ضعه في كيس من فضلك",
+            "feedback": "Written Arabic. Speech says 7oTTelli yaah b-kees."
+          },
+          "tip": "7oTT is \"put\"; -elli is \"for me\"."
+        },
+        {
+          "id": "unit-04.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"ice\"?",
+          "options": [
+            "تَلِج",
+            "كِيس",
+            "عِلْبِة",
+            "صَلْصَة"
+          ],
+          "answer": "تَلِج",
+          "accepted": [
+            "تَلِج",
+            "تلج",
+            "telj"
+          ],
+          "too_formal": {
+            "item": "ثلج",
+            "feedback": "With th it is the written word. Lebanese say telj with a t."
+          },
+          "tip": "kees is bag, 3elbe is box, Salse is sauce."
+        },
+        {
+          "id": "unit-04.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"A large cola, please\"?",
+          "options": [
+            "كُولا كْبِيرِة، إِذا بِتْريد",
+            "كُولا زْغِيرِة، إِذا بِتْريد",
+            "بَلا تَلِج، إِذا بِتْريد",
+            "كاتْشاب زْيادِة، إِذا بِتْريد"
+          ],
+          "answer": "كُولا كْبِيرِة، إِذا بِتْريد",
+          "accepted": [
+            "كُولا كْبِيرِة، إِذا بِتْريد",
+            "كولا كبيرة إذا بتريد",
+            "koola kbeere, iza bitreed",
+            "كولا كبيرة"
+          ],
+          "tip": "kbeere (large) and zgheere (small) take -e after a feminine word."
+        },
+        {
+          "id": "unit-04.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"سفري / بدّي / بيتزا\".",
+          "answer": "بَدِّي بِيتْزا سَفَري",
+          "accepted": [
+            "بَدِّي بِيتْزا سَفَري",
+            "بدي بيتزا سفري",
+            "بدّي بيتزا سفري",
+            "baddi pitza sefri"
+          ],
+          "too_formal": {
+            "item": "أريد بيتزا للأخذ",
+            "feedback": "Written Arabic. Speech says baddi pitza sefri."
+          },
+          "tip": "baddi (I want) starts the order."
+        },
+        {
+          "id": "unit-04.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"زيادة / كاتشاب / إذا بتريد\".",
+          "words": [
+            "كاتْشاب",
+            "زْيادِة،",
+            "إِذا بِتْريد"
+          ],
+          "answer": "كاتْشاب زْيادِة، إِذا بِتْريد",
+          "accepted": [
+            "كاتْشاب زْيادِة، إِذا بِتْريد",
+            "كاتشاب زيادة إذا بتريد",
+            "كاتشاب زيادة، إذا بتريد",
+            "kaatshab zyaade, iza bitreed",
+            "kaatshab zyaade iza bitreed"
+          ],
+          "tip": "zyaade (extra) comes after the thing you want more of."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "thank-you-for-the-invitation",
+          "arabic": "يِسْلَمُو عَالعَزِيمِة",
+          "transliteration": "yeslamo 3al-3azeeme",
+          "reply": {
+            "arabic": "وَلَو، أَهْلا وْسَهْلا",
+            "transliteration": "walaw, ahla w sahla",
+            "english": "Don't mention it, you're welcome."
+          }
+        },
+        {
+          "slot": "i-am-honoured-by-your-invitation",
+          "arabic": "دَعْوِتْكُن شَرَف إِلي",
+          "transliteration": "da3wetkon sharaf eli",
+          "english": "Your invitation is an honour for me."
+        },
+        {
+          "slot": "please-come-in-and-sit-down",
+          "arabic": "تْفَضَّلُو، فُوتُو وْقْعُدُو",
+          "transliteration": "tfaDDalo, footo w 2o3do"
+        },
+        {
+          "slot": "bismillah-in-the-name-of-allah",
+          "arabic": "بِسْمِ الله",
+          "transliteration": "bismillah"
+        },
+        {
+          "slot": "eat-with-your-right-hand",
+          "arabic": "كُول بْإِيدَك اليَمِين",
+          "transliteration": "kool b-eedak el-yameen"
+        },
+        {
+          "slot": "please-take-some-more",
+          "arabic": "تْفَضَّل، خُود كَمان شْوَيّ",
+          "transliteration": "tfaDDal, khood kamaan shwayy"
+        },
+        {
+          "slot": "thank-allah-i-m-full",
+          "arabic": "الحَمْدِلله، شْبِعِت",
+          "transliteration": "el-7amdella, shbe3t",
+          "reply": {
+            "arabic": "صَحّْتَيْن!",
+            "transliteration": "Sa77tein!",
+            "english": "Bon appétit! (To your health!)"
+          }
+        },
+        {
+          "slot": "may-allah-reward-you-well",
+          "arabic": "الله يِجْزِيك الخَيْر",
+          "transliteration": "allah yejzeek el-kheir",
+          "reply": {
+            "arabic": "وْإِيَّاك",
+            "transliteration": "w iyyaak",
+            "english": "And you too."
+          }
+        },
+        {
+          "slot": "how-delicious-this-food-is",
+          "arabic": "شُو طَيِّب هَيْدا الأَكِل!",
+          "transliteration": "shu Tayyeb hayda l-akel!"
+        },
+        {
+          "slot": "please-pass-me-the-water",
+          "arabic": "ناوِلْني المَيّ، إِذا بِتْريد",
+          "transliteration": "naawelni l-mayy, iza bitreed"
+        },
+        {
+          "slot": "shall-we-have-tea-after-the-meal",
+          "arabic": "مْنِشْرَب شاي بَعْد الأَكِل؟",
+          "transliteration": "mnishrab shaay ba3d l-akel?"
+        },
+        {
+          "slot": "next-time-it-s-on-us",
+          "arabic": "المَرَّة الجايِة عِنَّا، إِن شالله",
+          "transliteration": "el-marra ej-jaaye 3enna, inshalla",
+          "english": "Next time it's at our place, God willing."
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Abu Ziad",
+          "arabic": "أهلا وسهلا! نوّرتو البيت.",
+          "transliteration": "ahla w sahla! nawwarto l-beit.",
+          "english": "Welcome! You've lit up the house."
+        },
+        {
+          "speaker": "Abu Ziad",
+          "slot": "please-come-in-and-sit-down"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "thank-you-for-the-invitation"
+        },
+        {
+          "speaker": "Abu Ziad",
+          "slot": "thank-you-for-the-invitation",
+          "reply": true
+        },
+        {
+          "speaker": "Lina",
+          "arabic": "وجبنالكن هالهدية الزغيرة.",
+          "transliteration": "w jebnaalkon hal-hdiyye ez-zgheere.",
+          "english": "And we brought you this small gift."
+        },
+        {
+          "speaker": "Um Ziad",
+          "arabic": "ليش تعّبتو حالكن؟ الله يخلّيكن!",
+          "transliteration": "leish t3abbto 7aalkon? allah ykhalleekon!",
+          "english": "Why did you trouble yourselves? Thank you so much!"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "bismillah-in-the-name-of-allah"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "how-delicious-this-food-is"
+        },
+        {
+          "speaker": "Um Ziad",
+          "slot": "please-take-some-more"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "thank-allah-i-m-full"
+        },
+        {
+          "speaker": "Um Ziad",
+          "slot": "thank-allah-i-m-full",
+          "reply": true
+        },
+        {
+          "speaker": "Omar",
+          "slot": "may-allah-reward-you-well"
+        },
+        {
+          "speaker": "Abu Ziad",
+          "slot": "may-allah-reward-you-well",
+          "reply": true
+        },
+        {
+          "speaker": "Abu Ziad",
+          "slot": "shall-we-have-tea-after-the-meal"
+        },
+        {
+          "speaker": "Omar",
+          "slot": "next-time-it-s-on-us"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "يسلمو عالعزيمة.",
+            "transliteration": "yeslamo 3al-3azeeme.",
+            "english": "Thanks for the invitation."
+          },
+          "response": {
+            "arabic": "ولو، أهلا وسهلا.",
+            "transliteration": "walaw, ahla w sahla.",
+            "english": "Don't mention it, you're welcome."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "خود كمان شوي.",
+            "transliteration": "khood kamaan shwayy.",
+            "english": "Take a bit more."
+          },
+          "response": {
+            "arabic": "الحمدلله، شبعت.",
+            "transliteration": "el-7amdella, shbe3t.",
+            "english": "Thank God, I'm full."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو طيّب الأكل!",
+            "transliteration": "shu Tayyeb el-akel!",
+            "english": "How delicious the food is!"
+          },
+          "response": {
+            "arabic": "صحتين!",
+            "transliteration": "Sa77tein!",
+            "english": "Bon appétit!"
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الله يجزيك الخير.",
+            "transliteration": "allah yejzeek el-kheir.",
+            "english": "May God reward you well."
+          },
+          "response": {
+            "arabic": "وإيّاك.",
+            "transliteration": "w iyyaak.",
+            "english": "And you too."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "منشرب شاي؟",
+            "transliteration": "mnishrab shaay?",
+            "english": "Shall we have tea?"
+          },
+          "response": {
+            "arabic": "إيه، يسلمو.",
+            "transliteration": "eh, yeslamo.",
+            "english": "Yes, thank you."
+          }
+        }
+      ],
+      "culture": "A Lebanese host keeps filling your plate and you are expected to refuse once or twice before taking more; \"3azeeme\" is the word for this kind of invitation. Guests bring sweets or a small gift, praise the cook with \"yeslamo ideiki\" (bless your hands, to a woman), and the host answers every compliment with \"Sa77tein\".",
+      "exercises": [
+        {
+          "id": "unit-04.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Your host says: \"خود كمان شوي.\" You are full. Answer.",
+          "answer": "الحَمْدِلله، شْبِعِت",
+          "accepted": [
+            "الحَمْدِلله، شْبِعِت",
+            "الحمدلله شبعت",
+            "الحمد لله، شبعت",
+            "el-7amdella, shbe3t",
+            "el-7amdella shbe3t",
+            "شبعت",
+            "shbe3t"
+          ],
+          "too_formal": {
+            "item": "الحمد لله، لقد شبعت",
+            "feedback": "la2ad is written Arabic. Speech says el-7amdella, shbe3t."
+          },
+          "tip": "Hosts insist; saying el-7amdella first is the polite way to stop."
+        },
+        {
+          "id": "unit-04.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Someone says to you: \"الله يجزيك الخير.\" Answer.",
+          "answer": "وْإِيَّاك",
+          "accepted": [
+            "وْإِيَّاك",
+            "وإياك",
+            "وإيّاك",
+            "w iyyaak",
+            "wa iyyaak"
+          ],
+          "too_formal": {
+            "item": "وجزاك الله خيراً",
+            "feedback": "Correct and pious, but fuller and more formal than the usual short answer."
+          },
+          "tip": "To a woman: w iyyaki."
+        },
+        {
+          "id": "unit-04.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"كول بإيدك _____.\" Meaning: Eat with your right hand.",
+          "answer": "اليَمِين",
+          "accepted": [
+            "اليَمِين",
+            "اليمين",
+            "el-yameen",
+            "yameen"
+          ],
+          "too_formal": {
+            "item": "اليُمنى",
+            "feedback": "al-yumna is the written word for the right hand. Speech says el-yameen."
+          },
+          "tip": "yameen is right, shmaal is left."
+        },
+        {
+          "id": "unit-04.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"يسلمو عال_____.\" Meaning: Thanks for the invitation.",
+          "answer": "عَزِيمِة",
+          "accepted": [
+            "عَزِيمِة",
+            "عزيمة",
+            "عزيمه",
+            "3azeeme"
+          ],
+          "too_formal": {
+            "item": "دعوة",
+            "feedback": "da3we is right too, but for a meal at someone's home Lebanese say 3azeeme."
+          },
+          "tip": "3azeeme comes from 3azam, to invite."
+        },
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Bismillah.\" (before eating)",
+          "answer": "بِسْمِ الله",
+          "accepted": [
+            "بِسْمِ الله",
+            "بسم الله",
+            "bismillah",
+            "bismilla",
+            "بسم الله الرحمن الرحيم"
+          ],
+          "tip": "Said by everyone at the table before the first bite."
+        },
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Please pass me the water.\"",
+          "answer": "ناوِلْني المَيّ، إِذا بِتْريد",
+          "accepted": [
+            "ناوِلْني المَيّ، إِذا بِتْريد",
+            "ناولني المي",
+            "ناولني المي إذا بتريد",
+            "naawelni l-mayy",
+            "naawelni l-mayy, iza bitreed",
+            "عطيني المي",
+            "3Teeni l-mayy"
+          ],
+          "too_formal": {
+            "item": "أعطني الماء من فضلك",
+            "feedback": "maa2 is written Arabic. The water at the table is el-mayy."
+          },
+          "tip": "mayy is water in Lebanese."
+        },
+        {
+          "id": "unit-04.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Shall we have tea after the meal?\"",
+          "answer": "مْنِشْرَب شاي بَعْد الأَكِل؟",
+          "accepted": [
+            "مْنِشْرَب شاي بَعْد الأَكِل؟",
+            "منشرب شاي بعد الأكل؟",
+            "منشرب شاي بعد الاكل",
+            "mnishrab shaay ba3d l-akel?",
+            "mnishrab shaay ba3d l-akel"
+          ],
+          "too_formal": {
+            "item": "هل نشرب الشاي بعد الطعام؟",
+            "feedback": "Written Arabic. Speech says mnishrab shaay ba3d l-akel?"
+          },
+          "tip": "mn- in front of a verb means \"we\": mnishrab, mnaakol."
+        },
+        {
+          "id": "unit-04.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which word means \"guest\"?",
+          "options": [
+            "ضَيْف",
+            "مْضِيف",
+            "هْدِيِّة",
+            "دَعْوِة"
+          ],
+          "answer": "ضَيْف",
+          "accepted": [
+            "ضَيْف",
+            "ضيف",
+            "Dayf"
+          ],
+          "tip": "mDeef is the host, hdiyye is a gift, da3we is an invitation."
+        },
+        {
+          "id": "unit-04.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "The food is delicious. What do you say?",
+          "options": [
+            "شُو طَيِّب هَيْدا الأَكِل!",
+            "الحَمْدِلله، شْبِعِت",
+            "ناوِلْني المَيّ، إِذا بِتْريد",
+            "بِسْمِ الله"
+          ],
+          "answer": "شُو طَيِّب هَيْدا الأَكِل!",
+          "accepted": [
+            "شُو طَيِّب هَيْدا الأَكِل!",
+            "شو طيب هيدا الأكل",
+            "شو طيّب هيدا الأكل!",
+            "shu Tayyeb hayda l-akel!",
+            "shu Tayyeb hayda l-akel"
+          ],
+          "too_formal": {
+            "item": "ما ألذّ هذا الطعام!",
+            "feedback": "The written exclamation. Speech uses shu: shu Tayyeb!"
+          },
+          "tip": "shu + adjective is \"how ...!\": shu 7elo, shu Tayyeb."
+        },
+        {
+          "id": "unit-04.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"الجاية / المرّة / عنّا\".",
+          "answer": "المَرَّة الجايِة عِنَّا",
+          "accepted": [
+            "المَرَّة الجايِة عِنَّا",
+            "المرة الجاية عنا",
+            "المرّة الجاية عنّا",
+            "el-marra ej-jaaye 3enna"
+          ],
+          "tip": "3enna means \"at our place\"."
+        },
+        {
+          "id": "unit-04.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"اليمين / كول / بإيدك\".",
+          "answer": "كُول بْإِيدَك اليَمِين",
+          "accepted": [
+            "كُول بْإِيدَك اليَمِين",
+            "كول بإيدك اليمين",
+            "كول بايدك اليمين",
+            "kool b-eedak el-yameen"
+          ],
+          "too_formal": {
+            "item": "كُلْ بيدك اليمنى",
+            "feedback": "Written Arabic. Speech says kool b-eedak el-yameen."
+          },
+          "tip": "Usually said to a child at the table; to a girl: koole b-eedik el-yameen."
+        }
+      ]
     }
   ],
   "challenge": {

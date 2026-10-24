@@ -1735,6 +1735,844 @@
           "tip": "The question word comes first."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "this-is-my-brother",
+          "arabic": "هَذَا خُوي",
+          "transliteration": "hadha khooy"
+        },
+        {
+          "slot": "this-is-my-father",
+          "arabic": "هَذَا أَبُوي",
+          "transliteration": "hadha abooy"
+        },
+        {
+          "slot": "this-is-my-mother",
+          "arabic": "هَذِي أُمِّي",
+          "transliteration": "hadhi ummi"
+        },
+        {
+          "slot": "do-you-have-brothers-and-sisters-to-a-man",
+          "arabic": "عِنْدَك إِخْوَان وْخَوَات؟",
+          "transliteration": "3indak ikhwaan w khawaat?"
+        },
+        {
+          "slot": "i-have-two-brothers-and-a-sister",
+          "arabic": "عِنْدِي اثْنَيْن إِخْوَان وْأُخْت",
+          "transliteration": "3indi ithnain ikhwaan w ukht"
+        },
+        {
+          "slot": "how-many-people-are-in-your-family-to-a-man",
+          "arabic": "عَايِلْتَك كَم نَفَر؟",
+          "transliteration": "3aayiltak kam nafar?",
+          "reply": {
+            "arabic": "إِحْنَا سَبْعَة",
+            "transliteration": "i7na sab3a",
+            "english": "We are seven."
+          }
+        },
+        {
+          "slot": "my-family-is-big",
+          "arabic": "عَايِلْتِي كَبِيرَة",
+          "transliteration": "3aayilti kabeera"
+        },
+        {
+          "slot": "this-is-my-friend-samer",
+          "arabic": "هَذَا رْبِيعِي سَامِر",
+          "transliteration": "hadha rbee3i Saamir"
+        },
+        {
+          "slot": "i-d-like-to-introduce-you-to-my-father-to-a-man",
+          "arabic": "أَبِي أْعَرْفَك عَلَى الْوَالِد",
+          "transliteration": "abi a3arrfak 3ala l-waalid"
+        },
+        {
+          "slot": "a-pleasure",
+          "arabic": "تْشَرَّفْنَا",
+          "transliteration": "tsharrafna",
+          "reply": {
+            "arabic": "الشَّرَف لَنَا",
+            "transliteration": "ish-sharaf lana",
+            "english": "The honour is ours."
+          }
+        },
+        {
+          "slot": "how-old-are-you-to-a-man",
+          "arabic": "كَم عُمْرَك؟",
+          "transliteration": "kam 3umrak?",
+          "reply": {
+            "arabic": "عُمْرِي خَمْس وْعِشْرِين سَنَة",
+            "transliteration": "3umri khams w 3ishreen sana",
+            "english": "I'm twenty-five."
+          }
+        },
+        {
+          "slot": "my-father-works-as-a-teacher",
+          "arabic": "أَبُوي يِشْتَغِل مُدَرِّس",
+          "transliteration": "abooy yishtaghil mudarris"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Khalid",
+          "arabic": "هلا سامر، هذا خوي فهد.",
+          "transliteration": "hala Saamir, hadha khooy Fahad.",
+          "english": "Hi Samer, this is my brother Fahad."
+        },
+        {
+          "speaker": "Samer",
+          "slot": "a-pleasure"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "a-pleasure",
+          "reply": true
+        },
+        {
+          "speaker": "Samer",
+          "slot": "do-you-have-brothers-and-sisters-to-a-man"
+        },
+        {
+          "speaker": "Khalid",
+          "slot": "i-have-two-brothers-and-a-sister"
+        },
+        {
+          "speaker": "Samer",
+          "slot": "how-many-people-are-in-your-family-to-a-man"
+        },
+        {
+          "speaker": "Khalid",
+          "slot": "how-many-people-are-in-your-family-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "ما شاء الله! وأبوك شنو يشتغل؟",
+          "transliteration": "maa shaa allah! w abook shinu yishtaghil?",
+          "english": "Masha Allah! And what does your father do?"
+        },
+        {
+          "speaker": "Khalid",
+          "slot": "my-father-works-as-a-teacher"
+        },
+        {
+          "speaker": "Samer",
+          "arabic": "الله يحفظه. وينه الحين؟",
+          "transliteration": "allah yi7fadhah. weenah al7een?",
+          "english": "God keep him. Where is he now?"
+        },
+        {
+          "speaker": "Khalid",
+          "arabic": "هني في المجلس. تعال، أبي أعرفك عليه.",
+          "transliteration": "hini fil-majlis. ta3aal, abi a3arrfak 3alaih.",
+          "english": "Here in the majlis. Come, I'd like to introduce you to him."
+        },
+        {
+          "speaker": "Abu Khalid",
+          "arabic": "هلا والله، منو هذا؟",
+          "transliteration": "hala walla, minu hadha?",
+          "english": "Hello there, who is this?"
+        },
+        {
+          "speaker": "Khalid",
+          "slot": "this-is-my-friend-samer"
+        },
+        {
+          "speaker": "Abu Khalid",
+          "arabic": "حياك الله يا ولدي. كم عمرك؟",
+          "transliteration": "7ayyaak allah ya waladi. kam 3umrak?",
+          "english": "Welcome, my son. How old are you?"
+        },
+        {
+          "speaker": "Samer",
+          "slot": "how-old-are-you-to-a-man",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "عايلتك كم نفر؟",
+            "transliteration": "3aayiltak kam nafar?",
+            "english": "How many people are in your family?"
+          },
+          "response": {
+            "arabic": "إحنا ستة.",
+            "transliteration": "i7na sitta.",
+            "english": "We are six."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "كم عمرك؟",
+            "transliteration": "kam 3umrak?",
+            "english": "How old are you?"
+          },
+          "response": {
+            "arabic": "عمري ثلاثين سنة.",
+            "transliteration": "3umri thalaatheen sana.",
+            "english": "I'm thirty."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أبوك شنو يشتغل؟",
+            "transliteration": "abook shinu yishtaghil?",
+            "english": "What does your father do?"
+          },
+          "response": {
+            "arabic": "أبوي يشتغل مدرس.",
+            "transliteration": "abooy yishtaghil mudarris.",
+            "english": "My father works as a teacher."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هذي أمك؟",
+            "transliteration": "hadhi ummak?",
+            "english": "Is this your mother?"
+          },
+          "response": {
+            "arabic": "إي، هذي أمي.",
+            "transliteration": "ee, hadhi ummi.",
+            "english": "Yes, this is my mother."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إنت متزوج؟",
+            "transliteration": "inta mitzawwij?",
+            "english": "Are you married?"
+          },
+          "response": {
+            "arabic": "إي، متزوج وعندي ولد وبنت.",
+            "transliteration": "ee, mitzawwij w 3indi walad w bint.",
+            "english": "Yes, I'm married and I have a son and a daughter."
+          }
+        }
+      ],
+      "culture": "Gulf men often say الوالد and الوالدة (the father, the mother) instead of أبوي and أمي, out of respect, and a man asks another man about his family as a whole with \"شلون الأهل؟\" rather than about his wife by name. Note the near pair: أبي is \"I want\", while أبوي is \"my father\".",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A man you have just met says to you: \"تشرفنا\". Answer.",
+          "answer": "الشَّرَف لَنَا",
+          "accepted": [
+            "الشَّرَف لَنَا",
+            "الشرف لنا",
+            "الشرف لي",
+            "ish-sharaf lana"
+          ],
+          "too_formal": {
+            "item": "الشرف كله لي بمعرفتك",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"تشرفنا\" means we are honoured; the answer hands the honour back."
+        },
+        {
+          "id": "unit-01.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A man asks you: \"عايلتك كم نفر؟\". Say you are seven.",
+          "answer": "إِحْنَا سَبْعَة",
+          "accepted": [
+            "إِحْنَا سَبْعَة",
+            "احنا سبعة",
+            "سبعة",
+            "i7na sab3a",
+            "sab3a"
+          ],
+          "too_formal": {
+            "item": "نحن سبعة أفراد",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"إحنا\" is we; \"نفر\" counts people."
+        },
+        {
+          "id": "unit-01.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"This is my brother.\"",
+          "answer": "هَذَا خُوي",
+          "accepted": [
+            "هَذَا خُوي",
+            "هذا خوي",
+            "هذا أخوي",
+            "hadha khooy"
+          ],
+          "too_formal": {
+            "item": "هذا أخي",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"خوي\" is my brother; \"أخوي\" is also heard."
+        },
+        {
+          "id": "unit-01.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"How old are you?\" (to a man)",
+          "answer": "كَم عُمْرَك؟",
+          "accepted": [
+            "كَم عُمْرَك؟",
+            "كم عمرك",
+            "kam 3umrak"
+          ],
+          "too_formal": {
+            "item": "ما عمرك؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "To a woman: \"كم عمرچ؟\"."
+        },
+        {
+          "id": "unit-01.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My father works as a teacher.\"",
+          "answer": "أَبُوي يِشْتَغِل مُدَرِّس",
+          "accepted": [
+            "أَبُوي يِشْتَغِل مُدَرِّس",
+            "أبوي يشتغل مدرس",
+            "الوالد يشتغل مدرس",
+            "أبوي مدرس",
+            "abooy yishtaghil mudarris"
+          ],
+          "too_formal": {
+            "item": "أبي يعمل مدرساً",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"يشتغل\" is works; in the Gulf \"أبي\" would mean \"I want\", so say \"أبوي\"."
+        },
+        {
+          "id": "unit-01.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"This is my mother\"?",
+          "options": [
+            "هَذِي أُمِّي",
+            "هَذَا أَبُوي",
+            "هَذَا خُوي",
+            "عَايِلْتِي كَبِيرَة"
+          ],
+          "answer": "هَذِي أُمِّي",
+          "accepted": [
+            "هَذِي أُمِّي",
+            "هذي أمي",
+            "hadhi ummi"
+          ],
+          "too_formal": {
+            "item": "هذه أمي",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"هذا\" points to a man, \"هذي\" to a woman."
+        },
+        {
+          "id": "unit-01.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"my friend\"?",
+          "options": [
+            "رْبِيعِي",
+            "خُوي",
+            "أُخْتِي",
+            "وَلَدِي"
+          ],
+          "answer": "رْبِيعِي",
+          "accepted": [
+            "رْبِيعِي",
+            "ربيعي",
+            "rbee3i",
+            "صاحبي"
+          ],
+          "too_formal": {
+            "item": "صديقي",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"ربيع\" is a friend in Gulf speech; \"صاحب\" is also used."
+        },
+        {
+          "id": "unit-01.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عايلتي _____.\" Meaning: My family is big.",
+          "answer": "كبيرة",
+          "accepted": [
+            "كبيرة",
+            "كَبِيرَة",
+            "kabeera",
+            "كبيره",
+            "چبيرة"
+          ],
+          "too_formal": {
+            "item": "أسرتي كبيرة العدد",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"عايلة\" is feminine, so big is \"كبيرة\"."
+        },
+        {
+          "id": "unit-01.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"عندي اثنين _____ وأخت.\" Meaning: I have two brothers and a sister.",
+          "answer": "إخوان",
+          "accepted": [
+            "إخوان",
+            "اخوان",
+            "إِخْوَان",
+            "ikhwaan"
+          ],
+          "too_formal": {
+            "item": "أخوين",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"إخوان\" is brothers, \"خوات\" is sisters."
+        },
+        {
+          "id": "unit-01.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"الوالد / أعرفك / أبي / على\".",
+          "answer": "أبي أعرفك على الوالد",
+          "accepted": [
+            "أبي أعرفك على الوالد",
+            "أَبِي أْعَرْفَك عَلَى الْوَالِد",
+            "abi a3arrfak 3ala l-waalid",
+            "أبي أعرفك على أبوي"
+          ],
+          "too_formal": {
+            "item": "أود أن أعرفك بوالدي",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"أبي\" (I want) comes first, then the verb."
+        },
+        {
+          "id": "unit-01.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"سامر / هذا / ربيعي\".",
+          "answer": "هذا ربيعي سامر",
+          "accepted": [
+            "هذا ربيعي سامر",
+            "هَذَا رْبِيعِي سَامِر",
+            "hadha rbee3i Saamir"
+          ],
+          "too_formal": {
+            "item": "هذا صديقي سامر",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"هذا\" first, then who he is, then his name."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "which-city-are-you-from-to-a-man",
+          "arabic": "مِن أَي مَدِينَة إِنْت؟",
+          "transliteration": "min ay madeena inta?"
+        },
+        {
+          "slot": "i-m-from-damascus",
+          "arabic": "أَنَا مِن دِمَشْق",
+          "transliteration": "ana min dimashq"
+        },
+        {
+          "slot": "i-m-from-egypt",
+          "arabic": "أَنَا مِن مَصِر",
+          "transliteration": "ana min maSir"
+        },
+        {
+          "slot": "what-is-your-nationality-to-a-man",
+          "arabic": "شِنُو جِنْسِيّْتَك؟",
+          "transliteration": "shinu jinsiyytak?",
+          "reply": {
+            "arabic": "أَنَا إِمَارَاتِي",
+            "transliteration": "ana imaaraati",
+            "english": "I'm Emirati."
+          }
+        },
+        {
+          "slot": "my-nationality-is-syrian",
+          "arabic": "جِنْسِيّْتِي سُورِيَّة",
+          "transliteration": "jinsiyyti sooriyya"
+        },
+        {
+          "slot": "where-do-you-live-to-a-man",
+          "arabic": "وِين سَاكِن؟",
+          "transliteration": "ween saakin?"
+        },
+        {
+          "slot": "i-live-in-amman",
+          "arabic": "سَاكِن فِي عَمَّان",
+          "transliteration": "saakin fi 3ammaan"
+        },
+        {
+          "slot": "which-languages-do-you-speak-to-a-man",
+          "arabic": "شِنُو اللُّغَات اللِّي تِتْكَلَّمْهَا؟",
+          "transliteration": "shinu il-lughaat illi titkallamha?"
+        },
+        {
+          "slot": "i-speak-arabic-and-english",
+          "arabic": "أَتْكَلَّم عَرَبِي وْإِنْجْلِيزِي",
+          "transliteration": "atkallam 3arabi w injleezi"
+        },
+        {
+          "slot": "i-m-here-on-a-visit",
+          "arabic": "أَنَا هِنِي زِيَارَة",
+          "transliteration": "ana hini ziyaara"
+        },
+        {
+          "slot": "is-this-your-first-visit-to-a-man",
+          "arabic": "هَذِي أَوَّل زِيَارَة لَك؟",
+          "transliteration": "hadhi awwal ziyaara lak?",
+          "reply": {
+            "arabic": "إِي، أَوَّل مَرَّة",
+            "transliteration": "ee, awwal marra",
+            "english": "Yes, the first time."
+          }
+        },
+        {
+          "slot": "welcome-to-our-city-to-a-man",
+          "arabic": "حَيَّاك الله فِي دِيرِتْنَا",
+          "transliteration": "7ayyaak allah fi deeratna",
+          "english": "Welcome to our country.",
+          "reply": {
+            "arabic": "الله يْحَيِّيك",
+            "transliteration": "allah y7ayyeek",
+            "english": "God keep you too."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Saeed",
+          "arabic": "هلا والله، إنت من وين؟",
+          "transliteration": "hala walla, inta min ween?",
+          "english": "Hello there, where are you from?"
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "أنا من سوريا.",
+          "transliteration": "ana min sooriya.",
+          "english": "I'm from Syria."
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "which-city-are-you-from-to-a-man"
+        },
+        {
+          "speaker": "Yousef",
+          "slot": "i-m-from-damascus"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "is-this-your-first-visit-to-a-man"
+        },
+        {
+          "speaker": "Yousef",
+          "slot": "is-this-your-first-visit-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "welcome-to-our-city-to-a-man"
+        },
+        {
+          "speaker": "Yousef",
+          "slot": "welcome-to-our-city-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Saeed",
+          "arabic": "شو جايبك؟ شغل؟",
+          "transliteration": "shu jaaybak? shughul?",
+          "english": "What brings you here? Work?"
+        },
+        {
+          "speaker": "Yousef",
+          "slot": "i-m-here-on-a-visit"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "where-do-you-live-to-a-man"
+        },
+        {
+          "speaker": "Yousef",
+          "arabic": "ساكن عند خوي في دبي.",
+          "transliteration": "saakin 3ind khooy fi dbayy.",
+          "english": "I'm staying with my brother in Dubai."
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "which-languages-do-you-speak-to-a-man"
+        },
+        {
+          "speaker": "Yousef",
+          "slot": "i-speak-arabic-and-english"
+        },
+        {
+          "speaker": "Saeed",
+          "arabic": "ما شاء الله عليك. إذا تبي شي، أنا موجود.",
+          "transliteration": "maa shaa allah 3alaik. idha tibi shay, ana mawjood.",
+          "english": "Masha Allah. If you need anything, I'm here."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "إنت من وين؟",
+            "transliteration": "inta min ween?",
+            "english": "Where are you from?"
+          },
+          "response": {
+            "arabic": "أنا من مصر.",
+            "transliteration": "ana min maSir.",
+            "english": "I'm from Egypt."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شنو جنسيتك؟",
+            "transliteration": "shinu jinsiyytak?",
+            "english": "What is your nationality?"
+          },
+          "response": {
+            "arabic": "أنا كويتي.",
+            "transliteration": "ana kuwaiti.",
+            "english": "I'm Kuwaiti."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين ساكن؟",
+            "transliteration": "ween saakin?",
+            "english": "Where do you live?"
+          },
+          "response": {
+            "arabic": "ساكن في الدوحة.",
+            "transliteration": "saakin fid-dooHa.",
+            "english": "I live in Doha."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تتكلم إنجليزي؟",
+            "transliteration": "titkallam injleezi?",
+            "english": "Do you speak English?"
+          },
+          "response": {
+            "arabic": "إي، شوي.",
+            "transliteration": "ee, shway.",
+            "english": "Yes, a little."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هذي أول زيارة لك؟",
+            "transliteration": "hadhi awwal ziyaara lak?",
+            "english": "Is this your first visit?"
+          },
+          "response": {
+            "arabic": "لا، زرت الإمارات قبل.",
+            "transliteration": "la, zirt il-imaaraat gabl.",
+            "english": "No, I've visited the Emirates before."
+          }
+        }
+      ],
+      "culture": "\"إنت من وين؟\" is one of the first questions in the Gulf, where many nationalities live side by side, and it is not thought rude. ديرة is the everyday Gulf word for one's home country or town, and a newcomer is welcomed with \"حياك الله\", answered \"الله يحييك\".",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Someone says to you: \"حياك الله في ديرتنا\". Reply.",
+          "answer": "الله يْحَيِّيك",
+          "accepted": [
+            "الله يْحَيِّيك",
+            "الله يحييك",
+            "allah y7ayyeek",
+            "الله يحييك ويبقيك"
+          ],
+          "too_formal": {
+            "item": "شكراً على حسن الاستقبال",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The answer wishes the same \"حياة\" back."
+        },
+        {
+          "id": "unit-01.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "A man asks you: \"شنو جنسيتك؟\". Say you are Emirati.",
+          "answer": "أَنَا إِمَارَاتِي",
+          "accepted": [
+            "أَنَا إِمَارَاتِي",
+            "أنا إماراتي",
+            "إماراتي",
+            "ana imaaraati"
+          ],
+          "too_formal": {
+            "item": "جنسيتي هي الإماراتية",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "A woman says \"أنا إماراتية\"."
+        },
+        {
+          "id": "unit-01.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"Where do you live?\" (to a man)",
+          "answer": "وِين سَاكِن؟",
+          "accepted": [
+            "وِين سَاكِن؟",
+            "وين ساكن",
+            "وين تسكن؟",
+            "ween saakin"
+          ],
+          "too_formal": {
+            "item": "أين تسكن؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "To a woman: \"وين ساكنة؟\"."
+        },
+        {
+          "id": "unit-01.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I speak Arabic and English.\"",
+          "answer": "أَتْكَلَّم عَرَبِي وْإِنْجْلِيزِي",
+          "accepted": [
+            "أَتْكَلَّم عَرَبِي وْإِنْجْلِيزِي",
+            "أتكلم عربي وإنجليزي",
+            "اتكلم عربي وانجليزي",
+            "atkallam 3arabi w injleezi"
+          ],
+          "too_formal": {
+            "item": "أتحدث العربية والإنجليزية",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "The languages are just \"عربي\" and \"إنجليزي\"."
+        },
+        {
+          "id": "unit-01.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm here on a visit.\"",
+          "answer": "أَنَا هِنِي زِيَارَة",
+          "accepted": [
+            "أَنَا هِنِي زِيَارَة",
+            "أنا هني زيارة",
+            "أنا جاي زيارة",
+            "ana hini ziyaara"
+          ],
+          "too_formal": {
+            "item": "أنا هنا في زيارة",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"هني\" is here."
+        },
+        {
+          "id": "unit-01.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which one asks \"What is your nationality?\"",
+          "options": [
+            "شِنُو جِنْسِيّْتَك؟",
+            "وِين سَاكِن؟",
+            "مِن أَي مَدِينَة إِنْت؟",
+            "هَذِي أَوَّل زِيَارَة لَك؟"
+          ],
+          "answer": "شِنُو جِنْسِيّْتَك؟",
+          "accepted": [
+            "شِنُو جِنْسِيّْتَك؟",
+            "شنو جنسيتك",
+            "شو جنسيتك؟",
+            "shinu jinsiyytak"
+          ],
+          "too_formal": {
+            "item": "ما جنسيتك؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"شنو\" and \"شو\" both mean what."
+        },
+        {
+          "id": "unit-01.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"I'm from Egypt\"?",
+          "options": [
+            "أَنَا مِن مَصِر",
+            "أَنَا مِن دِمَشْق",
+            "سَاكِن فِي عَمَّان",
+            "أَنَا إِمَارَاتِي"
+          ],
+          "answer": "أَنَا مِن مَصِر",
+          "accepted": [
+            "أَنَا مِن مَصِر",
+            "أنا من مصر",
+            "ana min maSir"
+          ],
+          "too_formal": {
+            "item": "إنني من جمهورية مصر",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"من\" is from."
+        },
+        {
+          "id": "unit-01.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ في عمان.\" Meaning: I live in Amman. (a man speaking)",
+          "answer": "ساكن",
+          "accepted": [
+            "ساكن",
+            "سَاكِن",
+            "saakin",
+            "أسكن"
+          ],
+          "too_formal": {
+            "item": "أقيم",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "A woman says \"ساكنة\"."
+        },
+        {
+          "id": "unit-01.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"هذي أول _____ لك؟\" Meaning: Is this your first visit?",
+          "answer": "زيارة",
+          "accepted": [
+            "زيارة",
+            "زِيَارَة",
+            "ziyaara",
+            "زياره"
+          ],
+          "too_formal": {
+            "item": "هل هذه زيارتك الأولى",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"أول\" before a noun means first."
+        },
+        {
+          "id": "unit-01.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"إنت / مدينة / من / أي\".",
+          "answer": "من أي مدينة إنت",
+          "accepted": [
+            "من أي مدينة إنت",
+            "مِن أَي مَدِينَة إِنْت؟",
+            "من أي مدينة انت",
+            "min ay madeena inta"
+          ],
+          "too_formal": {
+            "item": "من أي مدينة أنت؟",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"إنت\" can also come first: \"إنت من أي مدينة؟\"."
+        },
+        {
+          "id": "unit-01.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put these words in order: \"في / الله / ديرتنا / حياك\".",
+          "answer": "حياك الله في ديرتنا",
+          "accepted": [
+            "حياك الله في ديرتنا",
+            "حَيَّاك الله فِي دِيرِتْنَا",
+            "7ayyaak allah fi deeratna"
+          ],
+          "too_formal": {
+            "item": "أهلاً بك في بلادنا",
+            "feedback": "Correct Arabic, but bookish. People in the Gulf say it the shorter way in daily speech."
+          },
+          "tip": "\"ديرة\" is home country or home town."
+        }
+      ]
     }
   ],
   "challenge": {

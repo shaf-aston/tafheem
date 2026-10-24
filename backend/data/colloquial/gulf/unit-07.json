@@ -1488,6 +1488,816 @@
           "tip": "\"الجاي\" means \"coming\" and follows the noun: \"الأسبوع الجاي\"."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "what-do-you-do-in-your-free-time",
+          "arabic": "شُو تْسَوِّي فِي وَقْت فَرَاغَك؟",
+          "transliteration": "shu tsawwi fi wagt faraaghak?",
+          "reply": {
+            "arabic": "أَقْرَا وْأَطْلَع مَع رَبْعِي",
+            "transliteration": "agra w aTla3 ma3 rab3i",
+            "english": "I read and go out with my friends."
+          }
+        },
+        {
+          "slot": "my-hobby-is-reading",
+          "arabic": "هِوَايْتِي الْقِرَايَة",
+          "transliteration": "hiwaayti il-giraaya"
+        },
+        {
+          "slot": "i-read-a-book-every-week",
+          "arabic": "أَقْرَا كِتَاب كِل أُسْبُوع",
+          "transliteration": "agra kitaab kil isboo3"
+        },
+        {
+          "slot": "i-like-cooking",
+          "arabic": "أَحِب الطَّبْخ",
+          "transliteration": "a7ibb iT-Tabkh"
+        },
+        {
+          "slot": "i-cooked-dinner-for-my-family-yesterday",
+          "arabic": "أَمْس طَبَخْت الْعَشَا حَق أَهْلِي",
+          "transliteration": "ams Tabakht il-3asha 7agg ahli"
+        },
+        {
+          "slot": "do-you-like-arabic-calligraphy",
+          "arabic": "يْعِجْبَك الْخَطّ الْعَرَبِي؟",
+          "transliteration": "y3ijbak il-khaTT il-3arabi?",
+          "reply": {
+            "arabic": "إِي، وَايِد",
+            "transliteration": "ee, waayid",
+            "english": "Yes, a lot."
+          }
+        },
+        {
+          "slot": "i-m-learning-to-write-calligraphy",
+          "arabic": "قَاعِد أَتْعَلَّم الْخَطّ",
+          "transliteration": "gaa3id at3allam il-khaTT"
+        },
+        {
+          "slot": "i-climb-mountains-with-my-friends",
+          "arabic": "أَطْلَع الْجِبَال مَع رَبْعِي",
+          "transliteration": "aTla3 ij-jibaal ma3 rab3i"
+        },
+        {
+          "slot": "i-grow-flowers-in-the-garden",
+          "arabic": "أَزْرَع وَرْد فِي الْحَدِيقَة",
+          "transliteration": "azra3 ward fil-7adeega"
+        },
+        {
+          "slot": "do-you-have-time-this-evening",
+          "arabic": "عِنْدَك وَقِت الْيُوم الْمَسَا؟",
+          "transliteration": "3indak wagit il-yoom il-masa?",
+          "reply": {
+            "arabic": "إِي، فَاضِي بَعْد الْمَغْرِب",
+            "transliteration": "ee, faaDi ba3d il-maghrib",
+            "english": "Yes, I'm free after Maghrib."
+          }
+        },
+        {
+          "slot": "i-spend-my-time-with-my-family",
+          "arabic": "أَقَضِّي وَقْتِي مَع أَهْلِي",
+          "transliteration": "agaDDi wagti ma3 ahli"
+        },
+        {
+          "slot": "time-passes-quickly-when-i-read",
+          "arabic": "الْوَقِت يْمُر بْسُرْعَة يُوم أَقْرَا",
+          "transliteration": "il-wagit ymurr bsur3a yoom agra"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ali",
+          "slot": "what-do-you-do-in-your-free-time"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "my-hobby-is-reading"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "ما شاء الله! كم كتاب تقرا؟",
+          "transliteration": "maa shaa allah! kam kitaab tigra?",
+          "english": "Masha Allah! How many books do you read?"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "i-read-a-book-every-week"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "كل أسبوع؟ ما تمل؟",
+          "transliteration": "kil isboo3? ma tmill?",
+          "english": "Every week? Don't you get bored?"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "time-passes-quickly-when-i-read"
+        },
+        {
+          "speaker": "Saeed",
+          "arabic": "وإنت؟ شو هوايتك؟",
+          "transliteration": "w inta? shu hiwaaytak?",
+          "english": "And you? What's your hobby?"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-like-cooking"
+        },
+        {
+          "speaker": "Saeed",
+          "arabic": "صدق؟ شو تطبخ؟",
+          "transliteration": "Sidg? shu tiTbakh?",
+          "english": "Really? What do you cook?"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "i-cooked-dinner-for-my-family-yesterday"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "do-you-like-arabic-calligraphy"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "do-you-like-arabic-calligraphy",
+          "reply": true
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "i-m-learning-to-write-calligraphy"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "do-you-have-time-this-evening"
+        },
+        {
+          "speaker": "Saeed",
+          "slot": "do-you-have-time-this-evening",
+          "reply": true
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "زين، تعال عندنا ونتعشى سوا.",
+          "transliteration": "zain, ta3aal 3indana w nit3ashsha sawa.",
+          "english": "Good, come over to ours and we'll have dinner together."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو هوايتك؟",
+            "transliteration": "shu hiwaaytak?",
+            "english": "What's your hobby?"
+          },
+          "response": {
+            "arabic": "هوايتي الرسم.",
+            "transliteration": "hiwaayti ir-rasim.",
+            "english": "My hobby is drawing."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تحب السباحة؟",
+            "transliteration": "t7ibb is-sibaa7a?",
+            "english": "Do you like swimming?"
+          },
+          "response": {
+            "arabic": "إي، أسبح كل جمعة.",
+            "transliteration": "ee, asba7 kil jum3a.",
+            "english": "Yes, I swim every Friday."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين تسافر في الصيف؟",
+            "transliteration": "ween tsaafir fiS-Saif?",
+            "english": "Where do you travel in the summer?"
+          },
+          "response": {
+            "arabic": "أسافر صلالة مع أهلي.",
+            "transliteration": "asaafir Salaala ma3 ahli.",
+            "english": "I travel to Salalah with my family."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "عندك وقت اليوم المسا؟",
+            "transliteration": "3indak wagit il-yoom il-masa?",
+            "english": "Do you have time this evening?"
+          },
+          "response": {
+            "arabic": "لا والله، مشغول.",
+            "transliteration": "la walla, mashghool.",
+            "english": "No, honestly, I'm busy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تحب التصوير؟",
+            "transliteration": "t7ibb it-taSweer?",
+            "english": "Do you like photography?"
+          },
+          "response": {
+            "arabic": "إي، أصور البحر.",
+            "transliteration": "ee, aSawwir il-ba7ar.",
+            "english": "Yes, I photograph the sea."
+          }
+        }
+      ],
+      "culture": "Free time in the Gulf is mostly spent with family and with one's ربع (group of friends): evenings in the majlis, and in the cool months a كشتة, a trip out to the desert or the mountains. Summer is the season for travel.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks you: \"شو تسوي في وقت فراغك؟\" Say your hobby is reading.",
+          "answer": "هِوَايْتِي الْقِرَايَة",
+          "accepted": [
+            "هِوَايْتِي الْقِرَايَة",
+            "هوايتي القراية",
+            "هوايتي القراءة",
+            "hiwaayti il-giraaya",
+            "أقرا"
+          ],
+          "too_formal": {
+            "item": "أقضي وقت فراغي في المطالعة",
+            "feedback": "Correct, but المطالعة and the long sentence are written style."
+          },
+          "tip": "\"هواية\" is a hobby; \"هوايتي\" is my hobby."
+        },
+        {
+          "id": "unit-07.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Your friend asks: \"عندك وقت اليوم المسا؟\" Say yes, you are free after Maghrib.",
+          "answer": "إِي، فَاضِي بَعْد الْمَغْرِب",
+          "accepted": [
+            "إِي، فَاضِي بَعْد الْمَغْرِب",
+            "إي فاضي بعد المغرب",
+            "فاضي بعد المغرب",
+            "ee, faaDi ba3d il-maghrib"
+          ],
+          "too_formal": {
+            "item": "نعم، لدي وقت بعد صلاة المغرب",
+            "feedback": "Correct, but \"نعم\" and \"لدي\" are written style; say \"إي\" and \"فاضي\"."
+          },
+          "tip": "A woman says \"فاضية\"."
+        },
+        {
+          "id": "unit-07.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أقرا كتاب كل _____.\" (I read a book every week.)",
+          "answer": "أسبوع",
+          "accepted": [
+            "أسبوع",
+            "اسبوع",
+            "isboo3",
+            "أُسْبُوع"
+          ],
+          "too_formal": {
+            "item": "أسبوعياً",
+            "feedback": "Correct, but the adverb form is written style; say \"كل أسبوع\"."
+          },
+          "tip": "\"كل\" + a time word = every."
+        },
+        {
+          "id": "unit-07.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ أتعلم الخط.\" (I'm learning calligraphy.)",
+          "answer": "قاعد",
+          "accepted": [
+            "قاعد",
+            "قَاعِد",
+            "gaa3id",
+            "قاعدة"
+          ],
+          "too_formal": {
+            "item": "إنني أتعلم",
+            "feedback": "Correct, but written style; the Gulf uses \"قاعد\" for \"I'm doing it now\"."
+          },
+          "tip": "\"قاعد\" before a verb means in the middle of doing it; a woman says \"قاعدة\"."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"I like cooking.\"",
+          "answer": "أَحِب الطَّبْخ",
+          "accepted": [
+            "أَحِب الطَّبْخ",
+            "أحب الطبخ",
+            "يعجبني الطبخ",
+            "a7ibb iT-Tabkh"
+          ],
+          "too_formal": {
+            "item": "أهوى فن الطهي",
+            "feedback": "Correct but literary; the spoken word for cooking is \"الطبخ\"."
+          },
+          "tip": "\"طبخ\" is to cook and \"الطبخ\" is cooking."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I spend my time with my family.\"",
+          "answer": "أَقَضِّي وَقْتِي مَع أَهْلِي",
+          "accepted": [
+            "أَقَضِّي وَقْتِي مَع أَهْلِي",
+            "أقضي وقتي مع أهلي",
+            "agaDDi wagti ma3 ahli",
+            "أقضي وقتي ويا أهلي"
+          ],
+          "too_formal": {
+            "item": "أمضي أوقاتي برفقة أسرتي",
+            "feedback": "Correct, but \"برفقة\" and \"أسرتي\" are written style."
+          },
+          "tip": "\"أهلي\" is my family, the people at home."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Do you like Arabic calligraphy?\" (to a man)",
+          "answer": "يْعِجْبَك الْخَطّ الْعَرَبِي؟",
+          "accepted": [
+            "يْعِجْبَك الْخَطّ الْعَرَبِي؟",
+            "يعجبك الخط العربي",
+            "تحب الخط العربي؟",
+            "y3ijbak il-khaTT il-3arabi"
+          ],
+          "too_formal": {
+            "item": "هل تحب فن الخط العربي؟",
+            "feedback": "Correct, but the spoken question needs no \"هل\"."
+          },
+          "tip": "To a woman: \"يعجبچ\"."
+        },
+        {
+          "id": "unit-07.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"I grow flowers in the garden\"?",
+          "answer": "أَزْرَع وَرْد فِي الْحَدِيقَة",
+          "accepted": [
+            "أَزْرَع وَرْد فِي الْحَدِيقَة",
+            "أزرع ورد في الحديقة",
+            "azra3 ward fil-7adeega"
+          ],
+          "options": [
+            "أَزْرَع وَرْد فِي الْحَدِيقَة",
+            "أَطْلَع الْجِبَال مَع رَبْعِي",
+            "أَقْرَا كِتَاب كِل أُسْبُوع",
+            "أَحِب الطَّبْخ"
+          ],
+          "too_formal": {
+            "item": "أستزرع الأزهار في الحديقة",
+            "feedback": "Correct but bookish; flowers are just \"ورد\"."
+          },
+          "tip": "\"ورد\" is used for flowers in general, not only roses."
+        },
+        {
+          "id": "unit-07.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word does the Gulf use for \"my group of friends\"?",
+          "answer": "رَبْعِي",
+          "accepted": [
+            "رَبْعِي",
+            "ربعي",
+            "rab3i"
+          ],
+          "options": [
+            "رَبْعِي",
+            "أَهْلِي",
+            "هِوَايْتِي",
+            "وَقْتِي"
+          ],
+          "too_formal": {
+            "item": "أصدقائي",
+            "feedback": "Correct, but in the Gulf friends are \"ربعي\"."
+          },
+          "tip": "One friend is \"ربيع\"; the group is \"ربع\"."
+        },
+        {
+          "id": "unit-07.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"I cooked dinner for my family yesterday.\"",
+          "answer": "أمس طبخت العشا حق أهلي",
+          "accepted": [
+            "أمس طبخت العشا حق أهلي",
+            "أَمْس طَبَخْت الْعَشَا حَق أَهْلِي",
+            "ams Tabakht il-3asha 7agg ahli",
+            "طبخت العشا حق أهلي أمس"
+          ],
+          "words": [
+            "أمس",
+            "طبخت",
+            "العشا",
+            "حق",
+            "أهلي"
+          ],
+          "too_formal": {
+            "item": "أعددت العشاء لأسرتي البارحة",
+            "feedback": "Correct, but written style; \"حق\" is the Gulf \"for\"."
+          },
+          "tip": "\"حق\" before a person means for."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "do-you-play-sports",
+          "arabic": "تِلْعَب رِيَاضَة؟",
+          "transliteration": "til3ab riyaaDa?",
+          "reply": {
+            "arabic": "إِي، كِل يُوم شْوَي",
+            "transliteration": "ee, kil yoom shway",
+            "english": "Yes, a little every day."
+          }
+        },
+        {
+          "slot": "i-play-football-with-my-friends",
+          "arabic": "أَلْعَب كُورَة مَع رَبْعِي",
+          "transliteration": "al3ab koora ma3 rab3i"
+        },
+        {
+          "slot": "which-team-do-you-support",
+          "arabic": "أَي فَرِيق تْشَجِّع؟",
+          "transliteration": "ay fareeg tshajji3?",
+          "reply": {
+            "arabic": "أَشَجِّع الْعَيْن",
+            "transliteration": "ashajji3 il-3ain",
+            "english": "I support Al Ain."
+          }
+        },
+        {
+          "slot": "the-match-starts-at-eight",
+          "arabic": "الْمُبَارَاة تِبْدَا السَّاعَة ثَمَان",
+          "transliteration": "il-mubaaraa tibda is-saa3a thamaan"
+        },
+        {
+          "slot": "i-run-every-morning",
+          "arabic": "أَرْكُض كِل يُوم الصُّبْح",
+          "transliteration": "arkuD kil yoom iS-Sub7"
+        },
+        {
+          "slot": "i-lift-weights-at-the-gym",
+          "arabic": "أَرْفَع حَدِيد فِي الْجِيم",
+          "transliteration": "arfa3 7adeed fil-jeem"
+        },
+        {
+          "slot": "archery-is-my-favourite-sport",
+          "arabic": "الرِّمَايَة رِيَاضْتِي الْمُفَضَّلَة",
+          "transliteration": "ir-rimaaya riyaaDti il-mufaDDala"
+        },
+        {
+          "slot": "i-ride-a-horse-on-friday",
+          "arabic": "أَرْكَب الْخَيْل يُوم الْجُمْعَة",
+          "transliteration": "arkab il-khail yoom ij-jum3a"
+        },
+        {
+          "slot": "i-ride-my-bicycle-in-the-park",
+          "arabic": "أَرْكَب سِيكَلِي فِي الْحَدِيقَة",
+          "transliteration": "arkab seekali fil-7adeega"
+        },
+        {
+          "slot": "i-m-tired-i-need-water",
+          "arabic": "تَعْبَان، أَبِي مَاي",
+          "transliteration": "ta3baan, abi maay"
+        },
+        {
+          "slot": "exercise-is-good-for-health",
+          "arabic": "الرِّيَاضَة زِينَة حَق الصِّحَّة",
+          "transliteration": "ir-riyaaDa zeena 7agg iS-Sa77a"
+        },
+        {
+          "slot": "shall-we-walk-together-after-the-prayer",
+          "arabic": "نِتْمَشَّى سَوَا بَعْد الصَّلَاة؟",
+          "transliteration": "nitmashsha sawa ba3d iS-Salaa?",
+          "reply": {
+            "arabic": "إِن شَاء الله، نِتْلَاقَى عِنْد الْمَسْجِد",
+            "transliteration": "in shaa allah, nitlaaga 3ind il-masjid",
+            "english": "God willing, let's meet at the mosque."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Rashid",
+          "slot": "do-you-play-sports"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "i-play-football-with-my-friends"
+        },
+        {
+          "speaker": "Rashid",
+          "slot": "which-team-do-you-support"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "which-team-do-you-support",
+          "reply": true
+        },
+        {
+          "speaker": "Rashid",
+          "arabic": "متى المباراة الجاية؟",
+          "transliteration": "mita il-mubaaraa ij-jaaya?",
+          "english": "When is the next match?"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "the-match-starts-at-eight"
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "وإنت؟ شو رياضتك؟",
+          "transliteration": "w inta? shu riyaaDtak?",
+          "english": "And you? What's your sport?"
+        },
+        {
+          "speaker": "Rashid",
+          "slot": "i-run-every-morning"
+        },
+        {
+          "speaker": "Fahad",
+          "arabic": "بس؟",
+          "transliteration": "bas?",
+          "english": "Is that all?"
+        },
+        {
+          "speaker": "Rashid",
+          "slot": "i-lift-weights-at-the-gym"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "i-ride-a-horse-on-friday"
+        },
+        {
+          "speaker": "Rashid",
+          "slot": "exercise-is-good-for-health"
+        },
+        {
+          "speaker": "Fahad",
+          "slot": "shall-we-walk-together-after-the-prayer"
+        },
+        {
+          "speaker": "Rashid",
+          "slot": "shall-we-walk-together-after-the-prayer",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "تلعب رياضة؟",
+            "transliteration": "til3ab riyaaDa?",
+            "english": "Do you play sports?"
+          },
+          "response": {
+            "arabic": "إي، ألعب كورة.",
+            "transliteration": "ee, al3ab koora.",
+            "english": "Yes, I play football."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أي فريق تشجع؟",
+            "transliteration": "ay fareeg tshajji3?",
+            "english": "Which team do you support?"
+          },
+          "response": {
+            "arabic": "أشجع القادسية.",
+            "transliteration": "ashajji3 il-gaadsiyya.",
+            "english": "I support Qadsia."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "متى المباراة؟",
+            "transliteration": "mita il-mubaaraa?",
+            "english": "When is the match?"
+          },
+          "response": {
+            "arabic": "الساعة ثمان بالليل.",
+            "transliteration": "is-saa3a thamaan bil-leel.",
+            "english": "At eight in the evening."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "تروح الجيم؟",
+            "transliteration": "troo7 il-jeem?",
+            "english": "Do you go to the gym?"
+          },
+          "response": {
+            "arabic": "إي، ثلاث مرات في الأسبوع.",
+            "transliteration": "ee, thalaath marraat fil-isboo3.",
+            "english": "Yes, three times a week."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "منو فاز؟",
+            "transliteration": "minu faaz?",
+            "english": "Who won?"
+          },
+          "response": {
+            "arabic": "فاز فريقنا!",
+            "transliteration": "faaz fareegna!",
+            "english": "Our team won!"
+          }
+        }
+      ],
+      "culture": "Football is the Gulf's great passion, and big matches are watched together in the majlis or a café. Riding and archery are kept alive as heritage sports that the Sunnah encourages, and in the evenings people walk on the corniche or, in summer, inside the malls.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks you: \"أي فريق تشجع؟\" Say you support Al Ain.",
+          "answer": "أَشَجِّع الْعَيْن",
+          "accepted": [
+            "أَشَجِّع الْعَيْن",
+            "أشجع العين",
+            "ashajji3 il-3ain",
+            "العين"
+          ],
+          "too_formal": {
+            "item": "أنا من مشجعي نادي العين",
+            "feedback": "Correct, but longer and more formal than the everyday answer."
+          },
+          "tip": "\"شجّع\" is to support a team; put any club after \"أشجع\"."
+        },
+        {
+          "id": "unit-07.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Your friend asks: \"نتمشى سوا بعد الصلاة؟\" Say yes, God willing, let's meet at the mosque.",
+          "answer": "إِن شَاء الله، نِتْلَاقَى عِنْد الْمَسْجِد",
+          "accepted": [
+            "إِن شَاء الله، نِتْلَاقَى عِنْد الْمَسْجِد",
+            "إن شاء الله نتلاقى عند المسجد",
+            "in shaa allah, nitlaaga 3ind il-masjid",
+            "إن شاء الله"
+          ],
+          "too_formal": {
+            "item": "بإذن الله، لنلتقِ عند المسجد",
+            "feedback": "Correct, but written style; the Gulf says \"نتلاقى\"."
+          },
+          "tip": "\"إن شاء الله\" is said before any plan."
+        },
+        {
+          "id": "unit-07.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"ألعب _____ مع ربعي.\" (I play football with my friends.)",
+          "answer": "كورة",
+          "accepted": [
+            "كورة",
+            "كُورَة",
+            "koora",
+            "كرة"
+          ],
+          "too_formal": {
+            "item": "كرة القدم",
+            "feedback": "Correct, but in speech football is just \"كورة\"."
+          },
+          "tip": "\"كورة\" is football the game; \"كرة\" is any ball."
+        },
+        {
+          "id": "unit-07.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الرياضة زينة _____ الصحة.\" (Exercise is good for health.)",
+          "answer": "حق",
+          "accepted": [
+            "حق",
+            "حَق",
+            "7agg"
+          ],
+          "too_formal": {
+            "item": "مفيدة للصحة",
+            "feedback": "Correct, but \"زينة حق\" is how it is said in the Gulf."
+          },
+          "tip": "\"حق\" is the Gulf \"for\"."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate into Gulf Arabic: \"I run every morning.\"",
+          "answer": "أَرْكُض كِل يُوم الصُّبْح",
+          "accepted": [
+            "أَرْكُض كِل يُوم الصُّبْح",
+            "أركض كل يوم الصبح",
+            "أركض كل صبح",
+            "arkuD kil yoom iS-Sub7"
+          ],
+          "too_formal": {
+            "item": "أجري كل صباح",
+            "feedback": "Correct, but in the Gulf you \"تركض\" and say \"الصبح\"."
+          },
+          "tip": "\"ركض\" is to run."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm tired, I need water.\" (a man speaking)",
+          "answer": "تَعْبَان، أَبِي مَاي",
+          "accepted": [
+            "تَعْبَان، أَبِي مَاي",
+            "تعبان أبي ماي",
+            "تعبت، أبي ماي",
+            "ta3baan, abi maay",
+            "تعبان أبغى ماي"
+          ],
+          "too_formal": {
+            "item": "أنا متعب وأحتاج إلى الماء",
+            "feedback": "Correct, but written style; say \"تعبان\" and \"أبي ماي\"."
+          },
+          "tip": "A woman says \"تعبانة\"; water is \"ماي\"."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I ride my bicycle in the park.\"",
+          "answer": "أَرْكَب سِيكَلِي فِي الْحَدِيقَة",
+          "accepted": [
+            "أَرْكَب سِيكَلِي فِي الْحَدِيقَة",
+            "أركب سيكلي في الحديقة",
+            "أركب السيكل في الحديقة",
+            "arkab seekali fil-7adeega"
+          ],
+          "too_formal": {
+            "item": "أقود دراجتي في الحديقة",
+            "feedback": "Correct, but a bicycle is \"سيكل\" in Gulf speech."
+          },
+          "tip": "\"سيكل\" comes from the English cycle."
+        },
+        {
+          "id": "unit-07.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which one means \"The match starts at eight\"?",
+          "answer": "الْمُبَارَاة تِبْدَا السَّاعَة ثَمَان",
+          "accepted": [
+            "الْمُبَارَاة تِبْدَا السَّاعَة ثَمَان",
+            "المباراة تبدا الساعة ثمان",
+            "il-mubaaraa tibda is-saa3a thamaan",
+            "الماتش يبدا الساعة ثمان"
+          ],
+          "options": [
+            "الْمُبَارَاة تِبْدَا السَّاعَة ثَمَان",
+            "أَرْكُض كِل يُوم الصُّبْح",
+            "أَي فَرِيق تْشَجِّع؟",
+            "تِلْعَب رِيَاضَة؟"
+          ],
+          "too_formal": {
+            "item": "تنطلق المباراة في تمام الساعة الثامنة",
+            "feedback": "Correct, but this is news-reader style."
+          },
+          "tip": "Many also say \"الماتش\" for the match."
+        },
+        {
+          "id": "unit-07.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which one means \"I lift weights at the gym\"?",
+          "answer": "أَرْفَع حَدِيد فِي الْجِيم",
+          "accepted": [
+            "أَرْفَع حَدِيد فِي الْجِيم",
+            "أرفع حديد في الجيم",
+            "arfa3 7adeed fil-jeem",
+            "أرفع أثقال في الجيم"
+          ],
+          "options": [
+            "أَرْفَع حَدِيد فِي الْجِيم",
+            "أَرْكَب الْخَيْل يُوم الْجُمْعَة",
+            "تَعْبَان، أَبِي مَاي",
+            "أَلْعَب كُورَة مَع رَبْعِي"
+          ],
+          "too_formal": {
+            "item": "أمارس رفع الأثقال في النادي الرياضي",
+            "feedback": "Correct, but gym-goers say \"أرفع حديد\" and \"الجيم\"."
+          },
+          "tip": "\"حديد\" (iron) is the everyday word for weights."
+        },
+        {
+          "id": "unit-07.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Shall we walk together after the prayer?\"",
+          "answer": "نتمشى سوا بعد الصلاة؟",
+          "accepted": [
+            "نتمشى سوا بعد الصلاة؟",
+            "نتمشى سوا بعد الصلاة",
+            "نِتْمَشَّى سَوَا بَعْد الصَّلَاة؟",
+            "nitmashsha sawa ba3d iS-Salaa"
+          ],
+          "words": [
+            "نتمشى",
+            "سوا",
+            "بعد",
+            "الصلاة؟"
+          ],
+          "too_formal": {
+            "item": "هل نمشي معاً بعد الصلاة؟",
+            "feedback": "Correct, but \"سوا\" is the spoken \"together\"."
+          },
+          "tip": "\"نتمشى\" is a relaxed walk, a stroll."
+        }
+      ]
     }
   ],
   "challenge": {

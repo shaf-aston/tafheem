@@ -18,7 +18,8 @@
     "e": "حركة قصيرة خفيفة (شوا)",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "j": "ج"
   },
   "lessons": [
     {
@@ -1703,6 +1704,840 @@
             "feedback": "Short MSA form; Darija keeps \"كاين\"."
           },
           "tip": "Question word first."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "this-is-my-brother",
+          "arabic": "هَادَا خُويَا",
+          "transliteration": "haada khooya"
+        },
+        {
+          "slot": "this-is-my-father",
+          "arabic": "هَادَا بَّا",
+          "transliteration": "haada bba"
+        },
+        {
+          "slot": "this-is-my-mother",
+          "arabic": "هَادِي مِّي",
+          "transliteration": "haadi mmi"
+        },
+        {
+          "slot": "do-you-have-brothers-and-sisters-to-a-man",
+          "arabic": "وَاش عَنْدَك خُوت؟",
+          "transliteration": "waash 3ndek khoot?"
+        },
+        {
+          "slot": "i-have-two-brothers-and-a-sister",
+          "arabic": "عَنْدِي جُوج خُوت وْخْت وَحْدَة",
+          "transliteration": "3ndi jooj khoot w kht wa7da"
+        },
+        {
+          "slot": "how-many-people-are-in-your-family-to-a-man",
+          "arabic": "شْحَال نْتُومَا فَالْعَائِلَة؟",
+          "transliteration": "sh7aal ntooma f l3aa2ila?",
+          "reply": {
+            "arabic": "حْنَا سْتَّة",
+            "transliteration": "7na stta",
+            "english": "We are six."
+          }
+        },
+        {
+          "slot": "my-family-is-big",
+          "arabic": "الْعَائِلَة دْيَالِي كْبِيرَة",
+          "transliteration": "l3aa2ila dyaali kbeera"
+        },
+        {
+          "slot": "this-is-my-friend-samer",
+          "arabic": "هَادَا صَاحْبِي سْمِير",
+          "transliteration": "haada Saa7bi Smeer",
+          "english": "This is my friend Samir."
+        },
+        {
+          "slot": "i-d-like-to-introduce-you-to-my-father-to-a-man",
+          "arabic": "بْغِيت نْعَرّْفَك عْلَى بَّا",
+          "transliteration": "bgheet n3errfek 3la bba"
+        },
+        {
+          "slot": "a-pleasure",
+          "arabic": "تْشَرّْفْنَا",
+          "transliteration": "tsherrfna",
+          "reply": {
+            "arabic": "الشّْرَف لِيَّا",
+            "transliteration": "ssharaf leeya",
+            "english": "The honour is mine."
+          }
+        },
+        {
+          "slot": "how-old-are-you-to-a-man",
+          "arabic": "شْحَال فْعْمْرَك؟",
+          "transliteration": "sh7aal f 3omrek?",
+          "reply": {
+            "arabic": "عَنْدِي خَمْسَة وْعِشْرِين عَام",
+            "transliteration": "3ndi khamsa w 3eshreen 3aam",
+            "english": "I'm twenty-five."
+          }
+        },
+        {
+          "slot": "my-father-works-as-a-teacher",
+          "arabic": "بَّا كَيْخْدَم أُسْتَاذ",
+          "transliteration": "bba kaykhdem ustaad"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Youssef",
+          "arabic": "مرحبا بيك آ سمير، دخل.",
+          "transliteration": "mar7ba beek a Smeer, dkhol.",
+          "english": "Welcome, Samir, come in."
+        },
+        {
+          "speaker": "Samir",
+          "arabic": "الله يبارك فيك آ يوسف.",
+          "transliteration": "llaah ybaarek feek a Yoosef.",
+          "english": "God bless you, Youssef."
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "this-is-my-father"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "a-pleasure"
+        },
+        {
+          "speaker": "Si Ahmed",
+          "slot": "a-pleasure",
+          "reply": true
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "this-is-my-friend-samer"
+        },
+        {
+          "speaker": "Si Ahmed",
+          "slot": "how-old-are-you-to-a-man"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "how-old-are-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Si Ahmed",
+          "slot": "do-you-have-brothers-and-sisters-to-a-man"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "i-have-two-brothers-and-a-sister"
+        },
+        {
+          "speaker": "Si Ahmed",
+          "arabic": "ما شاء الله. وباك، آش كيخدم؟",
+          "transliteration": "maa shaa2 llaah. w bbaak, aash kaykhdem?",
+          "english": "Masha Allah. And your father, what does he do?"
+        },
+        {
+          "speaker": "Samir",
+          "slot": "my-father-works-as-a-teacher"
+        },
+        {
+          "speaker": "Si Ahmed",
+          "arabic": "الله يحفظو. مرحبا بيك ديما فدارنا.",
+          "transliteration": "llaah y7efDo. mar7ba beek dima f daarna.",
+          "english": "God keep him. You are always welcome in our home."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شْحَال نْتُومَا فَالْعَائِلَة؟",
+            "transliteration": "sh7aal ntooma f l3aa2ila?",
+            "english": "How many are you in the family?"
+          },
+          "response": {
+            "arabic": "حْنَا خَمْسَة",
+            "transliteration": "7na khamsa",
+            "english": "We are five."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هَادَا صَاحْبِي سْمِير",
+            "transliteration": "haada Saa7bi Smeer",
+            "english": "This is my friend Samir."
+          },
+          "response": {
+            "arabic": "تْشَرّْفْنَا",
+            "transliteration": "tsherrfna",
+            "english": "A pleasure."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْحَال فْعْمْرَك؟",
+            "transliteration": "sh7aal f 3omrek?",
+            "english": "How old are you?"
+          },
+          "response": {
+            "arabic": "عَنْدِي عِشْرِين عَام",
+            "transliteration": "3ndi 3eshreen 3aam",
+            "english": "I'm twenty."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "آش كَيْخْدَم بَّاك؟",
+            "transliteration": "aash kaykhdem bbaak?",
+            "english": "What does your father do?"
+          },
+          "response": {
+            "arabic": "بَّا كَيْخْدَم أُسْتَاذ",
+            "transliteration": "bba kaykhdem ustaad",
+            "english": "My father works as a teacher."
+          }
+        }
+      ],
+      "culture": "In Morocco a guest brought home is introduced to the parents first, and the young greet an older man or woman with respect, often kissing the head or hand. \"تشرفنا\" or \"متشرفين\" answers an introduction, and many people say \"الوالد\" and \"الوالدة\" instead of \"بّا\" and \"مّي\" when speaking of their parents to others.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "Youssef says: \"هادا صاحبي سمير.\" Say it is a pleasure.",
+          "answer": "تْشَرّْفْنَا",
+          "accepted": [
+            "تْشَرّْفْنَا",
+            "تشرفنا",
+            "tsherrfna",
+            "متشرفين",
+            "mtsharfeen",
+            "مِتْشَرْفِين"
+          ],
+          "too_formal": {
+            "item": "فرصة سعيدة",
+            "feedback": "Correct and polite, but it sounds Middle-Eastern or bookish; Moroccans say \"تشرفنا\" or \"متشرفين\"."
+          },
+          "tip": "\"تشرفنا\" literally means \"we are honoured\"."
+        },
+        {
+          "id": "unit-01.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"شحال فعمرك؟\" Say you are twenty-five.",
+          "answer": "عَنْدِي خَمْسَة وْعِشْرِين عَام",
+          "accepted": [
+            "عَنْدِي خَمْسَة وْعِشْرِين عَام",
+            "عندي خمسة وعشرين عام",
+            "3ndi khamsa w 3eshreen 3aam",
+            "خمسة وعشرين عام",
+            "عندي خمسة وعشرين سنة"
+          ],
+          "too_formal": {
+            "item": "عمري خمس وعشرون سنة",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "Darija gives your age with \"عندي\" (I have) and \"عام\" (year)."
+        },
+        {
+          "id": "unit-01.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"هادا _____ سمير.\" Meaning: This is my friend Samir.",
+          "answer": "صاحبي",
+          "accepted": [
+            "صاحبي",
+            "Saa7bi",
+            "صَاحْبِي"
+          ],
+          "too_formal": {
+            "item": "صديقي",
+            "feedback": "\"صديق\" is understood but sounds formal; in Darija a friend is \"صاحب\"."
+          },
+          "tip": "\"صاحبي\" is my friend (man); for a woman friend it is \"صاحبتي\"."
+        },
+        {
+          "id": "unit-01.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بّا _____ أستاذ.\" Meaning: My father works as a teacher.",
+          "answer": "كيخدم",
+          "accepted": [
+            "كيخدم",
+            "kaykhdem",
+            "كَيْخْدَم",
+            "كايخدم"
+          ],
+          "too_formal": {
+            "item": "يعمل",
+            "feedback": "\"يعمل\" is MSA; in Darija to work is \"خدم\"."
+          },
+          "tip": "The \"كي\" in front marks what someone does regularly."
+        },
+        {
+          "id": "unit-01.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"This is my brother.\"",
+          "answer": "هَادَا خُويَا",
+          "accepted": [
+            "هَادَا خُويَا",
+            "هادا خويا",
+            "haada khooya",
+            "هاذا خويا",
+            "هدا خويا"
+          ],
+          "too_formal": {
+            "item": "هذا أخي",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"خويا\" is my brother; a sister is \"ختي\"."
+        },
+        {
+          "id": "unit-01.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"This is my mother.\"",
+          "answer": "هَادِي مِّي",
+          "accepted": [
+            "هَادِي مِّي",
+            "هادي مي",
+            "haadi mmi",
+            "هادي الوالدة",
+            "haadi lwaalida",
+            "هادي ماما"
+          ],
+          "too_formal": {
+            "item": "هذه أمي",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"هادي\" is used for a woman, \"هادا\" for a man."
+        },
+        {
+          "id": "unit-01.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (to a man): \"Do you have brothers and sisters?\"",
+          "answer": "وَاش عَنْدَك خُوت؟",
+          "accepted": [
+            "وَاش عَنْدَك خُوت؟",
+            "واش عندك خوت؟",
+            "waash 3ndek khoot?",
+            "واش عندك شي خوت؟",
+            "عندك خوت؟"
+          ],
+          "too_formal": {
+            "item": "هل لديك إخوة؟",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"خوت\" covers brothers and sisters together."
+        },
+        {
+          "id": "unit-01.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"My family is big\"?",
+          "answer": "الْعَائِلَة دْيَالِي كْبِيرَة",
+          "options": [
+            "الْعَائِلَة دْيَالِي كْبِيرَة",
+            "هَادَا خُويَا",
+            "حْنَا سْتَّة",
+            "بَّا كَيْخْدَم أُسْتَاذ"
+          ],
+          "accepted": [
+            "الْعَائِلَة دْيَالِي كْبِيرَة",
+            "l3aa2ila dyaali kbeera",
+            "العائلة ديالي كبيرة",
+            "العايلة ديالي كبيرة"
+          ],
+          "too_formal": {
+            "item": "عائلتي كبيرة",
+            "feedback": "Correct MSA; Darija says \"العائلة ديالي\" with \"ديالي\" for my."
+          },
+          "tip": "\"ديالي\" means my or mine."
+        },
+        {
+          "id": "unit-01.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"brothers and sisters\"?",
+          "answer": "خُوت",
+          "options": [
+            "خُوت",
+            "بَّا",
+            "مِّي",
+            "صَاحْبِي"
+          ],
+          "accepted": [
+            "خُوت",
+            "khoot",
+            "خوت"
+          ],
+          "too_formal": {
+            "item": "إخوة",
+            "feedback": "\"إخوة\" is MSA; Darija says \"خوت\"."
+          },
+          "tip": "One brother is \"خو\", one sister is \"خت\"."
+        },
+        {
+          "id": "unit-01.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: I'd like to introduce you to my father.",
+          "answer": "بْغِيت نْعَرّْفَك عْلَى بَّا",
+          "accepted": [
+            "بْغِيت نْعَرّْفَك عْلَى بَّا",
+            "بغيت نعرفك على بّا",
+            "bgheet n3errfek 3la bba",
+            "بغيت نعرفك على الوالد"
+          ],
+          "too_formal": {
+            "item": "أريد أن أعرفك بأبي",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"بغيت\" (I want) is followed straight by the verb."
+        },
+        {
+          "id": "unit-01.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: How many are you in the family?",
+          "answer": "شْحَال نْتُومَا فَالْعَائِلَة؟",
+          "accepted": [
+            "شْحَال نْتُومَا فَالْعَائِلَة؟",
+            "شحال نتوما فالعائلة؟",
+            "sh7aal ntooma f l3aa2ila?",
+            "شحال نتوما فالعايلة"
+          ],
+          "too_formal": {
+            "item": "كم فردا في أسرتك؟",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"شحال\" asks how many or how much."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "which-city-are-you-from-to-a-man",
+          "arabic": "مْنْ أَشْمَن مْدِينَة نْتَا؟",
+          "transliteration": "mn ashmen mdeena nta?",
+          "reply": {
+            "arabic": "أَنَا مْنْ كَازَا",
+            "transliteration": "ana mn kaaza",
+            "english": "I'm from Casablanca."
+          }
+        },
+        {
+          "slot": "i-m-from-damascus",
+          "arabic": "أَنَا مْنْ دِمَشْق",
+          "transliteration": "ana mn dimashq"
+        },
+        {
+          "slot": "i-m-from-egypt",
+          "arabic": "أَنَا مْنْ مْصَر",
+          "transliteration": "ana mn meSr"
+        },
+        {
+          "slot": "what-is-your-nationality-to-a-man",
+          "arabic": "شْنُو هِيَ الْجِنْسِيَّة دْيَالْك؟",
+          "transliteration": "shnu hiya ljensiyya dyaalek?",
+          "reply": {
+            "arabic": "أَنَا مْغْرِيبِي",
+            "transliteration": "ana meghribi",
+            "english": "I'm Moroccan."
+          }
+        },
+        {
+          "slot": "my-nationality-is-syrian",
+          "arabic": "الْجِنْسِيَّة دْيَالِي سُورِيَّة",
+          "transliteration": "ljensiyya dyaali sooriyya"
+        },
+        {
+          "slot": "where-do-you-live-to-a-man",
+          "arabic": "فِين سَاكَن؟",
+          "transliteration": "feen saaken?",
+          "reply": {
+            "arabic": "سَاكَن فَالرّْبَاط",
+            "transliteration": "saaken f rrbaaT",
+            "english": "I live in Rabat."
+          }
+        },
+        {
+          "slot": "i-live-in-amman",
+          "arabic": "أَنَا سَاكَن فْعَمَّان",
+          "transliteration": "ana saaken f 3ammaan"
+        },
+        {
+          "slot": "which-languages-do-you-speak-to-a-man",
+          "arabic": "أَشْمَن لُغَات كَتْهْضَر؟",
+          "transliteration": "ashmen lughaat kat-hDer?"
+        },
+        {
+          "slot": "i-speak-arabic-and-english",
+          "arabic": "كَنْهْضَر الْعَرْبِيَّة وْالنّْڭْلِيزِيَّة",
+          "transliteration": "kan-hDer l3arbiyya w nngleeziyya"
+        },
+        {
+          "slot": "i-m-here-on-a-visit",
+          "arabic": "أَنَا هْنَا فْزِيَارَة",
+          "transliteration": "ana hna f ziyaara"
+        },
+        {
+          "slot": "is-this-your-first-visit-to-a-man",
+          "arabic": "وَاش هَادِي أَوَّل زِيَارَة لِيك؟",
+          "transliteration": "waash haadi awwel ziyaara leek?",
+          "reply": {
+            "arabic": "إِيه، أَوَّل مَرَّة",
+            "transliteration": "eeh, awwel merra",
+            "english": "Yes, the first time."
+          }
+        },
+        {
+          "slot": "welcome-to-our-city-to-a-man",
+          "arabic": "مَرْحْبَا بِيك فْمْدِينْتْنَا",
+          "transliteration": "mar7ba beek f mdeentna"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Youssef",
+          "arabic": "السلام عليكم، مرحبا.",
+          "transliteration": "ssalaamu 3alaykum, mar7ba.",
+          "english": "Peace be upon you, hello."
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "وعليكم السلام.",
+          "transliteration": "w 3alaykum ssalaam.",
+          "english": "And peace be upon you."
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "which-city-are-you-from-to-a-man"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "i-m-from-damascus"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "ياك نتا سوري؟",
+          "transliteration": "yaak nta soori?",
+          "english": "So you're Syrian, right?"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "my-nationality-is-syrian"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "where-do-you-live-to-a-man"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "i-live-in-amman"
+        },
+        {
+          "speaker": "Youssef",
+          "arabic": "وشنو جابك للرباط؟",
+          "transliteration": "w shnu jaabek l rrbaaT?",
+          "english": "And what brings you to Rabat?"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "i-m-here-on-a-visit"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "is-this-your-first-visit-to-a-man"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "is-this-your-first-visit-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "which-languages-do-you-speak-to-a-man"
+        },
+        {
+          "speaker": "Karim",
+          "slot": "i-speak-arabic-and-english"
+        },
+        {
+          "speaker": "Youssef",
+          "slot": "welcome-to-our-city-to-a-man"
+        },
+        {
+          "speaker": "Karim",
+          "arabic": "الله يبارك فيك، المغاربة ناس مزيانين بزاف.",
+          "transliteration": "llaah ybaarek feek, lmghaarba naas mzyaaneen bzzaaf.",
+          "english": "God bless you, Moroccans are very kind people."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مْنِين نْتَا؟",
+            "transliteration": "mneen nta?",
+            "english": "Where are you from?"
+          },
+          "response": {
+            "arabic": "أَنَا مْنْ كَازَا",
+            "transliteration": "ana mn kaaza",
+            "english": "I'm from Casablanca."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْنُو هِيَ الْجِنْسِيَّة دْيَالْك؟",
+            "transliteration": "shnu hiya ljensiyya dyaalek?",
+            "english": "What is your nationality?"
+          },
+          "response": {
+            "arabic": "أَنَا مْغْرِيبِي",
+            "transliteration": "ana meghribi",
+            "english": "I'm Moroccan."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِين سَاكَن؟",
+            "transliteration": "feen saaken?",
+            "english": "Where do you live?"
+          },
+          "response": {
+            "arabic": "سَاكَن فَالرّْبَاط",
+            "transliteration": "saaken f rrbaaT",
+            "english": "I live in Rabat."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أَشْمَن لُغَات كَتْهْضَر؟",
+            "transliteration": "ashmen lughaat kat-hDer?",
+            "english": "Which languages do you speak?"
+          },
+          "response": {
+            "arabic": "كَنْهْضَر الْعَرْبِيَّة وْالْفْرَانْسِيَّة",
+            "transliteration": "kan-hDer l3arbiyya w lfraansiyya",
+            "english": "I speak Arabic and French."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش هَادِي أَوَّل زِيَارَة لِيك؟",
+            "transliteration": "waash haadi awwel ziyaara leek?",
+            "english": "Is this your first visit?"
+          },
+          "response": {
+            "arabic": "لَا، هَادِي الْمَرَّة التَّالْتَة",
+            "transliteration": "la, haadi lmerra ttaalta",
+            "english": "No, this is the third time."
+          }
+        }
+      ],
+      "culture": "Moroccans ask \"منين نتا؟\" early in a conversation and Casablanca is almost always called \"كازا\". Many people in Casablanca and Rabat speak Darija, French and often Amazigh, and with a visitor from the Middle East they slow down and switch to words the visitor knows.",
+      "exercises": [
+        {
+          "id": "unit-01.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "Someone asks you: \"من أشمن مدينة نتا؟\" Say you are from Casablanca.",
+          "answer": "أَنَا مْنْ كَازَا",
+          "accepted": [
+            "أَنَا مْنْ كَازَا",
+            "أنا من كازا",
+            "ana mn kaaza",
+            "من كازا",
+            "أنا من الدار البيضاء",
+            "من الدار البيضاء"
+          ],
+          "too_formal": {
+            "item": "أنا من مدينة الدار البيضاء",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "Casablanca is \"الدار البيضاء\" on signs and \"كازا\" in speech."
+        },
+        {
+          "id": "unit-01.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks you: \"فين ساكن؟\" Say you live in Rabat.",
+          "answer": "سَاكَن فَالرّْبَاط",
+          "accepted": [
+            "سَاكَن فَالرّْبَاط",
+            "ساكن فالرباط",
+            "saaken f rrbaaT",
+            "أنا ساكن فالرباط",
+            "ساكن ف الرباط"
+          ],
+          "too_formal": {
+            "item": "أسكن في الرباط",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"ف\" (in) joins straight onto the next word: \"فالرباط\"."
+        },
+        {
+          "id": "unit-01.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أنا _____ فعمان.\" Meaning: I live in Amman.",
+          "answer": "ساكن",
+          "accepted": [
+            "ساكن",
+            "saaken",
+            "سَاكَن"
+          ],
+          "too_formal": {
+            "item": "أسكن",
+            "feedback": "\"أسكن\" is MSA; Darija uses \"ساكن\" (living)."
+          },
+          "tip": "A woman says \"ساكنة\"."
+        },
+        {
+          "id": "unit-01.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أشمن لغات _____؟\" Meaning: Which languages do you speak?",
+          "answer": "كتهضر",
+          "accepted": [
+            "كتهضر",
+            "kat-hDer",
+            "كَتْهْضَر",
+            "كاتهضر",
+            "كتهدر"
+          ],
+          "too_formal": {
+            "item": "تتكلم",
+            "feedback": "\"تتكلم\" is understood, but Moroccans say \"هضر\" for speaking."
+          },
+          "tip": "\"هضر\" is the Darija verb to speak."
+        },
+        {
+          "id": "unit-01.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm from Egypt.\"",
+          "answer": "أَنَا مْنْ مْصَر",
+          "accepted": [
+            "أَنَا مْنْ مْصَر",
+            "أنا من مصر",
+            "ana mn meSr",
+            "من مصر"
+          ],
+          "too_formal": {
+            "item": "أنا من جمهورية مصر",
+            "feedback": "Too official; just say \"أنا من مصر\"."
+          },
+          "tip": "\"من\" means from."
+        },
+        {
+          "id": "unit-01.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm here on a visit.\"",
+          "answer": "أَنَا هْنَا فْزِيَارَة",
+          "accepted": [
+            "أَنَا هْنَا فْزِيَارَة",
+            "أنا هنا فزيارة",
+            "ana hna f ziyaara",
+            "أنا جاي فزيارة",
+            "جيت فزيارة"
+          ],
+          "too_formal": {
+            "item": "أنا هنا في زيارة",
+            "feedback": "Nearly the same; Darija shortens \"في\" to \"ف\" and joins it to the word."
+          },
+          "tip": "\"زيارة\" is a visit."
+        },
+        {
+          "id": "unit-01.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (to a man): \"Welcome to our city.\"",
+          "answer": "مَرْحْبَا بِيك فْمْدِينْتْنَا",
+          "accepted": [
+            "مَرْحْبَا بِيك فْمْدِينْتْنَا",
+            "مرحبا بيك فمدينتنا",
+            "mar7ba beek f mdeentna",
+            "مرحبا بيك عندنا",
+            "مرحبا بيك فبلادنا"
+          ],
+          "too_formal": {
+            "item": "أهلا وسهلا بك في مدينتنا",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"مرحبا بيك\" is the usual Moroccan welcome."
+        },
+        {
+          "id": "unit-01.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which question asks \"What is your nationality?\"",
+          "answer": "شْنُو هِيَ الْجِنْسِيَّة دْيَالْك؟",
+          "options": [
+            "شْنُو هِيَ الْجِنْسِيَّة دْيَالْك؟",
+            "فِين سَاكَن؟",
+            "مْنْ أَشْمَن مْدِينَة نْتَا؟",
+            "أَشْمَن لُغَات كَتْهْضَر؟"
+          ],
+          "accepted": [
+            "شْنُو هِيَ الْجِنْسِيَّة دْيَالْك؟",
+            "shnu hiya ljensiyya dyaalek?",
+            "شنو هي الجنسية ديالك؟",
+            "شنو الجنسية ديالك؟"
+          ],
+          "too_formal": {
+            "item": "ما هي جنسيتك؟",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"شنو\" is what; \"ديالك\" is your."
+        },
+        {
+          "id": "unit-01.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"which\" in \"Which city are you from?\"",
+          "answer": "أَشْمَن",
+          "options": [
+            "أَشْمَن",
+            "فِين",
+            "شْحَال",
+            "مْنِين"
+          ],
+          "accepted": [
+            "أَشْمَن",
+            "ashmen",
+            "أشمن",
+            "أش من"
+          ],
+          "too_formal": {
+            "item": "أي",
+            "feedback": "\"أي\" is MSA; Moroccans say \"أشمن\"."
+          },
+          "tip": "\"أشمن\" comes before the noun it asks about."
+        },
+        {
+          "id": "unit-01.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: I speak Arabic and English.",
+          "answer": "كَنْهْضَر الْعَرْبِيَّة وْالنّْڭْلِيزِيَّة",
+          "accepted": [
+            "كَنْهْضَر الْعَرْبِيَّة وْالنّْڭْلِيزِيَّة",
+            "كنهضر العربية والنگليزية",
+            "kan-hDer l3arbiyya w nngleeziyya",
+            "كنهضر العربية والانجليزية",
+            "كنهضر العربية والنجليزية"
+          ],
+          "too_formal": {
+            "item": "أتكلم العربية والإنجليزية",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"كن\" in front of a verb means I do it regularly."
+        },
+        {
+          "id": "unit-01.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: Is this your first visit?",
+          "answer": "وَاش هَادِي أَوَّل زِيَارَة لِيك؟",
+          "accepted": [
+            "وَاش هَادِي أَوَّل زِيَارَة لِيك؟",
+            "واش هادي أول زيارة ليك؟",
+            "waash haadi awwel ziyaara leek?",
+            "واش هادي أول مرة؟"
+          ],
+          "too_formal": {
+            "item": "هل هذه زيارتك الأولى؟",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"واش\" opens a yes or no question."
         }
       ]
     }

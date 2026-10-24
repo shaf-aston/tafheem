@@ -14,7 +14,11 @@
     "oo": "و طويلة",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "T": "ط",
+    "S": "ص",
+    "D": "ض",
+    "Z": "ظ"
   },
   "lessons": [
     {
@@ -1469,6 +1473,818 @@
             "feedback": "Grammatical, but the linking word \"هو\" is dropped in ordinary spoken Damascene."
           },
           "tip": "\"اليوم يوم + day name\" needs no extra linking word."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "what-do-you-do-in-your-free-time",
+          "arabic": "شُو بْتَعْمِل بْوَقْت فَرَاغَك؟",
+          "transliteration": "shu bta3mel b-wa2t faraaghak?",
+          "reply": {
+            "arabic": "بِطْلَع مَشِي مَع رْفْقَاتِي",
+            "transliteration": "biTla3 mashi ma3 rf2aati",
+            "english": "I go out walking with my friends."
+          }
+        },
+        {
+          "slot": "my-hobby-is-reading",
+          "arabic": "هِوَايْتِي الْقْرَايِة",
+          "transliteration": "hiwaayti il-2raaye"
+        },
+        {
+          "slot": "i-read-a-book-every-week",
+          "arabic": "بَقْرَا كْتَاب كِلّ جُمْعَة",
+          "transliteration": "ba2ra ktaab kill jum3a"
+        },
+        {
+          "slot": "i-like-cooking",
+          "arabic": "بْحِبّ الطَّبِخ",
+          "transliteration": "b7ebb iT-Tabekh"
+        },
+        {
+          "slot": "i-cooked-dinner-for-my-family-yesterday",
+          "arabic": "مْبَارِح طَبَخْت الْعَشَا لْعِيلْتِي",
+          "transliteration": "mbaare7 Tabakht il-3asha la-3eelti"
+        },
+        {
+          "slot": "do-you-like-arabic-calligraphy",
+          "arabic": "بْتْحِبّ الْخَطّ الْعَرَبِي؟",
+          "transliteration": "bt7ebb il-khaTT il-3arabi?",
+          "reply": {
+            "arabic": "إِي كْتِير، بْحِبُّو",
+            "transliteration": "ee ktiir, b7ebbo",
+            "english": "Yes, very much, I love it."
+          }
+        },
+        {
+          "slot": "i-m-learning-to-write-calligraphy",
+          "arabic": "عَم اتْعَلَّم الْخَطّ الْعَرَبِي",
+          "transliteration": "3am it3allam il-khaTT il-3arabi"
+        },
+        {
+          "slot": "i-climb-mountains-with-my-friends",
+          "arabic": "بِطْلَع عَالْجَبَل مَع رْفْقَاتِي",
+          "transliteration": "biTla3 3al-jabal ma3 rf2aati"
+        },
+        {
+          "slot": "i-grow-flowers-in-the-garden",
+          "arabic": "بِزْرَع وَرْد بِالْجْنَيْنِة",
+          "transliteration": "bizra3 ward bij-jneene"
+        },
+        {
+          "slot": "do-you-have-time-this-evening",
+          "arabic": "فَاضِي هَالْمَسَا؟",
+          "transliteration": "faaDi hal-masa?",
+          "reply": {
+            "arabic": "إِي فَاضِي، شُو فِي؟",
+            "transliteration": "ee faaDi, shu fi?",
+            "english": "Yes, I'm free, what's up?"
+          }
+        },
+        {
+          "slot": "i-spend-my-time-with-my-family",
+          "arabic": "بْقَضِّي وَقْتِي مَع عِيلْتِي",
+          "transliteration": "b2aDDi wa2ti ma3 3eelti"
+        },
+        {
+          "slot": "time-passes-quickly-when-i-read",
+          "arabic": "الْوَقْت بْيِمْرُق بْسُرْعَة لَمَّا بَقْرَا",
+          "transliteration": "il-wa2t byimro2 b-sur3a lamma ba2ra"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Yaser",
+          "slot": "what-do-you-do-in-your-free-time"
+        },
+        {
+          "speaker": "Bilal",
+          "slot": "my-hobby-is-reading"
+        },
+        {
+          "speaker": "Bilal",
+          "slot": "i-read-a-book-every-week"
+        },
+        {
+          "speaker": "Yaser",
+          "arabic": "ما شاء الله! أنا ما عندي صبر عالقراية.",
+          "transliteration": "ma shaa2 alla! ana ma 3andi Sabr 3al-2raaye.",
+          "english": "Masha Allah! I don't have the patience for reading."
+        },
+        {
+          "speaker": "Bilal",
+          "slot": "time-passes-quickly-when-i-read"
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "وإنت؟",
+          "transliteration": "w enta?",
+          "english": "And you?"
+        },
+        {
+          "speaker": "Yaser",
+          "slot": "i-like-cooking"
+        },
+        {
+          "speaker": "Yaser",
+          "slot": "i-cooked-dinner-for-my-family-yesterday"
+        },
+        {
+          "speaker": "Bilal",
+          "slot": "do-you-like-arabic-calligraphy"
+        },
+        {
+          "speaker": "Yaser",
+          "slot": "do-you-like-arabic-calligraphy",
+          "reply": true
+        },
+        {
+          "speaker": "Yaser",
+          "slot": "i-m-learning-to-write-calligraphy"
+        },
+        {
+          "speaker": "Bilal",
+          "slot": "do-you-have-time-this-evening"
+        },
+        {
+          "speaker": "Yaser",
+          "slot": "do-you-have-time-this-evening",
+          "reply": true
+        },
+        {
+          "speaker": "Bilal",
+          "arabic": "منطلع نتمشّى على قاسيون؟",
+          "transliteration": "mniTla3 nitmashsha 3ala 2aasyoon?",
+          "english": "Shall we go for a walk up Qasioun?"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "شو هوايتك؟",
+            "transliteration": "shu hiwaaytak?",
+            "english": "What's your hobby?"
+          },
+          "response": {
+            "arabic": "هوايتي الرسم.",
+            "transliteration": "hiwaayti ir-rasem.",
+            "english": "My hobby is drawing."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بتحبّ الطبخ؟",
+            "transliteration": "bt7ebb iT-Tabekh?",
+            "english": "Do you like cooking?"
+          },
+          "response": {
+            "arabic": "إي، بحبّ الطبخ كتير.",
+            "transliteration": "ee, b7ebb iT-Tabekh ktiir.",
+            "english": "Yes, I like cooking a lot."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فاضي هالمسا؟",
+            "transliteration": "faaDi hal-masa?",
+            "english": "Are you free this evening?"
+          },
+          "response": {
+            "arabic": "لأ والله، مشغول.",
+            "transliteration": "la2 walla, mashghool.",
+            "english": "No, honestly, I'm busy."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شو بتعمل بوقت فراغك؟",
+            "transliteration": "shu bta3mel b-wa2t faraaghak?",
+            "english": "What do you do in your free time?"
+          },
+          "response": {
+            "arabic": "بقضّي وقتي مع عيلتي.",
+            "transliteration": "b2aDDi wa2ti ma3 3eelti.",
+            "english": "I spend my time with my family."
+          }
+        }
+      ],
+      "culture": "Damascenes spend much of their free time with family and friends: visits, evening walks up Mount Qasioun, and Qur'an circles at the mosque. Arabic calligraphy has a long tradition in the city, and فاضي؟ (\"are you free?\") is the everyday way to ask someone to do something together.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: \"شو بتعمل بوقت فراغك؟\" Say your hobby is reading.",
+          "answer": "هوايتي القراية",
+          "accepted": [
+            "هوايتي القراية",
+            "هوايتي القراءة",
+            "هِوَايْتِي الْقْرَايِة",
+            "بحب القراية",
+            "hiwaayti il-2raaye"
+          ],
+          "too_formal": {
+            "item": "هوايتي المطالعة",
+            "feedback": "مطالعة is a written word; in speech reading is القراية."
+          },
+          "tip": "In Damascus ق is said as a glottal stop: قراية is \"2raaye\"."
+        },
+        {
+          "id": "unit-07.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: \"فاضي هالمسا؟\" Say yes, you're free, and ask what's up.",
+          "answer": "إي فاضي، شو في؟",
+          "accepted": [
+            "إي فاضي، شو في؟",
+            "إي فاضي شو في",
+            "إي فاضي",
+            "ee faaDi, shu fi?"
+          ],
+          "too_formal": {
+            "item": "نعم، لدي وقت فراغ",
+            "feedback": "Written Arabic; فاضي is the spoken word for free."
+          },
+          "tip": "A woman says فاضية."
+        },
+        {
+          "id": "unit-07.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بقرا كتاب كل _____.\" (I read a book every week.)",
+          "answer": "جمعة",
+          "accepted": [
+            "جمعة",
+            "جُمْعَة",
+            "أسبوع",
+            "jum3a"
+          ],
+          "tip": "In Damascus جمعة means a week as well as Friday."
+        },
+        {
+          "id": "unit-07.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بزرع ورد بال_____.\" (I grow flowers in the garden.)",
+          "answer": "جنينة",
+          "accepted": [
+            "جنينة",
+            "جْنَيْنِة",
+            "حديقة",
+            "jneene"
+          ],
+          "too_formal": {
+            "item": "الحديقة",
+            "feedback": "Understood, but a home garden is a جنينة in Damascus."
+          },
+          "tip": "ورد means flowers in general, not only roses."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I like cooking.\"",
+          "answer": "بحبّ الطبخ",
+          "accepted": [
+            "بحبّ الطبخ",
+            "بحب الطبخ",
+            "بْحِبّ الطَّبِخ",
+            "b7ebb iT-Tabekh"
+          ],
+          "too_formal": {
+            "item": "أحب الطبخ",
+            "feedback": "Without the b- prefix it sounds written; speech says بحبّ."
+          },
+          "tip": "The b- prefix marks the everyday present: بحبّ, بقرا, بزرع."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Do you like Arabic calligraphy?\"",
+          "answer": "بتحبّ الخط العربي؟",
+          "accepted": [
+            "بتحبّ الخط العربي؟",
+            "بتحب الخط العربي",
+            "bt7ebb il-khaTT il-3arabi?"
+          ],
+          "too_formal": {
+            "item": "هل تحب الخط العربي؟",
+            "feedback": "هل is written Arabic; in speech the question is carried by the voice."
+          },
+          "tip": "To a woman: بتحبّي الخط العربي؟"
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I spend my time with my family.\"",
+          "answer": "بقضّي وقتي مع عيلتي",
+          "accepted": [
+            "بقضّي وقتي مع عيلتي",
+            "بقضي وقتي مع عيلتي",
+            "بْقَضِّي وَقْتِي مَع عِيلْتِي",
+            "b2aDDi wa2ti ma3 3eelti"
+          ],
+          "too_formal": {
+            "item": "أقضي وقتي مع أسرتي",
+            "feedback": "أسرة is the written word; speech says عيلة."
+          },
+          "tip": "قضّى وقت means to spend time."
+        },
+        {
+          "id": "unit-07.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"I climb mountains with my friends\"?",
+          "answer": "بطلع عالجبل مع رفقاتي",
+          "accepted": [
+            "بطلع عالجبل مع رفقاتي",
+            "بطلع عالجبل مع رفقاتي.",
+            "biTla3 3al-jabal ma3 rf2aati"
+          ],
+          "options": [
+            "بطلع عالجبل مع رفقاتي",
+            "بزرع ورد بالجنينة",
+            "بقرا كتاب كل جمعة",
+            "عم اتعلّم الخط العربي"
+          ],
+          "too_formal": {
+            "item": "أتسلق الجبال مع أصدقائي",
+            "feedback": "أتسلق and أصدقائي are written; speech says بطلع عالجبل مع رفقاتي."
+          },
+          "tip": "رفقاتي is \"my friends\"."
+        },
+        {
+          "id": "unit-07.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"hobby\"?",
+          "answer": "هواية",
+          "accepted": [
+            "هواية",
+            "هِوَايِة",
+            "hiwaaye"
+          ],
+          "options": [
+            "هواية",
+            "جبل",
+            "كتاب",
+            "جنينة"
+          ],
+          "tip": "هوايتي is \"my hobby\"."
+        },
+        {
+          "id": "unit-07.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"I cooked dinner for my family yesterday.\"",
+          "answer": "مبارح طبخت العشا لعيلتي",
+          "accepted": [
+            "مبارح طبخت العشا لعيلتي",
+            "طبخت العشا لعيلتي مبارح",
+            "mbaare7 Tabakht il-3asha la-3eelti"
+          ],
+          "too_formal": {
+            "item": "طبخت العشاء لأسرتي أمس",
+            "feedback": "أمس and أسرة are written; speech says مبارح and عيلة."
+          },
+          "tip": "مبارح (yesterday) often opens the sentence."
+        },
+        {
+          "id": "unit-07.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Time passes quickly when I read.\"",
+          "answer": "الوقت بيمرق بسرعة لمّا بقرا",
+          "accepted": [
+            "الوقت بيمرق بسرعة لمّا بقرا",
+            "الوقت بيمرق بسرعة لما بقرا",
+            "il-wa2t byimro2 b-sur3a lamma ba2ra"
+          ],
+          "too_formal": {
+            "item": "يمر الوقت بسرعة عندما أقرأ",
+            "feedback": "عندما is written Arabic; speech says لمّا."
+          },
+          "tip": "مرق is the Damascene verb for time passing by."
+        },
+        {
+          "id": "unit-07.lesson-05.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm learning calligraphy.\"",
+          "answer": "عم اتعلّم الخط العربي",
+          "accepted": [
+            "عم اتعلّم الخط العربي",
+            "عم اتعلم الخط العربي",
+            "عم اتعلم الخط",
+            "عم اتعلم خط عربي",
+            "3am it3allam il-khaTT il-3arabi"
+          ],
+          "too_formal": {
+            "item": "أنا أتعلم الخط العربي",
+            "feedback": "Without عم it sounds written; عم shows it is going on now."
+          },
+          "tip": "عم before a verb means it is in progress."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "do-you-play-sports",
+          "arabic": "بْتِلْعَب رِيَاضَة؟",
+          "transliteration": "btil3ab riyaaDa?",
+          "reply": {
+            "arabic": "إِي، بِرْكُض وْبِلْعَب فُوتْبُول",
+            "transliteration": "ee, birkoD w bil3ab footbool",
+            "english": "Yes, I run and play football."
+          }
+        },
+        {
+          "slot": "i-play-football-with-my-friends",
+          "arabic": "بِلْعَب فُوتْبُول مَع رْفْقَاتِي",
+          "transliteration": "bil3ab footbool ma3 rf2aati"
+        },
+        {
+          "slot": "which-team-do-you-support",
+          "arabic": "لَأَيّ فَرِيق بْتْشَجِّع؟",
+          "transliteration": "la-ayy faree2 bitshajje3?",
+          "reply": {
+            "arabic": "بْشَجِّع الْوَحْدِة",
+            "transliteration": "bshajje3 il-wa7de",
+            "english": "I support Al-Wahda."
+          }
+        },
+        {
+          "slot": "the-match-starts-at-eight",
+          "arabic": "الْمَاتْش بِيْبَلِّش السَّاعَة تْمَانِة",
+          "transliteration": "il-maatsh biballesh is-saa3a tmaane"
+        },
+        {
+          "slot": "i-run-every-morning",
+          "arabic": "بِرْكُض كِلّ يُوم الصُّبِح",
+          "transliteration": "birkoD kill yom iS-SubeH"
+        },
+        {
+          "slot": "i-lift-weights-at-the-gym",
+          "arabic": "بِرْفَع أَتْقَال بِالْجِيم",
+          "transliteration": "birfa3 at2aal bij-jeem"
+        },
+        {
+          "slot": "archery-is-my-favourite-sport",
+          "arabic": "الرِّمَايِة أَحْلَى رِيَاضَة عِنْدِي",
+          "transliteration": "ir-rimaaye a7la riyaaDa 3andi"
+        },
+        {
+          "slot": "i-ride-a-horse-on-friday",
+          "arabic": "بِرْكَب حْصَان يُوم الْجُمْعَة",
+          "transliteration": "birkab 7Saan yom ij-jum3a"
+        },
+        {
+          "slot": "i-ride-my-bicycle-in-the-park",
+          "arabic": "بِرْكَب الْبِسْكْلِيت بِالْحَدِيقَة",
+          "transliteration": "birkab il-bisklet bil-7adee2a"
+        },
+        {
+          "slot": "i-m-tired-i-need-water",
+          "arabic": "تْعِبْت، بِدِّي مَيّ",
+          "transliteration": "t3ibt, baddi mayy"
+        },
+        {
+          "slot": "exercise-is-good-for-health",
+          "arabic": "الرِّيَاضَة مْنِيحَة لِلصِّحَّة",
+          "transliteration": "ir-riyaaDa mnee7a liS-Sa77a"
+        },
+        {
+          "slot": "shall-we-walk-together-after-the-prayer",
+          "arabic": "مِنِتْمَشَّى سَوَا بَعْد الصَّلَا؟",
+          "transliteration": "mnitmashsha sawa ba3d iS-Sala?",
+          "reply": {
+            "arabic": "إِي، يَلَّا",
+            "transliteration": "ee, yalla",
+            "english": "Yes, let's go."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Tarek",
+          "slot": "do-you-play-sports"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "do-you-play-sports",
+          "reply": true
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "i-run-every-morning"
+        },
+        {
+          "speaker": "Tarek",
+          "slot": "i-lift-weights-at-the-gym"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "which-team-do-you-support"
+        },
+        {
+          "speaker": "Tarek",
+          "slot": "which-team-do-you-support",
+          "reply": true
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "اليوم في ماتش بين الوحدة والجيش.",
+          "transliteration": "il-yom fi maatsh been il-wa7de w ij-jeesh.",
+          "english": "There's a match today between Al-Wahda and Al-Jaish."
+        },
+        {
+          "speaker": "Tarek",
+          "slot": "the-match-starts-at-eight"
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "shall-we-walk-together-after-the-prayer"
+        },
+        {
+          "speaker": "Tarek",
+          "slot": "shall-we-walk-together-after-the-prayer",
+          "reply": true
+        },
+        {
+          "speaker": "Tarek",
+          "slot": "i-m-tired-i-need-water"
+        },
+        {
+          "speaker": "Hamza",
+          "arabic": "تفضّل، اشرب.",
+          "transliteration": "tfaDDal, ishrab.",
+          "english": "Here you go, drink."
+        },
+        {
+          "speaker": "Hamza",
+          "slot": "exercise-is-good-for-health"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "بتلعب رياضة؟",
+            "transliteration": "btil3ab riyaaDa?",
+            "english": "Do you play sports?"
+          },
+          "response": {
+            "arabic": "إي، بلعب فوتبول.",
+            "transliteration": "ee, bil3ab footbool.",
+            "english": "Yes, I play football."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "لأيّ فريق بتشجّع؟",
+            "transliteration": "la-ayy faree2 bitshajje3?",
+            "english": "Which team do you support?"
+          },
+          "response": {
+            "arabic": "بشجّع الجيش.",
+            "transliteration": "bshajje3 ij-jeesh.",
+            "english": "I support Al-Jaish."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "إيمتى بيبلّش الماتش؟",
+            "transliteration": "eemta biballesh il-maatsh?",
+            "english": "When does the match start?"
+          },
+          "response": {
+            "arabic": "الساعة تمانة.",
+            "transliteration": "is-saa3a tmaane.",
+            "english": "At eight."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "منتمشّى سوا؟",
+            "transliteration": "mnitmashsha sawa?",
+            "english": "Shall we walk together?"
+          },
+          "response": {
+            "arabic": "يلّا، بعد صلاة العصر.",
+            "transliteration": "yalla, ba3d Salaat il-3aSr.",
+            "english": "Let's go, after the afternoon prayer."
+          }
+        }
+      ],
+      "culture": "Football is the most followed sport in Damascus, and matches between the city's clubs Al-Wahda and Al-Jaish draw big crowds. Many men walk together after the evening prayer or play football on Friday, and horse riding and archery are valued as sports the Prophet encouraged.",
+      "exercises": [
+        {
+          "id": "unit-07.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "A friend asks: \"لأيّ فريق بتشجّع؟\" Say you support Al-Wahda.",
+          "answer": "بشجّع الوحدة",
+          "accepted": [
+            "بشجّع الوحدة",
+            "بشجع الوحدة",
+            "الوحدة",
+            "بْشَجِّع الْوَحْدِة",
+            "bshajje3 il-wa7de"
+          ],
+          "too_formal": {
+            "item": "أنا أشجع فريق الوحدة",
+            "feedback": "Correct but stiff; speech drops أنا and فريق."
+          },
+          "tip": "شجّع means \"to support\" a team."
+        },
+        {
+          "id": "unit-07.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "A friend asks: \"منتمشّى سوا بعد الصلا؟\" Say yes, let's go.",
+          "answer": "إي، يلّا",
+          "accepted": [
+            "إي، يلّا",
+            "إي يلا",
+            "يلا",
+            "أكيد، يلّا",
+            "ee, yalla"
+          ],
+          "too_formal": {
+            "item": "نعم، هيا بنا",
+            "feedback": "هيا بنا is written Arabic; speech says يلّا."
+          },
+          "tip": "يلّا means \"come on, let's go\"."
+        },
+        {
+          "id": "unit-07.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الماتش بيبلّش الساعة _____.\" (The match starts at eight.)",
+          "answer": "تمانة",
+          "accepted": [
+            "تمانة",
+            "تمانه",
+            "ثمانية",
+            "tmaane"
+          ],
+          "too_formal": {
+            "item": "الثامنة",
+            "feedback": "The written ordinal; in speech say الساعة تمانة."
+          },
+          "tip": "Damascene says ث as ت: تمانة, تلاتة."
+        },
+        {
+          "id": "unit-07.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"تعبت، بدّي _____.\" (I'm tired, I need water.)",
+          "answer": "مي",
+          "accepted": [
+            "مي",
+            "ميّ",
+            "مَيّ",
+            "mayy"
+          ],
+          "too_formal": {
+            "item": "ماء",
+            "feedback": "ماء is the written word; water is مي in speech."
+          },
+          "tip": "بدّي covers both \"I want\" and \"I need\"."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Do you play sports?\"",
+          "answer": "بتلعب رياضة؟",
+          "accepted": [
+            "بتلعب رياضة؟",
+            "بتلعب رياضة",
+            "بْتِلْعَب رِيَاضَة؟",
+            "btil3ab riyaaDa?"
+          ],
+          "too_formal": {
+            "item": "هل تمارس الرياضة؟",
+            "feedback": "هل تمارس is written Arabic; speech says بتلعب."
+          },
+          "tip": "To a woman: بتلعبي رياضة؟"
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I run every morning.\"",
+          "answer": "بركض كل يوم الصبح",
+          "accepted": [
+            "بركض كل يوم الصبح",
+            "بركض كل يوم الصبح.",
+            "بركض كل صبح",
+            "birkoD kill yom iS-SubeH"
+          ],
+          "too_formal": {
+            "item": "أركض كل صباح",
+            "feedback": "صباح and the bare verb are written; speech says بركض كل يوم الصبح."
+          },
+          "tip": "الصبح is \"the morning\" in speech."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Exercise is good for health.\"",
+          "answer": "الرياضة منيحة للصحة",
+          "accepted": [
+            "الرياضة منيحة للصحة",
+            "الرياضة منيحة للصحة.",
+            "الرياضة منيحة للصحّة",
+            "ir-riyaaDa mnee7a liS-Sa77a"
+          ],
+          "too_formal": {
+            "item": "ممارسة الرياضة مفيدة للصحة",
+            "feedback": "Correct, but it sounds like a poster; منيحة is the everyday word."
+          },
+          "tip": "منيح / منيحة means good."
+        },
+        {
+          "id": "unit-07.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"I ride my bicycle in the park\"?",
+          "answer": "بركب البسكليت بالحديقة",
+          "accepted": [
+            "بركب البسكليت بالحديقة",
+            "بركب البسكليت بالحديقة.",
+            "birkab il-bisklet bil-7adee2a"
+          ],
+          "options": [
+            "بركب البسكليت بالحديقة",
+            "بركب حصان يوم الجمعة",
+            "برفع أتقال بالجيم",
+            "بلعب فوتبول مع رفقاتي"
+          ],
+          "too_formal": {
+            "item": "أركب الدراجة في الحديقة",
+            "feedback": "دراجة is the written word; Damascenes say بسكليت."
+          },
+          "tip": "بسكليت comes from French bicyclette."
+        },
+        {
+          "id": "unit-07.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"match\" (a game)?",
+          "answer": "ماتش",
+          "accepted": [
+            "ماتش",
+            "الماتش",
+            "maatsh"
+          ],
+          "options": [
+            "ماتش",
+            "فريق",
+            "ملعب",
+            "جيم"
+          ],
+          "too_formal": {
+            "item": "مباراة",
+            "feedback": "مباراة is used on the news; people say ماتش."
+          },
+          "tip": "ماتش is borrowed from English."
+        },
+        {
+          "id": "unit-07.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Archery is my favourite sport.\"",
+          "answer": "الرماية أحلى رياضة عندي",
+          "accepted": [
+            "الرماية أحلى رياضة عندي",
+            "الرماية احلى رياضة عندي",
+            "ir-rimaaye a7la riyaaDa 3andi"
+          ],
+          "too_formal": {
+            "item": "الرماية رياضتي المفضلة",
+            "feedback": "Fine but formal; أحلى ... عندي is the spoken way to say \"favourite\"."
+          },
+          "tip": "أحلى means \"the nicest\"."
+        },
+        {
+          "id": "unit-07.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"I play football with my friends.\"",
+          "answer": "بلعب فوتبول مع رفقاتي",
+          "accepted": [
+            "بلعب فوتبول مع رفقاتي",
+            "بلعب كرة قدم مع رفقاتي",
+            "bil3ab footbool ma3 rf2aati"
+          ],
+          "too_formal": {
+            "item": "ألعب كرة القدم مع أصدقائي",
+            "feedback": "Written Arabic; speech says بلعب فوتبول مع رفقاتي."
+          },
+          "tip": "فوتبول and كرة قدم are both heard; فوتبول is more casual."
+        },
+        {
+          "id": "unit-07.lesson-06.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I'm tired, I need water.\"",
+          "answer": "تعبت، بدّي مي",
+          "accepted": [
+            "تعبت، بدّي مي",
+            "تعبت بدي مي",
+            "تعبان، بدي مي",
+            "t3ibt, baddi mayy"
+          ],
+          "too_formal": {
+            "item": "أنا متعب، أحتاج إلى الماء",
+            "feedback": "متعب and أحتاج إلى are written Arabic."
+          },
+          "tip": "تعبت (\"I got tired\") works for a man or a woman."
         }
       ]
     }

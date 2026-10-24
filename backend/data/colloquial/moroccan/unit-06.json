@@ -15,7 +15,8 @@
     "aa": "ا طويلة",
     "ee": "ي طويلة",
     "oo": "و طويلة",
-    "e": "حركة قصيرة خفيفة (شوا)"
+    "e": "حركة قصيرة خفيفة (شوا)",
+    "j": "ج"
   },
   "lessons": [
     {
@@ -1677,6 +1678,827 @@
             "كَتْرَجِّعُو",
             "الْفْلُوسْ؟"
           ]
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "where-is-the-escalator",
+          "arabic": "فِين كَايْن الْإِسْكَالِيتْر؟",
+          "transliteration": "feen kaayn liskaaleetr?"
+        },
+        {
+          "slot": "where-is-the-food-court",
+          "arabic": "فِين كَايْن الْفُود كُورْت؟",
+          "transliteration": "feen kaayn lfood koort?"
+        },
+        {
+          "slot": "which-floor-is-the-shoe-shop-on",
+          "arabic": "فْأَشْمَن طَابَق كَايْن الْحَانُوت دْيَال الصّْبَابْط؟",
+          "transliteration": "f ashmen Taabeq kaayn l7aanoot dyaal SSbaabeT?"
+        },
+        {
+          "slot": "where-is-the-elevator",
+          "arabic": "فِين كَايْن الْأَسَانْسُور؟",
+          "transliteration": "feen kaayn lasaansoor?"
+        },
+        {
+          "slot": "when-does-the-mall-close",
+          "arabic": "فُوقَاش كَيْسْدّ الْمُول؟",
+          "transliteration": "fooqaash kaysedd lmool?",
+          "reply": {
+            "arabic": "مْعَ الْعَشْرَة دْيَال اللِّيل",
+            "transliteration": "m3a l3ashra dyaal lleel",
+            "english": "At ten at night."
+          }
+        },
+        {
+          "slot": "is-there-a-sale-in-this-shop",
+          "arabic": "وَاش كَايْن الصُّولْد فْهَادْ الْحَانُوت؟",
+          "transliteration": "waash kaayn SSoold f haad l7aanoot?",
+          "reply": {
+            "arabic": "إِيه، حْتَّى لْخَمْسِين فْالْمِيَة",
+            "transliteration": "eeh, 7tta l khamseen f lmya",
+            "english": "Yes, up to fifty percent."
+          }
+        },
+        {
+          "slot": "where-is-the-prayer-room",
+          "arabic": "فِين كَايْن الْمُصَلَّى؟",
+          "transliteration": "feen kaayn lmuSalla?",
+          "reply": {
+            "arabic": "فَالطَّابَق التَّانِي، حْدَا الْفُود كُورْت",
+            "transliteration": "f TTaabeq ttaani, 7da lfood koort",
+            "english": "On the second floor, next to the food court."
+          }
+        },
+        {
+          "slot": "i-m-just-looking",
+          "arabic": "غِير كَنْشُوف",
+          "transliteration": "gheer kanshoof"
+        },
+        {
+          "slot": "i-have-many-shopping-bags",
+          "arabic": "عَنْدِي بْزَّاف دْيَال الصَّاكَات",
+          "transliteration": "3ndi bzzaaf dyaal SSaakaat"
+        },
+        {
+          "slot": "where-is-the-place-to-pay",
+          "arabic": "فِين نْخَلّْص؟",
+          "transliteration": "feen nkhalleS?",
+          "english": "Where do I pay?"
+        },
+        {
+          "slot": "where-did-you-park-the-car",
+          "arabic": "فِين رْكّْنْتِي الطُّومُوبِيل؟",
+          "transliteration": "feen rekkenti TTomobeel?"
+        },
+        {
+          "slot": "shall-we-meet-at-the-entrance",
+          "arabic": "نْتْلَاقَاوْ فَالْمَدْخَل؟",
+          "transliteration": "ntlaaqaw f lmedkhal?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Salma",
+          "arabic": "الحمد لله وصلنا. بغيت نشري صباط جديد.",
+          "transliteration": "l7amdu lillaah weSelna. bgheet nshri SebbaaT jdeed.",
+          "english": "Thank God we're here. I want to buy new shoes."
+        },
+        {
+          "speaker": "Hanane",
+          "arabic": "وأنا بغيت نشوف الحوايج.",
+          "transliteration": "w ana bgheet nshoof l7waayej.",
+          "english": "And I want to look at clothes."
+        },
+        {
+          "speaker": "Salma",
+          "slot": "which-floor-is-the-shoe-shop-on"
+        },
+        {
+          "speaker": "Hanane",
+          "arabic": "فالطابق الأول.",
+          "transliteration": "f TTaabeq lawwel.",
+          "english": "On the first floor."
+        },
+        {
+          "speaker": "Salma",
+          "slot": "where-is-the-escalator"
+        },
+        {
+          "speaker": "Hanane",
+          "arabic": "تما، على اليمين.",
+          "transliteration": "tmma, 3la lymeen.",
+          "english": "There, on the right."
+        },
+        {
+          "speaker": "Amine",
+          "arabic": "مرحبا، شنو بغيتي آ لالة؟",
+          "transliteration": "mar7ba, shnu bgheeti a laalla?",
+          "english": "Hello, what would you like, madam?"
+        },
+        {
+          "speaker": "Salma",
+          "slot": "i-m-just-looking"
+        },
+        {
+          "speaker": "Hanane",
+          "slot": "is-there-a-sale-in-this-shop"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "is-there-a-sale-in-this-shop",
+          "reply": true
+        },
+        {
+          "speaker": "Hanane",
+          "slot": "when-does-the-mall-close"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "when-does-the-mall-close",
+          "reply": true
+        },
+        {
+          "speaker": "Salma",
+          "slot": "where-is-the-prayer-room"
+        },
+        {
+          "speaker": "Amine",
+          "slot": "where-is-the-prayer-room",
+          "reply": true
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فُوقَاش كَيْسْدّ الْمُول؟",
+            "transliteration": "fooqaash kaysedd lmool?",
+            "english": "When does the mall close?"
+          },
+          "response": {
+            "arabic": "مْعَ الْعَشْرَة دْيَال اللِّيل",
+            "transliteration": "m3a l3ashra dyaal lleel",
+            "english": "At ten at night."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِين رْكّْنْتِي الطُّومُوبِيل؟",
+            "transliteration": "feen rekkenti TTomobeel?",
+            "english": "Where did you park the car?"
+          },
+          "response": {
+            "arabic": "حْدَا الْمَدْخَل الْكْبِير",
+            "transliteration": "7da lmedkhal lkbeer",
+            "english": "Next to the main entrance."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "نْتْلَاقَاوْ فَالْمَدْخَل؟",
+            "transliteration": "ntlaaqaw f lmedkhal?",
+            "english": "Shall we meet at the entrance?"
+          },
+          "response": {
+            "arabic": "وَاخَّا، مْعَ السّْتَّة",
+            "transliteration": "waakha, m3a sstta",
+            "english": "Okay, at six."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فِين كَايْن الْأَسَانْسُور؟",
+            "transliteration": "feen kaayn lasaansoor?",
+            "english": "Where is the elevator?"
+          },
+          "response": {
+            "arabic": "تْمَّا، حْدَا الدّْرُوج",
+            "transliteration": "tmma, 7da ddrooj",
+            "english": "There, next to the stairs."
+          }
+        }
+      ],
+      "culture": "The big malls of Casablanca and Rabat have a prayer room (مصلى) for men and one for women, and a food court that fills up in the evening. Sales are called \"الصولد\" from French soldes and come mostly in summer and winter, and \"غير كنشوف\" is the polite way to turn away a seller.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A seller asks: \"شنو بغيتي؟\" Say you're just looking.",
+          "answer": "غِير كَنْشُوف",
+          "accepted": [
+            "غِير كَنْشُوف",
+            "غير كنشوف",
+            "gheer kanshoof",
+            "غير كانشوف",
+            "لا شكرا، غير كنشوف"
+          ],
+          "too_formal": {
+            "item": "أنا أتفرج فقط",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"غير\" here means only, just."
+        },
+        {
+          "id": "unit-06.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Your friend asks: \"فين ركنتي الطوموبيل؟\" Say next to the main entrance.",
+          "answer": "حْدَا الْمَدْخَل الْكْبِير",
+          "accepted": [
+            "حْدَا الْمَدْخَل الْكْبِير",
+            "حدا المدخل الكبير",
+            "7da lmedkhal lkbeer",
+            "حدا المدخل",
+            "قدام المدخل"
+          ],
+          "too_formal": {
+            "item": "بجانب المدخل الرئيسي",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"حدا\" means next to."
+        },
+        {
+          "id": "unit-06.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"فوقاش _____ المول؟\" Meaning: When does the mall close?",
+          "answer": "كيسد",
+          "accepted": [
+            "كيسد",
+            "kaysedd",
+            "كَيْسْدّ",
+            "كايسد"
+          ],
+          "too_formal": {
+            "item": "يغلق",
+            "feedback": "\"يغلق\" is MSA; Darija closes with \"سد\"."
+          },
+          "tip": "\"مسدود\" means closed, \"مفتوح\" open."
+        },
+        {
+          "id": "unit-06.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"واش كاين _____ فهاد الحانوت؟\" Meaning: Is there a sale in this shop?",
+          "answer": "الصولد",
+          "accepted": [
+            "الصولد",
+            "SSoold",
+            "صولد",
+            "الصُّولْد"
+          ],
+          "too_formal": {
+            "item": "التخفيضات",
+            "feedback": "Understood, but in shops people say \"الصولد\"."
+          },
+          "tip": "From French soldes."
+        },
+        {
+          "id": "unit-06.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the prayer room?\"",
+          "answer": "فِين كَايْن الْمُصَلَّى؟",
+          "accepted": [
+            "فِين كَايْن الْمُصَلَّى؟",
+            "فين كاين المصلى؟",
+            "feen kaayn lmuSalla?",
+            "فين المصلى؟",
+            "فين المصلى"
+          ],
+          "too_formal": {
+            "item": "أين المصلى؟",
+            "feedback": "\"أين\" is MSA; Darija asks with \"فين\"."
+          },
+          "tip": "\"كاين\" means there is, it is found."
+        },
+        {
+          "id": "unit-06.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the elevator?\"",
+          "answer": "فِين كَايْن الْأَسَانْسُور؟",
+          "accepted": [
+            "فِين كَايْن الْأَسَانْسُور؟",
+            "فين كاين الأسانسور؟",
+            "feen kaayn lasaansoor?",
+            "فين الأسانسور؟",
+            "فين كاين الاسانسور"
+          ],
+          "too_formal": {
+            "item": "أين المصعد؟",
+            "feedback": "MSA; Moroccans use French ascenseur."
+          },
+          "tip": "The stairs are \"الدروج\"."
+        },
+        {
+          "id": "unit-06.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Shall we meet at the entrance?\"",
+          "answer": "نْتْلَاقَاوْ فَالْمَدْخَل؟",
+          "accepted": [
+            "نْتْلَاقَاوْ فَالْمَدْخَل؟",
+            "نتلاقاو فالمدخل؟",
+            "ntlaaqaw f lmedkhal?",
+            "نتلاقاو فالباب؟",
+            "نتلاقاو فالمدخل"
+          ],
+          "too_formal": {
+            "item": "هل نلتقي عند المدخل؟",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"نتلاقاو\" is we meet; the question shows only in the voice."
+        },
+        {
+          "id": "unit-06.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence asks \"Which floor is the shoe shop on?\"",
+          "answer": "فْأَشْمَن طَابَق كَايْن الْحَانُوت دْيَال الصّْبَابْط؟",
+          "options": [
+            "فْأَشْمَن طَابَق كَايْن الْحَانُوت دْيَال الصّْبَابْط؟",
+            "فِين كَايْن الْفُود كُورْت؟",
+            "فِين نْخَلّْص؟",
+            "فِين كَايْن الْإِسْكَالِيتْر؟"
+          ],
+          "accepted": [
+            "فْأَشْمَن طَابَق كَايْن الْحَانُوت دْيَال الصّْبَابْط؟",
+            "f ashmen Taabeq kaayn l7aanoot dyaal SSbaabeT?",
+            "فأشمن طابق كاين الحانوت ديال الصبابط؟"
+          ],
+          "too_formal": {
+            "item": "في أي طابق يوجد محل الأحذية؟",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"صبابط\" are shoes; one shoe is \"صباط\"."
+        },
+        {
+          "id": "unit-06.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which word means \"shopping bags\" as Moroccans say it?",
+          "answer": "الصَّاكَات",
+          "options": [
+            "الصَّاكَات",
+            "الصُّولْد",
+            "الدّْرُوج",
+            "الْأَسَانْسُور"
+          ],
+          "accepted": [
+            "الصَّاكَات",
+            "SSaakaat",
+            "الصاكات",
+            "صاكات"
+          ],
+          "too_formal": {
+            "item": "الأكياس",
+            "feedback": "Understood, but the everyday word is \"صاك\", plural \"صاكات\"."
+          },
+          "tip": "\"صاك\" comes from French sac."
+        },
+        {
+          "id": "unit-06.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: I have many shopping bags.",
+          "answer": "عَنْدِي بْزَّاف دْيَال الصَّاكَات",
+          "accepted": [
+            "عَنْدِي بْزَّاف دْيَال الصَّاكَات",
+            "عندي بزاف ديال الصاكات",
+            "3ndi bzzaaf dyaal SSaakaat",
+            "عندي بزاف دالصاكات"
+          ],
+          "too_formal": {
+            "item": "لدي أكياس كثيرة",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"بزاف ديال\" means a lot of."
+        },
+        {
+          "id": "unit-06.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: Where did you park the car?",
+          "answer": "فِين رْكّْنْتِي الطُّومُوبِيل؟",
+          "accepted": [
+            "فِين رْكّْنْتِي الطُّومُوبِيل؟",
+            "فين ركنتي الطوموبيل؟",
+            "feen rekkenti TTomobeel?",
+            "فين ركنتي الطونوبيل",
+            "فين ركنتي السيارة؟"
+          ],
+          "too_formal": {
+            "item": "أين ركنت السيارة؟",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"ركن\" is to park; the car is \"الطوموبيل\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "i-ordered-a-phone-online",
+          "arabic": "طْلْبْت تِيلِيفُون فَالْأَنْتِرْنِيت",
+          "transliteration": "Tlebt teleefoon f lanternet"
+        },
+        {
+          "slot": "where-is-my-order",
+          "arabic": "فِين وْصَل الطّْلَب دْيَالِي؟",
+          "transliteration": "feen wSel TTalab dyaali?"
+        },
+        {
+          "slot": "when-will-the-parcel-arrive",
+          "arabic": "فُوقَاش غَادِي يْوْصَل الْكُولِي؟",
+          "transliteration": "fooqaash ghaadi ywSel lkooli?",
+          "reply": {
+            "arabic": "مُورَا جُوج أَيَّام",
+            "transliteration": "moora jooj iyyaam",
+            "english": "In two days."
+          }
+        },
+        {
+          "slot": "is-delivery-free",
+          "arabic": "وَاش التَّوْصِيل فَابُور؟",
+          "transliteration": "waash ttawSeel faaboor?",
+          "reply": {
+            "arabic": "إِيه، فَابُور فُوق مِيَة دَرْهَم",
+            "transliteration": "eeh, faaboor fooq mya derhem",
+            "english": "Yes, free over a hundred dirhams."
+          }
+        },
+        {
+          "slot": "how-much-is-the-delivery-fee",
+          "arabic": "شْحَال كَيْسْوَى التَّوْصِيل؟",
+          "transliteration": "sh7aal kayswa ttawSeel?",
+          "reply": {
+            "arabic": "تْلَاتِين دَرْهَم",
+            "transliteration": "tlaateen derhem",
+            "english": "Thirty dirhams."
+          }
+        },
+        {
+          "slot": "i-want-to-pay-by-credit-card",
+          "arabic": "بْغِيت نْخَلّْص بْالْكَارْط الْبَنْكِيَّة",
+          "transliteration": "bgheet nkhalleS b lkaarT lbankiyya"
+        },
+        {
+          "slot": "can-i-pay-on-delivery",
+          "arabic": "وَاش نْقْدَر نْخَلّْص مْلِّي يْوْصَل؟",
+          "transliteration": "waash nqder nkhalleS mlli ywSel?"
+        },
+        {
+          "slot": "add-it-to-the-cart",
+          "arabic": "زِيدُو لْلْبَانْيِي",
+          "transliteration": "zeedu l lbaanyee"
+        },
+        {
+          "slot": "please-enter-your-address",
+          "arabic": "دْخّْل الْعُنْوَان دْيَالْك، عَافَاك",
+          "transliteration": "dekhkhel l3unwaan dyaalek, 3afaak"
+        },
+        {
+          "slot": "the-parcel-arrived-damaged",
+          "arabic": "الْكُولِي وْصَل مْخْسّْر",
+          "transliteration": "lkooli wSel mkhesser"
+        },
+        {
+          "slot": "i-want-to-track-my-order",
+          "arabic": "بْغِيت نْتْبَع الطّْلَب دْيَالِي",
+          "transliteration": "bgheet ntbe3 TTalab dyaali"
+        },
+        {
+          "slot": "i-ll-write-a-review-of-the-product",
+          "arabic": "غَادِي نْكْتَب تَعْلِيق عْلَى الْمُنْتُوج",
+          "transliteration": "ghaadi nkteb ta3leeq 3la lmuntooj"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Nadia",
+          "arabic": "ألو، خدمة الزبناء، مرحبا.",
+          "transliteration": "alo, khidmat zzubanaa2, mar7ba.",
+          "english": "Hello, customer service, welcome."
+        },
+        {
+          "speaker": "Omar",
+          "slot": "i-ordered-a-phone-online"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "واخا، عطيني نمرة الطلب عافاك.",
+          "transliteration": "waakha, 3Teeni nemrat TTalab 3afaak.",
+          "english": "Okay, give me the order number please."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "هاهي: تمنية، خمسة، جوج، واحد.",
+          "transliteration": "haahiya: tmenya, khamsa, jooj, waa7ed.",
+          "english": "Here it is: eight, five, two, one."
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "الطلب ديالك خرج من المخزن البارح.",
+          "transliteration": "TTalab dyaalek khrej mn lmakhzen lbaare7.",
+          "english": "Your order left the warehouse yesterday."
+        },
+        {
+          "speaker": "Omar",
+          "slot": "when-will-the-parcel-arrive"
+        },
+        {
+          "speaker": "Nadia",
+          "slot": "when-will-the-parcel-arrive",
+          "reply": true
+        },
+        {
+          "speaker": "Omar",
+          "slot": "is-delivery-free"
+        },
+        {
+          "speaker": "Nadia",
+          "slot": "is-delivery-free",
+          "reply": true
+        },
+        {
+          "speaker": "Omar",
+          "slot": "i-want-to-track-my-order"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "غادي نصيفط ليك ميساج فيه الليان.",
+          "transliteration": "ghaadi nSeyyeT leek meesaaj feeh lliyaan.",
+          "english": "I'll send you a message with the link."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "وإلا وصل الكولي مخسر؟",
+          "transliteration": "w ila wSel lkooli mkhesser?",
+          "english": "And if the parcel arrives damaged?"
+        },
+        {
+          "speaker": "Nadia",
+          "arabic": "تقدر ترجعو وغادي نصيفطو ليك واحد آخر.",
+          "transliteration": "tqder trejj3o w ghaadi nSeyyTu leek waa7ed aakhor.",
+          "english": "You can send it back and we'll send you another one."
+        },
+        {
+          "speaker": "Omar",
+          "arabic": "مزيان، الله يعطيك الصحة.",
+          "transliteration": "mzyaan, llaah y3Teek SSe77a.",
+          "english": "Good, thank you."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "فِين وْصَل الطّْلَب دْيَالِي؟",
+            "transliteration": "feen wSel TTalab dyaali?",
+            "english": "Where is my order?"
+          },
+          "response": {
+            "arabic": "رَاه فَالطّْرِيق",
+            "transliteration": "raah f TTreeq",
+            "english": "It's on the way."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شْحَال كَيْسْوَى التَّوْصِيل؟",
+            "transliteration": "sh7aal kayswa ttawSeel?",
+            "english": "How much is the delivery fee?"
+          },
+          "response": {
+            "arabic": "تْلَاتِين دَرْهَم",
+            "transliteration": "tlaateen derhem",
+            "english": "Thirty dirhams."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وَاش نْقْدَر نْخَلّْص مْلِّي يْوْصَل؟",
+            "transliteration": "waash nqder nkhalleS mlli ywSel?",
+            "english": "Can I pay on delivery?"
+          },
+          "response": {
+            "arabic": "إِيه، بْالْكَاش",
+            "transliteration": "eeh, b lkaash",
+            "english": "Yes, in cash."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "فُوقَاش غَادِي يْوْصَل الْكُولِي؟",
+            "transliteration": "fooqaash ghaadi ywSel lkooli?",
+            "english": "When will the parcel arrive?"
+          },
+          "response": {
+            "arabic": "مُورَا جُوج أَيَّام",
+            "transliteration": "moora jooj iyyaam",
+            "english": "In two days."
+          }
+        }
+      ],
+      "culture": "Many Moroccans still prefer to pay cash when the parcel arrives, and the delivery man usually phones before he comes. Online-shopping words are mostly French in Arabic script: \"الكوموند\" (order), \"الكولي\" (parcel), \"ليفريزون\" (delivery) and \"الباني\" (cart).",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "The agent asks: \"شنو المشكل؟\" Say the parcel arrived damaged.",
+          "answer": "الْكُولِي وْصَل مْخْسّْر",
+          "accepted": [
+            "الْكُولِي وْصَل مْخْسّْر",
+            "الكولي وصل مخسر",
+            "lkooli wSel mkhesser",
+            "الكولي جا مخسر",
+            "الطرد وصل مخسر"
+          ],
+          "too_formal": {
+            "item": "وصل الطرد تالفا",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"مخسر\" means broken or damaged."
+        },
+        {
+          "id": "unit-06.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: \"واش التوصيل فابور؟\" Say yes, free over a hundred dirhams.",
+          "answer": "إِيه، فَابُور فُوق مِيَة دَرْهَم",
+          "accepted": [
+            "إِيه، فَابُور فُوق مِيَة دَرْهَم",
+            "إيه فابور فوق مية درهم",
+            "eeh, faaboor fooq mya derhem",
+            "إيه، فابور",
+            "إيه فابور"
+          ],
+          "too_formal": {
+            "item": "نعم، التوصيل مجاني",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"فابور\" is the Darija word for free."
+        },
+        {
+          "id": "unit-06.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"واش نقدر _____ ملي يوصل؟\" Meaning: Can I pay on delivery?",
+          "answer": "نخلص",
+          "accepted": [
+            "نخلص",
+            "nkhalleS",
+            "نْخَلّْص"
+          ],
+          "too_formal": {
+            "item": "أدفع",
+            "feedback": "\"أدفع\" is MSA; Darija pays with \"خلص\"."
+          },
+          "tip": "\"ملي\" means when."
+        },
+        {
+          "id": "unit-06.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"بغيت _____ الطلب ديالي.\" Meaning: I want to track my order.",
+          "answer": "نتبع",
+          "accepted": [
+            "نتبع",
+            "ntbe3",
+            "نْتْبَع",
+            "نتّبع"
+          ],
+          "too_formal": {
+            "item": "أتتبع",
+            "feedback": "\"أتتبع\" is MSA; Darija says \"نتبع\"."
+          },
+          "tip": "\"تبع\" is to follow, to track."
+        },
+        {
+          "id": "unit-06.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I ordered a phone online.\"",
+          "answer": "طْلْبْت تِيلِيفُون فَالْأَنْتِرْنِيت",
+          "accepted": [
+            "طْلْبْت تِيلِيفُون فَالْأَنْتِرْنِيت",
+            "طلبت تيليفون فالأنترنيت",
+            "Tlebt teleefoon f lanternet",
+            "طلبت تيليفون أونلاين",
+            "كومونديت تيليفون فالأنترنيت"
+          ],
+          "too_formal": {
+            "item": "طلبت هاتفا عبر الإنترنت",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "A phone is \"تيليفون\"; a mobile is also \"بورطابل\"."
+        },
+        {
+          "id": "unit-06.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to pay by credit card.\"",
+          "answer": "بْغِيت نْخَلّْص بْالْكَارْط الْبَنْكِيَّة",
+          "accepted": [
+            "بْغِيت نْخَلّْص بْالْكَارْط الْبَنْكِيَّة",
+            "بغيت نخلص بالكارط البنكية",
+            "bgheet nkhalleS b lkaarT lbankiyya",
+            "بغيت نخلص بالكارط"
+          ],
+          "too_formal": {
+            "item": "أريد أن أدفع بالبطاقة البنكية",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"بغيت\" (I want) is followed straight by the verb."
+        },
+        {
+          "id": "unit-06.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate (to a man): \"Please enter your address.\"",
+          "answer": "دْخّْل الْعُنْوَان دْيَالْك، عَافَاك",
+          "accepted": [
+            "دْخّْل الْعُنْوَان دْيَالْك، عَافَاك",
+            "دخل العنوان ديالك عافاك",
+            "dekhkhel l3unwaan dyaalek, 3afaak",
+            "عافاك دخل العنوان ديالك",
+            "دخل لادريس ديالك"
+          ],
+          "too_formal": {
+            "item": "أدخل عنوانك من فضلك",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "To a woman: \"دخلي العنوان ديالك\"."
+        },
+        {
+          "id": "unit-06.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which question asks \"How much is the delivery fee?\"",
+          "answer": "شْحَال كَيْسْوَى التَّوْصِيل؟",
+          "options": [
+            "شْحَال كَيْسْوَى التَّوْصِيل؟",
+            "وَاش التَّوْصِيل فَابُور؟",
+            "فِين وْصَل الطّْلَب دْيَالِي؟",
+            "فُوقَاش غَادِي يْوْصَل الْكُولِي؟"
+          ],
+          "accepted": [
+            "شْحَال كَيْسْوَى التَّوْصِيل؟",
+            "sh7aal kayswa ttawSeel?",
+            "شحال كيسوى التوصيل؟",
+            "شحال التوصيل؟"
+          ],
+          "too_formal": {
+            "item": "كم ثمن التوصيل؟",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"شحال كيسوى\" asks what something costs."
+        },
+        {
+          "id": "unit-06.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Add it to the cart\"?",
+          "answer": "زِيدُو لْلْبَانْيِي",
+          "options": [
+            "زِيدُو لْلْبَانْيِي",
+            "غِير كَنْشُوف",
+            "الْكُولِي وْصَل مْخْسّْر",
+            "بْغِيت نْتْبَع الطّْلَب دْيَالِي"
+          ],
+          "accepted": [
+            "زِيدُو لْلْبَانْيِي",
+            "zeedu l lbaanyee",
+            "زيدو للباني",
+            "زيدو للبانيي",
+            "زيدو للسلة"
+          ],
+          "too_formal": {
+            "item": "أضفه إلى السلة",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "\"الباني\" comes from French panier."
+        },
+        {
+          "id": "unit-06.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: Where is my order?",
+          "answer": "فِين وْصَل الطّْلَب دْيَالِي؟",
+          "accepted": [
+            "فِين وْصَل الطّْلَب دْيَالِي؟",
+            "فين وصل الطلب ديالي؟",
+            "feen wSel TTalab dyaali?",
+            "فين وصلات الكوموند ديالي؟"
+          ],
+          "too_formal": {
+            "item": "أين طلبي؟",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "Darija asks where the order has got to: \"فين وصل\"."
+        },
+        {
+          "id": "unit-06.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: I'll write a review of the product.",
+          "answer": "غَادِي نْكْتَب تَعْلِيق عْلَى الْمُنْتُوج",
+          "accepted": [
+            "غَادِي نْكْتَب تَعْلِيق عْلَى الْمُنْتُوج",
+            "غادي نكتب تعليق على المنتوج",
+            "ghaadi nkteb ta3leeq 3la lmuntooj",
+            "غادي نكتب كومونتير على المنتوج"
+          ],
+          "too_formal": {
+            "item": "سأكتب تقييما للمنتج",
+            "feedback": "Correct Arabic, but this is Modern Standard Arabic; in Casablanca or Rabat people say it the Darija way."
+          },
+          "tip": "Moroccans say \"المنتوج\" for product."
         }
       ]
     }
