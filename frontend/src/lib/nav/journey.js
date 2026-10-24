@@ -30,6 +30,8 @@ const jumpListeners = new Set()
 // Every place visited this session, oldest first, and where the browser sits.
 let snapshot = { steps: [], at: -1 }
 let tabIds = []
+// Tabs whose page with nothing in hand is a place of its own (Grow's home, its worlds below it), not an empty box.
+let homeTabs = new Set()
 
 // The one write point: every change to the path is saved here, including a
 // back press, so a reload after going back lands on the step gone back to.
@@ -44,10 +46,11 @@ function set(next) {
 /**
  * The path with `place` reached from step `at`: it goes next, and what was ahead is dropped.
  * A tab opened with nothing, then given a place on that same tab, is one step: the
- * blank one is filled in, or back would land on a page that looks unchanged.
+ * blank one is filled in, or back would land on a page that looks unchanged. Not on a
+ * tab whose blank is its own home (`ownHome` in tabs.js): back from a lesson lands on Grow's own page.
  */
 function stepOnto(steps, at, place) {
-  const blank = steps[at] && steps[at].tab === place.tab && !steps[at].value
+  const blank = steps[at] && steps[at].tab === place.tab && !steps[at].value && !homeTabs.has(place.tab)
   const walked = [...steps.slice(0, blank ? at : at + 1), place]
   return { steps: walked, at: walked.length - 1 }
 }
@@ -83,6 +86,7 @@ export function startJourney(tabs) {
   if (!globalThis.window) return null
   if (tabIds.length) return placeNow()
   tabIds = tabs.map((tab) => tab.id)
+  homeTabs = new Set(tabs.filter((tab) => tab.ownHome).map((tab) => tab.id))
   land(loadSession(tabIds), tabs)
 
   window.addEventListener('popstate', (event) => {
@@ -102,6 +106,9 @@ export function startJourney(tabs) {
   })
   return placeNow()
 }
+
+/** Whether `tab`'s page with nothing in hand is its own home (`ownHome` in tabs.js): back onto it is an arrival. */
+export const ownsHome = (tab) => homeTabs.has(tab)
 
 /** The step the reader is on. */
 export const placeNow = () => snapshot.steps[snapshot.at] ?? null

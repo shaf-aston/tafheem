@@ -239,7 +239,8 @@ export default function GrowHome({ worlds, rewards, lessons, books, resume, onRe
   const worldOf = (id) => worlds.find((world) => world.id === id)
   return (
     <div className="grow-home">
-      <SectionHeader tab="grow" subtitle={say('A little every day, in every part of the app.')}
+      {/* No trail: Grow draws its own ways back (a world's back arrow, a lesson's ×), and its places are not words. */}
+      <SectionHeader tab="grow" subtitle={say('A little every day, in every part of the app.')} history={false}
         aside={rewards ? null : <LogInButton>{say('Log in to keep your XP')}</LogInButton>} />
       {resume && <Resume world={worldOf(resume.id)} onResume={onResume} />}
       {/* Today's lesson first, where a phone's first screen shows it; the level, streak and goal under it. */}
