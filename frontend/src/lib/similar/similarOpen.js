@@ -14,7 +14,7 @@ import { readRaw } from '../store/stored'
 export const SURAH_KEY = 'similar-surah'
 
 /** The surah the tab shows with no verse asked: the remembered one, else similar.json's. */
-export const rememberedSurah = () => {
+const rememberedSurah = () => {
   const n = Number(readRaw(SURAH_KEY))
   return Number.isInteger(n) && n >= 1 && n <= 114 ? n : copy['default-surah']
 }

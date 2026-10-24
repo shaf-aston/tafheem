@@ -8,7 +8,7 @@ import { MODULE, keyOfBasic } from './alifLam'
 import { basicsCards, pathItems } from './basicsSkills'
 
 export const SOURCE_URL = '/grow/basics.json'
-export const VERBS_URL = '/grow/basics-verbs.json'
+const VERBS_URL = '/grow/basics-verbs.json'
 
 async function json(url) {
   const response = await fetch(url)

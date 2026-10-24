@@ -11,7 +11,7 @@ import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'
 import PrimaryButton from '../ui/PrimaryButton'
 import { Skeleton } from '../ui/Skeleton'
-import Backdrop from './Backdrop'
+import WorldBackdrop from './WorldBackdrop'
 import Glossary from './Glossary'
 import LessonPath from './LessonPath'
 import WorldHeader from './WorldHeader'
@@ -84,7 +84,7 @@ export default function BookWorld({ world, accent, state: book, place, onBack, o
   else body = <Tiles items={book.areas.length ? book.areas : book.parts} onOpen={onPart} />
   return (
     <div className="grow-world" style={{ '--w': accent }}>
-      <Backdrop id={world.backdrop} />
+      <WorldBackdrop id={world.backdrop} />
       <div data-look={(part ?? area)?.look}>
         <Header world={world} area={area} part={part} onBack={onBack} onPart={onPart} />
       </div>

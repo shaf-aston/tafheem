@@ -21,10 +21,10 @@ export const isIos = (ua, touchPoints = 0) =>
   /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && touchPoints > 1)
 
 /** Chrome on iOS, Firefox on iOS and the like cannot add to the home screen: only Safari can. */
-export const isIosSafari = (ua) => !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|FBAN|FBAV|Instagram/.test(ua)
+const isIosSafari = (ua) => !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|FBAN|FBAV|Instagram/.test(ua)
 
 /** A phone: Android's own word for it, or an iPhone. Tablets count; a laptop does not. */
-export const isPhone = (ua, touchPoints = 0) => /Android/.test(ua) || isIos(ua, touchPoints)
+const isPhone = (ua, touchPoints = 0) => /Android/.test(ua) || isIos(ua, touchPoints)
 
 /** Pure: the answer for what the page knows. */
 export function installKind({ ua = '', touchPoints = 0, standalone = false, prompt = null }) {

@@ -16,7 +16,7 @@ const URL = '/progress/saved'
 const headers = (name) => ({ headers: profileHeaders(name) })
 
 /** Send this account's whole shelf now. Resolves whether it landed; never rejects. */
-export const pushShelf = (name = getProfile()) =>
+const pushShelf = (name = getProfile()) =>
   api.put(URL, { data: shelfOf(name) }, headers(name)).then(() => true, () => false)
 
 /**

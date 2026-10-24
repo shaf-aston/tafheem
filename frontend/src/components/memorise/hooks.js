@@ -41,7 +41,7 @@ const placeOf = (bookId, part, line) => `${bookId === DEFAULT_BOOK ? '' : `${boo
 
 // Two ways to answer the same gap. Typing is recall; choosing is recognition,
 // which is easier, and the only one that works without an Arabic keyboard.
-export const WAYS = [
+const WAYS = [
   { id: 'type', label: 'Type it' },
   // The count is read, never typed: "Pick from four" would start lying the day
   // option-count changes.

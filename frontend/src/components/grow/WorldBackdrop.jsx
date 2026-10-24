@@ -13,7 +13,7 @@
 import { backdropOf } from '../../lib/grow/backdrops'
 import { motionOff } from '../../lib/motion/motion'
 
-export default function Backdrop({ id }) {
+export default function WorldBackdrop({ id }) {
   const backdrop = backdropOf(id)
   if (!backdrop) return null
   const { image, video, poster } = backdrop
