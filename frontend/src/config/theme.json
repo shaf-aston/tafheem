@@ -105,7 +105,7 @@
     "twin": "@amber"
   },
   "science": {
-    "_comment": "Card colour of each map science (shell/MapPanel), keyed by chart id. One hue each, all readable on the raised surface, borrowed from the tab palette.",
+    "_comment": "Card colour of each map science (map/MapPanel), keyed by chart id. One hue each, all readable on the raised surface, borrowed from the tab palette.",
     "01": "@amber",
     "02": "@orange",
     "03": "@rose",

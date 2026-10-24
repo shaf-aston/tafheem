@@ -37,6 +37,7 @@ const DawahPanel = panel(() => import('../../components/dawah/DawahPanel'))
 const ColloquialPanel = panel(() => import('../../components/colloquial/ColloquialPanel'))
 const GrowPanel = panel(() => import('../../components/grow/GrowPanel'))
 const KitPanel = panel(() => import('../../components/kit/KitPanel'))
+const MapPanel = panel(() => import('../../components/map/MapPanel'))
 
 // `study`: read closely, so the text-size setting applies.
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together.
@@ -86,6 +87,8 @@ export const TABS = [
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', emblem: 'timelines', Component: TimelinesPanel, open: load(timelinesQuery), study: true, blurb: "See events and their ayat laid out in order", group: 'more' },
   { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   emblem: 'dawah', Component: DawahPanel, open: load(dawahQuery), study: true, blurb: "Answers to common questions, with the evidence", group: 'more' },
   { id: 'colloq', label: 'Colloquial', short: 'Colloq', arabic: 'عامية',  emblem: 'colloq', Component: ColloquialPanel, open: load(colloquialQuery), blurb: "Spoken, everyday Arabic dialects", group: 'arabic', study: true, modules: [WORDS_MODULE] },
+  // The Map is opened from the header's Map button, so it is not listed as a tab as well.
+  { id: 'map',    label: 'Map',        short: 'Map',    arabic: 'الخريطة', emblem: 'map', Component: MapPanel, hidden: true, ownHome: true, blurb: "The sciences and the schools, each as one chart", group: 'more' },
   { id: 'kit',    label: 'Kit',        short: 'Kit',    arabic: 'عدة',    emblem: 'kit', Component: KitPanel, hidden: true, blurb: "Small tools for study", group: 'more' },
 ]
 

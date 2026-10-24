@@ -76,6 +76,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | timelines | `components/timelines/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py`, `services/text/refs.py`, `services/quran/asbab.py` | `data/timelines/` |
 | dawah | `components/dawah/DawahPanel.jsx` | `dawahQuery` | `routers/dawah.py` | `services/dawah.py` | `data/dawah/dawah.json` |
 | colloq | `components/colloquial/ColloquialPanel.jsx` | `colloquialQuery`, `colloquialUnitQuery` | `routers/colloquial.py` | `services/colloquial/loader.py` | `data/colloquial/` |
+| map | `components/map/MapPanel.jsx` (charts: `shell/PbsChart` over `lib/shell/pbsTree`; methodologies: `map/ManhajView` over `lib/map/manhajData`) | none (hidden, the header's Map button; places `/app/map/07/2`, `/app/map/manhaj/creed/ibadi/ashari`, `lib/map/mapPlace.js`) | none | none | none |
 | kit | `components/kit/KitPanel.jsx` | none (hidden, `/app/kit`) | none | none | none |
 
 Nahw has more views: Tamreen (`getTamreen`, `routers/tamreen.py`, `services/nahw/tamreen.py`), Notes
