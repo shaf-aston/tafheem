@@ -34,4 +34,16 @@ describe('sarf', () => {
     expect(screen.getByRole('rowheader', { name: 'He' })).toBeTruthy()
     expect(asked).toContain('POST /morphology')
   })
+
+  it('the common verbs are open on an empty box and fold once an answer shows', async () => {
+    renderScreen(<SarfPanel accent="#0a7" onGo={() => {}} onVisit={() => {}} />, {
+      routes: { 'POST /morphology': KATABA },
+    })
+    const drawer = screen.getByText('Common verbs').closest('details')
+    expect(drawer.open).toBe(true)
+    fireEvent.change(screen.getByLabelText(/^Arabic word/), { target: { value: 'كتب' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Search' }))
+    await screen.findByRole('cell', { name: 'كَتَبَ' })
+    expect(drawer.open).toBe(false)
+  })
 })

@@ -46,7 +46,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
           />
         </SearchBox>
 
-        <PresetsDrawer onPick={pickPreset} accent={accent} />
+        <PresetsDrawer onPick={pickPreset} accent={accent} answered={Boolean(data)} />
       </div>
 
       {mutation.isError && (
