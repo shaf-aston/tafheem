@@ -79,6 +79,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
         <SearchBox
           id="iraab-input"
           label="Arabic sentence"
+          verb="analyse"
           placeholder="اكتب جملة عربية هنا..."
           value={sentence}
           onChange={setSentence}

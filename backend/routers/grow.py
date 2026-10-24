@@ -5,6 +5,10 @@ names every book quoted, and data/grow/worlds/<world>/ holds a world's paths
 and units, one file each. Nothing here judges a recitation (that is /api/listen/check
 and /check-text) and nothing here makes a ruling: every ruling in the files
 is a scholar's own sentence, quoted.
+
+No screen calls these yet: the Grow tab's live worlds are the book worlds in
+frontend/src/config/worlds.json, served as static files. The Prayer world waits
+here, tested (tests/test_grow.py), for an entry of its own in that file.
 """
 from __future__ import annotations
 
