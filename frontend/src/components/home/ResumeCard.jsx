@@ -8,6 +8,7 @@ import PrimaryButton from '../ui/PrimaryButton'
 import Tile from '../ui/Tile'
 
 export default function ResumeCard({ tab, accent, value, label, goLabel, progressText, onGo }) {
+  const shown = tab.place ? tab.place(value) : value
   return (
     <section aria-label={label} className="space-y-2">
       <h3 className="eyebrow eyebrow-lg">{label}</h3>
@@ -16,9 +17,9 @@ export default function ResumeCard({ tab, accent, value, label, goLabel, progres
           <ArabicText size="lg" style={{ color: accent }}>{tab.arabic}</ArabicText>
           <div className="min-w-0">
             <p className="font-semibold">{tab.label}</p>
-            {value && isArabic(value)
-              ? <ArabicText size="sm" className="block text-start text-[var(--text-dim)]">{value}</ArabicText>
-              : <p className="type-small text-[var(--text-dim)]" dir="auto">{value ?? tab.blurb}</p>}
+            {shown && isArabic(shown)
+              ? <ArabicText size="sm" className="block text-start text-[var(--text-dim)]">{shown}</ArabicText>
+              : <p className="type-small text-[var(--text-dim)]" dir="auto">{shown ?? tab.blurb}</p>}
           </div>
         </div>
         {progressText && <p className="type-small tabular-nums text-[var(--text-faint)]">{progressText}</p>}

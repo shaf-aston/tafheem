@@ -59,4 +59,15 @@ describe('Home', () => {
     expect(onGo).toHaveBeenCalledWith('dict', 'كتب')
     expect(screen.queryByRole('region', { name: knobs.copy['fork-label'] })).toBeNull()
   })
+
+  it("names a Grow lesson as a reader says it, and still goes back to the address", async () => {
+    const onGo = vi.fn()
+    renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
+    act(() => { visit('grow', 'basics/lesson') })
+    const card = await screen.findByRole('region', { name: knobs.copy['resume-label'] })
+    expect(within(card).getByText('Basics lesson')).toBeTruthy()
+    expect(within(card).queryByText('basics/lesson')).toBeNull()
+    fireEvent.click(within(card).getByRole('button', { name: /Continue/ }))
+    expect(onGo).toHaveBeenCalledWith('grow', 'basics/lesson')
+  })
 })

@@ -276,7 +276,7 @@
   60% { opacity: 1; }
   100% { transform: rotate(var(--a)) translateY(-58px); }
 }
-.grow-done-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
+.grow-done-stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 10px; width: 100%; }
 .grow-done-stats div { display: grid; gap: 2px; padding: 12px 8px; border-radius: var(--radius-lg); border: 2px solid color-mix(in srgb, var(--w) 30%, var(--border)); background: var(--surface); }
 .grow-done-stats dt { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
 .grow-done-stats dd { font-size: var(--type-title); font-weight: 800; color: var(--w); }

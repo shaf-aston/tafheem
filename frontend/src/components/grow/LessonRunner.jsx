@@ -87,7 +87,7 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
       ...(!card.again && { asked: was.asked + 1, right: was.right + (right ? 1 : 0) }),
     }))
     if (!right) setCards(requeue(cards, at))
-    if (!right && !card.again && card.ask) setMissed((was) => [...was, { id: card.id, ask: card.ask, ar: lineOf(card), why: card.why }])
+    if (!right && !card.again && card.ask) setMissed((was) => [...was, { id: card.id, ask: card.ask, ar: lineOf(card), why: card.why && kind.correction(card, value) }])
     const ms = Math.max(0, Math.round(event.timeStamp - started.current))
     file({ ...card.record, correct: right, ms }).then(({ earned = 0 }) => {
       if (earned) setTally((was) => ({ ...was, earned: was.earned + earned }))
@@ -132,7 +132,8 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
           <p role="status" className="grow-lesson-say">
             {result === 'right'
               ? [say('Right!'), kind.because?.(card)].filter(Boolean).join(' ')
-              : `${kind.correction(card)} ${say('It comes back at the end.')}`}
+              // A card comes back once: its second miss says only the answer.
+              : [kind.correction(card, value), !card.again && say('It comes back at the end.')].filter(Boolean).join(' ')}
           </p>
         )}
         {asks && !result
@@ -166,7 +167,8 @@ function LessonDone({ tally, took, missed, accent, rewards, next, onLeave }) {
       </div>
       <p className="grow-done-title">{say('Lesson done')}</p>
       <dl className="grow-done-stats">
-        <div><dt>{say('XP')}</dt><dd className="tabular-nums">+{earned}</dd></div>
+        {/* A guest earns no XP (the shared guest record), so no "+0": the line below says how to earn it. */}
+        {rewards && <div><dt>{say('XP')}</dt><dd className="tabular-nums">+{earned}</dd></div>}
         <div><dt>{say('Right first time')}</dt><dd className="tabular-nums">{right}/{asked}</dd></div>
         <div><dt>{say('Time')}</dt><dd className="tabular-nums">{clock(took)}</dd></div>
       </dl>
@@ -177,7 +179,7 @@ function LessonDone({ tally, took, missed, accent, rewards, next, onLeave }) {
           <span className="grow-lesson-bar" aria-hidden="true"><i style={{ width: `${100 * shareOf(rewards)}%` }} /></span>
         </div>
       )}
-      {!rewards && <p className="grow-hint">{say('Log in to keep your XP and streak on any device.')}</p>}
+      {!rewards && <p className="grow-hint">{say('Log in to earn XP and keep a streak on any device.')}</p>}
       {missed.length > 0 && (
         <section className="grow-done-missed" aria-labelledby="grow-missed-h">
           <h4 id="grow-missed-h">{say('What you missed')}</h4>

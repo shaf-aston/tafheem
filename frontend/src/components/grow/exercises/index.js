@@ -3,7 +3,7 @@
  *   Card        ({ card, value, setValue, result }) => JSX
  *   ready       can Check be pressed yet ((value, card))
  *   check       is the value right (absent: a teach card, nothing asked)
- *   correction  what to say when wrong
+ *   correction  what to say when wrong ((card, value): a choice can say what the picked option got wrong)
  *   because     why, said after a right answer too (optional)
  * A checked card carries `record` ({ module, item, context }), what the progress store files it under.
  */
@@ -24,6 +24,8 @@ const picked = (value) => value != null
 const sameSet = (a, b) => a.length === b.length && a.every((one) => b.includes(one))
 // A book world's question says why, right or wrong (lib/grow/bookLesson.js).
 const why = (card) => card.why
+// A choose card may name what each wrong option got wrong (lib/grow/alifLam.js), so the reader hears about their own pick.
+const whyNot = (card, value) => card.wrong?.[value] ?? card.why
 
 export const KINDS = {
   teach: { Card: TeachCard },
@@ -42,7 +44,7 @@ export const KINDS = {
     correction: (card) => say('Not quite. The missing word is {answer}.', { answer: card.answerText }),
   },
   rule: { Card: RuleCard },
-  choose: { Card: ChooseCard, ready: picked, check: (card, value) => value === card.answer, correction: why, because: why },
+  choose: { Card: ChooseCard, ready: picked, check: (card, value) => value === card.answer, correction: whyNot, because: why },
   pick: {
     Card: PickCard,
     ready: (value) => Boolean(value?.length),
