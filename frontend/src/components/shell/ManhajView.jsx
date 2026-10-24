@@ -10,7 +10,7 @@
  */
 import { useState } from 'react'
 
-import ArabicText from './ArabicText'
+import ArabicText from '../ui/ArabicText'
 import { FAMILIES, differs, sharedWith } from '../../lib/shell/manhajData'
 
 export default function ManhajView() {

@@ -5,15 +5,15 @@
  * CountryMap is the picture; CountryIcons is the row of tiny flags with
  * names that says which countries, for a card's side. Both take ISO alpha-2
  * codes, so the places live in data (colloquial/dialects.json), not here.
- * The flags are data/countryFlags.json (scripts/countryFlags.mjs).
- * The outlines are data/countryShapes.json (scripts/countryShapes.mjs); land
+ * The flags are lib/colloquial/countryFlags.json (scripts/countryFlags.mjs).
+ * The outlines are lib/colloquial/countryShapes.json (scripts/countryShapes.mjs); land
  * and borders wear the Timelines map's colours, so every map reads alike.
  */
 import { useId } from 'react'
 
-import flagFile from '../../data/countryFlags.json'
-import shapes from '../../data/countryShapes.json'
-import { project, touches, viewOf } from '../../lib/shell/countryMap'
+import flagFile from '../../lib/colloquial/countryFlags.json'
+import shapes from '../../lib/colloquial/countryShapes.json'
+import { project, touches, viewOf } from '../../lib/colloquial/countryMap'
 
 const { countries } = shapes
 const { flags } = flagFile

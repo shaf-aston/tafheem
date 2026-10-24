@@ -17,7 +17,7 @@ import { caseLabel, isUnnamed, typeLabel } from '../../lib/nahw/grammarTerms'
 import { roleVar } from '../../lib/nahw/roleColors'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
 import ArabicText from '../ui/ArabicText'
-import BookPath from '../ui/BookPath'
+import BookPath from './BookPath'
 import RootActions from '../ui/RootActions'
 
 // A word of these types has no root by nature; any other rootless word is one

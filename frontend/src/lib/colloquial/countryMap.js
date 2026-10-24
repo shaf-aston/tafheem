@@ -1,5 +1,5 @@
 /**
- * Where a place sits on the small country maps (ui/CountryMap).
+ * Where a place sits on the small country maps (components/colloquial/CountryMap).
  *
  * One flat projection for the whole Arab world, shared with the script that
  * drew the outlines (scripts/countryShapes.mjs), so a city's dot lands where its

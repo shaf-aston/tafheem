@@ -540,7 +540,7 @@ def test_every_dialect_field_reaches_the_page_or_is_named_as_the_servers():
 
 
 def test_every_dialect_card_says_where_it_is_spoken():
-    # The card's map draws these (frontend components/ui/CountryMap.jsx). Read through the
+    # The card's map draws these (frontend components/colloquial/CountryMap.jsx). Read through the
     # route, so the response model cannot drop them on the way out.
     for dialect in TestClient(app).get("/api/colloquial").json()["dialects"]:
         assert dialect["countries"], dialect["key"]

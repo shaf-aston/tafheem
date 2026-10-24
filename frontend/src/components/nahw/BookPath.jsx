@@ -1,4 +1,4 @@
-import ArabicText from './ArabicText'
+import ArabicText from '../ui/ArabicText'
 
 /**
  * The book's divisions that named a word (اسم ← ... (تسهيل النحو 3.1، ص 60)): the

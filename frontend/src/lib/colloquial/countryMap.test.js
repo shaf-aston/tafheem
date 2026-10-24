@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import shapes from '../../data/countryShapes.json'
+import shapes from './countryShapes.json'
 import { project, touches, viewOf } from './countryMap'
 
 describe('project', () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import dialects from '../../../backend/data/colloquial/dialects.json'
-import { project } from '../lib/shell/countryMap'
+import dialects from '../../../../backend/data/colloquial/dialects.json'
+import { project } from './countryMap'
 import shapes from './countryShapes.json'
 
 // The places live in the backend's dialects.json and the outlines here: a code

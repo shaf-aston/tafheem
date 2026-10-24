@@ -18,7 +18,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { similarAyahQuery } from '../../api'
-import surahs from '../../data/surahs.json'
+import surahs from '../../lib/quran/surahs.json'
 import { fill, firstPair, nextUp } from '../../lib/similar/similar'
 import { SURAH_KEY } from '../../lib/similar/similarOpen'
 import { parsePlace } from '../../lib/similar/similarPlace'

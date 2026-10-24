@@ -1,10 +1,10 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
-import surahs from '../../data/surahs.json'
+import surahs from './surahs.json'
 import { JUZ_COUNT, juzOf, juzStart } from './juz'
 
-// The backend's own juz file, the one the copy in data/juz.json was cut from.
+// The backend's own juz file, the one the copy in lib/quran/juz.json was cut from.
 const backend = JSON.parse(readFileSync(new URL('../../../../backend/data/quran/juz.json', import.meta.url)))
 
 describe('juz', () => {

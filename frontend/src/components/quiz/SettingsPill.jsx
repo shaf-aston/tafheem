@@ -5,7 +5,7 @@
  * column and the rows start level. A phone folds more behind it than a wide
  * screen does: the tab decides what goes in.
  */
-import Popover from './Popover'
+import Popover from '../ui/Popover'
 
 export default function SettingsPill({ label, title, align, children }) {
   return (

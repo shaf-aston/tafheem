@@ -10,7 +10,7 @@
  * lone number is a surah. Matches are ranked exact, then prefix, then anywhere
  * in the name, then one or two typos away, so callers can choose how loose to be.
  */
-import surahs from '../../data/surahs.json'
+import surahs from './surahs.json'
 import { bareForm, isArabic } from '../text/arabicText'
 import { editDistance } from '../text/editDistance'
 

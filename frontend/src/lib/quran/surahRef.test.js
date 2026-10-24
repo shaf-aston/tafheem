@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import surahs from '../../data/surahs.json'
+import surahs from './surahs.json'
 import { CLOSE, ayahProblem, firstAyah, placeProblem, placesNamed, readSurahRef, surahsNamed } from './surahRef'
 
 const top = (text) => readSurahRef(text).matches[0]
