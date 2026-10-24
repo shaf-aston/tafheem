@@ -4,7 +4,8 @@
  * sums the XP the server reported, how many were right first time, and how long the lesson took, recaps what was missed,
  * and offers the next lesson (`next`: its title and `go`) when there is one. Enter presses the footer's button (Check or
  * Continue), also from an answer option, and takes the focus once an answer is checked; leaving mid-lesson asks first
- * (focus in the question, Escape to stay), since it starts over.
+ * (focus in the question, Escape to stay), since it starts over. `onLeave` is the way on from the end screen; `onQuit`,
+ * when given, is where the × goes instead (the Quiz rests there rather than dealing the next lesson).
  */
 import { useEffect, useRef, useState } from 'react'
 
@@ -18,7 +19,7 @@ import { kindOf } from './exercises'
 
 const say = sayIn('en')
 
-export default function LessonRunner({ cards: first, accent, rewards, next: after, onLeave }) {
+export default function LessonRunner({ cards: first, accent, rewards, next: after, onLeave, onQuit = onLeave }) {
   const { file } = useRecord()
   const [cards, setCards] = useState(first)
   const [at, setAt] = useState(0)
@@ -105,7 +106,7 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
   return (
     <div className="grow-lesson" style={{ '--w': accent }}>
       <div className="grow-lesson-top">
-        <button ref={x} type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (tally.asked ? setLeaving(true) : onLeave())}>
+        <button ref={x} type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (tally.asked ? setLeaving(true) : onQuit())}>
           <span aria-hidden="true">×</span>
         </button>
         <span className="grow-lesson-bar" role="progressbar" aria-valuemin={0} aria-valuemax={cards.length} aria-valuenow={at}
@@ -118,7 +119,7 @@ export default function LessonRunner({ cards: first, accent, rewards, next: afte
       {leaving && (
         <div className="grow-leave" role="alertdialog" aria-modal="true" aria-labelledby="grow-leave-h">
           <p id="grow-leave-h">{say('Leave this lesson? Your answers are saved, but it starts again from the first card.')}</p>
-          <button type="button" onClick={onLeave}>{say('Leave')}</button>
+          <button type="button" onClick={onQuit}>{say('Leave')}</button>
           <button ref={stay} type="button" className="grow-leave-stay" onClick={keepGoing}>{say('Keep going')}</button>
         </div>
       )}
