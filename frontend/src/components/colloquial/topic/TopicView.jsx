@@ -15,7 +15,7 @@ function Act({ kicker, title, children }) {
   return (
     <section className="space-y-4">
       <header>
-        <p className="type-micro uppercase tracking-[0.18em] text-[var(--primary)]">{kicker}</p>
+        <p className="eyebrow text-[var(--primary)]">{kicker}</p>
         <h3 className="type-ui font-semibold text-[var(--text)]">{title}</h3>
       </header>
       {children}
