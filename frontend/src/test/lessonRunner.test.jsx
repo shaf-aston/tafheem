@@ -42,6 +42,34 @@ describe('lesson runner', () => {
     expect(screen.getByText('Question d?')).toBeTruthy()
   })
 
+  it("says what the picked wrong option got wrong, and that it comes back only the first time", () => {
+    const card = { ...choose('w'), wrong: { 1: 'Wrong one: no ال.' } }
+    renderScreen(<LessonRunner cards={[card]} accent="#26c" onLeave={() => {}} />, { routes: { 'POST /progress/attempts': { earned: 0 } } })
+    fireEvent.click(screen.getByRole('radio', { name: 'wrong w' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }))
+    expect(screen.getByRole('status').textContent).toBe('Wrong one: no ال. It comes back at the end.')
+    fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+    expect(screen.getByText('Again')).toBeTruthy()
+    fireEvent.click(screen.getByRole('radio', { name: 'wrong w' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }))
+    expect(screen.getByRole('status').textContent).toBe('Wrong one: no ال.')
+    fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+    // The recap says what this reader got wrong, not the general rule.
+    expect(screen.getByText('Wrong one: no ال.')).toBeTruthy()
+  })
+
+  it('shows XP only to someone who earns it: a guest is told how to', () => {
+    const { unmount } = renderScreen(<LessonRunner cards={[choose('a')]} accent="#26c" onLeave={() => {}} />, { routes: { 'POST /progress/attempts': { earned: 0 } } })
+    answer('a', 'right')
+    expect(screen.queryByText('XP')).toBe(null)
+    expect(screen.getByText('Log in to earn XP and keep a streak on any device.')).toBeTruthy()
+    unmount()
+    renderScreen(<LessonRunner cards={[choose('a')]} accent="#26c" rewards={{ level: 2, into: 5, need: 20 }} onLeave={() => {}} />,
+      { routes: { 'POST /progress/attempts': { earned: 2 } } })
+    answer('a', 'right')
+    expect(screen.getByText('XP')).toBeTruthy()
+  })
+
   it('recaps a missed gap card with its line, the gap filled with the right word', () => {
     const gap = { ...choose('g'), ask: 'Which word completes the line?', ar: 'الحمد ____ رب العالمين',
       options: [{ id: '0', text: 'لله' }, { id: '1', text: 'wrong g' }] }

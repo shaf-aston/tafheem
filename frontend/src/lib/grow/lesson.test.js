@@ -61,6 +61,10 @@ describe('requeue', () => {
     expect(once.map((card) => card.id)).toEqual(['ask:a', 'ask:b', 'ask:a:again'])
     expect(requeue(once, 2)).toBe(once)
   })
+  it('tags the card that comes back "Again", not "New word"', () => {
+    expect(requeue([{ id: 'a', tag: 'New word' }], 0)[1].tag).toBe('Again')
+    expect(requeue([{ id: 'a' }], 0)[1]).not.toHaveProperty('tag')
+  })
 })
 
 describe('stageOf', () => {

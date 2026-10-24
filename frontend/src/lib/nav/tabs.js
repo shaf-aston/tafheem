@@ -17,6 +17,7 @@ import { memoriseOpen } from '../memorise/books'
 import { MODULE as QUIZ_MODULE, table } from '../quiz/quizBanks'
 import { WORDS_MODULE } from '../colloquial/wordPractice'
 import { panel } from './panel'
+import { nameOf } from '../grow/growPlace'
 import grow from '../../config/worlds.json'
 import { quranOpen } from '../quran/quranOpen'
 import { similarOpen } from '../similar/similarOpen'
@@ -46,6 +47,7 @@ const KitPanel = panel(() => import('../../components/kit/KitPanel'))
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
 // `modules`: other names its answers are filed under in the progress store, so a
 //   progress row can say which tab it came from.
+// `place`: the tab's value as a reader says it (Home's "Where you stopped"), for a tab whose value is an address, not a word.
 // `ownsHealth`: draws its own offline state, so the app-wide backend banner stays off it.
 // `ownHome`: opened with nothing in hand it shows a page of its own (Grow's home), so the journey keeps that
 //   as a step and back returns to it, rather than filling it in with the first place (lib/nav/journey.js).
@@ -79,7 +81,7 @@ export const TABS = [
   // Similar verses, متشابهات: telling look-alike ayat apart, next to learning them by heart.
   { id: 'similar', label: 'Similar',        short: 'Similar', arabic: 'متشابهات', emblem: 'similar', Component: SimilarPanel, open: similarOpen, study: true, blurb: "Tell look-alike verses apart, and drill the wording", group: 'practise' },
   // Grow, نبات (3:37): a little every day: words, fiqh, Quran and hadith.
-  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   emblem: 'words', Component: GrowPanel, study: true, blurb: "A little every day: words, fiqh, Quran and hadith", group: 'practise', modules: GROW_MODULES, ownHome: true },
+  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   emblem: 'words', Component: GrowPanel, study: true, blurb: "A little every day: words, fiqh, Quran and hadith", group: 'practise', modules: GROW_MODULES, ownHome: true, place: (value) => nameOf(value, grow.worlds) },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', emblem: 'quiz', Component: QuizPanel, open: table, blurb: "Practise words and meanings, and review what is due", group: 'practise' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', emblem: 'timelines', Component: TimelinesPanel, open: load(timelinesQuery), study: true, blurb: "See events and their ayat laid out in order", group: 'more' },
   { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   emblem: 'dawah', Component: DawahPanel, open: load(dawahQuery), study: true, blurb: "Answers to common questions, with the evidence", group: 'more' },

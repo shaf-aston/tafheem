@@ -69,13 +69,23 @@ function whyArabic(word) {
   const said = `${the} = ${english(word, true)}.`
   return isSun(word.ar)
     ? `${said} The ل of ال is written, but not said: it joins the ${firstLetter(plain(word.ar))} after it.`
-    : `${said} ال is joined to the front of the word, and a word with ال never ends in -un (ٌ).`
+    : `${said} ال is joined to the front of the word, and a word with ال never ends in -un (ـٌ).`
+}
+
+// What each wrong form got wrong, said after the right answer when it is the one picked.
+const MISTAKES = {
+  bare: (word) => `${plain(word.ar)} has no ال: it is “${english(word, false)}”.`,
+  tanween: () => 'ال and the -un ending (ـٌ) never go together.',
+  apart: () => 'ال is joined to the front of the word, never written apart.',
+  heard: (word) => `The ل is not said before ${firstLetter(plain(word.ar))}, but it is still written.`,
 }
 
 /** "the book" → pick the Arabic: the right form and two of the word's own wrong forms. */
 export function toArabicCard(word, isNew, random) {
   const right = { id: 'right', text: definite(word.ar) }
-  const wrong = wrongForms(word.ar, random).map((type) => ({ id: type, text: FORMS[type](word.ar) }))
+  const types = wrongForms(word.ar, random)
+  const wrong = types.map((type) => ({ id: type, text: FORMS[type](word.ar) }))
+  const said = `${definite(word.ar)} = ${english(word, true)}.`
   return {
     kind: 'choose',
     id: `the:${word.id}`,
@@ -85,6 +95,7 @@ export function toArabicCard(word, isNew, random) {
     options: shuffled([right, ...wrong], random),
     answer: 'right',
     why: whyArabic(word),
+    wrong: Object.fromEntries(types.map((type) => [type, `${said} ${MISTAKES[type](word)}`])),
     record: record(word, 'to-arabic'),
   }
 }
