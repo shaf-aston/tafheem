@@ -1,17 +1,17 @@
 /**
  * The microphone, while somebody recites a page, and what the page should show.
  *
- * The page's handle on a reciting session (lib/recitingSession.js), which does
+ * The page's handle on a reciting session (lib/recite/recitingSession.js), which does
  * the recording, the readings and the checks. This holds only what the session
  * last showed and turns it into marks; the panel that uses it draws them and
  * decides nothing.
  */
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-import { bySound, follow, joinWindows } from '../follow'
-import { createRecitingSession, EMPTY_VIEW, surer } from '../recitingSession'
-import { useSetting } from '../settings'
-import { useHealth, useTrial } from '../useHealth'
+import { bySound, follow, joinWindows } from '../recite/follow'
+import { createRecitingSession, EMPTY_VIEW, surer } from '../recite/recitingSession'
+import { useSetting } from '../store/settings'
+import { useHealth, useTrial } from '../api/useHealth'
 
 /**
  * `ayahs` are the page's lines the ear can check by sound, each { key, from,

@@ -315,7 +315,7 @@ async def listen_check(
     mid-way: once past `_turn` it holds the turn to the end even if the page
     gives up on it (see the is_disconnected check above `_turn`, which only
     catches one still waiting). The page never sends more than one check at a
-    time (lib/recitingSession.js), which is what bounds the cost.
+    time (lib/recite/recitingSession.js), which is what bounds the cost.
     """
     settings = get_settings()
     with _filing(request, response, "check") as filed:

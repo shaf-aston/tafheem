@@ -11,10 +11,10 @@
  */
 import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
-import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../../../lib/arabicText'
-import { roleVar } from '../../../lib/roleColors'
-import { GAP, cells, fold, foldRows, groupThreads, hiddenWords, rows, runs, threadSpans, tones } from '../../../lib/tarkeebLayout'
-import { useRail } from '../../../lib/useRail'
+import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../../../lib/text/arabicText'
+import { roleVar } from '../../../lib/nahw/roleColors'
+import { GAP, cells, fold, foldRows, groupThreads, hiddenWords, rows, runs, threadSpans, tones } from '../../../lib/nahw/tarkeebLayout'
+import { useRail } from '../../../lib/motion/useRail'
 import theme from '../../../config/theme.json'
 
 import Tooltip from '../../ui/Tooltip'

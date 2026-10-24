@@ -1,7 +1,7 @@
 /**
  * The phone bar's places, drawn while it is being edited: one slot per place on
  * the bar, each holding its tab or waiting for one. A tab in a slot is dragged
- * by the whole slot; letting a tab go over a slot puts it there (lib/dock.js).
+ * by the whole slot; letting a tab go over a slot puts it there (lib/nav/dock.js).
  * Draws what it is given and decides nothing.
  */
 import TabMark from '../ui/TabMark'

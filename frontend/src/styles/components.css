@@ -180,7 +180,7 @@ dialog:where([open]:not(.sh-dialog))::backdrop {
 }
 
 
-/* The way out, every pop-up alike (lib/useModal.js sets data-leaving): the box
+/* The way out, every pop-up alike (lib/hooks/useModal.js sets data-leaving): the box
    and its scrim fade over instant-ms, then the dialog closes. */
 /* A tap during the fade would land on the scrim and be lost. */
 dialog[data-leaving] { pointer-events: none; }
@@ -897,7 +897,7 @@ button.tile:hover { border-color: var(--c); }
   inset-inline-end: 50%;
 }
 
-/* ── a sideways strip's round arrows (lib/useRail) ─────────────
+/* ── a sideways strip's round arrows (lib/motion/useRail) ─────────────
    The timeline's rail and the tarkeeb chart. Each hides at its end;
    a strip sets --rail-acc and --rail-ink to its own accent. */
 .rail-arrow {

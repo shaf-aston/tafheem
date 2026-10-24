@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { analyzeMorphology, analyzeMeaning, conjugateForm } from '../../api'
-import { useArrival, useArrivalEffect, useHeld } from '../useArrival'
-import { useSlowPending } from '../useSlowPending'
+import { useArrival, useArrivalEffect, useHeld } from '../nav/useArrival'
+import { useSlowPending } from '../hooks/useSlowPending'
 
 /**
  * What the Sarf tab is asking about and what came back: the word in the box,
@@ -21,7 +21,7 @@ export function useSarf({ incoming, arrival, onVisit }) {
   const [form, setForm] = useState('')
 
   // A word that came back is a place reached, so the trail and the back
-  // arrow can carry it, the same as the Dictionary. See lib/journey.js.
+  // arrow can carry it, the same as the Dictionary. See lib/nav/journey.js.
   const mutation = useMutation({
     mutationFn: analyzeMorphology,
     onSuccess: (_, { word: asked }) => onVisit?.(asked),
@@ -45,7 +45,7 @@ export function useSarf({ incoming, arrival, onVisit }) {
 
   // A word arriving: handed over from another tab, or the back arrow returning
   // to one. App no longer remounts the panel for it, that remount was the
-  // screen flash (see lib/useArrival).
+  // screen flash (see lib/nav/useArrival).
   const { arrived, returning } = useArrival(arrival, mutation.isPending)
 
   // Through a return the last table stays up until the next one lands, so the

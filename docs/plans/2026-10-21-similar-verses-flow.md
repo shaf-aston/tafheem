@@ -33,11 +33,11 @@ Date 2026-10-21 · `/plan-build` on https://tafheem-app.vercel.app/app/similar
 QuranReader ─ AyahStudy ──"look-alikes →"──▶ App.switchTab('similar', '2/3')
                  │ getSimilarSurah (cached)                 │ incoming/arrival
 SimilarPanel ◀──────────────────────────────────────────────┘
-  ├ lib/similarPlace  parse "2/3" ⇄ placeOf           (new, pure)
+  ├ lib/similar/similarPlace  parse "2/3" ⇄ placeOf           (new, pure)
   ├ similar/hooks     useSurahPairs · usePair · useMastery · nextUp (new)
   ├ similar/PairList  desktop list / phone Browse sheet
   ├ similar/Compare   verses · tag · differences · what comes next
-  └ similar/Drill     drillOf (lib/similar): wording questions + continuation question
+  └ similar/Drill     drillOf (lib/similar/similar): wording questions + continuation question
 backend
   services/mutashabihat.partners → + after (next ayah text, both sides)
   models SimilarAyah.after, SimilarPartner.after

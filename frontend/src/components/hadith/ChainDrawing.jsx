@@ -7,8 +7,8 @@
  * A chain the book split with ح grows branches: they rise from the author
  * side by side and join the main strand at the narrator both name. A strand
  * the books do not join anywhere stands on its own beside them, reaching only
- * the author, since that is all the text says. lib/hadithWords chainLinks
- * reads the chain; this only draws it. A name sunnah.com linked (lib/rijal
+ * the author, since that is all the text says. lib/hadith/hadithWords chainLinks
+ * reads the chain; this only draws it. A name sunnah.com linked (lib/hadith/rijal
  * linked) is a ui/NarratorLink. A weak narrator (lib/weak, in `weak`) has his box
  * edged in the hadith.weak colour and his rank at its start corner. A link a
  * source puts in doubt (`linkPoints`) has its word dotted-underlined in that

@@ -3,7 +3,7 @@
 Same shape as the ears (services/recitation/ears.py): each voice answers the
 same question, config names the order, and a voice that breaks is retired
 (services/fallback.py) so later words skip it. Real reciters are not here; the
-page plays their recordings straight from quran.com (frontend lib/speak.js).
+page plays their recordings straight from quran.com (frontend lib/speech/speak.js).
 
 Adding a voice, a cloned reciter say, is one class below plus its name in
 `speech_voices`.
@@ -19,7 +19,7 @@ words again and again and the second time should cost a file read.
 
 The engine makes one word at a time (it uses every core), so who goes next
 matters more than how fast it is. A word pressed goes before any word the page
-is only readying (lib/speak.js's `prepare`): a lesson sheet readies ten lines
+is only readying (lib/speech/speak.js's `prepare`): a lesson sheet readies ten lines
 at once, and a press used to wait behind all ten. A word already being made
 when it is pressed is not made twice: the press takes the next turn and finds
 it stored.

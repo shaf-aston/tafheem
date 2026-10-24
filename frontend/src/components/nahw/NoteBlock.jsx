@@ -6,7 +6,7 @@
  * that names the column it asks hides that column. Nothing here changes the
  * note: `hidden` and `revealed` decide what shows, the text stays the text.
  */
-import { isArabic } from '../../lib/arabicText'
+import { isArabic } from '../../lib/text/arabicText'
 import { parseMarked, stripMarks } from '../../lib/nahw/notes'
 import { notePageUrl } from '../../api'
 

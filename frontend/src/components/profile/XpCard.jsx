@@ -5,7 +5,7 @@
  */
 import { colorFor } from '../../theme'
 import config from '../../config/rewards.json'
-import { rankOf, shareOf } from '../../lib/rewards'
+import { rankOf, shareOf } from '../../lib/learner/rewards'
 import { Skeleton } from '../ui/Skeleton'
 
 export default function XpCard({ rewards }) {

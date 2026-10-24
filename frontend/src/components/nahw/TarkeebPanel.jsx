@@ -9,9 +9,9 @@ import { useQuery } from '@tanstack/react-query'
 import { getTarkeebExamples } from '../../api'
 import { exampleMatches } from '../../lib/nahw/exampleSearch'
 import { buildIraabExportText } from '../../lib/nahw/iraabExport'
-import { useInView } from '../../lib/useInView'
-import { useRemembered } from '../../lib/useRemembered'
-import { useTarkeebView } from '../../lib/useTarkeebView'
+import { useInView } from '../../lib/motion/useInView'
+import { useRemembered } from '../../lib/store/useRemembered'
+import { useTarkeebView } from '../../lib/nahw/useTarkeebView'
 
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
@@ -38,7 +38,7 @@ export default function TarkeebPanel({ accent, onWordByWord }) {
   const books = useMemo(() => data?.books ?? [], [data])
   // Which book they filtered to, kept between visits. The empty key is every
   // book, and it heads the allowed list so it is both the choice they can come
-  // back to and what an unknown book falls back to. See lib/useRemembered.
+  // back to and what an unknown book falls back to. See lib/store/useRemembered.
   const bookKeys = useMemo(() => ['', ...books.map((one) => one.key)], [books])
   const [bookKey, setBookKey] = useRemembered('tarkeeb-book', bookKeys)
   // Every example, each carrying the book it came from, so one list feeds

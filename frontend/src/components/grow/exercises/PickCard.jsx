@@ -1,5 +1,5 @@
 /** Every one that fits: tap to pick or unpick, then Check. Once checked, the right ones show green and a wrong pick red. */
-import { sayIn } from '../../../lib/say'
+import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')
 

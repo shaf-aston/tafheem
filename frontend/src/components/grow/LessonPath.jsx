@@ -1,13 +1,13 @@
 /**
  * A part's lessons as a winding path, each node with its title beside it: done ones gold, the next one in the world's
  * colour with a "Start" bubble over it, the rest waiting. Nothing is locked; the path only shows the way. The part's
- * `look` (lib/bookLesson.js LOOKS) picks the nodes: courtyard stars, or round garden nodes with a leaf sprig. The curve is
+ * `look` (lib/grow/bookLesson.js LOOKS) picks the nodes: courtyard stars, or round garden nodes with a leaf sprig. The curve is
  * a repeating sway of steps (--x), so a long part keeps winding. An `extra` lesson (a rare case) is a smaller node marked
- * Extra, and the "Start" bubble passes it by until the core is done (lib/bookLesson.js firstOpen). A part with `units` (the book's
+ * Extra, and the "Start" bubble passes it by until the core is done (lib/grow/bookLesson.js firstOpen). A part with `units` (the book's
  * own sections inside it) heads each unit's lessons with its name and how many are done. Styles: .grow-path, styles/growWorlds.css.
  */
-import { firstOpen } from '../../lib/bookLesson'
-import { sayIn } from '../../lib/say'
+import { firstOpen } from '../../lib/grow/bookLesson'
+import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/ArabicText'
 
 const say = sayIn('en')

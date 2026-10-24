@@ -1,11 +1,11 @@
 /**
  * The way to put the app on a phone's home screen: a slim strip under the
  * header, phones only, shown only when this device can actually do it
- * (lib/install.js decides; this draws). Android gets a button that opens the
+ * (lib/shell/install.js decides; this draws). Android gets a button that opens the
  * browser's own install prompt; iPhone has no prompt, so it gets the steps.
  * Closing it hides only the strip: Settings keeps the same steps (InstallPanel).
  */
-import { dismissInstall, install, useInstall } from '../../lib/install'
+import { dismissInstall, install, useInstall } from '../../lib/shell/install'
 
 const SHARE = 'M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7'
 

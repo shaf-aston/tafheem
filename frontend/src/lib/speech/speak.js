@@ -1,0 +1,168 @@
+/**
+ * Say an Arabic word aloud. The only module that knows which voices exist.
+ *
+ * Voices are tried in speak.json's order and the first that starts plays. A
+ * voice that cannot say a word, or whose file will not load, passes it on, so a
+ * word is never silent while any voice can reach it.
+ *
+ * An accent (a Colloquial dialect's key) asks the server for that dialect's own
+ * speaker, and skips the reciters: a Qur'an reciter is not a Damascene.
+ *
+ * Recordings share lib/quran/ayahAudio.js's one player, so a word stops an ayah and
+ * an ayah stops a word: never two sounds at once.
+ */
+import config from '../../config/speak.json'
+import { play, stop as stopAudio, watch } from '../quran/ayahAudio'
+import { settingOf } from '../store/settings'
+
+// Each recorded voice (a block with `map` and `host`) has its own map, loaded once.
+let recordings = {}
+async function recordingOf(text, id = 'recorded') {
+  const { map: where, host } = config.voices[id]
+  recordings[id] ??= fetch(where)
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.status))))
+    .catch(() => { delete recordings[id]; return {} })  // asked again next press, not given up on
+  const map = await recordings[id]
+  return Object.hasOwn(map, text) ? host + map[text] : null
+}
+const RECORDED = ['person', 'recorded']
+async function anyRecordingOf(text) {
+  for (const id of RECORDED) { const url = await recordingOf(text, id); if (url) return url }
+  return null
+}
+
+/** Starts the file; `done` settles when it stops. Rejects if it never started. */
+async function playFile(url) {
+  if (!url) throw new Error('no recording')
+  await play(url)
+  return {
+    done: new Promise((finish) => {
+      const off = watch((current) => { if (current !== url) { off(); finish() } })
+    }),
+  }
+}
+
+// Only what differs from the server's defaults is sent, so a word's address (and
+// the browser's and the edge's copy of it) stays the same as before speeds existed.
+function serverUrl(text, accent, speed = 'normal') {
+  const url = `${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}`
+  return url + (accent ? `&accent=${encodeURIComponent(accent)}` : '') + (speed !== 'normal' ? `&speed=${speed}` : '')
+}
+
+// The last word said and when, so a second press soon after can be said slower.
+let last = { text: null, at: 0 }
+
+/** The speed for a press of `text` now: the setting's, or repeatSpeed for a quick second press. */
+export function speedFor(text, now = Date.now(), chosen = settingOf('voice-speed')) {
+  const again = last.text === text && now - last.at < config.repeatMs
+  last = { text, at: now }
+  return again ? config.repeatSpeed : chosen
+}
+
+/** The device's voices. Many browsers list none until they have loaded, so wait once for them. */
+async function deviceVoices() {
+  const synth = globalThis.speechSynthesis
+  const first = synth.getVoices()
+  if (first.length) return first
+  await new Promise((resolve) => {
+    const timer = setTimeout(done, config.voices.browser.voicesTimeoutMs)
+    function done() { clearTimeout(timer); synth.removeEventListener?.('voiceschanged', done); resolve() }
+    synth.addEventListener?.('voiceschanged', done)
+  })
+  return synth.getVoices()
+}
+
+/** The best Arabic voice: a named favourite, else one on the device, else any. Null if none. */
+export function pickVoice(voices, cfg = config) {
+  const arabic = [...voices].filter((v) => /^ar([-_]|$)/i.test(v.lang))
+  for (const name of cfg.voices.browser.preferred) {
+    const hit = arabic.find((v) => v.name.toLowerCase().includes(name.toLowerCase()))
+    if (hit) return hit
+  }
+  return arabic.find((v) => v.localService) ?? arabic[0] ?? null
+}
+
+/** Each voice resolves to { done } once sound has started, rejects if it cannot. */
+const VOICES = {
+  person: async (text, accent) => playFile(accent ? null : await recordingOf(text, 'person')),
+  recorded: async (text, accent) => playFile(accent ? null : await recordingOf(text)),
+  server: (text, accent, speed) => playFile(serverUrl(text, accent, speed)),
+  browser: async (text, _accent, speed) => {
+    const synth = globalThis.speechSynthesis
+    if (!synth) throw new Error('no device voice')
+    // Never guess a voice: an Android with no Arabic pack spells the letters in English.
+    const voice = pickVoice(await deviceVoices(), config)
+    if (!voice) throw new Error('no Arabic device voice')
+    return new Promise((started, fail) => {
+      stopAudio()
+      synth.cancel()
+      const line = new SpeechSynthesisUtterance(text)
+      line.voice = voice
+      line.lang = voice.lang
+      line.rate = config.pace * (config.speeds[speed] ?? 1)
+      let finish
+      const done = new Promise((resolve) => { finish = resolve })
+      // A voice that is listed but will not start never says so.
+      const silent = setTimeout(() => { synth.cancel(); fail(new Error('device voice never started')) }, config.voices.browser.startTimeoutMs)
+      line.onstart = () => { clearTimeout(silent); started({ done }) }
+      line.onend = finish
+      // Cancelled or interrupted: before starting it failed, after it simply stopped.
+      line.onerror = (e) => { clearTimeout(silent); fail(e); finish() }
+      synth.speak(line)
+    })
+  },
+}
+
+/**
+ * Say `text`, in `accent` when given. Resolves as soon as a voice starts, to { id, done },
+ * where `done` settles when it falls quiet. Rejects if no voice could say it.
+ */
+let latest = 0
+let heard = null
+
+/** The last thing a voice actually said, and which voice at what speed: what a "sounded wrong" report files. */
+export const lastHeard = () => heard
+
+export async function speak(text, { accent } = {}) {
+  const turn = ++latest
+  const speed = speedFor(text)
+  for (const id of config.order) {
+    try {
+      const { done } = await VOICES[id](text, accent, speed)
+      heard = { text, voice: id, speed, accent: accent ?? null }
+      return { id, done }
+    } catch (err) {
+      // Cut off by a newer press or an ayah, not unable: the next voice must not talk over it.
+      if (turn !== latest || err?.name === 'AbortError') throw Object.assign(new Error('Interrupted'), { interrupted: true })
+    }
+  }
+  throw new Error('No voice could say this')
+}
+
+/**
+ * Have the server make `text`'s voice now, so the press that follows plays at
+ * once (a new phrase takes the server ~1.7s, a made one ~0.06s). Recorded words
+ * need nothing. Once per text; a failure just leaves the press to make it.
+ */
+const prepared = new Set()
+export async function prepare(text, { accent } = {}) {
+  const speed = settingOf('voice-speed')
+  const key = `${accent ?? ''}|${speed}|${text}`
+  if (prepared.has(key)) return
+  prepared.add(key)
+  if (!accent && await anyRecordingOf(text)) return
+  // Marked as ahead, so a word actually pressed is made before it on the server.
+  fetch(serverUrl(text, accent, speed), { headers: { 'X-Speak-Ahead': '1' } }).catch(() => prepared.delete(key))
+}
+
+export function stop() {
+  stopAudio()
+  globalThis.speechSynthesis?.cancel()
+}
+
+/** Test seam: forget the loaded recording map. */
+export function reset() {
+  recordings = {}
+  last = { text: null, at: 0 }
+  heard = null
+}

@@ -2,7 +2,7 @@
  * Put each one in its group (fard / sunnah / mustahabb, and the like). `value` maps an item's index to the group picked.
  * Once checked, a row put in the wrong group is marked, so the learner sees which ones slipped.
  */
-import { sayIn } from '../../../lib/say'
+import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')
 

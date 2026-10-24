@@ -33,7 +33,7 @@ Each wrong option is chosen from one relation in our data. The relation **is** t
 | **P5 Urdu false friend** | the meaning the word has in Urdu | آخَر *other* → "at last" (Urdu) | `urdu_links.json` verdicts ✅ (overrides approved) |
 | **P6 near synonym** | a close word with a different shade | خَوْف / خَشْيَة | dictionary synonyms ✅, partial |
 | **P7 job confusion** | a particle read as a noun or verb, or the reverse | مَا "what" vs مَا "not" | `particle_tree.json`, `closed_words.json` ✅ |
-| **P0 filler** | the existing smart distractor (same type, same shape) | — | `lib/quiz.js:114` ✅ |
+| **P0 filler** | the existing smart distractor (same type, same shape) | — | `lib/quiz/quiz.js:114` ✅ |
 
 **P5 is a real edge for UK and South-Asian learners.** Urdu carries thousands of Arabic words with
 shifted meanings. We found no app that targets this.

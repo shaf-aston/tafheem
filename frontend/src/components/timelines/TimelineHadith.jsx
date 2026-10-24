@@ -14,12 +14,12 @@
  * tab: here the reader came for what was said about the event.
  */
 import HadithText from '../ui/HadithText'
-import { hadithKey } from '../../lib/hadithWords'
+import { hadithKey } from '../../lib/hadith/hadithWords'
 
 export default function TimelineHadith({ refs = [], only, library, accent, className = '' }) {
   const told = refs
     .map((ref) => ({ ref, key: hadithKey(ref) }))
-    // `only` is what this step is the first to cite (lib/hadithWords printedBy);
+    // `only` is what this step is the first to cite (lib/hadith/hadithWords printedBy);
     // without it, everything cited here that has words.
     .filter(({ key }) => library.hadith?.[key] && (!only || only.has(key)))
   if (!told.length) return null

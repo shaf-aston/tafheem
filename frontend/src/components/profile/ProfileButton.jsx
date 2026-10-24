@@ -7,10 +7,10 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getProfile, logOut } from '../../lib/profile'
-import { fetchAccount } from '../../lib/progress'
+import { getProfile, logOut } from '../../lib/learner/profile'
+import { fetchAccount } from '../../lib/learner/progress'
 
-import { useRewards } from '../../lib/useRewards'
+import { useRewards } from '../../lib/learner/useRewards'
 import LevelRing from './LevelRing'
 import LogInButton from './LogInButton'
 import ProfileDialog from './ProfileDialog'

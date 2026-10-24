@@ -180,7 +180,7 @@ def create_app() -> FastAPI:
             "recite_trial": recitation.listen.trial_model(),
             "recite_sure": recitation.ears.named("here").name(reciting=True),
             # How many readings a minute the page may ask for, all keys
-            # together; lib/recitingSession.js paces itself by it.
+            # together; lib/recite/recitingSession.js paces itself by it.
             "listen_per_minute": recitation.ears.per_minute(),
             "corpus_loaded": quran_service.is_loaded(),
             "dictionary_loaded": dictionary_service.is_loaded(),

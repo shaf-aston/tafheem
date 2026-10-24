@@ -23,7 +23,7 @@ Printings, in order of who asks for them most: **Madani 1421 (KFGQPC V2, 604 pag
 
 ### What already exists here
 
-- `services/quran_layout.py` + `scripts/build_quran_layout.py`: **ayah → page** for Madani 604, from `api.quran.com`. Only Memorise uses it (`lib/memorise.js` `pagesOf`). No line data.
+- `services/quran_layout.py` + `scripts/build_quran_layout.py`: **ayah → page** for Madani 604, from `api.quran.com`. Only Memorise uses it (`lib/memorise/memorise.js` `pagesOf`). No line data.
 - Text is Unicode in `Scheherazade New` (OFL), with the mushaf spelling and the tanween-meem rule (`arabic_text.mushaf_words`).
 - `data/quran/editions.json` already imports QUL sqlite exports (`qul-tafsir`, `qul-translation`), so a `qul-layout` format fits the existing pattern.
 

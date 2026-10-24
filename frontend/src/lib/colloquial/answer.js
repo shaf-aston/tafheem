@@ -6,7 +6,7 @@
  * would buy nothing but a wait. A graded assessment would be a different job and
  * would earn its own endpoint.
  *
- * Arabic is compared through recitedForm from lib/arabicText, the app's one
+ * Arabic is compared through recitedForm from lib/text/arabicText, the app's one
  * owner of this: a learner who writes a vowel mark differently, or the alif
  * without its hamza, has not made a mistake. It also drops the spaces, so a
  * missing space between two words is not a mistake either.
@@ -15,7 +15,7 @@
  * it. Those are compared as plain lowercase letters and digits, which is what
  * the transliteration is written in.
  */
-import { recitedForm } from '../arabicText'
+import { recitedForm } from '../text/arabicText'
 
 const latin = (text) => (text ?? '').toLowerCase().replace(/[^a-z0-9]/g, '')
 

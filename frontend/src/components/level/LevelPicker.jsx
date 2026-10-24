@@ -1,10 +1,10 @@
 /**
  * Home's first visit: how much Arabic do you know? Three rows (levels.json), and one tap on a row is both the answer
- * and the start: the level is kept (lib/useLearnerLevel.js) and its first place opens. A level already chosen (at
+ * and the start: the level is kept (lib/learner/useLearnerLevel.js) and its first place opens. A level already chosen (at
  * sign-up, on another device) is marked. Shown only while nothing is on the journey (HomePanel's `first`).
  */
-import { LEVELS } from '../../lib/learnerLevel'
-import { useLearnerLevel } from '../../lib/useLearnerLevel'
+import { LEVELS } from '../../lib/learner/learnerLevel'
+import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
 import { colorFor } from '../../theme'
 import ArabicText from '../ui/ArabicText'
 import Tile from '../ui/Tile'

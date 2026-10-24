@@ -1,7 +1,7 @@
 // The focused view of one phrase: big picture, its words, the reply, and prev/next (or a swipe).
 import { useEffect } from 'react'
 
-import { useSlide, useSwipe } from '../../../lib/useSwipe'
+import { useSlide, useSwipe } from '../../../lib/motion/useSwipe'
 
 import ArabicText from '../../ui/ArabicText'
 import BottomSheet from '../../ui/BottomSheet'

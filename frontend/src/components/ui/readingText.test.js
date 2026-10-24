@@ -7,7 +7,7 @@ import { createElement as h } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 
-import { isQuranic, seatSmallAlef } from '../../lib/arabicText'
+import { isQuranic, seatSmallAlef } from '../../lib/text/arabicText'
 import ArabicText from './ArabicText'
 import GlossWord from '../quran/GlossWord'
 import Tooltip from './Tooltip'

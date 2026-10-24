@@ -9,7 +9,7 @@
  * failure-reason-retry trio is written here once instead of on every page.
  * `children` add anything page-specific after the reason.
  */
-import { smartError } from '../../lib/apiError'
+import { smartError } from '../../lib/api/apiError'
 import RetryButton from './RetryButton'
 
 export default function ErrorAlert({ title, error, fallback, onRetry, children, inline = false }) {

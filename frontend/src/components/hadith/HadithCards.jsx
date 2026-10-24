@@ -22,11 +22,11 @@
 import { useState } from 'react'
 
 import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
-import { useHadithFavorites } from '../../lib/useHadithFavorites'
+import { useHadithFavorites } from '../../lib/hadith/useHadithFavorites'
 import { useKin, useNarrators, useWeakNotes } from '../../lib/hadith/useNarrators'
 import { useHideChain } from '../../lib/hadith/useHideChain'
 import { useSideBySide } from '../../lib/hadith/useSideBySide'
-import { drawnChain } from '../../lib/rijal'
+import { drawnChain } from '../../lib/hadith/rijal'
 import { weakLinks, weakPoints } from '../../lib/hadith/weak'
 
 import ChainSheet from './ChainSheet'

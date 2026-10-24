@@ -6,7 +6,7 @@
  * SUB "·" list (Arabic only). DEEP may also hold any deeper path. Children
  * inherit the nearest ancestor's colour `c`.
  */
-import { SUB } from '../pbsData'
+import { SUB } from './pbsData'
 import { DEEP } from './pbsDeep'
 
 const fromSub = (text) => text.split('·').map((t) => t.trim()).filter(Boolean).map((ar) => [ar, ''])

@@ -19,12 +19,12 @@ The ask, in one line each:
 7. Process: phased, verified (mutation testing), never deviating; PR + merge + deploy at the end.
 
 What already exists (so we extend, never duplicate):
-- `theme.json` tones every palette colour per look (`lib/tone.js`) and `theme.test.js` holds
+- `theme.json` tones every palette colour per look (`lib/theme/tone.js`) and `theme.test.js` holds
   tokens to ≥ 4.5:1 and the comfort caps. But that checks **tokens**, not what the screen shows.
 - `components/shell/MapPanel` + `PbsChart` + `lib/pbsTree`: nine sciences as PBS trees, zoom in.
 - `components/hadith/TermGuide` lists the usul glossary (`backend/data/usul/usul.json`,
   `/api/usul/guide`) flat, inside the chain sheet only.
-- `lib/manhajData` + `ManhajView`: creed and fiqh schools compared on fixed questions (tags).
+- `lib/shell/manhajData` + `ManhajView`: creed and fiqh schools compared on fixed questions (tags).
 - OpenITI books (`backend/data/books/openiti*`, `scripts/import_openiti.py`): Usul al-Shashi is
   already imported; Tahawi's Matn al-Aqida is in the folder but not listed. Daleel searches them.
 - `ui/Skeleton`, `EmptyState`, `ErrorAlert`: the uniform loading / empty / error states.
@@ -75,7 +75,7 @@ Track C — texts (creed and usul)
 - C2 **A reader.** `/api/texts` lists texts; `/api/texts/{id}` gives headings and passages;
   where a sharh is named, each matn passage shows the sharh passages that quote it (match by
   the matn line's first 5 words), side by side on wide screens, folded under it on a phone.
-  Reachable as one registry line (`lib/tabs.js`, group Read). Render test; contrast audit
+  Reachable as one registry line (`lib/nav/tabs.js`, group Read). Render test; contrast audit
   includes it.
 - C3 **Compare schools** from a text's header opens the existing ManhajView at its school.
 
@@ -98,7 +98,7 @@ Process
 - Grow has **book worlds** (`worlds.json` kind `book`): Tahawiyya (creed), Quduri (fiqh),
   Ajurrumiyya, Marah. Each is a hand-authored `public/grow/<book>.json` (parts → lessons → cards:
   teach / choose / pick / sort / order), checked word-for-word against the OpenITI file by
-  `lib/bookLesson.test.js`. → Track C's home is a **book world per text**, not a new tab: Jawhara +
+  `lib/grow/bookLesson.test.js`. → Track C's home is a **book world per text**, not a new tab: Jawhara +
   Tuhfa (Ashʿarī creed), al-Wasitiyya (Salafi creed), Usul al-Shashi (Hanafi usul). The Map's
   ManhajView already compares the schools → link each world's header to its school.
 - `openiti.db` rebuilt locally (96,241 passages). Adding a book = one line in

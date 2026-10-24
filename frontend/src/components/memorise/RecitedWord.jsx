@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import { LOOK, SHOWN } from '../../lib/reciteColors'
+import { LOOK, SHOWN } from '../../lib/recite/reciteColors'
 
 import ArabicText from '../ui/ArabicText'
 import MarkCard from './MarkCard'

@@ -7,9 +7,9 @@ import { useEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { hadithBookQuery } from '../../api'
-import { holdAtTop, scrollToEl, useOpenAtTop } from '../../lib/scrollToEl'
+import { holdAtTop, scrollToEl, useOpenAtTop } from '../../lib/motion/scrollToEl'
 import { topicOf } from '../../lib/hadith/hadithGrade'
-import { useRememberedFlag } from '../../lib/useRemembered'
+import { useRememberedFlag } from '../../lib/store/useRemembered'
 import { useSideBySide } from '../../lib/hadith/useSideBySide'
 
 import ArabicText from '../ui/ArabicText'

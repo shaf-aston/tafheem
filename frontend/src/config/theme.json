@@ -1,7 +1,7 @@
 {
   "_comment": "Every colour, timing and size knob in the UI lives here. Nothing visual is hard-coded in a component. Edit this file, reload, done.",
   "palette": {
-    "_comment": "Each section's own colour, named once: a tab, a grammar role, a unit. Tab, role, pos, unit, science and the tones all point here as \"@name\". No look repaints these: a look's tone (themes.tone) works each one out for its own ground, keeping the hue so a section is recognisable in every look, setting lightness and chroma, then darkening or lightening until it reads (lib/tone.js). Each is written as --palette-<name>; a token that points at one is written as var(--palette-<name>), so it follows a look switch on the page, not only at build.",
+    "_comment": "Each section's own colour, named once: a tab, a grammar role, a unit. Tab, role, pos, unit, science and the tones all point here as \"@name\". No look repaints these: a look's tone (themes.tone) works each one out for its own ground, keeping the hue so a section is recognisable in every look, setting lightness and chroma, then darkening or lightening until it reads (lib/theme/tone.js). Each is written as --palette-<name>; a token that points at one is written as var(--palette-<name>), so it follows a look switch on the page, not only at build.",
     "violet": "#a78bfa",
     "violet-hi": "#c4b5fd",
     "rose": "#fb7185",
@@ -296,7 +296,7 @@
     "_nudge_comment": "nudge-px is how far a thing leans under the pointer, a hint it is live rather than a move: a word meaning in the Quran reader (styles/components.css .gloss-all).",
     "nudge-px": 3,
     "slide-ease": "cubic-bezier(.2,.8,.2,1)",
-    "_patience_comment": "Not an animation: how a wait is announced. Nothing is said for the first patience-ms, because an answer that arrives sooner than that has arrived at once as far as the eye is concerned, and a spinner shown and taken away inside a fifth of a second reads as a flash rather than as news. Once something has been said it stays for patience-hold-ms, so an answer landing just after the wait was announced does not snatch it away again. Read in JavaScript by lib/useSlowPending.js, not by the stylesheet, so the Animations setting leaves it alone.",
+    "_patience_comment": "Not an animation: how a wait is announced. Nothing is said for the first patience-ms, because an answer that arrives sooner than that has arrived at once as far as the eye is concerned, and a spinner shown and taken away inside a fifth of a second reads as a flash rather than as news. Once something has been said it stays for patience-hold-ms, so an answer landing just after the wait was announced does not snatch it away again. Read in JavaScript by lib/hooks/useSlowPending.js, not by the stylesheet, so the Animations setting leaves it alone.",
     "patience-ms": 250,
     "patience-hold-ms": 400
   },
@@ -476,7 +476,7 @@
   },
   "_tarkeeb_comment": "The diagram has no sizes of its own any more. Its sentence is the arabic 'chart' rung, its role names 'term', a name inside another name 'small', and its + signs the English type 'body' size. Depth still reads as size, the steps are just shared with the rest of the app instead of being a second private ladder. Its colours are the 'role' group.",
   "pbs": {
-    "_comment": "The Map's science charts (lib/pbsData, shell/PbsChart): each branch's own hue, toned per look like the palette so its lines read on every ground. A box is a wash of its hue over the card, head-wash for a branch and wash for a topic, under the look's own text, so nothing pale glares on a dark look.",
+    "_comment": "The Map's science charts (lib/shell/pbsData, shell/PbsChart): each branch's own hue, toned per look like the palette so its lines read on every ground. A box is a wash of its hue over the card, head-wash for a branch and wash for a topic, under the look's own text, so nothing pale glares on a dark look.",
     "teal": "#0f766e",
     "rose": "#be123c",
     "amber": "#b45309",
@@ -496,7 +496,7 @@
     "_comment": "The looks a reader can pick, and everything the code knows about them: it names none. base is the look the groups above describe. Each entry in looks has a label (what Settings calls it), a scheme (which the browser's own controls, scrollbars and inputs, should match) and then only what it changes, group by group and key by key; the rest stays as above. A new look is mostly its ground and text in color plus a tone: the palette, which tab, role, unit and science all point at, is toned for it, so the sections keep their colours without being listed again. Adding a look is adding an entry here and nothing else: Settings lists it, the page paints its ground before any script runs, and the tests hold it to contrast. device is the reader's \"follow my phone or computer\" choice: its id and label, and which look a light device and a dark one each get. hint-key is the one localStorage entry that lets the page paint the right ground early (vite/bootShell.js reads it).",
     "base": "ink",
     "hint-key": "theme-hint",
-    "_tone_comment": "How a look tones the palette (lib/tone.js); each look may override any key. centre is where an average colour's OKLCH lightness lands and spread how much of each colour's own lightness difference it keeps (negative on a light look: what is brighter on dark is the emphasis, and emphasis on paper is darker). max-chroma and max-lightness cap it; then it steps away from the ground until min-contrast holds on the page, a card and a raised card. centre 0.8 keeps the dimmest colour near APCA Lc 60, the floor for small text on dark.",
+    "_tone_comment": "How a look tones the palette (lib/theme/tone.js); each look may override any key. centre is where an average colour's OKLCH lightness lands and spread how much of each colour's own lightness difference it keeps (negative on a light look: what is brighter on dark is the emphasis, and emphasis on paper is darker). max-chroma and max-lightness cap it; then it steps away from the ground until min-contrast holds on the page, a card and a raised card. centre 0.8 keeps the dimmest colour near APCA Lc 60, the floor for small text on dark.",
     "tone": {
       "centre": 0.8,
       "spread": 0.6,

@@ -1,12 +1,12 @@
 /**
- * Grow's book worlds, split for the page (src/lib/bookSplit.js): /grow/<book>/index.json and /grow/<book>/<part>.json,
+ * Grow's book worlds, split for the page (src/lib/grow/bookSplit.js): /grow/<book>/index.json and /grow/<book>/<part>.json,
  * made from the authored public/grow/<book>.json. The dev server answers them on request; the build writes them all.
  * A book is any file in public/grow with `parts`; the authored file is still copied, it is only not fetched.
  */
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 
-import { indexOf, servedFile } from '../src/lib/bookSplit.js'
+import { indexOf, servedFile } from '../src/lib/grow/bookSplit.js'
 
 const DIR = join(import.meta.dirname, '../public/grow')
 const SERVED = /^\/grow\/([\w-]+)\/([\w-]+\.json)$/

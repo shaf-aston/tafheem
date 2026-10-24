@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { layoutChart } from '../pbsLayout'
+import { layoutChart } from '../shell/pbsLayout'
 import { branchChart, MIN_SCALE, SMALLEST_LABEL, termAt, termsChart, wholeWidth } from './termsChart'
 
 const glossary = [

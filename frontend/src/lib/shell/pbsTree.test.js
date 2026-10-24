@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { chartTree, nodeAt, viewConfig } from './pbsTree'
-import { CHARTS } from '../pbsData'
+import { CHARTS } from './pbsData'
 
 const chart = CHARTS.find((c) => c.id === '04')
 

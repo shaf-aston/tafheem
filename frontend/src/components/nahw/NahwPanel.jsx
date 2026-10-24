@@ -6,9 +6,9 @@
  */
 import { useEffect, useState } from 'react'
 
-import { useArrival } from '../../lib/useArrival'
-import { readViewParam, writeViewParams } from '../../lib/tabUrl'
-import { useRemembered } from '../../lib/useRemembered'
+import { useArrival } from '../../lib/nav/useArrival'
+import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
+import { useRemembered } from '../../lib/store/useRemembered'
 
 import IraabAnalyzer from './IraabAnalyzer'
 import NotesPanel from './NotesPanel'

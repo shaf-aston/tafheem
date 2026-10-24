@@ -1,9 +1,9 @@
 /**
  * A lessons world (Words, Hadith, Quran): its picture if worlds.json gives it a `view` (./scenes), else a row per stage;
  * beside it on a wide screen (first on a phone) the stage by items learnt (the server's "known") and the lesson button,
- * held in view. `state` from lib/useLessonWorld.js.
+ * held in view. `state` from lib/grow/useLessonWorld.js.
  */
-import { sayIn } from '../../lib/say'
+import { sayIn } from '../../lib/text/say'
 import ErrorAlert from '../ui/ErrorAlert'
 import PrimaryButton from '../ui/PrimaryButton'
 import { Skeleton } from '../ui/Skeleton'

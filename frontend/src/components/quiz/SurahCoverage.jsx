@@ -7,8 +7,8 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { shareOf, surahShares } from '../../lib/coverage'
-import { surahCoverage, surahList } from '../../lib/quizBanks'
+import { shareOf, surahShares } from '../../lib/quiz/coverage'
+import { surahCoverage, surahList } from '../../lib/quiz/quizBanks'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'

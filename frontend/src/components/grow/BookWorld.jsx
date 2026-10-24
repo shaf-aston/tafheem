@@ -2,11 +2,11 @@
  * A book world (Fiqh), one level at a time: its areas (Worship, Trade…), an area's parts (Purity, Prayer…), a part's lessons.
  * A book without areas opens on its parts. Above them, the next lesson and any review due; below, the book's glossary
  * (its `glossary`: each term, its Arabic, what it means, and the lesson that teaches it). `place` is the address step,
- * an area's id or a part's. `state` from lib/useBookWorld.js; a lesson plays in LessonRunner.
+ * an area's id or a part's. `state` from lib/grow/useBookWorld.js; a lesson plays in LessonRunner.
  */
-import { areaOf } from '../../lib/bookLesson'
-import { REVIEW } from '../../lib/useBookWorld'
-import { sayIn } from '../../lib/say'
+import { areaOf } from '../../lib/grow/bookLesson'
+import { REVIEW } from '../../lib/grow/useBookWorld'
+import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'
 import PrimaryButton from '../ui/PrimaryButton'

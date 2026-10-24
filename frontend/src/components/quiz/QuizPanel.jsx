@@ -1,13 +1,13 @@
 /** Vocabulary quiz, one word, four meanings, both directions. */
 import { useEffect, useState } from 'react'
 
-import { MEANINGS } from '../../lib/quiz'
-import { QUIZ } from '../../lib/quizBanks'
+import { MEANINGS } from '../../lib/quiz/quiz'
+import { QUIZ } from '../../lib/quiz/quizBanks'
 import { quizNote } from '../../lib/quiz/quizNote'
-import { fillIn, sayIn } from '../../lib/say'
-import { PHONE, useMedia } from '../../lib/useMedia'
+import { fillIn, sayIn } from '../../lib/text/say'
+import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 import { useQuizQuestion } from '../../lib/quiz/useQuizQuestion'
-import { useQuizRound } from '../../lib/useQuizRound'
+import { useQuizRound } from '../../lib/quiz/useQuizRound'
 import { useQuizScore } from '../../lib/quiz/useQuizScore'
 import { useQuizSetup } from '../../lib/quiz/useQuizSetup'
 

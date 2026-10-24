@@ -23,8 +23,8 @@
  * source can be trusted, in the same colours the badges beside answers use, so
  * the list says something a run of names could not.
  */
-import { levelOf } from '../../lib/confidence'
-import { sourcesFor, useSources } from '../../lib/useSources'
+import { levelOf } from '../../lib/text/confidence'
+import { sourcesFor, useSources } from '../../lib/api/useSources'
 
 export default function SourceFooter({ tab, offline, onSeeAll }) {
   const { sources, isPending, isError } = useSources()

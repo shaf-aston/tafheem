@@ -1,8 +1,8 @@
 /** The Quiz's round board: the question card, how the round is going, and every answer so far. */
 import { useEffect, useRef, useState } from 'react'
 
-import { QUIZ } from '../../lib/quizBanks'
-import { scrollToEl } from '../../lib/scrollToEl'
+import { QUIZ } from '../../lib/quiz/quizBanks'
+import { scrollToEl } from '../../lib/motion/scrollToEl'
 
 import AnswerSquare from '../ui/AnswerSquare'
 import ArabicText from '../ui/ArabicText'

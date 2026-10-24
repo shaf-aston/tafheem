@@ -175,7 +175,7 @@
 
 
 /* A card leaning toward the pointer; --tx and --ty (-1 to 1) come from
-   lib/useTilt.js. A mouse only, and never on text meant to be read. */
+   lib/motion/useTilt.js. A mouse only, and never on text meant to be read. */
 @media (hover: hover) and (pointer: fine) {
   .tilt:hover:where(:not(:disabled)) {
     transform:
@@ -189,7 +189,7 @@
 /* ── Stepping sideways ──────────────────────────────────────────────────────
    The next card or page comes in from the side it was asked for, so a step
    reads as moving along rather than as the screen reloading. Worn through
-   useSlide in lib/useSwipe.js, which picks the side; base-ms is the length, so
+   useSlide in lib/motion/useSwipe.js, which picks the side; base-ms is the length, so
    the Animations setting stops this with everything else. */
 @keyframes slide-in {
   from { opacity: var(--motion-arrive-from); transform: translateX(var(--slide-from)); }

@@ -7,7 +7,7 @@ needs, as services/speech.py gives every made word). index.json maps the word,
 exactly as words.json spells it, to its file.
 
 Nothing here is played to learners directly: scripts/export_recordings.py
-copies the store into frontend/public/words/voice/, where lib/speak.js's
+copies the store into frontend/public/words/voice/, where lib/speech/speak.js's
 "person" voice finds it before every other voice, and the files ship with the
 site like the reciter map does.
 """

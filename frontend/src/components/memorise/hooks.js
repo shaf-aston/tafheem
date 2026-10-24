@@ -2,18 +2,18 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../../lib/books'
+import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../../lib/memorise/books'
 import {
   blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, makeRandom,
   optionsFor, pagesOf, wordsOf,
-} from '../../lib/memorise'
-import { readViewParam, writeViewParams } from '../../lib/tabUrl'
-import { useSlide, useSwipe } from '../../lib/useSwipe'
-import { scrollToEl } from '../../lib/scrollToEl'
+} from '../../lib/memorise/memorise'
+import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
+import { useSlide, useSwipe } from '../../lib/motion/useSwipe'
+import { scrollToEl } from '../../lib/motion/scrollToEl'
 import { useReciting } from '../../lib/memorise/useReciting'
-import { useSetting } from '../../lib/settings'
-import { warm } from '../../lib/warm'
-import { useArrivalEffect } from '../../lib/useArrival'
+import { useSetting } from '../../lib/store/settings'
+import { warm } from '../../lib/api/warm'
+import { useArrivalEffect } from '../../lib/nav/useArrival'
 import recite from '../../config/recite.json'
 
 // The setting itself, not a copy of one of its numbers. Every id here comes
@@ -83,7 +83,7 @@ export function useHowYouAnswer(fresh) {
   useEffect(() => { writeViewParams({ mode: way === 'type' ? '' : way }) }, [way])
   // Reciting from memory covers the page rather than sampling it, so which
   // words are missing is a different question there and not a harder setting
-  // of the same one; lib/memorise.js says why. The word to start on is only
+  // of the same one; lib/memorise/memorise.js says why. The word to start on is only
   // ever a word of this page, so a shorter page cannot leave it pointing off
   // the end.
   const hidden = way === 'recite' && difficulty !== 'none'

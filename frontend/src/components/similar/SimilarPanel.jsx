@@ -12,20 +12,20 @@
  * look-alikes link) opens that verse's first pair.
  *
  * The pairs and where they differ come from the backend catalogue; the rules are
- * in lib/similar.js; the words are in similar.json.
+ * in lib/similar/similar.js; the words are in similar.json.
  */
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
 import { similarAyahQuery } from '../../api'
 import surahs from '../../data/surahs.json'
-import { fill, firstPair, nextUp } from '../../lib/similar'
-import { SURAH_KEY } from '../../lib/similarOpen'
-import { parsePlace } from '../../lib/similarPlace'
-import { useArrivalWhenReady } from '../../lib/useArrival'
-import { PHONE, useMedia } from '../../lib/useMedia'
-import { useRemembered } from '../../lib/useRemembered'
-import { warm } from '../../lib/warm'
+import { fill, firstPair, nextUp } from '../../lib/similar/similar'
+import { SURAH_KEY } from '../../lib/similar/similarOpen'
+import { parsePlace } from '../../lib/similar/similarPlace'
+import { useArrivalWhenReady } from '../../lib/nav/useArrival'
+import { PHONE, useMedia } from '../../lib/hooks/useMedia'
+import { useRemembered } from '../../lib/store/useRemembered'
+import { warm } from '../../lib/api/warm'
 import copy from '../../config/similar.json'
 
 import Compare from './Compare'

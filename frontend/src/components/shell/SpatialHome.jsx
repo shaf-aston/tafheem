@@ -12,11 +12,11 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import { useCommandLine } from '../../lib/useCommandLine'
-import { PHONE, useMedia } from '../../lib/useMedia'
-import { closeOnBackdrop, useModal } from '../../lib/useModal'
-import { isArabic } from '../../lib/arabicText'
-import { moodFrom } from '../../lib/mood'
+import { useCommandLine } from '../../lib/nav/useCommandLine'
+import { PHONE, useMedia } from '../../lib/hooks/useMedia'
+import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
+import { isArabic } from '../../lib/text/arabicText'
+import { moodFrom } from '../../lib/shell/mood'
 import ArabicText from '../ui/ArabicText'
 import CommandField from './CommandField'
 import CommandResults from './CommandResults'

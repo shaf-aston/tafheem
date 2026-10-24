@@ -2,7 +2,7 @@
  * The one big thing on Home: carry on where you stopped, or (first visit) begin.
  * Same card either way; `value` is the word you were on, absent on a first visit.
  */
-import { isArabic } from '../../lib/arabicText'
+import { isArabic } from '../../lib/text/arabicText'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
 import Tile from '../ui/Tile'

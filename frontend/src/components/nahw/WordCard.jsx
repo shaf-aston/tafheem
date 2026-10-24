@@ -13,9 +13,9 @@
  */
 import { useEffect, useRef } from 'react'
 
-import { caseLabel, isUnnamed, typeLabel } from '../../lib/grammarTerms'
-import { roleVar } from '../../lib/roleColors'
-import { scrollToEl } from '../../lib/scrollToEl'
+import { caseLabel, isUnnamed, typeLabel } from '../../lib/nahw/grammarTerms'
+import { roleVar } from '../../lib/nahw/roleColors'
+import { scrollToEl } from '../../lib/motion/scrollToEl'
 import ArabicText from '../ui/ArabicText'
 import BookPath from '../ui/BookPath'
 import RootActions from '../ui/RootActions'

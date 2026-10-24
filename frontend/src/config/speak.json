@@ -1,5 +1,5 @@
 {
-  "_comment": "Who says a word aloud when a speaker icon is pressed. lib/speak.js tries each voice in `order` and the first that can say the word plays it. Adding a voice is a block here plus one entry in lib/speak.js; reordering is an edit here only.",
+  "_comment": "Who says a word aloud when a speaker icon is pressed. lib/speech/speak.js tries each voice in `order` and the first that can say the word plays it. Adding a voice is a block here plus one entry in lib/speech/speak.js; reordering is an edit here only.",
   "order": ["person", "recorded", "server", "browser"],
   "_repeat": "A word pressed again within repeatMs is said at repeatSpeed, the way a teacher repeats a word slowly. Speeds are the names in `speeds` above; the Voice speed setting picks the usual one.",
   "_pace": "Speed of every made voice, server and phone; 1 = engine's own. The server reads this too.",

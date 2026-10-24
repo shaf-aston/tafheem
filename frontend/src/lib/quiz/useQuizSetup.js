@@ -1,11 +1,11 @@
 import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { DIRECTIONS, MEANINGS } from '../quiz'
-import { BANKS, groupsFor, QUIZ, WHOLE_SET_SCOPES } from '../quizBanks'
-import { levelOf } from '../learnerLevel'
-import { useLearnerLevel } from '../useLearnerLevel'
-import { useRemembered, useRememberedFlag } from '../useRemembered'
+import { DIRECTIONS, MEANINGS } from './quiz'
+import { BANKS, groupsFor, QUIZ, WHOLE_SET_SCOPES } from './quizBanks'
+import { levelOf } from '../learner/learnerLevel'
+import { useLearnerLevel } from '../learner/useLearnerLevel'
+import { useRemembered, useRememberedFlag } from '../store/useRemembered'
 
 // What each remembered control is allowed to be, taken from the same tables the
 // controls themselves are drawn from, so a set or a direction can never be

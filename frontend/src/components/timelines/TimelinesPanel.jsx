@@ -11,8 +11,8 @@
  * read rather than leaving the app.
  */
 import { useState } from 'react'
-import { useArrivalWhenReady } from '../../lib/useArrival'
-import { useMedia, PHONE } from '../../lib/useMedia'
+import { useArrivalWhenReady } from '../../lib/nav/useArrival'
+import { useMedia, PHONE } from '../../lib/hooks/useMedia'
 import { useQuery } from '@tanstack/react-query'
 
 import { timelinesQuery } from '../../api'
@@ -40,7 +40,7 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
   // landing here. All three name a place in the same words the journey was
   // written in, so all three are read the same way: once per arrival, and once
   // on the first render that has the sections to check the name against.
-  // See lib/useArrival for why this is adjusted during render, not in an effect.
+  // See lib/nav/useArrival for why this is adjusted during render, not in an effect.
   // A link naming an event that does not exist opens the tab plainly, and says so.
   const [missed, setMissed] = useState(false)
   if (useArrivalWhenReady(arrival, Boolean(data))) {

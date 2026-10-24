@@ -2,7 +2,7 @@
  * A place in the Timelines tab written as text after ?q=, read back, and named
  * the way a reader would say it.
  */
-import { AYAH_REF } from '../surahRef'
+import { AYAH_REF } from '../quran/surahRef'
 
 /**
  * A place in the tab as written after ?q=: "seerah", "seerah/hijrah", or

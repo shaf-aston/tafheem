@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
-import { learntLemmas } from '../coverage'
-import { useQuizCoverage } from '../useQuizCoverage'
+import { learntLemmas } from '../quiz/coverage'
+import { useQuizCoverage } from '../quiz/useQuizCoverage'
 
 const NONE = new Set()
 

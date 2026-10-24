@@ -8,20 +8,20 @@
  */
 import { Fragment } from 'react'
 
-import { GOAL, GOALS, rankOf, shareOf } from '../../lib/rewards'
-import { REVIEW_SIZE } from '../../lib/bookLesson'
-import { LAST_BOOK, REVIEW } from '../../lib/useBookWorld'
-import { sayIn } from '../../lib/say'
-import { useRemembered } from '../../lib/useRemembered'
-import { levelOf } from '../../lib/learnerLevel'
-import { useLearnerLevel } from '../../lib/useLearnerLevel'
+import { GOAL, GOALS, rankOf, shareOf } from '../../lib/learner/rewards'
+import { REVIEW_SIZE } from '../../lib/grow/bookLesson'
+import { LAST_BOOK, REVIEW } from '../../lib/grow/useBookWorld'
+import { sayIn } from '../../lib/text/say'
+import { useRemembered } from '../../lib/store/useRemembered'
+import { levelOf } from '../../lib/learner/learnerLevel'
+import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
 import LogInButton from '../profile/LogInButton'
 import Emblem from '../ui/Emblem'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
 import SectionHeader from '../ui/SectionHeader'
-import { useReveal } from '../../lib/useReveal'
-import { useTilt } from '../../lib/useTilt'
+import { useReveal } from '../../lib/motion/useReveal'
+import { useTilt } from '../../lib/motion/useTilt'
 
 const say = sayIn('en')
 

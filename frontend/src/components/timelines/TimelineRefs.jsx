@@ -17,7 +17,7 @@
  * and an unchecked number must not look like a checked one.
  */
 import Chip from '../ui/Chip'
-import { firstAyah } from '../../lib/surahRef'
+import { firstAyah } from '../../lib/quran/surahRef'
 
 const refKey = (ref, i) => `${ref.quran ?? ref.hadith ?? ref.book}-${ref.number ?? i}`
 

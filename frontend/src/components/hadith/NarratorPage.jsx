@@ -10,7 +10,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { narratorHadithQuery, narratorQuery } from '../../api'
-import { useOpenAtTop } from '../../lib/scrollToEl'
+import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 
 import ArabicText from '../ui/ArabicText'
 import Disclosure from '../ui/Disclosure'

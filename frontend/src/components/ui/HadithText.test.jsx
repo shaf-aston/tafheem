@@ -3,7 +3,7 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
 
-import { MARKS } from '../../lib/hadithWords'
+import { MARKS } from '../../lib/hadith/hadithWords'
 import HadithText from './HadithText'
 
 // Abu Dawud 1's opening, with a narrator named in it and sunnah.com's direction marks.

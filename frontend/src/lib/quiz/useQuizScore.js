@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
-import { recordAttempt } from '../progress'
-import { moduleFor } from '../quizBanks'
-import { progressKey, useSavedState } from '../stored'
-import { useRemembered } from '../useRemembered'
+import { recordAttempt } from '../learner/progress'
+import { moduleFor } from './quizBanks'
+import { progressKey, useSavedState } from '../store/stored'
+import { useRemembered } from '../store/useRemembered'
 
 // The running tally, under the learner's own record like the best streak.
 const SCORE_KEY = progressKey('quiz-score')

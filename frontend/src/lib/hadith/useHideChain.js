@@ -1,5 +1,5 @@
-import { PHONE } from '../useMedia'
-import { useRememberedFlag } from '../useRemembered'
+import { PHONE } from '../hooks/useMedia'
+import { useRememberedFlag } from '../store/useRemembered'
 
 // Read once as the app opens: turning a phone sideways must not flip every card's chain back on.
 const PHONE_AT_START = typeof matchMedia === 'function' && matchMedia(PHONE).matches

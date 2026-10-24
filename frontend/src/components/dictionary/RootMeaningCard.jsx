@@ -16,9 +16,9 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { getRootEntryEnglish, getRootEntryLines, getRootMeaning } from '../../api'
 import config from '../../config/dictionary.json'
-import { BROKEN, MISSING, READY } from '../../lib/loadStatus'
-import { useHealth } from '../../lib/useHealth'
-import { useRemembered } from '../../lib/useRemembered'
+import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
+import { useHealth } from '../../lib/api/useHealth'
+import { useRemembered } from '../../lib/store/useRemembered'
 
 import { Lines } from './EntryArabic'
 import { LinePage, LineSpotlight } from './EntryLines'

@@ -14,7 +14,7 @@ Sarf tab draws its tables with; data/grow/basics_verbs.json only names the verbs
   juss      تَكْتُبْ      مجزوم, after لَمْ and the لا of "don't": the engine's نهي without its لَا
   command   اُكْتُبْ      أمر, for the two "you" persons only
 
-The particles (سَ سَوْفَ لا لَمْ لَنْ مَا) are put in front by the browser (lib/wordForms.js).
+The particles (سَ سَوْفَ لا لَمْ لَنْ مَا) are put in front by the browser (lib/grow/wordForms.js).
 """
 from __future__ import annotations
 

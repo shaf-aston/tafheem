@@ -17,7 +17,7 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import { watchProgress } from '../ayahAudio'
+import { watchProgress } from './ayahAudio'
 import { wordAt } from './useRecitation'
 
 /**

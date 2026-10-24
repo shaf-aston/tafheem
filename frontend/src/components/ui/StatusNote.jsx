@@ -3,7 +3,7 @@
  * search narrowed, a link that named nothing. Read out when it changes.
  * Not for an empty result (EmptyState) or a failure (ErrorAlert).
  */
-import { isArabic } from '../../lib/arabicText'
+import { isArabic } from '../../lib/text/arabicText'
 
 import ArabicText from './ArabicText'
 

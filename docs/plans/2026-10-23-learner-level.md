@@ -23,7 +23,7 @@ Date 2026-10-23 · `/lifecycle`. Builds on `2026-10-23-basics-alif-lam.md` (Home
 | L6 | The Quiz's default set follows the level. Beginners get a **Basics** set that plays Grow's own cards (same registry, same runner) | component test: Basics bank renders a Grow card |
 | L7 | A level is never forced on anyone. With no level, every screen behaves as it does today | existing suite unchanged and green |
 | L8 | Level text sits in config (`levels.json`), with no copy in components | lint and review |
-| L9 | Mutation ≥ 90% on `lib/learnerLevel.js`; the full suite and eslint green; axe 0 at 375 px in light and dark | Stryker, vitest, Playwright |
+| L9 | Mutation ≥ 90% on `lib/learner/learnerLevel.js`; the full suite and eslint green; axe 0 at 375 px in light and dark | Stryker, vitest, Playwright |
 
 ## 2 · Context: what exists
 
@@ -92,10 +92,10 @@ B also loses guests, who are the main first-visit audience. **A** is chosen.
 ## 6 · Contracts
 
 - `src/levels.json` holds `{ levels: [{ id, label, title, blurb, arabic, start: [tab, value?], proof: [module], quizBank, grow, book? }], min-answers, pass, fail }`.
-- `lib/learnerLevel.js`:
+- `lib/learner/learnerLevel.js`:
   - `LEVELS`, `LEVEL_IDS`, `levelOf(id)`
   - `classify(chosen, modules = [], rules)` → `{ level, settled, basis: {id, answers, share} | null }`
-- `lib/useLearnerLevel.js`: `useLearnerLevel()` → `{ level, chosen, settled, basis, choose }`. Its overview query is shared with Home (`['overview', name]`).
+- `lib/learner/useLearnerLevel.js`: `useLearnerLevel()` → `{ level, chosen, settled, basis, choose }`. Its overview query is shared with Home (`['overview', name]`).
 - `components/level/LevelPicker.jsx`: Home's rows (one tap = choose + go).
 - `components/level/LevelSetting.jsx`: Segmented, locked when settled.
 - `GrowHome` Today takes `level`. `useQuizSetup` falls back to the level's `quizBank`.

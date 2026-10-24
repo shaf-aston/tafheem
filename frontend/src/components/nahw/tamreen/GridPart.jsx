@@ -1,4 +1,4 @@
-import { gradeGrid, rowName } from '../../../lib/tamreen'
+import { gradeGrid, rowName } from '../../../lib/nahw/tamreen'
 
 import ArabicText from '../../ui/ArabicText'
 import { MARK_LABEL, STATUS_CLASS } from './marks'

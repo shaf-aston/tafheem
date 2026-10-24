@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { drawnChain } from '../rijal'
+import { drawnChain } from './rijal'
 import { weakLinks, weakPoints } from './weak'
 
 const scale = [5, 6, 8, 11].map((level) => ({

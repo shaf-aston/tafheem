@@ -12,7 +12,7 @@
  * letters it searched. Mirroring that folding here is how the two would drift.
  * bareForm is used only to decide whether two roots are worth showing twice.
  */
-import { bareForm } from '../arabicText'
+import { bareForm } from '../text/arabicText'
 
 // More than a few chips stops being a choice and starts being a list.
 const MAX_ALTERNATES = 3

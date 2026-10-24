@@ -3,12 +3,12 @@
  * Logged-in only: the shared guest record has no XP.
  */
 import { colorFor } from '../../theme'
-import { rankOf, shareOf } from '../../lib/rewards'
+import { rankOf, shareOf } from '../../lib/learner/rewards'
 
 const R = 8
 const AROUND = 2 * Math.PI * R
 
-/** `rewards` and `gain` from lib/useRewards. */
+/** `rewards` and `gain` from lib/learner/useRewards. */
 export default function LevelRing({ rewards, gain }) {
   if (!rewards) return null
   const rank = rankOf(rewards.level)

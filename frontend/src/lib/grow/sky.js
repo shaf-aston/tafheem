@@ -3,7 +3,7 @@
  * points out, in a 0..100 by 0..60 box (stars keep to y 16..44; Sky.jsx shows 10..50). Drawn by components/grow/scenes/Sky.jsx.
  * Reads right to left (the first ayah on the right), zig-zagging; made for up to 11 stars (8 apart at least).
  */
-import { makeRandom } from '../quiz'
+import { makeRandom } from '../quiz/quiz'
 
 const WIDTH = 100
 const MARGIN = 8

@@ -7,15 +7,15 @@
  * marked until the whole page is checked at once, because stopping to be told
  * after every word turns recitation into a series of separate questions.
  *
- * The rules for what a page is and which words go are in lib/memorise.js, with
- * no knowledge of the screen; the books are in lib/books.js, with no knowledge
+ * The rules for what a page is and which words go are in lib/memorise/memorise.js, with
+ * no knowledge of the screen; the books are in lib/memorise/books.js, with no knowledge
  * of either. This file only shows what those two decide.
  */
 import { useState } from 'react'
 
-import { BOOKS } from '../../lib/books'
-import { DIFFICULTIES, printedPageOf, score } from '../../lib/memorise'
-import { PHONE, useMedia } from '../../lib/useMedia'
+import { BOOKS } from '../../lib/memorise/books'
+import { DIFFICULTIES, printedPageOf, score } from '../../lib/memorise/memorise'
+import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 
 import Line from './Line'
 import ReciteStrip from './ReciteStrip'

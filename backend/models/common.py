@@ -11,7 +11,7 @@ class Source(BaseModel):
     answer so the UI never shows a claim without saying who made it."""
     key: str
     label: str
-    confidence: str   # verified | derived | translated | guessed, see lib/confidence.js
+    confidence: str   # verified | derived | translated | guessed, see lib/text/confidence.js
     detail: str
 
 

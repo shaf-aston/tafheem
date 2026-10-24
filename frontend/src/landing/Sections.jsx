@@ -1,4 +1,4 @@
-import { accentOf, GROUPS, LISTED } from '../lib/tabs.js'
+import { accentOf, GROUPS, LISTED } from '../lib/nav/tabs.js'
 import ArabicText from '../components/ui/ArabicText.jsx'
 import TabGroups from '../components/ui/TabGroups.jsx'
 import Tile from '../components/ui/Tile.jsx'

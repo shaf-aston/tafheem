@@ -1,5 +1,5 @@
-import { DIRECTIONS, MEANINGS } from '../../lib/quiz'
-import { BANKS, QUIZ, WHOLE_SET_SCOPES } from '../../lib/quizBanks'
+import { DIRECTIONS, MEANINGS } from '../../lib/quiz/quiz'
+import { BANKS, QUIZ, WHOLE_SET_SCOPES } from '../../lib/quiz/quizBanks'
 
 import Segmented from '../ui/Segmented'
 import SettingsPill from '../ui/SettingsPill'

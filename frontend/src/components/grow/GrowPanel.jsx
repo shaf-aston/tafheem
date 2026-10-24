@@ -2,24 +2,24 @@
  * Grow, نَبَات (3:37): a little every day, in every part of the app.
  * Three screens: home, a world (SCREENS by its `kind` in worlds.json), a lesson; each has an address (lib/growPlace.js),
  * written through `onVisit` and followed on back/forward through `arrival`.
- * Adding a lessons world = a worlds.json entry + a hook in `lessons` (a config of lib/useLessonWorld.js);
- * a book world = an entry of kind `book`, nothing more (its data: lib/useBookWorld.js): parts, then lessons, each one address deeper.
+ * Adding a lessons world = a worlds.json entry + a hook in `lessons` (a config of lib/grow/useLessonWorld.js);
+ * a book world = an entry of kind `book`, nothing more (its data: lib/grow/useBookWorld.js): parts, then lessons, each one address deeper.
  */
 import { useEffect, useEffectEvent, useState } from 'react'
 
 import config from '../../config/worlds.json'
 import { colorFor } from '../../theme'
-import { nextAfter } from '../../lib/bookLesson'
+import { nextAfter } from '../../lib/grow/bookLesson'
 import { landingOf, placeOf, valueOf } from '../../lib/grow/growPlace'
-import { goBack } from '../../lib/journey'
-import { getProfile } from '../../lib/profile'
+import { goBack } from '../../lib/nav/journey'
+import { getProfile } from '../../lib/learner/profile'
 import { useHadithWorld } from '../../lib/grow/useHadithWorld'
-import { useArrival } from '../../lib/useArrival'
-import { useBasicsWorld } from '../../lib/useBasicsWorld'
-import { LAST_BOOK, REVIEW, useBookWorlds } from '../../lib/useBookWorld'
+import { useArrival } from '../../lib/nav/useArrival'
+import { useBasicsWorld } from '../../lib/grow/useBasicsWorld'
+import { LAST_BOOK, REVIEW, useBookWorlds } from '../../lib/grow/useBookWorld'
 import { useQuranWorld } from '../../lib/quran/useQuranWorld'
-import { useRemembered } from '../../lib/useRemembered'
-import { useRewards } from '../../lib/useRewards'
+import { useRemembered } from '../../lib/store/useRemembered'
+import { useRewards } from '../../lib/learner/useRewards'
 import { useWordsWorld } from '../../lib/grow/useWordsWorld'
 import BookWorld from './BookWorld'
 import GrowHome from './GrowHome'

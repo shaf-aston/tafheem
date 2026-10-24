@@ -8,7 +8,7 @@ How it was built: git history.
 ## Standing rules, decided and not to be re-opened
 
 1. **Fold first, compare second.** مَٰلِكِ and مالك are the same word: the small
-   standing alef is a full alef. `recitedForms` in `frontend/src/lib/arabicText.js`
+   standing alef is a full alef. `recitedForms` in `frontend/src/lib/text/arabicText.js`
    returns both spellings. Every comparison runs *after* that folding. A rule that
    fires on a difference in writing is a bug, not a near-miss. Same for ٱ against ا,
    ى against ي, and the tatweel.
@@ -73,6 +73,6 @@ letters that sound alike, so widening it is a decision, not a fix.
 ## Not doing
 
 - No paid provider, no card, ever.
-- No second copy of the Qur'an: the page comes from `lib/books.js` as it already does.
+- No second copy of the Qur'an: the page comes from `lib/memorise/books.js` as it already does.
 - No guessing which ayah you are on. The page is open, so this is lining up
   against known words, not searching all 6,236.

@@ -6,7 +6,7 @@
  * Sizes, timings and captions come from mascot.json. The only thing this file
  * decides is the shape of the pen.
  */
-import { captionFor, sizeRem } from '../../lib/mascot'
+import { captionFor, sizeRem } from '../../lib/shell/mascot'
 
 export default function Mascot({ mood = 'idle', place = 'header', caption = false, className = '' }) {
   const label = captionFor(mood)

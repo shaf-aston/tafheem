@@ -3,7 +3,7 @@
     python backend/scripts/export_recordings.py
 
 services/recordings.py keeps each take on the server. This puts them where
-lib/speak.js's "person" voice looks (speak.json voices.person): one MP3 per
+lib/speech/speak.js's "person" voice looks (speak.json voices.person): one MP3 per
 word, and voice_audio.json mapping the word to its file. Run it, then commit
 the folder; files for words no longer recorded are removed.
 """

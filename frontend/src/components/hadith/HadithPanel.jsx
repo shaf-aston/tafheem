@@ -7,14 +7,14 @@
  * and hand the actual work to small named components that read from there.
  */
 import { useEffect, useState } from 'react'
-import { useArrivalWhenReady } from '../../lib/useArrival'
+import { useArrivalWhenReady } from '../../lib/nav/useArrival'
 import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith } from '../../api'
 import { bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from '../../lib/hadith/hadithPlace'
-import { useHadithFavorites } from '../../lib/useHadithFavorites'
-import { nearest, tabNow, trailFor, useJourney } from '../../lib/journey'
-import { TRAIL_STEPS } from '../../lib/session'
+import { useHadithFavorites } from '../../lib/hadith/useHadithFavorites'
+import { nearest, tabNow, trailFor, useJourney } from '../../lib/nav/journey'
+import { TRAIL_STEPS } from '../../lib/nav/session'
 
 import Chip from '../ui/Chip'
 import ChipRow from '../ui/ChipRow'
@@ -36,7 +36,7 @@ import ScholarTerms from './ScholarTerms'
 import TermsView from './TermsView'
 import Code from '../ui/Code'
 import SourceBadge from '../ui/SourceBadge'
-import { useSources } from '../../lib/useSources'
+import { useSources } from '../../lib/api/useSources'
 
 const noop = () => {}
 
@@ -79,7 +79,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   const known = !pair || books.isFetched && (!short || found.isFetched)
 
   // A deep link, a link from another tab, or the back arrow landing here: all
-  // three read the same way, once per arrival (see lib/useArrival).
+  // three read the same way, once per arrival (see lib/nav/useArrival).
   const [missed, setMissed] = useState(false)
   if (useArrivalWhenReady(arrival, Boolean(collections) && known)) {
     const asked = hit ? { collection: hit.collection, book: hit.book, number: hit.number, part: hit.part } : short ? null : parsePlace(incoming, collections)

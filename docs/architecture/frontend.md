@@ -5,10 +5,10 @@ from the frontend review. Paths are relative to `frontend/src`.
 
 ## User Flow
 
-open `/app/<tab>/<place>` → `lib/tabUrl.js` reads the path → `App.jsx` shows the tab
-→ the registry `lib/tabs.js` lazy-loads that tab's panel → the panel asks for data
+open `/app/<tab>/<place>` → `lib/nav/tabUrl.js` reads the path → `App.jsx` shows the tab
+→ the registry `lib/nav/tabs.js` lazy-loads that tab's panel → the panel asks for data
 through react-query → `api.js` → backend `/api`. Moving to another tab goes through
-the same `show()`, and `lib/journey.js` records it for back and forward. With no saved
+the same `show()`, and `lib/nav/journey.js` records it for back and forward. With no saved
 place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every tab from the registry.
 
 ## Core Parts
@@ -16,13 +16,13 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 | Layer | Part | Job |
 |---|---|---|
 | Entry | `App.jsx` (259 lines) | Shell: draws the header, the panels and the overlays; the logic is in the hooks it calls |
-| Entry | `lib/tabUrl.js`, `lib/journey.js` | Path URL ↔ tab, back/forward |
-| Core | `lib/tabs.js` | One registry: every tab, its label, icon, colour, panel |
-| Core | `components/home/HomePanel.jsx`, `lib/moduleTab.js` | Home: the first screen, one card per tab from the registry with the learner's progress, Continue, and the command line; `moduleTab` files a progress module under its tab |
+| Entry | `lib/nav/tabUrl.js`, `lib/nav/journey.js` | Path URL ↔ tab, back/forward |
+| Core | `lib/nav/tabs.js` | One registry: every tab, its label, icon, colour, panel |
+| Core | `components/home/HomePanel.jsx`, `lib/nav/moduleTab.js` | Home: the first screen, one card per tab from the registry with the learner's progress, Continue, and the command line; `moduleTab` files a progress module under its tab |
 | Core | Nav surfaces: `ui/TabStrip`, `ui/BottomNav`, `SectionsMenu`, `SpatialHome`, `CommandBar` | Five ways to move between tabs, all read the registry |
-| Core | `lib/useTabNavigation.js` over `lib/recent.js` (wide-screen strip) and `lib/dock.js` (phone bar) | Every way between tabs; which tabs each bar shows, one rule per screen (ADR-2) |
-| Core | Panels: `MemorisePanel` + `memorise/hooks.js`, `QuizPanel` + `QuizBoard` + `lib/useQuizRound.js`, `TarkeebDiagram`, … | The screens |
-| Data | `api.js`, `lib/quizBanks.js` | axios client, query keys shared by react-query |
+| Core | `lib/nav/useTabNavigation.js` over `lib/nav/recent.js` (wide-screen strip) and `lib/nav/dock.js` (phone bar) | Every way between tabs; which tabs each bar shows, one rule per screen (ADR-2) |
+| Core | Panels: `MemorisePanel` + `memorise/hooks.js`, `QuizPanel` + `QuizBoard` + `lib/quiz/useQuizRound.js`, `TarkeebDiagram`, … | The screens |
+| Data | `api.js`, `lib/quiz/quizBanks.js` | axios client, query keys shared by react-query |
 | Config | `theme.json` → `theme.js` → CSS variables; `settings.json` | Colours, Arabic size ladder, motion durations |
 | Style | `styles/motion.css` + per-feature CSS | Animations, 52 keyframes |
 
@@ -113,7 +113,7 @@ always draws every row.
    floor it scrolls as it does today.
 1. Fold deep levels: show only the top N rows of names (N in `theme.json`); the
    folded lower rows open from a "▸ more" chip. The open/closed state sits in
-   `lib/useTarkeebView.js` next to split/merged and maximise.
+   `lib/nahw/useTarkeebView.js` next to split/merged and maximise.
 2. Unit tests in `tarkeebLayout.test.js` for the fold (levels count from the
    leaves, so "deep" is measured from `levels.length`).
 
@@ -163,12 +163,12 @@ screens.
 Re-read before building, the plan changed. The surfaces are not five ways to do
 one job: the strip is the wide screen's bar, the bottom bar is the phone's, All
 sections is the one list (and where the phone bar is arranged), and the header
-search and the launcher share `useCommandLine`. Every one reads `lib/tabs.js`.
+search and the launcher share `useCommandLine`. Every one reads `lib/nav/tabs.js`.
 What was tangled was the code behind them, all inside `App.jsx`.
 
-Status: done. `lib/useTabNavigation` owns every way between tabs (active, kept
+Status: done. `lib/nav/useTabNavigation` owns every way between tabs (active, kept
 alive, hand-offs, back arrow, number keys, strip, dock, the practice report for
-the pen); `lib/useTools` the tools' armed and done looks; `shell/StatusPill` and
+the pen); `lib/nav/useTools` the tools' armed and done looks; `shell/StatusPill` and
 `shell/BackendBanner` (which owns its own dismissal) moved out. `App.jsx` is 259
 lines (was 435) and only draws. `src/test/app.test.jsx` opens the whole app and
 switches tab. The same Playwright run of every shell action gives the same

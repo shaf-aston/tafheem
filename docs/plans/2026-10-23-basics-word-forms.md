@@ -118,11 +118,11 @@ SPA → static `/grow/*.json` and the progress API.
 ★ backend/data/grow/basics_verbs.json    curated: root, bab, English {base, past, s3}
 ★ backend/scripts/build_basics_verbs.py  engine → frontend/public/grow/basics-verbs.json (7 persons × past/present/subj/juss, command)
 ★ tests/test_basics_verbs.py             fresh build == shipped; bab == babs_of; shapes
-★ lib/wordForms.js (pure)                a verb's table and a noun's possessive table → entries {key, ar, en};
+★ lib/grow/wordForms.js (pure)                a verb's table and a noun's possessive table → entries {key, ar, en};
                                          readings; ambiguity-safe option pickers
-★ lib/basicsSkills.js (pure)             SKILLS: markers, teach/asks per skill; path → ordered items; basicsCards
-  lib/alifLam.js                         the 'al' skill (unchanged logic)
-  lib/useBasicsWorld.js                  loads both JSON files and builds the path
+★ lib/grow/basicsSkills.js (pure)             SKILLS: markers, teach/asks per skill; path → ordered items; basicsCards
+  lib/grow/alifLam.js                         the 'al' skill (unchanged logic)
+  lib/grow/useBasicsWorld.js                  loads both JSON files and builds the path
   TeachCard                              ★ optional `note` line (the marker's rule)
   public/grow/basics.json                ★ `path`
   worlds.json                            stages over every item

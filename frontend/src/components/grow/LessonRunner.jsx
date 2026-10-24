@@ -8,10 +8,10 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import { requeue } from '../../lib/lesson'
-import { recordAttempt } from '../../lib/progress'
-import { rankOf, shareOf } from '../../lib/rewards'
-import { sayIn } from '../../lib/say'
+import { requeue } from '../../lib/grow/lesson'
+import { recordAttempt } from '../../lib/learner/progress'
+import { rankOf, shareOf } from '../../lib/learner/rewards'
+import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/ArabicText'
 import PrimaryButton from '../ui/PrimaryButton'
 import { kindOf } from './exercises'

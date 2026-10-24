@@ -6,7 +6,7 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import { motionOff } from '../../lib/motion'
+import { motionOff } from '../../lib/motion/motion'
 import { motion } from '../../theme'
 
 // `strip` is the tablist.

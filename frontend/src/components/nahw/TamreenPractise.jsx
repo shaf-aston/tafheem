@@ -5,9 +5,9 @@
  * explanation and any doubt. Narrow to one topic, or to only the ones got
  * wrong, and jump to any question from the numbered squares, the way the Quiz
  * tab's strip works. Answers are kept in the browser, so a wrong one is still
- * there to redo tomorrow. Grading and narrowing live in lib/tamreen.
+ * there to redo tomorrow. Grading and narrowing live in lib/nahw/tamreen.
  */
-import { KINDS, SHOWS, statusOf } from '../../lib/tamreen'
+import { KINDS, SHOWS, statusOf } from '../../lib/nahw/tamreen'
 import { useTamreenPractise } from '../../lib/nahw/useTamreenPractise'
 
 import PrimaryButton from '../ui/PrimaryButton'

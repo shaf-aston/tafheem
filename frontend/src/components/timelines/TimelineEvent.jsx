@@ -16,7 +16,7 @@ import TimelineHadith from './TimelineHadith'
 import TimelineRefs from './TimelineRefs'
 import TimelineSteps from './TimelineSteps'
 import TimelineWhere from './TimelineWhere'
-import { printedBy } from '../../lib/hadithWords'
+import { printedBy } from '../../lib/hadith/hadithWords'
 import { NO_DATE, TRAD, isDated, sectionLook } from '../../lib/timelines/look'
 
 export default function TimelineEvent({ section, event, library, accent, onGo, here, onHere, onPick, at }) {

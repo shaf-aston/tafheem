@@ -26,12 +26,12 @@ import { useId, useMemo, useState } from 'react'
 import { flushSync } from 'react-dom'
 
 import { paragraphs } from '../../lib/dictionary/entryLines'
-import { laneEntry } from '../../lib/laneEntry'
-import { useLexicons } from '../../lib/classicalBooks'
-import { BROKEN, MISSING, READY } from '../../lib/loadStatus'
-import { scrollToEl } from '../../lib/scrollToEl'
+import { laneEntry } from '../../lib/dictionary/laneEntry'
+import { useLexicons } from '../../lib/dictionary/classicalBooks'
+import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
+import { scrollToEl } from '../../lib/motion/scrollToEl'
 import { colorFor } from '../../theme'
-import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/useLaneTidy'
+import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/dictionary/useLaneTidy'
 
 import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
@@ -199,7 +199,7 @@ const hasSenses = (form) => form.senses.some((sense) => sense.kind === 'sense' &
  * Lane's entry, set the way his book sets it: a heading per verb form, the
  * senses numbered under it, the finer points stepped in under those, and the
  * authorities behind every claim held back in grey so the eye can run over
- * them. One run-on paragraph was the same words and unreadable; lib/laneEntry
+ * them. One run-on paragraph was the same words and unreadable; lib/dictionary/laneEntry
  * works out the shape, this only draws it.
  */
 function LaneEntry({ forms, anchor }) {

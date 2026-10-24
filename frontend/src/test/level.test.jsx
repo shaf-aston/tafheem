@@ -6,8 +6,8 @@ import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import LevelSetting from '../components/level/LevelSetting'
-import { LEVEL_COPY, LEVEL_KEY, RULES } from '../lib/learnerLevel'
-import { forgetDevice, readRaw, writeDevice } from '../lib/stored'
+import { LEVEL_COPY, LEVEL_KEY, RULES } from '../lib/learner/learnerLevel'
+import { forgetDevice, readRaw, writeDevice } from '../lib/store/stored'
 import CONFIG from '../config/profile.json'
 
 const overview = (modules) => ({ modules, attempts: 0, correct: 0, learnt: 0, streak: 0 })

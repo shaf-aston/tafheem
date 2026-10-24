@@ -9,9 +9,9 @@
  */
 import { useMemo } from 'react'
 
-import { hasDiacritics } from '../../lib/arabicText'
+import { hasDiacritics } from '../../lib/text/arabicText'
 import { KIND, readQuranQuery } from '../../lib/quran/quranIntent'
-import { ayahProblem } from '../../lib/surahRef'
+import { ayahProblem } from '../../lib/quran/surahRef'
 
 import ArabicText from '../ui/ArabicText'
 import MicButton from '../ui/MicButton'

@@ -1,4 +1,4 @@
-import { useRememberedFlag } from '../useRemembered'
+import { useRememberedFlag } from '../store/useRemembered'
 
 /**
  * Whether a hadith sets its English left and its Arabic right, as sunnah.com does: on until the

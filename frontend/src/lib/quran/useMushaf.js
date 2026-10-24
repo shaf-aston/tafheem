@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { mushafsQuery } from '../../api'
-import { useRemembered } from '../useRemembered'
+import { useRemembered } from '../store/useRemembered'
 
 /** The reader's own layout, the ayah list; every other choice is a printing. */
 export const AYAHS = 'ayahs'

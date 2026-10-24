@@ -1,6 +1,6 @@
 /** The Quran world: the short surahs of worlds.json `surahs` (from /quran/surah), record under module 'quran-ayat'. */
-import { useLessonWorld } from '../useLessonWorld'
-import { MODULE, keyOfAyah, loadSurahs, quranCards } from '../quranLesson'
+import { useLessonWorld } from '../grow/useLessonWorld'
+import { MODULE, keyOfAyah, loadSurahs, quranCards } from '../grow/quranLesson'
 
 export function useQuranWorld(world) {
   const load = async () => {

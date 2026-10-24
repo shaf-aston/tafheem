@@ -1,5 +1,5 @@
 /** Sarf, the root, the pattern, and the full conjugation of a single word. */
-import { errorMessage } from '../../lib/apiError'
+import { errorMessage } from '../../lib/api/apiError'
 import { useSarf } from '../../lib/sarf/useSarf'
 
 import ErrorAlert from '../ui/ErrorAlert'

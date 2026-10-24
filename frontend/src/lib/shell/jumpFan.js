@@ -7,7 +7,7 @@
 import { useRef, useState } from 'react'
 
 import theme from '../../config/theme.json'
-import { glideTo } from '../scrollToEl'
+import { glideTo } from '../motion/scrollToEl'
 
 const PRESS_MS = theme.motion['press-ms']
 
