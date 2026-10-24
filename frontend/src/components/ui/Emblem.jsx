@@ -13,7 +13,7 @@
  *   quiz    question card           timelines  events along an arrow
  *   dawah   speech bubble, star     colloq  two speech bubbles
  *   kit     toolbox                 home    an open arch, a crescent over it
- *   similar two pages, one line apart
+ *   similar two pages, one line apart     map  a folded map, a pin on it
  *   jawhara  a cut jewel, one spark     wasitiyya  a line held between two bars
  *   basics   brush-stroke ال on a first step
  */
@@ -195,6 +195,13 @@ const ART = {
       <path d="M14 58V32a18 18 0 0136 0v26M6 58h52" {...ink} strokeWidth="2.6" />
       <path d="M25 58V40a7 7 0 0114 0v18" {...ink} strokeWidth="2.2" />
       <path className="em-rays" d="M34 3a5 5 0 100 9 4 4 0 110-9z" fill="currentColor" />
+    </>
+  ),
+  map: (
+    <>
+      <path d="M6 14l16-6 20 6 16-6v42l-16 6-20-6-16 6z" fill="currentColor" opacity=".2" />
+      <path d="M6 14l16-6 20 6 16-6v42l-16 6-20-6-16 6zM22 8v42M42 14v42" {...ink} strokeWidth="2.4" />
+      <path className="em-lift" d="M32 40s-7-7-7-12a7 7 0 0114 0c0 5-7 12-7 12z" fill="currentColor" />
     </>
   ),
   kit: (
