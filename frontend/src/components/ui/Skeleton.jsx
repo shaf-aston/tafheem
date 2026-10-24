@@ -1,6 +1,11 @@
-/** Loading placeholder. Size it with Tailwind classes at the call site. */
-export function Skeleton({ className = '' }) {
-  return <div className={`skeleton ${className}`} />
+/**
+ * Loading placeholder. Size it with Tailwind classes at the call site.
+ * `late`: shown only once the wait passes patience-ms (.late), so a quick load goes straight to its answer, no flash.
+ * A wrapper, since the shimmer is the skeleton's own animation.
+ */
+export function Skeleton({ className = '', late = false }) {
+  const box = <div className={`skeleton ${className}`} />
+  return late ? <div className="late">{box}</div> : box
 }
 
 /** The shape every panel shows while a request is in flight. */

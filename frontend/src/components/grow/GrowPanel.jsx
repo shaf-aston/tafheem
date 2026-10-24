@@ -7,10 +7,9 @@
  */
 import { useState } from 'react'
 
-import config from '../../config/worlds.json'
-import { colorFor } from '../../theme'
 import { nextAfter } from '../../lib/grow/bookLesson'
 import { landingOf, placeOf, valueOf } from '../../lib/grow/growPlace'
+import { WORLDS, worldOf } from '../../lib/grow/worlds'
 import { goBack } from '../../lib/nav/journey'
 import { getProfile } from '../../lib/learner/profile'
 import { useHadithWorld } from '../../lib/grow/useHadithWorld'
@@ -29,8 +28,6 @@ import LessonRunner from './LessonRunner'
 import LessonWorld from './LessonWorld'
 import { Skeleton } from '../ui/Skeleton'
 
-const WORLDS = config.worlds.map((world) => ({ ...world, accent: colorFor('world', world.id) }))
-const worldOf = (id) => WORLDS.find((world) => world.id === id)
 const WORLD_IDS = WORLDS.filter((world) => world.live).map((world) => world.id)
 const BOOKS = WORLDS.filter((world) => world.kind === 'book')
 const BOOK_IDS = BOOKS.map((world) => world.id)
@@ -115,7 +112,7 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   } else if (view.at === 'lesson' && !sourceOf(view.id).error) {
     // Being dealt (a part still coming, the record catching up with the last lesson): the lesson's shape, not a flash of
     // its world. A world that could not load is shown, with its error.
-    screen = <div className="late"><Skeleton className="h-96 w-full" /></div>
+    screen = <Skeleton late className="h-96 w-full" />
   } else if (view.at !== 'home') {
     const world = worldOf(view.id)
     screen = SCREENS[world.kind]({ world, lessons, books, view, back: home, go, start, startBook })
