@@ -12,7 +12,7 @@ export default function WordGrid({ words }) {
     <div className="space-y-6">
       {grouped(words).map(([category, group]) => (
         <section key={category} className="space-y-2">
-          {category && <h4 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{category}</h4>}
+          {category && <h4 className="eyebrow text-[var(--text-faint)]">{category}</h4>}
           <ul className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
             {group.map((word) => (
               <li key={word.id} className="relative rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden">

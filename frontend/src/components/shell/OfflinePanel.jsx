@@ -14,7 +14,7 @@ export default function OfflinePanel() {
 
   return (
     <section aria-label={copy.title} className="space-y-3">
-      <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{copy.title}</h3>
+      <h3 className="eyebrow text-[var(--text-faint)]">{copy.title}</h3>
       <p className="type-small text-[var(--text-dim)] leading-snug" aria-live="polite">
         {!supported ? copy.unsupported : core === 'ready' && plan ? coreLine(plan.coreBytes) : copy['core-saving']}
       </p>

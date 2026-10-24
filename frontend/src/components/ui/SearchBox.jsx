@@ -40,6 +40,10 @@ import { isArabic } from '../../lib/text/arabicText'
 export default function SearchBox({
   id,
   label,
+  // What Enter does, in one word: "search", "analyse". The box writes the hint
+  // itself from it, adding ", or say it" when a microphone sits beside it, so
+  // no tab words the same line differently or forgets it. `hint` overrides.
+  verb,
   hint,
   placeholder,
   value,
@@ -59,13 +63,14 @@ export default function SearchBox({
   const filtering = !onSubmit
   const ready = value.trim() && !disabled
   const Field = multiline ? 'textarea' : 'input'
+  const said = hint ?? (verb && !filtering ? `Enter to ${verb}${children ? ', or say it' : ''}` : null)
 
   return (
     <div className="space-y-3">
-      <label htmlFor={id} className="block text-sm font-medium text-[var(--text-dim)]">
+      <label htmlFor={id} className="block type-ui font-medium text-[var(--text-dim)]">
         {label}
-        {hint && (
-          <span className="text-[var(--text-faint)] type-small font-normal ml-2">{hint}</span>
+        {said && (
+          <span className="text-[var(--text-faint)] type-small font-normal ml-2">{said}</span>
         )}
       </label>
 

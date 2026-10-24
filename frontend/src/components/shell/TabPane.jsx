@@ -12,7 +12,7 @@ import { Suspense, memo } from 'react'
 
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 
-export default memo(function TabPane({ tab, handoff, accent, onGo, onVisit, onProgress }) {
+const TabPane = memo(function TabPane({ tab, handoff, accent, onGo, onVisit, onProgress }) {
   const Panel = tab.Component
   return (
     <div className={tab.study ? 'study fade-in' : 'fade-in'}>
@@ -30,3 +30,5 @@ export default memo(function TabPane({ tab, handoff, accent, onGo, onVisit, onPr
     </div>
   )
 })
+
+export default TabPane

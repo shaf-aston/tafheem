@@ -1,7 +1,0 @@
-{
-  "_comment": "Grow's numbers for the practice card (components/grow/Practice.jsx); the rules that use them are in lib/grow.js.",
-  "_clean-days": "How many different days a step must be said with every word right before it counts as learnt. One clean run can be luck or a fresh memory; the same words right again on another day is what knowing them looks like. The score counts only learnt steps.",
-  "clean-days": 2,
-  "_daleel-words": "How many opening words of a ruling are handed to Daleel by its Open in Daleel link.",
-  "daleel-words": 8
-}

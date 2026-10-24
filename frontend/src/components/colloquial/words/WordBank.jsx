@@ -28,7 +28,7 @@ function Bank({ rows, onClose, scope, title }) {
     <BottomSheet label={title} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
       <header className="flex items-center justify-between gap-3 px-5 pt-4 pb-3">
         <div className="min-w-0">
-          <p className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Word bank</p>
+          <p className="eyebrow text-[var(--text-faint)]">Word bank</p>
           <h2 className="type-ui font-semibold text-[var(--text)] truncate">{title}</h2>
         </div>
         <CloseButton onClick={onClose} className={`shrink-0 ${FOCUS}`} />
@@ -37,7 +37,7 @@ function Bank({ rows, onClose, scope, title }) {
       <div className="overflow-y-auto px-5 pb-5 space-y-4">
         {grouped(rows).map(([category, group]) => (
           <section key={category}>
-            {category && <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)] pt-2">{category}</h3>}
+            {category && <h3 className="eyebrow text-[var(--text-faint)] pt-2">{category}</h3>}
             <ul className="grid sm:grid-cols-2 sm:gap-x-8">
               {group.map((r) => (
                 <li key={keyOf(r)} className="flex items-baseline justify-between gap-4 py-2.5 border-b border-[var(--border)]">

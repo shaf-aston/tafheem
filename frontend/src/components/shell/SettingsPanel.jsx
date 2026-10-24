@@ -63,7 +63,7 @@ export default function SettingsPanel({ open, onClose }) {
 
         {/* The learner's level is the account's, not the device's: kept on its shelf, not in settings.json. */}
         <section aria-label="Learning" className="space-y-4">
-          <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">Learning</h3>
+          <h3 className="eyebrow text-[var(--text-faint)]">Learning</h3>
           <LevelSetting />
         </section>
 
@@ -71,7 +71,7 @@ export default function SettingsPanel({ open, onClose }) {
           const settings = all.filter((setting) => !setting['needs-health'] || health[setting['needs-health']])
           return settings.length > 0 && (
             <section key={section} aria-label={section} className="space-y-4">
-              <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">{section}</h3>
+              <h3 className="eyebrow text-[var(--text-faint)]">{section}</h3>
               {settings.map((setting) => (
                 <Setting key={setting.key} setting={setting} />
               ))}
@@ -109,7 +109,7 @@ function InstallPanel() {
   const { kind } = useInstall()
   return kind !== 'none' && (
     <section aria-label="App" className="space-y-2">
-      <h3 className="type-micro uppercase tracking-[0.18em] text-[var(--text-faint)]">App</h3>
+      <h3 className="eyebrow text-[var(--text-faint)]">App</h3>
       <div className="flex items-center gap-3 type-small text-[var(--text-dim)]">
         <InstallSteps kind={kind} />
       </div>

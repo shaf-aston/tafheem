@@ -29,7 +29,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
         <SearchBox
           id="sarf-input"
           label="Arabic word"
-          hint="Enter to analyse, or say it"
+          verb="analyse"
           arabic
           placeholder="اكتب كلمة..."
           value={word}

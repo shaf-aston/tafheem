@@ -2,7 +2,7 @@
  * A card said aloud, and how the ear weighs it. A phrase is written out in
  * the card, and the ear scores each written word; ayahs are named by place,
  * and the Qur'an tab's own check scores each ayah, the scores landing back
- * on that ayah's words (lib/grow.js pageOf).
+ * on that ayah’s words.
  */
 import { checkReading, checkText } from '../../../api'
 import { byPlace, scoreOf } from '../../recite/recitingSession'

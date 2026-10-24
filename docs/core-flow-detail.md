@@ -125,9 +125,9 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
   phrase, with a reading number (`X-Reading-Id`) that the page and server both log. The
   words only place the reciter on the page; the mark comes from this computer's sureness,
   and the reciter's checking level (`frontend/src/config/recite.json`) says how strict to be.
-- **Tier / nodeState**: Grow's levels (Level 1, 2, 3; `frontend/src/config/grow.json`,
+- **Tier / nodeState**: Grow’s levels (Level 1, 2, 3;
   a path names its tier in its file under `data/grow/worlds/prayer/paths/`), and where one circle on its map stands:
-  `locked`, `open`, `started` or `learnt` (`lib/grow.js`, drawn by `components/grow/`).
+  `locked`, `open`, `started` or `learnt` (drawn by `components/grow/`).
 
 ### Where things live
 
