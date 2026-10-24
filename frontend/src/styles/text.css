@@ -158,7 +158,7 @@ textarea.arabic-lg {
 .type-ui     { font-size: var(--type-ui); }
 
 
-/* Big letters drawn as an outline only: a quiet word behind a heading (Home), the sources band (landing).
+/* Big letters drawn as an outline only: the landing's sources band.
    --outline-c, --outline-w and --outline-size tune it where it sits. */
 .outline-text {
   font-size: var(--outline-size, inherit);

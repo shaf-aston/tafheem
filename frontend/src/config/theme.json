@@ -254,6 +254,22 @@
     "from-spread": "0.06",
     "beats": "2"
   },
+  "fahm": {
+    "_comment": "Home's quiet word فهم beside the Resume card (components/home/FahmWord.jsx, styles/motion.css .fahm). At rest it floats: bob-ms is one lap of its rise and fall, bob-px how high it rises. Under a resting pointer, or a tap on a phone, it tells a short story: two clouds slide in, rain starts at rain-at-ms (drop-ms is one drop's fall), the letters soak up to fill (a share of their height) over fill-ms, a sprout grows from the هاء at grow-at-ms and opens into a flower at bloom-at-ms as the clouds clear. A pointer has to rest settle-ms before it counts, so crossing the page never sets it off; a tap plays for tap-hold-ms. Once every party-min to party-max hovers (drawn afresh each time, counted in memory only, so a reload starts over) a burst of nuqat and harakat flies for about party-ms. With Animations off or reduced motion asked for, it floats not at all and a hover shows the flower at once.",
+    "bob-ms": 6500,
+    "bob-px": 5,
+    "settle-ms": 200,
+    "tap-hold-ms": 2800,
+    "rain-at-ms": 150,
+    "drop-ms": 420,
+    "fill": 0.35,
+    "fill-ms": 900,
+    "grow-at-ms": 750,
+    "bloom-at-ms": 1350,
+    "party-min": 2,
+    "party-max": 4,
+    "party-ms": 1500
+  },
   "motion": {
     "_comment": "Plain numbers, so a CSS duration is built as calc(var(--motion-base-ms) * 1ms). scale is the switch for the ambient loops (the pen bobbing, the mic grille, the mic ring, the shimmer): their choreography keeps its own tempo, multiplied by this, so the Animations setting can stop them all by driving it to 0.",
     "scale": 1,
