@@ -142,7 +142,8 @@ Found by the review but not changed here. It is older than this plan, and decidi
 call:
 - Other bare device keys are counted as the guest's shelf, so sign-up with keep copies them into the
   account and "Clear it all" wipes them: `recorder-key` (`record/Studio.jsx`) and `install-dismissed`.
-- The fix is the same rule as G4, a list of device-only keys in `ownKeys`. It ships on its own.
+- The fix is the same rule as G4, a list of device-only keys in `ownKeys`. Shipped on its own: `DEVICE_KEYS` in
+  `lib/store/stored.js`, which `record/Studio.jsx` and `lib/shell/install.js` now name their keys from.
 
 ## 7 · Slices (tests first)
 

@@ -7,11 +7,12 @@
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+import { DEVICE_KEYS, readDevice, writeDevice } from '../lib/store/stored'
 import { canRecord, CANNOT_RECORD, createRecorder, openMicrophone, refusal } from '../lib/speech/microphone'
 
-const KEY = 'recorder-key'
+const KEY = DEVICE_KEYS.recorder
 const BATCH = 20
-const remembered = () => { try { return localStorage.getItem(KEY) ?? '' } catch { return '' } }
+const remembered = () => readDevice(KEY)
 
 async function call(path, key, init = {}) {
   const r = await fetch(`/api/recordings${path}`, { ...init, headers: { 'X-Recorder-Key': key } })
@@ -93,7 +94,7 @@ export default function Studio() {
     return (
       <main className="mx-auto max-w-md p-4 pt-16 text-[var(--text)]">
         <h1 className="mb-4 text-xl">Recording studio</h1>
-        <form onSubmit={(e) => { e.preventDefault(); try { localStorage.setItem(KEY, typed) } catch { /* this visit only */ } setKey(typed) }}>
+        <form onSubmit={(e) => { e.preventDefault(); writeDevice(KEY, typed); setKey(typed) }}>
           <input type="password" value={typed} onChange={(e) => setTyped(e.target.value)} placeholder="Recorder key"
             className="w-full rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-3" />
         </form>

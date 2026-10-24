@@ -12,9 +12,9 @@
  */
 import { useSyncExternalStore } from 'react'
 
-import { readDevice, writeDevice } from '../store/stored'
+import { DEVICE_KEYS, readDevice, writeDevice } from '../store/stored'
 
-const DISMISSED = 'install-dismissed'
+const DISMISSED = DEVICE_KEYS.installDismissed
 
 /** iPhone, iPad (which says Mac, with a touchscreen) and iPod. */
 export const isIos = (ua, touchPoints = 0) =>

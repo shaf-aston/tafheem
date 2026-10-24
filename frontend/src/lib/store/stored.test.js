@@ -92,8 +92,10 @@ describe('filed under who is logged in', () => {
     expect(shelfOf('bilal')).toEqual({ b: '2' })
   })
 
-  it('the device\'s guest id is nobody\'s shelf, so sign-up never copies it into an account', () => {
+  it('the device\'s own keys are nobody\'s shelf, so sign-up never copies them into an account', () => {
     data.set('guest', 'ab'.repeat(16))
+    data.set('recorder-key', 'sk-1')
+    data.set('install-dismissed', '1')
     data.set('c', '3')
     expect(shelfOf('')).toEqual({ c: '3' })
   })
@@ -101,12 +103,14 @@ describe('filed under who is logged in', () => {
   it('a guest\'s Start over keeps the device id, so the server wipe reaches this device\'s record', async () => {
     vi.stubGlobal('location', { reload: vi.fn() })
     data.set('guest', 'ab'.repeat(16))
+    data.set('recorder-key', 'sk-1')
+    data.set('install-dismissed', '1')
     data.set('c', '3')
     let held
     forgetProgress.mockImplementationOnce(async () => { held = data.get('guest'); return { deleted: true } })
     await forgetSaved()
     expect(held).toBe('ab'.repeat(16))
-    expect([...data.keys()]).toEqual(['guest'])
+    expect([...data.keys()]).toEqual(['guest', 'recorder-key', 'install-dismissed'])
     expect(location.reload).toHaveBeenCalledOnce()
   })
 
