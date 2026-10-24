@@ -468,3 +468,137 @@
   100% { stroke-dashoffset: 0; opacity: 0; }
 }
 
+
+
+/* Home's quiet word (components/home/FahmWord.jsx; timings are theme.json's
+   fahm group). Its svg clips, so rain, plant and party stay inside the box.
+   Each duration is multiplied by --motion-scale, so the Animations setting
+   stills it. */
+.fahm { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.fahm svg { display: block; width: 100%; height: auto; overflow: hidden; }
+.fahm-ink { font-family: var(--font-arabic); font-size: 100px; }
+.fahm-line {
+  fill: none;
+  stroke: var(--outline-c, color-mix(in srgb, var(--primary) 30%, transparent));
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  transition: stroke calc(var(--motion-base-ms) * var(--motion-scale) * 1ms);
+}
+.fahm.is-cloudy .fahm-line, .fahm.is-bloom .fahm-line { stroke: color-mix(in srgb, var(--primary) 55%, transparent); }
+.fahm-soak { fill: color-mix(in srgb, var(--primary) 36%, transparent); }
+.fahm-level {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  transition: transform calc(var(--fahm-fill-ms) * var(--motion-scale) * 1ms) var(--motion-settle-ease);
+}
+.fahm.is-raining .fahm-level { transform: scaleY(var(--fahm-fill)); }
+
+/* At rest: the word floats, its shadow shrinking as it rises. */
+.fahm-float, .fahm-shadow { transform-box: fill-box; transform-origin: center; }
+.fahm-float { animation: fahm-bob calc(var(--fahm-bob-ms) * var(--motion-scale) * 1ms) ease-in-out infinite; }
+.fahm-shadow {
+  fill: var(--text);
+  animation: fahm-shade calc(var(--fahm-bob-ms) * var(--motion-scale) * 1ms) ease-in-out infinite;
+}
+@keyframes fahm-bob {
+  0%, 100% { transform: translateY(calc(var(--fahm-bob-px) * 0.4px)) rotate(-0.6deg); }
+  50% { transform: translateY(calc(var(--fahm-bob-px) * -1px)) rotate(0.6deg); }
+}
+@keyframes fahm-shade {
+  0%, 100% { transform: scaleX(1); opacity: 0.1; }
+  50% { transform: scaleX(0.78); opacity: 0.05; }
+}
+
+/* The shower. */
+.fahm-sky {
+  opacity: 0;
+  transform: translateY(-14px);
+  transition:
+    opacity calc(var(--motion-base-ms) * var(--motion-scale) * 1ms),
+    transform calc(var(--motion-spring-ms) * var(--motion-scale) * 1ms) var(--motion-settle-ease);
+}
+.fahm.is-cloudy .fahm-sky { opacity: 1; transform: none; }
+.fahm-cloud {
+  fill: color-mix(in srgb, var(--bg) 80%, transparent);
+  stroke: color-mix(in srgb, var(--text) 55%, transparent);
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+.fahm-drop { stroke: var(--palette-blue); stroke-width: 1.4; stroke-linecap: round; opacity: 0; }
+.fahm.is-raining .fahm-drop {
+  animation: fahm-drop calc(var(--fahm-drop-ms) * var(--motion-scale) * 1ms) linear 3 both;
+  animation-delay: calc(var(--d) * var(--fahm-drop-ms) * var(--motion-scale) * 1ms);
+}
+@keyframes fahm-drop {
+  0% { opacity: 0; transform: translateY(0); }
+  15% { opacity: 0.9; }
+  100% { opacity: 0; transform: translateY(var(--fall)); }
+}
+
+/* The sprout from the هاء, and its flower. */
+.fahm-stem {
+  fill: none;
+  stroke: var(--palette-green);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset calc(var(--motion-base-ms) * var(--motion-scale) * 1ms) ease-in;
+}
+.fahm.is-growing .fahm-stem {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset calc(var(--motion-enter-ms) * var(--motion-scale) * 1ms) var(--motion-settle-ease);
+}
+.fahm-leaf {
+  fill: color-mix(in srgb, var(--palette-green) 75%, transparent);
+  transform: scale(0);
+  transition: transform calc(var(--motion-base-ms) * var(--motion-scale) * 1ms) ease-in;
+}
+.fahm.is-growing .fahm-leaf {
+  transform: scale(1);
+  transition: transform calc(var(--motion-enter-ms) * var(--motion-scale) * 1ms) var(--motion-spring-ease)
+    calc(var(--d) * var(--motion-enter-ms) * var(--motion-scale) * 1ms);
+}
+.fahm-petal { fill: color-mix(in srgb, var(--palette-rose) 80%, transparent); }
+.fahm-heart { fill: var(--primary-hi); }
+.fahm-flower {
+  transform: scale(0) rotate(-40deg);
+  transition: transform calc(var(--motion-base-ms) * var(--motion-scale) * 1ms) ease-in;
+}
+.fahm.is-bloom .fahm-flower {
+  transform: none;
+  transition: transform calc(var(--motion-enter-ms) * 1.2 * var(--motion-scale) * 1ms) var(--motion-spring-ease);
+}
+
+/* The party: a ring opening out, and nuqat and harakat thrown up and falling away. */
+.fahm-ring {
+  fill: none;
+  stroke: var(--primary-hi);
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fahm-ring calc(var(--fahm-party-ms) * 0.5 * var(--motion-scale) * 1ms) var(--motion-settle-ease) both;
+}
+@keyframes fahm-ring {
+  from { transform: scale(1); opacity: 0.9; }
+  to { transform: scale(7); opacity: 0; }
+}
+.fahm-bit {
+  opacity: 0;
+  animation: fahm-fly calc(var(--fahm-party-ms) * var(--pace) * var(--motion-scale) * 1ms) var(--motion-settle-ease) both;
+}
+@keyframes fahm-fly {
+  0% { transform: translate(var(--x), var(--y)) rotate(0deg) scale(0.4); opacity: 1; }
+  42% { transform: translate(calc(var(--x) + var(--dx)), calc(var(--y) + var(--dy))) rotate(calc(var(--spin) / 2)) scale(1); opacity: 1; }
+  100% { transform: translate(calc(var(--x) + var(--dx) * 1.25), calc(var(--y) + var(--dy) + 95px)) rotate(var(--spin)) scale(0.9); opacity: 0; }
+}
+.fahm-bit-0 { fill: var(--primary-hi); }
+.fahm-bit-1 { fill: none; stroke: var(--primary); stroke-width: 1.6; stroke-linecap: round; }
+.fahm-bit-2 { fill: none; stroke: var(--success); stroke-width: 1.4; }
+.fahm-bit-3 { fill: var(--text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fahm * { animation: none !important; transition: none !important; }
+}

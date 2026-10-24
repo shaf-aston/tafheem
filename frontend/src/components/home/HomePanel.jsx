@@ -32,6 +32,7 @@ import CommandField from '../shell/CommandField'
 import CommandResults from '../shell/CommandResults'
 import LogInButton from '../profile/LogInButton'
 import LevelPicker from '../level/LevelPicker'
+import FahmWord from './FahmWord'
 import GrowNext from './GrowNext'
 import ModuleCard from './ModuleCard'
 import ResumeCard from './ResumeCard'
@@ -101,7 +102,7 @@ export default function HomePanel({ accent, onGo }) {
             )}
           </div>
 
-          {/* The quiet word sits in the room beside the card and scrolls with the page. */}
+          {/* The quiet word sits in the room beside the card (under it on a phone) and scrolls with the page. */}
           <div className="md:flex md:items-center md:gap-6">
             <div className="space-y-4 md:max-w-2xl md:flex-[3] min-w-0">
               {/* A returning learner on a new visit (no path walked) sees what they were studying above the picker. */}
@@ -119,9 +120,7 @@ export default function HomePanel({ accent, onGo }) {
                 </p>
               )}
             </div>
-            <div aria-hidden="true" className="hidden md:flex flex-1 justify-center min-w-0">
-              <ArabicText className="outline-text [--outline-size:6rem] leading-none select-none">فهم</ArabicText>
-            </div>
+            <FahmWord className="mx-auto mt-2 md:mt-0 w-full max-w-[13rem] md:max-w-[20rem] md:flex-1 min-w-0 select-none" />
           </div>
 
           <section className="space-y-4" aria-labelledby="home-all">
