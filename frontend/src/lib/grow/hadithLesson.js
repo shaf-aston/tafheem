@@ -1,7 +1,7 @@
 /**
  * Hadith world cards for an-Nawawi's Forty (public/grow/nawawi40.json, from backend/scripts/build_nawawi40.py).
  * Per hadith: a teach card, "what does it mean?" (key line → English), "complete it" (one word blanked).
- * Every word shown is the source's; key lines are exact quotes (tests/test_nawawi40.py).
+ * Every word shown is the source's; key lines are exact quotes (tests/scripts/test_nawawi40.py).
  */
 import { gapOf } from '../quiz/gap'
 import { weave } from './lesson'

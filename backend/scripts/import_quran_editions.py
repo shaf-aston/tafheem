@@ -65,7 +65,7 @@ from backend.config import data_path, get_settings  # noqa: E402, needs the path
 from backend.services.text.markup import as_text  # noqa: E402
 
 # The four words the app is allowed to print on a badge. Kept in step with
-# tests/test_sources.py, which enforces the same list for sources.json: a fifth
+# tests/core/test_sources.py, which enforces the same list for sources.json: a fifth
 # word here would show up as the weakest one on screen, quietly downgrading a
 # hand-checked book to a guess.
 CONFIDENCES = {"verified", "derived", "translated", "guessed"}

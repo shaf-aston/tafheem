@@ -19,7 +19,7 @@ from backend.services.nahw.book import book_words, card_keys, is_mabni, verb_asp
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
 # themselves are the contract's, `models/analyze.py ROLE_KEYS`, and
-# tests/test_rule_engine.py holds the two lists together.
+# tests/nahw/test_rule_engine.py holds the two lists together.
 
 # CAMeL's tags for each particle family; a word on the family's list counts too
 # the role a card wears until the book's tree names its job

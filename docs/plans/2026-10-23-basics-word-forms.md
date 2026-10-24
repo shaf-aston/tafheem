@@ -117,7 +117,7 @@ SPA → static `/grow/*.json` and the progress API.
 ```
 ★ backend/data/grow/basics_verbs.json    curated: root, bab, English {base, past, s3}
 ★ backend/scripts/build_basics_verbs.py  engine → frontend/public/grow/basics-verbs.json (7 persons × past/present/subj/juss, command)
-★ tests/test_basics_verbs.py             fresh build == shipped; bab == babs_of; shapes
+★ tests/sarf/test_basics_verbs.py             fresh build == shipped; bab == babs_of; shapes
 ★ lib/grow/wordForms.js (pure)                a verb's table and a noun's possessive table → entries {key, ar, en};
                                          readings; ambiguity-safe option pickers
 ★ lib/grow/basicsSkills.js (pure)             SKILLS: markers, teach/asks per skill; path → ordered items; basicsCards

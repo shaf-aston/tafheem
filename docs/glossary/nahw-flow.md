@@ -4,7 +4,7 @@ The map of the tahleel engine, stage by stage, with the file that owns each step
 Read this first, then open the file named. Picture version, with a worked example:
 https://claude.ai/artifact/KiAJ7Wo9Y7pW4w3R3ATDHt
 
-**Kept true by `tests/test_nahw_flow_doc.py`.** Every path below must exist, and every
+**Kept true by `tests/nahw/test_nahw_flow_doc.py`.** Every path below must exist, and every
 list between `<!-- list:NAME -->` markers must match the code's own registry, in order.
 Change a stage, add a rule or reorder one → that test fails until this page says so.
 
@@ -139,5 +139,5 @@ Roles the tree can give:
 
 ## Checking a change
 
-- Unit tests: `tests/test_naming.py`, `tests/test_syntax_tree.py`, `tests/test_teacher.py`.
+- Unit tests: `tests/nahw/test_naming.py`, `tests/nahw/test_syntax_tree.py`, `tests/nahw/test_teacher.py`.
 - Live: `python -m backend.scripts.score_iraab --set probe --api URL --show 50` (50 keyed sentences, `backend/data/nahw_rules/probe_sentences.json`).

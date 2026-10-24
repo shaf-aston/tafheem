@@ -24,7 +24,7 @@ as the book does; never add a root-spelling alias in an adapter.
 3. One line added to `data/sarf/babs.json`'s `"sources"` list, and one entry
    in `backend/data/sources.json` with `"used_in": ["sarf"]`.
 
-Done when `tests/test_verb_forms.py` passes; it asserts every name in
+Done when `tests/sarf/test_verb_forms.py` passes; it asserts every name in
 babs.json's list is wired in `SOURCES` and credited in `sources.json`.
 
 **Gotcha:** fold with `conjugation.bare()`, never a fold of your own; it is
