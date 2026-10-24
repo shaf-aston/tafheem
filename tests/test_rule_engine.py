@@ -17,9 +17,12 @@ from __future__ import annotations
 import pytest
 
 from backend.models.analyze import ROLE_KEYS, WordAnalysis
-from backend.services import iraab, morphology, rule_engine, syntax
-from backend.services.arabic_text import words
-from backend.services.nahw_book import term_ar
+from backend.services.nahw import iraab
+from backend.services.sarf import morphology
+from backend.services.nahw import rule_engine
+from backend.services.nahw import syntax
+from backend.services.text.arabic_text import words
+from backend.services.nahw.book import term_ar
 from tests.nahw_helpers import needs_parser
 
 pytestmark = needs_parser
@@ -93,8 +96,8 @@ REASON_SENTENCES = ["مَتَى سَافَرَ الرَّجُلُ", "كُتِب�
 
 
 def test_every_role_has_a_reason():
-    from backend.services.nahw_book import teacher_rules
-    from backend.services.syntax.naming import ROLES
+    from backend.services.nahw.book import teacher_rules
+    from backend.services.nahw.syntax.naming import ROLES
     assert [role for role in ROLES if role not in teacher_rules()["reasons"]] == []
 
 
@@ -136,7 +139,7 @@ def test_verb_card_case_and_reason_agree(sentence: str, index: int, case: str, s
 @pytest.mark.parametrize("sentence, lemma", [("قُمْ يَا وَلَدُ", "قام"), ("اُكْتُبْ الدَّرْسَ", "كتب")])
 def test_a_command_is_described_as_one(sentence: str, lemma: str):
     """Not the قَمَّ or أَكْتُبُ CAMeL misread it as: its notes and lemma are the command's."""
-    from backend.services import morphology
+    from backend.services.sarf import morphology
     word = morphology.analyze_sentence(sentence)[0]
     assert (word["lemma"], word["features"].startswith("command"), "perfect" in word["features"]) == (lemma, True, False)
 
@@ -381,9 +384,9 @@ def test_the_glossary_explains_every_term_the_page_prints():
     examples is in grammar.json, as an entry or named in one's meaning, so the glossary is never short."""
     import json
     from pathlib import Path
-    from backend.services.arabic_text import strip_diacritics
-    from backend.services.nahw_book import role_table
-    from backend.services.syntax.naming import ROLES
+    from backend.services.text.arabic_text import strip_diacritics
+    from backend.services.nahw.book import role_table
+    from backend.services.nahw.syntax.naming import ROLES
     root = Path(__file__).parent.parent
     grammar = json.loads((root / "frontend/src/config/grammar.json").read_text(encoding="utf-8"))
     tarkeeb = json.loads((root / "backend/data/nahw_rules/tarkeeb.json").read_text(encoding="utf-8"))["terms"]
@@ -505,7 +508,7 @@ def test_the_word_after_a_restricting_illa_takes_the_place_the_sentence_leaves(s
 
 def _shape(node: dict) -> tuple:
     """A picture as the book draws it: each unit's label and job, each leaf's role."""
-    from backend.services.arabic_text import strip_diacritics
+    from backend.services.text.arabic_text import strip_diacritics
     if node.get("word") is not None:
         return (strip_diacritics(node["role"]),)
     return (strip_diacritics(node.get("label") or ""), strip_diacritics(node.get("role") or ""),
@@ -515,7 +518,7 @@ def _shape(node: dict) -> tuple:
 def test_the_wonder_form_is_drawn_as_the_books_own_example():
     """ما أحسن زيدًا (Tasheel 1.4.2 p8): ما the مبتدأ, the verb's clause its khabar, the verb with its hidden doer."""
     import json
-    from backend.services.nahw_book import RULES
+    from backend.services.nahw.book import RULES
     book = next(e for e in json.loads((RULES.parent / "tarkeeb" / "examples" / "tasheel-al-nahw.json")
                                       .read_text(encoding="utf-8"))["examples"] if e["id"] == "1.4.2-taajjub")
     ours = _syntax_read(book["sentence"])

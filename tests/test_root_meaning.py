@@ -5,7 +5,7 @@ import json
 
 import pytest
 
-from backend.services.root_meaning import BROKEN, MISSING, READY, JsonFileProvider
+from backend.services.dictionary.root_meaning import BROKEN, MISSING, READY, JsonFileProvider
 
 
 def _provider(tmp_path, payload, *, name="roots.json"):
@@ -165,7 +165,7 @@ def client(monkeypatch, tmp_path):
     from fastapi.testclient import TestClient
 
     from backend.routers import dictionary as router_module
-    from backend.services import root_meaning as module
+    from backend.services.dictionary import root_meaning as module
 
     def _install(payload):
         provider = _provider(tmp_path, payload) if payload else JsonFileProvider(tmp_path / "none.json")
@@ -350,7 +350,7 @@ def _english(client, root):
 @pytest.fixture(autouse=True)
 def kept(monkeypatch, tmp_path):
     """A fresh store of English readings per test, in a directory of its own."""
-    from backend.services import root_english
+    from backend.services.dictionary import root_english
 
     monkeypatch.setattr(root_english, "STORE_FILE", tmp_path / "english_entries.json")
     monkeypatch.setattr(root_english, "LINES_FILE", tmp_path / "english_lines.json")
@@ -586,7 +586,7 @@ def test_two_roots_that_fold_together_each_answer_for_themselves(tmp_path):
 @pytest.fixture()
 def book(monkeypatch, tmp_path):
     """The book installed, and `entry_for` called directly, no web layer at all."""
-    from backend.services import root_meaning as module
+    from backend.services.dictionary import root_meaning as module
 
     def _install(payload):
         provider = _provider(tmp_path, payload)

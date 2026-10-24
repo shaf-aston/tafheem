@@ -26,8 +26,8 @@ from __future__ import annotations
 
 from typing import Iterable
 
-from backend.services import lexicons
-from backend.services.arabic_text import normalize_root
+from backend.services.dictionary import lexicons
+from backend.services.text.arabic_text import normalize_root
 from backend.services.daleel.sources.model import Passage
 
 

@@ -18,7 +18,7 @@ from backend.services.ai import prompts
 from backend.services.ai.base import AIBackend
 from backend.services.ai.groq_backend import GroqBackend
 from backend.services.ai.ollama_backend import OllamaBackend
-from backend.services.fallback import permanent_failure
+from backend.services.core.fallback import permanent_failure
 
 logger = logging.getLogger(__name__)
 

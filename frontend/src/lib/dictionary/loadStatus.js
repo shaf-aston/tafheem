@@ -1,6 +1,6 @@
 /**
  * The three answers the backend gives about a classical book: the root book
- * (services/root_meaning.py) and the shelf (services/lexicons.py) share them.
+ * (services/dictionary/root_meaning.py) and the shelf (services/dictionary/lexicons.py) share them.
  *
  * These are the backend's own names, written down once here
  * rather than retyped as bare text everywhere that reads them, a rename on one

@@ -3,9 +3,10 @@
 Every check is paired with the nearest reading that must be left alone, and the
 last tests follow a gap all the way to the card and the picture.
 """
-from backend.services import iraab, morphology
-from backend.services.nahw_book import teacher_rules as config
-from backend.services.syntax import naming, teacher, tree
+from backend.services.nahw import iraab
+from backend.services.sarf import morphology
+from backend.services.nahw.book import teacher_rules as config
+from backend.services.nahw.syntax import naming, teacher, tree
 from tests.test_naming import named, token
 
 VERB = dict(vox="a", asp="p")

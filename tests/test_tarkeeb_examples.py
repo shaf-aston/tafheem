@@ -6,7 +6,7 @@ that is the case checked hardest here.
 Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 
-from backend.services import tarkeeb_examples
+from backend.services.nahw import tarkeeb_examples
 
 TOPICS = {"verbal"}  # the shared topic list; every example is checked against it
 

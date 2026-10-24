@@ -1,6 +1,6 @@
 /**
  * XP on the page: the learner's clock, level names, and the earn announcer.
- * The server counts (services/rewards.py); recordAttempt calls `announce`, so every tab earns for free.
+ * The server counts (services/learner/rewards.py); recordAttempt calls `announce`, so every tab earns for free.
  */
 import config from '../../config/rewards.json'
 

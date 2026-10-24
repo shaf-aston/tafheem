@@ -23,7 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from backend.services import provenance  # noqa: E402
+from backend.services.core import provenance  # noqa: E402
 
 DATA_DIR = Path(__file__).parent.parent / "data" / "quran"
 RAW = DATA_DIR / "quran-morphology.txt"

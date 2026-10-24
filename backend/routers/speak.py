@@ -14,7 +14,7 @@ from starlette.concurrency import run_in_threadpool
 from backend.config import get_settings
 from backend.services import speech
 from backend.services.colloquial import loader as colloquial
-from backend.services.ratelimit import PerMinute, visitor
+from backend.services.core.ratelimit import PerMinute, visitor
 
 router = APIRouter(prefix="/api/speak", tags=["speak"])
 

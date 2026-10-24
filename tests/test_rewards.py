@@ -1,4 +1,4 @@
-"""XP rules (services/rewards.py) and the rewards endpoints.
+"""XP rules (services/learner/rewards.py) and the rewards endpoints.
 
 Run: python -m pytest tests/test_rewards.py
 """
@@ -11,8 +11,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import progress_store
-from backend.services.rewards import level_of, rewards_of
+from backend.services.learner import progress_store
+from backend.services.learner.rewards import level_of, rewards_of
 
 client = TestClient(app)
 NAME = "amina"

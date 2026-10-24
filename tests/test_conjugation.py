@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import conjugation
+from backend.services.sarf import conjugation
 
 # Treasures p.98, column الماضي المعروف, top to bottom.
 MADI = [

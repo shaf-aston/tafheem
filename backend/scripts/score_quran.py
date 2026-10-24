@@ -34,9 +34,11 @@ from collections import Counter
 
 from backend.config import data_path
 from backend.scripts.score_iraab import family, plain_role
-from backend.services import iraab, quran_corpus, tarkeeb_store
-from backend.services.arabic_text import bare_letters, strip_diacritics
-from backend.services.harakat import has_tanween, typed_case
+from backend.services.nahw import iraab
+from backend.services.quran import corpus as quran_corpus
+from backend.services.nahw import tarkeeb_store
+from backend.services.text.arabic_text import bare_letters, strip_diacritics
+from backend.services.text.harakat import has_tanween, typed_case
 
 PAUSE = re.compile("[ۖ-ۭ]")
 # the plain text writes the vocative and هَا apart; the corpus joins them to the next word
@@ -103,7 +105,7 @@ def score(ayahs: list[tuple[int, int]], out_path: str | None) -> None:
     texts: dict[int, dict[int, str]] = {}
     iraab.analyze("بِسْمِ اللَّهِ")  # load the models before anything is timed
     failed = _Failures()
-    logging.getLogger("backend.services.syntax").addHandler(failed)
+    logging.getLogger("backend.services.nahw.syntax").addHandler(failed)
     for surah, ayah in ayahs:
         corpus_text = texts.setdefault(surah, dict(quran_corpus.ayah_texts(surah)))[ayah]
         tags = quran_corpus.tags_for_ayah(surah, ayah)

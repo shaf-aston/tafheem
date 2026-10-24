@@ -5,7 +5,7 @@ the lemmas and roots below are CAMeL's own for these words.
 """
 import pytest
 
-from backend.services.nahw_book import is_diptote, is_fem_plural, is_mabni
+from backend.services.nahw.book import is_diptote, is_fem_plural, is_mabni
 
 PLAIN = dict(pos="noun", lemma="x", attached=False, annexed=False)
 

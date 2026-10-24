@@ -8,7 +8,7 @@ from __future__ import annotations
 import re
 from functools import lru_cache
 
-from backend.services.arabic_text import bare_letters
+from backend.services.text.arabic_text import bare_letters
 
 from backend.services.daleel.match.words import uses
 

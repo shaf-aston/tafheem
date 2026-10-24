@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.main import app  # noqa: E402
 from backend.scripts import build_rijal  # noqa: E402
-from backend.services.arabic_text import strip_diacritics  # noqa: E402
+from backend.services.text.arabic_text import strip_diacritics  # noqa: E402
 from backend.services.hadith import loader  # noqa: E402
 from backend.services.hadith.rijal import cache, parse, store  # noqa: E402
 

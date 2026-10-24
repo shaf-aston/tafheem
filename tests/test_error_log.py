@@ -12,7 +12,7 @@ import logging
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import progress_store
+from backend.services.learner import progress_store
 
 
 def test_a_crash_is_logged_with_path_and_profile_not_body(monkeypatch, caplog):

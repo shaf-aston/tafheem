@@ -24,8 +24,9 @@ import zlib
 from collections import defaultdict
 from pathlib import Path
 
-from backend.services import conjugation, verb_forms
-from backend.services.arabic_text import normalize_root
+from backend.services.sarf import conjugation
+from backend.services.sarf import verb_forms
+from backend.services.text.arabic_text import normalize_root
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 LEXICONS = DATA / "lexicons.db"

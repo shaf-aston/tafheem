@@ -11,7 +11,7 @@ still validates.
 If a number here changes on purpose - a new form harvested, a doubt
 resolved - update the expectation deliberately; don't delete the test.
 """
-from backend.services import tamreen
+from backend.services.nahw import tamreen
 
 # rules, examples per slug, as the review left them.
 SIZES = {

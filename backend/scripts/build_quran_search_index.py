@@ -23,8 +23,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services import quran_corpus  # noqa: E402
-from backend.services.arabic_text import both_spellings  # noqa: E402
+from backend.services.quran import corpus as quran_corpus  # noqa: E402
+from backend.services.text.arabic_text import both_spellings  # noqa: E402
 
 # One column is searched, the rest are carried. `fold` is the ayah with its
 # diacritics and spelling variants flattened, which is what a typed query is

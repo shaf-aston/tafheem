@@ -24,7 +24,7 @@ from datetime import datetime, timedelta, timezone
 import pytest
 
 from backend.config import get_settings
-from backend.services import progress_store
+from backend.services.learner import progress_store
 
 
 @pytest.fixture()
@@ -214,7 +214,7 @@ def test_replaying_many_words_is_quick():
     seconds, so making 300 must stay far below that."""
     from time import perf_counter
 
-    from backend.services.review_schedule import card_of
+    from backend.services.learner.review_schedule import card_of
 
     at = datetime(2026, 1, 1, tzinfo=timezone.utc)
     started = perf_counter()

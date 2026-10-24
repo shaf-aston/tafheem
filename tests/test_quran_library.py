@@ -22,8 +22,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import quran_library
-from backend.services.markup import as_text
+from backend.services.quran import library as quran_library
+from backend.services.text.markup import as_text
 
 client = TestClient(app)
 

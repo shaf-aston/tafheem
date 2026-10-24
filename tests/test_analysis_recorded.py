@@ -17,7 +17,9 @@ from fastapi.testclient import TestClient
 
 from backend.main import app
 from backend.scripts import build_tarkeeb
-from backend.services import nahw_book, syntax, tarkeeb_store
+from backend.services.nahw import book as nahw_book
+from backend.services.nahw import syntax
+from backend.services.nahw import tarkeeb_store
 from tests.test_tarkeeb_treebank import AL_ADIYAT_9, SETTINGS
 
 client = TestClient(app)

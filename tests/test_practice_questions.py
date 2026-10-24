@@ -7,7 +7,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.syntax.catib_onnx import files_present
+from backend.services.nahw.syntax.catib_onnx import files_present
 
 pytestmark = pytest.mark.skipif(not files_present(), reason="CATiB parser model files not present")
 client = TestClient(app)

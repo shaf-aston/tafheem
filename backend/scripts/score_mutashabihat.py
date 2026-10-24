@@ -2,7 +2,7 @@
 
     python -m backend.scripts.score_mutashabihat
 
-Every change to services/mutashabihat.py (shingle size, cap, ranking, the diff) or to
+Every change to services/quran/mutashabihat.py (shingle size, cap, ranking, the diff) or to
 its knobs in config.py is judged by this table and by nothing else. Run it before
 and after; keep the change only if a number rises and none falls.
 
@@ -29,7 +29,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services import mutashabihat  # noqa: E402
+from backend.services.quran import mutashabihat  # noqa: E402
 
 DOWNLOADS = "downloads/mutashabihat"
 RECALL_AT = (5, 10)

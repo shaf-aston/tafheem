@@ -6,7 +6,7 @@ import asyncio
 from fastapi import APIRouter, HTTPException
 
 from backend.models.tamreen import TamreenLibrary
-from backend.services import tamreen
+from backend.services.nahw import tamreen
 
 router = APIRouter(prefix="/api/tamreen", tags=["tamreen"])
 

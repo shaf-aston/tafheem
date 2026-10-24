@@ -16,6 +16,6 @@ class Source(BaseModel):
 
 
 class Correction(BaseModel):
-    """A typed word the search did not know, and the known word searched in its place (services/spelling.py)."""
+    """A typed word the search did not know, and the known word searched in its place (services/text/spelling.py)."""
     typed: str
     used: str

@@ -3,7 +3,7 @@ import pytest
 from fastapi import HTTPException
 
 from backend.config import get_settings
-from backend.services.syntax import teacher, tree
+from backend.services.nahw.syntax import teacher, tree
 from backend.utils import arabic_sentence
 from tests.test_naming import named, token
 

@@ -8,7 +8,9 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 import pytest
 
 from backend.scripts import build_tarkeeb
-from backend.services import arabic_text, nahw_book, tarkeeb_store
+from backend.services.text import arabic_text
+from backend.services.nahw import book as nahw_book
+from backend.services.nahw import tarkeeb_store
 
 SETTINGS = nahw_book.tarkeeb_rules()["treebank"]
 TONE = lambda relation: "default"  # noqa: E731, colour is not what these tests are about

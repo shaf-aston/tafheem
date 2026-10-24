@@ -1,6 +1,6 @@
 """The timelines: the Prophets, the Seerah and the unseen, one section per file.
 
-With services/refs, the only reader of data/timelines. library.json declares everything a section
+With services/text/refs, the only reader of data/timelines. library.json declares everything a section
 may point at (sciences, flags, places, collections, map views), so a place is
 written once and a typo in a key is caught rather than drawn nowhere.
 
@@ -17,7 +17,10 @@ import re
 from functools import lru_cache
 
 from backend.config import data_path
-from backend.services import asbab, provenance, quran_meanings, refs
+from backend.services.quran import asbab
+from backend.services.core import provenance
+from backend.services.quran import meanings as quran_meanings
+from backend.services.text import refs
 from backend.services.hadith.chain import cut_of
 
 logger = logging.getLogger(__name__)

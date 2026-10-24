@@ -12,7 +12,7 @@ import re
 import pytest
 
 from backend.scripts import build_basics_verbs as B
-from backend.services import verb_forms
+from backend.services.sarf import verb_forms
 
 SOURCE = json.loads(B.SOURCE.read_text(encoding="utf-8"))
 SHIPPED = json.loads(B.OUT.read_text(encoding="utf-8"))

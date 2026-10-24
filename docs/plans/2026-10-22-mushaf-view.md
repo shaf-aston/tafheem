@@ -23,7 +23,7 @@ Printings, in order of who asks for them most: **Madani 1421 (KFGQPC V2, 604 pag
 
 ### What already exists here
 
-- `services/quran_layout.py` + `scripts/build_quran_layout.py`: **ayah → page** for Madani 604, from `api.quran.com`. Only Memorise uses it (`lib/memorise/memorise.js` `pagesOf`). No line data.
+- `services/quran/layout.py` + `scripts/build_quran_layout.py`: **ayah → page** for Madani 604, from `api.quran.com`. Only Memorise uses it (`lib/memorise/memorise.js` `pagesOf`). No line data.
 - Text is Unicode in `Scheherazade New` (OFL), with the mushaf spelling and the tanween-meem rule (`arabic_text.mushaf_words`).
 - `data/quran/editions.json` already imports QUL sqlite exports (`qul-tafsir`, `qul-translation`), so a `qul-layout` format fits the existing pattern.
 
@@ -80,7 +80,7 @@ scripts/build_mushaf.py ──writes──> mushaf.db   (run by hand, like build
 ```
 data/quran/mushafs.json        which printings exist: id, name, pages, lines, script, source, credit
 scripts/build_mushaf.py        harvest a printing into mushaf.db (sources: quran-api | qul-layout)
-services/mushaf.py             the only opener of mushaf.db; absorbs quran_layout.py (ayah→page is a query on it)
+services/quran/mushaf.py             the only opener of mushaf.db; absorbs quran_layout.py (ayah→page is a query on it)
 routers/quran.py (+3 routes)   list · page · locate
 lib/mushaf.js                  fetch + cache pages, prefetch ±1, page-font loader (FontFace)
 quran/MushafPage.jsx           one page: lines → words; renderer chosen by script; per-line fit
@@ -98,7 +98,7 @@ GET /api/quran/mushaf/{id}/page/{n}         → {page, lines: [{type: ayah|surah
 GET /api/quran/mushaf/{id}/locate?ayah=s:a  → {page}
 mushaf.db: line(mushaf, page, line, type, surah, centered, first_key, last_key)
            word(mushaf, key, surah, ayah, pos, text, glyph)      -- keyed by s:a:w, never source ids
-services/mushaf.py: printings() · page(id, n) · page_of(id, surah, ayah) · for_surah(id, surah)
+services/quran/mushaf.py: printings() · page(id, n) · page_of(id, surah, ayah) · for_surah(id, surah)
 Renderer seam: script → MushafLineText | MushafLineGlyph, same props {line, onWord, onAyah}
 ```
 Gate → every box maps up; every arrow is a call below; each slice below names its component. **Pass.**
@@ -107,7 +107,7 @@ Gate → every box maps up; every arrow is a call below; each slice below names 
 
 | Slice | Builds | Done when | Pre-mortem: "fails because…" |
 |---|---|---|---|
-| **S0 skeleton** | `mushafs.json` (Madani 1421 only), `build_mushaf.py --pages 1-3`, `services/mushaf.py`, page route, `MushafPage` text renderer behind the Page toggle | page 3 renders 15 lines, words in order, at 360 and 1280 | Scheherazade lines don't fit the print's breaks → spike a per-line fit (shrink font-size to width) here, before anything else |
+| **S0 skeleton** | `mushafs.json` (Madani 1421 only), `build_mushaf.py --pages 1-3`, `services/quran/mushaf.py`, page route, `MushafPage` text renderer behind the Page toggle | page 3 renders 15 lines, words in order, at 360 and 1280 | Scheherazade lines don't fit the print's breaks → spike a per-line fit (shrink font-size to width) here, before anything else |
 | **S1 whole printing** | all 604 pages; tests: R2 line counts, R3 6,236 ayahs vs `layout.db`; then `quran_layout.py` reads from `mushaf.db` and `layout.db` goes | tests green; Memorise unchanged | Quran.com rate limits → reuse build_quran_layout's pause + retry |
 | **S2 glyph pages** | page fonts copied into our build (QF account + credit), `MushafLineGlyph`, FontFace loader, text renderer while the font loads | font ≤ 200 KB, only ±1 loaded, no wrong glyph ever painted | terms don't fit → stay on S0's text renderer; nothing else changes |
 | **S3 reading** | `MushafReader`: swipe/keys, page picker, ayah → page jump from search, last page remembered, two-page spread ≥ 1024px | R5 measured | content-visibility on rows → pages are their own component, not AyahList rows |

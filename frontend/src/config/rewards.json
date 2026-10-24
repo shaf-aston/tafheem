@@ -1,5 +1,5 @@
 {
-  "_comment": "Level names and '+10' timing. XP rules are the server's (backend/services/rewards.py).",
+  "_comment": "Level names and '+10' timing. XP rules are the server's (backend/services/learner/rewards.py).",
 
   "_ranks": "Level names; each starts at level `from`, rising order.",
   "ranks": [

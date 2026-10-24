@@ -66,7 +66,7 @@ fi
 # Colloquial lessons are all in git, so the server copy is mirrored exactly.
 rsync -a --delete backend/data/colloquial/ /home/ubuntu/tafheem/backend/data/colloquial/
 # The few frontend files the backend reads at runtime, kept at the same paths:
-# the quiz's words for checked practice sentences (services/sentence_check.py) and the Jazariyya poem
+# the quiz's words for checked practice sentences (services/learner/sentence_check.py) and the Jazariyya poem
 # (services/daleel/sources/jazariyya.py), and the voices' shared pace (services/speech.py). Without the words, Make one was a 500.
 # tests/test_deploy_files.py fails if the backend starts reading another.
 rsync -aR frontend/public/words/words.json frontend/public/words/coverage.json \

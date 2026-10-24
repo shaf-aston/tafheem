@@ -17,8 +17,8 @@ import json
 
 import pytest
 
-from backend.services import dictionary_service as service
-from backend.services import morphology
+from backend.services.dictionary import service
+from backend.services.sarf import morphology
 
 
 def test_the_tagger_root_is_plain_letters():

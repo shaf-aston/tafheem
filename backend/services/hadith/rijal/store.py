@@ -12,7 +12,7 @@ from functools import lru_cache
 
 from backend.config import data_path
 from backend.services.hadith import chain, loader, words
-from backend.services.readonly_db import ReadOnlyDb
+from backend.services.core.readonly_db import ReadOnlyDb
 
 _db = ReadOnlyDb(lambda: data_path("rijal_index_path"))
 _SUMMARY = "n.id, n.name_ar, n.name_en, n.grade_ar, n.grade_rank"

@@ -5,7 +5,7 @@ import json
 import re
 from abc import ABC, abstractmethod
 
-from backend.services.fallback import Retirable
+from backend.services.core.fallback import Retirable
 
 
 class AIBackend(Retirable, ABC):
@@ -13,7 +13,7 @@ class AIBackend(Retirable, ABC):
 
     `retired_reason` and `retire()` come from Retirable, which the ears share:
     striking off an engine that will never answer is the same idea on both
-    sides, so it is written once (services/fallback).
+    sides, so it is written once (services/core/fallback).
     """
 
     @abstractmethod

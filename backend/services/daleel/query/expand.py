@@ -22,7 +22,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Protocol
 
-from backend.services.arabic_text import bare_letters, has_arabic, normalize_root
+from backend.services.text.arabic_text import bare_letters, has_arabic, normalize_root
 
 
 # Words that carry no question; asked as they are, each would be looked up and

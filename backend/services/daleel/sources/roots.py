@@ -13,8 +13,8 @@ from __future__ import annotations
 
 from typing import Iterable
 
-from backend.services import roots as root_finder
-from backend.services.arabic_text import bare_letters, normalize_root
+from backend.services.dictionary import roots as root_finder
+from backend.services.text.arabic_text import bare_letters, normalize_root
 
 
 def roots_in(words: Iterable[str]) -> str:

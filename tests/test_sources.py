@@ -7,7 +7,7 @@ make it a list that looks complete and is not, which is worse than no list.
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import provenance
+from backend.services.core import provenance
 
 client = TestClient(app)
 

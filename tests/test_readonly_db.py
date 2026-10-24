@@ -1,7 +1,7 @@
 import os
 import sqlite3
 
-from backend.services.readonly_db import ReadOnlyDb
+from backend.services.core.readonly_db import ReadOnlyDb
 
 
 def _make(path, value):

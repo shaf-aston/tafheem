@@ -25,9 +25,9 @@ from pathlib import Path
 import pytest
 
 from backend.config import data_path, get_settings
-from backend.services import quran_search
-from backend.services.quran_search import local, remote
-from backend.services.readonly_db import ReadOnlyDb
+from backend.services.quran import search as quran_search
+from backend.services.quran.search import local, remote
+from backend.services.core.readonly_db import ReadOnlyDb
 
 # Three fabricated ayahs, not the real ones: the point is the search, and a test
 # that needs the built index would be skipped exactly when it is most useful.
@@ -57,7 +57,7 @@ _TEMP_INDEX = "data/quran/search-under-test.db"
 def index(monkeypatch):
     """A tiny index of three fabricated ayahs, pointed at through the real
     setting, so what the test exercises is the path the app itself takes."""
-    from backend.services.arabic_text import both_spellings as _fold
+    from backend.services.text.arabic_text import both_spellings as _fold
 
     target = Path(__file__).resolve().parents[1] / "backend" / _TEMP_INDEX
     target.unlink(missing_ok=True)
@@ -223,7 +223,7 @@ def test_a_whole_ayah_is_known_for_one_and_a_part_or_a_repeat_is_not(index) -> N
 def test_the_online_source_is_a_known_badge() -> None:
     """Both adapters name a source that data/sources.json really has, or the
     badge would fail at the moment a reader searched rather than here."""
-    from backend.services import provenance
+    from backend.services.core import provenance
 
     assert provenance.of(local._SOURCE)["label"]
     assert provenance.of(remote._SOURCE)["label"]

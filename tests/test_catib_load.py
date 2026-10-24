@@ -11,7 +11,7 @@ import time
 
 import pytest
 
-from backend.services.syntax import catib_onnx
+from backend.services.nahw.syntax import catib_onnx
 
 
 class _Disambiguator:

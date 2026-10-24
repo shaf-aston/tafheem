@@ -10,7 +10,8 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import arabic_text, quran_corpus
+from backend.services.text import arabic_text
+from backend.services.quran import corpus as quran_corpus
 
 pytestmark = pytest.mark.skipif(
     not quran_corpus.is_loaded(),

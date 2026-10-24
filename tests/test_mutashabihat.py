@@ -5,7 +5,7 @@ import pytest
 
 from backend.config import data_path
 from backend.scripts.build_mutashabihat import merge
-from backend.services import mutashabihat
+from backend.services.quran import mutashabihat
 
 fetched = pytest.mark.skipif(
     not data_path("quran_imlaei_path").exists(),

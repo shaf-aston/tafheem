@@ -11,7 +11,7 @@ from fastapi import APIRouter, File, Form, Header, HTTPException, Query, UploadF
 from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
-from backend.services import recordings
+from backend.services.recitation import recordings
 
 router = APIRouter(prefix="/api/recordings", tags=["recordings"])
 

@@ -8,7 +8,7 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import tamreen
+from backend.services.nahw import tamreen
 
 TAGS = {"haal"}
 PICTURES = {"haal-00.png"}

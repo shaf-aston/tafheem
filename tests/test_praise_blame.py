@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services.nahw_book import doer_written_in, needs_praised
+from backend.services.nahw.book import doer_written_in, needs_praised
 from tests.nahw_helpers import cards, needs_parser
 
 

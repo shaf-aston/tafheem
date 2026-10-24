@@ -11,7 +11,7 @@ from pydantic import StringConstraints
 
 from backend.config import get_settings
 from backend.models.daleel import DaleelBook, DaleelHit, DaleelResponse
-from backend.services import provenance
+from backend.services.core import provenance
 from backend.services.daleel import catalogue, search
 from backend.services.daleel.index.connection import is_built
 from backend.utils import Timings, search_query

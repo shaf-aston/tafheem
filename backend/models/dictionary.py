@@ -39,7 +39,7 @@ class DictionaryEntry(BaseModel):
 
 
 class ReadAs(BaseModel):
-    """A typed word that is no headword, and the word and root it was read as (services/morphology.py)."""
+    """A typed word that is no headword, and the word and root it was read as (services/sarf/morphology.py)."""
     typed: str
     lemma: str  # "" when only its root was found
     root: str
@@ -107,7 +107,7 @@ class RootMeaningResponse(BaseModel):
     root" are different sentences and are never allowed to look the same."""
 
     root: str          # the exact letters searched, so a mismatch is visible
-    status: str        # missing | broken | ready, see services/root_meaning.py
+    status: str        # missing | broken | ready, see services/dictionary/root_meaning.py
     # The spelling the book itself files this entry under, sent only when it is
     # not the one searched. Typing بدا reaches the entry printed بدأ, and without
     # saying so the reader takes an answer about one root as an answer about the
@@ -147,7 +147,7 @@ class LexiconsResponse(BaseModel):
     """
 
     root: str
-    status: str        # missing | broken | ready, see services/lexicons.py
+    status: str        # missing | broken | ready, see services/dictionary/lexicons.py
     entries: list[LexiconEntry] = []
 
 

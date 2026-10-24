@@ -1,7 +1,7 @@
 """The bracket picture for a typed sentence, built from the parser's links."""
-from backend.services.nahw_book import role_units
-from backend.services.syntax import tree
-from backend.services.nahw_book import condition_of, term_ar
+from backend.services.nahw.book import role_units
+from backend.services.nahw.syntax import tree
+from backend.services.nahw.book import condition_of, term_ar
 from tests.nahw_helpers import tree_roles as roles_in
 from tests.test_naming import named, token
 
@@ -142,8 +142,8 @@ def test_a_condition_draws_particle_condition_and_answer_side_by_side_with_the_m
 
 def test_a_role_has_one_colour_in_every_tree():
     """A typed sentence draws like a book example: a role both tree files name wears one tone."""
-    from backend.services.arabic_text import strip_diacritics
-    from backend.services.nahw_book import role_table, tarkeeb_rules
+    from backend.services.text.arabic_text import strip_diacritics
+    from backend.services.nahw.book import role_table, tarkeeb_rules
     tones = {role: tone for role, (_, tone) in role_table().items()}
     clash = {key: (term["tone"], tones[strip_diacritics(term["ar"])])
              for key, term in tarkeeb_rules()["terms"].items()
@@ -152,16 +152,16 @@ def test_a_role_has_one_colour_in_every_tree():
 
 
 def test_only_a_sentence_gets_a_line_above_the_cards():
-    from backend.services.syntax import tree as drawing
+    from backend.services.nahw.syntax import tree as drawing
     assert drawing.names_a_sentence(drawing.NOMINAL) and drawing.names_a_sentence(drawing.VERBAL)
     assert not drawing.names_a_sentence("مُرَكَّبٌ تَوْصِيْفِيٌّ") and not drawing.names_a_sentence(None)
 
 
 def test_a_name_with_its_ibn_is_no_murakkab_tawsifi():
     # ابن here is صفة, عطف بيان or بدل: the group is not named for one of them, its head is the متبوع
-    from backend.services.syntax import tree as drawing
-    from backend.services.syntax.naming import roles as name_roles
-    from backend.services.syntax.repair import correct
+    from backend.services.nahw.syntax import tree as drawing
+    from backend.services.nahw.syntax.naming import roles as name_roles
+    from backend.services.nahw.syntax.repair import correct
     from tests.test_naming import _name, token
     words = ["محمد", "بن", "عبد", "الله"]
     toks = [_name(1, "محمد", 0, "---"),
@@ -177,7 +177,7 @@ def test_a_name_with_its_ibn_is_no_murakkab_tawsifi():
 
 def test_a_masdar_with_al_urged_alone_is_the_object_of_an_unwritten_verb():
     # الصِّدْقَ الصِّدْقَ: الإغراء, not the unwritten verb's own masdar (شكرًا)
-    from backend.services.syntax import teacher
+    from backend.services.nahw.syntax import teacher
     words = ["الصِّدْقَ", "الصِّدْقَ"]
     toks = [token(1, "الصدق", "صدق", "NOM", 0, "---", stt="d", cas="a", pos_camel="noun", pattern="ال1ِ2ْ3"),
             token(2, "الصدق", "صدق", "NOM", 1, "MOD", stt="d", cas="a", pos_camel="noun", pattern="ال1ِ2ْ3")]

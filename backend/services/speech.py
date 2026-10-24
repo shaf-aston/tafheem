@@ -2,7 +2,7 @@
 
 Same shape as the ears (services/recitation/ears.py): each voice answers the
 same question, config names the order, and a voice that breaks is retired
-(services/fallback.py) so later words skip it. Real reciters are not here; the
+(services/core/fallback.py) so later words skip it. Real reciters are not here; the
 page plays their recordings straight from quran.com (frontend lib/speech/speak.js).
 
 Adding a voice, a cloned reciter say, is one class below plus its name in
@@ -46,7 +46,7 @@ from contextlib import contextmanager, nullcontext
 from pathlib import Path
 
 from backend.config import get_settings
-from backend.services.fallback import Retirable
+from backend.services.core.fallback import Retirable
 
 log = logging.getLogger(__name__)
 

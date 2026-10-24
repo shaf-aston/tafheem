@@ -14,7 +14,9 @@ import json
 from functools import lru_cache
 
 from backend.config import data_path
-from backend.services import provenance, quran_meanings, refs
+from backend.services.core import provenance
+from backend.services.quran import meanings as quran_meanings
+from backend.services.text import refs
 
 TOPIC_FIELDS = ("id", "title", "arabic", "blurb")
 QUESTION_FIELDS = ("id", "q", "short")

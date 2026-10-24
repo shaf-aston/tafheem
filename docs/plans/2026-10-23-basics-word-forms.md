@@ -22,7 +22,7 @@ Work out the full set of criteria, not just these examples. Reuse what exists, d
 | F2 | Questions both ways: "which one is 'she wrote'?" (3 Arabic options) and "what does كَتَبَتْ mean?" (3 English options) | both card types for every marker |
 | F3 | **Wrong options are never also right.** An option is wrong only if no reading of it is the asked meaning (تَكْتُبُ = she writes *and* you write; لَمْ يَكْتُبْ = مَا كَتَبَ = he didn't write; سَيَكْتُبُ = سَوْفَ يَكْتُبُ) | property test over every verb, person and marker |
 | F4 | Wrong options are the same word in its other forms, or the same word formed wrongly (*لَمْ كَتَبَ, *سَكَتَبَ, *الْكِتَابُهُ) | per-marker unit tests; every option contains the word's root letters |
-| F5 | Verb Arabic comes from the app's own engine (`backend/services/conjugation.py`) and nothing is typed by hand | build script plus a freshness test: the shipped JSON equals a fresh build |
+| F5 | Verb Arabic comes from the app's own engine (`backend/services/sarf/conjugation.py`) and nothing is typed by hand | build script plus a freshness test: the shipped JSON equals a fresh build |
 | F6 | The English is hand-checked per verb (write / wrote / writes); per-person wording comes from templates | data test: three forms for each verb |
 | F7 | One Basics world with one path. The skills are interleaved with the ال words in a data-defined order; existing ال progress ids are unchanged | path test; ids of the existing 128 words unchanged |
 | F8 | The marker is what is learned: the verb or noun on each card is drawn at random from the list, so the learner generalises instead of memorising | cards for one marker draw different verbs |

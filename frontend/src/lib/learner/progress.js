@@ -103,7 +103,7 @@ export async function leaveFeedback({ module, item, message }) {
 /** Every username, for the log-in box while in beta. Throws (404 once beta is over), for react-query. */
 export const fetchAccountNames = () => api.get(`${BASE}/accounts`).then((r) => r.data.names)
 
-// Circles: everything about who may do or see what is the server's (services/progress_store.py);
+// Circles: everything about who may do or see what is the server's (services/learner/progress_store.py);
 // these only call it. Each one throws, so the box can say why.
 const circlePath = (id) => `${BASE}/circles/${id}`
 const memberPath = (id, member) => `${circlePath(id)}/members/${encodeURIComponent(member)}`

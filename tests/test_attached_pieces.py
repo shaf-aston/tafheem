@@ -8,8 +8,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.arabic_text import strip_diacritics
-from backend.services.syntax.catib_onnx import files_present
+from backend.services.text.arabic_text import strip_diacritics
+from backend.services.nahw.syntax.catib_onnx import files_present
 
 pytestmark = pytest.mark.skipif(not files_present(), reason="CATiB parser model files not present")
 client = TestClient(app)
@@ -437,7 +437,7 @@ def test_a_unit_with_a_job_leaves_off_what_it_is_made_of():
 def test_a_weak_radical_left_unpinned_is_still_one_root():
     """سارَ سَيْرًا: without the Qur'an corpus the analyser files سار under سور, its masdar
     under سير; the weak middle letter is the same radical, so the مفعول مطلق still shows."""
-    from backend.services.syntax.facts import same_root
+    from backend.services.nahw.syntax.facts import same_root
     assert same_root({"root": "سور", "lemma": "سار"}, {"root": "سير", "lemma": "سير"})
     assert not same_root({"root": "كتب", "lemma": "كتب"}, {"root": "كسب", "lemma": "كسب"})
 
@@ -467,8 +467,8 @@ def test_a_word_with_its_owner_written_on_is_a_noun_not_the_particle():
 def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     """مُنِحَ الطَّالِبُ هَدِيَّةً: the نائب فاعل is the first object, so هدية is the second
     مفعول به however the parser hung it (a CPU's rounding tipped it to MOD on CI)."""
-    from backend.services import iraab
-    from backend.services.syntax import catib_onnx
+    from backend.services.nahw import iraab
+    from backend.services.nahw.syntax import catib_onnx
     real = catib_onnx.parse
 
     def parse(typed, picks):
@@ -484,8 +484,8 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
 def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, rooted):
     """عِلْمًا طَلَبَ زَيْدٌ: the verb has no pronoun back to عِلْمًا, so it is no صفة of it; the noun is
     the fronted مفعول به however the parser rooted it (a CPU's rounding rooted the noun on CI)."""
-    from backend.services import iraab
-    from backend.services.syntax import catib_onnx
+    from backend.services.nahw import iraab
+    from backend.services.nahw.syntax import catib_onnx
     real = catib_onnx.parse
 
     def parse(typed, picks):
@@ -502,9 +502,10 @@ def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, ro
 @pytest.mark.parametrize("sentence, moved", [("عِلْمًا طَلَبَ زَيْدٌ", True), ("عِلْمًا طَلَبَهُ زَيْدٌ", False)])
 def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved):
     """طَلَبَهُ has its pronoun back to عِلْمًا, so the parser's صفة reading stands; without one it cannot."""
-    from backend.services import morphology, syntax
-    from backend.services.syntax import catib_onnx
-    from backend.services.syntax.repair import correct
+    from backend.services.sarf import morphology
+    from backend.services.nahw import syntax
+    from backend.services.nahw.syntax import catib_onnx
+    from backend.services.nahw.syntax.repair import correct
     words = sentence.split()
     tokens = catib_onnx.parse(words, morphology.pick(words, syntax.disambiguator()))
     tokens[0]["head"], tokens[0]["rel"] = 0, "---"
@@ -559,7 +560,7 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
     ("اِشْتَعَلَ الرَّأْسُ شَيْبًا", "شَيْبًا", ("role", "تمييز")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
-    from backend.services import iraab
+    from backend.services.nahw import iraab
     card = next(w for w in iraab.analyze(sentence)["words"] if w["word"] == word)
     assert card.get(want[0]) == want[1]
 
@@ -568,10 +569,11 @@ def test_sentence_check_fixes(sentence, word, want):
 def test_zanna_pair_whatever_tree_the_parser_gives(hung):
     """ظنّ's two objects come out the same however the parser hung the old مبتدأ and خبر:
     machines differ in the tree they read (CI hung قصيرا on الرجل)."""
-    from backend.services import morphology, syntax
-    from backend.services.syntax import catib_onnx
-    from backend.services.syntax.naming import roles
-    from backend.services.syntax.repair import correct
+    from backend.services.sarf import morphology
+    from backend.services.nahw import syntax
+    from backend.services.nahw.syntax import catib_onnx
+    from backend.services.nahw.syntax.naming import roles
+    from backend.services.nahw.syntax.repair import correct
     words = "حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا".split()
     tokens = catib_onnx.parse(words, morphology.pick(words, syntax.disambiguator()))
     for word_id, (head, rel) in hung.items():

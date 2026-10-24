@@ -16,7 +16,7 @@ import re
 from dataclasses import dataclass, field
 from functools import lru_cache
 
-from backend.services.arabic_text import bare_letters
+from backend.services.text.arabic_text import bare_letters
 
 _HEADER_END = "#META#Header#End#"
 _HEADING = re.compile(r"^### \|(?: (.*))?$")

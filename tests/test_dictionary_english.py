@@ -11,7 +11,9 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from backend.routers import dictionary as router_module
-from backend.services import ai, dictionary_service as service, progress_store
+from backend.services import ai
+from backend.services.dictionary import service
+from backend.services.learner import progress_store
 
 ENTRIES = [
     {"arabic": "جرى", "root": "جري", "definitions": ["to flow, to run a course, to happen"]},

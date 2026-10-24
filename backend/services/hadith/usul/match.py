@@ -15,7 +15,7 @@ from typing import Callable, Hashable, Iterable, Mapping, Sequence
 
 from backend.services.hadith import chain
 from backend.services.hadith.words import ARABIC_WORD
-from backend.services.spelling import fold
+from backend.services.text.spelling import fold
 from backend.services.hadith.usul import names
 
 

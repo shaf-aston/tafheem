@@ -4,8 +4,8 @@ import re
 from backend.scripts.score_iraab import (
     KEY, book_sentences, disagreements, family, fresh_sentences, held_out, routed,
     sign_matches)
-from backend.services.syntax.naming import ROLES
-from backend.services.arabic_text import bare_letters, words
+from backend.services.nahw.syntax.naming import ROLES
+from backend.services.text.arabic_text import bare_letters, words
 
 
 def test_longest_term_wins():
@@ -130,8 +130,8 @@ def test_the_check_fails_on_a_drop_or_a_crash_and_passes_level(monkeypatch, tmp_
 
 def test_a_reader_that_breaks_says_so(monkeypatch):
     from backend.config import get_settings
-    from backend.services import syntax
-    from backend.services.syntax import catib_onnx
+    from backend.services.nahw import syntax
+    from backend.services.nahw.syntax import catib_onnx
 
     def broken(words, picks):
         raise RuntimeError("boom")

@@ -3,7 +3,7 @@ import logging
 
 import pytest
 
-from backend.services.timing import timed
+from backend.services.core.timing import timed
 
 
 def test_result_passes_through_and_the_line_names_fields_and_length(caplog):

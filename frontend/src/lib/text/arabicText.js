@@ -2,7 +2,7 @@
  * Shared Arabic text helpers, the frontend's single owner of diacritics logic.
  * Never redefine these locally.
  *
- * Not a mirror of backend/services/arabic_text.py, though the diacritic ranges
+ * Not a mirror of backend/services/text/arabic_text.py, though the diacritic ranges
  * are the same three. The backend also folds ٱ and ى→ي because it is lining up
  * two written sources; `bareForm` below deliberately does not, and says why.
  * Read them as two functions answering two questions, not as one that drifted.

@@ -11,8 +11,10 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services import ai, progress_store, sentence_check
-from backend.services.sentence_check import check
+from backend.services import ai
+from backend.services.learner import progress_store
+from backend.services.learner import sentence_check
+from backend.services.learner.sentence_check import check
 
 LEMMAS = {"الكتاب": "كتاب", "كتب": "كتب", "الولد": "ولد", "البيت": "بيت"}
 def fake_lemma(word):

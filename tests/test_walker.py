@@ -1,9 +1,9 @@
 """The naming tree is data, so the walker is tested on tiny trees of its own."""
 import pytest
 
-from backend.services.nahw_book import book_path
-from backend.services.syntax import walker
-from backend.services.syntax.facts import AXES
+from backend.services.nahw.book import book_path
+from backend.services.nahw.syntax import walker
+from backend.services.nahw.syntax.facts import AXES
 
 
 def leaf(branch, answer, role="حرف"):

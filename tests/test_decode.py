@@ -3,7 +3,7 @@ import itertools
 
 import numpy as np
 
-from backend.services.syntax.decode import eisner, heads, is_projective_tree
+from backend.services.nahw.syntax.decode import eisner, heads, is_projective_tree
 
 
 def test_argmax_tree_is_kept():

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services import iraab
+from backend.services.nahw import iraab
 from tests.nahw_helpers import needs_parser
 
 pytestmark = needs_parser

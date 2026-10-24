@@ -22,9 +22,9 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.scripts import build_lexicons as builder  # noqa: E402
-from backend.services import lexicons  # noqa: E402
+from backend.services.dictionary import lexicons  # noqa: E402
 from backend.services.daleel.sources.lexicons import LexiconsSource  # noqa: E402
-from backend.services.lexicons import source_keys  # noqa: E402
+from backend.services.dictionary.lexicons import source_keys  # noqa: E402
 
 
 @pytest.fixture

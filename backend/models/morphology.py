@@ -92,14 +92,14 @@ class VerbReading(BaseModel):
 
 class VerbVerdict(BaseModel):
     """Every باب a dictionary states for this verb, never a guess. Empty
-    readings means no source recorded one. See services/verb_forms.py."""
+    readings means no source recorded one. See services/sarf/verb_forms.py."""
     form_key: str | None = None
     readings: list[VerbReading] = Field(default_factory=list)
 
     @classmethod
     def of(cls, verdict: dict) -> "VerbVerdict":
         """The card's shape from verb_forms.babs_of's answer, source keys made badges."""
-        from backend.services import provenance
+        from backend.services.core import provenance
         return cls(
             form_key=verdict["form_key"],
             readings=[

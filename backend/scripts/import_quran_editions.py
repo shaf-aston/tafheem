@@ -41,7 +41,7 @@ rather than guessed at:
                  sura, ayah, ayah_key, text, and sometimes footnotes.
 
 Both keep whatever HTML the source data had, which is stripped here, at the edge,
-by services/markup.py. What reaches the database is text.
+by services/text/markup.py. What reaches the database is text.
 
 Safe to re-run. Writes to a scratch file and moves it into place only at the end,
 so an interrupted run leaves the working library untouched. With --only, the
@@ -62,7 +62,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path, get_settings  # noqa: E402, needs the path above
-from backend.services.markup import as_text  # noqa: E402
+from backend.services.text.markup import as_text  # noqa: E402
 
 # The four words the app is allowed to print on a badge. Kept in step with
 # tests/test_sources.py, which enforces the same list for sources.json: a fifth

@@ -19,7 +19,7 @@ Then:
 
     python backend/scripts/import_quran_editions.py --only asbab-lubab-ar
 
-The rule itself is backend/services/asbab_split.py, which is pure and tested.
+The rule itself is backend/services/quran/asbab_split.py, which is pure and tested.
 Nothing here decides where a report goes.
 """
 from __future__ import annotations
@@ -37,7 +37,7 @@ import httpx
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
-from backend.services import asbab_split  # noqa: E402
+from backend.services.quran import asbab_split  # noqa: E402
 
 # OpenITI's pri-data, the same library backend/data/books came from. Free for
 # non-commercial use, and the download needs no account.

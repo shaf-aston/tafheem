@@ -61,7 +61,7 @@ import re
 from dataclasses import dataclass
 from difflib import SequenceMatcher
 
-from backend.services.arabic_text import alef_written_out, bare_letters
+from backend.services.text.arabic_text import alef_written_out, bare_letters
 
 # Only Arabic letters and the spaces between them survive. This is what removes
 # the numbers Whisper writes into long recitations, and any stray Latin.

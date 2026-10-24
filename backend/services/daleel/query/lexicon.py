@@ -14,8 +14,9 @@ from __future__ import annotations
 
 from functools import lru_cache
 
-from backend.services import dictionary_service, roots
-from backend.services.arabic_text import bare_letters
+from backend.services.dictionary import service as dictionary_service
+from backend.services.dictionary import roots
+from backend.services.text.arabic_text import bare_letters
 
 
 def _root_of(word: str) -> str:

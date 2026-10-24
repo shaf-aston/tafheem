@@ -1,5 +1,5 @@
 {
-  "_comment": "Every conjugation rule in the app, as templates. {1}{2}{3} are the three root letters. The engine in services/conjugation.py only fills these in and attaches the endings below: it holds no Arabic of its own, so a wrong form is fixed here, not in code.",
+  "_comment": "Every conjugation rule in the app, as templates. {1}{2}{3} are the three root letters. The engine in services/sarf/conjugation.py only fills these in and attaches the endings below: it holds no Arabic of its own, so a wrong form is fixed here, not in code.",
   "_endings": "The 14 persons, in the order the books list them. Each row is [label, madi suffix, mudari prefix letter, mudari ending].",
   "persons": [
     [
