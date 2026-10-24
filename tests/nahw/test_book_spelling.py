@@ -5,7 +5,7 @@ import pytest
 
 from backend.services.nahw.book import (book_spelling, condition_of, extra_ba_on, is_built_word, is_extra_ba, is_one,
                                         kaffa_sister, only_adverb, six_noun_case)
-from backend.services.nahw.syntax.facts import reading
+from backend.services.nahw.syntax.facts import is_verb, reading
 
 MADDAH = "ٓ"  # kept by the parser's own cleaning (dediac_ar), a mark to the book
 
@@ -39,3 +39,11 @@ def test_reading_asks_what_the_word_was_read_as():
     assert reading({"reading": read}, "kind") == "ism"
     assert reading({"reading": None}) is None  # not read: its lists decide
     assert reading({}) is None and reading(None, "named") is None  # no word before the first
+
+
+def test_a_reading_overrides_the_parser_verb_tag():
+    """أَلَا tagged a verb but read as a particle is no verb; ما of wonder read as a fi'l is one."""
+    ala = {"pos": "VRB", "typed": "أَلَا", "reading": {"family": "tanbih", "kind": "harf"}}
+    wonder = {"pos": "PRT", "typed": "مَا", "reading": {"family": "wonder", "kind": "fil"}}
+    assert not is_verb(ala) and is_verb(wonder)
+    assert is_verb({**ala, "reading": None})  # not read: the parser's tag stands
