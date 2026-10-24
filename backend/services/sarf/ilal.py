@@ -591,7 +591,7 @@ def apply(letters: list[W.Letter], config: dict, context: Context) -> Shaped:
 
     A rule that did not change the word must hand back the very list it was
     given; that is how `fired` stays a true record of which rules shaped this
-    cell, and `tests/test_ilal.py` holds each rule to it.
+    cell, and `tests/sarf/test_ilal.py` holds each rule to it.
     """
     fired, notes = [], []
     for rule_id, rule in config.items():

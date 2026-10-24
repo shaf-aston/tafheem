@@ -46,6 +46,8 @@ backend/
     text/        arabic_text, harakat, spelling, markup, fts, refs
   data/          the files the services read; built by scripts/
   scripts/       builders, one per data file
+tests/           same folders as services/ (nahw/, quran/, …) + core/ (config, headers, deploy)
+                 + scripts/ (builders); a domain with one test file keeps it at the root
 ```
 
 Rule of thumb: a file about one tab lives in that tab's folder on both sides;

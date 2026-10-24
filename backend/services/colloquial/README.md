@@ -46,7 +46,7 @@ frontend/src/                            the drawing
 
 ## Adding something
 
-- A field on a card → schema.py and the data. The drift test in tests/test_colloquial.py fails if
+- A field on a card → schema.py and the data. The drift test in tests/colloquial/test_colloquial.py fails if
   the data has a key the schema drops.
 - An exercise type → one file in backend `exercises/` and one in frontend `exercises/`, a line in each registry.
 - A dialect → its entry in dialects.json, a folder of units, its words.json.

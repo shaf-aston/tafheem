@@ -5,7 +5,7 @@ Method: grep/sed excerpts. Could NOT run anything (no fastapi in sandbox; corpus
 ## 1. Trust-by-sources / verified generation — PARTIAL (strong on labelling, none on checking)
 Evidence
 - Provenance registry: backend/services/core/provenance.py:38 `of(key)` raises on unknown key; sources.json has 35 entries, each with confidence in {verified 20, derived 5, translated 2, guessed 8} (data/sources.json `_confidence_comment` line 4), `where`, `used_in` (drives tab footers), url, category.
-- Every API response attaches a Source; UI: frontend/src/components/ui/SourceBadge.jsx, lib/text/confidence.js:20-28 (`levelOf` defaults unknown -> guessed). Tests: tests/test_sources.py.
+- Every API response attaches a Source; UI: frontend/src/components/ui/SourceBadge.jsx, lib/text/confidence.js:20-28 (`levelOf` defaults unknown -> guessed). Tests: tests/core/test_sources.py.
 - Per-edition badges: provenance.for_edition (provenance.py:~50).
 - LLM is used ONLY in: (a) /meaning Sarf enrichment: services/ai/__init__.py:101 analyze_sarf, routers/morphology.py:40-75, labelled `ai`(guessed) at :72; (b) Maqayees entry -> English (prose, ai/__init__.py:109; line-by-line :137); (c) sentence translation for non-Qur'an text, handed CAMeL's word-by-word (services/dictionary/sentence_meaning.py:1-15, ai/__init__.py:125), cached in progress_store; (d) offline authoring: backend/scripts/backfill_root_english.py, and content "written with Claude" (sources.json: timelines, dawah, colloquial, nahw-notes, tamreen answers marked "claude"; tamreen.py:12-14).
 - Grammar (i'raab/tarkeeb/sarf tables/practice questions) is NO-LLM: routers/analysis.py:4, practice_service.py:1.

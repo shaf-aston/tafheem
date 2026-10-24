@@ -1,5 +1,5 @@
 {
-  "_comment": "Grow's Hadith world: one key line per hadith of an-Nawawi's Forty, Arabic and English, each quoted exactly from the source text (scripts/build_nawawi40.py checks; tests/test_nawawi40.py holds it). No word here is the app's own.",
+  "_comment": "Grow's Hadith world: one key line per hadith of an-Nawawi's Forty, Arabic and English, each quoted exactly from the source text (scripts/build_nawawi40.py checks; tests/scripts/test_nawawi40.py holds it). No word here is the app's own.",
   "keys": {
     "1": ["إنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى", "Actions are (judged) by motives (niyyah), so each man will have what he intended."],
     "2": ["أَنْ تَعْبُدَ اللَّهَ كَأَنَّك تَرَاهُ، فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاك", "It is that you should serve Allah as though you could see Him, for though you cannot see Him yet He sees you."],

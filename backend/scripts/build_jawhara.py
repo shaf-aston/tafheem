@@ -14,7 +14,7 @@ contain exactly once (FIXES), so a fix that stops matching is noticed rather tha
 Tatweel (ـ), the editor's square brackets, doubled spaces and the sukun some copies put on hamzat al-wasl
 (اْل → ال) are taken out; nothing else changes. The slips were found by reading the whole poem against
 the printed editions (critic review, 2026-10-21).
-tests/test_jawhara.py holds the result to 144 bayts of two halves, no tatweel, no doubled harakat
+tests/scripts/test_jawhara.py holds the result to 144 bayts of two halves, no tatweel, no doubled harakat
 and no sukun straight before a vowel.
 """
 from __future__ import annotations
