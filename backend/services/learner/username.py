@@ -15,8 +15,13 @@ import unicodedata
 
 from backend.config import get_settings
 
-# Whose record an answer is when nobody is logged in, so never a username.
+# Whose record an answer is when nobody is logged in and the page sends no device id (a page from
+# before devices had one), so never a username.
 GUEST = "local"
+# A device's own guest record: this, then the 32 hex the page made (lib/learner/profile.js deviceId).
+# ":" is not a name character, so no username is ever one.
+DEVICE = "guest:"
+_DEVICE_ID = re.compile(r"[0-9a-f]{32}")
 
 BAD_CHARACTERS = "Names use letters, numbers, spaces, - _ ."
 
@@ -47,3 +52,15 @@ def clean_name(raw: str) -> str:
     if name == GUEST:
         raise ValueError("That name is taken by the app, pick another")
     return name
+
+
+def device_key(raw: str) -> str:
+    """The record key of the device that sent `raw`. Raises ValueError unless it is 32 lowercase hex."""
+    if not _DEVICE_ID.fullmatch(raw):
+        raise ValueError("Not a device id")
+    return DEVICE + raw
+
+
+def is_guest(user: str) -> bool:
+    """True for the shared guest record and for a device's own: nobody's account."""
+    return user == GUEST or user.startswith(DEVICE)

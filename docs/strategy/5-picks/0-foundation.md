@@ -4,7 +4,7 @@ Not IP. Not exciting. **Everything else is blocked without it.** Total size: S t
 
 | # | Do | Why | Plugs into | Size |
 |---|---|---|---|---|
-| 0.1 | **One record per learner.** The server issues an anonymous signed device id (cookie); it replaces `LOCAL_USER = "local"` | Today every visitor shares one record, and "forget" wipes everyone. The code already says "this becomes an auth dependency and nothing below it changes" | `routers/progress.py:32`; the `user` column already exists in every table | S |
+| 0.1 | **One record per learner.** The server issues an anonymous signed device id (cookie); it replaces `LOCAL_USER = "local"`. **Done 2026-10-24** as a random device id in a header, not a signed cookie, for the reasons given in `docs/plans/2026-10-24-device-guest.md` §3 | Today every visitor shares one record, and "forget" wipes everyone. The code already says "this becomes an auth dependency and nothing below it changes" | `routers/progress.py:32`; the `user` column already exists in every table | S |
 | 0.2 | **Log the wrong option picked**: `picked` plus *what kind of wrong option it was* | The diagnosis in Pick 1 is impossible without it | `QuizPanel.jsx:317`. `context` is free-form JSON already, so no schema change | S |
 | 0.3 | **Record attempts from more tabs**: Memorise, Tamreen, Nahw practice | Today only Quiz, Grow and Colloquial write attempts | the same `recordAttempt` call | S each |
 | 0.4 | **CI**: run the ~2,000 existing tests on every push | No CI today. Trust in the engine needs it | GitHub Actions | S |

@@ -1,6 +1,8 @@
 {
-  "_comment": "Profiles: sign up and log in with a username, no password. The server owns the name rules (backend/services/learner/username.py) and hands back the spelling kept under 'storageKey'. The name travels on every /api/progress call in 'header', percent-encoded. 'pushAfterMs': how long after a change to wait before sending the account's shelf (lib/store/shelf.js), so a burst of changes goes as one.",
+  "_comment": "Profiles: sign up and log in with a username, no password. The server owns the name rules (backend/services/learner/username.py) and hands back the spelling kept under 'storageKey'. The name travels on every /api/progress call in 'header', percent-encoded. Nobody logged in: the device's own random id, kept under 'deviceKey', travels in 'guestHeader' instead, so each device is its own guest record (docs/plans/2026-10-24-device-guest.md). 'pushAfterMs': how long after a change to wait before sending the account's shelf (lib/store/shelf.js), so a burst of changes goes as one.",
   "header": "X-Tafheem-Profile",
   "storageKey": "profile",
+  "guestHeader": "X-Tafheem-Guest",
+  "deviceKey": "guest",
   "pushAfterMs": 2000
 }

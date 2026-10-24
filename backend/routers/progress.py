@@ -16,6 +16,7 @@ from contextlib import contextmanager
 from fastapi import APIRouter, HTTPException, Query
 
 from backend.config import get_settings
+from backend.identity import DEVICE, NAMED, TYPED, USER
 from backend.models.progress import (
     Account,
     AccountNames,
@@ -41,9 +42,8 @@ from backend.models.progress import (
     Shelf,
     SignUpIn,
 )
-from backend.identity import NAMED, TYPED, USER
 from backend.services.learner import progress_store
-from backend.services.learner.username import GUEST, clean_name
+from backend.services.learner.username import GUEST, clean_name, is_guest
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
@@ -53,8 +53,8 @@ _TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner'
 
 @router.post("/attempts", response_model=AttemptSaved)
 async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
-    """File one answer; return its XP and new totals. The shared guest record earns none."""
-    named = user != GUEST
+    """File one answer; return its XP and new totals. A guest record earns none."""
+    named = not is_guest(user)
     earns = named and attempt.correct and progress_store.earns(attempt.module, attempt.item, user, attempt.tz)
     row_id = progress_store.record(
         module=attempt.module,
@@ -133,15 +133,16 @@ def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
 
 
 @router.post("/signup", response_model=Account)
-async def sign_up(body: SignUpIn, user: str = TYPED) -> Account:
+async def sign_up(body: SignUpIn, user: str = TYPED, device: str = DEVICE) -> Account:
     """Take a free username; the account handed back holds its one spelling, which the page keeps.
 
-    `keep` moves the guest's answers onto it.
+    `keep` moves this device's guest answers onto it. A page that names no device (one cached from before
+    devices had ids) keeps nothing: the shared record it wrote to holds every such guest's answers, not its own.
     """
     if not progress_store.sign_up(user):
         raise HTTPException(status_code=409, detail="That username is taken")
-    if body.keep:
-        progress_store.claim_guest(user)
+    if body.keep and device != GUEST:
+        progress_store.claim_guest(user, device)
     return Account(**progress_store.account(user))
 
 

@@ -16,13 +16,14 @@ from typing import Callable
 
 from backend.config import get_settings
 from backend.services import recitation, speech
-from backend.services.dictionary import service as dictionary_service
-from backend.services.dictionary import root_meaning
-from backend.services.nahw import syntax
-from backend.services.sarf import verb_reader
 from backend.services.colloquial import loader as colloquial
 from backend.services.daleel import search as daleel
+from backend.services.dictionary import root_meaning
+from backend.services.dictionary import service as dictionary_service
 from backend.services.hadith import meaning as hadith_meaning
+from backend.services.learner import progress_store
+from backend.services.nahw import syntax
+from backend.services.sarf import verb_reader
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +52,7 @@ STEPS: dict[str, tuple[str, Callable[[], object]]] = {
     "sarf_reader": ("Sarf verb reader", verb_reader.warm),
     "hadith_meaning": ("Hadith meaning search", hadith_meaning.warm),
     "daleel": ("Daleel search", daleel.warm),
+    "guest_sweep": ("Idle guest records", progress_store.sweep),
 }
 
 

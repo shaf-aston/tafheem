@@ -25,8 +25,9 @@ async function load() {
   return { order: items, all: items }
 }
 
-// Whether the Basics have begun is kept on the device, not read from the record: every guest shares one record, and
-// another guest's answers must neither skip this one's opening card nor move their Today on to the Basics.
+// Whether the Basics have begun is kept on the device, not read from the record: a page from before guests had a
+// device's own record shares one, and another guest's answers must neither skip this one's opening card nor move
+// their Today on to the Basics.
 const BEGUN = 'basics-begun'
 
 export function useBasicsWorld(world) {

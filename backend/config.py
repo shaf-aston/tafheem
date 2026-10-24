@@ -463,6 +463,10 @@ class Progress(BaseSettings):
     rewards_xp_per_answer: int = Field(default=10, gt=0)
     # Level n needs this × n XP to reach n + 1.
     rewards_level_step: int = Field(default=100, gt=0)
+    # A device's guest record with no answer for this many days is deleted at startup (progress_store.sweep_guests).
+    # Long, not Firebase's 30: spaced review brings a known word back weeks later, and that guest must find it.
+    # Runs as the "guest_sweep" startup step: a startup_background set in .env must name it, or nothing is swept.
+    progress_guest_days: int = Field(default=180, gt=0)
     # Accounts (services/learner/username.py): a username, no password. Longest name allowed after cleaning.
     username_max: int = 40
     # Largest shelf (everything the page keeps for one account) the server takes, in bytes.
@@ -514,7 +518,7 @@ class Server(BaseSettings):
     # sarf_reader ~4s building the verb shapes the Nahw tab reads commands with;
     # daleel ~1s, two searches, which the first Daleel search after a restart waited out (expand 823ms).
     startup_background: list[str] = [
-        "recitation", "speech", "colloquial", "nahw_parser", "sarf_reader", "hadith_meaning", "daleel",
+        "recitation", "speech", "colloquial", "nahw_parser", "sarf_reader", "hadith_meaning", "daleel", "guest_sweep",
     ]
 
     # Longest question any search box sends (Daleel, Hadith, Dictionary, Qur'an); past it, a paste, not a search.
