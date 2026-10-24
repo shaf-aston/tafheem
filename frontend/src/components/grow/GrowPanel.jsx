@@ -11,7 +11,7 @@ import { nextAfter } from '../../lib/grow/bookLesson'
 import { landingOf, placeOf, valueOf } from '../../lib/grow/growPlace'
 import { WORLDS, worldOf } from '../../lib/grow/worlds'
 import { goBack } from '../../lib/nav/journey'
-import { useOpenAtTop } from '../../lib/motion/scrollToEl'
+import { useOpenAtTopKeepBack } from '../../lib/motion/scrollToEl'
 import { getProfile } from '../../lib/learner/profile'
 import { useHadithWorld } from '../../lib/grow/useHadithWorld'
 import { usePrayerWorld } from '../../lib/grow/usePrayerWorld'
@@ -80,8 +80,9 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   // Which screen this is. Each one arrives as one piece (styles/growWorlds.css .grow-screen), fading in once rather than
   // every block replaying its own rise, which washed the page pale on every tap; and opens at its top, as a fresh page
   // would: the tab's scroll was kept, so a world opened from low on Grow's page landed on its footer while its top filled in.
+  // Back up a level lands where it was left.
   const screenKey = view.at === 'lesson' ? `lesson/${playing}` : valueOf(view) ?? 'home'
-  useOpenAtTop(screenKey)
+  useOpenAtTopKeepBack(screenKey, { home: 0, world: view.part ? 2 : 1, lesson: 3 }[view.at])
 
   const [, rememberBook] = useRemembered(LAST_BOOK, BOOK_IDS, '')
   const go = (next) => {
