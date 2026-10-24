@@ -150,13 +150,23 @@
     "search_term": "five stars rating"
   },
   "l01-p02-shirt-on-hanger.jpg": {
-    "id": "572e1f44-83c2-4c99-9d6e-2fc92a5f34d9",
-    "title": "Shirts jackets hangers chest",
-    "creator": null,
+    "id": "8735efdf-4191-42f1-a8fc-d9460d83cd77",
+    "title": "Clothes Jackets",
+    "creator": "Clark Street Mercantile",
     "license": "cc0",
     "license_version": "1.0",
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/3336903/free-photo-image-clothes-rack-styled-fashion",
+    "foreign_landing_url": "https://stocksnap.io/photo/clothes-jackets-72V88M4FAC",
     "search_term": "shirt on hanger"
+  },
+  "l01-p05-fitting-room-curtain.jpg": {
+    "id": "59615e51-ca3a-4d1d-b6b6-7cd6a64dad92",
+    "title": "My Minimalistic Dorm Room",
+    "creator": "Editor B",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/11018968@N00/8000806187",
+    "search_term": "fitting room curtain"
   }
 }

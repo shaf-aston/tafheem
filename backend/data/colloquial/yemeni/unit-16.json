@@ -14,7 +14,8 @@
     "aa": "ا طويلة",
     "ee": "ي طويلة",
     "oo": "و طويلة",
-    "g": "ق (تُنطق g)"
+    "g": "ق (تُنطق g)",
+    "3a": "عَ"
   },
   "lessons": [
     {
@@ -22,8 +23,8 @@
       "phrases": [
         {
           "slot": "what-did-you-do-yesterday",
-          "arabic": "شْنُو عِمِلْتَ أَمِس؟",
-          "transliteration": "shnoo 3imilt amis?",
+          "arabic": "إِيش عِمِلْتَ أَمِس؟",
+          "transliteration": "eesh 3imilt amis?",
           "reply": {
             "arabic": "أَمِس رُحْتُ الْسُّوق",
             "transliteration": "amis ru7tu s-soog",
@@ -32,8 +33,8 @@
         },
         {
           "slot": "yesterday-was-a-very-long-day",
-          "arabic": "أَمِس كَانَ يَوم طَوِيل كِتِير",
-          "transliteration": "amis kaan yoom taweel kitir"
+          "arabic": "أَمِس كَانَ يَوم طَوِيل كَثِير",
+          "transliteration": "amis kaan yoom taweel katheer"
         },
         {
           "slot": "i-woke-up-late-yesterday",
@@ -82,8 +83,8 @@
         },
         {
           "slot": "how-late-did-you-stay-up-yesterday",
-          "arabic": "قَدِيش سَهِرْتَ أَمِس؟",
-          "transliteration": "2idish sahart amis?",
+          "arabic": "كَمْ سَهِرْتَ أَمِس؟",
+          "transliteration": "kam sahart amis?",
           "reply": {
             "arabic": "سَهِرْتُ لَحِتَّى السَّاعَة وَحِدَة",
             "transliteration": "sahart la7atta s-sa3a wa7da",
@@ -92,21 +93,21 @@
         },
         {
           "slot": "i-got-very-tired-from-work-yesterday",
-          "arabic": "أَمِس تِعِبْتُ كِتِير مِنَ الشُّغِل",
-          "transliteration": "amis ti3ibt kitir min ash-shughul"
+          "arabic": "أَمِس تِعِبْتُ كَثِير مِنَ الشُّغِل",
+          "transliteration": "amis ti3ibt katheer min ash-shughul"
         },
         {
           "slot": "yesterday-the-weather-was-very-nice",
-          "arabic": "أَمِس الْجَو كَانَ حِلُو كِتِير",
-          "transliteration": "amis al-jaw kaan 7ilu kitir"
+          "arabic": "أَمِس الْجَو كَانَ حِلُو كَثِير",
+          "transliteration": "amis al-jaw kaan 7ilu katheer"
         },
         {
           "slot": "why-didn-t-you-come-yesterday",
           "arabic": "لِيش مَا جِيتَ أَمِس؟",
           "transliteration": "lish ma jit amis?",
           "reply": {
-            "arabic": "مَا قِدِرْتُ، كَانَ عِنْدِي شُغِل كِتِير",
-            "transliteration": "ma 2idirt, kaan 3indi shughul kitir",
+            "arabic": "مَا قِدِرْتُ، كَانَ عِنْدِي شُغِل كَثِير",
+            "transliteration": "ma 2idirt, kaan 3indi shughul katheer",
             "english": "I couldn't, I had a lot of work."
           }
         }
@@ -114,8 +115,8 @@
       "dialogue": [
         {
           "speaker": "سامح",
-          "arabic": "أهلاً فاطمة، شنو أخبارك؟",
-          "transliteration": "ahlan Fatma, shnoo akhbaarak?",
+          "arabic": "أهلاً فاطمة، إيش أخبارك؟",
+          "transliteration": "ahlan Fatma, eesh akhbaarak?",
           "english": "Hello Fatima, how are you?"
         },
         {
@@ -150,8 +151,8 @@
         },
         {
           "speaker": "سامح",
-          "arabic": "شنو اشتريتي؟",
-          "transliteration": "shnoo shtareeti?",
+          "arabic": "إيش اشتريتي؟",
+          "transliteration": "eesh shtareeti?",
           "english": "What did you buy?"
         },
         {
@@ -162,8 +163,8 @@
         },
         {
           "speaker": "سامح",
-          "arabic": "تمام، وبعدين شنو عملتي؟",
-          "transliteration": "tamam, w-ba3dain shnoo 3imiltee?",
+          "arabic": "تمام، وبعدين إيش عملتي؟",
+          "transliteration": "tamam, w-ba3dain eesh 3imiltee?",
           "english": "Okay, and then what did you do?"
         },
         {
@@ -174,8 +175,8 @@
         },
         {
           "speaker": "سامح",
-          "arabic": "كتير حلو. أنا نمت بدري أمس من التعب.",
-          "transliteration": "kitir 7ilu. ana nimt bidri amis min at-ta3ab.",
+          "arabic": "كثير حلو. أنا نمت بدري أمس من التعب.",
+          "transliteration": "katheer 7ilu. ana nimt bidri amis min at-ta3ab.",
           "english": "Very nice. I slept early yesterday from tiredness."
         },
         {
@@ -188,8 +189,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو عملت أمس؟",
-            "transliteration": "shnoo 3imilt amis?",
+            "arabic": "إيش عملت أمس؟",
+            "transliteration": "eesh 3imilt amis?",
             "english": "What did you do yesterday?"
           },
           "response": {
@@ -235,12 +236,12 @@
           }
         }
       ],
-      "culture": "In Yemeni speech, \"أمس\" is the everyday word for yesterday, and \"البارحة\" refers to last night specifically. Asking \"شنو عملت أمس؟\" is a natural way to start a conversation with a friend or family member, and the response usually mentions work, visiting, or market activities.",
+      "culture": "In Yemeni speech, \"أمس\" is the everyday word for yesterday, and \"البارحة\" refers to last night specifically. Asking \"إيش عملت أمس؟\" is a natural way to start a conversation with a friend or family member, and the response usually mentions work, visiting, or market activities.",
       "exercises": [
         {
           "id": "unit-16.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "صاحبك بيسألك: \"شنو عملت أمس؟\". جاوب إنك روحت السوق.",
+          "prompt": "صاحبك بيسألك: \"إيش عملت أمس؟\". جاوب إنك روحت السوق.",
           "answer": "أمس روحت السوق",
           "accepted": [
             "أمس روحت السوق",
@@ -288,7 +289,7 @@
         {
           "id": "unit-16.lesson-01.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "أكمل: \"أمس تعبت كتير من _____.\" المعنى: I got very tired from work yesterday.",
+          "prompt": "أكمل: \"أمس تعبت كثير من _____.\" المعنى: I got very tired from work yesterday.",
           "answer": "الشغل",
           "accepted": [
             "الشغل",
@@ -305,17 +306,17 @@
           "id": "unit-16.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "ترجم: \"What did you do yesterday?\"",
-          "answer": "شْنُو عِمِلْتَ أَمِس؟",
+          "answer": "إِيش عِمِلْتَ أَمِس؟",
           "accepted": [
-            "شْنُو عِمِلْتَ أَمِس؟",
-            "shnoo 3imilt amis?",
-            "شنو عملت أمس؟"
+            "إِيش عِمِلْتَ أَمِس؟",
+            "eesh 3imilt amis?",
+            "إيش عملت أمس؟"
           ],
           "too_formal": {
             "item": "ماذا فعلت أمس؟",
-            "feedback": "Correct MSA, but شنو is the Yemeni word for what."
+            "feedback": "Correct MSA, but إيش is the Yemeni word for what."
           },
-          "tip": "\"شنو\" = what in Yemeni."
+          "tip": "\"إيش\" = what in Yemeni."
         },
         {
           "id": "unit-16.lesson-01.translate_to_arabic.02",
@@ -345,8 +346,8 @@
           "options": [
             "أمس اشتريت كُمّ جديد",
             "أنا بشتري كُمّ جديد باجر",
-            "عندي كُمّ جديد هسع",
-            "أبي كُمّ جديد"
+            "عندي كُمّ جديد ذلحين",
+            "أشتي كُمّ جديد"
           ],
           "too_formal": {
             "item": "اشتريتُ قميصاً جديداً البارحة",
@@ -357,7 +358,7 @@
         {
           "id": "unit-16.lesson-01.choose.02",
           "type": "choose",
-          "prompt": "شنو معنى \"قديش سهرت أمس؟\"؟",
+          "prompt": "إيش معنى \"كم سهرت أمس؟\"؟",
           "answer": "How late did you stay up yesterday?",
           "accepted": [
             "How late did you stay up yesterday?"
@@ -373,32 +374,32 @@
         {
           "id": "unit-16.lesson-01.reorder.01",
           "type": "reorder",
-          "prompt": "رتب الجملة: أمس الجو كان حلو كتير",
-          "answer": "أَمِس الْجَو كَانَ حِلُو كِتِير",
+          "prompt": "رتب الجملة: أمس الجو كان حلو كثير",
+          "answer": "أَمِس الْجَو كَانَ حِلُو كَثِير",
           "accepted": [
-            "أَمِس الْجَو كَانَ حِلُو كِتِير"
+            "أَمِس الْجَو كَانَ حِلُو كَثِير"
           ],
           "words": [
             "أَمِس",
             "الْجَو",
             "كَانَ",
             "حِلُو",
-            "كِتِير"
+            "كَثِير"
           ],
           "tip": "\"الجو\" = the weather."
         },
         {
           "id": "unit-16.lesson-01.reorder.02",
           "type": "reorder",
-          "prompt": "رتب الجملة: أمس تعبت كتير من الشغل",
-          "answer": "أَمِس تِعِبْتُ كِتِير مِنَ الشُّغِل",
+          "prompt": "رتب الجملة: أمس تعبت كثير من الشغل",
+          "answer": "أَمِس تِعِبْتُ كَثِير مِنَ الشُّغِل",
           "accepted": [
-            "أَمِس تِعِبْتُ كِتِير مِنَ الشُّغِل"
+            "أَمِس تِعِبْتُ كَثِير مِنَ الشُّغِل"
           ],
           "words": [
             "أَمِس",
             "تِعِبْتُ",
-            "كِتِير",
+            "كَثِير",
             "مِنَ",
             "الشُّغِل"
           ],
@@ -447,13 +448,13 @@
         },
         {
           "slot": "i-used-to-be-very-afraid-of-the-dark-when-i-was-",
-          "arabic": "كِنْتُ أَخَاف مِنَ الظَّلَام كِتِير وَقْتَ مَا كِنْتُ صِغِير",
-          "transliteration": "kintu akhaf min az-Zalaam kitir wa2t ma kintu 2aghir"
+          "arabic": "كِنْتُ أَخَاف مِنَ الظَّلَام كَثِير وَقْتَ مَا كِنْتُ صِغِير",
+          "transliteration": "kintu akhaf min az-Zalaam katheer wa2t ma kintu 2aghir"
         },
         {
           "slot": "my-teacher-at-school-was-very-kind",
-          "arabic": "مُعَلِّمِي بِالْمَدْرَسَة كَانَ طَيِّب كِتِير",
-          "transliteration": "mu3allimi bil-madrasa kaan Tayyib kitir"
+          "arabic": "مُعَلِّمِي بِالْمَدْرَسَة كَانَ طَيِّب كَثِير",
+          "transliteration": "mu3allimi bil-madrasa kaan Tayyib katheer"
         },
         {
           "slot": "we-used-to-walk-to-school-together-every-day",
@@ -467,8 +468,8 @@
         },
         {
           "slot": "back-then-life-was-much-simpler",
-          "arabic": "وَقْتَئِذ الْحَيَاة كَانِت أَبْسَط بِكِتِير",
-          "transliteration": "wa2t2iz al-7ayah kanat absat bikitir"
+          "arabic": "وَقْتَئِذ الْحَيَاة كَانِت أَبْسَط بِكَثِير",
+          "transliteration": "wa2t2iz al-7ayah kanat absat bikatheer"
         }
       ],
       "dialogue": [
@@ -486,8 +487,8 @@
         },
         {
           "speaker": "هاني",
-          "arabic": "شنو كنتي تلعبي بالحارة؟",
-          "transliteration": "shnoo kinti til3abi bil-7ara?",
+          "arabic": "إيش كنتي تلعبي بالحارة؟",
+          "transliteration": "eesh kinti til3abi bil-7ara?",
           "english": "What did you used to play in the alley?"
         },
         {
@@ -510,8 +511,8 @@
         },
         {
           "speaker": "هاني",
-          "arabic": "إي، كان اسمه الأستاذ محمود وكان صارم كتير.",
-          "transliteration": "ee, kaan ismo al-ostaaz mahmud w-kaan Sarim kitir.",
+          "arabic": "إي، كان اسمه الأستاذ محمود وكان صارم كثير.",
+          "transliteration": "ee, kaan ismo al-ostaaz mahmud w-kaan Sarim katheer.",
           "english": "Yes, his name was Mahmoud and he was very strict."
         },
         {
@@ -522,26 +523,26 @@
         },
         {
           "speaker": "هاني",
-          "arabic": "وقتئذ كنا نمشي عالمدرسة، هسع كل شي بالسيارة.",
-          "transliteration": "wa2t2iz kinna nimshi 3al-madrasa, hassa3 kull shay bes-sayyara.",
+          "arabic": "وقتئذ كنا نمشي عالمدرسة، ذلحين كل شي بالسيارة.",
+          "transliteration": "wa2t2iz kinna nimshi 3al-madrasa, dhal7een kull shay bes-sayyara.",
           "english": "Back then we walked to school, now everything is by car."
         },
         {
           "speaker": "سارة",
-          "arabic": "صحيح، الحياة كانت أبسط بكتير وقتئذ.",
-          "transliteration": "Sa7i7, al-7ayah kanat absat bikitir wa2t2iz.",
+          "arabic": "صحيح، الحياة كانت أبسط بكثير وقتئذ.",
+          "transliteration": "Sa7i7, al-7ayah kanat absat bikatheer wa2t2iz.",
           "english": "True, life was much simpler back then."
         },
         {
           "speaker": "هاني",
-          "arabic": "بفتكر أول دراجة كان عندي، كانت حمراء وكنت أحبها كتير.",
-          "transliteration": "baftikir awwal diraja kaan 3indi, kanat 7amraa w-kint a7ebba kitir.",
+          "arabic": "بفتكر أول دراجة كان عندي، كانت حمراء وكنت أحبها كثير.",
+          "transliteration": "baftikir awwal diraja kaan 3indi, kanat 7amraa w-kint a7ebba katheer.",
           "english": "I remember my first bike, it was red and I loved it so much."
         },
         {
           "speaker": "سارة",
-          "arabic": "يا زمان! هسع الأولاد حتى ما يعرفوا الألعاب الزمان.",
-          "transliteration": "ya zaman! hassa3 al-awlad 7atta ma ya3rafo al-al3ab az-zaman.",
+          "arabic": "يا زمان! ذلحين الأولاد حتى ما يعرفوا الألعاب الزمان.",
+          "transliteration": "ya zaman! dhal7een al-awlad 7atta ma ya3rafo al-al3ab az-zaman.",
           "english": "Oh those days! Now kids don't even know the old games."
         }
       ],
@@ -560,8 +561,8 @@
         },
         {
           "pair": {
-            "arabic": "شنو كنتوا تلعبوا لما كنتوا صغار؟",
-            "transliteration": "shnoo kintu til3abo lamma kintu 2ighar?",
+            "arabic": "إيش كنتوا تلعبوا لما كنتوا صغار؟",
+            "transliteration": "eesh kintu til3abo lamma kintu 2ighar?",
             "english": "What did you used to play when you were kids?"
           },
           "response": {
@@ -584,8 +585,8 @@
         },
         {
           "pair": {
-            "arabic": "شنو كان حلمك وقت ما كنت صغير؟",
-            "transliteration": "shnoo kaan 7ilmak wa2t ma kint 2aghir?",
+            "arabic": "إيش كان حلمك وقت ما كنت صغير؟",
+            "transliteration": "eesh kaan 7ilmak wa2t ma kint 2aghir?",
             "english": "What was your dream when you were young?"
           },
           "response": {
@@ -616,7 +617,7 @@
         {
           "id": "unit-16.lesson-02.reply.02",
           "type": "reply",
-          "prompt": "بيسألوك: \"شنو كان حلمك وقت ما كنت صغير؟\". جاوب إنه كان حلمك تصير طيار.",
+          "prompt": "بيسألوك: \"إيش كان حلمك وقت ما كنت صغير؟\". جاوب إنه كان حلمك تصير طيار.",
           "answer": "كان حلمي إني صير طيار",
           "accepted": [
             "كان حلمي إني صير طيار",
@@ -695,15 +696,15 @@
           "id": "unit-16.lesson-02.choose.01",
           "type": "choose",
           "prompt": "أي جملة معناها \"Back then life was much simpler\"؟",
-          "answer": "وقتئذ الحياة كانت أبسط بكتير",
+          "answer": "وقتئذ الحياة كانت أبسط بكثير",
           "accepted": [
-            "وقتئذ الحياة كانت أبسط بكتير"
+            "وقتئذ الحياة كانت أبسط بكثير"
           ],
           "options": [
-            "وقتئذ الحياة كانت أبسط بكتير",
-            "هسع الحياة أبسط من زمان",
-            "الحياة رح تصير أبسط",
-            "الحياة معقدة هسع"
+            "وقتئذ الحياة كانت أبسط بكثير",
+            "ذلحين الحياة أبسط من زمان",
+            "الحياة عتصير أبسط",
+            "الحياة معقدة ذلحين"
           ],
           "too_formal": {
             "item": "كانت الحياة في الماضي أبسط بكثير",
@@ -714,7 +715,7 @@
         {
           "id": "unit-16.lesson-02.choose.02",
           "type": "choose",
-          "prompt": "شنو معنى \"كنت أخاف من الظلام كتير\"؟",
+          "prompt": "إيش معنى \"كنت أخاف من الظلام كثير\"؟",
           "answer": "I used to be very afraid of the dark",
           "accepted": [
             "I used to be very afraid of the dark"
@@ -832,8 +833,8 @@
       "dialogue": [
         {
           "speaker": "ياسر",
-          "arabic": "فاطمة، شكلك زعلانة، شنو صار؟",
-          "transliteration": "Fatma, shaklak za3lana, shnoo Saar?",
+          "arabic": "فاطمة، شكلك زعلانة، إيش صار؟",
+          "transliteration": "Fatma, shaklak za3lana, eesh Saar?",
           "english": "Fatima, you look upset, what happened?"
         },
         {
@@ -844,8 +845,8 @@
         },
         {
           "speaker": "ياسر",
-          "arabic": "ليش، شنو صار بالذات؟",
-          "transliteration": "lish, shnoo Saar beD-Dhat?",
+          "arabic": "ليش، إيش صار بالذات؟",
+          "transliteration": "lish, eesh Saar beD-Dhat?",
           "english": "Why, what exactly happened?"
         },
         {
@@ -868,8 +869,8 @@
         },
         {
           "speaker": "ياسر",
-          "arabic": "تمام، وبعدين شنو صار؟",
-          "transliteration": "tamam, w-ba3dain shnoo Saar?",
+          "arabic": "تمام، وبعدين إيش صار؟",
+          "transliteration": "tamam, w-ba3dain eesh Saar?",
           "english": "Okay, and then what happened?"
         },
         {
@@ -880,8 +881,8 @@
         },
         {
           "speaker": "ياسر",
-          "arabic": "لا! وشنو عملتي؟",
-          "transliteration": "la! w-shnoo 3imilti?",
+          "arabic": "لا! وإيش عملتي؟",
+          "transliteration": "la! w-eesh 3imilti?",
           "english": "No! And what did you do?"
         },
         {
@@ -906,8 +907,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو صار معك؟",
-            "transliteration": "shnoo Saar ma3ak?",
+            "arabic": "إيش صار معك؟",
+            "transliteration": "eesh Saar ma3ak?",
             "english": "What happened to you?"
           },
           "response": {
@@ -958,7 +959,7 @@
         {
           "id": "unit-16.lesson-03.reply.01",
           "type": "reply",
-          "prompt": "صديقتك بتسألك: \"شنو صار معك؟\". جاوبي إنه ضيعتي مفتاحك.",
+          "prompt": "صديقتك بتسألك: \"إيش صار معك؟\". جاوبي إنه ضيعتي مفتاحك.",
           "answer": "ضيعت مفتاحي",
           "accepted": [
             "ضيعت مفتاحي",
@@ -1070,7 +1071,7 @@
         {
           "id": "unit-16.lesson-03.choose.02",
           "type": "choose",
-          "prompt": "شنو معنى \"القهوة انسكبت على اللابتوب\"؟",
+          "prompt": "إيش معنى \"القهوة انسكبت على اللابتوب\"؟",
           "answer": "Coffee spilled on the laptop",
           "accepted": [
             "Coffee spilled on the laptop"
@@ -1128,8 +1129,8 @@
         },
         {
           "slot": "there-s-news-you-won-t-believe",
-          "arabic": "عِنْدِي خِبْر مَا رَح تِصَدِّقْ",
-          "transliteration": "3indi khabir ma ra7 tSaddiq"
+          "arabic": "عِنْدِي خِبْر مَا عَتِصَدِّقْش",
+          "transliteration": "3indi khabir ma 3a-tSaddigsh"
         },
         {
           "slot": "they-told-me-you-re-moving-to-a-new-house",
@@ -1158,8 +1159,8 @@
         },
         {
           "slot": "you-won-t-believe-what-happened-yesterday-in-the",
-          "arabic": "مَا تِصَدِّق شْنُو صَار أَمِس بِالْحَيّ",
-          "transliteration": "ma tSaddiq shnoo Saar amis bil-7ayy"
+          "arabic": "مَا تِصَدِّق إِيش صَار أَمِس بِالْحَيّ",
+          "transliteration": "ma tSaddiq eesh Saar amis bil-7ayy"
         },
         {
           "slot": "my-sister-got-married-last-month",
@@ -1173,8 +1174,8 @@
         },
         {
           "slot": "what-s-the-latest-news-with-you",
-          "arabic": "شْنُو الْجَدِيد عِنْدِك؟",
-          "transliteration": "shnoo al-jdid 3indak?",
+          "arabic": "إِيش الْجَدِيد عِنْدِك؟",
+          "transliteration": "eesh al-jdid 3indak?",
           "reply": {
             "arabic": "مَا في جَدِيد، الْحَمْدُ لِلَّه",
             "transliteration": "ma fi jdid, al-7amdilla",
@@ -1188,21 +1189,21 @@
         },
         {
           "slot": "that-s-all-just-people-s-talk-i-don-t-know-if-it",
-          "arabic": "هَاد كُلُّه كِلَام نَاس، مَا بِعْرِف صِحِيح وَلَا لَا",
-          "transliteration": "had kullah klaam naas, ma bi3rif Sa7i7 wala la"
+          "arabic": "هَذَا كُلُّه كِلَام نَاس، مَا بِعْرِف صِحِيح وَلَا لَا",
+          "transliteration": "haadha kullah klaam naas, ma bi3rif Sa7i7 wala la"
         }
       ],
       "dialogue": [
         {
           "speaker": "ليلى",
-          "arabic": "هاني، ما تصدق شنو سمعت!",
-          "transliteration": "hani, ma tSaddiq shnoo smi3t!",
+          "arabic": "هاني، ما تصدق إيش سمعت!",
+          "transliteration": "hani, ma tSaddiq eesh smi3t!",
           "english": "Hani, you won't believe what I heard!"
         },
         {
           "speaker": "هاني",
-          "arabic": "شنو في؟ قولي لي بسرعة.",
-          "transliteration": "shnoo fi? 2oli li bisur3a.",
+          "arabic": "إيش في؟ قولي لي بسرعة.",
+          "transliteration": "eesh fi? 2oli li bisur3a.",
           "english": "What is it? Tell me quickly."
         },
         {
@@ -1231,8 +1232,8 @@
         },
         {
           "speaker": "ليلى",
-          "arabic": "لسع ما حددوا، بس رح يحكوا لأهلهم هالأسبوع.",
-          "transliteration": "lsa3 ma 7addado, bas ra7 ye7ku la-ahlom hal-osboo3.",
+          "arabic": "لسع ما حددوا، بس عيحكوا لأهلهم هالأسبوع.",
+          "transliteration": "lsa3 ma 7addado, bas 3a-ye7ku la-ahlom hal-osboo3.",
           "english": "They haven't set a date yet, but they'll tell their families this week."
         },
         {
@@ -1249,8 +1250,8 @@
         },
         {
           "speaker": "هاني",
-          "arabic": "وشنو صار مع المحل يلي كان جنب بيتك؟ سمعت إنه سكر.",
-          "transliteration": "w-shnoo Saar ma3 al-ma7all yalli kaan jamb baytik? smi3t innuh sakkar.",
+          "arabic": "وإيش صار مع المحل يلي كان جنب بيتك؟ سمعت إنه سكر.",
+          "transliteration": "w-eesh Saar ma3 al-ma7all yalli kaan jamb baytik? smi3t innuh sakkar.",
           "english": "And what happened with the shop that was next to your house? I heard it closed."
         },
         {
@@ -1274,8 +1275,8 @@
             "english": "Did you hear the news?"
           },
           "response": {
-            "arabic": "لا، شنو صار؟",
-            "transliteration": "la, shnoo Saar?",
+            "arabic": "لا، إيش صار؟",
+            "transliteration": "la, eesh Saar?",
             "english": "No, what happened?"
           }
         },
@@ -1321,7 +1322,7 @@
         {
           "id": "unit-16.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "صاحبك بيسألك: \"شنو الجديد معك؟\". جاوب إنه ما في جديد.",
+          "prompt": "صاحبك بيسألك: \"إيش الجديد معك؟\". جاوب إنه ما في جديد.",
           "answer": "ما في جديد",
           "accepted": [
             "ما في جديد",
@@ -1353,7 +1354,7 @@
         {
           "id": "unit-16.lesson-04.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أكمل: \"عندي _____ ما رح تصدق.\" المعنى: I have news you won't believe.",
+          "prompt": "أكمل: \"عندي _____ ما عتصدقش.\" المعنى: I have news you won't believe.",
           "answer": "خبر",
           "accepted": [
             "خبر",
@@ -1421,8 +1422,8 @@
           "options": [
             "أختي تزوجت الشهر الماضي",
             "أختي تزوجت في هالشهر",
-            "أختي رح تتزوج الشهر الجاي",
-            "أختي عايزة تتزوج"
+            "أختي عتتزوج الشهر الجاي",
+            "أختي تشتي تتزوج"
           ],
           "too_formal": {
             "item": "أختي تزوجت في الشهر الماضي",
@@ -1433,7 +1434,7 @@
         {
           "id": "unit-16.lesson-04.choose.02",
           "type": "choose",
-          "prompt": "شنو معنى \"سمعنا إنهم رزقوا بولد\"؟",
+          "prompt": "إيش معنى \"سمعنا إنهم رزقوا بولد\"؟",
           "answer": "We heard they had a baby boy",
           "accepted": [
             "We heard they had a baby boy"
@@ -2218,7 +2219,7 @@
   ],
   "challenge": {
     "title": "حكاية اليوم",
-    "instructions": "اروح قصة عن يوم صار فيه حاجات متعددة. لازم تشمل على: (١) شنو صار أمس، (٢) مين شُفت، (٣) حاجة ضايعة أو انكسرت، و(٤) إنت تشارك الخبر مع صاحب.",
+    "instructions": "اروح قصة عن يوم صار فيه حاجات متعددة. لازم تشمل على: (١) إيش صار أمس، (٢) مين شُفت، (٣) حاجة ضايعة أو انكسرت، و(٤) إنت تشارك الخبر مع صاحب.",
     "required_elements": [
       "استخدام الفعل الماضي مع أمس",
       "ذكر شخص شُفته",
@@ -2229,14 +2230,14 @@
       "dialogue": [
         {
           "speaker": "أنت",
-          "arabic": "أمس كان يوم أسود! شنو صار معي.",
-          "transliteration": "amis kaan yom aswad! shnoo Saar ma3i.",
+          "arabic": "أمس كان يوم أسود! إيش صار معي.",
+          "transliteration": "amis kaan yom aswad! eesh Saar ma3i.",
           "english": "Yesterday was a terrible day! What happened to me."
         },
         {
           "speaker": "صاحبك",
-          "arabic": "شنو! حكي لي.",
-          "transliteration": "shnoo! 7aki li.",
+          "arabic": "إيش! حكي لي.",
+          "transliteration": "eesh! 7aki li.",
           "english": "What! Tell me."
         },
         {

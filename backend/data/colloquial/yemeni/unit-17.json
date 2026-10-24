@@ -50,8 +50,8 @@
         },
         {
           "slot": "where-is-the-masjid",
-          "arabic": "فِين أَقْرَب جَامِع؟",
-          "transliteration": "feen agrab jaami3?",
+          "arabic": "وِين أَقْرَب جَامِع؟",
+          "transliteration": "ween agrab jaami3?",
           "reply": {
             "arabic": "فِي آخِر الشَّارِع",
             "transliteration": "fi aakhir ash-shaari3",
@@ -60,8 +60,8 @@
         },
         {
           "slot": "where-is-the-mens-entrance",
-          "arabic": "فِين مَدْخَل الرِّجَال؟",
-          "transliteration": "feen madkhal ar-rijaal?",
+          "arabic": "وِين مَدْخَل الرِّجَال؟",
+          "transliteration": "ween madkhal ar-rijaal?",
           "reply": {
             "arabic": "مِنَ البَاب الكَبِير",
             "transliteration": "min al-baab al-kabeer",
@@ -70,8 +70,8 @@
         },
         {
           "slot": "where-is-the-womens-entrance",
-          "arabic": "فِين مَدْخَل النِّسَاء؟",
-          "transliteration": "feen madkhal an-nisaa2?",
+          "arabic": "وِين مَدْخَل النِّسَاء؟",
+          "transliteration": "ween madkhal an-nisaa2?",
           "reply": {
             "arabic": "مِنَ البَاب اللِّي عَلَى الجَنْب",
             "transliteration": "min al-baab illi 3ala l-janb",
@@ -254,8 +254,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين مَدْخَل النِّسَاء؟",
-            "transliteration": "feen madkhal an-nisaa2?",
+            "arabic": "وِين مَدْخَل النِّسَاء؟",
+            "transliteration": "ween madkhal an-nisaa2?",
             "english": "Where is the women's entrance?"
           },
           "response": {
@@ -311,7 +311,7 @@
         {
           "id": "unit-17.lesson-01.reply.03",
           "type": "reply",
-          "prompt": "Someone asks you: \"فِين أَقْرَب جَامِع؟\" Say at the end of the street.",
+          "prompt": "Someone asks you: \"وِين أَقْرَب جَامِع؟\" Say at the end of the street.",
           "answer": "فِي آخِر الشَّارِع",
           "accepted": [
             "فِي آخِر الشَّارِع",
@@ -327,7 +327,7 @@
         {
           "id": "unit-17.lesson-01.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"فِين مَدْخَل _____؟\" (Where is the men's entrance?)",
+          "prompt": "Complete: \"وِين مَدْخَل _____؟\" (Where is the men's entrance?)",
           "answer": "الرِّجَال",
           "accepted": [
             "الرِّجَال",
@@ -390,8 +390,9 @@
           "id": "unit-17.lesson-01.translate_to_arabic.03",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where is the nearest masjid?\"",
-          "answer": "فِين أَقْرَب جَامِع؟",
+          "answer": "وِين أَقْرَب جَامِع؟",
           "accepted": [
+            "وِين أَقْرَب جَامِع؟",
             "فِين أَقْرَب جَامِع؟",
             "فين أقرب جامع؟",
             "فين أقرب جامع",
@@ -402,9 +403,9 @@
           ],
           "too_formal": {
             "item": "أَيْنَ الْمَسْجِدُ الْقَرِيب؟",
-            "feedback": "Formal written Arabic; in Sana'a people say \"فِين أَقْرَب جَامِع؟\"."
+            "feedback": "Formal written Arabic; in Sana'a people say \"وِين أَقْرَب جَامِع؟\"."
           },
-          "tip": "\"فِين\" is where, and \"جَامِع\" is the everyday word for a mosque."
+          "tip": "\"وِين\" is where, and \"جَامِع\" is the everyday word for a mosque."
         },
         {
           "id": "unit-17.lesson-01.choose.01",
@@ -433,13 +434,14 @@
           "type": "choose",
           "prompt": "Which one means \"Where is the women's entrance?\"",
           "options": [
-            "فِين مَدْخَل النِّسَاء؟",
-            "فِين مَدْخَل الرِّجَال؟",
-            "فِين أَقْرَب جَامِع؟",
+            "وِين مَدْخَل النِّسَاء؟",
+            "وِين مَدْخَل الرِّجَال؟",
+            "وِين أَقْرَب جَامِع؟",
             "مَتَى الإِقَامَة؟"
           ],
-          "answer": "فِين مَدْخَل النِّسَاء؟",
+          "answer": "وِين مَدْخَل النِّسَاء؟",
           "accepted": [
+            "وِين مَدْخَل النِّسَاء؟",
             "فِين مَدْخَل النِّسَاء؟",
             "فين مدخل النساء؟",
             "فين مدخل النساء",
@@ -492,8 +494,8 @@
       "phrases": [
         {
           "slot": "where-is-the-wudu-area",
-          "arabic": "فِين مَكَان الوُضُوء؟",
-          "transliteration": "feen makaan al-wuDoo2?",
+          "arabic": "وِين مَكَان الوُضُوء؟",
+          "transliteration": "ween makaan al-wuDoo2?",
           "reply": {
             "arabic": "جَنْب الحَمَّامَات",
             "transliteration": "janb al-7ammaamaat",
@@ -517,8 +519,8 @@
         },
         {
           "slot": "where-is-the-shoe-rack",
-          "arabic": "فِين رَفّ الجِزَم؟",
-          "transliteration": "feen raff al-jizam?",
+          "arabic": "وِين رَفّ الجِزَم؟",
+          "transliteration": "ween raff al-jizam?",
           "reply": {
             "arabic": "عِنْدَ البَاب",
             "transliteration": "3ind al-baab",
@@ -537,8 +539,8 @@
         },
         {
           "slot": "where-is-the-prayer-rug",
-          "arabic": "فِين سَجَّادَة الصَّلَاة؟",
-          "transliteration": "feen sajjaadat aS-Salaa?",
+          "arabic": "وِين سَجَّادَة الصَّلَاة؟",
+          "transliteration": "ween sajjaadat aS-Salaa?",
           "reply": {
             "arabic": "فِيه سَجَّادَات فِي الرُّكْن",
             "transliteration": "feeh sajjaadaat fi r-rukn",
@@ -547,8 +549,8 @@
         },
         {
           "slot": "which-way-is-the-qibla",
-          "arabic": "فِين جِهَة القِبْلَة؟",
-          "transliteration": "feen jihat al-gibla?",
+          "arabic": "وِين جِهَة القِبْلَة؟",
+          "transliteration": "ween jihat al-gibla?",
           "reply": {
             "arabic": "القِبْلَة عَلَى اليَمِين",
             "transliteration": "al-gibla 3ala l-yameen",
@@ -587,8 +589,8 @@
         },
         {
           "slot": "where-can-i-leave-my-bag",
-          "arabic": "فِين أَحُطّ شَنْطَتِي؟",
-          "transliteration": "feen a7uTT shanTati?",
+          "arabic": "وِين أَحُطّ شَنْطَتِي؟",
+          "transliteration": "ween a7uTT shanTati?",
           "reply": {
             "arabic": "فِيه خِزَانَة جَنْب البَاب",
             "transliteration": "feeh khizaana janb al-baab",
@@ -673,8 +675,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فِين مَكَان الوُضُوء؟",
-            "transliteration": "feen makaan al-wuDoo2?",
+            "arabic": "وِين مَكَان الوُضُوء؟",
+            "transliteration": "ween makaan al-wuDoo2?",
             "english": "Where is the wudu area?"
           },
           "response": {
@@ -697,8 +699,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين رَفّ الجِزَم؟",
-            "transliteration": "feen raff al-jizam?",
+            "arabic": "وِين رَفّ الجِزَم؟",
+            "transliteration": "ween raff al-jizam?",
             "english": "Where is the shoe rack?"
           },
           "response": {
@@ -709,8 +711,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين جِهَة القِبْلَة؟",
-            "transliteration": "feen jihat al-gibla?",
+            "arabic": "وِين جِهَة القِبْلَة؟",
+            "transliteration": "ween jihat al-gibla?",
             "english": "Which way is the qibla?"
           },
           "response": {
@@ -721,8 +723,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين أَحُطّ شَنْطَتِي؟",
-            "transliteration": "feen a7uTT shanTati?",
+            "arabic": "وِين أَحُطّ شَنْطَتِي؟",
+            "transliteration": "ween a7uTT shanTati?",
             "english": "Where can I leave my bag?"
           },
           "response": {
@@ -810,7 +812,7 @@
         {
           "id": "unit-17.lesson-02.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "Complete: \"فِين رَفّ _____؟\" (Where is the shoe rack?)",
+          "prompt": "Complete: \"وِين رَفّ _____؟\" (Where is the shoe rack?)",
           "answer": "الجِزَم",
           "accepted": [
             "الجِزَم",
@@ -829,8 +831,9 @@
           "id": "unit-17.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where is the wudu area?\"",
-          "answer": "فِين مَكَان الوُضُوء؟",
+          "answer": "وِين مَكَان الوُضُوء؟",
           "accepted": [
+            "وِين مَكَان الوُضُوء؟",
             "فِين مَكَان الوُضُوء؟",
             "فين مكان الوضوء؟",
             "فين مكان الوضوء",
@@ -839,7 +842,7 @@
           ],
           "too_formal": {
             "item": "أَيْنَ مَكَانُ الوُضُوء؟",
-            "feedback": "Formal written Arabic; in Sana'a people say \"فِين مَكَان الوُضُوء؟\"."
+            "feedback": "Formal written Arabic; in Sana'a people say \"وِين مَكَان الوُضُوء؟\"."
           },
           "tip": "\"مَكَان الوُضُوء\" is the place of wudu."
         },
@@ -879,13 +882,14 @@
           "type": "choose",
           "prompt": "Which one means \"Where is the prayer rug?\"",
           "options": [
-            "فِين سَجَّادَة الصَّلَاة؟",
-            "فِين رَفّ الجِزَم؟",
-            "فِين مَكَان الوُضُوء؟",
-            "فِين أَحُطّ شَنْطَتِي؟"
+            "وِين سَجَّادَة الصَّلَاة؟",
+            "وِين رَفّ الجِزَم؟",
+            "وِين مَكَان الوُضُوء؟",
+            "وِين أَحُطّ شَنْطَتِي؟"
           ],
-          "answer": "فِين سَجَّادَة الصَّلَاة؟",
+          "answer": "وِين سَجَّادَة الصَّلَاة؟",
           "accepted": [
+            "وِين سَجَّادَة الصَّلَاة؟",
             "فِين سَجَّادَة الصَّلَاة؟",
             "فين سجادة الصلاة؟",
             "فين سجادة الصلاة",
@@ -933,8 +937,9 @@
           "id": "unit-17.lesson-02.reorder.02",
           "type": "reorder",
           "prompt": "Put the words in order: \"Where can I leave my bag?\"",
-          "answer": "فِين أَحُطّ شَنْطَتِي؟",
+          "answer": "وِين أَحُطّ شَنْطَتِي؟",
           "accepted": [
+            "وِين أَحُطّ شَنْطَتِي؟",
             "فِين أَحُطّ شَنْطَتِي؟",
             "فين أحط شنطتي؟",
             "فين أحط شنطتي",
@@ -943,7 +948,7 @@
           ],
           "too_formal": {
             "item": "أَيْنَ أَضَعُ حَقِيبَتِي؟",
-            "feedback": "Formal written Arabic; in Sana'a people say \"فِين أَحُطّ شَنْطَتِي؟\"."
+            "feedback": "Formal written Arabic; in Sana'a people say \"وِين أَحُطّ شَنْطَتِي؟\"."
           },
           "tip": "\"شَنْطَة\" is the everyday word for a bag."
         }
@@ -1471,8 +1476,8 @@
         },
         {
           "slot": "where-is-the-timetable-of-lessons",
-          "arabic": "فِين جَدْوَل الدُّرُوس؟",
-          "transliteration": "feen jadwal ad-duroos?",
+          "arabic": "وِين جَدْوَل الدُّرُوس؟",
+          "transliteration": "ween jadwal ad-duroos?",
           "reply": {
             "arabic": "عَلَى لَوْحَة الإِعْلَانَات عِنْدَ البَاب",
             "transliteration": "3ala lawa7at al-i3laanaat 3ind al-baab",
@@ -1511,8 +1516,8 @@
         },
         {
           "slot": "where-is-the-mosque-library",
-          "arabic": "فِين مَكْتَبَة الجَامِع؟",
-          "transliteration": "feen maktabat al-jaami3?",
+          "arabic": "وِين مَكْتَبَة الجَامِع؟",
+          "transliteration": "ween maktabat al-jaami3?",
           "reply": {
             "arabic": "فِي الدَّوْر الأَوَّل",
             "transliteration": "fi d-dawr al-awwal",
@@ -1647,8 +1652,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين جَدْوَل الدُّرُوس؟",
-            "transliteration": "feen jadwal ad-duroos?",
+            "arabic": "وِين جَدْوَل الدُّرُوس؟",
+            "transliteration": "ween jadwal ad-duroos?",
             "english": "Where is the timetable of lessons?"
           },
           "response": {
@@ -1671,8 +1676,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين مَكْتَبَة الجَامِع؟",
-            "transliteration": "feen maktabat al-jaami3?",
+            "arabic": "وِين مَكْتَبَة الجَامِع؟",
+            "transliteration": "ween maktabat al-jaami3?",
             "english": "Where is the mosque library?"
           },
           "response": {
@@ -1837,13 +1842,14 @@
           "type": "choose",
           "prompt": "Which one means \"Where is the timetable of lessons?\"",
           "options": [
-            "فِين جَدْوَل الدُّرُوس؟",
-            "فِين مَكْتَبَة الجَامِع؟",
+            "وِين جَدْوَل الدُّرُوس؟",
+            "وِين مَكْتَبَة الجَامِع؟",
             "كَم عُمْر الجَاهِل؟",
             "مَتَى حَلْقَة القُرْآن؟"
           ],
-          "answer": "فِين جَدْوَل الدُّرُوس؟",
+          "answer": "وِين جَدْوَل الدُّرُوس؟",
           "accepted": [
+            "وِين جَدْوَل الدُّرُوس؟",
             "فِين جَدْوَل الدُّرُوس؟",
             "فين جدول الدروس؟",
             "فين جدول الدروس",
@@ -1857,13 +1863,14 @@
           "type": "choose",
           "prompt": "Which one means \"Where is the mosque library?\"",
           "options": [
-            "فِين مَكْتَبَة الجَامِع؟",
+            "وِين مَكْتَبَة الجَامِع؟",
             "أَقْدَر أَسْتَلِف مُصْحَف؟",
-            "فِين جَدْوَل الدُّرُوس؟",
+            "وِين جَدْوَل الدُّرُوس؟",
             "أَنَا أَحْفَظ سُورَة المُلْك"
           ],
-          "answer": "فِين مَكْتَبَة الجَامِع؟",
+          "answer": "وِين مَكْتَبَة الجَامِع؟",
           "accepted": [
+            "وِين مَكْتَبَة الجَامِع؟",
             "فِين مَكْتَبَة الجَامِع؟",
             "فين مكتبة الجامع؟",
             "فين مكتبة الجامع",
@@ -1919,7 +1926,7 @@
     "instructions": "Write and act out a conversation of at least 10 lines in Sana'ani Arabic. Ask about the next prayer and the iqamah, find the wudu area, put your shoes on the rack, ask where the qibla is, agree to put your phone on silent, and say what you do when you are late. Use at least 8 phrases from Unit 17.",
     "required_elements": [
       "A question about the next prayer or the iqamah, using إِيش or مَتَى.",
-      "A question with فِين about the wudu area, the entrance, the shoe rack or the qibla.",
+      "A question with وِين about the wudu area, the entrance, the shoe rack or the qibla.",
       "أَشْتِي to say what you want, for example أَشْتِي أَتَوَضَّأ.",
       "A polite request or reply about the phone, with مِنْ فَضْلَك or نَاهِي.",
       "A missed rak'ah explained with فَاتَتْنِي and a closing تَقَبَّلَ اللهُ with its reply مِنَّا وَمِنْكُمْ."
@@ -1940,8 +1947,8 @@
         },
         {
           "speaker": "ياسر",
-          "arabic": "أَشْتِي أَتَوَضَّأ. فِين مَكَان الوُضُوء؟",
-          "transliteration": "ashti atawaDDa2. feen makaan al-wuDoo2?",
+          "arabic": "أَشْتِي أَتَوَضَّأ. وِين مَكَان الوُضُوء؟",
+          "transliteration": "ashti atawaDDa2. ween makaan al-wuDoo2?",
           "english": "I want to make wudu. Where is the wudu area?"
         },
         {
@@ -1952,8 +1959,8 @@
         },
         {
           "speaker": "ياسر",
-          "arabic": "شُكْرًا. فِين جِهَة القِبْلَة؟",
-          "transliteration": "shukran. feen jihat al-gibla?",
+          "arabic": "شُكْرًا. وِين جِهَة القِبْلَة؟",
+          "transliteration": "shukran. ween jihat al-gibla?",
           "english": "Thanks. Which way is the qibla?"
         },
         {
@@ -1964,8 +1971,8 @@
         },
         {
           "speaker": "ياسر",
-          "arabic": "نَاهِي. فِين مَدْخَل الرِّجَال؟",
-          "transliteration": "naahi. feen madkhal ar-rijaal?",
+          "arabic": "نَاهِي. وِين مَدْخَل الرِّجَال؟",
+          "transliteration": "naahi. ween madkhal ar-rijaal?",
           "english": "OK. Where is the men's entrance?"
         },
         {

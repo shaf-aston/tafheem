@@ -45,13 +45,13 @@
         },
         {
           "slot": "i-want-a-room-for-two-people",
-          "arabic": "أَبْغَى غُرْفَة لِشَخْصَيْن",
-          "transliteration": "abgha ghorfe la-shakhSayn"
+          "arabic": "أَشْتِي غُرْفَة لِشَخْصَيْن",
+          "transliteration": "ashti ghorfe la-shakhSayn"
         },
         {
           "slot": "how-much-is-the-price-per-night",
-          "arabic": "قَدِّيش سِعْر اللَّيْلَة؟",
-          "transliteration": "qaddish si3r l-layla?"
+          "arabic": "كَمْ سِعْر اللَّيْلَة؟",
+          "transliteration": "kam si3r l-layla?"
         },
         {
           "slot": "is-breakfast-included-with-the-room",
@@ -75,18 +75,18 @@
         },
         {
           "slot": "i-want-the-key-please",
-          "arabic": "أَبْغَى الْمِفْتاح لَو سَمَحْت",
-          "transliteration": "abgha l-muftaa7 law sama7t"
+          "arabic": "أَشْتِي الْمِفْتاح لَو سَمَحْت",
+          "transliteration": "ashti l-muftaa7 law sama7t"
         },
         {
           "slot": "what-time-do-i-need-to-check-out",
-          "arabic": "السَّاعَة قَدِّيش لازِم أَطْلَع مِن الغُرْفَة؟",
-          "transliteration": "s-saa3a qaddish laazim aTla3 min l-ghorfe?"
+          "arabic": "السَّاعَة كَمْ لازِم أَطْلَع مِن الغُرْفَة؟",
+          "transliteration": "s-saa3a kam laazim aTla3 min l-ghorfe?"
         },
         {
           "slot": "i-want-to-order-room-service",
-          "arabic": "أَبْغَى أَطْلُب خِدْمَة الغُرِف",
-          "transliteration": "abgha aTlub khidmet l-ghoraf"
+          "arabic": "أَشْتِي أَطْلُب خِدْمَة الغُرِف",
+          "transliteration": "ashti aTlub khidmet l-ghoraf"
         },
         {
           "slot": "thanks-the-room-is-very-nice",
@@ -177,8 +177,8 @@
         },
         {
           "pair": {
-            "arabic": "قَدِّيش سِعْر اللَّيْلَة؟",
-            "transliteration": "qaddish si3r l-layla?",
+            "arabic": "كَمْ سِعْر اللَّيْلَة؟",
+            "transliteration": "kam si3r l-layla?",
             "english": "How much is the price per night?"
           },
           "response": {
@@ -201,8 +201,8 @@
         },
         {
           "pair": {
-            "arabic": "السَّاعَة قَدِّيش لازِم أَطْلَع مِن الغُرْفَة؟",
-            "transliteration": "s-saa3a qaddish laazim aTla3 min l-ghorfe?",
+            "arabic": "السَّاعَة كَمْ لازِم أَطْلَع مِن الغُرْفَة؟",
+            "transliteration": "s-saa3a kam laazim aTla3 min l-ghorfe?",
             "english": "What time do I need to check out?"
           },
           "response": {
@@ -233,7 +233,7 @@
         {
           "id": "unit-15.lesson-01.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أَبْغَى غُرْفَة ___ شَخْصَيْن",
+          "prompt": "أَشْتِي غُرْفَة ___ شَخْصَيْن",
           "answer": "لِشَخْصَيْن",
           "accepted": [
             "لِشَخْصَيْن",
@@ -241,7 +241,7 @@
           ],
           "too_formal": {
             "item": "أريد غرفة لشخصين",
-            "feedback": "في اليمن نستخدم أَبْغَى بدل أريد"
+            "feedback": "في اليمن نستخدم أَشْتِي بدل أريد"
           },
           "tip": "لِ = for"
         },
@@ -249,14 +249,14 @@
           "id": "unit-15.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I want a room for two people.",
-          "answer": "أَبْغَى غُرْفَة لِشَخْصَيْن",
+          "answer": "أَشْتِي غُرْفَة لِشَخْصَيْن",
           "accepted": [
-            "أَبْغَى غُرْفَة لِشَخْصَيْن",
-            "abgha ghorfe la-shakhSayn"
+            "أَشْتِي غُرْفَة لِشَخْصَيْن",
+            "ashti ghorfe la-shakhSayn"
           ],
           "too_formal": {
             "item": "أريد غرفة لشخصين",
-            "feedback": "أَبْغَى هو الكلام اليومي باليمن"
+            "feedback": "أَشْتِي هو الكلام اليومي باليمن"
           },
           "tip": ""
         },
@@ -265,13 +265,14 @@
           "type": "choose",
           "prompt": "كَيْف تَقول 'How much is the price per night?'",
           "options": [
-            "قَدِّيش سِعْر اللَّيْلَة؟",
+            "كَمْ سِعْر اللَّيْلَة؟",
             "وَيْن الْمِصْعَد؟",
-            "أَبْغَى الْمِفْتاح",
+            "أَشْتِي الْمِفْتاح",
             "شُكْراً قَوِي"
           ],
-          "answer": "قَدِّيش سِعْر اللَّيْلَة؟",
+          "answer": "كَمْ سِعْر اللَّيْلَة؟",
           "accepted": [
+            "كَمْ سِعْر اللَّيْلَة؟",
             "قَدِّيش سِعْر اللَّيْلَة؟",
             "qaddish si3r l-layla?"
           ],
@@ -280,7 +281,7 @@
         {
           "id": "unit-15.lesson-01.choose.02",
           "type": "choose",
-          "prompt": "شُ مَعْنَى 'قَدِّيش'؟",
+          "prompt": "شُ مَعْنَى 'كَمْ'؟",
           "options": [
             "how much",
             "where",
@@ -297,23 +298,24 @@
         {
           "id": "unit-15.lesson-01.reorder.01",
           "type": "reorder",
-          "prompt": "رَتِّب الْجُمْلَة: لِشَخْصَيْن / غُرْفَة / أَبْغَى",
-          "answer": "أَبْغَى غُرْفَة لِشَخْصَيْن",
+          "prompt": "رَتِّب الْجُمْلَة: لِشَخْصَيْن / غُرْفَة / أَشْتِي",
+          "answer": "أَشْتِي غُرْفَة لِشَخْصَيْن",
           "accepted": [
-            "أَبْغَى غُرْفَة لِشَخْصَيْن"
+            "أَشْتِي غُرْفَة لِشَخْصَيْن"
           ],
           "tip": ""
         },
         {
           "id": "unit-15.lesson-01.reorder.02",
           "type": "reorder",
-          "prompt": "رَتِّب الْجُمْلَة: اللَّيْلَة؟ / سِعْر / قَدِّيش",
-          "answer": "قَدِّيش سِعْر اللَّيْلَة؟",
+          "prompt": "رَتِّب الْجُمْلَة: اللَّيْلَة؟ / سِعْر / كَمْ",
+          "answer": "كَمْ سِعْر اللَّيْلَة؟",
           "accepted": [
+            "كَمْ سِعْر اللَّيْلَة؟",
             "قَدِّيش سِعْر اللَّيْلَة؟"
           ],
           "words": [
-            "قَدِّيش",
+            "كَمْ",
             "سِعْر",
             "اللَّيْلَة؟"
           ],
@@ -333,7 +335,7 @@
         {
           "id": "unit-15.lesson-01.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "السَّاعَة قَدِّيش لازِم ___ مِن الغُرْفَة؟",
+          "prompt": "السَّاعَة كَمْ لازِم ___ مِن الغُرْفَة؟",
           "answer": "أَطْلَع",
           "accepted": [
             "أَطْلَع",
@@ -359,8 +361,8 @@
       "phrases": [
         {
           "slot": "i-want-to-book-a-bus-ticket",
-          "arabic": "أَبْغَى أَحْجِز تَذْكِرَة بَاص",
-          "transliteration": "abgha a7jiz tadhkira baaS"
+          "arabic": "أَشْتِي أَحْجِز تَذْكِرَة بَاص",
+          "transliteration": "ashti a7jiz tadhkira baaS"
         },
         {
           "slot": "do-you-have-tickets-to-aleppo",
@@ -369,13 +371,13 @@
         },
         {
           "slot": "how-much-is-a-round-trip-ticket",
-          "arabic": "قَدِّيش التَّذْكِرَة رايِح جاي؟",
-          "transliteration": "qaddish t-tadhkira rayyi7 jaay?"
+          "arabic": "كَمْ التَّذْكِرَة رايِح جاي؟",
+          "transliteration": "kam t-tadhkira rayyi7 jaay?"
         },
         {
           "slot": "i-want-a-one-way-ticket-only",
-          "arabic": "أَبْغَى تَذْكِرَة رايِح بَس",
-          "transliteration": "abgha tadhkira rayyi7 bas"
+          "arabic": "أَشْتِي تَذْكِرَة رايِح بَس",
+          "transliteration": "ashti tadhkira rayyi7 bas"
         },
         {
           "slot": "is-there-a-free-seat-on-the-next-bus",
@@ -384,8 +386,8 @@
         },
         {
           "slot": "what-time-does-the-bus-leave",
-          "arabic": "الْبَاص السَّاعَة قَدِّيش يِطْلَع؟",
-          "transliteration": "l-baaS s-saa3a qaddish yiTla3?"
+          "arabic": "الْبَاص السَّاعَة كَمْ يِطْلَع؟",
+          "transliteration": "l-baaS s-saa3a kam yiTla3?"
         },
         {
           "slot": "can-i-pay-by-card",
@@ -399,8 +401,8 @@
         },
         {
           "slot": "i-want-to-confirm-the-reservation",
-          "arabic": "أَبْغَى أُؤَكِّد الحِجْز",
-          "transliteration": "abgha u2akkid l-7ijz"
+          "arabic": "أَشْتِي أُؤَكِّد الحِجْز",
+          "transliteration": "ashti u2akkid l-7ijz"
         },
         {
           "slot": "is-there-a-discount-for-students",
@@ -414,8 +416,8 @@
         },
         {
           "slot": "how-long-does-the-trip-take",
-          "arabic": "الطَّرِيق قَدِّيش يِاخِذ وَقْت؟",
-          "transliteration": "T-Tareeg qaddish yiakhidh wa2et?"
+          "arabic": "الطَّرِيق كَمْ يِاخِذ وَقْت؟",
+          "transliteration": "T-Tareeg kam yiakhidh wa2et?"
         },
         {
           "slot": "thanks-here-s-your-ticket",
@@ -426,8 +428,8 @@
       "dialogue": [
         {
           "speaker": "زَبُون",
-          "arabic": "السَّلامُ عَلَيْكُم، أَبْغَى أَحْجِز تَذْكِرَة لِحَلِب",
-          "transliteration": "s-salaam 3alaykum, abgha a7jiz tadhkira li-7alab",
+          "arabic": "السَّلامُ عَلَيْكُم، أَشْتِي أَحْجِز تَذْكِرَة لِحَلِب",
+          "transliteration": "s-salaam 3alaykum, ashti a7jiz tadhkira li-7alab",
           "english": "Hello, I want a ticket to Aleppo."
         },
         {
@@ -438,8 +440,8 @@
         },
         {
           "speaker": "زَبُون",
-          "arabic": "رايِح جاي، قَدِّيش السِّعْر؟",
-          "transliteration": "rayyi7 jaay, qaddish s-si3r?",
+          "arabic": "رايِح جاي، كَمْ السِّعْر؟",
+          "transliteration": "rayyi7 jaay, kam s-si3r?",
           "english": "Round trip, how much?"
         },
         {
@@ -490,8 +492,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "قَدِّيش التَّذْكِرَة رايِح جاي؟",
-            "transliteration": "qaddish t-tadhkira rayyi7 jaay?",
+            "arabic": "كَمْ التَّذْكِرَة رايِح جاي؟",
+            "transliteration": "kam t-tadhkira rayyi7 jaay?",
             "english": "How much is a round-trip ticket?"
           },
           "response": {
@@ -502,8 +504,8 @@
         },
         {
           "pair": {
-            "arabic": "الْبَاص السَّاعَة قَدِّيش يِطْلَع؟",
-            "transliteration": "l-baaS s-saa3a qaddish yiTla3?",
+            "arabic": "الْبَاص السَّاعَة كَمْ يِطْلَع؟",
+            "transliteration": "l-baaS s-saa3a kam yiTla3?",
             "english": "What time does the bus leave?"
           },
           "response": {
@@ -554,7 +556,7 @@
         {
           "id": "unit-15.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أَبْغَى ___ تَذْكِرَة لِحَلِب",
+          "prompt": "أَشْتِي ___ تَذْكِرَة لِحَلِب",
           "answer": "أَحْجِز",
           "accepted": [
             "أَحْجِز",
@@ -578,13 +580,14 @@
           "type": "choose",
           "prompt": "كَيْف تَقول 'How much is a round-trip ticket?'",
           "options": [
-            "قَدِّيش التَّذْكِرَة رايِح جاي؟",
+            "كَمْ التَّذْكِرَة رايِح جاي؟",
             "وَيْن شِبّاك التَّذاكِر؟",
-            "أَبْغَى أُؤَكِّد الحِجْز",
+            "أَشْتِي أُؤَكِّد الحِجْز",
             "فِيه خَصْم لِلطُّلاب؟"
           ],
-          "answer": "قَدِّيش التَّذْكِرَة رايِح جاي؟",
+          "answer": "كَمْ التَّذْكِرَة رايِح جاي؟",
           "accepted": [
+            "كَمْ التَّذْكِرَة رايِح جاي؟",
             "قَدِّيش التَّذْكِرَة رايِح جاي؟",
             "qaddish t-tadhkira rayyi7 jaay?"
           ],
@@ -610,25 +613,26 @@
         {
           "id": "unit-15.lesson-02.reorder.01",
           "type": "reorder",
-          "prompt": "رَتِّب الْجُمْلَة: بَس / رايِح / تَذْكِرَة / أَبْغَى",
-          "answer": "أَبْغَى تَذْكِرَة رايِح بَس",
+          "prompt": "رَتِّب الْجُمْلَة: بَس / رايِح / تَذْكِرَة / أَشْتِي",
+          "answer": "أَشْتِي تَذْكِرَة رايِح بَس",
           "accepted": [
-            "أَبْغَى تَذْكِرَة رايِح بَس"
+            "أَشْتِي تَذْكِرَة رايِح بَس"
           ],
           "tip": ""
         },
         {
           "id": "unit-15.lesson-02.reorder.02",
           "type": "reorder",
-          "prompt": "رَتِّب الْجُمْلَة: يِطْلَع / قَدِّيش / السَّاعَة / الْبَاص",
-          "answer": "الْبَاص السَّاعَة قَدِّيش يِطْلَع؟",
+          "prompt": "رَتِّب الْجُمْلَة: يِطْلَع / كَمْ / السَّاعَة / الْبَاص",
+          "answer": "الْبَاص السَّاعَة كَمْ يِطْلَع؟",
           "accepted": [
+            "الْبَاص السَّاعَة كَمْ يِطْلَع؟",
             "الْبَاص السَّاعَة قَدِّيش يِطْلَع؟"
           ],
           "words": [
             "الْبَاص",
             "السَّاعَة",
-            "قَدِّيش",
+            "كَمْ",
             "يِطْلَع؟"
           ],
           "tip": ""
@@ -647,7 +651,7 @@
         {
           "id": "unit-15.lesson-02.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "الطَّرِيق قَدِّيش ___ وَقْت؟",
+          "prompt": "الطَّرِيق كَمْ ___ وَقْت؟",
           "answer": "يِاخِذ",
           "accepted": [
             "يِاخِذ",
@@ -698,8 +702,8 @@
         },
         {
           "slot": "what-time-does-the-plane-depart",
-          "arabic": "الطَّيَّارَة السَّاعَة قَدِّيش تِطْلَع؟",
-          "transliteration": "T-Tayyaara s-saa3a qaddish tiTla3?"
+          "arabic": "الطَّيَّارَة السَّاعَة كَمْ تِطْلَع؟",
+          "transliteration": "T-Tayyaara s-saa3a kam tiTla3?"
         },
         {
           "slot": "do-you-have-anything-to-declare",
@@ -728,8 +732,8 @@
         },
         {
           "slot": "how-long-will-you-stay-here",
-          "arabic": "قَدِّيش الْوَقْت بِتْقَعُد هُون؟",
-          "transliteration": "qaddish l-wa2et bitga3ud huun?"
+          "arabic": "كَمْ وَقْت بِتْقَعُد هُون؟",
+          "transliteration": "kam wa2et bitga3ud huun?"
         },
         {
           "slot": "welcome",
@@ -901,13 +905,14 @@
           "type": "choose",
           "prompt": "كَيْف تَقول 'How long will you stay here?'",
           "options": [
-            "قَدِّيش الْوَقْت بِتْقَعُد هُون؟",
+            "كَمْ وَقْت بِتْقَعُد هُون؟",
             "وَيْن بَوّابَة الطَّيَّارَة؟",
             "عِنْدِي الْجَواز والتَّذْكِرَة",
             "جايِ سِيّاحَة وِلاّ شُغْل؟"
           ],
-          "answer": "قَدِّيش الْوَقْت بِتْقَعُد هُون؟",
+          "answer": "كَمْ وَقْت بِتْقَعُد هُون؟",
           "accepted": [
+            "كَمْ وَقْت بِتْقَعُد هُون؟",
             "قَدِّيش الْوَقْت بِتْقَعُد هُون؟",
             "qaddish l-wa2et bitga3ud huun?"
           ],
@@ -943,15 +948,16 @@
         {
           "id": "unit-15.lesson-03.reorder.02",
           "type": "reorder",
-          "prompt": "رَتِّب الْجُمْلَة: تِطْلَع / الطَّيَّارَة / قَدِّيش / السَّاعَة",
-          "answer": "الطَّيَّارَة السَّاعَة قَدِّيش تِطْلَع؟",
+          "prompt": "رَتِّب الْجُمْلَة: تِطْلَع / الطَّيَّارَة / كَمْ / السَّاعَة",
+          "answer": "الطَّيَّارَة السَّاعَة كَمْ تِطْلَع؟",
           "accepted": [
+            "الطَّيَّارَة السَّاعَة كَمْ تِطْلَع؟",
             "الطَّيَّارَة السَّاعَة قَدِّيش تِطْلَع؟"
           ],
           "words": [
             "الطَّيَّارَة",
             "السَّاعَة",
-            "قَدِّيش",
+            "كَمْ",
             "تِطْلَع؟"
           ],
           "tip": ""
@@ -1124,8 +1130,8 @@
         },
         {
           "speaker": "مُوَظَّف",
-          "arabic": "بِنِدِّيهُم الحِين. تعال مَعاي",
-          "transliteration": "biniddihum l-7een. ta3aal ma3ay",
+          "arabic": "بِنِدِّيهُم ذَلْحِين. تعال مَعاي",
+          "transliteration": "biniddihum dhal7een. ta3aal ma3ay",
           "english": "I'll call them now. Come with me."
         }
       ],
@@ -1179,7 +1185,7 @@
           }
         }
       ],
-      "culture": "لما تحصل مشكلة في السفر في اليمن، الناس بيقولون 'الله يعوض' قبل يحكوا عن الحل. هاد احترام وتعاطف أهم من الحل نفسه. والموظفون دايماً بيساعدونك لأن الضيف عند اليمنيين مهم قوي.",
+      "culture": "لما تحصل مشكلة في السفر في اليمن، الناس بيقولون 'الله يعوض' قبل يحكوا عن الحل. هذا احترام وتعاطف أهم من الحل نفسه. والموظفون دايماً بيساعدونك لأن الضيف عند اليمنيين مهم قوي.",
       "exercises": [
         {
           "id": "unit-15.lesson-04.reply.01",
@@ -1313,8 +1319,8 @@
       "phrases": [
         {
           "slot": "where-is-the-national-museum",
-          "arabic": "فِين الْمَتْحَف الْوَطَنِي؟",
-          "transliteration": "feen al-mat7af al-waTani?"
+          "arabic": "وِين الْمَتْحَف الْوَطَنِي؟",
+          "transliteration": "ween al-mat7af al-waTani?"
         },
         {
           "slot": "how-do-i-get-to-the-old-city",
@@ -1368,8 +1374,8 @@
         },
         {
           "slot": "where-is-the-grand-mosque",
-          "arabic": "فِين الْجَامِع الْكَبِير؟",
-          "transliteration": "feen al-jaami3 al-kabeer?"
+          "arabic": "وِين الْجَامِع الْكَبِير؟",
+          "transliteration": "ween al-jaami3 al-kabeer?"
         },
         {
           "slot": "can-visitors-enter-the-mosque",
@@ -1388,8 +1394,8 @@
         },
         {
           "slot": "where-is-the-castle",
-          "arabic": "فِين الْقَلْعَة؟",
-          "transliteration": "feen al-gal3a?"
+          "arabic": "وِين الْقَلْعَة؟",
+          "transliteration": "ween al-gal3a?"
         },
         {
           "slot": "how-beautiful-this-place-is",
@@ -1576,7 +1582,7 @@
         {
           "id": "unit-15.lesson-05.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"فين _____ الكبير؟\" (Where is the grand mosque?)",
+          "prompt": "Complete: \"وين _____ الكبير؟\" (Where is the grand mosque?)",
           "answer": "الجامع",
           "accepted": [
             "الجامع",
@@ -1640,9 +1646,9 @@
           ],
           "options": [
             "كَيْف أَوْصَل لِلْمَدِينَة الْقَدِيمَة؟",
-            "فِين الْمَتْحَف الْوَطَنِي؟",
-            "فِين الْقَلْعَة؟",
-            "فِين الْجَامِع الْكَبِير؟"
+            "وِين الْمَتْحَف الْوَطَنِي؟",
+            "وِين الْقَلْعَة؟",
+            "وِين الْجَامِع الْكَبِير؟"
           ]
         },
         {
@@ -1677,11 +1683,12 @@
           "id": "unit-15.lesson-05.reorder.02",
           "type": "reorder",
           "prompt": "Put the words in order: \"Where is the national museum?\"",
-          "answer": "فِين الْمَتْحَف الْوَطَنِي؟",
+          "answer": "وِين الْمَتْحَف الْوَطَنِي؟",
           "accepted": [
-            "فِين الْمَتْحَف الْوَطَنِي؟",
-            "فين المتحف الوطني؟",
-            "feen al-mat7af al-waTani"
+            "وِين الْمَتْحَف الْوَطَنِي؟",
+            "وين المتحف الوطني؟",
+            "ween al-mat7af al-waTani",
+            "فين المتحف الوطني؟"
           ]
         }
       ]
@@ -1696,8 +1703,8 @@
         },
         {
           "slot": "where-can-we-sit-on-the-sand",
-          "arabic": "فِين نِجْلِس عَلَى الرَّمْل؟",
-          "transliteration": "feen nijlis 3ala r-raml?",
+          "arabic": "وِين نِجْلِس عَلَى الرَّمْل؟",
+          "transliteration": "ween nijlis 3ala r-raml?",
           "reply": {
             "arabic": "جَنْب الْمِظَلَّات، هُنَاك",
             "transliteration": "janb al-miZallaat, hunaak",
@@ -1731,8 +1738,8 @@
         },
         {
           "slot": "where-is-the-lifeguard",
-          "arabic": "فِين الْمُنْقِذ؟",
-          "transliteration": "feen al-mungidh?"
+          "arabic": "وِين الْمُنْقِذ؟",
+          "transliteration": "ween al-mungidh?"
         },
         {
           "slot": "the-waves-are-high-today",
@@ -1859,8 +1866,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فِين نِجْلِس عَلَى الرَّمْل؟",
-            "transliteration": "feen nijlis 3ala r-raml?",
+            "arabic": "وِين نِجْلِس عَلَى الرَّمْل؟",
+            "transliteration": "ween nijlis 3ala r-raml?",
             "english": "Where can we sit on the sand?"
           },
           "response": {
@@ -2000,7 +2007,7 @@
           "tip": "\"جهّال\" is \"children\" in Sana'a.",
           "options": [
             "الْجَهَّال يِبْنُوا قَصْر مِن الرَّمْل",
-            "فِين نِجْلِس عَلَى الرَّمْل؟",
+            "وِين نِجْلِس عَلَى الرَّمْل؟",
             "الْبَحْر جَمِيل الْيَوْم",
             "أَشْتِي أَأَجِّر مِظَلَّة"
           ]
@@ -2009,15 +2016,16 @@
           "id": "unit-15.lesson-06.choose.02",
           "type": "choose",
           "prompt": "Which one asks \"Where is the lifeguard?\"",
-          "answer": "فِين الْمُنْقِذ؟",
+          "answer": "وِين الْمُنْقِذ؟",
           "accepted": [
-            "فِين الْمُنْقِذ؟",
-            "فين المنقذ؟",
-            "feen al-mungidh"
+            "وِين الْمُنْقِذ؟",
+            "وين المنقذ؟",
+            "ween al-mungidh",
+            "فين المنقذ؟"
           ],
           "options": [
-            "فِين الْمُنْقِذ؟",
-            "فِين نِجْلِس عَلَى الرَّمْل؟",
+            "وِين الْمُنْقِذ؟",
+            "وِين نِجْلِس عَلَى الرَّمْل؟",
             "الْمَاء بَارِد؟",
             "مَعَك وَاقِي شَمْس؟"
           ]
@@ -2439,8 +2447,8 @@
       "phrases": [
         {
           "slot": "where-are-you-going-this-holiday",
-          "arabic": "فِين عَتْسَافِر هَذِي الْإِجَازَة؟",
-          "transliteration": "feen 3a-tsaafir haadhi l-ijaaza?",
+          "arabic": "وِين عَتْسَافِر هَذِي الْإِجَازَة؟",
+          "transliteration": "ween 3a-tsaafir haadhi l-ijaaza?",
           "reply": {
             "arabic": "شَاسَافِر عَدَن، لِلْبَحْر",
             "transliteration": "shaa-saafir 3adan, lil-ba7r",
@@ -2612,8 +2620,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فِين عَتْسَافِر هَذِي الْإِجَازَة؟",
-            "transliteration": "feen 3a-tsaafir haadhi l-ijaaza?",
+            "arabic": "وِين عَتْسَافِر هَذِي الْإِجَازَة؟",
+            "transliteration": "ween 3a-tsaafir haadhi l-ijaaza?",
             "english": "Where are you going this holiday?"
           },
           "response": {
@@ -2676,7 +2684,7 @@
         {
           "id": "unit-15.lesson-08.reply.01",
           "type": "reply",
-          "prompt": "A friend asks: \"فين عتسافر هذي الإجازة؟\" Say you will travel to Aden, to the sea.",
+          "prompt": "A friend asks: \"وين عتسافر هذي الإجازة؟\" Say you will travel to Aden, to the sea.",
           "answer": "شَاسَافِر عَدَن، لِلْبَحْر",
           "accepted": [
             "شَاسَافِر عَدَن، لِلْبَحْر",
@@ -2823,8 +2831,8 @@
       "dialogue": [
         {
           "speaker": "مُحَمَّد",
-          "arabic": "السَّلامُ عَلَيْكُم، أَبْغَى أَحْجِز تَذْكِرَة لِحَلِب",
-          "transliteration": "s-salaam 3alaykum, abgha a7jiz tadhkira li-7alab",
+          "arabic": "السَّلامُ عَلَيْكُم، أَشْتِي أَحْجِز تَذْكِرَة لِحَلِب",
+          "transliteration": "s-salaam 3alaykum, ashti a7jiz tadhkira li-7alab",
           "english": "Hello, I want to book a ticket to Aleppo."
         },
         {
@@ -2835,8 +2843,8 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "رايِح جاي، قَدِّيش السِّعْر؟",
-          "transliteration": "rayyi7 jaay, qaddish s-si3r?",
+          "arabic": "رايِح جاي، كَمْ السِّعْر؟",
+          "transliteration": "rayyi7 jaay, kam s-si3r?",
           "english": "Round trip, how much?"
         },
         {

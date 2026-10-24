@@ -512,8 +512,8 @@
         },
         {
           "slot": "where-is-the-kitchen",
-          "arabic": "فِين المَطْبَخ؟",
-          "transliteration": "feen al-maTbakh?",
+          "arabic": "وِين المَطْبَخ؟",
+          "transliteration": "ween al-maTbakh?",
           "reply": {
             "arabic": "جَنْب الصَّالَة",
             "transliteration": "janb aS-Saala",
@@ -562,8 +562,8 @@
         },
         {
           "slot": "where-is-the-wardrobe",
-          "arabic": "فِين الدُّولَاب؟",
-          "transliteration": "feen ad-doolaab?",
+          "arabic": "وِين الدُّولَاب؟",
+          "transliteration": "ween ad-doolaab?",
           "reply": {
             "arabic": "فِي غُرْفَة النَّوْم",
             "transliteration": "fi ghurfat an-nawm",
@@ -587,8 +587,8 @@
         },
         {
           "slot": "where-do-i-put-the-fridge",
-          "arabic": "فِين أَحُطّ الثَّلَّاجَة؟",
-          "transliteration": "feen a7uTT ath-thallaaja?",
+          "arabic": "وِين أَحُطّ الثَّلَّاجَة؟",
+          "transliteration": "ween a7uTT ath-thallaaja?",
           "reply": {
             "arabic": "عِنْدَ بَاب المَطْبَخ",
             "transliteration": "3ind baab al-maTbakh",
@@ -678,8 +678,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فِين المَطْبَخ؟",
-            "transliteration": "feen al-maTbakh?",
+            "arabic": "وِين المَطْبَخ؟",
+            "transliteration": "ween al-maTbakh?",
             "english": "Where is the kitchen?"
           },
           "response": {
@@ -714,8 +714,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين الدُّولَاب؟",
-            "transliteration": "feen ad-doolaab?",
+            "arabic": "وِين الدُّولَاب؟",
+            "transliteration": "ween ad-doolaab?",
             "english": "Where is the wardrobe?"
           },
           "response": {
@@ -742,7 +742,7 @@
         {
           "id": "unit-18.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "Someone asks you: \"فِين المَطْبَخ؟\" Say next to the living room.",
+          "prompt": "Someone asks you: \"وِين المَطْبَخ؟\" Say next to the living room.",
           "answer": "جَنْب الصَّالَة",
           "accepted": [
             "جَنْب الصَّالَة",
@@ -814,7 +814,7 @@
         {
           "id": "unit-18.lesson-02.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "Complete: \"فِين _____؟\" (Where is the wardrobe?)",
+          "prompt": "Complete: \"وِين _____؟\" (Where is the wardrobe?)",
           "answer": "الدُّولَاب",
           "accepted": [
             "الدُّولَاب",
@@ -834,8 +834,9 @@
           "id": "unit-18.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where is the kitchen?\"",
-          "answer": "فِين المَطْبَخ؟",
+          "answer": "وِين المَطْبَخ؟",
           "accepted": [
+            "وِين المَطْبَخ؟",
             "فِين المَطْبَخ؟",
             "فين المطبخ؟",
             "فين المطبخ",
@@ -845,9 +846,9 @@
           ],
           "too_formal": {
             "item": "أَيْنَ الْمَطْبَخ؟",
-            "feedback": "Formal written Arabic; in Sana'a people say \"فِين المَطْبَخ؟\"."
+            "feedback": "Formal written Arabic; in Sana'a people say \"وِين المَطْبَخ؟\"."
           },
-          "tip": "\"فِين\" is where."
+          "tip": "\"وِين\" is where."
         },
         {
           "id": "unit-18.lesson-02.translate_to_arabic.02",
@@ -893,7 +894,7 @@
           "options": [
             "فِيه كَنَبَة فِي الصَّالَة",
             "أَشْتِي سَرِير جَدِيد",
-            "فِين الدُّولَاب؟",
+            "وِين الدُّولَاب؟",
             "حُطّ الطَّاوِلَة هُنَا"
           ],
           "answer": "فِيه كَنَبَة فِي الصَّالَة",
@@ -913,7 +914,7 @@
           "prompt": "Which one means \"How many bathrooms are in the flat?\"",
           "options": [
             "كَم حَمَّام فِي الشَّقَّة؟",
-            "فِين المَطْبَخ؟",
+            "وِين المَطْبَخ؟",
             "الشَّقَّة مَفْرُوشَة؟",
             "غُرْفَة النَّوْم وَاسِعَة"
           ],
@@ -986,8 +987,8 @@
         },
         {
           "slot": "where-is-the-toolbox",
-          "arabic": "فِين صُنْدُوق العُدَّة؟",
-          "transliteration": "feen Sunduug al-3udda?",
+          "arabic": "وِين صُنْدُوق العُدَّة؟",
+          "transliteration": "ween Sunduug al-3udda?",
           "reply": {
             "arabic": "فِي المَخْزَن",
             "transliteration": "fi l-makhzan",
@@ -1151,8 +1152,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين صُنْدُوق العُدَّة؟",
-            "transliteration": "feen Sunduug al-3udda?",
+            "arabic": "وِين صُنْدُوق العُدَّة؟",
+            "transliteration": "ween Sunduug al-3udda?",
             "english": "Where is the toolbox?"
           },
           "response": {
@@ -1304,8 +1305,9 @@
           "id": "unit-18.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where is the toolbox?\"",
-          "answer": "فِين صُنْدُوق العُدَّة؟",
+          "answer": "وِين صُنْدُوق العُدَّة؟",
           "accepted": [
+            "وِين صُنْدُوق العُدَّة؟",
             "فِين صُنْدُوق العُدَّة؟",
             "فين صندوق العدة؟",
             "فين صندوق العدة",
@@ -1318,7 +1320,7 @@
           ],
           "too_formal": {
             "item": "أَيْنَ صُنْدُوقُ الْعُدَّة؟",
-            "feedback": "Formal written Arabic; in Sana'a people say \"فِين\"."
+            "feedback": "Formal written Arabic; in Sana'a people say \"وِين\"."
           },
           "tip": "\"عُدَّة\" means tools."
         },
@@ -1343,7 +1345,7 @@
             "نَاوِلْنِي المِفَكّ",
             "أَشْتِي مِطْرَقَة وَمَسَامِير",
             "القُفْل مَكْسُور",
-            "فِين صُنْدُوق العُدَّة؟"
+            "وِين صُنْدُوق العُدَّة؟"
           ],
           "answer": "نَاوِلْنِي المِفَكّ",
           "accepted": [
@@ -1476,8 +1478,8 @@
         },
         {
           "slot": "where-do-we-put-the-rubbish",
-          "arabic": "فِين نَحُطّ الزِّبَالَة؟",
-          "transliteration": "feen na7uTT az-zibaala?",
+          "arabic": "وِين نَحُطّ الزِّبَالَة؟",
+          "transliteration": "ween na7uTT az-zibaala?",
           "reply": {
             "arabic": "فِي الحَاوِيَة عِنْدَ المَدْخَل",
             "transliteration": "fi l-7aawiya 3ind al-madkhal",
@@ -1661,8 +1663,8 @@
         },
         {
           "pair": {
-            "arabic": "فِين نَحُطّ الزِّبَالَة؟",
-            "transliteration": "feen na7uTT az-zibaala?",
+            "arabic": "وِين نَحُطّ الزِّبَالَة؟",
+            "transliteration": "ween na7uTT az-zibaala?",
             "english": "Where do we put the rubbish?"
           },
           "response": {
@@ -1791,8 +1793,9 @@
           "id": "unit-18.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where do we put the rubbish?\"",
-          "answer": "فِين نَحُطّ الزِّبَالَة؟",
+          "answer": "وِين نَحُطّ الزِّبَالَة؟",
           "accepted": [
+            "وِين نَحُطّ الزِّبَالَة؟",
             "فِين نَحُطّ الزِّبَالَة؟",
             "فين نحط الزبالة؟",
             "فين نحط الزبالة",
@@ -1805,7 +1808,7 @@
           ],
           "too_formal": {
             "item": "أَيْنَ نَضَعُ النُّفَايَات؟",
-            "feedback": "Formal written Arabic; in Sana'a people say \"فِين نَحُطّ الزِّبَالَة؟\"."
+            "feedback": "Formal written Arabic; in Sana'a people say \"وِين نَحُطّ الزِّبَالَة؟\"."
           },
           "tip": "\"زِبَالَة\" is rubbish."
         },
@@ -1835,7 +1838,7 @@
           "prompt": "Which one means \"I brought you some food\"?",
           "options": [
             "جِبْت لَكُم شْوَيَّة أَكْل",
-            "فِين نَحُطّ الزِّبَالَة؟",
+            "وِين نَحُطّ الزِّبَالَة؟",
             "آسِف عَلَى الإِزْعَاج",
             "تَعَال اِشْرَب مَعَنَا شَاهِي"
           ],
@@ -1914,7 +1917,7 @@
       "A question about the rent or the bedrooms with بِكَم or كَم.",
       "A question about the floor, the lift or whether water and electricity are included, using فِي أَيّ or فِيه.",
       "A request to see the flat with أَقْدَر أَبْسَر.",
-      "A question with فِين about the kitchen or the furniture.",
+      "A question with وِين about the kitchen or the furniture.",
       "A decision with شَاخُذهَا or أَشْتِي عَقْد إِيجَار, and a thank-you."
     ],
     "model": {

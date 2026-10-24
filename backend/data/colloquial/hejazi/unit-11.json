@@ -66,8 +66,8 @@
         },
         {
           "slot": "where-can-i-park-my-car",
-          "arabic": "وِين أَوْقِف السَّيَّارَة؟",
-          "transliteration": "ween awggif as-sayyaarah?",
+          "arabic": "فِين أَوْقِف السَّيَّارَة؟",
+          "transliteration": "feen awggif as-sayyaarah?",
           "reply": {
             "arabic": "قِدَّام البَاب، فِيه مَكَان",
             "transliteration": "giddaam al-baab, fii makaan",
@@ -146,8 +146,8 @@
         },
         {
           "speaker": "فَهِد",
-          "arabic": "الشَّرَف لِي، وِين أَوْقِف السَّيَّارَة؟",
-          "transliteration": "ash-sharaf li, ween awggif as-sayyaarah?",
+          "arabic": "الشَّرَف لِي، فِين أَوْقِف السَّيَّارَة؟",
+          "transliteration": "ash-sharaf li, feen awggif as-sayyaarah?",
           "english": "The honor is mine, where can I park?"
         },
         {
@@ -217,8 +217,8 @@
         },
         {
           "pair": {
-            "arabic": "وِين أَوْقِف السَّيَّارَة؟",
-            "transliteration": "ween awggif as-sayyaarah?",
+            "arabic": "فِين أَوْقِف السَّيَّارَة؟",
+            "transliteration": "feen awggif as-sayyaarah?",
             "english": "Where can I park the car?"
           },
           "response": {
@@ -274,10 +274,10 @@
           "id": "unit-11.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where can I park my car?\"",
-          "answer": "وِين أَوْقِف السَّيَّارَة؟",
+          "answer": "فِين أَوْقِف السَّيَّارَة؟",
           "accepted": [
-            "وِين أَوْقِف السَّيَّارَة؟",
-            "وِين أَرْكِن السَّيَّارَة؟"
+            "فِين أَوْقِف السَّيَّارَة؟",
+            "فِين أَرْكِن السَّيَّارَة؟"
           ],
           "too_formal": {
             "item": "أَيْنَ يُمْكِنُنِي أَنْ أَوْقِفَ السَّيَّارَةَ؟",
@@ -398,8 +398,8 @@
         },
         {
           "slot": "what-would-you-like-to-drink",
-          "arabic": "شِنُّ بِتَبْغَى تَشْرَب؟",
-          "transliteration": "shinnu bitabgha tashrab?",
+          "arabic": "إِيش تَبْغَى تَشْرَب؟",
+          "transliteration": "eesh tabgha tashrab?",
           "reply": {
             "arabic": "شِي خَفِيف، قَهْوَة لَوْ سَمَحْت",
             "transliteration": "shay khafiif, qahwah law sama7t",
@@ -458,8 +458,8 @@
         },
         {
           "slot": "turn-on-the-tv-if-you-d-like",
-          "arabic": "شَغِّل التِّلِفِزْيُون لَوْ بِتَبْغَى",
-          "transliteration": "shaggil at-tilfizyun law bitabgha"
+          "arabic": "شَغِّل التِّلِفِزْيُون لَوْ تَبْغَى",
+          "transliteration": "shaggil at-tilfizyun law tabgha"
         },
         {
           "slot": "your-kids-have-grown-up-so-much",
@@ -500,8 +500,8 @@
         },
         {
           "speaker": "هُدَى",
-          "arabic": "تَمَام الْحَمْد لِله، شِنُّ بِتَبْغَى تَشْرَب؟",
-          "transliteration": "tamaam al-7amdillah, shinnu bitabgha tashrab?",
+          "arabic": "تَمَام الْحَمْد لِله، إِيش تَبْغَى تَشْرَب؟",
+          "transliteration": "tamaam al-7amdillah, eesh tabgha tashrab?",
           "english": "Good, thank God. What would you like to drink?"
         },
         {
@@ -546,8 +546,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شِنُّ بِتَبْغَى تَشْرَب؟",
-            "transliteration": "shinnu bitabgha tashrab?",
+            "arabic": "إِيش تَبْغَى تَشْرَب؟",
+            "transliteration": "eesh tabgha tashrab?",
             "english": "What do you want to drink?"
           },
           "response": {
@@ -593,12 +593,12 @@
           }
         }
       ],
-      "culture": "Offering coffee and tea is a cornerstone of Hejazi hospitality, often served with dates or sweets. The Hejazi custom of asking \"shinnu bitabgha tashrab\" shows warm interest in the guest's preferences. Comments about children growing up are common and well-received in family visits. The phrase \"al-jilsah\" (gathering) reflects the importance of social time in Hejazi culture, where family and friends gather regularly.",
+      "culture": "Offering coffee and tea is a cornerstone of Hejazi hospitality, often served with dates or sweets. The Hejazi custom of asking \"eesh tabgha tashrab\" shows warm interest in the guest's preferences. Comments about children growing up are common and well-received in family visits. The phrase \"al-jilsah\" (gathering) reflects the importance of social time in Hejazi culture, where family and friends gather regularly.",
       "exercises": [
         {
           "id": "unit-11.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "Your host asks: \"شِنُّ بِتَبْغَى تَشْرَب؟\" Reply.",
+          "prompt": "Your host asks: \"إِيش تَبْغَى تَشْرَب؟\" Reply.",
           "answer": "قَهْوَة لَوْ سَمَحْت",
           "accepted": [
             "قَهْوَة لَوْ سَمَحْت",
@@ -609,7 +609,7 @@
             "item": "أَوَدّ فِنجَاناً من القَهْوَة من فَضْلِك",
             "feedback": "Grammatically correct but too formal for a casual home visit."
           },
-          "tip": "\"shinnu\" is the Hejazi way of asking \"what\" in casual speech."
+          "tip": "\"eesh\" is the Hejazi way of asking \"what\" in casual speech."
         },
         {
           "id": "unit-11.lesson-02.fill_blank.01",
@@ -753,8 +753,8 @@
         },
         {
           "slot": "try-this-dish-i-made-it-today",
-          "arabic": "جَرِّب هَذَا الطَّبَخ، أَنَا حِطِّيتُه الْيُوم",
-          "transliteration": "jarrib haza at-thabkh, ana 7attitu al-yoom",
+          "arabic": "جَرِّب هَالطَّبَخ، أَنَا حِطِّيتُه الْيُوم",
+          "transliteration": "jarrib hal-thabkh, ana 7attitu al-yoom",
           "reply": {
             "arabic": "يُمّ الله، تِسْلَم يَدَيْك",
             "transliteration": "yumm allah, tislam yadayk",
@@ -768,8 +768,8 @@
         },
         {
           "slot": "do-you-want-a-bit-more-bread",
-          "arabic": "بِتَبْغَى شِوَيّ خُبْز أَكْثَر؟",
-          "transliteration": "bitabgha shwayy khubz akthar?",
+          "arabic": "تَبْغَى شِوَيّ خُبْز أَكْثَر؟",
+          "transliteration": "tabgha shwayy khubz akthar?",
           "reply": {
             "arabic": "لا، كِفَايَة شُكْراً",
             "transliteration": "la, kifayah shukran",
@@ -778,13 +778,13 @@
         },
         {
           "slot": "this-food-is-a-bit-spicy-be-careful",
-          "arabic": "هَذَا الطَّبَخ فِيه لَهْجَة، احْذَر",
-          "transliteration": "haza at-thabkh fii lahjah, i7dhar"
+          "arabic": "هَالطَّبَخ فِيه لَهْجَة، احْذَر",
+          "transliteration": "hal-thabkh fii lahjah, i7dhar"
         },
         {
           "slot": "what-do-you-think-of-the-dish",
-          "arabic": "شِنُّ رَأْيِك بِالطَّبَخ؟",
-          "transliteration": "shinnu ra2yak bit-thabkh?",
+          "arabic": "إِيش رَأْيِك بِالطَّبَخ؟",
+          "transliteration": "eesh ra2yak bit-thabkh?",
           "reply": {
             "arabic": "طَعْمُه زِين جِدّاً",
             "transliteration": "ta3mu ziin jiddan",
@@ -793,8 +793,8 @@
         },
         {
           "slot": "don-t-be-shy-tell-me-if-you-want-anything-else",
-          "arabic": "مَا تْسْتَحْيِ، قُول لِي إِذَا بِتَبْغَى شِي ثَانِي",
-          "transliteration": "maa tist7i, qul li iza bitabgha shay thani"
+          "arabic": "مَا تْسْتَحْيِ، قُول لِي إِذَا تَبْغَى شِي ثَانِي",
+          "transliteration": "maa tist7i, qul li iza tabgha shay thani"
         },
         {
           "slot": "thank-god-we-re-full-and-satisfied",
@@ -864,8 +864,8 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "تَمَام، مَا بِعْرِف وِين أَحِط الأَكْل!",
-          "transliteration": "tamaam, maa bi3rif ween a7it al-akal!",
+          "arabic": "تَمَام، مَا بِعْرِف فِين أَحِط الأَكْل!",
+          "transliteration": "tamaam, maa bi3rif feen a7it al-akal!",
           "english": "Okay, I don't know where to put all this food!"
         }
       ],
@@ -884,8 +884,8 @@
         },
         {
           "pair": {
-            "arabic": "جَرِّب هَذَا الطَّبَخ",
-            "transliteration": "jarrib haza at-thabkh",
+            "arabic": "جَرِّب هَالطَّبَخ",
+            "transliteration": "jarrib hal-thabkh",
             "english": "Try this dish."
           },
           "response": {
@@ -896,8 +896,8 @@
         },
         {
           "pair": {
-            "arabic": "شِنُّ رَأْيِك بِالطَّبَخ؟",
-            "transliteration": "shinnu ra2yak bit-thabkh?",
+            "arabic": "إِيش رَأْيِك بِالطَّبَخ؟",
+            "transliteration": "eesh ra2yak bit-thabkh?",
             "english": "What do you think of the dish?"
           },
           "response": {
@@ -908,8 +908,8 @@
         },
         {
           "pair": {
-            "arabic": "بِتَبْغَى شِوَيّ خُبْز أَكْثَر؟",
-            "transliteration": "bitabgha shwayy khubz akthar?",
+            "arabic": "تَبْغَى شِوَيّ خُبْز أَكْثَر؟",
+            "transliteration": "tabgha shwayy khubz akthar?",
             "english": "Do you want more bread?"
           },
           "response": {
@@ -946,10 +946,10 @@
           "id": "unit-11.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Try this dish, I made it today.\"",
-          "answer": "جَرِّب هَذَا الطَّبَخ، أَنَا حِطِّيتُه الْيُوم",
+          "answer": "جَرِّب هَالطَّبَخ، أَنَا حِطِّيتُه الْيُوم",
           "accepted": [
-            "جَرِّب هَذَا الطَّبَخ، أَنَا حِطِّيتُه الْيُوم",
-            "جَرِّب هذا، أنا حطيته اليوم"
+            "جَرِّب هَالطَّبَخ، أَنَا حِطِّيتُه الْيُوم",
+            "جَرِّب دا، أنا حطيته اليوم"
           ]
         },
         {
@@ -964,7 +964,7 @@
             "يُمّ الله، طَعْمُه زِين جِدّاً",
             "طَعْمُه مُرّ جِدّاً",
             "الأَكْل بَارِد",
-            "مَا أَحِب هَذَا الطَّبَخ"
+            "مَا أَحِب هَالطَّبَخ"
           ]
         },
         {
@@ -985,7 +985,7 @@
         {
           "id": "unit-11.lesson-03.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "بِتَبْغَى شِوَيّ ___ أَكْثَر؟",
+          "prompt": "تَبْغَى شِوَيّ ___ أَكْثَر؟",
           "answer": "خُبْز",
           "accepted": [
             "خُبْز"
@@ -1010,16 +1010,16 @@
           "id": "unit-11.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"What do you think of the dish?\"",
-          "answer": "شِنُّ رَأْيِك بِالطَّبَخ؟",
+          "answer": "إِيش رَأْيِك بِالطَّبَخ؟",
           "accepted": [
-            "شِنُّ رَأْيِك بِالطَّبَخ؟",
-            "شنو رايك بالطبخ؟"
+            "إِيش رَأْيِك بِالطَّبَخ؟",
+            "إيش رايك بالطبخ؟"
           ]
         },
         {
           "id": "unit-11.lesson-03.reply.02",
           "type": "reply",
-          "prompt": "Your host asks: \"شِنُّ رَأْيِك بِالطَّبَخ؟\" Reply.",
+          "prompt": "Your host asks: \"إِيش رَأْيِك بِالطَّبَخ؟\" Reply.",
           "answer": "طَعْمُه زِين جِدّاً",
           "accepted": [
             "طَعْمُه زِين جِدّاً",
@@ -1059,8 +1059,8 @@
         },
         {
           "slot": "a-very-nice-gathering-god-keep-you",
-          "arabic": "جِلْسَة حِلْوَة كِثِير، الله يَحْفَظِك",
-          "transliteration": "jilsah 7ilwah kthiir, allah y7afazak"
+          "arabic": "جِلْسَة حِلْوَة مَرَّة، الله يَحْفَظِك",
+          "transliteration": "jilsah 7ilwah marra, allah y7afazak"
         },
         {
           "slot": "don-t-forget-our-house-is-always-your-house",
@@ -1084,8 +1084,8 @@
         },
         {
           "slot": "no-excuses-do-we-have-to-part-so-quickly",
-          "arabic": "لا عُذْر، وِين الحِرْص عَلَى الفِرَاق؟",
-          "transliteration": "laa 3udhur, ween al-7irss 3ala al-firag?"
+          "arabic": "لا عُذْر، فِين الحِرْص عَلَى الفِرَاق؟",
+          "transliteration": "laa 3udhur, feen al-7irss 3ala al-firag?"
         },
         {
           "slot": "thanks-for-the-invitation-we-had-a-great-time",
@@ -1116,8 +1116,8 @@
       "dialogue": [
         {
           "speaker": "لَيْلَى",
-          "arabic": "شِنُّ أَخْبَارِك؟",
-          "transliteration": "shinnu akhbarak?",
+          "arabic": "إِيش أَخْبَارِك؟",
+          "transliteration": "eesh akhbarak?",
           "english": "How are things?"
         },
         {
@@ -1128,8 +1128,8 @@
         },
         {
           "speaker": "لَيْلَى",
-          "arabic": "لا عُذْر، جِلْسَة حِلْوَة كِثِير!",
-          "transliteration": "laa 3udhur, jilsah 7ilwah kthiir!",
+          "arabic": "لا عُذْر، جِلْسَة حِلْوَة مَرَّة!",
+          "transliteration": "laa 3udhur, jilsah 7ilwah marra!",
           "english": "No excuses, it's been such a nice gathering!"
         },
         {
@@ -1224,7 +1224,7 @@
         {
           "id": "unit-11.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "As you're leaving, your host says: \"جِلْسَة حِلْوَة كِثِير!\". Reply.",
+          "prompt": "As you're leaving, your host says: \"جِلْسَة حِلْوَة مَرَّة!\". Reply.",
           "answer": "شُكْراً عَلَى الدَّعْوَة",
           "accepted": [
             "شُكْراً عَلَى الدَّعْوَة",
@@ -2145,7 +2145,7 @@
     "instructions": "Write a short conversation where you either welcome a guest into your home from the door to the table, or visit someone else's home and take your leave at the end. Use at least one greeting-at-the-door phrase, one phrase about food or drink, and one closing/thanking phrase.",
     "required_elements": [
       "a welcome phrase at the door (e.g. 7ayyak allah / tfaddal daakhil)",
-      "an offer of food or drink (e.g. shinnu bitabgha tashrab)",
+      "an offer of food or drink (e.g. eesh tabgha tashrab)",
       "a closing thanks or goodbye (e.g. allah ya3tiik al-3aafyah / ma3a as-salam)"
     ],
     "model": {
@@ -2164,8 +2164,8 @@
         },
         {
           "speaker": "نُور",
-          "arabic": "مَا كَان لازِم! اقْعُدِي اسْتَرِيحِي، شِنُّ بِتَبْغِي تَشْرَبِي؟",
-          "transliteration": "maa kaan lazim! ug3udi istri7i, shinnu bitabghi tashrabi?",
+          "arabic": "مَا كَان لازِم! اقْعُدِي اسْتَرِيحِي، إِيش تَبْغِي تَشْرَبِي؟",
+          "transliteration": "maa kaan lazim! ug3udi istri7i, eesh tabgha tashrabi?",
           "english": "You didn't have to! Sit and relax, what would you like to drink?"
         },
         {

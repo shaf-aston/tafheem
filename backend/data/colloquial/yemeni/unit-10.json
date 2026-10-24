@@ -25,8 +25,8 @@
       "phrases": [
         {
           "slot": "what-s-the-weather-like-today",
-          "arabic": "شنُو الجَوّ الْيَوْم؟",
-          "transliteration": "shnu ijjaw ilyawm?",
+          "arabic": "إِيش الجَوّ الْيَوْم؟",
+          "transliteration": "eesh ijjaw ilyawm?",
           "reply": {
             "arabic": "الجَوّ حِلْو وَفِيهِ شَمْس",
             "transliteration": "ijjaw 7ilw w fiih shams",
@@ -35,8 +35,8 @@
         },
         {
           "slot": "the-weather-s-very-hot",
-          "arabic": "الجَوّ حَاار كْتِير",
-          "transliteration": "ijjaw 7aarr ktiir"
+          "arabic": "الجَوّ حَاار كَثِير",
+          "transliteration": "ijjaw 7aarr katheer"
         },
         {
           "slot": "it-s-cold-today",
@@ -55,8 +55,8 @@
         },
         {
           "slot": "there-s-a-lot-of-wind-today",
-          "arabic": "فِي هَوَا كْتِير الْيَوْم",
-          "transliteration": "fi hawa ktiir ilyawm"
+          "arabic": "فِي هَوَا كَثِير الْيَوْم",
+          "transliteration": "fi hawa katheer ilyawm"
         },
         {
           "slot": "the-weather-s-humid-today",
@@ -65,8 +65,8 @@
         },
         {
           "slot": "what-do-you-think-is-it-going-to-rain-tomorrow",
-          "arabic": "شِنُو رَايِك، رَاح تِمْطُر بُكْرَة؟",
-          "transliteration": "shnu raayik, raa7 timTur bukra?",
+          "arabic": "إِيش رَايِك، عَتِمْطُر بُكْرَة؟",
+          "transliteration": "eesh raayik, 3a-timTur bukra?",
           "reply": {
             "arabic": "ما أَدْرِي، بَس الْجَوّ غَيِّم",
             "transliteration": "ma adri, bas ijjaw ghayyyim",
@@ -80,8 +80,8 @@
         },
         {
           "slot": "it-s-cold-out-right-now",
-          "arabic": "الدُّنْيَا بَارِدَة هَسْع",
-          "transliteration": "idduunya baarda has3"
+          "arabic": "الدُّنْيَا بَارِدَة ذَلْحِين",
+          "transliteration": "idduunya baarda dhal7een"
         },
         {
           "slot": "you-need-to-take-an-umbrella-with-you",
@@ -97,8 +97,8 @@
       "dialogue": [
         {
           "speaker": "نور",
-          "arabic": "صَبَاح الْخَيْر يَا سَعِيد، شِنُو الْجَوّ الْيَوْم بِرَايِك؟",
-          "transliteration": "Sabaa7 ilkheer ya sa3iid, shnu ijjaw ilyawm biraayik?",
+          "arabic": "صَبَاح الْخَيْر يَا سَعِيد، إِيش الْجَوّ الْيَوْم بِرَايِك؟",
+          "transliteration": "Sabaa7 ilkheer ya sa3iid, eesh ijjaw ilyawm biraayik?",
           "english": "Good morning Said, what do you think the weather's like today?"
         },
         {
@@ -109,14 +109,14 @@
         },
         {
           "speaker": "نور",
-          "arabic": "يَعْنِي رَاح تِمْطُر بِرَايِك؟",
-          "transliteration": "ya3ni raa7 timTur biraayik?",
+          "arabic": "يَعْنِي عَتِمْطُر بِرَايِك؟",
+          "transliteration": "ya3ni 3a-timTur biraayik?",
           "english": "So do you think it'll rain?"
         },
         {
           "speaker": "سعيد",
-          "arabic": "مَا أَدْرِي، بَس فِي هَوَا كْتِير مِن الصَّبَّاح",
-          "transliteration": "ma adri, bas fi hawa ktiir min iSSabbaa7",
+          "arabic": "مَا أَدْرِي، بَس فِي هَوَا كَثِير مِن الصَّبَّاح",
+          "transliteration": "ma adri, bas fi hawa katheer min iSSabbaa7",
           "english": "I don't know, but there's been a lot of wind since morning."
         },
         {
@@ -165,8 +165,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شِنُو الْجَوّ الْيَوْم؟",
-            "transliteration": "shnu ijjaw ilyawm?",
+            "arabic": "إِيش الْجَوّ الْيَوْم؟",
+            "transliteration": "eesh ijjaw ilyawm?",
             "english": "What's the weather like today?"
           },
           "response": {
@@ -177,8 +177,8 @@
         },
         {
           "pair": {
-            "arabic": "عِم تِمْطُر هَسْع؟",
-            "transliteration": "3im timTur has3?",
+            "arabic": "عِم تِمْطُر ذَلْحِين؟",
+            "transliteration": "3im timTur dhal7een?",
             "english": "Is it raining right now?"
           },
           "response": {
@@ -189,8 +189,8 @@
         },
         {
           "pair": {
-            "arabic": "الْجَوّ بَارِد كْتِير؟",
-            "transliteration": "ijjaw barid ktiir?",
+            "arabic": "الْجَوّ بَارِد كَثِير؟",
+            "transliteration": "ijjaw barid katheer?",
             "english": "Is it very cold?"
           },
           "response": {
@@ -206,18 +206,18 @@
             "english": "Is it windy today?"
           },
           "response": {
-            "arabic": "إِي، هَوَا كْتِير مِن الصَّبَّاح",
-            "transliteration": "ii, hawa ktiir min iSSabbaa7",
+            "arabic": "إِي، هَوَا كَثِير مِن الصَّبَّاح",
+            "transliteration": "ii, hawa katheer min iSSabbaa7",
             "english": "Yes, a lot of wind since morning."
           }
         }
       ],
-      "culture": "بِصَنْعَاء النَّاس تِتْحَاكَى عَنِ الْجَوّ كْتِير كِنَوْع مِنَ الْحَدِيث الْخَفِيف، خَاصَّة أَوَّل الصَّبَّاح وَقُبْل مَا تِطْلُع مِنَ الْبَيْت. كَلِمَة \"الدُّنْيَا\" تِنِسْتَخْدَم بِدَل \"الْجَوّ\" كْتِير.",
+      "culture": "بِصَنْعَاء النَّاس تِتْحَاكَى عَنِ الْجَوّ كَثِير كِنَوْع مِنَ الْحَدِيث الْخَفِيف، خَاصَّة أَوَّل الصَّبَّاح وَقُبْل مَا تِطْلُع مِنَ الْبَيْت. كَلِمَة \"الدُّنْيَا\" تِنِسْتَخْدَم بِدَل \"الْجَوّ\" كَثِير.",
       "exercises": [
         {
           "id": "unit-10.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "صَاحِبُك بِيْسَأَلُك: \"شِنُو الْجَوّ الْيَوْم؟\". جَاوِبُ إِنُّو الْجَوّ حِلْو وَفِيهِ شَمْس.",
+          "prompt": "صَاحِبُك بِيْسَأَلُك: \"إِيش الْجَوّ الْيَوْم؟\". جَاوِبُ إِنُّو الْجَوّ حِلْو وَفِيهِ شَمْس.",
           "answer": "الجو حلو وفيه شمس",
           "accepted": [
             "الجو حلو وفيه شمس",
@@ -233,7 +233,7 @@
         {
           "id": "unit-10.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "حَدّ سَأَلَك: \"عِم تِمْطُر هَسْع؟\" وَأَنْتَ شَائِف الشَّمْس. جَاوِبْ بِاللاَّ.",
+          "prompt": "حَدّ سَأَلَك: \"عِم تِمْطُر ذَلْحِين؟\" وَأَنْتَ شَائِف الشَّمْس. جَاوِبْ بِاللاَّ.",
           "answer": "لا، الشمس طالعة",
           "accepted": [
             "لا، الشمس طالعة",
@@ -265,7 +265,7 @@
         {
           "id": "unit-10.lesson-01.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "كَمِّل الْجُمْلَة: \"لاَزِم تَاخِذ _____ مَعَاك، رَاح تِمْطُر.\" الْمَعْنَى: You need to take an umbrella with you, it's going to rain.",
+          "prompt": "كَمِّل الْجُمْلَة: \"لاَزِم تَاخِذ _____ مَعَاك، عَتِمْطُر.\" الْمَعْنَى: You need to take an umbrella with you, it's going to rain.",
           "answer": "شمسية",
           "accepted": [
             "شمسية",
@@ -282,11 +282,11 @@
           "id": "unit-10.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "تَرْجِم لِلْهِجَة الْيَمَنِيَّة: \"The weather is very cold today.\"",
-          "answer": "الجو بارد كتير اليوم",
+          "answer": "الجو بارد كثير اليوم",
           "accepted": [
-            "الجو بارد كتير اليوم",
-            "الجو برد كتير اليوم",
-            "اليوم الجو بارد كتير"
+            "الجو بارد كثير اليوم",
+            "الجو برد كثير اليوم",
+            "اليوم الجو بارد كثير"
           ],
           "too_formal": {
             "item": "الطَّقْس شَدِيد الْبُرُودَة الْيَوْم",
@@ -298,11 +298,11 @@
           "id": "unit-10.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "تَرْجِم لِلْهِجَة الْيَمَنِيَّة: \"There's a lot of wind today.\"",
-          "answer": "في هوا كتير اليوم",
+          "answer": "في هوا كثير اليوم",
           "accepted": [
-            "في هوا كتير اليوم",
-            "فيه هوا كتير اليوم",
-            "اليوم في هوا كتير"
+            "في هوا كثير اليوم",
+            "فيه هوا كثير اليوم",
+            "اليوم في هوا كثير"
           ],
           "too_formal": {
             "item": "الرِّيَاح شَدِيدَة الْيَوْم",
@@ -313,7 +313,7 @@
         {
           "id": "unit-10.lesson-01.choose.01",
           "type": "choose",
-          "prompt": "شِنُو مَعْنَى \"الْجَوّ غَيِّم\"؟",
+          "prompt": "إِيش مَعْنَى \"الْجَوّ غَيِّم\"؟",
           "answer": "الجو فيه غيوم",
           "accepted": [
             "الجو فيه غيوم",
@@ -323,7 +323,7 @@
             "الجو فيه غيوم",
             "الجو حار",
             "الجو صحو",
-            "في مطر هسع"
+            "في مطر ذلحين"
           ],
           "too_formal": {
             "item": "السَّمَاء مَلْبَدَة بِالْغُيُوم",
@@ -334,7 +334,7 @@
         {
           "id": "unit-10.lesson-01.choose.02",
           "type": "choose",
-          "prompt": "شِنُو بِتْقُول لِحَدّ لاَزِم يَاخِذ شَمْسِيَّة مَعْهُ؟",
+          "prompt": "إِيش بِتْقُول لِحَدّ لاَزِم يَاخِذ شَمْسِيَّة مَعْهُ؟",
           "answer": "لازم تاخذ شمسية معاك",
           "accepted": [
             "لازم تاخذ شمسية معاك",
@@ -342,9 +342,9 @@
           ],
           "options": [
             "لازم تاخذ شمسية معاك",
-            "الجو حار كتير",
+            "الجو حار كثير",
             "الشمس طالعة",
-            "في هوا كتير"
+            "في هوا كثير"
           ],
           "too_formal": {
             "item": "يَتَوَجَّب عَلَيْك اصْطِحَاب مِظَلَّة",
@@ -400,8 +400,8 @@
       "phrases": [
         {
           "slot": "what-s-your-favorite-season",
-          "arabic": "شِنُو أَحْلَى فَصْل عِنْدَك؟",
-          "transliteration": "shnu a7la faSl 3indak?",
+          "arabic": "إِيش أَحْلَى فَصْل عِنْدَك؟",
+          "transliteration": "eesh a7la faSl 3indak?",
           "reply": {
             "arabic": "بِحِبّ الصَّيْف",
             "transliteration": "bi7ibb iSSayf",
@@ -410,8 +410,8 @@
         },
         {
           "slot": "in-winter-it-gets-very-cold-in-damascus",
-          "arabic": "بِالشِّتَا بِصِير بَرْد كْتِير بِصَنْعَاء",
-          "transliteration": "bishshita biSiir bard ktiir biSan3aa",
+          "arabic": "بِالشِّتَا بِصِير بَرْد كَثِير بِصَنْعَاء",
+          "transliteration": "bishshita biSiir bard katheer biSan3aa",
           "english": "In winter it gets very cold in Sana'a."
         },
         {
@@ -436,16 +436,16 @@
         },
         {
           "slot": "i-don-t-like-winter-because-it-gets-very-cold",
-          "arabic": "مَا بِحِبّ الشِّتَا لأَنُّو بِيْبِرِد كْتِير",
-          "transliteration": "ma bi7ibb ishshita la2annu byibrid ktiir"
+          "arabic": "مَا بِحِبّ الشِّتَا لأَنُّو بِيْبِرِد كَثِير",
+          "transliteration": "ma bi7ibb ishshita la2annu byibrid katheer"
         },
         {
           "slot": "what-season-is-it-now",
-          "arabic": "هَسْع شِنُو الْفَصْل؟",
-          "transliteration": "has3 shnu ilfaSl?",
+          "arabic": "ذَلْحِين إِيش الْفَصْل؟",
+          "transliteration": "dhal7een eesh ilfaSl?",
           "reply": {
-            "arabic": "هَسْع صَيْف",
-            "transliteration": "has3 Sayf",
+            "arabic": "ذَلْحِين صَيْف",
+            "transliteration": "dhal7een Sayf",
             "english": "It's summer now."
           }
         },
@@ -456,8 +456,8 @@
         },
         {
           "slot": "the-weather-changes-a-lot-between-the-seasons",
-          "arabic": "الْجَوّ بِيْتِغَيَّر كْتِير بَيْن الْفُصُول",
-          "transliteration": "ijjaw byitghayyar ktiir beyn ilfuSuul"
+          "arabic": "الْجَوّ بِيْتِغَيَّر كَثِير بَيْن الْفُصُول",
+          "transliteration": "ijjaw byitghayyar katheer beyn ilfuSuul"
         },
         {
           "slot": "i-like-the-smell-of-rain-in-spring",
@@ -474,14 +474,14 @@
       "dialogue": [
         {
           "speaker": "سارة",
-          "arabic": "شِنُو أَحْلَى فَصْل عِنْدَك يَا مُحَمَّد؟",
-          "transliteration": "shnu a7la faSl 3indak ya mu7ammad?",
+          "arabic": "إِيش أَحْلَى فَصْل عِنْدَك يَا مُحَمَّد؟",
+          "transliteration": "eesh a7la faSl 3indak ya mu7ammad?",
           "english": "What's your favorite season, Muhammad?"
         },
         {
           "speaker": "محمد",
-          "arabic": "بِحِبّ الرَّبِيع كْتِير، الْجَوّ بِيْكُون مَعْتَدِل",
-          "transliteration": "bi7ibb irrabii3 ktiir, ijjaw bykuun mu3tadil",
+          "arabic": "بِحِبّ الرَّبِيع كَثِير، الْجَوّ بِيْكُون مَعْتَدِل",
+          "transliteration": "bi7ibb irrabii3 katheer, ijjaw bykuun mu3tadil",
           "english": "I really like spring, the weather's mild."
         },
         {
@@ -492,8 +492,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "بَس بِالصَّيْف الْجَوّ بِيْكُون جَافّ كْتِير بِصَنْعَاء",
-          "transliteration": "bas biSSayf ijjaw bykuun jaff ktiir biSan3aa",
+          "arabic": "بَس بِالصَّيْف الْجَوّ بِيْكُون جَافّ كَثِير بِصَنْعَاء",
+          "transliteration": "bas biSSayf ijjaw bykuun jaff katheer biSan3aa",
           "english": "But in summer the weather's really dry in Sana'a."
         },
         {
@@ -504,8 +504,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "أَنَا مَا بِحِبّ الشِّتَا خَالِص، بِيْبِرِد كْتِير",
-          "transliteration": "ana ma bi7ibb ishshita khaliS, byibrid ktiir",
+          "arabic": "أَنَا مَا بِحِبّ الشِّتَا خَالِص، بِيْبِرِد كَثِير",
+          "transliteration": "ana ma bi7ibb ishshita khaliS, byibrid katheer",
           "english": "I don't like winter at all, it gets very cold."
         },
         {
@@ -516,14 +516,14 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "صَحِيح، مَرَّة طَلَعْنَا عَالْجِبْل بِالشِّتَا وَكَانَ حِلْو كْتِير",
-          "transliteration": "Sa7ii7, marra Tala3na 3aljib bishshita w kaan 7ilw ktiir",
+          "arabic": "صَحِيح، مَرَّة طَلَعْنَا عَالْجِبْل بِالشِّتَا وَكَانَ حِلْو كَثِير",
+          "transliteration": "Sa7ii7, marra Tala3na 3aljib bishshita w kaan 7ilw katheer",
           "english": "True, once we went up the mountain in winter and it was really nice."
         },
         {
           "speaker": "سارة",
-          "arabic": "وَشِنُو رَايِك بِالْخَرِيف؟",
-          "transliteration": "w shnu raayik bilkhariif?",
+          "arabic": "وَإِيش رَايِك بِالْخَرِيف؟",
+          "transliteration": "w eesh raayik bilkhariif?",
           "english": "And what do you think about fall?"
         },
         {
@@ -542,8 +542,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شِنُو أَحْلَى فَصْل عِنْدَك؟",
-            "transliteration": "shnu a7la faSl 3indak?",
+            "arabic": "إِيش أَحْلَى فَصْل عِنْدَك؟",
+            "transliteration": "eesh a7la faSl 3indak?",
             "english": "What's your favorite season?"
           },
           "response": {
@@ -554,8 +554,8 @@
         },
         {
           "pair": {
-            "arabic": "بِيْمْطُر كْتِير بِالشِّتَا؟",
-            "transliteration": "bymTur ktiir bishshita?",
+            "arabic": "بِيْمْطُر كَثِير بِالشِّتَا؟",
+            "transliteration": "bymTur katheer bishshita?",
             "english": "Does it rain a lot in winter?"
           },
           "response": {
@@ -566,13 +566,13 @@
         },
         {
           "pair": {
-            "arabic": "شِنُو رَايِك بِحَاار الصَّيْف؟",
-            "transliteration": "shnu raayik bi7aarr iSSayf?",
+            "arabic": "إِيش رَايِك بِحَاار الصَّيْف؟",
+            "transliteration": "eesh raayik bi7aarr iSSayf?",
             "english": "What do you think of the summer heat?"
           },
           "response": {
-            "arabic": "بِحِبُّو، بَس بِيْصِير جَافّ كْتِير أَحْيَان",
-            "transliteration": "bi7ibbu, bas biSiir jaff ktiir a7yaan",
+            "arabic": "بِحِبُّو، بَس بِيْصِير جَافّ كَثِير أَحْيَان",
+            "transliteration": "bi7ibbu, bas biSiir jaff katheer a7yaan",
             "english": "I like it, but it gets too dry sometimes."
           }
         },
@@ -594,11 +594,11 @@
         {
           "id": "unit-10.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "حَدّ سَأَلَك: \"شِنُو أَحْلَى فَصْل عِنْدَك؟\". جَاوِبْ إِنَّك بِتْحِبّ الصَّيْف.",
+          "prompt": "حَدّ سَأَلَك: \"إِيش أَحْلَى فَصْل عِنْدَك؟\". جَاوِبْ إِنَّك بِتْحِبّ الصَّيْف.",
           "answer": "بحب الصيف",
           "accepted": [
             "بحب الصيف",
-            "بحب الصيف كتير",
+            "بحب الصيف كثير",
             "أنا بحب الصيف"
           ],
           "too_formal": {
@@ -610,18 +610,18 @@
         {
           "id": "unit-10.lesson-02.reply.02",
           "type": "reply",
-          "prompt": "حَدّ سَأَلَك: \"هَسْع شِنُو الْفَصْل؟\" وَأَنْتَ بِمِنْتَصِف دِيسِمْبِر. جَاوِبْ إِنُّو الشِّتَا.",
-          "answer": "هسع شتا",
+          "prompt": "حَدّ سَأَلَك: \"ذَلْحِين إِيش الْفَصْل؟\" وَأَنْتَ بِمِنْتَصِف دِيسِمْبِر. جَاوِبْ إِنُّو الشِّتَا.",
+          "answer": "ذلحين شتا",
           "accepted": [
-            "هسع شتا",
-            "هسع الشتا",
-            "شتا هسع"
+            "ذلحين شتا",
+            "ذلحين الشتا",
+            "شتا ذلحين"
           ],
           "too_formal": {
             "item": "نَحْنُ حَالِياً فِي فَصْل الشِّتَاء",
             "feedback": "This is grammatically fine but far more formal than how the answer is normally given."
           },
-          "tip": "جَوَاب سَرِيع: \"هَسْع + اسْم الْفَصْل\"."
+          "tip": "جَوَاب سَرِيع: \"ذَلْحِين + اسْم الْفَصْل\"."
         },
         {
           "id": "unit-10.lesson-02.fill_blank.01",
@@ -659,11 +659,11 @@
           "id": "unit-10.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "تَرْجِم لِلْهِجَة الْيَمَنِيَّة: \"I don't like winter because it gets very cold.\"",
-          "answer": "ما بحب الشتا لأنو بيبرد كتير",
+          "answer": "ما بحب الشتا لأنو بيبرد كثير",
           "accepted": [
-            "ما بحب الشتا لأنو بيبرد كتير",
-            "ما بحب الشتا لأنه بيبرد كتير",
-            "أنا ما بحب الشتا لأنو بيبرد كتير"
+            "ما بحب الشتا لأنو بيبرد كثير",
+            "ما بحب الشتا لأنه بيبرد كثير",
+            "أنا ما بحب الشتا لأنو بيبرد كثير"
           ],
           "too_formal": {
             "item": "لاَ أُحِبّ فَصْل الشِّتَاء لأَنَّ الْجَوّ يَصِير بَارِداً جِداً",
@@ -711,7 +711,7 @@
         {
           "id": "unit-10.lesson-02.choose.02",
           "type": "choose",
-          "prompt": "شِنُو مَعْنَى \"الْجَوّ جَافّ\"؟",
+          "prompt": "إِيش مَعْنَى \"الْجَوّ جَافّ\"؟",
           "answer": "ما في رطوبة بالجو",
           "accepted": [
             "ما في رطوبة بالجو",
@@ -719,9 +719,9 @@
           ],
           "options": [
             "ما في رطوبة بالجو",
-            "الجو برد كتير",
+            "الجو برد كثير",
             "عم تمطر",
-            "في هوا كتير"
+            "في هوا كثير"
           ],
           "too_formal": {
             "item": "اِنْعِدَام الرُّطُوبَة فِي الْجَوّ",
@@ -752,17 +752,17 @@
         {
           "id": "unit-10.lesson-02.reorder.02",
           "type": "reorder",
-          "prompt": "رَتِّب الْكَلِمَات: \"كْتِير / بِصَنْعَاء / طَوِيل / بِيْكُون / الصَّيْف\"",
-          "answer": "الصيف بصنعاء بيكون طويل كتير",
+          "prompt": "رَتِّب الْكَلِمَات: \"كَثِير / بِصَنْعَاء / طَوِيل / بِيْكُون / الصَّيْف\"",
+          "answer": "الصيف بصنعاء بيكون طويل كثير",
           "accepted": [
-            "الصيف بصنعاء بيكون طويل كتير"
+            "الصيف بصنعاء بيكون طويل كثير"
           ],
           "words": [
             "الصيف",
             "بصنعاء",
             "بيكون",
             "طويل",
-            "كتير"
+            "كثير"
           ],
           "too_formal": {
             "item": "يَكُون فَصْل الصَّيْف فِي صَنْعَاء طَوِيلاً جِداً",
@@ -777,8 +777,8 @@
       "phrases": [
         {
           "slot": "what-should-i-wear-today",
-          "arabic": "شِنُو لاَزِم أِلْبَس الْيَوْم؟",
-          "transliteration": "shnu lazim albas ilyawm?",
+          "arabic": "إِيش لاَزِم أِلْبَس الْيَوْم؟",
+          "transliteration": "eesh lazim albas ilyawm?",
           "reply": {
             "arabic": "اِلْبَس شَيْء ثِقِيل، الْجَوّ بَارِد",
             "transliteration": "ilbas shay thaqiil, ijjaw barid",
@@ -787,8 +787,8 @@
         },
         {
           "slot": "take-an-umbrella-with-you-it-s-going-to-rain",
-          "arabic": "خُذ مَعَاك شَمْسِيَّة، رَاح تِمْطُر",
-          "transliteration": "khudh ma3aak shamsiyya, raa7 timTur"
+          "arabic": "خُذ مَعَاك شَمْسِيَّة، عَتِمْطُر",
+          "transliteration": "khudh ma3aak shamsiyya, 3a-timTur"
         },
         {
           "slot": "wear-a-sweater-it-s-cold",
@@ -807,8 +807,8 @@
         },
         {
           "slot": "you-need-boots-in-winter-because-it-rains-a-lot",
-          "arabic": "لاَزِم بُوت بِالشِّتَا لأَنُّو بِيْمْطُر كْتِير",
-          "transliteration": "lazim boot bishshita la2annu bymTur ktiir"
+          "arabic": "لاَزِم بُوت بِالشِّتَا لأَنُّو بِيْمْطُر كَثِير",
+          "transliteration": "lazim boot bishshita la2annu bymTur katheer"
         },
         {
           "slot": "i-didn-t-wear-a-jacket-and-i-got-cold",
@@ -822,8 +822,8 @@
         },
         {
           "slot": "what-s-your-favorite-color-in-sweaters",
-          "arabic": "شِنُو لَوْنُك الْمُفَضَّل بِالْكِنَز؟",
-          "transliteration": "shnu lawnuk ilmufa22al bilkinz?"
+          "arabic": "إِيش لَوْنُك الْمُفَضَّل بِالْكِنَز؟",
+          "transliteration": "eesh lawnuk ilmufa22al bilkinz?"
         },
         {
           "slot": "in-fall-i-wear-a-light-jacket",
@@ -832,8 +832,8 @@
         },
         {
           "slot": "wear-something-comfortable-because-we-re-going-t",
-          "arabic": "اِلْبَس شَيْء مَرِيح لأَنُّو رَاح نِمْشِي كْتِير",
-          "transliteration": "ilbas shay mrii7 la2annu raa7 nimshi ktiir"
+          "arabic": "اِلْبَس شَيْء مَرِيح لأَنُّو شَانِمْشِي كَثِير",
+          "transliteration": "ilbas shay mrii7 la2annu shaa-nimshi katheer"
         },
         {
           "slot": "i-forgot-the-raincoat-at-home",
@@ -844,8 +844,8 @@
       "dialogue": [
         {
           "speaker": "فاطمة",
-          "arabic": "شِنُو لاَزِم أِلْبَس الْيَوْم؟ مَا بِأَعْرِف شِنُو الْجَوّ",
-          "transliteration": "shnu lazim albas ilyawm? ma bia3raf shnu ijjaw",
+          "arabic": "إِيش لاَزِم أِلْبَس الْيَوْم؟ مَا بِأَعْرِف إِيش الْجَوّ",
+          "transliteration": "eesh lazim albas ilyawm? ma bia3raf eesh ijjaw",
           "english": "What should I wear today? I don't know what the weather's like."
         },
         {
@@ -862,20 +862,20 @@
         },
         {
           "speaker": "علي",
-          "arabic": "إِي، رَاح تِمْطُر بَعِد الظُّهْر حَسِب النَّشْرَة",
-          "transliteration": "ii, raa7 timTur ba3id iDDuh r 7asab innashra",
+          "arabic": "إِي، عَتِمْطُر بَعِد الظُّهْر حَسِب النَّشْرَة",
+          "transliteration": "ii, 3a-timTur ba3id iDDuh r 7asab innashra",
           "english": "Yes, it's going to rain in the afternoon according to the forecast."
         },
         {
           "speaker": "فاطمة",
-          "arabic": "طَيِّب رَاح أِلْبَس بُوت كَمَان، مَا بِأَحِبّ رِجْلِي تِصِير مَبْلُولَة",
-          "transliteration": "Tayyib raa7 albas boot kamaan, ma bia7ibb rijli tiSiir mablula",
+          "arabic": "طَيِّب شَالْبَس بُوت كَمَان، مَا بِأَحِبّ رِجْلِي تِصِير مَبْلُولَة",
+          "transliteration": "Tayyib shaa-lbas boot kamaan, ma bia7ibb rijli tiSiir mablula",
           "english": "Ok I'll wear boots too, I don't like my feet getting wet."
         },
         {
           "speaker": "علي",
-          "arabic": "فِكْرَة مَنِيحَة، وَخُذِي جَاكِيت لأَنُّو رَاح يِبِرِد بِالْلَّيْل",
-          "transliteration": "fikra manii7a, w khudhi jaakeet la2annu raa7 yibrid billeel",
+          "arabic": "فِكْرَة مَنِيحَة، وَخُذِي جَاكِيت لأَنُّو عَيِبِرِد بِالْلَّيْل",
+          "transliteration": "fikra manii7a, w khudhi jaakeet la2annu 3a-yibrid billeel",
           "english": "Good idea, and take a jacket because it'll get cold at night."
         },
         {
@@ -886,34 +886,34 @@
         },
         {
           "speaker": "علي",
-          "arabic": "وَلاَ يِهِمَّك، هَسْع ذَكَّرْتِك، خُذِيهَا مَعَاك",
-          "transliteration": "w la yhimmak, has3 dhakkartak, khudihaa ma3aak",
+          "arabic": "وَلاَ يِهِمَّك، ذَلْحِين ذَكَّرْتِك، خُذِيهَا مَعَاك",
+          "transliteration": "w la yhimmak, dhal7een dhakkartak, khudihaa ma3aak",
           "english": "Don't worry, I just reminded you, take it with you."
         },
         {
           "speaker": "فاطمة",
-          "arabic": "شُكْرَاً، وَشِنُو رَايِك بِهَاذَا اللَّون؟ مِنَاسِب لِلْجَوّ؟",
-          "transliteration": "shukran, w shnu raayik bhaadha illawn? mnaasib lijjaw?",
+          "arabic": "شُكْرَاً، وَإِيش رَايِك بِهَاذَا اللَّون؟ مِنَاسِب لِلْجَوّ؟",
+          "transliteration": "shukran, w eesh raayik bhaadha illawn? mnaasib lijjaw?",
           "english": "Thanks, and what do you think of this color? Is it suitable for the weather?"
         },
         {
           "speaker": "علي",
-          "arabic": "إِي مِنَاسِب، بَس خُذِي نَضَّارَتُك الشَّمْس كَمَان لأَنُّو الشَّمْس رَاح تِطْلُع بَعِدَيْن",
-          "transliteration": "ii mnaasib, bas khudhi naDDaartak ishshams kamaan la2annu ishshams raa7 tiTla3 ba3adeyn",
+          "arabic": "إِي مِنَاسِب، بَس خُذِي نَضَّارَتُك الشَّمْس كَمَان لأَنُّو الشَّمْس عَتِطْلُع بَعِدَيْن",
+          "transliteration": "ii mnaasib, bas khudhi naDDaartak ishshams kamaan la2annu ishshams 3a-tiTla3 ba3adeyn",
           "english": "Yes it's fine, but take your sunglasses too because the sun will come out later."
         },
         {
           "speaker": "فاطمة",
-          "arabic": "تَمَام، جَهَّزْت كُلّ شَيْء هَسْع",
-          "transliteration": "tamaam, jahhazit kull shay has3",
+          "arabic": "تَمَام، جَهَّزْت كُلّ شَيْء ذَلْحِين",
+          "transliteration": "tamaam, jahhazit kull shay dhal7een",
           "english": "Great, I've got everything ready now."
         }
       ],
       "de_book": [
         {
           "pair": {
-            "arabic": "شِنُو لاَزِم أِلْبَس، الْجَوّ بَارِد؟",
-            "transliteration": "shnu lazim albas, ijjaw barid?",
+            "arabic": "إِيش لاَزِم أِلْبَس، الْجَوّ بَارِد؟",
+            "transliteration": "eesh lazim albas, ijjaw barid?",
             "english": "What should I wear, it's cold?"
           },
           "response": {
@@ -929,15 +929,15 @@
             "english": "Do I need an umbrella today?"
           },
           "response": {
-            "arabic": "إِي، رَاح تِمْطُر بَعِد الظُّهْر",
-            "transliteration": "ii, raa7 timTur ba3id iDDuh r",
+            "arabic": "إِي، عَتِمْطُر بَعِد الظُّهْر",
+            "transliteration": "ii, 3a-timTur ba3id iDDuh r",
             "english": "Yes, it's going to rain in the afternoon."
           }
         },
         {
           "pair": {
-            "arabic": "شِنُو بِتِلْبَسِي بِالصَّيْف؟",
-            "transliteration": "shnu bitilbasi biSSayf?",
+            "arabic": "إِيش بِتِلْبَسِي بِالصَّيْف؟",
+            "transliteration": "eesh bitilbasi biSSayf?",
             "english": "What do you wear in summer?"
           },
           "response": {
@@ -953,8 +953,8 @@
             "english": "Why do you need boots in winter?"
           },
           "response": {
-            "arabic": "لأَنُّو بِيْمْطُر كْتِير وَتِصِير الأَرْض مَبْلُولَة",
-            "transliteration": "la2annu bymTur ktiir w tiSiir il2arD mablula",
+            "arabic": "لأَنُّو بِيْمْطُر كَثِير وَتِصِير الأَرْض مَبْلُولَة",
+            "transliteration": "la2annu bymTur katheer w tiSiir il2arD mablula",
             "english": "Because it rains a lot and the ground gets wet."
           }
         }
@@ -964,7 +964,7 @@
         {
           "id": "unit-10.lesson-03.reply.01",
           "type": "reply",
-          "prompt": "صَاحِبَتُك سَأَلَتْك: \"شِنُو لاَزِم أِلْبَس الْيَوْم؟\" وَأَنْتِ عَارِفَة الْجَوّ بَارِد. جَاوِبِيهَا.",
+          "prompt": "صَاحِبَتُك سَأَلَتْك: \"إِيش لاَزِم أِلْبَس الْيَوْم؟\" وَأَنْتِ عَارِفَة الْجَوّ بَارِد. جَاوِبِيهَا.",
           "answer": "البس شي ثقيل الجو بارد",
           "accepted": [
             "البس شي ثقيل الجو بارد",
@@ -980,9 +980,10 @@
         {
           "id": "unit-10.lesson-03.reply.02",
           "type": "reply",
-          "prompt": "حَدّ سَأَلَك: \"لاَزِم شَمْسِيَّة الْيَوْم؟\" وَأَنْتَ عَارِف رَاح تِمْطُر. جَاوِبْ بِالإِيجَاب.",
-          "answer": "إي راح تمطر",
+          "prompt": "حَدّ سَأَلَك: \"لاَزِم شَمْسِيَّة الْيَوْم؟\" وَأَنْتَ عَارِف عَتِمْطُر. جَاوِبْ بِالإِيجَاب.",
+          "answer": "إي عتمطر",
           "accepted": [
+            "إي عتمطر",
             "إي راح تمطر",
             "إي خذ شمسية",
             "إي أكيد لازم"
@@ -1029,11 +1030,11 @@
           "id": "unit-10.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "تَرْجِم لِلْهِجَة الْيَمَنِيَّة: \"You need boots in winter because it rains a lot.\"",
-          "answer": "لازم بوت بالشتا لأنو بيمطر كتير",
+          "answer": "لازم بوت بالشتا لأنو بيمطر كثير",
           "accepted": [
-            "لازم بوت بالشتا لأنو بيمطر كتير",
-            "لازم بوت بالشتا لأنه بيمطر كتير",
-            "بالشتا لازم بوت لأنو بيمطر كتير"
+            "لازم بوت بالشتا لأنو بيمطر كثير",
+            "لازم بوت بالشتا لأنه بيمطر كثير",
+            "بالشتا لازم بوت لأنو بيمطر كثير"
           ],
           "too_formal": {
             "item": "يَجِب اِرْتِدَاء الأَحْذِيَة الْمُطْرِيَّة فِي الشِّتَاء لأَنَّ الأَمْطَار تَهْطُل كَثِيراً",
@@ -1060,7 +1061,7 @@
         {
           "id": "unit-10.lesson-03.choose.01",
           "type": "choose",
-          "prompt": "شِنُو بِتِلْبَسِي بِالصَّيْف عَادَة؟",
+          "prompt": "إِيش بِتِلْبَسِي بِالصَّيْف عَادَة؟",
           "answer": "شورت وقميص",
           "accepted": [
             "شورت وقميص",
@@ -1090,8 +1091,8 @@
           "options": [
             "لأنو الشمس قوية",
             "لأنو الجو بارد",
-            "لأنو رح تمطر",
-            "لأنو في هوا كتير"
+            "لأنو عتمطر",
+            "لأنو في هوا كثير"
           ],
           "too_formal": {
             "item": "لأَنَّ أَشْعَّة الشَّمْس قَوِيَّة",
@@ -1102,17 +1103,17 @@
         {
           "id": "unit-10.lesson-03.reorder.01",
           "type": "reorder",
-          "prompt": "رَتِّب الْكَلِمَات: \"مَعَاك / شَمْسِيَّة / تِمْطُر / رَاح / خُذ\"",
-          "answer": "خذ معاك شمسية رح تمطر",
+          "prompt": "رَتِّب الْكَلِمَات: \"مَعَاك / شَمْسِيَّة / عَتِمْطُر / خُذ\"",
+          "answer": "خذ معاك شمسية عتمطر",
           "accepted": [
+            "خذ معاك شمسية عتمطر",
             "خذ معاك شمسية رح تمطر"
           ],
           "words": [
             "خذ",
             "معاك",
             "شمسية",
-            "رح",
-            "تمطر"
+            "عتمطر"
           ],
           "too_formal": {
             "item": "خُذْ مَعَك مِظَلَّة لأَنَّ الأَمْطَار سَتَهْطُل",
@@ -1151,16 +1152,16 @@
         },
         {
           "slot": "the-weather-s-not-good-we-need-to-cancel-the-out",
-          "arabic": "الْجَوّ مِش مَنِيح، بِدْنَا نِلْغِي الطَّلْعَة",
-          "transliteration": "ijjaw mish manii7, bidna nilghi iTTal3a"
+          "arabic": "الْجَوّ مِش مَنِيح، نِشْتِي نِلْغِي الطَّلْعَة",
+          "transliteration": "ijjaw mish manii7, nishti nilghi iTTal3a"
         },
         {
           "slot": "what-do-you-think-about-staying-home-today",
-          "arabic": "شِنُو رَايِك نِقْعُد بِالْبَيْت الْيَوْم؟",
-          "transliteration": "shnu raayik nig3ud bilbayt ilyawm?",
+          "arabic": "إِيش رَايِك نِقْعُد بِالْبَيْت الْيَوْم؟",
+          "transliteration": "eesh raayik nig3ud bilbayt ilyawm?",
           "reply": {
-            "arabic": "حَاسِن، الْجَوّ بَارِد كْتِير",
-            "transliteration": "7aasin, ijjaw barid ktiir",
+            "arabic": "حَاسِن، الْجَوّ بَارِد كَثِير",
+            "transliteration": "7aasin, ijjaw barid katheer",
             "english": "Ok, it's very cold."
           }
         },
@@ -1176,18 +1177,18 @@
         },
         {
           "slot": "i-can-t-go-out-it-s-too-hot",
-          "arabic": "مَا فِيّ أِطْلُع، الْجَوّ حَاار كْتِير",
-          "transliteration": "ma fii iTla3, ijjaw 7aarr ktiir"
+          "arabic": "مَا فِيّ أِطْلُع، الْجَوّ حَاار كَثِير",
+          "transliteration": "ma fii iTla3, ijjaw 7aarr katheer"
         },
         {
           "slot": "we-ll-sit-on-the-balcony-tonight-the-weather-s-p",
-          "arabic": "رَاح نِقْعُد عَالشُّرُفَة الْلَّيْلَة، الْجَوّ لَطِيف",
-          "transliteration": "raa7 nig3ud 3ashshurfa illeela, ijjaw laTiif"
+          "arabic": "شَانِقْعُد عَالشُّرُفَة الْلَّيْلَة، الْجَوّ لَطِيف",
+          "transliteration": "shaa-nig3ud 3ashshurfa illeela, ijjaw laTiif"
         },
         {
           "slot": "since-it-s-going-to-rain-let-s-postpone-the-even",
-          "arabic": "لأَنُّو رَاح تِمْطُر، خَلِّينَا نِأَجِّل السَّهْرَة",
-          "transliteration": "la2annu raa7 timTur, khalliina ni2ajjil issahra"
+          "arabic": "لأَنُّو عَتِمْطُر، خَلِّينَا نِأَجِّل السَّهْرَة",
+          "transliteration": "la2annu 3a-timTur, khalliina ni2ajjil issahra"
         },
         {
           "slot": "the-weather-doesn-t-allow-us-to-play-outside",
@@ -1209,8 +1210,8 @@
           "arabic": "شُفْت نَشْرَة الْجَوّ؟",
           "transliteration": "shift nashrit ijjaw?",
           "reply": {
-            "arabic": "إِي، قَالُو رَاح تِمْطُر بَعِد الظُّهْر",
-            "transliteration": "ii, 2aalu raa7 timTur ba3id iDDuh r",
+            "arabic": "إِي، قَالُو عَتِمْطُر بَعِد الظُّهْر",
+            "transliteration": "ii, 2aalu 3a-timTur ba3id iDDuh r",
             "english": "Yes, they said it'll rain in the afternoon."
           }
         }
@@ -1218,26 +1219,26 @@
       "dialogue": [
         {
           "speaker": "هناء",
-          "arabic": "شِنُو رَايِك نِطْلُع الْحَدِيقَة الْيَوْم؟",
-          "transliteration": "shnu raayik niTla3 il7adeega ilyawm?",
+          "arabic": "إِيش رَايِك نِطْلُع الْحَدِيقَة الْيَوْم؟",
+          "transliteration": "eesh raayik niTla3 il7adeega ilyawm?",
           "english": "What do you think about going to the park today?"
         },
         {
           "speaker": "محمود",
-          "arabic": "شُفْتِ نَشْرَة الْجَوّ؟ أَنَا سِمِعْت رَاح تِمْطُر بَعِد الظُّهْر",
-          "transliteration": "shifti nashrit ijjaw? ana simi3t raa7 timTur ba3id iDDuh r",
+          "arabic": "شُفْتِ نَشْرَة الْجَوّ؟ أَنَا سِمِعْت عَتِمْطُر بَعِد الظُّهْر",
+          "transliteration": "shifti nashrit ijjaw? ana simi3t 3a-timTur ba3id iDDuh r",
           "english": "Did you see the weather forecast? I heard it's going to rain in the afternoon."
         },
         {
           "speaker": "هناء",
-          "arabic": "لاَ مَا شُفْتِهَا، بَس الْجَوّ هَسْع حِلْو كْتِير",
-          "transliteration": "la ma shiftiha, bas ijjaw has3 7ilw ktiir",
+          "arabic": "لاَ مَا شُفْتِهَا، بَس الْجَوّ ذَلْحِين حِلْو كَثِير",
+          "transliteration": "la ma shiftiha, bas ijjaw dhal7een 7ilw katheer",
           "english": "No I didn't see it, but the weather's really nice right now."
         },
         {
           "speaker": "محمود",
-          "arabic": "إِذَا الْجَوّ مَنِيح هَسْع، يَلاَّ نِطْلُع بِسُرْعَة قُبْل مَا يِتِغَيَّر",
-          "transliteration": "idha ijjaw manii7 has3, yalla niTla3 bisr3a 2abil ma yitghayyar",
+          "arabic": "إِذَا الْجَوّ مَنِيح ذَلْحِين، يَلاَّ نِطْلُع بِسُرْعَة قُبْل مَا يِتِغَيَّر",
+          "transliteration": "idha ijjaw manii7 dhal7een, yalla niTla3 bisr3a 2abil ma yitghayyar",
           "english": "If the weather's good for now, let's go out quickly before it changes."
         },
         {
@@ -1248,8 +1249,8 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "حَاسِن. وَشِنُو نِعْمِل إِذَا الْجَوّ مَا يِسْمَح؟",
-          "transliteration": "7aasin. w shnu ni3mil idha ijjaw ma yismah?",
+          "arabic": "حَاسِن. وَإِيش نِعْمِل إِذَا الْجَوّ مَا يِسْمَح؟",
+          "transliteration": "7aasin. w eesh ni3mil idha ijjaw ma yismah?",
           "english": "Alright. And what will we do if the weather doesn't allow it?"
         },
         {
@@ -1272,8 +1273,8 @@
         },
         {
           "speaker": "محمود",
-          "arabic": "طَيِّب وَالرَّحْلَة لِلْجِبْل يَوْم الْجُمُعَة، شِنُو رَايِك؟",
-          "transliteration": "Tayyib w irri7la liljib yawm iljum3a, shnu raayik?",
+          "arabic": "طَيِّب وَالرَّحْلَة لِلْجِبْل يَوْم الْجُمُعَة، إِيش رَايِك؟",
+          "transliteration": "Tayyib w irri7la liljib yawm iljum3a, eesh raayik?",
           "english": "Ok and the trip to the mountain on Friday, what do you think?"
         },
         {
@@ -1298,13 +1299,13 @@
         },
         {
           "pair": {
-            "arabic": "لِيشْ بِدُّكُم تِلْغُو الطَّلْعَة؟",
-            "transliteration": "leesh baddukom tilghu iTTal3a?",
+            "arabic": "لِيشْ تِشْتُوا تِلْغُو الطَّلْعَة؟",
+            "transliteration": "leesh tishtu tilghu iTTal3a?",
             "english": "Why do you want to cancel the outing?"
           },
           "response": {
-            "arabic": "لأَنُّو الْجَوّ مِش مَنِيح وَرَاح تِمْطُر",
-            "transliteration": "la2annu ijjaw mish manii7 w raa7 timTur",
+            "arabic": "لأَنُّو الْجَوّ مِش مَنِيح وَعَتِمْطُر",
+            "transliteration": "la2annu ijjaw mish manii7 w 3a-timTur",
             "english": "Because the weather's not good and it's going to rain."
           }
         },
@@ -1327,8 +1328,8 @@
             "english": "The weather doesn't allow us to play outside?"
           },
           "response": {
-            "arabic": "إِي، حَاار كْتِير وَفِي ريح قَوِيَّة",
-            "transliteration": "ii, 7aarr ktiir w fi rii7 gawiyyah",
+            "arabic": "إِي، حَاار كَثِير وَفِي ريح قَوِيَّة",
+            "transliteration": "ii, 7aarr katheer w fi rii7 gawiyyah",
             "english": "Yes, it's very hot and the wind is strong."
           }
         }
@@ -1338,7 +1339,7 @@
         {
           "id": "unit-10.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "صَاحِبُك سَأَلَك: \"شِنُو رَايِك نِطْلُع الْحَدِيقَة؟\" وَالْجَوّ حِلْو. جَاوِبْهُ بِالْمَوَافَقَة.",
+          "prompt": "صَاحِبُك سَأَلَك: \"إِيش رَايِك نِطْلُع الْحَدِيقَة؟\" وَالْجَوّ حِلْو. جَاوِبْهُ بِالْمَوَافَقَة.",
           "answer": "إي، الجو حلو وإن شاء الله",
           "accepted": [
             "إي، الجو حلو وإن شاء الله",
@@ -1354,10 +1355,10 @@
         {
           "id": "unit-10.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "حَدّ سَأَلَك: \"شِنُو رَايِك نِقْعُد بِالْبَيْت الْيَوْم؟\" وَالْجَوّ بَارِد. جَاوِبْ بِالْمَوَافَقَة.",
-          "answer": "حاسن الجو بارد كتير",
+          "prompt": "حَدّ سَأَلَك: \"إِيش رَايِك نِقْعُد بِالْبَيْت الْيَوْم؟\" وَالْجَوّ بَارِد. جَاوِبْ بِالْمَوَافَقَة.",
+          "answer": "حاسن الجو بارد كثير",
           "accepted": [
-            "حاسن الجو بارد كتير",
+            "حاسن الجو بارد كثير",
             "حاسن، ما في مشكلة",
             "تمام، الجو برد"
           ],
@@ -1434,7 +1435,7 @@
         {
           "id": "unit-10.lesson-04.choose.01",
           "type": "choose",
-          "prompt": "شِنُو تِقُول إِذَا الْجَوّ مَنِيح وَتَبِّ تِطْلُع؟",
+          "prompt": "إِيش تِقُول إِذَا الْجَوّ مَنِيح وَتَبِّ تِطْلُع؟",
           "answer": "الجو حلو يلا نطلع",
           "accepted": [
             "الجو حلو يلا نطلع",
@@ -1456,7 +1457,7 @@
         {
           "id": "unit-10.lesson-04.choose.02",
           "type": "choose",
-          "prompt": "الْرَّحْلَة لِلْجِبْل شِنُو تِعْتِمِد عَلَيْهِ؟",
+          "prompt": "الْرَّحْلَة لِلْجِبْل إِيش تِعْتِمِد عَلَيْهِ؟",
           "answer": "الجو",
           "accepted": [
             "الجو",
@@ -1500,16 +1501,16 @@
         {
           "id": "unit-10.lesson-04.reorder.02",
           "type": "reorder",
-          "prompt": "رَتِّب الْكَلِمَات: \"الْجَوّ / نِلْغِي / الطَّلْعَة / مِش / مَنِيح / بِدْنَا\"",
-          "answer": "الجو مش منيح بدنا نلغي الطلعة",
+          "prompt": "رَتِّب الْكَلِمَات: \"الْجَوّ / نِلْغِي / الطَّلْعَة / مِش / مَنِيح / نِشْتِي\"",
+          "answer": "الجو مش منيح نشتي نلغي الطلعة",
           "accepted": [
-            "الجو مش منيح بدنا نلغي الطلعة"
+            "الجو مش منيح نشتي نلغي الطلعة"
           ],
           "words": [
             "الجو",
             "مش",
             "منيح",
-            "بدنا",
+            "نشتي",
             "نلغي",
             "الطلعة"
           ],
@@ -1754,7 +1755,7 @@
           "accepted": [
             "سلامتك، غير لبسك ذلحين",
             "سلامتك غير لبسك ذلحين",
-            "سلامتك، غيّر لبسك الحين",
+            "سلامتك، غيّر لبسك ذلحين",
             "salaamatak, ghayyir libsak dhal7een"
           ],
           "tip": "\"ذلحين\" is \"now\" in Sana'a. To a woman: \"سلامتش، غيّري لبسش ذلحين\"."
@@ -2258,14 +2259,14 @@
       "dialogue": [
         {
           "speaker": "أَحْمَد",
-          "arabic": "طَلَعْنَا الْحَدِيقَة أَمَس، الْجَوّ كَانَ حِلْو كْتِير",
-          "transliteration": "Tala3na il7adeega amas, ijjaw kaan 7ilw ktiir",
+          "arabic": "طَلَعْنَا الْحَدِيقَة أَمَس، الْجَوّ كَانَ حِلْو كَثِير",
+          "transliteration": "Tala3na il7adeega amas, ijjaw kaan 7ilw katheer",
           "english": "We went to the park yesterday, the weather was really nice."
         },
         {
           "speaker": "فاطمة",
-          "arabic": "شِنُو الْفَصْل الْحِين؟",
-          "transliteration": "shnu ilfaSl il7een?",
+          "arabic": "إِيش الْفَصْل ذَلْحِين؟",
+          "transliteration": "eesh ilfaSl dhal7een?",
           "english": "What season is it now?"
         },
         {
@@ -2276,8 +2277,8 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "شِنُو لِبِسْتُو؟",
-          "transliteration": "shnu libsitu?",
+          "arabic": "إِيش لِبِسْتُو؟",
+          "transliteration": "eesh libsitu?",
           "english": "What did you wear?"
         },
         {

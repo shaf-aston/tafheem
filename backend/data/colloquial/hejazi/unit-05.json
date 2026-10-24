@@ -25,8 +25,8 @@
         },
         {
           "slot": "please-i-want-to-go-to-old-damascus",
-          "arabic": "لَوْ سَمَحْتَ، أَبِي أَرُوح الشَّام الْقَدِيمَة.",
-          "transliteration": "law samaht, abi arooh ash-sham al-gadeema.",
+          "arabic": "لَوْ سَمَحْتَ، أَبْغَى أَرُوح الشَّام الْقَدِيمَة.",
+          "transliteration": "law samaht, abgha arooh ash-sham al-gadeema.",
           "reply": {
             "arabic": "تَمَام، اِرْكَبْ.",
             "transliteration": "tamam, erkab.",
@@ -35,8 +35,8 @@
         },
         {
           "slot": "can-you-take-me-to-bab-touma",
-          "arabic": "فيك تُوَصِّلْنِي بَاب التَّومَة؟",
-          "transliteration": "feek twassilni bab at-tuma?"
+          "arabic": "تِقْدَر تُوَصِّلْنِي بَاب التَّومَة؟",
+          "transliteration": "tigdar twassilni bab at-tuma?"
         },
         {
           "slot": "turn-on-the-meter-please",
@@ -55,8 +55,8 @@
         },
         {
           "slot": "stop-right-here",
-          "arabic": "قِفْ هِيهِ اَلْآن.",
-          "transliteration": "gif hiih al-aan."
+          "arabic": "قِفْ هِنَا اَلْآن.",
+          "transliteration": "gif hina al-aan."
         },
         {
           "slot": "keep-to-your-right",
@@ -70,8 +70,8 @@
         },
         {
           "slot": "here-is-fine-stop",
-          "arabic": "هِيهِ تَمَام، قِفْ.",
-          "transliteration": "hiih tamam, gif."
+          "arabic": "هِنَا تَمَام، قِفْ.",
+          "transliteration": "hina tamam, gif."
         },
         {
           "slot": "keep-the-change",
@@ -85,8 +85,8 @@
         },
         {
           "slot": "is-there-a-taxi-nearby-here",
-          "arabic": "فيهْ تَاكْسِي قَرِيب مِنْ هِيهِ؟",
-          "transliteration": "feeh taksi gareeb min hiih?",
+          "arabic": "فيهْ تَاكْسِي قَرِيب مِنْ هِنَا؟",
+          "transliteration": "feeh taksi gareeb min hina?",
           "reply": {
             "arabic": "إِي، بَعْدْ شَوَيّة يِجِي.",
             "transliteration": "i, ba3d shawayya yiji.",
@@ -102,8 +102,8 @@
       "dialogue": [
         {
           "speaker": "رَاكِب",
-          "arabic": "السَّلاَمُ عَلَيْكُم، أَبِي أَرُوح الْحَرَم.",
-          "transliteration": "as-salam 3alaykum, abi arooh al-haram.",
+          "arabic": "السَّلاَمُ عَلَيْكُم، أَبْغَى أَرُوح الْحَرَم.",
+          "transliteration": "as-salam 3alaykum, abgha arooh al-haram.",
           "english": "Peace be upon you, I want to go to the Haram."
         },
         {
@@ -124,14 +124,14 @@
         },
         {
           "speaker": "رَاكِب",
-          "arabic": "بِكَمْ الْمَشْوَارْ هَيْكَ تَقْرِيبًا؟",
-          "transliteration": "bikam al-mishwar hayk taqreeban?",
+          "arabic": "بِكَمْ الْمَشْوَارْ كِدَا تَقْرِيبًا؟",
+          "transliteration": "bikam al-mishwar keda taqreeban?",
           "english": "About how much for the ride like this?"
         },
         {
           "speaker": "سَوَّاق",
-          "arabic": "هَيْكَ حَوَالَي خَمْسَة عَشْرِ رِيَال.",
-          "transliteration": "hayk hawala khamsa 3ashar riyal.",
+          "arabic": "كِدَا حَوَالَي خَمْسَة عَشْرِ رِيَال.",
+          "transliteration": "keda hawala khamsa 3ashar riyal.",
           "english": "Like this, about fifteen riyals."
         },
         {
@@ -148,8 +148,8 @@
         },
         {
           "speaker": "رَاكِب",
-          "arabic": "قِفْ هِيهِ، هَذَا الْبَيْت.",
-          "transliteration": "gif hiih, hadha al-bayt.",
+          "arabic": "قِفْ هِنَا، هَذَا الْبَيْت.",
+          "transliteration": "gif hina, hadha al-bayt.",
           "english": "Stop here, this is the building."
         },
         {
@@ -186,8 +186,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "لَوْ سَمَحْتَ، أَبِي أَرُوح الْمَطَار.",
-            "transliteration": "law samaht, abi arooh al-mataar.",
+            "arabic": "لَوْ سَمَحْتَ، أَبْغَى أَرُوح الْمَطَار.",
+            "transliteration": "law samaht, abgha arooh al-mataar.",
             "english": "Please, I want to go to the airport."
           },
           "response": {
@@ -198,8 +198,8 @@
         },
         {
           "pair": {
-            "arabic": "فيك تُوَصِّلْنِي لِلْمُسْتَشْفَى؟",
-            "transliteration": "feek twassilni lil-mustashfa?",
+            "arabic": "تِقْدَر تُوَصِّلْنِي لِلْمُسْتَشْفَى؟",
+            "transliteration": "tigdar twassilni lil-mustashfa?",
             "english": "Can you take me to the hospital?"
           },
           "response": {
@@ -238,18 +238,18 @@
         {
           "id": "unit-05.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "The driver asks: \"وَيْن تَبِي تَرُوح؟\" (Where do you want to go?) Tell him you want to go to the Grand Mosque.",
-          "answer": "أَبِي أَرُوح الْمَسْجِد الْحَرَام",
+          "prompt": "The driver asks: \"فِين تَبْغَى تَرُوح؟\" (Where do you want to go?) Tell him you want to go to the Grand Mosque.",
+          "answer": "أَبْغَى أَرُوح الْمَسْجِد الْحَرَام",
           "accepted": [
-            "أَبِي أَرُوح الْمَسْجِد الْحَرَام",
-            "ابي اروح الحرم",
-            "abi arooh al-haram"
+            "أَبْغَى أَرُوح الْمَسْجِد الْحَرَام",
+            "أبغى اروح الحرم",
+            "abgha arooh al-haram"
           ],
           "too_formal": {
             "item": "أُرِيدُ الذَّهَابَ إِلَى الْمَسْجِدِ الْحَرَامِ",
             "feedback": "Correct in written Arabic, but far too formal for speaking to a taxi driver."
           },
-          "tip": "\"أَبِي\" plus a verb is how Hejazi speakers say what they want to do."
+          "tip": "\"أَبْغَى\" plus a verb is how Hejazi speakers say what they want to do."
         },
         {
           "id": "unit-05.lesson-01.reply.02",
@@ -287,7 +287,7 @@
         {
           "id": "unit-05.lesson-01.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "Complete: \"_____ هِيهِ، هَذَا الْبَيْت.\" English: Stop here, this is the building.",
+          "prompt": "Complete: \"_____ هِنَا، هَذَا الْبَيْت.\" English: Stop here, this is the building.",
           "answer": "قِفْ",
           "accepted": [
             "قِفْ",
@@ -304,17 +304,17 @@
           "id": "unit-05.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Hejazi Arabic: \"I want to go to the airport.\"",
-          "answer": "أَبِي أَرُوح الْمَطَار",
+          "answer": "أَبْغَى أَرُوح الْمَطَار",
           "accepted": [
-            "أَبِي أَرُوح الْمَطَار",
-            "ابي اروح المطار",
-            "abi arooh al-mataar"
+            "أَبْغَى أَرُوح الْمَطَار",
+            "أبغى اروح المطار",
+            "abgha arooh al-mataar"
           ],
           "too_formal": {
             "item": "أُرِيدُ الذَّهَابَ إِلَى الْمَطَارِ",
             "feedback": "Grammatically correct, but this is written-style Arabic, not how people speak."
           },
-          "tip": "In Hejazi, \"أَبِي\" plus a verb is the natural way to express what you want to do."
+          "tip": "In Hejazi, \"أَبْغَى\" plus a verb is the natural way to express what you want to do."
         },
         {
           "id": "unit-05.lesson-01.translate_to_arabic.02",
@@ -337,9 +337,9 @@
           "type": "choose",
           "prompt": "Which phrase means \"How much is the fare to here?\"",
           "options": [
-            "وَيْن الأَجْرَة؟",
+            "فِين الأَجْرَة؟",
             "بِكَمْ الأَجْرَة لِهِيهِ؟",
-            "شُو اسْمُ الأَجْرَة؟",
+            "إِيش اسْمُ الأَجْرَة؟",
             "كَيْفَ الأَجْرَة؟"
           ],
           "answer": "بِكَمْ الأَجْرَة لِهِيهِ؟",
@@ -360,7 +360,7 @@
           "prompt": "Which is the Hejazi way to tell someone to keep to the right?",
           "options": [
             "لِفّ شِمَال عِنْدَ الْإِشَارَة",
-            "قِفْ هِيهِ",
+            "قِفْ هِنَا",
             "شَغِّلْ الْعَدَّاد",
             "خَلِّيكَ عَلَى الْيَمِين"
           ],
@@ -400,23 +400,23 @@
         {
           "id": "unit-05.lesson-01.reorder.02",
           "type": "reorder",
-          "prompt": "Put these in the right order: \"الْآن / هِيهِ / قِفْ\"",
-          "answer": "قِفْ هِيهِ الْآن",
+          "prompt": "Put these in the right order: \"الْآن / هِنَا / قِفْ\"",
+          "answer": "قِفْ هِنَا الْآن",
           "words": [
             "الْآن",
-            "هِيهِ",
+            "هِنَا",
             "قِفْ"
           ],
           "accepted": [
-            "قِفْ هِيهِ الْآن",
-            "قِفْ هِيهِ",
-            "gif hiih al-aan"
+            "قِفْ هِنَا الْآن",
+            "قِفْ هِنَا",
+            "gif hina al-aan"
           ],
           "too_formal": {
             "item": "توقَّفْ هُنَا الآن مِنْ فَضْلِكَ",
-            "feedback": "Correct meaning, but the spoken command \"قِفْ هِيهِ\" is short and direct."
+            "feedback": "Correct meaning, but the spoken command \"قِفْ هِنَا\" is short and direct."
           },
-          "tip": "A direct command like \"قِفْ هِيهِ\" (stop here) is how you actually speak to a driver."
+          "tip": "A direct command like \"قِفْ هِنَا\" (stop here) is how you actually speak to a driver."
         }
       ]
     },
@@ -425,8 +425,8 @@
       "phrases": [
         {
           "slot": "excuse-me-where-is-the-pharmacy",
-          "arabic": "لَوْ سَمَحْتَ، وَيْنَ الصَّيْدَلِيَّة؟",
-          "transliteration": "law samaht, ween as-saydaleyyah?",
+          "arabic": "لَوْ سَمَحْتَ، فِين الصَّيْدَلِيَّة؟",
+          "transliteration": "law samaht, feen as-saydaleyyah?",
           "reply": {
             "arabic": "دُغْرِي، وَتِلَقَّاهَا عَلَى يَمِينَك.",
             "transliteration": "dughri, wa tilaqaaha 3ala yamenak.",
@@ -455,8 +455,8 @@
         },
         {
           "slot": "how-far-is-it-from-here",
-          "arabic": "كَمْ دَقِيقَة مِنْ هِيهِ؟",
-          "transliteration": "kam daqeeqa min hiih?",
+          "arabic": "كَمْ دَقِيقَة مِنْ هِنَا؟",
+          "transliteration": "kam daqeeqa min hina?",
           "reply": {
             "arabic": "لاَ، خَمْسْ دَقَايِق عَلَى الرِّجْلَيْن.",
             "transliteration": "la, khams dagayiq 3ala ar-rijlayn.",
@@ -465,11 +465,11 @@
         },
         {
           "slot": "i-m-lost-can-you-help-me",
-          "arabic": "أَنَا تَايِه، فيك تُسَاعِدْنِي؟",
-          "transliteration": "ana tayih, feek tusaa3idni?",
+          "arabic": "أَنَا تَايِه، تِقْدَر تُسَاعِدْنِي؟",
+          "transliteration": "ana tayih, tigdar tusaa3idni?",
           "reply": {
-            "arabic": "أَكِيد، وَيْنَ تَبِي تَرُوح؟",
-            "transliteration": "akeed, ween tabi trooh?",
+            "arabic": "أَكِيد، فِين تَبْغَى تَرُوح؟",
+            "transliteration": "akeed, feen tibgha trooh?",
             "english": "Sure, where do you want to go?"
           }
         },
@@ -490,8 +490,8 @@
         },
         {
           "slot": "from-where-do-i-get-to-the-umayyad-mosque",
-          "arabic": "وَيْنَ أَقْدِرْ أَرُوح الْمَسْجِد الأُمَوِّي؟",
-          "transliteration": "ween agdir arooh al-masjid al-umawy?"
+          "arabic": "فِين أَقْدِرْ أَرُوح الْمَسْجِد الأُمَوِّي؟",
+          "transliteration": "feen agdir arooh al-masjid al-umawy?"
         },
         {
           "slot": "thanks-a-lot",
@@ -502,20 +502,20 @@
       "dialogue": [
         {
           "speaker": "سَائِل",
-          "arabic": "لَوْ سَمَحْتَ، وَيْنَ الْمُسْتَشْفَى؟",
-          "transliteration": "law samaht, ween al-mustashfa?",
+          "arabic": "لَوْ سَمَحْتَ، فِين الْمُسْتَشْفَى؟",
+          "transliteration": "law samaht, feen al-mustashfa?",
           "english": "Excuse me, where is the hospital?"
         },
         {
           "speaker": "مُسَاعِد",
-          "arabic": "دُغْرِي مِنْ هِيهِ، وَتِلَقَّاهُ عَلَى شِمَالَك.",
-          "transliteration": "dughri min hiih, wa tilaqahu 3ala shimaalak.",
+          "arabic": "دُغْرِي مِنْ هِنَا، وَتِلَقَّاهُ عَلَى شِمَالَك.",
+          "transliteration": "dughri min hina, wa tilaqahu 3ala shimaalak.",
           "english": "Straight ahead from here, you'll find it on your left."
         },
         {
           "speaker": "سَائِل",
-          "arabic": "بَعِيد كِتِير؟",
-          "transliteration": "ba3eed kitheer?",
+          "arabic": "بَعِيد مَرَّة؟",
+          "transliteration": "ba3eed marra?",
           "english": "Is it very far?"
         },
         {
@@ -538,8 +538,8 @@
         },
         {
           "speaker": "سَائِل",
-          "arabic": "أَبِي أَرُوح الْبَنْك. مِنْ وَيْنَ؟",
-          "transliteration": "abi arooh al-bank. min ween?",
+          "arabic": "أَبْغَى أَرُوح الْبَنْك. مِنْ فِين؟",
+          "transliteration": "abgha arooh al-bank. min feen?",
           "english": "I want to go to the bank. From where?"
         },
         {
@@ -564,25 +564,25 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وَيْنَ الْحَدِيقَة الْعَامَّة؟",
-            "transliteration": "ween al-hadeeqa al-3amma?",
+            "arabic": "فِين الْحَدِيقَة الْعَامَّة؟",
+            "transliteration": "feen al-hadeeqa al-3amma?",
             "english": "Where is the public park?"
           },
           "response": {
-            "arabic": "دُغْرِي مِنْ هِيهِ، حَوَالَي عِشْرْ دَقَايِق.",
-            "transliteration": "dughri min hiih, hawala 3ashr dagayiq.",
+            "arabic": "دُغْرِي مِنْ هِنَا، حَوَالَي عِشْرْ دَقَايِق.",
+            "transliteration": "dughri min hina, hawala 3ashr dagayiq.",
             "english": "Straight ahead from here, about ten minutes."
           }
         },
         {
           "pair": {
-            "arabic": "أَبِي أَرُوح الْمَدْرَسَة. وَيْنَ؟",
-            "transliteration": "abi arooh al-madrasa. ween?",
+            "arabic": "أَبْغَى أَرُوح الْمَدْرَسَة. فِين؟",
+            "transliteration": "abgha arooh al-madrasa. feen?",
             "english": "I want to go to the school. Where is it?"
           },
           "response": {
-            "arabic": "لِفّ يَمِين هِيهِ، وَالْمَدْرَسَة عَلَى الزَّاوِيَة.",
-            "transliteration": "liff yameen hiih, wal-madrasa 3ala az-zawa.",
+            "arabic": "لِفّ يَمِين هِنَا، وَالْمَدْرَسَة عَلَى الزَّاوِيَة.",
+            "transliteration": "liff yameen hina, wal-madrasa 3ala az-zawa.",
             "english": "Turn right here, the school is on the corner."
           }
         },
@@ -616,18 +616,18 @@
         {
           "id": "unit-05.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "Someone asks: \"وَيْنَ تَبِي تَرُوح؟\" (Where do you want to go?) Tell them you want to go to the mosque.",
-          "answer": "أَبِي أَرُوح الْمَسْجِد",
+          "prompt": "Someone asks: \"فِين تَبْغَى تَرُوح؟\" (Where do you want to go?) Tell them you want to go to the mosque.",
+          "answer": "أَبْغَى أَرُوح الْمَسْجِد",
           "accepted": [
-            "أَبِي أَرُوح الْمَسْجِد",
-            "ابي اروح المسجد",
-            "abi arooh al-masjid"
+            "أَبْغَى أَرُوح الْمَسْجِد",
+            "أبغى اروح المسجد",
+            "abgha arooh al-masjid"
           ],
           "too_formal": {
             "item": "أُرِيدُ الذَّهَابَ إِلَى الْمَسْجِدِ",
             "feedback": "Too formal for everyday conversation."
           },
-          "tip": "\"أَبِي\" is the Hejazi way to say what you want."
+          "tip": "\"أَبْغَى\" is the Hejazi way to say what you want."
         },
         {
           "id": "unit-05.lesson-02.reply.02",
@@ -650,17 +650,17 @@
           "id": "unit-05.lesson-02.fill_blank.01",
           "type": "fill_blank",
           "prompt": "Complete: \"لَوْ سَمَحْتَ، _____ الصَّيْدَلِيَّة؟\" English: Excuse me, where is the pharmacy?",
-          "answer": "وَيْنَ",
+          "answer": "فِين",
           "accepted": [
-            "وَيْنَ",
-            "وين",
-            "ween"
+            "فِين",
+            "فين",
+            "feen"
           ],
           "too_formal": {
             "item": "أَيْنَ",
-            "feedback": "That is the formal/written way to ask 'where'; Hejazi speakers say \"وَيْنَ.\""
+            "feedback": "That is the formal/written way to ask 'where'; Hejazi speakers say \"فِين.\""
           },
-          "tip": "\"وَيْنَ\" is how you ask 'where' in Hejazi."
+          "tip": "\"فِين\" is how you ask 'where' in Hejazi."
         },
         {
           "id": "unit-05.lesson-02.fill_blank.02",
@@ -682,11 +682,11 @@
           "id": "unit-05.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Is it far from here?\"",
-          "answer": "بَعِيد مِنْ هِيهِ؟",
+          "answer": "بَعِيد مِنْ هِنَا؟",
           "accepted": [
-            "بَعِيد مِنْ هِيهِ؟",
-            "بعيد من هيه؟",
-            "ba3eed min hiih?"
+            "بَعِيد مِنْ هِنَا؟",
+            "بعيد من هنا؟",
+            "ba3eed min hina?"
           ],
           "too_formal": {
             "item": "هَلْ يَبْعُدُ كَثِيرًا عَنْ هُنَا؟",
@@ -698,17 +698,17 @@
           "id": "unit-05.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I'm lost, can you help me?\"",
-          "answer": "أَنَا تَايِه، فيك تُسَاعِدْنِي؟",
+          "answer": "أَنَا تَايِه، تِقْدَر تُسَاعِدْنِي؟",
           "accepted": [
-            "أَنَا تَايِه، فيك تُسَاعِدْنِي؟",
-            "انا تايه، فيك تساعدني؟",
-            "ana tayih, feek tusaa3idni?"
+            "أَنَا تَايِه، تِقْدَر تُسَاعِدْنِي؟",
+            "انا تايه، تقدر تساعدني؟",
+            "ana tayih, tigdar tusaa3idni?"
           ],
           "too_formal": {
             "item": "أَنَا ضَائِعٌ، هَلْ تَسْتَطِيعُ مُسَاعَدَتِي؟",
             "feedback": "Correct meaning, but far too formal; Hejazi is more direct."
           },
-          "tip": "\"تَايِه\" means 'lost'; \"فيك\" is a casual, friendly way to ask if someone can help."
+          "tip": "\"تَايِه\" means 'lost'; \"تِقْدَر\" is a casual, friendly way to ask if someone can help."
         },
         {
           "id": "unit-05.lesson-02.choose.01",
@@ -779,18 +779,18 @@
         {
           "id": "unit-05.lesson-02.reorder.02",
           "type": "reorder",
-          "prompt": "Put in order: \"دَقِيقَة / كَمْ / هِيهِ / مِنْ\"",
-          "answer": "كَمْ دَقِيقَة مِنْ هِيهِ",
+          "prompt": "Put in order: \"دَقِيقَة / كَمْ / هِنَا / مِنْ\"",
+          "answer": "كَمْ دَقِيقَة مِنْ هِنَا",
           "words": [
             "دَقِيقَة",
             "كَمْ",
-            "هِيهِ",
+            "هِنَا",
             "مِنْ"
           ],
           "accepted": [
-            "كَمْ دَقِيقَة مِنْ هِيهِ",
-            "كم دقيقة من هيه",
-            "kam daqeeqa min hiih"
+            "كَمْ دَقِيقَة مِنْ هِنَا",
+            "كم دقيقة من هنا",
+            "kam daqeeqa min hina"
           ],
           "too_formal": {
             "item": "كَمْ دَقِيقَةً مِنْ هُنَا",
@@ -805,8 +805,8 @@
       "phrases": [
         {
           "slot": "where-s-the-bus-stop",
-          "arabic": "وَيْنَ مَحَطَّة الْبَاص؟",
-          "transliteration": "ween mahatta al-bass?"
+          "arabic": "فِين مَحَطَّة الْبَاص؟",
+          "transliteration": "feen mahatta al-bass?"
         },
         {
           "slot": "does-this-bus-go-to-mazzeh",
@@ -836,8 +836,8 @@
         },
         {
           "slot": "please-let-me-off-here",
-          "arabic": "لَوْ سَمَحْتَ، نَزِّلْنِي هِيهِ.",
-          "transliteration": "law samaht, nazzilni hiih."
+          "arabic": "لَوْ سَمَحْتَ، نَزِّلْنِي هِنَا.",
+          "transliteration": "law samaht, nazzilni hina."
         },
         {
           "slot": "the-bus-is-very-crowded",
@@ -868,14 +868,14 @@
       "dialogue": [
         {
           "speaker": "رَاكِب",
-          "arabic": "وَيْنَ مَحَطَّة الْبَاص لِلْجَامِعَة؟",
-          "transliteration": "ween mahatta al-bass lil-jami3a?",
+          "arabic": "فِين مَحَطَّة الْبَاص لِلْجَامِعَة؟",
+          "transliteration": "feen mahatta al-bass lil-jami3a?",
           "english": "Where is the bus stop for the university?"
         },
         {
           "speaker": "مُوَظَّف",
-          "arabic": "دُغْرِي مِنْ هِيهِ حَوَالَي مِائَة مِتْر.",
-          "transliteration": "dughri min hiih hawala mi2a mitr.",
+          "arabic": "دُغْرِي مِنْ هِنَا حَوَالَي مِائَة مِتْر.",
+          "transliteration": "dughri min hina hawala mi2a mitr.",
           "english": "Straight ahead from here, about a hundred meters."
         },
         {
@@ -933,8 +933,8 @@
             "english": "Is there an empty seat?"
           },
           "response": {
-            "arabic": "إِي، هِيهِ عَلَى يَمِينَك.",
-            "transliteration": "i, hiih 3ala yamenak.",
+            "arabic": "إِي، هِنَا عَلَى يَمِينَك.",
+            "transliteration": "i, hina 3ala yamenak.",
             "english": "Yes, here on your right."
           }
         },
@@ -945,8 +945,8 @@
             "english": "Please, let me off at the mosque."
           },
           "response": {
-            "arabic": "حَاضِر، بِنَادِيك لَمَّا نِصِل.",
-            "transliteration": "hadir, binadeek lamma ntisal.",
+            "arabic": "حَاضِر، حَنَادِيك لَمَّا نِصِل.",
+            "transliteration": "hadir, 7anadeek lamma ntisal.",
             "english": "Sure, I'll call you when we get there."
           }
         },
@@ -968,18 +968,18 @@
         {
           "id": "unit-05.lesson-03.reply.01",
           "type": "reply",
-          "prompt": "The driver asks: \"وَيْنَ تَبِي تَنْزِل؟\" (Where do you want to get off?) Tell him you want to get off at the mosque.",
-          "answer": "أَبِي أَنْزِل عِنْدَ الْمَسْجِد",
+          "prompt": "The driver asks: \"فِين تَبْغَى تَنْزِل؟\" (Where do you want to get off?) Tell him you want to get off at the mosque.",
+          "answer": "أَبْغَى أَنْزِل عِنْدَ الْمَسْجِد",
           "accepted": [
-            "أَبِي أَنْزِل عِنْدَ الْمَسْجِد",
-            "ابي انزل عند المسجد",
-            "abi anzil 3ind al-masjid"
+            "أَبْغَى أَنْزِل عِنْدَ الْمَسْجِد",
+            "أبغى انزل عند المسجد",
+            "abgha anzil 3ind al-masjid"
           ],
           "too_formal": {
             "item": "أُرِيدُ النُّزُولَ عِنْدَ الْمَسْجِدِ",
-            "feedback": "Correct meaning, but too formal; Hejazi uses \"أَبِي\" for what you want."
+            "feedback": "Correct meaning, but too formal; Hejazi uses \"أَبْغَى\" for what you want."
           },
-          "tip": "\"أَبِي\" plus a verb is how you say what you want in Hejazi."
+          "tip": "\"أَبْغَى\" plus a verb is how you say what you want in Hejazi."
         },
         {
           "id": "unit-05.lesson-03.reply.02",
@@ -1000,7 +1000,7 @@
         {
           "id": "unit-05.lesson-03.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"وَيْنَ _____ الْبَاص؟\" English: Where is the bus stop?",
+          "prompt": "Complete: \"فِين _____ الْبَاص؟\" English: Where is the bus stop?",
           "answer": "مَحَطَّة",
           "accepted": [
             "مَحَطَّة",
@@ -1048,11 +1048,11 @@
           "id": "unit-05.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Please let me off here.\"",
-          "answer": "لَوْ سَمَحْتَ، نَزِّلْنِي هِيهِ",
+          "answer": "لَوْ سَمَحْتَ، نَزِّلْنِي هِنَا",
           "accepted": [
-            "لَوْ سَمَحْتَ، نَزِّلْنِي هِيهِ",
-            "لو سمحت، نزلني هيه",
-            "law samaht, nazzilni hiih"
+            "لَوْ سَمَحْتَ، نَزِّلْنِي هِنَا",
+            "لو سمحت، نزلني هنا",
+            "law samaht, nazzilni hina"
           ],
           "too_formal": {
             "item": "مِنْ فَضْلِكَ، أَنْزِلْنِي هُنَا",
@@ -1065,7 +1065,7 @@
           "type": "choose",
           "prompt": "Which phrase means \"How much is the ticket?\"",
           "options": [
-            "وَيْنَ الْبَاص؟",
+            "فِين الْبَاص؟",
             "بِكَمْ التَّذْكَرَة؟",
             "هَالْبَاص يَرُوح الْجَامِعَة؟",
             "فيهْ مَقْعَد فَارِغ؟"
@@ -1204,8 +1204,8 @@
         },
         {
           "slot": "where-s-the-nearest-bank-from-here",
-          "arabic": "وَيْنَ أَقْرِبْ بَنْك مِنْ هِيهِ؟",
-          "transliteration": "ween aqrib bank min hiih?"
+          "arabic": "فِين أَقْرِبْ بَنْك مِنْ هِنَا؟",
+          "transliteration": "feen aqrib bank min hina?"
         },
         {
           "slot": "is-there-a-good-restaurant-in-the-area",
@@ -1216,20 +1216,20 @@
       "dialogue": [
         {
           "speaker": "سَائِح",
-          "arabic": "لَوْ سَمَحْتَ، وَيْنَ الْمَسْجِد الْحَرَام؟",
-          "transliteration": "law samaht, ween al-masjid al-haram?",
+          "arabic": "لَوْ سَمَحْتَ، فِين الْمَسْجِد الْحَرَام؟",
+          "transliteration": "law samaht, feen al-masjid al-haram?",
           "english": "Excuse me, where is the Sacred Mosque?"
         },
         {
           "speaker": "مَحَلِّي",
-          "arabic": "دُغْرِي مِنْ هِيهِ. مَا فيهْ وَاحِد بِهِدِ الْمَدِينَة مَا يَعْرِفْ الْمَسْجِد!",
-          "transliteration": "dughri min hiih. ma feeh wahid bi-hadh al-madeena ma ya3rif al-masjid!",
+          "arabic": "دُغْرِي مِنْ هِنَا. مَا فيهْ وَاحِد بِهِدِ الْمَدِينَة مَا يَعْرِفْ الْمَسْجِد!",
+          "transliteration": "dughri min hina. ma feeh wahid bi-hadh al-madeena ma ya3rif al-masjid!",
           "english": "Straight ahead from here. There's not a single person in this city who doesn't know the Mosque!"
         },
         {
           "speaker": "سَائِح",
-          "arabic": "أَبِي أَرُوح الْمَطْعَم شُوَيّة.",
-          "transliteration": "abi arooh al-mat3am shuwayya.",
+          "arabic": "أَبْغَى أَرُوح الْمَطْعَم شُوَيّة.",
+          "transliteration": "abgha arooh al-mat3am shuwayya.",
           "english": "I want to go to a restaurant for a bit."
         },
         {
@@ -1266,8 +1266,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وَيْنَ أَقْرِبْ صَيْدَلِيَّة؟",
-            "transliteration": "ween aqrib saydaleyyah?",
+            "arabic": "فِين أَقْرِبْ صَيْدَلِيَّة؟",
+            "transliteration": "feen aqrib saydaleyyah?",
             "english": "Where is the nearest pharmacy?"
           },
           "response": {
@@ -1283,15 +1283,15 @@
             "english": "Is there a school nearby?"
           },
           "response": {
-            "arabic": "إِي، هِيهِ عَلَى الزَّاوِيَة بِشَارِع الْمَلِكْ.",
-            "transliteration": "i, hiih 3ala az-zawa bi-shaari3 al-malik.",
+            "arabic": "إِي، هِنَا عَلَى الزَّاوِيَة بِشَارِع الْمَلِكْ.",
+            "transliteration": "i, hina 3ala az-zawa bi-shaari3 al-malik.",
             "english": "Yes, it's on the corner of King Street."
           }
         },
         {
           "pair": {
-            "arabic": "أَبِي أَرُوح الْمُسْتَشْفَى. وَيْنَ؟",
-            "transliteration": "abi arooh al-mustashfa. ween?",
+            "arabic": "أَبْغَى أَرُوح الْمُسْتَشْفَى. فِين؟",
+            "transliteration": "abgha arooh al-mustashfa. feen?",
             "english": "I want to go to the hospital. Where is it?"
           },
           "response": {
@@ -1302,8 +1302,8 @@
         },
         {
           "pair": {
-            "arabic": "فيهْ بَنْك هِيهِ الْقُرْبْ؟",
-            "transliteration": "feeh bank hiih al-qurb?",
+            "arabic": "فيهْ بَنْك هِنَا الْقُرْبْ؟",
+            "transliteration": "feeh bank hina al-qurb?",
             "english": "Is there a bank close by?"
           },
           "response": {
@@ -1318,23 +1318,23 @@
         {
           "id": "unit-05.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "Someone asks: \"وَيْنَ تَبِي تَرُوح؟\" (Where do you want to go?) Tell them you want to go to the bank.",
-          "answer": "أَبِي أَرُوح الْبَنْك",
+          "prompt": "Someone asks: \"فِين تَبْغَى تَرُوح؟\" (Where do you want to go?) Tell them you want to go to the bank.",
+          "answer": "أَبْغَى أَرُوح الْبَنْك",
           "accepted": [
-            "أَبِي أَرُوح الْبَنْك",
-            "ابي اروح البنك",
-            "abi arooh al-bank"
+            "أَبْغَى أَرُوح الْبَنْك",
+            "أبغى اروح البنك",
+            "abgha arooh al-bank"
           ],
           "too_formal": {
             "item": "أُرِيدُ الذَّهَابَ إِلَى الْبَنْكِ",
             "feedback": "Correct meaning, but too formal for everyday speech."
           },
-          "tip": "\"أَبِي\" is the natural Hejazi way to say what you want."
+          "tip": "\"أَبْغَى\" is the natural Hejazi way to say what you want."
         },
         {
           "id": "unit-05.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "A local asks: \"شُو إِسْمُ الْمَدْرَسَة الْقَرِيبَة؟\" (What is the name of the nearby school?) Tell him it is Al-Noor School.",
+          "prompt": "A local asks: \"إِيش إِسْمُ الْمَدْرَسَة الْقَرِيبَة؟\" (What is the name of the nearby school?) Tell him it is Al-Noor School.",
           "answer": "اسْمُهَا مَدْرَسَة النُّور",
           "accepted": [
             "اسْمُهَا مَدْرَسَة النُّور",
@@ -1350,7 +1350,7 @@
         {
           "id": "unit-05.lesson-04.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"وَيْنَ أَقْرِبْ _____ مِنْ هِيهِ؟\" English: Where is the nearest hospital from here?",
+          "prompt": "Complete: \"فِين أَقْرِبْ _____ مِنْ هِنَا؟\" English: Where is the nearest hospital from here?",
           "answer": "مُسْتَشْفَى",
           "accepted": [
             "مُسْتَشْفَى",
@@ -1381,15 +1381,15 @@
           "id": "unit-05.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where is the nearest bank from here?\"",
-          "answer": "وَيْنَ أَقْرِبْ بَنْك مِنْ هِيهِ؟",
+          "answer": "فِين أَقْرِبْ بَنْك مِنْ هِنَا؟",
           "accepted": [
-            "وَيْنَ أَقْرِبْ بَنْك مِنْ هِيهِ؟",
-            "وين اقرب بنك من هيه؟",
-            "ween aqrib bank min hiih?"
+            "فِين أَقْرِبْ بَنْك مِنْ هِنَا؟",
+            "فين اقرب بنك من هنا؟",
+            "feen aqrib bank min hina?"
           ],
           "too_formal": {
             "item": "أَيْنَ أَقْرَبُ بَنْكٍ مِنْ هُنَا؟",
-            "feedback": "Correct meaning; Hejazi uses \"وَيْنَ\" and \"هِيهِ\" which are more casual."
+            "feedback": "Correct meaning; Hejazi uses \"فِين\" and \"هِنَا\" which are more casual."
           },
           "tip": "\"أَقْرِبْ\" means 'nearest'; \"مِنْ\" means 'from.'"
         },
@@ -1455,21 +1455,21 @@
         {
           "id": "unit-05.lesson-04.reorder.01",
           "type": "reorder",
-          "prompt": "Put in order: \"الْمُسْتَشْفَى / وَيْنَ / أَقْرِبْ\"",
-          "answer": "وَيْنَ أَقْرِبْ مُسْتَشْفَى",
+          "prompt": "Put in order: \"الْمُسْتَشْفَى / فِين / أَقْرِبْ\"",
+          "answer": "فِين أَقْرِبْ مُسْتَشْفَى",
           "words": [
             "مُسْتَشْفَى",
             "أَقْرِبْ",
-            "وَيْنَ"
+            "فِين"
           ],
           "accepted": [
-            "وَيْنَ أَقْرِبْ مُسْتَشْفَى",
-            "وين اقرب مستشفى",
-            "ween aqrib mustashfa"
+            "فِين أَقْرِبْ مُسْتَشْفَى",
+            "فين اقرب مستشفى",
+            "feen aqrib mustashfa"
           ],
           "too_formal": {
             "item": "أَيْنَ أَقْرَبُ مُسْتَشْفَىً",
-            "feedback": "Fine in formal Arabic; the Hejazi word is \"وَيْنَ.\""
+            "feedback": "Fine in formal Arabic; the Hejazi word is \"فِين.\""
           },
           "tip": "Question word first, then the adjective \"أَقْرِبْ,\" then the noun."
         },
@@ -1513,13 +1513,13 @@
         },
         {
           "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "أَبِي أَرُوحْ الْبَلَدْ الْقَدِيمْ",
-          "transliteration": "abi aroo7 il-balad il-gadeem"
+          "arabic": "أَبْغَى أَرُوحْ الْبَلَدْ الْقَدِيمْ",
+          "transliteration": "abgha aroo7 il-balad il-gadeem"
         },
         {
           "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "وَقِّفْ هِنِّ لُو سَمَحْتْ",
-          "transliteration": "waggif hini law sama7t"
+          "arabic": "وَقِّفْ هِنَا لُو سَمَحْتْ",
+          "transliteration": "waggif hina law sama7t"
         },
         {
           "slot": "how-much-is-the-fare",
@@ -1580,8 +1580,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "الله يُعَافِيكْ، أَبِي أَرُوحْ الْبَلَدْ الْقَدِيمْ",
-          "transliteration": "allah yu3aafik, abi aroo7 il-balad il-gadeem",
+          "arabic": "الله يُعَافِيكْ، أَبْغَى أَرُوحْ الْبَلَدْ الْقَدِيمْ",
+          "transliteration": "allah yu3aafik, abgha aroo7 il-balad il-gadeem",
           "english": "God keep you well, I want to go to the Old City."
         },
         {
@@ -1610,14 +1610,14 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "خَلاَص، وَقِّفْ هِنِّ لُو سَمَحْتْ",
-          "transliteration": "khalaas, waggif hini law sama7t",
+          "arabic": "خَلاَص، وَقِّفْ هِنَا لُو سَمَحْتْ",
+          "transliteration": "khalaas, waggif hina law sama7t",
           "english": "Okay, stop here, please."
         },
         {
           "speaker": "أبو أحمد",
-          "arabic": "هِنِّ تَمَام؟",
-          "transliteration": "hini tamaam?",
+          "arabic": "هِنَا تَمَام؟",
+          "transliteration": "hina tamaam?",
           "english": "Is here good?"
         },
         {
@@ -1660,8 +1660,8 @@
         },
         {
           "pair": {
-            "arabic": "أَبِي أَرُوحْ الْبَلَدْ الْقَدِيمْ",
-            "transliteration": "abi aroo7 il-balad il-gadeem",
+            "arabic": "أَبْغَى أَرُوحْ الْبَلَدْ الْقَدِيمْ",
+            "transliteration": "abgha aroo7 il-balad il-gadeem",
             "english": "I want to go to the Old City."
           },
           "response": {
@@ -1695,25 +1695,25 @@
           }
         }
       ],
-      "culture": "Taxis are the primary way to get around in Jeddah and the cities of Makkah and Madinah. Drivers usually respond to requests with \"حَاضِرْ\" (at your service), and you can thank them with \"الله يُعَافِيكْ\" (God keep you well) or \"شُكْرًا\" (thank you). Saying where you want to go directly, and then \"وَقِّفْ هِنِّ\" to stop at your destination, is the normal way to ride.",
+      "culture": "Taxis are the primary way to get around in Jeddah and the cities of Makkah and Madinah. Drivers usually respond to requests with \"حَاضِرْ\" (at your service), and you can thank them with \"الله يُعَافِيكْ\" (God keep you well) or \"شُكْرًا\" (thank you). Saying where you want to go directly, and then \"وَقِّفْ هِنَا\" to stop at your destination, is the normal way to ride.",
       "exercises": [
         {
           "id": "unit-05.lesson-05.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want to go to the Old City.\"",
-          "answer": "ابي اروح البلد القديم",
+          "answer": "أبغى اروح البلد القديم",
           "accepted": [
-            "ابي اروح البلد القديم",
-            "أبي أروح البلد القديم",
-            "abi aroo7 il-balad il-gadeem",
+            "أبغى اروح البلد القديم",
+            "أبغى أروح البلد القديم",
+            "abgha aroo7 il-balad il-gadeem",
             "أبغي أروح البلد القديم",
-            "أبي أروح البلد القديمة"
+            "أبغى أروح البلد القديمة"
           ],
           "too_formal": {
             "item": "أُرِيدُ الذَّهَابَ إِلَى الْمَدِينَةِ الْقَدِيمَة",
-            "feedback": "This is formal written Arabic; everyday Hejazi speech uses \"أَبِي أَرُوحْ...\"."
+            "feedback": "This is formal written Arabic; everyday Hejazi speech uses \"أَبْغَى أَرُوحْ...\"."
           },
-          "tip": "\"أَبِي أَرُوحْ\" is the everyday pattern for \"I want to go\"."
+          "tip": "\"أَبْغَى أَرُوحْ\" is the everyday pattern for \"I want to go\"."
         },
         {
           "id": "unit-05.lesson-05.choose.01",
@@ -1741,14 +1741,14 @@
         {
           "id": "unit-05.lesson-05.reply.01",
           "type": "reply",
-          "prompt": "A taxi driver asks \"وَيْنَ تَبِي؟\" (Where do you want to go?). Say: to the station.",
+          "prompt": "A taxi driver asks \"فِين تَبْغَى؟\" (Where do you want to go?). Say: to the station.",
           "answer": "للمحطة",
           "accepted": [
             "للمحطة",
             "لالمحطة",
             "المحطة",
             "lil-ma7atta",
-            "أبي المحطة",
+            "أبغى المحطة",
             "خذني للمحطة"
           ],
           "too_formal": {
@@ -1779,19 +1779,19 @@
           "id": "unit-05.lesson-05.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Stop here, please.\" (to a man)",
-          "answer": "وقف هني لو سمحت",
+          "answer": "وقف هنا لو سمحت",
           "accepted": [
-            "وقف هني لو سمحت",
-            "وقّف هني لو سمحت",
             "وقف هنا لو سمحت",
-            "waggif hini law sama7t",
-            "وقف هني"
+            "وقّف هِنَا لو سمحت",
+            "وقف هنا لو سمحت",
+            "waggif hina law sama7t",
+            "وقف هنا"
           ],
           "too_formal": {
             "item": "تَوَقَّفْ هُنَا مِنْ فَضْلِكَ",
             "feedback": "This is formal Arabic; the everyday imperative is \"وَقِّفْ\"."
           },
-          "tip": "\"هِنِّ\" is the Hejazi \"here\", and \"لُو سَمَحْتْ\" makes it polite."
+          "tip": "\"هِنَا\" is the Hejazi \"here\", and \"لُو سَمَحْتْ\" makes it polite."
         },
         {
           "id": "unit-05.lesson-05.reorder.01",
@@ -1842,7 +1842,7 @@
             "mashghool",
             "لا، مشغول",
             "آسف، مشغول",
-            "مشغول الحين"
+            "مشغول دحين"
           ],
           "too_formal": {
             "item": "أَنَا غَيْرُ مُتَاحٍ حَالِيًّا",
@@ -1860,7 +1860,7 @@
             "بكرة الباص يجي الساعة كم؟",
             "الباص يجي الساعة كم بكرا؟",
             "bukra il-baas yiji is-saa3a kam",
-            "بكرا الباص بيجي الساعة كم؟"
+            "بكرا الباص حيجي الساعة كم؟"
           ],
           "too_formal": {
             "item": "فِي أَيِّ سَاعَةٍ يَصِلُ الْبَاصُ غَدًا؟",
@@ -1871,7 +1871,7 @@
         {
           "id": "unit-05.lesson-05.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "Complete: \"ابي اروح البلد _____.\" Meaning: I want to go to the Old City.",
+          "prompt": "Complete: \"أبغى اروح البلد _____.\" Meaning: I want to go to the Old City.",
           "answer": "القديم",
           "accepted": [
             "القديم",
@@ -1928,7 +1928,7 @@
     "title": "أَنْتَ سَائِح فِي الْحِجَاز",
     "instructions": "You are a tourist in Hejazi-speaking area. Have a short conversation with a local about getting around the city. Use phrases from the unit to ask for directions, find a place to eat, and get advice about visiting important sites. Write your own replies in the conversation below, using complete sentences and speaking Hejazi as naturally as you can.",
     "required_elements": [
-      "أَبِي (want to go somewhere)",
+      "أَبْغَى (want to go somewhere)",
       "سؤال عن الاتجاه (ask for directions)",
       "شكر شخص ما (thank someone)"
     ],
@@ -1936,20 +1936,20 @@
       "dialogue": [
         {
           "speaker": "محلي",
-          "arabic": "أَهْلًا وَسَهْلًا! وَيْنَ تَبِي تَرُوح؟",
-          "transliteration": "ahlan wa sahlan! ween tabi trooh?",
+          "arabic": "أَهْلًا وَسَهْلًا! فِين تَبْغَى تَرُوح؟",
+          "transliteration": "ahlan wa sahlan! feen tibgha trooh?",
           "english": "Welcome! Where do you want to go?"
         },
         {
           "speaker": "سَائِح",
-          "arabic": "لَوْ سَمَحْتَ، أَبِي أَرُوح السُّوق. هَالْمَنْطَقَة جَدِيدَة عَلَى.",
-          "transliteration": "law samaht, abi arooh as-sooq. hal-mintaqa jadeeda 3alayya.",
+          "arabic": "لَوْ سَمَحْتَ، أَبْغَى أَرُوح السُّوق. هَالْمَنْطَقَة جَدِيدَة عَلَى.",
+          "transliteration": "law samaht, abgha arooh as-sooq. hal-mintaqa jadeeda 3alayya.",
           "english": "Please, I want to go to the market. This area is new to me."
         },
         {
           "speaker": "محلي",
-          "arabic": "دُغْرِي مِنْ هِيهِ يَا أَخِي. لِفّ يَمِين عِنْدَ الإِشَارَة. السُّوق بِشَارِعِ الْمَلِكْ.",
-          "transliteration": "dughri min hiih ya akh. liff yameen 3ind al-ishara. as-sooq bi-shaari3 al-malik.",
+          "arabic": "دُغْرِي مِنْ هِنَا يَا أَخِي. لِفّ يَمِين عِنْدَ الإِشَارَة. السُّوق بِشَارِعِ الْمَلِكْ.",
+          "transliteration": "dughri min hina ya akh. liff yameen 3ind al-ishara. as-sooq bi-shaari3 al-malik.",
           "english": "Straight ahead my friend. Turn right at the traffic light. The market is on King Street."
         },
         {

@@ -23,8 +23,8 @@
       "phrases": [
         {
           "slot": "what-would-you-like-to-drink-to-a-man",
-          "arabic": "شنو تَبِي تِشْرَب؟",
-          "transliteration": "shuno tabi tishrab?",
+          "arabic": "إيش تَشْتِي تِشْرَب؟",
+          "transliteration": "eesh tishti tishrab?",
           "reply": {
             "arabic": "قَهْوَة، لَو سَمَحْت",
             "transliteration": "qahwa, law samaht",
@@ -33,8 +33,8 @@
         },
         {
           "slot": "what-would-you-like-to-drink-to-a-woman",
-          "arabic": "شنو تَبِّي تِشْرَبِي؟",
-          "transliteration": "shuno tabi tishabi?"
+          "arabic": "إيش تَشْتِي تِشْرَبِي؟",
+          "transliteration": "eesh tishti tishrabi?"
         },
         {
           "slot": "coffee-please",
@@ -68,23 +68,23 @@
         },
         {
           "slot": "i-want-mint-tea",
-          "arabic": "بِدِّي شَاي بِالنَّعْنَاع",
-          "transliteration": "biddi shay bil na3na3"
+          "arabic": "أَشْتِي شَاي بِالنَّعْنَاع",
+          "transliteration": "ashti shay bil na3na3"
         },
         {
           "slot": "is-there-sugar",
           "arabic": "فِيهْ سُكّر؟",
           "transliteration": "fih sukkar?",
           "reply": {
-            "arabic": "أَي، هِسَّع أَجِيبُو لَك",
-            "transliteration": "ay, hissa aji'bo lak",
+            "arabic": "إِيه، ذَلْحِين أَجِيبُو لَك",
+            "transliteration": "eeh, dhal7een aji'bo lak",
             "english": "Yes, I'll bring it now."
           }
         },
         {
           "slot": "i-like-my-coffee-bitter",
-          "arabic": "بَحِبّ الْقَهْوَة مُرّة",
-          "transliteration": "ba7ibb il qahwa murra"
+          "arabic": "أَحِبّ الْقَهْوَة مُرّة",
+          "transliteration": "a7ibb il qahwa murra"
         },
         {
           "slot": "no-sugar-at-all",
@@ -95,8 +95,8 @@
       "dialogue": [
         {
           "speaker": "فاطمة",
-          "arabic": "هَلا، شنو تَبِي تِشْرَب؟",
-          "transliteration": "hala, shuno tabi tishrab?",
+          "arabic": "هَلا، إيش تَشْتِي تِشْرَب؟",
+          "transliteration": "hala, eesh tishti tishrab?",
           "english": "Welcome, what would you like to drink?"
         },
         {
@@ -107,8 +107,8 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "أَي، تَبِيهَا حِلْوَة وَلا مُرّة؟",
-          "transliteration": "ay, tabiha hilwa walla murra?",
+          "arabic": "إِيه، تَشْتِيهَا حِلْوَة وَلا مُرّة؟",
+          "transliteration": "eeh, tishtiha hilwa walla murra?",
           "english": "Yes, do you like it sweet or bitter?"
         },
         {
@@ -131,8 +131,8 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "لا، هِسَّع أَجِيبُو لَك",
-          "transliteration": "la, hissa aji'bo lak",
+          "arabic": "لا، ذَلْحِين أَجِيبُو لَك",
+          "transliteration": "la, dhal7een aji'bo lak",
           "english": "No, I'll bring it now."
         },
         {
@@ -149,8 +149,8 @@
         },
         {
           "speaker": "علي",
-          "arabic": "اللَّه يَعْطِيك الْعَافِيَة، كِتِيرْ طَيِّبَة",
-          "transliteration": "allah ya3tiik il 3aafya, ktir tayiba",
+          "arabic": "اللَّه يَعْطِيك الْعَافِيَة، كَثِير طَيِّبَة",
+          "transliteration": "allah ya3tiik il 3aafya, kathiir tayiba",
           "english": "Thank you, it's really good."
         },
         {
@@ -163,8 +163,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو تَبِي تِشْرَب؟",
-            "transliteration": "shuno tabi tishrab?",
+            "arabic": "إيش تَشْتِي تِشْرَب؟",
+            "transliteration": "eesh tishti tishrab?",
             "english": "What would you like to drink?"
           },
           "response": {
@@ -187,13 +187,13 @@
         },
         {
           "pair": {
-            "arabic": "تَبِيهَا حِلْوَة وَلا مُرّة؟",
-            "transliteration": "tabiha hilwa walla murra?",
+            "arabic": "تَشْتِيهَا حِلْوَة وَلا مُرّة؟",
+            "transliteration": "tishtiha hilwa walla murra?",
             "english": "Do you like it sweet or bitter?"
           },
           "response": {
-            "arabic": "مُرّة، مَا بَحِبّ السُّكّر",
-            "transliteration": "murra, ma ba7ibb il sukkar",
+            "arabic": "مُرّة، مَا أَحِبّ السُّكّر",
+            "transliteration": "murra, ma a7ibb il sukkar",
             "english": "Bitter, I don't like sugar."
           }
         },
@@ -204,8 +204,8 @@
             "english": "Is there sugar?"
           },
           "response": {
-            "arabic": "أَي، هِسَّع أَجِيبُو لَك",
-            "transliteration": "ay, hissa aji'bo lak",
+            "arabic": "إِيه، ذَلْحِين أَجِيبُو لَك",
+            "transliteration": "eeh, dhal7een aji'bo lak",
             "english": "Yes, I'll bring it now."
           }
         }
@@ -215,7 +215,7 @@
         {
           "id": "unit-04.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "شنو تَبِي تِشْرَب؟",
+          "prompt": "إيش تَشْتِي تِشْرَب؟",
           "answer": "قَهْوَة، لَو سَمَحْت",
           "accepted": [
             "قَهْوَة، لَو سَمَحْت",
@@ -231,21 +231,21 @@
           "id": "unit-04.lesson-01.reply.02",
           "type": "reply",
           "prompt": "فِيهْ سُكّر؟",
-          "answer": "أَي، هِسَّع أَجِيبُو لَك",
+          "answer": "إِيه، ذَلْحِين أَجِيبُو لَك",
           "accepted": [
-            "أَي، هِسَّع أَجِيبُو لَك",
-            "ay, hissa aji'bo lak"
+            "إِيه، ذَلْحِين أَجِيبُو لَك",
+            "eeh, dhal7een aji'bo lak"
           ],
           "too_formal": {
             "item": "بالتأكيد",
             "feedback": "Too formal."
           },
-          "tip": "hissa means now."
+          "tip": "dhal7een means now."
         },
         {
           "id": "unit-04.lesson-01.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "بِدِّي شَاي ___ النَّعْنَاع",
+          "prompt": "أَشْتِي شَاي ___ النَّعْنَاع",
           "answer": "بِالنَّعْنَاع",
           "accepted": [
             "bil na3na3",
@@ -297,15 +297,15 @@
           "id": "unit-04.lesson-01.choose.02",
           "type": "choose",
           "prompt": "To a woman: what would you like to drink?",
-          "answer": "شنو تَبِّي تِشْرَبِي؟",
+          "answer": "إيش تَشْتِي تِشْرَبِي؟",
           "accepted": [
-            "شنو تَبِّي تِشْرَبِي؟"
+            "إيش تَشْتِي تِشْرَبِي؟"
           ],
           "options": [
-            "شنو تَبِي تِشْرَب؟",
-            "شنو تَبِّي تِشْرَبِي؟",
-            "شنو تبوا",
-            "شنو بتشرب"
+            "إيش تَشْتِي تِشْرَب؟",
+            "إيش تَشْتِي تِشْرَبِي؟",
+            "إيش تبوا",
+            "إيش بتشرب"
           ],
           "too_formal": {
             "item": "ماذا تحبين",
@@ -317,13 +317,13 @@
           "id": "unit-04.lesson-01.reorder.01",
           "type": "reorder",
           "prompt": "Order: I like my coffee bitter.",
-          "answer": "بَحِبّ الْقَهْوَة مُرّة",
+          "answer": "أَحِبّ الْقَهْوَة مُرّة",
           "accepted": [
-            "بَحِبّ الْقَهْوَة مُرّة",
-            "ba7ibb il qahwa murra"
+            "أَحِبّ الْقَهْوَة مُرّة",
+            "a7ibb il qahwa murra"
           ],
           "words": [
-            "بَحِبّ",
+            "أَحِبّ",
             "الْقَهْوَة",
             "مُرّة"
           ],
@@ -368,15 +368,15 @@
           "arabic": "عِنْدُك مِنْيُو بِالإِنْجِلِيزِي؟",
           "transliteration": "3indak menu bil injilizi?",
           "reply": {
-            "arabic": "أَي، تَفَضَّل",
-            "transliteration": "ay, tfaddal",
+            "arabic": "إِيه، تَفَضَّل",
+            "transliteration": "eeh, tfaddal",
             "english": "Yes, here you are."
           }
         },
         {
           "slot": "what-do-you-have-today",
-          "arabic": "شنو عِنْدُك الْيُوم؟",
-          "transliteration": "shuno 3indak il yoom?",
+          "arabic": "إيش عِنْدُك الْيُوم؟",
+          "transliteration": "eesh 3indak il yoom?",
           "reply": {
             "arabic": "عِنِّي سَلْتَة وَفَحْسَة وَمَنْدِي",
             "transliteration": "3inni salta w fa7sa w mandi",
@@ -385,8 +385,8 @@
         },
         {
           "slot": "what-appetizers-do-you-have",
-          "arabic": "شنو الْمُقَبِّلات عِنْدُك؟",
-          "transliteration": "shuno il mugabbilaat 3indak?"
+          "arabic": "إيش الْمُقَبِّلات عِنْدُك؟",
+          "transliteration": "eesh il mugabbilaat 3indak?"
         },
         {
           "slot": "is-there-vegetarian-food",
@@ -395,8 +395,8 @@
         },
         {
           "slot": "what-s-in-this-dish",
-          "arabic": "هَاد الطَّبَق شنو فِيهِ؟",
-          "transliteration": "had il 6abag shuno fih?"
+          "arabic": "هَذَا الطَّبَق إيش فِيهِ؟",
+          "transliteration": "haadha il 6abag eesh fih?"
         },
         {
           "slot": "is-it-spicy-or-not-spicy",
@@ -405,18 +405,18 @@
         },
         {
           "slot": "what-do-you-recommend-i-get",
-          "arabic": "شنو تِنْصَحْنِي آخِذ؟",
-          "transliteration": "shuno tensa7ni akhith?",
+          "arabic": "إيش تِنْصَحْنِي آخِذ؟",
+          "transliteration": "eesh tensa7ni akhith?",
           "reply": {
-            "arabic": "جَرِّب الْمَنْدِي، كِتِيرْ طَيِّب",
-            "transliteration": "jarrib il mandi, ktir tayib",
+            "arabic": "جَرِّب الْمَنْدِي، كَثِير طَيِّب",
+            "transliteration": "jarrib il mandi, kathiir tayib",
             "english": "Try the mandi, it's really good."
           }
         },
         {
           "slot": "how-much-does-this-cost",
-          "arabic": "قَدِيش سِعِر هَاد؟",
-          "transliteration": "qadish si3ir had?"
+          "arabic": "كَم سِعِر هَذَا؟",
+          "transliteration": "kam si3ir haadha?"
         },
         {
           "slot": "is-there-a-dish-of-the-day",
@@ -425,8 +425,8 @@
         },
         {
           "slot": "i-want-something-light",
-          "arabic": "بِدِّي شَيْ خَفِيف",
-          "transliteration": "biddi shay khafiif"
+          "arabic": "أَشْتِي شَيْ خَفِيف",
+          "transliteration": "ashti shay khafiif"
         },
         {
           "slot": "do-you-have-desserts",
@@ -451,8 +451,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو عِنْدُك الْيُوم؟",
-            "transliteration": "shuno 3indak il yoom?",
+            "arabic": "إيش عِنْدُك الْيُوم؟",
+            "transliteration": "eesh 3indak il yoom?",
             "english": "What do you have?"
           },
           "response": {
@@ -467,7 +467,7 @@
         {
           "id": "unit-04.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "شنو عِنْدُك الْيُوم؟",
+          "prompt": "إيش عِنْدُك الْيُوم؟",
           "answer": "عِنِّي مَنْدِي",
           "accepted": [
             "عِنِّي مَنْدِي"
@@ -481,7 +481,7 @@
         {
           "id": "unit-04.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "شنو ___ الْيُوم؟",
+          "prompt": "إيش ___ الْيُوم؟",
           "answer": "عِنْدُك",
           "accepted": [
             "عِنْدُك",
@@ -532,13 +532,13 @@
           "id": "unit-04.lesson-02.reorder.01",
           "type": "reorder",
           "prompt": "What do you have today?",
-          "answer": "شنو عِنْدُك الْيُوم؟",
+          "answer": "إيش عِنْدُك الْيُوم؟",
           "accepted": [
-            "شنو عِنْدُك الْيُوم؟",
-            "shuno 3indak il yoom?"
+            "إيش عِنْدُك الْيُوم؟",
+            "eesh 3indak il yoom?"
           ],
           "words": [
-            "شنو",
+            "إيش",
             "عِنْدُك",
             "الْيُوم"
           ],
@@ -546,7 +546,7 @@
             "item": "ماذا",
             "feedback": "MSA."
           },
-          "tip": "shuno = what."
+          "tip": "eesh = what."
         }
       ]
     },
@@ -560,13 +560,13 @@
         },
         {
           "slot": "i-ll-have-a-plate-of-hummus-and-fattoush",
-          "arabic": "بِدِّي طَبَق سَلْتَة",
-          "transliteration": "biddi 6abag salta"
+          "arabic": "أَشْتِي طَبَق سَلْتَة",
+          "transliteration": "ashti 6abag salta"
         },
         {
           "slot": "i-want-this-and-this",
-          "arabic": "بِدِّي هَاد وَهَاد",
-          "transliteration": "biddi had w had"
+          "arabic": "أَشْتِي هَذَا وَهَذَا",
+          "transliteration": "ashti haadha w haadha"
         },
         {
           "slot": "please-make-it-quick",
@@ -585,8 +585,8 @@
         },
         {
           "slot": "this-dish-is-for-me-and-this-is-for-her",
-          "arabic": "هَاد لِي وَهَاد لَهَا",
-          "transliteration": "had li w had laha"
+          "arabic": "هَذَا لِي وَهَذَا لَهَا",
+          "transliteration": "haadha li w haadha laha"
         },
         {
           "slot": "can-i-have-a-glass-of-water",
@@ -611,8 +611,8 @@
         },
         {
           "slot": "we-want-the-same-order",
-          "arabic": "نِبِدّي نَفْس الطَّلَب",
-          "transliteration": "nibidd nifs il 6alb"
+          "arabic": "نِشْتِي نَفْس الطَّلَب",
+          "transliteration": "nishti nifs il 6alb"
         }
       ],
       "dialogue": [
@@ -622,8 +622,8 @@
         },
         {
           "speaker": "علي",
-          "arabic": "أَي، بِدِّي المندي",
-          "transliteration": "ay, biddi il mandi",
+          "arabic": "إِيه، أَشْتِي المندي",
+          "transliteration": "eeh, ashti il mandi",
           "english": "Yes, mandi."
         }
       ],
@@ -647,21 +647,21 @@
           "id": "unit-04.lesson-03.reply.01",
           "type": "reply",
           "prompt": "هَل انْت جَاهِز تِطْلُب؟",
-          "answer": "أَي، بِدِّي المندي",
+          "answer": "إِيه، أَشْتِي المندي",
           "accepted": [
-            "أَي، بِدِّي المندي",
-            "أَي، بِدِّي"
+            "إِيه، أَشْتِي المندي",
+            "إِيه، أَشْتِي"
           ],
           "too_formal": {
             "item": "نعم، أريد",
             "feedback": "MSA."
           },
-          "tip": "ay + biddi."
+          "tip": "eeh + ashti."
         },
         {
           "id": "unit-04.lesson-03.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "بِدِّي المندي ___ خبز",
+          "prompt": "أَشْتِي المندي ___ خبز",
           "answer": "مع",
           "accepted": [
             "مع",
@@ -711,13 +711,13 @@
           "id": "unit-04.lesson-03.reorder.01",
           "type": "reorder",
           "prompt": "I want mandi with bread",
-          "answer": "بِدِّي المندي مع خبز",
+          "answer": "أَشْتِي المندي مع خبز",
           "accepted": [
-            "بِدِّي المندي مع خبز",
-            "biddi il mandi ma3 khubz"
+            "أَشْتِي المندي مع خبز",
+            "ashti il mandi ma3 khubz"
           ],
           "words": [
-            "بِدِّي",
+            "أَشْتِي",
             "المندي",
             "مع",
             "خبز"
@@ -740,8 +740,8 @@
         },
         {
           "slot": "how-much-is-the-bill",
-          "arabic": "قَدِيش الْحِسَاب؟",
-          "transliteration": "qadish il 7isab?"
+          "arabic": "كَم الْحِسَاب؟",
+          "transliteration": "kam il 7isab?"
         },
         {
           "slot": "do-you-take-cash-or-card",
@@ -750,13 +750,13 @@
         },
         {
           "slot": "i-m-paying-today",
-          "arabic": "أَنَا بِدِّي أَدْفَع",
-          "transliteration": "ana biddi adfa3"
+          "arabic": "أَنَا أَشْتِي أَدْفَع",
+          "transliteration": "ana ashti adfa3"
         },
         {
           "slot": "no-i-m-paying",
-          "arabic": "لا، أَنَا بِدِّي أَدْفَع",
-          "transliteration": "la, ana biddi adfa3"
+          "arabic": "لا، أَنَا أَشْتِي أَدْفَع",
+          "transliteration": "la, ana ashti adfa3"
         },
         {
           "slot": "shall-we-split-the-bill",
@@ -825,7 +825,7 @@
         {
           "id": "unit-04.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "قَدِيش الْحِسَاب؟",
+          "prompt": "كَم الْحِسَاب؟",
           "answer": "تِسْعِين رِيَال",
           "accepted": [
             "تِسْعِين رِيَال"
@@ -1678,8 +1678,8 @@
         },
         {
           "speaker": "Customer",
-          "arabic": "بِدِّي المندي",
-          "transliteration": "biddi il mandi",
+          "arabic": "أَشْتِي المندي",
+          "transliteration": "ashti il mandi",
           "english": "I'll have mandi"
         }
       ]

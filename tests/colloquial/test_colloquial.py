@@ -471,7 +471,8 @@ def test_an_unwritten_unit_is_listed_as_coming_and_cannot_be_opened(tmp_path, mo
         {"key": "damascene", "folder": "damascene", "label": "D", "arabic": "د", "where": "w", "order": 1}]}), encoding="utf-8")
     (tmp_path / "damascene").mkdir()
     shutil.copy(real / "damascene" / "unit-01.json", tmp_path / "damascene" / "unit-01.json")
-    shutil.copytree(real / "images" / "unit-01", tmp_path / "images" / "unit-01")
+    for folder in ("unit-01", "emoji"):
+        shutil.copytree(real / "images" / folder, tmp_path / "images" / folder)
     monkeypatch.setattr(loader, "data_path", lambda key: tmp_path if key == "colloquial_dir" else data_path(key))
     loader._content.cache_clear()
     try:

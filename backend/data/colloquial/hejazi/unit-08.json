@@ -47,8 +47,8 @@
         },
         {
           "slot": "where-do-you-work",
-          "arabic": "وَيِنْ تِشْتَغِلْ؟",
-          "transliteration": "wain tishtighul?",
+          "arabic": "فِين تِشْتَغِلْ؟",
+          "transliteration": "feen tishtighul?",
           "reply": {
             "arabic": "أَشْتَغِلْ فِي شِرْكَة كِبِيرَة",
             "transliteration": "ashtighul fi sharika kabeera",
@@ -82,8 +82,8 @@
         },
         {
           "slot": "my-job-is-good",
-          "arabic": "شُغْلِي نِمْنِيحْ",
-          "transliteration": "shughli nmnee7"
+          "arabic": "شُغْلِي كَوَيِّس",
+          "transliteration": "shughli kwayyis"
         },
         {
           "slot": "i-m-not-finding-a-job",
@@ -97,8 +97,8 @@
         },
         {
           "slot": "how-many-years-have-you-been-working-here",
-          "arabic": "مِنْ كَمْ سَنَة تِشْتَغِلْ هِنِي؟",
-          "transliteration": "min kam sana tishtighul hni?",
+          "arabic": "مِنْ كَمْ سَنَة تِشْتَغِلْ هِنَا؟",
+          "transliteration": "min kam sana tishtighul hina?",
           "reply": {
             "arabic": "مِنْ خَمِسْ سِنِينْ",
             "transliteration": "min khams sneen",
@@ -107,11 +107,11 @@
         },
         {
           "slot": "what-would-you-like-to-work-as",
-          "arabic": "إِيشْ تِبِي تِشْتَغِلْ؟",
-          "transliteration": "eesh tibi tishtighul?",
+          "arabic": "إِيشْ تَبْغَى تِشْتَغِلْ؟",
+          "transliteration": "eesh tibgha tishtighul?",
           "reply": {
-            "arabic": "أَبِي أَصِيرْ دُكْتُورْ",
-            "transliteration": "abi aseer doktoor",
+            "arabic": "أَبْغَى أَصِيرْ دُكْتُورْ",
+            "transliteration": "abgha aseer doktoor",
             "english": "I want to become a doctor."
           }
         }
@@ -143,8 +143,8 @@
         },
         {
           "speaker": "Faisal",
-          "arabic": "نمنيح، وأنا لسة أدرس الهندسة بالجامعة.",
-          "transliteration": "nmnee7, w ana lissa adrus il-handasa bil-jam3a.",
+          "arabic": "كويس، وأنا لسة أدرس الهندسة بالجامعة.",
+          "transliteration": "kwayyis, w ana lissa adrus il-handasa bil-jam3a.",
           "english": "Good, and I'm still studying engineering at university."
         },
         {
@@ -167,14 +167,14 @@
         },
         {
           "speaker": "Faisal",
-          "arabic": "الله يخليچ، هذا يفيدني كتير.",
-          "transliteration": "allah ykhallichi, hadha yfeedni kteer.",
+          "arabic": "الله يخليكي، هذا يفيدني كتير.",
+          "transliteration": "allah ykhalliki, hadha yfeedni kteer.",
           "english": "God keep you, that would help me a lot."
         },
         {
           "speaker": "Layna",
-          "arabic": "ولا يهمك، بسأل بكرة وأقولك.",
-          "transliteration": "wala yhimmak, bas2al bakra w agoolak.",
+          "arabic": "ولا يهمك، حسأل بكرة وأقولك.",
+          "transliteration": "wala yhimmak, 7as2al bakra w agoolak.",
           "english": "Don't worry, I'll ask tomorrow and tell you."
         },
         {
@@ -199,8 +199,8 @@
         },
         {
           "pair": {
-            "arabic": "وين تدرس؟",
-            "transliteration": "wain tidrus?",
+            "arabic": "فين تدرس؟",
+            "transliteration": "feen tidrus?",
             "english": "Where do you study?"
           },
           "response": {
@@ -239,7 +239,7 @@
         {
           "id": "unit-08.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "حد سألك: إيش تشتغل؟ شنو بتجاوب؟",
+          "prompt": "حد سألك: إيش تشتغل؟ إيش تجاوب؟",
           "answer": "أَشْتَغِلْ مُهَنْدِسْ",
           "accepted": [
             "أَشْتَغِلْ مُهَنْدِسْ",
@@ -259,8 +259,7 @@
           "answer": "أدرس",
           "accepted": [
             "أدرس",
-            "adrus",
-            "بدرس"
+            "adrus"
           ],
           "too_formal": {
             "item": "أواصل دراستي",
@@ -272,22 +271,22 @@
           "id": "unit-08.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Where do you work?",
-          "answer": "وَيِنْ تِشْتَغِلْ؟",
+          "answer": "فِين تِشْتَغِلْ؟",
           "accepted": [
-            "وَيِنْ تِشْتَغِلْ؟",
-            "wain tishtighul?",
-            "وين شغلك؟"
+            "فِين تِشْتَغِلْ؟",
+            "feen tishtighul?",
+            "فين شغلك؟"
           ],
           "too_formal": {
             "item": "أين تعمل؟",
             "feedback": "فصحى"
           },
-          "tip": "وين = where"
+          "tip": "فين = where"
         },
         {
           "id": "unit-08.lesson-01.choose.01",
           "type": "choose",
-          "prompt": "إيش بتسأل حد عن مهنته؟",
+          "prompt": "إيش تسأل حد عن مهنته؟",
           "answer": "إِيشْ تِشْتَغِلْ؟",
           "accepted": [
             "إِيشْ تِشْتَغِلْ؟"
@@ -295,8 +294,8 @@
           "options": [
             "إِيشْ تِشْتَغِلْ؟",
             "كيفك أنت؟",
-            "وين رايح؟",
-            "شنو أخبارك؟"
+            "فين رايح؟",
+            "إيش أخبارك؟"
           ],
           "too_formal": {
             "item": "ما هي مهنتك؟",
@@ -326,7 +325,7 @@
         {
           "id": "unit-08.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "وَيِنْ تِشْتَغِلْ؟",
+          "prompt": "فِين تِشْتَغِلْ؟",
           "answer": "أشتغل في شركة",
           "accepted": [
             "أشتغل في شركة",
@@ -346,8 +345,7 @@
           "answer": "تدرس",
           "accepted": [
             "تدرس",
-            "tidrus",
-            "بتدرس"
+            "tidrus"
           ],
           "too_formal": {
             "item": "تقوم بدراسة",
@@ -389,7 +387,7 @@
             "item": "متقاعد عن العمل",
             "feedback": "مطول، الحجازي يقول متقاعد"
           },
-          "tip": "متقاعد يعني ما بيشتغل"
+          "tip": "متقاعد يعني ما يشتغل"
         },
         {
           "id": "unit-08.lesson-01.reorder.02",
@@ -427,8 +425,8 @@
         },
         {
           "slot": "the-manager-wants-to-talk-to-you",
-          "arabic": "الْمُدِيرْ بِيَبِي يِحْكِيكْ",
-          "transliteration": "il-mudeer biyabi yi7keek"
+          "arabic": "الْمُدِير يِبْغَى يِكَلِّمَك",
+          "transliteration": "il-mudeer yibgha ykallimak"
         },
         {
           "slot": "i-received-your-email",
@@ -447,8 +445,8 @@
         },
         {
           "slot": "my-colleague-at-the-office-is-very-nice",
-          "arabic": "زَمِيلِي بِالشُّغْلْ نِمْنِيحْ كِتِيرْ",
-          "transliteration": "zameele bil-shughul nmnee7 kteer"
+          "arabic": "زَمِيلِي بِالشُّغْلْ كَوَيِّس مَرَّة",
+          "transliteration": "zameele bil-shughul kwayyis marra"
         },
         {
           "slot": "we-must-finish-this-task-before-the-afternoon",
@@ -457,8 +455,8 @@
         },
         {
           "slot": "my-boss-is-very-demanding",
-          "arabic": "مُدِيرِي كِتِيرْ يِبِي كُلْ شَيْ كَامِلْ",
-          "transliteration": "mudiri kteer yibi kul shai kamil"
+          "arabic": "مُدِيرِي مَرَّة يِبْغَى كُلْ شَيْ كَامِلْ",
+          "transliteration": "mudiri marra yibgha kul shai kamil"
         },
         {
           "slot": "i-took-two-days-off",
@@ -501,14 +499,14 @@
         },
         {
           "speaker": "Hamza",
-          "arabic": "إي، والمدير بيبي يكلمك بعده.",
-          "transliteration": "eh, wal-mudeer biyabi ykallimak ba3dah.",
+          "arabic": "إي، والمدير يبغى يكلمك بعده.",
+          "transliteration": "eh, wal-mudeer yibgha ykallimak ba3dah.",
           "english": "Yes, and the manager wants to talk to you after."
         },
         {
           "speaker": "Mariam",
-          "arabic": "إيش بيبي؟",
-          "transliteration": "eesh biyabi?",
+          "arabic": "إيش يبغى؟",
+          "transliteration": "eesh yibgha?",
           "english": "What does he want?"
         },
         {
@@ -537,14 +535,14 @@
         },
         {
           "speaker": "Hamza",
-          "arabic": "وفيه دوام إضافي اليوم إذا أبيتي.",
-          "transliteration": "w fi dawaam iDaafi il-yoom idha abayyiti.",
+          "arabic": "وفيه دوام إضافي اليوم إذا تبغي.",
+          "transliteration": "w feeh dawaam iDaafi il-yoom idha tibghi.",
           "english": "And there is overtime today if you want."
         },
         {
           "speaker": "Mariam",
-          "arabic": "لا، الحمد لله، بخلصه في وقته.",
-          "transliteration": "la, il7amdulillah, bakhallisah fi wagtah.",
+          "arabic": "لا، الحمد لله، حخلصه في وقته.",
+          "transliteration": "la, il7amdulillah, 7akhallisah fi wagtah.",
           "english": "No, thank God, I'll finish it on time."
         },
         {
@@ -609,7 +607,7 @@
         {
           "id": "unit-08.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "زميل بسألك: جاي الاجتماع؟ إيش تجاوب؟",
+          "prompt": "زميل يسألك: جاي الاجتماع؟ إيش تجاوب؟",
           "answer": "إِي، جَايْ دِحِينْ",
           "accepted": [
             "إِي، جَايْ دِحِينْ",
@@ -657,13 +655,13 @@
         {
           "id": "unit-08.lesson-02.choose.01",
           "type": "choose",
-          "prompt": "كيف بتقول المدير بيبي يحكيك؟",
-          "answer": "الْمُدِيرْ بِيَبِي يِحْكِيكْ",
+          "prompt": "كيف تقول المدير يبغى يكلمك؟",
+          "answer": "الْمُدِير يِبْغَى يِكَلِّمَك",
           "accepted": [
-            "الْمُدِيرْ بِيَبِي يِحْكِيكْ"
+            "الْمُدِير يِبْغَى يِكَلِّمَك"
           ],
           "options": [
-            "الْمُدِيرْ بِيَبِي يِحْكِيكْ",
+            "الْمُدِير يِبْغَى يِكَلِّمَك",
             "المدير راح البيت",
             "المدير ما جاء اليوم",
             "المدير في إجازة"
@@ -672,7 +670,7 @@
             "item": "المدير يريد أن يتحدث إليك",
             "feedback": "فصحى"
           },
-          "tip": "بيبي = he wants"
+          "tip": "يبغى = he wants"
         },
         {
           "id": "unit-08.lesson-02.reorder.01",
@@ -697,7 +695,7 @@
         {
           "id": "unit-08.lesson-02.reply.02",
           "type": "reply",
-          "prompt": "المدير يسألك: خلصت التقرير؟ والعنت لسة ما خلصت. إيش بتقول؟",
+          "prompt": "المدير يسألك: خلصت التقرير؟ والعنت لسة ما خلصت. إيش تقول؟",
           "answer": "لسة، باقي شوي",
           "accepted": [
             "لسة، باقي شوي",
@@ -730,17 +728,17 @@
           "id": "unit-08.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "My boss is very demanding.",
-          "answer": "مُدِيرِي كِتِيرْ يِبِي كُلْ شَيْ كَامِلْ",
+          "answer": "مُدِيرِي مَرَّة يِبْغَى كُلْ شَيْ كَامِلْ",
           "accepted": [
-            "مُدِيرِي كِتِيرْ يِبِي كُلْ شَيْ كَامِلْ",
-            "mudiri kteer yibi kul shai kamil",
-            "مديري كتير يبي كل شي كامل"
+            "مُدِيرِي مَرَّة يِبْغَى كُلْ شَيْ كَامِلْ",
+            "mudiri marra yibgha kul shai kamil",
+            "مديري مرة يبغى كل شي كامل"
           ],
           "too_formal": {
             "item": "مديري يطلب الكثير",
             "feedback": "فصحى"
           },
-          "tip": "كتير = very"
+          "tip": "مرة = very"
         },
         {
           "id": "unit-08.lesson-02.choose.02",
@@ -828,13 +826,13 @@
         },
         {
           "slot": "the-exam-result-came-out-good",
-          "arabic": "نَتِيجَة الِامْتِحَانْ طَلَعِتْ نِمْنِيحَة",
-          "transliteration": "nateejat il-imti7aan tal3it nmnee7a"
+          "arabic": "نَتِيجَة الِامْتِحَانْ طَلَعِتْ كَوَيِّسَة",
+          "transliteration": "nateejat il-imti7aan tal3it kwayyisa"
         },
         {
           "slot": "i-didn-t-understand-the-lecture-well",
-          "arabic": "مَا فِهِمْتْ الْمُحَاضِرَة نِمْنِيحْ",
-          "transliteration": "ma fhimt il-mu7adara nmnee7"
+          "arabic": "مَا فِهِمْتْ الْمُحَاضِرَة كَوَيِّس",
+          "transliteration": "ma fhimt il-mu7adara kwayyis"
         },
         {
           "slot": "i-have-to-submit-the-assignment-before-friday",
@@ -843,8 +841,8 @@
         },
         {
           "slot": "my-friends-at-university-are-very-nice",
-          "arabic": "أَصْحَابِي بِالْجَامِعَة نِمْنِيحِينْ كِتِيرْ",
-          "transliteration": "as7abi bil-jam3a nmnee7een kteer"
+          "arabic": "أَصْحَابِي بِالْجَامِعَة كَوَيِّسِين مَرَّة",
+          "transliteration": "as7abi bil-jam3a kwayyiseen marra"
         },
         {
           "slot": "the-university-library-is-open-until-night",
@@ -853,8 +851,8 @@
         },
         {
           "slot": "i-want-to-register-more-courses-next-semester",
-          "arabic": "أَبِي أَسَجِّلْ مَوَادْ أَكْتَرْ الْفَصْلْ الْجَايْ",
-          "transliteration": "abi asajjel mawaadd aktar il-fasl il-jaay"
+          "arabic": "أَبْغَى أَسَجِّلْ مَوَادْ أَكْتَرْ الْفَصْلْ الْجَايْ",
+          "transliteration": "abgha asajjel mawaadd aktar il-fasl il-jaay"
         }
       ],
       "dialogue": [
@@ -866,8 +864,8 @@
         },
         {
           "speaker": "Noor",
-          "arabic": "عندي امتحان بكرة وما فهمت المحاضرة نمنيح.",
-          "transliteration": "3indi imti7aan bukra w ma fhimt il-mu7adara nmnee7.",
+          "arabic": "عندي امتحان بكرة وما فهمت المحاضرة كويس.",
+          "transliteration": "3indi imti7aan bukra w ma fhimt il-mu7adara kwayyis.",
           "english": "I have an exam tomorrow and I didn't understand the lecture well."
         },
         {
@@ -908,19 +906,19 @@
         },
         {
           "speaker": "Salem",
-          "arabic": "وأصحابنا يجون ويانا، نمنيحين كتير.",
-          "transliteration": "w as7abna yijoon wayyaana, nmnee7een kteer.",
+          "arabic": "وأصحابنا يجوا معانا، كويسين مرة.",
+          "transliteration": "w as7abna yijoo ma3aana, kwayyiseen marra.",
           "english": "And our friends will come with us, they are very nice."
         },
         {
           "speaker": "Noor",
-          "arabic": "إن شاء الله تطلع نتيجتي نمنيحة.",
-          "transliteration": "in shaa allah tiTla3 nateejti nmnee7a.",
+          "arabic": "إن شاء الله تطلع نتيجتي كويسة.",
+          "transliteration": "in shaa allah tiTla3 nateejti kwayyisa.",
           "english": "God willing my result comes out good."
         },
         {
           "speaker": "Salem",
-          "arabic": "إن شاء الله، وأنا بعد.",
+          "arabic": "إن شاء الله، وأنا كمان.",
           "transliteration": "in shaa allah, w ana ba3ad.",
           "english": "God willing, and mine too."
         }
@@ -964,8 +962,8 @@
         },
         {
           "pair": {
-            "arabic": "وين المكتبة؟",
-            "transliteration": "wain il-maktaba?",
+            "arabic": "فين المكتبة؟",
+            "transliteration": "feen il-maktaba?",
             "english": "Where is the library?"
           },
           "response": {
@@ -975,7 +973,7 @@
           }
         }
       ],
-      "culture": "بالجامعات الحجازية الطلاب ينادون الأستاذ دكتور أو أستاذ احترام لمركزه. المكتبات تضل مفتوحة ساعات طويلة خاصة أيام الامتحانات، والطلاب بيدرسون بمجموعات كتير.",
+      "culture": "بالجامعات الحجازية الطلاب ينادون الأستاذ دكتور أو أستاذ احترام لمركزه. المكتبات تبقى مفتوحة ساعات طويلة خاصة أيام الامتحانات، والطلاب يدرسون بمجموعات كتير.",
       "exercises": [
         {
           "id": "unit-08.lesson-03.reply.01",
@@ -1013,10 +1011,10 @@
           "id": "unit-08.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I didn't understand the lecture well.",
-          "answer": "مَا فِهِمْتْ الْمُحَاضِرَة نِمْنِيحْ",
+          "answer": "مَا فِهِمْتْ الْمُحَاضِرَة كَوَيِّس",
           "accepted": [
-            "مَا فِهِمْتْ الْمُحَاضِرَة نِمْنِيحْ",
-            "ma fhimt il-mu7adara nmnee7",
+            "مَا فِهِمْتْ الْمُحَاضِرَة كَوَيِّس",
+            "ma fhimt il-mu7adara kwayyis",
             "ما فهمت المحاضرة كتير"
           ],
           "too_formal": {
@@ -1084,7 +1082,7 @@
         {
           "id": "unit-08.lesson-03.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "نتيجة الامتحان ___ نمنيحة (came out)",
+          "prompt": "نتيجة الامتحان ___ كويسة (came out)",
           "answer": "طلعت",
           "accepted": [
             "طلعت",
@@ -1116,7 +1114,7 @@
         {
           "id": "unit-08.lesson-03.choose.02",
           "type": "choose",
-          "prompt": "مين بيدرس بالجامعة، مش بيشتغل؟",
+          "prompt": "مين يدرس بالجامعة وما يشتغل؟",
           "answer": "طالب",
           "accepted": [
             "طالب"
@@ -1164,15 +1162,15 @@
           "arabic": "إِيشْ نَاوِي تِسَوِّي بَعْدْ مَا تِتْخَرِّجْ؟",
           "transliteration": "eesh naawi tisawwi ba3d ma titkhaarraj?",
           "reply": {
-            "arabic": "أَبِي أَدَوِّرْ عَ شُغْلْ",
-            "transliteration": "abi adawwir 3a shughul",
+            "arabic": "أَبْغَى أَدَوِّرْ عَ شُغْلْ",
+            "transliteration": "abgha adawwir 3a shughul",
             "english": "I want to look for a job."
           }
         },
         {
           "slot": "i-want-to-continue-my-studies-for-a-master-s",
-          "arabic": "أَبِي أِكَمِّلْ دِرَاسْتِي عَالْمَاجِسْتِيرْ",
-          "transliteration": "abi akammil diraaste 3al-majesteer"
+          "arabic": "أَبْغَى أِكَمِّلْ دِرَاسْتِي عَالْمَاجِسْتِيرْ",
+          "transliteration": "abgha akammil diraaste 3al-majesteer"
         },
         {
           "slot": "i-intend-to-start-my-own-project",
@@ -1186,13 +1184,13 @@
         },
         {
           "slot": "in-five-years-where-will-you-be",
-          "arabic": "بَعْدْ خَمِسْ سِنِينْ وَيِنْ بِتْكُونْ؟",
-          "transliteration": "ba3d khams sneen wain bitkoon?"
+          "arabic": "بَعْدْ خَمِسْ سِنِينْ فِين حَتِكُون؟",
+          "transliteration": "ba3d khams sneen feen 7atkoon?"
         },
         {
           "slot": "i-ll-try-to-enter-a-phd-program",
-          "arabic": "بِحَاوِلْ أِدْخُلْ عَالدُّكْتُورَاهْ",
-          "transliteration": "bi7aawil adkhul 3ad-doktooraa"
+          "arabic": "أُحَاوِل أِدْخُلْ عَالدُّكْتُورَاهْ",
+          "transliteration": "u7aawil adkhul 3ad-doktooraa"
         },
         {
           "slot": "my-dream-is-to-open-a-restaurant",
@@ -1201,18 +1199,18 @@
         },
         {
           "slot": "i-haven-t-decided-yet-what-i-ll-do",
-          "arabic": "لِسَّةْ مَا قَرِّرْتْ إِيشْ بِسَوِّي",
-          "transliteration": "lissa ma 2arrart eesh bisawwi"
+          "arabic": "لِسَّةْ مَا قَرِّرْتْ إِيشْ حَسَوِّي",
+          "transliteration": "lissa ma 2arrart eesh 7asawwi"
         },
         {
           "slot": "i-want-to-settle-down-and-get-married-after-i-wo",
-          "arabic": "أَبِي أِسْتَقِرْ وَأِتْجَوِّزْ بَعْدْ مَا أِشْتَغِلْ شْوَيْ",
-          "transliteration": "abi istaqir w atjawwiz ba3d ma ashtighul shwai"
+          "arabic": "أَبْغَى أِسْتَقِرْ وَأِتْجَوِّزْ بَعْدْ مَا أِشْتَغِلْ شْوَيْ",
+          "transliteration": "abgha istaqir w atjawwiz ba3d ma ashtighul shwai"
         },
         {
           "slot": "i-ll-apply-for-a-job-at-a-big-company",
-          "arabic": "بِقَدِّمْ عَلَ وَظِيفَة فِي شِرْكَة كِبِيرَة",
-          "transliteration": "bagaddim 3ala wathiifa fi sharika kabeera"
+          "arabic": "حَقَدِّم عَلَ وَظِيفَة فِي شِرْكَة كِبِيرَة",
+          "transliteration": "7agaddim 3ala wathiifa fi sharika kabeera"
         },
         {
           "slot": "my-ambition-is-to-become-a-manager-one-day",
@@ -1234,8 +1232,8 @@
         },
         {
           "speaker": "Hessa",
-          "arabic": "أبي أكمل دراستي ماجستير، وبعدين أشتغل. وأنت؟",
-          "transliteration": "abi akammil diraaste majesteer, w ba3deen ashtighul. w int?",
+          "arabic": "أبغى أكمل دراستي ماجستير، وبعدين أشتغل. وأنت؟",
+          "transliteration": "abgha akammil diraaste majesteer, w ba3deen ashtighul. w int?",
           "english": "I want to do a master's, then work. And you?"
         },
         {
@@ -1246,8 +1244,8 @@
         },
         {
           "speaker": "Hessa",
-          "arabic": "ما شاء الله! وين بتفتحه؟",
-          "transliteration": "ma shaa allah! wain bitiftah7ah?",
+          "arabic": "ما شاء الله! فين حتفتحه؟",
+          "transliteration": "ma shaa allah! feen 7atiftahuh?",
           "english": "Wonderful! Where will you open it?"
         },
         {
@@ -1258,8 +1256,8 @@
         },
         {
           "speaker": "Hessa",
-          "arabic": "وبعد خمس سنين وين بتكون إن شاء الله؟",
-          "transliteration": "w ba3d khams sneen wain bitkoon in shaa allah?",
+          "arabic": "وبعد خمس سنين فين حتكون إن شاء الله؟",
+          "transliteration": "w ba3d khams sneen feen 7atkoon in shaa allah?",
           "english": "And in five years where will you be, God willing?"
         },
         {
@@ -1276,8 +1274,8 @@
         },
         {
           "speaker": "Rashid",
-          "arabic": "تستاهلين، إنتِ كتير مجتهدة.",
-          "transliteration": "tistaahleen, inti kteer mujtahida.",
+          "arabic": "تستاهلين، إنتِ مرة مجتهدة.",
+          "transliteration": "tistaahleen, inti marra mujtahida.",
           "english": "You deserve it, you are very hard-working."
         },
         {
@@ -1295,27 +1293,27 @@
             "english": "What do you plan to do after graduation?"
           },
           "response": {
-            "arabic": "أبي أدور عشغل.",
-            "transliteration": "abi adawwir 3a shughul.",
+            "arabic": "أبغى أدور عشغل.",
+            "transliteration": "abgha adawwir 3a shughul.",
             "english": "I want to look for a job."
           }
         },
         {
           "pair": {
-            "arabic": "وين تبي تشتغل؟",
-            "transliteration": "wain tibi tishtighul?",
+            "arabic": "فين تبغى تشتغل؟",
+            "transliteration": "feen tibgha tishtighul?",
             "english": "Where do you want to work?"
           },
           "response": {
-            "arabic": "أبي أشتغل برا البلد.",
-            "transliteration": "abi ashtighul barra il-balad.",
+            "arabic": "أبغى أشتغل برا البلد.",
+            "transliteration": "abgha ashtighul barra il-balad.",
             "english": "I want to work abroad."
           }
         },
         {
           "pair": {
-            "arabic": "ليش تبي تفتح مشروع؟",
-            "transliteration": "leesh tibi tiftah7 mashroo3?",
+            "arabic": "ليش تبغى تفتح مشروع؟",
+            "transliteration": "leesh tibgha tiftah7 mashroo3?",
             "english": "Why do you want to start a project?"
           },
           "response": {
@@ -1326,8 +1324,8 @@
         },
         {
           "pair": {
-            "arabic": "بتتجوزين قريب؟",
-            "transliteration": "bitjawwizen garib?",
+            "arabic": "حتتجوزين قريب؟",
+            "transliteration": "7atitjawwizeen garib?",
             "english": "Will you marry soon?"
           },
           "response": {
@@ -1337,23 +1335,23 @@
           }
         }
       ],
-      "culture": "لما أحد بالحجاز يحكي عن مستقبله بيزيد إن شاء الله بعد كل خطة، حتى لو كانت شبه أكيدة. وإذا ما قررت بعد بتقول الله يسهل، وإذا حكاك حد عن حلمه بتقول الله يوفقك.",
+      "culture": "لما أحد بالحجاز يحكي عن مستقبله يزيد إن شاء الله بعد كل خطة، حتى لو كانت شبه أكيدة. وإذا ما قررت لسه تقول الله يسهل، وإذا كلمك حد عن حلمه تقول الله يوفقك.",
       "exercises": [
         {
           "id": "unit-08.lesson-04.reply.01",
           "type": "reply",
           "prompt": "إِيشْ نَاوِي تِسَوِّي بَعْدْ مَا تِتْخَرِّجْ؟",
-          "answer": "أَبِي أَدَوِّرْ عَ شُغْلْ",
+          "answer": "أَبْغَى أَدَوِّرْ عَ شُغْلْ",
           "accepted": [
-            "أَبِي أَدَوِّرْ عَ شُغْلْ",
-            "abi adawwir 3a shughul",
-            "أبي أشتغل"
+            "أَبْغَى أَدَوِّرْ عَ شُغْلْ",
+            "abgha adawwir 3a shughul",
+            "أبغى أشتغل"
           ],
           "too_formal": {
             "item": "أنوي البحث عن عمل",
             "feedback": "فصحى"
           },
-          "tip": "أبي = I want"
+          "tip": "أبغى = I want"
         },
         {
           "id": "unit-08.lesson-04.fill_blank.01",
@@ -1375,11 +1373,11 @@
           "id": "unit-08.lesson-04.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I want to continue my studies for a master's.",
-          "answer": "أَبِي أِكَمِّلْ دِرَاسْتِي عَالْمَاجِسْتِيرْ",
+          "answer": "أَبْغَى أِكَمِّلْ دِرَاسْتِي عَالْمَاجِسْتِيرْ",
           "accepted": [
-            "أَبِي أِكَمِّلْ دِرَاسْتِي عَالْمَاجِسْتِيرْ",
-            "abi akammil diraaste 3al-majesteer",
-            "أبي أكمل الماجستير"
+            "أَبْغَى أِكَمِّلْ دِرَاسْتِي عَالْمَاجِسْتِيرْ",
+            "abgha akammil diraaste 3al-majesteer",
+            "أبغى أكمل الماجستير"
           ],
           "too_formal": {
             "item": "أرغب في إكمال دراستي للماجستير",
@@ -1431,23 +1429,23 @@
         {
           "id": "unit-08.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "وَيِنْ تَبِي تِشْتَغِلْ؟",
-          "answer": "أبي أشتغل في شركة كبيرة",
+          "prompt": "فِين تَبْغَى تِشْتَغِلْ؟",
+          "answer": "أبغى أشتغل في شركة كبيرة",
           "accepted": [
-            "أبي أشتغل في شركة كبيرة",
-            "abi ashtighul fi sharika kabeera",
-            "أبي أشتغل برا"
+            "أبغى أشتغل في شركة كبيرة",
+            "abgha ashtighul fi sharika kabeera",
+            "أبغى أشتغل برا"
           ],
           "too_formal": {
             "item": "أرغب بالعمل في شركة كبيرة",
             "feedback": "فصحى رسمية"
           },
-          "tip": "أبي + الفعل"
+          "tip": "أبغى + الفعل"
         },
         {
           "id": "unit-08.lesson-04.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "لِسَّةْ ما ___ إيش بسوي (I haven't decided yet)",
+          "prompt": "لِسَّةْ ما ___ إيش حَسَوِّي (I haven't decided yet)",
           "answer": "قررت",
           "accepted": [
             "قررت",
@@ -1464,22 +1462,22 @@
           "id": "unit-08.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "In five years where will you be?",
-          "answer": "بَعْدْ خَمِسْ سِنِينْ وَيِنْ بِتْكُونْ؟",
+          "answer": "بَعْدْ خَمِسْ سِنِينْ فِين حَتِكُون؟",
           "accepted": [
-            "بَعْدْ خَمِسْ سِنِينْ وَيِنْ بِتْكُونْ؟",
-            "ba3d khams sneen wain bitkoon?",
-            "بعد خمس سنوات وين بتكون؟"
+            "بَعْدْ خَمِسْ سِنِينْ فِين حَتِكُون؟",
+            "ba3d khams sneen feen 7atkoon?",
+            "بعد خمس سنوات فين حتكون؟"
           ],
           "too_formal": {
             "item": "بعد خمس سنوات أين ستكون؟",
             "feedback": "فصحى"
           },
-          "tip": "بـ قبل الفعل = will"
+          "tip": "حـ قبل الفعل = will"
         },
         {
           "id": "unit-08.lesson-04.choose.02",
           "type": "choose",
-          "prompt": "إيش بتقول لحد قال إنه بيفتح مشروع؟",
+          "prompt": "إيش تقول لحد قال إنه حيفتح مشروع؟",
           "answer": "الله يوفقك",
           "accepted": [
             "الله يوفقك"
@@ -1500,12 +1498,12 @@
           "id": "unit-08.lesson-04.reorder.02",
           "type": "reorder",
           "prompt": "رتب الجملة",
-          "answer": "بقدم على وظيفة في شركة كبيرة",
+          "answer": "حقدم على وظيفة في شركة كبيرة",
           "accepted": [
-            "بقدم على وظيفة في شركة كبيرة"
+            "حقدم على وظيفة في شركة كبيرة"
           ],
           "words": [
-            "بقدم",
+            "حقدم",
             "على",
             "وظيفة",
             "في",
@@ -1515,7 +1513,7 @@
             "item": "سأتقدم لوظيفة في شركة كبيرة",
             "feedback": "فصحى"
           },
-          "tip": "بـ + الفعل = I will"
+          "tip": "حـ + الفعل = I will"
         }
       ]
     },
@@ -2289,9 +2287,9 @@
     "required_elements": [
       "سؤال عن المهنة بـ إيش تشتغل أو إيش تشتغلين.",
       "جواب فيه تحديد المهنة أو المجال.",
-      "سؤال عن مكان الشغل أو الدراسة بـ وين.",
+      "سؤال عن مكان الشغل أو الدراسة بـ فين.",
       "ذكر سنين الخبرة أو السنة الدراسية.",
-      "خطة مستقبلية بـ أبي أو ناوي أو ب.",
+      "خطة مستقبلية بـ أبغى أو ناوي أو حـ.",
       "ذكر طموح أو حلم بـ طموحي أو حلمي.",
       "جملة إن شاء الله بعد الخطة.",
       "إغلاق بـ الله يوفقك أو ولا يهمك."
@@ -2324,8 +2322,8 @@
         },
         {
           "speaker": "فايز",
-          "arabic": "أبي أقدم على وظيفة في بنك، إن شاء الله ألقى شي نمنيح.",
-          "transliteration": "abi agaddim 3ala wathiifa fi bank, in shaa allah alga shai nmnee7.",
+          "arabic": "أبغى أقدم على وظيفة في بنك، إن شاء الله ألقى شي كويس.",
+          "transliteration": "abgha agaddim 3ala wathiifa fi bank, in shaa allah alga shai kwayyis.",
           "english": "I want to apply for a job at a bank, God willing I'll find something good."
         },
         {
@@ -2342,14 +2340,14 @@
         },
         {
           "speaker": "لينا",
-          "arabic": "نمنيح كتير، وأنا أبي أكمل دراستي ماجستير في القانون.",
-          "transliteration": "nmnee7 kteer, w ana abi akammil diraaste majesteer fil-qaanoon.",
+          "arabic": "كويس مرة، وأنا أبغى أكمل دراستي ماجستير في القانون.",
+          "transliteration": "kwayyis marra, w ana abgha akammil diraaste majesteer fil-qaanoon.",
           "english": "Very nice, and I want to continue my studies for a master's in law."
         },
         {
           "speaker": "فايز",
-          "arabic": "الله يوفقك، أكيد بتوصلين.",
-          "transliteration": "allah ywaffigak, akeed bitwaSaleen.",
+          "arabic": "الله يوفقك، أكيد حتوصلين.",
+          "transliteration": "allah ywaffigak, akeed 7atwaSaleen.",
           "english": "God grant you success, you'll definitely get there."
         },
         {

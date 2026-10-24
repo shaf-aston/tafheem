@@ -30,15 +30,15 @@
           "arabic": "أَلُّو؟",
           "transliteration": "aaloo?",
           "reply": {
-            "arabic": "أَلُّو، مِنْ هِذَا؟",
-            "transliteration": "aaloo, min hadha?",
+            "arabic": "أَلُّو، مِين دَا؟",
+            "transliteration": "aaloo, meen da?",
             "english": "Hello, who's this?"
           }
         },
         {
           "slot": "hi-who-s-this",
-          "arabic": "مِنْ هِذَا مِعَك؟",
-          "transliteration": "min hadha mi3ak?"
+          "arabic": "مِين دَا مِعَك؟",
+          "transliteration": "meen da mi3ak?"
         },
         {
           "slot": "this-is-samer-speaking",
@@ -170,8 +170,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "أَلُّو، مِنْ هِذَا؟",
-            "transliteration": "aaloo, min hadha?",
+            "arabic": "أَلُّو، مِين دَا؟",
+            "transliteration": "aaloo, meen da?",
             "english": "Hello, who is this?"
           },
           "response": {
@@ -217,7 +217,7 @@
           }
         }
       ],
-      "culture": "In Hejazi cities, phone calls often open with السلام عليكم and the person answering asks من هذا. Hejazi speakers value warmth, so كيفك comes before the main reason. Ending with الحمد لله or باستني shows respect.",
+      "culture": "In Hejazi cities, phone calls often open with السلام عليكم and the person answering asks مين دا. Hejazi speakers value warmth, so كيفك comes before the main reason. Ending with الحمد لله or باستني shows respect.",
       "exercises": [
         {
           "id": "unit-12.lesson-01.choose.01",
@@ -276,7 +276,7 @@
         {
           "id": "unit-12.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "The other person says: \"أَلُّو، مِنْ هِذَا؟\" Reply.",
+          "prompt": "The other person says: \"أَلُّو، مِين دَا؟\" Reply.",
           "answer": "مِعَاكَ سَامِر",
           "accepted": [
             "مِعَاكَ سَامِر",
@@ -385,8 +385,8 @@
       "phrases": [
         {
           "slot": "where-should-we-meet",
-          "arabic": "وَيْن نِتْقَابَل؟",
-          "transliteration": "wayn nitgaabal?",
+          "arabic": "فِين نِتْقَابَل؟",
+          "transliteration": "feen nitgaabal?",
           "reply": {
             "arabic": "فِي الْكَافِيه",
             "transliteration": "fil-kaafeeh",
@@ -415,8 +415,8 @@
         },
         {
           "slot": "where-exactly",
-          "arabic": "وَيْن بِالضَّبْط؟",
-          "transliteration": "wayn bid-dabt?"
+          "arabic": "فِين بِالضَّبْط؟",
+          "transliteration": "feen bid-dabt?"
         },
         {
           "slot": "i-ll-meet-you-there",
@@ -463,8 +463,8 @@
       "dialogue": [
         {
           "speaker": "نور",
-          "arabic": "أَلُّو سَامِر، وَيْن نِتْقَابَل بُكْرَة؟",
-          "transliteration": "aaloo Saamer, wayn nitgaabal bukra?",
+          "arabic": "أَلُّو سَامِر، فِين نِتْقَابَل بُكْرَة؟",
+          "transliteration": "aaloo Saamer, feen nitgaabal bukra?",
           "english": "Hello Samer, where shall we meet tomorrow?"
         },
         {
@@ -483,8 +483,8 @@
         },
         {
           "speaker": "نور",
-          "arabic": "تَمَام، سَبْعَة مَاشِي. وَيْن بِالضَّبْط؟",
-          "transliteration": "tamaam, sab3a maashi. wayn bid-dabt?",
+          "arabic": "تَمَام، سَبْعَة مَاشِي. فِين بِالضَّبْط؟",
+          "transliteration": "tamaam, sab3a maashi. feen bid-dabt?",
           "english": "Fine, seven works. Where exactly?"
         },
         {
@@ -521,8 +521,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وَيْن نِتْقَابَل؟",
-            "transliteration": "wayn nitgaabal?",
+            "arabic": "فِين نِتْقَابَل؟",
+            "transliteration": "feen nitgaabal?",
             "english": "Where shall we meet?"
           },
           "response": {
@@ -545,8 +545,8 @@
         },
         {
           "pair": {
-            "arabic": "وَيْن بِالضَّبْط؟",
-            "transliteration": "wayn bid-dabt?",
+            "arabic": "فِين بِالضَّبْط؟",
+            "transliteration": "feen bid-dabt?",
             "english": "Where exactly?"
           },
           "response": {
@@ -574,18 +574,18 @@
           "id": "unit-12.lesson-02.choose.01",
           "type": "choose",
           "prompt": "How do you ask \"Where should we meet?\"",
-          "answer": "وَيْن نِتْقَابَل؟",
+          "answer": "فِين نِتْقَابَل؟",
           "accepted": [
-            "وَيْن نِتْقَابَل؟",
-            "وين نتقابل؟",
-            "وين نتقابل",
-            "wayn nitgaabal?"
+            "فِين نِتْقَابَل؟",
+            "فين نتقابل؟",
+            "فين نتقابل",
+            "feen nitgaabal?"
           ],
           "options": [
-            "وَيْن بِالضَّبْط؟",
+            "فِين بِالضَّبْط؟",
             "أَيِّ وَقْت يِنَاسِبَك؟",
             "لَا تِتَأَخَّر",
-            "وَيْن نِتْقَابَل؟"
+            "فِين نِتْقَابَل؟"
           ],
           "tip": "Everyday Hejazi, as you would hear it on a call."
         },
@@ -600,7 +600,7 @@
             "la titakhkhar"
           ],
           "options": [
-            "وَيْن بِالضَّبْط؟",
+            "فِين بِالضَّبْط؟",
             "السَّاعَة سَبْعَة تَمَام؟",
             "لَا تِتَأَخَّر",
             "بَاقَابِلَك هِنَاك"
@@ -618,7 +618,7 @@
             "law ta2akhkhart kallimni"
           ],
           "options": [
-            "وَيْن نِتْقَابَل؟",
+            "فِين نِتْقَابَل؟",
             "لَوْ تَأَخَّرْت كَلِّمْنِي",
             "بَاكُون هِنَاك قَبْلَك",
             "خَلِّينَا نِتْقَابَل فِي الْكَافِيه"
@@ -644,7 +644,7 @@
         {
           "id": "unit-12.lesson-02.reply.02",
           "type": "reply",
-          "prompt": "The other person says: \"وَيْن نِتْقَابَل؟\" Reply.",
+          "prompt": "The other person says: \"فِين نِتْقَابَل؟\" Reply.",
           "answer": "فِي الْكَافِيه",
           "accepted": [
             "فِي الْكَافِيه",
@@ -662,7 +662,7 @@
         {
           "id": "unit-12.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "وَيْن ___؟",
+          "prompt": "فِين ___؟",
           "answer": "بِالضَّبْط",
           "accepted": [
             "بِالضَّبْط",
@@ -687,18 +687,18 @@
           "id": "unit-12.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where exactly?\"",
-          "answer": "وَيْن بِالضَّبْط؟",
+          "answer": "فِين بِالضَّبْط؟",
           "accepted": [
-            "وَيْن بِالضَّبْط؟",
-            "وين بالضبط؟",
-            "وين بالضبط",
-            "wayn bid-dabt?"
+            "فِين بِالضَّبْط؟",
+            "فين بالضبط؟",
+            "فين بالضبط",
+            "feen bid-dabt?"
           ],
           "too_formal": {
             "item": "فِي أَيِّ مَكَانٍ تَحْدِيداً؟",
             "feedback": "Too formal for speech."
           },
-          "tip": "wayn is the everyday \"where\"."
+          "tip": "feen is the everyday \"where\"."
         },
         {
           "id": "unit-12.lesson-02.translate_to_arabic.02",

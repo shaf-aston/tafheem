@@ -72,13 +72,13 @@
         },
         {
           "slot": "i-want-mint-tea",
-          "arabic": "أَبِي شَاي بِالْنَعْنَاع",
-          "transliteration": "abi shay bil na3naa3"
+          "arabic": "أَبْغَى شَاي بِالْنَعْنَاع",
+          "transliteration": "abgha shay bil na3naa3"
         },
         {
           "slot": "is-there-sugar",
-          "arabic": "فِي سُكِّر؟",
-          "transliteration": "fi sukkar?",
+          "arabic": "فِيه سُكِّر؟",
+          "transliteration": "feeh sukkar?",
           "reply": {
             "arabic": "أَيْوَه، دَحِين أَجِيبُه لَك",
             "transliteration": "aywah, da7een ajeebuh lak",
@@ -111,8 +111,8 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "أَيْوَه، تِبِيهَا إِيش؟ حِلْوَة وَلّا مُرّة؟",
-          "transliteration": "aywah, tibeha eesh? 7ilwa walla murra?",
+          "arabic": "أَيْوَه، تَبْغَاها إِيش؟ حِلْوَة وَلّا مُرّة؟",
+          "transliteration": "aywah, tibghaaha eesh? 7ilwa walla murra?",
           "english": "Yes, how do you want it? Sweet or bitter?"
         },
         {
@@ -129,8 +129,8 @@
         },
         {
           "speaker": "خالد",
-          "arabic": "فِي سُكِّر عَ الطَّاوْلَة؟",
-          "transliteration": "fi sukkar 3a tta2awla?",
+          "arabic": "فِيه سُكِّر عَ الطَّاوْلَة؟",
+          "transliteration": "feeh sukkar 3a tta2awla?",
           "english": "Is there sugar on the table?"
         },
         {
@@ -153,8 +153,8 @@
         },
         {
           "speaker": "خالد",
-          "arabic": "اللَّهُ يَعْطِيك الْعَافِيَة، كْتِير تِمَام",
-          "transliteration": "allah ya36eek l3aafya, kteer tamam",
+          "arabic": "اللَّهُ يَعْطِيك الْعَافِيَة، مَرَّة تِمَام",
+          "transliteration": "allah ya36eek l3aafya, marra tamam",
           "english": "Thank you so much, that's perfect."
         },
         {
@@ -184,15 +184,15 @@
             "english": "Coffee or tea?"
           },
           "response": {
-            "arabic": "شَاي بِالنَّعْنَاع، إِذَا فِي",
-            "transliteration": "shay bil na3naa3, iza fi",
+            "arabic": "شَاي بِالنَّعْنَاع، إِذَا فِيه",
+            "transliteration": "shay bil na3naa3, iza feeh",
             "english": "Mint tea, if there is any."
           }
         },
         {
           "pair": {
-            "arabic": "تِبِيهَا حِلْوَة وَلّا مُرّة؟",
-            "transliteration": "tibeha 7ilwa walla murra?",
+            "arabic": "تَبْغَاها حِلْوَة وَلّا مُرّة؟",
+            "transliteration": "tibghaaha 7ilwa walla murra?",
             "english": "Do you want it sweet or bitter?"
           },
           "response": {
@@ -203,8 +203,8 @@
         },
         {
           "pair": {
-            "arabic": "فِي سُكِّر؟",
-            "transliteration": "fi sukkar?",
+            "arabic": "فِيه سُكِّر؟",
+            "transliteration": "feeh sukkar?",
             "english": "Is there sugar?"
           },
           "response": {
@@ -236,7 +236,7 @@
         {
           "id": "unit-04.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "فِي سُكِّر؟ (fi sukkar?)",
+          "prompt": "فِيه سُكِّر؟ (feeh sukkar?)",
           "answer": "أَيْوَه، دَحِين أَجِيبُه لَك",
           "accepted": [
             "أَيْوَه، دَحِين أَجِيبُه لَك",
@@ -253,7 +253,7 @@
         {
           "id": "unit-04.lesson-01.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أَبِي شَاي ___ النَّعْنَاع (abi shay ___ na3naa3)",
+          "prompt": "أَبْغَى شَاي ___ النَّعْنَاع (abgha shay ___ na3naa3)",
           "answer": "بِالْ",
           "accepted": [
             "بِالْ",
@@ -301,17 +301,17 @@
           "id": "unit-04.lesson-01.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "I want mint tea.",
-          "answer": "أَبِي شَاي بِالْنَعْنَاع",
+          "answer": "أَبْغَى شَاي بِالْنَعْنَاع",
           "accepted": [
-            "أَبِي شَاي بِالْنَعْنَاع",
-            "abi shay bil na3naa3",
-            "ابي شاي بالنعناع"
+            "أَبْغَى شَاي بِالْنَعْنَاع",
+            "abgha shay bil na3naa3",
+            "أبغى شاي بالنعناع"
           ],
           "too_formal": {
             "item": "أُرِيدُ شَايَ النَّعْنَاع",
-            "feedback": "MSA; in Hejazi you say abi (I want)."
+            "feedback": "MSA; in Hejazi you say abgha (I want)."
           },
-          "tip": "abi means 'I want' in Hejazi; it's more direct than formal MSA."
+          "tip": "abgha means 'I want' in Hejazi; it's more direct than formal MSA."
         },
         {
           "id": "unit-04.lesson-01.choose.01",
@@ -343,8 +343,8 @@
           "options": [
             "إِيش تِشْرَب؟",
             "إِيش تِشْرَبِين؟",
-            "فِي سُكِّر؟",
-            "أَبِي شَاي بِالْنَعْنَاع"
+            "فِيه سُكِّر؟",
+            "أَبْغَى شَاي بِالْنَعْنَاع"
           ],
           "accepted": [
             "إِيش تِشْرَبِين؟",
@@ -402,11 +402,11 @@
       "phrases": [
         {
           "slot": "where-s-the-menu",
-          "arabic": "وَيْن الْقَائِمَة؟",
-          "transliteration": "ween l2a2ima?",
+          "arabic": "فِين الْقَائِمَة؟",
+          "transliteration": "feen l2a2ima?",
           "reply": {
-            "arabic": "تَفَضَّل، هَنِي",
-            "transliteration": "tfaddal, hanni",
+            "arabic": "تَفَضَّل، هِنَا",
+            "transliteration": "tfaddal, hina",
             "english": "Here you go."
           }
         },
@@ -427,8 +427,8 @@
         },
         {
           "slot": "is-there-vegetarian-food",
-          "arabic": "فِي أَكْلَة بِدُون لَحْمَة؟",
-          "transliteration": "fi 2akla bidoon la7ma?",
+          "arabic": "فِيه أَكْلَة بِدُون لَحْمَة؟",
+          "transliteration": "feeh 2akla bidoon la7ma?",
           "english": "Is there a dish without meat?"
         },
         {
@@ -453,13 +453,13 @@
         },
         {
           "slot": "is-there-a-dish-of-the-day",
-          "arabic": "فِي طَبَخَة الْيَوْم؟",
-          "transliteration": "fi 6aba5a l yawm?"
+          "arabic": "فِيه طَبَخَة الْيَوْم؟",
+          "transliteration": "feeh 6aba5a l yawm?"
         },
         {
           "slot": "i-want-something-light",
-          "arabic": "أَبِي شَيْ خَفِيف",
-          "transliteration": "abi shay khafif"
+          "arabic": "أَبْغَى شَيْ خَفِيف",
+          "transliteration": "abgha shay khafif"
         },
         {
           "slot": "do-you-have-desserts",
@@ -482,8 +482,8 @@
         },
         {
           "speaker": "الْويتِر",
-          "arabic": "تَفَضَّلِي، هَنِي",
-          "transliteration": "tfaddali, hanni",
+          "arabic": "تَفَضَّلِي، هِنَا",
+          "transliteration": "tfaddali, hina",
           "english": "Here you go."
         },
         {
@@ -506,8 +506,8 @@
         },
         {
           "speaker": "الْويتِر",
-          "arabic": "شُوَيّة، إِذَا بِدِّك بِدُون حَرّ، نِقِيد الْفِلْفِل",
-          "transliteration": "shuwayyah, iza biddk bidoon 7arr, niqad l filfil",
+          "arabic": "شُوَيّة، لَوْ تِبْغَى بِدُون حَرّ، نِقِيد الْفِلْفِل",
+          "transliteration": "shuwayyah, law tibgha bidoon 7arr, niqad l filfil",
           "english": "A little; if you want it without spice, we can leave out the peppers."
         },
         {
@@ -538,13 +538,13 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وَيْن الْقَائِمَة؟",
-            "transliteration": "ween l2a2ima?",
+            "arabic": "فِين الْقَائِمَة؟",
+            "transliteration": "feen l2a2ima?",
             "english": "Where is the menu?"
           },
           "response": {
-            "arabic": "تَفَضَّل، هَنِي",
-            "transliteration": "tfaddal, hanni",
+            "arabic": "تَفَضَّل، هِنَا",
+            "transliteration": "tfaddal, hina",
             "english": "Here you go."
           }
         },
@@ -574,8 +574,8 @@
         },
         {
           "pair": {
-            "arabic": "فِي حَلَوِيّات؟",
-            "transliteration": "fi 7alawiyyat?",
+            "arabic": "فِيه حَلَوِيّات؟",
+            "transliteration": "feeh 7alawiyyat?",
             "english": "Do you have desserts?"
           },
           "response": {
@@ -590,19 +590,19 @@
         {
           "id": "unit-04.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "وَيْن الْقَائِمَة؟ (ween l2a2ima?)",
-          "answer": "تَفَضَّل، هَنِي",
+          "prompt": "فِين الْقَائِمَة؟ (feen l2a2ima?)",
+          "answer": "تَفَضَّل، هِنَا",
           "accepted": [
-            "تَفَضَّل، هَنِي",
-            "tfaddal, hanni",
-            "تفضل هني",
-            "هَنِي الْقَائِمَة"
+            "تَفَضَّل، هِنَا",
+            "tfaddal, hina",
+            "تفضل هنا",
+            "هِنَا الْقَائِمَة"
           ],
           "too_formal": {
-            "item": "ها هنَّ الْقَائِمَة",
-            "feedback": "Too formal; hanni is the everyday Hejazi word."
+            "item": "ها هِنَا الْقَائِمَة",
+            "feedback": "Too formal; hina is the everyday Hejazi word."
           },
-          "tip": "hanni means 'here' in Hejazi; it's used when giving something to someone."
+          "tip": "hina means 'here' in Hejazi; it's used when giving something to someone."
         },
         {
           "id": "unit-04.lesson-02.fill_blank.01",
@@ -638,16 +638,16 @@
           "id": "unit-04.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Is there vegetarian food?",
-          "answer": "فِي أَكْلَة بِدُون لَحْمَة؟",
+          "answer": "فِيه أَكْلَة بِدُون لَحْمَة؟",
           "accepted": [
-            "فِي أَكْلَة بِدُون لَحْمَة؟",
-            "فِي أَكْلَة بِدُون لَحْمَة",
-            "fi 2akla bidoon la7ma",
-            "في أكلة بدون لحمة"
+            "فِيه أَكْلَة بِدُون لَحْمَة؟",
+            "فِيه أَكْلَة بِدُون لَحْمَة",
+            "feeh 2akla bidoon la7ma",
+            "فيه أكلة بدون لحمة"
           ],
           "too_formal": {
             "item": "هَل يُوجَد طَعَام نَبَاتِي؟",
-            "feedback": "MSA; in Hejazi you say fi 2akla (is there food) bidoon la7ma (without meat)."
+            "feedback": "MSA; in Hejazi you say feeh 2akla (is there food) bidoon la7ma (without meat)."
           },
           "tip": "la7ma means 'meat'; bidoon means 'without'."
         },
@@ -672,22 +672,22 @@
           "id": "unit-04.lesson-02.choose.01",
           "type": "choose",
           "prompt": "Which means 'Where is the menu?'",
-          "answer": "وَيْن الْقَائِمَة؟",
+          "answer": "فِين الْقَائِمَة؟",
           "options": [
-            "وَيْن الْقَائِمَة؟",
+            "فِين الْقَائِمَة؟",
             "إِيش الْقَائِمَة؟",
             "فِي الْقَائِمَة؟",
             "كَمْ الْقَائِمَة؟"
           ],
           "accepted": [
-            "وَيْن الْقَائِمَة؟",
-            "ween l2a2ima"
+            "فِين الْقَائِمَة؟",
+            "feen l2a2ima"
           ],
           "too_formal": {
             "item": "أَيْنَ الْقَائِمَة؟",
-            "feedback": "That's MSA; ween is the Hejazi form."
+            "feedback": "That's MSA; feen is the Hejazi form."
           },
-          "tip": "ween (where) is key in Hejazi; it replaces MSA ayn."
+          "tip": "feen (where) is key in Hejazi; it replaces MSA ayn."
         },
         {
           "id": "unit-04.lesson-02.choose.02",
@@ -757,20 +757,20 @@
           "arabic": "جَاهِزِين تِطْلِبُون؟",
           "transliteration": "ja-hzeen titluboon?",
           "reply": {
-            "arabic": "نِعَم، أَبِي مَنْدِي",
-            "transliteration": "ni3am, abi mandi",
+            "arabic": "نِعَم، أَبْغَى مَنْدِي",
+            "transliteration": "ni3am, abgha mandi",
             "english": "Yes, I want mandi."
           }
         },
         {
           "slot": "i-ll-have-a-plate-of-hummus-and-fattoush",
-          "arabic": "أَبِي حُمّس وَفَتّوش",
-          "transliteration": "abi hummus wa fattoosh"
+          "arabic": "أَبْغَى حُمّس وَفَتّوش",
+          "transliteration": "abgha hummus wa fattoosh"
         },
         {
           "slot": "i-want-this-and-this",
-          "arabic": "أَبِي هَذَا وَهَذَا",
-          "transliteration": "abi haza wa haza"
+          "arabic": "أَبْغَى هَذَا وَهَذَا",
+          "transliteration": "abgha haza wa haza"
         },
         {
           "slot": "please-make-it-quick",
@@ -794,8 +794,8 @@
         },
         {
           "slot": "can-i-have-a-glass-of-water",
-          "arabic": "أَقْدِر كُوب مَاي؟",
-          "transliteration": "aqdir koob may?"
+          "arabic": "أَقْدِر كُوب مَوِيَّة؟",
+          "transliteration": "aqdir koob mooya?"
         },
         {
           "slot": "thanks-that-s-good-enough",
@@ -814,8 +814,8 @@
         },
         {
           "slot": "we-want-the-same-order",
-          "arabic": "نِبِي نَفْسِ الطَّلَب",
-          "transliteration": "nibi nafs l 6alb"
+          "arabic": "نَبْغَى نَفْسِ الطَّلَب",
+          "transliteration": "nibgha nafs l 6alb"
         }
       ],
       "dialogue": [
@@ -836,8 +836,8 @@
         },
         {
           "speaker": "فَاطِمَة",
-          "arabic": "أَنَا أَبِي كَبْسَة",
-          "transliteration": "ana abi kabsa",
+          "arabic": "أَنَا أَبْغَى كَبْسَة",
+          "transliteration": "ana abgha kabsa",
           "english": "I want kabsa."
         },
         {
@@ -891,20 +891,20 @@
             "english": "Are you ready to order?"
           },
           "response": {
-            "arabic": "نِعَم، أَبِي مَنْدِي وَفَتّوش",
-            "transliteration": "ni3am, abi mandi wa fattoosh",
+            "arabic": "نِعَم، أَبْغَى مَنْدِي وَفَتّوش",
+            "transliteration": "ni3am, abgha mandi wa fattoosh",
             "english": "Yes, I want mandi and fattoush."
           }
         },
         {
           "pair": {
-            "arabic": "إِيش الَّلِي تِبِي؟",
-            "transliteration": "eesh lli tibi?",
+            "arabic": "إِيش الَّلِي تَبْغَى؟",
+            "transliteration": "eesh lli tibgha?",
             "english": "What do you want?"
           },
           "response": {
-            "arabic": "أَبِي كَبْسَة، بِدُون بَصَل",
-            "transliteration": "abi kabsa, bidoon basel",
+            "arabic": "أَبْغَى كَبْسَة، بِدُون بَصَل",
+            "transliteration": "abgha kabsa, bidoon basel",
             "english": "I want kabsa without onion."
           }
         },
@@ -939,18 +939,18 @@
           "id": "unit-04.lesson-03.reply.01",
           "type": "reply",
           "prompt": "جَاهِزِين تِطْلِبُون؟ (ja-hzeen titluboon?)",
-          "answer": "نِعَم، أَبِي مَنْدِي",
+          "answer": "نِعَم، أَبْغَى مَنْدِي",
           "accepted": [
-            "نِعَم، أَبِي مَنْدِي",
-            "ni3am, abi mandi",
-            "نعم ابي ماندي",
-            "أَيْوَه، أَبِي كَبْسَة"
+            "نِعَم، أَبْغَى مَنْدِي",
+            "ni3am, abgha mandi",
+            "نعم أبغى ماندي",
+            "أَيْوَه، أَبْغَى كَبْسَة"
           ],
           "too_formal": {
             "item": "نَعَمْ، أَرْغَب فِي الْمَنْدِي",
-            "feedback": "That's MSA; abi (I want) is much more natural at a restaurant table."
+            "feedback": "That's MSA; abgha (I want) is much more natural at a restaurant table."
           },
-          "tip": "abi is the everyday way to order; ni3am is the natural yes."
+          "tip": "abgha is the everyday way to order; ni3am is the natural yes."
         },
         {
           "id": "unit-04.lesson-03.reply.02",
@@ -972,7 +972,7 @@
         {
           "id": "unit-04.lesson-03.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أَبِي ___ بِسّرْعَة",
+          "prompt": "أَبْغَى ___ بِسّرْعَة",
           "answer": "الطَّبْخَ",
           "accepted": [
             "الطَّبْخَ",
@@ -1003,15 +1003,15 @@
           "id": "unit-04.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I want this and that.",
-          "answer": "أَبِي هَذَا وَهَذَا",
+          "answer": "أَبْغَى هَذَا وَهَذَا",
           "accepted": [
-            "أَبِي هَذَا وَهَذَا",
-            "abi haza wa haza",
-            "ابي هذا و هذا"
+            "أَبْغَى هَذَا وَهَذَا",
+            "abgha haza wa haza",
+            "أبغى هذا و هذا"
           ],
           "too_formal": {
             "item": "أُرِيدُ هَذَا وَذَاكَ",
-            "feedback": "MSA; abi is more direct and natural."
+            "feedback": "MSA; abgha is more direct and natural."
           },
           "tip": "haza means 'this'; use it twice for 'this and that'."
         },
@@ -1019,12 +1019,12 @@
           "id": "unit-04.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Can I have a glass of water?",
-          "answer": "أَقْدِر كُوب مَاي؟",
+          "answer": "أَقْدِر كُوب مَوِيَّة؟",
           "accepted": [
-            "أَقْدِر كُوب مَاي؟",
-            "أَقْدِر كُوب مَاي",
-            "aqdir koob may",
-            "اقدر كوب ماي"
+            "أَقْدِر كُوب مَوِيَّة؟",
+            "أَقْدِر كُوب مَوِيَّة",
+            "aqdir koob mooya",
+            "اقدر كوب موية"
           ],
           "too_formal": {
             "item": "هَل يُمْكِنُنِي الحُصُول عَلَى كُوب مِن الْمَاء؟",
@@ -1082,7 +1082,7 @@
           "options": [
             "شُوَيّة بَعْدِين",
             "تِمَام، كِفَايَة",
-            "أَبِي زَيَادَة",
+            "أَبْغَى زَيَادَة",
             "مَا فِيه حَاجِي"
           ],
           "accepted": [
@@ -1133,8 +1133,8 @@
         },
         {
           "slot": "do-you-take-cash-or-card",
-          "arabic": "فِي نَقْد وَلّا كَارِت؟",
-          "transliteration": "fi naqd walla kart?"
+          "arabic": "فِيه نَقْد وَلّا كَارِت؟",
+          "transliteration": "feeh naqd walla kart?"
         },
         {
           "slot": "i-m-paying-today",
@@ -1168,13 +1168,13 @@
         },
         {
           "slot": "can-i-have-the-receipt",
-          "arabic": "فِي إِيصَال، لَو سَمَحْت؟",
-          "transliteration": "fi eesal, law samaht?"
+          "arabic": "فِيه إِيصَال، لَو سَمَحْت؟",
+          "transliteration": "feeh eesal, law samaht?"
         },
         {
           "slot": "is-there-a-discount-today",
-          "arabic": "فِي خِصُوم الْيَوْم؟",
-          "transliteration": "fi khusoom l yawm?"
+          "arabic": "فِيه خِصُوم الْيَوْم؟",
+          "transliteration": "feeh khusoom l yawm?"
         },
         {
           "slot": "bless-your-hands-the-food-was-delicious",
@@ -1196,8 +1196,8 @@
         },
         {
           "speaker": "خَالِد",
-          "arabic": "فِي نَقْد وَلّا كَارِت فِقَط؟",
-          "transliteration": "fi naqd walla kart faqat?",
+          "arabic": "فِيه نَقْد وَلّا كَارِت فِقَط؟",
+          "transliteration": "feeh naqd walla kart faqat?",
           "english": "Do you take cash or card only?"
         },
         {
@@ -1226,8 +1226,8 @@
         },
         {
           "speaker": "الْويتِرَة",
-          "arabic": "أَيْوَه، هَنِي",
-          "transliteration": "aywah, hanni",
+          "arabic": "أَيْوَه، هِنَا",
+          "transliteration": "aywah, hina",
           "english": "Yes, here you go."
         },
         {
@@ -1268,8 +1268,8 @@
         },
         {
           "pair": {
-            "arabic": "فِي نَقْد وَلّا كَارِت؟",
-            "transliteration": "fi naqd walla kart?",
+            "arabic": "فِيه نَقْد وَلّا كَارِت؟",
+            "transliteration": "feeh naqd walla kart?",
             "english": "Cash or card?"
           },
           "response": {
@@ -1280,8 +1280,8 @@
         },
         {
           "pair": {
-            "arabic": "فِي إِيصَال؟",
-            "transliteration": "fi eesal?",
+            "arabic": "فِيه إِيصَال؟",
+            "transliteration": "feeh eesal?",
             "english": "A receipt?"
           },
           "response": {
@@ -1378,12 +1378,12 @@
           "id": "unit-04.lesson-04.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Can I get the receipt?",
-          "answer": "فِي إِيصَال، لَو سَمَحْت؟",
+          "answer": "فِيه إِيصَال، لَو سَمَحْت؟",
           "accepted": [
-            "فِي إِيصَال، لَو سَمَحْت؟",
-            "فِي إِيصَال، لَو سَمَحْت",
-            "fi eesal, law samaht",
-            "في إيصال لو سمحت",
+            "فِيه إِيصَال، لَو سَمَحْت؟",
+            "فِيه إِيصَال، لَو سَمَحْت",
+            "feeh eesal, law samaht",
+            "فيه إيصال لو سمحت",
             "أَقْدِر إِيصَال؟"
           ],
           "too_formal": {
@@ -1419,7 +1419,7 @@
           "prompt": "Which means 'keep the change'?",
           "answer": "اِحْتَفِظ بِالْبَاقِي",
           "options": [
-            "أَبِي الْبَاقِي",
+            "أَبْغَى الْبَاقِي",
             "اِحْتَفِظ بِالْبَاقِي",
             "أَرِيدُ الْبَاقِي",
             "الْبَاقِي لِي"
@@ -2241,7 +2241,7 @@
     "instructions": "You are at a Hejazi restaurant. Order a complete meal including drinks, main course, bread, and payment. Use the words and phrases from this unit.",
     "required_elements": [
       "إِيش (what)",
-      "أَبِي (I want)",
+      "أَبْغَى (I want)",
       "لَو سَمَحْت (please)",
       "دَحِين (right now)",
       "الْحِسَاب (the bill)"
@@ -2256,8 +2256,8 @@
         },
         {
           "speaker": "الْعَمِيل",
-          "arabic": "أَبِي شَاي بِالنَّعْنَاع، لَو سَمَحْت",
-          "transliteration": "abi shay bil na3naa3, law samaht",
+          "arabic": "أَبْغَى شَاي بِالنَّعْنَاع، لَو سَمَحْت",
+          "transliteration": "abgha shay bil na3naa3, law samaht",
           "english": "I want mint tea, please."
         },
         {
@@ -2268,8 +2268,8 @@
         },
         {
           "speaker": "الْعَمِيل",
-          "arabic": "أَبِي كَبْسَة، بِدُون بَصَل، وَخُبْز زَيَادَة",
-          "transliteration": "abi kabsa, bidoon basel, wa khubz ziyada",
+          "arabic": "أَبْغَى كَبْسَة، بِدُون بَصَل، وَخُبْز زَيَادَة",
+          "transliteration": "abgha kabsa, bidoon basel, wa khubz ziyada",
           "english": "I want kabsa without onion, and extra bread."
         },
         {

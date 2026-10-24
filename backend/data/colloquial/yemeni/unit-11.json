@@ -96,8 +96,8 @@
         },
         {
           "slot": "how-long-did-it-take-you-to-arrive",
-          "arabic": "قَدِيش أَخَذْ عَلَيْك الطَّرِيق؟",
-          "transliteration": "2adish akhidh 3aleek it-tariq?",
+          "arabic": "كَمْ أَخَذْ عَلَيْك الطَّرِيق؟",
+          "transliteration": "kam akhidh 3aleek it-tariq?",
           "reply": {
             "arabic": "نِصّ سَاعَة بَس، حَمْدُ اللَّه عَلَى السَّلاَمَة",
             "transliteration": "niss sa3a bass, 7amdu allah 3ala s-salama",
@@ -106,8 +106,8 @@
         },
         {
           "slot": "excuse-me-i-want-to-wash-my-hands",
-          "arabic": "عَن إِذْنِك، أَبْغَى أَغْسِل يَدِيّ",
-          "transliteration": "3an idhnak, abgha aghsil yaddiyy",
+          "arabic": "عَن إِذْنِك، أَشْتِي أَغْسِل يَدِيّ",
+          "transliteration": "3an idhnak, ashti aghsil yaddiyy",
           "reply": {
             "arabic": "طَبْعاً، الْحَمَّام هُنَاكِ",
             "transliteration": "taba3an, il-7ammam hunak",
@@ -121,8 +121,8 @@
         },
         {
           "slot": "you-went-to-trouble-for-us-said-appreciatively-a",
-          "arabic": "شِنْتَ كَتِير تِعِب عَلَيْنَا",
-          "transliteration": "shinta ktiir t3ib 3aleena",
+          "arabic": "شِنْتَ كَثِير تِعِب عَلَيْنَا",
+          "transliteration": "shinta katheer t3ib 3aleena",
           "reply": {
             "arabic": "وَلاَ يَهِمّ، هَذَا وَاجِب عَلَيْنَا",
             "transliteration": "wa la yahimm, hadha wajib 3aleena",
@@ -151,8 +151,8 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "شَرَّفْت الْبَيْت، شِنْتَ كَتِير تِعِب عَلَيْنَا",
-          "transliteration": "sharraft il-bayt, shinta ktiir t3ib 3aleena",
+          "arabic": "شَرَّفْت الْبَيْت، شِنْتَ كَثِير تِعِب عَلَيْنَا",
+          "transliteration": "sharraft il-bayt, shinta katheer t3ib 3aleena",
           "english": "You honor the house, you've gone to much trouble for us."
         },
         {
@@ -185,9 +185,7 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "عَن إِذْنِك، بِدِّي أَغْسِل يَدِيّ",
-          "transliteration": "3an idhnak, biddi aghsil yaddiyy",
-          "english": "Excuse me, I want to wash my hands."
+          "slot": "excuse-me-i-want-to-wash-my-hands"
         },
         {
           "speaker": "حسن",
@@ -235,8 +233,8 @@
         },
         {
           "pair": {
-            "arabic": "عَن إِذْنِك، أَبْغَى أَغْسِل يَدِيّ",
-            "transliteration": "3an idhnak, abgha aghsil yaddiyy",
+            "arabic": "عَن إِذْنِك، أَشْتِي أَغْسِل يَدِيّ",
+            "transliteration": "3an idhnak, ashti aghsil yaddiyy",
             "english": "Excuse me, I want to wash my hands."
           },
           "response": {
@@ -337,15 +335,15 @@
           "id": "unit-11.lesson-01.choose.02",
           "type": "choose",
           "prompt": "How do you politely excuse yourself to wash your hands in Sanaani?",
-          "answer": "عَن إِذْنِك، أَبْغَى أَغْسِل يَدِيّ",
+          "answer": "عَن إِذْنِك، أَشْتِي أَغْسِل يَدِيّ",
           "accepted": [
-            "عَن إِذْنِك، أَبْغَى أَغْسِل يَدِيّ"
+            "عَن إِذْنِك، أَشْتِي أَغْسِل يَدِيّ"
           ],
           "options": [
-            "عَن إِذْنِك، أَبْغَى أَغْسِل يَدِيّ",
+            "عَن إِذْنِك، أَشْتِي أَغْسِل يَدِيّ",
             "شَرَّفْتَ الْبَيْت",
             "حَيَّاك اللَّه",
-            "قَدِيش السَّاعَة؟"
+            "كَمْ السَّاعَة؟"
           ],
           "tip": "\"abgha\" (I want) and \"yaddiyy\" (my hands, without the alef) are distinctly Sanaani."
         },
@@ -367,7 +365,7 @@
         {
           "id": "unit-11.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "A guest says: \"شِنْتَ كَتِير تِعِب عَلَيْنَا\". Reply.",
+          "prompt": "A guest says: \"شِنْتَ كَثِير تِعِب عَلَيْنَا\". Reply.",
           "answer": "وَلاَ يَهِمّ، هَذَا وَاجِب عَلَيْنَا",
           "accepted": [
             "وَلاَ يَهِمّ، هَذَا وَاجِب عَلَيْنَا",
@@ -413,8 +411,8 @@
         },
         {
           "slot": "what-would-you-like-to-drink",
-          "arabic": "شُنُّ اللَّي تِبْغَى تِشْرَب؟",
-          "transliteration": "shunnu il-li tibgha tishrab?",
+          "arabic": "إِيش اللَّي تِشْتِي تِشْرَب؟",
+          "transliteration": "eesh il-li tishti tishrab?",
           "reply": {
             "arabic": "شَيْ خَفِيف، قَهْوَة إِذَا فِي",
             "transliteration": "shay khafiif, 2ahwa idha fi",
@@ -433,8 +431,8 @@
         },
         {
           "slot": "do-you-take-sugar-in-your-coffee",
-          "arabic": "تِبْغَى سُكَّر فِي الْقَهْوَة؟",
-          "transliteration": "tibgha sukkar fi l-2ahwa?",
+          "arabic": "تِشْتِي سُكَّر فِي الْقَهْوَة؟",
+          "transliteration": "tishti sukkar fi l-2ahwa?",
           "reply": {
             "arabic": "لاَ، سَادَة لَوْ سَمَحْت",
             "transliteration": "la, sada law sama7t",
@@ -466,8 +464,8 @@
           "arabic": "شُفْت الْحَلْوَيَات عَلَى الْمَائِدَة",
           "transliteration": "shuft il-7alwiyyat 3ala l-ma2ida",
           "reply": {
-            "arabic": "تِسْلَم إِيدِك، كِتِير حِلْو",
-            "transliteration": "tislam iidak, ktiir 7ilw",
+            "arabic": "تِسْلَم إِيدِك، كَثِير حِلْو",
+            "transliteration": "tislam iidak, katheer 7ilw",
             "english": "Bless your hands, very sweet."
           },
           "english": "I saw the sweets on the table."
@@ -489,8 +487,8 @@
         },
         {
           "slot": "today-s-gathering-is-very-nice",
-          "arabic": "الْجَمْعَة الْيَوْمِ كِتِير حِلْوَة",
-          "transliteration": "il-jam3a il-yoom ktiir 7ilwa"
+          "arabic": "الْجَمْعَة الْيَوْمِ كَثِير حِلْوَة",
+          "transliteration": "il-jam3a il-yoom katheer 7ilwa"
         },
         {
           "slot": "don-t-be-shy-the-house-is-your-house",
@@ -513,8 +511,8 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "شُنُّ اللَّي تِبْغَيْنَ تِشْرَبِي؟",
-          "transliteration": "shunnu il-li tibghayn tishraabi?",
+          "arabic": "إِيش اللَّي تِشْتِي تِشْرَبِي؟",
+          "transliteration": "eesh il-li tishti tishraabi?",
           "english": "What would you like to drink?"
         },
         {
@@ -524,8 +522,8 @@
         },
         {
           "speaker": "فاطمة",
-          "arabic": "تِبْغَيْنَ سُكَّر؟",
-          "transliteration": "tibghayn sukkar?",
+          "arabic": "تِشْتِي سُكَّر؟",
+          "transliteration": "tishti sukkar?",
           "english": "Do you want sugar?"
         },
         {
@@ -540,8 +538,8 @@
         },
         {
           "speaker": "عائشة",
-          "arabic": "تِسْلَمِ إِيدِك، كِتِير حِلْو",
-          "transliteration": "tislami iidak, ktiir 7ilw",
+          "arabic": "تِسْلَمِ إِيدِك، كَثِير حِلْو",
+          "transliteration": "tislami iidak, katheer 7ilw",
           "english": "Bless your hands, very nice."
         },
         {
@@ -558,8 +556,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شُنُّ اللَّي تِبْغَى تِشْرَب؟",
-            "transliteration": "shunnu il-li tibgha tishrab?",
+            "arabic": "إِيش اللَّي تِشْتِي تِشْرَب؟",
+            "transliteration": "eesh il-li tishti tishrab?",
             "english": "What would you like to drink?"
           },
           "response": {
@@ -582,8 +580,8 @@
         },
         {
           "pair": {
-            "arabic": "تِبْغَى سُكَّر فِي الْقَهْوَة؟",
-            "transliteration": "tibgha sukkar fi l-2ahwa?",
+            "arabic": "تِشْتِي سُكَّر فِي الْقَهْوَة؟",
+            "transliteration": "tishti sukkar fi l-2ahwa?",
             "english": "Do you take sugar in your coffee?"
           },
           "response": {
@@ -610,7 +608,7 @@
         {
           "id": "unit-11.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "Your host asks: \"شُنُّ اللَّي تِبْغَى تِشْرَب؟\". Reply with coffee.",
+          "prompt": "Your host asks: \"إِيش اللَّي تِشْتِي تِشْرَب؟\". Reply with coffee.",
           "answer": "قَهْوَة، مِن فَضْلِك",
           "accepted": [
             "قَهْوَة، مِن فَضْلِك",
@@ -626,7 +624,7 @@
         {
           "id": "unit-11.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "تِبْغَى سُكَّر فِي ___؟",
+          "prompt": "تِشْتِي سُكَّر فِي ___؟",
           "answer": "الْقَهْوَة",
           "accepted": [
             "الْقَهْوَة",
@@ -638,10 +636,10 @@
           "id": "unit-11.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"What would you like to drink?\"",
-          "answer": "شُنُّ اللَّي تِبْغَى تِشْرَب؟",
+          "answer": "إِيش اللَّي تِشْتِي تِشْرَب؟",
           "accepted": [
-            "شُنُّ اللَّي تِبْغَى تِشْرَب؟",
-            "شنو اللي تبغى تشرب؟"
+            "إِيش اللَّي تِشْتِي تِشْرَب؟",
+            "إيش اللي تشتي تشرب؟"
           ],
           "too_formal": {
             "item": "مَاذَا تُفَضِّلُ أَنْ تَشْرَبَ؟",
@@ -702,9 +700,9 @@
           ],
           "options": [
             "اِقْعِدْ، اِسْتَرِح شَوَيّة",
-            "شُنُّ اللَّي تِبْغَى؟",
+            "إِيش اللَّي تِشْتِي؟",
             "وَلاَ تِتْعِب نَفْسَك",
-            "قَدِيش الْوَقْت؟"
+            "كَمْ السَّاعَة؟"
           ],
           "tip": "\"i2'id\" = sit; \"istarikah\" = relax; \"shawayyah\" = a little."
         },
@@ -748,7 +746,7 @@
           "options": [
             "فُت دَاخِل",
             "مَعَ السَّلاَمَة",
-            "قَدِيش الْوَقْت؟",
+            "كَمْ السَّاعَة؟",
             "شُكْرًا"
           ],
           "tip": "\"fut daakhil\" = come in; it's the natural Sanaani invitation."
@@ -770,8 +768,8 @@
         },
         {
           "slot": "take-some-more-there-s-plenty-of-food",
-          "arabic": "شُوفْ كِتِير الْأَكْلَة، فِي كِتِير",
-          "transliteration": "shuf ktiir il-2akla, fi ktiir"
+          "arabic": "شُوفْ كَثِير الْأَكْلَة، فِي كَثِير",
+          "transliteration": "shuf katheer il-2akla, fi katheer"
         },
         {
           "slot": "try-this-dish-i-made-it-today",
@@ -780,13 +778,13 @@
         },
         {
           "slot": "don-t-hesitate-eat-as-you-like",
-          "arabic": "وَلاَ تِسْتَحِي، أَكِل كَمَا تِبْغَى",
-          "transliteration": "wa la tistahee, akal kama tibgha"
+          "arabic": "وَلاَ تِسْتَحِي، أَكِل كَمَا تِشْتِي",
+          "transliteration": "wa la tistahee, akal kama tishti"
         },
         {
           "slot": "do-you-want-a-bit-more-bread",
-          "arabic": "تِبْغَى شَوَيّة عَيْش أَكْتَر؟",
-          "transliteration": "tibgha shawayyah 3aysh akthar?"
+          "arabic": "تِشْتِي شَوَيّة عَيْش أَكْتَر؟",
+          "transliteration": "tishti shawayyah 3aysh akthar?"
         },
         {
           "slot": "this-food-is-a-bit-spicy-be-careful",
@@ -795,13 +793,13 @@
         },
         {
           "slot": "what-do-you-think-of-the-dish",
-          "arabic": "شُنُّ رَايِك فِي الطَّبَخَة؟",
-          "transliteration": "shunnu rayak fi t-taba2ha?"
+          "arabic": "إِيش رَايِك فِي الطَّبَخَة؟",
+          "transliteration": "eesh rayak fi t-taba2ha?"
         },
         {
           "slot": "don-t-be-shy-tell-me-if-you-want-anything-else",
-          "arabic": "وَلاَ تِسْتَحِي، قُلْ لِي إِذَا بِغَيْتَ حَاجَة",
-          "transliteration": "wa la tistahee, 2ul li idha bighayat 7aja"
+          "arabic": "وَلاَ تِسْتَحِي، قُلْ لِي إِذَا تِشْتِي حَاجَة",
+          "transliteration": "wa la tistahee, 2ul li idha tishti 7aja"
         },
         {
           "slot": "thank-god-we-re-full-and-satisfied",
@@ -830,14 +828,14 @@
         },
         {
           "speaker": "الضَّيْف",
-          "arabic": "شُنُّ هَذَا الطَّبَخَة؟ كِتِير حِلْوَة",
-          "transliteration": "shunnu hadha t-taba2ha? ktiir 7ilwa",
+          "arabic": "إِيش هَذَا الطَّبَخَة؟ كَثِير حِلْوَة",
+          "transliteration": "eesh hadha t-taba2ha? katheer 7ilwa",
           "english": "What is this dish? It's very nice."
         },
         {
           "speaker": "أُمّ محمد",
-          "arabic": "ذُوقْ أَكْتَر، فِي كِتِير الْأَكْلَة",
-          "transliteration": "dhug akthar, fi ktiir il-2akla",
+          "arabic": "ذُوقْ أَكْتَر، فِي كَثِير الْأَكْلَة",
+          "transliteration": "dhug akthar, fi katheer il-2akla",
           "english": "Try more, there's plenty."
         },
         {
@@ -884,20 +882,20 @@
         },
         {
           "pair": {
-            "arabic": "شُنُّ رَايِك فِي الطَّبَخَة؟",
-            "transliteration": "shunnu rayak fi t-taba2ha?",
+            "arabic": "إِيش رَايِك فِي الطَّبَخَة؟",
+            "transliteration": "eesh rayak fi t-taba2ha?",
             "english": "What do you think of the dish?"
           },
           "response": {
-            "arabic": "كِتِير لَذِيذ، تِسْلَم إِيدِك",
-            "transliteration": "ktiir ladhidh, tislam iidak",
+            "arabic": "كَثِير لَذِيذ، تِسْلَم إِيدِك",
+            "transliteration": "katheer ladhidh, tislam iidak",
             "english": "Very delicious, bless your hands."
           }
         },
         {
           "pair": {
-            "arabic": "تِبْغَى شَوَيّة عَيْش أَكْتَر؟",
-            "transliteration": "tibgha shawayyah 3aysh akthar?",
+            "arabic": "تِشْتِي شَوَيّة عَيْش أَكْتَر؟",
+            "transliteration": "tishti shawayyah 3aysh akthar?",
             "english": "Do you want more bread?"
           },
           "response": {
@@ -939,11 +937,11 @@
         {
           "id": "unit-11.lesson-03.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "شُوفْ كِتِير الْأَكْلَة، فِي ___",
-          "answer": "كِتِير",
+          "prompt": "شُوفْ كَثِير الْأَكْلَة، فِي ___",
+          "answer": "كَثِير",
           "accepted": [
-            "كِتِير",
-            "كتير"
+            "كَثِير",
+            "كثير"
           ],
           "tip": "\"fi ktiir\" = there's plenty."
         },
@@ -974,7 +972,7 @@
             "الطَّبَخَة فِيهَا شَوَيّة حِرّ، احْذَر",
             "الطَّبَخَة بَرِدَة",
             "الطَّبَخَة بِدُونِ حِرّ",
-            "الطَّبَخَة كِتِير قَدِيمَة"
+            "الطَّبَخَة كَثِير قَدِيمَة"
           ],
           "tip": "\"fiha shawayya 7arr\" = it has some heat/spice."
         },
@@ -996,7 +994,7 @@
         {
           "id": "unit-11.lesson-03.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "تِبْغَى شَوَيّة عَيْش ___؟",
+          "prompt": "تِشْتِي شَوَيّة عَيْش ___؟",
           "answer": "أَكْتَر",
           "accepted": [
             "أَكْتَر",
@@ -1024,10 +1022,10 @@
           "id": "unit-11.lesson-03.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Don't be shy, eat as you like.\"",
-          "answer": "وَلاَ تِسْتَحِي، أَكِل كَمَا تِبْغَى",
+          "answer": "وَلاَ تِسْتَحِي، أَكِل كَمَا تِشْتِي",
           "accepted": [
-            "وَلاَ تِسْتَحِي، أَكِل كَمَا تِبْغَى",
-            "ولا تستحي، اكل كما تبغى"
+            "وَلاَ تِسْتَحِي، أَكِل كَمَا تِشْتِي",
+            "ولا تستحي، اكل كما تشتي"
           ],
           "too_formal": {
             "item": "لاَ تَخْجَلْ، كُلْ كَمَا تُرِيدُ",
@@ -1038,11 +1036,11 @@
         {
           "id": "unit-11.lesson-03.reply.02",
           "type": "reply",
-          "prompt": "A guest says: \"شُنُّ رَايِك فِي الطَّبَخَة؟\". Reply positively.",
-          "answer": "كِتِير لَذِيذ، تِسْلَم إِيدِك",
+          "prompt": "A guest says: \"إِيش رَايِك فِي الطَّبَخَة؟\". Reply positively.",
+          "answer": "كَثِير لَذِيذ، تِسْلَم إِيدِك",
           "accepted": [
-            "كِتِير لَذِيذ، تِسْلَم إِيدِك",
-            "كتير لذيذ، تسلم ايدك"
+            "كَثِير لَذِيذ، تِسْلَم إِيدِك",
+            "كثير لذيذ، تسلم ايدك"
           ],
           "too_formal": {
             "item": "إِنَّهُ لَذِيذٌ جِدًّا، بَاركَ اللَّهُ فِي يَدَيْكِ",
@@ -1078,13 +1076,13 @@
         },
         {
           "slot": "we-need-to-go-it-s-gotten-late",
-          "arabic": "بِدّنا نِرُوح، الْوَقْت بِهِر",
-          "transliteration": "bidda nruuh, il-wa2t biharr"
+          "arabic": "نِشْتِي نِرُوح، الْوَقْت بِهِر",
+          "transliteration": "nishti nruuh, il-wa2t biharr"
         },
         {
           "slot": "a-very-nice-gathering-god-keep-you",
-          "arabic": "جَمْعَة كِتِير حِلْوَة، اللَّه يُحَافِظ عَلَيْك",
-          "transliteration": "jam3a ktiir 7ilwa, allah y7afiz 3aleek"
+          "arabic": "جَمْعَة كَثِير حِلْوَة، اللَّه يُحَافِظ عَلَيْك",
+          "transliteration": "jam3a katheer 7ilwa, allah y7afiz 3aleek"
         },
         {
           "slot": "don-t-forget-our-house-is-always-your-house",
@@ -1103,13 +1101,13 @@
         },
         {
           "slot": "no-excuses-do-we-have-to-part-so-quickly",
-          "arabic": "مَا فِي عُذْر، لازِم نَتْرُك بَعْضِنا كِتِير بِسُرْعَة؟",
-          "transliteration": "ma fi 3udhr, lazim natruk ba3dna ktiir bi-sur3a?"
+          "arabic": "مَا فِي عُذْر، لازِم نَتْرُك بَعْضِنا كَثِير بِسُرْعَة؟",
+          "transliteration": "ma fi 3udhr, lazim natruk ba3dna katheer bi-sur3a?"
         },
         {
           "slot": "thanks-for-the-invitation-we-had-a-great-time",
-          "arabic": "شُكْرًا عَلَى الدَّعْوَة، كِنّا فِي وَقْتِ كِتِير حِلْو",
-          "transliteration": "shukran 3ala d-da3wa, kinna fi wa2t ktiir 7ilw"
+          "arabic": "شُكْرًا عَلَى الدَّعْوَة، كِنّا فِي وَقْتِ كَثِير حِلْو",
+          "transliteration": "shukran 3ala d-da3wa, kinna fi wa2t katheer 7ilw"
         },
         {
           "slot": "let-us-know-when-you-get-home",
@@ -1136,20 +1134,20 @@
       "dialogue": [
         {
           "speaker": "الضَّيْف",
-          "arabic": "شُكْرًا عَلَى الضِّيَافَة، كِنّا فِي وَقْتِ كِتِير حِلْو",
-          "transliteration": "shukran 3ala d-diyafa, kinna fi wa2t ktiir 7ilw",
+          "arabic": "شُكْرًا عَلَى الضِّيَافَة، كِنّا فِي وَقْتِ كَثِير حِلْو",
+          "transliteration": "shukran 3ala d-diyafa, kinna fi wa2t katheer 7ilw",
           "english": "Thanks for the hospitality, we had a great time."
         },
         {
           "speaker": "المضيف",
-          "arabic": "اللَّه يُعْطِيك عَافِيَة، شُنُّ هَذَا بِرَايِك؟",
-          "transliteration": "allah yu3tik 3afiya, shunnu hadha birayak?",
+          "arabic": "اللَّه يُعْطِيك عَافِيَة، إِيش هَذَا بِرَايِك؟",
+          "transliteration": "allah yu3tik 3afiya, eesh hadha birayak?",
           "english": "God give you health, what did you think?"
         },
         {
           "speaker": "الضَّيْف",
-          "arabic": "جَمْعَة كِتِير حِلْوَة",
-          "transliteration": "jam3a ktiir 7ilwa",
+          "arabic": "جَمْعَة كَثِير حِلْوَة",
+          "transliteration": "jam3a katheer 7ilwa",
           "english": "A very nice gathering."
         },
         {
@@ -1158,8 +1156,8 @@
         },
         {
           "speaker": "الضَّيْف",
-          "arabic": "الْحَمْدُ لِلَّه، بِدّنا نِرُوح، الْوَقْت بِهِر",
-          "transliteration": "al-7amdu lillah, bidda nruuh, il-wa2t biharr",
+          "arabic": "الْحَمْدُ لِلَّه، نِشْتِي نِرُوح، الْوَقْت بِهِر",
+          "transliteration": "al-7amdu lillah, nishti nruuh, il-wa2t biharr",
           "english": "Thanks, we need to go, it's getting late."
         },
         {
@@ -1200,8 +1198,8 @@
         },
         {
           "pair": {
-            "arabic": "بِدّنا نِرُوح، الْوَقْت بِهِر",
-            "transliteration": "bidda nruuh, il-wa2t biharr",
+            "arabic": "نِشْتِي نِرُوح، الْوَقْت بِهِر",
+            "transliteration": "nishti nruuh, il-wa2t biharr",
             "english": "We need to go, it's late."
           },
           "response": {
@@ -1255,7 +1253,7 @@
         {
           "id": "unit-11.lesson-04.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "بِدّنا نِرُوح، الْوَقْت ___",
+          "prompt": "نِشْتِي نِرُوح، الْوَقْت ___",
           "answer": "بِهِر",
           "accepted": [
             "بِهِر",
@@ -1299,15 +1297,15 @@
           "id": "unit-11.lesson-04.reorder.01",
           "type": "reorder",
           "prompt": "Arrange: Thanks for the invitation, we had a great time.",
-          "answer": "شُكْرًا عَلَى الدَّعْوَة، كِنّا فِي وَقْتِ كِتِير حِلْو",
+          "answer": "شُكْرًا عَلَى الدَّعْوَة، كِنّا فِي وَقْتِ كَثِير حِلْو",
           "accepted": [
-            "شُكْرًا عَلَى الدَّعْوَة، كِنّا فِي وَقْتِ كِتِير حِلْو"
+            "شُكْرًا عَلَى الدَّعْوَة، كِنّا فِي وَقْتِ كَثِير حِلْو"
           ],
           "words": [
             "شُكْرًا عَلَى الدَّعْوَة",
             "كِنّا",
             "فِي وَقْتِ",
-            "كِتِير حِلْو"
+            "كَثِير حِلْو"
           ],
           "tip": "\"da3wa\" = invitation; \"kinna\" = we were; a polite way to thank the host."
         },
@@ -1334,7 +1332,7 @@
             "تِصْبِح عَلَى خَيْر",
             "تِسْلَم إِيدِك",
             "حَيَّاك اللَّه",
-            "مَا بِدِّك تِرُوح؟"
+            "مَا تِشْتِيش تِرُوح؟"
           ],
           "tip": "\"tisbih 3ala khair\" = sleep on goodness; said in the evening."
         },
@@ -2064,9 +2062,10 @@
           "accepted": [
             "أين الحمام؟",
             "أين الحمام",
-            "فين الحمام؟",
             "وين الحمام؟",
-            "ayn al-7ammaam?"
+            "وين الحمام؟",
+            "ayn al-7ammaam?",
+            "فين الحمام؟"
           ]
         },
         {
@@ -2155,8 +2154,8 @@
         },
         {
           "speaker": "أَنْتَ",
-          "arabic": "تِمَام الْحَمْدُ لِلَّه. شُنُّ اللَّي تِبْغَى تِشْرَب؟",
-          "transliteration": "tamam al-7amdu lillah. shunnu il-li tibgha tishrab?",
+          "arabic": "تِمَام الْحَمْدُ لِلَّه. إِيش اللَّي تِشْتِي تِشْرَب؟",
+          "transliteration": "tamam al-7amdu lillah. eesh il-li tishti tishrab?",
           "english": "Good, thank God. What would you like to drink?"
         },
         {

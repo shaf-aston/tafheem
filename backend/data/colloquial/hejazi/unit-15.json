@@ -51,8 +51,8 @@
         },
         {
           "slot": "i-want-a-room-for-two-people",
-          "arabic": "أبي غرفة لشخصين",
-          "transliteration": "abi ghorfa la-shakhSayn"
+          "arabic": "أبغى غرفة لشخصين",
+          "transliteration": "abgha ghorfa la-shakhSayn"
         },
         {
           "slot": "how-much-is-the-price-per-night",
@@ -76,13 +76,13 @@
         },
         {
           "slot": "where-s-the-elevator",
-          "arabic": "وين المصعد؟",
-          "transliteration": "ween l-mas3ad?"
+          "arabic": "فين المصعد؟",
+          "transliteration": "feen l-mas3ad?"
         },
         {
           "slot": "i-want-the-key-please",
-          "arabic": "أبي المفتاح لو سمحت",
-          "transliteration": "abi l-muftaa7 law sama7t"
+          "arabic": "أبغى المفتاح لو سمحت",
+          "transliteration": "abgha l-muftaa7 law sama7t"
         },
         {
           "slot": "what-time-do-i-need-to-check-out",
@@ -91,13 +91,13 @@
         },
         {
           "slot": "i-want-to-order-room-service",
-          "arabic": "أبي أطلب خدمة الغرفة",
-          "transliteration": "abi aTlab khedmet l-ghorfa"
+          "arabic": "أبغى أطلب خدمة الغرفة",
+          "transliteration": "abgha aTlab khedmet l-ghorfa"
         },
         {
           "slot": "thanks-the-room-is-very-nice",
-          "arabic": "شكراً، الغرفة حلوة كتير",
-          "transliteration": "shukran, l-ghorfa 7ilwa ktiir"
+          "arabic": "شكراً، الغرفة حلوة مرة",
+          "transliteration": "shukran, l-ghorfa 7ilwa marra"
         }
       ],
       "dialogue": [
@@ -139,8 +139,8 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "تمام، هاد المفتاح، غرفتك في الطابق الثاني",
-          "transliteration": "tamam, haad l-muftaa7, ghorftik fi T-Taabe2 th-thanee",
+          "arabic": "تمام، هالمفتاح، غرفتك في الطابق الثاني",
+          "transliteration": "tamam, hal-muftaa7, ghorftik fi T-Taabe2 th-thanee",
           "english": "Alright, here's the key, your room is on the second floor."
         },
         {
@@ -218,12 +218,12 @@
           }
         }
       ],
-      "culture": "في جدة تلاقي فنادق كويسة كتير، والموظفين بيرحبوا فيك بكل لطف. الإفطار بالفندق غالباً فيه تمر وقهوة سعودية وخبز ومرتديلا وجبن.",
+      "culture": "في جدة تلاقي فنادق كويسة مرة، والموظفين بيرحبوا فيك بكل لطف. الإفطار بالفندق غالباً فيه تمر وقهوة سعودية وخبز ومرتديلا وجبن.",
       "exercises": [
         {
           "id": "unit-15.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "الموظف بيسألك: أهلا وسهلا، شو الحجز؟",
+          "prompt": "الموظف بيسألك: أهلا وسهلا، إيش الحجز؟",
           "answer": "عندي حجز باسم نور",
           "accepted": [
             "عندي حجز باسم نور",
@@ -239,7 +239,7 @@
         {
           "id": "unit-15.lesson-01.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أبي غرفة ___ شخصين",
+          "prompt": "أبغى غرفة ___ شخصين",
           "answer": "لشخصين",
           "accepted": [
             "لشخصين",
@@ -251,10 +251,10 @@
           "id": "unit-15.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "I want a room for two people.",
-          "answer": "أبي غرفة لشخصين",
+          "answer": "أبغى غرفة لشخصين",
           "accepted": [
-            "أبي غرفة لشخصين",
-            "abi ghorfa la-shakhSayn"
+            "أبغى غرفة لشخصين",
+            "abgha ghorfa la-shakhSayn"
           ],
           "too_formal": {
             "item": "أريد غرفة لشخصين",
@@ -268,8 +268,8 @@
           "prompt": "كيف تقول 'How much is the price per night?'",
           "options": [
             "كم سعر الليلة؟",
-            "وين المصعد؟",
-            "أبي المفتاح",
+            "فين المصعد؟",
+            "أبغى المفتاح",
             "شكراً كتير"
           ],
           "answer": "كم سعر الليلة؟",
@@ -282,7 +282,7 @@
         {
           "id": "unit-15.lesson-01.choose.02",
           "type": "choose",
-          "prompt": "شو معنى 'المصعد'؟",
+          "prompt": "إيش معنى 'المصعد'؟",
           "options": [
             "elevator",
             "window",
@@ -299,10 +299,10 @@
         {
           "id": "unit-15.lesson-01.reorder.01",
           "type": "reorder",
-          "prompt": "رتب الجملة: أبي غرفة لشخصين",
-          "answer": "أبي غرفة لشخصين",
+          "prompt": "رتب الجملة: أبغى غرفة لشخصين",
+          "answer": "أبغى غرفة لشخصين",
           "accepted": [
-            "أبي غرفة لشخصين"
+            "أبغى غرفة لشخصين"
           ],
           "tip": ""
         },
@@ -362,8 +362,8 @@
       "phrases": [
         {
           "slot": "i-want-to-book-a-bus-ticket",
-          "arabic": "أبي أحجز تذكرة باص",
-          "transliteration": "abi a7jiz tadhkara baaS"
+          "arabic": "أبغى أحجز تذكرة باص",
+          "transliteration": "abgha a7jiz tadhkara baaS"
         },
         {
           "slot": "do-you-have-tickets-to-aleppo",
@@ -377,8 +377,8 @@
         },
         {
           "slot": "i-want-a-one-way-ticket-only",
-          "arabic": "أبي تذكرة رايح بس",
-          "transliteration": "abi tadhkara ray7 bas"
+          "arabic": "أبغى تذكرة رايح بس",
+          "transliteration": "abgha tadhkara ray7 bas"
         },
         {
           "slot": "is-there-a-free-seat-on-the-next-bus",
@@ -402,8 +402,8 @@
         },
         {
           "slot": "i-want-to-confirm-the-reservation",
-          "arabic": "أبي أأكد الحجز",
-          "transliteration": "abi a2akked l-7ajz"
+          "arabic": "أبغى أأكد الحجز",
+          "transliteration": "abgha a2akked l-7ajz"
         },
         {
           "slot": "is-there-a-discount-for-students",
@@ -412,8 +412,8 @@
         },
         {
           "slot": "where-s-the-ticket-window",
-          "arabic": "وين شباك التذاكر؟",
-          "transliteration": "ween shubbaak t-tazaakir?"
+          "arabic": "فين شباك التذاكر؟",
+          "transliteration": "feen shubbaak t-tazaakir?"
         },
         {
           "slot": "how-long-does-the-trip-take",
@@ -429,8 +429,8 @@
       "dialogue": [
         {
           "speaker": "الزبون",
-          "arabic": "أهلا، أبي تذكرة للرياض",
-          "transliteration": "ahlan, abi tadhkara ll-riyaD",
+          "arabic": "أهلا، أبغى تذكرة للرياض",
+          "transliteration": "ahlan, abgha tadhkara ll-riyaD",
           "english": "Hello, I want a ticket to Riyadh."
         },
         {
@@ -560,7 +560,7 @@
         {
           "id": "unit-15.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أبي ___ تذكرة عالباص",
+          "prompt": "أبغى ___ تذكرة عالباص",
           "answer": "أحجز",
           "accepted": [
             "أحجز",
@@ -585,8 +585,8 @@
           "prompt": "كيف تقول 'How much is a round-trip ticket?'",
           "options": [
             "كم تذكرة الرايح والجاي؟",
-            "وين شباك التذاكر؟",
-            "أبي أأكد الحجز",
+            "فين شباك التذاكر؟",
+            "أبغى أأكد الحجز",
             "في تخفيف للطلاب؟"
           ],
           "answer": "كم تذكرة الرايح والجاي؟",
@@ -599,7 +599,7 @@
         {
           "id": "unit-15.lesson-02.choose.02",
           "type": "choose",
-          "prompt": "شو معنى 'شباك التذاكر'؟",
+          "prompt": "إيش معنى 'شباك التذاكر'؟",
           "options": [
             "ticket window",
             "bus seat",
@@ -616,10 +616,10 @@
         {
           "id": "unit-15.lesson-02.reorder.01",
           "type": "reorder",
-          "prompt": "رتب الجملة: أبي تذكرة رايح بس",
-          "answer": "أبي تذكرة رايح بس",
+          "prompt": "رتب الجملة: أبغى تذكرة رايح بس",
+          "answer": "أبغى تذكرة رايح بس",
           "accepted": [
-            "أبي تذكرة رايح بس"
+            "أبغى تذكرة رايح بس"
           ],
           "tip": ""
         },
@@ -680,8 +680,8 @@
       "phrases": [
         {
           "slot": "where-s-the-check-in-counter",
-          "arabic": "وين كاونتر التسجيل؟",
-          "transliteration": "ween kaawntar t-tasjeel?"
+          "arabic": "فين كاونتر التسجيل؟",
+          "transliteration": "feen kaawntar t-tasjeel?"
         },
         {
           "slot": "i-have-my-passport-and-my-ticket",
@@ -700,8 +700,8 @@
         },
         {
           "slot": "where-s-the-boarding-gate",
-          "arabic": "وين بوابة الطيارة؟",
-          "transliteration": "ween bawwabat T-Tayyaara?"
+          "arabic": "فين بوابة الطيارة؟",
+          "transliteration": "feen bawwabat T-Tayyaara?"
         },
         {
           "slot": "what-time-does-the-plane-depart",
@@ -800,8 +800,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "وين بوابة الطيارة؟",
-            "transliteration": "ween bawwabat T-Tayyaara?",
+            "arabic": "فين بوابة الطيارة؟",
+            "transliteration": "feen bawwabat T-Tayyaara?",
             "english": "Where's the boarding gate?"
           },
           "response": {
@@ -875,10 +875,10 @@
           "id": "unit-15.lesson-03.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Where's the check-in counter?",
-          "answer": "وين كاونتر التسجيل؟",
+          "answer": "فين كاونتر التسجيل؟",
           "accepted": [
-            "وين كاونتر التسجيل؟",
-            "ween kaawntar t-tasjeel?"
+            "فين كاونتر التسجيل؟",
+            "feen kaawntar t-tasjeel?"
           ],
           "tip": ""
         },
@@ -888,7 +888,7 @@
           "prompt": "كيف تقول 'How long will you stay here?'",
           "options": [
             "بتقعد هني كم يوم؟",
-            "وين بوابة الطيارة؟",
+            "فين بوابة الطيارة؟",
             "معي الجواز والتذكرة",
             "جاي سياحة ولا شغل؟"
           ],
@@ -902,7 +902,7 @@
         {
           "id": "unit-15.lesson-03.choose.02",
           "type": "choose",
-          "prompt": "شو معنى 'زايدة وزن'؟",
+          "prompt": "إيش معنى 'زايدة وزن'؟",
           "options": [
             "overweight",
             "boarding gate",
@@ -1023,13 +1023,13 @@
         },
         {
           "slot": "i-missed-the-flight-what-do-i-do",
-          "arabic": "فاتتني الرحلة، شو أسوي؟",
-          "transliteration": "faatatni r-ri7la, shu asawwi?"
+          "arabic": "فاتتني الرحلة، إيش أسوي؟",
+          "transliteration": "faatatni r-ri7la, eesh asawwi?"
         },
         {
           "slot": "where-s-the-complaints-office",
-          "arabic": "وين مكتب الشكاوى؟",
-          "transliteration": "ween maktab sh-shakaawi?"
+          "arabic": "فين مكتب الشكاوى؟",
+          "transliteration": "feen maktab sh-shakaawi?"
         },
         {
           "slot": "nobody-answered-me",
@@ -1051,8 +1051,8 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "ما تخاف، من وين كنت جاي؟",
-          "transliteration": "ma tkhaaf, min ween kunt jaay?",
+          "arabic": "ما تخاف، من فين كنت جاي؟",
+          "transliteration": "ma tkhaaf, min feen kunt jaay?",
           "english": "Don't worry, where were you coming from?"
         },
         {
@@ -1081,8 +1081,8 @@
         },
         {
           "speaker": "المسافر",
-          "arabic": "ما لقيت جوازي لحظة، إي هاد هو",
-          "transliteration": "ma lageet jawaazi la7Za, ee haad huwa",
+          "arabic": "ما لقيت جوازي لحظة، إي دا هو",
+          "transliteration": "ma lageet jawaazi la7Za, ee da huwa",
           "english": "I couldn't find my passport, wait, yes here it is."
         },
         {
@@ -1111,8 +1111,8 @@
         },
         {
           "speaker": "الموظف",
-          "arabic": "بكلمهم الحين، تعال معي",
-          "transliteration": "bkallimhum l-7een, ta3al ma3ay",
+          "arabic": "بكلمهم دحين، تعال معي",
+          "transliteration": "bkallimhum da7een, ta3al ma3ay",
           "english": "I'll call them now. Come with me."
         },
         {
@@ -1129,8 +1129,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "فاتني الباص، شو أسوي؟",
-            "transliteration": "faatni l-baaS, shu asawwi?",
+            "arabic": "فاتني الباص، إيش أسوي؟",
+            "transliteration": "faatni l-baaS, eesh asawwi?",
             "english": "I missed the bus, what do I do?"
           },
           "response": {
@@ -1141,8 +1141,8 @@
         },
         {
           "pair": {
-            "arabic": "وين مكتب الشكاوى؟",
-            "transliteration": "ween maktab sh-shakaawi?",
+            "arabic": "فين مكتب الشكاوى؟",
+            "transliteration": "feen maktab sh-shakaawi?",
             "english": "Where's the complaints office?"
           },
           "response": {
@@ -1176,12 +1176,12 @@
           }
         }
       ],
-      "culture": "لما تصير مشكلة في السفر، الحجازي بيقول الله يعوض قبل ما يحكي عن الحل. هاد إحترام وتعاطف أهم من الحل نفسه بأول حديث.",
+      "culture": "لما تصير مشكلة في السفر، الحجازي بيقول الله يعوض قبل ما يحكي عن الحل. دا إحترام وتعاطف أهم من الحل نفسه بأول حديث.",
       "exercises": [
         {
           "id": "unit-15.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "صاحبك بيسألك: شو صار؟",
+          "prompt": "صاحبك بيسألك: إيش صار؟",
           "answer": "ضيعت شنطتي",
           "accepted": [
             "ضيعت شنطتي",
@@ -1219,7 +1219,7 @@
             "في مشكلة بالحجز",
             "الشنطة انكسرت",
             "ما حد رد علي",
-            "وين مكتب الشكاوى؟"
+            "فين مكتب الشكاوى؟"
           ],
           "answer": "في مشكلة بالحجز",
           "accepted": [
@@ -1231,7 +1231,7 @@
         {
           "id": "unit-15.lesson-04.choose.02",
           "type": "choose",
-          "prompt": "شو معنى 'انكسرت'؟",
+          "prompt": "إيش معنى 'انكسرت'؟",
           "options": [
             "broke",
             "delayed",
@@ -1258,13 +1258,13 @@
         {
           "id": "unit-15.lesson-04.reorder.02",
           "type": "reorder",
-          "prompt": "رتب الجملة: وين مكتب الشكاوى؟",
-          "answer": "وين مكتب الشكاوى؟",
+          "prompt": "رتب الجملة: فين مكتب الشكاوى؟",
+          "answer": "فين مكتب الشكاوى؟",
           "accepted": [
-            "وين مكتب الشكاوى؟"
+            "فين مكتب الشكاوى؟"
           ],
           "words": [
-            "وين",
+            "فين",
             "مكتب",
             "الشكاوى؟"
           ],
@@ -1273,7 +1273,7 @@
         {
           "id": "unit-15.lesson-04.reply.02",
           "type": "reply",
-          "prompt": "الموظف بيسألك: من وين كنت جاي؟",
+          "prompt": "الموظف بيسألك: من فين كنت جاي؟",
           "answer": "من الرياض",
           "accepted": [
             "من الرياض",
@@ -2758,8 +2758,8 @@
       "dialogue": [
         {
           "speaker": "علي",
-          "arabic": "أهلا، أبي أحجز تذكرة للرياض",
-          "transliteration": "ahlan, abi a7jiz tadhkara ll-riyaD",
+          "arabic": "أهلا، أبغى أحجز تذكرة للرياض",
+          "transliteration": "ahlan, abgha a7jiz tadhkara ll-riyaD",
           "english": "Hello, I want to book a ticket to Riyadh."
         },
         {

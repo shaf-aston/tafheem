@@ -16,7 +16,8 @@
     "oo": "و طويلة",
     "3a": "عَ",
     "3e": "عِ",
-    "3o": "عُ"
+    "3o": "عُ",
+    "g": "ق (تُنطق g)"
   },
   "lessons": [
     {
@@ -24,8 +25,8 @@
       "phrases": [
         {
           "slot": "what-do-you-do-to-a-man",
-          "arabic": "شنو تشتغِل أنت؟",
-          "transliteration": "shinu tshtaghil inta?",
+          "arabic": "إيش تشتغِل أنت؟",
+          "transliteration": "eesh tshtaghil inta?",
           "reply": {
             "arabic": "أشتغِل مهندِس",
             "transliteration": "ashtghil muhannidis",
@@ -34,8 +35,8 @@
         },
         {
           "slot": "what-do-you-do-to-a-woman",
-          "arabic": "شنو تشتغِلين؟",
-          "transliteration": "shinu tshtaghileen?",
+          "arabic": "إيش تشتغِلين؟",
+          "transliteration": "eesh tshtaghileen?",
           "reply": {
             "arabic": "أشتغِل معلمة",
             "transliteration": "ashtghil mu3allima",
@@ -45,7 +46,7 @@
         {
           "slot": "where-do-you-work",
           "arabic": "وين تشتغِل؟",
-          "transliteration": "wain tshtaghil?",
+          "transliteration": "ween tshtaghil?",
           "reply": {
             "arabic": "أشتغِل بشركة كبيرة",
             "transliteration": "ashtghil bisharka kabeera",
@@ -64,8 +65,8 @@
         },
         {
           "slot": "what-do-you-study",
-          "arabic": "شنو تدرِس؟",
-          "transliteration": "shinu tidris?",
+          "arabic": "إيش تدرِس؟",
+          "transliteration": "eesh tidris?",
           "reply": {
             "arabic": "أدرِس طِب",
             "transliteration": "adris Tib",
@@ -104,11 +105,11 @@
         },
         {
           "slot": "what-would-you-like-to-work-as",
-          "arabic": "شنو تبي تشتغِل؟",
-          "transliteration": "shinu tibi tshtaghil?",
+          "arabic": "إيش تشتي تشتغِل؟",
+          "transliteration": "eesh tishti tshtaghil?",
           "reply": {
-            "arabic": "أبي أشتغِل دكتور",
-            "transliteration": "abi ashtghil doktor",
+            "arabic": "أشتي أشتغِل دكتور",
+            "transliteration": "ashti ashtghil doktor",
             "english": "I want to work as a doctor."
           }
         }
@@ -116,8 +117,8 @@
       "dialogue": [
         {
           "speaker": "علي",
-          "arabic": "السلام عليكم أحمد، شنو أخبارك؟ شنو تشتغِل الحين؟",
-          "transliteration": "assalam alaykum ahmad, shinu akhbarak? shinu tshtaghil il7een?",
+          "arabic": "السلام عليكم أحمد، إيش أخبارك؟ إيش تشتغِل ذلحين؟",
+          "transliteration": "assalam alaykum ahmad, eesh akhbarak? eesh tshtaghil dhal7een?",
           "english": "Peace be upon you Ahmad, how are you? What do you do now?"
         },
         {
@@ -164,8 +165,8 @@
         },
         {
           "speaker": "علي",
-          "arabic": "الله يخليك، هذا بيساعدني كتير.",
-          "transliteration": "allah ykhalliyak, hadha bysa3idni kteer.",
+          "arabic": "الله يخليك، هذا بيساعدني كثير.",
+          "transliteration": "allah ykhalliyak, hadha bysa3idni kathiir.",
           "english": "God keep you, that would help me a lot."
         },
         {
@@ -178,8 +179,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو تشتغِل؟",
-            "transliteration": "shinu tshtaghil?",
+            "arabic": "إيش تشتغِل؟",
+            "transliteration": "eesh tshtaghil?",
             "english": "What do you do?"
           },
           "response": {
@@ -191,7 +192,7 @@
         {
           "pair": {
             "arabic": "وين تدرِس؟",
-            "transliteration": "wain tidris?",
+            "transliteration": "ween tidris?",
             "english": "Where do you study?"
           },
           "response": {
@@ -207,8 +208,8 @@
             "english": "Do you like your job?"
           },
           "response": {
-            "arabic": "أي، أحب شغِلي كتير.",
-            "transliteration": "ayya, a7ib shughliy kteer.",
+            "arabic": "إيه، أحب شغِلي كثير.",
+            "transliteration": "eeh, a7ib shughliy kathiir.",
             "english": "Yes, I like my job a lot."
           }
         },
@@ -230,7 +231,7 @@
         {
           "id": "unit-08.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "حد سألك: شنو تشتغِل؟ شنو بتجاوب؟",
+          "prompt": "حد سألك: إيش تشتغِل؟ إيش بتجاوب؟",
           "answer": "أشتغِل مهندِس",
           "accepted": [
             "أشتغِل مهندِس",
@@ -266,7 +267,7 @@
           "answer": "وين تشتغِل؟",
           "accepted": [
             "وين تشتغِل؟",
-            "wain tshtaghil?",
+            "ween tshtaghil?",
             "وين شغِلك؟"
           ],
           "too_formal": {
@@ -279,21 +280,21 @@
           "id": "unit-08.lesson-01.choose.01",
           "type": "choose",
           "prompt": "كيف بتسأل حد عن شغِله؟",
-          "answer": "شنو تشتغِل؟",
+          "answer": "إيش تشتغِل؟",
           "accepted": [
-            "شنو تشتغِل؟"
+            "إيش تشتغِل؟"
           ],
           "options": [
-            "شنو تشتغِل؟",
+            "إيش تشتغِل؟",
             "كيفك أنت؟",
             "وين بتروح؟",
-            "كم الساعة الحين؟"
+            "كم الساعة ذلحين؟"
           ],
           "too_formal": {
             "item": "ما هي مهنتك؟",
-            "feedback": "فصحى رسمية، يمني يسأل شنو تشتغِل"
+            "feedback": "فصحى رسمية، يمني يسأل إيش تشتغِل"
           },
-          "tip": "شنو = what"
+          "tip": "إيش = what"
         },
         {
           "id": "unit-08.lesson-01.reorder.01",
@@ -412,15 +413,15 @@
           "arabic": "السلام عليكم، بتجي الاجتماع؟",
           "transliteration": "assalam alaykum, btaji il-ijtimaa3?",
           "reply": {
-            "arabic": "وعليكم السلام، أي، جاي الحين",
-            "transliteration": "wa alaykum assalam, ayya, jaay il-7een",
+            "arabic": "وعليكم السلام، إيه، جاي ذلحين",
+            "transliteration": "wa alaykum assalam, eeh, jaay dhal7een",
             "english": "Yes, coming now."
           }
         },
         {
           "slot": "the-manager-wants-to-talk-to-you",
-          "arabic": "المدير بيبي يحكيك",
-          "transliteration": "il-mudeer bybi y7akiik"
+          "arabic": "المدير يشتي يحكيك",
+          "transliteration": "il-mudeer yishti y7akiik"
         },
         {
           "slot": "i-received-your-email",
@@ -449,8 +450,8 @@
         },
         {
           "slot": "my-boss-is-very-demanding",
-          "arabic": "مديري كتير يطلب",
-          "transliteration": "mudeeri kteer yaTlab"
+          "arabic": "مديري كثير يطلب",
+          "transliteration": "mudeeri kathiir yaTlab"
         },
         {
           "slot": "i-took-two-days-off",
@@ -467,8 +468,8 @@
           "arabic": "فيه ساعات إضافية اليوم؟",
           "transliteration": "fee sa3aat idaafya il-yoom?",
           "reply": {
-            "arabic": "أي، لحتى الساعة سبعة",
-            "transliteration": "ayya, la7atta is-saa3a sab3a",
+            "arabic": "إيه، لحتى الساعة سبعة",
+            "transliteration": "eeh, la7atta is-saa3a sab3a",
             "english": "Yes, until seven o'clock."
           }
         },
@@ -481,20 +482,20 @@
       "dialogue": [
         {
           "speaker": "فاطمة",
-          "arabic": "صباح الخير فهد، شنو أخبارك؟ بتجي الاجتماع؟",
-          "transliteration": "Sabaa7 il-khair fahad, shinu akhbarak? btaji il-ijtimaa3?",
+          "arabic": "صباح الخير فهد، إيش أخبارك؟ بتجي الاجتماع؟",
+          "transliteration": "Sabaa7 il-khair fahad, eesh akhbarak? btaji il-ijtimaa3?",
           "english": "Good morning Fahad, how are you? Are you coming to the meeting?"
         },
         {
           "speaker": "فهد",
           "arabic": "صباح النور، الحمد لله، أي بجي. بس وصِلتني رسالة من المدير.",
-          "transliteration": "Sabaa7 in-noor, il7amdulillah, ayya bji. bass waSilni risala min il-mudeer.",
+          "transliteration": "Sabaa7 in-noor, il7amdulillah, eeh bji. bass waSilni risala min il-mudeer.",
           "english": "Good morning, thank God, yes I'm coming. But I got a message from the manager."
         },
         {
           "speaker": "فاطمة",
-          "arabic": "شنو بيبي المدير؟",
-          "transliteration": "shinu bybi il-mudeer?",
+          "arabic": "إيش يشتي المدير؟",
+          "transliteration": "eesh yishti il-mudeer?",
           "english": "What does the manager want?"
         },
         {
@@ -511,8 +512,8 @@
         },
         {
           "speaker": "فهد",
-          "arabic": "أي، وأنا معتم أخلصه قبل العصر.",
-          "transliteration": "ayya, w ana maa3tam akhlaSah 2abl il-3aSr.",
+          "arabic": "إيه، وأنا معتم أخلصه قبل العصر.",
+          "transliteration": "eeh, w ana maa3tam akhlaSah 2abl il-3aSr.",
           "english": "Yes, and I'm determined to finish it before afternoon."
         },
         {
@@ -568,7 +569,7 @@
         {
           "pair": {
             "arabic": "وين المديرية؟",
-            "transliteration": "wain il-mudirya?",
+            "transliteration": "ween il-mudirya?",
             "english": "Where is the office?"
           },
           "response": {
@@ -584,8 +585,8 @@
             "english": "Do you need overtime today?"
           },
           "response": {
-            "arabic": "لا شكراً، بدي روح للبيت بدري.",
-            "transliteration": "la shukran, biddi roo7 lil-bait badri.",
+            "arabic": "لا شكراً، أشتي أروح للبيت بدري.",
+            "transliteration": "la shukran, ashti aroo7 lil-bait badri.",
             "english": "No thanks, I want to go home early."
           }
         }
@@ -595,12 +596,12 @@
         {
           "id": "unit-08.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "المدير بيبي يحكيك، شنو بتقول؟",
-          "answer": "حاضِر، جاي الحين",
+          "prompt": "المدير يشتي يحكيك، إيش بتقول؟",
+          "answer": "حاضِر، جاي ذلحين",
           "accepted": [
-            "حاضِر، جاي الحين",
-            "hadir, jaay il-7een",
-            "أي، بجي"
+            "حاضِر، جاي ذلحين",
+            "hadir, jaay dhal7een",
+            "إيه، بجي"
           ],
           "too_formal": {
             "item": "حسناً، سآتي الآن",
@@ -643,7 +644,7 @@
         {
           "id": "unit-08.lesson-02.choose.01",
           "type": "choose",
-          "prompt": "شنو معنى 'مديري كتير يطلب'؟",
+          "prompt": "إيش معنى 'مديري كثير يطلب'؟",
           "answer": "my boss is very demanding",
           "accepted": [
             "my boss is very demanding"
@@ -684,11 +685,11 @@
           "id": "unit-08.lesson-02.reply.02",
           "type": "reply",
           "prompt": "أخذت إجازة يومين؟",
-          "answer": "أي، أخذت",
+          "answer": "إيه، أخذت",
           "accepted": [
-            "أي، أخذت",
-            "ayya, akhadt",
-            "أي، أخذت يومين"
+            "إيه، أخذت",
+            "eeh, akhadt",
+            "إيه، أخذت يومين"
           ],
           "too_formal": {
             "item": "نعم، أخذت",
@@ -738,7 +739,7 @@
           ],
           "options": [
             "فيه ساعات إضافية اليوم؟",
-            "الساعة كم الحين؟",
+            "الساعة كم ذلحين؟",
             "وين المكتب؟",
             "مين المدير؟"
           ],
@@ -789,8 +790,8 @@
         },
         {
           "slot": "what-s-your-major",
-          "arabic": "شنو تخصصك؟",
-          "transliteration": "shinu takhaSS-oSak?",
+          "arabic": "إيش تخصصك؟",
+          "transliteration": "eesh takhaSS-oSak?",
           "reply": {
             "arabic": "تخصصي طِب",
             "transliteration": "takhaSS-oSi Tib",
@@ -809,8 +810,8 @@
         },
         {
           "slot": "i-have-to-study-a-lot-this-semester",
-          "arabic": "لازم أدرِس كتير هالفصل",
-          "transliteration": "laazim adris kteer hal-faSl"
+          "arabic": "لازم أدرِس كثير هالفصل",
+          "transliteration": "laazim adris kathiir hal-faSl"
         },
         {
           "slot": "the-exam-result-came-out-good",
@@ -839,8 +840,8 @@
         },
         {
           "slot": "i-want-to-register-more-courses-next-semester",
-          "arabic": "أبي أسجل مواد أكتر الفصل الجاي",
-          "transliteration": "abi asajjil mawaad akthar il-faSl il-jaay"
+          "arabic": "أشتي أسجل مواد أكتر الفصل الجاي",
+          "transliteration": "ashti asajjil mawaad akthar il-faSl il-jaay"
         }
       ],
       "dialogue": [
@@ -870,14 +871,14 @@
         },
         {
           "speaker": "محمد",
-          "arabic": "أنا عندي محاضرة الساعة تسعة بكرة، لكن بقدِر أساعدك الحين.",
-          "transliteration": "ana 3indi mu7aaDra is-saa3a tis3a bukra, lakin bagdir asa3dik il-7een.",
+          "arabic": "أنا عندي محاضرة الساعة تسعة بكرة، لكن بقدِر أساعدك ذلحين.",
+          "transliteration": "ana 3indi mu7aaDra is-saa3a tis3a bukra, lakin bagdir asa3dik dhal7een.",
           "english": "I have a lecture at nine tomorrow, but I can help you now."
         },
         {
           "speaker": "سارة",
-          "arabic": "ياله، شكراً كتير.",
-          "transliteration": "yalah, shukran kteer.",
+          "arabic": "ياله، شكراً كثير.",
+          "transliteration": "yalah, shukran kathiir.",
           "english": "Wow, thank you so much."
         },
         {
@@ -914,8 +915,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو تخصصك؟",
-            "transliteration": "shinu takhaSS-oSak?",
+            "arabic": "إيش تخصصك؟",
+            "transliteration": "eesh takhaSS-oSak?",
             "english": "What's your major?"
           },
           "response": {
@@ -931,8 +932,8 @@
             "english": "Do you have an exam?"
           },
           "response": {
-            "arabic": "أي، بكرة الصبح.",
-            "transliteration": "ayya, bukra is-Saba7.",
+            "arabic": "إيه، بكرة الصبح.",
+            "transliteration": "eeh, bukra is-Saba7.",
             "english": "Yes, tomorrow morning."
           }
         },
@@ -951,7 +952,7 @@
         {
           "pair": {
             "arabic": "وين المكتبة؟",
-            "transliteration": "wain il-maktaba?",
+            "transliteration": "ween il-maktaba?",
             "english": "Where is the library?"
           },
           "response": {
@@ -966,7 +967,7 @@
         {
           "id": "unit-08.lesson-03.reply.01",
           "type": "reply",
-          "prompt": "شنو تخصصك؟",
+          "prompt": "إيش تخصصك؟",
           "answer": "تخصصي طِب",
           "accepted": [
             "تخصصي طِب",
@@ -1014,7 +1015,7 @@
         {
           "id": "unit-08.lesson-03.choose.01",
           "type": "choose",
-          "prompt": "شنو معنى 'لازم أسلّم الواجب'؟",
+          "prompt": "إيش معنى 'لازم أسلّم الواجب'؟",
           "answer": "I must submit the assignment",
           "accepted": [
             "I must submit the assignment"
@@ -1102,7 +1103,7 @@
         {
           "id": "unit-08.lesson-03.choose.02",
           "type": "choose",
-          "prompt": "مين بيدرِس بالجامعة، مو بيشتغِل؟",
+          "prompt": "مين بيدرِس بالجامعة، مش بيشتغِل؟",
           "answer": "طالب",
           "accepted": [
             "طالب"
@@ -1147,18 +1148,18 @@
       "phrases": [
         {
           "slot": "what-do-you-plan-to-do-after-you-graduate",
-          "arabic": "شنو ناوي تسوي بعد ما تتخرج؟",
-          "transliteration": "shinu naawi tsawwi ba3d ma titkarraj?",
+          "arabic": "إيش ناوي تسوي بعد ما تتخرج؟",
+          "transliteration": "eesh naawi tsawwi ba3d ma titkarraj?",
           "reply": {
-            "arabic": "أبي أدُور على شغِل بمجالي",
-            "transliteration": "abi adoor 3ala shaghul bimajaali",
+            "arabic": "أشتي أدُور على شغِل بمجالي",
+            "transliteration": "ashti adoor 3ala shaghul bimajaali",
             "english": "I want to look for a job in my field."
           }
         },
         {
           "slot": "i-want-to-continue-my-studies-for-a-master-s",
-          "arabic": "أبي أكمل دراستي بالماجستير",
-          "transliteration": "abi akammil diraasti bil-majesteer"
+          "arabic": "أشتي أكمل دراستي بالماجستير",
+          "transliteration": "ashti akammil diraasti bil-majesteer"
         },
         {
           "slot": "i-intend-to-start-my-own-project",
@@ -1173,7 +1174,7 @@
         {
           "slot": "in-five-years-where-will-you-be",
           "arabic": "بعد خمس سنين وين بتكون؟",
-          "transliteration": "ba3d khams sneen wain bitkoon?"
+          "transliteration": "ba3d khams sneen ween bitkoon?"
         },
         {
           "slot": "i-ll-try-to-enter-a-phd-program",
@@ -1187,13 +1188,13 @@
         },
         {
           "slot": "i-haven-t-decided-yet-what-i-ll-do",
-          "arabic": "لما قررت بعد شنو بسوي",
-          "transliteration": "lamma garrart ba3d shinu basawwi"
+          "arabic": "لما قررت بعد إيش بسوي",
+          "transliteration": "lamma garrart ba3d eesh basawwi"
         },
         {
           "slot": "i-want-to-settle-down-and-get-married-after-i-wo",
-          "arabic": "أبي أستقِر وأتجوز بعد ما أشتغِل شوي",
-          "transliteration": "abi astatgir w atzawwaz ba3d ma ashtghil shwai"
+          "arabic": "أشتي أستقِر وأتجوز بعد ما أشتغِل شوي",
+          "transliteration": "ashti astatgir w atzawwaz ba3d ma ashtghil shwai"
         },
         {
           "slot": "i-ll-apply-for-a-job-at-a-big-company",
@@ -1214,8 +1215,8 @@
       "dialogue": [
         {
           "speaker": "علياء",
-          "arabic": "حسن، شنو ناوي تسوي بعد ما تتخرج؟",
-          "transliteration": "hasan, shinu naawi tsawwi ba3d ma titkarraj?",
+          "arabic": "حسن، إيش ناوي تسوي بعد ما تتخرج؟",
+          "transliteration": "hasan, eesh naawi tsawwi ba3d ma titkarraj?",
           "english": "Hassan, what do you plan to do after you graduate?"
         },
         {
@@ -1244,8 +1245,8 @@
         },
         {
           "speaker": "حسن",
-          "arabic": "أي، لكن بعد سنين برجع وأفتح مشروعي الخاص هنا.",
-          "transliteration": "ayya, lakin ba3d sneen brija3 w aftah7 mashroo3i il-khaaS hina.",
+          "arabic": "إيه، لكن بعد سنين برجع وأفتح مشروعي الخاص هنا.",
+          "transliteration": "eeh, lakin ba3d sneen brija3 w aftah7 mashroo3i il-khaaS hina.",
           "english": "Yes, but after years I'll come back and open my own project here."
         },
         {
@@ -1268,8 +1269,8 @@
         },
         {
           "speaker": "حسن",
-          "arabic": "صدق كتير، الفلوس مهمة لكن مو كل شي.",
-          "transliteration": "Sidg kteer, il-floos muhimma lakin mu kil shi.",
+          "arabic": "صدق كثير، الفلوس مهمة لكن مش كل شي.",
+          "transliteration": "Sidg kathiir, il-floos muhimma lakin mish kil shi.",
           "english": "Very true, money is important but not everything."
         },
         {
@@ -1282,13 +1283,13 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "شنو ناوي تسوي بعد التخرج؟",
-            "transliteration": "shinu naawi tsawwi ba3d it-takharruj?",
+            "arabic": "إيش ناوي تسوي بعد التخرج؟",
+            "transliteration": "eesh naawi tsawwi ba3d it-takharruj?",
             "english": "What do you plan to do after graduation?"
           },
           "response": {
-            "arabic": "أبي أدُور على شغِل بمجالي.",
-            "transliteration": "abi adoor 3ala shaghul bimajaali.",
+            "arabic": "أشتي أدُور على شغِل بمجالي.",
+            "transliteration": "ashti adoor 3ala shaghul bimajaali.",
             "english": "I want to look for a job in my field."
           }
         },
@@ -1299,15 +1300,15 @@
             "english": "Are you thinking of traveling to work abroad?"
           },
           "response": {
-            "arabic": "أي، بفكر فيها شوي.",
-            "transliteration": "ayya, bfakkir feeha shwai.",
+            "arabic": "إيه، بفكر فيها شوي.",
+            "transliteration": "eeh, bfakkir feeha shwai.",
             "english": "Yes, I'm thinking about it a little."
           }
         },
         {
           "pair": {
-            "arabic": "شنو حلمك؟",
-            "transliteration": "shinu 7ilmak?",
+            "arabic": "إيش حلمك؟",
+            "transliteration": "eesh 7ilmak?",
             "english": "What's your dream?"
           },
           "response": {
@@ -1319,7 +1320,7 @@
         {
           "pair": {
             "arabic": "وين بتكون بعد خمس سنين؟",
-            "transliteration": "wain bitkoon ba3d khams sneen?",
+            "transliteration": "ween bitkoon ba3d khams sneen?",
             "english": "Where will you be in five years?"
           },
           "response": {
@@ -1329,33 +1330,32 @@
           }
         }
       ],
-      "culture": "لما حد يمني بيحكي عن مستقبله يقول 'إن شاء الله' بعد كل خطة، حتى لو كانت أكيدة، لأن المستقبل بإيد الله. الحلم بفتح مشروع أو مطعم شايع كتير بين الشباب اليمني للاستقلال والثقة بالنفس. والراتب والفلوس مهمة، لكن الاستقرار والسعادة بالشغِل أهم.",
+      "culture": "لما حد يمني بيحكي عن مستقبله يقول 'إن شاء الله' بعد كل خطة، حتى لو كانت أكيدة، لأن المستقبل بإيد الله. الحلم بفتح مشروع أو مطعم شايع كثير بين الشباب اليمني للاستقلال والثقة بالنفس. والراتب والفلوس مهمة، لكن الاستقرار والسعادة بالشغِل أهم.",
       "exercises": [
         {
           "id": "unit-08.lesson-04.reply.01",
           "type": "reply",
-          "prompt": "شنو ناوي تسوي بعد ما تتخرج؟",
-          "answer": "أبي أدُور على شغِل بمجالي",
+          "prompt": "إيش ناوي تسوي بعد ما تتخرج؟",
+          "answer": "أشتي أدُور على شغِل بمجالي",
           "accepted": [
-            "أبي أدُور على شغِل بمجالي",
-            "abi adoor 3ala shaghul bimajaali",
-            "أبي ألقى شغِل بمجالي"
+            "أشتي أدُور على شغِل بمجالي",
+            "ashti adoor 3ala shaghul bimajaali",
+            "أشتي ألقى شغِل بمجالي"
           ],
           "too_formal": {
             "item": "أريد البحث عن عمل في مجالي",
-            "feedback": "فصحى، يمني يقول أبي أدُور"
+            "feedback": "فصحى، يمني يقول أشتي أدُور"
           },
-          "tip": "أبي = I want"
+          "tip": "أشتي = I want"
         },
         {
           "id": "unit-08.lesson-04.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "أبي ____ دراستي بالماجستير (continue)",
+          "prompt": "أشتي ____ دراستي بالماجستير (continue)",
           "answer": "أكمل",
           "accepted": [
             "أكمل",
-            "akammil",
-            "أكمل"
+            "akammil"
           ],
           "too_formal": {
             "item": "أواصل",
@@ -1382,7 +1382,7 @@
         {
           "id": "unit-08.lesson-04.choose.01",
           "type": "choose",
-          "prompt": "شنو معنى 'ناوي'؟",
+          "prompt": "إيش معنى 'ناوي'؟",
           "answer": "intending / planning to",
           "accepted": [
             "intending / planning to"
@@ -1458,8 +1458,7 @@
           "answer": "بقدّم على وظيفة بشركة كبيرة",
           "accepted": [
             "بقدّم على وظيفة بشركة كبيرة",
-            "baqdim 3ala wazeefa bisharka kabeera",
-            "بقدّم على وظيفة بشركة كبيرة"
+            "baqdim 3ala wazeefa bisharka kabeera"
           ],
           "too_formal": {
             "item": "سأتقدم لوظيفة في شركة كبيرة",
@@ -1470,7 +1469,7 @@
         {
           "id": "unit-08.lesson-04.choose.02",
           "type": "choose",
-          "prompt": "شنو بيقول الإنسان اليمني بعد ما يحكي عن خطة مستقبلية؟",
+          "prompt": "إيش بيقول الإنسان اليمني بعد ما يحكي عن خطة مستقبلية؟",
           "answer": "إن شاء الله",
           "accepted": [
             "إن شاء الله"
@@ -1524,8 +1523,8 @@
         },
         {
           "slot": "where-is-my-school-bag",
-          "arabic": "فين شنطة المدرسة حقي؟",
-          "transliteration": "feen shanTat al-madrasa 7aggi?"
+          "arabic": "وين شنطة المدرسة حقي؟",
+          "transliteration": "ween shanTat al-madrasa 7aggi?"
         },
         {
           "slot": "the-teacher-is-in-the-classroom",
@@ -1751,16 +1750,16 @@
           "id": "unit-08.lesson-05.fill_blank.01",
           "type": "fill_blank",
           "prompt": "Complete: \"_____ شنطة المدرسة حقي؟\" (Where is my school bag?)",
-          "answer": "فين",
+          "answer": "وين",
           "accepted": [
-            "فين",
-            "feen"
+            "وين",
+            "ween"
           ],
           "too_formal": {
             "item": "أين",
-            "feedback": "\"أين\" is formal; say \"فين\"."
+            "feedback": "\"أين\" is formal; say \"وين\"."
           },
-          "tip": "\"فين\" is \"where\"."
+          "tip": "\"وين\" is \"where\"."
         },
         {
           "id": "unit-08.lesson-05.fill_blank.02",
@@ -1839,7 +1838,7 @@
             "افتح كتابك على صفحة عشرة",
             "اكتب الدرس على السبّورة",
             "لا تنساش الزيّ المدرسي",
-            "فين شنطة المدرسة حقي؟"
+            "وين شنطة المدرسة حقي؟"
           ],
           "accepted": [
             "افتح كتابك على صفحة عشرة",
@@ -2238,11 +2237,11 @@
     "title": "حدّث عن شغِلك أو دراستك",
     "instructions": "اكتب واحكي حوار قصير بالعربية اليمنية يستمر على الأقل 10 أسطر عن شغِلك أو دراستك وخططك للمستقبل. استخدم على الأقل 8 عبارات من الوحدة 8 وركز على أسلوب يمني حقيقي.",
     "required_elements": [
-      "سؤال عن المهنة باستخدام شنو تشتغِل أو شنو تشتغِلين",
+      "سؤال عن المهنة باستخدام إيش تشتغِل أو إيش تشتغِلين",
       "جواب فيه ذكر المهنة أو مجال الدراسة",
       "سؤال عن المكان باستخدام وين",
       "ذكر سنين الخبرة أو السنة الدراسية",
-      "خطة مستقبلية باستخدام أبي أو ناوي أو بـ",
+      "خطة مستقبلية باستخدام أشتي أو ناوي أو بـ",
       "ذكر طموح أو حلم باستخدام طموحي أو حلمي",
       "عبارة إن شاء الله بعد خطة مستقبلية",
       "تبادل ختامي مثل الله يوفقك أو ولا تقلق"
@@ -2251,8 +2250,8 @@
       "dialogue": [
         {
           "speaker": "فاضل",
-          "arabic": "السلام عليكم نور، شنو تشتغِلين الحين؟",
-          "transliteration": "assalam alaykum noor, shinu tshtaghileen il-7een?",
+          "arabic": "السلام عليكم نور، إيش تشتغِلين ذلحين؟",
+          "transliteration": "assalam alaykum noor, eesh tshtaghileen dhal7een?",
           "english": "Peace be upon you Noor, what do you do now?"
         },
         {
@@ -2281,8 +2280,8 @@
         },
         {
           "speaker": "نور",
-          "arabic": "ممتاز، وشنو طموحك بعد التخرج؟",
-          "transliteration": "mumtaaz, w shinu tamoo7ak ba3d it-takharruj?",
+          "arabic": "ممتاز، وإيش طموحك بعد التخرج؟",
+          "transliteration": "mumtaaz, w eesh tamoo7ak ba3d it-takharruj?",
           "english": "Great, and what's your ambition after graduation?"
         },
         {

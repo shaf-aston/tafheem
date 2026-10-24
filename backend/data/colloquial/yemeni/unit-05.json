@@ -27,8 +27,8 @@
         },
         {
           "slot": "please-i-want-to-go-to-old-damascus",
-          "arabic": "لَوْ سَمَحْتَ، أَبِي أَرُوح الصَّنْعَاء الْقَدِيمَة.",
-          "transliteration": "law samaht, abi aroo7 es-san3aa el-2adeema.",
+          "arabic": "لَوْ سَمَحْتَ، أَشْتِي أَرُوح الصَّنْعَاء الْقَدِيمَة.",
+          "transliteration": "law samaht, ashti aroo7 es-san3aa el-2adeema.",
           "reply": {
             "arabic": "تَمَام، اِرْكَب.",
             "transliteration": "tamam, erkab.",
@@ -106,8 +106,8 @@
       "dialogue": [
         {
           "speaker": "راكب",
-          "arabic": "السَّلَام عَلَيْكُم، أَبِي أَرُوح حَيّ الْفِيفَاء.",
-          "transliteration": "as-salaam 3alaykum, abi aroo7 hay el-fiifa.",
+          "arabic": "السَّلَام عَلَيْكُم، أَشْتِي أَرُوح حَيّ الْفِيفَاء.",
+          "transliteration": "as-salaam 3alaykum, ashti aroo7 hay el-fiifa.",
           "english": "Peace be upon you, I want to go to Al-Fifaa neighborhood."
         },
         {
@@ -190,12 +190,12 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "لَوْ سَمَحْتَ، أَبِي أَرُوح الْمَطَار.",
-            "transliteration": "law samaht, abi aroo7 el-mataar.",
+            "arabic": "لَوْ سَمَحْتَ، أَشْتِي أَرُوح الْمَطَار.",
+            "transliteration": "law samaht, ashti aroo7 el-mataar.",
             "english": "Please, I want to go to the airport."
           },
           "response": {
-            "arabic": "تَمَام، بِس الطَّرِيق فِيهَا زِحْمَة الْحِين.",
+            "arabic": "تَمَام، بِس الطَّرِيق فِيهَا زِحْمَة ذَلْحِين.",
             "transliteration": "tamam, bass et-taree2 fiha zihma el-heen.",
             "english": "Okay, but the road has traffic right now."
           }
@@ -214,8 +214,8 @@
         },
         {
           "pair": {
-            "arabic": "كَم تَبِي عَلَى الْمِشْوَار كُلُّه؟",
-            "transliteration": "kam tabi 3ala el-mishwaar kulla?",
+            "arabic": "كَم تَشْتِي عَلَى الْمِشْوَار كُلُّه؟",
+            "transliteration": "kam tishti 3ala el-mishwaar kulla?",
             "english": "How much do you want for the whole ride?"
           },
           "response": {
@@ -231,8 +231,8 @@
             "english": "Can you stop at the pharmacy?"
           },
           "response": {
-            "arabic": "أَبِي، أُوقِف لَك قُدَّامْهَا مُبَاشِر.",
-            "transliteration": "abi, awqif lak giddamha mubashir.",
+            "arabic": "أَبْشِر، أُوقِف لَك قُدَّامْهَا مُبَاشِر.",
+            "transliteration": "abshir, awqif lak giddamha mubashir.",
             "english": "Of course, I'll stop right in front of it for you."
           }
         }
@@ -242,18 +242,17 @@
         {
           "id": "unit-05.lesson-01.reply.01",
           "type": "reply",
-          "prompt": "The driver asks: \"وَيْن تَبِي تَرُوح؟\" (Where do you want to go?) Tell him you want to go to Al-Fifaa neighborhood.",
-          "answer": "أبي أروح حي الفيفاء",
+          "prompt": "The driver asks: \"وَيْن تَشْتِي تَرُوح؟\" (Where do you want to go?) Tell him you want to go to Al-Fifaa neighborhood.",
+          "answer": "أشتي أروح حي الفيفاء",
           "accepted": [
-            "أبي أروح حي الفيفاء",
-            "أبا أروح حي الفيفاء",
+            "أشتي أروح حي الفيفاء",
             "رايح حي الفيفاء"
           ],
           "too_formal": {
             "item": "أريد الذهاب إلى حي الفيفاء",
             "feedback": "This is correct written Arabic, but far more formal than how a passenger actually asks in Yemen."
           },
-          "tip": "\"أبي روح...\" is the everyday Yemeni way to say where you want to go."
+          "tip": "\"أشتي روح...\" is the everyday Yemeni way to say where you want to go."
         },
         {
           "id": "unit-05.lesson-01.reply.02",
@@ -307,17 +306,16 @@
           "id": "unit-05.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Yemeni Arabic: \"I want to go to Old Sana'a.\"",
-          "answer": "أبي أروح الصنعاء القديمة",
+          "answer": "أشتي أروح الصنعاء القديمة",
           "accepted": [
-            "أبي أروح الصنعاء القديمة",
-            "أبا أروح الصنعاء القديمة",
+            "أشتي أروح الصنعاء القديمة",
             "رايح الصنعاء القديمة"
           ],
           "too_formal": {
             "item": "أريد الذهاب إلى صنعاء القديمة",
             "feedback": "Correct meaning, but this is written-style Arabic, not how it is said out loud in Yemen."
           },
-          "tip": "\"أبي\" plus a verb is the everyday Yemeni way to say what you want to do."
+          "tip": "\"أشتي\" plus a verb is the everyday Yemeni way to say what you want to do."
         },
         {
           "id": "unit-05.lesson-01.translate_to_arabic.02",
@@ -342,7 +340,7 @@
           "options": [
             "كم الأجرة هني؟",
             "وين الأجرة؟",
-            "شو اسم الأجرة؟",
+            "إيش اسم الأجرة؟",
             "كيف الأجرة؟"
           ],
           "answer": "كم الأجرة هني؟",
@@ -403,22 +401,21 @@
         {
           "id": "unit-05.lesson-01.reorder.02",
           "type": "reorder",
-          "prompt": "Put the pieces in a natural order: \"حي الفيفاء / أروح / أبي\".",
-          "answer": "أبي أروح حي الفيفاء",
+          "prompt": "Put the pieces in a natural order: \"حي الفيفاء / أروح / أشتي\".",
+          "answer": "أشتي أروح حي الفيفاء",
           "words": [
             "حي الفيفاء",
             "أروح",
-            "أبي"
+            "أشتي"
           ],
           "accepted": [
-            "أبي أروح حي الفيفاء",
-            "أبا أروح حي الفيفاء"
+            "أشتي أروح حي الفيفاء"
           ],
           "too_formal": {
             "item": "أريد أن أذهب إلى حي الفيفاء",
             "feedback": "Correct, but this formal order is not how people say it in spoken Yemeni Arabic."
           },
-          "tip": "In Yemeni, you say \"أبي\" (I want) directly followed by the verb."
+          "tip": "In Yemeni, you say \"أشتي\" (I want) directly followed by the verb."
         }
       ]
     },
@@ -483,8 +480,8 @@
         },
         {
           "slot": "thanks-a-lot",
-          "arabic": "شُكْرًا كْتِير.",
-          "transliteration": "shukran kteer."
+          "arabic": "شُكْرًا كَثِير.",
+          "transliteration": "shukran kathiir."
         }
       ],
       "dialogue": [
@@ -496,8 +493,8 @@
         },
         {
           "speaker": "محلي",
-          "arabic": "دَغْرِي قُدَّام، قَرِيبَة كْتِير.",
-          "transliteration": "daghri giddaam, 2areeba kteer.",
+          "arabic": "دَغْرِي قُدَّام، قَرِيبَة كَثِير.",
+          "transliteration": "daghri giddaam, 2areeba kathiir.",
           "english": "Straight ahead, very close."
         },
         {
@@ -512,8 +509,8 @@
         },
         {
           "speaker": "سائل",
-          "arabic": "وَبَعْد كِده وَيْن؟",
-          "transliteration": "w-ba3d kidha wayn?",
+          "arabic": "وَبَعْد كَذَا وَيْن؟",
+          "transliteration": "w-ba3d kadha wayn?",
           "english": "And after that, where?"
         },
         {
@@ -524,8 +521,8 @@
         },
         {
           "speaker": "سائل",
-          "arabic": "شُكْرًا كْتِير عَلَى مُسَاعَدَتَك.",
-          "transliteration": "shukran kteer 3ala musa3adatак.",
+          "arabic": "شُكْرًا كَثِير عَلَى مُسَاعَدَتَك.",
+          "transliteration": "shukran kathiir 3ala musa3adatак.",
           "english": "Thank you very much for your help."
         },
         {
@@ -550,8 +547,8 @@
         },
         {
           "pair": {
-            "arabic": "الْمَسْجِد الْجَامِع الْكَبِير بَعِيد كْتِير؟",
-            "transliteration": "el-masjid el-jame3 el-kbeer ba3id kteer?",
+            "arabic": "الْمَسْجِد الْجَامِع الْكَبِير بَعِيد كَثِير؟",
+            "transliteration": "el-masjid el-jame3 el-kbeer ba3id kathiir?",
             "english": "Is the Grand Mosque very far?"
           },
           "response": {
@@ -590,39 +587,38 @@
         {
           "id": "unit-05.lesson-02.reply.01",
           "type": "reply",
-          "prompt": "Someone asks you: \"وَيْن تَبِي تَرُوح؟\" (Where do you want to go?) Tell them you want to go to the pharmacy.",
-          "answer": "أبي أروح الصيدلية",
+          "prompt": "Someone asks you: \"وَيْن تَشْتِي تَرُوح؟\" (Where do you want to go?) Tell them you want to go to the pharmacy.",
+          "answer": "أشتي أروح الصيدلية",
           "accepted": [
-            "أبي أروح الصيدلية",
-            "أبا أروح الصيدلية",
+            "أشتي أروح الصيدلية",
             "رايح الصيدلية"
           ],
           "too_formal": {
             "item": "أريد أن أذهب إلى الصيدلية",
             "feedback": "This is more formal than everyday Yemeni speech."
           },
-          "tip": "Use \"أبي\" for \"I want\" in everyday conversation."
+          "tip": "Use \"أشتي\" for \"I want\" in everyday conversation."
         },
         {
           "id": "unit-05.lesson-02.reply.02",
           "type": "reply",
           "prompt": "A local gives you directions. Thank them appropriately.",
-          "answer": "شكراً كتير",
+          "answer": "شكراً كثير",
           "accepted": [
-            "شكراً كتير",
-            "شكرا كتير",
+            "شكراً كثير",
+            "شكرا كثير",
             "شكرا عالمساعدة"
           ],
           "too_formal": {
             "item": "أشكرك شكراً جزيلاً على مساعدتك",
             "feedback": "Too formal for a quick thank-you on the street."
           },
-          "tip": "\"شكراً كتير\" (thanks a lot) is the natural, everyday response."
+          "tip": "\"شكراً كثير\" (thanks a lot) is the natural, everyday response."
         },
         {
           "id": "unit-05.lesson-02.fill_blank.01",
           "type": "fill_blank",
-          "prompt": "Complete: \"_____ قُدَّام، قَرِيبَة كْتِير.\" English meaning: Straight ahead, very close.",
+          "prompt": "Complete: \"_____ قُدَّام، قَرِيبَة كَثِير.\" English meaning: Straight ahead, very close.",
           "answer": "دغري",
           "accepted": [
             "دغري",
@@ -711,7 +707,7 @@
           "prompt": "Which is the natural way to ask about distance in Yemeni?",
           "options": [
             "كم مسافة من هني؟",
-            "شو المسافة إلى هني؟",
+            "إيش المسافة إلى هني؟",
             "كيف تقيس المسافة؟",
             "أين تنتهي المسافة؟"
           ],
@@ -814,8 +810,8 @@
         },
         {
           "slot": "the-bus-is-very-crowded",
-          "arabic": "الْبَاص مَلْيَان كْتِير.",
-          "transliteration": "el-bass malyaan kteer."
+          "arabic": "الْبَاص مَلْيَان كَثِير.",
+          "transliteration": "el-bass malyaan kathiir."
         },
         {
           "slot": "what-s-the-bus-number-to-the-university",
@@ -915,8 +911,8 @@
         },
         {
           "pair": {
-            "arabic": "الْبَاص مَلْيَان كْتِير وَأَنَا تَعْبَان.",
-            "transliteration": "el-bass malyaan kteer w-ana ta3baan.",
+            "arabic": "الْبَاص مَلْيَان كَثِير وَأَنَا تَعْبَان.",
+            "transliteration": "el-bass malyaan kathiir w-ana ta3baan.",
             "english": "The bus is very crowded and I'm tired."
           },
           "response": {
@@ -956,17 +952,16 @@
           "id": "unit-05.lesson-03.reply.01",
           "type": "reply",
           "prompt": "The bus driver asks: \"وَيْن بِتْنُزِل؟\" (Where are you getting off?) Tell him you want to get off at the university.",
-          "answer": "أبي أنزل عند الجامعة",
+          "answer": "أشتي أنزل عند الجامعة",
           "accepted": [
-            "أبي أنزل عند الجامعة",
-            "أبا أنزل عند الجامعة",
+            "أشتي أنزل عند الجامعة",
             "نزلني عند الجامعة"
           ],
           "too_formal": {
             "item": "أريد أن أنزل عند الجامعة",
             "feedback": "Correct, but less natural than the simpler everyday way."
           },
-          "tip": "Use \"أبي أنزل\" for \"I want to get off\" in everyday Yemeni speech."
+          "tip": "Use \"أشتي أنزل\" for \"I want to get off\" in everyday Yemeni speech."
         },
         {
           "id": "unit-05.lesson-03.reply.02",
@@ -1245,8 +1240,8 @@
         },
         {
           "speaker": "محلي",
-          "arabic": "الْبَنْك عِنْد سَاحَة الْقَصْر، قَرِيب كْتِير.",
-          "transliteration": "el-bank 3ind saha el-2asr, 2areeb kteer.",
+          "arabic": "الْبَنْك عِنْد سَاحَة الْقَصْر، قَرِيب كَثِير.",
+          "transliteration": "el-bank 3ind saha el-2asr, 2areeb kathiir.",
           "english": "The bank is at Palace Square, very close."
         }
       ],
@@ -1503,8 +1498,8 @@
         },
         {
           "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "أَبِي أَرْوَح الْمَدِينَة الْقَدِيمَة",
-          "transliteration": "abi aro7 il-madiina il-qadiima"
+          "arabic": "أَشْتِي أَرْوَح الْمَدِينَة الْقَدِيمَة",
+          "transliteration": "ashti aro7 il-madiina il-qadiima"
         },
         {
           "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
@@ -1610,8 +1605,8 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "arabic": "إِي، تَمَام. شُكْراً كَتِير.",
-          "transliteration": "ee, tamaam. shukran ktiir.",
+          "arabic": "إِي، تَمَام. شُكْراً كَثِير.",
+          "transliteration": "ee, tamaam. shukran kathiir.",
           "english": "Yes, okay. Thank you very much."
         },
         {
@@ -1648,8 +1643,8 @@
         },
         {
           "pair": {
-            "arabic": "أَبِي أَرْوَح الْمَدِينَة الْقَدِيمَة.",
-            "transliteration": "abi aro7 il-madiina il-qadiima.",
+            "arabic": "أَشْتِي أَرْوَح الْمَدِينَة الْقَدِيمَة.",
+            "transliteration": "ashti aro7 il-madiina il-qadiima.",
             "english": "I want to go to the Old City."
           },
           "response": {
@@ -1677,18 +1672,18 @@
           "id": "unit-05.lesson-05.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want to go to the Old City.\"",
-          "answer": "أَبِي أَرْوَح الْمَدِينَة الْقَدِيمَة",
+          "answer": "أَشْتِي أَرْوَح الْمَدِينَة الْقَدِيمَة",
           "accepted": [
-            "أَبِي أَرْوَح الْمَدِينَة الْقَدِيمَة",
-            "أبي أروح المدينة القديمة",
-            "abi aro7 il-madiina il-qadiima",
-            "ابي اروح المدينة القديمة"
+            "أَشْتِي أَرْوَح الْمَدِينَة الْقَدِيمَة",
+            "أشتي أروح المدينة القديمة",
+            "ashti aro7 il-madiina il-qadiima",
+            "اشتي اروح المدينة القديمة"
           ],
           "too_formal": {
             "item": "أريد الذهاب إلى المدينة القديمة",
-            "feedback": "This is formal written Arabic; everyday Yemeni speech uses \"أبي أروح...\"."
+            "feedback": "This is formal written Arabic; everyday Yemeni speech uses \"أشتي أروح...\"."
           },
-          "tip": "\"أبي أروح\" is the everyday pattern for \"I want to go\"."
+          "tip": "\"أشتي أروح\" is the everyday pattern for \"I want to go\"."
         },
         {
           "id": "unit-05.lesson-05.choose.01",
@@ -1715,14 +1710,14 @@
         {
           "id": "unit-05.lesson-05.reply.01",
           "type": "reply",
-          "prompt": "A taxi driver asks \"وين تبي؟\" (Where do you want to go?). Say: to the station.",
+          "prompt": "A taxi driver asks \"وين تشتي؟\" (Where do you want to go?). Say: to the station.",
           "answer": "لِلْمَحَطَّة",
           "accepted": [
             "لِلْمَحَطَّة",
             "للمحطة",
             "lil-ma7atta",
             "المحطة",
-            "أبي المحطة"
+            "أشتي المحطة"
           ],
           "too_formal": {
             "item": "إلى المحطة من فضلك",
@@ -1842,7 +1837,7 @@
         {
           "id": "unit-05.lesson-05.fill_blank.02",
           "type": "fill_blank",
-          "prompt": "Complete: \"أَبِي أَرْوَح الْمَدِينَة _____.\" Meaning: I want to go to the Old City.",
+          "prompt": "Complete: \"أَشْتِي أَرْوَح الْمَدِينَة _____.\" Meaning: I want to go to the Old City.",
           "answer": "الْقَدِيمَة",
           "accepted": [
             "الْقَدِيمَة",
@@ -1895,7 +1890,7 @@
   ],
   "challenge": {
     "title": "أُخْتُ تَاكْسِي",
-    "instructions": "أَنْتَ سَائِح فِي الصَّنْعَاء وَتَرِيد تَأْجِير تَاكْسِي. تَكَلَّم مَعَ السَّوَّاق عَنِ الْجِهَة الَّتِي تَبِي تَرُوح، كَم الأَجْرَة، وَأَيْن تُرِيد يِنَزِّلَك. اِسْتَخْدِم عَلَى الْأَقَلّ: الْعَدَّاد، الْاتِّجَاه (يَمِين/شِمَال)، الْقِيْمَة، والشُّكْر.",
+    "instructions": "أَنْتَ سَائِح فِي الصَّنْعَاء وَتَرِيد تَأْجِير تَاكْسِي. تَكَلَّم مَعَ السَّوَّاق عَنِ الْجِهَة الَّتِي تَشْتِي تَرُوح، كَم الأَجْرَة، وَأَيْن تُرِيد يِنَزِّلَك. اِسْتَخْدِم عَلَى الْأَقَلّ: الْعَدَّاد، الْاتِّجَاه (يَمِين/شِمَال)، الْقِيْمَة، والشُّكْر.",
     "required_elements": [
       "كم الأجرة؟",
       "يمين أو شمال",
@@ -1906,8 +1901,8 @@
       "dialogue": [
         {
           "speaker": "سائح",
-          "arabic": "السَّلَام عَلَيْكُم، أَبِي أَرُوح الْسُّوق الْقَدِيم.",
-          "transliteration": "as-salaamu 3alaykum, abi aroo7 es-soo2 el-2adeem.",
+          "arabic": "السَّلَام عَلَيْكُم، أَشْتِي أَرُوح الْسُّوق الْقَدِيم.",
+          "transliteration": "as-salaamu 3alaykum, ashti aroo7 es-soo2 el-2adeem.",
           "english": "Peace be upon you, I want to go to the old market."
         },
         {

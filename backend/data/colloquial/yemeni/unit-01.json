@@ -15,7 +15,8 @@
     "3a": "عَ",
     "3e": "عِ",
     "3o": "عُ",
-    "dh": "ذ"
+    "dh": "ذ",
+    "th": "ث"
   },
   "lessons": [
     {
@@ -58,13 +59,13 @@
         },
         {
           "slot": "what-s-your-name-to-a-man",
-          "arabic": "شْنُو إِسْمَكَ؟",
-          "transliteration": "shnoo ismak?"
+          "arabic": "إِيش إِسْمَكَ؟",
+          "transliteration": "eesh ismak?"
         },
         {
           "slot": "what-s-your-name-to-a-woman",
-          "arabic": "شْنُو إِسْمِك؟",
-          "transliteration": "shnoo ismik?"
+          "arabic": "إِيش إِسْمِك؟",
+          "transliteration": "eesh ismik?"
         },
         {
           "slot": "my-name-is-rami",
@@ -174,8 +175,8 @@
         },
         {
           "pair": {
-            "arabic": "شْنُو إِسْمَكَ؟",
-            "transliteration": "shnoo ismak?",
+            "arabic": "إِيش إِسْمَكَ؟",
+            "transliteration": "eesh ismak?",
             "english": "What's your name?"
           },
           "response": {
@@ -263,17 +264,17 @@
           "id": "unit-01.lesson-01.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate into Yemeni Arabic: \"What's your name?\" when speaking to a man.",
-          "answer": "شْنُو إِسْمَكَ؟",
+          "answer": "إِيش إِسْمَكَ؟",
           "accepted": [
-            "شْنُو إِسْمَكَ؟",
-            "شنو اسمك؟",
-            "إِسْمَكَ شْنُو؟"
+            "إِيش إِسْمَكَ؟",
+            "إيش اسمك؟",
+            "إِسْمَكَ إِيش؟"
           ],
           "too_formal": {
             "item": "مَا اسْمُكَ؟",
-            "feedback": "This is more formal. Yemeni speech uses \"شْنُو\" for \"what\" in everyday conversation."
+            "feedback": "This is more formal. Yemeni speech uses \"إِيش\" for \"what\" in everyday conversation."
           },
-          "tip": "\"شْنُو\" is the common Yemeni word for \"what\"; it comes first in the question."
+          "tip": "\"إِيش\" is the common Yemeni word for \"what\"; it comes first in the question."
         },
         {
           "id": "unit-01.lesson-01.choose.01",
@@ -282,7 +283,7 @@
           "options": [
             "مِنْ وَيْن أَنْتَ؟",
             "مِنْ وَيْن أَنْتِ؟",
-            "شْنُو إِسْمِك؟",
+            "إِيش إِسْمِك؟",
             "كَيْفِك؟"
           ],
           "answer": "مِنْ وَيْن أَنْتِ؟",
@@ -332,18 +333,18 @@
         {
           "id": "unit-01.lesson-01.reorder.01",
           "type": "reorder",
-          "prompt": "Put these words in a natural order: \"إِسْمَكَ / شْنُو\".",
-          "answer": "شْنُو إِسْمَكَ؟",
+          "prompt": "Put these words in a natural order: \"إِسْمَكَ / إِيش\".",
+          "answer": "إِيش إِسْمَكَ؟",
           "accepted": [
-            "شْنُو إِسْمَكَ؟",
-            "شنو اسمك؟",
-            "إِسْمَكَ شْنُو؟"
+            "إِيش إِسْمَكَ؟",
+            "إيش اسمك؟",
+            "إِسْمَكَ إِيش؟"
           ],
           "too_formal": {
             "item": "مَا اسْمُكَ؟",
-            "feedback": "This is more formal than the conversational Yemeni pattern with \"شْنُو\"."
+            "feedback": "This is more formal than the conversational Yemeni pattern with \"إِيش\"."
           },
-          "tip": "Question word first is very natural here: \"شْنُو + إِسْمَكَ؟\""
+          "tip": "Question word first is very natural here: \"إِيش + إِسْمَكَ؟\""
         },
         {
           "id": "unit-01.lesson-01.translate_to_arabic.03",
@@ -452,8 +453,8 @@
         },
         {
           "slot": "thank-you-very-much",
-          "arabic": "شُكْرًا كَتِير",
-          "transliteration": "shukran ktiir"
+          "arabic": "شُكْرًا كَثِير",
+          "transliteration": "shukran kathiir"
         },
         {
           "slot": "you-re-welcome-excuse-me",
@@ -472,8 +473,8 @@
         },
         {
           "slot": "i-want-some-water",
-          "arabic": "بِدِّي مَيّ",
-          "transliteration": "biddi mayy"
+          "arabic": "أَشْتِي مَاي",
+          "transliteration": "ashti maay"
         },
         {
           "slot": "is-it-possible-can-i",
@@ -500,14 +501,14 @@
         },
         {
           "speaker": "Maya",
-          "arabic": "إِي، أَكِيد. شْنُو بِدَّكَ؟",
-          "transliteration": "ee, akeed. shnoo bidak?",
+          "arabic": "إِي، أَكِيد. إِيش تَشْتِي؟",
+          "transliteration": "ee, akeed. eesh tishti?",
           "english": "Yes, of course. What do you need?"
         },
         {
           "speaker": "Tareq",
-          "arabic": "بِدِّي مَيّ، لَوْ سَمَحْتِ.",
-          "transliteration": "biddi mayy, law samahti.",
+          "arabic": "أَشْتِي مَاي، لَوْ سَمَحْتِ.",
+          "transliteration": "ashti maay, law samahti.",
           "english": "I'd like some water, please."
         },
         {
@@ -574,8 +575,8 @@
         },
         {
           "pair": {
-            "arabic": "بِدِّي مَيّ، لَوْ سَمَحْتَ.",
-            "transliteration": "biddi mayy, law samaht.",
+            "arabic": "أَشْتِي مَاي، لَوْ سَمَحْتَ.",
+            "transliteration": "ashti maay, law samaht.",
             "english": "I'd like some water, please."
           },
           "response": {
@@ -586,8 +587,8 @@
         },
         {
           "pair": {
-            "arabic": "شُكْرًا كَتِير.",
-            "transliteration": "shukran ktiir.",
+            "arabic": "شُكْرًا كَثِير.",
+            "transliteration": "shukran kathiir.",
             "english": "Thank you very much."
           },
           "response": {
@@ -631,17 +632,17 @@
           "id": "unit-01.lesson-02.translate_to_arabic.01",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Thank you very much.\"",
-          "answer": "شُكْرًا كَتِير",
+          "answer": "شُكْرًا كَثِير",
           "accepted": [
-            "شُكْرًا كَتِير",
-            "شكرا كتير",
-            "كَتِير شُكْرًا"
+            "شُكْرًا كَثِير",
+            "شكرا كثير",
+            "كَثِير شُكْرًا"
           ],
           "too_formal": {
             "item": "أَشْكُرُكَ جَزِيلَ الشُّكْرِ",
-            "feedback": "This is formal written Arabic. \"شُكْرًا كَتِير\" is the natural conversational phrase."
+            "feedback": "This is formal written Arabic. \"شُكْرًا كَثِير\" is the natural conversational phrase."
           },
-          "tip": "\"كَتِير\" can intensify thanks, praise, and many other everyday expressions."
+          "tip": "\"كَثِير\" can intensify thanks, praise, and many other everyday expressions."
         },
         {
           "id": "unit-01.lesson-02.fill_blank.01",
@@ -701,17 +702,17 @@
           "id": "unit-01.lesson-02.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"I want some water.\"",
-          "answer": "بِدِّي مَيّ",
+          "answer": "أَشْتِي مَاي",
           "accepted": [
-            "بِدِّي مَيّ",
-            "بدي ماي",
-            "أَنَا بِدِّي مَيّ"
+            "أَشْتِي مَاي",
+            "أشتي ماي",
+            "أَنَا أَشْتِي مَاي"
           ],
           "too_formal": {
             "item": "أُرِيدُ بَعْضَ الْمَاءِ",
-            "feedback": "This is formal Arabic. Yemeni speech normally uses \"بِدِّي\" for \"I want\"."
+            "feedback": "This is formal Arabic. Yemeni speech normally uses \"أَشْتِي\" for \"I want\"."
           },
-          "tip": "\"بِدِّي\" is one of the core spoken patterns for wants and requests."
+          "tip": "\"أَشْتِي\" is one of the core spoken patterns for wants and requests."
         },
         {
           "id": "unit-01.lesson-02.choose.02",
@@ -887,8 +888,8 @@
         },
         {
           "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "بِشُوفَكَ بُكْرَة",
-          "transliteration": "bishoofak bukra"
+          "arabic": "شَاشُوفَكَ بُكْرَة",
+          "transliteration": "shaashoofak bukra"
         }
       ],
       "dialogue": [
@@ -952,8 +953,8 @@
         },
         {
           "speaker": "Nour",
-          "arabic": "تَمَام، بِشُوفَكَ بُكْرَة.",
-          "transliteration": "tamaam, bishoofak bukra.",
+          "arabic": "تَمَام، شَاشُوفَكَ بُكْرَة.",
+          "transliteration": "tamaam, shaashoofak bukra.",
           "english": "Great, see you tomorrow."
         },
         {
@@ -1159,17 +1160,17 @@
           "id": "unit-01.lesson-03.translate_to_arabic.04",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"See you tomorrow.\" when speaking to a man.",
-          "answer": "بِشُوفَكَ بُكْرَة",
+          "answer": "شَاشُوفَكَ بُكْرَة",
           "accepted": [
-            "بِشُوفَكَ بُكْرَة",
+            "شَاشُوفَكَ بُكْرَة",
             "نِشُوفَكَ بُكْرَة",
-            "بشوفك بكرة"
+            "شاشوفك بكرة"
           ],
           "too_formal": {
             "item": "سَأَرَاكَ غَدًا",
-            "feedback": "This is formal Arabic. The everyday Yemeni form uses \"بِشُوفَكَ\" or \"نِشُوفَكَ\"."
+            "feedback": "This is formal Arabic. The everyday Yemeni form uses \"شَاشُوفَكَ\" or \"نِشُوفَكَ\"."
           },
-          "tip": "\"بِشُوفَكَ\" is a useful spoken phrase for saying that you will see someone."
+          "tip": "\"شَاشُوفَكَ\" is a useful spoken phrase for saying that you will see someone."
         },
         {
           "id": "unit-01.lesson-03.fill_blank.02",
@@ -1338,8 +1339,8 @@
         },
         {
           "speaker": "Dima",
-          "arabic": "إِي، وَبَعْدِين بِتِشُوفُهُ عَلَى شِمَالَك.",
-          "transliteration": "ee, w ba3dain bitshoofu 3ala shimalik.",
+          "arabic": "إِي، وَبَعْدِين عَتِشُوفُهُ عَلَى شِمَالَك.",
+          "transliteration": "ee, w ba3dain 3atishoofu 3ala shimalik.",
           "english": "Yes, then you'll see it on the left."
         },
         {
@@ -1348,8 +1349,8 @@
         },
         {
           "speaker": "Dima",
-          "arabic": "لَا، قَرِيب كَتِير.",
-          "transliteration": "la, qarib ktiir.",
+          "arabic": "لَا، قَرِيب كَثِير.",
+          "transliteration": "la, qarib kathiir.",
           "english": "No, very close."
         },
         {
@@ -1385,8 +1386,8 @@
             "english": "Is it far?"
           },
           "response": {
-            "arabic": "لَا، قَرِيب كَتِير.",
-            "transliteration": "la, qarib ktiir.",
+            "arabic": "لَا، قَرِيب كَثِير.",
+            "transliteration": "la, qarib kathiir.",
             "english": "No, very close."
           }
         },
@@ -1491,17 +1492,17 @@
           "id": "unit-01.lesson-04.reply.01",
           "type": "reply",
           "prompt": "Someone asks whether the market is far. Tell them it is very close.",
-          "answer": "لَا، قَرِيب كَتِير",
+          "answer": "لَا، قَرِيب كَثِير",
           "accepted": [
-            "لَا، قَرِيب كَتِير",
+            "لَا، قَرِيب كَثِير",
             "لَا، قَرِيب",
-            "قَرِيب كَتِير"
+            "قَرِيب كَثِير"
           ],
           "too_formal": {
             "item": "كَلَّا، إِنَّهُ قَرِيبٌ جِدًّا",
             "feedback": "This uses formal vocabulary and structure; the everyday reply is much shorter."
           },
-          "tip": "\"كَتِير\" often follows an adjective to make it stronger: \"قَرِيب كَتِير\"."
+          "tip": "\"كَثِير\" often follows an adjective to make it stronger: \"قَرِيب كَثِير\"."
         },
         {
           "id": "unit-01.lesson-04.translate_to_arabic.03",
@@ -2078,8 +2079,8 @@
         },
         {
           "slot": "where-do-you-live-to-a-man",
-          "arabic": "فين تسكن؟",
-          "transliteration": "feen tiskun?"
+          "arabic": "وين تسكن؟",
+          "transliteration": "ween tiskun?"
         },
         {
           "slot": "i-live-in-amman",
@@ -2128,8 +2129,8 @@
         },
         {
           "speaker": "Omar",
-          "arabic": "وأنت من فين؟",
-          "transliteration": "w ant min feen?",
+          "arabic": "وأنت من وين؟",
+          "transliteration": "w ant min ween?",
           "english": "And where are you from?"
         },
         {
@@ -2167,8 +2168,8 @@
         },
         {
           "speaker": "Khaled",
-          "arabic": "وفين تسكن في دمشق؟",
-          "transliteration": "w feen tiskun fi dimashq?",
+          "arabic": "ووين تسكن في دمشق؟",
+          "transliteration": "w ween tiskun fi dimashq?",
           "english": "And where do you live in Damascus?"
         },
         {
@@ -2205,8 +2206,8 @@
         },
         {
           "pair": {
-            "arabic": "فين تسكن؟",
-            "transliteration": "feen tiskun?",
+            "arabic": "وين تسكن؟",
+            "transliteration": "ween tiskun?",
             "english": "Where do you live? (to a man)"
           },
           "response": {
@@ -2325,8 +2326,9 @@
           "id": "unit-01.lesson-06.translate_to_arabic.02",
           "type": "translate_to_arabic",
           "prompt": "Translate: \"Where do you live?\" (to a man)",
-          "answer": "فين تسكن؟",
+          "answer": "وين تسكن؟",
           "accepted": [
+            "وين تسكن؟",
             "فين تسكن؟",
             "فين تسكن",
             "فين ساكن؟",
@@ -2337,7 +2339,7 @@
             "item": "أين تقيم؟",
             "feedback": "\"تقيم\" is formal; say \"تسكن\"."
           },
-          "tip": "To a woman: \"فين تسكني؟\"."
+          "tip": "To a woman: \"وين تسكني؟\"."
         },
         {
           "id": "unit-01.lesson-06.translate_to_arabic.03",
@@ -2383,7 +2385,7 @@
             "حيّا بك في مدينتنا",
             "هذي أول زيارة لك؟",
             "أنا هانا في زيارة",
-            "فين تسكن؟"
+            "وين تسكن؟"
           ],
           "accepted": [
             "حيّا بك في مدينتنا",
@@ -2449,8 +2451,8 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "أَهْلًا، تَمَام الْحَمْدُ لِلَّهِ. شْنُو إِسْمَكَ؟",
-          "transliteration": "ahlan, tamaam il-7amdella. shnoo ismak?",
+          "arabic": "أَهْلًا، تَمَام الْحَمْدُ لِلَّهِ. إِيش إِسْمَكَ؟",
+          "transliteration": "ahlan, tamaam il-7amdella. eesh ismak?",
           "english": "Hi, I'm fine, thank God. What's your name?"
         },
         {
@@ -2485,8 +2487,8 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "إِي، أَكِيد. شْنُو بِدَّكَ؟",
-          "transliteration": "ee, akeed. shnoo bidak?",
+          "arabic": "إِي، أَكِيد. إِيش تَشْتِي؟",
+          "transliteration": "ee, akeed. eesh tishti?",
           "english": "Yes, of course. What do you need?"
         },
         {
@@ -2509,8 +2511,8 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "لَا، قَرِيب كَتِير. الِسَّاعَة كَمْ الْآن؟",
-          "transliteration": "la, qarib ktiir. is-sa3a kam il-aan?",
+          "arabic": "لَا، قَرِيب كَثِير. الِسَّاعَة كَمْ الْآن؟",
+          "transliteration": "la, qarib kathiir. is-sa3a kam il-aan?",
           "english": "No, it's very close. What time is it now?"
         },
         {
@@ -2521,14 +2523,14 @@
         },
         {
           "speaker": "Lina",
-          "arabic": "تَمَام. بِشُوفَكَ بُكْرَة إِنْ شَاءَ اللَّه.",
-          "transliteration": "tamaam. bishoofak bukra in sha2a allah.",
+          "arabic": "تَمَام. شَاشُوفَكَ بُكْرَة إِنْ شَاءَ اللَّه.",
+          "transliteration": "tamaam. shaashoofak bukra in sha2a allah.",
           "english": "Good. See you tomorrow, God willing."
         },
         {
           "speaker": "Samer",
-          "arabic": "شُكْرًا كَتِير.",
-          "transliteration": "shukran ktiir.",
+          "arabic": "شُكْرًا كَثِير.",
+          "transliteration": "shukran kathiir.",
           "english": "Thank you very much."
         },
         {

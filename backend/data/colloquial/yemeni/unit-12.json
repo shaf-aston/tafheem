@@ -28,15 +28,15 @@
           "arabic": "آلُّو؟",
           "transliteration": "aaloo?",
           "reply": {
-            "arabic": "آلُّو، شْنُو اسْمَك؟",
-            "transliteration": "aaloo, shnoo ismak?",
+            "arabic": "آلُّو، إِيش اسْمَك؟",
+            "transliteration": "aaloo, eesh ismak?",
             "english": "Hello, who's calling?"
           }
         },
         {
           "slot": "hi-who-s-this",
-          "arabic": "آلُّو، شْنُو فِيك؟",
-          "transliteration": "aaloo, shnoo fiik?"
+          "arabic": "آلُّو، إِيش فِيك؟",
+          "transliteration": "aaloo, eesh fiik?"
         },
         {
           "slot": "this-is-samer-speaking",
@@ -50,8 +50,8 @@
         },
         {
           "slot": "what-s-new",
-          "arabic": "شْنُو أَخْبَارَك؟",
-          "transliteration": "shnoo akhbarak?",
+          "arabic": "إِيش أَخْبَارَك؟",
+          "transliteration": "eesh akhbarak?",
           "reply": {
             "arabic": "الْحَمْدُ لِلَّهِ بِخَيْر",
             "transliteration": "il-7amdella bi-khair",
@@ -112,8 +112,8 @@
         },
         {
           "speaker": "سامر",
-          "arabic": "آلُّو لِينَة، شْنُو أَخْبَارِك؟",
-          "transliteration": "aaloo Leena, shnoo akhbarik?",
+          "arabic": "آلُّو لِينَة، إِيش أَخْبَارِك؟",
+          "transliteration": "aaloo Leena, eesh akhbarik?",
           "english": "Hi Lina, what's new?"
         },
         {
@@ -130,8 +130,8 @@
         },
         {
           "speaker": "ليينة",
-          "arabic": "وَلاَ يِهِمَّك. أَبْغِي أحَكِي مَعَك عَنِ الْمَوْعِد",
-          "transliteration": "wala yihimmak. abgha a7aki ma3ak 3an il-maw3id",
+          "arabic": "وَلاَ يِهِمَّك. أَشْتِي أحَكِي مَعَك عَنِ الْمَوْعِد",
+          "transliteration": "wala yihimmak. ashti a7aki ma3ak 3an il-maw3id",
           "english": "Don't worry about it. I want to talk to you about the appointment."
         },
         {
@@ -168,8 +168,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "آلُّو، شْنُو فِيك؟",
-            "transliteration": "aaloo, shnoo fiik?",
+            "arabic": "آلُّو، إِيش فِيك؟",
+            "transliteration": "aaloo, eesh fiik?",
             "english": "Hello, who's this?"
           },
           "response": {
@@ -180,8 +180,8 @@
         },
         {
           "pair": {
-            "arabic": "شْنُو أَخْبَارَك؟",
-            "transliteration": "shnoo akhbarak?",
+            "arabic": "إِيش أَخْبَارَك؟",
+            "transliteration": "eesh akhbarak?",
             "english": "What's new?"
           },
           "response": {
@@ -215,28 +215,28 @@
           }
         }
       ],
-      "culture": "In Yemen, a call usually opens with \"آلو\" and the caller introduces themselves. Quick greetings like \"شنو أخبارك\" are common before explaining the reason for the call. Ending with a quick goodbye and \"الله يحفظك\" is polite and keeps the call brief.",
+      "culture": "In Yemen, a call usually opens with \"آلو\" and the caller introduces themselves. Quick greetings like \"إيش أخبارك\" are common before explaining the reason for the call. Ending with a quick goodbye and \"الله يحفظك\" is polite and keeps the call brief.",
       "exercises": [
         {
           "id": "unit-12.lesson-01.reply.01",
           "type": "reply",
           "prompt": "You pick up the phone and hear: \"آلُّو؟\". Answer naturally, asking who is calling.",
-          "answer": "آلُّو، شْنُو فِيك؟",
+          "answer": "آلُّو، إِيش فِيك؟",
           "accepted": [
-            "آلُّو، شْنُو فِيك؟",
-            "شنو فيك؟",
-            "آلو، شنو اسمك؟"
+            "آلُّو، إِيش فِيك؟",
+            "إيش فيك؟",
+            "آلو، إيش اسمك؟"
           ],
           "too_formal": {
             "item": "السلام عليكم، من فضلك من المتصل؟",
             "feedback": "This is correct Arabic, but far more formal than the ordinary way of answering the phone."
           },
-          "tip": "\"شنو فيك\" is the everyday Yemeni way to ask who is calling."
+          "tip": "\"إيش فيك\" is the everyday Yemeni way to ask who is calling."
         },
         {
           "id": "unit-12.lesson-01.reply.02",
           "type": "reply",
-          "prompt": "A friend asks you on the phone: \"شْنُو أَخْبَارَك؟\". Say that everything is fine, thank God.",
+          "prompt": "A friend asks you on the phone: \"إِيش أَخْبَارَك؟\". Say that everything is fine, thank God.",
           "answer": "الْحَمْدُ لِلَّهِ بِخَيْر",
           "accepted": [
             "الْحَمْدُ لِلَّهِ بِخَيْر",
@@ -344,7 +344,7 @@
           ],
           "options": [
             "آلُّو؟",
-            "شْنُو أَخْبَارَك؟",
+            "إِيش أَخْبَارَك؟",
             "بِسْتَنّاك",
             "الله يحفظك"
           ],
@@ -439,8 +439,8 @@
         },
         {
           "slot": "what-do-you-think-shall-we-go-together",
-          "arabic": "شْنُو رَأيْك نْرُوح سِوَا؟",
-          "transliteration": "shnoo ra2yak nruu7 siwa?",
+          "arabic": "إِيش رَأيْك نْرُوح سِوَا؟",
+          "transliteration": "eesh ra2yak nruu7 siwa?",
           "reply": {
             "arabic": "حَاضِر، خُذْنِي وِيّاكَ",
             "transliteration": "hadir, khudni wayyak",
@@ -473,8 +473,8 @@
         },
         {
           "speaker": "ليينة",
-          "arabic": "شْنُو رَأيْك نِلْتَقِي فِي الْمَقْهَى عِنْد الْبَازَار؟",
-          "transliteration": "shnoo ra2yak niltagi fi l-magha 3ind il-bazaar?",
+          "arabic": "إِيش رَأيْك نِلْتَقِي فِي الْمَقْهَى عِنْد الْبَازَار؟",
+          "transliteration": "eesh ra2yak niltagi fi l-magha 3ind il-bazaar?",
           "english": "What do you think, shall we meet at the cafe near the market?"
         },
         {
@@ -568,8 +568,8 @@
         },
         {
           "pair": {
-            "arabic": "شْنُو رَأيْك نْرُوح سِوَا؟",
-            "transliteration": "shnoo ra2yak nruu7 siwa?",
+            "arabic": "إِيش رَأيْك نْرُوح سِوَا؟",
+            "transliteration": "eesh ra2yak nruu7 siwa?",
             "english": "What do you think, shall we go together?"
           },
           "response": {
@@ -708,7 +708,7 @@
           "options": [
             "نِلْتَقِي فِي الْمَقْهَى",
             "أِشُوفَك هُنِيهْ",
-            "شْنُو رَأيْك نْرُوح سِوَا؟",
+            "إِيش رَأيْك نْرُوح سِوَا؟",
             "أَنَا أَعْرِف الْمَكَان زَيِّن"
           ],
           "too_formal": {
@@ -752,8 +752,8 @@
       "phrases": [
         {
           "slot": "i-want-to-change-the-appointment",
-          "arabic": "أَبْغِي أِغَيِّر الْمَوْعِد",
-          "transliteration": "abgha aghayir il-maw3id"
+          "arabic": "أَشْتِي أِغَيِّر الْمَوْعِد",
+          "transliteration": "ashti aghayir il-maw3id"
         },
         {
           "slot": "i-can-t-come-today",
@@ -777,8 +777,8 @@
         },
         {
           "slot": "i-d-like-us-to-meet-another-day",
-          "arabic": "أَبْغِي نِلْتَقِي يَوْم ثَانِي",
-          "transliteration": "abgha niltagi yoom thani"
+          "arabic": "أَشْتِي نِلْتَقِي يَوْم ثَانِي",
+          "transliteration": "ashti niltagi yoom thani"
         },
         {
           "slot": "let-s-find-a-day-that-suits-us-both",
@@ -797,8 +797,8 @@
         },
         {
           "slot": "is-the-place-still-the-same-place",
-          "arabic": "الْمَكَان الْحَيْن نِفْسُ الْمَكَان؟",
-          "transliteration": "il-makaan il-7iin nafs il-makaan?"
+          "arabic": "الْمَكَان ذَلْحِين نِفْسُ الْمَكَان؟",
+          "transliteration": "il-makaan dhal7een nafs il-makaan?"
         },
         {
           "slot": "can-we-cancel-the-appointment",
@@ -819,14 +819,14 @@
       "dialogue": [
         {
           "speaker": "ليينة",
-          "arabic": "آلُّو سامر، أَبْغِي أِغَيِّر الْمَوْعِد",
-          "transliteration": "aaloo Saamer, abgha aghayir il-maw3id",
+          "arabic": "آلُّو سامر، أَشْتِي أِغَيِّر الْمَوْعِد",
+          "transliteration": "aaloo Saamer, ashti aghayir il-maw3id",
           "english": "Hello Samer, I want to change the appointment."
         },
         {
           "speaker": "سامر",
-          "arabic": "شْنُو صَارَ؟ فِيهْ مِشْكِلَة؟",
-          "transliteration": "shnoo saara? feeh mishkla?",
+          "arabic": "إِيش صَارَ؟ فِيهْ مِشْكِلَة؟",
+          "transliteration": "eesh saara? feeh mishkla?",
           "english": "What happened? Is something wrong?"
         },
         {
@@ -861,8 +861,8 @@
         },
         {
           "speaker": "سامر",
-          "arabic": "وَلاَ يِهِمَّك، هَيِّك بِصِير. الْمَكَان الْحَيْن نِفْسُ الْمَكَان؟",
-          "transliteration": "wala yihimmak, hayik bisiir. il-makaan il-7iin nafs il-makaan?",
+          "arabic": "وَلاَ يِهِمَّك، كَذَا بِصِير. الْمَكَان ذَلْحِين نِفْسُ الْمَكَان؟",
+          "transliteration": "wala yihimmak, kadha bisiir. il-makaan dhal7een nafs il-makaan?",
           "english": "Don't worry, it happens. Is the place still the same place?"
         },
         {
@@ -887,8 +887,8 @@
       "de_book": [
         {
           "pair": {
-            "arabic": "أَبْغِي أِغَيِّر الْمَوْعِد",
-            "transliteration": "abgha aghayir il-maw3id",
+            "arabic": "أَشْتِي أِغَيِّر الْمَوْعِد",
+            "transliteration": "ashti aghayir il-maw3id",
             "english": "I want to change the appointment."
           },
           "response": {
@@ -923,8 +923,8 @@
         },
         {
           "pair": {
-            "arabic": "الْمَكَان الْحَيْن نِفْسُ الْمَكَان؟",
-            "transliteration": "il-makaan il-7iin nafs il-makaan?",
+            "arabic": "الْمَكَان ذَلْحِين نِفْسُ الْمَكَان؟",
+            "transliteration": "il-makaan dhal7een nafs il-makaan?",
             "english": "Is the place still the same place?"
           },
           "response": {
@@ -1032,22 +1032,22 @@
           "id": "unit-12.lesson-03.choose.01",
           "type": "choose",
           "prompt": "Which sentence means \"Is the place still the same place?\"",
-          "answer": "الْمَكَان الْحَيْن نِفْسُ الْمَكَان؟",
+          "answer": "الْمَكَان ذَلْحِين نِفْسُ الْمَكَان؟",
           "accepted": [
-            "الْمَكَان الْحَيْن نِفْسُ الْمَكَان؟",
-            "المكان الحين نفس المكان؟"
+            "الْمَكَان ذَلْحِين نِفْسُ الْمَكَان؟",
+            "المكان ذلحين نفس المكان؟"
           ],
           "options": [
-            "الْمَكَان الْحَيْن نِفْسُ الْمَكَان؟",
-            "أَبْغِي أِغَيِّر الْمَوْعِد",
+            "الْمَكَان ذَلْحِين نِفْسُ الْمَكَان؟",
+            "أَشْتِي أِغَيِّر الْمَوْعِد",
             "طَرَا عَلَيّ شِي",
-            "أَبْغِي نِلْتَقِي يَوْم ثَانِي"
+            "أَشْتِي نِلْتَقِي يَوْم ثَانِي"
           ],
           "too_formal": {
             "item": "هل ما زال المكان نفسه؟",
             "feedback": "Correct meaning, but more formal phrasing than the spoken question."
           },
-          "tip": "\"الحين\" means \"now\" in Yemeni speech."
+          "tip": "\"ذلحين\" means \"now\" in Yemeni speech."
         },
         {
           "id": "unit-12.lesson-03.choose.02",
@@ -1062,7 +1062,7 @@
             "آسِف عَالتَّغْيِير الْمُفاجِي",
             "لاَ تِتَأخَّر عَلَيّ",
             "أِشُوفَك هُنِيهْ",
-            "شْنُو أَخْبَارَك؟"
+            "إِيش أَخْبَارَك؟"
           ],
           "too_formal": {
             "item": "أعتذر منكم عن هذا التغيير الطارئ",
@@ -1110,8 +1110,8 @@
         },
         {
           "slot": "no-he-s-not-here-right-now",
-          "arabic": "لاَ، مِش هُنِيهْ الْحَيْن",
-          "transliteration": "la, mish hunih il-7iin"
+          "arabic": "لاَ، مِش هُنِيهْ ذَلْحِين",
+          "transliteration": "la, mish hunih dhal7een"
         },
         {
           "slot": "when-will-he-be-back",
@@ -1128,8 +1128,8 @@
           "arabic": "اقْدِرِي تِوَصِّلِي لَهُ رِسَالَة؟",
           "transliteration": "agdari tiwassili lahu risaala?",
           "reply": {
-            "arabic": "أَيْوَه، شْنُو الرِّسَالَة؟",
-            "transliteration": "aywah, shnoo ir-risaala?",
+            "arabic": "أَيْوَه، إِيش الرِّسَالَة؟",
+            "transliteration": "aywah, eesh ir-risaala?",
             "english": "Sure, what's the message?"
           },
           "english": "Can you pass him a message? (to a woman)"
@@ -1161,8 +1161,8 @@
         },
         {
           "slot": "thanks-a-lot",
-          "arabic": "شُكْرًا كِتِير",
-          "transliteration": "shukran kthiir",
+          "arabic": "شُكْرًا كَثِير",
+          "transliteration": "shukran katheer",
           "reply": {
             "arabic": "الله يُحْفِظَك",
             "transliteration": "allah yuhfithak",
@@ -1187,8 +1187,8 @@
         },
         {
           "speaker": "ليينة",
-          "arabic": "لاَ، مِش هُنِيهْ الْحَيْن، طَلَع عِند الْبَازَار",
-          "transliteration": "la, mish hunih il-7iin, tala3 3ind il-bazaar",
+          "arabic": "لاَ، مِش هُنِيهْ ذَلْحِين، طَلَع عِند الْبَازَار",
+          "transliteration": "la, mish hunih dhal7een, tala3 3ind il-bazaar",
           "english": "No, he's not here right now, he went to the market."
         },
         {
@@ -1240,8 +1240,8 @@
         },
         {
           "speaker": "رامي",
-          "arabic": "تَفَضَّل، شُكْرًا كِتِير عِلى الْمَعْرُوف",
-          "transliteration": "tfaddal, shukran kthiir 3ala l-ma3ruf",
+          "arabic": "تَفَضَّل، شُكْرًا كَثِير عِلى الْمَعْرُوف",
+          "transliteration": "tfaddal, shukran katheer 3ala l-ma3ruf",
           "english": "Here you go, thanks a lot for the favor."
         },
         {
@@ -1259,8 +1259,8 @@
             "english": "Hello, is Samer there?"
           },
           "response": {
-            "arabic": "لاَ، مِش هُنِيهْ الْحَيْن",
-            "transliteration": "la, mish hunih il-7iin",
+            "arabic": "لاَ، مِش هُنِيهْ ذَلْحِين",
+            "transliteration": "la, mish hunih dhal7een",
             "english": "No, he's not here right now."
           }
         },
@@ -1283,8 +1283,8 @@
             "english": "Can you take a message for me?"
           },
           "response": {
-            "arabic": "أَيْوَه، شْنُو الرِّسَالَة؟",
-            "transliteration": "aywah, shnoo ir-risaala?",
+            "arabic": "أَيْوَه، إِيش الرِّسَالَة؟",
+            "transliteration": "aywah, eesh ir-risaala?",
             "english": "Sure, what's the message?"
           }
         },
@@ -1307,17 +1307,17 @@
           "id": "unit-12.lesson-04.reply.01",
           "type": "reply",
           "prompt": "Someone calling asks: \"سَامِر مَوْجُود؟\" but he is out. Say he's not here right now.",
-          "answer": "لاَ، مِش هُنِيهْ الْحَيْن",
+          "answer": "لاَ، مِش هُنِيهْ ذَلْحِين",
           "accepted": [
-            "لاَ، مِش هُنِيهْ الْحَيْن",
-            "لا مش هنيه الحين",
+            "لاَ، مِش هُنِيهْ ذَلْحِين",
+            "لا مش هنيه ذلحين",
             "لا ما هو هنا الآن"
           ],
           "too_formal": {
             "item": "لا، هو غير موجود في الحالية",
             "feedback": "Correct meaning, but overly formal for a family member answering the phone."
           },
-          "tip": "\"هنيه الحين\" is the everyday Yemeni way to say \"not here right now\"."
+          "tip": "\"هنيه ذلحين\" is the everyday Yemeni way to say \"not here right now\"."
         },
         {
           "id": "unit-12.lesson-04.reply.02",
@@ -1405,7 +1405,7 @@
           ],
           "options": [
             "اقْدِرِي تِوَصِّلِي لَهُ رِسَالَة؟",
-            "أَيْوَه، شْنُو الرِّسَالَة؟",
+            "أَيْوَه، إِيش الرِّسَالَة؟",
             "عِنْدِك رَقْمِي؟",
             "بِخَبْرِهِ أوْلِ مَا يِوصِل"
           ],
@@ -1419,22 +1419,22 @@
           "id": "unit-12.lesson-04.choose.02",
           "type": "choose",
           "prompt": "Which is the natural way to agree to take a message?",
-          "answer": "أَيْوَه، شْنُو الرِّسَالَة؟",
+          "answer": "أَيْوَه، إِيش الرِّسَالَة؟",
           "accepted": [
-            "أَيْوَه، شْنُو الرِّسَالَة؟",
-            "أيوه شنو الرسالة"
+            "أَيْوَه، إِيش الرِّسَالَة؟",
+            "أيوه إيش الرسالة"
           ],
           "options": [
-            "أَيْوَه، شْنُو الرِّسَالَة؟",
+            "أَيْوَه، إِيش الرِّسَالَة؟",
             "مَا أَعْرِف بِالضَّبْط",
-            "لاَ، مِش هُنِيهْ الْحَيْن",
+            "لاَ، مِش هُنِيهْ ذَلْحِين",
             "الله يُحْفِظَك"
           ],
           "too_formal": {
             "item": "نعم، ما هي الرسالة؟",
             "feedback": "Correct but more formal. \"أيوه\" (yes) is the everyday Yemeni word."
           },
-          "tip": "\"أيوه\" is the most common Yemeni \"yes\", followed immediately by \"شنو الرسالة\"."
+          "tip": "\"أيوه\" is the most common Yemeni \"yes\", followed immediately by \"إيش الرسالة\"."
         },
         {
           "id": "unit-12.lesson-04.reorder.01",
@@ -1453,7 +1453,7 @@
         {
           "id": "unit-12.lesson-04.reorder.02",
           "type": "reorder",
-          "prompt": "Put these words in a natural order: \"محفوظ / الحين / رقمي / عندي\".",
+          "prompt": "Put these words in a natural order: \"محفوظ / ذلحين / رقمي / عندي\".",
           "answer": "إي، عِنْدِي رَقْمِك مَحْفُوظ",
           "accepted": [
             "إي، عِنْدِي رَقْمِك مَحْفُوظ"
@@ -2195,20 +2195,20 @@
         },
         {
           "speaker": "صديقك",
-          "arabic": "آلُّو، هَذَا عَلِي. شْنُو أَخْبَارَك؟",
-          "transliteration": "aaloo, hatha 3ali. shnoo akhbarak?",
+          "arabic": "آلُّو، هَذَا عَلِي. إِيش أَخْبَارَك؟",
+          "transliteration": "aaloo, hatha 3ali. eesh akhbarak?",
           "english": "Hello, it's Ali. What's new?"
         },
         {
           "speaker": "أنت",
-          "arabic": "آلُّو عَلِي، الْحَمْدُ لِلَّهِ بِخَيْر. أَبْغِي نِلْتَقِي بُكْرَة، وَيْن تِبْغِي؟",
-          "transliteration": "aaloo 3ali, il-7amdella bi-khair. abgha niltagi bukra, wayn tibgha?",
+          "arabic": "آلُّو عَلِي، الْحَمْدُ لِلَّهِ بِخَيْر. أَشْتِي نِلْتَقِي بُكْرَة، وَيْن تِشْتِي؟",
+          "transliteration": "aaloo 3ali, il-7amdella bi-khair. ashti niltagi bukra, wayn tishti?",
           "english": "Hello Ali, all good thank God. I want to meet tomorrow, where do you want?"
         },
         {
           "speaker": "صديقك",
-          "arabic": "شْنُو رَأيْك الْمَقْهَى؟",
-          "transliteration": "shnoo ra2yak il-magha?",
+          "arabic": "إِيش رَأيْك الْمَقْهَى؟",
+          "transliteration": "eesh ra2yak il-magha?",
           "english": "What do you think about the cafe?"
         },
         {
