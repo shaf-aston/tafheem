@@ -30,9 +30,9 @@
     "surface-hi": "#2c2823",
     "border": "#3a342c",
     "border-hi": "#74695a",
-    "text": "#d9d2c5",
-    "text-dim": "#c3baab",
-    "text-faint": "#b8ae9f",
+    "text": "#dbd4c7",
+    "text-dim": "#d0c8ba",
+    "text-faint": "#c6bdaf",
     "primary": "@gold",
     "primary-hi": "@gold-hi",
     "danger": "@rose",
@@ -448,7 +448,7 @@
   "hadith": {
     "_comment": "The words of a hadith. lines is how much of one hadith shows before the rest waits behind Show the rest.",
     "_way_comment": "The chain drawing colours the word between two narrators by how it was received: heard (سمعت، حدّثنا، أخبرنا) and loose (عن, which does not say how). The chain words guide wears the same two.",
-    "_chain_comment": "chain is the chain of narrators and the English's \"Narrated X:\" line, read past rather than read: text-faint mixed toward the card, 4.8 to 5.4:1 on the looks (the theme's floor is 4.8), where text-faint alone (6.5 to 7.2:1) sat too near the words it carries.",
+    "_chain_comment": "chain is the chain of narrators and the English's \"Narrated X:\" line, read past rather than read: text-faint mixed toward the card, 5.5 to 6.5:1 on the looks (the theme's floor is 4.8), where text-faint alone (7.9 to 8.7:1) sat too near the words it carries.",
     "chain": "color-mix(in oklab, var(--text-faint) 85%, var(--surface))",
     "heard": "#6cc495",
     "loose": "#e09a6a",
@@ -543,8 +543,8 @@
           "border": "#273041",
           "border-hi": "#5c6984",
           "text": "#cdd3dc",
-          "text-dim": "#adb9ce",
-          "text-faint": "#949fb3",
+          "text-dim": "#bfc8d7",
+          "text-faint": "#adb7c8",
           "primary": "@violet",
           "primary-hi": "@violet-hi"
         }
@@ -572,8 +572,8 @@
           "border": "#d2c8b5",
           "border-hi": "#8c8068",
           "text": "#332d27",
-          "text-dim": "#4c453d",
-          "text-faint": "#5a5249"
+          "text-dim": "#443d36",
+          "text-faint": "#4f4840"
         },
         "lights": {
           "ground-top": "#f6f1e8",
