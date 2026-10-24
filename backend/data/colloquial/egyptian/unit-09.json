@@ -1702,6 +1702,918 @@
           "tip": "رقبة (neck) is the spoken word; عنق is written."
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "do-you-have-an-appointment-to-a-man",
+          "arabic": "حَضْرِتَك عَنْدَك مِيعَاد؟",
+          "transliteration": "7aDretak 3andak mee3aad?",
+          "reply": {
+            "arabic": "أَيْوَه، السَّاعَة خَمْسَة",
+            "transliteration": "aywa, es-saa3a khamsa",
+            "english": "Yes, at five o'clock."
+          }
+        },
+        {
+          "slot": "open-your-mouth-to-a-man",
+          "arabic": "اِفْتَح بُقَّك",
+          "transliteration": "efta7 bo22ak"
+        },
+        {
+          "slot": "my-tooth-hurts-when-i-drink-something-cold",
+          "arabic": "سِنِّتِي بِتُوجَعْنِي لَمَّا بَشْرَب حَاجَة سَاقْعَة",
+          "transliteration": "sennti betewga3ni lamma bashrab 7aaga sa23a"
+        },
+        {
+          "slot": "you-have-a-cavity-to-a-man",
+          "arabic": "عَنْدَك تَسَوُّس",
+          "transliteration": "3andak tasawwos"
+        },
+        {
+          "slot": "we-ll-take-an-x-ray",
+          "arabic": "هَنِعْمِل أَشِعَّة",
+          "transliteration": "han3mel ashe33a"
+        },
+        {
+          "slot": "i-ll-give-you-an-injection-so-you-won-t-feel-pai",
+          "arabic": "هَدِّيلَك حُقْنَة عَشَان مَا تِحِسِّش بِوَجَع",
+          "transliteration": "haddeelak 7o2na 3ashaan ma te7essesh be-waga3"
+        },
+        {
+          "slot": "rinse-your-mouth-with-water-to-a-man",
+          "arabic": "اِتْمَضْمَض بِالْمَيَّة",
+          "transliteration": "etmaDmaD bel-mayya"
+        },
+        {
+          "slot": "don-t-eat-anything-for-two-hours-to-a-man",
+          "arabic": "مَا تَاكُلْش أَيّ حَاجَة لِمُدِّة سَاعْتِين",
+          "transliteration": "ma takolsh ayy 7aaga le-moddet sa3teen"
+        },
+        {
+          "slot": "which-tooth-hurts-you-to-a-man",
+          "arabic": "أَنْهِي سِنَّة بِتُوجَعَك؟",
+          "transliteration": "anhi senna betewga3ak?",
+          "reply": {
+            "arabic": "الضِّرْس اللِّي وَرَا دَه",
+            "transliteration": "eD-Ders elli wara da",
+            "english": "This molar at the back."
+          }
+        },
+        {
+          "slot": "i-brush-my-teeth-twice-a-day",
+          "arabic": "بَغْسِل سِنَانِي مَرِّتِين فِي الْيُوم",
+          "transliteration": "baghsel senaani marrteen fil-yoom"
+        },
+        {
+          "slot": "does-this-hurt-you-to-a-man",
+          "arabic": "كِدَه بِيُوجَعَك؟",
+          "transliteration": "keda beyewga3ak?",
+          "reply": {
+            "arabic": "آه، أَوِي",
+            "transliteration": "aah, 2awi",
+            "english": "Yes, a lot."
+          }
+        },
+        {
+          "slot": "do-i-need-braces",
+          "arabic": "مِحْتَاج تَقْوِيم؟",
+          "transliteration": "me7taag ta2weem?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Receptionist",
+          "slot": "do-you-have-an-appointment-to-a-man"
+        },
+        {
+          "speaker": "Saamer",
+          "slot": "do-you-have-an-appointment-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Doktoor Hany",
+          "arabic": "أهلاً يا سامر، اتفضل. مالك؟",
+          "transliteration": "ahlan ya Saamer, etfaDDal. maalak?",
+          "english": "Hello, Samer, come in. What's wrong?"
+        },
+        {
+          "speaker": "Saamer",
+          "slot": "my-tooth-hurts-when-i-drink-something-cold"
+        },
+        {
+          "speaker": "Doktoor Hany",
+          "slot": "which-tooth-hurts-you-to-a-man"
+        },
+        {
+          "speaker": "Saamer",
+          "slot": "which-tooth-hurts-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Doktoor Hany",
+          "slot": "open-your-mouth-to-a-man"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "حاضر.",
+          "transliteration": "7aaDer.",
+          "english": "All right."
+        },
+        {
+          "speaker": "Doktoor Hany",
+          "slot": "does-this-hurt-you-to-a-man"
+        },
+        {
+          "speaker": "Saamer",
+          "slot": "does-this-hurt-you-to-a-man",
+          "reply": true
+        },
+        {
+          "speaker": "Doktoor Hany",
+          "slot": "you-have-a-cavity-to-a-man"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "يعني هتخلعه يا دكتور؟",
+          "transliteration": "ya3ni hatekhla3o ya doktoor?",
+          "english": "So you'll pull it out, doctor?"
+        },
+        {
+          "speaker": "Doktoor Hany",
+          "arabic": "لأ، هنعمل أشعة الأول، وبعدين حشو.",
+          "transliteration": "la2, han3mel ashe33a el-awwel, w ba3deen 7ashw.",
+          "english": "No, we'll take an X-ray first, and then a filling."
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "هيوجعني؟",
+          "transliteration": "hayewga3ni?",
+          "english": "Will it hurt?"
+        },
+        {
+          "speaker": "Doktoor Hany",
+          "slot": "i-ll-give-you-an-injection-so-you-won-t-feel-pai"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "ماشي يا دكتور، توكلنا على الله.",
+          "transliteration": "maashi ya doktoor, tawakkalna 3ala allaah.",
+          "english": "OK, doctor, we put our trust in God."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "أنهي سنة بتوجعك؟",
+            "transliteration": "anhi senna betewga3ak?",
+            "english": "Which tooth hurts you?"
+          },
+          "response": {
+            "arabic": "الضرس اللي ورا ده.",
+            "transliteration": "eD-Ders elli wara da.",
+            "english": "This molar at the back."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "بتغسل سنانك كام مرة في اليوم؟",
+            "transliteration": "bteghsel senaanak kaam marra fil-yoom?",
+            "english": "How many times a day do you brush your teeth?"
+          },
+          "response": {
+            "arabic": "مرتين، الصبح وبالليل.",
+            "transliteration": "marrteen, eS-SobH w bel-leil.",
+            "english": "Twice, morning and night."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "محتاج تقويم؟",
+            "transliteration": "me7taag ta2weem?",
+            "english": "Do I need braces?"
+          },
+          "response": {
+            "arabic": "لأ، سنانك كويسة.",
+            "transliteration": "la2, senaanak kwayyesa.",
+            "english": "No, your teeth are fine."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هتخلع الضرس؟",
+            "transliteration": "hatekhla3 eD-Ders?",
+            "english": "Will you pull out the molar?"
+          },
+          "response": {
+            "arabic": "لأ، هنعمل حشو بس.",
+            "transliteration": "la2, han3mel 7ashw bass.",
+            "english": "No, just a filling."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "اللثة بتجيب دم؟",
+            "transliteration": "el-letta betgeeb damm?",
+            "english": "Do your gums bleed?"
+          },
+          "response": {
+            "arabic": "آه، ساعات لما بغسل سناني.",
+            "transliteration": "aah, saa3aat lamma baghsel senaani.",
+            "english": "Yes, sometimes when I brush my teeth."
+          }
+        }
+      ],
+      "culture": "Most dental care in Cairo is in private clinics booked by \"ميعاد\", and the dentist is called \"يا دكتور\" like any doctor. Many people call a cavity \"سوسة\" and the anaesthetic \"بنج\", and after a filling the dentist almost always says not to eat for a couple of hours.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "The receptionist asks: \"حضرتك عندك ميعاد؟\" Say yes, at five o'clock.",
+          "answer": "أَيْوَه، السَّاعَة خَمْسَة",
+          "accepted": [
+            "أَيْوَه، السَّاعَة خَمْسَة",
+            "أيوه، الساعة خمسة",
+            "aywa, es-saa3a khamsa",
+            "أيوه الساعة خمسة",
+            "الساعة خمسة"
+          ],
+          "too_formal": {
+            "item": "نعم، موعدي في الساعة الخامسة",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "\"ميعاد\" is the Cairo word for an appointment."
+        },
+        {
+          "id": "unit-09.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "The dentist asks: \"أنهي سنة بتوجعك؟\" Say it's this back molar.",
+          "answer": "الضِّرْس اللِّي وَرَا دَه",
+          "accepted": [
+            "الضِّرْس اللِّي وَرَا دَه",
+            "الضرس اللي ورا ده",
+            "eD-Ders elli wara da",
+            "الضرس ده",
+            "الضرس اللي ورا"
+          ],
+          "too_formal": {
+            "item": "الضرس الخلفي هذا",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "\"ضرس\" is a molar; \"سنة\" is any tooth."
+        },
+        {
+          "id": "unit-09.lesson-05.reply.03",
+          "type": "reply",
+          "prompt": "The dentist presses and asks: \"كده بيوجعك؟\" Say yes, a lot.",
+          "answer": "آه، أَوِي",
+          "accepted": [
+            "آه، أَوِي",
+            "آه، أوي",
+            "aah, 2awi",
+            "آه أوي",
+            "أيوه، أوي"
+          ],
+          "too_formal": {
+            "item": "نعم، يؤلمني كثيراً",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "\"أوي\" alone can answer \"how much?\": a lot."
+        },
+        {
+          "id": "unit-09.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"افتح _____.\" (Open your mouth.)",
+          "answer": "بقك",
+          "accepted": [
+            "بقك",
+            "bo22ak",
+            "بُقّك"
+          ],
+          "too_formal": {
+            "item": "فمك",
+            "feedback": "\"فم\" is written Arabic; in Cairo the mouth is \"بُقّ\"."
+          },
+          "tip": "To a woman: \"افتحي بقِّك\"."
+        },
+        {
+          "id": "unit-09.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ سناني مرتين في اليوم.\" (I brush my teeth twice a day.)",
+          "answer": "بغسل",
+          "accepted": [
+            "بغسل",
+            "baghsel",
+            "بفرش",
+            "بفرّش"
+          ],
+          "too_formal": {
+            "item": "أنظف",
+            "feedback": "Understood, but Cairenes say \"بغسل سناني\" or \"بفرّش سناني\"."
+          },
+          "tip": "\"فرشة سنان\" is a toothbrush."
+        },
+        {
+          "id": "unit-09.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My tooth hurts when I drink something cold.\"",
+          "answer": "سِنِّتِي بِتُوجَعْنِي لَمَّا بَشْرَب حَاجَة سَاقْعَة",
+          "accepted": [
+            "سِنِّتِي بِتُوجَعْنِي لَمَّا بَشْرَب حَاجَة سَاقْعَة",
+            "سنتي بتوجعني لما بشرب حاجة ساقعة",
+            "sennti betewga3ni lamma bashrab 7aaga sa23a",
+            "سناني بتوجعني لما بشرب حاجة ساقعة"
+          ],
+          "too_formal": {
+            "item": "يؤلمني سني عندما أشرب شيئاً بارداً",
+            "feedback": "\"بارد\" and \"شيء\" are written words; Cairo says \"حاجة ساقعة\"."
+          },
+          "tip": "\"ساقع\" is cold for drinks and food; \"حاجة\" is \"something\"."
+        },
+        {
+          "id": "unit-09.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"We'll take an X-ray.\"",
+          "answer": "هَنِعْمِل أَشِعَّة",
+          "accepted": [
+            "هَنِعْمِل أَشِعَّة",
+            "هنعمل أشعة",
+            "han3mel ashe33a",
+            "هنعمل اشعة"
+          ],
+          "too_formal": {
+            "item": "سنقوم بإجراء صورة أشعة",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "In Cairo you \"do\" an X-ray: نعمل أشعة."
+        },
+        {
+          "id": "unit-09.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Don't eat anything for two hours.\" (to a man)",
+          "answer": "مَا تَاكُلْش أَيّ حَاجَة لِمُدِّة سَاعْتِين",
+          "accepted": [
+            "مَا تَاكُلْش أَيّ حَاجَة لِمُدِّة سَاعْتِين",
+            "ما تاكلش أي حاجة لمدة ساعتين",
+            "متاكلش أي حاجة لمدة ساعتين",
+            "ma takolsh ayy 7aaga le-moddet sa3teen",
+            "ما تاكلش حاجة لمدة ساعتين"
+          ],
+          "too_formal": {
+            "item": "لا تأكل شيئاً لمدة ساعتين",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "The negative command: ما + تاكل + ش. To a woman: \"ما تاكليش\"."
+        },
+        {
+          "id": "unit-09.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which sentence means \"You have a cavity\" (to a man)?",
+          "answer": "عَنْدَك تَسَوُّس",
+          "accepted": [
+            "عَنْدَك تَسَوُّس",
+            "عندك تسوس",
+            "3andak tasawwos",
+            "عندك سوسة"
+          ],
+          "options": [
+            "عَنْدَك تَسَوُّس",
+            "عَنْدَك مِيعَاد؟",
+            "مِحْتَاج تَقْوِيم؟",
+            "هَنِعْمِل أَشِعَّة"
+          ],
+          "too_formal": {
+            "item": "لديك تسوس",
+            "feedback": "\"لديك\" is written; say \"عندك\"."
+          },
+          "tip": "Many Cairenes call a cavity \"سوسة\" (a little worm)."
+        },
+        {
+          "id": "unit-09.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Rinse your mouth with water\" (to a man)?",
+          "answer": "اِتْمَضْمَض بِالْمَيَّة",
+          "accepted": [
+            "اِتْمَضْمَض بِالْمَيَّة",
+            "اتمضمض بالمية",
+            "etmaDmaD bel-mayya",
+            "اشطف بقك بالمية",
+            "مضمض بالمية"
+          ],
+          "options": [
+            "اِتْمَضْمَض بِالْمَيَّة",
+            "اِفْتَح بُقَّك",
+            "مَا تَاكُلْش أَيّ حَاجَة لِمُدِّة سَاعْتِين",
+            "كِدَه بِيُوجَعَك؟"
+          ],
+          "too_formal": {
+            "item": "تمضمض بالماء",
+            "feedback": "\"الماء\" is written Arabic; water is \"المية\"."
+          },
+          "tip": "\"اشطف بقك\" (rinse your mouth) is also heard."
+        },
+        {
+          "id": "unit-09.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Do I need braces?\"",
+          "answer": "مِحْتَاج تَقْوِيم؟",
+          "accepted": [
+            "مِحْتَاج تَقْوِيم؟",
+            "محتاج تقويم؟",
+            "me7taag ta2weem?",
+            "محتاج تقويم",
+            "محتاجة تقويم؟"
+          ],
+          "words": [
+            "مِحْتَاج",
+            "تَقْوِيم؟"
+          ],
+          "too_formal": {
+            "item": "هل أحتاج إلى تقويم أسنان؟",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "A woman says \"محتاجة\"."
+        },
+        {
+          "id": "unit-09.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"I'll give you an injection so you won't feel pain.\"",
+          "answer": "هَدِّيلَك حُقْنَة عَشَان مَا تِحِسِّش بِوَجَع",
+          "accepted": [
+            "هَدِّيلَك حُقْنَة عَشَان مَا تِحِسِّش بِوَجَع",
+            "هديلك حقنة عشان ما تحسش بوجع",
+            "haddeelak 7o2na 3ashaan ma te7essesh be-waga3",
+            "هديلك حقنة عشان متحسش بوجع",
+            "هديلك بنج عشان ما تحسش بوجع"
+          ],
+          "words": [
+            "هَدِّيلَك",
+            "حُقْنَة",
+            "عَشَان",
+            "مَا تِحِسِّش",
+            "بِوَجَع"
+          ],
+          "too_formal": {
+            "item": "سأعطيك حقنة كي لا تشعر بالألم",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "\"عشان\" means \"so that\"; \"ما تحسش\" is \"you won't feel\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "i-need-an-ambulance",
+          "arabic": "مِحْتَاج عَرَبِيِّة إِسْعَاف",
+          "transliteration": "me7taag 3arabeyyet es3aaf"
+        },
+        {
+          "slot": "where-is-the-emergency-room",
+          "arabic": "الطَّوَارِئ فِين؟",
+          "transliteration": "eT-Tawaare2 feen?"
+        },
+        {
+          "slot": "my-father-had-an-accident",
+          "arabic": "بَابَا عَمَل حَادْثَة",
+          "transliteration": "baaba 3amal 7adsa"
+        },
+        {
+          "slot": "register-his-name-at-the-reception-desk-to-a-man",
+          "arabic": "سَجِّل اسْمُه فِي الاِسْتِقْبَال",
+          "transliteration": "sagel esmo fel-este2baal"
+        },
+        {
+          "slot": "he-needs-to-stay-in-the-hospital-for-two-days",
+          "arabic": "لَازِم يِفْضَل فِي الْمُسْتَشْفَى يُومِين",
+          "transliteration": "laazem yefDal fel-mostashfa yomeen"
+        },
+        {
+          "slot": "which-room-is-he-in",
+          "arabic": "هُوَّ فِي أَنْهِي أُوضَة؟",
+          "transliteration": "howwa fi anhi ooDa?",
+          "reply": {
+            "arabic": "أُوضَة تُلْتُمِيَّة وْخَمْسَة",
+            "transliteration": "ooDa toltomeyya w khamsa",
+            "english": "Room three hundred and five."
+          }
+        },
+        {
+          "slot": "what-are-the-visiting-hours",
+          "arabic": "مَوَاعِيد الزِّيَارَة إِمْتَى؟",
+          "transliteration": "mawa3eed ez-ziyaara emta?",
+          "reply": {
+            "arabic": "مِن أَرْبَعَة لِسِتَّة",
+            "transliteration": "men arba3a le-setta",
+            "english": "From four to six."
+          }
+        },
+        {
+          "slot": "i-ll-measure-his-temperature",
+          "arabic": "هَقِيس لُه الْحَرَارَة",
+          "transliteration": "ha2eeslo el-7araara"
+        },
+        {
+          "slot": "the-operation-will-take-two-hours",
+          "arabic": "الْعَمَلِيَّة هَتَاخُد سَاعْتِين",
+          "transliteration": "el-3amaleyya hatakhod sa3teen"
+        },
+        {
+          "slot": "i-m-worried-about-him-a-man-speaking",
+          "arabic": "أَنَا قَلْقَان عَلِيه",
+          "transliteration": "ana 2al2aan 3aleih"
+        },
+        {
+          "slot": "praise-be-to-allah-he-is-fine-now",
+          "arabic": "الْحَمْدُ لِلَّه، هُوَّ كُوَيِّس دِلْوَقْتِي",
+          "transliteration": "el-7amdu lillaah, howwa kwayyes dilwa2ti"
+        },
+        {
+          "slot": "when-can-he-leave-the-hospital",
+          "arabic": "يِقْدَر يُخْرُج مِن الْمُسْتَشْفَى إِمْتَى؟",
+          "transliteration": "ye2dar yokhrog men el-mostashfa emta?",
+          "reply": {
+            "arabic": "بَعْد بُكْرَة إِن شَاء الله",
+            "transliteration": "ba3d bokra en shaa2 allaah",
+            "english": "The day after tomorrow, God willing."
+          }
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Saamer",
+          "slot": "where-is-the-emergency-room"
+        },
+        {
+          "speaker": "Nurse",
+          "arabic": "هنا. خير، فيه إيه؟",
+          "transliteration": "hena. kheir, feeh eeh?",
+          "english": "Here. What's the matter?"
+        },
+        {
+          "speaker": "Saamer",
+          "slot": "my-father-had-an-accident"
+        },
+        {
+          "speaker": "Nurse",
+          "slot": "register-his-name-at-the-reception-desk-to-a-man"
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "حاضر. هو جه في الإسعاف من شوية.",
+          "transliteration": "7aaDer. howwa geh fel-es3aaf men shwayya.",
+          "english": "All right. He came in the ambulance a little while ago."
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "إنت ابن الحاج محمود؟ عنده كسر في رجله.",
+          "transliteration": "enta ebn el-7aagg Ma7moud? 3ando kasr fi reglo.",
+          "english": "Are you Hajj Mahmoud's son? He has a fracture in his leg."
+        },
+        {
+          "speaker": "Saamer",
+          "slot": "i-m-worried-about-him-a-man-speaking"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "arabic": "ما تقلقش، محتاج عملية صغيرة بس.",
+          "transliteration": "ma te2la2sh, me7taag 3amaleyya Soghayyara bass.",
+          "english": "Don't worry, he just needs a small operation."
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "هتاخد وقت قد إيه؟",
+          "transliteration": "hatakhod wa2t 2add eeh?",
+          "english": "How long will it take?"
+        },
+        {
+          "speaker": "Doktoor Ahmad",
+          "slot": "the-operation-will-take-two-hours"
+        },
+        {
+          "speaker": "Saamer",
+          "slot": "which-room-is-he-in"
+        },
+        {
+          "speaker": "Nurse",
+          "slot": "which-room-is-he-in",
+          "reply": true
+        },
+        {
+          "speaker": "Saamer",
+          "arabic": "طمنيني، هو عامل إيه؟",
+          "transliteration": "Tammeneeni, howwa 3aamel eeh?",
+          "english": "Reassure me, how is he?"
+        },
+        {
+          "speaker": "Nurse",
+          "slot": "praise-be-to-allah-he-is-fine-now"
+        },
+        {
+          "speaker": "Saamer",
+          "slot": "when-can-he-leave-the-hospital"
+        },
+        {
+          "speaker": "Nurse",
+          "slot": "he-needs-to-stay-in-the-hospital-for-two-days"
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "مواعيد الزيارة إمتى؟",
+            "transliteration": "mawa3eed ez-ziyaara emta?",
+            "english": "What are the visiting hours?"
+          },
+          "response": {
+            "arabic": "من أربعة لستة.",
+            "transliteration": "men arba3a le-setta.",
+            "english": "From four to six."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "هو في أنهي أوضة؟",
+            "transliteration": "howwa fi anhi ooDa?",
+            "english": "Which room is he in?"
+          },
+          "response": {
+            "arabic": "أوضة تلتمية وخمسة في الدور التالت.",
+            "transliteration": "ooDa toltomeyya w khamsa fid-door et-taalet.",
+            "english": "Room three hundred and five on the third floor."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "يقدر يخرج إمتى؟",
+            "transliteration": "ye2dar yokhrog emta?",
+            "english": "When can he leave?"
+          },
+          "response": {
+            "arabic": "بعد بكرة إن شاء الله.",
+            "transliteration": "ba3d bokra en shaa2 allaah.",
+            "english": "The day after tomorrow, God willing."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "العملية هتاخد قد إيه؟",
+            "transliteration": "el-3amaleyya hatakhod 2add eeh?",
+            "english": "How long will the operation take?"
+          },
+          "response": {
+            "arabic": "حوالي ساعتين.",
+            "transliteration": "7awaali sa3teen.",
+            "english": "About two hours."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الجرح كبير؟",
+            "transliteration": "el-gor7 kebeer?",
+            "english": "Is the wound big?"
+          },
+          "response": {
+            "arabic": "لأ، جرح صغير، الحمد لله.",
+            "transliteration": "la2, gor7 Soghayyar, el-7amdu lillaah.",
+            "english": "No, a small wound, thank God."
+          }
+        }
+      ],
+      "culture": "Visiting the sick is a duty in Egypt, so relatives and neighbours come during visiting hours with juice and fruit and say \"ألف سلامة\" or \"سلامتك\", answered with \"الله يسلمك\". The ambulance number in Egypt is 123.",
+      "exercises": [
+        {
+          "id": "unit-09.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "You ask the nurse: \"هو في أنهي أوضة؟\" She says room three hundred and five. What does she say?",
+          "answer": "أُوضَة تُلْتُمِيَّة وْخَمْسَة",
+          "accepted": [
+            "أُوضَة تُلْتُمِيَّة وْخَمْسَة",
+            "أوضة تلتمية وخمسة",
+            "ooDa toltomeyya w khamsa",
+            "تلتمية وخمسة",
+            "أوضة ٣٠٥"
+          ],
+          "too_formal": {
+            "item": "في الغرفة رقم ثلاثمائة وخمسة",
+            "feedback": "\"الغرفة\" is written; in Cairo a room is \"أوضة\"."
+          },
+          "tip": "\"تلتمية\" is three hundred."
+        },
+        {
+          "id": "unit-09.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "You ask: \"مواعيد الزيارة إمتى؟\" The guard says from four to six. What does he say?",
+          "answer": "مِن أَرْبَعَة لِسِتَّة",
+          "accepted": [
+            "مِن أَرْبَعَة لِسِتَّة",
+            "من أربعة لستة",
+            "men arba3a le-setta",
+            "من أربعة لحد ستة",
+            "من ٤ لـ٦"
+          ],
+          "too_formal": {
+            "item": "من الساعة الرابعة حتى السادسة",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "\"لـ\" or \"لحد\" means \"until\"."
+        },
+        {
+          "id": "unit-09.lesson-06.reply.03",
+          "type": "reply",
+          "prompt": "You ask the doctor: \"يقدر يخرج من المستشفى إمتى؟\" He says the day after tomorrow, God willing.",
+          "answer": "بَعْد بُكْرَة إِن شَاء الله",
+          "accepted": [
+            "بَعْد بُكْرَة إِن شَاء الله",
+            "بعد بكرة إن شاء الله",
+            "ba3d bokra en shaa2 allaah",
+            "بعد بكرة",
+            "بعد بكره ان شاء الله"
+          ],
+          "too_formal": {
+            "item": "بعد غد إن شاء الله",
+            "feedback": "\"غد\" is written Arabic; tomorrow is \"بكرة\"."
+          },
+          "tip": "\"بعد بكرة\" is the day after tomorrow."
+        },
+        {
+          "id": "unit-09.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أنا _____ عليه.\" (I'm worried about him; a man speaking.)",
+          "answer": "قلقان",
+          "accepted": [
+            "قلقان",
+            "2al2aan"
+          ],
+          "too_formal": {
+            "item": "قلق",
+            "feedback": "\"أنا قلق\" sounds written; the spoken adjective is \"قلقان\"."
+          },
+          "tip": "A woman says \"قلقانة\"."
+        },
+        {
+          "id": "unit-09.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"لازم _____ في المستشفى يومين.\" (He needs to stay in the hospital for two days.)",
+          "answer": "يفضل",
+          "accepted": [
+            "يفضل",
+            "yefDal",
+            "يقعد"
+          ],
+          "too_formal": {
+            "item": "يبقى",
+            "feedback": "\"يبقى\" is understood, but doctors in Cairo say \"لازم يفضل\" or \"لازم يقعد\"."
+          },
+          "tip": "\"فضل\" means to remain or stay."
+        },
+        {
+          "id": "unit-09.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I need an ambulance.\" (a man speaking)",
+          "answer": "مِحْتَاج عَرَبِيِّة إِسْعَاف",
+          "accepted": [
+            "مِحْتَاج عَرَبِيِّة إِسْعَاف",
+            "محتاج عربية إسعاف",
+            "me7taag 3arabeyyet es3aaf",
+            "محتاج إسعاف",
+            "عايز عربية إسعاف"
+          ],
+          "too_formal": {
+            "item": "أحتاج إلى سيارة إسعاف",
+            "feedback": "\"سيارة\" is written; a vehicle is \"عربية\" in Cairo."
+          },
+          "tip": "A woman says \"محتاجة\". The ambulance number in Egypt is 123."
+        },
+        {
+          "id": "unit-09.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the emergency room?\"",
+          "answer": "الطَّوَارِئ فِين؟",
+          "accepted": [
+            "الطَّوَارِئ فِين؟",
+            "الطوارئ فين؟",
+            "eT-Tawaare2 feen?",
+            "فين الطوارئ؟",
+            "الطوارئ فين"
+          ],
+          "too_formal": {
+            "item": "أين قسم الطوارئ؟",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "Signs say \"الاستقبال والطوارئ\"; people just say \"الطوارئ\"."
+        },
+        {
+          "id": "unit-09.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"My father had an accident.\"",
+          "answer": "بَابَا عَمَل حَادْثَة",
+          "accepted": [
+            "بَابَا عَمَل حَادْثَة",
+            "بابا عمل حادثة",
+            "baaba 3amal 7adsa",
+            "أبويا عمل حادثة"
+          ],
+          "too_formal": {
+            "item": "تعرض والدي لحادث",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "In Cairo you \"make\" an accident: عمل حادثة."
+        },
+        {
+          "id": "unit-09.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "The nurse says \"I'll measure his temperature.\" Which is it?",
+          "answer": "هَقِيس لُه الْحَرَارَة",
+          "accepted": [
+            "هَقِيس لُه الْحَرَارَة",
+            "هقيس له الحرارة",
+            "ha2eeslo el-7araara",
+            "هقيسله الحرارة"
+          ],
+          "options": [
+            "هَقِيس لُه الْحَرَارَة",
+            "سَجِّل اسْمُه فِي الاِسْتِقْبَال",
+            "الْعَمَلِيَّة هَتَاخُد سَاعْتِين",
+            "هُوَّ فِي أَنْهِي أُوضَة؟"
+          ],
+          "too_formal": {
+            "item": "سأقيس درجة حرارته",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "\"هـ\" + قيس: I'll measure."
+        },
+        {
+          "id": "unit-09.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which sentence means \"Praise be to Allah, he is fine now\"?",
+          "answer": "الْحَمْدُ لِلَّه، هُوَّ كُوَيِّس دِلْوَقْتِي",
+          "accepted": [
+            "الْحَمْدُ لِلَّه، هُوَّ كُوَيِّس دِلْوَقْتِي",
+            "الحمد لله، هو كويس دلوقتي",
+            "el-7amdu lillaah, howwa kwayyes dilwa2ti",
+            "الحمد لله هو كويس دلوقتي"
+          ],
+          "options": [
+            "الْحَمْدُ لِلَّه، هُوَّ كُوَيِّس دِلْوَقْتِي",
+            "أَنَا قَلْقَان عَلِيه",
+            "بَابَا عَمَل حَادْثَة",
+            "لَازِم يِفْضَل فِي الْمُسْتَشْفَى يُومِين"
+          ],
+          "too_formal": {
+            "item": "الحمد لله، إنه بخير الآن",
+            "feedback": "\"الآن\" is written; Cairo says \"دلوقتي\"."
+          },
+          "tip": "\"دلوقتي\" is the Cairo word for \"now\"."
+        },
+        {
+          "id": "unit-09.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"Register his name at the reception desk.\" (to a man)",
+          "answer": "سَجِّل اسْمُه فِي الاِسْتِقْبَال",
+          "accepted": [
+            "سَجِّل اسْمُه فِي الاِسْتِقْبَال",
+            "سجل اسمه في الاستقبال",
+            "sagel esmo fel-este2baal",
+            "سجل اسمه في مكتب الاستقبال"
+          ],
+          "words": [
+            "سَجِّل",
+            "اسْمُه",
+            "فِي",
+            "الاِسْتِقْبَال"
+          ],
+          "too_formal": {
+            "item": "قم بتسجيل اسمه في مكتب الاستقبال",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "To a woman: \"سجّلي اسمه\"."
+        },
+        {
+          "id": "unit-09.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"The operation will take two hours.\"",
+          "answer": "الْعَمَلِيَّة هَتَاخُد سَاعْتِين",
+          "accepted": [
+            "الْعَمَلِيَّة هَتَاخُد سَاعْتِين",
+            "العملية هتاخد ساعتين",
+            "el-3amaleyya hatakhod sa3teen",
+            "العملية هتاخد حوالي ساعتين"
+          ],
+          "words": [
+            "الْعَمَلِيَّة",
+            "هَتَاخُد",
+            "سَاعْتِين"
+          ],
+          "too_formal": {
+            "item": "ستستغرق العملية ساعتين",
+            "feedback": "Correct Modern Standard Arabic, but it sounds like a textbook rather than Cairo speech."
+          },
+          "tip": "\"هتاخد\" (will take) is used for time too."
+        }
+      ]
     }
   ],
   "challenge": {

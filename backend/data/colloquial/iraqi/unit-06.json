@@ -1614,6 +1614,871 @@
           ]
         }
       ]
+    },
+    {
+      "lesson": "lesson-05",
+      "phrases": [
+        {
+          "slot": "where-is-the-escalator",
+          "arabic": "وِين الدَّرَج الكَهْرَبَائِي؟",
+          "transliteration": "ween id-daraj il-kahrabaa2i?"
+        },
+        {
+          "slot": "where-is-the-food-court",
+          "arabic": "وِين سَاحَة الأَكِل؟",
+          "transliteration": "ween saa7at il-akil?"
+        },
+        {
+          "slot": "which-floor-is-the-shoe-shop-on",
+          "arabic": "مَحَلّ القَنَادِر بْيَا طَابِگ؟",
+          "transliteration": "ma7all il-ganaadir b-yaa Taabig?"
+        },
+        {
+          "slot": "where-is-the-elevator",
+          "arabic": "وِين المَصْعَد؟",
+          "transliteration": "ween il-maS3ad?"
+        },
+        {
+          "slot": "when-does-the-mall-close",
+          "arabic": "المُول شْوَكِت يْسِدّ؟",
+          "transliteration": "il-mool shwakit ysidd?",
+          "reply": {
+            "arabic": "السَّاعَة عَشْرَة بِاللِّيل",
+            "transliteration": "is-saa3a 3ashra bil-leel",
+            "english": "At ten at night."
+          }
+        },
+        {
+          "slot": "is-there-a-sale-in-this-shop",
+          "arabic": "أَكُو تَنْزِيلَات بْهَالمَحَلّ؟",
+          "transliteration": "aku tanzeelaat b-hal-ma7all?"
+        },
+        {
+          "slot": "where-is-the-prayer-room",
+          "arabic": "وِين المُصَلَّى؟",
+          "transliteration": "ween il-muSalla?",
+          "reply": {
+            "arabic": "بِالطَّابِگ الثَّالِث، جَنْب المَصْعَد",
+            "transliteration": "biT-Taabig ith-thaalith, jamb il-maS3ad",
+            "english": "On the third floor, next to the lift."
+          }
+        },
+        {
+          "slot": "i-m-just-looking",
+          "arabic": "بَس دَا أَبَاوِع",
+          "transliteration": "bass da-abaawi3"
+        },
+        {
+          "slot": "i-have-many-shopping-bags",
+          "arabic": "عِنْدِي هْوَايَة أَكْيَاس",
+          "transliteration": "3indi hwaaya akyaas"
+        },
+        {
+          "slot": "where-is-the-place-to-pay",
+          "arabic": "وِين أَحَاسِب؟",
+          "transliteration": "ween a7aasib?",
+          "english": "Where do I pay?"
+        },
+        {
+          "slot": "where-did-you-park-the-car",
+          "arabic": "وِين رَكَّنِت السَّيَّارَة؟",
+          "transliteration": "ween rakkanit is-sayyaara?",
+          "reply": {
+            "arabic": "بِالگَرَاج، جَوَّه",
+            "transliteration": "bil-garaaj, jawwa",
+            "english": "In the car park, downstairs."
+          }
+        },
+        {
+          "slot": "shall-we-meet-at-the-entrance",
+          "arabic": "نِتْلَاگَى بِالمَدْخَل؟",
+          "transliteration": "nitlaaga bil-madkhal?"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ahmed",
+          "arabic": "هسّه وصلنا. المول كلّش مزدحم!",
+          "transliteration": "hassa wuSalna. il-mool kullish muzda7im!",
+          "english": "We're here now. The mall is very crowded!"
+        },
+        {
+          "speaker": "Saif",
+          "slot": "where-did-you-park-the-car"
+        },
+        {
+          "speaker": "Ahmed",
+          "slot": "where-did-you-park-the-car",
+          "reply": true
+        },
+        {
+          "speaker": "Saif",
+          "slot": "when-does-the-mall-close"
+        },
+        {
+          "speaker": "Ahmed",
+          "slot": "when-does-the-mall-close",
+          "reply": true
+        },
+        {
+          "speaker": "Saif",
+          "slot": "which-floor-is-the-shoe-shop-on"
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "بالطابگ الثاني. نصعد بالدرج الكهربائي.",
+          "transliteration": "biT-Taabig ith-thaani. niS3ad bid-daraj il-kahrabaa2i.",
+          "english": "On the second floor. We'll go up by the escalator."
+        },
+        {
+          "speaker": "Shop assistant",
+          "arabic": "هلا بيكم، شتريدون؟",
+          "transliteration": "hala beekum, shtreedoon?",
+          "english": "Welcome, what would you like?"
+        },
+        {
+          "speaker": "Saif",
+          "slot": "i-m-just-looking"
+        },
+        {
+          "speaker": "Saif",
+          "slot": "is-there-a-sale-in-this-shop"
+        },
+        {
+          "speaker": "Shop assistant",
+          "arabic": "إي، خصم عشرين بالمية على كل القنادر.",
+          "transliteration": "ee, khaSim 3ishreen bil-miyya 3ala kull il-ganaadir.",
+          "english": "Yes, twenty per cent off all the shoes."
+        },
+        {
+          "speaker": "Ahmed",
+          "slot": "where-is-the-prayer-room"
+        },
+        {
+          "speaker": "Shop assistant",
+          "slot": "where-is-the-prayer-room",
+          "reply": true
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "آني رايح أصلّي، وإنت كمّل.",
+          "transliteration": "aani raay7 aSalli, w inta kammil.",
+          "english": "I'm going to pray, and you carry on."
+        },
+        {
+          "speaker": "Saif",
+          "slot": "shall-we-meet-at-the-entrance"
+        },
+        {
+          "speaker": "Ahmed",
+          "arabic": "إي، بعد نص ساعة.",
+          "transliteration": "ee, ba3ad nuSS saa3a.",
+          "english": "Yes, in half an hour."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "وين المصعد؟",
+            "transliteration": "ween il-maS3ad?",
+            "english": "Where is the lift?"
+          },
+          "response": {
+            "arabic": "هناك، جنب الدرج.",
+            "transliteration": "hnaak, jamb id-daraj.",
+            "english": "Over there, next to the stairs."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "المول شوكت يسد؟",
+            "transliteration": "il-mool shwakit ysidd?",
+            "english": "When does the mall close?"
+          },
+          "response": {
+            "arabic": "الساعة عشرة بالليل.",
+            "transliteration": "is-saa3a 3ashra bil-leel.",
+            "english": "At ten at night."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شتريد؟",
+            "transliteration": "shtreed?",
+            "english": "What would you like?"
+          },
+          "response": {
+            "arabic": "بس دا أباوع.",
+            "transliteration": "bass da-abaawi3.",
+            "english": "I'm just looking."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "محل القنادر بيا طابگ؟",
+            "transliteration": "ma7all il-ganaadir b-yaa Taabig?",
+            "english": "Which floor is the shoe shop on?"
+          },
+          "response": {
+            "arabic": "بالطابگ الثاني.",
+            "transliteration": "biT-Taabig ith-thaani.",
+            "english": "On the second floor."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "أكو تنزيلات؟",
+            "transliteration": "aku tanzeelaat?",
+            "english": "Is there a sale?"
+          },
+          "response": {
+            "arabic": "لا، ماكو هسّه.",
+            "transliteration": "la, maaku hassa.",
+            "english": "No, there isn't right now."
+          }
+        }
+      ],
+      "culture": "Baghdad's big malls fill with families in the evenings and at the weekend, and you usually pass a bag check at the entrance. Almost every mall has a مصلى, and \"بس دا أباوع\" is the polite way to wave off a keen shop assistant.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-05.reply.01",
+          "type": "reply",
+          "prompt": "A shop assistant asks: \"شتريد؟\" Say you are just looking.",
+          "answer": "بس دا أباوع",
+          "accepted": [
+            "بس دا أباوع",
+            "بس أباوع",
+            "دا أباوع",
+            "bass da-abaawi3"
+          ],
+          "too_formal": {
+            "item": "أنا أتفرج فقط",
+            "feedback": "This is written Arabic; Baghdadis say \"بس دا أباوع\"."
+          },
+          "tip": "\"باوع\" is the Iraqi verb for \"to look\"; \"دا\" means \"right now\"."
+        },
+        {
+          "id": "unit-06.lesson-05.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: \"المول شوكت يسد؟\" Say at ten at night.",
+          "answer": "الساعة عشرة بالليل",
+          "accepted": [
+            "الساعة عشرة بالليل",
+            "الساعة عشرة",
+            "عشرة بالليل",
+            "is-saa3a 3ashra bil-leel"
+          ],
+          "too_formal": {
+            "item": "يغلق في الساعة العاشرة مساءً",
+            "feedback": "This is formal; in speech \"الساعة عشرة بالليل\" is enough."
+          },
+          "tip": "\"بالليل\" means \"at night\"."
+        },
+        {
+          "id": "unit-06.lesson-05.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"محل القنادر بيا _____؟\" Meaning: Which floor is the shoe shop on?",
+          "answer": "طابگ",
+          "accepted": [
+            "طابگ",
+            "طابق",
+            "Taabig"
+          ],
+          "tip": "In Baghdad the ق of \"طابق\" is said g; \"قنادر\" is the Iraqi word for shoes."
+        },
+        {
+          "id": "unit-06.lesson-05.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"_____ تنزيلات بهالمحل؟\" Meaning: Is there a sale in this shop?",
+          "answer": "أكو",
+          "accepted": [
+            "أكو",
+            "اكو",
+            "aku"
+          ],
+          "too_formal": {
+            "item": "هل توجد",
+            "feedback": "This is written Arabic; Iraqis say \"أكو\" for \"there is\"."
+          },
+          "tip": "\"أكو\" is \"there is\" and \"ماكو\" is \"there isn't\"."
+        },
+        {
+          "id": "unit-06.lesson-05.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the elevator?\"",
+          "answer": "وين المصعد؟",
+          "accepted": [
+            "وين المصعد؟",
+            "وين المصعد",
+            "ween il-maS3ad?"
+          ],
+          "too_formal": {
+            "item": "أين المصعد؟",
+            "feedback": "\"أين\" is written Arabic; Iraqis say \"وين\"."
+          },
+          "tip": "\"مصعد\" is the lift."
+        },
+        {
+          "id": "unit-06.lesson-05.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the prayer room?\"",
+          "answer": "وين المصلى؟",
+          "accepted": [
+            "وين المصلى؟",
+            "وين المصلى",
+            "ween il-muSalla?"
+          ],
+          "too_formal": {
+            "item": "أين يقع المصلى؟",
+            "feedback": "This is formal; in speech just \"وين المصلى؟\"."
+          },
+          "tip": "\"مصلى\" is a place set aside for prayer."
+        },
+        {
+          "id": "unit-06.lesson-05.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I have many shopping bags.\"",
+          "answer": "عندي هواية أكياس",
+          "accepted": [
+            "عندي هواية أكياس",
+            "عندي هواية اكياس",
+            "عندي أكياس هواية",
+            "3indi hwaaya akyaas"
+          ],
+          "too_formal": {
+            "item": "لدي أكياس كثيرة",
+            "feedback": "This is written Arabic; Iraqis say \"هواية\" for \"many\"."
+          },
+          "tip": "\"هواية\" means \"a lot\" or \"many\"."
+        },
+        {
+          "id": "unit-06.lesson-05.choose.01",
+          "type": "choose",
+          "prompt": "Which question asks \"Shall we meet at the entrance?\"",
+          "options": [
+            "نتلاگى بالمدخل؟",
+            "وين أحاسب؟",
+            "وين المصلى؟",
+            "وين ساحة الأكل؟"
+          ],
+          "answer": "نتلاگى بالمدخل؟",
+          "accepted": [
+            "نتلاگى بالمدخل؟",
+            "نتلاقى بالمدخل",
+            "nitlaaga bil-madkhal?"
+          ],
+          "too_formal": {
+            "item": "هل نلتقي عند المدخل؟",
+            "feedback": "This is formal; Iraqis say \"نتلاگى\"."
+          },
+          "tip": "\"مدخل\" is the entrance and \"مخرج\" the exit."
+        },
+        {
+          "id": "unit-06.lesson-05.choose.02",
+          "type": "choose",
+          "prompt": "Which question asks \"Where did you park the car?\"",
+          "options": [
+            "وين ركنت السيارة؟",
+            "المول شوكت يسد؟",
+            "وين المصعد؟",
+            "وين الدرج الكهربائي؟"
+          ],
+          "answer": "وين ركنت السيارة؟",
+          "accepted": [
+            "وين ركنت السيارة؟",
+            "وين صفيت السيارة؟",
+            "ween rakkanit is-sayyaara?"
+          ],
+          "too_formal": {
+            "item": "أين أوقفت السيارة؟",
+            "feedback": "This is formal; Iraqis say \"ركّنت\" or \"صفّيت\"."
+          },
+          "tip": "\"گراج\" is the car park."
+        },
+        {
+          "id": "unit-06.lesson-05.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"الأكل / ساحة / وين\"",
+          "answer": "وين ساحة الأكل؟",
+          "accepted": [
+            "وين ساحة الأكل؟",
+            "وين ساحة الأكل",
+            "ween saa7at il-akil?"
+          ],
+          "too_formal": {
+            "item": "أين منطقة المطاعم؟",
+            "feedback": "This is formal; in speech \"وين ساحة الأكل؟\"."
+          },
+          "tip": "A question with \"وين\" puts it first."
+        },
+        {
+          "id": "unit-06.lesson-05.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"يسد / المول / شوكت\"",
+          "answer": "المول شوكت يسد؟",
+          "accepted": [
+            "المول شوكت يسد؟",
+            "المول شوكت يسد",
+            "شوكت يسد المول؟",
+            "il-mool shwakit ysidd?"
+          ],
+          "too_formal": {
+            "item": "متى يغلق المول؟",
+            "feedback": "\"متى\" is written Arabic; Iraqis ask \"شوكت\"."
+          },
+          "tip": "\"شوكت\" means \"when\" and \"يسد\" means \"closes\"."
+        },
+        {
+          "id": "unit-06.lesson-05.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Where is the escalator?\"",
+          "answer": "وين الدرج الكهربائي؟",
+          "accepted": [
+            "وين الدرج الكهربائي؟",
+            "وين الدرج الكهربائي",
+            "وين السلم الكهربائي؟",
+            "وين السلم المتحرك؟",
+            "ween id-daraj il-kahrabaa2i?"
+          ],
+          "too_formal": {
+            "item": "أين السلم المتحرك؟",
+            "feedback": "Understood, but in speech Iraqis ask with \"وين\"."
+          },
+          "tip": "\"درج\" is stairs; the moving kind is \"الدرج الكهربائي\"."
+        }
+      ]
+    },
+    {
+      "lesson": "lesson-06",
+      "phrases": [
+        {
+          "slot": "i-ordered-a-phone-online",
+          "arabic": "طْلَبِت تِلِفُون أُونْلَايْن",
+          "transliteration": "Tlabit tilifoon online"
+        },
+        {
+          "slot": "where-is-my-order",
+          "arabic": "وِين طَلَبِي؟",
+          "transliteration": "ween Talabi?",
+          "reply": {
+            "arabic": "هَسَّه بِالطَّرِيگ",
+            "transliteration": "hassa biT-Tareeg",
+            "english": "It's on the way now."
+          }
+        },
+        {
+          "slot": "when-will-the-parcel-arrive",
+          "arabic": "شْوَكِت يُوصَل الطَّرِد؟",
+          "transliteration": "shwakit yooSal iT-Tarid?",
+          "reply": {
+            "arabic": "بَاچِر إِن شَاء الله",
+            "transliteration": "baachir inshaallah",
+            "english": "Tomorrow, God willing."
+          }
+        },
+        {
+          "slot": "is-delivery-free",
+          "arabic": "التَّوْصِيل بْبَلَاش؟",
+          "transliteration": "it-tawSeel b-balaash?"
+        },
+        {
+          "slot": "how-much-is-the-delivery-fee",
+          "arabic": "شْگَدّ أُجْرَة التَّوْصِيل؟",
+          "transliteration": "shgadd ujrat it-tawSeel?",
+          "reply": {
+            "arabic": "خَمِس تْلَاف",
+            "transliteration": "khamis tlaaf",
+            "english": "Five thousand."
+          }
+        },
+        {
+          "slot": "i-want-to-pay-by-credit-card",
+          "arabic": "أَرِيد أَدْفَع بِالكَارْت",
+          "transliteration": "areed adfa3 bil-kaart"
+        },
+        {
+          "slot": "can-i-pay-on-delivery",
+          "arabic": "أَگْدَر أَدْفَع عِنْد الاِسْتِلَام؟",
+          "transliteration": "agdar adfa3 3ind il-istilaam?"
+        },
+        {
+          "slot": "add-it-to-the-cart",
+          "arabic": "ضِيفَه لِلسَّلَّة",
+          "transliteration": "Deefa lis-salla"
+        },
+        {
+          "slot": "please-enter-your-address",
+          "arabic": "اِكْتِب عِنْوَانَك، لُو سَمَحْت",
+          "transliteration": "iktib 3inwaanak, law sama7t"
+        },
+        {
+          "slot": "the-parcel-arrived-damaged",
+          "arabic": "الطَّرِد وُصَل خَرْبَان",
+          "transliteration": "iT-Tarid wuSal kharbaan"
+        },
+        {
+          "slot": "i-want-to-track-my-order",
+          "arabic": "أَرِيد أَتَابِع طَلَبِي",
+          "transliteration": "areed ataabi3 Talabi"
+        },
+        {
+          "slot": "i-ll-write-a-review-of-the-product",
+          "arabic": "رَاح أَكْتِب تَگْيِيم لِلْمُنْتَج",
+          "transliteration": "raa7 aktib tagyeem lil-muntaj"
+        }
+      ],
+      "dialogue": [
+        {
+          "speaker": "Ali",
+          "arabic": "هلا بيچ، تفضلي.",
+          "transliteration": "hala beech, tfaDDali.",
+          "english": "Hello, go ahead."
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "i-ordered-a-phone-online"
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "where-is-my-order"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "شنو رقم طلبچ؟",
+          "transliteration": "shinu ragam Talabich?",
+          "english": "What is your order number?"
+        },
+        {
+          "speaker": "Zainab",
+          "arabic": "ثلاثة، سبعة، تسعة.",
+          "transliteration": "thlaatha, sab3a, tis3a.",
+          "english": "Three, seven, nine."
+        },
+        {
+          "speaker": "Ali",
+          "slot": "where-is-my-order",
+          "reply": true
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "when-will-the-parcel-arrive"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "when-will-the-parcel-arrive",
+          "reply": true
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "how-much-is-the-delivery-fee"
+        },
+        {
+          "speaker": "Ali",
+          "slot": "how-much-is-the-delivery-fee",
+          "reply": true
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "can-i-pay-on-delivery"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "إي، تگدرين تدفعين كاش للمندوب.",
+          "transliteration": "ee, tigdareen tidfa3een kaash lil-mandoob.",
+          "english": "Yes, you can pay the courier in cash."
+        },
+        {
+          "speaker": "Zainab",
+          "slot": "i-want-to-track-my-order"
+        },
+        {
+          "speaker": "Ali",
+          "arabic": "هسّه أدزلچ الرابط برسالة.",
+          "transliteration": "hassa adizzlich ir-raabiT b-risaala.",
+          "english": "I'll send you the link by message now."
+        },
+        {
+          "speaker": "Zainab",
+          "arabic": "تسلم، مشكور.",
+          "transliteration": "tislam, mashkoor.",
+          "english": "Thanks, much obliged."
+        }
+      ],
+      "de_book": [
+        {
+          "pair": {
+            "arabic": "التوصيل ببلاش؟",
+            "transliteration": "it-tawSeel b-balaash?",
+            "english": "Is delivery free?"
+          },
+          "response": {
+            "arabic": "لا، بخمس تلاف.",
+            "transliteration": "la, b-khamis tlaaf.",
+            "english": "No, it's five thousand."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شوكت يوصل الطرد؟",
+            "transliteration": "shwakit yooSal iT-Tarid?",
+            "english": "When will the parcel arrive?"
+          },
+          "response": {
+            "arabic": "باچر إن شاء الله.",
+            "transliteration": "baachir inshaallah.",
+            "english": "Tomorrow, God willing."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "وين طلبي؟",
+            "transliteration": "ween Talabi?",
+            "english": "Where is my order?"
+          },
+          "response": {
+            "arabic": "هسّه بالطريگ.",
+            "transliteration": "hassa biT-Tareeg.",
+            "english": "It's on the way now."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "شلون تريد تدفع؟",
+            "transliteration": "shloon treed tidfa3?",
+            "english": "How do you want to pay?"
+          },
+          "response": {
+            "arabic": "أريد أدفع بالكارت.",
+            "transliteration": "areed adfa3 bil-kaart.",
+            "english": "I want to pay by card."
+          }
+        },
+        {
+          "pair": {
+            "arabic": "الطرد وصل خربان.",
+            "transliteration": "iT-Tarid wuSal kharbaan.",
+            "english": "The parcel arrived damaged."
+          },
+          "response": {
+            "arabic": "نبدّله إلك هسّه.",
+            "transliteration": "nbaddla ilak hassa.",
+            "english": "We'll replace it for you now."
+          }
+        }
+      ],
+      "culture": "Many Baghdadis shop through store pages and apps, and paying cash on delivery, \"الدفع عند الاستلام\", is the usual way. The courier, \"المندوب\", normally phones before he comes, so keep your phone close.",
+      "exercises": [
+        {
+          "id": "unit-06.lesson-06.reply.01",
+          "type": "reply",
+          "prompt": "You ask: \"وين طلبي؟\" The shop says it is on the way now. Say their answer.",
+          "answer": "هسه بالطريگ",
+          "accepted": [
+            "هسه بالطريگ",
+            "هسه بالطريق",
+            "بالطريگ",
+            "hassa biT-Tareeg"
+          ],
+          "too_formal": {
+            "item": "إنه في الطريق الآن",
+            "feedback": "This is written Arabic; Iraqis say \"هسّه\" for \"now\"."
+          },
+          "tip": "\"هسّه\" (hassa) is the Iraqi \"now\"."
+        },
+        {
+          "id": "unit-06.lesson-06.reply.02",
+          "type": "reply",
+          "prompt": "Someone asks: \"شگد أجرة التوصيل؟\" Say five thousand.",
+          "answer": "خمس تلاف",
+          "accepted": [
+            "خمس تلاف",
+            "خمس آلاف",
+            "خمسة آلاف",
+            "khamis tlaaf"
+          ],
+          "too_formal": {
+            "item": "خمسة آلاف دينار عراقي",
+            "feedback": "Correct but long; in speech \"خمس تلاف\" is enough."
+          },
+          "tip": "\"تلاف\" is the spoken form of \"آلاف\", thousands."
+        },
+        {
+          "id": "unit-06.lesson-06.fill_blank.01",
+          "type": "fill_blank",
+          "prompt": "Complete: \"أريد أدفع _____.\" Meaning: I want to pay by credit card.",
+          "answer": "بالكارت",
+          "accepted": [
+            "بالكارت",
+            "بالكارت البنكي",
+            "bil-kaart"
+          ],
+          "too_formal": {
+            "item": "بالبطاقة الائتمانية",
+            "feedback": "This is the formal term; people say \"الكارت\"."
+          },
+          "tip": "\"ب\" here means \"by\"."
+        },
+        {
+          "id": "unit-06.lesson-06.fill_blank.02",
+          "type": "fill_blank",
+          "prompt": "Complete: \"الطرد وصل _____.\" Meaning: The parcel arrived damaged.",
+          "answer": "خربان",
+          "accepted": [
+            "خربان",
+            "kharbaan"
+          ],
+          "too_formal": {
+            "item": "تالفاً",
+            "feedback": "This is written Arabic; Iraqis say \"خربان\"."
+          },
+          "tip": "A feminine noun takes \"خربانة\"."
+        },
+        {
+          "id": "unit-06.lesson-06.translate_to_arabic.01",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Is delivery free?\"",
+          "answer": "التوصيل ببلاش؟",
+          "accepted": [
+            "التوصيل ببلاش؟",
+            "التوصيل ببلاش",
+            "التوصيل مجاني؟",
+            "it-tawSeel b-balaash?"
+          ],
+          "too_formal": {
+            "item": "هل التوصيل مجاني؟",
+            "feedback": "Correct in writing; Iraqis usually say \"ببلاش\" for free."
+          },
+          "tip": "\"ببلاش\" means \"for nothing\"."
+        },
+        {
+          "id": "unit-06.lesson-06.translate_to_arabic.02",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Can I pay on delivery?\"",
+          "answer": "أگدر أدفع عند الاستلام؟",
+          "accepted": [
+            "أگدر أدفع عند الاستلام؟",
+            "اگدر ادفع عند الاستلام",
+            "أقدر أدفع عند الاستلام؟",
+            "agdar adfa3 3ind il-istilaam?"
+          ],
+          "too_formal": {
+            "item": "هل يمكنني الدفع عند الاستلام؟",
+            "feedback": "This is formal; Iraqis ask \"أگدر\" for \"can I\"."
+          },
+          "tip": "\"الدفع عند الاستلام\" is the shop term for cash on delivery."
+        },
+        {
+          "id": "unit-06.lesson-06.translate_to_arabic.03",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"I want to track my order.\"",
+          "answer": "أريد أتابع طلبي",
+          "accepted": [
+            "أريد أتابع طلبي",
+            "اريد اتابع طلبي",
+            "أريد أتتبع طلبي",
+            "areed ataabi3 Talabi"
+          ],
+          "too_formal": {
+            "item": "أرغب في تتبع طلبي",
+            "feedback": "This is formal; Iraqis say \"أريد\" plus the verb."
+          },
+          "tip": "\"أريد\" (areed) is the Iraqi \"I want\"."
+        },
+        {
+          "id": "unit-06.lesson-06.choose.01",
+          "type": "choose",
+          "prompt": "Which phrase means \"Add it to the cart\"?",
+          "options": [
+            "ضيفه للسلة",
+            "اكتب عنوانك، لو سمحت",
+            "وين طلبي؟",
+            "التوصيل ببلاش؟"
+          ],
+          "answer": "ضيفه للسلة",
+          "accepted": [
+            "ضيفه للسلة",
+            "حطه بالسلة",
+            "Deefa lis-salla"
+          ],
+          "too_formal": {
+            "item": "أضفه إلى سلة التسوق",
+            "feedback": "This is the written app wording; people say \"ضيفه للسلة\"."
+          },
+          "tip": "\"سلّة\" is the basket or cart."
+        },
+        {
+          "id": "unit-06.lesson-06.choose.02",
+          "type": "choose",
+          "prompt": "Which question means \"When will the parcel arrive?\"",
+          "options": [
+            "شوكت يوصل الطرد؟",
+            "شگد أجرة التوصيل؟",
+            "وين طلبي؟",
+            "الطرد وصل خربان"
+          ],
+          "answer": "شوكت يوصل الطرد؟",
+          "accepted": [
+            "شوكت يوصل الطرد؟",
+            "شوكت يوصل الطرد",
+            "shwakit yooSal iT-Tarid?"
+          ],
+          "too_formal": {
+            "item": "متى سيصل الطرد؟",
+            "feedback": "\"متى\" is written Arabic; Iraqis ask \"شوكت\"."
+          },
+          "tip": "\"شوكت\" means \"when\"."
+        },
+        {
+          "id": "unit-06.lesson-06.reorder.01",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"أونلاين / تلفون / طلبت\"",
+          "answer": "طلبت تلفون أونلاين",
+          "accepted": [
+            "طلبت تلفون أونلاين",
+            "طلبت تلفون اونلاين",
+            "طلبت موبايل أونلاين",
+            "Tlabit tilifoon online"
+          ],
+          "too_formal": {
+            "item": "طلبت هاتفاً عبر الإنترنت",
+            "feedback": "This is written Arabic; Iraqis say \"تلفون\" and \"أونلاين\"."
+          },
+          "tip": "The verb comes first: \"طلبت\", I ordered."
+        },
+        {
+          "id": "unit-06.lesson-06.reorder.02",
+          "type": "reorder",
+          "prompt": "Put the words in order: \"للمنتج / تگييم / أكتب / راح\"",
+          "answer": "راح أكتب تگييم للمنتج",
+          "accepted": [
+            "راح أكتب تگييم للمنتج",
+            "راح اكتب تقييم للمنتج",
+            "raa7 aktib tagyeem lil-muntaj"
+          ],
+          "too_formal": {
+            "item": "سأكتب تقييماً للمنتج",
+            "feedback": "\"سـ\" is the written future; Iraqis say \"راح\"."
+          },
+          "tip": "\"راح\" before a verb makes the future."
+        },
+        {
+          "id": "unit-06.lesson-06.translate_to_arabic.04",
+          "type": "translate_to_arabic",
+          "prompt": "Translate: \"Please enter your address.\" (to a man)",
+          "answer": "اكتب عنوانك، لو سمحت",
+          "accepted": [
+            "اكتب عنوانك، لو سمحت",
+            "اكتب عنوانك لو سمحت",
+            "اكتب عنوانك",
+            "iktib 3inwaanak, law sama7t"
+          ],
+          "too_formal": {
+            "item": "يرجى إدخال العنوان",
+            "feedback": "This is the written app wording; to a person you say \"اكتب عنوانك\"."
+          },
+          "tip": "To a woman: \"اكتبي عنوانچ، لو سمحتي\"."
+        }
+      ]
     }
   ],
   "challenge": {
