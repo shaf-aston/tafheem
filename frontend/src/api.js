@@ -155,6 +155,10 @@ export const makeCheckedSentence = () =>
 // The teacher's exercise library: every tag, every exercise, and a count per
 // tag. Small and fixed, so it is fetched whole once and filtered on the
 // frontend rather than re-asked per tag.
+// One Grow world served whole by the backend (routers/grow.py): its levels, paths and units. The Prayer world reads it.
+export const getGrowWorld = (id) =>
+  api.get(`/grow/worlds/${id}`).then((r) => r.data)
+
 export const getTamreen = () =>
   api.get('/tamreen').then((r) => r.data)
 

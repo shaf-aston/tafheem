@@ -63,7 +63,8 @@
     "aqidah": "@teal",
     "default": "@lime",
     "jawhara": "@gold",
-    "wasitiyya": "@orange"
+    "wasitiyya": "@orange",
+    "prayer": "@pink"
   },
   "grow": {
     "_comment": "Grow's worlds. backdrop-opacity is how strongly a world's faded picture (components/grow/WorldBackdrop.jsx) shows through under its content: kept faint so the map and the cards stay the point. gold is what is learnt and won: a finished lesson's star, the medal, a run of right answers; the light look has its own, since its amber is deepened for text and reads brown as a fill.",
