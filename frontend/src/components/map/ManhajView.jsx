@@ -58,9 +58,9 @@ export default function ManhajView({ place, onGo }) {
                 onClick={() => at({ group: g.id })}
                 className="pbs-card text-right p-3.5 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] flex flex-col gap-0.5"
               >
-                <ArabicText as="p" size="base">{g.ar}</ArabicText>
-                <p className="type-body text-[var(--text)]">{g.en}</p>
-                <p className="type-ui text-[var(--text-faint)]">{g.era}</p>
+                <ArabicText as="p" size="lg">{g.ar}</ArabicText>
+                <p className="type-small text-[var(--text-dim)]">{g.en}</p>
+                <p className="type-tiny text-[var(--text-faint)]">{g.era}</p>
               </button>
             ))}
           </div>
