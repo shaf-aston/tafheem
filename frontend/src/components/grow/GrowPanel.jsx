@@ -14,6 +14,7 @@ import { landingOf, placeOf, valueOf } from '../../lib/grow/growPlace'
 import { goBack } from '../../lib/nav/journey'
 import { getProfile } from '../../lib/learner/profile'
 import { useHadithWorld } from '../../lib/grow/useHadithWorld'
+import { usePrayerWorld } from '../../lib/grow/usePrayerWorld'
 import { useLessonSession } from '../../lib/grow/useLessonSession'
 import { useArrival } from '../../lib/nav/useArrival'
 import { useBasicsWorld } from '../../lib/grow/useBasicsWorld'
@@ -53,6 +54,7 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
     words: useWordsWorld(worldOf('words')),
     hadith: useHadithWorld(worldOf('hadith')),
     quran: useQuranWorld(worldOf('quran')),
+    prayer: usePrayerWorld(worldOf('prayer')),
   }
   const placeAt = (value) => placeOf(value, WORLD_IDS, Object.keys(lessons), BOOK_IDS)
   // { at: 'home' } | { at: 'world', id, part? } | { at: 'lesson', id, part?, lesson?, inApp? }; a lesson's cards are the session's (below).
