@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { installKind, isIos } from './install'
+import { installKind, isIos, stripOpen } from './install'
 
 const IPHONE_SAFARI = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Version/17.0 Mobile/15E148 Safari/604.1'
 const IPHONE_CHROME = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 CriOS/120.0 Mobile/15E148 Safari/604.1'
@@ -12,8 +12,8 @@ describe('installKind', () => {
   it('Android with a browser prompt: the button', () => {
     expect(installKind({ ua: ANDROID, prompt: {} })).toBe('prompt')
   })
-  it('Android before the browser offers one: nothing to show yet', () => {
-    expect(installKind({ ua: ANDROID })).toBe('none')
+  it('Android before the browser offers one: told to use its menu', () => {
+    expect(installKind({ ua: ANDROID })).toBe('menu')
   })
   it('iPhone Safari: the Share steps', () => {
     expect(installKind({ ua: IPHONE_SAFARI })).toBe('ios')
@@ -32,5 +32,21 @@ describe('installKind', () => {
   it('already installed: nothing, on any phone', () => {
     expect(installKind({ ua: IPHONE_SAFARI, standalone: true })).toBe('none')
     expect(installKind({ ua: ANDROID, standalone: true, prompt: {} })).toBe('none')
+  })
+})
+
+describe('stripOpen', () => {
+  it('opens by itself for a prompt or the iPhone steps, until closed on this device', () => {
+    expect(stripOpen({ kind: 'prompt', dismissed: false, asked: false })).toBe(true)
+    expect(stripOpen({ kind: 'ios', dismissed: false, asked: false })).toBe(true)
+    expect(stripOpen({ kind: 'ios', dismissed: true, asked: false })).toBe(false)
+  })
+  it('waits for the icon where the advice is only "use your menu"', () => {
+    expect(stripOpen({ kind: 'menu', dismissed: false, asked: false })).toBe(false)
+    expect(stripOpen({ kind: 'menu', dismissed: false, asked: true })).toBe(true)
+  })
+  it('opens for the icon even after it was closed, but never where nothing can be installed', () => {
+    expect(stripOpen({ kind: 'ios', dismissed: true, asked: true })).toBe(true)
+    expect(stripOpen({ kind: 'none', dismissed: false, asked: true })).toBe(false)
   })
 })

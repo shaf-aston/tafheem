@@ -1,14 +1,18 @@
 /**
  * Whether, and how, this device can put the app on its home screen.
  *
- * Three phones, three answers, decided here and nowhere else:
+ * Four answers, decided here and nowhere else:
  *  - 'prompt'  Android Chrome and friends: the browser hands over an install
  *              prompt (beforeinstallprompt); a button shows it.
  *  - 'ios'     iPhone and iPad have no prompt at all: the only way is Share →
  *              Add to Home Screen, so the user is told the steps.
- *  - 'none'    already installed, a laptop or desktop (never offered: the app
- *              is for the phone), or a browser that cannot.
- * What shows it (components/shell/InstallBanner.jsx) draws the answer and decides nothing.
+ *  - 'menu'    An Android phone whose browser has not (yet) offered a prompt: its
+ *              own menu still has Install app / Add to Home screen, so the user is told that.
+ *  - 'none'    already installed, or a laptop or desktop (never offered: the app
+ *              is for the phone).
+ * The header's icon (components/shell/InstallButton.jsx) is there whenever the answer is not 'none'; the strip under the
+ * header (components/shell/InstallBanner.jsx) opens by itself for every answer but 'menu', and when the icon asks for the steps.
+ * What draws them only draws the answer and decides nothing.
  */
 import { useSyncExternalStore } from 'react'
 
@@ -31,11 +35,16 @@ export function installKind({ ua = '', touchPoints = 0, standalone = false, prom
   if (standalone || !isPhone(ua, touchPoints)) return 'none'
   if (prompt) return 'prompt'
   if (isIos(ua, touchPoints)) return isIosSafari(ua) ? 'ios' : 'ios-other'
-  return 'none'
+  return 'menu'
 }
+
+/** Pure: whether the strip under the header is open. It opens by itself unless closed on this device, but a kind whose only advice is "use your menu" waits to be asked. */
+export const stripOpen = ({ kind, dismissed, asked }) =>
+  kind !== 'none' && (asked || (!dismissed && kind !== 'menu'))
 
 let prompt = null
 let installed = false
+let asked = false // the icon was pressed and there is no browser prompt to show: the steps are wanted
 const listeners = new Set()
 const tell = () => listeners.forEach((listener) => listener())
 
@@ -84,16 +93,26 @@ export async function install() {
 }
 
 export const dismissInstall = () => {
+  asked = false
   writeDevice(DISMISSED, '1')
   tell()
+}
+
+/** The header icon pressed: the browser's prompt where it has one, else the steps. */
+export function pressInstall() {
+  if (prompt) return install()
+  asked = true
+  tell()
+  return Promise.resolve(false)
 }
 
 // On this device, not on the shelf: asking again on a new phone is right.
 const dismissed = () => readDevice(DISMISSED) === '1'
 
-/** { kind, dismissed } for the banner; kind is 'prompt' | 'ios' | 'ios-other' | 'none'. */
+/** { kind, dismissed, asked } for what draws it; kind is 'prompt' | 'ios' | 'ios-other' | 'menu' | 'none'. */
 export function useInstall() {
   const now = useSyncExternalStore(subscribe, kind)
   const hidden = useSyncExternalStore(subscribe, dismissed)
-  return { kind: now, dismissed: hidden }
+  const wanted = useSyncExternalStore(subscribe, () => asked)
+  return { kind: now, dismissed: hidden, asked: wanted }
 }
