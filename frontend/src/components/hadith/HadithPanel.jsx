@@ -190,10 +190,10 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}
         menu={(
           <HadithMoreMenu accent={accent} items={[
-            { label: '★ Starred', count: favorites.length, on: starred, pick: () => setStarred(!starred) },
-            { label: 'Narrators', hint: 'who passed them on', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
-            { label: 'Scholars', hint: 'what they said of them', on: listing === SCHOLARS_PLACE, pick: () => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE)) },
-            { label: 'Terms', hint: 'the words of the science', on: listing === TERMS_PLACE, pick: () => (listing === TERMS_PLACE ? go(place) : onGo('hadith', TERMS_PLACE)) },
+            { icon: 'kept', label: 'Starred', hint: 'hadith you kept', count: favorites.length, on: starred, pick: () => setStarred(!starred) },
+            { icon: 'people', label: 'Narrators', hint: 'who passed them on', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
+            { icon: 'law', label: 'Scholars', hint: 'what they said of them', on: listing === SCHOLARS_PLACE, pick: () => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE)) },
+            { icon: 'quran', label: 'Terms', hint: 'the words of the science', on: listing === TERMS_PLACE, pick: () => (listing === TERMS_PLACE ? go(place) : onGo('hadith', TERMS_PLACE)) },
           ]} />
         )}
       >
