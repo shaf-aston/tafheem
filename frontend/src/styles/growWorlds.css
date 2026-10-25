@@ -179,6 +179,8 @@
 /* A book world's cards (components/grow/exercises): the book's sentence, sorting, ordering. */
 .grow-rule-title { font-size: var(--type-title); font-weight: 800; color: var(--text); }
 .grow-rule-ar { padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); line-height: 1.9; }
+/* The line a choose card asks about stands centred over its answers; a rule card's longer text keeps to the right. */
+.grow-choose-ar { text-align: center; }
 .grow-rule-en { font-size: var(--type-body); line-height: 1.6; color: var(--text); }
 .grow-ask-strong { font-weight: 700; color: var(--text); }
 .grow-option-check { padding-inline-start: 44px; position: relative; }

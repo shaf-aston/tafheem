@@ -20,7 +20,7 @@ export default function ChooseCard({ card, value, setValue, result }) {
       <span className="grow-card-tag">{say(card.tag)}</span>
       <p className="grow-card-ask grow-ask-strong">{card.ask}</p>
       {card.ar && (
-        <ArabicText as="p" className="grow-rule-ar">
+        <ArabicText as="p" className="grow-rule-ar grow-choose-ar">
           {halves.length > 1 ? <Bayt halves={halves.map(gapped)} /> : gapped(card.ar)}
         </ArabicText>
       )}
