@@ -1,6 +1,62 @@
 {
   "found": [
     {
+      "lesson": 1,
+      "phrase": 2,
+      "english": "Please, I want to go to Old Damascus.",
+      "search_term": "Damascus old city street",
+      "candidates": [
+        {
+          "id": "7da254b4-b5d5-4f79-9b11-49108b8afa29",
+          "title": "raising siege Jerusalem. Typical scene",
+          "creator": "libraryofcongress",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6856378/photo-image-people-art-vintage",
+          "thumbnail": "https://api.openverse.org/v1/images/7da254b4-b5d5-4f79-9b11-49108b8afa29/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "phrase": 12,
+      "english": "The next bus is emptier, better.",
+      "search_term": "empty bus interior",
+      "candidates": [
+        {
+          "id": "97fcb8d4-6dc8-4393-803e-ebdd959f98a4",
+          "title": "Passenger seats bus",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6040293/photo-image-public-domain-vintage-retro",
+          "thumbnail": "https://api.openverse.org/v1/images/97fcb8d4-6dc8-4393-803e-ebdd959f98a4/thumb/"
+        },
+        {
+          "id": "c8d41a7f-c405-44f9-a76c-588c5a39ee4f",
+          "title": "Passenger seats bus",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6041543/photo-image-public-domain-interior-free",
+          "thumbnail": "https://api.openverse.org/v1/images/c8d41a7f-c405-44f9-a76c-588c5a39ee4f/thumb/"
+        },
+        {
+          "id": "b2560329-263d-498e-9715-67dfee7ff126",
+          "title": "interior moving train empty seats",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3286704/free-photo-image-window-seat-car",
+          "thumbnail": "https://api.openverse.org/v1/images/b2560329-263d-498e-9715-67dfee7ff126/thumb/"
+        }
+      ]
+    },
+    {
       "lesson": 5,
       "phrase": 3,
       "english": "I want to go to the Old City.",
@@ -47,7 +103,35 @@
           "thumbnail": "https://api.openverse.org/v1/images/acb6a881-92bb-4338-aa18-7d6d60946511/thumb/"
         }
       ]
+    },
+    {
+      "lesson": 5,
+      "phrase": 8,
+      "english": "Busy / Occupied.",
+      "search_term": "taxi occupied sign",
+      "candidates": []
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 2,
+      "phrase": 5,
+      "english": "Is it far or near?"
+    },
+    {
+      "lesson": 2,
+      "phrase": 6,
+      "english": "How far is it from here?"
+    },
+    {
+      "lesson": 3,
+      "phrase": 10,
+      "english": "It comes every little while."
+    },
+    {
+      "lesson": 5,
+      "phrase": 11,
+      "english": "At your service. (a common polite reply from a taxi driver)"
+    }
+  ]
 }

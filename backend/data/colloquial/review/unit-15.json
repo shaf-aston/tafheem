@@ -1,6 +1,54 @@
 {
   "found": [
     {
+      "lesson": 1,
+      "phrase": 4,
+      "english": "I want a one-way ticket only.",
+      "search_term": "airline ticket",
+      "candidates": [
+        {
+          "id": "c74cf62b-48aa-4725-8ef4-0bb93632b6f6",
+          "title": "G-BIKC Boeing 757-236 British Airways 'The Worlds Biggest Offer' LHR April 1991",
+          "creator": "Colin Cooke Photo",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/16172980@N07/51666305938",
+          "thumbnail": "https://api.openverse.org/v1/images/c74cf62b-48aa-4725-8ef4-0bb93632b6f6/thumb/"
+        },
+        {
+          "id": "dab1e83f-2b78-4e64-89f6-08443c887377",
+          "title": "N503MG Boeing 727-121 MGM Grand Air Luton 12.6.92",
+          "creator": "Colin Cooke Photo",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/16172980@N07/51883738416",
+          "thumbnail": "https://api.openverse.org/v1/images/dab1e83f-2b78-4e64-89f6-08443c887377/thumb/"
+        },
+        {
+          "id": "8dae0986-c84b-4bb6-baac-6c97e401e074",
+          "title": "You can bank on Robert",
+          "creator": "Cityswift - Ireland",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/48770310@N05/51754965574",
+          "thumbnail": "https://api.openverse.org/v1/images/8dae0986-c84b-4bb6-baac-6c97e401e074/thumb/"
+        },
+        {
+          "id": "d5b19496-d5a0-47f5-b37f-93239bc86c1f",
+          "title": "TF-AEW A321-251Neo Play Stansted 18.7.21",
+          "creator": "Colin Cooke Photo",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/16172980@N07/51321317973",
+          "thumbnail": "https://api.openverse.org/v1/images/d5b19496-d5a0-47f5-b37f-93239bc86c1f/thumb/"
+        }
+      ]
+    },
+    {
       "lesson": 3,
       "phrase": 9,
       "english": "I want the key please.",
@@ -49,6 +97,54 @@
       ]
     },
     {
+      "lesson": 3,
+      "phrase": 12,
+      "english": "Thanks, the room is very nice.",
+      "search_term": "hotel room interior",
+      "candidates": [
+        {
+          "id": "42e4de93-aa27-436b-ad97-fd468eac4032",
+          "title": "Room Interior",
+          "creator": "Travel Adventures",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/room-interior-WKMVXACB6C",
+          "thumbnail": "https://api.openverse.org/v1/images/42e4de93-aa27-436b-ad97-fd468eac4032/thumb/"
+        },
+        {
+          "id": "255a7c3a-1ba1-4585-ac07-e5939d91794f",
+          "title": "Hotel Room",
+          "creator": "Travel Adventures",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/hotel-room-DGBAEIS339",
+          "thumbnail": "https://api.openverse.org/v1/images/255a7c3a-1ba1-4585-ac07-e5939d91794f/thumb/"
+        },
+        {
+          "id": "0a0db5a9-997f-434c-b557-d38a32e68e5d",
+          "title": "Modern Room",
+          "creator": "World Travel Adventures",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/modern-room-ORRHZ1VULX",
+          "thumbnail": "https://api.openverse.org/v1/images/0a0db5a9-997f-434c-b557-d38a32e68e5d/thumb/"
+        },
+        {
+          "id": "7c2c463b-4e2e-4640-a62d-035141ee4899",
+          "title": "Travel Hotel",
+          "creator": "Travel Adventures",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/travel-hotel-AIL2PEQAY9",
+          "thumbnail": "https://api.openverse.org/v1/images/7c2c463b-4e2e-4640-a62d-035141ee4899/thumb/"
+        }
+      ]
+    },
+    {
       "lesson": 4,
       "phrase": 2,
       "english": "The plane is very delayed.",
@@ -56,50 +152,146 @@
       "candidates": []
     },
     {
-      "lesson": 7,
-      "phrase": 2,
-      "english": "Do you have good dates?",
-      "search_term": "box of dates",
+      "lesson": 5,
+      "phrase": 5,
+      "english": "Walk straight, then turn left",
+      "search_term": "street direction sign",
       "candidates": [
         {
-          "id": "7028d740-5283-4256-a154-e752fda30c6f",
-          "title": "Apple iPhone, digital device photo",
+          "id": "0d0ecabd-c8a8-4aff-a7cb-b19e974d9e27",
+          "title": "Stop Sign",
+          "creator": "Matt Bango",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/stop-sign-LC5MVR4ZSR",
+          "thumbnail": "https://api.openverse.org/v1/images/0d0ecabd-c8a8-4aff-a7cb-b19e974d9e27/thumb/"
+        },
+        {
+          "id": "7abd2cab-7401-49dd-a316-9a3acc88204b",
+          "title": "Outdoor Sunny",
+          "creator": "Jeffrey Betts",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/outdoor-sunny-TG03ANCZ7G",
+          "thumbnail": "https://api.openverse.org/v1/images/7abd2cab-7401-49dd-a316-9a3acc88204b/thumb/"
+        },
+        {
+          "id": "940cf038-6d1d-4335-ba32-d2d8aabbfdc0",
+          "title": "Railway Track",
+          "creator": "Jeffrey Betts",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/railway-track-9FHPV5ZPBX",
+          "thumbnail": "https://api.openverse.org/v1/images/940cf038-6d1d-4335-ba32-d2d8aabbfdc0/thumb/"
+        },
+        {
+          "id": "68ec30f4-ca3c-4080-a0a3-47af809cb33d",
+          "title": "Arcdetriomphe Road",
+          "creator": "James Frid",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/arcdetriomphe-road-GLAJBCLTW8",
+          "thumbnail": "https://api.openverse.org/v1/images/68ec30f4-ca3c-4080-a0a3-47af809cb33d/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "phrase": 6,
+      "english": "I want a tour with a guide",
+      "search_term": "tour guide group",
+      "candidates": [
+        {
+          "id": "6d9a229c-1a9a-42aa-8df4-173facb61c3b",
+          "title": "BW65 DBY First Group Wright",
           "creator": null,
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/6113130/photo-image-iphone-phone-public-domain",
-          "thumbnail": "https://api.openverse.org/v1/images/7028d740-5283-4256-a154-e752fda30c6f/thumb/"
+          "foreign_landing_url": "https://www.rawpixel.com/image/6079283/photo-image-public-domain-gemini",
+          "thumbnail": "https://api.openverse.org/v1/images/6d9a229c-1a9a-42aa-8df4-173facb61c3b/thumb/"
         },
         {
-          "id": "060b83b9-2192-4787-84cb-a9ee5b9a63b1",
-          "title": "Camera tools set, location unknown",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/6112673/camera-tools-set-location-unknown-date-unknown",
-          "thumbnail": "https://api.openverse.org/v1/images/060b83b9-2192-4787-84cb-a9ee5b9a63b1/thumb/"
-        },
-        {
-          "id": "1ddf13b5-554d-425b-abc4-d3d686d6ca0c",
-          "title": "Coca Cola box, location unknown",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/6112473/coca-cola-box-location-unknown-date-unknown",
-          "thumbnail": "https://api.openverse.org/v1/images/1ddf13b5-554d-425b-abc4-d3d686d6ca0c/thumb/"
-        },
-        {
-          "id": "916b2ff1-f8c1-4455-abd0-e7ea24c8ecff",
-          "title": "Accessories For The Antique Holy Name Altar & Sick Call Set In An Oak Shadow Box, Patent Date February 16, 1909",
-          "creator": "France1978",
-          "license": "by-sa",
+          "id": "2a74d333-7f49-4efb-bc67-5d317387d083",
+          "title": "Partially Hidden",
+          "creator": "krossbow",
+          "license": "by",
           "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/51764518@N02/52258845701",
-          "thumbnail": "https://api.openverse.org/v1/images/916b2ff1-f8c1-4455-abd0-e7ea24c8ecff/thumb/"
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/13194817@N00/51653739661",
+          "thumbnail": "https://api.openverse.org/v1/images/2a74d333-7f49-4efb-bc67-5d317387d083/thumb/"
+        },
+        {
+          "id": "e9653b00-f8e8-4c55-9120-33225193e31e",
+          "title": "Casa Batlló",
+          "creator": "krossbow",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/13194817@N00/51921379563",
+          "thumbnail": "https://api.openverse.org/v1/images/e9653b00-f8e8-4c55-9120-33225193e31e/thumb/"
+        },
+        {
+          "id": "03a11357-117b-44a2-9aaa-10c75915342e",
+          "title": "AMISOM promotes agricultural skills among women in Jubaland State",
+          "creator": "AMISOM Public Information",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/61765479@N08/51511290744",
+          "thumbnail": "https://api.openverse.org/v1/images/03a11357-117b-44a2-9aaa-10c75915342e/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "phrase": 12,
+      "english": "How beautiful this place is!",
+      "search_term": "scenic landscape view",
+      "candidates": [
+        {
+          "id": "c56192f6-680e-4ad4-a7fd-a0c38d11c243",
+          "title": "Mountain Landscape",
+          "creator": "Johannes Plenio",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/mountain-landscape-9EMKZ5SQ2K",
+          "thumbnail": "https://api.openverse.org/v1/images/c56192f6-680e-4ad4-a7fd-a0c38d11c243/thumb/"
+        },
+        {
+          "id": "8b0afb1c-f7f0-4838-9544-7b29cd110ce5",
+          "title": "Pastel Beach",
+          "creator": "Ethan Brooke",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/pastel-beach-LD4NXVRRBL",
+          "thumbnail": "https://api.openverse.org/v1/images/8b0afb1c-f7f0-4838-9544-7b29cd110ce5/thumb/"
+        },
+        {
+          "id": "b1bdc8ff-32e3-4dc8-b3b7-93f4c2888553",
+          "title": "Blue Distant",
+          "creator": "Joe deSousa",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/blue-distant-LILKFV5FDQ",
+          "thumbnail": "https://api.openverse.org/v1/images/b1bdc8ff-32e3-4dc8-b3b7-93f4c2888553/thumb/"
+        },
+        {
+          "id": "b87acc25-fffe-4ed8-84a3-71800698d313",
+          "title": "Forest Aerial",
+          "creator": "JJ Skys the Limit",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/forest-aerial-OLWVFFBJSX",
+          "thumbnail": "https://api.openverse.org/v1/images/b87acc25-fffe-4ed8-84a3-71800698d313/thumb/"
         }
       ]
     },
@@ -111,53 +303,118 @@
       "candidates": []
     },
     {
-      "lesson": 7,
-      "phrase": 8,
-      "english": "This wooden box is beautiful",
-      "search_term": "carved wooden box",
-      "candidates": [
-        {
-          "id": "c228edb3-ae1c-48ba-b620-30d60338be78",
-          "title": "Triptych Carved Box Wood Charles",
-          "creator": "thegetty",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14318101/triptych-carved-box-wood-charles-thurston-thompson",
-          "thumbnail": "https://api.openverse.org/v1/images/c228edb3-ae1c-48ba-b620-30d60338be78/thumb/"
-        },
-        {
-          "id": "c8e041e3-776e-4b12-951f-c8b58f359260",
-          "title": "Carved Box Wood Statuette Charles",
-          "creator": "thegetty",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14318291/carved-box-wood-statuette-charles-thurston-thompson",
-          "thumbnail": "https://api.openverse.org/v1/images/c8e041e3-776e-4b12-951f-c8b58f359260/thumb/"
-        },
-        {
-          "id": "a59d612e-4cf9-486f-8d16-7650fe5e34b7",
-          "title": "Triptych, Miniature Altar Piece, Carved",
-          "creator": "thegetty",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14316692/image-christ-wooden-public-domain",
-          "thumbnail": "https://api.openverse.org/v1/images/a59d612e-4cf9-486f-8d16-7650fe5e34b7/thumb/"
-        },
-        {
-          "id": "225f05c9-ff8c-41b2-a07a-73372e8b02b2",
-          "title": "Carved Coconut-shell Box (ca. 1600",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/10151273/carved-coconut-shell-box-ca-1600-late-renaissance-french",
-          "thumbnail": "https://api.openverse.org/v1/images/225f05c9-ff8c-41b2-a07a-73372e8b02b2/thumb/"
-        }
-      ]
+      "lesson": 8,
+      "phrase": 3,
+      "english": "We are travelling with the whole family",
+      "search_term": "family travel suitcase",
+      "candidates": []
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 8,
+      "english": "I want to confirm the reservation."
+    },
+    {
+      "lesson": 1,
+      "phrase": 9,
+      "english": "Is there a discount for students?"
+    },
+    {
+      "lesson": 1,
+      "phrase": 11,
+      "english": "How long does the trip take?"
+    },
+    {
+      "lesson": 2,
+      "phrase": 7,
+      "english": "Do you have anything to declare?"
+    },
+    {
+      "lesson": 2,
+      "phrase": 8,
+      "english": "No, I don't have anything."
+    },
+    {
+      "lesson": 2,
+      "phrase": 10,
+      "english": "Are you coming for tourism or work?"
+    },
+    {
+      "lesson": 2,
+      "phrase": 11,
+      "english": "How long will you stay here?"
+    },
+    {
+      "lesson": 2,
+      "phrase": 12,
+      "english": "Welcome."
+    },
+    {
+      "lesson": 3,
+      "phrase": 2,
+      "english": "Under the name Nour."
+    },
+    {
+      "lesson": 3,
+      "phrase": 7,
+      "english": "Can I see the room first?"
+    },
+    {
+      "lesson": 3,
+      "phrase": 10,
+      "english": "What time do I need to check out?"
+    },
+    {
+      "lesson": 4,
+      "phrase": 5,
+      "english": "Come help me please."
+    },
+    {
+      "lesson": 4,
+      "phrase": 6,
+      "english": "There's a problem with the reservation."
+    },
+    {
+      "lesson": 4,
+      "phrase": 11,
+      "english": "Nobody answered me."
+    },
+    {
+      "lesson": 4,
+      "phrase": 12,
+      "english": "May God make up for it, God willing it'll work out."
+    },
+    {
+      "lesson": 6,
+      "phrase": 4,
+      "english": "Is the water cold?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 5,
+      "english": "Is it safe to swim here?"
+    },
+    {
+      "lesson": 7,
+      "phrase": 6,
+      "english": "Is this handmade?"
+    },
+    {
+      "lesson": 8,
+      "phrase": 2,
+      "english": "How long does your holiday last?"
+    },
+    {
+      "lesson": 8,
+      "phrase": 10,
+      "english": "How was your trip?"
+    },
+    {
+      "lesson": 8,
+      "phrase": 12,
+      "english": "We came back safe, thank God"
+    }
+  ]
 }

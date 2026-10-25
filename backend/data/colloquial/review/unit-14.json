@@ -1,112 +1,289 @@
 {
   "found": [
     {
-      "lesson": 9,
-      "phrase": 6,
-      "english": "When will you leave the hospital?",
-      "search_term": "hospital building exterior",
+      "lesson": 3,
+      "phrase": 8,
+      "english": "The wedding procession is coming",
+      "search_term": "wedding procession with drums",
       "candidates": [
         {
-          "id": "931001b9-3c2d-4881-a951-e3dfe03274c0",
-          "title": "F. Lejars staff Tenon hospital",
+          "id": "f9f40dae-91f5-42b3-acaf-1f809d1a4739",
+          "title": "Three Mapuche women bearing drums",
           "creator": null,
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14018234/lejars-and-the-staff-tenon-hospital-paris-photograph-lucien-wormser",
-          "thumbnail": "https://api.openverse.org/v1/images/931001b9-3c2d-4881-a951-e3dfe03274c0/thumb/"
-        },
-        {
-          "id": "a8ea3d93-246b-4735-a137-57c21fe27dde",
-          "title": "Peking, Pechili province, China. Photograph",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/13961191/photo-image-person-art-hospital",
-          "thumbnail": "https://api.openverse.org/v1/images/a8ea3d93-246b-4735-a137-57c21fe27dde/thumb/"
-        },
-        {
-          "id": "148968e3-9cad-484c-82bf-52093d2b0ae5",
-          "title": "Modern architecture Madrid, Spain",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/3290516/free-photo-image-hospital-building-apartment-arch",
-          "thumbnail": "https://api.openverse.org/v1/images/148968e3-9cad-484c-82bf-52093d2b0ae5/thumb/"
-        },
-        {
-          "id": "eb9efd48-c425-4f04-8eaa-9b37f17e83ab",
-          "title": "Staff work jail gardens Karachi",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/13979364/photo-image-people-hospital-clothing",
-          "thumbnail": "https://api.openverse.org/v1/images/eb9efd48-c425-4f04-8eaa-9b37f17e83ab/thumb/"
+          "foreign_landing_url": "https://www.rawpixel.com/image/13992007/three-mapuche-women-bearing-drums-photograph-process-print-ca-1900",
+          "thumbnail": "https://api.openverse.org/v1/images/f9f40dae-91f5-42b3-acaf-1f809d1a4739/thumb/"
         }
       ]
     },
     {
-      "lesson": 9,
-      "phrase": 8,
-      "english": "This bouquet is for you",
-      "search_term": "bouquet of flowers",
+      "lesson": 3,
+      "phrase": 10,
+      "english": "The dabke folk dance started",
+      "search_term": "traditional folk dance",
       "candidates": [
         {
-          "id": "852a4aab-324f-4432-b2da-c723874b5065",
-          "title": "large bouquet various flowers berries",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/3282630/free-photo-image-flower-roses-bouquet-wedding",
-          "thumbnail": "https://api.openverse.org/v1/images/852a4aab-324f-4432-b2da-c723874b5065/thumb/"
+          "id": "3621bdb4-6abe-4e34-8e59-9e4d65074530",
+          "title": "Holt, Hobos and Eynsham-Wimborne Minster Folk Festival 2022",
+          "creator": "dorsetbays",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/82714141@N00/52144476805",
+          "thumbnail": "https://api.openverse.org/v1/images/3621bdb4-6abe-4e34-8e59-9e4d65074530/thumb/"
         },
         {
-          "id": "bd5cf9f9-e0be-4695-8dd6-487322bf2a8f",
-          "title": "Bouquets various flowers florist's storefront",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/3302163/free-photo-image-aster-blossom-cc0",
-          "thumbnail": "https://api.openverse.org/v1/images/bd5cf9f9-e0be-4695-8dd6-487322bf2a8f/thumb/"
+          "id": "104083b5-e1e6-454f-990b-431e1c23859e",
+          "title": "Eynsham Morris - Wimborne Minster Folk Festival 2022",
+          "creator": "dorsetbays",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/82714141@N00/52149167101",
+          "thumbnail": "https://api.openverse.org/v1/images/104083b5-e1e6-454f-990b-431e1c23859e/thumb/"
         },
         {
-          "id": "6f3b6db1-1f26-4bac-909a-2e678095151e",
-          "title": "Bouquet of Flowers and Grasses",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/9198549/bouquet-flowers-and-grasses",
-          "thumbnail": "https://api.openverse.org/v1/images/6f3b6db1-1f26-4bac-909a-2e678095151e/thumb/"
+          "id": "3991982e-4fb8-4b51-900d-af67b73d155a",
+          "title": "Eynsham Morris - Wimborne Minster Folk Festival 2022",
+          "creator": "dorsetbays",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/82714141@N00/52149408589",
+          "thumbnail": "https://api.openverse.org/v1/images/3991982e-4fb8-4b51-900d-af67b73d155a/thumb/"
         },
         {
-          "id": "376f6ab0-0e47-4358-b24e-f36b1170f007",
-          "title": "Screen with bouquet of flowers",
-          "creator": "thegetty",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14274190/screen-with-bouquet-flowers",
-          "thumbnail": "https://api.openverse.org/v1/images/376f6ab0-0e47-4358-b24e-f36b1170f007/thumb/"
+          "id": "d36ffa92-e982-4e83-9840-d7e49968b5f0",
+          "title": "Eynsham Morris - Wimborne Minster Folk Festival 2022",
+          "creator": "dorsetbays",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/82714141@N00/52148148637",
+          "thumbnail": "https://api.openverse.org/v1/images/d36ffa92-e982-4e83-9840-d7e49968b5f0/thumb/"
         }
       ]
+    },
+    {
+      "lesson": 5,
+      "phrase": 9,
+      "english": "We came to visit the mother and the baby",
+      "search_term": "baby blanket folded",
+      "candidates": []
     }
   ],
   "needs_search_term": [
     {
-      "lesson": 9,
+      "lesson": 1,
       "phrase": 1,
-      "english": "No harm, it is a purification, God willing"
+      "english": "Blessed Eid / Happy Eid"
+    },
+    {
+      "lesson": 1,
+      "phrase": 2,
+      "english": "May you be well every year"
+    },
+    {
+      "lesson": 1,
+      "phrase": 3,
+      "english": "May you witness it again next year"
+    },
+    {
+      "lesson": 1,
+      "phrase": 4,
+      "english": "Blessed Eid to you all"
+    },
+    {
+      "lesson": 1,
+      "phrase": 10,
+      "english": "Congratulations on the Eid"
+    },
+    {
+      "lesson": 1,
+      "phrase": 11,
+      "english": "Where were you, why didn't you come to celebrate Eid with us?"
+    },
+    {
+      "lesson": 1,
+      "phrase": 12,
+      "english": "May God give you all Eid money (said jokingly)"
+    },
+    {
+      "lesson": 2,
+      "phrase": 3,
+      "english": "Blessed month of Ramadan to you"
+    },
+    {
+      "lesson": 2,
+      "phrase": 4,
+      "english": "We're fasting"
+    },
+    {
+      "lesson": 3,
+      "phrase": 1,
+      "english": "Congratulations"
+    },
+    {
+      "lesson": 3,
+      "phrase": 2,
+      "english": "May God make you happy (wedding congrats)"
+    },
+    {
+      "lesson": 3,
+      "phrase": 3,
+      "english": "May it be your turn next"
+    },
+    {
+      "lesson": 3,
+      "phrase": 4,
+      "english": "Congratulations on the wedding"
+    },
+    {
+      "lesson": 4,
+      "phrase": 2,
+      "english": "Happy birthday (lit. every year you're well)"
+    },
+    {
+      "lesson": 4,
+      "phrase": 12,
+      "english": "May God lengthen your life"
+    },
+    {
+      "lesson": 5,
+      "phrase": 2,
+      "english": "May he be the delight of your eyes (to a man)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 3,
+      "english": "May God make him righteous"
+    },
+    {
+      "lesson": 5,
+      "phrase": 4,
+      "english": "May God raise him well"
+    },
+    {
+      "lesson": 5,
+      "phrase": 5,
+      "english": "Thank God, the mother and baby are safe"
+    },
+    {
+      "lesson": 5,
+      "phrase": 6,
+      "english": "What did you name him? (to a man)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 7,
+      "english": "We named him after his grandfather"
+    },
+    {
+      "lesson": 5,
+      "phrase": 8,
+      "english": "The baby looks a lot like his father"
+    },
+    {
+      "lesson": 5,
+      "phrase": 12,
+      "english": "I ask God to keep him safe for you both"
+    },
+    {
+      "lesson": 6,
+      "phrase": 10,
+      "english": "May God grant you success (to a man)"
+    },
+    {
+      "lesson": 6,
+      "phrase": 11,
+      "english": "We are proud of you (to a man)"
+    },
+    {
+      "lesson": 6,
+      "phrase": 12,
+      "english": "May God open the doors of good for you (to a man)"
+    },
+    {
+      "lesson": 7,
+      "phrase": 1,
+      "english": "Thank God for your safe return (to a man)"
+    },
+    {
+      "lesson": 7,
+      "phrase": 3,
+      "english": "May your effort be appreciated (to a group)"
+    },
+    {
+      "lesson": 7,
+      "phrase": 4,
+      "english": "May your sins be forgiven (to a group)"
+    },
+    {
+      "lesson": 7,
+      "phrase": 10,
+      "english": "May God accept it from you (to a man)"
+    },
+    {
+      "lesson": 8,
+      "phrase": 1,
+      "english": "We belong to God and to Him we return"
+    },
+    {
+      "lesson": 8,
+      "phrase": 2,
+      "english": "May God magnify your reward (condolence)"
+    },
+    {
+      "lesson": 8,
+      "phrase": 3,
+      "english": "May God have mercy on him"
+    },
+    {
+      "lesson": 8,
+      "phrase": 4,
+      "english": "May God house him in His spacious gardens"
+    },
+    {
+      "lesson": 8,
+      "phrase": 5,
+      "english": "May God forgive him"
+    },
+    {
+      "lesson": 8,
+      "phrase": 6,
+      "english": "My sincere condolences to the family"
+    },
+    {
+      "lesson": 8,
+      "phrase": 7,
+      "english": "May God grant you patience and comfort"
+    },
+    {
+      "lesson": 8,
+      "phrase": 8,
+      "english": "May God reward your effort (said to those who came)"
+    },
+    {
+      "lesson": 8,
+      "phrase": 10,
+      "english": "We will attend the funeral, God willing"
+    },
+    {
+      "lesson": 8,
+      "phrase": 11,
+      "english": "Where will the burial be?"
+    },
+    {
+      "lesson": 8,
+      "phrase": 12,
+      "english": "He was a good man"
     },
     {
       "lesson": 9,
-      "phrase": 2,
-      "english": "May God heal you"
+      "phrase": 1,
+      "english": "No harm, it is a purification, God willing"
     },
     {
       "lesson": 9,
@@ -125,11 +302,6 @@
     },
     {
       "lesson": 9,
-      "phrase": 10,
-      "english": "Rest and don't tire yourself"
-    },
-    {
-      "lesson": 9,
       "phrase": 11,
       "english": "Thank you for visiting me"
     },
@@ -137,6 +309,51 @@
       "lesson": 9,
       "phrase": 12,
       "english": "We ask God to grant you wellbeing"
+    },
+    {
+      "lesson": 10,
+      "phrase": 1,
+      "english": "I am very sorry to hear this news"
+    },
+    {
+      "lesson": 10,
+      "phrase": 2,
+      "english": "What happened?"
+    },
+    {
+      "lesson": 10,
+      "phrase": 3,
+      "english": "Be patient, God is with the patient"
+    },
+    {
+      "lesson": 10,
+      "phrase": 4,
+      "english": "Everything is by God's decree"
+    },
+    {
+      "lesson": 10,
+      "phrase": 5,
+      "english": "God decreed, and what He wills He does"
+    },
+    {
+      "lesson": 10,
+      "phrase": 6,
+      "english": "Perhaps there is good in it"
+    },
+    {
+      "lesson": 10,
+      "phrase": 8,
+      "english": "I am with you whenever you need me"
+    },
+    {
+      "lesson": 10,
+      "phrase": 11,
+      "english": "Don't be sad, try again"
+    },
+    {
+      "lesson": 10,
+      "phrase": 12,
+      "english": "God will make it easy for you"
     }
   ]
 }

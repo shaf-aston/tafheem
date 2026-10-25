@@ -1,0 +1,367 @@
+{
+  "found": {
+    "cardamom": {
+      "english": "cardamom",
+      "search_term": "green cardamom pods",
+      "candidates": []
+    },
+    "main-course": {
+      "english": "main course",
+      "search_term": "main course plate",
+      "candidates": [
+        {
+          "id": "4b3af3c9-fe3a-4df4-be59-aac6d7f6a918",
+          "title": "fine dining",
+          "creator": "dalecruse",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/91873384@N04/54229126407",
+          "thumbnail": "https://api.openverse.org/v1/images/4b3af3c9-fe3a-4df4-be59-aac6d7f6a918/thumb/"
+        },
+        {
+          "id": "9ee7c908-c50d-4c62-8db2-99029d428f2e",
+          "title": "20250423_Türkiye_6067+70+72+73 Antalya sRGB",
+          "creator": "Dan Lundberg",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/9508280@N07/54571448360",
+          "thumbnail": "https://api.openverse.org/v1/images/9ee7c908-c50d-4c62-8db2-99029d428f2e/thumb/"
+        }
+      ]
+    },
+    "fattoush": {
+      "english": "fattoush",
+      "search_term": "fattoush dish plate",
+      "candidates": [
+        {
+          "id": "f309755f-98cc-4f52-be26-a873f3277120",
+          "title": "Cena privata libanese",
+          "creator": "fugzu",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/70253321@N00/16768445977",
+          "thumbnail": "https://api.openverse.org/v1/images/f309755f-98cc-4f52-be26-a873f3277120/thumb/"
+        },
+        {
+          "id": "89365290-ae3a-4bdb-b7da-2c96fa006b04",
+          "title": "Cena privata libanese",
+          "creator": "fugzu",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/70253321@N00/16768453307",
+          "thumbnail": "https://api.openverse.org/v1/images/89365290-ae3a-4bdb-b7da-2c96fa006b04/thumb/"
+        }
+      ]
+    },
+    "dish-meal": {
+      "english": "dish (food)",
+      "search_term": "main dish plate",
+      "candidates": [
+        {
+          "id": "1f3eaa91-6d1c-4410-8de2-7db2f393716d",
+          "title": "Lobster Saute",
+          "creator": "AJ Photographic Art",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/82448203@N04/15389664956",
+          "thumbnail": "https://api.openverse.org/v1/images/1f3eaa91-6d1c-4410-8de2-7db2f393716d/thumb/"
+        },
+        {
+          "id": "e538e50d-00d9-4e52-af26-b66518ee94d3",
+          "title": "DSCF0414: a white plate topped with meat and pasta",
+          "creator": "PattayaPatrol",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/194424926@N05/54539744723",
+          "thumbnail": "https://api.openverse.org/v1/images/e538e50d-00d9-4e52-af26-b66518ee94d3/thumb/"
+        },
+        {
+          "id": "21e226db-4832-4a95-88c6-b79077abd0a6",
+          "title": "DSCF0412: a plate of food with shrimp, broccoli and noodles",
+          "creator": "PattayaPatrol",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/194424926@N05/54539848810",
+          "thumbnail": "https://api.openverse.org/v1/images/21e226db-4832-4a95-88c6-b79077abd0a6/thumb/"
+        },
+        {
+          "id": "0d57e61e-a97c-407b-a122-4e8784d2299b",
+          "title": "starter special",
+          "creator": "Tim Danton",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/97311529@N00/294868966",
+          "thumbnail": "https://api.openverse.org/v1/images/0d57e61e-a97c-407b-a122-4e8784d2299b/thumb/"
+        }
+      ]
+    },
+    "table": {
+      "english": "table",
+      "search_term": "table home furniture",
+      "candidates": [
+        {
+          "id": "6742c9cc-6d87-4578-8785-60c92e70807e",
+          "title": "Apartment Bed",
+          "creator": "Medhat Ayad",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/apartment-bed-EGXWIV409M",
+          "thumbnail": "https://api.openverse.org/v1/images/6742c9cc-6d87-4578-8785-60c92e70807e/thumb/"
+        },
+        {
+          "id": "0aa6ba6c-1a2b-440f-ad71-460a1bbffd40",
+          "title": "Interior Dining",
+          "creator": "Kristin Hardwick",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/interior-dining-VMJ6JJFFWR",
+          "thumbnail": "https://api.openverse.org/v1/images/0aa6ba6c-1a2b-440f-ad71-460a1bbffd40/thumb/"
+        },
+        {
+          "id": "4b2ad2c9-9652-451d-bd45-a51e37c7f90c",
+          "title": "Interior Dining",
+          "creator": "Kristin Hardwick",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/interior-dining-LHKILYV8X0",
+          "thumbnail": "https://api.openverse.org/v1/images/4b2ad2c9-9652-451d-bd45-a51e37c7f90c/thumb/"
+        },
+        {
+          "id": "07821a53-d863-43d0-b7d6-4c7e18983925",
+          "title": "Chill Chillout",
+          "creator": "Anthony Tran",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/chill-chillout-Q6XLNSOUUO",
+          "thumbnail": "https://api.openverse.org/v1/images/07821a53-d863-43d0-b7d6-4c7e18983925/thumb/"
+        }
+      ]
+    },
+    "hummus": {
+      "english": "hummus",
+      "search_term": "hummus dish plate",
+      "candidates": [
+        {
+          "id": "d2449576-8633-48de-8749-eed0cbe04d96",
+          "title": "Healthy dinner",
+          "creator": "mrsdkrebs",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/56041749@N02/13627457793",
+          "thumbnail": "https://api.openverse.org/v1/images/d2449576-8633-48de-8749-eed0cbe04d96/thumb/"
+        },
+        {
+          "id": "f309755f-98cc-4f52-be26-a873f3277120",
+          "title": "Cena privata libanese",
+          "creator": "fugzu",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/70253321@N00/16768445977",
+          "thumbnail": "https://api.openverse.org/v1/images/f309755f-98cc-4f52-be26-a873f3277120/thumb/"
+        },
+        {
+          "id": "89365290-ae3a-4bdb-b7da-2c96fa006b04",
+          "title": "Cena privata libanese",
+          "creator": "fugzu",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/70253321@N00/16768453307",
+          "thumbnail": "https://api.openverse.org/v1/images/89365290-ae3a-4bdb-b7da-2c96fa006b04/thumb/"
+        },
+        {
+          "id": "e7ca0972-e069-415d-880d-29c771c919d5",
+          "title": "Cena ebraica del Mediterraneo",
+          "creator": "fugzu",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/70253321@N00/16975834835",
+          "thumbnail": "https://api.openverse.org/v1/images/e7ca0972-e069-415d-880d-29c771c919d5/thumb/"
+        }
+      ]
+    },
+    "tabbouleh": {
+      "english": "tabbouleh",
+      "search_term": "tabbouleh dish plate",
+      "candidates": []
+    },
+    "samosa": {
+      "english": "samosa",
+      "search_term": "samosa dish plate",
+      "candidates": []
+    },
+    "local-money": {
+      "english": "local money (pound, riyal…)",
+      "search_term": "banknotes coins",
+      "candidates": [
+        {
+          "id": "7376b829-00ab-4f04-9d10-2755b9961c48",
+          "title": "Money Euros",
+          "creator": "Martin Vorel",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/money-euros-WX191DV28C",
+          "thumbnail": "https://api.openverse.org/v1/images/7376b829-00ab-4f04-9d10-2755b9961c48/thumb/"
+        },
+        {
+          "id": "ca57dd40-9849-4e7f-80e9-a4784ae18b0e",
+          "title": "Free US dollar banknotes image",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5917366/image-public-domain-money-free",
+          "thumbnail": "https://api.openverse.org/v1/images/ca57dd40-9849-4e7f-80e9-a4784ae18b0e/thumb/"
+        },
+        {
+          "id": "f8f51574-5857-4c29-8182-c5028fd028b1",
+          "title": "John W. Viant, 25¢ Obsolete Scrip, 1862 - Lowell, Indiana",
+          "creator": "Shook Photos",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/24724221@N07/51844133804",
+          "thumbnail": "https://api.openverse.org/v1/images/f8f51574-5857-4c29-8182-c5028fd028b1/thumb/"
+        },
+        {
+          "id": "8759157f-bd8c-4bbf-83d8-ef2e10829e4f",
+          "title": "Stack of coins",
+          "creator": "mededeler",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/132603569@N08/52697778002",
+          "thumbnail": "https://api.openverse.org/v1/images/8759157f-bd8c-4bbf-83d8-ef2e10829e4f/thumb/"
+        }
+      ]
+    },
+    "ketchup": {
+      "english": "ketchup",
+      "search_term": "ketchup dish plate",
+      "candidates": [
+        {
+          "id": "de45d5c9-702f-414a-a0ff-6121418426c5",
+          "title": "Plate of food",
+          "creator": "ospp0",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/196301716@N03/52354267440",
+          "thumbnail": "https://api.openverse.org/v1/images/de45d5c9-702f-414a-a0ff-6121418426c5/thumb/"
+        }
+      ]
+    },
+    "to-eat": {
+      "english": "to eat",
+      "search_term": "eating a sandwich",
+      "candidates": [
+        {
+          "id": "6bff3fdc-46bd-4c9f-b9af-b79989db474b",
+          "title": "Food Sandwich",
+          "creator": "Julien Sister",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/food-sandwich-D8ED06DFE2",
+          "thumbnail": "https://api.openverse.org/v1/images/6bff3fdc-46bd-4c9f-b9af-b79989db474b/thumb/"
+        },
+        {
+          "id": "2c3e3215-fa5d-4b2f-a72d-449c6ed3893f",
+          "title": "Greens Plate",
+          "creator": "Kristin Hardwick",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/greens-plate-L1MN7U6GBJ",
+          "thumbnail": "https://api.openverse.org/v1/images/2c3e3215-fa5d-4b2f-a72d-449c6ed3893f/thumb/"
+        },
+        {
+          "id": "e57303ed-66af-43e2-b094-b0a2f713fc1a",
+          "title": "Restaurant Sandwiches",
+          "creator": "Kristin Hardwick",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/restaurant-sandwiches-69PAN2SH2Y",
+          "thumbnail": "https://api.openverse.org/v1/images/e57303ed-66af-43e2-b094-b0a2f713fc1a/thumb/"
+        },
+        {
+          "id": "fb4d9dfc-8630-4fbe-8b38-4c7d582427f9",
+          "title": "Fast Food",
+          "creator": "Mike Moloney",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/fast-food-MU88DSXA3X",
+          "thumbnail": "https://api.openverse.org/v1/images/fb4d9dfc-8630-4fbe-8b38-4c7d582427f9/thumb/"
+        }
+      ]
+    }
+  },
+  "needs_search_term": [
+    "waiter",
+    "to-order",
+    "to-want",
+    "bitter",
+    "medium",
+    "plain",
+    "extra",
+    "vegetarian",
+    "cooked",
+    "light-weight",
+    "to-recommend",
+    "to-cost",
+    "today",
+    "reservation",
+    "portion",
+    "ready",
+    "same",
+    "enough",
+    "without",
+    "to-repeat",
+    "to-wait",
+    "total",
+    "tip",
+    "service-charge",
+    "thousand",
+    "to-pay",
+    "to-split",
+    "to-include",
+    "expensive",
+    "cheap",
+    "container",
+    "size",
+    "large",
+    "halal",
+    "kids-meal",
+    "to-take",
+    "host",
+    "occasion",
+    "honour",
+    "generosity",
+    "generous",
+    "to-invite",
+    "to-sit",
+    "to-enter",
+    "to-thank",
+    "full-eaten",
+    "more",
+    "next-time"
+  ]
+}

@@ -1,101 +1,447 @@
 {
   "found": [
     {
-      "lesson": 5,
+      "lesson": 1,
       "phrase": 7,
-      "english": "My family is big.",
-      "search_term": "large dining table",
+      "english": "What's your name? (to a man)",
+      "search_term": "name tag",
       "candidates": [
         {
-          "id": "f1f03fdf-a300-43b9-b573-6f06ee56b6ce",
-          "title": "Interior dining hall, large table",
-          "creator": "thegetty",
+          "id": "5549fe2f-f245-4ad1-94f5-4ff3230f40f5",
+          "title": "Events Wedding",
+          "creator": "Clem Onojeghuo",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14289349/photo-image-person-public-domain-restaurant",
-          "thumbnail": "https://api.openverse.org/v1/images/f1f03fdf-a300-43b9-b573-6f06ee56b6ce/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/events-wedding-B6KDETRBD4",
+          "thumbnail": "https://api.openverse.org/v1/images/5549fe2f-f245-4ad1-94f5-4ff3230f40f5/thumb/"
         },
         {
-          "id": "fe746bdf-5305-4dd4-855c-cb2f9b491cb8",
-          "title": "Large Dining Room. Great Central",
-          "creator": "thegetty",
+          "id": "692cf243-aa7e-4b56-a2c3-098c81f6ed0f",
+          "title": "Events Wedding",
+          "creator": "Clem Onojeghuo",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14302159/photo-image-face-person-public-domain",
-          "thumbnail": "https://api.openverse.org/v1/images/fe746bdf-5305-4dd4-855c-cb2f9b491cb8/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/events-wedding-3S3LT750NH",
+          "thumbnail": "https://api.openverse.org/v1/images/692cf243-aa7e-4b56-a2c3-098c81f6ed0f/thumb/"
         },
         {
-          "id": "185806f4-8a38-4bcf-bfea-a7f949375d94",
-          "title": "Dining room large painting one",
-          "creator": "thegetty",
+          "id": "f89ff0cc-7cc7-478d-9e65-5ac2da890413",
+          "title": "US Forest Service Ocala National",
+          "creator": null,
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14303411/dining-room-with-large-painting-one-wall",
-          "thumbnail": "https://api.openverse.org/v1/images/185806f4-8a38-4bcf-bfea-a7f949375d94/thumb/"
+          "foreign_landing_url": "https://www.rawpixel.com/image/10103640/photo-image-butterfly-border-vintage",
+          "thumbnail": "https://api.openverse.org/v1/images/f89ff0cc-7cc7-478d-9e65-5ac2da890413/thumb/"
         },
         {
-          "id": "dd88b1f0-858c-4fcb-8c78-1e8594b9fdc2",
-          "title": "Guanajuato Large Dining Table KCI02823",
-          "creator": "kurmanstaff",
-          "license": "by",
-          "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/62558987@N07/52552794861",
-          "thumbnail": "https://api.openverse.org/v1/images/dd88b1f0-858c-4fcb-8c78-1e8594b9fdc2/thumb/"
+          "id": "aed9dc92-3be1-4fa2-b4eb-9b6a67b36794",
+          "title": "Free spotted cow wearing collar",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5909214/image-background-public-domain-green",
+          "thumbnail": "https://api.openverse.org/v1/images/aed9dc92-3be1-4fa2-b4eb-9b6a67b36794/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 9,
+      "english": "My name is Rami.",
+      "search_term": "name tag",
+      "candidates": [
+        {
+          "id": "5549fe2f-f245-4ad1-94f5-4ff3230f40f5",
+          "title": "Events Wedding",
+          "creator": "Clem Onojeghuo",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/events-wedding-B6KDETRBD4",
+          "thumbnail": "https://api.openverse.org/v1/images/5549fe2f-f245-4ad1-94f5-4ff3230f40f5/thumb/"
+        },
+        {
+          "id": "692cf243-aa7e-4b56-a2c3-098c81f6ed0f",
+          "title": "Events Wedding",
+          "creator": "Clem Onojeghuo",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/events-wedding-3S3LT750NH",
+          "thumbnail": "https://api.openverse.org/v1/images/692cf243-aa7e-4b56-a2c3-098c81f6ed0f/thumb/"
+        },
+        {
+          "id": "f89ff0cc-7cc7-478d-9e65-5ac2da890413",
+          "title": "US Forest Service Ocala National",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/10103640/photo-image-butterfly-border-vintage",
+          "thumbnail": "https://api.openverse.org/v1/images/f89ff0cc-7cc7-478d-9e65-5ac2da890413/thumb/"
+        },
+        {
+          "id": "aed9dc92-3be1-4fa2-b4eb-9b6a67b36794",
+          "title": "Free spotted cow wearing collar",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5909214/image-background-public-domain-green",
+          "thumbnail": "https://api.openverse.org/v1/images/aed9dc92-3be1-4fa2-b4eb-9b6a67b36794/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 10,
+      "english": "I'm Lina.",
+      "search_term": "name tag",
+      "candidates": [
+        {
+          "id": "5549fe2f-f245-4ad1-94f5-4ff3230f40f5",
+          "title": "Events Wedding",
+          "creator": "Clem Onojeghuo",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/events-wedding-B6KDETRBD4",
+          "thumbnail": "https://api.openverse.org/v1/images/5549fe2f-f245-4ad1-94f5-4ff3230f40f5/thumb/"
+        },
+        {
+          "id": "692cf243-aa7e-4b56-a2c3-098c81f6ed0f",
+          "title": "Events Wedding",
+          "creator": "Clem Onojeghuo",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/events-wedding-3S3LT750NH",
+          "thumbnail": "https://api.openverse.org/v1/images/692cf243-aa7e-4b56-a2c3-098c81f6ed0f/thumb/"
+        },
+        {
+          "id": "f89ff0cc-7cc7-478d-9e65-5ac2da890413",
+          "title": "US Forest Service Ocala National",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/10103640/photo-image-butterfly-border-vintage",
+          "thumbnail": "https://api.openverse.org/v1/images/f89ff0cc-7cc7-478d-9e65-5ac2da890413/thumb/"
+        },
+        {
+          "id": "aed9dc92-3be1-4fa2-b4eb-9b6a67b36794",
+          "title": "Free spotted cow wearing collar",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5909214/image-background-public-domain-green",
+          "thumbnail": "https://api.openverse.org/v1/images/aed9dc92-3be1-4fa2-b4eb-9b6a67b36794/thumb/"
         }
       ]
     },
     {
       "lesson": 5,
-      "phrase": 9,
-      "english": "I'd like to introduce you to my father. (to a man)",
-      "search_term": "business card",
+      "phrase": 2,
+      "english": "This is my father.",
+      "search_term": "father portrait",
       "candidates": [
         {
-          "id": "dc4a2013-fa6e-4d95-9bda-ddea735e76f5",
-          "title": "Reproduction Morison's business card Cantuar",
-          "creator": "museumofnewzealand",
+          "id": "641c4cfb-686c-4e53-baf8-4ff66464f291",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/9958341/reproduction-morisons-business-card-the-cantuar-photographic-company",
-          "thumbnail": "https://api.openverse.org/v1/images/dc4a2013-fa6e-4d95-9bda-ddea735e76f5/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-OIUD9DEKPG",
+          "thumbnail": "https://api.openverse.org/v1/images/641c4cfb-686c-4e53-baf8-4ff66464f291/thumb/"
         },
         {
-          "id": "c155a01d-eaf9-4296-8917-6642d9ed7267",
-          "title": "Business Card by Louis Fleckenstein",
-          "creator": "thegetty",
+          "id": "bfbc01c8-4783-4354-a83a-62e8e47ce31d",
+          "title": "Father Son",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14326970/business-card-louis-fleckenstein",
-          "thumbnail": "https://api.openverse.org/v1/images/c155a01d-eaf9-4296-8917-6642d9ed7267/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/father-son-HBKFP7NCLL",
+          "thumbnail": "https://api.openverse.org/v1/images/bfbc01c8-4783-4354-a83a-62e8e47ce31d/thumb/"
         },
         {
-          "id": "ee4f78e0-8167-42bd-8857-a3afb91adc53",
-          "title": "Business Card by Louis Fleckenstein",
-          "creator": "thegetty",
+          "id": "01c62e71-cd1b-4301-afcb-77cbdd820b5c",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14327096/business-card-louis-fleckenstein",
-          "thumbnail": "https://api.openverse.org/v1/images/ee4f78e0-8167-42bd-8857-a3afb91adc53/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-RZ0ARMUB77",
+          "thumbnail": "https://api.openverse.org/v1/images/01c62e71-cd1b-4301-afcb-77cbdd820b5c/thumb/"
         },
         {
-          "id": "28a4dadf-87f4-45c2-8857-53a71602cef2",
-          "title": "Untitled (Business Card Henry Deeks",
-          "creator": "artinstitutechicago",
+          "id": "4aa6f500-17c6-40eb-825e-fa2b028291d9",
+          "title": "Black Family",
+          "creator": "Family First",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/9046075/untitled-business-card-for-henry-deeks-antiques-thomas-martin",
-          "thumbnail": "https://api.openverse.org/v1/images/28a4dadf-87f4-45c2-8857-53a71602cef2/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/black-family-6KRBT8MYES",
+          "thumbnail": "https://api.openverse.org/v1/images/4aa6f500-17c6-40eb-825e-fa2b028291d9/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "phrase": 5,
+      "english": "I have two brothers and a sister.",
+      "search_term": "siblings family photo",
+      "candidates": [
+        {
+          "id": "ed6b0131-893a-46c8-8e94-d546ab32badb",
+          "title": "Bears 909 Jr. and 910 Jr. Share a Tender Moment",
+          "creator": "KatmaiNPS",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/99350217@N03/53187841086",
+          "thumbnail": "https://api.openverse.org/v1/images/ed6b0131-893a-46c8-8e94-d546ab32badb/thumb/"
+        },
+        {
+          "id": "fead1d01-9ee6-4d34-94a6-d598b51876bf",
+          "title": "Bears 909 Jr. and 910 Jr. Share a Tender Moment",
+          "creator": "KatmaiNPS",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/99350217@N03/53188037625",
+          "thumbnail": "https://api.openverse.org/v1/images/fead1d01-9ee6-4d34-94a6-d598b51876bf/thumb/"
+        },
+        {
+          "id": "71d6cfb5-6590-4756-80c7-8927845734d4",
+          "title": "Nebraska National Guard",
+          "creator": "The National Guard",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/33252741@N08/51778084432",
+          "thumbnail": "https://api.openverse.org/v1/images/71d6cfb5-6590-4756-80c7-8927845734d4/thumb/"
+        },
+        {
+          "id": "188d1a8a-9fb2-4b0b-91d7-c093817c9894",
+          "title": "New Life - Great egret babies",
+          "creator": "georgiealexon",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/53256251@N04/53802980336",
+          "thumbnail": "https://api.openverse.org/v1/images/188d1a8a-9fb2-4b0b-91d7-c093817c9894/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "phrase": 6,
+      "english": "How many people are in your family? (to a man)",
+      "search_term": "family tree chart",
+      "candidates": []
+    },
+    {
+      "lesson": 5,
+      "phrase": 8,
+      "english": "This is my friend Samer.",
+      "search_term": "two friends together",
+      "candidates": [
+        {
+          "id": "b934fecc-f0ae-4ae4-959d-a6d2cb956638",
+          "title": "Friends Fun",
+          "creator": "Matt Moloney",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/friends-fun-NPEZGYPUYP",
+          "thumbnail": "https://api.openverse.org/v1/images/b934fecc-f0ae-4ae4-959d-a6d2cb956638/thumb/"
+        },
+        {
+          "id": "0e83e2b2-112e-471b-b18b-a8032d4a734b",
+          "title": "Friends Together",
+          "creator": "Matt Moloney",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/friends-together-UHTM70G1AS",
+          "thumbnail": "https://api.openverse.org/v1/images/0e83e2b2-112e-471b-b18b-a8032d4a734b/thumb/"
+        },
+        {
+          "id": "f1361094-bb8f-442a-b3da-71173c17371a",
+          "title": "Friends Together",
+          "creator": "Matt Moloney",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/friends-together-ZK9PDBTXUX",
+          "thumbnail": "https://api.openverse.org/v1/images/f1361094-bb8f-442a-b3da-71173c17371a/thumb/"
+        },
+        {
+          "id": "ba56e142-7f34-474e-84ea-250c322b3d87",
+          "title": "Free 2 bulldog sitting together",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5906770/photo-image-background-public-domain-cute",
+          "thumbnail": "https://api.openverse.org/v1/images/ba56e142-7f34-474e-84ea-250c322b3d87/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 2,
+      "english": "I'm from Damascus.",
+      "search_term": "map of Syria",
+      "candidates": [
+        {
+          "id": "2549c39e-d3c2-4002-8346-5bda95886a34",
+          "title": "Smoke billows from fires in Turkey",
+          "creator": "europeanspaceagency",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/37472264@N04/51353430334",
+          "thumbnail": "https://api.openverse.org/v1/images/2549c39e-d3c2-4002-8346-5bda95886a34/thumb/"
+        },
+        {
+          "id": "733535e1-49bd-435d-8741-f09921e73823",
+          "title": "Map of the OT World",
+          "creator": "SGC-library",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/196441349@N05/52344014341",
+          "thumbnail": "https://api.openverse.org/v1/images/733535e1-49bd-435d-8741-f09921e73823/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "phrase": 5,
+      "english": "My nationality is Syrian.",
+      "search_term": "Syria flag",
+      "candidates": [
+        {
+          "id": "4f84a773-f4e9-4659-ab19-4742d5e4e5e2",
+          "title": "Heather Cox Richardson",
+          "creator": "nordique",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/28435100@N00/51944446289",
+          "thumbnail": "https://api.openverse.org/v1/images/4f84a773-f4e9-4659-ab19-4742d5e4e5e2/thumb/"
+        },
+        {
+          "id": "352599db-175c-40b4-961a-90787a12e6ce",
+          "title": "",
+          "creator": "Mustafa Turkmani",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/154949940@N07/42043633724",
+          "thumbnail": "https://api.openverse.org/v1/images/352599db-175c-40b4-961a-90787a12e6ce/thumb/"
+        },
+        {
+          "id": "1c891cd5-fbed-42d8-9c62-5de32f24b0dd",
+          "title": "250321-Z-HZ184-1041",
+          "creator": "New Jersey National Guard",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/64672857@N02/54407758983",
+          "thumbnail": "https://api.openverse.org/v1/images/1c891cd5-fbed-42d8-9c62-5de32f24b0dd/thumb/"
+        },
+        {
+          "id": "8a43b7f2-82ef-42af-8d65-bd44f763287e",
+          "title": "250321-Z-HZ184-1040",
+          "creator": "New Jersey National Guard",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/64672857@N02/54407517436",
+          "thumbnail": "https://api.openverse.org/v1/images/8a43b7f2-82ef-42af-8d65-bd44f763287e/thumb/"
         }
       ]
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 12,
+      "english": "Me too."
+    },
+    {
+      "lesson": 2,
+      "phrase": 3,
+      "english": "It's okay / Sorry / Excuse me."
+    },
+    {
+      "lesson": 2,
+      "phrase": 8,
+      "english": "You're welcome / Excuse me."
+    },
+    {
+      "lesson": 2,
+      "phrase": 12,
+      "english": "Is it possible? / Can I?"
+    },
+    {
+      "lesson": 3,
+      "phrase": 13,
+      "english": "We'll see you tomorrow. (to a man)"
+    },
+    {
+      "lesson": 3,
+      "phrase": 14,
+      "english": "I'll see you tomorrow. (to a man)"
+    },
+    {
+      "lesson": 4,
+      "phrase": 3,
+      "english": "From here."
+    },
+    {
+      "lesson": 4,
+      "phrase": 7,
+      "english": "Near."
+    },
+    {
+      "lesson": 4,
+      "phrase": 10,
+      "english": "There."
+    },
+    {
+      "lesson": 5,
+      "phrase": 4,
+      "english": "Do you have brothers and sisters? (to a man)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 10,
+      "english": "A pleasure."
+    },
+    {
+      "lesson": 5,
+      "phrase": 11,
+      "english": "How old are you? (to a man)"
+    },
+    {
+      "lesson": 6,
+      "phrase": 1,
+      "english": "Which city are you from? (to a man)"
+    },
+    {
+      "lesson": 6,
+      "phrase": 11,
+      "english": "Is this your first visit? (to a man)"
+    }
+  ]
 }

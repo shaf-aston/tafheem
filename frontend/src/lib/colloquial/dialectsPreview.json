@@ -1,0 +1,24 @@
+{
+  "_about": "A display-only trim of backend/data/colloquial/dialects.json's `dialects` list, for the landing page's Dialects section (landing/Dialects.jsx). The landing page has no query client and no live API call, so it cannot read the real catalogue (api.js colloquialQuery); this keeps only the fields CountryMap/CountryIcons draw (key, label, arabic, where, countries, cities), in the backend file's own `order`, and leaves Fusha out since it is Modern Standard Arabic taught across every country, not one of the picked-a-country dialects this section is showing off. If a dialect is added or renamed there, mirror it here by hand.",
+  "dialects": [
+    { "key": "egyptian", "label": "Egyptian", "arabic": "المصري", "where": "Cairo and the Nile Delta",
+      "countries": ["EG"], "cities": [{ "name": "Cairo", "at": [31.24, 30.04] }] },
+    { "key": "damascene", "label": "Damascene", "arabic": "الشامي", "where": "Damascus and south Syria",
+      "countries": ["SY"], "cities": [{ "name": "Damascus", "at": [36.29, 33.51] }] },
+    { "key": "lebanese", "label": "Lebanese", "arabic": "اللبناني", "where": "Beirut and the coast",
+      "countries": ["LB"], "cities": [{ "name": "Beirut", "at": [35.5, 33.89] }] },
+    { "key": "gulf", "label": "Gulf", "arabic": "الخليجي", "where": "UAE, Kuwait and the Gulf",
+      "countries": ["AE", "KW", "QA", "BH"],
+      "cities": [{ "name": "Dubai", "at": [55.27, 25.2] }, { "name": "Kuwait City", "at": [47.98, 29.37] }] },
+    { "key": "moroccan", "label": "Moroccan", "arabic": "المغربي", "where": "Casablanca and Rabat",
+      "countries": ["MA"],
+      "cities": [{ "name": "Casablanca", "at": [-7.59, 33.57] }, { "name": "Rabat", "at": [-6.84, 34.02] }] },
+    { "key": "iraqi", "label": "Iraqi", "arabic": "العراقي", "where": "Baghdad and central Iraq",
+      "countries": ["IQ"], "cities": [{ "name": "Baghdad", "at": [44.36, 33.31] }] },
+    { "key": "hejazi", "label": "Hejazi", "arabic": "الحجازي", "where": "Makkah, Madinah, Jeddah",
+      "countries": ["SA"],
+      "cities": [{ "name": "Makkah", "at": [39.83, 21.42] }, { "name": "Madinah", "at": [39.61, 24.47] }, { "name": "Jeddah", "at": [39.19, 21.49] }] },
+    { "key": "yemeni", "label": "Yemeni", "arabic": "اليمني", "where": "Sana'a and Yemen",
+      "countries": ["YE"], "cities": [{ "name": "Sana'a", "at": [44.21, 15.37] }] }
+  ]
+}

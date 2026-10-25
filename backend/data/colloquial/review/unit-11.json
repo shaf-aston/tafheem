@@ -1,6 +1,54 @@
 {
   "found": [
     {
+      "lesson": 2,
+      "phrase": 11,
+      "english": "Today's gathering is very nice.",
+      "search_term": "family gathering living room",
+      "candidates": [
+        {
+          "id": "79f7767e-84ea-4bb6-b905-ee7685e5e2ca",
+          "title": "Flight Deck Brewing",
+          "creator": "Me in ME",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/12357841@N02/51419089549",
+          "thumbnail": "https://api.openverse.org/v1/images/79f7767e-84ea-4bb6-b905-ee7685e5e2ca/thumb/"
+        },
+        {
+          "id": "4c279e83-c095-4f77-bd6c-20fe1964f4f0",
+          "title": "Kinsgway | 1001 Empress Circle Yukon OK",
+          "creator": "okchomeseller",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/37213589@N08/53772353125",
+          "thumbnail": "https://api.openverse.org/v1/images/4c279e83-c095-4f77-bd6c-20fe1964f4f0/thumb/"
+        },
+        {
+          "id": "a28e4eb9-5c2a-4978-a2a5-34b0cffaf140",
+          "title": "Kinsgway | 1001 Empress Circle Yukon OK",
+          "creator": "okchomeseller",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/37213589@N08/53771018102",
+          "thumbnail": "https://api.openverse.org/v1/images/a28e4eb9-5c2a-4978-a2a5-34b0cffaf140/thumb/"
+        },
+        {
+          "id": "f34f74e3-6fad-4a67-8574-9718c2d9fe35",
+          "title": "Kinsgway | 1001 Empress Circle Yukon OK",
+          "creator": "okchomeseller",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/37213589@N08/53772353170",
+          "thumbnail": "https://api.openverse.org/v1/images/f34f74e3-6fad-4a67-8574-9718c2d9fe35/thumb/"
+        }
+      ]
+    },
+    {
       "lesson": 5,
       "phrase": 4,
       "english": "Let us break our fast with dates and water.",
@@ -49,53 +97,119 @@
       ]
     },
     {
-      "lesson": 6,
-      "phrase": 4,
-      "english": "Here are folded blankets in case you feel cold.",
-      "search_term": "folded blankets",
+      "lesson": 5,
+      "phrase": 9,
+      "english": "Take another date.",
+      "search_term": "dates fruit bowl",
       "candidates": [
         {
-          "id": "56358c5a-c01f-4dcd-8758-0beead7e3f44",
-          "title": "Pile colourful fabrics",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/5904063/photo-image-public-domain-fabrics-rainbow",
-          "thumbnail": "https://api.openverse.org/v1/images/56358c5a-c01f-4dcd-8758-0beead7e3f44/thumb/"
-        },
-        {
-          "id": "dc2034b3-22ea-41ed-bdb6-bb8caed79cfb",
-          "title": "Stack of folded t-shirts",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/11515763/stack-folded-t-shirts",
-          "thumbnail": "https://api.openverse.org/v1/images/dc2034b3-22ea-41ed-bdb6-bb8caed79cfb/thumb/"
-        },
-        {
-          "id": "5c1156ba-a977-4f0c-a38a-64c3eddc267f",
-          "title": "Pile of t-shirts, dirty laundry",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/11515801/pile-t-shirts-dirty-laundry",
-          "thumbnail": "https://api.openverse.org/v1/images/5c1156ba-a977-4f0c-a38a-64c3eddc267f/thumb/"
-        },
-        {
-          "id": "4a894f12-f51c-45be-abf1-1855b1526f08",
-          "title": "Folding blanket",
-          "creator": "Henry Söderlund",
+          "id": "17535641-1e43-442b-ae43-a4083389e46a",
+          "title": "Waffle with fresh fruit and real maple syrup",
+          "creator": "City Foodsters",
           "license": "by",
           "license_version": "2.0",
           "license_url": "https://creativecommons.org/licenses/by/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/46563758@N04/52564921844",
-          "thumbnail": "https://api.openverse.org/v1/images/4a894f12-f51c-45be-abf1-1855b1526f08/thumb/"
+          "foreign_landing_url": "https://www.flickr.com/photos/89060048@N03/15957048689",
+          "thumbnail": "https://api.openverse.org/v1/images/17535641-1e43-442b-ae43-a4083389e46a/thumb/"
+        },
+        {
+          "id": "2b16716a-795b-44f8-b080-b37cf1a8e75e",
+          "title": "Paula's Amaretto Bara Brith",
+          "creator": "conall..",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/16176711@N02/52716277135",
+          "thumbnail": "https://api.openverse.org/v1/images/2b16716a-795b-44f8-b080-b37cf1a8e75e/thumb/"
         }
       ]
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 1,
+      "english": "Welcome (lit. your eye honors us) - said to a man arriving."
+    },
+    {
+      "lesson": 1,
+      "phrase": 3,
+      "english": "You have honored us (said to guests who arrived)."
+    },
+    {
+      "lesson": 1,
+      "phrase": 4,
+      "english": "Don't trouble yourself, we're at home (make yourself at ease)."
+    },
+    {
+      "lesson": 1,
+      "phrase": 12,
+      "english": "You went to trouble for us (said appreciatively about hospitality)."
+    },
+    {
+      "lesson": 2,
+      "phrase": 7,
+      "english": "Take your time, no rush."
+    },
+    {
+      "lesson": 2,
+      "phrase": 10,
+      "english": "Your kids have grown up so much!"
+    },
+    {
+      "lesson": 3,
+      "phrase": 5,
+      "english": "Don't hesitate, eat as you like."
+    },
+    {
+      "lesson": 3,
+      "phrase": 9,
+      "english": "Don't be shy, tell me if you want anything else."
+    },
+    {
+      "lesson": 4,
+      "phrase": 1,
+      "english": "Thank you for the hospitality (lit. God give you strength)."
+    },
+    {
+      "lesson": 4,
+      "phrase": 3,
+      "english": "A very nice gathering, God keep you."
+    },
+    {
+      "lesson": 4,
+      "phrase": 5,
+      "english": "Give my regards to the family."
+    },
+    {
+      "lesson": 4,
+      "phrase": 7,
+      "english": "No excuses, do we have to part so quickly?"
+    },
+    {
+      "lesson": 4,
+      "phrase": 11,
+      "english": "Visit me again soon."
+    },
+    {
+      "lesson": 5,
+      "phrase": 11,
+      "english": "I fasted all day and I am very hungry."
+    },
+    {
+      "lesson": 5,
+      "phrase": 12,
+      "english": "May Allah bless you for the invitation to iftar."
+    },
+    {
+      "lesson": 6,
+      "phrase": 5,
+      "english": "Do you need anything else?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 12,
+      "english": "May Allah honour you, you honoured me greatly."
+    }
+  ]
 }

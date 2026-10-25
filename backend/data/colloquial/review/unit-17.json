@@ -1,52 +1,39 @@
 {
   "found": [
     {
-      "lesson": 1,
+      "lesson": 2,
       "phrase": 5,
-      "english": "Where is the women's entrance?",
-      "search_term": "mosque entrance door",
+      "english": "Put your shoes on the rack",
+      "search_term": "shoe rack shelf",
       "candidates": [
         {
-          "id": "d6142034-218d-4f27-a04a-6cbd3d0742ef",
-          "title": "Recep Pasha Mosque, Par. Dorieos, Rhodes, Greece",
-          "creator": "w_lemay",
+          "id": "e3fa22ac-7095-447a-8141-2e676dae65a7",
+          "title": "DSC_9731: a woman sitting in front of a large bowl of fruit",
+          "creator": "PattayaPatrol",
           "license": "by-sa",
           "license_version": "2.0",
           "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/59081381@N03/53485327968",
-          "thumbnail": "https://api.openverse.org/v1/images/d6142034-218d-4f27-a04a-6cbd3d0742ef/thumb/"
+          "foreign_landing_url": "https://www.flickr.com/photos/194424926@N05/54364732703",
+          "thumbnail": "https://api.openverse.org/v1/images/e3fa22ac-7095-447a-8141-2e676dae65a7/thumb/"
         },
         {
-          "id": "9d97db69-007d-4331-bfda-8fc1dbc798f4",
-          "title": "Cathedral of Agios Titos, Plateia Agiou Titou, Heraklion, Greece",
-          "creator": "w_lemay",
-          "license": "by-sa",
-          "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/59081381@N03/53534612427",
-          "thumbnail": "https://api.openverse.org/v1/images/9d97db69-007d-4331-bfda-8fc1dbc798f4/thumb/"
-        },
-        {
-          "id": "d6075a4d-c582-4812-930e-aa8c197aae47",
-          "title": "Recep Pasha Mosque, Par. Dorieos, Rhodes, Greece",
-          "creator": "w_lemay",
-          "license": "by-sa",
-          "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/59081381@N03/53485598855",
-          "thumbnail": "https://api.openverse.org/v1/images/d6075a4d-c582-4812-930e-aa8c197aae47/thumb/"
-        },
-        {
-          "id": "281e972d-36ce-4cc2-9cfc-d0553f00c84b",
-          "title": "Recep Pasha Mosque, Par. Dorieos, Rhodes, Greece",
-          "creator": "w_lemay",
-          "license": "by-sa",
-          "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/59081381@N03/53485187251",
-          "thumbnail": "https://api.openverse.org/v1/images/281e972d-36ce-4cc2-9cfc-d0553f00c84b/thumb/"
+          "id": "60b58ea3-c824-4e0f-8477-8c1fd2e8fc58",
+          "title": "Shoe rack, klompen",
+          "creator": "Topher",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://wordpress.org/photos/photo/57761fa7fc/",
+          "thumbnail": "https://api.openverse.org/v1/images/60b58ea3-c824-4e0f-8477-8c1fd2e8fc58/thumb/"
         }
       ]
+    },
+    {
+      "lesson": 2,
+      "phrase": 10,
+      "english": "Please put your phone on silent",
+      "search_term": "smartphone silent mode",
+      "candidates": []
     },
     {
       "lesson": 3,
@@ -68,54 +55,6 @@
     },
     {
       "lesson": 3,
-      "phrase": 7,
-      "english": "Is there an empty place?",
-      "search_term": "mosque carpet",
-      "candidates": [
-        {
-          "id": "3a49125c-8bcb-4309-b0d0-c3307c36d541",
-          "title": "Free red mosque carpet image",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/5904759/photo-image-public-domain-red-free",
-          "thumbnail": "https://api.openverse.org/v1/images/3a49125c-8bcb-4309-b0d0-c3307c36d541/thumb/"
-        },
-        {
-          "id": "4aa1952f-6b1e-4030-a62e-d37191835a14",
-          "title": "Sultan Omar Ali Saifuddin Mosque",
-          "creator": "Bernard Spragg",
-          "license": "pdm",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/88123769@N02/55449820748",
-          "thumbnail": "https://api.openverse.org/v1/images/4aa1952f-6b1e-4030-a62e-d37191835a14/thumb/"
-        },
-        {
-          "id": "869f382c-8c05-4aa1-9fbb-60b448a08521",
-          "title": "Carpets and Shades Prophet's Mosque Al Masjid an Nabawi Madinah Saudi Arabia",
-          "creator": "amanderson2",
-          "license": "by",
-          "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/49399018@N00/51943584963",
-          "thumbnail": "https://api.openverse.org/v1/images/869f382c-8c05-4aa1-9fbb-60b448a08521/thumb/"
-        },
-        {
-          "id": "3ca40ed8-0370-4f8c-a6a3-9c1ff250f583",
-          "title": "Mosque Interior, Islamic Center of America, Ford Road, Fordson, Dearborn, MI",
-          "creator": "w_lemay",
-          "license": "by-sa",
-          "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/59081381@N03/54272582812",
-          "thumbnail": "https://api.openverse.org/v1/images/3ca40ed8-0370-4f8c-a6a3-9c1ff250f583/thumb/"
-        }
-      ]
-    },
-    {
-      "lesson": 3,
       "phrase": 12,
       "english": "I will pray the sunnah after the Friday prayer",
       "search_term": "shoe rack at mosque door",
@@ -123,42 +62,69 @@
     },
     {
       "lesson": 4,
-      "phrase": 7,
-      "english": "Where is the timetable of lessons?",
-      "search_term": "school timetable",
-      "candidates": [
-        {
-          "id": "f4949708-83aa-4905-b364-bd424d891fda",
-          "title": "Enamelled Great Central timetable header",
-          "creator": "kitmasterbloke",
-          "license": "by",
-          "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/58415659@N00/52578592242",
-          "thumbnail": "https://api.openverse.org/v1/images/f4949708-83aa-4905-b364-bd424d891fda/thumb/"
-        },
-        {
-          "id": "49beddd4-7ef6-40b6-ae00-2500dd9bb26a",
-          "title": "Project 365 #101: 110425 The Fisher King",
-          "creator": "comedy_nose",
-          "license": "by",
-          "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/23408922@N07/54445345244",
-          "thumbnail": "https://api.openverse.org/v1/images/49beddd4-7ef6-40b6-ae00-2500dd9bb26a/thumb/"
-        },
-        {
-          "id": "700adc92-0c8e-43eb-a095-f24fdcd3a087",
-          "title": "Project 365 #145: 250523 Hole In The Wall",
-          "creator": "comedy_nose",
-          "license": "by",
-          "license_version": "2.0",
-          "license_url": "https://creativecommons.org/licenses/by/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/23408922@N07/52926017484",
-          "thumbnail": "https://api.openverse.org/v1/images/700adc92-0c8e-43eb-a095-f24fdcd3a087/thumb/"
-        }
-      ]
+      "phrase": 2,
+      "english": "I want to join the circle",
+      "search_term": "empty cushions in a circle",
+      "candidates": []
+    },
+    {
+      "lesson": 4,
+      "phrase": 8,
+      "english": "I want to sign up my son for the children's circle",
+      "search_term": "children sitting circle classroom",
+      "candidates": []
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 9,
+      "english": "I am late, can I join?"
+    },
+    {
+      "lesson": 1,
+      "phrase": 10,
+      "english": "I missed a rak'ah"
+    },
+    {
+      "lesson": 1,
+      "phrase": 11,
+      "english": "I will complete what I missed after the salaam"
+    },
+    {
+      "lesson": 3,
+      "phrase": 5,
+      "english": "Who is the imam today?"
+    },
+    {
+      "lesson": 3,
+      "phrase": 6,
+      "english": "Listen quietly to the khutbah"
+    },
+    {
+      "lesson": 3,
+      "phrase": 8,
+      "english": "Please, move closer together a little"
+    },
+    {
+      "lesson": 3,
+      "phrase": 9,
+      "english": "Blessed Friday"
+    },
+    {
+      "lesson": 3,
+      "phrase": 11,
+      "english": "May Allah reward you with good"
+    },
+    {
+      "lesson": 4,
+      "phrase": 4,
+      "english": "Could you repeat the verse, please?"
+    },
+    {
+      "lesson": 4,
+      "phrase": 9,
+      "english": "How old is the child?"
+    }
+  ]
 }

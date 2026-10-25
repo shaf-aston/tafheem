@@ -1,53 +1,269 @@
 {
   "found": [
     {
-      "lesson": 4,
-      "phrase": 8,
-      "english": "On Saturday we go to the market.",
-      "search_term": "street market",
+      "lesson": 3,
+      "phrase": 7,
+      "english": "Let's go out for a little walk.",
+      "search_term": "couple walking in the evening street",
       "candidates": [
         {
-          "id": "90e82d93-7d76-497f-99af-79de94deaece",
-          "title": "Free street market photo",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/5924489/photo-image-public-domain-people-free",
-          "thumbnail": "https://api.openverse.org/v1/images/90e82d93-7d76-497f-99af-79de94deaece/thumb/"
+          "id": "da428497-7f58-48cd-b625-b684917b0466",
+          "title": "It's a Big Enough Umbrella",
+          "creator": "Mike J Maguire",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/62915351@N04/52056213915",
+          "thumbnail": "https://api.openverse.org/v1/images/da428497-7f58-48cd-b625-b684917b0466/thumb/"
         },
         {
-          "id": "9d6af427-8484-4a34-b0fe-7c56e9cad78e",
-          "title": "Food street market",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/6038723/photo-image-public-domain-food-free",
-          "thumbnail": "https://api.openverse.org/v1/images/9d6af427-8484-4a34-b0fe-7c56e9cad78e/thumb/"
+          "id": "deea62d9-e8d9-49b4-bfc4-3bb92fa0ead2",
+          "title": "Santa Maria della Pieve, Arezzo",
+          "creator": "Infrogmation",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/29350288@N06/51272993038",
+          "thumbnail": "https://api.openverse.org/v1/images/deea62d9-e8d9-49b4-bfc4-3bb92fa0ead2/thumb/"
         },
         {
-          "id": "cdbb712f-ffa4-4cf2-80cb-afbca1511870",
-          "title": "Fruits street market, United Kingdom",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/6113543/photo-image-public-domain-shape-person",
-          "thumbnail": "https://api.openverse.org/v1/images/cdbb712f-ffa4-4cf2-80cb-afbca1511870/thumb/"
+          "id": "97fde99c-493c-4c3d-b7f7-f5e819ebb208",
+          "title": "Streets of Tokyo",
+          "creator": "Sergiy Galyonkin",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/22974618@N00/53124263587",
+          "thumbnail": "https://api.openverse.org/v1/images/97fde99c-493c-4c3d-b7f7-f5e819ebb208/thumb/"
         },
         {
-          "id": "c32b3101-113a-4f18-adf9-b610bdd8c2df",
-          "title": "London street market Eric Lee",
-          "creator": "museumofnewzealand",
+          "id": "5dbd9e18-ebb3-4b99-b1e0-3ed6bf71cae6",
+          "title": "Tokyo at night",
+          "creator": "Sergiy Galyonkin",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/22974618@N00/53094104493",
+          "thumbnail": "https://api.openverse.org/v1/images/5dbd9e18-ebb3-4b99-b1e0-3ed6bf71cae6/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "phrase": 12,
+      "english": "I saw my friends in the evening.",
+      "search_term": "friends evening gathering",
+      "candidates": [
+        {
+          "id": "eef38975-2833-4857-89ae-331e142fdbc7",
+          "title": "Harley-Davidson Ultra Classic (2006)",
+          "creator": "andreboeni",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/65344061@N06/52168343727",
+          "thumbnail": "https://api.openverse.org/v1/images/eef38975-2833-4857-89ae-331e142fdbc7/thumb/"
+        },
+        {
+          "id": "74fa40a0-7e79-4b00-9470-bdbcafb66c55",
+          "title": "Buick Special (1958)",
+          "creator": "andreboeni",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/65344061@N06/52169035073",
+          "thumbnail": "https://api.openverse.org/v1/images/74fa40a0-7e79-4b00-9470-bdbcafb66c55/thumb/"
+        },
+        {
+          "id": "1ce541a6-1ad7-472b-bb7a-c9f72368307f",
+          "title": "Buick Special (1958)",
+          "creator": "andreboeni",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/65344061@N06/52169035363",
+          "thumbnail": "https://api.openverse.org/v1/images/1ce541a6-1ad7-472b-bb7a-c9f72368307f/thumb/"
+        },
+        {
+          "id": "f96a3c09-f332-4cee-8948-b2be6ecf1c17",
+          "title": "The Birds (The Sequel?)",
+          "creator": "andreboeni",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/65344061@N06/52169844015",
+          "thumbnail": "https://api.openverse.org/v1/images/f96a3c09-f332-4cee-8948-b2be6ecf1c17/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "phrase": 2,
+      "english": "Today is Sunday.",
+      "search_term": "calendar sunday",
+      "candidates": [
+        {
+          "id": "de4345ba-0ba6-4be6-8b92-1e5101f51d78",
+          "title": "Mark Your Calendars",
+          "creator": "Bonesaw 0311",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/88893304@N00/147798320",
+          "thumbnail": "https://api.openverse.org/v1/images/de4345ba-0ba6-4be6-8b92-1e5101f51d78/thumb/"
+        },
+        {
+          "id": "eabdb9ef-8676-4c5f-aaff-51509ba649da",
+          "title": "Calendars",
+          "creator": "ghs1922",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/47282338@N03/48684181793",
+          "thumbnail": "https://api.openverse.org/v1/images/eabdb9ef-8676-4c5f-aaff-51509ba649da/thumb/"
+        },
+        {
+          "id": "f785ade7-04da-46b4-82b2-e39229510d8e",
+          "title": "2022.Calendar.PublicArt2021.Back",
+          "creator": "Elvert Barnes",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/95413346@N00/51798675730",
+          "thumbnail": "https://api.openverse.org/v1/images/f785ade7-04da-46b4-82b2-e39229510d8e/thumb/"
+        },
+        {
+          "id": "bb2afb70-e82c-4fbb-86ee-4d918d12f3ce",
+          "title": "Bohermeen Spring Half Marathon 2023 - Lap 1",
+          "creator": "Peter Mooney",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/25874444@N00/52743580828",
+          "thumbnail": "https://api.openverse.org/v1/images/bb2afb70-e82c-4fbb-86ee-4d918d12f3ce/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "phrase": 3,
+      "english": "Tomorrow is Monday.",
+      "search_term": "calendar monday",
+      "candidates": [
+        {
+          "id": "de4345ba-0ba6-4be6-8b92-1e5101f51d78",
+          "title": "Mark Your Calendars",
+          "creator": "Bonesaw 0311",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/88893304@N00/147798320",
+          "thumbnail": "https://api.openverse.org/v1/images/de4345ba-0ba6-4be6-8b92-1e5101f51d78/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "phrase": 6,
+      "english": "On Thursday I see my friends.",
+      "search_term": "friends meeting at a cafe",
+      "candidates": [
+        {
+          "id": "84091d71-e001-483a-a4d9-16382ce469f3",
+          "title": "Meeting friends in Tivoli",
+          "creator": "Lars Plougmann",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/75062596@N00/52530005652",
+          "thumbnail": "https://api.openverse.org/v1/images/84091d71-e001-483a-a4d9-16382ce469f3/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "phrase": 11,
+      "english": "I spend my time with my family.",
+      "search_term": "family time together",
+      "candidates": [
+        {
+          "id": "f392176e-8b37-4b11-af22-c2025746c9ae",
+          "title": "Col. (P) Barnett Farewell Ceremony",
+          "creator": "U.S. Army ROTC",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/136737541@N05/52120745284",
+          "thumbnail": "https://api.openverse.org/v1/images/f392176e-8b37-4b11-af22-c2025746c9ae/thumb/"
+        },
+        {
+          "id": "356787b3-e02e-46cb-80c0-3eb9d6e8df3f",
+          "title": "Jewel of Ukraine",
+          "creator": "Don Komarechka",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/9868021/london-street-market-eric-lee-johnson",
-          "thumbnail": "https://api.openverse.org/v1/images/c32b3101-113a-4f18-adf9-b610bdd8c2df/thumb/"
+          "foreign_landing_url": "https://www.flickr.com/photos/35693660@N03/51931739946",
+          "thumbnail": "https://api.openverse.org/v1/images/356787b3-e02e-46cb-80c0-3eb9d6e8df3f/thumb/"
+        },
+        {
+          "id": "3893f8cf-00b4-481a-9e63-c73d7e0f9fd0",
+          "title": "Sentinel-2B_entering_LSS",
+          "creator": "europeanspaceagency",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/37472264@N04/27225821014",
+          "thumbnail": "https://api.openverse.org/v1/images/3893f8cf-00b4-481a-9e63-c73d7e0f9fd0/thumb/"
+        },
+        {
+          "id": "43fc8c73-7c38-41e5-8bd0-d7990b6e6a4a",
+          "title": "2022-10-29_18-05-25_ILCE-6500_DSC19948_Kiri_DxO",
+          "creator": "miguel.discart",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/69506664@N06/52555772221",
+          "thumbnail": "https://api.openverse.org/v1/images/43fc8c73-7c38-41e5-8bd0-d7990b6e6a4a/thumb/"
         }
       ]
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 4,
+      "phrase": 5,
+      "english": "On Wednesday I work until the evening."
+    },
+    {
+      "lesson": 4,
+      "phrase": 9,
+      "english": "What do you plan to do on the weekend?"
+    },
+    {
+      "lesson": 4,
+      "phrase": 10,
+      "english": "I have work every day except Friday and Saturday."
+    },
+    {
+      "lesson": 4,
+      "phrase": 12,
+      "english": "The weekend comes quickly."
+    },
+    {
+      "lesson": 5,
+      "phrase": 1,
+      "english": "What do you do in your free time?"
+    },
+    {
+      "lesson": 5,
+      "phrase": 10,
+      "english": "Do you have time this evening?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 12,
+      "english": "Shall we walk together after the prayer?"
+    }
+  ]
 }

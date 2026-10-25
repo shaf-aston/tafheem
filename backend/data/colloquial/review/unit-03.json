@@ -43,6 +43,54 @@
       ]
     },
     {
+      "lesson": 3,
+      "phrase": 9,
+      "english": "This dish smells delicious",
+      "search_term": "delicious food dish",
+      "candidates": [
+        {
+          "id": "73c66a67-4ee0-4bc2-8c81-428a5691192b",
+          "title": "Food Recipe",
+          "creator": "Dana Tentis",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/food-recipe-G8QICMKLUV",
+          "thumbnail": "https://api.openverse.org/v1/images/73c66a67-4ee0-4bc2-8c81-428a5691192b/thumb/"
+        },
+        {
+          "id": "c1a2cf97-ddb6-422a-8029-5b7b09ad38a8",
+          "title": "Steak Asparagus",
+          "creator": "Snapwire",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/steak-asparagus-JMJZKYXUWD",
+          "thumbnail": "https://api.openverse.org/v1/images/c1a2cf97-ddb6-422a-8029-5b7b09ad38a8/thumb/"
+        },
+        {
+          "id": "305b7af5-4d6b-4d9b-b213-659db5755e04",
+          "title": "Beef Meat",
+          "creator": "pascal claivaz",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/beef-meat-O5XT48TDV6",
+          "thumbnail": "https://api.openverse.org/v1/images/305b7af5-4d6b-4d9b-b213-659db5755e04/thumb/"
+        },
+        {
+          "id": "2ec50ce9-ae88-4ede-94ad-52dbaa8c08d4",
+          "title": "Background Cuisine",
+          "creator": "Chatree Petjan",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/background-cuisine-C5F1FSRO59",
+          "thumbnail": "https://api.openverse.org/v1/images/2ec50ce9-ae88-4ede-94ad-52dbaa8c08d4/thumb/"
+        }
+      ]
+    },
+    {
       "lesson": 4,
       "phrase": 2,
       "english": "I don't like raw tomatoes",
@@ -62,7 +110,76 @@
       "english": "What's your favorite dish?",
       "search_term": "maqluba dish",
       "candidates": []
+    },
+    {
+      "lesson": 4,
+      "phrase": 11,
+      "english": "I love trying new dishes",
+      "search_term": "variety of food dishes",
+      "candidates": [
+        {
+          "id": "a0d9bc0f-86b0-4d5c-b5bb-159e5875c2ef",
+          "title": "CCI Cooking Day 2021 17",
+          "creator": "COD Newsroom",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/41431665@N07/51611311554",
+          "thumbnail": "https://api.openverse.org/v1/images/a0d9bc0f-86b0-4d5c-b5bb-159e5875c2ef/thumb/"
+        },
+        {
+          "id": "f76dc6ec-11c9-4472-80ea-7ce65fd987bb",
+          "title": "sushi",
+          "creator": "dalecruse",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/91873384@N04/54259242478",
+          "thumbnail": "https://api.openverse.org/v1/images/f76dc6ec-11c9-4472-80ea-7ce65fd987bb/thumb/"
+        },
+        {
+          "id": "48970ded-5a68-4ebc-9b15-a7444cf8a2ac",
+          "title": "DSCF0697: a woman standing in front of a table full of food",
+          "creator": "PattayaPatrol",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/194424926@N05/54559200017",
+          "thumbnail": "https://api.openverse.org/v1/images/48970ded-5a68-4ebc-9b15-a7444cf8a2ac/thumb/"
+        },
+        {
+          "id": "d34bf14a-21f0-4be0-968b-d4543ced12b2",
+          "title": "DSC_9241: a white plate topped with lots of food on top of a wooden table",
+          "creator": "PattayaPatrol",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/194424926@N05/54326687078",
+          "thumbnail": "https://api.openverse.org/v1/images/d34bf14a-21f0-4be0-968b-d4543ced12b2/thumb/"
+        }
+      ]
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 12,
+      "english": "That's enough like that, thanks"
+    },
+    {
+      "lesson": 4,
+      "phrase": 5,
+      "english": "I don't eat pork"
+    },
+    {
+      "lesson": 5,
+      "phrase": 10,
+      "english": "Do you have a smaller one? (to a man)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 12,
+      "english": "This one is nicer."
+    }
+  ]
 }
