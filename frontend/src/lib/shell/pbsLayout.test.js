@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import knobs from '../../config/pbsChart.json'
 import { CHARTS } from './pbsData'
-import { layoutChart } from './pbsLayout'
+import { layoutChart, SMALLEST_LABEL, widthAtLabel } from './pbsLayout'
 import { chartTree, viewConfig } from './pbsTree'
 
 const { levels } = knobs
@@ -106,5 +106,19 @@ describe('layoutChart', () => {
     const [{ y }] = box.label.lines
     const middle = y - box.label.size * knobs.drop
     expect(Math.abs(middle - (box.y + box.h / 2))).toBeLessThan(0.01)
+  })
+})
+
+describe('widthAtLabel', () => {
+  it('is the width at which the smallest label draws at the asked size, for the chart as laid out', () => {
+    for (const [, config] of views()) {
+      const px = widthAtLabel(config, 11)
+      expect(px).toBeGreaterThanOrEqual(Math.floor((layoutChart(config).width * 11) / SMALLEST_LABEL))
+      expect(px * (SMALLEST_LABEL / 11)).toBeGreaterThanOrEqual(layoutChart(config).width)
+    }
+  })
+
+  it('smallest label is the least English size of any level', () => {
+    expect(SMALLEST_LABEL).toBe(Math.min(...Object.values(levels).map((l) => l['sub-size'])))
   })
 })

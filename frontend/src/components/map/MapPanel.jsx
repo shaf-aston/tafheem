@@ -24,12 +24,17 @@ import { scrollToTop } from '../../lib/motion/scrollToEl'
 import { useArrival } from '../../lib/nav/useArrival'
 import { CHARTS } from '../../lib/shell/pbsData'
 import { chartTree, nodeAt, viewConfig } from '../../lib/shell/pbsTree'
+import { widthAtLabel } from '../../lib/shell/pbsLayout'
+import { useMedia, PHONE } from '../../lib/hooks/useMedia'
+import chartKnobs from '../../config/pbsChart.json'
 
 const ZOOM_MIN = 0.7
 const ZOOM_MAX = 3
 const ZOOM_STEP = 0.2
-// At 100% the chart never draws narrower than this, so on a phone its text stays readable and the chart scrolls inside its own frame.
+// At 100% the chart never draws narrower than this; on a phone, narrower than its smallest label reading at phone-label-px.
+// Either way it scrolls inside its own frame, and (the frame's padding aside) never draws its text unreadably small.
 const CHART_MIN_REM = 56
+const FRAME_PAD_PX = 32
 const INDEX = { at: 'index' }
 
 /** Numbered 1 to 9 by how the sciences lead into each other, in threes that belong together: the law, the sources, the language. The arrow keys walk this same order. */
@@ -58,6 +63,7 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
   const [hoverBranch, setHoverBranch] = useState(null)
   const [zoom, setZoom] = useState(1)
   const [pinching, setPinching] = useState(false)
+  const phone = useMedia(PHONE)
   const frame = useRef(null)
   const anchor = useRef(null) // { x, y, ratio }: the spot to keep under the fingers once the new zoom is drawn
 
@@ -106,6 +112,14 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
     () => shown && viewConfig(shown, path.length ? [] : chart.config.footnote),
     [shown, path.length, chart],
   )
+  // The chart's least width: on a phone, wide enough to read; elsewhere, a fixed floor.
+  const minWidth = phone && config ? `${widthAtLabel(config, chartKnobs['phone-label-px']) + FRAME_PAD_PX}px` : `${CHART_MIN_REM}rem`
+  // A chart opens with its root in view, not at its left edge: the drawing is centred on the root.
+  const where = chart ? [chart.id, ...path].join('/') : ''
+  useLayoutEffect(() => {
+    const el = frame.current
+    if (el) el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2
+  }, [where, phone])
   const trail = trailOf(place, chart, tree, path)
   const endOfTrail = useRef(null)
   useLayoutEffect(() => { if (endOfTrail.current) endOfTrail.current.scrollLeft = endOfTrail.current.scrollWidth }, [trail.length, place])
@@ -177,7 +191,7 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
           role="region"
           aria-label={`${chart.en} chart`}
         >
-          <div className="p-4" style={{ width: `max(${zoom * 100}%, ${zoom * CHART_MIN_REM}rem)`, transition: pinching ? 'none' : 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
+          <div className="p-4" style={{ width: `max(${zoom * 100}%, calc(${zoom} * ${minWidth}))`, transition: pinching ? 'none' : 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
             <PbsChart
               key={path.join('.')}
               config={config}

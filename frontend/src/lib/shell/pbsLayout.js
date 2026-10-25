@@ -22,6 +22,15 @@ const COLW = knobs['column-width']
 const PITCH = COLW + knobs['column-gap']
 const HALF = COLW / 2
 
+/** The drawing's width for `n` branches: its columns, never less than the root box. The words do not change it. */
+const widthFor = (n) => M * 2 + Math.max(n * COLW + (n - 1) * knobs['column-gap'], levels.root.width)
+
+/** The smallest label any chart draws, in drawing units: a chart shown at 1:1 has its smallest words this many px. */
+export const SMALLEST_LABEL = Math.min(...Object.values(levels).map((level) => level['sub-size']))
+
+/** The px width a chart needs for its smallest label to draw at `px`. */
+export const widthAtLabel = (config, px) => Math.ceil((widthFor(config.branches.length) * px) / SMALLEST_LABEL)
+
 const BOLD = 700
 const REGULAR = 400
 const roughly = (text) => estimate(text)
@@ -55,7 +64,7 @@ export function layoutChart(config, measure = roughly) {
   const { branches } = config
   const n = branches.length
   const columns = Math.max(0, n * COLW + (n - 1) * knobs['column-gap'])
-  const width = M * 2 + Math.max(columns, levels.root.width)
+  const width = widthFor(n)
   const colX = (i) => (width - columns) / 2 + i * PITCH
   const rootCx = width / 2
 

@@ -4,6 +4,8 @@
  "column-width": 236,
  "column-gap": 16,
  "root-top": 40,
+ "_comment-phone": "On a phone a chart is never drawn smaller than this: its smallest label is phone-label-px (the chart then scrolls sideways inside its frame, and a pinch zooms it).",
+ "phone-label-px": 11,
  "_comment-rows": "Space between one row of the tree and the next: from the root down to the bus line, from the bus down to the branches, from the branches down to their first kid. branch-drop is how far a branch's spine runs down before it turns to its kids.",
  "root-to-bus": 26,
  "bus-to-branch": 30,
