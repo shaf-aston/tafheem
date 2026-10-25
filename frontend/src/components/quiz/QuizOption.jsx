@@ -7,6 +7,7 @@
  * words the verdict in the round's language.
  */
 import ArabicText from '../ui/ArabicText'
+import OptionNumber from '../ui/OptionNumber'
 
 export default function QuizOption({ option, index, lang, say, answered, picked, answerId, accent, onChoose }) {
   const isAnswer = option.id === answerId
@@ -42,13 +43,7 @@ export default function QuizOption({ option, index, lang, say, answered, picked,
         ${answered ? 'cursor-default' : ''}
         ${answered && !isAnswer && !isPicked ? 'opacity-50' : ''}`}
     >
-      <span
-        className="shrink-0 w-6 h-6 grid place-items-center rounded-full type-small
-          bg-[var(--surface)] text-[var(--text-faint)]"
-        aria-hidden="true"
-      >
-        {index + 1}
-      </span>
+      <OptionNumber index={index} />
       {lang === 'en' ? (
         <span className="text-sm">{option.text}</span>
       ) : (

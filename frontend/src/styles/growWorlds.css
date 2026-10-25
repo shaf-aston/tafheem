@@ -108,7 +108,10 @@
 .grow-teach-also { display: flex; justify-content: center; align-items: baseline; gap: 0.75rem; color: var(--text-dim); font-size: var(--type-body); }
 .grow-teach-note { padding: 12px 14px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--w) 8%, var(--surface)); color: var(--text); font-size: var(--type-body); line-height: 1.6; text-wrap: pretty; }
 .grow-options { display: grid; gap: 10px; }
-.grow-option { min-height: 52px; padding: 12px 16px; text-align: start; border-radius: var(--radius-md); border: 2px solid var(--border-hi); background: var(--surface); color: var(--text); font-size: var(--type-body); transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease; }
+/* Short answers two by two (components/grow/exercises/OneOf): Arabic words always, short English once a row fits two. */
+.grow-options-ar.grow-options-two { grid-template-columns: 1fr 1fr; }
+@media (min-width: 480px) { .grow-options-two { grid-template-columns: 1fr 1fr; } }
+.grow-option { --option-number-bg: var(--surface-hi); display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 12px 16px; text-align: start; border-radius: var(--radius-md); border: 2px solid var(--border-hi); background: var(--surface); color: var(--text); font-size: var(--type-body); transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease; }
 .grow-option:not(:disabled):hover { border-color: color-mix(in srgb, var(--w) 60%, var(--border-hi)); }
 .grow-option[data-mark='picked'] { border-color: var(--w); background: color-mix(in srgb, var(--w) 14%, var(--surface)); }
 .grow-option[data-mark='right'] { border-color: var(--success); background: color-mix(in srgb, var(--success) 16%, var(--surface)); }
@@ -141,6 +144,7 @@
 .grow-gap-line { font-size: 1.9rem; line-height: 2; }
 .grow-gap { display: inline-block; min-width: 3em; padding: 0 6px; border-bottom: 3px solid var(--w); color: var(--w); }
 .grow-options-ar .grow-option { text-align: center; font-size: 1.4rem; }
+.grow-options-ar .grow-option > :last-child { flex: 1; }
 
 /* ── a world's picture: the stage line, the shelf, the sky (components/grow/scenes) ── */
 .grow-stage-line { display: grid; gap: 6px; font-size: var(--type-ui); color: var(--text); font-weight: 700; }

@@ -28,7 +28,7 @@ describe('the Jawhara on a card', () => {
   it('never prints the verse mark, and sets each bayt as two halves', () => {
     for (const card of cards) {
       const { container, unmount } = render(
-        card.kind === 'choose' ? <ChooseCard card={card} value={null} setValue={() => {}} result={null} /> : <TeachCard card={card} />,
+        card.kind === 'choose' ? <ChooseCard card={{ ...card, options: card.options.map((text, i) => ({ id: String(i), text })) }} value={null} setValue={() => {}} result={null} /> : <TeachCard card={card} />,
       )
       expect(container.textContent).not.toContain('%')
       expect(container.querySelectorAll('.bayt-half')).toHaveLength(2)
