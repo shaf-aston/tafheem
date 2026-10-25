@@ -61,6 +61,7 @@ def test_a_pronoun_ha_keeps_its_place():
     assert word["role"] == "مفعول به" and sakt_said() not in word["reason"]
 
 
+@needs_parser
 @pytest.mark.parametrize("sentence, case", [
     ("جَاءَ سُلْطَانِيَ", None), ("جَاءَ حَالُكَ", "raf'"),
     ("ٱذْكُرُوا۟ نِعْمَتِىَ", None),  # the Quran's ى: its kasra before is the ya's, no جر
@@ -74,6 +75,7 @@ def test_an_attached_pronouns_vowel_is_not_the_nouns_case(sentence, case):
     assert morphology.analyze_sentence(sentence)[-1]["case"] == case
 
 
+@needs_parser
 @pytest.mark.parametrize("recorded, case", [("فَاعِلٌ", "raf'"), ("مَفْعُوْلٌ بِهِ", "nasb")])
 def test_a_recorded_name_on_the_ya_brings_its_case(recorded, case):
     """On ياء المتكلم the case is always unseen (مقدرة), so a recorded ayah's name, vowelled as
@@ -83,6 +85,7 @@ def test_a_recorded_name_on_the_ya_brings_its_case(recorded, case):
     assert iraab.cards(tags, roles)[-1]["case"] == case
 
 
+@needs_parser
 def test_a_recorded_name_brings_no_case_off_the_ya():
     """إِنَّهُمْ named مبتدأ by its pronoun: a built word, so the name gives it no case."""
     tags = morphology.analyze_sentence("أَلَا إِنَّهُمْ")
