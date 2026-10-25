@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import pytest
 
+from backend.services.nahw import iraab
 from backend.services.nahw.book import sakt_off, sakt_said
 from backend.services.nahw.syntax import disambiguator
 from backend.services.sarf import morphology
@@ -58,3 +59,32 @@ def test_a_pronoun_is_built_on_its_own_vowel_not_on_the_ha():
 def test_a_pronoun_ha_keeps_its_place():
     word = analyze("أَخَذْتُ كِتَابَهْ")["words"][-1]
     assert word["role"] == "مفعول به" and sakt_said() not in word["reason"]
+
+
+@pytest.mark.parametrize("sentence, case", [
+    ("جَاءَ سُلْطَانِيَ", None), ("جَاءَ حَالُكَ", "raf'"),
+    ("ٱذْكُرُوا۟ نِعْمَتِىَ", None),  # the Quran's ى: its kasra before is the ya's, no جر
+    ("سَلَّمْتُ عَلَى أَخِيكَ", None),  # the six nouns' ي is the sign, not the kaf's fatha
+    ("إِلَى عِنْدِهِمْ", "jarr"),  # the kasra before the pronoun
+    ("أَلَا إِنَّهُمْ", None),  # a particle's: نّ's fatha is its own build, no case
+])
+def test_an_attached_pronouns_vowel_is_not_the_nouns_case(sentence, case):
+    """The fatha of سُلْطَانِيَ is the ya's own: the case before it is unseen. A recorded ayah
+    names the word and leaves its case to this reading, so a fatha here was a wrong نصب."""
+    assert morphology.analyze_sentence(sentence)[-1]["case"] == case
+
+
+@pytest.mark.parametrize("recorded, case", [("فَاعِلٌ", "raf'"), ("مَفْعُوْلٌ بِهِ", "nasb")])
+def test_a_recorded_name_on_the_ya_brings_its_case(recorded, case):
+    """On ياء المتكلم the case is always unseen (مقدرة), so a recorded ayah's name, vowelled as
+    the treebank writes it, is all that shows it."""
+    tags = morphology.analyze_sentence("هَلَكَ عَنِّي سُلْطَانِيَ")
+    roles = [{"role": None, "case": None}] * 2 + [{"role": recorded, "case": None}]  # tarkeeb_store's shape
+    assert iraab.cards(tags, roles)[-1]["case"] == case
+
+
+def test_a_recorded_name_brings_no_case_off_the_ya():
+    """إِنَّهُمْ named مبتدأ by its pronoun: a built word, so the name gives it no case."""
+    tags = morphology.analyze_sentence("أَلَا إِنَّهُمْ")
+    roles = [{"role": None, "case": None}, {"role": "مُبْتَدَأٌ", "case": None}]
+    assert iraab.cards(tags, roles)[-1]["case"] is None

@@ -148,8 +148,10 @@ def _named(entry: dict, found: dict, annexed: bool) -> None:
     elif entry.get("type") in ("ism", "zarf") and found["role"] == NAMED.harf and (found.get("named") or found.get("name")):
         # ما عدا، ما النافية: CAMeL's relative is the particle the reading or its family names
         entry["type"] = "harf"
-    if not found["case"] and entry.get("case") != "mabni" and (own := case_of(found["role"])):
-        found = {**found, "case": CASE_NAME[own]}  # a recorded ayah's name brings its own case
+    # a recorded ayah's name brings its own case; on ياء المتكلم (سُلْطَانِيَ) only the name shows it
+    own = case_of(found["role"]) or (entry.get("camel", {}).get("enclitic") == "1s_poss" and case_of(plain))
+    if not found["case"] and entry.get("case") != "mabni" and own:
+        found = {**found, "case": CASE_NAME[own]}
     if found.get("built"):
         entry["case"] = "mabni"  # أكلتُ ما طبختَ: a relative the tagger took for a particle is built all the same
     moved = found["case"] and found["case"] != entry.get("case") and not found.get("built")
