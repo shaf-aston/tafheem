@@ -73,6 +73,7 @@ def _shapes() -> dict[int, list[tuple[re.Pattern, list[set], str, str, int, str]
     length: (pattern, the stand-in word's marks, stand-in, باب, row, column read as).
     Built once, ~1.5 s."""
     blanks = _config()["placeholders"]
+    root_letter = f"[^{re.escape(_config()['never-root'])}]"
     shapes: dict[int, list] = {}
     for stand_in, forms in _stand_ins():
         for form in forms:
@@ -87,7 +88,7 @@ def _shapes() -> dict[int, list[tuple[re.Pattern, list[set], str, str, int, str]
                     pattern = ""
                     for letter, _ in marked:
                         if letter in blanks and letter in stand_in:
-                            pattern += f"(?P={_group(letter)})" if letter in seen else f"(?P<{_group(letter)}>.)"
+                            pattern += f"(?P={_group(letter)})" if letter in seen else f"(?P<{_group(letter)}>{root_letter})"
                             seen.add(letter)
                         else:
                             pattern += re.escape(letter)
