@@ -89,7 +89,7 @@ function GroupPage({ family, group, other, onCompare }) {
 
       <dl className="grid gap-x-4 gap-y-1.5 sm:grid-cols-[9rem_1fr] type-body">
         <dt className="text-[var(--text-faint)]">Found today</dt><dd className="text-[var(--text-dim)]">{group.where}</dd>
-        <dt className="text-[var(--text-faint)]">Main texts</dt><dd className="text-[var(--text-dim)]">{group.texts.join(' · ')}</dd>
+        <dt className="text-[var(--text-faint)]">Main texts</dt><ArabicText as="dd" size="base" className="text-[var(--text-dim)]">{group.texts.join(' · ')}</ArabicText>
       </dl>
 
       <section>
@@ -142,7 +142,7 @@ function GroupPage({ family, group, other, onCompare }) {
               >
                 <div className="flex items-baseline gap-2 mb-1">
                   <p className="type-body font-bold text-[var(--text)] flex-1">{q.en}</p>
-                  <ArabicText as="span" size="sm" className="text-[var(--text-faint)]">{q.ar}</ArabicText>
+                  <ArabicText as="span" size="base" className="text-[var(--text-dim)]">{q.ar}</ArabicText>
                   {d === true && <span className="eyebrow text-[var(--danger)]">Differ</span>}
                   {d === false && <span className="type-ui text-[var(--text-faint)]">same</span>}
                 </div>
