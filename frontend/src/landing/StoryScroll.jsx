@@ -3,10 +3,11 @@ import { useRef } from 'react'
 import MicMark from '../components/ui/MicMark'
 import { roleVar } from '../lib/nahw/roleColors'
 import theme from '../config/theme.json'
-import GovPanel from './GovPanel.jsx'
 import links from './links.json'
 import RootPanel from './RootPanel.jsx'
+import SentencePanel from './SentencePanel.jsx'
 import { DEMO_WORDS, GOVERNS } from './storyData.js'
+import { locate, sentencePhase } from './storyPhase.js'
 import useScrollProgress from './useScrollProgress.js'
 
 // The ayah of step 3, and the one word the demo flags.
@@ -23,12 +24,15 @@ const BARS = Array.from({ length: Number(theme.landing['wave-bars']) }, (_, i) =
 // Twelve turned spikes and two rings: the geometric star behind the stage.
 const SPIKES = Array.from({ length: 12 }, (_, i) => i * 30)
 
+// `weight` is how many steps' worth of scrolling a step gets. The first is two demos in
+// one, the words named and then who governs whom, so it reads `body` and then `then`.
 const STEPS = [
-  { title: 'Every word, named', to: 'nahw', accent: 'var(--role-fail)', body: 'Paste any sentence. Each word gets its role and colour in a moment, with harakat or without.' },
-  { title: 'See who governs whom', to: 'nahw', accent: 'var(--role-rel)', body: 'The tool draws the governor arrows and tells you why each word takes its case.' },
+  { title: 'Every word, explained', to: 'nahw', accent: 'var(--role-fail)', weight: 2, body: 'Paste any sentence. Each word gets its role and colour in a moment, with harakat or without.', then: 'Then the tool draws the governor arrows and tells you why each word takes its case.' },
   { title: 'Recite, be heard', to: 'mem?mode=recite', accent: 'var(--quran)', body: '1,950 real recitations, scored word by word. Mistakes are flagged where they happened.' },
   { title: 'Trace any root', to: 'dict', accent: 'var(--gold-hi)', body: '"gathering one thing to another", Ibn Faris. Four classical dictionaries, one search.' },
 ]
+
+const WEIGHTS = STEPS.map((s) => s.weight ?? 1)
 
 function Words({ list, cls = () => '' }) {
   return (
@@ -49,10 +53,9 @@ function Words({ list, cls = () => '' }) {
 export default function StoryScroll() {
   const trackRef = useRef(null)
   const progress = useScrollProgress(trackRef)
-  const active = Math.min(STEPS.length - 1, Math.floor(progress * STEPS.length))
-  const lp = progress * STEPS.length - active
-  const shown = Math.floor(lp * 1.25 * (DEMO_WORDS.length + 1))
-  const govIdx = lp < 0.6 ? 0 : 1
+  const { active, lp } = locate(progress, WEIGHTS)
+  const phase = sentencePhase(lp, { words: DEMO_WORDS.length, pairs: GOVERNS })
+  const naming = phase.phase === 'name'
   const ayahDone = (i) => lp * 1.2 * AYAH.length - i >= 1
 
   return (
@@ -86,22 +89,26 @@ export default function StoryScroll() {
               </div>
 
               <div className={`story-panel${active === 0 ? ' active' : ''}`}>
-                <Words list={DEMO_WORDS} cls={(i) => `${i < shown ? 'on' : ''}${i === shown - 1 && lp < 0.8 ? ' cur' : ''}`.trim()} />
-                <div className="story-chips">
-                  {CHIPS.map((c, i) => <span key={c} className={`story-chip${lp > 0.45 + i * 0.15 ? ' on' : ''}`}>{c}</span>)}
+                <SentencePanel
+                  phase={phase}
+                  notes={(
+                    <div className="story-chips">
+                      {CHIPS.map((c, i) => (
+                        <span key={c} className={`story-chip${naming && phase.named >= Math.ceil(((i + 1) * DEMO_WORDS.length) / (CHIPS.length + 1)) ? ' on' : ''}`}>{c}</span>
+                      ))}
+                    </div>
+                  )}
+                />
+                <div className="story-caps">
+                  <p className={`story-cap${naming ? ' on' : ''}`} aria-hidden={!naming}>{STEPS[0].body}</p>
+                  <p className={`story-cap${naming ? '' : ' on'}`} aria-hidden={naming}>{STEPS[0].then}</p>
                 </div>
-                <p className="story-cap">{STEPS[0].body}</p>
               </div>
 
               <div className={`story-panel${active === 1 ? ' active' : ''}`}>
-                <GovPanel lp={lp} govIdx={govIdx} />
-                <p className="story-cap">{STEPS[1].body}</p>
-              </div>
-
-              <div className={`story-panel${active === 2 ? ' active' : ''}`}>
                 <div className="story-mic">
                   <span className="mic-ring" aria-hidden="true" />
-                  <MicMark state={active === 2 ? 'recording' : 'idle'} size={30} />
+                  <MicMark state={active === 1 ? 'recording' : 'idle'} size={30} />
                 </div>
                 <div className="story-wave" aria-hidden="true">
                   {BARS.map((b) => <i key={b.i} style={{ '--h': b.h, '--i': b.i }} />)}
@@ -114,12 +121,12 @@ export default function StoryScroll() {
                   }))}
                   cls={(i) => (ayahDone(i) ? 'on' : '')}
                 />
-                <p className="story-cap">{STEPS[2].body}</p>
+                <p className="story-cap">{STEPS[1].body}</p>
               </div>
 
-              <div className={`story-panel${active === 3 ? ' active' : ''}`}>
+              <div className={`story-panel${active === 2 ? ' active' : ''}`}>
                 <RootPanel lp={lp} />
-                <p className="story-cap">{STEPS[3].body}</p>
+                <p className="story-cap">{STEPS[2].body}</p>
               </div>
             </div>
           </div>

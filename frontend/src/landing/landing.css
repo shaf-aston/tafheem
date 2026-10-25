@@ -170,12 +170,12 @@ body { margin: 0; overflow-x: hidden; }
 /* Fade-up: the one hidden-then-risen state, tuned per element by --rise (px
    it starts below) and, where it differs, --tf-dur / --tf-ease for the move. */
 .landing-page .story-word .story-role, .landing-page .story-chip, .landing-page .story-why,
-.landing-page .story-book {
+.landing-page .story-caps .story-cap, .landing-page .story-book {
   opacity: 0; transform: translateY(var(--rise, 8px));
   transition: var(--fade), transform var(--tf-dur, var(--med)) var(--tf-ease, ease);
 }
 .landing-page .story-word.on .story-role, .landing-page .story-chip.on, .landing-page .story-why.on,
-.landing-page .story-book.on { opacity: 1; transform: none; }
+.landing-page .story-caps .story-cap.on, .landing-page .story-book.on { opacity: 1; transform: none; }
 
 .landing-page .story-words { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.3rem; }
 .landing-page .story-word { display: flex; flex-direction: column; align-items: center; gap: .2rem; --tone: var(--muted); }
@@ -195,8 +195,8 @@ body { margin: 0; overflow-x: hidden; }
 }
 .landing-page .story-chip.on { color: var(--gold-hi); border-color: color-mix(in srgb, var(--gold-hi) 40%, transparent); }
 
-/* Governs: the whole sentence on one line, full-bleed, sliding so the active
-   pair sits in the middle. The arrows are drawn in the line's own coordinates. */
+/* The sentence: every word, named and then governed, on one line, full-bleed, sliding so the word
+   or pair in focus sits in the middle. The arrows are drawn in the line's own coordinates. */
 .landing-page .story-pan {
   display: grid; align-self: stretch; margin-inline: calc(var(--story-pad) * -1); overflow: hidden; direction: ltr; touch-action: pan-y;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--landing-pan-fade), #000 calc(100% - var(--landing-pan-fade)), transparent);
@@ -218,9 +218,13 @@ body { margin: 0; overflow-x: hidden; }
   display: block; width: var(--landing-pan-tick-w); height: 6px; border-radius: 3px; background: var(--tone, var(--muted)); opacity: .22;
   transition: var(--fade), transform var(--slow) var(--spring);
 }
+.landing-page .story-ticks i.on { opacity: .55; }
 .landing-page .story-ticks i.act { opacity: 1; transform: scaleY(1.7); }
 .landing-page .story-pair { margin-top: -.5rem; color: var(--muted); font: 700 .7rem var(--font-label); letter-spacing: .06em; text-transform: uppercase; }
-.landing-page .story-whys { display: grid; }
+/* Two things that take turns in one place (the naming chips and each pair's reason, the two
+   captions): one grid cell, so the panel is as tall as the taller and nothing below it jumps. */
+.landing-page .story-notes, .landing-page .story-caps { display: grid; place-items: center; }
+.landing-page .story-notes > *, .landing-page .story-caps > * { grid-area: 1 / 1; }
 .landing-page .story-why {
   grid-area: 1 / 1; background: color-mix(in srgb, var(--text) 4%, transparent); border: 1px solid var(--line); border-radius: 12px; padding: .8rem 1rem; max-width: 420px;
   font-size: .9rem; color: var(--muted);
@@ -396,7 +400,7 @@ body { margin: 0; overflow-x: hidden; }
 /* Sections: the app's own tiles; the reset above would strip their padding. */
 .landing-page .landing-sections h2 { margin-block: 0 .75em; }
 .landing-page .landing-sections-groups section { padding: 0; }
-.landing-page .landing-sections-groups { display: flex; flex-wrap: wrap; gap: calc(var(--spacing) * 4) calc(var(--spacing) * 6); }
+.landing-page .landing-sections-groups { display: grid; gap: calc(var(--spacing) * 4); }
 .landing-page .landing-sections .tile { padding: var(--space-tile); text-decoration: none; color: var(--text); }
 .landing-page .landing-sections .tile-chip { padding-block: calc(var(--space-tile) / 2); }
 .landing-page .landing-sections .eyebrow { margin-bottom: .5rem; }
