@@ -22,6 +22,7 @@ import SourceFooter from './components/shell/SourceFooter'
 import TabStrip from './components/shell/TabStrip'
 import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
+import InstallButton from './components/shell/InstallButton'
 import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/ArabicText'
 
@@ -131,6 +132,7 @@ function AppContent() {
             {/* Home has the command line and the tabs on a phone; the header keeps pen, profile, gear. */}
             <div className="phone-hide min-w-0"><CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} /></div>
             <ProfileButton />
+            <InstallButton />
             <button
               type="button"
               onClick={() => setSettingsOpen(true)}
