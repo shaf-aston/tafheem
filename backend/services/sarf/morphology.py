@@ -21,7 +21,7 @@ from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_ar
 from backend.services.sarf import noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.nahw.book import book_words, is_built_word, is_mabni, is_one, sakt_off, six_noun_case
-from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
+from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -296,8 +296,12 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
     guessed = NO_ANALYSIS in a.get("atbtok", "")
 
     cas = a.get("cas", "na") or "na"
-    # A built word (a past verb, a pronoun) has no case: its last vowel is not one.
-    case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if is_mabni(pos, a.get("asp"), base_of(word, a.get("atbtok"))) else CASE_NAME.get(typed_case(word)))
+    # A built word (a past verb, a pronoun) has no case: its last vowel is not one. Nor is a
+    # noun's attached pronoun's (the fatha of أَخِيكَ is the kaf's), and on ياء المتكلم the case
+    # is unseen (the fatha of سُلْطَانِيَ is the ya's own).
+    unseen = is_mabni(pos, a.get("asp"), base_of(word, a.get("atbtok"))) or a.get("enc0") == "1s_poss"
+    pronoun = stuck_letters({"form": piece} for piece in (a.get("atbtok") or "").split("_")) if pos in NOUNISH else 0
+    case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if unseen else CASE_NAME.get(typed_case(word, pronoun)))
 
     return {
         "word": word,
