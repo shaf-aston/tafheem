@@ -13,9 +13,10 @@ export default function Sections() {
       <div className="wrap">
         <h2 id="landing-sections-title">{links.sections.title}</h2>
         <div className="landing-sections-groups">
-          {/* A phone fills each row; a wide screen sets short groups side by side. */}
-          <TabGroups groups={SHOWN} tabs={LISTED} className="basis-full lg:basis-auto"
-            grid="gap-2 grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] lg:grid-cols-none lg:grid-flow-col lg:auto-cols-[12rem]">
+          {/* One group to a row, every row on the same tile columns, so the groups line up
+              down the page: a phone's tiles fill the row, a wide screen's keep one width. */}
+          <TabGroups groups={SHOWN} tabs={LISTED}
+            grid="gap-2 grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] lg:grid-cols-[repeat(auto-fill,12rem)]">
             {(tab, index) => (
               <Tile key={tab.id} as="a" href={`${links.tool}/${tab.id}`} variant="chip" accent={accentOf(tab.id)} style={{ '--i': index }}>
                 <span className="flex items-center gap-2 type-ui font-semibold">
