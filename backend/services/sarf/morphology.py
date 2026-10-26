@@ -706,7 +706,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     # elative as well as a verb ("and I remain"), is the elative: a verb is joined onto a noun only when the
     # noun is like a verb, as the active participle is (Ibn Aqil on the Alfiyya V3 p244), and an elative is not
     for i in range(1, len(out)):
-        if out[i].get("pos") == "verb" and out[i].get("prc2") == "wa_conj" and out[i - 1].get("pos") in NOUNISH \
+        if out[i].get("pos") == "verb" and out[i - 1].get("pos") in NOUNISH \
                 and elative_shape(out[i - 1].get("pattern", ""), out[i - 1].get("lex", "")):
             word, ranked = steps[i]
             elative = best_reading(word, [r for r in [*_widened(tokens[i], ranked), _joined_noun(word, "و", "CONJ", prc2="wa_conj")]
