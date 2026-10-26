@@ -1,7 +1,7 @@
 /**
- * The Map's screens as addresses: /app/map (the nine sciences), /app/map/07 (a chart), /app/map/07/2/0 (a box inside
- * it, by child number from the root), /app/map/manhaj/creed (a family of methodologies), /app/map/manhaj/creed/ibadi
- * (a group's page), /app/map/manhaj/creed/ibadi/ashari (that page compared with another group).
+ * The Map's screens as addresses: /map (the nine sciences), /map/07 (a chart), /map/07/2/0 (a box inside
+ * it, by child number from the root), /map/manhaj/creed (a family of methodologies), /map/manhaj/creed/ibadi
+ * (a group's page), /map/manhaj/creed/ibadi/ashari (that page compared with another group).
  * Pure. `placeOf` reads the tab's value (lib/nav/tabUrl.js writes it), `valueOf` writes one; MapPanel is the caller.
  * Anything unknown falls back to the nearest place that exists.
  */

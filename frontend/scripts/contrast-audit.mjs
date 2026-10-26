@@ -130,7 +130,7 @@ await probe.goto(`${APP}/app`, { waitUntil: 'networkidle' })
 const ids = await probe.evaluate(async () => (await import('/src/lib/nav/tabs.js')).LISTED.map((t) => t.id))
 await probe.close()
 const SCREENS = [
-  ...ids.map((id) => ({ name: id, path: id === 'home' ? '/app' : `/app/${id}` })),
+  ...ids.map((id) => ({ name: id, path: id === 'home' ? '/app' : `/${id}` })),
   { name: 'home+sections', path: '/app', open: 'All sections' },
   { name: 'home+settings', path: '/app', open: 'Settings' },
 ].filter((s) => !process.env.SCREENS || process.env.SCREENS.split(',').includes(s.name))
