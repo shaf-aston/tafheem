@@ -105,8 +105,8 @@ def told_of_jar(tokens: list[dict]) -> None:
 
 
 def _in_shibh_jumla(token: dict, s: Sentence) -> bool:
-    """A ظرف, a preposition or its majrur: a شبه جملة, which tells of nothing by a subject of its own."""
-    return is_zarf(token, s) or is_preposition(token) or bool((jar := s.head(token)) and is_preposition(jar))
+    """A ظرف or a preposition: the head of a شبه جملة, which tells of nothing by a subject of its own."""
+    return is_zarf(token, s) or is_preposition(token)
 
 
 def _indefinite(token: dict, tokens: list[dict]) -> bool:

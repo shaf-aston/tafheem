@@ -90,8 +90,8 @@ def emphasis_lam_opener(tokens: list[dict]) -> None:
     so a noun the parser hung on it as a جار's majrur is in that لام's place: it hangs where the لام hung,
     what hung on the لام hangs on it, and the لام on it (لام الابتداء). That لام has the head of the
     sentence, so its word's khabar never comes before it (Ibn Aqil V1 p236: لام الابتداء لها صدر الكلام،
-    فلا تقول قائم لزيد): the word hung as the صفة of a word after it that heads a verbless sentence
-    (لَأَنْتُمْ أَشَدُّ رَهْبَةً، لَزَيْدٌ أَفْضَلُ مِنْ عَمْرٍو) is its مبتدأ."""
+    فلا تقول قائم لزيد), and it comes onto no فاعل: the word hung on a word after it, as its صفة or
+    its doer (لَأَنْتُمْ أَشَدُّ رَهْبَةً، لَزَيْدٌ يَقُومُ، عَلِمْتُ لَزَيْدٌ قَائِمٌ), is its مبتدأ."""
     by_id = {t["id"]: t for t in tokens}
     for i, (lam, word) in enumerate(zip(tokens, tokens[1:])):
         if not (word["head"] == lam["id"] and noun_tagged(word) and is_emphasis_lam(tokens, i)):
@@ -102,5 +102,5 @@ def emphasis_lam_opener(tokens: list[dict]) -> None:
         word["head"], word["rel"] = lam["head"], lam["rel"]
         lam["head"], lam["rel"] = word["id"], "MOD"
         told = by_id.get(word["head"])
-        if word["rel"] == "MOD" and told and told["id"] > word["id"] and told["head"] == 0 and not verb_tagged(told):
+        if told and told["id"] > word["id"]:
             word["rel"] = "SBJ"

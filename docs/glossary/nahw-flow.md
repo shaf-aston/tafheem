@@ -34,7 +34,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - book_links: fixed structures written over the parser (`backend/services/nahw/syntax/mask.py`)
 - typed_words: retag by what was typed, command shapes, muḍāf flag (`backend/services/nahw/syntax/repair/typed.py`)
 - since_jarr: a built time word that is also a preposition (مُنْذُ أَمْسِ، مُذْ شَهْرٍ) before a noun → the preposition, the noun its majrur (`backend/services/nahw/syntax/repair/typed.py`)
-- emphasis_lam_opener: a لام typed with a fatha onto a noun (لَزَيْدٌ قَائِمٌ، وَلَلْآخِرَةُ خَيْرٌ) hung as a جار → لام الابتداء: the noun takes its place, the لام hangs on it; hung as the صفة of the verbless head after it (لَأَنْتُمْ أَشَدُّ) → its مبتدأ, as that لام heads the sentence (`backend/services/nahw/syntax/repair/typed.py`)
+- emphasis_lam_opener: a لام typed with a fatha onto a noun (لَزَيْدٌ قَائِمٌ، وَلَلْآخِرَةُ خَيْرٌ) hung as a جار → لام الابتداء: the noun takes its place, the لام hangs on it; hung on a word after it, as its صفة or its doer (لَأَنْتُمْ أَشَدُّ، لَزَيْدٌ يَقُومُ) → its مبتدأ, as that لام heads the sentence and comes onto no فاعل (`backend/services/nahw/syntax/repair/typed.py`)
 - asked_man: an opening مَنْ with no verb in the sentence → the question word, not the relative (`backend/services/nahw/syntax/repair/asked.py`)
 - subject_clash: second noun after a raf' subject → the verb's object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - kana_subject: a raf' noun right after كان/ليس, with a later predicate → كان's subject, not its khabar; a خبر the parser hung on the subject → كان's khabar; a باء hung on لست as a modifier → the باء of ليس's khabar (لَسْتُ بِغَافِلٍ) (`backend/services/nahw/syntax/repair/subject_clash.py`)

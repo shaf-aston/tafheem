@@ -708,12 +708,9 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     for i in range(1, len(out)):
         if out[i].get("pos") == "verb" and out[i - 1].get("pos") in NOUNISH \
                 and elative_shape(out[i - 1].get("pattern", ""), out[i - 1].get("lex", "")):
-            word, ranked = steps[i]
-            elative = best_reading(word, [r for r in [*_widened(tokens[i], ranked), _joined_noun(word, "و", "CONJ", prc2="wa_conj")]
-                                          if r and r.get("pos") in NOUNISH and r.get("prc2") == "wa_conj"
-                                          and elative_shape(r.get("pattern", ""), r.get("lex", ""))])
-            if elative and best_reading(word, [elative, out[i]]) is elative:
-                out[i] = elative
+            word = steps[i][0]  # the only shape of sarf's nouns a verb spells too is أَفْعَل, the elative's
+            if (noun := _joined_noun(word, "و", "CONJ", prc2="wa_conj")) and best_reading(word, [noun]):
+                out[i] = noun
     # مَنْ جَدَّ وَجَدَ: a مضاف needs its مضاف إليه straight after it, so a bare construct noun
     # before a و, a preposition or nothing is not the word typed (here the verb جَدَّ)
     # لَا رَيْبَ فِيهِ: after لا النافية للجنس the noun's missing tanween is لا's building on fatha
@@ -815,7 +812,7 @@ def _emphasis_lam(typed: str, disambiguator=None) -> dict | None:
     if any(strip_diacritics(rest) in book_words(family) for family in lam["onto"]):
         if any(r.get("pos") == "verb" for r in whole):
             return None
-    elif whole or "َ" not in marked[0][1]:
+    elif whole:
         return None
     ranked = _rest_readings(rest, disambiguator)
     return _joined_onto(said, _reading(rest, ranked), "EMPHATIC_PART", prc1="la_emph") if _agreeing(rest, ranked) else None

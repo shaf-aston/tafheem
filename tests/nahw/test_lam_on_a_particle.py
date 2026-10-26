@@ -80,6 +80,11 @@ def test_a_lam_with_a_fatha_on_a_pronoun_the_dictionary_never_writes_is_the_lam_
     # the parser hangs the word with the لام as the صفة of the khabar after it: لام الابتداء heads the sentence
     ("لَزَيْدٌ أَفْضَلُ مِنْ عَمْرٍو", ["مبتدأ", "خبر", "حرف جر", "مجرور"]),
     ("لَأَنْتُمْ أَشَدُّ رَهْبَةً", ["مبتدأ", "خبر"]),
+    # the لام comes onto no فاعل: the word before the verb is its مبتدأ, the verb's clause the khabar
+    ("لَزَيْدٌ يَقُومُ", ["مبتدأ", "فعل"]),
+    ("لَزَيْدٌ قَامَ أَبُوهُ", ["مبتدأ", "فعل", "فاعل"]),
+    # nor does علم reach past it (تعليق)
+    ("عَلِمْتُ لَزَيْدٌ قَائِمٌ", ["فعل", "مبتدأ"]),
 ])
 def test_the_lam_of_emphasis_on_a_noun_leaves_it_the_mubtada(sentence, expected):
     assert roles(sentence)[:len(expected)] == expected
@@ -89,3 +94,13 @@ def test_the_lam_of_emphasis_on_a_noun_leaves_it_the_mubtada(sentence, expected)
 @pytest.mark.parametrize("sentence", ["لَكَ الْحَمْدُ", "لَهُ الْمُلْكُ"])
 def test_a_lam_on_a_pronoun_heading_the_sentence_keeps_its_jarr(sentence):
     assert roles(sentence) == ["حرف جر", "مبتدأ"]
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, expected", [
+    ("إِنَّ هَذَا لَسِحْرٌ", ["حرف", "اسم إن", "خبر إن"]),
+    ("إِنَّ اللَّهَ لَغَفُورٌ رَحِيمٌ", ["حرف", "اسم إن", "خبر إن"]),
+    ("زَيْدٌ لَقَائِمٌ", ["مبتدأ", "خبر"]),
+])
+def test_the_lam_on_a_khabar_after_its_mubtada_leaves_it_the_khabar(sentence, expected):
+    assert roles(sentence)[:len(expected)] == expected
