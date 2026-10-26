@@ -47,7 +47,9 @@
 
 /* ── home: the worlds ── */
 .grow-worlds-h { font-size: var(--type-body); font-weight: 800; color: var(--text); }
-.grow-worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.grow-worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 12px; }
+/* Two worlds across on a phone, so the row of worlds is a glance, not a long scroll. */
+@media (max-width: 39.99rem) { .grow-world-ar { font-size: 2rem; } }
 .grow-world-tile {
   display: grid; gap: 6px; align-content: end; min-height: 150px; padding: 14px; text-align: start;
   border-radius: var(--radius-lg); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
@@ -97,7 +99,13 @@
 .grow-stage-text b { font-size: var(--type-ui); color: var(--text); }
 
 /* ── a lesson ── */
-.grow-lesson { display: grid; gap: 20px; max-width: 560px; margin: 0 auto; }
+.grow-lesson { display: flex; flex-direction: column; gap: 20px; max-width: 560px; margin: 0 auto; }
+/* On a phone the lesson fills the screen and Check/Continue sits at its foot, by the thumb and above the tab bar: the
+   spare room goes between the question and the button, not under it. A pointer screen keeps the button by the answers. */
+@media (max-width: 39.99rem) {
+  .grow-lesson:has(.grow-lesson-foot) { min-height: calc(100dvh - 4.75rem - var(--layout-nav) - env(safe-area-inset-bottom, 0px)); }
+  .grow-lesson-foot { position: sticky; bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px)); z-index: var(--layer-sticky); }
+}
 .grow-lesson-top { display: flex; align-items: center; gap: 12px; }
 .grow-lesson-top .grow-lesson-bar { flex: 1; height: 12px; }
 .grow-card { display: grid; gap: 14px; animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) both; }
@@ -117,7 +125,7 @@
 .grow-option[data-mark='right'] { border-color: var(--success); background: color-mix(in srgb, var(--success) 16%, var(--surface)); }
 .grow-option[data-mark='wrong'] { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 14%, var(--surface)); }
 .grow-option:disabled { cursor: default; }
-.grow-lesson-foot { display: grid; gap: 10px; padding: 14px; margin: 0 -14px; border-radius: var(--radius-lg); }
+.grow-lesson-foot { display: grid; gap: 10px; padding: 14px; margin: auto -14px 0; border-radius: var(--radius-lg); }
 .grow-lesson-foot[data-result='right'] { background: color-mix(in srgb, var(--success) 14%, var(--surface)); }
 .grow-lesson-foot[data-result='wrong'] { background: color-mix(in srgb, var(--danger) 12%, var(--surface)); }
 .grow-lesson-say { font-weight: 800; color: var(--text); }
