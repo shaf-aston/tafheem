@@ -6,14 +6,17 @@ import { bootShellPlugin } from './vite/bootShell'
 import { growBooks } from './vite/growBooks'
 import { offline } from './vite/offline'
 import { preloadFont } from './vite/preloadFont'
+import vercel from '../vercel.json'
 
 // The landing page is the front door, so it is index.html and needs no rewrite.
-// The tool's public address is /app; app.html is only the file behind it. A host
+// The tool's door is /app; app.html is only the file behind it. A host
 // serves a real file before it consults a rewrite, which is why the front door is
 // a filename and not a rule. One rewrite for the dev server and preview both.
-// /app/<tab> and /app/<tab>/<place> are the same page; lib/tabUrl.js reads the path.
+// /<tab> and /<tab>/<place> are the same page; lib/tabUrl.js reads the path.
+// The tab names come from vercel.json, so dev and the host agree on what is a tab.
 const PRETTY = { '/app': '/app.html' }
-const TAB_PAGE = /^\/app\/[^/.]+(\/.*)?$/
+const TABS = vercel.rewrites.map((rule) => rule.source.match(/^\/:tab\(([^)]+)\)/)?.[1]).find(Boolean)
+const TAB_PAGE = new RegExp(`^(/app)?/(${TABS})(/.*)?$`)
 const prettyUrls = {
   name: 'pretty-urls',
   configureServer(server) { server.middlewares.use(rewrite) },

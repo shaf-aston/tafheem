@@ -3,8 +3,14 @@ import { describe, expect, it } from 'vitest'
 import { colorFor } from '../../theme'
 import { accentOf, GROUPS, LISTED, TABS } from './tabs'
 import Emblem from '../../components/ui/Emblem'
+import vercel from '../../../../vercel.json'
 
 describe('the tab registry', () => {
+  it('has every tab served by the host at /<tab>', () => {
+    const served = vercel.rewrites.map((rule) => rule.source).find((source) => source.startsWith('/:tab('))
+    for (const tab of TABS) expect(served).toMatch(new RegExp(`[(|]${tab.id}[|)]`))
+  })
+
   it('gives every tab its own id', () => {
     const ids = TABS.map((tab) => tab.id)
     expect(new Set(ids).size).toBe(ids.length)

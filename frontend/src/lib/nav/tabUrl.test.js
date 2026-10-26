@@ -19,7 +19,7 @@ const shown = (page) => page.href.slice(ORIGIN.length)
 
 afterEach(() => { delete globalThis.window })
 
-const at = (tab, value) => `/app/${tab}/${encodeURIComponent(value)}`
+const at = (tab, value) => `/${tab}/${encodeURIComponent(value)}`
 
 describe('the address shows the tab and the place in it', () => {
   it('an old link opens its word and view, then the address is tidied and a reload keeps both', () => {
@@ -48,11 +48,11 @@ describe('the address shows the tab and the place in it', () => {
   it('choices inside a tab stay with that tab and are dropped on leaving it', () => {
     const page = openAt('/app/mem', { step: 0, value: null, view: {} })
     writeViewParams({ mode: 'recite' })
-    expect(shown(page)).toBe('/app/mem')
+    expect(shown(page)).toBe('/mem')
     writeTabToUrl('mem', '1:1', { state: { step: 1 } })
-    expect(shown(page)).toBe('/app/mem/1:1')
+    expect(shown(page)).toBe('/mem/1:1')
     writeViewParams({ mode: 'recite' })
-    expect(shown(page)).toBe('/app/mem/1:1')
+    expect(shown(page)).toBe('/mem/1:1')
     expect(readViewParam('mode')).toBe('recite')
     writeTabToUrl('dict', null, { state: { step: 2 } })
     expect(readViewParam('mode')).toBe(null)
@@ -84,6 +84,10 @@ describe('the address shows the tab and the place in it', () => {
     openAt('/app/nowhere')
     expect(readRouteFromUrl(TABS)).toEqual({ tab: 'nahw', value: null })
     openAt('/app')
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: null, value: null })
+    openAt('/app/dict/%D9%83%D8%AA%D8%A8')
+    expect(readRouteFromUrl(TABS)).toEqual({ tab: 'dict', value: 'كتب' })
+    openAt('/app.html')
     expect(readRouteFromUrl(TABS)).toEqual({ tab: null, value: null })
   })
 

@@ -1,16 +1,16 @@
 /**
  * The one place that knows how a place in the app is written into the address.
  *
- * The address bar shows the tab and the place in it: /app/hadith/bukhari/1,
- * /app/dict/كتب. Each "/" piece of the place is one path piece, so a place
+ * The address bar shows the tab and the place in it: /hadith/bukhari/1,
+ * /dict/كتب. Each "/" piece of the place is one path piece, so a place
  * that is already a path (lib/hadithPlace) reads as one. The choices inside a
  * tab (which view, topic, question) ride on the history entry, out of sight.
  * The browser keeps that across a reload and gives each back-arrow step its own.
  * See lib/nav/journey.js, the only caller that writes.
  *
- * `shareLink` adds those choices as a query, /app/nahw/ذهب?view=tree. Older
- * links, /app/nahw?q=... and /app?tab=nahw&q=..., are read once on arrival,
- * then the address is tidied.
+ * `shareLink` adds those choices as a query, /nahw/ذهب?view=tree. Older
+ * links, /app/nahw, /nahw?q=... and /app?tab=nahw&q=..., are read once on
+ * arrival, then the address is tidied. /app alone is the app's front door.
  */
 
 // I'raab and tarkeeb were two tabs before they became two views of one.
@@ -18,15 +18,16 @@
 const LEGACY = { iraab: 'nahw', tarkeeb: 'nahw' }
 
 const APP = '/app'
-const TAB_IN_PATH = /^\/app\/([^/]+)(?:\/(.*))?$/
+const OLD_PREFIX = /^\/app(?=\/|$)/
+const TAB_IN_PATH = /^\/([^/.]+)(?:\/(.*))?$/
 const VALUE = 'q'
 
 // One piece of a place in the path: "2:255" stays readable, only "?" and "#" need escaping beyond encodeURI.
 const inPath = (piece) => encodeURI(piece).replace(/[?#]/g, encodeURIComponent)
 
-/** Where a place lives: /app/nahw, or /app/hadith/bukhari/1 with its place. */
+/** Where a place lives: /nahw, or /hadith/bukhari/1 with its place. */
 export const tabAddress = (tab, value = null) => (
-  value ? `${APP}/${tab}/${value.split('/').map(inPath).join('/')}` : `${APP}/${tab}`
+  value ? `/${tab}/${value.split('/').map(inPath).join('/')}` : `/${tab}`
 )
 
 /**
@@ -37,7 +38,7 @@ export const tabAddress = (tab, value = null) => (
 function current() {
   const url = new URL(window.location.href)
   const query = Object.fromEntries(url.searchParams)
-  const [, tab = query.tab ?? null, place] = url.pathname.match(TAB_IN_PATH) ?? []
+  const [, tab = query.tab ?? null, place] = url.pathname.replace(OLD_PREFIX, '').match(TAB_IN_PATH) ?? []
   const state = window.history.state
   if (state && typeof state.view === 'object' && state.view) return { tab, value: state.value ?? null, view: state.view }
   const view = { ...query }
@@ -55,7 +56,7 @@ export function readRouteFromUrl(tabs) {
   try {
     const { tab, value } = current()
     if (!tab) return { tab: null, value }
-    // A tab typed by its name, /app/dictionary for /app/dict, is that tab, not the first one.
+    // A tab typed by its name, /dictionary for /dict, is that tab, not the first one.
     const named = tabs.find((one) => one.id === tab || one.label?.toLowerCase() === tab.toLowerCase())
     return { tab: LEGACY[tab] ?? named?.id ?? tabs[0].id, value }
   } catch {
