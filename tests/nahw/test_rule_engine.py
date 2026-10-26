@@ -152,6 +152,21 @@ def test_a_noun_with_its_own_pronoun_is_no_command(sentence: str, role: str):
     assert word["role"].startswith(role), word
 
 
+@pytest.mark.parametrize("sentence, at, want", [
+    # a noun read with a sign of the noun is never a command (Ibn Aqil V1 p15: بالجر والتنوين والندا وأل)
+    ("الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", 3, "مضاف إليه"),
+    ("الشُّكْرُ لِلَّهِ رَبِّ", 2, "صفة"),  # no sentence of asking describes (V3 p198)
+    ("سُبْحَانَ رَبِّ الْعَالَمِينَ", 1, "مضاف إليه"),
+    ("يَا رَبِّ", 1, "منادى"),
+    ("يَا رَبِّ اغْفِرْ لِي", 1, "منادى"),
+    ("رَبِّ ابْنَكَ", 0, "فعل"),  # nearest case: opening the sentence, it is the command "raise"
+    ("يَا زَيْدُ رَبِّ ابْنَكَ", 2, "فعل"),  # nearest case: in jarr after زيدُ, it is no صفة of it
+    ("أَلَا يَا اسْجُدُوا لِلَّهِ", 2, "فعل"),  # nearest case: after يا, a word read as no noun
+])
+def test_a_noun_with_a_sign_of_the_noun_is_no_command(sentence: str, at: int, want: str):
+    assert cards(sentence)[at]["role"] == want
+
+
 @pytest.mark.parametrize("sentence, want", [
     ("سَرَّنِي مَا صَنَعْتَهُ", ["فعل", "فاعل", "فعل"]),  # ما after the verb's own pronoun is its doer
     ("مَا رَأَيْتُهُ", ["حرف", "فعل"]),                    # nearest case: ما opening the sentence negates

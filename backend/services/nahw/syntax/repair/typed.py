@@ -1,10 +1,12 @@
 """Repair 1 after the book's links: what the reader typed overrides the parser's kind and tense."""
 from __future__ import annotations
 
+from itertools import pairwise
+
 from backend.services.sarf import verb_reader
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, is_built_word, is_one, only_adverb
-from backend.services.nahw.syntax.facts import has_added, is_emphasis_lam, noun_tagged, verb_tagged
+from backend.services.nahw.syntax.facts import has_added, is_emphasis_lam, noun_tagged, typed_or_parsed_case, verb_tagged
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -39,9 +41,14 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         after = words[i + 1] if i + 1 < len(words) else ""
         verb = verb_tagged(token)
         read_noun = token.get("pos_camel") == "noun" and vowel_agreement(word, token.get("diac", "")) is not None
-        # عَمِّي، جَدِّي: a noun read with its own pronoun stuck on is that noun and its owner, never a command
-        owned = read_noun and any(t["head"] == token["id"] and t.get("token_type") == "enc0" for t in tokens)
-        if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not owned:
+        # a noun read with a sign of the noun on it is that noun, never a command (Ibn Aqil V1 p15: بالجر والتنوين
+        # والندا وأل): its own pronoun stuck on (عَمِّي، جَدِّي), called (يَا رَبِّ), in jarr as a مضاف إليه or as the
+        # صفة of a noun in jarr (لِلَّهِ رَبِّ الْعَالَمِينَ), as no sentence of asking describes (V3 p198: وامنع هنا إيقاع ذات الطلب)
+        head = next((t for t in tokens if t["id"] == token["head"]), None)
+        noun = read_noun and (any(t["head"] == token["id"] and t.get("token_type") == "enc0" for t in tokens)
+                              or i > 0 and is_one(bases[i - 1]["base"], "nida")
+                              or token["rel"] == "IDF" or token["rel"] == "MOD" and head is not None and typed_or_parsed_case(head) == "i")
+        if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not noun:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
             own = own_letters(word, token["front"], token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
@@ -93,7 +100,7 @@ def emphasis_lam_opener(tokens: list[dict]) -> None:
     فلا تقول قائم لزيد), and it comes onto no فاعل: the word hung on a word after it, as its صفة or
     its doer (لَأَنْتُمْ أَشَدُّ رَهْبَةً، لَزَيْدٌ يَقُومُ، عَلِمْتُ لَزَيْدٌ قَائِمٌ), is its مبتدأ."""
     by_id = {t["id"]: t for t in tokens}
-    for i, (lam, word) in enumerate(zip(tokens, tokens[1:])):
+    for i, (lam, word) in enumerate(pairwise(tokens)):
         if not (word["head"] == lam["id"] and noun_tagged(word) and is_emphasis_lam(tokens, i)):
             continue
         for kid in tokens:
