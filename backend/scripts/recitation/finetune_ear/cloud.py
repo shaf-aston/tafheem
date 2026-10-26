@@ -23,7 +23,7 @@ HERE = Path(__file__).parent
 KERNEL = json.loads((HERE / 'kernel-metadata.json').read_text())['id']
 LANDS = HERE.parents[2] / 'data' / 'models' / 'finetune-ear'
 # The served ear's one name: master's config.py pin, "repo@revision". The judge reads the same line.
-PIN = re.compile(r'(recitation_trial_model: str = "([^@"]+)@)[^"]*"')
+PIN = re.compile(r'(recitation_tuned_model: str = "([^@"]+)@)[^"]*"')
 EVERY = 60  # seconds between status checks
 ENDED = ('COMPLETE', 'ERROR', 'CANCEL')
 # Without these the CLI writes the Arabic log in Windows' own code page and fails half way.

@@ -437,3 +437,11 @@ describe('weighing in the ear', () => {
     expect(red).toEqual([])
   })
 })
+
+describe('pause signs', () => {
+  it('passes a lone pause sign recited past, and still misses a skipped word', () => {
+    const page = ['أُولَٰئِكَ', 'عَلَىٰ', 'هُدًى', 'مِنْ', 'رَبِّهِمْ', 'ۖ', 'وَأُولَٰئِكَ', 'هُمُ', 'الْمُفْلِحُونَ']
+    expect(statesOf(page, ['اولئك', 'على', 'هدى', 'من', 'ربهم', 'واولئك', 'هم', 'المفلحون'])).toEqual(Array(9).fill(SAID))
+    expect(statesOf(page, ['اولئك', 'على', 'هدى', 'من', 'واولئك', 'هم', 'المفلحون'])[4]).toBe(MISSED)
+  })
+})

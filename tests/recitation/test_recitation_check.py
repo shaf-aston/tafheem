@@ -273,41 +273,41 @@ def test_a_search_request_never_takes_the_recitation_turn(monkeypatch):
     assert resp.json()["text"] == "mercy"
 
 
-def test_listen_has_no_trial_option_it_is_always_heard_by_the_usual_ears(monkeypatch):
+def test_listen_has_no_tuned_option_it_is_always_heard_by_the_usual_ears(monkeypatch):
     """The tuned model judges (/check) but never writes the words down: on a
     two-thread server it took seconds a reading where Groq takes a fraction."""
     seen = {}
     monkeypatch.setattr(recitation, "hear", lambda *a, **k: seen.update(k) or ("x", []))
-    resp = client.post("/api/listen?recite=true&trial=true", files={"audio": ("r.webm", WEBM)})
+    resp = client.post("/api/listen?recite=true&tuned=true", files={"audio": ("r.webm", WEBM)})
     assert resp.status_code == 200
     assert "model" not in seen
 
 
-def test_a_trial_without_an_installed_model_is_a_503_never_another_ear(monkeypatch):
-    monkeypatch.setattr(recitation.listen, "trial_model", lambda: "")
-    for path, params in (("/api/listen/check", {"heard": "قل", "check": "112:1", "trial": "true"}),
-                         ("/api/listen/check-text", {"heard": "الله", "expected": "اللَّهُ", "trial": "true"})):
+def test_a_tuned_check_without_an_installed_model_is_a_503_never_another_ear(monkeypatch):
+    monkeypatch.setattr(recitation.listen, "tuned_model", lambda: "")
+    for path, params in (("/api/listen/check", {"heard": "قل", "check": "112:1", "tuned": "true"}),
+                         ("/api/listen/check-text", {"heard": "الله", "expected": "اللَّهُ", "tuned": "true"})):
         resp = client.post(path, params=params, files={"audio": ("r.webm", WEBM)})
         assert resp.status_code == 503, path
 
 
-def test_a_trial_check_scores_with_the_trial_model(monkeypatch):
+def test_a_tuned_check_scores_with_the_tuned_model(monkeypatch):
     seen = {}
-    monkeypatch.setattr(recitation.listen, "trial_model", lambda: "data/trial")
+    monkeypatch.setattr(recitation.listen, "tuned_model", lambda: "data/tuned")
     monkeypatch.setattr(recitation, "_plain", lambda: {"112:1": "قُلْ هُوَ"})
     monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: seen.update(model=model) or [{"sure": 0.5, "weak": None, "at": None}] * len(words))
     resp = client.post(
-        "/api/listen/check", params={"heard": "قل هو", "check": "112:1", "trial": "true"}, files={"audio": ("r.webm", WEBM)},
+        "/api/listen/check", params={"heard": "قل هو", "check": "112:1", "tuned": "true"}, files={"audio": ("r.webm", WEBM)},
     )
-    assert resp.status_code == 200 and seen["model"] == "data/trial"
+    assert resp.status_code == 200 and seen["model"] == "data/tuned"
 
 
-def test_a_trial_phrase_check_scores_with_the_trial_model(monkeypatch):
+def test_a_tuned_phrase_check_scores_with_the_tuned_model(monkeypatch):
     seen = {}
-    monkeypatch.setattr(recitation.listen, "trial_model", lambda: "data/trial")
+    monkeypatch.setattr(recitation.listen, "tuned_model", lambda: "data/tuned")
     monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: seen.update(model=model) or [{"sure": 0.5, "weak": None, "at": None}] * len(words))
     resp = client.post(
-        "/api/listen/check-text", params={"heard": "الله اكبر", "expected": "اللَّهُ أَكْبَرُ", "trial": "true"},
+        "/api/listen/check-text", params={"heard": "الله اكبر", "expected": "اللَّهُ أَكْبَرُ", "tuned": "true"},
         files={"audio": ("r.webm", WEBM)},
     )
-    assert resp.status_code == 200 and seen["model"] == "data/trial"
+    assert resp.status_code == 200 and seen["model"] == "data/tuned"

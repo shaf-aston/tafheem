@@ -73,14 +73,14 @@
     {
       "key": "listening-ear",
       "section": "Reciting",
-      "label": "Speech to text",
-      "help": "Trial checks your words with a tuned model on the server. The quick listening that writes them down stays the same.",
-      "needs-health": "reciteTrial",
+      "label": "Word checker",
+      "help": "Groq writes down what you recite either way. This picks the model that checks each word: the base Qur'an model, or ours fine-tuned on Kaggle.",
+      "needs-health": "reciteTuned",
       "type": "choice",
-      "default": "standard",
+      "default": "base",
       "options": [
-        { "id": "standard", "label": "Standard" },
-        { "id": "trial",    "label": "Trial (tuned model checks)" }
+        { "id": "base",  "label": "Base" },
+        { "id": "tuned", "label": "Fine-tuned" }
       ]
     },
     {

@@ -205,9 +205,9 @@ def _engine(name: str):
     return _models[name]
 
 
-def trial_model() -> str:
-    """The trial model as configured (a folder or "repo@revision"), or "" when none is set."""
-    return get_settings().recitation_trial_model
+def tuned_model() -> str:
+    """The tuned model as configured (a folder or "repo@revision"), or "" when none is set."""
+    return get_settings().recitation_tuned_model
 
 
 def warm() -> None:

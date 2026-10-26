@@ -14,7 +14,7 @@ OUT = Path.cwd()  # everything a run writes; Kaggle hands this folder back
 
 # The served ear (champion) is the one master's config.py pins; cloud.py --ship moves that pin on a win.
 SERVED = 'https://raw.githubusercontent.com/shaf-aston/tafheem/master/backend/config.py'
-SERVED_PIN = r'recitation_trial_model: str = "(.+?)@(.+?)"'
+SERVED_PIN = r'recitation_tuned_model: str = "(.+?)@(.+?)"'
 
 # --- the judge (judge.py) ---
 # A group's margin is the smallest change that counts, either way. A candidate is kept when it is better than the

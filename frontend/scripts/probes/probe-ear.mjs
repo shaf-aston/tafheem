@@ -17,8 +17,8 @@
  *          reciting softly or sitting back from the microphone: -30 is about a
  *          thirtieth of the loudness, and used to reach the page as nothing
  *   VIEW   phone for a phone-sized screen
- *   LISTEN trial to check with the server's trial model (Settings, Listening);
- *          every check must then carry trial=true, and no reading may
+ *   LISTEN tuned to check with the server's tuned model (Settings, Listening);
+ *          every check must then carry tuned=true, and no reading may
  *   JUMP   a clip in CLIPS, e.g. 001005: just before it plays, its first word
  *          is pressed while still recording, as a reciter skipping ahead does;
  *          the words before it must then be neither said nor accused
@@ -66,7 +66,7 @@ page.on('console', (m) => { if (m.type() === 'error') console.log('CONSOLE', m.t
 await page.addInitScript(({ listen }) => {
   localStorage.setItem('settings', JSON.stringify({ 'listening-ear': listen }))
 }, { listen: LISTEN })
-let askedTrial = 0, askedAll = 0, readingsTrial = 0
+let askedTuned = 0, askedAll = 0, readingsTuned = 0
 
 // The microphone: the clips decoded and played one after another, a breath apart.
 await page.addInitScript(({ clips, gap, quiet }) => {
@@ -119,10 +119,10 @@ let gaveUp = 0
 const t0 = Date.now()
 await page.route('**/api/listen**', async (route) => {
   const url = new URL(route.request().url())
-  // Trial judges, it never writes the words down: only checks carry it, readings never do.
+  // Tuned judges, it never writes the words down: only checks carry it, readings never do.
   const isCheck = url.pathname.endsWith('/check')
   if (isCheck) askedAll += 1
-  if (url.searchParams.get('trial') === 'true') isCheck ? (askedTrial += 1) : (readingsTrial += 1)
+  if (url.searchParams.get('tuned') === 'true') isCheck ? (askedTuned += 1) : (readingsTuned += 1)
   if (DUMP) {
     // Multipart: the webm sits between the first blank line and the last boundary.
     const body = route.request().postDataBuffer()
@@ -215,7 +215,7 @@ await watch(3000)
 
 const { line, total, said, above, aboveSaid, covered, named } = seen
 check('the ear was asked', heard.length > 0, `${heard.length} readings, ${gaveUp} given up on`)
-check(`Listening ${LISTEN} reached the server`, readingsTrial === 0 && askedTrial === (LISTEN === 'trial' ? askedAll : 0), `${readingsTrial} readings and ${askedTrial} of ${askedAll} checks asked for trial`)
+check(`Listening ${LISTEN} reached the server`, readingsTuned === 0 && askedTuned === (LISTEN === 'tuned' ? askedAll : 0), `${readingsTuned} readings and ${askedTuned} of ${askedAll} checks asked for tuned`)
 check('it checked words by sound', checked.some((n) => n > 0), `${checked.join(', ')} words per reading`)
 check(`it worked out it was 1:${AYAH} by itself`, new RegExp(`following you from\\s*${AYAH}`).test(line), line.trim())
 if (CLIPS.includes('001007')) check('the page turned on by itself after its last word', turned)

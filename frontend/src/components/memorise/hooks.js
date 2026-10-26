@@ -5,7 +5,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../../lib/memorise/books'
 import {
   blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, makeRandom,
-  optionsFor, pagesOf, wordsOf,
+  ayahAt, optionsFor, pagesOf, wordsOf,
 } from '../../lib/memorise/memorise'
 import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
 import { useSlide, useSwipe } from '../../lib/motion/useSwipe'
@@ -194,7 +194,7 @@ export function useReciteState({ page, book, pinned, shown, setShown }) {
     const lines = []
     for (const line of page ?? []) {
       const said = wordsOf(line.arabic)
-      lines.push({ key: line.label, label: withinPart(line.label), from: words.length, count: said.length })
+      lines.push({ ...ayahAt(line.label, said, words.length), label: withinPart(line.label) })
       words.push(...said)
     }
     return { words, lines }
