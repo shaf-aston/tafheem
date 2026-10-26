@@ -76,10 +76,11 @@ class Sentence:
         """(the question noun, the noun after it) when a question noun that is no ظرف or hal
         (closed_words istifham heads) opens a verbless clause on a noun: the question noun
         is the mubtada and that noun its khabar (مَا هِيَ، مَنْ أَبُوكَ، الْقَارِعَةُ مَا الْقَارِعَةُ).
-        A verb before it (قَالَ مَا اسْمُكَ) leaves the asked clause verbless; one after it does not."""
+        A verb before it (قَالَ مَا اسْمُكَ) leaves the asked clause verbless; one after it does not.
+        One in jarr is no mubtada (لِمَنْ هذا الكتابُ: the جار ومجرور is the fronted khabar)."""
         words = [t for t in self.tokens if not is_suffix(t)]
         return next(((asked, told) for asked, told in zip(words, words[1:])
-                     if not any(is_verb(t) for t in words[words.index(asked):])
+                     if not any(is_verb(t) for t in words[words.index(asked):]) and not puts_in_jarr(asked, self)
                      and read_as(asked, "istifham") and is_one(asked["lemma"], "istifham", "heads")
                      and told["pos"] == "NOM" and not is_preposition(told)), None)  # ما ذاهبٌ المسلمون: ما negates
 

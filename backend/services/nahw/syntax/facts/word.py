@@ -101,9 +101,11 @@ def is_built(token: dict) -> bool:
     """A word that keeps one ending whatever its job (a pronoun, pointer, relative or question
     word, nahw_book.is_mabni), except the dual of a pointer or a relative (هَذَانِ، اللَّتَانِ):
     that one inflects by its letters, the alef in raf' and the ya in nasb and jarr
-    (Tasheel: المثنى من أسماء الإشارة والموصولات معرب), so its last kasra is no ending it is built on."""
+    (Tasheel: المثنى من أسماء الإشارة والموصولات معرب), so its last kasra is no ending it is built on;
+    nor أيّ, the one question word that takes a case (closed_words istifham `inflected`)."""
     kind = token.get("pos_camel", "")
-    return is_mabni(kind) and not (token.get("num") == "d" and any(k in kind for k in ("dem", "rel")))
+    return (is_mabni(kind) and not (token.get("num") == "d" and any(k in kind for k in ("dem", "rel")))
+            and not ("interrog" in kind and is_one(token["lemma"], "istifham", "inflected")))
 
 
 def case_shown(token: dict) -> str | None:
@@ -128,7 +130,7 @@ def is_passive(token: dict) -> bool:
     if token.get("vox") == "p":
         # the typed opening vowel outranks the tag: لا يَغْلَقُ الرهنُ is active
         return not opens_active(typed, present)
-    return typed_passive(typed, present, token.get("stuck_on", 0))
+    return typed_passive(typed, present, token.get("stuck_on", 0), token.get("weak_last"))
 
 
 def typed_tanween(token: dict) -> bool:

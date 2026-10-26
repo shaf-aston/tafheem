@@ -441,21 +441,26 @@ def _asks_settles_its_words(tokens: list[dict]) -> None:
     """ما اسمك، وما أدراك: a ما or من read as the question word is a built noun. With a clause
     of its own after it (the verb of informing) it is that verb's مبتدأ; otherwise it is the
     khabar brought to the front and the noun after it its مبتدأ, hung on it. Standing after a verb,
-    its clause is that verb's (قال ما اسمك). The parser tags and hangs these differently from one
-    sentence to the next, so they are written over."""
+    its clause is that verb's (قال ما اسمك). Hung on a preposition (لِمَنْ هذا الكتابُ) it is that
+    preposition's majrur, and the جار ومجرور is the fronted khabar the noun hangs on. The parser
+    tags and hangs these differently from one sentence to the next, so they are written over."""
     s = facts.Sentence(tokens)
+    def before(token: dict) -> dict | None:
+        return next((t for t in reversed(tokens) if t["id"] < token["id"] and not facts.is_suffix(t)), None)
     for ma in tokens:
         if facts.reading(ma) != "istifham":
             continue
         ma.update(pos="NOM", pos_camel="pron_interrog")
-        if verb := _informing(ma, s):
+        jar = s.head(ma) if ma["rel"] == "OBJ" else None
+        if not (jar and facts.is_preposition(jar)) and (verb := _informing(ma, s)):
             ma["head"], ma["rel"] = verb["id"], "SBJ"
             verb["head"], verb["rel"] = 0, "---"
             continue
-        noun = facts.next_word(ma, s)
-        noun["head"], noun["rel"] = ma["id"], "SBJ"
-        before = next((t for t in reversed(tokens) if t["id"] < ma["id"] and not facts.is_suffix(t)), None)
-        ma["head"], ma["rel"] = (before["id"], "---") if before and facts.is_verb(before) else (0, "---")
+        top = jar if jar and facts.is_preposition(jar) else ma
+        if (noun := facts.next_word(ma, s)) and not facts.is_verb(noun):
+            noun["head"], noun["rel"] = top["id"], "SBJ"
+        verb = before(top)
+        top["head"], top["rel"] = (verb["id"], "---") if verb and facts.is_verb(verb) else (0, "---")
 
 
 def _idhan_settles_its_words(tokens: list[dict]) -> None:
