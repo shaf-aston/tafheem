@@ -595,6 +595,8 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
     ("زيد نصر بكرا", "بكرا", ("role", "مفعول به")),
     ("زَيْدٌ جَاءَ رَاكِبًا", "رَاكِبًا", ("role", "حال")),
     ("زَيْدٌ طَابَ نَفْسًا", "نَفْسًا", ("role", "تمييز")),
+    # the word itself is that verb only by a typed fatha: أَبُوهُ's و is the raf' of the five nouns
+    ("اَلتِّلْمِيذُ أَبُوهُ مُعَلِّمٌ", "أَبُوهُ", ("role", "مبتدأ")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
     from backend.services.nahw import iraab
