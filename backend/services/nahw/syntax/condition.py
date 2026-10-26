@@ -92,7 +92,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         if pick:
             answer, (tie_at, tie) = clause_head(pick[0]), pick
         else:
-            answer = next((k for k in verbs if not joined(k) and (cases[k] == "jazm" or bases[k].get("asp") == "p")), None)
+            # a present verb showing no ending may be the answer a particle (إن) puts in jazm; a noun
+            # sharing its letters with a relative needs the answer to show it (مَنْ يدرسُ ينجحُ)
+            answer = next((k for k in verbs if not joined(k) and (cases[k] == "jazm" or bases[k].get("asp") == "p"
+                                                                  or cases[k] is None and not frame["shared"])), None)
             tie, tie_at = None, answer
         # a present verb in jazm right after مَنْ is never a relative's: it opens a condition
         if answer is None and frame["shared"] and not (cases[verb] == "jazm" and span):
