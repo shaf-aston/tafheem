@@ -20,7 +20,7 @@ from typing import Any, NamedTuple
 from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services.sarf import noun_reader
 from backend.services.sarf import verb_reader
-from backend.services.nahw.book import book_words, is_built_word, is_mabni, is_one, sakt_off, six_noun_case
+from backend.services.nahw.book import book_map, book_words, is_built_word, is_mabni, is_one, sakt_off, six_noun_case
 from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -640,6 +640,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked, evidence = twin_ranked[0], twin
         if not _agreeing(evidence, ranked) and (name := _name_in_nasb(token, disambiguator)):
             ranked = [name]
+        if lam := _lam_on_particle(evidence, disambiguator):
+            ranked = [lam]
         if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token)) and sarf.get("asp") != "c" \
                 and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
             # يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
@@ -774,11 +776,36 @@ def _asked_reading(typed: str, disambiguator=None) -> dict | None:
     ranked = (_ranked([rest], disambiguator) or [[]])[0]
     if not _agreeing(rest, ranked):
         return None
-    found = _reading(rest, ranked)
-    return {**found, "diac": asked + found.get("diac", ""), "atbtok": f"{asked}+_" + found.get("atbtok", ""),
+    return _joined_onto(asked, _reading(rest, ranked), "INTERROG_PART", prc3="Aa_ques")
+
+
+def _lam_on_particle(typed: str, disambiguator=None) -> dict | None:
+    """وَإِنَّكَ لَعَلَى خُلُقٍ عَظِيمٍ: after إنّ the لام of emphasis comes onto its khabar, a jar-majroor
+    or ظرف too (closed_words `khabar_lam`). The dictionary never writes a لام onto a حرف جر or ظرف, so
+    it reads لِ+عَلِيّ or a verb; but a جار takes no جار after it, so the word is that لام on the
+    particle, after إنّ or not (وَاللَّهِ لَعَلَى الْحَقِّ أَنْتَ: the لام of the oath's answer). Not with a
+    typed kasra (لِمَنْ: the جار on مَن who), nor where a verb reads the letters too (إِنَّ اللَّهَ لَعَنَ
+    الْكَافِرِينَ، لمن bare as لُمْنَ)."""
+    lam = book_map("ghair_amila_other", "khabar_lam")
+    marked = letters(typed)
+    if not (marked and marked[0][0] == lam["lam"] and not marked[0][1] - {"َ"}):
+        return None
+    said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
+    rest = typed[len(said):]
+    if not any(strip_diacritics(rest) in book_words(family) for family in lam["onto"]):
+        return None
+    if any(r.get("pos") == "verb" for r in (_ranked([typed], None) or [[]])[0] if _agreeing(typed, [r])):
+        return None
+    # the particle itself, not an abbreviation spelled like it (فِي)
+    ranked = [r for r in (_ranked([rest], disambiguator) or [[]])[0] if r.get("pos") != "abbrev"]
+    return _joined_onto(said, _reading(rest, ranked), "EMPHATIC_PART", prc1="la_emph") if _agreeing(rest, ranked) else None
+
+
+def _joined_onto(said: str, found: dict, tag: str, **proclitic) -> dict:
+    """A reading with a one-letter particle put back in front of it, as CAMeL writes a وَ (وَ+_ذاهِب)."""
+    return {**found, "diac": said + found.get("diac", ""), "atbtok": f"{said}+_" + found.get("atbtok", ""),
             "catib6": "PRT+" + found.get("catib6", ""), "ud": "PART+" + found.get("ud", ""),
-            "bw": f"{asked}/INTERROG_PART+" + found.get("bw", ""), "prc3": "Aa_ques",
-            "pattern": asked + found.get("pattern", "")}
+            "bw": f"{said}/{tag}+" + found.get("bw", ""), "pattern": said + found.get("pattern", ""), **proclitic}
 
 
 def _agreeing(typed: str, ranked: list[dict]) -> bool:
