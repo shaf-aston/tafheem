@@ -170,6 +170,13 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             moved = waw if waw and is_prefix(waw) else token
             moved = {**moved, "head": bases[at_gov]["id"]}
             drawn[[t["id"] for t in drawn].index(moved["id"])], by_id[moved["id"]] = moved, moved
+    # جاء الولدُ وهو يبكي: the parser can hang the مبتدأ under the verb after it; the verb's sentence
+    # is the مبتدأ's khabar, so the verb hangs on the مبتدأ and the مبتدأ where the verb hung
+    for verb in [t for t in drawn if is_verb(t)]:
+        subject = next((t for t in drawn if t["head"] == verb["id"] and t["id"] < verb["id"]
+                        and role_of.get(t["id"]) == NAMED.mubtada), None)
+        for moved in ({**subject, "head": verb["head"]}, {**verb, "head": subject["id"]}) if subject else ():
+            drawn[[t["id"] for t in drawn].index(moved["id"])], by_id[moved["id"]] = moved, moved
     # الحمدُ لله، زيدٌ في الدار: a jar-majroor or ظرف in the khabar slot hangs on a word no one
     # writes (ثابت), which is the khabar. It takes the column before the unit; `written` -1,
     # -2.. is the column of no typed word, a number of its own so it joins no word's run.
@@ -395,10 +402,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                     place_of[token["id"]] = in_place(after["case"])
             framed.add(token["id"])
     # اللهُ أكبرُ inside a longer sentence: a مبتدأ with its خبر hung on it is a sentence too,
-    # and so is لا النافية للجنس with its noun
+    # and so is لا النافية للجنس with its noun, and هو with the verb's sentence its khabar (وهو يبكي)
     nominal |= {token["id"] for token in drawn if token["head"] in by_id and (
         reading(token) == "la_jins" or (role_of[token["id"]] == NAMED.mubtada and any(
-            t["head"] == token["id"] and role_of[t["id"]] == NAMED.khabar for t in drawn)))}
+            t["head"] == token["id"] and job_of[t["id"]] == NAMED.khabar for t in drawn)))}
     after_waw = FRAMES["clause_after_waw"]
     for token in drawn:
         waw = by_id.get(token["head"])
