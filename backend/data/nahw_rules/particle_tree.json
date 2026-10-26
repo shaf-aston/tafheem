@@ -245,17 +245,35 @@
                                     "branch": "ما بلا جواب مربوط بالفاء",
                                     "book": "4.3.1 p112",
                                     "is": "no",
-                                    "split": "next",
+                                    "split": "fronted",
                                     "children": [
                                       {
-                                        "branch": "ما النافية قبل فعل غير مجزوم",
-                                        "book": "3.8.7 p85",
-                                        "is": "verb",
+                                        "branch": "ما النافية قبل خبر مقدم شبه جملة",
+                                        "book": "1.9 p23",
+                                        "is": "yes",
                                         "role": "negation",
                                         "retag": {
                                           "pos": "PRT",
                                           "pos_camel": "part_neg"
                                         }
+                                      },
+                                      {
+                                        "branch": "ما بلا خبر مقدم بعدها",
+                                        "book": "1.9 p23",
+                                        "is": "no",
+                                        "split": "next",
+                                        "children": [
+                                          {
+                                            "branch": "ما النافية قبل فعل غير مجزوم",
+                                            "book": "3.8.7 p85",
+                                            "is": "verb",
+                                            "role": "negation",
+                                            "retag": {
+                                              "pos": "PRT",
+                                              "pos_camel": "part_neg"
+                                            }
+                                          }
+                                        ]
                                       }
                                     ]
                                   }

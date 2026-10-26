@@ -309,8 +309,10 @@ def is_participle(token: dict) -> bool:
 
 
 def is_elative(token: dict) -> bool:
-    """أَعْلَى، أَكْبَر: the analyser's pattern holds the elative's shape (closed_words elative_patterns), with or without ال or a proclitic."""
-    return any(shape in token.get("pattern", "") for shape in book_words("elative_patterns"))
+    """أَعْلَى، أَكْبَر: the analyser's pattern holds the elative's shape (closed_words elative_patterns), with or without ال or a proclitic;
+    خير and شر have lost its hamza, so they are listed by word (`hamza_dropped`)."""
+    return any(shape in token.get("pattern", "") for shape in book_words("elative_patterns")) \
+        or is_one(token["lemma"], "elative_patterns", "hamza_dropped")
 
 
 PASSIVE_PARTICIPLE = "مَ1ْ2ُو3"  # مَفْعُول: مفتوحٌ بابُه, its noun the نائب فاعل
