@@ -471,6 +471,14 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         up = parent(token)
         while up in unit_less:  # واللهُ أكبرُ: the و stands beside its sentence, heading nothing
             up = parent(by_id[up])
+        # رِزْقُ اللَّهِ عَزَّ وَجَلَّ: a حال tells the state of its صاحب, it is no part of that noun, so it
+        # stands beside it in the unit the noun stands in, not inside the noun's own box; nor inside
+        # the jar-majroor of a مجرور صاحب (مَرَرْتُ بِزَيْدٍ رَاكِبًا: beside it, on the verb)
+        if job_of[token["id"]] == NAMED.haal and up in by_id and noun_tagged(by_id[up]) and not is_verb(by_id[up]):
+            detail_of[token["id"]] = after_noun["owner"].format(word=columns[at[up]])
+            up = parent(by_id[up])
+            while up in by_id and is_preposition(by_id[up]):
+                up = parent(by_id[up])
         if up in children_of and up != token["id"]:
             children_of[up].append(token)
         else:
@@ -543,6 +551,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         outer = next((a for a in opened if up and _inside(up, by_id[a], children_of)), None)
         if up and outer is not None and up["id"] in holder:
             _move(holder, up, holder[outer])
+    # وَمَنْ يُشْرِكْ: a particle typed before the opener, which the parser hung on the answer, comes
+    # before the whole condition, so it stands at the front of the condition's unit, not in the answer
+    for answer_id, (opener, *_) in opened.items():
+        for kid in [k for k in children_of[answer_id] if k["pos"] == "PRT" and at[k["id"]] < at[opener["id"]]]:
+            opened[answer_id] += (_take(holder, kid),)
     root = roots[0]
 
     seen: set[int] = set()
@@ -565,6 +578,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         persons_of[token["id"]] = _persons(token, owner)
 
     doer_of: dict[int, dict] = {}  # the doer drawn inside each typed verb, said on its card too
+
+    def said_of(token: dict) -> str | None:
+        """What the books say of a unit beyond its job: its place (في محل نصب), then whose it is (حال من «الله»)."""
+        return " ".join(filter(None, (place_of.get(token["id"]), detail_of.get(token["id"])))) or None
 
     def pieces(token: dict, leaf: dict) -> dict:
         """The leaf with what is written after a verb (ـها) and its doer, in the order
@@ -594,9 +611,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             return VERBAL
         if family_of[token["id"]] == "inna":
             return NOMINAL
-        # وَأَطِيعُوا hung on its وَ: the joined sentence is what the وَ brings
+        # وَأَطِيعُوا hung on its وَ: the joined sentence is what the وَ brings; a condition's answer is
+        # drawn in the condition's own unit (وَمَنْ شَاءَ أَفْطَرَ), so the وَ beside it names nothing
         if token["pos"] == "PRT":
-            return next((kind for kid in children_of[token["id"]] if (kind := kind_of(kid))), "")
+            return next((kind for kid in children_of[token["id"]] if kid["id"] not in opened and (kind := kind_of(kid))), "")
         return ""
 
     def node(token: dict) -> dict:
@@ -608,8 +626,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if not kids:
             leaf = pieces(token, _leaf(index, role_of[token["id"]], why_of.get(token["id"]), name_of[token["id"]]))
             # a صلة of one verb is still a clause, its doer the pronoun hidden in it
-            return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]) or leaf["tone"],
-                    "detail": place_of.get(token["id"]), "children": [leaf]} if token["id"] in clauses else leaf
+            if token["id"] in clauses:
+                return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]) or leaf["tone"],
+                        "detail": said_of(token), "children": [leaf]}
+            return {"detail": detail_of[token["id"]], **leaf} if token["id"] in detail_of else leaf
         kid_roles = [job_of[kid["id"]] for kid in kids if job_of[kid["id"]]]
         if token is root and role_of[token["id"]] and token["id"] not in opened and (own := _label(token, kid_roles, kids)) and not names_a_sentence(own):
             # كِتَابُ الطَّالِبِ جَدِيدٌ: the مضاف heads its unit, but the خبر hangs outside it;
@@ -660,7 +680,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         return {"role": job,
                 "label": label,
                 "tone": tone(job) or tone(role),
-                "detail": place_of.get(token["id"]) or detail_of.get(token["id"]),
+                "detail": said_of(token),
                 # right to left, so the picture reads in the order they were typed
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
 
