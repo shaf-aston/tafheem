@@ -34,7 +34,7 @@ Shared: `F/components/ui/MicButton.jsx` (one shot), `F/lib/speech/microphone.js`
 8. `match` only: `recitation.find` then `match.best`. With `near` (Memorise): `page_span` (router) and `find_place` (`locate.find`) add `place {surah, ayah, sure, home}` to the answer.
 
 ### B. Continuous recitation (Memorise)
-1. `recitingSession.js` records one stream in `tick-s` chunks. A window ends on a pause (`pause-s` 0.4, `cutReason`) or `window-s`; silent windows are never sent (`spokeSince`).
+1. `recitingSession.js` records one stream in `tick-s` chunks. A window ends on a pause (`pause-s` 0.4, `cutReason` in `pacing.js`) or `window-s`; silent windows are never sent (`spokeSince`).
 2. `readyToSend` paces by `step-s`, `asks-share` of the server's `listen_per_minute`, one reading in flight. The whole growing window is re-sent each time, with `near` (the page's first and last ayah) and `before` (last unsure reading).
 3. Answer lands at: `ofPage = place ? place.home : isOfPage(...)`. An off-page reading is dropped; a sure place elsewhere sets `elsewhere`, which `hooks.js` turns into a jump or a question.
 4. On-page words go to `follow()` (`F/lib/recite/follow.js`), windows merge by `joinWindows`. Marks are `SAID / CHECK / WRONG / MISSED / WAITING` (`follow.js`). `ReciteStrip.jsx` and `lib/reciteColors.js` colour them.
@@ -45,7 +45,7 @@ Shared: `F/components/ui/MicButton.jsx` (one shot), `F/lib/speech/microphone.js`
 3. `B/__init__.py` `check`: ayah words come from `imlaei.json` through `spelling.as_heard` (`spelling.py`, pause signs dropped); `place.reach` finds the stretch heard (2 words in a row), extends to the ayah end, caps at `recitation_sure_max_words`.
 4. `whisper.py` `weigh` / `scores`: Whisper gives each piece a probability; `aggregate` folds by `recitation_sure_of_word` (worst-but-one).
 5. Answer `{sure: {"2:5": [0..1 or null per spoken word]}, detail}`; null means this recording did not reach the word.
-6. Page: `ayahAt` (`F/lib/memorise/memorise.js`) lists each ayah's `spoken` page places (pause signs have none). `byPlace` (`recitingSession.js`) maps scores onto those, `settledScores` and `surer` merge recordings, `bySound` (`follow.js`) turns numbers into colours at `sure-at` 0.95 (`recite.json`).
+6. Page: `ayahAt` (`F/lib/memorise/memorise.js`) lists each ayah's `spoken` page places (pause signs have none). `byPlace` (`scores.js`) maps scores onto those, `settledScores` and `surer` merge recordings, `bySound` (`follow.js`) turns numbers into colours at `sure-at` 0.95 (`recite.json`).
 
 ## 4. Engines
 
