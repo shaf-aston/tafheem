@@ -124,13 +124,13 @@ export const scoreOf = (sure, detail, take = null) => (
  */
 export const byPlace = (answer = {}, ayahs, detail = {}, take = null) => {
   const out = {}
-  for (const { key, from, count } of ayahs) {
+  for (const { key, spoken } of ayahs) {
     // A count that differs is an ayah the two spellings split into different
     // words; its words cannot be told apart, so it keeps the page's marks.
     const sures = answer[key]
-    if (sures?.length !== count) continue
+    if (sures?.length !== spoken.length) continue
     sures.forEach((sure, k) => {
-      if (sure != null) out[from + k] = scoreOf(sure, detail[key]?.[k], take)
+      if (sure != null) out[spoken[k]] = scoreOf(sure, detail[key]?.[k], take)
     })
   }
   return out
@@ -235,8 +235,8 @@ const REAL = {
  * `update(page)` tells the session what it is listening against, and the
  * newest one is read at the moment each value is needed, never kept per
  * recording: { fusha, tuned, perMinute, pageWords, ayahs }. `ayahs` are the page's lines the ear
- * can check by sound, each { key, from, count }: its "surah:ayah", where its
- * words start on the page and how many; empty for a text the backend has no
+ * can check by sound, each { key, from, count, spoken }: its "surah:ayah", where its
+ * words start on the page, how many, and the page places of the spoken ones; empty for a text the backend has no
  * plain spelling of, and marks are then the page's alone. `onChange` gets a new
  * view object every time anything shown changes.
  */

@@ -32,7 +32,7 @@
  * the other teaches the wrong spelling.
  */
 
-import { recitedForm, sameSpokenWord } from '../text/arabicText'
+import { isSpoken, recitedForm, sameSpokenWord } from '../text/arabicText'
 import { shuffled } from '../text/shuffle'
 import config from '../../config/memorise.json'
 import quiz from '../../config/quiz.json'
@@ -56,6 +56,16 @@ const SPACING_DROPS_AT = config['spacing-drops-at-share']
 
 /** The words of one line, as written. Splitting on spaces is all Arabic needs. */
 export const wordsOf = (text) => (text ?? '').split(/\s+/).filter(Boolean)
+
+/**
+ * One ayah's place in a run of words starting at `from`. `spoken` holds the page
+ * places of the words the ear scores: the server drops lone pause signs (ۖ ۚ),
+ * so its scores land on these, never on `from + k`.
+ */
+export const ayahAt = (key, said, from) => ({
+  key, from, count: said.length,
+  spoken: said.flatMap((word, k) => (isSpoken(word) ? [from + k] : [])),
+})
 
 /**
  * Whole lines gathered into pages.
