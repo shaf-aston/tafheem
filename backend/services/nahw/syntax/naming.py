@@ -148,6 +148,9 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
     cases = [_ending(role, token, _governor(bases, i), words[i + 1] if i + 1 < len(words) else "",
                      facts.puts_in_jarr(token, s), _lam_mood(token, before[i], i == 0))
              for i, (role, token) in enumerate(zip(named, bases))]
+    conditions = condition.find(bases, named, cases, before)
+    for c in conditions:
+        _jazm_by_condition(c, named, cases)
     _followers_take_their_ending(named, cases, bases, tokens)
     # what each word shows: the governor and follower the tree gave it, and its case
     shown = [{answers[token["id"]]["governor"], answers[token["id"]]["follows"], case}
@@ -173,7 +176,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
              **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]])}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
-    for found_condition in condition.find(bases, named, cases, before):
+    for found_condition in conditions:
         _conditioned(found, found_condition, bases)
     for step in FINISHES:
         step(Named(found, bases, tokens, s, words))
@@ -266,6 +269,14 @@ def _pair_named(bases: list[dict], governor: int | None) -> dict[str, str] | Non
         return None
     return next((card["pair_named"] for family, card in family_cards()
                  if "pair_named" in card and facts.read_as(bases[governor], family)), None)
+
+
+def _jazm_by_condition(c: dict, named: list, cases: list) -> None:
+    """إن تدرس تنجح typed bare: a جازم opener puts both its verbs in jazm (يجزم فعلين), so a present
+    verb showing no ending of its own is in jazm, not the raf' a verb nothing governs is in."""
+    for part in ("verb", "answer"):
+        if c["frame"]["case"] and c[part] is not None and named[c[part]] == NAMED.fil and cases[c[part]] is None:
+            cases[c[part]] = "jazm"
 
 
 def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:

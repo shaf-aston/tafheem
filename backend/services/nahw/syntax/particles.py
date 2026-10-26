@@ -376,7 +376,8 @@ def _merged(tokens: list[dict], s: facts.Sentence) -> None:
 def _emphasis_lam(tokens: list[dict], s: facts.Sentence) -> None:
     """لَيَقُولَنَّ، لَلْحُسْنَى، لَآيَاتٍ: a لام written onto a word with a fatha typed on it is the
     لام of emphasis, governing nothing (closed_words ghair_amila_other `_fatha_lam`); لَهُ keeps
-    its jarr, since the parser leaves that لام a word of its own before the pronoun."""
+    its jarr, since the parser leaves that لام a word of its own before the pronoun. So is one
+    written onto a حرف جر, typed bare or not (وإنك لعلى خلق عظيم): a جار takes no جار after it."""
     named = dict(family_cards())["ghair_amila_other"]["named_as"]
     for i, token in enumerate(tokens):
         base = tokens[i + 1] if i + 1 < len(tokens) else None
@@ -386,7 +387,7 @@ def _emphasis_lam(tokens: list[dict], s: facts.Sentence) -> None:
         while at < i and facts.is_prefix(tokens[i - 1 - at]):
             at += 1
         marked = letters(base.get("typed") or "")
-        if at < len(marked) and "َ" in marked[at][1]:
+        if facts.is_preposition(base) or at < len(marked) and "َ" in marked[at][1]:
             token["reading"] = {"family": "ghair_amila_other", "named": named["ل"], "kind": "harf", "book": None}
 
 

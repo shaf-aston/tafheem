@@ -214,10 +214,11 @@ def agrees(token: dict, head: dict) -> bool:
     idafa counts as definite, so an indefinite word after a definite or construct noun does
     not agree; a dual describes only a dual (مُحَمَّدٌ وَعَلِيٌّ مُجْتَهِدَانِ: the khabar of both).
     Only the dual is compared: a plural not of people takes a singular na't (الكتبُ الجديدةُ);
-    and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا)."""
+    and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا). A noun read
+    as a مضاف with nothing added to it is no مضاف (ضَلَّ ضَلَالًا بَعِيدًا typed bare: ضلال)."""
     dual = [t.get("num") == "d" for t in (token, head) if noun_tagged(t)]
-    return same_case(token, head) and not (token.get("stt") == "i" and head.get("stt") in ("d", "c")) \
-        and len(set(dual)) < 2
+    known = head.get("stt") == "d" or head.get("stt") == "c" and head.get("mudaf", True)
+    return same_case(token, head) and not (token.get("stt") == "i" and known) and len(set(dual)) < 2
 
 
 def unlike(token: dict, head: dict) -> bool:
