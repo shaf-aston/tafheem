@@ -168,6 +168,16 @@ def test_a_noun_with_a_sign_of_the_noun_is_no_command(sentence: str, at: int, wa
 
 
 @pytest.mark.parametrize("sentence, want", [
+    # an elative takes no object (Ashmuni V2 p312: أجمعوا على أنه لا ينصب المفعول به): its nasb noun is its تمييز
+    ("زَيْدٌ أَكْبَرُ مِنْكَ سِنًّا", "تمييز"),
+    ("هُوَ أَكْبَرُ مِنْكَ سِنًّا", "تمييز"),
+    ("زَيْدٌ ضَارِبٌ بَكْرًا", "مفعول به"),  # nearest case: a participle works as its verb does
+])
+def test_an_elative_takes_no_object(sentence: str, want: str):
+    assert cards(sentence)[-1]["role"] == want
+
+
+@pytest.mark.parametrize("sentence, want", [
     ("سَرَّنِي مَا صَنَعْتَهُ", ["فعل", "فاعل", "فعل"]),  # ما after the verb's own pronoun is its doer
     ("مَا رَأَيْتُهُ", ["حرف", "فعل"]),                    # nearest case: ما opening the sentence negates
     ("هَاتَانِ قِلَادَتَانِ فِضِّيَّتَانِ", ["مبتدأ", "خبر", "صفة"]),  # no ال after a pointer: the khabar
