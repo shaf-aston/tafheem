@@ -1243,8 +1243,8 @@
   },
   "verbless_masdars": {
    "ar": "مصادر منصوبة بفعل محذوف وجوبًا (سماعية)",
-   "effect": "Heard masdars whose verb is never said (Ibn Aqil on the Alfiyya, المفعول المطلق: حذف عامل المصدر وجوبًا): in nasb and indefinite, wherever they stand, each is a مفعول مطلق of that unsaid verb (جَدَّ جِدًّا), never an object of the word before it (مجتهداتٌ جدًّا). Lemmas as the parser spells them.",
-   "words": ["جد", "حق", "أيض", "شكر", "حمد", "عجب", "قطع", "يقين", "سقي", "رعي"]
+   "effect": "Heard masdars whose verb is never said (Ibn Aqil on the Alfiyya, المفعول المطلق: حذف عامل المصدر وجوبًا): in nasb and indefinite, wherever they stand, each is a مفعول مطلق of that unsaid verb (جَدَّ جِدًّا), never an object of the word before it (مجتهداتٌ جدًّا). معاذ is a masdar of the measure مَفْعَل, which also makes nouns of place, so it is listed (Ibn Jinni, al-Munsif: مصدرا فألزم النصب نحو سبحان الله ولبيك ومعاذ الله). Lemmas as the parser spells them.",
+   "words": ["جد", "حق", "أيض", "شكر", "حمد", "عجب", "قطع", "يقين", "سقي", "رعي", "معاذ"]
   },
   "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",

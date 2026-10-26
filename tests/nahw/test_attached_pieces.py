@@ -212,6 +212,18 @@ def test_a_nasb_noun_no_word_governs_hangs_on_an_understood_verb(sentence, noun,
     assert body["written"].count(-1) == 1 and body["unwritten"]["note"]
 
 
+
+@pytest.mark.parametrize("sentence, noun", [("سُبْحَانَ اللَّهِ", "سُبْحَانَ"), ("مَعَاذَ اللَّهِ", "مَعَاذَ")])
+def test_a_masdar_added_to_a_noun_hangs_on_an_understood_verb(sentence, noun):
+    """Its nasb is shown by the jarr of the noun it is added to (Ibn Jinni, al-Munsif: مصدرا فألزم
+    النصب نحو سبحان الله ولبيك ومعاذ الله); معاذ, of the place measure مَفْعَل, is a heard masdar.
+    The مضاف and its مضاف إليه together are the مفعول مطلق."""
+    cards, leaves = analysed(sentence)
+    (verb, _), = leaves["فعل محذوف"]
+    leaf, unit = leaves[noun][0]
+    assert verb["hidden"] is True and leaf["role"] == "مضاف"
+    assert unit["role"] == cards[0]["role"] == "مفعول مطلق"
+
 @pytest.mark.parametrize("sentence", ["هَرَبَ الْوَلَدُ خَوْفًا", "رَأَيْتُ زَيْدًا", "إِنَّ زَيْدًا قَائِمٌ", "كَانَ زَيْدٌ قَائِمًا",
                                       "نِعْمَ الرَّجُلُ سَعِيدٌ", "مَا أَجْمَلَ الرَّبِيعَ",
                                       "كُلُّ أُمَّتِي مُعَافًى إِلَّا الْمُجَاهِرِينَ"])
@@ -550,7 +562,8 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
     ("هُوَ أَقَلُّ مَالًا", "مَالًا", ("role", "تمييز")),  # أَفَلّ read أَقَلّ
     ("هُوَ أَحَبُّ عَمَلًا", "عَمَلًا", ("role", "تمييز")),  # read أَحِبّ
     ("هو أفضل رجل", "رجل", ("role", "مضاف إليه")),  # nearest case: no nasb written
-    ("هَذَا أَفْضَلُ مَسَاجِدَ", "مَسَاجِدَ", ("role", "مضاف إليه")),  # nearest case: a diptote's fatha is jarr
+    ("هَذَا أَفْضَلُ مَسَاجِدَ", "مَسَاجِدَ", ("role", "مضاف إليه")),
+    ("سُبْحَانَكَ", "سُبْحَانَكَ", ("role", "مفعول مطلق")),  # a pronoun on a noun is in jarr's place  # nearest case: a diptote's fatha is jarr
     ("أَطْفَأَ زَيْدٌ نَارًا", "نَارًا", ("role", "مفعول به")),  # nearest case: a verb on أَفْعَلَ, its object
     # a verb khabar needs a pronoun back to its مبتدأ, so أَنْفَعُ is the elative, not "I benefit"
     ("الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ", "أَنْفَعُ", ("role", "خبر")),
