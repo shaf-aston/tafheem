@@ -41,7 +41,7 @@ import psutil  # noqa: E402
 
 import backend.config as config  # noqa: E402
 from backend.config import data_path  # noqa: E402
-from backend.services.recitation import hosted, letters, listen  # noqa: E402
+from backend.services.recitation import hosted, letters, whisper  # noqa: E402
 from backend.services.recitation.place import reach  # noqa: E402
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 from backend.scripts.recitation.score_recitation_checker import RESULTS, recordings  # noqa: E402
@@ -77,14 +77,14 @@ def run(clips, model: str, timing: bool, save=None) -> str:
     os.environ["RECITATION_MODEL"] = model
     os.environ["RECITATION_WORD_MIN"] = "0.94" if timing else "0"
     config.get_settings.cache_clear()
-    listen._models.clear()
-    listen._last = None
+    whisper._models.clear()
+    whisper._last = None
     if model == "hosted":
         write = lambda audio: hosted.transcribe(audio, config.get_settings().listening_keys[0], "ar", "")  # noqa: E731
     elif model == "letters":
-        write = lambda audio: letters.read(listen.sound_of(audio))  # noqa: E731
+        write = lambda audio: letters.read(whisper.sound_of(audio))  # noqa: E731
     else:
-        write = lambda audio: listen.transcribe(audio, language="ar")  # noqa: E731
+        write = lambda audio: whisper.transcribe(audio, language="ar")  # noqa: E731
     if model != "hosted":
         write(clips[0][1])  # loaded, not timed
     took = placed = whole = covered = 0.0

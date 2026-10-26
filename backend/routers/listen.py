@@ -4,17 +4,12 @@ Thin on purpose: it checks the recording is a recording, hands it to the
 recitation service, and shapes the answer. Nothing about Whisper, models,
 languages or matching is decided here.
 
-One endpoint for the words rather than two, because the tabs that use it want
-different halves of the same work and the recording must only be uploaded once.
-Daleel wants the words, to search with. The Qur'an tab wants the ayahs. `match`
-says which. How sure the ear is of each word is a second, separate question,
-`POST /api/listen/check` below: it costs the CPU on this machine whichever ear
-wrote the words down, and a reciter reading on must never wait for it.
+One endpoint for the words (search wants words, the Qur'an tab ayahs: `match`
+says which), so a recording uploads once. Word sureness is `/check`, separate so
+a reciter never waits for local scoring.
 
-Every request is filed under a reading id, the page's own (`X-Reading-Id`) when
-it sent one, otherwise one made here, echoed back on every answer so the page
-can ask again with the id it was given. The recite journal (services/learner/journal)
-uses it to line server-side and page-side events up as one story.
+Every request carries a reading id (`X-Reading-Id`, the page's or made here),
+echoed back, so the recite journal lines up server and page events.
 """
 from __future__ import annotations
 
@@ -31,7 +26,7 @@ from fastapi import APIRouter, File, HTTPException, Query, Request, Response, Up
 from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
-from backend.models.listen import Heard, HeardAyah, HeardPlace, Sureness, TextSureness
+from backend.models.listen import Heard, HeardAyah, HeardPlace, Sureness
 from backend.services import recitation
 from backend.services.learner import journal
 from backend.services.recitation import NotInstalled, Unreadable
@@ -48,32 +43,11 @@ AYAH_KEY = re.compile("[0-9]{1,3}:[0-9]{1,3}")
 READING_HEADER = "X-Reading-Id"
 READING_ID = re.compile("[A-Za-z0-9._:-]{1,64}")
 
-# One recitation read at a time on this machine, and none that nobody is
-# waiting for.
-#
-# Two things, and they only work together. The model is given most of this
-# machine's cores, so two readings at once ask for twice the cores there are
-# and both take longer than either would have waited: measured through the real
-# page, readings that take five seconds alone took twenty to forty when they
-# piled up. And a recitation asks about the same recording again as it grows,
-# so a reading is often already out of date before its turn comes; the page
-# gives up on those, but giving up at the page only stops the page waiting, it
-# does not stop this machine working. Dropping them here is what actually gives
-# the time back.
-#
-# Here rather than inside the engine because it has to be waited for without
-# holding a worker thread, and because whether a reading is still wanted is
-# something only the request knows.
-#
-# Words only wait here when the ear on this machine is the one that would
-# answer: `ears.would_answer_locally()` says so. Groq answering costs this
-# machine's CPU nothing to queue behind, so a reading heard on Groq skips this
-# entirely. `/check` always waits here: scoring is always this machine's model,
-# whichever ear wrote the words down. A search-box word never waits here at
-# all, quick already, and making it wait behind seconds of someone else's
-# reading would cost it exactly the fairness this queue exists to give
-# recitations; the processor it shares is guarded instead by
-# services/recitation/listen.py's own lock around the model itself.
+# One local reading at a time, and none the page gave up on. The model uses most
+# cores, so two at once each run 4-8x slower; dropping stale ones here frees the
+# CPU, which giving up at the page does not. Words wait here only when this
+# machine's ear answers (ears.would_answer_locally); /check always waits, since
+# scoring is always local. Search words skip it; whisper.engine_lock guards them.
 _turn = asyncio.Lock()
 
 
@@ -110,13 +84,7 @@ class _Filed:
         journal.note(f"{self.name}.done", ms=ms, status=status, reading=self.id)
 
     def fail(self, status: int, detail: str, stage: str, exc: Exception | None = None) -> HTTPException:
-        """Journal the failure and build the error to raise.
-
-        Returns rather than raises, so every call site reads `raise filed.fail(...)`:
-        that is what makes it obvious at each site that control does not
-        continue past it, the same reason the standard library's own
-        exceptions are built and then raised rather than raising themselves.
-        """
+        """Journal the failure and return the error, so each site reads `raise filed.fail(...)`."""
         journal.note(
             f"{self.name}.failed", stage=stage,
             error=type(exc).__name__ if exc else "",
@@ -183,7 +151,7 @@ def _tuned_model(tuned: bool, filed: _Filed) -> str | None:
     """The tuned model when asked for; a tuned model that cannot run is said, never swapped for another ear."""
     if not tuned:
         return None
-    if not (model := recitation.listen.tuned_model()):
+    if not (model := recitation.whisper.tuned_model()):
         raise filed.fail(503, "No tuned listening model is set on this machine.", "validate")
     return model
 
@@ -312,11 +280,8 @@ async def listen_check(
     sureness"), whichever ear wrote the words down, so this always waits at
     `_turn`: it is exactly the CPU cost that queue exists to share out.
 
-    A check already running on this machine's model cannot be cancelled
-    mid-way: once past `_turn` it holds the turn to the end even if the page
-    gives up on it (see the is_disconnected check above `_turn`, which only
-    catches one still waiting). The page never sends more than one check at a
-    time (lib/recite/recitingSession.js), which is what bounds the cost.
+    A check past `_turn` runs to the end even if the page gives up; the page
+    sends one check at a time, which bounds the cost.
     """
     settings = get_settings()
     with _filing(request, response, "check") as filed:
@@ -362,56 +327,3 @@ async def listen_check(
 
         filed.done(200)
         return Sureness(sure=sure, detail=detail)
-
-
-@router.post("/check-text", response_model=TextSureness)
-async def listen_check_text(
-    request: Request,
-    response: Response,
-    audio: UploadFile = File(..., description="The same recording the words reading already heard"),
-    heard: str = Query(..., description="What that reading wrote down"),
-    expected: str = Query(..., description="The phrase the reader was asked to say, vowelled"),
-    tuned: bool = Query(False, description="Score with the tuned model; 503 when none is installed"),
-) -> TextSureness:
-    """How sure the ear is of each word of a phrase that is not an ayah.
-
-    The same as /check in every way that matters, the same limits, the same
-    turn on this machine's model, but for words the page shows by themselves
-    (Grow's takbir, tashahhud and the rest), which have no ayah key to name.
-    """
-    settings = get_settings()
-    with _filing(request, response, "check-text") as filed:
-        if len(heard) > settings.recitation_check_heard_max_chars or len(expected) > settings.recitation_check_heard_max_chars:
-            raise filed.fail(
-                422,
-                f"heard and expected must each be at most {settings.recitation_check_heard_max_chars} characters.",
-                "validate",
-            )
-
-        model = _tuned_model(tuned, filed)
-        body = await _read_recording(audio, filed)
-        journal.note("check-text.received", bytes=len(body), chars=len(expected))
-
-        if not body or not heard.strip() or not expected.strip():
-            filed.done(200)
-            return TextSureness(sure=[])
-        _refuse_unless_audio(body, filed)
-
-        async with _my_turn(request, "check-text") as wanted:
-            if not wanted:
-                filed.done(200)
-                return TextSureness(sure=[])
-
-            try:
-                sure, detail = await run_in_threadpool(recitation.check_text, body, heard, expected, model)
-            except Exception as exc:
-                log.exception("checking a phrase failed")
-                raise filed.fail(
-                    500,
-                    f"The app failed while checking this recording (reading {filed.id}). "
-                    "Your recitation was not the problem.",
-                    "check", exc,
-                ) from None
-
-        filed.done(200)
-        return TextSureness(sure=sure, detail=detail)

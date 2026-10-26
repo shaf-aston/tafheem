@@ -571,7 +571,7 @@ def get_settings() -> Settings:
 
 @lru_cache()
 def confined(name: str, value: str) -> Path:
-    """Checking half of data_path, also for a model folder named by its value (services/recitation/listen.py); cached per value (not per name, which froze the first path a test set)."""
+    """Checking half of data_path, also for a model folder named by its value (services/recitation/whisper.py); cached per value (not per name, which froze the first path a test set)."""
     base = Path(__file__).resolve().parent
     target = (base / value).resolve()
     if not target.is_relative_to(base):

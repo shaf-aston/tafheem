@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 from backend.config import data_path, get_settings
-from backend.services.recitation.listen import aggregate
+from backend.services.recitation.whisper import aggregate
 from backend.scripts.recitation.ear_bench import keep, measures
 from backend.scripts.recitation.ear_bench.words import RIGHT, SLIPS, labelled
 from backend.scripts.recitation.rescore_recitation import HERE

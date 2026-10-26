@@ -30,7 +30,7 @@ Shared: `F/components/ui/MicButton.jsx` (one shot), `F/lib/speech/microphone.js`
 4. A recitation with `ears.would_answer_locally()` (`B/ears.py`) waits on `_turn` (router, `_my_turn`); dropped if the page left.
 5. `B/__init__.py` `hear`: Arabic for recite/match, else no language; hint is `recitation_hosted_hint` for recitations, the fusha text for the rest; then `ears.hear`.
 6. `B/ears.py` `hear` walks `order()` (listening_ears`: hosted keys least-recently-used first, then letters for recitations, then here). A rejected key retires its ear for the run (`permanent_failure`); any other failure rests it. `Unreadable` stops the chain.
-7. Hosted: `hosted.py` `transcribe` (Groq, `verbose_json`,). Letters: `letters.py` `read`. Here: `listen.py` `transcribe`, `sound_of` (PyAV decode, `loudness.levelled`), `_read`.
+7. Hosted: `hosted.py` `transcribe` (Groq, `verbose_json`,). Letters: `letters.py` `read`. Here: `whisper.py` `transcribe`, `sound_of` (PyAV decode, `loudness.levelled`), `_read`.
 8. `match` only: `recitation.find` then `match.best`. With `near` (Memorise): `page_span` (router) and `find_place` (`locate.find`) add `place {surah, ayah, sure, home}` to the answer.
 
 ### B. Continuous recitation (Memorise)
@@ -40,10 +40,10 @@ Shared: `F/components/ui/MicButton.jsx` (one shot), `F/lib/speech/microphone.js`
 4. On-page words go to `follow()` (`F/lib/recite/follow.js`), windows merge by `joinWindows`. Marks are `SAID / CHECK / WRONG / MISSED / WAITING` (`follow.js`). `ReciteStrip.jsx` and `lib/reciteColors.js` colour them.
 
 ### C. Sureness check (always this machine)
-1. `recitingSession.js` `pumpChecks` (one at a time, queue `check-queue-max`) calls `api.js` `checkReading`: `POST /listen/check?heard&check=2:1,...&tuned`. Phrases: `checkText` to `/check-text`.
+1. `recitingSession.js` `pumpChecks` (one at a time, queue `check-queue-max`) calls `api.js` `checkReading`: `POST /listen/check?heard&check=2:1,...&tuned`. 
 2. `routers/listen.py` validates ayah list and `heard` length, picks the model (`_tuned_model`, 503 if none is set), waits on `_turn`.
 3. `B/__init__.py` `check`: ayah words come from `imlaei.json` through `spelling.as_heard` (`spelling.py`, pause signs dropped); `place.reach` finds the stretch heard (2 words in a row), extends to the ayah end, caps at `recitation_sure_max_words`.
-4. `listen.py` `weigh` / `scores`: Whisper gives each piece a probability; `aggregate` folds by `recitation_sure_of_word` (worst-but-one).
+4. `whisper.py` `weigh` / `scores`: Whisper gives each piece a probability; `aggregate` folds by `recitation_sure_of_word` (worst-but-one).
 5. Answer `{sure: {"2:5": [0..1 or null per spoken word]}, detail}`; null means this recording did not reach the word.
 6. Page: `ayahAt` (`F/lib/memorise/memorise.js`) lists each ayah's `spoken` page places (pause signs have none). `byPlace` (`recitingSession.js`) maps scores onto those, `settledScores` and `surer` merge recordings, `bySound` (`follow.js`) turns numbers into colours at `sure-at` 0.95 (`recite.json`).
 
@@ -57,7 +57,7 @@ Shared: `F/components/ui/MicButton.jsx` (one shot), `F/lib/speech/microphone.js`
 | checker, Base | same model as here | `recitation_model` | every check when Word checker is Base |
 | checker, Fine-tuned | `shafTheG/quran-ear@<commit>` (Hugging Face) | `recitation_tuned_model` | every check when Word checker is Fine-tuned |
 
-`listen.py` `_engine` loads a folder under `backend/`, or `repo@revision` pinned to one upload; first load downloads, later loads are offline.
+`whisper.py` `_engine` loads a folder under `backend/`, or `repo@revision` pinned to one upload; first load downloads, later loads are offline.
 Making the tuned ear: `backend/scripts/finetune_ear/` (README there): `cloud.py` pushes to Kaggle, judges against the served ear, `--ship` uploads and moves the pin in `config.py`.
 
 ## 5. Config knobs
@@ -98,5 +98,4 @@ Settings (`F/config/settings.json`): `fusha`, `listening-ear`. Health: `GET /api
 5. **Wrong ayah noticed late.** Reciting 2:10 on a 2:1-2:5 page marked nothing, but the place was unsure for the first ~8 s. A look-alike with identical text (31:5 on 2:5) passes; unavoidable.
 6. Dead names: `F/../scripts/probes/probe-ear.mjs` (`RECITATION_HOSTED`), `F/config/recite.json` (`recitation_hosted_rest_s`).
 7. `B/__init__.py` tests `"letters" in listening_ears` as a substring; `ears._wanted` parses a list.
-8. `listen_check` (`routers/listen.py`) and `listen_check_text` repeat one validate, turn, run, error block.
 9. `imlaei.json` (needed by `/check`) is gitignored and absent from `deploy/copy-data.sh`. The live server does score, so it has one; how it got there is not recorded.

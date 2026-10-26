@@ -16,7 +16,7 @@ from pydantic import SecretStr
 
 from backend.config import get_settings
 from backend.services import recitation
-from backend.services.recitation import hosted, listen
+from backend.services.recitation import hosted, whisper
 
 
 @pytest.fixture(autouse=True)
@@ -38,9 +38,9 @@ def sound(monkeypatch):
     # Stood in at the engine's own door rather than at ours, so what the
     # decoder is handed is still really handed, and a test can still prove the
     # recording never went to the disk on the way.
-    listen._last = None
+    whisper._last = None
     yield handed
-    listen._last = None
+    whisper._last = None
 
 
 SOUND = b"pretend this is a recording"
@@ -108,7 +108,7 @@ def test_a_recitation_is_heard_on_groq_when_it_is_available_too(monkeypatch):
     monkeypatch.setattr(hosted, "is_available", lambda key: True)
     asked = []
     monkeypatch.setattr(hosted, "transcribe", lambda *a, **k: asked.append("groq") or "x")
-    monkeypatch.setattr(listen, "transcribe", lambda *a, **k: asked.append("here") or "x")
+    monkeypatch.setattr(whisper, "transcribe", lambda *a, **k: asked.append("here") or "x")
     recitation.transcribe(SOUND, language="ar")
     recitation.transcribe(SOUND, language=None)
     assert asked == ["groq", "groq"]
@@ -121,7 +121,7 @@ def test_a_recitation_never_gets_the_register_hint(monkeypatch):
     def read(path, **how):
         fake.how = how
         return [], None
-    monkeypatch.setattr(listen, "_engine", lambda name: type("M", (), {"transcribe": staticmethod(read)})())
+    monkeypatch.setattr(whisper, "_engine", lambda name: type("M", (), {"transcribe": staticmethod(read)})())
     monkeypatch.setattr(hosted, "is_available", lambda key: False)
     # The hint is Whisper's, so the Whisper ear is the one asked here.
     monkeypatch.setattr(get_settings(), "listening_ears", "hosted,here")
@@ -182,7 +182,7 @@ def test_a_language_it_did_get_right_is_not_asked_twice(groq):
 def test_no_internet_falls_back_to_this_machine(groq, monkeypatch):
     """The one that matters: a dead cloud must never reach the reader."""
     groq(fail=ConnectionError("getaddrinfo failed"))
-    monkeypatch.setattr(listen, "transcribe", lambda audio, language=None, hint="": "heard here")
+    monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="": "heard here")
     assert recitation.transcribe(SOUND) == "heard here"
 
 
@@ -190,7 +190,7 @@ def test_a_retired_key_or_a_spent_allowance_falls_back_too(groq, monkeypatch):
     """Both have happened on this key. Neither is news the reader can act on."""
     for failure in (PermissionError("401 invalid api key"), RuntimeError("429 rate limit")):
         groq(fail=failure)
-        monkeypatch.setattr(listen, "transcribe", lambda audio, language=None, hint="": "heard here")
+        monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="": "heard here")
         assert recitation.transcribe(SOUND) == "heard here"
 
 
@@ -228,7 +228,7 @@ def test_switching_it_off_keeps_every_recording_on_this_machine(monkeypatch):
 def test_an_empty_recording_is_never_sent(groq, monkeypatch):
     """Nothing recorded is answered here, before any machine is troubled."""
     fake = groq()
-    monkeypatch.setattr(listen, "transcribe", lambda audio, language=None, hint="": "")
+    monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="": "")
     assert recitation.transcribe(b"") == ""
     assert fake.asked == []
 

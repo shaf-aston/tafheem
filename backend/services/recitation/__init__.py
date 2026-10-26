@@ -4,7 +4,7 @@ Five pieces, each with one job, so any of them can be replaced without the
 others noticing:
 
     hosted.py   sound  -> words        the same job, done on Groq's machines
-    listen.py   sound  -> words        the engine on this computer
+    whisper.py   sound  -> words        the engine on this computer
     ears.py     the two above as one interface, and the order they are tried in
     match.py    words  -> ayahs        pure, no files, no network
     place.py    words  -> page stretch pure, where a recording sits on a page
@@ -30,12 +30,12 @@ from backend.config import data_path, get_settings
 from backend.services.quran import corpus as quran_corpus
 from backend.services.text.refs import SURAHS
 from backend.services.core.timing import timed
-from backend.services.recitation import ears, letters, listen, locate, match, place
+from backend.services.recitation import ears, letters, whisper, locate, match, place
 # Re-exported so a caller catches them from the package it already talks
 # to. Which piece in here raises which is this package's own business,
 # and a route that imports them by submodule has to know.
 from backend.services.recitation.ears import Unreadable
-from backend.services.recitation.listen import NotInstalled
+from backend.services.recitation.whisper import NotInstalled
 from backend.services.recitation.spelling import as_heard
 from backend.services.recitation.match import Match
 
@@ -72,7 +72,7 @@ def warm() -> None:
     model is not: it answers a search box, only ever without Groq, and the
     first such search pays about a second.
     """
-    listen.warm()
+    whisper.warm()
     if "letters" in get_settings().listening_ears:
         letters.warm()
     try:
@@ -162,7 +162,7 @@ def find_place(heard: str, near: tuple[int, int] | None = None, before: str = ""
 
 
 def _detail(word: dict) -> dict:
-    """The {weak, weak_from, at} a word card needs, out of listen.weigh's word."""
+    """The {weak, weak_from, at} a word card needs, out of whisper.weigh's word."""
     weak = word["weak"]
     return {"weak": weak and weak["text"], "weak_from": weak and weak["start"], "at": word["at"]}
 
@@ -202,7 +202,7 @@ def check(
     if last - first > settings.recitation_sure_max_words:
         log.info("placed on %d words, more than one recording holds; not checked", last - first)
         return {}, {}
-    weighed = timed("checked", listen.weigh, audio, words[first:last], model, words=last - first)
+    weighed = timed("checked", whisper.weigh, audio, words[first:last], model, words=last - first)
     sure = {key: [None] * owner.count(key) for key in dict.fromkeys(owner)}
     detail = {key: [None] * owner.count(key) for key in sure}
     for i, word in zip(range(first, last), weighed):
@@ -210,23 +210,3 @@ def check(
         sure[key][i - owner.index(key)] = round(word["sure"], 3)
         detail[key][i - owner.index(key)] = _detail(word)
     return sure, detail
-
-
-def check_text(audio: bytes, heard: str, expected: str, model: str | None = None) -> tuple[list[float], list[dict]]:
-    """How sure the ear is of each word of `expected`, a phrase that is not an ayah.
-
-    For words a learner was shown and asked to say, a takbir or a tashahhud:
-    the whole phrase is scored, not placed first the way check() places ayahs.
-    The reader was told exactly what to say, so there is nothing to find, and
-    placing needs two words in a row to agree, which a two-word phrase heard
-    with one slip never has. One number per word of `expected` as the ear
-    spells it (spelling.as_heard), which is one per word as written: the phrase
-    is vowelled plain Arabic with no pause signs. Nothing when nothing was
-    heard, or the phrase is longer than one recording holds. Alongside the
-    numbers, one detail per word, as check() gives.
-    """
-    words = as_heard(expected)
-    if not heard.strip() or not words or len(words) > get_settings().recitation_sure_max_words:
-        return [], []
-    weighed = timed("checked-text", listen.weigh, audio, words, model, words=len(words))
-    return [round(w["sure"], 3) for w in weighed], [_detail(w) for w in weighed]

@@ -1,6 +1,6 @@
 """Sound in, words out, done on somebody else's machine.
 
-The same job as listen.py and the same one function, so the two are swappable:
+The same job as whisper.py and the same one function, so the two are swappable:
 whoever calls `transcribe` cannot tell which of them answered. This one sends the
 recording to Groq, who run `listening_model`. Free, and nothing here is paid
 for.

@@ -1,45 +1,15 @@
-"""Sound in, words out. The one place an engine is named.
+"""The local ear: faster-whisper on this machine, for writing words down and for
+scoring how sure each word is (the base or tuned model). Free, no key, nothing
+leaves the computer. Loaded once and warmed at startup (`warm()`).
 
-Everything above this file asks for words and does not care how they were got,
-so swapping the engine is one function. Today it is faster-whisper running on
-this machine: free, no account, no key, and nothing leaves the computer. The
-model it uses is already on this machine, cached under the user's own profile.
+A recitation is asked for in Arabic by name: a few seconds is too short for
+detection, and a wrong guess returns another language. A spoken search picks
+between config's `dictation_languages` only (Arabic by name spelt "knowledge"
+as نالج), at one extra pass.
 
-Loaded once and kept, so only the first recitation pays for it. The app also
-warms it in the background as it starts, so usually nobody pays for it at all;
-that is `warm()` below, and turning it off in the settings puts the cost back on
-whoever speaks first.
-
-A recitation is Arabic, asked for by name rather than detected. A few seconds of
-speech is short enough that free detection guesses, and a wrong guess does not
-return worse Arabic, it returns another language entirely.
-
-A spoken search is not a recitation: the word may be said in either language, and
-Arabic asked for by name wrote English words in Arabic letters, "knowledge"
-coming back as نالج. So there the language is chosen from the recording, but only
-ever from the two in config's `dictation_languages`, which is what stops the
-guess wandering to Urdu or Persian. It costs one extra pass over the sound.
-
-Why it is as quick as it is
----------------------------
-Measured on sixteen real recitations, the wait went from about four seconds to
-about one. Three things did it, and none of them changed which ayah came back;
-the fourth was later given back on purpose, for strictness:
-
-  a smaller model    base rather than small. Both found the right ayah fifteen
-                     times out of sixteen. See the note in config.py.
-  one reading        the model no longer weighs five wordings and picks between
-                     them. The matching wants close words, not right ones.
-  no silence         the quiet at each end of a browser recording is cut rather
-                     than transcribed. One word said quickly can be cut along
-                     with it, so a recording that comes back empty is read a
-                     second time with the cutting off, which is the difference
-                     between "nothing was heard" and hearing it.
-  no timestamps      the fourth. It was given back for a while, to drop words
-                     the model doubted, and is now off again: the transcript no
-                     longer decides whether a word is wrong, and dropping words
-                     broke the run of them that finds the place. Half the wait,
-                     and it places better. See recitation_word_min in config.
+Speed (16 real recitations, ~4 s to ~1 s, same ayahs found): the base model,
+one beam, silence trimmed (an empty result is re-read untrimmed), and no word
+timestamps (see recitation_word_min in config).
 """
 from __future__ import annotations
 
@@ -55,24 +25,11 @@ from backend.services.core.timing import timed
 
 log = logging.getLogger(__name__)
 
-# The processor this machine's models run on, not the recording: held around
-# every call into a local model, the letters one (letters.py) included. routers/listen.py already keeps two
-# recitations from being read at once (_turn), but a plain search that falls
-# back to this engine skips that queue on purpose, and the model is handed
-# most of this machine's cores (recitation_threads): two calls into it at once
-# ask for twice the cores there are, and both take longer than either would
-# have waited. Held around every call into the model, transcribing and
-# scoring alike, never nested: transcribe() and scores() are asked one after
-# the other, never from inside each other, so a plain (non-reentrant) Lock is
-# enough.
+# Held around every local model call (letters.py too, never nested): a search
+# skips routers/listen.py's _turn, and two calls at once fight for the cores.
 engine_lock = threading.Lock()
 
-# Timed here, and only here, are the steps that cost whole seconds on this
-# machine: opening the recording, loading a model, reading it, and scoring the
-# page words against it. Everything else in this file is arithmetic on numbers
-# already in memory and timing it would only bury these lines. One grep on
-# backend.log then says where a slow reading went, without measuring again.
-# The lines read: decoded / loaded / read / encoded / scored.
+# Only the steps costing whole seconds are timed: decoded / loaded / read / encoded / scored.
 
 _models: dict = {}
 # The last recording decoded, and the sound in it. See sound_of.
