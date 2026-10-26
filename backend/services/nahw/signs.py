@@ -28,10 +28,14 @@ def sign(case: str | None, kind: str = "vowel") -> str | None:
 
 def kind_of(tag: dict, annexed: bool) -> str:
     """Which sign table a noun's case is read from. CAMeL's number names a dual or a
-    plural, unless the reader typed a tanween, which neither ever carries (غَافِلًا)."""
+    plural, unless the reader typed a tanween, which neither ever carries (غَافِلًا); a sound
+    feminine plural's alone is its own, standing for the plural's نون (Awdah V1 p14: تنوين
+    المقابلة، وهو اللاحق لنحو مسلمات), so its kasra is its nasb with one or without (لَآيَاتٍ)."""
     word = tag.get("word", "")
     bare = strip_diacritics(word)
     marked = letters(word)
+    if tag.get("gender") == "f" and is_fem_plural(tag["base"], tag.get("number") or "na"):  # a masculine plural keeps its fatha (أَصْوَاتَهُمْ)
+        return "fem_plural"  # المعلماتِ: nasb shows by the kasra
     if not has_tanween(word):
         if bare.endswith(("ون", "ين")) and _attached_plural(bare):
             return "attached_plural"  # عِشْرِينَ، أُولُو: they take its letters without being one
@@ -39,8 +43,6 @@ def kind_of(tag: dict, annexed: bool) -> str:
             return "sound_plural"
         if tag.get("number") == "d":
             return "dual"
-        if tag.get("gender") == "f" and is_fem_plural(tag["base"], tag.get("number") or "na"):  # a masculine plural keeps its fatha (أَصْوَاتَهُمْ)
-            return "fem_plural"  # المعلماتِ: nasb shows by the kasra
         # بِمَسَاجِدَ: a diptote, unless a مضاف إليه follows (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
         if tag.get("case") in ("jarr", "nasb") and is_diptote(word, tag.get("pos", ""), tag.get("lemma") or "", attached=_has_pronoun(tag), annexed=annexed):
             return "diptote"

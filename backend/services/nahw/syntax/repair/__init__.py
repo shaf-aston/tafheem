@@ -16,7 +16,7 @@ from backend.services.nahw.syntax.repair.dua import counted_times, dua_clause
 from backend.services.nahw.syntax.repair.hal import hal_clause
 from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, described_doer, elative_specified, hasr_khabar, object_of_noun, second_khabar, told_of_jar
 from backend.services.nahw.syntax.repair.nasab import nasab
-from backend.services.nahw.syntax.repair.subject_clash import doer_after_object, doer_first, kana_subject, inna_object, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
+from backend.services.nahw.syntax.repair.subject_clash import doer_after_object, doer_first, kana_subject, inna_object, object_past_verb, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
 from backend.services.nahw.syntax.repair.typed import emphasis_lam_opener, since_jarr, typed_words
 
 
@@ -36,6 +36,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         doer_after_object(tokens)
         verb_under_fronted_object(tokens)
         object_after_tanween(tokens)
+        object_past_verb(tokens)
         called(tokens)
         dua_clause(tokens)
         counted_times(tokens)

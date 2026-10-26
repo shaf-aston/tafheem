@@ -205,9 +205,13 @@ def verb_place(token: dict, s: Sentence) -> str:
             return "second_object"
         if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
             return "purpose"
+        # زَيْدٌ أَكْرَمَ ضَيْفًا: a verb said of a مبتدأ before it (the sentence's root, or a subject) holds
+        # its doer, the pronoun back to it its khabar must carry (رابط جملة الخبر, Ibn Aqil on the Alfiyya)
+        told = s.head(head)
         if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
-                and token.get("stt") == "i" and any(t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head)
-                                                    or (t["id"] < token["id"] and verb_place(t, s) == "subject") for t in siblings):
+                and token.get("stt") == "i" and (told and told["id"] < head["id"] and noun_tagged(told) and (told["rel"] == "---" or subject_link(told)) or any(
+                    t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head)
+                    or (t["id"] < token["id"] and verb_place(t, s) == "subject") for t in siblings)):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
                 return "specification"
             if is_participle(token):

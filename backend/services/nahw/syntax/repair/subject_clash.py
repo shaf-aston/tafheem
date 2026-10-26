@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw.book import extra_ba_on, is_mabni, is_one
 from backend.services.nahw.syntax.facts import (
-    Sentence, attached_pronoun, case_unseen, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, typed_case_of, noun_tagged, subject_link, works_as_verb)
+    Sentence, attached_pronoun, case_unseen, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, noun_tagged, subject_link, works_as_verb)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -13,8 +13,16 @@ def subject_clash(tokens: list[dict]) -> None:
     masdar (فَرِحَ الْوَلَدُ فَرَحًا) is left to its own rule.
     ضَرَبَ زَيْدٌ مَرْيَمَ: a noun with tanween is complete, so nothing after it is its مضاف إليه.
     ضرب زيد عمرا typed bare: the subject is raf' by its place, unless typed otherwise, and a word
-    whose nasb is written (its alif of tanween) is neither its نعت nor its مضاف إليه, which is jarr."""
+    whose nasb is written (its alif of tanween) is neither its نعت nor its مضاف إليه, which is jarr.
+    أَحَبَّ زَيْدٌ عَمْرًا: the doer is raf' and the object nasb (Qatr al-Nada p13: باب الفاعل مرفوع،
+    p15: المفعول منصوب), so a word the parser made the object that the reader typed in raf', on a
+    verb with no doer, is its doer."""
     s = Sentence(tokens)
+    for token in tokens:
+        verb = s.head(token)
+        if verb and is_verb(verb) and token["rel"] == "OBJ" and typed_case_of(token) == "u" \
+                and not any(subject_link(k) for k in s.kids(verb)):
+            token["rel"] = "SBJ"
     for token in tokens:
         head = s.head(token)
         verb = s.head(head) if head else None
@@ -100,6 +108,18 @@ def object_after_tanween(tokens: list[dict]) -> None:
             token["rel"] = "OBJ"
 
 
+def object_past_verb(tokens: list[dict]) -> None:
+    """زَيْدٌ نَصَرَ بَكْرًا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به), and a plain
+    noun puts nothing in nasb, so a word in nasb the parser hung past the verb onto the noun that verb
+    itself hangs on is the verb's, to be told object, hal or tamyeez by its own rule."""
+    s = Sentence(tokens)
+    for token in tokens:
+        head = s.head(token)
+        verb = head and next((k for k in s.kids(head) if is_verb(k) and head["id"] < k["id"] < token["id"]), None)
+        if verb and token["rel"] == "MOD" and noun_tagged(token) and typed_case_of(token) == "a" and not works_as_verb(head):
+            token["head"] = verb["id"]
+
+
 def kana_subject(tokens: list[dict]) -> None:
     """لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so
     a word the parser made the خبر that the reader typed in raf', with no اسم beside it, is the
@@ -132,12 +152,13 @@ def kana_subject(tokens: list[dict]) -> None:
 
 def inna_object(tokens: list[dict]) -> None:
     """إِنَّ فِي ذَلِكَ لَآيَةً: إنّ and its sisters take an اسم in nasb and a خبر (Tasheel 1.8), and no
-    object, so a noun in nasb the parser hung on one as its object, with no اسم beside it, is that اسم."""
+    object, so a noun in nasb the parser hung on one as its object, with no اسم beside it, is that اسم;
+    a sound feminine plural's kasra is its nasb (لَآيَاتٍ)."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
         if (token["rel"] == "OBJ" and head and s.family(head) == "inna" and noun_tagged(token)
-                and typed_case_of(token) == "a" and not any(subject_link(k) for k in s.kids(head))):
+                and (typed_case_of(token) == "a" or shows_nasb_by_kasra(token)) and not any(subject_link(k) for k in s.kids(head))):
             token["rel"] = "SBJ"
 
 

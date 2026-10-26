@@ -562,8 +562,8 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
     ("هُوَ أَقَلُّ مَالًا", "مَالًا", ("role", "تمييز")),  # أَفَلّ read أَقَلّ
     ("هُوَ أَحَبُّ عَمَلًا", "عَمَلًا", ("role", "تمييز")),  # read أَحِبّ
     ("هو أفضل رجل", "رجل", ("role", "مضاف إليه")),  # nearest case: no nasb written
-    ("هَذَا أَفْضَلُ مَسَاجِدَ", "مَسَاجِدَ", ("role", "مضاف إليه")),
-    ("سُبْحَانَكَ", "سُبْحَانَكَ", ("role", "مفعول مطلق")),  # a pronoun on a noun is in jarr's place  # nearest case: a diptote's fatha is jarr
+    ("هَذَا أَفْضَلُ مَسَاجِدَ", "مَسَاجِدَ", ("role", "مضاف إليه")),  # nearest case: a diptote's fatha is jarr
+    ("سُبْحَانَكَ", "سُبْحَانَكَ", ("role", "مفعول مطلق")),  # a pronoun on a noun is in jarr's place
     ("أَطْفَأَ زَيْدٌ نَارًا", "نَارًا", ("role", "مفعول به")),  # nearest case: a verb on أَفْعَلَ, its object
     # a verb khabar needs a pronoun back to its مبتدأ, so أَنْفَعُ is the elative, not "I benefit"
     ("الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ", "أَنْفَعُ", ("role", "خبر")),
@@ -583,6 +583,18 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
     ("عِلْمًا طَلَبَ زَيْدٌ", "عِلْمًا", ("role", "مفعول به")),
     # a tamyeez of the relation after a verb that takes no object (Maryam 4)
     ("اِشْتَعَلَ الرَّأْسُ شَيْبًا", "شَيْبًا", ("role", "تمييز")),
+    # the doer is raf' and the object nasb: a damma the parser made the object is the doer
+    ("أَحَبَّ زَيْدٌ عَمْرًا", "زَيْدٌ", ("role", "فاعل")),
+    ("أَحَبَّ زَيْدٌ عَمْرًا", "عَمْرًا", ("role", "مفعول به")),
+    # إنّ takes no object; a sound feminine plural's kasra, tanween or none, is its nasb
+    ("إِنَّ فِي ذَلِكَ لَآيَاتٍ", "لَآيَاتٍ", ("role", "اسم إن")),
+    ("إِنَّ فِي ذَلِكَ لَآيَاتٍ", "لَآيَاتٍ", ("sign", "كسرة، نيابة عن الفتحة، جمع مؤنث سالم")),
+    # a noun puts nothing in nasb: the verb said of the مبتدأ is the عامل, its doer the pronoun back
+    ("زَيْدٌ أَكْرَمَ ضَيْفًا", "أَكْرَمَ", ("role", "فعل")),
+    ("زَيْدٌ أَكْرَمَ ضَيْفًا", "ضَيْفًا", ("role", "مفعول به")),
+    ("زيد نصر بكرا", "بكرا", ("role", "مفعول به")),
+    ("زَيْدٌ جَاءَ رَاكِبًا", "رَاكِبًا", ("role", "حال")),
+    ("زَيْدٌ طَابَ نَفْسًا", "نَفْسًا", ("role", "تمييز")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
     from backend.services.nahw import iraab
