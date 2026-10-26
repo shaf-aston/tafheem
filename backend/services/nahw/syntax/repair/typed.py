@@ -4,7 +4,7 @@ from __future__ import annotations
 from itertools import pairwise
 
 from backend.services.sarf import verb_reader
-from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement
+from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.facts import has_added, is_elative, is_emphasis_lam, noun_tagged, typed_or_parsed_case, verb_tagged
 
@@ -57,6 +57,8 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
             vouched = token.get("guessed") or (is_elative(token) and any(
                 t["head"] == token["id"] and t["rel"] == "OBJ" for t in tokens))
             own = own_letters(word, token["front"], token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
+            if token["stuck_on"]:
+                own = plural_alef(own)  # اُكْتُبُوهُ is اُكْتُبُوا with its object
             cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
                          if (found := verb_reader.command(form, governed, token.get("root", ""), vouched))
                          and (not read_noun or vouched or verb_reader.typed_fully(form, found))), None)
