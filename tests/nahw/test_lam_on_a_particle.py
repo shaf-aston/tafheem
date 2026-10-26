@@ -91,6 +91,16 @@ def test_the_lam_of_emphasis_on_a_noun_leaves_it_the_mubtada(sentence, expected)
 
 
 @needs_parser
+@pytest.mark.parametrize("sentence, expected", [
+    # the لام hangs on its مبتدأ: one unit, drawn with the مبتدأ's job beside its khabar
+    ("لَزَيْدٌ قَائِمٌ", ["مبتدأ", "لام التوكيد", "مبتدأ", "خبر"]),
+    ("لَزَيْدٌ أَفْضَلُ مِنْ عَمْرٍو", ["مبتدأ", "لام التوكيد", "مبتدأ", "خبر", "خبر"]),
+])
+def test_the_lam_of_emphasis_is_drawn_inside_its_mubtada(sentence, expected):
+    assert tree_roles(analyze(sentence)["tree"]["tree"])[:len(expected)] == expected
+
+
+@needs_parser
 @pytest.mark.parametrize("sentence", ["لَكَ الْحَمْدُ", "لَهُ الْمُلْكُ"])
 def test_a_lam_on_a_pronoun_heading_the_sentence_keeps_its_jarr(sentence):
     assert roles(sentence) == ["حرف جر", "مبتدأ"]

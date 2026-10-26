@@ -29,7 +29,7 @@ def is_emphasis_lam(tokens: list[dict], i: int) -> bool:
     the parser leaves that لام a word of its own before the pronoun. So is one written onto a حرف جر,
     typed bare or not (وإنك لعلى خلق عظيم): a جار takes no جار after it."""
     base = tokens[i + 1] if i + 1 < len(tokens) else None
-    if tokens[i]["form"] != "ل+" or base is None or is_prefix(base):
+    if tokens[i]["form"] != "ل+" or base is None:
         return False
     at = 0  # the لام's letter in the typed word: after the pieces written in front of it (وَلَـ، فَلَـ)
     while at < i and is_prefix(tokens[i - 1 - at]):

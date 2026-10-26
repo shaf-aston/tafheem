@@ -499,7 +499,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     top = roots[0]
     subjects = [kid for kid in children_of[top["id"]] if role_of[kid["id"]] == NAMED.mubtada]
     beside_hal = len(roots) > 1 and all(job_of[t["id"]] == NAMED.haal for t in roots[1:])
-    if (len(roots) == 1 or beside_hal) and role_of[top["id"]] == NAMED.khabar and 0 < len(subjects) < len(children_of[top["id"]]) + beside_hal:
+    pulled = (len(roots) == 1 or beside_hal) and role_of[top["id"]] == NAMED.khabar and 0 < len(subjects) < len(children_of[top["id"]]) + beside_hal
+    if pulled:
         children_of[top["id"]] = [kid for kid in children_of[top["id"]] if kid not in subjects]
         roots = subjects + roots
     # هل أنتَ تكتبُ، ما أنتَ إلا بشر، مَنْ أنتَ في المدينة: a unit typed wholly before or after the unit it
@@ -567,7 +568,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     for answer_id, (opener, *_) in opened.items():
         for kid in [k for k in children_of[answer_id] if k["pos"] == "PRT" and at[k["id"]] < at[opener["id"]]]:
             opened[answer_id] += (_take(holder, kid),)
-    root = roots[0]
+    # a مبتدأ drawn beside its khabar unit heads no sentence, nor does that khabar: each keeps its
+    # job under the sentence, a مبتدأ with words of its own too (كِتَابُ الطَّالِبِ جَدِيدٌ، لَزَيْدٌ أَفْضَلُ)
+    root = None if pulled else roots[0]
 
     seen: set[int] = set()
 
