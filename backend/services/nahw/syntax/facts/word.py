@@ -173,12 +173,14 @@ def shows_jarr(token: dict) -> bool:
 
 
 def case_unseen(token: dict) -> bool:
-    """A مقصور noun the reader left bare (السُّفْلَى، الدُّنْيَا): its case is unseen on the alif
-    (مقدرة للتعذر) in all three, so the parser's case for it is a guess and no evidence."""
+    """A مقصور noun or name the reader left bare (السُّفْلَى، الدُّنْيَا، مُوسَى): its case is unseen on the alif
+    (مقدرة للتعذر) in all three, so the parser's case for it is a guess and no evidence. So is
+    a noun's before ياء المتكلم (صَدِيقِي), the kasra there being the ya's (لاشتغال المحل)."""
     form, lemma = strip_diacritics(token.get("form", "")), strip_diacritics(token.get("lemma", ""))
+    my = bool(token.get("stuck_on")) and strip_diacritics(token.get("typed") or "").endswith("ي")
     # only a declinable noun is مقصور; a built one ending in ا (مَا، إِذَا، هَذَا) has no case to hide
-    return token.get("pos_camel") in ("noun", "adj") and not typed_case_of(token) and (
-        form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
+    return token.get("pos_camel") in ("noun", "adj", "noun_prop") and not typed_case_of(token) and (
+        my or form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
 
 
 def shown_cases(token: dict) -> set[str]:

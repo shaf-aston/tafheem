@@ -638,6 +638,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if unread(ranked) and (twin := verb_reader.known_as(token)) and (twin_ranked := _ranked([twin], disambiguator)):
             # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
             ranked, evidence = twin_ranked[0], twin
+        if not _agreeing(evidence, ranked) and (name := _name_in_nasb(token, disambiguator)):
+            ranked = [name]
         if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token)) and sarf.get("asp") != "c" \
                 and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
             # يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
@@ -684,6 +686,13 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the verb reads the typed vowels at least as well, or the reading kept contradicts them (ظُلْمُكَ for ظَلَمَكَ)
             if said is not None and (here is None or said >= here):
                 out[i] = verb
+    # أَكْرَمَ مُصْطَفَى يَحْيَى: nothing before the sentence's first word puts it in nasb, so a typed fatha
+    # the past verb reads as well as a noun's nasb (the elative أَكْرَمَ, here before a name showing no case) is that verb
+    if out and out[0].get("cas") == "a" and typed_case(tokens[0]) == "a":
+        word, ranked = steps[0]
+        verb = best_reading(word, [r for r in _widened(tokens[0], ranked) if r.get("pos") == "verb" and r.get("asp") == "p"])
+        if verb and best_reading(word, [verb, out[0]]) is verb:
+            out[0] = verb
     # الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ: after a noun opening the sentence in raf', a word that is either
     # أَفْعَلُ "I do" or the elative is that noun's khabar, and a verb khabar needs a pronoun back to
     # its مبتدأ (رابط جملة الخبر, Ibn Aqil on the Alfiyya); "I" with nothing on it has none
@@ -735,6 +744,20 @@ def _without_sakt(tokens: list[str], i: int, disambiguator=None) -> tuple[str, l
     found = _reading(rest, ranked)
     built = is_mabni(found.get("pos", "")) or str(found.get("enc0", "")).startswith("1s")
     return (rest, ranked) if built and _agreeing(rest, ranked) else None
+
+
+def _name_in_nasb(typed: str, disambiguator=None) -> dict | None:
+    """رَأَيْتُ زَيْدًا: CAMeL files a name without the alif its nasb tanween is written on, so a word
+    none of its readings fits (زَيَّدَا is two vowels off), ending in that alif, is the word its letters
+    before it spell, in nasb. One whose stem it does not know at all stays unread (مُسْرِعًا), and
+    one with another vowel on that alif or before it is no nasb (مُحَمَّدُا)."""
+    marked = letters(typed)
+    if len(marked) < 3 or marked[-1][0] != "ا" or (marked[-1][1] | marked[-2][1]) - {"ً"}:
+        return None
+    stem = "".join(letter + "".join(marks - {"ً"}) for letter, marks in marked[:-1])
+    ranked = (_ranked([stem], disambiguator) or [[]])[0]
+    known = next((r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")), None)
+    return known and {**known, "cas": "a", "diac": known["diac"] + "ًا", "atbtok": known["diac"] + "ًا"}
 
 
 def _asked_reading(typed: str, disambiguator=None) -> dict | None:
