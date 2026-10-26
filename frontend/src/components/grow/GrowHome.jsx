@@ -6,7 +6,7 @@
  * a book with questions due shows its review as a step too.
  * A guest's log-in nudge rides on the title line (SectionHeader `aside`).
  */
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 
 import { GOAL, GOALS, rankOf, shareOf } from '../../lib/learner/rewards'
 import { REVIEW_SIZE } from '../../lib/grow/bookLesson'
@@ -42,7 +42,10 @@ function Growth({ rewards }) {
       </div>
       <div className="grow-stat rise-in">
         <dt>{say('Streak')}</dt>
-        <dd className="tabular-nums">{rewards.streak === 1 ? say('1 day') : say('{n} days', { n: rewards.streak })}</dd>
+        <dd className="tabular-nums">
+          {rewards.streak === 1 ? say('1 day') : say('{n} days', { n: rewards.streak })}
+          <span className="grow-stat-small">{rewards.streak ? say('Come back tomorrow to keep it') : say('One lesson today starts it')}</span>
+        </dd>
       </div>
       <Goal xpToday={rewards.xpToday} />
     </dl>
@@ -100,6 +103,14 @@ const hasWork = (state) => state.ready && (state.fresh > 0 || state.dueCount > 0
  * else the words lesson; then every world's next step.
  */
 function Today({ worldOf, lessons, books, onStart, onStartBook }) {
+  // A phone shows three next steps until More is pressed (styles/growWorlds.css).
+  const [more, setMore] = useState(false)
+  // The button goes once pressed, so the focus moves on to the first step it showed.
+  function showMore(event) {
+    const list = event.currentTarget.previousElementSibling
+    setMore(true)
+    requestAnimationFrame(() => list.children[3]?.focus())
+  }
   const [last] = useRemembered(LAST_BOOK, Object.keys(books), '')
   // The world the learner's level starts from (levels.json `grow`); none until a level is chosen.
   const leads = levelOf(useLearnerLevel().level)?.grow
@@ -142,7 +153,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
           </PrimaryButton>
         </>
       )}
-      <div className="grow-nexts">
+      <div className="grow-nexts" data-open={more ? '' : undefined}>
         {basics.ready && !basics.begunHere && hero !== 'basics' && (!leads || leads === 'basics') && (
           <NextStep world={worldOf('basics')} where={say('New to Arabic?')} line={say('Start with ال, “the”')} onGo={() => onStart('basics')} />
         )}
@@ -177,6 +188,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
             onGo={() => onStart('quran')} />
         )}
       </div>
+      <button type="button" className="grow-nexts-more" onClick={showMore}>{say('More for today')}</button>
     </section>
   )
 }
