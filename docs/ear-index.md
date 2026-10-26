@@ -92,12 +92,12 @@ Settings (`F/settings.json`): `fusha`, `listening-ear`. Health: `GET /api/health
 
 ## 8. Known gaps (measured 2026-10-26 on live API, Alafasy and Husary, Memorise page 2:1-2:5)
 
-2. **Out-of-order ayahs.** `follow.js:87` `lineUp` is one alignment over the joined stream. Reciting 2:3 then 2:2 leaves 2:2 empty and paints the first 7 words of 2:4 orange. Aligning each window alone worked in a prototype.
-3. **Noise sets `elsewhere`.** Quiet pink noise got a sure place off the page (`recitingSession.js:513`). No word was marked, but `hooks.js:357` can offer a jump.
-4. **2:1 الٓمٓ is never marked** in any run. Cause not traced.
-5. **Fine-tuned checker reads مِّن falsely low.** It is scored with `as_heard` spelling, which drops a word-initial shadda (`spelling.py:49-50`), but it was trained on raw imlaei (`finetune_ear/ear/text.py:10`). 9 of 252 perfect words were low, all مِّن; Base: 0 of 253 below 0.95. The red spreads to neighbours on skips and swaps. Base separates a changed word (0 to 0.12) cleanly.
-6. **Wrong ayah noticed late.** Reciting 2:10 on a 2:1-2:5 page marked nothing, but the place was unsure for the first ~8 s. A look-alike with identical text (31:5 on 2:5) passes; unavoidable.
-7. Dead names: `F/scripts/probe-ear.mjs:9` (`RECITATION_HOSTED`), `F/recite.json:37` (`recitation_hosted_rest_s`).
-8. `B/__init__.py:76` tests `"letters" in listening_ears` as a substring; `ears._wanted` parses a list.
-9. `listen_check` (`routers/listen.py:300`) and `listen_check_text` (`:367`) repeat one validate, turn, run, error block.
-10. `imlaei.json` (needed by `/check`) is gitignored (`.gitignore:227`) and absent from `deploy/copy-data.sh`. The live server does score, so it has one; how it got there is not recorded.
+1. **Out-of-order ayahs.** `follow.js:87` `lineUp` is one alignment over the joined stream. Reciting 2:3 then 2:2 leaves 2:2 empty and paints the first 7 words of 2:4 orange. Aligning each window alone worked in a prototype.
+2. **Noise sets `elsewhere`.** Quiet pink noise got a sure place off the page (`recitingSession.js:513`). No word was marked, but `hooks.js:357` can offer a jump.
+3. **2:1 الٓمٓ is never marked** in any run. Cause not traced.
+4. **Fine-tuned checker reads مِّن falsely low.** It is scored with `as_heard` spelling, which drops a word-initial shadda (`spelling.py:49-50`), but it was trained on raw imlaei (`finetune_ear/ear/text.py:10`). 9 of 252 perfect words were low, all مِّن; Base: 0 of 253 below 0.95. The red spreads to neighbours on skips and swaps. Base separates a changed word (0 to 0.12) cleanly.
+5. **Wrong ayah noticed late.** Reciting 2:10 on a 2:1-2:5 page marked nothing, but the place was unsure for the first ~8 s. A look-alike with identical text (31:5 on 2:5) passes; unavoidable.
+6. Dead names: `F/scripts/probe-ear.mjs:9` (`RECITATION_HOSTED`), `F/recite.json:37` (`recitation_hosted_rest_s`).
+7. `B/__init__.py:76` tests `"letters" in listening_ears` as a substring; `ears._wanted` parses a list.
+8. `listen_check` (`routers/listen.py:300`) and `listen_check_text` (`:367`) repeat one validate, turn, run, error block.
+9. `imlaei.json` (needed by `/check`) is gitignored (`.gitignore:227`) and absent from `deploy/copy-data.sh`. The live server does score, so it has one; how it got there is not recorded.
