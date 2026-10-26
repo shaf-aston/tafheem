@@ -68,6 +68,7 @@ def test_no_lam_of_emphasis_against_a_typed_vowel_or_onto_no_particle(typed):
     assert _emphasis_lam(typed) is None
 
 
+@needs_parser
 def test_a_lam_with_a_fatha_on_a_pronoun_the_dictionary_never_writes_is_the_lam_of_emphasis():
     assert _emphasis_lam("لَأَنْتُمْ") is not None
 
