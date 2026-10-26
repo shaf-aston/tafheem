@@ -571,10 +571,35 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("مَا جَاءَ إِلَّا زَيْدٌ", ["حرف", "فعل", "حرف", "فاعل"]),
     ("مَنْ جَاءَ", ["مبتدأ", "فعل"]),
     ("مَنْ فِي الْبَيْتِ", ["مبتدأ", "حرف جر", "مجرور"]),
+    # ما with its khabar first, a جار ومجرور or ظرف, negates and its noun is the مبتدأ مؤخر
+    ("مَا فِي الدَّارِ أَحَدٌ", ["حرف", "حرف جر", "مجرور", "مبتدأ"]),
+    ("مَا فِيهِ عَيْبٌ", ["حرف", "حرف جر", "مبتدأ"]),
+    ("مَا عِنْدِي مَالٌ", ["حرف", "مفعول فيه", "مبتدأ"]),
+    ("مَا لَكَ عَلَيَّ سُلْطَانٌ", ["حرف", "حرف جر", "حرف جر", "مبتدأ"]),
+    ("وَمَا عِنْدَ اللَّهِ خَيْرٌ", ["مبتدأ", "مفعول فيه", "مضاف إليه", "خبر"]),
+    ("الَّذِي فِي الدَّارِ رَجُلٌ", ["مبتدأ", "حرف جر", "مجرور", "خبر"]),
+    # the question hamza on a جار: the noun after it in jarr is its majrur, not a verb's (أَفِي "I fulfil")
+    ("أَفِي اللَّهِ شَكٌّ", ["حرف جر", "مجرور", "مبتدأ"]),
+    ("أَفِي بِعَهْدِي", ["فعل", "مجرور"]),
     ("إِنَّ مَا عِنْدَ اللَّهِ هُوَ خَيْرٌ لَكُمْ", ["حرف", "اسم إن", "مفعول فيه", "مضاف إليه", "مبتدأ", "خبر إن", "حرف جر"]),
 ])
 def test_a_question_word_heads_the_noun_after_it(sentence: str, expected: list[str]):
     assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
+
+
+@pytest.mark.parametrize("sentence, negates", [
+    ("مَا فِي الدَّارِ أَحَدٌ", True),
+    ("مَا عِنْدِي مَالٌ", True),
+    ("مَا فِي بَيْتِ زَيْدٍ أَحَدٌ", True),
+    ("مَا فِي الدَّارِ الْكَبِيرَةِ أَحَدٌ", True),
+    ("مَا فِي الدَّارِ", False),
+    ("وَمَا عِنْدَ اللَّهِ خَيْرٌ", False),
+    ("وَمَا عِنْدَ اللَّهِ بَاقٍ", False),
+])
+def test_ma_before_a_fronted_khabar_and_its_raf_noun_is_the_negation(sentence: str, negates: bool):
+    words = iraab.analyze(sentence)["words"]
+    assert ("النافية" in words[0]["reason"]) is negates
+    assert ("مبتدأ مؤخر" in words[-1]["reason"]) is negates
 
 
 @pytest.mark.parametrize("sentence, sign", [("أَيُّكُمْ أَحْسَنُ عَمَلًا", "ضمة"), ("أَيُّ الْأَعْمَالِ أَفْضَلُ", "ضمة"),

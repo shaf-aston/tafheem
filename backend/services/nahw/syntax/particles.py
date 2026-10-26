@@ -145,6 +145,22 @@ def _told(token: dict, s: facts.Sentence) -> str:
     return "noun" if told and facts.noun_tagged(told) and not facts.is_verb(told) else "other"
 
 
+def _fronted(token: dict, s: facts.Sentence) -> str:
+    """ما في الدار أحدٌ، ما لك عليّ سلطانٌ: one or more جار ومجرور or ظرف straight after it, then a noun
+    in raf': the khabar came first, so the noun is its مبتدأ مؤخر and the ما only negates; a ما with
+    its khabar first does not work as ليس (Tasheel 1.9 n6 p23). A describing word there (وما عند الله
+    خيرٌ، باقٍ) is told of the ما, the relative, and is its khabar. Its majrur, and what is added to
+    it (في بيتِ زيدٍ), are in jarr; a joined one (فيه، عندي) is no word of its own."""
+    words = [t for t in s.tokens if t["id"] > token["id"] and not facts.is_suffix(t)]
+    at = 0
+    while at < len(words) and (facts.is_preposition(words[at]) or facts.is_zarf(words[at], s)
+                               or facts.typed_case_of(words[at]) == "i"):
+        at += 1
+    noun = words[at] if 0 < at < len(words) else None
+    return "yes" if noun and facts.noun_tagged(noun) and facts.typed_case_of(noun) == "u" \
+        and not facts.is_describing(noun) else "no"
+
+
 def _opens(token: dict, s: facts.Sentence) -> str:
     """The noun after it opens a sentence of its own: a definite noun in raf' with an
     indefinite one in raf' after it that does not describe it, its khabar (واللهُ أكبرُ)."""
@@ -332,6 +348,7 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "timed": (("yes", "no"), _timed),
     "answered": (("yes", "no"), _answered),
     "told": (("noun", "other"), _told),
+    "fronted": (("yes", "no"), _fronted),
     "wonder": (("yes", "no"), _wonder),
     "asks": (("yes", "no"), _asks),
     "restricted": (("yes", "no"), _restricted),

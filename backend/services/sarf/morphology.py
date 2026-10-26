@@ -648,7 +648,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the table's own tense is only spelled otherwise: the dictionary's stays. A command is left to
             # repair.typed (verb_reader.command), which reads its attached pronoun (اِهْدِنَا) as the table cannot
             ranked = [{"lex": evidence, **sarf, "diac": evidence}]
-        elif not steps and not _agreeing(evidence, ranked) and (asked := _asked_reading(evidence, disambiguator)):
+        elif not steps and (asked := _asked_reading(evidence, ranked, after, disambiguator)):
             ranked = [asked]
         elif not _agreeing(evidence, ranked) and (noun := noun_reader.reading_of(evidence)):
             # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off
@@ -762,18 +762,22 @@ def _name_in_nasb(typed: str, disambiguator=None) -> dict | None:
     return known and {**known, "cas": "a", "diac": known["diac"] + "ًا", "atbtok": known["diac"] + "ًا"}
 
 
-def _asked_reading(typed: str, disambiguator=None) -> dict | None:
+def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=None) -> dict | None:
     """أَذَاهِبٌ زَيْدٌ: the question hamza (closed_words istifham, a one-letter word) opens the
     sentence before a full clause, written onto its first word; the dictionary lacks it on a
     noun, so the rest of the word is read and the hamza put back as its proclitic, as CAMeL
-    writes a وَ (وَ+_ذاهِب)."""
+    writes a وَ (وَ+_ذاهِب). Read so where no reading of the whole word fits its vowels, or where
+    the rest is a حرف جر and the next word is typed in jarr (أَفِي اللَّهِ شَكٌّ: no verb or name puts
+    the noun after it in jarr, so أَفِي is not "I fulfil")."""
     marked = letters(typed)
     hamza = next((w for w in book_words("istifham") if len(w) == 1), None)
     if not (hamza and len(marked) > 2 and marked[0][0] == hamza and "َ" in marked[0][1]):
         return None
     asked = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
     rest = typed[len(asked):]
-    ranked = (_ranked([rest], disambiguator) or [[]])[0]
+    if _agreeing(typed, ranked) and not (strip_diacritics(rest) in book_words("jarr") and typed_case(after) == "i"):
+        return None
+    ranked = _rest_readings(rest, disambiguator)
     if not _agreeing(rest, ranked):
         return None
     return _joined_onto(asked, _reading(rest, ranked), "INTERROG_PART", prc3="Aa_ques")
@@ -796,9 +800,14 @@ def _lam_on_particle(typed: str, disambiguator=None) -> dict | None:
         return None
     if any(r.get("pos") == "verb" for r in (_ranked([typed], None) or [[]])[0] if _agreeing(typed, [r])):
         return None
-    # the particle itself, not an abbreviation spelled like it (فِي)
-    ranked = [r for r in (_ranked([rest], disambiguator) or [[]])[0] if r.get("pos") != "abbrev"]
+    ranked = _rest_readings(rest, disambiguator)
     return _joined_onto(said, _reading(rest, ranked), "EMPHATIC_PART", prc1="la_emph") if _agreeing(rest, ranked) else None
+
+
+def _rest_readings(rest: str, disambiguator=None) -> list[dict]:
+    """The readings of what is left once a one-letter particle is off: the word itself, not an
+    abbreviation spelled like it (فِي)."""
+    return [r for r in (_ranked([rest], disambiguator) or [[]])[0] if r.get("pos") != "abbrev"]
 
 
 def _joined_onto(said: str, found: dict, tag: str, **proclitic) -> dict:
