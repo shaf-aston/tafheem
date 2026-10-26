@@ -9,7 +9,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, paused, typed_passive
+from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, paused, plural_alef, typed_passive
 from backend.services.nahw.book import book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
@@ -205,7 +205,8 @@ def _built_on(card: dict, aspect: str) -> str | None:
     nun = build_nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show
-        if not _has_object(card["camel"]) and strip_diacritics(word).endswith(("وا", "ا", "ي")):
+        verb = _without_object(word) if _has_object(card["camel"]) else word
+        if strip_diacritics(verb).endswith(("وا", "ا", "ي")):
             return sign("jazm", "five_verbs")  # اُكْتُبُوا، اُكْتُبَا، اُكْتُبِي: the five verbs' nun is gone
         if _dropped_weak(card):
             return sign("jazm", "dropped_weak")  # اِسْقِ
@@ -232,11 +233,12 @@ def _dropped_weak(card: dict) -> bool:
 
 
 def _without_object(word: str) -> str:
-    """The verb with its object pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ."""
+    """The verb with its object pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ,
+    ضَرَبُوهُ → ضَرَبُوا."""
     bare = strip_diacritics(word)
     pronoun = next((p for p in OBJECT_PRONOUNS if bare.endswith(p) and len(bare) > len(p) + 1), "")
     marked = letters(word)[:len(bare) - len(pronoun)]
-    return "".join(letter + "".join(sorted(marks)) for letter, marks in marked)
+    return plural_alef("".join(letter + "".join(sorted(marks)) for letter, marks in marked))
 
 
 def _past_ending(word: str) -> str:

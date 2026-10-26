@@ -203,6 +203,18 @@ def test_a_command_to_a_woman_is_built_on_dropping_the_nun(sentence: str, sign: 
     assert said in verb["reason"] and verb["reason"].count("فاعل") == 1  # one doer, said once
 
 
+@pytest.mark.parametrize("sentence, sign", [
+    ("اُكْتُبُوهُ", "مبني على حذف النون"),  # the plural's alef drops before a pronoun (Hamʿ V3 p514)
+    ("اُكْتُبُوا", "مبني على حذف النون"),  # nearest case: no pronoun, the alef written
+    ("ضَرَبُوهُ", "مبني على الضم"),
+    ("رَمَوْهُ", "مبني على الضم"),
+    ("ضَرَبُوا", "مبني على الضم"),  # nearest case: no pronoun
+    ("ضَرَبَهُ", "مبني على الفتح"),  # nearest case: one doer, no plural's و
+])
+def test_a_verb_with_the_plurals_waw_before_a_pronoun(sentence: str, sign: str):
+    assert cards(sentence)[0]["sign"] == sign
+
+
 @pytest.mark.parametrize("sentence, want", [
     ("سَرَّنِي مَا صَنَعْتَهُ", ["فعل", "فاعل", "فعل"]),  # ما after the verb's own pronoun is its doer
     ("مَا رَأَيْتُهُ", ["حرف", "فعل"]),                    # nearest case: ما opening the sentence negates

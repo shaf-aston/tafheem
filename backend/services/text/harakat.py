@@ -58,6 +58,15 @@ def own_letters(word: str, before: int, after: int) -> str:
     return "".join(letter + "".join(sorted(marks)) for letter, marks in marked[before:len(marked) - after])
 
 
+def plural_alef(verb: str) -> str:
+    """The verb cut from its attached pronoun, with the alef after واو الجماعة given back: it is
+    written only at the word's end (Hamʿ V3 p514: ولا بعد واو الجمع غير المتطرفة نحو ضربوك
+    واضربوه), so ضَرَبُوهُ is ضَرَبُوا. A vowel on the و makes it the verb's own (سَرُوَ)."""
+    marked = letters(verb)
+    plural = marked and marked[-1][0] == "و" and not marked[-1][1] - {SUKUN}
+    return verb + "ا" if plural else verb
+
+
 def typed_case(word: str, stuck_on: int = 0) -> str | None:
     """Case read off the last typed vowel, or None when the reader left it bare.
 
