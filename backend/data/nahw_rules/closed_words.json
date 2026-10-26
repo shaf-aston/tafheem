@@ -1283,8 +1283,12 @@
    "book": "Tasheel 4.3.5 p118",
    "effect": "أَفْعَل (أَعْلَى، أَكْبَر) is no describing word at work: it takes no object, so its إضافة is معنوية محضة, never the لفظية of a participle (أَعْلَى صَوْتِهِ)",
    "words": [
-    "أَ1ْ2َ"
+    "أَ1ْ2َ",
+    "أَ1َ2ّ",
+    "أَ1ُ2ّ",
+    "أَ1ِ2ّ"
    ],
+   "_doubled": "A doubled root merges its two like letters: أَفْعَل is أَفَلّ (أَشَدّ، أَحَقّ، أَقَلّ), its nasb noun a تمييز (Ibn Aqil V3 p174: هو أشد حمرة من زيد ... وههنا ينتصب تمييزا). The analyser writes the vowel before the merged letter as the verb's (أَشُدّ، أَحِبّ), so each is listed.",
    "_hamza_dropped": "خير and شر are أفعل التفضيل that, most often, drop the hamza of أخير and أشر (Ibn Malik, Sharh al-Kafiya, V2 p1121: وغالبا أغناهم خير وشر عن قولهم أخير منه وأشر): زيدٌ خيرٌ من عمرٍو، وما عند الله خيرٌ. Their pattern is فَعْل, so they are listed by word.",
    "hamza_dropped": ["خير", "شر"]
   },

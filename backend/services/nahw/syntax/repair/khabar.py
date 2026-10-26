@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_describing, is_elative, is_participle, is_preposition, is_verb, is_zarf, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_describing, is_elative, is_participle, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -133,3 +133,15 @@ def object_of_noun(tokens: list[dict]) -> None:
                 if kid["rel"] == "OBJ" and kid["id"] > token["id"] and typed_case_of(kid) == "a" and kid.get("stt") == "i":
                     kid["head"], kid["rel"] = token["id"], "TMZ"
         s = Sentence(tokens)
+
+
+def elative_specified(tokens: list[dict]) -> None:
+    """أَنْتُمْ أَشَدُّ رَهْبَةً: a مضاف إليه is in jarr, so an indefinite noun typed in nasb that the parser
+    hung on an elative as one is its تمييز (Tasheel 3.10: أفعل التفضيل ينصب التمييز; Ibn Aqil V3 p174:
+    هو أشد حمرة من زيد ... وههنا ينتصب تمييزا). A diptote's fatha is its jarr (أَفْضَلُ مَسَاجِدَ)."""
+    s = Sentence(tokens)
+    for token in tokens:
+        head = s.head(token)
+        if head and token["rel"] == "IDF" and is_elative(head) and typed_case_of(token) == "a" \
+                and token.get("stt") == "i" and not shows_jarr(token):
+            token["rel"] = "TMZ"
