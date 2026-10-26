@@ -191,6 +191,18 @@ def test_a_bare_command_the_sentence_vouches_for(sentence: str, want: str):
     assert [c["role"] for c in cards(sentence)] == want
 
 
+@pytest.mark.parametrize("sentence, sign, said", [
+    ("قُومِي", "مبني على حذف النون", "و«ي» ضمير متصل مبني في محل رفع فاعل"),  # the ي is its doer, said once
+    ("ارْفَعِي صَوْتَكِ", "مبني على حذف النون", "و«ي» ضمير متصل مبني في محل رفع فاعل"),
+    ("اُكْتُبِي", "مبني على حذف النون", "وفاعله ضمير متصل (أنتِ)"),  # nearest case: the ي kept inside the verb
+    ("أَكْرِمْنِي", "مبني على السكون", "و«ني» ضمير متصل مبني في محل نصب مفعول به"),  # nearest case: an object
+])
+def test_a_command_to_a_woman_is_built_on_dropping_the_nun(sentence: str, sign: str, said: str):
+    verb = cards(sentence)[0]
+    assert verb["sign"] == sign
+    assert said in verb["reason"] and verb["reason"].count("فاعل") == 1  # one doer, said once
+
+
 @pytest.mark.parametrize("sentence, want", [
     ("سَرَّنِي مَا صَنَعْتَهُ", ["فعل", "فاعل", "فعل"]),  # ما after the verb's own pronoun is its doer
     ("مَا رَأَيْتُهُ", ["حرف", "فعل"]),                    # nearest case: ما opening the sentence negates

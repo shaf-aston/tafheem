@@ -579,8 +579,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     persons_of: dict[int, list[str]] = {}
     subjects = {NAMED.mubtada, NAMED.ism_inna, *DOER["explicit"]}
     for token in sorted(drawn, key=lambda t: depth(t)):
+        # قُومِي: the doer may be a pronoun written onto the verb, kept inside its leaf
+        on_it = named[typed_at[token["id"]]].get("attached", []) if token["id"] in typed_at else []
         if role_of[token["id"]] != NAMED.fil or any(
-                role_of[kid["id"]] in DOER["explicit"] for kid in drawn if kid["head"] == token["id"]):
+                role_of[kid["id"]] in DOER["explicit"] for kid in drawn if kid["head"] == token["id"]) \
+                or any(piece["role"] in DOER["explicit"] for piece in on_it):
             continue
         up = by_id.get(token["head"])
         nouns = [t for t in drawn if role_of[t["id"]] in subjects and t["id"] != token["id"] and (

@@ -161,6 +161,8 @@ def verb_place(token: dict, s: Sentence) -> str:
         if _doer_of_describer(token, head, s) or (s.described_doer and [head, token] == list(s.described_doer[1:])):
             return "subject"  # its فاعل, standing in for the khabar
     if head and is_verb(head):
+        if attached_pronoun(token) and rel == "SBJ":
+            return "subject"  # قُومِي: the doer written onto the verb, ياء المخاطبة (Awdah V1 p85)
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
         if before and is_object_pronoun(token):
