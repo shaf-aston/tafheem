@@ -1,7 +1,7 @@
 """The one step that corrects the parser's tokens, in place, before anything reads them.
 Each repair is its own module, run in the order below; `naming` and everything after only read.
 
-    book links → typed words → مَنْ that asks → subject clash → كان's raf' khabar → إنّ's nasb object → ظنّ's two objects → praise's تمييز → the doer first where no case shows → doer after the object → verb under its fronted object → object after tanween → verb under يا → praying noun → times counted → object of a plain noun → indefinite after a definite opener → noun told of by a jar → second khabar → noun before لا → و هو + verb → ابن between names → untied command answering a condition → particle readings
+    book links → typed words → منذ before a noun → لام الابتداء → مَنْ that asks → subject clash → كان's raf' khabar → إنّ's nasb object → ظنّ's two objects → praise's تمييز → the doer first where no case shows → doer after the object → verb under its fronted object → object after tanween → verb under يا → praying noun → times counted → object of a plain noun → indefinite after a definite opener → noun told of by a jar → second khabar → noun before لا → و هو + verb → ابن between names → untied command answering a condition → particle readings
 
 A split that does not line up with the typed words keeps only the book's links."""
 from __future__ import annotations
@@ -17,7 +17,7 @@ from backend.services.nahw.syntax.repair.hal import hal_clause
 from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, described_doer, hasr_khabar, object_of_noun, second_khabar, told_of_jar
 from backend.services.nahw.syntax.repair.nasab import nasab
 from backend.services.nahw.syntax.repair.subject_clash import doer_after_object, doer_first, kana_subject, inna_object, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
-from backend.services.nahw.syntax.repair.typed import since_jarr, typed_words
+from backend.services.nahw.syntax.repair.typed import emphasis_lam_opener, since_jarr, typed_words
 
 
 def correct(words: list[str], tokens: list[dict]) -> None:
@@ -25,6 +25,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
     if len(bases := base_tokens(words, tokens)) == len(words):
         typed_words(words, bases, tokens)
         since_jarr(tokens)
+        emphasis_lam_opener(tokens)
         asked_man(bases, tokens)
         subject_clash(tokens)
         kana_subject(tokens)

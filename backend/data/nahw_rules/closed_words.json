@@ -528,7 +528,7 @@
   "ghair_amila_other": {
    "ar": "حروف غير عاملة أخرى",
    "card": {"named": "حرف", "does": "", "named_as": {"ل": "لام التوكيد"}},
-   "_khabar_lam": "the لام of emphasis comes onto the khabar of إنّ (Alfiyya: وبعد ذات الكسر تصحب الخبر لام ابتداء), a jar-majroor or ظرف too (وَإِنَّكَ لَعَلَى خُلُقٍ عَظِيمٍ، إِنَّ اللَّهَ لَمَعَ الْمُحْسِنِينَ); the dictionary never writes it onto a حرف جر or ظرف (morphology._lam_on_particle)",
+   "_khabar_lam": "the لام of emphasis comes onto the khabar of إنّ (Alfiyya: وبعد ذات الكسر تصحب الخبر لام ابتداء), a jar-majroor or ظرف too (وَإِنَّكَ لَعَلَى خُلُقٍ عَظِيمٍ، إِنَّ اللَّهَ لَمَعَ الْمُحْسِنِينَ); the dictionary never writes it onto a حرف جر or ظرف (morphology._emphasis_lam)",
    "khabar_lam": {"lam": "ل", "onto": ["jarr", "zarf_makan"]},
    "effect": "draws attention, answers, explains, urges, or adds a nuance; governs nothing",
    "_fatha_lam": "a لام written onto a word with a fatha is the لام of emphasis (لَيَقُولَنَّ، إِنَّ زَيْدًا لَجَالِسٌ: اللام المزحلقة), governing nothing; the jarr لام takes a kasra, a fatha only before an attached pronoun (لَهُ), which the parser keeps as its own word (particles._emphasis_lam)",

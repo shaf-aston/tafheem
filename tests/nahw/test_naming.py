@@ -811,3 +811,16 @@ def test_a_noun_in_nasb_hung_as_the_object_of_inna_is_its_ism(has_ism):
         toks.append(token(5, "زيد", "زيد", "NOM", 1, "SBJ", typed="زَيْدًا", cas="a"))
     inna_object(toks)
     assert toks[3]["rel"] == ("OBJ" if has_ism else "SBJ")
+
+
+@pytest.mark.parametrize("pattern, link, command", [
+    ("أَ1ْ2َ3", "OBJ", True),   # ارفع صوتك: an object on what the dictionary read as an elative
+    ("أَ1ْ2َ3", "MOD", False),  # nearest case: a word hung on it as no object vouches for nothing
+    ("1َ2ِ3", "OBJ", False),    # nearest case: an object on a word that is no elative
+])
+def test_only_an_object_on_an_elative_vouches_for_a_bare_command(pattern, link, command):
+    toks = [token(1, "أرفع", "أرفع", "NOM", 0, "---", pos_camel="noun", pattern=pattern, diac="أَرْفَعُ", root="رفع"),
+            token(2, "صوت", "صوت", "NOM", 1, link, pos_camel="noun", cas="a"),
+            token(3, "+ك", "أنت", "NOM", 2, "IDF", pos_camel="pron", token_type="enc0")]
+    correct(["ارفع", "صوتك"], toks)
+    assert (toks[0]["asp"] == "c") == command

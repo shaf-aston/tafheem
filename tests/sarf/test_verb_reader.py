@@ -50,6 +50,13 @@ def test_the_dictionarys_root_settles_a_tie():
     assert cell and (cell.person, cell.number) == ("2", "p")
 
 
+def test_bare_letters_are_read_only_where_the_sentence_vouches_for_a_verb():
+    assert verb_reader.command("اكتبي", root="كتب") is None   # without vowels it fits much else
+    cell = verb_reader.command("اكتبي", root="كتب", vouched=True)
+    assert cell and (cell.person, cell.gender, cell.number) == ("2", "f", "s")
+    assert verb_reader.command("أكرم", vouched=True) is None   # also the past أَكْرَمَ: still not only a command
+
+
 def test_after_a_jazm_or_nasb_particle_it_is_the_present_not_a_command():
     assert verb_reader.command("أَقِمْ", governed=True) is None   # لم أَقِمْ
     assert verb_reader.command("يَرْجِعُوا", governed=True, root="رجع") is None   # لَنْ يَرْجِعُوا

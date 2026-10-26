@@ -244,3 +244,16 @@ def test_a_hal_of_the_khabar_stands_beside_the_mubtada_and_khabar():
     drawn = built(*pointer_name_state())["tree"]
     assert drawn["label"] == term_ar("jumlah_ismiyyah")
     assert [(kid["role"], kid.get("children")) for kid in drawn["children"]] == [("مبتدأ", None), ("خبر", None), ("حال", None)]
+
+
+def test_a_mubtada_drawn_beside_its_khabar_unit_keeps_its_job_and_the_khabar_its_own():
+    # كِتَابُ الطَّالِبِ جَدِيدٌ فِي الصَّفِّ, with the مبتدأ hung under its khabar: neither one heads the sentence
+    toks = [token(1, "كتاب", "كتاب", "NOM", 3, "SBJ", stt="c", cas="n"),
+            token(2, "الطالب", "طالب", "NOM", 1, "IDF", stt="d", cas="g"),
+            token(3, "جديد", "جديد", "NOM", 0, "---", ud="ADJ", cas="n"),
+            token(4, "في", "في", "PRT", 3, "MOD", pos_camel="prep"),
+            token(5, "الصف", "صف", "NOM", 4, "OBJ", stt="d", cas="g")]
+    drawn = built(["كِتَابُ", "الطَّالِبِ", "جَدِيدٌ", "فِي", "الصَّفِّ"], toks)["tree"]
+    assert drawn["label"] == term_ar("jumlah_ismiyyah")
+    assert [kid["role"] for kid in drawn["children"]] == ["مبتدأ", "خبر"]
+    assert [kid["role"] for kid in drawn["children"][0]["children"]] == ["مضاف", "مضاف إليه"]

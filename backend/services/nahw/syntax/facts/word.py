@@ -5,8 +5,8 @@ from __future__ import annotations
 import re
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
-from backend.services.nahw.book import book_words, is_diptote, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
+from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, letters, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
+from backend.services.nahw.book import book_words, is_diptote, elative_shape, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
 # a root letter is what is left once the letters that come and go are removed
@@ -21,6 +21,21 @@ def is_suffix(token: dict) -> bool:
 def is_prefix(token: dict) -> bool:
     """A letter written onto the word after it (ف+, و+, ل+)."""
     return token.get("form", "").endswith("+")
+
+
+def is_emphasis_lam(tokens: list[dict], i: int) -> bool:
+    """لَيَقُولَنَّ، لَلْحُسْنَى، لَزَيْدٌ: a لام written onto a word with a fatha typed on it is the لام of
+    emphasis, governing nothing (closed_words ghair_amila_other `_fatha_lam`); لَهُ keeps its jarr, since
+    the parser leaves that لام a word of its own before the pronoun. So is one written onto a حرف جر,
+    typed bare or not (وإنك لعلى خلق عظيم): a جار takes no جار after it."""
+    base = tokens[i + 1] if i + 1 < len(tokens) else None
+    if tokens[i]["form"] != "ل+" or base is None:
+        return False
+    at = 0  # the لام's letter in the typed word: after the pieces written in front of it (وَلَـ، فَلَـ)
+    while at < i and is_prefix(tokens[i - 1 - at]):
+        at += 1
+    marked = letters(base.get("typed") or "")
+    return is_preposition(base) or at < len(marked) and "َ" in marked[at][1]
 
 
 def base_tokens(words: list[str], tokens: list[dict]) -> list[dict]:
@@ -309,10 +324,8 @@ def is_participle(token: dict) -> bool:
 
 
 def is_elative(token: dict) -> bool:
-    """أَعْلَى، أَكْبَر: the analyser's pattern holds the elative's shape (closed_words elative_patterns), with or without ال or a proclitic;
-    خير and شر have lost its hamza, so they are listed by word (`hamza_dropped`)."""
-    return any(shape in token.get("pattern", "") for shape in book_words("elative_patterns")) \
-        or is_one(token["lemma"], "elative_patterns", "hamza_dropped")
+    """أَعْلَى، أَكْبَر، خَيْر: an elative (book.elative_shape)."""
+    return elative_shape(token.get("pattern", ""), token["lemma"])
 
 
 def is_describing(token: dict) -> bool:

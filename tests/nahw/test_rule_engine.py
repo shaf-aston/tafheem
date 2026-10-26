@@ -23,7 +23,7 @@ from backend.services.nahw import rule_engine
 from backend.services.nahw import syntax
 from backend.services.text.arabic_text import words
 from backend.services.nahw.book import term_ar
-from tests.nahw_helpers import needs_parser
+from tests.nahw_helpers import cards, needs_parser
 
 pytestmark = needs_parser
 
@@ -150,6 +150,45 @@ def test_a_noun_with_its_own_pronoun_is_no_command(sentence: str, role: str):
     """عَمِّي is uncle + my, though its letters also spell the command "be general" to a woman."""
     word = iraab.analyze(sentence)["words"][-1 if role == "فاعل" else 0]
     assert word["role"].startswith(role), word
+
+
+@pytest.mark.parametrize("sentence, at, want", [
+    # a noun read with a sign of the noun is never a command (Ibn Aqil V1 p15: بالجر والتنوين والندا وأل)
+    ("الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", 3, "مضاف إليه"),
+    ("الشُّكْرُ لِلَّهِ رَبِّ", 2, "صفة"),  # no sentence of asking describes (V3 p198)
+    ("سُبْحَانَ رَبِّ الْعَالَمِينَ", 1, "مضاف إليه"),
+    ("يَا رَبِّ", 1, "منادى"),
+    ("يَا رَبِّ اغْفِرْ لِي", 1, "منادى"),
+    ("رَبِّ ابْنَكَ", 0, "فعل"),  # nearest case: opening the sentence, it is the command "raise"
+    ("يَا زَيْدُ رَبِّ ابْنَكَ", 2, "فعل"),  # nearest case: in jarr after زيدُ, it is no صفة of it
+    ("أَلَا يَا اسْجُدُوا لِلَّهِ", 2, "فعل"),  # nearest case: after يا, a word read as no noun
+])
+def test_a_noun_with_a_sign_of_the_noun_is_no_command(sentence: str, at: int, want: str):
+    assert cards(sentence)[at]["role"] == want
+
+
+@pytest.mark.parametrize("sentence, want", [
+    # an elative takes no object (Ashmuni V2 p312: أجمعوا على أنه لا ينصب المفعول به): its nasb noun is its تمييز
+    ("زَيْدٌ أَكْبَرُ مِنْكَ سِنًّا", "تمييز"),
+    ("هُوَ أَكْبَرُ مِنْكَ سِنًّا", "تمييز"),
+    ("زَيْدٌ ضَارِبٌ بَكْرًا", "مفعول به"),  # nearest case: a participle works as its verb does
+])
+def test_an_elative_takes_no_object(sentence: str, want: str):
+    assert cards(sentence)[-1]["role"] == want
+
+
+@pytest.mark.parametrize("sentence, want", [
+    # with no vowel typed, the sentence vouches for the command: the dictionary has no reading at all
+    ("اكتبي درسك", ["فعل", "مفعول به"]),
+    ("يا سعاد اكتبي درسك", ["حرف", "منادى", "فعل", "مفعول به"]),
+    # or the parser hung an object on what the dictionary read as an elative, which takes none
+    ("ارفعي صوتك", ["فعل", "مفعول به"]),
+    ("يا سعاد ارفعي صوتك", ["حرف", "منادى", "فعل", "مفعول به"]),
+    ("أخي أكبر مني", ["مبتدأ", "خبر", "حرف جر"]),  # nearest case: an elative with no object stays one
+    ("عمي كريم", ["مبتدأ", "خبر"]),  # nearest case: a noun's own pronoun, hung as its مضاف إليه
+])
+def test_a_bare_command_the_sentence_vouches_for(sentence: str, want: str):
+    assert [c["role"] for c in cards(sentence)] == want
 
 
 @pytest.mark.parametrize("sentence, want", [
@@ -578,6 +617,8 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("مَا لَكَ عَلَيَّ سُلْطَانٌ", ["حرف", "حرف جر", "حرف جر", "مبتدأ"]),
     ("وَمَا عِنْدَ اللَّهِ خَيْرٌ", ["مبتدأ", "مفعول فيه", "مضاف إليه", "خبر"]),
     ("الَّذِي فِي الدَّارِ رَجُلٌ", ["مبتدأ", "حرف جر", "مجرور", "خبر"]),
+    # the parser hangs خير under the ظرف, which takes no subject: it is the relative's khabar
+    ("وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى", ["مبتدأ", "مفعول فيه", "مضاف إليه", "خبر", "معطوف"]),
     # the question hamza on a جار: the noun after it in jarr is its majrur, not a verb's (أَفِي "I fulfil")
     ("أَفِي اللَّهِ شَكٌّ", ["حرف جر", "مجرور", "مبتدأ"]),
     ("أَفِي بِعَهْدِي", ["فعل", "مجرور"]),
@@ -600,6 +641,24 @@ def test_ma_before_a_fronted_khabar_and_its_raf_noun_is_the_negation(sentence: s
     words = iraab.analyze(sentence)["words"]
     assert ("النافية" in words[0]["reason"]) is negates
     assert ("مبتدأ مؤخر" in words[-1]["reason"]) is negates
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    # أَبْقَى reads as the elative and as "and I remain": joined onto an elative, it is that elative
+    ("وَالْآخِرَةُ خَيْرٌ وَأَبْقَى", ["مبتدأ", "خبر", "معطوف"]),
+    ("هُوَ أَعْلَمُ وَأَحْكَمُ", ["مبتدأ", "خبر", "معطوف"]),
+    # one the dictionary lacks, read by sarf's shape once the و is off
+    ("الْآخِرَةُ أَبْقَى وَأَدْوَمُ", ["مبتدأ", "خبر", "معطوف"]),
+    # the typed vowels still choose (the past verb's fatha, the verb's damma), and a participle takes a verb
+    ("زَيْدٌ خَيْرٌ وَأَحْسَنَ إِلَيَّ", ["مبتدأ", "خبر", "فعل", "حرف جر"]),
+    ("زَيْدٌ قَائِمٌ وَأَدُومُ", ["مبتدأ", "خبر", "فعل"]),
+    ("زَيْدٌ قَائِمٌ وَأَبْقَى عَمْرًا", ["مبتدأ", "خبر", "فعل", "مفعول به"]),
+    # a verb is joined onto an active participle, which is like a verb (Ibn Aqil V3 p244)
+    ("زَيْدٌ قَائِمٌ وَأَبْقَى", ["مبتدأ", "خبر", "فعل"]),
+    ("هُوَ مُقِيمٌ وَأَبْقَى", ["مبتدأ", "خبر", "فعل"]),
+])
+def test_a_word_joined_onto_an_elative_is_an_elative(sentence: str, expected: list[str]):
+    assert [w["role"] for w in cards(sentence)] == expected
 
 
 @pytest.mark.parametrize("sentence, sign", [("أَيُّكُمْ أَحْسَنُ عَمَلًا", "ضمة"), ("أَيُّ الْأَعْمَالِ أَفْضَلُ", "ضمة"),

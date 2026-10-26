@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_describing, is_elative, is_participle, is_preposition, is_verb, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_describing, is_elative, is_participle, is_preposition, is_verb, is_zarf, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -74,10 +74,14 @@ def after_pointer(tokens: list[dict]) -> None:
     (هذا الكتابُ، زيدٌ الكريمُ), so an indefinite noun or adjective the parser hung as the صفة of a
     definite word that opens the sentence (a pointer, a relative, a name, a word with ال), or a
     describing word it hung as its subject, is the khabar, that word its mubtada. A plain noun stays
-    its subject: after ما it is the مبتدأ مؤخر of the negation (ما في الدار أحدٌ, particles `fronted`)."""
+    its subject: after ما it is the مبتدأ مؤخر of the negation (ما في الدار أحدٌ, particles `fronted`).
+    A ظرف or جار ومجرور takes no subject, so one hung as the subject of the ظرف or majrur that is the
+    opener's صلة (وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى) is told of the opener."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
+        while token["rel"] == "SBJ" and head and head["head"] and _in_shibh_jumla(head, s):
+            head = s.head(head)
         if (head and head["head"] == 0 and head["pos"] in ("NOM", "PROP") and not is_verb(head) and (token["rel"] == "MOD" or token["rel"] == "SBJ" and is_describing(token))
                 and (head.get("pos_camel") in ("pron_dem", "pron_rel", "noun_prop") or head.get("stt") == "d")
                 and token["id"] > head["id"] and token.get("pos_camel") in ("noun", "adj")
@@ -98,6 +102,11 @@ def told_of_jar(tokens: list[dict]) -> None:
         if (token["rel"] == "SBJ" and majrur["rel"] == "OBJ" and jar and is_preposition(jar)
                 and noun_tagged(majrur) and not works_as_verb(majrur)):
             token["head"] = jar["id"]
+
+
+def _in_shibh_jumla(token: dict, s: Sentence) -> bool:
+    """A ظرف or a preposition: the head of a شبه جملة, which tells of nothing by a subject of its own."""
+    return is_zarf(token, s) or is_preposition(token)
 
 
 def _indefinite(token: dict, tokens: list[dict]) -> bool:

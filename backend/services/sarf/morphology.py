@@ -20,7 +20,7 @@ from typing import Any, NamedTuple
 from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services.sarf import noun_reader
 from backend.services.sarf import verb_reader
-from backend.services.nahw.book import book_map, book_words, is_built_word, is_mabni, is_one, sakt_off, six_noun_case
+from backend.services.nahw.book import book_map, book_words, elative_shape, is_built_word, is_mabni, is_one, sakt_off, six_noun_case
 from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -640,7 +640,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked, evidence = twin_ranked[0], twin
         if not _agreeing(evidence, ranked) and (name := _name_in_nasb(token, disambiguator)):
             ranked = [name]
-        if lam := _lam_on_particle(evidence, disambiguator):
+        if lam := _emphasis_lam(evidence, disambiguator):
             ranked = [lam]
         if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token)) and sarf.get("asp") != "c" \
                 and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
@@ -702,6 +702,15 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             and out[1].get("pos") == "verb" and out[1].get("per") == "1" and out[1].get("enc0") in ("0", "na", None) \
             and (elative := noun_reader.reading_of(steps[1][0])):
         out[1] = elative
+    # وَالْآخِرَةُ خَيْرٌ وَأَبْقَى: a word joined by و onto an elative, which the typed vowels read as that
+    # elative as well as a verb ("and I remain"), is the elative: a verb is joined onto a noun only when the
+    # noun is like a verb, as the active participle is (Ibn Aqil on the Alfiyya V3 p244), and an elative is not
+    for i in range(1, len(out)):
+        if out[i].get("pos") == "verb" and out[i - 1].get("pos") in NOUNISH \
+                and elative_shape(out[i - 1].get("pattern", ""), out[i - 1].get("lex", "")):
+            word = steps[i][0]  # the only shape of sarf's nouns a verb spells too is أَفْعَل, the elative's
+            if (noun := _joined_noun(word, "و", "CONJ", prc2="wa_conj")) and best_reading(word, [noun]):
+                out[i] = noun
     # مَنْ جَدَّ وَجَدَ: a مضاف needs its مضاف إليه straight after it, so a bare construct noun
     # before a و, a preposition or nothing is not the word typed (here the verb جَدَّ)
     # لَا رَيْبَ فِيهِ: after لا النافية للجنس the noun's missing tanween is لا's building on fatha
@@ -783,22 +792,27 @@ def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=Non
     return _joined_onto(asked, _reading(rest, ranked), "INTERROG_PART", prc3="Aa_ques")
 
 
-def _lam_on_particle(typed: str, disambiguator=None) -> dict | None:
+def _emphasis_lam(typed: str, disambiguator=None) -> dict | None:
     """وَإِنَّكَ لَعَلَى خُلُقٍ عَظِيمٍ: after إنّ the لام of emphasis comes onto its khabar, a jar-majroor
     or ظرف too (closed_words `khabar_lam`). The dictionary never writes a لام onto a حرف جر or ظرف, so
     it reads لِ+عَلِيّ or a verb; but a جار takes no جار after it, so the word is that لام on the
     particle, after إنّ or not (وَاللَّهِ لَعَلَى الْحَقِّ أَنْتَ: the لام of the oath's answer). Not with a
     typed kasra (لِمَنْ: the جار on مَن who), nor where a verb reads the letters too (إِنَّ اللَّهَ لَعَنَ
-    الْكَافِرِينَ، لمن bare as لُمْنَ)."""
+    الْكَافِرِينَ، لمن bare as لُمْنَ). A لام typed with a fatha onto any other word that no reading of the
+    whole word fits (لَأَنْتُمْ أَشَدُّ رَهْبَةً: the dictionary has only لِ+ a verb) is that لام too: the
+    jarr لام takes a fatha only before a pronoun joined on (لَكَ), which the dictionary reads whole
+    (closed_words ghair_amila_other `_fatha_lam`)."""
     lam = book_map("ghair_amila_other", "khabar_lam")
     marked = letters(typed)
     if not (marked and marked[0][0] == lam["lam"] and not marked[0][1] - {"َ"}):
         return None
     said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
     rest = typed[len(said):]
-    if not any(strip_diacritics(rest) in book_words(family) for family in lam["onto"]):
-        return None
-    if any(r.get("pos") == "verb" for r in (_ranked([typed], None) or [[]])[0] if _agreeing(typed, [r])):
+    whole = [r for r in (_ranked([typed], None) or [[]])[0] if _agreeing(typed, [r])]
+    if any(strip_diacritics(rest) in book_words(family) for family in lam["onto"]):
+        if any(r.get("pos") == "verb" for r in whole):
+            return None
+    elif whole:
         return None
     ranked = _rest_readings(rest, disambiguator)
     return _joined_onto(said, _reading(rest, ranked), "EMPHATIC_PART", prc1="la_emph") if _agreeing(rest, ranked) else None
@@ -808,6 +822,17 @@ def _rest_readings(rest: str, disambiguator=None) -> list[dict]:
     """The readings of what is left once a one-letter particle is off: the word itself, not an
     abbreviation spelled like it (فِي)."""
     return [r for r in (_ranked([rest], disambiguator) or [[]])[0] if r.get("pos") != "abbrev"]
+
+
+def _joined_noun(typed: str, letter: str, tag: str, **proclitic) -> dict | None:
+    """وَأَدْوَمُ: the noun sarf's shapes read once a one-letter particle is off (noun_reader takes ال,
+    a ة and a pronoun, not a particle before them), the particle put back."""
+    marked = letters(typed)
+    if not (marked and marked[0][0] == letter):
+        return None
+    said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
+    noun = noun_reader.reading_of(typed[len(said):])
+    return _joined_onto(said, noun, tag, **proclitic) if noun else None
 
 
 def _joined_onto(said: str, found: dict, tag: str, **proclitic) -> dict:
