@@ -28,7 +28,13 @@
 .grow-today h3 { font-size: var(--type-title); font-weight: 800; color: var(--text); text-wrap: balance; }
 .grow-today-holds { font-size: var(--type-ui); color: var(--text-dim); }
 .grow-nexts:empty { display: none; }
-.grow-nexts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-top: 4px; }
+.grow-nexts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 8px; margin-top: 4px; }
+/* A phone shows the first three next steps and a More button for the rest, so the level and the worlds stay near. */
+.grow-nexts-more { display: none; }
+@media (max-width: 39.99rem) {
+  .grow-nexts:not([data-open]) > :nth-child(n + 4) { display: none; }
+  .grow-nexts:not([data-open]):has(> :nth-child(4)) + .grow-nexts-more { display: block; justify-self: center; min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: var(--type-ui); font-weight: 700; color: var(--w); }
+}
 .grow-next {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; text-align: start;
   border-radius: var(--radius-md); background: var(--surface); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
@@ -48,8 +54,6 @@
 /* ── home: the worlds ── */
 .grow-worlds-h { font-size: var(--type-body); font-weight: 800; color: var(--text); }
 .grow-worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 12px; }
-/* Two worlds across on a phone, so the row of worlds is a glance, not a long scroll. */
-@media (max-width: 39.99rem) { .grow-world-ar { font-size: 2rem; } }
 .grow-world-tile {
   display: grid; gap: 6px; align-content: end; min-height: 150px; padding: 14px; text-align: start;
   border-radius: var(--radius-lg); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
@@ -61,6 +65,10 @@
 .grow-tile-ar { color: var(--w); font-size: 2rem; line-height: 1.2; }
 .grow-tile-name { font-size: var(--type-body); font-weight: 800; color: var(--text); }
 .grow-tile-status { font-size: var(--type-small); color: var(--text-dim); }
+/* The picture keeps its own row at the top (emblem.css pins it there), so a long Arabic name never runs under it.
+   Two worlds across on a phone, so the worlds are a glance, not a long scroll. */
+.grow-world-tile.grow-world-tile { min-height: 0; padding-top: 74px; }
+@media (max-width: 39.99rem) { .grow-tile-ar { font-size: 1.5rem; } }
 
 /* ── a world's backdrop: a faded picture under the whole screen (components/grow/Backdrop.jsx) ── */
 /* The world screen wears .grow-world so the layer has something to fill; isolation keeps the layer's z-index under the content and nothing else. */
