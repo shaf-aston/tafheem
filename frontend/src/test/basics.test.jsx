@@ -82,7 +82,7 @@ describe('basics', () => {
 
     click('Continue')
     expect(screen.getByText('What does it mean?')).toBeTruthy()
-    expect(screen.getAllByRole('radio').map((radio) => radio.textContent).sort()).toEqual(['a book', 'the book'])
+    expect(screen.getAllByRole('radio').map((radio) => radio.lastChild.textContent).sort()).toEqual(['a book', 'the book'])
   })
 
   it.each([['a page load', 0], ['the Grow tab reopened on its saved place', 2]])('%s on a lesson address lands on Grow home, with the lesson offered', async (_, arrival) => {
@@ -123,7 +123,7 @@ describe('basics', () => {
     expect(screen.getByText(/^Which one is “my .+”\?$/)).toBeTruthy()
     expect(screen.getAllByRole('radio')).toHaveLength(3)
     // The options are shuffled; the right one has neither ال nor a final ة before the ending.
-    fireEvent.click(screen.getAllByRole('radio').find((option) => !/^ال|ة/.test(option.textContent.trim())))
+    fireEvent.click(screen.getAllByRole('radio').find((option) => !/^ال|ة/.test(option.lastChild.textContent.trim())))
     click('Check')
     expect(screen.getByRole('status').textContent).toMatch(/on the end means “my”/)
     await waitFor(() => expect(filed.at(-1)).toMatchObject({

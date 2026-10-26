@@ -47,7 +47,9 @@
 
 /* ── home: the worlds ── */
 .grow-worlds-h { font-size: var(--type-body); font-weight: 800; color: var(--text); }
-.grow-worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.grow-worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 12px; }
+/* Two worlds across on a phone, so the row of worlds is a glance, not a long scroll. */
+@media (max-width: 39.99rem) { .grow-world-ar { font-size: 2rem; } }
 .grow-world-tile {
   display: grid; gap: 6px; align-content: end; min-height: 150px; padding: 14px; text-align: start;
   border-radius: var(--radius-lg); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
@@ -97,7 +99,13 @@
 .grow-stage-text b { font-size: var(--type-ui); color: var(--text); }
 
 /* ── a lesson ── */
-.grow-lesson { display: grid; gap: 20px; max-width: 560px; margin: 0 auto; }
+.grow-lesson { display: flex; flex-direction: column; gap: 20px; max-width: 560px; margin: 0 auto; }
+/* On a phone the lesson fills the screen and Check/Continue sits at its foot, by the thumb and above the tab bar: the
+   spare room goes between the question and the button, not under it. A pointer screen keeps the button by the answers. */
+@media (max-width: 39.99rem) {
+  .grow-lesson:has(.grow-lesson-foot) { min-height: calc(100dvh - 4.75rem - var(--layout-nav) - env(safe-area-inset-bottom, 0px)); }
+  .grow-lesson-foot { position: sticky; bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px)); z-index: var(--layer-sticky); }
+}
 .grow-lesson-top { display: flex; align-items: center; gap: 12px; }
 .grow-lesson-top .grow-lesson-bar { flex: 1; height: 12px; }
 .grow-card { display: grid; gap: 14px; animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) both; }
@@ -108,13 +116,16 @@
 .grow-teach-also { display: flex; justify-content: center; align-items: baseline; gap: 0.75rem; color: var(--text-dim); font-size: var(--type-body); }
 .grow-teach-note { padding: 12px 14px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--w) 8%, var(--surface)); color: var(--text); font-size: var(--type-body); line-height: 1.6; text-wrap: pretty; }
 .grow-options { display: grid; gap: 10px; }
-.grow-option { min-height: 52px; padding: 12px 16px; text-align: start; border-radius: var(--radius-md); border: 2px solid var(--border-hi); background: var(--surface); color: var(--text); font-size: var(--type-body); transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease; }
+/* Short answers two by two (components/grow/exercises/OneOf): Arabic words always, short English once a row fits two. */
+.grow-options-ar.grow-options-two { grid-template-columns: 1fr 1fr; }
+@media (min-width: 480px) { .grow-options-two { grid-template-columns: 1fr 1fr; } }
+.grow-option { --option-number-bg: var(--surface-hi); display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 12px 16px; text-align: start; border-radius: var(--radius-md); border: 2px solid var(--border-hi); background: var(--surface); color: var(--text); font-size: var(--type-body); transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease; }
 .grow-option:not(:disabled):hover { border-color: color-mix(in srgb, var(--w) 60%, var(--border-hi)); }
 .grow-option[data-mark='picked'] { border-color: var(--w); background: color-mix(in srgb, var(--w) 14%, var(--surface)); }
 .grow-option[data-mark='right'] { border-color: var(--success); background: color-mix(in srgb, var(--success) 16%, var(--surface)); }
 .grow-option[data-mark='wrong'] { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 14%, var(--surface)); }
 .grow-option:disabled { cursor: default; }
-.grow-lesson-foot { display: grid; gap: 10px; padding: 14px; margin: 0 -14px; border-radius: var(--radius-lg); }
+.grow-lesson-foot { display: grid; gap: 10px; padding: 14px; margin: auto -14px 0; border-radius: var(--radius-lg); }
 .grow-lesson-foot[data-result='right'] { background: color-mix(in srgb, var(--success) 14%, var(--surface)); }
 .grow-lesson-foot[data-result='wrong'] { background: color-mix(in srgb, var(--danger) 12%, var(--surface)); }
 .grow-lesson-say { font-weight: 800; color: var(--text); }
@@ -141,6 +152,7 @@
 .grow-gap-line { font-size: 1.9rem; line-height: 2; }
 .grow-gap { display: inline-block; min-width: 3em; padding: 0 6px; border-bottom: 3px solid var(--w); color: var(--w); }
 .grow-options-ar .grow-option { text-align: center; font-size: 1.4rem; }
+.grow-options-ar .grow-option > :last-child { flex: 1; }
 
 /* ── a world's picture: the stage line, the shelf, the sky (components/grow/scenes) ── */
 .grow-stage-line { display: grid; gap: 6px; font-size: var(--type-ui); color: var(--text); font-weight: 700; }
@@ -175,6 +187,8 @@
 /* A book world's cards (components/grow/exercises): the book's sentence, sorting, ordering. */
 .grow-rule-title { font-size: var(--type-title); font-weight: 800; color: var(--text); }
 .grow-rule-ar { padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); line-height: 1.9; }
+/* The line a choose card asks about stands centred over its answers; a rule card's longer text keeps to the right. */
+.grow-choose-ar { text-align: center; }
 .grow-rule-en { font-size: var(--type-body); line-height: 1.6; color: var(--text); }
 .grow-ask-strong { font-weight: 700; color: var(--text); }
 .grow-option-check { padding-inline-start: 44px; position: relative; }
