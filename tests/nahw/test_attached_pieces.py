@@ -540,6 +540,18 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
     # a plain noun takes no object: أكثر is زيد's khabar, مالا the elative's تمييز
     ("زَيْدٌ أَكْثَرُ مِنْكَ مَالًا", "زَيْدٌ", ("role", "مبتدأ")),
     ("زَيْدٌ أَكْثَرُ مِنْكَ مَالًا", "أَكْثَرُ", ("role", "خبر")),
+    # a مضاف إليه is مجرور: a nasb noun the parser hung on an elative as one is its تمييز (Ibn Aqil V3 p174)
+    ("زَيْدٌ أَكْبَرُ سِنًّا", "سِنًّا", ("role", "تمييز")),
+    ("هُوَ أَفْضَلُ رَجُلٍ", "رَجُلٍ", ("role", "مضاف إليه")),  # nearest case: in jarr, the مضاف إليه
+    # a doubled root's elative is أَفَلّ (أَشَدّ), its two like letters merged
+    ("لَأَنْتُمْ أَشَدُّ رَهْبَةً", "رَهْبَةً", ("role", "تمييز")),
+    ("هُوَ أَشَدُّ حُمْرَةً مِنْ زَيْدٍ", "حُمْرَةً", ("role", "تمييز")),
+    ("هُوَ أَحَقُّ النَّاسِ بِهِ", "النَّاسِ", ("role", "مضاف إليه")),  # nearest case: in jarr
+    ("هُوَ أَقَلُّ مَالًا", "مَالًا", ("role", "تمييز")),  # أَفَلّ read أَقَلّ
+    ("هُوَ أَحَبُّ عَمَلًا", "عَمَلًا", ("role", "تمييز")),  # read أَحِبّ
+    ("هو أفضل رجل", "رجل", ("role", "مضاف إليه")),  # nearest case: no nasb written
+    ("هَذَا أَفْضَلُ مَسَاجِدَ", "مَسَاجِدَ", ("role", "مضاف إليه")),  # nearest case: a diptote's fatha is jarr
+    ("أَطْفَأَ زَيْدٌ نَارًا", "نَارًا", ("role", "مفعول به")),  # nearest case: a verb on أَفْعَلَ, its object
     # a verb khabar needs a pronoun back to its مبتدأ, so أَنْفَعُ is the elative, not "I benefit"
     ("الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ", "أَنْفَعُ", ("role", "خبر")),
     ("أَنَا أَكْتُبُ الدَّرْسَ", "أَكْتُبُ", ("role", "فعل")),
@@ -564,6 +576,13 @@ def test_sentence_check_fixes(sentence, word, want):
     card = next(w for w in iraab.analyze(sentence)["words"] if w["word"] == word)
     assert card.get(want[0]) == want[1]
 
+
+
+def test_a_definite_noun_on_an_elative_is_no_tamyeez():
+    """التمييز لا يكون إلا نكرة (Ibn Yaʿish, Sharh al-Mufassal): النَّاسَ written in nasb stays off it."""
+    from backend.services.nahw import iraab
+    card = next(w for w in iraab.analyze("هُوَ أَكْرَمُ النَّاسَ")["words"] if w["word"] == "النَّاسَ")
+    assert card.get("role") != "تمييز"
 
 @pytest.mark.parametrize("hung", [{}, {4: (2, "MOD")}, {4: (2, "MOD"), 2: (1, "SBJ")}, {2: (1, "SBJ"), 3: (4, "TPC")}])
 def test_zanna_pair_whatever_tree_the_parser_gives(hung):
