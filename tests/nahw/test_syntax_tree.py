@@ -183,3 +183,41 @@ def test_a_masdar_with_al_urged_alone_is_the_object_of_an_unwritten_verb():
             token(2, "الصدق", "صدق", "NOM", 1, "MOD", stt="d", cas="a", pos_camel="noun", pattern="ال1ِ2ْ3")]
     found = teacher.review(words, toks, named(words, toks))
     assert tree.build(words, toks, found)["unsaid"][0] == "مفعول به"
+
+
+def hal_sentence(second, second_rel, **second_feats):
+    """جاء الولدُ وهو يبكي, as the parser links it: هو under the verb, the verb on the و."""
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", vox="a", asp="p"),
+            token(2, "الولد", "ولد", "NOM", 1, second_rel, stt="d", **second_feats),
+            token(3, "و+", "و", "PRT", 1, "MOD", pos_camel="conj", token_type="prc2"),
+            token(4, "هو", "هو", "NOM", 5, "SBJ", pos_camel="pron", cas="n"),
+            token(5, "يبكي", "بكى", "VRB", 3, "OBJ", vox="a", asp="i")]
+    return built(["جَاءَ", second, "وَهُوَ", "يَبْكِي"], toks)["tree"]
+
+
+def test_waw_a_pronoun_and_a_verb_after_a_verb_draw_a_nominal_hal_with_a_verbal_khabar():
+    # جاء الولدُ وهو يبكي: الواو حالية، هو مبتدأ، وجملة يبكي خبره في محل رفع، والجملة الاسمية في محل نصب حال
+    drawn = hal_sentence("الْوَلَدُ", "SBJ", cas="n")
+    waw, hal = drawn["children"][2:]
+    assert waw["role"] == "واو الحال"
+    assert (hal["role"], hal["label"], hal["detail"]) == ("حال", term_ar("jumlah_ismiyyah"), "في محل نصب")
+    subject, khabar = hal["children"]
+    assert subject["role"] == "مبتدأ"
+    assert (khabar["role"], khabar["label"], khabar["detail"]) == ("خبر", tree.VERBAL, "في محل رفع")
+    assert [leaf["role"] for leaf in khabar["children"]] == ["فعل"]
+
+
+def test_the_hal_clause_is_the_same_after_a_verbs_object():
+    # رأيتُ الولدَ وهو يبكي
+    drawn = hal_sentence("الْوَلَدَ", "OBJ", cas="a")
+    assert [kid["role"] for kid in drawn["children"]] == ["فعل", "مفعول به", "واو الحال", "حال"]
+    assert [kid["role"] for kid in drawn["children"][3]["children"]] == ["مبتدأ", "خبر"]
+
+
+def test_a_mubtada_the_parser_hung_under_its_verb_heads_the_sentence():
+    # هو يبكي, linked with هو under the verb: still a nominal sentence, the verb's clause its khabar
+    toks = [token(1, "هو", "هو", "NOM", 2, "SBJ", pos_camel="pron", cas="n"),
+            token(2, "يبكي", "بكى", "VRB", 0, "---", vox="a", asp="i")]
+    drawn = built(["هُوَ", "يَبْكِي"], toks)["tree"]
+    assert drawn["label"] == term_ar("jumlah_ismiyyah")
+    assert [(kid["role"], kid.get("detail")) for kid in drawn["children"]] == [("مبتدأ", None), ("خبر", "في محل رفع")]
