@@ -145,14 +145,22 @@ def _words_of(rows: list[dict], settings: dict) -> tuple[list[dict], dict[int, i
     for row in rows:
         if row["rel_label_ar"] in settings["not_a_relation"]:
             continue
-        word = words[belongs[int(row["token_id"])]]
+        token = int(row["token_id"])
+        word = words[belongs[token]]
         # Every piece that has a job, in written order: أَفَلَا is three.
-        word.setdefault("pieces", []).append(row["pos_ar"])
+        word.setdefault("parts", []).append((row["pos_ar"], row["rel_label_ar"]))
         # أَلَيْسَ: the question hamza carries the word's arrow, but its stem says what the word is, a verb;
         # بِئْسَمَا is two stems, and the first is the word's
         if "STEM" in row["features"].split("|") and id(word) not in stemmed:
             stemmed.add(id(word))
             word["pos"] = row["pos"]
+        ref = int(row["ref_token_id"])  # a sentence's root points at itself
+        if ref != token and "STEM" not in row["features"].split("|") and belongs.get(ref) == belongs[token]:
+            # لَعَلَىٰ، وَإِنَّكَ: a prefix or ending hung on its own word's stem (لام التوكيد on عَلَى, the كَ
+            # that is إِنَّ's noun) says what is inside the word; the word's job is the stem's (عَلَى متعلق).
+            # The stem of بِعَزِيزٍ hung on its بِ is the word's own: the بِ carries the unit's job
+            continue
+        word.setdefault("pieces", []).append(row["pos_ar"])
         if "relation" in word:
             continue
         word["relation"] = row["rel_label_ar"]
@@ -165,7 +173,8 @@ def _words_of(rows: list[dict], settings: dict) -> tuple[list[dict], dict[int, i
 
     for word in words:
         pieces = word.get("pieces", [])
-        word["particle"] = bool(pieces) and all(piece in kinds for piece in pieces)
+        word["particle"] = bool(pieces) and all(piece in kinds for piece in pieces) \
+            and not any(job in settings["noun_only"] for piece, job in word.get("parts", ()) if piece not in kinds)
     return words, belongs
 
 
@@ -285,9 +294,11 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
         role = opening["ar"] if opens_clause else said
         tone = opening["tone"] if opens_clause else tone_of(relation)
         # Inside its own unit a particle is what it is (فِى is حَرْفُ جَرٍّ); the
-        # unit it heads carries the job (the jar-majroor is مُتَعَلِّقٌ).
+        # unit it heads carries the job (the jar-majroor is مُتَعَلِّقٌ). فِيهَا is that whole unit
+        # in one word, its مجرور inside it, so it keeps the unit's job.
         kind = (word.get("pieces") or [""])[0]
-        own = (_particle(kind, settings) if word.get("particle")
+        whole = not children[index] and any(piece not in settings["particle_kinds"] for piece, _ in word.get("parts", ()))
+        own = (_particle(kind, settings) if word.get("particle") and not whole
                else nahw_book.term(settings["unit_heads"][kind])
                if children[index] and kind in settings["unit_heads"] else None)
         clause = settings["constituent_labels"].get(word.get("constituent"))
@@ -296,9 +307,11 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
             own = _opening_role(word, settings)
 
         leaf = {"word": index, **(nahw_book.shown(own) if own else {"role": role, "tone": tone})}
-        if word.get("particle") and len(word["pieces"]) > 1:
-            # أَفَلَا: question, extra فَ, negation, each named by what it is.
-            leaf["parts"] = [nahw_book.shown(_particle(piece, settings)) for piece in word["pieces"]]
+        if word.get("particle") and len(word["parts"]) > 1:
+            # أَفَلَا: question, extra فَ, negation, each named by what it is; the كَ of إِنَّكَ by its job
+            leaf["parts"] = [nahw_book.shown(_particle(piece, settings)) if piece in settings["particle_kinds"]
+                             else {"role": nahw_book.relation_wording(job)[0], "tone": tone_of(job)}
+                             for piece, job in word["parts"]]
         if raw and not opens_clause and not own:
             # Said plainly rather than dressed up: this wording is the treebank's,
             # not the book's, and the page draws it as the weaker claim it is.
@@ -314,7 +327,7 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
             # فَ its own column by `prefix_arabic`.
             piece = nahw_book.shown(nahw_book.term(joined["key"]))
             leaf["prefix_arabic"] = joined["text"]
-            leaf["parts"] = [piece, {"role": leaf["role"], "tone": leaf["tone"]}]
+            leaf["parts"] = [piece, *(leaf.get("parts") or [{"role": leaf["role"], "tone": leaf["tone"]}])]
 
         if not children[index]:
             if sentence:

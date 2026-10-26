@@ -158,6 +158,8 @@
       "_",
       ""
     ],
+    "_noun_only_comment": "Jobs only a noun's ending can do inside its own word: a word whose pronoun is its مضاف إليه is a noun, whatever the treebank calls it (أَيُّهُمْ is an اسم استفهام, tagged حرف استفهام), since no particle takes a مضاف إليه.",
+    "noun_only": ["مضاف إليه"],
     "_tone_comment": "Matched as substrings, first hit wins, so مفعول به and مفعول مطلق share one entry.",
     "relation_tones": [
       [
