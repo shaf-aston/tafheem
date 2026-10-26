@@ -156,6 +156,8 @@ def test_question_hamza_split_only_off_the_first_word_that_needs_it():
     (["ما", "زيد", "ذاهبا"], False),       # a particle is there to work the nasb
     (["يا", "نصر", "بكرا"], False),        # يا works it (منادى), nothing else need be a verb
     (["نصر", "عصا"], False),               # the alif is عصا's own letter, no nasb to work
+    (["زَيْدٌ", "فَاهِمٌ", "الدَّرْسَ"], False),  # a typed tanween is a sign of the noun: no فَأَهِم
+    (["زَيْدٌ", "فَاهِمْ", "الدَّرْسَ"], True),   # nearest case: no tanween, the verb reading stands
 ])
 def test_a_bare_first_word_is_the_verb_a_written_nasb_needs(words, verb):
     assert ("verb" in [r.get("pos") for r in morphology.pick(words)]) is verb

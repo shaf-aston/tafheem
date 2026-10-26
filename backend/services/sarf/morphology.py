@@ -21,7 +21,7 @@ from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_ar
 from backend.services.sarf import noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.nahw.book import book_map, book_words, elative_shape, is_built_word, is_mabni, is_one, sakt_off, six_noun_case
-from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
+from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -725,12 +725,13 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     # نصر زيد بكرا، زيد نصر بكرا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به).
     # A noun read in nasb (بكرا's alif of tanween is written, typed vowels or none), in a line of
     # nouns alone, has none but a verb before it: the first word that reads as a past verb adding
-    # no letter the writing lacks (زَيَّدَ's shadda: الأصل عدم الزيادة). Typed vowels still choose
+    # no letter the writing lacks (زَيَّدَ's shadda: الأصل عدم الزيادة). Typed vowels still choose, and a
+    # typed tanween is a sign of the noun (Ibn Aqil V1 p15: بالجر والتنوين): زَيْدٌ فَاهِمٌ الدَّرْسَ, never فَأَهِم
     nasb = next((i for i, r in enumerate(out) if i and r.get("cas") == "a"), None)
     if nasb and all(r.get("pos") in NOUNISH for r in out):
         for i in range(nasb):
-            verb = best_reading(tokens[i], [r for r in _widened(tokens[i], steps[i][1])
-                                            if r.get("pos") == "verb" and "ّ" not in r.get("diac", "")])
+            verb = not has_tanween(tokens[i]) and best_reading(tokens[i], [
+                r for r in _widened(tokens[i], steps[i][1]) if r.get("pos") == "verb" and "ّ" not in r.get("diac", "")])
             if verb:
                 out[i] = verb
                 break
