@@ -271,11 +271,17 @@ def filed_root(letters: str) -> str:
 
 
 def headword_roots(word: str) -> list[str]:
-    """The roots the headwords spelled like `word` are filed under; [] when it is no headword."""
+    """The roots the headwords spelled like `word` are filed under; [] when it is no headword.
+
+    Folding finds صأم for صام, as it finds أكل for a reader's اكل; but a hamza is a root letter,
+    so where a headword is spelled as typed, only those are the word (صام, fast, is no صأم).
+    """
     load_dictionary()
-    key = _folded(strip_diacritics(word.strip()))
-    return list(dict.fromkeys(entry["root"] for entry in _arabic_index.get(key, ())
-                              if entry.get("root") and _folded(entry.get("arabic", "")) == key))
+    bare = strip_diacritics(word.strip())
+    key = _folded(bare)
+    spelled = [entry for entry in _arabic_index.get(key, ()) if _folded(entry.get("arabic", "")) == key]
+    exact = [entry for entry in spelled if strip_diacritics(entry.get("arabic", "")) == bare]
+    return list(dict.fromkeys(entry["root"] for entry in exact or spelled if entry.get("root")))
 
 
 def _by_reading(word: str) -> tuple[list[dict], tuple[str, str] | None]:

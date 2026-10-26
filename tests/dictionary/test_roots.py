@@ -240,3 +240,29 @@ def test_camels_readings_come_likeliest_first(monkeypatch):
     rare = {"lex": "أَتْرَك", "root": "t.r.k", "pos": "verb", "pos_lex_logprob": -5.2}
     monkeypatch.setattr(morphology, "_camel_analyzer", _Analyzer([unseen, rare, common]))
     assert [a["lex"] for a in morphology._analyses("يترك")] == ["تَرَك", "أَتْرَك", "وَتَر"]
+
+
+def test_a_headword_spelled_as_typed_beats_one_only_folding_finds(monkeypatch):
+    # Folded, صأم is صام; but a hamza is a root letter, and صام (fast) is filed with no root.
+    dictionary(monkeypatch, ("صَأَمَ", "صءم"), ("صَامَ", ""), ("أَكَلَ", "ءكل"))
+    assert dictionary_service.headword_roots("صام") == []
+    assert dictionary_service.headword_roots("اكل") == ["ءكل"]  # none typed so: folding finds it
+
+
+def test_a_lemma_with_a_letter_the_word_lacks_is_not_its_lemma():
+    # CAMeL files رأيت (see) under راوند (rhubarb): ن and د are nowhere in رأيت.
+    assert roots.settle("ر##", "راوند", "رَأَيْتُ") == "رءي"
+    assert roots.settle("ر##", "راوند") == "روي"  # the lemma alone, believed
+    assert roots.settle("ب#ت", "بيت", "بُيُوتٌ") == "بيت"  # a weak letter may change, the rest stand
+    assert roots.settle("ر##", "رأى", "رَ") == "رءي"  # or drop: رَ, see!, keeps رأى's ر alone
+
+
+def test_ta_marbuta_is_never_a_radical():
+    assert roots.settle("خدجة", "خديجة") == "خدج"
+
+
+def test_a_name_the_quran_tags_with_no_root_has_none_on_the_chart(monkeypatch):
+    monkeypatch.setattr(quran_corpus, "root_of", lambda word: "" if word == "مُوسَى" else None)
+    name = {"pos": "noun_prop", "root": "م.#.س", "lex": "مُوسَى"}
+    assert morphology.reading_root({**name, "diac": "مُوسَى"}) == ""
+    assert morphology.reading_root({**name, "pos": "noun", "diac": "مُوسَى"}) != ""  # only a name

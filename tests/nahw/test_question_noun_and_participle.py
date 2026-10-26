@@ -192,6 +192,8 @@ def test_written_nasb_is_the_alif_of_tanween(typed, diac, case):
 
 @pytest.mark.parametrize("form, lemma, found", [
     ("بكرا", "بكرة", False),   # بَكَرًا: no ة, another word
+    ("البكر", "بكرة", False),  # nor with the article
+    ("سنين", "سنة", True),     # a plural drops it
     ("بكرة", "بكرة", True),
     ("ساعات", "ساعة", True),   # its ة written ت in the plural
     ("يوما", "يوم", True),

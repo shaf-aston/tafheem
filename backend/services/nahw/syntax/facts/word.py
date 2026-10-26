@@ -363,6 +363,8 @@ def listed(token: dict, family: str, part: str = "words") -> bool:
     to صباح and may misread the second (كُوبًا as كوان)."""
     form = strip_diacritics(token["form"])
     bare = form[:-1] if form.endswith("ا") and typed_tanween(token) else form
-    # بُكْرَة's ة is its own letter, written ة or ت in all its forms: بكرا (بَكَرًا) is another word
-    lemma = token["lemma"] if not token["lemma"].endswith("ة") or "ة" in form or "ت" in form else ""
+    # بُكْرَة's ة is its own letter, written ة or ت wherever its letters stand: بكرا (بَكَرًا), its
+    # letters with no ة, alone or with a nasb alef, is another word. A plural drops it (سنين of سنة).
+    written = form.removeprefix("ال")
+    lemma = token["lemma"] if not token["lemma"].endswith("ة") or token["lemma"][:-1] not in (written, written.removesuffix("ا")) else ""
     return any(is_one(spelling, family, part) for spelling in (lemma, form, bare) if spelling)
