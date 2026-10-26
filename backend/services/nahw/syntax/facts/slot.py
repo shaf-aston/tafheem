@@ -34,12 +34,12 @@ def completes_kaada(token: dict, s: Sentence) -> bool:
 
 
 def is_zarf(token: dict, s: Sentence) -> bool:
-    """A listed time or place word, or كل/بعض added to one (كلَّ يومٍ)."""
+    """A listed time or place word, or كل/بعض or a number added to one (كلَّ يومٍ، عشرَ سنينَ)."""
     if token["pos"] == "PRT":
         return False
     if listed(token, "zarf_zaman") or listed(token, "zarf_makan"):
         return True
-    return listed(token, "zarf_zaman", "carriers") and any(
+    return (listed(token, "zarf_zaman", "carriers") or listed(token, "adad_mudaf")) and any(
         k["rel"] == "IDF" and (listed(k, "zarf_zaman") or listed(k, "zarf_makan")) for k in s.kids(token))
 
 

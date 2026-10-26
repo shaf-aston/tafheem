@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
+from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, same_case, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
 from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, place_case, praised_noun, previous_noun, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
@@ -19,18 +19,22 @@ def stands_for(token: dict, s: Sentence) -> bool:
     before = previous_noun(token, s)
     if s.verbless or not before or token["rel"] == "IDF":
         return False
-    # the pronoun stuck on a noun is its مضاف إليه whatever link the parser drew (عِلْمُهُ)
-    names = token["pos"] == "PROP" or any(attached_pronoun(k)
-                                          for k in s.kids(token))
+    # the pronoun stuck on a noun is its مضاف إليه whatever link the parser drew (عِلْمُهُ); a name
+    # after a name names a second one (ضرب موسى عيسى: the doer, then the done to)
+    names = token["pos"] == "PROP" and not token.get("guessed") and before["pos"] != "PROP" \
+        or any(attached_pronoun(k) for k in s.kids(token))
+    # a مضاف with nothing added to it yet (أَبُو مُوسَى) takes this word so
+    if before.get("stt") == "c" and not any(k["rel"] == "IDF" for k in s.kids(before)):
+        return False
     mine = typed_or_parsed_case(token)
     # a name is definite though it wears tanween (أعجبني زيدٌ علمُه)
     definite = before.get("stt") in ("d", "c") or before["pos"] == "PROP"
-    if not (names and definite and mine and mine == typed_or_parsed_case(before)):
+    if not (names and definite and same_case(token, before)):
         return False
     # جاء الرجلُ أبوه عالمٌ: an indefinite noun in its case after it is its khabar, so the
     # noun opens a sentence of its own (a حال) and stands for nothing
     after = next_word(token, s)
-    if after and noun_tagged(after) and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
+    if after and mine and noun_tagged(after) and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
         return False
     verb = verb_above(before, s)
     return not (verb and (is_one(verb["lemma"], "zanna") or is_one(verb["lemma"], "two_objects_give")))

@@ -196,7 +196,7 @@ def root_pattern(root: str) -> str:
     return clean
 
 
-def root_in_arabic(root: str, lemma: str = "") -> str:
+def root_in_arabic(root: str, lemma: str = "", word: str = "") -> str:
     """'ktb' → 'كتب', a root as every tab shows and searches it.
 
     The radicals used to be joined with hyphens, which read as three letters
@@ -206,25 +206,31 @@ def root_in_arabic(root: str, lemma: str = "") -> str:
     A # (typically an elided weak letter, ق#ل for قالوا) is settled by
     services/dictionary/roots.py against the roots the books really file, `lemma`
     choosing between two that fit; one no book files stays no root, never a
-    guess dressed as an answer. Without a lemma it is not settled. A root of
+    guess dressed as an answer. Without a lemma it is not settled; `word`, the form
+    read, overrules a lemma that is not its own. A root of
     two letters (لس for ليس) is the one a book files the lemma under, or none.
     """
     from backend.services.dictionary import roots  # it reads with this module
 
     pattern = root_pattern(root)
     if pattern and (lemma or len(pattern) < roots.FEWEST_RADICALS):
-        pattern = roots.settle(pattern, lemma)
+        pattern = roots.settle(pattern, lemma, word)
     return shown_root(pattern)
 
 
 def reading_root(a: dict) -> str:
     """The root of one CAMeL reading as every tab shows it; "" for a word with none.
 
-    CAMeL still files a root for لم, هو, الذي and their kind (has_no_root). The lemma
-    settles a # only for a word built from a root (ROOTED_POS).
+    CAMeL still files a root for لم, هو, الذي and their kind (has_no_root), and for a foreign
+    name (م.#.س for موسى) the Qur'an tags with none. The lemma settles a # only for a word
+    built from a root (ROOTED_POS).
     """
+    from backend.services.dictionary import roots  # it reads with this module
+
     pos = a.get("pos") or ""
-    return "" if has_no_root(pos) else root_in_arabic(a.get("root") or "", (a.get("lex") or "") if pos in ROOTED_POS else "")
+    if pos == "noun_prop" and roots.tagged_rootless(a.get("diac") or ""):
+        return ""
+    return "" if has_no_root(pos) else root_in_arabic(a.get("root") or "", (a.get("lex") or "") if pos in ROOTED_POS else "", a.get("diac") or "")
 
 
 def _build_features(a: dict) -> str:
@@ -272,7 +278,7 @@ def _as_command(word: str, a: dict, before: str, after: str) -> dict:
     if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(a.get("lex") or ""):
         return a  # مُنْذُ أَمْسِ: a built time word is never the command its letters spell
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
-    root = root_in_arabic(a.get("root") or "", a.get("lex") or "")  # a verb or a noun, so rooted
+    root = root_in_arabic(a.get("root") or "", a.get("lex") or "", word)  # a verb or a noun, so rooted
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
     cell = verb_reader.command(word, governed, root) or verb_reader.command(paused(word, after), governed, root)
     if cell is None:
@@ -632,6 +638,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if unread(ranked) and (twin := verb_reader.known_as(token)) and (twin_ranked := _ranked([twin], disambiguator)):
             # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
             ranked, evidence = twin_ranked[0], twin
+        if not _agreeing(evidence, ranked) and (name := _name_in_nasb(token, disambiguator)):
+            ranked = [name]
         if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token)) and sarf.get("asp") != "c" \
                 and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
             # يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
@@ -655,9 +663,12 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if better and (vowel_agreement(evidence, better.get("diac", "")) or found)[1] < found[1]:
             out[i], steps[i] = better, (evidence, wider)
     # a noun already joined to "my" takes no second mudaf ilayh: before a genitive noun
-    # أَبِي is the six nouns' jarr (أَبِي الطَّبِيبِ), not "my father"
+    # أَبِي is the six nouns' jarr (أَبِي الطَّبِيبِ), not "my father"; so before a name that
+    # shows no case at all (أَبِي مُوسَى), which a jarr fits as well as any
     for i in range(len(out) - 1):
-        if out[i].get("enc0") == "1s_poss" and out[i + 1].get("pos") == "noun" and out[i + 1].get("cas") == "g":
+        after = out[i + 1]
+        if out[i].get("enc0") == "1s_poss" and after.get("pos", "").startswith("noun") \
+                and (after.get("cas") == "g" or after.get("pos") == "noun_prop" and typed_case(tokens[i + 1]) is None):
             word, ranked = steps[i]
             out[i] = best_reading(word, [r for r in ranked if r.get("enc0") != "1s_poss"
                                          and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
@@ -675,6 +686,13 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the verb reads the typed vowels at least as well, or the reading kept contradicts them (ظُلْمُكَ for ظَلَمَكَ)
             if said is not None and (here is None or said >= here):
                 out[i] = verb
+    # أَكْرَمَ مُصْطَفَى يَحْيَى: nothing before the sentence's first word puts it in nasb, so a typed fatha
+    # the past verb reads as well as a noun's nasb (the elative أَكْرَمَ, here before a name showing no case) is that verb
+    if out and out[0].get("cas") == "a" and typed_case(tokens[0]) == "a":
+        word, ranked = steps[0]
+        verb = best_reading(word, [r for r in _widened(tokens[0], ranked) if r.get("pos") == "verb" and r.get("asp") == "p"])
+        if verb and best_reading(word, [verb, out[0]]) is verb:
+            out[0] = verb
     # الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ: after a noun opening the sentence in raf', a word that is either
     # أَفْعَلُ "I do" or the elative is that noun's khabar, and a verb khabar needs a pronoun back to
     # its مبتدأ (رابط جملة الخبر, Ibn Aqil on the Alfiyya); "I" with nothing on it has none
@@ -726,6 +744,20 @@ def _without_sakt(tokens: list[str], i: int, disambiguator=None) -> tuple[str, l
     found = _reading(rest, ranked)
     built = is_mabni(found.get("pos", "")) or str(found.get("enc0", "")).startswith("1s")
     return (rest, ranked) if built and _agreeing(rest, ranked) else None
+
+
+def _name_in_nasb(typed: str, disambiguator=None) -> dict | None:
+    """رَأَيْتُ زَيْدًا: CAMeL files a name without the alif its nasb tanween is written on, so a word
+    none of its readings fits (زَيَّدَا is two vowels off), ending in that alif, is the word its letters
+    before it spell, in nasb. One whose stem it does not know at all stays unread (مُسْرِعًا), and
+    one with another vowel on that alif or before it is no nasb (مُحَمَّدُا)."""
+    marked = letters(typed)
+    if len(marked) < 3 or marked[-1][0] != "ا" or (marked[-1][1] | marked[-2][1]) - {"ً"}:
+        return None
+    stem = "".join(letter + "".join(marks - {"ً"}) for letter, marks in marked[:-1])
+    ranked = (_ranked([stem], disambiguator) or [[]])[0]
+    known = next((r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")), None)
+    return known and {**known, "cas": "a", "diac": known["diac"] + "ًا", "atbtok": known["diac"] + "ًا"}
 
 
 def _asked_reading(typed: str, disambiguator=None) -> dict | None:

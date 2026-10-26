@@ -709,7 +709,7 @@
   "zarf_zaman": {
    "ar": "ظروف الزمان",
    "effect": "adverb of time (maf'ul fihi), nasb, or mudaf; a few are built (mabni) as in إذ إذا متى",
-   "_carriers": "A word of whole or part added to a time or place word stands in its place as the maf'ul fihi (كلَّ يومٍ، بعضَ الليلِ).",
+   "_carriers": "A word of whole or part added to a time or place word stands in its place as the maf'ul fihi (كلَّ يومٍ، بعضَ الليلِ); so does a number (adad_mudaf) counting one (لبثتُ عشرَ سنينَ، صمتُ ثلاثةَ أيامٍ), the ما ينوب عن الظرف of Ibn Aqil.",
    "conditional_nouns": ["إذا"],
    "conditional_adverbs": ["إذا"],
    "_conditional_nouns": "إذا before a past verb is a time word holding the meaning of a condition, not jussive (Tasheel 4.3.1 p112): its own clause is in the place of jarr as its مضاف إليه. Read with jazm's list by nahw_book.condition_of; particle_tree.json tells it from إذا الفجائية.",
@@ -748,6 +748,10 @@
     "عام",
     "سنة",
     "شهر",
+    "ليل",
+    "نهار",
+    "صباح",
+    "دهر",
     "أسبوع",
     "يوما",
     "ليلة",
@@ -1287,6 +1291,11 @@
    "words": [
     "مرة"
    ]
+  },
+  "adad_mudaf": {
+   "ar": "ألفاظ العدد التي تضاف إلى معدودها",
+   "effect": "Three to ten, the hundred and the thousand are added to what they count, which is مجرور (ثلاثُ سنينَ، مئةُ كتابٍ). The number is a noun, no describing word at work, so its إضافة is معنوية بمعنى «من» (ثلاثٌ من السنين), never the لفظية of a participle, though CAMeL tags it an adjective",
+   "words": ["ثلاث", "ثلاثة", "أربع", "أربعة", "خمس", "خمسة", "ست", "ستة", "سبع", "سبعة", "ثمان", "ثماني", "ثمانية", "تسع", "تسعة", "عشر", "عشرة", "مئة", "مائة", "ألف"]
   },
   "dua_nouns": {
    "ar": "أسماء الدعاء والتحية",

@@ -39,6 +39,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - kana_subject: a raf' noun right after كان/ليس, with a later predicate → كان's subject, not its khabar; a خبر the parser hung on the subject → كان's khabar; a باء hung on لست as a modifier → the باء of ليس's khabar (لَسْتُ بِغَافِلٍ) (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - zanna_pair: under ظن and its sisters, a nasb noun the parser kept as the subject of the nasb word after it → the verb's first object, that word its second (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - praise_specified: after نعم/بئس, an indefinite nasb noun → the verb's تمييز (its doer a hidden pronoun), the raf' noun after → the one praised (`backend/services/nahw/syntax/repair/subject_clash.py`)
+- doer_first: two names after a verb that show no case (ضرب موسى عيسى) → the first the doer, the second the object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - doer_after_object: a subject typed in nasb with a raf' word hung on it → the object, that word the doer (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - verb_under_fronted_object: a verb with its doer hung as the صفة of a nasb noun before it, with no pronoun back → the verb heads, the noun its fronted object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - object_after_tanween: a nasb word hung as مضاف إليه on a participle with tanween → its object (`backend/services/nahw/syntax/repair/subject_clash.py`)

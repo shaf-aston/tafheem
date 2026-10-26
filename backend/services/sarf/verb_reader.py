@@ -73,6 +73,7 @@ def _shapes() -> dict[int, list[tuple[re.Pattern, list[set], str, str, int, str]
     length: (pattern, the stand-in word's marks, stand-in, باب, row, column read as).
     Built once, ~1.5 s."""
     blanks = _config()["placeholders"]
+    root_letter = f"[^{re.escape(_config()['never-root'])}]"
     shapes: dict[int, list] = {}
     for stand_in, forms in _stand_ins():
         for form in forms:
@@ -87,7 +88,7 @@ def _shapes() -> dict[int, list[tuple[re.Pattern, list[set], str, str, int, str]
                     pattern = ""
                     for letter, _ in marked:
                         if letter in blanks and letter in stand_in:
-                            pattern += f"(?P={_group(letter)})" if letter in seen else f"(?P<{_group(letter)}>.)"
+                            pattern += f"(?P={_group(letter)})" if letter in seen else f"(?P<{_group(letter)}>{root_letter})"
                             seen.add(letter)
                         else:
                             pattern += re.escape(letter)
@@ -125,13 +126,14 @@ def _typed(marked: list[tuple[str, set]]) -> list[set]:
 
 def _untyped(typed: list[tuple[str, set]], word: str) -> int | None:
     """How many of the word's marks the reader left off, or None when the word does
-    not hold every mark typed (or is not the same letters)."""
+    not hold every mark typed (or is not the same letters). A sukun on a long letter is
+    no mark either way: أَدْرِي left off none of أَدْرِيْ, so "I know" is as close as "know!"."""
     its = letters(_fold(word))
     if [a for a, _ in typed] != [a for a, _ in its]:
         return None
     if not all(mine <= theirs for mine, (_, theirs) in zip(_typed(typed), its)):
         return None
-    return sum(len(theirs - mine) for (_, mine), (_, theirs) in zip(typed, its))
+    return sum(len(theirs - mine) for mine, theirs in zip(_typed(typed), _typed(its)))
 
 
 def warm() -> None:

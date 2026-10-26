@@ -125,3 +125,22 @@ def test_a_word_the_quran_uses_as_a_particle_has_no_root():
     assert quran_corpus.root_of("من") == ""
     assert quran_corpus.root_of("قال") == "قول"
     assert quran_corpus.root_of("زززز") is None  # not a word the Qur'an has
+
+
+@pytest.mark.parametrize("word, root", [
+    ("سَنَةٍ", "سنو"),     # year: no سُنَّة (sunna), whose many uses outvote it on bare letters
+    ("سُنَّةَ", "سنن"),
+    ("السِّنِينَ", "سنو"),
+    ("يَدْرِي", "دري"),
+    ("دُرِّيٌّ", "درر"),   # shining, which دَرَى is not
+])
+def test_the_shadda_typed_tells_homographs_apart(word, root):
+    assert quran_corpus.root_of(word) == root
+
+
+def test_a_vowelled_word_the_corpus_has_only_with_a_shadda_is_not_that_word():
+    assert quran_corpus.root_of("دَرَى") is None   # only دُرِّيّ is spelled دري there
+
+
+def test_a_word_typed_with_no_marks_is_every_spelling_of_its_letters():
+    assert quran_corpus.root_of("سنة") == "سنن"

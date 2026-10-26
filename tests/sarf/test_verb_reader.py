@@ -38,6 +38,7 @@ def test_a_command_is_named_by_sarf(word: str, root: str, person: tuple):
     "كَتَبُوا", "يَكْتُبُونَ", "أَكْتُبُ", "اِجْتَمَعُوا",
     "تَحَاسَدُوا",   # also the past: the dictionary keeps its say
     "أَحْمَدْ",      # a name paused on: no command has this fatha
+    "أَدْرِي",       # I know, as close as "inform!" (f.): the sukun its ي lacks is no mark
     "الكتاب"])
 def test_a_word_that_is_not_only_a_command_is_left_alone(word: str):
     assert verb_reader.command(word) is None
@@ -86,3 +87,14 @@ def test_a_hamzated_verb_tried_against_a_doubled_hamza_root_is_read_without_fail
     # The reader tries roots like شأأ, which sarf shapes down to one letter; the hadith index reads every word of
     # every matn, so one failure here stops the server's whole deploy.
     verb_reader.command(word)
+
+
+@pytest.mark.parametrize("word", ["حَفْصَةَ", "شَجَرَةَ", "دَحْرَجَةَ"])
+def test_a_word_written_with_ta_marbuta_is_no_verb(word: str):
+    # ة is the noun's feminine ending; the verb's تاء التأنيث is the ساكنة (قَالَتْ), so no blank of a
+    # verb's shape takes it: حَفْصَةَ is no فَعْلَلَ of ح ف ص ة
+    assert verb_reader.read(word) == [] and verb_reader.reading_of(word) is None
+
+
+def test_the_same_shape_with_a_root_letter_in_place_of_the_ta_marbuta_is_still_a_verb():
+    assert any(c.root == "دحرج" for c in verb_reader.read("دَحْرَجَ"))

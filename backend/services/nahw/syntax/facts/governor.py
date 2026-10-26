@@ -2,7 +2,7 @@
 inna, kana, kaada, zanna, the called or the excepting particle)."""
 from __future__ import annotations
 
-from backend.services.nahw.book import is_plain_noun
+from backend.services.nahw.book import is_plain_noun, six_noun_case
 from backend.services.nahw.syntax.facts.word import is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_tanween, typed_or_parsed_case, unlike, subject_link, NOUN_LINKS
 from backend.services.nahw.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.nahw.syntax.facts.kind import calling_head
@@ -51,10 +51,13 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     # ذائقةُ الموتِ: the noun in jarr straight after a noun in construct is its mudaf ilayh
     if head and head.get("stt") == "c" and head["id"] == token["id"] - 1 and typed == "i" and not under_verb:
         return "idafa", head
-    # a noun with tanween is complete (ضَرَبَ زَيْدٌ مَرْيَمَ), so nothing after it is its مضاف إليه
+    # a noun with tanween is complete (ضَرَبَ زَيْدٌ مَرْيَمَ), so nothing after it is its مضاف إليه;
+    # one of the six nouns with its case letter is a مضاف by that letter (أَبُو مُوسَى), whatever موسى shows
     if rel == "---" and head and is_plain_noun(head) and head["id"] == token["id"] - 1 \
             and not typed_tanween(head) \
-            and (typed_or_parsed_case(token) == "i" or shows_jarr(token)) and not any(subject_link(c) for c in s.kids(token)) \
+            and (typed_or_parsed_case(token) == "i" or shows_jarr(token)
+                 or six_noun_case(head["base"], head["lemma"])) \
+            and not any(subject_link(c) for c in s.kids(token)) \
             and not ("dem" in token.get("pos_camel", "") and s.verbless):
         return "idafa", head
     # ظن الولد الأمر سهلا: a modifier after the first object is the verb's second
