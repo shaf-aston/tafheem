@@ -234,7 +234,7 @@ const REAL = {
 /**
  * `update(page)` tells the session what it is listening against, and the
  * newest one is read at the moment each value is needed, never kept per
- * recording: { fusha, trial, perMinute, pageWords, ayahs }. `ayahs` are the page's lines the ear
+ * recording: { fusha, tuned, perMinute, pageWords, ayahs }. `ayahs` are the page's lines the ear
  * can check by sound, each { key, from, count }: its "surah:ayah", where its
  * words start on the page and how many; empty for a text the backend has no
  * plain spelling of, and marks are then the page's alone. `onChange` gets a new
@@ -311,7 +311,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
     job.abort = new AbortController()
     const timer = setTimeout(() => job.abort.abort(), CHECK_TIMEOUT_MS)
     note('check.sent', { session: sessionId, reading: job.reading })
-    checkReading(job.blob, { heard: job.heard, check: job.ayahs, trial: page.trial, reading: job.reading, signal: job.abort.signal })
+    checkReading(job.blob, { heard: job.heard, check: job.ayahs, tuned: page.tuned, reading: job.reading, signal: job.abort.signal })
       .then(({ sure, detail }) => {
         note('check.answered', { session: sessionId, reading: job.reading })
         job.apply(sure, detail)

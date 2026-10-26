@@ -194,10 +194,10 @@ class Listening(BaseSettings):
     #   RECITATION_MODEL=data/models/finetune-ear/ear-tuned
     #   LISTENING_EARS=here          (else Groq answers first and the folder is only the fallback)
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
-    # Empty means no trial offered. Loaded like recitation_model; a learner's "Trial" listening hears
-    # and checks with it alone. Written and pushed by scripts/recitation/finetune_ear/cloud.py --ship; each of
+    # Empty means no tuned model offered. Loaded like recitation_model; a learner who picks "Fine-tuned" has
+    # each word checked by it; Groq still writes the words down. Written and pushed by scripts/recitation/finetune_ear/cloud.py --ship; each of
     # its commits carries the scores that won (git log backend/config.py).
-    recitation_trial_model: str = "shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a"
+    recitation_tuned_model: str = "shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a"
     # Search boxes are dictation, and the Qur'an model knows no other words:
     # "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ, "mercy" as مَسْكُوبُ, where base heard both.
     # A recording is a recitation only when its language is asked for by name.

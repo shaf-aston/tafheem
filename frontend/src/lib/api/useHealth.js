@@ -33,8 +33,8 @@ export function useHealth() {
     ear: data?.ear ?? '',
     // Readings a minute the server's listening keys allow between them; 0 when it has none or has not said.
     listenPerMinute: data?.listen_per_minute ?? 0,
-    // The trial listening model's name, empty when the server offers none.
-    reciteTrial: data?.recite_trial ?? '',
+    // The tuned listening model's name, empty when the server offers none.
+    reciteTuned: data?.recite_tuned ?? '',
     // Null until the answer arrives, so a panel can tell "not installed" apart
     // from "not asked yet" and stay quiet in the meantime.
     dictionaryLoaded: data ? data.dictionary_loaded === true : null,
@@ -51,11 +51,11 @@ export function useHealth() {
 }
 
 /**
- * Whether a recitation is heard by the trial model: chosen under Settings,
- * Speech to text, and only while the server still offers one, so a saved choice
+ * Whether a recitation's words are checked by the fine-tuned model: chosen under
+ * Settings, Word checker, and only while the server still offers one, so a saved choice
  * never outlives the model. Every recitation asks here: Memorise, Grow, checks.
  */
-export function useTrial() {
-  const { reciteTrial } = useHealth()
-  return useSetting('listening-ear') === 'trial' && Boolean(reciteTrial)
+export function useTuned() {
+  const { reciteTuned } = useHealth()
+  return useSetting('listening-ear') === 'tuned' && Boolean(reciteTuned)
 }

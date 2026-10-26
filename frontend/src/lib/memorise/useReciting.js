@@ -11,7 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { bySound, follow, joinWindows } from '../recite/follow'
 import { createRecitingSession, EMPTY_VIEW, surer } from '../recite/recitingSession'
 import { useSetting } from '../store/settings'
-import { useHealth, useTrial } from '../api/useHealth'
+import { useHealth, useTuned } from '../api/useHealth'
 
 /**
  * `ayahs` are the page's lines the ear can check by sound, each { key, from,
@@ -21,7 +21,7 @@ import { useHealth, useTrial } from '../api/useHealth'
  */
 export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   const fusha = useSetting('fusha')
-  const trial = useTrial()
+  const tuned = useTuned()
   const { listenPerMinute } = useHealth()
   const [view, setView] = useState(EMPTY_VIEW)
 
@@ -57,7 +57,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   // What a recording in progress listens against, without a new session for it:
   // the dialect setting, the words of the page being recited, and whether that
   // page is done.
-  useEffect(() => { session.update({ fusha, trial, perMinute: listenPerMinute, pageWords, ayahs, done: finished }) }, [session, fusha, trial, listenPerMinute, pageWords, ayahs, finished])
+  useEffect(() => { session.update({ fusha, tuned, perMinute: listenPerMinute, pageWords, ayahs, done: finished }) }, [session, fusha, tuned, listenPerMinute, pageWords, ayahs, finished])
   // What the finished recordings held after this page's last word goes with
   // the reciter; the recording still going is kept by the session. Read
   // when the page turns, not when it was found finished: the panel waits a

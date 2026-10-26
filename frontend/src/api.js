@@ -333,7 +333,7 @@ export const daleelBooksQuery = {
 // How sure the ear is of each word is a separate question, `checkReading`
 // below, never asked here: a slow score must never hold back the words a
 // reciter is already reading by.
-// `trial` is for the two checks below: they score with the server's trial model.
+// `tuned` is for the two checks below: they score with the server's tuned model.
 // A reading is always written down by the usual ears, quick first.
 // `signal` lets a reading be given up on. A recitation asks about the same
 // recording again as it grows, so a reading already on its way is sometimes
@@ -341,12 +341,12 @@ export const daleelBooksQuery = {
 // for it costs the seconds it takes to read.
 // `reading` names this one request, as `X-Reading-Id`, so the server's own
 // log and lib/recite/journal.js's trail can be lined up on the same reading.
-// Every recording goes to the server this one way. `trial` is sent only when on,
-// so a server without a trial model never sees the word.
-const postRecording = (path, recording, params, { trial, signal, reading } = {}) => {
+// Every recording goes to the server this one way. `tuned` is sent only when on,
+// so a server without a tuned model never sees the word.
+const postRecording = (path, recording, params, { tuned, signal, reading } = {}) => {
   const body = new FormData()
   body.append('audio', recording, 'recitation.webm')
-  const asked = new URLSearchParams({ ...params, ...(trial && { trial }) })
+  const asked = new URLSearchParams({ ...params, ...(tuned && { tuned }) })
   const headers = { 'Content-Type': undefined, ...(reading && { 'X-Reading-Id': reading }) }
   return api.post(`${path}?${asked}`, body, { headers, signal }).then((r) => r.data)
 }

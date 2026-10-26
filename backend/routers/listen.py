@@ -179,12 +179,12 @@ async def _my_turn(request: Request, name: str) -> AsyncIterator[bool]:
         yield True
 
 
-def _trial_model(trial: bool, filed: _Filed) -> str | None:
-    """The trial model when asked for; a trial that cannot run is said, never swapped for another ear."""
-    if not trial:
+def _tuned_model(tuned: bool, filed: _Filed) -> str | None:
+    """The tuned model when asked for; a tuned model that cannot run is said, never swapped for another ear."""
+    if not tuned:
         return None
-    if not (model := recitation.listen.trial_model()):
-        raise filed.fail(503, "No trial listening model is set on this machine.", "validate")
+    if not (model := recitation.listen.tuned_model()):
+        raise filed.fail(503, "No tuned listening model is set on this machine.", "validate")
     return model
 
 
@@ -304,7 +304,7 @@ async def listen_check(
     audio: UploadFile = File(..., description="The same recording the words reading already heard"),
     heard: str = Query(..., description="What that reading wrote down, to be scored by sound"),
     check: str = Query("", description="Ayahs being recited, as 1:1,1:2; each word's sureness comes back in `sure`, its weakest piece and second in `detail`"),
-    trial: bool = Query(False, description="Score with the trial model; 503 when none is installed"),
+    tuned: bool = Query(False, description="Score with the tuned model; 503 when none is installed"),
 ) -> Sureness:
     """How sure the ear is of each word, asked separately from writing them down.
 
@@ -335,7 +335,7 @@ async def listen_check(
                 "validate",
             )
 
-        model = _trial_model(trial, filed)
+        model = _tuned_model(tuned, filed)
         body = await _read_recording(audio, filed)
         journal.note("check.received", bytes=len(body), ayahs=len(checked))
 
@@ -371,7 +371,7 @@ async def listen_check_text(
     audio: UploadFile = File(..., description="The same recording the words reading already heard"),
     heard: str = Query(..., description="What that reading wrote down"),
     expected: str = Query(..., description="The phrase the reader was asked to say, vowelled"),
-    trial: bool = Query(False, description="Score with the trial model; 503 when none is installed"),
+    tuned: bool = Query(False, description="Score with the tuned model; 503 when none is installed"),
 ) -> TextSureness:
     """How sure the ear is of each word of a phrase that is not an ayah.
 
@@ -388,7 +388,7 @@ async def listen_check_text(
                 "validate",
             )
 
-        model = _trial_model(trial, filed)
+        model = _tuned_model(tuned, filed)
         body = await _read_recording(audio, filed)
         journal.note("check-text.received", bytes=len(body), chars=len(expected))
 

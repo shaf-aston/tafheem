@@ -181,9 +181,9 @@ def create_app() -> FastAPI:
             # How sure the ear is of each word is always scored by the model on
             # this machine (see services/recitation/ears.py's "Word sureness"),
             # whichever ear wrote the words down, so it is named on its own.
-            # The trial model's name when one is installed, else empty; the
-            # page offers the "Trial" listening choice only when this is set.
-            "recite_trial": recitation.listen.trial_model(),
+            # The tuned model's name when one is installed, else empty; the
+            # page offers the "Fine-tuned" checking choice only when this is set.
+            "recite_tuned": recitation.listen.tuned_model(),
             "recite_sure": recitation.ears.named("here").name(reciting=True),
             # How many readings a minute the page may ask for, all keys
             # together; lib/recite/recitingSession.js paces itself by it.

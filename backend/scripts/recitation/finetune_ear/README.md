@@ -57,7 +57,7 @@ New ayahs is the only proof an ear learnt listening rather than text; profession
 ## Words
 
 - **untuned**: `tarteel-ai/whisper-base-ar-quran` as published, the model every ear descends from.
-- **served** (champion): `recitation_trial_model` in master's `backend/config.py` (`repo@revision`). The app serves it and the judge scores it, so the two never differ.
+- **served** (champion): `recitation_tuned_model` in master's `backend/config.py` (`repo@revision`). The app serves it and the judge scores it, so the two never differ.
 - **held**: the ear a candidate must beat; the served one until a candidate wins. Also: the clips no run trains on.
 - **blend**: two ears' numbers mixed, tensor by tensor; no training.
 - **replay**: professional recitation (`tarteel-ai/everyayah`, reciters the test never hears) mixed into training so the ear keeps hearing what it was first taught.
