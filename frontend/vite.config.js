@@ -33,7 +33,7 @@ export default defineConfig({
     rollupOptions: {
       // A second real page, not a route: the app has no router, and the
       // landing page must never load the header/tabs/command bar shell.
-      input: { landing: 'index.html', app: 'app.html', record: 'record.html' },
+      input: { landing: 'index.html', app: 'app.html', record: 'record.html', notFound: '404.html' },
     },
   },
   server: {
