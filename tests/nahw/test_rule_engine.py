@@ -614,6 +614,9 @@ def test_ma_before_a_fronted_khabar_and_its_raf_noun_is_the_negation(sentence: s
     ("زَيْدٌ خَيْرٌ وَأَحْسَنَ إِلَيَّ", ["مبتدأ", "خبر", "فعل", "حرف جر"]),
     ("زَيْدٌ قَائِمٌ وَأَدُومُ", ["مبتدأ", "خبر", "فعل"]),
     ("زَيْدٌ قَائِمٌ وَأَبْقَى عَمْرًا", ["مبتدأ", "خبر", "فعل", "مفعول به"]),
+    # a verb is joined onto an active participle, which is like a verb (Ibn Aqil V3 p244)
+    ("زَيْدٌ قَائِمٌ وَأَبْقَى", ["مبتدأ", "خبر", "فعل"]),
+    ("هُوَ مُقِيمٌ وَأَبْقَى", ["مبتدأ", "خبر", "فعل"]),
 ])
 def test_a_word_joined_onto_an_elative_is_an_elative(sentence: str, expected: list[str]):
     assert [w["role"] for w in cards(sentence)] == expected
