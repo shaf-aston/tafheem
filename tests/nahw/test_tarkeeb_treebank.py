@@ -293,3 +293,108 @@ def test_a_word_of_two_stems_is_what_its_first_says():
     rows = [row(0, 1, "بِئْسَ", "V", "فعل", "root", 0), row(1, 1, "مَا", "REL", "اسم موصول", "فاعل", 0)]
     words, _ = build_tarkeeb._words_of(rows, SETTINGS)
     assert words[0]["pos"] == "V"
+
+
+# ── A piece hung inside its own word ─────────────────────────────────────────
+
+# وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ (68:4): كَ is إِنَّ's noun and لَ stresses عَلَى, each hung on its own
+# word's stem; the خبر is left out, and the jar-majroor is متعلق to it
+AL_QALAM_4 = [
+    row(0, 1, "وَ", "CONJ", "حرف عطف", "NonRel", 0, segment="PREFIX"),
+    row(1, 1, "إِنَّ", "ACC", "حرف نصب", "root", 1),
+    row(2, 1, "كَ", "PRON", "ضمير", "اسم إن", 1, segment="SUFFIX"),
+    row(3, 0, "(*)", "N", "اسم", "خبر إن", 1, segment="_"),
+    row(4, 2, "لَ", "EMPH", "لام التوكيد", "توكيد", 5, segment="PREFIX"),
+    row(5, 2, "عَلَىٰ", "P", "حرف جر", "متعلق", 3, constituent="PP"),
+    row(6, 3, "خُلُقٍ", "N", "اسم", "مجرور", 5),
+    row(7, 4, "عَظِيمٍ", "ADJ", "صفة", "صفة", 6),
+]
+
+
+def units(node, found):
+    if node.get("children"):
+        found.append(node.get("role"))
+        for child in node["children"]:
+            units(child, found)
+    return found
+
+
+def test_a_prefix_on_its_own_words_stem_gives_the_word_no_job_of_its_own():
+    tree, columns = drawn(AL_QALAM_4)
+    ala = columns["لَعَلَىٰ"]
+    assert ala["role"] == term("jarr")
+    assert [part["role"] for part in ala["parts"]] == [
+        SETTINGS["particle_kinds"]["لام التوكيد"], term("jarr")]
+    # the jar-majroor is متعلق to the خبر no one writes, not a sentence of its own
+    assert len(tree["children"]) == 2 and SETTINGS["relation_terms"]["متعلق"] in units(tree, [])
+
+
+def test_inna_with_its_pronoun_is_the_particle_and_the_pronoun_its_noun():
+    _, columns = drawn(AL_QALAM_4)
+    inna = columns["وَإِنَّكَ"]
+    assert inna["role"] == term("harf_nasikh") != term("mubtada")
+    assert inna["parts"][-1]["role"] == nahw_book.relation_wording("اسم إن")[0]
+
+
+def test_a_stressing_lam_on_a_verb_leaves_it_a_verb():
+    # لَجَعَلَكُمْ (16:93): the لَ hangs on جَعَلَ, inside the word
+    rows = [row(0, 1, "لَ", "EMPH", "لام التوكيد", "توكيد", 1, segment="PREFIX"),
+            row(1, 1, "جَعَلَ", "V", "فعل", "root", 1),
+            row(2, 1, "كُمْ", "PRON", "ضمير", "مفعول به", 1, segment="SUFFIX")]
+    _, columns = drawn(rows)
+    assert columns["لَجَعَلَكُمْ"]["role"] == term("fil")
+
+
+def test_a_jar_majroor_in_one_word_keeps_the_units_job():
+    # قَالَ إِنَّ فِيهَا لُوطًا (29:32): فِيهَا is the whole jar-majroor, متعلق to the left-out خبر
+    rows = [row(0, 1, "إِنَّ", "ACC", "حرف نصب", "root", 0),
+            row(1, 0, "(*)", "N", "اسم", "خبر", 0, segment="_"),
+            row(2, 2, "فِي", "P", "حرف جر", "متعلق", 1, constituent="PP"),
+            row(3, 2, "هَا", "PRON", "ضمير", "مجرور", 2, segment="SUFFIX"),
+            row(4, 3, "لُوطًا", "PN", "اسم علم", "اسم إن", 0)]
+    _, columns = drawn(rows)
+    fiha = columns["فِيهَا"]
+    assert fiha["role"] == SETTINGS["relation_terms"]["متعلق"]
+    assert [part["role"] for part in fiha["parts"]] == [term("jarr"), SETTINGS["relation_terms"]["مجرور"]]
+
+
+def test_a_word_whose_pronoun_is_its_mudaf_ilayh_is_a_noun_whatever_its_tag():
+    # أَيُّهُمْ: the treebank tags أَيّ a حرف استفهام; it takes هُمْ as مضاف إليه, so it is a noun
+    rows = [row(0, 1, "أَيُّ", "INTG", "حرف استفهام", "root", 0),
+            row(1, 1, "هُمْ", "PRON", "ضمير", "مضاف إليه", 0, segment="SUFFIX"),
+            row(2, 2, "أَحْسَنُ", "N", "اسم", "خبر", 0)]
+    _, columns = drawn(rows)
+    assert columns["أَيُّهُمْ"]["role"] == term("mubtada")
+
+
+def test_a_lone_particle_whose_unit_is_a_mudaf_ilayh_keeps_its_name():
+    # كُلَّمَا: مَا مصدرية; the مصدر it makes is the مضاف إليه, the word itself stays a حرف مصدري
+    rows = [row(0, 1, "كُلَّ", "T", "ظرف زمان", "root", 0),
+            row(1, 2, "مَا", "SUB", "حرف مصدري", "مضاف إليه", 0),
+            row(2, 3, "رُدُّوا", "V", "فعل", "صلة", 1)]
+    _, columns = drawn(rows)
+    assert columns["مَا"]["role"] == SETTINGS["particle_kinds"]["حرف مصدري"]
+
+
+@needs_database
+def test_the_recorded_ayah_names_inna_and_the_jar_not_a_mubtada():
+    found = tarkeeb_store.for_sentence("وإنك لعلى خلق عظيم")
+    assert [r["role"] for r in found["roles"]] == [
+        term("harf_nasikh"), term("jarr"), SETTINGS["relation_terms"]["مجرور"], SETTINGS["relation_terms"]["صفة"]]
+
+
+def test_a_stem_hung_on_its_own_prefix_keeps_the_word_whole():
+    # لِنَعْلَمَ (18:12): the verb is the stem, hung on its لام التعليل; the word is that لام's unit
+    rows = [row(0, 1, "بَعَثْ", "V", "فعل", "root", 0),
+            row(1, 2, "لِ", "PRP", "لام التعليل", "متعلق", 0, segment="PREFIX"),
+            row(2, 2, "نَعْلَمَ", "V", "فعل", "صلة", 1, constituent="VS"),
+            row(3, 0, "(نَحْنُ)", "PRON", "ضمير", "فاعل", 2, segment="_")]
+    _, columns = drawn(rows)
+    assert columns["لِنَعْلَمَ"]["role"] == SETTINGS["relation_terms"]["متعلق"]
+
+
+def test_an_unwritten_word_a_sentence_rests_on_keeps_its_name():
+    rows = [row(0, 0, "(*)", "V", "فعل", "root", 0, segment="_"),
+            row(1, 1, "سَلَامًا", "N", "اسم", "مفعول مطلق", 0)]
+    tree, _ = drawn(rows)
+    assert [child["role"] for child in tree["children"]][0] == term("fil")
