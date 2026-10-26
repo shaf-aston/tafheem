@@ -52,7 +52,7 @@
  * page each and never one call of the lot.
  */
 import config from '../../config/recite.json'
-import { sameSpokenWord } from '../text/arabicText'
+import { isSpoken, sameSpokenWord } from '../text/arabicText'
 import { soundsTheSame } from '../speech/soundalike'
 
 /** Not reached yet, or not yet sure enough to say. Shown plain. */
@@ -284,8 +284,10 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
     // A word on the page with nothing said for it. Only from where reciting
     // began: above that nobody claimed anything, whether they said where they
     // were starting or it was worked out from what they recited.
+    // A lone pause sign (ۖ) is never said, so reciting past it passes it.
     if (step === MISSED) {
-      if (i >= (startAt ?? began ?? 0) && settled(j)) words[i] = { word: page[i], state: MISSED, heard: '', said: '' }
+      const state = isSpoken(page[i]) ? MISSED : SAID
+      if (i >= (startAt ?? began ?? 0) && settled(j)) words[i] = { word: page[i], state, heard: '', said: '' }
       continue
     }
 
