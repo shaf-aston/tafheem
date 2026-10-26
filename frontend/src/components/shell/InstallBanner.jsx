@@ -30,6 +30,7 @@ export function InstallSteps({ kind }) {
           <>To install: tap <ShareIcon /> <b>Share</b>, then <b>Add to Home Screen</b>.</>
         )}
         {kind === 'ios-other' && 'To install, open this page in Safari, then Share → Add to Home Screen.'}
+        {kind === 'android-other' && 'To install in one tap, open this page in Chrome.'}
         {kind === 'menu' && 'To install, open your browser’s menu (⋮), then tap Install app or Add to Home screen.'}
       </span>
       {kind === 'prompt' && (

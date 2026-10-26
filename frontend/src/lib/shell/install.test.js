@@ -14,6 +14,10 @@ describe('installKind', () => {
   })
   it('Android before the browser offers one: told to use its menu', () => {
     expect(installKind({ ua: ANDROID })).toBe('menu')
+    expect(installKind({ ua: ANDROID, brave: true })).toBe('android-other')
+    expect(installKind({ ua: ANDROID.replace('Chrome', 'SamsungBrowser/24.0 Chrome') })).toBe('android-other')
+    expect(installKind({ ua: 'Mozilla/5.0 (Android 14; Mobile; rv:131.0) Gecko/131.0 Firefox/131.0' })).toBe('android-other')
+    expect(installKind({ ua: ANDROID, brave: true, prompt: {} })).toBe('prompt')
   })
   it('iPhone Safari: the Share steps', () => {
     expect(installKind({ ua: IPHONE_SAFARI })).toBe('ios')

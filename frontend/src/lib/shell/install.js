@@ -6,8 +6,8 @@
  *              prompt (beforeinstallprompt); a button shows it.
  *  - 'ios'     iPhone and iPad have no prompt at all: the only way is Share →
  *              Add to Home Screen, so the user is told the steps.
- *  - 'menu'    An Android phone whose browser has not (yet) offered a prompt: its
- *              own menu still has Install app / Add to Home screen, so the user is told that.
+ *  - 'menu'    Chrome on Android that has not (yet) offered a prompt: its menu has Install app.
+ *  - 'android-other'  another Android browser (Firefox, Opera, Brave…): told to open Chrome.
  *  - 'none'    already installed, or a laptop or desktop (never offered: the app
  *              is for the phone).
  * The header's icon (components/shell/InstallButton.jsx) is there whenever the answer is not 'none'; the strip under the
@@ -28,14 +28,18 @@ export const isIos = (ua, touchPoints = 0) =>
 const isIosSafari = (ua) => !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|FBAN|FBAV|Instagram/.test(ua)
 
 /** A phone: Android's own word for it, or an iPhone. Tablets count; a laptop does not. */
+/** Plain Chrome on Android: the browser that gives the one-tap prompt. Brave hides behind Chrome's name. */
+const isAndroidChrome = (ua, brave) =>
+  / Chrome\//.test(ua) && !/SamsungBrowser|OPR|EdgA|Firefox|YaBrowser|UCBrowser|wv\)/.test(ua) && !brave
+
 const isPhone = (ua, touchPoints = 0) => /Android/.test(ua) || isIos(ua, touchPoints)
 
 /** Pure: the answer for what the page knows. */
-export function installKind({ ua = '', touchPoints = 0, standalone = false, prompt = null }) {
+export function installKind({ ua = '', touchPoints = 0, standalone = false, prompt = null, brave = false }) {
   if (standalone || !isPhone(ua, touchPoints)) return 'none'
   if (prompt) return 'prompt'
   if (isIos(ua, touchPoints)) return isIosSafari(ua) ? 'ios' : 'ios-other'
-  return 'menu'
+  return isAndroidChrome(ua, brave) ? 'menu' : 'android-other'
 }
 
 /** Pure: whether the strip under the header is open. It opens by itself unless closed on this device, but a kind whose only advice is "use your menu" waits to be asked. */
@@ -73,6 +77,7 @@ function kind() {
         touchPoints: globalThis.navigator?.maxTouchPoints ?? 0,
         standalone: standalone(),
         prompt,
+        brave: Boolean(globalThis.navigator?.brave),
       })
   return next
 }
@@ -109,7 +114,7 @@ export function pressInstall() {
 // On this device, not on the shelf: asking again on a new phone is right.
 const dismissed = () => readDevice(DISMISSED) === '1'
 
-/** { kind, dismissed, asked } for what draws it; kind is 'prompt' | 'ios' | 'ios-other' | 'menu' | 'none'. */
+/** { kind, dismissed, asked } for what draws it; kind is 'prompt' | 'ios' | 'ios-other' | 'menu' | 'android-other' | 'none'. */
 export function useInstall() {
   const now = useSyncExternalStore(subscribe, kind)
   const hidden = useSyncExternalStore(subscribe, dismissed)
