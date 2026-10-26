@@ -824,3 +824,14 @@ def test_only_an_object_on_an_elative_vouches_for_a_bare_command(pattern, link, 
             token(3, "+ك", "أنت", "NOM", 2, "IDF", pos_camel="pron", token_type="enc0")]
     correct(["ارفع", "صوتك"], toks)
     assert (toks[0]["asp"] == "c") == command
+
+
+
+@pytest.mark.parametrize("typed, ya", [
+    ("قُومِي", "فاعل"),       # the ي a noun reading split off as "my" is the command's doer
+    ("قَوْمِي", "مضاف إليه"),  # nearest case: typed as the noun, the ي is its owner
+])
+def test_the_ya_on_a_command_to_a_woman_is_its_doer(typed, ya):
+    toks = [token(1, "قوم", "قَوْم", "NOM", 0, "---", pos_camel="noun", diac="قَوْمِي", root="قوم"),
+            token(2, "+ي", "أنا", "NOM", 1, "IDF", pos_camel="pron", token_type="enc0")]
+    assert named([typed], toks)[0]["attached"][0]["role"] == ya

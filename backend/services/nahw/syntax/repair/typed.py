@@ -62,6 +62,11 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
                          and (not read_noun or vouched or verb_reader.typed_fully(form, found))), None)
             if cell:  # the person is sarf's: the reading may have taken اقبل for "I accept"
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
+                # قُومِي: the ي a noun reading split off as "my" is the command's doer, a pronoun only ever
+                # in raf' (Awdah V1 p85: ما يختص بمحل الرفع ... وياء المخاطبة كقومي)
+                for kid in tokens:
+                    if kid["head"] == token["id"] and kid.get("token_type") == "enc0" and kid["form"] == "+ي":
+                        kid["rel"] = "SBJ"
             elif verb and merged_prefix(own, book_words("ta_merges")):
                 token["asp"] = "i"  # تَطَّوَّعَ: the shadda is the second ta' merged in, so it is present
         token["mudaf"] = has_added(token, tokens)

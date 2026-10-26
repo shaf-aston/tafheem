@@ -71,6 +71,12 @@ def _has_pronoun(reading: dict) -> bool:
     return bool(reading.get("enclitic"))
 
 
+def _has_object(reading: dict) -> bool:
+    """CAMeL saw an object pronoun on the verb: a verb takes no "my" (Awdah V1 p85: ياء المتكلم
+    on a verb is أكرمني), so a possessive one is a noun reading's left on a command (ارْفَعِي)."""
+    return str(reading.get("enclitic", "")).endswith("_dobj")
+
+
 def settle(cards: list[dict]) -> list[dict]:
     """Write every card's sign (and a verb's case and reason, which say the sign too)
     from its final case. A gap keeps no sign: its name was taken back."""
@@ -199,7 +205,7 @@ def _built_on(card: dict, aspect: str) -> str | None:
     nun = build_nun(word)
     if aspect == "c":
         # a command is built on what its jazm would show
-        if not _has_pronoun(card["camel"]) and strip_diacritics(word).endswith(("وا", "ا", "ي")):
+        if not _has_object(card["camel"]) and strip_diacritics(word).endswith(("وا", "ا", "ي")):
             return sign("jazm", "five_verbs")  # اُكْتُبُوا، اُكْتُبَا، اُكْتُبِي: the five verbs' nun is gone
         if _dropped_weak(card):
             return sign("jazm", "dropped_weak")  # اِسْقِ
