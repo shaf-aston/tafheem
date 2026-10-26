@@ -184,7 +184,7 @@ def past(cell: Cell) -> str:
     return dict(conjugation.row_cells(cell.root, cell.form, 0))["madi"]
 
 
-def command(word: str, governed: bool = False, root: str = "") -> Cell | None:
+def command(word: str, governed: bool = False, root: str = "", vouched: bool = False) -> Cell | None:
     """The command this typed word is (اِجْلِسِي، ارْحَمُوا، قُمْ), or None.
 
     `root` is the one the dictionary read the word with, if any: where sarf finds
@@ -192,12 +192,14 @@ def command(word: str, governed: bool = False, root: str = "") -> Cell | None:
     is كتب, not a Form VIII passive of كبو). `governed` says a particle that puts a
     present verb in jazm or nasb was typed just before: a command never follows one,
     and without one the jussive's spelling cannot stand (أَقِمْ alone is a command).
+    `vouched` says the sentence shows a verb where no vowel was typed (repair.typed),
+    so the bare letters are read too (اكتبي درسك).
     Of what is left, the closest readings must all be a command to the same person;
     تَحَاسَدُوا is also a past verb, so the dictionary keeps its say.
     """
     if governed:
         return None
-    if not any(marks for _, marks in letters(word)[:-1]):
+    if not vouched and not any(marks for _, marks in letters(word)[:-1]):
         # without its vowels a word fits a command and much else (الله، البر); the last
         # letter's alone is no help either, it is the case or a sukun of pausing (اللهِ)
         return None

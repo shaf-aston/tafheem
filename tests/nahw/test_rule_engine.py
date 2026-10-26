@@ -178,6 +178,20 @@ def test_an_elative_takes_no_object(sentence: str, want: str):
 
 
 @pytest.mark.parametrize("sentence, want", [
+    # with no vowel typed, the sentence vouches for the command: the dictionary has no reading at all
+    ("اكتبي درسك", ["فعل", "مفعول به"]),
+    ("يا سعاد اكتبي درسك", ["حرف", "منادى", "فعل", "مفعول به"]),
+    # or the parser hung an object on what the dictionary read as an elative, which takes none
+    ("ارفعي صوتك", ["فعل", "مفعول به"]),
+    ("يا سعاد ارفعي صوتك", ["حرف", "منادى", "فعل", "مفعول به"]),
+    ("أخي أكبر مني", ["مبتدأ", "خبر", "حرف جر"]),  # nearest case: an elative with no object stays one
+    ("عمي كريم", ["مبتدأ", "خبر"]),  # nearest case: a noun's own pronoun, hung as its مضاف إليه
+])
+def test_a_bare_command_the_sentence_vouches_for(sentence: str, want: str):
+    assert [c["role"] for c in cards(sentence)] == want
+
+
+@pytest.mark.parametrize("sentence, want", [
     ("سَرَّنِي مَا صَنَعْتَهُ", ["فعل", "فاعل", "فعل"]),  # ما after the verb's own pronoun is its doer
     ("مَا رَأَيْتُهُ", ["حرف", "فعل"]),                    # nearest case: ما opening the sentence negates
     ("هَاتَانِ قِلَادَتَانِ فِضِّيَّتَانِ", ["مبتدأ", "خبر", "صفة"]),  # no ال after a pointer: the khabar

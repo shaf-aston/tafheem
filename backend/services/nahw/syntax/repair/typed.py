@@ -6,7 +6,7 @@ from itertools import pairwise
 from backend.services.sarf import verb_reader
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, is_built_word, is_one, only_adverb
-from backend.services.nahw.syntax.facts import has_added, is_emphasis_lam, noun_tagged, typed_or_parsed_case, verb_tagged
+from backend.services.nahw.syntax.facts import has_added, is_elative, is_emphasis_lam, noun_tagged, typed_or_parsed_case, verb_tagged
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -42,19 +42,24 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         verb = verb_tagged(token)
         read_noun = token.get("pos_camel") == "noun" and vowel_agreement(word, token.get("diac", "")) is not None
         # a noun read with a sign of the noun on it is that noun, never a command (Ibn Aqil V1 p15: بالجر والتنوين
-        # والندا وأل): its own pronoun stuck on (عَمِّي، جَدِّي), called (يَا رَبِّ), in jarr as a مضاف إليه or as the
+        # والندا وأل): its own pronoun stuck on, not hung as an object (عَمِّي، جَدِّي), called (يَا رَبِّ), in jarr as a مضاف إليه or as the
         # صفة of a noun in jarr (لِلَّهِ رَبِّ الْعَالَمِينَ), as no sentence of asking describes (V3 p198: وامنع هنا إيقاع ذات الطلب)
         head = next((t for t in tokens if t["id"] == token["head"]), None)
-        noun = read_noun and (any(t["head"] == token["id"] and t.get("token_type") == "enc0" for t in tokens)
+        noun = read_noun and (any(t["head"] == token["id"] and t.get("token_type") == "enc0" and t["rel"] != "OBJ" for t in tokens)
                               or i > 0 and is_one(bases[i - 1]["base"], "nida")
                               or token["rel"] == "IDF" or token["rel"] == "MOD" and head is not None and typed_or_parsed_case(head) == "i")
         if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not noun:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
+            # with no vowel typed, the sentence vouches for a verb: the dictionary has no reading at all
+            # (اكتبي: it lists no command to a woman), or the parser hung an object on what it read as an
+            # elative, which takes none (Ashmuni V2 p312: لا ينصب المفعول به): ارفعي صوتك
+            vouched = token.get("guessed") or (is_elative(token) and any(
+                t["head"] == token["id"] and t["rel"] == "OBJ" for t in tokens))
             own = own_letters(word, token["front"], token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
             cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
-                         if (found := verb_reader.command(form, governed, token.get("root", "")))
-                         and (not read_noun or verb_reader.typed_fully(form, found))), None)
+                         if (found := verb_reader.command(form, governed, token.get("root", ""), vouched))
+                         and (not read_noun or vouched or verb_reader.typed_fully(form, found))), None)
             if cell:  # the person is sarf's: the reading may have taken اقبل for "I accept"
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
             elif verb and merged_prefix(own, book_words("ta_merges")):
