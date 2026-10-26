@@ -1288,6 +1288,11 @@
     "مرة"
    ]
   },
+  "adad_mudaf": {
+   "ar": "ألفاظ العدد التي تضاف إلى معدودها",
+   "effect": "Three to ten, the hundred and the thousand are added to what they count, which is مجرور (ثلاثُ سنينَ، مئةُ كتابٍ). The number is a noun, no describing word at work, so its إضافة is معنوية بمعنى «من» (ثلاثٌ من السنين), never the لفظية of a participle, though CAMeL tags it an adjective",
+   "words": ["ثلاث", "ثلاثة", "أربع", "أربعة", "خمس", "خمسة", "ست", "ستة", "سبع", "سبعة", "ثمان", "ثماني", "ثمانية", "تسع", "تسعة", "عشر", "عشرة", "مئة", "مائة", "ألف"]
+  },
   "dua_nouns": {
    "ar": "أسماء الدعاء والتحية",
    "book": "Tasheel 1.2 (the mubtada may be a nakira that prays or greets)",

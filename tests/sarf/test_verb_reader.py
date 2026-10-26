@@ -38,6 +38,7 @@ def test_a_command_is_named_by_sarf(word: str, root: str, person: tuple):
     "كَتَبُوا", "يَكْتُبُونَ", "أَكْتُبُ", "اِجْتَمَعُوا",
     "تَحَاسَدُوا",   # also the past: the dictionary keeps its say
     "أَحْمَدْ",      # a name paused on: no command has this fatha
+    "أَدْرِي",       # I know, as close as "inform!" (f.): the sukun its ي lacks is no mark
     "الكتاب"])
 def test_a_word_that_is_not_only_a_command_is_left_alone(word: str):
     assert verb_reader.command(word) is None

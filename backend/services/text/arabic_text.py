@@ -126,6 +126,17 @@ def bare_letters(text: str) -> str:
     return _QURANIC_MARKS_RE.sub("", strip_diacritics(text)).translate(_LETTER_FOLD)
 
 
+def doubled_letters(text: str) -> tuple:
+    """One per letter of bare_letters(text): True under a shadda, False under another mark, None unmarked."""
+    out: list = []
+    for char in _QURANIC_MARKS_RE.sub("", unicodedata.normalize("NFKC", text)):
+        if not DIACRITICS_RE.match(char):
+            out.append(None)
+        elif out and out[-1] is not True:
+            out[-1] = char == "\u0651"  # the shadda
+    return tuple(out)
+
+
 
 # Qur'anic small alef (long "aa") vs. plain alef: كِتَٰب and الكتاب are the
 # same word, so this spells the mark out as a full alef so both match.

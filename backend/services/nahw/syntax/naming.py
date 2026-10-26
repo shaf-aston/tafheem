@@ -236,6 +236,8 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
     """Which kind of idafa, badal or فاعل the word is, as the books name it (teacher.json kinds)."""
     kinds = teacher_rules()["kinds"]
     if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
+        if facts.listed(mudaf, "adad_mudaf"):
+            return kinds["idafa"]["min"]  # ثلاثُ سنينَ: a number is a noun, though CAMeL tags it an adjective
         if (facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ") and not facts.is_elative(mudaf):
             return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite; أعلى صوتِه is not, it works on nothing
         bare = strip_diacritics(token["form"]).strip("+").removeprefix("ال")

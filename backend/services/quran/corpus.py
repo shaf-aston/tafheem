@@ -277,9 +277,14 @@ def lemmas_for_surah(surah: int) -> dict[int, list[list[str]]]:
     }
 
 
+def _same_doubling(typed: tuple, spelled: tuple) -> bool:
+    """False when one marks a letter doubled that the other marks single: سَنَةٍ (year) is not سُنَّة."""
+    return len(typed) != len(spelled) or all(None in pair or pair[0] == pair[1] for pair in zip(typed, spelled))
+
+
 @lru_cache(maxsize=1)
-def _roots_by_bare_spelling() -> dict:
-    """Each lemma and stem form, folded to bare letters, with the root it most often carries.
+def _spellings_by_bare_letters() -> dict:
+    """Each lemma and stem form under its bare letters: (its doubled letters, its root, its uses).
 
     A stem tagged with no root votes too, for "": من is a particle in nearly all its uses,
     and counting only the rooted ones filed it under منن (مَنّ, manna).
@@ -289,24 +294,32 @@ def _roots_by_bare_spelling() -> dict:
            WHERE features NOT LIKE '%PREF%' AND features NOT LIKE '%SUFF%'
            GROUP BY lemma, form, root"""
     ).fetchall()
-    votes: dict[str, dict[str, int]] = {}
+    found: dict[str, list] = {}
     for r in rows:
         for spelling in (r["lemma"], r["form"]):
-            bare = arabic_text.bare_letters(spelling)
-            if bare:
-                by_root = votes.setdefault(bare, {})
-                by_root[r["root"]] = by_root.get(r["root"], 0) + r["uses"]
-    return {bare: max(by_root, key=by_root.get) for bare, by_root in votes.items()}
+            if bare := arabic_text.bare_letters(spelling):
+                found.setdefault(bare, []).append((arabic_text.doubled_letters(spelling), r["root"], r["uses"]))
+    return found
 
 
 def root_of(word: str) -> str | None:
     """The root a word is built from; "" when the corpus has it with no root (a particle, a
-    pronoun, a foreign name), None when the corpus does not have the word."""
-    bare = arabic_text.bare_letters(word)
-    roots = _roots_by_bare_spelling()
-    found = roots.get(bare)
+    pronoun, a foreign name), None when the corpus does not have the word.
+
+    Looked up by bare letters, so homographs share one entry: only the spellings whose
+    shadda the typed word does not contradict vote. سَنَةٍ (year, سنو) is no سُنَّة (سنن),
+    and دَرَى (know, دري) no دُرِّيّ (shining, درر); typed with no marks, every spelling votes.
+    """
+    bare, doubled = arabic_text.bare_letters(word), arabic_text.doubled_letters(word)
+    spellings = _spellings_by_bare_letters()
     # The corpus splits the article off, so its stems never start with ال.
-    return roots.get(bare[2:]) if found is None and bare.startswith("ال") else found
+    if bare not in spellings and bare.startswith("ال"):
+        bare, doubled = bare[2:], doubled[2:]
+    votes: dict[str, int] = {}
+    for spelled, root, uses in spellings.get(bare, ()):
+        if _same_doubling(doubled, spelled):
+            votes[root] = votes.get(root, 0) + uses
+    return max(votes, key=votes.get) if votes else None
 
 
 def occurrences_of_root(root: str, limit: int) -> dict:
