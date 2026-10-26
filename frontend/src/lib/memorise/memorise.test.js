@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
-import { recitedForm } from '../text/arabicText'
+import { recitedForm, sameSpokenWord } from '../text/arabicText'
 import {
-  blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, isRight, makeRandom,
+  blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, makeRandom,
   optionsFor, pagesOf, printedPageOf, score, wordsOf,
 } from './memorise'
 
@@ -113,35 +113,35 @@ describe('choosing which words to hide', () => {
 
 describe('judging what was typed', () => {
   it('accepts the word without any of the marks a keyboard has no key for', () => {
-    expect(isRight('الله', 'ٱللَّهُ')).toBe(true)      // wasla alif and vowels
-    expect(isRight('احد', 'أَحَدٌ')).toBe(true)         // hamza on the alif
-    expect(isRight('علي', 'عَلَىٰ')).toBe(true)         // alif maqsura
-    expect(isRight('  يلد  ', 'يَلِدْ')).toBe(true)     // stray spaces
+    expect(sameSpokenWord('الله', 'ٱللَّهُ')).toBe(true)      // wasla alif and vowels
+    expect(sameSpokenWord('احد', 'أَحَدٌ')).toBe(true)         // hamza on the alif
+    expect(sameSpokenWord('علي', 'عَلَىٰ')).toBe(true)         // alif maqsura
+    expect(sameSpokenWord('  يلد  ', 'يَلِدْ')).toBe(true)     // stray spaces
   })
 
   it('accepts a standing fatha spelt as an alif and spelt without one', () => {
     // The mark is a long a. Later spelling writes it as a whole letter in some
     // words and not in others, and nothing in the text says which; so a reader
     // typing either is right. ٱلصَّٰلِحَٰتِ was marked wrong before this.
-    expect(isRight('الصالحات', 'ٱلصَّٰلِحَٰتِ')).toBe(true)
-    expect(isRight('الصلحت', 'ٱلصَّٰلِحَٰتِ')).toBe(true)
-    expect(isRight('ذلك', 'ذَٰلِكَ')).toBe(true)
-    expect(isRight('ذالك', 'ذَٰلِكَ')).toBe(true)
-    expect(isRight('الرحمن', 'ٱلرَّحْمَٰنِ')).toBe(true)
+    expect(sameSpokenWord('الصالحات', 'ٱلصَّٰلِحَٰتِ')).toBe(true)
+    expect(sameSpokenWord('الصلحت', 'ٱلصَّٰلِحَٰتِ')).toBe(true)
+    expect(sameSpokenWord('ذلك', 'ذَٰلِكَ')).toBe(true)
+    expect(sameSpokenWord('ذالك', 'ذَٰلِكَ')).toBe(true)
+    expect(sameSpokenWord('الرحمن', 'ٱلرَّحْمَٰنِ')).toBe(true)
     // Still a different word, however the mark is read.
-    expect(isRight('كتاب', 'ٱلصَّٰلِحَٰتِ')).toBe(false)
+    expect(sameSpokenWord('كتاب', 'ٱلصَّٰلِحَٰتِ')).toBe(false)
   })
 
   it('reads a standing fatha on an already-long letter as adding nothing', () => {
-    expect(isRight('عيسى', 'عِيسَىٰ')).toBe(true)
-    expect(isRight('على', 'عَلَىٰ')).toBe(true)
+    expect(sameSpokenWord('عيسى', 'عِيسَىٰ')).toBe(true)
+    expect(sameSpokenWord('على', 'عَلَىٰ')).toBe(true)
   })
 
   it('still refuses a different word', () => {
-    expect(isRight('احد', 'ٱلصَّمَدُ')).toBe(false)
-    expect(isRight('', 'أَحَدٌ')).toBe(false)
+    expect(sameSpokenWord('احد', 'ٱلصَّمَدُ')).toBe(false)
+    expect(sameSpokenWord('', 'أَحَدٌ')).toBe(false)
     // ة and ه are two letters, not one written two ways.
-    expect(isRight('رحمه', 'رَحْمَة')).toBe(false)
+    expect(sameSpokenWord('رحمه', 'رَحْمَة')).toBe(false)
   })
 
   it('reduces an ayah number or a recitation mark to nothing', () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { CHECK, MISSED, SAID, WAITING, WRONG } from '../recite/follow'
+import { CHECK, MISSED, SAID, WAITING, WRONG } from './follow'
 import { weakParts, whyOf } from './markWhy'
 
 describe('why a word is marked', () => {

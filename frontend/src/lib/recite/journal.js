@@ -15,9 +15,6 @@ const QUEUE_MAX = config['journal-queue-max']
 let queue = []
 let dropped = 0
 
-/** The first `max` events of `queue`, in order; an exact duplicate is kept, not folded away. */
-export const batchOf = (queue, max) => queue.slice(0, max)
-
 const post = (events, beacon) => {
   if (beacon && typeof navigator !== 'undefined' && navigator.sendBeacon) {
     navigator.sendBeacon(JOURNAL_PATH, JSON.stringify({ events }))
@@ -29,7 +26,7 @@ const post = (events, beacon) => {
 /** Send whatever is queued, in batches of `journal-batch`. Never throws. */
 async function flush(beacon = false) {
   while (queue.length) {
-    const batch = batchOf(queue, BATCH)
+    const batch = queue.slice(0, BATCH)
     queue = queue.slice(batch.length)
     try {
       await post(batch, beacon)

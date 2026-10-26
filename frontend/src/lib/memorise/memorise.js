@@ -263,15 +263,12 @@ export function optionsFor(answer, pool, random, count = CHOICES) {
   return shuffled(options, random)
 }
 
-/** True when what was typed is the word that was taken out. */
-export const isRight = (typed, actual) => sameSpokenWord(typed, actual)
-
 /** How many gaps were filled correctly, out of how many there were. */
 export function score(page, blanks, answers) {
   let right = 0
   for (const key of blanks) {
     const [l, w] = key.split(':').map(Number)
-    if (isRight(answers[key] ?? '', wordsOf(page[l].arabic)[w])) right += 1
+    if (sameSpokenWord(answers[key] ?? '', wordsOf(page[l].arabic)[w])) right += 1
   }
   return { right, total: blanks.size }
 }

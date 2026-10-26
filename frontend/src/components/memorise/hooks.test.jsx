@@ -19,7 +19,7 @@ const routes = {
 function useMemorise() {
   const answers = useAnswers()
   const how = useHowYouAnswer(answers.fresh)
-  const where = useBookPage({ fresh: answers.fresh, setWay: how.setWay })
+  const where = useBookPage({ fresh: answers.fresh })
   const steps = usePageSteps(where)
   const gaps = useGaps({ ...where, ...how, startFrom: 0 })
   return { ...answers, ...how, ...where, ...steps, ...gaps }

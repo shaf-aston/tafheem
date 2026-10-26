@@ -1,10 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { batchOf } from './journal'
 import { ayahAt } from '../memorise/memorise'
-import {
-  allowanceLeft, asksPerMinute, byPlace, createRecitingSession, cutReason, keepRecording, problemOf, queueCheck, readyToSend, recentAsks, settledScores, spokeSince, surer,
-} from './recitingSession'
+import { allowanceLeft, asksPerMinute, cutReason, readyToSend, recentAsks, spokeSince } from './pacing'
+import { createRecitingSession, keepRecording, problemOf, queueCheck } from './recitingSession'
+import { byPlace, settledScores, surer } from './scores'
 
 const ayahs = [ayahAt('1:6', [...'ابت'], 17), ayahAt('1:7', [...'ثجحخدذرزس'], 20)]
 
@@ -245,30 +244,6 @@ describe('queueCheck cap', () => {
     const { queue: next, dropped } = queueCheck(queue, job(9, 'new'), 8)
     expect(next[0]).toEqual(job(0, 'inflight', true))
     expect(dropped).toEqual(job(1, 'j1'))
-  })
-})
-
-describe('journal batchOf', () => {
-  it('takes nothing from an empty queue', () => {
-    expect(batchOf([], 20)).toEqual([])
-  })
-
-  it('takes every event when under the max', () => {
-    const queue = [1, 2, 3]
-    expect(batchOf(queue, 20)).toEqual([1, 2, 3])
-  })
-
-  it('takes exactly the max when the queue is exactly that long', () => {
-    const queue = Array.from({ length: 20 }, (_, i) => i)
-    expect(batchOf(queue, 20)).toEqual(queue)
-  })
-
-  it('takes only the first max when the queue is longer, keeping an exact duplicate event rather than folding it away', () => {
-    const queue = ['dup', 'dup', ...Array.from({ length: 19 }, (_, i) => i)]
-    const batch = batchOf(queue, 20)
-    expect(batch).toHaveLength(20)
-    expect(batch.filter((e) => e === 'dup')).toEqual(['dup', 'dup'])
-    expect(batch).not.toContain(18) // the 21st event, left for the next batch
   })
 })
 

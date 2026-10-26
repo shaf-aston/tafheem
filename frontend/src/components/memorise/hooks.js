@@ -10,7 +10,7 @@ import {
 import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
 import { useSlide, useSwipe } from '../../lib/motion/useSwipe'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
-import { useReciting } from '../../lib/memorise/useReciting'
+import { useReciting } from '../../lib/recite/useReciting'
 import { useSetting } from '../../lib/store/settings'
 import { warm } from '../../lib/api/warm'
 import { useArrivalEffect } from '../../lib/nav/useArrival'
@@ -41,7 +41,7 @@ const placeOf = (bookId, part, line) => `${bookId === DEFAULT_BOOK ? '' : `${boo
 
 // Two ways to answer the same gap. Typing is recall; choosing is recognition,
 // which is easier, and the only one that works without an Arabic keyboard.
-const WAYS = [
+export const WAYS = [
   { id: 'type', label: 'Type it' },
   // The count is read, never typed: "Pick from four" would start lying the day
   // option-count changes.
@@ -50,8 +50,6 @@ const WAYS = [
   // Nothing is taken out here, so the whole page is shown.
   { id: 'recite', label: 'Recite it' },
 ]
-/** The ways this book offers. */
-export const waysOf = (book) => WAYS.filter((w) => !w.onlyIf || w.onlyIf(book))
 
 /** What has been answered, whether the page is marked, and the words shown. */
 export function useAnswers() {
@@ -94,7 +92,7 @@ export function useHowYouAnswer(fresh) {
 }
 
 /** The book, part and page open, the word started on, and the moves between places. */
-export function useBookPage({ fresh, setWay }) {
+export function useBookPage({ fresh }) {
   const [bookId, setBookId] = useState(DEFAULT_BOOK)
   // What the reader picked, which is nothing until they pick; the part
   // actually open is derived below, once the book has said what its parts are.
@@ -150,7 +148,6 @@ export function useBookPage({ fresh, setWay }) {
     setPageNumber(0)
     setPinned(null)
     setMeaning(BOOKS[id].meaningDefault ?? false)
-    setWay((was) => (waysOf(BOOKS[id]).some((w) => w.id === was) ? was : 'type'))
     fresh()
   }
   // The pages of a part, fetched (or cached), and which holds a line (-1 for none).

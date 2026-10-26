@@ -1,12 +1,12 @@
 import { recitedForm } from '../../lib/text/arabicText'
-import { isRight } from '../../lib/memorise/memorise'
+import { sameSpokenWord } from '../../lib/text/arabicText'
 
 import ArabicText from '../ui/ArabicText'
 import WheelPicker from '../ui/WheelPicker'
 
 /** One missing word: a box to type into, and after checking, how it went. */
 export default function Gap({ word, options, value, checked, accent, lineLabel, typeWidth, onChange }) {
-  const right = checked && isRight(value, word)
+  const right = checked && sameSpokenWord(value, word)
   const wrong = checked && !right
   const border = wrong ? 'var(--danger)' : right ? 'var(--success)' : 'var(--border)'
   const gapLabel = `missing word, ${lineLabel}`

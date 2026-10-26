@@ -14,7 +14,7 @@ Two jobs, kept apart:
 
 | Use | Frontend entry | Asks for |
 |---|---|---|
-| Recite a page, hidden words (Memorise) | `F/components/memorise/hooks.js` `useReciting` (`F/lib/memorise/useReciting.js`) then `F/lib/recite/recitingSession.js` `createRecitingSession` | `/listen?recite&near&before`, then `/listen/check` |
+| Recite a page, hidden words (Memorise) | `F/components/memorise/hooks.js` `useReciting` (`F/lib/recite/useReciting.js`) then `F/lib/recite/recitingSession.js` `createRecitingSession` | `/listen?recite&near&before`, then `/listen/check` |
 | Find an ayah by reciting | `F/components/quran/QuranSearchBar.jsx` `MicButton match` | `/listen?match` (words and ayahs) |
 | Spoken search boxes | `MicButton` in `DaleelPanel.jsx`, `Dictionary.jsx`, `hadith/HadithSearchResults.jsx`, `nahw/IraabAnalyzer.jsx`, `SarfPanel.jsx`, `colloquial/WordCards.jsx` (`anyArabic`) | `/listen` (words only) |
 

@@ -3,7 +3,7 @@
  * the ear doubted. Pure, so the card that shows them has nothing to decide.
  */
 import { bareForm, sameSpokenWord } from '../text/arabicText'
-import { CHECK, MISSED, SAID, WAITING, WRONG } from '../recite/follow'
+import { CHECK, MISSED, SAID, WAITING, WRONG } from './follow'
 
 /**
  * One plain sentence for why a word is marked as it is. `underlined` is whether

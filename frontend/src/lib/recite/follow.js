@@ -311,7 +311,7 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  * The marks, with the ear's sureness weighed in.
  *
  * `scores` holds, per page word, its score { sure, weak, weakFrom, at, take }
- * (recitingSession.scoreOf): how likely the ear found that word in the sound
+ * (scores.js scoreOf): how likely the ear found that word in the sound
  * (`sure`, 0 to 1), its weak piece, the second of the recording it sits at and
  * which recording that is. Every mark it covers keeps them for a word card.
  *
