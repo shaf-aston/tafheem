@@ -218,6 +218,12 @@ def is_diptote(typed: str, pos: str, lemma: str, *, attached: bool, annexed: boo
             and not (attached or annexed or is_mabni(pos) or is_one(lemma, "tamyeez_head")))
 
 
+def elative_shape(pattern: str, lemma: str) -> bool:
+    """أَعْلَى، أَكْبَر: the analyser's pattern holds the elative's shape (closed_words elative_patterns), with or without ال or a proclitic;
+    خير and شر have lost its hamza, so they are listed by word (`hamza_dropped`)."""
+    return any(shape in pattern for shape in book_words("elative_patterns")) or is_one(lemma, "elative_patterns", "hamza_dropped")
+
+
 def is_fem_plural(base: str, number: str) -> bool:
     """A sound feminine plural: ـات (ـآت: سَوْآتِ) on a word CAMeL reads as a plural, never one it could not read (number "-": مرضات)."""
     return base.endswith(("ات", "آت")) and number not in ("s", "-")

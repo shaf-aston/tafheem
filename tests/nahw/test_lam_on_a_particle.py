@@ -3,7 +3,7 @@ its khabar (Alfiyya: وبعد ذات الكسر تصحب الخبر لام اب�
 dictionary never writes it so and reads لعلى as لِعَلِيّ or a verb."""
 import pytest
 
-from backend.services.sarf.morphology import _lam_on_particle
+from backend.services.sarf.morphology import _emphasis_lam
 from tests.nahw_helpers import analyze, cards, needs_parser, tree_roles
 
 
@@ -65,4 +65,27 @@ def test_bare_letters_without_inna_are_the_lam_of_emphasis_too():
 
 @pytest.mark.parametrize("typed", ["لِمَنْ", "لَعُلَى", "لَكَ", "لَ", ""])
 def test_no_lam_of_emphasis_against_a_typed_vowel_or_onto_no_particle(typed):
-    assert _lam_on_particle(typed) is None
+    assert _emphasis_lam(typed) is None
+
+
+def test_a_lam_with_a_fatha_on_a_pronoun_the_dictionary_never_writes_is_the_lam_of_emphasis():
+    assert _emphasis_lam("لَأَنْتُمْ") is not None
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, expected", [
+    ("لَزَيْدٌ قَائِمٌ", ["مبتدأ", "خبر"]),
+    ("لَهُوَ الْحَقُّ", ["مبتدأ", "خبر"]),
+    ("وَلَلْآخِرَةُ خَيْرٌ لَكَ مِنَ الْأُولَى", ["مبتدأ", "خبر", "حرف جر", "حرف جر", "مجرور"]),
+    # the parser hangs the word with the لام as the صفة of the khabar after it: لام الابتداء heads the sentence
+    ("لَزَيْدٌ أَفْضَلُ مِنْ عَمْرٍو", ["مبتدأ", "خبر", "حرف جر", "مجرور"]),
+    ("لَأَنْتُمْ أَشَدُّ رَهْبَةً", ["مبتدأ", "خبر"]),
+])
+def test_the_lam_of_emphasis_on_a_noun_leaves_it_the_mubtada(sentence, expected):
+    assert roles(sentence)[:len(expected)] == expected
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence", ["لَكَ الْحَمْدُ", "لَهُ الْمُلْكُ"])
+def test_a_lam_on_a_pronoun_heading_the_sentence_keeps_its_jarr(sentence):
+    assert roles(sentence) == ["حرف جر", "مبتدأ"]

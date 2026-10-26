@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.sarf import verb_reader
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, is_built_word, is_one, only_adverb
-from backend.services.nahw.syntax.facts import has_added, verb_tagged
+from backend.services.nahw.syntax.facts import has_added, is_emphasis_lam, noun_tagged, verb_tagged
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -83,3 +83,24 @@ def since_jarr(tokens: list[dict]) -> None:
         if is_built_word(since["lemma"]) and is_one(since["lemma"], "jarr") and noun["pos"] == "NOM":
             since.update(pos="PRT", pos_camel="prep")
             noun["head"], noun["rel"] = since["id"], "OBJ"
+
+
+def emphasis_lam_opener(tokens: list[dict]) -> None:
+    """لَزَيْدٌ قَائِمٌ، وَلَلْآخِرَةُ خَيْرٌ لَكَ: the لام of emphasis (facts.is_emphasis_lam) governs nothing,
+    so a noun the parser hung on it as a جار's majrur is in that لام's place: it hangs where the لام hung,
+    what hung on the لام hangs on it, and the لام on it (لام الابتداء). That لام has the head of the
+    sentence, so its word's khabar never comes before it (Ibn Aqil V1 p236: لام الابتداء لها صدر الكلام،
+    فلا تقول قائم لزيد): the word hung as the صفة of a word after it that heads a verbless sentence
+    (لَأَنْتُمْ أَشَدُّ رَهْبَةً، لَزَيْدٌ أَفْضَلُ مِنْ عَمْرٍو) is its مبتدأ."""
+    by_id = {t["id"]: t for t in tokens}
+    for i, (lam, word) in enumerate(zip(tokens, tokens[1:])):
+        if not (word["head"] == lam["id"] and noun_tagged(word) and is_emphasis_lam(tokens, i)):
+            continue
+        for kid in tokens:
+            if kid["head"] == lam["id"]:
+                kid["head"] = word["id"]
+        word["head"], word["rel"] = lam["head"], lam["rel"]
+        lam["head"], lam["rel"] = word["id"], "MOD"
+        told = by_id.get(word["head"])
+        if word["rel"] == "MOD" and told and told["id"] > word["id"] and told["head"] == 0 and not verb_tagged(told):
+            word["rel"] = "SBJ"

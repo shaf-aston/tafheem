@@ -23,7 +23,7 @@ from backend.services.nahw import rule_engine
 from backend.services.nahw import syntax
 from backend.services.text.arabic_text import words
 from backend.services.nahw.book import term_ar
-from tests.nahw_helpers import needs_parser
+from tests.nahw_helpers import cards, needs_parser
 
 pytestmark = needs_parser
 
@@ -578,6 +578,8 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("مَا لَكَ عَلَيَّ سُلْطَانٌ", ["حرف", "حرف جر", "حرف جر", "مبتدأ"]),
     ("وَمَا عِنْدَ اللَّهِ خَيْرٌ", ["مبتدأ", "مفعول فيه", "مضاف إليه", "خبر"]),
     ("الَّذِي فِي الدَّارِ رَجُلٌ", ["مبتدأ", "حرف جر", "مجرور", "خبر"]),
+    # the parser hangs خير under the ظرف, which takes no subject: it is the relative's khabar
+    ("وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى", ["مبتدأ", "مفعول فيه", "مضاف إليه", "خبر", "معطوف"]),
     # the question hamza on a جار: the noun after it in jarr is its majrur, not a verb's (أَفِي "I fulfil")
     ("أَفِي اللَّهِ شَكٌّ", ["حرف جر", "مجرور", "مبتدأ"]),
     ("أَفِي بِعَهْدِي", ["فعل", "مجرور"]),
@@ -600,6 +602,21 @@ def test_ma_before_a_fronted_khabar_and_its_raf_noun_is_the_negation(sentence: s
     words = iraab.analyze(sentence)["words"]
     assert ("النافية" in words[0]["reason"]) is negates
     assert ("مبتدأ مؤخر" in words[-1]["reason"]) is negates
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    # أَبْقَى reads as the elative and as "and I remain": joined onto an elative, it is that elative
+    ("وَالْآخِرَةُ خَيْرٌ وَأَبْقَى", ["مبتدأ", "خبر", "معطوف"]),
+    ("هُوَ أَعْلَمُ وَأَحْكَمُ", ["مبتدأ", "خبر", "معطوف"]),
+    # one the dictionary lacks, read by sarf's shape once the و is off
+    ("الْآخِرَةُ أَبْقَى وَأَدْوَمُ", ["مبتدأ", "خبر", "معطوف"]),
+    # the typed vowels still choose (the past verb's fatha, the verb's damma), and a participle takes a verb
+    ("زَيْدٌ خَيْرٌ وَأَحْسَنَ إِلَيَّ", ["مبتدأ", "خبر", "فعل", "حرف جر"]),
+    ("زَيْدٌ قَائِمٌ وَأَدُومُ", ["مبتدأ", "خبر", "فعل"]),
+    ("زَيْدٌ قَائِمٌ وَأَبْقَى عَمْرًا", ["مبتدأ", "خبر", "فعل", "مفعول به"]),
+])
+def test_a_word_joined_onto_an_elative_is_an_elative(sentence: str, expected: list[str]):
+    assert [w["role"] for w in cards(sentence)] == expected
 
 
 @pytest.mark.parametrize("sentence, sign", [("أَيُّكُمْ أَحْسَنُ عَمَلًا", "ضمة"), ("أَيُّ الْأَعْمَالِ أَفْضَلُ", "ضمة"),
