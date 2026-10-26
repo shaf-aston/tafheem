@@ -315,6 +315,12 @@ def is_elative(token: dict) -> bool:
         or is_one(token["lemma"], "elative_patterns", "hamza_dropped")
 
 
+def is_describing(token: dict) -> bool:
+    """A وصف: a participle, an adjective or an elative (كريمٌ، باقٍ، خيرٌ), the word a khabar is made of
+    when it describes what it is told of."""
+    return is_participle(token) or is_elative(token)
+
+
 PASSIVE_PARTICIPLE = "مَ1ْ2ُو3"  # مَفْعُول: مفتوحٌ بابُه, its noun the نائب فاعل
 
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_elative, is_participle, is_preposition, is_verb, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_describing, is_elative, is_participle, is_preposition, is_verb, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -69,17 +69,20 @@ def before_la(tokens: list[dict]) -> None:
 
 
 def after_pointer(tokens: list[dict]) -> None:
-    """هَاتَانِ قِلَادَتَانِ، زَيْدٌ ضَارِبٌ: a نعت matches its noun in being definite (هذا الكتابُ،
-    زيدٌ الكريمُ), so an indefinite noun or adjective the parser hung as the صفة of a definite
-    word that opens the sentence (a pointer, a name, a word with ال) is the khabar, that word its mubtada."""
+    """هَاتَانِ قِلَادَتَانِ، زَيْدٌ ضَارِبٌ، وَمَا عِنْدَ اللَّهِ خَيْرٌ: the مبتدأ is as a rule the definite
+    word (Ibn Aqil V1 p216: الأصل في المبتدأ أن يكون معرفة), and a نعت matches its noun in being definite
+    (هذا الكتابُ، زيدٌ الكريمُ), so an indefinite noun or adjective the parser hung as the صفة of a
+    definite word that opens the sentence (a pointer, a relative, a name, a word with ال), or a
+    describing word it hung as its subject, is the khabar, that word its mubtada. A plain noun stays
+    its subject: after ما it is the مبتدأ مؤخر of the negation (ما في الدار أحدٌ, particles `fronted`)."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
-        if (head and head["head"] == 0 and head["pos"] in ("NOM", "PROP") and not is_verb(head) and token["rel"] == "MOD"
-                and (head.get("pos_camel") in ("pron_dem", "noun_prop") or head.get("stt") == "d")
+        if (head and head["head"] == 0 and head["pos"] in ("NOM", "PROP") and not is_verb(head) and (token["rel"] == "MOD" or token["rel"] == "SBJ" and is_describing(token))
+                and (head.get("pos_camel") in ("pron_dem", "pron_rel", "noun_prop") or head.get("stt") == "d")
                 and token["id"] > head["id"] and token.get("pos_camel") in ("noun", "adj")
                 and _indefinite(token, tokens) and typed_case_of(token) != "a"
-                and not any(t["head"] == head["id"] and t["rel"] in ("PRD", "SBJ") for t in tokens)):
+                and not any(t is not token and t["head"] == head["id"] and t["rel"] in ("PRD", "SBJ") for t in tokens)):
             token["head"], token["rel"] = 0, "---"
             head["head"], head["rel"] = token["id"], "SBJ"
 

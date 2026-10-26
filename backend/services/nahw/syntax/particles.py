@@ -158,7 +158,7 @@ def _fronted(token: dict, s: facts.Sentence) -> str:
         at += 1
     noun = words[at] if 0 < at < len(words) else None
     return "yes" if noun and facts.noun_tagged(noun) and facts.typed_case_of(noun) == "u" \
-        and not (facts.is_participle(noun) or facts.is_elative(noun)) else "no"
+        and not facts.is_describing(noun) else "no"
 
 
 def _opens(token: dict, s: facts.Sentence) -> str:
