@@ -37,6 +37,16 @@ def test_typed_case_and_passive():
     assert typed_passive("يُكَافَأُ", present=True)
 
 
+@pytest.mark.parametrize("verb, passive", [
+    ("يُصَلُّونَ", False), ("يُعْطُونَ", False),  # صَلَّى، أَعْطَى: the weak last letter gone before the ending
+    ("يُدْعَوْنَ", True), ("يُصَلَّوْنَ", True), ("تُعْطَيْنَ", True),  # its fatha on the letter left standing
+    ("يُعْطَيَانِ", True), ("يُصَلِّيَانِ", False),  # the weak letter kept before the dual ending
+    ("يُدْعَ", True), ("يُعْطِ", False),  # or gone by jazm
+])
+def test_a_weak_last_verb_shows_its_voice_on_the_letter_left_before_the_ending(verb: str, passive: bool):
+    assert typed_passive(verb, present=True, weak_last=True) is passive
+
+
 def test_verb_sentence():
     toks = [token(1, "كتب", "كتب", "VRB", 0, "---", vox="a", asp="p"),
             token(2, "الطالب", "طالب", "NOM", 1, "SBJ", stt="d", cas="n"),
@@ -346,6 +356,18 @@ def test_a_word_joined_in_front_is_split_with_its_own_tag(monkeypatch):
     reading = {"atbtok": "فَ+_لَيْسَتِ", "catib6": "PRT", "ud": "CCONJ", "pos": "verb", "lex": "لَيْس", "asp": "p"}
     pieces = catib_onnx._split_word("فَلَيْسَتِ", reading)
     assert [(t["form"], t["pos"]) for t in pieces] == [("ف+", "PRT"), ("ليست", "VRB")]
+
+
+@pytest.mark.parametrize("atbtok, lex, split", [
+    ("أَيّكُم", "أَيّ", ["أي", "+كم"]),  # filed with its pronoun unsplit: cut where the word's own letters end
+    ("أَيّكُم", "كُم", ["أيكم"]),  # the word's letters are not where it starts: left whole
+])
+def test_a_word_filed_with_its_pronoun_unsplit_is_cut_after_its_own_letters(monkeypatch, atbtok, lex, split):
+    from backend.services.nahw.syntax import catib_onnx
+    monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
+        ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
+    reading = {"atbtok": atbtok, "catib6": "", "ud": "", "pos": "pron_interrog", "lex": lex, "enc0": "2mp_poss"}
+    assert [t["form"] for t in catib_onnx._split_word("أَيُّكُمْ", reading)] == split
 
 
 @pytest.mark.parametrize("front, passive", [(1, True), (0, False)])
@@ -727,3 +749,65 @@ def test_the_place_the_parser_gave_an_emphasis_lam_is_its_words():
             token(3, "ل+", "ل+", "PRT", 1, "PRD", token_type="prc1"), token(4, "سحر", "سحر", "NOM", 3, "OBJ")]
     assert roles(words, toks)[2] == "خبر إن"
     assert [(t["head"], t["rel"]) for t in toks[2:]] == [(4, "MOD"), (1, "PRD")]
+
+
+def jar_told_of(asked, rel_of_noun):
+    """لِزَيْدٍ / لِمَنْ, then هَذَا الْكِتَابُ, as the parser links it: هذا hung on the majrur."""
+    majrur = token(2, "من", "من", "NOM", 1, "OBJ", pos_camel="pron_rel", stt="na") if asked else \
+        token(2, "زيد", "زيد", "PROP", 1, "OBJ", pos_camel="noun_prop", cas="g")
+    toks = [token(1, "ل+", "ل+", "PRT", 0, "---", pos_camel="prep", token_type="prc1"), majrur,
+            token(3, "هذا", "هذا", "NOM", 2, rel_of_noun, pos_camel="pron_dem"),
+            token(4, "الكتاب", "كتاب", "NOM", 3, "MOD", stt="d", cas="n")]
+    return ["لِمَنْ" if asked else "لِزَيْدٍ", "هَذَا", "الْكِتَابُ"], toks
+
+
+@pytest.mark.parametrize("asked", [False, True])
+def test_a_noun_hung_as_the_subject_of_a_majrur_is_told_of_by_the_fronted_jar(asked):
+    # لِزَيْدٍ هَذَا الْكِتَابُ، لِمَنْ هَذَا الْكِتَابُ: الجار والمجرور متعلق بمحذوف خبر مقدم، هذا مبتدأ مؤخر
+    words, toks = jar_told_of(asked, "SBJ")
+    assert roles(words, toks) == ["مجرور", "مبتدأ", "صفة"]
+    assert [(t["head"], t["rel"]) for t in toks[1:3]] == [(1, "OBJ"), (1, "SBJ")]
+
+
+def test_a_question_word_after_a_preposition_stays_its_majrur():
+    # لِمَنْ هَذَا: the parser can hang هذا under مَن another way; مَن is still in jarr, never the مبتدأ
+    words, toks = jar_told_of(True, "OBJ")
+    assert roles(words, toks) == ["مجرور", "مبتدأ", "صفة"]
+    assert toks[1]["pos_camel"] == "pron_interrog"
+
+
+def test_a_wasf_in_jarr_keeps_its_own_doer():
+    # لِلْكَرِيمِ أَبُوهُ جَزَاءٌ: أبوه is the doer of the وصف, not a مبتدأ told of by the jar
+    from backend.services.nahw.syntax.repair.khabar import told_of_jar
+    toks = [token(1, "ل+", "ل+", "PRT", 0, "---", pos_camel="prep", token_type="prc1"),
+            token(2, "الكريم", "كريم", "NOM", 1, "OBJ", pos_camel="adj", stt="d", cas="g"),
+            token(3, "أبو", "أب", "NOM", 2, "SBJ", stt="c", cas="n")]
+    told_of_jar(toks)
+    assert toks[2]["head"] == 2
+
+
+def pointer_name_state():
+    """هَذَا زَيْدٌ قَائِمًا, as the parser links it: the pointer and the state both hung on the name."""
+    return ["هَذَا", "زَيْدٌ", "قَائِمًا"], [
+        token(1, "هذا", "هذا", "NOM", 2, "MOD", pos_camel="pron_dem"),
+        token(2, "زيد", "زيد", "PROP", 0, "---", pos_camel="noun_prop", cas="n"),
+        token(3, "قائما", "قائم", "NOM", 2, "MOD", pos_camel="adj", cas="a")]
+
+
+def test_a_nasb_word_after_a_pointer_and_its_khabar_is_a_hal_not_the_khabar():
+    # هذا مبتدأ، زيدٌ خبر، قائمًا حال: a plain khabar is marfu', so the typed fatha keeps it off the khabar
+    assert roles(*pointer_name_state()) == ["مبتدأ", "خبر", "حال"]
+
+
+@pytest.mark.parametrize("has_ism", [False, True])
+def test_a_noun_in_nasb_hung_as_the_object_of_inna_is_its_ism(has_ism):
+    # إِنَّ فِي ذَلِكَ لَآيَةً: إنّ takes no object; with its اسم already beside it, the noun is left alone
+    from backend.services.nahw.syntax.repair.subject_clash import inna_object
+    toks = [token(1, "إن", "إن", "PRT", 0, "---", pos_camel="verb_pseudo"),
+            token(2, "في", "في", "PRT", 1, "PRD", pos_camel="prep"),
+            token(3, "ذلك", "ذلك", "NOM", 2, "OBJ", pos_camel="pron_dem"),
+            token(4, "آية", "آية", "NOM", 1, "OBJ", typed="آيَةً", cas="a")]
+    if has_ism:
+        toks.append(token(5, "زيد", "زيد", "NOM", 1, "SBJ", typed="زَيْدًا", cas="a"))
+    inna_object(toks)
+    assert toks[3]["rel"] == ("OBJ" if has_ism else "SBJ")

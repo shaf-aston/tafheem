@@ -178,7 +178,7 @@ def _verb(card: dict) -> dict:
     bare, base = strip_diacritics(card["word"]), card["camel"]["base"]
     stuck_on = len(bare) - bare.rfind(base) - len(base) if base and base in bare else 0
     voiced = f"{tense} {said['passive']}" if aspect != "c" and (
-        card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i", stuck_on)) else tense
+        card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i", stuck_on, card["camel"].get("weak_last"))) else tense
     told = said["verb_by_family"].format(tense=voiced, state=state, **family).rstrip("، ") if family else f"{voiced} {state}"
     return {"sign": shown, "reason": f"{told}. {reason(tense)}"}
 

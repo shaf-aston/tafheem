@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_elative, is_participle, is_verb, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_elative, is_participle, is_preposition, is_verb, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -78,10 +78,23 @@ def after_pointer(tokens: list[dict]) -> None:
         if (head and head["head"] == 0 and head["pos"] in ("NOM", "PROP") and not is_verb(head) and token["rel"] == "MOD"
                 and (head.get("pos_camel") in ("pron_dem", "noun_prop") or head.get("stt") == "d")
                 and token["id"] > head["id"] and token.get("pos_camel") in ("noun", "adj")
-                and _indefinite(token, tokens)
+                and _indefinite(token, tokens) and typed_case_of(token) != "a"
                 and not any(t["head"] == head["id"] and t["rel"] in ("PRD", "SBJ") for t in tokens)):
             token["head"], token["rel"] = 0, "---"
             head["head"], head["rel"] = token["id"], "SBJ"
+
+
+def told_of_jar(tokens: list[dict]) -> None:
+    """لِزَيْدٍ هَذَا الْكِتَابُ، لِمَنْ هَذَا: a noun in jarr has no مبتدأ of its own, so a noun the parser
+    hung as the subject of a preposition's majrur is told of by the whole جار ومجرور, the khabar
+    said first, and hangs on the preposition as in لِزَيْدٍ كِتَابٌ. A وصف keeps its doer (لِلْقَائِمِ أَبُوهُ)."""
+    s = Sentence(tokens)
+    for token in tokens if s.verbless else ():
+        majrur = s.head(token)
+        jar = s.head(majrur) if majrur else None
+        if (token["rel"] == "SBJ" and majrur["rel"] == "OBJ" and jar and is_preposition(jar)
+                and noun_tagged(majrur) and not works_as_verb(majrur)):
+            token["head"] = jar["id"]
 
 
 def _indefinite(token: dict, tokens: list[dict]) -> bool:

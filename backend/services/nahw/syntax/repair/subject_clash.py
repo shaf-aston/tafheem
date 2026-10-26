@@ -130,6 +130,17 @@ def kana_subject(tokens: list[dict]) -> None:
             ba["rel"] = rule["rel"]
 
 
+def inna_object(tokens: list[dict]) -> None:
+    """إِنَّ فِي ذَلِكَ لَآيَةً: إنّ and its sisters take an اسم in nasb and a خبر (Tasheel 1.8), and no
+    object, so a noun in nasb the parser hung on one as its object, with no اسم beside it, is that اسم."""
+    s = Sentence(tokens)
+    for token in tokens:
+        head = s.head(token)
+        if (token["rel"] == "OBJ" and head and s.family(head) == "inna" and noun_tagged(token)
+                and typed_case_of(token) == "a" and not any(subject_link(k) for k in s.kids(head))):
+            token["rel"] = "SBJ"
+
+
 def zanna_pair(tokens: list[dict]) -> None:
     """حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا: ظنّ and its sisters enter a مبتدأ and its خبر and put both
     in nasb as their two objects (Alfiyya: انصب بفعل القلب جزأي ابتدا). The parser may keep the pair

@@ -161,6 +161,7 @@ def test_a_noun_with_its_own_pronoun_is_no_command(sentence: str, role: str):
     ("جَاءَ زَيْدٌ رَاكِبًا", ["فعل", "فاعل", "حال"]),  # nearest case: indefinite, a حال
     ("كَانَ النَّاسُ أُمَّةً وَاحِدَةً", ["فعل", "اسم كان", "خبر كان", "صفة"]),
     ("إِنَّ مِنَ الْبَيَانِ لَسِحْرًا", ["حرف", "حرف جر", "مجرور", "اسم إن"]),  # the jar-majrur stands first as the khabar
+    ("إِنَّ فِي ذَلِكَ لَآيَةً", ["حرف", "حرف جر", "مجرور", "اسم إن"]),  # إنّ has no object: the noun hung as one is its اسم
     ("عَادَ الْوَلَدُ مِنَ الْمَدْرَسَةِ فَرِحاً", ["فعل", "فاعل", "حرف جر", "مجرور", "حال"]),
     ("محمد بن عبد الله نبي كريم", ["مبتدأ", "صفة", "مضاف إليه", "مضاف إليه", "خبر", "صفة"]),
     ("زَيْدٌ ضَارِبٌ بَكْرًا", ["مبتدأ", "خبر", "مفعول به"]),  # no ال after a name: the khabar
@@ -557,6 +558,7 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("مَنْ أَنْتَ", ["مبتدأ", "خبر"]),
     ("مَنْ هَذَا؟", ["مبتدأ", "خبر"]),
     ("مَنْ أَبُوكَ", ["مبتدأ", "خبر"]),
+    ("أَيُّكُمْ أَحْسَنُ عَمَلًا", ["مبتدأ", "خبر", "تمييز"]),  # أيّ filed with its pronoun unsplit
     ("قَالَ مَا اسْمُكَ", ["فعل", "مبتدأ", "خبر"]),
     ("يَا أَخِي مَا اسْمُكَ", ["حرف", "منادى", "مبتدأ", "خبر"]),
     ("وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ", ["مبتدأ", "فعل", "مبتدأ", "خبر", "مضاف إليه"]),  # a verb of informing, its second object a question
@@ -573,6 +575,12 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
 ])
 def test_a_question_word_heads_the_noun_after_it(sentence: str, expected: list[str]):
     assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
+
+
+@pytest.mark.parametrize("sentence, sign", [("أَيُّكُمْ أَحْسَنُ عَمَلًا", "ضمة"), ("أَيُّ الْأَعْمَالِ أَفْضَلُ", "ضمة"),
+                                            ("مَنْ أَبُوكَ", "مبني")])
+def test_ayy_alone_of_the_question_words_takes_a_case(sentence: str, sign: str):
+    assert iraab.analyze(sentence)["words"][0]["sign"].startswith(sign)
 
 
 @pytest.mark.parametrize("sentence, negations", [
@@ -677,6 +685,12 @@ def test_a_pronoun_on_a_present_verb_is_not_read_as_its_passive_vowel():
     # the fatha before كَ in أُكْرِمَكَ is the verb's nasb; يُكْرَمُ is the passive
     assert "مجهول" not in _read("إِذَنْ أُكْرِمَكَ")["words"][1]["reason"]
     assert "مجهول" in _read("يُكْرَمُ الضَّيْفُ")["words"][0]["reason"]
+
+
+def test_a_verb_whose_weak_last_letter_went_before_its_waw_is_read_by_the_letter_left():
+    # صَلَّى: the ى is gone before the waw of يُصَلُّونَ, whose damma is the active's
+    words = _read("فِي الْمَسْجِدِ رِجَالٌ يُصَلُّونَ")["words"]
+    assert words[-1]["role"] == "فعل" and "مجهول" not in words[-1]["reason"]
 
 
 @pytest.mark.parametrize("sentence, particle, verb", [

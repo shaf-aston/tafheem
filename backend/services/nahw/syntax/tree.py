@@ -336,6 +336,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         name_of[key] = pair.get(role_of[key], name_of[key])
     name_of.update(dict.fromkeys(replies, said_verb["word"]))
     name_of.update(fronted)  # the question's verb, said no more than it is: unwritten
+    # في البيت رجلٌ كريمٌ: a مبتدأ مؤخر heading its own unit is one as a whole, as on its own
+    job_of.update({key: name for key, name in fronted.items() if job_of.get(key) == role_of[key]})
     # كَأَنَّ رَأْسَهُ زَبِيبَةٌ، أَصْبَحَ الْجَوُّ بَارِدًا: the two a sister governs are called after
     # that sister (اسم كأنّ، خبر أصبح), the family's mother (إنّ، كان) only naming the family
     for token, found in zip(bases, named):
@@ -492,10 +494,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             roots.append(token)
     roots = roots or [drawn[0]]
     # هذا بيتٌ كبيرٌ: the مبتدأ is said of the whole khabar unit, not of its head word,
-    # so it is drawn beside that unit under the sentence rather than inside it
+    # so it is drawn beside that unit under the sentence rather than inside it; so it is
+    # beside the khabar a حال of it stands beside (هذا زيدٌ قائمًا: مبتدأ، خبر، حال)
     top = roots[0]
     subjects = [kid for kid in children_of[top["id"]] if role_of[kid["id"]] == NAMED.mubtada]
-    if len(roots) == 1 and role_of[top["id"]] == NAMED.khabar and 0 < len(subjects) < len(children_of[top["id"]]):
+    beside_hal = len(roots) > 1 and all(job_of[t["id"]] == NAMED.haal for t in roots[1:])
+    if (len(roots) == 1 or beside_hal) and role_of[top["id"]] == NAMED.khabar and 0 < len(subjects) < len(children_of[top["id"]]) + beside_hal:
         children_of[top["id"]] = [kid for kid in children_of[top["id"]] if kid not in subjects]
         roots = subjects + roots
     # هل أنتَ تكتبُ، ما أنتَ إلا بشر، مَنْ أنتَ في المدينة: a unit typed wholly before or after the unit it
@@ -632,8 +636,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         index = at[token["id"]]
         if not kids:
             leaf = pieces(token, _leaf(index, role_of[token["id"]], why_of.get(token["id"]), name_of[token["id"]]))
-            # a صلة of one verb is still a clause, its doer the pronoun hidden in it
-            if token["id"] in clauses:
+            # a صلة of one verb is still a clause, its doer the pronoun hidden in it; a khabar
+            # whose مبتدأ is drawn beside it is a word (هذا زيدٌ قائمًا)
+            if token["id"] in clauses - nominal:
                 return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]) or leaf["tone"],
                         "detail": said_of(token), "children": [leaf]}
             return {"detail": detail_of[token["id"]], **leaf} if token["id"] in detail_of else leaf

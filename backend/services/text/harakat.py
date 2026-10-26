@@ -304,7 +304,7 @@ def opens_active(word: str, present: bool) -> bool:
     return "َ" in opening
 
 
-def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
+def typed_passive(word: str, present: bool, stuck_on: int = 0, weak_last: bool = False) -> bool:
     """فُعِلَ and يُفْعَلُ by their vowels.
 
     A past verb's opening damma is passive only with the kasra of فُعِلَ inside it:
@@ -313,6 +313,8 @@ def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     damma too (يُكَافِئُ is active), so there the fatha
     before the last stem letter is what separates يُكَافَأُ from it. The kasra of
     كُتِبَتِ sits on a root letter, not the last one, which is why the end is not read.
+    A weak last letter gone, before the plural ending (صَلَّى: يُصَلُّونَ) or by jazm (لم يُعْطِ),
+    leaves the fatha of يُدْعَوْنَ، لم يُدْعَ on the last letter standing.
     """
     marked = letters(word)
     if len(marked) < 3 or "ُ" not in (marked[0][1] if present else _opening_vowel(marked)):
@@ -324,7 +326,8 @@ def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
         return any("ِ" in marks or (SHADDA in marks and letter != "ن") for letter, marks in marked[1:-1])
     # an attached pronoun (stuck_on letters) is read past: the fatha of أُكْرِمَكَ is its nasb
     stem = _without_ending(marked[:len(marked) - stuck_on])
-    return len(stem) >= 3 and "َ" in stem[-2][1]
+    dropped = weak_last and stem[-1][0] not in WEAK_ENDS
+    return len(stem) >= 3 and "َ" in stem[-1 if dropped else -2][1]
 
 
 def moved_for_wasl(word: str, after: str = "") -> bool:

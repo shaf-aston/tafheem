@@ -3,7 +3,7 @@ from backend.services.nahw.book import role_units
 from backend.services.nahw.syntax import tree
 from backend.services.nahw.book import condition_of, term_ar
 from tests.nahw_helpers import tree_roles as roles_in
-from tests.nahw.test_naming import named, token
+from tests.nahw.test_naming import jar_told_of, named, pointer_name_state, token
 
 
 def built(words, toks):
@@ -221,3 +221,26 @@ def test_a_mubtada_the_parser_hung_under_its_verb_heads_the_sentence():
     drawn = built(["هُوَ", "يَبْكِي"], toks)["tree"]
     assert drawn["label"] == term_ar("jumlah_ismiyyah")
     assert [(kid["role"], kid.get("detail")) for kid in drawn["children"]] == [("مبتدأ", None), ("خبر", "في محل رفع")]
+
+
+def test_a_fronted_khabar_names_its_mubtada_unit_the_mubtada_moved_back():
+    # فِي الْبَيْتِ رَجُلٌ كَرِيمٌ: the مبتدأ with its صفة is the مبتدأ مؤخر as a whole
+    toks = [token(1, "في", "في", "PRT", 0, "---", pos_camel="prep"), token(2, "البيت", "بيت", "NOM", 1, "OBJ", stt="d", cas="g"),
+            token(3, "رجل", "رجل", "NOM", 1, "SBJ", cas="n"), token(4, "كريم", "كريم", "NOM", 3, "MOD", pos_camel="adj", cas="n")]
+    drawn = built(["فِي", "الْبَيْتِ", "رَجُلٌ", "كَرِيمٌ"], toks)["tree"]
+    assert [kid["role"] for kid in drawn["children"]] == ["خبر مقدم", None, "مبتدأ مؤخر"]
+    assert [kid["role"] for kid in drawn["children"][2]["children"]] == ["موصوف", "صفة"]
+
+
+def test_a_question_word_in_jarr_draws_the_jar_majrur_as_the_fronted_khabar():
+    # لِمَنْ هَذَا الْكِتَابُ
+    drawn = built(*jar_told_of(True, "OBJ"))["tree"]
+    assert [kid["role"] for kid in drawn["children"]] == ["خبر مقدم", None, "مبتدأ مؤخر"]
+    assert [kid["role"] for kid in drawn["children"][1]["children"]] == ["حرف جر", "مجرور"]
+
+
+def test_a_hal_of_the_khabar_stands_beside_the_mubtada_and_khabar():
+    # هَذَا زَيْدٌ قَائِمًا: مبتدأ، خبر، حال side by side under the sentence, no sentence boxed inside it
+    drawn = built(*pointer_name_state())["tree"]
+    assert drawn["label"] == term_ar("jumlah_ismiyyah")
+    assert [(kid["role"], kid.get("children")) for kid in drawn["children"]] == [("مبتدأ", None), ("خبر", None), ("حال", None)]
