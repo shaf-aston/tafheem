@@ -136,7 +136,7 @@ Roles the tree can give:
 
 ## 5. Tree
 
-`backend/services/nahw/syntax/tree.py` `build`: columns, hidden words (ثابت, فعل محذوف, ضمير مستتر), clauses (صلة, خبر, مصدر مؤول, مقول القول), unit labels from `backend/data/nahw_rules/roles.json`, sentence label (شرطية → تعجبية → استفهامية → فعلية → اسمية). A root word with no role → a phrase: no sentence wrap, no summary.
+`backend/services/nahw/syntax/tree.py` `build`: columns, hidden words (ثابت, فعل محذوف over a nasb noun no word governs, its nasb shown by tanween, a follower or a مضاف إليه: شكرًا، سبحانَ اللهِ, ضمير مستتر), clauses (صلة, خبر, مصدر مؤول, مقول القول), unit labels from `backend/data/nahw_rules/roles.json`, sentence label (شرطية → تعجبية → استفهامية → فعلية → اسمية). A root word with no role → a phrase: no sentence wrap, no summary.
 
 ## 6. Cards
 

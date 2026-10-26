@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from backend.services.nahw.book import (book_spelling, card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
-from backend.services.nahw.syntax.facts import (Sentence, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
+from backend.services.nahw.syntax.facts import (Sentence, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
                                           is_nasab, is_verb, read_as, reading, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.nahw.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
@@ -254,7 +254,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         verb = understand(text, NAMED.fil, drawn.index(noun), pos="VRB", pos_camel="", base=text, asp="na", **place)
         # شكرًا: the unwritten verb's own masdar; الصِّدْقَ الصِّدْقَ: one with ال urged on the
         # hearer is the object of an unwritten الزم (الإغراء, Tasheel 3.8.1)
-        masdar = is_masdar(noun) and not strip_diacritics(noun["form"]).startswith("ال")
+        masdar = (is_masdar(noun) or listed(noun, "verbless_masdars")) and not strip_diacritics(noun["form"]).startswith("ال")
         role_of[noun["id"]] = said_verb["noun"]["masdar" if masdar else "other"]
         why_of[noun["id"]] = None  # the dash was for a case no job fitted; now one does
         under = {**noun, "head": verb["id"]}
@@ -264,11 +264,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
 
     # أهلًا وسهلًا، شكرًا لك: a منصوب noun that heads its own sentence, named by no word, is the
     # object of a verb no one writes, beside the noun it governs. Alone, its nasb shows as
-    # tanween, or as the case of the words that follow it (الصلواتِ الخمسَ): a fatha with none
-    # (نِعْمَ، أَجْمَلَ) is a verb's
+    # tanween, or as the case of the words that follow it (الصلواتِ الخمسَ), or by a مضاف إليه, which no
+    # verb takes (سُبْحَانَ اللَّهِ، مَعَاذَ اللَّهِ: Ibn Jinni, al-Munsif): a fatha with none (نِعْمَ، أَجْمَلَ) is a verb's
     for noun in [t for t in drawn if t["id"] in typed_at and role_of[t["id"]] is None
                  and t["head"] not in by_id and t["pos"] == "NOM" and "a" in shown_cases(t)
-                 and (has_tanween(t.get("typed")) or any(role_of[k["id"]] in FOLLOWERS for k in drawn if k["head"] == t["id"]))]:
+                 and (has_tanween(t.get("typed")) or any(role_of[k["id"]] in (*FOLLOWERS, NAMED.mudaf_ilayh) for k in drawn if k["head"] == t["id"]))]:
         hang_on_unsaid_verb(noun, said_verb["word"], head=0, rel="---")
     # ماذا فرض الله ... فقال الصلواتِ: after a question for an object, the noun a verb of saying
     # hangs is the answer, the object of the question's verb, which is drawn as an unwritten word
