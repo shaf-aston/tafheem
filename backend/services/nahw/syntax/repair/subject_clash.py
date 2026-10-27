@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw.book import extra_ba_on, is_mabni, is_one
 from backend.services.nahw.syntax.facts import (
-    Sentence, attached_pronoun, case_unseen, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, noun_tagged, subject_link, works_as_verb)
+    Sentence, attached_pronoun, case_unseen, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, noun_tagged, subject_link, holds_doer, works_as_verb)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -21,7 +21,7 @@ def subject_clash(tokens: list[dict]) -> None:
     for token in tokens:
         verb = s.head(token)
         if verb and is_verb(verb) and token["rel"] == "OBJ" and typed_case_of(token) == "u" \
-                and not any(subject_link(k) for k in s.kids(verb)):
+                and not holds_doer(verb, s.kids(verb)):
             token["rel"] = "SBJ"
     for token in tokens:
         head = s.head(token)

@@ -6,7 +6,7 @@ from itertools import pairwise
 from backend.services.sarf import verb_reader
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, is_built_word, is_one, only_adverb
-from backend.services.nahw.syntax.facts import has_added, is_elative, is_emphasis_lam, noun_tagged, typed_or_parsed_case, verb_tagged
+from backend.services.nahw.syntax.facts import Sentence, has_added, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -102,6 +102,22 @@ def since_jarr(tokens: list[dict]) -> None:
         if is_built_word(since["lemma"]) and is_one(since["lemma"], "jarr") and noun["pos"] == "NOM":
             since.update(pos="PRT", pos_camel="prep")
             noun["head"], noun["rel"] = since["id"], "OBJ"
+
+
+def jarr_after_mudaf(tokens: list[dict]) -> None:
+    """زَيْدٌ أَكْرَمُ رِجَالٍ: a noun typed in jarr with no جار is a مضاف إليه (Alfiyya: وَالثَّانِيَ اجْرُرْ),
+    and the مضاف drops its tanween (نُونًا تَلِي الْإِعْرَابَ أَوْ تَنْوِينًا مِمَّا تُضِيفُ احْذِفْ), so a word the
+    parser hung elsewhere, straight after a noun typed with its case but no tanween, is that noun's
+    مضاف إليه. A word known already (ال or a name: بِسْمِ اللَّهِ الرَّحْمَنِ) is added to nothing, and a fatha
+    on a word put in jarr is a diptote's, which never takes tanween (مَرَرْتُ بِمَسَاجِدَ كَثِيرَةٍ: its صفة)."""
+    s = Sentence(tokens)
+    for before, word in pairwise(tokens):
+        if (word["rel"] in ("MOD", "---") and typed_case_of(word) == "i" and noun_tagged(word)
+                and noun_tagged(before) and before.get("stt") != "d" and not is_name(before)
+                and typed_case_of(before) is not None and not typed_tanween(before)
+                and not (typed_case_of(before) == "a" and puts_in_jarr(before, s))):
+            word["head"], word["rel"] = before["id"], "IDF"
+            before["mudaf"] = True
 
 
 def emphasis_lam_opener(tokens: list[dict]) -> None:

@@ -12,7 +12,7 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import book_words, case_of, is_one, teacher_rules
+from backend.services.nahw.book import book_words, case_of, is_one, is_subject_pronoun, teacher_rules
 from backend.services.nahw.syntax.facts import (
     Sentence, is_built, is_built_zarf, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of, noun_tagged)
 from backend.services.nahw.syntax.naming import FOLLOWERS, NAMED, base_tokens, roles_keyed
@@ -97,9 +97,11 @@ def _ism_inna_needs_inna(bases, tokens, roles):
 
 
 def _follower_needs_noun(bases, tokens, roles):
-    """A follower copies a noun, so some noun (a pointer like هذا counts) must come before it."""
+    """A follower copies a noun, so some noun (a pointer like هذا counts) must come before it,
+    or the doer a verb holds: ذَهَبْتُ أَنَا، قُمْ أَنْتَ repeat the تاء and the hidden أنت."""
     for i, (token, role) in enumerate(zip(bases, roles)):
-        if role in FOLLOWERS and not any(_is_noun(t) for t in tokens if t["id"] < token["id"]):
+        if role in FOLLOWERS and not any(_is_noun(t) for t in tokens if t["id"] < token["id"]) \
+                and not (i and is_verb(bases[i - 1]) and is_subject_pronoun(token)):
             yield i
 
 

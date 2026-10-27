@@ -85,7 +85,7 @@ def after_pointer(tokens: list[dict]) -> None:
         if (head and head["head"] == 0 and head["pos"] in ("NOM", "PROP") and not is_verb(head) and (token["rel"] == "MOD" or token["rel"] == "SBJ" and is_describing(token))
                 and (head.get("pos_camel") in ("pron_dem", "pron_rel", "noun_prop") or head.get("stt") == "d")
                 and token["id"] > head["id"] and token.get("pos_camel") in ("noun", "adj")
-                and _indefinite(token, tokens) and typed_case_of(token) != "a"
+                and _indefinite(token, tokens) and typed_case_of(token) in ("u", None)
                 and not any(t is not token and t["head"] == head["id"] and t["rel"] in ("PRD", "SBJ") for t in tokens)):
             token["head"], token["rel"] = 0, "---"
             head["head"], head["rel"] = token["id"], "SBJ"

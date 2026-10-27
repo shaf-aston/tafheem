@@ -996,7 +996,8 @@ def test_a_relative_after_a_command_is_its_object_and_its_sila_a_verb():
 def test_a_conditional_noun_before_laysa_is_its_mubtada_not_its_ism():
     assert _role("مَنْ ظَلَمَنَا فَلَيْسَ صَدِيقًا", 0) == "مبتدأ"  # ليس comes after it: it governs nothing before
     words = iraab.analyze("مَنْ كَذَبَ فَلَيْسَ صَادِقًا", recorded=False)["words"]
-    assert "اسم شرط" in words[0]["role"] and "كان" not in words[0]["role"] and "ليس" not in words[0]["role"]
+    # كذب has no object, so its hidden هو points back to مَنْ: the مبتدأ, called the conditional noun it is
+    assert words[0]["role"] == "مبتدأ" and words[0]["reason"].startswith("اسم شرط جازم")
 
 
 def test_a_form_four_command_is_a_verb_but_a_name_stays_a_name():

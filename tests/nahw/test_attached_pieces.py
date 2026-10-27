@@ -605,12 +605,33 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
     ("هُوَ أَكْرَمُ ضَيْفًا", "ضَيْفًا", ("role", "تمييز")),
     ("زَيْدٌ جَاءَ رَاكِبًا", "رَاكِبًا", ("role", "حال")),
     ("زَيْدٌ طَابَ نَفْسًا", "نَفْسًا", ("role", "تمييز")),
+    # an opening مَنْ hung loose on its verb: the hidden هو goes back to it, the مبتدأ; a verb
+    # with a doer of its own takes it as its fronted object
+    ("مَنْ أَكْرَمَ ضَيْفًا", "مَنْ", ("role", "مبتدأ")),
+    ("مَنْ أَكْرَمْتَ", "مَنْ", ("role", "مفعول به")),
+    ("مَنْ نَصَرَ بَكْرًا", "مَنْ", ("role", "مبتدأ")),
+    ("مَنْ نَصَرَ بَكْرًا", "بَكْرًا", ("role", "مفعول به")),
+    # nearest case: a raf' word مَنْ hangs on answers the condition, it is not the verb's
+    ("مَنْ أَكْرَمَ ضَيْفَهُ فَهُوَ كَرِيمٌ", "كَرِيمٌ", ("role", "خبر")),
+    # a command's doer is the hidden أنت, so the raf' word after قُلْ heads the sentence it says
+    ("قُلْ هُوَ اللَّهُ أَحَدٌ", "هُوَ", ("role", "مبتدأ")),
+    ("قُلْ هُوَ اللَّهُ أَحَدٌ", "اللَّهُ", ("role", "خبر")),
+    ("قُلْ هُوَ اللَّهُ أَحَدٌ", "أَحَدٌ", ("role", "خبر")),
+    ("قُلِ الْحَقُّ مِنْ رَبِّكُمْ", "الْحَقُّ", ("role", "مبتدأ")),
+    # nearest case: a raf' pronoun of the verb's own person repeats its doer
+    ("ذَهَبْتُ أَنَا", "أَنَا", ("role", "توكيد")),
+    ("قُمْ أَنْتَ", "أَنْتَ", ("role", "توكيد")),
+    # a word typed in jarr with no جار is the مضاف إليه of the bare noun before it, never a khabar
+    ("زَيْدٌ أَكْرَمُ رِجَالٍ", "أَكْرَمُ", ("role", "خبر")),
+    ("زَيْدٌ أَكْرَمُ رِجَالٍ", "رِجَالٍ", ("role", "مضاف إليه")),
+    # nearest case: a name is added to nothing, so the word after it is its صفة
+    ("بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ", "الرَّحْمَنِ", ("role", "صفة")),
     # the word itself is that verb only by a typed fatha: أَبُوهُ's و is the raf' of the five nouns
     ("اَلتِّلْمِيذُ أَبُوهُ مُعَلِّمٌ", "أَبُوهُ", ("role", "مبتدأ")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
-    from backend.services.nahw import iraab
-    card = next(w for w in iraab.analyze(sentence)["words"] if w["word"] == word)
+    from tests.nahw_helpers import cards
+    card = next(w for w in cards(sentence) if w["word"] == word)
     assert card.get(want[0]) == want[1]
 
 
