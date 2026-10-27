@@ -1,5 +1,5 @@
 /**
- * The Quiz's Basics set: Grow's own Basics lessons, one after another. The same cards (components/grow/exercises),
+ * The Quiz's Basics set: Grow's own Basics lessons, one after another. The same cards (components/practice/exercises),
  * the same runner and the same record (module 'basics'), so a beginner meets one way of being asked whichever tab
  * they are on, and an answer here moves the Basics world on as one there does. A round is Grow's lesson session
  * (lib/grow/useLessonSession.js): dealt once the record has caught up with the last one, so its new items really are new.
@@ -12,7 +12,7 @@ import { useBasicsWorld } from '../../lib/grow/useBasicsWorld'
 import { useLessonSession } from '../../lib/grow/useLessonSession'
 import { useRewards } from '../../lib/learner/useRewards'
 import { worldOf } from '../../lib/grow/worlds'
-import LessonRunner from '../grow/LessonRunner'
+import LessonRunner from '../practice/LessonRunner'
 import EmptyState from '../ui/feedback/EmptyState'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
 import ErrorAlert from '../ui/feedback/ErrorAlert'

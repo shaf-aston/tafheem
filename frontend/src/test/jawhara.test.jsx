@@ -6,8 +6,8 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { render } from '@testing-library/react'
 
-import ChooseCard from '../components/grow/exercises/ChooseCard'
-import TeachCard from '../components/grow/exercises/TeachCard'
+import ChooseCard from '../components/practice/exercises/ChooseCard'
+import TeachCard from '../components/practice/exercises/TeachCard'
 
 const book = JSON.parse(readFileSync(join(import.meta.dirname, '../../public/grow/jawhara.json'), 'utf8'))
 const cards = []

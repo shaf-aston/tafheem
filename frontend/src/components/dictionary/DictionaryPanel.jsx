@@ -13,7 +13,7 @@ import { useSearch } from '../../lib/hooks/useSearch'
 
 import LexiconShelf from './LexiconShelf'
 import RootMeaningCard from './RootMeaningCard'
-import SentenceMeaning from './SentenceMeaning'
+import SentenceMeaning from '../ui/text/SentenceMeaning'
 import Chip from '../ui/inputs/Chip'
 import ChipRow from '../ui/inputs/ChipRow'
 import ErrorAlert from '../ui/feedback/ErrorAlert'

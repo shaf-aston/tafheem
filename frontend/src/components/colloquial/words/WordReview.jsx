@@ -10,7 +10,7 @@ import { fillIn, sayIn } from '../../../lib/text/say'
 import { useQuizRound } from '../../../lib/quiz/useQuizRound'
 import { useRememberedFlag } from '../../../lib/store/useRemembered'
 import { WORDS_MODULE, reviewOf, reviewQuestions } from '../../../lib/colloquial/wordPractice'
-import QuizBoard from '../../quiz/QuizBoard'
+import QuizBoard from '../../practice/QuizBoard'
 import SmallButton from '../../ui/buttons/SmallButton'
 import { Skeleton } from '../../ui/feedback/Skeleton'
 

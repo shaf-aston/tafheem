@@ -22,8 +22,8 @@ import ErrorAlert from '../ui/feedback/ErrorAlert'
 import { GoButton } from '../ui/buttons/RootActions'
 import SourceBadge from '../ui/feedback/SourceBadge'
 import { Skeleton } from '../ui/feedback/Skeleton'
-import TarkeebFigure from './tarkeeb/TarkeebFigure'
-import TarkeebTools from './tarkeeb/TarkeebTools'
+import TarkeebFigure from '../grammar/tarkeeb/TarkeebFigure'
+import TarkeebTools from '../grammar/tarkeeb/TarkeebTools'
 
 // Browsed by grammar topic, shared by every book, so a second book teaching kana
 // lands under the same chip. The book chips appear only with more than one book.
