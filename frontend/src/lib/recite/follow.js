@@ -240,10 +240,11 @@ export const isOfPage = (words, page) =>
  * actually started on or null while that is not yet known; `words`, one state
  * and any misheard word for each word of the page, plus `said`, whatever was
  * heard for that word with its vowels, shown or not (a word card reads it);
- * `extras`, words said that
- * are not in the book, each with the page word it came after; and `started`,
- * false while too little of this page has been heard for any of it to be worth
- * marking.
+ * `extras`, words said that are not in the book, each with the page word it
+ * came after; `heardTo`, how many heard words it took to reach the page's last
+ * word, or null while it has not been reached (the rest are the next page's);
+ * and `started`, false while too little of this page has been heard for any of
+ * it to be worth marking.
  */
 export const follow = (page, heard, { startAt = 0, ended = false, settle = config['settle-words'] } = {}) => {
   const words = page.map((word) => ({ word, state: WAITING, heard: '', said: '' }))
@@ -356,9 +357,8 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  *
  * So a word the transcript found is still red when the sound says it was not
  * said right: a wrong vowel has the same letters, and the transcript cannot see
- * it. Measured on 390 marked recordings heard by Groq, at 0.9 this caught
- * 58% of vowel slips where needing the transcript to miss too caught 16%, for
- * 3.3% of right words marked against 2.0%; it now sits at 0.95 (backend/scripts/recitation/sweep_sureness.py).
+ * it. How far to trust the sound, and what that catches and costs, is
+ * `sure-at` in recite.json.
  */
 export const bySound = (marks, scores) => {
   const sureAt = config['sure-at']

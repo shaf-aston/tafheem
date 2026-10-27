@@ -19,8 +19,9 @@
  *
  * A recording is not allowed to grow forever. At each pause, or after `window-s`
  * seconds with none, a fresh one starts, and what was heard up to then is kept
- * in front of it, joined so that words in both are said once. An hour of
- * reciting is many short recordings, never one long one.
+ * in front of it, simply concatenated: a word said again stays in, and reading
+ * a repeat is follow.js's job (its `back` step). An hour of reciting is many
+ * short recordings, never one long one.
  *
  * Nothing is recorded until the reader asks, the microphone is let go the
  * moment they stop, and it stops itself after a long silence, which is the same
@@ -479,25 +480,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
 
     made.ondataavailable = (event) => {
       if (event.data.size) chunks.push(event.data)
-      // One request at a time, and no request that is going to be wasted.
-      //
-      // A reading part way through a recording is only worth asking for if it
-      // comes back while that recording is still going. When the ear is slower
-      // than that, the recording has already ended by the time it answers and
-      // the reading taken at the pause, which holds every word this one held,
-      // replaces it unread. Eight readings were being asked for where four
-      // were wanted, and the four that mattered queued behind the four that
-      // did not: a mark took eighteen seconds to appear instead of five.
-      //
-      // So: wait for the ear to be free, and then for as long as the last
-      // reading actually took, never less than step-s. On a quick ear that is
-      // step-s and readings keep flowing; on this machine it is five seconds
-      // or so, which for an ayah-length recording means the only reading asked
-      // for is the one at the pause, which is the one that settles the marks.
-      //
-      // And inside the ear's allowance: going over it is a refusal, not a slow
-      // answer, and it rests the fast ear for a minute. The reading at a pause
-      // is never held back for it (see asks-per-minute); this one is.
+      // One request at a time, and none that will be wasted: wait for the ear
+      // to be free, then as long as the last reading took (never under step-s),
+      // and inside the ear's allowance (asks-per-minute; a pause is never held).
       const at = Date.now()
       const left = allowanceLeft(at, asks, asksPerMinute(page.perMinute))
       if (readyToSend(at, asked, took, STEP_MS, !!sending, chunks.length, sent, left)) send()

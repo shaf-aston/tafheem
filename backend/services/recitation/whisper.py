@@ -1,6 +1,7 @@
-"""The local ear: faster-whisper on this machine, for writing words down and for
-scoring how sure each word is (the base or tuned model). Free, no key, nothing
-leaves the computer. Loaded once and warmed at startup (`warm()`).
+"""The local ear: faster-whisper on this machine, for writing words down. Its
+model is also what checker.py asks how sure each word is (the base or tuned one).
+Free, no key, nothing leaves the computer. Loaded once and warmed at startup
+(`warm()`).
 
 A recitation is asked for in Arabic by name: a few seconds is too short for
 detection, and a wrong guess returns another language. A spoken search picks
@@ -24,11 +25,14 @@ from backend.services.recitation.errors import NotInstalled, Unreadable, local_l
 
 log = logging.getLogger(__name__)
 
-# Only the steps costing whole seconds are timed: decoded / loaded / read / encoded / scored.
+# Only the steps costing whole seconds are timed: decoded / read here, encoded / scored in
+# checker.py. The model load is logged by engine().
 
 _models: dict = {}
 # The last recording decoded, and the sound in it. See sound_of.
 _last: tuple | None = None
+
+
 def sound_of(audio: bytes):
     """The sound in a recording, at a workable loudness, decoded once.
 

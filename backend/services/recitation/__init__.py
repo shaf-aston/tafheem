@@ -1,15 +1,21 @@
 """Hearing a recitation and finding the ayah.
 
-Five pieces, each with one job, so any of them can be replaced without the
+These pieces, each with one job, so any of them can be replaced without the
 others noticing:
 
-    hosted.py   sound  -> words        the same job, done on Groq's machines
-    whisper.py   sound  -> words        the engine on this computer
-    ears.py     the two above as one interface, and the order they are tried in
-    match.py    words  -> ayahs        pure, no files, no network
-    place.py    words  -> page stretch pure, where a recording sits on a page
-    locate.py   words  -> place        pure, where in the whole Qur'an a reading is
-    this file   asks for words, and hands the corpus to the matcher
+    hosted.py    sound -> words         the same job, done on Groq's machines
+    whisper.py   sound -> words         the engine on this computer
+    letters.py   sound -> letters       a small Qur'an model on this computer, for placing
+    ears.py                             the three above as one interface, and the order they are tried in
+    errors.py                           what the ears raise, and the lock they share
+    recording.py                        what kind of sound file a recording is
+    loudness.py  sound -> sound         brings quiet recitations up, cuts long ones
+    spelling.py  words -> words         the ear's own spelling of the page
+    match.py     words -> ayahs         pure, no files, no network
+    place.py     words -> page stretch  pure, where a recording sits on a page
+    locate.py    words -> place         pure, where in the whole Qur'an a reading is
+    checker.py   sound -> sure          how sure the ear is of each page word
+    this file                           asks for words, and hands the corpus to the matcher
 
 Which ear answers is ears.py's business and nothing above this package knows
 there is a choice at all. It used to be one `if` here; it is an interface and an
