@@ -122,6 +122,7 @@ def test_a_command_the_dictionary_has_with_its_object_written_on_beats_a_verb_it
     assert verb_reader.reading_of(word)["num"] == "d"   # alone, the closest cell is a dual of هَدَنَ / آتَنَ
     found = verb_reader.reading_of(word, _KNOWN)
     assert (found["asp"], found["num"], found["lex"], found["enc0"]) == ("c", "s", past, "1p_dobj")
+    assert verb_reader.reading_of(word, lambda _: False)["num"] == "d"   # nearest case: it has neither verb
 
 
 def test_of_the_closest_cells_the_one_the_dictionary_has_names_the_verb():

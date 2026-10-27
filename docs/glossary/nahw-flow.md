@@ -13,7 +13,7 @@ Change a stage, add a rule or reorder one → that test fails until this page sa
 `backend/routers/analyze.py` → `backend/services/nahw/iraab.py` `analyze`:
 
 1. Split words (`split_words`), keep typed vowels.
-2. One reading per word: `backend/services/sarf/morphology.py` `pick` (BERT ranks, then the reading that fits the most typed vowels; a line of nouns alone, a pronoun counted as one, with a منصوب in it reads its first possible past verb as that verb: زيد نصر بكرا، هُوَ أَكْرَمَ ضَيْفًا). Cards and parser share it.
+2. One reading per word: `backend/services/sarf/morphology.py` `pick` (BERT ranks, then the reading that fits the most typed vowels; a line of nouns alone, a pronoun counted as one, with a منصوب in it reads its first possible past verb as that verb: زيد نصر بكرا، هُوَ أَكْرَمَ ضَيْفًا; a word the dictionary cannot read is read off sarf's table (`backend/services/sarf/verb_reader.py` `reading_of`), a verb the dictionary has winning over one no text uses, a command with its object pronoun written on too: اِهْدِنَا is هَدَى + نا, not a dual of هَدَنَ). Cards and parser share it.
 3. Recorded Qurʾān ayah → `backend/services/nahw/tarkeeb_store.py`, skip to cards.
 4. Else `backend/services/nahw/syntax/__init__.py` `read`: stages 1–7 below. Any error → every word unnamed.
 
@@ -53,7 +53,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - counted_times: مرة/مرتين hung on a jar-majrur → the verb's (`backend/services/nahw/syntax/repair/dua.py`)
 - object_of_noun: a raf' word the parser hung as the object of a plain raf' noun opening the sentence → its khabar; a nasb noun after an elative khabar → the elative's تمييز (`backend/services/nahw/syntax/repair/khabar.py`)
 - elative_specified: an indefinite noun written in nasb that the parser hung on an elative as its مضاف إليه → its تمييز, since a مضاف إليه is in jarr (أَشَدُّ رَهْبَةً; a diptote's fatha stays jarr: أَفْضَلُ مَسَاجِدَ) (`backend/services/nahw/syntax/repair/khabar.py`)
-- after_pointer: an indefinite word hung as the صفة of a definite opener (هذا، زيد، ال), or a describing word hung as its subject, or as the subject of the ظرف or جار ومجرور of its صلة (وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى) → the khabar (`backend/services/nahw/syntax/repair/khabar.py`)
+- after_pointer: an indefinite word (or a مضاف to one: زَيْدٌ صَاحِبُ مَالٍ) hung as the صفة of a definite opener (هذا، زيد، ال), or a describing word hung as its subject, or as the subject of the ظرف or جار ومجرور of its صلة (وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى) → the khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - told_of_jar: a noun hung as the subject of a preposition's majrur (لِزَيْدٍ هَذَا الْكِتَابُ، لِمَنْ هَذَا) → the مبتدأ of the fronted جار ومجرور (`backend/services/nahw/syntax/repair/khabar.py`)
 - second_khabar: an adjective hung on an adjective khabar → a second khabar, not its صفة (`backend/services/nahw/syntax/repair/khabar.py`)
 - before_la: a noun hung on لا from before it → the mubtada, the لا clause its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
@@ -84,7 +84,7 @@ Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` �
 <!-- list:axes -->
 - kind: particle / verb / noun (`backend/services/nahw/syntax/facts/kind.py`)
 - follows: ṣifa / maʿṭūf / tawkīd / badal / none (`backend/services/nahw/syntax/facts/follows.py`)
-- governor: what works its case (`backend/services/nahw/syntax/facts/governor.py`)
+- governor: what works its case; a call with يا left off (رَبَّنَا اغْفِرْ: a مضاف opening the sentence, nasb or untyped, a command after it; اللَّهُمَّ) has none, the card says يا is left off (`backend/services/nahw/syntax/facts/governor.py`)
 - slot: its place: subject, khabar, object… (`backend/services/nahw/syntax/facts/slot.py`)
 - voice: active / passive (`backend/services/nahw/syntax/facts/voice.py`)
 <!-- /list -->

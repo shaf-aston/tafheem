@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, has_added, noun_tagged, read_as, is_describing, is_elative, is_participle, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, noun_tagged, is_name, read_as, is_describing, is_elative, is_participle, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -110,8 +110,13 @@ def _in_shibh_jumla(token: dict, s: Sentence) -> bool:
 
 
 def _indefinite(token: dict, tokens: list[dict]) -> bool:
-    """Without ال: read so, or read as a مضاف with nothing added to it (الملاحون أقوياء), which it then is not."""
-    return token.get("stt") == "i" or (token.get("stt") == "c" and not has_added(token, tokens))
+    """Without ال: read so, or read as a مضاف with nothing added to it (الملاحون أقوياء), which it then is not, or
+    a مضاف to an indefinite word, which it narrows but leaves indefinite (Ibn Aqil V3 p43: وتفيد الاسم الأول تخصيصا
+    إن كان المضاف إليه نكرة نحو هذا غلام امرأة وتعريفا إن كان المضاف إليه معرفة): زَيْدٌ صَاحِبُ مَالٍ."""
+    if token.get("stt") != "c":
+        return token.get("stt") == "i"
+    added = next((t for t in tokens if t["head"] == token["id"] and t["rel"] == "IDF"), None)
+    return added is None or (not is_name(added) and _indefinite(added, tokens))
 
 
 def object_of_noun(tokens: list[dict]) -> None:
