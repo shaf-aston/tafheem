@@ -23,13 +23,14 @@ export function useZoom(frame, knobs, active = true) {
   const [pinching, setPinching] = useState(false)
   const anchor = useRef(null) // { x, y, ratio }: the spot to keep put once the new zoom is drawn
 
+  // `to` gives the next zoom from the last, already kept within [min, max] (pinchedZoom, steppedZoom, the slider's own range).
   const zoomTo = useCallback((to, x, y) => {
     setZoom((z) => {
-      const next = Math.min(max, Math.max(min, to(z)))
+      const next = to(z)
       anchor.current = { x, y, ratio: next / z }
       return next
     })
-  }, [min, max])
+  }, [])
 
   const pinch = useCallback((by, x, y) => {
     setPinching(true)
@@ -75,5 +76,11 @@ export function useZoom(frame, knobs, active = true) {
     }
   }, [frame, active, zoomTo, step, reset, min, max])
 
-  return { zoom, pinching, endPinch: () => setPinching(false), step, set, reset }
+  // The width of the drawing in the frame: the frame's own at 100%, never narrower than `minWidth` (a CSS length) draws it.
+  const size = (minWidth) => ({
+    width: `max(${zoom * 100}%, calc(${zoom} * ${minWidth}))`,
+    transition: pinching ? 'none' : 'width calc(var(--motion-base-ms) * 1ms) ease',
+  })
+
+  return { zoom, size, endPinch: () => setPinching(false), step, set, reset }
 }
