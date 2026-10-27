@@ -2,7 +2,7 @@
 import { describe, expect, it } from 'vitest'
 import { renderHook } from '@testing-library/react'
 
-import { slideWay, swipeOf, useSlide } from './useSwipe'
+import { claimed, slideWay, swipeOf, useSlide } from './useSwipe'
 
 describe('swipeOf', () => {
   it('goes next on a swipe left and back on a swipe right', () => {
@@ -19,6 +19,29 @@ describe('swipeOf', () => {
     expect(swipeOf({ dx: -100, dy: 0, ms: 150, mouse: true })).toBe(1)
     expect(swipeOf({ dx: -100, dy: 0, ms: 600, mouse: true })).toBe(0)
     expect(swipeOf({ dx: -100, dy: 0, ms: 600 })).toBe(1)
+  })
+})
+
+describe('claimed', () => {
+  const page = document.createElement('div')
+  const gap = document.createElement('input')
+  page.append(gap)
+
+  it('leaves a text box to a mouse, but lets a finger start a swipe on one', () => {
+    expect(claimed(gap, page)).toBe(true)
+    expect(claimed(gap, page, { textBoxes: false })).toBe(false)
+  })
+
+  it('leaves a sideways scroller to every pointer', () => {
+    const strip = document.createElement('div')
+    strip.style.overflowX = 'auto'
+    Object.defineProperty(strip, 'scrollWidth', { value: 500 })
+    Object.defineProperty(strip, 'clientWidth', { value: 100 })
+    const inner = document.createElement('span')
+    strip.append(inner)
+    page.append(strip)
+    document.body.append(page)
+    expect(claimed(inner, page, { textBoxes: false })).toBe(true)
   })
 })
 

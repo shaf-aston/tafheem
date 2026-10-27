@@ -4,7 +4,7 @@ import { act, renderHook, waitFor } from '@testing-library/react'
 
 import { renderWithBackend } from '../../test/render'
 import { CHOICES, wordsOf } from '../../lib/memorise/memorise'
-import { useAnswers, useBookPage, useGaps, useHowYouAnswer, usePageSteps, withinPart } from './hooks'
+import { useAnswers, useBookPage, useGaps, useHowYouAnswer, usePageSteps, useArrivedPage, withinPart } from './hooks'
 
 // Two surahs: the first over two printed pages, the second on one.
 const WORDS = ['الحمد', 'لله', 'رب', 'العالمين', 'الرحمن', 'الرحيم', 'مالك', 'يوم', 'الدين']
@@ -16,16 +16,17 @@ const routes = {
 }
 
 // The panel's own wiring, minus the microphone: answers, how, where, steps and gaps.
+const card = { current: null }
 function useMemorise() {
   const answers = useAnswers()
   const how = useHowYouAnswer(answers.fresh)
   const where = useBookPage({ fresh: answers.fresh })
-  const steps = usePageSteps(where)
+  const steps = usePageSteps({ ...where, card })
   const gaps = useGaps({ ...where, ...how, startFrom: 0 })
   return { ...answers, ...how, ...where, ...steps, ...gaps }
 }
 // Each test opens where the app would on a first visit, not where the last test left the page.
-beforeEach(() => { localStorage.clear(); window.history.replaceState(null, '', '/') })
+beforeEach(() => { localStorage.clear(); window.history.replaceState(null, '', '/'); card.current = null })
 
 const open = async () => {
   const view = renderWithBackend(useMemorise, { routes })
@@ -103,6 +104,48 @@ describe('useBookPage and usePageSteps', () => {
     await waitFor(() => expect(result.current).toMatchObject({ part: 1, pageNumber: 1 }))
   })
 
+  // A page turned from under the page (the buttons there, a swipe) opens at its top.
+  it('scrolls a page turned by hand to its top when it began above the screen', async () => {
+    const { result } = await open()
+    const scrolled = vi.fn()
+    card.current = { getBoundingClientRect: () => ({ top: -600 }), scrollIntoView: scrolled }
+    act(() => result.current.stepPage(1))
+    await waitFor(() => expect(scrolled).toHaveBeenCalledTimes(1))
+    expect(scrolled.mock.calls[0][0]).toMatchObject({ block: 'start' })
+  })
+
+  it('leaves the scroll alone when the page began on the screen, or turned by itself', async () => {
+    const { result } = await open()
+    const scrolled = vi.fn()
+    card.current = { getBoundingClientRect: () => ({ top: 120 }), scrollIntoView: scrolled }
+    act(() => result.current.stepPage(1))
+    await waitFor(() => expect(result.current.pageNumber).toBe(1))
+    act(() => result.current.openPage(0))
+    await waitFor(() => expect(result.current.pageNumber).toBe(0))
+    card.current = { getBoundingClientRect: () => ({ top: -600 }), scrollIntoView: scrolled }
+    act(() => result.current.openPage(1))
+    await waitFor(() => expect(result.current.pageNumber).toBe(1))
+    expect(scrolled).not.toHaveBeenCalled()
+  })
+})
+
+describe('useArrivedPage', () => {
+  it('reports another page of the same surah as taking its step\'s place, and a new surah as a step', async () => {
+    const onVisit = vi.fn()
+    const view = renderWithBackend(() => {
+      const where = useBookPage({ fresh: vi.fn() })
+      useArrivedPage({ ...where, onVisit, arrival: 0, incoming: null })
+      return { ...where, ...usePageSteps({ ...where, card }) }
+    }, { routes })
+    await waitFor(() => expect(onVisit).toHaveBeenCalledTimes(1))
+    expect(onVisit.mock.calls[0][1]).toBe(false)
+    act(() => view.result.current.stepPage(1))
+    await waitFor(() => expect(onVisit).toHaveBeenCalledTimes(2))
+    expect(onVisit.mock.calls[1][1]).toBe(true)
+    act(() => view.result.current.stepPage(1))
+    await waitFor(() => expect(onVisit).toHaveBeenCalledTimes(3))
+    expect(onVisit.mock.calls[2][1]).toBe(false)
+  })
 })
 
 describe('useGaps', () => {

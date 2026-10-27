@@ -71,6 +71,14 @@
       "default": true
     },
     {
+      "key": "turn-page-itself",
+      "section": "Reciting",
+      "label": "Turn the page when you finish it",
+      "help": "Reciting to the end of a page opens the next one and keeps listening. Off: it stays until you turn it.",
+      "type": "switch",
+      "default": true
+    },
+    {
       "key": "listening-ear",
       "section": "Reciting",
       "label": "Word checker",
