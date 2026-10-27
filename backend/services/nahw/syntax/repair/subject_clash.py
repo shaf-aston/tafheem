@@ -115,7 +115,7 @@ def object_past_verb(tokens: list[dict]) -> None:
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
-        verb = head and next((k for k in s.kids(head) if is_verb(k) and head["id"] < k["id"] < token["id"]), None)
+        verb = head and next((k for k in s.kids(head) if is_verb(k) and k["id"] < token["id"]), None)
         if verb and token["rel"] == "MOD" and noun_tagged(token) and typed_case_of(token) == "a":
             token["head"] = verb["id"]
 
