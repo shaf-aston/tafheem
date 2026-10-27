@@ -9,7 +9,9 @@ from backend.services.nahw import iraab
 from backend.services.sarf import morphology
 from backend.services.nahw.syntax.catib_onnx import files_present
 
-# Reading a sentence needs CAMeL's data and the parser's model files, neither in git.
+# Reading a sentence needs CAMeL's data and the parser's model files, neither in git;
+# reading its words alone (lemma, case, a recorded ayah's cards) needs only CAMeL's.
+needs_camel = pytest.mark.skipif(not morphology._CAMEL_AVAILABLE, reason="CAMeL data not present")
 needs_parser = pytest.mark.skipif(
     not (morphology._CAMEL_AVAILABLE and files_present()),
     reason="CAMeL data or CATiB parser files not present",

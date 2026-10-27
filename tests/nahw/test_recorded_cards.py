@@ -5,6 +5,9 @@ import pytest
 from backend.services.nahw import iraab
 from backend.services.nahw.book import reason, teacher_rules
 from backend.services.sarf import morphology
+from tests.nahw_helpers import needs_camel
+
+pytestmark = needs_camel  # the words are read by CAMeL, the treebank names them
 
 
 def recorded(sentence: str, *names: str) -> list[dict]:

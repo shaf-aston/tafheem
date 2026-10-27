@@ -4,7 +4,7 @@ noun, and a noun before ياء المتكلم hides its own (صديقي زيدٌ
 import pytest
 
 from backend.services.sarf import morphology
-from tests.nahw_helpers import cards, needs_parser
+from tests.nahw_helpers import cards, needs_camel, needs_parser
 
 
 def roles(sentence: str) -> list[str]:
@@ -64,6 +64,7 @@ def test_a_verb_with_its_doer_already_keeps_it():
     assert roles("ضَرَبَ زَيْدٌ مُوسَى عِيسَى")[:3] == ["فعل", "فاعل", "مفعول به"]
 
 
+@needs_camel
 @pytest.mark.parametrize("sentence, lemma", [
     ("ضَرَبَ زَيْدٌ عَمْرًا", "عمرو"), ("رَأَيْتُ زَيْدًا وَعَمْرًا", "عمرو"),  # the و that tells عمرو from عمر drops in nasb
     ("ضَرَبَ زَيْدٌ عُمَرًا", "عمر"), ("ضرب زيد عمرا", "عمر"),  # its vowels say عُمَر; unmarked, the name as written
@@ -72,6 +73,7 @@ def test_a_name_whose_telling_waw_drops_in_nasb_is_still_that_name(sentence, lem
     assert morphology.analyze_sentence(sentence)[-1]["lemma"] == lemma
 
 
+@needs_camel
 def test_the_telling_waw_is_tried_back_only_on_a_name_the_book_lists(monkeypatch):
     asked = []
     ranked = morphology._ranked
