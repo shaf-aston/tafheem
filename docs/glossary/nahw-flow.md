@@ -84,7 +84,7 @@ Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` �
 <!-- list:axes -->
 - kind: particle / verb / noun (`backend/services/nahw/syntax/facts/kind.py`)
 - follows: ṣifa / maʿṭūf / tawkīd / badal / none (`backend/services/nahw/syntax/facts/follows.py`)
-- governor: what works its case; a call with يا left off (رَبَّنَا اغْفِرْ: a مضاف opening the sentence, nasb or untyped, a command after it; اللَّهُمَّ) has none, the card says يا is left off; nor has an object put before a verb busied with its pronoun (الاشتغال: زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ), the card says a verb like it, left out, governs it (`backend/services/nahw/syntax/facts/governor.py`)
+- governor: what works its case; a call with يا left off (رَبَّنَا اغْفِرْ: a مضاف opening the sentence, nasb or untyped, a command after it; اللَّهُمَّ) has none, the card says يا is left off; nor has an object put before a verb or working participle busied with its pronoun (الاشتغال: زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ، زَيْدًا أَنَا ضَارِبُهُ; or with a word the pronoun is added to, its سببي, in nasb or jarr: زَيْدًا ضَرَبْتُ غُلَامَهُ، زَيْدًا مَرَرْتُ بِغُلَامِهِ, never a doer: زَيْدًا ضَرَبَ غُلَامُهُ), the card says a verb like it, left out, governs it (`backend/services/nahw/syntax/facts/governor.py`)
 - slot: its place: subject, khabar, object… (`backend/services/nahw/syntax/facts/slot.py`)
 - voice: active / passive (`backend/services/nahw/syntax/facts/voice.py`)
 <!-- /list -->

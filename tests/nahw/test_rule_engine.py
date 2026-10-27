@@ -1057,12 +1057,19 @@ _BUSIED = "والناصب له فعل محذوف وجوبًا يفسره الف�
     ("زَيْدًا ضَرَبْتُهُ", 0, "مفعول به", None, True),  # الاشتغال: the verb busied with its pronoun
     ("زَيْدًا اضْرِبْهُ", 0, "مفعول به", None, True),
     ("زَيْدًا ضَرَبُوهُ", 0, "مفعول به", None, True),
+    ("زَيْدًا أَنَا ضَارِبُهُ", 0, "مفعول به", None, True),  # a participle doing its verb's work, the same (V2 p142)
+    ("زَيْدًا ضَرَبْتُ غُلَامَهُ", 0, "مفعول به", None, True),  # busied with its سببي (V2 p128)
+    ("زَيْدًا ضَرَبْتُ غُلَامَ صَاحِبِهِ", 0, "مفعول به", None, True),  # the pronoun deeper down the إضافة chain
+    ("زَيْدًا مَرَرْتُ بِغُلَامِهِ", 0, "مفعول به", None, True),  # the سببي through a جار
+    ("زَيْدًا ضَرَبَ غُلَامُهُ", 0, "مفعول به", 1, False),  # nearest case: the سببي is the doer, not worked on in nasb
+    ("رَأَيْتُ زَيْدًا يَضْرِبُ غُلَامَهُ", 1, "مفعول به", 0, False),  # nearest case: the object comes after its verb
     ("زَيْدًا مَرَرْتُ بِهِ", 0, "مفعول به", None, True),  # through a جار
     ("عِلْمًا طَلَبَهُ زَيْدٌ", 0, "مفعول به", None, True),
     ("زَيْدٌ ضَرَبْتُهُ", 0, "مبتدأ", None, False),  # nearest case: typed in raf'
     ("إِنَّ زَيْدًا ضَرَبْتُهُ", 1, "اسم إن", 0, False),  # nearest case: إنّ puts it in nasb
     ("رَأَيْتُ زَيْدًا يَضْرِبُهُ عَمْرٌو", 1, "مفعول به", 0, False),  # nearest case: the verb before it governs it
     ("أَعْطَيْتُهُ دِرْهَمًا", 1, "مفعول به", 0, False),  # nearest case: after its busied verb, not before
+    ("كَتَبْتُ لَهُ رِسَالَةً", 2, "مفعول به", 0, False),  # nearest case: after a verb busied through a جار
 ])
 def test_an_object_put_before_its_verb(sentence: str, at: int, role: str, governor: int | None, busied: bool):
     """زَيْدًا ضَرَبْتُ: a nasb noun before a verb that has its doer is its object (Ibn Aqil V2 p129); before a

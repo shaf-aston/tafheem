@@ -18,6 +18,12 @@ def _governor(token: dict, s: Sentence) -> str:
     return kind
 
 
+def _worker(token: dict, s: Sentence, place: str, worker: dict | None) -> tuple[str, dict | None]:
+    """The verb or participle filling `place` works on the word, unless it is busied with a pronoun back
+    to it (زَيْدًا ضَرَبْتُهُ، زَيْدًا أَنَا ضَارِبُهُ): then one like it, left out, no word of the sentence."""
+    return "verb", None if place == "object" and busied_before(token, s) else worker
+
+
 def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     """What gives this word its case, and which word that is (Tasheel 3.3 p79). A word has
     one governor and the nearest wins, so the tests run nearest first: a particle straight
@@ -45,8 +51,8 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     under_verb = bool(head) and is_verb(head)
     # كنتُ آمرًا أحدًا: the participle governs its object as its verb would; asked before
     # the idafa, since a مضاف إليه is never منصوب (فاهمٌ الدرسَ)
-    if head and not under_verb and verb_place(token, s) in ("object", "subject"):
-        return "verb", head
+    if head and not under_verb and (place := verb_place(token, s)) in ("object", "subject"):
+        return _worker(token, s, place, head)
     if rel == "IDF" and not (under_verb and typed != "i"):
         return "idafa", head
     # ذائقةُ الموتِ: the noun in jarr straight after a noun in construct is its mudaf ilayh
@@ -77,9 +83,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     if rel in ("TMZ", "OBJ") and head and not under_verb and head["pos"] != "PRT":
         return "noun", head  # عشرون كتابًا: a number or measure
     if (place := verb_place(token, s)) != "none":
-        if place == "object" and busied_before(token, s):
-            return "verb", None  # زَيْدًا ضَرَبْتُهُ: a verb like ضربت, left out, no word of the sentence
-        return "verb", verb_above(token, s) or head  # مسافرٌ غدًا: a participle works like its verb
+        return _worker(token, s, place, verb_above(token, s) or head)  # مسافرٌ غدًا: a participle works like its verb
     if rel == "MOD" and head and not is_verb(token):
         if unlike(token, head) or told_of_subject(token, head):
             above = s.head(head)

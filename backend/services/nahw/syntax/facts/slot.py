@@ -136,9 +136,10 @@ def quoted_head(token: dict, s: Sentence) -> bool:
 def busied_before(token: dict, s: Sentence) -> bool:
     """زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ: the word comes before a verb busied with a pronoun of its own (facts.busied),
     so the verb that works on it is one like that verb, left out (الاشتغال, Ibn Aqil V2 p128: فالسابق انصبه بفعل
-    أضمرا حتما موافق لما قد أظهرا)."""
+    أضمرا حتما موافق لما قد أظهرا). A participle doing its verb's work is busied the same (V2 p142: وسوِّ في ذا
+    الباب وصفا ذا عمل بالفعل، زيدًا أنا ضاربُه الآن)."""
     head = s.head(token)
-    return head is not None and is_verb(head) and token["id"] < head["id"] and busied(head, s)
+    return head is not None and works_as_verb(head) is not None and token["id"] < head["id"] and busied(head, s)
 
 
 def verb_place(token: dict, s: Sentence) -> str:

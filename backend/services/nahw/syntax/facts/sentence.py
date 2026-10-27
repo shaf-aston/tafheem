@@ -223,9 +223,28 @@ def verb_above(token: dict, s: Sentence) -> dict | None:
 
 def busied(verb: dict, s: Sentence) -> bool:
     """زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ: the verb works on a pronoun of its own, by itself or through a
-    جار, so a noun in nasb put before it is not its object (الاشتغال, Ibn Aqil V2 p129: اشتغل بضمير زيد)."""
+    جار, or on a word the pronoun is added to (its سببي: زَيْدًا ضَرَبْتُ غُلَامَهُ، غُلَامَ صَاحِبِهِ، مَرَرْتُ بِغُلَامِهِ),
+    so a noun in nasb put before it is not its object (الاشتغال, Ibn Aqil V2 p128: أو في سببيه وهو المضاف
+    إلى ضمير الاسم السابق). The سببي must be in nasb or jarr by it: typed with its damma it is the doer (زَيْدًا ضَرَبَ
+    غُلَامُهُ), and زيدًا stays the object put first."""
     return any((attached_pronoun(k) and not subject_link(k))
-               or (is_preposition(k) and any(attached_pronoun(m) for m in s.kids(k))) for k in s.kids(verb))
+               or ((is_preposition(k) or (k["rel"] == "OBJ" and typed_or_parsed_case(k) != "u")) and _reaches_pronoun(k, s))
+               for k in s.kids(verb))
+
+
+def _reaches_pronoun(word: dict, s: Sentence) -> bool:
+    """A pronoun hangs below the word through its مجرور or مضاف إليه, however deep (غلامِ صاحبِه)."""
+    seen, below = set(), [word]
+    while below:
+        if (at := below.pop())["id"] in seen:
+            continue
+        seen.add(at["id"])
+        for kid in s.kids(at):
+            if kid["rel"] in ("OBJ", "IDF"):
+                if attached_pronoun(kid):
+                    return True
+                below.append(kid)
+    return False
 
 
 def next_word(token: dict, s: Sentence) -> dict | None:
