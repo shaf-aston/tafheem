@@ -76,6 +76,23 @@ const asMatch = (said, printed) => {
 }
 
 /**
+ * Whether heard word `j` (1-based, on page word `i`) is followed by the page
+ * going on: one of the next `repeat-look` heard words matches the page word as
+ * far after `i`, so a word the ear spelled oddly in the middle does not hide it.
+ * Pause signs are stepped over: nobody says them.
+ */
+const goesOn = (page, heard, i, j) => {
+  let p = i - 1
+  for (let t = 1; t <= config['repeat-look']; t += 1) {
+    p += 1
+    while (p < page.length && !isSpoken(page[p])) p += 1
+    if (j - 1 + t >= heard.length || p >= page.length) return false
+    if (asMatch(heard[j - 1 + t], page[p])[0] < COSTS.wrong) return true
+  }
+  return false
+}
+
+/**
  * The cheapest reading of the whole thing, as a list of steps in order.
  *
  * Each step is one of: a page word and a heard word together, a page word made
@@ -111,11 +128,32 @@ const lineUp = (page, heard, startAt) => {
     from[0][j] = 'extra'
   }
 
-  for (let i = 1; i <= page.length; i += 1) {
-    for (let j = 1; j <= heard.length; j += 1) {
+  // Where a reciter who went back came from: per heard word, the cheapest place
+  // at or past each page word. Filled a column at a time, so each heard word
+  // sees all of the one before it.
+  const back = []
+  for (let j = 1; j <= heard.length; j += 1) {
+    const ahead = new Array(page.length + 2).fill(Infinity)
+    const aheadAt = new Array(page.length + 2).fill(-1)
+    for (let k = page.length; k >= 0; k -= 1) {
+      const nearer = cost[k][j - 1] <= ahead[k + 1]
+      ahead[k] = nearer ? cost[k][j - 1] : ahead[k + 1]
+      aheadAt[k] = nearer ? k : aheadAt[k + 1]
+    }
+    back[j] = []
+    for (let i = 1; i <= page.length; i += 1) {
       const [together] = asMatch(heard[j - 1], page[i - 1])
       let best = cost[i - 1][j - 1] + together
       let step = 'together'
+
+      // Gone back to say this word again, from anywhere at or past it. A
+      // reciter practising a phrase says it over and over; without this each
+      // repeat was cheapest read as wrong words further down the page. Only
+      // onto a word that matches, and only when the phrase goes on from it: one
+      // stray word equal to an earlier one (the next page's first, a slip) is
+      // not a repeat, and reading it as one pulled the reciter back up the page.
+      const again = ahead[i] + together + COSTS.back
+      if (together < COSTS.wrong && goesOn(page, heard, i, j) && again < best) { best = again; step = 'back'; back[j][i] = aheadAt[i] }
 
       const missed = cost[i - 1][j] + COSTS.missed
       if (missed < best) { best = missed; step = MISSED }
@@ -153,6 +191,7 @@ const lineUp = (page, heard, startAt) => {
   while (i > 0 || j > 0) {
     const step = from[i][j]
     if (step === 'together') { steps.push({ step, i: i - 1, j: j - 1 }); i -= 1; j -= 1 }
+    else if (step === 'back') { steps.push({ step: 'together', i: i - 1, j: j - 1 }); i = back[j][i]; j -= 1 }
     else if (step === 'joined') { steps.push({ step, i: i - 1, j: j - 1 }); i -= 1; j -= 2 }
     else if (step === MISSED) { steps.push({ step, i: i - 1, j }); i -= 1 }
     else { steps.push({ step, i, j: j - 1 }); j -= 1 }
@@ -188,31 +227,6 @@ export const isOfPage = (words, page) =>
   words.some((word) => page.some((printed) => sameSpokenWord(word, printed)))
 
 /**
- * Everything heard so far, with the newest window of sound added on the end.
- *
- * Each window holds the last seconds of sound, so it starts with the end of the
- * window before it: ten seconds read every eight means two seconds said twice.
- * Those repeats are the machine's, not the reciter's, and letting them through
- * would report somebody as having added words they never said. So the longest
- * run where the end of what we have is the start of what just arrived is
- * treated as one, and only what is past it is kept.
- *
- * The old words are left as they were. A window that spells an earlier word
- * differently is not evidence enough to rewrite what has already settled, and
- * the words themselves are compared with `sameSpokenWord`, so a difference of
- * spelling is not a difference of word.
- */
-export const joinWindows = (heard, window) => {
-  const most = Math.min(heard.length, window.length)
-  for (let run = most; run > 0; run -= 1) {
-    const overlaps = Array.from({ length: run }).every((_, k) =>
-      sameSpokenWord(heard[heard.length - run + k], window[k]))
-    if (overlaps) return [...heard, ...window.slice(run)]
-  }
-  return [...heard, ...window]
-}
-
-/**
  * Where the reciter is and how every word on the page stands.
  *
  * `page` and `heard` are lists of words in the order they are printed and in
@@ -243,8 +257,9 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
   // one of those words was lined up against the page, and it showed twelve
   // mistakes made by somebody who had not yet opened their mouth. So until
   // enough words of this page have actually been heard, the page holds plain.
-  const found = steps.filter(({ step, i, j }) =>
-    step === 'joined' || (step === 'together' && asMatch(heard[j], page[i])[1] !== WRONG)).length
+  // Distinct page words, so one word said twice is still one word heard.
+  const found = new Set(steps.filter(({ step, i, j }) =>
+    step === 'joined' || (step === 'together' && asMatch(heard[j], page[i])[1] !== WRONG)).map(({ i }) => i)).size
   if (found < config['anchor-words']) return { at: startAt ?? 0, began: null, words, extras, started: false, heardTo: null }
   // A mark may only be shown once this many words have gone past it. `ended`
   // means no more are coming, so waiting any longer would never settle.
@@ -258,8 +273,15 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
     settled(j) && (step === 'joined' || (step === 'together' && asMatch(heard[j], page[i])[1] !== WRONG)))
   const began = first ? first.i : null
 
+  // A page word gone back over is judged on its last try. An earlier pairing
+  // with it is a word left over: said again (not a mistake), or a word not in
+  // the book that the cheapest reading parked there before going back.
+  const lastTry = new Map()
+  steps.forEach(({ step, i }, n) => { if (step !== 'extra') lastTry.set(i, n) })
+
   let lastSaid = -1
-  for (const { step, i, j } of steps) {
+  for (const [n, { step: was, i, j }] of steps.entries()) {
+    const step = was !== MISSED && lastTry.get(i) !== n && was !== 'extra' ? 'extra' : was
     // Said, in pieces, and right. Nothing is shown of the seam: the reciter did
     // not make it and has nothing to correct.
     if (step === 'joined') {

@@ -183,7 +183,7 @@ const look = () => page.evaluate((start) => {
   const words = [...document.querySelectorAll('button[data-word]')]
   const count = (list, css) => list.reduce((n, w) => n + w.querySelectorAll(`span[style*="${css}"]`).length, 0)
   const line = [...document.querySelectorAll('[aria-live="polite"]')].map((e) => e.innerText)
-    .find((t) => /following you from|listening for where you are|tap a word to start/.test(t)) ?? ''
+    .find((t) => /following you from|listening for where you are|tap a word to start/i.test(t)) ?? ''
   return {
     first: words[0]?.textContent,
     line,
@@ -217,7 +217,7 @@ const { line, total, said, above, aboveSaid, covered, named } = seen
 check('the ear was asked', heard.length > 0, `${heard.length} readings, ${gaveUp} given up on`)
 check(`Listening ${LISTEN} reached the server`, readingsTuned === 0 && askedTuned === (LISTEN === 'tuned' ? askedAll : 0), `${readingsTuned} readings and ${askedTuned} of ${askedAll} checks asked for tuned`)
 check('it checked words by sound', checked.some((n) => n > 0), `${checked.join(', ')} words per reading`)
-check(`it worked out it was 1:${AYAH} by itself`, new RegExp(`following you from\\s*${AYAH}`).test(line), line.trim())
+check(`it worked out it was 1:${AYAH} by itself`, new RegExp(`following you from\\s*${AYAH}`, 'i').test(line), line.trim())
 if (CLIPS.includes('001007')) check('the page turned on by itself after its last word', turned)
 check('most words recited are marked said', said >= (total - START) * 0.75, `${said} of ${total - START} said`)
 check('the words above the start are not accused', above === 0, `${above} accused`)

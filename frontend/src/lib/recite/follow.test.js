@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import config from '../../config/recite.json'
-import { bySound, CHECK, follow, isOfPage, joinWindows, MISSED, SAID, WAITING, wordsHeard, WRONG } from './follow'
+import { bySound, CHECK, follow, isOfPage, MISSED, SAID, WAITING, wordsHeard, WRONG } from './follow'
 
 // Al-Fatihah 1:6-7, the run the prototype recites, as the page holds it.
 const PAGE = [
@@ -227,6 +227,74 @@ describe('a word added that is not in the book', () => {
   })
 })
 
+describe('going back over a phrase to practise it', () => {
+  // 2:256, from لَآ إِكْرَاهَ to ٱلْوُثْقَىٰ, as the page holds it.
+  const AYAH = [
+    'لَآ', 'إِكْرَاهَ', 'فِى', 'ٱلدِّينِ', 'ۖ', 'قَد', 'تَّبَيَّنَ', 'ٱلرُّشْدُ', 'مِنَ', 'ٱلْغَىِّ', 'ۚ',
+    'فَمَن', 'يَكْفُرْ', 'بِٱلطَّٰغُوتِ', 'وَيُؤْمِنۢ', 'بِٱللَّهِ', 'فَقَدِ', 'ٱسْتَمْسَكَ', 'بِٱلْعُرْوَةِ', 'ٱلْوُثْقَىٰ',
+  ]
+  const PHRASE = ['قد', 'تبين', 'الرشد', 'من', 'الغي']
+  const PAST = AYAH.indexOf('فَمَن')
+  const times = (n, words) => Array.from({ length: n }, () => words).flat()
+
+  for (const startAt of [null, AYAH.indexOf('قَد')]) {
+    for (const n of [2, 3, 6]) {
+      it(`stays on the phrase said ${n} times, starting ${startAt === null ? 'unsaid' : 'on قد'}`, () => {
+        const answer = follow(AYAH, times(n, PHRASE), { ended: true, startAt })
+        expect(answer.words.slice(PAST).every((w) => w.state === WAITING)).toBe(true)
+        expect(answer.words.slice(5, 10).every((w) => w.state === SAID)).toBe(true)
+        expect(answer.extras).toEqual([])
+        expect(answer.at).toBe(10)
+      })
+    }
+  }
+
+  it('stays put when the ear spells a repeat differently', () => {
+    const heard = [...PHRASE, 'قد', 'تبيان', 'الرشد', 'من', 'الغي', ...PHRASE]
+    const answer = follow(AYAH, heard, { ended: true, startAt: null })
+    expect(answer.words.slice(PAST).every((w) => w.state === WAITING)).toBe(true)
+  })
+
+  it('carries on from the phrase once the reciter moves on', () => {
+    const answer = follow(AYAH, [...times(3, PHRASE), 'فمن', 'يكفر', 'بالطاغوت'], { ended: true, startAt: null })
+    expect(answer.words.slice(PAST, PAST + 3).every((w) => w.state === SAID)).toBe(true)
+    expect(answer.words.slice(PAST + 3).every((w) => w.state === WAITING)).toBe(true)
+  })
+
+  const WHOLE = ['لا', 'إكراه', 'في', 'الدين', 'قد', 'تبين', 'الرشد', 'من', 'الغي',
+    'فمن', 'يكفر', 'بالطاغوت', 'ويؤمن', 'بالله', 'فقد', 'استمسك', 'بالعروة', 'الوثقى']
+
+  it('does not go back for the next page\'s first word, which is also on this one', () => {
+    for (const tail of [['من'], ['من', 'الله', 'في'], ['كد']]) {
+      const answer = follow(AYAH, [...WHOLE, ...tail], { ended: true, startAt: 0 })
+      expect(answer.at).toBe(AYAH.length)
+      expect(answer.words.every((w) => w.state === SAID)).toBe(true)
+    }
+  })
+
+  it('does not go back for a wrong last word equal to an earlier one', () => {
+    const answer = follow(['قُلْ', 'هُوَ', 'ٱللَّهُ', 'أَحَدٌ', 'ٱلصَّمَدُ'], ['قل', 'هو', 'الله', 'احد', 'الله'], { ended: true })
+    expect(answer.at).toBe(5)
+    expect(answer.heardTo).toBe(5)
+  })
+
+  it('goes back to a word that a pause sign follows', () => {
+    const answer = follow(AYAH, [...PHRASE, ...times(3, ['الغي', 'فمن', 'يكفر'])], { ended: true, startAt: null })
+    expect(answer.words.slice(5, PAST + 2).every((w) => w.state === SAID)).toBe(true)
+    expect(answer.words.slice(PAST + 2).every((w) => w.state === WAITING)).toBe(true)
+  })
+
+  it('is not on the page from one word said twice', () => {
+    expect(follow(AYAH, ['قد', 'قد'], { ended: true, startAt: null }).started).toBe(false)
+  })
+
+  it('shows the last try of a word gone back over', () => {
+    const heard = ['قد', 'تبين', 'الرشد', 'مين', 'الغي', ...PHRASE]
+    const answer = follow(AYAH, heard, { ended: true, startAt: null })
+    expect(answer.words[8].state).toBe(SAID)
+  })
+})
+
 describe('nothing is marked the moment it is said', () => {
   const settle = config['settle-words']
 
@@ -319,40 +387,6 @@ describe('reading a window of sound as words', () => {
     expect(isOfPage([], PAGE)).toBe(false)
     expect(isOfPage(['موسيقى', 'الصراط'], PAGE)).toBe(true)
     expect(isOfPage(['المستقيم'], PAGE)).toBe(true)
-  })
-})
-
-describe('joining one window of sound to the next', () => {
-  it('says the words in the overlap once', () => {
-    expect(joinWindows(['الحمد', 'لله', 'رب'], ['لله', 'رب', 'العالمين']))
-      .toEqual(['الحمد', 'لله', 'رب', 'العالمين'])
-  })
-
-  it('keeps the longest overlap, not the first word that happens to match', () => {
-    expect(joinWindows(['عليهم', 'غير', 'عليهم', 'ولا'], ['عليهم', 'ولا', 'الضالين']))
-      .toEqual(['عليهم', 'غير', 'عليهم', 'ولا', 'الضالين'])
-  })
-
-  it('keeps both when the reciter has moved on and nothing overlaps', () => {
-    expect(joinWindows(['الحمد', 'لله'], ['مالك', 'يوم']))
-      .toEqual(['الحمد', 'لله', 'مالك', 'يوم'])
-  })
-
-  it('counts a word spelled two ways as one word', () => {
-    expect(joinWindows(['ٱلرَّحْمَٰنِ'], ['الرحمن', 'الرحيم']))
-      .toEqual(['ٱلرَّحْمَٰنِ', 'الرحيم'])
-  })
-
-  it('has nothing to join when one side is empty', () => {
-    expect(joinWindows([], ['الله'])).toEqual(['الله'])
-    expect(joinWindows(['الله'], [])).toEqual(['الله'])
-  })
-
-  it('leaves a page following the joined words unchanged by the join', () => {
-    const windows = [SPOKEN.slice(0, 6), SPOKEN.slice(4, 10), SPOKEN.slice(8)]
-    const joined = windows.reduce(joinWindows, [])
-    expect(joined).toEqual(SPOKEN)
-    expect(follow(PAGE, joined, { ended: true }).words.every((w) => w.state === SAID)).toBe(true)
   })
 })
 

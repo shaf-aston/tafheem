@@ -9,6 +9,8 @@
  * The microphone is the one big thing on it, because starting is the one thing
  * this screen is for. Everything else is quieter and sits around it.
  */
+import { useEffect, useRef } from 'react'
+
 import { CHECK, MISSED, SAID, WRONG } from '../../lib/recite/follow'
 import { LOOK, verdictOf } from '../../lib/recite/reciteColors'
 
@@ -16,7 +18,12 @@ import ArabicText from '../ui/ArabicText'
 import Chip from '../ui/Chip'
 import MicMark from '../ui/MicMark'
 
-export default function ReciteStrip({ listening, problem, heard, marks, lines, accent, status, help, onStart, onStop, onStartAt }) {
+export default function ReciteStrip({ listening, problem, transcript, marks, lines, accent, status, help, onStart, onStop, onStartAt }) {
+  // Kept at the end as it grows, so the newest words are the ones in view.
+  const scroller = useRef(null)
+  useEffect(() => {
+    if (scroller.current) scroller.current.scrollTop = scroller.current.scrollHeight
+  }, [transcript])
   const tally = { [SAID]: 0, [CHECK]: 0, [WRONG]: 0, [MISSED]: 0 }
   for (const word of marks.words) if (word.state in tally) tally[word.state] += 1
   const live = accent || 'var(--primary)'
@@ -41,20 +48,20 @@ export default function ReciteStrip({ listening, problem, heard, marks, lines, a
           <MicMark state={listening ? 'recording' : 'idle'} size={26} />
         </button>
 
-        {/* What it is hearing this moment, or, before that, what to do. The
-            last words only: the page above already shows everything. Sound in
-            a room is not somebody reciting, so until enough of the page has
-            been heard it says so in words. */}
+        {/* What it is hearing, or, before that, what to do. The transcript is
+            everything the ear returned, raw, whether or not it is on this
+            page, so a reciter can see what was and was not caught. Sound in a
+            room is not somebody reciting, so until enough of the page has
+            been heard the line above says so in words. */}
         <div className="min-w-0 flex-1 space-y-0.5" aria-live="polite">
           <p className="type-body font-medium text-[var(--text)] truncate">
             {listening ? (marks.started ? 'Listening…' : 'Listening. Start from the top of the page.') : 'Press to start reciting'}
           </p>
-          {listening && marks.started && heard.length > 0 ? (
-            <ArabicText size="sm" className="text-[var(--text-faint)] truncate block" dir="rtl">
-              {heard.slice(-6).join(' ')}
+          <p className="type-small text-[var(--text-faint)] truncate">{status}</p>
+          {listening && transcript.length > 0 && (
+            <ArabicText as="p" size="sm" ref={scroller} className="text-[var(--text-faint)] block max-h-24 overflow-y-auto">
+              {transcript.join(' ')}
             </ArabicText>
-          ) : (
-            <p className="type-small text-[var(--text-faint)] truncate">{status}</p>
           )}
         </div>
 
