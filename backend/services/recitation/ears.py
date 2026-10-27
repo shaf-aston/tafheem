@@ -51,7 +51,7 @@ from abc import ABC, abstractmethod
 from backend.config import get_settings
 from backend.services.learner import journal
 from backend.services.core.fallback import Retirable, permanent_failure, retry_after
-from backend.services.recitation import hosted, letters, listen
+from backend.services.recitation import hosted, letters, whisper
 from backend.services.core.timing import timed
 
 log = logging.getLogger(__name__)
@@ -133,7 +133,7 @@ class LocalEar(Ear):
     local = True
 
     def transcribe(self, audio: bytes, language: str | None, hint: str) -> str:
-        return listen.transcribe(audio, language, hint)
+        return whisper.transcribe(audio, language, hint)
 
     def is_available(self) -> bool:
         return True
@@ -155,7 +155,7 @@ class LettersEar(Ear):
     reciting_only = True
 
     def transcribe(self, audio: bytes, language: str | None, hint: str) -> str:
-        return letters.read(listen.sound_of(audio))
+        return letters.read(whisper.sound_of(audio))
 
     def is_available(self) -> bool:
         return letters.installed()
@@ -270,7 +270,7 @@ def hear(audio: bytes, language: str | None, hint: str) -> str:
                 journal.note("ear.resting", ear=name, seconds=rest_s, reason=journal.scrub(str(exc)))
     if last is not None:
         raise last
-    raise listen.NotInstalled("No ear is available on this machine.")
+    raise whisper.NotInstalled("No ear is available on this machine.")
 
 
 def active(reciting: bool = False) -> str:
@@ -288,7 +288,7 @@ def active(reciting: bool = False) -> str:
 def would_answer_locally(reciting: bool = True) -> bool:
     """True when an ear on this machine is the one that would answer right now.
 
-    routers/listen.py asks this to decide whether a recitation needs `_turn`:
+    routers/whisper.py asks this to decide whether a recitation needs `_turn`:
     that queue exists to protect this machine's own CPU from two readings at
     once, and Groq answering costs this machine nothing to queue behind.
     """

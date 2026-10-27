@@ -10,7 +10,7 @@ word by word, against the ayah it should be:
   page     what the app does today: the Qur'an ear writes down what it heard,
            and a word counts as said when its letters match. Vowels ignored.
   scored   the ear is handed the expected words and says how sure it is of
-           each (listen.weigh); a word counts as said above a threshold.
+           each (whisper.weigh); a word counts as said above a threshold.
 
 And both are held against the reviewer:
 
@@ -39,7 +39,7 @@ import pyarrow.parquet as pq
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402
-from backend.services.recitation import listen  # noqa: E402
+from backend.services.recitation import whisper  # noqa: E402
 from backend.services.recitation.place import PLACES_IT, letters  # noqa: E402
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 
@@ -185,9 +185,9 @@ def judge(ayahs: dict[str, str], limit: int | None) -> None:
             if seconds(audio) > LONGEST_S:
                 row["skipped"] = "longer than the ear hears"
             else:
-                heard = listen.transcribe(audio, language="ar")
+                heard = whisper.transcribe(audio, language="ar")
                 around, a, b, reach = stretch(ayahs, key, heard)
-                sure = [w["sure"] for w in listen.weigh(audio, around)[a:b]]
+                sure = [w["sure"] for w in whisper.weigh(audio, around)[a:b]]
                 row |= {"heard": heard, "page": page_verdict(expected, heard),
                         "sure": [round(p, 3) for p in sure], "stretch": len(around), "reach": reach}
             out.write(json.dumps(row, ensure_ascii=False) + "\n")

@@ -12,7 +12,7 @@ from backend.config import get_settings
 from backend.main import app
 from backend.routers import listen as listen_router
 from backend.services import recitation
-from backend.services.recitation import listen, place
+from backend.services.recitation import whisper, place
 
 client = TestClient(app)
 # The first bytes of a browser's webm recording.
@@ -33,7 +33,7 @@ def test_the_stretch_grows_by_misheard_words_at_either_end_but_not_past_the_page
 def fake_check(monkeypatch, plain, sure=lambda audio, words: [0.5] * len(words)):
     asked = []
     monkeypatch.setattr(recitation, "_plain", lambda: plain)
-    monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: asked.append(list(words)) or [
+    monkeypatch.setattr(whisper, "weigh", lambda audio, words, model=None: asked.append(list(words)) or [
         {"sure": score, "weak": None, "at": None} for score in sure(audio, words)])
     return asked
 
@@ -50,7 +50,7 @@ def test_each_sureness_goes_back_to_its_own_ayah_and_unreached_words_are_none(mo
 def test_each_word_carries_its_weak_piece_and_second_to_its_own_ayah(monkeypatch):
     plain = {"112:1": "قُلْ هُوَ اللَّهُ أَحَدٌ", "112:2": "اللَّهُ الصَّمَدُ"}
     monkeypatch.setattr(recitation, "_plain", lambda: plain)
-    monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: [
+    monkeypatch.setattr(whisper, "weigh", lambda audio, words, model=None: [
         {"sure": 0.9, "weak": {"text": f"w{i}", "start": i}, "at": float(i)} for i in range(len(words))])
     sure, detail = recitation.check(b"sound", "أحد الله الصمد", ["112:1", "112:2"])
     assert detail == {
@@ -65,13 +65,13 @@ def test_the_weak_piece_is_the_least_likely_one_with_where_it_starts_and_a_bad_a
     decode = lambda tokens: "".join(pieces[t] for t in tokens)
     # The weak piece's text, and how many characters of the word come before it
     # (the space a later word is encoded with is not one of them).
-    assert listen.weakest([1, 2], [0.9, 0.2], decode) == {"text": "صَ", "start": 2}
-    assert listen.weakest([1, 2], [0.2, 0.9], decode) == {"text": "ال", "start": 0}
+    assert whisper.weakest([1, 2], [0.9, 0.2], decode) == {"text": "صَ", "start": 2}
+    assert whisper.weakest([1, 2], [0.2, 0.9], decode) == {"text": "ال", "start": 0}
     # One piece, half a letter, or pieces and likelihoods that do not pair up: nothing.
-    assert listen.weakest([1], [0.2], decode) is None
-    assert listen.weakest([1, 3], [0.9, 0.2], decode) is None
-    assert listen.weakest([1, 2], [0.9], decode) is None
-    assert listen.weakest([1, 2], [], decode) is None
+    assert whisper.weakest([1], [0.2], decode) is None
+    assert whisper.weakest([1, 3], [0.9, 0.2], decode) is None
+    assert whisper.weakest([1, 2], [0.9], decode) is None
+    assert whisper.weakest([1, 2], [], decode) is None
 
 
 def test_the_check_runs_on_to_the_end_of_the_ayah_the_transcript_stopped_in(monkeypatch):
@@ -284,30 +284,19 @@ def test_listen_has_no_tuned_option_it_is_always_heard_by_the_usual_ears(monkeyp
 
 
 def test_a_tuned_check_without_an_installed_model_is_a_503_never_another_ear(monkeypatch):
-    monkeypatch.setattr(recitation.listen, "tuned_model", lambda: "")
-    for path, params in (("/api/listen/check", {"heard": "قل", "check": "112:1", "tuned": "true"}),
-                         ("/api/listen/check-text", {"heard": "الله", "expected": "اللَّهُ", "tuned": "true"})):
-        resp = client.post(path, params=params, files={"audio": ("r.webm", WEBM)})
-        assert resp.status_code == 503, path
+    monkeypatch.setattr(recitation.whisper, "tuned_model", lambda: "")
+    resp = client.post(
+        "/api/listen/check", params={"heard": "قل", "check": "112:1", "tuned": "true"}, files={"audio": ("r.webm", WEBM)},
+    )
+    assert resp.status_code == 503
 
 
 def test_a_tuned_check_scores_with_the_tuned_model(monkeypatch):
     seen = {}
-    monkeypatch.setattr(recitation.listen, "tuned_model", lambda: "data/tuned")
+    monkeypatch.setattr(recitation.whisper, "tuned_model", lambda: "data/tuned")
     monkeypatch.setattr(recitation, "_plain", lambda: {"112:1": "قُلْ هُوَ"})
-    monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: seen.update(model=model) or [{"sure": 0.5, "weak": None, "at": None}] * len(words))
+    monkeypatch.setattr(whisper, "weigh", lambda audio, words, model=None: seen.update(model=model) or [{"sure": 0.5, "weak": None, "at": None}] * len(words))
     resp = client.post(
         "/api/listen/check", params={"heard": "قل هو", "check": "112:1", "tuned": "true"}, files={"audio": ("r.webm", WEBM)},
-    )
-    assert resp.status_code == 200 and seen["model"] == "data/tuned"
-
-
-def test_a_tuned_phrase_check_scores_with_the_tuned_model(monkeypatch):
-    seen = {}
-    monkeypatch.setattr(recitation.listen, "tuned_model", lambda: "data/tuned")
-    monkeypatch.setattr(listen, "weigh", lambda audio, words, model=None: seen.update(model=model) or [{"sure": 0.5, "weak": None, "at": None}] * len(words))
-    resp = client.post(
-        "/api/listen/check-text", params={"heard": "الله اكبر", "expected": "اللَّهُ أَكْبَرُ", "tuned": "true"},
-        files={"audio": ("r.webm", WEBM)},
     )
     assert resp.status_code == 200 and seen["model"] == "data/tuned"

@@ -2,7 +2,7 @@
  * One recitation: the microphone, the recordings, the readings and the
  * sureness checks, with no React in it.
  *
- * lib/useReciting.js is the page's handle on this and holds nothing but the
+ * lib/recite/useReciting.js is the page's handle on this and holds nothing but the
  * view it is given. Kept apart so the part that has broken most, which
  * recording an answer belongs to, can be driven by tests with a scripted
  * recorder instead of a browser (recitingSession.test.js); the outside world
@@ -32,6 +32,8 @@ import config from '../../config/recite.json'
 import * as dictation from '../speech/dictation'
 import { CHECK, SAID, follow, isOfPage, joinWindows, wordsHeard } from './follow'
 import * as journal from './journal'
+import { allowanceLeft, asksPerMinute, cutReason, readyToSend, recentAsks, spokeSince } from './pacing'
+import { byPlace, settledScores, surer } from './scores'
 import * as microphone from '../speech/microphone'
 
 const STEP_MS = config['step-s'] * 1000
@@ -44,47 +46,6 @@ const KEEP_RECORDINGS = config['keep-recordings']
 // How far the voice meter can lag a cut and still count as "spoken in this
 // window": the same tick length the meter itself reads at.
 const LEVEL_LAG_MS = dictationConfig['level-check-ms']
-
-/**
- * Why a recording should stop itself: a pause after a phrase, or long enough
- * is long enough. Null before any voice has been heard in this window at
- * all, on purpose: a reciter thinking before starting is never cut, that is
- * left to the microphone's own quiet-stop.
- */
-export const cutReason = (now, began, lastVoice, pauseMs, windowMs) => {
-  if (lastVoice < began) return null
-  if (now - lastVoice >= pauseMs) return 'pause'
-  if (now - began >= windowMs) return 'max'
-  return null
-}
-
-/** Whether a voice has been heard since this recording began, allowing for the meter's own lag. */
-export const spokeSince = (lastVoice, began, lagMs) => lastVoice >= began - lagMs
-
-/**
- * The asks of the last minute, newest last, with the older ones dropped. What
- * the ear's allowance is counted against; see allowanceLeft.
- */
-export const recentAsks = (now, asks) => asks.filter((at) => now - at < 60000)
-
-/**
- * How many more readings may be asked for right now. Both kinds are counted,
- * the mid-phrase ones and the one at each pause, because the ear's allowance
- * does not tell them apart. Only the mid-phrase ones give way to it.
- */
-export const allowanceLeft = (now, asks, perMinute) => perMinute - recentAsks(now, asks).length
-
-/**
- * How many readings a minute to ask for: the server's own count (its listening
- * keys times each key's allowance) less the margin recite.json explains, or the
- * fixed figure when the server gave none.
- */
-export const asksPerMinute = (fromServer) =>
-  fromServer > 0 ? Math.floor(fromServer * config['asks-share']) : config['asks-per-minute']
-
-/** Whether it is time to ask for a reading: free, something new to send, paced by how long the last one took, and inside the ear's allowance. */
-export const readyToSend = (now, asked, took, stepMs, busy, chunksLen, sent, left = Infinity) =>
-  !busy && chunksLen > sent && now - asked >= Math.max(stepMs, took) && left > 0
 
 /**
  * What to tell a reciter when a reading fails, and how to log it: a network
@@ -104,54 +65,6 @@ export const problemOf = (error) => {
   const detail = error.response.data?.detail
   if (typeof detail === 'string') return { kind: 'server', text: detail }
   return { kind: 'server', text: `The server failed on this reading (error ${error.response.status}).` }
-}
-
-/**
- * A word's score: { sure, weak, weakFrom, at, take }. `sure` is how likely the
- * ear found the word, `weak` the text of its least likely piece and `weakFrom`
- * the characters of the word before it, `at` the second of the recording the
- * word sits at, `take` which recording that is. `detail` is the server's own
- * {weak, weak_from, at} for the word, when it gave one.
- */
-export const scoreOf = (sure, detail, take = null) => (
-  { sure, weak: detail?.weak, weakFrom: detail?.weak_from, at: detail?.at, take }
-)
-
-/**
- * One reading's per-ayah answer as scores, keyed by page place; words it did not
- * reach are left out. `detail` is the answer's per-ayah detail, `take` the
- * recording it was scored from.
- */
-export const byPlace = (answer = {}, ayahs, detail = {}, take = null) => {
-  const out = {}
-  for (const { key, spoken } of ayahs) {
-    // A count that differs is an ayah the two spellings split into different
-    // words; its words cannot be told apart, so it keeps the page's marks.
-    const sures = answer[key]
-    if (sures?.length !== spoken.length) continue
-    sures.forEach((sure, k) => {
-      if (sure != null) out[spoken[k]] = scoreOf(sure, detail[key]?.[k], take)
-    })
-  }
-  return out
-}
-
-/**
- * A recording's scores, less the low ones it has no right to give: a low score
- * accuses only a word in [from, to), the page words it heard right and settled.
- * Outside them the sound was cut mid-word or never held the word (check() scores
- * the whole ayah), so low there means "not in this recording", and it showed
- * the next words red until a later check, two seconds on, cleared them.
- */
-export const settledScores = (scores, from, to) => Object.fromEntries(
-  Object.entries(scores).filter(([at, { sure }]) => sure >= config['sure-at'] || (Number(at) >= from && Number(at) < to)),
-)
-
-/** The surer of two recordings' scores for each page place, each with its own detail. */
-export const surer = (a, b) => {
-  const out = { ...a }
-  for (const [at, score] of Object.entries(b)) if (!out[at] || out[at].sure < score.sure) out[at] = score
-  return out
 }
 
 /**
@@ -206,7 +119,7 @@ export const EMPTY_VIEW = {
   now: { from: 0, words: [] },
   ended: false,
   // How sure the ear has been of each page word, by its place on the page, in
-  // the same two halves. Each is a score, see scoreOf. Within a recording the newest reading wins: it holds
+  // the same two halves. Each is a score, see scores.js. Within a recording the newest reading wins: it holds
   // more of the sound, and an early reading scores words not said yet, up to
   // 0.1 for one word in six (measured on 69 cut recordings), which kept for
   // good would pass that word however it was then said. Across recordings the

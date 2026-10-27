@@ -5,7 +5,6 @@ from __future__ import annotations
 from pydantic import BaseModel
 
 
-
 class HeardAyah(BaseModel):
     """One ayah a recitation might have been, and how sure the app is.
 
@@ -69,11 +68,3 @@ class Sureness(BaseModel):
     """
     sure: dict[str, list[float | None]] = {}
     detail: dict[str, list[WordDetail | None]] = {}
-
-
-class TextSureness(BaseModel):
-    """How sure the ear is of each word of the phrase POST /api/listen/check-text
-    was given: one number per word, in order. Empty when nothing was heard.
-    `detail` is one WordDetail per word, in the same order."""
-    sure: list[float] = []
-    detail: list[WordDetail] = []

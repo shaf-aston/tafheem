@@ -8,8 +8,9 @@
  */
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-import { bySound, follow, joinWindows } from '../recite/follow'
-import { createRecitingSession, EMPTY_VIEW, surer } from '../recite/recitingSession'
+import { bySound, follow, joinWindows } from './follow'
+import { createRecitingSession, EMPTY_VIEW } from './recitingSession'
+import { surer } from './scores'
 import { useSetting } from '../store/settings'
 import { useHealth, useTuned } from '../api/useHealth'
 

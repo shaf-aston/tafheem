@@ -20,7 +20,7 @@ import time
 import numpy as np
 
 from backend.config import data_path, get_settings
-from backend.services.recitation.listen import NotInstalled, engine_lock
+from backend.services.recitation.whisper import NotInstalled, engine_lock
 from backend.services.core.timing import timed
 
 log = logging.getLogger(__name__)
@@ -66,7 +66,7 @@ def spelled(best: np.ndarray, pieces: list[str], blank: int) -> str:
 
 
 def read(sound: np.ndarray) -> str:
-    """What was recited, as letters, from sound already decoded by listen.sound_of."""
+    """What was recited, as letters, from sound already decoded by whisper.sound_of."""
     if len(sound) == 0:
         return ""
     session, pieces, blank = _engine()

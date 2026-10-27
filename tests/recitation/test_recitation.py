@@ -27,7 +27,7 @@ import pytest
 
 from backend.config import get_settings
 from backend.services.quran import corpus as quran_corpus
-from backend.services.recitation import listen, match
+from backend.services.recitation import whisper, match
 
 
 @pytest.fixture(autouse=True)
@@ -49,9 +49,9 @@ def sound(monkeypatch):
     # Stood in at the engine's own door rather than at ours, so what the
     # decoder is handed is still really handed, and a test can still prove the
     # recording never went to the disk on the way.
-    listen._last = None
+    whisper._last = None
     yield handed
-    listen._last = None
+    whisper._last = None
 
 
 
@@ -180,7 +180,7 @@ class FakeEngine:
 @pytest.fixture
 def engine(monkeypatch):
     fake = FakeEngine()
-    monkeypatch.setattr(listen, "_engine", lambda name: fake)
+    monkeypatch.setattr(whisper, "_engine", lambda name: fake)
     return fake
 
 
@@ -192,7 +192,7 @@ def test_the_settings_that_make_it_quick_reach_the_engine(engine):
     halved the wait and placed better), and every stretch of sound read on its
     own so the model does not finish the ayah for you.
     """
-    listen.transcribe(b"pretend this is a recording", language="ar")
+    whisper.transcribe(b"pretend this is a recording", language="ar")
     asked = engine.asked
     assert asked["beam_size"] == 1
     assert asked["repetition_penalty"] > 1, "a cut word sent the model looping"
@@ -205,7 +205,7 @@ def test_the_settings_that_make_it_quick_reach_the_engine(engine):
 def test_a_word_floor_is_what_turns_word_timing_on(engine, monkeypatch):
     """Timing costs about half the wait, so it is asked for only if it is used."""
     monkeypatch.setattr(get_settings(), "recitation_word_min", 0.94)
-    listen.transcribe(b"pretend this is a recording", language="ar")
+    whisper.transcribe(b"pretend this is a recording", language="ar")
     assert engine.asked["word_timestamps"] is True
 
 
@@ -228,8 +228,8 @@ class SilenceEater:
 
 def test_a_word_the_silence_trimmer_ate_is_read_again_without_it(monkeypatch):
     fake = SilenceEater()
-    monkeypatch.setattr(listen, "_engine", lambda name: fake)
-    assert listen.transcribe(b"one word, said quickly", language="ar") == "تحاول"
+    monkeypatch.setattr(whisper, "_engine", lambda name: fake)
+    assert whisper.transcribe(b"one word, said quickly", language="ar") == "تحاول"
     assert fake.reads == [True, False], "trimmed first, untrimmed only on failure"
 
 
@@ -248,8 +248,8 @@ class RoomFiller:
 
 
 def test_silence_the_model_fills_in_is_still_silence(monkeypatch):
-    monkeypatch.setattr(listen, "_engine", lambda name: RoomFiller())
-    assert listen.transcribe(b"a quiet room", language="ar") == ""
+    monkeypatch.setattr(whisper, "_engine", lambda name: RoomFiller())
+    assert whisper.transcribe(b"a quiet room", language="ar") == ""
 
 
 class Mumbler:
@@ -268,14 +268,14 @@ class Mumbler:
 def test_a_word_the_model_is_unsure_of_is_still_written_down(monkeypatch):
     """The transcript only says which part of the page this is, and a run of
     words is what finds it, so a doubted word is kept rather than thrown away."""
-    monkeypatch.setattr(listen, "_engine", lambda name: Mumbler())
-    assert listen.transcribe(b"a mumble", language="ar") == "إياك نعمل وإياك نستعين"
+    monkeypatch.setattr(whisper, "_engine", lambda name: Mumbler())
+    assert whisper.transcribe(b"a mumble", language="ar") == "إياك نعمل وإياك نستعين"
 
 
 def test_a_word_floor_drops_the_word_the_model_doubted(monkeypatch):
     monkeypatch.setattr(get_settings(), "recitation_word_min", 0.94)
-    monkeypatch.setattr(listen, "_engine", lambda name: Mumbler())
-    assert listen.transcribe(b"a mumble", language="ar") == "إياك وإياك نستعين"
+    monkeypatch.setattr(whisper, "_engine", lambda name: Mumbler())
+    assert whisper.transcribe(b"a mumble", language="ar") == "إياك وإياك نستعين"
 
 
 def test_the_general_model_is_trusted_about_silence(monkeypatch):
@@ -283,10 +283,10 @@ def test_the_general_model_is_trusted_about_silence(monkeypatch):
     nothing on silence by itself, so the Qur'an ear's floor must not touch it.
     Rated above that floor here, so the test fails if the floor were applied."""
     fake = Named(sure=1.0)
-    monkeypatch.setattr(listen, "_engine", fake)
+    monkeypatch.setattr(whisper, "_engine", fake)
     monkeypatch.setattr(get_settings(), "dictation_languages", "en")
     fake.no_speech = get_settings().recitation_no_speech_max + 0.05
-    assert listen.transcribe(b"a search") == "mercy"
+    assert whisper.transcribe(b"a search") == "mercy"
 
 
 class Named:
@@ -309,8 +309,8 @@ class Named:
 def test_a_named_language_is_a_recitation_on_the_quran_model(monkeypatch):
     """Reciting: the Qur'an model, and no register hint."""
     fake = Named(sure=0.5)
-    monkeypatch.setattr(listen, "_engine", fake)
-    assert listen.transcribe(b"reciting", language="ar", hint="fusha") == "mercy"
+    monkeypatch.setattr(whisper, "_engine", fake)
+    assert whisper.transcribe(b"reciting", language="ar", hint="fusha") == "mercy"
     assert set(fake.models) == {get_settings().recitation_model}
     assert fake.how["initial_prompt"] is None
 
@@ -323,9 +323,9 @@ def test_no_language_named_is_dictation_on_the_general_model(monkeypatch):
     asked for either: it costs a second and invents words on a quiet tail.
     """
     fake = Named(sure=0.33)
-    monkeypatch.setattr(listen, "_engine", fake)
+    monkeypatch.setattr(whisper, "_engine", fake)
     monkeypatch.setattr(get_settings(), "dictation_languages", "en")
-    assert listen.transcribe(b"a search", hint="fusha") == "mercy"
+    assert whisper.transcribe(b"a search", hint="fusha") == "mercy"
     assert fake.models == [get_settings().dictation_model]
     assert fake.how["initial_prompt"] == "fusha"
     assert fake.how["word_timestamps"] is False
@@ -333,7 +333,7 @@ def test_no_language_named_is_dictation_on_the_general_model(monkeypatch):
 
 def test_a_recording_that_worked_is_only_read_once(engine):
     """The second read is for the failure, not for every recitation."""
-    assert listen.transcribe(b"pretend this is a recording", language="ar")
+    assert whisper.transcribe(b"pretend this is a recording", language="ar")
     assert engine.reads == 1
     assert engine.asked["vad_filter"] is True
 
@@ -343,23 +343,23 @@ def test_the_recording_never_touches_the_disk(engine, sound):
     decoded from memory and never written there at all."""
     import io
 
-    assert listen.transcribe(b"pretend this is a recording", language="ar") == "قل هو الله أحد"
+    assert whisper.transcribe(b"pretend this is a recording", language="ar") == "قل هو الله أحد"
     assert sound and all(isinstance(handed, io.BytesIO) for handed in sound)
     assert sound[0].getvalue() == b"pretend this is a recording"
 
 
 def test_nothing_recorded_is_never_sent_to_the_engine(engine):
-    assert listen.transcribe(b"", language="ar") == ""
+    assert whisper.transcribe(b"", language="ar") == ""
     assert engine.asked is None
 
 
 def test_warming_up_a_machine_that_cannot_listen_is_not_an_error(monkeypatch):
     """No engine installed is an ordinary machine, not a broken startup."""
     def refuse(name):
-        raise listen.NotInstalled("faster-whisper is not installed")
+        raise whisper.NotInstalled("faster-whisper is not installed")
 
-    monkeypatch.setattr(listen, "_engine", refuse)
-    listen.warm()  # must not raise
+    monkeypatch.setattr(whisper, "_engine", refuse)
+    whisper.warm()  # must not raise
 
 
 class Bilingual(FakeEngine):
@@ -388,7 +388,7 @@ def bilingual(monkeypatch):
 
     def install(chances):
         fake = Bilingual(chances)
-        monkeypatch.setattr(listen, "_engine", lambda name: fake)
+        monkeypatch.setattr(whisper, "_engine", lambda name: fake)
         return fake
 
     return install
@@ -397,13 +397,13 @@ def bilingual(monkeypatch):
 def test_an_english_word_is_heard_as_english(bilingual):
     """The defect this exists for: "knowledge" pinned to Arabic came back نالج."""
     fake = bilingual({"en": 0.91, "ar": 0.04})
-    listen.transcribe(b"knowledge, said out loud")
+    whisper.transcribe(b"knowledge, said out loud")
     assert fake.asked["language"] == "en"
 
 
 def test_an_arabic_word_is_still_heard_as_arabic(bilingual):
     fake = bilingual({"ar": 0.88, "en": 0.05})
-    listen.transcribe(b"an Arabic word, said out loud")
+    whisper.transcribe(b"an Arabic word, said out loud")
     assert fake.asked["language"] == "ar"
 
 
@@ -414,14 +414,14 @@ def test_a_language_that_is_not_offered_never_wins(bilingual):
     letters. Only the offered languages may be chosen between.
     """
     fake = bilingual({"ur": 0.72, "fa": 0.19, "en": 0.06, "ar": 0.02})
-    listen.transcribe(b"one word, ambiguous")
+    whisper.transcribe(b"one word, ambiguous")
     assert fake.asked["language"] == "en"
 
 
 def test_naming_the_language_spends_nothing_on_choosing_it(bilingual):
     """A recitation is Arabic and known to be, so it pays for no detection."""
     fake = bilingual({"en": 0.91, "ar": 0.04})
-    listen.transcribe(b"pretend this is a recitation", language="ar")
+    whisper.transcribe(b"pretend this is a recitation", language="ar")
     assert fake.asked["language"] == "ar"
     assert fake.detections == 0
 
@@ -432,7 +432,7 @@ def test_one_dictation_language_is_nothing_to_choose_between(bilingual, monkeypa
 
     monkeypatch.setattr(get_settings(), "dictation_languages", "ar")
     fake = bilingual({"en": 0.91, "ar": 0.04})
-    listen.transcribe(b"pretend this is a recording")
+    whisper.transcribe(b"pretend this is a recording")
     assert fake.asked["language"] == "ar"
     assert fake.detections == 0
 
@@ -494,7 +494,7 @@ def test_the_ear_is_handed_the_recording_and_not_thirty_seconds_of_silence():
     keeps the ear being asked for a handful of sizes rather than a new one
     every time.
     """
-    from backend.services.recitation.listen import _WINDOW_FRAMES, window_of
+    from backend.services.recitation.whisper import _WINDOW_FRAMES, window_of
 
     # Six seconds of sound, asked for in whole seconds, is six seconds.
     assert window_of(601, 100) == 700

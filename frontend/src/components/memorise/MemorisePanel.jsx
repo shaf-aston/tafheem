@@ -31,16 +31,16 @@ import WheelPicker from '../ui/WheelPicker'
 import { Skeleton } from '../ui/Skeleton'
 import {
   difficultyOf, HIDDEN, useAnswers, useArrivedPage, useBookPage, useGaps, useHowYouAnswer,
-  usePageSteps, useReciteState, useReciteTurns, waysOf, withinPart,
+  usePageSteps, useReciteState, useReciteTurns, WAYS, withinPart,
 } from './hooks'
 
 export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const { answers, setAnswers, checked, setChecked, shown, setShown, fresh } = useAnswers()
-  const { way, setWay, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay } = useHowYouAnswer(fresh)
+  const { way, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay } = useHowYouAnswer(fresh)
   const {
     bookId, book, parts, part, data, isPending, isError, error, refetch, pages, page, pageNumber, meaning,
     setMeaning, pinned, openAt, openPart, openPage, openBook, pageOfLine,
-  } = useBookPage({ fresh, setWay })
+  } = useBookPage({ fresh })
   // The mushaf page this one actually is, when the layout has been built. Null
   // means the pages were sized by word count, and saying "page 3 of 21" without
   // claiming a printed number is the honest thing to show for that.
@@ -70,7 +70,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const stamp = `${bookId}/${part}/${pageNumber}/${reciting.listening}`
   const opened = asked?.stamp === stamp ? asked : null
   const setOpen = (place) => setAsked(place && { ...place, stamp })
-  const ways = waysOf(book)
+  const ways = WAYS
   const missing = way === 'recite'
     ? [{ id: 'none', label: 'Show all' }, { id: HIDDEN, label: 'Hidden' }]
     : DIFFICULTIES.map((d) => ({ id: d.id, label: d.label }))

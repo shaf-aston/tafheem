@@ -9,7 +9,7 @@ Every step runs from any checkout, on this PC or in a cloud session; nothing is 
 | 2. Run | `python backend/scripts/recitation/finetune_ear/cloud.py` | bundles `ear/` into one file, pushes it to Kaggle's free GPU, waits, fetches |
 | 3. Judge | `backend/data/models/finetune-ear/verdict.json` | every candidate scored on the same held clips as the served and untuned ears |
 | 4. Ship | `python backend/scripts/recitation/finetune_ear/cloud.py --ship` | uploads a kept `ear-tuned/` to the Hugging Face repo the pin names and moves the pin on master |
-| 5. Serve | nothing to do | Oracle pulls master every 5 minutes and loads that revision (`services/recitation/listen.py` `_engine`) |
+| 5. Serve | nothing to do | Oracle pulls master every 5 minutes and loads that revision (`services/recitation/whisper.py` `_engine`) |
 
 `--fetch` waits for the last run and fetches it. A run takes hours; watch it at the link `cloud.py` prints.
 On Lightning.ai or Colab: `python -m ear.run` from this folder, on a GPU machine.
