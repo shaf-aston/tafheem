@@ -16,12 +16,12 @@ import difflib
 import re
 
 from backend.config import get_settings
+from backend.services.text.arabic_text import bare_letters
 
 
-def letters(word: str) -> str:
-    """Letters only, as the page compares: marks gone, alif forms and ى folded."""
-    word = re.sub("[أإآٱ]", "ا", word).replace("ى", "ي")
-    return re.sub("[^ء-ي]", "", word)
+def bare_word(word: str) -> str:
+    """Arabic letters only, as the page compares: marks gone, alif forms and ى folded."""
+    return re.sub("[^ء-ي]", "", bare_letters(word))
 
 
 def reach(expected: list[str], heard: list[str]) -> tuple[int, int] | None:
@@ -32,7 +32,7 @@ def reach(expected: list[str], heard: list[str]) -> tuple[int, int] | None:
     recording does hold, so the stretch grows by as many, never past the page.
     """
     at_least = get_settings().recitation_place_min_words
-    want, got = [letters(w) for w in expected], [letters(w) for w in heard]
+    want, got = [bare_word(w) for w in expected], [bare_word(w) for w in heard]
     blocks = [b for b in difflib.SequenceMatcher(a=want, b=got, autojunk=False).get_matching_blocks()
               if b.size >= at_least]
     if not blocks:

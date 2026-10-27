@@ -22,7 +22,7 @@ from dataclasses import dataclass
 from difflib import SequenceMatcher
 
 from backend.config import get_settings
-from backend.services.recitation.place import letters
+from backend.services.recitation.place import bare_word
 
 
 @dataclass(frozen=True)
@@ -48,7 +48,7 @@ def build(ayahs) -> Line:
     words, where = [], []
     for key, text in ayahs:
         for word in text.split():
-            if folded := letters(word):
+            if folded := bare_word(word):
                 words.append(folded)
                 where.append(key)
     index = defaultdict(list)
@@ -101,7 +101,7 @@ def find(heard: str, line: Line, margin: float, fit: float, near: tuple[int, int
     fits within `margin` of the best is taken, since carrying on is likelier
     than a jump that the words cannot tell apart.
     """
-    found = _spots([w for w in map(letters, heard.split()) if w], line)
+    found = _spots([w for w in map(bare_word, heard.split()) if w], line)
     if not found:
         return None
     best = found[0]

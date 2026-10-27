@@ -4,7 +4,7 @@ Whisper writes a recitation out word by word, one guess feeding the next, and
 that is most of a reading's seconds. Placing a recitation on the page only needs
 the letters, so this model reads every moment of sound at once and says which
 letter it is; the letters are the transcript. Its spelling carries few vowels,
-which placing never looks at (place.letters folds them away).
+which placing never looks at (place.bare_word folds them away).
 
 Model: yazinsai/tilawa v0.2.0 (MIT), a mixed int4/int8 export of NVIDIA's
 stt_ar_fastconformer_hybrid_large_pcd_v1.0 (CC-BY-4.0). Its sound preparation

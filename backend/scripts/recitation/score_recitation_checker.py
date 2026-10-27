@@ -40,7 +40,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path, get_settings  # noqa: E402
 from backend.services.recitation import checker, whisper  # noqa: E402
-from backend.services.recitation.place import letters  # noqa: E402
+from backend.services.recitation.place import bare_word  # noqa: E402
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 
 HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
@@ -69,18 +69,18 @@ def kind_of(labels: list[str]) -> str:
 
 def marks_to_places(expected: list[str], marks: dict[str, list[str]]) -> dict[int, str]:
     """Reviewer's marked words to places in the ayah. A word that appears twice is marked twice."""
-    folded = [letters(w) for w in expected]
+    folded = [bare_word(w) for w in expected]
     places = {}
     for word, labels in marks.items():
         for i, f in enumerate(folded):
-            if f and f == letters(word):
+            if f and f == bare_word(word):
                 places[i] = kind_of(labels)
     return places
 
 
 def unplaced(row: dict) -> int:
-    folded = {letters(w) for w in row["words"]}
-    return sum(1 for w in row["marks"] if letters(w) not in folded)
+    folded = {bare_word(w) for w in row["words"]}
+    return sum(1 for w in row["marks"] if bare_word(w) not in folded)
 
 
 def rows_of(part: Path):
@@ -122,7 +122,7 @@ def seconds(audio: bytes) -> float:
 
 def page_verdict(expected: list[str], heard: str) -> list[bool]:
     """Said or not, per expected word, lined up on letters as the page does."""
-    want, got = [letters(w) for w in expected], [letters(w) for w in heard.split()]
+    want, got = [bare_word(w) for w in expected], [bare_word(w) for w in heard.split()]
     said = [False] * len(expected)
     for block in difflib.SequenceMatcher(a=want, b=got, autojunk=False).get_matching_blocks():
         for i in range(block.a, block.a + block.size):
@@ -148,7 +148,7 @@ def stretch(ayahs: dict[str, str], key: str, heard: str) -> tuple[list[str], int
             start = len(words)
         words += as_heard(ayahs[f"{surah}:{n}"])
     end = start + len(as_heard(ayahs[key]))
-    want, got = [letters(w) for w in words], [letters(w) for w in heard.split()]
+    want, got = [bare_word(w) for w in words], [bare_word(w) for w in heard.split()]
     blocks = [b for b in difflib.SequenceMatcher(a=want, b=got, autojunk=False).get_matching_blocks()
               if b.size >= get_settings().recitation_place_min_words or (b.size and start <= b.a < end)]
     first = min([start] + [b.a for b in blocks])

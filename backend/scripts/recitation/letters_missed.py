@@ -12,7 +12,7 @@ Two parts:
                         pieces contains. A letter absent from that list can
                         never come out, however clearly it was said.
   the letters it hears - expected against heard, aligned the way the page
-                        aligns them (place.letters), counting what each letter
+                        aligns them (place.bare_word), counting what each letter
                         turned into.
 
 Only recitations the reviewer marked nothing on are counted. On a clip where
@@ -32,7 +32,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from backend.config import data_path
-from backend.services.recitation.place import letters
+from backend.services.recitation.place import bare_word
 
 HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
 DOWNLOADS = HERE / "downloads"
@@ -135,7 +135,7 @@ def clean_clips() -> dict[str, list[str]]:
 def compare(expected: str, heard: str, swaps: Counter, seen: Counter,
             dropped: Counter, added: Counter) -> None:
     """One reading, letter against letter, into the four tallies."""
-    want, got = letters(expected), letters(heard)
+    want, got = bare_word(expected), bare_word(heard)
     seen.update(want)
     for how, i1, i2, j1, j2 in difflib.SequenceMatcher(a=want, b=got, autojunk=False).get_opcodes():
         if how == "replace":
