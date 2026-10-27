@@ -35,7 +35,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path, get_settings  # noqa: E402
-from backend.services.recitation import whisper  # noqa: E402
+from backend.services.recitation import checker  # noqa: E402
 from backend.scripts.recitation.score_recitation_checker import (  # noqa: E402
     DOWNLOADS, RESULTS, recordings, stretch,
 )
@@ -75,7 +75,7 @@ def run(ayahs: dict[str, str], limit: int | None) -> Path:
                 continue
             around, a, b, reach = stretch(ayahs, key, heard_of[rid])
             started = time.perf_counter()
-            got = whisper.scores(audio, around)[a:b]
+            got = checker.scores(audio, around)[a:b]
             row = {
                 "id": rid, "model": model, "ayah": key, "reach": reach,
                 "probs": [[round(p, 4) for p in w["probs"]] for w in got],

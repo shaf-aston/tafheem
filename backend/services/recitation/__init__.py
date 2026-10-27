@@ -30,7 +30,7 @@ from backend.config import data_path, get_settings
 from backend.services.quran import corpus as quran_corpus
 from backend.services.text.refs import SURAHS
 from backend.services.core.timing import timed
-from backend.services.recitation import ears, whisper, locate, match, place
+from backend.services.recitation import checker, ears, locate, match, place
 # Re-exported so a caller uses only this package. Which piece in here owns
 # which is this package's own business, and a route that imports by submodule
 # has to know.
@@ -191,7 +191,7 @@ def find_place(heard: str, near: tuple[int, int] | None = None, before: str = ""
 
 
 def _detail(word: dict) -> dict:
-    """The {weak, weak_from, at} a word card needs, out of whisper.weigh's word."""
+    """The {weak, weak_from, at} a word card needs, out of checker.weigh's word."""
     weak = word["weak"]
     return {"weak": weak and weak["text"], "weak_from": weak and weak["start"], "at": word["at"]}
 
@@ -231,7 +231,7 @@ def check(
     if last - first > settings.recitation_sure_max_words:
         log.info("placed on %d words, more than one recording holds; not checked", last - first)
         return {}, {}
-    weighed = timed("checked", whisper.weigh, audio, words[first:last], model, words=last - first)
+    weighed = timed("checked", checker.weigh, audio, words[first:last], model, words=last - first)
     sure = {key: [None] * owner.count(key) for key in dict.fromkeys(owner)}
     detail = {key: [None] * owner.count(key) for key in sure}
     for i, word in zip(range(first, last), weighed):

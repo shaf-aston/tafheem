@@ -121,7 +121,7 @@ def test_a_recitation_never_gets_the_register_hint(monkeypatch):
     def read(path, **how):
         fake.how = how
         return [], None
-    monkeypatch.setattr(whisper, "_engine", lambda name: type("M", (), {"transcribe": staticmethod(read)})())
+    monkeypatch.setattr(whisper, "engine", lambda name: type("M", (), {"transcribe": staticmethod(read)})())
     monkeypatch.setattr(hosted, "is_available", lambda key: False)
     # The hint is Whisper's, so the Whisper ear is the one asked here.
     monkeypatch.setattr(get_settings(), "listening_ears", "hosted,here")

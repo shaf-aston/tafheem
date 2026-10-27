@@ -42,7 +42,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path, get_settings  # noqa: E402
-from backend.services.recitation.whisper import aggregate  # noqa: E402
+from backend.services.recitation.checker import aggregate  # noqa: E402
 from backend.scripts.recitation.ear_bench.words import labelled  # noqa: E402
 from backend.scripts.recitation.rescore_recitation import HERE, pieces_path  # noqa: E402
 

@@ -12,7 +12,7 @@
 | Follower `lib/recite/follow.js` `lineUp` | edit-distance DP, costs in `config/recite.json:15` (wrong 4 < extra 5, page skips free) | A repeat has no step of its own. Each repeated word is cheaper as "wrong" on the next page word, so the page walks forward. Reproduced: 6 copies = 22 orange words, matching the screenshot. |
 | Transcript `components/memorise/ReciteStrip.jsx:54` | `heard.slice(-6)`, one truncated line, only once `started` | Last 6 words only; vanishes when the line-up resets; repeats deduped by `joinWindows`; readings placed off-page dropped. |
 | Letters | tuned whisper, scored on bare letters (`finetune_ear/ear/text.py`) | Word level, not per letter or makhraj. |
-| Harakat | only the sureness score on the vowelled word (`whisper.scores`) | No per-vowel verdict. |
+| Harakat | only the sureness score on the vowelled word (`checker.scores`) | No per-vowel verdict. |
 | Tajweed | nothing served; one unshipped spike `scripts/recitation/score_phoneme_checker.py` (vowel length 84% caught / 14% false) | Whole layer missing. |
 
 ## Outside view
