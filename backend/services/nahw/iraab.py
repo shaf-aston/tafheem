@@ -29,9 +29,10 @@ from backend.services.nahw import syntax
 from backend.services.nahw import tarkeeb_store
 from backend.services.nahw import tree_columns
 from backend.services.text.harakat import CASE_LETTER, CASE_NAME, typed_case
-from backend.services.nahw.book import case_of, is_object_stem, reason, sakt_said, teacher_rules
+from backend.services.nahw.book import case_of, is_object_stem, particle_names, reason, sakt_said, teacher_rules
 from backend.services.nahw.syntax.tree import names_a_sentence as names_a_sentence
 from backend.services.nahw.syntax.naming import NAMED, role_key
+from backend.services.nahw.syntax.facts.word import is_built
 
 
 def analyze(sentence: str, recorded: bool = True) -> dict:
@@ -144,16 +145,26 @@ def _named(entry: dict, found: dict, annexed: bool) -> None:
                  sense=found.get("sense"),  # إنّ "indeed", not the condition's "if": the job's English (sentence_meaning)
                  name=found.get("name"),  # the picture's finer name (حرف ناسخ، فعل أمر), said on the card too
                  governor=found.get("governor"), follows=found.get("follows"))
+    # a recorded ayah names a particle by what it is (حَرْفُ نَفْيٍ، لَعَلَّهُ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ)
+    particle = plain in (NAMED.harf, NAMED.harf_jarr) or (plain != found["role"] and plain in particle_names())
     if plain != NAMED.fil and entry.get("type") == "fi'l":  # نَعْبُدُ keeps CAMeL's tense and mood
         # لَسِحْرًا: CAMeL's verb is the parser's noun, so the verb's case goes with it
-        entry.update(type="harf" if plain in (NAMED.harf, NAMED.harf_jarr) else "ism", case=None, aspect=None)
-    elif entry.get("type") == "harf" and found["role"] and plain not in (NAMED.harf, NAMED.harf_jarr):
-        entry["type"] = "ism"  # أينما: a particle's card named for a place is a built noun
+        entry.update(type="harf" if particle else "ism", case=None, aspect=None)
+    elif entry.get("type") == "harf" and found["role"] and not particle:
+        entry["type"] = "ism"  # أينما: a particle's card named for a job is a built noun
+    elif entry.get("type") != "harf" and particle and plain != found["role"]:
+        entry.update(type="harf", case="mabni")  # لَعَلَّهُ: CAMeL's noun is the treebank's particle
     elif entry.get("type") in ("ism", "zarf") and found["role"] == NAMED.harf and (found.get("named") or found.get("name")):
         # ما عدا، ما النافية: CAMeL's relative is the particle the reading or its family names
         entry["type"] = "harf"
-    # a recorded ayah's name brings its own case; on ياء المتكلم (سُلْطَانِيَ) only the name shows it
-    own = case_of(found["role"]) or (entry.get("camel", {}).get("enclitic") == "1s_poss" and case_of(plain))
+    camel = entry.get("camel", {})
+    if entry.get("type") == "ism" and not entry.get("case") and case_of(plain) \
+            and is_built({"pos_camel": camel.get("pos", ""), "num": camel.get("number"), "lemma": camel.get("lemma") or ""}):
+        entry["case"] = "mabni"  # وَمَا أَدْرَاكَ: a question word or relative named for a job is built in its place
+    # a recorded ayah's name brings its own case; on ياء المتكلم (سُلْطَانِيَ), or a declined word whose
+    # vowel is not read (ٱلدِّينِ), only the name shows it. Not إِنَّهُمْ: the name is its built pronoun's
+    unread = not entry.get("case") and not morphology.has_no_root(camel.get("pos", ""))
+    own = case_of(found["role"]) or ((camel.get("enclitic") == "1s_poss" or unread) and case_of(plain))
     if not found["case"] and entry.get("case") != "mabni" and own:
         found = {**found, "case": CASE_NAME[own]}
     if found.get("built"):

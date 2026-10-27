@@ -39,6 +39,7 @@
   "joined_on": "وهو المعطوف عليه",
   "_built_follower": "A built follower (يا أيها الذين، مررت بهذا الذي) stands in the place of the case it follows (counting.py `_place`): `built_follower` says it first. `follow_built`: a built role whose followers take the vowel it is built on, not its place: a follower of a called noun built on damma is raf' (Ibn Aqil V3 p265: يا زيد الظريف برفع الظريف ونصبه), and أيّ's صفة must be (V3 p268: والرجل صفة لأي ويجب رفعه).",
   "built_follower": "مبني في محل {place}",
+  "particle": "{role} مبني لا محل له من الإعراب",
   "follow_built": {"منادى": "u"},
   "ordinals": ["أول", "ثانٍ", "ثالث", "رابع", "خامس", "سادس", "سابع", "ثامن", "تاسع", "عاشر"],
   "no_place": "لا محل لها من الإعراب",

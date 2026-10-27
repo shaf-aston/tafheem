@@ -385,14 +385,26 @@ def unseen_case(role: str | None) -> str | None:
 def reason(role: str, mabni: bool = False) -> str:
     """The reason a card wearing this role shows; a role with no entry is just named, never
     given another role's text. A mabni word (الذي، هذا) fills the place of its case
-    rather than wearing it, so its reason says so and keeps only the rule."""
-    said = teacher_rules()["reasons"].get(role) or f"{role}."
-    place = case_of(role)
+    rather than wearing it, so its reason says so and keeps only the rule. A name written
+    vowelled (a recorded ayah's مُبْتَدَأٌ) is the book's bare one; a particle the book has no
+    entry for (the treebank's حرف نفي، لام التوكيد) is said built, with no place."""
+    reasons, words = teacher_rules()["reasons"], teacher_rules()["case_said"]
+    name = role if role in reasons or case_of(role) else strip_diacritics(role)  # فعل ماضٍ is the book's own
+    said = reasons.get(name) or (words["particle"].format(role=name) if name in particle_names() else f"{role}.")
+    place = case_of(name)
     if not (mabni and place):
         return said
-    words = teacher_rules()["case_said"]
     rule = said[said.find("القاعدة"):] if "القاعدة" in said else ""
-    return f"{words['mabni_noun'].format(place=words['place'][place], role=role)}. {rule}".strip()
+    return f"{words['mabni_noun'].format(place=words['place'][place], role=name)}. {rule}".strip()
+
+
+@lru_cache(maxsize=1)
+def particle_names() -> frozenset[str]:
+    """Every name the treebank gives a particle (tarkeeb.json `particle_kinds`), bare:
+    a shared term spelled as the term (حرف مشبه بالفعل), any other as written (حرف نفي)."""
+    terms = tarkeeb_rules()["terms"]
+    return frozenset(strip_diacritics(terms[named]["ar"] if named in terms else named)
+                     for named in tarkeeb_rules()["treebank"]["particle_kinds"].values())
 
 
 # ── The bracket tree's vocabulary (tarkeeb.json): one wording for every tree ──
