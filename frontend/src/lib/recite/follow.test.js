@@ -227,6 +227,47 @@ describe('a word added that is not in the book', () => {
   })
 })
 
+describe('going back over a phrase to practise it', () => {
+  // 2:256, from لَآ إِكْرَاهَ to ٱلْوُثْقَىٰ, as the page holds it.
+  const AYAH = [
+    'لَآ', 'إِكْرَاهَ', 'فِى', 'ٱلدِّينِ', 'ۖ', 'قَد', 'تَّبَيَّنَ', 'ٱلرُّشْدُ', 'مِنَ', 'ٱلْغَىِّ', 'ۚ',
+    'فَمَن', 'يَكْفُرْ', 'بِٱلطَّٰغُوتِ', 'وَيُؤْمِنۢ', 'بِٱللَّهِ', 'فَقَدِ', 'ٱسْتَمْسَكَ', 'بِٱلْعُرْوَةِ', 'ٱلْوُثْقَىٰ',
+  ]
+  const PHRASE = ['قد', 'تبين', 'الرشد', 'من', 'الغي']
+  const PAST = AYAH.indexOf('فَمَن')
+  const times = (n, words) => Array.from({ length: n }, () => words).flat()
+
+  for (const startAt of [null, AYAH.indexOf('قَد')]) {
+    for (const n of [2, 3, 6]) {
+      it(`stays on the phrase said ${n} times, starting ${startAt === null ? 'unsaid' : 'on قد'}`, () => {
+        const answer = follow(AYAH, times(n, PHRASE), { ended: true, startAt })
+        expect(answer.words.slice(PAST).every((w) => w.state === WAITING)).toBe(true)
+        expect(answer.words.slice(5, 10).every((w) => w.state === SAID)).toBe(true)
+        expect(answer.extras).toEqual([])
+        expect(answer.at).toBe(10)
+      })
+    }
+  }
+
+  it('stays put when the ear spells a repeat differently', () => {
+    const heard = [...PHRASE, 'قد', 'تبيان', 'الرشد', 'من', 'الغي', ...PHRASE]
+    const answer = follow(AYAH, heard, { ended: true, startAt: null })
+    expect(answer.words.slice(PAST).every((w) => w.state === WAITING)).toBe(true)
+  })
+
+  it('carries on from the phrase once the reciter moves on', () => {
+    const answer = follow(AYAH, [...times(3, PHRASE), 'فمن', 'يكفر', 'بالطاغوت'], { ended: true, startAt: null })
+    expect(answer.words.slice(PAST, PAST + 3).every((w) => w.state === SAID)).toBe(true)
+    expect(answer.words.slice(PAST + 3).every((w) => w.state === WAITING)).toBe(true)
+  })
+
+  it('shows the last try of a word gone back over', () => {
+    const heard = ['قد', 'تبين', 'الرشد', 'مين', 'الغي', ...PHRASE]
+    const answer = follow(AYAH, heard, { ended: true, startAt: null })
+    expect(answer.words[8].state).toBe(SAID)
+  })
+})
+
 describe('nothing is marked the moment it is said', () => {
   const settle = config['settle-words']
 

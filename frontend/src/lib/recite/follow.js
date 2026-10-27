@@ -111,11 +111,30 @@ const lineUp = (page, heard, startAt) => {
     from[0][j] = 'extra'
   }
 
-  for (let i = 1; i <= page.length; i += 1) {
-    for (let j = 1; j <= heard.length; j += 1) {
+  // Where a reciter who went back came from: per heard word, the cheapest place
+  // at or past each page word. Filled a column at a time, so each heard word
+  // sees all of the one before it.
+  const back = []
+  for (let j = 1; j <= heard.length; j += 1) {
+    const ahead = new Array(page.length + 2).fill(Infinity)
+    const aheadAt = new Array(page.length + 2).fill(-1)
+    for (let k = page.length; k >= 0; k -= 1) {
+      const nearer = cost[k][j - 1] <= ahead[k + 1]
+      ahead[k] = nearer ? cost[k][j - 1] : ahead[k + 1]
+      aheadAt[k] = nearer ? k : aheadAt[k + 1]
+    }
+    back[j] = []
+    for (let i = 1; i <= page.length; i += 1) {
       const [together] = asMatch(heard[j - 1], page[i - 1])
       let best = cost[i - 1][j - 1] + together
       let step = 'together'
+
+      // Gone back to say this word again, from anywhere at or past it. A
+      // reciter practising a phrase says it over and over; without this each
+      // repeat was cheapest read as wrong words further down the page. Only
+      // onto a word that matches: nobody goes back to say a different word.
+      const again = ahead[i] + together + COSTS.back
+      if (together < COSTS.wrong && again < best) { best = again; step = 'back'; back[j][i] = aheadAt[i] }
 
       const missed = cost[i - 1][j] + COSTS.missed
       if (missed < best) { best = missed; step = MISSED }
@@ -153,6 +172,7 @@ const lineUp = (page, heard, startAt) => {
   while (i > 0 || j > 0) {
     const step = from[i][j]
     if (step === 'together') { steps.push({ step, i: i - 1, j: j - 1 }); i -= 1; j -= 1 }
+    else if (step === 'back') { steps.push({ step: 'together', i: i - 1, j: j - 1 }); i = back[j][i]; j -= 1 }
     else if (step === 'joined') { steps.push({ step, i: i - 1, j: j - 1 }); i -= 1; j -= 2 }
     else if (step === MISSED) { steps.push({ step, i: i - 1, j }); i -= 1 }
     else { steps.push({ step, i, j: j - 1 }); j -= 1 }
@@ -258,8 +278,15 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
     settled(j) && (step === 'joined' || (step === 'together' && asMatch(heard[j], page[i])[1] !== WRONG)))
   const began = first ? first.i : null
 
+  // A page word gone back over is judged on its last try. An earlier pairing
+  // with it is a word left over: said again (not a mistake), or a word not in
+  // the book that the cheapest reading parked there before going back.
+  const lastTry = new Map()
+  steps.forEach(({ step, i }, n) => { if (step !== 'extra') lastTry.set(i, n) })
+
   let lastSaid = -1
-  for (const { step, i, j } of steps) {
+  for (const [n, { step: was, i, j }] of steps.entries()) {
+    const step = was !== MISSED && lastTry.get(i) !== n && was !== 'extra' ? 'extra' : was
     // Said, in pieces, and right. Nothing is shown of the seam: the reciter did
     // not make it and has nothing to correct.
     if (step === 'joined') {

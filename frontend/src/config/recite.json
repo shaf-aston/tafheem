@@ -12,7 +12,9 @@
   "article-keeps-at-least": 3,
 
   "_comment-costs": "What each way of being wrong costs when lining up what was heard against what is on the page. Only the sizes relative to each other matter, and each one is a claim about the reciter, so what it costs is how strong a claim it is. A near miss costs almost nothing, so doubt always wins over an accusation, which is rule 2 said in numbers. A word said that is not in the book is the strongest claim of the four and costs the most: it must cost more than reading the same sound as the word it stood in for (5 against 4), or the last word of an ayah said wrongly is reported as a word added and a word never reached. And one wrong word must cost less than a word lost plus a word gained (4 against 3+5), so it is read as one mistake and not as two.",
-  "costs": { "near": 1, "wrong": 4, "missed": 3, "extra": 5, "split": 1 },
+  "costs": { "near": 1, "wrong": 4, "missed": 3, "extra": 5, "split": 1, "back": 2 },
+
+  "_cost-back": "What it costs to go back to a word already reached and say it again, paid once per jump however long the phrase gone over. A reciter practising says a phrase over and over; with no way to go back, every repeat was read as wrong words further down the page. Less than one wrong word (4), so even one word said twice is a repeat; more than a near miss, so a word that lines up where it is still does.",
 
   "_cost-split": "What it costs to read two heard pieces as one word of the page. An engine cuts what it heard wherever the reciter paused, and a pause can land inside a word: العالمين came back as العالم then مين. That is the machine's doing and not the reciter's, so it must be readable as one word rather than as two mistakes. It is not free, so a word heard whole is still preferred, and it can only happen when the two pieces put together are the printed word, which is why so small a cost is safe.",
 
