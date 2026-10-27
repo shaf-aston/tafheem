@@ -10,6 +10,7 @@ import {
 import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
 import { useSlide, useSwipe } from '../../lib/motion/useSwipe'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
+import { WAITING } from '../../lib/recite/follow'
 import { useReciting } from '../../lib/recite/useReciting'
 import { useSetting } from '../../lib/store/settings'
 import { warm } from '../../lib/api/warm'
@@ -222,7 +223,7 @@ export function useReciteState({ page, book, pinned, shown, setShown }) {
    */
   const nextCovered = () => {
     for (let at = Math.max(reciting.marks.at, startFrom + 1); at < recitedPage.words.length; at += 1) {
-      if (!shown.has(at) && reciting.marks.words[at]?.state === 'waiting') return at
+      if (!shown.has(at) && reciting.marks.words[at]?.state === WAITING) return at
     }
     return -1
   }

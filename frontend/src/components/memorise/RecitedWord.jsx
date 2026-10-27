@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 
+import { MISSED, WAITING } from '../../lib/recite/follow'
 import { LOOK, SHOWN } from '../../lib/recite/reciteColors'
 
 import ArabicText from '../ui/text/ArabicText'
@@ -22,20 +23,20 @@ import MarkCard from './MarkCard'
  */
 export default function RecitedWord({ word, at, ayah, recite, accent, coverWidth, onStartAt }) {
   const anchor = useRef(null)
-  const mark = recite.words[at] ?? { state: 'waiting', heard: '' }
+  const mark = recite.words[at] ?? { state: WAITING, heard: '' }
   // A word that was asked for rather than said. It is not one of the follower's
   // states, so it is read here and never written back into the marks.
-  const wasShown = recite.shown?.has(at) && mark.state === 'waiting'
+  const wasShown = recite.shown?.has(at) && mark.state === WAITING
   const look = wasShown ? SHOWN : LOOK[mark.state]
-  const missed = mark.state === 'missed'
+  const missed = mark.state === MISSED
   const here = at === recite.at
   const added = recite.extras.filter((extra) => extra.after === at)
-  const reached = mark.state !== 'waiting'
+  const reached = mark.state !== WAITING
   const opened = recite.open?.at === at
   // A covered word shows nothing until it has been reached, right or wrong, or
   // asked for. Every cover on a line is the same width, taken from the longest
   // word among them, because a cover the size of its own word gives it away.
-  const covered = coverWidth && mark.state === 'waiting' && !wasShown
+  const covered = coverWidth && mark.state === WAITING && !wasShown
 
   const printed = covered ? (
     // A soft block where the word sits, rather than a bare underline: a page
