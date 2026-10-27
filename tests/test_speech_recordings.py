@@ -10,7 +10,7 @@ from pydantic import SecretStr
 
 from backend.config import get_settings
 from backend.main import create_app
-from backend.services.recitation import recordings
+from backend.services import speech_recordings
 
 # Tidying a take runs ffmpeg; a machine without it cannot check that part.
 needs_ffmpeg = pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="ffmpeg is not installed")
@@ -37,7 +37,7 @@ def _seconds(mp3):
 
 @pytest.fixture
 def studio(monkeypatch, tmp_path):
-    monkeypatch.setattr(recordings, "RECORDINGS", tmp_path)
+    monkeypatch.setattr(speech_recordings, "RECORDINGS", tmp_path)
     monkeypatch.setattr(get_settings(), "recorder_key", SecretStr("sesame"))
     return TestClient(create_app())
 
@@ -59,11 +59,11 @@ def test_a_kept_take_is_trimmed_indexed_and_leaves_the_todo(studio):
     sent = studio.post("/api/recordings", data={"text": word}, files={"audio": ("w.wav", _take())}, headers=key)
     assert sent.status_code == 200
     name = sent.json()["file"]
-    assert json.loads((recordings.RECORDINGS / "index.json").read_text(encoding="utf-8")) == {word: name}
+    assert json.loads((speech_recordings.RECORDINGS / "index.json").read_text(encoding="utf-8")) == {word: name}
     # 1.7s sent, 0.5s of it the word: the quiet goes (bar the 0.05s kept at each
     # edge so a soft first letter is not clipped), the phone's lead comes back.
     lead = get_settings().speech_lead_ms / 1000
-    assert abs(_seconds((recordings.RECORDINGS / name).read_bytes()) - (0.5 + 2 * lead + 0.1)) < 0.1
+    assert abs(_seconds((speech_recordings.RECORDINGS / name).read_bytes()) - (0.5 + 2 * lead + 0.1)) < 0.1
     after = studio.get("/api/recordings/todo", params={"limit": 1}, headers=key).json()
     assert after["left"] == first["left"] - 1 and after["done"] == 1
     assert after["words"][0]["ar"] != word

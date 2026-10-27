@@ -11,7 +11,7 @@ from fastapi import APIRouter, File, Form, Header, HTTPException, Query, UploadF
 from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
-from backend.services.recitation import recordings
+from backend.services import speech_recordings
 
 router = APIRouter(prefix="/api/recordings", tags=["recordings"])
 
@@ -27,8 +27,8 @@ def _allowed(key: str | None) -> None:
 @router.get("/todo")
 def todo(limit: int = Query(20, ge=1, le=200), x_recorder_key: str | None = Header(None)) -> dict:
     _allowed(x_recorder_key)
-    words, left = recordings.todo(limit)
-    return {"words": words, "left": left, "done": len(recordings.index())}
+    words, left = speech_recordings.todo(limit)
+    return {"words": words, "left": left, "done": len(speech_recordings.index())}
 
 
 @router.post("")
@@ -40,7 +40,7 @@ async def keep(text: str = Form(..., min_length=1, max_length=200), audio: Uploa
     if len(body) > limit:
         raise HTTPException(413, "That take is too long for one word")
     try:
-        name = await run_in_threadpool(recordings.keep, text, body)
+        name = await run_in_threadpool(speech_recordings.keep, text, body)
     except ValueError as exc:
         raise HTTPException(415, "That is not a recording") from exc
     return {"file": name}

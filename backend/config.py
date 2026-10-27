@@ -298,7 +298,7 @@ class Speech(BaseSettings):
     # in and out over speech_fade_ms, so it starts and stops without a click.
     speech_peak: float = Field(default=0.9, gt=0, le=1)
     speech_fade_ms: int = Field(default=8, ge=0, le=100)
-    # The recording studio (services/recitation/recordings.py): who may add a person's voice for a word.
+    # The recording studio (services/speech_recordings.py): who may add a person's voice for a word.
     # Empty turns the studio off. A recording is at most recording_max_kb, and is saved
     # trimmed of the quiet around it, with speech_lead_ms put back on each side.
     recorder_key: SecretStr = SecretStr("")
