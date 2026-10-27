@@ -95,3 +95,23 @@ def test_vowel_agreement():
     assert agree("كتب", "كَتَبَ") == (0, 0)                 # nothing typed, nothing to weigh
     assert agree("زَيْدٌ", "زَيْدٍ") is None          # the same letter, a different ending
     assert agree("زَيْدٌ", "زَيْدًا") == (0, 0)             # the tanween alef adds a letter: no verdict
+
+
+@needs_camel
+@pytest.mark.parametrize("past, seen", [
+    ("هَدَى", True), ("آتَى", True), ("اِسْتَغْفَرَ", True),   # its hamzat al-wasl written ٱ in the dictionary
+    ("ضَرَبَ", True),
+    ("هَدَنَ", False),   # a verb no text the dictionary learnt from uses
+    ("هَدَا", False),    # read as هَدَأ: the same letters but its hamza
+    ("ضَرِبَ", False),   # read as ضَرَبَ: the same letters but a vowel both write
+])
+def test_a_verb_is_seen_only_as_the_dictionary_spells_it(past: str, seen: bool):
+    assert morphology._seen_verb(past) is seen
+
+
+@needs_camel
+@pytest.mark.parametrize("word, lemma", [("اِهْدِنَا", "هدى"), ("آتِنَا", "آتى"), ("أَعْطِنَا", "أعطى")])
+def test_a_command_with_its_object_written_on_is_split_off_the_pronoun(word: str, lemma: str):
+    # اِهْدِنَا، آتِنَا: the dictionary has no reading, sarf's closest is a dual of a verb no text uses (هَدَنَ)
+    tag = morphology.analyze_sentence(f"{word} كِتَابًا")[0]
+    assert (tag["aspect"], tag["number"], tag["lemma"], tag["enclitic"]) == ("c", "s", lemma, "1p_dobj")

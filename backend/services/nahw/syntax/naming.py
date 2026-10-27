@@ -236,8 +236,10 @@ def _extra_ba(n: Named) -> None:
 
 
 def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: dict[int, int]) -> str | None:
-    """Which kind of idafa, badal or فاعل the word is, as the books name it (teacher.json kinds)."""
+    """Which kind of idafa, badal, فاعل or call the word is, as the books name it (teacher.json kinds)."""
     kinds = teacher_rules()["kinds"]
+    if role == NAMED.munada and token["id"] not in governed_by:  # no يا typed governs it (facts.governor)
+        return kinds["munada"]["alone" if facts.is_called_alone(token) else "dropped"]  # اللهمّ، رَبَّنَا
     if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
         if facts.listed(mudaf, "adad_mudaf"):
             return kinds["idafa"]["min"]  # ثلاثُ سنينَ: a number is a noun, though CAMeL tags it an adjective

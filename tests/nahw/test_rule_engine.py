@@ -1005,3 +1005,36 @@ def test_a_form_four_command_is_a_verb_but_a_name_stays_a_name():
     assert sign("أَكْرِمُوا الضَّيْفَ", 0) == sign("أَفْشُوا السَّلَامَ", 0) == "مبني على حذف النون"
     assert _role("جَاءَ أَحْمَدُ", 1) == "فاعل"
     assert _role("أَحْمَدْ", 0) != "فعل"  # a name in pause keeps its own vowels
+
+
+_DROPPED, _MEEM = "وحرف النداء محذوف تقديره يا", "والميم المشددة عوض عن حرف النداء المحذوف"
+
+
+@pytest.mark.parametrize("sentence, want", [
+    # a command and its object pronoun the dictionary has no reading of: اِهْدِنَا is هَدَى + نا
+    ("اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", ["فعل", "مفعول به", "صفة"]),
+    ("أَعْطِنَا كِتَابًا", ["فعل", "مفعول به"]),
+    ("زِدْنِي عِلْمًا", ["فعل", "مفعول به"]),
+])
+def test_a_command_with_its_object_pronoun_written_on(sentence: str, want: list):
+    assert [c["role"] for c in cards(sentence)] == want
+
+
+@pytest.mark.parametrize("sentence, at, role, said", [
+    # يا is left off before a called noun (Ibn Aqil V3 p256: عبد الله اركب)
+    ("رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً", 0, "منادى", _DROPPED),
+    ("رَبَّنَا اغْفِرْ لَنَا", 0, "منادى", _DROPPED),
+    ("عَبْدَ اللَّهِ ارْكَبْ", 0, "منادى", _DROPPED),
+    ("ربنا اِغْفِرْ لَنَا", 0, "منادى", _DROPPED),  # its case not typed: the command after it says it
+    ("رب العالمين اِغْفِرْ لِي", 0, "منادى", _DROPPED),  # the command after the مضاف إليه
+    ("اللَّهُمَّ", 0, "منادى", _MEEM),  # يا put at the end as the doubled ميم
+    ("يَا رَبَّنَا", 1, "منادى", None),  # nearest case: يا typed, nothing left off
+    ("رَبُّنَا اغْفِرْ لَنَا", 0, "مبتدأ", None),  # nearest case: typed in raf', no call
+    ("كِتَابَهُ قَرَأَ زَيْدٌ", 0, "مفعول به", None),  # nearest case: no command after it
+])
+def test_a_call_with_no_ya_typed(sentence: str, at: int, role: str, said: str | None):
+    card = cards(sentence)[at]
+    assert card["role"] == role
+    assert all((wording == said) == (wording in card["reason"]) for wording in (_DROPPED, _MEEM)), card["reason"]
+    if role == "منادى":  # the يا left off is no word of the sentence; a typed one is
+        assert card["governor"] == (None if said else 0)

@@ -438,6 +438,17 @@ _NEVER_SEEN = -99.0
 # Word-level analysis
 # ─────────────────────────────────────────────────────────────────────────────
 
+def _seen_verb(past: str) -> bool:
+    """The dictionary's training text uses this verb, given by its past (هَدَى, not هَدَنَ), as the dictionary
+    spells it: every letter, its hamza too (هَدَا is not هَدَأ), and every vowel both write (ضَرِبَ is not ضَرَبَ)."""
+    return any(a.get("pos") == "verb" and a.get(_LIKELIHOOD, _NEVER_SEEN) > _NEVER_SEEN
+               and strip_diacritics(a["lex"]).translate(_WASL) == strip_diacritics(past)
+               and vowel_agreement(past, a["lex"]) is not None for a in _analyses(past))
+
+
+_WASL = str.maketrans("ٱ", "ا")  # the dictionary writes a past's hamzat al-wasl so (ٱِسْتَغْفَر)
+
+
 def _analyses(word: str) -> list[dict]:
     """Every CAMeL reading of one word, the likeliest lemma first; [] when CAMeL is not there.
 
@@ -642,11 +653,12 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [name]
         if lam := _emphasis_lam(evidence, disambiguator):
             ranked = [lam]
-        if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token)) and sarf.get("asp") != "c" \
+        if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token, _seen_verb)) \
+                and (sarf.get("asp") != "c" or "enc0" in sarf) \
                 and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
             # يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
-            # the table's own tense is only spelled otherwise: the dictionary's stays. A command is left to
-            # repair.typed (verb_reader.command), which reads its attached pronoun (اِهْدِنَا) as the table cannot
+            # the table's own tense is only spelled otherwise: the dictionary's stays. A command alone is left to
+            # repair.typed (verb_reader.command); one with its object pronoun written on (اِهْدِنَا) is split here
             ranked = [{"lex": evidence, **sarf, "diac": evidence}]
         elif not steps and (asked := _asked_reading(evidence, ranked, after, disambiguator)):
             ranked = [asked]

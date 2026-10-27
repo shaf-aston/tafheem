@@ -4,7 +4,7 @@
   "placeholders": "فقرب",
   "_never-root": "Letters no root is written with, so no blank takes them. The تاء المربوطة is the noun's feminine ending: the verb's تاء التأنيث is the ساكنة one (قَالَتْ, the verb's sign in the Ajrumiyya), so no verb is written with ة, and حَفْصَةَ is no فَعْلَلَ.",
   "never-root": "ة",
-  "_stand-ins": "One root of each kind the rules shape (conjugation.conjugates): sound, hollow by و and ي, weak-ended by و and ي, و- and ي-first, doubled, two weak letters apart, the hamza in each place, and a last letter that is also an ending's first (ثَبَتُّ، سَكَنَّا). Their weak letters and hamzas are real letters, kept in the shape.",
+  "_stand-ins": "One root of each kind the rules shape (conjugation.conjugates): sound, hollow by و and ي, weak-ended by و and ي, و- and ي-first, doubled, two weak letters apart, the hamza in each place, a hamza first and a weak letter last (آتَى، أَبَى), and a last letter that is also an ending's first (ثَبَتُّ، سَكَنَّا). Their weak letters and hamzas are real letters, kept in the shape.",
   "stand-ins": [
     "فقر",
     "فور",
@@ -15,6 +15,7 @@
     "يقر",
     "فقق",
     "وقي",
+    "أقي",
     "أقر",
     "فأر",
     "فقأ",

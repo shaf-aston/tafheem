@@ -105,3 +105,30 @@ def test_a_word_written_with_ta_marbuta_is_no_verb(word: str):
 
 def test_the_same_shape_with_a_root_letter_in_place_of_the_ta_marbuta_is_still_a_verb():
     assert any(c.root == "دحرج" for c in verb_reader.read("دَحْرَجَ"))
+
+
+def test_a_madda_carries_a_vowel_so_its_command_is_read_typed():
+    # آتِ is أَ + ا: the fatha is written into the letter, so the word is typed, not bare letters
+    cell = verb_reader.command("آتِ")
+    assert cell and cell.root == "أتي" and (cell.person, cell.number) == ("2", "s")
+    assert verb_reader.command("اتِ") is None   # the same letters with no vowel before the last
+
+
+_KNOWN = {"هَدَى", "أَعْلَنَ", "أَعْلَى", "آتَى"}.__contains__   # the verbs a dictionary's texts use
+
+
+@pytest.mark.parametrize("word, past", [("اِهْدِنَا", "هَدَى"), ("آتِنَا", "آتَى")])
+def test_a_command_the_dictionary_has_with_its_object_written_on_beats_a_verb_it_never_saw(word: str, past: str):
+    assert verb_reader.reading_of(word)["num"] == "d"   # alone, the closest cell is a dual of هَدَنَ / آتَنَ
+    found = verb_reader.reading_of(word, _KNOWN)
+    assert (found["asp"], found["num"], found["lex"], found["enc0"]) == ("c", "s", past, "1p_dobj")
+
+
+def test_of_the_closest_cells_the_one_the_dictionary_has_names_the_verb():
+    assert "lex" not in verb_reader.reading_of("اِهْدِ")   # هَدَى، هَدَا or هَدِيَ: the cells disagree
+    assert verb_reader.reading_of("اِهْدِ", _KNOWN)["lex"] == "هَدَى"
+
+
+def test_a_whole_word_the_dictionary_has_is_not_split():
+    found = verb_reader.reading_of("أَعْلِنَا", _KNOWN)   # announce, you two: no أَعْلَى + نا
+    assert (found["num"], found["lex"], found.get("enc0")) == ("d", "أَعْلَنَ", None)

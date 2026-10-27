@@ -5,15 +5,15 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import letters
 from backend.services.nahw.book import book_map, is_one
-from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_suffix, is_verb, read_as, reading
-from backend.services.nahw.syntax.facts.sentence import Sentence, verb_above
+from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_suffix, is_verb, read_as, reading, typed_case_of
+from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, verb_above
 
 
 def calling_head(token: dict, s: Sentence) -> str | None:
     """nida or istithna when the word is called or excepted: it is a noun called alone
     (اللهمّ), or it hangs on the listed particle (the excepting one only when no negation came before it), or it is a listed
     excepting noun (غير، سوى) under a verb."""
-    if is_called_alone(token):
+    if is_called_alone(token) or _called_without_ya(token, s):
         return "nida"
     head = s.head(token)
     if head and head["pos"] == "PRT":
@@ -29,6 +29,17 @@ def calling_head(token: dict, s: Sentence) -> str | None:
             or (head.get("stt") == "d" and verb_above(token, s))):
         return "istithna"
     return None
+
+
+def _called_without_ya(token: dict, s: Sentence) -> bool:
+    """رَبَّنَا آتِنَا: يا may be left off before a called noun (Ibn Aqil V3 p256: وأما غير هذه فيحذف معها الحرف
+    جوازا، فتقول في يا عبد الله اركب: عبد الله اركب). Read so: a مضاف opening the sentence, typed in no case
+    but nasb, with a command straight after its مضاف إليه, the command said to the one called."""
+    after = next_word(token, s)
+    while after and after["rel"] == "IDF" and s.head(after) is token:
+        after = next_word(after, s)
+    return (token is s.tokens[0] and token.get("mudaf") and typed_case_of(token) in ("a", None)
+            and after is not None and after.get("asp") == "c")
 
 
 def owns_pronoun(token: dict, s: Sentence) -> bool:
