@@ -1,6 +1,8 @@
+// @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest'
+import { renderHook } from '@testing-library/react'
 
-import { slideWay, swipeOf } from './useSwipe'
+import { slideWay, swipeOf, useSlide } from './useSwipe'
 
 describe('swipeOf', () => {
   it('goes next on a swipe left and back on a swipe right', () => {
@@ -25,5 +27,15 @@ describe('slideWay', () => {
     expect(slideWay(3, 4)).toBe('slide-next')
     expect(slideWay(4, 2)).toBe('slide-prev')
     expect(slideWay(2, 2)).toBe('')
+  })
+})
+
+describe('useSlide', () => {
+  it('slides on a step, but not while held still (a link finding its page)', () => {
+    const { result, rerender } = renderHook(({ at, still }) => useSlide(at, still), { initialProps: { at: 0, still: true } })
+    rerender({ at: 3, still: true })
+    expect(result.current.className).toBe('')
+    rerender({ at: 4, still: false })
+    expect(result.current.className).toBe('slide-next')
   })
 })

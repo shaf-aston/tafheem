@@ -31,9 +31,11 @@
 .grow-nexts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 8px; margin-top: 4px; }
 /* A phone shows the first three next steps and a More button for the rest, so the level and the worlds stay near. */
 .grow-nexts-more { display: none; }
+/* While the worlds load only the one slot shows; the steps are there, hidden, and appear together. */
+.grow-nexts[data-settling] > :not(.grow-next-slot) { display: none; }
 @media (max-width: 39.99rem) {
   .grow-nexts:not([data-open]) > :nth-child(n + 4) { display: none; }
-  .grow-nexts:not([data-open]):has(> :nth-child(4)) + .grow-nexts-more { display: block; justify-self: center; min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: var(--type-ui); font-weight: 700; color: var(--w); }
+  .grow-nexts:not([data-open], [data-settling]):has(> :nth-child(4)) + .grow-nexts-more { display: block; justify-self: center; min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: var(--type-ui); font-weight: 700; color: var(--w); }
 }
 .grow-next {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; text-align: start;

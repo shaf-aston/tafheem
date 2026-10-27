@@ -40,6 +40,20 @@ describe('withinPart', () => {
   })
 })
 
+describe('useBookPage', () => {
+  it('opens on the part a link names, never the first one on the way', async () => {
+    const seen = []
+    const view = renderWithBackend(() => {
+      const where = useBookPage({ fresh: vi.fn(), incoming: '2:1' })
+      seen.push(where.part)
+      return where
+    }, { routes })
+    await waitFor(() => expect(view.result.current.page).not.toBeNull())
+    expect(view.result.current.part).toBe(2)
+    expect(seen).not.toContain(1)
+  })
+})
+
 describe('useAnswers', () => {
   it('starts an attempt over: answers, marking and shown words all go', () => {
     const { result } = renderHook(useAnswers)

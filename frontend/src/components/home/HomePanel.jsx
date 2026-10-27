@@ -66,7 +66,7 @@ export default function HomePanel({ accent, onGo }) {
   // One step in Grow picked from the record, unless it is the place on the card. With no path walked (a new visit),
   // only one the learner was studying: what fits the level is the picker's to offer.
   const next = (
-    <GrowNext modules={overview.data?.modules} level={level} copy={copy} onGo={onGo} studiedOnly={first}
+    <GrowNext modules={overview.data?.modules} pending={overview.isPending} level={level} copy={copy} onGo={onGo} studiedOnly={first}
       skip={!first && lead.id === 'grow' ? resume.value : undefined} />
   )
   const card = (tab, at) => (

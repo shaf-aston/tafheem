@@ -38,6 +38,11 @@ const TURN_AFTER_MS = config['turn-after-s'] * 1000
 // A page as a step on the back arrow's path: its first line, "2:6", with the
 // book in front when it is not the Qur'an, "jazariyya/3:12".
 const PLACE = /^(?:([a-z]+)\/)?(\d+):(\d+)$/
+// The book, part and line a link names, or null for none (or a book that is not here).
+const linkOf = (incoming) => {
+  const [, book = DEFAULT_BOOK, part, line] = PLACE.exec(incoming ?? '') ?? []
+  return part && BOOKS[book] ? { book, part: Number(part), line: Number(line) } : null
+}
 const placeOf = (bookId, part, line) => `${bookId === DEFAULT_BOOK ? '' : `${bookId}/`}${part}:${line.id}`
 
 // Two ways to answer the same gap. Typing is recall; choosing is recognition,
@@ -92,14 +97,19 @@ export function useHowYouAnswer(fresh) {
   return { way, setWay, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay }
 }
 
-/** The book, part and page open, the word started on, and the moves between places. */
-export function useBookPage({ fresh }) {
-  const [bookId, setBookId] = useState(DEFAULT_BOOK)
+/**
+ * The book, part and page open, the word started on, and the moves between places.
+ * A page opened from a link starts on the link's book and part, so the surah it names is
+ * what loads, not the first one and then that.
+ */
+export function useBookPage({ fresh, incoming }) {
+  const [start] = useState(() => linkOf(incoming))
+  const [bookId, setBookId] = useState(start?.book ?? DEFAULT_BOOK)
   // What the reader picked, which is nothing until they pick; the part
   // actually open is derived below, once the book has said what its parts are.
-  const [chosen, setChosen] = useState(null)
+  const [chosen, setChosen] = useState(start?.part ?? null)
   const [pageNumber, setPageNumber] = useState(0)
-  const [meaning, setMeaning] = useState(BOOKS[DEFAULT_BOOK].meaningDefault ?? false)
+  const [meaning, setMeaning] = useState(BOOKS[bookId].meaningDefault ?? false)
   // The word the reader pressed to start on, or null for "they did not say".
   // A page is not always begun at its top: somebody revising picks up where
   // they stopped, or goes back over the one ayah they keep losing. It is
@@ -163,7 +173,7 @@ export function useBookPage({ fresh }) {
 }
 
 /** Stepping a page either way, across parts, by button or swipe. */
-export function usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart }) {
+export function usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart, landing }) {
   // The part `by` either side of this one: past a surah's last page is the next
   // surah, before its first is the one before.
   const partBy = (by) => parts?.[parts.findIndex((p) => p.id === part) + by]
@@ -177,8 +187,9 @@ export function usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLin
   const atStart = pageNumber === 0 && !partBy(-1)
   const atEnd = pageNumber >= pages.length - 1 && !partBy(1)
   const swipe = useSwipe(!atStart && (() => stepPage(-1)), !atEnd && (() => stepPage(1)))
-  // Where the page falls in the book, so a step either way slides in from its own side.
-  const slide = useSlide((parts?.findIndex((p) => p.id === part) ?? 0) * 10000 + pageNumber)
+  // Where the page falls in the book, so a step either way slides in from its own side;
+  // a link finding its page is no step, so it does not slide.
+  const slide = useSlide((parts?.findIndex((p) => p.id === part) ?? 0) * 10000 + pageNumber, landing)
   return { partBy, stepPage, atStart, atEnd, swipe, slide }
 }
 
@@ -384,20 +395,23 @@ export function useReciteTurns({ way, hidden, reciting, recitedPage, bookId, par
  * The page landed on is that step already, even when the step named a later
  * line on it ("2:255" opens the page from 2:250): recording it again would
  * push a new step and trap the back arrow there.
+ * `landing` is true from a link's first render until its page is found (the part's first page is
+ * not it), so the panel shows nothing of the book in between rather than a page that then jumps.
  */
 export function useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart }) {
   const arriving = useRef(false)
   const landed = useRef(null)
+  const [landing, setLanding] = useState(() => linkOf(incoming) !== null)
   useArrivalEffect(arrival, () => {
-    const [, b = DEFAULT_BOOK, p, line] = PLACE.exec(incoming ?? '') ?? []
-    if (!p || !BOOKS[b]) return
+    const link = linkOf(incoming)
+    if (!link) return setLanding(false)
     arriving.current = true
-    pageOfLine(b, Number(p), Number(line)).then(([n, all]) => {
+    pageOfLine(link.book, link.part, link.line).then(([n, all]) => {
       const at = Math.max(n, 0)
-      landed.current = placeOf(b, Number(p), all[at][0])
-      if (b !== bookId) openBook(b)
-      openPart(Number(p), at)
-    }).catch(() => {}).finally(() => { arriving.current = false })
+      landed.current = placeOf(link.book, link.part, all[at][0])
+      if (link.book !== bookId) openBook(link.book)
+      openPart(link.part, at)
+    }).catch(() => {}).finally(() => { arriving.current = false; setLanding(false) })
   })
   const here = page && placeOf(bookId, part, page[0])
   useEffect(() => {
@@ -405,4 +419,5 @@ export function useArrivedPage({ arrival, incoming, onVisit, bookId, part, page,
     landed.current = null
     onVisit?.(here)
   }, [here])  // eslint-disable-line react-hooks/exhaustive-deps
+  return landing
 }

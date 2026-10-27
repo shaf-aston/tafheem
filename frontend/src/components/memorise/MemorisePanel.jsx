@@ -40,7 +40,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const {
     bookId, book, parts, part, data, isPending, isError, error, refetch, pages, page, pageNumber, meaning,
     setMeaning, pinned, openAt, openPart, openPage, openBook, pageOfLine,
-  } = useBookPage({ fresh })
+  } = useBookPage({ fresh, incoming })
   // The mushaf page this one actually is, when the layout has been built. Null
   // means the pages were sized by word count, and saying "page 3 of 21" without
   // claiming a printed number is the honest thing to show for that.
@@ -50,11 +50,11 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
     data, page, pageNumber, deal, difficulty, way, hidden, startFrom,
   })
   const marks = page ? score(page, blanks, answers) : { right: 0, total: 0 }
-  const { partBy, stepPage, atStart, atEnd, swipe, slide } = usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart })
+  const landing = useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart })
+  const { partBy, stepPage, atStart, atEnd, swipe, slide } = usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart, landing })
   const { card, listen, elsewhere, where, askToGo, goElsewhere, setStayed } = useReciteTurns({
     way, hidden, reciting, recitedPage, bookId, part, pageNumber, pinned, pages, partBy, openPart, pageOfLine,
   })
-  useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart })
 
   // How you practise, chosen once and left: beside the pickers on a wide screen,
   // behind one pill on a phone, where the pickers and both of these were three
@@ -147,15 +147,15 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
           : <>{answerWay}{missingSwitch}</>}
       </div>
 
-      {isPending && <Skeleton className="h-40 w-full" />}
+      {(isPending || landing) && <Skeleton className="h-40 w-full" />}
 
       {isError && (
         <ErrorAlert title="That part could not be read" error={error} fallback="The text comes from the Qur\'an tab\'s own source." onRetry={refetch} />
       )}
 
-      {data && pages.length === 0 && <EmptyState>Nothing to memorise here.</EmptyState>}
+      {data && !landing && pages.length === 0 && <EmptyState>Nothing to memorise here.</EmptyState>}
 
-      {page && (
+      {page && !landing && (
         <>
           {/* One wrapping row: the page and its arrows, then what helps. */}
           <div className="flex items-center gap-2 flex-wrap text-sm text-[var(--text-dim)]">
