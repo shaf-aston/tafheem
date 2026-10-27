@@ -53,7 +53,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - counted_times: مرة/مرتين hung on a jar-majrur → the verb's (`backend/services/nahw/syntax/repair/dua.py`)
 - object_of_noun: a raf' word the parser hung as the object of a plain raf' noun opening the sentence → its khabar; a nasb noun after an elative khabar → the elative's تمييز (`backend/services/nahw/syntax/repair/khabar.py`)
 - elative_specified: an indefinite noun written in nasb that the parser hung on an elative as its مضاف إليه → its تمييز, since a مضاف إليه is in jarr (أَشَدُّ رَهْبَةً; a diptote's fatha stays jarr: أَفْضَلُ مَسَاجِدَ) (`backend/services/nahw/syntax/repair/khabar.py`)
-- after_pointer: an indefinite word, typed in raf' or not typed at all, hung as the صفة of a definite opener (هذا، زيد، ال), or a describing word hung as its subject, or as the subject of the ظرف or جار ومجرور of its صلة (وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى) → the khabar (`backend/services/nahw/syntax/repair/khabar.py`)
+- after_pointer: an indefinite word hung as the صفة of a definite opener (هذا، زيد، ال), or a describing word hung as its subject, or as the subject of the ظرف or جار ومجرور of its صلة (وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى) → the khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - told_of_jar: a noun hung as the subject of a preposition's majrur (لِزَيْدٍ هَذَا الْكِتَابُ، لِمَنْ هَذَا) → the مبتدأ of the fronted جار ومجرور (`backend/services/nahw/syntax/repair/khabar.py`)
 - second_khabar: an adjective hung on an adjective khabar → a second khabar, not its صفة (`backend/services/nahw/syntax/repair/khabar.py`)
 - before_la: a noun hung on لا from before it → the mubtada, the لا clause its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
