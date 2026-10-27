@@ -19,7 +19,6 @@ import pytest
 from backend.models.analyze import ROLE_KEYS, WordAnalysis
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
-from backend.services.nahw import rule_engine
 from backend.services.nahw import syntax
 from backend.services.text.arabic_text import words
 from backend.services.nahw.book import term_ar

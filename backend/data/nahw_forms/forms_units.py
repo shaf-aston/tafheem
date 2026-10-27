@@ -25,7 +25,7 @@ def units(form):
     data = json.loads((HERE / form / "items.json").read_text(encoding="utf8"))
     out, intro, section, header, current = [], [], None, None, None
     for it in data["items"]:
-        text, first = it["text"], it["text"].split("\n", 1)[0].strip()
+        first = it["text"].split("\n", 1)[0].strip()
         if SKIP.match(first):
             continue
         m = NUMBERED.match(first)

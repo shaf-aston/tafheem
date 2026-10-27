@@ -4,6 +4,24 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
+// Feature folders under src/components. One may use ui/, shell/ and kit/ (shared) but not reach into
+// a sibling feature: what two features share belongs in ui/ or lib/. A warning, so it shows without failing a build.
+const FEATURES = [
+  'colloquial', 'daleel', 'dawah', 'dictionary', 'grow', 'hadith', 'home', 'level', 'map',
+  'memorise', 'nahw', 'profile', 'quiz', 'quran', 'sarf', 'similar', 'timelines',
+]
+const siblingImports = (feature) => ({
+  files: [`src/components/${feature}/**/*.{js,jsx}`],
+  rules: {
+    'no-restricted-imports': ['warn', {
+      patterns: [{
+        regex: `^(\\.\\./)+(${FEATURES.filter((f) => f !== feature).join('|')})/`,
+        message: `${feature}/ should not import from a sibling feature: move what they share to ui/ or lib/.`,
+      }],
+    }],
+  },
+})
+
 export default defineConfig([
   globalIgnores(['dist']),
   {
@@ -28,6 +46,13 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^[A-Z_]' }],
     },
   },
+  {
+    // A file past 300 lines is doing more than one job. A warning: the long ones are listed, not blocked.
+    files: ['src/**/*.{js,jsx}'],
+    ignores: ['**/*.test.{js,jsx}'],
+    rules: { 'max-lines': ['warn', { max: 300, skipBlankLines: true, skipComments: true }] },
+  },
+  ...FEATURES.map(siblingImports),
   {
     // Things under scripts/ are run by node from a terminal, not served to a
     // browser, so process, Buffer and the rest of node are theirs to use.

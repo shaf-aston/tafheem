@@ -7,7 +7,6 @@ other numbers are in the build too, because a word's weight is read off all the 
 from __future__ import annotations
 
 import itertools
-import json
 import sqlite3
 import sys
 from pathlib import Path
