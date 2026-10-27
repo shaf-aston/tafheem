@@ -32,11 +32,10 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from backend.config import data_path
+from backend.scripts.recitation.paths import CHECKS, DOWNLOADS
 from backend.services.recitation.place import bare_word
 
-HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
-DOWNLOADS = HERE / "downloads"
-REPORT = HERE / "letters-report.txt"
+REPORT = CHECKS / "letters-report.txt"
 
 # The readings to judge, and where the right answer comes from for each.
 SAVED = {

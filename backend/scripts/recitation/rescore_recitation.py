@@ -36,11 +36,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path, get_settings  # noqa: E402
 from backend.services.recitation import checker  # noqa: E402
+from backend.scripts.recitation.paths import DOWNLOADS  # noqa: E402
 from backend.scripts.recitation.score_recitation_checker import (  # noqa: E402
-    DOWNLOADS, RESULTS, recordings, stretch,
+    RESULTS, recordings, stretch,
 )
 
-HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
 
 
 def pieces_path(model: str) -> Path:

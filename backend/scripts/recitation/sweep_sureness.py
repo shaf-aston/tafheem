@@ -44,13 +44,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 from backend.config import data_path, get_settings  # noqa: E402
 from backend.services.recitation.checker import aggregate  # noqa: E402
 from backend.scripts.recitation.ear_bench.words import labelled  # noqa: E402
-from backend.scripts.recitation.rescore_recitation import HERE, pieces_path  # noqa: E402
+from backend.scripts.recitation.paths import CHECKS  # noqa: E402
+from backend.scripts.recitation.rescore_recitation import pieces_path  # noqa: E402
 
 RULES = ("worst", "worst-but-one", "mean")
 # The rule and flag-below of each level in frontend/src/config/recite.json.
 LEVELS = {"standard": 0.95}
 CUTS = (0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 0.7, 0.8, 0.9, 0.95)
-SWEEP = HERE / "sweep.txt"
+SWEEP = CHECKS / "sweep.txt"
 # What every rule is measured against: what the page does today, and the bar.
 BAR_MARKED, BAR_VOWELS = 0.03, 0.85
 
@@ -160,7 +161,7 @@ def main() -> None:
     ayahs = json.loads(data_path("quran_imlaei_path").read_text(encoding="utf-8"))
     heard, out = None, SWEEP
     if args.heard:
-        lines = (HERE / args.heard).read_text(encoding="utf-8").splitlines()
+        lines = (CHECKS / args.heard).read_text(encoding="utf-8").splitlines()
         heard = {r["id"]: r["heard"] for r in map(json.loads, lines)}
         out = SWEEP.with_name(f"sweep-{args.heard.stem}.txt")
     text = table(labelled(ayahs, model, heard), model)

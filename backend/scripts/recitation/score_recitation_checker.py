@@ -39,14 +39,13 @@ import pyarrow.parquet as pq
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path, get_settings  # noqa: E402
+from backend.scripts.recitation.paths import CHECKS, DOWNLOADS  # noqa: E402
 from backend.services.recitation import checker, whisper  # noqa: E402
 from backend.services.recitation.place import bare_word  # noqa: E402
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 
-HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
-DOWNLOADS = HERE / "downloads"
 RESULTS = DOWNLOADS / "results.jsonl"
-REPORT = HERE / "report.txt"
+REPORT = CHECKS / "report.txt"
 BATCH = 16
 THRESHOLDS = (0.1, 0.3, 0.5, 0.7, 0.9)
 # The ear hears 30 seconds at a time; a longer clip is skipped, and counted.

@@ -21,9 +21,8 @@ import httpx
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402
+from backend.scripts.recitation.paths import CHECKS, DOWNLOADS  # noqa: E402
 
-HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
-DOWNLOADS = HERE / "downloads"
 PARQUET_LIST = "https://datasets-server.huggingface.co/parquet"
 TIMEOUT_S = 120
 # Hugging Face also rate-limits an address for a few minutes; wait it out.
@@ -55,7 +54,7 @@ def fetch(url: str, to: Path, size: int | None = None) -> None:
 
 
 def main() -> None:
-    sources = json.loads((HERE / "sources.json").read_text(encoding="utf-8"))
+    sources = json.loads((CHECKS / "sources.json").read_text(encoding="utf-8"))
     for item in sources["sets"]:
         print(f"  {item['id']} from {item['repo']}")
         listing = httpx.get(PARQUET_LIST, params={"dataset": item["repo"]}, timeout=TIMEOUT_S)
