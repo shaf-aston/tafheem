@@ -142,6 +142,15 @@ def test_a_word_the_table_has_no_cell_for_is_read_with_its_object_split_off_by_t
     assert "lex" not in verb_reader.reading_of("اِهْدِهِمْ")   # nearest case: هَدَى، هَدَا or هَدِيَ
 
 
+@pytest.mark.parametrize("word, person", [("اُكْتُبِيهِ", ("c", "f", "s")), ("اُكْتُبَاهُ", ("c", None, "d")),
+                                          ("ضَرَبُوهُ", ("p", "m", "p"))])
+def test_a_doer_written_as_a_long_letter_ends_the_verb_its_pronoun_is_split_from(word: str, person: tuple):
+    """اُكْتُبِيهِ: the ي carries no mark, the kasra before it is the verb's last vowel; ضَرَبُوهُ is ضَرَبُوا (plural_alef)."""
+    found = verb_reader.reading_of(word)
+    assert (found["asp"], found.get("gen"), found["num"], found["enc0"]) == (*person, "3ms_dobj")
+    assert verb_reader.reading_of("اُكْتُبيهِ") is None   # nearest case: no vowel before the ي to make it long
+
+
 def test_of_the_closest_cells_the_one_the_dictionary_has_names_the_verb():
     assert "lex" not in verb_reader.reading_of("اِهْدِ")   # هَدَى، هَدَا or هَدِيَ: the cells disagree
     assert verb_reader.reading_of("اِهْدِ", _KNOWN)["lex"] == "هَدَى"

@@ -773,6 +773,10 @@ def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: 
     ("أَعْطَى الرَّجُلُ الْفَقِيرَ دِرْهَمًا", ["فعل", "فاعل", "مفعول به", "مفعول به"]),
     # آتى takes two objects, so the second is never a حال
     ("لَا يُؤْتُونَ النَّاسَ نَقِيرًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),
+    # a command a noun reading had (آتٍ, one coming) is آتَى's: its second object no بدل of the first
+    ("آتِ ذَا الْقُرْبَى حَقَّهُ", ["فعل", "مفعول به", "مضاف إليه", "مفعول به"]),
+    # a command to a woman with its object written on: the ي before هِ is her, no noun's ending
+    ("اُكْتُبِيهِ الْآنَ", ["فعل", "مفعول فيه"]),
     # nearest case: an indefinite word after one object stays the حال
     ("جَاءَ الرَّجُلُ ضَاحِكًا", ["فعل", "فاعل", "حال"])])
 def test_two_objects_of_a_verb_of_giving_are_both_objects_and_a_case_clash_is_no_naat(sentence: str, roles: list[str]):

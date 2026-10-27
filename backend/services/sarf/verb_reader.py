@@ -19,7 +19,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from backend.services.sarf import conjugation
-from backend.services.text.harakat import SUKUN, letters
+from backend.services.text.harakat import KASRA, SUKUN, letters, plural_alef
 from backend.services.nahw.book import book_words
 
 _READING = Path(__file__).parent.parent.parent / "data" / "sarf" / "reading.json"
@@ -274,6 +274,10 @@ def reading_of(word: str, known: Callable[[str], bool] | None = None) -> dict | 
     return _with_object(word, known)
 
 
+# a long letter and the vowel before it that makes it long (اُكْتُبِي، اُكْتُبُوا، اُكْتُبَا)
+_LENGTHENS = {"ي": KASRA, "و": "ُ", "ا": "َ"}
+
+
 def _with_object(word: str, known: Callable[[str], bool] | None = None) -> dict | None:
     """reading_of a verb with its object pronoun written on (ظَلَمَكَ is ظَلَمَ + كَ), the table
     holding the verb alone: the longest pronoun first, the verb before it voweled to its end."""
@@ -282,7 +286,10 @@ def _with_object(word: str, known: Callable[[str], bool] | None = None) -> dict 
         verb, pronoun = marked[:-size], marked[-size:]
         if len(verb) < 2 or "".join(c for c, _ in pronoun) not in book_words("damir_muttasil", "on_verbs"):
             continue
-        if not verb[-1][1] or not (found := reading_of(_spell(verb), known)):
+        # اُكْتُبِيهِ، اُكْتُبُوهُ: a doer written as a long letter ends the verb on the vowel before it, and
+        # the plural's alef, written only at the word's end, comes back (plural_alef)
+        voweled = verb[-1][1] or _LENGTHENS.get(verb[-1][0]) in verb[-2][1]
+        if not voweled or not (found := reading_of(plural_alef(_spell(verb)), known)):
             continue
         person = _ENCLITIC.get("".join(c for c, _ in pronoun)) or _ENCLITIC["كِ" if "ِ" in pronoun[-1][1] else "كَ"]
         return {**found, "atbtok": f"{_spell(verb)}_+{_spell(pronoun)}", "catib6": "VRB+NOM", "ud": "VERB+PRON", "enc0": f"{person}_dobj"}

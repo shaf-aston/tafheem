@@ -70,6 +70,8 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
                          and (not (read_noun or read_past) or vouched or verb_reader.typed_fully(form, found))), None)
             if cell:  # the person is sarf's: the reading may have taken اقبل for "I accept"
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
+                if not verb:  # آتِ ذَا الْقُرْبَى: the noun read (آتٍ, one coming) gives way to the verb, آتَى of two objects
+                    token["lemma"] = verb_reader.past(cell)
                 # قُومِي: the ي a noun reading split off as "my" is the command's doer, a pronoun only ever
                 # in raf' (Awdah V1 p85: ما يختص بمحل الرفع ... وياء المخاطبة كقومي)
                 for kid in tokens:
