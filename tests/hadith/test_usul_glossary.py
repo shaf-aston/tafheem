@@ -57,3 +57,13 @@ def test_api_shape_carries_new_fields(monkeypatch):
     assert (first.lugha, first.kind, first.answers) == ("l", "daif", {"y": "t"})
     assert (first.meaning, first.quote, first.page) == ("s", "q", "p. 1")
     assert first.confuse[0].arabic == "ب" and first.kids[0].arabic == "ك"
+
+
+def test_rejected_is_one_group_split_as_nuzha_splits_it():
+    """A gap you can see or hidden, and the ten causes of a fault: five of integrity, five of precision."""
+    groups = {g["title"]: g for g in store.glossary()}
+    assert "A gap in the chain" not in groups and "A fault in a narrator" not in groups
+    branches = {t["arabic"]: [k["arabic"] for k in t["kids"]] for t in groups["Rejected"]["terms"]}
+    assert list(branches) == ["الضعيف", "السقط الواضح", "السقط الخفي", "العدالة", "الضبط"]
+    assert {"الموضوع", "المتروك", "الفاسق", "المبتدع", "المبهم"} == set(branches["العدالة"])
+    assert {"سيئ الحفظ", "المختلط"} <= set(branches["الضبط"])
