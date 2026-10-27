@@ -112,7 +112,7 @@ def jarr_after_mudaf(tokens: list[dict]) -> None:
     on a word put in jarr is a diptote's, which never takes tanween (مَرَرْتُ بِمَسَاجِدَ كَثِيرَةٍ: its صفة)."""
     s = Sentence(tokens)
     for before, word in pairwise(tokens):
-        if (word["rel"] in ("MOD", "---") and typed_case_of(word) == "i" and noun_tagged(word)
+        if (typed_case_of(word) == "i" and noun_tagged(word)
                 and noun_tagged(before) and before.get("stt") != "d" and not is_name(before)
                 and typed_case_of(before) is not None and not typed_tanween(before)
                 and not (typed_case_of(before) == "a" and puts_in_jarr(before, s))):
