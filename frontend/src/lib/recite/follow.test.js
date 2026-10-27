@@ -261,6 +261,27 @@ describe('going back over a phrase to practise it', () => {
     expect(answer.words.slice(PAST + 3).every((w) => w.state === WAITING)).toBe(true)
   })
 
+  const WHOLE = ['لا', 'إكراه', 'في', 'الدين', 'قد', 'تبين', 'الرشد', 'من', 'الغي',
+    'فمن', 'يكفر', 'بالطاغوت', 'ويؤمن', 'بالله', 'فقد', 'استمسك', 'بالعروة', 'الوثقى']
+
+  it('does not go back for the next page\'s first word, which is also on this one', () => {
+    for (const tail of [['من'], ['من', 'الله', 'في'], ['كد']]) {
+      const answer = follow(AYAH, [...WHOLE, ...tail], { ended: true, startAt: 0 })
+      expect(answer.at).toBe(AYAH.length)
+      expect(answer.words.every((w) => w.state === SAID)).toBe(true)
+    }
+  })
+
+  it('does not go back for a wrong last word equal to an earlier one', () => {
+    const answer = follow(['قُلْ', 'هُوَ', 'ٱللَّهُ', 'أَحَدٌ', 'ٱلصَّمَدُ'], ['قل', 'هو', 'الله', 'احد', 'الله'], { ended: true })
+    expect(answer.at).toBe(5)
+    expect(answer.heardTo).toBe(5)
+  })
+
+  it('is not on the page from one word said twice', () => {
+    expect(follow(AYAH, ['قد', 'قد'], { ended: true, startAt: null }).started).toBe(false)
+  })
+
   it('shows the last try of a word gone back over', () => {
     const heard = ['قد', 'تبين', 'الرشد', 'مين', 'الغي', ...PHRASE]
     const answer = follow(AYAH, heard, { ended: true, startAt: null })

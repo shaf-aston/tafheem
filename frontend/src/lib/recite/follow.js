@@ -76,6 +76,19 @@ const asMatch = (said, printed) => {
 }
 
 /**
+ * Whether heard word `j` (1-based, on page word `i`) is followed by the page
+ * going on: one of the next `repeat-look` heard words matches the page word as
+ * far after `i`, so a word the ear spelled oddly in the middle does not hide it.
+ */
+const goesOn = (page, heard, i, j) => {
+  for (let t = 1; t <= config['repeat-look']; t += 1) {
+    if (j - 1 + t >= heard.length || i - 1 + t >= page.length) return false
+    if (asMatch(heard[j - 1 + t], page[i - 1 + t])[0] < COSTS.wrong) return true
+  }
+  return false
+}
+
+/**
  * The cheapest reading of the whole thing, as a list of steps in order.
  *
  * Each step is one of: a page word and a heard word together, a page word made
@@ -132,9 +145,11 @@ const lineUp = (page, heard, startAt) => {
       // Gone back to say this word again, from anywhere at or past it. A
       // reciter practising a phrase says it over and over; without this each
       // repeat was cheapest read as wrong words further down the page. Only
-      // onto a word that matches: nobody goes back to say a different word.
+      // onto a word that matches, and only when the phrase goes on from it: one
+      // stray word equal to an earlier one (the next page's first, a slip) is
+      // not a repeat, and reading it as one pulled the reciter back up the page.
       const again = ahead[i] + together + COSTS.back
-      if (together < COSTS.wrong && again < best) { best = again; step = 'back'; back[j][i] = aheadAt[i] }
+      if (together < COSTS.wrong && goesOn(page, heard, i, j) && again < best) { best = again; step = 'back'; back[j][i] = aheadAt[i] }
 
       const missed = cost[i - 1][j] + COSTS.missed
       if (missed < best) { best = missed; step = MISSED }
@@ -238,8 +253,9 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
   // one of those words was lined up against the page, and it showed twelve
   // mistakes made by somebody who had not yet opened their mouth. So until
   // enough words of this page have actually been heard, the page holds plain.
-  const found = steps.filter(({ step, i, j }) =>
-    step === 'joined' || (step === 'together' && asMatch(heard[j], page[i])[1] !== WRONG)).length
+  // Distinct page words, so one word said twice is still one word heard.
+  const found = new Set(steps.filter(({ step, i, j }) =>
+    step === 'joined' || (step === 'together' && asMatch(heard[j], page[i])[1] !== WRONG)).map(({ i }) => i)).size
   if (found < config['anchor-words']) return { at: startAt ?? 0, began: null, words, extras, started: false, heardTo: null }
   // A mark may only be shown once this many words have gone past it. `ended`
   // means no more are coming, so waiting any longer would never settle.
