@@ -381,7 +381,7 @@ def gates(words: list[dict], tree: dict, corpus_words: list[str], vocabulary: se
     if sorted(_leaves(tree, [])) != list(range(len(words))):
         return "coverage"
 
-    if unknown := {
+    if {
         word["relation"]
         for word in words
         if word.get("relation") not in (None, *vocabulary)

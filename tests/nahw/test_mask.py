@@ -1,5 +1,4 @@
 """The book's vetoes over the parser's scores: pure, so no model is needed."""
-import numpy as np
 
 from backend.services.nahw.syntax.mask import book_links, book_mask
 

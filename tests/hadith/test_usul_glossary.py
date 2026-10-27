@@ -1,5 +1,4 @@
 """The usul glossary: every fault the checker names, the real file being sound, and the API carrying kids/confuse/answers."""
-import pytest
 
 from backend.models.hadith import GlossaryGroup
 from backend.services.hadith.usul import store

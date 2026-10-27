@@ -3,7 +3,6 @@
 Skips cleanly, rather than failing, when the model files have not been
 dropped into backend/data/parser/ (see catib_onnx.py's docstring).
 """
-import pytest
 
 from backend.services.sarf import morphology
 from backend.services.nahw.syntax import catib_onnx
