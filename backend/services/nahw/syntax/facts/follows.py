@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, same_case, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
+from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
 from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, place_case, praised_noun, previous_noun, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
@@ -37,27 +37,31 @@ def stands_for(token: dict, s: Sentence) -> bool:
     if after and mine and noun_tagged(after) and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
         return False
     verb = verb_above(before, s)
-    return not (verb and (is_one(verb["lemma"], "zanna") or is_one(verb["lemma"], "two_objects_give")))
+    return not (verb and takes_two_objects(verb))
 
 
-def with_waw(token: dict, s: Sentence) -> bool:
+def verb_joined_by_waw(token: dict, s: Sentence) -> dict | None:
     """سرتُ والشاطئَ: after واو المعية (و meaning "with") a noun the reader put in nasb is the
     مفعول معه when nothing before the و is in nasb for it to join (Tasheel 3.8.5 p76); a
-    معطوف would wear the case of what it joins."""
+    معطوف would wear the case of what it joins. The verb before the و, which works on it, or None."""
     head = s.head(token)
     if not (head and head["pos"] == "PRT"):
         # سافرتُ والصديقَ: the parser may hang the noun on the verb beside its و; the و written onto it is the same
         head = next((t for t in s.tokens if t["id"] == token["id"] - 1 and t.get("form", "").endswith("+")), None)
     # جاء الولدُ وهُوَ يبكي: هُوَ's fatha is built in, no nasb; the و opens a hal clause
+    case = typed_case_of(token)
     if not (head and head["pos"] == "PRT" and head["lemma"].strip("+") == "و" and not is_subject_pronoun(token)
-            and typed_case_of(token) == "a" and verb_above(head, s) is not None):
-        return False
+            and case in ("a", None) and (verb := verb_above(head, s)) is not None and verb["id"] < head["id"]):
+        return None  # وما أدراك: the verb comes after the و, so it is no "with" after a clause
     # the noun straight before, and every noun on the verb before the و: جَعَلْنَا الْبَيْتَ مَثَابَةً
     # ... وَأَمْنًا joins مثابة; a ـات kasra is nasb too (خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ)
-    verb = verb_above(head, s)
-    joinable = [previous_noun(head, s)] + [k for k in s.kids(verb) if k["id"] < head["id"]
-                                           and noun_tagged(k) and not is_verb(k)]
-    return not any(k and "a" in shown_cases(k) for k in joinable)
+    joinable = [k for k in [previous_noun(head, s)] + [k for k in s.kids(verb) if k["id"] < head["id"]
+                                                       and noun_tagged(k) and not is_verb(k)] if k]
+    if case is None:
+        # سافرت والصديق typed bare, سرت والفتى its case unseen: with only the verb's own pronoun to join, the joining is weak and
+        # the nasb chosen (Ibn Aqil V2 p204: والنصب مختار لدى ضعف النسق); a noun to join takes it (قام زيد وعمرو)
+        return None if joinable else verb
+    return None if any("a" in shown_cases(k) for k in joinable) else verb
 
 
 def _follows(token: dict, s: Sentence) -> str:
@@ -69,7 +73,7 @@ def _follows(token: dict, s: Sentence) -> str:
     answers none and the rest of the naming decides it. Tested in this order because
     each earlier follower has a mark of its own (a pointer child, a joining particle, a
     bare name after a noun with ال, a listed تأكيد word) that a plain na't lacks."""
-    if s.asked_of(token) or calling_head(token, s) or with_waw(token, s) or praised_noun(token, s):
+    if s.asked_of(token) or calling_head(token, s) or verb_joined_by_waw(token, s) or praised_noun(token, s):
         return "none"  # غيرُ خالدٍ after a complete clause is the مستثنى, not a صفة; بِئْسَ الْخُلُقُ الْكَذِبُ: the one blamed
     # ما جاء أحدٌ إلا زيدٌ: after إلا in a negated complete sentence the excepted noun in the
     # case of the noun before إلا is its بدل (Tasheel 3.2 p67)
@@ -89,8 +93,8 @@ def _follows(token: dict, s: Sentence) -> str:
         return "naat"
     if is_nasab(token):
         return "naat"
-    # يا أيها الناسُ: the noun with ال after أيها is its صفة
-    if head and is_called_noun(head) and token.get("stt") == "d":
+    # يا أيها الناسُ، يا أيها الذين آمنوا، يا أيهذا: the noun with ال, relative or pointer after أيها is its صفة
+    if head and is_called_noun(head) and (token.get("stt") == "d" or is_one(token.get("pos_camel", ""), "nida", "described_by")):
         return "naat"
     # جاء زيدٌ زيدٌ: the same noun said twice is التوكيد اللفظي (Tasheel 3.10.3 p94)
     before = s.by_id.get(token["id"] - 1)

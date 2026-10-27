@@ -16,6 +16,7 @@ from backend.services.nahw import iraab
 from backend.services.sarf import morphology
 from backend.services.learner import progress_store
 from backend.services.dictionary import sentence_meaning
+from backend.services.dictionary import service as dictionary_service
 from backend.services.quran import search as quran_search
 
 
@@ -137,3 +138,14 @@ def test_words_with_no_arabic_are_named_not_dropped() -> None:
     from backend.services.text.arabic_text import not_arabic, words
     typed = "x كتاب hello، ١٢ ۖ"
     assert words(typed) == ["كتاب"] and not_arabic(typed) == ["x", "hello"]
+
+
+@pytest.mark.parametrize("gloss, english", [
+    ("", "fast/quick"),        # CAMeL has no English for مُسْرِعًا: the dictionary's first sense of the very lemma
+    ("hurrying", "hurrying"),  # nearest case: CAMeL's own gloss comes first
+])
+def test_a_word_camel_has_no_english_for_takes_the_dictionarys(monkeypatch, gloss, english) -> None:
+    monkeypatch.setattr(morphology, "_analyses", lambda word: [])
+    monkeypatch.setattr(dictionary_service, "meaning_of", lambda lemma: "fast, quick, rapid" if lemma == "مسرع" else "")
+    assert sentence_meaning.english({"lemma": "مسرع", "pos": "adj", "gloss": gloss}) == english
+    assert sentence_meaning.english({"lemma": "مسرعا", "pos": "noun_prop", "gloss": ""}) == ""  # no near spelling

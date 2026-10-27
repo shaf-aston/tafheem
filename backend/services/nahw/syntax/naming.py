@@ -100,6 +100,7 @@ class FoundEntry(TypedDict, total=False):
     named: str | None  # a particle reading's own name (ألا الاستفتاحية)
     book: str | None  # the proof line: the tree's branches that named it
     also: str | None  # a second thing the book says (عطف بيان)
+    my_ya: bool  # يَا قَوْمِ: مضاف to a ياء المتكلم typed only as the kasra it left
     attached: list[Piece]  # pieces written onto it
     governor: int  # index of the word that works its case on it
     follows: int  # index of the word a تابع follows
@@ -169,6 +170,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
              # محمدُ بنُ عبدِ اللهِ: the books also read the ابن as عطف بيان or بدل
              "also": book_map("nasab", "also") if role == NAMED.sifah and facts.is_nasab(token)
              else _kind_said(role, token, s, governed_by),
+             "my_ya": role == NAMED.munada and facts.my_ya_dropped(token),
              # إيّاك: the pronoun on إيّا is a letter of the one detached pronoun, not a piece of its own
              "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": facts.is_prefix(t), "form": t["form"].strip("+"),
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
@@ -236,8 +238,16 @@ def _extra_ba(n: Named) -> None:
 
 
 def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: dict[int, int]) -> str | None:
-    """Which kind of idafa, badal or فاعل the word is, as the books name it (teacher.json kinds)."""
+    """Which kind of idafa, badal, فاعل or call the word is, as the books name it (teacher.json kinds)."""
     kinds = teacher_rules()["kinds"]
+    if role == NAMED.munada:
+        said = [kinds["munada"]["alone" if facts.is_called_alone(token) else "dropped"]] \
+            if token["id"] not in governed_by else []  # no يا typed governs it (facts.governor): اللهمّ، رَبَّنَا
+        if facts.my_ya_dropped(token):
+            said.append(kinds["munada"]["my_ya"])  # يَا قَوْمِ
+        return "، ".join(said) or None
+    if role == NAMED.mafool_bih and token["id"] not in governed_by and facts.busied_before(token, s):
+        return kinds["object"]["busied"]  # زَيْدًا ضَرَبْتُهُ
     if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
         if facts.listed(mudaf, "adad_mudaf"):
             return kinds["idafa"]["min"]  # ثلاثُ سنينَ: a number is a noun, though CAMeL tags it an adjective
@@ -361,13 +371,11 @@ def _governed(i: int, role: str | None, token: dict, bases: list[dict], tokens: 
 
 
 def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
-    """The typed word a follower follows, reached through the و of a معطوف. A particle is
-    climbed past, but not the called أيها, which the parser tags one: يا أيها الناسُ, the
-    صفة follows it, not the verb after (facts._follows names it by the same test)."""
+    """The typed word a follower follows, reached through the و of a معطوف: a particle is climbed past."""
     at = {t["id"]: i for i, t in enumerate(bases)}
     by_id = {t["id"]: t for t in tokens}
     head = by_id.get(token["head"])
-    while head and (head["id"] not in at or (head["pos"] == "PRT" and not facts.is_called_noun(head))):
+    while head and (head["id"] not in at or head["pos"] == "PRT"):
         head = by_id.get(head["head"])
     return at[head["id"]] if head else None
 
@@ -457,6 +465,8 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
         return "mabni" if is_mabni("verb", token.get("asp", "na"), token["base"]) or (not token.get("stuck_on") and build_nun(token["typed"])) else _mood(paused(token["typed"], after), token, before, lam)
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
+    if role == NAMED.munada and facts.my_ya_dropped(token):
+        return "nasb"  # يَا قَوْمِ: مضاف to the ياء المتكلم gone, its kasra no case
     # يَا وَلَدُ، يا أيها: a single called noun is built on the damma (in the place of nasb), as is اللهمّ
     if role == NAMED.munada and (typed_case(token["typed"]) == "u" or facts.is_called_noun(token)
                                  or facts.is_called_alone(token)):

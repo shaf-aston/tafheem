@@ -35,11 +35,15 @@ from backend.services.nahw.syntax.naming import NAMED, role_key
 
 
 def analyze(sentence: str, recorded: bool = True) -> dict:
-    """{words, summary, source, tree} for one sentence; `tree` is None when nothing joins.
+    """{words, summary, source, tree, parse, read_failed} for one sentence; `tree` is None when nothing joins.
     `recorded=False` skips the treebank and always works the sentence out. The summary is the picture's own top label, so the line above the cards and the
     picture can never name the sentence apart; with no picture, or a phrase (محمد بن عبد الله), there is none.
-    A sentence read lately is answered from memory (settings analyses_kept), as a copy the caller may change."""
-    return copy.deepcopy(_kept(sentence, recorded))
+    A sentence read lately is answered from memory (settings analyses_kept), as a copy the caller may change;
+    a failed read (the parser not up yet) is not kept, so the next ask reads it again."""
+    answer = _kept(sentence, recorded)
+    if answer["read_failed"]:
+        _kept.cache_clear()
+    return copy.deepcopy(answer)
 
 
 @lru_cache(maxsize=get_settings().analyses_kept)
@@ -99,7 +103,7 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     entries = rule_engine.cards(tags)
     if len(roles) == len(entries):
         for entry, found, after in zip(entries, roles, roles[1:] + [{}]):
-            if _my_ya(entry, found, after):
+            if _my_ya(entry, found, after) or found.get("my_ya"):  # يَا قَوْمِ: the ya gone, its kasra left
                 entry["camel"] = {**entry["camel"], "enclitic": "1s_poss"}
             if found.get("gap"):
                 entry.update(role=rule_engine.UNNAMED, role_key=None, case=found["case"], sign=None, gap=True,

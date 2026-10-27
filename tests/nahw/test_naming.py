@@ -579,12 +579,16 @@ def test_a_detached_pronoun_after_its_verb_is_tawkeed():
     assert roles(["قُلْ", "هُوَ"], toks)[1] != "توكيد"
 
 
-def test_a_first_person_verb_takes_the_noun_after_it_as_its_object():
-    # كِلَا keeps its alif in every case, so CAMeL's raf' guess says nothing; the تُ is the doer
-    toks = [token(1, "رأيت", "رأى", "VRB", 0, "---", vox="a", asp="p", per="1"),
+@pytest.mark.parametrize("verb, form, per, num", [
+    ("رَأَيْتُ", "رأيت", "1", "s"),  # the تُ is the doer
+    ("رَأَوْا", "رأوا", "3", "p"),  # the و of many is the doer (own_doer)
+])
+def test_a_verb_holding_its_doer_takes_the_noun_after_it_as_its_object(verb, form, per, num):
+    # كِلَا keeps its alif in every case, so CAMeL's raf' guess says nothing
+    toks = [token(1, form, "رأى", "VRB", 0, "---", vox="a", asp="p", per=per, num=num),
             token(2, "كلا", "كلا", "NOM", 1, "SBJ", pos_camel="noun", cas="n", stt="c"),
             token(3, "الصديقين", "صديق", "NOM", 2, "IDF", pos_camel="noun", stt="d", cas="g")]
-    assert roles(["رَأَيْتُ", "كِلَا", "الصَّدِيقَيْنِ"], toks) == ["فعل", "مفعول به", "مضاف إليه"]
+    assert roles([verb, "كِلَا", "الصَّدِيقَيْنِ"], toks) == ["فعل", "مفعول به", "مضاف إليه"]
 
 
 @pytest.mark.parametrize("words, describer, role", [
@@ -853,3 +857,14 @@ def test_the_ya_on_a_command_to_a_woman_is_its_doer(typed, ya):
     toks = [token(1, "قوم", "قَوْم", "NOM", 0, "---", pos_camel="noun", diac="قَوْمِي", root="قوم"),
             token(2, "+ي", "أنا", "NOM", 1, "IDF", pos_camel="pron", token_type="enc0")]
     assert named([typed], toks)[0]["attached"][0]["role"] == ya
+
+
+def test_a_mudaf_is_as_definite_as_the_word_added_to_it():
+    """Ibn Aqil V3 p43: the idafa narrows the first noun when the second is indefinite (غلام امرأة) and makes it
+    definite when the second is (غلام زيد). A name is definite though CAMeL reads زيدٍ with its tanween as indefinite."""
+    from backend.services.nahw.syntax.repair.khabar import _indefinite
+    for added, indefinite in ((token(2, "مال", "مال", "NOM", 1, "IDF", stt="i"), True),
+                              (token(2, "عمرو", "عمرو", "PROP", 1, "IDF", stt="i", pos_camel="noun_prop"), False),
+                              (token(2, "المال", "مال", "NOM", 1, "IDF", stt="d"), False)):
+        mudaf = token(1, "صاحب", "صاحب", "NOM", 0, "---", stt="c")
+        assert _indefinite(mudaf, [mudaf, added]) is indefinite, added["form"]

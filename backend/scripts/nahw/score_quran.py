@@ -144,7 +144,7 @@ def score(ayahs: list[tuple[int, int]], out_path: str | None) -> None:
                     wrong.append(f"{word}: case {card.get('case')} (corpus {want})")
             want_role = plain_role(roles[at]) if roles else ""
             want_role = SAME_ROLE.get(want_role, want_role)
-            if not want_role or want_role in UNSCORED_ROLES:
+            if not want_role or want_role.split()[0] in UNSCORED_ROLES:  # متعلق بـأنزل is a متعلق
                 continue
             if tags[at]["pos"] == "P" and family(want_role) != "harf":
                 row["phrase roles"] += 1  # the treebank names the phrase, the card its particle

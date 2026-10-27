@@ -32,6 +32,7 @@ jobs:
   # says so and skips, as the tests did before.
   nahw:
     runs-on: ubuntu-latest
+    timeout-minutes: 30  # a run takes about 10; a hang dumps where it is stuck (faulthandler_timeout) and stops here
     steps:
       - uses: actions/checkout@v4
       - name: Fetch the parser encoder
@@ -60,7 +61,7 @@ jobs:
           camel_data -i defaults
       - name: Whole-sentence tests
         if: steps.model.outputs.ready == 'true'
-        run: python -m pytest tests/nahw/test_rule_engine.py tests/nahw/test_attached_pieces.py tests/nahw/test_catib_onnx.py tests/nahw/test_practice_questions.py tests/nahw/test_nahw_rules_sukun_kafa_khabar.py tests/nahw/test_nahw_held_out.py tests/nahw/test_question_noun_and_participle.py -q
+        run: python -m pytest tests/nahw/test_rule_engine.py tests/nahw/test_attached_pieces.py tests/nahw/test_catib_onnx.py tests/nahw/test_practice_questions.py tests/nahw/test_nahw_rules_sukun_kafa_khabar.py tests/nahw/test_nahw_held_out.py tests/nahw/test_question_noun_and_participle.py -q -o faulthandler_timeout=600
       - name: Scores no lower than the baseline
         if: steps.model.outputs.ready == 'true'
         run: python -m backend.scripts.nahw.score_iraab --check

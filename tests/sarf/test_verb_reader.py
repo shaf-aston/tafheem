@@ -66,6 +66,17 @@ def test_after_a_jazm_or_nasb_particle_it_is_the_present_not_a_command():
 def test_the_dropped_ta_of_forms_v_and_vi_is_read():
     cells = verb_reader.read("تَحَاسَدُوا")
     assert verb_reader.Cell("حسد", "VI", "jussive", "2", "m", "p") in cells   # لا تَحَاسَدُوا
+    assert verb_reader.Cell("نزل", "V", "mudari", "3", "m", "s") not in verb_reader.read("تَنَزَّلُ")  # يَتَنَزَّلُ has no تَتَ
+
+
+@pytest.mark.parametrize("word, root, form, column, person", [
+    ("يَقْرَءُونَ", "قرء", "I-fataha", "mudari", "3"),     # يَقْرَءُونَ الْكِتَابَ: on the line, not on و
+    ("قَرَءُوا", "قرء", "I-fataha", "madi", "3"),
+    ("اِقْرَءُوا", "قرء", "I-fataha", "amr", "2"),
+    ("يَسْتَهْزِءُونَ", "هزء", "X", "mudari", "3"),       # not on ي either
+])
+def test_a_hamza_before_the_long_waw_may_stand_on_the_line(word, root, form, column, person):
+    assert verb_reader.Cell(root, form, column, person, "m", "p") in verb_reader.read(word)
 
 
 def test_the_dictionary_form_is_sarfs_own_past():
@@ -105,3 +116,59 @@ def test_a_word_written_with_ta_marbuta_is_no_verb(word: str):
 
 def test_the_same_shape_with_a_root_letter_in_place_of_the_ta_marbuta_is_still_a_verb():
     assert any(c.root == "دحرج" for c in verb_reader.read("دَحْرَجَ"))
+
+
+def test_a_madda_carries_a_vowel_so_its_command_is_read_typed():
+    # آتِ is أَ + ا: the fatha is written into the letter, so the word is typed, not bare letters
+    cell = verb_reader.command("آتِ")
+    assert cell and cell.root == "أتي" and (cell.person, cell.number) == ("2", "s")
+    assert verb_reader.command("اتِ") is None   # the same letters with no vowel before the last
+
+
+_KNOWN = {"هَدَى", "أَعْلَنَ", "أَعْلَى", "آتَى"}.__contains__   # the verbs a dictionary's texts use
+
+
+@pytest.mark.parametrize("word, past", [("اِهْدِنَا", "هَدَى"), ("آتِنَا", "آتَى")])
+def test_a_command_the_dictionary_has_with_its_object_written_on_beats_a_verb_it_never_saw(word: str, past: str):
+    assert verb_reader.reading_of(word)["num"] == "d"   # alone, the closest cell is a dual of هَدَنَ / آتَنَ
+    found = verb_reader.reading_of(word, _KNOWN)
+    assert (found["asp"], found["num"], found["lex"], found["enc0"]) == ("c", "s", past, "1p_dobj")
+    assert verb_reader.reading_of(word, lambda _: False)["num"] == "d"   # nearest case: it has neither verb
+
+
+def test_a_word_the_table_has_no_cell_for_is_read_with_its_object_split_off_by_the_dictionary():
+    """اِهْدِهِمْ: no cell holds the whole word, so the verb before هِمْ is read, among the verbs the dictionary has."""
+    assert verb_reader.reading_of("اِهْدِهِمْ", _KNOWN)["lex"] == "هَدَى"
+    assert "lex" not in verb_reader.reading_of("اِهْدِهِمْ")   # nearest case: هَدَى، هَدَا or هَدِيَ
+
+
+@pytest.mark.parametrize("word, person", [("اُكْتُبِيهِ", ("c", "f", "s")), ("اُكْتُبَاهُ", ("c", None, "d")),
+                                          ("ضَرَبُوهُ", ("p", "m", "p"))])
+def test_a_doer_written_as_a_long_letter_ends_the_verb_its_pronoun_is_split_from(word: str, person: tuple):
+    """اُكْتُبِيهِ: the ي carries no mark, the kasra before it is the verb's last vowel; ضَرَبُوهُ is ضَرَبُوا (plural_alef)."""
+    found = verb_reader.reading_of(word)
+    assert (found["asp"], found.get("gen"), found["num"], found["enc0"]) == (*person, "3ms_dobj")
+    assert verb_reader.reading_of("اُكْتُبيهِ") is None   # nearest case: no vowel before the ي to make it long
+
+
+def test_of_the_closest_cells_the_one_the_dictionary_has_names_the_verb():
+    assert "lex" not in verb_reader.reading_of("اِهْدِ")   # هَدَى، هَدَا or هَدِيَ: the cells disagree
+    assert verb_reader.reading_of("اِهْدِ", _KNOWN)["lex"] == "هَدَى"
+
+
+def test_a_whole_word_the_dictionary_has_is_not_split():
+    found = verb_reader.reading_of("أَعْلِنَا", _KNOWN)   # announce, you two: no أَعْلَى + نا
+    assert (found["num"], found["lex"], found.get("enc0")) == ("d", "أَعْلَنَ", None)
+
+
+@pytest.mark.parametrize("word, root, person", [("تَحْبَطَ", "حبط", "3"), ("يَعْلَمَ", "علم", "3")])
+def test_a_present_in_nasb_is_read_on_the_fatha_for_its_damma(word: str, root: str, person: str):
+    # أَنْ تَحْبَطَ: the table prints the present in raf' alone, and nasb puts a fatha for the damma (Ajrumiyya)
+    assert any(c.root == root and c.column == "mudari" and c.person == person for c in verb_reader.read(word))
+    assert not any(c.column == "mudari" for c in verb_reader.read("حَبِطَ"))  # nearest case: a past's own fatha
+
+
+def test_a_present_ending_on_a_hamzah_is_read_from_its_table():
+    # يُكَافَأُ: the last hamzah sits on the fatha before it (Marah al-Arwah), so the table holds it and the word is a verb
+    assert any(c.root == "كفأ" and c.column == "mudari-passive" for c in verb_reader.read("يُكَافَأُ"))
+    assert not any(c.root == "كفأ" for c in verb_reader.read("يُكَافَؤُ"))  # nearest case: on its own damma it is no cell

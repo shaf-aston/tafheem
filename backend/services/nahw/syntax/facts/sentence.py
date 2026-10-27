@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import bare_letters
 from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, is_name, present_verb_tagged, subject_link
+from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, is_name, present_verb_tagged, subject_link, attached_pronoun
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -202,9 +202,10 @@ def told_of_lone_mubtada(token: dict, head: dict, s: Sentence) -> bool:
     """الدينُ النصيحةُ: a verbless sentence resting on one noun with nothing else said of
     it, so the plain noun in its case after it is its khabar; a describing word
     (الطبيبُ الماهرُ) stays its صفة (Tasheel 1.4 p6). Made definite by its مضاف إليه
-    (الطهورُ شطرُ الإيمانِ) it is a khabar too: a plain noun names a thing, it does not describe one.
-    So is a name, definite by itself whatever its tanween (أخوك زيدٌ)."""
-    plain_mudaf = token.get("stt") == "c" and token.get("pos_camel") == "noun" and not is_participle(token)
+    (الطهورُ شطرُ الإيمانِ) it is a khabar too: a plain noun names a thing, it does not describe one, and one of
+    a participle's shape no less (زيدٌ صاحبُ المالِ): the two parts alike definite, the first is the mubtada
+    (Ibn Aqil V1 p232: زيد أخوك). So is a name, definite by itself whatever its tanween (أخوك زيدٌ)."""
+    plain_mudaf = token.get("stt") == "c" and token.get("pos_camel") == "noun"
     return s.verbless and head["rel"] == "---" and noun_tagged(head) \
         and same_case(token, head) and (token.get("stt") == "d" or plain_mudaf or is_name(token)) and token.get("ud") != "ADJ" \
         and [t for t in s.tokens if t["rel"] == "---"] == [head] \
@@ -219,6 +220,38 @@ def verb_above(token: dict, s: Sentence) -> dict | None:
         return head
     up = s.head(head) if head else None
     return up if up and is_verb(up) else None
+
+
+def busied(verb: dict, s: Sentence) -> bool:
+    """زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ: the verb works on a pronoun of its own, by itself or through a
+    جار, or on a word the pronoun is added to (its سببي: زَيْدًا ضَرَبْتُ غُلَامَهُ، غُلَامَ صَاحِبِهِ، مَرَرْتُ بِغُلَامِهِ),
+    so a noun in nasb put before it is not its object (الاشتغال, Ibn Aqil V2 p128: أو في سببيه وهو المضاف
+    إلى ضمير الاسم السابق). The سببي must be in nasb or jarr by it: typed with its damma it is the doer (زَيْدًا ضَرَبَ
+    غُلَامُهُ), and زيدًا stays the object put first. The pronoun is one of the one away, as that noun is (رَبَّنَا
+    ظَلَمْنَا أَنْفُسَنَا: نا is the speakers', and ربنا is called)."""
+    return any((_absent_pronoun(k) and not subject_link(k))
+               or ((is_preposition(k) or (k["rel"] == "OBJ" and typed_or_parsed_case(k) != "u")) and _reaches_pronoun(k, s))
+               for k in s.kids(verb))
+
+
+def _reaches_pronoun(word: dict, s: Sentence) -> bool:
+    """A pronoun hangs below the word through its مجرور or مضاف إليه, however deep (غلامِ صاحبِه)."""
+    seen, below = set(), [word]
+    while below:
+        if (at := below.pop())["id"] in seen:
+            continue
+        seen.add(at["id"])
+        for kid in s.kids(at):
+            if kid["rel"] in ("OBJ", "IDF"):
+                if _absent_pronoun(kid):
+                    return True
+                below.append(kid)
+    return False
+
+
+def _absent_pronoun(token: dict) -> bool:
+    """+هُ، +هَا، +هُمْ: a pronoun written on that can stand for a noun said before it (closed_words damir_muttasil absent)."""
+    return attached_pronoun(token) and is_one(token["form"], "damir_muttasil", "absent")
 
 
 def next_word(token: dict, s: Sentence) -> dict | None:

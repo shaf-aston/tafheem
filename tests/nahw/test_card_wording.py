@@ -37,10 +37,18 @@ def test_kaffa_names_the_pair_only_where_naming_found_it():
 
 
 def test_every_pass_is_run_and_a_card_with_nothing_found_is_left_alone():
-    assert len(card_wording.PASSES) == len(set(card_wording.PASSES)) == 12
+    assert len(card_wording.PASSES) == len(set(card_wording.PASSES)) == 13
     cards = [{"word": "زَيْدٌ", "role": "مبتدأ", "reason": "مرفوع لأنه مبتدأ"}]
     card_wording.word(cards, [{}])
     assert cards == [{"word": "زَيْدٌ", "role": "مبتدأ", "reason": "مرفوع لأنه مبتدأ"}]
+
+
+def test_the_called_ayyu_says_its_ha_of_attention():
+    said = "وها حرف تنبيه مبني على السكون لا محل له من الإعراب"
+    cards = [{"word": "أَيُّهَا", "camel": {"lemma": "أيها"}, "reason": "منادى"},
+             {"word": "زَيْدُ", "camel": {"lemma": "زيد"}, "reason": "منادى"}]  # nearest case: no ها written on
+    card_wording.run([pieces.attention], cards, [{}, {}])
+    assert [c["reason"] for c in cards] == [f"منادى، {said}", "منادى"]
 
 
 def test_a_reason_read_and_written_back_is_the_same_text():

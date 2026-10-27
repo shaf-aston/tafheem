@@ -492,6 +492,13 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     assert [w["role"] for w in iraab.analyze("مُنِحَ الطَّالِبُ هَدِيَّةً")["words"]] == ["فعل مجهول", "نائب فاعل", "مفعول به"]
 
 
+def test_passive_giving_verb_with_its_deputy_inside_keeps_its_second_object():
+    """الطَّالِبُ أُعْطِيَ جَائِزَةً: the deputy is the هو hidden in the verb, so the noun in nasb after it is the
+    second object (Ibn Aqil V2 p123: أعطي عمرو درهما), not a حال however state-like its shape."""
+    from backend.services.nahw import iraab
+    assert [w["role"] for w in iraab.analyze("الطَّالِبُ أُعْطِيَ جَائِزَةً")["words"]] == ["مبتدأ", "فعل مجهول", "مفعول به"]
+
+
 @pytest.mark.parametrize("rooted", [False, True])
 def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, rooted):
     """عِلْمًا طَلَبَ زَيْدٌ: the verb has no pronoun back to عِلْمًا, so it is no صفة of it; the noun is
@@ -511,9 +518,35 @@ def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, ro
     assert [w["role"] for w in iraab.analyze("عِلْمًا طَلَبَ زَيْدٌ")["words"]] == ["مفعول به", "فعل", "فاعل"]
 
 
-@pytest.mark.parametrize("sentence, moved", [("عِلْمًا طَلَبَ زَيْدٌ", True), ("عِلْمًا طَلَبَهُ زَيْدٌ", False)])
-def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved):
-    """طَلَبَهُ has its pronoun back to عِلْمًا, so the parser's صفة reading stands; without one it cannot."""
+def test_a_mudaf_hung_under_its_own_mudaf_ilayh_takes_its_place():
+    """زَيْدٌ أَكْرَمُ رِجَالٍ: a CPU's rounding may hang أكرم on رجال; hanging رجال on أكرم as its مضاف إليه
+    would close a loop that no walk up the sentence ever leaves, so أكرم takes رجال's place first."""
+    from backend.services.nahw import syntax
+    from backend.services.nahw.syntax import catib_onnx
+    from backend.services.nahw.syntax.mask import above
+    from backend.services.nahw.syntax.repair import correct
+    from backend.services.sarf import morphology
+    words = ["زَيْدٌ", "أَكْرَمُ", "رِجَالٍ"]
+    tokens = catib_onnx.parse(words, morphology.pick(words, syntax.disambiguator()))
+    tokens[1]["head"], tokens[1]["rel"] = 3, "MOD"
+    tokens[2]["head"], tokens[2]["rel"] = 1, "MOD"
+    correct(words, tokens)
+    heads = [t["head"] for t in tokens]
+    assert (tokens[2]["head"], tokens[2]["rel"]) == (2, "IDF")
+    assert not any(above(heads, t["head"], t["id"]) for t in tokens)  # no word hangs under itself
+
+
+@pytest.mark.parametrize("sentence, moved", [
+    ("عِلْمًا طَلَبَ زَيْدٌ", True), ("زَيْدًا اضْرِبْ", True), ("زَيْدًا اضْرِبِي", True), ("زَيْدًا نَصَرْنَا", True), ("زَيْدًا ضَرَبْتَ", True),
+    ("زَيْدًا ضَرَبُوا", True), ("زَيْدًا ضَرَبْنَ", True),  # the و، ن of many is the doer, never a mere sign of number
+    ("عِلْمًا طَلَبَهُ زَيْدٌ", True), ("عِلْمًا مَرَّ بِهِ زَيْدٌ", True),  # الاشتغال: a verb like it, left out, governs it
+    ("زَيْدًا ضَرَبَ", False),  # nearest case: its doer is neither after it nor in it
+    ("زَيْدًا ضُرِبْتُ", False),  # nearest case: the تُ of a passive is its نائب فاعل, the one object it had
+    ("زَيْدًا ضُرِبُوا", False),  # nearest case: so is the و of a passive
+])
+def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved):
+    """A nasb noun at the head of the sentence has no word to put it there but the verb after it, once that
+    verb has its doer, after it or in it (اضْرِبْ، اضْرِبِي، نَصَرْنَا), so the verb is no صفة of it."""
     from backend.services.sarf import morphology
     from backend.services.nahw import syntax
     from backend.services.nahw.syntax import catib_onnx
@@ -529,6 +562,9 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
 @pytest.mark.parametrize("sentence, word, want", [
     # و of company: the و's head is the verb's attached doer, not a particle
     ("سافرت والصديقَ", "والصديقَ", ("role", "مفعول معه")),
+    # nearest case: a و before a nasb noun with a nasb noun to join is عطف; the و found beside the
+    # noun, not the parser's head, names the verb (once read nothing, every word left unnamed)
+    ("وَأَنزَلَ ٱللَّهُ عَلَيْكَ ٱلْكِتَٰبَ وَٱلْحِكْمَةَ", "وَٱلْحِكْمَةَ", ("role", "معطوف")),
     # خُلُقُهُ is read as the noun (خُلْق), not the verb خَلَقَ, so it copies الطالب
     ("أَعْجَبَنِي الطَّالِبُ خُلُقُهُ", "خُلُقُهُ", ("role", "بدل")),
     # but a guessed name is never a verb two slips off: زَيْدًا is not زَيَّدَا
@@ -661,3 +697,41 @@ def test_zanna_pair_whatever_tree_the_parser_gives(hung):
         tokens[word_id - 1]["head"], tokens[word_id - 1]["rel"] = head, rel
     correct(words, tokens)
     assert [r.get("role") for r in roles(words, tokens)] == ["فعل", "فاعل", "مفعول به", "مفعول به"]
+
+
+@pytest.mark.parametrize("sentence", ["سافرت والصديقَ", "سِرْتُ وَالشَّاطِئَ"])
+def test_the_verb_before_waw_al_maiyyah_governs_the_noun_after_it(sentence):
+    # مفعول معه: its عامل is the verb before the و (Tasheel 3.8.5 p76), not the و and not nothing
+    from tests.nahw_helpers import cards
+    words = cards(sentence)
+    assert (words[1]["role"], words[1]["governor"]) == ("مفعول معه", 0)
+
+
+@pytest.mark.parametrize("sentence, role", [
+    # typed bare, only the verb's own pronoun before the و: the joining is weak, the nasb chosen (Ibn Aqil V2 p204)
+    ("سافرت والصديق", "مفعول معه"),
+    ("استيقظت والشمس", "مفعول معه"),
+    ("سِرْتُ وَالْفَتَى", "مفعول معه"),  # its case unseen on the alif: the same weak joining
+    ("قام زيد وعمرو", "معطوف"),  # nearest case: a noun before the و to join
+    ("اشتريت كتابا وقلما", "معطوف"),
+])
+def test_a_bare_noun_after_waw_is_maful_maahu_only_with_nothing_to_join(sentence, role):
+    from tests.nahw_helpers import cards
+    assert cards(sentence)[-1]["role"] == role
+
+
+@pytest.mark.parametrize("sentence, role", [
+    # a name in nasb tanween keeps its و as a piece of its own: the و can then be read (جئت وزيدًا, Tasheel 3.8.5 p76)
+    ("جِئْتُ وَزَيْدًا", "مفعول معه"),
+    ("رَأَيْتُ بَكْرًا وَزَيْدًا", "معطوف"),  # nearest case: a noun in nasb before the و to join
+])
+def test_waw_before_a_name_in_nasb_is_its_own_piece(sentence, role):
+    from tests.nahw_helpers import cards
+    assert cards(sentence)[-1]["role"] == role
+
+
+@pytest.mark.parametrize("sentence", ["وما أدراك ما يوم الدين", "وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ"])
+def test_a_waw_before_its_verb_opens_no_maful_maahu(sentence):
+    """واو المعية follows a clause: with the verb after the و, the word after it is no مفعول معه."""
+    from tests.nahw_helpers import cards
+    assert cards(sentence)[0]["role"] == "مبتدأ"

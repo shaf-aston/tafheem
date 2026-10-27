@@ -146,3 +146,46 @@ def test_a_hamzah_standing_first_becomes_a_long_vowel() -> None:
     assert amana["Command"] == "آمِنْ"
     assert amana["Past passive"] == "أُوْمِنَ"
     assert amana["Verbal noun"] == "إِيْمَان"
+
+
+# ── where a hamzah is written ────────────────────────────────────────────────
+
+def cell(radicals: str, form: str, row: int, column: str) -> str:
+    return conjugation.conjugate(radicals, form)["rows"][row]["cells"][column]
+
+
+@pytest.mark.parametrize("radicals,form,row,column,expected", [
+    ("قرأ", "I-fataha", 0, "mudari", "يَقْرَأُ"),         # the ضمة on it comes and goes: the فتحة before seats it
+    ("كفأ", "III", 0, "mudari-passive", "يُكَافَأُ"),
+    ("خطئ", "I-samia", 0, "mudari", "يَخْطَأُ"),
+    ("بطؤ", "I-karuma", 0, "madi", "بَطُؤَ"),              # nearest case: a ضمة before still gives و
+    ("خطئ", "I-samia", 0, "madi", "خَطِئَ"),               # and a كسرة ي
+    ("قرأ", "I-fataha", 2, "mudari", "يَقْرَؤُونَ"),       # nearest case: not last, the stronger vowel seats it
+    ("قرأ", "I-fataha", 9, "mudari", "تَقْرَئِينَ"),
+])
+def test_a_last_hamzah_is_seated_by_the_vowel_before_it(radicals, form, row, column, expected) -> None:
+    """Sharh Marah al-Arwah (Dikunquz): وإذا كانت الهمزة متحركة في آخر الكلمة تكتب على وفق حركة ما قبلها
+    لا على وفق حركة نفسها؛ لأن الحركة المتطرفة عارضة ... نحو قرأ وطرؤ وفتئ."""
+    assert cell(radicals, form, row, column) == expected
+
+
+def test_a_last_hamzah_after_a_silent_letter_or_long_vowel_stands_on_the_line() -> None:
+    """The same page: وإذا كان ما قبلها ساكنا لا تكتب على صورة شيء. A seat the hamzah already has
+    is kept where a vowel stands before it (مُنْشَأ، قَارِئ)."""
+    assert summary_of("قرأ", "I-fataha")["Done to"] == "مَقْرُوء"
+    assert summary_of("نشأ", "IV")["Verbal noun"] == "إِنْشَاء"
+    assert summary_of("نشأ", "IV")["Done to"] == "مُنْشَأ"
+    assert summary_of("قرأ", "I-fataha")["Doer"] == "قَارِئ"
+
+
+@pytest.mark.parametrize("radicals,form,column,expected", [
+    ("قرأ", "I-fataha", "madi-passive", "قُرِئَا"),      # a كسرة before: ي, no madd
+    ("كفأ", "III", "mudari", "يُكَافِئَانِ"),
+    ("بطؤ", "I-karuma", "madi", "بَطُؤَا"),             # a ضمة before: و
+    ("قرأ", "I-fataha", "madi", "قَرَآ"),               # nearest case: a فتحة before, the two are آ
+    ("قرأ", "I-fataha", "mudari", "يَقْرَآنِ"),
+])
+def test_a_hamzah_and_alif_are_one_madd_only_after_a_fathah(radicals, form, column, expected) -> None:
+    """Treasures p.147 joins أَا into آ; a كسرة or ضمة before the hamzah is the stronger vowel
+    and seats it on ي or و (p.156-157), so the alif stays its own letter."""
+    assert cell(radicals, form, 1, column) == expected

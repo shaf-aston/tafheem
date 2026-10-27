@@ -1,7 +1,7 @@
 """The one step that corrects the parser's tokens, in place, before anything reads them.
 Each repair is its own module, run in the order below; `naming` and everything after only read.
 
-    book links → typed words → منذ before a noun → jarr after a مضاف → لام الابتداء → مَنْ that asks → مَنْ before its verb → subject clash → كان's raf' khabar → إنّ's nasb object → ظنّ's two objects → praise's تمييز → the doer first where no case shows → doer after the object → verb under its fronted object → object after tanween → verb under يا → praying noun → times counted → object of a plain noun → an elative's تمييز → indefinite after a definite opener → noun told of by a jar → second khabar → noun before لا → و هو + verb → ابن between names → untied command answering a condition → particle readings
+    book links → typed words → منذ before a noun → jarr after a مضاف → لام الابتداء → مَنْ that asks → مَنْ before its verb → subject clash → كان's raf' khabar → إنّ's nasb object → ظنّ's two objects → praise's تمييز → the doer first where no case shows → doer after the object → verb under its fronted object → object after tanween → object past verb → verb under يا → praying noun → times counted → object of a plain noun → an elative's تمييز → indefinite after a definite opener → noun told of by a jar → second khabar → noun before لا → حصر khabar → described doer → و هو + verb → ابن between names → untied command answering a condition → particle readings
 
 A split that does not line up with the typed words keeps only the book's links."""
 from __future__ import annotations

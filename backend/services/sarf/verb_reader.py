@@ -13,16 +13,18 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Callable
 from dataclasses import dataclass, field, replace
 from functools import lru_cache
 from pathlib import Path
 
 from backend.services.sarf import conjugation
-from backend.services.text.harakat import SUKUN, letters
-from backend.services.nahw.book import book_words
+from backend.services.text.harakat import KASRA, SUKUN, letters, plural_alef
+from backend.services.nahw.book import book_words, is_one
 
 _READING = Path(__file__).parent.parent.parent / "data" / "sarf" / "reading.json"
 _LONG = set("اوي")  # a sukun typed on a long letter is the reader's habit, not a vowel the table must hold
+_MADDA = "آ"  # a hamza, its fatha and the alif after it: a vowel written into the letter itself (آتِ)
 
 
 @dataclass(frozen=True)
@@ -62,8 +64,14 @@ def _read_words(column: str, row: int, word: str, form: str) -> list[tuple[str, 
     word = word.split(" ")[-1]  # لَا يَفْعَلْ: the jussive itself
     found = [(name, word)]
     for spelling in config["spellings"]:
-        if form in spelling["forms"] and name in spelling["columns"] and word.startswith(spelling["opens"]):
-            found.append((name, spelling["becomes"] + word[len(spelling["opens"]):]))
+        if form not in spelling.get("forms", [form]) or name not in spelling["columns"]:
+            continue
+        if (opens := spelling.get("opens")) and word.startswith(opens):
+            found.append((name, spelling["becomes"] + word[len(opens):]))
+        elif (within := spelling.get("within")) and within in word:
+            found.append((name, word.replace(within, spelling["becomes"])))
+        elif (ends := spelling.get("ends")) and word.endswith(ends):
+            found.append((name, word[:-len(ends)] + spelling["becomes"]))
     return found
 
 
@@ -122,6 +130,11 @@ def _group(letter: str) -> str:
 def _typed(marked: list[tuple[str, set]]) -> list[set]:
     """The marks the reader typed that a word must hold (a sukun on a long letter is habit)."""
     return [marks - ({SUKUN} if letter in _LONG else set()) for letter, marks in marked]
+
+
+def _voweled(marked: list[tuple[str, set]]) -> bool:
+    """A vowel typed before the last letter, whose own is the case or a pause: آ carries one in it."""
+    return any(marks or letter == _MADDA for letter, marks in marked[:-1])
 
 
 def _untyped(typed: list[tuple[str, set]], word: str) -> int | None:
@@ -199,7 +212,7 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
     """
     if governed:
         return None
-    if not vouched and not any(marks for _, marks in letters(word)[:-1]):
+    if not vouched and not _voweled(letters(word)):
         # without its vowels a word fits a command and much else (الله، البر); the last
         # letter's alone is no help either, it is the case or a sukun of pausing (اللهِ)
         return None
@@ -229,33 +242,56 @@ def typed_fully(word: str, cell: Cell) -> bool:
     return _untyped(letters(_fold(word)), cell.spelled) == 0
 
 
+
+def called(before: str, after: str, read_as: str = "") -> bool:
+    """A noun called is never the command its letters spell (Ibn Aqil V1 p15: والندا): after يا (يَا رَبِّ), or with
+    its يا left off, opening the sentence before the command said to it (رَبِّ اغْفِرْ لِي; V3 p256). `before` is the
+    bare word typed before it, "" opening the sentence; `read_as` the tense the sentence's reading gave `after`, a
+    command with its object written on (رَبِّ زِدْنِي) that command() alone cannot split. A noun after is no command
+    said (رَبِّ ابْنَكَ: "raise your son", not ابْنَ + كَ)."""
+    return is_one(before, "nida") or not before and (read_as == "c" or command(after) is not None)
+
+
 def known_as(word: str) -> str | None:
     """A word the dictionary has no reading for, written as sarf's table prints it, its joined
     letters (وَ، فَ، لْ) kept as typed: فَلْيَسْتَعْفِفْ is فَلْيَسْتَعِفَّ, which the dictionary reads.
     None where no verb of the table fits, or the fit is not one word: the vowels typed are the
     evidence, so a bare word (الله) fits too much, and a command has its own reading (command)."""
-    for front, closest in _cuts(word):
+    for front, _, closest in _cuts(word):
         closest = [cell for cell in closest if cell.column != "amr"]
         if closest and len({cell.spelled for cell in closest}) == 1:
             return _spell(front) + closest[0].spelled
     return None
 
 
-def reading_of(word: str) -> dict | None:
+def reading_of(word: str, known: Callable[[str], bool] | None = None) -> dict | None:
     """A verb the dictionary cannot read even as the table spells it (يَسْتَعْتِبُوا), read off
     the table in the dictionary's own features (reading.json `camel`): {pos, asp, vox, ...}.
     None unless the closest cells agree on its tense and voice. What they do not agree on is
-    left out, not guessed: تَسْتَحِ is "she" or "you", أَفْشُوا has فشو or فشي; both are verbs."""
-    for _, closest in _cuts(word):
+    left out, not guessed: تَسْتَحِ is "she" or "you", أَفْشُوا has فشو or فشي; both are verbs.
+    `known` says whether the dictionary has a verb, by its past: of the closest cells, the verbs
+    it has are the word's, and where it has none of them, a verb it has with an object pronoun
+    written on is (اِهْدِنَا is هَدَى + نا, not a dual of هَدَنَ, a verb no text it learnt from uses)."""
+    for front, rest, closest in _cuts(word):
+        if known:
+            seen = [c for c in closest if known(past(c))]
+            if not seen and (split := _with_object(word, known)) and known(split.get("lex", "")):
+                return split
+            closest = seen or closest
         if len({tuple(_config()["camel"][c.column].items()) for c in closest}) != 1:
             continue
         cells = [{**_config()["camel"][c.column], "per": c.person, "gen": c.gender, "num": c.number, "root": c.root,
                   "lex": past(c), "weak_last": c.root[-1:] in "وي"} for c in closest]
-        return {"pos": "verb", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)}}
-    return _with_object(word)
+        return {"pos": "verb", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)},
+                **(_pieces(front, rest) if front else {})}
+    return _with_object(word, known)
 
 
-def _with_object(word: str) -> dict | None:
+# a long letter and the vowel before it that makes it long (اُكْتُبِي، اُكْتُبُوا، اُكْتُبَا)
+_LENGTHENS = {"ي": KASRA, "و": "ُ", "ا": "َ"}
+
+
+def _with_object(word: str, known: Callable[[str], bool] | None = None) -> dict | None:
     """reading_of a verb with its object pronoun written on (ظَلَمَكَ is ظَلَمَ + كَ), the table
     holding the verb alone: the longest pronoun first, the verb before it voweled to its end."""
     marked = letters(word)
@@ -263,29 +299,44 @@ def _with_object(word: str) -> dict | None:
         verb, pronoun = marked[:-size], marked[-size:]
         if len(verb) < 2 or "".join(c for c, _ in pronoun) not in book_words("damir_muttasil", "on_verbs"):
             continue
-        if not verb[-1][1] or not (found := reading_of(_spell(verb))):
+        # اُكْتُبِيهِ، اُكْتُبُوهُ: a doer written as a long letter ends the verb on the vowel before it, and
+        # the plural's alef, written only at the word's end, comes back (plural_alef)
+        voweled = verb[-1][1] or _LENGTHENS.get(verb[-1][0]) in verb[-2][1]
+        if not voweled or not (found := reading_of(plural_alef(_spell(verb)), known)):
             continue
         person = _ENCLITIC.get("".join(c for c, _ in pronoun)) or _ENCLITIC["كِ" if "ِ" in pronoun[-1][1] else "كَ"]
-        return {**found, "atbtok": f"{_spell(verb)}_+{_spell(pronoun)}", "catib6": "VRB+NOM", "ud": "VERB+PRON", "enc0": f"{person}_dobj"}
+        joined = found.get("catib6", "").count("PRT")  # فَاهْدِنَا: the فَ the table read the verb behind
+        return {**found, **_pieces(verb[:joined], verb[joined:], pronoun), "enc0": f"{person}_dobj"}
     return None
 
 
 def _cuts(word: str):
-    """(the letters written onto its front, the table's closest cells for the rest), fewest
+    """(the letters written onto its front, the rest, the table's closest cells for the rest), fewest
     joined letters (وَ، فَ، لْ) first; only the vowels typed are evidence, so a bare word yields none."""
     marked = letters(word)
     for cut in range(min(len(marked), _JOINED_MOST) + 1):
         front, rest = marked[:cut], marked[cut:]
-        if not all(letter in _joined() for letter, _ in front) or not any(marks for _, marks in rest[:-1]):
+        if not all(letter in _joined() for letter, _ in front) or not _voweled(rest):
             continue
         found = dict(_scored(_spell(rest)))
         if found:
-            yield front, [cell for cell, score in found.items() if score == min(found.values())]
+            yield front, rest, [cell for cell, score in found.items() if score == min(found.values())]
+
+
+def _pieces(front: list, verb: list, pronoun: list = ()) -> dict:
+    """The dictionary's split of a verb the table read (atbtok, catib6, ud): each joined letter a
+    particle (فَ+، وَ+ a conjunction, لْ+ of the command), the verb, its object pronoun (فَ+_اقْبَلْ_+هَا)."""
+    return {"atbtok": "_".join([*(_spell([p]) + "+" for p in front), _spell(verb), *(["+" + _spell(pronoun)] if pronoun else [])]),
+            "catib6": "+".join(["PRT"] * len(front) + ["VRB"] + ["NOM"] * bool(pronoun)),
+            "ud": "+".join([*(_PROCLITIC[letter] for letter, _ in front), "VERB", *(["PRON"] if pronoun else [])])}
 
 
 # CAMeL's name for each object pronoun, by its letters and, for ك, its vowel
 _ENCLITIC = {"ني": "1s", "نا": "1p", "كَ": "2ms", "كِ": "2fs", "كما": "2d", "كم": "2mp", "كن": "2fp",
              "ه": "3ms", "ها": "3fs", "هما": "3d", "هم": "3mp", "هن": "3fp"}
+
+# the UD tag of each letter joined to a verb's front (_joined)
+_PROCLITIC = {"و": "CCONJ", "ف": "CCONJ", "ل": "PART"}
 
 # a verb takes at most two letters in front: وَ or فَ, then لْ
 _JOINED_MOST = 2

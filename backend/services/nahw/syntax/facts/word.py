@@ -2,11 +2,9 @@
 No sentence is needed for any of these; every other module here builds on them."""
 from __future__ import annotations
 
-import re
-
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
 from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, letters, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
-from backend.services.nahw.book import book_words, is_diptote, elative_shape, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
+from backend.services.nahw.book import book_words, is_diptote, elative_shape, measure, participle_shape, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
 # a root letter is what is left once the letters that come and go are removed
@@ -77,6 +75,14 @@ def holds_doer(verb: dict, kids) -> bool:
     return verb.get("asp") == "c" or any(subject_link(k) for k in kids)
 
 
+def own_doer(verb: dict) -> bool:
+    """The doer is in the verb itself: written on as تُ، نا، تَ, or hidden as أنا، نحن، أنت (Tasheel 2.4.1 p30),
+    so a command's too, always said to the one spoken to; and the ا، و، ن of two or many (ضَرَبَا، ضَرَبُوا،
+    ضَرَبْنَ), never a mere sign of number before a doer named after it (Sharh Qatr al-Nada p182: فلا يقال
+    قاما أخواك ولا قاموا اخوتك ... أخواك قاما فيكون أخواك مبتدأ وما بعده فعل وفاعل)."""
+    return (verb.get("per") in ("1", "2") or verb.get("num") in ("d", "p")) and not is_passive(verb)
+
+
 def attached_pronoun(token: dict) -> bool:
     """A pronoun written onto the word before it: عِلْمُ+هُ."""
     return token.get("pos_camel") == "pron" and is_suffix(token)
@@ -94,6 +100,11 @@ def read_as(token: dict, family: str) -> bool:
     if read := reading(token):
         return read == family
     return family not in token.get("judged", ()) and is_one(token["lemma"], family)
+
+
+def takes_two_objects(verb: dict) -> bool:
+    """ظن وأخواتها، أعطى وأخواتها: a verb that works on two objects."""
+    return is_one(verb["lemma"], "zanna") or is_one(verb["lemma"], "two_objects_give")
 
 
 def is_verb(token: dict) -> bool:
@@ -172,11 +183,16 @@ def typed_case_of(token: dict) -> str | None:
     return shown or written_nasb(token) or six_noun_case(token["base"], token["lemma"])
 
 
+def typed_bare(token: dict) -> bool:
+    """The reader typed the word with no vowel at all (زيد بكرا): its case is not shown, only read."""
+    typed = token.get("typed") or ""
+    return bool(typed) and typed == strip_diacritics(typed)
+
+
 def written_nasb(token: dict) -> str | None:
     """زيد بكرا typed bare: the alif of نصب tanween is written, not voweled (رسم المصحف و الإملاء),
     so it shows the nasb on its own when the word's reading puts that tanween on it; عصا's alif is its own."""
-    typed = token.get("typed") or ""
-    if not typed or typed != strip_diacritics(typed) or not typed.endswith("ا"):
+    if not typed_bare(token) or not token["typed"].endswith("ا"):
         return None
     # only nasb tanween is written with an alif, so any tanween before it is that one
     return CASE_LETTER["nasb"] if TANWEEN & set(token.get("diac", "")[-2:]) else None
@@ -294,9 +310,20 @@ def is_called_alone(token: dict) -> bool:
     return listed(token, "nida", "called_alone")
 
 
+def my_ya_dropped(token: dict) -> bool:
+    """يَا عَبْدِ، رَبِّ اغْفِرْ لِي: a called noun typed with a kasra and no tanween is مضاف to the ياء المتكلم,
+    which went and left its kasra (Ibn Aqil V3 p274: حذف الياء والاستغناء بالكسرة). Typed on (يَا رَبِّي), the ya hides the case."""
+    return typed_case_of(token) == "i" and not has_tanween(token.get("typed") or "")
+
+
 def is_called_noun(token: dict) -> bool:
     """أيها، أيتها: the noun يا calls, though the parser tags it a particle."""
     return listed(token, "nida", "called_nouns")
+
+
+def is_particle(token: dict) -> bool:
+    """Tagged a particle, and one: never أيها, the noun يا calls (Ibn Aqil V3 p268: فأي منادى)."""
+    return token["pos"] == "PRT" and not is_called_noun(token)
 
 
 def _skeleton(word: str) -> list[str]:
@@ -324,7 +351,7 @@ def is_participle(token: dict) -> bool:
     A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا."""
     typed = bare_letters(token.get("typed") or "")
     return (token.get("ud") == "ADJ" or token.get("pos_camel") == "adj"
-            or measure(token.get("pattern", "")).startswith(tuple(book_words("participle_patterns")))
+            or participle_shape(token.get("pattern", ""))
             or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
@@ -351,22 +378,6 @@ def works_as_verb(token: dict) -> str | None:
     if is_participle(token):
         return "passive" if measure(token.get("pattern", "")).startswith(PASSIVE_PARTICIPLE) else "active"
     return None
-
-
-def measure(pattern: str) -> str:
-    """The analyser's pattern laid back on its measure: a doubled root writes its last two
-    radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
-    in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3), a last radical hamza keeps its seat in place of the 3
-    (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3)."""
-    pattern = pattern.removeprefix("ال")
-    if "3" not in pattern and "2" in pattern:
-        pattern = re.sub(r"(?<=2)([\u064b-\u0652]*[اوي]?)[ءأإئؤ]", r"\g<1>3", pattern, count=1)
-    if "3" not in pattern and "2" + SHADDA in pattern:
-        return pattern.replace("2" + SHADDA, "2" + SUKUN + "3", 1)
-    if "2" not in pattern:  # قِيَام 1ِيا3: the weak letter stands as the 2, and the alef after it implies its fatha
-        pattern = re.sub(r"(?<=1[\u064b-\u0652])[وي](?=[\u064b-\u0652]?[اوي]?3)", "2", pattern, count=1)
-        return pattern.replace("2ا", "2َا")
-    return pattern
 
 
 def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw.card_wording.reason import Reason
 from backend.services.nahw.syntax.facts import reading
-from backend.services.nahw.book import case_of, extra_ba_named, extra_ba_said, family_cards, kaffa_card, teacher_rules
+from backend.services.nahw.book import attention_off, attention_said, case_of, extra_ba_named, extra_ba_said, family_cards, kaffa_card, teacher_rules
 
 
 def pieces(cards: list[dict], roles: list[dict]) -> None:
@@ -30,6 +30,13 @@ def doer(cards: list[dict], roles: list[dict]) -> None:
         for piece in found.get("attached", []):
             if not piece["before"] and piece.get("role") and (place := case_of(piece["role"])):
                 reason.extras.append(said["piece_said"].format(form=piece["form"], place=said["place"][place], role=piece["role"]))
+
+
+def attention(cards: list[dict], roles: list[dict]) -> None:
+    """يَا أَيُّهَا: the called أيّ's card says the ها of attention written on it (closed_words nida `attention`)."""
+    for card in cards:
+        if attention_off(card["word"], (card.get("camel") or {}).get("lemma") or "") and (reason := card.get("said")):
+            reason.extras.append(attention_said())
 
 
 def extra_ba(cards: list[dict], roles: list[dict]) -> None:

@@ -47,7 +47,8 @@ def arabic_sentence(text: str, field: str = "input") -> str:
     """
     text = normalize_text(text, field)
     require_arabic(text, field)
-    kept = words(text)
+    if not (kept := words(text)):
+        raise HTTPException(status_code=422, detail=f"{field} has no Arabic words.")
     if len(kept) > (limit := get_settings().max_sentence_words):
         raise HTTPException(status_code=422, detail=f"{field} is longer than {limit} words.")
     return " ".join(kept)

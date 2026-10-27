@@ -10,13 +10,11 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, paused, plural_alef, typed_passive
-from backend.services.nahw.book import book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
+from backend.services.nahw.book import attention_off, book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
 _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
-# the object pronouns a past verb can carry, longest first so هما is not read as ه
-OBJECT_PRONOUNS = ("هما", "كما", "هم", "هن", "ها", "كم", "كن", "ني", "نا", "ه", "ك")
 
 
 def sign(case: str | None, kind: str = "vowel") -> str | None:
@@ -124,8 +122,10 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         # built, yet it stands where nasb would be: مبني على الفتح في محل نصب
         place = said["in_place"].format(place=said["place"][CASE_LETTER[case]])
         return f"{_built(on.get(kind, on['vowel']))} {place}"
-    if case == "mabni" and (ending := _typed_ending(_unmoved(card, after))):
-        return _built(ending) + _moved(card, after)  # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter
+    # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter; أَيُّهَا on أَيُّ's, the ها written on it
+    built = attention_off(card["word"], (card.get("camel") or {}).get("lemma") or "")
+    if case == "mabni" and (ending := _typed_ending(built or _unmoved(card, after))):
+        return _built(ending) + _moved(card, after)
     return sign(case, "vowel" if case == "mabni" else kind)
 
 
@@ -238,7 +238,9 @@ def _without_object(word: str) -> str:
     """The verb with its object pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ,
     ضَرَبُوهُ → ضَرَبُوا."""
     bare = strip_diacritics(word)
-    pronoun = next((p for p in OBJECT_PRONOUNS if bare.endswith(p) and len(bare) > len(p) + 1), "")
+    # the object pronouns a verb can carry, longest first so هما is not read as ه
+    pronoun = next((p for p in sorted(book_words("damir_muttasil", "on_verbs"), key=len, reverse=True)
+                    if bare.endswith(p) and len(bare) > len(p) + 1), "")
     marked = letters(word)[:len(bare) - len(pronoun)]
     return plural_alef("".join(letter + "".join(sorted(marks)) for letter, marks in marked))
 

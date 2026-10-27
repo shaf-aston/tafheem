@@ -168,7 +168,7 @@
     },
 
     "hamzah-madd": {
-      "_comment": "A hamzah with a فتحة followed by a bare alif is written as one letter, the alif with a madd on it: أَاخِذ is آخِذ.",
+      "_comment": "A hamzah with a فتحة followed by a bare alif is written as one letter, the alif with a madd on it: أَاخِذ is آخِذ. Not after a كسرة or ضمة, which seat it on ي or و (hamzah-seat): قُرِئَا.",
       "page": "147", "book": "مهموز 2",
       "madd": "آ"
     },
@@ -178,7 +178,9 @@
       "page": "156-157", "book": "orthography",
       "hamzah": "أؤئء",
       "strength": {"ِ": 3, "ُ": 2, "َ": 1},
-      "seats": {"ِ": "ئ", "ُ": "ؤ", "َ": "أ"}
+      "seats": {"ِ": "ئ", "ُ": "ؤ", "َ": "أ"},
+      "_line": "A last hamzah is seated by the vowel before it alone, and after a silent letter or a long vowel it stands on the line (شرح مراح الأرواح لديكنقوز: وإذا كانت الهمزة متحركة في آخر الكلمة تكتب على وفق حركة ما قبلها لا على وفق حركة نفسها؛ لأن الحركة المتطرفة عارضة ... نحو قرأ وطرؤ وفتئ، وإذا كان ما قبلها ساكنا لا تكتب على صورة شيء): يَقْرَأُ، مَقْرُوء، إِنْشَاء.",
+      "line": "ء"
     },
 
     "joining-alif-drops": {

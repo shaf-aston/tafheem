@@ -33,7 +33,7 @@
   "place": {"u": "رفع", "a": "نصب", "i": "جر", "j": "جزم"},
   "mabni_noun": "مبني في محل {place} لأنه {role}",
   "in_place": "في محل {place}",
-  "_followed": "A follower's reason names the word it follows (iraab._followed): `followed` takes the place of `before` (تابع لـ«زيدٌ»); a معطوف names the first word of its chain, the معطوف عليه, and that word says it is one (`joined_on`). Several معطوف on one word, or several khabars of one subject, are counted by `ordinals` (معطوف ثانٍ).",
+  "_followed": "A follower's reason names the word it follows (card_wording/counting.py `followed`): `followed` takes the place of `before` (تابع لـ«زيدٌ»); a معطوف names the first word of its chain, the معطوف عليه, and that word says it is one (`joined_on`). Several معطوف on one word, or several khabars of one subject, are counted by `ordinals` (معطوف ثانٍ).",
   "before": "لما قبله",
   "followed": "لـ«{word}»",
   "joined_on": "وهو المعطوف عليه",
@@ -119,13 +119,16 @@
   "–": "يحتاج إلى مزيد من التحليل"
  },
  "kinds": {
-  "_comment": "The kind the books name for an idafa (Tasheel 3.4 p81) and a badal (Tasheel 3.10.4 p95), said after the word's reason (syntax/naming.py _kind_said). An idafa is لفظية when its مضاف is a describing word at work (حسنُ الوجهِ، ضاربُ زيدٍ); else معنوية: بمعنى «في» before a time or place, «من» before the stuff a thing is made of, اللام otherwise. A badal is بعض من كل when it names a part with a pronoun back, اشتمال when it carries that pronoun without being a part, كل من كل when it names the same thing.",
+  "_comment": "The kind the books name for an idafa (Tasheel 3.4 p81), a badal (Tasheel 3.10.4 p95) and a call with no يا, said after the word's reason (syntax/naming.py _kind_said). An idafa is لفظية when its مضاف is a describing word at work (حسنُ الوجهِ، ضاربُ زيدٍ); else معنوية: بمعنى «في» before a time or place, «من» before the stuff a thing is made of, اللام otherwise. A badal is بعض من كل when it names a part with a pronoun back, اشتمال when it carries that pronoun without being a part, كل من كل when it names the same thing.",
   "idafa": {"lafziyya": "والإضافة لفظية غير محضة", "fi": "والإضافة معنوية بمعنى «في»", "min": "والإضافة معنوية بمعنى «من»", "lam": "والإضافة معنوية بمعنى اللام"},
   "time": ["فجر", "ظهر", "عصر", "مغرب", "عشاء", "ليل", "نهار", "صباح", "مساء", "شتاء", "صيف", "ربيع", "خريف", "ضحى", "سحر", "يوم", "شهر", "سنة", "عام", "دهر"],
   "material": ["ذهب", "فضة", "حديد", "نحاس", "خشب", "حرير", "صوف", "قطن", "زجاج", "رخام"],
   "badal": {"kul": "بدل كل من كل", "baad": "بدل بعض من كل", "ishtimal": "بدل اشتمال"},
   "_fail_comment": "The doer of a مبتدأ وصف (ما ذاهبٌ المسلمون، أقائمٌ الزيدان) stands in for the khabar the وصف has none of (Alfiyya: وأوّلٌ مبتدأ والثاني فاعلٌ اغنى؛ Ibn Aqil). Read by syntax/facts/sentence.py described_doer.",
   "fail": {"sadda": "فاعل سدّ مسدّ الخبر"},
+  "_munada_comment": "A منادى with no حرف نداء typed before it: يا is left off (Ibn Aqil V3 p256: وأما غير هذه فيحذف معها الحرف جوازا، عبد الله اركب), or in اللهمّ put at the end as the doubled ميم (Awdah: يحذف حرف النداء ويعوض عنه الميم المشددة); and the ياء المتكلم it is مضاف to may go, its kasra left (Ibn Aqil V3 p274: يا عبدِ). Read by syntax/naming.py _kind_said.",
+  "munada": {"dropped": "وحرف النداء محذوف تقديره يا", "alone": "والميم المشددة عوض عن حرف النداء المحذوف", "my_ya": "وياء المتكلم المحذوفة ضمير متصل مبني في محل جر مضاف إليه"},
+  "object": {"busied": "والناصب له فعل محذوف وجوبًا يفسره الفعل المذكور"},
   "part": ["نصف", "ثلث", "ربع", "خمس", "بعض", "أكثر", "أقل", "جزء", "معظم", "أغلب", "شطر", "رأس", "يد", "وجه"]
  },
  "checks": {

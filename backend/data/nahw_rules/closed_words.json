@@ -93,6 +93,10 @@
    "effect": "calls the noun after it (munada); a single definite munada is built on damma, else nasb",
    "_called_nouns": "أيّ (أيّة) with the ها of attention is the munada itself, built on damma; the noun with ال after it is its صفة (Tasheel, al-nida)",
    "called_nouns": ["أيها", "أيتها"],
+   "_described_by": "أيّ is described only by a genus noun with أل (الرجل), a pointer (يا أيهذا) or a relative with أل (يا أيها الذي فعل كذا): the word kinds besides the noun with أل (Ibn Aqil V3 p268: ولا توصف أي إلا باسم جنس محلى بأل ... أو باسم إشارة ... أو بموصول محلى بأل)",
+   "described_by": ["pron_dem", "pron_rel"],
+   "_attention": "أيّ and أيّة are called with the ها of attention written on (أَيُّهَا، أَيَّتُهَا): the called noun is built on damma, the ها a particle with no place (Ibn Aqil V3 p268: فأي منادى مفرد مبنى على الضم وها زائدة)",
+   "attention": {"letters": "ها", "said": "وها حرف تنبيه مبني على السكون لا محل له من الإعراب"},
    "_called_alone": "اللهمّ is يا الله: يا dropped from the front and the ميم put at the end in its place, so it is the called noun with no particle before it (Ibn Jinni, al-Luma' p113)",
    "called_alone": ["اللهم"],
    "words": [
@@ -1033,6 +1037,8 @@
    "effect": "written joined to the word before it: genitive/accusative suffix on nouns, verbs and particles (كتابه، ضربه، إنه), or the subject ending of a verb",
    "on_nouns": ["ي", "نا", "ك", "كما", "كم", "كن", "ه", "ها", "هما", "هم", "هن"],
    "on_verbs": ["ني", "نا", "ك", "كما", "كم", "كن", "ه", "ها", "هما", "هم", "هن"],
+   "absent": ["ه", "ها", "هما", "هم", "هن"],
+   "_absent": "The pronouns of the one away (ضمير الغائب): only these stand for a noun said before it, a noun being one away, so only these are the pronoun of الاشتغال (Ibn Aqil V2 p128: ضمير الاسم السابق; زَيْدًا ضَرَبْتُهُ), never نا or ك (رَبَّنَا ظَلَمْنَا أَنْفُسَنَا).",
    "_on_verbs": "The object pronouns a verb takes (ظَلَمَكَ، أَكْرَمَنِي): the same as a noun's, but me is ني, its نون of protection kept (نون الوقاية).",
    "words": [
     "ي",
