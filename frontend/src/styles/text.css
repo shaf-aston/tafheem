@@ -205,6 +205,8 @@ textarea.arabic-lg {
 @media (pointer: coarse) {
   .tap { min-height: var(--layout-tap); min-width: var(--layout-tap); }
 }
+/* Controls pressed again and again, one after another (turning pages): the full thumb size for every .tap inside. */
+.tap-thumb { --layout-tap: calc(var(--layout-tap-min) * 1px); }
 
 
 /* A bayt (ui/Bayt): its two halves one above the other on a phone, side by side with room between from 640px. */

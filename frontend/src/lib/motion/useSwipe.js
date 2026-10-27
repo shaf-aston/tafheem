@@ -23,10 +23,12 @@ export function swipeOf({ dx, dy, ms = 0, mouse = false }) {
   return dx < 0 ? 1 : -1
 }
 
-// Sideways already means something in a text box or a sideways scroller.
-function claimed(target, root) {
+// Sideways already means something in a sideways scroller, and under a mouse or trackpad in a text
+// box (dragging selects). A finger may start on a text box: a page full of gaps would leave
+// no room to swipe from, and a finger's sideways drag in one is never a tap or a selection.
+export function claimed(target, root, { textBoxes = true } = {}) {
   for (let el = target; el && el !== root; el = el.parentElement) {
-    if (el.matches('input, textarea, select, [contenteditable="true"]')) return true
+    if (textBoxes && el.matches('input, textarea, select, [contenteditable="true"]')) return true
     if (el.scrollWidth > el.clientWidth && /auto|scroll/.test(getComputedStyle(el).overflowX)) return true
   }
   return false
@@ -52,7 +54,7 @@ export function useSwipe(onPrev, onNext) {
     style: { touchAction: 'pan-y pinch-zoom' },
     onPointerDown: (e) => {
       swiped.current = false
-      start.current = e.button === 0 && !claimed(e.target, e.currentTarget)
+      start.current = e.button === 0 && !claimed(e.target, e.currentTarget, { textBoxes: e.pointerType !== 'touch' })
         ? { x: e.clientX, y: e.clientY, t: e.timeStamp, face: e.pointerType !== 'mouse' && (e.currentTarget.querySelector('[data-slide]') ?? e.currentTarget) }
         : null
     },

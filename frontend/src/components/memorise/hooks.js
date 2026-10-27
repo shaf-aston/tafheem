@@ -173,17 +173,26 @@ export function useBookPage({ fresh, incoming }) {
 }
 
 /** Stepping a page either way, across parts, by button or swipe. */
-export function usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart, landing }) {
+export function usePageSteps({ card, parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart, landing }) {
   // The part `by` either side of this one: past a surah's last page is the next
   // surah, before its first is the one before.
   const partBy = (by) => parts?.[parts.findIndex((p) => p.id === part) + by]
+  const turned = useRef(false)
   const stepPage = (by) => {
+    turned.current = true
     const n = pageNumber + by
     if (n >= 0 && n < pages.length) return openPage(n)
     const next = partBy(by)
     if (by > 0) return openPart(next.id, 0)
     pageOfLine(bookId, next.id).then(([, all]) => openPart(next.id, all.length - 1)).catch(() => {})
   }
+  // A page turned by hand (the buttons under the page, a swipe) opens at its top: left
+  // where it was, the reader landed at the end of the new page, below what they were turning to.
+  useEffect(() => {
+    if (!turned.current) return
+    turned.current = false
+    if (card.current?.getBoundingClientRect().top < 0) scrollToEl(card.current, 'top')
+  }, [card, part, pageNumber])
   const atStart = pageNumber === 0 && !partBy(-1)
   const atEnd = pageNumber >= pages.length - 1 && !partBy(1)
   const swipe = useSwipe(!atStart && (() => stepPage(-1)), !atEnd && (() => stepPage(1)))
@@ -300,11 +309,12 @@ export function useGaps({ data, page, pageNumber, deal, difficulty, way, hidden,
 }
 
 /** The microphone and the page turning under it: stopping, forgetting, carrying on, and reciting from elsewhere. */
-export function useReciteTurns({ way, hidden, reciting, recitedPage, bookId, part, pageNumber, pinned, pages, partBy, openPart, pageOfLine }) {
+export function useReciteTurns({ card, way, hidden, reciting, recitedPage, bookId, part, pageNumber, pinned, pages, partBy, openPart, pageOfLine }) {
   // Whether recording again carries on the same recitation or begins the page
   // afresh. The reader's own choice, in the settings panel, because both are
   // reasonable: one person paused to look a word up, another gave up.
   const resume = useSetting('resume-reciting')
+  const turnsItself = useSetting('turn-page-itself')
   const [stayed, setStayed] = useState(null)
 
   /**
@@ -347,7 +357,6 @@ export function useReciteTurns({ way, hidden, reciting, recitedPage, bookId, par
    * (turn(), not forget(), so the recording under way is kept), and the new
    * page is followed from wherever they are on it.
    */
-  const card = useRef(null)
   const carryOnAt = (partId, n) => {
     if (partId === part && n === pageNumber) return
     turning.current = true
@@ -382,11 +391,11 @@ export function useReciteTurns({ way, hidden, reciting, recitedPage, bookId, par
   // A moment on the finished page first, marks settled and weighed, so a
   // slip in its last ayah is seen before the page goes.
   useEffect(() => {
-    if (way !== 'recite' || !listening || !reciting.finished) return
+    if (way !== 'recite' || !listening || !reciting.finished || !turnsItself) return
     const timer = setTimeout(turnPage, TURN_AFTER_MS)
     return () => clearTimeout(timer)
-  }, [way, listening, reciting.finished])  // eslint-disable-line react-hooks/exhaustive-deps
-  return { card, listen, elsewhere, where, askToGo, goElsewhere, setStayed }
+  }, [way, listening, reciting.finished, turnsItself])  // eslint-disable-line react-hooks/exhaustive-deps
+  return { listen, elsewhere, where, askToGo, goElsewhere, setStayed }
 }
 
 /**
@@ -401,6 +410,7 @@ export function useReciteTurns({ way, hidden, reciting, recitedPage, bookId, par
 export function useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart }) {
   const arriving = useRef(false)
   const landed = useRef(null)
+  const inPart = useRef(null)
   const [landing, setLanding] = useState(() => linkOf(incoming) !== null)
   useArrivalEffect(arrival, () => {
     const link = linkOf(incoming)
@@ -415,9 +425,13 @@ export function useArrivedPage({ arrival, incoming, onVisit, bookId, part, page,
   })
   const here = page && placeOf(bookId, part, page[0])
   useEffect(() => {
-    if (!here || arriving.current || here === landed.current) return
+    if (!here || arriving.current) return
+    // Another page of the part already open takes its step's place; a new part or book is a step.
+    const over = inPart.current === `${bookId}/${part}`
+    inPart.current = `${bookId}/${part}`
+    if (here === landed.current) return
     landed.current = null
-    onVisit?.(here)
+    onVisit?.(here, over)
   }, [here])  // eslint-disable-line react-hooks/exhaustive-deps
   return landing
 }

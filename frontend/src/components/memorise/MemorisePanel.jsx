@@ -11,7 +11,7 @@
  * no knowledge of the screen; the books are in lib/memorise/books.js, with no knowledge
  * of either. This file only shows what those two decide.
  */
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { BOOKS } from '../../lib/memorise/books'
 import { DIFFICULTIES, printedPageOf, score } from '../../lib/memorise/memorise'
@@ -51,9 +51,10 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   })
   const marks = page ? score(page, blanks, answers) : { right: 0, total: 0 }
   const landing = useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart })
-  const { partBy, stepPage, atStart, atEnd, swipe, slide } = usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart, landing })
-  const { card, listen, elsewhere, where, askToGo, goElsewhere, setStayed } = useReciteTurns({
-    way, hidden, reciting, recitedPage, bookId, part, pageNumber, pinned, pages, partBy, openPart, pageOfLine,
+  const card = useRef(null)
+  const { partBy, stepPage, atStart, atEnd, swipe, slide } = usePageSteps({ card, parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart, landing })
+  const { listen, elsewhere, where, askToGo, goElsewhere, setStayed } = useReciteTurns({
+    card, way, hidden, reciting, recitedPage, bookId, part, pageNumber, pinned, pages, partBy, openPart, pageOfLine,
   })
 
   // How you practise, chosen once and left: beside the pickers on a wide screen,
@@ -110,7 +111,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
 
   // Above the page and again under it, so a page read to its end turns from there.
   const pageSteps = (
-    <span className="flex items-center gap-2">
+    <span className="tap-thumb flex items-center gap-4">
       <Chip accent={accent} onClick={() => stepPage(-1)} disabled={atStart}>Previous</Chip>
       <Chip accent={accent} onClick={() => stepPage(1)} disabled={atEnd}>Next</Chip>
     </span>
@@ -158,7 +159,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
       {page && !landing && (
         <>
           {/* One wrapping row: the page and its arrows, then what helps. */}
-          <div className="flex items-center gap-2 flex-wrap text-sm text-[var(--text-dim)]">
+          <div className="tap-thumb flex items-center gap-2 flex-wrap text-sm text-[var(--text-dim)]">
             {/* A picker, not steps alone: stepping is fine for the next page
                 and useless for the fifteenth. The mushaf page, when known,
                 is the number a memoriser already uses, so it is the label. */}
