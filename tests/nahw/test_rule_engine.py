@@ -1056,6 +1056,7 @@ _BUSIED = "والناصب له فعل محذوف وجوبًا يفسره الف�
     ("عِلْمًا طَلَبَ زَيْدٌ", 0, "مفعول به", 1, False),  # its doer after it
     ("كِتَابًا أُعْطِيتُ", 0, "مفعول به", 1, False),  # a passive verb of giving, its deputy the تُ, keeps one (V2 p123)
     ("جُبَّةً كُسِيتُ", 0, "مفعول به", 1, False),
+    ("كِتَابًا أُعْطِيَ", 0, "مفعول به", 1, False),  # its deputy the هو hidden in it
     ("زَيْدًا ضَرَبْتُهُ", 0, "مفعول به", None, True),  # الاشتغال: the verb busied with its pronoun
     ("زَيْدًا اضْرِبْهُ", 0, "مفعول به", None, True),
     ("زَيْدًا ضَرَبُوهُ", 0, "مفعول به", None, True),

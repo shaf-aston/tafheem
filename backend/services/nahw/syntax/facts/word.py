@@ -82,12 +82,7 @@ def own_doer(verb: dict) -> bool:
     so a command's too, always said to the one spoken to; and the ا، و، ن of two or many (ضَرَبَا، ضَرَبُوا،
     ضَرَبْنَ), never a mere sign of number before a doer named after it (Sharh Qatr al-Nada p182: فلا يقال
     قاما أخواك ولا قاموا اخوتك ... أخواك قاما فيكون أخواك مبتدأ وما بعده فعل وفاعل)."""
-    return holds_pronoun(verb) and not is_passive(verb)
-
-
-def holds_pronoun(verb: dict) -> bool:
-    """A pronoun of the verb's own is its doer, or under a passive verb its deputy (أُعْطِيتُ: the تُ)."""
-    return verb.get("per") in ("1", "2") or verb.get("num") in ("d", "p")
+    return (verb.get("per") in ("1", "2") or verb.get("num") in ("d", "p")) and not is_passive(verb)
 
 
 def attached_pronoun(token: dict) -> bool:

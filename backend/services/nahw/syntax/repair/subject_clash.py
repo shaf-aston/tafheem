@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw.book import extra_ba_on, is_mabni, is_one
 from backend.services.nahw.syntax.facts import (
-    Sentence, case_unseen, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, noun_tagged, subject_link, holds_doer, own_doer, holds_pronoun, is_passive, works_as_verb)
+    Sentence, case_unseen, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -83,8 +83,8 @@ def verb_under_fronted_object(tokens: list[dict]) -> None:
     nasb noun before it heads the sentence instead: a noun at its head in nasb has no word to put it
     there but that verb. When the verb works on a pronoun back to the noun (عِلْمًا طَلَبَهُ زَيْدٌ، زَيْدًا
     مَرَرْتُ بِهِ) one like it, left out, does (الاشتغال, Ibn Aqil V2 p128: فالسابق انصبه بفعل أضمرا حتما).
-    A passive verb of two objects keeps one in nasb when its pronoun is the deputy (كِتَابًا أُعْطِيتُ, Ibn Aqil
-    V2 p123: كسي زيد جبة وأعطي عمرو درهما)."""
+    A passive verb of giving has its deputy always, in it or after it, and keeps one object in nasb
+    (كِتَابًا أُعْطِيتُ، كِتَابًا أُعْطِيَ; Ibn Aqil V2 p123: كسي زيد جبة وأعطي عمرو درهما)."""
     s = Sentence(tokens)
     for verb in tokens:
         noun = s.head(verb)
@@ -93,8 +93,8 @@ def verb_under_fronted_object(tokens: list[dict]) -> None:
                 and not is_mabni(noun.get("pos_camel", ""))):
             continue
         kids = s.kids(verb)
-        if own_doer(verb) or any(subject_link(k) and k["id"] > verb["id"] for k in kids) or (
-                is_passive(verb) and holds_pronoun(verb) and (is_one(verb["lemma"], "two_objects_give") or is_one(verb["lemma"], "zanna"))):
+        if own_doer(verb) or any(subject_link(k) and k["id"] > verb["id"] for k in kids) \
+                or (is_passive(verb) and is_one(verb["lemma"], "two_objects_give")):
             verb["head"], verb["rel"] = 0, "---"
             noun["head"], noun["rel"] = verb["id"], "OBJ"
             s = Sentence(tokens)
