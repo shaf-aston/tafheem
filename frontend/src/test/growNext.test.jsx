@@ -2,7 +2,7 @@
 // Home's "Next in Grow": one step picked from the record (lib/grow/suggest.js), down to the lesson, one tap to start.
 // The journey is one per page, so these run in order: a first visit, then places walked.
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { act, fireEvent, screen, within } from '@testing-library/react'
+import { act, fireEvent, screen, waitFor, within } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import HomePanel from '../components/home/HomePanel'
@@ -34,7 +34,7 @@ describe('Next in Grow', () => {
   it('stays hidden on a first visit, and when it is where you stopped', async () => {
     writeRaw(LEVEL_KEY, 'beginner')
     renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />)
-    expect(screen.queryByRole('region', NEXT)).toBeNull()
+    await waitFor(() => expect(screen.queryByRole('region', NEXT)).toBeNull())
     act(() => { visit('grow', 'basics/lesson') })
     await screen.findByRole('button', { name: /Continue/ })
     expect(screen.queryByRole('region', NEXT)).toBeNull()
@@ -45,8 +45,15 @@ describe('Next in Grow', () => {
     renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />)
     act(() => { visit('dict', 'كتب') })
     const next = await screen.findByRole('region', NEXT)
-    expect(next.textContent).toContain('Basics')
+    await waitFor(() => expect(next.textContent).toContain('Basics'))
     expect(next.textContent).toContain(knobs.copy['next-level'])
+  })
+
+  it('holds its place, a quiet bar with no button, while the record is being read', async () => {
+    renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />, { routes: used('jawhara', 6) })
+    const next = screen.getByRole('region', NEXT)
+    expect(within(next).queryByRole('button')).toBeNull()
+    await within(next).findByRole('button')
   })
 
   it('offers the book being studied, down to its next lesson, and one tap starts it', async () => {

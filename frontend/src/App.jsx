@@ -160,7 +160,7 @@ function AppContent() {
 
       {/* The tabpanel role sits on the inner element, not on <main>: overriding
           main's own role would leave the page with no main landmark to skip to. */}
-      <main id="main" tabIndex={-1} className="shell pt-4 pb-8 sm:pt-5 glass rounded-[var(--radius-lg)] focus:outline-none">
+      <main id="main" tabIndex={-1} className="shell pt-4 pb-8 sm:pt-5 glass pane-fill rounded-[var(--radius-lg)] focus:outline-none">
         <div role="tabpanel" id="tabpanel" aria-labelledby={`tab-${activeTab}`}>
           {/* The last few tabs stay alive, hidden (React's Activity): a switch
               back shows the panel as it was, with no fetch, no fade and no

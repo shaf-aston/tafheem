@@ -14,13 +14,25 @@ const FACES = [
   /^assets\/inter-latin-wght-normal-[\w-]+\.woff2$/,
 ]
 
+// The tabs that draw the Qur'an in its script (the app's own addresses, vercel.json), and its face.
+const QURAN_TABS = /^\/(mem|memorise|quran)(\/|$)/
+const QURAN_FACE = /^assets\/scheherazade-new-arabic-400-normal-[\w-]+\.woff2$/
+
+const link = (file) => `<link rel="preload" as="font" type="font/woff2" href="/${file}" crossorigin>`
+const builtIn = (bundle, face) => Object.keys(bundle ?? {}).find((name) => face.test(name))
+
 /** The links for the faces' built files in `bundle`; '' for any that is not there. */
 export function fontPreloadTag(bundle) {
-  const names = Object.keys(bundle ?? {})
-  return FACES.map((face) => names.find((name) => face.test(name)))
+  return FACES.map((face) => builtIn(bundle, face))
     .filter(Boolean)
-    .map((file) => `<link rel="preload" as="font" type="font/woff2" href="/${file}" crossorigin>`)
+    .map(link)
     .join('\n    ')
+}
+
+/** The line that adds the Qur'an face's link on the tabs that draw it; '' when the face is not built. */
+export function quranPreloadScript(bundle) {
+  const file = builtIn(bundle, QURAN_FACE)
+  return file ? `<script>if (${QURAN_TABS}.test(location.pathname)) document.head.insertAdjacentHTML('beforeend', '${link(file)}')</script>` : ''
 }
 
 /** For app.html only: the landing page has its own, lighter, type. */
@@ -30,8 +42,8 @@ export const preloadFont = {
     order: 'post',
     handler(html, { filename, bundle }) {
       if (!filename.endsWith('app.html')) return html
-      const tag = fontPreloadTag(bundle)
-      return tag ? html.replace('</title>', `</title>\n    ${tag}`) : html
+      const tags = [fontPreloadTag(bundle), quranPreloadScript(bundle)].filter(Boolean).join('\n    ')
+      return tags ? html.replace('</title>', `</title>\n    ${tags}`) : html
     },
   },
 }

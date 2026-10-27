@@ -107,11 +107,11 @@ export function useSwipe(onPrev, onNext) {
  */
 export const slideWay = (from, to) => (to === from ? '' : to > from ? 'slide-next' : 'slide-prev')
 
-export function useSlide(at) {
+export function useSlide(at, still = false) {
   const [seen, setSeen] = useState({ at, way: '' })
   let way = seen.way
   if (seen.at !== at) {
-    way = slideWay(seen.at, at)
+    way = still ? '' : slideWay(seen.at, at)
     setSeen({ at, way })
   }
   return { className: way, 'data-slide': '' }

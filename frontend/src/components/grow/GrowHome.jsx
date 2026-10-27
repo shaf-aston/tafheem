@@ -92,7 +92,7 @@ function NextStep({ world, where, line, onGo }) {
 
 const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.reviews[0])
 
-/** A next-step card's room while its world loads, so nothing below jumps when it lands. */
+/** The room for the next steps while the worlds load; they all appear at once (data-settling, styles/growWorlds.css), so the page below moves once, not per world. */
 const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
 
 /** A lessons world with a lesson to give: words not yet met, or some due. */
@@ -133,6 +133,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const hero = lead ?? mainId
   const partOf = (book) => book.parts.find((part) => part.id === book.next.part)?.title
   const accent = worldOf(lead ?? mainId).accent
+  const settling = [basics, words, ...Object.values(books), lessons.hadith, lessons.quran].some((state) => !state.ready && !state.error)
   return (
     <section className="grow-today rise-in" style={{ '--w': accent }} aria-labelledby="grow-today-h">
       <span className="grow-today-art" aria-hidden="true"><Emblem id={lead ?? mainId} /></span>
@@ -153,7 +154,8 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
           </PrimaryButton>
         </>
       )}
-      <div className="grow-nexts" data-open={more ? '' : undefined}>
+      <div className="grow-nexts" data-open={more ? '' : undefined} data-settling={settling ? '' : undefined}>
+        {settling && <NextSlot />}
         {basics.ready && !basics.begunHere && hero !== 'basics' && (!leads || leads === 'basics') && (
           <NextStep world={worldOf('basics')} where={say('New to Arabic?')} line={say('Start with ال, “the”')} onGo={() => onStart('basics')} />
         )}
@@ -164,7 +166,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
           <NextStep world={worldOf('words')} where={say('Today’s words')} line={lineOf(words)} onGo={() => onStart('words')} />
         )}
         {Object.entries(books).map(([id, book]) => {
-          if (!book.ready) return book.error ? null : <NextSlot key={id} />
+          if (!book.ready) return null
           return (
             <Fragment key={id}>
               {book.due.length > 0 && (
@@ -178,11 +180,9 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
             </Fragment>
           )
         })}
-        {!lessons.hadith.ready && !lessons.hadith.error && <NextSlot />}
         {hadith && (
           <NextStep world={worldOf('hadith')} where={say('{n} of 42', { n: hadith.n })} line={hadith.key.en} onGo={() => onStart('hadith')} />
         )}
-        {!lessons.quran.ready && !lessons.quran.error && <NextSlot />}
         {ayah && (
           <NextStep world={worldOf('quran')} where={say('{surah}, ayah {n}', { surah: ayah.name_en, n: ayah.ayah })} line={ayah.english}
             onGo={() => onStart('quran')} />
