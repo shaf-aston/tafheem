@@ -70,6 +70,8 @@ def _read_words(column: str, row: int, word: str, form: str) -> list[tuple[str, 
             found.append((name, spelling["becomes"] + word[len(opens):]))
         elif (within := spelling.get("within")) and within in word:
             found.append((name, word.replace(within, spelling["becomes"])))
+        elif (ends := spelling.get("ends")) and word.endswith(ends):
+            found.append((name, word[:-len(ends)] + spelling["becomes"]))
     return found
 
 

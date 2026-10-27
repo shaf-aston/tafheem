@@ -533,7 +533,7 @@ def gloss_as(reading: dict, pos: str | None) -> str:
     English kept: the grammar's job for a word CAMeL lists under more than one (فَإِنَّ is
     "so indeed", the condition's فَإِنْ "so if"). A reading CAMeL has of that class spelled with
     the word's own letters gives the sense, the likeliest first; with none the gloss stands."""
-    gloss = reading.get("gloss") or ""
+    gloss = reading.get("gloss") or _lemma_gloss(reading)
     if not pos or reading.get("pos") == pos:
         return gloss
     written = strip_diacritics(reading.get("base") or reading.get("word") or "")
@@ -543,6 +543,14 @@ def gloss_as(reading: dict, pos: str | None) -> str:
         return gloss
     stem = reading.get("stemgloss")
     return "+".join(other.get("stemgloss") or piece if piece == stem else piece for piece in gloss.split("+"))
+
+
+def _lemma_gloss(reading: dict) -> str:
+    """A verb only sarf's table read (verb_reader) has no gloss of its own: it means what the
+    dictionary's reading of its lemma, in its class, means (آتِنَا is آتَى's: give, not أَتَى's come); "" for none."""
+    lemma = reading.get("lemma") or ""
+    return next((a["stemgloss"] for a in _analyses(lemma) if a.get("pos") == reading.get("pos")
+                 and strip_diacritics(a.get("lex") or "") == lemma), "")
 
 
 def has_comparative(word: str) -> bool:

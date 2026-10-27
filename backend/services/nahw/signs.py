@@ -127,7 +127,7 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
     # أَمْسِ، حَيْثُ، مَنْ: built on the vowel typed on the last letter; أَيُّهَا on أَيُّ's, the ها written on it
     built = attention_off(card["word"], (card.get("camel") or {}).get("lemma") or "")
     if case == "mabni" and (ending := _typed_ending(built or _unmoved(card, after))):
-        return _built(ending) + ("" if built else _moved(card, after))
+        return _built(ending) + _moved(card, after)
     return sign(case, "vowel" if case == "mabni" else kind)
 
 

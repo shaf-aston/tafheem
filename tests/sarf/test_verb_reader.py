@@ -159,3 +159,16 @@ def test_of_the_closest_cells_the_one_the_dictionary_has_names_the_verb():
 def test_a_whole_word_the_dictionary_has_is_not_split():
     found = verb_reader.reading_of("أَعْلِنَا", _KNOWN)   # announce, you two: no أَعْلَى + نا
     assert (found["num"], found["lex"], found.get("enc0")) == ("d", "أَعْلَنَ", None)
+
+
+@pytest.mark.parametrize("word, root, person", [("تَحْبَطَ", "حبط", "3"), ("يَعْلَمَ", "علم", "3")])
+def test_a_present_in_nasb_is_read_on_the_fatha_for_its_damma(word: str, root: str, person: str):
+    # أَنْ تَحْبَطَ: the table prints the present in raf' alone, and nasb puts a fatha for the damma (Ajrumiyya)
+    assert any(c.root == root and c.column == "mudari" and c.person == person for c in verb_reader.read(word))
+    assert not any(c.column == "mudari" for c in verb_reader.read("حَبِطَ"))  # nearest case: a past's own fatha
+
+
+def test_a_present_ending_on_a_hamzah_is_read_from_its_table():
+    # يُكَافَأُ: the last hamzah sits on the fatha before it (Marah al-Arwah), so the table holds it and the word is a verb
+    assert any(c.root == "كفأ" and c.column == "mudari-passive" for c in verb_reader.read("يُكَافَأُ"))
+    assert not any(c.root == "كفأ" for c in verb_reader.read("يُكَافَؤُ"))  # nearest case: on its own damma it is no cell

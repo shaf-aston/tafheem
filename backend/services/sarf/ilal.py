@@ -508,10 +508,13 @@ def hamzah_amr(letters: list[W.Letter], rule: dict, context: Context):
 
 def hamzah_madd(letters: list[W.Letter], rule: dict, context: Context):
     """A hamzah with a فتحة on it, followed by a bare alif, is written as the
-    one letter آ: أَاخِذ is آخِذ (p.147)."""
+    one letter آ: أَاخِذ is آخِذ (p.147). A كسرة or ضمة before it is the stronger
+    vowel and seats it on ي or و instead (p.156-157): قُرِئَا, not قُرِآ."""
     for index in range(len(letters) - 1):
         letter, after = letters[index], letters[index + 1]
         if letter.letter not in W.HAMZAH or letter.vowel != W.FATHAH:
+            continue
+        if index and letters[index - 1].vowel in (W.KASRAH, W.DAMMAH):
             continue
         if after.letter != ALIF or after.marks:
             continue
@@ -527,7 +530,9 @@ def hamzah_seat(letters: list[W.Letter], rule: dict, context: Context):
 
     The seat follows whichever is the stronger of the hamzah's own vowel and
     the vowel before it: a كسرة gives ئ, a ضمة ؤ, a فتحة ا. At the head of a
-    word the hamzah stands on its own alif, so it is left as it is.
+    word the hamzah stands on its own alif, so it is left as it is. At its end
+    its own vowel comes and goes, so the vowel before alone seats it, and with
+    none it stands on the line: يَقْرَأُ، مَقْرُوء.
     """
     strength = rule["strength"]
     for index in range(1, len(letters)):
@@ -535,8 +540,10 @@ def hamzah_seat(letters: list[W.Letter], rule: dict, context: Context):
         if letter.letter not in rule["hamzah"]:
             continue
         own, before = letter.vowel, letters[index - 1].vowel
-        pick = own if strength.get(own, 0) >= strength.get(before, 0) else before
-        seat = rule["seats"].get(pick)
+        if index == len(letters) - 1:
+            seat = rule["seats"].get(before, rule["line"])
+        else:
+            seat = rule["seats"].get(own if strength.get(own, 0) >= strength.get(before, 0) else before)
         if seat is None or seat == letter.letter:
             continue
         letters = list(letters)

@@ -64,7 +64,7 @@
     "madi-passive": {"asp": "p", "vox": "p"},
     "mudari-passive": {"asp": "i", "vox": "p"}
   },
-  "_spellings": "Spellings the book also allows that the table does not print. In Forms V and VI a present verb starting تَتَ may drop one of its two ت (تَنَزَّلُ for تَتَنَزَّلُ, لا تَحَاسَدُوا). A hamza before the long و of many, which the table seats on و or ي, may stand on the line, as the Mushaf writes it (يَقْرَءُونَ الْكِتَابَ، كَانُوا بِهِ يَسْتَهْزِءُونَ): `opens` is a spelling of the word's start, `within` of any place in it, and a spelling with no `forms` is every form's.",
+  "_spellings": "Spellings the book also allows that the table does not print. In Forms V and VI a present verb starting تَتَ may drop one of its two ت (تَنَزَّلُ for تَتَنَزَّلُ, لا تَحَاسَدُوا). A hamza before the long و of many, which the table seats on و or ي, may stand on the line, as the Mushaf writes it (يَقْرَءُونَ الْكِتَابَ، كَانُوا بِهِ يَسْتَهْزِءُونَ): `opens` is a spelling of the word's start, `within` of any place in it, and a spelling with no `forms` is every form's The table prints the present in raf' alone, and its nasb is the jussive's حذف النون or a fatha for the damma (Ajrumiyya: فأما الفتحة فتكون علامة للنصب في ... الفعل المضارع إذا دخل عليه ناصب ولم يتصل بآخره شيء), so a present may `ends` on that fatha: أَنْ تَحْبَطَ is حَبِطَ's present, not a past of a four-letter تحبط.",
   "spellings": [
     {
       "forms": [
@@ -87,6 +87,11 @@
       "columns": ["madi", "mudari", "amr", "jussive", "madi-passive", "mudari-passive"],
       "within": "ئُو",
       "becomes": "ءُو"
+    },
+    {
+      "columns": ["mudari", "mudari-passive"],
+      "ends": "ُ",
+      "becomes": "َ"
     }
   ]
 }

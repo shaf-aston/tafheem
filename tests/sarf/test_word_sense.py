@@ -47,6 +47,35 @@ def test_the_word_reads_in_its_jobs_class(camel_in, reading, sense, english) -> 
     assert morphology.gloss_as(reading, sense) == english
 
 
+# What CAMeL lists for آتى: أَتَى (come) is its likelier near spelling, آتَى (give) the verb itself.
+_ATA = [{"lex": "أَتَى", "pos": "verb", "stemgloss": "arrive;come"},
+        {"lex": "آتَى", "pos": "noun", "stemgloss": "coming"},
+        {"lex": "آتَى", "pos": "verb", "stemgloss": "give;offer"}]
+
+
+@pytest.mark.parametrize("reading, english", [
+    # آتِنَا: sarf's table read the command, with no gloss; the dictionary's آتَى in its class gives it
+    ({"lemma": "آتى", "pos": "verb", "gloss": ""}, "give;offer"),
+    ({"lemma": "آتى", "pos": "noun", "gloss": ""}, "coming"),
+    # nearest cases: a gloss of its own stands; another lemma's letters are not this one's
+    ({"lemma": "آتى", "pos": "verb", "gloss": "bring"}, "bring"),
+    ({"lemma": "آتا", "pos": "verb", "gloss": ""}, ""),
+])
+def test_a_reading_with_no_gloss_means_what_its_lemma_does(monkeypatch, reading, english) -> None:
+    monkeypatch.setattr(morphology, "_analyses", lambda word: _ATA if word == "آتى" else [])
+    assert morphology.gloss_as(reading, None) == english
+
+
+@needs_parser
+def test_a_present_verb_camel_vowels_otherwise_is_read_and_glossed() -> None:
+    # أَنْ تَحْبَطَ أَعْمَالُكُمْ (49:2): CAMeL has only يَحْبِطُ, so sarf's table read the word, once as a past
+    # of a four-letter تحبط with no English; the nasb's fatha is the present's (Ajrumiyya)
+    card = cards("أَنْ تَحْبَطَ أَعْمَالُكُمْ")[1]
+    assert card["case"] == "nasb" and card["reason"].startswith("فعل مضارع منصوب")
+    assert sentence_meaning.read_words("أَنْ تَحْبَطَ أَعْمَالُكُمْ")[0][1]["english"]
+    assert cards("حَبِطَتْ أَعْمَالُهُمْ")[0]["case"] == "mabni"  # nearest case: the past stays a past
+
+
 def test_the_card_names_the_class_the_english_is_read_in(camel_in, monkeypatch) -> None:
     card = {"word": "فإن", "role": "حرف", "role_key": "harf", "case": "mabni", "sense": "verb_pseudo",
             "camel": {"gloss": "and;so+if;whether", "stemgloss": "if;whether", "pos": "conj_sub", "base": "إن"}}

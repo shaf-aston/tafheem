@@ -80,16 +80,24 @@ def read_words(text: str) -> tuple[list[dict], str | None]:
     """
     try:
         read = iraab.analyze(text)
-        cards = [(c["word"], {**c["camel"], "gloss": morphology.gloss_as(c["camel"], c.get("sense"))},
-                  c.get("role_key") and c.get("role"), c.get("case")) for c in read["words"]]
+        cards = [(c["word"], c["camel"], c.get("sense"), c.get("role_key") and c.get("role"), c.get("case"))
+                 for c in read["words"]]
         summary = read["summary"]
     except Exception as exc:  # noqa: BLE001, the parser is optional here
         logger.info("sentence meaning  no i'rab reading: %s", exc)
-        cards = [(w["word"], w, None, None) for w in morphology.analyze_sentence(text)]
+        cards = [(w["word"], w, None, None, None) for w in morphology.analyze_sentence(text)]
         summary = None
-    return [{"arabic": word, "english": literal(c.get("gloss") or ""), "base": c.get("base") or word,
+    return [{"arabic": word, "english": english(c, sense), "base": c.get("base") or word,
              "lemma": c.get("lemma") or "", "pos": c.get("pos") or "", "state": c.get("state"),
-             "role": role or None, "case": case or None} for word, c, role, case in cards], summary
+             "role": role or None, "case": case or None} for word, c, sense, role, case in cards], summary
+
+
+def english(reading: dict, sense: str | None = None) -> str:
+    """One word's English: CAMeL's gloss in the class the grammar settled (morphology.gloss_as), else
+    the dictionary's first sense of the very lemma (Wiktionary: مُسْرِعًا is "fast"), else "". Never a
+    near spelling's: the nearest headword to آتِنَا is أتان, a she-ass."""
+    first = dictionary_service.meaning_of(reading.get("lemma") or "")
+    return literal(morphology.gloss_as(reading, sense)) or "/".join(first.split(", ")[:get_settings().sentence_senses])
 
 
 def translate(text: str) -> dict:
