@@ -38,11 +38,12 @@ def test_arabic_script_with_no_word_in_it_is_refused_not_a_crash(text):
 
 def test_a_failed_read_is_read_again_next_time_not_remembered(monkeypatch):
     from backend.services.nahw import iraab, syntax
-    real, calls = syntax.read, []
+    calls = []
 
     def fails_once(sentence, picks):
+        # no parser model needed: the first read breaks, the second comes back whole
         calls.append(sentence)
-        return {"roles": [{"role": None, "case": None} for _ in picks], "tree": None, "failed": True} if len(calls) == 1 else real(sentence, picks)
+        return {"roles": [{"role": None, "case": None} for _ in picks], "tree": None, "failed": len(calls) == 1}
 
     monkeypatch.setattr(syntax, "read", fails_once)
     iraab._kept.cache_clear()
