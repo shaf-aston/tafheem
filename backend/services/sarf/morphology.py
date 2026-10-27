@@ -649,7 +649,11 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if unread(ranked) and (twin := verb_reader.known_as(token)) and (twin_ranked := _ranked([twin], disambiguator)):
             # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
             ranked, evidence = twin_ranked[0], twin
-        if not _agreeing(evidence, ranked) and (name := _name_in_nasb(token, disambiguator)):
+        # زيدا typed bare fits the verb زَيَّدَا too, but that one adds a shadda the writing lacks and the name none
+        # (الأصل عدم الزيادة), so the name in nasb is read where it adds fewer
+        agreeing = _agreeing(evidence, ranked)
+        if (not agreeing or _added(_reading(evidence, ranked), token)) and (name := _name_in_nasb(token, disambiguator)) \
+                and (not agreeing or _added(name, token) < _added(_reading(evidence, ranked), token)):
             ranked = [name]
         if lam := _emphasis_lam(evidence, disambiguator):
             ranked = [lam]
@@ -857,6 +861,11 @@ def _joined_onto(said: str, found: dict, tag: str, **proclitic) -> dict:
     return {**found, "diac": said + found.get("diac", ""), "atbtok": f"{said}+_" + found.get("atbtok", ""),
             "catib6": "PRT+" + found.get("catib6", ""), "ud": "PART+" + found.get("ud", ""),
             "bw": f"{said}/{tag}+" + found.get("bw", ""), "pattern": said + found.get("pattern", ""), **proclitic}
+
+
+def _added(reading: dict, typed: str) -> int:
+    """The shaddas a reading puts on that the typed word lacks: letters the writing does not show."""
+    return reading.get("diac", "").count("ّ") - typed.count("ّ")
 
 
 def _agreeing(typed: str, ranked: list[dict]) -> bool:

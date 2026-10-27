@@ -170,11 +170,22 @@ def test_the_verb_is_the_plainest_reading_before_the_nasb():
 
 
 @needs_parser
+@pytest.mark.parametrize("word, diac", [
+    ("زيدا", "زَيْدًا"),  # the name adds no letter; the verb زَيَّدَا adds a shadda (الأصل عدم الزيادة)
+    ("جدا", "جِدّاً"),   # nearest case: جِدًّا's shadda is the stem's too, so the ranked reading stays
+])
+def test_a_bare_word_is_read_adding_the_fewest_letters(word, diac):
+    assert morphology.pick([word])[0].get("diac") == diac
+
+
+@needs_parser
 @pytest.mark.parametrize("sentence, roles", [
     ("نصر زيد بكرا", ["فعل", "فاعل", "مفعول به"]),  # typed bare: the nasb alif is written
     ("ضرب زيد عمرا", ["فعل", "فاعل", "مفعول به"]),
     ("جئت بكرة", ["فعل", "مفعول فيه"]),            # بُكْرَة keeps its ة: still the time word
     ("جاء زيد راكبا", ["فعل", "فاعل", "حال"]),       # a state word stays the hal
+    ("ضربوا زيدا", ["فعل", "مفعول به"]),             # not the verb زَيَّدَا: its shadda is no letter written
+    ("رأيت زيدا", ["فعل", "مفعول به"]),
 ])
 def test_bare_text_reads_its_written_nasb(sentence, roles):
     assert _roles(sentence) == roles

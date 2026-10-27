@@ -13,7 +13,7 @@ Change a stage, add a rule or reorder one → that test fails until this page sa
 `backend/routers/analyze.py` → `backend/services/nahw/iraab.py` `analyze`:
 
 1. Split words (`split_words`), keep typed vowels.
-2. One reading per word: `backend/services/sarf/morphology.py` `pick` (BERT ranks, then the reading that fits the most typed vowels; a line of nouns alone, a pronoun counted as one, with a منصوب in it reads its first possible past verb as that verb: زيد نصر بكرا، هُوَ أَكْرَمَ ضَيْفًا; a word the dictionary cannot read is read off sarf's table (`backend/services/sarf/verb_reader.py` `reading_of`), a verb the dictionary has winning over one no text uses, a command with its object pronoun written on too: اِهْدِنَا is هَدَى + نا, not a dual of هَدَنَ). Cards and parser share it.
+2. One reading per word: `backend/services/sarf/morphology.py` `pick` (BERT ranks, then the reading that fits the most typed vowels; a name in nasb the dictionary files without its alif is read so where no reading fits the vowels, or, typed bare, where the ranked one adds a shadda the name does not: زيدا is زَيْدًا, not the verb زَيَّدَا; a line of nouns alone, a pronoun counted as one, with a منصوب in it reads its first possible past verb as that verb: زيد نصر بكرا، هُوَ أَكْرَمَ ضَيْفًا; a word the dictionary cannot read is read off sarf's table (`backend/services/sarf/verb_reader.py` `reading_of`), a verb the dictionary has winning over one no text uses, a command with its object pronoun written on too: اِهْدِنَا is هَدَى + نا, not a dual of هَدَنَ). Cards and parser share it.
 3. Recorded Qurʾān ayah → `backend/services/nahw/tarkeeb_store.py`, skip to cards.
 4. Else `backend/services/nahw/syntax/__init__.py` `read`: stages 1–7 below. Any error → every word unnamed.
 
