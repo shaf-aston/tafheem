@@ -74,6 +74,10 @@ describe('nameOfPlace', () => {
     expect(nameOfPlace('scholars', collections)).toBe('Scholars')
     expect(nameOfPlace('terms', collections)).toBe('Terms')
     expect(nameOfPlace('terms/3', collections)).toBe('Terms')
+    // A group reads by its title once the guide is in, so the trail is not "Terms › Terms"; the whole list stays "Terms".
+    const title = (n) => (n === 3 ? 'Accepted' : null)
+    expect(nameOfPlace('terms/3', collections, undefined, title)).toBe('Accepted')
+    expect(nameOfPlace('terms', collections, undefined, title)).toBe('Terms')
     expect(nameOfPlace('narrator/4396', collections)).toBe('A narrator')
     expect(nameOfPlace('narrator/4396', collections, (id) => (id === '4396' ? 'Abu Huraira' : null))).toBe('Abu Huraira')
   })

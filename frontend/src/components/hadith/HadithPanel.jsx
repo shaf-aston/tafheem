@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import { useArrivalWhenReady } from '../../lib/nav/useArrival'
 import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith } from '../../api'
+import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith, usulGuideQuery } from '../../api'
 import { bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from '../../lib/hadith/hadithPlace'
 import { useHadithFavorites } from '../../lib/hadith/useHadithFavorites'
 import { nearest, tabNow, trailFor, useJourney } from '../../lib/nav/journey'
@@ -52,11 +52,14 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   // watched (the same request his page makes), so a name lands once it arrives, a reloaded trail too.
   const client = useQueryClient()
   const { steps, at } = useJourney()
-  const onTrail = new Set([narrator, ...nearest(trailFor(steps, tabNow(steps, at), at), at, TRAIL_STEPS).shown.map((step) => narratorOf(step.value))])
+  const shown = nearest(trailFor(steps, tabNow(steps, at), at), at, TRAIL_STEPS).shown
+  const onTrail = new Set([narrator, ...shown.map((step) => narratorOf(step.value))])
   onTrail.delete(null)
   const pages = useQueries({ queries: [...onTrail].map((id) => narratorQuery(id)) })
   const names = Object.fromEntries([...onTrail].map((id, n) => [id, pages[n].data?.name_en]))
-  const named = (q) => nameOfPlace(q, collections, (id) => names[id])
+  // A Terms group on the trail reads by its title, from the guide the Terms view already holds.
+  const guide = useQuery({ ...usulGuideQuery, enabled: termsGroup != null || shown.some((step) => termsGroupOf(step.value) != null) })
+  const named = (q) => nameOfPlace(q, collections, (id) => names[id], (n) => guide.data?.glossary?.[n]?.title)
   const source = useSources().sources.find((s) => s.key === 'hadith')
 
   // A link naming a book starts that book loading beside the collections, not after them.
