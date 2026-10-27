@@ -492,6 +492,13 @@ def test_passive_giving_verb_keeps_its_second_object(monkeypatch, rel):
     assert [w["role"] for w in iraab.analyze("مُنِحَ الطَّالِبُ هَدِيَّةً")["words"]] == ["فعل مجهول", "نائب فاعل", "مفعول به"]
 
 
+def test_passive_giving_verb_with_its_deputy_inside_keeps_its_second_object():
+    """الطَّالِبُ أُعْطِيَ جَائِزَةً: the deputy is the هو hidden in the verb, so the noun in nasb after it is the
+    second object (Ibn Aqil V2 p123: أعطي عمرو درهما), not a حال however state-like its shape."""
+    from backend.services.nahw import iraab
+    assert [w["role"] for w in iraab.analyze("الطَّالِبُ أُعْطِيَ جَائِزَةً")["words"]] == ["مبتدأ", "فعل مجهول", "مفعول به"]
+
+
 @pytest.mark.parametrize("rooted", [False, True])
 def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, rooted):
     """عِلْمًا طَلَبَ زَيْدٌ: the verb has no pronoun back to عِلْمًا, so it is no صفة of it; the noun is
@@ -514,12 +521,12 @@ def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, ro
 def test_a_mudaf_hung_under_its_own_mudaf_ilayh_takes_its_place():
     """زَيْدٌ أَكْرَمُ رِجَالٍ: a CPU's rounding may hang أكرم on رجال; hanging رجال on أكرم as its مضاف إليه
     would close a loop that no walk up the sentence ever leaves, so أكرم takes رجال's place first."""
-    from backend.services.sarf import morphology
     from backend.services.nahw import syntax
     from backend.services.nahw.syntax import catib_onnx
     from backend.services.nahw.syntax.mask import above
     from backend.services.nahw.syntax.repair import correct
-    words = "زَيْدٌ أَكْرَمُ رِجَالٍ".split()
+    from backend.services.sarf import morphology
+    words = ["زَيْدٌ", "أَكْرَمُ", "رِجَالٍ"]
     tokens = catib_onnx.parse(words, morphology.pick(words, syntax.disambiguator()))
     tokens[1]["head"], tokens[1]["rel"] = 3, "MOD"
     tokens[2]["head"], tokens[2]["rel"] = 1, "MOD"

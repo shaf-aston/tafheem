@@ -2,6 +2,7 @@
 import pytest
 
 from backend.services.sarf import morphology
+from backend.services.text.arabic_text import bare_letters
 from backend.services.sarf import noun_reader
 from backend.services.nahw.syntax.facts import Sentence
 from tests.nahw_helpers import analyze, needs_parser
@@ -176,6 +177,21 @@ def test_the_verb_is_the_plainest_reading_before_the_nasb():
 ])
 def test_a_bare_word_is_read_adding_the_fewest_letters(word, diac):
     assert morphology.pick([word])[0].get("diac") == diac
+
+
+@needs_parser
+@pytest.mark.parametrize("word, per, num, verb", [
+    ("ضُرِبْتُ", "1", "s", "ضرب"),  # the dictionary has no passive: its active ضَرَبْتُ, not ضَرَبَتْ
+    ("ضُرِبْتِ", "2", "s", "ضرب"),
+    ("ضُرِبَتْ", "3", "s", "ضرب"),
+    ("أُعْطِيتُ", "1", "s", "أعطى"),  # أُعْطِيَتْ agrees but for the ending it leaves bare
+    ("رُمِيتُ", "1", "s", "رمى"),
+    ("كُسِيتُ", "1", "s", "كسا"),  # كَسِيَ "got clothed" contradicts its vowels: sarf's verb is the word
+    ("كتبت", "3", "s", "كتب"),  # nearest case: typed bare, no ending says the doer, the ranked one stays
+])
+def test_a_past_verb_s_ending_names_its_doer(word, per, num, verb):
+    reading = morphology.pick([word])[0]
+    assert (reading.get("per"), reading.get("num"), bare_letters(reading.get("lex", ""))) == (per, num, bare_letters(verb))
 
 
 @needs_parser

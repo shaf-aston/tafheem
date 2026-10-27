@@ -680,6 +680,17 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         better = best_reading(evidence, wider)
         if better and (vowel_agreement(evidence, better.get("diac", "")) or found)[1] < found[1]:
             out[i], steps[i] = better, (evidence, wider)
+    # ضُرِبْتُ، أُعْطِيتُ: a past verb's ending names its doer (تُ أنا، تَ أنت، تْ هي), and sarf's table reads it off
+    # the typed vowels; a reading of another doer, agreeing only where the dictionary leaves the ending bare
+    # or not at all (it lacks most passives), is not the word: the one of that doer is, or the doer is the table's.
+    # One the typed vowels contradict is no evidence for the verb either (كُسِيتُ is كَسَا's passive, not كَسِيَ)
+    for i, (evidence, ranked) in enumerate(steps):
+        if out[i].get("pos") == "verb" and out[i].get("asp") == "p" and (said := verb_reader.reading_of(evidence, _seen_verb)) \
+                and said.get("asp") == "p":
+            keys = (*DOER, "lex") if vowel_agreement(evidence, out[i].get("diac", "")) is None else DOER
+            if not _same(out[i], said, keys):
+                out[i] = next((r for r in _widened(tokens[i], ranked) if r.get("asp") == "p" and _same(r, said, keys)),
+                              {**out[i], **{key: said[key] for key in keys if key in said}})
     # a noun already joined to "my" takes no second mudaf ilayh: before a genitive noun
     # أَبِي is the six nouns' jarr (أَبِي الطَّبِيبِ), not "my father"; so before a name that
     # shows no case at all (أَبِي مُوسَى), which a jarr fits as well as any
@@ -866,6 +877,15 @@ def _joined_onto(said: str, found: dict, tag: str, **proclitic) -> dict:
 def _added(reading: dict, typed: str) -> int:
     """The shaddas a reading puts on that the typed word lacks: letters the writing does not show."""
     return reading.get("diac", "").count("ّ") - typed.count("ّ")
+
+
+DOER = ("per", "gen", "num")
+
+
+def _same(reading: dict, said: dict, keys: tuple[str, ...]) -> bool:
+    """The reading has what sarf's table said of these (its person, gender, number, verb), where it said one;
+    a verb by its letters, the two spelling its last vowel otherwise (ضَرَب، ضَرَبَ)."""
+    return all(bare_letters(reading.get(key) or "") == bare_letters(said[key]) for key in keys if said.get(key, "-") != "-")
 
 
 def _agreeing(typed: str, ranked: list[dict]) -> bool:
