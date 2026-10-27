@@ -82,8 +82,12 @@ describe('TermsView from the wide breakpoint', () => {
     renderScreen(<Harness />, { routes })
     const chart = await screen.findByRole('group', { name: 'Hadith terms' })
     const width = Number(chart.getAttribute('viewBox').split(' ')[2])
-    const frame = chart.parentElement
-    expect(frame.style.minWidth).toBe(`${Math.round(width * MIN_SCALE)}px`)
+    expect(width).toBeGreaterThan(0)
+    // The zoom bar takes it a step in and back to fitted.
+    fireEvent.click(screen.getByRole('button', { name: 'Zoom in' }))
+    expect(screen.getByText('125%')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Fit' }))
+    expect(screen.getByText('100%')).toBeTruthy()
     expect(SMALLEST_LABEL * MIN_SCALE).toBeGreaterThanOrEqual(12)
     expect(chart.getAttribute('role')).toBe('group')
     // A term of the whole tree opens its card.

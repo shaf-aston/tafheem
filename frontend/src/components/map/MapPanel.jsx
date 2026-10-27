@@ -11,13 +11,12 @@
  * What this does NOT do yet, on purpose: nothing here tracks how far a reader has gone through a science; a
  * `progress` prop could later decorate a box in PbsChart without restructuring it.
  */
-import { useCallback, useEffect, useEffectEvent, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useEffectEvent, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
 import ArabicText from '../ui/ArabicText'
 import SectionHeader from '../ui/SectionHeader'
 import ManhajView from './ManhajView'
 import PbsChart from '../shell/PbsChart'
-import { anchoredScroll, pinchedZoom, usePinch } from '../../lib/map/usePinch'
 import { FAMILIES } from '../../lib/map/manhajData'
 import { MANHAJ, placeOf, reachable, screenOf, upOf, valueOf } from '../../lib/map/mapPlace'
 import { scrollToTop } from '../../lib/motion/scrollToEl'
@@ -27,10 +26,10 @@ import { chartTree, nodeAt, viewConfig } from '../../lib/shell/pbsTree'
 import { widthAtLabel } from '../../lib/shell/pbsLayout'
 import { useMedia, PHONE } from '../../lib/hooks/useMedia'
 import chartKnobs from '../../config/pbsChart.json'
+import zoomKnobs from '../../config/zoom.json'
+import ZoomBar from '../ui/ZoomBar'
+import { useZoom } from '../../lib/hooks/useZoom'
 
-const ZOOM_MIN = 0.7
-const ZOOM_MAX = 3
-const ZOOM_STEP = 0.2
 // At 100% the chart never draws narrower than this; on a phone, narrower than its smallest label reading at phone-label-px.
 // Either way it scrolls inside its own frame, and (the frame's padding aside) never draws its text unreadably small.
 const CHART_MIN_REM = 56
@@ -61,18 +60,16 @@ function trailOf(place, chart, tree, path) {
 export default function MapPanel({ incoming, arrival, onVisit }) {
   const [place, setPlace] = useState(() => placeAt(incoming))
   const [hoverBranch, setHoverBranch] = useState(null)
-  const [zoom, setZoom] = useState(1)
-  const [pinching, setPinching] = useState(false)
   const phone = useMedia(PHONE)
   const frame = useRef(null)
-  const anchor = useRef(null) // { x, y, ratio }: the spot to keep under the fingers once the new zoom is drawn
+  const { zoom, pinching, endPinch, step, set, reset } = useZoom(frame, zoomKnobs.map, place.at === 'chart') // the index has nothing to zoom
 
   // Back, forward, or a link from elsewhere: show the place it names.
   // A new screen opens at its top, as a fresh page would: a group picked low in the grid used to open scrolled past
   // its own beginning. A comparison picked on a group's page is the same screen, so it stays where the reader is.
   const show = (next) => {
     if (screenOf(next) !== screenOf(place)) scrollToTop()
-    if (next.at !== 'chart' || next.id !== place.id) setZoom(1)
+    if (next.at !== 'chart' || next.id !== place.id) reset()
     setPlace(next)
     setHoverBranch(null)
   }
@@ -84,27 +81,7 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
     onVisit?.(valueOf(next))
   }
 
-  // A pinch on the chart zooms the chart, never the page. The spot between the fingers stays put:
-  // the content grows by `ratio` around it, so the scroll moves by the same amount.
-  const pinch = useCallback((by, x, y) => {
-    setPinching(true)
-    setZoom((z) => {
-      const next = pinchedZoom(z, by, ZOOM_MIN, ZOOM_MAX)
-      anchor.current = { x, y, ratio: next / z }
-      return next
-    })
-  }, [])
-  useLayoutEffect(() => {
-    const el = frame.current
-    const a = anchor.current
-    if (!el || !a) return
-    el.scrollLeft = anchoredScroll(el.scrollLeft, a.x, a.ratio)
-    el.scrollTop = anchoredScroll(el.scrollTop, a.y, a.ratio)
-    anchor.current = null
-  }, [zoom])
-
   const chart = place.at === 'chart' ? CHARTS.find((one) => one.id === place.id) : null
-  usePinch(frame, chart ? pinch : null) // the index has nothing to zoom
   const tree = useMemo(() => (chart ? chartTree(chart) : null), [chart])
   const path = useMemo(() => (tree ? reachable(tree, place.path) : []), [tree, place.path])
   const shown = tree && nodeAt(tree, path)
@@ -171,21 +148,15 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
               </li>
             ))}
           </ol>
-          {chart && (
-            <div className="flex items-center gap-1.5 shrink-0">
-              <button type="button" onClick={() => setZoom((z) => Math.max(ZOOM_MIN, z - ZOOM_STEP))} className="icon-button" aria-label="Zoom out">−</button>
-              <span className="w-11 text-center tabular-nums">{Math.round(zoom * 100)}%</span>
-              <button type="button" onClick={() => setZoom((z) => Math.min(ZOOM_MAX, z + ZOOM_STEP))} className="icon-button" aria-label="Zoom in">+</button>
-            </div>
-          )}
+          {chart && <ZoomBar zoom={zoom} knobs={zoomKnobs.map} onStep={step} onSet={set} onReset={reset} />}
         </nav>
       )}
 
       {chart ? (
         <div
           ref={frame}
-          onTouchEnd={() => setPinching(false)}
-          onTouchCancel={() => setPinching(false)}
+          onTouchEnd={endPinch}
+          onTouchCancel={endPinch}
           className="relative overflow-auto rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] h-[max(24rem,calc(100dvh-var(--app-header-h,4rem)-14rem))]"
           tabIndex={0}
           role="region"

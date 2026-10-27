@@ -6,12 +6,13 @@
  * MIN_SCALE, so where it still overflows its frame scrolls, its far edge fading. A tap on any term opens its card
  * (hadith/TermCard).
  */
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { usulGuideQuery } from '../../api'
 import { layoutChart } from '../../lib/shell/pbsLayout'
 import { branchChart, MIN_SCALE, termAt, termsChart, wholeWidth } from '../../lib/hadith/termsChart'
+import { useZoom } from '../../lib/hooks/useZoom'
 import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 import { atLeast, SHELL_MAX, TERMS_TREE_MIN, useMedia } from '../../lib/hooks/useMedia'
 
@@ -22,15 +23,35 @@ import { AnalyzerSkeleton } from '../ui/Skeleton'
 import SheetLink from './SheetLink'
 import Tile from '../ui/Tile'
 import PbsChart from '../shell/PbsChart'
+import ZoomBar from '../ui/ZoomBar'
+import zoomKnobs from '../../config/zoom.json'
 import TermCard from './TermCard'
 
-/** A chart in a frame that scrolls sideways once the chart would draw below MIN_SCALE. */
+/**
+ * A chart in a frame that scrolls both ways: at 100% it is fitted to the frame, never narrower than MIN_SCALE draws it,
+ * and the zoom bar (pinch, Ctrl/⌘ + wheel and the + − 0 keys too) takes it from the whole tree down to a single box.
+ */
 function Chart({ config, onZoom }) {
   const { width } = useMemo(() => layoutChart(config), [config])
+  const frame = useRef(null)
+  const { zoom, pinching, endPinch, step, set, reset } = useZoom(frame, zoomKnobs.terms)
   return (
-    <div className="scroll-fade-x" tabIndex={0} role="region" aria-label="Terms chart">
-      <div style={{ minWidth: `${Math.round(width * MIN_SCALE)}px` }}>
-        <PbsChart config={config} onZoom={onZoom} />
+    <div className="space-y-2">
+      <div className="flex justify-end type-small text-[var(--text-dim)]">
+        <ZoomBar zoom={zoom} knobs={zoomKnobs.terms} onStep={step} onSet={set} onReset={reset} />
+      </div>
+      <div
+        ref={frame}
+        onTouchEnd={endPinch}
+        onTouchCancel={endPinch}
+        className="scroll-fade-x max-h-[max(24rem,calc(100dvh-var(--app-header-h,4rem)-14rem))] overflow-y-auto"
+        tabIndex={0}
+        role="region"
+        aria-label="Terms chart"
+      >
+        <div style={{ width: `max(${zoom * 100}%, ${Math.round(width * MIN_SCALE * zoom)}px)`, transition: pinching ? 'none' : 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
+          <PbsChart config={config} onZoom={onZoom} />
+        </div>
       </div>
     </div>
   )
