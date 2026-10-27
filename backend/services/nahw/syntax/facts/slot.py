@@ -68,10 +68,12 @@ def place_time(token: dict, s: Sentence) -> bool:
     if is_built_zarf(token) and head and is_verb(head) and token["rel"] in ("MOD", "IDF"):
         return True  # سافر أمسِ: its kasra is built in, so it says nothing of its case
     # مسافرٌ غدًا: a participle works like its verb
-    if head and works_as_verb(head) and (is_verb(head) or token["rel"] == "MOD"):
-        return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a")
-    return typed_or_parsed_case(token) in (None, "a") and any(
+    # كُلَّمَا جَاءَ زَيْدٌ أَكْرَمْتُهُ: its own verb hung on it, whatever link it has to the verb above
+    opens_verb = typed_or_parsed_case(token) in (None, "a") and any(
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
+    if head and works_as_verb(head) and (is_verb(head) or token["rel"] == "MOD"):
+        return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") or opens_verb
+    return opens_verb
 
 
 def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:

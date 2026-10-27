@@ -236,7 +236,11 @@ def test_a_verb_with_the_plurals_waw_before_a_pronoun(sentence: str, sign: str):
     ("قَاتِلُوا مُسْرِعِينَ", ["فعل", "حال"]),  # a command no less
     ("مَرَرْتُ بِرِجَالٍ مُسْرِعِينَ", ["فعل", "مجرور", "صفة"]),  # nearest case: after an indefinite plural, its صفة
     ("إِنَّ الطُّلَّابَ مُسْرِعُونَ", ["حرف", "اسم إن", "خبر إن"]),
-    ("حضر الطلاب الا زيدا", ["فعل", "فاعل", "حرف", "مستثنى"]),  # bare الا is إِلَّا, not the name آلًا
+    ("حضر الطلاب الا زيدا", ["فعل", "فاعل", "حرف", "مستثنى"]),
+    # a command to a woman with its object written on: the ي before هِ is her, no noun's ending
+    ("اُكْتُبِيهِ الْآنَ", ["فعل", "مفعول فيه"]),
+    # a time word its own verb hangs on is the main verb's ظرف, however the parser links it (as a خبر here)
+    ("كُلَّمَا جَاءَ زَيْدٌ أَكْرَمْتُهُ", ["مفعول فيه", "فعل", "فاعل", "فعل"]),  # bare الا is إِلَّا, not the name آلًا
     ("إِنَّ الْمُهَنْدِسَ الْعَجُوزَ نَشِيطٌ", ["حرف", "اسم إن", "صفة", "خبر إن"]),  # ال on both: it follows
     ("ابْتَاعَ الْخَبَّازُ صَاعًا شَعِيرًا", ["فعل", "فاعل", "مفعول به", "تمييز"]),  # after a measure
     ("اشْتَرَيْتُ رِطْلًا كَامِلًا", ["فعل", "مفعول به", "صفة"]),  # nearest case: an adjective after one
@@ -775,8 +779,6 @@ def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: 
     ("لَا يُؤْتُونَ النَّاسَ نَقِيرًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),
     # a command a noun reading had (آتٍ, one coming) is آتَى's: its second object no بدل of the first
     ("آتِ ذَا الْقُرْبَى حَقَّهُ", ["فعل", "مفعول به", "مضاف إليه", "مفعول به"]),
-    # a command to a woman with its object written on: the ي before هِ is her, no noun's ending
-    ("اُكْتُبِيهِ الْآنَ", ["فعل", "مفعول فيه"]),
     # nearest case: an indefinite word after one object stays the حال
     ("جَاءَ الرَّجُلُ ضَاحِكًا", ["فعل", "فاعل", "حال"])])
 def test_two_objects_of_a_verb_of_giving_are_both_objects_and_a_case_clash_is_no_naat(sentence: str, roles: list[str]):
