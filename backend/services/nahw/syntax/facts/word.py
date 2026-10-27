@@ -72,6 +72,11 @@ def subject_link(token: dict) -> bool:
     return token["rel"] in SUBJECTS
 
 
+def holds_doer(verb: dict, kids) -> bool:
+    """The verb's doer is settled: one hung on it, or a command's, always the hidden أنت (Tasheel 2.4.1 p30)."""
+    return verb.get("asp") == "c" or any(subject_link(k) for k in kids)
+
+
 def attached_pronoun(token: dict) -> bool:
     """A pronoun written onto the word before it: عِلْمُ+هُ."""
     return token.get("pos_camel") == "pron" and is_suffix(token)

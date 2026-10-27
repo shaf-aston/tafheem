@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, frames, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles
-from backend.services.nahw.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, NOUN_LINKS, SUBJECTS
+from backend.services.nahw.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, jarr_takes, praised_noun, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import with_waw
 
@@ -125,11 +125,12 @@ def purpose(token: dict, verb: dict) -> bool:
 def quoted_head(token: dict, s: Sentence) -> bool:
     """قال الضيفُ سلامٌ عليكم، قال زيدٌ الجوُّ جميلٌ: a verb has one doer (Tasheel 2.4.1), so a raf'
     word a verb of saying (roles.json said_clause) holds after its doer is no second one but heads
-    the sentence it says, its مقول القول, named inside as that sentence would be on its own."""
+    the sentence it says, its مقول القول, named inside as that sentence would be on its own.
+    قُلْ هُوَ اللَّهُ أَحَدٌ: a command's doer is the hidden أنت, so it holds one before any word."""
     head = s.head(token)
     return (token["rel"] == "OBJ" and typed_case_of(token) == "u" and head is not None and is_verb(head)
             and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
-            and any(subject_link(t) and t["id"] < token["id"] for t in s.kids(head) if t is not token))
+            and holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"])))
 
 
 def verb_place(token: dict, s: Sentence) -> str:
@@ -224,7 +225,7 @@ def verb_place(token: dict, s: Sentence) -> str:
         # (its صلة makes it definite); with the doer settled (a command's is the hidden أنت) it is the object.
         # A verb has no مضاف إليه, so a relative the parser hung as one (أَكْرِمْ مَنْ زَارَكَ) is the same
         if rel in ("MOD", "IDF") and listed(token, "mawsul") and not any(t["rel"] == "OBJ" for t in siblings) \
-                and (head.get("asp") == "c" or any(subject_link(t) for t in siblings)):
+                and holds_doer(head, siblings):
             return "object"
         # نصر زيدٌ بكرًا: a noun the parser hung on the verb with no relation ("---" belongs to the
         # root alone) is still one of its arguments, told by its case like the rest; one with a subject

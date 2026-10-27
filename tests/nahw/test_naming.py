@@ -571,8 +571,12 @@ def test_a_command_hung_on_ya_is_no_second_called_noun():
 
 def test_a_detached_pronoun_after_its_verb_is_tawkeed():
     toks = [token(1, "ذهبت", "ذهب", "VRB", 0, "---", vox="a", asp="p", per="1"),
-            token(2, "أنا", "أنا", "NOM", 1, "SBJ", pos_camel="pron", cas="n")]
+            token(2, "أنا", "أنا", "NOM", 1, "SBJ", pos_camel="pron", cas="n", per="1")]
     assert roles(["ذَهَبْتُ", "أَنَا"], toks) == ["فعل", "توكيد"]
+    # قُلْ هُوَ: the hidden doer is أنت, so هو repeats nothing; it opens the sentence قل says
+    toks = [token(1, "قل", "قال", "VRB", 0, "---", vox="a", asp="c", per="2"),
+            token(2, "هو", "هو", "NOM", 1, "SBJ", pos_camel="pron", cas="n", per="3")]
+    assert roles(["قُلْ", "هُوَ"], toks)[1] != "توكيد"
 
 
 def test_a_first_person_verb_takes_the_noun_after_it_as_its_object():

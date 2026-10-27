@@ -34,9 +34,11 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - book_links: fixed structures written over the parser (`backend/services/nahw/syntax/mask.py`)
 - typed_words: retag by what was typed, command shapes (bare letters too where the sentence vouches for a verb: no dictionary reading, or an object on an elative: اكتبي درسك، ارفعي صوتك; never on a noun with a sign of the noun: called, or in jarr as مضاف إليه or a jarr noun's صفة: يَا رَبِّ، لِلَّهِ رَبِّ الْعَالَمِينَ; a command to one woman takes the ي split off as "my" as its doer: قُومِي; the plural's alef, dropped before a pronoun, comes back: اُكْتُبُوهُ), muḍāf flag (`backend/services/nahw/syntax/repair/typed.py`)
 - since_jarr: a built time word that is also a preposition (مُنْذُ أَمْسِ، مُذْ شَهْرٍ) before a noun → the preposition, the noun its majrur (`backend/services/nahw/syntax/repair/typed.py`)
+- jarr_after_mudaf: a noun typed in jarr with no جار, hung elsewhere, straight after a noun typed with its case but no tanween and no ال (زَيْدٌ أَكْرَمُ رِجَالٍ) → that noun's مضاف إليه; never after a name (بِسْمِ اللَّهِ الرَّحْمَنِ), nor after a diptote put in jarr, whose fatha has no tanween to drop (بِمَسَاجِدَ كَثِيرَةٍ) (`backend/services/nahw/syntax/repair/typed.py`)
 - emphasis_lam_opener: a لام typed with a fatha onto a noun (لَزَيْدٌ قَائِمٌ، وَلَلْآخِرَةُ خَيْرٌ) hung as a جار → لام الابتداء: the noun takes its place, the لام hangs on it; hung on a word after it, as its صفة or its doer (لَأَنْتُمْ أَشَدُّ، لَزَيْدٌ يَقُومُ) → its مبتدأ, as that لام heads the sentence and comes onto no فاعل (`backend/services/nahw/syntax/repair/typed.py`)
 - asked_man: an opening مَنْ with no verb in the sentence → the question word, not the relative (`backend/services/nahw/syntax/repair/asked.py`)
-- subject_clash: a raf' noun the parser made the object of a verb with no doer → its doer (أَحَبَّ زَيْدٌ عَمْرًا); second noun after a raf' subject → the verb's object (`backend/services/nahw/syntax/repair/subject_clash.py`)
+- man_before_verb: an opening مَنْ the parser hung on the verb after it → the مبتدأ, the verb its khabar (مَنْ أَكْرَمَ ضَيْفًا); when the verb holds its own doer (مَنْ أَكْرَمْتَ) → its fronted object (`backend/services/nahw/syntax/repair/asked.py`)
+- subject_clash: a raf' noun the parser made the object of a verb with no doer → its doer (أَحَبَّ زَيْدٌ عَمْرًا; a command already holds its doer, the hidden أنت (قُلْ هُوَ اللَّهُ أَحَدٌ)); second noun after a raf' subject → the verb's object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - kana_subject: a raf' noun right after كان/ليس, with a later predicate → كان's subject, not its khabar; a خبر the parser hung on the subject → كان's khabar; a باء hung on لست as a modifier → the باء of ليس's khabar (لَسْتُ بِغَافِلٍ) (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - inna_object: a noun in nasb (or ـات with its kasra: لَآيَاتٍ) the parser hung as إنّ's object (إِنَّ فِي ذَلِكَ لَآيَةً) → its اسم (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - zanna_pair: under ظن and its sisters, a nasb noun the parser kept as the subject of the nasb word after it → the verb's first object, that word its second (`backend/services/nahw/syntax/repair/subject_clash.py`)
@@ -131,7 +133,7 @@ Roles the tree can give:
 - typed_case_fits_role: the typed vowel must fit the role
 - khabar_needs_mubtada: no mubtadaʾ-type word → every خبر dashed
 - ism_inna_needs_inna: no إنّ-family word → every اسم إن dashed
-- follower_needs_noun: a follower needs a noun before it
+- follower_needs_noun: a follower needs a noun before it, or the doer of the verb right before it (ذَهَبْتُ أَنَا، قُمْ أَنْتَ)
 - tamyeez_needs_number: a تمييز needs a number or measure
 <!-- /list -->
 

@@ -98,8 +98,9 @@ def _follows(token: dict, s: Sentence) -> str:
             and strip_diacritics(before.get("typed") or "-") == strip_diacritics(token.get("typed") or ""):
         return "tawkeed"
     # ذَهَبْتُ أَنَا: the verb holds its doer already (its تاء, or hidden), so the detached
-    # pronoun of raf' straight after it repeats that doer: التوكيد اللفظي (Tasheel 3.10.3 p94)
-    if before and is_verb(before) and is_subject_pronoun(token):
+    # pronoun of raf' straight after it repeats that doer: التوكيد اللفظي (Tasheel 3.10.3 p94).
+    # Only one of its person: قُلْ هُوَ اللَّهُ أَحَدٌ, هو opens the sentence قل says, not أنت again
+    if before and is_verb(before) and is_subject_pronoun(token) and before.get("per") == token.get("per"):
         return "tawkeed"
     if not head:
         return "none"
