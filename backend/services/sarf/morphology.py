@@ -886,9 +886,11 @@ DOER = ("per", "gen", "num")
 
 
 def _same(reading: dict, said: dict, keys: tuple[str, ...]) -> bool:
-    """The reading has what sarf's table said of these (its person, gender, number, verb), where it said one;
-    a verb by its letters, the two spelling its last vowel otherwise (ضَرَب، ضَرَبَ)."""
-    return all(bare_letters(reading.get(key) or "") == bare_letters(said[key]) for key in keys if said.get(key, "-") != "-")
+    """The reading has what sarf's table said of these (its person, gender, number, verb), where both said one;
+    a verb by its letters, the two spelling its last vowel otherwise (ضَرَب، ضَرَبَ). A reading that leaves one
+    unsaid does not contradict it (the dictionary's أَلَسْتُ is ليس, its number left "-")."""
+    return all(bare_letters(reading.get(key) or "") == bare_letters(said[key]) for key in keys
+               if "-" not in (said.get(key, "-"), reading.get(key, "-")))
 
 
 def _agreeing(typed: str, ranked: list[dict]) -> bool:

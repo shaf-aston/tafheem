@@ -188,6 +188,7 @@ def test_a_bare_word_is_read_adding_the_fewest_letters(word, diac):
     ("رُمِيتُ", "1", "s", "رمى"),
     ("كُسِيتُ", "1", "s", "كسا"),  # كَسِيَ "got clothed" contradicts its vowels: sarf's verb is the word
     ("كتبت", "3", "s", "كتب"),  # nearest case: typed bare, no ending says the doer, the ranked one stays
+    ("أَلَسْتُ", "1", "-", "ليس"),  # the dictionary leaves ليس's number unsaid: no clash with the table's أَلَسَ
 ])
 def test_a_past_verb_s_ending_names_its_doer(word, per, num, verb):
     reading = morphology.pick([word])[0]
