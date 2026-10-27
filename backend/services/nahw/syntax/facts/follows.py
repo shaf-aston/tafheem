@@ -89,8 +89,8 @@ def _follows(token: dict, s: Sentence) -> str:
         return "naat"
     if is_nasab(token):
         return "naat"
-    # يا أيها الناسُ: the noun with ال after أيها is its صفة
-    if head and is_called_noun(head) and token.get("stt") == "d":
+    # يا أيها الناسُ، يا أيها الذين آمنوا، يا أيهذا: the noun with ال, relative or pointer after أيها is its صفة
+    if head and is_called_noun(head) and (token.get("stt") == "d" or is_one(token.get("pos_camel", ""), "nida", "described_by")):
         return "naat"
     # جاء زيدٌ زيدٌ: the same noun said twice is التوكيد اللفظي (Tasheel 3.10.3 p94)
     before = s.by_id.get(token["id"] - 1)

@@ -23,7 +23,7 @@ from backend.services.nahw import rule_engine
 from backend.services.nahw import syntax
 from backend.services.text.arabic_text import words
 from backend.services.nahw.book import term_ar
-from tests.nahw_helpers import cards, needs_parser
+from tests.nahw_helpers import analyze, cards, needs_parser, tree_roles
 
 pytestmark = needs_parser
 
@@ -1080,6 +1080,44 @@ def test_a_called_noun_whose_ya_went(sentence: str, at: int, gone: bool):
     assert (card["role"], card["case"], card["sign"]) == ("منادى", "nasb", "فتحة مقدرة على ما قبل ياء المتكلم")
     assert "command" not in card["notes"]
     assert (_MY_YA in card["reason"]) == gone, card["reason"]
+
+
+_ATTENTION = "وها حرف تنبيه مبني على السكون لا محل له من الإعراب"
+
+
+@pytest.mark.parametrize("sentence, said", [
+    # أيّ is described only by a noun with ال, a pointer or a relative (Ibn Aqil V3 p268)
+    ("يَا أَيُّهَا الَّذِينَ آمَنُوا", "الَّذِينَ"),
+    ("يَا أَيُّهَا هَذَا", "هَذَا"),
+    ("يَا أَيُّهَا النَّاسُ", "النَّاسُ"),
+    ("يَا أَيَّتُهَا النَّفْسُ", "النَّفْسُ"),
+])
+def test_the_called_ayyu_is_built_on_damma_and_described(sentence: str, said: str):
+    read = analyze(sentence)
+    called, described = read["words"][1], read["words"][2]
+    # أيّ مبني على الضم في محل نصب, its ها of attention written on, a particle with no place
+    assert (called["role"], called["sign"]) == ("منادى", "مبني على الضم")
+    assert _ATTENTION in called["reason"], called["reason"]
+    assert (described["word"], described["role"]) == (said, "صفة")
+    # the picture: يا, then أيّ with its صفة, the unit as a whole the منادى
+    assert tree_roles(read["tree"]["tree"])[:3] == ["حرف نداء", "منادى", "موصوف"]
+
+
+def test_a_called_noun_with_no_ha_says_no_attention():
+    card = cards("يَا زَيْدُ")[1]  # nearest case: a called noun with no ها written on
+    assert card["sign"] == "مبني على الضم" and _ATTENTION not in card["reason"]
+
+
+@pytest.mark.parametrize("sentence, at, said, unsaid", [
+    ("يَا أَيُّهَا الَّذِينَ آمَنُوا", 2, "definite (معرفة)", "indefinite"),  # a relative is known (Ibn Aqil V1 p86)
+    ("هَذَا كِتَابٌ", 0, "definite (معرفة)", "indefinite"),  # a pointer
+    ("جَاءَ زَيْدٌ", 1, "definite (معرفة)", "indefinite"),  # a name
+    ("هَذَا كِتَابٌ", 1, "indefinite (نكرة)", "definite (معرفة)"),  # nearest case: a noun with no ال
+    ("جَاءَ زَيْدٌ", 0, "perfect (ماضٍ)", "indicative"),  # the past is built, no mood (V1 p35)
+])
+def test_a_card_note_says_what_the_word_is(sentence: str, at: int, said: str, unsaid: str):
+    notes = cards(sentence)[at]["notes"]
+    assert said in notes and unsaid not in notes, notes
 
 
 def test_a_word_opening_before_no_command_may_be_the_command():

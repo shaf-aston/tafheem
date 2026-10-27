@@ -316,6 +316,11 @@ def is_called_noun(token: dict) -> bool:
     return listed(token, "nida", "called_nouns")
 
 
+def is_particle(token: dict) -> bool:
+    """Tagged a particle, and one: never أيها, the noun يا calls (Ibn Aqil V3 p268: فأي منادى)."""
+    return token["pos"] == "PRT" and not is_called_noun(token)
+
+
 def _skeleton(word: str) -> list[str]:
     return [letter for letter in bare_letters(word) if letter not in WEAK]
 

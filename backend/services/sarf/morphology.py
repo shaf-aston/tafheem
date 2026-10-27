@@ -141,6 +141,10 @@ _MOD_LABEL: dict[str, str] = {
     "i": "indicative (مرفوع)", "s": "subjunctive (منصوب)", "j": "jussive (مجزوم)",
 }
 
+# the kinds known by what they are, with no ال: a pronoun, a pointer, a name, a relative (Ibn Aqil V1 p86:
+# وغيره معرفة كهم وذي وهند وابني والغلام والذي), though CAMeL files them indefinite
+_KNOWN_KINDS = frozenset({"pron", "pron_dem", "pron_rel", "noun_prop"})
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Internal helpers
@@ -245,7 +249,8 @@ def _build_features(a: dict) -> str:
 
     if asp in _ASP_LABEL:
         parts.append(_ASP_LABEL[asp])
-    if mod in _MOD_LABEL and a.get("pos") == "verb":
+    # only the present verb takes a mood: the past and the command are built (Ibn Aqil V1 p35: وفعل أمر ومضي بنيا)
+    if mod in _MOD_LABEL and a.get("pos") == "verb" and asp == "i":
         parts.append(_MOD_LABEL[mod])
     if vox == "p":
         parts.append("passive (مبني للمجهول)")
@@ -261,7 +266,7 @@ def _build_features(a: dict) -> str:
         parts.append("plural (جمع)")
     if per in ("1", "2", "3"):
         parts.append({"1": "1st person", "2": "2nd person", "3": "3rd person"}.get(per, f"person {per}"))
-    if stt == "d":
+    if stt == "d" or a.get("pos") in _KNOWN_KINDS:
         parts.append("definite (معرفة)")
     elif stt == "i":
         parts.append("indefinite (نكرة)")

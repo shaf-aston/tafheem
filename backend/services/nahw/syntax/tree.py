@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from backend.services.nahw.book import (book_spelling, card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
-from backend.services.nahw.syntax.facts import (Sentence, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
+from backend.services.nahw.syntax.facts import (Sentence, is_particle, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
                                           is_nasab, is_verb, read_as, reading, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.nahw.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
@@ -683,7 +683,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         # verb is finished by is that verb's khabar as a whole.
         job = NAMED.khabar_kaada if completes_kaada(token, sentence) else (
             job_of[token["id"]] if token["id"] in framed
-            else None if token is root or token["pos"] == "PRT" or job_of[token["id"]] == NAMED.fil
+            else None if token is root or is_particle(token) or job_of[token["id"]] == NAMED.fil
             else job_of[token["id"]])
         # مِن نارٍ: a jar-majroor with a word to hang on is named by it, متعلق بـX
         if token["id"] in hung:

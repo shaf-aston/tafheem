@@ -150,6 +150,20 @@ def sakt_off(word: str) -> str | None:
     return None
 
 
+def attention_off(word: str, lemma: str) -> str | None:
+    """أَيُّهَا is أَيُّ with the ها of attention written on: the called noun without it, else None
+    (closed_words nida `attention`)."""
+    tail = _closed()["families"]["nida"]["attention"]["letters"]
+    if not is_one(lemma, "nida", "called_nouns") or not strip_diacritics(word).endswith(tail):
+        return None
+    return word[:word.rindex(tail[0])]
+
+
+def attention_said() -> str:
+    """What a card says of that ها (closed_words nida `attention`)."""
+    return _closed()["families"]["nida"]["attention"]["said"]
+
+
 def sakt_said() -> str:
     """What a card says of the هاء السكت it shows (closed_words haa_sakt)."""
     return _closed()["families"]["haa_sakt"]["said"]

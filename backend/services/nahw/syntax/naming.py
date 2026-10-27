@@ -377,7 +377,7 @@ def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
     at = {t["id"]: i for i, t in enumerate(bases)}
     by_id = {t["id"]: t for t in tokens}
     head = by_id.get(token["head"])
-    while head and (head["id"] not in at or (head["pos"] == "PRT" and not facts.is_called_noun(head))):
+    while head and (head["id"] not in at or facts.is_particle(head)):
         head = by_id.get(head["head"])
     return at[head["id"]] if head else None
 
