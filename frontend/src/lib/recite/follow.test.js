@@ -278,6 +278,12 @@ describe('going back over a phrase to practise it', () => {
     expect(answer.heardTo).toBe(5)
   })
 
+  it('goes back to a word that a pause sign follows', () => {
+    const answer = follow(AYAH, [...PHRASE, ...times(3, ['الغي', 'فمن', 'يكفر'])], { ended: true, startAt: null })
+    expect(answer.words.slice(5, PAST + 2).every((w) => w.state === SAID)).toBe(true)
+    expect(answer.words.slice(PAST + 2).every((w) => w.state === WAITING)).toBe(true)
+  })
+
   it('is not on the page from one word said twice', () => {
     expect(follow(AYAH, ['قد', 'قد'], { ended: true, startAt: null }).started).toBe(false)
   })

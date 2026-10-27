@@ -79,11 +79,15 @@ const asMatch = (said, printed) => {
  * Whether heard word `j` (1-based, on page word `i`) is followed by the page
  * going on: one of the next `repeat-look` heard words matches the page word as
  * far after `i`, so a word the ear spelled oddly in the middle does not hide it.
+ * Pause signs are stepped over: nobody says them.
  */
 const goesOn = (page, heard, i, j) => {
+  let p = i - 1
   for (let t = 1; t <= config['repeat-look']; t += 1) {
-    if (j - 1 + t >= heard.length || i - 1 + t >= page.length) return false
-    if (asMatch(heard[j - 1 + t], page[i - 1 + t])[0] < COSTS.wrong) return true
+    p += 1
+    while (p < page.length && !isSpoken(page[p])) p += 1
+    if (j - 1 + t >= heard.length || p >= page.length) return false
+    if (asMatch(heard[j - 1 + t], page[p])[0] < COSTS.wrong) return true
   }
   return false
 }
