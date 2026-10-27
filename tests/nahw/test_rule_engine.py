@@ -1051,9 +1051,12 @@ _BUSIED = "والناصب له فعل محذوف وجوبًا يفسره الف�
     ("زَيْدًا ضَرَبْتُ", 0, "مفعول به", 1, False),  # its doer in the verb: تُ
     ("زَيْدًا نَصَرْنَا", 0, "مفعول به", 1, False),
     ("زَيْدًا اضْرِبْ", 0, "مفعول به", 1, False),  # a command's hidden أنت
+    ("زَيْدًا ضَرَبُوا", 0, "مفعول به", 1, False),  # the و of many, written on
+    ("الْكِتَابَ ارْفَعِي", 0, "مفعول به", 1, False),  # the ي hung as its doer is no pronoun busying it
     ("عِلْمًا طَلَبَ زَيْدٌ", 0, "مفعول به", 1, False),  # its doer after it
     ("زَيْدًا ضَرَبْتُهُ", 0, "مفعول به", None, True),  # الاشتغال: the verb busied with its pronoun
     ("زَيْدًا اضْرِبْهُ", 0, "مفعول به", None, True),
+    ("زَيْدًا ضَرَبُوهُ", 0, "مفعول به", None, True),
     ("زَيْدًا مَرَرْتُ بِهِ", 0, "مفعول به", None, True),  # through a جار
     ("عِلْمًا طَلَبَهُ زَيْدٌ", 0, "مفعول به", None, True),
     ("زَيْدٌ ضَرَبْتُهُ", 0, "مبتدأ", None, False),  # nearest case: typed in raf'

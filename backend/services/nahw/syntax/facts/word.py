@@ -79,8 +79,10 @@ def holds_doer(verb: dict, kids) -> bool:
 
 def own_doer(verb: dict) -> bool:
     """The doer is in the verb itself: written on as تُ، نا، تَ, or hidden as أنا، نحن، أنت (Tasheel 2.4.1 p30),
-    so a command's too, always said to the one spoken to."""
-    return verb.get("per") in ("1", "2") and not is_passive(verb)
+    so a command's too, always said to the one spoken to; and the ا، و، ن of two or many (ضَرَبَا، ضَرَبُوا،
+    ضَرَبْنَ), never a mere sign of number before a doer named after it (Sharh Qatr al-Nada p182: فلا يقال
+    قاما أخواك ولا قاموا اخوتك ... أخواك قاما فيكون أخواك مبتدأ وما بعده فعل وفاعل)."""
+    return (verb.get("per") in ("1", "2") or verb.get("num") in ("d", "p")) and not is_passive(verb)
 
 
 def attached_pronoun(token: dict) -> bool:

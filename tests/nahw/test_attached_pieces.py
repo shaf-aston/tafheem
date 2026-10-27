@@ -513,9 +513,11 @@ def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, ro
 
 @pytest.mark.parametrize("sentence, moved", [
     ("عِلْمًا طَلَبَ زَيْدٌ", True), ("زَيْدًا اضْرِبْ", True), ("زَيْدًا اضْرِبِي", True), ("زَيْدًا نَصَرْنَا", True), ("زَيْدًا ضَرَبْتَ", True),
+    ("زَيْدًا ضَرَبُوا", True), ("زَيْدًا ضَرَبْنَ", True),  # the و، ن of many is the doer, never a mere sign of number
     ("عِلْمًا طَلَبَهُ زَيْدٌ", True), ("عِلْمًا مَرَّ بِهِ زَيْدٌ", True),  # الاشتغال: a verb like it, left out, governs it
     ("زَيْدًا ضَرَبَ", False),  # nearest case: its doer is neither after it nor in it
     ("زَيْدًا ضُرِبْتُ", False),  # nearest case: the تُ of a passive is its نائب فاعل, the one object it had
+    ("زَيْدًا ضُرِبُوا", False),  # nearest case: so is the و of a passive
 ])
 def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved):
     """A nasb noun at the head of the sentence has no word to put it there but the verb after it, once that
