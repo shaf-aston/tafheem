@@ -270,13 +270,15 @@ def _build_features(a: dict) -> str:
     return ", ".join(parts)
 
 
-def _as_command(word: str, a: dict, before: str, after: str) -> dict:
+def _as_command(word: str, a: dict, before: str, after: str, after_read: str = "") -> dict:
     """CAMeL's word list has no اِجْلِسِي، ارْحَمُوا or قُمْ, so it offers a name or another
     tense; sarf's own table names the command (verb_reader), by the same rules the
     Sarf tab conjugates with. Only a verb or a noun is overruled: لَمْ and مِنْ have a
     command's shape too, and أَفْضَلُ is a comparative whatever sarf can build."""
     if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(a.get("lex") or ""):
         return a  # مُنْذُ أَمْسِ: a built time word is never the command its letters spell
+    if a.get("pos") != "verb" and verb_reader.called(before, after, after_read):
+        return a  # يَا رَبِّ، رَبِّ اغْفِرْ لِي: a noun called, not رَبَّى's command
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
     root = root_in_arabic(a.get("root") or "", a.get("lex") or "", word)  # a verb or a noun, so rooted
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
@@ -288,11 +290,11 @@ def _as_command(word: str, a: dict, before: str, after: str) -> dict:
             "lex": verb_reader.past(cell) or a.get("lex")}
 
 
-def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str = "") -> dict[str, Any]:
+def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str = "", after_read: str = "") -> dict[str, Any]:
     """Convert a raw CAMeL analysis dict into our standard morphology dict; `before` is
     the bare word typed before it, which can make a command shape a present verb, and
-    `after` the word typed after it, whose hamzat al-wasl can turn a sukun to kasra."""
-    a = _as_command(word, a, before, after)
+    `after` the word typed after it, whose hamzat al-wasl can turn a sukun to kasra, read as `after_read` (its tense)."""
+    a = _as_command(word, a, before, after, after_read)
     pos = (a.get("pos") or "").lower()
     word_type = _pos_type(pos)
     root_ar = reading_root(a)
@@ -663,7 +665,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
             # the table's own tense is only spelled otherwise: the dictionary's stays. A command alone is left to
             # repair.typed (verb_reader.command); one with its object pronoun written on (اِهْدِنَا) is split here
-            ranked = [{"lex": evidence, **sarf, "diac": evidence}]
+            ranked = [{"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}]  # its past, else the verb's own letters
         elif not steps and (asked := _asked_reading(evidence, ranked, after, disambiguator)):
             ranked = [asked]
         elif not _agreeing(evidence, ranked) and (noun := noun_reader.reading_of(evidence)):
@@ -930,8 +932,8 @@ def analyze_sentence(sentence: str, picks: list[dict] | None = None) -> list[dic
         picks = picks or pick(tokens)
         tokens = as_said(tokens, picks)
         before = ["", *map(strip_diacritics, tokens[:-1])]
-        return [_analysis_dict_from_camel(t, a, b, n) if a else analyze_word(t)
-                for t, a, b, n in zip(tokens, picks, before, [*tokens[1:], ""], strict=True)]
+        return [_analysis_dict_from_camel(t, a, b, n, r.get("asp", "")) if a else analyze_word(t)
+                for t, a, b, n, r in zip(tokens, picks, before, [*tokens[1:], ""], [*picks[1:], {}], strict=True)]
 
     if _QALSADI_AVAILABLE:
         return [_analyze_qalsadi(t) for t in tokens]

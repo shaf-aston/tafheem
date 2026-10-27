@@ -126,8 +126,8 @@
   "badal": {"kul": "بدل كل من كل", "baad": "بدل بعض من كل", "ishtimal": "بدل اشتمال"},
   "_fail_comment": "The doer of a مبتدأ وصف (ما ذاهبٌ المسلمون، أقائمٌ الزيدان) stands in for the khabar the وصف has none of (Alfiyya: وأوّلٌ مبتدأ والثاني فاعلٌ اغنى؛ Ibn Aqil). Read by syntax/facts/sentence.py described_doer.",
   "fail": {"sadda": "فاعل سدّ مسدّ الخبر"},
-  "_munada_comment": "A منادى with no حرف نداء typed before it: يا is left off (Ibn Aqil V3 p256: وأما غير هذه فيحذف معها الحرف جوازا، عبد الله اركب), or in اللهمّ put at the end as the doubled ميم (Awdah: يحذف حرف النداء ويعوض عنه الميم المشددة). Read by syntax/naming.py _kind_said.",
-  "munada": {"dropped": "وحرف النداء محذوف تقديره يا", "alone": "والميم المشددة عوض عن حرف النداء المحذوف"},
+  "_munada_comment": "A منادى with no حرف نداء typed before it: يا is left off (Ibn Aqil V3 p256: وأما غير هذه فيحذف معها الحرف جوازا، عبد الله اركب), or in اللهمّ put at the end as the doubled ميم (Awdah: يحذف حرف النداء ويعوض عنه الميم المشددة); and the ياء المتكلم it is مضاف to may go, its kasra left (Ibn Aqil V3 p274: يا عبدِ). Read by syntax/naming.py _kind_said.",
+  "munada": {"dropped": "وحرف النداء محذوف تقديره يا", "alone": "والميم المشددة عوض عن حرف النداء المحذوف", "my_ya": "وياء المتكلم المحذوفة ضمير متصل مبني في محل جر مضاف إليه"},
   "object": {"busied": "والناصب له فعل محذوف وجوبًا يفسره الفعل المذكور"},
   "part": ["نصف", "ثلث", "ربع", "خمس", "بعض", "أكثر", "أقل", "جزء", "معظم", "أغلب", "شطر", "رأس", "يد", "وجه"]
  },

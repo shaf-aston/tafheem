@@ -47,12 +47,12 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         read_noun = token.get("pos_camel") == "noun" and agrees
         read_past = verb and token.get("asp") == "p" and agrees
         # a noun read with a sign of the noun on it is that noun, never a command (Ibn Aqil V1 p15: بالجر والتنوين
-        # والندا وأل): its own pronoun stuck on, not hung as an object (عَمِّي، جَدِّي), called (يَا رَبِّ), or with its يا left off,
-        # opening the sentence before the command said to it (رَبِّ اغْفِرْ لِي; V3 p256), in jarr as a مضاف إليه or as the
-        # صفة of a noun in jarr (لِلَّهِ رَبِّ الْعَالَمِينَ), as no sentence of asking describes (V3 p198: وامنع هنا إيقاع ذات الطلب)
+        # والندا وأل): its own pronoun stuck on, not hung as an object (عَمِّي، جَدِّي), called (verb_reader.called), in jarr as
+        # a مضاف إليه or as the صفة of a noun in jarr (لِلَّهِ رَبِّ الْعَالَمِينَ), as no sentence of asking describes (V3 p198:
+        # وامنع هنا إيقاع ذات الطلب)
         head = next((t for t in tokens if t["id"] == token["head"]), None)
         noun = read_noun and (any(t["head"] == token["id"] and t.get("token_type") == "enc0" and t["rel"] != "OBJ" for t in tokens)
-                              or i > 0 and is_one(bases[i - 1]["base"], "nida") or i == 0 and verb_reader.command(after) is not None
+                              or verb_reader.called(bases[i - 1]["base"] if i else "", after, bases[i + 1].get("asp", "") if after else "")
                               or token["rel"] == "IDF" or token["rel"] == "MOD" and head is not None and typed_or_parsed_case(head) == "i")
         if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not noun:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")

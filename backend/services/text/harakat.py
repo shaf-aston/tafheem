@@ -230,8 +230,10 @@ def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
     mine, theirs = letters(typed), letters(reading)
     if [bare_letters(c) for c, _ in mine] != [bare_letters(c) for c, _ in theirs]:
         return 0, 0
-    if wasl_typed(mine) and theirs[0][0] in "أإ":
-        return None  # اِفْعَلِي typed with its hamzat al-wasl is not the أَفْعَل its letters also spell
+    if any(wasl_typed(mine[at:]) and theirs[at][0] in "أإ" for at in (0, 1)):
+        # اِفْعَلِي typed with its hamzat al-wasl, opening the word or after a joined وَ/فَ (وَاشْرَبُوا), is not
+        # the أَفْعَل its letters also spell
+        return None
     agreed = doubled = 0
     for (_, said), (_, read) in zip(mine, theirs):
         said_v, read_v = {_MARK[m] for m in said if m in _MARK}, {_MARK[m] for m in read if m in _MARK}

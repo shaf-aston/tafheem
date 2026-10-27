@@ -305,6 +305,12 @@ def is_called_alone(token: dict) -> bool:
     return listed(token, "nida", "called_alone")
 
 
+def my_ya_dropped(token: dict) -> bool:
+    """يَا عَبْدِ، رَبِّ اغْفِرْ لِي: a called noun typed with a kasra and no tanween is مضاف to the ياء المتكلم,
+    which went and left its kasra (Ibn Aqil V3 p274: حذف الياء والاستغناء بالكسرة). Typed on (يَا رَبِّي), the ya hides the case."""
+    return typed_case_of(token) == "i" and not has_tanween(token.get("typed") or "")
+
+
 def is_called_noun(token: dict) -> bool:
     """أيها، أيتها: the noun يا calls, though the parser tags it a particle."""
     return listed(token, "nida", "called_nouns")

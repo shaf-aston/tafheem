@@ -99,7 +99,7 @@ def cards(tags: list[dict], roles: list[dict]) -> list[dict]:
     entries = rule_engine.cards(tags)
     if len(roles) == len(entries):
         for entry, found, after in zip(entries, roles, roles[1:] + [{}]):
-            if _my_ya(entry, found, after):
+            if _my_ya(entry, found, after) or found.get("my_ya"):  # يَا قَوْمِ: the ya gone, its kasra left
                 entry["camel"] = {**entry["camel"], "enclitic": "1s_poss"}
             if found.get("gap"):
                 entry.update(role=rule_engine.UNNAMED, role_key=None, case=found["case"], sign=None, gap=True,

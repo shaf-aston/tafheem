@@ -232,6 +232,7 @@ def test_a_verb_with_the_plurals_waw_before_a_pronoun(sentence: str, sign: str):
     ("زَيْدٌ صَاحِبُ الْمَالِ كَرِيمٌ", ["مبتدأ", "صفة", "مضاف إليه", "خبر"]),  # nearest case: added to a definite, a صفة
     ("زَيْدٌ صَاحِبُ الْمَالِ", ["مبتدأ", "خبر", "مضاف إليه"]),  # both definite: the first the مبتدأ (Ibn Aqil V1 p232: زيد أخوك)
     ("أَنَا ضَارِبٌ زَيْدًا", ["مبتدأ", "خبر", "مفعول به"]),  # the participle works as its verb (V3 p106): no verb read
+    ("زيد جالس عمرا", ["مبتدأ", "فعل", "مفعول به"]),  # nearest case: no tanween written, جَالَسَ the verb
     ("جَاءُوا مُسْرِعِينَ", ["فعل", "حال"]),  # the dictionary's past, and the plural read off its ending
     ("قَاتِلُوا مُسْرِعِينَ", ["فعل", "حال"]),  # a command no less
     ("مَرَرْتُ بِرِجَالٍ مُسْرِعِينَ", ["فعل", "مجرور", "صفة"]),  # nearest case: after an indefinite plural, its صفة
@@ -1061,6 +1062,56 @@ def test_a_call_with_no_ya_typed(sentence: str, at: int, role: str, said: str | 
     assert all((wording == said) == (wording in card["reason"]) for wording in (_DROPPED, _MEEM)), card["reason"]
     if role == "منادى":  # the يا left off is no word of the sentence; a typed one is
         assert card["governor"] == (None if said else 0)
+
+
+_MY_YA = "وياء المتكلم المحذوفة ضمير متصل مبني في محل جر مضاف إليه"
+
+
+@pytest.mark.parametrize("sentence, at, gone", [
+    # the ياء المتكلم went and left its kasra (Ibn Aqil V3 p274: يا عبدِ): nasb, unseen before the ya, never a command
+    ("يَا قَوْمِ اعْبُدُوا اللَّهَ", 1, True),
+    ("يَا رَبِّ", 1, True),  # after يا, not رَبَّى's command
+    ("رَبِّ اغْفِرْ لِي", 0, True),
+    ("رَبِّ زِدْنِي عِلْمًا", 0, True),  # the command after it with its object written on
+    ("يَا رَبِّي", 1, False),  # nearest case: the ya typed, a piece of its own
+])
+def test_a_called_noun_whose_ya_went(sentence: str, at: int, gone: bool):
+    card = cards(sentence)[at]
+    assert (card["role"], card["case"], card["sign"]) == ("منادى", "nasb", "فتحة مقدرة على ما قبل ياء المتكلم")
+    assert "command" not in card["notes"]
+    assert (_MY_YA in card["reason"]) == gone, card["reason"]
+
+
+def test_a_word_opening_before_no_command_may_be_the_command():
+    card = cards("رَبِّ الْوَلَدَ")[0]  # nearest case: رَبَّى's command, its object after it
+    assert (card["role"], card["aspect"]) == ("فعل", "c")
+
+
+@pytest.mark.parametrize("sentence, aspect", [
+    ("جَاءُوا مُسْرِعِينَ", "p"),  # the dictionary's past, never a command spelled جَاِئُوا it left a mark off
+    ("قُومُوا مُسْرِعِينَ", "c"),  # nearest case: the command typed in full
+])
+def test_a_past_verb_read_with_its_vowels_stays_past(sentence: str, aspect: str):
+    assert cards(sentence)[0]["aspect"] == aspect
+
+
+@pytest.mark.parametrize("sentence, at, aspect", [
+    ("كُلُوا وَاشْرَبُوا", 1, "c"),  # the hamzat al-wasl after a joined وَ: not the past أَشْرَبُوا
+    ("وَاسْتَغْفِرُوا اللَّهَ", 0, "c"),
+    ("وَأَشْرَبُوا فِي قُلُوبِهِمُ الْعِجْلَ", 0, "p"),  # nearest case: its hamza written, the past أَشْرَبَ (2:93)
+])
+def test_hamzat_al_wasl_after_a_joined_letter_is_still_the_command(sentence: str, at: int, aspect: str):
+    assert cards(sentence)[at]["aspect"] == aspect
+
+
+@pytest.mark.parametrize("sentence, at, want", [
+    ("أُمِّ اسْمَعِي", 0, "منادى"),  # its damma is the noun أُمّ the dictionary read, not the particle أَمْ
+    ("أُمُّ زَيْدٍ كَرِيمَةٌ", 0, "مبتدأ"),
+    ("أَزَيْدٌ عِنْدَكَ أَمْ عَمْرٌو", 2, "حرف"),  # nearest case: the particle typed with its fatha
+    ("جَاءَ زَيْدٌ ثُمَّ عَمْرٌو", 2, "حرف"),  # nearest case: ثُمَّ, read as an adverb, keeps its damma rule
+])
+def test_a_noun_typed_with_its_vowels_is_no_joining_particle(sentence: str, at: int, want: str):
+    assert cards(sentence)[at]["role"] == want
 
 
 def test_a_kasra_with_tanween_is_no_dropped_ya():

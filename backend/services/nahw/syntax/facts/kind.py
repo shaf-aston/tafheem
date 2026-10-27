@@ -3,9 +3,9 @@ asked or negating word is, which the other axes read."""
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.text.harakat import has_tanween, letters
+from backend.services.text.harakat import letters, vowel_agreement
 from backend.services.nahw.book import book_map, is_one
-from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_suffix, is_verb, read_as, reading, takes_two_objects, typed_case_of
+from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, my_ya_dropped, is_suffix, is_verb, read_as, reading, takes_two_objects, typed_case_of
 from backend.services.nahw.syntax.facts.sentence import Sentence, busied, next_word, verb_above
 
 
@@ -35,8 +35,7 @@ def _called_without_ya(token: dict, s: Sentence) -> bool:
     """رَبَّنَا آتِنَا: يا may be left off before a called noun (Ibn Aqil V3 p256: وأما غير هذه فيحذف معها الحرف
     جوازا، فتقول في يا عبد الله اركب: عبد الله اركب). Read so: a مضاف opening the sentence, typed in no case
     but nasb, with a command straight after its مضاف إليه (or their chain: عَبْدَ بَيْتِ اللَّهِ ارْكَبْ), the command
-    said to the one called. Or a bare noun so opening, typed with a kasra and no tanween: the vowel the ياء المتكلم
-    left when it went (V3 p274: حذف الياء والاستغناء بالكسرة نحو يا عبدِ; رَبِّ اغْفِرْ لِي)."""
+    said to the one called. Or a bare noun so opening, the kasra on it the one the ياء المتكلم left (my_ya_dropped)."""
     after = next_word(token, s)
     while after and after["rel"] == "IDF":
         after = next_word(after, s)
@@ -44,7 +43,7 @@ def _called_without_ya(token: dict, s: Sentence) -> bool:
     if token is not s.tokens[0] or after is None:
         return False
     if after.get("asp") == "c":
-        return bool(token.get("mudaf") and case in ("a", None) or case == "i" and not has_tanween(token.get("typed") or ""))
+        return bool(token.get("mudaf") and case in ("a", None) or my_ya_dropped(token))
     # رَبَّنَا ظَلَمْنَا أَنْفُسَنَا: a verb after it with an object of its own, taking one only and busied with no
     # pronoun of it, leaves the مضاف typed in nasb no job in its clause: it is the one called. So does إنّ or a
     # sister after it, whose words never come before it (رَبَّنَا إِنَّنَا آمَنَّا)
@@ -61,8 +60,11 @@ def owns_pronoun(token: dict, s: Sentence) -> bool:
 
 def joins_clauses(token: dict, s: Sentence) -> bool:
     """ثم is a noun to the parser, but a listed joining word between two nouns, or bare
-    before a verb, is the particle, as is any typed with its damma: the place-word is ثَمَّ."""
+    before a verb, is the particle, as is any typed with its damma: the place-word is ثَمَّ.
+    A noun the dictionary read with a vowel typed on it is that noun (أُمُّ زَيْدٍ، يَا أُمِّ: not أَمْ)."""
     if not read_as(token, "atf") or owns_pronoun(token, s):
+        return False
+    if token.get("pos_camel") in ("noun", "noun_prop", "adj") and (vowel_agreement(token.get("typed") or "", token.get("diac", "")) or (0,))[0]:
         return False
     marked = letters(token.get("typed") or "")
     if marked and "ُ" in marked[0][1]:
