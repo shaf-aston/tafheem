@@ -58,3 +58,25 @@ def levelled(sound: np.ndarray, target: float, ceiling: float, floor: float, mos
     """The same sound, brought up towards `target`. The array is not written over."""
     gain = gain_for(sound, target, ceiling, floor, most)
     return sound if gain == 1.0 else (sound * gain).astype(sound.dtype, copy=False)
+
+
+def quiet_cuts(sound: np.ndarray, rate: int, longest: float, search: float, window: float) -> list[int]:
+    """Sample positions to cut `sound` at so no piece runs past `longest` seconds.
+
+    Each cut lands at the quietest `window` within the last `search` seconds of
+    the allowed length, so a cut falls in a breath, not through a word. Empty
+    when the sound already fits.
+    """
+    most, look, step = int(longest * rate), int(search * rate), max(1, int(window * rate))
+    cuts, start = [], 0
+    while len(sound) - start > most:
+        lo, hi = start + max(most - look, step), start + most
+        # Energy of every `window`, sliding a quarter window at a time so a breath is never split between two.
+        power = np.concatenate(([0.0], np.cumsum(sound[lo:hi].astype(np.float64) ** 2)))
+        starts = np.arange(0, hi - lo - step + 1, max(1, step // 4))
+        level = power[starts + step] - power[starts]
+        # Latest of equally quiet windows, so pieces stay as long as allowed.
+        cut = lo + int(starts[len(level) - 1 - int(np.argmin(level[::-1]))]) + step // 2
+        cuts.append(cut)
+        start = cut
+    return cuts

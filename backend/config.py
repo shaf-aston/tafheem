@@ -174,6 +174,13 @@ class Listening(BaseSettings):
     # Vowels cost about 2 points of word error against none, a little under 1 against the old hint. Empty sends no hint.
     # Only the hosted ear sends it (recitation.hear); the Qur'an model on this machine never gets a hint.
     recitation_hosted_hint: str = "إِيَّاكَ نَعْبُدُ"
+    # Groq's Whisper hears 30s at a time and cuts longer audio blindly: on 49:2-3 (60-90s) words were lost or doubled
+    # at the seam and vowelling flipped mid-text. So a longer recording is cut here first, at the quietest
+    # `listening_cut_window_s` within the last `listening_cut_search_s` of each `listening_piece_s` piece.
+    listening_piece_s: float = Field(default=28.0, gt=0)
+    listening_cut_search_s: float = Field(default=10.0, gt=0)
+    # Half a second: a stop inside a word is shorter, so it cannot win; at 0.25s one cut fell inside بعضكم.
+    listening_cut_window_s: float = Field(default=0.5, gt=0)
     # Short because the local engine answers in ~3s and a slow cloud answer has already lost; Groq turbo takes ~0.5s.
     listening_timeout_s: float = 4.0
     # Rest for a transient failure (no internet, rate limit, bad gateway); a settled one (rejected key, missing model) retires the ear.
