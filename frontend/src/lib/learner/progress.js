@@ -20,7 +20,7 @@ import { announce, tz } from './rewards'
 
 const BASE = '/progress'
 
-// Every call says whose record it is about: api.js adds the logged-in name to
+// Every call says whose record it is about: api/client.js adds the logged-in name to
 // every request. Sign-up and log-in send the name typed instead.
 const headers = (name) => ({ headers: profileHeaders(name) })
 

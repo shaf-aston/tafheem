@@ -3,7 +3,7 @@
  *
  * Best-effort only: an event that cannot be sent is dropped, never retried,
  * and nothing here ever throws or waits on reciting itself. Read by
- * lib/recite/recitingSession.js; api.js stays the only place that knows the URL.
+ * lib/recite/recitingSession.js; api/ stays the only place that knows the URL.
  */
 import { JOURNAL_PATH, postJournal } from '../../api'
 import config from '../../config/recite.json'
