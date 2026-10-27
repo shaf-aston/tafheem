@@ -3,8 +3,8 @@
  * search box, all in view at once, slid sideways where a phone is too narrow. The open place is the filled chip;
  * pressing it again goes back to the books. Each item is { label, hint, count?, on, pick }.
  */
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
+import Chip from '../ui/inputs/Chip'
+import ChipRow from '../ui/inputs/ChipRow'
 
 export default function PlaceStrip({ items, accent }) {
   return (

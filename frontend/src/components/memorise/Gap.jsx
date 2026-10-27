@@ -1,8 +1,8 @@
 import { recitedForm } from '../../lib/text/arabicText'
 import { sameSpokenWord } from '../../lib/text/arabicText'
 
-import ArabicText from '../ui/ArabicText'
-import WheelPicker from '../ui/WheelPicker'
+import ArabicText from '../ui/text/ArabicText'
+import WheelPicker from '../ui/inputs/WheelPicker'
 
 /** One missing word: a box to type into, and after checking, how it went. */
 export default function Gap({ word, options, value, checked, accent, lineLabel, typeWidth, onChange }) {

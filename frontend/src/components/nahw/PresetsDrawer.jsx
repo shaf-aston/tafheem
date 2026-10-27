@@ -4,8 +4,8 @@
  */
 import { SARF_PRESETS } from '../../lib/nahw/sarfPresets'
 
-import ArabicText from '../ui/ArabicText'
-import Disclosure from '../ui/Disclosure'
+import ArabicText from '../ui/text/ArabicText'
+import Disclosure from '../ui/overlays/Disclosure'
 
 const TOTAL = SARF_PRESETS.reduce((n, g) => n + g.words.length, 0)
 

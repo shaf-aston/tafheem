@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { notesQuery } from '../../api'
 
-import Chip from '../ui/Chip'
+import Chip from '../ui/inputs/Chip'
 
 export default function NotesLink({ exerciseKey, accent, onOpen }) {
   const { data } = useQuery(notesQuery)

@@ -1,8 +1,8 @@
 import { closeOnBackdrop, useModal } from '../../../lib/hooks/useModal'
 
 import TarkeebDiagram from './TarkeebDiagram'
-import CloseButton from '../../ui/CloseButton'
-import Tooltip from '../../ui/Tooltip'
+import CloseButton from '../../ui/buttons/CloseButton'
+import Tooltip from '../../ui/overlays/Tooltip'
 
 /**
  * A tarkeeb diagram in its card. When any word was left open, a line underneath

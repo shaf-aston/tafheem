@@ -7,9 +7,9 @@ import { useState } from 'react'
 
 import { colloquialCompareQuery } from '../../../api'
 import { useSetting } from '../../../lib/store/settings'
-import ArabicText from '../../ui/ArabicText'
-import ErrorAlert from '../../ui/ErrorAlert'
-import { Skeleton } from '../../ui/Skeleton'
+import ArabicText from '../../ui/text/ArabicText'
+import ErrorAlert from '../../ui/feedback/ErrorAlert'
+import { Skeleton } from '../../ui/feedback/Skeleton'
 import { FOCUS } from '../parts/Face'
 import Spelling from '../parts/Spelling'
 

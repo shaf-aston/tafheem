@@ -19,7 +19,7 @@ Two jobs, kept apart:
 | Spoken search boxes | `MicButton` in `DaleelPanel.jsx`, `Dictionary.jsx`, `hadith/HadithSearchResults.jsx`, `nahw/IraabAnalyzer.jsx`, `SarfPanel.jsx`, `colloquial/WordCards.jsx` (`anyArabic`) | `/listen` (words only) |
 
 `KitPanel.jsx` is a kit demo mic. `useRecitation.js` / `useRecitedWord.js` are playback timing, not the ear.
-Shared: `F/components/ui/MicButton.jsx` (one shot), `F/lib/speech/microphone.js` (the only `getUserMedia`, line 65, and `MediaRecorder`, line 97), `F/lib/speech/dictation.js` `watchForVoice`.
+Shared: `F/components/ui/buttons/MicButton.jsx` (one shot), `F/lib/speech/microphone.js` (the only `getUserMedia`, line 65, and `MediaRecorder`, line 97), `F/lib/speech/dictation.js` `watchForVoice`.
 
 ## 3. Flows
 

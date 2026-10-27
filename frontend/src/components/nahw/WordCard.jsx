@@ -16,9 +16,9 @@ import { useEffect, useRef } from 'react'
 import { caseLabel, isUnnamed, typeLabel } from '../../lib/nahw/grammarTerms'
 import { roleVar } from '../../lib/nahw/roleColors'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import BookPath from './BookPath'
-import RootActions from '../ui/RootActions'
+import RootActions from '../ui/buttons/RootActions'
 
 // A word of these types has no root by nature; any other rootless word is one
 // the dictionary failed on (جاء: a hamza CAMeL leaves as a placeholder).

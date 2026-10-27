@@ -1,6 +1,6 @@
 import { gradeGrid, rowName } from '../../../lib/nahw/tamreen'
 
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 import { MARK_LABEL, STATUS_CLASS } from './marks'
 import OptionText from './OptionText'
 import RedDot from './RedDot'

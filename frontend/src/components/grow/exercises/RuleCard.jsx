@@ -1,5 +1,5 @@
 /** Teach card for a book world: what it means in plain English first, then the book's own sentence under it. */
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')

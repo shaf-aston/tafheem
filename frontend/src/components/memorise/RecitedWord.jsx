@@ -2,7 +2,7 @@ import { useRef } from 'react'
 
 import { LOOK, SHOWN } from '../../lib/recite/reciteColors'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import MarkCard from './MarkCard'
 
 /**

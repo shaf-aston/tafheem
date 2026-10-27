@@ -1,5 +1,5 @@
 {
-  "_comment": "How far a chart zooms (components/ui/ZoomBar, lib/hooks/useZoom): 1 is the chart fitted to its frame. min and max are the least and most it is drawn at; step is what a − or + press, the arrow keys and a slider notch move it by. The Map's charts never shrink far (their words would not read); the Terms tree can, to take in the whole of it.",
+  "_comment": "How far a chart zooms (components/ui/inputs/ZoomBar, lib/hooks/useZoom): 1 is the chart fitted to its frame. min and max are the least and most it is drawn at; step is what a − or + press, the arrow keys and a slider notch move it by. The Map's charts never shrink far (their words would not read); the Terms tree can, to take in the whole of it.",
   "map": { "min": 0.7, "max": 3, "step": 0.2 },
   "terms": { "min": 0.5, "max": 3, "step": 0.25 }
 }

@@ -1,7 +1,7 @@
 // Question and answer as a matched pair of cards: press the question to turn it over.
 import { useState } from 'react'
 
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 import { FOCUS } from '../parts/Face'
 import Spelling from '../parts/Spelling'
 

@@ -1,7 +1,7 @@
 /** A world's header: back button, scene, name, idea. Colour from --w. `back` names where the button goes (default: all worlds). */
 import { sayIn } from '../../lib/text/say'
-import Emblem from '../ui/Emblem'
-import ArabicText from '../ui/ArabicText'
+import Emblem from '../ui/display/Emblem'
+import ArabicText from '../ui/text/ArabicText'
 
 const say = sayIn('en')
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { colorFor } from '../../theme'
 import { accentOf, GROUPS, LISTED, TABS } from './tabs'
-import Emblem from '../../components/ui/Emblem'
+import Emblem from '../../components/ui/display/Emblem'
 import vercel from '../../../../vercel.json'
 
 describe('the tab registry', () => {

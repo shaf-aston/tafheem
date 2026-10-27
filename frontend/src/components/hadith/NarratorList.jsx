@@ -8,14 +8,14 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { narratorListQuery } from '../../api'
 import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
-import EmptyState from '../ui/EmptyState'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import ChipRow from '../ui/inputs/ChipRow'
+import EmptyState from '../ui/feedback/EmptyState'
 import { NarratorWhen } from './NarratorParts'
-import ErrorAlert from '../ui/ErrorAlert'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
-import LoadMore from '../ui/LoadMore'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
+import LoadMore from '../ui/buttons/LoadMore'
 
 export default function NarratorList({ accent, onOpen }) {
   useOpenAtTop()

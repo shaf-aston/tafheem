@@ -25,7 +25,7 @@ const SOURCES = [
   '../../components/quiz/PracticeSentence.jsx',
   '../../components/quiz/SurahCoverage.jsx',
   '../../components/quiz/QuizSetup.jsx',
-  '../../components/ui/AutoAdvanceToggle.jsx',
+  '../../components/ui/buttons/AutoAdvanceToggle.jsx',
   '../quiz/quizBanks.js',
   '../quiz/quizNote.js',
 ]

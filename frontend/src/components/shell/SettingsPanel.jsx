@@ -20,8 +20,8 @@ import { ARMED_MS, useMoment } from '../../lib/hooks/useMoment'
 import { useInstall } from '../../lib/shell/install'
 import { InstallSteps } from './InstallBanner'
 import OfflinePanel from './OfflinePanel'
-import Disclosure from '../ui/Disclosure'
-import Segmented from '../ui/Segmented'
+import Disclosure from '../ui/overlays/Disclosure'
+import Segmented from '../ui/inputs/Segmented'
 import LevelSetting from '../level/LevelSetting'
 
 // Settings grouped by the module they change, in the order settings.json first names each.

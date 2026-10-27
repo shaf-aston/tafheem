@@ -37,9 +37,9 @@ import { useEffect, useMemo, useState } from 'react'
 import { nameMatches } from '../../lib/daleel/bookSearch'
 import { isArabic } from '../../lib/text/arabicText'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import ChipRow from '../ui/inputs/ChipRow'
 
 // Not a shelf, the absence of one. A name no category can have, so a shelf
 // called "All books" could never collide with it.

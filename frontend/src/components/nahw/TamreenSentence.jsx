@@ -4,7 +4,7 @@
  * so Practise and Browse draw the same sentence the same way.
  */
 import { markedWords, sentenceLines } from '../../lib/nahw/tamreen'
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 
 export function TamreenLegend() {
   return (

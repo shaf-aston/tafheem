@@ -6,8 +6,8 @@
  * `option` is { id, text }; `answerId` and `picked` are option ids; `say`
  * words the verdict in the round's language.
  */
-import ArabicText from '../ui/ArabicText'
-import OptionNumber from '../ui/OptionNumber'
+import ArabicText from '../ui/text/ArabicText'
+import OptionNumber from '../ui/inputs/OptionNumber'
 
 export default function QuizOption({ option, index, lang, say, answered, picked, answerId, accent, onChoose }) {
   const isAnswer = option.id === answerId

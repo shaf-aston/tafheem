@@ -13,10 +13,10 @@ import { useLessonSession } from '../../lib/grow/useLessonSession'
 import { useRewards } from '../../lib/learner/useRewards'
 import { worldOf } from '../../lib/grow/worlds'
 import LessonRunner from '../grow/LessonRunner'
-import EmptyState from '../ui/EmptyState'
-import PrimaryButton from '../ui/PrimaryButton'
-import ErrorAlert from '../ui/ErrorAlert'
-import { Skeleton } from '../ui/Skeleton'
+import EmptyState from '../ui/feedback/EmptyState'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 const BASICS = worldOf('basics')
 

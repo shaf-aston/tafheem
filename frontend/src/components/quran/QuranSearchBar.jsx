@@ -13,10 +13,10 @@ import { hasDiacritics } from '../../lib/text/arabicText'
 import { KIND, readQuranQuery } from '../../lib/quran/quranIntent'
 import { ayahProblem } from '../../lib/quran/surahRef'
 
-import ArabicText from '../ui/ArabicText'
-import MicButton from '../ui/MicButton'
-import { GoButton } from '../ui/RootActions'
-import SearchBox from '../ui/SearchBox'
+import ArabicText from '../ui/text/ArabicText'
+import MicButton from '../ui/buttons/MicButton'
+import { GoButton } from '../ui/buttons/RootActions'
+import SearchBox from '../ui/inputs/SearchBox'
 
 export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSearch, onHeard, busy, accent }) {
   const { kind, surahs, ayah, problem } = useMemo(() => readQuranQuery(value), [value])

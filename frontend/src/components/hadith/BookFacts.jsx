@@ -8,10 +8,10 @@
  */
 import HADITH from '../../config/hadith.json'
 
-import ArabicText from '../ui/ArabicText'
-import Disclosure from '../ui/Disclosure'
-import ShowRest from '../ui/ShowRest'
-import SourceBadge from '../ui/SourceBadge'
+import ArabicText from '../ui/text/ArabicText'
+import Disclosure from '../ui/overlays/Disclosure'
+import ShowRest from '../ui/buttons/ShowRest'
+import SourceBadge from '../ui/feedback/SourceBadge'
 
 const GROUPS = [
   ['reliability', 'Reliability'],

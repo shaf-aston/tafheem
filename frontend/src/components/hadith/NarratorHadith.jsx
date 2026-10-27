@@ -16,10 +16,10 @@ import { hadithBookQuery, hadithBooksQuery } from '../../api'
 import { narrated } from '../../lib/hadith/hadithWords'
 import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
-import Disclosure from '../ui/Disclosure'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import ChipRow from '../ui/inputs/ChipRow'
+import Disclosure from '../ui/overlays/Disclosure'
 import { FoldedList, PAIR_ROWS } from './NarratorParts'
 
 /** Rows by collection, then by book, both in the order the server sent them (the tab's order, then number). */

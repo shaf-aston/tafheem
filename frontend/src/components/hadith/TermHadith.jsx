@@ -8,12 +8,12 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { usulTermQuery } from '../../api'
 import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
 
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
-import EmptyState from '../ui/EmptyState'
-import ErrorAlert from '../ui/ErrorAlert'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
-import LoadMore from '../ui/LoadMore'
+import Chip from '../ui/inputs/Chip'
+import ChipRow from '../ui/inputs/ChipRow'
+import EmptyState from '../ui/feedback/EmptyState'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
+import LoadMore from '../ui/buttons/LoadMore'
 
 export default function TermHadith({ kind, accent, onOpen }) {
   const { of } = useHadithCollections()

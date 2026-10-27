@@ -3,7 +3,7 @@ import { Fragment, useRef } from 'react'
 import { isQuranic, recitedForm } from '../../lib/text/arabicText'
 import { wordsOf } from '../../lib/memorise/memorise'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import AyahNumber from './AyahNumber'
 import Gap from './Gap'
 import MarkCard from './MarkCard'

@@ -6,8 +6,8 @@
 import { LEVELS } from '../../lib/learner/learnerLevel'
 import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
 import { colorFor } from '../../theme'
-import ArabicText from '../ui/ArabicText'
-import Tile from '../ui/Tile'
+import ArabicText from '../ui/text/ArabicText'
+import Tile from '../ui/display/Tile'
 
 export default function LevelPicker({ copy, onGo }) {
   const { chosen, choose } = useLearnerLevel()

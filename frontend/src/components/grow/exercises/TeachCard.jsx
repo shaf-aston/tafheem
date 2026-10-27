@@ -2,7 +2,7 @@
  * Teach card: a new word and its meaning, before it is asked; `also` (optional) sets a second form beside it, smaller
  * (Basics: the word without ال, or the form an addition changes); `note` (optional) says the rule in a line.
  */
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')

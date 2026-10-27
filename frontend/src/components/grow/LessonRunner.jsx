@@ -14,8 +14,8 @@ import { requeue } from '../../lib/grow/lesson'
 import { useRecord } from '../../lib/learner/record'
 import { rankOf, shareOf } from '../../lib/learner/rewards'
 import { sayIn } from '../../lib/text/say'
-import ArabicText from '../ui/ArabicText'
-import PrimaryButton from '../ui/PrimaryButton'
+import ArabicText from '../ui/text/ArabicText'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
 import { kindOf } from './exercises'
 
 const say = sayIn('en')

@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import MicMark from '../components/ui/MicMark'
+import MicMark from '../components/ui/display/MicMark'
 import { roleVar } from '../lib/nahw/roleColors'
 import theme from '../config/theme.json'
 import links from './links.json'

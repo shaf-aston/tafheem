@@ -30,10 +30,10 @@ import { sayIn } from '../../lib/text/say'
 import { allWordsQuery, groupsFor, QUIZ } from '../../lib/quiz/quizBanks'
 import { useQuizCoverage } from '../../lib/quiz/useQuizCoverage'
 
-import ArabicText from '../ui/ArabicText'
-import Disclosure from '../ui/Disclosure'
-import EmptyState from '../ui/EmptyState'
-import { Skeleton } from '../ui/Skeleton'
+import ArabicText from '../ui/text/ArabicText'
+import Disclosure from '../ui/overlays/Disclosure'
+import EmptyState from '../ui/feedback/EmptyState'
+import { Skeleton } from '../ui/feedback/Skeleton'
 import SurahCoverage from './SurahCoverage'
 
 // What to call a category on screen. The cuts name themselves in the word

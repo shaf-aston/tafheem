@@ -3,8 +3,8 @@
  * out, and is added below when you are not among the rows shown. `limit` keeps the
  * top few only; `compact` drops the answers, for a narrow column (Home's).
  */
-import ErrorAlert from '../ui/ErrorAlert'
-import { Skeleton } from '../ui/Skeleton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 export default function Ranking({ board, name, title, limit, compact = false }) {
   if (board.isPending) return <Skeleton className="h-24 w-full" />

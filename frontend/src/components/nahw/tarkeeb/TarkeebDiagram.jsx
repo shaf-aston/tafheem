@@ -17,7 +17,7 @@ import { GAP, cells, fold, foldRows, groupThreads, hiddenWords, rows, runs, thre
 import { useRail } from '../../../lib/motion/useRail'
 import theme from '../../../config/theme.json'
 
-import Tooltip from '../../ui/Tooltip'
+import Tooltip from '../../ui/overlays/Tooltip'
 
 // Rows of names shown before the rest fold behind "more rows" (theme.json, beside the chart's other knobs).
 const ROWS_SHOWN = theme.arabic['chart-rows-shown']

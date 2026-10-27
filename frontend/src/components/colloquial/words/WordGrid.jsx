@@ -1,7 +1,7 @@
 // A topic's single words as picture tiles, under their headings: after the
 // phrases, the words a learner needs on their own. A word with no picture yet
 // gets the same tinted tile a phrase does, so the grid never has holes.
-import SpeakButton from '../../ui/SpeakButton'
+import SpeakButton from '../../ui/buttons/SpeakButton'
 import Face from '../parts/Face'
 import Spelling from '../parts/Spelling'
 import { grouped } from '../../../lib/colloquial/wordGroups'

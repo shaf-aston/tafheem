@@ -3,12 +3,12 @@
 import { useState } from 'react'
 
 import { grouped } from '../../../lib/colloquial/wordGroups'
-import ArabicText from '../../ui/ArabicText'
-import BottomSheet from '../../ui/BottomSheet'
-import CloseButton from '../../ui/CloseButton'
-import Segmented from '../../ui/Segmented'
-import SmallButton from '../../ui/SmallButton'
-import SpeakButton from '../../ui/SpeakButton'
+import ArabicText from '../../ui/text/ArabicText'
+import BottomSheet from '../../ui/overlays/BottomSheet'
+import CloseButton from '../../ui/buttons/CloseButton'
+import Segmented from '../../ui/inputs/Segmented'
+import SmallButton from '../../ui/buttons/SmallButton'
+import SpeakButton from '../../ui/buttons/SpeakButton'
 import { FOCUS } from '../parts/Face'
 import Spelling from '../parts/Spelling'
 

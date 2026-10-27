@@ -12,15 +12,15 @@ import { useQuery } from '@tanstack/react-query'
 import { narratorHadithQuery, narratorQuery } from '../../api'
 import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 
-import ArabicText from '../ui/ArabicText'
-import Disclosure from '../ui/Disclosure'
+import ArabicText from '../ui/text/ArabicText'
+import Disclosure from '../ui/overlays/Disclosure'
 import BookFacts from './BookFacts'
 import ClassicalText from './ClassicalText'
 import NarratorHadith from './NarratorHadith'
 import { FoldedList, GradeKey, NarratorError, NarratorHead, NarratorLinks } from './NarratorParts'
-import ErrorAlert from '../ui/ErrorAlert'
-import ShowRest from '../ui/ShowRest'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import ShowRest from '../ui/buttons/ShowRest'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 
 /** A section headed in both languages, English left and Arabic right, as the header card sets its facts. */
 const Section = ({ title, ar, children }) => (

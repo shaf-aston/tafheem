@@ -8,7 +8,7 @@
  * `pressed` is for a row where one card is the current choice; `current` marks
  * the one a rail is reading.
  */
-import TopicIcon from '../ui/TopicIcon'
+import TopicIcon from '../ui/display/TopicIcon'
 
 export default function TileCard({
   hue, icon, variant = 'event', index = 0, pressed, current, label, className = '', onClick, children, ...rest

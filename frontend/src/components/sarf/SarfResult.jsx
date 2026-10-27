@@ -1,8 +1,8 @@
 import { verbClass } from '../../lib/sarf/verbClass'
 
-import { Skeleton } from '../ui/Skeleton'
-import SourceBadge from '../ui/SourceBadge'
-import VerbFormTag from '../ui/VerbFormTag'
+import { Skeleton } from '../ui/feedback/Skeleton'
+import SourceBadge from '../ui/feedback/SourceBadge'
+import VerbFormTag from '../ui/text/VerbFormTag'
 import BlockTitle from './BlockTitle'
 import { CONJUGATIONS } from './conjugations'
 import Gardaan from './Gardaan'

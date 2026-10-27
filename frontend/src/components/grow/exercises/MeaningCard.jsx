@@ -1,7 +1,7 @@
 /**
  * Which meaning is this word? The quiz's own question; marks right/wrong once checked.
  */
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 import OneOf from './OneOf'
 import { sayIn } from '../../../lib/text/say'
 

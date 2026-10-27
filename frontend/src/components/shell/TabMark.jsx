@@ -3,7 +3,7 @@
  * search rail and rows, the launcher ring. The tab's own Emblem, held still and drawn in
  * the text colour around it, so a lit tab lights its picture too (styles/emblem.css).
  */
-import Emblem from '../ui/Emblem'
+import Emblem from '../ui/display/Emblem'
 
 export default function TabMark({ tab }) {
   return tab ? <Emblem id={tab.emblem} className="tab-mark" /> : null

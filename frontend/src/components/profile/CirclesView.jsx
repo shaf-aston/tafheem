@@ -13,11 +13,11 @@ import { smartError } from '../../lib/api/apiError'
 import { answerInvite, createCircle, fetchCircles } from '../../lib/learner/progress'
 
 import CircleOpen from './CircleOpen'
-import SearchBox from '../ui/SearchBox'
-import ErrorAlert from '../ui/ErrorAlert'
-import { Skeleton } from '../ui/Skeleton'
-import SmallButton from '../ui/SmallButton'
-import WheelPicker from '../ui/WheelPicker'
+import SearchBox from '../ui/inputs/SearchBox'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { Skeleton } from '../ui/feedback/Skeleton'
+import SmallButton from '../ui/buttons/SmallButton'
+import WheelPicker from '../ui/inputs/WheelPicker'
 
 const ALONE = ''
 

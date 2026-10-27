@@ -2,7 +2,7 @@ import { ahead } from '../../lib/api/warm'
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import { RECITERS, nowPlaying, play, prefetch, stop, watch, watchEnd } from '../../lib/quran/ayahAudio'
-import WheelPicker from '../ui/WheelPicker'
+import WheelPicker from '../ui/inputs/WheelPicker'
 
 // The reciters as the dropdown's choices, each with its Arabic name beside it.
 const VOICES = RECITERS.map((one) => ({ id: one.id, label: one.name, hint: one.arabic }))

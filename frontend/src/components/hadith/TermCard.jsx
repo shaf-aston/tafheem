@@ -6,10 +6,10 @@
  */
 import { useEffect, useRef } from 'react'
 
-import ArabicText from '../ui/ArabicText'
-import BottomSheet from '../ui/BottomSheet'
-import CloseButton from '../ui/CloseButton'
-import Disclosure from '../ui/Disclosure'
+import ArabicText from '../ui/text/ArabicText'
+import BottomSheet from '../ui/overlays/BottomSheet'
+import CloseButton from '../ui/buttons/CloseButton'
+import Disclosure from '../ui/overlays/Disclosure'
 import SheetLink from './SheetLink'
 import TermHadith from './TermHadith'
 import { termAt } from '../../lib/hadith/termsChart'

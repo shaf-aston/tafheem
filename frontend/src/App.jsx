@@ -14,7 +14,7 @@ import BackendBanner from './components/shell/BackendBanner'
 import TabPane from './components/shell/TabPane'
 import CursorLight from './components/shell/CursorLight'
 import CommandBar from './components/shell/CommandBar'
-import Mascot from './components/ui/Mascot'
+import Mascot from './components/ui/display/Mascot'
 import ProfileButton from './components/profile/ProfileButton'
 import SettingsPanel from './components/shell/SettingsPanel'
 import SpatialHome from './components/shell/SpatialHome'
@@ -24,7 +24,7 @@ import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
 import InstallButton from './components/shell/InstallButton'
 import SectionsMenu from './components/shell/SectionsMenu'
-import ArabicText from './components/ui/ArabicText'
+import ArabicText from './components/ui/text/ArabicText'
 
 const queryClient = new QueryClient({
   // The data is fixed for the life of the backend: keep every answer, so a

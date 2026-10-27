@@ -8,8 +8,8 @@ import { useState } from 'react'
 
 import settings from '../../../config/colloquial.json'
 import { shuffled } from '../../../lib/text/shuffle'
-import ArabicText from '../../ui/ArabicText'
-import SmallButton from '../../ui/SmallButton'
+import ArabicText from '../../ui/text/ArabicText'
+import SmallButton from '../../ui/buttons/SmallButton'
 import { FOCUS } from '../parts/Face'
 
 const BOARD = settings['match-board']

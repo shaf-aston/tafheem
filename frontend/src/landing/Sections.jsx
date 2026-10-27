@@ -1,7 +1,7 @@
 import { accentOf, GROUPS, LISTED } from '../lib/nav/tabs.js'
-import ArabicText from '../components/ui/ArabicText.jsx'
-import TabGroups from '../components/ui/TabGroups.jsx'
-import Tile from '../components/ui/Tile.jsx'
+import ArabicText from '../components/ui/text/ArabicText.jsx'
+import TabGroups from '../components/ui/inputs/TabGroups.jsx'
+import Tile from '../components/ui/display/Tile.jsx'
 import links from './links.json'
 
 const SHOWN = GROUPS.filter((group) => LISTED.some((tab) => tab.group === group.id))

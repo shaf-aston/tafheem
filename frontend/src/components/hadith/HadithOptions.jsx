@@ -1,7 +1,7 @@
 import { useHideChain } from '../../lib/hadith/useHideChain'
 import { useSideBySide } from '../../lib/hadith/useSideBySide'
 
-import ReadingOptions from '../ui/ReadingOptions'
+import ReadingOptions from '../ui/inputs/ReadingOptions'
 import WordsLink from './WordsLink'
 
 /**

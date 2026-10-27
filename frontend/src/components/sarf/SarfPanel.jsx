@@ -2,13 +2,13 @@
 import { errorMessage } from '../../lib/api/apiError'
 import { useSarf } from '../../lib/sarf/useSarf'
 
-import ErrorAlert from '../ui/ErrorAlert'
-import MicButton from '../ui/MicButton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import MicButton from '../ui/buttons/MicButton'
 import PresetsDrawer from '../nahw/PresetsDrawer'
 import SarfResult from './SarfResult'
-import SearchBox from '../ui/SearchBox'
-import SectionHeader from '../ui/SectionHeader'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
+import SearchBox from '../ui/inputs/SearchBox'
+import SectionHeader from '../ui/display/SectionHeader'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 
 export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) {
   const {

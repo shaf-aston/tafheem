@@ -15,9 +15,9 @@ import { useEffect, useRef, useState } from 'react'
 
 import { hasAnswer } from '../../../lib/colloquial/answer'
 import { useRecord } from '../../../lib/learner/record'
-import ArabicText from '../../ui/ArabicText'
-import PrimaryButton from '../../ui/PrimaryButton'
-import SpeakButton from '../../ui/SpeakButton'
+import ArabicText from '../../ui/text/ArabicText'
+import PrimaryButton from '../../ui/buttons/PrimaryButton'
+import SpeakButton from '../../ui/buttons/SpeakButton'
 import { exerciseOf } from './registry'
 
 const statusOf = (saved) => (!saved ? '' : saved.correct ? 'right' : 'wrong')

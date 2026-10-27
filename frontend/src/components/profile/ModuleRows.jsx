@@ -1,8 +1,8 @@
 /** One row per module someone answered in: words learnt, answers given, the last day. */
 import { labelOf } from '../../lib/nav/moduleTab'
 
-import ErrorAlert from '../ui/ErrorAlert'
-import { Skeleton } from '../ui/Skeleton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 export default function ModuleRows({ overview }) {
   if (overview.isPending) return <Skeleton className="h-16 w-full" />

@@ -1,4 +1,4 @@
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 
 /** A block's name, English then its Arabic term, used by every block here. */
 export default function BlockTitle({ label, term }) {

@@ -14,12 +14,12 @@ import { LEVEL_KEY } from '../../lib/learner/learnerLevel'
 import { copyGuestShelf, pullShelf, startShelf } from '../../lib/store/shelf'
 import { readRaw } from '../../lib/store/stored'
 
-import BottomSheet from '../ui/BottomSheet'
-import PrimaryButton from '../ui/PrimaryButton'
+import BottomSheet from '../ui/overlays/BottomSheet'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
 import ProfileView from './ProfileView'
-import SearchBox from '../ui/SearchBox'
-import Segmented from '../ui/Segmented'
-import SmallButton from '../ui/SmallButton'
+import SearchBox from '../ui/inputs/SearchBox'
+import Segmented from '../ui/inputs/Segmented'
+import SmallButton from '../ui/buttons/SmallButton'
 import LevelSetting from '../level/LevelSetting'
 
 const MODES = [{ id: 'login', label: 'Log in' }, { id: 'signup', label: 'Sign up' }]
