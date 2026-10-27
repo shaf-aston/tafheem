@@ -57,12 +57,11 @@ export default function ReciteStrip({ listening, problem, transcript, marks, lin
           <p className="type-body font-medium text-[var(--text)] truncate">
             {listening ? (marks.started ? 'Listening…' : 'Listening. Start from the top of the page.') : 'Press to start reciting'}
           </p>
-          {listening && transcript.length > 0 ? (
+          <p className="type-small text-[var(--text-faint)] truncate">{status}</p>
+          {listening && transcript.length > 0 && (
             <ArabicText as="p" size="sm" ref={scroller} className="text-[var(--text-faint)] block max-h-24 overflow-y-auto">
               {transcript.join(' ')}
             </ArabicText>
-          ) : (
-            <p className="type-small text-[var(--text-faint)] truncate">{status}</p>
           )}
         </div>
 
