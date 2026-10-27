@@ -24,6 +24,10 @@ _ROOT = "فعل"  # how harakat.fits_shape writes the root's letters in a shape
 _ENCLITIC = {"ي": "1s", "نا": "1p", "كَ": "2ms", "كِ": "2fs", "كما": "2d", "كم": "2mp", "كن": "2fp",
              "ه": "3ms", "ها": "3fs", "هما": "3d", "هم": "3mp", "هن": "3fp"}
 _CASE = {vowel: camel for camel, vowel in CAMEL_CASE.items()}
+# مُسْرِعُونَ، مُسْرِعِينَ، مُسْرِعَانِ، مُسْرِعَيْنِ: the letters of the sound masculine plural and of the dual tell
+# its case (Ibn Aqil V1 p59: وارفع بواو وبيا اجرر وانصب سالم جمع عامر ومذنب; V1 p55: بالألف ارفع المثنى), each
+# with the vowel before it, and the ن's own; the ي is nasb or jarr alike. (vowel before, letter, ن's vowel) → (number, case)
+_SOUND_ENDINGS = {("ُ", "و", "َ"): ("p", "n"), ("ِ", "ي", "َ"): ("p", "u"), ("َ", "ا", "ِ"): ("d", "n"), ("َ", "ي", "ِ"): ("d", "u")}
 
 
 @lru_cache(maxsize=1)
@@ -60,6 +64,20 @@ def _pronoun(marked: list[tuple[str, set]]) -> tuple[int, str]:
     return 0, "0"
 
 
+def _sound_ending(stem: list[tuple[str, set]]) -> tuple[int, str, str | None]:
+    """(how many letters at the end are no letters of the shape, number, case) when its ending tells them: a
+    sound masculine plural or a dual (_SOUND_ENDINGS), or a singular in nasb by the alif its tanween is
+    written on (مُسْرِعًا); (0, "s", None) for any other."""
+    if len(stem) > 4 and stem[-1][0] == "ن":
+        (_, before), (letter, _), (_, last) = stem[-3:]
+        for (vowel, said, n_vowel), (number, case) in _SOUND_ENDINGS.items():
+            if letter == said and vowel in before and not last - {n_vowel}:
+                return 2, number, case
+    if len(stem) > 3 and stem[-1][0] == "ا" and "ً" in stem[-2][1] | stem[-1][1]:
+        return 1, "s", "a"
+    return 0, "s", None
+
+
 def reading_of(word: str) -> dict | None:
     """The noun this typed word is, in the dictionary's own features ({pos, diac, atbtok, ...}),
     or None when no shape fits it, or a letter before its case was left bare (a long letter needs none)."""
@@ -75,6 +93,8 @@ def reading_of(word: str) -> dict | None:
     if feminine:
         # the ة carries the case, and the letter before it its fatha
         stem = [*stem[:-2], (stem[-2][0], (stem[-2][1] - {"َ"}) | (stem[-1][1] & VOWEL.keys()))]
+    peeled, number, told = _sound_ending(stem) if not size and not feminine else (0, "s", None)
+    stem = stem[:len(stem) - peeled]
     # a long letter (the ا of تَعَاوُن) carries no vowel of its own; a bare ا opening the word is
     # hamzat al-wasl, a command's (افْعَلِي), never the hamza of أَفْعَل
     if len(stem) < 3 or not all(marks or (letter in "اوي" and i) for i, (letter, marks) in enumerate(stem[:-1])):
@@ -87,12 +107,12 @@ def reading_of(word: str) -> dict | None:
         if not fits_shape(shaped, shape):
             continue
         typed_stem = "".join(letter + "".join(sorted(marks)) for letter, marks in stem)
-        pronoun = "".join(letter + "".join(sorted(marks)) for letter, marks in marked[len(stem):])
+        rest = "".join(letter + "".join(sorted(marks)) for letter, marks in marked[len(stem):])  # its pronoun, or its peeled ending
         return {"pos": pos, "diac": word, "lex": "".join(letter for letter, _ in stem), "pattern": ("ال" if definite else "") + pattern + ("ة" if feminine else ""),
-                "atbtok": f"{typed_stem}_+{pronoun}" if size else typed_stem,
+                "atbtok": f"{typed_stem}_+{rest}" if size else typed_stem + (rest if peeled else ""),
                 "catib6": "NOM+NOM" if size else "NOM", "ud": ("NOUN" if pos == "noun" else "ADJ") + ("+PRON" if size else ""),
                 "enc0": f"{enclitic}_poss" if size else "0", "stt": "d" if definite else "c" if size else "i",
-                "cas": _CASE.get(case, "u") if case else "na", "num": "s", "gen": "f" if feminine else "m",
+                "cas": told or (_CASE.get(case, "u") if case else "na"), "num": number, "gen": "f" if feminine else "m",
                 "asp": "na", "vox": "na", "per": "na", "mod": "na",
                 "prc0": "Al_det" if definite else "0", "prc1": "0", "prc2": "0", "prc3": "0", "source": "sarf"}
     return None

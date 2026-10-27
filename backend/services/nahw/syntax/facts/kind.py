@@ -3,7 +3,7 @@ asked or negating word is, which the other axes read."""
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.text.harakat import letters
+from backend.services.text.harakat import has_tanween, letters
 from backend.services.nahw.book import book_map, is_one
 from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_suffix, is_verb, read_as, reading, typed_case_of
 from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, verb_above
@@ -35,12 +35,14 @@ def _called_without_ya(token: dict, s: Sentence) -> bool:
     """رَبَّنَا آتِنَا: يا may be left off before a called noun (Ibn Aqil V3 p256: وأما غير هذه فيحذف معها الحرف
     جوازا، فتقول في يا عبد الله اركب: عبد الله اركب). Read so: a مضاف opening the sentence, typed in no case
     but nasb, with a command straight after its مضاف إليه (or their chain: عَبْدَ بَيْتِ اللَّهِ ارْكَبْ), the command
-    said to the one called."""
+    said to the one called. Or a bare noun so opening, typed with a kasra and no tanween: the vowel the ياء المتكلم
+    left when it went (V3 p274: حذف الياء والاستغناء بالكسرة نحو يا عبدِ; رَبِّ اغْفِرْ لِي)."""
     after = next_word(token, s)
     while after and after["rel"] == "IDF":
         after = next_word(after, s)
-    return (token is s.tokens[0] and token.get("mudaf") and typed_case_of(token) in ("a", None)
-            and after is not None and after.get("asp") == "c")
+    case = typed_case_of(token)
+    return (token is s.tokens[0] and after is not None and after.get("asp") == "c"
+            and (token.get("mudaf") and case in ("a", None) or case == "i" and not has_tanween(token.get("typed") or "")))
 
 
 def owns_pronoun(token: dict, s: Sentence) -> bool:

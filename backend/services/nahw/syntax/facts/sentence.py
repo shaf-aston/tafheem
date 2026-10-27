@@ -202,9 +202,10 @@ def told_of_lone_mubtada(token: dict, head: dict, s: Sentence) -> bool:
     """الدينُ النصيحةُ: a verbless sentence resting on one noun with nothing else said of
     it, so the plain noun in its case after it is its khabar; a describing word
     (الطبيبُ الماهرُ) stays its صفة (Tasheel 1.4 p6). Made definite by its مضاف إليه
-    (الطهورُ شطرُ الإيمانِ) it is a khabar too: a plain noun names a thing, it does not describe one.
-    So is a name, definite by itself whatever its tanween (أخوك زيدٌ)."""
-    plain_mudaf = token.get("stt") == "c" and token.get("pos_camel") == "noun" and not is_participle(token)
+    (الطهورُ شطرُ الإيمانِ) it is a khabar too: a plain noun names a thing, it does not describe one, and one of
+    a participle's shape no less (زيدٌ صاحبُ المالِ): the two parts alike definite, the first is the mubtada
+    (Ibn Aqil V1 p232: زيد أخوك). So is a name, definite by itself whatever its tanween (أخوك زيدٌ)."""
+    plain_mudaf = token.get("stt") == "c" and token.get("pos_camel") == "noun"
     return s.verbless and head["rel"] == "---" and noun_tagged(head) \
         and same_case(token, head) and (token.get("stt") == "d" or plain_mudaf or is_name(token)) and token.get("ud") != "ADJ" \
         and [t for t in s.tokens if t["rel"] == "---"] == [head] \

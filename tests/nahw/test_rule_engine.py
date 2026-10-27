@@ -230,6 +230,13 @@ def test_a_verb_with_the_plurals_waw_before_a_pronoun(sentence: str, sign: str):
     ("زَيْدٌ ضَارِبٌ بَكْرًا", ["مبتدأ", "خبر", "مفعول به"]),  # no ال after a name: the khabar
     ("زَيْدٌ صَاحِبُ مَالٍ كَثِيرٍ", ["مبتدأ", "خبر", "مضاف إليه", "صفة"]),  # added to an indefinite: still indefinite
     ("زَيْدٌ صَاحِبُ الْمَالِ كَرِيمٌ", ["مبتدأ", "صفة", "مضاف إليه", "خبر"]),  # nearest case: added to a definite, a صفة
+    ("زَيْدٌ صَاحِبُ الْمَالِ", ["مبتدأ", "خبر", "مضاف إليه"]),  # both definite: the first the مبتدأ (Ibn Aqil V1 p232: زيد أخوك)
+    ("أَنَا ضَارِبٌ زَيْدًا", ["مبتدأ", "خبر", "مفعول به"]),  # the participle works as its verb (V3 p106): no verb read
+    ("جَاءُوا مُسْرِعِينَ", ["فعل", "حال"]),  # the dictionary's past, and the plural read off its ending
+    ("قَاتِلُوا مُسْرِعِينَ", ["فعل", "حال"]),  # a command no less
+    ("مَرَرْتُ بِرِجَالٍ مُسْرِعِينَ", ["فعل", "مجرور", "صفة"]),  # nearest case: after an indefinite plural, its صفة
+    ("إِنَّ الطُّلَّابَ مُسْرِعُونَ", ["حرف", "اسم إن", "خبر إن"]),
+    ("حضر الطلاب الا زيدا", ["فعل", "فاعل", "حرف", "مستثنى"]),  # bare الا is إِلَّا, not the name آلًا
     ("إِنَّ الْمُهَنْدِسَ الْعَجُوزَ نَشِيطٌ", ["حرف", "اسم إن", "صفة", "خبر إن"]),  # ال on both: it follows
     ("ابْتَاعَ الْخَبَّازُ صَاعًا شَعِيرًا", ["فعل", "فاعل", "مفعول به", "تمييز"]),  # after a measure
     ("اشْتَرَيْتُ رِطْلًا كَامِلًا", ["فعل", "مفعول به", "صفة"]),  # nearest case: an adjective after one
@@ -1030,6 +1037,7 @@ def test_a_command_with_its_object_pronoun_written_on(sentence: str, want: list)
     ("عَبْدَ بَيْتِ اللَّهِ ارْكَبْ", 0, "منادى", _DROPPED),  # the command after a chain of مضاف إليه
     ("ربنا اِغْفِرْ لَنَا", 0, "منادى", _DROPPED),  # its case not typed: the command after it says it
     ("رب العالمين اِغْفِرْ لِي", 0, "منادى", _DROPPED),  # the command after the مضاف إليه
+    ("رَبِّ اغْفِرْ لِي", 0, "منادى", _DROPPED),  # the kasra the ياء المتكلم left when it went (V3 p274: يا عبدِ)
     ("اللَّهُمَّ", 0, "منادى", _MEEM),  # يا put at the end as the doubled ميم
     ("يَا رَبَّنَا", 1, "منادى", None),  # nearest case: يا typed, nothing left off
     ("رَبُّنَا اغْفِرْ لَنَا", 0, "مبتدأ", None),  # nearest case: typed in raf', no call
@@ -1042,6 +1050,10 @@ def test_a_call_with_no_ya_typed(sentence: str, at: int, role: str, said: str | 
     assert all((wording == said) == (wording in card["reason"]) for wording in (_DROPPED, _MEEM)), card["reason"]
     if role == "منادى":  # the يا left off is no word of the sentence; a typed one is
         assert card["governor"] == (None if said else 0)
+
+
+def test_a_kasra_with_tanween_is_no_dropped_ya():
+    assert cards("زَيْدٍ اذْهَبْ")[0]["role"] != "منادى"  # nearest case: the tanween stands on no ياء المتكلم
 
 
 _BUSIED = "والناصب له فعل محذوف وجوبًا يفسره الفعل المذكور"

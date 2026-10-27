@@ -5,12 +5,19 @@ the roles, the teacher's checks, the naming tree and the bracket tree's vocabula
 from __future__ import annotations
 
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 from types import SimpleNamespace
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import PRESENT_PREFIX, SUKUN, has_tanween, letters
+from backend.services.text.harakat import (
+    PRESENT_PREFIX,
+    SHADDA,
+    SUKUN,
+    has_tanween,
+    letters,
+)
 
 RULES = Path(__file__).parent.parent.parent / "data" / "nahw_rules"
 
@@ -216,6 +223,28 @@ def is_diptote(typed: str, pos: str, lemma: str, *, attached: bool, annexed: boo
     marked = letters(typed)
     return (bool(marked) and "َ" in marked[-1][1] and not has_tanween(typed) and not strip_diacritics(typed).startswith(("ال", "ٱل"))
             and not (attached or annexed or is_mabni(pos) or is_one(lemma, "tamyeez_head")))
+
+
+def measure(pattern: str) -> str:
+    """The analyser's pattern laid back on its measure: a doubled root writes its last two
+    radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
+    in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3), a last radical hamza keeps its seat in place of the 3
+    (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3)."""
+    pattern = pattern.removeprefix("ال")
+    if "3" not in pattern and "2" in pattern:
+        pattern = re.sub(r"(?<=2)([\u064b-\u0652]*[اوي]?)[ءأإئؤ]", r"\g<1>3", pattern, count=1)
+    if "3" not in pattern and "2" + SHADDA in pattern:
+        return pattern.replace("2" + SHADDA, "2" + SUKUN + "3", 1)
+    if "2" not in pattern:  # قِيَام 1ِيا3: the weak letter stands as the 2, and the alef after it implies its fatha
+        pattern = re.sub(r"(?<=1[\u064b-\u0652])[وي](?=[\u064b-\u0652]?[اوي]?3)", "2", pattern, count=1)
+        return pattern.replace("2ا", "2َا")
+    return pattern
+
+
+def participle_shape(pattern: str) -> bool:
+    """ضَارِب، مُكْرَم، فَرِح: the analyser's pattern laid on a measure of the participles and the صفة
+    المشبهة (closed_words participle_patterns)."""
+    return measure(pattern).startswith(tuple(book_words("participle_patterns")))
 
 
 def elative_shape(pattern: str, lemma: str) -> bool:

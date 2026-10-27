@@ -27,8 +27,9 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
             for kid in tokens:
                 if kid["head"] == token["id"] and kid["rel"] == "OBJ":
                     kid["rel"] = "IDF"
-        # مُلَبِّينَ: no verb opens with مُ and ends in the plural ـونَ/ـينَ, so it is a participle
-        elif verb_tagged(token) and _participle_plural(word):
+        # مُلَبِّينَ: no verb opens with مُ and ends in the plural ـونَ/ـينَ, so it is a participle, its case by
+        # its place; so is one sarf read off its shape, whose ـينَ is nasb or jarr alike (noun_reader)
+        elif (verb_tagged(token) or token.get("cas") == "u") and _participle_plural(word):
             token.update(pos="NOM", pos_camel="adj", asp="na", cas=_plural_case(word, token, tokens))
         # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
         token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
@@ -38,16 +39,20 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
             token.update(pos="VRB", asp="p")
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever the reading. A verb is also tried on its own
         # letters (فَاقْبَلْهَا); a noun never, or the يَدِ of وَيَدِهِ would be a command, except a name the list only
-        # guessed (فَادْفَعُوا). A noun read with the vowels typed stays that noun unless the command is typed in full (سَمِّ)
+        # guessed (فَادْفَعُوا). A noun read with the vowels typed stays that noun unless the command is typed in full (سَمِّ),
+        # and so does a past verb (جَاءُوا is the dictionary's past, never a command spelled جَاِئُوا it left a mark off)
         after = words[i + 1] if i + 1 < len(words) else ""
         verb = verb_tagged(token)
-        read_noun = token.get("pos_camel") == "noun" and vowel_agreement(word, token.get("diac", "")) is not None
+        agrees = vowel_agreement(word, token.get("diac", "")) is not None
+        read_noun = token.get("pos_camel") == "noun" and agrees
+        read_past = verb and token.get("asp") == "p" and agrees
         # a noun read with a sign of the noun on it is that noun, never a command (Ibn Aqil V1 p15: بالجر والتنوين
-        # والندا وأل): its own pronoun stuck on, not hung as an object (عَمِّي، جَدِّي), called (يَا رَبِّ), in jarr as a مضاف إليه or as the
+        # والندا وأل): its own pronoun stuck on, not hung as an object (عَمِّي، جَدِّي), called (يَا رَبِّ), or with its يا left off,
+        # opening the sentence before the command said to it (رَبِّ اغْفِرْ لِي; V3 p256), in jarr as a مضاف إليه or as the
         # صفة of a noun in jarr (لِلَّهِ رَبِّ الْعَالَمِينَ), as no sentence of asking describes (V3 p198: وامنع هنا إيقاع ذات الطلب)
         head = next((t for t in tokens if t["id"] == token["head"]), None)
         noun = read_noun and (any(t["head"] == token["id"] and t.get("token_type") == "enc0" and t["rel"] != "OBJ" for t in tokens)
-                              or i > 0 and is_one(bases[i - 1]["base"], "nida")
+                              or i > 0 and is_one(bases[i - 1]["base"], "nida") or i == 0 and verb_reader.command(after) is not None
                               or token["rel"] == "IDF" or token["rel"] == "MOD" and head is not None and typed_or_parsed_case(head) == "i")
         if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not noun:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
@@ -62,7 +67,7 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
                 own = plural_alef(own)  # اُكْتُبُوهُ is اُكْتُبُوا with its object
             cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
                          if (found := verb_reader.command(form, governed, token.get("root", ""), vouched))
-                         and (not read_noun or vouched or verb_reader.typed_fully(form, found))), None)
+                         and (not (read_noun or read_past) or vouched or verb_reader.typed_fully(form, found))), None)
             if cell:  # the person is sarf's: the reading may have taken اقبل for "I accept"
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
                 # قُومِي: the ي a noun reading split off as "my" is the command's doer, a pronoun only ever

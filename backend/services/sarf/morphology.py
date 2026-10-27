@@ -20,7 +20,7 @@ from typing import Any, NamedTuple
 from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services.sarf import noun_reader
 from backend.services.sarf import verb_reader
-from backend.services.nahw.book import book_map, book_words, elative_shape, is_built_word, is_mabni, is_one, sakt_off, six_noun_case
+from backend.services.nahw.book import book_map, book_words, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
 from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -650,10 +650,10 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
             ranked, evidence = twin_ranked[0], twin
         # زيدا typed bare fits the verb زَيَّدَا too, but that one adds a shadda the writing lacks and the name none
-        # (الأصل عدم الزيادة), so the name in nasb is read where it adds fewer
-        agreeing = _agreeing(evidence, ranked)
-        if (not agreeing or _added(_reading(evidence, ranked), token)) and (name := _name_in_nasb(token, disambiguator)) \
-                and (not agreeing or _added(name, token) < _added(_reading(evidence, ranked), token)):
+        # (الأصل عدم الزيادة), so the name in nasb is read where it adds fewer. A particle stays (الا is إِلَّا)
+        agreeing, read = _agreeing(evidence, ranked), _reading(evidence, ranked)
+        if (not agreeing or read.get("pos") == "verb" and _added(read, token)) and (name := _name_in_nasb(token, disambiguator)) \
+                and (not agreeing or _added(name, token) < _added(read, token)):
             ranked = [name]
         if lam := _emphasis_lam(evidence, disambiguator):
             ranked = [lam]
@@ -757,9 +757,12 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     # no letter the writing lacks (زَيَّدَ's shadda: الأصل عدم الزيادة). Typed vowels still choose, and a
     # typed tanween is a sign of the noun (Ibn Aqil V1 p15: بالجر والتنوين): زَيْدٌ فَاهِمٌ الدَّرْسَ, never فَأَهِم.
     # A pronoun is a noun too (هُوَ أَكْرَمَ ضَيْفًا: المضمر من أقسام الاسم, Ibn Aqil on the Alfiyya);
-    # the word after a مضاف is مجرور (وَالثَّانِيَ اجْرُرْ): هَذَا كِتَابُ أَحْمَدَ's fatha is a diptote's jarr
+    # the word after a مضاف is مجرور (وَالثَّانِيَ اجْرُرْ): هَذَا كِتَابُ أَحْمَدَ's fatha is a diptote's jarr.
+    # A participle with its tanween before it is its عامل already (Ibn Aqil V3 p106: كفعله اسم فاعل في العمل …
+    # هذا ضارب زيدا الآن أو غدا): أَنَا ضَارِبٌ زَيْدًا has no verb in it
     nasb = next((i for i, r in enumerate(out) if i and r.get("cas") == "a" and not _bare_construct(out[i - 1])), None)
-    if nasb and all(r.get("pos") in NOUNISH or r.get("pos", "").startswith("pron") for r in out):
+    if nasb and all(r.get("pos") in NOUNISH or r.get("pos", "").startswith("pron") for r in out) \
+            and not any(has_tanween(word) and participle_shape(r.get("pattern", "")) for word, r in zip(tokens[:nasb], out)):
         for i in range(nasb + (typed_case(tokens[nasb]) == "a")):
             verb = not has_tanween(tokens[i]) and best_reading(tokens[i], [
                 r for r in _widened(tokens[i], steps[i][1]) if r.get("pos") == "verb" and "ّ" not in r.get("diac", "")])
