@@ -322,21 +322,19 @@ def _cuts(word: str):
 
 
 def _pieces(front: list, verb: list, pronoun: list = ()) -> dict:
-    """The dictionary's split of a verb the table read (atbtok, catib6, ud, its prc slots): each joined letter a
+    """The dictionary's split of a verb the table read (atbtok, catib6, ud): each joined letter a
     particle (فَ+، وَ+ a conjunction, لْ+ of the command), the verb, its object pronoun (فَ+_اقْبَلْ_+هَا)."""
-    joined = [_PROCLITIC[letter] for letter, _ in front]
     return {"atbtok": "_".join([*(_spell([p]) + "+" for p in front), _spell(verb), *(["+" + _spell(pronoun)] if pronoun else [])]),
             "catib6": "+".join(["PRT"] * len(front) + ["VRB"] + ["NOM"] * bool(pronoun)),
-            "ud": "+".join([*(ud for _, _, ud in joined), "VERB", *(["PRON"] if pronoun else [])]),
-            **{slot: name for slot, name, _ in joined}}
+            "ud": "+".join([*(_PROCLITIC[letter] for letter, _ in front), "VERB", *(["PRON"] if pronoun else [])])}
 
 
 # CAMeL's name for each object pronoun, by its letters and, for ك, its vowel
 _ENCLITIC = {"ني": "1s", "نا": "1p", "كَ": "2ms", "كِ": "2fs", "كما": "2d", "كم": "2mp", "كن": "2fp",
              "ه": "3ms", "ها": "3fs", "هما": "3d", "هم": "3mp", "هن": "3fp"}
 
-# CAMeL's slot, name and UD tag for each letter joined to a verb's front (_joined)
-_PROCLITIC = {"و": ("prc2", "wa_conj", "CCONJ"), "ف": ("prc2", "fa_conj", "CCONJ"), "ل": ("prc1", "li_jus", "PART")}
+# the UD tag of each letter joined to a verb's front (_joined)
+_PROCLITIC = {"و": "CCONJ", "ف": "CCONJ", "ل": "PART"}
 
 # a verb takes at most two letters in front: وَ or فَ, then لْ
 _JOINED_MOST = 2

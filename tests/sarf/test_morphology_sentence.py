@@ -115,3 +115,10 @@ def test_a_command_with_its_object_written_on_is_split_off_the_pronoun(word: str
     # اِهْدِنَا، آتِنَا: the dictionary has no reading, sarf's closest is a dual of a verb no text uses (هَدَنَ)
     tag = morphology.analyze_sentence(f"{word} كِتَابًا")[0]
     assert (tag["aspect"], tag["number"], tag["lemma"], tag["enclitic"]) == ("c", "s", lemma, "1p_dobj")
+
+
+@needs_camel
+def test_a_command_the_table_reads_with_no_one_past_is_named_by_its_own_letters():
+    # فَاقْبَلْهَا: the table's closest cells name no one past, so the word is the verb alone, its فَ and هَا peeled off
+    tag = morphology.analyze_sentence("فَاقْبَلْهَا")[0]
+    assert tag["lemma"] == "اقبل"
