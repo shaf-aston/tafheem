@@ -6,6 +6,8 @@ import { weakParts, whyOf } from './markWhy'
 describe('why a word is marked', () => {
   it('names the case in one sentence each', () => {
     expect(whyOf({ state: SAID })).toBe('Said right.')
+    expect(whyOf({ state: SAID, word: 'أَثِيمًا', said: 'أذيما' })).toMatch(/sound check is sure/)
+    expect(whyOf({ state: SAID, word: 'أَثِيمًا', said: 'اثيما' })).toBe('Said right.')
     expect(whyOf({ state: MISSED })).toBe('Not heard.')
     expect(whyOf({ state: WAITING })).toBe('Not reached yet.')
     expect(whyOf({ state: CHECK })).toMatch(/could not confirm/)
