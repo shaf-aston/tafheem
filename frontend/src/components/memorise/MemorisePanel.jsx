@@ -251,11 +251,12 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
               ))}
             </div>
             {/* Run on, a line has nowhere under it for its English, so the
-                page's translation follows the Arabic, one ayah to a line. */}
+                page's translation follows the Arabic. Newspaper columns fill the
+                width however long each ayah is, one column on a phone. */}
             {book.flow && meaning && (
-              <ol className="space-y-2">
+              <ol className="columns-[22rem] gap-x-10">
                 {page.filter((line) => line.english).map((line) => (
-                  <li key={line.id} className="type-body text-[var(--text-dim)] leading-relaxed max-w-prose">
+                  <li key={line.id} className="type-body text-[var(--text-dim)] leading-relaxed break-inside-avoid mb-2">
                     <span className="type-small text-[var(--text-faint)] tabular-nums" aria-hidden="true">{withinPart(line.label)}. </span>
                     {line.english}
                   </li>
