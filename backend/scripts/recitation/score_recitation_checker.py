@@ -38,9 +38,9 @@ import pyarrow.parquet as pq
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
-from backend.config import data_path  # noqa: E402
+from backend.config import data_path, get_settings  # noqa: E402
 from backend.services.recitation import checker, whisper  # noqa: E402
-from backend.services.recitation.place import PLACES_IT, letters  # noqa: E402
+from backend.services.recitation.place import letters  # noqa: E402
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 
 HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
@@ -55,7 +55,7 @@ LONGEST_S = 30
 # marked 114:4 holds 114:2 to 114:4.
 NEIGHBOURS = 2
 # Inside the ayah itself one word places the recording, or a one-word ayah
-# never places; near it, PLACES_IT words in a row are needed.
+# never places; near it, recitation_place_min_words words in a row are needed.
 # The most checkable kind wins when a reviewer gave a word more than one.
 KINDS = {"letters": "letter or word", "wording": "letter or word", "tashkeel": "vowel",
          "حركات": "vowel", "tajweed": "tajweed", "تجويد": "tajweed"}
@@ -150,7 +150,7 @@ def stretch(ayahs: dict[str, str], key: str, heard: str) -> tuple[list[str], int
     end = start + len(as_heard(ayahs[key]))
     want, got = [letters(w) for w in words], [letters(w) for w in heard.split()]
     blocks = [b for b in difflib.SequenceMatcher(a=want, b=got, autojunk=False).get_matching_blocks()
-              if b.size >= PLACES_IT or (b.size and start <= b.a < end)]
+              if b.size >= get_settings().recitation_place_min_words or (b.size and start <= b.a < end)]
     first = min([start] + [b.a for b in blocks])
     last = max([end] + [b.a + b.size for b in blocks])
     # The clips split long ayahs, so part of an ayah can be in no recording at

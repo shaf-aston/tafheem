@@ -15,9 +15,7 @@ from __future__ import annotations
 import difflib
 import re
 
-# A run of this many words heard in order places the recording. One shared word
-# does not: النَّاسِ is in every ayah of an-Nas.
-PLACES_IT = 2
+from backend.config import get_settings
 
 
 def letters(word: str) -> str:
@@ -26,13 +24,14 @@ def letters(word: str) -> str:
     return re.sub("[^ء-ي]", "", word)
 
 
-def reach(expected: list[str], heard: list[str], at_least: int = PLACES_IT) -> tuple[int, int] | None:
+def reach(expected: list[str], heard: list[str]) -> tuple[int, int] | None:
     """(first, last + 1) of the expected words this recording holds, or None.
 
     None when nothing heard lines up with the page, so nothing is judged.
     Heard words left over past the outer placed ones are misheard words the
     recording does hold, so the stretch grows by as many, never past the page.
     """
+    at_least = get_settings().recitation_place_min_words
     want, got = [letters(w) for w in expected], [letters(w) for w in heard]
     blocks = [b for b in difflib.SequenceMatcher(a=want, b=got, autojunk=False).get_matching_blocks()
               if b.size >= at_least]
