@@ -511,6 +511,24 @@ def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, ro
     assert [w["role"] for w in iraab.analyze("عِلْمًا طَلَبَ زَيْدٌ")["words"]] == ["مفعول به", "فعل", "فاعل"]
 
 
+def test_a_mudaf_hung_under_its_own_mudaf_ilayh_takes_its_place():
+    """زَيْدٌ أَكْرَمُ رِجَالٍ: a CPU's rounding may hang أكرم on رجال; hanging رجال on أكرم as its مضاف إليه
+    would close a loop that no walk up the sentence ever leaves, so أكرم takes رجال's place first."""
+    from backend.services.sarf import morphology
+    from backend.services.nahw import syntax
+    from backend.services.nahw.syntax import catib_onnx
+    from backend.services.nahw.syntax.mask import above
+    from backend.services.nahw.syntax.repair import correct
+    words = "زَيْدٌ أَكْرَمُ رِجَالٍ".split()
+    tokens = catib_onnx.parse(words, morphology.pick(words, syntax.disambiguator()))
+    tokens[1]["head"], tokens[1]["rel"] = 3, "MOD"
+    tokens[2]["head"], tokens[2]["rel"] = 1, "MOD"
+    correct(words, tokens)
+    heads = [t["head"] for t in tokens]
+    assert (tokens[2]["head"], tokens[2]["rel"]) == (2, "IDF")
+    assert not any(above(heads, t["head"], t["id"]) for t in tokens)  # no word hangs under itself
+
+
 @pytest.mark.parametrize("sentence, moved", [
     ("عِلْمًا طَلَبَ زَيْدٌ", True), ("زَيْدًا اضْرِبْ", True), ("زَيْدًا اضْرِبِي", True), ("زَيْدًا نَصَرْنَا", True), ("زَيْدًا ضَرَبْتَ", True),
     ("زَيْدًا ضَرَبُوا", True), ("زَيْدًا ضَرَبْنَ", True),  # the و، ن of many is the doer, never a mere sign of number
