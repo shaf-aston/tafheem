@@ -813,6 +813,20 @@ def test_a_noun_in_nasb_hung_as_the_object_of_inna_is_its_ism(has_ism):
     assert toks[3]["rel"] == ("OBJ" if has_ism else "SBJ")
 
 
+@pytest.mark.parametrize("typed, link, moved", [
+    ("بَكْرًا", "MOD", True),   # زَيْدٌ نَصَرَ بَكْرًا: the منصوب is the verb's, not the noun's
+    ("بَكْرٌ", "MOD", False),   # nearest case: a word in raf' is no منصوب for the verb to own
+    ("بَكْرًا", "OBJ", False),  # nearest case: an object on the noun says the noun works as a verb
+])
+def test_a_word_in_nasb_hung_on_the_noun_past_its_verb_is_the_verbs(typed, link, moved):
+    from backend.services.nahw.syntax.repair.subject_clash import object_past_verb
+    toks = [token(1, "زيد", "زيد", "NOM", 0, "---", pos_camel="noun_prop", typed="زَيْدٌ"),
+            token(2, "نصر", "نصر", "VRB", 1, "PRD", pos_camel="verb", asp="p", typed="نَصَرَ"),
+            token(3, "بكر", "بكر", "NOM", 1, link, pos_camel="noun_prop", typed=typed)]
+    object_past_verb(toks)
+    assert toks[2]["head"] == (2 if moved else 1)
+
+
 @pytest.mark.parametrize("pattern, link, command", [
     ("أَ1ْ2َ3", "OBJ", True),   # ارفع صوتك: an object on what the dictionary read as an elative
     ("أَ1ْ2َ3", "MOD", False),  # nearest case: a word hung on it as no object vouches for nothing
