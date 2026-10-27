@@ -57,6 +57,9 @@ class Nahw(BaseSettings):
 
     # Longer sentences are refused (422): the parser and the rules grow with length.
     max_sentence_words: int = Field(default=160, gt=0)  # the longest ayah (2:282) is about 130 words
+    # The same sentence, counted in letters: the cap every route a sentence goes to shares (2:282 is
+    # about 1300), so a whole ayah the chart draws also gets its English and its practice.
+    max_sentence_chars: int = Field(default=2000, gt=0)
     # Analyses a minute per visitor (POST /api/analyze); the parser costs far more than a page's own clicks.
     analyze_per_minute: int = Field(default=60, gt=0)
     # Recent sentences kept read in memory: the Analyse page and its practice questions ask for the same

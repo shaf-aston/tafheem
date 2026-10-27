@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from pydantic import BaseModel, Field
 
+from backend.config import get_settings
 from backend.models.common import Source
 
 
 class PracticeRequest(BaseModel):
-    sentence: str = Field(min_length=1, max_length=2000)
+    sentence: str = Field(min_length=1, max_length=get_settings().max_sentence_chars)
 
 
 class PracticeQuestion(BaseModel):

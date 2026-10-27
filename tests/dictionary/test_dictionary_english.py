@@ -10,6 +10,7 @@ import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
+from backend.config import get_settings
 from backend.routers import dictionary as router_module
 from backend.services import ai
 from backend.services.dictionary import service
@@ -74,6 +75,16 @@ def test_a_dead_model_leaves_the_words_without_a_meaning(small, client, monkeypa
     monkeypatch.setattr(ai, "render_in_arabic", down)
     body = client.get("/api/dictionary/sentence", params={"q": "the book"}).json()
     assert body["meaning"] is None and body["source"] is None and body["words"][1]["arabic"] == "كتاب"
+
+
+def test_a_sentence_longer_than_a_search_is_still_read(small, client, monkeypatch) -> None:
+    """An ayah the chart draws (4:113 is about 290 letters) gets its English too: the sentence
+    cap is the one /analyze has, not a search box's."""
+    monkeypatch.setattr(ai, "render_in_arabic", lambda text: {"arabic": "كِتَابٌ"})
+    q = " ".join(["the book"] * 30)
+    assert get_settings().search_max_query_chars < len(q) < get_settings().max_sentence_chars
+    assert client.get("/api/dictionary/sentence", params={"q": q}).status_code == 200
+    assert client.get("/api/dictionary/sentence", params={"q": "a" * (get_settings().max_sentence_chars + 1)}).status_code == 422
 
 
 @pytest.mark.parametrize("q", ["book", "hello <b>there</b>"])
