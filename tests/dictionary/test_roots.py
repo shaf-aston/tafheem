@@ -266,3 +266,28 @@ def test_a_name_the_quran_tags_with_no_root_has_none_on_the_chart(monkeypatch):
     name = {"pos": "noun_prop", "root": "م.#.س", "lex": "مُوسَى"}
     assert morphology.reading_root({**name, "diac": "مُوسَى"}) == ""
     assert morphology.reading_root({**name, "pos": "noun", "diac": "مُوسَى"}) != ""  # only a name
+
+
+def test_a_lemma_the_word_lacks_gives_way_to_the_qurans_lemma_of_its_root_and_kind(monkeypatch):
+    # CAMeL's راوند (rhubarb) for رأيت (see): the Qur'an files the verb of رأي under رَأَى.
+    forms = [{"lemma": "مِرْآة", "pos": "N"}, {"lemma": "رَأَى", "pos": "V"}, {"lemma": "أَرَيْ", "pos": "V"}]
+    monkeypatch.setattr(roots, "_corpus_roots", lambda: {roots._key("رأي"): "رأي"})
+    monkeypatch.setattr(quran_corpus, "occurrences_of_root", lambda root, limit: {"forms": forms if root == "رأي" else []})
+    assert roots.lemma_of("راوند", "رأيت", "رأي", verb=True) == "رأى"
+    assert roots.lemma_of("راوند", "رأيت", "رأي", verb=False) == "راوند"  # مرآة (mirror) has a م رأيت lacks: none better
+    assert roots.lemma_of("كتب", "كتبت", "كتب", verb=True) == "كتب"  # a lemma the word carries stands
+    assert roots.lemma_of("الذي", "التي", "", verb=False) == "الذي"  # a word with no root keeps its lemma
+    assert roots.lemma_of("راوند", "رأيت", "", verb=True) == "راوند"  # no root to look under: none better
+
+
+def test_a_doubled_letter_written_once_and_a_dropped_dual_nun_still_carry_the_lemma():
+    assert roots._lemma_of("هلال", "الأهلة")  # أَهِلَّة: the ل doubled, written once
+    assert roots._lemma_of("أبوان", "أبواه")  # the dual's ن goes before ـه
+    assert not roots._lemma_of("راوند", "رأيت")
+
+
+def test_of_the_lemmas_the_word_carries_the_one_with_most_of_its_letters_wins(monkeypatch):
+    forms = [{"lemma": "عَدُوّ", "pos": "N"}, {"lemma": "مُعْتَدي", "pos": "N"}]
+    monkeypatch.setattr(roots, "_corpus_roots", lambda: {roots._key("عدو"): "عدو"})
+    monkeypatch.setattr(quran_corpus, "occurrences_of_root", lambda root, limit: {"forms": forms})
+    assert roots.lemma_of("متعدي", "المعتدين", "عدو", verb=False) == "معتدي"  # not the more used عدو

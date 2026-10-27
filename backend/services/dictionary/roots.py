@@ -28,6 +28,7 @@ from backend.services.dictionary import service as dictionary_service
 from backend.services.nahw import book as nahw_book
 from backend.services.quran import corpus as quran_corpus
 from backend.services.dictionary import root_meaning
+from backend.services.text.harakat import HIDDEN_CASE
 from backend.services.text.arabic_text import (
     as_root_letters,
     bare_letters,
@@ -141,10 +142,29 @@ def settle(pattern: str, lemma: str = "", word: str = "") -> str:
     return max(fits, key=score)[0]  # max keeps the first of equals: و before ي before ء
 
 
+def lemma_of(lemma: str, word: str, root: str, verb: bool) -> str:
+    """CAMeL's lemma when `word` carries it; else the Qur'an's most used lemma of the word's
+    root and kind that the word does carry (رأيت: رأى, where CAMeL says راوند, rhubarb); with none, CAMeL's."""
+    if not word or _lemma_of(lemma, word):
+        return lemma
+    filed = _corpus_roots().get(_key(root)) if root else None
+    forms = _corpus(quran_corpus.occurrences_of_root, filed, 0, default={}).get("forms", []) if filed else []
+    kind = "V" if verb else "N"
+    fits = [bare for form in forms if form["pos"] == kind and _lemma_of(bare := strip_diacritics(form["lemma"]), word)]
+    letters = as_root_letters(strip_diacritics(word))
+    # the one holding most of the word's letters, then the most used: المعتدين is معتدي's, not عدو's
+    return max(fits, key=lambda bare: root_letters_in_order(as_root_letters(bare), letters), default=lemma)
+
+
 def _lemma_of(lemma: str, word: str) -> bool:
     """Whether `word` carries each sure letter of `lemma` in order: a weak letter, a hamza and
-    ة can drop or change (قال of قول, بيوت of بيت, سنين of سنة), no other letter can."""
-    sure = "".join(letter for letter in as_root_letters(lemma) if letter not in WEAK + ("ا", "ة"))
+    ة can drop or change (قال of قول, بيوت of بيت, سنين of سنة), a doubled letter be written once
+    (أهلة of هلال), and a dual's or plural's ن go before what it is joined to (أبواه of أبوان);
+    no other letter can."""
+    spelled = as_root_letters(lemma)
+    if spelled.endswith(HIDDEN_CASE):
+        spelled = spelled[:-1]
+    sure = re.sub(r"(.)\1", r"\1", "".join(letter for letter in spelled if letter not in WEAK + ("ا", "ة")))
     return root_letters_in_order(sure, as_root_letters(strip_diacritics(word))) == len(sure)
 
 

@@ -3,6 +3,7 @@ it is what is said of it (خبر: أخوك موسى). A name ending in ى hides 
 noun, and a noun before ياء المتكلم hides its own (صديقي زيدٌ)."""
 import pytest
 
+from backend.services.sarf import morphology
 from tests.nahw_helpers import cards, needs_parser
 
 
@@ -61,3 +62,21 @@ def test_a_damma_before_the_alif_is_no_nasb():
 @needs_parser
 def test_a_verb_with_its_doer_already_keeps_it():
     assert roles("ضَرَبَ زَيْدٌ مُوسَى عِيسَى")[:3] == ["فعل", "فاعل", "مفعول به"]
+
+
+@pytest.mark.parametrize("sentence, lemma", [
+    ("ضَرَبَ زَيْدٌ عَمْرًا", "عمرو"), ("رَأَيْتُ زَيْدًا وَعَمْرًا", "عمرو"),  # the و that tells عمرو from عمر drops in nasb
+    ("ضَرَبَ زَيْدٌ عُمَرًا", "عمر"), ("ضرب زيد عمرا", "عمر"),  # its vowels say عُمَر; unmarked, the name as written
+])
+def test_a_name_whose_telling_waw_drops_in_nasb_is_still_that_name(sentence, lemma):
+    assert morphology.analyze_sentence(sentence)[-1]["lemma"] == lemma
+
+
+def test_the_telling_waw_is_tried_back_only_on_a_name_the_book_lists(monkeypatch):
+    asked = []
+    ranked = morphology._ranked
+    monkeypatch.setattr(morphology, "_ranked", lambda spelled, *rest: asked.append(spelled[0]) or ranked(spelled, *rest))
+    morphology._name_in_nasb("زَيْدًا")
+    assert asked == ["زَيْد"]  # no زَيْدو: only عمرو is written with a و it drops in nasb
+    amr = morphology.pick(["ضَرَبَ", "زَيْدٌ", "عَمْرًا"])[2]
+    assert (amr["diac"], amr["atbtok"]) == ("عَمْرًا", "عَمْرًا")  # read with its و, written without
