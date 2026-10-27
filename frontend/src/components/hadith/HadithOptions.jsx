@@ -2,10 +2,11 @@ import { useHideChain } from '../../lib/hadith/useHideChain'
 import { useSideBySide } from '../../lib/hadith/useSideBySide'
 
 import ReadingOptions from '../ui/ReadingOptions'
+import WordsLink from './WordsLink'
 
 /**
  * The reading options for a list that has no bar of its own (search hits, Starred), so
- * the chain can be hidden wherever hadiths are read, not only inside a book.
+ * the chain can be hidden, and its words looked up, wherever hadiths are read, not only inside a book.
  */
 export default function HadithOptions({ accent }) {
   const [sideBySide, setSideBySide] = useSideBySide()
@@ -16,6 +17,7 @@ export default function HadithOptions({ accent }) {
         { label: 'Side by side', on: sideBySide, set: setSideBySide, only: 'wide' },
         { label: 'Hide the chain', on: hideChain, set: setHideChain },
       ]} />
+      <WordsLink accent={accent} />
     </div>
   )
 }
