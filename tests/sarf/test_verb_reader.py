@@ -66,6 +66,17 @@ def test_after_a_jazm_or_nasb_particle_it_is_the_present_not_a_command():
 def test_the_dropped_ta_of_forms_v_and_vi_is_read():
     cells = verb_reader.read("تَحَاسَدُوا")
     assert verb_reader.Cell("حسد", "VI", "jussive", "2", "m", "p") in cells   # لا تَحَاسَدُوا
+    assert verb_reader.Cell("نزل", "V", "mudari", "3", "m", "s") not in verb_reader.read("تَنَزَّلُ")  # يَتَنَزَّلُ has no تَتَ
+
+
+@pytest.mark.parametrize("word, root, form, column, person", [
+    ("يَقْرَءُونَ", "قرء", "I-fataha", "mudari", "3"),     # يَقْرَءُونَ الْكِتَابَ: on the line, not on و
+    ("قَرَءُوا", "قرء", "I-fataha", "madi", "3"),
+    ("اِقْرَءُوا", "قرء", "I-fataha", "amr", "2"),
+    ("يَسْتَهْزِءُونَ", "هزء", "X", "mudari", "3"),       # not on ي either
+])
+def test_a_hamza_before_the_long_waw_may_stand_on_the_line(word, root, form, column, person):
+    assert verb_reader.Cell(root, form, column, person, "m", "p") in verb_reader.read(word)
 
 
 def test_the_dictionary_form_is_sarfs_own_past():

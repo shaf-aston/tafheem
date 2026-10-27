@@ -64,8 +64,12 @@ def _read_words(column: str, row: int, word: str, form: str) -> list[tuple[str, 
     word = word.split(" ")[-1]  # لَا يَفْعَلْ: the jussive itself
     found = [(name, word)]
     for spelling in config["spellings"]:
-        if form in spelling["forms"] and name in spelling["columns"] and word.startswith(spelling["opens"]):
-            found.append((name, spelling["becomes"] + word[len(spelling["opens"]):]))
+        if form not in spelling.get("forms", [form]) or name not in spelling["columns"]:
+            continue
+        if (opens := spelling.get("opens")) and word.startswith(opens):
+            found.append((name, spelling["becomes"] + word[len(opens):]))
+        elif (within := spelling.get("within")) and within in word:
+            found.append((name, word.replace(within, spelling["becomes"])))
     return found
 
 

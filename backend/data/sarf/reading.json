@@ -64,7 +64,7 @@
     "madi-passive": {"asp": "p", "vox": "p"},
     "mudari-passive": {"asp": "i", "vox": "p"}
   },
-  "_spellings": "Spellings the book also allows that the table does not print. In Forms V and VI a present verb starting تَتَ may drop one of its two ت (تَنَزَّلُ for تَتَنَزَّلُ, لا تَحَاسَدُوا).",
+  "_spellings": "Spellings the book also allows that the table does not print. In Forms V and VI a present verb starting تَتَ may drop one of its two ت (تَنَزَّلُ for تَتَنَزَّلُ, لا تَحَاسَدُوا). A hamza before the long و of many, which the table seats on و or ي, may stand on the line, as the Mushaf writes it (يَقْرَءُونَ الْكِتَابَ، كَانُوا بِهِ يَسْتَهْزِءُونَ): `opens` is a spelling of the word's start, `within` of any place in it, and a spelling with no `forms` is every form's.",
   "spellings": [
     {
       "forms": [
@@ -77,6 +77,16 @@
       ],
       "opens": "تَتَ",
       "becomes": "تَ"
+    },
+    {
+      "columns": ["madi", "mudari", "amr", "jussive", "madi-passive", "mudari-passive"],
+      "within": "ؤُو",
+      "becomes": "ءُو"
+    },
+    {
+      "columns": ["madi", "mudari", "amr", "jussive", "madi-passive", "mudari-passive"],
+      "within": "ئُو",
+      "becomes": "ءُو"
     }
   ]
 }
