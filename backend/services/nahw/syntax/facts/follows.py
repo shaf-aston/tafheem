@@ -156,6 +156,12 @@ def _follows(token: dict, s: Sentence) -> str:
         return "none"  # أعطى الغنيُّ الفقيرَ: with ال both show their case, and a na't wears its noun's
     if told_of_lone_mubtada(token, head, s):
         return "none"
+    # مررت بزيدٍ هذا، فعله كبيرُهم هذا: a pointer stands for a describing word (المشار إليه), so it is
+    # the صفة of a name or of a noun added to a known one; a noun with ال is less known than it,
+    # and a صفة is never more known than its noun, so after one it is its بدل
+    # (Ibn Ya'ish V2 p247, p249: امتنع وصف المعرف باللام بالمبهم)
+    if "dem" in token.get("pos_camel", "") and noun_tagged(head):
+        return "naat" if head["pos"] == "PROP" or head.get("stt") == "c" else "badal"
     # السُّفْلَى: a مقصور noun shows no case, so any its noun wears is its own
     if (mine or case_unseen(token)) and shown_cases(token) & shown_cases(head):
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't

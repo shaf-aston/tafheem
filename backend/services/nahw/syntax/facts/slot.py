@@ -3,7 +3,7 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import book_map, frames, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles
+from backend.services.nahw.book import book_map, frames, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles
 from backend.services.nahw.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, busied, jarr_takes, praised_noun, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
@@ -128,9 +128,10 @@ def quoted_head(token: dict, s: Sentence) -> bool:
     """قال الضيفُ سلامٌ عليكم، قال زيدٌ الجوُّ جميلٌ: a verb has one doer (Tasheel 2.4.1), so a raf'
     word a verb of saying (roles.json said_clause) holds after its doer is no second one but heads
     the sentence it says, its مقول القول, named inside as that sentence would be on its own.
-    قُلْ هُوَ اللَّهُ أَحَدٌ: a command's doer is the hidden أنت, so it holds one before any word."""
+    قُلْ هُوَ اللَّهُ أَحَدٌ: a command's doer is the hidden أنت, so it holds one before any word.
+    قال إبراهيمُ أنا أكسرُ: a detached pronoun of raf' is raf' by its own form, untyped or not."""
     head = s.head(token)
-    return (token["rel"] == "OBJ" and typed_case_of(token) == "u" and head is not None and is_verb(head)
+    return (token["rel"] == "OBJ" and (typed_or_parsed_case(token) == "u" or is_subject_pronoun(token)) and head is not None and is_verb(head)
             and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
             and holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"])))
 
@@ -342,6 +343,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             and any(subject_link(c) and c["id"] < token["id"] for c in kids):
         return "predicate"
     quoted = quoted_head(token, s)
+    # قال زيدٌ اللهُ أكبرُ: a loose word hung on the head of a quote is in that quoted sentence too
+    quoted_on = rel == "---" and head is not None and quoted_head(head, s)
     if rel == "---" or quoted:
         if any(subject_link(c) for c in kids):
             return "predicate"
@@ -354,10 +357,11 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # noun is the khabar and the verb its صفة
         if not pointer and any(c["rel"] == "PRD" or (is_verb(c) and c["id"] > token["id"]) for c in kids):
             return "subject"
-        if noun_tagged(token) and (s.verbless or quoted):
-            loose = [t for t in s.tokens if t["rel"] == "---" and noun_tagged(t)]
+        if noun_tagged(token) and (s.verbless or quoted or quoted_on):
+            loose = sorted([t for t in s.tokens if t["rel"] == "---" and noun_tagged(t)] + [head] * quoted_on,
+                           key=lambda t: t["id"])
             if loose != [token]:
-                return "subject" if not loose or token is loose[0] else "predicate"
+                return "subject" if all(token["id"] <= t["id"] for t in loose) else "predicate"
             # محمدُ بنُ عبدِ اللهِ، الطبيبُ الماهرُ: a noun with only its صفة and مضاف إليه
             # under it is a phrase, no sentence: nothing is told of it, so it is no mubtada
             # المعلماتُ في الفصلِ: a raf' noun with a jar-majrur after it is told of by it, its khabar

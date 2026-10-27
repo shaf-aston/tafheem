@@ -385,6 +385,7 @@ def test_laula_before_a_verb_urges():
 @pytest.mark.parametrize("sentence, khabar, role", [
     ("ظَنَنْتُ أَنَّ الْبَيْتَ وَاسِعٌ", "واسع", "خبر أن"),
     ("لَعَلَّ الْمُسَافِرَ قَادِمٌ", "قادم", "خبر لعل"),
+    ("يَعْرِفُ أَنَّ الأَصْنَامَ حِجَارَةٌ", "حجارة", "خبر أن"),  # "stones", which the dictionary lacks: no ه on it
 ])
 def test_the_khabar_is_named_for_its_own_governor(sentence, khabar, role):
     assert _named(sentence)[khabar][0] == role
@@ -611,6 +612,20 @@ def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved)
     ("قَالَ زَيْدٌ الْجَوُّ جَمِيلٌ", "الْجَوُّ", ("role", "مبتدأ")),
     ("قَالَ زَيْدٌ الْجَوُّ جَمِيلٌ", "جَمِيلٌ", ("role", "خبر")),
     ("قَالَ الرَّجُلُ الْحَقَّ", "الْحَقَّ", ("role", "مفعول به")),
+    # a detached pronoun of raf' is raf' by its form, never an object: it opens the quote (قصص النبيين)
+    ("قَالَ إِبْرَاهِيمُ أَنَا أَكْسِرُ الأَصْنَامَ", "أَنَا", ("role", "مبتدأ")),
+    ("قَالَ زَيْدٌ هُوَ يَكْتُبُ", "هُوَ", ("role", "مبتدأ")),
+    # a plural's و shows its raf' where no vowel does: the khabar the parser hung on قال heads the quote
+    ("قَالَ زَيْدٌ نَحْنُ قَادِمُونَ", "قَادِمُونَ", ("role", "خبر")),
+    # a loose word hung on the quote's head is in the quoted sentence: its khabar
+    ("قَالَ زَيْدٌ اللَّهُ أَكْبَرُ", "اللَّهُ", ("role", "مبتدأ")),
+    ("قَالَ زَيْدٌ اللَّهُ أَكْبَرُ", "أَكْبَرُ", ("role", "خبر")),
+    # a pointer is the صفة of a name or of a noun added to a known one, the بدل of a noun with ال
+    # (Ibn Ya'ish V2 p247, p249: امتنع وصف المعرف باللام بالمبهم)
+    ("فَعَلَهُ كَبِيرُهُمْ هَذَا", "هَذَا", ("role", "صفة")),
+    ("مَرَرْتُ بِزَيْدٍ هَذَا", "هَذَا", ("role", "صفة")),
+    ("كِتَابُكَ هَذَا جَمِيلٌ", "هَذَا", ("role", "صفة")),
+    ("جَاءَ الرَّجُلُ هَذَا", "هَذَا", ("role", "بدل")),
     # Nahw Basics 4-5 (Fil, Musnad): a noun hung on the verb with no relation is still its argument
     ("نَصَرَ زَيْدٌ بَكْرًا", "زَيْدٌ", ("role", "فاعل")),
     ("نَصَرَ زَيْدٌ بَكْرًا", "بَكْرًا", ("role", "مفعول به")),

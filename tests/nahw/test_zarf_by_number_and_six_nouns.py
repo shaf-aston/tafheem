@@ -10,6 +10,11 @@ def role(sentence: str, index: int) -> str:
 
 
 @needs_parser
+def test_dhata_opening_the_sentence_before_a_time_is_its_time_not_one_called():
+    assert role("ذَاتَ لَيْلَةٍ رَأَى إِبْرَاهِيمُ كَوْكَبًا", 0) == "مفعول فيه"
+
+
+@needs_parser
 def test_a_number_counting_a_time_is_mafool_fihi_and_counting_men_is_not():
     assert role("لَبِثْتُ عَشْرَ سِنِينَ", 1) == "مفعول فيه"
     assert role("رَأَيْتُ ثَلَاثَةَ رِجَالٍ", 1) == "مفعول به"
@@ -20,6 +25,8 @@ def test_a_number_counting_a_time_is_mafool_fihi_and_counting_men_is_not():
     ("نِمْتُ اللَّيْلَ", "مفعول فيه"),
     ("نِمْتُ كُلَّ اللَّيْلِ", "مفعول فيه"),
     ("أَحْبَبْتُ النَّهَارَ", "مفعول به"),  # loved, not in: the day is what is loved
+    ("سِرْنَا ذَاتَ يَوْمٍ", "مفعول فيه"),  # ذات added to a time word is one (Sibawayh)
+    ("رَأَيْتُ ذَاتَ الْعِمَادِ", "مفعول به"),  # added to no time word it is a plain noun
 ])
 def test_night_and_day_are_times_when_the_verb_happens_in_them(sentence, expected):
     assert role(sentence, 1) == expected

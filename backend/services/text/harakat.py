@@ -228,8 +228,9 @@ def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
     the second count is kept apart for best_reading to weigh (أَبُوْهُ is not أَبُّوهُ).
     """
     mine, theirs = letters(typed), letters(reading)
-    if [bare_letters(c) for c, _ in mine] != [bare_letters(c) for c, _ in theirs]:
-        return 0, 0
+    if (spelled := [bare_letters(c) for c, _ in mine]) != (read_as := [bare_letters(c) for c, _ in theirs]):
+        # a typed ة is the feminine's letter, never the pronoun ه: حِجَارَةٌ is not حَجّارُهُ
+        return None if len(spelled) == len(read_as) and ("ة", "ه") in zip(spelled, read_as) else (0, 0)
     if any(wasl_typed(mine[at:]) and theirs[at][0] in "أإ" for at in (0, 1)):
         # اِفْعَلِي typed with its hamzat al-wasl, opening the word or after a joined وَ/فَ (وَاشْرَبُوا), is not
         # the أَفْعَل its letters also spell
