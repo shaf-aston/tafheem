@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import config from '../../config/recite.json'
-import { bySound, CHECK, follow, isOfPage, joinWindows, MISSED, SAID, WAITING, wordsHeard, WRONG } from './follow'
+import { bySound, CHECK, follow, isOfPage, MISSED, SAID, WAITING, wordsHeard, WRONG } from './follow'
 
 // Al-Fatihah 1:6-7, the run the prototype recites, as the page holds it.
 const PAGE = [
@@ -360,40 +360,6 @@ describe('reading a window of sound as words', () => {
     expect(isOfPage([], PAGE)).toBe(false)
     expect(isOfPage(['موسيقى', 'الصراط'], PAGE)).toBe(true)
     expect(isOfPage(['المستقيم'], PAGE)).toBe(true)
-  })
-})
-
-describe('joining one window of sound to the next', () => {
-  it('says the words in the overlap once', () => {
-    expect(joinWindows(['الحمد', 'لله', 'رب'], ['لله', 'رب', 'العالمين']))
-      .toEqual(['الحمد', 'لله', 'رب', 'العالمين'])
-  })
-
-  it('keeps the longest overlap, not the first word that happens to match', () => {
-    expect(joinWindows(['عليهم', 'غير', 'عليهم', 'ولا'], ['عليهم', 'ولا', 'الضالين']))
-      .toEqual(['عليهم', 'غير', 'عليهم', 'ولا', 'الضالين'])
-  })
-
-  it('keeps both when the reciter has moved on and nothing overlaps', () => {
-    expect(joinWindows(['الحمد', 'لله'], ['مالك', 'يوم']))
-      .toEqual(['الحمد', 'لله', 'مالك', 'يوم'])
-  })
-
-  it('counts a word spelled two ways as one word', () => {
-    expect(joinWindows(['ٱلرَّحْمَٰنِ'], ['الرحمن', 'الرحيم']))
-      .toEqual(['ٱلرَّحْمَٰنِ', 'الرحيم'])
-  })
-
-  it('has nothing to join when one side is empty', () => {
-    expect(joinWindows([], ['الله'])).toEqual(['الله'])
-    expect(joinWindows(['الله'], [])).toEqual(['الله'])
-  })
-
-  it('leaves a page following the joined words unchanged by the join', () => {
-    const windows = [SPOKEN.slice(0, 6), SPOKEN.slice(4, 10), SPOKEN.slice(8)]
-    const joined = windows.reduce(joinWindows, [])
-    expect(joined).toEqual(SPOKEN)
-    expect(follow(PAGE, joined, { ended: true }).words.every((w) => w.state === SAID)).toBe(true)
   })
 })
 

@@ -30,7 +30,7 @@ import * as api from '../../api'
 import dictationConfig from '../../config/dictation.json'
 import config from '../../config/recite.json'
 import * as dictation from '../speech/dictation'
-import { CHECK, SAID, follow, isOfPage, joinWindows, wordsHeard } from './follow'
+import { CHECK, SAID, follow, isOfPage, wordsHeard } from './follow'
 import * as journal from './journal'
 import { allowanceLeft, asksPerMinute, cutReason, readyToSend, recentAsks, spokeSince } from './pacing'
 import { byPlace, settledScores, surer } from './scores'
@@ -529,7 +529,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       // recording's. Its scores are folded into `before` either way, which
       // loses nothing: the surer of the two always wins there.
       set((was) => ({
-        before: joinWindows(was.before, latest),
+        before: [...was.before, ...latest],
         now: was.now.from === thisWindow ? { from: thisWindow, words: [] } : was.now,
         scores: { before: surer(was.scores.before, was.scores.now), now: {} },
       }))

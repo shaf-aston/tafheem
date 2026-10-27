@@ -208,31 +208,6 @@ export const isOfPage = (words, page) =>
   words.some((word) => page.some((printed) => sameSpokenWord(word, printed)))
 
 /**
- * Everything heard so far, with the newest window of sound added on the end.
- *
- * Each window holds the last seconds of sound, so it starts with the end of the
- * window before it: ten seconds read every eight means two seconds said twice.
- * Those repeats are the machine's, not the reciter's, and letting them through
- * would report somebody as having added words they never said. So the longest
- * run where the end of what we have is the start of what just arrived is
- * treated as one, and only what is past it is kept.
- *
- * The old words are left as they were. A window that spells an earlier word
- * differently is not evidence enough to rewrite what has already settled, and
- * the words themselves are compared with `sameSpokenWord`, so a difference of
- * spelling is not a difference of word.
- */
-export const joinWindows = (heard, window) => {
-  const most = Math.min(heard.length, window.length)
-  for (let run = most; run > 0; run -= 1) {
-    const overlaps = Array.from({ length: run }).every((_, k) =>
-      sameSpokenWord(heard[heard.length - run + k], window[k]))
-    if (overlaps) return [...heard, ...window.slice(run)]
-  }
-  return [...heard, ...window]
-}
-
-/**
  * Where the reciter is and how every word on the page stands.
  *
  * `page` and `heard` are lists of words in the order they are printed and in

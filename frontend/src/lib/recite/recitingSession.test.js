@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { ayahAt } from '../memorise/memorise'
+import { follow, SAID } from './follow'
 import { allowanceLeft, asksPerMinute, cutReason, readyToSend, recentAsks, spokeSince } from './pacing'
 import { createRecitingSession, keepRecording, problemOf, queueCheck } from './recitingSession'
 import { byPlace, settledScores, surer } from './scores'
@@ -358,7 +359,8 @@ describe('a reciting session', () => {
     // A reading that is not of this page is still heard.
     await h.pause()
     await h.answer(3, 'موسيقى هادئة')
-    expect(h.heard()).toEqual(['الحمد', 'لله', 'رب'])
+    // Said twice, so heard twice: lining up reads it as going back (follow.js).
+    expect(h.heard()).toEqual(['الحمد', 'لله', 'رب', 'الحمد', 'لله', 'رب'])
     expect(said().slice(-2)).toEqual(['موسيقى', 'هادئة'])
     h.session.turn([])
     expect(said()).toEqual([])
@@ -394,7 +396,7 @@ describe('a reciting session', () => {
     expect(h.heard()).toEqual(PAGE.slice(0, 4))
   })
 
-  it('joins two phrases without saying the overlap twice', async () => {
+  it('keeps a word heard in two recordings, which lining up reads as said once', async () => {
     const h = harness()
     await h.session.start()
     await h.midPhrase()
@@ -405,7 +407,9 @@ describe('a reciting session', () => {
     await h.answer(2, 'العالمين الرحمن الرحيم')
     await h.pause()
     await h.answer(3, 'العالمين الرحمن الرحيم')
-    expect(h.session.view().before).toEqual(PAGE)
+    const { before } = h.session.view()
+    expect(before).toEqual([...PAGE.slice(0, 4), ...PAGE.slice(3)])
+    expect(follow(PAGE, before, { ended: true }).words.every((w) => w.state === SAID)).toBe(true)
   })
 
   it('lets the microphone go at once on stop, and still keeps the last reading', async () => {
