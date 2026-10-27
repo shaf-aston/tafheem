@@ -1,5 +1,5 @@
 {
-  "_comment": "Following someone as they recite. The rules that use these numbers are in lib/speech/soundalike.js and lib/recite/follow.js; this file is only what the numbers are. Nothing here decides which engine listens: that is backend config, because the key and the model live there.",
+  "_comment": "Following someone as they recite. The rules that use these numbers are in lib/recite/soundalike.js and lib/recite/follow.js; this file is only what the numbers are. Nothing here decides which engine listens: that is backend config, because the key and the model live there.",
 
   "_comment-orange": "Letters a microphone confuses with each other. Each line is one group, and any letter in a group counts as any other when deciding whether a word that came back wrong is a near miss rather than a mistake. This runs AFTER the spelling fold in arabicText.js, never instead of it: مَٰلِكِ and مالك are one word and must never reach this rule at all.",
 

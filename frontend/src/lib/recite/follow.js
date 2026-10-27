@@ -53,7 +53,7 @@
  */
 import config from '../../config/recite.json'
 import { isSpoken, sameSpokenWord } from '../text/arabicText'
-import { soundsTheSame } from '../speech/soundalike'
+import { soundsTheSame } from './soundalike'
 
 /** Not reached yet, or not yet sure enough to say. Shown plain. */
 export const WAITING = 'waiting'
