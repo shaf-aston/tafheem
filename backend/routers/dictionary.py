@@ -104,7 +104,7 @@ async def search_dictionary(
 
 @router.get("/sentence", response_model=SentenceResponse)
 async def translate_sentence(
-    q: str = Query(..., min_length=1, max_length=get_settings().search_max_query_chars, description="Arabic or English phrase or sentence"),
+    q: str = Query(..., min_length=1, max_length=get_settings().max_sentence_chars, description="Arabic or English phrase or sentence"),
 ) -> SentenceResponse:
     """More than one word: the sense of the whole, then each word on its own.
     Arabic is read into English; English is put into Arabic."""
