@@ -579,12 +579,16 @@ def test_a_detached_pronoun_after_its_verb_is_tawkeed():
     assert roles(["قُلْ", "هُوَ"], toks)[1] != "توكيد"
 
 
-def test_a_first_person_verb_takes_the_noun_after_it_as_its_object():
-    # كِلَا keeps its alif in every case, so CAMeL's raf' guess says nothing; the تُ is the doer
-    toks = [token(1, "رأيت", "رأى", "VRB", 0, "---", vox="a", asp="p", per="1"),
+@pytest.mark.parametrize("verb, form, per, num", [
+    ("رَأَيْتُ", "رأيت", "1", "s"),  # the تُ is the doer
+    ("رَأَوْا", "رأوا", "3", "p"),  # the و of many is the doer (own_doer)
+])
+def test_a_verb_holding_its_doer_takes_the_noun_after_it_as_its_object(verb, form, per, num):
+    # كِلَا keeps its alif in every case, so CAMeL's raf' guess says nothing
+    toks = [token(1, form, "رأى", "VRB", 0, "---", vox="a", asp="p", per=per, num=num),
             token(2, "كلا", "كلا", "NOM", 1, "SBJ", pos_camel="noun", cas="n", stt="c"),
             token(3, "الصديقين", "صديق", "NOM", 2, "IDF", pos_camel="noun", stt="d", cas="g")]
-    assert roles(["رَأَيْتُ", "كِلَا", "الصَّدِيقَيْنِ"], toks) == ["فعل", "مفعول به", "مضاف إليه"]
+    assert roles([verb, "كِلَا", "الصَّدِيقَيْنِ"], toks) == ["فعل", "مفعول به", "مضاف إليه"]
 
 
 @pytest.mark.parametrize("words, describer, role", [
