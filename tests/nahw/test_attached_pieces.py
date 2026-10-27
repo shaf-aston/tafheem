@@ -628,6 +628,8 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
     ("بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ", "الرَّحْمَنِ", ("role", "صفة")),
     # nor is a word with its tanween: the صفة after it follows it in jarr
     ("مَرَرْتُ بِرَجُلٍ كَرِيمٍ", "كَرِيمٍ", ("role", "صفة")),
+    # and with no ending typed, whether it has a tanween is not known
+    ("مَرَرْتُ بِرَجُل كَرِيمٍ", "كَرِيمٍ", ("role", "صفة")),
     # the word itself is that verb only by a typed fatha: أَبُوهُ's و is the raf' of the five nouns
     ("اَلتِّلْمِيذُ أَبُوهُ مُعَلِّمٌ", "أَبُوهُ", ("role", "مبتدأ")),
 ])
