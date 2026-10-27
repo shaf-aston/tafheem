@@ -728,9 +728,11 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     # ضَيْفًا: the fatha a diptote's nasb would be is the past verb's; أَبُوهُ's و is raf', no fatha
     # to give the verb): the first word that reads as a past verb adding
     # no letter the writing lacks (زَيَّدَ's shadda: الأصل عدم الزيادة). Typed vowels still choose, and a
-    # typed tanween is a sign of the noun (Ibn Aqil V1 p15: بالجر والتنوين): زَيْدٌ فَاهِمٌ الدَّرْسَ, never فَأَهِم
-    nasb = next((i for i, r in enumerate(out) if i and r.get("cas") == "a"), None)
-    if nasb and all(r.get("pos") in NOUNISH for r in out):
+    # typed tanween is a sign of the noun (Ibn Aqil V1 p15: بالجر والتنوين): زَيْدٌ فَاهِمٌ الدَّرْسَ, never فَأَهِم.
+    # A pronoun is a noun too (هُوَ أَكْرَمَ ضَيْفًا: المضمر من أقسام الاسم, Ibn Aqil on the Alfiyya);
+    # the word after a مضاف is مجرور (وَالثَّانِيَ اجْرُرْ): هَذَا كِتَابُ أَحْمَدَ's fatha is a diptote's jarr
+    nasb = next((i for i, r in enumerate(out) if i and r.get("cas") == "a" and not _bare_construct(out[i - 1])), None)
+    if nasb and all(r.get("pos") in NOUNISH or r.get("pos", "").startswith("pron") for r in out):
         for i in range(nasb + (typed_case(tokens[nasb]) == "a")):
             verb = not has_tanween(tokens[i]) and best_reading(tokens[i], [
                 r for r in _widened(tokens[i], steps[i][1]) if r.get("pos") == "verb" and "ّ" not in r.get("diac", "")])
