@@ -11,7 +11,9 @@ import { CHECK, MISSED, SAID, WAITING, WRONG } from './follow'
  */
 export const whyOf = (mark, underlined = false) => {
   if (mark.state === WAITING) return 'Not reached yet.'
-  if (mark.state === SAID) return 'Said right.'
+  if (mark.state === SAID) {
+    return bySoundOnly(mark) ? 'The ear wrote down something else, but the sound check is sure you said it right.' : 'Said right.'
+  }
   if (mark.state === MISSED) return 'Not heard.'
   if (mark.state === CHECK) return 'The model could not confirm this word. It may be your slip or a mishearing.'
   if (mark.state === WRONG) {
@@ -20,6 +22,9 @@ export const whyOf = (mark, underlined = false) => {
   }
   return ''
 }
+
+/** A word passed by the sound check although the transcript wrote a different word there. */
+export const bySoundOnly = (mark) => mark.state === SAID && Boolean(mark.said) && !sameSpokenWord(mark.said, mark.word)
 
 // The alif forms folded, marks kept: the ear's spelling and the page's agree on these.
 const spelt = (text) => text.replace(/[أإآٱ]/g, 'ا')
