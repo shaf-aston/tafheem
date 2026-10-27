@@ -512,7 +512,7 @@ def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, ro
 
 
 @pytest.mark.parametrize("sentence, moved", [
-    ("عِلْمًا طَلَبَ زَيْدٌ", True), ("زَيْدًا اضْرِبْ", True), ("زَيْدًا اضْرِبِي", True), ("زَيْدًا نَصَرْنَا", True),
+    ("عِلْمًا طَلَبَ زَيْدٌ", True), ("زَيْدًا اضْرِبْ", True), ("زَيْدًا اضْرِبِي", True), ("زَيْدًا نَصَرْنَا", True), ("زَيْدًا ضَرَبْتَ", True),
     ("عِلْمًا طَلَبَهُ زَيْدٌ", True), ("عِلْمًا مَرَّ بِهِ زَيْدٌ", True),  # الاشتغال: a verb like it, left out, governs it
     ("زَيْدًا ضَرَبَ", False),  # nearest case: its doer is neither after it nor in it
     ("زَيْدًا ضُرِبْتُ", False),  # nearest case: the تُ of a passive is its نائب فاعل, the one object it had
