@@ -10,6 +10,7 @@
  * fall in, each a tap away (`onOpenBook`) for narrowing by topic instead of
  * retyping. Narrators whose name starts with the words typed sit above the hits,
  * each a tap to his page. A search that only names a collection ("bukhari") opens it.
+ * `places` (the PlaceStrip) stands under the box, always in view.
  */
 import { searchHadith } from '../../api'
 import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
@@ -31,7 +32,7 @@ import StatusNote, { CorrectedNote, NoteWord } from '../ui/StatusNote'
 import HadithCards from './HadithCards'
 import HadithOptions from './HadithOptions'
 
-export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, menu, children }) {
+export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, places, children }) {
   const { collections, of } = useHadithCollections()
   const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
     historyKey: 'hadith-history',
@@ -68,8 +69,9 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
           accent={accent}
           title="Say what you are looking for"
         />
-        {menu}
       </SearchBox>
+
+      {places}
 
       {!searching && <RecentRow items={history.map((h) => h.q)} accent={accent} onPick={submit} />}
 

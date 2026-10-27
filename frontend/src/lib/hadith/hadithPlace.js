@@ -60,7 +60,7 @@ export const placeOf = (collection, book, number, part = '') => (
 // A place in words, for the trail: "bukhari/1/5a" reads "Bukhari 5a", not the address.
 // `nameOf` gives a narrator's name from his id when it is known; until then he reads "A narrator".
 export function nameOfPlace(q, collections = [], nameOf = () => null) {
-  if (q === NARRATORS_PLACE) return 'Narrators'
+  if (q === NARRATORS_PLACE) return 'Rijal'
   if (q === SCHOLARS_PLACE) return 'Scholars'
   if (listOf(q) === TERMS_PLACE) return 'Terms'
   if (narratorOf(q)) return nameOf(narratorOf(q)) || 'A narrator'

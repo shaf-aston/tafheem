@@ -26,7 +26,7 @@ import StatusNote from '../ui/StatusNote'
 import HadithCollectionPicker from './HadithCollectionPicker'
 import HadithBookList from './HadithBookList'
 import HadithCards from './HadithCards'
-import HadithMoreMenu from './HadithMoreMenu'
+import PlaceStrip from './PlaceStrip'
 import HadithOptions from './HadithOptions'
 import HadithList from './HadithList'
 import HadithSearchResults from './HadithSearchResults'
@@ -188,12 +188,12 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         onNarrator={openNarrator}
         onHadith={openHadith}
         onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}
-        menu={(
-          <HadithMoreMenu accent={accent} items={[
-            { icon: 'kept', label: 'Starred', hint: 'hadith you kept', count: favorites.length, on: starred, pick: () => setStarred(!starred) },
-            { icon: 'people', label: 'Narrators', hint: 'who passed them on', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
-            { icon: 'law', label: 'Scholars', hint: 'what they said of them', on: listing === SCHOLARS_PLACE, pick: () => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE)) },
-            { icon: 'quran', label: 'Terms', hint: 'the words of the science', on: listing === TERMS_PLACE, pick: () => (listing === TERMS_PLACE ? go(place) : onGo('hadith', TERMS_PLACE)) },
+        places={(
+          <PlaceStrip accent={accent} items={[
+            { label: 'Starred', hint: 'hadith you kept', count: favorites.length, on: starred, pick: () => setStarred(!starred) },
+            { label: 'Rijal', hint: 'who passed them on', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
+            { label: 'Scholars', hint: 'what they said of them', on: listing === SCHOLARS_PLACE, pick: () => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE)) },
+            { label: 'Terms', hint: 'the words of the science', on: listing === TERMS_PLACE, pick: () => (listing === TERMS_PLACE ? go(place) : onGo('hadith', TERMS_PLACE)) },
           ]} />
         )}
       >

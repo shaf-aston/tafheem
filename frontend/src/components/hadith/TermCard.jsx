@@ -18,11 +18,11 @@ const Label = ({ children }) => (
   <h3 className="type-tiny uppercase tracking-[0.14em] text-[var(--text-faint)] mt-5 mb-2">{children}</h3>
 )
 
-/** Every question of the group, each side's answer or "—": [{ id, q, here, there }]; none unless one of them answers. */
+/** Each question of the group that one of the two answers, each side's answer or "—": [{ id, q, here, there }]. */
 const answersOf = (axes, here, there) =>
-  axes.some(({ id }) => here.answers?.[id] || there.answers?.[id])
-    ? axes.map(({ id, q }) => ({ id, q, here: here.answers?.[id] ?? '—', there: there.answers?.[id] ?? '—' }))
-    : []
+  axes
+    .filter(({ id }) => here.answers?.[id] || there.answers?.[id])
+    .map(({ id, q }) => ({ id, q, here: here.answers?.[id] ?? '—', there: there.answers?.[id] ?? '—' }))
 
 export default function TermCard({ term, group, glossary, accent, onClose, onOpen, onTerm }) {
   const heading = useRef(null)
