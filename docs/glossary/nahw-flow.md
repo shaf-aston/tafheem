@@ -143,7 +143,7 @@ Roles the tree can give:
 
 ## 6. Cards
 
-`backend/services/nahw/iraab.py` `cards`: what the word is (`backend/services/nahw/rule_engine.py`), the tree's role pasted on, the sign (`backend/services/nahw/signs.py`: أَيُّهَا is built on أَيُّ's damma, its ها of attention written on, closed_words nida `attention`), then pair names, غير/سوى, the "also" line, attached pieces, the ها of attention, condition wording. Its notes say what the word is: a pronoun, pointer, name or relative is معرفة with no ال; only a present verb has a mood (`backend/services/sarf/morphology.py` `_build_features`). Summary = top label only when it names a sentence (`backend/services/nahw/syntax/tree.py` `names_a_sentence`).
+`backend/services/nahw/iraab.py` `cards`: what the word is (`backend/services/nahw/rule_engine.py`), the tree's role pasted on, the sign (`backend/services/nahw/signs.py`: أَيُّهَا is built on أَيُّ's damma, its ها of attention written on, closed_words nida `attention`), then pair names, غير/سوى, the "also" line, attached pieces, the ها of attention, condition wording; a follower names the word it follows, and a built one first says the place of that word's case (يا أيها الذين: مبني في محل رفع, أيّ's built damma; رأيت الرجل الذي قام: في محل نصب) (`backend/services/nahw/card_wording/counting.py`, teacher.json `case_said` `follow_built`). Its notes say what the word is: a pronoun, pointer, name or relative is معرفة with no ال; only a present verb has a mood (`backend/services/sarf/morphology.py` `_build_features`). Summary = top label only when it names a sentence (`backend/services/nahw/syntax/tree.py` `names_a_sentence`).
 
 ## Checking a change
 

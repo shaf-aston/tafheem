@@ -371,11 +371,12 @@ def _governed(i: int, role: str | None, token: dict, bases: list[dict], tokens: 
 
 
 def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
-    """The typed word a follower follows, reached through the و of a معطوف: a particle is climbed past."""
+    """The typed word a follower follows, reached through the و of a معطوف: a particle is climbed past,
+    never أيها, the called noun tagged one (يا أيها الذين آمنوا: الذين follows أيّ)."""
     at = {t["id"]: i for i, t in enumerate(bases)}
     by_id = {t["id"]: t for t in tokens}
     head = by_id.get(token["head"])
-    while head and (head["id"] not in at or head["pos"] == "PRT"):
+    while head and (head["id"] not in at or facts.is_particle(head)):
         head = by_id.get(head["head"])
     return at[head["id"]] if head else None
 

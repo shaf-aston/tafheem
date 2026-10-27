@@ -88,3 +88,45 @@ def test_a_verb_says_its_drawn_doer_and_a_pronoun_written_on_it_says_its_place()
     card_wording.run([pieces.doer], cards, found)
     assert cards[0]["reason"] == ("فعل ماضٍ مبني على الفتح، وفاعله ضمير مستتر تقديره هو، "
                                   "و«نا» ضمير متصل مبني في محل نصب مفعول به. القاعدة: الفعل الماضي مبني")
+
+
+def _follower(word: str, role: str, case: str, follows: int) -> dict:
+    return {"word": word, "type": "ism", "role": role, "case": case, "follows": follows,
+            "reason": f"تابع لما قبله لأنه {role}. القاعدة: ..."}
+
+
+def test_a_built_follower_stands_in_the_place_of_the_case_it_follows():
+    # رأيت الرجلَ الذي قام: الذي is built and stands where the رجل's nasb is
+    cards = [{"word": "الرَّجُلَ", "role": "مفعول به", "case": "nasb"}, _follower("الَّذِي", "صفة", "mabni", 0)]
+    card_wording.run([counting.followed], cards, [{}, {}])
+    assert cards[1]["reason"].startswith("مبني في محل نصب، تابع لـ«الرَّجُلَ» لأنه صفة")
+
+
+def test_a_follower_of_a_built_word_takes_the_place_its_role_fills():
+    # جاء الذي قام والذي قعد: the first الذي fills a فاعل's raf', so its معطوف stands there too
+    cards = [{"word": "الَّذِي", "role": "فاعل", "case": "mabni"}, _follower("وَالَّذِي", "معطوف", "mabni", 0)]
+    card_wording.run([counting.followed], cards, [{}, {}])
+    assert cards[1]["reason"].startswith("مبني في محل رفع")
+
+
+def test_the_called_ayyu_gives_its_follower_raf_not_the_nasb_of_its_place():
+    # يا أيها الذين آمنوا: أيّ is built on damma in the place of nasb, its صفة is raf' (Ibn Aqil V3 p268)
+    cards = [{"word": "أَيُّهَا", "role": "منادى", "case": "mabni"}, _follower("الَّذِينَ", "صفة", "mabni", 0)]
+    card_wording.run([counting.followed], cards, [{}, {}])
+    assert cards[1]["reason"].startswith("مبني في محل رفع، تابع لـ«أَيُّهَا»")
+
+
+def test_a_follower_that_shows_its_case_says_no_place():
+    cards = [{"word": "زَيْدٌ", "role": "فاعل", "case": "raf'"}, _follower("الظَّرِيفُ", "صفة", "raf'", 0)]
+    card_wording.run([counting.followed], cards, [{}, {}])
+    assert cards[1]["reason"].startswith("تابع لـ«زَيْدٌ»")
+
+
+def test_the_built_place_is_said_first_and_comes_from_the_case_shown():
+    # a بدل shows nasb, though its role names no case: its built صفة stands in that nasb,
+    # said before anything an earlier pass put in front
+    def earlier(cards, roles):
+        cards[1]["said"].front.append("قبله")
+    cards = [{"word": "الرِّجَالَ", "role": "بدل", "case": "nasb"}, _follower("الَّذِينَ", "صفة", "mabni", 0)]
+    card_wording.run([earlier, counting.followed], cards, [{}, {}])
+    assert cards[1]["reason"].startswith("مبني في محل نصب، قبله، تابع")
