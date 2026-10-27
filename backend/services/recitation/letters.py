@@ -4,7 +4,7 @@ Whisper writes a recitation out word by word, one guess feeding the next, and
 that is most of a reading's seconds. Placing a recitation on the page only needs
 the letters, so this model reads every moment of sound at once and says which
 letter it is; the letters are the transcript. Its spelling carries few vowels,
-which placing never looks at (place.letters folds them away).
+which placing never looks at (place.bare_word folds them away).
 
 Model: yazinsai/tilawa v0.2.0 (MIT), a mixed int4/int8 export of NVIDIA's
 stt_ar_fastconformer_hybrid_large_pcd_v1.0 (CC-BY-4.0). Its sound preparation
@@ -20,7 +20,8 @@ import time
 import numpy as np
 
 from backend.config import data_path, get_settings
-from backend.services.recitation.whisper import NotInstalled, engine_lock
+from backend.services.recitation import loudness
+from backend.services.recitation.errors import NotInstalled, local_lock
 from backend.services.core.timing import timed
 
 log = logging.getLogger(__name__)
@@ -75,10 +76,10 @@ def read(sound: np.ndarray) -> str:
     # cores (recitation_threads), and a spoken search falling back to Whisper
     # here does not wait at the route's recitation turn, so without it the two
     # could run at once and each take longer than both one after the other.
-    with engine_lock:
+    with local_lock:
         (logprobs,) = timed("placed-by-letters", session.run, None,
                             {"audio_signal": signal, "length": np.array([signal.shape[1]], np.int64)},
-                            s=round(signal.shape[1] / 16000, 1))
+                            s=round(signal.shape[1] / loudness.SAMPLE_RATE, 1))
     return spelled(logprobs[0].argmax(axis=-1), pieces, blank)
 
 

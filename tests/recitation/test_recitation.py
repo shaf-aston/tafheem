@@ -27,7 +27,7 @@ import pytest
 
 from backend.config import get_settings
 from backend.services.quran import corpus as quran_corpus
-from backend.services.recitation import whisper, match
+from backend.services.recitation import errors, match, whisper
 
 
 @pytest.fixture(autouse=True)
@@ -180,7 +180,7 @@ class FakeEngine:
 @pytest.fixture
 def engine(monkeypatch):
     fake = FakeEngine()
-    monkeypatch.setattr(whisper, "_engine", lambda name: fake)
+    monkeypatch.setattr(whisper, "engine", lambda name: fake)
     return fake
 
 
@@ -228,7 +228,7 @@ class SilenceEater:
 
 def test_a_word_the_silence_trimmer_ate_is_read_again_without_it(monkeypatch):
     fake = SilenceEater()
-    monkeypatch.setattr(whisper, "_engine", lambda name: fake)
+    monkeypatch.setattr(whisper, "engine", lambda name: fake)
     assert whisper.transcribe(b"one word, said quickly", language="ar") == "تحاول"
     assert fake.reads == [True, False], "trimmed first, untrimmed only on failure"
 
@@ -248,7 +248,7 @@ class RoomFiller:
 
 
 def test_silence_the_model_fills_in_is_still_silence(monkeypatch):
-    monkeypatch.setattr(whisper, "_engine", lambda name: RoomFiller())
+    monkeypatch.setattr(whisper, "engine", lambda name: RoomFiller())
     assert whisper.transcribe(b"a quiet room", language="ar") == ""
 
 
@@ -268,13 +268,13 @@ class Mumbler:
 def test_a_word_the_model_is_unsure_of_is_still_written_down(monkeypatch):
     """The transcript only says which part of the page this is, and a run of
     words is what finds it, so a doubted word is kept rather than thrown away."""
-    monkeypatch.setattr(whisper, "_engine", lambda name: Mumbler())
+    monkeypatch.setattr(whisper, "engine", lambda name: Mumbler())
     assert whisper.transcribe(b"a mumble", language="ar") == "إياك نعمل وإياك نستعين"
 
 
 def test_a_word_floor_drops_the_word_the_model_doubted(monkeypatch):
     monkeypatch.setattr(get_settings(), "recitation_word_min", 0.94)
-    monkeypatch.setattr(whisper, "_engine", lambda name: Mumbler())
+    monkeypatch.setattr(whisper, "engine", lambda name: Mumbler())
     assert whisper.transcribe(b"a mumble", language="ar") == "إياك وإياك نستعين"
 
 
@@ -283,7 +283,7 @@ def test_the_general_model_is_trusted_about_silence(monkeypatch):
     nothing on silence by itself, so the Qur'an ear's floor must not touch it.
     Rated above that floor here, so the test fails if the floor were applied."""
     fake = Named(sure=1.0)
-    monkeypatch.setattr(whisper, "_engine", fake)
+    monkeypatch.setattr(whisper, "engine", fake)
     monkeypatch.setattr(get_settings(), "dictation_languages", "en")
     fake.no_speech = get_settings().recitation_no_speech_max + 0.05
     assert whisper.transcribe(b"a search") == "mercy"
@@ -309,7 +309,7 @@ class Named:
 def test_a_named_language_is_a_recitation_on_the_quran_model(monkeypatch):
     """Reciting: the Qur'an model, and no register hint."""
     fake = Named(sure=0.5)
-    monkeypatch.setattr(whisper, "_engine", fake)
+    monkeypatch.setattr(whisper, "engine", fake)
     assert whisper.transcribe(b"reciting", language="ar", hint="fusha") == "mercy"
     assert set(fake.models) == {get_settings().recitation_model}
     assert fake.how["initial_prompt"] is None
@@ -323,7 +323,7 @@ def test_no_language_named_is_dictation_on_the_general_model(monkeypatch):
     asked for either: it costs a second and invents words on a quiet tail.
     """
     fake = Named(sure=0.33)
-    monkeypatch.setattr(whisper, "_engine", fake)
+    monkeypatch.setattr(whisper, "engine", fake)
     monkeypatch.setattr(get_settings(), "dictation_languages", "en")
     assert whisper.transcribe(b"a search", hint="fusha") == "mercy"
     assert fake.models == [get_settings().dictation_model]
@@ -356,9 +356,9 @@ def test_nothing_recorded_is_never_sent_to_the_engine(engine):
 def test_warming_up_a_machine_that_cannot_listen_is_not_an_error(monkeypatch):
     """No engine installed is an ordinary machine, not a broken startup."""
     def refuse(name):
-        raise whisper.NotInstalled("faster-whisper is not installed")
+        raise errors.NotInstalled("faster-whisper is not installed")
 
-    monkeypatch.setattr(whisper, "_engine", refuse)
+    monkeypatch.setattr(whisper, "engine", refuse)
     whisper.warm()  # must not raise
 
 
@@ -388,7 +388,7 @@ def bilingual(monkeypatch):
 
     def install(chances):
         fake = Bilingual(chances)
-        monkeypatch.setattr(whisper, "_engine", lambda name: fake)
+        monkeypatch.setattr(whisper, "engine", lambda name: fake)
         return fake
 
     return install
@@ -494,19 +494,19 @@ def test_the_ear_is_handed_the_recording_and_not_thirty_seconds_of_silence():
     keeps the ear being asked for a handful of sizes rather than a new one
     every time.
     """
-    from backend.services.recitation.whisper import _WINDOW_FRAMES, window_of
+    from backend.services.recitation.checker import _WINDOW_FRAMES, padded_frames
 
     # Six seconds of sound, asked for in whole seconds, is six seconds.
-    assert window_of(601, 100) == 700
-    assert window_of(600, 100) == 600
+    assert padded_frames(601, 100) == 700
+    assert padded_frames(600, 100) == 600
     # Never longer than the thirty seconds the ear can hold, however it rounds.
-    assert window_of(2950, 100) == _WINDOW_FRAMES
-    assert window_of(_WINDOW_FRAMES, 100) == _WINDOW_FRAMES
+    assert padded_frames(2950, 100) == _WINDOW_FRAMES
+    assert padded_frames(_WINDOW_FRAMES, 100) == _WINDOW_FRAMES
     # A recording shorter than one block still fills one, never none.
-    assert window_of(1, 100) == 100
-    assert window_of(0, 100) == 100
+    assert padded_frames(1, 100) == 100
+    assert padded_frames(0, 100) == 100
     # And the block that turns the saving off again is the old behaviour exactly.
-    assert window_of(601, _WINDOW_FRAMES) == _WINDOW_FRAMES
+    assert padded_frames(601, _WINDOW_FRAMES) == _WINDOW_FRAMES
 
 
 def test_an_unknown_startup_step_stops_startup(monkeypatch):

@@ -6,7 +6,7 @@
  *   EAR=http://127.0.0.1:8011 node scripts/probes/probe-ear.mjs
  *
  * Knobs, all by environment:
- *   EAR    the backend to hear it; 8011 started with RECITATION_HOSTED=false
+ *   EAR    the backend to hear it; 8011 started with LISTENING_HOSTED=false
  *          proves the local ear, 8000 proves the app as configured
  *   CLIPS  everyayah clip numbers, comma separated; default is 1:5 to 1:7,
  *          which also proves the page finds its own start. 001001,...,001007

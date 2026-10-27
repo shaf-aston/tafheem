@@ -10,7 +10,7 @@ word by word, against the ayah it should be:
   page     what the app does today: the Qur'an ear writes down what it heard,
            and a word counts as said when its letters match. Vowels ignored.
   scored   the ear is handed the expected words and says how sure it is of
-           each (whisper.weigh); a word counts as said above a threshold.
+           each (checker.weigh); a word counts as said above a threshold.
 
 And both are held against the reviewer:
 
@@ -38,15 +38,14 @@ import pyarrow.parquet as pq
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
-from backend.config import data_path  # noqa: E402
-from backend.services.recitation import whisper  # noqa: E402
-from backend.services.recitation.place import PLACES_IT, letters  # noqa: E402
+from backend.config import data_path, get_settings  # noqa: E402
+from backend.scripts.recitation.paths import CHECKS, DOWNLOADS  # noqa: E402
+from backend.services.recitation import checker, whisper  # noqa: E402
+from backend.services.recitation.place import bare_word  # noqa: E402
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 
-HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
-DOWNLOADS = HERE / "downloads"
 RESULTS = DOWNLOADS / "results.jsonl"
-REPORT = HERE / "report.txt"
+REPORT = CHECKS / "report.txt"
 BATCH = 16
 THRESHOLDS = (0.1, 0.3, 0.5, 0.7, 0.9)
 # The ear hears 30 seconds at a time; a longer clip is skipped, and counted.
@@ -55,7 +54,7 @@ LONGEST_S = 30
 # marked 114:4 holds 114:2 to 114:4.
 NEIGHBOURS = 2
 # Inside the ayah itself one word places the recording, or a one-word ayah
-# never places; near it, PLACES_IT words in a row are needed.
+# never places; near it, recitation_place_min_words words in a row are needed.
 # The most checkable kind wins when a reviewer gave a word more than one.
 KINDS = {"letters": "letter or word", "wording": "letter or word", "tashkeel": "vowel",
          "حركات": "vowel", "tajweed": "tajweed", "تجويد": "tajweed"}
@@ -69,18 +68,18 @@ def kind_of(labels: list[str]) -> str:
 
 def marks_to_places(expected: list[str], marks: dict[str, list[str]]) -> dict[int, str]:
     """Reviewer's marked words to places in the ayah. A word that appears twice is marked twice."""
-    folded = [letters(w) for w in expected]
+    folded = [bare_word(w) for w in expected]
     places = {}
     for word, labels in marks.items():
         for i, f in enumerate(folded):
-            if f and f == letters(word):
+            if f and f == bare_word(word):
                 places[i] = kind_of(labels)
     return places
 
 
 def unplaced(row: dict) -> int:
-    folded = {letters(w) for w in row["words"]}
-    return sum(1 for w in row["marks"] if letters(w) not in folded)
+    folded = {bare_word(w) for w in row["words"]}
+    return sum(1 for w in row["marks"] if bare_word(w) not in folded)
 
 
 def rows_of(part: Path):
@@ -122,7 +121,7 @@ def seconds(audio: bytes) -> float:
 
 def page_verdict(expected: list[str], heard: str) -> list[bool]:
     """Said or not, per expected word, lined up on letters as the page does."""
-    want, got = [letters(w) for w in expected], [letters(w) for w in heard.split()]
+    want, got = [bare_word(w) for w in expected], [bare_word(w) for w in heard.split()]
     said = [False] * len(expected)
     for block in difflib.SequenceMatcher(a=want, b=got, autojunk=False).get_matching_blocks():
         for i in range(block.a, block.a + block.size):
@@ -148,9 +147,9 @@ def stretch(ayahs: dict[str, str], key: str, heard: str) -> tuple[list[str], int
             start = len(words)
         words += as_heard(ayahs[f"{surah}:{n}"])
     end = start + len(as_heard(ayahs[key]))
-    want, got = [letters(w) for w in words], [letters(w) for w in heard.split()]
+    want, got = [bare_word(w) for w in words], [bare_word(w) for w in heard.split()]
     blocks = [b for b in difflib.SequenceMatcher(a=want, b=got, autojunk=False).get_matching_blocks()
-              if b.size >= PLACES_IT or (b.size and start <= b.a < end)]
+              if b.size >= get_settings().recitation_place_min_words or (b.size and start <= b.a < end)]
     first = min([start] + [b.a for b in blocks])
     last = max([end] + [b.a + b.size for b in blocks])
     # The clips split long ayahs, so part of an ayah can be in no recording at
@@ -187,7 +186,7 @@ def judge(ayahs: dict[str, str], limit: int | None) -> None:
             else:
                 heard = whisper.transcribe(audio, language="ar")
                 around, a, b, reach = stretch(ayahs, key, heard)
-                sure = [w["sure"] for w in whisper.weigh(audio, around)[a:b]]
+                sure = [w["sure"] for w in checker.weigh(audio, around)[a:b]]
                 row |= {"heard": heard, "page": page_verdict(expected, heard),
                         "sure": [round(p, 3) for p in sure], "stretch": len(around), "reach": reach}
             out.write(json.dumps(row, ensure_ascii=False) + "\n")

@@ -12,7 +12,7 @@ import numpy as np
 import pytest
 
 from backend.config import get_settings
-from backend.services.recitation import ears, letters, whisper
+from backend.services.recitation import ears, errors, letters
 
 BLANK = 4
 PIECES = ["▁قل", "▁هو", "▁ال", "له", "<blank>"]
@@ -42,7 +42,7 @@ def test_a_missing_model_fails_loud(monkeypatch, tmp_path):
     monkeypatch.setattr(get_settings(), "recitation_letters_path", "data/no-such-model-here")
     monkeypatch.setattr(letters, "_loaded", None)
     assert not letters.installed()
-    with pytest.raises(whisper.NotInstalled):
+    with pytest.raises(errors.NotInstalled):
         letters.read(np.zeros(1600, dtype=np.float32))
 
 
@@ -80,16 +80,16 @@ def test_the_letters_model_waits_for_the_processor_like_the_others(monkeypatch):
     """It is handed the same cores as Whisper, so it takes the same lock."""
     import numpy as np
 
-    from backend.services.recitation import letters, whisper
+    from backend.services.recitation import letters
 
     held = []
 
     class Session:
         def run(self, *_):
-            held.append(whisper.engine_lock.locked())
+            held.append(errors.local_lock.locked())
             return (np.zeros((1, 3, 2), dtype=np.float32),)
 
     monkeypatch.setattr(letters, "_engine", lambda: (Session(), ["a", "b"], 1))
     letters.read(np.zeros(1600, dtype=np.float32))
     assert held == [True]
-    assert not whisper.engine_lock.locked()
+    assert not errors.local_lock.locked()

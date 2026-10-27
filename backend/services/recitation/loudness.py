@@ -1,8 +1,9 @@
 """Sound brought up to a workable loudness. Pure: samples in, samples out.
 
-One job and nothing else. It does not know what a recitation is, what model
-reads it, or where the sound came from; it is handed the decoded sound and
-hands back the same sound at a level the rest of the work expects.
+Two small jobs on decoded sound, and nothing else: `levelled` brings it to a
+level the rest of the work expects, and `quiet_cuts` finds where to cut a long
+one. It does not know what a recitation is, what model reads it, or where the
+sound came from.
 
 Why it exists
 -------------
@@ -31,6 +32,9 @@ the level of a voice.
 from __future__ import annotations
 
 import numpy as np
+
+# What the decoder hands back (faster_whisper decodes to 16kHz mono); every ear takes this.
+SAMPLE_RATE = 16000
 
 
 def loudness(sound: np.ndarray) -> float:

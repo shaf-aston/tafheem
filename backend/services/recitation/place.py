@@ -15,25 +15,24 @@ from __future__ import annotations
 import difflib
 import re
 
-# A run of this many words heard in order places the recording. One shared word
-# does not: النَّاسِ is in every ayah of an-Nas.
-PLACES_IT = 2
+from backend.config import get_settings
+from backend.services.text.arabic_text import bare_letters
 
 
-def letters(word: str) -> str:
-    """Letters only, as the page compares: marks gone, alif forms and ى folded."""
-    word = re.sub("[أإآٱ]", "ا", word).replace("ى", "ي")
-    return re.sub("[^ء-ي]", "", word)
+def bare_word(word: str) -> str:
+    """Arabic letters only, as the page compares: marks gone, alif forms and ى folded."""
+    return re.sub("[^ء-ي]", "", bare_letters(word))
 
 
-def reach(expected: list[str], heard: list[str], at_least: int = PLACES_IT) -> tuple[int, int] | None:
+def reach(expected: list[str], heard: list[str]) -> tuple[int, int] | None:
     """(first, last + 1) of the expected words this recording holds, or None.
 
     None when nothing heard lines up with the page, so nothing is judged.
     Heard words left over past the outer placed ones are misheard words the
     recording does hold, so the stretch grows by as many, never past the page.
     """
-    want, got = [letters(w) for w in expected], [letters(w) for w in heard]
+    at_least = get_settings().recitation_place_min_words
+    want, got = [bare_word(w) for w in expected], [bare_word(w) for w in heard]
     blocks = [b for b in difflib.SequenceMatcher(a=want, b=got, autojunk=False).get_matching_blocks()
               if b.size >= at_least]
     if not blocks:

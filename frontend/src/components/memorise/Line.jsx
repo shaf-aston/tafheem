@@ -1,5 +1,6 @@
 import { Fragment, useRef } from 'react'
 
+import { WAITING } from '../../lib/recite/follow'
 import { isQuranic, recitedForm } from '../../lib/text/arabicText'
 import { wordsOf } from '../../lib/memorise/memorise'
 
@@ -22,7 +23,7 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
   // The ayah as the card needs it, and the number's own place to hang the card from.
   const ayah = { key: line.label, label: withinPart(line.label), from: recite?.from, count: words.length, printed: words }
   const numberAnchor = useRef(null)
-  const reached = recite?.words.slice(ayah.from, ayah.from + ayah.count).some((mark) => mark.state !== 'waiting')
+  const reached = recite?.words.slice(ayah.from, ayah.from + ayah.count).some((mark) => mark.state !== WAITING)
   const numberOpen = recite?.open && recite.open.at == null && recite.open.line === ayah.key
   // One width for every typed blank on this line, from the longest recited
   // word among them: sizing each blank to its own answer leaks the length.
@@ -40,18 +41,7 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
     const hemistichBreak = line.breakAfter === w && (
       <span key={`${key}:break`} className="basis-full h-0" aria-hidden="true" />
     )
-    if (!blanks.has(key)) {
-      return (
-        <Fragment key={key}>
-          {/* The display size, as the Qur'an tab and the surah reader set the
-              text being read; the reading size made the mushaf look smaller. */}
-          {recite
-            ? <RecitedWord word={word} at={recite.from + w} ayah={ayah} recite={recite} accent={accent} onStartAt={onStartAt} />
-            : <ArabicText size="lg">{word}</ArabicText>}
-          {hemistichBreak}
-        </Fragment>
-      )
-    }
+    const blank = blanks.has(key)
     // Reciting a page you can read is not a test of remembering it. So
     // the same words that would be gaps to type stay covered here, and
     // the only thing that uncovers one is saying it.
@@ -64,9 +54,19 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
             ayah={ayah}
             recite={recite}
             accent={accent}
-            coverWidth={typeWidth}
+            coverWidth={blank ? typeWidth : undefined}
             onStartAt={onStartAt}
           />
+          {hemistichBreak}
+        </Fragment>
+      )
+    }
+    if (!blank) {
+      return (
+        <Fragment key={key}>
+          {/* The display size, as the Qur'an tab and the surah reader set the
+              text being read; the reading size made the mushaf look smaller. */}
+          <ArabicText size="lg">{word}</ArabicText>
           {hemistichBreak}
         </Fragment>
       )

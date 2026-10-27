@@ -278,6 +278,19 @@ class Listening(BaseSettings):
     recitation_place_fit: float = Field(default=0.9, gt=0, le=1)
     # Words of an unsure reading carried in front of the next one's lookup; more drags the fit of a fresh reading down.
     recitation_place_carry_words: int = Field(default=8, gt=0)
+    # Words heard in order that place a recording on the page or in the Qur'an. One shared word does not: النَّاسِ is in every ayah of an-Nas.
+    recitation_place_min_words: int = Field(default=2, gt=0)
+    # Starts compared letter by letter (locate.py); the rest are left out by their votes alone.
+    recitation_place_keep: int = Field(default=8, gt=0)
+    # Words a reading may gain or drop against the text, either side of a start (locate.py).
+    recitation_place_slack: int = Field(default=2, gt=0)
+    # Length of the runs the ayah matcher compares first. Three is the size SQLite's trigram index uses for the app's other Arabic search.
+    recitation_match_run: int = Field(default=3, gt=0)
+    # How much of an ayah having been recited counts, once it is known to hold the words. At 0 the two ayahs ending in
+    # the same phrase tie; at 1 anybody stopping halfway is punished. Half of each keeps the right answer first in both.
+    recitation_match_coverage: float = Field(default=0.5, gt=0, le=1)
+    # Ayahs the first, cheap pass hands on to be compared properly.
+    recitation_match_considered: int = Field(default=120, gt=0)
     # A minute of browser audio is about 1 MB.
     recitation_max_mb: int = Field(default=12, gt=0)
     # No default-book setting on purpose: the panel opens on the manifest's first book, then the reader's last choice.
@@ -298,7 +311,7 @@ class Speech(BaseSettings):
     # in and out over speech_fade_ms, so it starts and stops without a click.
     speech_peak: float = Field(default=0.9, gt=0, le=1)
     speech_fade_ms: int = Field(default=8, ge=0, le=100)
-    # The recording studio (services/recitation/recordings.py): who may add a person's voice for a word.
+    # The recording studio (services/speech_recordings.py): who may add a person's voice for a word.
     # Empty turns the studio off. A recording is at most recording_max_kb, and is saved
     # trimmed of the quiet around it, with speech_lead_ms put back on each side.
     recorder_key: SecretStr = SecretStr("")

@@ -71,14 +71,14 @@ from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2ForCTC
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402
+from backend.scripts.recitation.paths import CHECKS  # noqa: E402
 from backend.scripts.recitation.score_recitation_checker import (  # noqa: E402
     marks_to_places, recordings, seconds, unplaced,
 )
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 
-HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
-RESULTS = HERE / "phoneme_results.jsonl"
-REPORT = HERE / "phoneme_report.txt"
+RESULTS = CHECKS / "phoneme_results.jsonl"
+REPORT = CHECKS / "phoneme_report.txt"
 
 MODEL_ID = "quran-dev/wav2vec2-ctc-quran-phoneme-run66-iqratts-mix-final-20260909"
 SAMPLE_RATE = 16_000

@@ -1,5 +1,5 @@
 {
-  "_comment": "Following someone as they recite. The rules that use these numbers are in lib/speech/soundalike.js and lib/recite/follow.js; this file is only what the numbers are. Nothing here decides which engine listens: that is backend config, because the key and the model live there.",
+  "_comment": "Following someone as they recite. The rules that use these numbers are in lib/recite/soundalike.js and lib/recite/follow.js; this file is only what the numbers are. Nothing here decides which engine listens: that is backend config, because the key and the model live there.",
 
   "_comment-orange": "Letters a microphone confuses with each other. Each line is one group, and any letter in a group counts as any other when deciding whether a word that came back wrong is a near miss rather than a mistake. This runs AFTER the spelling fold in arabicText.js, never instead of it: مَٰلِكِ and مالك are one word and must never reach this rule at all.",
 
@@ -33,13 +33,13 @@
   "_pause-s": "A pause this long ends the recording early, so each one is a whole phrase and the next begins on a whole word. Measured with back-to-back ten-second windows and the strict ear: a perfect al-Fatihah showed 7 not said and 2 wrong, because a word cut at a window's edge is dropped as unsure and is never heard whole in any window. A reciter pauses at every ayah, so cutting there costs nothing. The meter sees about 0.7 seconds at a time, so this is on top of that.",
   "pause-s": 0.4,
 
-  "_step-s": "The least time between two requests. It was three, because one key allows 20 requests a minute, one every three seconds; it is 1.5 now because the server's real count (listen_per_minute, a key each) sets the ceiling through asks-share below, so two keys can be asked twice as often and a single key is held by the allowance and not by this floor. It was four before that, which is what a word waited for before it could turn green: the ear answers in a quarter of a second and the page then sat idle for the rest of the four. It used to be the whole pacing, one number per ear, and the page always read the hosted one: the ear on this machine takes three to five seconds to answer, so a reading was asked for while the last was still going and the answer came back later than it needed to. Now this is only a floor, and how long the last reading actually took is what paces the rest, because only one reading is ever asked for at a time.",
+  "_step-s": "The least time between two requests, only a floor: how long the last reading actually took paces the rest, since one reading is in flight at a time, and the server's listen_per_minute (through asks-share) sets the ceiling.",
   "step-s": 1.5,
 
   "_asks-share": "The part of the server's listen_per_minute (its listening keys times 20) the page may spend, the same margin as asks-per-minute below said in a share: eighteen of twenty is 0.9. The page uses this on the server's count when it gives one, so a second key doubles the readings asked for.",
   "asks-share": 0.9,
 
-  "_asks-per-minute": "How many readings may be asked for in any sixty seconds when the server has not said how many its keys allow (see asks-share). Groq's free allowance is twenty, and going over it is not a slow answer but a refusal, which rests the fast ear for recitation_hosted_rest_s (sixty seconds) and drops the reciter onto the ear here: a whole minute of three-second waits to buy one second. The floor above alone does not keep under it, because the reading asked for at every pause does not wait for the floor: with a pause every few seconds the two together already came to about twenty-four a minute at step-s four. So both kinds of reading are counted here, and only the mid-phrase ones give way; the reading at a pause is never held back, because it is the one that settles the marks and dropping it lost two words of al-Fatihah for good. A reciter who pauses often spends the allowance on pauses and asks less in between, which is right: the pause readings are the better ones. Eighteen and not twenty because a pause reading can still land after the count is spent: the whole of al-Fatihah through the probe, which pauses at every ayah, asked twenty-one times in fifty-eight seconds at twenty, and eighteen leaves those two their room.",
+  "_asks-per-minute": "How many readings may be asked for in any sixty seconds when the server has not said how many its keys allow (see asks-share). Groq's free allowance is twenty; going over it rests the fast ear for listening_rest_s (sixty seconds). A reading at a pause is never held back, mid-phrase ones give way; eighteen leaves the pause readings their room.",
   "asks-per-minute": 18,
 
   "_tick-s": "How often the recording hands over what it has, which is how soon after the ear is free the next reading can start. Not how often a request is sent: a request is sent when the ear has answered and this much sound has arrived since the last one was asked for. Small costs nothing, the pieces are simply joined, and it is what turns a fixed wait into 'as soon as it can'.",
@@ -50,24 +50,6 @@
 
   "_keep-recordings": "How many of the latest recordings the page keeps in memory so a word card can play back what a mark was judged from. Each is a few seconds of compressed sound, up to window-s long; twelve is about three pages of ayahs, and the oldest is dropped past it.",
   "keep-recordings": 12,
-
-  "_card-lead-in-s": "How long before a word's own second in the recording \"Mine\" starts playing, so the word is heard whole and not from its middle.",
-  "card-lead-in-s": 1,
-
-  "_card-edge-px": "The least gap kept between a word card and the edge of the screen when it hangs under a word near the side of the page.",
-  "card-edge-px": 8,
-
-  "_card-width-px": "The width of a word card or an ayah card on a wide screen. On a phone it spans the screen and this is not used.",
-  "card-width-px": 300,
-
-  "_card-phone-height-share": "The most of the screen's height a word card may take on a phone, as a share. Past it the card's body scrolls and its buttons stay put, so the page and the live marks behind it stay in view.",
-  "card-phone-height-share": 0.45,
-
-  "_card-scroll-gap-px": "On a phone, how far above the card the page is scrolled so the tapped word or ayah number sits just clear of it.",
-  "card-scroll-gap-px": 12,
-
-  "_turn-after-s": "How long a finished page stays up before the next one turns in by itself, while reciting carries on. The page is finished once its last word is reached and the reciter has paused, and every sureness check of it is back; this is then only the moment to see how its last ayah went. Long enough to catch a red word, short enough that the new page is up before the reciter is far into it (the words said meanwhile are kept either way).",
-  "turn-after-s": 1.5,
 
   "_journal-heard-chars": "How much of what the ear wrote goes into the journal's reading note. A long recording writes a few hundred letters; the cap keeps one reading from filling the journal's page allowance.",
   "journal-heard-chars": 400,

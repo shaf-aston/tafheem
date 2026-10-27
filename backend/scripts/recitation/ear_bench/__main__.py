@@ -6,14 +6,14 @@ import json
 from pathlib import Path
 
 from backend.config import data_path, get_settings
-from backend.services.recitation.whisper import aggregate
+from backend.services.recitation.checker import aggregate
 from backend.scripts.recitation.ear_bench import keep, measures
 from backend.scripts.recitation.ear_bench.words import RIGHT, SLIPS, labelled
-from backend.scripts.recitation.rescore_recitation import HERE
+from backend.scripts.recitation.paths import CHECKS
 
 KNOBS = json.loads((Path(__file__).parent / "bench.json").read_text(encoding="utf-8"))
 RECITE = Path(__file__).resolve().parents[4] / "frontend" / "src" / "config" / "recite.json"
-REPORT = HERE / "bench.txt"
+REPORT = CHECKS / "bench.txt"
 
 
 def graded_words(ayahs: dict, model: str) -> list[measures.Word]:

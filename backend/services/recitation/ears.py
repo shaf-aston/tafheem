@@ -1,6 +1,6 @@
 """The ears, and the order they are asked in.
 
-An ear turns sound into words. There are two, they do the same job at very
+An ear turns sound into words. There are three, they do the same job at very
 different speeds, and nothing above this file knows which one answered:
 
     hosted   Groq's machines, `listening_model`         about 250ms, one per key
@@ -22,7 +22,7 @@ struck off for the rest of the run (services/ai). Listening had the same shape
 written a second, rougher way, and it showed. A rejected key was retried on
 every single recording, three in a row in the log, each paying a full round trip
 to be told the same thing. Both sides now retire an engine the same way, through
-services/fallback.
+services/core/fallback.
 
 One ear per key
 ---------------
@@ -31,14 +31,14 @@ reading every three seconds and the page ran that far behind the voice. Each
 key in `listening_keys` is its own hosted ear: they take turns, the one used
 longest ago first, and a key that is refused rests on its own while the other
 answers. /api/health says how many readings a minute that makes
-(`per_minute`), and the page paces itself by it.
+(`listen_per_minute`), and the page paces itself by it.
 
 Word sureness
 -------------
 Checking a recitation asks how sure the ear is of each word the page expects,
 and only the ear on this machine can answer that: Groq returns text and nothing
 else. So checking (services/recitation/__init__.py's `check`) never comes
-through here at all, it calls the model on this machine directly. This file is
+through here at all, it asks the model on this machine directly (checker.py). This file is
 only about which ear writes the words down, and every ear can do that.
 """
 from __future__ import annotations
@@ -52,20 +52,10 @@ from backend.config import get_settings
 from backend.services.learner import journal
 from backend.services.core.fallback import Retirable, permanent_failure, retry_after
 from backend.services.recitation import hosted, letters, whisper
+from backend.services.recitation.errors import NotInstalled, Unreadable
 from backend.services.core.timing import timed
 
 log = logging.getLogger(__name__)
-
-
-class Unreadable(RuntimeError):
-    """The recording itself cannot be decoded, so no ear will ever read it.
-
-    Not an engine failing: falling through to the next one only spends another
-    few seconds reaching the same answer. It has happened, from a truncated
-    browser recording that carried a valid webm header and nothing playable
-    behind it, and it reached the reader as "Could not make that out", which
-    blames the listening for something the recording did.
-    """
 
 
 class Ear(Retirable, ABC):
@@ -83,6 +73,10 @@ class Ear(Retirable, ABC):
     @abstractmethod
     def is_available(self) -> bool:
         """True when this ear can be asked right now."""
+
+    def warm(self) -> None:
+        """Load whatever is slow the first time, so nobody waits for it. Never
+        raises. Nothing to load by default."""
 
     @abstractmethod
     def name(self, reciting: bool = False) -> str:
@@ -138,6 +132,9 @@ class LocalEar(Ear):
     def is_available(self) -> bool:
         return True
 
+    def warm(self) -> None:
+        whisper.warm()
+
     def name(self, reciting: bool = False) -> str:
         settings = get_settings()
         return f"local-{settings.recitation_model if reciting else settings.dictation_model}"
@@ -159,6 +156,9 @@ class LettersEar(Ear):
 
     def is_available(self) -> bool:
         return letters.installed()
+
+    def warm(self) -> None:
+        letters.warm()
 
     def name(self, reciting: bool = False) -> str:
         return "letters"
@@ -270,7 +270,7 @@ def hear(audio: bytes, language: str | None, hint: str) -> str:
                 journal.note("ear.resting", ear=name, seconds=rest_s, reason=journal.scrub(str(exc)))
     if last is not None:
         raise last
-    raise whisper.NotInstalled("No ear is available on this machine.")
+    raise NotInstalled("No ear is available on this machine.")
 
 
 def active(reciting: bool = False) -> str:
@@ -285,10 +285,16 @@ def active(reciting: bool = False) -> str:
     return "none"
 
 
+def warm() -> None:
+    """Warm every ear a recitation may be sent to. Never raises."""
+    for ear in order(reciting=True):
+        ear.warm()
+
+
 def would_answer_locally(reciting: bool = True) -> bool:
     """True when an ear on this machine is the one that would answer right now.
 
-    routers/whisper.py asks this to decide whether a recitation needs `_turn`:
+    routers/listen.py asks this to decide whether a recitation needs `_turn`:
     that queue exists to protect this machine's own CPU from two readings at
     once, and Groq answering costs this machine nothing to queue behind.
     """

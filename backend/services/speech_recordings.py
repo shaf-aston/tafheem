@@ -22,7 +22,7 @@ from pathlib import Path
 
 from backend.config import get_settings
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[2]
 RECORDINGS = ROOT / "backend/data/recordings"
 WORDS = ROOT / "frontend/public/words/words.json"
 RECITED = ROOT / "frontend/public/words/word_audio.json"

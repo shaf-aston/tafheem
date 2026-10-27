@@ -1,18 +1,16 @@
 # Ear plan: repeats, full transcript, layered pronunciation
 
 ## Requirements
-- **R1 Repeats stay put.** Saying "قد تبين الرشد من الغي" 3 times colours nothing after الغي. Test: vitest on 2:256, 1 to 6 copies, zero CHECK/WRONG past the phrase.
-- **R2 Whole transcript visible.** Everything heard this page shows, wrapped, scrollable, even before the page is matched.
+- **R1 Repeats stay put. Done.** Saying "قد تبين الرشد من الغي" 3 times colours nothing after الغي. Test: vitest on 2:256, 1 to 6 copies, zero CHECK/WRONG past the phrase.
+- **R2 Whole transcript visible. Done.** Everything heard this page shows, wrapped, scrollable, even before the page is matched.
 - **R3 Layered checking.** Letters (makhraj) → harakat → tajweed, each a separate module, trained and scored separately on held-out reciters, each switchable.
 - **R4 No hard-coding.** Knobs in config, one mechanism per job.
 
 ## Where it is now (measured)
 | Area | Today | Gap |
 |---|---|---|
-| Follower `lib/recite/follow.js` `lineUp` | edit-distance DP, costs in `config/recite.json:15` (wrong 4 < extra 5, page skips free) | A repeat has no step of its own. Each repeated word is cheaper as "wrong" on the next page word, so the page walks forward. Reproduced: 6 copies = 22 orange words, matching the screenshot. |
-| Transcript `components/memorise/ReciteStrip.jsx:54` | `heard.slice(-6)`, one truncated line, only once `started` | Last 6 words only; vanishes when the line-up resets; repeats deduped by `joinWindows`; readings placed off-page dropped. |
 | Letters | tuned whisper, scored on bare letters (`finetune_ear/ear/text.py`) | Word level, not per letter or makhraj. |
-| Harakat | only the sureness score on the vowelled word (`whisper.scores`) | No per-vowel verdict. |
+| Harakat | only the sureness score on the vowelled word (`checker.scores`) | No per-vowel verdict. |
 | Tajweed | nothing served; one unshipped spike `scripts/recitation/score_phoneme_checker.py` (vowel length 84% caught / 14% false) | Whole layer missing. |
 
 ## Outside view
@@ -27,9 +25,7 @@
 | Candidate | How | Score |
 |---|---|---|
 | **A. Back step in the DP (chosen)** | A heard word may restart at any page word already reached, cost `back` (config). Repeats, restarts mid-ayah and partial repeats all become one cheap jump. | One model, no patches, handles varied hearing (قدّ / قد). Cost: DP becomes O(heard × page) with a running minimum. |
-| B. Collapse repeated n-grams before lining up | Pre-filter heard text | Fails when the ear spells a repeat differently; a second mechanism beside `joinWindows`. Rejected. |
-
-`joinWindows`'s dedupe then becomes redundant and is deleted (one mechanism per job).
+| B. Collapse repeated n-grams before lining up | Pre-filter heard text | Fails when the ear spells a repeat differently; a second mechanism beside the follower. Rejected. |
 
 ### R2: transcript. One owner
 - `recitingSession` keeps `transcript`: every reading's raw text, in order, for the page; it is not filtered by `ofPage` and not deduped.
@@ -61,19 +57,20 @@ backend/scripts/recitation/train/
   words/             today's finetune_ear
   letters/  harakat/  tajweed/<rule>/
 ```
-Each layer has its own judge, its own held-out test and its own config block (`pronounce.json`: on/off per layer, thresholds). The frontend shows one layer's verdict per word, colours from `reciteColors.js`, so a layer is added without touching the follower.
+Each layer has its own judge, its own held-out test and its own config block (`pronounce.json`: on/off per layer, thresholds). The frontend shows one layer's verdict per word, colours from `lib/recite/reciteColors.js`, so a layer is added without touching the follower.
 
-## Measured: Muaalem spike (2026-10-27, this laptop, 4 CPU threads)
+## Measured: Muaalem spike (2026-10-27)
 | Build | Seconds per second of audio | al-Fatihah 1:1-1:7 (everyayah, clean) |
 |---|---|---|
-| float32 | 0.70 to 0.91 | phonemes and tajweed qualities equal the answer key on all 7 |
-| int8 (dynamic, Linear layers) | 0.52 to 0.67 | same, all 7 |
+| float32, laptop, 4 CPU threads | 0.70 to 0.91 | phonemes and tajweed qualities equal the answer key on all 7 |
+| int8 (dynamic, Linear layers), laptop, 4 CPU threads | 0.52 to 0.67 | same, all 7 |
+| Muaalem on the Oracle VM (2 cores, 2.5 GB cap) | int8 ran out of memory; bf16 on 1 thread produced no result in 25 minutes | al-Fatihah 1:1: no result. Not usable on this server. |
 
-Package: `quran-muaalem` 0.2.2 needs `transformers<4.56`. Not yet measured: the Oracle ARM box (assume 2-3x slower, so near or over real time) and whether it catches real mistakes (needs the reviewer-marked recordings in `backend/data/recitation_checks`). Both gate step 4.
+Package: `quran-muaalem` 0.2.2 needs `transformers<4.56`. Not yet measured: whether it catches real mistakes (needs the reviewer-marked recordings in `backend/data/recitation_checks`).
 
 ## Milestones (each its own commit, tested)
-1. **R1**: back step in `lineUp` + vitest for 1 to 6 copies, plus the current follow tests unchanged.
-2. **R2**: `transcript` in session + `ReciteStrip` full block; probe in the running app.
+1. **R1 (done)**: back step in `lineUp` + vitest for 1 to 6 copies, plus the current follow tests unchanged.
+2. **R2 (done)**: `transcript` in session + `ReciteStrip` full block; probe in the running app.
 3. **R3 spike**: run Muaalem int8 on the Oracle CPU over 50 held clips; record time per second of audio and phoneme error. Go / no-go for engine A.
 4. **R3 letters layer** end to end (service, route field, UI underline), scored on the held-out set.
 5. Harakat layer, then madd, then the other tajweed rules, one at a time.

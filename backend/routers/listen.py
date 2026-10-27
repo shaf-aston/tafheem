@@ -29,8 +29,7 @@ from backend.config import get_settings
 from backend.models.listen import Heard, HeardAyah, HeardPlace, Sureness
 from backend.services import recitation
 from backend.services.learner import journal
-from backend.services.recitation import NotInstalled, Unreadable
-from backend.services.recitation.recording import kind_of
+from backend.services.recitation import NotInstalled, Unreadable, kind_of
 
 log = logging.getLogger(__name__)
 
@@ -46,8 +45,8 @@ READING_ID = re.compile("[A-Za-z0-9._:-]{1,64}")
 # One local reading at a time, and none the page gave up on. The model uses most
 # cores, so two at once each run 4-8x slower; dropping stale ones here frees the
 # CPU, which giving up at the page does not. Words wait here only when this
-# machine's ear answers (ears.would_answer_locally); /check always waits, since
-# scoring is always local. Search words skip it; whisper.engine_lock guards them.
+# machine's ear answers (recitation.would_answer_locally); /check always waits, since
+# scoring is always local. Search words skip it; errors.local_lock guards them.
 _turn = asyncio.Lock()
 
 
@@ -151,7 +150,7 @@ def _tuned_model(tuned: bool, filed: _Filed) -> str | None:
     """The tuned model when asked for; a tuned model that cannot run is said, never swapped for another ear."""
     if not tuned:
         return None
-    if not (model := recitation.whisper.tuned_model()):
+    if not (model := recitation.tuned_model()):
         raise filed.fail(503, "No tuned listening model is set on this machine.", "validate")
     return model
 
@@ -185,7 +184,7 @@ async def listen(
                 422, f"before must be at most {get_settings().recitation_check_heard_max_chars} characters.", "validate",
             )
         body = await _read_recording(audio, filed)
-        is_recitation = recite or match
+        is_recitation = recitation.is_recitation(match, recite)
         journal.note("reading.received", bytes=len(body), recite=is_recitation)
 
         if not body:
@@ -234,7 +233,7 @@ async def listen(
         # `_turn` protects this machine's own CPU, so it is only worth queuing
         # behind when this machine is the one about to spend it. A reading
         # Groq will answer costs this machine nothing to wait for.
-        if is_recitation and recitation.ears.would_answer_locally():
+        if is_recitation and recitation.would_answer_locally():
             async with _my_turn(request, "reading") as wanted:
                 if not wanted:
                     filed.done(200)
