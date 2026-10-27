@@ -4,10 +4,10 @@
  * Arabic, as the ayah view's translation does; the words sit under it, each one
  * a way into its own dictionary entry.
  */
-import ArabicText from '../ui/text/ArabicText'
-import { GoButton } from '../ui/buttons/RootActions'
-import SourceBadge from '../ui/feedback/SourceBadge'
-import TranslationStrip from '../ui/text/TranslationStrip'
+import ArabicText from './ArabicText'
+import { GoButton } from '../buttons/RootActions'
+import SourceBadge from '../feedback/SourceBadge'
+import TranslationStrip from './TranslationStrip'
 
 // `bare` drops what the analyser already says around it: the kind line, who translated it,
 // and the word-by-word list, which its chart shows on hover.

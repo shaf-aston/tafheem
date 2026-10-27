@@ -49,7 +49,10 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 `buttons/` (things you press), `inputs/` (things you choose or type into: chips,
 `SearchBox`, `Segmented`, `ZoomBar`), `overlays/` (`BottomSheet`, `Popover`, `Tooltip`,
 `Disclosure`), `feedback/` (loading, empty, error, source badge), `text/` (Arabic and
-reading text) and `display/` (marks, `SectionHeader`, `Tile`). A part one tab draws sits
+reading text) and `display/` (marks, `SectionHeader`, `Tile`). Larger parts several tabs draw sit in
+a shared folder beside the tabs: `grammar/` (`WordCard`, the tarkeeb figure), `practice/` (the quiz
+board, `LessonRunner` and its cards), `profile/` and `level/`. A tab never imports another tab's folder
+(eslint enforces it). A part one tab draws sits
 in that tab's `components/` folder, and its data (JSON, presets) in that tab's
 `lib/` folder; there is no `src/data/`. Text sizes come from `type-*` classes (`config/theme.json`
 → `styles/text.css`); `eyebrow` is the one small caps label. A panel never

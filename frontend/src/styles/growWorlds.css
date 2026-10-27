@@ -124,7 +124,7 @@
 .grow-teach-also { display: flex; justify-content: center; align-items: baseline; gap: 0.75rem; color: var(--text-dim); font-size: var(--type-body); }
 .grow-teach-note { padding: 12px 14px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--w) 8%, var(--surface)); color: var(--text); font-size: var(--type-body); line-height: 1.6; text-wrap: pretty; }
 .grow-options { display: grid; gap: 10px; }
-/* Short answers two by two (components/grow/exercises/OneOf): Arabic words always, short English once a row fits two. */
+/* Short answers two by two (components/practice/exercises/OneOf): Arabic words always, short English once a row fits two. */
 .grow-options-ar.grow-options-two { grid-template-columns: 1fr 1fr; }
 @media (min-width: 480px) { .grow-options-two { grid-template-columns: 1fr 1fr; } }
 .grow-option { --option-number-bg: var(--surface-hi); display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 12px 16px; text-align: start; border-radius: var(--radius-md); border: 2px solid var(--border-hi); background: var(--surface); color: var(--text); font-size: var(--type-body); transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease; }
@@ -192,7 +192,7 @@
 .grow-book-review { min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 2px solid var(--w); color: var(--w); background: var(--surface); font-weight: 700; }
 .grow-book-review:hover { background: color-mix(in srgb, var(--w) 12%, var(--surface)); }
 
-/* A book world's cards (components/grow/exercises): the book's sentence, sorting, ordering. */
+/* A book world's cards (components/practice/exercises): the book's sentence, sorting, ordering. */
 .grow-rule-title { font-size: var(--type-title); font-weight: 800; color: var(--text); }
 .grow-rule-ar { padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); line-height: 1.9; }
 /* The line a choose card asks about stands centred over its answers; a rule card's longer text keeps to the right. */

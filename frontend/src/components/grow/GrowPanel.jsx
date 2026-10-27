@@ -25,7 +25,7 @@ import { useRewards } from '../../lib/learner/useRewards'
 import { useWordsWorld } from '../../lib/grow/useWordsWorld'
 import BookWorld from './BookWorld'
 import GrowHome from './GrowHome'
-import LessonRunner from './LessonRunner'
+import LessonRunner from '../practice/LessonRunner'
 import LessonWorld from './LessonWorld'
 import { Skeleton } from '../ui/feedback/Skeleton'
 

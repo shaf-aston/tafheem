@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import LessonRunner from '../components/grow/LessonRunner'
+import LessonRunner from '../components/practice/LessonRunner'
 
 const choose = (id) => ({
   id, kind: 'choose', tag: 'Test', ask: `Question ${id}?`, why: 'Because.', answer: '0',
