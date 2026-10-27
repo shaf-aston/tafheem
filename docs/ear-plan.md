@@ -63,6 +63,14 @@ backend/scripts/recitation/train/
 ```
 Each layer has its own judge, its own held-out test and its own config block (`pronounce.json`: on/off per layer, thresholds). The frontend shows one layer's verdict per word, colours from `reciteColors.js`, so a layer is added without touching the follower.
 
+## Measured: Muaalem spike (2026-10-27, this laptop, 4 CPU threads)
+| Build | Seconds per second of audio | al-Fatihah 1:1-1:7 (everyayah, clean) |
+|---|---|---|
+| float32 | 0.70 to 0.91 | phonemes and tajweed qualities equal the answer key on all 7 |
+| int8 (dynamic, Linear layers) | 0.52 to 0.67 | same, all 7 |
+
+Package: `quran-muaalem` 0.2.2 needs `transformers<4.56`. Not yet measured: the Oracle ARM box (assume 2-3x slower, so near or over real time) and whether it catches real mistakes (needs the reviewer-marked recordings in `backend/data/recitation_checks`). Both gate step 4.
+
 ## Milestones (each its own commit, tested)
 1. **R1**: back step in `lineUp` + vitest for 1 to 6 copies, plus the current follow tests unchanged.
 2. **R2**: `transcript` in session + `ReciteStrip` full block; probe in the running app.
