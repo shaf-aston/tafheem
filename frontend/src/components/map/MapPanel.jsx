@@ -62,7 +62,7 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
   const [hoverBranch, setHoverBranch] = useState(null)
   const phone = useMedia(PHONE)
   const frame = useRef(null)
-  const { zoom, pinching, endPinch, step, set, reset } = useZoom(frame, zoomKnobs.map, place.at === 'chart') // the index has nothing to zoom
+  const { zoom, size, endPinch, step, set, reset } = useZoom(frame, zoomKnobs.map, place.at === 'chart') // the index has nothing to zoom
 
   // Back, forward, or a link from elsewhere: show the place it names.
   // A new screen opens at its top, as a fresh page would: a group picked low in the grid used to open scrolled past
@@ -162,7 +162,7 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
           role="region"
           aria-label={`${chart.en} chart`}
         >
-          <div className="p-4" style={{ width: `max(${zoom * 100}%, calc(${zoom} * ${minWidth}))`, transition: pinching ? 'none' : 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
+          <div className="p-4" style={size(minWidth)}>
             <PbsChart
               key={path.join('.')}
               config={config}

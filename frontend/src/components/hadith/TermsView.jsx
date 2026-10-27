@@ -1,5 +1,5 @@
 /**
- * The words of the science as a tree, opened from the hadith More menu. A screen as wide as the whole tree needs
+ * The words of the science as a tree, opened from the Terms place of the hadith strip. A screen as wide as the whole tree needs
  * at its smallest legible scale (lib/termsChart wholeWidth, never under theme.json's terms-tree-min) draws every
  * group and term at once (shell/PbsChart); a narrower one lists the groups, each with the question it splits on,
  * and a tap lists that group's terms as stacked chips, a term's kids indented under it. The chart never draws below
@@ -34,7 +34,7 @@ import TermCard from './TermCard'
 function Chart({ config, onZoom }) {
   const { width } = useMemo(() => layoutChart(config), [config])
   const frame = useRef(null)
-  const { zoom, pinching, endPinch, step, set, reset } = useZoom(frame, zoomKnobs.terms)
+  const { zoom, size, endPinch, step, set, reset } = useZoom(frame, zoomKnobs.terms)
   return (
     <div className="space-y-2">
       <div className="flex justify-end type-small text-[var(--text-dim)]">
@@ -49,7 +49,7 @@ function Chart({ config, onZoom }) {
         role="region"
         aria-label="Terms chart"
       >
-        <div style={{ width: `max(${zoom * 100}%, ${Math.round(width * MIN_SCALE * zoom)}px)`, transition: pinching ? 'none' : 'width calc(var(--motion-base-ms) * 1ms) ease' }}>
+        <div style={size(`${Math.round(width * MIN_SCALE)}px`)}>
           <PbsChart config={config} onZoom={onZoom} />
         </div>
       </div>
