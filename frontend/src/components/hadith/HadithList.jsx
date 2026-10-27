@@ -16,11 +16,10 @@ import ArabicText from '../ui/ArabicText'
 import ErrorAlert from '../ui/ErrorAlert'
 import EmptyState from '../ui/EmptyState'
 import TopicIcon from '../ui/TopicIcon'
-import ChainSheet from './ChainSheet'
 import { AnalyzerSkeleton } from '../ui/Skeleton'
 import ReadingOptions from '../ui/ReadingOptions'
-import SheetLink from './SheetLink'
 import HadithCards from './HadithCards'
+import WordsLink from './WordsLink'
 import { useHideChain } from '../../lib/hadith/useHideChain'
 
 /** How far down the page you are, drawn into `ref` without re-rendering per scroll. */
@@ -45,7 +44,6 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
   const [columns, setColumns] = useRememberedFlag('hadith-two-columns', false)
   const [sideBySide, setSideBySide] = useSideBySide()
   const [hideChain, setHideChain] = useHideChain()
-  const [guide, setGuide] = useState(false)
 
   // A link to one hadith lands on it, once its book has arrived, and stays there while the cards above fill in.
   useEffect(() => {
@@ -90,8 +88,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
             { label: 'Two columns', on: columns, set: (on) => { setColumns(on); if (on) setSideBySide(false) }, only: 'wide' },
             { label: 'Hide the chain', on: hideChain, set: setHideChain },
           ]} />
-          <SheetLink accent={accent} onClick={() => setGuide(true)}>Words and terms</SheetLink>
-          {guide && <ChainSheet accent={accent} onClose={() => setGuide(false)} />}
+          <WordsLink accent={accent} />
           <form onSubmit={jump} className="flex items-center gap-2">
             {missing && <span role="status" className="type-small text-[var(--text-faint)]">Not in this book</span>}
             <input
