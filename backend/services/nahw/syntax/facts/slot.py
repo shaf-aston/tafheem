@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, frames, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles
-from backend.services.nahw.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, NOUN_LINKS, SUBJECTS
-from backend.services.nahw.syntax.facts.sentence import Sentence, jarr_takes, praised_noun, told_of_lone_mubtada, verb_above
+from backend.services.nahw.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
+from backend.services.nahw.syntax.facts.sentence import Sentence, busied, jarr_takes, praised_noun, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import with_waw
 
 NAMED = named_roles()
@@ -133,6 +133,14 @@ def quoted_head(token: dict, s: Sentence) -> bool:
             and holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"])))
 
 
+def busied_before(token: dict, s: Sentence) -> bool:
+    """زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ: the word comes before a verb busied with a pronoun of its own (facts.busied),
+    so the verb that works on it is one like that verb, left out (الاشتغال, Ibn Aqil V2 p128: فالسابق انصبه بفعل
+    أضمرا حتما موافق لما قد أظهرا)."""
+    head = s.head(token)
+    return head is not None and is_verb(head) and token["id"] < head["id"] and busied(head, s)
+
+
 def verb_place(token: dict, s: Sentence) -> str:
     """The place a word fills under a verb (Tasheel 3.1 p60, 3.2 p67), `none` where the
     book names it elsewhere. Tested in this order because an earlier place shadows a
@@ -173,8 +181,11 @@ def verb_place(token: dict, s: Sentence) -> str:
             return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
         if before and typed == "a" and not is_mabni(token.get("pos_camel", "")) and (
                 rel in SUBJECTS or (rel == "MOD" and is_plain_noun(token) and not is_participle(token)
-                                    and any(t["rel"] in SUBJECTS and t["id"] > token["id"] for t in siblings))):
-            return "object"  # القرآنَ قرأ الطالبُ: the reader's own fatha marks the fronted object (a built word's is no case: أنتَ)
+                                    and (own_doer(head) or any(t["rel"] in SUBJECTS and t["id"] > token["id"] for t in siblings)))):
+            # القرآنَ قرأ الطالبُ، زَيْدًا ضَرَبْتُ: the reader's own fatha marks the fronted object (a built word's is
+            # no case: أنتَ) once the verb has its doer, after it or in it (Ibn Aqil V2 p129: فكنت تقول زيدا ضربت
+            # فتنصب زيدا); a verb busied with its pronoun leaves it to one like it, left out (busied_before)
+            return "object"
         if before and rel in SUBJECTS:
             return "none"  # a doer never comes first (نحن نكتب): the noun opens the sentence
         if quoted_head(token, s):
@@ -187,7 +198,7 @@ def verb_place(token: dict, s: Sentence) -> str:
             return "absolute"  # ضربتُه مرتين، ثلاثَ مراتٍ، كلَّ الحبِّ: the count or the share stands in for the masdar
         # رَأَيْتُ كِلَا الصَّدِيقَيْنِ: a verb of the first or second person holds its doer (تُ، نا، تَ),
         # so the noun after it is its object, however the parser hung it or what case it guessed
-        if (head.get("per") in ("1", "2") and not is_passive(head) and not before
+        if (own_doer(head) and not before
                 and rel in NOUN_LINKS and typed != "u"
                 and not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)):
             return "object"

@@ -7,7 +7,7 @@ from backend.services.nahw.syntax.facts.word import is_verb, works_as_verb, show
 from backend.services.nahw.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.nahw.syntax.facts.kind import calling_head
 from backend.services.nahw.syntax.facts.follows import with_waw
-from backend.services.nahw.syntax.facts.slot import place_time, verb_place
+from backend.services.nahw.syntax.facts.slot import busied_before, place_time, verb_place
 
 
 def _governor(token: dict, s: Sentence) -> str:
@@ -76,7 +76,9 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
             return family, head
     if rel in ("TMZ", "OBJ") and head and not under_verb and head["pos"] != "PRT":
         return "noun", head  # عشرون كتابًا: a number or measure
-    if verb_place(token, s) != "none":
+    if (place := verb_place(token, s)) != "none":
+        if place == "object" and busied_before(token, s):
+            return "verb", None  # زَيْدًا ضَرَبْتُهُ: a verb like ضربت, left out, no word of the sentence
         return "verb", verb_above(token, s) or head  # مسافرٌ غدًا: a participle works like its verb
     if rel == "MOD" and head and not is_verb(token):
         if unlike(token, head) or told_of_subject(token, head):

@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import bare_letters
 from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, is_name, present_verb_tagged, subject_link
+from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, is_name, present_verb_tagged, subject_link, attached_pronoun
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -219,6 +219,13 @@ def verb_above(token: dict, s: Sentence) -> dict | None:
         return head
     up = s.head(head) if head else None
     return up if up and is_verb(up) else None
+
+
+def busied(verb: dict, s: Sentence) -> bool:
+    """زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ: the verb works on a pronoun of its own, by itself or through a
+    جار, so a noun in nasb put before it is not its object (الاشتغال, Ibn Aqil V2 p129: اشتغل بضمير زيد)."""
+    return any((attached_pronoun(k) and not subject_link(k))
+               or (is_preposition(k) and any(attached_pronoun(m) for m in s.kids(k))) for k in s.kids(verb))
 
 
 def next_word(token: dict, s: Sentence) -> dict | None:

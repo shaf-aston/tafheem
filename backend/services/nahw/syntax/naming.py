@@ -240,6 +240,8 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
     kinds = teacher_rules()["kinds"]
     if role == NAMED.munada and token["id"] not in governed_by:  # no يا typed governs it (facts.governor)
         return kinds["munada"]["alone" if facts.is_called_alone(token) else "dropped"]  # اللهمّ، رَبَّنَا
+    if role == NAMED.mafool_bih and token["id"] not in governed_by and facts.busied_before(token, s):
+        return kinds["object"]["busied"]  # زَيْدًا ضَرَبْتُهُ
     if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
         if facts.listed(mudaf, "adad_mudaf"):
             return kinds["idafa"]["min"]  # ثلاثُ سنينَ: a number is a noun, though CAMeL tags it an adjective

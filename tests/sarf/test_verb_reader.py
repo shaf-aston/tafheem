@@ -125,6 +125,12 @@ def test_a_command_the_dictionary_has_with_its_object_written_on_beats_a_verb_it
     assert verb_reader.reading_of(word, lambda _: False)["num"] == "d"   # nearest case: it has neither verb
 
 
+def test_a_word_the_table_has_no_cell_for_is_read_with_its_object_split_off_by_the_dictionary():
+    """اِهْدِهِمْ: no cell holds the whole word, so the verb before هِمْ is read, among the verbs the dictionary has."""
+    assert verb_reader.reading_of("اِهْدِهِمْ", _KNOWN)["lex"] == "هَدَى"
+    assert "lex" not in verb_reader.reading_of("اِهْدِهِمْ")   # nearest case: هَدَى، هَدَا or هَدِيَ
+
+
 def test_of_the_closest_cells_the_one_the_dictionary_has_names_the_verb():
     assert "lex" not in verb_reader.reading_of("اِهْدِ")   # هَدَى، هَدَا or هَدِيَ: the cells disagree
     assert verb_reader.reading_of("اِهْدِ", _KNOWN)["lex"] == "هَدَى"

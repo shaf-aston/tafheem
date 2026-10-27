@@ -511,9 +511,14 @@ def test_a_verb_hung_under_its_fronted_object_heads_the_sentence(monkeypatch, ro
     assert [w["role"] for w in iraab.analyze("عِلْمًا طَلَبَ زَيْدٌ")["words"]] == ["مفعول به", "فعل", "فاعل"]
 
 
-@pytest.mark.parametrize("sentence, moved", [("عِلْمًا طَلَبَ زَيْدٌ", True), ("عِلْمًا طَلَبَهُ زَيْدٌ", False)])
-def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved):
-    """طَلَبَهُ has its pronoun back to عِلْمًا, so the parser's صفة reading stands; without one it cannot."""
+@pytest.mark.parametrize("sentence, moved", [
+    ("عِلْمًا طَلَبَ زَيْدٌ", True), ("زَيْدًا اضْرِبْ", True), ("زَيْدًا اضْرِبِي", True), ("زَيْدًا نَصَرْنَا", True),
+    ("عِلْمًا طَلَبَهُ زَيْدٌ", True), ("عِلْمًا مَرَّ بِهِ زَيْدٌ", True),  # الاشتغال: a verb like it, left out, governs it
+    ("زَيْدًا ضَرَبَ", False),  # nearest case: its doer is neither after it nor in it
+])
+def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved):
+    """A nasb noun at the head of the sentence has no word to put it there but the verb after it, once that
+    verb has its doer, after it or in it (اضْرِبْ، اضْرِبِي، نَصَرْنَا), so the verb is no صفة of it."""
     from backend.services.sarf import morphology
     from backend.services.nahw import syntax
     from backend.services.nahw.syntax import catib_onnx

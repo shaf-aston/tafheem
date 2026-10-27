@@ -1027,12 +1027,14 @@ def test_a_command_with_its_object_pronoun_written_on(sentence: str, want: list)
     ("رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً", 0, "منادى", _DROPPED),
     ("رَبَّنَا اغْفِرْ لَنَا", 0, "منادى", _DROPPED),
     ("عَبْدَ اللَّهِ ارْكَبْ", 0, "منادى", _DROPPED),
+    ("عَبْدَ بَيْتِ اللَّهِ ارْكَبْ", 0, "منادى", _DROPPED),  # the command after a chain of مضاف إليه
     ("ربنا اِغْفِرْ لَنَا", 0, "منادى", _DROPPED),  # its case not typed: the command after it says it
     ("رب العالمين اِغْفِرْ لِي", 0, "منادى", _DROPPED),  # the command after the مضاف إليه
     ("اللَّهُمَّ", 0, "منادى", _MEEM),  # يا put at the end as the doubled ميم
     ("يَا رَبَّنَا", 1, "منادى", None),  # nearest case: يا typed, nothing left off
     ("رَبُّنَا اغْفِرْ لَنَا", 0, "مبتدأ", None),  # nearest case: typed in raf', no call
     ("كِتَابَهُ قَرَأَ زَيْدٌ", 0, "مفعول به", None),  # nearest case: no command after it
+    ("رَأَيْتُ عَبْدَ اللَّهِ اذْهَبْ", 1, "مفعول به", None),  # nearest case: a command after it, but it does not open the sentence
 ])
 def test_a_call_with_no_ya_typed(sentence: str, at: int, role: str, said: str | None):
     card = cards(sentence)[at]
@@ -1040,3 +1042,28 @@ def test_a_call_with_no_ya_typed(sentence: str, at: int, role: str, said: str | 
     assert all((wording == said) == (wording in card["reason"]) for wording in (_DROPPED, _MEEM)), card["reason"]
     if role == "منادى":  # the يا left off is no word of the sentence; a typed one is
         assert card["governor"] == (None if said else 0)
+
+
+_BUSIED = "والناصب له فعل محذوف وجوبًا يفسره الفعل المذكور"
+
+
+@pytest.mark.parametrize("sentence, at, role, governor, busied", [
+    ("زَيْدًا ضَرَبْتُ", 0, "مفعول به", 1, False),  # its doer in the verb: تُ
+    ("زَيْدًا نَصَرْنَا", 0, "مفعول به", 1, False),
+    ("زَيْدًا اضْرِبْ", 0, "مفعول به", 1, False),  # a command's hidden أنت
+    ("عِلْمًا طَلَبَ زَيْدٌ", 0, "مفعول به", 1, False),  # its doer after it
+    ("زَيْدًا ضَرَبْتُهُ", 0, "مفعول به", None, True),  # الاشتغال: the verb busied with its pronoun
+    ("زَيْدًا اضْرِبْهُ", 0, "مفعول به", None, True),
+    ("زَيْدًا مَرَرْتُ بِهِ", 0, "مفعول به", None, True),  # through a جار
+    ("عِلْمًا طَلَبَهُ زَيْدٌ", 0, "مفعول به", None, True),
+    ("زَيْدٌ ضَرَبْتُهُ", 0, "مبتدأ", None, False),  # nearest case: typed in raf'
+    ("إِنَّ زَيْدًا ضَرَبْتُهُ", 1, "اسم إن", 0, False),  # nearest case: إنّ puts it in nasb
+    ("رَأَيْتُ زَيْدًا يَضْرِبُهُ عَمْرٌو", 1, "مفعول به", 0, False),  # nearest case: the verb before it governs it
+    ("أَعْطَيْتُهُ دِرْهَمًا", 1, "مفعول به", 0, False),  # nearest case: after its busied verb, not before
+])
+def test_an_object_put_before_its_verb(sentence: str, at: int, role: str, governor: int | None, busied: bool):
+    """زَيْدًا ضَرَبْتُ: a nasb noun before a verb that has its doer is its object (Ibn Aqil V2 p129); before a
+    verb busied with a pronoun back to it, the object of a verb like that one, left out (V2 p128)."""
+    card = cards(sentence)[at]
+    assert (card["role"], card["governor"]) == (role, governor)
+    assert (_BUSIED in card["reason"]) == busied, card["reason"]

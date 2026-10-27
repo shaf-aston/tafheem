@@ -34,9 +34,10 @@ def calling_head(token: dict, s: Sentence) -> str | None:
 def _called_without_ya(token: dict, s: Sentence) -> bool:
     """رَبَّنَا آتِنَا: يا may be left off before a called noun (Ibn Aqil V3 p256: وأما غير هذه فيحذف معها الحرف
     جوازا، فتقول في يا عبد الله اركب: عبد الله اركب). Read so: a مضاف opening the sentence, typed in no case
-    but nasb, with a command straight after its مضاف إليه, the command said to the one called."""
+    but nasb, with a command straight after its مضاف إليه (or their chain: عَبْدَ بَيْتِ اللَّهِ ارْكَبْ), the command
+    said to the one called."""
     after = next_word(token, s)
-    while after and after["rel"] == "IDF" and s.head(after) is token:
+    while after and after["rel"] == "IDF":
         after = next_word(after, s)
     return (token is s.tokens[0] and token.get("mudaf") and typed_case_of(token) in ("a", None)
             and after is not None and after.get("asp") == "c")

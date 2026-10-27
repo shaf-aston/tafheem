@@ -77,6 +77,11 @@ def holds_doer(verb: dict, kids) -> bool:
     return verb.get("asp") == "c" or any(subject_link(k) for k in kids)
 
 
+def own_doer(verb: dict) -> bool:
+    """The doer is in the verb itself: written on as تُ، نا، تَ, or a command's hidden أنت (Tasheel 2.4.1 p30)."""
+    return verb.get("asp") == "c" or (verb.get("per") in ("1", "2") and not is_passive(verb))
+
+
 def attached_pronoun(token: dict) -> bool:
     """A pronoun written onto the word before it: عِلْمُ+هُ."""
     return token.get("pos_camel") == "pron" and is_suffix(token)

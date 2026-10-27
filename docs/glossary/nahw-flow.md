@@ -45,7 +45,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - praise_specified: after نعم/بئس, an indefinite nasb noun → the verb's تمييز (its doer a hidden pronoun), the raf' noun after → the one praised (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - doer_first: two names after a verb that show no case (ضرب موسى عيسى) → the first the doer, the second the object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - doer_after_object: a subject typed in nasb with a raf' word hung on it → the object, that word the doer (`backend/services/nahw/syntax/repair/subject_clash.py`)
-- verb_under_fronted_object: a verb with its doer hung as the صفة of a nasb noun before it, with no pronoun back → the verb heads, the noun its fronted object (`backend/services/nahw/syntax/repair/subject_clash.py`)
+- verb_under_fronted_object: a verb with its doer, after it or in it (زَيْدًا ضَرَبْتُ، زَيْدًا اضْرِبْ), hung as the صفة of a nasb noun before it → the verb heads, the noun its fronted object; with a pronoun back to the noun (زَيْدًا ضَرَبْتُهُ) the same, its governor then a verb like it, left out (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - object_after_tanween: a nasb word hung as مضاف إليه on a participle with tanween → its object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - object_past_verb: a nasb word hung past a verb onto the noun the verb hangs on (زَيْدٌ نَصَرَ بَكْرًا) → the verb's, named object, hal or tamyeez by verb_place (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - called: a verb the parser hung on يا → a sentence of its own, not a second منادى (`backend/services/nahw/syntax/repair/called.py`)
@@ -84,7 +84,7 @@ Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` �
 <!-- list:axes -->
 - kind: particle / verb / noun (`backend/services/nahw/syntax/facts/kind.py`)
 - follows: ṣifa / maʿṭūf / tawkīd / badal / none (`backend/services/nahw/syntax/facts/follows.py`)
-- governor: what works its case; a call with يا left off (رَبَّنَا اغْفِرْ: a مضاف opening the sentence, nasb or untyped, a command after it; اللَّهُمَّ) has none, the card says يا is left off (`backend/services/nahw/syntax/facts/governor.py`)
+- governor: what works its case; a call with يا left off (رَبَّنَا اغْفِرْ: a مضاف opening the sentence, nasb or untyped, a command after it; اللَّهُمَّ) has none, the card says يا is left off; nor has an object put before a verb busied with its pronoun (الاشتغال: زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ), the card says a verb like it, left out, governs it (`backend/services/nahw/syntax/facts/governor.py`)
 - slot: its place: subject, khabar, object… (`backend/services/nahw/syntax/facts/slot.py`)
 - voice: active / passive (`backend/services/nahw/syntax/facts/voice.py`)
 <!-- /list -->
