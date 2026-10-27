@@ -74,6 +74,10 @@ class Ear(Retirable, ABC):
     def is_available(self) -> bool:
         """True when this ear can be asked right now."""
 
+    def warm(self) -> None:
+        """Load whatever is slow the first time, so nobody waits for it. Never
+        raises. Nothing to load by default."""
+
     @abstractmethod
     def name(self, reciting: bool = False) -> str:
         """What to call it in the log and on the health line.
@@ -128,6 +132,9 @@ class LocalEar(Ear):
     def is_available(self) -> bool:
         return True
 
+    def warm(self) -> None:
+        whisper.warm()
+
     def name(self, reciting: bool = False) -> str:
         settings = get_settings()
         return f"local-{settings.recitation_model if reciting else settings.dictation_model}"
@@ -149,6 +156,9 @@ class LettersEar(Ear):
 
     def is_available(self) -> bool:
         return letters.installed()
+
+    def warm(self) -> None:
+        letters.warm()
 
     def name(self, reciting: bool = False) -> str:
         return "letters"
@@ -273,6 +283,12 @@ def active(reciting: bool = False) -> str:
         if _ready(ear):
             return ear.name(reciting)
     return "none"
+
+
+def warm() -> None:
+    """Warm every ear a recitation may be sent to. Never raises."""
+    for ear in order(reciting=True):
+        ear.warm()
 
 
 def would_answer_locally(reciting: bool = True) -> bool:

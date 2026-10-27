@@ -199,7 +199,7 @@ def test_a_stale_check_is_dropped_when_the_page_has_given_up(monkeypatch):
 
 
 def test_a_recitation_skips_the_turn_when_the_hosted_ear_would_answer(monkeypatch):
-    monkeypatch.setattr(recitation.ears, "would_answer_locally", lambda: False)
+    monkeypatch.setattr(recitation, "would_answer_locally", lambda: False)
     monkeypatch.setattr(listen_router, "_turn", _NeverEnter())
     monkeypatch.setattr(recitation, "hear", lambda *a, **k: ("hosted heard it", []))
     resp = client.post("/api/listen?recite=true", files={"audio": ("r.webm", WEBM)})
@@ -217,7 +217,7 @@ def test_a_recitation_takes_the_turn_when_the_local_ear_would_answer(monkeypatch
         async def __aexit__(self, *exc):
             return False
 
-    monkeypatch.setattr(recitation.ears, "would_answer_locally", lambda: True)
+    monkeypatch.setattr(recitation, "would_answer_locally", lambda: True)
     monkeypatch.setattr(listen_router, "_turn", _Track())
     monkeypatch.setattr(recitation, "hear", lambda *a, **k: ("local heard it", []))
     resp = client.post("/api/listen?recite=true", files={"audio": ("r.webm", WEBM)})
@@ -284,7 +284,7 @@ def test_listen_has_no_tuned_option_it_is_always_heard_by_the_usual_ears(monkeyp
 
 
 def test_a_tuned_check_without_an_installed_model_is_a_503_never_another_ear(monkeypatch):
-    monkeypatch.setattr(recitation.whisper, "tuned_model", lambda: "")
+    monkeypatch.setattr(recitation, "tuned_model", lambda: "")
     resp = client.post(
         "/api/listen/check", params={"heard": "قل", "check": "112:1", "tuned": "true"}, files={"audio": ("r.webm", WEBM)},
     )
@@ -293,7 +293,7 @@ def test_a_tuned_check_without_an_installed_model_is_a_503_never_another_ear(mon
 
 def test_a_tuned_check_scores_with_the_tuned_model(monkeypatch):
     seen = {}
-    monkeypatch.setattr(recitation.whisper, "tuned_model", lambda: "data/tuned")
+    monkeypatch.setattr(recitation, "tuned_model", lambda: "data/tuned")
     monkeypatch.setattr(recitation, "_plain", lambda: {"112:1": "قُلْ هُوَ"})
     monkeypatch.setattr(whisper, "weigh", lambda audio, words, model=None: seen.update(model=model) or [{"sure": 0.5, "weak": None, "at": None}] * len(words))
     resp = client.post(

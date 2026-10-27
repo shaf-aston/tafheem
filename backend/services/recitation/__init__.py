@@ -30,11 +30,14 @@ from backend.config import data_path, get_settings
 from backend.services.quran import corpus as quran_corpus
 from backend.services.text.refs import SURAHS
 from backend.services.core.timing import timed
-from backend.services.recitation import ears, letters, whisper, locate, match, place
-# Re-exported so a caller catches them from the package it already talks
-# to. Which piece in here raises which is this package's own business,
-# and a route that imports them by submodule has to know.
+from backend.services.recitation import ears, whisper, locate, match, place
+# Re-exported so a caller uses only this package. Which piece in here owns
+# which is this package's own business, and a route that imports by submodule
+# has to know.
+from backend.services.recitation.ears import would_answer_locally
 from backend.services.recitation.errors import NotInstalled, Unreadable
+from backend.services.recitation.recording import kind_of
+from backend.services.recitation.whisper import tuned_model
 from backend.services.recitation.spelling import as_heard
 from backend.services.recitation.match import Match
 
@@ -71,9 +74,7 @@ def warm() -> None:
     model is not: it answers a search box, only ever without Groq, and the
     first such search pays about a second.
     """
-    whisper.warm()
-    if "letters" in get_settings().listening_ears:
-        letters.warm()
+    ears.warm()
     try:
         _ayahs()
         _line()
@@ -102,6 +103,35 @@ def find(heard: str, limit: int = 5) -> list[Match]:
     return match.best(heard, _ayahs(), limit=limit)
 
 
+def is_recitation(match_ayahs: bool, recite: bool) -> bool:
+    """Either flag makes a reading a recitation (see hear)."""
+    return match_ayahs or recite
+
+
+def health() -> dict:
+    """The ear lines of /api/health, so the route names no ear."""
+    return {
+        # Which ear would answer a spoken search right now. Here for the same
+        # reason ai_backend is: an engine that quietly stopped working should be
+        # visible, not guessed at from how slow the app feels.
+        "ear": ears.active(),
+        # Words and a search are heard by the same chain, so this is the same ear
+        # as "ear", named as the recitation model asks for it (its Qur'an model
+        # rather than its general one, when the answering ear is the one on this machine).
+        "recite_ear": ears.active(reciting=True),
+        # How sure the ear is of each word is always scored by the model on this
+        # machine (see ears.py's "Word sureness"), whichever ear wrote the words
+        # down, so it is named on its own. The tuned model's name when one is
+        # installed, else empty; the page offers the "Fine-tuned" checking
+        # choice only when this is set.
+        "recite_tuned": tuned_model(),
+        "recite_sure": ears.named("here").name(reciting=True),
+        # How many readings a minute the page may ask for, all keys together;
+        # lib/recite/recitingSession.js paces itself by it.
+        "listen_per_minute": ears.per_minute(),
+    }
+
+
 def hear(
     audio: bytes, match_ayahs: bool, recite: bool = False, fusha: bool = True,
 ) -> tuple[str, list[Match]]:
@@ -116,7 +146,7 @@ def hear(
       Qur'an model here drops every hint because it hears worse with one.
     """
     settings = get_settings()
-    reciting = match_ayahs or recite
+    reciting = is_recitation(match_ayahs, recite)
     text = transcribe(
         audio,
         language=settings.recitation_language if reciting else None,

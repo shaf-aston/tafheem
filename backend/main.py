@@ -89,7 +89,7 @@ async def lifespan(_: FastAPI):
     # Log which engines are active so the operator knows the mode at a glance
     logger.info("NLP engine   : %s", get_engine_name())
     logger.info("AI backend   : %s", ai_service.get_backend_name())
-    logger.info("Ear          : %s", recitation.ears.active())
+    logger.info("Ear          : %s", recitation.health()["ear"])
     logger.info("Backend startup complete")
     yield
 
@@ -167,27 +167,9 @@ def create_app() -> FastAPI:
             "loading": sorted(startup.loading),
             "nlp_engine": get_engine_name(),
             "ai_backend": ai_service.get_backend_name(),
-            # Which ear would answer a spoken search right now. Here for the
-            # same reason ai_backend is: an engine that quietly stopped working
-            # should be visible, not guessed at from how slow the app feels.
-            "ear": recitation.ears.active(),
-            # Words and a search are heard by the same chain now, so this is
-            # the same ear as "ear" above, named as the recitation model asks
-            # for it (its Qur'an model rather than its general one, when the
-            # answering ear is the one on this machine).
-            "recite_ear": recitation.ears.active(reciting=True),
+            **recitation.health(),
             # Which voice would say a new word (GET /api/speak), or why none would.
             "voice": speech.active(),
-            # How sure the ear is of each word is always scored by the model on
-            # this machine (see services/recitation/ears.py's "Word sureness"),
-            # whichever ear wrote the words down, so it is named on its own.
-            # The tuned model's name when one is installed, else empty; the
-            # page offers the "Fine-tuned" checking choice only when this is set.
-            "recite_tuned": recitation.whisper.tuned_model(),
-            "recite_sure": recitation.ears.named("here").name(reciting=True),
-            # How many readings a minute the page may ask for, all keys
-            # together; lib/recite/recitingSession.js paces itself by it.
-            "listen_per_minute": recitation.ears.per_minute(),
             "corpus_loaded": quran_service.is_loaded(),
             "dictionary_loaded": dictionary_service.is_loaded(),
             "root_meaning_status": root_meaning.status(),
