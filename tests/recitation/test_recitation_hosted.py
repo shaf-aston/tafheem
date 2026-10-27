@@ -260,3 +260,39 @@ def test_an_upload_is_named_by_what_it_really_is(monkeypatch):
     webm = b"\x1a\x45\xdf\xa3" + bytes(16)
     hosted.transcribe(webm, KEY, "ar")
     assert fake.asked[1]["file"].name == "recording.webm"
+
+
+def _speech_with_breaths(seconds, breaths, rate=16000):
+    """Steady tone standing in for a voice, silent for half a second at each breath (seconds)."""
+    sound = np.full(int(seconds * rate), 0.3, dtype=np.float32)
+    for at in breaths:
+        sound[int(at * rate):int((at + 0.5) * rate)] = 0
+    return sound
+
+
+def test_a_long_recitation_is_cut_in_its_breaths_and_heard_in_order(groq, monkeypatch, sound):
+    """Groq cuts past 30s blindly, through words; pieces cut here land in a breath instead."""
+    import faster_whisper.audio
+
+    monkeypatch.setattr(faster_whisper.audio, "decode_audio",
+                        lambda path: _speech_with_breaths(70, breaths=[21, 45]))
+    fake = groq([("الأول", "Arabic"), ("الثاني", "Arabic"), ("الثالث", "Arabic")])
+    assert hosted.transcribe(SOUND, KEY) == "الأول الثاني الثالث"
+    assert [ask["file"].name for ask in fake.asked] == ["recording.wav"] * 3
+    # One language for the recording, and each piece reads the words heard before it.
+    assert [ask.get("language") for ask in fake.asked] == [None, "ar", "ar"]
+    assert [ask.get("prompt") for ask in fake.asked] == [None, "الأول", "الثاني"]
+
+
+def test_cuts_fall_in_silence_and_no_piece_runs_long():
+    from backend.services.recitation.loudness import quiet_cuts
+
+    rate = 16000
+    cuts = quiet_cuts(_speech_with_breaths(70, breaths=[21, 45]), rate, 28, 10, 0.5)
+    assert [round(c / rate) for c in cuts] == [21, 45]
+    edges = [0, *cuts, 70 * rate]
+    assert all(b - a <= 28 * rate for a, b in zip(edges, edges[1:]))
+    # No breath anywhere still cuts, at the longest allowed length.
+    assert len(quiet_cuts(np.full(70 * rate, 0.3, dtype=np.float32), rate, 28, 10, 0.5)) == 2
+    # Exactly the longest length is sent whole.
+    assert quiet_cuts(np.zeros(28 * rate, dtype=np.float32), rate, 28, 10, 0.5) == []
