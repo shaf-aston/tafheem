@@ -33,12 +33,12 @@ import { scrollToEl } from '../../lib/motion/scrollToEl'
 import { colorFor } from '../../theme'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/dictionary/useLaneTidy'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import ErrorAlert from '../ui/ErrorAlert'
-import FlagButton from '../ui/FlagButton'
-import ShowRest from '../ui/ShowRest'
-import SourceBadge from '../ui/SourceBadge'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import FlagButton from '../ui/buttons/FlagButton'
+import ShowRest from '../ui/buttons/ShowRest'
+import SourceBadge from '../ui/feedback/SourceBadge'
 
 /** How the three kinds of nothing are told apart. Never one sentence for all. */
 const NOTHING = {

@@ -15,7 +15,7 @@ import { entryLines } from '../../lib/dictionary/entryLines'
 import { useRememberedFlag } from '../../lib/store/useRemembered'
 
 import { Line } from './EntryArabic'
-import SmallButton from '../ui/SmallButton'
+import SmallButton from '../ui/buttons/SmallButton'
 
 
 /** Which line is current. Clamped at both ends, not wrapped: the entry has an end. */

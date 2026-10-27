@@ -1,6 +1,6 @@
 /** One answer from a few: a case to judge, or a gap in the book's sentence (`ar` with ____). */
-import ArabicText from '../../ui/ArabicText'
-import Bayt from '../../ui/Bayt'
+import ArabicText from '../../ui/text/ArabicText'
+import Bayt from '../../ui/text/Bayt'
 import { hemistichs } from '../../../lib/text/verse'
 import OneOf from './OneOf'
 import { sayIn } from '../../../lib/text/say'

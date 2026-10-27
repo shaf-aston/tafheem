@@ -27,7 +27,7 @@ import BookWorld from './BookWorld'
 import GrowHome from './GrowHome'
 import LessonRunner from './LessonRunner'
 import LessonWorld from './LessonWorld'
-import { Skeleton } from '../ui/Skeleton'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 const WORLD_IDS = WORLDS.filter((world) => world.live).map((world) => world.id)
 const BOOKS = WORLDS.filter((world) => world.kind === 'book')

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { GoButton } from '../ui/RootActions'
+import { GoButton } from '../ui/buttons/RootActions'
 import Evidence from './Evidence'
 
 // The reasoning as a numbered path. Step by step reveals one point per press,

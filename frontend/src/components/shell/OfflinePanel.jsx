@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 import { coreLine, copy, getPack, loadPacks, PACKS, removePack, sizeLabel, useOffline } from '../../lib/shell/offline'
 import { fill } from '../../lib/shell/homeCopy'
-import SmallButton from '../ui/SmallButton'
+import SmallButton from '../ui/buttons/SmallButton'
 
 export default function OfflinePanel() {
   const { supported, core, plan, packs } = useOffline()

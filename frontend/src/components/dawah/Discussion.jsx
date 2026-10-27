@@ -1,4 +1,4 @@
-import ShowRest from '../ui/ShowRest'
+import ShowRest from '../ui/buttons/ShowRest'
 import Evidence from './Evidence'
 import knobs from '../../config/dawah.json'
 

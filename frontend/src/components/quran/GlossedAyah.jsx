@@ -1,4 +1,4 @@
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import GlossWord from './GlossWord'
 
 /**

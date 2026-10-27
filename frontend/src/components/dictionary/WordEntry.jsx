@@ -9,13 +9,13 @@ import { useSetting } from '../../lib/store/settings'
 
 import SenseBands from './SenseBands'
 import WordGrid from './WordGrid'
-import ArabicText from '../ui/ArabicText'
-import EmptyState from '../ui/EmptyState'
-import Pronunciation from '../ui/Pronunciation'
-import RootActions from '../ui/RootActions'
-import SourceBadge from '../ui/SourceBadge'
-import StatusNote, { NoteWord } from '../ui/StatusNote'
-import VerbFormTag from '../ui/VerbFormTag'
+import ArabicText from '../ui/text/ArabicText'
+import EmptyState from '../ui/feedback/EmptyState'
+import Pronunciation from '../ui/text/Pronunciation'
+import RootActions from '../ui/buttons/RootActions'
+import SourceBadge from '../ui/feedback/SourceBadge'
+import StatusNote, { NoteWord } from '../ui/feedback/StatusNote'
+import VerbFormTag from '../ui/text/VerbFormTag'
 
 // Tailwind needs the literal class names present in source to keep them in the
 // build; a computed string like `sm:col-span-${n}` would be purged.

@@ -5,7 +5,7 @@
  * too, so the box is not forced into Arabic input: a learner without an Arabic
  * keyboard can still answer, and lib/colloquial/answer.js takes either.
  */
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 
 export default function TypedExercise({ exercise, value, onChange, status }) {
   const answered = Boolean(status)

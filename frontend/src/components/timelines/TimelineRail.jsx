@@ -13,7 +13,7 @@
 import { useEffect } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import TileCard from './TileCard'
 import { asbabQuery } from '../../api'
 import { useRail } from '../../lib/motion/useRail'

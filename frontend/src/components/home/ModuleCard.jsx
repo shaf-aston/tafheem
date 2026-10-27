@@ -2,8 +2,8 @@
  * One tab on Home, the one tile every section wears: its Arabic name large in its
  * own colour, its name under it, what you do there (tablet up) and your progress.
  */
-import ArabicText from '../ui/ArabicText'
-import Tile from '../ui/Tile'
+import ArabicText from '../ui/text/ArabicText'
+import Tile from '../ui/display/Tile'
 
 export default function ModuleCard({ tab, accent, index, progressText, onOpen }) {
   return (

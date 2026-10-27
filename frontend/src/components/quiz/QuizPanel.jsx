@@ -18,11 +18,11 @@ import PracticeSentence from './PracticeSentence'
 import QuizBoard from './QuizBoard'
 import QuizInsights from './QuizInsights'
 import QuizSetup from './QuizSetup'
-import EmptyState from '../ui/EmptyState'
-import ErrorAlert from '../ui/ErrorAlert'
-import SectionHeader from '../ui/SectionHeader'
-import FeedbackButton from '../ui/FeedbackButton'
-import { Skeleton } from '../ui/Skeleton'
+import EmptyState from '../ui/feedback/EmptyState'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import SectionHeader from '../ui/display/SectionHeader'
+import FeedbackButton from '../ui/buttons/FeedbackButton'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 // A fresh seed every time, so reloading the page gives a different first word
 // instead of the same one forever. Inside the round the seed only counts up,

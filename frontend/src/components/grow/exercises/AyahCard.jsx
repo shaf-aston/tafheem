@@ -1,5 +1,5 @@
 /** Teach card for an ayah: its Arabic and English, which surah and where. */
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')

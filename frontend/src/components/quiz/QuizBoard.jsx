@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from 'react'
 import { QUIZ } from '../../lib/quiz/quizBanks'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
 
-import AnswerSquare from '../ui/AnswerSquare'
-import ArabicText from '../ui/ArabicText'
-import AutoAdvanceToggle from '../ui/AutoAdvanceToggle'
+import AnswerSquare from '../ui/inputs/AnswerSquare'
+import ArabicText from '../ui/text/ArabicText'
+import AutoAdvanceToggle from '../ui/buttons/AutoAdvanceToggle'
 import NoteBadge, { NoteReason } from './NoteBadge'
 import QuizOption from './QuizOption'
 import SoundedWrong from './SoundedWrong'
-import SpeakButton from '../ui/SpeakButton'
+import SpeakButton from '../ui/buttons/SpeakButton'
 
 // Arabic and Urdu are both read right to left and both go through ArabicText;
 // English is the only side that is plain Latin text. So what each side needs

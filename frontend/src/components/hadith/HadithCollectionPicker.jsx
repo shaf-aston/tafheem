@@ -4,7 +4,7 @@
  */
 import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
 
-import Segmented from '../ui/Segmented'
+import Segmented from '../ui/inputs/Segmented'
 
 export default function HadithCollectionPicker({ value, onChange, accent }) {
   const { collections, of } = useHadithCollections()

@@ -1,10 +1,10 @@
 // The dialogue as a stage: two speakers, one on each side, lines appearing as you tap through.
 import { useState } from 'react'
 
-import ArabicText from '../../ui/ArabicText'
-import PrimaryButton from '../../ui/PrimaryButton'
-import SmallButton from '../../ui/SmallButton'
-import SpeakButton from '../../ui/SpeakButton'
+import ArabicText from '../../ui/text/ArabicText'
+import PrimaryButton from '../../ui/buttons/PrimaryButton'
+import SmallButton from '../../ui/buttons/SmallButton'
+import SpeakButton from '../../ui/buttons/SpeakButton'
 import Spelling from '../parts/Spelling'
 
 const SIDE_TINT = ['--primary', '--warn']

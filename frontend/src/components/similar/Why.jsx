@@ -20,10 +20,10 @@ import { useRemembered } from '../../lib/store/useRemembered'
 import { useTranslation } from '../../lib/similar/useTranslation'
 import copy from '../../config/similar.json'
 
-import ArabicText from '../ui/ArabicText'
-import Disclosure from '../ui/Disclosure'
-import ShowRest from '../ui/ShowRest'
-import { Skeleton } from '../ui/Skeleton'
+import ArabicText from '../ui/text/ArabicText'
+import Disclosure from '../ui/overlays/Disclosure'
+import ShowRest from '../ui/buttons/ShowRest'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 /** One verse's grammar, translation line and tafsir passage, asked for once it is wanted. */
 function useContext(verse, tafsir, on) {

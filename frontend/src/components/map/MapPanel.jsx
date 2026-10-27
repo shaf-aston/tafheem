@@ -13,8 +13,8 @@
  */
 import { useEffect, useEffectEvent, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
-import ArabicText from '../ui/ArabicText'
-import SectionHeader from '../ui/SectionHeader'
+import ArabicText from '../ui/text/ArabicText'
+import SectionHeader from '../ui/display/SectionHeader'
 import ManhajView from './ManhajView'
 import PbsChart from '../shell/PbsChart'
 import { FAMILIES } from '../../lib/map/manhajData'
@@ -27,7 +27,7 @@ import { widthAtLabel } from '../../lib/shell/pbsLayout'
 import { useMedia, PHONE } from '../../lib/hooks/useMedia'
 import chartKnobs from '../../config/pbsChart.json'
 import zoomKnobs from '../../config/zoom.json'
-import ZoomBar from '../ui/ZoomBar'
+import ZoomBar from '../ui/inputs/ZoomBar'
 import { useZoom } from '../../lib/hooks/useZoom'
 
 // At 100% the chart never draws narrower than this; on a phone, narrower than its smallest label reading at phone-label-px.

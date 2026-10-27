@@ -8,7 +8,7 @@ import { LOOK, WAITING_LOOK } from '../../lib/recite/reciteColors'
 import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 import config from '../../config/recite.json'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import { hitArea } from './hitArea'
 
 const LEAD_IN_S = config['card-lead-in-s']

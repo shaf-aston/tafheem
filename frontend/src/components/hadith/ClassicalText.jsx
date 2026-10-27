@@ -9,7 +9,7 @@
  */
 import { withoutButton } from '../../lib/hadith/rijal'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 
 function Run({ run, accent }) {
   if (run.role === 'mark') {

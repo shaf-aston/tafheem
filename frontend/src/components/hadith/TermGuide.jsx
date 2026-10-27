@@ -7,8 +7,8 @@
  */
 import { themeVariable } from '../../theme'
 
-import ArabicText from '../ui/ArabicText'
-import Disclosure from '../ui/Disclosure'
+import ArabicText from '../ui/text/ArabicText'
+import Disclosure from '../ui/overlays/Disclosure'
 import SheetLink from './SheetLink'
 
 export default function TermGuide({ groups, onTerms, accent }) {

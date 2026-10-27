@@ -9,9 +9,9 @@
  */
 import { useMemo, useState } from 'react'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import TopicIcon from '../ui/TopicIcon'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import TopicIcon from '../ui/display/TopicIcon'
 import TimelineHadith from './TimelineHadith'
 import TimelineRefs from './TimelineRefs'
 import TimelineSteps from './TimelineSteps'

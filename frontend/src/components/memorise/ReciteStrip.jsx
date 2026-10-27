@@ -14,9 +14,9 @@ import { useEffect, useRef } from 'react'
 import { CHECK, MISSED, SAID, WRONG } from '../../lib/recite/follow'
 import { LOOK, verdictOf } from '../../lib/recite/reciteColors'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import MicMark from '../ui/MicMark'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import MicMark from '../ui/display/MicMark'
 
 export default function ReciteStrip({ listening, problem, transcript, marks, lines, accent, status, help, onStart, onStop, onStartAt }) {
   // Kept at the end as it grows, so the newest words are the ones in view.

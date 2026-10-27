@@ -5,9 +5,9 @@
  */
 import { markedRuns } from '../../lib/hadith/familyWords'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import PartLetter from './PartLetter'
-import ShowRest from '../ui/ShowRest'
+import ShowRest from '../ui/buttons/ShowRest'
 
 export default function FamilyWords({ parts, legend, accent, onOpen }) {
   return (

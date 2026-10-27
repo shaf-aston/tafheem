@@ -10,10 +10,10 @@ import { toneOf } from '../../lib/hadith/rijal'
 
 import { errorStatus } from '../../lib/api/apiError'
 
-import ArabicText from '../ui/ArabicText'
-import ErrorAlert from '../ui/ErrorAlert'
-import SourceBadge from '../ui/SourceBadge'
-import StatusNote from '../ui/StatusNote'
+import ArabicText from '../ui/text/ArabicText'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import SourceBadge from '../ui/feedback/SourceBadge'
+import StatusNote from '../ui/feedback/StatusNote'
 
 const { site: SITE, generations: GENERATIONS, tones: TONES } = HADITH.narrator
 

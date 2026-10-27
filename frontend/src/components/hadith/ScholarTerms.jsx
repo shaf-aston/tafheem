@@ -10,11 +10,11 @@ import { useQuery } from '@tanstack/react-query'
 import { usulTermsQuery } from '../../api'
 import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
-import EmptyState from '../ui/EmptyState'
-import ErrorAlert from '../ui/ErrorAlert'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
+import Chip from '../ui/inputs/Chip'
+import ChipRow from '../ui/inputs/ChipRow'
+import EmptyState from '../ui/feedback/EmptyState'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import TermHadith from './TermHadith'
 
 export default function ScholarTerms({ accent, onOpen }) {

@@ -10,7 +10,7 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import Chip from '../ui/Chip'
+import Chip from '../ui/inputs/Chip'
 import TimelineRail from './TimelineRail'
 import TimelineEvent from './TimelineEvent'
 import TimelineMap from './TimelineMap'

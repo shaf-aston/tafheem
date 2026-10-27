@@ -13,7 +13,7 @@
  * number alone, as it always did. The chain of narrators is left to the Hadith
  * tab: here the reader came for what was said about the event.
  */
-import HadithText from '../ui/HadithText'
+import HadithText from '../ui/text/HadithText'
 import { hadithKey } from '../../lib/hadith/hadithWords'
 
 export default function TimelineHadith({ refs = [], only, library, accent, className = '' }) {

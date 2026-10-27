@@ -7,7 +7,7 @@
 import { JUMPS, useJumpFan } from '../../lib/shell/jumpFan'
 import { ahead } from '../../lib/api/warm'
 
-import MoreIcon from '../ui/MoreIcon'
+import MoreIcon from '../ui/display/MoreIcon'
 import TabMark from './TabMark'
 
 export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, onAll, onHover }) {

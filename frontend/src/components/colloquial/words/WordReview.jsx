@@ -11,8 +11,8 @@ import { useQuizRound } from '../../../lib/quiz/useQuizRound'
 import { useRememberedFlag } from '../../../lib/store/useRemembered'
 import { WORDS_MODULE, reviewOf, reviewQuestions } from '../../../lib/colloquial/wordPractice'
 import QuizBoard from '../../quiz/QuizBoard'
-import SmallButton from '../../ui/SmallButton'
-import { Skeleton } from '../../ui/Skeleton'
+import SmallButton from '../../ui/buttons/SmallButton'
+import { Skeleton } from '../../ui/feedback/Skeleton'
 
 const dayOf = (iso) => new Date(iso).toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'short' })
 const say = sayIn('en')

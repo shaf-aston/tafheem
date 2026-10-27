@@ -4,9 +4,9 @@
  * held in view. `state` from lib/grow/useLessonWorld.js.
  */
 import { sayIn } from '../../lib/text/say'
-import ErrorAlert from '../ui/ErrorAlert'
-import PrimaryButton from '../ui/PrimaryButton'
-import { Skeleton } from '../ui/Skeleton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
+import { Skeleton } from '../ui/feedback/Skeleton'
 import { SCENES } from './scenes'
 import WorldHeader from './WorldHeader'
 

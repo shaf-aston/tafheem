@@ -3,8 +3,8 @@
  * checked the right one and the reader's wrong pick are marked. Short answers sit two by two when they pair up evenly
  * (three would leave one alone); long English ones keep a row each.
  */
-import ArabicText from '../../ui/ArabicText'
-import OptionNumber from '../../ui/OptionNumber'
+import ArabicText from '../../ui/text/ArabicText'
+import OptionNumber from '../../ui/inputs/OptionNumber'
 import { useAnswerKeys } from '../../../lib/quiz/useAnswerKeys'
 
 // About one line of a half-width option at body size.

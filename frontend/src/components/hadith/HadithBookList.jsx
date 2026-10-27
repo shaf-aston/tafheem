@@ -11,11 +11,11 @@ import { onHover, warm } from '../../lib/api/warm'
 import { topicOf } from '../../lib/hadith/hadithGrade'
 import { useOpenAtTop } from '../../lib/motion/scrollToEl'
 
-import ArabicText from '../ui/ArabicText'
-import ErrorAlert from '../ui/ErrorAlert'
-import EmptyState from '../ui/EmptyState'
-import TopicIcon from '../ui/TopicIcon'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
+import ArabicText from '../ui/text/ArabicText'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import EmptyState from '../ui/feedback/EmptyState'
+import TopicIcon from '../ui/display/TopicIcon'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 
 const STAGGER_CAP = Number(themeVariable('--hadith-stagger-cap')) || 8
 

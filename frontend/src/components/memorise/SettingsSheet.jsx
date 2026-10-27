@@ -6,7 +6,7 @@
  */
 import { useState } from 'react'
 
-import BottomSheet from '../ui/BottomSheet'
+import BottomSheet from '../ui/overlays/BottomSheet'
 
 export default function SettingsSheet({ label, rows, accent }) {
   const [open, setOpen] = useState(false)

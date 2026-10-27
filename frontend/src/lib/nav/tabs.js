@@ -43,7 +43,7 @@ const MapPanel = panel(() => import('../../components/map/MapPanel'))
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together.
 // `group`: its heading in All sections, an id from GROUPS.
 // `blurb`: one plain line on what you do there (Home's cards).
-// `emblem`: the tab's picture (components/ui/Emblem.jsx), on its title and wherever
+// `emblem`: the tab's picture (components/ui/display/Emblem.jsx), on its title and wherever
 //   only a small mark fits (phone bar, search rail, launcher ring). Unique across tabs.
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
 // `modules`: other names its answers are filed under in the progress store, so a

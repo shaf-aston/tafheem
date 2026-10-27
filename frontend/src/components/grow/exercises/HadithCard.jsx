@@ -1,6 +1,6 @@
 /** Teach card for a hadith: its key line in Arabic and English, the whole hadith on request, the source. */
-import ArabicText from '../../ui/ArabicText'
-import Disclosure from '../../ui/Disclosure'
+import ArabicText from '../../ui/text/ArabicText'
+import Disclosure from '../../ui/overlays/Disclosure'
 import { sayIn } from '../../../lib/text/say'
 
 const say = sayIn('en')

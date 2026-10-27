@@ -9,8 +9,8 @@ import { fill } from '../../lib/shell/homeCopy'
 import { bookStep, lessonStep, rankWorlds } from '../../lib/grow/suggest'
 import { useBookWorlds } from '../../lib/grow/useBookWorld'
 import { WORLDS } from '../../lib/grow/worlds'
-import Tile from '../ui/Tile'
-import ArabicText from '../ui/ArabicText'
+import Tile from '../ui/display/Tile'
+import ArabicText from '../ui/text/ArabicText'
 
 // Books looked into at once: the top one, and the next in case it is finished.
 const LOOKED = 2

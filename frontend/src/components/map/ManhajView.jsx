@@ -11,7 +11,7 @@
  * Which family, group and comparison show is the Map's place (lib/map/mapPlace.js),
  * so each has an address; `onGo` moves to another.
  */
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import { FAMILIES, differs, sharedWith } from '../../lib/map/manhajData'
 import { MANHAJ } from '../../lib/map/mapPlace'
 

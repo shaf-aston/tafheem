@@ -16,7 +16,7 @@
  * hadith collection is installed here, so the app itself can confirm nothing,
  * and an unchecked number must not look like a checked one.
  */
-import Chip from '../ui/Chip'
+import Chip from '../ui/inputs/Chip'
 import { firstAyah } from '../../lib/quran/surahRef'
 
 const refKey = (ref, i) => `${ref.quran ?? ref.hadith ?? ref.book}-${ref.number ?? i}`

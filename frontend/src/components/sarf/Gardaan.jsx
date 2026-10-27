@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import RetryButton from '../ui/RetryButton'
-import WheelPicker from '../ui/WheelPicker'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import RetryButton from '../ui/buttons/RetryButton'
+import WheelPicker from '../ui/inputs/WheelPicker'
 import BlockTitle from './BlockTitle'
 import { CONJUGATIONS } from './conjugations'
 import SarfSagheer from './SarfSagheer'

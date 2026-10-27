@@ -8,7 +8,7 @@
  */
 import { firstOpen } from '../../lib/grow/bookLesson'
 import { sayIn } from '../../lib/text/say'
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 
 const say = sayIn('en')
 

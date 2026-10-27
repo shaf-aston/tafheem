@@ -5,7 +5,7 @@
  */
 import { useEffect, useRef } from 'react'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 
 const pagesOf = (n) => `${n} ${n === 1 ? 'page' : 'pages'}`
 

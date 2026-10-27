@@ -5,7 +5,7 @@
 import { useRef } from 'react'
 
 import { ahead } from '../../lib/api/warm'
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import KeyHint from './KeyHint'
 
 // `hint` puts the moving number-key hint under the strip (Home).

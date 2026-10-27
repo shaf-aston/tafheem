@@ -8,9 +8,9 @@ import { useQuery } from '@tanstack/react-query'
 
 import { sentencesQuery } from '../../lib/quiz/quizBanks'
 
-import ArabicText from '../ui/ArabicText'
-import Mark from '../ui/Mark'
-import SpeakButton from '../ui/SpeakButton'
+import ArabicText from '../ui/text/ArabicText'
+import Mark from '../ui/display/Mark'
+import SpeakButton from '../ui/buttons/SpeakButton'
 
 export default function QuizExample({ word, accent, say }) {
   const { data } = useQuery(sentencesQuery)

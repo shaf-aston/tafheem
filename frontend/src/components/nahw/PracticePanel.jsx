@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { errorMessage } from '../../lib/api/apiError'
 
-import SourceBadge from '../ui/SourceBadge'
+import SourceBadge from '../ui/feedback/SourceBadge'
 
 export default function PracticePanel({ practice, sentence, accent }) {
   return (

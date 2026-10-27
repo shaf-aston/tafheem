@@ -1,4 +1,4 @@
-/* Emblems (components/ui/Emblem.jsx): drawn in the wrapper's --w, moved on the shared
+/* Emblems (components/ui/display/Emblem.jsx): drawn in the wrapper's --w, moved on the shared
    motion scale, so the Animations switch (--motion-scale 0) stills every one. */
 .emblem { color: var(--w, var(--primary)); overflow: visible; flex: none; }
 .emblem [class^='em-'], .emblem [class*=' em-'] { transform-box: fill-box; transform-origin: center; }

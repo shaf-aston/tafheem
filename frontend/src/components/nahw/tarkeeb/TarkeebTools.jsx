@@ -1,4 +1,4 @@
-import Segmented from '../../ui/Segmented'
+import Segmented from '../../ui/inputs/Segmented'
 import { colorFor } from '../../../theme'
 
 const GHAIR_AAMIL_ACCENT = colorFor('role', 'ghair_aamil')

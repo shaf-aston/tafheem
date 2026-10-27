@@ -9,8 +9,8 @@ import { useEffect, useRef } from 'react'
 
 import { caseLabel } from '../../lib/nahw/grammarTerms'
 import { roleVar } from '../../lib/nahw/roleColors'
-import ArabicText from '../ui/ArabicText'
-import CloseButton from '../ui/CloseButton'
+import ArabicText from '../ui/text/ArabicText'
+import CloseButton from '../ui/buttons/CloseButton'
 
 // "… القاعدة: …" restates the reason as a rule; the popup keeps the reason itself.
 const reasonOnly = (reason) => (reason ?? '').split('. القاعدة')[0]
