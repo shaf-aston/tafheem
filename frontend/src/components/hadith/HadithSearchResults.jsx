@@ -10,8 +10,11 @@
  * fall in, each a tap away (`onOpenBook`) for narrowing by topic instead of
  * retyping. Narrators whose name starts with the words typed sit above the hits,
  * each a tap to his page. A search that only names a collection ("bukhari") opens it.
- * `places` (the PlaceStrip) stands under the box, always in view.
+ * `places` (the PlaceStrip) stands under the box, always in view. While a search is showing, "← Books", the ✕ and Esc
+ * all clear it and bring the books back.
  */
+import { useEffect, useEffectEvent } from 'react'
+
 import { searchHadith } from '../../api'
 import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
 import { useNarratorMatches } from '../../lib/hadith/useNarrators'
@@ -19,6 +22,7 @@ import { useSearch } from '../../lib/hooks/useSearch'
 
 import Chip from '../ui/Chip'
 import ChipRow from '../ui/ChipRow'
+import CloseButton from '../ui/CloseButton'
 import ErrorAlert from '../ui/ErrorAlert'
 import EmptyState from '../ui/EmptyState'
 import IndexNotBuilt from '../ui/IndexNotBuilt'
@@ -49,6 +53,16 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
 
   const searching = mutation.isPending || mutation.isError || Boolean(data)
 
+  // Esc leaves the results for the books, unless a sheet is open: Esc closes that first.
+  const leave = useEffectEvent((event) => {
+    if (event.key === 'Escape' && !document.querySelector('dialog[open]')) clear()
+  })
+  useEffect(() => {
+    if (!searching) return undefined
+    document.addEventListener('keydown', leave)
+    return () => document.removeEventListener('keydown', leave)
+  }, [searching])
+
   return (
     <div className="space-y-3">
 
@@ -72,6 +86,18 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
       </SearchBox>
 
       {places}
+
+      {searching && (
+        <div className="flex items-center gap-3">
+          <button type="button" onClick={clear} className="press tap type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors">
+            &larr; Books
+          </button>
+          <p className="flex-1 min-w-0 truncate type-small text-[var(--text-dim)] m-0">
+            {data ? <>Results for &ldquo;{data.query}&rdquo;</> : 'Searching…'}
+          </p>
+          <CloseButton onClick={clear} aria-label="Close search" className="shrink-0" />
+        </div>
+      )}
 
       {!searching && <RecentRow items={history.map((h) => h.q)} accent={accent} onPick={submit} />}
 
