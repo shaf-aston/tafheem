@@ -9,6 +9,8 @@
 
 /* ── home: level, streak, today's XP ── */
 .grow-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+/* Laid out while the record is read, so the worlds below do not move when it lands. */
+.grow-stats[data-pending] { visibility: hidden; }
 .grow-stat { display: grid; align-content: start; gap: 4px; padding: 12px 14px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
 .grow-stat-wide { grid-column: span 2; }
 .grow-stat dt { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
@@ -32,13 +34,16 @@
 /* A phone shows the first three next steps and a More button for the rest, so the level and the worlds stay near. */
 .grow-nexts-more { display: none; }
 /* While the worlds load only the one slot shows; the steps are there, hidden, and appear together. */
+.grow-nexts { --grow-next-h: 52px; }
 .grow-nexts[data-settling] > :not(.grow-next-slot) { display: none; }
 @media (max-width: 39.99rem) {
   .grow-nexts:not([data-open]) > :nth-child(n + 4) { display: none; }
+  /* The room a phone's three steps and the More button take (3 rows, 2 gaps, the 44px button and its gap), held while they load. */
+  .grow-nexts[data-settling] > .grow-next-slot { min-height: calc(3 * var(--grow-next-h) + 2 * 8px + 54px); }
   .grow-nexts:not([data-open], [data-settling]):has(> :nth-child(4)) + .grow-nexts-more { display: block; justify-self: center; min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: var(--type-ui); font-weight: 700; color: var(--w); }
 }
 .grow-next {
-  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; text-align: start;
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: var(--grow-next-h); padding: 8px 12px; text-align: start;
   border-radius: var(--radius-md); background: var(--surface); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
   transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease;
 }
