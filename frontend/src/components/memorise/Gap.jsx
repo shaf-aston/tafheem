@@ -1,5 +1,4 @@
-import { recitedForm } from '../../lib/text/arabicText'
-import { sameSpokenWord } from '../../lib/text/arabicText'
+import { recitedForm, sameSpokenWord } from '../../lib/text/arabicText'
 
 import ArabicText from '../ui/text/ArabicText'
 import WheelPicker from '../ui/inputs/WheelPicker'
@@ -47,6 +46,8 @@ export default function Gap({ word, options, value, checked, accent, lineLabel, 
         onChange={(event) => onChange(event.target.value)}
         readOnly={checked}
         aria-label={gapLabel}
+        data-gap=""
+        enterKeyHint="next"
         style={{ '--gap-border': border, caretColor: accent, width: `${typeWidth}ch` }}
         className="bg-transparent border-b-2 text-center outline-none
           border-[color:var(--gap-border)] focus-visible:border-[color:var(--c)]
