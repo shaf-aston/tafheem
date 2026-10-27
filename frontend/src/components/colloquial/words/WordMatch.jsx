@@ -6,7 +6,7 @@
 // easier than recalling it.
 import { useState } from 'react'
 
-import settings from '../../../config/colloquial.json'
+import settings from '../../../config/colloquial-display.json'
 import { shuffled } from '../../../lib/text/shuffle'
 import ArabicText from '../../ui/ArabicText'
 import SmallButton from '../../ui/SmallButton'

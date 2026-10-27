@@ -1,5 +1,5 @@
 // Words under their category headings, shared by the word bank and a topic's word grid.
-import settings from '../../config/colloquial.json'
+import settings from '../../config/colloquial-display.json'
 
 // A heading needs this many words in the list; a word whose category has fewer joins the heading before it.
 const MIN_UNDER_HEADING = settings['least-under-heading']

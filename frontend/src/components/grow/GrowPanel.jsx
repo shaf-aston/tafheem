@@ -2,14 +2,16 @@
  * Grow, نَبَات (3:37): a little every day, in every part of the app.
  * Three screens: home, a world (SCREENS by its `kind` in worlds.json), a lesson; each has an address (lib/growPlace.js),
  * written through `onVisit` and followed on back/forward through `arrival`.
- * Adding a lessons world = a worlds.json entry + a hook in `lessons` (a config of lib/grow/useLessonWorld.js);
+ * Adding a lessons world = a worlds.json entry (kind "lessons") + a hook call in `lessons` below
+ * (a config of lib/grow/useLessonWorld.js) — forgetting the hook call throws at once, naming the
+ * world, instead of crashing deep inside SCREENS (lib/grow/worlds.js missingLessonHooks);
  * a book world = an entry of kind `book`, nothing more (its data: lib/grow/useBookWorld.js): parts, then lessons, each one address deeper.
  */
 import { useState } from 'react'
 
 import { nextAfter } from '../../lib/grow/bookLesson'
 import { landingOf, placeOf, valueOf } from '../../lib/grow/growPlace'
-import { WORLDS, worldOf } from '../../lib/grow/worlds'
+import { BOOK_IDS, BOOKS, WORLD_IDS, WORLDS, missingLessonHooks, worldOf } from '../../lib/grow/worlds'
 import { goBack } from '../../lib/nav/journey'
 import { useOpenAtTopKeepBack } from '../../lib/motion/scrollToEl'
 import { getProfile } from '../../lib/learner/profile'
@@ -28,10 +30,6 @@ import GrowHome from './GrowHome'
 import LessonRunner from './LessonRunner'
 import LessonWorld from './LessonWorld'
 import { Skeleton } from '../ui/Skeleton'
-
-const WORLD_IDS = WORLDS.filter((world) => world.live).map((world) => world.id)
-const BOOKS = WORLDS.filter((world) => world.kind === 'book')
-const BOOK_IDS = BOOKS.map((world) => world.id)
 
 const SCREENS = {
   lessons: ({ world, lessons, back, start }) => (
@@ -54,6 +52,8 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
     quran: useQuranWorld(worldOf('quran')),
     prayer: usePrayerWorld(worldOf('prayer')),
   }
+  const forgotten = missingLessonHooks(lessons)
+  if (forgotten.length) throw new Error(`GrowPanel: no hook called for lessons world(s): ${forgotten.join(', ')}`)
   const placeAt = (value) => placeOf(value, WORLD_IDS, Object.keys(lessons), BOOK_IDS)
   // { at: 'home' } | { at: 'world', id, part? } | { at: 'lesson', id, part?, lesson?, inApp? }; a lesson's cards are the session's (below).
   // Grow opening on a lesson's saved address (a reload, the tab reopened) lands on home with that lesson offered (landingOf);

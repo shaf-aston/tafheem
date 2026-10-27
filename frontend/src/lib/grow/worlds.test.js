@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 
 import config from '../../config/worlds.json'
 import levels from '../../config/levels.json'
-import { moduleOf, worldOf } from './worlds'
+import { missingLessonHooks, moduleOf, worldOf } from './worlds'
 import { MODULE as QUIZ_MODULE } from '../quiz/quizBanks'
 import { MODULE as BASICS_MODULE } from './alifLam'
 
@@ -29,5 +29,12 @@ describe('worlds', () => {
     const proof = levels.levels.flatMap((level) => level.proof)
     expect(proof.length).toBeGreaterThan(0)
     expect(proof.every((id) => moduleOf(id))).toBe(true)
+  })
+
+  it('names every lessons-kind world missing from GrowPanel’s hook map, so a forgotten one throws instead of crashing unexplained', () => {
+    expect(missingLessonHooks({})).toEqual(
+      config.worlds.filter((world) => world.kind === 'lessons').map((world) => world.id),
+    )
+    expect(missingLessonHooks({ basics: {}, words: {}, hadith: {}, quran: {}, prayer: {} })).toEqual([])
   })
 })

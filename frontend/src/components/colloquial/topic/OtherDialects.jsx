@@ -1,5 +1,8 @@
 // One quiet line under a phrase that opens it as every other dialect says it.
 // Every dialect fills the same spine slots, so the phrase is found by its slot.
+// `slot` addresses a phrase within a lesson (a different axis from lib/colloquial/place.js's
+// unit/lesson tree position `place`) — both are passed in, deliberately, not one derived
+// from the other.
 // Fetched only once opened, and a whole lesson at a time, so stepping through
 // the sheet's phrases costs no further wait.
 import { useQuery } from '@tanstack/react-query'
