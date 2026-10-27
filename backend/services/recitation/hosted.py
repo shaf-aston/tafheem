@@ -35,6 +35,7 @@ from functools import lru_cache
 import numpy as np
 
 from backend.config import get_settings
+from backend.services.recitation import loudness
 from backend.services.recitation.recording import kind_of
 
 log = logging.getLogger(__name__)
@@ -45,9 +46,6 @@ log = logging.getLogger(__name__)
 # an answer in neither language is asked again, said to be Arabic, which is what
 # this app is mostly for. Full names because that is how the reply spells them.
 _EXPECTED = {"arabic": "ar", "english": "en"}
-
-# What the decoder hands back (faster_whisper decodes to 16kHz mono).
-_RATE = 16000
 
 
 def is_available(key: str) -> bool:
@@ -83,15 +81,15 @@ def _hear(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str,
 
 def _pieces(audio: bytes) -> list[bytes]:
     """The recording as is when it fits Groq's 30s, else cut at quiet moments into 16kHz WAV pieces."""
-    from backend.services.recitation import loudness, whisper
+    from backend.services.recitation import whisper
 
     settings = get_settings()
     sound = whisper.sound_of(audio)
-    cuts = loudness.quiet_cuts(sound, _RATE, settings.listening_piece_s,
+    cuts = loudness.quiet_cuts(sound, loudness.SAMPLE_RATE, settings.listening_piece_s,
                                settings.listening_cut_search_s, settings.listening_cut_window_s)
     if not cuts:
         return [audio]
-    log.info("cut a %.1fs recording into %d pieces", len(sound) / _RATE, len(cuts) + 1)
+    log.info("cut a %.1fs recording into %d pieces", len(sound) / loudness.SAMPLE_RATE, len(cuts) + 1)
     return [_wav(piece) for piece in np.split(sound, cuts)]
 
 
@@ -101,7 +99,7 @@ def _wav(sound) -> bytes:
     with wave.open(out, "wb") as file:
         file.setnchannels(1)
         file.setsampwidth(2)
-        file.setframerate(_RATE)
+        file.setframerate(loudness.SAMPLE_RATE)
         file.writeframes((np.clip(sound, -1, 1) * 32767).astype("<i2").tobytes())
     return out.getvalue()
 

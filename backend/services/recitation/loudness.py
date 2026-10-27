@@ -32,6 +32,9 @@ from __future__ import annotations
 
 import numpy as np
 
+# What the decoder hands back (faster_whisper decodes to 16kHz mono); every ear takes this.
+SAMPLE_RATE = 16000
+
 
 def loudness(sound: np.ndarray) -> float:
     """How much sound there is on average, 0 (silence) to 1 (as loud as it goes)."""

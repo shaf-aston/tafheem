@@ -20,6 +20,7 @@ import time
 import numpy as np
 
 from backend.config import data_path, get_settings
+from backend.services.recitation import loudness
 from backend.services.recitation.errors import NotInstalled, local_lock
 from backend.services.core.timing import timed
 
@@ -78,7 +79,7 @@ def read(sound: np.ndarray) -> str:
     with local_lock:
         (logprobs,) = timed("placed-by-letters", session.run, None,
                             {"audio_signal": signal, "length": np.array([signal.shape[1]], np.int64)},
-                            s=round(signal.shape[1] / 16000, 1))
+                            s=round(signal.shape[1] / loudness.SAMPLE_RATE, 1))
     return spelled(logprobs[0].argmax(axis=-1), pieces, blank)
 
 

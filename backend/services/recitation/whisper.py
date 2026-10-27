@@ -185,7 +185,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str
     # The single most expensive thing the app does. Logged with what explains a
     # slow one: which model, how many seconds of sound, and whether word timing
     # was asked for, which on its own more than doubles this line.
-    seconds = round(len(sound) / 16000, 1)
+    seconds = round(len(sound) / loudness.SAMPLE_RATE, 1)
     with local_lock:
         heard = timed("read", lambda: _read(sound, trim=settings.recitation_trim_silence, **how),
                       model=how["model"], s=seconds, timing=how["word_min"] > 0)
