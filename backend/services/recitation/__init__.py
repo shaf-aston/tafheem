@@ -34,8 +34,7 @@ from backend.services.recitation import ears, letters, whisper, locate, match, p
 # Re-exported so a caller catches them from the package it already talks
 # to. Which piece in here raises which is this package's own business,
 # and a route that imports them by submodule has to know.
-from backend.services.recitation.ears import Unreadable
-from backend.services.recitation.whisper import NotInstalled
+from backend.services.recitation.errors import NotInstalled, Unreadable
 from backend.services.recitation.spelling import as_heard
 from backend.services.recitation.match import Match
 

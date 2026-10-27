@@ -15,19 +15,16 @@ from __future__ import annotations
 
 import io
 import logging
-import threading
 import time
 
 import numpy as np
 
 from backend.config import confined, get_settings
 from backend.services.core.timing import timed
+from backend.services.recitation import loudness
+from backend.services.recitation.errors import NotInstalled, Unreadable, local_lock
 
 log = logging.getLogger(__name__)
-
-# Held around every local model call (letters.py too, never nested): a search
-# skips routers/listen.py's _turn, and two calls at once fight for the cores.
-engine_lock = threading.Lock()
 
 # Only the steps costing whole seconds are timed: decoded / loaded / read / encoded / scored.
 
@@ -36,10 +33,6 @@ _models: dict = {}
 _last: tuple | None = None
 # The ear hears thirty seconds at a time: 3,000 frames of 10ms.
 _WINDOW_FRAMES = 3000
-
-
-class NotInstalled(RuntimeError):
-    """The engine is not available on this machine. Said plainly, not guessed at."""
 
 
 def window_of(frames: int, block: int) -> int:
@@ -81,9 +74,6 @@ def sound_of(audio: bytes):
     read. loudness.py says why, and leaves a loud enough one exactly as it was.
     """
     from faster_whisper.audio import decode_audio
-
-    from backend.services.recitation import loudness
-    from backend.services.recitation.ears import Unreadable
 
     global _last
     if _last is not None and _last[0] == audio:
@@ -213,7 +203,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str
     # slow one: which model, how many seconds of sound, and whether word timing
     # was asked for, which on its own more than doubles this line.
     seconds = round(len(sound) / 16000, 1)
-    with engine_lock:
+    with local_lock:
         heard = timed("read", lambda: _read(sound, trim=settings.recitation_trim_silence, **how),
                       model=how["model"], s=seconds, timing=how["word_min"] > 0)
 
@@ -287,7 +277,7 @@ def scores(audio: bytes, words: list[str], model: str | None = None) -> list[dic
     # ear listening to the sound and does not care how many words are asked
     # about; "scored" is it weighing those words and grows with them. A slow
     # check is one or the other, and one line each says which without guessing.
-    with engine_lock:
+    with local_lock:
         listened = timed("encoded", model.encode, padded, s=round(frames / 100, 1))
         answer = timed(
             "scored",

@@ -47,7 +47,7 @@ READING_ID = re.compile("[A-Za-z0-9._:-]{1,64}")
 # cores, so two at once each run 4-8x slower; dropping stale ones here frees the
 # CPU, which giving up at the page does not. Words wait here only when this
 # machine's ear answers (ears.would_answer_locally); /check always waits, since
-# scoring is always local. Search words skip it; whisper.engine_lock guards them.
+# scoring is always local. Search words skip it; errors.local_lock guards them.
 _turn = asyncio.Lock()
 
 

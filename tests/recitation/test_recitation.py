@@ -27,7 +27,7 @@ import pytest
 
 from backend.config import get_settings
 from backend.services.quran import corpus as quran_corpus
-from backend.services.recitation import whisper, match
+from backend.services.recitation import errors, match, whisper
 
 
 @pytest.fixture(autouse=True)
@@ -356,7 +356,7 @@ def test_nothing_recorded_is_never_sent_to_the_engine(engine):
 def test_warming_up_a_machine_that_cannot_listen_is_not_an_error(monkeypatch):
     """No engine installed is an ordinary machine, not a broken startup."""
     def refuse(name):
-        raise whisper.NotInstalled("faster-whisper is not installed")
+        raise errors.NotInstalled("faster-whisper is not installed")
 
     monkeypatch.setattr(whisper, "_engine", refuse)
     whisper.warm()  # must not raise

@@ -52,20 +52,10 @@ from backend.config import get_settings
 from backend.services.learner import journal
 from backend.services.core.fallback import Retirable, permanent_failure, retry_after
 from backend.services.recitation import hosted, letters, whisper
+from backend.services.recitation.errors import NotInstalled, Unreadable
 from backend.services.core.timing import timed
 
 log = logging.getLogger(__name__)
-
-
-class Unreadable(RuntimeError):
-    """The recording itself cannot be decoded, so no ear will ever read it.
-
-    Not an engine failing: falling through to the next one only spends another
-    few seconds reaching the same answer. It has happened, from a truncated
-    browser recording that carried a valid webm header and nothing playable
-    behind it, and it reached the reader as "Could not make that out", which
-    blames the listening for something the recording did.
-    """
 
 
 class Ear(Retirable, ABC):
@@ -270,7 +260,7 @@ def hear(audio: bytes, language: str | None, hint: str) -> str:
                 journal.note("ear.resting", ear=name, seconds=rest_s, reason=journal.scrub(str(exc)))
     if last is not None:
         raise last
-    raise whisper.NotInstalled("No ear is available on this machine.")
+    raise NotInstalled("No ear is available on this machine.")
 
 
 def active(reciting: bool = False) -> str:
