@@ -103,6 +103,17 @@ export const queueCheck = (queue, job, max) => {
   return { queue: [...next.slice(0, drop), ...next.slice(drop + 1)], dropped: next[drop] }
 }
 
+/**
+ * Add a reading to the transcript: one entry a recording, in the order the
+ * recordings began. A newer reading of a recording replaces its own entry
+ * (it holds more of the same sound); nothing is deduped across recordings.
+ */
+export const addToTranscript = (transcript, window, words) => {
+  const at = transcript.findIndex((entry) => entry.window === window)
+  if (at === -1) return [...transcript, { window, words }]
+  return [...transcript.slice(0, at), { window, words }, ...transcript.slice(at + 1)]
+}
+
 /** What a session shows before anything has been said. */
 export const EMPTY_VIEW = {
   state: 'idle',
@@ -118,6 +129,10 @@ export const EMPTY_VIEW = {
   // and a perfect recitation of al-Fatihah ended with one word showing.
   now: { from: 0, words: [] },
   ended: false,
+  // Everything the ear returned while on this page, raw: [{ window, words }],
+  // one entry a recording. Not filtered by page, not deduped. For the reciter
+  // to read what was heard; the marks above never read it.
+  transcript: [],
   // How sure the ear has been of each page word, by its place on the page, in
   // the same two halves. Each is a score, see scores.js. Within a recording the newest reading wins: it holds
   // more of the sound, and an early reading scores words not said yet, up to
@@ -370,6 +385,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
           // A window with nothing of this page in it is the room, not the
           // reciter. Letting one through put موسيقى on the page as a word said.
           if (!live()) return
+          if (words.length) set((was) => ({ transcript: addToTranscript(was.transcript, thisWindow, words) }))
           // Placed on the whole Qur'an, a reading is this page's only if it
           // was found here: ٱللَّهِ alone once kept every reading of 2:255 on
           // al-Fatihah. Too short to place, one shared word is enough.
@@ -582,7 +598,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       clearInterval(cutTimer)
       if (recorder?.state === 'recording') recorder.stop()
     }
-    set({ before: [], now: { from: windows, words: [] }, scores: { before: {}, now: {} }, ended: false, elsewhere: null })
+    set({ before: [], now: { from: windows, words: [] }, scores: { before: {}, now: {} }, transcript: [], ended: false, elsewhere: null })
   }
 
   /**
@@ -610,6 +626,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       before: carry,
       now: view.now.words.length ? view.now : { from: windows, words: [] },
       scores: { before: {}, now: {} },
+      transcript: [],
       ended: false,
       checking: checkQueue.length,
     })

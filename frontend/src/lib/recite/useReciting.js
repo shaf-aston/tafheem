@@ -36,6 +36,8 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
 
   const { state, problem, before, now, ended, scores, checking, elsewhere } = view
   const heard = useMemo(() => (before.length ? joinWindows(before, now.words) : now.words), [before, now.words])
+  // Every word the ear returned on this page, raw, for the reciter to read.
+  const transcript = useMemo(() => view.transcript.flatMap((reading) => reading.words), [view.transcript])
 
   // The page is finished once its last word is in what has already been read
   // for the last time (`before`, folded at a pause), so no later reading can
@@ -69,7 +71,7 @@ export function useReciting(pageWords, { startAt = 0, ayahs = [] } = {}) {
   return {
     state,
     problem,
-    heard,
+    transcript,
     marks: bySound(followed, surer(scores.before, scores.now)),
     // Finished and weighed: every check of this page is back. The panel turns
     // the page on this, so the last ayah is marked by sound before it goes.

@@ -269,7 +269,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             <ReciteStrip
               listening={reciting.listening}
               problem={reciting.problem}
-              heard={reciting.heard}
+              transcript={reciting.transcript}
               marks={reciting.marks}
               lines={recitedPage.lines}
               accent={accent}

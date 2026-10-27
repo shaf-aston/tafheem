@@ -341,6 +341,29 @@ describe('a reciting session', () => {
     expect(h.session.view().now.words).toEqual([])
   })
 
+  it('keeps a transcript of every reading: repeats, off-page words, one entry a recording, cleared on a turn', async () => {
+    const h = harness()
+    const said = () => h.session.view().transcript.flatMap((r) => r.words)
+    await h.session.start()
+    await h.midPhrase()
+    await h.answer(0, 'الحمد لله')
+    // A newer reading of the same recording replaces its entry, not adds one.
+    await h.pause()
+    await h.answer(1, 'الحمد لله رب')
+    expect(said()).toEqual(['الحمد', 'لله', 'رب'])
+    // The same phrase again in the next recording appears again, undeduped.
+    await h.midPhrase()
+    await h.answer(2, 'الحمد لله رب')
+    expect(said()).toEqual(['الحمد', 'لله', 'رب', 'الحمد', 'لله', 'رب'])
+    // A reading that is not of this page is still heard.
+    await h.pause()
+    await h.answer(3, 'موسيقى هادئة')
+    expect(h.heard()).toEqual(['الحمد', 'لله', 'رب'])
+    expect(said().slice(-2)).toEqual(['موسيقى', 'هادئة'])
+    h.session.turn([])
+    expect(said()).toEqual([])
+  })
+
   it('asks for the tuned ear on the check only, never on the reading, when the page says so', async () => {
     const h = harness()
     h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
