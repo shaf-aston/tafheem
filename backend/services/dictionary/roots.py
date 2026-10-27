@@ -204,7 +204,8 @@ def _read_whole(word: str) -> list:
 
     out = []
     for reading in morphology.readings(word):
-        settled = reading._replace(root=settle(reading.root, reading.lemma, word) if reading.root else "")
+        root = settle(reading.root, reading.lemma, word) if reading.root else ""
+        settled = reading._replace(root=root, lemma=lemma_of(reading.lemma, strip_diacritics(word), root, reading.verb))
         if settled not in out:
             out.append(settled)
     return out

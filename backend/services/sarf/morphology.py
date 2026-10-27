@@ -181,6 +181,7 @@ class Reading(NamedTuple):
     lemma: str
     root: str  # CAMeL's, a # kept for a weak radical it could not pin down; "" for none
     rooted: bool  # False for a word that has no root at all (has_no_root)
+    verb: bool = False  # read as a verb: its lemma is looked for among its root's verbs (roots.lemma_of)
 
 
 def root_pattern(root: str) -> str:
@@ -518,7 +519,7 @@ def readings(word: str) -> list[Reading]:
         root = root_pattern(a.get("root") or "") if rooted else ""
         if _UNKNOWN_RADICAL in root and pos not in ROOTED_POS:
             root = ""
-        reading = Reading(strip_diacritics(a.get("lex") or ""), root, rooted)
+        reading = Reading(strip_diacritics(a.get("lex") or ""), root, rooted, pos == "verb")
         if reading.lemma and reading not in out:
             out.append(reading)
     return out
