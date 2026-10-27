@@ -102,6 +102,11 @@ def read_as(token: dict, family: str) -> bool:
     return family not in token.get("judged", ()) and is_one(token["lemma"], family)
 
 
+def takes_two_objects(verb: dict) -> bool:
+    """ظن وأخواتها، أعطى وأخواتها: a verb that works on two objects."""
+    return is_one(verb["lemma"], "zanna") or is_one(verb["lemma"], "two_objects_give")
+
+
 def is_verb(token: dict) -> bool:
     if kind := reading(token, "kind"):
         return kind == "fil"  # أَلَا is a particle, whatever the parser tagged it

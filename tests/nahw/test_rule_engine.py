@@ -1037,7 +1037,12 @@ def test_a_command_with_its_object_pronoun_written_on(sentence: str, want: list)
     ("عَبْدَ بَيْتِ اللَّهِ ارْكَبْ", 0, "منادى", _DROPPED),  # the command after a chain of مضاف إليه
     ("ربنا اِغْفِرْ لَنَا", 0, "منادى", _DROPPED),  # its case not typed: the command after it says it
     ("رب العالمين اِغْفِرْ لِي", 0, "منادى", _DROPPED),  # the command after the مضاف إليه
-    ("رَبِّ اغْفِرْ لِي", 0, "منادى", _DROPPED),  # the kasra the ياء المتكلم left when it went (V3 p274: يا عبدِ)
+    ("رَبِّ اغْفِرْ لِي", 0, "منادى", _DROPPED),
+    ("رَبَّنَا ظَلَمْنَا أَنْفُسَنَا", 0, "منادى", _DROPPED),  # its verb has an object of its own: no job left for it
+    ("رَبَّنَا إِنَّنَا آمَنَّا", 0, "منادى", _DROPPED),  # nothing after إنّ works on a word before it
+    ("كِتَابَ زَيْدٍ قَرَأْتُ", 0, "مفعول به", None),  # nearest case: the verb has no other object
+    ("كِتَابَ زَيْدٍ قَرَأْتُ غِلَافَهُ", 0, "مفعول به", None),  # nearest case: busied with its pronoun (الاشتغال)
+    ("غُلَامَ زَيْدٍ أَعْطَيْتُ دِرْهَمًا", 0, "مفعول به", None),  # nearest case: a verb of two objects  # the kasra the ياء المتكلم left when it went (V3 p274: يا عبدِ)
     ("اللَّهُمَّ", 0, "منادى", _MEEM),  # يا put at the end as the doubled ميم
     ("يَا رَبَّنَا", 1, "منادى", None),  # nearest case: يا typed, nothing left off
     ("رَبُّنَا اغْفِرْ لَنَا", 0, "مبتدأ", None),  # nearest case: typed in raf', no call
@@ -1077,6 +1082,7 @@ _BUSIED = "والناصب له فعل محذوف وجوبًا يفسره الف�
     ("زَيْدًا ضَرَبْتُ غُلَامَ صَاحِبِهِ", 0, "مفعول به", None, True),  # the pronoun deeper down the إضافة chain
     ("زَيْدًا مَرَرْتُ بِغُلَامِهِ", 0, "مفعول به", None, True),  # the سببي through a جار
     ("زَيْدًا ضَرَبَ غُلَامُهُ", 0, "مفعول به", 1, False),  # nearest case: the سببي is the doer, not worked on in nasb
+    ("زَيْدًا ضَرَبْتُ أَخَاكَ", 0, "مفعول به", 1, False),  # nearest case: كَ is no pronoun of the one away, as زيد is
     ("رَأَيْتُ زَيْدًا يَضْرِبُ غُلَامَهُ", 1, "مفعول به", 0, False),  # nearest case: the object comes after its verb
     ("زَيْدًا مَرَرْتُ بِهِ", 0, "مفعول به", None, True),  # through a جار
     ("عِلْمًا طَلَبَهُ زَيْدٌ", 0, "مفعول به", None, True),

@@ -5,8 +5,8 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween, letters
 from backend.services.nahw.book import book_map, is_one
-from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_suffix, is_verb, read_as, reading, typed_case_of
-from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, verb_above
+from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, is_suffix, is_verb, read_as, reading, takes_two_objects, typed_case_of
+from backend.services.nahw.syntax.facts.sentence import Sentence, busied, next_word, verb_above
 
 
 def calling_head(token: dict, s: Sentence) -> str | None:
@@ -41,8 +41,16 @@ def _called_without_ya(token: dict, s: Sentence) -> bool:
     while after and after["rel"] == "IDF":
         after = next_word(after, s)
     case = typed_case_of(token)
-    return (token is s.tokens[0] and after is not None and after.get("asp") == "c"
-            and (token.get("mudaf") and case in ("a", None) or case == "i" and not has_tanween(token.get("typed") or "")))
+    if token is not s.tokens[0] or after is None:
+        return False
+    if after.get("asp") == "c":
+        return bool(token.get("mudaf") and case in ("a", None) or case == "i" and not has_tanween(token.get("typed") or ""))
+    # رَبَّنَا ظَلَمْنَا أَنْفُسَنَا: a verb after it with an object of its own, taking one only and busied with no
+    # pronoun of it, leaves the مضاف typed in nasb no job in its clause: it is the one called. So does إنّ or a
+    # sister after it, whose words never come before it (رَبَّنَا إِنَّنَا آمَنَّا)
+    return bool(token.get("mudaf") and case == "a" and (is_one(after["lemma"], "inna") or (
+        is_verb(after) and not takes_two_objects(after) and not busied(after, s)
+        and any(k["rel"] == "OBJ" and k is not token for k in s.kids(after)))))
 
 
 def owns_pronoun(token: dict, s: Sentence) -> bool:

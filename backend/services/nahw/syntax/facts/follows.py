@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, same_case, read_as, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
+from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
 from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, place_case, praised_noun, previous_noun, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
@@ -37,7 +37,7 @@ def stands_for(token: dict, s: Sentence) -> bool:
     if after and mine and noun_tagged(after) and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
         return False
     verb = verb_above(before, s)
-    return not (verb and (is_one(verb["lemma"], "zanna") or is_one(verb["lemma"], "two_objects_give")))
+    return not (verb and takes_two_objects(verb))
 
 
 def with_waw(token: dict, s: Sentence) -> bool:

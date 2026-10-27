@@ -227,8 +227,9 @@ def busied(verb: dict, s: Sentence) -> bool:
     جار, or on a word the pronoun is added to (its سببي: زَيْدًا ضَرَبْتُ غُلَامَهُ، غُلَامَ صَاحِبِهِ، مَرَرْتُ بِغُلَامِهِ),
     so a noun in nasb put before it is not its object (الاشتغال, Ibn Aqil V2 p128: أو في سببيه وهو المضاف
     إلى ضمير الاسم السابق). The سببي must be in nasb or jarr by it: typed with its damma it is the doer (زَيْدًا ضَرَبَ
-    غُلَامُهُ), and زيدًا stays the object put first."""
-    return any((attached_pronoun(k) and not subject_link(k))
+    غُلَامُهُ), and زيدًا stays the object put first. The pronoun is one of the one away, as that noun is (رَبَّنَا
+    ظَلَمْنَا أَنْفُسَنَا: نا is the speakers', and ربنا is called)."""
+    return any((_absent_pronoun(k) and not subject_link(k))
                or ((is_preposition(k) or (k["rel"] == "OBJ" and typed_or_parsed_case(k) != "u")) and _reaches_pronoun(k, s))
                for k in s.kids(verb))
 
@@ -242,10 +243,15 @@ def _reaches_pronoun(word: dict, s: Sentence) -> bool:
         seen.add(at["id"])
         for kid in s.kids(at):
             if kid["rel"] in ("OBJ", "IDF"):
-                if attached_pronoun(kid):
+                if _absent_pronoun(kid):
                     return True
                 below.append(kid)
     return False
+
+
+def _absent_pronoun(token: dict) -> bool:
+    """+هُ، +هَا، +هُمْ: a pronoun written on that can stand for a noun said before it (closed_words damir_muttasil absent)."""
+    return attached_pronoun(token) and is_one(token["form"], "damir_muttasil", "absent")
 
 
 def next_word(token: dict, s: Sentence) -> dict | None:
