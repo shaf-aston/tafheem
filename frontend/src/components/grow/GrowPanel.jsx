@@ -46,7 +46,7 @@ const SCREENS = {
 
 export default function GrowPanel({ incoming, arrival, handed = false, onVisit }) {
   const [name] = useState(getProfile)
-  const { rewards } = useRewards(name)
+  const { rewards, pending: rewardsPending } = useRewards(name)
   const lessons = {
     basics: useBasicsWorld(worldOf('basics')),
     words: useWordsWorld(worldOf('words')),
@@ -126,7 +126,7 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
     screen = SCREENS[world.kind]({ world, lessons, books, view, back: home, go, start, startBook })
   } else {
     screen = (
-      <GrowHome worlds={WORLDS} rewards={rewards} guest={!name} lessons={lessons} books={books} resume={resume} onResume={() => go(resume)}
+      <GrowHome worlds={WORLDS} rewards={rewards} rewardsPending={rewardsPending} guest={!name} lessons={lessons} books={books} resume={resume} onResume={() => go(resume)}
         onOpen={open} onStart={start} onStartBook={startBook} />
     )
   }

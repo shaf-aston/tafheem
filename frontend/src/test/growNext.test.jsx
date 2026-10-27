@@ -10,6 +10,7 @@ import { visit } from '../lib/nav/journey'
 import { LEVEL_KEY } from '../lib/learner/learnerLevel'
 import { writeRaw } from '../lib/store/stored'
 import knobs from '../config/home.json'
+import { OFFERED } from '../components/home/GrowNext'
 
 const NEXT = { name: knobs.copy['next-label'] }
 const used = (module, attempts) => ({
@@ -49,11 +50,17 @@ describe('Next in Grow', () => {
     expect(next.textContent).toContain(knobs.copy['next-level'])
   })
 
-  it('holds its place, a quiet bar with no button, while the record is being read', async () => {
+  it('holds its place, a quiet bar with no button, while the record is read, once a visit has offered a step', async () => {
+    writeRaw(OFFERED, 'on')
     renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />, { routes: used('jawhara', 6) })
     const next = screen.getByRole('region', NEXT)
     expect(within(next).queryByRole('button')).toBeNull()
     await within(next).findByRole('button')
+  })
+
+  it('holds nothing on a first visit, so nothing collapses if there is no step', () => {
+    renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />, { routes: used('jawhara', 6) })
+    expect(screen.queryByRole('region', NEXT)).toBeNull()
   })
 
   it('offers the book being studied, down to its next lesson, and one tap starts it', async () => {

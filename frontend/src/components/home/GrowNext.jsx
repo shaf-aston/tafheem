@@ -3,16 +3,23 @@
  * The worlds are ranked from the record (lib/grow/suggest.js); only the top books' indexes and records are fetched, to
  * find the step, so Home does not load every world. A world with nothing left falls through to the next. One tap
  * starts the step (a handed Grow address). While it is being worked out its place is held (a quiet bar the height of the
- * step, so the page below does not jump when it lands); nothing when it is where you stopped.
+ * step, so the page below does not jump when it lands, but only where the last visit showed a step: a first visit has
+ * none to hold a place for); nothing when it is where you stopped.
  * `studiedOnly`: only a world the learner has been studying (Home's first screen, where the level picker offers the rest).
  */
+import { useEffect } from 'react'
+
 import { fill } from '../../lib/shell/homeCopy'
 import { bookStep, lessonStep, rankWorlds } from '../../lib/grow/suggest'
 import { useBookWorlds } from '../../lib/grow/useBookWorld'
 import { WORLDS } from '../../lib/grow/worlds'
+import { useRememberedFlag } from '../../lib/store/useRemembered'
 import { Skeleton } from '../ui/feedback/Skeleton'
 import Tile from '../ui/display/Tile'
 import ArabicText from '../ui/text/ArabicText'
+
+/** Remembered: whether the last visit offered a step, so this one holds its place. */
+export const OFFERED = 'home-grow-next'
 
 // Books looked into at once: the top one, and the next in case it is finished.
 const LOOKED = 2
@@ -33,7 +40,12 @@ export default function GrowNext({ modules, pending = false, level, copy, skip, 
   const ranked = rankWorlds(WORLDS, modules, level).filter((one) => !studiedOnly || one.why === 'recent')
   const books = useBookWorlds(ranked.filter((one) => one.world.kind === 'book').slice(0, LOOKED).map((one) => one.world), null)
   const found = pick(ranked, books)
-  if (pending || found === undefined) {
+  const [expected, expect] = useRememberedFlag(OFFERED, false)
+  const settled = !pending && found !== undefined
+  const offered = settled && Boolean(found) && found.step.value !== skip
+  useEffect(() => { if (settled) expect(offered) }, [settled, offered, expect])
+  if (!settled) {
+    if (!expected) return null
     return (
       <section aria-labelledby="home-grow-next" className="space-y-2">
         <h3 id="home-grow-next" className="eyebrow eyebrow-lg">{copy['next-label']}</h3>
@@ -41,7 +53,7 @@ export default function GrowNext({ modules, pending = false, level, copy, skip, 
       </section>
     )
   }
-  if (!found || found.step.value === skip) return null
+  if (!offered) return null
   const { world, why, step } = found
   const { accent } = world
   const reason = step.due

@@ -26,12 +26,16 @@ import { useTilt } from '../../lib/motion/useTilt'
 const say = sayIn('en')
 
 
-/** Level, streak and goal; nothing for a guest (the nudge is on the title line). */
-function Growth({ rewards }) {
-  if (!rewards) return null
+/** What the stats are laid out with while the record is read: shown hidden (data-pending), so the worlds below stay put. */
+const HELD = { level: 1, into: 0, need: 1, streak: 0, xpToday: 0 }
+
+/** Level, streak and goal; nothing when the record could not be read. */
+function Growth({ rewards: record, pending }) {
+  if (!record && !pending) return null
+  const rewards = record ?? HELD
   const rank = rankOf(rewards.level)
   return (
-    <dl className="grow-stats">
+    <dl className="grow-stats" data-pending={record ? undefined : ''} aria-hidden={record ? undefined : true}>
       <div className="grow-stat grow-stat-wide rise-in">
         <dt>{say('Level {level}', { level: rewards.level })}</dt>
         <dd>
@@ -243,7 +247,7 @@ function Resume({ world, onResume }) {
   )
 }
 
-export default function GrowHome({ worlds, rewards, guest, lessons, books, resume, onResume, onOpen, onStart, onStartBook }) {
+export default function GrowHome({ worlds, rewards, rewardsPending, guest, lessons, books, resume, onResume, onOpen, onStart, onStartBook }) {
   const statusOf = {
     ...Object.fromEntries(Object.entries(lessons).map(([id, state]) => [id, stageStatus(state)])),
     ...Object.fromEntries(Object.entries(books).map(([id, state]) => [id, bookStatus(state)])),
@@ -257,7 +261,7 @@ export default function GrowHome({ worlds, rewards, guest, lessons, books, resum
       {resume && <Resume world={worldOf(resume.id)} onResume={onResume} />}
       {/* Today's lesson first, where a phone's first screen shows it; the level, streak and goal under it. */}
       <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />
-      <Growth rewards={rewards} />
+      <Growth rewards={rewards} pending={rewardsPending} />
       <h3 className="grow-worlds-h">{say('Worlds')}</h3>
       <div className="grow-worlds">
         {worlds.map((world, index) => (
