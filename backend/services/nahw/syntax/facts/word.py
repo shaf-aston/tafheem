@@ -183,11 +183,16 @@ def typed_case_of(token: dict) -> str | None:
     return shown or written_nasb(token) or six_noun_case(token["base"], token["lemma"])
 
 
+def typed_bare(token: dict) -> bool:
+    """The reader typed the word with no vowel at all (زيد بكرا): its case is not shown, only read."""
+    typed = token.get("typed") or ""
+    return bool(typed) and typed == strip_diacritics(typed)
+
+
 def written_nasb(token: dict) -> str | None:
     """زيد بكرا typed bare: the alif of نصب tanween is written, not voweled (رسم المصحف و الإملاء),
     so it shows the nasb on its own when the word's reading puts that tanween on it; عصا's alif is its own."""
-    typed = token.get("typed") or ""
-    if not typed or typed != strip_diacritics(typed) or not typed.endswith("ا"):
+    if not typed_bare(token) or not token["typed"].endswith("ا"):
         return None
     # only nasb tanween is written with an alif, so any tanween before it is that one
     return CASE_LETTER["nasb"] if TANWEEN & set(token.get("diac", "")[-2:]) else None

@@ -1193,3 +1193,14 @@ def test_an_object_put_before_its_verb(sentence: str, at: int, role: str, govern
     card = cards(sentence)[at]
     assert (card["role"], card["governor"]) == (role, governor)
     assert (_BUSIED in card["reason"]) == busied, card["reason"]
+
+
+@pytest.mark.parametrize("sentence, said", [
+    # a command is never a صفة (Ibn Aqil V3 p198: لا تقع الجملة الطلبية صفة): hung on the called noun it is the call's answer
+    ("رَبِّ اغْفِرْ لِي", True),
+    ("رَبِّ زِدْنِي عِلْمًا", True),
+    ("رَأَيْتُ رَجُلًا يَكْتُبُ", False),  # nearest case: a told verb on a noun no one calls is its صفة
+])
+def test_a_command_hung_on_the_called_noun_is_no_sifah(sentence: str, said: bool):
+    tree = analyze(sentence)["tree"]["tree"]
+    assert ("صفة" not in tree_roles(tree)) == said, tree_roles(tree)

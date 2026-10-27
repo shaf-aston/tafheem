@@ -6,7 +6,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, frames, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles
 from backend.services.nahw.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, busied, jarr_takes, praised_noun, told_of_lone_mubtada, verb_above
-from backend.services.nahw.syntax.facts.follows import with_waw
+from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
 NAMED = named_roles()
 
@@ -76,7 +76,7 @@ def place_time(token: dict, s: Sentence) -> bool:
     return opens_verb
 
 
-def _object_of_participle(token: dict, head: dict, s: Sentence) -> bool:
+def _object_of_participle(token: dict, head: dict) -> bool:
     """A word hung on a participle that is its object: linked as one in nasb, or in the
     nasb the reader typed where the link cannot hold it, since a مضاف إليه is never منصوب
     (فاهمٌ الدرسَ) and a نعت has its noun's case (ضاربٌ بكرًا) and is a describing word
@@ -160,7 +160,7 @@ def verb_place(token: dict, s: Sentence) -> str:
         return "absolute"  # مجتهداتٌ جِدًّا: a heard masdar whose verb is never said (جَدَّ جِدًّا); a lone one (شكرًا) gets its drawn verb (understood.verb)
     if is_object_pronoun(token):
         return "object"  # إيّاك نعبد، ما عبدنا إلا إيّاه: the detached pronoun of nasb is only an object
-    if with_waw(token, s):
+    if verb_joined_by_waw(token, s):
         return "accompaniment"
     head = s.head(token)
     rel = token["rel"]
@@ -168,7 +168,7 @@ def verb_place(token: dict, s: Sentence) -> str:
     # زيدٌ ضاربٌ بكرًا: a word like the verb (شبه الفعل) takes its object as the verb does
     # (notes, المفعول به p0: a فعل or a شبه الفعل governs it)
     if head and not is_verb(head) and works_as_verb(head):
-        if _object_of_participle(token, head, s):
+        if _object_of_participle(token, head):
             return "object"
         if _doer_of_describer(token, head, s) or (s.described_doer and [head, token] == list(s.described_doer[1:])):
             return "subject"  # its فاعل, standing in for the khabar

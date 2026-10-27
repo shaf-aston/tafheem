@@ -818,7 +818,8 @@ def _name_in_nasb(typed: str, disambiguator=None) -> dict | None:
     stem = "".join(letter + "".join(marks - {"ً"}) for letter, marks in marked[:-1])
     ranked = (_ranked([stem], disambiguator) or [[]])[0]
     known = next((r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")), None)
-    return known and {**known, "cas": "a", "diac": known["diac"] + "ًا", "atbtok": known["diac"] + "ًا"}
+    # the alif goes on the word's own split, so a وَ before the name stays its own piece (جِئْتُ وَزَيْدًا)
+    return known and {**known, "cas": "a", "diac": known["diac"] + "ًا", "atbtok": known["atbtok"] + "ًا"}
 
 
 def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=None) -> dict | None:

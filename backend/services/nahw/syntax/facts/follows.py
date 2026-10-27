@@ -40,7 +40,7 @@ def stands_for(token: dict, s: Sentence) -> bool:
     return not (verb and takes_two_objects(verb))
 
 
-def with_waw(token: dict, s: Sentence) -> dict | None:
+def verb_joined_by_waw(token: dict, s: Sentence) -> dict | None:
     """سرتُ والشاطئَ: after واو المعية (و meaning "with") a noun the reader put in nasb is the
     مفعول معه when nothing before the و is in nasb for it to join (Tasheel 3.8.5 p76); a
     معطوف would wear the case of what it joins. The verb before the و, which works on it, or None."""
@@ -49,15 +49,19 @@ def with_waw(token: dict, s: Sentence) -> dict | None:
         # سافرتُ والصديقَ: the parser may hang the noun on the verb beside its و; the و written onto it is the same
         head = next((t for t in s.tokens if t["id"] == token["id"] - 1 and t.get("form", "").endswith("+")), None)
     # جاء الولدُ وهُوَ يبكي: هُوَ's fatha is built in, no nasb; the و opens a hal clause
+    case = typed_case_of(token)
     if not (head and head["pos"] == "PRT" and head["lemma"].strip("+") == "و" and not is_subject_pronoun(token)
-            and typed_case_of(token) == "a" and verb_above(head, s) is not None):
-        return None
+            and case in ("a", None) and (verb := verb_above(head, s)) is not None and verb["id"] < head["id"]):
+        return None  # وما أدراك: the verb comes after the و, so it is no "with" after a clause
     # the noun straight before, and every noun on the verb before the و: جَعَلْنَا الْبَيْتَ مَثَابَةً
     # ... وَأَمْنًا joins مثابة; a ـات kasra is nasb too (خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ)
-    verb = verb_above(head, s)
-    joinable = [previous_noun(head, s)] + [k for k in s.kids(verb) if k["id"] < head["id"]
-                                           and noun_tagged(k) and not is_verb(k)]
-    return None if any(k and "a" in shown_cases(k) for k in joinable) else verb
+    joinable = [k for k in [previous_noun(head, s)] + [k for k in s.kids(verb) if k["id"] < head["id"]
+                                                       and noun_tagged(k) and not is_verb(k)] if k]
+    if case is None:
+        # سافرت والصديق typed bare, سرت والفتى its case unseen: with only the verb's own pronoun to join, the joining is weak and
+        # the nasb chosen (Ibn Aqil V2 p204: والنصب مختار لدى ضعف النسق); a noun to join takes it (قام زيد وعمرو)
+        return None if joinable else verb
+    return None if any("a" in shown_cases(k) for k in joinable) else verb
 
 
 def _follows(token: dict, s: Sentence) -> str:
@@ -69,7 +73,7 @@ def _follows(token: dict, s: Sentence) -> str:
     answers none and the rest of the naming decides it. Tested in this order because
     each earlier follower has a mark of its own (a pointer child, a joining particle, a
     bare name after a noun with ال, a listed تأكيد word) that a plain na't lacks."""
-    if s.asked_of(token) or calling_head(token, s) or with_waw(token, s) or praised_noun(token, s):
+    if s.asked_of(token) or calling_head(token, s) or verb_joined_by_waw(token, s) or praised_noun(token, s):
         return "none"  # غيرُ خالدٍ after a complete clause is the مستثنى, not a صفة; بِئْسَ الْخُلُقُ الْكَذِبُ: the one blamed
     # ما جاء أحدٌ إلا زيدٌ: after إلا in a negated complete sentence the excepted noun in the
     # case of the noun before إلا is its بدل (Tasheel 3.2 p67)

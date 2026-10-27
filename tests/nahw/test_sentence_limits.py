@@ -27,3 +27,25 @@ def test_a_single_thousand_letter_word_passes_the_gate_and_is_named_a_gap_not_a_
     found = teacher.review([word], toks, named([word], toks))
     drawn = tree.build([word], toks, found)
     assert len(found) == 1 and drawn["words"] == [word]
+
+
+@pytest.mark.parametrize("text", ["،", "١٢٣", "ـ", "﴿"])
+def test_arabic_script_with_no_word_in_it_is_refused_not_a_crash(text):
+    with pytest.raises(HTTPException) as refused:
+        arabic_sentence(text)
+    assert refused.value.status_code == 422
+
+
+def test_a_failed_read_is_read_again_next_time_not_remembered(monkeypatch):
+    from backend.services.nahw import iraab, syntax
+    real, calls = syntax.read, []
+
+    def fails_once(sentence, picks):
+        calls.append(sentence)
+        return {"roles": [{"role": None, "case": None} for _ in picks], "tree": None, "failed": True} if len(calls) == 1 else real(sentence, picks)
+
+    monkeypatch.setattr(syntax, "read", fails_once)
+    iraab._kept.cache_clear()
+    assert iraab.analyze("كَتَبَ زَيْدٌ", recorded=False)["read_failed"]
+    assert not iraab.analyze("كَتَبَ زَيْدٌ", recorded=False)["read_failed"]
+    assert len(calls) == 2

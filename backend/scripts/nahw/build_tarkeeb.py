@@ -44,7 +44,7 @@ from backend.services.text import arabic_text
 from backend.services.nahw import book as nahw_book
 from backend.services.quran import corpus as quran_corpus
 
-DATABASE = Path(__file__).parent.parent.parent / "data" / "tarkeeb" / "tarkeeb.db"
+DATABASE = tarkeeb_store.DATABASE
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS tarkeeb (
@@ -421,10 +421,10 @@ def build(treebank: Path, labels: Path) -> None:
     ayahs = read_rows(treebank)
     print(f"read {len(ayahs)} ayahs from {treebank.name}")
 
-    DATABASE.parent.mkdir(parents=True, exist_ok=True)
-    db = sqlite3.connect(DATABASE)
-    # every row is rewritten, so an older layout of the table goes with them
-    db.execute("DROP TABLE IF EXISTS tarkeeb")
+    # built in a file beside it and moved into place, so a run that breaks leaves the old one whole
+    building = DATABASE.with_suffix(".building")
+    building.unlink(missing_ok=True)
+    db = sqlite3.connect(building)
     db.executescript(SCHEMA)
 
     kept = 0
@@ -471,8 +471,9 @@ def build(treebank: Path, labels: Path) -> None:
 
     db.commit()
     db.close()
+    building.replace(DATABASE)
 
-    total = len(ayahs)
+    total = len(ayahs) or 1
     print(f"\nkept {kept} of {total} ayahs ({kept / total:.1%})")
     for gate, count in rejected.most_common():
         print(f"  rejected at {gate:<12} {count:5d} ({count / total:.1%})")

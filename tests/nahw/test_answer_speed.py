@@ -27,7 +27,7 @@ def test_timings_name_each_step_in_the_header_shape():
 def test_a_sentence_read_lately_is_answered_from_memory(monkeypatch):
     iraab._kept.cache_clear()
     reads = []
-    monkeypatch.setattr(iraab, "_read", lambda sentence, recorded: reads.append(sentence) or {"words": [{"role": "x"}]})
+    monkeypatch.setattr(iraab, "_read", lambda sentence, recorded: reads.append(sentence) or {"words": [{"role": "x"}], "read_failed": False})
     first = iraab.analyze("كَتَبَ")
     first["words"][0]["role"] = "changed by a caller"
     second = iraab.analyze("كَتَبَ")

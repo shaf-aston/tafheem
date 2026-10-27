@@ -705,3 +705,33 @@ def test_the_verb_before_waw_al_maiyyah_governs_the_noun_after_it(sentence):
     from tests.nahw_helpers import cards
     words = cards(sentence)
     assert (words[1]["role"], words[1]["governor"]) == ("مفعول معه", 0)
+
+
+@pytest.mark.parametrize("sentence, role", [
+    # typed bare, only the verb's own pronoun before the و: the joining is weak, the nasb chosen (Ibn Aqil V2 p204)
+    ("سافرت والصديق", "مفعول معه"),
+    ("استيقظت والشمس", "مفعول معه"),
+    ("سِرْتُ وَالْفَتَى", "مفعول معه"),  # its case unseen on the alif: the same weak joining
+    ("قام زيد وعمرو", "معطوف"),  # nearest case: a noun before the و to join
+    ("اشتريت كتابا وقلما", "معطوف"),
+])
+def test_a_bare_noun_after_waw_is_maful_maahu_only_with_nothing_to_join(sentence, role):
+    from tests.nahw_helpers import cards
+    assert cards(sentence)[-1]["role"] == role
+
+
+@pytest.mark.parametrize("sentence, role", [
+    # a name in nasb tanween keeps its و as a piece of its own: the و can then be read (جئت وزيدًا, Tasheel 3.8.5 p76)
+    ("جِئْتُ وَزَيْدًا", "مفعول معه"),
+    ("رَأَيْتُ بَكْرًا وَزَيْدًا", "معطوف"),  # nearest case: a noun in nasb before the و to join
+])
+def test_waw_before_a_name_in_nasb_is_its_own_piece(sentence, role):
+    from tests.nahw_helpers import cards
+    assert cards(sentence)[-1]["role"] == role
+
+
+@pytest.mark.parametrize("sentence", ["وما أدراك ما يوم الدين", "وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ"])
+def test_a_waw_before_its_verb_opens_no_maful_maahu(sentence):
+    """واو المعية follows a clause: with the verb after the و, the word after it is no مفعول معه."""
+    from tests.nahw_helpers import cards
+    assert cards(sentence)[0]["role"] == "مبتدأ"

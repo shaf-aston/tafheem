@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import letters, vowel_agreement
 from backend.services.nahw.book import book_map, is_one
-from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, my_ya_dropped, is_suffix, is_verb, read_as, reading, takes_two_objects, typed_case_of
+from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, my_ya_dropped, is_suffix, is_verb, read_as, reading, takes_two_objects, typed_bare, typed_case_of
 from backend.services.nahw.syntax.facts.sentence import Sentence, busied, next_word, verb_above
 
 
@@ -71,9 +71,8 @@ def joins_clauses(token: dict, s: Sentence) -> bool:
         return True
     if s.noun_before(token) and any(k["rel"] == "OBJ" for k in s.kids(token)):
         return True
-    typed = token.get("typed") or ""
     follower = s.by_id.get(token["id"] + 1)
-    return bool(typed and typed == strip_diacritics(typed) and follower and is_verb(follower))
+    return bool(typed_bare(token) and follower and is_verb(follower))
 
 
 def asked_verb(s: Sentence) -> dict | None:

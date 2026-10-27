@@ -6,7 +6,7 @@ from backend.services.nahw.book import is_one, is_plain_noun, six_noun_case
 from backend.services.nahw.syntax.facts.word import is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_tanween, typed_or_parsed_case, unlike, subject_link, NOUN_LINKS
 from backend.services.nahw.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.nahw.syntax.facts.kind import calling_head
-from backend.services.nahw.syntax.facts.follows import with_waw
+from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 from backend.services.nahw.syntax.facts.slot import busied_before, place_time, verb_place
 
 
@@ -44,7 +44,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     if calling := calling_head(token, s):
         # اللهمّ، رَبَّنَا اغْفِرْ: a call with no يا typed is governed by the يا left off, no word of the sentence
         return calling, None if calling == "nida" and not (head and is_one(head["lemma"], "nida")) else head
-    if verb := with_waw(token, s):
+    if verb := verb_joined_by_waw(token, s):
         return "verb", verb  # the verb before واو المعية works on the noun after it
     if jarr_takes(token, s):
         return "harf_jarr", head

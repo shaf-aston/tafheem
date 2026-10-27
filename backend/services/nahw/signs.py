@@ -15,8 +15,6 @@ from backend.services.nahw.book import attention_off, book_words, family_cards, 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
 _WEAK_END = {"ي": "manqus", "و": "on_waw", "ا": "on_alef", "ى": "on_alef"}
-# the object pronouns a past verb can carry, longest first so هما is not read as ه
-OBJECT_PRONOUNS = ("هما", "كما", "هم", "هن", "ها", "كم", "كن", "ني", "نا", "ه", "ك")
 
 
 def sign(case: str | None, kind: str = "vowel") -> str | None:
@@ -240,7 +238,9 @@ def _without_object(word: str) -> str:
     """The verb with its object pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ,
     ضَرَبُوهُ → ضَرَبُوا."""
     bare = strip_diacritics(word)
-    pronoun = next((p for p in OBJECT_PRONOUNS if bare.endswith(p) and len(bare) > len(p) + 1), "")
+    # the object pronouns a verb can carry, longest first so هما is not read as ه
+    pronoun = next((p for p in sorted(book_words("damir_muttasil", "on_verbs"), key=len, reverse=True)
+                    if bare.endswith(p) and len(bare) > len(p) + 1), "")
     marked = letters(word)[:len(bare) - len(pronoun)]
     return plural_alef("".join(letter + "".join(sorted(marks)) for letter, marks in marked))
 

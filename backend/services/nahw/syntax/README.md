@@ -26,9 +26,10 @@ typed sentence
                              (the typed schema every later step reads: Piece, Condition, Gap, Doer)
  → syntax.teacher            second reading; dashes a role the vowels or the rules reject
  → syntax.tree               the bracket picture (tarkeeb); syntax.doer names the doer inside a verb.
-                             Three things the picture decides go back onto the entry, and only these:
-                             `name` (a finer name: اسم ليس، فعل الشرط), `doer`, and the job of a noun
-                             an unwritten verb governs (شكرًا) — so card and picture never disagree
+                             Four things the picture decides go back onto the entry, and only these:
+                             `name` (a finer name: اسم ليس، فعل الشرط), `doer`, the job of a noun
+                             an unwritten verb governs (شكرًا), and the ما word's role, case and built
+                             (`ma`) — so card and picture never disagree
  → iraab.cards               one card per word: rule_engine (what the word is) + role
  → signs.settle              the sign (ضمة، مبني على السكون ...) from the final case
  → card_wording              the card's words after the sign: pair names, زائدة باء, كافة ما, the doer
