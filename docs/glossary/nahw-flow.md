@@ -13,7 +13,7 @@ Change a stage, add a rule or reorder one → that test fails until this page sa
 `backend/routers/analyze.py` → `backend/services/nahw/iraab.py` `analyze`:
 
 1. Split words (`split_words`), keep typed vowels.
-2. One reading per word: `backend/services/sarf/morphology.py` `pick` (BERT ranks, then the reading that fits the most typed vowels). Cards and parser share it.
+2. One reading per word: `backend/services/sarf/morphology.py` `pick` (BERT ranks, then the reading that fits the most typed vowels; a line of nouns alone, a pronoun counted as one, with a منصوب in it reads its first possible past verb as that verb: زيد نصر بكرا، هُوَ أَكْرَمَ ضَيْفًا). Cards and parser share it.
 3. Recorded Qurʾān ayah → `backend/services/nahw/tarkeeb_store.py`, skip to cards.
 4. Else `backend/services/nahw/syntax/__init__.py` `read`: stages 1–7 below. Any error → every word unnamed.
 

@@ -593,6 +593,16 @@ def test_a_verb_with_a_pronoun_back_to_the_noun_may_describe_it(sentence, moved)
     ("زَيْدٌ أَكْرَمَ ضَيْفًا", "أَكْرَمَ", ("role", "فعل")),
     ("زَيْدٌ أَكْرَمَ ضَيْفًا", "ضَيْفًا", ("role", "مفعول به")),
     ("زيد نصر بكرا", "بكرا", ("role", "مفعول به")),
+    # a pronoun opening the line is a noun like زيد: its verb is past, its منصوب the object
+    ("هُوَ أَكْرَمَ ضَيْفًا", "أَكْرَمَ", ("role", "فعل")),
+    ("هُوَ أَكْرَمَ ضَيْفًا", "ضَيْفًا", ("role", "مفعول به")),
+    ("هي كتبت الدرس", "الدرس", ("role", "مفعول به")),
+    ("هذا نصر بكرا", "بكرا", ("role", "مفعول به")),  # a demonstrative is a pronoun-noun too
+    # nearest case: after a مضاف the fatha is a diptote's jarr, no منصوب wanting a verb
+    ("هَذَا كِتَابُ أَحْمَدَ بْنِ حَنْبَلٍ", "أَحْمَدَ", ("role", "مضاف إليه")),
+    # nearest case: a typed damma keeps the elative, its منصوب the تمييز
+    ("هُوَ أَكْرَمُ ضَيْفًا", "أَكْرَمُ", ("role", "خبر")),
+    ("هُوَ أَكْرَمُ ضَيْفًا", "ضَيْفًا", ("role", "تمييز")),
     ("زَيْدٌ جَاءَ رَاكِبًا", "رَاكِبًا", ("role", "حال")),
     ("زَيْدٌ طَابَ نَفْسًا", "نَفْسًا", ("role", "تمييز")),
     # the word itself is that verb only by a typed fatha: أَبُوهُ's و is the raf' of the five nouns
