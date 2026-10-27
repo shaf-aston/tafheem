@@ -635,7 +635,8 @@ def _reading(word: str, readings: list[dict]) -> dict:
     # a reading spelled with the letters typed goes first, even one vowel off, before another word's
     # letters that say nothing either way (خُلُقُهُ is خُلْقُهُ, not خَلَقَة)
     same = [r for r in real if [bare_letters(c) for c, _ in letters(r.get("diac", ""))] == [bare_letters(c) for c, _ in letters(word)]]
-    return best_reading(word, same) or nearest_reading(word, same) or best_reading(word, real) or readings[0]
+    # with none agreeing, one spelled as typed (حِجَارَةٌ, which the dictionary has only as حَجّارَةٌ)
+    return best_reading(word, same) or nearest_reading(word, same) or best_reading(word, real) or (same or readings)[0]
 
 
 def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:

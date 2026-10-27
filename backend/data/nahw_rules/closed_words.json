@@ -719,7 +719,8 @@
    "conditional_nouns": ["إذا"],
    "conditional_adverbs": ["إذا"],
    "_conditional_nouns": "إذا before a past verb is a time word holding the meaning of a condition, not jussive (Tasheel 4.3.1 p112): its own clause is in the place of jarr as its مضاف إليه. Read with jazm's list by nahw_book.condition_of; particle_tree.json tells it from إذا الفجائية.",
-   "carriers": ["كل", "بعض"],
+   "carriers": ["كل", "بعض", "ذات"],
+   "_ذات": "ذات added to a time word is used as a time word only, always in nasb: سير عليه ذات يوم، وسير عليه ذات ليلة، بمنزلة ذات مرة (Sibawayh, al-Kitab V1 p226); والمستعمل ظرفا لا غير ما لزم النصب نحو قولك سرنا ذات مرة (Zamakhshari, al-Mufassal p81).",
    "_built": "Time words built on one ending whatever their place (Tasheel): the vowel typed on them is part of the word, not a case (زارنا أمسِ: مبني على الكسر في محل نصب).",
    "built": ["أمس", "الآن", "إذ", "منذ", "مذ"],
    "words": [

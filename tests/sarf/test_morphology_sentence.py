@@ -97,6 +97,14 @@ def test_vowel_agreement():
     assert agree("كتب", "كَتَبَ") == (0, 0)                 # nothing typed, nothing to weigh
     assert agree("زَيْدٌ", "زَيْدٍ") is None          # the same letter, a different ending
     assert agree("زَيْدٌ", "زَيْدًا") == (0, 0)             # the tanween alef adds a letter: no verdict
+    assert agree("حِجَارَةٌ", "حَجّارُهُ") is None     # a typed ة is never the pronoun ه
+    assert agree("حجاره", "حِجارَة") == (0, 0)           # a typed ه may be a ة written loosely: no verdict
+
+
+def test_with_no_reading_agreeing_one_spelled_as_typed_is_kept():
+    # حِجَارَةٌ "stones": the dictionary has only حَجّارَة, a vowel and a shadda off, and "his حَجّار"
+    readings = [{"diac": "حَجّارُهُ", "atbtok": "حَجّارُ_+هُ"}, {"diac": "حَجّارَةٌ", "atbtok": "حَجّارَةٌ"}]
+    assert morphology._reading("حِجَارَةٌ", readings)["diac"] == "حَجّارَةٌ"
 
 
 @needs_camel

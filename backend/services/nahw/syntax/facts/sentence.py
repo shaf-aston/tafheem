@@ -94,8 +94,9 @@ class Sentence:
         if not (self.verbless and len(words) >= 3 and words[0]["lemma"] == "ما" and noun_tagged(words[1])
                 and (is_mabni(words[1].get("pos_camel", "")) or typed_or_parsed_case(words[1]) != "a")):
             return None
-        khabar = next((t for t in words[2:] if noun_tagged(t) and t.get("stt") == "i"
-                       and typed_or_parsed_case(t) == "a"), None)
+        # a noun straight after a مضاف is its مضاف إليه, never the khabar: ما عِقَابُ إِبْرَاهِيمَ asks
+        khabar = next((t for before, t in zip(words[1:], words[2:]) if noun_tagged(t) and t.get("stt") == "i"
+                       and before.get("stt") != "c" and typed_or_parsed_case(t) == "a"), None)
         # مَا اللَّهُ بِغَافِلٍ: its khabar may stand behind a زائدة باء, jarr in its letters (data:
         # closed_words extra_ba `on`); a word with ال after the باء is a plain jar-majrur (ما زيدٌ بالبيت)
         if not khabar and extra_ba_on(words[0]["lemma"]) and len(words) >= 4 and khabar_behind_ba(words[2], words[3]):
