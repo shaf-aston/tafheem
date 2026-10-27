@@ -13,7 +13,7 @@
  * family fold shows in a book, in search and in Starred alike. So do the weak points: a hadith
  * whose chain has any carries one quiet "2 weak points" chip that opens the drawing, where each
  * weak narrator is marked and ranked and each doubtful link lettered (lib/weak); a hadith that classical
- * books speak of carries a "Scholars" chip to the same drawing, where their words are quoted.
+ * books speak of carries a "Verdicts" chip to the same drawing, where their words are quoted.
  * Under each one's words, its reference as sunnah.com prints it (hadith/HadithReference).
  * Side by side (English left, Arabic right, as sunnah.com sets them) unless the reader turned it
  * off; a book in two columns, or a phone, stacks them.
@@ -111,7 +111,7 @@ export default function HadithCards({ items, accent, collection, columns = false
                   )}
                   {rulings.length > 0 && (
                     <Chip quiet tinted accent={accent} onClick={() => setDrawn(h)}>
-                      Scholars
+                      Verdicts
                     </Chip>
                   )}
                   {h.cut && (

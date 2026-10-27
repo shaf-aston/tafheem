@@ -70,7 +70,7 @@ describe('nameOfPlace', () => {
   })
 
   it('names the lists, and a narrator once his name is known', () => {
-    expect(nameOfPlace('narrators', collections)).toBe('Narrators')
+    expect(nameOfPlace('narrators', collections)).toBe('Rijal')
     expect(nameOfPlace('scholars', collections)).toBe('Scholars')
     expect(nameOfPlace('terms', collections)).toBe('Terms')
     expect(nameOfPlace('terms/3', collections)).toBe('Terms')
