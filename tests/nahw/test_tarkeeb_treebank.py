@@ -152,8 +152,10 @@ def test_a_word_heading_a_unit_says_what_it_is_and_the_unit_carries_the_job():
                 units(child, found)
         return found
     jobs = units(tree, [])
-    for job in ("مفعول به", "شرط", "متعلق"):
+    for job in ("مفعول به", "شرط"):
         assert SETTINGS["relation_terms"][job] in jobs
+    # فِى ٱلْقُبُورِ hangs on the صلة no one writes
+    assert SETTINGS["attached"]["elided"] in jobs
 
 
 def test_ina_is_spelled_the_same_as_the_rules_spell_it():
@@ -250,9 +252,9 @@ def test_a_name_nobody_has_checked_is_used_but_not_passed_off_as_checked():
 @needs_database
 def test_the_recorded_tarkeeb_marks_every_unchecked_wording():
     """Nothing may print the treebank's raw wording without being flagged as such."""
-    checked = set(SETTINGS["relation_terms"].values()) | {""}
+    checked = set(SETTINGS["relation_terms"].values()) | {"", SETTINGS["attached"]["elided"]}
     checked |= {build_tarkeeb._particle(kind, SETTINGS)["ar"] for kind in SETTINGS["particle_kinds"]}
-    frames = tuple(SETTINGS["relation_frames"].values())
+    frames = (*SETTINGS["relation_frames"].values(), SETTINGS["attached"]["frame"].format(word=""))
     unflagged = []
 
     def walk(node):
@@ -326,7 +328,7 @@ def test_a_prefix_on_its_own_words_stem_gives_the_word_no_job_of_its_own():
     assert [part["role"] for part in ala["parts"]] == [
         SETTINGS["particle_kinds"]["لام التوكيد"], term("jarr")]
     # the jar-majroor is متعلق to the خبر no one writes, not a sentence of its own
-    assert len(tree["children"]) == 2 and SETTINGS["relation_terms"]["متعلق"] in units(tree, [])
+    assert len(tree["children"]) == 2 and SETTINGS["attached"]["elided"] in units(tree, [])
 
 
 def test_inna_with_its_pronoun_is_the_particle_and_the_pronoun_its_noun():
@@ -354,7 +356,7 @@ def test_a_jar_majroor_in_one_word_keeps_the_units_job():
             row(4, 3, "لُوطًا", "PN", "اسم علم", "اسم إن", 0)]
     _, columns = drawn(rows)
     fiha = columns["فِيهَا"]
-    assert fiha["role"] == SETTINGS["relation_terms"]["متعلق"]
+    assert fiha["role"] == SETTINGS["attached"]["elided"]
     assert [part["role"] for part in fiha["parts"]] == [term("jarr"), SETTINGS["relation_terms"]["مجرور"]]
 
 
@@ -390,7 +392,7 @@ def test_a_stem_hung_on_its_own_prefix_keeps_the_word_whole():
             row(2, 2, "نَعْلَمَ", "V", "فعل", "صلة", 1, constituent="VS"),
             row(3, 0, "(نَحْنُ)", "PRON", "ضمير", "فاعل", 2, segment="_")]
     _, columns = drawn(rows)
-    assert columns["لِنَعْلَمَ"]["role"] == SETTINGS["relation_terms"]["متعلق"]
+    assert columns["لِنَعْلَمَ"]["role"] == SETTINGS["attached"]["frame"].format(word="بَعَثْ")
 
 
 def test_an_unwritten_word_a_sentence_rests_on_keeps_its_name():
@@ -398,3 +400,26 @@ def test_an_unwritten_word_a_sentence_rests_on_keeps_its_name():
             row(1, 1, "سَلَامًا", "N", "اسم", "مفعول مطلق", 0)]
     tree, _ = drawn(rows)
     assert [child["role"] for child in tree["children"]][0] == term("fil")
+
+
+# ── A متعلق names the word it hangs on ───────────────────────────────────────
+
+def test_a_jar_majroor_is_named_by_the_word_it_hangs_on_without_its_joined_waw():
+    # وَأَنزَلَ ٱللَّهُ عَلَيْكَ (4:113): عَلَيْكَ is مُتَعَلِّقٌ بِـأَنزَلَ, the وَ is not part of the verb's name
+    rows = [row(0, 1, "وَ", "CONJ", "حرف عطف", "NonRel", 0, segment="PREFIX"),
+            row(1, 1, "أَنزَلَ", "V", "فعل", "root", 1),
+            row(2, 2, "ٱللَّهُ", "PN", "اسم علم", "فاعل", 1),
+            row(3, 3, "عَلَيْ", "P", "حرف جر", "متعلق", 1, constituent="PP"),
+            row(4, 3, "كَ", "PRON", "ضمير", "مجرور", 3, segment="SUFFIX")]
+    _, columns = drawn(rows)
+    assert columns["عَلَيْكَ"]["role"] == SETTINGS["attached"]["frame"].format(word="أَنزَلَ")
+    # nearest case: the word beside it, no متعلق, keeps its own name
+    assert columns["ٱللَّهُ"]["role"] == SETTINGS["relation_terms"]["فاعل"]
+
+
+@pytest.mark.parametrize("head", [None, 1], ids=["points nowhere", "points at itself"])
+def test_a_metaalliq_with_no_other_word_to_hang_on_is_left_bare(head):
+    # nearest case: the arrow leads to no other word, so the tree draws it as a root and no word is named
+    words = [word("جَلَسَ", "root", 0, pos="V"), word("فِى", "متعلق", head, pos="P")]
+    tree = build_tarkeeb._tree_of(words, SETTINGS, TONE)
+    assert tree["children"][1]["role"] == SETTINGS["relation_terms"]["متعلق"]

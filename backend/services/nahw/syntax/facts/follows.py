@@ -40,10 +40,10 @@ def stands_for(token: dict, s: Sentence) -> bool:
     return not (verb and takes_two_objects(verb))
 
 
-def with_waw(token: dict, s: Sentence) -> bool:
+def with_waw(token: dict, s: Sentence) -> dict | None:
     """سرتُ والشاطئَ: after واو المعية (و meaning "with") a noun the reader put in nasb is the
     مفعول معه when nothing before the و is in nasb for it to join (Tasheel 3.8.5 p76); a
-    معطوف would wear the case of what it joins."""
+    معطوف would wear the case of what it joins. The verb before the و, which works on it, or None."""
     head = s.head(token)
     if not (head and head["pos"] == "PRT"):
         # سافرتُ والصديقَ: the parser may hang the noun on the verb beside its و; the و written onto it is the same
@@ -51,13 +51,13 @@ def with_waw(token: dict, s: Sentence) -> bool:
     # جاء الولدُ وهُوَ يبكي: هُوَ's fatha is built in, no nasb; the و opens a hal clause
     if not (head and head["pos"] == "PRT" and head["lemma"].strip("+") == "و" and not is_subject_pronoun(token)
             and typed_case_of(token) == "a" and verb_above(head, s) is not None):
-        return False
+        return None
     # the noun straight before, and every noun on the verb before the و: جَعَلْنَا الْبَيْتَ مَثَابَةً
     # ... وَأَمْنًا joins مثابة; a ـات kasra is nasb too (خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ)
     verb = verb_above(head, s)
     joinable = [previous_noun(head, s)] + [k for k in s.kids(verb) if k["id"] < head["id"]
                                            and noun_tagged(k) and not is_verb(k)]
-    return not any(k and "a" in shown_cases(k) for k in joinable)
+    return None if any(k and "a" in shown_cases(k) for k in joinable) else verb
 
 
 def _follows(token: dict, s: Sentence) -> str:

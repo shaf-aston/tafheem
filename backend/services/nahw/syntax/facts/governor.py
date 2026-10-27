@@ -44,8 +44,8 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     if calling := calling_head(token, s):
         # اللهمّ، رَبَّنَا اغْفِرْ: a call with no يا typed is governed by the يا left off, no word of the sentence
         return calling, None if calling == "nida" and not (head and is_one(head["lemma"], "nida")) else head
-    if with_waw(token, s):
-        return "verb", verb_above(head, s)  # the verb before واو المعية works on the noun after it
+    if verb := with_waw(token, s):
+        return "verb", verb  # the verb before واو المعية works on the noun after it
     if jarr_takes(token, s):
         return "harf_jarr", head
     under_verb = bool(head) and is_verb(head)

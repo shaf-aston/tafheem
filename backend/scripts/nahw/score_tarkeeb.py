@@ -88,7 +88,7 @@ def main() -> None:
             claimed[k] += 1
             if (first, k) in gold:
                 right[k] += 1
-            elif "khabar" in k and (first, ATTACHED) in gold_raw:
+            elif "khabar" in k and any(at == first and (role or "").startswith(ATTACHED) for at, role in gold_raw):
                 convention[k] += 1
 
     print(f"{scored} ayahs scored\n")

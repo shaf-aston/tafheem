@@ -562,6 +562,9 @@ def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved)
 @pytest.mark.parametrize("sentence, word, want", [
     # و of company: the و's head is the verb's attached doer, not a particle
     ("سافرت والصديقَ", "والصديقَ", ("role", "مفعول معه")),
+    # nearest case: a و before a nasb noun with a nasb noun to join is عطف; the و found beside the
+    # noun, not the parser's head, names the verb (once read nothing, every word left unnamed)
+    ("وَأَنزَلَ ٱللَّهُ عَلَيْكَ ٱلْكِتَٰبَ وَٱلْحِكْمَةَ", "وَٱلْحِكْمَةَ", ("role", "معطوف")),
     # خُلُقُهُ is read as the noun (خُلْق), not the verb خَلَقَ, so it copies الطالب
     ("أَعْجَبَنِي الطَّالِبُ خُلُقُهُ", "خُلُقُهُ", ("role", "بدل")),
     # but a guessed name is never a verb two slips off: زَيْدًا is not زَيَّدَا
@@ -694,3 +697,11 @@ def test_zanna_pair_whatever_tree_the_parser_gives(hung):
         tokens[word_id - 1]["head"], tokens[word_id - 1]["rel"] = head, rel
     correct(words, tokens)
     assert [r.get("role") for r in roles(words, tokens)] == ["فعل", "فاعل", "مفعول به", "مفعول به"]
+
+
+@pytest.mark.parametrize("sentence", ["سافرت والصديقَ", "سِرْتُ وَالشَّاطِئَ"])
+def test_the_verb_before_waw_al_maiyyah_governs_the_noun_after_it(sentence):
+    # مفعول معه: its عامل is the verb before the و (Tasheel 3.8.5 p76), not the و and not nothing
+    from tests.nahw_helpers import cards
+    words = cards(sentence)
+    assert (words[1]["role"], words[1]["governor"]) == ("مفعول معه", 0)

@@ -234,6 +234,8 @@
       "other": "jumlah_ismiyyah"
     },
     "_wording_comment": "The treebank writes its relation names without vowels; the rest of the app writes them fully vowelled. Same terms, so they are spelled the app's way here. A name that is not in this list is shown exactly as the treebank wrote it, its own wording beats no wording.",
+    "_attached_comment": "A word whose relation is `relation` is named by the word it hangs on, as the live tree names it (roles.json frames.attached): عَلَيْكَ in وَأَنزَلَ ٱللَّهُ عَلَيْكَ is مُتَعَلِّقٌ بِـأَنزَلَ, its joined و left off. Hung on a word no one writes (the left-out خبر, its column `unwritten_mark`), it is `elided`: الجار والمجرور متعلق بمحذوف.",
+    "attached": {"relation": "متعلق", "frame": "مُتَعَلِّقٌ بِـ{word}", "elided": "مُتَعَلِّقٌ بِمَحْذُوْفٍ"},
     "relation_terms": {
       "فاعل": "فَاعِلٌ",
       "نائب فاعل": "نَائِبُ فَاعِلٍ",

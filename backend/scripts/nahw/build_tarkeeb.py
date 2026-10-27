@@ -219,6 +219,18 @@ def _sentence_names(settings: dict) -> set[str]:
     return {nahw_book.term(key)["ar"] for key in settings["sentence_labels"].values()}
 
 
+def _attached(index: int, words: list[dict], settings: dict) -> str | None:
+    """A متعلق named by the word it hangs on, as the live tree names it: عَلَيْكَ is
+    مُتَعَلِّقٌ بِـأَنزَلَ, and hung on a word no one writes it is مُتَعَلِّقٌ بِمَحْذُوْفٍ."""
+    attached, word = settings["attached"], words[index]
+    if word.get("relation") != attached["relation"] or word.get("head") in (None, index):
+        return None
+    head = words[word["head"]]
+    if head["text"] == settings["unwritten_mark"]:
+        return attached["elided"]
+    return attached["frame"].format(word=head["text"].removeprefix((head.get("connector") or {}).get("text", "")))
+
+
 def _particle(kind: str, settings: dict) -> dict:
     """A particle named by what it is, in the app's spelling: a shared term where
     the rules name it too, so إِنَّ reads the same on every path."""
@@ -291,7 +303,7 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
         # Written the app's way where the app has a wording for it, and left in
         # the treebank's own words where it does not.
         said, raw = nahw_book.relation_wording(relation)
-        role = opening["ar"] if opens_clause else said
+        role = opening["ar"] if opens_clause else _attached(index, words, settings) or said
         tone = opening["tone"] if opens_clause else tone_of(relation)
         # Inside its own unit a particle is what it is (فِى is حَرْفُ جَرٍّ); the
         # unit it heads carries the job (the jar-majroor is مُتَعَلِّقٌ). فِيهَا is that whole unit
