@@ -14,7 +14,7 @@ import { useReciting } from '../../lib/recite/useReciting'
 import { useSetting } from '../../lib/store/settings'
 import { warm } from '../../lib/api/warm'
 import { useArrivalEffect } from '../../lib/nav/useArrival'
-import recite from '../../config/recite.json'
+import config from '../../config/memorise.json'
 
 // The setting itself, not a copy of one of its numbers. Every id here comes
 // from DIFFICULTIES, so a miss means memorise.json names a default that is not
@@ -32,7 +32,7 @@ export const HIDDEN = DEFAULT_DIFFICULTY
 export const withinPart = (label) => label.split(':').pop()
 
 // How long a finished page stays up, marked, before the next one turns in.
-const TURN_AFTER_MS = recite['turn-after-s'] * 1000
+const TURN_AFTER_MS = config['turn-after-s'] * 1000
 
 // A page as a step on the back arrow's path: its first line, "2:6", with the
 // book in front when it is not the Qur'an, "jazariyya/3:12".

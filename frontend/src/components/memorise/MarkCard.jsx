@@ -6,7 +6,7 @@ import { CHECK, MISSED, SAID, WRONG } from '../../lib/recite/follow'
 import { weakParts, whyOf } from '../../lib/recite/markWhy'
 import { LOOK, WAITING_LOOK } from '../../lib/recite/reciteColors'
 import { PHONE, useMedia } from '../../lib/hooks/useMedia'
-import config from '../../config/recite.json'
+import config from '../../config/memorise.json'
 
 import ArabicText from '../ui/text/ArabicText'
 import { hitArea } from './hitArea'
