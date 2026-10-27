@@ -69,10 +69,10 @@ def test_a_nominal_sentence_names_its_opening_word_the_mubtada():
 
 # ── Particles: what the treebank's arrows say about them ─────────────────────
 
-def row(token, word_id, text, pos, pos_ar, relation, ref, constituent="-", segment="STEM"):
+def row(token, word_id, text, pos, pos_ar, relation, ref, constituent="-", segment="STEM", lemma=""):
     """One treebank row, the columns the importer reads."""
     return {"token_id": str(token), "word_id": str(word_id), "uthmani_token": text,
-            "pos": pos, "pos_ar": pos_ar, "rel_label_ar": relation, "ref_token_id": str(ref),
+            "pos": pos, "pos_ar": pos_ar, "rel_label_ar": relation, "ref_token_id": str(ref), "lemma_ar": lemma or text,
             "constituent_label": constituent, "features": f"{segment}|POS:{pos}"}
 
 
@@ -120,6 +120,49 @@ def test_a_particle_is_named_for_what_it_is_never_as_a_mubtada():
     assert [part["role"] for part in afala["parts"]] == [
         SETTINGS["particle_kinds"][kind] for kind in ("حرف استفهام", "حرف زائد", "حرف نفي")]
     assert term("mubtada") not in {afala["role"], tree["role"]}
+
+
+# وَمَا أَدْرَىٰكَ مَا يَوْمُ ٱلدِّينِ (82:17), as the treebank records it: both مَا are tagged question
+# particles, yet a خبر hangs on each (أَدْرَىٰ on the first, يَوْمُ on the second)
+AL_INFITAR_17 = [
+    row(0, 1, "وَ", "CONJ", "حرف عطف", "NonRel", 0, segment="PREFIX"),
+    row(1, 1, "مَآ", "INTG", "حرف استفهام", "root", 1, lemma="مَا"),
+    row(2, 2, "أَدْرَىٰ", "V", "فعل", "خبر", 1, constituent="VS"),
+    row(3, 2, "كَ", "PRON", "ضمير", "مفعول به", 2, segment="SUFFIX"),
+    row(4, 0, "(هُوَ)", "PRON", "ضمير", "فاعل", 2),
+    row(5, 3, "مَا", "INTG", "حرف استفهام", "مفعول به", 2, constituent="NS"),
+    row(6, 4, "يَوْمُ", "N", "اسم", "خبر", 5),
+    row(7, 5, "ٱل", "DET", "ال التعريف", "NonRel", 7, segment="PREFIX"),
+    row(8, 5, "دِّينِ", "N", "اسم", "مضاف إليه", 6),
+]
+
+
+def test_a_question_word_a_khabar_hangs_on_is_its_mubtada():
+    # Mughni: أيهم أشد، أيّ استفهامية مبتدأ وأشد خبر; مَا in وَمَا أَدْرَاكَ is the same
+    _, columns = drawn(AL_INFITAR_17)
+    assert columns["وَمَآ"]["role"] == term("mubtada")
+    assert columns["مَا"]["role"] == term("mubtada")
+    assert columns["يَوْمُ"]["role"] == SETTINGS["relation_terms"]["خبر"]
+
+
+def test_a_question_word_heading_no_named_clause_is_still_its_khabars_mubtada():
+    # قَالَ مَا مَنَعَكَ (7:12): مَا carries the arrow فاعل and no clause label, yet مَنَعَكَ tells about it
+    rows = [
+        row(0, 1, "قَالَ", "V", "فعل", "root", 0),
+        row(1, 0, "(هُوَ)", "PRON", "ضمير", "فاعل", 0),
+        row(2, 2, "مَا", "INTG", "حرف استفهام", "فاعل", 0),
+        row(3, 3, "مَنَعَ", "V", "فعل", "خبر", 2, constituent="VS"),
+        row(4, 3, "كَ", "PRON", "ضمير", "مفعول به", 3, segment="SUFFIX"),
+    ]
+    _, columns = drawn(rows)
+    assert columns["مَا"]["role"] == term("mubtada")
+
+
+@pytest.mark.parametrize("asked", sorted({"هَلْ", "مَتَىٰ"}))
+def test_a_question_particle_that_is_never_a_noun_stays_a_particle(asked):
+    rows = [{**r, "uthmani_token": asked, "lemma_ar": asked} if r["token_id"] == "1" else r for r in AL_INFITAR_17]
+    _, columns = drawn(rows)
+    assert columns["وَ" + asked]["role"] == SETTINGS["particle_kinds"]["حرف استفهام"]
 
 
 def test_a_sentence_opening_on_particles_is_named_by_the_verb_under_them():

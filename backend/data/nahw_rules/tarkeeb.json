@@ -160,6 +160,8 @@
     ],
     "_noun_only_comment": "Jobs only a noun's ending can do inside its own word: a word whose pronoun is its مضاف إليه is a noun, whatever the treebank calls it (أَيُّهُمْ is an اسم استفهام, tagged حرف استفهام), since no particle takes a مضاف إليه.",
     "noun_only": ["مضاف إليه"],
+    "_question_nouns_comment": "A question word the treebank tags a particle that a خبر hangs on is a question noun, the مبتدأ that خبر tells about (وَمَا أَدْرَاكَ، مَنْ ذَا الَّذِي، مَتَىٰ هَٰذَا الْوَعْدُ): a particle is told nothing, and only the hamza and هل are question particles (Mughni V1 p107: أيهم أشد، استفهامية وأنها مبتدأ وأشد خبر). `never_mubtada`: the two question particles, and the words that ask when, where or how, a ظرف or حال: they stay as the treebank has them.",
+    "question_nouns": {"kinds": ["حرف استفهام"], "told_by": ["خبر"], "never_mubtada": ["هل", "أ", "متى", "أين", "أيان", "أنى", "كيف"]},
     "_tone_comment": "Matched as substrings, first hit wins, so مفعول به and مفعول مطلق share one entry.",
     "relation_tones": [
       [

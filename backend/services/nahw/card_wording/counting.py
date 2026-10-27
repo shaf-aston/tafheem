@@ -1,8 +1,9 @@
 """Words of one kind side by side, counted and tied to the word they follow."""
 from __future__ import annotations
 
-from backend.services.nahw.book import counted_name, teacher_rules
+from backend.services.nahw.book import case_of, counted_name, teacher_rules
 from backend.services.nahw.syntax.naming import NAMED
+from backend.services.text.harakat import CASE_LETTER
 
 
 def counted(cards: list[dict], roles: list[dict]) -> None:
@@ -49,8 +50,27 @@ def followed(cards: list[dict], roles: list[dict]) -> None:
             continue
         on = root(i) if card.get("role") == atf else at
         reason.swap(said["before"], said["followed"].format(word=cards[on]["word"]))
+        if card.get("case") == "mabni" and card.get("type") == "ism" and (place := _place(cards, on)):
+            # يا أيها الذين: built, it stands in the place of the case it follows
+            reason.front.insert(0, said["built_follower"].format(place=said["place"][place]))
         if card.get("role") == atf and len(joined.get(on, [])) > 1:
             reason.rename(atf, f"{atf} {said['ordinals'][min(joined[on].index(i), len(said['ordinals']) - 1)]}")
     for on in joined:
         if (reason := cards[on].get("said")) and said["joined_on"] not in reason.text():
             reason.extras.append(said["joined_on"])
+
+
+def _place(cards: list[dict], at: int, seen: frozenset = frozenset()) -> str | None:
+    """u / a / i, the case a follower of this word stands in: the one it shows, else the place
+    its role fills, else (a follower itself) that of the word it follows. A built word whose
+    followers take its built vowel instead (`follow_built`: أيّ, يا زيدُ) gives that vowel's case."""
+    card = cards[at]
+    if (case := CASE_LETTER.get(card.get("case") or "")):
+        return case
+    role = card.get("role") or ""
+    if card.get("case") == "mabni" and (built := teacher_rules()["case_said"]["follow_built"].get(role)):
+        return built
+    if (case := case_of(role)):
+        return case
+    up = card.get("follows")
+    return _place(cards, up, seen | {at}) if isinstance(up, int) and 0 <= up < len(cards) and up not in seen else None

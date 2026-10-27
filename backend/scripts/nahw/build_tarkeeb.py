@@ -154,6 +154,7 @@ def _words_of(rows: list[dict], settings: dict) -> tuple[list[dict], dict[int, i
         if "STEM" in row["features"].split("|") and id(word) not in stemmed:
             stemmed.add(id(word))
             word["pos"] = row["pos"]
+            word["lemma"] = row["lemma_ar"]
         ref = int(row["ref_token_id"])  # a sentence's root points at itself
         if ref != token and "STEM" not in row["features"].split("|") and belongs.get(ref) == belongs[token]:
             # لَعَلَىٰ، وَإِنَّكَ: a prefix or ending hung on its own word's stem (لام التوكيد on عَلَى, the كَ
@@ -171,10 +172,16 @@ def _words_of(rows: list[dict], settings: dict) -> tuple[list[dict], dict[int, i
             head = by_token.get(int(row["ref_token_id"]))
             word["states_head"] = _states_particle(word["relation"], head, kinds)
 
-    for word in words:
+    asked = settings["question_nouns"]
+    told = {word["head"] for word in words if word.get("relation") in asked["told_by"]}
+    for index, word in enumerate(words):
         pieces = word.get("pieces", [])
+        # مَا in وَمَا أَدْرَاكَ: a question word a خبر hangs on is a noun, that خبر's مبتدأ
+        word["asked"] = index in told and bool(pieces) and pieces[0] in asked["kinds"] \
+            and arabic_text.strip_diacritics(word.get("lemma", "")) not in asked["never_mubtada"]
         word["particle"] = bool(pieces) and all(piece in kinds for piece in pieces) \
-            and not any(job in settings["noun_only"] for piece, job in word.get("parts", ()) if piece not in kinds)
+            and not any(job in settings["noun_only"] for piece, job in word.get("parts", ()) if piece not in kinds) \
+            and not word["asked"]
     return words, belongs
 
 
@@ -314,8 +321,9 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
                else nahw_book.term(settings["unit_heads"][kind])
                if children[index] and kind in settings["unit_heads"] else None)
         clause = settings["constituent_labels"].get(word.get("constituent"))
-        if own is None and children[index] and clause in _sentence_names(settings):
-            # هُوَ heading هُوَ ٱللَّهُ أَحَدٌ is its mubtada; the clause is the مفعول به
+        if own is None and children[index] and (clause in _sentence_names(settings) or word.get("asked")):
+            # هُوَ heading هُوَ ٱللَّهُ أَحَدٌ is its mubtada; the clause is the مفعول به. So is مَا
+            # in مَا مَنَعَكَ, told by مَنَعَكَ, whatever the clause it heads is called
             own = _opening_role(word, settings)
 
         leaf = {"word": index, **(nahw_book.shown(own) if own else {"role": role, "tone": tone})}

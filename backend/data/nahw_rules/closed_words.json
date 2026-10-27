@@ -1092,6 +1092,13 @@
    "_farika": "The alif after the plural و is written only at the word's end (تَخَافُوا, تَخَافُوهُمْ): with the pronoun off it comes back.",
    "farika": {"و": "وا"}
   },
+  "farqa_waw": {
+   "ar": "الواو الفارقة",
+   "effect": "a letter written on a name only to tell it from another (عَمْرو from عُمَر), in raf' and jarr; in nasb the tanween's alif tells them apart, so it is dropped (رأيت عَمْرًا)",
+   "_book": "Suyuti, Ham' al-Hawami' V3 p518: وزيدت الواو أيضا في (عمرو) وذلك للفرق بينه وبين (عمر) ولهذا اختصت بحالة الرفع والجر لأنه حالة النصب يكتب بألف دون عمر فيظهر الفرق",
+   "letter": "و",
+   "words": ["عمرو"]
+  },
   "haa_sakt": {
    "ar": "هاء السكت",
    "effect": "a ه added in a pause after a word built on a vowel, to keep that vowel: a حرف with no place in the sentence, the word read as it is without it",

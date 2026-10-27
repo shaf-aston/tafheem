@@ -71,3 +71,14 @@ def test_a_conditional_noun_is_a_noun_by_its_reading_before_its_tag():
     read as a noun it opens one before a past verb, however tagged."""
     assert _opened("NOM", "harf") == [] and _opened("NOM", None) != []
     assert _opened("PRT", "ism") != [] and _opened("PRT", None) == []
+
+
+@pytest.mark.parametrize("vowelled, bare, mabni", [
+    ("مُبْتَدَأٌ", "مبتدأ", True),  # قُلْ هُوَ: built, in the place of raf'
+    ("خَبَرٌ", "خبر", False),
+    ("بَدَلٌ", "بدل", False),
+])
+def test_a_role_written_vowelled_gives_the_bare_roles_reason(vowelled, bare, mabni):
+    # a recorded ayah names its words vowelled; the reason is the book's for the bare name
+    from backend.services.nahw.book import reason
+    assert reason(vowelled, mabni=mabni) == reason(bare, mabni=mabni) != f"{bare}."

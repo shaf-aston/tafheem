@@ -112,8 +112,10 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
     if case is None:
         return None
     if card.get("type") in ("harf", "damir"):
-        # a particle or a pronoun never shows a case of its own, only what it is built on (إِنَّ، لَمْ، فِي)
-        return _built(ending) + _moved(card, after) if (ending := _typed_ending(_unmoved(card, after))) else sign("mabni")
+        # a particle or a pronoun never shows a case of its own, only what it is built on (إِنَّ، لَمْ، فِي);
+        # إِنَّهُ is built on إِنَّ's fatha, not the ضمة of the pronoun on it
+        own = _without_object(card["word"]) if _has_pronoun(card["camel"]) else _unmoved(card, after)
+        return _built(ending) + _moved(card, after) if (ending := _typed_ending(own)) else sign("mabni")
     kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
@@ -151,8 +153,9 @@ def _typed_ending(word: str) -> str | None:
     if not marked:
         return None
     letter, marks = marked[-1]
-    if not marks and letter in "اوىي" and len(marked) > 1:
-        return on["ْ"]  # فِي، إِلَى، هَذَا: a long letter carries no vowel, it is built on the sukun
+    if letter in "اآوىي" and len(marked) > 1 and not any(m in on or m == SHADDA for m in marks):
+        # فِي، إِلَى، هَذَا، وَمَآ: a long letter carries no vowel (a reciter's madda is none), it is built on the sukun
+        return on["ْ"]
     return next((on[m] for m in marks if m in on), None)
 
 
@@ -235,8 +238,8 @@ def _dropped_weak(card: dict) -> bool:
 
 
 def _without_object(word: str) -> str:
-    """The verb with its object pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ,
-    ضَرَبُوهُ → ضَرَبُوا."""
+    """The verb or particle with its attached pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ,
+    ضَرَبُوهُ → ضَرَبُوا، إِنَّهُ → إِنَّ."""
     bare = strip_diacritics(word)
     # the object pronouns a verb can carry, longest first so هما is not read as ه
     pronoun = next((p for p in sorted(book_words("damir_muttasil", "on_verbs"), key=len, reverse=True)

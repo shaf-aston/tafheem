@@ -4,6 +4,8 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 import pytest
 
+from backend.services.dictionary import roots
+from backend.services.quran import corpus as quran_corpus
 from backend.services.sarf import morphology
 from backend.services.text.harakat import vowel_agreement
 
@@ -122,3 +124,18 @@ def test_a_command_the_table_reads_with_no_one_past_is_named_by_its_own_letters(
     # فَاقْبَلْهَا: the table's closest cells name no one past, so the word is the verb alone, its فَ and هَا peeled off
     tag = morphology.analyze_sentence("فَاقْبَلْهَا")[0]
     assert tag["lemma"] == "اقبل"
+
+
+@needs_camel
+@pytest.mark.skipif(not quran_corpus.is_loaded(), reason="corpus.db not built")
+@pytest.mark.parametrize("word", ["رَأَيْتُ", "يَرَى", "تَرَ"])
+def test_a_lemma_the_word_does_not_carry_is_the_qurans_lemma_of_its_root(word):
+    # CAMeL files every form of رأى (see) under راوند (rhubarb), and ظن وأخواتها is known by its lemma
+    assert morphology.analyze_sentence(word)[0]["lemma"] == "رأى"
+    assert roots.readings(word)[0].lemma == "رأى"  # the dictionary reads it so too
+
+
+@needs_camel
+@pytest.mark.skipif(not quran_corpus.is_loaded(), reason="corpus.db not built")
+def test_a_noun_takes_the_qurans_noun_lemma_not_its_verbs():
+    assert morphology.analyze_sentence("ٱلْمُعْتَدِينَ")[0]["lemma"] == "معتدي"  # CAMeL: متعدي; اعتدى is the verb

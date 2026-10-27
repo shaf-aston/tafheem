@@ -181,6 +181,7 @@ class Reading(NamedTuple):
     lemma: str
     root: str  # CAMeL's, a # kept for a weak radical it could not pin down; "" for none
     rooted: bool  # False for a word that has no root at all (has_no_root)
+    verb: bool = False  # read as a verb: its lemma is looked for among its root's verbs (roots.lemma_of)
 
 
 def root_pattern(root: str) -> str:
@@ -304,8 +305,9 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
     word_type = _pos_type(pos)
     root_ar = reading_root(a)
 
-    lex = a.get("lex") or a.get("diac") or word
-    lemma = strip_diacritics(lex)
+    from backend.services.dictionary import roots  # it reads with this module
+    # a lemma the word does not carry is not its lemma (رأيت filed under راوند): the Qur'an's for its root
+    lemma = roots.lemma_of(strip_diacritics(a.get("lex") or a.get("diac") or word), strip_diacritics(word), root_ar, pos == "verb")
     guessed = NO_ANALYSIS in a.get("atbtok", "")
 
     cas = a.get("cas", "na") or "na"
@@ -517,7 +519,7 @@ def readings(word: str) -> list[Reading]:
         root = root_pattern(a.get("root") or "") if rooted else ""
         if _UNKNOWN_RADICAL in root and pos not in ROOTED_POS:
             root = ""
-        reading = Reading(strip_diacritics(a.get("lex") or ""), root, rooted)
+        reading = Reading(strip_diacritics(a.get("lex") or ""), root, rooted, pos == "verb")
         if reading.lemma and reading not in out:
             out.append(reading)
     return out
@@ -811,13 +813,20 @@ def _name_in_nasb(typed: str, disambiguator=None) -> dict | None:
     """رَأَيْتُ زَيْدًا: CAMeL files a name without the alif its nasb tanween is written on, so a word
     none of its readings fits (زَيَّدَا is two vowels off), ending in that alif, is the word its letters
     before it spell, in nasb. One whose stem it does not know at all stays unread (مُسْرِعًا), and
-    one with another vowel on that alif or before it is no nasb (مُحَمَّدُا)."""
+    one with another vowel on that alif or before it is no nasb (مُحَمَّدُا). The reading is the one the
+    typed vowels fit (وَعَمْرًا is no عُمَر); a name whose letter is written only out of nasb (farqa_waw:
+    عَمْرو) is read with it back."""
     marked = letters(typed)
     if len(marked) < 3 or marked[-1][0] != "ا" or (marked[-1][1] | marked[-2][1]) - {"ً"}:
         return None
     stem = "".join(letter + "".join(marks - {"ً"}) for letter, marks in marked[:-1])
-    ranked = (_ranked([stem], disambiguator) or [[]])[0]
-    known = next((r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")), None)
+    def read(spelled: str) -> list[dict]:
+        return [r for r in (_ranked([spelled], disambiguator) or [[]])[0] if NO_ANALYSIS not in r.get("atbtok", "")]
+    farqa = book_map("farqa_waw", "letter")
+    readings = read(stem) + [{**r, "diac": r["diac"].removesuffix(farqa), "atbtok": r["atbtok"].removesuffix(farqa)}
+                             for name in book_words("farqa_waw") if bare_letters(stem).endswith(name.removesuffix(farqa))
+                             for r in read(stem + farqa)]
+    known = best_reading(stem, readings) or (readings[0] if readings else None)
     # the alif goes on the word's own split, so a وَ before the name stays its own piece (جِئْتُ وَزَيْدًا)
     return known and {**known, "cas": "a", "diac": known["diac"] + "ًا", "atbtok": known["atbtok"] + "ًا"}
 

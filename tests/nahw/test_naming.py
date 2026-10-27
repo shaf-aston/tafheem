@@ -868,3 +868,13 @@ def test_a_mudaf_is_as_definite_as_the_word_added_to_it():
                               (token(2, "المال", "مال", "NOM", 1, "IDF", stt="d"), False)):
         mudaf = token(1, "صاحب", "صاحب", "NOM", 0, "---", stt="c")
         assert _indefinite(mudaf, [mudaf, added]) is indefinite, added["form"]
+
+
+def test_a_follower_of_the_called_ayyuha_follows_it_though_it_is_tagged_a_particle():
+    # يا أيها الذين آمنوا: الذين is أيّ's صفة; يا, a real particle, is still climbed past
+    words = [{"id": 1, "form": "يا", "pos": "PRT", "lemma": "يا", "head": 2},
+             {"id": 2, "form": "أيها", "pos": "PRT", "lemma": "أيها", "head": 0},
+             {"id": 3, "form": "الذين", "pos": "NOM", "lemma": "الذي", "head": 2},
+             {"id": 4, "form": "زيد", "pos": "NOM", "lemma": "زيد", "head": 1}]
+    assert naming._followed(words[2], words, words) == 1
+    assert naming._followed(words[3], words, words) == 1
