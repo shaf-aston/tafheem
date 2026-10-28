@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts import (
-    Sentence, case_unseen, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb)
+    Sentence, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -51,6 +51,37 @@ def subject_clash(tokens: list[dict]) -> None:
             s = Sentence(tokens)
 
 
+def added_to_verb(tokens: list[dict]) -> None:
+    """شرب الماء: being a مضاف is the noun's alone (Ibn Ya'ish V1 p89: ومن خواص الاسم الإضافة. والمراد بالإضافة هنا
+    أن يكون الاسم مضافا ... وذلك مختص بالأسماء), so a noun the parser hung on a verb as its مضاف إليه is the
+    verb's doer or object. The doer comes straight after its verb (Ibn Aqil V2 p95: الأصل أن يلي الفاعل الفعل
+    من غير أن يفصل بينه وبين الفعل فاصل), so it is the doer, unless it is typed in nasb or the verb holds its
+    doer already; typed in jarr, it is left as read, and so is a time or place word, the verb's مفعول فيه
+    (Tasheel 3.2 p67; صُمْتُ يَوْمَ الْخَمِيسِ)."""
+    s = Sentence(tokens)
+    for token in tokens:
+        verb = s.head(token)
+        if not (verb and is_verb(verb) and token["rel"] == "IDF" and noun_tagged(token)) or typed_case_of(token) == "i" \
+                or place_time(token, s):
+            continue
+        has_doer = own_doer(verb) or any(k["rel"] == "SBJ" for k in s.kids(verb))
+        token["rel"] = "OBJ" if has_doer or typed_case_of(token) == "a" else "SBJ"
+
+
+def name_told_to(tokens: list[dict]) -> None:
+    """قَالَ إِبْرَاهِيمُ لِأَبِيهِ آزَرَ: a verb of saying takes as its object only a sentence it tells or a
+    word meaning one (Tasheel V1 p73: يحكى بالقول وفروعه الجمل، وينصب به المفرد المؤدي معناها), never a
+    name. A name the parser made its object whose ending can be jarr (a diptote's fatha is its jarr)
+    straight after a noun in jarr wears that noun's case: it names it again, its بدل."""
+    s = Sentence(tokens)
+    for token in tokens:
+        verb, before = s.head(token), previous_noun(token, s)
+        if verb and is_verb(verb) and token["rel"] == "OBJ" and is_name(token) and before \
+                and strip_diacritics(verb["lemma"]) in frames()["said_clause"]["verbs"] \
+                and typed_or_parsed_case(before) == "i" and "i" in shown_cases(token):
+            token["head"], token["rel"] = before["id"], "MOD"
+
+
 def repeated_doer(tokens: list[dict]) -> None:
     """قُلْتُ أَنَا الْحَقَّ: a detached pronoun of raf' straight after a verb of its person repeats the doer the
     verb holds (التوكيد اللفظي, Tasheel 3.10.3 p94; facts.follows). The parser may hang it as the subject of a
@@ -67,13 +98,22 @@ def repeated_doer(tokens: list[dict]) -> None:
 def doer_first(tokens: list[dict]) -> None:
     """ضَرَبَ مُوسَى عِيسَى: when neither name shows its case the doer must come first, so order alone
     tells them apart (Awdah al-Masalik 2/118: وجوبه ... أن يخشى اللبس). The parser hangs the second
-    on the first as one name; it is the verb's object, and the first its doer."""
+    on the first as one name; it is the verb's object, and the first its doer. A name typed with no
+    vowel shows no case either (رأى زيد عمرو), and a second showing nasb (أكرم محمد زيدا) is the
+    object all the more: a نعت or بدل would wear the first's case. So is any noun in nasb the parser
+    left there or made the name's object (شرب زيد الماء): a name does no verb's work to take one.
+    A name with ال showing no case is left: the ال looks back to the description it was named from
+    (Ibn Aqil V1 p184: أكثر ما تدخل على المنقول من صفة ... للدلالة على الالتفات إلى ما نقلت عنه من صفة),
+    so it may describe the first (جاء زيد الكريم)."""
     s = Sentence(tokens)
     for token in tokens:
         first = s.head(token)
         verb = s.head(first) if first else None
-        if verb and is_verb(verb) and token["rel"] == "---" and first["rel"] in ("SBJ", "OBJ", "---") \
-                and first["id"] < token["id"] and all(is_name(t) and case_unseen(t) for t in (first, token)) \
+        if verb and is_verb(verb) and not own_doer(verb) and token["rel"] in ("---", "OBJ") \
+                and first["rel"] in ("SBJ", "OBJ", "---") and first["id"] < token["id"] \
+                and is_name(first) and typed_case_of(first) is None and noun_tagged(token) \
+                and (is_name(token) and token.get("stt") != "d" and typed_case_of(token) is None
+                     or typed_or_parsed_case(token) == "a") \
                 and not any(subject_link(k) for k in s.kids(verb) if k is not first):
             first["rel"] = "SBJ"
             token["head"], token["rel"] = verb["id"], "OBJ"

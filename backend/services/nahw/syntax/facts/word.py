@@ -222,12 +222,15 @@ def case_unseen(token: dict) -> bool:
 
 
 def shown_cases(token: dict) -> set[str]:
-    """Every case the word's ending can mean: the one typed or parsed, and nasb too for a
-    ـات word typed with a kasra; any of the three for a مقصور noun whose case is unseen."""
+    """Every case the word's ending can mean: the one typed or parsed, nasb too for a ـات word
+    typed with a kasra and jarr too for a diptote typed with a fatha (لِأَبِيهِ آزَرَ); any of the
+    three for a مقصور noun whose case is unseen."""
     if case_unseen(token):
         return {"u", "a", "i"}
     shown = typed_or_parsed_case(token)
-    return {shown, "a"} if shows_nasb_by_kasra(token) else {shown} - {None}
+    if shows_nasb_by_kasra(token) or shown == "a" and shows_jarr(token):
+        return {shown, "a", "i"}
+    return {shown} - {None}
 
 
 def is_preposition(token: dict) -> bool:

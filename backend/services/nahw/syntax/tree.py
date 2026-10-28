@@ -215,6 +215,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         # قال الضيفُ سلامٌ عليكم: a subject a verb hangs as its object heads the sentence it says,
         # so the unit and the khabar stay inside it, not beside it among the verb's own words
         inside = subject["rel"] == "OBJ" and subject["head"] in by_id and is_verb(by_id[subject["head"]])
+        # قال لي زيد هو يكتب: a jar or ظرف hangs on a verb when there is one, an unwritten word only when there
+        # is none (Mughni V1 p566: لا بد من تعلقهما بالفعل أو ما يشبهه ... فإن لم يكن شيء من هذه الأربعة موجودا قدر),
+        # so one hung on the very verb whose said sentence the subject heads is that verb's, outside the sentence
+        if inside and held["head"] == subject["head"]:
+            continue
         if inside:
             held = {**held, "head": subject["id"]}
             drawn[[t["id"] for t in drawn].index(held["id"])], by_id[held["id"]] = held, held
@@ -418,6 +423,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             framed.add(token["id"])
     # يَحْمِلُ حَقِيبَةً after رَجُلًا, كَأَنَّ رَأْسَهُ زَبِيبَةٌ after حَبَشِيٌّ, يَرْكُضُ after جَاءَ الطَّالِبُ
     after_noun = FRAMES["clause_after_noun"]
+    described: dict[int, dict] = {}  # the noun each such sentence describes, by the sentence's id
     for token in drawn:
         head = by_id.get(token["head"])
         if (token["rel"] != "MOD" or not head or token["id"] in place_of or token["id"] < head["id"]
@@ -432,7 +438,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         known, case = definite(head), typed_or_parsed_case(head)
         if not known and (head.get("stt") != "i" or not case):  # مَا، مَتَى: no case shown, nothing to describe
             continue
-        job_of[token["id"]] = after_noun["definite" if known else "indefinite"]
+        job_of[token["id"]], described[token["id"]] = after_noun["definite" if known else "indefinite"], head
         if not known and role_of.get(head["id"]) in after_noun["on_khabar"] and is_participle(head):
             # جميلٌ يحب الجمال: a second khabar, no صفة
             name_of[head["id"]], job_of[token["id"]] = counted_name(role_of[head["id"]], 0), counted_name(role_of[head["id"]], 1)
@@ -575,7 +581,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     seen: set[int] = set()
 
     # every verb no typed word is the doer of, outermost first, so a khabar's pronoun can
-    # go back to its subject: the اسم كان inside كنتَ, or the مبتدأ above يكتبُ
+    # go back to its subject: the اسم كان inside كنتَ, or the مبتدأ above يكتبُ; a صفة's or حال's
+    # to the noun it describes (Ibn Aqil V3 p197: لا بد للجملة الواقعة صفة من ضمير يربطها
+    # بالموصوف): حِجَارَةٌ لَا تَنْطِقُ is هي
     persons_of: dict[int, list[str]] = {}
     subjects = {NAMED.mubtada, NAMED.ism_inna, *DOER["explicit"]}
     for token in sorted(drawn, key=lambda t: depth(t)):
@@ -587,7 +595,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             continue
         up = by_id.get(token["head"])
         nouns = [t for t in drawn if role_of[t["id"]] in subjects and t["id"] != token["id"] and (
-            t["id"] == token["head"] or (token["rel"] == "PRD" and t["head"] == token["head"]))]
+            t["id"] == token["head"] or (token["rel"] == "PRD" and t["head"] == token["head"]))] or (
+            [described[token["id"]]] if token["id"] in described else [])
         owner = [_person({"per": "3", **{k: v for k, v in nouns[0].items() if v not in (None, "na")}})] if nouns else (
             persons_of.get(up["id"]) if up and token["rel"] == "PRD" else None)
         if owner is None and any(_inside(token, by_id[reply], children_of) for reply in replies):

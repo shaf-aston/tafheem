@@ -159,7 +159,7 @@ def test_a_command_is_never_passive():
 
 def test_a_ta_verb_after_a_third_person_subject_is_she():
     _, leaves = analysed("هِنْدٌ تَكْتُبُ")
-    assert leaves["تَكْتُبُ"][0][0]["parts"][1]["detail"].endswith("هي")
+    assert leaves["تَكْتُبُ"][0][0]["parts"][1]["pronoun"] == "هي"
 
 
 @pytest.mark.parametrize("sentence, khabar, unit_job, drawn", [
@@ -195,6 +195,18 @@ def test_the_understood_thabit_wears_the_case_of_its_place(sentence, drawn):
 def test_a_jar_hanging_on_a_verb_or_a_khabar_gets_no_understood_word(sentence):
     _, leaves = analysed(sentence)
     assert not thabit_in(leaves)
+
+
+@pytest.mark.parametrize("sentence, subject", [("قال لي زيد هو يكتب", "هو"), ("قُلْتُ لَكَ زَيْدٌ يَكْتُبُ", "زَيْدٌ")])
+def test_a_jar_hanging_on_the_verb_of_saying_is_no_khabar_of_the_sentence_it_says(sentence, subject):
+    cards, leaves = analysed(sentence)
+    assert not thabit_in(leaves) and card_of(cards, subject)["role"] == "مبتدأ"
+
+
+@pytest.mark.parametrize("sentence, verb", [("إِنَّهَا حِجَارَةٌ لَا تَنْطِقُ", "تَنْطِقُ"), ("رَأَيْتُ بِنْتًا تَكْتُبُ", "تَكْتُبُ")])
+def test_a_ta_verb_describing_a_noun_hides_the_pronoun_back_to_it(sentence, verb):
+    _, leaves = analysed(sentence)
+    assert leaves[verb][0][0]["parts"][1]["pronoun"] == "هي"  # not أنتَ أو هي
 
 
 @pytest.mark.parametrize("sentence, noun, name", [
