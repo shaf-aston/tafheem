@@ -790,6 +790,15 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             if verb:
                 out[i] = verb
                 break
+    # أكل الطعام: a sentence tells a full thought, built of two nouns or a verb and a noun (Ibn Aqil V1 p14:
+    # الكلام ... اللفظ المفيد فائدة يحسن السكوت عليها ... ولا يتركب الكلام إلا من اسمين ... أو من فعل واسم).
+    # A مضاف typed bare with nothing but its مضاف إليه after it tells none, so where it reads as a past verb
+    # adding no letter, that verb with its hidden doer is the sentence. Typed vowels still choose (أَكْلُ الطَّعَامِ)
+    if len(out) == 2 and _bare_construct(out[0]) and out[1].get("cas") == "g":
+        verb = best_reading(tokens[0], [r for r in _widened(tokens[0], steps[0][1])
+                                        if r.get("pos") == "verb" and r.get("asp") == "p" and "ّ" not in r.get("diac", "")])
+        if verb:
+            out[0] = verb
     for i, said in paused.items():
         out[i] = {**out[i], "said": said}
     return out
