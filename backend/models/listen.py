@@ -46,17 +46,28 @@ class Heard(BaseModel):
     place: HeardPlace | None = None
 
 
+class WordSounds(BaseModel):
+    """The letters and vowels heard in a word against the ones it should have
+    (services/recitation/sounds.py). Shown, never scored."""
+    heard: list[str]
+    expected: list[str]
+    letter_ok: bool
+    vowel_ok: bool
+
+
 class WordDetail(BaseModel):
     """What a word card needs of one scored word.
 
     `weak`: the text of its least likely piece, null when the word is a single
     piece; `weak_from`: how many characters of the word come before it.
     `at`: the second of the recording its last piece lines up with, null when
-    the ear gave no position.
+    the ear gave no position. `sounds`: null when the sounds ear is off, missing
+    or has no expected sounds for the word.
     """
     weak: str | None = None
     weak_from: int | None = None
     at: float | None = None
+    sounds: WordSounds | None = None
 
 
 class Sureness(BaseModel):

@@ -214,6 +214,14 @@ class Listening(BaseSettings):
     dictation_model: str = "base"
     # tilawa's small Qur'an model (services/recitation/letters.py); writes letters in one pass. Only places.
     recitation_letters_path: str = "data/models/tilawa"
+    # The sounds ear (services/recitation/sounds.py): a wav2vec2 letter-and-vowel model, int8, built by
+    # scripts/recitation/build_sounds_ear.py. Display only: it never changes a word's colour.
+    recitation_sounds: bool = True
+    recitation_sounds_path: str = "data/models/phoneme-ear"
+    # Each ayah's expected sounds word by word, so the server needs no phonemizer.
+    recitation_sounds_reference_path: str = "data/quran/phonemes.json"
+    # Longer recordings are not listened to for sounds; the sureness check hears 30s at most too.
+    recitation_sounds_max_seconds: float = Field(default=30, gt=0)
     recitation_device: str = "cpu"
     recitation_compute: str = "int8"
     # Pinned: a few seconds of speech is too little for language detection, and a wrong guess returns the wrong language.
