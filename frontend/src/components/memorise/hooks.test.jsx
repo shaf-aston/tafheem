@@ -4,7 +4,8 @@ import { act, renderHook, waitFor } from '@testing-library/react'
 
 import { renderWithBackend } from '../../test/render'
 import { CHOICES, wordsOf } from '../../lib/memorise/memorise'
-import { useAnswers, useBookPage, useGaps, useHowYouAnswer, usePageSteps, useArrivedPage, withinPart } from './hooks'
+import { gapsScope, useAnswers } from './useAnswers'
+import { useBookPage, useGaps, useHowYouAnswer, usePageSteps, useArrivedPage, withinPart } from './hooks'
 
 // Two surahs: the first over two printed pages, the second on one.
 const WORDS = ['الحمد', 'لله', 'رب', 'العالمين', 'الرحمن', 'الرحيم', 'مالك', 'يوم', 'الدين']
@@ -18,9 +19,9 @@ const routes = {
 // The panel's own wiring, minus the microphone: answers, how, where, steps and gaps.
 const card = { current: null }
 function useMemorise() {
-  const answers = useAnswers()
-  const how = useHowYouAnswer(answers.fresh)
-  const where = useBookPage({ fresh: answers.fresh })
+  const how = useHowYouAnswer()
+  const where = useBookPage({})
+  const answers = useAnswers(gapsScope({ ...where, ...how }))
   const steps = usePageSteps({ ...where, card })
   const gaps = useGaps({ ...where, ...how, startFrom: 0 })
   return { ...answers, ...how, ...where, ...steps, ...gaps }
@@ -45,7 +46,7 @@ describe('useBookPage', () => {
   it('opens on the part a link names, never the first one on the way', async () => {
     const seen = []
     const view = renderWithBackend(() => {
-      const where = useBookPage({ fresh: vi.fn(), incoming: '2:1' })
+      const where = useBookPage({ incoming: '2:1' })
       seen.push(where.part)
       return where
     }, { routes })
@@ -55,24 +56,9 @@ describe('useBookPage', () => {
   })
 })
 
-describe('useAnswers', () => {
-  it('starts an attempt over: answers, marking and shown words all go', () => {
-    const { result } = renderHook(useAnswers)
-    act(() => {
-      result.current.setAnswers({ '0:1': 'x' })
-      result.current.setChecked(true)
-      result.current.setShown(new Set([2]))
-    })
-    act(() => result.current.fresh())
-    expect(result.current).toMatchObject({ answers: {}, checked: false })
-    expect(result.current.shown.size).toBe(0)
-  })
-})
-
 describe('useHowYouAnswer', () => {
-  it('reciting hides words unless nothing is to be missing; every choice starts over', () => {
-    const fresh = vi.fn()
-    const { result } = renderHook(() => useHowYouAnswer(fresh))
+  it('reciting hides words unless nothing is to be missing; a new deal is a new set of gaps', () => {
+    const { result } = renderHook(useHowYouAnswer)
     expect(result.current).toMatchObject({ way: 'type', hidden: false })
     act(() => result.current.chooseWay('recite'))
     expect(result.current.hidden).toBe(true)
@@ -81,7 +67,6 @@ describe('useHowYouAnswer', () => {
     const deal = result.current.deal
     act(() => result.current.reDeal())
     expect(result.current.deal).toBe(deal + 1)
-    expect(fresh).toHaveBeenCalledTimes(3)
   })
 })
 
@@ -133,7 +118,7 @@ describe('useArrivedPage', () => {
   it('reports another page of the same surah as taking its step\'s place, and a new surah as a step', async () => {
     const onVisit = vi.fn()
     const view = renderWithBackend(() => {
-      const where = useBookPage({ fresh: vi.fn() })
+      const where = useBookPage({})
       useArrivedPage({ ...where, onVisit, arrival: 0, incoming: null })
       return { ...where, ...usePageSteps({ ...where, card }) }
     }, { routes })
