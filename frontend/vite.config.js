@@ -13,7 +13,6 @@ import vercel from '../vercel.json'
 // serves a real file before it consults a rewrite, which is why the front door is
 // a filename and not a rule. One rewrite for the dev server and preview both.
 // /<tab> and /<tab>/<place> are the same page; lib/tabUrl.js reads the path.
-// The tab names come from vercel.json, so dev and the host agree on what is a tab.
 const PRETTY = { '/app': '/app.html' }
 const TABS = vercel.rewrites.map((rule) => rule.source.match(/^\/:tab\(([^)]+)\)/)?.[1]).find(Boolean)
 const TAB_PAGE = new RegExp(`^(/app)?/(${TABS})(/.*)?$`)
