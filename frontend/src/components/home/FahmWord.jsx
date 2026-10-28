@@ -22,7 +22,7 @@ const H = 200
 const CX = 160
 const BASELINE = 120
 const INK = { top: 56, bottom: 147 }
-const SPROUT = { x: 172, y: 88 } // the top of the middle letter, the هاء
+const SPROUT = { x: 165, y: 88 } // the top of the middle letter, the هاء
 const PARTY = { count: 28, x: CX, y: 104, spread: 30 }
 
 // The story's beats, in order; each one keeps what came before.

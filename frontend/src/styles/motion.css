@@ -479,7 +479,7 @@
 .fahm-ink { font-family: var(--font-arabic); font-size: 100px; }
 .fahm-line {
   fill: none;
-  stroke: var(--outline-c, color-mix(in srgb, var(--primary) 30%, transparent));
+  stroke: var(--outline-c, color-mix(in srgb, var(--primary) 42%, transparent));
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
   transition: stroke calc(var(--motion-base-ms) * var(--motion-scale) * 1ms);
@@ -561,7 +561,7 @@
     calc(var(--d) * var(--motion-enter-ms) * var(--motion-scale) * 1ms);
 }
 .fahm-petal { fill: color-mix(in srgb, var(--palette-rose) 80%, transparent); }
-.fahm-heart { fill: var(--primary-hi); }
+.fahm-heart { fill: var(--palette-gold); }
 .fahm-flower {
   transform: scale(0) rotate(-40deg);
   transition: transform calc(var(--motion-base-ms) * var(--motion-scale) * 1ms) ease-in;
