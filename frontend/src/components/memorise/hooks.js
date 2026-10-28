@@ -57,27 +57,8 @@ export const WAYS = [
   { id: 'recite', label: 'Recite it' },
 ]
 
-/** What has been answered, whether the page is marked, and the words shown. */
-export function useAnswers() {
-  const [answers, setAnswers] = useState({})
-  const [checked, setChecked] = useState(false)
-  // Words uncovered by asking rather than by saying them. Kept apart from the
-  // marks for exactly that reason: being shown a word is not reciting it.
-  const [shown, setShown] = useState(() => new Set())
-  // Anything that changes which words are missing starts the attempt over.
-  // Done here, where the reader asks for the change, rather than by watching
-  // the gaps afterwards, a watcher would also fire on the first render and
-  // clear a page nobody had touched yet.
-  const fresh = () => {
-    setAnswers({})
-    setChecked(false)
-    setShown(new Set())
-  }
-  return { answers, setAnswers, checked, setChecked, shown, setShown, fresh }
-}
-
 /** How the reader answers and how much is missing. */
-export function useHowYouAnswer(fresh) {
+export function useHowYouAnswer() {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY)
   // Bumped to deal a fresh set of gaps over the same page.
   const [deal, setDeal] = useState(1)
@@ -91,10 +72,7 @@ export function useHowYouAnswer(fresh) {
   // ever a word of this page, so a shorter page cannot leave it pointing off
   // the end.
   const hidden = way === 'recite' && difficulty !== 'none'
-  const chooseDifficulty = (id) => { setDifficulty(id); fresh() }
-  const reDeal = () => { setDeal((n) => n + 1); fresh() }
-  const chooseWay = (id) => { setWay(id); fresh() }
-  return { way, setWay, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay }
+  return { way, setWay, hidden, difficulty, deal, chooseDifficulty: setDifficulty, reDeal: () => setDeal((n) => n + 1), chooseWay: setWay }
 }
 
 /**
@@ -102,7 +80,7 @@ export function useHowYouAnswer(fresh) {
  * A page opened from a link starts on the link's book and part, so the surah it names is
  * what loads, not the first one and then that.
  */
-export function useBookPage({ fresh, incoming }) {
+export function useBookPage({ incoming }) {
   const [start] = useState(() => linkOf(incoming))
   const [bookId, setBookId] = useState(start?.book ?? DEFAULT_BOOK)
   // What the reader picked, which is nothing until they pick; the part
@@ -145,11 +123,11 @@ export function useBookPage({ fresh, incoming }) {
   const page = pages[pageNumber] ?? null
 
   // A new page, book or part is a new place, so the last one's starting word
-  // means nothing on it. Changing the starting word itself also starts over,
-  // because it moves what is covered.
-  const openAt = (at) => { setPinned(at); fresh() }
-  const openPart = (id, n = 0) => { setChosen(id); setPageNumber(n); setPinned(null); fresh() }
-  const openPage = (n) => { setPageNumber(n); setPinned(null); fresh() }
+  // means nothing on it. The answers are not cleared here: they are kept under
+  // the page's gaps (useAnswers), so going back finds them.
+  const openAt = setPinned
+  const openPart = (id, n = 0) => { setChosen(id); setPageNumber(n); setPinned(null) }
+  const openPage = (n) => { setPageNumber(n); setPinned(null) }
   // Switching books starts over at that book's own first part and its own
   // meaning-shown default, the Qur'an's "off by default" is not a preference
   // to carry across to a book most readers cannot already recite from memory.
@@ -159,7 +137,6 @@ export function useBookPage({ fresh, incoming }) {
     setPageNumber(0)
     setPinned(null)
     setMeaning(BOOKS[id].meaningDefault ?? false)
-    fresh()
   }
   // The pages of a part, fetched (or cached), and which holds a line (-1 for none).
   const pageOfLine = (b, partId, lineId) => client.fetchQuery(bookPartQuery(b, partId)).then(({ lines }) => {

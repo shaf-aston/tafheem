@@ -31,17 +31,20 @@ import Stepper from '../ui/inputs/Stepper'
 import WheelPicker from '../ui/inputs/WheelPicker'
 import { Skeleton } from '../ui/feedback/Skeleton'
 import {
-  difficultyOf, HIDDEN, useAnswers, useArrivedPage, useBookPage, useGaps, useHowYouAnswer,
+  difficultyOf, HIDDEN, useArrivedPage, useBookPage, useGaps, useHowYouAnswer,
   usePageSteps, useReciteState, useReciteTurns, WAYS, withinPart,
 } from './hooks'
+import { gapsScope, useAnswers } from './useAnswers'
 
 export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
-  const { answers, setAnswers, checked, setChecked, shown, setShown, fresh } = useAnswers()
-  const { way, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay } = useHowYouAnswer(fresh)
+  const { way, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay } = useHowYouAnswer()
   const {
     bookId, book, parts, part, data, isPending, isError, error, refetch, pages, page, pageNumber, meaning,
     setMeaning, pinned, openAt, openPart, openPage, openBook, pageOfLine,
-  } = useBookPage({ fresh, incoming })
+  } = useBookPage({ incoming })
+  const { answers, setAnswers, checked, setChecked, shown, setShown, fresh } = useAnswers(
+    gapsScope({ bookId, part, pageNumber, way, difficulty, deal, pinned }),
+  )
   // The mushaf page this one actually is, when the layout has been built. Null
   // means the pages were sized by word count, and saying "page 3 of 21" without
   // claiming a printed number is the honest thing to show for that.
