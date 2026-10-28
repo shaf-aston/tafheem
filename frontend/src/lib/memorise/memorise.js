@@ -200,13 +200,16 @@ export function blanksFor(page, share, random) {
  * @param page      the lines of one page
  * @param startWord which word of the page, counted across all its lines, to
  *                  begin on
+ * @param cue       whether that word is left printed. The top of a page needs
+ *                  one word to begin from; a word the reader pressed does not,
+ *                  they chose it, and printing it would give it away.
  */
-export function fromMemory(page, startWord = 0) {
+export function fromMemory(page, startWord = 0, cue = true) {
   const blanks = new Set()
   let at = 0
   page.forEach((line, l) => {
     wordsOf(line.arabic).forEach((_, w) => {
-      if (at > startWord) blanks.add(`${l}:${w}`)
+      if (at > startWord || (!cue && at === startWord)) blanks.add(`${l}:${w}`)
       at += 1
     })
   })

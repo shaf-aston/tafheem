@@ -51,7 +51,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const printedPage = printedPageOf(page)
   const { recitedPage, reciting, startFrom, startLabel, show } = useReciteState({ page, book, pinned, shown, setShown })
   const { blanks, choices } = useGaps({
-    data, page, pageNumber, deal, difficulty, way, hidden, startFrom,
+    data, page, pageNumber, deal, difficulty, way, hidden, startFrom, pinned,
   })
   const marks = page ? score(page, blanks, answers) : { right: 0, total: 0 }
   const landing = useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart })

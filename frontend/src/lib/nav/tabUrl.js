@@ -10,7 +10,7 @@
  *
  * `shareLink` adds those choices as a query, /nahw/ذهب?view=tree. Older
  * links, /app/nahw, /nahw?q=... and /app?tab=nahw&q=..., are read once on
- * arrival, then the address is tidied. /app alone is the app's front door.
+ * arrival, then the address is tidied.
  */
 
 // I'raab and tarkeeb were two tabs before they became two views of one.

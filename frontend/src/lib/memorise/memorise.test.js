@@ -267,6 +267,14 @@ describe('a page said from memory', () => {
     expect(blanks.has('2:1')).toBe(true)
     expect(blanks.has('3:0')).toBe(true)
   })
+
+  it('covers a word the reader pressed to start on', () => {
+    // Pressing a word in Hidden is choosing where to test yourself from, so
+    // uncovering it would hand over the very word asked for.
+    const blanks = fromMemory(IKHLAS, 6, false)
+    expect(blanks.has('2:0')).toBe(true)
+    expect(blanks.has('1:1')).toBe(false)
+  })
 })
 
 describe('where a page ends', () => {
