@@ -10,7 +10,7 @@ MODEL_DATASET = 'sounds-model'  # quran-dev/wav2vec2-ctc-quran-phoneme-run66-iqr
 MODEL_MARKER = 'model.safetensors'  # finds the attached folder under /kaggle/input
 CHECKS_DATASET = 'sounds-checks'  # the reviewer-marked learner recordings; judged on, never trained on
 CHECKS_MARKER = 'checks.jsonl'
-CHECKS_AUDIO = 'audio'  # folder of <n>.flac beside CHECKS_MARKER
+CHECKS_AUDIO = 'audio.npy'  # every recording's 16-bit numbers in a row, beside CHECKS_MARKER (a dataset keeps files, not folders)
 
 # --- the judge (judge.py) ---
 # Per word, flagged when the model's phonemes disagree with the reference in a consonant (articulation) or a

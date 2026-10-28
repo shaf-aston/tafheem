@@ -44,13 +44,15 @@ def train(start, items, to):
     symbols, fe = targets.vocab(start), Wav2Vec2FeatureExtractor.from_pretrained(start)
     labels = {k: targets.ids(k, symbols) for k in sorted({i['ayah'] for i in items})}
     hard = (noise_bank(), room_bank()) if S.AUGMENT else None
+    # Whole steps, not a ratio: the argument for a ratio has changed names between transformers versions.
+    warmup = int(S.WARMUP * S.EPOCHS * -(-len(items) // (S.BATCH * S.ACCUMULATE)))
     model = Wav2Vec2ForCTC.from_pretrained(start)
     model.freeze_feature_encoder()
     Trainer(
         model=model,
         args=TrainingArguments(
             output_dir=str(S.OUT / 'sounds-trainer'), learning_rate=S.LEARNING_RATE, num_train_epochs=S.EPOCHS,
-            per_device_train_batch_size=S.BATCH, gradient_accumulation_steps=S.ACCUMULATE, warmup_ratio=S.WARMUP,
+            per_device_train_batch_size=S.BATCH, gradient_accumulation_steps=S.ACCUMULATE, warmup_steps=warmup,
             dataloader_num_workers=S.WORKERS, seed=S.SEED, fp16=True, gradient_checkpointing=True,
             gradient_checkpointing_kwargs={'use_reentrant': False}, logging_steps=25, save_strategy='no',
             remove_unused_columns=False, label_names=['labels'], report_to=[]),

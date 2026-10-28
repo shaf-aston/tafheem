@@ -29,8 +29,9 @@ def checks():
     """The reviewer-marked recordings, each: id, ayah, kinds (per word), ref (per word phonemes), sound."""
     listing = attached(S.CHECKS_MARKER)
     clips = [json.loads(line) for line in listing.read_text(encoding='utf-8').splitlines()]
-    for c in clips:  # 16-bit PCM kept exactly: the same numbers the CPU run heard
-        c['sound'] = soundfile.read(listing.parent / S.CHECKS_AUDIO / c['file'], dtype='int16')[0].astype(np.float32) / 32768
+    audio = np.load(listing.parent / S.CHECKS_AUDIO, mmap_mode='r')
+    for c in clips:  # 16-bit numbers kept exactly: the same ones the CPU run heard
+        c['sound'] = audio[c['start']:c['stop']].astype(np.float32) / 32768
     return clips
 
 
