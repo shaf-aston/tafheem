@@ -118,7 +118,7 @@ export default function FahmWord({ className = '' }) {
             <rect className="fahm-level" x={0} y={INK.top} width={W} height={INK.bottom - INK.top} fill="white" />
           </mask>
         </defs>
-        <ellipse className="fahm-shadow" cx={CX} cy={174} rx={60} ry={3.5} />
+        <ellipse className="fahm-shadow" cx={CX} cy={160} rx={52} ry={3.5} />
         <g className="fahm-float">
           <text className="fahm-ink fahm-soak" x={CX} y={BASELINE} textAnchor="middle" lang="ar" mask={`url(#${soak})`}>{WORD}</text>
           <text className="fahm-ink fahm-line" x={CX} y={BASELINE} textAnchor="middle" lang="ar">{WORD}</text>
