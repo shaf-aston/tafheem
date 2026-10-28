@@ -1,6 +1,6 @@
 #!/bin/bash
 # Copy the databases onto the server. They are far too large for GitHub, so the
-# clone up there arrives without them. About 1.6 GB in all.
+# clone up there arrives without them. About 2 GB in all.
 #
 # Run from the project root, on this machine:
 #   bash deploy/copy-data.sh ubuntu@123.45.67.89
@@ -25,6 +25,9 @@ backend/data/quran/corpus.db
 backend/data/quran/meanings.db
 backend/data/quran/search.db
 backend/data/maqayees/roots.json
+backend/data/models/phoneme-ear/model.int8.onnx
+backend/data/models/phoneme-ear/vocab.json
+backend/data/quran/phonemes.json
 "
 
 for f in $FILES; do
