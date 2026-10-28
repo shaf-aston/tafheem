@@ -1,0 +1,186 @@
+{
+  "_comment": "The first-visit questions and how their answers rank what Home and Grow offer. The rules that read this are lib/learner/plan.js (the answers) and lib/learner/recommend.js (the ranking); this file is only the words and the numbers. Kept on the shelf under `storage-key`, so it follows the account like the level does.",
+  "storage-key": "plan",
+
+  "_steps": "In the order asked. `multi`: how many options may be picked (the first counts most); without it, one. `when`: asked only if every named answer is one of the listed ids (for a multi answer, if any picked one is). `fact`: shown after a pick, one per option id, or `*` for any; `stat` big, `body` under it, `source` small. Every number in a fact is from this app's own data, named in `source`. `check` is the optional three-tap placement: `levels` is the level each count right (0 to 3) points to.",
+  "steps": [
+    {
+      "id": "goals",
+      "tag": "Your why",
+      "question": "Why are you learning Arabic?",
+      "hint": "Pick up to 2. The first one counts most.",
+      "multi": 2,
+      "options": [
+        { "id": "understand", "label": "Understand the Qur’an", "arabic": "فهم", "hint": "Know what you read and hear in salah" },
+        { "id": "memorise", "label": "Memorise the Qur’an", "arabic": "حفظ", "hint": "Hifz, and keeping what you hold" },
+        { "id": "speak", "label": "Speak with people", "arabic": "كلام", "hint": "Everyday spoken Arabic" },
+        { "id": "sciences", "label": "Study the sciences", "arabic": "علم", "hint": "Fiqh, aqidah, hadith from the books" },
+        { "id": "grammar", "label": "Grammar, to read books", "arabic": "نحو", "hint": "Nahw and sarf, the classical way" },
+        { "id": "dawah", "label": "Answer questions about Islam", "arabic": "دعوة", "hint": "For friends, family, colleagues" }
+      ],
+      "fact": {
+        "understand": { "stat": "31,147", "body": "times the 382 words of the Words world appear in the Qur’an. The top ten alone: 7,430. قَالَ by itself: 1,719.", "source": "80% of Qur’anic Words, Dr Abdulazeez Abdulraheem" },
+        "memorise": { "stat": "509", "body": "groups of look-alike verses in Similar, the ones easiest to mix up. Memorise hides words and checks your recital." },
+        "speak": { "stat": "8", "body": "spoken dialects, from Egyptian to Moroccan, plus Fusha. Phrases are read aloud." },
+        "sciences": { "stat": "338", "body": "fiqh lessons from Mukhtasar al-Quduri, chapter by chapter. Plus al-Tahawi’s creed and an-Nawawi’s Forty." },
+        "grammar": { "stat": "26", "body": "lessons on al-Ajurrumiyya, the first grammar book. And Nahw explains any sentence you type: every word’s role, and why." },
+        "dawah": { "stat": "52", "body": "common questions in 8 topics, each answered with its evidence." }
+      }
+    },
+    {
+      "id": "read",
+      "tag": "The letters",
+      "question": "Can you read Arabic letters?",
+      "options": [
+        { "id": "no", "label": "Not yet", "arabic": "ا ب ت", "hint": "I am starting from zero" },
+        { "id": "slow", "label": "Slowly", "arabic": "قِرَاءَة", "hint": "Letter by letter" },
+        { "id": "yes", "label": "Yes, comfortably", "arabic": "اِقْرَأْ", "hint": "I can read a page" }
+      ],
+      "fact": {
+        "no": { "stat": "28", "body": "letters. A fully vowelled Qur’an marks every sound, so once you know the letters, the page tells you how to say each word." },
+        "slow": { "stat": "1 word", "body": "at a time is how speed comes: each word you know is read faster next time. Lessons show every word fully vowelled." },
+        "yes": { "stat": "→", "body": "Then words are your quickest win. Knowing what you read starts now." }
+      }
+    },
+    {
+      "id": "know",
+      "tag": "What you know",
+      "question": "How much do you understand?",
+      "when": { "read": ["slow", "yes"] },
+      "options": [
+        { "id": "few", "label": "A few words", "arabic": "ال", "hint": "Beginner" },
+        { "id": "many", "label": "Many words, little grammar", "arabic": "كَلِمَة", "hint": "Intermediate" },
+        { "id": "grammar", "label": "I can follow the grammar", "arabic": "نَحْو", "hint": "Advanced" }
+      ],
+      "fact": {
+        "*": { "stat": "30", "body": "answers and Tafheem checks this for you: 80% right moves you up, under 60% brings you back. Change it any time until then." }
+      }
+    },
+    {
+      "id": "check",
+      "tag": "Quick check",
+      "question": "Three taps to check?",
+      "when": { "read": ["slow", "yes"] },
+      "levels": [1, 1, 2, 3],
+      "items": [
+        { "question": "Which one is “the book”?", "options": ["كِتَاب", "الْكِتَاب", "كُتُب"], "right": 1, "after": "ال makes a word “the”. That is the very first Basics lesson." },
+        { "question": "What does رَبّ mean?", "options": ["earth", "Lord", "day"], "right": 1, "after": "رَبّ comes 970 times in the Qur’an. You will meet it often." },
+        { "question": "In ذَهَبَ الوَلَدُ, what is الوَلَدُ?", "options": ["the doer (fāʿil)", "the object (mafʿūl)", "a particle (ḥarf)"], "right": 0, "after": "The one who does the verb is raised, so it ends in ـُ. That is Nahw." }
+      ]
+    },
+    {
+      "id": "lang",
+      "tag": "Meanings",
+      "question": "Which language do you read meanings in?",
+      "options": [
+        { "id": "en", "label": "English", "arabic": "Aa" },
+        { "id": "ur", "label": "Urdu", "arabic": "اردو" }
+      ],
+      "fact": {
+        "*": { "stat": "=", "body": "Your answers count toward your level the same in either language." }
+      }
+    },
+    {
+      "id": "hifz",
+      "tag": "Memorised",
+      "question": "How much of the Qur’an do you know by heart?",
+      "options": [
+        { "id": "none", "label": "Not much yet", "arabic": "بِدَايَة" },
+        { "id": "amma", "label": "Short surahs", "arabic": "عَمَّ", "hint": "Juz ʿAmma or some of it" },
+        { "id": "few", "label": "A few juz", "arabic": "أَجْزَاء" },
+        { "id": "most", "label": "Most or all", "arabic": "حَافِظ" }
+      ],
+      "fact": {
+        "none": { "stat": "5×", "body": "a day you already say the words of salah. The Prayer world teaches each phrase with its meaning." },
+        "amma": { "stat": "1 in 5", "body": "words hidden to start, then 1 in 3, then half, until you recite a page from memory." },
+        "few": { "stat": "509", "body": "look-alike verse groups in Similar help keep what you hold from mixing." },
+        "most": { "stat": "509", "body": "look-alike verse groups in Similar, and Memorise listens to your recital word by word." }
+      }
+    },
+    {
+      "id": "dialect",
+      "tag": "Spoken",
+      "question": "Which Arabic do you want to speak?",
+      "when": { "goals": ["speak"] },
+      "options": [
+        { "id": "egyptian", "label": "Egyptian", "arabic": "مصري" },
+        { "id": "damascene", "label": "Levantine", "arabic": "شامي" },
+        { "id": "gulf", "label": "Gulf", "arabic": "خليجي" },
+        { "id": "hejazi", "label": "Hejazi", "arabic": "حجازي" },
+        { "id": "iraqi", "label": "Iraqi", "arabic": "عراقي" },
+        { "id": "moroccan", "label": "Moroccan", "arabic": "مغربي" },
+        { "id": "yemeni", "label": "Yemeni", "arabic": "يمني" },
+        { "id": "fusha", "label": "Not sure: Fusha", "arabic": "فصحى" }
+      ],
+      "fact": {
+        "fusha": { "stat": "فصحى", "body": "is the shared written Arabic and the Qur’an’s own language. A safe first step anywhere." },
+        "*": { "stat": "→", "body": "Everyday phrases in this dialect, read aloud." }
+      }
+    },
+    {
+      "id": "school",
+      "tag": "Fiqh",
+      "question": "Do you follow a school of fiqh?",
+      "when": { "goals": ["sciences"] },
+      "options": [
+        { "id": "hanafi", "label": "Hanafi", "arabic": "حنفي" },
+        { "id": "shafii", "label": "Shafiʿi", "arabic": "شافعي" },
+        { "id": "maliki", "label": "Maliki", "arabic": "مالكي" },
+        { "id": "hanbali", "label": "Hanbali", "arabic": "حنبلي" },
+        { "id": "none", "label": "Not sure", "arabic": "؟" }
+      ],
+      "fact": {
+        "hanafi": { "stat": "القدوري", "body": "Mukhtasar al-Quduri is a core Hanafi text. Fiqh will lead with it." },
+        "*": { "stat": "القدوري", "body": "Fiqh today is al-Quduri, a Hanafi text. It stays open to you; it just won’t be pushed first." }
+      }
+    },
+    {
+      "id": "minutes",
+      "tag": "Your time",
+      "question": "How long a day?",
+      "options": [
+        { "id": "5", "label": "5 min", "arabic": "٥", "xp": 20 },
+        { "id": "10", "label": "10 min", "arabic": "١٠", "xp": 50 },
+        { "id": "20", "label": "20 min", "arabic": "٢٠", "xp": 100 }
+      ],
+      "fact": {
+        "5": { "stat": "30 hours", "body": "of Arabic in a year, at 5 minutes a day. Daily goal: 20 XP." },
+        "10": { "stat": "61 hours", "body": "of Arabic in a year, at 10 minutes a day. Daily goal: 50 XP." },
+        "20": { "stat": "122 hours", "body": "of Arabic in a year, at 20 minutes a day. Daily goal: 100 XP." }
+      }
+    }
+  ],
+
+  "_levels": "The level answered, as a number: 0 cannot read the letters yet, 1 to 3 the three levels.json levels in order. `read` no is 0; otherwise `know` gives it, unless the check was taken and not set aside.",
+  "levels": { "read": { "no": 0 }, "know": { "few": 1, "many": 2, "grammar": 3 } },
+
+  "_places": "What can be offered: a Grow world (`world`, a worlds.json id) or a tab (`tab`, a lib/nav/tabs.js id). `band`: the lowest and highest level (as above) it suits. `goals`: how much it serves each goal, 0 to 1. `times`: a multiplier when every named answer is one of the listed ids (as `when` above). Order breaks ties.",
+  "places": [
+    { "id": "basics", "world": "basics", "band": [0, 1], "goals": { "understand": 0.7, "speak": 0.3, "grammar": 0.3 } },
+    { "id": "words", "world": "words", "band": [1, 2], "goals": { "understand": 1 } },
+    { "id": "prayer", "world": "prayer", "band": [0, 3], "goals": { "understand": 0.5, "memorise": 0.3, "sciences": 0.5 } },
+    { "id": "quran", "world": "quran", "band": [2, 3], "goals": { "understand": 0.8, "memorise": 0.5 } },
+    { "id": "hadith", "world": "hadith", "band": [2, 3], "goals": { "sciences": 0.8, "dawah": 0.5 } },
+    { "id": "fiqh", "world": "fiqh", "band": [1, 3], "goals": { "sciences": 1 },
+      "times": [{ "when": { "school": ["shafii", "maliki", "hanbali"] }, "by": 0.4 }] },
+    { "id": "aqidah", "world": "aqidah", "band": [1, 3], "goals": { "sciences": 0.9, "dawah": 0.6 } },
+    { "id": "nahw", "world": "nahw", "band": [2, 3], "goals": { "grammar": 1, "understand": 0.4 } },
+    { "id": "sarf", "world": "sarf", "band": [2, 3], "goals": { "grammar": 0.9, "understand": 0.3 } },
+    { "id": "colloq", "tab": "colloq", "band": [0, 3], "goals": { "speak": 1 } },
+    { "id": "mem", "tab": "mem", "band": [1, 3], "goals": { "memorise": 1 },
+      "times": [{ "when": { "hifz": ["amma", "few", "most"] }, "by": 1.3 }] },
+    { "id": "similar", "tab": "similar", "band": [2, 3], "goals": { "memorise": 0.6 },
+      "times": [{ "when": { "hifz": ["none", "amma"] }, "by": 0.3 }] },
+    { "id": "dawah", "tab": "dawah", "band": [0, 3], "goals": { "dawah": 1 } }
+  ],
+
+  "_rank": "score = (goal + level) × fade + done. goal: each picked goal's weight, the first in full and the next × `second-goal`, × how well the level fits (1 inside the band, `near-level` one step out, 0 further). level: `level-weight` × that fit, for a place serving any picked goal. With no goal picked, `no-goal` weights stand in. fade = 1 / (1 + answers given / `fade-at`), so what was said counts half once `fade-at` answers are in (levels.json settles a level at the same 30). done: lib/grow/suggest.js's recent use × `done-weight`, which keeps a day's use near one goal's pull.",
+  "rank": {
+    "second-goal": 0.7,
+    "near-level": 0.35,
+    "level-weight": 0.35,
+    "fade-at": 30,
+    "done-weight": 0.25,
+    "no-goal": { "basics": 0.5, "words": 0.5 }
+  }
+}
