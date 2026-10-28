@@ -76,7 +76,8 @@ def after_pointer(tokens: list[dict]) -> None:
     describing word it hung as its subject, is the khabar, that word its mubtada. A plain noun stays
     its subject: after ما it is the مبتدأ مؤخر of the negation (ما في الدار أحدٌ, particles `fronted`).
     A ظرف or جار ومجرور takes no subject, so one hung as the subject of the ظرف or majrur that is the
-    opener's صلة (وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى) is told of the opener."""
+    opener's صلة (وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى) is told of the opener. A pointer the parser hung on the
+    indefinite noun after it is that noun's mubtada the same."""
     s = Sentence(tokens)
     for token in tokens:
         head = s.head(token)
@@ -89,6 +90,12 @@ def after_pointer(tokens: list[dict]) -> None:
                 and not any(t is not token and t["head"] == head["id"] and t["rel"] in ("PRD", "SBJ") for t in tokens)):
             token["head"], token["rel"] = 0, "---"
             head["head"], head["rel"] = token["id"], "SBJ"
+        # هَذِهِ حِجَارَةٌ: the parser may hang the pointer as the صفة of the indefinite noun after it, but a نعت
+        # follows its noun, so the pointer is that noun's mubtada, as it hangs in هَذَا رَجُلٌ
+        elif (token.get("pos_camel") == "pron_dem" and token["rel"] == "MOD" and head and head["head"] == 0
+                and head["id"] > token["id"] and head.get("pos_camel") in ("noun", "adj")
+                and _indefinite(head, tokens) and typed_case_of(head) != "a"):
+            token["rel"] = "SBJ"
 
 
 def told_of_jar(tokens: list[dict]) -> None:

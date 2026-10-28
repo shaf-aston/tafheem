@@ -248,3 +248,13 @@ def test_a_written_nasb_after_the_subject_is_the_object(head_typed, rel, moved):
              _tok(3, "عمر", "PROP", 2, rel.removesuffix("-diptote"), **last)]
     subject_clash(words)
     assert ((words[2]["head"], words[2]["rel"]) == (1, "OBJ")) is moved
+
+
+@pytest.mark.parametrize("state, rel", [("i", "SBJ"), ("d", "MOD")])
+def test_a_pointer_hung_on_the_indefinite_noun_after_it_is_its_mubtada(state, rel):
+    """هَذِهِ حِجَارَةٌ: a نعت follows its noun, so the pointer is the mubtada; a definite noun after it
+    (هَذِهِ الْحِجَارَةُ) is its بدل or صفة, and the two make no sentence by themselves."""
+    from backend.services.nahw.syntax.repair.khabar import after_pointer
+    words = [_tok(1, "هذه", "NOM", 2, "MOD", pos_camel="pron_dem"), _tok(2, "حجارة", "NOM", 0, "---", stt=state)]
+    after_pointer(words)
+    assert words[0]["rel"] == rel

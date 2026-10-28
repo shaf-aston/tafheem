@@ -3,9 +3,9 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one
+from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one, is_subject_pronoun
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, is_name, present_verb_tagged, subject_link, attached_pronoun
+from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer, own_doer
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -320,3 +320,16 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
             t["pos"] in ("NOM", "PROP", "VRB", "VRB-PASS") and t["id"] < head["id"] for t in s.tokens):
         return False  # the و of an oath opens its clause; after a word it joins
     return not any(noun_tagged(t) and head["id"] < t["id"] < token["id"] for t in s.tokens)
+
+
+def quoted_head(token: dict, s: Sentence) -> bool:
+    """قال الضيفُ سلامٌ عليكم، قال زيدٌ الجوُّ جميلٌ: a verb has one doer (Tasheel 2.4.1), so a raf'
+    word a verb of saying (roles.json said_clause) holds after its doer is no second one but heads
+    the sentence it says, its مقول القول, named inside as that sentence would be on its own.
+    قُلْ هُوَ اللَّهُ أَحَدٌ: a command's doer is the hidden أنت, so it holds one before any word.
+    قال إبراهيمُ أنا أكسرُ: a detached pronoun of raf' is raf' by its own form, untyped or not.
+    قُلْتُ أَنَا ذَاهِبٌ: a verb of the first or second person holds its doer in itself (its تاء)."""
+    head = s.head(token)
+    return (token["rel"] == "OBJ" and (typed_or_parsed_case(token) == "u" or is_subject_pronoun(token)) and head is not None and is_verb(head)
+            and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
+            and (own_doer(head) or holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"]))))
