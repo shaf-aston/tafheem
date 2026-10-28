@@ -266,3 +266,7 @@ backend/data/models/finetune-ear/
 # Line-by-line English made on the server; a deploy must never overwrite it.
 backend/data/maqayees/english_lines.kept.json
 backend/data/maqayees/*.writing
+
+# The sounds ear (services/recitation/sounds.py), built by scripts/recitation/build_sounds_ear.py and shipped by deploy/copy-data.sh
+backend/data/models/phoneme-ear/
+backend/data/quran/phonemes.json

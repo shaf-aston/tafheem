@@ -5,6 +5,7 @@ Run: python -m pytest tests/recitation/test_recitation_check.py
 """
 from __future__ import annotations
 
+import pytest
 from fastapi.testclient import TestClient
 from starlette.requests import Request
 
@@ -17,6 +18,12 @@ from backend.services.recitation import checker, place
 client = TestClient(app)
 # The first bytes of a browser's webm recording.
 WEBM = bytes([0x1A, 0x45, 0xDF, 0xA3]) + bytes(8)
+
+
+@pytest.fixture(autouse=True)
+def no_sounds_ear(monkeypatch):
+    """These tests stand in for the Whisper ear only; the sounds ear has its own file."""
+    monkeypatch.setattr(get_settings(), "recitation_sounds", False)
 
 
 def test_nothing_places_without_two_words_in_a_row():
@@ -54,8 +61,9 @@ def test_each_word_carries_its_weak_piece_and_second_to_its_own_ayah(monkeypatch
         {"sure": 0.9, "weak": {"text": f"w{i}", "start": i}, "at": float(i)} for i in range(len(words))])
     sure, detail = recitation.check(b"sound", "أحد الله الصمد", ["112:1", "112:2"])
     assert detail == {
-        "112:1": [None, None, None, {"weak": "w0", "weak_from": 0, "at": 0.0}],
-        "112:2": [{"weak": "w1", "weak_from": 1, "at": 1.0}, {"weak": "w2", "weak_from": 2, "at": 2.0}],
+        "112:1": [None, None, None, {"weak": "w0", "weak_from": 0, "at": 0.0, "sounds": None}],
+        "112:2": [{"weak": "w1", "weak_from": 1, "at": 1.0, "sounds": None},
+                  {"weak": "w2", "weak_from": 2, "at": 2.0, "sounds": None}],
     }
     assert [x is None for x in sure["112:1"]] == [x is None for x in detail["112:1"]]
 
@@ -145,7 +153,8 @@ def test_sureness_comes_from_its_own_endpoint_not_the_words_one(monkeypatch):
     ).json()
     assert checked == {
         "sure": {"112:1": [1.0, 1.0, None, None]},
-        "detail": {"112:1": [{"weak": "ـُ", "weak_from": 0, "at": 0.4}, {"weak": None, "weak_from": None, "at": 0.9}, None, None]},
+        "detail": {"112:1": [{"weak": "ـُ", "weak_from": 0, "at": 0.4, "sounds": None},
+                             {"weak": None, "weak_from": None, "at": 0.9, "sounds": None}, None, None]},
     }
 
 
