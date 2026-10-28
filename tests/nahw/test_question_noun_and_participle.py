@@ -258,3 +258,13 @@ def test_a_pointer_hung_on_the_indefinite_noun_after_it_is_its_mubtada(state, re
     words = [_tok(1, "هذه", "NOM", 2, "MOD", pos_camel="pron_dem"), _tok(2, "حجارة", "NOM", 0, "---", stt=state)]
     after_pointer(words)
     assert words[0]["rel"] == rel
+
+
+@pytest.mark.parametrize("pos, rel", [("PROP", "SBJ"), ("NOM", "OBJ")])
+def test_a_bare_name_after_a_verb_of_saying_is_its_doer(pos, rel):
+    """قال زيد هو يكتب typed bare: a verb of saying takes a told sentence or a word meaning one, never a
+    name, so the name is its doer; a plain noun (قال كلام) keeps the parser's reading."""
+    from backend.services.nahw.syntax.repair.subject_clash import subject_clash
+    words = [_tok(1, "قال", "VRB", 0, "---"), _tok(2, "زيد" if pos == "PROP" else "كلام", pos, 1, "OBJ")]
+    subject_clash(words)
+    assert words[1]["rel"] == rel

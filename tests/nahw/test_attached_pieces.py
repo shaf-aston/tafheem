@@ -688,6 +688,7 @@ def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved)
     ("قال زيد هو يكتب", "زيد", ("role", "فاعل")),
     ("قال زيد هو يكتب", "هو", ("role", "مبتدأ")),
     ("قال لي زيد هو يكتب", "زيد", ("role", "فاعل")),  # the first name after the verb, not only the next word
+    ("يا غلام سم الله", "الله", ("role", "مفعول به")),  # only a verb of saying takes no name as its object
     ("كتب الدرس", "الدرس", ("role", "مفعول به")),  # a plain noun keeps the parser's reading by its meaning
     # a verb of the first or second person holds its doer (its تاء): the raf' pronoun after it opens the quote
     ("قُلْتُ أَنَا ذَاهِبٌ", "أَنَا", ("role", "مبتدأ")),
