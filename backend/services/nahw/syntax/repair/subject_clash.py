@@ -1,9 +1,10 @@
 """Repair 2: a word hung on a verb's subject that the typed vowels forbid there is the verb's object."""
 from __future__ import annotations
 
-from backend.services.nahw.book import extra_ba_on, is_mabni, is_one
+from backend.services.text.arabic_text import strip_diacritics
+from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts import (
-    Sentence, case_unseen, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb)
+    Sentence, case_unseen, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -16,12 +17,20 @@ def subject_clash(tokens: list[dict]) -> None:
     whose nasb is written (its alif of tanween) is neither its نعت nor its مضاف إليه, which is jarr.
     أَحَبَّ زَيْدٌ عَمْرًا: the doer is raf' and the object nasb (Qatr al-Nada p13: باب الفاعل مرفوع،
     p15: المفعول منصوب), so a word the parser made the object that the reader typed in raf', on a
-    verb with no doer, is its doer."""
+    verb with no doer, is its doer. Typed bare, the first name after a verb of saying that not even the
+    parser reads in nasb is that doer: such a verb takes as its object a sentence it tells, or a single
+    word meaning one or meant as its bare letters (Tasheel V1 p73: يحكى بالقول وفروعه الجمل، وينصب به
+    المفرد المؤدي معناها والمراد به مجرد اللفظ; Ashmuni V1 p379: قلت شعرا، يقال له إبراهيم), never a
+    name, and with no case shown the doer comes first (Awdah al-Masalik 2/118): قال زيد هو يكتب. Any
+    other verb keeps the parser's reading, which weighs its meaning (كتب الدرس, يا غلام سم الله). A verb
+    holding its doer in itself (قُلْتُ) takes no second one: قُلْتُ زَيْدٌ قَائِمٌ."""
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
-        if verb and is_verb(verb) and token["rel"] == "OBJ" and typed_case_of(token) == "u" \
-                and not holds_doer(verb, s.kids(verb)):
+        if verb and is_verb(verb) and token["rel"] == "OBJ" and not own_doer(verb) and not holds_doer(verb, s.kids(verb)) \
+                and ((typed := typed_case_of(token)) == "u" or typed is None and token["id"] > verb["id"]
+                     and is_name(token) and typed_or_parsed_case(token) != "a"
+                     and strip_diacritics(verb["lemma"]) in frames()["said_clause"]["verbs"]):
             token["rel"] = "SBJ"
     for token in tokens:
         head = s.head(token)
@@ -40,6 +49,19 @@ def subject_clash(tokens: list[dict]) -> None:
             token["head"], token["rel"] = verb["id"], "OBJ"
             head["mudaf"] = has_added(head, tokens)
             s = Sentence(tokens)
+
+
+def repeated_doer(tokens: list[dict]) -> None:
+    """قُلْتُ أَنَا الْحَقَّ: a detached pronoun of raf' straight after a verb of its person repeats the doer the
+    verb holds (التوكيد اللفظي, Tasheel 3.10.3 p94; facts.follows). The parser may hang it as the subject of a
+    word after it in nasb or jarr, which a مبتدأ never has for its khabar (Qatr al-Nada p13: الخبر مرفوع), so
+    it hangs on the verb it follows."""
+    s = Sentence(tokens)
+    for token in tokens:
+        verb, head = s.by_id.get(token["id"] - 1), s.head(token)
+        if (verb and is_verb(verb) and is_subject_pronoun(token) and verb.get("per") == token.get("per")
+                and token["rel"] == "SBJ" and head and head["id"] > token["id"] and typed_or_parsed_case(head) in ("a", "i")):
+            token["head"] = verb["id"]
 
 
 def doer_first(tokens: list[dict]) -> None:

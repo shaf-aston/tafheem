@@ -144,3 +144,13 @@ def test_a_vowelled_word_the_corpus_has_only_with_a_shadda_is_not_that_word():
 
 def test_a_word_typed_with_no_marks_is_every_spelling_of_its_letters():
     assert quran_corpus.root_of("سنة") == "سنن"
+
+
+@pytest.mark.parametrize("word, lemma", [
+    ("آزَرَ", "آزَر"),   # a name alone at 6:74; the verb comes only as فَآزَرَهُ
+    ("مُوسَى", "مُوسَى"),
+    ("عاد", None),       # a people and a verb (عَادَ): its letters spell more than the name
+    ("قال", None),
+])
+def test_a_name_is_known_by_letters_the_quran_spells_no_other_word_with(word, lemma):
+    assert quran_corpus.name_of(word) == lemma

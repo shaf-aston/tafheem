@@ -8,6 +8,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
+from backend.services.quran import corpus as quran_corpus
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.syntax.catib_onnx import files_present
 
@@ -683,12 +684,46 @@ def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved)
     ("مَرَرْتُ بِرَجُل كَرِيمٍ", "كَرِيمٍ", ("role", "صفة")),
     # the word itself is that verb only by a typed fatha: أَبُوهُ's و is the raf' of the five nouns
     ("اَلتِّلْمِيذُ أَبُوهُ مُعَلِّمٌ", "أَبُوهُ", ("role", "مبتدأ")),
+    # typed bare, a name straight after a verb with no doer is that doer: the doer comes first (قصص النبيين)
+    ("قال زيد هو يكتب", "زيد", ("role", "فاعل")),
+    ("قال زيد هو يكتب", "هو", ("role", "مبتدأ")),
+    ("قال لي زيد هو يكتب", "زيد", ("role", "فاعل")),  # the first name after the verb, not only the next word
+    ("يا غلام سم الله", "الله", ("role", "مفعول به")),  # only a verb of saying takes no name as its object
+    ("كتب الدرس", "الدرس", ("role", "مفعول به")),  # a plain noun keeps the parser's reading by its meaning
+    # a verb of the first or second person holds its doer (its تاء): the raf' pronoun after it opens the quote
+    ("قُلْتُ أَنَا ذَاهِبٌ", "أَنَا", ("role", "مبتدأ")),
+    ("قُلْتُ أَنَا ذَاهِبٌ", "ذَاهِبٌ", ("role", "خبر")),
+    ("قُلْتُ زَيْدٌ قَائِمٌ", "زَيْدٌ", ("role", "مبتدأ")),
+    ("ذَهَبْتُ أَنَا", "أَنَا", ("role", "توكيد")),
+    # with a nasb word after it, the pronoun only says the doer again (التوكيد اللفظي)
+    ("قُلْتُ أَنَا الْحَقَّ", "أَنَا", ("role", "توكيد")),
+    ("قُلْتُ أَنَا الْحَقَّ", "الْحَقَّ", ("role", "مفعول به")),
+    # a نعت follows its noun: a pointer hung on the indefinite noun after it is that noun's mubtada
+    ("هَذِهِ حِجَارَةٌ لَا تَنْطِقُ", "هَذِهِ", ("role", "مبتدأ")),
+    ("هَذِهِ حِجَارَةٌ لَا تَنْطِقُ", "حِجَارَةٌ", ("role", "خبر")),
 ])
 def test_sentence_check_fixes(sentence, word, want):
     from tests.nahw_helpers import cards
     card = next(w for w in cards(sentence) if w["word"] == word)
     assert card.get(want[0]) == want[1]
 
+
+
+def test_a_doer_said_again_follows_the_verb_not_the_object():
+    """قُلْتُ أَنَا الْحَقَّ: the pronoun says the تاء again (التوكيد اللفظي), so it follows قلت, not الحق."""
+    from tests.nahw_helpers import cards
+    card = next(w for w in cards("قُلْتُ أَنَا الْحَقَّ") if w["word"] == "أَنَا")
+    assert "تابع لـ«قُلْتُ»" in card["reason"]
+
+
+@pytest.mark.skipif(not quran_corpus.is_loaded(), reason="corpus.db not built")
+@pytest.mark.parametrize("sentence, word, role", [
+    ("كَانَ اسْمُ هذا الرَجُلِ آزَرَ", "آزَرَ", "خبر كان"),  # the Qur'an's name (6:74) in a verb's shape
+    ("آزَرَ زَيْدٌ عَمْرًا", "آزَرَ", "فعل"),  # opening the sentence with its doer after it, still the verb
+])
+def test_a_name_in_a_verbs_shape(sentence, word, role):
+    from tests.nahw_helpers import cards
+    assert next(w for w in cards(sentence) if w["word"] == word)["role"] == role
 
 
 def test_a_definite_noun_on_an_elative_is_no_tamyeez():

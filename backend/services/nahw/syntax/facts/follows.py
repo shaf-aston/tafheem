@@ -5,7 +5,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
-from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, place_case, praised_noun, previous_noun, told_of_lone_mubtada, verb_above
+from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
 
@@ -103,8 +103,10 @@ def _follows(token: dict, s: Sentence) -> str:
         return "tawkeed"
     # ذَهَبْتُ أَنَا: the verb holds its doer already (its تاء, or hidden), so the detached
     # pronoun of raf' straight after it repeats that doer: التوكيد اللفظي (Tasheel 3.10.3 p94).
-    # Only one of its person: قُلْ هُوَ اللَّهُ أَحَدٌ, هو opens the sentence قل says, not أنت again
-    if before and is_verb(before) and is_subject_pronoun(token) and before.get("per") == token.get("per"):
+    # Only one of its person: قُلْ هُوَ اللَّهُ أَحَدٌ, هو opens the sentence قل says, not أنت again; nor one
+    # that is the subject of the raf' word heading that sentence: قُلْتُ أَنَا ذَاهِبٌ (facts.quoted_head)
+    if before and is_verb(before) and is_subject_pronoun(token) and before.get("per") == token.get("per") \
+            and not (head and token["rel"] == "SBJ" and quoted_head(head, s)):
         return "tawkeed"
     if not head:
         return "none"

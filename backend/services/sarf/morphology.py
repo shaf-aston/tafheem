@@ -20,6 +20,7 @@ from typing import Any, NamedTuple
 from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services.sarf import noun_reader
 from backend.services.sarf import verb_reader
+from backend.services.quran import corpus as quran_corpus
 from backend.services.nahw.book import book_map, book_words, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
 from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
@@ -673,6 +674,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if (not agreeing or read.get("pos") == "verb" and _added(read, token)) and (name := _name_in_nasb(token, disambiguator)) \
                 and (not agreeing or _added(name, token) < _added(read, token)):
             ranked = [name]
+        if read.get("pos") == "verb" and (name := _quran_name(evidence, _widened(token, ranked))):
+            ranked = [name]
         if lam := _emphasis_lam(evidence, disambiguator):
             ranked = [lam]
         if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token, _seen_verb)) \
@@ -830,6 +833,23 @@ def _name_in_nasb(typed: str, disambiguator=None) -> dict | None:
     known = best_reading(stem, readings) or (readings[0] if readings else None)
     # the alif goes on the word's own split, so a وَ before the name stays its own piece (جِئْتُ وَزَيْدًا)
     return known and {**known, "cas": "a", "diac": known["diac"] + "ًا", "atbtok": known["atbtok"] + "ًا"}
+
+
+def _quran_name(typed: str, readings: list[dict]) -> dict | None:
+    """كَانَ اسْمُ أَبِيهِ آزَرَ: a foreign name may wear a verb's shape (Sharh al-Tasrih V2 p708: أعجمي على
+    وزن فاعل كآزر), and the dictionary, lacking the name, reads the verb. Where the Qur'an's hand-tagged
+    corpus says these letters alone only as a proper noun (quran.corpus.name_of) and the dictionary has
+    no name spelled so, the word is that name, by the vowels the reader typed: one typed bare says
+    nothing either way, and stays the dictionary's."""
+    spelled = bare_letters(typed)
+    if not quran_corpus.is_loaded() or any(r.get("pos") == "noun_prop" and bare_letters(r.get("diac", "")) == spelled for r in readings):
+        return None
+    if not ((lemma := quran_corpus.name_of(typed)) and (found := vowel_agreement(typed, lemma)) and found[0]):
+        return None
+    case = {vowel: camel for camel, vowel in CAMEL_CASE.items()}.get(typed_case(typed) or "", "na")
+    return {"pos": "noun_prop", "diac": typed, "lex": lemma, "atbtok": typed, "catib6": "PROP", "ud": "PROPN",
+            "bw": f"{typed}/NOUN_PROP", "pattern": "", "enc0": "0", "stt": "i", "cas": case, "num": "s", "gen": "m",
+            "asp": "na", "vox": "na", "per": "na", "mod": "na", "prc0": "0", "prc1": "0", "prc2": "0", "prc3": "0", "source": "quran"}
 
 
 def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=None) -> dict | None:

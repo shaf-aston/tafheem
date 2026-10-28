@@ -322,6 +322,30 @@ def root_of(word: str) -> str | None:
     return max(votes, key=votes.get) if votes else None
 
 
+@lru_cache(maxsize=1)
+def _names_by_bare_letters() -> dict[str, str]:
+    """Each proper noun the Qur'an says as a word alone (no prefix or suffix on it), its lemma under
+    its bare letters, where no word alone there is spelled so otherwise: آزَر (6:74) is the name, the
+    verb coming only as فَآزَرَهُ (48:29); عاد is both a people and a verb, so it is none."""
+    rows = _db().execute(
+        """SELECT MAX(form) AS form, MAX(lemma) AS lemma, MAX(features) AS features FROM segment
+           GROUP BY surah, ayah, word HAVING COUNT(*) = 1"""
+    ).fetchall()
+    names: dict[str, str] = {}
+    other: set[str] = set()
+    for r in rows:
+        if "PN" in r["features"].split("|"):
+            names[arabic_text.bare_letters(r["lemma"])] = r["lemma"]
+        else:
+            other.update(arabic_text.bare_letters(spelling) for spelling in (r["lemma"], r["form"]))
+    return {bare: lemma for bare, lemma in names.items() if bare not in other}
+
+
+def name_of(word: str) -> str | None:
+    """The Qur'an's lemma of the proper noun these letters spell standing alone, None when they spell none."""
+    return _names_by_bare_letters().get(arabic_text.bare_letters(word))
+
+
 def occurrences_of_root(root: str, limit: int) -> dict:
     """Where a root appears in the Qur'an, and which words are built from it.
 
