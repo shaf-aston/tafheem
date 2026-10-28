@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts import (
-    Sentence, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases)
+    Sentence, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -56,11 +56,13 @@ def added_to_verb(tokens: list[dict]) -> None:
     أن يكون الاسم مضافا ... وذلك مختص بالأسماء), so a noun the parser hung on a verb as its مضاف إليه is the
     verb's doer or object. The doer comes straight after its verb (Ibn Aqil V2 p95: الأصل أن يلي الفاعل الفعل
     من غير أن يفصل بينه وبين الفعل فاصل), so it is the doer, unless it is typed in nasb or the verb holds its
-    doer already; typed in jarr, it is left as read."""
+    doer already; typed in jarr, it is left as read, and so is a time or place word, the verb's مفعول فيه
+    (Tasheel 3.2 p67; صُمْتُ يَوْمَ الْخَمِيسِ)."""
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
-        if not (verb and is_verb(verb) and token["rel"] == "IDF" and noun_tagged(token)) or typed_case_of(token) == "i":
+        if not (verb and is_verb(verb) and token["rel"] == "IDF" and noun_tagged(token)) or typed_case_of(token) == "i" \
+                or place_time(token, s):
             continue
         has_doer = own_doer(verb) or any(k["rel"] == "SBJ" for k in s.kids(verb))
         token["rel"] = "OBJ" if has_doer or typed_case_of(token) == "a" else "SBJ"
