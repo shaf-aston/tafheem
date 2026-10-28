@@ -3,8 +3,9 @@
     python backend/scripts/recitation/finetune_ear/cloud.py          send this folder, wait, fetch the result
     python backend/scripts/recitation/finetune_ear/cloud.py --fetch  wait for the last run, then fetch its result
     python backend/scripts/recitation/finetune_ear/cloud.py --ship   upload a kept ear-tuned/ to Hugging Face and serve it
+    python backend/scripts/recitation/finetune_ear/cloud.py --loop finetune_sounds   any of the above, for another loop folder
 
-The result lands in backend/data/models/finetune-ear/. The whole loop and its keys: README.md here.
+The result lands in backend/data/models/<loop folder, dashed>/. The whole loop and its keys: README.md here.
 """
 import base64
 import io
@@ -20,20 +21,24 @@ import zipfile
 from pathlib import Path
 
 HERE = Path(__file__).parent
-KERNEL = json.loads((HERE / 'kernel-metadata.json').read_text())['id']
-LANDS = HERE.parents[2] / 'data' / 'models' / 'finetune-ear'
+# The loop to run: a folder beside this one holding kernel-metadata.json and one package with a run.py.
+LOOP = HERE.parent / (sys.argv[sys.argv.index('--loop') + 1] if '--loop' in sys.argv else HERE.name)
+PACKAGE = next(p.name for p in LOOP.iterdir() if (p / 'run.py').exists())
+KERNEL = json.loads((LOOP / 'kernel-metadata.json').read_text())['id']
+LANDS = HERE.parents[2] / 'data' / 'models' / LOOP.name.replace('_', '-')
 # The served ear's one name: master's config.py pin, "repo@revision". The judge reads the same line.
 PIN = re.compile(r'(recitation_tuned_model: str = "([^@"]+)@)[^"]*"')
 EVERY = 60  # seconds between status checks
 ENDED = ('COMPLETE', 'ERROR', 'CANCEL')
 # Without these the CLI writes the Arabic log in Windows' own code page and fails half way.
 ENV = {**os.environ, 'PYTHONUTF8': '1', 'PYTHONIOENCODING': 'utf-8'}
-# Kaggle runs one file, so ear/ travels inside it as a zip Python imports from directly (zipimport).
+# Kaggle runs one file, so every loop's package travels inside it as a zip Python imports from directly
+# (zipimport); a loop may import another's (sounds reuses ear's sound and parquet readers).
 LAUNCH = """import base64, pathlib, sys, tempfile
-bundle = pathlib.Path(tempfile.mkdtemp()) / 'ear.zip'
+bundle = pathlib.Path(tempfile.mkdtemp()) / 'loops.zip'
 bundle.write_bytes(base64.b64decode('{}'))
 sys.path.insert(0, str(bundle))
-import ear.run
+import {}.run
 """
 
 
@@ -51,13 +56,14 @@ def status():
 
 
 def bundle(folder):
-    """A copy of kernel-metadata.json and the one file it names, holding ear/ whole, ready to push."""
-    meta = json.loads((HERE / 'kernel-metadata.json').read_text())
+    """A copy of kernel-metadata.json and the one file it names, holding every loop's package whole, ready to push."""
+    meta = json.loads((LOOP / 'kernel-metadata.json').read_text())
     packed = io.BytesIO()
     with zipfile.ZipFile(packed, 'w', zipfile.ZIP_DEFLATED) as z:
-        for f in sorted((HERE / 'ear').glob('*.py')):
-            z.write(f, f'ear/{f.name}')
-    (folder / meta['code_file']).write_text(LAUNCH.format(base64.b64encode(packed.getvalue()).decode()))
+        for f in sorted(HERE.parent.glob('finetune_*/*/*.py')):
+            if (f.parent / '__init__.py').exists():  # packages only; checks/ stays on this PC
+                z.write(f, f'{f.parent.name}/{f.name}')
+    (folder / meta['code_file']).write_text(LAUNCH.format(base64.b64encode(packed.getvalue()).decode(), PACKAGE))
     (folder / 'kernel-metadata.json').write_text(json.dumps(meta))
     return folder
 
@@ -91,6 +97,8 @@ def ship():
 
 
 if '--ship' in sys.argv:
+    if LOOP != HERE:
+        sys.exit('--ship moves the served ear, which only the finetune_ear loop makes')
     ship()
     sys.exit()
 if '--fetch' not in sys.argv:
