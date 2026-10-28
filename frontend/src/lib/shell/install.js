@@ -28,7 +28,7 @@ export const isIos = (ua, touchPoints = 0) =>
 const isIosSafari = (ua) => !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|FBAN|FBAV|Instagram/.test(ua)
 
 /** A phone: Android's own word for it, or an iPhone. Tablets count; a laptop does not. */
-/** Plain Chrome on Android: the browser that gives the one-tap prompt. Brave hides behind Chrome's name. */
+/** Plain Chrome on Android, the browser that gives the one-tap prompt. */
 const isAndroidChrome = (ua, brave) =>
   / Chrome\//.test(ua) && !/SamsungBrowser|OPR|EdgA|Firefox|YaBrowser|UCBrowser|wv\)/.test(ua) && !brave
 
