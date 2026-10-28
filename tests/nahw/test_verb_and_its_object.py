@@ -15,8 +15,11 @@ def roles(sentence: str) -> list[str]:
 
 @needs_parser
 @pytest.mark.parametrize("sentence, said", [
-    ("شرب الماء", ["فعل", "مفعول به"]),
-    ("أكل الطعام", ["فعل", "مفعول به"]),
+    ("شرب الماء", ["فعل", "فاعل"]),  # the doer comes straight after its verb
+    ("أكل الطعام", ["فعل", "فاعل"]),
+    ("نبح الكلب في الظلام", ["فعل", "فاعل", "حرف جر", "مجرور"]),
+    ("أَكَلَ الطَّعَامَ", ["فعل", "مفعول به"]),  # typed in nasb
+    ("شربتُ الماء", ["فعل", "مفعول به"]),  # the verb holds its doer
     ("شرب زيد الماء", ["فعل", "فاعل", "مفعول به"]),
     ("شرب زيد الماء باردا", ["فعل", "فاعل", "مفعول به", "حال"]),
     ("رأى زيد عمرو", ["فعل", "فاعل", "مفعول به"]),
@@ -44,10 +47,29 @@ def test_a_name_after_a_noun_in_jarr_that_a_verb_of_saying_holds_is_its_badal():
     assert (azar["role"], azar["case"]) == ("بدل", "jarr")
 
 
-def test_a_noun_hung_on_a_verb_as_its_mudaf_ilayh_is_its_object():
-    toks = [token(1, "شرب", "شرب", "VRB", 0, "---", **VERB), token(2, "الماء", "ماء", "NOM", 1, "IDF")]
+@needs_parser
+@pytest.mark.parametrize("name", ["آزَرَ", "إِبْرَاهِيمَ"])
+def test_the_khabar_of_kana_is_no_badal_of_the_noun_before_it(name):
+    assert cards(f"كَانَ اسْمُ هذا الرَجُلِ {name}")[-1]["role"] == "خبر كان"
+
+
+@pytest.mark.parametrize("noun, verb, rel", [
+    ({}, {}, "SBJ"),  # no case shows: the doer, straight after its verb
+    ({"typed": "الْمَاءَ"}, {}, "OBJ"),  # typed in nasb
+    ({}, {"per": "1"}, "OBJ"),  # شربتُ holds its doer
+    ({"typed": "الْمَاءِ"}, {}, "IDF"),  # typed in jarr: left as read
+])
+def test_a_noun_hung_on_a_verb_as_its_mudaf_ilayh_is_its_doer_or_object(noun, verb, rel):
+    toks = [token(1, "شرب", "شرب", "VRB", 0, "---", **{**VERB, **verb}), token(2, "الماء", "ماء", "NOM", 1, "IDF", **noun)]
     added_to_verb(toks)
-    assert toks[1]["rel"] == "OBJ"
+    assert toks[1]["rel"] == rel
+
+
+def test_a_noun_hung_on_a_verb_that_has_a_doer_is_its_object():
+    toks = [token(1, "شرب", "شرب", "VRB", 0, "---", **VERB), token(2, "زيد", "زيد", "PROP", 1, "SBJ"),
+            token(3, "الماء", "ماء", "NOM", 1, "IDF")]
+    added_to_verb(toks)
+    assert toks[2]["rel"] == "OBJ"
 
 
 def test_a_mudaf_ilayh_on_a_noun_stays():

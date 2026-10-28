@@ -19,6 +19,10 @@ def stands_for(token: dict, s: Sentence) -> bool:
     before = previous_noun(token, s)
     if s.verbless or not before or token["rel"] == "IDF":
         return False
+    # كَانَ اسْمُ هذا الرَجُلِ آزَرَ: the khabar a verb like كان holds is its, never a بدل of a noun
+    # before it (Ibn Aqil V1 p262: وهي ترفع المبتدأ وتنصب خبره)
+    if token["rel"] == "PRD" and (verb := s.head(token)) and is_verb(verb):
+        return False
     # the pronoun stuck on a noun is its مضاف إليه whatever link the parser drew (عِلْمُهُ); a name
     # after a name names a second one (ضرب موسى عيسى: the doer, then the done to)
     names = token["pos"] == "PROP" and not token.get("guessed") and before["pos"] != "PROP" \

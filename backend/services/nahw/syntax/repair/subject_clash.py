@@ -54,11 +54,16 @@ def subject_clash(tokens: list[dict]) -> None:
 def added_to_verb(tokens: list[dict]) -> None:
     """شرب الماء: being a مضاف is the noun's alone (Ibn Ya'ish V1 p89: ومن خواص الاسم الإضافة. والمراد بالإضافة هنا
     أن يكون الاسم مضافا ... وذلك مختص بالأسماء), so a noun the parser hung on a verb as its مضاف إليه is the
-    verb's object, as the parser reads the noun after a verb; subject_clash then makes one typed in raf' its doer."""
+    verb's doer or object. The doer comes straight after its verb (Ibn Aqil V2 p95: الأصل أن يلي الفاعل الفعل
+    من غير أن يفصل بينه وبين الفعل فاصل), so it is the doer, unless it is typed in nasb or the verb holds its
+    doer already; typed in jarr, it is left as read."""
     s = Sentence(tokens)
     for token in tokens:
-        if (verb := s.head(token)) and is_verb(verb) and token["rel"] == "IDF" and noun_tagged(token):
-            token["rel"] = "OBJ"
+        verb = s.head(token)
+        if not (verb and is_verb(verb) and token["rel"] == "IDF" and noun_tagged(token)) or typed_case_of(token) == "i":
+            continue
+        has_doer = own_doer(verb) or any(k["rel"] == "SBJ" for k in s.kids(verb))
+        token["rel"] = "OBJ" if has_doer or typed_case_of(token) == "a" else "SBJ"
 
 
 def name_told_to(tokens: list[dict]) -> None:
