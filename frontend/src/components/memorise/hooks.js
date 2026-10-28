@@ -242,7 +242,7 @@ export function useReciteState({ page, book, pinned, shown, setShown }) {
    * already on the screen.
    */
   const nextCovered = () => {
-    for (let at = Math.max(reciting.marks.at, startFrom + 1); at < recitedPage.words.length; at += 1) {
+    for (let at = Math.max(reciting.marks.at, pinned == null ? startFrom + 1 : startFrom); at < recitedPage.words.length; at += 1) {
       if (!shown.has(at) && reciting.marks.words[at]?.state === WAITING) return at
     }
     return -1
@@ -270,17 +270,17 @@ export function useReciteState({ page, book, pinned, shown, setShown }) {
 }
 
 /** Which words are missing, and the options offered for them. */
-export function useGaps({ data, page, pageNumber, deal, difficulty, way, hidden, startFrom }) {
+export function useGaps({ data, page, pageNumber, deal, difficulty, way, hidden, startFrom, pinned }) {
 
   // The gaps depend on the page, the difficulty and the deal; and on nothing
   // else, so typing an answer never moves them.
   const blanks = useMemo(
     () => {
       if (!page) return new Set()
-      if (hidden) return fromMemory(page, startFrom)
+      if (hidden) return fromMemory(page, startFrom, pinned == null)
       return blanksFor(page, difficultyOf(difficulty).share, makeRandom(pageNumber * 131 + deal))
     },
-    [page, hidden, startFrom, difficulty, pageNumber, deal],
+    [page, hidden, startFrom, pinned, difficulty, pageNumber, deal],
   )
 
   // Every word of the whole part, not just this page: three wrong options taken
