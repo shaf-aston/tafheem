@@ -799,6 +799,14 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                                         if r.get("pos") == "verb" and r.get("asp") == "p" and "ّ" not in r.get("diac", "")])
         if verb:
             out[0] = verb
+    # قال إبراهيم لأبيه آزر: typed bare, a word the Qur'an says alone only as a name is that name where the
+    # dictionary reads a verb and no noun comes next to be its doer or what it is done to (the sentence ends,
+    # or a new one opens: آزر أنا ذاهب); a noun next keeps the verb (آزر الجيش الشعب). Only a verb's shape is
+    # foreign to a name: a noun read so stays (في قلبي حنين: longing, not the battle)
+    for i, reading in enumerate(out):
+        if reading.get("pos") == "verb" and not any(r.get("pos") in NOUNISH for r in out[i + 1:i + 2]) \
+                and (name := _quran_name(tokens[i], _widened(tokens[i], steps[i][1]), bare=True)):
+            out[i] = name
     for i, said in paused.items():
         out[i] = {**out[i], "said": said}
     return out
@@ -844,16 +852,16 @@ def _name_in_nasb(typed: str, disambiguator=None) -> dict | None:
     return known and {**known, "cas": "a", "diac": known["diac"] + "ًا", "atbtok": known["atbtok"] + "ًا"}
 
 
-def _quran_name(typed: str, readings: list[dict]) -> dict | None:
+def _quran_name(typed: str, readings: list[dict], bare: bool = False) -> dict | None:
     """كَانَ اسْمُ أَبِيهِ آزَرَ: a foreign name may wear a verb's shape (Sharh al-Tasrih V2 p708: أعجمي على
     وزن فاعل كآزر), and the dictionary, lacking the name, reads the verb. Where the Qur'an's hand-tagged
     corpus says these letters alone only as a proper noun (quran.corpus.name_of) and the dictionary has
     no name spelled so, the word is that name, by the vowels the reader typed: one typed bare says
-    nothing either way, and stays the dictionary's."""
+    nothing either way, and stays the dictionary's unless `bare` (pick's reading by what comes after)."""
     spelled = bare_letters(typed)
     if not quran_corpus.is_loaded() or any(r.get("pos") == "noun_prop" and bare_letters(r.get("diac", "")) == spelled for r in readings):
         return None
-    if not ((lemma := quran_corpus.name_of(typed)) and (found := vowel_agreement(typed, lemma)) and found[0]):
+    if not ((lemma := quran_corpus.name_of(typed)) and (found := vowel_agreement(typed, lemma)) and (found[0] or bare)):
         return None
     case = {vowel: camel for camel, vowel in CAMEL_CASE.items()}.get(typed_case(typed) or "", "na")
     return {"pos": "noun_prop", "diac": typed, "lex": lemma, "atbtok": typed, "catib6": "PROP", "ud": "PROPN",
