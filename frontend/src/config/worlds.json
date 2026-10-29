@@ -8,7 +8,7 @@
       "name": "Basics",
       "arabic": "أساسيات",
       "scene": "First steps",
-      "idea": "New to Arabic? Start here: what ال (\u201cthe\u201d) does to a word, then how a small addition says my, he wrote, she writes, not and will.",
+      "idea": "New to Arabic? Start here: what ال (\u201cthe\u201d) does to a word, then how a small addition says my, a woman, and, this, he wrote, she writes, not and will.",
       "live": true,
       "kind": "lessons",
       "unit": "steps",
@@ -19,10 +19,10 @@
       },
       "stages": [
         10,
-        30,
-        60,
-        100,
-        157
+        25,
+        45,
+        65,
+        86
       ]
     },
     {

@@ -4,57 +4,66 @@ import data from '../../../public/grow/basics.json'
 import verbsData from '../../../public/grow/basics-verbs.json'
 import worlds from '../../config/worlds.json'
 import { INTRO, definite, keyOfBasic } from './alifLam'
-import { OWNED, SKILLS, basicsCards, markerAsks, pathItems, teachMarker } from './basicsSkills'
+import { JOINED, MISSPELT, OWNED, POINTED, SKILLS, basicsCards, markerAsks, pathItems, tableOf, teachMarker } from './basicsSkills'
 import { makeRandom } from '../quiz/quiz'
-import { canPossess, meanings, possessiveTable, verbTable } from './wordForms'
+import { canPossess, isFeminine, meanings, verbTable } from './wordForms'
 
 const nfc = (text) => text.normalize('NFC')
 const letters = (text) => text.replace(/[ً-ْٰ\s]/g, '')
-const { words, path } = data
+const { words, path, people } = data
 const { verbs } = verbsData
-const items = pathItems(words, { verbs, path })
+const items = pathItems(words, { verbs, people, path })
 const itemOf = (id) => items.find((item) => item.id === id)
 const markers = items.filter((item) => item.marker)
 const book = words.find((word) => word.id === 'book')
 const sun = words.find((word) => word.id === 'sun')
 
 describe('pathItems', () => {
-  it('keeps every word, once, in its order, with the id it always had', () => {
+  const named = path.reduce((sum, step) => sum + (step.words ?? 0), 0)
+
+  it('keeps the words the path names, once, in their order, with the id each always had', () => {
     const wordItems = items.filter((item) => !item.marker)
-    expect(wordItems).toEqual(words)
+    expect(wordItems).toEqual(words.slice(0, named))
     expect(new Set(items.map(keyOfBasic)).size).toBe(items.length)
   })
 
   it('sets the skills between the words as the path says', () => {
     const skillAt = (id) => items.findIndex((item) => item.skill === id)
     expect(skillAt('mine')).toBe(10)
-    expect(skillAt('past')).toBe(10 + 7 + 10)
-    expect(skillAt('present')).toBe(10 + 7 + 10 + 7 + 10)
+    expect(skillAt('people')).toBe(10 + 7 + 6)
+    expect(skillAt('joined')).toBe(10 + 7 + 6 + 3 + 6)
     expect(items.slice(skillAt('past'), skillAt('past') + 7).map((item) => item.id)).toEqual(
       ['past:he', 'past:they', 'past:I', 'past:we', 'past:you', 'past:you-all', 'past:she'],
     )
-    expect(items.slice(-words.length + 50).every((item) => !item.marker)).toBe(true)
     const order = [...new Set(markers.map((item) => item.skill))]
-    expect(order).toEqual(['mine', 'past', 'present', 'negation', 'command', 'future'])
+    expect(order).toEqual(['mine', 'people', 'joined', 'this', 'past', 'present', 'negation', 'command', 'future'])
     expect(markers).toHaveLength(Object.values(SKILLS).reduce((sum, skill) => sum + skill.markers.length, 0))
+  })
+
+  it('ends on a skill, not on a long run of ال words: ال is one rule', () => {
+    expect(items.at(-1).marker).toBeTruthy()
+    expect(named).toBeLessThan(words.length / 2)
   })
 
   it('gives a marker what its questions draw from', () => {
     expect(itemOf('past:she').words).toBe(verbs)
     expect(itemOf('mine:his').words.map((word) => word.id)).toEqual(OWNED)
+    expect(itemOf('people:woman').words).toBe(people)
+    expect(itemOf('joined:for').words.map((word) => word.id)).toEqual(JOINED)
+    expect(itemOf('this:that').words.map((word) => word.id)).toEqual(POINTED)
   })
 
-  it('puts the words left over at the end, and a path of words only is the old list', () => {
+  it('leaves out words the path does not name, and a path that names none is the old list', () => {
     expect(pathItems(words, { verbs, path: [] })).toEqual(words)
-    expect(pathItems(words, { verbs, path: [{ words: 2 }, { skill: 'command' }] }).map((item) => item.id).slice(0, 5)).toEqual(
-      ['book', 'sun', 'command:command', 'command:prohibit', 'house'],
+    expect(pathItems(words, { verbs, path: [{ words: 2 }, { skill: 'command' }] }).map((item) => item.id)).toEqual(
+      ['book', 'sun', 'command:command', 'command:prohibit'],
     )
   })
 
-  it('still gives every word when the verbs or the path did not load (an older cached file, or offline)', () => {
-    const noVerbs = pathItems(words, { verbs: null, path })
-    expect(noVerbs.filter((item) => !item.marker)).toEqual(words)
-    expect(new Set(noVerbs.filter((item) => item.marker).map((item) => item.skill))).toEqual(new Set(['mine']))
+  it('still gives the words when the verbs, the people or the path did not load (an older cached file, or offline)', () => {
+    const older = pathItems(words, { verbs: null, people: undefined, path })
+    expect(older.filter((item) => !item.marker)).toEqual(words.slice(0, named))
+    expect(new Set(older.filter((item) => item.marker).map((item) => item.skill))).toEqual(new Set(['mine', 'joined', 'this']))
     expect(pathItems(words, { verbs })).toEqual(words)
     expect(pathItems(words, { verbs, path: [{ skill: 'gone' }] })).toEqual(words)
   })
@@ -67,6 +76,34 @@ describe('pathItems', () => {
   it('draws possessives only from nouns that take the endings plainly', () => {
     for (const id of OWNED) expect(canPossess(words.find((word) => word.id === id)), id).toBe(true)
   })
+
+  it('finds every noun a skill names in the word list', () => {
+    for (const id of [...OWNED, ...JOINED, ...POINTED]) expect(words.some((word) => word.id === id), id).toBe(true)
+  })
+
+  it('joins only words not starting with ل, which لِـ would spell another way (لِلَّيْل)', () => {
+    for (const word of itemOf('joined:for').words) expect(letters(word.ar).startsWith('ل'), word.id).toBe(false)
+  })
+
+  // Feminine with no ة: هٰذِهِ شَمْس, so the ة cannot tell; these never go in POINTED.
+  const FEMININE_WITHOUT_TA = ['sun', 'girl', 'mother', 'sister', 'hand', 'eye', 'ear', 'finger', 'desert', 'market', 'road', 'arm']
+  it('points only at things whose gender the ة shows', () => {
+    for (const id of FEMININE_WITHOUT_TA) expect(POINTED, id).not.toContain(id)
+    const pointed = itemOf('this:this').words
+    expect(pointed.some(isFeminine)).toBe(true)
+    expect(pointed.some((word) => !isFeminine(word))).toBe(true)
+  })
+
+  it('draws people who take ة and the sound plurals, written as the rules say', () => {
+    expect(new Set(people.map((one) => one.id)).size).toBe(people.length)
+    for (const one of people) {
+      expect(one.ar, one.id).toBe(nfc(one.ar))
+      expect(letters(one.ar).endsWith('ة'), one.id).toBe(false)
+      // Pausal: the last letter carries no vowel.
+      expect(one.ar, one.id).not.toMatch(/[\u064B-\u0652]$/)
+      expect(one.many, one.id).toMatch(/^[A-Za-z]+s$/)
+    }
+  })
 })
 
 describe('teachMarker', () => {
@@ -77,6 +114,14 @@ describe('teachMarker', () => {
     })
     expect(teachMarker(itemOf('negation:not-past'))).toMatchObject({ ar: nfc('لَمْ يَكْتُبْ'), en: 'he didn’t write', also: { ar: nfc('يَكْتُبُ') } })
     expect(teachMarker(itemOf('command:prohibit'))).toMatchObject({ ar: nfc('لَا تَكْتُبْ'), en: 'Don’t write! (one man)', also: { ar: nfc('اُكْتُبْ') } })
+  })
+  it('sets a man beside a woman, a word with ال beside one joined, and nothing beside “this is a …”', () => {
+    expect(teachMarker(itemOf('people:woman'))).toMatchObject({ ar: nfc('مُسْلِمَة'), en: 'a Muslim (woman)', also: { ar: nfc('مُسْلِم'), en: 'a Muslim (man)' } })
+    expect(teachMarker(itemOf('people:women'))).toMatchObject({ ar: nfc('مُسْلِمَات'), en: 'Muslims (women)', also: { ar: nfc('مُسْلِمَة') } })
+    expect(teachMarker(itemOf('joined:for'))).toMatchObject({ ar: nfc('لِلْكِتَاب'), en: 'for the book', also: { ar: nfc('الْكِتَاب'), en: 'the book' } })
+    expect(teachMarker(itemOf('this:this-is'))).toMatchObject({ ar: nfc('هٰذَا كِتَاب'), en: 'this is a book' })
+    expect(teachMarker(itemOf('this:this-is')).also).toBeUndefined()
+    expect(teachMarker(itemOf('this:that'))).toMatchObject({ ar: nfc('ذٰلِكَ الْكِتَاب'), en: 'that book', also: { ar: nfc('ذٰلِكَ كِتَاب') } })
   })
   it('sets the bare noun beside a possessive', () => {
     expect(teachMarker(itemOf('mine:my'))).toMatchObject({ ar: nfc('كِتَابِي'), en: 'my book', also: { ar: nfc('كِتَاب'), en: 'a book' } })
@@ -175,7 +220,7 @@ describe('markerAsks', () => {
 })
 
 describe('every marker, on every verb or noun and person (F2–F4)', () => {
-  const tableFor = (item, word) => (SKILLS[item.skill].table === 'verbs' ? verbTable(word) : possessiveTable(word))
+  const tableFor = (item, word) => tableOf(item.skill, word)
 
   it.each(markers.map((item) => [item.id, item]))('%s: three options, one right, none of the wrong ones right too', (_, item) => {
     for (let seed = 1; seed <= 25; seed += 1) {
@@ -194,7 +239,7 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
         const table = tableFor(item, word)
         const byAr = meanings(table)
         if (card.arabic) {
-          const core = item.skill === 'mine' ? letters(word.ar).replace(/ة$/, '') : null
+          const core = SKILLS[item.skill].table === 'verbs' ? null : letters(word.ar).replace(/ة$/, '')
           for (const option of card.options) {
             if (core) expect(letters(option.text)).toContain(core)
             else expect(letters(option.text)).toMatch(new RegExp([...word.root].join('.*')))
@@ -205,6 +250,24 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
         }
       }
     }
+  })
+
+  it.each(markers.map((item) => [item.id, item]))('%s: says why for every wrong pick, never “undefined”', (_, item) => {
+    for (let seed = 1; seed <= 25; seed += 1) {
+      for (const card of markerAsks(item, true, makeRandom(seed))) {
+        for (const line of Object.values(card.wrong)) expect(line, card.id).not.toMatch(/undefined|null/)
+      }
+    }
+  })
+
+  it('has a line for every kind of misspelling a table can make', () => {
+    const kinds = new Set()
+    for (const item of markers) {
+      for (const word of item.words) {
+        for (const entry of tableOf(item.skill, word)) if (entry.key.startsWith('wrong:')) kinds.add(entry.key.split(':')[1])
+      }
+    }
+    expect([...kinds].sort()).toEqual(Object.keys(MISSPELT).sort())
   })
 
   it('never sets the prohibition for one man beside لا with the plain present', () => {
@@ -221,7 +284,8 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
 describe('SKILLS', () => {
   it('names each skill as its teach cards show it, in path order', () => {
     expect(Object.entries(SKILLS).map(([id, skill]) => [id, skill.title, skill.table])).toEqual([
-      ['mine', 'My, his, her', 'nouns'], ['past', 'The past', 'verbs'], ['present', 'The present', 'verbs'],
+      ['mine', 'My, his, her', 'nouns'], ['people', 'One and many', 'people'], ['joined', 'And, with, for, like', 'joined'],
+      ['this', 'This, that', 'pointing'], ['past', 'The past', 'verbs'], ['present', 'The present', 'verbs'],
       ['negation', 'Not', 'verbs'], ['command', 'Do! Don’t!', 'verbs'], ['future', 'Will', 'verbs'],
     ])
   })
@@ -230,7 +294,7 @@ describe('SKILLS', () => {
   it.each(markers.map((item) => [item.id, item]))('%s: every form it names is in the table', (_, item) => {
     const { table, markers: all } = SKILLS[item.skill]
     const word = item.words[0]
-    const keys = new Set((table === 'verbs' ? verbTable(word) : possessiveTable({ ...word, ar: 'مَدْرَسَة' })).map((entry) => entry.key))
+    const keys = new Set(tableOf(item.skill, table === 'nouns' ? { ...word, ar: 'مَدْرَسَة' } : word).map((entry) => entry.key))
     const { key, base, persons, pool, toEnglish = [] } = item.marker
     expect(all).toContain(item.marker)
     for (const person of persons) {
@@ -243,6 +307,7 @@ describe('SKILLS', () => {
 
   it('says “my, his, her” on nouns for anyone, and each verb marker for the persons it is said by', () => {
     expect(SKILLS.mine.markers.every((marker) => marker.persons.length === 1 && marker.persons[0] === null && marker.base === 'bare')).toBe(true)
+    for (const skill of ['people', 'joined', 'this']) expect(SKILLS[skill].markers.every((marker) => marker.persons[0] === null)).toBe(true)
     expect(SKILLS.past.markers.map((marker) => marker.persons)).toEqual([['he'], ['they'], ['I'], ['we'], ['you'], ['you-all'], ['she']])
     expect(SKILLS.command.markers.map((marker) => marker.persons)).toEqual([['you', 'you-all'], ['you', 'you-all']])
     for (const skill of ['negation', 'future']) for (const marker of SKILLS[skill].markers) expect(marker.persons).toEqual(['he', 'she', 'they', 'you', 'you-all', 'I', 'we'])
@@ -252,6 +317,9 @@ describe('SKILLS', () => {
   const TAUGHT = {
     'mine:my': ['ـِي', '“my”'], 'mine:his': ['ـهُ', '“his”'], 'mine:her': ['ـهَا', '“her”'], 'mine:our': ['ـنَا', '“our”'],
     'mine:their': ['ـهُمْ', '“their”'], 'mine:your': ['ـكَ', 'one man'], 'mine:your-all': ['ـكُمْ', 'a group'],
+    'people:woman': ['ة', 'woman'], 'people:men': ['ـُونَ', 'men', 'ـِينَ'], 'people:women': ['ـَات', 'women'],
+    'joined:and': ['وَ', 'and'], 'joined:with': ['بِـ', 'with'], 'joined:for': ['لِـ', 'for', 'ا is dropped'], 'joined:like': ['كَـ', 'like'],
+    'this:this-is': ['هٰذَا', 'this is', 'هٰذِهِ'], 'this:this': ['ال', '“this”'], 'this:that-is': ['ذٰلِكَ', 'تِلْكَ'], 'this:that': ['ال', '“that”'],
     'past:he': ['كَتَبَ', 'he wrote'], 'past:they': ['ـُوا', 'they did'], 'past:I': ['ـْتُ', 'I did'], 'past:we': ['ـْنَا', 'we did'],
     'past:you': ['ـْتَ', 'one man'], 'past:you-all': ['ـْتُمْ', 'you all did'], 'past:she': ['ـَتْ', 'she did'],
     'present:he': ['يَـ', 'he writes'], 'present:she': ['تَـ', 'she'], 'present:they': ['ـُونَ', 'they'], 'present:I': ['أَ', 'I'],

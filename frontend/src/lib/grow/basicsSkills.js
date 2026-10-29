@@ -5,6 +5,9 @@
  * The marker is what is learnt, so it is the item: it is taught once on كَتَبَ (or كِتَاب), then every question
  * on it draws a verb (or noun) and a person at random, so the learner learns the addition, not one word.
  *   mine      my, his, her…   on a noun     ـِي ـهُ ـهَا ـنَا ـهُمْ ـكَ ـكُمْ
+ *   people    a woman, many   on a person   ة ـُونَ ـَات
+ *   joined    and, with…      in front      وَ بِـ لِـ كَـ
+ *   this      this, that      a word before هٰذَا هٰذِهِ ذٰلِكَ تِلْكَ, with ال or without
  *   past      who did it      an ending     ـُوا ـْتُ ـْنَا ـْتَ ـْتُمْ ـَتْ
  *   present   who does it     a letter in front (and ـُونَ)
  *   negation  not             لَا لَمْ لَنْ مَا
@@ -16,14 +19,25 @@
  */
 import { INTRO, MODULE, english, plain, teachWord, wordAsks } from './alifLam'
 import { weave } from './lesson'
-import { ADDRESSED, PERSONS, arabicOptions, englishOptions, possessiveTable, verbTable } from './wordForms'
+import { ADDRESSED, PERSONS, arabicOptions, englishOptions, joinedTable, peopleTable, pointingTable, possessiveTable, verbTable } from './wordForms'
 
 const EVERYONE = PERSONS.map((person) => person.id)
 // Taught whole; asked on a word with no ة, the ة half is left off (ruleFor).
 const TA_CLAUSE = ', and a final ة is written ت before it.'
 const MINE_TAIL = `A word with an ending never takes ال as well${TA_CLAUSE}`
-// What a misspelt form (wordForms.js `wrong:al:*`, `wrong:ta:*`) got wrong.
-const MISSPELT = { al: 'A word with an ending never takes ال as well.', ta: 'A final ة is written ت before an ending.' }
+// What a misspelt form (wordForms.js `wrong:<kind>:*`) got wrong.
+export const MISSPELT = {
+  al: 'A word with an ending never takes ال as well.',
+  ta: 'A final ة is written ت before an ending.',
+  'sa-past': 'سَ goes only on the present, never on the past.',
+  'sa-apart': 'سَ is one letter, so it is joined to the verb, never written apart.',
+  'sawfa-past': 'سَوْفَ goes only before the present, never before the past.',
+  'lam-past': 'لَمْ goes before the present, never the past: for the past it is مَا.',
+  'lan-past': 'لَنْ goes before the present, never the past.',
+  apart: 'A one-letter word is joined to the word after it, never written apart.',
+  alif: 'After لِـ the ا of ال is dropped: لِلْـ.',
+  gender: 'هٰذَا and ذٰلِكَ go with a masculine word; هٰذِهِ and تِلْكَ with a feminine one, as most with ة are.',
+}
 
 const own = (id, end, said, pool, to = '') => ({
   id, key: `mine:${id}`, base: 'bare', persons: [null], pool: [...pool.map((one) => `mine:${one}`), `wrong:al:${id}`, `wrong:ta:${id}`],
@@ -31,6 +45,8 @@ const own = (id, end, said, pool, to = '') => ({
 })
 const fixed = (tense, person, base, rule, pool) => ({ id: person, key: `${tense}:${person}`, base, persons: [person], rule, pool })
 const particle = (id, persons, base, rule, pool, toEnglish) => ({ id, key: `${id}:{p}`, base, persons, rule, pool, ...(toEnglish && { toEnglish }) })
+// A noun skill's marker: no person, the form it is set beside, the forms it is told apart from.
+const noun = (id, base, rule, pool) => ({ id, key: id, base, persons: [null], rule, pool })
 
 export const SKILLS = {
   mine: {
@@ -44,6 +60,46 @@ export const SKILLS = {
       own('their', 'ـهُمْ', 'their', ['his', 'her', 'our']),
       own('your', 'ـكَ', 'your', ['my', 'his', 'your-all'], ', said to one man'),
       own('your-all', 'ـكُمْ', 'your', ['your', 'their', 'our'], ', said to a group'),
+    ],
+  },
+  people: {
+    title: 'One and many',
+    table: 'people',
+    markers: [
+      noun('woman', 'man', 'ة on the end makes a word for a man a word for a woman: مُسْلِمَة a Muslim woman. English mostly uses one word for both.',
+        ['man', 'men', 'women']),
+      noun('men', 'man', 'ـُونَ on the end = more than two men, or men and women together. You will also see it as ـِينَ (مُسْلِمِينَ): the same plural, in another place in the sentence.',
+        ['man', 'woman', 'women']),
+      noun('women', 'woman', 'ـَات on the end = more than two women: the ة goes, and ـَات takes its place. English adds -s for both.',
+        ['woman', 'men', 'man']),
+    ],
+  },
+  joined: {
+    title: 'And, with, for, like',
+    table: 'joined',
+    markers: [
+      noun('and', 'the', 'وَ = and. It is one letter, so it is joined to the word after it: وَالْكِتَاب and the book.',
+        ['the', 'with', 'like', 'wrong:apart:and']),
+      noun('with', 'the', 'بِـ = with (or by, or in), joined to the front of the word. English writes “with” as a word of its own.',
+        ['and', 'for', 'like', 'wrong:apart:with']),
+      noun('for', 'the', 'لِـ = for (or to), joined to the front. Before ال the ا is dropped, so لِ and الْكِتَاب make لِلْكِتَاب.',
+        ['with', 'like', 'wrong:alif:for', 'wrong:apart:for']),
+      noun('like', 'the', 'كَـ = like, joined to the front: كَالْقَمَر like the moon.',
+        ['and', 'with', 'for', 'wrong:apart:like']),
+    ],
+  },
+  this: {
+    title: 'This, that',
+    table: 'pointing',
+    markers: [
+      noun('this-is', null, 'هٰذَا before a word without ال = “this is a …”: هٰذَا كِتَاب this is a book. Arabic needs no word for “is”. For a feminine word, most with ة, it is هٰذِهِ.',
+        ['this', 'that-is', 'wrong:gender:this-is']),
+      noun('this', 'this-is', 'With ال, هٰذَا (or هٰذِهِ) is only “this”: هٰذَا الْكِتَاب this book. So ال tells you: a whole sentence, or one thing named.',
+        ['this-is', 'that', 'wrong:gender:this']),
+      noun('that-is', 'this-is', 'ذٰلِكَ = that, said the same way: ذٰلِكَ قَلَم that is a pen. For a feminine word it is تِلْكَ.',
+        ['that', 'this-is', 'wrong:gender:that-is']),
+      noun('that', 'that-is', 'With ال, ذٰلِكَ (or تِلْكَ) is only “that”: ذٰلِكَ الْقَلَم that pen.',
+        ['that-is', 'this', 'wrong:gender:that']),
     ],
   },
   past: {
@@ -115,14 +171,27 @@ export const OWNED = [
   'ball', 'horse', 'cat', 'dog', 'camel', 'lesson', 'question', 'word', 'language', 'door', 'table', 'shop', 'ticket', 'neighbour',
 ]
 
+/** Things “with the …”, “for the …” and “like the …” all fit; none starts with ل, which لِـ would spell otherwise (لِلَّيْل). */
+export const JOINED = ['book', 'pen', 'key', 'car', 'phone', 'bag', 'cup', 'spoon', 'knife', 'ball', 'notebook', 'ticket', 'box', 'candle', 'picture', 'bottle']
+
+/** Things whose gender the ة shows: masculine without it, feminine with it (not شَمْس or يَد, feminine with none). */
+export const POINTED = [
+  'book', 'car', 'pen', 'school', 'house', 'room', 'door', 'key', 'bag', 'phone', 'notebook', 'cup', 'city', 'garden',
+  'picture', 'ball', 'tree', 'mosque', 'ticket', 'window', 'table', 'bed', 'street', 'ship', 'box', 'cat',
+]
+
+/** Every form of `word` for a skill's table. */
+export const TABLES = { verbs: verbTable, nouns: possessiveTable, people: peopleTable, joined: joinedTable, pointing: pointingTable }
+
 /**
  * The path as items: `path` steps in order, `{ words: n }` the next n ال words, `{ skill }` that skill's markers;
- * any words left come at the end. A marker item carries what its questions draw from (`words`).
- * A skill whose list did not load (`verbs` null: an older cached file, or offline) is left out, and the words still come.
+ * words the path does not name are left out (a path that names none gives every word). A marker item carries what its
+ * questions draw from (`words`). A skill whose list did not load (`verbs` or `people` null: an older cached file, or
+ * offline) is left out, and the words still come.
  */
-export function pathItems(words, { verbs, path = [] }) {
-  const nouns = OWNED.map((id) => words.find((word) => word.id === id)).filter(Boolean)
-  const draws = { verbs: verbs ?? [], nouns }
+export function pathItems(words, { verbs, people, path = [] }) {
+  const named = (ids) => ids.map((id) => words.find((word) => word.id === id)).filter(Boolean)
+  const draws = { verbs: verbs ?? [], nouns: named(OWNED), people: people ?? [], joined: named(JOINED), pointing: named(POINTED) }
   const items = []
   let next = 0
   for (const step of path) {
@@ -135,17 +204,18 @@ export function pathItems(words, { verbs, path = [] }) {
       for (const marker of skill.markers) items.push({ id: `${step.skill}:${marker.id}`, skill: step.skill, marker, words: draws[skill.table] })
     }
   }
-  return [...items, ...words.slice(next)]
+  return next ? items : [...items, ...words]
 }
 
 const pick = (list, random) => list[Math.floor(random() * list.length)]
-const tableOf = (item, word) => (SKILLS[item.skill].table === 'verbs' ? verbTable(word) : possessiveTable(word))
+/** Every form of `word` that a skill's questions draw from. */
+export const tableOf = (skill, word) => TABLES[SKILLS[skill].table](word)
 const keyFor = (template, person) => template.replace('{p}', person)
 const tagOf = (isNew) => (isNew ? 'New form' : 'Review')
 
 /** A marker's form of `word` (and the person), with the form it is set beside on its teach card. */
 function drawn(item, word, person, direction = 'to-arabic') {
-  const table = tableOf(item, word)
+  const table = tableOf(item.skill, word)
   const at = (key) => table.find((entry) => entry.key === key)
   const { marker } = item
   const base = marker.base === 'bare' ? { ar: plain(word.ar), en: english(word, false) } : marker.base && at(keyFor(marker.base, person))
