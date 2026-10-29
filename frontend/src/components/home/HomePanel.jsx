@@ -121,7 +121,7 @@ export default function HomePanel({ accent, onGo }) {
               )}
             </div>
             {/* On a phone the first visit's three tall level cards need the full width, so the word waits for a wider screen there. */}
-            <FahmWord className={`${first ? 'hidden md:block' : 'w-24'} shrink-0 md:w-auto md:shrink md:flex-1 md:max-w-[20rem] min-w-0 select-none`} />
+            <FahmWord className={`${first ? 'hidden md:block' : 'w-24'} -translate-y-2 md:-translate-y-6 shrink-0 md:w-auto md:shrink md:flex-1 md:max-w-[20rem] min-w-0 select-none`} />
           </div>
 
           <section className="space-y-4" aria-labelledby="home-all">
