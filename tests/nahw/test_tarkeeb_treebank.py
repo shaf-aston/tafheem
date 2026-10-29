@@ -466,3 +466,15 @@ def test_a_metaalliq_with_no_other_word_to_hang_on_is_left_bare(head):
     words = [word("جَلَسَ", "root", 0, pos="V"), word("فِى", "متعلق", head, pos="P")]
     tree = build_tarkeeb._tree_of(words, SETTINGS, TONE)
     assert tree["children"][1]["role"] == SETTINGS["relation_terms"]["متعلق"]
+
+
+@pytest.mark.skipif(not tarkeeb_store.is_built(), reason="tarkeeb.db not built")
+@pytest.mark.parametrize("ayah", [(2, 154), (6, 12), (93, 2), (42, 9)])
+def test_an_ayah_typed_in_everyday_spelling_finds_its_record(ayah):
+    """The record keys ayahs by the Uthmani rasm (أموات → مت, الليل → ليل); the same words typed
+    the everyday way (موت, لليل) fold differently and used to miss, whichever ayah it was."""
+    import json
+    from backend.config import data_path
+    plain = json.loads(data_path("quran_imlaei_path").read_text(encoding="utf-8"))
+    found = tarkeeb_store.find(plain["%d:%d" % ayah])
+    assert found and found[:2] == ayah

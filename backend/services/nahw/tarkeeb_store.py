@@ -13,7 +13,10 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from functools import lru_cache
 from pathlib import Path
+
+from backend.config import data_path
 
 from backend.services.nahw import book as nahw_book
 from backend.services.text.arabic_text import alef_written_out
@@ -43,15 +46,30 @@ def letters(words: list[str]) -> str:
     return " ".join(alef_written_out(word).translate(_SPELLING_ONLY) for word in words)
 
 
+@lru_cache(maxsize=1)
+def _everyday_index() -> dict[str, tuple[int, int]]:
+    """Each ayah by its letters in the everyday spelling (موت, الليل, يحيي), which the
+    Uthmani key above folds differently (مت, ليل, يحي): the same ayah typed either way."""
+    plain = json.loads(data_path("quran_imlaei_path").read_text(encoding="utf-8"))
+    return {letters(split_words(text)): tuple(map(int, ref.split(":"))) for ref, text in plain.items()}
+
+
 def find(sentence: str) -> tuple[int, int, list[int]] | None:
     """The ayah a typed sentence is, word for word, and which of its columns
-    were written (the rest, (هُوَ) or an elided khabar, are the book's), or None."""
+    were written (the rest, (هُوَ) or an elided khabar, are the book's), or None.
+
+    Looked up by the Uthmani spelling first, then by the everyday one; the second
+    counts only when the record wrote as many words as were typed, so no column slips."""
     db = _db()
     if db is None:
         return None
+    typed = letters(split_words(sentence))
     try:
-        row = db.execute("SELECT surah, ayah, written FROM tarkeeb WHERE letters = ?",
-                         (letters(split_words(sentence)),)).fetchone()
+        row = db.execute("SELECT surah, ayah, written FROM tarkeeb WHERE letters = ?", (typed,)).fetchone()
+        if row is None and (ayah := _everyday_index().get(typed)):
+            row = db.execute("SELECT surah, ayah, written FROM tarkeeb WHERE surah = ? AND ayah = ?", ayah).fetchone()
+            if row is not None and len(json.loads(row["written"])) != len(typed.split()):
+                row = None
     except sqlite3.OperationalError:  # built before ayahs were keyed by their letters
         return None
     return (row["surah"], row["ayah"], json.loads(row["written"])) if row else None
