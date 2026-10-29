@@ -4,7 +4,7 @@ import data from '../../../public/grow/basics.json'
 import verbsData from '../../../public/grow/basics-verbs.json'
 import worlds from '../../config/worlds.json'
 import { INTRO, definite, keyOfBasic } from './alifLam'
-import { DUAL, JOINED, MISSPELT, OBJECT_VERBS, OWNED, OWNERS, POINTED, SKILLS, THINGS, asksOf, basicsCards, markerAsks, pathItems, tableOf, teachMarker } from './basicsSkills'
+import { DUAL, JOINED, MISSPELT, OBJECT_VERBS, OWNED, OWNERS, POINTED, QUESTION_VERBS, SKILLS, THINGS, asksOf, basicsCards, markerAsks, pathItems, tableOf, teachMarker } from './basicsSkills'
 import { makeRandom } from '../quiz/quiz'
 import { isFeminine } from './nounForms'
 import { canPossess, meanings, verbTable } from './wordForms'
@@ -38,7 +38,8 @@ describe('pathItems', () => {
     )
     const order = [...new Set(markers.map((item) => item.skill))]
     expect(order).toEqual([
-      'mine', 'people', 'joined', 'this', 'pronouns', 'of', 'two', 'past', 'present', 'object', 'negation', 'command', 'future', 'patterns',
+      'mine', 'people', 'joined', 'this', 'pronouns', 'of', 'two', 'past', 'present', 'object', 'who', 'negation', 'questions', 'command',
+      'future', 'patterns',
     ])
     expect(markers).toHaveLength(Object.values(SKILLS).reduce((sum, skill) => sum + skill.markers.length, 0))
   })
@@ -55,6 +56,8 @@ describe('pathItems', () => {
     expect(itemOf('joined:for').words.map((word) => word.id)).toEqual(JOINED)
     expect(itemOf('this:that').words.map((word) => word.id)).toEqual(POINTED)
     expect(itemOf('object:me').words.map((word) => word.id)).toEqual(OBJECT_VERBS)
+    expect(itemOf('questions:what').words.map((word) => word.id)).toEqual(QUESTION_VERBS)
+    expect(itemOf('who:those').words).toBe(verbs)
     // A pattern draws only the families that have it.
     expect(itemOf('patterns:X').words.map((family) => family.id)).toEqual(['know', 'understand', 'write', 'open'])
     for (const item of markers.filter((one) => one.skill === 'patterns')) {
@@ -279,6 +282,7 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
       for (const card of asksOf(item, true, makeRandom(seed))) {
         expect(Object.keys(card.wrong).sort(), card.id).toEqual(card.options.filter((one) => one.id !== 'right').map((one) => one.id).sort())
         for (const line of Object.values(card.wrong)) expect(line, card.id).not.toMatch(/undefined|null/)
+        for (const line of [card.why, ...Object.values(card.wrong)]) expect(line, card.id).not.toMatch(/[?!]\./)
       }
     }
   })
@@ -311,7 +315,8 @@ describe('SKILLS', () => {
       ['this', 'This, that', 'pointing'], ['pronouns', 'He, she, I', 'pronouns'], ['of', 'The … of …', 'pairs'], ['two', 'Two', 'dual'],
       ['past', 'The past', 'verbs'], ['present', 'The present', 'verbs'],
       ['negation', 'Not', 'verbs'], ['command', 'Do! Don’t!', 'verbs'], ['future', 'Will', 'verbs'],
-      ['object', 'Him, her, me', 'objects'], ['patterns', 'Verb patterns', 'families'],
+      ['object', 'Him, her, me', 'objects'], ['who', 'The one who', 'relative'], ['questions', 'Questions', 'questions'],
+      ['patterns', 'Verb patterns', 'families'],
     ])
   })
 
@@ -336,6 +341,7 @@ describe('SKILLS', () => {
     expect(SKILLS.past.markers.map((marker) => marker.persons)).toEqual([['he'], ['they'], ['I'], ['we'], ['you'], ['you-all'], ['she']])
     expect(SKILLS.command.markers.map((marker) => marker.persons)).toEqual([['you', 'you-all'], ['you', 'you-all']])
     for (const skill of ['negation', 'future']) for (const marker of SKILLS[skill].markers) expect(marker.persons).toEqual(['he', 'she', 'they', 'you', 'you-all', 'I', 'we'])
+    expect(SKILLS.questions.markers.map((marker) => marker.persons.length)).toEqual([7, 7, 7, 1, 7, 7])
   })
 
   // What each rule teaches: the addition, then what it says in English.
@@ -346,6 +352,9 @@ describe('SKILLS', () => {
     'joined:and': ['وَ', 'and'], 'joined:with': ['بِـ', 'with'], 'joined:for': ['لِـ', 'for', 'ا is dropped'], 'joined:like': ['كَـ', 'like'],
     'object:him': ['ـهُ', 'him'], 'object:her': ['ـهَا', 'her'], 'object:them': ['ـهُمْ', 'them'], 'object:me': ['ـنِي', 'me', 'my'],
     'object:us': ['ـنَا', 'us', 'we heard'], 'object:you': ['ـكَ', 'one man'], 'object:you-all': ['ـكُمْ', 'a group'],
+    'who:the-man': ['الَّذِي', 'the one who', '“which”'], 'who:the-woman': ['الَّتِي', 'woman'], 'who:those': ['الَّذِينَ', 'those who', '“they”'],
+    'questions:did': ['هَلْ', 'yes-or-no', 'did he write?'], 'questions:does': ['هَلْ', 'does he write?'], 'questions:a-did': ['أَ', 'the same as هَلْ'],
+    'questions:who': ['مَنْ', 'who'], 'questions:what': ['مَاذَا', 'what'], 'questions:where': ['أَيْنَ', 'where'],
     'patterns:II': ['فَعَّلَ', 'making someone do it'], 'patterns:III': ['فَاعَلَ', 'with or to someone'], 'patterns:IV': ['أَفْعَلَ', 'making someone do it'],
     'patterns:V': ['تَفَعَّلَ', 'back on the doer'], 'patterns:VI': ['تَفَاعَلَ', 'each other'], 'patterns:VII': ['اِنْفَعَلَ', 'by itself'],
     'patterns:VIII': ['اِفْتَعَلَ', 'for yourself'], 'patterns:X': ['اِسْتَفْعَلَ', 'asking for it'],

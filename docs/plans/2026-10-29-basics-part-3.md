@@ -49,7 +49,16 @@ Form I (عَلِمَ he knew → تَعَلَّمَ he learnt).
 - "I" and "you" have a man's and a woman's form; the English says which (a woman speaking, one woman).
 - The noun-phrase tables move to `lib/grow/nounForms.js`; `wordForms.js` keeps the word's own forms and the pickers.
 
-**4B · verbs**: الَّذِي/الَّتِي/الَّذِينَ + the past (the one who…), and questions (هَلْ, أَ, مَنْ, مَاذَا, أَيْنَ).
+**4B · verbs**
+
+| Skill | Markers | Table, drawn on |
+|---|---|---|
+| `who` The one who | الَّذِي كَتَبَ the man who wrote · الَّتِي كَتَبَتْ the woman who · الَّذِينَ كَتَبُوا those who | `relativeTable`, every basics verb |
+| `questions` Questions | هَلْ + past (did…?) · هَلْ + present (does…?) · أَ + past (the same as هَلْ) · مَنْ who · مَاذَا what · أَيْنَ where | `questionTable`, verbs that take a "what" |
+
+- A relative word is never set with another person's verb as a mistake: الَّذِي كَتَبَتْ is real Arabic ("that which she
+  wrote"). The distractors are the other relative words, and the present.
+- هَلْ كَتَبَ and أَكَتَبَ say the same, so the pickers never offer one as wrong for the other. Wrong: أَ written apart.
 
 ## Left for later, and why
 
