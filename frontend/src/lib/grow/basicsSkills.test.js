@@ -4,15 +4,15 @@ import data from '../../../public/grow/basics.json'
 import verbsData from '../../../public/grow/basics-verbs.json'
 import worlds from '../../config/worlds.json'
 import { INTRO, definite, keyOfBasic } from './alifLam'
-import { JOINED, MISSPELT, OWNED, POINTED, SKILLS, basicsCards, markerAsks, pathItems, tableOf, teachMarker } from './basicsSkills'
+import { JOINED, MISSPELT, OBJECT_VERBS, OWNED, POINTED, SKILLS, asksOf, basicsCards, markerAsks, pathItems, tableOf, teachMarker } from './basicsSkills'
 import { makeRandom } from '../quiz/quiz'
 import { canPossess, isFeminine, meanings, verbTable } from './wordForms'
 
 const nfc = (text) => text.normalize('NFC')
 const letters = (text) => text.replace(/[ً-ْٰ\s]/g, '')
 const { words, path, people } = data
-const { verbs } = verbsData
-const items = pathItems(words, { verbs, people, path })
+const { verbs, families } = verbsData
+const items = pathItems(words, { verbs, families, people, path })
 const itemOf = (id) => items.find((item) => item.id === id)
 const markers = items.filter((item) => item.marker)
 const book = words.find((word) => word.id === 'book')
@@ -36,7 +36,7 @@ describe('pathItems', () => {
       ['past:he', 'past:they', 'past:I', 'past:we', 'past:you', 'past:you-all', 'past:she'],
     )
     const order = [...new Set(markers.map((item) => item.skill))]
-    expect(order).toEqual(['mine', 'people', 'joined', 'this', 'past', 'present', 'negation', 'command', 'future'])
+    expect(order).toEqual(['mine', 'people', 'joined', 'this', 'past', 'present', 'object', 'negation', 'command', 'future', 'patterns'])
     expect(markers).toHaveLength(Object.values(SKILLS).reduce((sum, skill) => sum + skill.markers.length, 0))
   })
 
@@ -51,6 +51,12 @@ describe('pathItems', () => {
     expect(itemOf('people:woman').words).toBe(people)
     expect(itemOf('joined:for').words.map((word) => word.id)).toEqual(JOINED)
     expect(itemOf('this:that').words.map((word) => word.id)).toEqual(POINTED)
+    expect(itemOf('object:me').words.map((word) => word.id)).toEqual(OBJECT_VERBS)
+    // A pattern draws only the families that have it.
+    expect(itemOf('patterns:VII').words.map((family) => family.id)).toEqual(['cut', 'open'])
+    for (const item of markers.filter((one) => one.skill === 'patterns')) {
+      expect(item.words.every((family) => family.forms[item.marker.key]), item.id).toBe(true)
+    }
   })
 
   it('leaves out words the path does not name, and a path that names none is the old list', () => {
@@ -61,7 +67,7 @@ describe('pathItems', () => {
   })
 
   it('still gives the words when the verbs, the people or the path did not load (an older cached file, or offline)', () => {
-    const older = pathItems(words, { verbs: null, people: undefined, path })
+    const older = pathItems(words, { verbs: null, families: null, people: undefined, path })
     expect(older.filter((item) => !item.marker)).toEqual(words.slice(0, named))
     expect(new Set(older.filter((item) => item.marker).map((item) => item.skill))).toEqual(new Set(['mine', 'joined', 'this']))
     expect(pathItems(words, { verbs })).toEqual(words)
@@ -122,6 +128,11 @@ describe('teachMarker', () => {
     expect(teachMarker(itemOf('this:this-is'))).toMatchObject({ ar: nfc('هٰذَا كِتَاب'), en: 'this is a book' })
     expect(teachMarker(itemOf('this:this-is')).also).toBeUndefined()
     expect(teachMarker(itemOf('this:that'))).toMatchObject({ ar: nfc('ذٰلِكَ الْكِتَاب'), en: 'that book', also: { ar: nfc('ذٰلِكَ كِتَاب') } })
+  })
+  it('sets the past beside “he heard him”, and form I beside a pattern', () => {
+    expect(teachMarker(itemOf('object:him'))).toMatchObject({ ar: nfc('سَمِعَهُ'), en: 'he heard him', also: { ar: nfc('سَمِعَ'), en: 'he heard' } })
+    expect(teachMarker(itemOf('patterns:V'))).toMatchObject({ tag: 'Verb patterns', ar: nfc('تَعَلَّمَ'), en: 'he learnt', also: { ar: nfc('عَلِمَ'), en: 'he knew' } })
+    expect(teachMarker(itemOf('patterns:VI'))).toMatchObject({ ar: nfc('تَكَاتَبُوا'), en: 'they wrote to each other' })
   })
   it('sets the bare noun beside a possessive', () => {
     expect(teachMarker(itemOf('mine:my'))).toMatchObject({ ar: nfc('كِتَابِي'), en: 'my book', also: { ar: nfc('كِتَاب'), en: 'a book' } })
@@ -224,7 +235,7 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
 
   it.each(markers.map((item) => [item.id, item]))('%s: three options, one right, none of the wrong ones right too', (_, item) => {
     for (let seed = 1; seed <= 25; seed += 1) {
-      for (const card of markerAsks(item, true, makeRandom(seed))) {
+      for (const card of asksOf(item, true, makeRandom(seed))) {
         const texts = card.options.map((option) => option.text)
         expect(card.options, card.id).toHaveLength(3)
         expect(new Set(texts).size).toBe(3)
@@ -239,7 +250,7 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
         const table = tableFor(item, word)
         const byAr = meanings(table)
         if (card.arabic) {
-          const core = SKILLS[item.skill].table === 'verbs' ? null : letters(word.ar).replace(/ة$/, '')
+          const core = word.root ? null : letters(word.ar).replace(/ة$/, '')
           for (const option of card.options) {
             if (core) expect(letters(option.text)).toContain(core)
             else expect(letters(option.text)).toMatch(new RegExp([...word.root].join('.*')))
@@ -254,7 +265,8 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
 
   it.each(markers.map((item) => [item.id, item]))('%s: says why for every wrong pick, never “undefined”', (_, item) => {
     for (let seed = 1; seed <= 25; seed += 1) {
-      for (const card of markerAsks(item, true, makeRandom(seed))) {
+      for (const card of asksOf(item, true, makeRandom(seed))) {
+        expect(Object.keys(card.wrong).sort(), card.id).toEqual(card.options.filter((one) => one.id !== 'right').map((one) => one.id).sort())
         for (const line of Object.values(card.wrong)) expect(line, card.id).not.toMatch(/undefined|null/)
       }
     }
@@ -282,16 +294,17 @@ describe('every marker, on every verb or noun and person (F2–F4)', () => {
 })
 
 describe('SKILLS', () => {
-  it('names each skill as its teach cards show it, in path order', () => {
+  it('names each skill as its teach cards show it', () => {
     expect(Object.entries(SKILLS).map(([id, skill]) => [id, skill.title, skill.table])).toEqual([
       ['mine', 'My, his, her', 'nouns'], ['people', 'One and many', 'people'], ['joined', 'And, with, for, like', 'joined'],
       ['this', 'This, that', 'pointing'], ['past', 'The past', 'verbs'], ['present', 'The present', 'verbs'],
       ['negation', 'Not', 'verbs'], ['command', 'Do! Don’t!', 'verbs'], ['future', 'Will', 'verbs'],
+      ['object', 'Him, her, me', 'objects'], ['patterns', 'Verb patterns', 'families'],
     ])
   })
 
   // Every key a marker names (its own, its base, its pools) is a form the table has, for every person it draws.
-  it.each(markers.map((item) => [item.id, item]))('%s: every form it names is in the table', (_, item) => {
+  it.each(markers.filter((item) => !SKILLS[item.skill].asks).map((item) => [item.id, item]))('%s: every form it names is in the table', (_, item) => {
     const { table, markers: all } = SKILLS[item.skill]
     const word = item.words[0]
     const keys = new Set(tableOf(item.skill, table === 'nouns' ? { ...word, ar: 'مَدْرَسَة' } : word).map((entry) => entry.key))
@@ -319,6 +332,11 @@ describe('SKILLS', () => {
     'mine:their': ['ـهُمْ', '“their”'], 'mine:your': ['ـكَ', 'one man'], 'mine:your-all': ['ـكُمْ', 'a group'],
     'people:woman': ['ة', 'woman'], 'people:men': ['ـُونَ', 'men', 'ـِينَ'], 'people:women': ['ـَات', 'women'],
     'joined:and': ['وَ', 'and'], 'joined:with': ['بِـ', 'with'], 'joined:for': ['لِـ', 'for', 'ا is dropped'], 'joined:like': ['كَـ', 'like'],
+    'object:him': ['ـهُ', 'him'], 'object:her': ['ـهَا', 'her'], 'object:them': ['ـهُمْ', 'them'], 'object:me': ['ـنِي', 'me', 'my'],
+    'object:us': ['ـنَا', 'us', 'we heard'], 'object:you': ['ـكَ', 'one man'], 'object:you-all': ['ـكُمْ', 'a group'],
+    'patterns:II': ['فَعَّلَ', 'making someone do it'], 'patterns:III': ['فَاعَلَ', 'with or to someone'], 'patterns:IV': ['أَفْعَلَ', 'making someone do it'],
+    'patterns:V': ['تَفَعَّلَ', 'back on the doer'], 'patterns:VI': ['تَفَاعَلَ', 'each other'], 'patterns:VII': ['اِنْفَعَلَ', 'by itself'],
+    'patterns:VIII': ['اِفْتَعَلَ', 'for yourself'], 'patterns:X': ['اِسْتَفْعَلَ', 'asking for it'],
     'this:this-is': ['هٰذَا', 'this is', 'هٰذِهِ'], 'this:this': ['ال', '“this”'], 'this:that-is': ['ذٰلِكَ', 'تِلْكَ'], 'this:that': ['ال', '“that”'],
     'past:he': ['كَتَبَ', 'he wrote'], 'past:they': ['ـُوا', 'they did'], 'past:I': ['ـْتُ', 'I did'], 'past:we': ['ـْنَا', 'we did'],
     'past:you': ['ـْتَ', 'one man'], 'past:you-all': ['ـْتُمْ', 'you all did'], 'past:she': ['ـَتْ', 'she did'],

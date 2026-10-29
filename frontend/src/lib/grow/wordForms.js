@@ -8,7 +8,8 @@
  *   peopleTable(person)   مُسْلِم · مُسْلِمَة · مُسْلِمُونَ · مُسْلِمَات: a man, a woman, men, women
  *   joinedTable(word)     وَالْكِتَاب and the book · بِالْقَلَم with the pen · لِلْبَيْت for the house · كَالْقَمَر like the moon
  *   pointingTable(word)   هٰذَا كِتَاب this is a book · هٰذَا الْكِتَاب this book · تِلْكَ سَيَّارَة that is a car …
- * plus forms a beginner builds wrongly (en null): *سَكَتَبَ, *لَمْ كَتَبَ, *الْكِتَابُهُ, *وَ الْكِتَاب, *هٰذِهِ كِتَاب.
+ *   objectTable(verb)     سَمِعَهُ he heard him · سَمِعَنِي he heard me · سَمِعَنَا he heard us (and سَمِعْنَا we heard) …
+ * plus forms a beginner builds wrongly (en null): *سَكَتَبَ, *لَمْ كَتَبَ, *الْكِتَابُهُ, *وَ الْكِتَاب, *هٰذِهِ كِتَاب, *سَمِعِي.
  *
  * One spelling can say two things (تَكْتُبُ: she writes, and you write), and two spellings can say one
  * (لَمْ يَكْتُبْ and مَا كَتَبَ: he didn't write). So an option is wrong only when no reading of it is the
@@ -174,6 +175,32 @@ export function pointingTable(word) {
     }
   }
   return entries
+}
+
+/** The endings that say who a verb is done to: on the verb, where English puts him, her, me… after it. */
+export const OBJECTS = [
+  { id: 'him', en: 'him', end: 'هُ' },
+  { id: 'her', en: 'her', end: 'هَا' },
+  { id: 'them', en: 'them', end: 'هُمْ' },
+  { id: 'me', en: 'me', end: 'نِي' },
+  { id: 'us', en: 'us', end: 'نَا' },
+  { id: 'you', en: 'you', end: 'كَ', hint: ' (one man)' },
+  { id: 'you-all', en: 'you', end: 'كُمْ', hint: ' (all of you)' },
+]
+
+/**
+ * "he heard him", "he heard me"…: the past for "he" with each ending; beside them the past for "he" and "we" as they are
+ * (سَمِعَنَا he heard us is سَمِعْنَا we heard but for one mark), and ـِي for "me", which is "my" on a noun (*سَمِعِي).
+ */
+export function objectTable(verb) {
+  const { he, we } = verb.forms
+  const said = (subject, rest = '') => `${subject} ${verb.en.past}${rest}`
+  return [
+    { key: 'he', ar: nfc(he.past), en: said('he') },
+    { key: 'we', ar: nfc(we.past), en: said('we') },
+    ...OBJECTS.map((object) => ({ key: object.id, ar: nfc(`${he.past}${object.end}`), en: said('he', ` ${object.en}${object.hint ?? ''}`) })),
+    { key: 'wrong:ya:me', ar: nfc(`${he.past.replace(/\u064E$/, '')}\u0650ي`), en: null },
+  ]
 }
 
 /** Each spelling in the table and everything it can mean. */

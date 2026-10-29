@@ -1129,5 +1129,181 @@
     }
    }
   }
+ ],
+ "families": [
+  {
+   "id": "know",
+   "root": "علم",
+   "forms": {
+    "I": {
+     "ar": "عَلِمَ",
+     "en": "he knew"
+    },
+    "II": {
+     "ar": "عَلَّمَ",
+     "en": "he taught"
+    },
+    "V": {
+     "ar": "تَعَلَّمَ",
+     "en": "he learnt"
+    },
+    "X": {
+     "ar": "اِسْتَعْلَمَ",
+     "en": "he asked to know"
+    }
+   }
+  },
+  {
+   "id": "understand",
+   "root": "فهم",
+   "forms": {
+    "I": {
+     "ar": "فَهِمَ",
+     "en": "he understood"
+    },
+    "II": {
+     "ar": "فَهَّمَ",
+     "en": "he made someone understand"
+    },
+    "X": {
+     "ar": "اِسْتَفْهَمَ",
+     "en": "he asked to understand"
+    }
+   }
+  },
+  {
+   "id": "write",
+   "root": "كتب",
+   "forms": {
+    "I": {
+     "ar": "كَتَبَ",
+     "en": "he wrote"
+    },
+    "III": {
+     "ar": "كَاتَبَ",
+     "en": "he wrote to someone"
+    },
+    "VI": {
+     "ar": "تَكَاتَبُوا",
+     "en": "they wrote to each other"
+    },
+    "X": {
+     "ar": "اِسْتَكْتَبَ",
+     "en": "he asked someone to write"
+    }
+   }
+  },
+  {
+   "id": "hear",
+   "root": "سمع",
+   "forms": {
+    "I": {
+     "ar": "سَمِعَ",
+     "en": "he heard"
+    },
+    "IV": {
+     "ar": "أَسْمَعَ",
+     "en": "he made someone hear"
+    },
+    "VIII": {
+     "ar": "اِسْتَمَعَ",
+     "en": "he listened"
+    }
+   }
+  },
+  {
+   "id": "sit",
+   "root": "جلس",
+   "forms": {
+    "I": {
+     "ar": "جَلَسَ",
+     "en": "he sat"
+    },
+    "III": {
+     "ar": "جَالَسَ",
+     "en": "he sat with someone"
+    },
+    "IV": {
+     "ar": "أَجْلَسَ",
+     "en": "he sat someone down"
+    }
+   }
+  },
+  {
+   "id": "accept",
+   "root": "قبل",
+   "forms": {
+    "I": {
+     "ar": "قَبِلَ",
+     "en": "he accepted"
+    },
+    "III": {
+     "ar": "قَابَلَ",
+     "en": "he met someone"
+    },
+    "VI": {
+     "ar": "تَقَابَلُوا",
+     "en": "they met each other"
+    }
+   }
+  },
+  {
+   "id": "know-someone",
+   "root": "عرف",
+   "forms": {
+    "I": {
+     "ar": "عَرَفَ",
+     "en": "he knew someone"
+    },
+    "II": {
+     "ar": "عَرَّفَ",
+     "en": "he made known"
+    },
+    "V": {
+     "ar": "تَعَرَّفَ",
+     "en": "he got to know"
+    },
+    "VI": {
+     "ar": "تَعَارَفُوا",
+     "en": "they got to know each other"
+    }
+   }
+  },
+  {
+   "id": "cut",
+   "root": "قطع",
+   "forms": {
+    "I": {
+     "ar": "قَطَعَ",
+     "en": "he cut"
+    },
+    "III": {
+     "ar": "قَاطَعَ",
+     "en": "he interrupted someone"
+    },
+    "VII": {
+     "ar": "اِنْقَطَعَ",
+     "en": "it got cut off"
+    }
+   }
+  },
+  {
+   "id": "open",
+   "root": "فتح",
+   "forms": {
+    "I": {
+     "ar": "فَتَحَ",
+     "en": "he opened"
+    },
+    "VII": {
+     "ar": "اِنْفَتَحَ",
+     "en": "it came open"
+    },
+    "X": {
+     "ar": "اِسْتَفْتَحَ",
+     "en": "he asked for an opening"
+    }
+   }
+  }
  ]
 }
