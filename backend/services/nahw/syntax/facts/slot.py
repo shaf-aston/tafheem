@@ -124,14 +124,15 @@ def purpose(token: dict, verb: dict) -> bool:
             and typed_or_parsed_case(token) in (None, "a") and token.get("stt") in ("i", "c"))
 
 
-def wants_object(verb: dict, kids: list[dict], s: Sentence) -> bool:
-    """An active verb of no family that takes a noun as its object (book.takes_object) and has none of its
-    own, before it, after it or written on it: a describing word in nasb is that object, standing for the
-    noun it describes, left out (Ibn Aqil V3 p205: يجوز حذف المنعوت وإقامة النعت مقامه … أن اعمل سابغات أي
-    دروعا سابغات). So the Qur'an's مَنْ عَمِلَ صَالِحًا، وَمَنْ يَقْتُلْ مُؤْمِنًا, and a name the dictionary reads as
-    a describing word: أكرم محمد خالدا. A verb with its object keeps the hal (شرب زيد الماء باردا), as one that
-    seldom takes a noun does (جاء زيد راكبا، فَتَقْعُدَ مَذْمُومًا) and a passive (قُتِلَ مَظْلُومًا)."""
-    return (not is_passive(verb) and s.family(verb) is None and takes_object(verb["lemma"])
+def wants_object(verb: dict, kids: list[dict]) -> bool:
+    """An active verb that takes a noun as its object (book.takes_object), not one the book lists as taking
+    none (intransitive_verbs: حضر), with no object of its own, before it, after it or written on it: a
+    describing word in nasb is that object, standing for the noun it describes, left out (Ibn Aqil V3 p205:
+    يجوز حذف المنعوت وإقامة النعت مقامه … أن اعمل سابغات أي دروعا سابغات). So the Qur'an's مَنْ عَمِلَ صَالِحًا،
+    وَمَنْ يَقْتُلْ مُؤْمِنًا (its treebank: 299 such words are the object, 7 a hal), and a name the dictionary
+    reads as a describing word: أكرم محمد خالدا. A verb with its object keeps the hal (قتل زيد عمرا ظالما), as
+    one that seldom takes a noun does (جاء زيد راكبا، فَتَقْعُدَ مَذْمُومًا) and a passive (قُتِلَ مَظْلُومًا)."""
+    return (not is_passive(verb) and takes_object(verb["lemma"]) and not is_one(verb["lemma"], "intransitive_verbs")
             and not any(k["rel"] == "OBJ" for k in kids))
 
 
@@ -230,7 +231,7 @@ def verb_place(token: dict, s: Sentence) -> str:
                     or (t["id"] < token["id"] and verb_place(t, s) == "subject") for t in siblings)):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
                 return "specification"
-            if is_participle(token) and wants_object(head, siblings, s):
+            if is_participle(token) and wants_object(head, siblings):
                 return "object"  # أكرم محمد خالدا، مَنْ عَمِلَ صَالِحًا: the describing word stands for its noun
             if is_participle(token):
                 return "state"

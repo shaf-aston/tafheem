@@ -37,6 +37,8 @@ def roles(sentence: str) -> list[str]:
     ("جاء زيد كريما", ["فعل", "فاعل", "حال"]),  # جاء seldom takes a noun: the describing word is its hal
     ("وقف الجندي ثابتا", ["فعل", "فاعل", "حال"]),  # a verb the Qur'an gives no object keeps the hal
     ("قُتِلَ زَيْدٌ مَظْلُومًا", ["فعل مجهول", "نائب فاعل", "حال"]),  # a passive wants no object
+    ("قتل زيد عمرا ظالما", ["فعل", "فاعل", "مفعول به", "حال"]),  # a verb with its object keeps the hal
+    ("حضر زيد مسرعا", ["فعل", "فاعل", "حال"]),  # the book lists حضر as taking none, whatever the Qur'an's use
 ])
 def test_with_no_case_shown_the_verb_takes_its_doer_then_its_object(sentence, said):
     assert roles(sentence) == said
