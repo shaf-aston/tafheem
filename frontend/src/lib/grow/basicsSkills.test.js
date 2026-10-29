@@ -53,7 +53,7 @@ describe('pathItems', () => {
     expect(itemOf('this:that').words.map((word) => word.id)).toEqual(POINTED)
     expect(itemOf('object:me').words.map((word) => word.id)).toEqual(OBJECT_VERBS)
     // A pattern draws only the families that have it.
-    expect(itemOf('patterns:VII').words.map((family) => family.id)).toEqual(['cut', 'open'])
+    expect(itemOf('patterns:X').words.map((family) => family.id)).toEqual(['know', 'understand', 'write', 'open'])
     for (const item of markers.filter((one) => one.skill === 'patterns')) {
       expect(item.words.every((family) => family.forms[item.marker.key]), item.id).toBe(true)
     }

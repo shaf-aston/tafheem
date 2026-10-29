@@ -257,13 +257,13 @@
    }
   },
   {
-   "id": "accept",
-   "root": "قبل",
+   "id": "work",
+   "root": "عمل",
    "bab": "I-samia",
    "en": {
-    "I": "he accepted",
-    "III": "he met someone",
-    "VI": "they met each other"
+    "I": "he worked",
+    "III": "he dealt with someone",
+    "VI": "they dealt with each other"
    }
   },
   {
@@ -275,16 +275,6 @@
     "II": "he made known",
     "V": "he got to know",
     "VI": "they got to know each other"
-   }
-  },
-  {
-   "id": "cut",
-   "root": "قطع",
-   "bab": "I-fataha",
-   "en": {
-    "I": "he cut",
-    "III": "he interrupted someone",
-    "VII": "it got cut off"
    }
   },
   {

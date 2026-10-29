@@ -1230,20 +1230,20 @@
    }
   },
   {
-   "id": "accept",
-   "root": "قبل",
+   "id": "work",
+   "root": "عمل",
    "forms": {
     "I": {
-     "ar": "قَبِلَ",
-     "en": "he accepted"
+     "ar": "عَمِلَ",
+     "en": "he worked"
     },
     "III": {
-     "ar": "قَابَلَ",
-     "en": "he met someone"
+     "ar": "عَامَلَ",
+     "en": "he dealt with someone"
     },
     "VI": {
-     "ar": "تَقَابَلُوا",
-     "en": "they met each other"
+     "ar": "تَعَامَلُوا",
+     "en": "they dealt with each other"
     }
    }
   },
@@ -1266,24 +1266,6 @@
     "VI": {
      "ar": "تَعَارَفُوا",
      "en": "they got to know each other"
-    }
-   }
-  },
-  {
-   "id": "cut",
-   "root": "قطع",
-   "forms": {
-    "I": {
-     "ar": "قَطَعَ",
-     "en": "he cut"
-    },
-    "III": {
-     "ar": "قَاطَعَ",
-     "en": "he interrupted someone"
-    },
-    "VII": {
-     "ar": "اِنْقَطَعَ",
-     "en": "it got cut off"
     }
    }
   },

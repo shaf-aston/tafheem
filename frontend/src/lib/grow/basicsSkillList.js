@@ -170,7 +170,7 @@ export const SKILLS = {
       ['IV', 'أَ in front, and no vowel on the first letter, often means making someone do it: سَمِعَ he heard, أَسْمَعَ he made someone hear.'],
       ['V', 'تَ in front of form II turns it back on the doer: عَلَّمَ he taught, تَعَلَّمَ he learnt (taught himself).'],
       ['VI', 'تَ in front of form III often means doing it to each other, so it is mostly said of “they”: تَكَاتَبُوا they wrote to each other.'],
-      ['VII', 'اِنْ in front often means it got done, by itself, with no doer named: قَطَعَ he cut, اِنْقَطَعَ it got cut off.'],
+      ['VII', 'اِنْ in front often means it got done, by itself, with no doer named: فَتَحَ he opened, اِنْفَتَحَ it came open.'],
       ['VIII', 'A ت after the first letter often means doing it for yourself, or with effort: سَمِعَ he heard, اِسْتَمَعَ he listened.'],
       ['X', 'اِسْتَ in front often means asking for it: عَلِمَ he knew, اِسْتَعْلَمَ he asked to know.'],
     ].map(([form, rule]) => noun(form, 'I', `${PATTERNS[form].shape}: ${rule} Often, not always: each verb’s meaning is still learnt.`, [])),
