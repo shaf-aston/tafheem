@@ -5,13 +5,17 @@
  *   verbTable(verb)       كَتَبَتْ she wrote · سَيَكْتُبُ he will write · لَمْ يَكْتُبْ he didn't write · اُكْتُبْ Write! …
  *                         from public/grow/basics-verbs.json, whose Arabic the conjugation engine made
  *   possessiveTable(word) كِتَابُهُ his book · مَدْرَسَتِي my school …
- * plus forms a beginner builds wrongly (en null): *سَكَتَبَ, *لَمْ كَتَبَ, *الْكِتَابُهُ.
+ *   peopleTable(person)   مُسْلِم · مُسْلِمَة · مُسْلِمُونَ · مُسْلِمَات: a man, a woman, men, women
+ *   joinedTable(word)     وَالْكِتَاب and the book · بِالْقَلَم with the pen · لِلْبَيْت for the house · كَالْقَمَر like the moon
+ *   pointingTable(word)   هٰذَا كِتَاب this is a book · هٰذَا الْكِتَاب this book · تِلْكَ سَيَّارَة that is a car …
+ *   objectTable(verb)     سَمِعَهُ he heard him · سَمِعَنِي he heard me · سَمِعَنَا he heard us (and سَمِعْنَا we heard) …
+ * plus forms a beginner builds wrongly (en null): *سَكَتَبَ, *لَمْ كَتَبَ, *الْكِتَابُهُ, *وَ الْكِتَاب, *هٰذِهِ كِتَاب, *سَمِعِي.
  *
  * One spelling can say two things (تَكْتُبُ: she writes, and you write), and two spellings can say one
  * (لَمْ يَكْتُبْ and مَا كَتَبَ: he didn't write). So an option is wrong only when no reading of it is the
  * one asked: the pickers below compare readings, never keys.
  */
-import { definite, plain } from './alifLam'
+import { article, definite, english, plain } from './alifLam'
 import { shuffled } from '../text/shuffle'
 
 const nfc = (text) => text.normalize('NFC')
@@ -107,6 +111,96 @@ export function possessiveTable(word) {
     if (bare.endsWith(TA_MARBUTA)) entries.push({ key: `wrong:ta:${owner.id}`, ar: nfc(`${bare}${owner.end}`), en: null })
   }
   return entries
+}
+
+/**
+ * A person as one man, one woman, men and women: ة, ـُونَ, ـَات on the end. Only words that take these plurals
+ * (basics.json `people`): مُسْلِمُونَ, not a broken plural like طُلَّاب. ـِينَ, the same plural elsewhere in a sentence, is not asked.
+ */
+export function peopleTable(person) {
+  const bare = plain(person.ar)
+  const one = article(person)
+  return [
+    { key: 'man', ar: bare, en: `${one} ${person.en} (man)` },
+    { key: 'woman', ar: nfc(`${bare}َة`), en: `${one} ${person.en} (woman)` },
+    { key: 'men', ar: nfc(`${bare}ُونَ`), en: `${person.many} (men)` },
+    { key: 'women', ar: nfc(`${bare}َات`), en: `${person.many} (women)` },
+  ]
+}
+
+/** The one-letter words joined to the front of a word with ال, and what each says. لِـ takes the place of ال's ا. */
+export const JOINERS = [
+  { id: 'and', ar: 'وَ', en: 'and' },
+  { id: 'with', ar: 'بِ', en: 'with' },
+  { id: 'for', ar: 'لِ', en: 'for', drops: true },
+  { id: 'like', ar: 'كَ', en: 'like' },
+]
+
+/** The word with ال, then joined to each one-letter word; wrongly, written apart (*وَ الْكِتَاب) or keeping the ا (*لِالْكِتَاب). */
+export function joinedTable(word) {
+  const the = definite(word.ar)
+  const entries = [{ key: 'the', ar: the, en: english(word, true) }]
+  for (const joiner of JOINERS) {
+    entries.push({ key: joiner.id, ar: nfc(`${joiner.ar}${joiner.drops ? the.slice(1) : the}`), en: `${joiner.en} ${english(word, true)}` })
+    entries.push({ key: `wrong:apart:${joiner.id}`, ar: nfc(`${joiner.ar} ${the}`), en: null })
+    if (joiner.drops) entries.push({ key: `wrong:alif:${joiner.id}`, ar: nfc(`${joiner.ar}${the}`), en: null })
+  }
+  return entries
+}
+
+/** هٰذَا and ذٰلِكَ for a man or a masculine thing; هٰذِهِ and تِلْكَ for a feminine one. */
+export const POINTERS = {
+  this: { en: 'this', masculine: 'هٰذَا', feminine: 'هٰذِهِ' },
+  that: { en: 'that', masculine: 'ذٰلِكَ', feminine: 'تِلْكَ' },
+}
+
+/** Whether a word is feminine as taught here: it ends in ة (basicsSkills' POINTED holds no feminine word without one). */
+export const isFeminine = (word) => plain(word.ar).endsWith(TA_MARBUTA)
+
+/**
+ * "this is a book" (pointer + word without ال) and "this book" (pointer + word with ال), for this and that; then the
+ * same with the pointer of the other gender, which says nothing (*هٰذِهِ كِتَاب).
+ */
+export function pointingTable(word) {
+  const feminine = isFeminine(word)
+  const forms = { is: plain(word.ar), the: definite(word.ar) }
+  const entries = []
+  for (const [id, pointer] of Object.entries(POINTERS)) {
+    const [right, wrong] = feminine ? [pointer.feminine, pointer.masculine] : [pointer.masculine, pointer.feminine]
+    const en = { is: `${pointer.en} is ${english(word, false)}`, the: `${pointer.en} ${word.en}` }
+    for (const [kind, form] of Object.entries(forms)) {
+      const key = kind === 'is' ? `${id}-is` : id
+      entries.push({ key, ar: nfc(`${right} ${form}`), en: en[kind] })
+      entries.push({ key: `wrong:gender:${key}`, ar: nfc(`${wrong} ${form}`), en: null })
+    }
+  }
+  return entries
+}
+
+/** The endings that say who a verb is done to: on the verb, where English puts him, her, me… after it. */
+export const OBJECTS = [
+  { id: 'him', en: 'him', end: 'هُ' },
+  { id: 'her', en: 'her', end: 'هَا' },
+  { id: 'them', en: 'them', end: 'هُمْ' },
+  { id: 'me', en: 'me', end: 'نِي' },
+  { id: 'us', en: 'us', end: 'نَا' },
+  { id: 'you', en: 'you', end: 'كَ', hint: ' (one man)' },
+  { id: 'you-all', en: 'you', end: 'كُمْ', hint: ' (all of you)' },
+]
+
+/**
+ * "he heard him", "he heard me"…: the past for "he" with each ending; beside them the past for "he" and "we" as they are
+ * (سَمِعَنَا he heard us is سَمِعْنَا we heard but for one mark), and ـِي for "me", which is "my" on a noun (*سَمِعِي).
+ */
+export function objectTable(verb) {
+  const { he, we } = verb.forms
+  const said = (subject, rest = '') => `${subject} ${verb.en.past}${rest}`
+  return [
+    { key: 'he', ar: nfc(he.past), en: said('he') },
+    { key: 'we', ar: nfc(we.past), en: said('we') },
+    ...OBJECTS.map((object) => ({ key: object.id, ar: nfc(`${he.past}${object.end}`), en: said('he', ` ${object.en}${object.hint ?? ''}`) })),
+    { key: 'wrong:ya:me', ar: nfc(`${he.past.replace(/\u064E$/, '')}\u0650ي`), en: null },
+  ]
 }
 
 /** Each spelling in the table and everything it can mean. */

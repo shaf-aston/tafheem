@@ -14,7 +14,7 @@ import { writeRaw } from '../lib/store/stored'
 import data from '../../public/grow/basics.json'
 import verbs from '../../public/grow/basics-verbs.json'
 
-const items = pathItems(data.words, { verbs: verbs.verbs, path: data.path })
+const items = pathItems(data.words, { verbs: verbs.verbs, families: verbs.families, people: data.people, path: data.path })
 
 const click = (name) => fireEvent.click(screen.getByRole('button', { name }))
 

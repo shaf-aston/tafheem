@@ -2,14 +2,14 @@
 import config from '../../config/recite.json'
 
 /**
- * A word's score: { sure, weak, weakFrom, at, take }. `sure` is how likely the
+ * A word's score: { sure, weak, weakFrom, at, take, sounds }. `sure` is how likely the
  * ear found the word, `weak` the text of its least likely piece and `weakFrom`
  * the characters of the word before it, `at` the second of the recording the
  * word sits at, `take` which recording that is. `detail` is the server's own
  * {weak, weak_from, at} for the word, when it gave one.
  */
 const scoreOf = (sure, detail, take = null) => (
-  { sure, weak: detail?.weak, weakFrom: detail?.weak_from, at: detail?.at, take }
+  { sure, weak: detail?.weak, weakFrom: detail?.weak_from, at: detail?.at, take, sounds: detail?.sounds }
 )
 
 /**

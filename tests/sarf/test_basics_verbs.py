@@ -69,3 +69,34 @@ def test_the_english_is_three_plain_forms():
         for form in verb["en"].values():
             assert re.fullmatch("[a-z]+( [a-z]+)?", form), (verb["id"], form)
     assert len(set(IDS)) == len(IDS)
+
+
+FAMILIES = SHIPPED["families"]
+FAMILY_IDS = [family["id"] for family in FAMILIES]
+PATTERNS = ["II", "III", "IV", "V", "VI", "VII", "VIII", "X"]
+
+
+@pytest.mark.parametrize("family", SOURCE["families"], ids=FAMILY_IDS)
+def test_a_family_starts_on_the_dictionaries_bab(family):
+    assert verb_forms.babs_of(family["root"])["form_key"] == family["bab"]
+
+
+@pytest.mark.parametrize("family", FAMILIES, ids=FAMILY_IDS)
+def test_a_family_holds_its_root_on_three_patterns_or_more(family):
+    forms = family["forms"]
+    assert list(forms)[0] == "I" and len(forms) >= 3, family["id"]
+    assert set(forms) - {"I"} <= set(PATTERNS)
+    for form, one in forms.items():
+        assert re.search(".*".join(family["root"]), MARKS.sub("", one["ar"])), (family["id"], form, one["ar"])
+    # The read card offers the family's other meanings as wrong ones, so no two may say the same.
+    assert len({one["en"] for one in forms.values()}) == len(forms)
+
+
+def test_every_pattern_has_a_family_and_form_vi_is_said_of_they():
+    for pattern in PATTERNS:
+        assert any(pattern in family["forms"] for family in FAMILIES), pattern
+    for family in FAMILIES:
+        for form, one in family["forms"].items():
+            assert one["en"].split()[0] == ("they" if form == "VI" else "he" if form != "VII" else "it"), (family["id"], form)
+            if form == "VI":
+                assert one["ar"].endswith("وا")

@@ -201,5 +201,91 @@
     "s3": "studies"
    }
   }
+ ],
+ "_families": "Basics verb patterns (forms II–X): each root on a few patterns, every one a real, everyday verb whose meaning shows what its pattern adds. Arabic is never typed here: the builder conjugates `root` on each form (form I on `bab`), the past for “he”, for VI the past for “they”. `en` is the English for that form, subject first, checked by hand; within a family no two say the same.",
+ "families": [
+  {
+   "id": "know",
+   "root": "علم",
+   "bab": "I-samia",
+   "en": {
+    "I": "he knew",
+    "II": "he taught",
+    "V": "he learnt",
+    "X": "he asked to know"
+   }
+  },
+  {
+   "id": "understand",
+   "root": "فهم",
+   "bab": "I-samia",
+   "en": {
+    "I": "he understood",
+    "II": "he made someone understand",
+    "X": "he asked to understand"
+   }
+  },
+  {
+   "id": "write",
+   "root": "كتب",
+   "bab": "I-nasara",
+   "en": {
+    "I": "he wrote",
+    "III": "he wrote to someone",
+    "VI": "they wrote to each other",
+    "X": "he asked someone to write"
+   }
+  },
+  {
+   "id": "hear",
+   "root": "سمع",
+   "bab": "I-samia",
+   "en": {
+    "I": "he heard",
+    "IV": "he made someone hear",
+    "VIII": "he listened"
+   }
+  },
+  {
+   "id": "sit",
+   "root": "جلس",
+   "bab": "I-daraba",
+   "en": {
+    "I": "he sat",
+    "III": "he sat with someone",
+    "IV": "he sat someone down"
+   }
+  },
+  {
+   "id": "work",
+   "root": "عمل",
+   "bab": "I-samia",
+   "en": {
+    "I": "he worked",
+    "III": "he dealt with someone",
+    "VI": "they dealt with each other"
+   }
+  },
+  {
+   "id": "know-someone",
+   "root": "عرف",
+   "bab": "I-daraba",
+   "en": {
+    "I": "he knew someone",
+    "II": "he made known",
+    "V": "he got to know",
+    "VI": "they got to know each other"
+   }
+  },
+  {
+   "id": "open",
+   "root": "فتح",
+   "bab": "I-fataha",
+   "en": {
+    "I": "he opened",
+    "VII": "it came open",
+    "X": "he asked for an opening"
+   }
+  }
  ]
 }

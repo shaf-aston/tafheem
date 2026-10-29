@@ -15,6 +15,7 @@ others noticing:
     place.py     words -> page stretch  pure, where a recording sits on a page
     locate.py    words -> place         pure, where in the whole Qur'an a reading is
     checker.py   sound -> sure          how sure the ear is of each page word
+    sounds.py    sound -> sounds        which letters and vowels were heard, beside the expected ones; display only
     this file                           asks for words, and hands the corpus to the matcher
 
 Which ear answers is ears.py's business and nothing above this package knows
@@ -36,7 +37,7 @@ from backend.config import data_path, get_settings
 from backend.services.quran import corpus as quran_corpus
 from backend.services.text.refs import SURAHS
 from backend.services.core.timing import timed
-from backend.services.recitation import checker, ears, locate, match, place
+from backend.services.recitation import checker, ears, locate, match, place, sounds
 # Re-exported so a caller uses only this package. Which piece in here owns
 # which is this package's own business, and a route that imports by submodule
 # has to know.
@@ -81,6 +82,7 @@ def warm() -> None:
     first such search pays about a second.
     """
     ears.warm()
+    sounds.warm()
     try:
         _ayahs()
         _line()
@@ -196,10 +198,11 @@ def find_place(heard: str, near: tuple[int, int] | None = None, before: str = ""
     )
 
 
-def _detail(word: dict) -> dict:
-    """The {weak, weak_from, at} a word card needs, out of checker.weigh's word."""
+def _detail(word: dict, heard: dict | None) -> dict:
+    """The {weak, weak_from, at, sounds} a word card needs, out of checker.weigh's
+    word and sounds.hear_sounds' (None when sounds were not heard)."""
     weak = word["weak"]
-    return {"weak": weak and weak["text"], "weak_from": weak and weak["start"], "at": word["at"]}
+    return {"weak": weak and weak["text"], "weak_from": weak and weak["start"], "at": word["at"], "sounds": heard}
 
 
 def check(
@@ -208,7 +211,9 @@ def check(
     """How sure the ear is of each word of these ayahs, from this recording.
 
     Two dicts by ayah, one entry per word: the sureness, 0 to 1, and its
-    {"weak", "weak_from", "at"} detail (see _detail). Both are None for a word this
+    {"weak", "weak_from", "at", "sounds"} detail (see _detail). `sounds` is
+    {"heard", "expected", "letter_ok", "vowel_ok"} or None; it is only shown and
+    never changes a sureness. Both are None for a word this
     recording does not reach: it was said in another one, and scoring it here
     would call it unsaid. Both empty when the recording does not place on these ayahs,
     or places on more words than one recording can hold. The page words are
@@ -240,8 +245,12 @@ def check(
     weighed = timed("checked", checker.weigh, audio, words[first:last], model, words=last - first)
     sure = {key: [None] * owner.count(key) for key in dict.fromkeys(owner)}
     detail = {key: [None] * owner.count(key) for key in sure}
+    expected = {key: sounds.expected_for(key, owner.count(key)) for key in sure}
+    heard = timed("sounds", sounds.hear_sounds, audio, [
+        expected[owner[i]] and expected[owner[i]][i - owner.index(owner[i])] for i in range(first, last)
+    ], words=last - first) or [None] * (last - first)
     for i, word in zip(range(first, last), weighed):
         key = owner[i]
         sure[key][i - owner.index(key)] = round(word["sure"], 3)
-        detail[key][i - owner.index(key)] = _detail(word)
+        detail[key][i - owner.index(key)] = _detail(word, heard[i - first])
     return sure, detail
