@@ -195,6 +195,32 @@ export const SKILLS = {
       noun('you-all', 'he', 'ـكُمْ on the end of a verb = you, said to a group.', ['you', 'them', 'us']),
     ],
   },
+  who: {
+    title: 'The one who',
+    table: 'relative',
+    markers: [
+      noun('the-man', 'he', 'الَّذِي = the one who, for a man: الَّذِي كَتَبَ the man who wrote. For a thing it is “which”.',
+        ['the-woman', 'those', 'the-man-now']),
+      noun('the-woman', 'the-man', 'الَّتِي is the same for a woman, and the verb after it is hers: الَّتِي كَتَبَتْ the woman who wrote.',
+        ['the-man', 'those']),
+      noun('those', 'the-man', 'الَّذِينَ = those who (men, or men and women), with the verb for “they”: الَّذِينَ كَتَبُوا those who wrote. The Qur’an says it again and again: those who believed.',
+        ['the-man', 'those-now', 'the-woman']),
+    ],
+  },
+  questions: {
+    title: 'Questions',
+    table: 'questions',
+    markers: [
+      particle('did', EVERYONE, 'said:{p}', 'هَلْ in front makes a yes-or-no question: هَلْ كَتَبَ؟ did he write? English moves words round and adds “did”; Arabic adds one word.',
+        ['said:{p}', 'does:{p}', 'where:{p}']),
+      particle('does', EVERYONE, 'did:{p}', 'هَلْ before the present asks about now: هَلْ يَكْتُبُ؟ does he write?', ['did:{p}', 'said:{p}', 'what:{p}']),
+      particle('a-did', EVERYONE, 'did:{p}', 'أَ joined to the front asks the same as هَلْ: أَكَتَبَ؟ did he write? The Qur’an often asks this way.',
+        ['said:{p}', 'where:{p}', 'does:{p}', 'wrong:apart:{p}']),
+      { ...noun('who', 'said:he', 'مَنْ = who: مَنْ كَتَبَ؟ who wrote?', ['said:he', 'did:he', 'what:he']), persons: ['he'] },
+      particle('what', EVERYONE, 'said:{p}', 'مَاذَا = what, before a verb: مَاذَا كَتَبَ؟ what did he write?', ['where:{p}', 'did:{p}', 'said:{p}']),
+      particle('where', EVERYONE, 'said:{p}', 'أَيْنَ = where: أَيْنَ كَتَبَ؟ where did he write?', ['what:{p}', 'did:{p}', 'said:{p}']),
+    ],
+  },
   patterns: {
     title: 'Verb patterns',
     table: 'families',
@@ -222,6 +248,9 @@ export const DUAL = [
   'book', 'pen', 'key', 'car', 'phone', 'bag', 'cup', 'ball', 'notebook', 'ticket', 'picture', 'room', 'door', 'house',
   'school', 'garden', 'mosque', 'street', 'ship', 'tree', 'window', 'table', 'bed',
 ]
+
+/** The verbs questions are asked on: each takes a “what” (what did he write?), so every question on it is one a person says. */
+export const QUESTION_VERBS = ['write', 'open', 'hear', 'drink', 'understand', 'remember', 'memorise', 'wash', 'study']
 
 /** The verbs “him, her, me” is asked on: each is done to a person, and its English past takes one after it. */
 export const OBJECT_VERBS = ['hear', 'remember', 'carry', 'understand', 'wash']

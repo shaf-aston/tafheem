@@ -6,6 +6,8 @@
  *                         from public/grow/basics-verbs.json, whose Arabic the conjugation engine made
  *   possessiveTable(word) كِتَابُهُ his book · مَدْرَسَتِي my school …
  *   objectTable(verb)     سَمِعَهُ he heard him · سَمِعَنِي he heard me · سَمِعَنَا he heard us (and سَمِعْنَا we heard) …
+ *   relativeTable(verb)   الَّذِي كَتَبَ the man who wrote · الَّتِي كَتَبَتْ the woman who wrote · الَّذِينَ كَتَبُوا those who wrote
+ *   questionTable(verb)   هَلْ كَتَبَ؟ did he write? · أَكَتَبَ؟ the same · مَنْ كَتَبَ؟ who wrote? · أَيْنَ كَتَبَ؟ where did he write? …
  * plus forms a beginner builds wrongly (en null): *سَكَتَبَ, *لَمْ كَتَبَ, *الْكِتَابُهُ, *سَمِعِي. The tables of a
  * noun in a phrase (a woman, and the, this is, he is, the … of, two): lib/grow/nounForms.js.
  *
@@ -135,6 +137,44 @@ export function objectTable(verb) {
     ...OBJECTS.map((object) => ({ key: object.id, ar: nfc(`${he.past}${object.end}`), en: said('he', ` ${object.en}${object.hint ?? ''}`) })),
     { key: 'wrong:ya:me', ar: nfc(`${he.past.replace(/\u064E$/, '')}\u0650ي`), en: null },
   ]
+}
+
+/**
+ * "the one who…": الَّذِي, الَّتِي and الَّذِينَ, each with the verb for its person, in the past and the present; beside
+ * them the past for "he" as it is. Only these: a relative word with another person's verb (الَّذِي كَتَبَتْ) is no
+ * mistake but "that which she wrote", so it is never offered as one.
+ */
+export function relativeTable(verb) {
+  const { he, she, they } = verb.forms
+  const { base, past, s3 } = verb.en
+  return [
+    { key: 'he', ar: nfc(he.past), en: `he ${past}` },
+    { key: 'the-man', ar: nfc(`الَّذِي ${he.past}`), en: `the man who ${past}` },
+    { key: 'the-woman', ar: nfc(`الَّتِي ${she.past}`), en: `the woman who ${past}` },
+    { key: 'those', ar: nfc(`الَّذِينَ ${they.past}`), en: `those who ${past}` },
+    { key: 'the-man-now', ar: nfc(`الَّذِي ${he.present}`), en: `the man who ${s3}` },
+    { key: 'those-now', ar: nfc(`الَّذِينَ ${they.present}`), en: `those who ${base}` },
+  ]
+}
+
+/** The questions on a verb: `${kind}:${person}`, and مَنْ "who" for "he" only; then أَ written apart, which says nothing. */
+export const QUESTIONS = {
+  said: { ar: (f) => f.past, en: (e, p) => `${p.subj} ${e.past}${p.hint ?? ''}` },
+  did: { ar: (f) => `هَلْ ${f.past}؟`, en: (e, p) => `did ${p.subj} ${e.base}${p.hint ?? ''}?` },
+  'a-did': { ar: (f) => `أَ${f.past}؟`, en: (e, p) => `did ${p.subj} ${e.base}${p.hint ?? ''}?` },
+  does: { ar: (f) => `هَلْ ${f.present}؟`, en: (e, p) => `${p.s3 ? 'does' : 'do'} ${p.subj} ${e.base}${p.hint ?? ''}?` },
+  what: { ar: (f) => `مَاذَا ${f.past}؟`, en: (e, p) => `what did ${p.subj} ${e.base}${p.hint ?? ''}?` },
+  where: { ar: (f) => `أَيْنَ ${f.past}؟`, en: (e, p) => `where did ${p.subj} ${e.base}${p.hint ?? ''}?` },
+}
+
+export function questionTable(verb) {
+  const entries = [{ key: 'who', ar: nfc(`مَنْ ${verb.forms.he.past}؟`), en: `who ${verb.en.past}?` }]
+  for (const person of PERSONS) {
+    const forms = verb.forms[person.id]
+    for (const [kind, { ar, en }] of Object.entries(QUESTIONS)) entries.push({ key: `${kind}:${person.id}`, ar: nfc(ar(forms)), en: en(verb.en, person) })
+    entries.push({ key: `wrong:apart:${person.id}`, ar: nfc(`أَ ${forms.past}؟`), en: null })
+  }
+  return entries
 }
 
 /** Each spelling in the table and everything it can mean. */
