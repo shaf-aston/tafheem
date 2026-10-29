@@ -32,6 +32,8 @@ import CommandField from '../shell/CommandField'
 import CommandResults from '../shell/CommandResults'
 import LogInButton from '../profile/LogInButton'
 import LevelPicker from '../level/LevelPicker'
+import Onboarding from '../onboarding/Onboarding'
+import { usePlan } from '../../lib/learner/usePlan'
 import FahmWord from './FahmWord'
 import GrowNext from './GrowNext'
 import ModuleCard from './ModuleCard'
@@ -51,7 +53,8 @@ export default function HomePanel({ accent, onGo }) {
   const [name] = useState(getProfile)
   const overview = useQuery(overviewQuery(name))
   const { steps } = useJourney()
-  const level = levelOf(useLearnerLevel().level)?.grow ?? null
+  const { level: levelId, chosen } = useLearnerLevel()
+  const level = levelOf(levelId)?.grow ?? null
   const health = useHealth()
   const line = useCommandLine(LISTED, (row) => onGo(row.tabId, row.value))
   const sums = progressByTab(overview.data?.modules)
@@ -62,7 +65,12 @@ export default function HomePanel({ accent, onGo }) {
 
   const resume = resumePlace(steps, LISTED, HOME)
   const first = !resume
+  // A first visit is asked a few questions once, unless a level is already chosen (sign-up, another device); skipped or
+  // done, it is the three-level picker as before.
+  const { plan } = usePlan()
+  const asked = first && !plan.done && !chosen
   const lead = tabOf(resume?.tab ?? FALLBACK[0])
+  if (asked) return <div className="panel isolate" style={{ '--c': accent }}><Onboarding onGo={onGo} /></div>
   // One step in Grow picked from the record, unless it is the place on the card. With no path walked (a new visit),
   // only one the learner was studying: what fits the level is the picker's to offer.
   const next = (

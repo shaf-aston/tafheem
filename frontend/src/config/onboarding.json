@@ -2,6 +2,28 @@
   "_comment": "The first-visit questions and how their answers rank what Home and Grow offer. The rules that read this are lib/learner/plan.js (the answers) and lib/learner/recommend.js (the ranking); this file is only the words and the numbers. Kept on the shelf under `storage-key`, so it follows the account like the level does.",
   "storage-key": "plan",
 
+  "_copy": "The words around the questions. {n} and {of} (the screen and how many), {level}, {xp}, {minutes} are filled in by the code.",
+  "copy": {
+    "label": "Getting to know you",
+    "skip": "Skip",
+    "back": "Back",
+    "continue": "Continue",
+    "pick-one": "Pick one to go on",
+    "pick-many": "Pick up to {n}",
+    "right": "Right!",
+    "not-quite": "Not quite.",
+    "ready-title": "Your plan is ready",
+    "ready-level": "You start at",
+    "ready-goal": "Daily goal",
+    "ready-goal-line": "{xp} XP, about {minutes} min",
+    "ready-picks": "First stops",
+    "ready-switch-said": "Use the level I said instead ({level})",
+    "ready-switch-check": "Use the check’s level instead ({level})",
+    "ready-start": "Start",
+    "ready-login": "Keep this plan on every device.",
+    "ready-login-go": "Log in"
+  },
+
   "_steps": "In the order asked. `multi`: how many options may be picked (the first counts most); without it, one. `when`: asked only if every named answer is one of the listed ids (for a multi answer, if any picked one is). `fact`: shown after a pick, one per option id, or `*` for any; `stat` big, `body` under it, `source` small. Every number in a fact is from this app's own data, named in `source`. `check` is the optional three-tap placement: `levels` is the level each count right (0 to 3) points to.",
   "steps": [
     {

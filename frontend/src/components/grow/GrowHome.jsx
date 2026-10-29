@@ -8,7 +8,7 @@
  */
 import { Fragment, useState } from 'react'
 
-import { GOAL, GOALS, rankOf, shareOf } from '../../lib/learner/rewards'
+import { GOAL, GOAL_KEY, GOALS, rankOf, shareOf } from '../../lib/learner/rewards'
 import { REVIEW_SIZE } from '../../lib/grow/bookLesson'
 import { LAST_BOOK, REVIEW } from '../../lib/grow/useBookWorld'
 import { sayIn } from '../../lib/text/say'
@@ -58,7 +58,7 @@ function Growth({ rewards: record, pending }) {
 
 /** Today's XP against the picked goal. */
 function Goal({ xpToday }) {
-  const [picked, pick] = useRemembered('grow-goal', GOALS, GOAL)
+  const [picked, pick] = useRemembered(GOAL_KEY, GOALS, GOAL)
   const goal = Number(picked)
   const met = xpToday >= goal
   return (
