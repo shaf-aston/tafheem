@@ -59,12 +59,12 @@ export function CountryMap({ codes = [], cities = [], hue, className = '' }) {
   )
 }
 
-// A flag the size of a letter; as an image, so no two flags' inner ids can collide.
-function Flag({ code }) {
+// A flag the size of a letter (or `className`'s height); as an image, so no two flags' inner ids can collide.
+export function Flag({ code, className = 'h-2.5' }) {
   if (!flags[code]) return null
   return (
     <img src={`data:image/svg+xml,${encodeURIComponent(flags[code])}`} alt="" aria-hidden="true"
-      className="h-2.5 aspect-[3/2] shrink-0 rounded-[2px] shadow-[0_0_0_1px_var(--border)]" />
+      className={`${className} aspect-[3/2] shrink-0 rounded-[2px] shadow-[0_0_0_1px_var(--border)]`} />
   )
 }
 
