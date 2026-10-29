@@ -20,8 +20,8 @@ async function json(url) {
 const verbsOrNone = () => json(VERBS_URL).then(({ verbs }) => verbs, () => null)
 
 async function load() {
-  const [{ words, path }, verbs] = await Promise.all([json(SOURCE_URL), verbsOrNone()])
-  const items = pathItems(words, { verbs, path })
+  const [{ words, path, people }, verbs] = await Promise.all([json(SOURCE_URL), verbsOrNone()])
+  const items = pathItems(words, { verbs, people, path })
   return { order: items, all: items }
 }
 

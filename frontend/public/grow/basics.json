@@ -1,12 +1,27 @@
 {
   "_comment": "Basics world (alif-lam awareness): a curated list of beginner nouns, in teaching order. Each entry is one countable noun so that both 'the X' and 'a X' are natural English. Rules every entry follows (checked mechanically): `ar` is the singular indefinite dictionary form, single word, no ال, no tanween, pausal (no case vowel on the last letter), otherwise fully vowelled (every letter has its haraka, sukun or shadda+haraka; bare ا/آ/ى and madd و/ي only as long vowels), and never starts with hamzat al-wasl (hamza أ/إ starts are fine: they are moon letters). `en` is one lowercase, countable, singular English noun (no uncountables, plurals, proper nouns, Divine names or prophets; British spelling as elsewhere in the app). `a` is present only where /^[aeiou]/ predicts the wrong article ('an hour', 'a university'). `id` is the English, ascii kebab, unique. Order: very common classroom and home words first, then family, food, body, nature, town, animals, time and things, with sun-letter (ت ث د ذ ر ز س ش ص ض ط ظ ل ن) and moon-letter starts interleaved roughly evenly. Sources: hand-picked from backend/data/vocabulary.json, the colloquial fusha list (backend/data/colloquial/fusha/words.json with meanings in backend/data/colloquial/words.json) and the everyday/book cuts of frontend/public/words/words.json; vowelling cross-checked against those and the transliterations in backend/data/arabic_dictionary.json. Singulatives (تُفَّاحَة, مَوْزَة, سَمَكَة, دَجَاجَة, نَحْلَة, شَمْعَة) are used where the sources give the collective, so the noun counts.",
-  "_path": "The order the Basics are met in (lib/basicsSkills.js pathItems): {\"words\": n} is the next n words above, each learnt with and without ال; {\"skill\": id} is that skill's markers (my, his…; the past; the present; not; do!/don't!; will), each taught on one word and asked on others. Words left over come last. A word's id never changes, so a learner's progress on it stays.",
+  "_path": "The order the Basics are met in (lib/basicsSkills.js pathItems): {\"words\": n} is the next n words above, each learnt with and without ال; {\"skill\": id} is that skill's markers (my, his…; a woman, men, women; and, with…; this, that; the past; the present; not; do!/don't!; will), each taught on one word and asked on others. Words the path does not reach are not asked on their own (ال is one rule, learnt long before the list runs out); they stay as the nouns the skills draw on. A word's id never changes, so a learner's progress on it stays.",
   "path": [
     {"words": 10}, {"skill": "mine"},
-    {"words": 10}, {"skill": "past"},
-    {"words": 10}, {"skill": "present"},
-    {"words": 10}, {"skill": "negation"},
-    {"words": 10}, {"skill": "command"}, {"skill": "future"}
+    {"words": 6}, {"skill": "people"},
+    {"words": 6}, {"skill": "joined"},
+    {"words": 6}, {"skill": "this"},
+    {"words": 6}, {"skill": "past"},
+    {"words": 6}, {"skill": "present"},
+    {"words": 6}, {"skill": "negation"},
+    {"skill": "command"}, {"skill": "future"}
+  ],
+  "_people": "The people the 'people' skill draws (lib/grow/wordForms.js peopleTable): each takes ة for a woman and the sound plurals ـُونَ and ـَات (never a broken plural, such as طُلَّاب), so all four forms are the everyday ones. `ar` is the singular for a man, vowelled, pausal, no ة; `en` and `many` the English one and many. The first is the one taught.",
+  "people": [
+    {"id": "muslim", "ar": "مُسْلِم", "en": "Muslim", "many": "Muslims"},
+    {"id": "believer", "ar": "مُؤْمِن", "en": "believer", "many": "believers"},
+    {"id": "teacher", "ar": "مُعَلِّم", "en": "teacher", "many": "teachers"},
+    {"id": "engineer", "ar": "مُهَنْدِس", "en": "engineer", "many": "engineers"},
+    {"id": "player", "ar": "لَاعِب", "en": "player", "many": "players"},
+    {"id": "traveller", "ar": "مُسَافِر", "en": "traveller", "many": "travellers"},
+    {"id": "nurse", "ar": "مُمَرِّض", "en": "nurse", "many": "nurses"},
+    {"id": "employee", "ar": "مُوَظَّف", "en": "employee", "many": "employees"},
+    {"id": "translator", "ar": "مُتَرْجِم", "en": "translator", "many": "translators"}
   ],
   "words": [
     {"id": "book", "ar": "كِتَاب", "en": "book"},
