@@ -4,8 +4,8 @@ import basics from '../../../public/grow/basics.json'
 import data from '../../../public/grow/basics-verbs.json'
 import { makeRandom } from '../quiz/quiz'
 import {
-  ADDRESSED, PERSONS, POSSESSORS, TENSES, WRONG_VERB, arabicOptions, canPossess, englishOptions, isFeminine, joinedTable,
-  meanings, objectTable, peopleTable, pointingTable, possessiveTable, verbTable,
+  ADDRESSED, PERSONS, POSSESSORS, TENSES, WRONG_VERB, arabicOptions, canPossess, englishOptions, meanings, objectTable,
+  possessiveTable, questionTable, relativeTable, verbTable,
 } from './wordForms'
 
 const nfc = (text) => text.normalize('NFC')
@@ -139,62 +139,6 @@ describe('possessiveTable', () => {
   })
 })
 
-describe('peopleTable', () => {
-  const say = (entries) => entries.map((entry) => [entry.key, entry.ar, entry.en])
-  it('makes a man, a woman, men and women with ة, ـُونَ and ـَات', () => {
-    expect(say(peopleTable({ ar: 'مُسْلِم', en: 'Muslim', many: 'Muslims' }))).toEqual([
-      ['man', nfc('مُسْلِم'), 'a Muslim (man)'], ['woman', nfc('مُسْلِمَة'), 'a Muslim (woman)'],
-      ['men', nfc('مُسْلِمُونَ'), 'Muslims (men)'], ['women', nfc('مُسْلِمَات'), 'Muslims (women)'],
-    ])
-  })
-  it('says “an” where the English starts with a vowel', () => {
-    expect(at(peopleTable({ ar: 'مُهَنْدِس', en: 'engineer', many: 'engineers' }), 'woman').en).toBe('an engineer (woman)')
-  })
-  it('spells every person’s four forms apart, and each says one thing', () => {
-    for (const person of basics.people) {
-      const entries = peopleTable(person)
-      expect(new Set(entries.map((entry) => entry.ar)).size, person.id).toBe(4)
-      expect(new Set(entries.map((entry) => entry.en)).size, person.id).toBe(4)
-    }
-  })
-})
-
-describe('joinedTable', () => {
-  const pen = { id: 'pen', ar: 'قَلَم', en: 'pen' }
-  const candle = { id: 'candle', ar: 'شَمْعَة', en: 'candle' }
-  it('joins وَ, بِـ and كَـ to the word with ال, and لِـ in place of its ا', () => {
-    expect(at(joinedTable(pen), 'and')).toMatchObject({ ar: nfc('وَالْقَلَم'), en: 'and the pen' })
-    expect(at(joinedTable(pen), 'with')).toMatchObject({ ar: nfc('بِالْقَلَم'), en: 'with the pen' })
-    expect(at(joinedTable(pen), 'for')).toMatchObject({ ar: nfc('لِلْقَلَم'), en: 'for the pen' })
-    expect(at(joinedTable(pen), 'like')).toMatchObject({ ar: nfc('كَالْقَلَم'), en: 'like the pen' })
-    expect(at(joinedTable(candle), 'for').ar).toBe(nfc('لِلشَّمْعَة'))
-  })
-  it('misspells them as a beginner does: apart, or keeping the ا, with no meaning', () => {
-    expect(at(joinedTable(pen), 'wrong:apart:and')).toEqual({ key: 'wrong:apart:and', ar: nfc('وَ الْقَلَم'), en: null })
-    expect(at(joinedTable(pen), 'wrong:alif:for').ar).toBe(nfc('لِالْقَلَم'))
-    expect(at(joinedTable(pen), 'wrong:alif:with')).toBeUndefined()
-  })
-})
-
-describe('pointingTable', () => {
-  const car = { id: 'car', ar: 'سَيَّارَة', en: 'car' }
-  it('says “this is a …” without ال and “this …” with it, for this and that', () => {
-    const entries = pointingTable(book)
-    expect(at(entries, 'this-is')).toMatchObject({ ar: nfc('هٰذَا كِتَاب'), en: 'this is a book' })
-    expect(at(entries, 'this')).toMatchObject({ ar: nfc('هٰذَا الْكِتَاب'), en: 'this book' })
-    expect(at(entries, 'that-is')).toMatchObject({ ar: nfc('ذٰلِكَ كِتَاب'), en: 'that is a book' })
-    expect(at(entries, 'that')).toMatchObject({ ar: nfc('ذٰلِكَ الْكِتَاب'), en: 'that book' })
-  })
-  it('takes هٰذِهِ and تِلْكَ for a word with ة, and gives the other gender no meaning', () => {
-    expect(isFeminine(car)).toBe(true)
-    expect(isFeminine(book)).toBe(false)
-    expect(at(pointingTable(car), 'this-is').ar).toBe(nfc('هٰذِهِ سَيَّارَة'))
-    expect(at(pointingTable(car), 'that').ar).toBe(nfc('تِلْكَ السَّيَّارَة'))
-    expect(at(pointingTable(car), 'wrong:gender:this-is')).toEqual({ key: 'wrong:gender:this-is', ar: nfc('هٰذَا سَيَّارَة'), en: null })
-    expect(at(pointingTable(book), 'wrong:gender:that').ar).toBe(nfc('تِلْكَ الْكِتَاب'))
-  })
-})
-
 describe('objectTable', () => {
   const hear = data.verbs.find((verb) => verb.id === 'hear')
   it('joins him, her, me… to the past for “he”', () => {
@@ -209,6 +153,38 @@ describe('objectTable', () => {
     expect(at(entries, 'us').ar).toBe(nfc('سَمِعَنَا'))
     expect(at(entries, 'we')).toMatchObject({ ar: nfc('سَمِعْنَا'), en: 'we heard' })
     expect(at(entries, 'wrong:ya:me')).toEqual({ key: 'wrong:ya:me', ar: nfc('سَمِعِي'), en: null })
+  })
+})
+
+describe('relativeTable', () => {
+  it('sets الَّذِي, الَّتِي and الَّذِينَ before the verb for their person', () => {
+    const entries = relativeTable(write)
+    expect(at(entries, 'the-man')).toMatchObject({ ar: nfc('الَّذِي كَتَبَ'), en: 'the man who wrote' })
+    expect(at(entries, 'the-woman')).toMatchObject({ ar: nfc('الَّتِي كَتَبَتْ'), en: 'the woman who wrote' })
+    expect(at(entries, 'those')).toMatchObject({ ar: nfc('الَّذِينَ كَتَبُوا'), en: 'those who wrote' })
+    expect(at(entries, 'the-man-now')).toMatchObject({ ar: nfc('الَّذِي يَكْتُبُ'), en: 'the man who writes' })
+    expect(at(entries, 'those-now')).toMatchObject({ ar: nfc('الَّذِينَ يَكْتُبُونَ'), en: 'those who write' })
+  })
+  it('never pairs one with another person’s verb, which would say “that which…”', () => {
+    for (const verb of data.verbs) expect(relativeTable(verb).some((entry) => entry.ar.startsWith(nfc('الَّذِي ')) && entry.ar.includes(verb.forms.she.past))).toBe(false)
+  })
+})
+
+describe('questionTable', () => {
+  const entries = questionTable(write)
+  it('asks with هَلْ or أَ before the past, هَلْ before the present, and مَنْ, مَاذَا, أَيْنَ', () => {
+    expect(at(entries, 'did:he')).toMatchObject({ ar: nfc('هَلْ كَتَبَ؟'), en: 'did he write?' })
+    expect(at(entries, 'a-did:he')).toMatchObject({ ar: nfc('أَكَتَبَ؟'), en: 'did he write?' })
+    expect(at(entries, 'does:they')).toMatchObject({ ar: nfc('هَلْ يَكْتُبُونَ؟'), en: 'do they write?' })
+    expect(at(entries, 'does:she').en).toBe('does she write?')
+    expect(at(entries, 'who')).toMatchObject({ ar: nfc('مَنْ كَتَبَ؟'), en: 'who wrote?' })
+    expect(at(entries, 'what:you')).toMatchObject({ ar: nfc('مَاذَا كَتَبْتَ؟'), en: 'what did you write (one man)?' })
+    expect(at(entries, 'where:we')).toMatchObject({ ar: nfc('أَيْنَ كَتَبْنَا؟'), en: 'where did we write?' })
+    expect(at(entries, 'said:she')).toMatchObject({ ar: nfc('كَتَبَتْ'), en: 'she wrote' })
+  })
+  it('writes أَ apart only as the mistake, with no meaning', () => {
+    expect(at(entries, 'wrong:apart:he')).toEqual({ key: 'wrong:apart:he', ar: nfc('أَ كَتَبَ؟'), en: null })
+    expect(at(entries, 'who:she')).toBeUndefined()
   })
 })
 

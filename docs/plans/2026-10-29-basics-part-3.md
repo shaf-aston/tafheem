@@ -34,10 +34,35 @@ pattern add?". A live bug too: picking a misspelt verb (*لَمْ كَتَبَ) 
 Each pattern is asked twice: what the pattern adds (its meaning), and what one real verb on it means beside its
 Form I (عَلِمَ he knew → تَعَلَّمَ he learnt).
 
+## Part 4 (2026-10-29): the rest of tier 1
+
+**4A · nouns**
+
+| Skill | Markers | Table, drawn on |
+|---|---|---|
+| `pronouns` He, she, I | هُوَ هِيَ هُمْ أَنَا نَحْنُ أَنْتَ أَنْتِ أَنْتُمْ + the person in the form that agrees (no word for "is") | `pronounTable`, basics.json `people` |
+| `of` The … of … | كِتَاب الْمُعَلِّم the teacher's book · كِتَاب مُعَلِّم a teacher's book | `ofTable`, every thing × every owner |
+| `two` Two | ـَانِ (ـَيْنِ named in the rule), with ال or without; ة → ت | `dualTable`, things whose plural is -s |
+
+- Wrong: a pronoun that does not agree (*هِيَ مُسْلِم), ال on the first word (*الْكِتَاب الْمُعَلِّم), the first ending in -un,
+  ة kept before ـَانِ. Real distractors too: the two words turned round (the book's teacher), لِـ (the book is the teacher's).
+- "I" and "you" have a man's and a woman's form; the English says which (a woman speaking, one woman).
+- The noun-phrase tables move to `lib/grow/nounForms.js`; `wordForms.js` keeps the word's own forms and the pickers.
+
+**4B · verbs**
+
+| Skill | Markers | Table, drawn on |
+|---|---|---|
+| `who` The one who | الَّذِي كَتَبَ the man who wrote · الَّتِي كَتَبَتْ the woman who · الَّذِينَ كَتَبُوا those who | `relativeTable`, every basics verb |
+| `questions` Questions | هَلْ + past (did…?) · هَلْ + present (does…?) · أَ + past (the same as هَلْ) · مَنْ who · مَاذَا what · أَيْنَ where | `questionTable`, verbs that take a "what" |
+
+- A relative word is never set with another person's verb as a mistake: الَّذِي كَتَبَتْ is real Arabic ("that which she
+  wrote"). The distractors are the other relative words, and the present.
+- هَلْ كَتَبَ and أَكَتَبَ say the same, so the pickers never offer one as wrong for the other. Wrong: أَ written apart.
+
 ## Left for later, and why
 
-- هُوَ/هِيَ/أَنَا as words, الَّذِي: whole sentences with agreement ("I am a teacher" is مُعَلِّم or مُعَلِّمَة), a new card shape.
-- Idafa (كِتَابُ اللهِ), questions هَلْ/أَ, the dual, broken plurals: as in part 2's tier list.
+- Broken plurals (كُتُب), case endings, the feminine plural pronoun هُنَّ: part 2's tier 2 and 3.
 
 ## Checks
 

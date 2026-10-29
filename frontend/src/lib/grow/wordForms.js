@@ -5,17 +5,17 @@
  *   verbTable(verb)       كَتَبَتْ she wrote · سَيَكْتُبُ he will write · لَمْ يَكْتُبْ he didn't write · اُكْتُبْ Write! …
  *                         from public/grow/basics-verbs.json, whose Arabic the conjugation engine made
  *   possessiveTable(word) كِتَابُهُ his book · مَدْرَسَتِي my school …
- *   peopleTable(person)   مُسْلِم · مُسْلِمَة · مُسْلِمُونَ · مُسْلِمَات: a man, a woman, men, women
- *   joinedTable(word)     وَالْكِتَاب and the book · بِالْقَلَم with the pen · لِلْبَيْت for the house · كَالْقَمَر like the moon
- *   pointingTable(word)   هٰذَا كِتَاب this is a book · هٰذَا الْكِتَاب this book · تِلْكَ سَيَّارَة that is a car …
  *   objectTable(verb)     سَمِعَهُ he heard him · سَمِعَنِي he heard me · سَمِعَنَا he heard us (and سَمِعْنَا we heard) …
- * plus forms a beginner builds wrongly (en null): *سَكَتَبَ, *لَمْ كَتَبَ, *الْكِتَابُهُ, *وَ الْكِتَاب, *هٰذِهِ كِتَاب, *سَمِعِي.
+ *   relativeTable(verb)   الَّذِي كَتَبَ the man who wrote · الَّتِي كَتَبَتْ the woman who wrote · الَّذِينَ كَتَبُوا those who wrote
+ *   questionTable(verb)   هَلْ كَتَبَ؟ did he write? · أَكَتَبَ؟ the same · مَنْ كَتَبَ؟ who wrote? · أَيْنَ كَتَبَ؟ where did he write? …
+ * plus forms a beginner builds wrongly (en null): *سَكَتَبَ, *لَمْ كَتَبَ, *الْكِتَابُهُ, *سَمِعِي. The tables of a
+ * noun in a phrase (a woman, and the, this is, he is, the … of, two): lib/grow/nounForms.js.
  *
  * One spelling can say two things (تَكْتُبُ: she writes, and you write), and two spellings can say one
  * (لَمْ يَكْتُبْ and مَا كَتَبَ: he didn't write). So an option is wrong only when no reading of it is the
  * one asked: the pickers below compare readings, never keys.
  */
-import { article, definite, english, plain } from './alifLam'
+import { definite, plain } from './alifLam'
 import { shuffled } from '../text/shuffle'
 
 const nfc = (text) => text.normalize('NFC')
@@ -83,9 +83,9 @@ export const POSSESSORS = [
   { id: 'their', en: 'their', end: 'ُهُمْ' },
 ]
 
-const TA_MARBUTA = 'ة'
-// ة is written ت once something follows it: مَدْرَسَة, مَدْرَسَتِي.
-const open = (bare) => (bare.endsWith(TA_MARBUTA) ? `${bare.slice(0, -1)}ت` : bare)
+export const TA_MARBUTA = 'ة'
+/** ة written ت, as it is once something follows it: مَدْرَسَة, مَدْرَسَتِي. */
+export const open = (bare) => (bare.endsWith(TA_MARBUTA) ? `${bare.slice(0, -1)}ت` : bare)
 
 // أَب and أَخ lengthen before an ending (أَبُوهُ his father), so the plain rule does not hold for them.
 const LENGTHEN = new Set(['أب', 'أخ'])
@@ -109,70 +109,6 @@ export function possessiveTable(word) {
     // ال with ـِي can read as a real word (الْجَارِي the flowing, الْقَلْبِي of the heart), unless the ة shows it is not one.
     if (owner.id !== 'my' || bare.endsWith(TA_MARBUTA)) entries.push({ key: `wrong:al:${owner.id}`, ar: nfc(`${open(definite(bare))}${owner.end}`), en: null })
     if (bare.endsWith(TA_MARBUTA)) entries.push({ key: `wrong:ta:${owner.id}`, ar: nfc(`${bare}${owner.end}`), en: null })
-  }
-  return entries
-}
-
-/**
- * A person as one man, one woman, men and women: ة, ـُونَ, ـَات on the end. Only words that take these plurals
- * (basics.json `people`): مُسْلِمُونَ, not a broken plural like طُلَّاب. ـِينَ, the same plural elsewhere in a sentence, is not asked.
- */
-export function peopleTable(person) {
-  const bare = plain(person.ar)
-  const one = article(person)
-  return [
-    { key: 'man', ar: bare, en: `${one} ${person.en} (man)` },
-    { key: 'woman', ar: nfc(`${bare}َة`), en: `${one} ${person.en} (woman)` },
-    { key: 'men', ar: nfc(`${bare}ُونَ`), en: `${person.many} (men)` },
-    { key: 'women', ar: nfc(`${bare}َات`), en: `${person.many} (women)` },
-  ]
-}
-
-/** The one-letter words joined to the front of a word with ال, and what each says. لِـ takes the place of ال's ا. */
-export const JOINERS = [
-  { id: 'and', ar: 'وَ', en: 'and' },
-  { id: 'with', ar: 'بِ', en: 'with' },
-  { id: 'for', ar: 'لِ', en: 'for', drops: true },
-  { id: 'like', ar: 'كَ', en: 'like' },
-]
-
-/** The word with ال, then joined to each one-letter word; wrongly, written apart (*وَ الْكِتَاب) or keeping the ا (*لِالْكِتَاب). */
-export function joinedTable(word) {
-  const the = definite(word.ar)
-  const entries = [{ key: 'the', ar: the, en: english(word, true) }]
-  for (const joiner of JOINERS) {
-    entries.push({ key: joiner.id, ar: nfc(`${joiner.ar}${joiner.drops ? the.slice(1) : the}`), en: `${joiner.en} ${english(word, true)}` })
-    entries.push({ key: `wrong:apart:${joiner.id}`, ar: nfc(`${joiner.ar} ${the}`), en: null })
-    if (joiner.drops) entries.push({ key: `wrong:alif:${joiner.id}`, ar: nfc(`${joiner.ar}${the}`), en: null })
-  }
-  return entries
-}
-
-/** هٰذَا and ذٰلِكَ for a man or a masculine thing; هٰذِهِ and تِلْكَ for a feminine one. */
-export const POINTERS = {
-  this: { en: 'this', masculine: 'هٰذَا', feminine: 'هٰذِهِ' },
-  that: { en: 'that', masculine: 'ذٰلِكَ', feminine: 'تِلْكَ' },
-}
-
-/** Whether a word is feminine as taught here: it ends in ة (basicsSkills' POINTED holds no feminine word without one). */
-export const isFeminine = (word) => plain(word.ar).endsWith(TA_MARBUTA)
-
-/**
- * "this is a book" (pointer + word without ال) and "this book" (pointer + word with ال), for this and that; then the
- * same with the pointer of the other gender, which says nothing (*هٰذِهِ كِتَاب).
- */
-export function pointingTable(word) {
-  const feminine = isFeminine(word)
-  const forms = { is: plain(word.ar), the: definite(word.ar) }
-  const entries = []
-  for (const [id, pointer] of Object.entries(POINTERS)) {
-    const [right, wrong] = feminine ? [pointer.feminine, pointer.masculine] : [pointer.masculine, pointer.feminine]
-    const en = { is: `${pointer.en} is ${english(word, false)}`, the: `${pointer.en} ${word.en}` }
-    for (const [kind, form] of Object.entries(forms)) {
-      const key = kind === 'is' ? `${id}-is` : id
-      entries.push({ key, ar: nfc(`${right} ${form}`), en: en[kind] })
-      entries.push({ key: `wrong:gender:${key}`, ar: nfc(`${wrong} ${form}`), en: null })
-    }
   }
   return entries
 }
@@ -201,6 +137,44 @@ export function objectTable(verb) {
     ...OBJECTS.map((object) => ({ key: object.id, ar: nfc(`${he.past}${object.end}`), en: said('he', ` ${object.en}${object.hint ?? ''}`) })),
     { key: 'wrong:ya:me', ar: nfc(`${he.past.replace(/\u064E$/, '')}\u0650ي`), en: null },
   ]
+}
+
+/**
+ * "the one who…": الَّذِي, الَّتِي and الَّذِينَ, each with the verb for its person, in the past and the present; beside
+ * them the past for "he" as it is. Only these: a relative word with another person's verb (الَّذِي كَتَبَتْ) is no
+ * mistake but "that which she wrote", so it is never offered as one.
+ */
+export function relativeTable(verb) {
+  const { he, she, they } = verb.forms
+  const { base, past, s3 } = verb.en
+  return [
+    { key: 'he', ar: nfc(he.past), en: `he ${past}` },
+    { key: 'the-man', ar: nfc(`الَّذِي ${he.past}`), en: `the man who ${past}` },
+    { key: 'the-woman', ar: nfc(`الَّتِي ${she.past}`), en: `the woman who ${past}` },
+    { key: 'those', ar: nfc(`الَّذِينَ ${they.past}`), en: `those who ${past}` },
+    { key: 'the-man-now', ar: nfc(`الَّذِي ${he.present}`), en: `the man who ${s3}` },
+    { key: 'those-now', ar: nfc(`الَّذِينَ ${they.present}`), en: `those who ${base}` },
+  ]
+}
+
+/** The questions on a verb: `${kind}:${person}`, and مَنْ "who" for "he" only; then أَ written apart, which says nothing. */
+export const QUESTIONS = {
+  said: { ar: (f) => f.past, en: (e, p) => `${p.subj} ${e.past}${p.hint ?? ''}` },
+  did: { ar: (f) => `هَلْ ${f.past}؟`, en: (e, p) => `did ${p.subj} ${e.base}${p.hint ?? ''}?` },
+  'a-did': { ar: (f) => `أَ${f.past}؟`, en: (e, p) => `did ${p.subj} ${e.base}${p.hint ?? ''}?` },
+  does: { ar: (f) => `هَلْ ${f.present}؟`, en: (e, p) => `${p.s3 ? 'does' : 'do'} ${p.subj} ${e.base}${p.hint ?? ''}?` },
+  what: { ar: (f) => `مَاذَا ${f.past}؟`, en: (e, p) => `what did ${p.subj} ${e.base}${p.hint ?? ''}?` },
+  where: { ar: (f) => `أَيْنَ ${f.past}؟`, en: (e, p) => `where did ${p.subj} ${e.base}${p.hint ?? ''}?` },
+}
+
+export function questionTable(verb) {
+  const entries = [{ key: 'who', ar: nfc(`مَنْ ${verb.forms.he.past}؟`), en: `who ${verb.en.past}?` }]
+  for (const person of PERSONS) {
+    const forms = verb.forms[person.id]
+    for (const [kind, { ar, en }] of Object.entries(QUESTIONS)) entries.push({ key: `${kind}:${person.id}`, ar: nfc(ar(forms)), en: en(verb.en, person) })
+    entries.push({ key: `wrong:apart:${person.id}`, ar: nfc(`أَ ${forms.past}؟`), en: null })
+  }
+  return entries
 }
 
 /** Each spelling in the table and everything it can mean. */

@@ -74,7 +74,7 @@ from backend.scripts.recitation.paths import CHECKS  # noqa: E402
 from backend.scripts.recitation.score_recitation_checker import (  # noqa: E402
     marks_to_places, recordings, seconds, unplaced,
 )
-from backend.services.recitation.sounds import VOWELS, collapse, flatten, word_verdicts  # noqa: E402
+from backend.services.recitation.sound_compare import VOWELS, collapse, flatten, word_verdicts  # noqa: E402
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 
 RESULTS = CHECKS / "phoneme_results.jsonl"
@@ -103,21 +103,27 @@ TORCH_THREADS = 2
 MATCH_RATE_FLOOR = 0.7
 
 
-def _vocab() -> dict[str, int]:
+def vocab_file(source: str = MODEL_ID) -> Path:
+    """vocab.json of a Hugging Face id or of a local folder (a model trained here)."""
+    if Path(source).is_dir():
+        return Path(source) / "vocab.json"
+    from huggingface_hub import hf_hub_download
+    return Path(hf_hub_download(source, "vocab.json"))
+
+
+def _vocab(source: str = MODEL_ID) -> dict[str, int]:
     """id2sym isn't a tokenizer file (this is CTC over raw phonemes, not
     text), so it is read straight from vocab.json rather than loaded as a
     text processor."""
-    from huggingface_hub import hf_hub_download
-    path = hf_hub_download(MODEL_ID, "vocab.json")
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    return json.loads(vocab_file(source).read_text(encoding="utf-8"))
 
 
-def load_model():
+def load_model(source: str = MODEL_ID):
     torch.set_num_threads(TORCH_THREADS)
-    fe = Wav2Vec2FeatureExtractor.from_pretrained(MODEL_ID)
-    model = Wav2Vec2ForCTC.from_pretrained(MODEL_ID, low_cpu_mem_usage=True)
+    fe = Wav2Vec2FeatureExtractor.from_pretrained(source)
+    model = Wav2Vec2ForCTC.from_pretrained(source, low_cpu_mem_usage=True)
     model.eval()
-    id2sym = {i: s for s, i in _vocab().items()}
+    id2sym = {i: s for s, i in _vocab(source).items()}
     return model, fe, id2sym
 
 
@@ -139,7 +145,7 @@ def wav_floats(audio: bytes) -> np.ndarray:
 
 
 def decode(model, fe, id2sym: dict[int, str], audio: bytes) -> tuple[list[str], list[int]]:
-    """Greedy CTC decode (sounds.collapse): symbols and each one's run length in
+    """Greedy CTC decode (sound_compare.collapse): symbols and each one's run length in
     frames. Blank is id 0 (<pad>), this checkpoint's CTC convention
     (config.pad_token_id == 0)."""
     inputs = fe(wav_floats(audio), sampling_rate=SAMPLE_RATE, return_tensors="pt")

@@ -29,23 +29,20 @@ logger = logging.getLogger(__name__)
 
 def _freeze() -> None:
     # faster_whisper.audio.decode_audio runs a full gc.collect() after every
-    # decode; with the dictionaries loaded that sweep walked ~470k objects that
-    # never die, ~330ms per recording for a ~30ms decode. Frozen, the collector
-    # skips them for good. Rejected: a hand-written decoder to dodge the sweep.
+    # decode; with everything loaded that sweep walks ~340k objects that never
+    # die, ~200ms per recording for a ~14ms decode (measured on the server).
+    # Frozen, the collector skips them for good. Every step freezes what it
+    # loaded: freezing only after the recitation step left the parser, Daleel
+    # and the rest unfrozen, and the sweep came back. Rejected: a hand-written
+    # decoder to dodge the sweep.
     gc.collect()
     gc.freeze()
-
-
-def _recitation() -> None:
-    # The model import tracks its own new objects, so they are frozen too.
-    recitation.warm()
-    _freeze()
 
 
 STEPS: dict[str, tuple[str, Callable[[], object]]] = {
     "dictionary": ("Arabic-English dictionary", dictionary_service.load_dictionary),
     "root_meanings": ("Classical root meanings", root_meaning.load),
-    "recitation": ("Recitation model", _recitation),
+    "recitation": ("Recitation model", recitation.warm),
     "speech": ("Voice", speech.warm),
     "colloquial": ("Colloquial units", colloquial.catalogue),
     "nahw_parser": ("Nahw parser", syntax.warm),
@@ -70,6 +67,7 @@ def _run(name: str) -> None:
     except Exception as exc:
         logger.warning("Failed to load %s (non-fatal): %s", label, exc)
     finally:
+        _freeze()
         loading.discard(name)
 
 
@@ -82,6 +80,5 @@ async def run() -> None:
     loading.update(settings.startup_background)
     loop = asyncio.get_running_loop()
     await asyncio.gather(*(loop.run_in_executor(None, _run, n) for n in settings.startup_wait))
-    _freeze()
     for name in settings.startup_background:
         loop.run_in_executor(None, _run, name)

@@ -437,24 +437,19 @@ def test_one_dictation_language_is_nothing_to_choose_between(bilingual, monkeypa
     assert fake.detections == 0
 
 
-def test_startup_freezes_the_loaded_dictionaries_from_the_collector(monkeypatch):
-    """decode_audio's per-recording gc.collect() must not sweep the app's own data.
-
-    Not the model, which needs no proving here: nothing is loaded in the
-    background, so the test costs only the loaders startup waits for.
-    """
+def test_startup_freezes_what_a_background_step_loads(monkeypatch):
+    """decode_audio's per-recording gc.collect() must not sweep the app's own data,
+    including what a step started in the background loads after the others are done
+    (freezing once, early, left the parser and Daleel to be swept: ~200ms a decode)."""
     import gc
 
-    from fastapi.testclient import TestClient
+    from backend.services.core import startup
 
-    from backend.config import get_settings
-    from backend.main import app
-
-    monkeypatch.setattr(get_settings(), "startup_background", [])
+    kept = []
+    monkeypatch.setitem(startup.STEPS, "late", ("late", lambda: kept.append([{} for _ in range(1000)])))
     before = gc.get_freeze_count()
-    with TestClient(app):
-        pass
-    assert gc.get_freeze_count() > before
+    startup._run("late")
+    assert gc.get_freeze_count() >= before + 1000
 
 
 def test_letter_report_blames_the_ear_for_swaps_and_drops_only():

@@ -22,6 +22,9 @@ export const MISSPELT = {
   alif: 'After لِـ the ا of ال is dropped: لِلْـ.',
   gender: 'هٰذَا and ذٰلِكَ go with a masculine word; هٰذِهِ and تِلْكَ with a feminine one, as most with ة are.',
   ya: 'On a verb “me” is ـنِي; ـِي is “my”, on a noun.',
+  agree: 'The word after هُوَ is a man’s, after هِيَ a woman’s (with ة), after هُمْ the plural: it agrees.',
+  first: 'The first word never takes ال: the ال of the second makes both “the”.',
+  tanween: 'The first word never ends in -un (ـٌ): the second word finishes it.',
 }
 
 const own = (id, end, said, pool, to = '') => ({
@@ -85,6 +88,39 @@ export const SKILLS = {
         ['that', 'this-is', 'wrong:gender:that-is']),
       noun('that', 'that-is', 'With ال, ذٰلِكَ (or تِلْكَ) is only “that”: ذٰلِكَ الْقَلَم that pen.',
         ['that-is', 'this', 'wrong:gender:that']),
+    ],
+  },
+  pronouns: {
+    title: 'He, she, I',
+    table: 'pronouns',
+    markers: [
+      noun('he', null, 'هُوَ = he. Arabic needs no word for “is”: هُوَ مُسْلِم he is a Muslim.', ['she', 'they', 'wrong:agree:he']),
+      noun('she', 'he', 'هِيَ = she, and the word after it is a woman’s, with ة: هِيَ مُسْلِمَة she is a Muslim.', ['he', 'I-woman', 'wrong:agree:she']),
+      noun('they', 'he', 'هُمْ = they (men, or men and women), and the word after it takes ـُونَ: هُمْ مُسْلِمُونَ they are Muslims.',
+        ['we', 'he', 'wrong:agree:they']),
+      noun('I', 'he', 'أَنَا = I: a man says أَنَا مُسْلِم, a woman أَنَا مُسْلِمَة.', ['I-woman', 'he', 'we']),
+      noun('we', 'they', 'نَحْنُ = we: نَحْنُ مُسْلِمُونَ we are Muslims.', ['they', 'I', 'you-all']),
+      noun('you', 'he', 'أَنْتَ = you, said to one man.', ['you-woman', 'you-all', 'he']),
+      noun('you-woman', 'you', 'أَنْتِ = you, said to one woman: one mark from أَنْتَ, and the word after it takes ة.', ['you', 'she', 'I-woman']),
+      noun('you-all', 'they', 'أَنْتُمْ = you, said to a group: أَنْتُمْ مُسْلِمُونَ.', ['you', 'they', 'we']),
+    ],
+  },
+  of: {
+    title: 'The … of …',
+    table: 'pairs',
+    markers: [
+      noun('of', 'the', 'Two nouns side by side say “the … of …”: كِتَاب الْمُعَلِّم the teacher’s book. The first never takes ال: the ال of the second makes both “the”. So كِتَابُ اللهِ is the Book of Allah.',
+        ['the', 'turned', 'wrong:first:of', 'wrong:tanween:of']),
+      noun('a', 'of', 'With no ال on the second word either, both are “a”: كِتَاب مُعَلِّم a teacher’s book.', ['of', 'turned', 'is']),
+    ],
+  },
+  two: {
+    title: 'Two',
+    table: 'dual',
+    markers: [
+      noun('two', 'one', 'ـَانِ on the end = two: كِتَابَانِ two books. English adds a number; Arabic adds an ending, and a final ة is written ت before it. You will also see ـَيْنِ (كِتَابَيْنِ): the same two, in another place in the sentence.',
+        ['one', 'the-two', 'wrong:ta:two']),
+      noun('the-two', 'the', 'With ال in front, الْكِتَابَانِ = the two books.', ['the', 'two', 'one']),
     ],
   },
   past: {
@@ -159,6 +195,32 @@ export const SKILLS = {
       noun('you-all', 'he', 'ـكُمْ on the end of a verb = you, said to a group.', ['you', 'them', 'us']),
     ],
   },
+  who: {
+    title: 'The one who',
+    table: 'relative',
+    markers: [
+      noun('the-man', 'he', 'الَّذِي = the one who, for a man: الَّذِي كَتَبَ the man who wrote. For a thing it is “which”.',
+        ['the-woman', 'those', 'the-man-now']),
+      noun('the-woman', 'the-man', 'الَّتِي is the same for a woman, and the verb after it is hers: الَّتِي كَتَبَتْ the woman who wrote.',
+        ['the-man', 'those']),
+      noun('those', 'the-man', 'الَّذِينَ = those who (men, or men and women), with the verb for “they”: الَّذِينَ كَتَبُوا those who wrote. The Qur’an says it again and again: those who believed.',
+        ['the-man', 'those-now', 'the-woman']),
+    ],
+  },
+  questions: {
+    title: 'Questions',
+    table: 'questions',
+    markers: [
+      particle('did', EVERYONE, 'said:{p}', 'هَلْ in front makes a yes-or-no question: هَلْ كَتَبَ؟ did he write? English moves words round and adds “did”; Arabic adds one word.',
+        ['said:{p}', 'does:{p}', 'where:{p}']),
+      particle('does', EVERYONE, 'did:{p}', 'هَلْ before the present asks about now: هَلْ يَكْتُبُ؟ does he write?', ['did:{p}', 'said:{p}', 'what:{p}']),
+      particle('a-did', EVERYONE, 'did:{p}', 'أَ joined to the front asks the same as هَلْ: أَكَتَبَ؟ did he write? The Qur’an often asks this way.',
+        ['said:{p}', 'where:{p}', 'does:{p}', 'wrong:apart:{p}']),
+      { ...noun('who', 'said:he', 'مَنْ = who: مَنْ كَتَبَ؟ who wrote?', ['said:he', 'did:he', 'what:he']), persons: ['he'] },
+      particle('what', EVERYONE, 'said:{p}', 'مَاذَا = what, before a verb: مَاذَا كَتَبَ؟ what did he write?', ['where:{p}', 'did:{p}', 'said:{p}']),
+      particle('where', EVERYONE, 'said:{p}', 'أَيْنَ = where: أَيْنَ كَتَبَ؟ where did he write?', ['what:{p}', 'did:{p}', 'said:{p}']),
+    ],
+  },
   patterns: {
     title: 'Verb patterns',
     table: 'families',
@@ -176,6 +238,19 @@ export const SKILLS = {
     ].map(([form, rule]) => noun(form, 'I', `${PATTERNS[form].shape}: ${rule} Often, not always: each verb’s meaning is still learnt.`, [])),
   },
 }
+
+/** Whose a thing is (“the teacher’s book”): people who own, and things owned; every thing goes with every owner. */
+export const OWNERS = ['teacher', 'student', 'man', 'boy', 'girl', 'doctor', 'friend', 'driver', 'merchant', 'neighbour', 'guest', 'child']
+export const THINGS = ['book', 'pen', 'car', 'house', 'bag', 'phone', 'key', 'cup', 'ball', 'notebook', 'picture', 'ticket', 'room', 'door']
+
+/** Things whose English for many is the word with -s: book, books (not box, city). */
+export const DUAL = [
+  'book', 'pen', 'key', 'car', 'phone', 'bag', 'cup', 'ball', 'notebook', 'ticket', 'picture', 'room', 'door', 'house',
+  'school', 'garden', 'mosque', 'street', 'ship', 'tree', 'window', 'table', 'bed',
+]
+
+/** The verbs questions are asked on: each takes a “what” (what did he write?), so every question on it is one a person says. */
+export const QUESTION_VERBS = ['write', 'open', 'hear', 'drink', 'understand', 'remember', 'memorise', 'wash', 'study']
 
 /** The verbs “him, her, me” is asked on: each is done to a person, and its English past takes one after it. */
 export const OBJECT_VERBS = ['hear', 'remember', 'carry', 'understand', 'wash']

@@ -1,0 +1,14 @@
+{
+  "id": "shafeinhashmi/finetune-sounds",
+  "title": "finetune-sounds",
+  "code_file": "kernel.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": ["dhiauji/user-tarteel", "shafeinhashmi/sounds-model", "shafeinhashmi/sounds-checks"],
+  "kernel_sources": [],
+  "competition_sources": []
+}

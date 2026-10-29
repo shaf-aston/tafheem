@@ -680,7 +680,9 @@ def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved)
     # a command's doer is the hidden أنت, so the raf' word after قُلْ heads the sentence it says
     ("قُلْ هُوَ اللَّهُ أَحَدٌ", "هُوَ", ("role", "مبتدأ")),
     ("قُلْ هُوَ اللَّهُ أَحَدٌ", "اللَّهُ", ("role", "خبر")),
-    ("قُلْ هُوَ اللَّهُ أَحَدٌ", "أَحَدٌ", ("role", "خبر")),
+    # أَحَدٌ (112:1) is read both ways: a second خبر, or بدل of اللَّهُ as the Quranic Treebank has it.
+    # Which one comes out turns on the CAMeL data, which CI does not have.
+    ("قُلْ هُوَ اللَّهُ أَحَدٌ", "أَحَدٌ", ("role", ("خبر", "بدل"))),
     ("قُلِ الْحَقُّ مِنْ رَبِّكُمْ", "الْحَقُّ", ("role", "مبتدأ")),
     # nearest case: a raf' pronoun of the verb's own person repeats its doer
     ("ذَهَبْتُ أَنَا", "أَنَا", ("role", "توكيد")),
@@ -717,7 +719,7 @@ def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved)
 def test_sentence_check_fixes(sentence, word, want):
     from tests.nahw_helpers import cards
     card = next(w for w in cards(sentence) if w["word"] == word)
-    assert card.get(want[0]) == want[1]
+    assert card.get(want[0]) in (want[1] if isinstance(want[1], tuple) else (want[1],))
 
 
 
