@@ -154,7 +154,13 @@ def test_a_noun_takes_the_qurans_noun_lemma_not_its_verbs():
 @pytest.mark.parametrize("sentence, word, pos", [
     ("كَانَ اسْمُ أَبِيهِ آزَرَ", "آزَرَ", "noun_prop"),  # the Qur'an's name (6:74), in فاعَلَ's shape
     ("آزَرَ زَيْدٌ عَمْرًا", "آزَرَ", "verb"),            # opening the sentence: the verb stays
-    ("كان اسم أبيه آزر", "آزر", "verb"),                  # typed bare, it says nothing either way
+    ("كان اسم أبيه آزر", "آزر", "noun_prop"),             # typed bare, nothing after it for the verb to take
+    ("قال إبراهيم لأبيه آزر", "آزر", "noun_prop"),
+    ("الرجل آزر صديقه", "آزر", "verb"),                   # a noun after it: what the verb is done to
+    ("آزر الجيش الشعب", "آزر", "verb"),
+    ("قال لأبيه سافر", "سافر", "verb"),                   # the Qur'an knows no name سافر
+    ("قال إبراهيم لأبيه آزر أنا ذاهب", "آزر", "noun_prop"),  # a new sentence opens after it
+    ("في قلبي حنين", "حنين", "noun"),                     # a noun's shape: the word, not the Qur'an's name
 ])
 def test_a_quran_name_in_a_verbs_shape(sentence, word, pos):
     assert _pos_of(sentence, word) == pos

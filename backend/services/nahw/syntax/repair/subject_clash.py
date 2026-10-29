@@ -100,7 +100,8 @@ def doer_first(tokens: list[dict]) -> None:
     tells them apart (Awdah al-Masalik 2/118: وجوبه ... أن يخشى اللبس). The parser hangs the second
     on the first as one name; it is the verb's object, and the first its doer. A name typed with no
     vowel shows no case either (رأى زيد عمرو), and a second showing nasb (أكرم محمد زيدا) is the
-    object all the more: a نعت or بدل would wear the first's case. So is any noun in nasb the parser
+    object all the more: a نعت or بدل would wear the first's case, so the first may show its raf' then
+    (أَكْرَمَ مُحَمَّدٌ زَيْدًا). So is any noun in nasb the parser
     left there or made the name's object (شرب زيد الماء): a name does no verb's work to take one.
     A name with ال showing no case is left: the ال looks back to the description it was named from
     (Ibn Aqil V1 p184: أكثر ما تدخل على المنقول من صفة ... للدلالة على الالتفات إلى ما نقلت عنه من صفة),
@@ -111,8 +112,8 @@ def doer_first(tokens: list[dict]) -> None:
         verb = s.head(first) if first else None
         if verb and is_verb(verb) and not own_doer(verb) and token["rel"] in ("---", "OBJ") \
                 and first["rel"] in ("SBJ", "OBJ", "---") and first["id"] < token["id"] \
-                and is_name(first) and typed_case_of(first) is None and noun_tagged(token) \
-                and (is_name(token) and token.get("stt") != "d" and typed_case_of(token) is None
+                and is_name(first) and typed_case_of(first) in (None, "u") and noun_tagged(token) \
+                and (is_name(token) and token.get("stt") != "d" and typed_case_of(token) is typed_case_of(first) is None
                      or typed_or_parsed_case(token) == "a") \
                 and not any(subject_link(k) for k in s.kids(verb) if k is not first):
             first["rel"] = "SBJ"

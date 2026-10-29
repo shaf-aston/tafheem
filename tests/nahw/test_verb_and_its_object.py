@@ -3,7 +3,7 @@ sentence (أكل الطعام), a noun the parser added to a verb (شرب الم
 it (شرب زيد الماء), and a name a verb of saying took as its object (لِأَبِيهِ آزَرَ)."""
 import pytest
 
-from backend.services.nahw.syntax.facts import shown_cases
+from backend.services.nahw.syntax.facts import agrees, shown_cases
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, doer_first, name_told_to
 from tests.nahw.test_naming import VERB, token
 from tests.nahw_helpers import cards, needs_parser
@@ -26,6 +26,10 @@ def roles(sentence: str) -> list[str]:
     ("شرب زيد الماء باردا", ["فعل", "فاعل", "مفعول به", "حال"]),
     ("رأى زيد عمرو", ["فعل", "فاعل", "مفعول به"]),
     ("أكرم محمد زيدا", ["فعل", "فاعل", "مفعول به"]),
+    ("أَكْرَمَ مُحَمَّدٌ زَيْدًا", ["فعل", "فاعل", "مفعول به"]),  # the doer may show its raf'
+    ("أكرم محمد حامدا", ["فعل", "فاعل", "مفعول به"]),  # a name on a participle's measure is no hal
+    ("جاء زيد راكبا", ["فعل", "فاعل", "حال"]),
+    ("أقبل زيد مسرعا", ["فعل", "فاعل", "حال"]),  # an unknown word filed as a name keeps a hal's shape
 ])
 def test_with_no_case_shown_the_verb_takes_its_doer_then_its_object(sentence, said):
     assert roles(sentence) == said
@@ -47,6 +51,12 @@ def test_a_name_with_al_showing_no_case_may_describe_and_is_no_object(sentence):
 def test_a_name_after_a_noun_in_jarr_that_a_verb_of_saying_holds_is_its_badal():
     azar = cards("قَالَ إِبْرَاهِيمُ لِأَبِيهِ آزَرَ")[-1]
     assert (azar["role"], azar["case"]) == ("بدل", "jarr")
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence", ["قال إبراهيم لأبيه آزر", "قال زيد لأخيه عمرو"])
+def test_a_name_typed_bare_after_a_noun_in_jarr_that_a_verb_of_saying_holds_is_its_badal(sentence):
+    assert cards(sentence)[-1]["role"] == "بدل"
 
 
 @needs_parser
@@ -80,9 +90,9 @@ def test_a_mudaf_ilayh_on_a_noun_stays():
     assert toks[1]["rel"] == "IDF"
 
 
-def name_then_noun(second: dict, **verb) -> list[dict]:
+def name_then_noun(second: dict, first: str = "زيد", **verb) -> list[dict]:
     return [token(1, "شرب", "شرب", "VRB", 0, "---", **{**VERB, "per": "3", **verb}),
-            token(2, "زيد", "زيد", "PROP", 1, "OBJ", pos_camel="noun_prop"), {"id": 3, "head": 2, **second}]
+            token(2, "زيد", "زيد", "PROP", 1, "OBJ", pos_camel="noun_prop", typed=first), {"id": 3, "head": 2, **second}]
 
 
 @pytest.mark.parametrize("second", [
@@ -96,8 +106,16 @@ def test_after_a_bare_name_the_word_its_case_lets_be_no_follower_is_the_verbs_ob
     assert (toks[1]["rel"], toks[2]["head"], toks[2]["rel"]) == ("SBJ", 1, "OBJ")
 
 
+def test_after_a_name_showing_raf_a_word_in_nasb_is_the_verbs_object():
+    toks = name_then_noun(token(3, "عمرا", "عمرو", "PROP", 2, "---", cas="a", pos_camel="noun_prop"), "زَيْدٌ")
+    doer_first(toks)
+    assert (toks[1]["rel"], toks[2]["head"], toks[2]["rel"]) == ("SBJ", 1, "OBJ")
+
+
 @pytest.mark.parametrize("second, verb", [
     (token(3, "الماء", "ماء", "NOM", 2, "---", cas="a", stt="d"), {"per": "1"}),  # شربتُ holds its doer
+    (token(3, "عمرو", "عمرو", "PROP", 2, "---", pos_camel="noun_prop"), {"first": "زَيْدٌ"}),  # after raf' a bare name may be its بدل
+    (token(3, "زيد", "زيد", "PROP", 2, "---", pos_camel="noun_prop"), {"first": "زَيْدًا"}),  # the first in nasb is no doer
     (token(3, "الماء", "ماء", "NOM", 2, "---", cas="u", stt="d"), {}),  # raf' may follow the name
     (token(3, "الحسن", "حسن", "PROP", 2, "---", pos_camel="noun_prop", stt="d"), {}),  # ال: may describe
 ])
@@ -134,3 +152,19 @@ def test_a_diptotes_typed_fatha_can_mean_jarr_and_a_plain_names_cannot():
     azar = token(1, "آزر", "آزر", "PROP", 0, "---", typed="آزَرَ", pos_camel="noun_prop")
     zayd = token(1, "زيد", "زيد", "PROP", 0, "---", typed="زَيْدًا", pos_camel="noun_prop")
     assert "i" in shown_cases(azar) and "i" not in shown_cases(zayd)
+
+
+def test_a_noun_no_vowel_nor_reading_gave_a_case_may_wear_any():
+    bare = token(1, "آزر", "آزر", "PROP", 0, "---", typed="آزر", cas="na", pos_camel="noun_prop")
+    read = token(1, "زيد", "زيد", "PROP", 0, "---", typed="زيد", cas="n", pos_camel="noun_prop")
+    verb = token(1, "آزر", "آزر", "VRB", 0, "---", typed="آزر", cas="na", pos_camel="verb")
+    assert shown_cases(bare) == {"u", "a", "i"} and shown_cases(read) == {"u"} and not shown_cases(verb)
+
+
+def test_a_word_showing_tanween_never_describes_a_name_whatever_its_tag():
+    name = token(1, "زيد", "زيد", "PROP", 0, "---", typed="زيد", cas="u", stt="i", pos_camel="noun_prop")
+    man = token(1, "رجل", "رجل", "NOM", 0, "---", typed="رجل", cas="u", stt="i", pos_camel="noun")
+    cold = token(2, "بارد", "بارد", "NOM", 1, "MOD", typed="بَارِدٌ", cas="n", stt="i", pos_camel="adj")
+    lord = token(2, "رب", "رب", "NOM", 1, "MOD", typed="رَبِّ", cas="g", stt="i", pos_camel="noun")
+    allah = {**name, "typed": "لِلَّهِ", "cas": "g"}  # رَبِّ shows no tanween: nothing says it is indefinite
+    assert not agrees(cold, {**name, "typed": "زَيْدٌ"}) and agrees(cold, {**man, "typed": "رَجُلٌ"}) and agrees(lord, allah)

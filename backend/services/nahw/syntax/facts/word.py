@@ -224,8 +224,8 @@ def case_unseen(token: dict) -> bool:
 def shown_cases(token: dict) -> set[str]:
     """Every case the word's ending can mean: the one typed or parsed, nasb too for a ـات word
     typed with a kasra and jarr too for a diptote typed with a fatha (لِأَبِيهِ آزَرَ); any of the
-    three for a مقصور noun whose case is unseen."""
-    if case_unseen(token):
+    three for a مقصور noun whose case is unseen, or a name whose case neither its vowels nor its reading show (آزر)."""
+    if case_unseen(token) or token.get("pos_camel") == "noun_prop" and typed_or_parsed_case(token) is None:
         return {"u", "a", "i"}
     shown = typed_or_parsed_case(token)
     if shows_nasb_by_kasra(token) or shown == "a" and shows_jarr(token):
@@ -256,10 +256,13 @@ def agrees(token: dict, head: dict) -> bool:
     not agree; a dual describes only a dual (مُحَمَّدٌ وَعَلِيٌّ مُجْتَهِدَانِ: the khabar of both).
     Only the dual is compared: a plural not of people takes a singular na't (الكتبُ الجديدةُ);
     and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا). A noun read
-    as a مضاف with nothing added to it is no مضاف (ضَلَّ ضَلَالًا بَعِيدًا typed bare: ضلال)."""
+    as a مضاف with nothing added to it is no مضاف (ضَلَّ ضَلَالًا بَعِيدًا typed bare: ضلال). A name
+    is definite by itself whatever its tag says (Ajrumiyya p14: والمعرفة خمسة أشياء … والاسم العلم), so a word
+    showing tanween never describes it (شرب زيد الماء باردا); رَبِّ after لِلَّهِ shows none."""
     dual = [t.get("num") == "d" for t in (token, head) if noun_tagged(t)]
     known = head.get("stt") == "d" or head.get("stt") == "c" and head.get("mudaf", True)
-    return same_case(token, head) and not (token.get("stt") == "i" and known) and len(set(dual)) < 2
+    named = head.get("pos_camel") == "noun_prop" and (typed_tanween(token) or written_nasb(token))
+    return same_case(token, head) and not (token.get("stt") == "i" and known or named) and len(set(dual)) < 2
 
 
 def unlike(token: dict, head: dict) -> bool:
@@ -351,11 +354,13 @@ def same_root(token: dict, other: dict) -> bool:
 
 def is_participle(token: dict) -> bool:
     """An active or passive participle, or an adjective: what a hal is made of.
-    A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا."""
+    A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا. A name
+    on a participle's measure (حَامِدًا) is none: a name is definite by itself, a hal never."""
     typed = bare_letters(token.get("typed") or "")
+    name = token.get("pos_camel") == "noun_prop"
     return (token.get("ud") == "ADJ" or token.get("pos_camel") == "adj"
-            or participle_shape(token.get("pattern", ""))
-            or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
+            or participle_shape(token.get("pattern", "")) and not name
+            or (name and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
 def is_elative(token: dict) -> bool:
