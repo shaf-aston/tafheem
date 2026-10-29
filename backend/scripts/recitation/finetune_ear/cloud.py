@@ -25,6 +25,7 @@ HERE = Path(__file__).parent
 LOOP = HERE.parent / (sys.argv[sys.argv.index('--loop') + 1] if '--loop' in sys.argv else HERE.name)
 PACKAGE = next(p.name for p in LOOP.iterdir() if (p / 'run.py').exists())
 KERNEL = json.loads((LOOP / 'kernel-metadata.json').read_text())['id']
+SHARED = HERE.parents[2] / 'services' / 'recitation' / 'sound_compare.py'
 LANDS = HERE.parents[2] / 'data' / 'models' / LOOP.name.replace('_', '-')
 # The served ear's one name: master's config.py pin, "repo@revision". The judge reads the same line.
 PIN = re.compile(r'(recitation_tuned_model: str = "([^@"]+)@)[^"]*"')
@@ -43,8 +44,10 @@ import {}.run
 
 
 def kaggle(*args):
-    return subprocess.run(['kaggle', 'kernels', *args], env=ENV, capture_output=True,
-                          text=True, encoding='utf-8', check=True).stdout.strip()
+    done = subprocess.run(['kaggle', 'kernels', *args], env=ENV, capture_output=True, text=True, encoding='utf-8')
+    if done.returncode:
+        sys.exit(f'kaggle kernels {args[0]} failed: {(done.stderr or done.stdout).strip()[-800:]}')
+    return done.stdout.strip()
 
 
 def status():
@@ -63,6 +66,7 @@ def bundle(folder):
         for f in sorted(HERE.parent.glob('finetune_*/*/*.py')):
             if (f.parent / '__init__.py').exists():  # packages only; checks/ stays on this PC
                 z.write(f, f'{f.parent.name}/{f.name}')
+        z.write(SHARED, SHARED.name)  # the server's own word judge, so training and serving mean the same by "wrong"
     (folder / meta['code_file']).write_text(LAUNCH.format(base64.b64encode(packed.getvalue()).decode(), PACKAGE))
     (folder / 'kernel-metadata.json').write_text(json.dumps(meta))
     return folder

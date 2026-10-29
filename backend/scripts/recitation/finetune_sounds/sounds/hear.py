@@ -5,7 +5,7 @@ from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2ForCTC
 
 from . import settings as S
 from . import targets
-from .words import collapse
+from sound_compare import collapse
 
 
 def load(folder):

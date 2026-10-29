@@ -2,7 +2,7 @@
 
     python backend/scripts/recitation/finetune_sounds/checks/judge_cases.py
 
-Planted cases with known answers run against sounds/judge.py and sounds/words.py: a word's phonemes against its
+Planted cases with known answers run against sounds/judge.py and services/recitation/sound_compare.py: a word's phonemes against its
 reference, then whole models against each other. Then each mutant (one small bug planted in judge.py) must change at
 least one answer. A surviving mutant means the cases cannot see that rule."""
 import sys
@@ -13,6 +13,7 @@ import numpy as np
 
 LOOPS = Path(__file__).parents[2]
 sys.path[:0] = [str(LOOPS / 'finetune_ear'), str(LOOPS / 'finetune_sounds')]
+sys.path.append(str(LOOPS.parents[1] / 'services' / 'recitation'))  # sound_compare.py, as cloud.py ships it
 from sounds import judge as real  # noqa: E402
 
 REF = [['b', 'i', 's', 'm', 'i'], ['ll', 'a:', 'h', 'i'], ['rˤrˤ', 'a', 'ħ', 'm', 'a:', 'n', 'i']]
@@ -88,7 +89,7 @@ MUTANTS = [  # (in judge.py, planted instead)
     ("c[:, 1] - c[:, 0], c[:, 1]]", "c[:, 0], c[:, 1]]"),
     ("'letter or word': 'letter', 'vowel': 'vowel'", "'letter or word': 'vowel', 'vowel': 'letter'"),
     ("None: 'right', ", "None: 'right', 'tajweed': 'right', "),
-    ("if group is not None and bad is not None:", "if group is not None:"),
+    ("and word is not None:", ":"),
     ("r is not None and r >= S.MATCH_FLOOR", 'True'),
     ("(own if rates is None else rates)", 'own'),
     ('prev + (x != y)', 'prev'),

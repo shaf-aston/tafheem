@@ -14,7 +14,7 @@ import pytest
 
 from backend.config import data_path, get_settings
 from backend.services import recitation
-from backend.services.recitation import checker, sounds
+from backend.services.recitation import checker, sound_compare, sounds
 
 # 85:6 recited without a mistake, from the recitation-errors download (see score_recitation_checker.recordings).
 CLEAN_CLIP = "errors/05ca0e304b329a00caf01b964952c3d360a0db5bef4a2fa21a1d32836c2f4258"
@@ -25,7 +25,7 @@ BISMI, ALLAH = ["b", "i", "s", "m", "i"], ["ll", "a:", "h", "i"]
 
 
 def test_a_word_said_right_passes_and_files_what_was_heard_under_it():
-    out = sounds.compare([BISMI, ALLAH], BISMI + ALLAH)
+    out = sound_compare.compare([BISMI, ALLAH], BISMI + ALLAH)
     assert out == [
         {"heard": BISMI, "expected": BISMI, "letter_ok": True, "vowel_ok": True},
         {"heard": ALLAH, "expected": ALLAH, "letter_ok": True, "vowel_ok": True},
@@ -33,25 +33,25 @@ def test_a_word_said_right_passes_and_files_what_was_heard_under_it():
 
 
 def test_a_dropped_letter_and_a_long_vowel_said_short_fail_their_own_word_only():
-    out = sounds.compare([BISMI, ALLAH], ["b", "i", "m", "i", "ll", "a", "h", "i"])
+    out = sound_compare.compare([BISMI, ALLAH], ["b", "i", "m", "i", "ll", "a", "h", "i"])
     assert [(w["letter_ok"], w["vowel_ok"]) for w in out] == [(False, True), (True, False)]
     assert out[0]["heard"] == ["b", "i", "m", "i"] and out[1]["heard"] == ["ll", "a", "h", "i"]
 
 
 def test_an_extra_sound_between_words_goes_to_the_word_before_and_outside_ones_are_left_out():
     heard = ["ʔ"] + BISMI + ["n"] + ALLAH + ["z"]
-    out = sounds.compare([BISMI, ALLAH], heard)
+    out = sound_compare.compare([BISMI, ALLAH], heard)
     assert out[0]["heard"] == BISMI + ["n"] and out[1]["heard"] == ALLAH
     assert out[0]["letter_ok"] and out[1]["letter_ok"]
 
 
 def test_tajweed_symbols_are_judged_on_neither_side_and_a_word_without_sounds_is_none():
     # An ikhfaa m̃ in the expected sounds; the model's decode has it dropped too.
-    out = sounds.compare([["b", "m̃", "a"], ()], ["b", "a"])
+    out = sound_compare.compare([["b", "m̃", "a"], ()], ["b", "a"])
     assert out[0]["letter_ok"] and out[0]["expected"] == ["b", "a"]
     assert out[1] is None
     ids = {3: "a", 28: "m̃", 7: "b"}
-    assert sounds.collapse([0, 7, 7, 28, 0, 3, 3, 3], ids) == (["b", "a"], [2, 3])
+    assert sound_compare.collapse([0, 7, 7, 28, 0, 3, 3, 3], ids) == (["b", "a"], [2, 3])
 
 
 def test_the_reference_of_an_ayah_with_another_word_count_is_not_guessed(monkeypatch):
@@ -129,9 +129,9 @@ def test_a_correct_recitation_is_heard_as_the_expected_sounds(clean_recitation):
 def test_the_same_recitation_against_altered_expected_sounds_fails_those_words(clean_recitation):
     audio, expected = clean_recitation
     altered = [list(w) for w in expected]
-    consonant = next(i for i, p in enumerate(altered[1]) if p not in sounds.VOWELS)
+    consonant = next(i for i, p in enumerate(altered[1]) if p not in sound_compare.VOWELS)
     altered[1][consonant] = "ʒʒ"
-    vowel = next(i for i, p in enumerate(altered[2]) if p in sounds.VOWELS)
+    vowel = next(i for i, p in enumerate(altered[2]) if p in sound_compare.VOWELS)
     altered[2][vowel] = "u:" if altered[2][vowel] != "u:" else "i:"
     out = sounds.hear_sounds(audio, altered)
     assert not out[1]["letter_ok"] and not out[2]["vowel_ok"]

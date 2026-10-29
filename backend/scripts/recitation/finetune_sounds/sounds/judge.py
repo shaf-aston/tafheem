@@ -1,10 +1,12 @@
 """The judge: does the trained model flag fewer correct words than the untuned one, without going deaf to slips?
 Plain numbers in, plain numbers out, so checks/judge_cases.py can prove it anywhere. Hearing the clips is hear.py."""
+import difflib
+
 import numpy as np
 from ear.judge import gain, wrong
+from sound_compare import compare, flatten
 
 from . import settings as S
-from .words import compare, flagged
 
 GROUPS = ('right', 'letter', 'vowel')
 # The reviewer's kind of mark to the group its word is tallied in. No mark is a correct word; tajweed is absent: left out.
@@ -13,13 +15,13 @@ GROUP_OF = {None: 'right', 'letter or word': 'letter', 'vowel': 'vowel'}
 
 def counts(clip, heard):
     """(match rate, array [group][flagged, words]) for one recording: its reference words against the symbols heard."""
-    artic, length, _, _, rate = compare(clip['ref'], heard)
+    ref, _ = flatten(clip['ref'])
+    matched = sum(b.size for b in difflib.SequenceMatcher(a=ref, b=heard, autojunk=False).get_matching_blocks())
     out = np.zeros((len(GROUPS), 2), dtype=np.int64)
-    for kind, a, l in zip(clip['kinds'], artic, length):
-        group, bad = GROUP_OF.get(kind), flagged(a, l)
-        if group is not None and bad is not None:
-            out[GROUPS.index(group)] += (bad, 1)
-    return rate, out
+    for kind, word in zip(clip['kinds'], compare(clip['ref'], heard)):
+        if (group := GROUP_OF.get(kind)) is not None and word is not None:
+            out[GROUPS.index(group)] += (not (word['letter_ok'] and word['vowel_ok']), 1)
+    return (round(matched / len(ref), 3) if ref else None), out
 
 
 def tally(clips, heard, rates=None):

@@ -25,7 +25,6 @@ sounds/                runs on the GPU machine, in this order:
   train.py             one round of CTC fine-tuning, feature encoder frozen
   hear.py              the model's symbols for a recording (greedy CTC)
   judge.py             words flagged per group, bootstrap, keep or not, professional error rate
-  words.py             a word is wrong if a consonant or a vowel differs; shared with score_phoneme_checker.py
   settings.py          every knob
 checks/
   judge_cases.py       the judge decides 23 known cases right, and 15 planted bugs are each caught
