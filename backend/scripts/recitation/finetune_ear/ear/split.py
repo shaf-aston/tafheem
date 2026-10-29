@@ -7,8 +7,8 @@ from collections import Counter
 
 from datasets import Dataset, concatenate_datasets
 
+from . import parquet, sources
 from . import settings as S
-from . import sources
 from .text import canon
 
 KEPT = ['sound', 'said', 'src', 'secs']
@@ -38,10 +38,10 @@ def build():
     # Shares are of the final training set: learners are the rest, so each target is learners * share / learner share.
     rest = 1 - S.TADABUR_SHARE - S.REPLAY_SHARE
     big = Dataset.from_generator(sources.parquet_clips, gen_kwargs={
-        'rows': sources.fetch(S.TADABUR, sources.tadabur_plan(skip, round(len(learners) * S.TADABUR_SHARE / rest))),
+        'rows': parquet.fetch(S.TADABUR, sources.tadabur_plan(skip, round(len(learners) * S.TADABUR_SHARE / rest))),
         'src': 'tadabur'})
     replay = Dataset.from_generator(sources.parquet_clips, gen_kwargs={
-        'rows': sources.fetch(S.REPLAY, sources.replay_plan(skip, round(len(learners) * S.REPLAY_SHARE / rest))),
+        'rows': parquet.fetch(S.REPLAY, sources.replay_plan(skip, round(len(learners) * S.REPLAY_SHARE / rest))),
         'src': 'replay'})
     # Downloads out of the folder Kaggle hands back: cloud.py fetches it whole, and wants only the result.
     shutil.rmtree(S.OUT / 'parquet-clips')

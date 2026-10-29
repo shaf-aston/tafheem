@@ -37,7 +37,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402
-from backend.services.recitation import sounds  # noqa: E402
+from backend.services.recitation import sound_compare, sounds  # noqa: E402
 from backend.services.recitation.place import bare_word  # noqa: E402
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 
@@ -49,13 +49,14 @@ OPSET = 17
 VOCATIVE = ("j", "a:")
 
 
-def export() -> None:
+def export(source: str | None) -> None:
     import torch
     from onnxruntime.quantization import QuantType, quantize_dynamic
 
-    from backend.scripts.recitation.score_phoneme_checker import MODEL_ID, SAMPLE_RATE, load_model
+    from backend.scripts.recitation.score_phoneme_checker import MODEL_ID, SAMPLE_RATE, load_model, vocab_file
+    source = source or MODEL_ID
 
-    model, _, _ = load_model()
+    model, _, _ = load_model(source)
 
     class Hearing(torch.nn.Module):
         """Raw 16kHz sound in, a score per symbol per 20ms out. The feature
@@ -79,8 +80,7 @@ def export() -> None:
     folder.mkdir(parents=True, exist_ok=True)
     quantize_dynamic(str(fp32), str(folder / sounds.MODEL), weight_type=QuantType.QInt8, op_types_to_quantize=["MatMul"],
                       per_channel=True)
-    from huggingface_hub import hf_hub_download
-    shutil.copy(hf_hub_download(MODEL_ID, "vocab.json"), folder / sounds.VOCAB)
+    shutil.copy(vocab_file(source), folder / sounds.VOCAB)
     for f in sorted(folder.iterdir()):
         print(f"{f.name}  {f.stat().st_size / 1e6:.0f} MB")
     print(f"fp32 kept at {fp32} for verify")
@@ -93,15 +93,15 @@ def session(path: Path):
 
 def onnx_decode(sess, sound: np.ndarray, id2sym: dict[int, str]) -> list[str]:
     (logits,) = sess.run(None, {"audio": sound[None, :].astype(np.float32)})
-    return sounds.collapse(logits[0].argmax(-1).tolist(), id2sym)[0]
+    return sound_compare.collapse(logits[0].argmax(-1).tolist(), id2sym)[0]
 
 
-def verify(count: int) -> None:
-    from backend.scripts.recitation.score_phoneme_checker import LONGEST_S, decode, load_model, wav_floats
+def verify(count: int, source: str | None) -> None:
+    from backend.scripts.recitation.score_phoneme_checker import LONGEST_S, MODEL_ID, decode, load_model, wav_floats
     from backend.scripts.recitation.score_recitation_checker import recordings, seconds
 
     ayahs = json.loads(data_path("quran_imlaei_path").read_text(encoding="utf-8"))
-    model, fe, id2sym = load_model()
+    model, fe, id2sym = load_model(source or MODEL_ID)
     int8 = session(data_path("recitation_sounds_path") / sounds.MODEL)
     fp32 = session(SCRATCH / "model.onnx") if (SCRATCH / "model.onnx").is_file() else None
     same8 = same32 = total = agree = sym_total = 0
@@ -163,11 +163,13 @@ def reference() -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = parser.add_subparsers(dest="job", required=True)
-    sub.add_parser("export")
+    sub.add_parser("export").add_argument("--source", help="a trained model folder; the Hugging Face model when left out")
     sub.add_parser("reference")
-    sub.add_parser("verify").add_argument("--clips", type=int, default=20)
+    verifying = sub.add_parser("verify")
+    verifying.add_argument("--clips", type=int, default=20)
+    verifying.add_argument("--source")
     args = parser.parse_args()
-    {"export": export, "reference": reference, "verify": lambda: verify(args.clips)}[args.job]()
+    {"export": lambda: export(args.source), "reference": reference, "verify": lambda: verify(args.clips, args.source)}[args.job]()
 
 
 if __name__ == "__main__":
