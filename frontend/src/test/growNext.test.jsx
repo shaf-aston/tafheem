@@ -8,6 +8,7 @@ import { renderScreen } from './render'
 import HomePanel from '../components/home/HomePanel'
 import { visit } from '../lib/nav/journey'
 import { LEVEL_KEY } from '../lib/learner/learnerLevel'
+import { PLAN_KEY } from '../lib/learner/plan'
 import { writeRaw } from '../lib/store/stored'
 import knobs from '../config/home.json'
 import { OFFERED } from '../components/home/GrowNext'
@@ -21,7 +22,11 @@ const used = (module, attempts) => ({
   'GET /progress/summary': { items: [] },
 })
 
-beforeEach(() => localStorage.clear())
+beforeEach(() => {
+  localStorage.clear()
+  // The first visit's questions are test/onboarding.test.jsx's; here they were skipped.
+  writeRaw(PLAN_KEY, JSON.stringify({ done: true }))
+})
 
 describe('Next in Grow', () => {
   it('on a new visit with a record, offers what was being studied above the level picker', async () => {
