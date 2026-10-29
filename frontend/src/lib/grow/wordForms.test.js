@@ -5,7 +5,7 @@ import data from '../../../public/grow/basics-verbs.json'
 import { makeRandom } from '../quiz/quiz'
 import {
   ADDRESSED, PERSONS, POSSESSORS, TENSES, WRONG_VERB, arabicOptions, canPossess, englishOptions, isFeminine, joinedTable,
-  meanings, peopleTable, pointingTable, possessiveTable, verbTable,
+  meanings, objectTable, peopleTable, pointingTable, possessiveTable, verbTable,
 } from './wordForms'
 
 const nfc = (text) => text.normalize('NFC')
@@ -192,6 +192,23 @@ describe('pointingTable', () => {
     expect(at(pointingTable(car), 'that').ar).toBe(nfc('تِلْكَ السَّيَّارَة'))
     expect(at(pointingTable(car), 'wrong:gender:this-is')).toEqual({ key: 'wrong:gender:this-is', ar: nfc('هٰذَا سَيَّارَة'), en: null })
     expect(at(pointingTable(book), 'wrong:gender:that').ar).toBe(nfc('تِلْكَ الْكِتَاب'))
+  })
+})
+
+describe('objectTable', () => {
+  const hear = data.verbs.find((verb) => verb.id === 'hear')
+  it('joins him, her, me… to the past for “he”', () => {
+    const entries = objectTable(hear)
+    expect(at(entries, 'him')).toMatchObject({ ar: nfc('سَمِعَهُ'), en: 'he heard him' })
+    expect(at(entries, 'me')).toMatchObject({ ar: nfc('سَمِعَنِي'), en: 'he heard me' })
+    expect(at(entries, 'you')).toMatchObject({ ar: nfc('سَمِعَكَ'), en: 'he heard you (one man)' })
+    expect(at(entries, 'you-all')).toMatchObject({ ar: nfc('سَمِعَكُمْ'), en: 'he heard you (all of you)' })
+  })
+  it('sets “he heard us” beside “we heard”, one mark apart, and ـِي for me with no meaning', () => {
+    const entries = objectTable(hear)
+    expect(at(entries, 'us').ar).toBe(nfc('سَمِعَنَا'))
+    expect(at(entries, 'we')).toMatchObject({ ar: nfc('سَمِعْنَا'), en: 'we heard' })
+    expect(at(entries, 'wrong:ya:me')).toEqual({ key: 'wrong:ya:me', ar: nfc('سَمِعِي'), en: null })
   })
 })
 
