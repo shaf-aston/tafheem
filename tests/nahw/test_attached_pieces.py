@@ -680,7 +680,8 @@ def test_a_verb_with_its_doer_heads_the_nasb_noun_put_before_it(sentence, moved)
     # a command's doer is the hidden أنت, so the raf' word after قُلْ heads the sentence it says
     ("قُلْ هُوَ اللَّهُ أَحَدٌ", "هُوَ", ("role", "مبتدأ")),
     ("قُلْ هُوَ اللَّهُ أَحَدٌ", "اللَّهُ", ("role", "خبر")),
-    ("قُلْ هُوَ اللَّهُ أَحَدٌ", "أَحَدٌ", ("role", "خبر")),
+    # an ayah is answered from the Quranic Treebank (tarkeeb_store), which records أَحَدٌ as بدل of اللَّهُ (112:1)
+    ("قُلْ هُوَ اللَّهُ أَحَدٌ", "أَحَدٌ", ("role", "بدل")),
     ("قُلِ الْحَقُّ مِنْ رَبِّكُمْ", "الْحَقُّ", ("role", "مبتدأ")),
     # nearest case: a raf' pronoun of the verb's own person repeats its doer
     ("ذَهَبْتُ أَنَا", "أَنَا", ("role", "توكيد")),
