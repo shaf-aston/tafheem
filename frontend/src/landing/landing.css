@@ -393,11 +393,20 @@ body { margin: 0; overflow-x: hidden; }
   .landing-page .strip-item { width: var(--landing-strip-w-sm); height: auto; aspect-ratio: var(--landing-strip-aspect); }
 }
 
-/* Sections: the app's own tiles; the reset above would strip their padding. */
+/* Sections: each group is a panel holding the app's own tiles; the reset above would strip their padding. */
 .landing-page .landing-sections h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); margin-block: 0 calc(var(--space-panel) * 2); }
-/* Groups breathe apart; inside one, the heading sits close to its own tiles. */
-.landing-page .landing-sections-groups { display: flex; flex-wrap: wrap; gap: calc(var(--space-panel) * 2) calc(var(--space-panel) * 2.5); }
-.landing-page .landing-sections-groups > section { padding: 0; display: flex; flex-direction: column; gap: var(--space-card); }
-.landing-page .landing-sections-grid { gap: var(--space-tile); }
-.landing-page .landing-sections .tile { padding: var(--space-card) var(--space-panel); min-height: 3.75rem; text-decoration: none; color: var(--text); }
+.landing-page .landing-sections-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: var(--space-panel); }
+.landing-page .landing-sections-panel {
+  display: flex; flex-direction: column; gap: var(--space-card);
+  padding: var(--space-panel); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface);
+}
+.landing-page .landing-sections-grid { display: grid; gap: var(--space-tile); }
+.landing-page .landing-sections .tile { padding: var(--space-tile) var(--space-card); min-height: 3.25rem; text-decoration: none; color: var(--text); }
 .landing-page .landing-sections .eyebrow { margin: 0; }
+/* The dialects: a full-width panel lit in Colloquial's hue, each tile a map of its country. */
+.landing-page .landing-sections-spotlight {
+  grid-column: 1 / -1; padding: calc(var(--space-panel) * 1.5);
+  background: radial-gradient(120% 140% at 0 0, color-mix(in oklab, var(--tab-colloq, var(--accent)) 18%, transparent), transparent 60%), var(--surface);
+}
+.landing-page .landing-sections .landing-dialect { flex-direction: column; justify-content: center; text-align: center; gap: .4rem; padding: var(--space-card); }
+

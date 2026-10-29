@@ -6,7 +6,6 @@ import StoryScroll from './StoryScroll.jsx'
 import FolioBand from './FolioBand.jsx'
 import ClipStrip from './ClipStrip.jsx'
 import Understand from './Understand.jsx'
-import Dialects from './Dialects.jsx'
 import Sections from './Sections.jsx'
 import Finale from './Finale.jsx'
 import Footer from './Footer.jsx'
@@ -22,7 +21,6 @@ export default function Landing() {
       <FolioBand />
       <ClipStrip />
       <Understand />
-      <Dialects />
       <Sections />
       <Finale />
       <Footer />
