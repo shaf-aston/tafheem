@@ -3,7 +3,7 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles
+from backend.services.nahw.book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles, takes_object
 from backend.services.nahw.syntax.facts.word import is_elative, is_name, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
@@ -124,6 +124,17 @@ def purpose(token: dict, verb: dict) -> bool:
             and typed_or_parsed_case(token) in (None, "a") and token.get("stt") in ("i", "c"))
 
 
+def wants_object(verb: dict, kids: list[dict], s: Sentence) -> bool:
+    """An active verb of no family that takes a noun as its object (book.takes_object) and has none of its
+    own, before it, after it or written on it: a describing word in nasb is that object, standing for the
+    noun it describes, left out (Ibn Aqil V3 p205: يجوز حذف المنعوت وإقامة النعت مقامه … أن اعمل سابغات أي
+    دروعا سابغات). So the Qur'an's مَنْ عَمِلَ صَالِحًا، وَمَنْ يَقْتُلْ مُؤْمِنًا, and a name the dictionary reads as
+    a describing word: أكرم محمد خالدا. A verb with its object keeps the hal (شرب زيد الماء باردا), as one that
+    seldom takes a noun does (جاء زيد راكبا، فَتَقْعُدَ مَذْمُومًا) and a passive (قُتِلَ مَظْلُومًا)."""
+    return (not is_passive(verb) and s.family(verb) is None and takes_object(verb["lemma"])
+            and not any(k["rel"] == "OBJ" for k in kids))
+
+
 def busied_before(token: dict, s: Sentence) -> bool:
     """زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ: the word comes before a verb busied with a pronoun of its own (facts.busied),
     so the verb that works on it is one like that verb, left out (الاشتغال, Ibn Aqil V2 p128: فالسابق انصبه بفعل
@@ -219,6 +230,8 @@ def verb_place(token: dict, s: Sentence) -> str:
                     or (t["id"] < token["id"] and verb_place(t, s) == "subject") for t in siblings)):
             if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
                 return "specification"
+            if is_participle(token) and wants_object(head, siblings, s):
+                return "object"  # أكرم محمد خالدا، مَنْ عَمِلَ صَالِحًا: the describing word stands for its noun
             if is_participle(token):
                 return "state"
             if rel != "TMZ" and is_plain_noun(token) and not same_root(token, head) and not is_one(head["lemma"], "intransitive_verbs"):
