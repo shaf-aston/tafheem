@@ -22,17 +22,22 @@
  */
 import { INTRO, MODULE, english, plain, teachWord, wordAsks } from './alifLam'
 import { weave } from './lesson'
-import { JOINED, MISSPELT, OBJECT_VERBS, OWNED, POINTED, SKILLS, TA_CLAUSE } from './basicsSkillList'
+import { DUAL, JOINED, MISSPELT, OBJECT_VERBS, OWNED, OWNERS, POINTED, SKILLS, TA_CLAUSE, THINGS } from './basicsSkillList'
 import { familyTable } from './verbPatterns'
-import { arabicOptions, englishOptions, joinedTable, objectTable, peopleTable, pointingTable, possessiveTable, verbTable } from './wordForms'
+import { dualTable, joinedTable, ofTable, peopleTable, pointingTable, pronounTable } from './nounForms'
+import { arabicOptions, englishOptions, objectTable, possessiveTable, verbTable } from './wordForms'
 
-export { JOINED, MISSPELT, OBJECT_VERBS, OWNED, POINTED, SKILLS }
+export { DUAL, JOINED, MISSPELT, OBJECT_VERBS, OWNED, OWNERS, POINTED, SKILLS, THINGS }
 
 /** Every form of `word` for a skill's table. */
 export const TABLES = {
   verbs: verbTable, nouns: possessiveTable, people: peopleTable, joined: joinedTable, pointing: pointingTable,
-  objects: objectTable, families: familyTable,
+  objects: objectTable, families: familyTable, pronouns: pronounTable, pairs: ofTable, dual: dualTable,
 }
+
+/** Every thing with every owner: “the teacher’s book”, “the student’s book”… (`ar` the thing's, as a noun table's is). */
+const pairsOf = (things, owners) =>
+  things.flatMap((thing) => owners.map((owner) => ({ id: `${thing.id}-of-${owner.id}`, ar: thing.ar, thing, owner })))
 
 /**
  * The path as items: `path` steps in order, `{ words: n }` the next n ال words, `{ skill }` that skill's markers;
@@ -45,7 +50,8 @@ export function pathItems(words, { verbs, families, people, path = [] }) {
   const named = (ids, list = words) => ids.map((id) => list.find((word) => word.id === id)).filter(Boolean)
   const draws = {
     verbs: verbs ?? [], nouns: named(OWNED), people: people ?? [], joined: named(JOINED), pointing: named(POINTED),
-    objects: named(OBJECT_VERBS, verbs ?? []), families: families ?? [],
+    objects: named(OBJECT_VERBS, verbs ?? []), families: families ?? [], pronouns: people ?? [],
+    pairs: pairsOf(named(THINGS), named(OWNERS)), dual: named(DUAL),
   }
   const items = []
   let next = 0
