@@ -45,6 +45,16 @@ def book_words(family: str, part: str = "words") -> frozenset[str]:
     return frozenset(_closed()["families"][family][part])
 
 
+@lru_cache(maxsize=None)
+def _verbs_with_objects() -> frozenset[str]:
+    return frozenset(book_file("verb_objects.json")["verbs"])
+
+
+def takes_object(lemma: str) -> bool:
+    """A verb a noun is the object of in a third of its Qur'an uses (scripts/nahw/build_verb_objects.py)."""
+    return book_spelling(lemma) in _verbs_with_objects()
+
+
 def book_map(family: str, part: str) -> dict[str, str]:
     """A family's word -> value table (the place a question noun fills, ...)."""
     return _closed()["families"][family][part]

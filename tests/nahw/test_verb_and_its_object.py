@@ -3,6 +3,7 @@ sentence (أكل الطعام), a noun the parser added to a verb (شرب الم
 it (شرب زيد الماء), and a name a verb of saying took as its object (لِأَبِيهِ آزَرَ)."""
 import pytest
 
+from backend.services.nahw.book import takes_object
 from backend.services.nahw.syntax.facts import agrees, shown_cases
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, doer_first, name_told_to
 from tests.nahw.test_naming import VERB, token
@@ -30,9 +31,23 @@ def roles(sentence: str) -> list[str]:
     ("أكرم محمد حامدا", ["فعل", "فاعل", "مفعول به"]),  # a name on a participle's measure is no hal
     ("جاء زيد راكبا", ["فعل", "فاعل", "حال"]),
     ("أقبل زيد مسرعا", ["فعل", "فاعل", "حال"]),  # an unknown word filed as a name keeps a hal's shape
+    ("أكرم محمد خالدا", ["فعل", "فاعل", "مفعول به"]),  # read as a describing word, it stands for its noun
+    ("ضرب زيد عامرا", ["فعل", "فاعل", "مفعول به"]),
+    ("مَنْ عَمِلَ صَالِحًا فَلِنَفْسِهِ", ["مبتدأ", "فعل", "مفعول به", "مجرور"]),
+    ("جاء زيد كريما", ["فعل", "فاعل", "حال"]),  # جاء seldom takes a noun: the describing word is its hal
+    ("وقف الجندي ثابتا", ["فعل", "فاعل", "حال"]),  # a verb the Qur'an gives no object keeps the hal
+    ("قُتِلَ زَيْدٌ مَظْلُومًا", ["فعل مجهول", "نائب فاعل", "حال"]),  # a passive wants no object
+    ("قتل زيد عمرا ظالما", ["فعل", "فاعل", "مفعول به", "حال"]),  # a verb with its object keeps the hal
+    ("حضر زيد مسرعا", ["فعل", "فاعل", "حال"]),  # the book lists حضر as taking none, whatever the Qur'an's use
 ])
 def test_with_no_case_shown_the_verb_takes_its_doer_then_its_object(sentence, said):
     assert roles(sentence) == said
+
+
+@pytest.mark.parametrize("verb, takes", [("أَكْرَم", True), ("عَمِل", True), ("ضَرَب", True),
+                                         ("جاء", False), ("رَجَع", False), ("قَعَد", False)])
+def test_a_verb_takes_an_object_when_the_quran_gives_it_a_noun_object_a_third_of_the_time(verb, takes):
+    assert takes_object(verb) is takes
 
 
 @needs_parser
