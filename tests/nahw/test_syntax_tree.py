@@ -54,6 +54,21 @@ def test_two_words_pointing_at_each_other_still_draw():
     assert [child["word"] for child in drawn["tree"]["children"]] == [0, 1]
 
 
+def test_words_in_a_loop_go_back_to_a_tree_and_still_draw():
+    words = ["كَتَبَ", "زَيْدٌ", "رِسَالَةً"]
+    toks = [token(1, "كتب", "كتب", "VRB", 3, "---", asp="p"), token(2, "زيد", "زيد", "PROP", 1, "SBJ", cas="n"),
+            token(3, "رسالة", "رسالة", "NOM", 2, "OBJ", cas="a")]
+    found = named(words, toks)  # the repairs leave no loop
+    assert [f["role"] for f in found] == ["فعل", "فاعل", "مفعول به"]
+    toks[0]["head"], toks[1]["head"], toks[2]["head"] = 2, 1, 0  # a loop made after them, a word beside it
+    drawn = tree.build(words, toks, found)
+    assert sorted(leaf["word"] for leaf in _leaves(drawn["tree"])) == [0, 1, 2]
+
+
+def _leaves(node):
+    return [node] if "word" in node else [leaf for kid in node["children"] for leaf in _leaves(kid)]
+
+
 def test_nothing_is_drawn_when_the_words_do_not_line_up():
     toks = [token(1, "كتب", "كتب", "VRB", 0, "---")]
     drawn = tree.build(["كَتَبَ", "زَيْدٌ"], toks, [{"role": None, "case": None}] * 2)

@@ -28,7 +28,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 
 ## 2. Repair (tokens corrected in place)
 
-`backend/services/nahw/syntax/repair/__init__.py` `correct`, in this order. Typed words ≠ tokens → only the first runs.
+`backend/services/nahw/syntax/repair/__init__.py` `correct`, in this order. Typed words ≠ tokens → only the first and the last run.
 
 <!-- list:repair -->
 - book_links: fixed structures written over the parser (`backend/services/nahw/syntax/mask.py`)
@@ -66,6 +66,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - nasab: name + ابن/بن + noun → صفة and مضاف chain; next noun = خبر in a verbless sentence (`backend/services/nahw/syntax/repair/nasab.py`)
 - untied_command: a command read as a jazm condition's answer (إن تضربْ أضربْ) with no فاء on it → jussive present, جواب الشرط (`backend/services/nahw/syntax/repair/answer.py`)
 - stamp: particle families from the particle decision tree; a place the parser gave the لام of emphasis → the word it is written onto (إِنَّ هَذَا لَسِحْرٌ) (`backend/services/nahw/syntax/particles.py`, `backend/data/nahw_rules/particle_tree.json`)
+- untangle: a word two repairs left in a loop (under a word under itself) → the parser's own link back, or the root when that loops too, as every word reaches the root; runs on every sentence, lined up or not (`backend/services/nahw/syntax/repair/__init__.py`)
 <!-- /list -->
 
 Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` → `vetoes`):

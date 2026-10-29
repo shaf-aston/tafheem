@@ -2,7 +2,7 @@
 import pytest
 
 from backend.services.nahw.syntax import facts, naming
-from backend.services.nahw.syntax.repair import correct
+from backend.services.nahw.syntax.repair import correct, untangle
 from backend.services.text.harakat import typed_case, typed_passive
 
 
@@ -35,6 +35,24 @@ def test_typed_case_and_passive():
     assert not typed_passive("كُنَّا", present=False)
     assert typed_passive("حُفَّتِ", present=False)  # a doubled verb's shadda stands for the kasra
     assert typed_passive("يُكَافَأُ", present=True)
+
+
+def test_a_word_left_in_a_loop_takes_back_the_parsers_link_or_the_root():
+    toks = [token(1, "كتب", "كتب", "VRB", 2, "MOD"), token(2, "زيد", "زيد", "PROP", 1, "SBJ"),
+            token(3, "عمرو", "عمرو", "PROP", 3, "OBJ")]
+    untangle(toks, {1: (0, "---"), 2: (1, "SBJ"), 3: (3, "OBJ")})
+    assert [(t["head"], t["rel"]) for t in toks] == [(0, "---"), (1, "SBJ"), (0, "OBJ")]
+
+
+def test_the_repairs_hand_on_no_loop():
+    toks = [token(1, "زيد", "زيد", "PROP", 2, "SBJ"), token(2, "كريم", "كريم", "NOM", 1, "MOD")]
+    correct(["زَيْدٌ", "كَرِيمٌ"], toks)
+    by_id = {t["id"]: t for t in toks}
+    for t in toks:
+        up, steps = t["head"], 0
+        while up in by_id and steps <= len(toks):
+            up, steps = by_id[up]["head"], steps + 1
+        assert up == 0
 
 
 @pytest.mark.parametrize("verb, passive", [

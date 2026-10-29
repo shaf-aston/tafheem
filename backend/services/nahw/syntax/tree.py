@@ -494,7 +494,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             up = parent(by_id[up])
             while up in by_id and is_preposition(by_id[up]):
                 up = parent(by_id[up])
-        if up in children_of and up != token["id"]:
+        # a word drawn under a word already under it would close a loop (the moves above re-hang links)
+        if up in children_of and up != token["id"] and not _inside(by_id[up], token, children_of):
             children_of[up].append(token)
         else:
             roots.append(token)
