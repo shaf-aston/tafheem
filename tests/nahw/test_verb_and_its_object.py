@@ -4,10 +4,10 @@ it (شرب زيد الماء), and a name a verb of saying took as its object (�
 import pytest
 
 from backend.services.nahw.book import takes_object
-from backend.services.nahw.syntax.facts import agrees, shown_cases
+from backend.services.nahw.syntax.facts import agrees, shown_cases, stands_for_its_noun
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, doer_first, name_told_to
 from tests.nahw.test_naming import VERB, token
-from tests.nahw_helpers import cards, needs_parser
+from tests.nahw_helpers import cards, needs_corpus, needs_parser
 
 
 def roles(sentence: str) -> list[str]:
@@ -39,9 +39,29 @@ def roles(sentence: str) -> list[str]:
     ("قُتِلَ زَيْدٌ مَظْلُومًا", ["فعل مجهول", "نائب فاعل", "حال"]),  # a passive wants no object
     ("قتل زيد عمرا ظالما", ["فعل", "فاعل", "مفعول به", "حال"]),  # a verb with its object keeps the hal
     ("حضر زيد مسرعا", ["فعل", "فاعل", "حال"]),  # the book lists حضر as taking none, whatever the Qur'an's use
+    # a verb that wants an object does not make a state its object: only a word that can stand for its noun is
+    ("دَخَلَ الضَّيْفُ مُبْتَسِمًا", ["فعل", "فاعل", "حال"]),
+    ("دخل الضيف مبتسما", ["فعل", "فاعل", "حال"]),  # no vowels typed: the same reading
+    ("دَخَلَ الطِّفْلُ ضَاحِكًا", ["فعل", "فاعل", "حال"]),
+    ("قَرَأَ الطَّالِبُ وَاقِفًا", ["فعل", "فاعل", "حال"]),
+    ("قرأ الطالب واقفا", ["فعل", "فاعل", "حال"]),
+    ("قَتَلَ زَيْدٌ مُؤْمِنًا", ["فعل", "فاعل", "مفعول به"]),  # الصفة الغالبة: a believer
+    ("قتل زيد مؤمنا", ["فعل", "فاعل", "مفعول به"]),
+    ("من عمل صالحا فلنفسه", ["مبتدأ", "فعل", "مفعول به", "مجرور"]),
+    ("أَكْرَمَ مُحَمَّدٌ خَالِدًا", ["فعل", "فاعل", "مفعول به"]),  # a name taken from a describing word
 ])
 def test_with_no_case_shown_the_verb_takes_its_doer_then_its_object(sentence, said):
     assert roles(sentence) == said
+
+
+@pytest.mark.parametrize("form, lemma, stands", [
+    ("صالحا", "صالِح", True), ("مُؤْمِنًا", "مُؤْمِن", True), ("المؤمنين", "مُؤْمِن", True),  # الصفة الغالبة
+    ("خَالِدًا", "خالِد", True), ("سعيدا", "سَعِيد", True),  # a name taken from a describing word
+    ("مُبْتَسِمًا", "مُبْتَسِم", False), ("واقفا", "واقِف", False), ("ضَاحِكًا", "ضاحِك", False),  # a state
+])
+def test_only_a_word_used_as_a_noun_or_a_name_stands_for_the_noun_it_describes(form, lemma, stands):
+    word = token(3, form, lemma, "NOM", 1, "OBJ", typed=form, cas="a", pos_camel="adj")
+    assert stands_for_its_noun(word) is stands
 
 
 @pytest.mark.parametrize("verb, takes", [("أَكْرَم", True), ("عَمِل", True), ("ضَرَب", True),
@@ -63,19 +83,20 @@ def test_a_name_with_al_showing_no_case_may_describe_and_is_no_object(sentence):
 
 
 @needs_parser
+@needs_corpus
 def test_a_name_after_a_noun_in_jarr_that_a_verb_of_saying_holds_is_its_badal():
     azar = cards("قَالَ إِبْرَاهِيمُ لِأَبِيهِ آزَرَ")[-1]
     assert (azar["role"], azar["case"]) == ("بدل", "jarr")
 
 
 @needs_parser
-@pytest.mark.parametrize("sentence", ["قال إبراهيم لأبيه آزر", "قال زيد لأخيه عمرو"])
+@pytest.mark.parametrize("sentence", [pytest.param("قال إبراهيم لأبيه آزر", marks=needs_corpus), "قال زيد لأخيه عمرو"])
 def test_a_name_typed_bare_after_a_noun_in_jarr_that_a_verb_of_saying_holds_is_its_badal(sentence):
     assert cards(sentence)[-1]["role"] == "بدل"
 
 
 @needs_parser
-@pytest.mark.parametrize("name", ["آزَرَ", "إِبْرَاهِيمَ"])
+@pytest.mark.parametrize("name", [pytest.param("آزَرَ", marks=needs_corpus), "إِبْرَاهِيمَ"])
 def test_the_khabar_of_kana_is_no_badal_of_the_noun_before_it(name):
     assert cards(f"كَانَ اسْمُ هذا الرَجُلِ {name}")[-1]["role"] == "خبر كان"
 

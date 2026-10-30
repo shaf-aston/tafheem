@@ -79,7 +79,7 @@ Rule of thumb: fix the cause by a grammar rule. Never key a fix to one sentence 
 
 ```
 venv/bin/python -m pytest -q -p no:cacheprovider                 # full suite
-PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --check   # no set may drop
+PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --check   # no set may drop, no sentence right before may go wrong
 PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --save-baseline  # only when better
 ```
 

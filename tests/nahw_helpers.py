@@ -8,6 +8,7 @@ import pytest
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
 from backend.services.nahw.syntax.catib_onnx import files_present
+from backend.services.quran import corpus as quran_corpus
 
 # Reading a sentence needs CAMeL's data and the parser's model files, neither in git;
 # reading its words alone (lemma, case, a recorded ayah's cards) needs only CAMeL's.
@@ -16,6 +17,9 @@ needs_parser = pytest.mark.skipif(
     not (morphology._CAMEL_AVAILABLE and files_present()),
     reason="CAMeL data or CATiB parser files not present",
 )
+# A foreign name on a verb's shape (آزر) is read as the name from the Qur'an's corpus, a built file
+# not in git (morphology._quran_name); without it the dictionary's verb stands.
+needs_corpus = pytest.mark.skipif(not quran_corpus.is_loaded(), reason="Qur'an corpus.db not built")
 
 
 def analyze(sentence: str) -> dict:

@@ -287,6 +287,14 @@ def is_state_word(token: dict) -> bool:
     return is_participle(token) or bare_letters(token.get("typed") or "")[:1] == "م"
 
 
+def stands_for_its_noun(token: dict) -> bool:
+    """A describing word that may stand for the noun it describes, left out: one used as a noun for
+    whoever it describes (الصفة الغالبة: صالحًا، مؤمنًا), or a name taken from a describing word that
+    the dictionary reads only as that word (خالدًا). Read by its lemma, so typed vowels or none give
+    the same answer. Any other describing word describes a state: مبتسمًا، واقفًا."""
+    return listed(token, "noun_describers") or listed(token, "describing_names")
+
+
 def state_or_specification(token: dict, head: dict) -> str:
     """An indefinite nasb word is a hal if it is a participle, else a tamyeez, which never
     comes before its head (Tasheel 3.2 p67). After a number or measure it tells what was counted
