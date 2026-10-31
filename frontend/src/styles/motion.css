@@ -80,6 +80,13 @@
 }
 
 
+/* How blurred a rise starts: theme.json's focus-blur-px unless a place says. */
+@property --rise-blur {
+  syntax: '*';
+  inherits: false;
+}
+
+
 @property --fade-from {
   syntax: '*';
   inherits: false;
@@ -87,8 +94,12 @@
 
 
 @keyframes rise-in {
-  from { opacity: var(--rise-from, var(--motion-arrive-from)); transform: translateY(var(--rise-y)) scale(var(--rise-scale)); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: var(--rise-from, var(--motion-arrive-from));
+    transform: translateY(var(--rise-y)) scale(var(--rise-scale));
+    filter: blur(var(--rise-blur, calc(var(--motion-focus-blur-px) * 1px)));
+  }
+  to   { opacity: 1; transform: none; filter: none; }
 }
 
 

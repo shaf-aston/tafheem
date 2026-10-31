@@ -129,7 +129,7 @@ function AppContent() {
           </div>
 
           {/* Sits midway between the tools and the search, matching the colophon at the foot. */}
-          <ArabicText as="p" className="phone-hide whitespace-nowrap">فَفِرُّوا إِلَى اللَّهِ</ArabicText>
+          <ArabicText as="p" className="phone-hide whitespace-nowrap gold-sheen">فَفِرُّوا إِلَى اللَّهِ</ArabicText>
 
           <div className="flex items-center gap-2 min-w-0">
             {/* Home has the command line and the tabs on a phone; the header keeps pen, profile, gear. */}
