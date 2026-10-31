@@ -2,7 +2,6 @@
 // phrases, the words a learner needs on their own. A word with no picture yet
 // gets the same tinted tile a phrase does, so the grid never has holes.
 import SpeakButton from '../../ui/SpeakButton'
-import BodyDiagram from '../BodyDiagram'
 import Face from '../parts/Face'
 import Spelling from '../parts/Spelling'
 import { grouped } from '../../../lib/colloquial/wordGroups'
@@ -14,7 +13,6 @@ export default function WordGrid({ words }) {
       {grouped(words).map(([category, group]) => (
         <section key={category} className="space-y-2">
           {category && <h4 className="eyebrow text-[var(--text-faint)]">{category}</h4>}
-          {category === 'body' && <BodyDiagram words={group} />}
           <ul className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
             {group.map((word) => (
               <li key={word.id} className="relative rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden">
