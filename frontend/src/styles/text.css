@@ -215,3 +215,23 @@ textarea.arabic-lg {
 @media (min-width: 40rem) {
   .bayt { display: flex; justify-content: center; gap: 3em; }
 }
+
+
+/* ── The gold sheen ─────────────────────────────────────────────────────────
+   One gleam of gold crossing the header's ayah, right to left as it is read,
+   when the app opens and again under a resting pointer (App.jsx). The words are
+   painted by their own background, clipped to the letters, so the gleam is in
+   the ink rather than over it. Its length is theme.json's sheen-ms, times
+   --motion-scale, so the Animations setting leaves the ayah still and plain. */
+.gold-sheen {
+  color: transparent;
+  background: linear-gradient(100deg, var(--text) 42%, var(--palette-gold) 50%, var(--text) 58%) 100% 0 / 260% 100% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gold-sheen calc(var(--motion-sheen-ms) * var(--motion-scale) * 1ms) ease-in-out
+    calc(var(--motion-sheen-delay-ms) * var(--motion-scale) * 1ms) backwards;
+}
+.gold-sheen:hover { animation-name: gold-sheen-again; animation-delay: 0ms; }
+@keyframes gold-sheen { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+/* The same pass under another name, so a hover replays it. */
+@keyframes gold-sheen-again { from { background-position: 0% 0; } to { background-position: 100% 0; } }

@@ -312,8 +312,40 @@
 .grow-done-stats dd { font-size: var(--type-title); font-weight: 800; color: var(--w); }
 .grow-done-level { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; width: 100%; font-size: var(--type-ui); color: var(--text-dim); text-align: start; }
 .grow-done-level .grow-lesson-bar { grid-column: 1 / -1; }
+/* The seed in the medal sprouts: the stem draws up, then the leaves open from where
+   they join it. Drawn in the medal's own dark ink, so it reads on the gold. */
+.grow-sprout { overflow: visible; color: color-mix(in srgb, var(--grow-gold) 25%, black); }
+.grow-sprout-seed { fill: currentColor; }
+.grow-sprout-stem {
+  fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: 0;
+  animation: grow-stem calc(var(--motion-spring-ms) * 1.5 * 1ms) var(--motion-settle-ease) calc(var(--motion-spring-ms) * 1ms) backwards;
+}
+.grow-sprout-leaf {
+  fill: var(--success); transform-box: fill-box;
+  animation: pop calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) calc(var(--motion-spring-ms) * 2.3 * 1ms) backwards;
+}
+.grow-sprout-left { transform-origin: 100% 100%; }
+.grow-sprout-right { transform-origin: 0% 100%; animation-delay: calc(var(--motion-spring-ms) * 2.6 * 1ms); }
+@keyframes grow-stem { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+/* Confetti thrown up from the medal as the lesson ends, falling away past the
+   numbers: thrown up, turning, fading as it lands. Once, never looping. */
+.grow-confetti { position: absolute; left: 50%; top: 50%; pointer-events: none; }
+.grow-medal .grow-confetti i {
+  position: absolute; width: 7px; height: 11px; margin: 0; border-radius: 2px; background: var(--tone); opacity: 0;
+  transform: none;
+  animation: grow-confetti calc(var(--motion-spring-ms) * 5 * 1ms) var(--motion-settle-ease)
+    calc(var(--i) * var(--motion-stagger-ms) * 1ms) backwards;
+}
+@keyframes grow-confetti {
+  0% { transform: translate(0, 0) rotate(0deg) scale(0.4); opacity: 1; }
+  30% { transform: translate(calc(var(--x) * 0.6), -110px) rotate(calc(var(--turn) * 0.4)); opacity: 1; }
+  100% { transform: translate(var(--x), 160px) rotate(var(--turn)); opacity: 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   .grow-medal i, .grow-option[data-mark='wrong'], .grow-option[data-mark='right'] { animation: none; }
+  .grow-sprout-stem, .grow-sprout-leaf { animation: none; }
 }
 
 /* ── Two looks, taken in turn by a book's parts (lib/grow/bookLesson.js LOOKS): courtyard stars and a garden of leaves.
