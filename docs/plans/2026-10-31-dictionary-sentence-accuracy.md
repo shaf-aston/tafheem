@@ -78,7 +78,7 @@ The set (Qur'an index left out so CI and a laptop score alike; model stood in fo
 | aligned (row per word) | 1000 |
 | rows with English | 3600 of 3615 |
 | junk tags | 0 |
-| Fusha English covered | 1362 of 2446 content words (55.7%) |
+| Fusha English covered | 1363 of 2446 content words (55.7%) |
 | read time | p50 144 ms, p95 540 ms |
 
 Qur'an part (local only, needs meanings.db and the index): 400 ayahs, rows matching the Qur'an's English
