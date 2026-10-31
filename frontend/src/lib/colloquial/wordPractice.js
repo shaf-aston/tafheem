@@ -28,7 +28,8 @@ const questionOf = (w, i, direction, bank, dialect) =>
 /**
  * Quiz mode: one drill per word, as an ordinary exercise the registry draws, the
  * kinds taking turns, easiest first:
- *   pick    see the English, pick the Arabic
+ *   pick    see the English, pick the Arabic (a word with a picture shows the
+ *           picture instead, so the word is tied to the thing, not to English)
  *   listen  hear the Arabic, pick it
  *   write   see the English, write the Arabic (or how it sounds)
  * A topic of one word can only be written: there is nothing to pick it from.
@@ -43,9 +44,15 @@ export function wordDrills(words, prefix, { dialect } = {}) {
     if (kind === 'write') {
       return { ...base, type: 'translate_to_arabic', prompt: `Write “${w.english}” in Arabic, or how it sounds.`, accepted: [w.arabic, w.transliteration] }
     }
-    const prompt = kind === 'pick' ? `Which one is “${w.english}”?` : 'Which word did you hear?'
+    const seen = kind === 'pick' && Boolean(w.image)
+    const prompt = seen ? 'Which word is this?' : kind === 'pick' ? `Which one is “${w.english}”?` : 'Which word did you hear?'
     const options = questionOf(w, i, 'en-ar', bank, dialect).options.map((o) => o.text)
-    return { ...base, type: 'choose', prompt, options, ...(kind === 'listen' && { say: w.arabic }) }
+    return {
+      ...base, type: 'choose', prompt, options,
+      ...(kind === 'listen' && { say: w.arabic }),
+      // Named under the picture once answered, so the English is still learnt.
+      ...(seen && { image: w.image, tip: `${w.arabic}: ${w.english}.` }),
+    }
   })
 }
 

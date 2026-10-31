@@ -18,6 +18,7 @@ import { useRecord } from '../../../lib/learner/record'
 import ArabicText from '../../ui/ArabicText'
 import PrimaryButton from '../../ui/PrimaryButton'
 import SpeakButton from '../../ui/SpeakButton'
+import PhrasePicture from '../parts/PhrasePicture'
 import { exerciseOf } from './registry'
 
 const statusOf = (saved) => (!saved ? '' : saved.correct ? 'right' : 'wrong')
@@ -64,6 +65,9 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
         check()
       }
     }}>
+      {/* A picture question: the thing itself, to be named in Arabic. */}
+      {exercise.image && <PhrasePicture phrase={{ image: exercise.image }} alt="The picture to name"
+        className="w-40 h-40 mx-auto block rounded-[var(--radius-md)]" />}
       <p className="type-body text-[var(--text)] flex items-center gap-3">
         {exercise.say && <SpeakButton text={exercise.say} early />}
         {exercise.prompt}
