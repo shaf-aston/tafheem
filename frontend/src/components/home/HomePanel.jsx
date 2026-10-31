@@ -100,7 +100,7 @@ export default function HomePanel({ accent, onGo }) {
       {/* Beside the tiles on a wide screen, the progress column, held in view as the page scrolls. */}
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_var(--layout-rail)] lg:gap-8 lg:items-start">
         <div className="space-y-6">
-          <div className="cb md:max-w-2xl" data-wide>
+          <div className="cb md:max-w-xl" data-wide>
             <CommandField line={line} name={NAME} placeholder={phone ? copy['placeholder-phone'] : copy.placeholder} showing={showing}
               trailing={!line.query && <ArabicText as="span" size="sm" className="cb-hint-ar" aria-hidden="true">{copy['placeholder-ar']}</ArabicText>} />
             {showing && (
@@ -112,7 +112,7 @@ export default function HomePanel({ accent, onGo }) {
 
           {/* The quiet word sits in the room beside the card, on a phone as on a laptop, and scrolls with the page. */}
           <div className="flex items-center gap-3 md:gap-6">
-            <div className="space-y-4 md:max-w-2xl flex-1 md:flex-[3] min-w-0">
+            <div className="space-y-4 md:max-w-xl flex-1 md:flex-[3] min-w-0">
               {/* A returning learner on a new visit (no path walked) sees what they were studying above the picker. */}
               {first && next}
               {/* A first visit asks how much Arabic you know, and starts there; after that, where you stopped. */}
@@ -129,7 +129,7 @@ export default function HomePanel({ accent, onGo }) {
               )}
             </div>
             {/* On a phone the first visit's three tall level cards need the full width, so the word waits for a wider screen there. */}
-            <FahmWord className={`${first ? 'hidden md:block' : 'w-24'} -translate-y-2 md:-translate-y-6 shrink-0 md:w-auto md:shrink md:flex-1 md:max-w-[20rem] min-w-0 select-none`} />
+            <FahmWord className={`${first ? 'hidden md:block' : 'w-24'} -translate-y-2 md:-translate-y-6 shrink-0 md:w-auto md:shrink md:flex-1 md:max-w-[24rem] min-w-0 select-none`} />
           </div>
 
           <section className="space-y-4" aria-labelledby="home-all">

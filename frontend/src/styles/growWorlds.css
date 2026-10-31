@@ -39,7 +39,8 @@
 @media (max-width: 39.99rem) {
   .grow-nexts:not([data-open]) > :nth-child(n + 4) { display: none; }
   /* The room a phone's three steps and the More button take (3 rows, 2 gaps, the 44px button and its gap), held while they load. */
-  .grow-nexts[data-settling] > .grow-next-slot { min-height: calc(3 * var(--grow-next-h) + 2 * 8px + 54px); }
+  /* The More button's room (44px and its gap), held under the three ghost steps. */
+  .grow-nexts[data-settling] { padding-bottom: 52px; }
   .grow-nexts:not([data-open], [data-settling]):has(> :nth-child(4)) + .grow-nexts-more { display: block; justify-self: center; min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: var(--type-ui); font-weight: 700; color: var(--w); }
 }
 .grow-next {
@@ -47,7 +48,7 @@
   border-radius: var(--radius-md); background: var(--surface); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
   transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease;
 }
-.grow-next-slot { border-color: var(--border); background: var(--surface-hi); opacity: 0.5; }
+.grow-next-slot { min-height: 60px; border-radius: var(--radius-md); }
 .grow-next:hover { border-color: var(--w); background: color-mix(in srgb, var(--w) 8%, var(--surface)); }
 .grow-next-ar { font-size: 1.15rem; line-height: 1; color: var(--w); }
 .grow-next-text { display: grid; min-width: 0; font-size: var(--type-small); color: var(--text-dim); }
