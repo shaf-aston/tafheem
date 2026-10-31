@@ -486,3 +486,15 @@ def test_a_word_joined_by_waw_is_not_mistaken_for_the_ayah_without_it():
     """The everyday-spelling match drops long-vowel letters inside a word, never its first:
     وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (37:182) is not الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (1:2)."""
     assert tarkeeb_store.find("وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ") is None
+
+
+@pytest.mark.skipif(not tarkeeb_store.is_built(), reason="tarkeeb.db not built")
+def test_the_spelling_index_follows_the_database_it_was_built_from(monkeypatch):
+    """A test (or a rebuild) that points DATABASE elsewhere must not leave its empty index
+    behind for the real file: the index is kept per build, not for the life of the process."""
+    typed = "وَاللَّيْلِ إِذَا سَجَىٰ"
+    real = tarkeeb_store.DATABASE
+    monkeypatch.setattr(tarkeeb_store, "DATABASE", real.with_name("not-built.db"))
+    assert tarkeeb_store.find(typed) is None
+    monkeypatch.setattr(tarkeeb_store, "DATABASE", real)
+    assert tarkeeb_store.find(typed)[:2] == (93, 2)

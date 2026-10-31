@@ -14,7 +14,6 @@ from __future__ import annotations
 import json
 import re
 import sqlite3
-from functools import lru_cache
 from pathlib import Path
 
 from backend.services.nahw import book as nahw_book
@@ -59,12 +58,12 @@ def skeleton(letters_key: str) -> str:
     return " ".join(word for word in folded if word)
 
 
-@lru_cache(maxsize=1)
-def _skeletons() -> dict[str, tuple[int, int] | None]:
-    """Each ayah by its skeleton; None where two ayahs share one, so a collision never picks."""
-    db = _db()
+def _index(conn: sqlite3.Connection | None) -> dict[str, tuple[int, int] | None]:
+    """Each ayah by its skeleton; None where two ayahs share one, so a collision never picks.
+    Worked out once per build of the file (ReadOnlyDb.per_build), so a rebuilt or swapped
+    database never answers from the last one's index."""
     found: dict[str, tuple[int, int] | None] = {}
-    for row in db.execute("SELECT surah, ayah, letters FROM tarkeeb") if db else ():
+    for row in conn.execute("SELECT surah, ayah, letters FROM tarkeeb") if conn else ():
         key = skeleton(row["letters"])
         found[key] = None if key in found else (row["surah"], row["ayah"])
     return found
@@ -83,7 +82,7 @@ def find(sentence: str) -> tuple[int, int, list[int]] | None:
     typed = letters(split_words(sentence))
     try:
         row = db.execute("SELECT surah, ayah, written FROM tarkeeb WHERE letters = ?", (typed,)).fetchone()
-        if row is None and (ayah := _skeletons().get(skeleton(typed))):
+        if row is None and (ayah := _db.per_build(db, _index).get(skeleton(typed))):
             row = db.execute("SELECT surah, ayah, written FROM tarkeeb WHERE surah = ? AND ayah = ?", ayah).fetchone()
             if row is not None and len(json.loads(row["written"])) != len(typed.split()):
                 row = None
