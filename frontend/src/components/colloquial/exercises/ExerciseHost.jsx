@@ -23,6 +23,13 @@ import { exerciseOf } from './registry'
 
 const statusOf = (saved) => (!saved ? '' : saved.correct ? 'right' : 'wrong')
 
+// Each Arabic run in an English prompt in its own <bdi>, so the quotes and the
+// question mark around it stay where they were written.
+const ARABIC_RUN = /([\u0600-\u06FF\u0750-\u077F](?:[\u0600-\u06FF\u0750-\u077F\s]*[\u0600-\u06FF\u0750-\u077F])?)/
+function Isolated({ text }) {
+  return String(text ?? '').split(ARABIC_RUN).map((part, i) => (i % 2 ? <bdi key={i} lang="ar">{part}</bdi> : part))
+}
+
 export default function ExerciseHost({ exercise, accent, saved, onDone }) {
   const { file } = useRecord()
   const kind = exerciseOf(exercise.type)
@@ -70,7 +77,7 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
         className="w-40 h-40 mx-auto block rounded-[var(--radius-md)]" />}
       <p className="type-body text-[var(--text)] flex items-center gap-3">
         {exercise.say && <SpeakButton text={exercise.say} early />}
-        {exercise.prompt}
+        <span><Isolated text={exercise.prompt} /></span>
       </p>
       <kind.Renderer exercise={exercise} value={value} onChange={change} status={status} accent={accent} />
       {!status && !kind.instant && (
