@@ -6,6 +6,9 @@
  */
 const SKIN = { fill: 'var(--surface-hi)', stroke: 'var(--border-hi)', strokeWidth: 2 }
 const LINE = { fill: 'none', stroke: 'var(--text-faint)', strokeWidth: 2.5, strokeLinecap: 'round' }
+// Eyes, teeth and the mouth's inside are the same in either theme: a dark mouth, white teeth.
+const WHITE = 'color-mix(in oklab, white 88%, var(--surface-hi))'
+const DARK = 'color-mix(in oklab, black 80%, var(--danger))'
 const ORGAN = (pct) => ({ fill: `color-mix(in oklab, var(--danger) ${pct}%, var(--surface-hi))`, stroke: 'var(--border-hi)', strokeWidth: 1 })
 
 function Face() {
@@ -20,15 +23,15 @@ function Face() {
       <path d="M70 102 Q88 92 106 102 M134 102 Q152 92 170 102" {...LINE} strokeWidth="4" />
       {[88, 152].map((cx) => (
         <g key={cx}>
-          <ellipse cx={cx} cy="120" rx="14" ry="7" fill="var(--surface)" stroke="var(--text-faint)" strokeWidth="1.5" />
-          <circle cx={cx} cy="120" r="4" fill="var(--text)" />
+          <ellipse cx={cx} cy="120" rx="14" ry="7" fill={WHITE} stroke="var(--text-faint)" strokeWidth="1.5" />
+          <circle cx={cx} cy="120" r="4" fill={DARK} />
         </g>
       ))}
       <path d="M120 118 L110 160 Q120 167 130 160" {...LINE} />
       <circle cx="72" cy="166" r="13" {...ORGAN(25)} stroke="none" />
       <circle cx="168" cy="166" r="13" {...ORGAN(25)} stroke="none" />
-      <path d="M84 186 Q120 236 156 186 Q120 194 84 186 Z" fill="var(--text)" opacity=".75" />
-      <rect x="102" y="186" width="36" height="7" rx="2" fill="var(--surface)" />
+      <path d="M84 186 Q120 236 156 186 Q120 194 84 186 Z" fill={DARK} />
+      <rect x="102" y="186" width="36" height="7" rx="2" fill={WHITE} />
       <ellipse cx="120" cy="206" rx="14" ry="6" {...ORGAN(55)} />
       <path d="M84 186 Q102 178 120 183 Q138 178 156 186" {...LINE} stroke={ORGAN(60).fill} strokeWidth="4" />
       <path d="M84 186 Q120 240 156 186" {...LINE} stroke={ORGAN(60).fill} strokeWidth="5" />
@@ -73,7 +76,7 @@ function Hand() {
       {fingers.map(([x, y]) => (
         <g key={x}>
           <rect x={x} y={y} width="26" height={150 - y} rx="13" {...SKIN} />
-          <rect x={x + 5} y={y + 4} width="16" height="14" rx="6" fill="var(--surface)" stroke="var(--border-hi)" strokeWidth="1" />
+          <rect x={x + 5} y={y + 4} width="16" height="14" rx="6" fill={WHITE} opacity=".7" stroke="var(--border-hi)" strokeWidth="1" />
         </g>
       ))}
       <rect x="58" y="120" width="118" height="116" rx="34" {...SKIN} />
