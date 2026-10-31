@@ -787,7 +787,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     if nasb and all(r.get("pos") in NOUNISH or r.get("pos", "").startswith("pron") for r in out) \
             and not any(has_tanween(word) and participle_shape(r.get("pattern", "")) for word, r in zip(tokens[:nasb], out)):
         for i in range(nasb + (typed_case(tokens[nasb]) == "a")):
-            verb = not has_tanween(tokens[i]) and best_reading(tokens[i], [
+            verb = best_reading(tokens[i], [
                 r for r in _widened(tokens[i], steps[i][1]) if r.get("pos") == "verb" and "ّ" not in r.get("diac", "")])
             if verb:
                 out[i] = verb

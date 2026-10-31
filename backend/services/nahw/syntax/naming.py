@@ -96,6 +96,7 @@ class FoundEntry(TypedDict, total=False):
     book: str | None  # the proof line: the tree's branches that named it
     also: str | None  # a second thing the book says (عطف بيان)
     my_ya: bool  # يَا قَوْمِ: مضاف to a ياء المتكلم typed only as the kasra it left
+    compound: str  # a part of a compound number: built / dual (its unit) or second (its عشر)
     attached: list[Piece]  # pieces written onto it
     governor: int  # index of the word that works its case on it
     follows: int  # index of the word a تابع follows
@@ -488,4 +489,14 @@ def _excepted_after_la(n: Named) -> None:
             entry["case"] = CASE_NAME["u"]
 
 
-FINISHES = (_pair, _extra_ba, _kaffa, _excepted_after_la)
+def _compound_number(n: Named) -> None:
+    """حضر ثلاثةَ عشرَ طالبًا: the two parts of a compound number fill the one place (repair.compound_number),
+    so the عشر takes the unit's name and case, and both say what they are built on (signs)."""
+    for i, token in enumerate(n.bases):
+        if token.get("compound"):
+            n.found[i]["compound"] = token["compound"]
+        if token.get("compound") == "second" and i and n.bases[i - 1].get("compound"):
+            n.found[i]["role"], n.found[i]["case"] = n.found[i - 1]["role"], n.found[i - 1]["case"]
+
+
+FINISHES = (_pair, _extra_ba, _kaffa, _excepted_after_la, _compound_number)

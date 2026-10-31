@@ -253,11 +253,22 @@ def best_reading(typed: str, readings: list[dict]) -> dict | None:
     as the noun فَتْح. A reading spelled with the very letters typed comes first, then the
     one doubling no letter otherwise than typed, then the one sharing most typed vowels,
     then the given (best first) order: a bare انك agrees with anything but must not beat
-    إِنَّكَ, nor the أَلْبَاب sharing more vowels beat الْبَاب, nor أَبُّوهُ beat أَبُوه for أَبُوْهُ."""
+    إِنَّكَ, nor the أَلْبَاب sharing more vowels beat الْبَاب, nor أَبُّوهُ beat أَبُوه for أَبُوْهُ.
+    A typed tanween is a sign of the noun (Ibn Aqil V1 p15: بالجر والتنوين), so no verb fits it
+    (كَمْ وَلَدًا is not the dual past وَلَدَا, which CAMeL writes with its د bare); only the light
+    emphasis nun is written as a fatha tanween on a present or command (لَنَسْفَعًا)."""
     letters_typed = [c for c, _ in letters(typed)]
     scored = [((letters_typed == [c for c, _ in letters(r.get("diac", ""))], -found[1], found[0]), i)
-              for i, r in enumerate(readings) if (found := vowel_agreement(typed, r.get("diac", ""))) is not None]
+              for i, r in enumerate(readings) if (found := vowel_agreement(typed, r.get("diac", ""))) is not None
+              and _fits_tanween(typed, r)]
     return readings[max(scored, key=lambda pair: (pair[0], -pair[1]))[1]] if scored else None
+
+
+def _fits_tanween(typed: str, reading: dict) -> bool:
+    """A reading the typed tanween allows: any but a verb, or a present or command with a fatha tanween."""
+    if reading.get("pos") != "verb" or not has_tanween(typed):
+        return True
+    return reading.get("asp") != "p" and "ً" in typed
 
 
 def drops_ya(word: str, lemma: str) -> bool:

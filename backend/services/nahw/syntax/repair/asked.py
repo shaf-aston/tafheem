@@ -6,7 +6,8 @@ the مبتدأ (Tasheel, أسماء الاستفهام)."""
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts import Sentence, is_verb, subject_link, typed_case_of
+from backend.services.nahw.book import book_map, is_one, takes_object
+from backend.services.nahw.syntax.facts import Sentence, holds_doer, is_passive, is_verb, subject_link, typed_case_of
 
 
 def asked_man(bases: list[dict], tokens: list[dict]) -> None:
@@ -36,6 +37,23 @@ def man_before_verb(bases: list[dict], tokens: list[dict]) -> None:
         held["head"], held["rel"] = verb["id"], "OBJ"
     man["head"], man["rel"] = 0, "---"
     verb["head"], verb["rel"] = man["id"], "MOD"
+
+
+def asked_before_doer_verb(tokens: list[dict]) -> None:
+    """كَمْ طَالِبًا نَجَحَ، مَاذَا حَدَثَ: a question noun that asks for the object (closed_words istifham
+    before_verb) is the object only of a verb that takes one; before a verb that takes none it is the
+    مبتدأ, and the verb, holding the pronoun back to it, its khabar, as مَنْ جَاءَ reads (man_before_verb). A verb
+    with a doer of its own (كَمْ بَلَدٍ زُرْتُ) holds no pronoun back to it, so it stays the object."""
+    s = Sentence(tokens)
+    for token in tokens:
+        verb = s.head(token)
+        if (verb and is_verb(verb) and token["id"] < verb["id"] and token["rel"] in ("SBJ", "OBJ", "MOD")
+                and book_map("istifham", "before_verb").get(strip_diacritics(token["form"])) == "object"
+                and not holds_doer(verb, [k for k in s.kids(verb) if k is not token])
+                and (is_passive(verb) or not takes_object(verb["lemma"]) or is_one(verb["lemma"], "intransitive_verbs"))):
+            token["head"], token["rel"] = verb["head"], verb["rel"]
+            verb["head"], verb["rel"] = token["id"], "MOD"
+            s = Sentence(tokens)
 
 
 def _man(token: dict) -> bool:

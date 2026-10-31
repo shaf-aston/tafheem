@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import bare_letters
 from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one, is_subject_pronoun
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer, own_doer
+from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer, own_doer
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -77,12 +77,14 @@ class Sentence:
         (closed_words istifham heads) opens a verbless clause on a noun: the question noun
         is the mubtada and that noun its khabar (مَا هِيَ، مَنْ أَبُوكَ، الْقَارِعَةُ مَا الْقَارِعَةُ).
         A verb before it (قَالَ مَا اسْمُكَ) leaves the asked clause verbless; one after it does not.
-        One in jarr is no mubtada (لِمَنْ هذا الكتابُ: the جار ومجرور is the fronted khabar)."""
+        One in jarr is no mubtada (لِمَنْ هذا الكتابُ: the جار ومجرور is the fronted khabar). The indefinite
+        nasb noun after كم is its tamyeez, not what is told of it (كَمْ وَلَدًا فِي الْحَدِيقَةِ)."""
         words = [t for t in self.tokens if not is_suffix(t)]
         return next(((asked, told) for asked, told in zip(words, words[1:])
                      if not any(is_verb(t) for t in words[words.index(asked):]) and not puts_in_jarr(asked, self)
                      and read_as(asked, "istifham") and is_one(asked["lemma"], "istifham", "heads")
-                     and told["pos"] == "NOM" and not is_preposition(told)), None)  # ما ذاهبٌ المسلمون: ما negates
+                     and told["pos"] == "NOM" and not is_preposition(told)
+                     and not (listed(asked, "tamyeez_head") and indefinite_nasb(told))), None)  # ما ذاهبٌ المسلمون: ما negates
 
     def _hijazi(self) -> tuple[dict, dict, dict] | None:
         """(ما, its ism, its khabar) of ما الحجازية, which works like ليس (Tasheel 1.9 n6
@@ -208,9 +210,27 @@ def told_of_lone_mubtada(token: dict, head: dict, s: Sentence) -> bool:
     (Ibn Aqil V1 p232: زيد أخوك). So is a name, definite by itself whatever its tanween (أخوك زيدٌ)."""
     plain_mudaf = token.get("stt") == "c" and token.get("pos_camel") == "noun"
     return s.verbless and head["rel"] == "---" and noun_tagged(head) \
-        and same_case(token, head) and (token.get("stt") == "d" or plain_mudaf or is_name(token)) and token.get("ud") != "ADJ" and not (token.get("stt") == "d" and describes(token, head)) \
+        and (is_built(head) or same_case(token, head)) and (token.get("stt") == "d" or plain_mudaf or is_name(token)) and token.get("ud") != "ADJ" and not (token.get("stt") == "d" and describes(token, head)) \
         and [t for t in s.tokens if t["rel"] == "---"] == [head] \
-        and all(k is token or k["rel"] == "IDF" for k in s.kids(head))
+        and all(k is token or k["rel"] == "IDF" or _in_silah(k, head, token) for k in s.kids(head))
+
+
+def _in_silah(kid: dict, relative: dict, told: dict) -> bool:
+    """A word between a relative and what is told of it is its صلة, one noun with it
+    (الموصول وصلته كالكلمة الواحدة): اَلَّتِي فِي الْبَيْتِ أُمِّي, في البيت is no second thing said."""
+    return listed(relative, "mawsul") and relative["id"] < kid["id"] < told["id"]
+
+
+def at_work(word: dict, s: Sentence) -> str | None:
+    """works_as_verb, for a word working on the noun after it: a verb always; an indefinite participle only
+    leaning on something, a khabar, a صفة, a حال, or a question or negation before it (Ibn Aqil V3 p106:
+    وولي استفهاما او حرف ندا او نفيا او جا صفة او مسندا), and one with ال whatever its place. One that is
+    itself a verb's doer or object leans on nothing: قابلتُ مسافرةً صبورةً, so صبورة is its صفة, never its object."""
+    if not (kind := works_as_verb(word)) or is_verb(word):
+        return kind
+    above = s.head(word)
+    leans = word.get("stt") == "d" or not (above and is_verb(above) and word["rel"] in NOUN_LINKS)
+    return kind if leans else None
 
 
 def verb_above(token: dict, s: Sentence) -> dict | None:
@@ -354,4 +374,4 @@ def quoted_head(token: dict, s: Sentence) -> bool:
     head = s.head(token)
     return (token["rel"] == "OBJ" and (typed_or_parsed_case(token) == "u" or is_subject_pronoun(token)) and head is not None and is_verb(head)
             and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
-            and (own_doer(head) or holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"]))))
+            and holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"])))

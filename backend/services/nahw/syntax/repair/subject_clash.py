@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts import (
-    Sentence, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time)
+    Sentence, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -27,7 +27,7 @@ def subject_clash(tokens: list[dict]) -> None:
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
-        if verb and is_verb(verb) and token["rel"] == "OBJ" and not own_doer(verb) and not holds_doer(verb, s.kids(verb)) \
+        if verb and is_verb(verb) and token["rel"] == "OBJ" and not holds_doer(verb, s.kids(verb)) \
                 and ((typed := typed_case_of(token)) == "u" or typed is None and token["id"] > verb["id"]
                      and is_name(token) and typed_or_parsed_case(token) != "a"
                      and strip_diacritics(verb["lemma"]) in frames()["said_clause"]["verbs"]):
@@ -37,7 +37,7 @@ def subject_clash(tokens: list[dict]) -> None:
         verb = s.head(head) if head else None
         if not (verb and is_verb(verb) and noun_tagged(token) and token["id"] > head["id"]
                 and subject_link(head) and not is_verb(token) and typed_case_of(head) in ("u", None)
-                and not is_mabni(token.get("pos_camel", "")) and not is_zarf(token, s)):
+                and not is_built(token) and not is_zarf(token, s)):
             continue
         # جَاءَ خَلِيفَةُ عُمَرَ: a diptote's fatha is its jarr, so the مضاف إليه stays
         clash = (token["rel"] in ("MOD", "---") or (token["rel"] == "IDF" and not shows_jarr(token))) \
@@ -192,6 +192,23 @@ def object_past_verb(tokens: list[dict]) -> None:
         verb = head and next((k for k in s.kids(head) if is_verb(k) and k["id"] < token["id"]), None)
         if verb and token["rel"] == "MOD" and noun_tagged(token) and typed_case_of(token) == "a":
             token["head"] = verb["id"]
+
+
+def relative_owed(tokens: list[dict]) -> None:
+    """كَافَأَ الْمُدِيرُ الَّذِي نَجَحَ: a relative straight after a verb's doer, the verb still owing its
+    object, is that object: the doer is complete without a صفة, the verb is not without what it is done
+    to. The parser hangs it on the doer as its صفة; it goes to the verb, where every axis and the
+    picture read it alike. Not after a verb the book lists as taking none (intransitive_verbs), where
+    it stays the doer's صفة, nor a passive one, whose object is its doer already."""
+    s = Sentence(tokens)
+    for token in tokens:
+        doer = s.head(token)
+        verb = s.head(doer) if doer else None
+        if (token["rel"] == "MOD" and token["pos"] != "PRT" and listed(token, "mawsul") and doer["id"] == token["id"] - 1
+                and subject_link(doer) and verb and is_verb(verb) and not is_passive(verb)
+                and not is_one(verb["lemma"], "intransitive_verbs")
+                and not any(k["rel"] == "OBJ" for k in s.kids(verb))):
+            token["head"], token["rel"] = verb["id"], "OBJ"
 
 
 def kana_subject(tokens: list[dict]) -> None:

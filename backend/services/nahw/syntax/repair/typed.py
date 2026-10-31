@@ -7,7 +7,7 @@ from backend.services.sarf import verb_reader
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
-from backend.services.nahw.syntax.facts import Sentence, has_added, is_describing, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, shown_cases, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged
+from backend.services.nahw.syntax.facts import Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, shown_cases, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -123,7 +123,8 @@ def jarr_after_mudaf(tokens: list[dict]) -> None:
     for before, word in pairwise(tokens):
         if (typed_case_of(word) == "i" and noun_tagged(word)
                 and noun_tagged(before) and before.get("stt") != "d" and not is_name(before)
-                and typed_case_of(before) is not None and not typed_tanween(before)
+                # كَمْ كِتَابٍ قَرَأْتُ: a built word never takes tanween, so كم الخبرية adds its noun too
+                and (typed_case_of(before) is not None or is_built(before)) and not typed_tanween(before)
                 and not (typed_case_of(before) == "a" and puts_in_jarr(before, s))):
             if above([t["head"] for t in tokens], before["id"], word["id"]):
                 before["head"], before["rel"] = word["head"], word["rel"]

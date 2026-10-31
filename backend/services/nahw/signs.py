@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, paused, plural_alef, typed_passive
-from backend.services.nahw.book import attention_off, book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
+from backend.services.nahw.book import attention_off, book_words, case_of, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
@@ -117,6 +117,12 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         own = _without_object(card["word"]) if _has_pronoun(card["camel"]) else _unmoved(card, after)
         return _built(ending) + _moved(card, after) if (ending := _typed_ending(own)) else sign("mabni")
     kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
+    if (part := card.get("compound")) in ("built", "second"):
+        # ثلاثةَ عشرَ: مبني على فتح الجزأين في محل رفع; the عشر after اثنا is built on its own fatha
+        said = teacher_rules()["case_said"]
+        on = _built(said["compound_on"]["both" if part == "built" or (before or {}).get("compound") == "built" else "one"])
+        place = CASE_LETTER.get(case) or case_of(card.get("role") or "")
+        return f"{on} {said['in_place'].format(place=said['place'][place])}" if place else on
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
         said = teacher_rules()["case_said"]
