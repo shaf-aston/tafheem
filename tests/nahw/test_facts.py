@@ -306,3 +306,23 @@ def test_governor_noun_for_a_tamyeez_under_a_number():
     toks = [token(1, "عشرون", "عشرون", "NOM", 0, "---", cas="n"),
             token(2, "كتابا", "كتاب", "NOM", 1, "TMZ", stt="i", cas="a")]
     assert governor(["عِشْرُونَ", "كِتَابًا"], toks, 1) == "noun"
+
+
+
+def test_the_noun_excepted_from_climbs_to_the_noun_that_holds_it():
+    def sentence(*middle):
+        return [token(1, "ما", "ما", "PRT", 2, "---"), token(2, "جاء", "جاء", "VRB", 0, "---", **VERB), *middle,
+                token(6, "إلا", "إلا", "PRT", 2, "---"), token(7, "زيد", "زيد", "PROP", 6, "OBJ", cas="n")]
+    # مَا جَاءَ أَحَدُ الطُّلَّابِ إِلَّا زَيْدٌ: the noun before إلا is الطلاب, added to أحد; أحد is excepted from
+    toks = sentence(token(3, "أحد", "أحد", "NOM", 2, "SBJ", stt="c", cas="n"),
+                    token(4, "الطلاب", "طالب", "NOM", 3, "IDF", stt="d", cas="g"))
+    assert facts.excepted_from(toks[-2], facts.Sentence(toks))["id"] == 3
+    # مَا جَاءَ أَحَدٌ مِنَ الطُّلَّابِ إِلَّا زَيْدٌ: out of its من to أحد, and never on up to the verb
+    toks = sentence(token(3, "أحد", "أحد", "NOM", 2, "SBJ", cas="n"), token(4, "من", "من", "PRT", 3, "MOD"),
+                    token(5, "الطلاب", "طالب", "NOM", 4, "OBJ", stt="d", cas="g"))
+    assert facts.excepted_from(toks[-2], facts.Sentence(toks))["id"] == 3
+    # مَا مَرَرْتُ بِأَحَدٍ إِلَّا زَيْدٌ, the verb tagged a noun but read as a verb: out of its باء, but no verb is excepted from
+    toks = [token(1, "ما", "ما", "PRT", 2, "---"), token(2, "مررت", "مر", "NOM", 0, "---", reading={"kind": "fil"}),
+            token(3, "ب", "ب", "PRT", 2, "MOD"), token(4, "أحد", "أحد", "NOM", 3, "OBJ", cas="g"),
+            token(6, "إلا", "إلا", "PRT", 2, "---"), token(7, "زيد", "زيد", "PROP", 6, "OBJ", cas="g")]
+    assert facts.excepted_from(toks[-2], facts.Sentence(toks))["id"] == 4
