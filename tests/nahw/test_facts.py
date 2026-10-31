@@ -326,3 +326,26 @@ def test_the_noun_excepted_from_climbs_to_the_noun_that_holds_it():
             token(3, "ب", "ب", "PRT", 2, "MOD"), token(4, "أحد", "أحد", "NOM", 3, "OBJ", cas="g"),
             token(6, "إلا", "إلا", "PRT", 2, "---"), token(7, "زيد", "زيد", "PROP", 6, "OBJ", cas="g")]
     assert facts.excepted_from(toks[-2], facts.Sentence(toks))["id"] == 4
+
+
+def test_a_noun_is_known_by_al_by_a_name_or_through_the_word_added_to_it():
+    # صاحبُ المالِ is known through المال; صاحبُ مالٍ, added to an unknown word, is not (Ibn Aqil V1 p88)
+    toks = [token(1, "صاحب", "صاحب", "NOM", 0, "---", stt="c"), token(2, "المال", "مال", "NOM", 1, "IDF", stt="d")]
+    assert facts.is_known(toks[0], facts.Sentence(toks))
+    toks[1]["stt"] = "i"
+    assert not facts.is_known(toks[0], facts.Sentence(toks))
+    assert facts.is_known(token(1, "زيد", "زيد", "PROP", 0, "---"), facts.Sentence([]))
+
+
+def test_a_describing_word_in_another_case_is_no_sifah_of_the_known_noun_before_it():
+    from backend.services.nahw.syntax.repair.typed import described_known
+
+    def sentence(case):
+        return [token(1, "أطعم", "أطعم", "VRB", 0, "---", **VERB), token(2, "الفقير", "فقير", "NOM", 1, "OBJ", stt="d", cas="a"),
+                token(3, "الجائع", "جائع", "NOM", 1, "OBJ", stt="d", cas=case, pos_camel="adj")]
+    toks = sentence("a")  # أَطْعَمَ الْفَقِيرَ الْجَائِعَ: its case, so its صفة
+    described_known(toks)
+    assert (toks[2]["head"], toks[2]["rel"]) == (2, "MOD")
+    toks = sentence("n")  # raf' after a nasb noun: it describes some other noun, and stays as the parser hung it
+    described_known(toks)
+    assert (toks[2]["head"], toks[2]["rel"]) == (1, "OBJ")
