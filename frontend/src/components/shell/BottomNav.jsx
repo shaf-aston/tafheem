@@ -19,6 +19,14 @@ export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, 
   const item = 'tap flex-1 grid justify-items-center gap-0.5 pt-2 pb-1 type-tiny font-semibold'
   return (
     <nav className="bottom-nav sm:hidden fixed inset-x-0 bottom-0 z-[var(--layer-header)] flex" aria-label="Main">
+      {/* One pill for the whole bar, gliding to the tab that is on rather than
+          blinking out under one and in under the next. Drawn first, so the
+          marks sit on top of it. More is the last place. */}
+      <span
+        className="bottom-nav-pill"
+        aria-hidden="true"
+        style={{ '--at': elsewhere ? dock.length : dock.findIndex((tab) => tab.id === active), '--of': dock.length + 1, '--c': colorOf(active) }}
+      />
       {dock.map((tab) => {
         const on = tab.id === active
         return (
