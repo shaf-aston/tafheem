@@ -445,6 +445,27 @@ def test_a_unit_card_fronts_its_named_cover_or_else_its_first_picture():
     assert loader._cover({"lessons": [{"phrases": [], "vocabulary": [word]}]})["image"] == "c.svg"
 
 
+def test_a_words_only_unit_card_samples_a_word_from_each_first_topic_and_counts_words_once():
+    word = lambda id, image=None: {"id": id, "arabic": id, "english": id, "image": image}
+    topic = lambda *words: {"written": True, "phrases": [], "vocabulary": list(words)}
+    unit = {"lessons": [topic(word("plain"), word("cow", "c.svg")), topic(word("cow", "c.svg")),
+                        topic(word("sun")), topic(word("moon", "m.svg"))]}
+    card = loader._words_only(unit)
+    assert [s["english"] for s in card["samples"]] == ["cow", "cow", "sun"]  # pictured first, three topics
+    assert card["words"] == 4  # cow, taught twice, is one word
+    talk = {"lessons": [topic(word("cow")) | {"phrases": [{"slot": "hi"}]}, topic(word("sun"))]}
+    assert loader._words_only(talk) == {}
+    assert loader._words_only({"lessons": [topic(word("sun")) | {"written": False}]}) == {}
+
+
+def test_the_catalogue_samples_every_words_only_unit_and_no_talk_unit():
+    for dialect in loader.catalogue()["dialects"]:
+        for unit in dialect["units"]:
+            words_only = unit["written"] and all(lesson["phrases"] == 0 for lesson in unit["lessons"])
+            assert bool(unit["samples"]) == words_only, (dialect["key"], unit["unit"])
+            assert (unit["words"] > 0) == words_only
+
+
 def test_every_written_unit_has_a_cover_and_every_written_topic_a_picture():
     bare = [(dialect["key"], unit["unit"], lesson["title"])
             for dialect in loader.catalogue()["dialects"] for unit in dialect["units"] if unit["written"]

@@ -262,9 +262,26 @@ def _picture(lesson: dict) -> str | None:
                  for one in lesson.get(key) or [] if one.get("image")), None)
 
 
+# A word unit's card shows one word from each of this many of its first topics.
+SAMPLES = 3
+
+
+def _words_only(unit: dict) -> dict:
+    """A unit with no phrases at all, its card's `samples` and `words`; {} for a talk unit
+    (or one not written yet), so its card keeps the cover phrase and nothing else."""
+    lessons = unit["lessons"]
+    if not lessons or not all(lesson.get("written") for lesson in lessons) \
+            or any(lesson.get("phrases") for lesson in lessons):
+        return {}
+    words = [lesson.get("vocabulary") or [] for lesson in lessons]
+    picks = [next((w for w in topic if w.get("image")), topic[0]) for topic in words[:SAMPLES] if topic]
+    return {"samples": [{"arabic": w["arabic"], "english": w["english"], "image": w.get("image")} for w in picks],
+            "words": len({w["id"] for topic in words for w in topic})}
+
+
 def _card(dialect: dict) -> dict:
     """A dialect's card, through schema.DialectCard: its fields are named there only."""
-    units = [{**u, "cover": _cover(u),
+    units = [{**u, "cover": _cover(u), **_words_only(u),
               "lessons": [{**lesson, "words": len(lesson.get("vocabulary") or []),
                            "phrases": len(lesson.get("phrases") or []), "picture": _picture(lesson)}
                           for lesson in u["lessons"]]}

@@ -99,6 +99,31 @@ export function UnitCard({ hue, index, unit, onClick }) {
   )
 }
 
+// A unit of words alone has no phrase to open on, so its card says what it teaches:
+// one word from each of its first topics, each with its small picture, and its size.
+export function WordUnitCard({ hue, index, unit, onClick }) {
+  const number = unitNumber(unit.unit)
+  return (
+    <button type="button" onClick={onClick} style={lookOf(hue, index)} aria-label={`Unit ${number}: ${unit.title}`}
+      className={`rise-in lift press text-start w-full flex flex-col px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS}`}>
+      <span className="flex items-baseline justify-between gap-3 eyebrow">
+        <span style={{ color: hue }}>Unit {number}</span>
+        <span className="text-[var(--text-faint)]">{unit.lessons.length} topics · {unit.words} words</span>
+      </span>
+      <span className="type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
+      <span className="flex flex-wrap gap-1.5 mt-auto pt-3">
+        {unit.samples.map((s) => (
+          <span key={s.english} className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] ps-1 pe-2 py-0.5">
+            <PhrasePicture phrase={s} alt="" className="w-6 h-6 p-0.5! rounded-[var(--radius-sm)]" />
+            <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text)]">{s.arabic.split(' / ')[0]}</span>
+            <span className="type-small text-[var(--text-faint)]">{s.english}</span>
+          </span>
+        ))}
+      </span>
+    </button>
+  )
+}
+
 export function Grid({ children }) {
   return <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">{children}</div>
 }
