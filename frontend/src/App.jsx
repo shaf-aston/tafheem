@@ -6,6 +6,8 @@ import { firstThese, idle, inTurn } from './lib/api/warm'
 import { useHealth } from './lib/api/useHealth'
 import { moodFrom } from './lib/shell/mood'
 import { TOOLS } from './lib/nav/tools'
+import { replay } from './lib/motion/replay'
+import { setHeaderHeight } from './lib/shell/headerHeight'
 import { useTabNavigation } from './lib/nav/useTabNavigation'
 import { useTools } from './lib/nav/useTools'
 
@@ -67,11 +69,10 @@ function AppContent() {
   }, [])
 
   // The header is pinned, so anything else pinned sits under it: its height is
-  // published as --app-header-h, kept true as it wraps on a narrow screen.
+  // published as --app-header-h (lib/shell/headerHeight), kept true as it wraps on a narrow screen.
   const pinHeader = useCallback((node) => {
     if (!node) return
-    const root = document.documentElement
-    new ResizeObserver(() => root.style.setProperty('--app-header-h', `${node.offsetHeight}px`)).observe(node)
+    new ResizeObserver(() => setHeaderHeight(node.offsetHeight)).observe(node)
   }, [])
 
   return (
@@ -129,7 +130,7 @@ function AppContent() {
           </div>
 
           {/* Sits midway between the tools and the search, matching the colophon at the foot. */}
-          <ArabicText as="p" className="phone-hide whitespace-nowrap gold-sheen">فَفِرُّوا إِلَى اللَّهِ</ArabicText>
+          <ArabicText as="p" className="phone-hide whitespace-nowrap gold-sheen" onPointerEnter={(e) => replay(e.currentTarget)}>فَفِرُّوا إِلَى اللَّهِ</ArabicText>
 
           <div className="flex items-center gap-2 min-w-0">
             {/* Home has the command line and the tabs on a phone; the header keeps pen, profile, gear. */}

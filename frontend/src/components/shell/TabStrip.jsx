@@ -12,12 +12,20 @@ import KeyHint from './KeyHint'
 // The first `fixed` tabs always show; the rest wait for md. The open tab always shows.
 const tierClass = (i, fixed) => (i < fixed ? '' : 'hidden md:block')
 
+// The underline's own width in px (styles/components.css .tab-glide); scaleX stretches it to each tab.
+const LINE_PX = 100
+
 export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll, onHover, hint = false }) {
   const list = useRef(null)
   const line = useRef(null)
+  const placed = useRef(false)
   // One underline for the whole strip, gliding to the open tab rather than going
   // out under one and lighting under the next. Measured after layout, and again
   // when the strip rewraps; written straight to its style, so a resize costs no render.
+  // Moved and stretched by transform alone (.tab-glide is LINE_PX wide, scaled to the
+  // tab), so a glide never lays the page out again. The first placement lands without
+  // a glide: measuring draws the line once at the strip's corner, and it used to fly
+  // in from there on every page load.
   useLayoutEffect(() => {
     const strip = list.current
     const place = () => {
@@ -26,8 +34,14 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
       if (!el) return
       el.style.opacity = tab ? '1' : '0'
       if (!tab) return
-      el.style.width = `${tab.offsetWidth - 8}px`
-      el.style.transform = `translate(${tab.offsetLeft + 4}px, ${tab.offsetTop + tab.offsetHeight - 1}px)`
+      const first = !placed.current
+      if (first) el.style.transition = 'none'
+      el.style.transform = `translate(${tab.offsetLeft + 4}px, ${tab.offsetTop + tab.offsetHeight - 1}px) scaleX(${(tab.offsetWidth - 8) / LINE_PX})`
+      if (first) {
+        void el.offsetWidth
+        el.style.transition = ''
+        placed.current = tab.offsetWidth > 0
+      }
     }
     place()
     const watch = new ResizeObserver(place)

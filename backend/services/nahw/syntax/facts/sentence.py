@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import bare_letters
 from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one, is_subject_pronoun
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer, own_doer
+from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer, own_doer
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -202,13 +202,13 @@ def place_case(token: dict, s: "Sentence") -> str | None:
 def told_of_lone_mubtada(token: dict, head: dict, s: Sentence) -> bool:
     """الدينُ النصيحةُ: a verbless sentence resting on one noun with nothing else said of
     it, so the plain noun in its case after it is its khabar; a describing word
-    (الطبيبُ الماهرُ) stays its صفة (Tasheel 1.4 p6). Made definite by its مضاف إليه
+    (الطبيبُ الماهرُ، الطالبُ المجتهدُ: one tagged a noun too) stays its صفة when it agrees with it (`describes`; Tasheel 1.4 p6). Made definite by its مضاف إليه
     (الطهورُ شطرُ الإيمانِ) it is a khabar too: a plain noun names a thing, it does not describe one, and one of
     a participle's shape no less (زيدٌ صاحبُ المالِ): the two parts alike definite, the first is the mubtada
     (Ibn Aqil V1 p232: زيد أخوك). So is a name, definite by itself whatever its tanween (أخوك زيدٌ)."""
     plain_mudaf = token.get("stt") == "c" and token.get("pos_camel") == "noun"
     return s.verbless and head["rel"] == "---" and noun_tagged(head) \
-        and same_case(token, head) and (token.get("stt") == "d" or plain_mudaf or is_name(token)) and token.get("ud") != "ADJ" \
+        and same_case(token, head) and (token.get("stt") == "d" or plain_mudaf or is_name(token)) and token.get("ud") != "ADJ" and not (token.get("stt") == "d" and describes(token, head)) \
         and [t for t in s.tokens if t["rel"] == "---"] == [head] \
         and all(k is token or k["rel"] == "IDF" for k in s.kids(head))
 

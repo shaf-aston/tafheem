@@ -345,7 +345,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .grow-medal i, .grow-option[data-mark='wrong'], .grow-option[data-mark='right'] { animation: none; }
-  .grow-sprout-stem, .grow-sprout-leaf { animation: none; }
+  .grow-sprout-stem, .grow-sprout-leaf, .grow-medal .grow-confetti i { animation: none; }
 }
 
 /* ── Two looks, taken in turn by a book's parts (lib/grow/bookLesson.js LOOKS): courtyard stars and a garden of leaves.
