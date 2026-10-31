@@ -41,9 +41,12 @@ def test_a_badal_hung_on_the_verb_follows_the_noun_before_it():
 
 
 def test_a_pronoun_tawkeed_stays_on_the_verb_whose_doer_it_repeats():
-    # ذَهَبْتُ أَنَا: أنا repeats the تاء the verb holds
-    words = [_w(1, "زَيْدٌ", "PROP", 2), _w(2, "ذَهَبْتُ", "VRB", 0), _w(3, "أَنَا", "NOM", 2, pos_camel="pron")]
-    named = [NAMED.mubtada, NAMED.fil, TAWKEED]
+    # أَكْرَمْتُ زَيْدًا أَنَا: أنا repeats the تاء the verb holds, not the noun straight before it
+    words = [_w(1, "أَكْرَمْتُ", "VRB", 0), _w(2, "زَيْدًا", "PROP", 1), _w(3, "أَنَا", "NOM", 1, pos_camel="pron")]
+    named = [NAMED.fil, NAMED.mafool_bih, TAWKEED]
+    assert followed(words[2], words, words, named) == 0
+    # a noun there that is no pronoun does follow that noun (أعجبني المعلمُ علمُه)
+    words[2] = _w(3, "نَفْسُهُ", "NOM", 1, stt="c")
     assert followed(words[2], words, words, named) == 1
 
 
