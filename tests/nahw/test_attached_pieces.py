@@ -411,6 +411,8 @@ def test_the_shahada_draws_its_unsaid_khabar_and_names_its_badal(sentence):
     cards, leaves = analysed(sentence)
     (khabar, _), = leaves["مَعْبُودٌ بِحَقٍّ"]
     assert khabar["role"] == "خبر لا" and khabar["hidden"] is True
+    # the بدل needs what it stands for drawn: the pronoun hidden in the khabar, under the khabar's own name
+    assert [(part["role"], part.get("pronoun")) for part in khabar["parts"]] == [("خبر لا", None), ("مبدل منه", "هو")]
     columns = client.post("/api/analyze", json={"sentence": sentence}).json()["tree"]["words"]
     assert [strip_diacritics(c) for c in columns][1:4] == ["إله", "معبود بحق", "إلا"]
     badal = cards[-1]

@@ -243,11 +243,14 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # لا إله إلا الله: the khabar left out because it is known, between the noun and إلا
     # (roles.json exception_after_la), the name after إلا standing for its hidden pronoun
     after_la = FRAMES["exception_after_la"]
+    mubdal_minhu: dict[int, dict] = {}  # the hidden khabar's own hidden pronoun, which the بدل stands for
     for token in list(drawn):
         if role_of.get(token["id"]) == NAMED.badal and (hit := excepted_after_la(token, sentence)):
             noun, illa, entry = hit
-            understand(entry["khabar"], after_la["khabar_named"], [t["id"] for t in drawn].index(illa["id"]),
-                       head=noun["head"], rel="PRD", pos="NOM", pos_camel="")
+            said = understand(entry["khabar"], after_la["khabar_named"], [t["id"] for t in drawn].index(illa["id"]),
+                              head=noun["head"], rel="PRD", pos="NOM", pos_camel="")
+            if "mubdal_minhu" in entry:
+                mubdal_minhu[said["id"]] = entry["mubdal_minhu"]
     said_verb = kept["verb"]
     saying = FRAMES["said_clause"]
     unsaid_objects: set[int] = set()  # nouns that are the object of a verb no one writes
@@ -621,10 +624,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         doer = _doer(token, family_of[token["id"]], persons_of[token["id"]]) if token["id"] in persons_of else None
         if doer and token["id"] in typed_at:
             doer_of[token["id"]] = doer
-        if not attached and not doer:
+        stands_for = mubdal_minhu.get(token["id"])
+        inner = {**stands_for, "tone": tone(NAMED.badal), "hidden": True} if stands_for else None
+        if not attached and not doer and not inner:
             return leaf
         own = {key: leaf[key] for key in ("role", "tone", "gap", "detail") if key in leaf}
-        return {**leaf, "parts": [own] + ([doer] if doer else []) + attached}
+        return {**leaf, "parts": [own] + ([doer] if doer else []) + ([inner] if inner else []) + attached}
 
     def kind_of(token: dict) -> str:
         """A unit with no name of its own is still a sentence when its head opens one,
