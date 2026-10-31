@@ -3,6 +3,7 @@ the khabar of a مبتدأ no one writes, هذا (بابُ الفاعلِ: هذ�
 measure brings what it measures (كوبٌ من القهوة as كوبُ قهوةٍ), so it is not the khabar either."""
 import pytest
 
+from backend.services.nahw.book import book_words
 from tests.nahw_helpers import analyze, cards, needs_parser
 
 
@@ -50,3 +51,9 @@ def test_a_jar_after_a_noun_that_is_no_measure_still_hangs_on_thabit(sentence):
 def test_a_phrase_that_asks_is_no_title():
     # أم asks, so the sentence is its own, whatever the parser made of الفائز
     assert roles("أَيُوسُفُ الْفَائِزُ أَمْ طَارِقٌ")[0] != "خبر"
+
+
+def test_every_measure_is_a_tamyeez_head():
+    """`measures` names the measures among tamyeez_head's words; each must be one of them too,
+    so the tamyeez after it is still found (facts.slot, facts.follows read `words`)."""
+    assert set(book_words("tamyeez_head", "measures")) <= set(book_words("tamyeez_head", "words"))

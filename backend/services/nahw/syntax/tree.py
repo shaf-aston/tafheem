@@ -274,7 +274,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                 mubdal_minhu[said["id"]] = entry["mubdal_minhu"]
     said_verb = kept["verb"]
     saying = FRAMES["said_clause"]
-    unsaid_objects: set[int] = set()  # nouns that are the object of a verb no one writes
+    named_by_unsaid: set[int] = set()  # nouns whose job a word no one writes gives: its object, its khabar
     replies: set[int] = set()  # the unwritten verbs that answer a question
     detail_of: dict[int, str] = {}
 
@@ -288,7 +288,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         why_of[noun["id"]] = None  # the dash was for a case no job fitted; now one does
         under = {**noun, "head": verb["id"]}
         drawn[drawn.index(noun)], by_id[noun["id"]] = under, under
-        unsaid_objects.add(noun["id"])
+        named_by_unsaid.add(noun["id"])
         return verb
 
     # أهلًا وسهلًا، شكرًا لك: a منصوب noun that heads its own sentence, named by no word, is the
@@ -302,7 +302,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # ماذا فرض الله ... فقال الصلواتِ: after a question for an object, the noun a verb of saying
     # hangs is the answer, the object of the question's verb, which is drawn as an unwritten word
     asked = asked_verb(sentence)
-    for noun in [t for t in drawn if asked and t["id"] > asked["id"] and t["id"] not in unsaid_objects and role_of[t["id"]] == said_verb["noun"]["other"]
+    for noun in [t for t in drawn if asked and t["id"] > asked["id"] and t["id"] not in named_by_unsaid and role_of[t["id"]] == said_verb["noun"]["other"]
                  and t["id"] in typed_at and noun_tagged(t) and "a" in shown_cases(t)
                  and role_of.get(t["head"]) == NAMED.fil
                  and strip_diacritics(by_id[t["head"]]["lemma"]) in saying["verbs"]]:
@@ -320,12 +320,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         noun = by_id[bases[opens["verb"]]["id"]]
         if any(role_of.get(t["id"]) in khabars and t["head"] == noun["id"] for t in drawn):
             continue
-        def of_noun(t: dict) -> bool:  # the noun or a word hung under it (رحمةُ اللهِ)
-            while t is not None and t["id"] != noun["id"]:
-                t = by_id.get(t["head"])
-            return t is not None
+        # after the noun and the words hung under it (لولا رحمةُ اللهِ)
         start = drawn.index(noun)
-        place = next((k for k in range(start, len(drawn)) if not of_noun(drawn[k])), len(drawn))
+        place = next((k for k in range(start, len(drawn)) if not _hangs_under(drawn[k], noun, by_id)), len(drawn))
         said_khabar = understand(frame["khabar"], NAMED.khabar, place, head=noun["id"], rel="PRD", pos="NOM", pos_camel="")
         detail_of[said_khabar["id"]] = frame["khabar_detail"]
     # بابُ الفاعلِ، كوبٌ كبيرٌ من القهوة: a noun phrase alone, its head in raf' or in no case shown,
@@ -333,18 +330,25 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # word (أيوسفُ الفائزُ أم طارقٌ asks: أم is on the istifham list) in it, is a title or an
     # answer: the khabar of a مبتدأ no one writes, هذا (roles.json understood.subject). A nasb head was taken above (شكرًا).
     alone = kept["subject"]
-    heads = [t for t in drawn if t["head"] not in by_id]
-    if len(heads) == 1 and len(bases) > 1 and (noun := heads[0])["id"] in typed_at and noun_tagged(noun) \
-            and not noun.get("pos_camel", "").startswith("pron") and role_of[noun["id"]] in (None, NAMED.mubtada) \
-            and not ({"a", "i"} & shown_cases(noun) and "u" not in shown_cases(noun)) \
+
+    def a_title(noun: dict) -> bool:
+        """The one head of several typed words, a noun that is no pronoun and has no job but مبتدأ,
+        not shown out of raf', in words with no verb, khabar, فاعل or question word."""
+        if noun["id"] not in typed_at:  # a hidden word has no reading to ask
+            return False
+        cases = shown_cases(noun)
+        return noun_tagged(noun) and not noun.get("pos_camel", "").startswith("pron") \
+            and role_of[noun["id"]] in (None, NAMED.mubtada) and not (cases & {"a", "i"} and "u" not in cases) \
             and not any(is_verb(t) or role_of.get(t["id"]) in (*khabars, NAMED.fail) for t in drawn) \
-            and not any(t["id"] in typed_at and listed(t, "istifham") and not is_preposition(t) for t in drawn):
+            and not any(t["id"] in typed_at and listed(t, "istifham") and not is_preposition(t) for t in drawn)
+    heads = [t for t in drawn if t["head"] not in by_id]
+    if len(heads) == 1 and len(bases) > 1 and a_title(noun := heads[0]):
         said_subject = understand(alone["voweled"], NAMED.mubtada, drawn.index(noun), head=0, rel="SBJ", pos="NOM", pos_camel="")
         role_of[noun["id"]] = alone["noun"]
         why_of[noun["id"]] = None
         under = {**noun, "head": said_subject["id"], "rel": "PRD"}
         drawn[drawn.index(noun)], by_id[noun["id"]] = under, under
-        unsaid_objects.add(noun["id"])
+        named_by_unsaid.add(noun["id"])
         detail_of[noun["id"]] = alone["detail"]
     at = {token["id"]: index for index, token in enumerate(drawn)}
     # what each unit does for the word above it: هذا البيتُ is drawn with the noun over its
@@ -819,7 +823,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     tree = _quieted(_unbracket(tree))
     covered = sum(1 for found in named if found["role"])
     return {"words": columns, "written": written, "tree": tree, "coverage": round(covered / len(words), 2),
-            "unsaid": [role_of[token["id"]] if token["id"] in unsaid_objects else None for token in bases],  # the job on the card too
+            "unsaid": [role_of[token["id"]] if token["id"] in named_by_unsaid else None for token in bases],  # the job on the card too
             # the picture's finer name (حرف ناسخ, فعل أمر, فعل مجهول) where it says more than the role
             "finer": [name_of.get(token["id"]) if name_of.get(token["id"]) != role_of[token["id"]] else None for token in bases],
             # the doer no typed word is (هو hidden in يكتبُ, the تاء of كتبتُ): the card says it as the picture draws it
@@ -857,6 +861,14 @@ def _take(holder: dict[int, list[dict]], token: dict) -> dict:
     than the one asked with (6:139's answer هم did, and a list.remove of it failed)."""
     kids = holder[token["id"]]
     return kids.pop(next(i for i, kid in enumerate(kids) if kid["id"] == token["id"]))
+
+
+def _hangs_under(token: dict, top: dict, by_id: dict[int, dict]) -> bool:
+    """Whether a word is `top` or hangs under it, read up its heads: for the parser's links,
+    before `children_of` is made (`_inside` reads down it)."""
+    while token is not None and token["id"] != top["id"]:
+        token = by_id.get(token["head"])
+    return token is not None
 
 
 def _inside(token: dict, top: dict, children_of: dict[int, list[dict]]) -> bool:
