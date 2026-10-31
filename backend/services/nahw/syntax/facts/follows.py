@@ -5,7 +5,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
-from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above
+from backend.services.nahw.syntax.facts.sentence import Sentence, excepted_from, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
 
@@ -84,7 +84,7 @@ def _follows(token: dict, s: Sentence) -> str:
     excepting = s.by_id.get(token["id"] - 1)
     if excepting and excepting["pos"] == "PRT" and read_as(excepting, "istithna") \
             and s.negated_before(excepting):
-        before = previous_noun(excepting, s)
+        before = excepted_from(excepting, s)
         # no case shown (لا اله الا الله، لا إله إلا هو): the إتباع, the stronger reading (Tasheel 3.8.7)
         if before and (shown := case_shown(token)) in (None, place_case(before, s)):
             return "badal"

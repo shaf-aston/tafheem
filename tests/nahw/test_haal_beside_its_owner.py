@@ -5,7 +5,7 @@ it in its case is its صفة (ضَلَّ ضَلَالًا بَعِيدًا typed
 import pytest
 
 from backend.services.nahw.syntax.facts import agrees
-from tests.nahw_helpers import analyze, cards, needs_parser
+from tests.nahw_helpers import analyze, cards, needs_parser, parsed_as
 
 
 def nodes(node: dict):
@@ -53,6 +53,25 @@ def test_a_haal_of_a_majroor_stands_outside_the_jar_majroor_on_the_verb(sentence
 @pytest.mark.parametrize("sentence", ["ضرب ضرب شديدا", "ومن يشرك بالله فقد ضل ضلال بعيدا"])
 def test_after_a_bare_noun_with_nothing_added_the_indefinite_word_is_its_sifah(sentence):
     assert cards(sentence)[-1]["role"] == "صفة"
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence,form,verb", [("ضرب ضرب شديدا", "شديدا", "ضرب"),
+                                                 ("ومن يشرك بالله فقد ضل ضلال بعيدا", "بعيدا", "ضل")])
+def test_the_indefinite_word_is_its_nouns_sifah_though_the_parser_hangs_it_on_the_verb(sentence, form, verb):
+    # the parser's head for بعيدا sits 0.27 from ضل: on another machine it may fall there (repair.hal)
+    with parsed_as(form, head=verb):
+        assert cards(sentence)[-1]["role"] == "صفة"
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence,form,verb", [("رأيت كتاب طالب جديدا", "جديدا", "رأيت"),
+                                                 ("شرب زيد الماء باردا", "باردا", "شرب"),
+                                                 ("جاء زيد راكبا", "راكبا", "جاء"),
+                                                 ("قتل زيد عمرا ظالما", "ظالما", "قتل")])  # عمرا: no masdar of قتل
+def test_on_the_verb_a_word_not_after_the_verbs_own_masdar_stays_a_haal(sentence, form, verb):
+    with parsed_as(form, head=verb):
+        assert cards(sentence)[-1]["role"] == "حال"
 
 
 @needs_parser

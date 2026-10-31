@@ -14,6 +14,7 @@ from backend.services.nahw.book import (
     book_spelling, extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
     book_map, book_merges, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
 from backend.services.nahw.syntax import condition, facts, walker
+from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
 from backend.services.text.harakat import (
     CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
@@ -35,12 +36,6 @@ def role_key(role: str | None) -> str | None:
     return _entry(role)[0]
 
 
-def roles_keyed(*keys: str) -> tuple[str, ...]:
-    """Every role the card colours by one of these keys (`fail` is فاعل and نائب فاعل)."""
-    return tuple(role for role in ROLES if role_key(role) in keys)
-
-
-FOLLOWERS = roles_keyed("tabi", "sifah")
 # the governor kinds (facts.AXES) whose families frame a clause as their khabar or object
 VERB_FRAMERS = ("inna", "kana", "kaada", "zanna")
 
@@ -152,7 +147,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
     conditions = condition.find(bases, named, cases, before)
     for c in conditions:
         _jazm_by_condition(c, named, cases)
-    _followers_take_their_ending(named, cases, bases, tokens)
+    take_their_ending(named, cases, bases, tokens)
     # what each word shows: the governor and follower the tree gave it, and its case
     shown = [{answers[token["id"]]["governor"], answers[token["id"]]["follows"], case}
              for token, case in zip(bases, cases)]
@@ -176,7 +171,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
                            "reading": t.get("reading")}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
-             **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]])}
+             **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]], named)}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
     for found_condition in conditions:
         _conditioned(found, found_condition, bases)
@@ -355,12 +350,12 @@ def _typed_word_of(bases: list[dict], tokens: list[dict]) -> dict[int, int]:
 
 
 def _governed(i: int, role: str | None, token: dict, bases: list[dict], tokens: list[dict],
-              governed_by: dict[int, int], word_of: dict[int, int], answer: dict) -> dict:
+              governed_by: dict[int, int], word_of: dict[int, int], answer: dict, named: list) -> dict:
     """The typed word this one takes its case from: `follows` for a تابع (the word it copies),
     else `governor` (its عامل); each only when it is another typed word. A verb joined on by
     وَ (قامَ وقَعَدَ) follows the verb before it: the link through وَ is a join, never a governor."""
     joined_verb = role == NAMED.fil and answer["follows"] == "atf"
-    if (role in FOLLOWERS or joined_verb) and (head := _followed(token, bases, tokens)) is not None:
+    if (role in FOLLOWERS or joined_verb) and (head := followed(token, bases, tokens, named)) is not None:
         return {"follows": head} if head != i else {}
     # a verb clause stands in a place only by a family that frames it (كنتَ تحبُّ: خبر كان);
     # the verb a parser hangs it on otherwise (جاء مَنْ نجح، قام وقعد) does not govern it
@@ -368,34 +363,6 @@ def _governed(i: int, role: str | None, token: dict, bases: list[dict], tokens: 
         return {}
     governor = word_of.get(governed_by.get(token["id"]))
     return {"governor": governor} if governor is not None and governor != i else {}
-
-
-def _followed(token: dict, bases: list[dict], tokens: list[dict]) -> int | None:
-    """The typed word a follower follows, reached through the و of a معطوف: a particle is climbed past,
-    never أيها, the called noun tagged one (يا أيها الذين آمنوا: الذين follows أيّ)."""
-    at = {t["id"]: i for i, t in enumerate(bases)}
-    by_id = {t["id"]: t for t in tokens}
-    head = by_id.get(token["head"])
-    while head and (head["id"] not in at or facts.is_particle(head)):
-        head = by_id.get(head["head"])
-    return at[head["id"]] if head else None
-
-
-def _followers_take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
-    """In order, so a chain follows too. A follower with no vowel typed wears the case of the word it follows
-    (اليدُ العليا); its kasra on ـات is also nasb, a diptote's fatha also jarr. A present verb showing nothing,
-    joined (atf `joins_mood`) to a verb in nasb or jazm, is in that mood too (أَنْ تَبَرُّوا وَتَتَّقُوا); any other is raf'."""
-    for i, (role, token) in enumerate(zip(named, bases)):
-        head = _followed(token, bases, tokens) if role in FOLLOWERS else None
-        if head is not None and cases[head] != "mabni" and (cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token))
-                                                             or (cases[head] == "jarr" and facts.shows_jarr(token))):
-            cases[i] = cases[head]
-    by_id = {t["id"]: t for t in tokens}
-    for i, (role, token) in enumerate(zip(named, bases)):  # the verbs after every noun, as they were two passes
-        if role == NAMED.fil and cases[i] is None:
-            joiner = by_id.get(token["head"])
-            head = _followed(token, bases, tokens) if joiner and joiner["pos"] == "PRT" and is_one(joiner["lemma"], "atf", "joins_mood") else None
-            cases[i] = cases[head] if head is not None and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm") else "raf'"
 
 
 def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None = None,
