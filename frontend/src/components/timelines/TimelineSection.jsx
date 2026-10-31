@@ -21,11 +21,14 @@ import { pinsOf } from '../../lib/timelines/map'
 import { placeOfStep } from '../../lib/timelines/steps'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
 import { useRememberedFlag } from '../../lib/store/useRemembered'
+import { PHONE } from '../../lib/hooks/useMedia'
 
 const ACCENT = 'var(--tl-acc)'
 
 export default function TimelineSection({ section, library, chosen, report, onPick, onReport, onGo }) {
-  const [showMap, setShowMap] = useRememberedFlag('timeline-map-open', true)
+  // Open by default, except on a phone: there the map (kept tall enough to read its names) and the bar
+  // filled the first screen and the events started under the tab bar. Its chip opens it, and the choice is kept.
+  const [showMap, setShowMap] = useRememberedFlag('timeline-map-open', !window.matchMedia?.(PHONE).matches)
   const { hue } = sectionLook(section.id)
   // The step being read, shared by the steps, the map and the where-am-I line.
   // Held with its event, so opening another event starts with none.
