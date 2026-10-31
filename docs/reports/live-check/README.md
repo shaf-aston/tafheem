@@ -20,3 +20,4 @@ Check that the fix is general: it should also fix words that are not in the old 
 | Date | Words right (everyday / blind / hadith / Quran) | Biggest open item |
 |---|---|---|
 | 2026-10-29 | 33/33 · 578/588 · 298/303 · 920/969 | 23 typed ayahs miss their stored record (spelling) |
+| 2026-10-31 | 33/33 · 578/588 · 298/303 · 1013/1043 | 36 typed ayahs still answered by the engine (18 moved to the record after #761); the 5 new Quran misses are the label ظرف زمان = مفعول فيه |
