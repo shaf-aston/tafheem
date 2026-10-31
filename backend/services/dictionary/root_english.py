@@ -132,6 +132,13 @@ def put(root: str, english: str) -> None:
         _keep(STORE_FILE, _is_prose, root, english)
 
 
+def shipped_lines(root: str, count: int) -> bool:
+    """Whether the line English for this root comes from the shipped whole-book
+    run (its own badge) rather than a reader's press answered on the spot (AI)."""
+    lines = _store(LINES_FILE, _is_lines).get(root)
+    return bool(lines) and len(lines) == count
+
+
 def put_lines(root: str, lines: list[str], shipped: bool = False) -> None:
     """Keep this line-by-line English. A list that fails the shape check is
     dropped here rather than trusted later. The backfill script passes

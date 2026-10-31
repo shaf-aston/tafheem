@@ -668,9 +668,10 @@ def line_ai(monkeypatch):
 
     state = {"available": True, "answer": None, "seen": None, "asked": 0}
 
-    def _explain(root, lines):
+    def _explain(root, lines, reference=None):
         state["asked"] += 1
         state["seen"] = (root, list(lines))
+        state["reference"] = reference
         return state["answer"] if state["answer"] is not None else {
             "lines": [f"English {i + 1}" for i in range(len(lines))]
         }
@@ -768,6 +769,18 @@ def test_shipped_lines_answer_whole_even_past_the_model_budget(client, line_ai, 
     assert [pair["english"] for pair in body["lines"]] == ["one", "two", "three"]
     assert body["truncated"] is False
     assert line_ai["asked"] == 0
+    # The whole-book run is the book's own translation, badged as one, not "AI"
+    assert body["source"]["key"] == "maqayees_lines"
+
+
+def test_lines_made_on_the_spot_are_handed_the_whole_entrys_english(client, line_ai, kept):
+    # So the lines name the poets and places the way the prose does
+    kept.put("كتب", "Al-Khansā' said, of the gathering.")
+    client.install(json.dumps({"كتب": {"core_meaning": "الجمع", "body": _LINED_BODY}},
+                              ensure_ascii=False))
+    body = _lined(client, "كتب").json()
+    assert line_ai["reference"] == "Al-Khansā' said, of the gathering."
+    assert body["source"]["key"] == "ai"
 
 
 def test_an_entry_that_is_all_origin_sense_has_nothing_to_line_up(client, line_ai):

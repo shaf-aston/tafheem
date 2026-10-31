@@ -28,6 +28,7 @@ import ErrorAlert from '../ui/feedback/ErrorAlert'
 import Segmented from '../ui/inputs/Segmented'
 import SmallButton from '../ui/buttons/SmallButton'
 import { Skeleton } from '../ui/feedback/Skeleton'
+import BookHeader from './BookHeader'
 import SourceBadge from '../ui/feedback/SourceBadge'
 
 /** Said when the backend stops answering mid-visit. */
@@ -91,11 +92,7 @@ export default function RootMeaningCard({ root: asked, hasAlternates, accent }) 
           badge names the source, so a heading saying the same two lines above
           it was the book's name printed twice. Until it arrives the heading
           stands in, so the block is never nameless. */}
-      <div className="flex items-start justify-between gap-3 flex-wrap">
-        {data?.source
-          ? <SourceBadge source={data.source} />
-          : <h4 className="type-body font-medium text-[var(--text)]">Maqayees al-Lugha</h4>}
-      </div>
+      <BookHeader {...config['root-meaning'].book} source={data?.source} />
 
       {/* The body swaps between three different answers, and swaps again when
           the root above is changed. Announced politely so the change is not
@@ -140,8 +137,12 @@ function Body({
   // Both shapes are asked for on the press that opens the rest, not on the
   // press that switches view: fetched on the switch, every first change of
   // view sat on a loading bar.
+  // Asking for the English opens the Arabic whole too: the English that comes is
+  // the whole entry, and under three lines of Arabic it ran far past the text it
+  // translates.
   const open = () => {
     setOpened(true)
+    setWhole(true)
     for (const english of Object.values(ENGLISH)) queryClient.prefetchQuery(englishQuery(english, data.root))
   }
 
