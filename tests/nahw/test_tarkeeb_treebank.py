@@ -469,12 +469,20 @@ def test_a_metaalliq_with_no_other_word_to_hang_on_is_left_bare(head):
 
 
 @pytest.mark.skipif(not tarkeeb_store.is_built(), reason="tarkeeb.db not built")
-@pytest.mark.parametrize("ayah", [(2, 154), (6, 12), (93, 2), (42, 9)])
-def test_an_ayah_typed_in_everyday_spelling_finds_its_record(ayah):
-    """The record keys ayahs by the Uthmani rasm (أموات → مت, الليل → ليل); the same words typed
+@pytest.mark.parametrize("ayah, typed", [
+    ((93, 2), "وَاللَّيْلِ إِذَا سَجَىٰ"),
+    ((2, 154), "وَلَا تَقُولُوا لِمَن يُقْتَلُ فِي سَبِيلِ اللَّهِ أَمْوَاتٌ بَلْ أَحْيَاءٌ وَلَٰكِن لَّا تَشْعُرُونَ"),
+    ((22, 6), "ذَٰلِكَ بِأَنَّ اللَّهَ هُوَ الْحَقُّ وَأَنَّهُ يُحْيِي الْمَوْتَىٰ وَأَنَّهُ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ"),
+])
+def test_an_ayah_typed_in_everyday_spelling_finds_its_record(ayah, typed):
+    """The record keys ayahs by the Uthmani rasm (أموات is مت, الليل is ليل); the same words typed
     the everyday way (موت, لليل) fold differently and used to miss, whichever ayah it was."""
-    import json
-    from backend.config import data_path
-    plain = json.loads(data_path("quran_imlaei_path").read_text(encoding="utf-8"))
-    found = tarkeeb_store.find(plain["%d:%d" % ayah])
+    found = tarkeeb_store.find(typed)
     assert found and found[:2] == ayah
+
+
+@pytest.mark.skipif(not tarkeeb_store.is_built(), reason="tarkeeb.db not built")
+def test_a_word_joined_by_waw_is_not_mistaken_for_the_ayah_without_it():
+    """The everyday-spelling match drops long-vowel letters inside a word, never its first:
+    وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (37:182) is not الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (1:2)."""
+    assert tarkeeb_store.find("وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ") is None
