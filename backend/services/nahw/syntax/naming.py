@@ -171,7 +171,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
                            "reading": t.get("reading")}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
-             **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]])}
+             **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]], named)}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
     for found_condition in conditions:
         _conditioned(found, found_condition, bases)
@@ -350,12 +350,12 @@ def _typed_word_of(bases: list[dict], tokens: list[dict]) -> dict[int, int]:
 
 
 def _governed(i: int, role: str | None, token: dict, bases: list[dict], tokens: list[dict],
-              governed_by: dict[int, int], word_of: dict[int, int], answer: dict) -> dict:
+              governed_by: dict[int, int], word_of: dict[int, int], answer: dict, named: list) -> dict:
     """The typed word this one takes its case from: `follows` for a تابع (the word it copies),
     else `governor` (its عامل); each only when it is another typed word. A verb joined on by
     وَ (قامَ وقَعَدَ) follows the verb before it: the link through وَ is a join, never a governor."""
     joined_verb = role == NAMED.fil and answer["follows"] == "atf"
-    if (role in FOLLOWERS or joined_verb) and (head := followed(token, bases, tokens)) is not None:
+    if (role in FOLLOWERS or joined_verb) and (head := followed(token, bases, tokens, named)) is not None:
         return {"follows": head} if head != i else {}
     # a verb clause stands in a place only by a family that frames it (كنتَ تحبُّ: خبر كان);
     # the verb a parser hangs it on otherwise (جاء مَنْ نجح، قام وقعد) does not govern it

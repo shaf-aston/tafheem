@@ -17,7 +17,7 @@ from backend.services.nahw.syntax.repair.hal import hal_clause
 from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, described_doer, elative_specified, hasr_khabar, object_of_noun, second_khabar, told_of_jar
 from backend.services.nahw.syntax.repair.nasab import nasab
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, name_told_to, repeated_doer, doer_after_object, doer_first, kana_subject, inna_object, object_past_verb, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
-from backend.services.nahw.syntax.repair.typed import emphasis_lam_opener, jarr_after_mudaf, since_jarr, typed_words
+from backend.services.nahw.syntax.repair.typed import described_known, emphasis_lam_opener, jarr_after_mudaf, since_jarr, typed_words
 
 
 def correct(words: list[str], tokens: list[dict]) -> None:
@@ -32,6 +32,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         man_before_verb(bases, tokens)
         added_to_verb(tokens)
         subject_clash(tokens)
+        described_known(tokens)  # after: the object subject_clash moved onto the verb is a noun it describes
         name_told_to(tokens)
         repeated_doer(tokens)
         kana_subject(tokens)
