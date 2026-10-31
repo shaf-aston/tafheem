@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts import (
-    Sentence, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_state_word, is_verb, is_zarf, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time)
+    Sentence, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -41,7 +41,7 @@ def subject_clash(tokens: list[dict]) -> None:
             continue
         # جَاءَ خَلِيفَةُ عُمَرَ: a diptote's fatha is its jarr, so the مضاف إليه stays
         clash = (token["rel"] in ("MOD", "---") or (token["rel"] == "IDF" and not shows_jarr(token))) \
-            and typed_case_of(token) == "a" and not (indefinite_nasb(token) and (is_state_word(token) or same_root(token, verb)))
+            and _in_nasb(token) and not (indefinite_nasb(token) and (is_state_word(token) or same_root(token, verb)))
         # the parser may hang it there unlabelled (---) rather than as IDF; either way an إضافة is meant
         added = (token["rel"] in ("IDF", "---") and typed_tanween(head)
                  and typed_case_of(token) in ("a", None) and not any(k["rel"] == "OBJ" for k in s.kids(verb)))
@@ -49,6 +49,11 @@ def subject_clash(tokens: list[dict]) -> None:
             token["head"], token["rel"] = verb["id"], "OBJ"
             head["mudaf"] = has_added(head, tokens)
             s = Sentence(tokens)
+
+
+def _in_nasb(token: dict) -> bool:
+    """Typed in nasb, or typed bare and read so while no describing word (a نعت is made of one): شرب الطفل اللبن."""
+    return typed_case_of(token) == "a" or typed_bare(token) and typed_or_parsed_case(token) == "a" and not is_describing(token)
 
 
 def added_to_verb(tokens: list[dict]) -> None:

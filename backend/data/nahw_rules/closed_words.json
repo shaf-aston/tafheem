@@ -1306,6 +1306,14 @@
    "_hamza_dropped": "خير and شر are أفعل التفضيل that, most often, drop the hamza of أخير and أشر (Ibn Malik, Sharh al-Kafiya, V2 p1121: وغالبا أغناهم خير وشر عن قولهم أخير منه وأشر): زيدٌ خيرٌ من عمرٍو، وما عند الله خيرٌ. Their pattern is فَعْل, so they are listed by word.",
    "hamza_dropped": ["خير", "شر"]
   },
+  "adjective_patterns": {
+   "ar": "أوزان الصفة المشبهة",
+   "book": "Tasheel 3.10.1 (the na't is a derived word)",
+   "effect": "فَعِل (فَرِحٌ، حَزِنٌ، تَعِبٌ) is an adjective that describes, not a name: a word on this measure the dictionary lacks (فَرِحِينَ) is read as the adjective, its sound plural or dual and its case told by the ending",
+   "words": [
+    "1َ2ِ"
+   ]
+  },
   "times_counted": {
    "ar": "عدد المرات",
    "book": "Tasheel 3.2 p67 (a number or a kind stands in for the masdar)",
