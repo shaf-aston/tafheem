@@ -22,7 +22,7 @@ export default function Face({ phrase, index, arabicSize = 'base', showEnglish =
   const words = (
     <>
       <ArabicText as="p" size={arabicSize} className="text-[var(--text)]">{phrase.arabic}</ArabicText>
-      {showEnglish && <p className="type-micro text-[var(--text-dim)] truncate">{phrase.english}</p>}
+      {showEnglish && <p className="type-micro text-[var(--text-dim)] line-clamp-2">{phrase.english}</p>}
     </>
   )
   return (

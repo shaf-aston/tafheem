@@ -92,6 +92,8 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
   // Whether the reason behind the note is showing. This card is keyed by the
   // question, so the next one starts closed.
   const [noteOpen, setNoteOpen] = useState(false)
+  // A heard question whose sound would not play: its spelling is shown, so it can still be answered.
+  const [mute, setMute] = useState(false)
   useEffect(() => {
     if (answered) nextButton.current?.focus({ preventScroll: true })
   }, [answered])
@@ -124,8 +126,14 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
               <div className="text-3xl font-semibold text-[var(--text)]">{shown.prompt}</div>
             ))}
             {/* Only the Arabic prompt: speaking an Arabic answer option would give it away. */}
-            {(shown.listen || arabicPrompt) && <SpeakButton key={shown.answerId} ref={speakRef} shortcut="S" early text={shown.listen ? shown.say : shown.prompt} />}
+            {(shown.listen || arabicPrompt) && <SpeakButton key={shown.answerId} ref={speakRef} shortcut="S" early text={shown.listen ? shown.say : shown.prompt}
+              onFail={shown.listen ? () => setMute(true) : undefined} />}
           </div>
+          {mute && shown.spelling && !answered && (
+            <p role="status" className="type-small text-[var(--text-dim)]">
+              {say('No sound here. Read it instead:')} <span className="font-medium text-[var(--text)]">{shown.spelling}</span>
+            </p>
+          )}
           {(shown.listen || arabicPrompt) && <div><SoundedWrong key={shown.answerId} /></div>}
         </div>
       </div>

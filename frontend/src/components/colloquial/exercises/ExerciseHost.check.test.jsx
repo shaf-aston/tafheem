@@ -6,6 +6,11 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import ExerciseHost from './ExerciseHost'
 
+// No voice on this machine: every word fails to play.
+vi.mock('../../../lib/speech/speak', () => ({
+  speak: () => Promise.reject(new Error('no voice')), prepare: () => {}, stop: () => {},
+}))
+
 afterEach(cleanup)
 // An answer is filed with the server; here there is none to reach.
 vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response('{}'))))
@@ -25,13 +30,19 @@ describe('ExerciseHost checking', () => {
     expect(onDone).toHaveBeenCalledWith(true, 'marhaba')
   })
 
-  it('marks a typed answer wrong, and Enter checks it too', () => {
+  it('gives a typed answer a second go, then marks it wrong; Enter checks it too', () => {
     const onDone = vi.fn()
     host(typed, onDone)
     const box = screen.getByLabelText('Your answer')
     fireEvent.change(box, { target: { value: 'xyz' } })
     fireEvent.keyDown(box, { key: 'Enter' })
-    expect(onDone).toHaveBeenCalledWith(false, 'xyz')
+    // The first miss is a second go, not a mark: nothing filed, the answer not yet shown.
+    expect(onDone).not.toHaveBeenCalled()
+    expect(screen.getByText(/have one more go/)).toBeTruthy()
+    expect(screen.queryByText(/The natural answer is/)).toBeNull()
+    fireEvent.change(box, { target: { value: 'xyzz' } })
+    fireEvent.keyDown(box, { key: 'Enter' })
+    expect(onDone).toHaveBeenCalledWith(false, 'xyzz')
     expect(screen.getByText(/The natural answer is/)).toBeTruthy()
   })
 
@@ -41,5 +52,13 @@ describe('ExerciseHost checking', () => {
     for (const word of ['من', 'أين', 'أنت']) fireEvent.click(screen.getAllByRole('button', { name: word })[0])
     fireEvent.click(screen.getByRole('button', { name: 'Check' }))
     expect(onDone).toHaveBeenCalledWith(true, ['من', 'أين', 'أنت'])
+  })
+
+  it('shows a heard question\'s spelling when no voice can say it', async () => {
+    host({ id: 'u.l.word.2.listen', type: 'choose', prompt: 'Which word did you hear?', answer: 'شكرا', options: ['شكرا', 'مرحبا'], say: 'شكرا', spelling: 'shukran' })
+    expect(screen.queryByText('shukran')).toBeNull()
+    fireEvent.click(screen.getByRole('button', { name: 'Say it aloud' }))
+    expect(await screen.findByText('shukran')).toBeTruthy()
+    expect(screen.getByText(/No sound here/)).toBeTruthy()
   })
 })

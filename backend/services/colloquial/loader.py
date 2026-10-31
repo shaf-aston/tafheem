@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from functools import lru_cache
 
 from backend.config import data_path
@@ -73,6 +74,27 @@ def _say_slots(lesson: dict, phrases: list[dict], where: str) -> tuple[list[dict
     return lines, said
 
 
+_SAID_TO = re.compile(r"^(.*)\((?:to )?a (man|woman)\)\s*$")
+
+
+def _gender_faults(phrases: list[dict]) -> list[str]:
+    """A phrase said to a man and its form to a woman, heard apart but written alike.
+
+    Some dialects say both the same (Moroccan smeetek), and then both lines match; a
+    spelling that differs while the Arabic does not is a missing vowel, so the
+    learner reads the man's form for the woman's.
+    """
+    pairs: dict[str, dict] = {}
+    for phrase in phrases:
+        found = _SAID_TO.match(str(phrase.get("english") or ""))
+        if found:
+            pairs.setdefault(found.group(1).strip(), {})[found.group(2)] = phrase
+    return [f"writes {man['arabic']!r} for both {base!r} forms, though they sound {man['transliteration']!r} and {woman['transliteration']!r}"
+            for base, forms in pairs.items() if len(forms) == 2
+            for man, woman in [(forms["man"], forms["woman"])]
+            if man.get("arabic") == woman.get("arabic") and man.get("transliteration") != woman.get("transliteration")]
+
+
 def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     """What is wrong with one lesson. seen_ids is shared across the whole unit."""
     name = f"lesson {lesson.get('lesson')!r}"
@@ -86,6 +108,7 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
             said.append(f"{name} has no {part}")
     if not str(lesson.get("culture") or "").strip():
         said.append(f"{name} has no culture note")
+    said.extend(f"{name} {why}" for why in _gender_faults(lesson["phrases"]))
     for at, phrase in enumerate(lesson.get("phrases") or [], 1):
         said.extend(_phrase_faults(phrase, f"{name} phrase {at}"))
     phrased = {_said(one.get("arabic")) for phrase in lesson.get("phrases") or []

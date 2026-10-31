@@ -43,3 +43,19 @@ describe('bankOf and hasAnswer', () => {
     expect(hasAnswer(['a'])).toBe(true)
   })
 })
+
+describe('isRight, a transliteration as it sounds', () => {
+  it('meets the spellings a learner without an Arabic keyboard writes', () => {
+    const peace = ['وَعَلَيْكُم السَّلَامُ', 'wa 3aleikum es-salaam']
+    for (const said of ['wa alaykum el salam', 'wa 3alaykum issalaam', 'Wa aleikum is-salam']) expect(isRight(said, peace), said).toBe(true)
+    expect(isRight('ana min el qahira', ['أنا من القاهرة', 'ana men el-2aahira'])).toBe(true)
+    expect(isRight('itsharrafna', ['اِتْشَرَّفْنَا', 'etsharrafna'])).toBe(true)
+  })
+
+  it('still tells the man from the woman, and a wrong sentence from a right one', () => {
+    expect(isRight('ismik eh', ['اِسْمَك إِيه؟', 'ismak eh?'])).toBe(false)
+    expect(isRight('keefik alyoom', ['كيفَك اليوم؟', 'keefak alyoom?'])).toBe(false)
+    expect(isRight('ana min dimashq', ['أنا من القاهرة', 'ana men el-2aahira'])).toBe(false)
+    expect(isRight('', ['bas'])).toBe(false)
+  })
+})

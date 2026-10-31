@@ -586,3 +586,12 @@ def test_every_dialect_card_says_where_it_is_spoken():
         for city in dialect["cities"]:
             lon, lat = city["at"]
             assert city["name"] and -20 < lon < 62 and -15 < lat < 42, (dialect["key"], city)
+
+
+def test_a_womans_form_written_like_the_mans_is_caught():
+    man = {"english": "What's your name? (to a man)", "arabic": "اسمك ايه؟", "transliteration": "ismak eh?"}
+    woman = {**man, "english": "What's your name? (to a woman)", "transliteration": "ismik eh?"}
+    assert any("for both" in why for why in loader._gender_faults([man, woman]))
+    # A dialect that says both alike writes and spells both alike: no fault.
+    assert loader._gender_faults([man, {**woman, "transliteration": "ismak eh?"}]) == []
+    assert loader._gender_faults([man, {**woman, "arabic": "اسمِك ايه؟"}]) == []

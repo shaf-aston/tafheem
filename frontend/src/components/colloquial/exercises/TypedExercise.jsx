@@ -24,7 +24,12 @@ export default function TypedExercise({ exercise, value, onChange, status }) {
           className={`w-full rounded-[var(--radius)] border bg-[var(--surface)] px-4 py-3
             outline-none transition-colors focus:border-[var(--border-hi)]
             ${answered ? 'opacity-70' : ''}`}
-          style={{ borderColor: status === 'wrong' ? 'var(--danger)' : status === 'right' ? 'var(--success)' : 'var(--border)' }}
+          style={{
+            borderColor: status === 'wrong' ? 'var(--danger)' : status === 'right' ? 'var(--success)' : 'var(--border)',
+            // The Arabic class sets right to left, over dir="auto": an answer in Latin letters
+            // ("ismak eh?") reads left to right, or its question mark lands at the front.
+            direction: value && !/[\u0600-\u06FF]/.test(value) ? 'ltr' : 'rtl',
+          }}
         />
       </label>
       {status === 'wrong' && (

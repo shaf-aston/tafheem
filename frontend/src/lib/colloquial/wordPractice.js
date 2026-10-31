@@ -49,7 +49,7 @@ export function wordDrills(words, prefix, { dialect } = {}) {
     const options = questionOf(w, i, 'en-ar', bank, dialect).options.map((o) => o.text)
     return {
       ...base, type: 'choose', prompt, options,
-      ...(kind === 'listen' && { say: w.arabic }),
+      ...(kind === 'listen' && { say: w.arabic, spelling: w.transliteration }),
       // Named under the picture once answered, so the English is still learnt.
       ...(seen && { image: w.image, tip: `${w.arabic}: ${w.english}.` }),
     }
@@ -96,6 +96,6 @@ export function reviewQuestions(session, words, dialect) {
   return session.map((w, i) => {
     const kind = REVIEWS[i % REVIEWS.length]
     const question = questionOf(w, i, kind === 'listen' ? 'en-ar' : kind, bank, dialect)
-    return kind === 'listen' ? { ...question, listen: true, say: w.arabic } : question
+    return kind === 'listen' ? { ...question, listen: true, say: w.arabic, spelling: w.transliteration } : question
   })
 }

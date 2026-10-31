@@ -11,8 +11,9 @@ import { prepare, speak, stop } from '../../lib/speech/speak'
 // names that key in the tooltip. `early` readies the voice on arrival, for a
 // button that is the point of its view; others ready it on hover or focus.
 // `label` and `glyph` make it another way of hearing, the letter-by-letter
-// button say, with the same states, voices and stopping.
-export default function SpeakButton({ text, ref, shortcut, early, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
+// button say, with the same states, voices and stopping. `onFail` hears when no
+// voice could say it, so a question that needs the sound can offer another way.
+export default function SpeakButton({ text, ref, shortcut, early, onFail, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
   // idle | busy (finding a voice) | speaking | failed
   const [state, setState] = useState('idle')
   const accent = useAccent()
@@ -44,7 +45,9 @@ export default function SpeakButton({ text, ref, shortcut, early, label = 'Say i
       await voice.done
       if (alive.current) setState('idle')
     } catch (err) {
-      if (alive.current) setState(err.interrupted ? 'idle' : 'failed')
+      if (!alive.current) return
+      setState(err.interrupted ? 'idle' : 'failed')
+      if (!err.interrupted) onFail?.()
     } finally {
       mine.current = false
     }

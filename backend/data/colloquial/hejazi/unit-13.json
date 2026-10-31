@@ -27,7 +27,7 @@
       "phrases": [
         {
           "slot": "how-are-you-today-to-a-man",
-          "arabic": "كيفك اليوم؟",
+          "arabic": "كيفَك اليوم؟",
           "transliteration": "keefak alyoom?",
           "reply": {
             "arabic": "الحمد لله، بخير",
@@ -37,7 +37,7 @@
         },
         {
           "slot": "how-are-you-today-to-a-woman",
-          "arabic": "كيفك اليوم؟",
+          "arabic": "كيفِك اليوم؟",
           "transliteration": "keefik alyoom?",
           "reply": {
             "arabic": "الحمد لله، تمام",

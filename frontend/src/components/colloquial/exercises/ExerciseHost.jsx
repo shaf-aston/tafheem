@@ -35,6 +35,10 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
   const kind = exerciseOf(exercise.type)
   const [value, setValue] = useState(() => saved?.value ?? kind?.blank ?? '')
   const [status, setStatus] = useState(() => statusOf(saved))
+  // A heard question whose sound would not play: its spelling is shown instead.
+  const [mute, setMute] = useState(false)
+  // A typed or built answer gets a second go before the answer is shown; a pick shows it at once.
+  const [again, setAgain] = useState(false)
   const startedAt = useRef(null)
   // A kind marked as it is picked has no first keystroke to start the clock, so it starts on sight.
   useEffect(() => { if (kind?.instant) startedAt.current = Date.now() }, [kind])
@@ -49,6 +53,7 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
 
   const check = (given = value) => {
     const correct = kind.judge(exercise, given)
+    if (!correct && !kind.instant && !again) return setAgain(true)
     setStatus(correct ? 'right' : 'wrong')
     const { module = 'colloq', item = exercise.id } = exercise.progress ?? {}
     file({ module, item, correct, ms: startedAt.current && Date.now() - startedAt.current })
@@ -76,9 +81,14 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
       {exercise.image && <PhrasePicture phrase={{ image: exercise.image }} alt="The picture to name"
         className="w-40 h-40 mx-auto block rounded-[var(--radius-md)]" />}
       <p className="type-body text-[var(--text)] flex items-center gap-3">
-        {exercise.say && <SpeakButton text={exercise.say} early />}
+        {exercise.say && <SpeakButton text={exercise.say} early onFail={() => setMute(true)} />}
         <span><Isolated text={exercise.prompt} /></span>
       </p>
+      {mute && exercise.spelling && (
+        <p role="status" className="type-small text-[var(--text-dim)]">
+          No sound here. Read it instead: <span className="font-medium text-[var(--text)]">{exercise.spelling}</span>
+        </p>
+      )}
       <kind.Renderer exercise={exercise} value={value} onChange={change} status={status} accent={accent} />
       {!status && !kind.instant && (
         // check() with nothing: a bare onClick={check} would mark the click event itself as the answer.
@@ -95,7 +105,7 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
       )}
       {/* The verdict, said aloud as it comes. A pick already marks its own option, so there it is only heard. */}
       <p role="status" className={kind.instant ? 'sr-only' : `type-small font-medium ${status === 'right' ? 'text-[var(--success)]' : 'text-[var(--danger)]'}`}>
-        {status === 'right' ? '✓ Correct.' : status === 'wrong' ? '✗ Not quite.' : ''}
+        {status === 'right' ? '✓ Correct.' : status === 'wrong' ? '✗ Not quite.' : again ? 'Not quite: have one more go.' : ''}
       </p>
       {status && exercise.tip && <p className="type-small text-[var(--text-dim)]">{exercise.tip}</p>}
     </div>

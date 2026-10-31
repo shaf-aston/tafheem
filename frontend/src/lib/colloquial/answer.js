@@ -17,20 +17,46 @@
  */
 import { recitedForm } from '../text/arabicText'
 
-const latin = (text) => (text ?? '').toLowerCase().replace(/[^a-z0-9]/g, '')
+// A transliteration as it sounds, not as it was spelt: Arabic-chat digits for
+// letters English lacks (3 ayn, 2 hamza, 7 ha, 5 kha), e for i, o for u, ei for ay,
+// a doubled letter as one. "wa 3aleikum es-salaam" and "wa alaykum is salam" meet.
+const SOUNDS = [[/[32']/g, ''], [/7/g, 'h'], [/5|x/g, 'kh'], [/q/g, ''], [/ei|ai/g, 'ay'], [/e/g, 'i'], [/o/g, 'u'], [/(.)\1+/g, '$1']]
+const latin = (text) => SOUNDS.reduce((t, [from, to]) => t.replace(from, to),
+  (text ?? '').toLowerCase().replace(/[^a-z0-9']/g, ''))
 
-/** Every form one written answer may be matched by. Empty forms are dropped so a
- *  blank reply matches nothing. */
-const formsOf = (text) => [recitedForm(text), latin(text)].filter(Boolean)
+const VOWEL = /[aiu]/
+// Letters apart, where one vowel for another costs two: a vowel is often the whole
+// difference between saying it to a man and to a woman (ismak, ismik).
+function apart(a, b) {
+  let row = Array.from({ length: b.length + 1 }, (_, j) => j)
+  for (let i = 1; i <= a.length; i++) {
+    const next = [i]
+    for (let j = 1; j <= b.length; j++) {
+      const swap = a[i - 1] === b[j - 1] ? 0 : VOWEL.test(a[i - 1]) && VOWEL.test(b[j - 1]) ? 2 : 1
+      next.push(Math.min(row[j] + 1, next[j - 1] + 1, row[j - 1] + swap))
+    }
+    row = next
+  }
+  return row[b.length]
+}
+// A sentence long enough to carry one slip of spelling (an article written el- or
+// es-, a letter left out); a short word must be spelt as it sounds.
+const SLIP_FROM = 10
+
+const near = (mine, theirs) => mine === theirs || (Math.min(mine.length, theirs.length) >= SLIP_FROM && apart(mine, theirs) <= 1)
 
 /**
  * True when what the learner wrote is one of the exercise's accepted answers.
- * `accepted` already contains the answer itself, checked on the server.
+ * `accepted` already contains the answer itself, checked on the server. Arabic
+ * is matched as recited; a transliteration as it sounds, one slip allowed in a
+ * sentence.
  */
 export const isRight = (written, accepted = []) => {
-  const mine = formsOf(written)
-  if (!mine.length) return false
-  return accepted.some((one) => formsOf(one).some((form) => mine.includes(form)))
+  const arabic = recitedForm(written)
+  if (arabic) return accepted.some((one) => recitedForm(one) === arabic)
+  const sounds = latin(written)
+  if (!sounds) return false
+  return accepted.some((one) => !recitedForm(one) && near(sounds, latin(one)))
 }
 
 /**
