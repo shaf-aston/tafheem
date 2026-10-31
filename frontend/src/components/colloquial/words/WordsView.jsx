@@ -12,8 +12,12 @@ import Practice from '../exercises/Practice'
 import WordCards from './WordCards'
 import WordMatch from './WordMatch'
 import WordReview from './WordReview'
+import WordPicture from './picture/WordPicture'
+import { pictureBoards } from '../../../lib/colloquial/wordPictures'
 
 const MODES = [{ id: 'cards', label: 'Cards' }, { id: 'match', label: 'Match' }, { id: 'quiz', label: 'Quiz' }, { id: 'review', label: 'Review' }]
+// Only where the words have a drawing to match (the body, countries): lib/colloquial/wordPictures.js.
+const PICTURE = { id: 'picture', label: 'Picture' }
 
 export default function WordsView({ unit, at }) {
   const lesson = unit.lessons[at]
@@ -25,6 +29,7 @@ export default function WordsView({ unit, at }) {
   const client = useQueryClient()
   const record = summaryQuery(WORDS_MODULE)
   useEffect(() => { warm(client, summaryQuery(WORDS_MODULE)) }, [client])
+  const modes = useMemo(() => (pictureBoards(words).length ? [...MODES.slice(0, 2), PICTURE, ...MODES.slice(2)] : MODES), [words])
   const drills = useMemo(() => wordDrills(words, `${unit.unit}.${lesson.lesson}`, { dialect }), [words, unit.unit, lesson.lesson, dialect])
 
   return (
@@ -34,13 +39,14 @@ export default function WordsView({ unit, at }) {
       <header className="w-full max-w-xl mx-auto flex flex-wrap items-end justify-between gap-3">
         <p className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
         <div {...onHover(client, record)}>
-          <Segmented label="How to learn the words" accent="var(--primary)" value={mode} onChange={setMode} options={MODES} />
+          <Segmented label="How to learn the words" accent="var(--primary)" value={mode} onChange={setMode} options={modes} />
         </div>
       </header>
       {/* Keyed by the mode, so each one rises in as the rest of the tab's views do. */}
       <div key={mode} className="rise-in">
         {mode === 'cards' && <WordCards words={words} />}
         {mode === 'match' && <WordMatch words={words} />}
+        {mode === 'picture' && <WordPicture words={words} />}
         {mode === 'quiz' && <Practice exercises={drills} />}
         {mode === 'review' && <WordReview words={words} dialect={dialect} />}
       </div>
