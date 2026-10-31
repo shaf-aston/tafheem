@@ -52,6 +52,7 @@ const TWIN_QUERY = {
   idle: {
     data: {
       key: '2:59',
+      text: TWIN_MINE.text,
       partners: [{
         key: '7:162',
         text: 'فَبَدَّلَ الَّذِينَ ظَلَمُوا مِنْهُمْ قَوْلًا غَيْرَ الَّذِي قِيلَ لَهُمْ',
