@@ -231,7 +231,9 @@ dialog::backdrop {
 
 
 /* The qalam writing (ui/feedback/Skeleton InkLine): pen and line share one
-   duration and curve, so the gold appears exactly under the nib. Right to left,
+   duration and curve, so the gold appears exactly under the nib. ease-in-out,
+   not the settle curve: settle front-loads the move, and the pen darted across
+   in a third of the pass then sat still, which read as a flick, not writing. Right to left,
    as Arabic is written. Multiplied by --motion-scale like the shimmer, so the
    Animations setting stills it, the line then sitting whole. */
 .ink-line {
@@ -247,14 +249,14 @@ dialog::backdrop {
   border-radius: 999px;
   background: linear-gradient(to left, var(--palette-gold), color-mix(in srgb, var(--palette-gold) 40%, transparent));
   transform-origin: right;
-  animation: ink-write var(--ink-ms) var(--motion-settle-ease) infinite;
+  animation: ink-write var(--ink-ms) ease-in-out infinite;
 }
 .ink-line-pen {
   position: absolute;
   bottom: 0;
   right: 0;
   --c: var(--palette-gold);
-  animation: ink-pen var(--ink-ms) var(--motion-settle-ease) infinite;
+  animation: ink-pen var(--ink-ms) ease-in-out infinite;
 }
 @keyframes ink-write {
   0% { transform: scaleX(0); opacity: 1; }
@@ -470,10 +472,11 @@ dialog::backdrop {
 }
 
 
-/* Picked up, it casts the lift shadow; not over a glow, which is its own shadow. */
+/* Picked up, it casts the same pop shadow as every .lift card; not over a glow,
+   which is its own shadow. */
 .word:not(.glow):hover,
 .word:not(.glow):focus-visible {
-  box-shadow: var(--shadow-lift);
+  box-shadow: var(--shadow-pop);
 }
 
 

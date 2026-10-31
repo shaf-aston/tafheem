@@ -224,8 +224,11 @@ textarea.arabic-lg {
    the ink rather than over it. Its length is theme.json's sheen-ms, times
    --motion-scale, so the Animations setting leaves the ayah still and plain. */
 .gold-sheen {
+  /* Gold leaned toward the page: lighter than the ink on Parchment, darker than
+     it on Ink. Plain gold sat too close to Ink's cream letters to be seen. */
+  --sheen-gold: color-mix(in srgb, var(--palette-gold) 70%, var(--bg));
   color: transparent;
-  background: linear-gradient(100deg, var(--text) 42%, var(--palette-gold) 50%, var(--text) 58%) 100% 0 / 260% 100% no-repeat;
+  background: linear-gradient(100deg, var(--text) 42%, var(--sheen-gold) 50%, var(--text) 58%) 100% 0 / 260% 100% no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   animation: gold-sheen calc(var(--motion-sheen-ms) * var(--motion-scale) * 1ms) ease-in-out
