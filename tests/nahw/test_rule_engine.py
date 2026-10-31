@@ -662,7 +662,8 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("إِنَّ مَا عِنْدَ اللَّهِ هُوَ خَيْرٌ لَكُمْ", ["حرف", "اسم إن", "مفعول فيه", "مضاف إليه", "مبتدأ", "خبر إن", "حرف جر"]),
 ])
 def test_a_question_word_heads_the_noun_after_it(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
+    # the rules' own names: وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ is an ayah, whose record names its roles vowelled
+    assert [w["role"] for w in iraab.analyze(sentence, recorded=False)["words"]] == expected
 
 
 @pytest.mark.parametrize("sentence, negates", [
@@ -1203,3 +1204,38 @@ def test_an_object_put_before_its_verb(sentence: str, at: int, role: str, govern
 def test_a_command_hung_on_the_called_noun_is_no_sifah(sentence: str, said: bool):
     tree = analyze(sentence)["tree"]["tree"]
     assert ("صفة" not in tree_roles(tree)) == said, tree_roles(tree)
+
+
+@pytest.mark.parametrize("sentence, want", [
+    # an adjective on فَعِل the dictionary lacks, in its sound plural, is a describing word: a hal after the doer
+    ("جَاءَ الطُّلَّابُ فَرِحِينَ", "حال"),
+    ("رَجَعَ الْمُسَافِرُونَ حَزِنِينَ", "حال"),
+    ("جَاءَ الطُّلَّابُ لَاعِبِينَ", "حال"),  # nearest case: the dictionary knows it, same shape of sentence
+    ("رَأَيْتُ الطُّلَّابَ", "مفعول به"),  # nearest case: with no describing word the noun stays the object
+])
+def test_a_sound_plural_adjective_the_dictionary_lacks_is_a_hal(sentence: str, want: str):
+    assert cards(sentence)[-1]["role"] == want
+
+
+@pytest.mark.parametrize("sentence, at, want", [
+    # a past verb is never what a nasb particle works on (Tasheel 4.1.1): the present verb the vowels allow is the word
+    ("أُحِبُّ أَنْ أَقْرَأَ", 2, ("فعل", "nasb")),
+    ("أُرِيدُ أَنْ تَقْرَأَ", 2, ("فعل", "nasb")),
+    ("لَنْ أَقْرَأَ", 1, ("فعل", "nasb")),
+    ("عَلِمْتُ أَنْ جَاءَ زَيْدٌ", 2, ("فعل", "mabni")),  # nearest case: no present verb reads جَاءَ, so it stays the past verb
+])
+def test_a_verb_after_a_nasb_particle_is_the_present_one(sentence: str, at: int, want: tuple):
+    card = cards(sentence)[at]
+    assert (card["role"], card["case"]) == want
+
+
+@pytest.mark.parametrize("sentence, role", [
+    # typed bare, a plain noun read in nasb after the doer is no نعت (a نعت is made of a describing word): the object
+    ("شرب الطفل اللبن", "مفعول به"),
+    ("شرب الولد الماء", "مفعول به"),
+    ("جاء الرجل الكريم", "صفة"),  # nearest case: a describing word after the doer stays its نعت
+    ("حضر الطلاب أنفسهم", "توكيد"),  # a word of emphasis after the doer stays its توكيد
+    ("حضر الملك عينه", "توكيد"),
+])
+def test_a_bare_plain_noun_in_nasb_after_the_doer_is_the_object(sentence: str, role: str):
+    assert cards(sentence)[-1]["role"] == role

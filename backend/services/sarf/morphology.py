@@ -807,9 +807,25 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if reading.get("pos") == "verb" and not any(r.get("pos") in NOUNISH for r in out[i + 1:i + 2]) \
                 and (name := _quran_name(tokens[i], _widened(tokens[i], steps[i][1]), bare=True)):
             out[i] = name
+    for i in range(1, len(out)):
+        if _wants_present(out[i - 1], out[i]) and (present := _present_reading(tokens[i], steps[i][1])):
+            out[i] = present
     for i, said in paused.items():
         out[i] = {**out[i], "said": said}
     return out
+
+
+def _wants_present(before: dict, reading: dict) -> bool:
+    """A past verb straight after أَنْ، لَنْ، كَيْ ...: the particles that put a present verb in nasb."""
+    return reading.get("pos") == "verb" and reading.get("asp") == "p" \
+        and is_one(strip_diacritics(before.get("diac", "")), "nasb_mudari", "before_a_present_verb")
+
+
+def _present_reading(token: str, ranked: list[dict]) -> dict | None:
+    """أَنْ أَقْرَأَ: the final fatha is the present verb's nasb as well as the past verb أَقْرَأَ's (form IV,
+    "he made read"), and a past verb is never what a nasb particle works on. The present reading the typed
+    vowels do not contradict is the word; None where no such reading exists (أَنْ جَاءَ)."""
+    return best_reading(token, [r for r in _widened(token, ranked) if r.get("pos") == "verb" and r.get("asp") == "i"])
 
 
 def as_said(tokens: list[str], picks: list[dict]) -> list[str]:

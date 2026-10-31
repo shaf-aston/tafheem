@@ -58,6 +58,9 @@ function AppContent() {
   // The bar's tabs go first: on a slow phone the queue takes seconds, and a tab
   // that has to wait its turn opened in ~430ms where one fetched ahead took ~160ms.
   const openingDock = useRef(dock)
+  // The tab the page opened on fetches its data now, beside its code, not after it.
+  const firstTab = useRef(activeTab)
+  useEffect(() => { openTab(firstTab.current) }, [])
   useEffect(() => {
     const order = firstThese(TABS.map((t) => t.id), openingDock.current)
     idle(() => inTurn(order.map((id) => () => openTab(id))))

@@ -20,7 +20,7 @@ async function json(url) {
 // the words and the rest still load.
 const verbsOrNone = () => json(VERBS_URL).then(({ verbs, families }) => ({ verbs, families }), () => ({ verbs: null, families: null }))
 
-async function load() {
+export async function load() {
   const [{ words, path, people }, { verbs, families }] = await Promise.all([json(SOURCE_URL), verbsOrNone()])
   const items = pathItems(words, { verbs, families, people, path })
   return { order: items, all: items }

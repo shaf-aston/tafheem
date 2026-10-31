@@ -46,6 +46,13 @@ def _shapes() -> list[tuple[str, str, str]]:
     return elative + masdars + participles + merged
 
 
+@lru_cache(maxsize=1)
+def _sound_shapes() -> list[tuple[str, str, str]]:
+    """The adjective shapes (closed_words `adjective_patterns`), for a word whose ending is a sound plural or a
+    dual. Alone they fit too much (the command أَقِمِ, the masdar كَذِب); the ending is what says "describing"."""
+    return [(shape.replace("1", "ف").replace("2", "ع") + "ل", shape + "3", "adj") for shape in book_words("adjective_patterns")]
+
+
 def _pronoun(marked: list[tuple[str, set]]) -> tuple[int, str]:
     """(how many letters at the end are a pronoun joined on, CAMeL's name for it); (0, "0") for none.
     The longest first: هما before ها. A letter left bare before it says nothing, so the case vowel
@@ -103,7 +110,7 @@ def reading_of(word: str) -> dict | None:
     # the shape is the word less its case: the last letter's vowel is the case, not the shape's
     shaped = "".join(letter + "".join(sorted(marks)) for letter, marks in stem[:-1])
     shaped += stem[-1][0] + (SHADDA if SHADDA in stem[-1][1] else "")
-    for shape, pattern, pos in _shapes():
+    for shape, pattern, pos in _shapes() + (_sound_shapes() if peeled else []):
         if not fits_shape(shaped, shape):
             continue
         typed_stem = "".join(letter + "".join(sorted(marks)) for letter, marks in stem)
