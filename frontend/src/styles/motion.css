@@ -80,11 +80,17 @@
 }
 
 
-/* How blurred a rise starts: theme.json's focus-blur-px unless a place says. */
+/* How blurred a rise starts: theme.json's focus-blur-px unless a place says.
+   The blur is for answers coming into focus. Controls and tips wear .crisp: a
+   tooltip, a quiz option or the tab bar's mark is read the instant it is there,
+   and a blurred one reads as a glitch. Set on the element itself (inherits: false). */
 @property --rise-blur {
   syntax: '*';
   inherits: false;
 }
+
+
+.crisp { --rise-blur: 0px; }
 
 
 @property --fade-from {
@@ -111,6 +117,13 @@
 
 @keyframes fade-out {
   to { opacity: 0; }
+}
+
+
+/* One full turn, for anything that circles slowly forever (a star, the launcher's
+   outer ring); each wearer sets its own lap from theme.json's loop group. */
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 

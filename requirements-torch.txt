@@ -1,0 +1,6 @@
+# Installed first, before requirements.txt: torch, which camel-tools pulls in, is
+# the CPU build. From PyPI it brings several GB of CUDA libraries on Linux (x86
+# and ARM), and nothing here runs on a GPU: camel's BERT, the parser and the
+# recitation ears all run on the CPU. requirements.txt then finds torch there.
+--index-url https://download.pytorch.org/whl/cpu
+torch

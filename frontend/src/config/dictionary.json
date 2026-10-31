@@ -26,6 +26,8 @@
     }
   ],
   "root-meaning": {
+    "_book_comment": "How Ibn Faris's book is named over its card (components/dictionary/BookHeader.jsx), the same line every book on the shelf has. died is a Hijri year.",
+    "book": { "title": "مقاييس اللغة", "author": "Ibn Fāris", "died": 395 },
     "_comment": "The classical root card (RootMeaningCard.jsx). rest-lines: how many lines of the rest of Ibn Faris's entry show before 'Show the rest'.",
     "rest-lines": 6
   },

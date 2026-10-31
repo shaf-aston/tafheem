@@ -144,17 +144,22 @@ def render_in_arabic(text: str) -> dict:
     )
 
 
-def explain_root_entry_lines(root: str, lines: list[str]) -> dict:
+def explain_root_entry_lines(root: str, lines: list[str], reference: str | None = None) -> dict:
     """A Maqayees entry put into English line by line, keeping the numbering.
 
     The caller owns the split and the count check: this hands the lines over
     numbered and returns whatever came back, and the router refuses an answer
     whose count does not match rather than showing English under the wrong
     Arabic. The Arabic is the app's own copy of the book, never reader input.
+    `reference` is the whole entry's kept English, so the lines name people and
+    places the way the prose does.
     """
     numbered = "\n".join(f"{i + 1}. {line}" for i, line in enumerate(lines))
+    # Cut to what the model reads of an entry anyway: it is a word list, not a second entry.
+    shared = (prompts.ROOT_ENTRY_LINES_REFERENCE.format(english=reference[: get_settings().root_entry_truncate_chars])
+              if reference else "")
     return _ask(
-        prompts.ROOT_ENTRY_LINES_USER.format(root=root, numbered=numbered, count=len(lines)),
+        prompts.ROOT_ENTRY_LINES_USER.format(root=root, numbered=numbered, count=len(lines), reference=shared),
         max_tokens=get_settings().root_entry_max_tokens,
     )
 

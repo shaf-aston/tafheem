@@ -87,9 +87,10 @@ def _negated(token: dict, s: facts.Sentence) -> str:
 
 def _joins(token: dict, s: facts.Sentence) -> str:
     """The noun after it wears the case of the noun before it: جاء زيدٌ لا عمرٌو, ما جاء
-    الطلابُ إلا زيدٌ. Nothing to share a case with (ما جاء إلا زيدٌ) or a case apart
+    الطلابُ إلا زيدٌ; before إلا, the noun excepted from, out of any جار ومجرور or إضافة that adds
+    to it (ما جاء أحدٌ من الضيوف إلا زيدٌ). Nothing to share a case with (ما جاء إلا زيدٌ) or a case apart
     (لا إلهَ إلا اللهُ) says no."""
-    before, after = facts.previous_noun(token, s), facts.next_word(token, s)
+    before, after = facts.excepted_from(token, s), facts.next_word(token, s)
     if not (before and after and facts.noun_tagged(after)):
         return "no"
     behind = s.by_id.get(before["id"] - 1)
@@ -162,15 +163,15 @@ def _fronted(token: dict, s: facts.Sentence) -> str:
 
 
 def _opens(token: dict, s: facts.Sentence) -> str:
-    """The noun after it opens a sentence of its own: a definite noun in raf' with an
-    indefinite one in raf' after it that does not describe it, its khabar (واللهُ أكبرُ)."""
+    """The noun after it opens a sentence of its own: a known noun in raf' with an unknown
+    one in raf' after it, its khabar (واللهُ أكبرُ); a known one after it (والطلابُ جميعُهم)
+    stresses or describes it, so the و joins."""
     noun = facts.next_word(token, s)
     told = facts.next_word(noun, s) if noun else None
     if not (noun and told and facts.noun_tagged(noun) and facts.noun_tagged(told)) or facts.is_verb(told):
         return "no"
-    definite = noun.get("stt") == "d" or noun["pos"] == "PROP"
-    return "yes" if definite and facts.typed_or_parsed_case(noun) == "u" \
-        and facts.typed_or_parsed_case(told) == "u" and told.get("stt") != "d" else "no"
+    return "yes" if facts.is_known(noun, s) and facts.typed_or_parsed_case(noun) == "u" \
+        and facts.typed_or_parsed_case(told) == "u" and not facts.is_known(told, s) else "no"
 
 
 def _pronoun_of(verb: dict, s: facts.Sentence) -> dict | None:

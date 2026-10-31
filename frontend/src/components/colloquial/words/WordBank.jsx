@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { grouped } from '../../../lib/colloquial/wordGroups'
 import ArabicText from '../../ui/text/ArabicText'
 import BottomSheet from '../../ui/overlays/BottomSheet'
-import CloseButton from '../../ui/buttons/CloseButton'
+import SheetHeader from '../../ui/overlays/SheetHeader'
 import Segmented from '../../ui/inputs/Segmented'
 import SmallButton from '../../ui/buttons/SmallButton'
 import SpeakButton from '../../ui/buttons/SpeakButton'
@@ -26,13 +26,10 @@ const wordsOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((l)
 function Bank({ rows, onClose, scope, title }) {
   return (
     <BottomSheet label={title} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
-      <header className="flex items-center justify-between gap-3 px-5 pt-4 pb-3">
-        <div className="min-w-0">
-          <p className="eyebrow text-[var(--text-faint)]">Word bank</p>
-          <h2 className="type-ui font-semibold text-[var(--text)] truncate">{title}</h2>
-        </div>
-        <CloseButton onClick={onClose} className={`shrink-0 ${FOCUS}`} />
-      </header>
+      <SheetHeader onClose={onClose} closeClassName={FOCUS}>
+        <p className="eyebrow text-[var(--text-faint)]">Word bank</p>
+        <h2 className="type-ui font-semibold text-[var(--text)] truncate">{title}</h2>
+      </SheetHeader>
       {scope && <div className="px-5 pb-3">{scope}</div>}
       <div className="overflow-y-auto px-5 pb-5 space-y-4">
         {grouped(rows).map(([category, group]) => (

@@ -4,7 +4,7 @@ import { mushafsQuery } from '../../api'
 import { useRemembered } from '../store/useRemembered'
 
 /** The reader's own layout, the ayah list; every other choice is a printing. */
-export const AYAHS = 'ayahs'
+const AYAHS = 'ayahs'
 
 /**
  * How the reader lays a surah out: as its ayahs, or as the pages of one printed

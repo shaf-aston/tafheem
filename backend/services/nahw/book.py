@@ -309,6 +309,11 @@ def role_table() -> dict[str, tuple[str | None, str | None]]:
     return {role: (drawn["key"], drawn["tone"]) for role, drawn in _roles()["roles"].items()}
 
 
+def roles_keyed(*keys: str) -> tuple[str, ...]:
+    """Every role the card colours by one of these keys (`fail` is فاعل and نائب فاعل)."""
+    return tuple(role for role, (key, _tone) in role_table().items() if key in keys)
+
+
 @lru_cache(maxsize=1)
 def named_roles() -> SimpleNamespace:
     """The roles the code itself tests for, by id (`named_roles().mubtada`); roles.json spells them."""

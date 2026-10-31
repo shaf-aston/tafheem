@@ -8,8 +8,8 @@ import { useEffect, useRef } from 'react'
 
 import ArabicText from '../../ui/text/ArabicText'
 import BottomSheet from '../../ui/overlays/BottomSheet'
-import CloseButton from '../../ui/buttons/CloseButton'
-import Disclosure from '../../ui/overlays/Disclosure'
+import SheetHeader from '../../ui/overlays/SheetHeader'
+import TermQuote from './TermQuote'
 import SheetLink from '../SheetLink'
 import TermHadith from './TermHadith'
 import { termAt } from './termsChart'
@@ -31,13 +31,10 @@ export default function TermCard({ term, group, glossary, accent, onClose, onOpe
   const { arabic, en, lugha, meaning, quote, source, page, kind, confuse = [] } = term
   return (
     <BottomSheet label={en || arabic} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
-      <header className="flex items-start justify-between gap-3 px-5 pt-4 pb-3">
-        <div className="min-w-0">
-          <ArabicText as="h2" size="lg" ref={heading} tabIndex={-1} className="block m-0 leading-tight outline-none">{arabic}</ArabicText>
-          <p className="type-ui font-semibold text-[var(--text)] m-0">{en}</p>
-        </div>
-        <CloseButton onClick={onClose} className="shrink-0" />
-      </header>
+      <SheetHeader onClose={onClose} align="start">
+        <ArabicText as="h2" size="lg" ref={heading} tabIndex={-1} className="block m-0 leading-tight outline-none">{arabic}</ArabicText>
+        <p className="type-ui font-semibold text-[var(--text)] m-0">{en}</p>
+      </SheetHeader>
       <div key={arabic} className="overflow-y-auto px-5 pb-5">
         {lugha && (
           <>
@@ -47,11 +44,7 @@ export default function TermCard({ term, group, glossary, accent, onClose, onOpe
         )}
         <Label>In the science</Label>
         <p className="type-body text-[var(--text-dim)] leading-relaxed m-0">{meaning}</p>
-        {quote && (
-          <Disclosure label={`Quote: ${[source, page].filter(Boolean).join(', ')}`}>
-            <ArabicText as="p" size="sm" className="block m-0 leading-loose text-[var(--text-faint)]">{quote}</ArabicText>
-          </Disclosure>
-        )}
+        <TermQuote quote={quote} source={source} page={page} />
         {confuse.length > 0 && (
           <>
             <Label>Often confused with</Label>

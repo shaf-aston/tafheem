@@ -21,6 +21,7 @@ import { useInstall } from '../../lib/shell/install'
 import { InstallSteps } from './InstallBanner'
 import OfflinePanel from './OfflinePanel'
 import Disclosure from '../ui/overlays/Disclosure'
+import SheetHeader from '../ui/overlays/SheetHeader'
 import Segmented from '../ui/inputs/Segmented'
 import LevelSetting from '../level/LevelSetting'
 
@@ -48,18 +49,11 @@ export default function SettingsPanel({ open, onClose }) {
           p-5 space-y-5 max-h-[var(--sheet-tall)] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-baseline justify-between gap-3">
+        <SheetHeader onClose={onClose} className="">
           <h2 id="settings-title" className="type-head text-base font-bold text-[var(--text)]">
             Settings
           </h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors"
-          >
-            Close
-          </button>
-        </div>
+        </SheetHeader>
 
         {/* The learner's level is the account's, not the device's: kept on its shelf, not in settings.json. */}
         <section aria-label="Learning" className="space-y-4">

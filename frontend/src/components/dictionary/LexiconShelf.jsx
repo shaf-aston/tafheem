@@ -38,7 +38,7 @@ import Chip from '../ui/inputs/Chip'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
 import FlagButton from '../ui/buttons/FlagButton'
 import ShowRest from '../ui/buttons/ShowRest'
-import SourceBadge from '../ui/feedback/SourceBadge'
+import BookHeader from './BookHeader'
 
 /** How the three kinds of nothing are told apart. Never one sentence for all. */
 const NOTHING = {
@@ -117,28 +117,14 @@ function BookEntry({ entry, root, accent }) {
 
   return (
     <article className="p-4 space-y-2">
-      <header className="flex items-center gap-x-2 gap-y-1.5 flex-wrap">
-        {/* The book's name leads every block: its title, or its badge where the
-            badge already is the title (Lane), so one name is never printed twice. */}
-        {entry.title === entry.source?.label ? <SourceBadge source={entry.source} /> : (arabic
-          ? <ArabicText size="sm" className="font-medium text-[var(--text)]">{entry.title}</ArabicText>
-          : <span className="type-body font-medium text-[var(--text)]">{entry.title}</span>)}
-        <span className="type-small text-[var(--text-faint)]">
-          {entry.author}{entry.died ? `, d. ${entry.died}` : ''}
-          {arabic ? '' : ' · in English'}
-        </span>
-        {/* In the header, not at the foot: under a long entry a badge at the
-            bottom was a screen away from the name it vouches for. */}
-        <div className="ms-auto flex items-center gap-2">
-          {/* Only Lane carries the scholar's marks, so only his title has the switch. */}
-          {lane && (
-            <FlagButton value={tidy} onChange={setTidy} accent={accent} title={LANE_TIDY_TITLE}>
-              {LANE_TIDY_LABEL}
-            </FlagButton>
-          )}
-          {entry.title !== entry.source?.label && <SourceBadge source={entry.source} />}
-        </div>
-      </header>
+      <BookHeader title={entry.title} author={entry.author} died={entry.died} arabic={arabic} source={entry.source}>
+        {/* Only Lane carries the scholar's marks, so only his title has the switch. */}
+        {lane && (
+          <FlagButton value={tidy} onChange={setTidy} accent={accent} title={LANE_TIDY_TITLE}>
+            {LANE_TIDY_LABEL}
+          </FlagButton>
+        )}
+      </BookHeader>
 
       <div className="space-y-2">
         {/* Said before the entry, not after: a reader who typed امر and is shown
@@ -164,7 +150,9 @@ function BookEntry({ entry, root, accent }) {
 
         <ShowRest height="var(--lexicon-entry-h)" open={open} onOpenChange={setOpen}>
           {lane ? <LaneEntry forms={shown} anchor={anchor} /> : (
-            <div className="space-y-2">
+            // The same reading width as Lane and Ibn Faris: Lisan and the Taj ran the
+            // card's full width, 150 letters a line, and the eye lost its place.
+            <div className="space-y-2 max-w-[var(--lexicon-reading-w)]">
               {shown.map((said, i) => (
                 <ArabicText key={i} as="p" size="sm">{said}</ArabicText>
               ))}

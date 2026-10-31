@@ -46,12 +46,13 @@ const isCopy = (body) => {
   return Object.keys(frames).length === 1 && end.length === 1 && end[0][0] === 'opacity' && end[0][1] === '0'
 }
 
-// Allowed: 0.01ms (the reduced-motion reset), 0ms, and the unit in '* 1ms'.
+// Allowed: 0.01ms (the reduced-motion reset), 0ms or 0s, and the unit in '* 1ms'.
+// Seconds count too: 1.1s in a stylesheet slipped past an ms-only check for a year.
 const literalTimes = (css) => {
   const bare = css.replace(/\/\*[\s\S]*?\*\//g, '')
   return bare.split('\n').flatMap((line, i) => {
-    const bad = [...line.matchAll(/(\*\s*)?(?<![\w.-])(\d*\.?\d+)ms\b/g)]
-      .filter(([, times, n]) => !(Number(n) === 0 || n === '0.01' || (times && Number(n) === 1)))
+    const bad = [...line.matchAll(/(\*\s*)?(?<![\w.-])(\d*\.?\d+)(ms|s)\b/g)]
+      .filter(([, times, n, unit]) => !(Number(n) === 0 || n === '0.01' || (times && Number(n) === 1 && unit === 'ms')))
     return bad.length || /cubic-bezier\(/.test(line) ? [i + 1] : []
   })
 }

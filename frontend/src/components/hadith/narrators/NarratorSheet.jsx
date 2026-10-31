@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 import { narratorQuery } from '../../../api'
 
 import BottomSheet from '../../ui/overlays/BottomSheet'
-import CloseButton from '../../ui/buttons/CloseButton'
+import SheetHeader from '../../ui/overlays/SheetHeader'
 import { NarratorError, NarratorFacts, NarratorName } from './NarratorParts'
 import { Skeleton } from '../../ui/feedback/Skeleton'
 import SmallButton from '../../ui/buttons/SmallButton'
@@ -19,10 +19,9 @@ export default function NarratorSheet({ id, onClose, onOpenPage }) {
 
   return (
     <BottomSheet label="Narrator" onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
-      <header className="flex items-start justify-between gap-3 px-5 pt-4 pb-3">
+      <SheetHeader onClose={onClose} align="start">
         {who ? <NarratorName who={who} /> : <h2 className="type-ui font-semibold text-[var(--text)]">Narrator</h2>}
-        <CloseButton onClick={onClose} className="shrink-0" />
-      </header>
+      </SheetHeader>
 
       <div className="overflow-y-auto px-5 pb-5 space-y-3">
         {isPending && <Skeleton className="h-24 w-full" />}

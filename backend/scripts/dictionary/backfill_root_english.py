@@ -80,7 +80,7 @@ def make_lines(root: str, lines: list[str]) -> None:
     english: list[str] = []
     for chunk in chunks(lines, get_settings().root_entry_truncate_chars):
         for _ in range(2):  # a miscounted answer gets one more go
-            got = ai_service.explain_root_entry_lines(root, chunk).get("lines")
+            got = ai_service.explain_root_entry_lines(root, chunk, root_english.get(root)).get("lines")
             if (isinstance(got, list) and len(got) == len(chunk)
                     and all(isinstance(g, str) and g.strip() for g in got)):
                 english += got

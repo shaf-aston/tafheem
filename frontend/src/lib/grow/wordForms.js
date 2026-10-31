@@ -114,7 +114,7 @@ export function possessiveTable(word) {
 }
 
 /** The endings that say who a verb is done to: on the verb, where English puts him, her, me… after it. */
-export const OBJECTS = [
+const OBJECTS = [
   { id: 'him', en: 'him', end: 'هُ' },
   { id: 'her', en: 'her', end: 'هَا' },
   { id: 'them', en: 'them', end: 'هُمْ' },
@@ -158,7 +158,7 @@ export function relativeTable(verb) {
 }
 
 /** The questions on a verb: `${kind}:${person}`, and مَنْ "who" for "he" only; then أَ written apart, which says nothing. */
-export const QUESTIONS = {
+const QUESTIONS = {
   said: { ar: (f) => f.past, en: (e, p) => `${p.subj} ${e.past}${p.hint ?? ''}` },
   did: { ar: (f) => `هَلْ ${f.past}؟`, en: (e, p) => `did ${p.subj} ${e.base}${p.hint ?? ''}?` },
   'a-did': { ar: (f) => `أَ${f.past}؟`, en: (e, p) => `did ${p.subj} ${e.base}${p.hint ?? ''}?` },
