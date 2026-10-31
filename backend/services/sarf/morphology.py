@@ -687,8 +687,10 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [{"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}]  # its past, else the verb's own letters
         elif not steps and (asked := _asked_reading(evidence, ranked, after, disambiguator)):
             ranked = [asked]
-        elif not _agreeing(evidence, ranked) and (noun := noun_reader.reading_of(evidence)):
-            # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off
+        elif not _agreeing(evidence, ranked) and (noun := noun_reader.reading_of(evidence) or next(
+                filter(None, (_joined_noun(evidence, letter, "CONJ", prc2=f"{name}_conj") for letter, name in _JOINING)), None)):
+            # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off;
+            # one with a joining و or ف on it (وَإِقَامِ الصَّلَاةِ) is that noun with the particle put back
             ranked = [noun]
         steps.append((evidence, ranked))
     out = [_reading(*step) for step in steps]
@@ -946,6 +948,8 @@ def _added(reading: dict, typed: str) -> int:
 
 
 DOER = ("per", "gen", "num")
+# the one-letter joining particles, and CAMeL's name for each (prc2)
+_JOINING = (("و", "wa"), ("ف", "fa"))
 
 
 def _same(reading: dict, said: dict, keys: tuple[str, ...]) -> bool:

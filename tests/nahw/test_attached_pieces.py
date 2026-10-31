@@ -218,7 +218,9 @@ def test_a_nasb_noun_no_word_governs_hangs_on_an_understood_verb(sentence, noun,
     (verb, above), = leaves["فعل محذوف"]
     assert verb["role"] == "فعل" and verb["hidden"] is True
     assert above["label"] == "جُمْلَةٌ فِعْلِيَّةٌ"
-    named = leaves[noun][0][0]["role"]
+    leaf, unit = leaves[noun][0]
+    # أَهْلًا وَسَهْلًا: the first of a list is its معطوف عليه, the job drawn on the whole list above it
+    named = unit["role"] if leaf["role"] == "معطوف عليه" else leaf["role"]
     assert named == name if name else named in ("مفعول مطلق", "مفعول به")
     assert cards[0]["role"] == named  # the card says what the picture does
     body = client.post("/api/analyze", json={"sentence": sentence}).json()["tree"]

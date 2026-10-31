@@ -34,6 +34,7 @@
   "مجرور": {"key": "harf", "tone": "harf"},
   "مضاف": {"key": null, "tone": "mudaf"},
   "موصوف": {"key": null, "tone": "sifah"},
+  "معطوف عليه": {"key": null, "tone": "sifah"},
   "متبوع": {"key": null, "tone": "sifah"},
   "اسم موصول": {"key": null, "tone": "rel"},
   "اسم شرط جازم": {"key": null, "tone": "harf"},
@@ -42,7 +43,7 @@
  "named": {
   "fil": "فعل", "fail": "فاعل", "harf": "حرف", "harf_jarr": "حرف جر", "majroor": "مجرور",
   "munada": "منادى", "mustathna": "مستثنى", "mubtada": "مبتدأ", "khabar": "خبر", "khabar_kaada": "خبر كاد",
-  "ism_inna": "اسم إن", "tamyeez": "تمييز", "mudaf_ilayh": "مضاف إليه", "sifah": "صفة", "silah": "صلة", "matoof": "معطوف", "badal": "بدل", "mafool_bih": "مفعول به", "matboo": "متبوع", "haal": "حال"
+  "ism_inna": "اسم إن", "tamyeez": "تمييز", "mudaf_ilayh": "مضاف إليه", "sifah": "صفة", "silah": "صلة", "matoof": "معطوف", "badal": "بدل", "mafool_bih": "مفعول به", "matboo": "متبوع", "matoof_alayh": "معطوف عليه", "haal": "حال"
  },
  "units": [
   {"child": "مجرور", "label": "jar_majroor", "on_particle": true},

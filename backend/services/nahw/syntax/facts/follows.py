@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
+from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, works_as_verb
 from backend.services.nahw.syntax.facts.sentence import Sentence, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
@@ -162,6 +162,16 @@ def _follows(token: dict, s: Sentence) -> str:
         return "none"  # أعطى الغنيُّ الفقيرَ: with ال both show their case, and a na't wears its noun's
     if told_of_lone_mubtada(token, head, s):
         return "none"
+    # إِلَى صِرَاطٍ مُسْتَقِيمٍ صِرَاطِ اللَّهِ (42:52-53), عَلَى خَمْسٍ شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللَّهُ: a plain noun added to a
+    # known one is known (Ajrumiyya p14: وما أضيف إلى واحد من هذه الأربعة), and أنْ with its sentence is as known as a
+    # pronoun (Sibawayh: أنْ وصلتها لا توصف); a صفة matches its noun in التعريف والتنكير (Tasheel 3.10.1), so after an
+    # indefinite noun, in its case, it is that noun's بدل. A describing word's إضافة is لفظية and makes nothing known
+    # (رَجُلٌ حَسَنُ الْوَجْهِ: its صفة still), and the dictionary tags some describing words plain nouns (حَسَن), so only a
+    # word added to what no describing word is added to in that way tells: a name, a pronoun, or أنْ with its sentence
+    if head.get("stt") == "i" and head["pos"] != "PROP" and token.get("pos_camel") == "noun" and not is_describing(token) \
+            and same_case(token, head) and any(k["rel"] == "IDF" and (k["pos"] in ("PROP", "PRT") or "pron" in k.get("pos_camel", ""))
+                                               for k in s.kids(token)):
+        return "badal"
     # مررت بزيدٍ هذا، فعله كبيرُهم هذا: a pointer stands for a describing word (المشار إليه), so it is
     # the صفة of a name or of a noun added to a known one; a noun with ال is less known than it,
     # and a صفة is never more known than its noun, so after one it is its بدل
