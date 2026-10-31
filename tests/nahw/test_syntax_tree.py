@@ -102,7 +102,8 @@ def test_a_word_hung_on_an_attached_particle_is_drawn_under_what_the_particle_jo
     assert drawn["words"] == ["جَاءَ", "مُحَمَّدٌ", "وَ", "عَلِيٌّ"]
     joined = drawn["tree"]["children"][1]  # the noun with its معطوف inside, not a second root
     assert joined["children"][0]["word"] == 1
-    assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "فاعل", "حرف عطف", "معطوف"]  # the unit plays the faa'il
+    # the unit plays the faa'il; its first word is what the معطوف is joined on
+    assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "معطوف عليه", "حرف عطف", "معطوف"]
 
 
 def test_a_verb_clause_hung_on_a_mubtada_is_its_khabar_in_the_place_of_raf():

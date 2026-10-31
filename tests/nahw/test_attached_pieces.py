@@ -218,7 +218,9 @@ def test_a_nasb_noun_no_word_governs_hangs_on_an_understood_verb(sentence, noun,
     (verb, above), = leaves["فعل محذوف"]
     assert verb["role"] == "فعل" and verb["hidden"] is True
     assert above["label"] == "جُمْلَةٌ فِعْلِيَّةٌ"
-    named = leaves[noun][0][0]["role"]
+    leaf, unit = leaves[noun][0]
+    # أَهْلًا وَسَهْلًا: the first of a list is its معطوف عليه, the job drawn on the whole list above it
+    named = unit["role"] if leaf["role"] == "معطوف عليه" else leaf["role"]
     assert named == name if name else named in ("مفعول مطلق", "مفعول به")
     assert cards[0]["role"] == named  # the card says what the picture does
     body = client.post("/api/analyze", json={"sentence": sentence}).json()["tree"]
@@ -411,6 +413,8 @@ def test_the_shahada_draws_its_unsaid_khabar_and_names_its_badal(sentence):
     cards, leaves = analysed(sentence)
     (khabar, _), = leaves["مَعْبُودٌ بِحَقٍّ"]
     assert khabar["role"] == "خبر لا" and khabar["hidden"] is True
+    # the بدل needs what it stands for drawn: the pronoun hidden in the khabar, under the khabar's own name
+    assert [(part["role"], part.get("pronoun")) for part in khabar["parts"]] == [("خبر لا", None), ("مبدل منه", "هو")]
     columns = client.post("/api/analyze", json={"sentence": sentence}).json()["tree"]["words"]
     assert [strip_diacritics(c) for c in columns][1:4] == ["إله", "معبود بحق", "إلا"]
     badal = cards[-1]
