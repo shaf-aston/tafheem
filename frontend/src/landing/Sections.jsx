@@ -13,6 +13,7 @@ const SHOWN = GROUPS.filter((group) => LISTED.some((tab) => tab.group === group.
 const SPOKEN = [{ id: 'spoken', label: 'Spoken dialects' }]
 const DIALECTS = dialectFile.dialects.map((d) => ({ ...d, id: d.key, group: 'spoken' }))
 
+// Phone: tools sit two per row and dialect maps shrink, so the dialects are not ten screens down.
 // Every section of the app, one panel per group as the All sections menu groups them: one tap opens that tab.
 // The dialects get the full-width panel below, each drawn as the course picker draws it (CountryMap).
 export default function Sections() {
@@ -23,9 +24,10 @@ export default function Sections() {
       <div className="wrap">
         <h2 id="landing-sections-title">{links.sections.title}</h2>
         <div className="landing-sections-groups">
-          <TabGroups groups={SHOWN} tabs={LISTED} className="landing-sections-panel" grid="landing-sections-grid grid-cols-1">
+          <TabGroups groups={SHOWN} tabs={LISTED} className="landing-sections-panel" grid="landing-sections-grid grid-cols-2 sm:grid-cols-1">
             {(tab, index) => (
-              <Tile key={tab.id} as="a" href={`${links.tool}/${tab.id}`} variant="chip" accent={accentOf(tab.id)} style={{ '--i': index }}>
+              <Tile key={tab.id} as="a" href={`${links.tool}/${tab.id}`} variant="chip" accent={accentOf(tab.id)} style={{ '--i': index }}
+                className="landing-tool">
                 <span className="flex items-center gap-2 type-ui font-semibold">
                   <span aria-hidden="true" className="w-2.5 h-2.5 rounded-full shrink-0 bg-[var(--c)]" />
                   {tab.label}
@@ -39,7 +41,7 @@ export default function Sections() {
             {(d, index) => (
               <Tile key={d.key} as="a" href={`${links.tool}/colloq/${d.key}`} variant="chip" accent={colloq} style={{ '--i': index }}
                 className="landing-dialect">
-                <CountryMap codes={d.countries} cities={d.cities} hue={hue} className="w-full max-w-28" />
+                <CountryMap codes={d.countries} cities={d.cities} hue={hue} className="w-full max-w-20 sm:max-w-28" />
                 <span className="type-ui font-semibold">{d.label}</span>
                 <ArabicText size="lg" className="leading-tight text-[var(--c)]">{d.arabic}</ArabicText>
                 <CountryIcons codes={d.countries} most={2} />
