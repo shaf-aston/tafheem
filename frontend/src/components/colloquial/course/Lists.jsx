@@ -104,7 +104,7 @@ export function TopicList({ dialect, unit, go }) {
               const i = from + n
               return (
                 <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} image={l.picture}
-                  note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words · Cards · Match · Quiz` : l.words ? 'Phrases' : undefined}
+                  note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words · Pictures · Cards · Quiz` : l.words ? 'Phrases' : undefined}
                   onClick={l.written ? () => open(i, !l.phrases) : undefined}
                   twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => open(i, true) }} />
               )

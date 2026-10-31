@@ -1,4 +1,4 @@
-// One topic's words on their own: learn them as cards, warm up by matching, quiz
+// One topic's words on their own: see them all as pictures, learn them as cards, warm up by matching, quiz
 // yourself, then review what is due. A new way to learn words is a new mode here
 // and a component beside this one.
 import { useEffect, useMemo, useState } from 'react'
@@ -10,30 +10,33 @@ import { summaryQuery } from '../../../lib/learner/record'
 import Segmented from '../../ui/Segmented'
 import Practice from '../exercises/Practice'
 import WordCards from './WordCards'
+import WordGallery from './WordGallery'
 import WordMatch from './WordMatch'
 import WordReview from './WordReview'
 import WordPicture from './picture/WordPicture'
 import { pictureBoards } from '../../../lib/colloquial/wordPictures'
 
-const MODES = [{ id: 'cards', label: 'Cards' }, { id: 'match', label: 'Match' }, { id: 'quiz', label: 'Quiz' }, { id: 'review', label: 'Review' }]
+const MODES = [{ id: 'browse', label: 'Browse' }, { id: 'cards', label: 'Cards' }, { id: 'match', label: 'Match' }, { id: 'quiz', label: 'Quiz' }, { id: 'review', label: 'Review' }]
 // Only where the words have a drawing to match (the body, countries): lib/colloquial/wordPictures.js.
 const PICTURE = { id: 'picture', label: 'Picture' }
+const WIDE = new Set(['browse', 'review'])
 
 export default function WordsView({ unit, at }) {
   const lesson = unit.lessons[at]
   const words = lesson.vocabulary
-  const [mode, setMode] = useState('cards')
+  const [mode, setMode] = useState('browse')
   const dialect = unit.dialect_key
   // Review plans from the words' record: fetched ahead when the topic opens, and again
   // on reaching for the modes (only if an answer has made it old), so it opens at once.
   const client = useQueryClient()
   const record = summaryQuery(WORDS_MODULE)
   useEffect(() => { warm(client, summaryQuery(WORDS_MODULE)) }, [client])
-  const modes = useMemo(() => (pictureBoards(words).length ? [...MODES.slice(0, 2), PICTURE, ...MODES.slice(2)] : MODES), [words])
+  const modes = useMemo(() => (pictureBoards(words).length ? [...MODES.slice(0, 3), PICTURE, ...MODES.slice(3)] : MODES), [words])
   const drills = useMemo(() => wordDrills(words, `${unit.unit}.${lesson.lesson}`, { dialect }), [words, unit.unit, lesson.lesson, dialect])
 
+  // Browse and Review lay many tiles side by side; the rest are one card wide.
   return (
-    <article className={`${mode === 'review' ? 'max-w-5xl' : 'max-w-xl'} mx-auto space-y-6`}>
+    <article className={`${WIDE.has(mode) ? 'max-w-5xl' : 'max-w-xl'} mx-auto space-y-6`}>
       {/* The topic's title is already on the trail above, one step before Words. */}
       {/* One width in every mode, so the modes stay put when Review widens the page. */}
       <header className="w-full max-w-xl mx-auto flex flex-wrap items-end justify-between gap-3">
@@ -44,6 +47,7 @@ export default function WordsView({ unit, at }) {
       </header>
       {/* Keyed by the mode, so each one rises in as the rest of the tab's views do. */}
       <div key={mode} className="rise-in">
+        {mode === 'browse' && <WordGallery words={words} />}
         {mode === 'cards' && <WordCards words={words} />}
         {mode === 'match' && <WordMatch words={words} />}
         {mode === 'picture' && <WordPicture words={words} />}

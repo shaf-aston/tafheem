@@ -12,7 +12,8 @@ import Face, { FOCUS } from '../parts/Face'
 import OtherDialects from './OtherDialects'
 import Spelling from '../parts/Spelling'
 
-export default function Sheet({ phrases, at, onAt, onClose, place }) {
+// `noun` names what is stepped through; a word has no other-dialect slot, so no `place`.
+export default function Sheet({ phrases, at, onAt, onClose, place, noun = 'phrase' }) {
   const phrase = phrases[at]
   const swipe = useSwipe(at > 0 && (() => onAt(at - 1)), at < phrases.length - 1 && (() => onAt(at + 1)))
   const slide = useSlide(at)
@@ -62,14 +63,14 @@ export default function Sheet({ phrases, at, onAt, onClose, place }) {
               </div>
             )}
 
-            <OtherDialects place={place} slot={phrase.slot} />
+            {place && phrase.slot && <OtherDialects place={place} slot={phrase.slot} />}
           </div>
         </div>
 
         <div className="px-5 pb-5 flex items-center justify-between gap-3">
-          <SmallButton onClick={() => onAt(at - 1)} disabled={at === 0} aria-label="Previous phrase">← Prev</SmallButton>
+          <SmallButton onClick={() => onAt(at - 1)} disabled={at === 0} aria-label={`Previous ${noun}`}>← Prev</SmallButton>
           <span className="type-small tabular-nums text-[var(--text-dim)]">{at + 1} / {phrases.length}</span>
-          <SmallButton onClick={() => onAt(at + 1)} disabled={at === phrases.length - 1} aria-label="Next phrase">Next →</SmallButton>
+          <SmallButton onClick={() => onAt(at + 1)} disabled={at === phrases.length - 1} aria-label={`Next ${noun}`}>Next →</SmallButton>
         </div>
       </div>
     </BottomSheet>
