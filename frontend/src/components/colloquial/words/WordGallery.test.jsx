@@ -35,4 +35,22 @@ describe('WordGallery', () => {
     expect(screen.getByText('4 / 6')).toBeTruthy()
     expect(screen.queryByText('Other dialects')).toBeNull()
   })
+  it('puts a heading\'s pictured words first and draws only a pictured tile large', () => {
+    const pictured = ['cat', 'dog', 'cow', 'hen', 'goat', 'duck', 'fish']
+      .map((en, n) => ({ id: en, arabic: `ص${n}`, english: en, category: 'little', image: `emoji/${en}.svg` }))
+    const mixed = [{ id: 'i', arabic: 'أنا', english: 'I', category: 'little' }, ...pictured]
+    const { container } = renderWithProviders(<WordGallery words={mixed} />)
+    const names = screen.getAllByRole('button').map((b) => b.getAttribute('aria-label'))
+    expect(names[0]).toBe('cat (ص0)')
+    expect(names.at(-1)).toBe('I (أنا)')
+    const big = container.querySelectorAll('li.col-span-2')
+    expect(big).toHaveLength(1)
+    expect(big[0].textContent).toContain('cat')
+  })
+
+  it('draws no large tile when a run is too short to fill the rows beside it', () => {
+    const few = [{ id: 'cat', arabic: 'قطة', english: 'cat', category: 'x', image: 'emoji/cat.svg' }]
+    const { container } = renderWithProviders(<WordGallery words={few} />)
+    expect(container.querySelectorAll('li.col-span-2')).toHaveLength(0)
+  })
 })
