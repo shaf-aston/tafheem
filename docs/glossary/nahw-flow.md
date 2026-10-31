@@ -63,6 +63,8 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - hasr_khabar: a noun after إلا in a negated verbless clause → the khabar of the mubtada before it (`backend/services/nahw/syntax/repair/khabar.py`)
 - described_doer: a singular وصف after a negation or question word, then a raf' noun → the وصف heads the clause (مبتدأ), the noun its doer (`backend/services/nahw/syntax/repair/khabar.py`)
 - hal_clause: و + a raf' pronoun + a verb → a hal clause, the pronoun its mubtada (`backend/services/nahw/syntax/repair/hal.py`)
+- no_khabar_on_full_verb: an indefinite nasb word hung as the خبر (PRD) of a verb outside كان, كاد and ظنّ and their sisters → a modifier, so a hal (جاء زيد كريما) (`backend/services/nahw/syntax/repair/hal.py`)
+- naat_beside_its_noun: an indefinite word hung on the verb right after the verb's own masdar it agrees with → that masdar's صفة (ضَلَّ ضَلَالًا بَعِيدًا); any other noun keeps the hal (قتل زيد عمرا ظالما) (`backend/services/nahw/syntax/repair/hal.py`)
 - nasab: name + ابن/بن + noun → صفة and مضاف chain; next noun = خبر in a verbless sentence (`backend/services/nahw/syntax/repair/nasab.py`)
 - untied_command: a command read as a jazm condition's answer (إن تضربْ أضربْ) with no فاء on it → jussive present, جواب الشرط (`backend/services/nahw/syntax/repair/answer.py`)
 - stamp: particle families from the particle decision tree; a place the parser gave the لام of emphasis → the word it is written onto (إِنَّ هَذَا لَسِحْرٌ) (`backend/services/nahw/syntax/particles.py`, `backend/data/nahw_rules/particle_tree.json`)

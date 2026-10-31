@@ -7,7 +7,7 @@ from backend.services.nahw.book import takes_object
 from backend.services.nahw.syntax.facts import agrees, shown_cases, stands_for_its_noun
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, doer_first, name_told_to
 from tests.nahw.test_naming import VERB, token
-from tests.nahw_helpers import cards, needs_corpus, needs_parser
+from tests.nahw_helpers import cards, needs_corpus, needs_parser, parsed_as
 
 
 def roles(sentence: str) -> list[str]:
@@ -52,6 +52,16 @@ def roles(sentence: str) -> list[str]:
 ])
 def test_with_no_case_shown_the_verb_takes_its_doer_then_its_object(sentence, said):
     assert roles(sentence) == said
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, form, said", [
+    ("جاء زيد كريما", "كريما", ["فعل", "فاعل", "حال"]),  # MOD 3.95 beside PRD 3.46: a near tie (repair.hal)
+    ("وقف الجندي ثابتا", "ثابتا", ["فعل", "فاعل", "حال"]),
+])
+def test_a_full_verb_has_no_khabar_so_a_word_hung_on_it_as_one_is_its_haal(sentence, form, said):
+    with parsed_as(form, rel="PRD"):
+        assert roles(sentence) == said
 
 
 @pytest.mark.parametrize("form, lemma, stands", [

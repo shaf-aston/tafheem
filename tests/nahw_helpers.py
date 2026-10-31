@@ -3,10 +3,13 @@ where the parser is absent, the one way of reading a sentence, and the one walk 
 picture. A test module imports these rather than defining its own copy."""
 from __future__ import annotations
 
+from contextlib import contextmanager
+
 import pytest
 
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
+from backend.services.nahw.syntax import catib_onnx
 from backend.services.nahw.syntax.catib_onnx import files_present
 from backend.services.quran import corpus as quran_corpus
 
@@ -29,6 +32,30 @@ def analyze(sentence: str) -> dict:
 
 def cards(sentence: str) -> list[dict]:
     return analyze(sentence)["words"]
+
+
+@contextmanager
+def parsed_as(form: str, head: str | None = None, rel: str | None = None):
+    """Inside it, the parser hangs the word typed `form` on the word `head` and/or by `rel`, as
+    another machine's floats may when its scores sit near a tie (بعيدا on ضل by 0.27): a repair
+    that must hold whichever way the tie falls is tested both ways. No reading is kept across it."""
+    decode = catib_onnx._decode
+
+    def forced(s_arc, s_rel, toks):
+        heads, rels = decode(s_arc, s_rel, toks)
+        forms = [t["form"] for t in toks]
+        for i, t in enumerate(toks):
+            if t["form"] == form:
+                heads[i], rels[i] = forms.index(head) + 1 if head else heads[i], rel or rels[i]
+        return heads, rels
+
+    catib_onnx._decode = forced
+    iraab._kept.cache_clear()
+    try:
+        yield
+    finally:
+        catib_onnx._decode = decode
+        iraab._kept.cache_clear()
 
 
 def tree_roles(node: dict, key: str = "role") -> list:
