@@ -9,10 +9,13 @@ import { useQuery } from '@tanstack/react-query'
 import { itemsOf, lessonItems, stageOf } from './lesson'
 import { summaryQuery, useRecord } from '../learner/record'
 
+/** A lessons world's items as a query: one key for the hook and for fetching ahead (lib/grow/growOpen.js). */
+export const sourceQuery = (world, load) => ({ queryKey: ['grow-source', world.id], queryFn: load, staleTime: Infinity })
+
 export function useLessonWorld({ world, load, keyOf, cards }) {
   const { module } = world
   const { refresh } = useRecord()
-  const source = useQuery({ queryKey: ['grow-source', world.id], queryFn: load, staleTime: Infinity })
+  const source = useQuery(sourceQuery(world, load))
   const summary = useQuery(summaryQuery(module))
   const { lesson, stages } = world
 

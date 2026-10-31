@@ -96,8 +96,11 @@ function NextStep({ world, where, line, onGo }) {
 
 const nextOf = (state) => state?.ready && (state.next.fresh[0] ?? state.next.reviews[0])
 
-/** The room for the next steps while the worlds load; they all appear at once (data-settling, styles/growWorlds.css), so the page below moves once, not per world. */
-const NextSlot = () => <span className="grow-next grow-next-slot" aria-hidden="true" />
+/**
+ * One ghost step per step expected while the worlds load (the app's skeleton shimmer, in a step's shape); the real ones
+ * replace them all at once (data-settling, styles/growWorlds.css), so the page below does not move as they come.
+ */
+const NextSlot = () => <span className="grow-next-slot skeleton" aria-hidden="true" />
 
 /** A lessons world with a lesson to give: words not yet met, or some due. */
 const hasWork = (state) => state.ready && (state.fresh > 0 || state.dueCount > 0)
@@ -137,6 +140,9 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   const hero = lead ?? mainId
   const partOf = (book) => book.parts.find((part) => part.id === book.next.part)?.title
   const accent = worldOf(lead ?? mainId).accent
+  // A step for every book, the hadith, the Quran, and whichever of the Basics and the words is not the lesson above;
+  // one less when a book leads. A close guess is enough: it is what keeps the page still.
+  const expected = Object.keys(books).length + 3 - (lead ? 1 : 0)
   const settling = [basics, words, ...Object.values(books), lessons.hadith, lessons.quran].some((state) => !state.ready && !state.error)
   return (
     <section className="grow-today rise-in" style={{ '--w': accent }} aria-labelledby="grow-today-h">
@@ -159,7 +165,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
         </>
       )}
       <div className="grow-nexts" data-open={more ? '' : undefined} data-settling={settling ? '' : undefined}>
-        {settling && <NextSlot />}
+        {settling && Array.from({ length: expected }, (_, i) => <NextSlot key={i} />)}
         {basics.ready && !basics.begunHere && hero !== 'basics' && (!leads || leads === 'basics') && (
           <NextStep world={worldOf('basics')} where={say('New to Arabic?')} line={say('Start with ال, “the”')} onGo={() => onStart('basics')} />
         )}

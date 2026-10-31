@@ -3,7 +3,7 @@ import { getGrowWorld } from '../../api'
 import { useLessonWorld } from './useLessonWorld'
 import { keyOfPhrase, phrasesOf, prayerCards } from './prayerLesson'
 
-async function load() {
+export async function load() {
   const phrases = phrasesOf(await getGrowWorld('prayer'))
   return { order: phrases, all: phrases }
 }
