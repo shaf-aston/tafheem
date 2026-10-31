@@ -12,7 +12,7 @@
  * Narrators come from each card's own book (lib/useNarrators), so names are tappable and the
  * family fold shows in a book, in search and in Starred alike. Each hadith with a chain carries one quiet
  * "Chain" chip ("Chain · 2 weak" where it has weak points) that opens the sheet (hadith/ChainSheet): the chain drawn,
- * its weak points ranked and doubtful links lettered (lib/weak), what classical books say of it and the words, one
+ * its weak points ranked and doubtful links lettered (hadith/chain/weak), what classical books say of it and the words, one
  * tab each; a hadith with no chain that those books speak of carries "Verdicts" to the same sheet.
  * Under each one's words, its reference as sunnah.com prints it (hadith/HadithReference).
  * Side by side (English left, Arabic right, as sunnah.com sets them) unless the reader turned it
@@ -21,23 +21,23 @@
  */
 import { useState } from 'react'
 
-import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
-import { useHadithFavorites } from '../../lib/hadith/useHadithFavorites'
-import { useKin, useNarrators, useWeakNotes } from '../../lib/hadith/useNarrators'
-import { useHideChain } from '../../lib/hadith/useHideChain'
-import { useSideBySide } from '../../lib/hadith/useSideBySide'
+import { useHadithCollections } from './useHadithCollections'
+import { useHadithFavorites } from './favorites/useHadithFavorites'
+import { useKin, useNarrators, useWeakNotes } from './narrators/useNarrators'
+import { useHideChain } from './chain/useHideChain'
+import { useSideBySide } from './useSideBySide'
 import { drawnChain } from '../../lib/hadith/rijal'
-import { weakLinks, weakPoints } from '../../lib/hadith/weak'
+import { weakLinks, weakPoints } from './chain/weak'
 
-import ChainSheet from './ChainSheet'
+import ChainSheet from './chain/ChainSheet'
 import Chip from '../ui/inputs/Chip'
 import CopyButton from '../ui/buttons/CopyButton'
-import FavoriteStar from './FavoriteStar'
-import GradeMark from './GradeMark'
+import FavoriteStar from './favorites/FavoriteStar'
+import GradeMark from './books/GradeMark'
 import HadithReference from './HadithReference'
 import HadithText from '../ui/text/HadithText'
-import NarrationFamily from './NarrationFamily'
-import NarratorSheet from './NarratorSheet'
+import NarrationFamily from './family/NarrationFamily'
+import NarratorSheet from './narrators/NarratorSheet'
 export default function HadithCards({ items, accent, collection, columns = false, onNarrator, onHadith }) {
   const [hideChain] = useHideChain()
   const { isFavorite, toggle } = useHadithFavorites()

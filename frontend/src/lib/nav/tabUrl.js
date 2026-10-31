@@ -3,7 +3,7 @@
  *
  * The address bar shows the tab and the place in it: /hadith/bukhari/1,
  * /dict/كتب. Each "/" piece of the place is one path piece, so a place
- * that is already a path (lib/hadithPlace) reads as one. The choices inside a
+ * that is already a path (hadith/hadithPlace) reads as one. The choices inside a
  * tab (which view, topic, question) ride on the history entry, out of sight.
  * The browser keeps that across a reload and gives each back-arrow step its own.
  * See lib/nav/journey.js, the only caller that writes.

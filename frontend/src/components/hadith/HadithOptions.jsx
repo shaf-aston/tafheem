@@ -1,5 +1,5 @@
-import { useHideChain } from '../../lib/hadith/useHideChain'
-import { useSideBySide } from '../../lib/hadith/useSideBySide'
+import { useHideChain } from './chain/useHideChain'
+import { useSideBySide } from './useSideBySide'
 
 import ReadingOptions from '../ui/inputs/ReadingOptions'
 import WordsLink from './WordsLink'

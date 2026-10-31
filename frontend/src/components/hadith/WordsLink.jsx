@@ -5,7 +5,7 @@
  */
 import { useState } from 'react'
 
-import ChainSheet from './ChainSheet'
+import ChainSheet from './chain/ChainSheet'
 import SheetLink from './SheetLink'
 
 export default function WordsLink({ accent }) {

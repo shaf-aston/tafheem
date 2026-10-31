@@ -1,7 +1,7 @@
 /**
  * Where the Colloquial tab is: "fusha", "fusha/unit-02", "fusha/unit-02/lesson-03",
  * or "fusha/unit-02/lesson-03/words" for that topic's words on their own.
- * Same shape as lib/hadithPlace, so a reload, a pasted link and the back arrow
+ * Same shape as hadith/hadithPlace, so a reload, a pasted link and the back arrow
  * all land on the same dialect, unit and topic.
  *
  * Pure: checked against the catalogue the panel already has. A unit or topic the
