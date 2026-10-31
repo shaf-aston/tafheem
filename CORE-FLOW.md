@@ -29,7 +29,10 @@ Folders, top down (one domain = one folder, same name on both sides):
 frontend/src/
   config/        one JSON per feature; the only place a number or a label is hardcoded
   components/    one folder per tab (nahw/, quran/, …) + ui/ (kit two or more tabs draw) + shell/ (header, settings, offline)
-  lib/           one folder per tab (same names as components/) + the shared ones:
+                 hadith/ holds its own logic beside its screens, a sub-folder per part (books/, chain/, narrators/,
+                 terms/, family/, favorites/); the other tabs follow as they are moved
+  lib/           one folder per tab not yet moved (same names as components/); lib/hadith/ holds only what
+                 other tabs borrow (chain words, narrator names). Plus the shared ones:
     nav/         tabs registry, URL ↔ tab, journey, dock/recent rules, command line
     api/         axios client errors, health, sources, warm-up
     store/       localStorage helpers, settings, shelf
@@ -68,7 +71,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | sarf | `components/sarf/SarfPanel.jsx` | `analyzeMorphology`, `conjugateForm` | `routers/morphology.py` | `services/sarf/conjugation.py`, `services/sarf/` | `data/sarf/` |
 | quran | `components/quran/QuranPanel.jsx` | `quranSurahQuery` (`lib/quran/quranOpen.js`), `searchQuran` | `routers/quran.py` | `services/quran/service.py`, `services/quran/corpus.py` | `data/quran/corpus.db`, `data/quran/library.db` |
 | daleel | `components/daleel/DaleelPanel.jsx` | `findDaleel`, `daleelBooksQuery` | `routers/daleel.py` | `services/daleel/search.py` | `data/daleel.db` |
-| hadith | `components/hadith/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `lib/hadith/useNarrators.js` | `routers/hadith.py` | `services/hadith/` (`rijal/`, `usul/` inside) | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
+| hadith | `components/hadith/HadithPanel.jsx` | `searchHadith`, `hadithOpen`, `components/hadith/useNarrators.js` | `routers/hadith.py` | `services/hadith/` (`rijal/`, `usul/` inside) | `data/hadith.db`, `data/rijal.db`, `data/usul/usul.db` |
 | dict | `components/dictionary/DictionaryPanel.jsx` | `searchDictionary` | `routers/dictionary.py` | `services/dictionary/service.py` | `data/arabic_dictionary.json`, `data/lexicons.db` |
 | mem | `components/memorise/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/memorise/books.js`) | `routers/quran.py` | `services/quran/mutashabihat.py`, `services/quran/service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
 | grow | `components/grow/GrowPanel.jsx` | `getGrowWorld` (Prayer); the other worlds read `frontend/public/grow/` | `routers/grow.py` | none: the route serves the files; `lib/grow/lesson.js` paces, `lib/grow/<world>Lesson.js` builds the cards | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
@@ -82,9 +85,9 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 Nahw has more views: Tamreen (`getTamreen`, `routers/tamreen.py`, `services/nahw/tamreen.py`), Notes
 (`getNotes`, `routers/nahw_notes.py`, `services/nahw/notes.py`) and Tarkeeb examples
 (`getTarkeebExamples`, `routers/tarkeeb.py`, `services/nahw/tarkeeb_examples.py`). Reciting (Mem, Grow)
-is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.jsx`, `lib/hadith/useNarrators.js`,
+is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.jsx`, `components/hadith/useNarrators.js`,
 `rijalChainsQuery`, `routers/hadith.py` `get_chains`, `services/hadith/usul/store.py`, usul.db tables
-`note` and `link` (built by `scripts/hadith/build_usul.py`); `lib/hadith/weak.js` ranks and counts them in the page.
+`note` and `link` (built by `scripts/hadith/build_usul.py`); `components/hadith/chain/weak.js` ranks and counts them in the page.
 
 ## Core flow
 

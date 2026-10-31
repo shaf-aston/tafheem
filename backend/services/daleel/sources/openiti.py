@@ -19,15 +19,17 @@ and the Qur'an tab remains the only place a vowelled text is shown.
 from __future__ import annotations
 
 import json
-import sqlite3
 from pathlib import Path
 from typing import Iterable
 
+from backend.services.core.readonly_db import ReadOnlyDb
 from backend.services.daleel.sources.model import Passage
 
 _BOOKS = Path(__file__).resolve().parents[3] / "data" / "books"
 _DB = _BOOKS / "openiti.db"
 _MANIFEST = _BOOKS / "openiti-books.json"
+# This thread's read-only connection to the books, reopened when an import replaces it.
+_db = ReadOnlyDb(lambda: _DB)
 
 
 class OpenItiSource:
@@ -37,27 +39,23 @@ class OpenItiSource:
         self.id = collection
 
     def passages(self) -> Iterable[Passage]:
-        if not _DB.exists():
+        if (conn := _db()) is None:
             return
 
-        conn = sqlite3.connect(f"file:{_DB}?mode=ro", uri=True)
-        try:
-            rows = conn.execute(
-                "SELECT b.title, p.heading, p.arabic"
-                "  FROM passage p JOIN book b ON b.file = p.file"
-                " WHERE p.collection = ?"
-                " ORDER BY p.id",
-                (self.id,),
+        rows = conn.execute(
+            "SELECT b.title, p.heading, p.arabic"
+            "  FROM passage p JOIN book b ON b.file = p.file"
+            " WHERE p.collection = ?"
+            " ORDER BY p.id",
+            (self.id,),
+        )
+        for title, heading, arabic in rows:
+            yield Passage(
+                source=self.id,
+                book=title,
+                locator=_cite(title, heading),
+                arabic=arabic,
             )
-            for title, heading, arabic in rows:
-                yield Passage(
-                    source=self.id,
-                    book=title,
-                    locator=_cite(title, heading),
-                    arabic=arabic,
-                )
-        finally:
-            conn.close()
 
 
 def _cite(title: str, heading: str) -> str:
