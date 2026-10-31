@@ -8,7 +8,7 @@
  */
 import { useQueries, useQuery } from '@tanstack/react-query'
 
-import { rijalChainsQuery, rijalSearchQuery, usulGuideQuery } from '../../../api'
+import { rijalChainsQuery, rijalSearchQuery, usulGuideQuery } from '../../api'
 
 const NONE = {}
 const NO_WEAK = { notes: [], links: [], rulings: [], rules: null, scale: [] }

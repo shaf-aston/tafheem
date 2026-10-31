@@ -17,7 +17,7 @@ import { useEffect, useEffectEvent } from 'react'
 
 import { searchHadith } from '../../api'
 import { useHadithCollections } from './useHadithCollections'
-import { useNarratorMatches } from './narrators/useNarrators'
+import { useNarratorMatches } from './useNarrators'
 import { useSearch } from '../../lib/hooks/useSearch'
 
 import Chip from '../ui/inputs/Chip'

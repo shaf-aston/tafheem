@@ -1,6 +1,6 @@
 /**
- * The pop-up for one hadith's chain, in tabs of what there is to read: the chain drawn (hadith/ChainDrawing, weak
- * narrators marked and doubtful links lettered on it), the weak points ranked (hadith/WeakPoints, `weak` from
+ * The pop-up for one hadith's chain, in tabs of what there is to read: the chain drawn (hadith/chain/ChainDrawing, weak
+ * narrators marked and doubtful links lettered on it), the weak points ranked (hadith/chain/WeakPoints, `weak` from
  * hadith/chain/weak, `linkPoints` the doubtful links), what classical books say of the hadith (`rulings`, hadith/chain/ScholarRulings)
  * and the words between its narrators with the terms of the science (hadith/chain/TermGuide). A tab with nothing to show is
  * left out, a hadith with no chain to draw (`chainless`) has no Chain tab, and opened from the reading options with

@@ -2,7 +2,7 @@
  * One narrator on his own page: who he was, what scholars said of him, who he
  * learnt from and taught (each a tap to that narrator's page), and the hadith
  * he narrates in the six books, each a tap into the reader. Under his header, what the
- * narrator books say of him in four groups (hadith/BookFacts).
+ * narrator books say of him in four groups (hadith/narrators/BookFacts).
  *
  * A 404 means this machine holds no page for him (rijal.db unbuilt, or he was
  * never fetched), said in a line, as on his pop-up.

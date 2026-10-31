@@ -2,7 +2,7 @@
  * One term of the science in a sheet: its Arabic and English name, what it meant in the language, what the science
  * means by it with the book's own sentence behind a disclosure, the terms it is often taken for (each, where both are in this group, with a table
  * of the group's questions, "—" where one side has no answer), and the hadith carrying it when it is a ruling.
- * Reads only the glossary it is handed (the usul guide); the hadith come from hadith/TermHadith.
+ * Reads only the glossary it is handed (the usul guide); the hadith come from hadith/terms/TermHadith.
  */
 import { useEffect, useRef } from 'react'
 

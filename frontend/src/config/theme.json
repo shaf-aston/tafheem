@@ -403,7 +403,7 @@
     "nav": "4rem",
     "_proof_comment": "The least width of the Nahw full table's proof column on a wide screen, so a rule and its book path read as lines, not a word to a line. A phone sets the proof on its own line under the row instead.",
     "proof": "18rem",
-    "_terms_tree_comment": "The least page width, in px, at which the hadith Terms view draws the whole tree (components/hadith/terms/TermsView). A floor only: the tree's own width at its smallest legible scale (lib/termsChart wholeWidth) raises it, and below it a phone or tablet gets the groups as a list.",
+    "_terms_tree_comment": "The least page width, in px, at which the hadith Terms view draws the whole tree (components/hadith/terms/TermsView). A floor only: the tree's own width at its smallest legible scale (hadith/terms/termsChart wholeWidth) raises it, and below it a phone or tablet gets the groups as a list.",
     "terms-tree-min": 1100,
     "_rail_comment": "How wide Home's progress column stands beside the tiles on a wide screen (components/home/StatsRail).",
     "rail": "17rem"

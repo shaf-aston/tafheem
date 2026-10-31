@@ -1,4 +1,4 @@
-import { useHideChain } from './chain/useHideChain'
+import { useHideChain } from './useHideChain'
 import { useSideBySide } from './useSideBySide'
 
 import ReadingOptions from '../ui/inputs/ReadingOptions'

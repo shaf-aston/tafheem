@@ -20,7 +20,7 @@ import { AnalyzerSkeleton } from '../../ui/feedback/Skeleton'
 import ReadingOptions from '../../ui/inputs/ReadingOptions'
 import HadithCards from '../HadithCards'
 import WordsLink from '../WordsLink'
-import { useHideChain } from '../chain/useHideChain'
+import { useHideChain } from '../useHideChain'
 
 /** How far down the page you are, drawn into `ref` without re-rendering per scroll. */
 function useReadingRail(ref) {

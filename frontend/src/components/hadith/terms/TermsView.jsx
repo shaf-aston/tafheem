@@ -1,10 +1,10 @@
 /**
  * The words of the science as a tree, opened from the Terms place of the hadith strip. A screen as wide as the whole tree needs
- * at its smallest legible scale (lib/termsChart wholeWidth, never under theme.json's terms-tree-min) draws every
+ * at its smallest legible scale (hadith/terms/termsChart wholeWidth, never under theme.json's terms-tree-min) draws every
  * group and term at once (shell/PbsChart); a narrower one lists the groups, each with the question it splits on,
  * and a tap lists that group's terms as stacked chips, a term's kids indented under it. The chart never draws below
  * MIN_SCALE, so where it still overflows its frame scrolls, its far edge fading. A tap on any term opens its card
- * (hadith/TermCard).
+ * (hadith/terms/TermCard).
  */
 import { useMemo, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'

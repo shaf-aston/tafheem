@@ -144,7 +144,7 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
 - Weak points on a chain: `scripts/hadith/build_usul.py` levels each narrator's grade in `rijal.db` against Ibn Hajar's
   twelve (`services/hadith/usul/level.py`, words in `data/usul/usul.json`) and writes the small, git-tracked `data/usul/usul.db`.
   `services/hadith/usul/store.py` reads it; `GET /api/rijal/chains/...` carries `notes` and `scale`; `components/hadith/chain/weak.js` ranks them and
-  `hadith/ChainDrawing` and `hadith/WeakPoints` show them. A grade no term reads is listed in the gap table, never guessed.
+  `hadith/chain/ChainDrawing` and `hadith/chain/WeakPoints` show them. A grade no term reads is listed in the gap table, never guessed.
 - What scholars said of a hadith: the same build reads three ruling books (Ibn Shahin, Ibn Abi Hatim's 'Ilal, Ibn al-Jawzi's
   Mawdu'at). `services/hadith/usul/ruling.py` cuts out the scholar's own sentence, `services/hadith/usul/match.py` finds which of our hadith
   it is about (rare shared word 3-grams, then a shared narrator), knobs in `usul.json` `rulings.match`. The `ruling` table is
