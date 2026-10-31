@@ -2,7 +2,7 @@
 // more. Explore first: tap any place and hear its name, see it in Arabic and English.
 // Then Test: one word at a time, in Arabic with its sound; tap where it is. A right
 // tap turns the place green; a wrong one shakes and says what was tapped, and shows
-// the English as a hint, so a slip teaches. A warm-up like Match: nothing is filed
+// the English as a hint; a second miss rings the right place, so a slip teaches. A warm-up like Match: nothing is filed
 // for review. The boards and their spots are lib/colloquial/wordPictures.js.
 import { useMemo, useRef, useState } from 'react'
 
@@ -23,8 +23,11 @@ const STEPS = [{ id: 'explore', label: 'Explore' }, { id: 'test', label: 'Test' 
 
 const fresh = (board) => ({
   queue: shuffled(board.spots.flatMap((s) => s.words.map((word) => ({ word, key: s.key }))), Math.random),
-  at: 0, found: [], slips: 0, tapped: null, wrong: false,
+  at: 0, found: [], slips: 0, misses: 0, tapped: null, wrong: false,
 })
+
+// Misses on one word before its place is shown.
+const SHOW_AFTER = 2
 
 // The spot under a tap: the country or dot tapped, else the nearest dot within reach.
 function spotAt(event, board) {
@@ -88,9 +91,9 @@ export function Board({ board, step = 'test' }) {
     }
     if (!key || done) return
     if (key === ask.key) {
-      return setGame((g) => ({ ...g, at: g.at + 1, found: [...new Set([...g.found, key])], tapped: null, wrong: false }))
+      return setGame((g) => ({ ...g, at: g.at + 1, found: [...new Set([...g.found, key])], misses: 0, tapped: null, wrong: false }))
     }
-    setGame((g) => ({ ...g, slips: g.slips + 1, tapped: key, wrong: true }))
+    setGame((g) => ({ ...g, slips: g.slips + 1, misses: g.misses + 1, tapped: key, wrong: true }))
   }
 
   return (
@@ -108,15 +111,33 @@ export function Board({ board, step = 'test' }) {
               <ArabicText as="p" size="xl" className="text-[var(--text)]">{ask.word.arabic}</ArabicText>
               <Spelling className="block">{ask.word.transliteration}</Spelling>
               {game.wrong && <p className="type-small text-[var(--text-dim)]">{ask.word.english}</p>}
+              {/* Said here, where the eye and the screen reader already are, not under the picture. */}
+              {game.wrong && tappedSpot && <p className="type-small text-[var(--danger)]">
+                You tapped <ArabicText as="span" size="sm">{tappedSpot.words[0].arabic}</ArabicText> ({tappedSpot.words[0].english})
+                {game.misses >= SHOW_AFTER ? ': the ringed place is the one.' : '.'}
+              </p>}
             </div>
             <SpeakButton text={ask.word.arabic} />
           </>
         )}
       </div>
       <svg ref={svg} viewBox={board.view.join(' ')} role="group" aria-label={`${board.label}: ${exploring ? 'tap a place to hear its name' : 'tap the place'}`}
-        className="w-full max-w-md mx-auto block touch-manipulation cursor-pointer select-none"
+        className="w-full max-w-md max-h-[70vh] mx-auto block touch-manipulation cursor-pointer select-none"
         onClick={(e) => answer(spotAt(e, board))}>
         <Art board={board} />
+        {/* A led-out dot's line to its place, under the dots. */}
+        {board.spots.filter((s) => s.to).map((s) => (
+          <g key={`${s.key}-to`} aria-hidden="true" stroke="var(--text-dim)" strokeWidth={r / 6}>
+            <line x1={s.x} y1={s.y} x2={s.to[0]} y2={s.to[1]} />
+            <circle cx={s.to[0]} cy={s.to[1]} r={r / 3} fill="var(--text-dim)" />
+          </g>
+        ))}
+        {/* After the misses run out, a ring around the place being asked for. */}
+        {!exploring && ask && game.misses >= SHOW_AFTER && (() => {
+          const s = board.spots.find((spot) => spot.key === ask.key)
+          return s && <circle aria-hidden="true" cx={s.x} cy={s.y} r={r * 2.2} fill="none" stroke="var(--success)"
+            strokeWidth={r / 3} strokeDasharray={`${r} ${r / 2}`} className="pointer-events-none" />
+        })()}
         {/* Areas first, so a dot inside an area (a bed in the bedroom) is tapped over it. */}
         {[...board.spots].sort((a, b) => Boolean(b.area) - Boolean(a.area)).map((s) => {
           const i = board.spots.indexOf(s)
@@ -151,8 +172,8 @@ export function Board({ board, step = 'test' }) {
       </svg>
       {!exploring && <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="type-small text-[var(--text-dim)]">
-          {game.wrong && tappedSpot && <>That is <ArabicText as="span" size="base">{tappedSpot.words[0].arabic}</ArabicText> ({tappedSpot.words[0].english}). </>}
-          {Math.min(game.at, game.queue.length)} of {game.queue.length} · {game.slips} {game.slips === 1 ? 'slip' : 'slips'}
+          {/* Counted in words: a place can hold two ("husband" and "brother-in-law"). */}
+          {Math.min(game.at, game.queue.length)} of {game.queue.length} words · {game.slips} {game.slips === 1 ? 'slip' : 'slips'}
         </span>
         {done && <SmallButton onClick={() => setGame(fresh(board))}>Play again</SmallButton>}
       </div>}

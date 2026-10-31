@@ -7,7 +7,8 @@
  *   [x, y]           a dot on the drawing (a person's head, a piece of furniture)
  *   [x, y, w, h]     an area to tap (a room, the garden)
  * `also` sends more words to a spot that means them too, so "inside" is answered on
- * the "in" panel. A panel board lays its panels out in a grid, only those the topic
+ * the "in" panel. `lead` moves a dot out to [x, y] when its place is too crowded to
+ * tap, and a line runs from the dot to the place. A panel board lays its panels out in a grid, only those the topic
  * teaches, in the order written; words/picture/SceneArt.jsx draws each one.
  * Move a part of a drawing there and move its spot here.
  */
@@ -113,10 +114,15 @@ const wordsAt = (key, also, byId) =>
 const spotOf = (key, [x, y, w, h], words) =>
   (w ? { key, x: x + w / 2, y: y + h / 2, area: [x, y, w, h], words } : { key, x, y, words })
 
+// A led spot's dot stands where `lead` puts it, pointing at its place (`to`).
+const ledOut = (spot, lead) => (lead ? { ...spot, x: lead[0], y: lead[1], to: [spot.x, spot.y] } : spot)
+
 /** A drawn board with only the spots this topic's words fill. */
-export const sceneBoard = ({ spots, also = {}, ...board }, byId) => ({
+export const sceneBoard = ({ spots, also = {}, lead = {}, ...board }, byId) => ({
   ...board,
-  spots: Object.entries(spots).map(([key, at]) => spotOf(key, at, wordsAt(key, also, byId))).filter((s) => s.words.length),
+  spots: Object.entries(spots)
+    .map(([key, at]) => ledOut(spotOf(key, at, wordsAt(key, also, byId)), lead[key]))
+    .filter((s) => s.words.length),
 })
 
 /** A panel board laid out in rows, only the panels this topic's words fill, each keeping its place in the set. */

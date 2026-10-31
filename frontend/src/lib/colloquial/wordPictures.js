@@ -20,9 +20,12 @@ const BODY = [
     id: 'face', label: 'Face', art: 'face', view: [0, 0, 240, 300],
     spots: {
       hair: [154, 40], forehead: [120, 80], eyebrow: [88, 98], eye: [152, 120], ear: [201, 142],
-      nose: [120, 152], cheek: [170, 168], mouth: [84, 188], tooth: [120, 188], tongue: [120, 204],
-      lip: [120, 217], chin: [120, 233], beard: [188, 200], neck: [120, 272],
+      nose: [120, 152], cheek: [170, 168], mouth: [156, 188], tooth: [110, 187], tongue: [120, 204],
+      lip: [128, 214], chin: [120, 233], beard: [188, 200], neck: [120, 272],
     },
+    // The mouth's parts sit too close to tap apart: their dots stand out to the side,
+    // each on a thin line to its place.
+    lead: { tooth: [20, 180], tongue: [20, 212], lip: [222, 236] },
   },
   {
     id: 'figure', label: 'Body', art: 'figure', view: [0, 0, 240, 400],
