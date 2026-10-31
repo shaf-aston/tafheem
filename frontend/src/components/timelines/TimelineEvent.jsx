@@ -15,6 +15,7 @@ import { useMemo, useState } from 'react'
 
 import ArabicText from '../ui/text/ArabicText'
 import { useInView } from '../../lib/motion/useInView'
+import { useHeaderHeight } from '../../lib/shell/headerHeight'
 import Chip from '../ui/inputs/Chip'
 import TopicIcon from '../ui/display/TopicIcon'
 import TimelineHadith from './TimelineHadith'
@@ -42,9 +43,9 @@ export default function TimelineEvent({ section, event, library, accent, onGo, h
   // first prints its words and the rest keep their number alone.
   const prints = useMemo(() => printedBy(event), [event])
   const refs = event.refs ?? []
-  // The header counts as gone once it is under the app's own pinned header.
-  const [margin] = useState(() => `-${parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0}px 0px 0px 0px`)
-  const [head, headInView] = useInView({ once: false, margin })
+  // The header counts as gone once it is under the app's own pinned header,
+  // however tall that is now (it rewraps on a resize).
+  const [head, headInView] = useInView({ once: false, margin: `-${useHeaderHeight()}px 0px 0px 0px` })
   const year = event.when ?? event.hijri
 
   return (

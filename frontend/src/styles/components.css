@@ -225,7 +225,7 @@ dialog::backdrop {
     var(--surface) 75%
   );
   background-size: 200% 100%;
-  animation: shimmer calc(1.4s * var(--motion-scale)) infinite;
+  animation: shimmer calc(var(--loop-shimmer-ms) * var(--motion-scale) * 1ms) infinite;
   border-radius: var(--radius-sm);
 }
 
@@ -240,7 +240,7 @@ dialog::backdrop {
   --ink-ms: calc(var(--motion-ink-ms) * var(--motion-scale) * 1ms);
   position: relative;
   width: min(16rem, 70%);
-  height: 2rem;
+  height: 1.5rem; /* the h-6 bar it stands in for, so the placeholder keeps its height */
 }
 .ink-line-trail {
   position: absolute;
@@ -320,6 +320,11 @@ dialog::backdrop {
   display: inline-block;
   line-height: var(--gloss-box);
   border-radius: var(--radius-sm);
+  /* transform is the lift card below: the word rises as its gloss springs out. */
+  transition:
+    color calc(var(--motion-instant-ms) * 1ms) ease,
+    background calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
 }
 
 
@@ -394,12 +399,6 @@ dialog::backdrop {
    out beneath it (the springing is the gloss's transform above), so the pair
    reads as one card picked up off the line. Small on purpose: the line has to
    stay readable around it. */
-.gloss-word {
-  transition:
-    color calc(var(--motion-instant-ms) * 1ms) ease,
-    background calc(var(--motion-instant-ms) * 1ms) ease,
-    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
-}
 .surah-row:not(:active) .gloss-word[data-gloss]:hover,
 .surah-row:not(:active) .gloss-word[data-gloss]:focus-visible {
   transform: translateY(-2px);
@@ -848,13 +847,14 @@ button.tile:hover { border-color: var(--c); }
   position: absolute;
   top: 0;
   left: 0;
+  width: 100px; /* TabStrip's LINE_PX: scaleX stretches it to the tab, so the glide is transform only */
   height: 2px;
   border-radius: 999px;
   background: var(--c);
+  transform-origin: 0 0;
   pointer-events: none;
   transition:
     transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
-    width calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
     background-color calc(var(--motion-spring-ms) * 1ms) ease;
 }
 
@@ -884,18 +884,26 @@ button.tile:hover { border-color: var(--c); }
    many: it sits in the middle of its column, level with the marks (the buttons' pt-2),
    and glides from one to the next with the settle curve, its colour easing into the new tab's. */
 .bottom-nav-pill {
+  /* One column wide, so moving it a whole column is translate: 100% (transform only,
+     no layout per frame); the pill shape is centred inside it. */
   position: absolute;
   top: 0.5rem;
-  left: calc((var(--at) + 0.5) * 100% / var(--of));
-  width: 3.25rem;
+  left: 0;
+  width: calc(100% / var(--of));
   height: 1.75rem;
+  translate: calc(var(--at) * 100%) 0;
+  pointer-events: none;
+  transition: translate calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
+}
+.bottom-nav-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 3.25rem;
   translate: -50% 0;
   border-radius: 999px;
   background: color-mix(in srgb, var(--c) 18%, transparent);
-  pointer-events: none;
-  transition:
-    left calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
-    background-color calc(var(--motion-spring-ms) * 1ms) ease;
+  transition: background-color calc(var(--motion-spring-ms) * 1ms) ease;
 }
 
 
@@ -903,6 +911,7 @@ button.tile:hover { border-color: var(--c); }
    so the eye lands where the pill does. */
 .bottom-nav-on {
   --rise-y: 4px;
+  --rise-blur: 0px;
   --rise-from: 1;
   animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
 }
@@ -924,6 +933,7 @@ button.tile:hover { border-color: var(--c); }
   color: var(--text);
   text-align: center;
   box-shadow: var(--shadow-pop);
+  --rise-blur: 0px;
   animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease) both;
   transition: background-color calc(var(--motion-instant-ms) * 1ms), color calc(var(--motion-instant-ms) * 1ms);
 }
@@ -1093,7 +1103,7 @@ button.tile:hover { border-color: var(--c); }
 .xp-done { color: var(--text-dim); }
 .xp-done .xp-dot { background: var(--xp-tone); border-color: var(--xp-tone); }
 .xp-now { color: var(--text); }
-.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse 1.6s ease-in-out infinite; }
+.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse calc(var(--loop-pulse-ms) * var(--motion-scale) * 1ms) ease-in-out infinite; }
 @keyframes xp-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--xp-tone) 25%, transparent); } }
 @media (prefers-reduced-motion: reduce) {
   .xp-bar > span, .xp-step, .xp-now .xp-dot { animation: none; }
