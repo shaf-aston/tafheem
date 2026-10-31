@@ -2,7 +2,7 @@
 import { useLessonWorld } from './useLessonWorld'
 import { SOURCE_URL, hadithCards, keyOfHadith } from './hadithLesson'
 
-async function load() {
+export async function load() {
   const response = await fetch(SOURCE_URL)
   if (!response.ok) throw new Error(`Could not load the hadith (${response.status})`)
   const { hadiths } = await response.json()
