@@ -8427,7 +8427,7 @@
           "title": "Describing Words",
           "section": "Describing",
           "phrases": [],
-          "words": ["long", "round", "straight", "sharp", "smooth", "rough", "deep", "shallow", "narrow", "quiet", "loud", "audible", "faint", "awake", "asleep", "healthy", "tidy", "messy", "hidden", "temporary", "permanent", "famous", "popular", "common", "rare", "special", "normal", "modern", "public", "private", "general", "main", "official", "personal", "international", "foreign", "false", "fake", "simple", "complicated", "necessary", "useful", "similar"]
+          "words": ["deep", "shallow", "narrow", "quiet", "loud", "audible", "faint", "awake", "asleep", "healthy", "tidy", "messy", "hidden", "temporary", "permanent", "famous", "popular", "common", "rare", "special", "normal", "modern", "public", "private", "general", "main", "official", "personal", "international", "foreign", "false", "fake", "simple", "complicated", "necessary", "useful", "similar"]
         },
         {
           "lesson": "lesson-02",
@@ -8438,13 +8438,20 @@
         },
         {
           "lesson": "lesson-03",
+          "title": "Colours, Shapes and Materials",
+          "section": "Describing",
+          "phrases": [],
+          "words": ["red", "blue", "orange", "pink", "brown", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "thick", "thin-not-thick", "sharp", "smooth", "rough", "hard", "soft", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric"]
+        },
+        {
+          "lesson": "lesson-04",
           "title": "Feelings",
           "section": "Feelings and character",
           "phrases": [],
           "words": ["happy", "sad", "angry", "upset", "scared", "worried", "bored", "lonely", "embarrassed", "excited", "proud", "shy", "relaxed", "jealous", "surprised", "amazed", "shocked", "nervous", "confused", "curious", "hopeful", "optimistic", "disappointed", "desperate", "confident", "satisfied", "love", "hate", "sorrow", "pity", "envy", "shame", "regret", "longing", "relief", "to-smile", "to-laugh", "tears", "to-sigh", "to-tremble"]
         },
         {
-          "lesson": "lesson-04",
+          "lesson": "lesson-05",
           "title": "Character and Manners",
           "section": "Feelings and character",
           "phrases": [],
@@ -8465,20 +8472,27 @@
         },
         {
           "lesson": "lesson-02",
+          "title": "Clothes and Accessories",
+          "section": "The body",
+          "phrases": [],
+          "words": ["dress", "shirt", "trousers", "jeans", "skirt", "shorts", "jacket", "jumper", "coat", "suit", "uniform", "hat", "scarf", "glove", "sock", "shoe", "boots", "pocket", "button", "zip", "sleeve", "collar", "pyjamas", "underwear", "vest", "nightgown", "slippers", "sandals", "shoelace", "robe", "abaya", "thobe", "turban", "keffiyeh", "headscarf", "belt", "glasses", "necklace", "bracelet", "earring", "watch", "handbag", "tie"]
+        },
+        {
+          "lesson": "lesson-03",
           "title": "Men, Women and Relatives",
           "section": "People",
           "phrases": [],
           "words": ["man", "woman", "boy", "girl", "teenager", "adult", "old-man", "old-woman", "child", "baby", "father", "mother", "parents", "son", "daughter", "brother", "sister", "grandfather", "grandmother", "uncle-paternal", "aunt-paternal", "uncle-maternal", "aunt-maternal", "cousin", "married", "single", "stepfather", "stepmother", "son-in-law", "daughter-in-law", "fiance", "widow", "widower", "divorced", "orphan", "friend", "neighbour", "guest", "stranger", "enemy", "foreigner", "visitor", "citizen", "companion"]
         },
         {
-          "lesson": "lesson-03",
+          "lesson": "lesson-04",
           "title": "Jobs and Trades",
           "section": "People",
           "phrases": [],
           "words": ["teacher", "engineer", "nurse", "lawyer", "accountant", "journalist", "manager", "cook", "baker", "police-officer", "secretary", "merchant", "worker", "tailor", "carpenter", "mechanic", "builder", "house-painter", "barber", "cleaner", "blacksmith", "gardener", "singer", "writer", "artist", "actor", "poet", "photographer", "soldier", "judge", "firefighter", "minister", "ambassador", "student", "professor", "researcher", "scientist", "doctor", "veterinarian", "midwife", "paramedic", "guide", "flight-attendant", "porter"]
         },
         {
-          "lesson": "lesson-04",
+          "lesson": "lesson-05",
           "title": "Countries and Nationalities",
           "section": "People",
           "phrases": [],
@@ -8533,48 +8547,34 @@
       "lessons": [
         {
           "lesson": "lesson-01",
-          "title": "Colours, Shapes and Materials",
-          "section": "Looks",
-          "phrases": [],
-          "words": ["red", "blue", "orange", "pink", "brown", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "thick", "thin-not-thick", "sharp", "smooth", "rough", "hard", "soft", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric"]
-        },
-        {
-          "lesson": "lesson-02",
-          "title": "Clothes and Accessories",
-          "section": "Looks",
-          "phrases": [],
-          "words": ["dress", "shirt", "trousers", "jeans", "skirt", "shorts", "jacket", "jumper", "coat", "suit", "uniform", "hat", "scarf", "glove", "sock", "shoe", "boots", "pocket", "button", "zip", "sleeve", "collar", "pyjamas", "underwear", "vest", "nightgown", "slippers", "sandals", "shoelace", "robe", "abaya", "thobe", "turban", "keffiyeh", "headscarf", "belt", "glasses", "necklace", "bracelet", "earring", "watch", "handbag", "tie"]
-        },
-        {
-          "lesson": "lesson-03",
           "title": "Kitchen and Tableware",
           "section": "At home",
           "phrases": [],
           "words": ["pot", "frying-pan", "ladle", "plate", "bowl", "spoon", "fork", "knife", "glass-cup", "cup", "oven", "kitchen", "tap", "cooker", "dishes", "fridge", "cupboard", "table", "cutting-board", "colander", "grater", "peeler", "whisk", "tongs", "lid", "can-opener", "kettle", "stove", "blender", "microwave", "toaster", "freezer", "dishwasher", "tablecloth", "teaspoon", "straw", "toothpick", "salt-shaker", "sugar-bowl", "jar", "tin", "lunch-box", "water-bottle"]
         },
         {
-          "lesson": "lesson-04",
+          "lesson": "lesson-02",
           "title": "Tools and Hardware",
           "section": "At home",
           "phrases": [],
           "words": ["scissors", "adhesive-tape", "saw", "drill", "spanner", "axe", "shovel", "pliers", "measuring-tape", "chisel", "screw", "hammer", "nail", "screwdriver", "ladder", "toolbox", "bulb", "rope", "chain", "wire", "thread", "needle", "hook", "bucket", "broom", "mop", "sponge", "hose", "wood", "iron", "metal", "paint", "cement", "brick", "wall", "ceiling", "garage", "heater", "toilet", "fence", "socket", "plug", "switch", "cable"]
         },
         {
-          "lesson": "lesson-05",
+          "lesson": "lesson-03",
           "title": "School and Office Things",
           "section": "Out and about",
           "phrases": [],
           "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "encyclopedia", "paper", "envelope", "school-bag", "ruler", "scissors", "glue", "adhesive-tape", "stapler", "paper-clip", "folder", "calculator", "calendar", "printer", "bell", "desk", "chair", "table", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket"]
         },
         {
-          "lesson": "lesson-06",
+          "lesson": "lesson-04",
           "title": "City, Roads and Vehicles",
           "section": "Out and about",
           "phrases": [],
           "words": ["car", "bus", "taxi", "motorbike", "bicycle", "truck", "helicopter", "tractor", "train", "ship", "tyre", "road", "traffic-light", "roundabout", "engine", "wheel", "steering-wheel", "brake", "seatbelt", "car-horn", "windscreen", "headlight", "fuel", "tunnel", "highway", "pavement", "junction", "pedestrian-crossing", "parking", "driving-licence", "city", "street", "bridge", "port", "capital", "building", "tower", "skyscraper", "factory", "fountain", "court", "prison", "cemetery"]
         },
         {
-          "lesson": "lesson-07",
+          "lesson": "lesson-05",
           "title": "Sport and Games",
           "section": "Out and about",
           "phrases": [],
