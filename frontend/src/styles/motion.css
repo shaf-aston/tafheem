@@ -209,6 +209,22 @@
 .slide-prev { --slide-from: calc(var(--motion-slide-px) * -1px); }
 
 
+/* A tab opening slides in from the side of the bar it was tapped on, so the
+   page moves the way the finger did (lib/motion/tabSide.js sets data-side).
+   The same slide-in, a third of the distance: a whole page travelling 40px
+   reads as a lurch, where a small step reads as a turn of the page. */
+#tabpanel[data-side] > .fade-in {
+  --slide-from: calc(var(--motion-slide-px) * var(--tab-side) * 1px / 3);
+  animation: slide-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) backwards;
+}
+
+
+#tabpanel[data-side='next'] { --tab-side: 1; }
+
+
+#tabpanel[data-side='prev'] { --tab-side: -1; }
+
+
 /* The same step backwards, going the way it came: worn beside .slide-next or
    .slide-prev, which say the side. Its own keyframes, since the browser does
    not replay a running animation only turned round. `forwards` holds it gone

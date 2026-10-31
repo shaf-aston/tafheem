@@ -8,6 +8,8 @@ import { moodFrom } from './lib/shell/mood'
 import { TOOLS } from './lib/nav/tools'
 import { useTabNavigation } from './lib/nav/useTabNavigation'
 import { useTools } from './lib/nav/useTools'
+import { PHONE, useMedia } from './lib/hooks/useMedia'
+import { useTabSide } from './lib/motion/tabSide'
 
 import Backdrop from './components/shell/Backdrop'
 import BackendBanner from './components/shell/BackendBanner'
@@ -52,6 +54,9 @@ function AppContent() {
   const tools = useTools(TOOLS, switchTab)
   const { status } = useHealth()
   const accent = accentOf(activeTab)
+  // A new tab slides in from the side of the bar it was tapped on (styles/motion.css #tabpanel[data-side]).
+  const phone = useMedia(PHONE)
+  const side = useTabSide(activeTab, phone ? dock : strip.map((tab) => tab.id))
 
   // Every tab's opening data, fetched once the page is idle, one tab at a time
   // so a tab pressed meanwhile is not queued behind all the others (lib/api/warm).
@@ -164,7 +169,7 @@ function AppContent() {
       {/* The tabpanel role sits on the inner element, not on <main>: overriding
           main's own role would leave the page with no main landmark to skip to. */}
       <main id="main" tabIndex={-1} className="shell pt-4 pb-8 sm:pt-5 glass pane-fill rounded-[var(--radius-lg)] focus:outline-none">
-        <div role="tabpanel" id="tabpanel" aria-labelledby={`tab-${activeTab}`}>
+        <div role="tabpanel" id="tabpanel" data-side={side ?? undefined} aria-labelledby={`tab-${activeTab}`}>
           {/* The last few tabs stay alive, hidden (React's Activity): a switch
               back shows the panel as it was, with no fetch, no fade and no
               cards rising again (TabPane). A switch used to tear the panel down

@@ -805,12 +805,34 @@ button.tile:hover { border-color: var(--c); }
   width: 3.25rem;
   height: 1.75rem;
   border-radius: 999px;
-  transition: background-color calc(var(--motion-base-ms) * 1ms) ease;
 }
 
 
+/* The pill behind the tab that is on (shell/BottomNav). --at is which place, --of how
+   many: it sits in the middle of its column, level with the marks (the buttons' pt-2),
+   and glides from one to the next with the settle curve, its colour easing into the new tab's. */
+.bottom-nav-pill {
+  position: absolute;
+  top: 0.5rem;
+  left: calc((var(--at) + 0.5) * 100% / var(--of));
+  width: 3.25rem;
+  height: 1.75rem;
+  translate: -50% 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c) 18%, transparent);
+  pointer-events: none;
+  transition:
+    left calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+    background-color calc(var(--motion-spring-ms) * 1ms) ease;
+}
+
+
+/* The mark on the pill rises a few px as it arrives (the shared rise-in, with a spring),
+   so the eye lands where the pill does. */
 .bottom-nav-on {
-  background: color-mix(in srgb, currentColor 18%, transparent);
+  --rise-y: 4px;
+  --rise-from: 1;
+  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
 }
 
 /* Holding the current tab: Top, Back, Bottom rise above the thumb (lib/jumpFan.js). */
