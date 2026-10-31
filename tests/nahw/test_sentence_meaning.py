@@ -25,8 +25,8 @@ def _word(word, pos, state="na", gloss=""):
 
 
 def test_camel_gloss_reads_as_english() -> None:
-    assert sentence_meaning.literal("and+write+he;it_<verb>") == "and write he/it"
-    assert sentence_meaning.literal("the+child;son;boy+[def.gen.]") == "the child/son"
+    assert sentence_meaning.literal("and+write+he;it_<verb>", 2) == "and write he/it"
+    assert sentence_meaning.literal("the+child;son;boy+[def.gen.]", 2) == "the child/son"
 
 
 @pytest.mark.parametrize("summary, read, kind", [

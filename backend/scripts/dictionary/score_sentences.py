@@ -48,6 +48,7 @@ from pathlib import Path
 
 from backend.services import ai
 from backend.services.dictionary import sentence_meaning
+from backend.services.dictionary import service as dictionary_service
 from backend.services.learner import progress_store
 from backend.services.quran import search as quran_search
 from backend.services.text.arabic_text import words
@@ -64,7 +65,7 @@ LOWER = ("junk", "broke")
 _JUNK_RE = re.compile(r"(^|\s)(N\.|\[[^\]]*\]|<[^>]*>)(\s|$)")
 # Words too small to say whether two English renderings agree.
 _FILLER = {"a", "an", "the", "of", "is", "are", "be", "was", "were", "to", "it", "and", "you", "i"}
-_SIZE = {"fusha": 600, "nahw": 400}
+_FUSHA, _TOTAL = 600, 1000  # the rest of the total is Nahw's
 _NAHW_SETS = ("hadith_sentences", "exam_sentences", "blind_sentences", "fresh_sentences", "checked_sentences")
 
 
@@ -76,23 +77,23 @@ def content(english: str) -> set[str]:
 
 @contextmanager
 def offline():
-    """The language model stood in for, the store a throwaway file, and the Qur'an's index
-    left out, all put back afterwards.
-
-    The index is gitignored, so with it the same set would score one way here and another
-    in CI; the Qur'an paths are scored by score_quran instead. The stand-in model records
-    the facts it was handed, so the prompt's shape is scored too."""
+    """The model stood in for (recording the facts it is handed), the store a throwaway file, and
+    the gitignored Qur'an index and dictionary left out, so a laptop and CI score alike; all put
+    back afterwards. The Qur'an paths are scored by score_quran instead."""
     handed: list[str] = []
-    real = ai.translate_sentence, progress_store.data_path, quran_search.whole_ayah, quran_search.ayah_run
+    real = (ai.translate_sentence, progress_store.data_path, quran_search.whole_ayah, quran_search.ayah_run,
+            dictionary_service.meaning_of)
     with tempfile.TemporaryDirectory() as folder:
         ai.translate_sentence = lambda text, facts: handed.append(facts) or {"english": "-"}
         progress_store.data_path = lambda _name: Path(folder) / "progress.db"
         quran_search.whole_ayah = quran_search.ayah_run = lambda _text: None
+        dictionary_service.meaning_of = lambda _word: ""
         progress_store.reset_connection()
         try:
             yield handed
         finally:
-            ai.translate_sentence, progress_store.data_path, quran_search.whole_ayah, quran_search.ayah_run = real
+            (ai.translate_sentence, progress_store.data_path, quran_search.whole_ayah, quran_search.ayah_run,
+             dictionary_service.meaning_of) = real
             progress_store.reset_connection()
 
 
@@ -188,14 +189,14 @@ def write_set() -> None:
         fusha += [{"ar": p["arabic"], "en": english[p["slot"]], "from": f"fusha/{unit['unit']}/{p['slot']}"}
                   for lesson in unit["lessons"] for p in lesson.get("phrases", [])
                   if p["slot"] in english and len(words(p["arabic"])) >= 2]
-    fusha = (fusha[::2] + fusha[1::2])[:_SIZE["fusha"]]  # the rest of the total is Nahw's
+    fusha = (fusha[::2] + fusha[1::2])[:_FUSHA]
     nahw = []
     for name in _NAHW_SETS:
         rows = json.loads((DATA / "nahw_rules" / f"{name}.json").read_text(encoding="utf-8"))
         nahw += [{"ar": r["sentence"], "from": f"{name}/{r.get('id', n)}"} for n, r in enumerate(rows)]
     seen, inputs = set(), []
     for entry in fusha + nahw:  # each text once, to the total
-        if entry["ar"] not in seen and len(inputs) < sum(_SIZE.values()):
+        if entry["ar"] not in seen and len(inputs) < _TOTAL:
             seen.add(entry["ar"])
             inputs.append(entry)
     import sqlite3
@@ -205,8 +206,13 @@ def write_set() -> None:
     about = ("The dictionary's sentence yardstick; see backend/scripts/dictionary/score_sentences.py. "
              "Rebuilt with --write-set, never edited by hand.")
     SET.parent.mkdir(parents=True, exist_ok=True)
-    SET.write_text(json.dumps({"_about": about, "inputs": inputs, "quran": [keys[n * len(keys) // 400] for n in range(400)]},
-                              ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    quran = [keys[n * len(keys) // 400] for n in range(400)]
+    line = lambda value: json.dumps(value, ensure_ascii=False)  # noqa: E731
+    SET.write_text(f'{{"_about": {line(about)},\n "inputs": [\n  '
+                   + ",\n  ".join(map(line, inputs))
+                   + '\n ],\n "quran": [\n  '
+                   + ",\n  ".join(line(quran[n:n + 20])[1:-1] for n in range(0, 400, 20))
+                   + "\n ]}\n", encoding="utf-8")
     print(f"Wrote {SET}: {len(inputs)} inputs, 400 ayahs")
 
 
@@ -220,8 +226,6 @@ def worse(now: dict, baseline: dict) -> list[str]:
                 continue
             if (name in HIGHER and got < was) or (name in LOWER and got > was):
                 found.append(f"{part}.{name}: {got}, was {was}")
-    if (now.get("set") or {}).get("broke"):
-        found.append(f"set.broke: {now['set']['broke']} inputs raised")
     return found
 
 
@@ -242,7 +246,8 @@ def main() -> int:
         now["quran"] = quran
     print(json.dumps(now, indent=1))
     if args.save_baseline:
-        kept = {part: {k: v for k, v in counts.items() if k in HIGHER + LOWER} for part, counts in now.items()}
+        kept = json.loads(BASELINE.read_text(encoding="utf-8")) if BASELINE.exists() else {}  # parts not rescored stay
+        kept |= {part: {k: v for k, v in counts.items() if k in HIGHER + LOWER} for part, counts in now.items()}
         BASELINE.write_text(json.dumps(kept, indent=1) + "\n", encoding="utf-8")
         print(f"Wrote {BASELINE}")
     if args.check:

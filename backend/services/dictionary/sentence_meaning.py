@@ -6,13 +6,11 @@ The words come from the grammar on this machine, every time, in milliseconds:
 the i'rab reading's own analysis of each word (the one the Nahw tab shows), so
 the two pages cannot disagree; CAMeL alone when the parser is not installed.
 The sense comes from the surest source that has one. A whole ayah has its
-published translation and the Qur'an's own word-by-word. A run of words from
-inside one ayah keeps the grammar's rows but takes the Qur'an's word-by-word
-English for them. Anything else goes to the language model, handed those facts
-and asked for one English sentence; the English it is handed is candidates out
-of context, for it to choose among, and it never changes a word's row. A model
-answer is filed on disk, so the same text asks once and reads the same each
-time, on every server process.
+published translation and the Qur'an's own word-by-word; a run of words from
+inside one takes that word-by-word English onto the grammar's rows. Anything
+else goes to the language model, handed those facts (each word's senses as
+candidates) and asked for one English sentence. It never changes a row. A model
+answer is filed on disk, so the same text asks once, on every server process.
 """
 from __future__ import annotations
 
@@ -38,20 +36,17 @@ _TAGS_RE = re.compile(r"\[[^\]]*\]|<[^>]*>")
 # The word every clause's name opens with (data/nahw_rules/tarkeeb.json).
 _CLAUSE = term_ar("jumlah_ismiyyah").split()[0]
 # Where a model's sense is filed (progress_store), so every server process reads the first one kept.
-# A new question name, not a new module: answers filed under an older prompt ("meaning" with word
-# picks, "meaning2" told every gloss was settled) are never reused. Change it with SENTENCE_USER.
+# Renamed whenever SENTENCE_USER changes, so answers filed under an older prompt are never reused.
 # "arabic" is the other direction's answer, filed the same way.
 _KEPT, _QUESTION, _ARABIC = "dict", "meaning3", "arabic"
 
 
-def literal(gloss: str, senses: int | None = None) -> str:
-    """CAMeL's gloss as English: each joined piece's first `senses` senses (the
-    reader's setting when not given), tags dropped.
+def literal(gloss: str, senses: int) -> str:
+    """CAMeL's gloss as English: each joined piece's first `senses` senses, tags dropped.
 
     and+write+he;it_<verb> reads "and write he/it"; the+child;son reads "the
     child/son". More than one sense shows the choice rather than guessing it.
     """
-    senses = senses or get_settings().sentence_senses
     pieces = ("/".join(_TAGS_RE.sub("", piece).split(";")[:senses]).replace("_", " ").strip() for piece in gloss.split("+"))
     return " ".join(piece for piece in pieces if piece)
 
@@ -134,14 +129,9 @@ def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:
 
 
 def _ayah_words(text: str, pairs: list[dict]) -> dict | None:
-    """The grammar's rows with the Qur'an's own word-by-word English, when the text is a
-    run of words from inside one ayah (quran_search.ayah_run), and the ayah it was found in.
-
-    None when it is not, or when the rows and the run disagree in count, or the
-    published English is missing a word: then CAMeL's English stands rather than
-    English landing under the wrong word. Only the English changes; the role and
-    case are still the grammar's.
-    """
+    """The grammar's rows with the Qur'an's word-by-word English when the text is a run from
+    inside one ayah, and that ayah. None on any count mismatch or missing English, so English
+    never lands under the wrong word; roles and cases stay the grammar's."""
     if (found := quran_search.ayah_run(text)) is None:
         return None
     hit, start = found
@@ -198,8 +188,7 @@ def _model_sense(text: str, rows: list[dict], words_source: str = "camel", ref: 
 
 
 def _facts(pairs: list[dict]) -> str:
-    """One line per word: what the grammar read, and the English senses it may have, wider
-    than the reader's word-by-word, so the model can choose the one the sentence needs."""
+    """One line per word: what the grammar read, and its English senses for the model to choose from."""
     return "\n".join(
         f"{n}. {p['arabic']} — {p['lemma'] or p['base']} ({p['pos'] or '-'}, {p['role'] or '-'}, {p['case'] or '-'}): "
         f"{p.get('senses') or p['english'] or '-'}" for n, p in enumerate(pairs, 1))

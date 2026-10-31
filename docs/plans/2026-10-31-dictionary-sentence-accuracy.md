@@ -70,15 +70,15 @@ Measured on 613 Qur'an ayahs (gold: the Qur'an's own word-by-word English) and 1
 
 ## 6 · Results
 
-The set (Qur'an index left out so CI and a laptop score alike; model stood in for):
+The set (Qur'an index and dictionary left out, both gitignored, so CI and a laptop score alike; model stood in for):
 
 | Count | Value |
 |---|---|
 | inputs / broke | 1000 / 0 |
 | aligned (row per word) | 1000 |
-| rows with English | 3600 of 3615 |
+| rows with English | 3593 of 3615 |
 | junk tags | 0 |
-| Fusha English covered | 1363 of 2446 content words (55.7%) |
+| Fusha English covered | 1361 of 2446 content words (55.6%) |
 | read time | p50 144 ms, p95 540 ms |
 
 Qur'an part (local only, needs meanings.db and the index): 400 ayahs, rows matching the Qur'an's English

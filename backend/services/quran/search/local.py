@@ -78,24 +78,16 @@ def whole_ayah(query: str) -> Hit | None:
     return best[1] if whole else None
 
 
-# Letters a typist and the Qur'an's own spelling disagree on most: the hamza's seat
-# and the long alif (خاسئين / خٰسِـِٔين, وآتوا / وءاتوا). Left out inside a word when two
-# words are compared position by position, never when the index is asked. A word's
-# first letter is kept, as one alif when it is any of these: dropping it made لينا
-# (a name) the Qur'an's إلينا, and "I'm Lina" read as "Indeed, to Us".
+# Where a typist and the Qur'an's spelling differ most: hamza seats and long alif (وآتوا / وءاتوا).
+# ayah_run drops them inside a word but keeps a first letter, as one alif, so لينا is never إلينا.
 _SEATS_RE = re.compile("[ءأإآئؤا]")
 _HAMZA_RE = re.compile("[ءأإآئؤ]")
 
 
 def ayah_run(query: str) -> tuple[Hit, int] | None:
-    """The ayah holding the query's words as one run, in order, and the number of
-    the run's first word there (1-based, as meanings.db counts), or None.
-
-    Two words or more, every one of them matched whole, so a typed sentence that
-    only shares words with an ayah is not taken for part of it. Asked of the index
-    as "every word present", which answers in well under a millisecond when no
-    ayah has them, so sentences that are not the Qur'an's cost nothing here.
-    """
+    """The ayah holding the query's words (two or more, each whole) as one run in order, and the
+    run's first word number there (1-based, as meanings.db counts); else None. The index is asked
+    for "every word present" first, so text that is not the Qur'an's costs well under a millisecond."""
     wanted = [_key(w) for w in words(query)]
     wanted = [w for w in wanted if w]
     conn = _db()
@@ -118,8 +110,7 @@ def ayah_run(query: str) -> tuple[Hit, int] | None:
 
 
 def _key(word: str) -> str:
-    """One word as ayah_run compares it: folded, letters only, its first letter an alif when it
-    is a hamza or alif, and no hamza seat or alif after it."""
+    """A word as ayah_run compares it: folded letters, a first hamza or alif as alif, none after."""
     word = _NOT_LETTERS_RE.sub("", spelling.fold(word))
     return _SEATS_RE.sub("ا", word[:1]) + _SEATS_RE.sub("", word[1:])
 

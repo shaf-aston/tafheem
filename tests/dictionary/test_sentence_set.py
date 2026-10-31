@@ -4,6 +4,8 @@ the model once, and no count falls below its baseline. The scoring itself is
 backend/scripts/dictionary/score_sentences.py, the same one a person runs by hand."""
 from __future__ import annotations
 
+import json
+
 import pytest
 
 from backend.scripts.dictionary import score_sentences as yardstick
@@ -24,15 +26,9 @@ def test_the_set_is_a_thousand_texts_each_once():
     assert len({e["ar"] for e in inputs}) == 1000
 
 
-def test_no_input_breaks_and_every_one_lines_up(scored):
-    assert scored["broke"] == 0
-    assert scored["aligned"] == scored["inputs"] == 1000
-    assert scored["facts"] == scored["inputs"]
-
-
 def test_no_count_falls_below_its_baseline(scored):
-    import json
-
+    """The baseline holds broke 0, aligned 1000 and facts 1000, so this is also: nothing breaks,
+    every input has a row per typed word and a prompt line per row."""
     baseline = json.loads(yardstick.BASELINE.read_text(encoding="utf-8"))
     assert yardstick.worse({"set": scored}, {"set": baseline["set"]}) == []
 
