@@ -10,7 +10,9 @@ pytestmark = needs_parser
 
 
 @pytest.mark.parametrize("sentence, inside", [
-    ("كُوبٌ كَبِيرٌ مِنَ الْقَهْوَةِ", ["موصوف", "صفة"]),
+    # not كُوبٌ كَبِيرٌ مِنَ الْقَهْوَةِ: مِن on a measure brings its tamyeez (roles.json understood.measured),
+    # so that phrase is the khabar of an unwritten هذا (test_phrase_alone), with no ثابت beside it
+    ("رَجُلٌ كَرِيمٌ فِي الدَّارِ", ["موصوف", "صفة"]),
     ("كِتَابُ الطَّالِبِ فِي الْبَيْتِ", ["مضاف", "مضاف إليه"]),
 ])
 def test_a_mubtada_unit_beside_an_unwritten_khabar_is_named_mubtada(sentence, inside):

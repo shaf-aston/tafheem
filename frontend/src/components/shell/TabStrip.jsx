@@ -2,7 +2,7 @@
  * The row of tabs under the header. Draws the list it is given, decides nothing:
  * which tab is active and what switching does belong to the caller.
  */
-import { useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 
 import { ahead } from '../../lib/api/warm'
 import ArabicText from '../ui/text/ArabicText'
@@ -12,8 +12,42 @@ import KeyHint from './KeyHint'
 // The first `fixed` tabs always show; the rest wait for md. The open tab always shows.
 const tierClass = (i, fixed) => (i < fixed ? '' : 'hidden md:block')
 
+// The underline's own width in px (styles/components.css .tab-glide); scaleX stretches it to each tab.
+const LINE_PX = 100
+
 export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll, onHover, hint = false }) {
   const list = useRef(null)
+  const line = useRef(null)
+  const placed = useRef(false)
+  // One underline for the whole strip, gliding to the open tab rather than going
+  // out under one and lighting under the next. Measured after layout, and again
+  // when the strip rewraps; written straight to its style, so a resize costs no render.
+  // Moved and stretched by transform alone (.tab-glide is LINE_PX wide, scaled to the
+  // tab), so a glide never lays the page out again. The first placement lands without
+  // a glide: measuring draws the line once at the strip's corner, and it used to fly
+  // in from there on every page load.
+  useLayoutEffect(() => {
+    const strip = list.current
+    const place = () => {
+      const tab = strip?.querySelector('[aria-selected="true"]')
+      const el = line.current
+      if (!el) return
+      el.style.opacity = tab ? '1' : '0'
+      if (!tab) return
+      const first = !placed.current
+      if (first) el.style.transition = 'none'
+      el.style.transform = `translate(${tab.offsetLeft + 4}px, ${tab.offsetTop + tab.offsetHeight - 1}px) scaleX(${(tab.offsetWidth - 8) / LINE_PX})`
+      if (first) {
+        void el.offsetWidth
+        el.style.transition = ''
+        placed.current = tab.offsetWidth > 0
+      }
+    }
+    place()
+    const watch = new ResizeObserver(place)
+    watch.observe(strip)
+    return () => watch.disconnect()
+  }, [active, tabs])
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
     // auto too, and the 1px underline below the strip would then raise a
@@ -61,16 +95,12 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
               <ArabicText className="text-[var(--text-faint)] ml-1.5 hidden xl:inline">
                 {tab.arabic}
               </ArabicText>
-              {/* The lit underline. Its glow is the shared .glow utility, the
-                  same recipe as every other glow in the app, not one of its own. */}
-              <span
-                aria-hidden="true"
-                className={`tab-line absolute inset-x-1 -bottom-px h-0.5 rounded-full ${selected ? 'glow' : ''}`}
-                style={{ background: selected ? tabAccent : 'transparent' }}
-              />
             </button>
           )
         })}
+        {/* The lit underline (see the glide above). Its glow is the shared .glow
+            utility, the same recipe as every other glow in the app. */}
+        <span ref={line} aria-hidden="true" className="tab-glide glow" style={{ '--c': colorOf(active) }} />
       </div>
       {hint && <KeyHint strip={list} />}
       <button

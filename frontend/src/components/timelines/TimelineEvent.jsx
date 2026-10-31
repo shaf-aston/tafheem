@@ -6,10 +6,16 @@
  * it is told sit behind one "Sources" pill.
  *
  * Where a reference opens is TimelineRefs, shared with those steps.
+ *
+ * The pinned year: once the header has scrolled up out of sight, the event's
+ * year and title stay pinned at the top of the screen (.tl-year-pin), so a reader
+ * deep in the steps still knows when they are.
  */
 import { useMemo, useState } from 'react'
 
 import ArabicText from '../ui/text/ArabicText'
+import { useInView } from '../../lib/motion/useInView'
+import { useHeaderHeight } from '../../lib/shell/headerHeight'
 import Chip from '../ui/inputs/Chip'
 import TopicIcon from '../ui/display/TopicIcon'
 import TimelineHadith from './TimelineHadith'
@@ -37,10 +43,19 @@ export default function TimelineEvent({ section, event, library, accent, onGo, h
   // first prints its words and the rest keep their number alone.
   const prints = useMemo(() => printedBy(event), [event])
   const refs = event.refs ?? []
+  // The header counts as gone once it is under the app's own pinned header,
+  // however tall that is now (it rewraps on a resize).
+  const [head, headInView] = useInView({ once: false, margin: `-${useHeaderHeight()}px 0px 0px 0px` })
+  const year = event.when ?? event.hijri
 
   return (
     <article className="tl-reader">
-      <header className="tl-head">
+      {year && (
+        <div className="tl-year-pin" data-on={!headInView} aria-hidden="true">
+          <div><span className="tl-year-pin-year">{year}</span><span className="tl-year-pin-title">{event.title}</span></div>
+        </div>
+      )}
+      <header ref={head} className="tl-head">
         <span className="tl-clip"><TopicIcon topic={sectionLook(section.id).icon} className="tl-ico" /></span>
         <TimelineWhere section={section} event={event} here={here} onHere={onHere} onPick={onPick} />
         <h3>{event.title}</h3>

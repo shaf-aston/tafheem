@@ -80,6 +80,19 @@
 }
 
 
+/* How blurred a rise starts: theme.json's focus-blur-px unless a place says.
+   The blur is for answers coming into focus. Controls and tips wear .crisp: a
+   tooltip, a quiz option or the tab bar's mark is read the instant it is there,
+   and a blurred one reads as a glitch. Set on the element itself (inherits: false). */
+@property --rise-blur {
+  syntax: '*';
+  inherits: false;
+}
+
+
+.crisp { --rise-blur: 0px; }
+
+
 @property --fade-from {
   syntax: '*';
   inherits: false;
@@ -87,8 +100,12 @@
 
 
 @keyframes rise-in {
-  from { opacity: var(--rise-from, var(--motion-arrive-from)); transform: translateY(var(--rise-y)) scale(var(--rise-scale)); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: var(--rise-from, var(--motion-arrive-from));
+    transform: translateY(var(--rise-y)) scale(var(--rise-scale));
+    filter: blur(var(--rise-blur, calc(var(--motion-focus-blur-px) * 1px)));
+  }
+  to   { opacity: 1; transform: none; filter: none; }
 }
 
 

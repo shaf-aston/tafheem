@@ -225,8 +225,47 @@ dialog::backdrop {
     var(--surface) 75%
   );
   background-size: 200% 100%;
-  animation: shimmer calc(1.4s * var(--motion-scale)) infinite;
+  animation: shimmer calc(var(--loop-shimmer-ms) * var(--motion-scale) * 1ms) infinite;
   border-radius: var(--radius-sm);
+}
+
+
+/* The qalam writing (ui/feedback/Skeleton InkLine): pen and line share one
+   duration and curve, so the gold appears exactly under the nib. ease-in-out,
+   not the settle curve: settle front-loads the move, and the pen darted across
+   in a third of the pass then sat still, which read as a flick, not writing. Right to left,
+   as Arabic is written. Multiplied by --motion-scale like the shimmer, so the
+   Animations setting stills it, the line then sitting whole. */
+.ink-line {
+  --ink-ms: calc(var(--motion-ink-ms) * var(--motion-scale) * 1ms);
+  position: relative;
+  width: min(16rem, 70%);
+  height: 1.5rem; /* the h-6 bar it stands in for, so the placeholder keeps its height */
+}
+.ink-line-trail {
+  position: absolute;
+  inset: auto 0 0.2rem 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to left, var(--palette-gold), color-mix(in srgb, var(--palette-gold) 40%, transparent));
+  transform-origin: right;
+  animation: ink-write var(--ink-ms) ease-in-out infinite;
+}
+.ink-line-pen {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  --c: var(--palette-gold);
+  animation: ink-pen var(--ink-ms) ease-in-out infinite;
+}
+@keyframes ink-write {
+  0% { transform: scaleX(0); opacity: 1; }
+  70% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+@keyframes ink-pen {
+  0% { right: 0; }
+  70%, 100% { right: calc(100% - 1rem); }
 }
 
 
@@ -281,9 +320,11 @@ dialog::backdrop {
   display: inline-block;
   line-height: var(--gloss-box);
   border-radius: var(--radius-sm);
+  /* transform is the lift card below: the word rises as its gloss springs out. */
   transition:
     color calc(var(--motion-instant-ms) * 1ms) ease,
-    background calc(var(--motion-instant-ms) * 1ms) ease;
+    background calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
 }
 
 
@@ -324,7 +365,6 @@ dialog::backdrop {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(-4px);
   opacity: 0;
   pointer-events: none;
   z-index: var(--layer-raised);
@@ -339,7 +379,8 @@ dialog::backdrop {
   box-shadow: var(--shadow-pop);
   transition:
     opacity calc(var(--motion-instant-ms) * 1ms) ease,
-    transform calc(var(--motion-instant-ms) * 1ms) ease;
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+  transform: translateX(-50%) translateY(-4px) scale(0.92);
 }
 
 
@@ -352,6 +393,17 @@ dialog::backdrop {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+
+/* The lift card: the word under the pointer rises a little as its gloss springs
+   out beneath it (the springing is the gloss's transform above), so the pair
+   reads as one card picked up off the line. Small on purpose: the line has to
+   stay readable around it. */
+.surah-row:not(:active) .gloss-word[data-gloss]:hover,
+.surah-row:not(:active) .gloss-word[data-gloss]:focus-visible {
+  transform: translateY(-2px);
+}
+.gloss-all .gloss-word[data-gloss] { transform: none; }
 
 
 
@@ -419,6 +471,14 @@ dialog::backdrop {
 }
 
 
+/* Picked up, it casts the same pop shadow as every .lift card; not over a glow,
+   which is its own shadow. */
+.word:not(.glow):hover,
+.word:not(.glow):focus-visible {
+  box-shadow: var(--shadow-pop);
+}
+
+
 /* The word you opened. It grows a little and lifts, so the detail panel hanging
    below it reads as belonging to a particular word rather than floating over
    the row; and the word itself comes up a shade, because the one you are
@@ -449,13 +509,6 @@ dialog::backdrop {
 /* One tab on the strip, and the lit line under the chosen one. */
 .tab-btn {
   transition: color calc(var(--motion-base-ms) * 1ms) ease;
-}
-
-
-.tab-line {
-  transition:
-    background-color calc(var(--motion-base-ms) * 1ms) ease,
-    box-shadow calc(var(--motion-base-ms) * 1ms) ease;
 }
 
 
@@ -787,6 +840,25 @@ button.tile:hover { border-color: var(--c); }
 }
 
 
+/* The desktop strip's underline (shell/TabStrip): one line that glides to the open
+   tab, stretching to its width, its colour easing into the new tab's. Placed by
+   transform from the strip's top-left corner, so a wrapped row is reached too. */
+.tab-glide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px; /* TabStrip's LINE_PX: scaleX stretches it to the tab, so the glide is transform only */
+  height: 2px;
+  border-radius: 999px;
+  background: var(--c);
+  transform-origin: 0 0;
+  pointer-events: none;
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+    background-color calc(var(--motion-spring-ms) * 1ms) ease;
+}
+
+
 /* The phone tab bar (shell/BottomNav): pinned at the bottom, clear of the home
    indicator, and the page keeps room under it so nothing hides behind. */
 .bottom-nav {
@@ -805,12 +877,43 @@ button.tile:hover { border-color: var(--c); }
   width: 3.25rem;
   height: 1.75rem;
   border-radius: 999px;
-  transition: background-color calc(var(--motion-base-ms) * 1ms) ease;
 }
 
 
+/* The pill behind the tab that is on (shell/BottomNav). --at is which place, --of how
+   many: it sits in the middle of its column, level with the marks (the buttons' pt-2),
+   and glides from one to the next with the settle curve, its colour easing into the new tab's. */
+.bottom-nav-pill {
+  /* One column wide, so moving it a whole column is translate: 100% (transform only,
+     no layout per frame); the pill shape is centred inside it. */
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: calc(100% / var(--of));
+  height: 1.75rem;
+  translate: calc(var(--at) * 100%) 0;
+  pointer-events: none;
+  transition: translate calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
+}
+.bottom-nav-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 3.25rem;
+  translate: -50% 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c) 18%, transparent);
+  transition: background-color calc(var(--motion-spring-ms) * 1ms) ease;
+}
+
+
+/* The mark on the pill rises a few px as it arrives (the shared rise-in, with a spring),
+   so the eye lands where the pill does. */
 .bottom-nav-on {
-  background: color-mix(in srgb, currentColor 18%, transparent);
+  --rise-y: 4px;
+  --rise-blur: 0px;
+  --rise-from: 1;
+  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
 }
 
 /* Holding the current tab: Top, Back, Bottom rise above the thumb (lib/jumpFan.js). */
@@ -830,6 +933,7 @@ button.tile:hover { border-color: var(--c); }
   color: var(--text);
   text-align: center;
   box-shadow: var(--shadow-pop);
+  --rise-blur: 0px;
   animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease) both;
   transition: background-color calc(var(--motion-instant-ms) * 1ms), color calc(var(--motion-instant-ms) * 1ms);
 }
@@ -999,7 +1103,7 @@ button.tile:hover { border-color: var(--c); }
 .xp-done { color: var(--text-dim); }
 .xp-done .xp-dot { background: var(--xp-tone); border-color: var(--xp-tone); }
 .xp-now { color: var(--text); }
-.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse 1.6s ease-in-out infinite; }
+.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse calc(var(--loop-pulse-ms) * var(--motion-scale) * 1ms) ease-in-out infinite; }
 @keyframes xp-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--xp-tone) 25%, transparent); } }
 @media (prefers-reduced-motion: reduce) {
   .xp-bar > span, .xp-step, .xp-now .xp-dot { animation: none; }

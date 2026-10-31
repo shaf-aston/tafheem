@@ -178,6 +178,16 @@
    "_comment": "Verbs that take no object (الفعل اللازم). After ما they leave no slot for a pronoun going back to ما (العائد), and a صلة with no عائد is ما المصدرية, never the relative (مغني اللبيب، ما المصدرية؛ شرح ابن عقيل، الموصول). Read by facts.ma_kind.",
    "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي"]
   },
+  "noun_describers": {
+   "ar": "الصفة الغالبة",
+   "_comment": "Describing words used as nouns for the one they describe: مؤمن is a believer, صالح a good deed. Only such a word may stand for its noun left out (Ibn Aqil V3 p205, on the Alfiyya: وما من المنعوت والنعت عُقِل يجوز حذفه), so after a verb that wants an object and has none it is that object (مَنْ عَمِلَ صَالِحًا، وَمَنْ يَقْتُلْ مُؤْمِنًا). Any other describing word there is a حال (دَخَلَ الضَّيْفُ مُبْتَسِمًا). Kept: the participles the Quranic Treebank makes a verb's object at least twice and at least twice as often as its حال, by their lemma. Read by facts.stands_for_its_noun.",
+   "words": ["صالح", "مؤمن", "كافر", "ظالم", "محسن", "مجرم", "فاسق", "مسلم", "مشرك", "مفسد", "مسرف", "متقي", "متق", "صابر", "صادق", "شاكر", "خاسر", "كاذب", "منفق", "مقسط", "مجاهد", "مرسل", "ضال", "خائن", "منكر", "شهيد", "مقيم", "باقي", "باق", "سافل"]
+  },
+  "describing_names": {
+   "ar": "العلم المنقول عن صفة",
+   "_comment": "Names taken over from a describing word (the Alfiyya on العلم: ومنه منقولٌ كفضلٍ وأسد). The dictionary reads خالد as 'immortal', never as a name, so after a verb that wants an object and has none the word is that name, the object, not a حال (أكرم محمد خالدا). Read by facts.stands_for_its_noun.",
+   "words": ["خالد", "سعيد", "عامر", "حامد", "سالم", "كريم", "ماجد", "فاضل", "راشد", "رشيد", "أمين", "جميل", "عادل", "كامل", "منير", "نبيل", "طاهر", "ناصر", "شاكر", "صالح", "حسن", "محمود", "مسعود", "منصور"]
+  },
   "istithna_verbs": {
    "ar": "خلا وعدا وحاشا",
    "masdar_ma": ["ما"],
@@ -1192,7 +1202,9 @@
     "ذراع",
     "قنطار",
     "كوب"
-   ]
+   ],
+   "_measures_comment": "`measures`: the words above that are measures, not numbers. After one that is indefinite, مِن can bring the tamyeez in its place (رطلٌ من عسلٍ، كوبٌ من القهوة: roles.json understood.measured); a number's cannot (غيرَ ذي العَدَد).",
+   "measures": ["رطل", "كيلو", "لتر", "متر", "فدان", "صاع", "مد", "أوقية", "غرام", "جرام", "ميل", "شبر", "ذراع", "قنطار", "كوب"]
   },
   "participle_patterns": {
    "ar": "أوزان اسم الفاعل واسم المفعول والصفة المشبهة",

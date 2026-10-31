@@ -83,7 +83,7 @@ export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSea
                 onClick={() => open(m)}
                 disabled={Boolean(ayahProblem(m, ayah))}
                 style={{ '--i': i, '--c': accent }}
-                className="rise-in w-full flex items-center justify-between gap-3 text-left px-3 py-2
+                className="rise-in crisp w-full flex items-center justify-between gap-3 text-left px-3 py-2
                   rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)]
                   hover:border-[var(--c)] transition-colors disabled:opacity-50"
               >

@@ -17,6 +17,7 @@ import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/text/ArabicText'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
 import { kindOf } from './exercises'
+import Medal from './Celebration'
 
 const say = sayIn('en')
 
@@ -155,18 +156,12 @@ const clock = (ms) => {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`
 }
 
-/** A burst round the medal: pieces in the theme's colours, spaced evenly. */
-const BURST = Array.from({ length: 12 }, (_, i) => ({ angle: i * 30, tone: ['var(--w)', 'var(--grow-gold)', 'var(--success)'][i % 3] }))
-
 /** The medal and its burst, XP earned, right first time, the time taken, level progress, what was missed, what's next. */
 function LessonDone({ tally, took, missed, accent, rewards, guest, next, onLeave }) {
   const { asked, right, earned } = tally
   return (
     <div className="grow-lesson grow-lesson-done" style={{ '--w': accent }}>
-      <div className="grow-medal" aria-hidden="true">
-        {BURST.map(({ angle, tone }) => <i key={angle} style={{ '--a': `${angle}deg`, '--tone': tone }} />)}
-        <span className="pop">✓</span>
-      </div>
+      <Medal />
       <p className="grow-done-title">{say('Lesson done')}</p>
       <dl className="grow-done-stats">
         {/* No reading of XP (offline), no "+0". */}

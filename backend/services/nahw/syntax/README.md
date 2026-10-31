@@ -28,7 +28,8 @@ typed sentence
  → syntax.tree               the bracket picture (tarkeeb); syntax.doer names the doer inside a verb.
                              Four things the picture decides go back onto the entry, and only these:
                              `name` (a finer name: اسم ليس، فعل الشرط), `doer`, the job of a noun
-                             an unwritten verb governs (شكرًا), and the ما word's role, case and built
+                             an unwritten word gives (شكرًا: its verb's object; بابُ الفاعلِ: the خبر
+                             of an unwritten هذا), and the ما word's role, case and built
                              (`ma`) — so card and picture never disagree
  → iraab.cards               one card per word: rule_engine (what the word is) + role
  → signs.settle              the sign (ضمة، مبني على السكون ...) from the final case
@@ -79,7 +80,7 @@ Rule of thumb: fix the cause by a grammar rule. Never key a fix to one sentence 
 
 ```
 venv/bin/python -m pytest -q -p no:cacheprovider                 # full suite
-PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --check   # no set may drop
+PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --check   # no set may drop, no sentence right before may go wrong
 PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --save-baseline  # only when better
 ```
 

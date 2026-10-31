@@ -20,7 +20,7 @@ export default function OptionList({ part, picked, onToggle, checked }) {
             onClick={() => onToggle(option)}
             aria-pressed={isPicked}
             style={{ '--i': n }}
-            className={`rise-in option w-full flex items-center gap-3 px-3 py-2 rounded-[var(--radius-sm)] border text-left
+            className={`rise-in crisp option w-full flex items-center gap-3 px-3 py-2 rounded-[var(--radius-sm)] border text-left
               ${checked ? STATUS_CLASS[status] : isPicked ? 'border-[var(--primary)]' : 'border-[var(--border)]'}`}
           >
             <span
