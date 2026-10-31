@@ -72,7 +72,7 @@ export function LinePage({ lines, accent }) {
           return (
             <div key={n} role="listitem" className="entry-row">
               <div className="entry-row-body" {...tap}>
-                <span className="entry-num type-tiny" aria-hidden="true">{arabicNumber(n + 1)}</span>
+                <span className="entry-num type-body" aria-hidden="true">{arabicNumber(n + 1)}</span>
                 <div className="flex-1 min-w-0 space-y-0.5">
                   <Line line={entryLines(pair.arabic)[0]} size="lg" />
                   {shown && (

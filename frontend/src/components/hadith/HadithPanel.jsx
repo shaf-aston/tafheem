@@ -2,7 +2,7 @@
  * Hadith: browse a collection by book, or search across it.
  *
  * Same shape as TimelinesPanel and DaleelPanel: fetch the small fixed list
- * once (the collections), own where the tab is (lib/hadithPlace, the same
+ * once (the collections), own where the tab is (hadith/hadithPlace, the same
  * "adjusted during render" pattern TimelinesPanel follows for its own place),
  * and hand the actual work to small named components that read from there.
  */
@@ -11,8 +11,8 @@ import { useArrivalWhenReady } from '../../lib/nav/useArrival'
 import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith, usulGuideQuery } from '../../api'
-import { bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from '../../lib/hadith/hadithPlace'
-import { useHadithFavorites } from '../../lib/hadith/useHadithFavorites'
+import { bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from './hadithPlace'
+import { useHadithFavorites } from './favorites/useHadithFavorites'
 import { nearest, tabNow, trailFor, useJourney } from '../../lib/nav/journey'
 import { TRAIL_STEPS } from '../../lib/nav/session'
 
@@ -23,17 +23,17 @@ import SectionHeader from '../ui/display/SectionHeader'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import StatusNote from '../ui/feedback/StatusNote'
-import HadithCollectionPicker from './HadithCollectionPicker'
-import HadithBookList from './HadithBookList'
+import HadithCollectionPicker from './books/HadithCollectionPicker'
+import HadithBookList from './books/HadithBookList'
 import HadithCards from './HadithCards'
 import PlaceStrip from './PlaceStrip'
 import HadithOptions from './HadithOptions'
-import HadithList from './HadithList'
+import HadithList from './books/HadithList'
 import HadithSearchResults from './HadithSearchResults'
-import NarratorList from './NarratorList'
-import NarratorPage from './NarratorPage'
-import ScholarTerms from './ScholarTerms'
-import TermsView from './TermsView'
+import NarratorList from './narrators/NarratorList'
+import NarratorPage from './narrators/NarratorPage'
+import ScholarTerms from './terms/ScholarTerms'
+import TermsView from './terms/TermsView'
 import Code from '../ui/text/Code'
 import SourceBadge from '../ui/feedback/SourceBadge'
 import { useSources } from '../../lib/api/useSources'

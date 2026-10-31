@@ -129,12 +129,12 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
       <SectionHeader tab="map" history={false} {...header} />
 
       {trail.length > 0 && (
-        <nav aria-label="Map trail" className="flex items-center gap-2 type-ui text-[var(--text-dim)]">
+        <nav aria-label="Map trail" className="flex flex-wrap items-center gap-2 type-ui text-[var(--text-dim)]">
           <button type="button" onClick={() => go(upOf({ ...place, path }))} className="icon-button shrink-0" aria-label="Up one level" title="Up one level (Esc)">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
           </button>
-          {/* Each step at its full name: on a phone the row scrolls sideways, kept at its end, where the reader is. */}
-          <ol ref={endOfTrail} className="flex flex-1 min-w-0 items-center gap-x-1.5 gap-y-1 overflow-x-auto whitespace-nowrap sm:flex-wrap">
+          {/* Each step at its full name: on a phone the row scrolls sideways, kept at its end, where the reader is. At least min-w-40 wide, so a narrow screen puts the zoom bar on a line of its own rather than cutting the chart name to "udence". */}
+          <ol ref={endOfTrail} className="flex flex-1 min-w-40 items-center gap-x-1.5 gap-y-1 overflow-x-auto whitespace-nowrap sm:flex-wrap">
             {trail.map((step, n) => (
               <li key={n} className="flex shrink-0 items-center gap-1.5">
                 {n > 0 && <span aria-hidden="true" className="text-[var(--text-faint)]">›</span>}
