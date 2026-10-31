@@ -12,10 +12,11 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import book_words, case_of, is_one, is_subject_pronoun, teacher_rules
+from backend.services.nahw.book import book_words, case_of, is_one, is_subject_pronoun, roles_keyed, teacher_rules
 from backend.services.nahw.syntax.facts import (
     Sentence, is_built, is_built_zarf, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of, noun_tagged)
-from backend.services.nahw.syntax.naming import FOLLOWERS, NAMED, base_tokens, roles_keyed
+from backend.services.nahw.syntax.followers import FOLLOWERS
+from backend.services.nahw.syntax.naming import NAMED, base_tokens
 from backend.services.text.harakat import CASE_NAME
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there

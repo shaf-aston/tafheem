@@ -7,7 +7,7 @@ from backend.services.sarf import verb_reader
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
-from backend.services.nahw.syntax.facts import Sentence, has_added, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged
+from backend.services.nahw.syntax.facts import Sentence, has_added, is_describing, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, shown_cases, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -129,6 +129,20 @@ def jarr_after_mudaf(tokens: list[dict]) -> None:
                 before["head"], before["rel"] = word["head"], word["rel"]
             word["head"], word["rel"] = before["id"], "IDF"
             before["mudaf"] = True
+
+
+def described_known(tokens: list[dict]) -> None:
+    """مَرَرْتُ بِأَحْمَدَ الْكَرِيمِ، أَطْعَمَ الْغَنِيُّ الْفَقِيرَ الْجَائِعَ: a noun known by ال or by being a name is
+    added to nothing (Ajrumiyya p14: العلم and ذو الأداة from the المعارف), so a describing word with ال straight
+    after it, in its case, is no مضاف إليه of it, nor a second object beside it on its verb: it describes it,
+    its صفة, which agrees with its noun in التعريف (Tasheel 3.10.1), whatever the parser hung it on."""
+    for noun, word in pairwise(tokens):
+        known = is_name(noun) or (noun["pos"] == "NOM" and noun.get("stt") == "d" and noun["form"].startswith("ال"))
+        beside = (word["head"] == noun["id"] and word["rel"] in ("---", "IDF")) \
+            or (word["head"] == noun["head"] and word["rel"] == noun["rel"] == "OBJ")
+        if (known and beside and word.get("stt") == "d" and is_describing(word)
+                and (not shown_cases(word) or shown_cases(word) & shown_cases(noun))):
+            word["head"], word["rel"] = noun["id"], "MOD"
 
 
 def emphasis_lam_opener(tokens: list[dict]) -> None:
