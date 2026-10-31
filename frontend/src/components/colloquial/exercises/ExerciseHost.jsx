@@ -57,20 +57,29 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
   const wasBookish = bookish && status && kind.judge({ ...exercise, accepted: [bookish.item] }, value)
 
   return (
-    <div className="space-y-4">
+    // Enter in the answer box checks it, as the Check button does.
+    <div className="space-y-4" onKeyDown={(e) => {
+      if (e.key === 'Enter' && e.target.tagName === 'INPUT' && !status && !kind.instant && hasAnswer(value)) {
+        e.preventDefault()
+        check()
+      }
+    }}>
       <p className="type-body text-[var(--text)] flex items-center gap-3">
         {exercise.say && <SpeakButton text={exercise.say} early />}
         {exercise.prompt}
       </p>
       <kind.Renderer exercise={exercise} value={value} onChange={change} status={status} accent={accent} />
       {!status && !kind.instant && (
-        <PrimaryButton accent={accent} disabled={!hasAnswer(value)} onClick={check}>
+        // check() with nothing: a bare onClick={check} would mark the click event itself as the answer.
+        <PrimaryButton accent={accent} disabled={!hasAnswer(value)} onClick={() => check()}>
           Check
         </PrimaryButton>
       )}
       {wasBookish && (
         <p className="type-small text-[var(--text-dim)]">
-          <ArabicText as="span" size="sm">{bookish.item}</ArabicText> is correct, but {bookish.feedback}
+          {/* "Is correct" only of what the learner gave; a right pick hears of the other form as an aside. */}
+          {value === bookish.item ? <><ArabicText as="span" size="sm">{bookish.item}</ArabicText> is correct, but {bookish.feedback}</>
+            : <>You may also hear <ArabicText as="span" size="sm">{bookish.item}</ArabicText>: {bookish.feedback}</>}
         </p>
       )}
       {status && exercise.tip && <p className="type-small text-[var(--text-dim)]">{exercise.tip}</p>}

@@ -18,6 +18,14 @@ export default function Practice({ exercises }) {
   // without scrolling, so the answer stays where the learner is looking.
   const nextButton = useRef(null)
   useEffect(() => { if (answered) nextButton.current?.focus({ preventScroll: true }) }, [answered, at])
+  // Next unmounts itself, so focus would fall to the page: it goes to the new exercise's first control.
+  const body = useRef(null)
+  const moved = useRef(false)
+  useEffect(() => {
+    if (!moved.current) return
+    moved.current = false
+    body.current?.querySelector('input:not([readonly]), button:not([disabled])')?.focus({ preventScroll: true })
+  }, [at])
   const status = (id) => (!(id in results) ? '' : results[id].correct ? 'right' : 'wrong')
 
   return (
@@ -34,7 +42,7 @@ export default function Practice({ exercises }) {
           />
         ))}
       </div>
-      <div className="p-5 space-y-5">
+      <div ref={body} className="p-5 space-y-5">
         <ExerciseHost
           key={current.id}
           exercise={current}
@@ -46,7 +54,7 @@ export default function Practice({ exercises }) {
           <span className="type-small text-[var(--text-dim)]">
             {finished ? `${right} of ${exercises.length} right` : `${Object.keys(results).length} of ${exercises.length} done`}
           </span>
-          {answered && at < exercises.length - 1 && <SmallButton ref={nextButton} onClick={() => setAt(at + 1)}>Next exercise →</SmallButton>}
+          {answered && at < exercises.length - 1 && <SmallButton ref={nextButton} onClick={() => { moved.current = true; setAt(at + 1) }}>Next exercise →</SmallButton>}
         </div>
       </div>
     </div>

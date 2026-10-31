@@ -27,12 +27,17 @@ export default function WordMatch({ words }) {
   const [missed, setMissed] = useState([])     // the last wrong pair, as `${side}:${arabic}`, until the next tap
   const done = board.found.length === board.left.length
 
-  const tap = (side, arabic) => {
+  const tap = (side, arabic, event) => {
     if (board.found.includes(arabic)) return
     setMissed([])
     if (!picked || picked.side === side) return setPicked({ side, arabic })
     setPicked(null)
-    if (picked.arabic === arabic) return setBoard((b) => ({ ...b, found: [...b.found, arabic] }))
+    if (picked.arabic === arabic) {
+      // The tile tapped is about to be disabled; focus moves on to the next open one in its column.
+      const column = event.currentTarget.closest('ul')
+      requestAnimationFrame(() => column?.querySelector('button:not([disabled])')?.focus())
+      return setBoard((b) => ({ ...b, found: [...b.found, arabic] }))
+    }
     setBoard((b) => ({ ...b, slips: b.slips + 1 }))
     setMissed([`${picked.side}:${picked.arabic}`, `${side}:${arabic}`])
   }
@@ -48,7 +53,7 @@ export default function WordMatch({ words }) {
           type="button"
           disabled={found}
           aria-pressed={on}
-          onClick={() => tap(side, word.arabic)}
+          onClick={(event) => tap(side, word.arabic, event)}
           className={`press w-full min-h-14 rounded-[var(--radius)] border-2 bg-[var(--surface)] px-3 py-2 transition-[opacity,border-color] ${FOCUS}
             ${found ? 'opacity-30 border-[var(--success)]' : on ? 'border-[var(--primary)]' : 'border-[var(--border)] hover:border-[var(--border-hi)]'}
             ${missed.includes(id) ? 'shake border-[var(--danger)]' : ''}`}
