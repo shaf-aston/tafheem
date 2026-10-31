@@ -518,6 +518,9 @@ dialog::backdrop {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    /* No stagger either: a `backwards` fill held each card half-faded through its
+       delay, so a still list still arrived card by card (measured: ~250ms at 60%). */
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
