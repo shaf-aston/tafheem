@@ -452,13 +452,6 @@ dialog::backdrop {
 }
 
 
-.tab-line {
-  transition:
-    background-color calc(var(--motion-base-ms) * 1ms) ease,
-    box-shadow calc(var(--motion-base-ms) * 1ms) ease;
-}
-
-
 /* An unselected tab already hints at the colour it will turn, enough to tell
    Sarf's red from Quran's teal at a glance, not enough to compete with the tab
    you are actually on. How much of the hint shows is a theme.json knob. */
@@ -784,6 +777,24 @@ button.tile:hover { border-color: var(--c); }
 .tile-chip.tile-wash .arabic-lg { transform-origin: right center; }
 .tile-lead { padding: var(--space-card); background: var(--surface); border-color: var(--c); }
 .card-accent { border-left: 4px solid var(--c); }
+}
+
+
+/* The desktop strip's underline (shell/TabStrip): one line that glides to the open
+   tab, stretching to its width, its colour easing into the new tab's. Placed by
+   transform from the strip's top-left corner, so a wrapped row is reached too. */
+.tab-glide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--c);
+  pointer-events: none;
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+    width calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+    background-color calc(var(--motion-spring-ms) * 1ms) ease;
 }
 
 
