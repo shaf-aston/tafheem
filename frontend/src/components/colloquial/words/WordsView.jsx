@@ -12,6 +12,7 @@ import Practice from '../exercises/Practice'
 import WordCards from './WordCards'
 import WordGallery from './WordGallery'
 import WordMatch from './WordMatch'
+import WordPairs from './WordPairs'
 import WordReview from './WordReview'
 import WordPicture from './picture/WordPicture'
 import { pictureBoards } from '../../../lib/colloquial/wordPictures'
@@ -48,7 +49,7 @@ export default function WordsView({ unit, at }) {
       </header>
       {/* Keyed by the mode, so each one rises in as the rest of the tab's views do. */}
       <div key={mode} className="rise-in">
-        {mode === 'browse' && <WordGallery words={words} />}
+        {mode === 'browse' && (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />)}
         {mode === 'cards' && <WordCards words={words} />}
         {mode === 'match' && <WordMatch words={words} />}
         {mode === 'picture' && <WordPicture words={words} />}

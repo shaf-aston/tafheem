@@ -71,6 +71,8 @@ class Lesson(BaseModel):
     dialogue: list[DialogueLine] = []
     de_book: list[Drill] = []
     vocabulary: list[VocabWord] = []
+    # A topic of opposites: its word ids two by two, each beside its other (spine `pairs`).
+    pairs: list[list[str]] | None = None
     culture: str = ""
     exercises: list[AnyExercise] = []
 

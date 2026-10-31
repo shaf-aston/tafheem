@@ -146,8 +146,12 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
             said.append(f"lesson {plan['lesson']!r} lists its own vocabulary; a dialect's words live in {wordlist.FILE}")
         vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}")
         said.extend(faults)
+        # A topic of opposites lists them two by two, each word beside its other.
+        ids = plan.get("words") or []
+        pairs = [ids[i:i + 2] for i in range(0, len(ids), 2)] if plan.get("pairs") else None
         filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases,
-                       "dialogue": dialogue, "vocabulary": vocabulary, "written": True})
+                       "dialogue": dialogue, "vocabulary": vocabulary, "written": True,
+                       **({"pairs": pairs} if pairs else {})})
     return {**written, "title": outline["title"], "cover": outline.get("cover"), "lessons": filled}, said
 
 

@@ -206,6 +206,22 @@ def test_the_shared_list_and_the_spine_are_checked_against_each_other():
         assert any(fault in why for why in said), fault
 
 
+def test_a_topic_of_pairs_with_one_left_over_is_caught():
+    ids = list(MEANINGS)[:7]
+    spine = [{"unit": "unit-01", "lessons": [{"lesson": "lesson-01", "pairs": True, "words": ids}]}]
+    assert any("one left over" in why for why in wordlist.outline_faults(spine, MEANINGS))
+    spine[0]["lessons"][0]["words"] = list(MEANINGS)[:8]
+    assert not any("left over" in why for why in wordlist.outline_faults(spine, MEANINGS))
+
+
+def test_a_topic_of_pairs_hands_on_its_words_two_by_two():
+    outline = copy.deepcopy(OUTLINE)
+    outline["lessons"][0].update(pairs=True, words=["hot", "cold", "big", "small"])
+    lesson = loader._fill(outline, copy.deepcopy(WRITTEN))[0]["lessons"][0]
+    assert lesson["pairs"] == [["hot", "cold"], ["big", "small"]]
+    assert "pairs" not in loader._fill(OUTLINE, copy.deepcopy(WRITTEN))[0]["lessons"][0]
+
+
 def test_a_word_in_a_group_nobody_listed_is_caught():
     spine = [{"unit": "unit-01", "lessons": [{"lesson": "lesson-01", "words": list(MEANINGS)}]}]
     said = wordlist.outline_faults(spine, {**MEANINGS, "w8": {"english": "thing", "group": "hoem"}})

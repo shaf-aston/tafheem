@@ -66,6 +66,8 @@ def outline_faults(spine: list[dict], known: dict) -> list[str]:
             if ids and len(ids) < least:
                 said.append(f"{where} teaches {len(ids)} words, fewer than {least}")
             said += [f"{where} teaches {one!r} twice" for one in sorted({i for i in ids if ids.count(i) > 1})]
+            if lesson.get("pairs") and len(ids) % 2:
+                said.append(f"{where} teaches its words in pairs, but has {len(ids)}, one left over")
             said += [f"{where} teaches {one!r}, which {FILE} does not have" for one in ids if one not in known]
             used.update(ids)
     for one, meaning in known.items():
