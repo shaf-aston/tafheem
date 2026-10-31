@@ -25,7 +25,7 @@ export default function Mosaic({ phrases, onOpen, start = 0 }) {
                 phrase={phrase}
                 index={start + i}
                 arabicSize={big ? 'lg' : 'sm'}
-                className={big ? `${phrase.image.endsWith('.svg') ? 'aspect-[4/3]' : 'aspect-[2/1]'} sm:aspect-auto sm:h-full` : phrase.image ? 'aspect-[4/5] sm:aspect-square' : 'h-full min-h-24'}
+                className={big ? `${phrase.image.endsWith('.svg') ? 'aspect-[4/3]' : 'aspect-[2/1]'} sm:aspect-auto sm:h-full` : phrase.image ? 'aspect-[4/5] sm:aspect-square sm:h-full sm:w-full' : 'h-full min-h-24'}
               />
             </button>
           </li>
