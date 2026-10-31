@@ -40,7 +40,8 @@ export default function WordsView({ unit, at }) {
       {/* The topic's title is already on the trail above, one step before Words. */}
       {/* One width in every mode, so the modes stay put when Review widens the page. */}
       <header className="w-full max-w-xl mx-auto flex flex-wrap items-end justify-between gap-3">
-        <p className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
+        {/* A heading, so the word groups under it (h4) sit one level down from the tab's h2. */}
+        <h3 className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</h3>
         <div {...onHover(client, record)}>
           <Segmented label="How to learn the words" accent="var(--primary)" value={mode} onChange={setMode} options={modes} />
         </div>
