@@ -32,6 +32,7 @@ def test_a_phrase_alone_is_the_khabar_of_an_unwritten_hadha(sentence, expected):
     ("زَيْدٌ قَائِمٌ", ["مبتدأ", "خبر"]),
     ("مُحَمَّدٌ رَسُولُ اللَّهِ", ["مبتدأ", "خبر", "مضاف إليه"]),
     ("شُكْرًا لَكَ", ["مفعول مطلق", "حرف جر"]),
+    ("أَذَاهِبٌ زَيْدٌ", ["مبتدأ", "فاعل"]),  # the وصف's doer stands for its khabar
 ])
 def test_a_whole_sentence_keeps_its_own_mubtada(sentence, expected):
     assert roles(sentence) == expected
@@ -43,3 +44,9 @@ def test_a_whole_sentence_keeps_its_own_mubtada(sentence, expected):
 def test_a_jar_after_a_noun_that_is_no_measure_still_hangs_on_thabit(sentence):
     assert roles(sentence)[0] == "مبتدأ"
     assert "ثَابِتٌ" in analyze(sentence)["tree"]["words"]
+
+
+@needs_parser
+def test_a_phrase_that_asks_is_no_title():
+    # أم asks, so the sentence is its own, whatever the parser made of الفائز
+    assert roles("أَيُوسُفُ الْفَائِزُ أَمْ طَارِقٌ")[0] != "خبر"

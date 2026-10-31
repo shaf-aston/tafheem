@@ -292,14 +292,16 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         replies.add(verb["id"])
         detail_of[noun["id"]] = said_verb["reply"]["detail"].format(verb=text)
     # بابُ الفاعلِ، كوبٌ كبيرٌ من القهوة: a noun phrase alone, its head in raf' or in no case shown,
-    # with no verb and no khabar anywhere in it, is a title or an answer: the khabar of a مبتدأ
-    # no one writes, هذا (roles.json understood.subject). A nasb head was taken above (شكرًا).
+    # with no verb, no khabar, no فاعل (أذاهبٌ زيدٌ: the doer stands for the khabar) and no question
+    # word (أيوسفُ الفائزُ أم طارقٌ asks: أم is on the istifham list) in it, is a title or an
+    # answer: the khabar of a مبتدأ no one writes, هذا (roles.json understood.subject). A nasb head was taken above (شكرًا).
     alone = kept["subject"]
     heads = [t for t in drawn if t["head"] not in by_id]
     if len(heads) == 1 and len(bases) > 1 and (noun := heads[0])["id"] in typed_at and noun_tagged(noun) \
             and not noun.get("pos_camel", "").startswith("pron") and role_of[noun["id"]] in (None, NAMED.mubtada) \
             and not ({"a", "i"} & shown_cases(noun) and "u" not in shown_cases(noun)) \
-            and not any(is_verb(t) or role_of.get(t["id"]) in khabars for t in drawn):
+            and not any(is_verb(t) or role_of.get(t["id"]) in (*khabars, NAMED.fail) for t in drawn) \
+            and not any(t["id"] in typed_at and listed(t, "istifham") and not is_preposition(t) for t in drawn):
         said_subject = understand(alone["voweled"], NAMED.mubtada, drawn.index(noun), head=0, rel="SBJ", pos="NOM", pos_camel="")
         role_of[noun["id"]] = alone["noun"]
         why_of[noun["id"]] = None
