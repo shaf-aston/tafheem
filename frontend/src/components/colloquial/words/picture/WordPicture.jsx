@@ -144,7 +144,8 @@ export function Board({ board, step = 'test' }) {
           const found = !exploring && game.found.includes(s.key)
           const wrong = !exploring && game.wrong && game.tapped === s.key
           const chosen = exploring && picked === s.key
-          const name = exploring ? s.words.map((w) => w.english).join(', ') : `Place ${i + 1}${found ? ', found' : ''}`
+          const ringed = !exploring && ask && game.misses >= SHOW_AFTER && ask.key === s.key
+          const name = exploring ? s.words.map((w) => w.english).join(', ') : `Place ${i + 1}${found ? ', found' : ''}${ringed ? ', the ringed place' : ''}`
           const keys = { onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); answer(s.key) } } }
           if (s.area) {
             const [x, y, w, h] = s.area

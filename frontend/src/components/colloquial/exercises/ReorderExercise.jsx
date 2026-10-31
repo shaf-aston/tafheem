@@ -74,7 +74,16 @@ export default function ReorderExercise({ exercise, value, onChange, status }) {
           <Tile
             key={`${word}-${place}`}
             word={word}
-            onClick={answered ? null : () => onChange(chosen.filter((_, i) => i !== place))}
+            onClick={answered ? null : (event) => {
+              // This tile leaves the sentence; focus goes to the one now in its place, else the bank.
+              const sentence = event.currentTarget.closest('ol')
+              const exercise = sentence?.closest('[data-exercise]')
+              requestAnimationFrame(() => {
+                const left = sentence?.querySelectorAll('button')
+                ;(left?.[Math.min(place, left.length - 1)] ?? exercise?.querySelector('ul button:not([disabled])'))?.focus()
+              })
+              onChange(chosen.filter((_, i) => i !== place))
+            }}
           />
         ))}
       </ol>
@@ -85,9 +94,11 @@ export default function ReorderExercise({ exercise, value, onChange, status }) {
             word={word}
             dim={used[at]}
             onClick={answered || used[at] ? null : (event) => {
-              // This tile is about to be disabled; focus moves on to the next free one.
+              // This tile is about to be disabled; focus moves on to the next free one,
+              // or, with the bank used up, to Check.
               const bank = event.currentTarget.closest('ul')
-              requestAnimationFrame(() => bank?.querySelector('button:not([disabled])')?.focus())
+              requestAnimationFrame(() => (bank?.querySelector('button:not([disabled])')
+                ?? bank?.closest('[data-exercise]')?.querySelector('button.cta'))?.focus())
               onChange([...chosen, word])
             }}
           />

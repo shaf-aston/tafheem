@@ -66,7 +66,7 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
 
   return (
     // Enter in the answer box checks it, as the Check button does.
-    <div className="space-y-4" onKeyDown={(e) => {
+    <div data-exercise className="space-y-4" onKeyDown={(e) => {
       if (e.key === 'Enter' && e.target.tagName === 'INPUT' && !status && !kind.instant && hasAnswer(value)) {
         e.preventDefault()
         check()
@@ -93,6 +93,10 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
             : <>You may also hear <ArabicText as="span" size="sm">{bookish.item}</ArabicText>: {bookish.feedback}</>}
         </p>
       )}
+      {/* The verdict, said aloud as it comes. A pick already marks its own option, so there it is only heard. */}
+      <p role="status" className={kind.instant ? 'sr-only' : `type-small font-medium ${status === 'right' ? 'text-[var(--success)]' : 'text-[var(--danger)]'}`}>
+        {status === 'right' ? '✓ Correct.' : status === 'wrong' ? '✗ Not quite.' : ''}
+      </p>
       {status && exercise.tip && <p className="type-small text-[var(--text-dim)]">{exercise.tip}</p>}
     </div>
   )
