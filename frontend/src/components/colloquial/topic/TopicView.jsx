@@ -10,6 +10,8 @@ import Practice from '../exercises/Practice'
 import Sheet from './Sheet'
 import WordBank from '../words/WordBank'
 import WordGrid from '../words/WordGrid'
+import WordPicture from '../words/picture/WordPicture'
+import { pictureBoards } from '../../../lib/colloquial/wordPictures'
 
 function Act({ kicker, title, children }) {
   return (
@@ -63,6 +65,14 @@ function Scene({ unit, lesson, number, place }) {
         <Act kicker="Words" title={`${lesson.vocabulary.length} words for this topic`}>
           <Words words={lesson.vocabulary} />
         </Act>
+      )}
+      {/* Where the words have a drawing (a family tree, a house, a clock), see them on it. */}
+      {pictureBoards(lesson.vocabulary ?? []).length > 0 && (
+        <div className="max-w-3xl mx-auto">
+          <Act kicker="See it" title="On the picture">
+            <WordPicture words={lesson.vocabulary} />
+          </Act>
+        </div>
       )}
       {open !== null && <Sheet phrases={lesson.phrases} at={open} onAt={setOpen} onClose={() => setOpen(null)} place={place} />}
 

@@ -25,4 +25,33 @@ describe('pictureBoards', () => {
   it('gives a topic with no drawing no boards', () => {
     expect(pictureBoards(wordsOf(['bread', 'rice', 'salt', 'head']))).toEqual([])
   })
+
+  it("draws the family on a tree, the sister's husband answering 'husband' too", () => {
+    const [tree] = pictureBoards(wordsOf(topic('Family').words))
+    expect(tree.id).toBe('family')
+    const bil = tree.spots.find((s) => s.key === 'brother-in-law')
+    expect(bil.words.map((w) => w.id)).toEqual(['brother-in-law', 'husband'])
+  })
+
+  it('lays a grid board out with only the panels taught, each keeping its place in the set', () => {
+    const [week] = pictureBoards(wordsOf(['friday', 'saturday', 'sunday']))
+    expect(week.id).toBe('week')
+    expect(week.spots.map((s) => [s.key, s.order])).toEqual([['sunday', 1], ['friday', 6], ['saturday', 7]])
+    expect(week.view).toEqual([0, 0, 150, 72])
+  })
+
+  it('puts "in" and "inside" on one panel', () => {
+    const [where] = pictureBoards(wordsOf(['in', 'inside', 'on', 'under']))
+    expect(where.spots[1].words.map((w) => w.id)).toEqual(['in', 'inside'])
+  })
+
+  it("keeps every spot of every topic's boards inside its drawing, one spot per word", () => {
+    for (const lesson of spine.units.flatMap((u) => u.lessons)) {
+      for (const board of pictureBoards(wordsOf(lesson.words ?? []))) {
+        expect(inside(board), `${lesson.title}: ${board.id}`).toBe(true)
+        const ids = board.spots.flatMap((s) => s.words.map((w) => w.id))
+        expect(new Set(ids).size).toBe(ids.length)
+      }
+    }
+  })
 })

@@ -12,6 +12,7 @@
  */
 import shapes from './countryShapes.json'
 import { project, viewOf } from './countryMap'
+import { PANELS, SCENES, panelBoard, sceneBoard } from './sceneBoards'
 
 // Body boards: [x, y] in the drawing's own units (BodyArt.jsx draws to the same viewBox).
 const BODY = [
@@ -60,11 +61,6 @@ const MAPS = [
 // Fewer words than this on a board and it is no game, only a label.
 const LEAST = 3
 
-const bodyBoard = ({ spots, ...board }, byId) => ({
-  ...board,
-  spots: Object.entries(spots).filter(([id]) => byId[id]).map(([id, [x, y]]) => ({ key: id, x, y, words: [byId[id]] })),
-})
-
 const mapBoard = ({ codes, ...board }, words) => {
   const spots = codes.map((code) => {
     const [x, y] = project(CENTRE[code])
@@ -74,9 +70,17 @@ const mapBoard = ({ codes, ...board }, words) => {
   return { ...board, art: 'map', view, spots }
 }
 
-/** The boards this topic's words fill, each { id, label, art, view, spots: [{ key, x, y, words }] }; [] if none. */
+/**
+ * The boards this topic's words fill, each { id, label, art, view, spots: [{ key, x, y, area?, words }] };
+ * [] if none. A spot with an `area` is tapped anywhere inside it; the rest are dots.
+ */
 export function pictureBoards(words) {
   const byId = Object.fromEntries(words.map((w) => [w.id, w]))
-  const boards = [...BODY.map((b) => bodyBoard(b, byId)), ...MAPS.map((b) => mapBoard(b, words))]
+  const boards = [
+    ...BODY.map((b) => sceneBoard(b, byId)),
+    ...MAPS.map((b) => mapBoard(b, words)),
+    ...SCENES.map((b) => sceneBoard(b, byId)),
+    ...PANELS.map((b) => panelBoard(b, byId)),
+  ]
   return boards.filter((b) => b.spots.reduce((n, s) => n + s.words.length, 0) >= LEAST)
 }

@@ -1,11 +1,14 @@
-// Match the word to the picture: one word at a time, in Arabic with its sound; tap
-// where it is on the drawing (a body part, or a country on the map). A right tap turns
-// the dot green; a wrong one shakes and says what was tapped, and shows the English
-// as a hint, so a slip teaches. A warm-up like Match: nothing is filed for review.
-// The boards and their spots are lib/colloquial/wordPictures.js.
+// Learn the words on a drawing: a body, a map, a family tree, a house, a clock and
+// more. Explore first: tap any place and hear its name, see it in Arabic and English.
+// Then Test: one word at a time, in Arabic with its sound; tap where it is. A right
+// tap turns the place green; a wrong one shakes and says what was tapped, and shows
+// the English as a hint, so a slip teaches. A warm-up like Match: nothing is filed
+// for review. The boards and their spots are lib/colloquial/wordPictures.js.
 import { useMemo, useRef, useState } from 'react'
 
 import { pictureBoards } from '../../../../lib/colloquial/wordPictures'
+import { speak } from '../../../../lib/speech/speak'
+import { useAccent } from '../../../../lib/theme/accent'
 import { shuffled } from '../../../../lib/text/shuffle'
 import ArabicText from '../../../ui/ArabicText'
 import Segmented from '../../../ui/Segmented'
@@ -14,6 +17,9 @@ import SpeakButton from '../../../ui/SpeakButton'
 import Spelling from '../../parts/Spelling'
 import BodyArt from './BodyArt'
 import MapArt from './MapArt'
+import SceneArt from './SceneArt'
+
+const STEPS = [{ id: 'explore', label: 'Explore' }, { id: 'test', label: 'Test' }]
 
 const fresh = (board) => ({
   queue: shuffled(board.spots.flatMap((s) => s.words.map((word) => ({ word, key: s.key }))), Math.random),
@@ -35,15 +41,51 @@ function spotAt(event, board) {
   return best?.key ?? null
 }
 
-export function Board({ board }) {
+// A place's words, all of them: "in" and "inside" share one panel.
+function Said({ words }) {
+  return (
+    <div className="space-y-1">
+      {words.map((w) => (
+        <div key={w.id} className="flex items-center justify-center gap-3">
+          <div>
+            <ArabicText as="p" size="xl" className="text-[var(--text)]">{w.arabic}</ArabicText>
+            <Spelling className="block">{w.transliteration}</Spelling>
+            <p className="type-small text-[var(--text-dim)]">{w.english}</p>
+          </div>
+          <SpeakButton text={w.arabic} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function Art({ board }) {
+  if (board.art === 'map') return <MapArt view={board.view} keys={board.spots.map((s) => s.key)} />
+  // Each draws only the boards it knows, and nothing for the rest.
+  return <><BodyArt art={board.art} /><SceneArt board={board} /></>
+}
+
+export function Board({ board, step = 'test' }) {
   const [game, setGame] = useState(() => fresh(board))
+  const [picked, setPicked] = useState(null)
+  const accent = useAccent()
   const svg = useRef(null)
+  const exploring = step === 'explore'
   const ask = game.queue[game.at]
   const done = !ask
   const r = board.view[2] / 40
   const tappedSpot = board.spots.find((s) => s.key === game.tapped)
+  const pickedSpot = board.spots.find((s) => s.key === picked)
 
   const answer = (key) => {
+    if (exploring) {
+      const spot = board.spots.find((s) => s.key === key)
+      if (!spot) return
+      setPicked(key)
+      // Heard as it is tapped; a voice that will not start leaves the words on screen.
+      speak(spot.words[0].arabic, { accent }).catch(() => {})
+      return
+    }
     if (!key || done) return
     if (key === ask.key) {
       return setGame((g) => ({ ...g, at: g.at + 1, found: [...new Set([...g.found, key])], tapped: null, wrong: false }))
@@ -54,7 +96,10 @@ export function Board({ board }) {
   return (
     <div className="space-y-4">
       <div className="min-h-24 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 flex items-center justify-center gap-3 text-center" aria-live="polite">
-        {done ? (
+        {exploring ? (
+          pickedSpot ? <Said words={pickedSpot.words} />
+            : <span className="type-body text-[var(--text-dim)]">Tap any place to hear its name</span>
+        ) : done ? (
           <span className="type-body font-medium text-[var(--text)]">All found · {game.slips} {game.slips === 1 ? 'slip' : 'slips'}</span>
         ) : (
           <>
@@ -68,30 +113,49 @@ export function Board({ board }) {
           </>
         )}
       </div>
-      <svg ref={svg} viewBox={board.view.join(' ')} role="group" aria-label={`${board.label}: tap the place`}
+      <svg ref={svg} viewBox={board.view.join(' ')} role="group" aria-label={`${board.label}: ${exploring ? 'tap a place to hear its name' : 'tap the place'}`}
         className="w-full max-w-md mx-auto block touch-manipulation cursor-pointer select-none"
         onClick={(e) => answer(spotAt(e, board))}>
-        {board.art === 'map' ? <MapArt view={board.view} keys={board.spots.map((s) => s.key)} /> : <BodyArt art={board.art} />}
-        {board.spots.map((s, i) => {
-          const found = game.found.includes(s.key)
-          const wrong = game.wrong && game.tapped === s.key
+        <Art board={board} />
+        {/* Areas first, so a dot inside an area (a bed in the bedroom) is tapped over it. */}
+        {[...board.spots].sort((a, b) => Boolean(b.area) - Boolean(a.area)).map((s) => {
+          const i = board.spots.indexOf(s)
+          const found = !exploring && game.found.includes(s.key)
+          const wrong = !exploring && game.wrong && game.tapped === s.key
+          const chosen = exploring && picked === s.key
+          const name = exploring ? s.words.map((w) => w.english).join(', ') : `Place ${i + 1}${found ? ', found' : ''}`
+          const keys = { onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); answer(s.key) } } }
+          if (s.area) {
+            const [x, y, w, h] = s.area
+            const tint = found ? 'var(--success)' : wrong ? 'var(--danger)' : chosen ? 'var(--primary)' : null
+            return (
+              <rect key={s.key} data-key={s.key} x={x + 2} y={y + 2} width={w - 4} height={h - 4} rx={Math.min(8, w / 6)}
+                role="button" tabIndex={0} aria-label={name} {...keys}
+                className={`outline-none focus-visible:stroke-[var(--text)] ${wrong ? 'shake' : ''}`}
+                fill={tint ? `color-mix(in oklab, ${tint} 18%, transparent)` : 'transparent'}
+                // A faint dashed edge says the whole area can be tapped, without saying what it is.
+                // (A grid's panels are already plainly cards, so they go without.)
+                stroke={tint ?? (s.order ? 'transparent' : 'var(--border-hi)')} strokeOpacity={tint ? 1 : 0.6}
+                strokeDasharray={tint ? undefined : `${r / 2} ${r / 2}`} strokeWidth={r / 5} />
+            )
+          }
           return (
-            <circle key={s.key} data-key={s.key} cx={s.x} cy={s.y} r={wrong ? r * 1.3 : r}
-              role="button" tabIndex={0} aria-label={`Place ${i + 1}${found ? ', found' : ''}`}
+            <circle key={s.key} data-key={s.key} cx={s.x} cy={s.y} r={wrong || chosen ? r * 1.3 : r}
+              role="button" tabIndex={0} aria-label={name} {...keys}
               className={`outline-none focus-visible:stroke-[var(--text)] ${wrong ? 'shake' : ''}`}
               fill={found ? 'var(--success)' : wrong ? 'var(--danger)' : 'var(--primary)'}
-              stroke="var(--surface)" strokeWidth={r / 3}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); answer(s.key) } }} />
+              fillOpacity={exploring && !chosen ? 0.75 : 1}
+              stroke="var(--surface)" strokeWidth={r / 3} />
           )
         })}
       </svg>
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      {!exploring && <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="type-small text-[var(--text-dim)]">
           {game.wrong && tappedSpot && <>That is <ArabicText as="span" size="base">{tappedSpot.words[0].arabic}</ArabicText> ({tappedSpot.words[0].english}). </>}
           {Math.min(game.at, game.queue.length)} of {game.queue.length} · {game.slips} {game.slips === 1 ? 'slip' : 'slips'}
         </span>
         {done && <SmallButton onClick={() => setGame(fresh(board))}>Play again</SmallButton>}
-      </div>
+      </div>}
     </div>
   )
 }
@@ -99,15 +163,19 @@ export function Board({ board }) {
 export default function WordPicture({ words }) {
   const boards = useMemo(() => pictureBoards(words), [words])
   const [id, setId] = useState(boards[0]?.id)
+  const [step, setStep] = useState('explore')
   const board = boards.find((b) => b.id === id) ?? boards[0]
   if (!board) return null
   return (
     <div className="space-y-4">
-      {boards.length > 1 && (
-        <Segmented label="Which picture" accent="var(--primary)" value={board.id} onChange={setId}
-          options={boards.map((b) => ({ id: b.id, label: b.label }))} />
-      )}
-      <Board key={board.id} board={board} />
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        {boards.length > 1 ? (
+          <Segmented label="Which picture" accent="var(--primary)" value={board.id} onChange={setId} wrap
+            options={boards.map((b) => ({ id: b.id, label: b.label }))} />
+        ) : <p className="eyebrow text-[var(--text-faint)]">{board.label}</p>}
+        <Segmented label="Explore or test" accent="var(--primary)" value={step} onChange={setStep} compact options={STEPS} />
+      </div>
+      <Board key={`${board.id}-${step}`} board={board} step={step} />
     </div>
   )
 }
