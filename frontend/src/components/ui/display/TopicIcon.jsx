@@ -1,7 +1,7 @@
 /**
  * A small line picture for a hadith book's topic, so a book is found again by
  * its shape before its name is read. Which topic a book is comes from
- * hadith.json (lib/hadithGrade topicOf); this file only draws. Stroke takes
+ * hadith.json (hadith/books/hadithGrade topicOf); this file only draws. Stroke takes
  * currentColor, so the caller's text colour (and hover) paints it.
  */
 const PATHS = {

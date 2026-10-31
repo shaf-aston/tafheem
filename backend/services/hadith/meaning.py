@@ -13,7 +13,6 @@ meaning index built means search simply runs on words alone.
 from __future__ import annotations
 
 import platform
-import sqlite3
 import threading
 import time
 from functools import lru_cache
@@ -23,6 +22,7 @@ import onnxruntime as ort
 import numpy as np
 
 from backend.config import data_path, get_settings
+from backend.services.core.readonly_db import ReadOnlyDb
 
 
 class Encoder(Protocol):
@@ -61,6 +61,8 @@ _lock = threading.Lock()
 _model: Encoder | None = None
 # When loading last failed: a missing download is not retried by every search.
 _failed_at: float | None = None
+# This thread's read-only connection to the vectors, reopened when a build replaces them.
+_db = ReadOnlyDb(lambda: data_path("hadith_meaning_path"))
 
 
 def encoder() -> Encoder:
@@ -91,8 +93,7 @@ def is_built() -> bool:
 
 def nearest(query: str, k: int, collections: tuple[str, ...] = ()) -> list[tuple[str, int, str]]:
     """The k hadith (collection, number, part) closest in meaning to the question."""
-    path = data_path("hadith_meaning_path")
-    keys, vectors = _index(str(path), path.stat().st_mtime_ns)
+    keys, vectors = _index(_db.stamp())
     if not keys:
         return []
     scores = vectors @ encoder().encode([query])[0]
@@ -103,13 +104,9 @@ def nearest(query: str, k: int, collections: tuple[str, ...] = ()) -> list[tuple
 
 
 @lru_cache(maxsize=1)
-def _index(path: str, _mtime: int) -> tuple[list[tuple[str, int, str]], np.ndarray]:
-    """Every stored vector, read once per build of the file (the mtime is the cache key)."""
-    conn = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
-    try:
-        rows = conn.execute("SELECT collection_id, number, part, vector FROM meaning").fetchall()
-    finally:
-        conn.close()
+def _index(_stamp: tuple[str, int] | None) -> tuple[list[tuple[str, int, str]], np.ndarray]:
+    """Every stored vector, read once per build of the file (the stamp is the cache key)."""
+    rows = _db().execute("SELECT collection_id, number, part, vector FROM meaning").fetchall()
     if not rows:
         return [], np.zeros((0, 0), dtype=np.float32)
     keys = [(c, n, p) for c, n, p, _ in rows]
