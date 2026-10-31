@@ -185,7 +185,7 @@
     backdrop-filter: blur(8px);
   }
 }
-.tl-pin { transition: opacity 0.25s; }
+.tl-pin { transition: opacity calc(var(--motion-base-ms) * 1ms); }
 @media (prefers-reduced-motion: reduce) { .tl-pin { transition: none; } }
 
 

@@ -17,6 +17,7 @@ import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/text/ArabicText'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
 import { kindOf } from './exercises'
+import Medal from './Celebration'
 
 const say = sayIn('en')
 
@@ -155,39 +156,12 @@ const clock = (ms) => {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`
 }
 
-/** A burst round the medal: pieces in the theme's colours, spaced evenly. */
-const BURST = Array.from({ length: 12 }, (_, i) => ({ angle: i * 30, tone: ['var(--w)', 'var(--grow-gold)', 'var(--success)'][i % 3] }))
-
-/** Confetti thrown up from the medal: where each piece lands sideways (px), how far it turns, its colour. Fixed, so a replay is the same throw. */
-const CONFETTI = Array.from({ length: 24 }, (_, i) => ({
-  x: (((i * 37) % 100) - 50) * 3.2,
-  turn: ((i * 73) % 300) + 180,
-  tone: ['var(--w)', 'var(--grow-gold)', 'var(--success)', 'var(--palette-rose)'][i % 4],
-}))
-
-/** The seed in the medal: it sits, then a stem rises and two leaves open (styles/growWorlds.css .grow-sprout). */
-const Sprout = () => (
-  <svg className="grow-sprout" viewBox="0 0 40 40" width="56" height="56">
-    <ellipse className="grow-sprout-seed" cx="20" cy="33" rx="6" ry="4" />
-    <path className="grow-sprout-stem" d="M20 31 C20 25 20 20 20 14" pathLength="1" />
-    <path className="grow-sprout-leaf grow-sprout-left" d="M20 18 C14 18 10 14 9 9 C15 9 19 12 20 18Z" />
-    <path className="grow-sprout-leaf grow-sprout-right" d="M20 15 C26 15 30 11 31 6 C25 6 21 9 20 15Z" />
-  </svg>
-)
-
 /** The medal and its burst, XP earned, right first time, the time taken, level progress, what was missed, what's next. */
 function LessonDone({ tally, took, missed, accent, rewards, guest, next, onLeave }) {
   const { asked, right, earned } = tally
   return (
     <div className="grow-lesson grow-lesson-done" style={{ '--w': accent }}>
-      <div className="grow-medal" aria-hidden="true">
-        {BURST.map(({ angle, tone }) => <i key={angle} style={{ '--a': `${angle}deg`, '--tone': tone }} />)}
-        <span className="pop"><Sprout /></span>
-        {/* A div, not a span: .grow-medal span is the gold disc. */}
-        <div className="grow-confetti">
-          {CONFETTI.map(({ x, turn, tone }, i) => <i key={i} style={{ '--x': `${x}px`, '--turn': `${turn}deg`, '--tone': tone, '--i': i }} />)}
-        </div>
-      </div>
+      <Medal />
       <p className="grow-done-title">{say('Lesson done')}</p>
       <dl className="grow-done-stats">
         {/* No reading of XP (offline), no "+0". */}

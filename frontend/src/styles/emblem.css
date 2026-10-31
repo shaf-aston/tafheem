@@ -2,16 +2,16 @@
    motion scale, so the Animations switch (--motion-scale 0) stills every one. */
 .emblem { color: var(--w, var(--primary)); overflow: visible; flex: none; }
 .emblem [class^='em-'], .emblem [class*=' em-'] { transform-box: fill-box; transform-origin: center; }
-.emblem .em-late { animation-delay: calc(-1.2s * var(--motion-scale)); }
+.emblem .em-late { animation-delay: calc(var(--loop-late-ms) * var(--motion-scale) * -1ms); }
 
-.em-sway   { animation: em-sway calc(3.6s * var(--motion-scale)) ease-in-out infinite alternate; transform-origin: bottom left; }
-.em-tilt   { animation: em-tilt calc(4.5s * var(--motion-scale)) ease-in-out infinite alternate; transform-origin: 50% 22px; transform-box: view-box; }
-.em-star   { animation: em-spin calc(18s * var(--motion-scale)) linear infinite; }
-.em-flicker{ animation: em-flicker calc(1.1s * var(--motion-scale)) ease-in-out infinite alternate; transform-origin: bottom; }
-.em-rays   { animation: em-glow calc(2.8s * var(--motion-scale)) ease-in-out infinite alternate; }
-.em-draw   { animation: em-dash calc(2.4s * var(--motion-scale)) linear infinite; }
-.em-write  { animation: em-write calc(2.6s * var(--motion-scale)) ease-in-out infinite alternate; }
-.em-lift   { animation: em-lift calc(3s * var(--motion-scale)) ease-in-out infinite alternate; }
+.em-sway   { animation: em-sway calc(var(--loop-sway-ms) * var(--motion-scale) * 1ms) ease-in-out infinite alternate; transform-origin: bottom left; }
+.em-tilt   { animation: em-tilt calc(var(--loop-tilt-ms) * var(--motion-scale) * 1ms) ease-in-out infinite alternate; transform-origin: 50% 22px; transform-box: view-box; }
+.em-star   { animation: em-spin calc(var(--loop-spin-ms) * var(--motion-scale) * 1ms) linear infinite; }
+.em-flicker{ animation: em-flicker calc(var(--loop-flicker-ms) * var(--motion-scale) * 1ms) ease-in-out infinite alternate; transform-origin: bottom; }
+.em-rays   { animation: em-glow calc(var(--loop-glow-ms) * var(--motion-scale) * 1ms) ease-in-out infinite alternate; }
+.em-draw   { animation: em-dash calc(var(--loop-dash-ms) * var(--motion-scale) * 1ms) linear infinite; }
+.em-write  { animation: em-write calc(var(--loop-write-ms) * var(--motion-scale) * 1ms) ease-in-out infinite alternate; }
+.em-lift   { animation: em-lift calc(var(--loop-lift-ms) * var(--motion-scale) * 1ms) ease-in-out infinite alternate; }
 
 @keyframes em-sway    { to { transform: rotate(7deg) scale(1.04); } }
 @keyframes em-tilt    { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }

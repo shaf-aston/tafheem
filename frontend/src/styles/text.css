@@ -219,7 +219,7 @@ textarea.arabic-lg {
 
 /* ── The gold sheen ─────────────────────────────────────────────────────────
    One gleam of gold crossing the header's ayah, right to left as it is read,
-   when the app opens and again under a resting pointer (App.jsx). The words are
+   when the app opens and again as the pointer arrives (App.jsx, lib/motion/replay.js). The words are
    painted by their own background, clipped to the letters, so the gleam is in
    the ink rather than over it. Its length is theme.json's sheen-ms, times
    --motion-scale, so the Animations setting leaves the ayah still and plain. */
@@ -232,9 +232,11 @@ textarea.arabic-lg {
   -webkit-background-clip: text;
   background-clip: text;
   animation: gold-sheen calc(var(--motion-sheen-ms) * var(--motion-scale) * 1ms) ease-in-out
-    calc(var(--motion-sheen-delay-ms) * var(--motion-scale) * 1ms) backwards;
+    calc(var(--motion-sheen-delay-ms) * var(--motion-scale) * 1ms) both;
+  /* both, not backwards: the last frame is the ayah at rest anyway, and a finished
+     animation that holds it is still there for replay() to rewind; one that lets
+     go is dropped by the browser, and the hover found nothing to play. */
 }
-.gold-sheen:hover { animation-name: gold-sheen-again; animation-delay: 0ms; }
+/* A hover replays it through lib/motion/replay.js (App.jsx), not a second copy of
+   the keyframes: the copy played the pass again as the pointer left. */
 @keyframes gold-sheen { from { background-position: 0% 0; } to { background-position: 100% 0; } }
-/* The same pass under another name, so a hover replays it. */
-@keyframes gold-sheen-again { from { background-position: 0% 0; } to { background-position: 100% 0; } }
