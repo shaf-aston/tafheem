@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts import (
-    Sentence, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time)
+    Sentence, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time)
 
 
 def subject_clash(tokens: list[dict]) -> None:
@@ -52,8 +52,10 @@ def subject_clash(tokens: list[dict]) -> None:
 
 
 def _in_nasb(token: dict) -> bool:
-    """Typed in nasb, or typed bare and read so while no describing word (a نعت is made of one): شرب الطفل اللبن."""
-    return typed_case_of(token) == "a" or typed_bare(token) and typed_or_parsed_case(token) == "a" and not is_describing(token)
+    """Typed in nasb, or typed bare and read so while no describing word (a نعت is made of one) and no word of
+    emphasis (a توكيد follows its noun): شرب الطفل اللبن, but حضر الطلاب أنفسهم."""
+    return typed_case_of(token) == "a" or typed_bare(token) and typed_or_parsed_case(token) == "a" \
+        and not is_describing(token) and not any(listed(token, "tawkeed", part) for part in ("with_pronoun", "without_pronoun"))
 
 
 def added_to_verb(tokens: list[dict]) -> None:

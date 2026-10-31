@@ -1233,6 +1233,8 @@ def test_a_verb_after_a_nasb_particle_is_the_present_one(sentence: str, at: int,
     ("شرب الطفل اللبن", "مفعول به"),
     ("شرب الولد الماء", "مفعول به"),
     ("جاء الرجل الكريم", "صفة"),  # nearest case: a describing word after the doer stays its نعت
+    ("حضر الطلاب أنفسهم", "توكيد"),  # a word of emphasis after the doer stays its توكيد
+    ("حضر الملك عينه", "توكيد"),
 ])
 def test_a_bare_plain_noun_in_nasb_after_the_doer_is_the_object(sentence: str, role: str):
     assert cards(sentence)[-1]["role"] == role
