@@ -16,7 +16,7 @@
 .entry-row-body[role='button'] { cursor: pointer; }
 .entry-row-body[role='button']:hover { background: var(--surface-hi); }
 .entry-row-body[aria-expanded='true'] { background: color-mix(in srgb, var(--c) 10%, transparent); }
-.entry-num { color: var(--c); min-width: 1.6em; text-align: center; padding-top: 0.6em; }
+.entry-num { color: var(--c); opacity: 0.8; min-width: 1.6em; text-align: center; padding-top: 0.9em; font-variant-numeric: tabular-nums; }
 
 /* The English re-enters with a short rise each time the line changes. */
 .entry-rise { animation: rise-in calc(var(--motion-base-ms) * 1ms) ease backwards; --rise-from: 0; --rise-scale: 1; }

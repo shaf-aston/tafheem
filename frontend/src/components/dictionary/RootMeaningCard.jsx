@@ -234,7 +234,10 @@ function Body({
   const { core_meaning, sarf_pattern, variances, rest, english } = data.meaning
 
   return (
-    <div className="space-y-3">
+    // One reading column for the Arabic and its English alike. Held to the
+    // width the English already had, the Arabic ran to the far edge of a wide
+    // screen and each line sat a whole screen away from its meaning.
+    <div className="space-y-3 max-w-[var(--lexicon-reading-w)]">
       <div>
         <div className="type-small text-[var(--text-faint)] mb-1">
           Origin sense of <Letters value={asked} />
