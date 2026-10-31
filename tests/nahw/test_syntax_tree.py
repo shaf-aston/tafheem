@@ -188,7 +188,10 @@ def test_a_name_with_its_ibn_is_no_murakkab_tawsifi():
     found = name_roles(words, toks)
     assert found[1]["also"] and "بدل" in found[1]["also"]
     top = drawing.build(words, toks, found)["tree"]
-    assert top["label"] == "" and top["children"][0]["role"] == "متبوع"
+    # alone, the name is the khabar of an unwritten هذا (test_phrase_alone); the group under it keeps its shape
+    hadha, group = top["children"]
+    assert hadha["role"] == "مبتدأ" and group["role"] == "خبر"
+    assert group["label"] == "" and group["children"][0]["role"] == "متبوع"
 
 
 def test_a_masdar_with_al_urged_alone_is_the_object_of_an_unwritten_verb():

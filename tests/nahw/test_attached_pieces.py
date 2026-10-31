@@ -456,12 +456,14 @@ def test_a_masdar_on_a_preposition_is_its_majrur(sentence):
 
 
 def test_a_unit_with_a_job_leaves_off_what_it_is_made_of():
-    """قرأت كتابَ الطالب: مفعول به, not مفعول به / مركب إضافي; كتابُ زيدٍ alone keeps its name."""
+    """قرأت كتابَ الطالب: مفعول به, not مفعول به / مركب إضافي; كتابُ زيدٍ alone is the khabar of an
+    unwritten هذا (test_phrase_alone), so it too is named by that job."""
     _, leaves = analysed("قَرَأْتُ كِتَابَ الطَّالِبِ")
     (_, unit), = leaves["كِتَابَ"]
     assert unit["role"] == "مفعول به" and not unit["label"]
     body = client.post("/api/analyze", json={"sentence": "كِتَابُ زَيْدٍ"}).json()
-    assert body["tree"]["tree"]["label"] == "مُرَكَّبٌ إِضَافِيٌّ"
+    hadha, khabar = body["tree"]["tree"]["children"]
+    assert khabar["role"] == "خبر" and not khabar["label"]
 
 
 def test_a_weak_radical_left_unpinned_is_still_one_root():

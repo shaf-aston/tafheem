@@ -128,6 +128,20 @@ def test_the_check_fails_on_a_drop_or_a_crash_and_passes_level(monkeypatch, tmp_
     assert score_iraab.check(None, save=False) == 1
 
 
+def test_the_check_fails_when_a_sentence_it_had_right_goes_wrong_whatever_the_total(monkeypatch, tmp_path):
+    from backend.scripts.nahw import score_iraab
+    base = {**{name: 10 for name in score_iraab.EXACT}, "whole": {"rules": ["r1", "r2"]}}
+    (tmp_path / "b.json").write_text(__import__("json").dumps(base))
+    monkeypatch.setattr(score_iraab, "BASELINE", tmp_path / "b.json")
+    whole = {"r1", "r2"}
+    monkeypatch.setattr(score_iraab, "score_exact", lambda name, api, show: score_iraab.Scores(
+        {"right": 10}, whole=frozenset(whole if name == "rules" else ())))
+    assert score_iraab.check(None, save=False) == 0
+    whole.discard("r2")
+    whole.add("r3")  # one fixed, one broken: the same total
+    assert score_iraab.check(None, save=False) == 1
+
+
 def test_a_reader_that_breaks_says_so(monkeypatch):
     from backend.config import get_settings
     from backend.services.nahw import syntax

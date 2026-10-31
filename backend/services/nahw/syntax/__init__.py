@@ -96,7 +96,8 @@ def read(sentence: str, picks: list[dict]) -> dict:
         # شكرًا is the object of an understood verb: the card says the job the picture
         # gives it. Only that; a picture's unit name (مضاف, اسم موصول) is not a job.
         for word, job in zip(found, drawn.pop("unsaid", [])):
-            if job and not word["role"]:
+            # بابُ الفاعلِ alone: the khabar of an unwritten هذا, not the مبتدأ it was named
+            if job and (not word["role"] or word["role"] == NAMED.mubtada):
                 word["role"] = job
                 word.pop("gap", None)
         # the card says the same finer name the picture prints, read off the one tree
