@@ -16,7 +16,8 @@ from backend.services.nahw.book import (book_spelling, card_keys, clause_of, con
 from backend.services.nahw.syntax.facts import (Sentence, is_particle, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
                                           is_nasab, is_verb, read_as, reading, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
-from backend.services.nahw.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
+from backend.services.nahw.syntax.followers import FOLLOWERS, chain_first
+from backend.services.nahw.syntax.naming import NAMED, base_tokens, opens_with_verb, tone
 from backend.services.nahw.syntax.doer import DOER, doer as _doer, person_key as _person, persons as _persons
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
 from backend.services.text.harakat import SHADDA, has_tanween, letters, own_letters
@@ -177,14 +178,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     def joins(token: dict) -> bool:  # a حرف عطف, still named حرف here: the chart's finer name comes later (_finer)
         return role_of.get(token["id"]) in (NAMED.harf, ATF) and is_one(token["form"], "atf")
 
-    def chain_first(token: dict) -> dict:
-        while role_of.get(token["id"]) == NAMED.matoof and (waw := by_id.get(token["head"])) \
-                and joins(waw) and waw["head"] in by_id and waw["head"] != token["id"]:
-            token = by_id[waw["head"]]
-        return token
+    def joined_on(at: int) -> int | None:  # the word a معطوف's و hangs on
+        waw = by_id.get(by_id[at]["head"])
+        return waw["head"] if role_of.get(at) == NAMED.matoof and waw and joins(waw) and waw["head"] in by_id else None
     for waw in [t for t in drawn if joins(t) and t["head"] in by_id]:
-        if (first := chain_first(by_id[waw["head"]]))["id"] != waw["head"]:
-            moved = {**waw, "head": first["id"]}
+        if (first := chain_first(waw["head"], joined_on)) != waw["head"]:
+            moved = {**waw, "head": first}
             drawn[[t["id"] for t in drawn].index(moved["id"])], by_id[moved["id"]] = moved, moved
     # جاء الولدُ وهو يبكي: the parser can hang the مبتدأ under the verb after it; the verb's sentence
     # is the مبتدأ's khabar, so the verb hangs on the مبتدأ and the مبتدأ where the verb hung

@@ -1,7 +1,7 @@
 """The naming layer reads links plus typed vowels, so both are tested without a model."""
 import pytest
 
-from backend.services.nahw.syntax import facts, naming
+from backend.services.nahw.syntax import facts, followers, naming
 from backend.services.nahw.syntax.repair import correct, untangle
 from backend.services.text.harakat import typed_case, typed_passive
 
@@ -894,5 +894,5 @@ def test_a_follower_of_the_called_ayyuha_follows_it_though_it_is_tagged_a_partic
              {"id": 2, "form": "أيها", "pos": "PRT", "lemma": "أيها", "head": 0},
              {"id": 3, "form": "الذين", "pos": "NOM", "lemma": "الذي", "head": 2},
              {"id": 4, "form": "زيد", "pos": "NOM", "lemma": "زيد", "head": 1}]
-    assert naming._followed(words[2], words, words) == 1
-    assert naming._followed(words[3], words, words) == 1
+    assert followers.followed(words[2], words, words) == 1
+    assert followers.followed(words[3], words, words) == 1

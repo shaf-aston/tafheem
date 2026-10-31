@@ -24,6 +24,9 @@ typed sentence
  → syntax.naming + walker    walks data/nahw_rules/naming_tree.json to each word's role; then
                              FINISHES (pair names, زائدة باء, كافة ما) add keys to each FoundEntry
                              (the typed schema every later step reads: Piece, Condition, Gap, Doer)
+ → syntax.followers         the التوابع: who a follower follows, a و-chain's first word (the
+                             معطوف عليه), and the case a follower copies; naming, teacher, tree and
+                             card_wording all ask here
  → syntax.teacher            second reading; dashes a role the vowels or the rules reject
  → syntax.tree               the bracket picture (tarkeeb); syntax.doer names the doer inside a verb.
                              Four things the picture decides go back onto the entry, and only these:
@@ -61,6 +64,7 @@ is first said to be is `card_keys().<id>` (teacher.json `card_keys`); a word lis
 | Right kind, wrong role | the matching `facts/` axis, then `naming_tree.json` |
 | Role named for a governor that isn't there | `facts/governor.py` |
 | Condition / answer wrong | `condition.py` |
+| A صفة/معطوف/بدل/توكيد follows the wrong word or wears the wrong case | `facts/follows.py` (which follower), then `followers.py` (whom it follows, its case) |
 | Right role, wrong sign | `signs.py`, `harakat.py` |
 | Right role and sign, wrong wording on the card | `card_wording/` (one pass per feature; naming leaves the key it reads) |
 | The doer inside a verb (هو، أنتَ، the تاء) | `syntax/doer.py` and roles.json `frames.doer`; its card line is teacher.json `doer_said` |

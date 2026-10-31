@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from backend.services.nahw.book import case_of, counted_name, teacher_rules
+from backend.services.nahw.syntax.followers import chain_first
 from backend.services.nahw.syntax.naming import NAMED
 from backend.services.text.harakat import CASE_LETTER
 
@@ -33,12 +34,12 @@ def followed(cards: list[dict], roles: list[dict]) -> None:
     said = teacher_rules()["case_said"]
     atf = NAMED.matoof
 
+    def joined_on(i: int) -> int | None:  # the card a معطوف is joined on
+        at = cards[i].get("follows")
+        return at if cards[i].get("role") == atf and isinstance(at, int) and 0 <= at < len(cards) else None
+
     def root(i: int) -> int:
-        seen = {i}
-        while cards[i].get("role") == atf and isinstance(at := cards[i].get("follows"), int) \
-                and 0 <= at < len(cards) and at not in seen:
-            seen.add(i := at)
-        return i
+        return chain_first(i, joined_on)
 
     joined: dict[int, list[int]] = {}
     for i, card in enumerate(cards):
