@@ -46,7 +46,7 @@ const LIVE = [[RECORD, 'overview']]
 const later = (module) => [[RECORD, 'summary', module], [RECORD, 'review', module], [RECORD, 'leaderboard', module], [RECORD, 'account']]
 
 /** Re-read `module`'s own views now: for a screen whose lesson or round has ended. */
-export const refreshModule = (client, module) => Promise.all(
+const refreshModule = (client, module) => Promise.all(
   [[RECORD, 'summary', module], [RECORD, 'review', module]].map((queryKey) => client.invalidateQueries({ queryKey })),
 )
 

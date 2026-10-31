@@ -30,7 +30,7 @@ export function peopleTable(person) {
 }
 
 /** The one-letter words joined to the front of a word with ال, and what each says. لِـ takes the place of ال's ا. */
-export const JOINERS = [
+const JOINERS = [
   { id: 'and', ar: 'وَ', en: 'and' },
   { id: 'with', ar: 'بِ', en: 'with' },
   { id: 'for', ar: 'لِ', en: 'for', drops: true },
@@ -79,7 +79,7 @@ export function pointingTable(word) {
 }
 
 /** Who says “is” with no word for it: the pronoun, and the form of the person after it. */
-export const PRONOUNS = [
+const PRONOUNS = [
   { id: 'he', ar: 'هُوَ', form: 'man', en: 'he is', one: true },
   { id: 'she', ar: 'هِيَ', form: 'woman', en: 'she is', one: true },
   { id: 'they', ar: 'هُمْ', form: 'men', en: 'they are' },

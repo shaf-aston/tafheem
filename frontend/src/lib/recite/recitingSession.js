@@ -109,7 +109,7 @@ export const queueCheck = (queue, job, max) => {
  * recordings began. A newer reading of a recording replaces its own entry
  * (it holds more of the same sound); nothing is deduped across recordings.
  */
-export const addToTranscript = (transcript, window, words) => {
+const addToTranscript = (transcript, window, words) => {
   const at = transcript.findIndex((entry) => entry.window === window)
   if (at === -1) return [...transcript, { window, words }]
   return [...transcript.slice(0, at), { window, words }, ...transcript.slice(at + 1)]
