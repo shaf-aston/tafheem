@@ -8366,14 +8366,14 @@
           "title": "Numbers Beyond Ten",
           "section": "Numbers and dates",
           "phrases": [],
-          "words": ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "two-hundred", "thousand", "million", "billion", "first", "second-2nd", "third-3rd", "fourth-4th", "fifth-5th", "sixth-6th", "seventh-7th", "eighth-8th", "ninth-9th", "tenth-10th", "last", "half", "quarter", "one-third", "two-thirds", "three-quarters", "plus", "minus", "to-count", "per-cent"]
+          "words": ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "two-hundred", "thousand", "million", "billion", "first", "second-2nd", "third-3rd", "fourth-4th", "fifth-5th", "sixth-6th", "seventh-7th", "eighth-8th", "ninth-9th", "tenth-10th", "last", "quarter", "one-third", "two-thirds", "three-quarters", "plus", "minus", "to-count", "per-cent"]
         },
         {
           "lesson": "lesson-05",
           "title": "Amounts and Measures",
           "section": "Numbers and dates",
           "phrases": [],
-          "words": ["all", "some", "most", "several", "whole", "everything", "nothing", "many", "few", "both", "each", "part", "zero", "half", "pair", "dozen", "per-cent", "fraction", "one-third", "only", "a-lot", "a-little", "less", "too-much", "somewhat", "at-least", "litre", "metre", "kilometre", "centimetre", "gram", "tonne", "length", "width", "height", "enough", "double", "extra", "previous", "kilo", "piece", "bottle"]
+          "words": ["many", "few", "both", "each", "part", "zero", "pair", "dozen", "fraction", "too-much", "somewhat", "litre", "metre", "kilometre", "centimetre", "gram", "tonne", "length", "width", "height", "double", "extra", "previous", "kilo", "piece", "bottle"]
         },
         {
           "lesson": "lesson-06",
@@ -8407,14 +8407,14 @@
           "title": "Making, Moving and Handling",
           "section": "Handling and feeling",
           "phrases": [],
-          "words": ["to-come", "to-make", "to-do", "to-start", "to-use", "to-follow", "to-lead", "to-show", "to-gather", "to-spend", "to-lend", "to-repair", "to-build", "to-lift", "to-push", "to-pull", "to-throw", "to-hold", "to-catch", "to-shake", "to-squeeze", "to-press", "to-tear", "to-stretch", "to-separate", "to-fix-fasten", "to-dig", "to-saw", "to-paint", "to-sew", "to-glue", "to-lock", "to-harvest", "to-plant", "to-water", "to-protect", "to-warn", "to-escape", "to-burn", "to-destroy"]
+          "words": ["to-come", "to-make", "to-do", "to-start", "to-use", "to-follow", "to-lead", "to-show", "to-gather", "to-spend", "to-lend", "to-repair", "to-build", "to-catch", "to-shake", "to-squeeze", "to-press", "to-tear", "to-stretch", "to-separate", "to-fix-fasten", "to-dig", "to-saw", "to-paint", "to-sew", "to-glue", "to-lock", "to-harvest", "to-plant", "to-water", "to-protect", "to-warn", "to-escape", "to-burn", "to-destroy"]
         },
         {
           "lesson": "lesson-04",
           "title": "Mind and Heart Verbs",
           "section": "Handling and feeling",
           "phrases": [],
-          "words": ["to-feel", "to-love", "to-hate", "to-fear", "to-worry", "to-envy", "to-wish", "to-think", "to-remember", "to-realise", "to-believe", "to-doubt", "to-suppose", "to-guess", "to-wonder", "to-seem", "to-become", "to-remain", "to-belong", "to-contain", "to-deserve", "to-promise", "to-lie-untruth", "to-trust", "to-betray", "to-refuse", "to-admit", "to-deny", "to-obey", "to-fight", "to-defend", "to-attack", "to-quarrel", "to-punish", "to-blame", "to-threaten", "to-congratulate", "to-support", "to-care", "to-respect", "to-hug", "to-kiss"]
+          "words": ["to-feel", "to-love", "to-hate", "to-fear", "to-worry", "to-envy", "to-wish", "to-believe", "to-doubt", "to-suppose", "to-guess", "to-wonder", "to-seem", "to-become", "to-remain", "to-belong", "to-contain", "to-deserve", "to-promise", "to-lie-untruth", "to-trust", "to-betray", "to-refuse", "to-admit", "to-deny", "to-obey", "to-fight", "to-defend", "to-attack", "to-quarrel", "to-punish", "to-blame", "to-threaten", "to-congratulate", "to-support", "to-care", "to-respect", "to-hug", "to-kiss"]
         }
       ]
     },
@@ -8441,7 +8441,7 @@
           "title": "Colours, Shapes and Materials",
           "section": "Describing",
           "phrases": [],
-          "words": ["red", "blue", "orange", "pink", "brown", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "thick", "thin-not-thick", "sharp", "smooth", "rough", "hard", "soft", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric"]
+          "words": ["red", "blue", "orange", "pink", "brown", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "sharp", "smooth", "rough", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric"]
         },
         {
           "lesson": "lesson-04",
@@ -8455,7 +8455,7 @@
           "title": "Character and Manners",
           "section": "Feelings and character",
           "phrases": [],
-          "words": ["kind", "generous", "polite", "honest", "brave", "patient-calm", "stubborn", "hard-working", "patience", "respect", "generosity", "loyal", "humble", "wise", "trustworthy", "helpful", "gentle", "sincere", "fair", "merciful", "noble", "liar", "coward", "fool", "arrogant", "selfish", "greedy", "envious", "cruel", "unjust", "cunning", "manners", "morals", "honesty", "loyalty", "humility", "justice", "wisdom", "dignity", "modesty"]
+          "words": ["kind", "honest", "patient-calm", "stubborn", "hard-working", "patience", "respect", "generosity", "loyal", "humble", "wise", "trustworthy", "helpful", "gentle", "sincere", "fair", "merciful", "noble", "liar", "coward", "fool", "arrogant", "selfish", "greedy", "envious", "cruel", "unjust", "cunning", "manners", "morals", "honesty", "loyalty", "humility", "justice", "wisdom", "dignity", "modesty"]
         }
       ]
     },
@@ -8537,7 +8537,7 @@
           "title": "Land and Sky",
           "section": "Plants and land",
           "phrases": [],
-          "words": ["sky", "sun", "moon", "star", "planet", "cloud", "rainbow", "horizon", "sunrise", "earth", "world", "continent", "mountain", "hill", "valley", "desert", "oasis", "island", "forest", "cave", "volcano", "earthquake", "rock", "stone", "soil", "sand", "grass", "plant", "tree", "sea", "river", "lake", "ocean", "waterfall", "spring-water", "well-water", "gulf", "coast", "beach", "wave"]
+          "words": ["sky", "sun", "moon", "star", "planet", "cloud", "rainbow", "horizon", "sunrise", "earth", "world", "continent", "mountain", "hill", "valley", "desert", "oasis", "island", "forest", "cave", "volcano", "earthquake", "rock", "stone", "soil", "sand", "river", "lake", "ocean", "waterfall", "spring-water", "well-water", "gulf", "coast", "beach", "wave"]
         }
       ]
     },
@@ -8564,7 +8564,7 @@
           "title": "School and Office Things",
           "section": "Out and about",
           "phrases": [],
-          "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "encyclopedia", "paper", "envelope", "school-bag", "ruler", "scissors", "glue", "adhesive-tape", "stapler", "paper-clip", "folder", "calculator", "calendar", "printer", "bell", "desk", "chair", "table", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket"]
+          "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "encyclopedia", "paper", "envelope", "school-bag", "ruler", "glue", "stapler", "paper-clip", "folder", "calculator", "calendar", "printer", "bell", "desk", "chair", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket"]
         },
         {
           "lesson": "lesson-04",
@@ -8605,14 +8605,14 @@
           "title": "Pantry, Grains and Dairy",
           "section": "Pantry and plate",
           "phrases": [],
-          "words": ["grains", "wheat", "barley", "oats", "rice", "flour", "semolina", "bulgur", "freekeh", "couscous", "vermicelli", "nuts", "almond", "walnut", "pistachio", "peanut", "hazelnut", "cashew", "pine-nuts", "seed", "sesame", "black-seed", "milk", "yoghurt", "labneh", "cheese", "cream", "butter", "ghee", "vinegar", "yeast", "jam", "honey", "tahini", "molasses", "olive-oil", "pickles", "chocolate", "cinnamon", "cumin", "turmeric", "sumac"]
+          "words": ["grains", "wheat", "barley", "oats", "rice", "flour", "semolina", "bulgur", "freekeh", "couscous", "vermicelli", "nuts", "almond", "walnut", "pistachio", "peanut", "hazelnut", "cashew", "pine-nuts", "sesame", "black-seed", "milk", "yoghurt", "labneh", "cheese", "cream", "butter", "ghee", "vinegar", "yeast", "jam", "honey", "tahini", "molasses", "olive-oil", "pickles", "chocolate", "cinnamon", "cumin", "turmeric", "sumac"]
         },
         {
           "lesson": "lesson-04",
           "title": "Meat, Fish and Dishes",
           "section": "Pantry and plate",
           "phrases": [],
-          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "meatballs", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "cumin", "cinnamon", "turmeric", "sumac", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding"]
+          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "meatballs", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding"]
         }
       ]
     },
