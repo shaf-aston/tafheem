@@ -265,6 +265,17 @@ def agrees(token: dict, head: dict) -> bool:
     return same_case(token, head) and not (token.get("stt") == "i" and known or named) and len(set(dual)) < 2
 
 
+def describes(token: dict, head: dict) -> bool:
+    """A وصف that can be its noun's na't: it agrees with it (`agrees`) and, where both are tagged
+    and the noun is one thing, in gender too (Tasheel 3.10.1: the na't follows its noun in
+    تذكير and تأنيث). A plural not of people takes a feminine singular (الكتبُ الجديدةُ), so a
+    plural noun's gender is not asked; a singular's must be tagged on both to be matched. الطالبُ
+    المجتهدُ is a na't; الدينُ النصيحةُ cannot be (a feminine word told of a masculine one)."""
+    genders = {t.get("gen") for t in (token, head)}
+    matched = head.get("num") == "p" or genders <= {"m", "f"} and len(genders) == 1
+    return is_describing(token) and agrees(token, head) and matched
+
+
 def unlike(token: dict, head: dict) -> bool:
     """In its noun's case yet not agreeing: no na't, so a khabar or a hal."""
     return same_case(token, head) and not agrees(token, head)

@@ -291,6 +291,24 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         verb = hang_on_unsaid_verb(noun, text, head=noun["head"], rel="OBJ")
         replies.add(verb["id"])
         detail_of[noun["id"]] = said_verb["reply"]["detail"].format(verb=text)
+    # لولا زيدٌ لهلك عمرٌو: the noun after لولا is a مبتدأ whose khabar, a general being, is always
+    # left out (roles.json condition by_word `khabar`); it is drawn hidden after the noun, before the answer
+    for i, found in enumerate(named):
+        opens = found.get("condition", {})
+        frame = condition_of(bases[i]["form"]) if opens.get("part") == "opener" else None
+        if not frame or not frame.get("khabar") or opens.get("answer") is None or opens.get("verb") is None:
+            continue
+        noun = by_id[bases[opens["verb"]]["id"]]
+        if any(role_of.get(t["id"]) in khabars and t["head"] == noun["id"] for t in drawn):
+            continue
+        def of_noun(t: dict) -> bool:  # the noun or a word hung under it (رحمةُ اللهِ)
+            while t is not None and t["id"] != noun["id"]:
+                t = by_id.get(t["head"])
+            return t is not None
+        start = drawn.index(noun)
+        place = next((k for k in range(start, len(drawn)) if not of_noun(drawn[k])), len(drawn))
+        said_khabar = understand(frame["khabar"], NAMED.khabar, place, head=noun["id"], rel="PRD", pos="NOM", pos_camel="")
+        detail_of[said_khabar["id"]] = frame["khabar_detail"]
     # بابُ الفاعلِ، كوبٌ كبيرٌ من القهوة: a noun phrase alone, its head in raf' or in no case shown,
     # with no verb, no khabar, no فاعل (أذاهبٌ زيدٌ: the doer stands for the khabar) and no question
     # word (أيوسفُ الفائزُ أم طارقٌ asks: أم is on the istifham list) in it, is a title or an
