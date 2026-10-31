@@ -39,8 +39,13 @@ def _shapes() -> list[tuple[str, str, str]]:
     for form in json.loads(_PATTERNS.read_text(encoding="utf-8"))["forms"].values():
         for key, kept, pos in (("masdar", masdars, "noun"), ("fail", participles, "adj")):
             shape = form.get(key) or ""
-            if shape and "{4}" not in shape and (shape.format("", *_ROOT), shape.format("", 1, 2, 3), pos) not in kept:  # fits_shape holds a root of three
-                kept.append((shape.format("", *_ROOT), shape.format("", 1, 2, 3), pos))
+            # إِقَامَة، اِسْتِقَامَة: a hollow root's masdar of إِفْعَال or اِسْتِفْعَال drops its middle letter, its fatha
+            # moved onto the first (الإعلال بالنقل والحذف), a ة in its place; before a مضاف إليه the ة may fall too
+            # (وَإِقَامَ الصَّلَاةِ, 21:73), and the reader takes a stem with or without its ة alike
+            hollow = shape.replace("ْ{2}َا{3}", "َا{3}") if key == "masdar" and "ْ{2}َا{3}" in shape else ""
+            for each in filter(None, (shape, hollow)):
+                if "{4}" not in each and (each.format("", *_ROOT), each.format("", 1, 2, 3), pos) not in kept:  # fits_shape holds a root of three
+                    kept.append((each.format("", *_ROOT), each.format("", 1, 2, 3), pos))
     # حَاقّ، ضَالّ: a doubled root's فَاعِل merges its last two letters (الإدغام), the kasra between them dropped
     merged = [("فَاعّ", "1َا2ّ", "adj")]
     return elative + masdars + participles + merged

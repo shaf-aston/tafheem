@@ -22,3 +22,13 @@ def test_a_sound_ending_is_peeled_for_its_number_and_case(word: str, number: str
 
 def test_an_ending_with_the_wrong_vowel_on_its_nun_is_no_sound_plural():
     assert noun_reader.reading_of("مُسْرِعِينِ") is None  # a plural's nun takes a fatha, never a kasra
+
+
+@pytest.mark.parametrize("word, lex", [
+    ("إِقَامِ", "إقام"),       # إِفْعَال of a hollow root: its middle letter gone, its ة fallen before a مضاف إليه (21:73)
+    ("إِقَامَةِ", "إقام"),     # the same with the ة that stands in for that letter
+    ("اِسْتِقَامُ", "استقام"),  # اِسْتِفْعَال the same way
+])
+def test_a_hollow_roots_masdar_is_read_off_its_shape(word: str, lex: str):
+    found = noun_reader.reading_of(word)
+    assert (found["pos"], found["lex"]) == ("noun", lex)

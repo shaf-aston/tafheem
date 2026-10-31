@@ -85,7 +85,8 @@ def _quieted(node: dict) -> dict:
 
 
 QUIET_UNDER_JOB = {term_ar(unit["label"]) for unit in role_units() if unit.get("quiet_under_job")}
-UNIT_CHILDREN = {unit["child"] for unit in role_units()} | set(FOLLOWERS) | {card_keys().atf}
+ATF = card_keys().atf
+UNIT_CHILDREN = {unit["child"] for unit in role_units()} | set(FOLLOWERS) | {ATF}
 
 
 def _finer(token: dict, role: str | None, family: str | None) -> str | None:
@@ -170,6 +171,21 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             moved = waw if waw and is_prefix(waw) else token
             moved = {**moved, "head": bases[at_gov]["id"]}
             drawn[[t["id"] for t in drawn].index(moved["id"])], by_id[moved["id"]] = moved, moved
+    # وَإِقَامِ الصَّلَاةِ وَإِيتَاءِ الزَّكَاةِ وَالْحَجِّ: the parser chains a list, each و on the معطوف before it;
+    # every معطوف of a chain is joined on its first word, the معطوف عليه, as its card says
+    # (card_wording.counting.followed), so each حرف عطف hangs on that word and the معطوفات stand side by side
+    def joins(token: dict) -> bool:  # a حرف عطف, still named حرف here: the chart's finer name comes later (_finer)
+        return role_of.get(token["id"]) in (NAMED.harf, ATF) and is_one(token["form"], "atf")
+
+    def chain_first(token: dict) -> dict:
+        while role_of.get(token["id"]) == NAMED.matoof and (waw := by_id.get(token["head"])) \
+                and joins(waw) and waw["head"] in by_id and waw["head"] != token["id"]:
+            token = by_id[waw["head"]]
+        return token
+    for waw in [t for t in drawn if joins(t) and t["head"] in by_id]:
+        if (first := chain_first(by_id[waw["head"]]))["id"] != waw["head"]:
+            moved = {**waw, "head": first["id"]}
+            drawn[[t["id"] for t in drawn].index(moved["id"])], by_id[moved["id"]] = moved, moved
     # جاء الولدُ وهو يبكي: the parser can hang the مبتدأ under the verb after it; the verb's sentence
     # is the مبتدأ's khabar, so the verb hangs on the مبتدأ and the مبتدأ where the verb hung
     for verb in [t for t in drawn if is_verb(t)]:
@@ -243,11 +259,14 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # لا إله إلا الله: the khabar left out because it is known, between the noun and إلا
     # (roles.json exception_after_la), the name after إلا standing for its hidden pronoun
     after_la = FRAMES["exception_after_la"]
+    mubdal_minhu: dict[int, dict] = {}  # the hidden khabar's own hidden pronoun, which the بدل stands for
     for token in list(drawn):
         if role_of.get(token["id"]) == NAMED.badal and (hit := excepted_after_la(token, sentence)):
             noun, illa, entry = hit
-            understand(entry["khabar"], after_la["khabar_named"], [t["id"] for t in drawn].index(illa["id"]),
-                       head=noun["head"], rel="PRD", pos="NOM", pos_camel="")
+            said = understand(entry["khabar"], after_la["khabar_named"], [t["id"] for t in drawn].index(illa["id"]),
+                              head=noun["head"], rel="PRD", pos="NOM", pos_camel="")
+            if "mubdal_minhu" in entry:
+                mubdal_minhu[said["id"]] = entry["mubdal_minhu"]
     said_verb = kept["verb"]
     saying = FRAMES["said_clause"]
     unsaid_objects: set[int] = set()  # nouns that are the object of a verb no one writes
@@ -576,10 +595,13 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         for kid in [k for k in children_of[answer_id] if k["pos"] == "PRT" and at[k["id"]] < at[opener["id"]]]:
             opened[answer_id] += (_take(holder, kid),)
     # a مبتدأ drawn beside its khabar unit heads no sentence, nor does that khabar: each keeps its
-    # job under the sentence, a مبتدأ with words of its own too (كِتَابُ الطَّالِبِ جَدِيدٌ، لَزَيْدٌ أَفْضَلُ)
-    root = None if pulled else roots[0]
+    # job under the sentence, a مبتدأ with words of its own too (كِتَابُ الطَّالِبِ جَدِيدٌ، لَزَيْدٌ أَفْضَلُ); so is
+    # any half of a sentence drawn in several halves side by side (كُوبٌ كَبِيرٌ مِنَ الْقَهْوَةِ: the مبتدأ unit beside
+    # its unwritten خبر ثابت): the sentence is all of them, none is it alone
+    root = None if pulled or len(roots) > 1 else roots[0]
 
     seen: set[int] = set()
+    chained: set[int] = set()  # a معطوف عليه already drawn apart from the list it heads
 
     # every verb no typed word is the doer of, outermost first, so a khabar's pronoun can
     # go back to its subject: the اسم كان inside كنتَ, or the مبتدأ above يكتبُ; a صفة's or حال's
@@ -621,10 +643,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         doer = _doer(token, family_of[token["id"]], persons_of[token["id"]]) if token["id"] in persons_of else None
         if doer and token["id"] in typed_at:
             doer_of[token["id"]] = doer
-        if not attached and not doer:
+        stands_for = mubdal_minhu.get(token["id"])
+        inner = {**stands_for, "tone": tone(NAMED.badal), "hidden": True} if stands_for else None
+        if not attached and not doer and not inner:
             return leaf
         own = {key: leaf[key] for key in ("role", "tone", "gap", "detail") if key in leaf}
-        return {**leaf, "parts": [own] + ([doer] if doer else []) + attached}
+        return {**leaf, "parts": [own] + ([doer] if doer else []) + ([inner] if inner else []) + attached}
 
     def kind_of(token: dict) -> str:
         """A unit with no name of its own is still a sentence when its head opens one,
@@ -670,6 +694,25 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                 inside = [(index, whole), *((at[kid["id"]], unit(kid)) for kid in beside)]
                 return {"role": None, "label": top_label, "tone": None, "detail": None,
                         "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
+        # جاء زيدٌ وعمرٌو، وَإِقَامِ الصَّلَاةِ وَإِيتَاءِ الزَّكَاةِ: the word the معطوفات are joined on, with what is its
+        # own (its مضاف إليه, its صفة), is the معطوف عليه; the job belongs to the whole list, drawn above all of it
+        joined = [kid for kid in kids if joins(kid) and any(job_of[k["id"]] == NAMED.matoof for k in children_of[kid["id"]])]
+        if joined and token["id"] not in chained:
+            start = min(at[kid["id"]] for kid in joined)
+            rest = [kid for kid in kids if at[kid["id"]] >= start]
+            children_of[token["id"]] = [kid for kid in kids if kid not in rest]
+            seen.discard(token["id"])
+            chained.add(token["id"])
+            first = node(token)
+            seen.add(token["id"])
+            own = {"role": NAMED.matoof_alayh, "tone": tone(NAMED.matoof_alayh)}
+            first = {**first, **own, **({"parts": [{**first["parts"][0], **own}, *first["parts"][1:]]} if first.get("parts") else {})}
+            seen.update(kid["id"] for kid in rest)
+            inside = [(index, first), *((at[kid["id"]], unit(kid)) for kid in rest)]
+            job = None if token is root or is_particle(token) else job_of[token["id"]]
+            label = top_label if token is root and token["id"] not in opened else ""
+            return {"role": job, "label": label, "tone": tone(job), "detail": said_of(token),
+                    "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
         seen.update(kid["id"] for kid in kids)
         inside = [(at[kid["id"]], unit(kid)) for kid in kids]
         role = role_of[token["id"]]
