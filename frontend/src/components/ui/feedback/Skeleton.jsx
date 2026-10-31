@@ -19,7 +19,7 @@ export function Skeleton({ className = '', late = false }) {
  * plain bar it stands in for. The line is that bar's height, so swapping one for
  * the other moves nothing.
  */
-export function InkLine() {
+function InkLine() {
   const first = useFirstOfKind('ink-line')
   if (!first) return <Skeleton className="h-6 w-1/3" />
   return (

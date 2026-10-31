@@ -120,6 +120,13 @@
 }
 
 
+/* One full turn, for anything that circles slowly forever (a star, the launcher's
+   outer ring); each wearer sets its own lap from theme.json's loop group. */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
 @keyframes shimmer {
   from { background-position: -200% 0; }
   to   { background-position: 200% 0; }

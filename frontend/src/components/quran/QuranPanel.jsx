@@ -14,7 +14,7 @@ import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
 import { getQuranRoot, searchQuran } from '../../api'
-import { AYAH_REF, isAyah } from '../../lib/quran/surahRef'
+import { AYAH_REF, FIRST_SURAH, LAST_SURAH, isAyah } from '../../lib/quran/surahRef'
 import { useArrival, useArrivalEffect } from '../../lib/nav/useArrival'
 import { useHistory } from '../../lib/nav/useHistory'
 import { isArabic } from '../../lib/text/arabicText'
@@ -34,9 +34,15 @@ import RecentRow from '../ui/inputs/RecentRow'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import { CorrectedNote } from '../ui/feedback/StatusNote'
 
+const SURAH_ONLY = /^\d+$/
+const surahStart = (value) =>
+  SURAH_ONLY.test(value ?? '') && Number(value) >= FIRST_SURAH && Number(value) <= LAST_SURAH ? `${value}:1` : null
+
 export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit }) {
   // What arrived from another tab, if it was an ayah address; anything else is a root.
-  const address = AYAH_REF.exec(incoming ?? '')
+  // A bare surah number (/quran/1, a link someone typed) is that surah from its first
+  // ayah: it was looked up as a root, found nothing, and left the tab empty.
+  const address = AYAH_REF.exec(surahStart(incoming) ?? incoming ?? '')
   const arrived = address && { surah: Number(address[1]), ayah: Number(address[2]) }
 
   // The one box: a place or the words. What it is read as is lib/quranIntent's.

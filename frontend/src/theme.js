@@ -26,9 +26,6 @@ const REFERENCE = '@'
 
 const { base: BASE_THEME, 'hint-key': HINT_KEY, device: DEVICE, looks: LOOKS, tone: TONE } = theme[THEMES_GROUP]
 
-/** The look the groups in theme.json describe, and what the landing page always wears. */
-export { BASE_THEME }
-
 /** Every look there is, in file order. Nothing else in the code names one. */
 export const THEME_NAMES = Object.keys(LOOKS)
 

@@ -8,7 +8,7 @@
 import { themeVariable } from '../../../theme'
 
 import ArabicText from '../../ui/text/ArabicText'
-import Disclosure from '../../ui/overlays/Disclosure'
+import TermQuote from '../terms/TermQuote'
 import SheetLink from '../SheetLink'
 
 export default function TermGuide({ groups, onTerms, accent }) {
@@ -31,11 +31,7 @@ export default function TermGuide({ groups, onTerms, accent }) {
                 <dd className="type-body text-[var(--text-dim)] leading-relaxed m-0">
                   {en && <span className="block type-ui font-medium text-[var(--text)]">{en}</span>}
                   {meaning}
-                  {quote && (
-                    <Disclosure label={`Quote: ${[source, page].filter(Boolean).join(', ')}`}>
-                      <ArabicText as="p" size="sm" className="block m-0 leading-loose text-[var(--text-faint)]">{quote}</ArabicText>
-                    </Disclosure>
-                  )}
+                  <TermQuote quote={quote} source={source} page={page} />
                 </dd>
               </div>
             ))}

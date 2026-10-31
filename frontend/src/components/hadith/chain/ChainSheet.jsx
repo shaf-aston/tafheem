@@ -14,7 +14,7 @@ import { CHAIN } from '../../../lib/hadith/hadithWords'
 
 import BottomSheet from '../../ui/overlays/BottomSheet'
 import ChainDrawing from './ChainDrawing'
-import CloseButton from '../../ui/buttons/CloseButton'
+import SheetHeader from '../../ui/overlays/SheetHeader'
 import Segmented from '../../ui/inputs/Segmented'
 import ScholarRulings from './ScholarRulings'
 import TermGuide from './TermGuide'
@@ -41,10 +41,9 @@ export default function ChainSheet({ links = null, author = '', weak = [], linkP
 
   return (
     <BottomSheet label={PARTS[tab].title} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
-      <header className="flex items-center justify-between gap-3 px-5 pt-4 pb-3">
+      <SheetHeader onClose={onClose}>
         <h2 aria-live="polite" className="type-ui font-semibold text-[var(--text)]">{PARTS[tab].title}</h2>
-        <CloseButton onClick={onClose} className="shrink-0" />
-      </header>
+      </SheetHeader>
       {tabs.length > 1 && (
         <div className="px-5 pb-3">
           <Segmented
