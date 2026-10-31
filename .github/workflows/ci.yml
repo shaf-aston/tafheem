@@ -22,9 +22,7 @@ jobs:
         with:
           python-version: "3.13"
           cache: pip
-      # torch (via camel-tools) from PyPI pulls ~3 GB of CUDA wheels and fills the runner's
-      # disk; tests run on the CPU, so the CPU build goes in first and the rest finds it there
-      - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -r requirements-torch.txt  # the CPU torch: PyPI's brings GB of CUDA and fills the disk
       - run: pip install -r requirements.txt pytest ruff==0.15.8
       - run: ruff check .
       - run: python -m pytest tests -q
@@ -60,7 +58,7 @@ jobs:
           key: camel-data-defaults-v1
       - if: steps.model.outputs.ready == 'true'
         run: |
-          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements-torch.txt
           pip install -r requirements.txt pytest
           camel_data -i defaults
       - name: Whole-sentence tests
