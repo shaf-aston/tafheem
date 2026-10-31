@@ -1,0 +1,939 @@
+{
+ "about": "Hand review of every word where the engine (rules only, treebank record off) and the Quranic Treebank / Quranic Corpus disagree, every 40th ayah. Buckets: engine = our mistake or a blank; valid = a position the i'rab books hold, or the same analysis labelled another way; corpus = the key is off (odd label, labels one piece of a joined word, hides a مقدّر case, or names the same role differently); context = needs the ayah before.",
+ "role": {
+  "2:34|فَسَجَدُوا": [
+   "corpus",
+   "إذ is no condition here; سجدوا is a plain verb, not جواب الشرط"
+  ],
+  "2:154|أَمْوَاتٌ": [
+   "engine",
+   "خبر of a left-out مبتدأ (هم أموات)"
+  ],
+  "2:154|أَحْيَاءٌ": [
+   "engine",
+   "خبر: بل هم أحياء"
+  ],
+  "2:194|وَالْحُرُمَاتُ": [
+   "valid",
+   "starts its own sentence (الحرمات مبتدأ، قصاص خبر); the key marks the sentence as joined"
+  ],
+  "2:194|فَمَنِ": [
+   "corpus",
+   "مَن is a noun, اسم شرط جازم; the key calls it حرف"
+  ],
+  "2:194|مَعَ": [
+   "engine",
+   "blank; ظرف مكان, خبر أنّ"
+  ],
+  "2:234|أَرْبَعَةَ": [
+   "valid",
+   "ظرف زمان (most i'rab books) or مفعول به of يتربصن (the key)"
+  ],
+  "2:234|خَبِيرٌ": [
+   "engine",
+   "خبر of والله, read as فاعل"
+  ],
+  "2:274|سِرًّا": [
+   "engine",
+   "مصدر standing as حال (مُسِرِّين)"
+  ],
+  "2:274|عِندَ": [
+   "engine",
+   "ظرف; أجرهم is definite so it is no صفة"
+  ],
+  "2:274|هُمْ": [
+   "engine",
+   "مبتدأ of ولا هم يحزنون"
+  ],
+  "2:274|يَحْزَنُونَ": [
+   "valid",
+   "same analysis: the verb with its doer is the خبر sentence; the key tags the verb خبر"
+  ],
+  "3:68|لَلَّذِينَ": [
+   "engine",
+   "read as a verb; it is خبر إنّ with لام المزحلقة"
+  ],
+  "3:68|النَّبِيُّ": [
+   "valid",
+   "after هذا the books allow نعت, بدل or عطف بيان"
+  ],
+  "3:108|اللَّهُ": [
+   "engine",
+   "blank; مبتدأ (or اسم ما)"
+  ],
+  "3:148|اللَّهُ": [
+   "engine",
+   "blank; فاعل of آتاهم"
+  ],
+  "3:148|وَاللَّهُ": [
+   "engine",
+   "blank; مبتدأ"
+  ],
+  "4:148|مَن": [
+   "engine",
+   "مستثنى, not مفعول به"
+  ],
+  "4:148|عَلِيمًا": [
+   "valid",
+   "خبر كان ثانٍ in the books; the key says صفة of سميعا"
+  ],
+  "5:12|عَشَرَ": [
+   "engine",
+   "blank; second half of the compound number, مبني"
+  ],
+  "5:12|قَرْضًا": [
+   "valid",
+   "مفعول مطلق (most books) or مفعول به if قرض is the money lent (the key)"
+  ],
+  "5:12|سَيِّئَاتِكُمْ": [
+   "engine",
+   "blank; مفعول به"
+  ],
+  "5:12|وَلَأُدْخِلَنَّكُمْ": [
+   "engine",
+   "verb with لام القسم and نون التوكيد read as a noun"
+  ],
+  "5:12|جَنَّاتٍ": [
+   "engine",
+   "second مفعول به of أدخل, not تمييز"
+  ],
+  "5:12|فَمَن": [
+   "corpus",
+   "مَن is a noun, اسم شرط جازم; the key calls it حرف"
+  ],
+  "5:92|وَاحْذَرُوا": [
+   "valid",
+   "a verb; the key tags its sentence معطوف"
+  ],
+  "5:92|أَنَّمَا": [
+   "engine",
+   "read as a verb; it is أنّ with ما الكافة"
+  ],
+  "6:12|لِّمَن": [
+   "corpus",
+   "the key labels the لِ piece; the word's noun مَن is مجرور"
+  ],
+  "6:12|مَّا": [
+   "engine",
+   "blank; مبتدأ مؤخر"
+  ],
+  "6:12|فَهُمْ": [
+   "engine",
+   "blank; مبتدأ"
+  ],
+  "6:132|دَرَجَاتٌ": [
+   "engine",
+   "blank; مبتدأ مؤخر"
+  ],
+  "6:132|رَبُّكَ": [
+   "engine",
+   "our own rule (ما + بـ → اسم ما / خبر ما) did not fire here"
+  ],
+  "6:132|بِغَافِلٍ": [
+   "engine",
+   "names only the jarr; خبر ما is missing"
+  ],
+  "7:7|فَلَنَقُصَّنَّ": [
+   "engine",
+   "verb with لام القسم and نون التوكيد read as a noun"
+  ],
+  "7:47|أَبْصَارُهُمْ": [
+   "corpus",
+   "after a passive verb it is نائب فاعل; the key says فاعل"
+  ],
+  "7:47|تِلْقَاءَ": [
+   "engine",
+   "ظرف مكان, not مفعول به"
+  ],
+  "7:47|رَبَّنَا": [
+   "engine",
+   "منادى with يا left out"
+  ],
+  "7:167|رَّحِيمٌ": [
+   "valid",
+   "خبر ثانٍ or صفة, both in the books"
+  ],
+  "8:1|الْأَنفَالُ": [
+   "valid",
+   "مبتدأ; the key tags the head of the quoted sentence as قل's object"
+  ],
+  "8:1|بَيْنِكُمْ": [
+   "engine",
+   "blank; مضاف إليه"
+  ],
+  "10:77|أَتَقُولُونَ": [
+   "engine",
+   "verb read as a noun"
+  ],
+  "10:77|لَمَّا": [
+   "valid",
+   "حرف وجود لوجود (Sibawayh) or ظرف بمعنى حين (Ibn al-Sarraj, al-Farisi)"
+  ],
+  "10:77|أَسِحْرٌ": [
+   "engine",
+   "blank; خبر مقدم"
+  ],
+  "10:77|هَٰذَا": [
+   "engine",
+   "مبتدأ مؤخر, not تمييز"
+  ],
+  "12:85|تَفْتَأُ": [
+   "corpus",
+   "a verb (لا تفتأ, ناقص); the key tags it خبر"
+  ],
+  "12:85|حَرَضًا": [
+   "corpus",
+   "خبر تكون is خبر كان; the key names it by the verb's form"
+  ],
+  "15:39|رَبِّ": [
+   "engine",
+   "read as a verb; it is منادى (the key's فاعل is off too)"
+  ],
+  "15:39|لَأُزَيِّنَنَّ": [
+   "engine",
+   "verb with لام القسم and نون التوكيد read as a noun"
+  ],
+  "15:39|وَلَأُغْوِيَنَّهُمْ": [
+   "engine",
+   "verb with لام القسم and نون التوكيد read as معطوف noun"
+  ],
+  "16:20|يُخْلَقُونَ": [
+   "valid",
+   "same analysis: the verb's sentence is the خبر"
+  ],
+  "16:100|وَالَّذِينَ": [
+   "engine",
+   "معطوف on الذين يتولونه"
+  ],
+  "16:100|مُشْرِكُونَ": [
+   "engine",
+   "خبر of هم"
+  ],
+  "17:12|وَكُلَّ": [
+   "engine",
+   "مفعول به of a left-out verb that فصّلناه explains (اشتغال)"
+  ],
+  "18:61|فَلَمَّا": [
+   "valid",
+   "حرف (Sibawayh) or ظرف بمعنى حين"
+  ],
+  "18:101|الَّذِينَ": [
+   "context",
+   "صفة of الكافرين in the ayah before; alone it is مبتدأ"
+  ],
+  "20:13|اخْتَرْتُكَ": [
+   "valid",
+   "same analysis: the verb's sentence is the خبر"
+  ],
+  "20:93|أَفَعَصَيْتَ": [
+   "engine",
+   "verb read as a noun"
+  ],
+  "20:93|أَمْرِي": [
+   "engine",
+   "مفعول به, not بدل"
+  ],
+  "20:133|أَوَلَمْ": [
+   "engine",
+   "أ + و + لم read as a verb"
+  ],
+  "21:38|مَتَىٰ": [
+   "engine",
+   "اسم استفهام, ظرف and خبر مقدم (the key's حرف is off too)"
+  ],
+  "21:38|هَٰذَا": [
+   "engine",
+   "مبتدأ مؤخر, not مضاف إليه"
+  ],
+  "21:38|الْوَعْدُ": [
+   "valid",
+   "after هذا: بدل, عطف بيان or نعت"
+  ],
+  "21:78|وَدَاوُودَ": [
+   "valid",
+   "معطوف on نوحا (21:76, the key) or مفعول به of a left-out اذكر"
+  ],
+  "22:6|هُوَ": [
+   "engine",
+   "a pronoun is never a صفة: ضمير فصل or مبتدأ"
+  ],
+  "22:6|الْحَقُّ": [
+   "valid",
+   "خبر أنّ when هو is ضمير فصل; خبر هو when هو is مبتدأ"
+  ],
+  "23:8|وَالَّذِينَ": [
+   "context",
+   "معطوف on الذين of 23:2; alone it is مبتدأ"
+  ],
+  "23:88|مَن": [
+   "engine",
+   "اسم استفهام مبتدأ, not قل's object"
+  ],
+  "23:88|وَهُوَ": [
+   "engine",
+   "blank; مبتدأ"
+  ],
+  "23:88|تَعْلَمُونَ": [
+   "valid",
+   "same analysis: the verb's sentence is خبر كان"
+  ],
+  "24:10|حَكِيمٌ": [
+   "valid",
+   "خبر ثانٍ or صفة"
+  ],
+  "25:66|مُسْتَقَرًّا": [
+   "engine",
+   "ساءت works like بئس: تمييز, not حال"
+  ],
+  "26:29|لَأَجْعَلَنَّكَ": [
+   "engine",
+   "verb with لام القسم and نون التوكيد read as a noun"
+  ],
+  "26:109|رَبِّ": [
+   "engine",
+   "مجرور, read as a verb"
+  ],
+  "26:109|الْعَالَمِينَ": [
+   "engine",
+   "مضاف إليه, not مفعول به"
+  ],
+  "26:149|بُيُوتًا": [
+   "engine",
+   "blank; مفعول به"
+  ],
+  "26:149|فَارِهِينَ": [
+   "engine",
+   "حال from the doer; بيوتا are not فارهين"
+  ],
+  "27:2|هُدًى": [
+   "context",
+   "حال from آيات in 27:1"
+  ],
+  "27:42|فَلَمَّا": [
+   "valid",
+   "حرف (Sibawayh) or ظرف بمعنى حين"
+  ],
+  "27:42|أَهَٰكَذَا": [
+   "engine",
+   "blank; كذا (ك + ذا) is خبر مقدم"
+  ],
+  "27:42|عَرْشُكِ": [
+   "engine",
+   "مبتدأ مؤخر, not بدل"
+  ],
+  "28:69|وَمَا": [
+   "engine",
+   "معطوف on ما تكن, not مجرور"
+  ],
+  "30:32|فَرِحُونَ": [
+   "engine",
+   "blank; خبر"
+  ],
+  "32:18|أَفَمَن": [
+   "engine",
+   "مَن موصولة here (كان is not جزم): مبتدأ"
+  ],
+  "35:21|الْحَرُورُ": [
+   "engine",
+   "معطوف on الظل (لا زائدة)"
+  ],
+  "37:13|ذُكِّرُوا": [
+   "valid",
+   "same analysis: the verb's sentence is مضاف إليه of إذا"
+  ],
+  "37:53|أَإِذَا": [
+   "corpus",
+   "the key labels the أ piece; إذا is a ظرف"
+  ],
+  "37:53|أَإِنَّا": [
+   "engine",
+   "blank; أ استفهام + إنّ"
+  ],
+  "37:53|لَمَدِينُونَ": [
+   "engine",
+   "blank; خبر إنّ"
+  ],
+  "37:93|ضَرْبًا": [
+   "engine",
+   "blank; مفعول مطلق"
+  ],
+  "37:173|لَهُمُ": [
+   "engine",
+   "لام المزحلقة + هم, read as a preposition"
+  ],
+  "37:173|الْغَالِبُونَ": [
+   "valid",
+   "خبر إنّ when هم is ضمير فصل; خبر هم when هم is مبتدأ"
+  ],
+  "38:31|الصَّافِنَاتُ": [
+   "engine",
+   "blank; نائب فاعل"
+  ],
+  "38:31|الْجِيَادُ": [
+   "engine",
+   "blank; صفة"
+  ],
+  "39:23|كِتَابًا": [
+   "engine",
+   "بدل or حال; نزّل takes one object"
+  ],
+  "39:23|تَلِينُ": [
+   "valid",
+   "a verb; the engine tags its sentence معطوف"
+  ],
+  "39:23|هُدَى": [
+   "engine",
+   "blank; خبر"
+  ],
+  "39:23|وَمَن": [
+   "valid",
+   "اسم شرط جازم in محل رفع مبتدأ: both"
+  ],
+  "41:23|وَذَٰلِكُمْ": [
+   "engine",
+   "مبتدأ, swapped with ظنكم"
+  ],
+  "41:23|ظَنُّكُمُ": [
+   "engine",
+   "خبر (or بدل), swapped with ذلكم"
+  ],
+  "41:23|الَّذِي": [
+   "engine",
+   "blank; صفة"
+  ],
+  "42:9|الْوَلِيُّ": [
+   "engine",
+   "خبر of هو, not فاعل"
+  ],
+  "43:36|وَمَن": [
+   "valid",
+   "اسم شرط جازم in محل رفع مبتدأ: both"
+  ],
+  "43:36|شَيْطَانًا": [
+   "engine",
+   "blank; مفعول به"
+  ],
+  "43:76|هُمُ": [
+   "valid",
+   "ضمير فصل or توكيد (the engine); the key's فاعل is odd"
+  ],
+  "44:27|وَنَعْمَةٍ": [
+   "context",
+   "معطوف on جنات in 44:25"
+  ],
+  "47:16|أُوتُوا": [
+   "engine",
+   "passive verb read as بدل"
+  ],
+  "47:16|الْعِلْمَ": [
+   "engine",
+   "blank; مفعول به"
+  ],
+  "47:16|مَاذَا": [
+   "corpus",
+   "ماذا is مفعول به مقدم of قال (the engine); the key labels the ما piece"
+  ],
+  "47:16|أُولَٰئِكَ": [
+   "engine",
+   "blank; مبتدأ"
+  ],
+  "47:16|الَّذِينَ": [
+   "engine",
+   "خبر, not مفعول به"
+  ],
+  "50:11|كَذَٰلِكَ": [
+   "valid",
+   "ك حرف جر (خبر مقدم) or ك اسم بمعنى مثل, مبتدأ (the key)"
+  ],
+  "50:11|الْخُرُوجُ": [
+   "engine",
+   "مبتدأ مؤخر (or خبر), not صفة"
+  ],
+  "51:46|قَبْلُ": [
+   "engine",
+   "blank; مبني على الضم في محل جر"
+  ],
+  "51:46|قَوْمًا": [
+   "corpus",
+   "خبر كان; the key says plain خبر"
+  ],
+  "54:35|نِّعْمَةً": [
+   "context",
+   "مفعول لأجله of نجّيناهم in 54:34"
+  ],
+  "54:35|كَذَٰلِكَ": [
+   "corpus",
+   "usually نائب عن المفعول المطلق (جزاءً مثل ذلك); the key's مبتدأ is unusual"
+  ],
+  "55:60|جَزَاءُ": [
+   "engine",
+   "مبتدأ, not مستثنى"
+  ],
+  "55:60|الْإِحْسَانُ": [
+   "engine",
+   "خبر; إلا only restricts"
+  ],
+  "56:22|وَحُورٌ": [
+   "engine",
+   "blank; معطوف"
+  ],
+  "56:22|عِينٌ": [
+   "engine",
+   "blank; صفة"
+  ],
+  "60:11|فَعَاقَبْتُمْ": [
+   "valid",
+   "a verb; the key tags its sentence معطوف"
+  ],
+  "60:11|الَّذِي": [
+   "engine",
+   "blank; صفة"
+  ],
+  "60:11|مُؤْمِنُونَ": [
+   "engine",
+   "blank; خبر"
+  ],
+  "68:10|مَّهِينٍ": [
+   "engine",
+   "blank; صفة"
+  ],
+  "70:26|وَالَّذِينَ": [
+   "context",
+   "معطوف on المصلين in 70:22"
+  ],
+  "71:22|مَكْرًا": [
+   "engine",
+   "مفعول مطلق (same root as مكروا)"
+  ],
+  "73:6|أَشَدُّ": [
+   "engine",
+   "خبر هي; the engine made هي مبتدأ, then gave أشد to إنّ"
+  ],
+  "73:6|قِيلًا": [
+   "engine",
+   "تمييز"
+  ],
+  "75:10|أَيْنَ": [
+   "engine",
+   "اسم استفهام, خبر مقدم"
+  ],
+  "80:3|وَمَا": [
+   "engine",
+   "ما استفهامية مبتدأ; يدريك is مرفوع so there is no شرط"
+  ],
+  "81:1|إِذَا": [
+   "engine",
+   "ظرف, not حرف"
+  ],
+  "81:1|الشَّمْسُ": [
+   "valid",
+   "نائب فاعل of a left-out verb (Basrans, the key) or مبتدأ (Kufans, al-Akhfash)"
+  ],
+  "83:33|حَافِظِينَ": [
+   "engine",
+   "blank; حال"
+  ],
+  "89:8|الَّتِي": [
+   "context",
+   "صفة of إرم in 89:7"
+  ],
+  "93:2|وَاللَّيْلِ": [
+   "valid",
+   "واو القسم (مجرور) or عاطفة on والضحى (the key)"
+  ],
+  "96:15|لَنَسْفَعًا": [
+   "engine",
+   "blank; verb with نون التوكيد الخفيفة"
+  ],
+  "101:4|يَوْمَ": [
+   "engine",
+   "ظرف زمان, not مفعول به"
+  ],
+  "101:4|النَّاسُ": [
+   "corpus",
+   "اسم يكون is اسم كان; the key names it by the verb's form"
+  ],
+  "101:4|كَالْفَرَاشِ": [
+   "valid",
+   "same analysis: the جار ومجرور hangs on خبر يكون"
+  ],
+  "101:4|الْمَبْثُوثِ": [
+   "engine",
+   "blank; صفة"
+  ]
+ },
+ "case": {
+  "2:74|يَتَفَجَّرُ": [
+   "engine",
+   "مرفوع; لَمَا (لام + ما موصولة) read as جازمة"
+  ],
+  "2:74|يَشَّقَّقُ": [
+   "engine",
+   "مرفوع; same لَمَا"
+  ],
+  "2:74|يَهْبِطُ": [
+   "engine",
+   "مرفوع; same لَمَا"
+  ],
+  "2:234|يَتَرَبَّصْنَ": [
+   "corpus",
+   "نون النسوة: مبني على السكون; the corpus says مرفوع"
+  ],
+  "3:108|نَتْلُوهَا": [
+   "engine",
+   "مرفوع"
+  ],
+  "3:188|تَحْسَبَنَّ": [
+   "corpus",
+   "نون التوكيد: مبني على الفتح; the corpus says مرفوع"
+  ],
+  "3:188|تَحْسَبَنَّهُم": [
+   "engine",
+   "مبني على الفتح, not منصوب"
+  ],
+  "5:12|لَّأُكَفِّرَنَّ": [
+   "corpus",
+   "نون التوكيد: مبني on the fatha; the corpus says مرفوع"
+  ],
+  "5:12|وَلَأُدْخِلَنَّكُمْ": [
+   "engine",
+   "مبني (نون التوكيد); read as a noun"
+  ],
+  "5:12|اثْنَيْ": [
+   "engine",
+   "اثني of اثني عشر is معرب: منصوب بالياء"
+  ],
+  "5:12|سَيِّئَاتِكُمْ": [
+   "engine",
+   "منصوب بالكسرة (ـات), shown as مجرور"
+  ],
+  "6:12|لَيَجْمَعَنَّكُمْ": [
+   "engine",
+   "مبني (نون التوكيد), not منصوب"
+  ],
+  "6:92|يُؤْمِنُونَ": [
+   "engine",
+   "مرفوع بثبوت النون"
+  ],
+  "6:92|بَيْنَ": [
+   "engine",
+   "blank; ظرف منصوب"
+  ],
+  "7:7|فَلَنَقُصَّنَّ": [
+   "engine",
+   "مبني (نون التوكيد); read as a noun"
+  ],
+  "7:127|أَتَذَرُ": [
+   "engine",
+   "مرفوع"
+  ],
+  "7:167|لَيَبْعَثَنَّ": [
+   "corpus",
+   "نون التوكيد: مبني; the corpus says مرفوع"
+  ],
+  "8:1|بَيْنِكُمْ": [
+   "engine",
+   "blank; مجرور"
+  ],
+  "8:41|وَلِذِي": [
+   "engine",
+   "مجرور بالياء; read as a verb"
+  ],
+  "8:41|وَالْيَتَامَىٰ": [
+   "engine",
+   "blank; مجرور (معطوف)"
+  ],
+  "8:41|الْقُرْبَىٰ": [
+   "engine",
+   "مضاف إليه مجرور, read as مفعول به"
+  ],
+  "9:6|فَأَجِرْهُ": [
+   "engine",
+   "a command verb, مبني; read as a noun"
+  ],
+  "9:86|نَكُن": [
+   "engine",
+   "مجزوم (جواب الطلب)"
+  ],
+  "9:86|وَجَاهِدُوا": [
+   "engine",
+   "a command verb, مبني; read as a noun"
+  ],
+  "9:86|ذَرْنَا": [
+   "engine",
+   "a command verb, مبني; read as a noun"
+  ],
+  "9:126|يَرَوْنَ": [
+   "engine",
+   "مرفوع بثبوت النون"
+  ],
+  "9:126|يُفْتَنُونَ": [
+   "engine",
+   "مرفوع بثبوت النون"
+  ],
+  "10:37|بَيْنَ": [
+   "engine",
+   "blank; ظرف منصوب"
+  ],
+  "10:37|يَدَيْهِ": [
+   "corpus",
+   "مضاف إليه مجرور بالياء; the corpus says مرفوع"
+  ],
+  "10:77|أَتَقُولُونَ": [
+   "engine",
+   "مرفوع; read as a noun"
+  ],
+  "11:8|لَّيَقُولُنَّ": [
+   "engine",
+   "مرفوع (نون الرفع dropped before نون التوكيد), not منصوب"
+  ],
+  "11:8|يَأْتِيهِمْ": [
+   "engine",
+   "مرفوع; يوم does not cause جزم"
+  ],
+  "11:8|أَخَّرْنَا": [
+   "engine",
+   "a past verb, مبني; read as a noun"
+  ],
+  "11:48|نُوحُ": [
+   "valid",
+   "منادى مبني على الضم في محل نصب; the corpus tags the surface ضمة"
+  ],
+  "11:48|مَّعَكَ": [
+   "engine",
+   "ظرف منصوب; read as a verb"
+  ],
+  "11:88|قَوْمِ": [
+   "corpus",
+   "منادى مضاف منصوب; the corpus says مرفوع"
+  ],
+  "11:88|أَنْهَاكُمْ": [
+   "engine",
+   "مرفوع (in a صلة); the corpus's منصوب is off too"
+  ],
+  "12:5|بُنَيَّ": [
+   "corpus",
+   "منادى مضاف منصوب; the corpus says مرفوع"
+  ],
+  "12:5|رُؤْيَاكَ": [
+   "corpus",
+   "مفعول به منصوب (hidden fatha); the corpus says مرفوع"
+  ],
+  "12:5|فَيَكِيدُوا": [
+   "engine",
+   "منصوب (فاء السببية after نهي)"
+  ],
+  "12:45|فَأَرْسِلُونِ": [
+   "engine",
+   "a command verb, مبني; read as مجرور"
+  ],
+  "13:14|فَاهُ": [
+   "engine",
+   "مفعول به منصوب بالألف; read as a verb (the corpus's مرفوع is off too)"
+  ],
+  "13:14|كَفَّيْهِ": [
+   "corpus",
+   "مضاف إليه مجرور بالياء; the corpus says مرفوع"
+  ],
+  "14:11|يَمُنُّ": [
+   "engine",
+   "مرفوع, not مبني"
+  ],
+  "15:39|رَبِّ": [
+   "engine",
+   "منادى منصوب; read as a verb (the corpus's مرفوع is off too)"
+  ],
+  "15:39|لَأُزَيِّنَنَّ": [
+   "engine",
+   "مبني (نون التوكيد); read as a noun"
+  ],
+  "15:39|وَلَأُغْوِيَنَّهُمْ": [
+   "engine",
+   "مبني (نون التوكيد); read as a noun"
+  ],
+  "17:52|يَدْعُوكُمْ": [
+   "engine",
+   "مرفوع; يوم does not cause جزم"
+  ],
+  "17:92|تُسْقِطَ": [
+   "engine",
+   "منصوب, not مبني"
+  ],
+  "18:21|لَنَتَّخِذَنَّ": [
+   "engine",
+   "مبني (نون التوكيد); read as a noun"
+  ],
+  "20:93|أَفَعَصَيْتَ": [
+   "engine",
+   "a past verb, مبني; read as a noun"
+  ],
+  "20:93|أَمْرِي": [
+   "corpus",
+   "مفعول به منصوب (hidden fatha before ي); the corpus says مرفوع"
+  ],
+  "22:6|يُحْيِي": [
+   "engine",
+   "مرفوع"
+  ],
+  "22:46|تَعْمَى": [
+   "corpus",
+   "لا نافية: مرفوع; the corpus says مجزوم"
+  ],
+  "22:46|فَتَكُونَ": [
+   "engine",
+   "منصوب (فاء السببية after استفهام)"
+  ],
+  "24:50|الظَّالِمُونَ": [
+   "engine",
+   "مرفوع (خبر)"
+  ],
+  "26:29|غَيْرِي": [
+   "corpus",
+   "صفة منصوبة (hidden fatha before ي); the corpus says مرفوع"
+  ],
+  "26:29|لَأَجْعَلَنَّكَ": [
+   "engine",
+   "مبني (نون التوكيد); read as a noun"
+  ],
+  "26:109|رَبِّ": [
+   "engine",
+   "مجرور; read as a verb"
+  ],
+  "26:109|الْعَالَمِينَ": [
+   "engine",
+   "مجرور بالياء, read as مفعول به"
+  ],
+  "27:2|هُدًى": [
+   "corpus",
+   "حال منصوب (hidden fatha); the corpus says مجرور"
+  ],
+  "27:2|وَبُشْرَىٰ": [
+   "engine",
+   "blank; منصوب (معطوف on هدى); the corpus's مرفوع is off too"
+  ],
+  "28:29|آتِيكُم": [
+   "engine",
+   "a verb, مرفوع; read as a noun"
+  ],
+  "28:29|جَانِبِ": [
+   "engine",
+   "مجرور; read as a verb"
+  ],
+  "29:61|لَيَقُولُنَّ": [
+   "engine",
+   "مرفوع (نون الرفع dropped), not منصوب"
+  ],
+  "29:61|فَأَنَّىٰ": [
+   "valid",
+   "اسم استفهام مبني في محل نصب: both"
+  ],
+  "30:32|فَرِحُونَ": [
+   "engine",
+   "blank; مرفوع"
+  ],
+  "33:28|تُرِدْنَ": [
+   "corpus",
+   "نون النسوة: مبني; the corpus says مرفوع"
+  ],
+  "33:28|أَيُّهَا": [
+   "valid",
+   "منادى مبني على الضم في محل نصب: both"
+  ],
+  "33:68|ضِعْفَيْنِ": [
+   "corpus",
+   "مفعول به منصوب بالياء; the corpus says مرفوع"
+  ],
+  "38:31|الصَّافِنَاتُ": [
+   "corpus",
+   "نائب فاعل مرفوع; the corpus says مجرور"
+  ],
+  "39:23|مَّثَانِيَ": [
+   "corpus",
+   "صفة منصوبة; the corpus says مرفوع"
+  ],
+  "39:23|هُدَى": [
+   "engine",
+   "blank; مضاف to الله, مرفوع خبر (the corpus's مجرور is off too)"
+  ],
+  "39:23|هَادٍ": [
+   "valid",
+   "مجرور لفظًا (من زائدة), مرفوع محلًّا مبتدأ: both"
+  ],
+  "40:28|أَتَقْتُلُونَ": [
+   "engine",
+   "a verb, مرفوع; read as a noun"
+  ],
+  "40:28|رَبِّيَ": [
+   "engine",
+   "مبتدأ مرفوع (the corpus is right); read as مفعول به"
+  ],
+  "40:28|يَكْتُمُ": [
+   "corpus",
+   "صفة sentence, مرفوع; the corpus says مجزوم"
+  ],
+  "40:28|يَكُ": [
+   "engine",
+   "blank; مجزوم (شرط)"
+  ],
+  "40:28|آلِ": [
+   "engine",
+   "مجرور; read as a verb"
+  ],
+  "42:9|الْمَوْتَىٰ": [
+   "corpus",
+   "مفعول به منصوب (hidden fatha); the corpus says مرفوع"
+  ],
+  "51:46|قَبْلُ": [
+   "engine",
+   "مبني على الضم في محل جر"
+  ],
+  "52:26|قَبْلُ": [
+   "engine",
+   "مبني على الضم في محل نصب, read as اسم كان"
+  ],
+  "56:62|الْأُولَىٰ": [
+   "corpus",
+   "صفة منصوبة (hidden fatha); the corpus says مرفوع"
+  ],
+  "58:17|تُغْنِيَ": [
+   "engine",
+   "لن: منصوب, not مبني"
+  ],
+  "4:108|يَرْضَىٰ": [
+   "corpus",
+   "ما لا يرضى: مرفوع; the corpus says منصوب"
+  ],
+  "5:52|فَيُصْبِحُوا": [
+   "engine",
+   "منصوب (معطوف on أن يأتي)"
+  ],
+  "6:52|فَتَكُونَ": [
+   "engine",
+   "منصوب (فاء السببية after نهي)"
+  ],
+  "66:12|ابْنَتَ": [
+   "engine",
+   "صفة/بدل منصوب; read as a verb"
+  ],
+  "74:26|سَأُصْلِيهِ": [
+   "engine",
+   "مرفوع"
+  ],
+  "80:3|يُدْرِيكَ": [
+   "engine",
+   "مرفوع; ما read as a condition word"
+  ],
+  "83:33|حَافِظِينَ": [
+   "engine",
+   "blank; حال منصوب"
+  ],
+  "96:15|لَنَسْفَعًا": [
+   "engine",
+   "مبني (نون التوكيد الخفيفة); read as a noun"
+  ],
+  "47:16|أُوتُوا": [
+   "engine",
+   "a passive verb, مبني; read as a noun (بدل)"
+  ]
+ }
+}

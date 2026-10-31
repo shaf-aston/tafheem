@@ -12,6 +12,7 @@ say it honestly.
 from __future__ import annotations
 
 import json
+import re
 import sqlite3
 from pathlib import Path
 
@@ -43,15 +44,48 @@ def letters(words: list[str]) -> str:
     return " ".join(alef_written_out(word).translate(_SPELLING_ONLY) for word in words)
 
 
+# The Uthmani rasm and the everyday spelling differ in the long-vowel letters (أموات is مت
+# in the record, موت typed) and in an assimilated ل (الليل is ليل, typed لليل). What both
+# spellings keep is the consonant skeleton, so that is the second key.
+_LONG_VOWELS = str.maketrans("", "", "وىي")
+
+
+def skeleton(letters_key: str) -> str:
+    """A `letters` key with the long-vowel letters inside each word dropped and each run of one
+    letter made one. A word's first letter stays: it may be the و or ي that is a word of its own
+    (وَالْحَمْدُ is not الْحَمْدُ) or a present's prefix."""
+    folded = [word[:1] + re.sub(r"(.)\1+", r"\1", word[1:].translate(_LONG_VOWELS)) for word in letters_key.split()]
+    return " ".join(word for word in folded if word)
+
+
+def _index(conn: sqlite3.Connection | None) -> dict[str, tuple[int, int] | None]:
+    """Each ayah by its skeleton; None where two ayahs share one, so a collision never picks.
+    Worked out once per build of the file (ReadOnlyDb.per_build), so a rebuilt or swapped
+    database never answers from the last one's index."""
+    found: dict[str, tuple[int, int] | None] = {}
+    for row in conn.execute("SELECT surah, ayah, letters FROM tarkeeb") if conn else ():
+        key = skeleton(row["letters"])
+        found[key] = None if key in found else (row["surah"], row["ayah"])
+    return found
+
+
 def find(sentence: str) -> tuple[int, int, list[int]] | None:
     """The ayah a typed sentence is, word for word, and which of its columns
-    were written (the rest, (هُوَ) or an elided khabar, are the book's), or None."""
+    were written (the rest, (هُوَ) or an elided khabar, are the book's), or None.
+
+    Looked up by the Uthmani spelling first, then by the skeleton both spellings share; the
+    second counts only when no other ayah has it and the record wrote as many words as were
+    typed, so no column can slip."""
     db = _db()
     if db is None:
         return None
+    typed = letters(split_words(sentence))
     try:
-        row = db.execute("SELECT surah, ayah, written FROM tarkeeb WHERE letters = ?",
-                         (letters(split_words(sentence)),)).fetchone()
+        row = db.execute("SELECT surah, ayah, written FROM tarkeeb WHERE letters = ?", (typed,)).fetchone()
+        if row is None and (ayah := _db.per_build(db, _index).get(skeleton(typed))):
+            row = db.execute("SELECT surah, ayah, written FROM tarkeeb WHERE surah = ? AND ayah = ?", ayah).fetchone()
+            if row is not None and len(json.loads(row["written"])) != len(typed.split()):
+                row = None
     except sqlite3.OperationalError:  # built before ayahs were keyed by their letters
         return None
     return (row["surah"], row["ayah"], json.loads(row["written"])) if row else None

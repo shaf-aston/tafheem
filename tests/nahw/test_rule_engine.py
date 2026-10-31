@@ -662,7 +662,8 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("إِنَّ مَا عِنْدَ اللَّهِ هُوَ خَيْرٌ لَكُمْ", ["حرف", "اسم إن", "مفعول فيه", "مضاف إليه", "مبتدأ", "خبر إن", "حرف جر"]),
 ])
 def test_a_question_word_heads_the_noun_after_it(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
+    # the rules' own names: وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ is an ayah, whose record names its roles vowelled
+    assert [w["role"] for w in iraab.analyze(sentence, recorded=False)["words"]] == expected
 
 
 @pytest.mark.parametrize("sentence, negates", [
