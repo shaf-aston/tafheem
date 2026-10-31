@@ -32,3 +32,23 @@ def test_verb_subject_object():
 
 def test_empty_input_returns_empty_list():
     assert parse([], []) == []
+
+
+def test_a_sentence_rooted_on_a_harf_atf_still_gets_its_roles():
+    """Al-Baqarah 2:259, as the Qur'an writes it: the parser roots the whole ayah on its first أَوْ,
+    and a jar-majroor hung on that حرف عطف used to crash the tree (KeyError 'pos'), leaving every
+    word of the ayah unnamed. Found by the Dictionary's sentence yardstick."""
+    from backend.services.nahw import iraab
+
+    ayah = (
+        "أَوْ كَٱلَّذِى مَرَّ عَلَىٰ قَرْيَةٍۢ وَهِىَ خَاوِيَةٌ عَلَىٰ عُرُوشِهَا قَالَ أَنَّىٰ يُحْىِۦ "
+        "هَـٰذِهِ ٱللَّهُ بَعْدَ مَوْتِهَا ۖ فَأَمَاتَهُ ٱللَّهُ مِا۟ئَةَ عَامٍۢ ثُمَّ بَعَثَهُۥ ۖ قَالَ "
+        "كَمْ لَبِثْتَ ۖ قَالَ لَبِثْتُ يَوْمًا أَوْ بَعْضَ يَوْمٍۢ ۖ قَالَ بَل لَّبِثْتَ مِا۟ئَةَ "
+        "عَامٍۢ فَٱنظُرْ إِلَىٰ طَعَامِكَ وَشَرَابِكَ لَمْ يَتَسَنَّهْ ۖ وَٱنظُرْ إِلَىٰ حِمَارِكَ "
+        "وَلِنَجْعَلَكَ ءَايَةًۭ لِّلنَّاسِ ۖ وَٱنظُرْ إِلَى ٱلْعِظَامِ كَيْفَ نُنشِزُهَا ثُمَّ "
+        "نَكْسُوهَا لَحْمًۭا ۚ فَلَمَّا تَبَيَّنَ لَهُۥ قَالَ أَعْلَمُ أَنَّ ٱللَّهَ عَلَىٰ كُلِّ "
+        "شَىْءٍۢ قَدِيرٌۭ"
+    )
+    read = iraab.analyze(ayah, recorded=False)
+    assert read["read_failed"] is False
+    assert any(word.get("role") for word in read["words"])

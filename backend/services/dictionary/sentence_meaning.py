@@ -6,10 +6,11 @@ The words come from the grammar on this machine, every time, in milliseconds:
 the i'rab reading's own analysis of each word (the one the Nahw tab shows), so
 the two pages cannot disagree; CAMeL alone when the parser is not installed.
 The sense comes from the surest source that has one. A whole ayah has its
-published translation and the Qur'an's own word-by-word; anything else goes to
-the language model, handed those facts and asked for one English sentence. It
-never picks a word's sense. A model answer is filed on disk, so the same text
-asks once and reads the same each time, on every server process.
+published translation and the Qur'an's own word-by-word; a run of words from
+inside one takes that word-by-word English onto the grammar's rows. Anything
+else goes to the language model, handed those facts (each word's senses as
+candidates) and asked for one English sentence. It never changes a row. A model
+answer is filed on disk, so the same text asks once, on every server process.
 """
 from __future__ import annotations
 
@@ -35,18 +36,17 @@ _TAGS_RE = re.compile(r"\[[^\]]*\]|<[^>]*>")
 # The word every clause's name opens with (data/nahw_rules/tarkeeb.json).
 _CLAUSE = term_ar("jumlah_ismiyyah").split()[0]
 # Where a model's sense is filed (progress_store), so every server process reads the first one kept.
-# A new question name, not a new module: rows filed with word picks under "meaning" are never reused.
+# Renamed whenever SENTENCE_USER changes, so answers filed under an older prompt are never reused.
 # "arabic" is the other direction's answer, filed the same way.
-_KEPT, _QUESTION, _ARABIC = "dict", "meaning2", "arabic"
+_KEPT, _QUESTION, _ARABIC = "dict", "meaning3", "arabic"
 
 
-def literal(gloss: str) -> str:
-    """CAMeL's gloss as English: each joined piece's first senses, tags dropped.
+def literal(gloss: str, senses: int) -> str:
+    """CAMeL's gloss as English: each joined piece's first `senses` senses, tags dropped.
 
     and+write+he;it_<verb> reads "and write he/it"; the+child;son reads "the
     child/son". More than one sense shows the choice rather than guessing it.
     """
-    senses = get_settings().sentence_senses
     pieces = ("/".join(_TAGS_RE.sub("", piece).split(";")[:senses]).replace("_", " ").strip() for piece in gloss.split("+"))
     return " ".join(piece for piece in pieces if piece)
 
@@ -87,23 +87,26 @@ def read_words(text: str) -> tuple[list[dict], str | None]:
         logger.info("sentence meaning  no i'rab reading: %s", exc)
         cards = [(w["word"], w, None, None, None) for w in morphology.analyze_sentence(text)]
         summary = None
-    return [{"arabic": word, "english": english(c, sense), "base": c.get("base") or word,
+    wide = get_settings().sentence_fact_senses
+    return [{"arabic": word, "english": english(c, sense), "senses": english(c, sense, wide), "base": c.get("base") or word,
              "lemma": c.get("lemma") or "", "pos": c.get("pos") or "", "state": c.get("state"),
              "role": role or None, "case": case or None} for word, c, sense, role, case in cards], summary
 
 
-def english(reading: dict, sense: str | None = None) -> str:
+def english(reading: dict, sense: str | None = None, senses: int | None = None) -> str:
     """One word's English: CAMeL's gloss in the class the grammar settled (morphology.gloss_as), else
     the dictionary's first sense of the very lemma (Wiktionary: مُسْرِعًا is "fast"), else "". Never a
-    near spelling's: the nearest headword to آتِنَا is أتان, a she-ass."""
+    near spelling's: the nearest headword to آتِنَا is أتان, a she-ass. Up to `senses` senses a piece,
+    the reader's setting when not given."""
+    senses = senses or get_settings().sentence_senses
     first = dictionary_service.meaning_of(reading.get("lemma") or "")
-    return literal(morphology.gloss_as(reading, sense)) or "/".join(first.split(", ")[:get_settings().sentence_senses])
+    return literal(morphology.gloss_as(reading, sense), senses) or "/".join(first.split(", ")[:senses])
 
 
 def translate(text: str) -> dict:
     """The sense, its source, and the words; the sense is None when nothing could give one."""
     pairs, summary = read_words(text)
-    found = _whole_ayah(text, pairs) or _model_sense(text, pairs)
+    found = _whole_ayah(text, pairs) or _model_sense(text, **(_ayah_words(text, pairs) or {"rows": pairs}))
     return {"kind": kind_of(summary, pairs), **found}
 
 
@@ -123,6 +126,21 @@ def _whole_ayah(text: str, pairs: list[dict]) -> dict | None:
         return {**found, "words": pairs, "words_source": "camel"}
     return {**found, "words_source": "translation",
             "words": [{"arabic": w, "english": english.get(n, ""), "base": w} for n, w in enumerate(ayah_words, 1)]}
+
+
+def _ayah_words(text: str, pairs: list[dict]) -> dict | None:
+    """The grammar's rows with the Qur'an's word-by-word English when the text is a run from
+    inside one ayah, and that ayah. None on any count mismatch or missing English, so English
+    never lands under the wrong word; roles and cases stay the grammar's."""
+    if (found := quran_search.ayah_run(text)) is None:
+        return None
+    hit, start = found
+    published = quran_meanings.for_ayah(hit.surah, hit.ayah)
+    run = [published.get(start + n, "") for n in range(len(pairs))]
+    if len(pairs) != len(words(text)) or not all(run):
+        return None
+    return {"rows": [{**p, "english": en, "senses": en} for p, en in zip(pairs, run)],
+            "words_source": "translation", "ref": f"{hit.surah}:{hit.ayah}"}
 
 
 _PAIRS = {"(": ")", "[": "]", "“": "”"}
@@ -158,22 +176,22 @@ def standing(text: str) -> str:
     return text[:1].upper() + text[1:]
 
 
-def _model_sense(text: str, pairs: list[dict]) -> dict:
-    """The model's one sentence over the grammar's facts; no sense when it is unreachable."""
+def _model_sense(text: str, rows: list[dict], words_source: str = "camel", ref: str | None = None) -> dict:
+    """The model's one sentence over the words' facts; no sense when it is unreachable."""
     try:
-        meaning = _asked(text, _QUESTION, lambda: ai.translate_sentence(text, _facts(pairs))["english"])
+        meaning = _asked(text, _QUESTION, lambda: ai.translate_sentence(text, _facts(rows))["english"])
     except Exception as exc:  # noqa: BLE001, a dead model leaves the word-by-word standing
         logger.info("sentence meaning  model failed: %s", exc)
         meaning = None
-    return {"meaning": meaning, "source": "ai" if meaning else None, "ref": None,
-            "words": pairs, "words_source": "camel"}
+    return {"meaning": meaning, "source": "ai" if meaning else None, "ref": ref,
+            "words": rows, "words_source": words_source}
 
 
 def _facts(pairs: list[dict]) -> str:
-    """One line per word: what the grammar already decided, for the model to translate from."""
+    """One line per word: what the grammar read, and its English senses for the model to choose from."""
     return "\n".join(
         f"{n}. {p['arabic']} — {p['lemma'] or p['base']} ({p['pos'] or '-'}, {p['role'] or '-'}, {p['case'] or '-'}): "
-        f"{p['english'] or '-'}" for n, p in enumerate(pairs, 1))
+        f"{p.get('senses') or p['english'] or '-'}" for n, p in enumerate(pairs, 1))
 
 
 def _asked(text: str, question: str, ask) -> str:

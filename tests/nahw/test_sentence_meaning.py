@@ -25,8 +25,8 @@ def _word(word, pos, state="na", gloss=""):
 
 
 def test_camel_gloss_reads_as_english() -> None:
-    assert sentence_meaning.literal("and+write+he;it_<verb>") == "and write he/it"
-    assert sentence_meaning.literal("the+child;son;boy+[def.gen.]") == "the child/son"
+    assert sentence_meaning.literal("and+write+he;it_<verb>", 2) == "and write he/it"
+    assert sentence_meaning.literal("the+child;son;boy+[def.gen.]", 2) == "the child/son"
 
 
 @pytest.mark.parametrize("summary, read, kind", [
@@ -58,6 +58,7 @@ def typed(monkeypatch, tmp_path):
     monkeypatch.setattr(morphology, "analyze_sentence", lambda text: [
         {**_word("البيت", "noun", "d", "the+house"), "lemma": "بَيْت"}, _word("كبير", "adj", "i", "large;great")])
     monkeypatch.setattr(quran_search, "whole_ayah", lambda text: None)
+    monkeypatch.setattr(quran_search, "ayah_run", lambda text: None)
     monkeypatch.setattr(progress_store, "data_path", lambda _name: tmp_path / "progress.db")
     progress_store.reset_connection()
     asked = []
@@ -119,9 +120,43 @@ def test_an_empty_answer_is_not_filed(typed, monkeypatch) -> None:
 
 def test_an_old_filing_with_picks_is_not_reused(typed, monkeypatch) -> None:
     progress_store.keep_questions(module="dict", sentence="البيت كبير", source="ai",
-                                  questions=[{"question": "meaning", "answer": "Old wording"}, {"question": "senses", "answer": "2,2"}])
+                                  questions=[{"question": "meaning", "answer": "Old wording"}, {"question": "senses", "answer": "2,2"},
+                                             {"question": "meaning2", "answer": "Made under the settled-gloss prompt"}])
     monkeypatch.setattr(ai, "translate_sentence", _model(typed, {"english": "The house is big"}))
     assert sentence_meaning.translate("البيت كبير")["meaning"] == "The house is big"
+
+
+def test_the_model_is_handed_wider_senses_than_the_reader_sees(typed, monkeypatch) -> None:
+    cards = [{**_CARDS[0], "camel": {**_CARDS[0]["camel"], "gloss": "the+house;home;dwelling;abode"}}, _CARDS[1]]
+    monkeypatch.setattr(iraab, "analyze", lambda text: {"words": cards, "summary": "جُمْلَةٌ اِسْمِيَّةٌ"})
+    monkeypatch.setattr(ai, "translate_sentence", _model(typed, {"english": "x"}))
+    found = sentence_meaning.translate("البيت كبير")
+    assert found["words"][0]["english"] == "the house/home"
+    assert typed[0].splitlines()[0].endswith(": the house/home/dwelling/abode")
+
+
+def test_a_run_from_inside_an_ayah_takes_the_quran_s_english(typed, monkeypatch) -> None:
+    from backend.services.quran import meanings as quran_meanings
+    from backend.services.quran.search.hit import Hit
+    hit = Hit(surah=9, ayah=9, arabic_text="و البيت كبير جدا", source="corpus")
+    monkeypatch.setattr(quran_search, "ayah_run", lambda text: (hit, 2))
+    monkeypatch.setattr(quran_meanings, "for_ayah", lambda s, a: {1: "and", 2: "the House", 3: "(is) great", 4: "very"})
+    monkeypatch.setattr(ai, "translate_sentence", _model(typed, {"english": "The House is great."}))
+    found = sentence_meaning.translate("البيت كبير")
+    assert [(w["english"], w["role"]) for w in found["words"]] == [("the House", "مبتدأ"), ("(is) great", "خبر")]
+    assert found["words_source"] == "translation" and found["ref"] == "9:9" and found["source"] == "ai"
+    assert typed[0].splitlines()[1].endswith(": (is) great")  # the model is handed the published English
+
+
+def test_a_run_whose_english_is_missing_a_word_keeps_camels(typed, monkeypatch) -> None:
+    from backend.services.quran import meanings as quran_meanings
+    from backend.services.quran.search.hit import Hit
+    monkeypatch.setattr(quran_search, "ayah_run", lambda text: (Hit(surah=9, ayah=9, arabic_text="", source="corpus"), 2))
+    monkeypatch.setattr(quran_meanings, "for_ayah", lambda s, a: {2: "the House"})
+    monkeypatch.setattr(ai, "translate_sentence", _model(typed, {"english": "x"}))
+    found = sentence_meaning.translate("البيت كبير")
+    assert found["words_source"] == "camel" and found["ref"] is None
+    assert [w["english"] for w in found["words"]] == ["the house", "large/great"]
 
 
 @pytest.mark.parametrize("cut, shown", [

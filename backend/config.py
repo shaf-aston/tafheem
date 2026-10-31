@@ -144,6 +144,8 @@ class Dictionary(BaseSettings):
     sentence_translation: str = "saheeh-en"
     # Word by word, each piece of a word shows up to this many of CAMeL's senses.
     sentence_senses: int = Field(default=2, gt=0)
+    # What the model is handed instead: a word's senses out of context, for it to choose the one the sentence needs.
+    sentence_fact_senses: int = Field(default=4, gt=0)
     # One English sentence back, plus a reasoning model's thinking.
     sentence_max_tokens: int = Field(default=1200, gt=0)
 

@@ -788,8 +788,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         elif label == JAR_MAJROOR and (up := parent(token)) in at:
             # فِي سَنَةٍ أَوْ فِي ثَلَاثِ سِنِينَ: hung on a حرف عطف, it is معطوف on the jar-majroor that
             # حرف follows, and hangs where that one hangs (the معطوف follows its معطوف عليه)
-            while is_one(by_id[up]["form"], "atf") and is_preposition(followed := by_id.get(parent(by_id[up]), {})) \
-                    and parent(followed) in at:
+            # A حرف عطف at the root follows nothing: no word to look at, so no loop.
+            while is_one(by_id[up]["form"], "atf") and (followed := by_id.get(parent(by_id[up]))) \
+                    and is_preposition(followed) and parent(followed) in at:
                 job, up = NAMED.matoof, parent(followed)
             label = FRAMES["attached"].format(word=columns[at[up]])
         return {"role": job,

@@ -64,7 +64,7 @@ jobs:
       - name: Whole-sentence tests
         if: steps.model.outputs.ready == 'true'
         # every nahw test: one named nowhere would be skipped here and go stale unseen, as 11 files once did
-        run: python -m pytest tests/nahw -q -o faulthandler_timeout=600
+        run: python -m pytest tests/nahw tests/dictionary/test_sentence_set.py -q -o faulthandler_timeout=600
       - name: Scores no lower than the baseline
         if: steps.model.outputs.ready == 'true'
         run: python -m backend.scripts.nahw.score_iraab --check
