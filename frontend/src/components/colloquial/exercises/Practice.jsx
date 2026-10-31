@@ -1,6 +1,7 @@
 // Practice: one exercise at a time under a row of answer squares.
 import { useEffect, useRef, useState } from 'react'
 
+import { scrollToEl } from '../../../lib/motion/scrollToEl'
 import AnswerSquare from '../../ui/AnswerSquare'
 import SmallButton from '../../ui/SmallButton'
 import ExerciseHost from './ExerciseHost'
@@ -24,6 +25,9 @@ export default function Practice({ exercises }) {
   useEffect(() => {
     if (!moved.current) return
     moved.current = false
+    // A new exercise whose question sits under the header (Next pressed far down) glides up to it, as on the Quiz board.
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
+    if (body.current?.getBoundingClientRect().top < header) scrollToEl(body.current, 'top')
     body.current?.querySelector('input:not([readonly]), button:not([disabled])')?.focus({ preventScroll: true })
   }, [at])
   const status = (id) => (!(id in results) ? '' : results[id].correct ? 'right' : 'wrong')
@@ -42,7 +46,7 @@ export default function Practice({ exercises }) {
           />
         ))}
       </div>
-      <div ref={body} className="p-5 space-y-5">
+      <div ref={body} className="p-5 space-y-5 scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
         <ExerciseHost
           key={current.id}
           exercise={current}

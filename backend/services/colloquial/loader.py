@@ -175,7 +175,38 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
         filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases,
                        "dialogue": dialogue, "vocabulary": vocabulary, "written": True,
                        **({"pairs": pairs} if pairs else {})})
-    return {**written, "title": outline["title"], "cover": outline.get("cover"), "lessons": filled}, said
+    return {**written, "title": outline["title"], "cover": outline.get("cover"), "lessons": _spelt(filled)}, said
+
+
+# Marks, punctuation and the letters a learner writes either way (ة/ه, ى/ي, the alifs).
+_LOOSE = re.compile(r"[\u064B-\u0652\u0670\u0640\s،,.?؟!:]")
+_SAME = str.maketrans({"ة": "ه", "ى": "ي", "أ": "ا", "إ": "ا", "آ": "ا"})
+_ARABIC = re.compile(r"[\u0600-\u06FF]")
+
+
+def _loose(text: str) -> str:
+    return _LOOSE.sub("", text).translate(_SAME)
+
+
+def _spelt(lessons: list[dict]) -> list[dict]:
+    """A typed answer with no Latin spelling borrows the spelling of the unit's phrase
+    that says the same, so "kwayyisa, el-hamdulillah" is right wherever its Arabic is.
+    Only where the writer gave none: a written spelling is never added to."""
+    spelling: dict[str, str] = {}
+    for lesson in lessons:
+        for phrase in lesson.get("phrases") or []:
+            if phrase.get("arabic") and phrase.get("transliteration"):
+                spelling.setdefault(_loose(phrase["arabic"]), phrase["transliteration"])
+
+    def spelt(exercise: dict) -> dict:
+        accepted = exercise.get("accepted")
+        if not accepted or any(not _ARABIC.search(a) for a in accepted):
+            return exercise
+        found = [spelling[key] for key in dict.fromkeys(map(_loose, accepted)) if key in spelling]
+        return {**exercise, "accepted": [*accepted, *found]} if found else exercise
+
+    return [{**lesson, "exercises": [spelt(e) for e in lesson["exercises"]]} if lesson.get("exercises") else lesson
+            for lesson in lessons]
 
 
 def _unit_faults(unit: dict) -> list[str]:

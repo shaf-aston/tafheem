@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { bankOf, hasAnswer, isRight, ARRANGED, PICKED, TYPED } from './answer'
+import { bankOf, hasAnswer, isRight, takesLatin, ARRANGED, PICKED, TYPED } from './answer'
 
 const accepted = ['كيفك؟', 'keefak']
 
@@ -57,5 +57,23 @@ describe('isRight, a transliteration as it sounds', () => {
     expect(isRight('keefik alyoom', ['كيفَك اليوم؟', 'keefak alyoom?'])).toBe(false)
     expect(isRight('ana min dimashq', ['أنا من القاهرة', 'ana men el-2aahira'])).toBe(false)
     expect(isRight('', ['bas'])).toBe(false)
+  })
+})
+
+describe('isRight, Arabic written either way', () => {
+  it('takes ه for ة and ي for ى', () => {
+    expect(isRight('انا من القاهره', ['أنا من القاهرة'])).toBe(true)
+    expect(isRight('كويسه', ['كويسة'])).toBe(true)
+    expect(isRight('علي', ['على'])).toBe(true)
+    expect(isRight('كويس', ['كويسة'])).toBe(false)
+  })
+})
+
+describe('TYPED.unfit', () => {
+  it('asks for Arabic when Latin letters meet an answer with no Latin spelling', () => {
+    expect(TYPED.unfit({ accepted: ['كويسة'] }, 'kwayyisa')).toBe(true)
+    expect(TYPED.unfit({ accepted: ['كويسة', 'kwayyisa'] }, 'kwayyisa')).toBe(false)
+    expect(TYPED.unfit({ accepted: ['كويسة'] }, 'كويسة')).toBe(false)
+    expect(takesLatin(['اسمي', 'ismi'])).toBe(true)
   })
 })

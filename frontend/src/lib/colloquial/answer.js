@@ -43,6 +43,13 @@ function apart(a, b) {
 // es-, a letter left out); a short word must be spelt as it sounds.
 const SLIP_FROM = 10
 
+// Arabic as recited, with the letters a learner writes either way made one:
+// ta marbuta as ha (القاهره), alif maqsura as ya.
+const loose = (text) => recitedForm(text).replace(/ة/g, 'ه').replace(/ى/g, 'ي')
+
+/** Whether any accepted answer is written in Latin letters, so one typed that way can be marked. */
+export const takesLatin = (accepted = []) => accepted.some((one) => !recitedForm(one))
+
 const near = (mine, theirs) => mine === theirs || (Math.min(mine.length, theirs.length) >= SLIP_FROM && apart(mine, theirs) <= 1)
 
 /**
@@ -52,8 +59,8 @@ const near = (mine, theirs) => mine === theirs || (Math.min(mine.length, theirs.
  * sentence.
  */
 export const isRight = (written, accepted = []) => {
-  const arabic = recitedForm(written)
-  if (arabic) return accepted.some((one) => recitedForm(one) === arabic)
+  const arabic = loose(written)
+  if (arabic) return accepted.some((one) => loose(one) === arabic)
   const sounds = latin(written)
   if (!sounds) return false
   return accepted.some((one) => !recitedForm(one) && near(sounds, latin(one)))
@@ -75,7 +82,12 @@ export const bankOf = (exercise) =>
  */
 
 /** Typed: goes through isRight. */
-export const TYPED = { blank: '', judge: (exercise, value) => isRight(value, exercise.accepted) }
+export const TYPED = {
+  blank: '',
+  judge: (exercise, value) => isRight(value, exercise.accepted),
+  // Latin letters where no Latin spelling is listed: asked again in Arabic, not marked wrong.
+  unfit: (exercise, value) => !recitedForm(value) && Boolean(latin(value)) && !takesLatin(exercise.accepted),
+}
 
 /** Picked: must match exactly, because a picked option cannot be mistyped. And
  *  `instant`: the pick is the answer, marked as it is made, as on the Quiz board. */

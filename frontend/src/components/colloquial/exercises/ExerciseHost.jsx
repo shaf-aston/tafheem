@@ -39,6 +39,8 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
   const [mute, setMute] = useState(false)
   // A typed or built answer gets a second go before the answer is shown; a pick shows it at once.
   const [again, setAgain] = useState(false)
+  // An answer in Latin letters to one that has no Latin spelling: asked for in Arabic, not marked.
+  const [unfit, setUnfit] = useState(false)
   const startedAt = useRef(null)
   // A kind marked as it is picked has no first keystroke to start the clock, so it starts on sight.
   useEffect(() => { if (kind?.instant) startedAt.current = Date.now() }, [kind])
@@ -52,6 +54,8 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
   }
 
   const check = (given = value) => {
+    if (kind.unfit?.(exercise, given)) return setUnfit(true)
+    setUnfit(false)
     const correct = kind.judge(exercise, given)
     if (!correct && !kind.instant && !again) return setAgain(true)
     setStatus(correct ? 'right' : 'wrong')
@@ -104,8 +108,8 @@ export default function ExerciseHost({ exercise, accent, saved, onDone }) {
         </p>
       )}
       {/* The verdict, said aloud as it comes. A pick already marks its own option, so there it is only heard. */}
-      <p role="status" className={kind.instant ? 'sr-only' : `type-small font-medium ${status === 'right' ? 'text-[var(--success)]' : 'text-[var(--danger)]'}`}>
-        {status === 'right' ? '✓ Correct.' : status === 'wrong' ? '✗ Not quite.' : again ? 'Not quite: have one more go.' : ''}
+      <p role="status" className={kind.instant ? 'sr-only' : `type-small font-medium ${status === 'right' ? 'text-[var(--success)]' : unfit && !status ? 'text-[var(--text-dim)]' : 'text-[var(--danger)]'}`}>
+        {status === 'right' ? '✓ Correct.' : status === 'wrong' ? '✗ Not quite.' : unfit ? 'Write this one in Arabic letters.' : again ? 'Not quite: have one more go.' : ''}
       </p>
       {status && exercise.tip && <p className="type-small text-[var(--text-dim)]">{exercise.tip}</p>}
     </div>

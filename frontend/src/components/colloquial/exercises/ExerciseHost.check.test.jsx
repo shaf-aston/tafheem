@@ -61,4 +61,18 @@ describe('ExerciseHost checking', () => {
     expect(await screen.findByText('shukran')).toBeTruthy()
     expect(screen.getByText(/No sound here/)).toBeTruthy()
   })
+
+  it('asks for Arabic letters, without marking, when the answer has no Latin spelling', () => {
+    const onDone = vi.fn()
+    host({ id: 'u.l.reply.02', type: 'reply', prompt: 'How are you? (to a woman)', answer: 'كويسة', accepted: ['كويسة'] }, onDone)
+    const box = screen.getByLabelText('Your answer')
+    expect(box.getAttribute('placeholder')).toBe('Type it in Arabic letters')
+    fireEvent.change(box, { target: { value: 'kwayyisa' } })
+    fireEvent.keyDown(box, { key: 'Enter' })
+    expect(screen.getByText(/in Arabic letters/, { selector: '[role=status]' })).toBeTruthy()
+    expect(onDone).not.toHaveBeenCalled()
+    fireEvent.change(box, { target: { value: 'كويسه' } })
+    fireEvent.keyDown(box, { key: 'Enter' })
+    expect(onDone).toHaveBeenCalledWith(true, 'كويسه')
+  })
 })
