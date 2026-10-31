@@ -26,7 +26,7 @@
 .entry-english {
   display: block;
   width: 100%;
-  text-align: start;
+  text-align: center;
   color: var(--text);
   transition: filter calc(var(--motion-base-ms) * 1ms) ease;
 }
