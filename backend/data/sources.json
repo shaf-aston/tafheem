@@ -194,6 +194,16 @@
       "dict"
     ]
   },
+  "maqayees_lines": {
+    "label": "Maqayees: English line by line",
+    "confidence": "translated",
+    "detail": "The book's own Arabic, put into English one line at a time by a model, each line under its Arabic",
+    "url": "@maqayees",
+    "where": "Whole entry, AI translated line by line. Arabic above each line. Unproofread.",
+    "used_in": [
+      "dict"
+    ]
+  },
   "ai": {
     "label": "AI explanation",
     "confidence": "guessed",

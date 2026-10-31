@@ -286,11 +286,14 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
     # that has changed shape since makes the kept English a mispairing.
     kept = root_english.get_lines(book_root, len(every_line))
     if kept is not None:
+        # The shipped whole-book run wears the book's own translation badge, as the
+        # prose does; English a reader's press made on the spot stays "AI".
+        shipped = root_english.shipped_lines(book_root, len(every_line))
         return RootEntryLinesResponse(
             root=root,
             lines=[EntryLine(arabic=a, english=e) for a, e in zip(every_line, kept)],
             truncated=False,
-            source=provenance.of("ai"),
+            source=provenance.of("maqayees_lines" if shipped else "ai"),
         )
 
     lines, truncated = root_gloss.line_budget(rest, get_settings().root_entry_truncate_chars)
@@ -299,7 +302,7 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
     kept = root_english.get_lines(book_root, len(lines)) if truncated else None
     if kept is None:
         answer = await _ask_ai(
-            ai_service.explain_root_entry_lines, root, lines,
+            ai_service.explain_root_entry_lines, root, lines, root_english.get(book_root),
             operation="line-by-line English of a Maqayees entry",
         )
         made = answer.get("lines")

@@ -56,6 +56,16 @@ Return a JSON object with this exact structure:
   "english": "the whole entry retold in plain English, in paragraphs separated by a blank line"
 }}"""
 
+# The whole entry's English, when one is kept, handed to the line-by-line run so
+# both views name the same poets and places: cut into lines, the model met
+# "قالت الخنساء" with no context and wrote "the women said".
+ROOT_ENTRY_LINES_REFERENCE = """
+A translation of the whole entry already exists. Use it for names, places and
+terms, spelled as it spells them; still translate each line on its own and move
+nothing between lines:
+{english}
+"""
+
 ROOT_ENTRY_LINES_USER = """Put this entry from Ibn Faris's Maqayees al-Lugha into plain English for a
 learner who cannot read classical Arabic. It is given to you line by line,
 numbered, and your answer must keep the numbering: one English line for each
@@ -64,7 +74,7 @@ Arabic line, saying what that line and only that line says.
 Root: {root}
 The entry, line by line:
 {numbered}
-
+{reference}
 Rules:
 - Say only what each line says. Do not add meanings, examples or verses of your own.
 - Do not move anything between lines. If a line is half a sentence, translate the half.
@@ -75,6 +85,8 @@ Rules:
   work one out yourself.
 - Write short sentences. No transliteration tables, no grammar jargon.
 - If a line is unclear or cut off, say that plainly instead of filling it in.
+- A name stays a name: people, poets, tribes and places are named, never
+  translated as words. قالت الخنساء is "al-Khansā' said", not "the women said".
 
 Return a JSON object with this exact structure, with exactly {count} strings in
 the same order as the numbering:

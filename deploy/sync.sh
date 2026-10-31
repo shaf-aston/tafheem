@@ -71,7 +71,8 @@ rsync -a --delete backend/data/colloquial/ /home/ubuntu/tafheem/backend/data/col
 # tests/core/test_deploy_files.py fails if the backend starts reading another.
 rsync -aR frontend/public/words/words.json frontend/public/words/coverage.json \
 	frontend/public/jazariyya/poem.json frontend/src/config/speak.json /home/ubuntu/tafheem/
-cp requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
+cp requirements-torch.txt requirements.txt requirements-nodeps.txt /home/ubuntu/tafheem/
+/home/ubuntu/tafheem/venv/bin/pip install -q -r requirements-torch.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q -r requirements.txt
 /home/ubuntu/tafheem/venv/bin/pip install -q --no-deps -r requirements-nodeps.txt
 # The hadith collections are fetched here from the public CDN and indexed here,

@@ -268,6 +268,28 @@ def previous_noun(token: dict, s: Sentence) -> dict | None:
     return None
 
 
+def is_known(token: dict, s: Sentence) -> bool:
+    """معرفة: a noun with ال, a name, a pronoun, or a مضاف to a known noun (جميعُهم، كتابُ اللهِ);
+    a مضاف to an unknown one stays unknown (كتابُ رجلٍ)."""
+    if token.get("stt") == "d" or token["pos"] == "PROP":
+        return True
+    added = next((k for k in s.kids(token) if k["rel"] == "IDF"), None) if token.get("stt") == "c" else None
+    return bool(added) and is_known(added, s)
+
+
+def excepted_from(illa: dict, s: Sentence) -> dict | None:
+    """The مستثنى منه: the noun before إلا, out of any جار ومجرور or إضافة that only adds to a noun
+    (ما جاء أحدٌ من الضيوف إلا زيدٌ: زيدٌ is excepted from أحد, not from الضيوف). A جار hung on a verb
+    adds to no noun, so its majrur is the one excepted from (ما مررت بأحدٍ إلا زيدٍ)."""
+    noun = previous_noun(illa, s)
+    while noun and (up := s.head(noun)):
+        holder = up if noun["rel"] == "IDF" else s.head(up) if noun["rel"] == "OBJ" and is_preposition(up) else None
+        if not holder or not noun_tagged(holder) or is_verb(holder):
+            break
+        noun = holder
+    return noun
+
+
 def excepted_after_la(token: dict, s: Sentence) -> tuple[dict, dict, dict] | None:
     """(اسم لا, إلا, its entry) when the word is the name straight after لا, its noun, then إلا,
     and that noun is one roles.json `exception_after_la` lists (لا إله إلا الله); no word between
