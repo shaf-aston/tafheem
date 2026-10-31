@@ -1202,7 +1202,9 @@
     "ذراع",
     "قنطار",
     "كوب"
-   ]
+   ],
+   "_measures_comment": "`measures`: the words above that are measures, not numbers. After one that is indefinite, مِن can bring the tamyeez in its place (رطلٌ من عسلٍ، كوبٌ من القهوة: roles.json understood.measured); a number's cannot (غيرَ ذي العَدَد).",
+   "measures": ["رطل", "كيلو", "لتر", "متر", "فدان", "صاع", "مد", "أوقية", "غرام", "جرام", "ميل", "شبر", "ذراع", "قنطار", "كوب"]
   },
   "participle_patterns": {
    "ar": "أوزان اسم الفاعل واسم المفعول والصفة المشبهة",

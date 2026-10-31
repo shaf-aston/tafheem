@@ -210,6 +210,11 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if not subject or any(role_of[k["id"]] in khabars and (k["id"] == subject["head"] or k["head"] in (
                 subject["id"], subject["head"])) for k in drawn):
             continue
+        # كوبٌ كبيرٌ من القهوة: مِن on an indefinite measure brings the tamyeez (roles.json
+        # understood.measured), a word that describes the measure, not its khabar
+        if strip_diacritics(held["form"]) in kept["measured"]["particles"] and not definite(subject) \
+                and listed(subject, "tamyeez_head", "measures"):
+            continue
         # the books write مبتدأ، خبر (ثابت)، ق (ثابت) side by side, so the khabar sits beside
         # the unit; a subject the unit headed (the لِ of الحمدُ لله) comes out beside them too
         # قال الضيفُ سلامٌ عليكم: a subject a verb hangs as its object heads the sentence it says,
@@ -286,6 +291,22 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         verb = hang_on_unsaid_verb(noun, text, head=noun["head"], rel="OBJ")
         replies.add(verb["id"])
         detail_of[noun["id"]] = said_verb["reply"]["detail"].format(verb=text)
+    # بابُ الفاعلِ، كوبٌ كبيرٌ من القهوة: a noun phrase alone, its head in raf' or in no case shown,
+    # with no verb and no khabar anywhere in it, is a title or an answer: the khabar of a مبتدأ
+    # no one writes, هذا (roles.json understood.subject). A nasb head was taken above (شكرًا).
+    alone = kept["subject"]
+    heads = [t for t in drawn if t["head"] not in by_id]
+    if len(heads) == 1 and len(bases) > 1 and (noun := heads[0])["id"] in typed_at and noun_tagged(noun) \
+            and not noun.get("pos_camel", "").startswith("pron") and role_of[noun["id"]] in (None, NAMED.mubtada) \
+            and not ({"a", "i"} & shown_cases(noun) and "u" not in shown_cases(noun)) \
+            and not any(is_verb(t) or role_of.get(t["id"]) in khabars for t in drawn):
+        said_subject = understand(alone["voweled"], NAMED.mubtada, drawn.index(noun), head=0, rel="SBJ", pos="NOM", pos_camel="")
+        role_of[noun["id"]] = alone["noun"]
+        why_of[noun["id"]] = None
+        under = {**noun, "head": said_subject["id"], "rel": "PRD"}
+        drawn[drawn.index(noun)], by_id[noun["id"]] = under, under
+        unsaid_objects.add(noun["id"])
+        detail_of[noun["id"]] = alone["detail"]
     at = {token["id"]: index for index, token in enumerate(drawn)}
     # what each unit does for the word above it: هذا البيتُ is drawn with the noun over its
     # pointer, but the pair is the مبتدأ, not a صفة of the khabar
