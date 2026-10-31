@@ -88,8 +88,12 @@
 .grow-world-hd { display: grid; gap: 14px; margin-bottom: 18px; }
 .grow-back { justify-self: start; display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 12px 0 6px; border-radius: 999px; font-size: var(--type-ui); color: var(--text-dim); background: var(--surface); border: 1px solid var(--border); }
 .grow-back:hover { color: var(--text); }
-.grow-world-title { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 18px 20px; border-radius: var(--radius-lg); background: linear-gradient(160deg, color-mix(in srgb, var(--w, var(--c)) 24%, var(--surface)), var(--surface)); border: 1px solid color-mix(in srgb, var(--w, var(--c)) 35%, var(--border)); }
+.grow-world-title { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 18px 20px; border-radius: var(--radius-lg); background: linear-gradient(160deg, color-mix(in srgb, var(--w, var(--c)) 24%, var(--surface)), var(--surface)); border: 1px solid color-mix(in srgb, var(--w, var(--c)) 35%, var(--border)); }
 .grow-world-scene { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--w, var(--c)); }
+/* The words take the room and the picture wraps under them when there is not enough:
+   the picture (emblem and Arabic name) never shrinks, and on a phone it squeezed
+   Basics' idea into a column a word wide, the header 650 px tall. */
+.grow-world-title > div { flex: 1 1 16rem; min-width: 0; }
 .grow-world-title h2 { font-size: var(--type-title); font-weight: 800; color: var(--text); }
 .grow-world-idea { font-size: var(--type-ui); color: var(--text-dim); max-width: 40ch; }
 .grow-world-ar { font-size: 3rem; line-height: 1; color: var(--w, var(--c)); }
