@@ -257,3 +257,12 @@ def test_a_run_typed_with_a_hamza_seat_the_index_spells_otherwise(index) -> None
     """أب typed with its hamza; the run check takes the seat out on both sides."""
     hit, start = local.ayah_run("أَبٌ وأم")
     assert (hit.surah, hit.ayah, start) == (3, 3, 1)
+
+
+def test_a_word_s_first_hamza_or_alif_is_kept(index) -> None:
+    """Only a seat inside a word is left out: with the first one gone too, لله (to Allah)
+    was الله, and the name لينا was the Qur'an's إلينا, so "I'm Lina" read "Indeed, to Us"."""
+    assert local.ayah_run("بسم لله") is None
+    assert local.ayah_run("ب وأم") is None
+    hit, start = local.ayah_run("ءَبٌ وأم")  # a seat written apart is still the same first letter
+    assert (hit.surah, hit.ayah, start) == (3, 3, 1)

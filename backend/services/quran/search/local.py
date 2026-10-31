@@ -79,8 +79,10 @@ def whole_ayah(query: str) -> Hit | None:
 
 
 # Letters a typist and the Qur'an's own spelling disagree on most: the hamza's seat
-# and the long alif (خاسئين / خٰسِـِٔين, ءاتوا / آتوا). Left out when two words are
-# compared position by position, never when the index is asked.
+# and the long alif (خاسئين / خٰسِـِٔين, وآتوا / وءاتوا). Left out inside a word when two
+# words are compared position by position, never when the index is asked. A word's
+# first letter is kept, as one alif when it is any of these: dropping it made لينا
+# (a name) the Qur'an's إلينا, and "I'm Lina" read as "Indeed, to Us".
 _SEATS_RE = re.compile("[ءأإآئؤا]")
 _HAMZA_RE = re.compile("[ءأإآئؤ]")
 
@@ -116,8 +118,10 @@ def ayah_run(query: str) -> tuple[Hit, int] | None:
 
 
 def _key(word: str) -> str:
-    """One word as ayah_run compares it: folded, letters only, no hamza seat or alif."""
-    return _SEATS_RE.sub("", _NOT_LETTERS_RE.sub("", spelling.fold(word)))
+    """One word as ayah_run compares it: folded, letters only, its first letter an alif when it
+    is a hamza or alif, and no hamza seat or alif after it."""
+    word = _NOT_LETTERS_RE.sub("", spelling.fold(word))
+    return _SEATS_RE.sub("ا", word[:1]) + _SEATS_RE.sub("", word[1:])
 
 
 def _ranked(query: str, every: bool = False) -> list[tuple[float, Hit]]:
