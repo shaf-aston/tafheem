@@ -288,6 +288,15 @@ def card_of(cards: list[dict], word: str) -> dict:
     return next(c for c in cards if c["word"] == word)
 
 
+@pytest.mark.parametrize("sentence, role", [
+    ("مَا أَنْقَذَ الْغَرِيقَ إِلَّا فَتًى جَرِيءٌ", "فاعل"),  # فتى shows its raf' on its نعت
+    ("مَا نَجَحَ إِلَّا فَتًى جَرِيءٌ", "فاعل"),
+    ("مَا أَكْرَمَ الْمُعَلِّمُ إِلَّا فَتًى مُجْتَهِدًا", "مفعول به"),  # control: the doer is said, and the نعت shows nasb
+])
+def test_a_word_after_restricting_illa_takes_the_place_its_verb_leaves_open(sentence, role):
+    assert card_of(analysed(sentence)[0], "فَتًى")["role"] == role
+
+
 @pytest.mark.parametrize("sentence, word, case, sign", [
     ("جَاءَ الطُّلَّابُ غَيْرَ زَيْدٍ", "غَيْرَ", "nasb", "فتحة"),
     ("جَاءَ الْقَوْمُ سِوَى زَيْدٍ", "سِوَى", "nasb", "فتحة مقدرة على الألف للتعذر"),  # the alef hides the case
