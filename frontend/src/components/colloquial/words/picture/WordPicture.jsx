@@ -35,7 +35,7 @@ function spotAt(event, board) {
   if (named) return named
   const svg = event.currentTarget
   const point = new DOMPoint(event.clientX, event.clientY).matrixTransform(svg.getScreenCTM().inverse())
-  const reach = board.view[2] * 0.08
+  const reach = board.view[2] * 0.1
   let best = null
   for (const s of board.spots) {
     const d = Math.hypot(s.x - point.x, s.y - point.y)
@@ -76,7 +76,7 @@ export function Board({ board, step = 'test' }) {
   const exploring = step === 'explore'
   const ask = game.queue[game.at]
   const done = !ask
-  const r = board.view[2] / 40
+  const r = board.view[2] / 30
   const tappedSpot = board.spots.find((s) => s.key === game.tapped)
   const pickedSpot = board.spots.find((s) => s.key === picked)
 
