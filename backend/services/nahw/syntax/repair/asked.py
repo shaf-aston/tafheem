@@ -39,21 +39,44 @@ def man_before_verb(bases: list[dict], tokens: list[dict]) -> None:
     verb["head"], verb["rel"] = man["id"], "MOD"
 
 
-def asked_before_doer_verb(tokens: list[dict]) -> None:
-    """كَمْ طَالِبًا نَجَحَ، مَاذَا حَدَثَ: a question noun that asks for the object (closed_words istifham
-    before_verb) is the object only of a verb that takes one; before a verb that takes none it is the
-    مبتدأ, and the verb, holding the pronoun back to it, its khabar, as مَنْ جَاءَ reads (man_before_verb). A verb
-    with a doer of its own (كَمْ بَلَدٍ زُرْتُ) holds no pronoun back to it, so it stays the object."""
+def asked_before_verb(tokens: list[dict]) -> None:
+    """كَمْ طَالِبًا نَجَحَ، مَاذَا حَدَثَ، كَمْ بَلَدٍ زُرْتُ: a question noun that asks for the object (closed_words
+    istifham before_verb) next to the verb after it, whichever of the two the parser hung on the other. A verb
+    with a doer of its own holds no pronoun back to the question noun, and a مبتدأ's khabar needs one (كَمْ كِتَابًا
+    قَرَأْتَهُ), so with no object of its own, active and not one the book lists as taking none, it has the question
+    noun as its fronted object (man_before_verb reads مَنْ the same); a verb holding no doer of its own holds the pronoun back to it, so
+    the question noun is the مبتدأ and the verb its khabar, as مَنْ جَاءَ reads."""
     s = Sentence(tokens)
     for token in tokens:
-        verb = s.head(token)
-        if (verb and is_verb(verb) and token["id"] < verb["id"] and token["rel"] in ("SBJ", "OBJ", "MOD")
-                and book_map("istifham", "before_verb").get(strip_diacritics(token["form"])) == "object"
-                and not holds_doer(verb, [k for k in s.kids(verb) if k is not token])
-                and (is_passive(verb) or not takes_object(verb["lemma"]) or is_one(verb["lemma"], "intransitive_verbs"))):
-            token["head"], token["rel"] = verb["head"], verb["rel"]
-            verb["head"], verb["rel"] = token["id"], "MOD"
-            s = Sentence(tokens)
+        if book_map("istifham", "before_verb").get(strip_diacritics(token["form"])) != "object":
+            continue
+        verb = _verb_beside(token, s)
+        if verb is None:
+            continue
+        kids = [k for k in s.kids(verb) if k is not token]
+        if holds_doer(verb, kids):
+            if (token["rel"] != "OBJ" and not is_passive(verb) and not is_one(verb["lemma"], "intransitive_verbs")
+                    and not any(k["rel"] == "OBJ" for k in kids)):
+                _hang_under(token, verb, "OBJ")
+        elif is_passive(verb) or not takes_object(verb["lemma"]) or is_one(verb["lemma"], "intransitive_verbs"):
+            if s.head(token) is verb:
+                _hang_under(verb, token, "MOD")
+        s = Sentence(tokens)
+
+
+def _verb_beside(token: dict, s: Sentence) -> dict | None:
+    """The verb after the question noun that holds it, or that it holds as its MOD."""
+    head = s.head(token)
+    if head and is_verb(head) and token["id"] < head["id"] and token["rel"] in ("SBJ", "OBJ", "MOD"):
+        return head
+    return next((k for k in s.kids(token) if is_verb(k) and k["id"] > token["id"] and k["rel"] == "MOD"), None)
+
+
+def _hang_under(low: dict, high: dict, rel: str) -> None:
+    """Swap two words: `high` takes `low`'s place in the sentence and `low` hangs on it as `rel`."""
+    if high["head"] == low["id"]:
+        high["head"], high["rel"] = low["head"], low["rel"]
+    low["head"], low["rel"] = high["id"], rel
 
 
 def _man(token: dict) -> bool:

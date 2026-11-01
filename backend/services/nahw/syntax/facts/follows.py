@@ -41,7 +41,10 @@ def stands_for(token: dict, s: Sentence) -> bool:
     if after and mine and noun_tagged(after) and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
         return False
     verb = verb_above(before, s)
-    return not (verb and takes_two_objects(verb))
+    # رَأَيْتُ أَخَاكَ زَيْدًا (Tasheel 3.10.3 p94: بدل): a verb with a one-object sense too (closed_words zanna
+    # `one_object`: رأى of the eye) takes a name that names its object again as that object's بدل
+    one_sense = verb and token["pos"] == "PROP" and is_one(verb["lemma"], "zanna", "one_object")
+    return not (verb and takes_two_objects(verb)) or bool(one_sense)
 
 
 def verb_joined_by_waw(token: dict, s: Sentence) -> dict | None:

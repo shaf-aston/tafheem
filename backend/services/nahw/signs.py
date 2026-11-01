@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, paused, plural_alef, typed_passive
-from backend.services.nahw.book import attention_off, book_words, case_of, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
+from backend.services.nahw.book import attention_off, book_words, case_of, family_cards, is_diptote, is_one, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
@@ -39,6 +39,8 @@ def kind_of(tag: dict, annexed: bool) -> str:
             return "attached_plural"  # عِشْرِينَ، أُولُو: they take its letters without being one
         if tag.get("number") == "p" and tag.get("gender") == "m" and bare.endswith(("ون", "ين")):
             return "sound_plural"
+        if is_one(strip_diacritics(tag["base"]), "compound_number", "dual"):
+            return "attached_dual"  # اثْنَا، اثْنَيْ عَشَرَ: ملحق بالمثنى, its letters show the case (Tasheel 1.4.3 p10)
         if tag.get("number") == "d":
             return "dual"
         # بِمَسَاجِدَ: a diptote, unless a مضاف إليه follows (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)

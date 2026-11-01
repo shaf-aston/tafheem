@@ -360,6 +360,8 @@
     "رد",
     "ترك"
    ],
+   "_one_object": "`one_object`: the verbs of `ambiguous` the book reads in their sense taking one object (رأى of the eye; وجد it keys with two, وجدت العلم نافعًا, Tasheel 3.8.1 p71), read in that sense unless an أنّ clause stands for both objects: a name after their object names it again, its بدل (Tasheel 3.10.3 p94: رأيت أخاك زيدًا), a word in nasb is its حال (رأيت صديقك مسرعًا), not a second object.",
+   "one_object": ["رأى"],
    "ambiguous": {
     "علم": "zanna-type 'knew that X was Y' (two objects) vs 'knew X' (one object) vs noun 'flag / science' vs the passive/intensive form 'taught'",
     "رأى": "zanna-type 'considered' (two objects) vs 'saw with the eye' (one object)",

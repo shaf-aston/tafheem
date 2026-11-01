@@ -163,6 +163,10 @@ class Sentence:
         first = next((k for k in kids if k["rel"] == "OBJ" and k["pos"] != "PRT"), None)
         if any(k["pos"] == "PRT" and is_one(k["lemma"], "inna") for k in kids):
             return True
+        # رَأَيْتُ صَدِيقَكَ مُسْرِعًا: a verb with an everyday one-object sense (closed_words zanna `one_object`,
+        # رأى of the eye) is read in it, so the word in nasb after its object is that object's حال
+        if is_one(verb["lemma"], "zanna", "one_object"):
+            return False
         return bool(first) and any(k["id"] > first["id"] and k["rel"] in ("OBJ", "MOD") and noun_tagged(k)
                                    and typed_or_parsed_case(k) in (None, "a") for k in kids)
 

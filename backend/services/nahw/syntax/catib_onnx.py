@@ -26,7 +26,7 @@ from tokenizers import Tokenizer
 from backend.config import data_path, get_settings
 from backend.services.nahw.syntax import decode
 from backend.services.nahw.syntax.mask import book_mask
-from backend.services.sarf.morphology import reading_root
+from backend.services.sarf.morphology import reading_lemma, reading_root
 from backend.services.text.harakat import NO_ANALYSIS, base_of, stuck_letters, typed_case, weak_last
 
 logger = logging.getLogger(__name__)
@@ -214,7 +214,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
 
     def baseword(form: str, lex_default: str, pos: str, ud: str, **extra) -> dict:
         return {
-            "form": form, "lemma": dediac_ar(a.get("lex", lex_default)),
+            "form": form, "lemma": reading_lemma(word, a) if "lex" in a else dediac_ar(lex_default),
             "pos": pos, "pos_camel": a.get("pos", ""), "ud": ud,
             "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
             "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),

@@ -10,7 +10,7 @@ from backend.services.nahw.syntax import particles
 from backend.services.nahw.syntax.mask import book_links
 from backend.services.nahw.syntax.facts import base_tokens
 from backend.services.nahw.syntax.repair.answer import untied_command
-from backend.services.nahw.syntax.repair.asked import asked_before_doer_verb, asked_man, man_before_verb
+from backend.services.nahw.syntax.repair.asked import asked_before_verb, asked_man, man_before_verb
 from backend.services.nahw.syntax.repair.called import called
 from backend.services.nahw.syntax.repair.dua import counted_times, dua_clause
 from backend.services.nahw.syntax.repair.hal import hal_clause, naat_beside_its_noun, no_khabar_on_full_verb
@@ -32,7 +32,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         emphasis_lam_opener(tokens)
         asked_man(bases, tokens)
         man_before_verb(bases, tokens)
-        asked_before_doer_verb(tokens)
+        asked_before_verb(tokens)
         added_to_verb(tokens)
         subject_clash(tokens)
         described_known(tokens)  # after: the object subject_clash moved onto the verb is a noun it describes

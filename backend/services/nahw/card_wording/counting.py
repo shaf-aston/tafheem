@@ -13,6 +13,8 @@ def counted(cards: list[dict], roles: list[dict]) -> None:
     ordinals = teacher_rules()["case_said"]["ordinals"]
     run = 0  # how many of this role came straight before
     for before, card in zip(cards, cards[1:]):
+        if card.get("compound") == "second":
+            continue  # اثنيْ عشرَ: the two parts of a number fill one place (repair.compound_number), one object
         role = card.get("role")
         if not role or role != before.get("role") or not (role == NAMED.mafool_bih or role.startswith(NAMED.khabar)):
             run = 0

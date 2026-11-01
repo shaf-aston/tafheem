@@ -52,3 +52,11 @@ def test_a_sentence_rooted_on_a_harf_atf_still_gets_its_roles():
     read = iraab.analyze(ayah, recorded=False)
     assert read["read_failed"] is False
     assert any(word.get("role") for word in read["words"])
+
+
+def test_the_parser_reads_the_lemma_the_word_carries():
+    # CAMeL files رأيت under راوند (rhubarb), letters the word lacks: the parser takes رأى, as the cards do
+    typed = ["رَأَيْتُ", "صَدِيقَكَ"]
+    catib_onnx.warm()
+    tokens = parse(typed, morphology.pick(typed, catib_onnx.disambiguator()))
+    assert tokens[0]["lemma"] == "رأى"

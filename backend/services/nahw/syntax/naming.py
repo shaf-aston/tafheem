@@ -445,9 +445,10 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     if facts.is_built(token) or facts.is_object_pronoun(token) or facts.is_built_zarf(token):
         return "mabni"
     # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built;
-    # a name is never built, so a sukun on one is the reader pausing (أَحْمَدْ جَاءَ)
+    # a name is never built, so a sukun on one is the reader pausing (أَحْمَدْ جَاءَ). A sukun on a last و or ي
+    # is that letter's own (اثْنَيْ عَشَرَ، كِتَابَيْ الطَّالِبِ: the dual's ya), the letter the case shows by, no build
     marked = letters(token["typed"])
-    if (after and not token.get("stuck_on") and marked and SUKUN in marked[-1][1]
+    if (after and not token.get("stuck_on") and marked and SUKUN in marked[-1][1] and marked[-1][0] not in "وي"
             and token.get("pos_camel") != "noun_prop"):
         return "mabni"
     if facts.shows_nasb_by_kasra(token) and (case_of(role, token["mudaf"]) == "a" if role else not jarred):

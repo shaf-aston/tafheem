@@ -239,6 +239,15 @@ def reading_root(a: dict) -> str:
     return "" if has_no_root(pos) else root_in_arabic(a.get("root") or "", (a.get("lex") or "") if pos in ROOTED_POS else "", a.get("diac") or "")
 
 
+def reading_lemma(word: str, a: dict, root: str | None = None) -> str:
+    """The bare lemma of one reading, for the cards and the parser alike: a lemma the word does not carry
+    is not its lemma (رأيت filed under راوند), so the Qur'an's for its root (roots.lemma_of)."""
+    from backend.services.dictionary import roots  # it reads with this module
+    pos = (a.get("pos") or "").lower()
+    return roots.lemma_of(strip_diacritics(a.get("lex") or a.get("diac") or word), strip_diacritics(word),
+                          reading_root(a) if root is None else root, pos == "verb")
+
+
 def _build_features(a: dict) -> str:
     parts: list[str] = []
     asp = a.get("asp", "na") or "na"
@@ -306,9 +315,7 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
     word_type = _pos_type(pos)
     root_ar = reading_root(a)
 
-    from backend.services.dictionary import roots  # it reads with this module
-    # a lemma the word does not carry is not its lemma (رأيت filed under راوند): the Qur'an's for its root
-    lemma = roots.lemma_of(strip_diacritics(a.get("lex") or a.get("diac") or word), strip_diacritics(word), root_ar, pos == "verb")
+    lemma = reading_lemma(word, a, root_ar)
     guessed = NO_ANALYSIS in a.get("atbtok", "")
 
     cas = a.get("cas", "na") or "na"

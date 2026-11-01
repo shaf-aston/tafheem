@@ -53,7 +53,32 @@ def test_a_joined_hundred_shows_its_case_on_the_unit():
     ("كَمْ رَجُلًا جَلَسَ", ["مبتدأ", "تمييز", "فعل"]),
     ("مَاذَا حَدَثَ", ["مبتدأ", "فعل"]),
     ("كَمْ كِتَابًا قَرَأْتَ", ["مفعول به", "تمييز", "فعل"]),
+    ("مَاذَا كَتَبْتُمْ", ["مفعول به", "فعل"]),
+    ("كَمْ كِتَابًا قَرَأْتَهُ", ["مبتدأ", "تمييز", "فعل"]),
 ])
 def test_a_question_noun_is_the_object_only_of_a_verb_that_takes_one(sentence, roles):
     _both(sentence, roles)
+
+
+@needs_parser
+def test_kam_of_many_before_a_verb_with_its_doer_is_its_object():
+    # كم الخبرية: its noun is its مضاف إليه; زرتُ has its doer and no object, so كم is the object
+    assert _roles("كَمْ بَلَدٍ زُرْتُ") == ["مفعول به", "مضاف إليه", "فعل"]
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, at, sign", [
+    ("جَاءَ اثْنَا عَشَرَ رَجُلًا", 1, "الألف، ملحق بالمثنى"),
+    ("رَأَيْتُ اثْنَيْ عَشَرَ رَجُلًا", 1, "الياء، ملحق بالمثنى"),
+    ("مَرَرْتُ بِاثْنَيْنِ", 1, "الياء، ملحق بالمثنى"),
+    ("قَرَأْتُ كِتَابَيْ الطَّالِبِ", 1, "الياء، مثنى"),
+])
+def test_two_shows_its_case_by_its_letters(sentence, at, sign):
+    assert analyze(sentence)["words"][at]["sign"] == sign
+
+
+@needs_parser
+def test_the_two_parts_of_a_number_are_one_object():
+    reasons = [w.get("reason") or "" for w in analyze("رَأَيْتُ اثْنَيْ عَشَرَ رَجُلًا")["words"]]
+    assert not any("أول" in r or "ثانٍ" in r for r in reasons)
 
