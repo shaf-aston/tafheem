@@ -136,7 +136,7 @@ def is_built(token: dict) -> bool:
     (Tasheel: المثنى من أسماء الإشارة والموصولات معرب), so its last kasra is no ending it is built on;
     nor أيّ, the one question word that takes a case (closed_words istifham `inflected`)."""
     kind = token.get("pos_camel", "")
-    if token.get("compound") in ("built", "second"):
+    if token.get("compound") in ("built", "ordinal", "second"):
         return True  # ثلاثةَ عشرَ: built on the fatha of both parts (repair.compound_number)
     return (is_mabni(kind) and not (token.get("num") == "d" and any(k in kind for k in ("dem", "rel")))
             and not ("interrog" in kind and is_one(token["lemma"], "istifham", "inflected")))
@@ -180,7 +180,7 @@ def has_added(token: dict, tokens: list[dict]) -> bool:
 def typed_case_of(token: dict) -> str | None:
     """The case the reader typed on the word: its last vowel, or for one of the six nouns
     as a مضاف the long letter standing for it (أَخُوْ، أَخَا، أَخِيْ زَيْدٍ; أَبَاهُ)."""
-    if token.get("compound") in ("built", "second"):
+    if token.get("compound") in ("built", "ordinal", "second"):
         return None  # ثلاثةَ عشرَ: the fatha is the number's build, no nasb
     if unit := _hundred_unit(token.get("typed") or ""):
         return typed_case(unit)  # ثَلَاثَمِائَةِ: the unit shows the case, the last kasra is مائة's jarr
@@ -279,8 +279,8 @@ def agrees(token: dict, head: dict) -> bool:
     dual = [t.get("num") == "d" for t in (token, head) if noun_tagged(t)]
     known = head.get("stt") == "d" or head.get("stt") == "c" and head.get("mudaf", True)
     named = head.get("pos_camel") == "noun_prop" and (typed_tanween(token) or written_nasb(token))
-    # الرجلُ الحاديَ عشرَ: a compound number is built, so it stands in its noun's case by its place
-    in_case = same_case(token, head) or token.get("compound") == "built"
+    # الرجلُ الحاديَ عشرَ: a compound ordinal is built, so it stands in its noun's case by its place
+    in_case = same_case(token, head) or token.get("compound") == "ordinal"
     return in_case and not (token.get("stt") == "i" and known or named) and len(set(dual)) < 2
 
 

@@ -180,8 +180,8 @@ def _follows(token: dict, s: Sentence) -> str:
     if "dem" in token.get("pos_camel", "") and noun_tagged(head):
         return "naat" if head["pos"] == "PROP" or head.get("stt") == "c" else "badal"
     # السُّفْلَى: a مقصور noun shows no case, so any its noun wears is its own
-    # الرجلُ الحاديَ عشرَ: a compound number is built and shows none, its place its noun's
-    if (mine or case_unseen(token)) and shown_cases(token) & shown_cases(head) or token.get("compound") == "built":
+    # الرجلُ الحاديَ عشرَ: a compound ordinal is built and shows none, its place its noun's
+    if (mine or case_unseen(token)) and shown_cases(token) & shown_cases(head) or token.get("compound") == "ordinal":
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
         # (شَعِيرًا has the فعيل shape, so the morphology's adjective tag tells, not the shape)
         measure = listed(head, "tamyeez_head") and token.get("pos_camel") != "adj"

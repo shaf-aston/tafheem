@@ -1341,8 +1341,9 @@
   "compound_number": {
     "ar": "العدد المركب",
     "effect": "The numbers 11 to 19: a unit (`words`) and عشر/عشرة (`second`) typed after it are one number, built on the fatha of both parts whatever its place, which both parts show (ثلاثةَ عشرَ: مبني على فتح الجزأين في محل رفع فاعل). `dual` is اثنا/اثنتا, ملحق بالمثنى: it inflects by its letters (اثنا in raf', اثني in nasb and jarr), only the عشر is built (Tasheel 1.4.3 p10, as rule_sentences r012 keys it).",
-    "words": ["أحد", "إحدى", "ثلاثة", "ثلاث", "أربعة", "أربع", "خمسة", "خمس", "ستة", "ست", "سبعة", "سبع", "ثمانية", "ثماني", "ثمان", "تسعة", "تسع", "حادي", "حادية", "ثاني", "ثانية", "ثالث", "ثالثة", "رابع", "رابعة", "خامس", "خامسة", "سادس", "سادسة", "سابع", "سابعة", "ثامن", "ثامنة", "تاسع", "تاسعة"],
-    "_ordinals": "The ordinals الحادي عشر to التاسع عشر are built on the fatha of both parts the same, the place told by the noun they describe (جاء الرجلُ الحاديَ عشرَ: صفة).",
+    "words": ["أحد", "إحدى", "ثلاثة", "ثلاث", "أربعة", "أربع", "خمسة", "خمس", "ستة", "ست", "سبعة", "سبع", "ثمانية", "ثماني", "ثمان", "تسعة", "تسع"],
+    "ordinals": ["حادي", "حادية", "ثاني", "ثانية", "ثالث", "ثالثة", "رابع", "رابعة", "خامس", "خامسة", "سادس", "سادسة", "سابع", "سابعة", "ثامن", "ثامنة", "تاسع", "تاسعة"],
+    "_ordinals": "`ordinals`: الحادي عشر to التاسع عشر are built on the fatha of both parts the same, the place told by the noun they describe (جاء الرجلُ الحاديَ عشرَ: صفة).",
     "dual": ["اثنا", "اثني", "اثنتا", "اثنتي", "اثنان", "اثنتان", "اثنين", "اثنتين"],
     "second": ["عشر", "عشرة"]
   },

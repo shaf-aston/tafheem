@@ -82,3 +82,14 @@ def test_the_two_parts_of_a_number_are_one_object():
     reasons = [w.get("reason") or "" for w in analyze("رَأَيْتُ اثْنَيْ عَشَرَ رَجُلًا")["words"]]
     assert not any("أول" in r or "ثانٍ" in r for r in reasons)
 
+
+
+@needs_parser
+def test_a_waw_between_makes_two_numbers():
+    assert _roles("جَاءَ ثَلَاثَةٌ وَعَشَرَةٌ") == ["فعل", "فاعل", "معطوف"]
+
+
+@needs_parser
+def test_a_cardinal_after_its_noun_is_no_sifa():
+    # only an ordinal (الحادي عشر) describes; a count after its noun is its state
+    assert "صفة" not in _roles("جَاءَ الطُّلَّابُ ثَلَاثَةَ عَشَرَ")

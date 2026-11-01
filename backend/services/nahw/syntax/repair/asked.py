@@ -1,8 +1,8 @@
 """مَنْ فِي البيتِ: an opening مَنْ with no verb to be the صلة of asks a question.
 
 The analyser often reads it as the relative; a relative needs its صلة, and with no verb
-in the sentence a jar-majroor or ظرف after it is told of it, so it is the question word,
-the مبتدأ (Tasheel, أسماء الاستفهام)."""
+in the sentence there is none, so it is the question word, the مبتدأ, and what follows (a
+jar-majroor, a ظرف, a noun) is told of it (Tasheel, أسماء الاستفهام)."""
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
@@ -32,7 +32,7 @@ def man_before_verb(bases: list[dict], tokens: list[dict]) -> None:
         man["head"], man["rel"] = verb["id"], "OBJ"
         return
     if (held := s.head(man)) is not verb:  # مَنْ نَصَرَ بَكْرًا: a منصوب has no عامل but the verb
-        if typed_case_of(held) != "a":
+        if held is None or typed_case_of(held) != "a":
             return
         held["head"], held["rel"] = verb["id"], "OBJ"
     man["head"], man["rel"] = 0, "---"

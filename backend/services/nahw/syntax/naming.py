@@ -96,7 +96,7 @@ class FoundEntry(TypedDict, total=False):
     book: str | None  # the proof line: the tree's branches that named it
     also: str | None  # a second thing the book says (عطف بيان)
     my_ya: bool  # يَا قَوْمِ: مضاف to a ياء المتكلم typed only as the kasra it left
-    compound: str  # a part of a compound number: built / dual (its unit) or second (its عشر)
+    compound: str  # a part of a compound number: built / ordinal / dual (its unit) or second (its عشر)
     attached: list[Piece]  # pieces written onto it
     governor: int  # index of the word that works its case on it
     follows: int  # index of the word a تابع follows

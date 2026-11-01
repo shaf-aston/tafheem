@@ -118,13 +118,14 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         # إِنَّهُ is built on إِنَّ's fatha, not the ضمة of the pronoun on it
         own = _without_object(card["word"]) if _has_pronoun(card["camel"]) else _unmoved(card, after)
         return _built(ending) + _moved(card, after) if (ending := _typed_ending(own)) else sign("mabni")
-    kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
-    if (part := card.get("compound")) in ("built", "second"):
+    if (part := card.get("compound")) in ("built", "ordinal", "second"):
         # ثلاثةَ عشرَ: مبني على فتح الجزأين في محل رفع; the عشر after اثنا is built on its own fatha
         said = teacher_rules()["case_said"]
-        on = _built(said["compound_on"]["both" if part == "built" or (before or {}).get("compound") == "built" else "one"])
+        both = part != "second" or (before or {}).get("compound") in ("built", "ordinal")
+        on = _built(said["compound_on"]["both" if both else "one"])
         place = CASE_LETTER.get(case) or case_of(card.get("role") or "")
         return f"{on} {said['in_place'].format(place=said['place'][place])}" if place else on
+    kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
         said = teacher_rules()["case_said"]
