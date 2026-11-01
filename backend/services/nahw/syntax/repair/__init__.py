@@ -14,7 +14,7 @@ from backend.services.nahw.syntax.repair.asked import asked_before_verb, asked_m
 from backend.services.nahw.syntax.repair.called import called
 from backend.services.nahw.syntax.repair.dua import counted_times, dua_clause
 from backend.services.nahw.syntax.repair.hal import hal_clause, naat_beside_its_noun, no_khabar_on_full_verb
-from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, described_doer, elative_specified, hasr_khabar, object_of_noun, second_khabar, told_of_jar
+from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, naat_after_its_noun, la_over_its_khabar, described_doer, elative_specified, hasr_khabar, object_of_noun, second_khabar, told_of_jar
 from backend.services.nahw.syntax.repair.nasab import nasab
 from backend.services.nahw.syntax.repair.number import compound_number
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, name_told_to, repeated_doer, doer_after_object, doer_first, kana_subject, inna_object, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
@@ -56,7 +56,9 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         after_pointer(tokens)
         told_of_jar(tokens)
         second_khabar(tokens)
+        naat_after_its_noun(tokens)
         before_la(tokens)
+        la_over_its_khabar(tokens)
         hasr_khabar(tokens)
         described_doer(tokens)
         hal_clause(bases, tokens)
