@@ -105,7 +105,7 @@
       "label": "English-letter spelling",
       "help": "The sound written in English letters under the Arabic. Off: the Arabic alone.",
       "type": "switch",
-      "default": false
+      "default": true
     }
   ]
 }

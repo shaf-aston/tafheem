@@ -1,6 +1,7 @@
 // A phrase's picture and its words, shared by the mosaic tile and the sheet.
 import ArabicText from '../../ui/ArabicText'
 import PhrasePicture from './PhrasePicture'
+import Spelling from './Spelling'
 
 export const FOCUS = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]'
 
@@ -17,11 +18,14 @@ const SCRIM = `linear-gradient(to top, color-mix(in srgb, var(--bg) ${SCRIM_PERC
 
 // A photo fills the tile with the words over its foot; a drawing (an emoji .svg)
 // sits above the words instead, so the Arabic never lies across it.
-export default function Face({ phrase, index, arabicSize = 'base', showEnglish = true, numbered = true, className = '' }) {
+// `spelt` adds the sound in English letters under the Arabic (while the setting is on), for a
+// tile that has no spelling of its own beside it.
+export default function Face({ phrase, index, arabicSize = 'base', showEnglish = true, spelt = false, numbered = true, className = '' }) {
   const drawn = phrase.image?.endsWith('.svg')
   const words = (
     <>
       <ArabicText as="p" size={arabicSize} className="text-[var(--text)]">{phrase.arabic}</ArabicText>
+      {spelt && <Spelling className="block line-clamp-1">{phrase.transliteration}</Spelling>}
       {showEnglish && <p className="type-micro text-[var(--text-dim)] line-clamp-2">{phrase.english}</p>}
     </>
   )
