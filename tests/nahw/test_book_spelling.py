@@ -60,9 +60,9 @@ def test_a_reading_overrides_the_parser_preposition_tag():
 
 def _opened(pos: str, kind: str | None) -> list[dict]:
     """ما then two past verbs (مَا قَرَأَ فَهِمَ), ما tagged `pos` and read as a `kind`."""
-    words = [{"id": 1, "form": "ما", "pos": pos, "head": 2, "reading": {"family": "x", "kind": kind} if kind else None},
-             {"id": 2, "form": "قرأ", "pos": "VRB", "head": 0, "asp": "p"},
-             {"id": 3, "form": "فهم", "pos": "VRB", "head": 2, "asp": "p"}]
+    words = [{"id": 1, "form": "ما", "lemma": "ما", "pos": pos, "head": 2, "reading": {"family": "x", "kind": kind} if kind else None},
+             {"id": 2, "form": "قرأ", "lemma": "قرأ", "pos": "VRB", "head": 0, "asp": "p"},
+             {"id": 3, "form": "فهم", "lemma": "فهم", "pos": "VRB", "head": 2, "asp": "p"}]
     return condition.find(words, [None, NAMED.fil, NAMED.fil], [None] * 3, [[], [], []])
 
 

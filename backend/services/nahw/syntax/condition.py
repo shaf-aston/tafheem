@@ -16,7 +16,7 @@ the conditions from here instead, so they agree.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import condition_of, is_one, named_roles
+from backend.services.nahw.book import condition_of, is_one, kaffa_sister, named_roles
 from backend.services.nahw.syntax.facts import reading
 
 NAMED = named_roles()
@@ -47,6 +47,9 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         frame = condition_of(bases[i]["form"])
         v = verb_at(i)
         if not frame or v >= len(bases) or (i and not joined(i)):
+            return None
+        # إنما: the lemma is the pair, a ما الكافة cut off the إنّ sister it stops, so no إنْ of a condition
+        if kaffa_sister(bases[i]["lemma"]):
             return None
         # لولا زيدٌ: a particle of امتناع لوجود opens on a noun; before a verb it urges and opens none
         if (named[v] == NAMED.fil) == (frame.get("before") == "noun") or (frame.get("before") == "noun" and bases[v]["pos"] not in ("NOM", "PROP")):

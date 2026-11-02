@@ -147,6 +147,34 @@ def doer_after_object(tokens: list[dict]) -> None:
             s = Sentence(tokens)
 
 
+def late_doer(tokens: list[dict]) -> None:
+    """إِنَّمَا يَخْشَى اللَّهَ مِنْ عِبَادِهِ الْعُلَمَاءُ: the doer may come last, after the object and the words
+    that fill the verb's clause (الفاعل المؤخر). A noun the reader typed in raf' that the parser hung as the
+    نعت or مضاف إليه of a noun that cannot be raf' (typed in nasb or jarr), below a verb with no doer yet, is
+    neither: a نعت wears its noun's case and a مضاف إليه is in jarr. It is that verb's doer, and the verb then
+    holds no hidden one. A word the parser called the doer that the reader typed in nasb is the verb's object."""
+    s = Sentence(tokens)
+    for token in tokens:
+        head = s.head(token)
+        if not (head and token["rel"] in ("MOD", "IDF") and noun_tagged(token) and not is_verb(token)
+                and typed_case_of(token) == "u" and noun_tagged(head) and head["id"] < token["id"]
+                and "u" not in shown_cases(head)):
+            continue
+        verb, seen = head, set()
+        while verb and not is_verb(verb) and verb["id"] not in seen:
+            seen.add(verb["id"])
+            verb = s.head(verb)
+        if not (verb and is_verb(verb) and verb["id"] < head["id"] and not own_doer(verb)):
+            continue
+        # a word the parser called the doer that the reader typed in nasb is the object, not a doer
+        objects = [k for k in s.kids(verb) if subject_link(k) and typed_case_of(k) == "a" and not is_mabni(k.get("pos_camel", ""))]
+        if not holds_doer(verb, [k for k in s.kids(verb) if k not in objects]):
+            for k in objects:
+                k["rel"] = "OBJ"
+            token["head"], token["rel"] = verb["id"], "SBJ"
+            s = Sentence(tokens)
+
+
 def verb_under_fronted_object(tokens: list[dict]) -> None:
     """عِلْمًا طَلَبَ زَيْدٌ: the مفعول به may come before its verb (Jumla Filiyya p4). A verb with
     its own doer, after it or in it (زَيْدًا ضَرَبْتُ، زَيْدًا اضْرِبْ), that the parser hung as the صفة of a

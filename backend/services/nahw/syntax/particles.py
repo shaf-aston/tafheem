@@ -414,14 +414,25 @@ def _emphasis_lam_frees_its_word(tokens: list[dict]) -> None:
 
 def _hasr_frees_its_words(tokens: list[dict]) -> None:
     """لا تعبدوا إلا الله: the إلا of restriction excepts nothing, so the word the parser hung on
-    it belongs to the verb above it, as in ما ضربتُ إلا زيدًا (Tasheel 3.8.7 p85)."""
-    by_id = {t["id"]: t for t in tokens}
+    it belongs to the verb above it, as in ما ضربتُ إلا زيدًا (Tasheel 3.8.7 p85). It takes the place
+    the verb leaves open, so one in raf' under a verb with no doer yet is that doer whatever the
+    parser hung it as (ما أنقذ الغريقَ إلا فتًى جريءٌ: فتى shows its raf' on its نعت)."""
+    s = facts.Sentence(tokens)
     for particle in tokens:
-        verb = by_id.get(particle["head"])
+        verb = s.head(particle)
         if facts.reading(particle) == "hasr" and verb and facts.is_verb(verb):
-            for kid in tokens:
-                if kid["head"] == particle["id"]:
-                    kid["head"] = verb["id"]
+            open_doer = not facts.own_doer(verb) and not facts.holds_doer(verb, s.kids(verb))
+            for kid in s.kids(particle):
+                kid["head"] = verb["id"]
+                if open_doer and kid["rel"] == "OBJ" and _typed_raf(kid, s):
+                    kid["rel"] = "SBJ"
+
+
+def _typed_raf(word: dict, s: facts.Sentence) -> bool:
+    """The reader typed the word in raf', or, its case unseen (فتى), typed its نعت so: a نعت wears its noun's case."""
+    if facts.case_unseen(word):
+        return any(k["rel"] == "MOD" and facts.describes(k, word) and facts.typed_case_of(k) == "u" for k in s.kids(word))
+    return facts.typed_case_of(word) == "u"
 
 
 def _wonder_settles_its_words(tokens: list[dict]) -> None:
