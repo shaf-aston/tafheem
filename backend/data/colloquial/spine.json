@@ -741,7 +741,8 @@
             {
               "slot": "this-is-delicious",
               "english": "This is delicious.",
-              "search_term": "delicious food plate"
+              "search_term": "delicious food plate",
+              "image": "unit-02/l04-p05-delicious-food-plate.jpg"
             },
             {
               "slot": "i-am-full-male-speaker",
@@ -1211,7 +1212,8 @@
             {
               "slot": "do-you-have-ready-made-kibbeh",
               "english": "Do you have ready-made kibbeh?",
-              "search_term": "kibbeh on a plate"
+              "search_term": "kibbeh on a plate",
+              "image": "unit-03/l02-p09-kibbeh-on-a-plate.jpg"
             },
             {
               "slot": "this-bread-is-very-hot",
