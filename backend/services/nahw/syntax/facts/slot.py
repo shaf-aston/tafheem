@@ -198,8 +198,12 @@ def verb_place(token: dict, s: Sentence) -> str:
                 and any(t["rel"] == "OBJ" and t["id"] < token["id"] and typed_case_of(t) == "a" for t in siblings)):
             return "subject"
         asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
+        if asked and before and rel == "PRD" and s.family(head) == "kana":
+            return "predicate"  # كيف أصبحت، أين كنت: what a كان-sister asks is its khabar
         if asked and before and not any(t["rel"] == "OBJ" and not is_verb(t) for t in siblings):  # قال after it is the reply, not its object
-            return asked  # ماذا قرأت، كيف جئت: the question noun fills the place it asks about
+            # ماذا قرأت، كيف جئت: the question noun fills the place it asks about; كم يومًا سافرت: how many of a time
+            # word is the time asked, not an object the verb lacks
+            return "place_time" if asked == "object" and any(k["rel"] == "TMZ" and is_zarf(k, s) for k in s.kids(token)) else asked
         # نَجَحَتِ الَّتِي ثَابَرَتْ، صِلْ مَنْ قَطَعَكَ: a relative after its verb is a noun no hal or tamyeez can be
         # (its صلة makes it definite), so it is one of the verb's own: its doer (or نائب فاعل) while the verb has
         # none, else its object (أَكْرَمْتُ مَنْ صَدَقَ). The doer is settled in the verb (تُ، a command's hidden

@@ -39,6 +39,14 @@ def man_before_verb(bases: list[dict], tokens: list[dict]) -> None:
     verb["head"], verb["rel"] = man["id"], "MOD"
 
 
+def asked_anna(tokens: list[dict]) -> None:
+    """أَنَّى يَكُونُ لَهُ وَلَدٌ، أَنَّى لَكِ هَذَا: the analyser files أَنَّى with the particles (closed_words istifham
+    particle_tagged_nouns), but it is a question noun, as أَيْنَ and كَيْفَ are."""
+    for token in tokens:
+        if token["pos"] == "PRT" and is_one(token["form"], "istifham", "particle_tagged_nouns"):
+            token.update(pos="NOM", pos_camel="adv_interrog")
+
+
 def asked_before_verb(tokens: list[dict]) -> None:
     """كَمْ طَالِبًا نَجَحَ، مَاذَا حَدَثَ، كَمْ بَلَدٍ زُرْتُ: a question noun that asks for the object (closed_words
     istifham before_verb) next to the verb after it, whichever of the two the parser hung on the other. A verb
@@ -61,6 +69,27 @@ def asked_before_verb(tokens: list[dict]) -> None:
         elif is_passive(verb) or not takes_object(verb["lemma"]) or is_one(verb["lemma"], "intransitive_verbs"):
             if s.head(token) is verb:
                 _hang_under(verb, token, "MOD")
+        s = Sentence(tokens)
+
+
+def asked_of_kana(tokens: list[dict]) -> None:
+    """كَيْفَ أَصْبَحْتَ، أَيْنَ كُنْتَ، مَاذَا كَانَ الْجَوَابُ: a question noun (closed_words istifham before_verb) before a
+    كان-sister that has said no khabar is that khabar, brought to the front (قَائِمًا كَانَ زَيْدٌ); the doer
+    after the verb is its اسم. مَنْ كَانَ مَعَكَ: مَنْ, with no doer after the verb, is its اسم. Only the verb straight
+    after it is its own (مَنْ ظَلَمَنَا فَلَيْسَ صَدِيقًا: ليس is the شرط's answer, not مَنْ's). The parser hung it as a
+    modifier or an object."""
+    s = Sentence(tokens)
+    for token in tokens:
+        asks = book_map("istifham", "before_verb").get(strip_diacritics(token["form"])) is not None
+        verb = _verb_beside(token, s)
+        if not (asks or _man(token)) or not verb or verb["id"] != token["id"] + 1 or s.family(verb) != "kana":
+            continue
+        kids = [k for k in s.kids(verb) if k is not token]
+        if asks and not any(k["rel"] == "PRD" for k in kids):
+            _hang_under(token, verb, "PRD")
+        elif not asks and not any(subject_link(k) for k in kids):
+            _hang_under(token, verb, "SBJ")
+            token["pos_camel"] = "pron_interrog"
         s = Sentence(tokens)
 
 

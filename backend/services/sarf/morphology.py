@@ -685,6 +685,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [name]
         if lam := _emphasis_lam(evidence, disambiguator):
             ranked = [lam]
+        if jarred := _jarred_ma(evidence):
+            ranked = [jarred]
         if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token, _seen_verb)) \
                 and (sarf.get("asp") != "c" or "enc0" in sarf) \
                 and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
@@ -776,8 +778,11 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         after_la = i > 0 and is_one(bare_letters(out[i - 1].get("diac", "")), "la_jins")
         if _bare_construct(reading) and not after_la and not _takes_mudaf_ilayh(*((out[i + 1], tokens[i + 1]) if i + 1 < len(out) else ({}, ""))):
             word, ranked = steps[i]
+            pool = _widened(tokens[i], ranked)
+            if reading.get("prc3") == "Aa_ques" and (split := _asked_split(word)):  # أَذَهَبَ زَيْدٌ: not "the gold of"
+                pool += [_joined_onto(split[0], r, "INTERROG_PART", prc3="Aa_ques") for r in _rest_readings(split[1])]
             # the word's whole list too (أَكْبَرُ's own indefinite reading may be ranked out), never a guessed name
-            out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
+            out[i] = best_reading(word, [r for r in pool
                                          if not _bare_construct(r) and r.get("pos") != "noun_prop"]) or reading
     # نصر زيد بكرا، زيد نصر بكرا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به).
     # A noun read in nasb (بكرا's alif of tanween is written, typed vowels or none), in a line of
@@ -894,6 +899,16 @@ def _quran_name(typed: str, readings: list[dict], bare: bool = False) -> dict | 
             "asp": "na", "vox": "na", "per": "na", "mod": "na", "prc0": "0", "prc1": "0", "prc2": "0", "prc3": "0", "source": "quran"}
 
 
+def _asked_split(typed: str) -> tuple[str, str] | None:
+    """The question hamza written onto the front of a word (its fatha with it), and the rest of the word."""
+    marked = letters(typed)
+    hamza = next((w for w in book_words("istifham") if len(w) == 1), None)
+    if not (hamza and len(marked) > 2 and marked[0][0] == hamza and "َ" in marked[0][1]):
+        return None
+    asked = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
+    return asked, typed[len(asked):]
+
+
 def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=None) -> dict | None:
     """أَذَاهِبٌ زَيْدٌ: the question hamza (closed_words istifham, a one-letter word) opens the
     sentence before a full clause, written onto its first word; the dictionary lacks it on a
@@ -901,12 +916,9 @@ def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=Non
     writes a وَ (وَ+_ذاهِب). Read so where no reading of the whole word fits its vowels, or where
     the rest is a حرف جر and the next word is typed in jarr (أَفِي اللَّهِ شَكٌّ: no verb or name puts
     the noun after it in jarr, so أَفِي is not "I fulfil")."""
-    marked = letters(typed)
-    hamza = next((w for w in book_words("istifham") if len(w) == 1), None)
-    if not (hamza and len(marked) > 2 and marked[0][0] == hamza and "َ" in marked[0][1]):
+    if not (split := _asked_split(typed)):
         return None
-    asked = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
-    rest = typed[len(asked):]
+    asked, rest = split
     if _agreeing(typed, ranked) and not (strip_diacritics(rest) in book_words("jarr") and typed_case(after) == "i"):
         return None
     ranked = _rest_readings(rest, disambiguator)
@@ -939,6 +951,23 @@ def _emphasis_lam(typed: str, disambiguator=None) -> dict | None:
         return None
     ranked = _rest_readings(rest, disambiguator)
     return _joined_onto(said, _reading(rest, ranked), "EMPHATIC_PART", prc1="la_emph") if _agreeing(rest, ranked) else None
+
+
+def _jarred_ma(typed: str) -> dict | None:
+    """فِيمَ، عَمَّ، إِلَامَ، لِمَاذَا: the ما that asks, jarred, is written with its حرف جر as one word (closed_words
+    istifham `jarred_ma`). CAMeL splits some (فِيمَ) and files the rest as another word (عَمَّ a verb, إِلَامَ "pains",
+    لِمَ unsplit), so the two are read here, as CAMeL writes بِمَ (a one-letter حرف جر before) and فِيمَ (a word, ما after)."""
+    bare = strip_diacritics(typed)
+    if not (pair := book_map("istifham", "jarred_ma").get(bare)) or (mark := book_map("istifham", "jarred_ma_marked").get(bare)) and mark not in typed:
+        return None
+    jar, ma, *proclitic = pair
+    shared = {"diac": typed, "prc2": "0", "prc3": "0", "per": "na", "asp": "na", "vox": "na", "mod": "na", "num": "na", "gen": "na",
+              "catib6": "PRT+NOM", "ud": "ADP+PRON", "root": "م.#", "bw": f"{jar}/PREP+{ma}/INTERROG_PART",
+              "gloss": book_map("istifham", "jarred_ma_gloss").get(bare, "")}
+    if proclitic:
+        return {**shared, "lex": strip_diacritics(ma), "pos": "pron_interrog", "atbtok": f"{jar}+_{ma}", "prc0": "0", "prc1": proclitic[0],
+                "enc0": "0", "stt": "i", "cas": "u"}
+    return {**shared, "lex": jar, "pos": "prep", "atbtok": f"{jar}_+{ma}", "prc0": "na", "prc1": "0", "enc0": "ma_interrog", "stt": "na", "cas": "na"}
 
 
 def _rest_readings(rest: str, disambiguator=None) -> list[dict]:
