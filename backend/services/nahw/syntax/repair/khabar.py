@@ -145,6 +145,32 @@ def told_of_jar(tokens: list[dict]) -> None:
             token["head"] = jar["id"]
 
 
+def zarf_is_no_subject(tokens: list[dict]) -> None:
+    """عِنْدَنَا ضَيْفٌ: a place or time word is built or in nasb, never the raf' a subject wears, so one the
+    parser hung as the subject of the indefinite noun after it is that noun's شبه جملة, its khabar said
+    first, hung on it as in عِنْدِي كِتَابٌ."""
+    s = Sentence(tokens)
+    for token in tokens if s.verbless else ():
+        head = s.head(token)
+        if (token["rel"] == "SBJ" and is_zarf(token, s) and typed_case_of(token) != "u" and head
+                and head["head"] == 0 and head["id"] > token["id"] and noun_tagged(head) and _indefinite(head, tokens)):
+            token["rel"] = "MOD"
+
+
+def khabar_said_first(tokens: list[dict]) -> None:
+    """إِنَّ عِنْدَنَا ضَيْفًا: a particle that governs a pair (إنّ، لا) has one khabar and one name, so where
+    the parser hung two khabars on it, the first a place or time word, the second an indefinite noun after
+    it, the first is the khabar said first and the noun is the name, as in إِنَّ لَدَيْنَا أَنْكَالًا."""
+    s = Sentence(tokens)
+    for particle in tokens if s.verbless else ():
+        khabars = [k for k in s.kids(particle) if k["rel"] == "PRD"]
+        if particle["pos"] == "PRT" and particle["head"] == 0 and len(khabars) == 2:
+            first, second = khabars
+            if (is_zarf(first, s) and first["id"] < second["id"] and noun_tagged(second)
+                    and _indefinite(second, tokens)):
+                second["rel"] = "SBJ"
+
+
 def _in_shibh_jumla(token: dict, s: Sentence) -> bool:
     """A ظرف or a preposition: the head of a شبه جملة, which tells of nothing by a subject of its own."""
     return is_zarf(token, s) or is_preposition(token)

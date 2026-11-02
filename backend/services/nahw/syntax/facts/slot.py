@@ -48,14 +48,24 @@ def is_built_zarf(token: dict) -> bool:
     return token["pos"] != "PRT" and is_built_word(token["lemma"])
 
 
+def _typed_before_its_root(token: dict, s: Sentence) -> bool:
+    """A time or place word typed in nasb, hung on the sentence's own head after it (not under a governor,
+    where a word such as سحرًا is a plain noun: إنَّ مِنَ الْبَيَانِ لَسِحْرًا)."""
+    head = s.head(token)
+    return bool(typed_case_of(token) == "a" and token["rel"] == "MOD" and head and head["head"] == 0
+                and head["id"] > token["id"] and noun_tagged(head))
+
+
 def zarf_of_khabar(token: dict, s: Sentence) -> bool:
     """الأستاذُ عندَ البابِ: in a verbless sentence a place or time word with its mudaf ilayh
-    is the khabar's maf'ul fihi (the khabar itself is understood, Tasheel 1.4.4 p13)."""
+    is the khabar's maf'ul fihi (the khabar itself is understood, Tasheel 1.4.4 p13); so is one the reader
+    typed in nasb, a mubtada never being منصوب (اليومَ خمرٌ، غدًا سفرٌ)."""
     # المرءُ مع مَن أحبّ: a verb inside the مضاف إليه's صلة still leaves the sentence verbless at its root
     rests = token["rel"] == "---" and any(k["rel"] in SUBJECTS for k in s.kids(token))
     return ((s.verbless or rests) and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
             and token["rel"] in ("---", "MOD", "PRD")
-            and typed_or_parsed_case(token) in (None, "a") and any(k["rel"] == "IDF" for k in s.kids(token)))
+            and typed_or_parsed_case(token) in (None, "a")
+            and (any(k["rel"] == "IDF" for k in s.kids(token)) or _typed_before_its_root(token, s)))
 
 
 def place_time(token: dict, s: Sentence) -> bool:
@@ -312,7 +322,9 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     if praised_noun(token, s):
         return "subject"  # بِئْسَ الْخُلُقُ الْكَذِبُ: the one blamed, a مبتدأ whose khabar is the sentence before it
     if zarf_of_khabar(token, s):
-        return "place_time"
+        # إِنَّ عِنْدَنَا ضَيْفًا: hung on إنّ, it is the khabar itself (مَا عِنْدِي مَالٌ: ما governs no pair)
+        governor = s.head(token)
+        return "predicate" if rel == "PRD" and governor and s.family(governor) == "inna" else "place_time"
     # واللهُ أكبرُ: a و that opens a sentence (particles.stamp) leaves the noun after it its
     # mubtada, and the raf' noun hung on that its khabar
     before = s.by_id.get(token["id"] - 1)
