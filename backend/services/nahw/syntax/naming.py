@@ -96,6 +96,7 @@ class FoundEntry(TypedDict, total=False):
     book: str | None  # the proof line: the tree's branches that named it
     also: str | None  # a second thing the book says (عطف بيان)
     my_ya: bool  # يَا قَوْمِ: مضاف to a ياء المتكلم typed only as the kasra it left
+    compound: str  # a part of a compound number: built / ordinal / dual (its unit) or second (its عشر)
     attached: list[Piece]  # pieces written onto it
     governor: int  # index of the word that works its case on it
     follows: int  # index of the word a تابع follows
@@ -444,9 +445,10 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     if facts.is_built(token) or facts.is_object_pronoun(token) or facts.is_built_zarf(token):
         return "mabni"
     # وَإِذْ قَالَ: a noun's case never ends on a sukun but at a pause, so one typed mid-sentence is built;
-    # a name is never built, so a sukun on one is the reader pausing (أَحْمَدْ جَاءَ)
+    # a name is never built, so a sukun on one is the reader pausing (أَحْمَدْ جَاءَ). A sukun on a last و or ي
+    # is that letter's own (اثْنَيْ عَشَرَ، كِتَابَيْ الطَّالِبِ: the dual's ya), the letter the case shows by, no build
     marked = letters(token["typed"])
-    if (after and not token.get("stuck_on") and marked and SUKUN in marked[-1][1]
+    if (after and not token.get("stuck_on") and marked and SUKUN in marked[-1][1] and marked[-1][0] not in "وي"
             and token.get("pos_camel") != "noun_prop"):
         return "mabni"
     if facts.shows_nasb_by_kasra(token) and (case_of(role, token["mudaf"]) == "a" if role else not jarred):
@@ -488,4 +490,14 @@ def _excepted_after_la(n: Named) -> None:
             entry["case"] = CASE_NAME["u"]
 
 
-FINISHES = (_pair, _extra_ba, _kaffa, _excepted_after_la)
+def _compound_number(n: Named) -> None:
+    """حضر ثلاثةَ عشرَ طالبًا: the two parts of a compound number fill the one place (repair.compound_number),
+    so the عشر takes the unit's name and case, and both say what they are built on (signs)."""
+    for i, token in enumerate(n.bases):
+        if token.get("compound"):
+            n.found[i]["compound"] = token["compound"]
+        if token.get("compound") == "second" and i and n.bases[i - 1].get("compound"):
+            n.found[i]["role"], n.found[i]["case"] = n.found[i - 1]["role"], n.found[i - 1]["case"]
+
+
+FINISHES = (_pair, _extra_ba, _kaffa, _excepted_after_la, _compound_number)

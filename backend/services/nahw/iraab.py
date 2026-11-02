@@ -144,7 +144,8 @@ def _named(entry: dict, found: dict, annexed: bool) -> None:
                  named=found.get("named"),  # أَلَا: a reading's own name, where the family card's does not fit
                  sense=found.get("sense"),  # إنّ "indeed", not the condition's "if": the job's English (sentence_meaning)
                  name=found.get("name"),  # the picture's finer name (حرف ناسخ، فعل أمر), said on the card too
-                 governor=found.get("governor"), follows=found.get("follows"))
+                 governor=found.get("governor"), follows=found.get("follows"),
+                 compound=found.get("compound"))  # ثلاثةَ عشرَ: a part of a compound number (signs.settle)
     # a recorded ayah names a particle by what it is (حَرْفُ نَفْيٍ، لَعَلَّهُ حَرْفٌ مُشَبَّهٌ بِالْفِعْلِ)
     particle = plain in (NAMED.harf, NAMED.harf_jarr) or (plain != found["role"] and plain in particle_names())
     if plain != NAMED.fil and entry.get("type") == "fi'l":  # نَعْبُدُ keeps CAMeL's tense and mood

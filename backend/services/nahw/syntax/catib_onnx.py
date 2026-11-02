@@ -26,7 +26,7 @@ from tokenizers import Tokenizer
 from backend.config import data_path, get_settings
 from backend.services.nahw.syntax import decode
 from backend.services.nahw.syntax.mask import book_mask
-from backend.services.sarf.morphology import reading_root
+from backend.services.sarf.morphology import reading_lemma, reading_root
 from backend.services.text.harakat import NO_ANALYSIS, base_of, stuck_letters, typed_case, weak_last
 
 logger = logging.getLogger(__name__)
@@ -208,18 +208,20 @@ def _split_word(word: str, a: dict) -> list[dict]:
     """
     from camel_tools.utils.dediac import dediac_ar
 
+    root = reading_root(a)
+
     def clean(text: str, fallback: str | None = None) -> str:
         d = dediac_ar(text)
         return d.replace("_", "").replace("ـ", "") or (d if fallback is None else fallback)
 
     def baseword(form: str, lex_default: str, pos: str, ud: str, **extra) -> dict:
         return {
-            "form": form, "lemma": dediac_ar(a.get("lex", lex_default)),
+            "form": form, "lemma": reading_lemma(word, a, root) if "lex" in a else dediac_ar(lex_default),
             "pos": pos, "pos_camel": a.get("pos", ""), "ud": ud,
             "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
             "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
             "per": a.get("per", "na"), "gen": a.get("gen", "na"),
-            "root": reading_root(a),
+            "root": root,
             "diac": a.get("diac", ""),
             "weak_last": weak_last(a), "base": base_of(word, a.get("atbtok")), **extra, "token_type": "baseword",
         }

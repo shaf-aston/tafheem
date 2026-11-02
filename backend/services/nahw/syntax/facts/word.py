@@ -71,8 +71,9 @@ def subject_link(token: dict) -> bool:
 
 
 def holds_doer(verb: dict, kids) -> bool:
-    """The verb's doer is settled: one hung on it, or a command's, always the hidden أنت (Tasheel 2.4.1 p30)."""
-    return verb.get("asp") == "c" or any(subject_link(k) for k in kids)
+    """The verb's doer is settled: in the verb itself (own_doer: أَكْرَمْتُ، a command's hidden أنت, Tasheel 2.4.1 p30)
+    or one hung on it."""
+    return own_doer(verb) or verb.get("asp") == "c" or any(subject_link(k) for k in kids)
 
 
 def own_doer(verb: dict) -> bool:
@@ -135,6 +136,8 @@ def is_built(token: dict) -> bool:
     (Tasheel: المثنى من أسماء الإشارة والموصولات معرب), so its last kasra is no ending it is built on;
     nor أيّ, the one question word that takes a case (closed_words istifham `inflected`)."""
     kind = token.get("pos_camel", "")
+    if token.get("compound") in ("built", "ordinal", "second"):
+        return True  # ثلاثةَ عشرَ: built on the fatha of both parts (repair.compound_number)
     return (is_mabni(kind) and not (token.get("num") == "d" and any(k in kind for k in ("dem", "rel")))
             and not ("interrog" in kind and is_one(token["lemma"], "istifham", "inflected")))
 
@@ -177,10 +180,24 @@ def has_added(token: dict, tokens: list[dict]) -> bool:
 def typed_case_of(token: dict) -> str | None:
     """The case the reader typed on the word: its last vowel, or for one of the six nouns
     as a مضاف the long letter standing for it (أَخُوْ، أَخَا، أَخِيْ زَيْدٍ; أَبَاهُ)."""
+    if token.get("compound") in ("built", "ordinal", "second"):
+        return None  # ثلاثةَ عشرَ: the fatha is the number's build, no nasb
+    if unit := _hundred_unit(token.get("typed") or ""):
+        return typed_case(unit)  # ثَلَاثَمِائَةِ: the unit shows the case, the last kasra is مائة's jarr
     if drops_ya(token.get("typed") or "", token["lemma"]):
         return None  # هَذَا قَاضٍ: the tanween stands on the ya that went, raf' or jarr alike
     shown = typed_case(token.get("typed") or "", token.get("stuck_on", 0))
     return shown or written_nasb(token) or six_noun_case(token["base"], token["lemma"])
+
+
+def _hundred_unit(typed: str) -> str | None:
+    """ثلاثمائة to تسعمائة written as one word: the unit, as typed, when the rest is the hundred
+    (closed_words adad_mudaf `hundreds`) it is added to."""
+    bare = strip_diacritics(typed)
+    for hundred in book_words("adad_mudaf", "hundreds"):
+        if bare.endswith(hundred) and is_one(bare[: -len(hundred)], "adad_mudaf"):
+            return "".join(c + "".join(sorted(m)) for c, m in letters(typed)[: len(bare) - len(hundred)])
+    return None
 
 
 def typed_bare(token: dict) -> bool:
@@ -246,7 +263,7 @@ def typed_or_parsed_case(token: dict) -> str | None:
 
 
 def same_case(token: dict, head: dict) -> bool:
-    """The word and the noun it hangs on wear one case."""
+    """The word and the noun it hangs on wear one case. A built word shows none, so nothing follows it by case."""
     return bool(shown_cases(token) & shown_cases(head)) and not is_verb(head)
 
 
@@ -262,7 +279,9 @@ def agrees(token: dict, head: dict) -> bool:
     dual = [t.get("num") == "d" for t in (token, head) if noun_tagged(t)]
     known = head.get("stt") == "d" or head.get("stt") == "c" and head.get("mudaf", True)
     named = head.get("pos_camel") == "noun_prop" and (typed_tanween(token) or written_nasb(token))
-    return same_case(token, head) and not (token.get("stt") == "i" and known or named) and len(set(dual)) < 2
+    # الرجلُ الحاديَ عشرَ: a compound ordinal is built, so it stands in its noun's case by its place
+    in_case = same_case(token, head) or token.get("compound") == "ordinal"
+    return in_case and not (token.get("stt") == "i" and known or named) and len(set(dual)) < 2
 
 
 def describes(token: dict, head: dict) -> bool:
@@ -369,6 +388,11 @@ def same_root(token: dict, other: dict) -> bool:
         # سارَ سَيْرًا: a weak radical the analyser could not pin down (سور، سير) is one letter
         return _weak_folded(token["root"]) == _weak_folded(other["root"])
     return _skeleton(token["lemma"]) == _skeleton(other["lemma"])
+
+
+def on_doing_measure(token: dict) -> bool:
+    """On the measure of a doer or a done-to (closed_words participle_patterns `doing`), not a صفة مشبهة's."""
+    return measure(token.get("pattern") or "").startswith(tuple(book_words("participle_patterns", "doing")))
 
 
 def is_participle(token: dict) -> bool:

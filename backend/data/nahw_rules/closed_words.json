@@ -360,6 +360,8 @@
     "رد",
     "ترك"
    ],
+   "_one_object": "`one_object`: the verbs of `ambiguous` the book reads in their sense taking one object (رأى of the eye; وجد it keys with two, وجدت العلم نافعًا, Tasheel 3.8.1 p71), read in that sense unless an أنّ clause stands for both objects: a name after their object names it again, its بدل (Tasheel 3.10.3 p94: رأيت أخاك زيدًا), a word in nasb is its حال (رأيت صديقك مسرعًا), not a second object.",
+   "one_object": ["رأى"],
    "ambiguous": {
     "علم": "zanna-type 'knew that X was Y' (two objects) vs 'knew X' (one object) vs noun 'flag / science' vs the passive/intensive form 'taught'",
     "رأى": "zanna-type 'considered' (two objects) vs 'saw with the eye' (one object)",
@@ -1207,6 +1209,8 @@
    "measures": ["رطل", "كيلو", "لتر", "متر", "فدان", "صاع", "مد", "أوقية", "غرام", "جرام", "ميل", "شبر", "ذراع", "قنطار", "كوب"]
   },
   "participle_patterns": {
+    "_doing": "`doing`: the measures of the doer and the done-to (فاعل, مفعول, and the مُ of forms II to X), not the صفة مشبهة. A word of its verb's own root on another measure repeats the doing itself, so it is the مفعول مطلق (فَرِحَ فَرَحًا، ضَحِكَتْ ضَحِكًا عَالِيًا), while one on these is a hal (قام قائمًا، وَلَّى مُدْبِرًا).",
+    "doing": ["1ائِ3", "1ا2ِ3", "آ2ِ3", "1ا2ِي", "مُ", "مَ1ْ2ُو3"],
    "ar": "أوزان اسم الفاعل واسم المفعول والصفة المشبهة",
    "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل (آ2ِ3 when the first root letter is a hamza: آمِر، آكِل), 1ائِ3 the same with a hollow middle letter (سائق، قائم، صائم), 1ا2ِي the same with a weak last letter (باكية، داعيًا), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
    "words": ["1ائِ3", 
@@ -1334,7 +1338,18 @@
     "مرة"
    ]
   },
+  "compound_number": {
+    "ar": "العدد المركب",
+    "effect": "The numbers 11 to 19: a unit (`words`) and عشر/عشرة (`second`) typed after it are one number, built on the fatha of both parts whatever its place, which both parts show (ثلاثةَ عشرَ: مبني على فتح الجزأين في محل رفع فاعل). `dual` is اثنا/اثنتا, ملحق بالمثنى: it inflects by its letters (اثنا in raf', اثني in nasb and jarr), only the عشر is built (Tasheel 1.4.3 p10, as rule_sentences r012 keys it).",
+    "words": ["أحد", "إحدى", "ثلاثة", "ثلاث", "أربعة", "أربع", "خمسة", "خمس", "ستة", "ست", "سبعة", "سبع", "ثمانية", "ثماني", "ثمان", "تسعة", "تسع"],
+    "ordinals": ["حادي", "حادية", "ثاني", "ثانية", "ثالث", "ثالثة", "رابع", "رابعة", "خامس", "خامسة", "سادس", "سادسة", "سابع", "سابعة", "ثامن", "ثامنة", "تاسع", "تاسعة"],
+    "_ordinals": "`ordinals`: الحادي عشر to التاسع عشر are built on the fatha of both parts the same, the place told by the noun they describe (جاء الرجلُ الحاديَ عشرَ: صفة).",
+    "dual": ["اثنا", "اثني", "اثنتا", "اثنتي", "اثنان", "اثنتان", "اثنين", "اثنتين"],
+    "second": ["عشر", "عشرة"]
+  },
   "adad_mudaf": {
+    "_hundreds": "`hundreds`: مائة written onto its unit as one word (ثلاثَمائةِ صفحةٍ): the unit wears the number's case, the مائة after it is its مضاف إليه, so the last vowel typed is the مائة's jarr.",
+    "hundreds": ["مائة", "مئة"],
    "ar": "ألفاظ العدد التي تضاف إلى معدودها",
    "effect": "Three to ten, the hundred and the thousand are added to what they count, which is مجرور (ثلاثُ سنينَ، مئةُ كتابٍ). The number is a noun, no describing word at work, so its إضافة is معنوية بمعنى «من» (ثلاثٌ من السنين), never the لفظية of a participle, though CAMeL tags it an adjective",
    "words": ["ثلاث", "ثلاثة", "أربع", "أربعة", "خمس", "خمسة", "ست", "ستة", "سبع", "سبعة", "ثمان", "ثماني", "ثمانية", "تسع", "تسعة", "عشر", "عشرة", "مئة", "مائة", "ألف"]

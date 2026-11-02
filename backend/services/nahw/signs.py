@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, paused, plural_alef, typed_passive
-from backend.services.nahw.book import attention_off, book_words, family_cards, is_diptote, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
+from backend.services.nahw.book import attention_off, book_words, case_of, family_cards, is_diptote, is_one, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
@@ -39,6 +39,8 @@ def kind_of(tag: dict, annexed: bool) -> str:
             return "attached_plural"  # عِشْرِينَ، أُولُو: they take its letters without being one
         if tag.get("number") == "p" and tag.get("gender") == "m" and bare.endswith(("ون", "ين")):
             return "sound_plural"
+        if is_one(strip_diacritics(tag["base"]), "compound_number", "dual"):
+            return "attached_dual"  # اثْنَا، اثْنَيْ عَشَرَ: ملحق بالمثنى, its letters show the case (Tasheel 1.4.3 p10)
         if tag.get("number") == "d":
             return "dual"
         # بِمَسَاجِدَ: a diptote, unless a مضاف إليه follows (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
@@ -116,6 +118,13 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         # إِنَّهُ is built on إِنَّ's fatha, not the ضمة of the pronoun on it
         own = _without_object(card["word"]) if _has_pronoun(card["camel"]) else _unmoved(card, after)
         return _built(ending) + _moved(card, after) if (ending := _typed_ending(own)) else sign("mabni")
+    if (part := card.get("compound")) in ("built", "ordinal", "second"):
+        # ثلاثةَ عشرَ: مبني على فتح الجزأين في محل رفع; the عشر after اثنا is built on its own fatha
+        said = teacher_rules()["case_said"]
+        both = part != "second" or (before or {}).get("compound") in ("built", "ordinal")
+        on = _built(said["compound_on"]["both" if both else "one"])
+        place = CASE_LETTER.get(case) or case_of(card.get("role") or "")
+        return f"{on} {said['in_place'].format(place=said['place'][place])}" if place else on
     kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
         # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show

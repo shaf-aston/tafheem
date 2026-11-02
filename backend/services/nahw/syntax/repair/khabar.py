@@ -19,6 +19,23 @@ def second_khabar(tokens: list[dict]) -> None:
             token["head"], token["rel"] = head["head"], "PRD"
 
 
+def naat_after_its_noun(tokens: list[dict]) -> None:
+    """الخياطون حاذقون: a صفة stands after its موصوف, never before it, so in a verbless sentence a word
+    with ال the parser hung on the indefinite word after it, which heads the sentence, is no na't of it:
+    the known word is the mubtada and the indefinite word its khabar (the khabar is the new
+    information, so it is the less known: Ajrumiyya, the mubtada is a known noun)."""
+    s = Sentence(tokens)
+    if not s.verbless:
+        return
+    for token in tokens:
+        head = s.head(token)
+        if (head and token["rel"] == "MOD" and head["id"] > token["id"] and head["head"] == 0
+                and noun_tagged(token) and noun_tagged(head) and token.get("stt") == "d"
+                and token["form"].startswith("ال") and head.get("stt") == "i"):
+            token["head"], token["rel"] = 0, "---"
+            head["head"], head["rel"] = token["id"], "PRD"
+
+
 def hasr_khabar(tokens: list[dict]) -> None:
     """مَا جَزَاؤُهُ إِلَّا سَجْنُهُ، مَا مُحَمَّدٌ إِلَّا رَسُولٌ: after a negation, إلا excepts nothing; the
     word after it takes the place the sentence leaves for it (closed_words hasr, Tasheel 3.8.7 p85).
@@ -68,6 +85,23 @@ def before_la(tokens: list[dict]) -> None:
             la["head"], la["rel"] = token["id"], "PRD"
 
 
+def la_over_its_khabar(tokens: list[dict]) -> None:
+    """لَا مُتْقِنًا صَنْعَتَهُ مَذْمُومٌ: لا النافية للجنس governs the pair after it (تنصب الاسم وترفع الخبر), so
+    where the parser hung it under the word that is the khabar, or the noun straight after it as its
+    khabar, لا heads the sentence, the noun after it is its اسم and the word it hung on its khabar."""
+    s = Sentence(tokens)
+    if not s.verbless:
+        return
+    for la in tokens:
+        khabar, noun = s.head(la), s.by_id.get(la["id"] + 1)
+        if (la["pos"] == "PRT" and strip_diacritics(la["form"]) == "لا" and la["rel"] == "MOD"
+                and khabar and khabar["head"] == 0 and khabar["id"] > la["id"] + 1 and noun_tagged(khabar)
+                and noun and noun_tagged(noun) and noun["head"] == la["id"] and noun["rel"] in ("SBJ", "PRD")):
+            la["head"], la["rel"] = 0, "---"
+            noun["rel"] = "SBJ"
+            khabar["head"], khabar["rel"] = la["id"], "PRD"
+
+
 def after_pointer(tokens: list[dict]) -> None:
     """هَاتَانِ قِلَادَتَانِ، زَيْدٌ ضَارِبٌ، وَمَا عِنْدَ اللَّهِ خَيْرٌ: the مبتدأ is as a rule the definite
     word (Ibn Aqil V1 p216: الأصل في المبتدأ أن يكون معرفة), and a نعت matches its noun in being definite
@@ -109,6 +143,32 @@ def told_of_jar(tokens: list[dict]) -> None:
         if (token["rel"] == "SBJ" and majrur["rel"] == "OBJ" and jar and is_preposition(jar)
                 and noun_tagged(majrur) and not works_as_verb(majrur)):
             token["head"] = jar["id"]
+
+
+def zarf_is_no_subject(tokens: list[dict]) -> None:
+    """عِنْدَنَا ضَيْفٌ: a place or time word is built or in nasb, never the raf' a subject wears, so one the
+    parser hung as the subject of the indefinite noun after it is that noun's شبه جملة, its khabar said
+    first, hung on it as in عِنْدِي كِتَابٌ."""
+    s = Sentence(tokens)
+    for token in tokens if s.verbless else ():
+        head = s.head(token)
+        if (token["rel"] == "SBJ" and is_zarf(token, s) and typed_case_of(token) != "u" and head
+                and head["head"] == 0 and head["id"] > token["id"] and noun_tagged(head) and _indefinite(head, tokens)):
+            token["rel"] = "MOD"
+
+
+def khabar_said_first(tokens: list[dict]) -> None:
+    """إِنَّ عِنْدَنَا ضَيْفًا: a particle that governs a pair (إنّ، لا) has one khabar and one name, so where
+    the parser hung two khabars on it, the first a place or time word, the second an indefinite noun after
+    it, the first is the khabar said first and the noun is the name, as in إِنَّ لَدَيْنَا أَنْكَالًا."""
+    s = Sentence(tokens)
+    for particle in tokens if s.verbless else ():
+        khabars = [k for k in s.kids(particle) if k["rel"] == "PRD"]
+        if particle["pos"] == "PRT" and particle["head"] == 0 and len(khabars) == 2:
+            first, second = khabars
+            if (is_zarf(first, s) and first["id"] < second["id"] and noun_tagged(second)
+                    and _indefinite(second, tokens)):
+                second["rel"] = "SBJ"
 
 
 def _in_shibh_jumla(token: dict, s: Sentence) -> bool:
