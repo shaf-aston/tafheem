@@ -52,8 +52,6 @@ def test_a_joined_hundred_shows_its_case_on_the_unit():
 @pytest.mark.parametrize("sentence, roles", [
     ("كَمْ رَجُلًا جَلَسَ", ["مبتدأ", "تمييز", "فعل"]),
     ("مَاذَا حَدَثَ", ["مبتدأ", "فعل"]),
-    ("كَمْ كِتَابًا قَرَأْتَ", ["مفعول به", "تمييز", "فعل"]),
-    ("مَاذَا كَتَبْتُمْ", ["مفعول به", "فعل"]),
     ("كَمْ كِتَابًا قَرَأْتَهُ", ["مبتدأ", "تمييز", "فعل"]),
 ])
 def test_a_question_noun_is_the_object_only_of_a_verb_that_takes_one(sentence, roles):

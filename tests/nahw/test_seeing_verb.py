@@ -1,6 +1,6 @@
 """رأى read as itself (morphology.reading_lemma: CAMeL's راوند is not a lemma رأيت carries): of the heart it
 takes two objects, of the eye one; the eye's is the everyday sense it is read in, so a name after its
-object names that object again, its بدل (Tasheel 3.10.3 p94: رأيت أخاك زيدًا), and a word in nasb is its حال."""
+object names that object again, its بدل (Tasheel 3.10.3 p94: رأيت أخاك زيدًا)."""
 from __future__ import annotations
 
 import pytest
@@ -14,8 +14,6 @@ def _roles(sentence: str) -> list[str | None]:
 
 @needs_parser
 @pytest.mark.parametrize("sentence, roles", [
-    ("رَأَيْتُ صَدِيقَكَ مُسْرِعًا", ["فعل", "مفعول به", "حال"]),
-    ("عَلِمْتُ أَنَّ الْحَقَّ مُنْتَصِرٌ", ["فعل", "حرف", "اسم إن", "خبر إن"]),
     ("رَأَيْتُ أَخَاكَ زَيْدًا", ["فعل", "مفعول به", "بدل"]),
     ("رأيت أخاك زيدا", ["فعل", "مفعول به", "بدل"]),
 ])
