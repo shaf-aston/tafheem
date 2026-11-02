@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, noun_tagged, is_name, read_as, is_describing, is_elative, is_participle, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, noun_tagged, is_name, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -130,6 +130,18 @@ def after_pointer(tokens: list[dict]) -> None:
                 and head["id"] > token["id"] and head.get("pos_camel") in ("noun", "adj")
                 and _indefinite(head, tokens) and typed_case_of(head) != "a"):
             token["rel"] = "SBJ"
+
+
+def majrur_of_jar(tokens: list[dict]) -> None:
+    """هَلْ مِنْ مُجِيبٍ، مَا لَنَا مِنْ شَافِعٍ: the noun written straight after a preposition word of its own (not a letter joined to the noun: لَآيَاتٍ) is its
+    مجرور; where the parser hung it as a subject of the preposition (or of the word before it), it is the
+    preposition's object, and told_of_jar then reads what is said of it."""
+    s = Sentence(tokens)
+    for jar in tokens:
+        noun = next((t for t in tokens if t["id"] == jar["id"] + 1), None)
+        if (noun and is_preposition(jar) and not is_prefix(jar) and noun_tagged(noun) and not is_verb(noun) and noun["rel"] == "SBJ"
+                and noun["head"] in (jar["id"], jar["head"]) and not any(k["rel"] == "OBJ" for k in s.kids(jar))):
+            noun["head"], noun["rel"] = jar["id"], "OBJ"
 
 
 def told_of_jar(tokens: list[dict]) -> None:
