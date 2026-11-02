@@ -4,6 +4,9 @@ Skips cleanly, rather than failing, when the model files have not been
 dropped into backend/data/parser/ (see catib_onnx.py's docstring).
 """
 
+import pytest
+
+from backend.services.quran import corpus as quran_corpus
 from backend.services.sarf import morphology
 from backend.services.nahw.syntax import catib_onnx
 from backend.services.nahw.syntax.catib_onnx import parse
@@ -54,6 +57,7 @@ def test_a_sentence_rooted_on_a_harf_atf_still_gets_its_roles():
     assert any(word.get("role") for word in read["words"])
 
 
+@pytest.mark.skipif(not quran_corpus.is_loaded(), reason="corpus.db not built")
 def test_the_parser_reads_the_lemma_the_word_carries():
     # CAMeL files رأيت under راوند (rhubarb), letters the word lacks: the parser takes رأى, as the cards do
     typed = ["رَأَيْتُ", "صَدِيقَكَ"]
