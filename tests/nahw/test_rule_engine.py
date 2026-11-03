@@ -1313,3 +1313,7 @@ def test_a_verb_of_two_objects_owes_the_noun_after_its_doer_as_object():
 
 def test_a_detached_pronoun_after_kana_is_its_ism():
     assert _role("كَانَ أَنْتَ مُسَافِرًا", 1) == "اسم كان"
+
+
+def test_the_noun_after_a_fronted_jar_majrur_is_the_mubtada_though_bare():
+    assert _role("لله الحمد", 1) == "مبتدأ"

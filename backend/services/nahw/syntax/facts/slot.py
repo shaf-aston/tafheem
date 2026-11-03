@@ -342,7 +342,7 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     if opener and read_as(opener, "istinaf") and typed_or_parsed_case(token) == "u":
         return "predicate"
     if (s.verbless and rel == "OBJ" and s.head(token) and s.head(token)["pos"] == "PRT" and not jarr_takes(token, s)
-            and typed_or_parsed_case(token) == "u"):
+            and typed_case_of(token) in (None, "u")):
         return "subject"  # لله الحمدُ: the noun after a fronted jar-majrur khabar is the مبتدأ
     if is_verb(token):  # a verb is only ever a khabar by its link; its clause is named from the tree above
         return "predicate" if rel == "PRD" else "none"
@@ -375,10 +375,10 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # لَا رَيْبَ فِيهِ هُدًى: with its اسم already said, a noun after the jar-majrur is a second khabar (Tasheel 1.8)
         fronted_jar = fronted_jar and not any(subject_link(k) for k in (s.kids(head) if head else ()))
         return "subject" if fronted_jar else "predicate"
-    if rel in SUBJECTS:
-        return "subject"
     if rel == "MOD" and noun_tagged(token) and any(subject_link(c) and noun_tagged(c) and c["id"] < token["id"] for c in s.kids(token)):
         return "predicate"  # رَأَيْتُ رَجُلًا وَجْهُهُ مُنِيرٌ: the noun said before it is its mubtada, so it tells of that noun
+    if rel in SUBJECTS:
+        return "subject"
     kids = s.kids(token)
     # وهو مبتسمٌ: the sentence a و brings rests on its khabar, as a whole one does on its own
     if rel == "OBJ" and head and head["pos"] == "PRT" and typed_or_parsed_case(token) == "u" \
