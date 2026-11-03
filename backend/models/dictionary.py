@@ -136,6 +136,10 @@ class LexiconEntry(BaseModel):
     book_root: str | None = None
     text: str
     source: Source
+    # One English line saying what the entry covers, for the Arabic books only,
+    # made ahead of time (services/dictionary/lexicon_gists). Absent until made.
+    gist: str | None = None
+    gist_source: Source | None = None
 
 
 class LexiconsResponse(BaseModel):

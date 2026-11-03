@@ -117,6 +117,21 @@ def entries_by_source(source_key: str) -> Iterator[tuple[str, str, str]]:
         logger.warning("could not read the books credited to %r: %s", source_key, exc)
 
 
+def entries_of_book(book: str) -> Iterator[tuple[str, str]]:
+    """(root, entry) for every entry in one book, a volume's return to a root
+    as its own row. Streamed, for the backfill scripts that read a whole book."""
+    db = _db()
+    if db is None:
+        return
+    try:
+        for root, body in db.execute(
+            "SELECT root, body FROM entry WHERE book = ? ORDER BY rowid", (book,),
+        ):
+            yield root, zlib.decompress(body).decode("utf-8")
+    except sqlite3.Error as exc:
+        logger.warning("could not read the book %r: %s", book, exc)
+
+
 def _folded(key: str) -> str:
     global _fold
     if _fold is None:
@@ -201,5 +216,8 @@ def entries_for(root: str) -> list[dict] | None:
             # than leaving the reader wondering why the letters changed.
             "book_root": row["head"] if row["root"] != root else None,
             "text": said,
+            # The root as the book's rows hold it, for what is kept against an
+            # entry (lexicon_gists); the router reads it and does not send it.
+            "filed": row["root"],
         }
     return list(shelf.values())

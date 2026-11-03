@@ -204,6 +204,16 @@
       "dict"
     ]
   },
+  "lexicon_gist": {
+    "label": "AI gist",
+    "confidence": "guessed",
+    "detail": "One line a model wrote saying what the entry covers, made ahead of time; the book's own Arabic is below it",
+    "url": "",
+    "where": "One English line per Lisan or Taj entry, made by a model from the entry's opening. Not a translation. Unproofread.",
+    "used_in": [
+      "dict"
+    ]
+  },
   "ai": {
     "label": "AI explanation",
     "confidence": "guessed",

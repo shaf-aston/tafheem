@@ -26,6 +26,7 @@ from backend.models.morphology import VerbVerdict
 from backend.services import ai as ai_service
 from backend.services.dictionary import service as dictionary_service
 from backend.services.dictionary import lexicons
+from backend.services.dictionary import lexicon_gists
 from backend.services.core import provenance
 from backend.services.dictionary import root_english
 from backend.services.dictionary import root_gloss
@@ -189,12 +190,19 @@ async def get_lexicons(root: Root) -> LexiconsResponse:
         root=root,
         status=state,
         entries=[
-            LexiconEntry(
-                **{field: value for field, value in entry.items() if field != "source"},
-                source=provenance.of(entry["source"]),
-            )
+            _shelf_entry(entry, lexicon_gists.get(entry["book"], entry["filed"]))
             for entry in found
         ],
+    )
+
+
+def _shelf_entry(entry: dict, gist: str | None) -> LexiconEntry:
+    """One book's entry with its source, and its one-line gist where one is kept."""
+    return LexiconEntry(
+        **{field: value for field, value in entry.items() if field not in ("source", "filed")},
+        source=provenance.of(entry["source"]),
+        gist=gist,
+        gist_source=provenance.of("lexicon_gist") if gist else None,
     )
 
 
