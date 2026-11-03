@@ -1256,3 +1256,7 @@ def test_a_relative_after_a_known_noun_is_its_sifa_and_after_illa_the_excepted(s
 
 def test_a_negation_is_a_particle_even_when_the_parser_hangs_its_verb_under_it():
     assert _role("مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ", 3) == "حرف"  # not the و's majrur
+
+
+def test_a_noun_with_no_case_shown_after_a_preposition_is_its_majrur():
+    assert _role("وَالضُّحَىٰ وَاللَّيْلِ إِذَا سَجَىٰ", 0) == "مجرور"

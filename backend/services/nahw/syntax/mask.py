@@ -15,7 +15,7 @@ import numpy as np
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one, is_plain_noun, is_subject_pronoun, vetoes
 from backend.services.text.harakat import CAMEL_CASE
-from backend.services.nahw.syntax.facts import attached_pronoun, noun_tagged, verb_tagged
+from backend.services.nahw.syntax.facts import attached_pronoun, case_unseen, noun_tagged, verb_tagged
 
 
 def _verb_subject_follows(toks, add_rel) -> None:
@@ -103,12 +103,12 @@ def _particle_over_its_noun(toks, heads, rels) -> None:
     """أَلَيْسَ اللَّهُ بِكَافٍ، إِلَّا الَّذِينَ آمَنُوا: a حرف جر governs the noun after it, so the noun hangs under the
     preposition and the pair takes the noun's place (Tasheel 1.7 p18); so does إلا, whose noun is the excepted one
     in any case (3.2 p67). The parser may hang the particle under its own noun instead; the two are swapped. The
-    noun after a preposition is in jarr: the لام of إِنَّ ... لَسِحْرًا is no preposition."""
+    noun after a preposition is in jarr, or shows no case (وَالضُّحَىٰ): the لام of إِنَّ ... لَسِحْرًا is no preposition."""
     for d, dep in enumerate(toks[:-1], 1):
         noun = toks[d]
         if not (dep["pos"] == "PRT" and heads[d - 1] == d + 1 and noun_tagged(noun)
                 and (is_one(dep["form"], "istithna") or is_one(dep["form"], "jarr")
-                     and "i" in (noun.get("case"), CAMEL_CASE.get(noun.get("cas"))))):
+                     and ("i" in (noun.get("case"), CAMEL_CASE.get(noun.get("cas"))) or case_unseen(noun)))):
             continue
         heads[d - 1], rels[d - 1] = heads[d], rels[d]
         heads[d], rels[d] = d, "OBJ"
