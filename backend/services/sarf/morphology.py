@@ -18,7 +18,7 @@ import re
 from typing import Any, NamedTuple
 
 from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
-from backend.services.sarf import noun_reader
+from backend.services.sarf import expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
 from backend.services.nahw.book import book_map, book_words, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
@@ -734,13 +734,11 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             word, ranked = steps[i]
             out[i] = best_reading(word, [r for r in ranked if r.get("enc0") != "1s_poss"
                                          and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
-    # صِلْ مَنْ قَطَعَكَ: a relative's صلة is a sentence, so a word after it that the typed vowels read
-    # as well as a verb (قَطَعَكَ the verb, or the noun "your pieces") is that verb. Opening the sentence
-    # مَنْ، ما may be a question or a negation instead (مَنْ أَبُوكَ، مَا أَنْتَ), so only one after a word.
-    # The relative may be written onto a preposition (عَمَّنْ ظَلَمَكَ: عن + من), its own tag then the enclitic's
-    for i in range(2, len(out)):
-        relative = out[i - 1].get("pos") == "pron_rel" or str(out[i - 1].get("enc0", "")).endswith("_rel")
-        if relative and out[i].get("pos") != "verb":
+    # صِلْ مَنْ قَطَعَكَ، هَلْ نَضَجَ التِّينُ: a word after a governor that wants a verb (expects.json: لم، لن، هل،
+    # a relative whose صلة is a sentence ...) which the typed vowels read as well as a verb (قَطَعَكَ the verb, or
+    # the noun "your pieces") is that verb. A relative opening the sentence may be a question instead (مَنْ أَبُوكَ)
+    for i in range(1, len(out)):
+        if out[i].get("pos") != "verb" and expects.verb_after(tokens, out, i):
             word, ranked = steps[i]
             here = vowel_agreement(word, out[i].get("diac", ""))
             verb = best_reading(word, [r for r in _widened(tokens[i], ranked) if r.get("pos") == "verb"])

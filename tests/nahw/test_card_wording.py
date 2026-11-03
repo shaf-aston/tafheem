@@ -37,7 +37,7 @@ def test_kaffa_names_the_pair_only_where_naming_found_it():
 
 
 def test_every_pass_is_run_and_a_card_with_nothing_found_is_left_alone():
-    assert len(card_wording.PASSES) == len(set(card_wording.PASSES)) == 13
+    assert len(card_wording.PASSES) == len(set(card_wording.PASSES)) == 14
     cards = [{"word": "زَيْدٌ", "role": "مبتدأ", "reason": "مرفوع لأنه مبتدأ"}]
     card_wording.word(cards, [{}])
     assert cards == [{"word": "زَيْدٌ", "role": "مبتدأ", "reason": "مرفوع لأنه مبتدأ"}]
