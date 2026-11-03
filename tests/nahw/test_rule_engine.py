@@ -1321,3 +1321,7 @@ def test_the_noun_after_a_fronted_jar_majrur_is_the_mubtada_though_bare():
 
 def test_a_mudaf_to_a_known_noun_before_an_indefinite_one_is_the_mubtada():
     assert _role("يوم الجمعة يوم مبارك", 0) == "مبتدأ"
+
+
+def test_a_relative_typed_bare_after_a_preposition_is_not_read_as_a_command():
+    assert _role("مررت بالذي ساعدني", 1) == "مجرور"

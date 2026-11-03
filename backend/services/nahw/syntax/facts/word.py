@@ -121,7 +121,7 @@ def is_verb(token: dict) -> bool:
     # naming marks a typed command shape (asp c): بِعِ البيتَ، اعْبُدُوا. Not Form IV's أَفْعِلْ,
     # which a name shares (أَحْمَدْ), where CAMeL knows the name; a name it only guessed, or one
     # the typed vowels contradict (أَكْرِمْ is not أَكْرَم), is no evidence, so the command stands
-    if token.get("asp") == "c" and (strip_diacritics(typed)[:1] != "أ" or token.get("guessed")
+    if token.get("asp") == "c" and not listed(token, "mawsul") and (strip_diacritics(typed)[:1] != "أ" or token.get("guessed")
                                     or vowel_agreement(typed, token.get("diac") or "") is None):
         return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
     return token.get("pos_camel") == "noun_prop" and (
