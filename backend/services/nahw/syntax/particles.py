@@ -19,6 +19,7 @@ from backend.services.sarf.morphology import has_comparative
 from backend.services.nahw.book import (
     book_file, book_map, book_spelling, book_words, condition_of, family_cards, frames, is_mabni, is_one)
 from backend.services.nahw.syntax import facts, walker
+from backend.services.nahw.syntax.mask import above
 
 
 def _lemma(token: dict) -> str:
@@ -496,6 +497,22 @@ def _idhan_settles_its_words(tokens: list[dict]) -> None:
         verb["asp"] = "i"
 
 
+def _negation_settles_its_words(tokens: list[dict]) -> None:
+    """وَمَا قَلَىٰ: a negation is said of the verb after it and hangs on it as its modifier (مَا نَجَحَ زَيْدٌ). The
+    parser may hang the verb under the particle, which then stands where the verb stands, as the object of the و
+    before it (Tasheel 1.7 p18: only a noun is a حرف جر's majrur); the two are swapped."""
+    s = facts.Sentence(tokens)
+    for ma in tokens:
+        if facts.reading(ma) != "negation":
+            continue
+        verb = next((k for k in s.kids(ma) if k["id"] > ma["id"] and k["rel"] == "MOD" and facts.is_verb(k)), None)
+        if not verb or above([t["head"] for t in tokens], ma["head"], verb["id"]):
+            continue
+        for kid in s.kids(ma):
+            kid["head"] = verb["id"]
+        verb["head"], verb["rel"], ma["head"], ma["rel"] = ma["head"], ma["rel"], verb["id"], "MOD"
+
+
 @lru_cache(maxsize=1)
 def _retagged() -> frozenset[str]:
     """The words with a leaf that writes a new word class over the parser's (data: `retag`)."""
@@ -529,6 +546,7 @@ def stamp(tokens: list[dict]) -> None:
     _emphasis_lam(tokens, s)
     _emphasis_lam_frees_its_word(tokens)
     _hasr_frees_its_words(tokens)
+    _negation_settles_its_words(tokens)
     _wonder_settles_its_words(tokens)
     _asks_settles_its_words(tokens)
     _idhan_settles_its_words(tokens)

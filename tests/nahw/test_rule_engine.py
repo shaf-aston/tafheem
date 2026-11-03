@@ -1252,3 +1252,7 @@ def test_a_bare_plain_noun_in_nasb_after_the_doer_is_the_object(sentence: str, r
 ])
 def test_a_relative_after_a_known_noun_is_its_sifa_and_after_illa_the_excepted(sentence, at, role):
     assert _role(sentence, at) == role
+
+
+def test_a_negation_is_a_particle_even_when_the_parser_hangs_its_verb_under_it():
+    assert _role("مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ", 3) == "حرف"  # not the و's majrur
