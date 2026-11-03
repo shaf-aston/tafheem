@@ -1297,3 +1297,15 @@ def test_a_noun_in_nasb_after_kana_is_its_khabar_and_what_follows_is_its_ism():
 @pytest.mark.parametrize("at, role", [(2, "اسم إن"), (7, "خبر إن")])
 def test_a_relative_ma_is_the_ism_of_anna_and_a_raf_noun_after_its_clause_the_khabar(at, role):
     assert _role("وَلَوْ أَنَّ مَا فِي الْأَرْضِ مِنْ شَجَرَةٍ أَقْلَامٌ", at) == role
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    ("حضر الضيوف غير بكر", 1, "فاعل"),  # the parser read the guests as the object and غير as the doer
+    ("حضر الضيوف سوى بكر", 3, "مضاف إليه"),
+])
+def test_an_excepting_noun_after_the_doer_is_excepted_and_adds_the_noun_after_it(sentence, at, role):
+    assert _role(sentence, at) == role
+
+
+def test_a_verb_of_two_objects_owes_the_noun_after_its_doer_as_object():
+    assert _role("مَنَحَ المدير المعلم كتابا", 2) == "مفعول به"

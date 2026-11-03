@@ -114,6 +114,16 @@ def _particle_over_its_noun(toks, heads, rels) -> None:
         heads[d], rels[d] = d, "OBJ"
 
 
+def _excepting_noun_adds(toks, heads, rels) -> None:
+    """حضر الضيوف سوى بكر: the excepting nouns (closed_words istithna: غير، سوى) are added to the noun straight after them,
+    in jarr (Tasheel 3.8.7), whether or not the vowel shows. The parser may leave it unlinked or hang it elsewhere."""
+    for d, dep in enumerate(toks[:-1], 1):
+        after = toks[d]
+        if (dep["pos"] == "NOM" and is_one(dep["lemma"], "istithna") and noun_tagged(after) and not after.get("form", "").startswith("+")
+                and rels[d] != "IDF" and not above(heads, d, d + 1)):
+            heads[d], rels[d] = d, "IDF"
+
+
 def _topic_carries_its_verb(toks, heads, rels) -> None:
     """الوَلَدُ يَكْتُبُ: a noun before its verb is the mubtada and the verb's clause its
     khabar (Tasheel 1.4.4 p11), so the verb hangs on the noun. The parser, barred from
@@ -202,6 +212,7 @@ _LINKS = {"pointer_heads_its_noun": _pointer_heads_its_noun,
           "ma_cancels_inna": _ma_cancels_inna,
           "listed_preposition_takes_majrur": _listed_preposition_takes_majrur,
           "particle_over_its_noun": _particle_over_its_noun,
+          "excepting_noun_adds": _excepting_noun_adds,
           "topic_carries_its_verb": _topic_carries_its_verb,
           "exception_word_by_case": _exception_word_by_case,
           "inner_sentence": _inner_sentence}
