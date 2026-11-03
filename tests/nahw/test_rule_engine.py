@@ -1309,3 +1309,7 @@ def test_an_excepting_noun_after_the_doer_is_excepted_and_adds_the_noun_after_it
 
 def test_a_verb_of_two_objects_owes_the_noun_after_its_doer_as_object():
     assert _role("مَنَحَ المدير المعلم كتابا", 2) == "مفعول به"
+
+
+def test_a_detached_pronoun_after_kana_is_its_ism():
+    assert _role("كَانَ أَنْتَ مُسَافِرًا", 1) == "اسم كان"

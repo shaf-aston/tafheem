@@ -3,7 +3,7 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles, takes_object
+from backend.services.nahw.book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
 from backend.services.nahw.syntax.facts.word import is_built, shown_cases, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
@@ -189,6 +189,8 @@ def verb_place(token: dict, s: Sentence) -> str:
     if head and is_verb(head):
         if attached_pronoun(token) and rel == "SBJ":
             return "subject"  # قُومِي: the doer written onto the verb, ياء المخاطبة (Awdah V1 p85)
+        if rel == "SBJ" and is_subject_pronoun(token) and token["id"] > head["id"]:
+            return "subject"  # كَانَ أَنْتَ مُسَافِرًا: a detached pronoun's fatha is its build, no nasb
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
         if before and is_object_pronoun(token):
