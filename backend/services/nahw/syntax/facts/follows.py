@@ -146,6 +146,10 @@ def _follows(token: dict, s: Sentence) -> str:
     # a صفة comes after the noun it describes: هَذَانِ hung on the قَلَمَانِ after it is the mubtada
     if token["rel"] != "MOD" or is_verb(head) or head["id"] > token["id"]:
         return "none"
+    # هُوَ الْحَيُّ: a pronoun is described by nothing (Ibn Yaish on the Mufassal V2 p330: المضمرات لا توصف), so the
+    # noun with ال after a detached pronoun follows it as its بدل
+    if is_subject_pronoun(head) and token.get("stt") == "d" and noun_tagged(token):
+        return "badal"
     # زيدٌ أبوه كريمٌ: a word whose subject stands before it is told of that subject, a khabar
     if any(k["rel"] == "SBJ" and k["id"] < token["id"] for k in s.kids(token)):
         return "none"

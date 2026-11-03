@@ -1284,3 +1284,7 @@ def test_a_defective_noun_ending_in_a_bare_ya_wears_its_nouns_case():
 
 def test_a_word_with_its_mubtada_before_it_is_a_khabar_not_a_describer():
     assert _role("رَأَيْتُ رَجُلًا وَجْهُهُ مُنِيرٌ يَمْشِي فِي السُّوقِ", 3) == "خبر"
+
+
+def test_the_noun_with_al_after_a_pronoun_follows_it_as_badal():
+    assert _role("اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ", 5) == "بدل"
