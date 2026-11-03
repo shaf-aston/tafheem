@@ -70,6 +70,8 @@
            "en": "This role depends on whether «{word}» is active or passive. No harakat were typed, so the app had to choose."},
    "via_roles": ["فاعل", "نائب فاعل", "مفعول به"]
   },
+  "unvowelled": {"ar": "لم تُكتب الحركات: يُقرأ البناء للمعلوم أو للمجهول والإعراب من ترتيب الكلمات. اكتب الحركات لقراءة أدق.",
+                 "en": "No harakat typed: voice and case are read from word order. Add harakat for an exact reading."},
   "_by_family": "A particle or verb named by the family it governs as (closed_words.json card, services/nahw/signs.py): its name and what it does, said in place of the plain حرف or after the tense.",
   "harf_by_family": "{named} مبني لا محل له من الإعراب، {does}",
   "verb_by_family": "{tense} {named} {state}، {does}",

@@ -29,6 +29,7 @@ import BookPath from '../grammar/BookPath'
 import CopyButton from '../ui/buttons/CopyButton'
 import Disclosure from '../ui/overlays/Disclosure'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
+import StatusNote from '../ui/feedback/StatusNote'
 import ExampleChips from '../ui/inputs/ExampleChips'
 import MicButton from '../ui/buttons/MicButton'
 import SearchBox from '../ui/inputs/SearchBox'
@@ -157,6 +158,12 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
           <CopyButton text={buildIraabExportText(data)} />
         </div>
       </div>
+
+      {data.unvowelled && (
+        <StatusNote>
+          {data.unvowelled.en} <ArabicText size="tiny">{data.unvowelled.ar}</ArabicText>
+        </StatusNote>
+      )}
 
       {data.tree && (
         // An ayah drawn from its record carries the words the book supplies,

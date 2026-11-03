@@ -28,7 +28,7 @@ from backend.services.nahw import signs
 from backend.services.nahw import syntax
 from backend.services.nahw import tarkeeb_store
 from backend.services.nahw import tree_columns
-from backend.services.text.harakat import CASE_LETTER, CASE_NAME, typed_case
+from backend.services.text.harakat import CASE_LETTER, CASE_NAME, no_vowels_typed, typed_case
 from backend.services.nahw.book import case_of, is_object_stem, particle_names, reason, sakt_said, teacher_rules
 from backend.services.nahw.syntax.tree import names_a_sentence as names_a_sentence
 from backend.services.nahw.syntax.naming import NAMED, role_key
@@ -67,6 +67,7 @@ def _read(sentence: str, recorded: bool) -> dict:
         "tree": tree,
         "parse": parsed.get("parse"),
         "read_failed": bool(parsed.get("failed")),
+        "unvowelled": teacher_rules()["case_said"]["unvowelled"] if no_vowels_typed(words(sentence)) else None,
     }
 
 

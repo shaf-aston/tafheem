@@ -107,3 +107,6 @@ class AnalyzeResponse(BaseModel):
     # True when the reader broke on this sentence (the server log has why): its blank
     # roles are then a crash, not words the rules could not name.
     read_failed: bool = False
+    # {"ar", "en"}: the one line the page shows when the sentence was typed with no short vowel on any word,
+    # so voice and case were read from word order. Unset when any word carries a vowel.
+    unvowelled: dict[str, str] | None = None

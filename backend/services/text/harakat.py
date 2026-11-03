@@ -46,6 +46,11 @@ def letters(word: str) -> list[tuple[str, set]]:
     return out
 
 
+def no_vowels_typed(tokens: list[str]) -> bool:
+    """True when no letter of any word carries a short vowel or tanween (a sukun or shadda alone is not one)."""
+    return not any(marks.intersection(VOWEL) for token in tokens for _, marks in letters(token))
+
+
 def stuck_letters(pieces) -> int:
     """How many letters of an attached pronoun (ـها) the `+` pieces among these tokens hold."""
     return sum(len(bare_letters(t["form"].strip("+"))) for t in pieces if t["form"].startswith("+"))
