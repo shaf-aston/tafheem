@@ -47,8 +47,40 @@ const setPack = (id, next) => set({ packs: { ...state.packs, [id]: { ...state.pa
 export function startOffline() {
   if (!supported()) return
   set({ supported: true })
-  navigator.serviceWorker.register('/sw.js').catch(() => set({ core: 'none' }))
+  navigator.serviceWorker.register('/sw.js')
+    .then((registration) => {
+      // A phone keeps the app open for days and brings it back from the background
+      // without loading it again, so it would never hear of a new version. It asks
+      // each time the app comes back on screen.
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') registration.update().catch(() => {})
+      })
+    })
+    .catch(() => set({ core: 'none' }))
   navigator.serviceWorker.ready.then(() => set({ core: 'ready' }))
+  reloadOnUpdate()
+}
+
+/**
+ * Once a new version's worker has taken over, the page still runs the old code
+ * until it loads again. Load it again at a moment nobody is in the middle of
+ * anything: at once if the page has not been touched since it opened (the usual
+ * case, the update landing a second after the app does), else the next time the
+ * reader switches away, so the new version is simply there when they come back.
+ * The first worker ever (nothing was in control before) is not an update.
+ */
+export function reloadOnUpdate() {
+  if (!navigator.serviceWorker.controller) return
+  let touched = false
+  const touch = () => { touched = true }
+  addEventListener('pointerdown', touch, { once: true, capture: true })
+  addEventListener('keydown', touch, { once: true, capture: true })
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!touched || document.visibilityState === 'hidden') return location.reload()
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') location.reload()
+    })
+  }, { once: true })
 }
 
 let planOnce = null
