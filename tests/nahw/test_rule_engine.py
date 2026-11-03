@@ -1280,3 +1280,7 @@ def test_a_plain_noun_in_nasb_after_a_working_participle_is_its_object():
 
 def test_a_defective_noun_ending_in_a_bare_ya_wears_its_nouns_case():
     assert _role("سَمِعْتُ صَوْتَ الطِّفْلِ الْبَاكِي فِي اللَّيْلِ", 3) == "صفة"
+
+
+def test_a_word_with_its_mubtada_before_it_is_a_khabar_not_a_describer():
+    assert _role("رَأَيْتُ رَجُلًا وَجْهُهُ مُنِيرٌ يَمْشِي فِي السُّوقِ", 3) == "خبر"

@@ -375,6 +375,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         return "subject" if fronted_jar else "predicate"
     if rel in SUBJECTS:
         return "subject"
+    if rel == "MOD" and noun_tagged(token) and any(subject_link(c) and noun_tagged(c) and c["id"] < token["id"] for c in s.kids(token)):
+        return "predicate"  # رَأَيْتُ رَجُلًا وَجْهُهُ مُنِيرٌ: the noun said before it is its mubtada, so it tells of that noun
     kids = s.kids(token)
     # وهو مبتسمٌ: the sentence a و brings rests on its khabar, as a whole one does on its own
     if rel == "OBJ" and head and head["pos"] == "PRT" and typed_or_parsed_case(token) == "u" \
