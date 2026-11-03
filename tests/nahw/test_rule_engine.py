@@ -1268,3 +1268,7 @@ def test_a_noun_after_the_jar_khabar_of_la_is_a_second_khabar():
 
 def test_a_noun_with_a_pair_under_it_is_the_mubtada_not_the_khabar():
     assert _role("اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ", 0) == "مبتدأ"
+
+
+def test_how_asked_before_its_verb_is_the_state_of_that_verb():
+    assert _role("أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ", 2) == "حال"  # not the object of تَرَ

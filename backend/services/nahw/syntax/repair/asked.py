@@ -53,13 +53,17 @@ def asked_before_verb(tokens: list[dict]) -> None:
     with a doer of its own holds no pronoun back to the question noun, and a مبتدأ's khabar needs one (كَمْ كِتَابًا
     قَرَأْتَهُ), so with no object of its own, active and not one the book lists as taking none, it has the question
     noun as its fronted object (man_before_verb reads مَنْ the same); a verb holding no doer of its own holds the pronoun back to it, so
-    the question noun is the مبتدأ and the verb its khabar, as مَنْ جَاءَ reads."""
+    the question noun is the مبتدأ and the verb its khabar, as مَنْ جَاءَ reads. How, when and where (state, place_time)
+    are said of their verb whatever it holds (أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ): the verb the parser hung under the question
+    noun takes its place and the noun hangs on the verb."""
     s = Sentence(tokens)
     for token in tokens:
-        if book_map("istifham", "before_verb").get(strip_diacritics(token["form"])) != "object":
+        asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
+        if asked is None or (verb := _verb_beside(token, s)) is None:
             continue
-        verb = _verb_beside(token, s)
-        if verb is None:
+        if asked != "object":
+            if verb["head"] == token["id"]:
+                _hang_under(token, verb, "MOD")
             continue
         kids = [k for k in s.kids(verb) if k is not token]
         if holds_doer(verb, kids):
