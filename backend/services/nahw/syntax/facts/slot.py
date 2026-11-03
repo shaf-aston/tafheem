@@ -368,6 +368,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # first as إنّ's khabar, so the noun after it is its اسم, brought back
         fronted_jar = fronted_jar or (head is not None and s.family(head) == "inna" and typed_or_parsed_case(token) == "a"
                                       and any(is_preposition(k) and k["id"] < token["id"] for k in s.kids(token)))
+        # لَا رَيْبَ فِيهِ هُدًى: with its اسم already said, a noun after the jar-majrur is a second khabar (Tasheel 1.8)
+        fronted_jar = fronted_jar and not any(subject_link(k) for k in (s.kids(head) if head else ()))
         return "subject" if fronted_jar else "predicate"
     if rel in SUBJECTS:
         return "subject"

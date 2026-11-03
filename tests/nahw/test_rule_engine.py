@@ -1260,3 +1260,7 @@ def test_a_negation_is_a_particle_even_when_the_parser_hangs_its_verb_under_it()
 
 def test_a_noun_with_no_case_shown_after_a_preposition_is_its_majrur():
     assert _role("وَالضُّحَىٰ وَاللَّيْلِ إِذَا سَجَىٰ", 0) == "مجرور"
+
+
+def test_a_noun_after_the_jar_khabar_of_la_is_a_second_khabar():
+    assert _role("ذَلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ", 5) == "خبر لا"

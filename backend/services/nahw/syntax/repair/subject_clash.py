@@ -281,6 +281,19 @@ def inna_object(tokens: list[dict]) -> None:
             token["rel"] = "SBJ"
 
 
+def inna_second_khabar(tokens: list[dict]) -> None:
+    """لَا رَيْبَ فِيهِ هُدًى: إنّ and its sisters, لا النافية للجنس too, take one اسم and a خبر (Tasheel 1.8, 3.7.3), so a noun
+    the parser hung on one as a second subject, after its khabar, is a second khabar (تعدد الخبر)."""
+    s = Sentence(tokens)
+    for governor in tokens:
+        if s.family(governor) != "inna":
+            continue
+        for token in s.kids(governor):
+            if token["rel"] == "SBJ" and noun_tagged(token) and any(
+                    k["rel"] == "PRD" and k["id"] < token["id"] for k in s.kids(governor)):
+                token["rel"] = "PRD"
+
+
 def zanna_pair(tokens: list[dict]) -> None:
     """حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا: ظنّ and its sisters enter a مبتدأ and its خبر and put both
     in nasb as their two objects (Alfiyya: انصب بفعل القلب جزأي ابتدا). The parser may keep the pair

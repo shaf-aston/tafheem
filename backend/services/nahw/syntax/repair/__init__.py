@@ -1,7 +1,7 @@
 """The one step that corrects the parser's tokens, in place, before anything reads them.
 Each repair is its own module, run in the order below; `naming` and everything after only read.
 
-    book links → typed words → a compound number → منذ before a noun → jarr after a مضاف → لام الابتداء → مَنْ that asks → مَنْ before its verb → كم/ماذا before a verb with no object → a question noun that is كان's khabar or اسم → a noun added to a verb → subject clash → a known noun described → a name told to → a doer said again → كان's raf' khabar → إنّ's nasb object → ظنّ's two objects → praise's تمييز → the doer first where no case shows → doer after the object → doer last → verb under its fronted object → object after tanween → object past verb → a relative owed to its verb → verb under يا → praying noun → times counted → object of a plain noun → an elative's تمييز → indefinite after a definite opener → noun told of by a jar → second khabar → noun before لا → حصر khabar → described doer → و هو + verb → no خبر on a full verb → a na't after the verb's masdar → ابن between names → untied command answering a condition → particle readings → no loop left
+    book links → typed words → a compound number → منذ before a noun → jarr after a مضاف → لام الابتداء → مَنْ that asks → مَنْ before its verb → كم/ماذا before a verb with no object → a question noun that is كان's khabar or اسم → a noun added to a verb → subject clash → a known noun described → a name told to → a doer said again → كان's raf' khabar → إنّ's nasb object → إنّ's second khabar → ظنّ's two objects → praise's تمييز → the doer first where no case shows → doer after the object → doer last → verb under its fronted object → object after tanween → object past verb → a relative owed to its verb → verb under يا → praying noun → times counted → object of a plain noun → an elative's تمييز → indefinite after a definite opener → noun told of by a jar → second khabar → noun before لا → حصر khabar → described doer → و هو + verb → no خبر on a full verb → a na't after the verb's masdar → ابن between names → untied command answering a condition → particle readings → no loop left
 
 A split that does not line up with the typed words keeps only the book's links."""
 from __future__ import annotations
@@ -17,7 +17,7 @@ from backend.services.nahw.syntax.repair.hal import hal_clause, naat_beside_its_
 from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, majrur_of_jar, naat_after_its_noun, la_over_its_khabar, zarf_is_no_subject, khabar_said_first, described_doer, elative_specified, hasr_khabar, object_of_noun, second_khabar, told_of_jar
 from backend.services.nahw.syntax.repair.nasab import nasab
 from backend.services.nahw.syntax.repair.number import compound_number
-from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, name_told_to, repeated_doer, doer_after_object, doer_first, late_doer, kana_subject, inna_object, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
+from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, name_told_to, repeated_doer, doer_after_object, doer_first, late_doer, kana_subject, inna_object, inna_second_khabar, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
 from backend.services.nahw.syntax.repair.typed import described_known, emphasis_lam_opener, jarr_after_mudaf, since_jarr, typed_words
 
 
@@ -42,6 +42,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         repeated_doer(tokens)
         kana_subject(tokens)
         inna_object(tokens)
+        inna_second_khabar(tokens)
         zanna_pair(tokens)
         praise_specified(tokens)
         doer_first(tokens)
