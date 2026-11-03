@@ -315,6 +315,8 @@
     "spring-ease": "cubic-bezier(.34,1.56,.64,1)",
     "_settle_comment": "The curve for anything with weight: a box growing, a block of content arriving, the backdrop drifting. It eases out and stops, where spring-ease overshoots by a tenth; an overshoot suits a small thing landing (a star, the launcher ring) and makes a wide box or a column of text wobble.",
     "settle-ease": "cubic-bezier(.22,1,.36,1)",
+    "_lift_comment": "The one hover lift: how far a card, an option or a tile rises under the pointer. Every hover that lifts reads this (.lift and its kin in components.css, pbs.css, growWorlds.css), so a card in one tab never hops further than a card in another.",
+    "lift-px": 2,
     "_soften_comment": "How far out of focus the page goes behind a sheet risen on a phone (More, Settings, any bottom sheet; components.css .phone-sheet). Small: the page should still be there, only further away.",
     "soften-px": 3,
     "_slide_comment": "A step sideways: the next page, or a strip arriving from the edge, and the same step back as it leaves. slide-px is how far it travels, slide-ease how it settles.",

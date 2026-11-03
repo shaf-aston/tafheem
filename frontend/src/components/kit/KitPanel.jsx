@@ -33,6 +33,7 @@ import Segmented from '../ui/inputs/Segmented'
 import ShowRest from '../ui/buttons/ShowRest'
 import { AnalyzerSkeleton, Skeleton } from '../ui/feedback/Skeleton'
 import SmallButton from '../ui/buttons/SmallButton'
+import KitMotion from './KitMotion'
 import SourceBadge from '../ui/feedback/SourceBadge'
 import SpeakButton from '../ui/buttons/SpeakButton'
 import StatusNote from '../ui/feedback/StatusNote'
@@ -310,27 +311,6 @@ function Elements({ accent }) {
   )
 }
 
-function Motion() {
-  // Remounting is what replays a one-shot animation; the key is the whole trick.
-  const [run, setRun] = useState(0)
-  return (
-    <Card title="Motion" note=".dance, .rise-in, .skeleton (the shimmer); durations from the motion and dance groups">
-      <SmallButton onClick={() => setRun((n) => n + 1)}>Replay</SmallButton>
-      <div key={run} className="flex flex-wrap items-center gap-4">
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="dance rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] px-4 py-3 type-small"
-            style={{ '--i': i }}>.dance {i}</div>
-        ))}
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="rise-in rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] px-4 py-3 type-small"
-            style={{ '--i': i }}>.rise-in {i}</div>
-        ))}
-        <div className="skeleton h-10 w-40" aria-hidden="true" />
-      </div>
-    </Card>
-  )
-}
-
 export default function KitPanel({ accent }) {
   return (
     <div className="space-y-6">
@@ -347,8 +327,8 @@ export default function KitPanel({ accent }) {
       <h2 className="text-sm font-semibold text-[var(--text-dim)]">Elements</h2>
       <Elements accent={accent} />
 
-      {/* No "Motion" heading: the card's own title says it. */}
-      <Motion />
+      <h2 className="text-sm font-semibold text-[var(--text-dim)]">Motion</h2>
+      <KitMotion />
     </div>
   )
 }

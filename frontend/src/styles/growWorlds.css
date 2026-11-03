@@ -304,7 +304,7 @@
   content: ''; position: absolute; inset: 0; background: var(--fill); clip-path: polygon(50% 0, 64.6% 14.6%, 85.4% 14.6%, 85.4% 35.4%, 100% 50%, 85.4% 64.6%, 85.4% 85.4%, 64.6% 85.4%, 50% 100%, 35.4% 85.4%, 14.6% 85.4%, 14.6% 64.6%, 0 50%, 14.6% 35.4%, 14.6% 14.6%, 35.4% 14.6%);
   filter: drop-shadow(0 5px 0 color-mix(in srgb, var(--fill) 58%, black));
 }
-.grow-path-row:hover .grow-path-star { transform: translateY(-2px); }
+.grow-path-row:hover .grow-path-star { transform: translateY(calc(var(--motion-lift-px) * -1px)); }
 .grow-path-row:active .grow-path-star { transform: translateY(3px); }
 .grow-path-mark { position: relative; font-weight: 800; font-size: var(--type-body); font-variant-numeric: tabular-nums; }
 .grow-path-row[data-s='now'] .grow-path-star { --fill: var(--w); color: var(--bg); }

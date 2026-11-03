@@ -71,7 +71,7 @@
 .lift:hover,
 .lift:focus-visible,
 .lift:has(> .stretch:focus-visible) {
-  transform: translateY(-2px);
+  transform: translateY(calc(var(--motion-lift-px) * -1px));
   box-shadow: var(--shadow-pop);
 }
 
@@ -146,7 +146,7 @@ details:not([open]) > .glide {
 
 .option:not(:disabled):hover,
 .option:not(:disabled):focus-visible {
-  transform: translateY(-2px);
+  transform: translateY(calc(var(--motion-lift-px) * -1px));
   background-color: color-mix(in srgb, var(--c) 7%, var(--surface-hi));
   border-color: var(--c);
 }
@@ -425,7 +425,7 @@ dialog::backdrop {
    stay readable around it. */
 .surah-row:not(:active) .gloss-word[data-gloss]:hover,
 .surah-row:not(:active) .gloss-word[data-gloss]:focus-visible {
-  transform: translateY(-2px);
+  transform: translateY(calc(var(--motion-lift-px) * -1px));
 }
 .gloss-all .gloss-word[data-gloss] { transform: none; }
 
@@ -883,6 +883,31 @@ button.tile:hover { border-color: var(--c); }
 }
 
 
+/* Where the browser can tie one box to another (CSS anchor positioning), the
+   line is tied to the open tab and nothing is measured: the open tab names
+   itself the anchor, the line takes its edges, and a change of tab or a rewrap
+   moves it with no script at all. TabStrip measures only where this is missing. */
+@supports (anchor-name: --tab-on) {
+  .tab-btn[aria-selected='true'] { anchor-name: --tab-on; }
+  .tab-glide {
+    position-anchor: --tab-on;
+    width: auto;
+    left: calc(anchor(left) + 4px);
+    right: calc(anchor(right) + 4px);
+    top: calc(anchor(bottom) - 1px);
+    transform: none;
+    opacity: 0;
+    transition:
+      left calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+      right calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+      top calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+      background-color calc(var(--motion-spring-ms) * 1ms) ease;
+  }
+  /* No open tab here (a page the strip does not list): no line, not a stray one. */
+  [role='tablist']:has(.tab-btn[aria-selected='true']) > .tab-glide { opacity: 1; }
+}
+
+
 /* The phone tab bar (shell/BottomNav): pinned at the bottom, clear of the home
    indicator, and the page keeps room under it so nothing hides behind. */
 .bottom-nav {
@@ -1256,7 +1281,7 @@ button.mushaf-word {
 }
 .shelf-spine:hover,
 .shelf-spine:focus-visible {
-  transform: translateY(-4px);
+  transform: translateY(calc(var(--motion-lift-px) * -2px));
   color: var(--text);
 }
 .shelf-spine:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }

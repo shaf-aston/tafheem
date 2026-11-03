@@ -14,6 +14,9 @@ const tierClass = (i, fixed) => (i < fixed ? '' : 'hidden md:block')
 
 // The underline's own width in px (styles/components.css .tab-glide); scaleX stretches it to each tab.
 const LINE_PX = 100
+// A browser with CSS anchor positioning ties the line to the open tab itself
+// (components.css @supports), so there is nothing here to measure.
+const ANCHORED = globalThis.CSS?.supports?.('anchor-name: --tab-on') ?? false
 
 export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll, onHover, hint = false }) {
   const list = useRef(null)
@@ -27,6 +30,7 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
   // a glide: measuring draws the line once at the strip's corner, and it used to fly
   // in from there on every page load.
   useLayoutEffect(() => {
+    if (ANCHORED) return undefined
     const strip = list.current
     const place = () => {
       const tab = strip?.querySelector('[aria-selected="true"]')
