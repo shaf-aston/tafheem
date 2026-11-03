@@ -338,7 +338,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         cases = shown_cases(noun)
         return noun_tagged(noun) and not noun.get("pos_camel", "").startswith("pron") \
             and role_of[noun["id"]] in (None, NAMED.mubtada) and not (cases & {"a", "i"} and "u" not in cases) \
-            and not any(is_verb(t) or role_of.get(t["id"]) in (*khabars, NAMED.fail) for t in drawn) \
+            and not any(is_verb(t) or role_of.get(t["id"]) in (*khabars, NAMED.fail) or t["head"] == noun["id"] and t["rel"] == "PRD" for t in drawn) \
             and not any(t["id"] in typed_at and listed(t, "istifham") and not is_preposition(t) for t in drawn)
     heads = [t for t in drawn if t["head"] not in by_id]
     if len(heads) == 1 and len(bases) > 1 and a_title(noun := heads[0]):

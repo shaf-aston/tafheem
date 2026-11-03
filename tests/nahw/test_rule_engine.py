@@ -1264,3 +1264,7 @@ def test_a_noun_with_no_case_shown_after_a_preposition_is_its_majrur():
 
 def test_a_noun_after_the_jar_khabar_of_la_is_a_second_khabar():
     assert _role("ذَلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ", 5) == "خبر لا"
+
+
+def test_a_noun_with_a_pair_under_it_is_the_mubtada_not_the_khabar():
+    assert _role("اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ", 0) == "مبتدأ"
