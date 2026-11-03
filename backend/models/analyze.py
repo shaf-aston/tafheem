@@ -62,6 +62,9 @@ class WordAnalysis(BaseModel):
     # word it follows. Unset where the parser drew no such word.
     governor: int | None = None
     follows: int | None = None
+    # What the app had to guess because no harakat were typed: {"vox": "p"} = read active, passive is the
+    # other reading; {"via": 0} = this role rests on word 0's guess. Unset where the vowels settle it.
+    assumed: dict[str, str | int] | None = None
 
     @classmethod
     def from_raw(cls, w: dict) -> "WordAnalysis":
@@ -87,6 +90,7 @@ class WordAnalysis(BaseModel):
             book=w.get("book"),
             governor=w.get("governor"),
             follows=w.get("follows"),
+            assumed=w.get("assumed"),
         )
 
 

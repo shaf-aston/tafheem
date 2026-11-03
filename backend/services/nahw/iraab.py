@@ -56,6 +56,8 @@ def _read(sentence: str, recorded: bool) -> dict:
     picks = morphology.pick(words(sentence), syntax.disambiguator())  # the one reading, cards and parser alike
     tags = morphology.analyze_sentence(sentence, picks)
     record = tarkeeb_store.for_sentence(sentence) if recorded else None
+    if record:  # the treebank names every word: nothing is left to a guess
+        tags = [{**tag, "assumed": None} for tag in tags]
     parsed = record or syntax.read(sentence, picks)
     tree = _drawn(record) if record else parsed["tree"]
     return {

@@ -58,6 +58,18 @@
   "condition": {"_comment": "The part names (فعل الشرط، جواب الشرط) are roles.json frames.condition; `is` says one on a card.", "is": "وهو {name}", "jazm": "{part} مجزوم", "by_family": {"jazm": {"place": "{part} في محل جزم", "ties": {"ف": "والفاء رابطة لجواب الشرط"}}, "ghair_amila_other": {"place": "{part}، وجملته لا محل لها من الإعراب", "ties": {"ل": "واللام واقعة في جواب الشرط"}, "subject": "وخبره محذوف وجوبًا تقديره موجود"}, "zarf_zaman": {"place": {"verb": "{part}، وجملته في محل جر بالإضافة", "answer": "{part}، وجملته لا محل لها من الإعراب"}, "ties": {"ف": "والفاء رابطة لجواب الشرط"}}}},
   "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"},
   "passive": "مبني للمجهول",
+  "assumed": {
+   "_comment": "A reading the typed harakat did not settle (morphology.pick `assumed`), said on its card by card_wording.assumption. `vox` holds the voice NOT chosen: p = the verb was read active, the passive is the other reading. `via` is a noun whose job (via_roles) rests on that verb's voice; {word} is the verb.",
+   "vox": {
+    "p": {"ar": "وقُرئ مبنيًا للمعلوم لعدم كتابة الحركات، ويحتمل المبني للمجهول فيكون ما بعده نائب فاعل",
+          "en": "Read as active because no harakat were typed. As passive, the noun after it would be the نائب فاعل."},
+    "a": {"ar": "وقُرئ مبنيًا للمجهول لعدم كتابة الحركات، ويحتمل المبني للمعلوم فيكون ما بعده فاعلًا",
+          "en": "Read as passive because no harakat were typed. As active, the noun after it would be the doer."}
+   },
+   "via": {"ar": "وإعرابه مبني على كون «{word}» مبنيًا للمعلوم أو للمجهول، والحركات لم تُكتب فلا يتعين أحدهما",
+           "en": "This role depends on whether «{word}» is active or passive. No harakat were typed, so the app had to choose."},
+   "via_roles": ["فاعل", "نائب فاعل", "مفعول به"]
+  },
   "_by_family": "A particle or verb named by the family it governs as (closed_words.json card, services/nahw/signs.py): its name and what it does, said in place of the plain حرف or after the tense.",
   "harf_by_family": "{named} مبني لا محل له من الإعراب، {does}",
   "verb_by_family": "{tense} {named} {state}، {does}",

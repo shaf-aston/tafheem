@@ -343,6 +343,7 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
         "aspect": a.get("asp") or "na",
         "mood": a.get("mod") or "na",
         "voice": a.get("vox") or "na",
+        "assumed": a.get("assumed") or None,  # a reading the typed harakat did not settle (pick)
         "state": a.get("stt") or "na",
         "pattern": a.get("pattern") or "",
         # the root's last letter is و or ي (عصا, قاضي): the root string above is empty for those
@@ -826,6 +827,9 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             out[i] = present
     for i, said in paused.items():
         out[i] = {**out[i], "said": said}
+    for i, (evidence, ranked) in enumerate(steps):
+        if guess := _assumed(evidence, out[i], ranked):
+            out[i] = {**out[i], "assumed": guess}
     return out
 
 
@@ -1000,6 +1004,8 @@ def _added(reading: dict, typed: str) -> int:
 
 
 DOER = ("per", "gen", "num")
+# readings written only in harakat: voice (كَتَبَ, كُتِبَ). A reading chosen on these while the vowels typed leave the other value open is a guess
+ASSUMABLE = ("vox",)
 # the one-letter joining particles, and CAMeL's name for each (prc2)
 _JOINING = (("و", "wa"), ("ف", "fa"))
 
@@ -1018,6 +1024,23 @@ def _agreeing(typed: str, ranked: list[dict]) -> bool:
     spelled = [bare_letters(c) for c, _ in letters(typed)]
     return best_reading(typed, [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")
                                 and [bare_letters(c) for c, _ in letters(r.get("diac", ""))] == spelled]) is not None
+
+
+def _assumed(typed: str, read: dict, ranked: list[dict]) -> dict[str, str]:
+    """{"vox": "p"}: each feature this reading was chosen on while the typed vowels leave the other value open
+    (كتب bare is كَتَبَ or كُتِبَ), with the value not chosen. Only where a ranked reading of the same lemma,
+    part of speech and tense has that other value, is spelled with the letters typed and no typed vowel
+    contradicts it; typed harakat that rule the other out leave nothing assumed."""
+    guess = {}
+    for feature in ASSUMABLE:
+        # a typed vowel against the reading kept is the word speaking (فُتِحَ kept as فَتَحَ): not a guess
+        if read.get(feature) in (None, "na") or vowel_agreement(typed, read.get("diac", "")) is None:
+            continue
+        others = [r for r in ranked if r.get(feature) not in (read.get(feature), None, "na")
+                  and all(r.get(key) == read.get(key) for key in ("lex", "pos", "asp")) and _agreeing(typed, [r])]
+        if others:
+            guess[feature] = others[0][feature]
+    return guess
 
 
 def _widened(token: str, ranked: list[dict]) -> list[dict]:

@@ -66,7 +66,7 @@ def _entry(tag: dict, kind: str, role: str, key: str | None, case: str | None,
     return {"word": tag["word"], "root": tag.get("root") or None, "type": kind, "role": role,
             "role_key": key, "case": case, "sign": None, "reason": reason_ar,
             "notes": tag.get("features") or "", "source": "rule_engine",
-            "aspect": tag.get("aspect"), "camel": tag}
+            "aspect": tag.get("aspect"), "assumed": tag.get("assumed"), "camel": tag}
 
 
 def _harf_entry(tag: dict, role: str, why: str) -> dict:
