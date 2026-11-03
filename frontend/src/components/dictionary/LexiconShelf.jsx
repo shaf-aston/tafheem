@@ -42,6 +42,7 @@ import ErrorAlert from '../ui/feedback/ErrorAlert'
 import FlagButton from '../ui/buttons/FlagButton'
 import ShowRest from '../ui/buttons/ShowRest'
 import BookHeader from './BookHeader'
+import SourceBadge from '../ui/feedback/SourceBadge'
 
 /** How the three kinds of nothing are told apart. Never one sentence for all. */
 const NOTHING = {
@@ -132,6 +133,15 @@ function BookEntry({ entry, root, accent }) {
       <div className="space-y-2">
         {/* Said before the entry, not after: a reader who typed امر and is shown
             the book's أمر must know that before they read a word of it. */}
+        {/* One line saying what the entry covers, for a reader who cannot read
+            the Arabic below it. Not a translation, and badged as a model's. */}
+        {entry.gist && (
+          <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1 type-body text-[var(--text)] max-w-[var(--lexicon-reading-w)]">
+            <span>{entry.gist}</span>
+            <SourceBadge source={entry.gist_source} />
+          </p>
+        )}
+
         {entry.book_root && (
           <p className="type-small text-[var(--text-faint)]">
             Nothing under {root}; this is the entry the book files under{' '}

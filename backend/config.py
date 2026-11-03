@@ -38,6 +38,10 @@ class Ai(BaseSettings):
     root_entry_max_tokens: int = 3500
     # Longest Maqayees entry is ~15,000 chars; 6000 is what the smallest local model can hold.
     root_entry_truncate_chars: int = 6000
+    # The one-line gist of a Lisan or Taj entry: a sentence back, and the opening
+    # of the entry in, which is where both books state the root's senses.
+    lexicon_gist_max_tokens: int = 300
+    lexicon_gist_entry_chars: int = 4000
 
     @property
     def effective_backend(self) -> str:

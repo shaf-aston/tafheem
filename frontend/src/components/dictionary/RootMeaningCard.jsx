@@ -238,7 +238,8 @@ function Body({
     // One reading column for the Arabic and its English alike. Held to the
     // width the English already had, the Arabic ran to the far edge of a wide
     // screen and each line sat a whole screen away from its meaning.
-    <div className="space-y-3 max-w-[var(--lexicon-reading-w)]">
+    <div className="space-y-3">
+      <div className="space-y-3 max-w-[var(--lexicon-reading-w)]">
       <div>
         <div className="type-small text-[var(--text-faint)] mb-1">
           Origin sense of <Letters value={asked} />
@@ -293,6 +294,7 @@ function Body({
           </ol>
         </div>
       )}
+      </div>
 
       {/* The rest of the entry: Ibn Faris's examples, the verses he cites with
           their references, the poetry. Kept whole and shown as prose, he marks
@@ -310,7 +312,7 @@ function Body({
           Reading it costs a call to a model, so it waits to be asked for; the
           Arabic beside it costs nothing and is already there. */}
       {rest && (
-        <div className="space-y-3 text-[var(--text-dim)]">
+        <div className="space-y-3 text-[var(--text-dim)] max-w-[var(--lexicon-reading-w)] lg:max-w-none">
           <h4 className="type-small text-[var(--text-faint)]">The rest of the entry</h4>
 
           {opened && (
@@ -329,7 +331,14 @@ function Body({
               The English is its own press, beside Show all rather than behind
               it: a rest short enough to need no cut had no button at all, and
               its English and its views were out of reach. */}
+          {/* Together on a wide screen: the Arabic on the right and its English
+              on the left, each half facing the other, where one column left a
+              third of the card empty and put the English a screen below its
+              Arabic. One column again on anything narrower. */}
+          <div className={`space-y-3 ${opened && !paired
+            ? 'lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start' : 'lg:max-w-[var(--lexicon-reading-w)]'}`}>
           {!(opened && paired) && (
+            <div className="lg:col-start-2 lg:row-start-1">
             <ShowRest
               lines={config['root-meaning']['rest-lines']}
               accent={accent}
@@ -344,9 +353,15 @@ function Body({
                   reader came looking for the text. */}
               <Lines text={rest} />
             </ShowRest>
+            </div>
           )}
 
-          {opened && <EntryEnglish view={view} root={data.root} accent={accent} />}
+          {opened && (
+            <div className="lg:col-start-1 lg:row-start-1 min-w-0">
+              <EntryEnglish view={view} root={data.root} accent={accent} />
+            </div>
+          )}
+          </div>
         </div>
       )}
 

@@ -56,6 +56,23 @@ Return a JSON object with this exact structure:
   "english": "the whole entry retold in plain English, in paragraphs separated by a blank line"
 }}"""
 
+LEXICON_GIST_USER = """Say in one short English line what this entry from {book}, a classical
+Arabic dictionary, covers. It is not a translation: it tells a learner who cannot
+read the Arabic whether this is the entry they want.
+
+Root: {root}
+Entry (Arabic, the opening as printed): {entry}
+
+Rules:
+- One line, at most fifteen words, no full stop needed.
+- Name only senses the entry itself gives, in its order; the main ones, not all.
+- Plain words. No transliteration, no grammar terms, no references.
+
+Return a JSON object with this exact structure:
+{{
+  "gist": "the one line"
+}}"""
+
 # The whole entry's English, when one is kept, handed to the line-by-line run so
 # both views name the same poets and places: cut into lines, the model met
 # "قالت الخنساء" with no context and wrote "the women said".

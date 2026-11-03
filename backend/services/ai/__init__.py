@@ -122,6 +122,21 @@ def explain_root_entry(root: str, entry: str) -> dict:
     )
 
 
+def gist_lexicon_entry(book: str, root: str, entry: str) -> dict:
+    """One English line saying what a Lisan or Taj entry covers ({"gist": ...}).
+
+    Made ahead of time by the backfill script, never on a reader's press. The
+    Arabic is the app's own copy of the book, never anything a reader typed.
+    """
+    settings = get_settings()
+    return _ask(
+        prompts.LEXICON_GIST_USER.format(
+            book=book, root=root, entry=entry[: settings.lexicon_gist_entry_chars],
+        ),
+        max_tokens=settings.lexicon_gist_max_tokens,
+    )
+
+
 def translate_sentence(text: str, facts: str) -> dict:
     """A reader's Arabic phrase or sentence as one English sentence, from the grammar's facts.
 

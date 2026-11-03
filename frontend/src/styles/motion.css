@@ -80,17 +80,18 @@
 }
 
 
-/* How blurred a rise starts: theme.json's focus-blur-px unless a place says.
-   The blur is for answers coming into focus. Controls and tips wear .crisp: a
-   tooltip, a quiz option or the tab bar's mark is read the instant it is there,
-   and a blurred one reads as a glitch. Set on the element itself (inherits: false). */
-@property --rise-blur {
+/* How much of a rise is still covered on its first frame: theme.json's
+   uncover-pct unless a place says. The uncovering is for answers arriving.
+   Controls and tips wear .crisp: a tooltip, a quiz option or the tab bar's mark
+   is read the instant it is there, and one wiping in reads as a glitch. Set on
+   the element itself (inherits: false). */
+@property --rise-uncover {
   syntax: '*';
   inherits: false;
 }
 
 
-.crisp { --rise-blur: 0px; }
+.crisp { --rise-uncover: 0%; }
 
 
 @property --fade-from {
@@ -103,9 +104,13 @@
   from {
     opacity: var(--rise-from, var(--motion-arrive-from));
     transform: translateY(var(--rise-y)) scale(var(--rise-scale));
-    filter: blur(var(--rise-blur, calc(var(--motion-focus-blur-px) * 1px)));
+    clip-path: inset(0 0 var(--rise-uncover, calc(var(--motion-uncover-pct) * 1%)) 0);
   }
-  to   { opacity: 1; transform: none; filter: none; }
+  /* Past the edges, not at them, so a shadow or focus ring is not cut off while
+     the move runs; then none, so a finished rise holds no clip that could cut
+     off a menu opening out of it later. */
+  99.9% { clip-path: inset(-50%); }
+  to   { opacity: 1; transform: none; clip-path: none; }
 }
 
 
@@ -329,10 +334,16 @@
 }
 
 
+/* Idle, the pen is still, but watches: it leans towards the mouse from its nib
+   and its eyes follow (lib/motion/useLook writes --look-x and --look-y). No loop,
+   so it is alive only while the reader is. */
 .qalam[data-mood='idle'] .qalam-pen {
-  /* The ambient loops each keep their own tempo, multiplied by --motion-scale
-     so the Animations setting (which drives it to 0) stops them all at once. */
-  animation: qalam-bob calc(3.4s * var(--motion-scale)) ease-in-out infinite;
+  transform: rotate(calc(var(--look-x, 0) * 6deg));
+  transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
+}
+.qalam[data-mood='idle'] .qalam-eye {
+  transform: translate(calc(var(--look-x, 0) * 1.6px), calc(var(--look-y, 0) * 1.6px));
+  transition: transform calc(var(--motion-base-ms) * 1ms) ease-out;
 }
 
 
@@ -364,12 +375,6 @@
 .qalam[data-mood='correct'] .qalam-drop,
 .qalam[data-mood='wrong'] .qalam-drop {
   animation: qalam-drip calc(800ms * var(--motion-scale)) ease-in 120ms both;
-}
-
-
-@keyframes qalam-bob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-5px) rotate(2deg); }
 }
 
 
@@ -625,4 +630,56 @@
 
 @media (prefers-reduced-motion: reduce) {
   .fahm * { animation: none !important; transition: none !important; }
+}
+
+
+/* Similar's twin verses (ui/text/TwinCards.jsx): what both say fades back from
+   full ink to dim, and each word that differs swells once in its colour, so the
+   eye goes to the difference before it has read the rest. Once, on arrival. */
+@keyframes twin-sink {
+  from { color: var(--text); }
+}
+@keyframes twin-pulse {
+  50% { transform: scale(1.12); }
+}
+.twin-same {
+  animation: twin-sink calc(var(--motion-base-ms) * 2ms) ease-out backwards;
+}
+.twin-diff {
+  display: inline-block;
+  animation: twin-pulse calc(var(--motion-spring-ms) * 2ms) var(--motion-settle-ease) calc(var(--motion-base-ms) * 1ms) backwards;
+}
+
+
+/* An empty answer (ui/feedback/EmptyState): the dots drift in from a scatter to
+   a question mark, one after another, and the line rises in once they have. */
+@keyframes dot-gather {
+  from { transform: translate(var(--dx), var(--dy)); opacity: 0.2; }
+}
+.dots-gather circle {
+  transform-box: fill-box;
+  animation: dot-gather calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease)
+    calc(var(--i) * var(--motion-stagger-ms) * 1ms) backwards;
+}
+.dots-gather p {
+  animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease)
+    calc(var(--motion-spring-ms) * 1ms) backwards;
+}
+
+
+/* A rolling number (ui/text/Odometer.jsx). Each digit is a window one line tall
+   onto a column of 0-9, slid up to its value; a changed value slides it again,
+   so only the digits that moved, move. */
+.odometer { display: inline-flex; font-variant-numeric: tabular-nums; }
+.odometer-digit {
+  display: inline-block;
+  height: 1lh;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.odometer-digit > span {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(var(--d) * -1lh));
+  transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
 }

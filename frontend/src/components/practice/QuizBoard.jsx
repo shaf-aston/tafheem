@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from 'react'
 
 import { QUIZ } from '../../lib/quiz/quizBanks'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
+import { flyTo } from '../../lib/motion/flyTo'
 
 import AnswerSquare from '../ui/inputs/AnswerSquare'
 import ArabicText from '../ui/text/ArabicText'
 import AutoAdvanceToggle from '../ui/buttons/AutoAdvanceToggle'
 import NoteBadge, { NoteReason } from './NoteBadge'
+import Odometer from '../ui/text/Odometer'
 import QuizOption from './QuizOption'
 import SoundedWrong from './SoundedWrong'
 import SpeakButton from '../ui/buttons/SpeakButton'
@@ -103,6 +105,13 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
     if (card.current?.getBoundingClientRect().top < header) scrollToEl(card.current, 'top')
   }, [])
   const arabicPrompt = shown.promptLang === 'ar'
+  // Right: the word picked flies up to the one it means and lands there
+  // (lib/motion/flyTo). Wrong needs no flight; the option sinks (components.css).
+  const prompt = useRef(null)
+  useEffect(() => {
+    if (!(answered && correct)) return
+    flyTo(card.current?.querySelector(`[data-option="${CSS.escape(String(shownPick))}"] .option-word`), prompt.current)
+  }, [answered, correct, shownPick])
 
   return (
     <div ref={card} className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)] p-5 space-y-4 scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
@@ -115,7 +124,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
           </div>
           {/* The speaker sits beside the word, not under it, so it costs no row.
               A heard question shows only the speaker until it is answered. */}
-          <div className="inline-flex items-center gap-3">
+          <div ref={prompt} className="inline-flex items-center gap-3">
             {(!shown.listen || answered) && (rtl(shown.promptLang) ? (
               <ArabicText as="div" size="lg" lang={shown.promptLang} className="text-[var(--text)]">
                 {shown.prompt}
@@ -244,8 +253,8 @@ function Scoreboard({ score, bestStreak, say, onRestart }) {
         </span>
       </div>
       <div className="type-small text-[var(--text-faint)] space-y-0.5 min-w-0">
-        <p><span className="text-[var(--success)] font-medium tabular-nums">{score.right}</span> {say('right')}</p>
-        <p><span className="text-[var(--danger)] font-medium tabular-nums">{wrong}</span> {say('wrong')}</p>
+        <p><Odometer className="text-[var(--success)] font-medium" value={score.right} /> {say('right')}</p>
+        <p><Odometer className="text-[var(--danger)] font-medium" value={wrong} /> {say('wrong')}</p>
         {bestStreak > 1 && <p>{say('streak {n}', { n: score.streak })} · {say('best {n}', { n: bestStreak })}</p>}
         {score.total > 0 && (
           <button

@@ -244,3 +244,25 @@ def test_no_database_says_so_rather_than_saying_the_root_is_unknown(tmp_path, mo
     monkeypatch.setattr(lexicons, "DATABASE", tmp_path / "not-built.db")
     assert lexicons.status() == lexicons.MISSING
     assert lexicons.entries_for("كتب") == []
+
+
+# ── the one-line gist ───────────────────────────────────────────────────────
+def test_a_kept_gist_reaches_its_book_and_only_its_book(tmp_path, monkeypatch):
+    from backend.services.dictionary import lexicon_gists
+    monkeypatch.setattr(lexicon_gists, "GISTS_FILE", tmp_path / "gists.json")
+    lexicon_gists.put("lisan", "خصر", "  cold; and  the waist ")
+    lexicon_gists.put("lane", "خصر", "never kept: Lane is in English")
+    assert lexicon_gists.get("lisan", "خصر") == "cold; and the waist"
+    assert lexicon_gists.get("taj", "خصر") is None
+    assert lexicon_gists.get("lane", "خصر") is None
+
+
+def test_the_shelf_sends_the_gist_with_its_own_badge_and_not_the_filing_key():
+    from backend.routers.dictionary import _shelf_entry
+    entry = {"book": "lisan", "title": "لسان العرب", "english": "x", "author": "a", "died": 711,
+             "language": "ar", "source": "openiti-lexicons", "book_root": None, "text": "t", "filed": "خصر"}
+    sent = _shelf_entry(entry, "cold; and the waist").model_dump()
+    assert sent["gist"] == "cold; and the waist"
+    assert sent["gist_source"]["key"] == "lexicon_gist"
+    assert "filed" not in sent
+    assert _shelf_entry(entry, None).gist_source is None

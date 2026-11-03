@@ -123,6 +123,15 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         <CloseButton onClick={onClose} aria-label="Close the surah" className="shrink-0" />
       </header>
 
+      {/* How far through the surah the reading is: a 2px line that fills as the
+          ayah in view moves on, held under the app's header so it is always
+          there and never in the way (.read-line in components.css). */}
+      {data && (
+        <div className="read-line" role="progressbar" aria-label="How far through the surah"
+          aria-valuemin={1} aria-valuemax={data.ayah_count} aria-valuenow={here}
+          style={{ '--read': Math.min(1, here / data.ayah_count) }}><i /></div>
+      )}
+
       {/* Not on a phone: the Surah, Ayah and Juz pickers above already jump to an
           ayah, and the strip cost the reading a row. */}
       {data && !phone && !mushaf.printing && <AyahRail key={`rail ${surah}`} count={data.ayah_count} here={here} open={ayah} onPick={goTo} />}

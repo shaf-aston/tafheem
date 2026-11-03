@@ -6,11 +6,17 @@
  * Sizes, timings and captions come from mascot.json. The only thing this file
  * decides is the shape of the pen.
  */
+import { useRef } from 'react'
+
 import { captionFor, sizeRem } from '../../../lib/shell/mascot'
+import { useLook } from '../../../lib/motion/useLook'
 
 export default function Mascot({ mood = 'idle', place = 'header', caption = false, className = '' }) {
   const label = captionFor(mood)
   const rem = sizeRem(place)
+  // Idle, it is still, but leans and looks towards the mouse as it moves.
+  const svg = useRef(null)
+  useLook(svg, mood === 'idle')
 
   return (
     <div className={`flex flex-col items-center gap-1.5 ${className}`}>
@@ -18,6 +24,7 @@ export default function Mascot({ mood = 'idle', place = 'header', caption = fals
           moods that swing it. A square box would letterbox a tall thin pen down
           to a sliver, so height drives the size and width follows the shape. */}
       <svg
+        ref={svg}
         className="qalam"
         data-mood={mood}
         data-place={place}

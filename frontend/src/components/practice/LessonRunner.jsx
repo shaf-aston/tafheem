@@ -32,6 +32,10 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
   const [took, setTook] = useState(0)
   // The questions missed first time, for the end screen's recap.
   const [missed, setMissed] = useState([])
+  // How each card went, by its place in the lesson: 'right', 'wrong' or 'seen'
+  // (a card that teaches). The progress bar is drawn from it, so it is also the
+  // lesson's record, and the end screen draws it again.
+  const [marks, setMarks] = useState([])
   // When the current card appeared, for answer timing, and when the lesson began.
   const started = useRef(0)
   const begun = useRef(0)
@@ -74,7 +78,7 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
   }
 
   const done = at >= cards.length
-  if (done) return <LessonDone tally={tally} took={took} missed={missed} accent={accent} rewards={rewards} guest={guest} next={after} onLeave={onLeave} />
+  if (done) return <LessonDone tally={tally} took={took} missed={missed} marks={marks} accent={accent} rewards={rewards} guest={guest} next={after} onLeave={onLeave} />
 
   const card = cards[at]
   const kind = kindOf(card)
@@ -83,6 +87,7 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
   function check(event) {
     const right = kind.check(card, value)
     setResult(right ? 'right' : 'wrong')
+    setMarks((was) => Object.assign([...was], { [at]: right ? 'right' : 'wrong' }))
     // Only first showings count towards the score.
     setTally((was) => ({
       ...was,
@@ -98,6 +103,7 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
   }
 
   function next(event) {
+    if (!asks) setMarks((was) => Object.assign([...was], { [at]: 'seen' }))
     if (at + 1 >= cards.length) setTook(event.timeStamp - begun.current)
     setAt(at + 1)
     setValue(null)
@@ -111,10 +117,7 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
         <button ref={x} type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (tally.asked ? setLeaving(true) : onQuit())}>
           <span aria-hidden="true">×</span>
         </button>
-        <span className="grow-lesson-bar" role="progressbar" aria-valuemin={0} aria-valuemax={cards.length} aria-valuenow={at}
-          aria-label={say('Lesson progress')}>
-          <i style={{ width: `${(100 * at) / cards.length}%` }} />
-        </span>
+        <Segments count={cards.length} marks={marks} at={at} />
         {tally.run >= 3 && <span key={tally.run} className="grow-run pop">{say('{n} in a row', { n: tally.run })}</span>}
       </div>
 
@@ -147,6 +150,20 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
   )
 }
 
+/**
+ * The lesson's progress as one segment per card, each filled as it goes: green
+ * when right, rose when wrong, the accent once taught. A card missed and asked
+ * again is a segment of its own, so the bar is the lesson's record too.
+ */
+function Segments({ count, marks, at = count }) {
+  return (
+    <span className="grow-segments" role="progressbar" aria-valuemin={0} aria-valuemax={count} aria-valuenow={Math.min(at, count)}
+      aria-label={say('Lesson progress')} style={{ '--n': count }}>
+      {Array.from({ length: count }, (_, i) => <i key={i} data-mark={marks[i]} data-here={i === at ? '' : undefined} />)}
+    </span>
+  )
+}
+
 /** A card's line of the book for the recap, its gap filled with the right word; none for a card without one. */
 const lineOf = (card) => card.ar?.replace('____', card.options?.find((option) => option.id === card.answer)?.text ?? '____')
 
@@ -157,12 +174,13 @@ const clock = (ms) => {
 }
 
 /** The medal and its burst, XP earned, right first time, the time taken, level progress, what was missed, what's next. */
-function LessonDone({ tally, took, missed, accent, rewards, guest, next, onLeave }) {
+function LessonDone({ tally, took, missed, marks, accent, rewards, guest, next, onLeave }) {
   const { asked, right, earned } = tally
   return (
     <div className="grow-lesson grow-lesson-done" style={{ '--w': accent }}>
       <Medal />
       <p className="grow-done-title">{say('Lesson done')}</p>
+      <Segments count={marks.length} marks={marks} />
       <dl className="grow-done-stats">
         {/* No reading of XP (offline), no "+0". */}
         {rewards && <div><dt>{say('XP')}</dt><dd className="tabular-nums">+{earned}</dd></div>}

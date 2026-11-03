@@ -40,7 +40,7 @@ export default function SettingsPanel({ open, onClose }) {
       // every real control sits inside the box below.
       onClick={closeOnBackdrop(onClose)}
       aria-labelledby="settings-title"
-      className="m-auto p-0 bg-transparent max-w-[min(var(--sheet-narrow),92vw)] w-full"
+      className="phone-sheet m-auto p-0 bg-transparent max-w-[min(var(--sheet-narrow),92vw)] w-full"
     >
       <div
         // Scrolls as one box. The source list below can run past the screen,

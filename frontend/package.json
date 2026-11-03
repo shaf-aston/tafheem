@@ -10,6 +10,7 @@
     "test": "vitest run",
     "preview": "vite preview",
     "probe": "node scripts/probes/probe.mjs",
+    "frames": "node scripts/frame-check.mjs",
     "mutate": "stryker run",
     "validate:colloq": "vitest run src/colloquial/units.test.js --reporter=verbose --silent=false"
   },
