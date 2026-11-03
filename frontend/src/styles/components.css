@@ -138,7 +138,9 @@ details:not([open]) > .glide {
     transform calc(var(--motion-base-ms) * 1ms) ease-out,
     border-color calc(var(--motion-base-ms) * 1ms) ease-out,
     background-color calc(var(--motion-base-ms) * 1ms) ease-out,
-    color calc(var(--motion-base-ms) * 1ms) ease-out;
+    color calc(var(--motion-base-ms) * 1ms) ease-out,
+    opacity calc(var(--motion-base-ms) * 1ms) ease-out,
+    filter calc(var(--motion-base-ms) * 1ms) ease-out;
 }
 
 
@@ -147,6 +149,16 @@ details:not([open]) > .glide {
   transform: translateY(-2px);
   background-color: color-mix(in srgb, var(--c) 7%, var(--surface-hi));
   border-color: var(--c);
+}
+
+
+/* A wrong pick sinks: pressed a little into the page and greyed, its verdict
+   still riding its border. No shake: the shake said "error" louder than the
+   answer said what was right. */
+.option[data-verdict='wrong'] {
+  transform: translateY(1px) scale(0.98);
+  filter: grayscale(0.6);
+  opacity: 0.75;
 }
 
 
@@ -166,7 +178,7 @@ dialog {
    while the launcher sprang in, so two taps in the same header felt like two
    apps. The launcher is left out: its ring has its own arrival (.dance), and
    its scrim already fades in command.css. A sheet pinned to the bottom of a
-   phone (.sections-menu there, a BottomSheet's mt-auto) slides up instead,
+   phone (.phone-sheet there, a BottomSheet's mt-auto) slides up instead,
    from where the finger is. */
 /* :where(), so the leave rule below, plainer, still wins while leaving. */
 dialog:where([open]:not(.sh-dialog)) > * {
@@ -201,10 +213,22 @@ dialog[data-leaving]::backdrop {
 }
 
 
+/* On a phone, More and Settings (.phone-sheet) and every BottomSheet rise on a
+   light spring, the page behind softens out of focus a little, and the sheet's
+   tiles follow it up one after another. Phones only: on a wide screen these are
+   dialogs in the middle of the page, and arrive as one piece like the rest. */
 @media (max-width: 39.99rem) {
-  dialog:where(.sections-menu[open]) > *,
+  dialog:where(.phone-sheet[open]) > *,
   dialog:where(.mt-auto[open]) > * {
-    animation-name: sheet-up;
+    animation: sheet-up calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
+  }
+  dialog:where(.phone-sheet[open], .mt-auto[open])::backdrop {
+    backdrop-filter: blur(calc(var(--motion-soften-px) * 1px));
+  }
+  dialog:where(.phone-sheet[open]) .rise-in {
+    --rise-uncover: 0%;
+    animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease)
+      calc((var(--motion-base-ms) + min(var(--i, 0), var(--motion-reveal-cap)) * var(--motion-stagger-ms)) * 1ms) backwards;
   }
 }
 
@@ -911,7 +935,7 @@ button.tile:hover { border-color: var(--c); }
    so the eye lands where the pill does. */
 .bottom-nav-on {
   --rise-y: 4px;
-  --rise-blur: 0px;
+  --rise-uncover: 0%;
   --rise-from: 1;
   animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
 }
@@ -933,7 +957,7 @@ button.tile:hover { border-color: var(--c); }
   color: var(--text);
   text-align: center;
   box-shadow: var(--shadow-pop);
-  --rise-blur: 0px;
+  --rise-uncover: 0%;
   animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease) both;
   transition: background-color calc(var(--motion-instant-ms) * 1ms), color calc(var(--motion-instant-ms) * 1ms);
 }
@@ -958,11 +982,11 @@ button.tile:hover { border-color: var(--c); }
     display: none;
   }
   /* More opens as a sheet rising from the bottom, where the finger already is. */
-  .sections-menu {
+  .phone-sheet {
     margin: auto 0 0;
     max-width: 100vw;
   }
-  .sections-menu > div {
+  .phone-sheet > div {
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
   }
@@ -1180,3 +1204,86 @@ button.mushaf-word {
   line-height: 2;
   color: var(--text-faint);
 }
+
+
+/* The hadith collections as spines on a shelf (hadith/books/HadithCollectionPicker).
+   Each spine stands on the shelf's edge; pointed at it lifts, opened it tips out
+   towards the reader in the accent. The two Sahih books carry a gold band. On a
+   narrow screen the shelf scrolls sideways rather than wrapping to a second row. */
+.shelf {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.375rem;
+  padding: 1rem 0.5rem 0;
+  border-bottom: 3px solid var(--border-hi);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.shelf-spine {
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 7.5rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-hi);
+  border-bottom: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background:
+    linear-gradient(var(--border) 0 0) top 0.6rem left 0 / 100% 1px no-repeat,
+    linear-gradient(var(--border) 0 0) bottom 0.6rem left 0 / 100% 1px no-repeat,
+    var(--surface-hi);
+  color: var(--text-dim);
+  transform-origin: bottom center;
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    background-color calc(var(--motion-base-ms) * 1ms) ease-out,
+    color calc(var(--motion-base-ms) * 1ms) ease-out;
+}
+.shelf-spine > span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: 600;
+  font-size: 0.8rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.shelf-spine[data-sahih] {
+  background:
+    linear-gradient(var(--palette-gold) 0 0) top 0.6rem left 0 / 100% 2px no-repeat,
+    linear-gradient(var(--palette-gold) 0 0) bottom 0.6rem left 0 / 100% 2px no-repeat,
+    var(--surface-hi);
+}
+.shelf-spine:hover,
+.shelf-spine:focus-visible {
+  transform: translateY(-4px);
+  color: var(--text);
+}
+.shelf-spine:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+.shelf-spine[aria-pressed='true'] {
+  transform: translateY(-6px) rotate(-5deg);
+  background-color: var(--c);
+  color: var(--surface);
+  border-color: var(--c);
+}
+
+
+/* The surah's reading line (quran/QuranReader): under the header, held below the
+   app's own header as the page scrolls, filling as the ayah in view moves on. */
+.read-line {
+  position: sticky;
+  top: var(--app-header-h, 0px);
+  z-index: var(--layer-sticky);
+  height: 2px;
+  margin-top: -2px;
+  background: transparent;
+}
+.read-line > i {
+  display: block;
+  height: 100%;
+  background: var(--c);
+  transform-origin: left;
+  transform: scaleX(var(--read));
+  transition: transform calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease);
+}
+[dir='rtl'] .read-line > i { transform-origin: right; }

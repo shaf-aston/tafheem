@@ -24,7 +24,9 @@ export function TwinRow({ label, words, flags, accent }) {
         <ArabicText
           key={w}
           size="base"
-          className={flags[w] ? undefined : 'text-[var(--text-dim)]'}
+          // The shared words sink back and the differing ones pulse once, so the
+          // eye lands on what differs (twin-same, twin-diff in motion.css).
+          className={flags[w] ? 'twin-diff' : 'twin-same text-[var(--text-dim)]'}
           style={flags[w] ? { color: accent } : undefined}
         >
           {word}

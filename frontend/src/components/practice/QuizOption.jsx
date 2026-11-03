@@ -37,6 +37,8 @@ export default function QuizOption({ option, index, lang, say, answered, picked,
       type="button"
       onClick={() => onChoose(option.id)}
       disabled={answered}
+      data-option={option.id}
+      data-verdict={answered && isPicked && !isAnswer ? 'wrong' : undefined}
       style={{ '--i': index, '--c': accent, borderColor: border, color }}
       className={`rise-in option relative flex items-center gap-3 px-4 py-3 rounded-[var(--radius-md)] text-start
         bg-[var(--surface-hi)] border
@@ -45,9 +47,9 @@ export default function QuizOption({ option, index, lang, say, answered, picked,
     >
       <OptionNumber index={index} />
       {lang === 'en' ? (
-        <span className="text-sm">{option.text}</span>
+        <span className="option-word text-sm">{option.text}</span>
       ) : (
-        <ArabicText lang={lang} className="leading-tight">{option.text}</ArabicText>
+        <ArabicText lang={lang} className="option-word leading-tight">{option.text}</ArabicText>
       )}
       {verdict && (
         <span className="absolute -top-2.5 end-3 px-1.5 rounded type-tiny font-medium leading-5 bg-[var(--surface)]">

@@ -7,6 +7,7 @@ import { colorFor } from '../../theme'
 import config from '../../config/rewards.json'
 import { rankOf, shareOf } from '../../lib/learner/rewards'
 import { Skeleton } from '../ui/feedback/Skeleton'
+import Odometer from '../ui/text/Odometer'
 
 export default function XpCard({ rewards }) {
   if (!rewards) {
@@ -24,13 +25,13 @@ export default function XpCard({ rewards }) {
         <span className="text-lg font-bold text-[var(--text)]">
           Lv {rewards.level} · {rank.en} <span dir="rtl">{rank.ar}</span>
         </span>
-        <span className="type-small tabular-nums text-[var(--text-dim)]">{rewards.into} / {rewards.need} XP</span>
+        <span className="type-small tabular-nums text-[var(--text-dim)]"><Odometer value={rewards.into} /> / {rewards.need} XP</span>
       </div>
       <div className="xp-bar" role="progressbar" aria-valuemin={0} aria-valuemax={rewards.need} aria-valuenow={rewards.into}>
         <span style={{ '--xp-share': share }} />
       </div>
       <div className="type-small text-[var(--text-faint)]">
-        {rewards.need - rewards.into} XP to level {rewards.level + 1} · {rewards.xp} XP in all
+        {rewards.need - rewards.into} XP to level {rewards.level + 1} · <Odometer value={rewards.xp} /> XP in all
       </div>
       <ol className="xp-path" aria-label="Ranks">
         {config.ranks.map((r, i) => {
