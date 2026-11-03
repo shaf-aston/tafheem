@@ -1276,3 +1276,7 @@ def test_how_asked_before_its_verb_is_the_state_of_that_verb():
 
 def test_a_plain_noun_in_nasb_after_a_working_participle_is_its_object():
     assert _role("وَإِذْ قَالَ رَبُّكَ لِلْمَلَائِكَةِ إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً", 8) == "مفعول به"
+
+
+def test_a_defective_noun_ending_in_a_bare_ya_wears_its_nouns_case():
+    assert _role("سَمِعْتُ صَوْتَ الطِّفْلِ الْبَاكِي فِي اللَّيْلِ", 3) == "صفة"
