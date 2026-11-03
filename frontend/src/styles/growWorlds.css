@@ -75,7 +75,8 @@
 .grow-next-ar { font-size: 1.15rem; line-height: 1; color: var(--w); }
 .grow-next-text { display: grid; min-width: 0; font-size: var(--type-small); color: var(--text-dim); }
 .grow-next-text b { font-weight: 700; color: var(--text); }
-.grow-next-text span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Two lines, wrapped at a word: one line cut short mid-word ("why the poem was w…") lost the point of the step. */
+.grow-next-text span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; overflow-wrap: break-word; }
 .grow-next-go { font-size: 1.3rem; color: var(--w); }
 @media (prefers-reduced-motion: reduce) { .grow-next { transition: none; } }
 
@@ -460,7 +461,8 @@
 .grow-leave .grow-leave-stay { background: var(--w); color: var(--bg); }
 
 /* A book's glossary, folded under its tiles or path: a filter, then each term with its meaning and lesson. */
-.grow-glossary { width: 100%; max-width: 560px; margin-inline: auto; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 14px; }
+/* One column and one edge with the rest of the book world: it sat centred at half width. */
+.grow-glossary { width: 100%; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 14px; }
 .grow-glossary summary { cursor: pointer; font-weight: 700; }
 .grow-glossary input { width: 100%; margin: 12px 0 4px; padding: 8px 10px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
 .grow-glossary dl { display: grid; gap: 10px; margin: 8px 0 0; }
