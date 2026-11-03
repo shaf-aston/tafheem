@@ -1288,3 +1288,12 @@ def test_a_word_with_its_mubtada_before_it_is_a_khabar_not_a_describer():
 
 def test_the_noun_with_al_after_a_pronoun_follows_it_as_badal():
     assert _role("اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ", 5) == "بدل"
+
+
+def test_a_noun_in_nasb_after_kana_is_its_khabar_and_what_follows_is_its_ism():
+    assert _role("لَيْسَ الْبِرَّ أَنْ تُوَلُّوا وُجُوهَكُمْ", 1) == "خبر كان"
+
+
+@pytest.mark.parametrize("at, role", [(2, "اسم إن"), (7, "خبر إن")])
+def test_a_relative_ma_is_the_ism_of_anna_and_a_raf_noun_after_its_clause_the_khabar(at, role):
+    assert _role("وَلَوْ أَنَّ مَا فِي الْأَرْضِ مِنْ شَجَرَةٍ أَقْلَامٌ", at) == role

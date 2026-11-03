@@ -277,13 +277,16 @@ def inna_object(tokens: list[dict]) -> None:
     for token in tokens:
         head = s.head(token)
         if (token["rel"] == "OBJ" and head and s.family(head) == "inna" and noun_tagged(token)
-                and (typed_case_of(token) == "a" or shows_nasb_by_kasra(token)) and not any(subject_link(k) for k in s.kids(head))):
+                and (typed_case_of(token) == "a" or shows_nasb_by_kasra(token) or listed(token, "mawsul"))
+                and not any(subject_link(k) for k in s.kids(head))):
             token["rel"] = "SBJ"
 
 
 def inna_second_khabar(tokens: list[dict]) -> None:
     """لَا رَيْبَ فِيهِ هُدًى: إنّ and its sisters, لا النافية للجنس too, take one اسم and a خبر (Tasheel 1.8, 3.7.3), so a noun
-    the parser hung on one as a second subject, after its khabar, is a second khabar (تعدد الخبر)."""
+    the parser hung on one as a second subject, after its khabar, is a second khabar (تعدد الخبر). So is a noun in raf'
+    the parser hung as a مضاف إليه, which is never in raf' (وَلَوْ أَنَّ مَا فِي الْأَرْضِ مِنْ شَجَرَةٍ أَقْلَامٌ), when
+    the pair has none yet and the noun comes after the اسم."""
     s = Sentence(tokens)
     for governor in tokens:
         if s.family(governor) != "inna":
@@ -304,6 +307,22 @@ def zanna_pair(tokens: list[dict]) -> None:
     s = Sentence(tokens)
     for first in tokens:
         second = s.head(first)
+def kana_fronted_khabar(tokens: list[dict]) -> None:
+    """لَيْسَ الْبِرَّ أَنْ تُوَلُّوا: كان and its sisters put their خبر in nasb (Tasheel 1.9), so a noun the reader typed in
+    nasb straight after the verb is its khabar, though the parser made it the اسم; the word it made the khabar
+    (here أَنْ with its verb), not in nasb, is the اسم."""
+    s = Sentence(tokens)
+    for verb in tokens:
+        if s.family(verb) != "kana":
+            continue
+        kids = s.kids(verb)
+        noun = next((k for k in kids if k["id"] == verb["id"] + 1 and k["rel"] == "SBJ" and noun_tagged(k)
+                     and typed_case_of(k) == "a"), None)
+        told = next((k for k in kids if noun and k["id"] > noun["id"] and k["rel"] == "PRD" and typed_case_of(k) != "a"), None)
+        if told:
+            noun["rel"], told["rel"] = "PRD", "SBJ"
+
+
         verb = second and next((t for t in reversed(tokens[:tokens.index(first)]) if is_verb(t)), None)
         if not (verb and first["rel"] in ("SBJ", "TPC") and is_one(verb["lemma"], "zanna") and first["id"] < second["id"]
                 and noun_tagged(first) and typed_case_of(first) == typed_case_of(second) == "a"):
@@ -323,6 +342,13 @@ def praise_specified(tokens: list[dict]) -> None:
     the one praised (Ibn Aqil, باب نعم وبئس). The parser takes the تمييز for an object and hangs the
     praised noun on it; both go on the verb, as the pattern reads."""
     s = Sentence(tokens)
+        subject = next((k for k in s.kids(governor) if subject_link(k)), None)
+        if subject and not any(k["rel"] == "PRD" for k in s.kids(governor)):
+            told = next((t for t in tokens if t["id"] > subject["id"] and t["rel"] == "IDF" and noun_tagged(t)
+                         and typed_case_of(t) == "u" and above([x["head"] for x in tokens], t["id"], subject["id"])), None)
+            if told:
+                told["head"], told["rel"] = governor["id"], "PRD"
+                s = Sentence(tokens)
     for verb in tokens:
         specifier = s.by_id.get(verb["id"] + 1)
         if not (is_verb(verb) and is_one(verb["lemma"], "praise_blame") and specifier
