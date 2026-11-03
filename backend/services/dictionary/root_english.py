@@ -28,6 +28,8 @@ import os
 import threading
 from pathlib import Path
 
+from backend.services.dictionary import root_senses
+
 logger = logging.getLogger(__name__)
 
 _DATA = Path(__file__).parent.parent.parent / "data" / "maqayees"
@@ -37,6 +39,9 @@ LINES_FILE = _DATA / "english_lines.json"
 # deploy copies every tracked file over the server's copy, which erased them;
 # this one is untracked, so a deploy never touches it.
 LINES_KEPT_FILE = _DATA / "english_lines.kept.json"
+# The entry cut into its words (services/dictionary/root_senses), shipped and kept the same two ways.
+SENSES_FILE = _DATA / "english_senses.json"
+SENSES_KEPT_FILE = _DATA / "english_senses.kept.json"
 
 # One writer at a time within a process. Two backend copies share these files
 # too; a write from each at the same instant can lose one root, which costs
@@ -59,6 +64,12 @@ def _is_lines(value: object) -> bool:
         and bool(value)
         and all(isinstance(line, str) and line.strip() for line in value)
     )
+
+
+def _is_senses(value: object) -> bool:
+    """A list of senses, each a dict. Whether they still fit the book's lines is
+    root_senses.fits, asked on every read with the entry's current count."""
+    return isinstance(value, list) and bool(value) and all(isinstance(s, dict) for s in value)
 
 
 def _read_store(path: Path, keeps) -> dict:
@@ -122,6 +133,27 @@ def get_lines(root: str, count: int) -> list[str] | None:
         if lines and len(lines) == count:
             return lines
     return None
+
+
+def get_senses(root: str, count: int) -> list[dict] | None:
+    """The entry cut into its words, kept for this root, if it still covers an
+    entry of `count` lines. The shipped file is asked first, as with lines."""
+    for path in (SENSES_FILE, SENSES_KEPT_FILE):
+        senses = _store(path, _is_senses).get(root)
+        if root_senses.fits(senses, count):
+            return senses
+    return None
+
+
+def shipped_senses(root: str, count: int) -> bool:
+    """Whether the senses for this root come from the shipped whole-book run."""
+    return root_senses.fits(_store(SENSES_FILE, _is_senses).get(root), count)
+
+
+def put_senses(root: str, senses: list[dict], shipped: bool = False) -> None:
+    """Keep checked senses (root_senses.check). The backfill passes shipped=True."""
+    if root and _is_senses(senses):
+        _keep(SENSES_FILE if shipped else SENSES_KEPT_FILE, _is_senses, root, senses)
 
 
 def put(root: str, english: str) -> None:
