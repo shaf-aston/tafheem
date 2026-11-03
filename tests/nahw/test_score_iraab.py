@@ -2,7 +2,7 @@
 import re
 
 from backend.scripts.nahw.score_iraab import (
-    KEY, book_sentences, disagreements, family, fresh_sentences, held_out, routed,
+    EXACT, KEY, SETS, book_sentences, disagreements, family, fresh_sentences, held_out, routed,
     sign_matches)
 from backend.services.nahw.syntax.naming import ROLES
 from backend.services.text.arabic_text import bare_letters, words
@@ -73,6 +73,15 @@ def test_hadith_and_rules_sets_are_well_formed():
             n = len(words(s["sentence"]))
             assert len(s["key"]) == n and set(s["key"]) <= FRESH_ROLES, s["id"]
             assert s["source"] and all(0 <= int(i) < n for i in s.get("signs", {})), s["id"]
+
+
+def test_battery_set_is_well_formed_and_its_ids_are_unique_across_the_exact_sets():
+    rows = held_out("battery")
+    assert len(rows) == 79
+    for s in rows:
+        assert len(s["key"]) == len(words(s["sentence"])) and all(s["key"]), s["id"]
+    ids = [r["id"] for name in EXACT for r in SETS[name]()]
+    assert len(ids) == len(set(ids))  # mutation_baseline.json names sentences by id alone
 
 
 def test_a_sign_matches_with_or_without_the_cards_note():

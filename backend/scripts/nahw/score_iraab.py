@@ -25,6 +25,9 @@ apart from theirs, keyed blind by two readers who never saw the app's answer and
 kept where they agreed. It splits three ways: "tune" may be looked at while fixing,
 "verify" shows whether a fix carried to sentences it was not written against, and
 "hold" is scored once, at the end.
+--set battery is 79 sentences (43 grammar, 36 Qur'an openings) read by hand word by word: the
+key is what the app answered where that was right, the book's role where it was not (those words
+fail until the engine is fixed); a row's "note" names the words with two valid answers.
 Rows in these may carry "signs", the sign the book gives chosen words (word
 index to sign), so the case line is scored as well as the role.
 
@@ -111,10 +114,10 @@ def held_out(name: str) -> list[dict]:
 
 
 SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
-        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe")},
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery")},
         "blind": partial(fresh_sentences, "blind")}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery")
 BASELINE = DATA / "nahw_rules" / "score_baseline.json"
 
 
