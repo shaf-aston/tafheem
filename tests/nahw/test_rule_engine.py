@@ -1239,3 +1239,16 @@ def test_a_verb_after_a_nasb_particle_is_the_present_one(sentence: str, at: int,
 ])
 def test_a_bare_plain_noun_in_nasb_after_the_doer_is_the_object(sentence: str, role: str):
     assert cards(sentence)[-1]["role"] == role
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    # a relative after a known noun describes it, unless the verb owes an object (كافأ), which it then is
+    ("جَاءَ الرَّجُلُ الَّذِي رَأَيْتُهُ أَمْسِ", 2, "صفة"),
+    ("نَجَا الْمُتَسَلِّقُ الَّذِي سَقَطَ", 2, "صفة"),
+    ("كَافَأَ الْمُدِيرُ الَّذِي نَجَحَ", 2, "مفعول به"),
+    ("اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ", 3, "صفة"),  # known by its pronoun, not by ال
+    # إِلَّا opening the sentence governs the noun after it, however the parser hung the pair
+    ("إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ", 1, "مستثنى"),
+])
+def test_a_relative_after_a_known_noun_is_its_sifa_and_after_illa_the_excepted(sentence, at, role):
+    assert _role(sentence, at) == role
