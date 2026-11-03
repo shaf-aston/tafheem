@@ -1317,3 +1317,7 @@ def test_a_detached_pronoun_after_kana_is_its_ism():
 
 def test_the_noun_after_a_fronted_jar_majrur_is_the_mubtada_though_bare():
     assert _role("لله الحمد", 1) == "مبتدأ"
+
+
+def test_a_mudaf_to_a_known_noun_before_an_indefinite_one_is_the_mubtada():
+    assert _role("يوم الجمعة يوم مبارك", 0) == "مبتدأ"
