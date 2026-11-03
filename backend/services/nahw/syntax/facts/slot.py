@@ -93,7 +93,8 @@ def _object_of_participle(token: dict, head: dict) -> bool:
     (آمِرًا أحدًا: both in nasb, yet أحد describes nothing); with ال on both in the same nasb it
     follows as a نعت (إِنَّ الْمُهَنْدِسَ الْعَجُوزَ). An indefinite state word
     stays a حال (قادمٌ مسرعًا), and the participle's own root a مفعول مطلق. A diptote's fatha
-    is its jarr, so it stays the مضاف إليه (طَرِيقَ جَهَنَّمَ). An elative takes none (Ashmuni V2 p312:
+    is its jarr, so it stays the مضاف إليه (طَرِيقَ جَهَنَّمَ). A noun the analyser tags a plain noun, on a صفة مشبهة's
+    measure only (إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً), is no state word here. An elative takes none (Ashmuni V2 p312:
     أجمعوا على أنه لا ينصب المفعول به): its nasb noun is its تمييز (أَكْبَرُ مِنْكَ سِنًّا)."""
     if is_elative(head):
         return False
@@ -103,7 +104,8 @@ def _object_of_participle(token: dict, head: dict) -> bool:
     return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
         rel == "MOD" and (typed_or_parsed_case(head) != "a" or token.get("pos_camel") != "adj")
         and not (typed_or_parsed_case(head) == "a" and token.get("stt") == head.get("stt") == "d")
-        and not is_state_word(token) and not same_root(token, head)))
+        and not (is_state_word(token) and (on_doing_measure(token) or token.get("pos_camel") != "noun"))
+        and not same_root(token, head)))
 
 
 def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
