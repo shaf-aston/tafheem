@@ -27,21 +27,20 @@ import { flushSync } from 'react-dom'
 
 import { paragraphs } from '../../lib/dictionary/entryLines'
 import { laneEntry } from '../../lib/dictionary/laneEntry'
-import { foldForSearch } from '../../lib/text/arabicText'
-import config from '../../config/dictionary.json'
 import { useLexicons } from '../../lib/dictionary/classicalBooks'
 import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
+import { useMedia } from '../../lib/hooks/useMedia'
 import { colorFor } from '../../theme'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/dictionary/useLaneTidy'
 
 import ArabicText from '../ui/text/ArabicText'
 import Fenced from '../ui/text/Fenced'
-import Chip from '../ui/inputs/Chip'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
 import FlagButton from '../ui/buttons/FlagButton'
 import ShowRest from '../ui/buttons/ShowRest'
 import BookHeader from './BookHeader'
+import LaneIndex from './LaneIndex'
 import SourceBadge from '../ui/feedback/SourceBadge'
 
 /** How the three kinds of nothing are told apart. Never one sentence for all. */
@@ -53,6 +52,9 @@ const NOTHING = {
 
 /** Added to that one sentence only, and only when there is another root to try. */
 const ELSEWHERE = ' The other root above may be the one they file it under.'
+
+/** Where a book uses the card's width (Tailwind's lg), the same as Ibn Faris's side by side. */
+const WIDE = '(min-width: 64rem)'
 
 /**
  * `shown` is the book on screen; the others stay mounted but hidden, so a
@@ -109,6 +111,7 @@ function BookEntry({ entry, root, accent }) {
   const lane = entry.book === LANE
   const [tidy, setTidy] = useLaneTidy()
   const [open, setOpen] = useState(false)
+  const wide = useMedia(WIDE)
   // Lane in his own sections; the Arabic books as paragraphs (lib/entryLines).
   const shown = useMemo(() => (lane ? laneEntry(entry.text, { tidy }) : paragraphs(entry.text)), [lane, entry.text, tidy])
   const anchor = useId()
@@ -155,65 +158,29 @@ function BookEntry({ entry, root, accent }) {
             lexicon.entry-h, the same knob that used to set the box. */}
         {/* Three rows of the index and a box to find the rest: forty-odd
             headwords stood half a screen deep between Lane's name and his first word. */}
-        {lane && <LaneIndex forms={shown} onJump={jump} accent={accent} />}
+        {lane && !wide && <LaneIndex forms={shown} onJump={jump} accent={accent} />}
 
-        <ShowRest height="var(--lexicon-entry-h)" open={open} onOpenChange={setOpen}>
-          {lane ? <LaneEntry forms={shown} anchor={anchor} /> : (
-            // The same reading width as Lane and Ibn Faris: Lisan and the Taj ran the
-            // card's full width, 150 letters a line, and the eye lost its place.
-            <div className="space-y-2 max-w-[var(--lexicon-reading-w)]">
-              {shown.map((said, i) => (
-                <ArabicText key={i} as="p" size="sm">{said}</ArabicText>
-              ))}
-            </div>
-          )}
-        </ShowRest>
+        {/* A wide screen: Lane's entry at its reading width, his index beside
+            it, held in view; the Arabic books, opened, in two columns read right
+            to left like the printed page, where one column left half the card empty. */}
+        <div className={lane && wide ? 'grid grid-cols-[minmax(0,var(--lexicon-reading-w))_minmax(14rem,1fr)] gap-8 items-start' : ''}>
+          <ShowRest height="var(--lexicon-entry-h)" open={open} onOpenChange={setOpen}>
+            {lane ? <LaneEntry forms={shown} anchor={anchor} /> : (
+              // Folded, one column at the reading width, against the right
+              // edge where Arabic starts; Lisan and the Taj ran the card's full
+              // width, 150 letters a line, and the eye lost its place.
+              <div dir="rtl" className={`space-y-2 ${wide && open
+                ? 'columns-2 gap-10 [column-rule:1px_solid_var(--border)]' : 'max-w-[var(--lexicon-reading-w)] ml-auto'}`}>
+                {shown.map((said, i) => (
+                  <ArabicText key={i} as="p" size="sm">{said}</ArabicText>
+                ))}
+              </div>
+            )}
+          </ShowRest>
+          {lane && wide && <LaneIndex forms={shown} onJump={jump} accent={accent} rail />}
+        </div>
       </div>
     </article>
-  )
-}
-
-/**
- * Every headword in the entry, one press from its section. Lane on a common
- * root runs to thousands of words; this is how a reader finds the one they came
- * for without reading down to it. Right to left, like the words themselves.
- *
- * Three rows show; typing in the box narrows the chips to the words that hold
- * what was typed, harakat or none, and shows every one that does. The old
- * "All words" press opened all forty at once, which was the wall again.
- */
-function LaneIndex({ forms, onJump, accent }) {
-  const [find, setFind] = useState('')
-  const id = useId()
-  const wanted = foldForSearch(find).trim()
-  const words = forms.map((form, i) => ({ form, i }))
-    .filter(({ form }) => form.word && (!wanted || foldForSearch(form.word).includes(wanted)))
-  const chips = (
-    <nav dir="rtl" aria-label="Words in this entry" className="flex flex-wrap gap-1.5">
-      {words.map(({ form, i }) => (
-        <Chip key={i} arabic accent={accent} onClick={() => onJump(i)}
-          title={form.form ? `Form ${form.form}` : undefined}>
-          {form.word}
-        </Chip>
-      ))}
-    </nav>
-  )
-
-  if (forms.filter((form) => form.word).length < config.lane['find-from']) return chips
-
-  return (
-    <div className="space-y-2">
-      {/* A small filter, not the page's search box: it narrows a list already
-          on screen, and a box the size of the dictionary's own read as a
-          second search. dir=auto turns it round at the first Arabic letter. */}
-      <input id={id} type="search" dir="auto" value={find} onChange={(event) => setFind(event.target.value)}
-        placeholder="Find a word" aria-label="Find a word in this entry" style={{ '--c': accent }}
-        className="w-full max-w-60 rounded-full border border-[var(--border-hi)] bg-[var(--surface)] px-3 py-1.5
-          type-ui text-[var(--text)] placeholder:text-[var(--text-faint)] focus:border-[var(--c)] focus:outline-none" />
-      {wanted ? (words.length ? chips : (
-        <p className="type-small text-[var(--text-faint)]">No word here holds {find}.</p>
-      )) : <ShowRest lines={3} accent={accent} more="All words">{chips}</ShowRest>}
-    </div>
   )
 }
 
