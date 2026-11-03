@@ -167,6 +167,7 @@ async def get_root_meaning(root: Root) -> RootMeaningResponse:
             provenance.of(entry.english_source_key)
             if entry.english_source_key else None
         ),
+        english_kept=root_english.get(root_meaning.book_root_of(root) or root) is not None,
     )
 
 

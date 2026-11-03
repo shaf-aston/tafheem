@@ -827,3 +827,14 @@ def test_a_verse_stays_whole_even_with_a_full_stop_in_it(client, line_ai):
                               ensure_ascii=False))
     answer = _lined(client, "كتب").json()
     assert [pair["arabic"] for pair in answer["lines"]] == ["صدر البيت. تمامه ... عجز البيت"]
+
+
+def test_the_card_is_told_when_the_whole_entry_s_english_is_already_kept(client, monkeypatch):
+    """A wide screen opens kept English beside the Arabic at once; English that
+    would need a model call waits for the reader's press."""
+    from backend.routers import dictionary as router_module
+    client.install(json.dumps({"كتب": {"core_meaning": "الجمع"}}, ensure_ascii=False))
+    monkeypatch.setattr(router_module.root_english, "get", lambda root: "kept" if root == "كتب" else None)
+    assert _get(client, "كتب")["english_kept"] is True
+    monkeypatch.setattr(router_module.root_english, "get", lambda root: None)
+    assert _get(client, "كتب")["english_kept"] is False

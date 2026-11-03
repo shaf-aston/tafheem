@@ -19,6 +19,9 @@ import config from '../../config/dictionary.json'
 import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
 import { useHealth } from '../../lib/api/useHealth'
 import { useRemembered } from '../../lib/store/useRemembered'
+import { useMedia } from '../../lib/hooks/useMedia'
+
+const WIDE = '(min-width: 64rem)' // Tailwind's lg: where the rest and its English sit side by side
 
 import { Lines } from './EntryArabic'
 import { LinePage, LineSpotlight } from './EntryLines'
@@ -29,7 +32,7 @@ import Segmented from '../ui/inputs/Segmented'
 import SmallButton from '../ui/buttons/SmallButton'
 import { Skeleton } from '../ui/feedback/Skeleton'
 import BookHeader from './BookHeader'
-import SourceBadge from '../ui/feedback/SourceBadge'
+import MachineEnglish from './MachineEnglish'
 
 /** Said when the backend stops answering mid-visit. */
 const STOPPED = 'The backend may have stopped since this page was opened.'
@@ -128,11 +131,15 @@ function Body({
 }) {
   // Whether the rest of the entry is open. The English below it is
   // fetched on that alone, so a root looked up and never opened costs nothing.
-  const [opened, setOpened] = useState(false)
+  const [pressed, setOpened] = useState(false)
+  // A wide screen opens English already kept (no model call) beside the Arabic at once; else it waits for the press.
+  const wide = useMedia(WIDE)
+  const opened = pressed || (wide && Boolean(data?.english_kept))
   // Whether the Arabic of the rest is shown whole. Held here, not in ShowRest:
   // the paired views take ShowRest off the page, and coming back to Together
-  // folded the Arabic away again.
-  const [whole, setWhole] = useState(false)
+  // folded the Arabic away again. Unset, it follows the English.
+  const [chosenWhole, setWhole] = useState(null)
+  const whole = chosenWhole ?? opened
   const queryClient = useQueryClient()
   // Both shapes are asked for on the press that opens the rest, not on the
   // press that switches view: fetched on the switch, every first change of
@@ -425,18 +432,6 @@ function EntryEnglish({ view, root, accent }) {
     </MachineEnglish>
   )
 }
-
-/**
- * English a machine made, with the badge that says so. The badge is pushed to
- * the edge the card's own badge sits on, so the two read as one column of
- * sources rather than one label adrift in the middle of the card.
- */
-const MachineEnglish = ({ source, children }) => (
-  <div className="space-y-1.5 max-w-[var(--lexicon-reading-w)]">
-    {children}
-    <SourceBadge source={source} className="ms-auto flex" />
-  </div>
-)
 
 /** Explanatory prose. Body text, so it keeps the reading size the panels use. */
 const Note = ({ children }) => <p className="type-body text-[var(--text-dim)]">{children}</p>
