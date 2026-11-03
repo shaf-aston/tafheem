@@ -3,6 +3,7 @@
     python backend/scripts/dictionary/backfill_root_english.py            # the whole book
     python backend/scripts/dictionary/backfill_root_english.py --limit 20 # try twenty first
     python backend/scripts/dictionary/backfill_root_english.py --lines    # one English line per Arabic line
+    python backend/scripts/dictionary/backfill_root_english.py --senses   # the entry cut into its words
 
 Reads every entry the book has and asks the app's own AI backend to put it into
 plain English, keeping each answer in data/maqayees/english_entries.json. The
@@ -10,6 +11,8 @@ card then shows English the moment it is opened, with no call and no wait.
 
 With --lines it makes the Line by line view instead: every line of the rest of
 each entry, in chunks the model can read, into data/maqayees/english_lines.json.
+With --senses it makes the Word by word view: the same lines, cut into the words
+they explain, into data/maqayees/english_senses.json.
 --workers sets how many roots are asked at once, in either mode.
 
 Safe to stop at any point: it skips whatever has already been done, so running
@@ -38,17 +41,19 @@ from backend.services import ai as ai_service  # noqa: E402
 from backend.services.dictionary import root_meaning  # noqa: E402
 from backend.services.dictionary import root_english
 from backend.services.dictionary import root_gloss
+from backend.services.dictionary import root_senses
 
 
-def entries_to_do(limit: int | None, by_line: bool) -> list[tuple[str, str | list[str]]]:
+def entries_to_do(limit: int | None, mode: str) -> list[tuple[str, str | list[str]]]:
     """The roots with an entry the book prints and no English kept yet, each
     with what to put into English: the body, or every line after the origin sense."""
     todo = []
     for root in root_meaning.roots():
         entry = root_meaning.lookup(root) or {}
-        if by_line:
+        if mode != "prose":
             lines, _ = root_gloss.line_budget(root_gloss.rest_of(entry), sys.maxsize)
-            if lines and root_english.get_lines(root, len(lines)) is None:
+            have = root_english.get_lines if mode == "lines" else root_english.get_senses
+            if lines and have(root, len(lines)) is None:
                 todo.append((root, lines))
         elif entry.get("body") and not root_english.get(root):
             todo.append((root, entry["body"]))
@@ -90,6 +95,27 @@ def make_lines(root: str, lines: list[str]) -> None:
     root_english.put_lines(root, english, shipped=True)
 
 
+def make_senses(root: str, lines: list[str]) -> None:
+    """Each chunk cut on its own, its line numbers then moved along to where the
+    chunk starts. A word whose lines straddle two chunks becomes two senses."""
+    senses: list[dict] = []
+    start = 0
+    for chunk in chunks(lines, get_settings().root_entry_truncate_chars):
+        for _ in range(2):  # an answer that does not fit the book gets one more go
+            got = root_senses.check(ai_service.explain_root_entry_senses(root, chunk, root_english.get(root)), chunk)
+            if got:
+                break
+        else:
+            raise ValueError(f"could not cut {len(chunk)} lines into words")
+        for sense in got:
+            sense["lines"] = [n + start for n in sense["lines"]]
+            for example in sense["examples"]:
+                example["line"] += start
+        senses += got
+        start += len(chunk)
+    root_english.put_senses(root, senses, shipped=True)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--limit", type=int, help="stop after this many entries")
@@ -101,7 +127,9 @@ def main() -> int:
         "--give-up-after", type=int, default=3,
         help="stop once this many entries in a row have failed",
     )
-    parser.add_argument("--lines", action="store_true", help="make the line-by-line English")
+    shape = parser.add_mutually_exclusive_group()
+    shape.add_argument("--lines", action="store_true", help="make the line-by-line English")
+    shape.add_argument("--senses", action="store_true", help="make the word-by-word English")
     parser.add_argument("--workers", type=int, default=4, help="roots asked at once")
     parser.add_argument(
         "--model",
@@ -128,10 +156,11 @@ def main() -> int:
         print("The classical entries are not loaded, run build_root_meanings.py first.")
         return 1
 
-    todo = entries_to_do(args.limit, args.lines)
+    mode = "lines" if args.lines else "senses" if args.senses else "prose"
+    todo = entries_to_do(args.limit, mode)
     print(f"{root_english.count()} already done, {len(todo)} to go, using {ai_service.get_backend_name()}")
 
-    make = make_lines if args.lines else make_prose
+    make = {"prose": make_prose, "lines": make_lines, "senses": make_senses}[mode]
 
     def run(root, payload):
         make(root, payload)

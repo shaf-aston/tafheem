@@ -204,6 +204,16 @@
       "dict"
     ]
   },
+  "maqayees_senses": {
+    "label": "Maqayees: English word by word",
+    "confidence": "translated",
+    "detail": "The book's own Arabic cut into the words it explains by a model, each word and saying found in the book's lines, with a short English meaning",
+    "url": "@maqayees",
+    "where": "Whole entry, AI cut into words and translated. Arabic lines beside each word. Unproofread.",
+    "used_in": [
+      "dict"
+    ]
+  },
   "lexicon_gist": {
     "label": "AI gist",
     "confidence": "guessed",

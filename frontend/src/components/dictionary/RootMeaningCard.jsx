@@ -14,8 +14,9 @@
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { getRootEntryEnglish, getRootEntryLines, getRootMeaning } from '../../api'
+import { getRootMeaning } from '../../api'
 import config from '../../config/dictionary.json'
+import { ENGLISH, englishQuery } from '../../lib/dictionary/entryEnglish'
 import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
 import { useHealth } from '../../lib/api/useHealth'
 import { useRemembered } from '../../lib/store/useRemembered'
@@ -24,7 +25,7 @@ import { useMedia } from '../../lib/hooks/useMedia'
 const WIDE = '(min-width: 64rem)' // Tailwind's lg: where the rest and its English sit side by side
 
 import { Lines } from './EntryArabic'
-import { LinePage, LineSpotlight } from './EntryLines'
+import EntryEnglish from './EntryEnglish'
 import ArabicText from '../ui/text/ArabicText'
 import ShowRest from '../ui/buttons/ShowRest'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
@@ -38,39 +39,13 @@ import MachineEnglish from './MachineEnglish'
 const STOPPED = 'The backend may have stopped since this page was opened.'
 
 /**
- * The rest of the entry in English, in two shapes (read three ways, see VIEWS).
- * Together is kept for every root, so a failure there is real and the message
- * offers to try again. Lines is kept for few, so it is mostly made on the spot,
- * and the server fails a first try often enough that one more is worth it.
+ * The ways to read the rest of the entry; the first is the default. Word by
+ * word replaced Line by line: the same Arabic, cut where the words change
+ * rather than at every full stop, with each word named.
  */
-const ENGLISH = {
-  together: {
-    key: 'root-entry-english',
-    get: getRootEntryEnglish,
-    failed: "Couldn't put this into English",
-    fallback: 'The Arabic below is unaffected.',
-  },
-  lines: {
-    key: 'root-entry-lines',
-    get: getRootEntryLines,
-    failed: "Couldn't line the English up",
-    fallback: STOPPED,
-    after: ' The Together view above still shows the whole entry.',
-    retry: 1,
-  },
-}
-
-/** One shape of the English as a query, shared by the fetch and the prefetch. */
-const englishQuery = (english, root) => ({
-  queryKey: [english.key, root],
-  queryFn: () => english.get(root),
-  retry: english.retry ?? false,
-})
-
-/** The ways to read the rest of the entry; the first is the default. */
 const VIEWS = [
+  { id: 'words', label: 'Word by word' },
   { id: 'together', label: 'Together' },
-  { id: 'lines', label: 'Line by line' },
   { id: 'one', label: 'One at a time' },
 ]
 
@@ -147,17 +122,22 @@ function Body({
   // Asking for the English opens the Arabic whole too: the English that comes is
   // the whole entry, and under three lines of Arabic it ran far past the text it
   // translates.
+  // One at a time's lines wait for that view: fetched here too, every press
+  // cost two model calls for a root whose English is not kept.
   const open = () => {
     setOpened(true)
     setWhole(true)
-    for (const english of Object.values(ENGLISH)) queryClient.prefetchQuery(englishQuery(english, data.root))
+    for (const english of [ENGLISH.together, ENGLISH.words]) queryClient.prefetchQuery(englishQuery(english, data.root))
   }
 
   // How the panel reads: the book whole with its English after it, one flowing
   // page with the English of the line you touch, or one line at a time.
   // Together is the default because it is the book as printed; the pairings
   // are a convenience. Remembered, so a reader who prefers one keeps it.
-  const [view, setView] = useRemembered('dict.entry-view', VIEWS.map((v) => v.id))
+  const [chosenView, setView] = useRemembered('dict.entry-view', VIEWS.map((v) => v.id))
+  // Opened on its own (a wide screen), the card shows only English already
+  // kept: Word by word not yet made would be a model call nobody pressed for.
+  const view = chosenView === 'words' && !pressed && !data?.senses_kept ? 'together' : chosenView
   const paired = view !== 'together'
 
   // Asked and got no answer at all. Say so, rather than showing a loading bar
@@ -314,7 +294,7 @@ function Body({
           book spoke. A snippet answers "is this what I came for" without the
           press.
 
-          The English, and the view toggle (Together, Line by line, One at a
+          The English, and the view toggle (Word by word, Together, One at a
           time), arrive on that press.
           Reading it costs a call to a model, so it waits to be asked for; the
           Arabic beside it costs nothing and is already there. */}
@@ -342,8 +322,10 @@ function Body({
               on the left, each half facing the other, where one column left a
               third of the card empty and put the English a screen below its
               Arabic. One column again on anything narrower. */}
+          {/* Word by word lays out its own two halves per row, so it takes the card's width. */}
           <div className={`space-y-3 ${opened && !paired
-            ? 'lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start' : 'lg:max-w-[var(--lexicon-reading-w)]'}`}>
+            ? 'lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start'
+            : opened && view === 'words' ? '' : 'lg:max-w-[var(--lexicon-reading-w)]'}`}>
           {!(opened && paired) && (
             <div className="lg:col-start-2 lg:row-start-1">
             <ShowRest
@@ -373,63 +355,6 @@ function Body({
       )}
 
     </div>
-  )
-}
-
-/**
- * The rest of the entry in English, fetched when the reader opens it.
- *
- * Together: the entry retold as prose under the Arabic. Lines and one: one English
- * line for each Arabic line; the backend does the pairing and refuses an answer it
- * could not line up, so every English line belongs to the Arabic above it.
- * Either carries its own badge saying a machine wrote it, and never replaces
- * the Arabic beside it.
- */
-function EntryEnglish({ view, root, accent }) {
-  // 'lines' and 'one' are two ways to read the same pairs: one entry, one query.
-  const english = ENGLISH[view === 'one' ? 'lines' : view]
-  const { data, isPending, isError, error, refetch } = useQuery(englishQuery(english, root))
-
-  // Said in words, not only drawn: a root whose English is not kept is put into
-  // English while the reader waits, a few seconds, and two grey bars alone read
-  // as a page that has stuck.
-  if (isPending) {
-    return (
-      <div className="space-y-2" role="status">
-        <p className="type-small text-[var(--text-faint)]">Putting the entry into English…</p>
-        <Skeleton className="h-4 w-3/4" />
-        <Skeleton className="h-3 w-1/2" />
-      </div>
-    )
-  }
-
-  if (isError) {
-    return (
-      <ErrorAlert title={english.failed} error={error} fallback={english.fallback} onRetry={refetch}>
-        {english.after}
-      </ErrorAlert>
-    )
-  }
-
-  if (!(data?.english || data?.lines?.length)) return null
-
-  return (
-    <MachineEnglish source={data.source}>
-      {/* The longest entries run past what the model is handed. Saying so is the
-          difference between a short retelling and a retelling that stops. */}
-      {data.truncated && (
-        <p className="type-small text-[var(--text-faint)]">
-          The entry was longer than could be read at once, so this covers its opening.
-        </p>
-      )}
-      {view === 'lines' && <LinePage lines={data.lines} accent={accent} />}
-      {view === 'one' && <LineSpotlight lines={data.lines} accent={accent} />}
-      {view === 'together' && (
-        <p className="type-body text-[var(--text)] whitespace-pre-line">
-          {data.english}
-        </p>
-      )}
-    </MachineEnglish>
   )
 }
 

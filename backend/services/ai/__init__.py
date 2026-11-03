@@ -7,7 +7,7 @@ Backend resolution order (auto mode):
 
 Public functions mirror the old groq/__init__.py interface so routers
 need no changes:
-    analyze_sarf, explain_root_entry, explain_root_entry_lines, get_backend_name
+    analyze_sarf, explain_root_entry, explain_root_entry_lines, explain_root_entry_senses, get_backend_name
 """
 from __future__ import annotations
 
@@ -175,6 +175,21 @@ def explain_root_entry_lines(root: str, lines: list[str], reference: str | None 
               if reference else "")
     return _ask(
         prompts.ROOT_ENTRY_LINES_USER.format(root=root, numbered=numbered, count=len(lines), reference=shared),
+        max_tokens=get_settings().root_entry_max_tokens,
+    )
+
+
+def explain_root_entry_senses(root: str, lines: list[str], reference: str | None = None) -> dict:
+    """A Maqayees entry cut into the words it explains, each with its lines.
+
+    Returns the model's answer as it came; root_senses.check holds it against
+    the book before the router keeps or shows any of it.
+    """
+    numbered = "\n".join(f"{i + 1}. {line}" for i, line in enumerate(lines))
+    shared = (prompts.ROOT_ENTRY_LINES_REFERENCE.format(english=reference[: get_settings().root_entry_truncate_chars])
+              if reference else "")
+    return _ask(
+        prompts.ROOT_ENTRY_SENSES_USER.format(root=root, numbered=numbered, count=len(lines), reference=shared),
         max_tokens=get_settings().root_entry_max_tokens,
     )
 

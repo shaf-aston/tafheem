@@ -12,11 +12,13 @@ from backend.models.dictionary import (
     DictionaryEntry,
     DictionaryResponse,
     EntryLine,
+    EntrySense,
     LexiconEntry,
     LexiconsResponse,
     ReadAs,
     RootEntryEnglishResponse,
     RootEntryLinesResponse,
+    RootEntrySensesResponse,
     RootMeaning,
     RootMeaningResponse,
     SentenceResponse,
@@ -31,6 +33,7 @@ from backend.services.core import provenance
 from backend.services.dictionary import root_english
 from backend.services.dictionary import root_gloss
 from backend.services.dictionary import root_meaning
+from backend.services.dictionary import root_senses
 from backend.services.dictionary import roots
 from backend.services.dictionary import sentence_meaning
 from backend.services.sarf import verb_forms
@@ -168,7 +171,13 @@ async def get_root_meaning(root: Root) -> RootMeaningResponse:
             if entry.english_source_key else None
         ),
         english_kept=root_english.get(root_meaning.book_root_of(root) or root) is not None,
+        senses_kept=_senses_kept(entry.meaning, root_meaning.book_root_of(root) or root),
     )
+
+
+def _senses_kept(meaning: dict, book_root: str) -> bool:
+    lines, _ = root_gloss.line_budget(root_gloss.rest_of(meaning), sys.maxsize)
+    return bool(lines) and root_english.get_senses(book_root, len(lines)) is not None
 
 
 @router.get("/lexicons", response_model=LexiconsResponse)
@@ -329,6 +338,56 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
     return RootEntryLinesResponse(
         root=root,
         lines=[EntryLine(arabic=a, english=e) for a, e in zip(lines, kept)],
+        truncated=truncated,
+        source=provenance.of("ai"),
+    )
+
+
+@router.get("/root-meaning/english/senses", response_model=RootEntrySensesResponse)
+async def get_root_entry_senses(root: Root) -> RootEntrySensesResponse:
+    """The rest of the entry cut into the words it explains, each beside its lines.
+
+    The same rest, cut the same way, as the line-by-line view; the model only says
+    which lines go with which word, and root_senses holds that against the book.
+    Kept senses answer at once; otherwise the opening the model can read is cut
+    into words on the spot and kept.
+    """
+    book_root, entry = _book_entry(root)
+    every_line, _ = root_gloss.line_budget(root_gloss.rest_of(entry), sys.maxsize)
+    if not every_line:
+        raise HTTPException(
+            status_code=404,
+            detail="The book prints nothing after the origin sense here, so there are no words to show.",
+        )
+
+    kept = root_english.get_senses(book_root, len(every_line))
+    if kept is not None:
+        shipped = root_english.shipped_senses(book_root, len(every_line))
+        return RootEntrySensesResponse(
+            root=root,
+            senses=[EntrySense(**s) for s in root_senses.shown(kept, every_line)],
+            source=provenance.of("maqayees_senses" if shipped else "ai"),
+        )
+
+    lines, truncated = root_gloss.line_budget(root_gloss.rest_of(entry), get_settings().root_entry_truncate_chars)
+    kept = root_english.get_senses(book_root, len(lines)) if truncated else None
+    if kept is None:
+        answer = await _ask_ai(
+            ai_service.explain_root_entry_senses, root, lines, root_english.get(book_root),
+            operation="word-by-word English of a Maqayees entry",
+        )
+        kept = root_senses.check(answer, lines)
+        if kept is None:
+            raise HTTPException(
+                status_code=502,
+                detail="The words could not be lined up with the book this time, "
+                       "so they are not shown. The English of the whole entry is unaffected.",
+            )
+        await asyncio.to_thread(root_english.put_senses, book_root, kept)
+
+    return RootEntrySensesResponse(
+        root=root,
+        senses=[EntrySense(**s) for s in root_senses.shown(kept, lines)],
         truncated=truncated,
         source=provenance.of("ai"),
     )
