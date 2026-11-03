@@ -14,3 +14,7 @@ def test_a_bare_word_after_hal_is_the_verb_and_its_doer_follows():
 
 def test_vowels_only_a_noun_fits_keep_the_noun_after_hal():
     assert roles("هل نُضْجُ التِّينِ مُبَكِّرٌ") == ["حرف", "مبتدأ", "مضاف إليه", "خبر"]
+
+
+def test_a_noun_after_kayfa_stays_a_noun():
+    assert roles("كيف حالك")[1] == "مبتدأ"
