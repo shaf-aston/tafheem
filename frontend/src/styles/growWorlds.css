@@ -14,18 +14,34 @@
 .grow-lesson-bar { display: block; height: 8px; border-radius: 9px; background: var(--surface-hi); overflow: hidden; }
 .grow-lesson-bar i { display: block; height: 100%; border-radius: 9px; background: var(--w, var(--c)); transition: width calc(var(--motion-spring-ms) * 1ms) ease; }
 
-/* ── home: level, streak, today's XP ── */
-.grow-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-/* Laid out while the record is read, so the worlds below do not move when it lands. */
-.grow-stats[data-pending] { visibility: hidden; }
-.grow-stat { display: grid; align-content: start; gap: 4px; padding: 12px 14px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
-.grow-stat-wide { grid-column: span 2; }
-.grow-stat dt { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
-.grow-stat dd { display: grid; gap: 6px; font-size: var(--type-body); font-weight: 700; color: var(--text); }
-.grow-stat-small { font-size: var(--type-small); font-weight: 400; color: var(--text-dim); }
-@media (max-width: 560px) {
-  .grow-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* ── home: today's lesson beside the strip of level, streak and goal ── */
+.grow-lead { display: grid; gap: 12px; }
+@media (min-width: 64rem) {
+  .grow-lead { grid-template-columns: minmax(0, 1fr) 16rem; align-items: start; }
+  .grow-lead .grow-strip { flex-direction: column; align-items: stretch; }
+  .grow-lead .grow-strip-item + .grow-strip-item { border-inline-start: 0; border-top: 1px solid var(--border); padding-inline-start: 0; padding-top: 10px; }
 }
+
+/* ── home: level, streak, today's XP as one slim strip ── */
+.grow-strip {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  padding: 10px 14px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border);
+}
+/* Laid out while the record is read, so the worlds below do not move when it lands. */
+.grow-strip[data-pending] { visibility: hidden; }
+.grow-strip-item { display: grid; gap: 2px; min-width: 0; }
+.grow-strip-item + .grow-strip-item { border-inline-start: 1px solid var(--border); padding-inline-start: 14px; }
+.grow-strip-item dt { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
+.grow-strip-item dd { display: grid; gap: 4px; font-size: var(--type-ui); font-weight: 700; color: var(--text); }
+.grow-strip-item dd .grow-lesson-bar { height: 5px; }
+.grow-strip-item[data-met] dd { color: var(--c); }
+.grow-goal-pick > summary { cursor: pointer; list-style: none; text-decoration: underline dotted; text-underline-offset: 3px; }
+.grow-goal-pick > summary::-webkit-details-marker { display: none; }
+.grow-goal-pick[open] > .grow-goals { margin-top: 6px; }
+
+/* ── home: the worlds on labelled shelves ── */
+.grow-shelf { display: grid; gap: 8px; }
+.grow-shelf-h { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
 
 /* ── home: today's lesson, the one thing to press ── */
 .grow-today {
@@ -100,6 +116,20 @@
 .grow-world-title > div { flex: 1 1 16rem; min-width: 0; }
 .grow-world-idea { font-size: var(--type-ui); color: var(--text-dim); max-width: 40ch; }
 .grow-world-ar { font-size: 3rem; line-height: 1; color: var(--w, var(--c)); }
+.grow-world-about { display: none; font-size: var(--type-ui); color: var(--text-dim); }
+.grow-world-about > summary { cursor: pointer; color: var(--w, var(--c)); font-weight: 600; }
+.grow-world-about > p { margin-top: 4px; }
+/* A phone: one compact line, emblem, name and Arabic; the idea folds away. */
+@media (max-width: 39.99rem) {
+  .grow-world-hd { gap: 10px; margin-bottom: 12px; }
+  .grow-world-title { flex-wrap: nowrap; align-items: center; padding: 10px 14px; gap: 12px; }
+  .grow-world-title > div { flex: 1 1 auto; }
+  .grow-world-scene, .grow-world-idea { display: none; }
+  .grow-world-about { display: block; }
+  .grow-world-pic { order: -1; display: flex; align-items: center; gap: 8px; }
+  .grow-world-pic svg { width: 36px; height: 36px; }
+  .grow-world-ar { font-size: 1.6rem; }
+}
 
 /* ── the Words world: its stages ── */
 .grow-world-body { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); align-items: start; }
@@ -109,6 +139,14 @@
 @media (min-width: 880px) {
   .grow-world-body { grid-template-columns: minmax(0, 1fr) minmax(260px, 320px); gap: 20px; }
   .grow-world-side { order: 0; position: sticky; top: 16px; }
+}
+/* Start, in every world: beside the picture on a wide screen; on a phone one bar
+   pinned above the tab bar, under the thumb however far the world is scrolled.
+   Which one is drawn is the PHONE query (lib/hooks/useMedia), so there is one button. */
+.grow-start-pin {
+  position: sticky; z-index: var(--layer-sticky); margin-top: 16px;
+  bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px));
+  padding: 10px 0 8px; background: linear-gradient(transparent, var(--bg) 35%);
 }
 .grow-stages { display: grid; gap: 8px; }
 .grow-stage-row { display: grid; grid-template-columns: 36px minmax(0, 1fr); align-items: center; gap: 4px 12px; padding: 10px 12px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
@@ -131,6 +169,24 @@
 }
 .grow-lesson-top { display: flex; align-items: center; gap: 12px; }
 .grow-lesson-top .grow-lesson-bar { flex: 1; height: 12px; }
+/* The lesson's bar, a segment per card that keeps how each went (LessonRunner Segments). */
+.grow-segments { flex: 1; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 3px; height: 12px; }
+.grow-segments > i { border-radius: 4px; background: var(--surface-hi); transition: background-color calc(var(--motion-base-ms) * 1ms) ease-out; }
+.grow-segments > i[data-here] { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--w) 45%, transparent); }
+.grow-segments > i[data-mark='seen'] { background: var(--w); }
+.grow-segments > i[data-mark='right'] { background: var(--success); }
+.grow-segments > i[data-mark='wrong'] { background: var(--danger); }
+.grow-lesson-done .grow-segments { flex: none; width: min(100%, 22rem); height: 8px; justify-self: center; margin-inline: auto; }
+
+/* A wide screen: a teaching card in two columns, the Arabic big on the left, the
+   meaning, its notes and the way on to the right, using the width. */
+@media (min-width: 64rem) {
+  .grow-lesson:has(.grow-teach-ar) { max-width: 920px; }
+  .grow-card:has(> .grow-teach-ar) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 28px; align-items: start; }
+  .grow-card:has(> .grow-teach-ar) > * { grid-column: 2; }
+  .grow-card > .grow-teach-ar { grid-column: 1; grid-row: 1 / span 8; align-self: stretch; display: grid; place-items: center; font-size: 3.4rem; }
+  .grow-lesson:has(.grow-teach-ar) .grow-lesson-foot { margin-inline-start: calc(50% + 14px); }
+}
 .grow-card { display: grid; gap: 14px; animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) both; }
 .grow-card-tag { justify-self: start; font-size: max(var(--type-micro), 0.6875rem); /* the 11px floor, as text.css gives .type-micro */ font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--w) 20%, var(--surface)); color: var(--w); }
 .grow-card-ask { font-size: var(--type-body); color: var(--text-dim); }
@@ -166,7 +222,6 @@
 .grow-goals { display: flex; gap: 4px; }
 .grow-goal { min-width: 36px; min-height: 28px; padding: 0 8px; border-radius: 999px; font-size: var(--type-small); font-weight: 700; color: var(--text-dim); border: 1px solid var(--border); }
 .grow-goal[aria-checked='true'] { color: var(--bg); background: var(--c); border-color: var(--c); }
-.grow-stat[data-met] { border-color: color-mix(in srgb, var(--c) 55%, var(--border)); }
 
 /* ── hadith: teach line, whole text, the gap ── */
 .grow-teach-line { font-size: var(--type-body); font-weight: 600; line-height: 1.5; }

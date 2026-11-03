@@ -1,6 +1,13 @@
 {
   "_comment": "Grow's worlds, in home order. `live` false = shown as coming. `kind` picks the screen (GrowPanel.jsx SCREENS): `lessons` = LessonWorld fed by its hook (lib/grow/useBasicsWorld.js, lib/grow/useWordsWorld.js, lib/grow/useHadithWorld.js, lib/grow/usePrayerWorld.js, lib/quran/useQuranWorld.js), `book` = BookWorld (a book's parts, then a part's lessons) from `source` (lib/grow/useBookWorld.js). `module`: the record every world files its answers under, named here only (lib/grow/worlds.js); never renamed, since saved answers keep it. Words files under the Quiz's own record, `quiz`. `backdrop` (optional) names a picture in public/grow/backdrops/manifest.json to fade in behind the world's screen (components/grow/WorldBackdrop.jsx); lib/backdrops.test.js checks it exists. `view` (lessons) picks the world's picture, components/grow/scenes; without one the world page lists its stages. Colour: theme.json `world` by id.",
   "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called. `surahs` (Quran): the surahs the items come from, in order.",
+  "_shelves_comment": "How Grow's home groups the worlds into labelled rows (GrowHome.jsx), in this order; inside a row the worlds keep their order below. A world on no shelf joins the last row, so a new world is never lost from the home.",
+  "shelves": [
+    { "id": "language", "label": "Language", "worlds": ["basics", "words", "sarf", "nahw"] },
+    { "id": "belief", "label": "Belief", "worlds": ["aqidah", "jawhara", "wasitiyya"] },
+    { "id": "practice", "label": "Practice", "worlds": ["fiqh", "prayer"] },
+    { "id": "texts", "label": "Texts", "worlds": ["quran", "hadith"] }
+  ],
   "worlds": [
     {
       "id": "basics",

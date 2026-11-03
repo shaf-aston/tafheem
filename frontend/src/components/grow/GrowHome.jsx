@@ -8,6 +8,8 @@
  */
 import { Fragment, useState } from 'react'
 
+import config from '../../config/worlds.json'
+
 import { GOAL, GOAL_KEY, GOALS, rankOf, shareOf } from '../../lib/learner/rewards'
 import { REVIEW_SIZE } from '../../lib/grow/bookLesson'
 import { LAST_BOOK, REVIEW } from '../../lib/grow/useBookWorld'
@@ -19,6 +21,7 @@ import LogInButton from '../profile/LogInButton'
 import Emblem from '../ui/display/Emblem'
 import ArabicText from '../ui/text/ArabicText'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
+import Odometer from '../ui/text/Odometer'
 import SectionHeader from '../ui/display/SectionHeader'
 import { useReveal } from '../../lib/motion/useReveal'
 import { useTilt } from '../../lib/motion/useTilt'
@@ -29,26 +32,31 @@ const say = sayIn('en')
 /** What the stats are laid out with while the record is read: shown hidden (data-pending), so the worlds below stay put. */
 const HELD = { level: 1, into: 0, need: 1, streak: 0, xpToday: 0 }
 
-/** Level, streak and goal; nothing when the record could not be read. */
+/**
+ * Level, streak and goal as one slim strip: "Seed بذرة · 3-day streak · 20 / 50 XP
+ * today". Beside today's lesson on a wide screen it stands as a column; on a
+ * phone, one line under it. The goal's picker is behind a press on the goal, so
+ * the strip is a line and not a panel. Nothing when the record could not be read.
+ */
 function Growth({ rewards: record, pending }) {
   if (!record && !pending) return null
   const rewards = record ?? HELD
   const rank = rankOf(rewards.level)
   return (
-    <dl className="grow-stats" data-pending={record ? undefined : ''} aria-hidden={record ? undefined : true}>
-      <div className="grow-stat grow-stat-wide rise-in">
+    <dl className="grow-strip rise-in" data-pending={record ? undefined : ''} aria-hidden={record ? undefined : true}>
+      <div className="grow-strip-item">
         <dt>{say('Level {level}', { level: rewards.level })}</dt>
         <dd>
           <span>{rank.en} <ArabicText size="sm">{rank.ar}</ArabicText></span>
-          <span className="grow-lesson-bar" aria-hidden="true"><i style={{ width: `${100 * shareOf(rewards)}%` }} /></span>
-          <span className="grow-stat-small tabular-nums">{say('{into} / {need} XP to the next level', rewards)}</span>
+          <span className="grow-lesson-bar" aria-hidden="true" title={say('{into} / {need} XP to the next level', rewards)}>
+            <i style={{ width: `${100 * shareOf(rewards)}%` }} />
+          </span>
         </dd>
       </div>
-      <div className="grow-stat rise-in">
+      <div className="grow-strip-item">
         <dt>{say('Streak')}</dt>
-        <dd className="tabular-nums">
-          {rewards.streak === 1 ? say('1 day') : say('{n} days', { n: rewards.streak })}
-          <span className="grow-stat-small">{rewards.streak ? say('Come back tomorrow to keep it') : say('One lesson today starts it')}</span>
+        <dd title={rewards.streak ? say('Come back tomorrow to keep it') : say('One lesson today starts it')}>
+          <span><Odometer value={rewards.streak} /> {rewards.streak === 1 ? say('day') : say('days')}</span>
         </dd>
       </div>
       <Goal xpToday={rewards.xpToday} />
@@ -56,25 +64,28 @@ function Growth({ rewards: record, pending }) {
   )
 }
 
-/** Today's XP against the picked goal. */
+/** Today's XP against the picked goal; the goals open from a press on it. */
 function Goal({ xpToday }) {
   const [picked, pick] = useRemembered(GOAL_KEY, GOALS, GOAL)
   const goal = Number(picked)
   const met = xpToday >= goal
   return (
-    <div className="grow-stat rise-in" data-met={met ? '' : undefined}>
-      <dt>{say('Daily goal')}</dt>
+    <div className="grow-strip-item" data-met={met ? '' : undefined}>
+      <dt>{say('Today')}</dt>
       <dd>
-        <span className="tabular-nums">{met ? say('Met · {xp} XP', { xp: xpToday }) : say('{xp} / {goal} XP', { xp: xpToday, goal })}</span>
-        <span className="grow-lesson-bar" aria-hidden="true"><i style={{ width: `${100 * Math.min(1, xpToday / goal)}%` }} /></span>
-        <span className="grow-goals" role="radiogroup" aria-label={say('Daily goal')}>
-          {GOALS.map((each) => (
-            <button key={each} type="button" role="radio" aria-checked={each === picked} className="grow-goal"
-              onClick={() => pick(each)}>
-              {each}
-            </button>
-          ))}
-        </span>
+        <details className="grow-goal-pick">
+          <summary aria-label={say('Daily goal: {goal} XP. Change it', { goal })}>
+            <Odometer value={xpToday} /> {met ? say('XP · goal met') : say('/ {goal} XP', { goal })}
+          </summary>
+          <span className="grow-goals" role="radiogroup" aria-label={say('Daily goal')}>
+            {GOALS.map((each) => (
+              <button key={each} type="button" role="radio" aria-checked={each === picked} className="grow-goal"
+                onClick={(event) => { pick(each); event.currentTarget.closest('details').open = false }}>
+                {each}
+              </button>
+            ))}
+          </span>
+        </details>
       </dd>
     </div>
   )
@@ -265,15 +276,38 @@ export default function GrowHome({ worlds, rewards, rewardsPending, guest, lesso
       <SectionHeader tab="grow" subtitle={say('A little every day, in every part of the app.')} history={false}
         aside={guest ? <LogInButton>{say('Log in to keep your XP on any device')}</LogInButton> : null} />
       {resume && <Resume world={worldOf(resume.id)} onResume={onResume} />}
-      {/* Today's lesson first, where a phone's first screen shows it; the level, streak and goal under it. */}
-      <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />
-      <Growth rewards={rewards} pending={rewardsPending} />
-      <h3 className="grow-worlds-h">{say('Worlds')}</h3>
-      <div className="grow-worlds">
-        {worlds.map((world, index) => (
-          <WorldTile key={world.id} world={world} index={index} {...(statusOf[world.id] ?? {})} onOpen={onOpen} />
-        ))}
+      {/* Today's lesson and the strip of level, streak and goal side by side on a
+          wide screen, so the worlds come up a whole screen higher; on a phone the
+          lesson first, where the first screen shows it, the strip under it. */}
+      <div className="grow-lead">
+        <Today worldOf={worldOf} lessons={lessons} books={books} onStart={onStart} onStartBook={onStartBook} />
+        <Growth rewards={rewards} pending={rewardsPending} />
       </div>
+      <h3 className="grow-worlds-h">{say('Worlds')}</h3>
+      {shelvesOf(worlds).map(({ id, label, worlds: onShelf }) => (
+        <section key={id} className="grow-shelf" aria-label={label}>
+          <h4 className="grow-shelf-h">{label}</h4>
+          <div className="grow-worlds">
+            {onShelf.map(({ world, index }) => (
+              <WorldTile key={world.id} world={world} index={index} {...(statusOf[world.id] ?? {})} onOpen={onOpen} />
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   )
+}
+
+/**
+ * The worlds in worlds.json's labelled rows, each world in its own order inside
+ * its row; a world on no shelf joins the last, so a new one is never lost. Each
+ * keeps its place in the whole list as `index`, for the tiles' stagger.
+ */
+function shelvesOf(worlds) {
+  const placed = new Set(config.shelves.flatMap((shelf) => shelf.worlds))
+  const indexed = worlds.map((world, index) => ({ world, index }))
+  return config.shelves.map((shelf, i, all) => ({
+    ...shelf,
+    worlds: indexed.filter(({ world }) => shelf.worlds.includes(world.id) || (i === all.length - 1 && !placed.has(world.id))),
+  })).filter((shelf) => shelf.worlds.length)
 }
