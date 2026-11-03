@@ -46,4 +46,16 @@ describe('RootMeaningCard', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Hidden' }))
     expect(screen.queryByText('نصره ينصره نصرا')).toBeNull()
   })
+
+  it('lays the words out as cards from the layout icons', async () => {
+    renderScreen(<RootMeaningCard root="نصر" accent="#0a7" />, { routes })
+    fireEvent.click(await screen.findByText('Read in English'))
+    await screen.findByText('naṣarahu')
+    const cards = screen.getByRole('button', { name: 'Cards, one per word' })
+    fireEvent.click(cards)
+    expect(cards.getAttribute('aria-pressed')).toBe('true')
+    // A card shows the meaning on its own, without the row's dash
+    expect(screen.getByText('he helped him')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Rows, the book beside each word' }))
+  })
 })
