@@ -32,6 +32,18 @@ function Topic({ dialect, unit, at, words }) {
   return words || !data.lessons[at].phrases.length ? <WordsView unit={data} at={at} /> : <TopicView unit={data} at={at} />
 }
 
+// The next topic the dialect has written, so a learner flows on instead of climbing back out.
+function NextTopic({ unit, at, onGo }) {
+  const next = unit.lessons.findIndex((l, i) => i > at && l.written)
+  if (next < 0) return null
+  return (
+    <button type="button" onClick={() => onGo(next)}
+      className="press mt-12 w-full py-4 rounded-[var(--radius-md)] border border-[var(--border)] type-ui font-semibold text-[var(--text)] hover:border-[var(--border-hi)] focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
+      Next topic: {unit.lessons[next].title} →
+    </button>
+  )
+}
+
 export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   const catalogue = useQuery(colloquialQuery)
   const dialects = catalogue.data?.dialects ?? []
@@ -82,6 +94,7 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
       {unit && lessonAt !== null && (
         <div key={`${unit.unit}/${lessonAt}/${words}`} className="rise-in">
           <Topic dialect={dialect.key} unit={unit.unit} at={lessonAt} words={words} />
+          <NextTopic unit={unit} at={lessonAt} onGo={(next) => { go({ dialect: dialect.key, unit: unit.unit, at: next, words: false }); window.scrollTo({ top: 0 }) }} />
         </div>
       )}
     </div>
