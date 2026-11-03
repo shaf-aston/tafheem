@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { laneEntry, mendWords, plainEntry, tidyNotes } from './laneEntry'
+import { arabicRuns, laneEntry, mendWords, plainEntry, presentTense, tidyNotes } from './laneEntry'
 
 const FSI = '⁨'
 const PDI = '⁩'
@@ -126,6 +126,20 @@ describe('laneEntry', () => {
   it('drops the unvowelled copy after a heading word, not a second word', () => {
     const words = laneEntry(`${ar('مَآبٌ مآب')} A place.\n${ar('رِيحٌ مُؤْوِبَةٌ')} A wind.`).map((f) => f.word)
     expect(words).toEqual(['مَآبٌ', 'رِيحٌ مُؤْوِبَةٌ'])
+  })
+
+  it('drops every unvowelled spelling the dump adds, keeping a whole phrase', () => {
+    const words = laneEntry([
+      `${ar('خَارِجِىٌّ خارج خارجى خارجي خارجيي')} One who goes out.`,
+      `${ar('رَجُلٌ خُرَجَةٌ وُلَجَةٌ رجل خرجة ولجه رجل خرجة ولجة')} A man who goes out much.`,
+      `${ar('بغلة مَكْتُوبَةٌ')} A she-mule.`,
+    ].join('\n')).map((f) => f.word)
+    expect(words).toEqual(['خَارِجِىٌّ', 'رَجُلٌ خُرَجَةٌ وُلَجَةٌ', 'بغلة مَكْتُوبَةٌ'])
+  })
+
+  it('still never lifts an Arabic sentence into a heading', () => {
+    const sentence = 'حُمَادَاكَ أَنْ تَفْعَلَ كَذَا وَكَذَا فِي ذٰلِكَ اليَوْمِ'
+    expect(laneEntry(`${ar(sentence)} Thy utmost.`)[0].word).toBe(null)
   })
 
   it('leaves a section that opens in English without a word', () => {
@@ -277,5 +291,45 @@ describe('tidy view', () => {
   it('starts each verb form on its own line in the prose view', () => {
     const said = plainEntry(`he did it. (TA.) 2 ${ar('شَرَّكَ')} see 4.`, { tidy: true })
     expect(said).toBe(`he did it.\n2 ${ar('شَرَّكَ')} see 4.`)
+  })
+})
+
+describe('presentTense', () => {
+  it('spells the present of a sound verb out of the vowel Lane gives', () => {
+    expect(presentTense(`aor. ${ar('خَرُجَ')} , inf. n.`)).toBe(`aor. ${ar('يَخْرُجُ')} , inf. n.`)
+    expect(presentTense(`aor. ${ar('عَلَمَ')}`)).toBe(`aor. ${ar('يَعْلَمُ')}`)
+    expect(presentTense(`aor. of the latter ${ar('عَلُمَ')}`)).toBe(`aor. of the latter ${ar('يَعْلُمُ')}`)
+  })
+
+  it('puts back the hamza a verb opens with', () => {
+    expect(presentTense(`aor. ${ar('اَمُرَ')}`)).toBe(`aor. ${ar('يَأْمُرُ')}`)
+  })
+
+  it('shows only the vowel for a weak or doubled verb, never a made-up form', () => {
+    expect(presentTense(`aor. ${ar('قَوُلَ')}`)).toBe(`aor. ${ar('ـُ')}`)
+    expect(presentTense(`aor. ${ar('مَدُدَ')}`)).toBe(`aor. ${ar('ـُ')}`)
+  })
+
+  it('leaves a present Lane already spelled out', () => {
+    expect(presentTense(`aor. ${ar('يَرْمِى')}, (T,)`)).toBe(`aor. ${ar('يَرْمِى')}, (T,)`)
+  })
+
+  it('reaches the entry as drawn', () => {
+    const [form] = laneEntry(`aor. ${ar('كَتُبَ')} , He wrote.`)
+    expect(form.senses[0].pieces[0].text).toContain(ar('يَكْتُبُ'))
+  })
+})
+
+describe('scan corrections', () => {
+  it('fixes the reviewed scan errors as the entry is drawn', () => {
+    expect(plainEntry('cold in the place that is hissed. (A, TA.)')).toContain('the place that is kissed.')
+  })
+})
+
+describe('arabicRuns', () => {
+  it('cuts the fenced Arabic out with its marks taken off', () => {
+    expect(arabicRuns(`a ${ar('كتب')}, b`)).toEqual([
+      { arabic: false, text: 'a ' }, { arabic: true, text: 'كتب' }, { arabic: false, text: ', b' },
+    ])
   })
 })

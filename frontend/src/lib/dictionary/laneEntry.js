@@ -25,10 +25,14 @@
  * use this markup passes through unharmed.
  */
 
+import config from '../../config/dictionary.json'
+
 // The bidi isolates the dump wraps every Arabic run in. Kept in the output,
-// since they are what stops an Arabic word reordering the English around it.
-const FSI = '⁨'
-const PDI = '⁩'
+// since they are what stops an Arabic word reordering the English around it;
+// the page draws each fenced run as its own <bdi> and drops the marks, so they
+// never come along when the text is copied (arabicRuns below).
+export const FSI = '⁨'
+export const PDI = '⁩'
 
 // A word the dump broke in two: ^ and @ where the halves are simply adjacent,
 // = where the second half opens with a hamza the dump lost. Only matched
@@ -195,6 +199,60 @@ export function mendWords(text) {
     .replace(STRAY_TATWEEL, '')
 }
 
+// "aor. خَرُجَ": the dump prints the present tense as the past with the present's
+// vowel on its middle letter, which reads as a second past tense. Lane's page
+// has "aor. ـُ", the vowel alone. Only "of the former" / "of the latter" may sit
+// between, as Lane writes when one root has two verbs.
+const AORIST = new RegExp(`(aor\\.(?: of the (?:former|latter)(?: verb)?)?\\s*)${FSI}([^${FSI}${PDI}]+)${PDI}`, 'g')
+// A sound verb in that shape: letter, fatha, letter, its present vowel, letter,
+// fatha. Anything else (a present already spelled out, يَرْمِى, or a verb with a
+// weak or doubled letter, قَوُلَ) is left to the fallback or as printed.
+const PAST_WITH_VOWEL = /^([^\u064B-\u0652])\u064E([^\u064B-\u0652])([\u064E-\u0650])([^\u064B-\u0652])\u064E$/
+// A weak letter or a hamza changes the present's shape (قَالَ, يَقُولُ), so the
+// app never builds one around it; Lane's own vowel mark is shown instead.
+const WEAK = /[اأإآءؤئوىي]/
+
+/**
+ * The present tense itself where it can be built without guessing: خَرُجَ is
+ * يَخْرُجُ. A verb opening on a hamza takes it back, اَمُرَ is يَأْمُرُ. Weak and
+ * doubled verbs show Lane's printed mark, ـُ, rather than a made-up form.
+ */
+function presentOf(past) {
+  const found = past.match(PAST_WITH_VOWEL)
+  if (!found) return null
+  const [, first, middle, vowel, last] = found
+  const c1 = first === 'ا' || first === 'أ' ? 'أ' : first
+  if (WEAK.test(middle + last) || (c1 !== 'أ' && WEAK.test(c1)) || middle === last) return `ـ${vowel}`
+  return `يَ${c1}ْ${middle}${vowel}${last}ُ`
+}
+
+export function presentTense(text) {
+  return text.replace(AORIST, (all, lead, past) => {
+    const present = presentOf(past)
+    return present ? `${lead}${FSI}${present}${PDI}` : all
+  })
+}
+
+/** The reviewed scan fixes in dictionary.json's lane.corrections, applied as drawn. */
+function corrected(text) {
+  let out = text
+  for (const { from, to } of config.lane.corrections) out = out.split(from).join(to)
+  return out
+}
+
+/** The entry as it should read: words mended, present tenses spelled, scan errors fixed. */
+const readable = (text) => corrected(presentTense(mendWords(text ?? '')))
+
+/**
+ * A line cut into Arabic runs and the rest, the fence marks taken off: the page
+ * draws each Arabic run in its own <bdi>, which does the marks' job and is never
+ * copied out as two invisible characters around every word.
+ */
+export function arabicRuns(text) {
+  return text.split(new RegExp(`${FSI}([^${FSI}${PDI}]*)${PDI}`)).map((part, i) => ({ arabic: i % 2 === 1, text: part }))
+    .filter((run) => run.text)
+}
+
 /**
  * The same entry for a place that prints it as prose rather than setting it
  * out. Daleel quotes whole entries beside an ayah, and the dump's own marks,
@@ -202,7 +260,7 @@ export function mendWords(text) {
  * litter. Each becomes the line break it stands for.
  */
 export function plainEntry(text, { tidy = false } = {}) {
-  let said = mendWords(text ?? '')
+  let said = readable(text)
   // Tidy also starts each verb form on its own line, where the book starts it.
   if (tidy) said = tidyNotes(breakClauses(said.replace(FORM, '\n$1 ')))
   // The space in front of the mark is the one the sentence ended with, and it
@@ -293,27 +351,33 @@ function senses(text, tidy) {
   return out
 }
 
-// The Arabic word a section opens with, and the punctuation after it. Capped so
-// an Arabic sentence is never lifted into a heading.
-const LEAD_WORD = new RegExp(`^${FSI}([^${FSI}${PDI}]{1,30})${PDI}[\\s,;:]*`)
+// The Arabic run a section opens with, and the punctuation after it. The run
+// may be long, since the dump follows the heading with its unvowelled spellings,
+// "خَارِجِىٌّ خارج خارجى خارجي"; it is the heading left once they go that is
+// capped (HEADING_MAX), so an Arabic sentence is never lifted into one.
+const LEAD_WORD = new RegExp(`^${FSI}([^${FSI}${PDI}]{1,120})${PDI}[\\s,;:]*`)
+const HEADING_MAX = 30
 
-const HARAKAT = /[ً-ْ]/g
+const HARAKAT = /[ً-ْ]/
 
 /**
- * The heading word without the unvowelled copy the dump prints after it:
- * "مَآبٌ مآب" is one word, "رِيحٌ مُؤْوِبَةٌ" is a phrase and stays whole.
+ * The heading without the unvowelled spellings the dump adds after it:
+ * "خَرْجَةٌ خرج خرجه خرجة" is خَرْجَةٌ, "رَجُلٌ خُرَجَةٌ وُلَجَةٌ رجل خرجة ..." is the
+ * three-word phrase. Everything up to the last vowelled word stays, so a phrase
+ * with a bare word inside it, "بغلة مَكْتُوبَةٌ", keeps it.
  */
 function headingWord(run) {
-  const [first, ...rest] = run.trim().split(/\s+/)
-  const bare = first.replace(HARAKAT, '')
-  return [first, ...rest.filter((word) => word !== bare)].join(' ')
+  const words = run.trim().split(/\s+/)
+  const last = words.findLastIndex((word) => HARAKAT.test(word))
+  return words.slice(0, Math.max(last, 0) + 1).join(' ')
 }
-
 /** A section: its opening word lifted out as the heading, the rest as senses. */
 function section(form, raw, tidy) {
   const found = raw.match(LEAD_WORD)
-  const text = found ? raw.slice(found[0].length) : raw
-  return { form, word: found ? headingWord(found[1]) : null, senses: senses(text, tidy) }
+  const word = found && headingWord(found[1])
+  const lifted = word && word.length <= HEADING_MAX
+  const text = lifted ? raw.slice(found[0].length) : raw
+  return { form, word: lifted ? word : null, senses: senses(text, tidy) }
 }
 
 /**
@@ -351,5 +415,5 @@ function headword(raw, tidy) {
  * the one thing no rule about Lane's wording could do safely.
  */
 export function laneEntry(raw, { tidy = false } = {}) {
-  return mendWords(raw ?? '').split('\n').flatMap((line) => headword(line, tidy))
+  return readable(raw).split('\n').flatMap((line) => headword(line, tidy))
 }

@@ -88,6 +88,15 @@ def test_arabic_inside_an_english_sentence_is_fenced_off():
     assert fenced == "⁨كتب⁩ 1, aor."
 
 
+def test_a_lane_headword_keeps_its_first_spelling_only():
+    """Perseus lists the unvowelled spellings after the headword as more <orth>
+    tags; Lane printed only the first, and a heading of five spellings was lost."""
+    said = builder.Lane()._said(
+        '<orth extent="full" lang="ar">xaArijiy~N</orth> <orth lang="ar">xArj</orth> '
+        '<orth lang="ar">xArjY</orth> One who goes out, <foreign lang="ar">xaraja</foreign>.')
+    assert said == f"⁨{builder._arabic('xaArijiy~N')}⁩ One who goes out, ⁨خَرَجَ⁩."
+
+
 # ── which book is which ──────────────────────────────────────────────────────
 # The shelf and the books above the reading rules. None of these touches a file:
 # what they decide is who is on the shelf and in what order, which is exactly

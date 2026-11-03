@@ -273,11 +273,23 @@ class Lane(Lexicon):
 
     def _said(self, fragment: str) -> str:
         """One entry as a reader sees it: English prose with its Arabic in Arabic."""
+        headed = False
+
         def turn(match):
+            nonlocal headed
             said = match.group(2).strip()
             # A lone star is Lane's own typographic mark for the headword, not
             # the letter ذ that a star stands for everywhere else in this scheme.
-            return "" if said == "*" else _arabic(said)
+            if said == "*":
+                return ""
+            # Perseus follows a headword with every unvowelled spelling of it as
+            # more <orth> tags, "خَارِجِىٌّ خارج خارجى خارجي", which printed as one
+            # long heading. Lane prints the first only; so does this.
+            if match.group(1).lower() == "orth":
+                if headed:
+                    return ""
+                headed = True
+            return _arabic(said)
 
         # markup.as_text is the app's one tag stripper, already used for every
         # other book that arrives as markup, so Lane's XML is not a second set of

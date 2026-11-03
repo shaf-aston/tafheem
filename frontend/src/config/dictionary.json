@@ -39,5 +39,14 @@
       { "id": "taj", "label": "Taj al-Arus" },
       { "id": "lane", "label": "Lane · English" }
     ]
+  },
+  "lane": {
+    "_comment": "Scan errors in the Perseus text of Lane's lexicon, each checked against its sentence before it goes in. Exact text in, exact text out, applied every time an entry is drawn (lib/dictionary/laneEntry.js); the stored entry is never changed. Each 'from' carries enough of its sentence to occur only where the error is.",
+    "_find_comment": "The Find a word box over Lane's index shows once an entry has at least find-from headwords; under that the chips fit in the rows already shown (LexiconShelf.jsx).",
+    "find-from": 12,
+    "corrections": [
+      { "from": "in the place that is hissed.", "to": "in the place that is kissed." },
+      { "from": "[think doubtful", "to": "[I think doubtful" }
+    ]
   }
 }
