@@ -119,6 +119,10 @@ class RootMeaningResponse(BaseModel):
     # only when there is English to badge, so the card never shows a credit for
     # something it is not displaying.
     english_source: Source | None = None
+    # Whether the whole entry's English is already kept (the whole-book run), so
+    # opening it costs no model call. A wide screen opens it beside the Arabic at
+    # once when it is; otherwise it waits for the reader's press.
+    english_kept: bool = False
 
 
 class LexiconEntry(BaseModel):
