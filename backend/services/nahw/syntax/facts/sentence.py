@@ -394,9 +394,11 @@ def is_zarf(token: dict, s: Sentence) -> bool:
 def zarf_in_nasb(token: dict, s: Sentence) -> bool:
     """بَيْنَ الطَّرَفَيْنِ، بَعْدَ الْفَتْحِ: a listed time or place word hung as a modifier, vowelled with a fatha or a case that
     shows nothing (ين), never bare: a noun's نعت or مضاف إليه is not put in nasb, so it is the zarf (Tasheel 3.2 p67).
-    Not a built word (أَيْنَ الْكِتَابُ: the khabar) nor one whose case is unseen (الْيَدُ الْعُلْيَا: a صفة)."""
+    Not a built word (أَيْنَ الْكِتَابُ: the khabar), one whose case is unseen (الْيَدُ الْعُلْيَا: a صفة), nor what a number counts
+    (ثَلَاثِ سِنِينَ: the number's مضاف إليه)."""
     return (token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") and not typed_bare(token)
-            and not is_built(token) and not case_unseen(token) and is_zarf(token, s))
+            and not is_built(token) and not case_unseen(token) and is_zarf(token, s)
+            and not (s.head(token) and listed(s.head(token), "adad_mudaf")))
 
 
 def is_built_zarf(token: dict) -> bool:

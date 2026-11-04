@@ -110,9 +110,9 @@ ALLOWED_STOPS = {
                                      "ظن's places are its doer and two objects; a khabar or an adverb is not one"),
     ("الفعل", "slot"): ({"predicate", "none"}, "a khabar is not a place a verb gives"),
     ("الفاعل ونائبه", "voice"): ({"none"}, "a doer always has its verb above it"),
-    ("ما له عامل آخر", "slot"): ((VERB_ONLY - {"place_time"}) | {"none"},
+    ("ما له عامل آخر", "slot"): ((VERB_ONLY - {"place_time", "purpose"}) | {"none"},
                                  "only a verb gives those places (a place or time word there is the khabar's, "
-                                 "its own leaf); none is a word the nominal sentence cannot place"),
+                                 "a reason masdar its own leaf); none is a word the nominal sentence cannot place"),
 }
 
 
