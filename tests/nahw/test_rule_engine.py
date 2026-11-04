@@ -1571,3 +1571,9 @@ def test_bare_describing_word_after_its_noun_is_its_sifa_whatever_ending_the_par
 
 def test_bare_noun_with_a_pronoun_back_to_a_doer_whose_verb_owes_an_object_is_that_object():
     assert _role("ارتدى المحارب درعه", 2) == "مفعول به"
+
+
+def test_bare_describing_word_after_an_indefinite_idafa_under_a_verb_is_its_sifa_not_a_hal():
+    # a hal's owner is known and a describer of a نكرة is its صفة (Tasheel 3.10.1); a bare جديدة shows no nasb for a hal to need
+    assert _role("يسعى المسؤولون إلى أن يوفروا فرص عمل جديدة للشباب", 7) == "صفة"
+    assert _role("قرأ الطالب كتاب طالب جديدا", 4) == "حال"
