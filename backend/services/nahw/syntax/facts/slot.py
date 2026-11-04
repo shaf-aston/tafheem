@@ -232,6 +232,8 @@ def verb_place(token: dict, s: Sentence) -> str:
             return "object"  # قل الحق: a command's doer is always the hidden أنت (Tasheel 2.4.1 p30)
         if not before and typed != "u" and (listed(token, "times_counted") or stands_for_masdar(token, head, s)):
             return "absolute"  # ضربتُه مرتين، ثلاثَ مراتٍ، كلَّ الحبِّ: the count or the share stands in for the masdar
+        if not before and typed == "a" and rel in ("OBJ", "MOD") and listed(token, "masdar_adjectives") and token.get("stt") == "i":
+            return "absolute"  # لَبَكَيْتُمْ كَثِيرًا: the amount of the doing, its masdar left out (Ibn Aqil V2 p172)
         # رَأَيْتُ كِلَا الصَّدِيقَيْنِ: a verb of the first or second person holds its doer (تُ، نا، تَ),
         # so the noun after it is its object, however the parser hung it or what case it guessed
         if (own_doer(head) and not before

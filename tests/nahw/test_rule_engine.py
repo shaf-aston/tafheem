@@ -1349,3 +1349,7 @@ def test_a_pointer_with_a_time_word_in_nasb_after_it_is_the_maful_fihi():
 
 def test_a_single_act_masdar_with_a_weak_radical_is_the_maful_mutlaq():
     assert _role("لَمْ يَخْطُ خَطْوَةً إِلاَّ رُفِعَ بِهَا دَرَجَةً", 2) == "مفعول مطلق"
+
+
+def test_an_amount_word_after_a_verb_is_the_maful_mutlaq_not_a_hal():
+    assert _role("وَاللَّهِ لَوْ تَعْلَمُونَ مَا أَعْلَمُ لَبَكَيْتُمْ كَثِيرًا", 6) == "مفعول مطلق"
