@@ -113,7 +113,7 @@ Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` �
 - voice: active / passive (`backend/services/nahw/syntax/facts/voice.py`)
 <!-- /list -->
 
-The answers walk the book tree (`backend/services/nahw/syntax/walker.py`, `backend/data/nahw_rules/naming_tree.json`); the leaf is the role. Then: particle with a مجرور → حرف جر; case per word (typed vowel first, else the role's case from `backend/data/nahw_rules/teacher.json` `case_of_role`); followers copy their head's case; pair names (اسم لا); conditions (`backend/services/nahw/syntax/condition.py`).
+The answers walk the book tree (`backend/services/nahw/syntax/walker.py`, `backend/data/nahw_rules/naming_tree.json`); the leaf is the role. Then: particle with a مجرور, or a جار whose majrur is أَنْ and its verb (إِلَى أَنْ يُوَفِّرُوا) → حرف جر; case per word (typed vowel first, else the role's case from `backend/data/nahw_rules/teacher.json` `case_of_role`); followers copy their head's case; pair names (اسم لا); conditions (`backend/services/nahw/syntax/condition.py`).
 
 Roles the tree can give:
 

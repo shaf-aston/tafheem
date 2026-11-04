@@ -1357,3 +1357,7 @@ def test_a_noun_with_tanween_is_described_by_the_tanween_noun_after_it_not_added
 
 def test_a_ya_typed_as_a_marked_maqsura_is_the_pronoun_of_the_speaker():
     assert _role("وَغَيْرُهُ أَحَبُّ إِلَىَّ مِنْهُ", 2) == "حرف جر"  # إِلَىَّ is إِلَيَّ
+
+
+def test_a_jar_before_an_and_its_verb_is_a_harf_jarr():
+    assert _role("يَسْعَى الْمَسْؤُولُونَ إِلَى أَنْ يُوَفِّرُوا فُرَصًا", 2) == "حرف جر"

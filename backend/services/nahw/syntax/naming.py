@@ -133,9 +133,11 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
     attached = {t["id"]: found.role if (found := walker.walk(answers[t["id"]])) else None
                 for t in tokens if t["id"] not in base_ids}
     role_by_id = {token["id"]: role for token, role in zip(bases, named)} | attached
-    # a particle with a مجرور under it is a حرف جر: the one name, for card and picture
+    # a particle with a مجرور under it is a حرف جر: the one name, for card and picture; so is a جار whose
+    # majrur is أَنْ and its verb, a masdar in the place of jarr (إِلَى أَنْ يُوَفِّرُوا; Tasheel 3.3 p79)
     for t in tokens:
         if t["pos"] == "PRT" and any(role_by_id.get(kid["id"]) == NAMED.majroor
+                                     or is_one(t["lemma"], "jarr") and is_one(kid["lemma"], "nasb_mudari")
                                      for kid in tokens if kid["head"] == t["id"]):
             role_by_id[t["id"]] = NAMED.harf_jarr
     named = [role_by_id[token["id"]] for token in bases]
