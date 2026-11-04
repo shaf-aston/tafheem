@@ -350,6 +350,10 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     before = s.by_id.get(token["id"] - 1)
     if before and read_as(before, "istinaf"):
         return "subject"
+    # كَادَتِ الْمُفَاوَضَاتُ تَنْهَارُ لَوْلَا تَدَخُّلُ الْوَسِيطِ: the noun straight after لولا is its مبتدأ, its khabar left out
+    # (the condition frame, `before: noun`); naming lays the same name over a condition found at the front of the sentence
+    if before and before["pos"] == "PRT" and (frame := condition_of(before["form"])) and frame.get("before") == "noun":
+        return "subject"
     opener = s.by_id.get(before["id"] - 1) if before else None
     if opener and read_as(opener, "istinaf") and typed_or_parsed_case(token) == "u":
         return "predicate"

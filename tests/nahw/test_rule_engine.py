@@ -1389,3 +1389,7 @@ def test_a_noun_showing_no_case_after_an_elative_is_its_tamyeez():
 
 def test_a_masdar_added_to_its_doer_governs_the_object_after_it():
     assert _role("أَدَّى إِهْمَالُ الْمَسْؤُولِينَ صِيَانَةَ الْجُسُورِ الْقَدِيمَةِ إِلَى انْهِيَارِ أَحَدِهَا الْأُسْبُوعَ الْمَاضِيَ", 3) == "مفعول به"
+
+
+def test_the_noun_after_lawla_is_its_mubtada():
+    assert _role("كَادَتِ الْمُفَاوَضَاتُ تَنْهَارُ لَوْلَا تَدَخُّلُ الْوَسِيطِ الدَّوْلِيِّ فِي اللَّحْظَةِ الْأَخِيرَةِ", 4) == "مبتدأ"
