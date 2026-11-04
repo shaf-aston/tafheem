@@ -7,7 +7,7 @@ from backend.services.sarf import verb_reader
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
-from backend.services.nahw.syntax.facts import Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, shown_cases, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged
+from backend.services.nahw.syntax.facts import Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, shown_cases, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -111,6 +111,18 @@ def since_jarr(tokens: list[dict]) -> None:
         if is_built_word(since["lemma"]) and is_one(since["lemma"], "jarr") and noun["pos"] == "NOM":
             since.update(pos="PRT", pos_camel="prep")
             noun["head"], noun["rel"] = since["id"], "OBJ"
+
+
+def described_after_tanween(tokens: list[dict]) -> None:
+    """يَوْمٌ صَحْوٌ: the tanween of a noun goes for its إضافة (Ibn Aqil V3 p40: تنوينا مما تضيف احذف), so a noun
+    typed with tanween has no مضاف إليه after it; a noun typed with tanween in its own case that the parser
+    hung so is its صفة. A participle's nasb object is another word (object_after_tanween)."""
+    s = Sentence(tokens)
+    for token in tokens:
+        head = s.head(token)
+        if (head and token["rel"] == "IDF" and noun_tagged(token) and not works_as_verb(head)
+                and typed_tanween(head) and typed_tanween(token) and typed_case_of(token) == typed_case_of(head)):
+            token["rel"] = "MOD"
 
 
 def jarr_after_mudaf(tokens: list[dict]) -> None:

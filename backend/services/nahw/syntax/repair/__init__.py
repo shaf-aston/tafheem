@@ -18,7 +18,7 @@ from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la,
 from backend.services.nahw.syntax.repair.nasab import nasab
 from backend.services.nahw.syntax.repair.number import compound_number
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, excepted_after_doer, first_object_owed, name_told_to, repeated_doer, doer_after_object, doer_first, late_doer, kana_subject, kana_fronted_khabar, inna_object, inna_second_khabar, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
-from backend.services.nahw.syntax.repair.typed import described_known, emphasis_lam_opener, jarr_after_mudaf, since_jarr, typed_words
+from backend.services.nahw.syntax.repair.typed import described_after_tanween, described_known, emphasis_lam_opener, jarr_after_mudaf, since_jarr, typed_words
 
 
 def correct(words: list[str], tokens: list[dict]) -> None:
@@ -53,6 +53,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         late_doer(tokens)
         verb_under_fronted_object(tokens)
         object_after_tanween(tokens)
+        described_after_tanween(tokens)
         object_past_verb(tokens)
         relative_owed(tokens)
         called(tokens)

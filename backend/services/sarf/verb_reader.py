@@ -285,12 +285,14 @@ def reading_of(word: str, known: Callable[[str], bool] | None = None) -> dict | 
             if not seen and (split := _with_object(word, known)) and known(split.get("lex", "")):
                 return split
             closest = seen or closest
-        if len({tuple(_config()["camel"][c.column].items()) for c in closest}) != 1:
+        # تُضَارُّونَ: a doubled letter takes the same marks in the active and the passive, and the voice is then
+        # the active's (the passive is the marked form); cells that differ in tense are still no reading
+        if len({tuple((k, v) for k, v in _config()["camel"][c.column].items() if k != "vox") for c in closest}) != 1:
             continue
         cells = [{**_config()["camel"][c.column], "per": c.person, "gen": c.gender, "num": c.number, "root": c.root,
                   "lex": past(c), "weak_last": c.root[-1:] in "وي"} for c in closest]
-        return {"pos": "verb", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)},
-                **(_pieces(front, rest) if front else {})}
+        return {"pos": "verb", "vox": "a", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)},
+                **(pieces(front, rest) if front else {})}
     return _with_object(word, known)
 
 
@@ -313,7 +315,7 @@ def _with_object(word: str, known: Callable[[str], bool] | None = None) -> dict 
             continue
         person = _ENCLITIC.get("".join(c for c, _ in pronoun)) or _ENCLITIC["كِ" if "ِ" in pronoun[-1][1] else "كَ"]
         joined = found.get("catib6", "").count("PRT")  # فَاهْدِنَا: the فَ the table read the verb behind
-        return {**found, **_pieces(verb[:joined], verb[joined:], pronoun), "enc0": f"{person}_dobj"}
+        return {**found, **pieces(verb[:joined], verb[joined:], pronoun), "enc0": f"{person}_dobj"}
     return None
 
 
@@ -330,7 +332,7 @@ def _cuts(word: str):
             yield front, rest, [cell for cell, score in found.items() if score == min(found.values())]
 
 
-def _pieces(front: list, verb: list, pronoun: list = ()) -> dict:
+def pieces(front: list, verb: list, pronoun: list = ()) -> dict:
     """The dictionary's split of a verb the table read (atbtok, catib6, ud): each joined letter a
     particle (فَ+، وَ+ a conjunction, لْ+ of the command), the verb, its object pronoun (فَ+_اقْبَلْ_+هَا)."""
     return {"atbtok": "_".join([*(_spell([p]) + "+" for p in front), _spell(verb), *(["+" + _spell(pronoun)] if pronoun else [])]),

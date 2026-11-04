@@ -1337,3 +1337,19 @@ def test_a_noun_with_the_noun_s_sign_is_never_read_as_the_command_its_letters_sp
 
 def test_khilal_is_a_noun_of_place_not_the_preposition_camel_files_it_as():
     assert _role("انْخَفَضَتِ الصَّادِرَاتُ انْخِفَاضًا حَادًّا خِلَالَ الْأَشْهُرِ الثَّلَاثَةِ", 4) == "مفعول فيه"
+
+
+def test_a_verb_after_the_question_hamza_the_dictionary_lacks_is_read_off_the_table():
+    assert [_role("أَيَعْجِزُ أَحَدُكُمْ أَنْ يَقْرَأَ", i) for i in (0, 1)] == ["فعل", "فاعل"]  # the dictionary has يَعْجَزُ, not يَعْجِزُ
+
+
+def test_a_verb_spelled_alike_in_the_active_and_the_passive_is_read_as_the_active():
+    assert _role("هَلْ تُضَارُّونَ فِي رُؤْيَةِ الشَّمْسِ", 1) == "فعل"
+
+
+def test_a_command_with_a_joined_fa_the_dictionary_lacks_is_a_verb():
+    assert _role("إِذَا دَعَوْتُمُ اللَّهَ فَاعْزِمُوا", 3) == "فعل"
+
+
+def test_a_noun_with_tanween_is_described_by_the_tanween_noun_after_it_not_added_to_it():
+    assert _role("إِذَا كَانَ يَوْمٌ صَحْوٌ", 3) == "صفة"
