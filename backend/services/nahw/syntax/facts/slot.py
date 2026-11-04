@@ -3,9 +3,9 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
+from backend.services.nahw.book import book_map, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
 from backend.services.nahw.syntax.facts.word import is_built, shown_cases, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
-from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
+from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
 NAMED = named_roles()
@@ -31,21 +31,6 @@ def completes_kaada(token: dict, s: Sentence) -> bool:
     """The present verb that finishes a كاد-type verb; its clause is that verb's khabar."""
     head = s.head(token)
     return bool(head and is_verb(token) and s.family(head) == "kaada")
-
-
-def is_zarf(token: dict, s: Sentence) -> bool:
-    """A listed time or place word, or كل/بعض or a number added to one (كلَّ يومٍ، عشرَ سنينَ)."""
-    if token["pos"] == "PRT":
-        return False
-    if listed(token, "zarf_zaman") or listed(token, "zarf_makan"):
-        return True
-    return (listed(token, "zarf_zaman", "carriers") or listed(token, "adad_mudaf")) and any(
-        k["rel"] == "IDF" and (listed(k, "zarf_zaman") or listed(k, "zarf_makan")) for k in s.kids(token))
-
-
-def is_built_zarf(token: dict) -> bool:
-    """أمسِ، حيثُ، الآن: a time or place word built on one ending (closed_words `built`)."""
-    return token["pos"] != "PRT" and is_built_word(token["lemma"])
 
 
 def _typed_before_its_root(token: dict, s: Sentence) -> bool:
@@ -74,7 +59,6 @@ def place_time(token: dict, s: Sentence) -> bool:
     stands before its verb with the verb hanging off it (مَتَى سافر)."""
     if not is_zarf(token, s):
         return False
-    head = s.head(token)
     if is_built_zarf(token) and head and is_verb(head) and token["rel"] in ("MOD", "IDF"):
         return True  # سافر أمسِ: its kasra is built in, so it says nothing of its case
     # مسافرٌ غدًا: a participle works like its verb
@@ -86,7 +70,9 @@ def place_time(token: dict, s: Sentence) -> bool:
         return True
     if head and works_as_verb(head) and (is_verb(head) or token["rel"] == "MOD"):
         return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") or opens_verb
-    return opens_verb
+    # وَقْفِ التَّصْعِيدِ بَيْنَ الطَّرَفَيْنِ، لَا هِجْرَةَ بَعْدَ الْفَتْحِ: hung on a noun or on لا, a time or place word the
+    # reader put in nasb is still the zarf, as a noun's مضاف إليه or نعت is never put in nasb for it
+    return opens_verb or bool(head and zarf_in_nasb(token, s))
 
 
 def _object_of_participle(token: dict, head: dict) -> bool:

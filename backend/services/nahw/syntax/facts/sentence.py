@@ -3,9 +3,9 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one, is_subject_pronoun
+from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_built_word, is_extra_ba, is_mabni, is_one, is_subject_pronoun
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
+from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -379,3 +379,25 @@ def quoted_head(token: dict, s: Sentence) -> bool:
     return (token["rel"] == "OBJ" and (typed_or_parsed_case(token) == "u" or is_subject_pronoun(token)) and head is not None and is_verb(head)
             and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
             and holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"])))
+
+
+def is_zarf(token: dict, s: Sentence) -> bool:
+    """A listed time or place word, or كل/بعض or a number added to one (كلَّ يومٍ، عشرَ سنينَ)."""
+    if token["pos"] == "PRT":
+        return False
+    if listed(token, "zarf_zaman") or listed(token, "zarf_makan"):
+        return True
+    return (listed(token, "zarf_zaman", "carriers") or listed(token, "adad_mudaf")) and any(
+        k["rel"] == "IDF" and (listed(k, "zarf_zaman") or listed(k, "zarf_makan")) for k in s.kids(token))
+
+
+def zarf_in_nasb(token: dict, s: Sentence) -> bool:
+    """بَيْنَ الطَّرَفَيْنِ، بَعْدَ الْفَتْحِ: a listed time or place word hung as a modifier, vowelled with a fatha or a case that
+    shows nothing (ين), never bare: a noun's نعت or مضاف إليه is not put in nasb, so it is the zarf (Tasheel 3.2 p67)."""
+    return (token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") and not typed_bare(token)
+            and is_zarf(token, s))
+
+
+def is_built_zarf(token: dict) -> bool:
+    """أمسِ، حيثُ، الآن: a time or place word built on one ending (closed_words `built`)."""
+    return token["pos"] != "PRT" and is_built_word(token["lemma"])

@@ -1333,3 +1333,11 @@ def test_a_time_name_is_the_maful_fihi_though_the_list_never_named_it():
 
 def test_a_time_word_in_nasb_after_a_verb_that_takes_no_object_is_the_maful_fihi():
     assert _role("مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", 2) == "مفعول فيه"
+
+
+@pytest.mark.parametrize("sentence, at", [
+    ("هَلْ سَتَنْجَحُ الْجُهُودُ الدِّبْلُومَاسِيَّةُ فِي وَقْفِ التَّصْعِيدِ بَيْنَ الطَّرَفَيْنِ", 7),
+    ("لاَ هِجْرَةَ بَعْدَ الْفَتْحِ وَلَكِنْ جِهَادٌ وَنِيَّةٌ", 2),
+])
+def test_a_time_or_place_word_in_nasb_hung_on_a_noun_or_on_la_is_the_maful_fihi(sentence, at):
+    assert _role(sentence, at) == "مفعول فيه"

@@ -5,7 +5,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged
-from backend.services.nahw.syntax.facts.sentence import Sentence, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above
+from backend.services.nahw.syntax.facts.sentence import Sentence, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
 
@@ -100,6 +100,8 @@ def _follows(token: dict, s: Sentence) -> str:
         return "naat"
     if is_nasab(token):
         return "naat"
+    if zarf_in_nasb(token, s):
+        return "none"  # بَعْدَ الْفَتْحِ: a time or place word in nasb is the zarf, no follower
     # يا أيها الناسُ، يا أيها الذين آمنوا، يا أيهذا: the noun with ال, relative or pointer after أيها is its صفة
     if head and is_called_noun(head) and (token.get("stt") == "d" or is_one(token.get("pos_camel", ""), "nida", "described_by")):
         return "naat"
