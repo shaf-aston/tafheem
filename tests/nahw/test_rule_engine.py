@@ -1329,3 +1329,7 @@ def test_a_relative_typed_bare_after_a_preposition_is_not_read_as_a_command():
 
 def test_a_time_name_is_the_maful_fihi_though_the_list_never_named_it():
     assert _role("هَلْ رَأَى أَحَدٌ مِنْكُمُ الْبَارِحَةَ رُؤْيَا", 4) == "مفعول فيه"
+
+
+def test_a_time_word_in_nasb_after_a_verb_that_takes_no_object_is_the_maful_fihi():
+    assert _role("مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", 2) == "مفعول فيه"

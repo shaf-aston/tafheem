@@ -81,6 +81,9 @@ def place_time(token: dict, s: Sentence) -> bool:
     # كُلَّمَا جَاءَ زَيْدٌ أَكْرَمْتُهُ: its own verb hung on it, whatever link it has to the verb above
     opens_verb = typed_or_parsed_case(token) in (None, "a") and any(
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
+    # مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ: a verb that takes no object leaves a time word typed in nasb no object to be
+    if head and is_verb(head) and token["rel"] == "OBJ" and typed_case_of(token) == "a" and not takes_object(head["lemma"]):
+        return True
     if head and works_as_verb(head) and (is_verb(head) or token["rel"] == "MOD"):
         return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") or opens_verb
     return opens_verb
