@@ -175,8 +175,10 @@ def verb_place(token: dict, s: Sentence) -> str:
     absolute object (same root), a hal or a tamyeez."""
     if place_time(token, s):
         return "place_time"
-    if s.head(token) and listed(token, "verbless_masdars") and token.get("stt") == "i" and typed_or_parsed_case(token) in (None, "a"):
-        return "absolute"  # مجتهداتٌ جِدًّا: a heard masdar whose verb is never said (جَدَّ جِدًّا); a lone one (شكرًا) gets its drawn verb (understood.verb)
+    if s.head(token) and listed(token, "verbless_masdars") and token.get("stt") == "i" and typed_or_parsed_case(token) in (None, "a") and token["rel"] != "PRD":
+        # مجتهداتٌ جِدًّا: a heard masdar whose verb is never said (جَدَّ جِدًّا); a lone one (شكرًا) gets its drawn verb
+        # (understood.verb); not the khabar of كان (كَانَ الْعَيْنُ حَقًّا)
+        return "absolute"
     if is_object_pronoun(token):
         return "object"  # إيّاك نعبد، ما عبدنا إلا إيّاه: the detached pronoun of nasb is only an object
     if verb_joined_by_waw(token, s):
@@ -401,8 +403,9 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     if rel in SUBJECTS:
         return "subject"
     kids = s.kids(token)
-    # وهو مبتسمٌ: the sentence a و brings rests on its khabar, as a whole one does on its own
-    if rel == "OBJ" and head and head["pos"] == "PRT" and typed_or_parsed_case(token) == "u" \
+    # وهو مبتسمٌ: the sentence a و brings rests on its khabar, as a whole one does on its own; typed bare, a word the
+    # dictionary gives no case (وهو غضبان، وهم ظاهرون) is no less that khabar, only one showing nasb or jarr is not
+    if rel == "OBJ" and head and head["pos"] == "PRT" and typed_or_parsed_case(token) in ("u", None) \
             and any(subject_link(c) and c["id"] < token["id"] for c in kids):
         return "predicate"
     quoted = quoted_head(token, s)

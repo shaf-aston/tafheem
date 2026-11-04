@@ -1571,3 +1571,30 @@ def test_bare_describing_word_after_its_noun_is_its_sifa_whatever_ending_the_par
 
 def test_bare_noun_with_a_pronoun_back_to_a_doer_whose_verb_owes_an_object_is_that_object():
     assert _role("ارتدى المحارب درعه", 2) == "مفعول به"
+
+
+def test_bare_word_after_a_pronoun_with_no_case_given_is_its_khabar():
+    # a nominal sentence rests on its khabar (Tasheel 1.4 p6); a diptote or a name shows no case to say otherwise
+    assert _role("لقي الله وهو غضبان", 3) == "خبر"
+    assert _role("لقي الله وهم ظاهرون", 3) == "خبر"
+
+
+def test_bare_describing_word_after_a_noun_showing_no_case_is_its_sifa():
+    assert _role("حلف على مال امرئ مسلم", 4) == "صفة"
+
+
+def test_bare_plural_without_its_nun_is_the_mudaf_of_the_noun_after_it():
+    # Alfiyya: نونا تلي الإعراب أو تنوينا مما تضيف احذف
+    assert _role("كانت بنو إسرائيل يغتسلون عراة", 2) == "مضاف إليه"
+    assert _role("جاء معلمو المدرسة", 2) == "مضاف إليه"
+
+
+def test_a_nasb_noun_straight_after_the_ism_of_kana_is_its_khabar():
+    # Tasheel 1.9: كان and its sisters put their khabar in nasb; حقا is a masdar word only elsewhere
+    assert _role("كَانَ اللَّهُ الصَّمَدَ", 2) == "خبر كان"
+    assert _role("كَانَ الْعَيْنُ حَقًّا", 2) == "خبر كان"
+    assert _role("كَانَ زَيْدٌ يَوْمًا مُسَافِرًا", 2) == "مفعول فيه"  # a time word beside the khabar stays a ظرف
+
+
+def test_bare_lam_after_a_relative_is_the_jazm_particle_not_a_verb():
+    assert _role("سأنبئك بتأويل ما لم تستطع عليه صبرا", 3) == "حرف"
