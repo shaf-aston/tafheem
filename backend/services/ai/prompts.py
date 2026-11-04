@@ -122,7 +122,7 @@ classical Arabic.
 Root: {root}
 The entry, line by line (it may be one piece of a longer entry):
 {numbered}
-
+{reference}
 For each word the entry explains, in the order the entry gives them, return:
 - "lines": the numbers of the lines about that word. Every line from 1 to {count}
   belongs to exactly one word, in order. A line that only gives a saying built
