@@ -12,7 +12,7 @@ card then shows English the moment it is opened, with no call and no wait.
 With --lines it makes the Line by line view instead: every line of the rest of
 each entry, in chunks the model can read, into data/maqayees/english_lines.json.
 With --senses it makes the Word by word view: the same lines, cut into the words
-they explain, into data/maqayees/english_senses.json.
+they explain, into data/maqayees/english_senses.v<N>.json (N: root_english.SENSES_MADE_WITH).
 --workers sets how many roots are asked at once, in either mode.
 
 Safe to stop at any point: it skips whatever has already been done, so running
