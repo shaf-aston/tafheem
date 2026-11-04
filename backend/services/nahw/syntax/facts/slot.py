@@ -287,8 +287,9 @@ def verb_place(token: dict, s: Sentence) -> str:
             if is_participle(token):
                 return "state"
             if rel != "TMZ" and is_plain_noun(token) and not same_root(token, head) and not is_one(head["lemma"], "intransitive_verbs"):
-                # لَا يُقْتَلُ قُرَشِيٌّ صَبْرًا: a passive verb's one object became its deputy, so a masdar after it is a state
-                return "state" if is_passive(head) and is_masdar(token) else "object"  # نصر زيدٌ بكرًا: a plain noun is no hal (above)
+                # لَا يُقْتَلُ قُرَشِيٌّ صَبْرًا: a passive verb's one object became its deputy, so a masdar after it is a state;
+                # a noun of a single act or kind (ـة: رُفِعَ بِهَا دَرَجَةً) names a thing, so it stays an object
+                return "state" if is_passive(head) and is_masdar(token) and "ة" not in (token.get("pattern") or "") else "object"  # نصر زيدٌ بكرًا: a plain noun is no hal (above)
         if after_first:
             return "second_object"  # ظن الولد الأمر سهلا, أعطى الولد الكتاب
         # نصر زيدٌ بكرًا: a noun the parser hung on the verb with no relation ("---" belongs to the

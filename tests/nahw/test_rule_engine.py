@@ -1361,6 +1361,7 @@ def test_a_describing_word_of_the_doer_shape_with_ta_marbuta_is_a_hal():
 
 def test_a_masdar_after_a_passive_verb_whose_object_became_its_deputy_is_a_hal():
     assert _role("لاَ يُقْتَلُ قُرَشِيٌّ صَبْرًا بَعْدَ هَذَا الْيَوْمِ إِلَى يَوْمِ الْقِيَامَةِ", 3) == "حال"
+    assert _role("لَمْ يَخْطُ خَطْوَةً إِلاَّ رُفِعَ بِهَا دَرَجَةً", 6) == "مفعول به"  # a noun of a single act names a thing
 
 
 def test_a_masdar_of_the_heart_after_the_verb_is_the_maful_li_ajlih():
