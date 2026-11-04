@@ -1412,3 +1412,7 @@ def test_kayfa_before_a_verb_in_a_recorded_ayah_is_the_hal():
 def test_a_built_or_unseen_case_zarf_word_is_not_the_maful_fihi_of_a_nominal_sentence():
     assert _role("أَيْنَ الْكِتَابُ", 0) == "خبر"
     assert _role("الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى", 1) == "صفة"
+
+
+def test_an_indefinite_word_after_a_construct_with_no_verb_above_is_the_khabar():
+    assert _role("خَاتَمُ فِضَّةٍ جَمِيلٌ", 2) == "خبر"

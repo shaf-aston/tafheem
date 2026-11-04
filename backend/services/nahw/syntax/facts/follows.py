@@ -197,8 +197,9 @@ def _follows(token: dict, s: Sentence) -> str:
         # with ال on both it follows it (إِنَّ الْمُهَنْدِسَ الْعَجُوزَ)
         governed = (mine == "a" and at_work(head, s) == "active" and not is_participle(token)
                     and not token.get("stt") == head.get("stt") == "d")
-        # فُرَصَ عَمَلٍ جَدِيدَةً: a مضاف to an unknown noun is unknown (is_known), so an indefinite word describes it
-        unknown_head = {**head, "stt": "i"} if head.get("stt") == "c" and not is_known(head, s) else head
+        # يُوَفِّرُوا فُرَصَ عَمَلٍ جَدِيدَةً: under a verb, a مضاف to an unknown noun is unknown (is_known), so an indefinite word describes it
+        # (خَاتَمُ فِضَّةٍ جَمِيلٌ with no verb: the khabar, told_of_lone_mubtada)
+        unknown_head = {**head, "stt": "i"} if head.get("stt") == "c" and verb_above(token, s) and not is_known(head, s) else head
         return "naat" if agrees(token, unknown_head) and not measure and not governed else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers
     if told_of_subject(token, head) or indefinite_nasb(token):
