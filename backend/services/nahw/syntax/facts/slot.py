@@ -3,7 +3,7 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, named_roles, takes_object
+from backend.services.nahw.book import book_map, extra_ba_on, is_extra_ba, is_built_word, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
 from backend.services.nahw.syntax.facts.word import is_built, shown_cases, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
@@ -93,7 +93,8 @@ def _object_of_participle(token: dict, head: dict) -> bool:
     (آمِرًا أحدًا: both in nasb, yet أحد describes nothing); with ال on both in the same nasb it
     follows as a نعت (إِنَّ الْمُهَنْدِسَ الْعَجُوزَ). An indefinite state word
     stays a حال (قادمٌ مسرعًا), and the participle's own root a مفعول مطلق. A diptote's fatha
-    is its jarr, so it stays the مضاف إليه (طَرِيقَ جَهَنَّمَ). An elative takes none (Ashmuni V2 p312:
+    is its jarr, so it stays the مضاف إليه (طَرِيقَ جَهَنَّمَ). A noun the analyser tags a plain noun, on a صفة مشبهة's
+    measure only (إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً), is no state word here. An elative takes none (Ashmuni V2 p312:
     أجمعوا على أنه لا ينصب المفعول به): its nasb noun is its تمييز (أَكْبَرُ مِنْكَ سِنًّا)."""
     if is_elative(head):
         return False
@@ -103,7 +104,8 @@ def _object_of_participle(token: dict, head: dict) -> bool:
     return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
         rel == "MOD" and (typed_or_parsed_case(head) != "a" or token.get("pos_camel") != "adj")
         and not (typed_or_parsed_case(head) == "a" and token.get("stt") == head.get("stt") == "d")
-        and not is_state_word(token) and not same_root(token, head)))
+        and not (is_state_word(token) and (on_doing_measure(token) or token.get("pos_camel") != "noun"))
+        and not same_root(token, head)))
 
 
 def _doer_of_describer(token: dict, head: dict, s: Sentence) -> bool:
@@ -187,6 +189,8 @@ def verb_place(token: dict, s: Sentence) -> str:
     if head and is_verb(head):
         if attached_pronoun(token) and rel == "SBJ":
             return "subject"  # قُومِي: the doer written onto the verb, ياء المخاطبة (Awdah V1 p85)
+        if rel == "SBJ" and is_subject_pronoun(token) and token["id"] > head["id"]:
+            return "subject"  # كَانَ أَنْتَ مُسَافِرًا: a detached pronoun's fatha is its build, no nasb
         before = token["id"] < head["id"]
         siblings = [t for t in s.kids(head) if t is not token]
         if before and is_object_pronoun(token):
@@ -337,8 +341,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     opener = s.by_id.get(before["id"] - 1) if before else None
     if opener and read_as(opener, "istinaf") and typed_or_parsed_case(token) == "u":
         return "predicate"
-    if (s.verbless and rel == "OBJ" and s.head(token) and s.head(token)["pos"] == "PRT" and not jarr_takes(token, s)
-            and typed_or_parsed_case(token) == "u"):
+    if (s.verbless and rel == "OBJ" and s.head(token) and is_preposition(s.head(token)) and not jarr_takes(token, s)
+            and typed_case_of(token) in (None, "u")):
         return "subject"  # لله الحمدُ: the noun after a fronted jar-majrur khabar is the مبتدأ
     if is_verb(token):  # a verb is only ever a khabar by its link; its clause is named from the tree above
         return "predicate" if rel == "PRD" else "none"
@@ -368,7 +372,11 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # first as إنّ's khabar, so the noun after it is its اسم, brought back
         fronted_jar = fronted_jar or (head is not None and s.family(head) == "inna" and typed_or_parsed_case(token) == "a"
                                       and any(is_preposition(k) and k["id"] < token["id"] for k in s.kids(token)))
+        # لَا رَيْبَ فِيهِ هُدًى: with its اسم already said, a noun after the jar-majrur is a second khabar (Tasheel 1.8)
+        fronted_jar = fronted_jar and not any(subject_link(k) for k in (s.kids(head) if head else ()))
         return "subject" if fronted_jar else "predicate"
+    if rel == "MOD" and noun_tagged(token) and any(subject_link(c) and noun_tagged(c) and c["id"] < token["id"] for c in s.kids(token)):
+        return "predicate"  # رَأَيْتُ رَجُلًا وَجْهُهُ مُنِيرٌ: the noun said before it is its mubtada, so it tells of that noun
     if rel in SUBJECTS:
         return "subject"
     kids = s.kids(token)

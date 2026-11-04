@@ -5,7 +5,8 @@
   "verb_subject_follows": true,
   "pointer_heads_its_noun": true,
   "listed_preposition_takes_majrur": true,
-  "preposition_over_its_noun": true,
+  "particle_over_its_noun": true,
+  "excepting_noun_adds": true,
   "topic_carries_its_verb": true,
   "inner_sentence": true,
   "ma_cancels_inna": true,
@@ -175,8 +176,8 @@
   },
   "intransitive_verbs": {
    "ar": "أفعال لازمة",
-   "_comment": "Verbs that take no object (الفعل اللازم). After ما they leave no slot for a pronoun going back to ما (العائد), and a صلة with no عائد is ما المصدرية, never the relative (مغني اللبيب، ما المصدرية؛ شرح ابن عقيل، الموصول). Read by facts.ma_kind.",
-   "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي"]
+   "_comment": "Verbs that take no object (الفعل اللازم). After ما they leave no slot for a pronoun going back to ما (العائد), and a صلة with no عائد is ما المصدرية, never the relative (مغني اللبيب، ما المصدرية؛ شرح ابن عقيل، الموصول). Read by facts.ma_kind and repair.relative_owed: a relative after such a verb and its doer describes the doer (جاء الرجل الذي رأيته). The verbs of coming, escaping, falling, appearing and happening reach their place by a preposition, never by an object, like ذهب and خرج.",
+   "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي", "جاء", "نجا", "سقط", "هرب", "طار", "ظهر", "غاب", "مرض", "فاز", "حدث", "نما"]
   },
   "noun_describers": {
    "ar": "الصفة الغالبة",

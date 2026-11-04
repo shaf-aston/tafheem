@@ -1239,3 +1239,89 @@ def test_a_verb_after_a_nasb_particle_is_the_present_one(sentence: str, at: int,
 ])
 def test_a_bare_plain_noun_in_nasb_after_the_doer_is_the_object(sentence: str, role: str):
     assert cards(sentence)[-1]["role"] == role
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    # a relative after a known noun describes it, unless the verb owes an object (كافأ), which it then is
+    ("جَاءَ الرَّجُلُ الَّذِي رَأَيْتُهُ أَمْسِ", 2, "صفة"),
+    ("نَجَا الْمُتَسَلِّقُ الَّذِي سَقَطَ", 2, "صفة"),
+    ("كَافَأَ الْمُدِيرُ الَّذِي نَجَحَ", 2, "مفعول به"),
+    ("اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ", 3, "صفة"),  # known by its pronoun, not by ال
+    # إِلَّا opening the sentence governs the noun after it, however the parser hung the pair
+    ("إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ", 1, "مستثنى"),
+])
+def test_a_relative_after_a_known_noun_is_its_sifa_and_after_illa_the_excepted(sentence, at, role):
+    assert _role(sentence, at) == role
+
+
+def test_a_negation_is_a_particle_even_when_the_parser_hangs_its_verb_under_it():
+    assert _role("مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ", 3) == "حرف"  # not the و's majrur
+
+
+def test_a_noun_with_no_case_shown_after_a_preposition_is_its_majrur():
+    assert _role("وَالضُّحَىٰ وَاللَّيْلِ إِذَا سَجَىٰ", 0) == "مجرور"
+
+
+def test_a_noun_after_the_jar_khabar_of_la_is_a_second_khabar():
+    assert _role("ذَلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ هُدًى لِلْمُتَّقِينَ", 5) == "خبر لا"
+
+
+def test_a_noun_with_a_pair_under_it_is_the_mubtada_not_the_khabar():
+    assert _role("اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ", 0) == "مبتدأ"
+
+
+def test_how_asked_before_its_verb_is_the_state_of_that_verb():
+    assert _role("أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ", 2) == "حال"  # not the object of تَرَ
+
+
+def test_a_plain_noun_in_nasb_after_a_working_participle_is_its_object():
+    assert _role("وَإِذْ قَالَ رَبُّكَ لِلْمَلَائِكَةِ إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً", 8) == "مفعول به"
+
+
+def test_a_defective_noun_ending_in_a_bare_ya_wears_its_nouns_case():
+    assert _role("سَمِعْتُ صَوْتَ الطِّفْلِ الْبَاكِي فِي اللَّيْلِ", 3) == "صفة"
+
+
+def test_a_word_with_its_mubtada_before_it_is_a_khabar_not_a_describer():
+    assert _role("رَأَيْتُ رَجُلًا وَجْهُهُ مُنِيرٌ يَمْشِي فِي السُّوقِ", 3) == "خبر"
+
+
+def test_the_noun_with_al_after_a_pronoun_follows_it_as_badal():
+    assert _role("اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ", 5) == "بدل"
+
+
+def test_a_noun_in_nasb_after_kana_is_its_khabar_and_what_follows_is_its_ism():
+    assert _role("لَيْسَ الْبِرَّ أَنْ تُوَلُّوا وُجُوهَكُمْ", 1) == "خبر كان"
+
+
+@pytest.mark.parametrize("at, role", [(2, "اسم إن"), (7, "خبر إن")])
+def test_a_relative_ma_is_the_ism_of_anna_and_a_raf_noun_after_its_clause_the_khabar(at, role):
+    assert _role("وَلَوْ أَنَّ مَا فِي الْأَرْضِ مِنْ شَجَرَةٍ أَقْلَامٌ", at) == role
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    ("حضر الضيوف غير بكر", 1, "فاعل"),  # the parser read the guests as the object and غير as the doer
+    ("حضر الضيوف سوى بكر", 3, "مضاف إليه"),
+])
+def test_an_excepting_noun_after_the_doer_is_excepted_and_adds_the_noun_after_it(sentence, at, role):
+    assert _role(sentence, at) == role
+
+
+def test_a_verb_of_two_objects_owes_the_noun_after_its_doer_as_object():
+    assert _role("مَنَحَ المدير المعلم كتابا", 2) == "مفعول به"
+
+
+def test_a_detached_pronoun_after_kana_is_its_ism():
+    assert _role("كَانَ أَنْتَ مُسَافِرًا", 1) == "اسم كان"
+
+
+def test_the_noun_after_a_fronted_jar_majrur_is_the_mubtada_though_bare():
+    assert _role("لله الحمد", 1) == "مبتدأ"
+
+
+def test_a_mudaf_to_a_known_noun_before_an_indefinite_one_is_the_mubtada():
+    assert _role("يوم الجمعة يوم مبارك", 0) == "مبتدأ"
+
+
+def test_a_relative_typed_bare_after_a_preposition_is_not_read_as_a_command():
+    assert _role("مررت بالذي ساعدني", 1) == "مجرور"

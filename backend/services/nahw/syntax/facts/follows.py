@@ -5,7 +5,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged
-from backend.services.nahw.syntax.facts.sentence import Sentence, excepted_from, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above
+from backend.services.nahw.syntax.facts.sentence import Sentence, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
 
@@ -146,12 +146,16 @@ def _follows(token: dict, s: Sentence) -> str:
     # a صفة comes after the noun it describes: هَذَانِ hung on the قَلَمَانِ after it is the mubtada
     if token["rel"] != "MOD" or is_verb(head) or head["id"] > token["id"]:
         return "none"
+    # هُوَ الْحَيُّ: a pronoun is described by nothing (Ibn Yaish on the Mufassal V2 p330: المضمرات لا توصف), so the
+    # noun with ال after a detached pronoun follows it as its بدل
+    if is_subject_pronoun(head) and token.get("stt") == "d" and noun_tagged(token):
+        return "badal"
     # زيدٌ أبوه كريمٌ: a word whose subject stands before it is told of that subject, a khabar
     if any(k["rel"] == "SBJ" and k["id"] < token["id"] for k in s.kids(token)):
         return "none"
-    # الطالبُ الذي نجح: a relative straight after a noun with ال is its صفة (one owed to a verb as its
-    # object went to it in repair.relative_owed: كافأ المديرُ الذي نجح)
-    if listed(token, "mawsul") and head.get("stt") == "d" and head["id"] == token["id"] - 1:
+    # الطالبُ الذي نجح، بِاسْمِ رَبِّكَ الَّذِي خَلَقَ: a relative straight after a known noun (with ال, or added to one)
+    # is its صفة (one owed to a verb as its object went to it in repair.relative_owed: كافأ المديرُ الذي نجح)
+    if listed(token, "mawsul") and is_known(head, s) and previous_noun(token, s) is head:
         return "naat"
     mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
     # مدرسةُ البلدِ الكبيرةُ: a صفة of the مضاف comes after its مضاف إليه, in the مضاف's case

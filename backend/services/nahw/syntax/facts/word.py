@@ -121,7 +121,7 @@ def is_verb(token: dict) -> bool:
     # naming marks a typed command shape (asp c): بِعِ البيتَ، اعْبُدُوا. Not Form IV's أَفْعِلْ,
     # which a name shares (أَحْمَدْ), where CAMeL knows the name; a name it only guessed, or one
     # the typed vowels contradict (أَكْرِمْ is not أَكْرَم), is no evidence, so the command stands
-    if token.get("asp") == "c" and (strip_diacritics(typed)[:1] != "أ" or token.get("guessed")
+    if token.get("asp") == "c" and not listed(token, "mawsul") and (strip_diacritics(typed)[:1] != "أ" or token.get("guessed")
                                     or vowel_agreement(typed, token.get("diac") or "") is None):
         return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
     return token.get("pos_camel") == "noun_prop" and (
@@ -233,9 +233,12 @@ def case_unseen(token: dict) -> bool:
     a noun's before ياء المتكلم (صَدِيقِي), the kasra there being the ya's (لاشتغال المحل)."""
     form, lemma = strip_diacritics(token.get("form", "")), strip_diacritics(token.get("lemma", ""))
     my = bool(token.get("stuck_on")) and strip_diacritics(token.get("typed") or "").endswith("ي")
+    marked = letters(token.get("typed") or "")
+    # الْبَاكِي: a منقوص's bare ya after a kasra carries no vowel, so raf' and jarr alike are unseen (مقدرة للثقل)
+    bare_ya = len(marked) > 1 and marked[-1] == ("ي", set()) and KASRA in marked[-2][1] and strip_diacritics(token.get("lemma", "")).endswith("ي")
     # only a declinable noun is مقصور; a built one ending in ا (مَا، إِذَا، هَذَا) has no case to hide
     return token.get("pos_camel") in ("noun", "adj", "noun_prop") and not typed_case_of(token) and (
-        my or form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
+        my or bare_ya or form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
 
 
 def shown_cases(token: dict) -> set[str]:

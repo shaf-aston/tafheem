@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, noun_tagged, is_name, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, is_known, noun_tagged, is_name, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -23,15 +23,16 @@ def naat_after_its_noun(tokens: list[dict]) -> None:
     """الخياطون حاذقون: a صفة stands after its موصوف, never before it, so in a verbless sentence a word
     with ال the parser hung on the indefinite word after it, which heads the sentence, is no na't of it:
     the known word is the mubtada and the indefinite word its khabar (the khabar is the new
-    information, so it is the less known: Ajrumiyya, the mubtada is a known noun)."""
+    information, so it is the less known: Ajrumiyya, the mubtada is a known noun). A مضاف to a known noun is
+    known too (يَوْمُ الْجُمُعَةِ يَوْمٌ مُبَارَكٌ)."""
     s = Sentence(tokens)
     if not s.verbless:
         return
     for token in tokens:
         head = s.head(token)
         if (head and token["rel"] == "MOD" and head["id"] > token["id"] and head["head"] == 0
-                and noun_tagged(token) and noun_tagged(head) and token.get("stt") == "d"
-                and token["form"].startswith("ال") and head.get("stt") == "i"):
+                and noun_tagged(token) and noun_tagged(head) and head.get("stt") == "i"
+                and (token.get("stt") == "d" and token["form"].startswith("ال") or token.get("stt") == "c" and is_known(token, s))):
             token["head"], token["rel"] = 0, "---"
             head["head"], head["rel"] = token["id"], "PRD"
 
