@@ -13,11 +13,21 @@ lines do not cover the entry in order is refused whole: English under the wrong
 Arabic is a false claim about the book. A word or a saying that cannot be found
 is dropped, never shown as the model wrote it.
 
+Long entries are asked for in pieces (`make`): one request for a whole long
+entry ran past the model service's tokens-per-minute limit and failed every
+time, where pieces of a few hundred letters each pass.
+
+A line that only leads into a quote ("قال الشاعر:") is joined to the line it
+introduces, so a poem is one row, not a row saying "The poet said" and a
+row of verse.
+
 Kept shape, one dict per sense: {"lines": [first, last], "word", "say",
 "gloss", "examples": [{"line", "arabic", "say", "english"}]}, lines counted
 from 0. `shown` turns it into what the card reads, with the Arabic lines in.
 """
 from __future__ import annotations
+
+from typing import Callable
 
 from backend.services.text.arabic_text import DIACRITICS_RE
 
@@ -92,7 +102,78 @@ def check(answer: object, lines: list[str]) -> list[dict] | None:
             "gloss": gloss,
             "examples": examples,
         })
-    return senses if expected == len(lines) else None
+    return _joined_to_quotes(senses, lines) if expected == len(lines) else None
+
+
+def _leads_in(text: str) -> bool:
+    """A line that only introduces what follows: قال الشاعر:, قال:."""
+    return text.rstrip().endswith(":")
+
+
+def _joined_to_quotes(senses: list[dict], lines: list[str]) -> list[dict]:
+    """Each wordless sense whose lines only lead in, folded into the sense after it."""
+    out: list[dict] = []
+    carry: int | None = None
+    for i, sense in enumerate(senses):
+        first, last = sense["lines"]
+        if carry is not None:
+            sense["lines"] = [carry, last]
+            carry = None
+        if (not sense["word"] and i + 1 < len(senses)
+                and all(_leads_in(lines[n]) for n in range(first, last + 1))):
+            carry = sense["lines"][0]
+            continue
+        out.append(sense)
+    return out
+
+
+def cut(lines: list[str], budget: int) -> list[list[str]]:
+    """Whole lines in pieces of about `budget` letters. A piece never ends on a
+    line that leads into a quote: the quote must be read with it."""
+    pieces: list[list[str]] = []
+    spent = 0
+    for line in lines:
+        if pieces and spent + len(line) > budget and not _leads_in(pieces[-1][-1]):
+            pieces.append([])
+            spent = 0
+        if not pieces:
+            pieces.append([])
+        pieces[-1].append(line)
+        spent += len(line)
+    return pieces
+
+
+def make(lines: list[str], ask: Callable[[list[str]], object], budget: int,
+         most: int | None = None) -> tuple[list[dict] | None, int]:
+    """The entry cut into its words, asked for a piece at a time.
+
+    `ask(piece)` is the model call; each piece's answer is checked on its own,
+    with one more try when it does not fit, and its line numbers moved along to
+    where the piece starts. A word whose lines straddle two pieces becomes two
+    senses. Only the first `most` pieces are asked for. Returns the senses and
+    how many lines they cover, or (None, 0) when a piece would not fit twice.
+    """
+    senses: list[dict] = []
+    start = 0
+    for piece in cut(lines, budget)[:most]:
+        for _ in range(2):
+            got = check(ask(piece), piece)
+            if got:
+                break
+        else:
+            return None, 0
+        for sense in got:
+            sense["lines"] = [n + start for n in sense["lines"]]
+            for example in sense["examples"]:
+                example["line"] += start
+        senses += got
+        start += len(piece)
+    return senses, start
+
+
+def covered(lines: list[str], budget: int, most: int | None = None) -> int:
+    """How many lines `make` asks about, worked out without asking."""
+    return sum(len(piece) for piece in cut(lines, budget)[:most])
 
 
 def fits(senses: object, count: int) -> bool:

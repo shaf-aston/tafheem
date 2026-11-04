@@ -369,14 +369,17 @@ async def get_root_entry_senses(root: Root) -> RootEntrySensesResponse:
             source=provenance.of("maqayees_senses" if shipped else "ai"),
         )
 
-    lines, truncated = root_gloss.line_budget(root_gloss.rest_of(entry), get_settings().root_entry_truncate_chars)
-    kept = root_english.get_senses(book_root, len(lines)) if truncated else None
+    # Asked for in pieces, a few while the reader waits: a long entry asked for
+    # whole ran past the model service's per-minute limit and failed every time.
+    settings = get_settings()
+    piece, most = settings.root_entry_senses_piece_chars, settings.root_entry_senses_max_pieces
+    lines = every_line[:root_senses.covered(every_line, piece, most)]
+    kept = root_english.get_senses(book_root, len(lines)) if len(lines) < len(every_line) else None
     if kept is None:
-        answer = await _ask_ai(
-            ai_service.explain_root_entry_senses, root, lines, root_english.get(book_root),
+        kept, _ = await _ask_ai(
+            root_senses.make, every_line, lambda part: ai_service.explain_root_entry_senses(root, part), piece, most,
             operation="word-by-word English of a Maqayees entry",
         )
-        kept = root_senses.check(answer, lines)
         if kept is None:
             raise HTTPException(
                 status_code=502,
@@ -388,6 +391,6 @@ async def get_root_entry_senses(root: Root) -> RootEntrySensesResponse:
     return RootEntrySensesResponse(
         root=root,
         senses=[EntrySense(**s) for s in root_senses.shown(kept, lines)],
-        truncated=truncated,
+        truncated=len(lines) < len(every_line),
         source=provenance.of("ai"),
     )

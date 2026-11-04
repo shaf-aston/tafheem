@@ -38,6 +38,13 @@ class Ai(BaseSettings):
     root_entry_max_tokens: int = 3500
     # Longest Maqayees entry is ~15,000 chars; 6000 is what the smallest local model can hold.
     root_entry_truncate_chars: int = 6000
+    # Word by word asks for a long entry in pieces of about this many letters, each
+    # its own request with its own reply budget: the whole entry in one request
+    # ran past the model service's tokens-per-minute limit (services/dictionary/root_senses).
+    root_entry_senses_piece_chars: int = 700
+    root_entry_senses_max_tokens: int = 2000
+    # Pieces asked for while a reader waits; the backfill asks for every piece.
+    root_entry_senses_max_pieces: int = 4
     # The one-line gist of a Lisan or Taj entry: a sentence back, and the opening
     # of the entry in, which is where both books state the root's senses.
     lexicon_gist_max_tokens: int = 300

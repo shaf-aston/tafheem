@@ -179,18 +179,17 @@ def explain_root_entry_lines(root: str, lines: list[str], reference: str | None 
     )
 
 
-def explain_root_entry_senses(root: str, lines: list[str], reference: str | None = None) -> dict:
-    """A Maqayees entry cut into the words it explains, each with its lines.
+def explain_root_entry_senses(root: str, lines: list[str]) -> dict:
+    """A piece of a Maqayees entry cut into the words it explains, each with its lines.
 
     Returns the model's answer as it came; root_senses.check holds it against
-    the book before the router keeps or shows any of it.
+    the book before anything keeps or shows it. No reference English is sent:
+    it cost tokens and its meanings leaked onto the wrong lines.
     """
     numbered = "\n".join(f"{i + 1}. {line}" for i, line in enumerate(lines))
-    shared = (prompts.ROOT_ENTRY_LINES_REFERENCE.format(english=reference[: get_settings().root_entry_truncate_chars])
-              if reference else "")
     return _ask(
-        prompts.ROOT_ENTRY_SENSES_USER.format(root=root, numbered=numbered, count=len(lines), reference=shared),
-        max_tokens=get_settings().root_entry_max_tokens,
+        prompts.ROOT_ENTRY_SENSES_USER.format(root=root, numbered=numbered, count=len(lines)),
+        max_tokens=get_settings().root_entry_senses_max_tokens,
     )
 
 

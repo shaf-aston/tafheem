@@ -96,23 +96,13 @@ def make_lines(root: str, lines: list[str]) -> None:
 
 
 def make_senses(root: str, lines: list[str]) -> None:
-    """Each chunk cut on its own, its line numbers then moved along to where the
-    chunk starts. A word whose lines straddle two chunks becomes two senses."""
-    senses: list[dict] = []
-    start = 0
-    for chunk in chunks(lines, get_settings().root_entry_truncate_chars):
-        for _ in range(2):  # an answer that does not fit the book gets one more go
-            got = root_senses.check(ai_service.explain_root_entry_senses(root, chunk, root_english.get(root)), chunk)
-            if got:
-                break
-        else:
-            raise ValueError(f"could not cut {len(chunk)} lines into words")
-        for sense in got:
-            sense["lines"] = [n + start for n in sense["lines"]]
-            for example in sense["examples"]:
-                example["line"] += start
-        senses += got
-        start += len(chunk)
+    """Every piece of the entry, the same pieces the app asks for (root_senses.make)."""
+    senses, _ = root_senses.make(
+        lines, lambda part: ai_service.explain_root_entry_senses(root, part),
+        get_settings().root_entry_senses_piece_chars,
+    )
+    if senses is None:
+        raise ValueError(f"could not cut {len(lines)} lines into words")
     root_english.put_senses(root, senses, shipped=True)
 
 
