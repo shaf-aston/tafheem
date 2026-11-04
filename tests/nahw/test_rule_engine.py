@@ -1385,3 +1385,7 @@ def test_an_indefinite_word_after_an_construct_of_an_unknown_noun_is_its_naat():
 
 def test_a_noun_showing_no_case_after_an_elative_is_its_tamyeez():
     assert _role("أَعْظَمُ النَّاسِ أَجْرًا فِي الصَّلاَةِ أَبْعَدُهُمْ فَأَبْعَدُهُمْ مَمْشًى", 7) == "تمييز"
+
+
+def test_a_masdar_added_to_its_doer_governs_the_object_after_it():
+    assert _role("أَدَّى إِهْمَالُ الْمَسْؤُولِينَ صِيَانَةَ الْجُسُورِ الْقَدِيمَةِ إِلَى انْهِيَارِ أَحَدِهَا الْأُسْبُوعَ الْمَاضِيَ", 3) == "مفعول به"

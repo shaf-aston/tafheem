@@ -80,6 +80,17 @@ def place_time(token: dict, s: Sentence) -> bool:
     return opens_verb or bool(head and zarf_in_nasb(token, s))
 
 
+def masdar_object(token: dict, s: Sentence) -> bool:
+    """أَدَّى إِهْمَالُ الْمَسْؤُولِينَ صِيَانَةَ الْجُسُورِ: a masdar added to its doer works as its verb on the noun
+    in nasb after that doer, its object (Alfiyya, باب إعمال المصدر: بِفِعْلِهِ الْمَصْدَرَ أَلْحِقْ فِي الْعَمَلِ مُضَافًا؛
+    Ibn Aqil V3, page unchecked). A word of the masdar's own root, or a state word, after it is its absolute object or
+    hal."""
+    head = s.head(token)
+    return bool(head and token["rel"] in ("OBJ", "MOD") and typed_case_of(token) == "a" and is_masdar(head)
+                and not (same_root(token, head) or is_state_word(token) or listed(token, "masdar_adjectives"))
+                and any(k["rel"] == "IDF" and k["id"] < token["id"] for k in s.kids(head)))
+
+
 def _object_of_participle(token: dict, head: dict) -> bool:
     """A word hung on a participle that is its object: linked as one in nasb, or in the
     nasb the reader typed where the link cannot hold it, since a مضاف إليه is never منصوب
@@ -173,6 +184,8 @@ def verb_place(token: dict, s: Sentence) -> str:
     head = s.head(token)
     rel = token["rel"]
     typed = typed_case_of(token)
+    if masdar_object(token, s):
+        return "object"
     # زيدٌ ضاربٌ بكرًا: a word like the verb (شبه الفعل) takes its object as the verb does
     # (notes, المفعول به p0: a فعل or a شبه الفعل governs it)
     if head and not is_verb(head) and at_work(head, s):
