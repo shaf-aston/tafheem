@@ -1495,3 +1495,7 @@ def test_bare_describing_word_after_its_noun_is_its_sifa_whatever_ending_the_par
     assert _role("سمعت صوت الطفل الباكي في الليل", 3) == "صفة"
     assert _role("رحبت بالزائرين اللطيفين", 2) == "صفة"
     assert _role("الدين النصيحة", 1) == "خبر"
+
+
+def test_bare_noun_with_a_pronoun_back_to_a_doer_whose_verb_owes_an_object_is_that_object():
+    assert _role("ارتدى المحارب درعه", 2) == "مفعول به"

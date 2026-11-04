@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged
+from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged
 from backend.services.nahw.syntax.facts.sentence import Sentence, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
@@ -42,6 +42,10 @@ def stands_for(token: dict, s: Sentence) -> bool:
     if after and mine and noun_tagged(after) and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
         return False
     verb = verb_above(before, s)
+    # ارتدى المحارب درعه typed bare: a doer straight before it leaves its verb its object, which this word is
+    if (verb and typed_bare(token) and not same_case(token, before) and subject_link(before) and before["rel"] != "OBJ"
+            and not is_one(verb["lemma"], "intransitive_verbs") and not any(k["rel"] == "OBJ" and k is not token for k in s.kids(verb))):
+        return False
     # رَأَيْتُ أَخَاكَ زَيْدًا (Tasheel 3.10.3 p94: بدل): a verb with a one-object sense too (closed_words zanna
     # `one_object`: رأى of the eye) takes a name that names its object again as that object's بدل
     one_sense = verb and token["pos"] == "PROP" and is_one(verb["lemma"], "zanna", "one_object")

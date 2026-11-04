@@ -179,8 +179,10 @@ class Sentence:
 
     def one_word_after(self, particle: dict) -> bool:
         """ما جاء زيد لكن عمرو: a single word ends the sentence after the particle, so an inna sister has no خبر
-        to be given: typed bare, the light لكن (Tasheel 1.8 p20) that joins that word is meant."""
-        return sum(1 for t in self.tokens if t["id"] > particle["id"] and not is_suffix(t)) == 1
+        to be given: typed bare, the light لكن (Tasheel 1.8 p20) that joins that word is meant. Only a sister the
+        books list as joining (closed_words atf)."""
+        return (typed_bare(particle) and is_one(particle["lemma"], "atf")
+                and sum(1 for t in self.tokens if t["id"] > particle["id"] and not is_suffix(t)) == 1)
 
     def negated_before(self, word: dict) -> bool:
         return any(t["pos"] == "PRT" and t["id"] < word["id"] and is_one(t["lemma"], "negation")
