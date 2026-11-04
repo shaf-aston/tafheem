@@ -283,6 +283,8 @@
     "_arrive_comment": "What a tap brings in is already there on its first frame: arrivals start at this opacity, never 0, so motion polishes the change rather than holding it back. With 0 a new tab or answer read as nothing for most of base-ms, the lag felt on every tap.",
     "arrive-from": 0.6,
     "base-ms": 150,
+    "_screen_comment": "Where a screen inside a tab starts its fade (components/ui/display/Screen.jsx, styles/motion.css .screen): a step down or back up a tab's tree. Near full, since the screen is already there on its first frame; from arrive-from a whole page of cards washed pale and then darkened.",
+    "screen-from": 0.85,
     "spring-ms": 300,
     "stagger-ms": 25,
     "_reveal_comment": "The .reveal class in styles/motion.css: a thing below the fold rises (the rise-in move) and fades in once, when it scrolls into view. reveal-y-px is how far it rises from, reveal-from the opacity it starts at (it is off screen, so unlike arrive-from it may start at 0), reveal-cap how many neighbours in a row stagger before the rest arrive together (--i beyond it counts as the cap, times stagger-ms), so a long grid never makes the last tile wait a second.",
