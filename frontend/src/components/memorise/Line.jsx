@@ -54,7 +54,7 @@ export default function Line({ line, flow, index, blanks, answers, checked, mean
             ayah={ayah}
             recite={recite}
             accent={accent}
-            coverWidth={blank ? typeWidth : undefined}
+            cover={blank}
             onStartAt={onStartAt}
           />
           {hemistichBreak}
