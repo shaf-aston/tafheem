@@ -1381,3 +1381,7 @@ def test_a_second_describing_word_with_al_describes_the_same_noun():
 
 def test_an_indefinite_word_after_an_construct_of_an_unknown_noun_is_its_naat():
     assert _role("يَسْعَى الْمَسْؤُولُونَ إِلَى أَنْ يُوَفِّرُوا فُرَصَ عَمَلٍ جَدِيدَةً لِلشَّبَابِ الْعَاطِلِينَ", 7) == "صفة"
+
+
+def test_a_noun_showing_no_case_after_an_elative_is_its_tamyeez():
+    assert _role("أَعْظَمُ النَّاسِ أَجْرًا فِي الصَّلاَةِ أَبْعَدُهُمْ فَأَبْعَدُهُمْ مَمْشًى", 7) == "تمييز"

@@ -3,8 +3,8 @@ and the rest, under a verb (verb_place) or in a verbless sentence (nominal_place
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import book_map, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
-from backend.services.nahw.syntax.facts.word import is_built, shown_cases, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
+from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
+from backend.services.nahw.syntax.facts.word import is_built, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
@@ -422,6 +422,10 @@ def _nominal_place(token: dict, s: Sentence) -> str:
             return "specification"
         if told_of_lone_mubtada(token, head, s):
             return "predicate"
+        # أَبْعَدُهُمْ مَمْشًى: a plain indefinite noun showing no case after an elative says in what it is more, its
+        # tamyeez (Tasheel 3.2 p67): nothing shows it is not nasb, and a khabar would not follow the elative
+        if is_elative(head) and case_unseen(token) and token.get("stt") == "i" and token.get("pos_camel") == "noun":
+            return "specification"
         # a name is definite by itself (رأيت أخاك زيدًا): its tanween makes it no hal; an unknown
         # word the analyser filed as a name is still one if it has a hal's shape (مسرعًا)
         if unlike(token, head) and (is_state_word(token) or not is_name(token)):
