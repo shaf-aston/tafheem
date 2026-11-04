@@ -1,247 +1,344 @@
 {
   "found": [
     {
-      "lesson": 6,
-      "phrase": 3,
-      "english": "Forgive me, I made a mistake.",
-      "search_term": "pencil eraser",
+      "lesson": 1,
+      "phrase": 1,
+      "english": "How are you today? (to a man)",
+      "search_term": "two friends talking",
       "candidates": [
         {
-          "id": "2d664f83-5420-4f89-b95c-27f47d363de6",
-          "title": "Pen, pencil eraser, stationery",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/6020484/photo-image-public-domain-pen-pencil",
-          "thumbnail": "https://api.openverse.org/v1/images/2d664f83-5420-4f89-b95c-27f47d363de6/thumb/"
-        },
-        {
-          "id": "6955b491-21f6-41fe-a0d2-bb4cfb9ad4d5",
-          "title": "Pencil eraser lead holder (part",
-          "creator": "themet",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/8026201/pencil-with-eraser-and-lead-holder-part-set",
-          "thumbnail": "https://api.openverse.org/v1/images/6955b491-21f6-41fe-a0d2-bb4cfb9ad4d5/thumb/"
-        },
-        {
-          "id": "6d3ceee6-be92-4aea-b355-abb3a22f0b22",
-          "title": "pencil, eraser paper clips next",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/3294953/free-photo-image-jar-cc0-coffee-cup",
-          "thumbnail": "https://api.openverse.org/v1/images/6d3ceee6-be92-4aea-b355-abb3a22f0b22/thumb/"
-        },
-        {
-          "id": "c6db0ff7-2925-4246-9ee9-826ad9fd79e1",
-          "title": "Office Desk",
-          "creator": "Bench Accounting",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/office-desk-0NML1Q2CFH",
-          "thumbnail": "https://api.openverse.org/v1/images/c6db0ff7-2925-4246-9ee9-826ad9fd79e1/thumb/"
-        }
-      ]
-    },
-    {
-      "lesson": 6,
-      "phrase": 6,
-      "english": "I apologize for being late.",
-      "search_term": "wall clock",
-      "candidates": [
-        {
-          "id": "5194ff3f-39d2-4293-89a6-fe29accd9796",
-          "title": "Wall Clock",
-          "creator": "wu yi",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/wall-clock-PFD4T6FBTZ",
-          "thumbnail": "https://api.openverse.org/v1/images/5194ff3f-39d2-4293-89a6-fe29accd9796/thumb/"
-        },
-        {
-          "id": "6e9198b0-517a-4c39-a0b9-0a8b3806126a",
-          "title": "Wall Clock",
-          "creator": "Noah Silliman",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/wall-clock-NP4PTJZ6C3",
-          "thumbnail": "https://api.openverse.org/v1/images/6e9198b0-517a-4c39-a0b9-0a8b3806126a/thumb/"
-        },
-        {
-          "id": "cdfedebb-e643-482f-a837-3a6656ef3dce",
-          "title": "Wall Clock",
-          "creator": "Alex%20Bl%u0103jan",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/wall-clock-W4A6TSL43J",
-          "thumbnail": "https://api.openverse.org/v1/images/cdfedebb-e643-482f-a837-3a6656ef3dce/thumb/"
-        },
-        {
-          "id": "8716a13a-884b-4722-8f1a-5b141db29cfe",
-          "title": "Wall Clock (c. 1938) Lawrence",
-          "creator": "nationalgalleryofart",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/3390675/free-illustration-image-antique-art-artwork",
-          "thumbnail": "https://api.openverse.org/v1/images/8716a13a-884b-4722-8f1a-5b141db29cfe/thumb/"
-        }
-      ]
-    },
-    {
-      "lesson": 6,
-      "phrase": 7,
-      "english": "I broke your cup, I am very sorry. (m)",
-      "search_term": "broken cup",
-      "candidates": [
-        {
-          "id": "e6a2f79f-a548-49b9-92ae-db7197da2ea8",
-          "title": "Cracked pottery",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/3297249/free-photo-image-broken-flower-pot-cup",
-          "thumbnail": "https://api.openverse.org/v1/images/e6a2f79f-a548-49b9-92ae-db7197da2ea8/thumb/"
-        },
-        {
-          "id": "e2145393-2f23-4ad4-ac54-52ca0a38a8fd",
-          "title": "Attic Black-Figure Band Cup Fragment",
-          "creator": "thegetty",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14280743/attic-black-figure-band-cup-fragment",
-          "thumbnail": "https://api.openverse.org/v1/images/e2145393-2f23-4ad4-ac54-52ca0a38a8fd/thumb/"
-        },
-        {
-          "id": "afa40a87-bde4-4c33-9125-bc725f58f6f8",
-          "title": "Coffeepot by Joseph Richardson, Sr",
-          "creator": "artinstitutechicago",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/8940872/coffeepot-joseph-richardson-sr",
-          "thumbnail": "https://api.openverse.org/v1/images/afa40a87-bde4-4c33-9125-bc725f58f6f8/thumb/"
-        },
-        {
-          "id": "2ed2dd87-17b3-475b-bb3c-a7324bcac56e",
-          "title": "Broken tea full fragrant. Specialty",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/10740191/image-person-vintage-book",
-          "thumbnail": "https://api.openverse.org/v1/images/2ed2dd87-17b3-475b-bb3c-a7324bcac56e/thumb/"
-        }
-      ]
-    },
-    {
-      "lesson": 6,
-      "phrase": 11,
-      "english": "Don't be sad, it happens to everyone. (to a man)",
-      "search_term": "box of tissues",
-      "candidates": [
-        {
-          "id": "cfdb8d92-2699-4062-97bd-06ffd108ed38",
-          "title": "Wooden tissue box",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/6036817/wooden-tissue-box-free-public-domain-cc0-photo",
-          "thumbnail": "https://api.openverse.org/v1/images/cfdb8d92-2699-4062-97bd-06ffd108ed38/thumb/"
-        },
-        {
-          "id": "ed497336-a600-4912-8c64-20ea911fcef9",
-          "title": "Identifier: humanbodybeginne00mart (find matches)Title: human",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/9976735/image-face-person-art",
-          "thumbnail": "https://api.openverse.org/v1/images/ed497336-a600-4912-8c64-20ea911fcef9/thumb/"
-        },
-        {
-          "id": "97d4ba5b-2e89-4280-a1e7-49e8ebdc64fe",
-          "title": "Identifier: anatomyphysiolog00mayc (find matches)Title: Anatomy",
-          "creator": null,
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/9975435/image-face-plant-person",
-          "thumbnail": "https://api.openverse.org/v1/images/97d4ba5b-2e89-4280-a1e7-49e8ebdc64fe/thumb/"
-        },
-        {
-          "id": "23ffc422-58b9-45d1-b201-2bae70d1fca9",
-          "title": "Box of tissues",
-          "creator": "profernity",
+          "id": "c4b2f3ec-001d-46c2-ac37-761aaa5c8db6",
+          "title": "Hallelujah",
+          "creator": "Lisa Zins",
           "license": "by",
           "license_version": "2.0",
           "license_url": "https://creativecommons.org/licenses/by/2.0/",
-          "foreign_landing_url": "https://www.flickr.com/photos/38766930@N05/4507399504",
-          "thumbnail": "https://api.openverse.org/v1/images/23ffc422-58b9-45d1-b201-2bae70d1fca9/thumb/"
+          "foreign_landing_url": "https://www.flickr.com/photos/94846844@N04/51992780253",
+          "thumbnail": "https://api.openverse.org/v1/images/c4b2f3ec-001d-46c2-ac37-761aaa5c8db6/thumb/"
+        },
+        {
+          "id": "1d1884a9-7f2e-4351-bb79-6b808d33884f",
+          "title": "Friends",
+          "creator": "Gerry Dincher",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/11629603@N04/51917912033",
+          "thumbnail": "https://api.openverse.org/v1/images/1d1884a9-7f2e-4351-bb79-6b808d33884f/thumb/"
+        },
+        {
+          "id": "db9983ac-fd1c-4e86-82d5-dcc8c6b29cfd",
+          "title": "Calling All Angels",
+          "creator": "Lisa Zins",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/94846844@N04/51993346575",
+          "thumbnail": "https://api.openverse.org/v1/images/db9983ac-fd1c-4e86-82d5-dcc8c6b29cfd/thumb/"
+        },
+        {
+          "id": "14b65242-e45b-4cf6-9189-e95bcc813eb4",
+          "title": "Solanum lycopersicum 'A. Z. Cutler' 8/2021 Tomato-",
+          "creator": "F. D. Richards",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/50697352@N00/51366700877",
+          "thumbnail": "https://api.openverse.org/v1/images/14b65242-e45b-4cf6-9189-e95bcc813eb4/thumb/"
         }
       ]
     },
     {
-      "lesson": 6,
-      "phrase": 12,
-      "english": "I will be more careful next time.",
-      "search_term": "calendar page",
+      "lesson": 1,
+      "phrase": 3,
+      "english": "What's wrong with you? (to a man)",
+      "search_term": "worried friend asking",
       "candidates": [
         {
-          "id": "85df85d4-cd04-4f94-b870-ddc3b58aa225",
-          "title": "Calendar Page",
-          "creator": "thegetty",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14311981/calendar-page",
-          "thumbnail": "https://api.openverse.org/v1/images/85df85d4-cd04-4f94-b870-ddc3b58aa225/thumb/"
+          "id": "e467a913-55c1-43f7-aed1-b88bb8ee1469",
+          "title": "(XLIII): Little Drummer Boy",
+          "creator": "RavindanLEGO",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/100615199@N02/23870184591",
+          "thumbnail": "https://api.openverse.org/v1/images/e467a913-55c1-43f7-aed1-b88bb8ee1469/thumb/"
         },
         {
-          "id": "4d9ae975-27fd-4a9c-946a-2cef5de3b6e5",
-          "title": "Leaf Psalter Prayerbook: Calendar Page",
-          "creator": "clevelandart",
-          "license": "cc0",
+          "id": "138c6e35-12ff-41a8-a99c-95940664e307",
+          "title": "Boycs",
+          "creator": "ForwardDefensive",
+          "license": "pdm",
           "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/2772782/free-illustration-image-border-calendar-medieval",
-          "thumbnail": "https://api.openverse.org/v1/images/4d9ae975-27fd-4a9c-946a-2cef5de3b6e5/thumb/"
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/78091088@N02/52194733672",
+          "thumbnail": "https://api.openverse.org/v1/images/138c6e35-12ff-41a8-a99c-95940664e307/thumb/"
         },
         {
-          "id": "1eb1c680-d39f-4b4d-8864-8622e9edcbf9",
-          "title": "June Calendar Page Junius Brutus",
-          "creator": "thegetty",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14260556/june-calendar-page-with-junius-brutus-and-zodiacal-sign-gemini",
-          "thumbnail": "https://api.openverse.org/v1/images/1eb1c680-d39f-4b4d-8864-8622e9edcbf9/thumb/"
-        },
-        {
-          "id": "276b1e26-01f3-4c7e-8551-d30f8a4b3cb9",
-          "title": "Calendar Page",
-          "creator": "thegetty",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14312063/calendar-page",
-          "thumbnail": "https://api.openverse.org/v1/images/276b1e26-01f3-4c7e-8551-d30f8a4b3cb9/thumb/"
+          "id": "c1e868e4-ace6-454e-85b0-f2e01021e02f",
+          "title": "Cooking at night",
+          "creator": "solarisgirl",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/7252160@N04/52861402305",
+          "thumbnail": "https://api.openverse.org/v1/images/c1e868e4-ace6-454e-85b0-f2e01021e02f/thumb/"
         }
       ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 8,
+      "english": "I'm very tired. (m)",
+      "search_term": "tired man yawning",
+      "candidates": [
+        {
+          "id": "6fa73b8f-f1a0-4250-8811-a77c764a4f7f",
+          "title": "Yawn-stuck Face B.W.",
+          "creator": "yawning hunter",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/192679240@N05/54006066209",
+          "thumbnail": "https://api.openverse.org/v1/images/6fa73b8f-f1a0-4250-8811-a77c764a4f7f/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 10,
+      "english": "I'm worried about the exam.",
+      "search_term": "worried student with books",
+      "candidates": [
+        {
+          "id": "641534c9-7741-4c30-8dfb-1364f17527cd",
+          "title": "Sonora Baja California EMD FP7 2102",
+          "creator": "Digital Rail Artist",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/187894742@N05/51672550602",
+          "thumbnail": "https://api.openverse.org/v1/images/641534c9-7741-4c30-8dfb-1364f17527cd/thumb/"
+        },
+        {
+          "id": "1e43f8f2-db91-48c5-b68d-ca124473052a",
+          "title": "They MUST CENSOR the inappropriate phrases about body parts in ALL future Family Guy boradcasts",
+          "creator": "PatrickRich",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/91689877@N03/54438219638",
+          "thumbnail": "https://api.openverse.org/v1/images/1e43f8f2-db91-48c5-b68d-ca124473052a/thumb/"
+        },
+        {
+          "id": "820c7597-ce28-49fd-97a1-2b8bf8c481e1",
+          "title": "They MUST CENSOR the inappropriate phrases about body parts in all future American Dad boradcasts",
+          "creator": "PatrickRich",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/91689877@N03/54438849042",
+          "thumbnail": "https://api.openverse.org/v1/images/820c7597-ce28-49fd-97a1-2b8bf8c481e1/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 11,
+      "english": "I'm scared of this.",
+      "search_term": "scared face",
+      "candidates": [
+        {
+          "id": "66841ffc-7bd6-41cd-90d2-2e5ec2dae0c3",
+          "title": "Cup black coffee breakfast",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5803563/photo-image-background-public-domain-coffee",
+          "thumbnail": "https://api.openverse.org/v1/images/66841ffc-7bd6-41cd-90d2-2e5ec2dae0c3/thumb/"
+        },
+        {
+          "id": "b7be49a6-b2c5-4b00-bf43-566637056c02",
+          "title": "Fort Lauderdale Natural Indoor Farm 2300 SW 46th Ave, Fort Lauderdale, FL 33317",
+          "creator": "PatrickRich",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/91689877@N03/51297979909",
+          "thumbnail": "https://api.openverse.org/v1/images/b7be49a6-b2c5-4b00-bf43-566637056c02/thumb/"
+        },
+        {
+          "id": "2b13c44e-d564-455c-ad84-e9056deb07de",
+          "title": "a nice meerkat",
+          "creator": "paologmb",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/14012466@N07/51361448574",
+          "thumbnail": "https://api.openverse.org/v1/images/2b13c44e-d564-455c-ad84-e9056deb07de/thumb/"
+        },
+        {
+          "id": "61055714-bf5b-45c3-a283-19bd89b830ef",
+          "title": "Neon Energy",
+          "creator": "Orphy's corner",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/154553893@N05/52250575905",
+          "thumbnail": "https://api.openverse.org/v1/images/61055714-bf5b-45c3-a283-19bd89b830ef/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 12,
+      "english": "I'm glad you came. (to a man)",
+      "search_term": "friends greeting at door",
+      "candidates": [
+        {
+          "id": "abec8ead-f302-455c-9b67-42c27227666a",
+          "title": "Heidi",
+          "creator": "quinet",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/91994044@N00/53639920952",
+          "thumbnail": "https://api.openverse.org/v1/images/abec8ead-f302-455c-9b67-42c27227666a/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 2,
+      "phrase": 5,
+      "english": "I agree. (m)",
+      "search_term": "man nodding agreement",
+      "candidates": []
+    },
+    {
+      "lesson": 2,
+      "phrase": 6,
+      "english": "I agree. (f)",
+      "search_term": "woman nodding agreement",
+      "candidates": []
     }
   ],
   "needs_search_term": [
+    {
+      "lesson": 2,
+      "phrase": 3,
+      "english": "You're right. (to a man)"
+    },
+    {
+      "lesson": 2,
+      "phrase": 4,
+      "english": "You're right. (to a woman)"
+    },
+    {
+      "lesson": 2,
+      "phrase": 8,
+      "english": "I don't agree with you."
+    },
+    {
+      "lesson": 2,
+      "phrase": 10,
+      "english": "In my opinion..."
+    },
+    {
+      "lesson": 2,
+      "phrase": 11,
+      "english": "Maybe, but..."
+    },
+    {
+      "lesson": 3,
+      "phrase": 4,
+      "english": "Why don't you try this?"
+    },
+    {
+      "lesson": 3,
+      "phrase": 5,
+      "english": "If I were you, I'd do this."
+    },
+    {
+      "lesson": 3,
+      "phrase": 7,
+      "english": "Take care of yourself. (to a man)"
+    },
+    {
+      "lesson": 3,
+      "phrase": 8,
+      "english": "It won't hurt you to try."
+    },
+    {
+      "lesson": 3,
+      "phrase": 11,
+      "english": "I advise you not to do this."
+    },
+    {
+      "lesson": 3,
+      "phrase": 12,
+      "english": "Stay calm and don't rush."
+    },
+    {
+      "lesson": 4,
+      "phrase": 1,
+      "english": "Excuse me, there's a small problem. (to a man)"
+    },
+    {
+      "lesson": 4,
+      "phrase": 2,
+      "english": "Sorry to bother you, but... (m)"
+    },
+    {
+      "lesson": 4,
+      "phrase": 3,
+      "english": "Can someone help me?"
+    },
+    {
+      "lesson": 4,
+      "phrase": 4,
+      "english": "This isn't what I ordered. (m)"
+    },
+    {
+      "lesson": 4,
+      "phrase": 11,
+      "english": "Can you help me with this matter?"
+    },
+    {
+      "lesson": 4,
+      "phrase": 12,
+      "english": "There's no problem, but I'd like to clarify. (m)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 4,
+      "english": "May Allah bless you. (to a man)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 8,
+      "english": "I am very grateful to you. (m)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 9,
+      "english": "You are very kind. (to a man)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 10,
+      "english": "I will never forget your kindness. (to a man)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 11,
+      "english": "Praise be to Allah, everything is fine."
+    },
+    {
+      "lesson": 5,
+      "phrase": 12,
+      "english": "Don't mention it, it was my duty."
+    },
     {
       "lesson": 6,
       "phrase": 1,
@@ -266,16 +363,6 @@
       "lesson": 6,
       "phrase": 8,
       "english": "No harm done, it is a small matter."
-    },
-    {
-      "lesson": 6,
-      "phrase": 9,
-      "english": "May Allah forgive us all."
-    },
-    {
-      "lesson": 6,
-      "phrase": 10,
-      "english": "I accept your apology. (to a man)"
     }
   ]
 }

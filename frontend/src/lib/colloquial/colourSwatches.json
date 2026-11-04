@@ -1,0 +1,8 @@
+{
+  "_about": "The real colour each colour word names, for its panel in the Colours picture board (words/picture/SceneArt.jsx). Content, not theme: red is red in every look. A pair is a shine from the first to the second.",
+  "swatches": {
+    "red": "#d92b2b", "orange": "#f08a1c", "yellow": "#f5cf1f", "green": "#2f9e44", "blue": "#1f6fd6", "light-blue": "#7cc3f2",
+    "navy-blue": "#1b2a5c", "turquoise": "#1fb5ad", "purple": "#7b3fb8", "pink": "#f28cb8", "brown": "#7a4a24", "grey": "#8a8f98",
+    "black": "#111214", "white": "#ffffff", "gold-colour": ["#f6d365", "#b8860b"], "silver-colour": ["#f2f3f5", "#9aa0a8"]
+  }
+}

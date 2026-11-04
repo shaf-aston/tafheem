@@ -15,6 +15,15 @@ describe('wordDrills', () => {
     expect(drills[1].say).toBe('اسم')
   })
 
+  it('a word with a picture is asked by its picture, not its English', () => {
+    const [pick, listen] = wordDrills([{ ...words[0], image: 'emoji/1f54a.svg' }, { ...words[1], image: 'emoji/1f4db.svg' }, ...words.slice(2)], 'l1')
+    expect(pick).toMatchObject({ prompt: 'Which word is this?', image: 'emoji/1f54a.svg' })
+    expect(pick.prompt).not.toContain('peace')
+    expect(pick.tip).toContain('peace')
+    // Heard, not seen: a listening drill never shows the picture away.
+    expect(listen.image).toBeUndefined()
+  })
+
   it('offers the answer among three other words, no repeats', () => {
     for (const d of wordDrills(words, 'l1').filter((x) => x.type === 'choose')) {
       expect(d.options).toContain(d.answer)

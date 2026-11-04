@@ -1,0 +1,215 @@
+{
+  "found": {
+    "marriage": {
+      "english": "marriage",
+      "search_term": "wedding couple",
+      "candidates": [
+        {
+          "id": "fd64e867-360a-4cd1-98ca-2bc410ba7b76",
+          "title": "Wedding Couple",
+          "creator": "Jeremy Wong",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/wedding-couple-YJHZWANTEG",
+          "thumbnail": "https://api.openverse.org/v1/images/fd64e867-360a-4cd1-98ca-2bc410ba7b76/thumb/"
+        },
+        {
+          "id": "109fc005-97aa-45e3-86b6-040bc7448498",
+          "title": "Wedding Couple",
+          "creator": "Drew Coffman",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/wedding-couple-2BJEGE3LJ4",
+          "thumbnail": "https://api.openverse.org/v1/images/109fc005-97aa-45e3-86b6-040bc7448498/thumb/"
+        },
+        {
+          "id": "8860d0e7-aa0f-47d3-977d-3f93e9845ca3",
+          "title": "Wedding Couple",
+          "creator": "Artsy Vibes",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/wedding-couple-X8KS5S2T0V",
+          "thumbnail": "https://api.openverse.org/v1/images/8860d0e7-aa0f-47d3-977d-3f93e9845ca3/thumb/"
+        },
+        {
+          "id": "86cad3b2-c1c7-47a6-b7de-a158b837e7be",
+          "title": "Wedding Couple",
+          "creator": "Matt Bango",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/wedding-couple-RRB1FQ98DO",
+          "thumbnail": "https://api.openverse.org/v1/images/86cad3b2-c1c7-47a6-b7de-a158b837e7be/thumb/"
+        }
+      ]
+    },
+    "to-open": {
+      "english": "to open",
+      "search_term": "opening a door",
+      "candidates": [
+        {
+          "id": "036e0500-d0f2-4101-8178-cf87ee3bf93f",
+          "title": "Opening Holy Door [reverse] (1675)",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/10014765/the-opening-the-holy-door-reverse-1675-giovanni-martino-hamerani",
+          "thumbnail": "https://api.openverse.org/v1/images/036e0500-d0f2-4101-8178-cf87ee3bf93f/thumb/"
+        },
+        {
+          "id": "e3896383-5c15-4b3d-b10c-87e2b90413d5",
+          "title": "Shop Store",
+          "creator": "Mike Petrucci",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/shop-store-I93PW8NE0F",
+          "thumbnail": "https://api.openverse.org/v1/images/e3896383-5c15-4b3d-b10c-87e2b90413d5/thumb/"
+        },
+        {
+          "id": "4dba4883-5cff-4e01-9179-66c9efbc9c96",
+          "title": "Interior Indoor",
+          "creator": "Philipp Berndt",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/interior-indoor-Q0EGF4XNXG",
+          "thumbnail": "https://api.openverse.org/v1/images/4dba4883-5cff-4e01-9179-66c9efbc9c96/thumb/"
+        },
+        {
+          "id": "121668a1-f8cc-4da9-a3dd-31a7f9774ecd",
+          "title": "Wardrobe Closet",
+          "creator": "Oliver Klein",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/wardrobe-closet-YISUDLOYC3",
+          "thumbnail": "https://api.openverse.org/v1/images/121668a1-f8cc-4da9-a3dd-31a7f9774ecd/thumb/"
+        }
+      ]
+    },
+    "team": {
+      "english": "team",
+      "search_term": "team sport action",
+      "candidates": [
+        {
+          "id": "aa89f377-ba64-4c7e-8fea-e1c835b86363",
+          "title": "Fall colors in eastern United States and Canada",
+          "creator": "NASA Goddard Photo and Video",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/24662369@N07/15225458169",
+          "thumbnail": "https://api.openverse.org/v1/images/aa89f377-ba64-4c7e-8fea-e1c835b86363/thumb/"
+        },
+        {
+          "id": "434657c2-7383-4bdc-b260-da07535dadf5",
+          "title": "750MC Birkett Relay, 29 October 2022",
+          "creator": "hockeyshooter",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/32332324@N00/52463939437",
+          "thumbnail": "https://api.openverse.org/v1/images/434657c2-7383-4bdc-b260-da07535dadf5/thumb/"
+        },
+        {
+          "id": "e0d15ebb-096f-4eff-8cee-9cf7bee9eab6",
+          "title": "750MC Birkett Relay, 29 October 2022",
+          "creator": "hockeyshooter",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/32332324@N00/52464439381",
+          "thumbnail": "https://api.openverse.org/v1/images/e0d15ebb-096f-4eff-8cee-9cf7bee9eab6/thumb/"
+        },
+        {
+          "id": "f0307b48-d51a-4d67-8e02-0e13d4a14336",
+          "title": "750MC Birkett Relay, 29 October 2022",
+          "creator": "hockeyshooter",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/32332324@N00/52464722149",
+          "thumbnail": "https://api.openverse.org/v1/images/f0307b48-d51a-4d67-8e02-0e13d4a14336/thumb/"
+        }
+      ]
+    }
+  },
+  "needs_search_term": [
+    "profession",
+    "boss",
+    "experience",
+    "pension",
+    "retirement",
+    "engineer",
+    "nurse",
+    "lawyer",
+    "journalist",
+    "accountant",
+    "employee",
+    "craftsman",
+    "retired",
+    "to-work",
+    "to-look-for",
+    "manager",
+    "colleague",
+    "overtime",
+    "working-hours",
+    "leave",
+    "to-receive",
+    "to-finish",
+    "to-break-down",
+    "demanding",
+    "faculty",
+    "lecture",
+    "professor",
+    "result",
+    "semester",
+    "year",
+    "major",
+    "subject",
+    "course",
+    "to-understand",
+    "to-register",
+    "to-submit",
+    "absent",
+    "future",
+    "ambition",
+    "opportunity",
+    "field",
+    "masters-degree",
+    "phd",
+    "abroad",
+    "to-graduate",
+    "to-plan",
+    "to-intend",
+    "to-decide",
+    "to-apply",
+    "to-travel",
+    "to-get-married",
+    "to-settle",
+    "pupil",
+    "blackboard",
+    "book",
+    "school-uniform",
+    "grade",
+    "break",
+    "to-write",
+    "to-forget",
+    "diligent",
+    "interview",
+    "candidate",
+    "skill",
+    "qualification",
+    "strength",
+    "language",
+    "to-introduce",
+    "to-start",
+    "to-accept",
+    "to-speak"
+  ]
+}

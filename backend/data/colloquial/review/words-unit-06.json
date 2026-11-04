@@ -1,0 +1,198 @@
+{
+  "found": {
+    "floor": {
+      "english": "floor",
+      "search_term": "floor home interior",
+      "candidates": [
+        {
+          "id": "6742c9cc-6d87-4578-8785-60c92e70807e",
+          "title": "Apartment Bed",
+          "creator": "Medhat Ayad",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/apartment-bed-EGXWIV409M",
+          "thumbnail": "https://api.openverse.org/v1/images/6742c9cc-6d87-4578-8785-60c92e70807e/thumb/"
+        },
+        {
+          "id": "750a327c-f6d8-427e-b9b2-8bc7090bb05d",
+          "title": "Home House",
+          "creator": "Breather",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/home-house-87ONRC5PWV",
+          "thumbnail": "https://api.openverse.org/v1/images/750a327c-f6d8-427e-b9b2-8bc7090bb05d/thumb/"
+        },
+        {
+          "id": "c6b1bca4-7448-44c9-bddc-0459ddc4739a",
+          "title": "Kitchen Interior",
+          "creator": "Matt Bango",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/kitchen-interior-3ZX53UFU8B",
+          "thumbnail": "https://api.openverse.org/v1/images/c6b1bca4-7448-44c9-bddc-0459ddc4739a/thumb/"
+        },
+        {
+          "id": "a7f0154c-d1f4-440b-8d90-efe0f38af32c",
+          "title": "Staircase Interior",
+          "creator": "Matt Bango",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/staircase-interior-CIMIPMHUXZ",
+          "thumbnail": "https://api.openverse.org/v1/images/a7f0154c-d1f4-440b-8d90-efe0f38af32c/thumb/"
+        }
+      ]
+    },
+    "escalator": {
+      "english": "escalator",
+      "search_term": "escalator building exterior",
+      "candidates": [
+        {
+          "id": "98d791dd-0ef3-4f25-bd2c-26d60bbe797b",
+          "title": "Detroit Public Main Library, Woodward Avenue, Cultural Center, Midtown, Detroit, MI",
+          "creator": "w_lemay",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/59081381@N03/54268155039",
+          "thumbnail": "https://api.openverse.org/v1/images/98d791dd-0ef3-4f25-bd2c-26d60bbe797b/thumb/"
+        },
+        {
+          "id": "740e501d-6d6b-415d-8999-8101289809f4",
+          "title": "Maida Vale Station (Bakerloo Line)",
+          "creator": "hugh llewelyn",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/58433307@N08/53722489836",
+          "thumbnail": "https://api.openverse.org/v1/images/740e501d-6d6b-415d-8999-8101289809f4/thumb/"
+        },
+        {
+          "id": "1f953b2e-6adc-456c-adf1-99042f3c924a",
+          "title": "Maida Vale Station (Bakerloo Line)",
+          "creator": "hugh llewelyn",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/58433307@N08/53722703098",
+          "thumbnail": "https://api.openverse.org/v1/images/1f953b2e-6adc-456c-adf1-99042f3c924a/thumb/"
+        },
+        {
+          "id": "9cf5a33f-deac-4c1d-bdd7-fb709e106d3f",
+          "title": "Holloway Road Underground Station (Piccadilly Line)",
+          "creator": "hugh llewelyn",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/58433307@N08/52814102404",
+          "thumbnail": "https://api.openverse.org/v1/images/9cf5a33f-deac-4c1d-bdd7-fb709e106d3f/thumb/"
+        }
+      ]
+    },
+    "stairs": {
+      "english": "stairs",
+      "search_term": "staircase building exterior",
+      "candidates": [
+        {
+          "id": "d9bbf219-eb4f-4c28-b45c-c5132b60f5b8",
+          "title": "Bottom view brown concrete building",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3286564/free-photo-image-architecture-germany-apartment-building",
+          "thumbnail": "https://api.openverse.org/v1/images/d9bbf219-eb4f-4c28-b45c-c5132b60f5b8/thumb/"
+        },
+        {
+          "id": "07747c84-6d75-4549-8cbf-c4336f27e4fc",
+          "title": "Staircase outside building",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3289651/free-photo-image-architecture-bridge-banister",
+          "thumbnail": "https://api.openverse.org/v1/images/07747c84-6d75-4549-8cbf-c4336f27e4fc/thumb/"
+        },
+        {
+          "id": "6b2758b2-6ba9-49f1-9254-3ab6c6d06848",
+          "title": "BUILDING 33 (STATION HEADQUARTERS) BIGGIN HILL",
+          "creator": "JOHN K THORNE",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/89918055@N05/51377937576",
+          "thumbnail": "https://api.openverse.org/v1/images/6b2758b2-6ba9-49f1-9254-3ab6c6d06848/thumb/"
+        },
+        {
+          "id": "e39ee207-44e6-4bfd-b6e1-388a3ea00af6",
+          "title": "Bar Brasserie - The Old Courthouse - George Street, Buxton",
+          "creator": "ell brown",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/39415781@N06/15413325462",
+          "thumbnail": "https://api.openverse.org/v1/images/e39ee207-44e6-4bfd-b6e1-388a3ea00af6/thumb/"
+        }
+      ]
+    }
+  },
+  "needs_search_term": [
+    "size",
+    "to-try-on",
+    "to-fit",
+    "tight",
+    "loose",
+    "wide",
+    "light-colour",
+    "dark-colour",
+    "to-suit",
+    "to-choose",
+    "to-recommend",
+    "to-like",
+    "nice",
+    "pretty",
+    "cheap",
+    "expensive",
+    "offer",
+    "quality",
+    "total",
+    "profit",
+    "loss",
+    "thousand",
+    "half",
+    "reasonable",
+    "final",
+    "to-bargain",
+    "to-agree",
+    "to-pay",
+    "to-cost",
+    "to-lose-money",
+    "defect",
+    "warranty",
+    "refund",
+    "to-return",
+    "to-exchange",
+    "to-give-back",
+    "to-buy",
+    "to-order",
+    "bigger",
+    "smaller",
+    "another",
+    "cashier",
+    "to-park",
+    "open",
+    "order",
+    "shipping",
+    "address",
+    "rating",
+    "review",
+    "cancellation",
+    "to-track",
+    "to-arrive",
+    "to-cancel",
+    "damaged"
+  ]
+}

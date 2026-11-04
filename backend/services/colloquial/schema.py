@@ -71,6 +71,8 @@ class Lesson(BaseModel):
     dialogue: list[DialogueLine] = []
     de_book: list[Drill] = []
     vocabulary: list[VocabWord] = []
+    # A topic of opposites: its word ids two by two, each beside its other (spine `pairs`).
+    pairs: list[list[str]] | None = None
     culture: str = ""
     exercises: list[AnyExercise] = []
 
@@ -103,6 +105,13 @@ class Cover(BaseModel):
     image: str
 
 
+class Sample(BaseModel):
+    """A word a word-only unit's card shows, to say what the unit teaches."""
+    arabic: str
+    english: str
+    image: str | None = None
+
+
 class TopicCard(BaseModel):
     """A topic as its unit's list shows it: counts and a picture, not its lessons."""
     lesson: str
@@ -124,6 +133,10 @@ class UnitCard(BaseModel):
     lessons: list[TopicCard]
     # None while no phrase in the unit has a picture: the card shows its title only.
     cover: Cover | None = None
+    # A unit of words alone (no topic has phrases): a word from each of its first
+    # topics, and how many different words it teaches. Empty and 0 for a talk unit.
+    samples: list[Sample] = []
+    words: int = 0
 
 
 class City(BaseModel):

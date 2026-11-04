@@ -206,6 +206,22 @@ def test_the_shared_list_and_the_spine_are_checked_against_each_other():
         assert any(fault in why for why in said), fault
 
 
+def test_a_topic_of_pairs_with_one_left_over_is_caught():
+    ids = list(MEANINGS)[:7]
+    spine = [{"unit": "unit-01", "lessons": [{"lesson": "lesson-01", "pairs": True, "words": ids}]}]
+    assert any("one left over" in why for why in wordlist.outline_faults(spine, MEANINGS))
+    spine[0]["lessons"][0]["words"] = list(MEANINGS)[:8]
+    assert not any("left over" in why for why in wordlist.outline_faults(spine, MEANINGS))
+
+
+def test_a_topic_of_pairs_hands_on_its_words_two_by_two():
+    outline = copy.deepcopy(OUTLINE)
+    outline["lessons"][0].update(pairs=True, words=["hot", "cold", "big", "small"])
+    lesson = loader._fill(outline, copy.deepcopy(WRITTEN))[0]["lessons"][0]
+    assert lesson["pairs"] == [["hot", "cold"], ["big", "small"]]
+    assert "pairs" not in loader._fill(OUTLINE, copy.deepcopy(WRITTEN))[0]["lessons"][0]
+
+
 def test_a_word_in_a_group_nobody_listed_is_caught():
     spine = [{"unit": "unit-01", "lessons": [{"lesson": "lesson-01", "words": list(MEANINGS)}]}]
     said = wordlist.outline_faults(spine, {**MEANINGS, "w8": {"english": "thing", "group": "hoem"}})
@@ -445,6 +461,27 @@ def test_a_unit_card_fronts_its_named_cover_or_else_its_first_picture():
     assert loader._cover({"lessons": [{"phrases": [], "vocabulary": [word]}]})["image"] == "c.svg"
 
 
+def test_a_words_only_unit_card_samples_a_word_from_each_first_topic_and_counts_words_once():
+    word = lambda id, image=None: {"id": id, "arabic": id, "english": id, "image": image}
+    topic = lambda *words: {"written": True, "phrases": [], "vocabulary": list(words)}
+    unit = {"lessons": [topic(word("plain"), word("cow", "c.svg")), topic(word("cow", "c.svg")),
+                        topic(word("sun")), topic(word("moon", "m.svg"))]}
+    card = loader._words_only(unit)
+    assert [s["english"] for s in card["samples"]] == ["cow", "cow", "sun"]  # pictured first, three topics
+    assert card["words"] == 4  # cow, taught twice, is one word
+    talk = {"lessons": [topic(word("cow")) | {"phrases": [{"slot": "hi"}]}, topic(word("sun"))]}
+    assert loader._words_only(talk) == {}
+    assert loader._words_only({"lessons": [topic(word("sun")) | {"written": False}]}) == {}
+
+
+def test_the_catalogue_samples_every_words_only_unit_and_no_talk_unit():
+    for dialect in loader.catalogue()["dialects"]:
+        for unit in dialect["units"]:
+            words_only = unit["written"] and all(lesson["phrases"] == 0 for lesson in unit["lessons"])
+            assert bool(unit["samples"]) == words_only, (dialect["key"], unit["unit"])
+            assert (unit["words"] > 0) == words_only
+
+
 def test_every_written_unit_has_a_cover_and_every_written_topic_a_picture():
     bare = [(dialect["key"], unit["unit"], lesson["title"])
             for dialect in loader.catalogue()["dialects"] for unit in dialect["units"] if unit["written"]
@@ -549,3 +586,12 @@ def test_every_dialect_card_says_where_it_is_spoken():
         for city in dialect["cities"]:
             lon, lat = city["at"]
             assert city["name"] and -20 < lon < 62 and -15 < lat < 42, (dialect["key"], city)
+
+
+def test_a_womans_form_written_like_the_mans_is_caught():
+    man = {"english": "What's your name? (to a man)", "arabic": "اسمك ايه؟", "transliteration": "ismak eh?"}
+    woman = {**man, "english": "What's your name? (to a woman)", "transliteration": "ismik eh?"}
+    assert any("for both" in why for why in loader._gender_faults([man, woman]))
+    # A dialect that says both alike writes and spells both alike: no fault.
+    assert loader._gender_faults([man, {**woman, "transliteration": "ismak eh?"}]) == []
+    assert loader._gender_faults([man, {**woman, "arabic": "اسمِك ايه؟"}]) == []

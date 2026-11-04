@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from functools import lru_cache
 
 from backend.config import data_path
@@ -73,6 +74,27 @@ def _say_slots(lesson: dict, phrases: list[dict], where: str) -> tuple[list[dict
     return lines, said
 
 
+_SAID_TO = re.compile(r"^(.*)\((?:to )?a (man|woman)\)\s*$")
+
+
+def _gender_faults(phrases: list[dict]) -> list[str]:
+    """A phrase said to a man and its form to a woman, heard apart but written alike.
+
+    Some dialects say both the same (Moroccan smeetek), and then both lines match; a
+    spelling that differs while the Arabic does not is a missing vowel, so the
+    learner reads the man's form for the woman's.
+    """
+    pairs: dict[str, dict] = {}
+    for phrase in phrases:
+        found = _SAID_TO.match(str(phrase.get("english") or ""))
+        if found:
+            pairs.setdefault(found.group(1).strip(), {})[found.group(2)] = phrase
+    return [f"writes {man['arabic']!r} for both {base!r} forms, though they sound {man['transliteration']!r} and {woman['transliteration']!r}"
+            for base, forms in pairs.items() if len(forms) == 2
+            for man, woman in [(forms["man"], forms["woman"])]
+            if man.get("arabic") == woman.get("arabic") and man.get("transliteration") != woman.get("transliteration")]
+
+
 def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     """What is wrong with one lesson. seen_ids is shared across the whole unit."""
     name = f"lesson {lesson.get('lesson')!r}"
@@ -86,6 +108,7 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
             said.append(f"{name} has no {part}")
     if not str(lesson.get("culture") or "").strip():
         said.append(f"{name} has no culture note")
+    said.extend(f"{name} {why}" for why in _gender_faults(lesson["phrases"]))
     for at, phrase in enumerate(lesson.get("phrases") or [], 1):
         said.extend(_phrase_faults(phrase, f"{name} phrase {at}"))
     phrased = {_said(one.get("arabic")) for phrase in lesson.get("phrases") or []
@@ -146,9 +169,44 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
             said.append(f"lesson {plan['lesson']!r} lists its own vocabulary; a dialect's words live in {wordlist.FILE}")
         vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}")
         said.extend(faults)
+        # A topic of opposites lists them two by two, each word beside its other.
+        ids = plan.get("words") or []
+        pairs = [ids[i:i + 2] for i in range(0, len(ids), 2)] if plan.get("pairs") else None
         filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases,
-                       "dialogue": dialogue, "vocabulary": vocabulary, "written": True})
-    return {**written, "title": outline["title"], "cover": outline.get("cover"), "lessons": filled}, said
+                       "dialogue": dialogue, "vocabulary": vocabulary, "written": True,
+                       **({"pairs": pairs} if pairs else {})})
+    return {**written, "title": outline["title"], "cover": outline.get("cover"), "lessons": _spelt(filled)}, said
+
+
+# Marks, punctuation and the letters a learner writes either way (ة/ه, ى/ي, the alifs).
+_LOOSE = re.compile(r"[\u064B-\u0652\u0670\u0640\s،,.?؟!:]")
+_SAME = str.maketrans({"ة": "ه", "ى": "ي", "أ": "ا", "إ": "ا", "آ": "ا"})
+_ARABIC = re.compile(r"[\u0600-\u06FF]")
+
+
+def _loose(text: str) -> str:
+    return _LOOSE.sub("", text).translate(_SAME)
+
+
+def _spelt(lessons: list[dict]) -> list[dict]:
+    """A typed answer with no Latin spelling borrows the spelling of the unit's phrase
+    that says the same, so "kwayyisa, el-hamdulillah" is right wherever its Arabic is.
+    Only where the writer gave none: a written spelling is never added to."""
+    spelling: dict[str, str] = {}
+    for lesson in lessons:
+        for phrase in lesson.get("phrases") or []:
+            if phrase.get("arabic") and phrase.get("transliteration"):
+                spelling.setdefault(_loose(phrase["arabic"]), phrase["transliteration"])
+
+    def spelt(exercise: dict) -> dict:
+        accepted = exercise.get("accepted")
+        if not accepted or any(not _ARABIC.search(a) for a in accepted):
+            return exercise
+        found = [spelling[key] for key in dict.fromkeys(map(_loose, accepted)) if key in spelling]
+        return {**exercise, "accepted": [*accepted, *found]} if found else exercise
+
+    return [{**lesson, "exercises": [spelt(e) for e in lesson["exercises"]]} if lesson.get("exercises") else lesson
+            for lesson in lessons]
 
 
 def _unit_faults(unit: dict) -> list[str]:
@@ -262,9 +320,26 @@ def _picture(lesson: dict) -> str | None:
                  for one in lesson.get(key) or [] if one.get("image")), None)
 
 
+# A word unit's card shows one word from each of this many of its first topics.
+SAMPLES = 3
+
+
+def _words_only(unit: dict) -> dict:
+    """A unit with no phrases at all, its card's `samples` and `words`; {} for a talk unit
+    (or one not written yet), so its card keeps the cover phrase and nothing else."""
+    lessons = unit["lessons"]
+    if not lessons or not all(lesson.get("written") for lesson in lessons) \
+            or any(lesson.get("phrases") for lesson in lessons):
+        return {}
+    words = [lesson.get("vocabulary") or [] for lesson in lessons]
+    picks = [next((w for w in topic if w.get("image")), topic[0]) for topic in words[:SAMPLES] if topic]
+    return {"samples": [{"arabic": w["arabic"], "english": w["english"], "image": w.get("image")} for w in picks],
+            "words": len({w["id"] for topic in words for w in topic})}
+
+
 def _card(dialect: dict) -> dict:
     """A dialect's card, through schema.DialectCard: its fields are named there only."""
-    units = [{**u, "cover": _cover(u),
+    units = [{**u, "cover": _cover(u), **_words_only(u),
               "lessons": [{**lesson, "words": len(lesson.get("vocabulary") or []),
                            "phrases": len(lesson.get("phrases") or []), "picture": _picture(lesson)}
                           for lesson in u["lessons"]]}

@@ -1,98 +1,434 @@
 {
   "found": [
     {
-      "lesson": 4,
-      "phrase": 12,
-      "english": "Clear the table. (to a man)",
-      "search_term": "empty dining table",
+      "lesson": 1,
+      "phrase": 3,
+      "english": "My father.",
+      "search_term": "father portrait",
       "candidates": [
         {
-          "id": "0aa6ba6c-1a2b-440f-ad71-460a1bbffd40",
-          "title": "Interior Dining",
-          "creator": "Kristin Hardwick",
+          "id": "641c4cfb-686c-4e53-baf8-4ff66464f291",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/interior-dining-VMJ6JJFFWR",
-          "thumbnail": "https://api.openverse.org/v1/images/0aa6ba6c-1a2b-440f-ad71-460a1bbffd40/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-OIUD9DEKPG",
+          "thumbnail": "https://api.openverse.org/v1/images/641c4cfb-686c-4e53-baf8-4ff66464f291/thumb/"
         },
         {
-          "id": "4b2ad2c9-9652-451d-bd45-a51e37c7f90c",
-          "title": "Interior Dining",
-          "creator": "Kristin Hardwick",
+          "id": "bfbc01c8-4783-4354-a83a-62e8e47ce31d",
+          "title": "Father Son",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/interior-dining-LHKILYV8X0",
-          "thumbnail": "https://api.openverse.org/v1/images/4b2ad2c9-9652-451d-bd45-a51e37c7f90c/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/father-son-HBKFP7NCLL",
+          "thumbnail": "https://api.openverse.org/v1/images/bfbc01c8-4783-4354-a83a-62e8e47ce31d/thumb/"
         },
         {
-          "id": "81a74dc3-ec90-4d14-b893-ca23d93edf2e",
-          "title": "Table Flowers",
-          "creator": "phatonlaphat thongsriphong",
+          "id": "01c62e71-cd1b-4301-afcb-77cbdd820b5c",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/table-flowers-IPABQCLWLI",
-          "thumbnail": "https://api.openverse.org/v1/images/81a74dc3-ec90-4d14-b893-ca23d93edf2e/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-RZ0ARMUB77",
+          "thumbnail": "https://api.openverse.org/v1/images/01c62e71-cd1b-4301-afcb-77cbdd820b5c/thumb/"
         },
         {
-          "id": "4f74cd8b-6e0c-4a7f-8c19-07e3826faa9d",
-          "title": "Dining Room",
-          "creator": "Kelly Ishmael",
+          "id": "4aa6f500-17c6-40eb-825e-fa2b028291d9",
+          "title": "Black Family",
+          "creator": "Family First",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/dining-room-DYTXNUKGP2",
-          "thumbnail": "https://api.openverse.org/v1/images/4f74cd8b-6e0c-4a7f-8c19-07e3826faa9d/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/black-family-6KRBT8MYES",
+          "thumbnail": "https://api.openverse.org/v1/images/4aa6f500-17c6-40eb-825e-fa2b028291d9/thumb/"
         }
       ]
     },
     {
-      "lesson": 6,
-      "phrase": 7,
-      "english": "The street is quiet.",
-      "search_term": "quiet street",
+      "lesson": 1,
+      "phrase": 4,
+      "english": "My brother.",
+      "search_term": "brothers together",
       "candidates": [
         {
-          "id": "836730c9-e354-4e3d-8b47-79bf26189088",
-          "title": "jewellery store quiet street",
-          "creator": null,
+          "id": "d58af0ed-797c-4a4e-8e2d-27d322519e2b",
+          "title": "Kids Playing",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/3291676/free-photo-image-asphalt-cc0-creative-commons",
-          "thumbnail": "https://api.openverse.org/v1/images/836730c9-e354-4e3d-8b47-79bf26189088/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/kids-playing-MQJR2N5ZH2",
+          "thumbnail": "https://api.openverse.org/v1/images/d58af0ed-797c-4a4e-8e2d-27d322519e2b/thumb/"
         },
         {
-          "id": "45fb0e45-3196-406e-87b7-dd58c4f8dde5",
-          "title": "Vintage Building",
-          "creator": "Burst",
+          "id": "641c4cfb-686c-4e53-baf8-4ff66464f291",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/vintage-building-GDRQ2BYJZ8",
-          "thumbnail": "https://api.openverse.org/v1/images/45fb0e45-3196-406e-87b7-dd58c4f8dde5/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-OIUD9DEKPG",
+          "thumbnail": "https://api.openverse.org/v1/images/641c4cfb-686c-4e53-baf8-4ff66464f291/thumb/"
         },
         {
-          "id": "e98e1ae0-ddcc-4185-b079-6eabd178ef19",
-          "title": "City Bratislava",
-          "creator": "Manea Robbi",
+          "id": "8fecfcdb-f69b-49be-a25e-15b43f9b9d42",
+          "title": "Kids Playing",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/city-bratislava-IQUEOYGX8Y",
-          "thumbnail": "https://api.openverse.org/v1/images/e98e1ae0-ddcc-4185-b079-6eabd178ef19/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/kids-playing-84NQDCMJNE",
+          "thumbnail": "https://api.openverse.org/v1/images/8fecfcdb-f69b-49be-a25e-15b43f9b9d42/thumb/"
         },
         {
-          "id": "18fadbb7-841a-4bf7-b174-78950ab750cc",
-          "title": "Summer Road",
-          "creator": "Lucas Allmann",
+          "id": "01c62e71-cd1b-4301-afcb-77cbdd820b5c",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/summer-road-WLIQXMYVIE",
-          "thumbnail": "https://api.openverse.org/v1/images/18fadbb7-841a-4bf7-b174-78950ab750cc/thumb/"
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-RZ0ARMUB77",
+          "thumbnail": "https://api.openverse.org/v1/images/01c62e71-cd1b-4301-afcb-77cbdd820b5c/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 5,
+      "english": "My sister.",
+      "search_term": "sisters together",
+      "candidates": [
+        {
+          "id": "d58af0ed-797c-4a4e-8e2d-27d322519e2b",
+          "title": "Kids Playing",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/kids-playing-MQJR2N5ZH2",
+          "thumbnail": "https://api.openverse.org/v1/images/d58af0ed-797c-4a4e-8e2d-27d322519e2b/thumb/"
+        },
+        {
+          "id": "641c4cfb-686c-4e53-baf8-4ff66464f291",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-OIUD9DEKPG",
+          "thumbnail": "https://api.openverse.org/v1/images/641c4cfb-686c-4e53-baf8-4ff66464f291/thumb/"
+        },
+        {
+          "id": "8fecfcdb-f69b-49be-a25e-15b43f9b9d42",
+          "title": "Kids Playing",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/kids-playing-84NQDCMJNE",
+          "thumbnail": "https://api.openverse.org/v1/images/8fecfcdb-f69b-49be-a25e-15b43f9b9d42/thumb/"
+        },
+        {
+          "id": "01c62e71-cd1b-4301-afcb-77cbdd820b5c",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-RZ0ARMUB77",
+          "thumbnail": "https://api.openverse.org/v1/images/01c62e71-cd1b-4301-afcb-77cbdd820b5c/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 11,
+      "english": "I have a brother and two sisters.",
+      "search_term": "siblings family photo",
+      "candidates": [
+        {
+          "id": "ed6b0131-893a-46c8-8e94-d546ab32badb",
+          "title": "Bears 909 Jr. and 910 Jr. Share a Tender Moment",
+          "creator": "KatmaiNPS",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/99350217@N03/53187841086",
+          "thumbnail": "https://api.openverse.org/v1/images/ed6b0131-893a-46c8-8e94-d546ab32badb/thumb/"
+        },
+        {
+          "id": "fead1d01-9ee6-4d34-94a6-d598b51876bf",
+          "title": "Bears 909 Jr. and 910 Jr. Share a Tender Moment",
+          "creator": "KatmaiNPS",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/99350217@N03/53188037625",
+          "thumbnail": "https://api.openverse.org/v1/images/fead1d01-9ee6-4d34-94a6-d598b51876bf/thumb/"
+        },
+        {
+          "id": "71d6cfb5-6590-4756-80c7-8927845734d4",
+          "title": "Nebraska National Guard",
+          "creator": "The National Guard",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/33252741@N08/51778084432",
+          "thumbnail": "https://api.openverse.org/v1/images/71d6cfb5-6590-4756-80c7-8927845734d4/thumb/"
+        },
+        {
+          "id": "188d1a8a-9fb2-4b0b-91d7-c093817c9894",
+          "title": "New Life - Great egret babies",
+          "creator": "georgiealexon",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/53256251@N04/53802980336",
+          "thumbnail": "https://api.openverse.org/v1/images/188d1a8a-9fb2-4b0b-91d7-c093817c9894/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "phrase": 9,
+      "english": "My older brother.",
+      "search_term": "brothers together",
+      "candidates": [
+        {
+          "id": "d58af0ed-797c-4a4e-8e2d-27d322519e2b",
+          "title": "Kids Playing",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/kids-playing-MQJR2N5ZH2",
+          "thumbnail": "https://api.openverse.org/v1/images/d58af0ed-797c-4a4e-8e2d-27d322519e2b/thumb/"
+        },
+        {
+          "id": "641c4cfb-686c-4e53-baf8-4ff66464f291",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-OIUD9DEKPG",
+          "thumbnail": "https://api.openverse.org/v1/images/641c4cfb-686c-4e53-baf8-4ff66464f291/thumb/"
+        },
+        {
+          "id": "8fecfcdb-f69b-49be-a25e-15b43f9b9d42",
+          "title": "Kids Playing",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/kids-playing-84NQDCMJNE",
+          "thumbnail": "https://api.openverse.org/v1/images/8fecfcdb-f69b-49be-a25e-15b43f9b9d42/thumb/"
+        },
+        {
+          "id": "01c62e71-cd1b-4301-afcb-77cbdd820b5c",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-RZ0ARMUB77",
+          "thumbnail": "https://api.openverse.org/v1/images/01c62e71-cd1b-4301-afcb-77cbdd820b5c/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "phrase": 10,
+      "english": "My younger sister.",
+      "search_term": "sisters together",
+      "candidates": [
+        {
+          "id": "d58af0ed-797c-4a4e-8e2d-27d322519e2b",
+          "title": "Kids Playing",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/kids-playing-MQJR2N5ZH2",
+          "thumbnail": "https://api.openverse.org/v1/images/d58af0ed-797c-4a4e-8e2d-27d322519e2b/thumb/"
+        },
+        {
+          "id": "641c4cfb-686c-4e53-baf8-4ff66464f291",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-OIUD9DEKPG",
+          "thumbnail": "https://api.openverse.org/v1/images/641c4cfb-686c-4e53-baf8-4ff66464f291/thumb/"
+        },
+        {
+          "id": "8fecfcdb-f69b-49be-a25e-15b43f9b9d42",
+          "title": "Kids Playing",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/kids-playing-84NQDCMJNE",
+          "thumbnail": "https://api.openverse.org/v1/images/8fecfcdb-f69b-49be-a25e-15b43f9b9d42/thumb/"
+        },
+        {
+          "id": "01c62e71-cd1b-4301-afcb-77cbdd820b5c",
+          "title": "Family Portrait",
+          "creator": "Family Moments",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/family-portrait-RZ0ARMUB77",
+          "thumbnail": "https://api.openverse.org/v1/images/01c62e71-cd1b-4301-afcb-77cbdd820b5c/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "phrase": 11,
+      "english": "My cousin. (my father's brother's son)",
+      "search_term": "family relatives together",
+      "candidates": [
+        {
+          "id": "64b99bef-bea6-4058-b8f0-1a102b28206a",
+          "title": "Order of the Eastern Star Masonic Group",
+          "creator": "Blue Mountains Library, Local Studies",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/26602074@N06/51562153302",
+          "thumbnail": "https://api.openverse.org/v1/images/64b99bef-bea6-4058-b8f0-1a102b28206a/thumb/"
+        },
+        {
+          "id": "1cb0f378-c23d-4599-84f7-f6ac5b70277f",
+          "title": "DSC_7746: a man and a child standing on a beach at sunset",
+          "creator": "PattayaPatrol",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/194424926@N05/54248555837",
+          "thumbnail": "https://api.openverse.org/v1/images/1cb0f378-c23d-4599-84f7-f6ac5b70277f/thumb/"
+        },
+        {
+          "id": "090ffb32-9d28-46fe-b23a-b3e7ee4a9e4e",
+          "title": "Alien Communication starts with the animals",
+          "creator": "jurvetson",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/44124348109@N01/54388795713",
+          "thumbnail": "https://api.openverse.org/v1/images/090ffb32-9d28-46fe-b23a-b3e7ee4a9e4e/thumb/"
+        },
+        {
+          "id": "f2ff03dd-6477-4240-9b91-0557f4614410",
+          "title": "Amphidysis",
+          "creator": "jeans_Photos",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/63479603@N00/50171407838",
+          "thumbnail": "https://api.openverse.org/v1/images/f2ff03dd-6477-4240-9b91-0557f4614410/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "phrase": 12,
+      "english": "My grandparents.",
+      "search_term": "grandparents with grandchild",
+      "candidates": [
+        {
+          "id": "2d4b99d9-9959-4c66-b537-7cfe92adc88b",
+          "title": "Grandmother Children",
+          "creator": "PS Imaging",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/grandmother-children-YN7HDBKGZH",
+          "thumbnail": "https://api.openverse.org/v1/images/2d4b99d9-9959-4c66-b537-7cfe92adc88b/thumb/"
+        },
+        {
+          "id": "de086374-1e30-430c-b1b4-c80fc432f593",
+          "title": "Grandmother Children",
+          "creator": "PS Imaging",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/grandmother-children-LTGCCFQ8YK",
+          "thumbnail": "https://api.openverse.org/v1/images/de086374-1e30-430c-b1b4-c80fc432f593/thumb/"
+        },
+        {
+          "id": "c1dbf5f4-2130-4e21-9f1f-9d68886cb0ce",
+          "title": "Grandmother Children",
+          "creator": "PS Imaging",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/grandmother-children-7N15JQQZVF",
+          "thumbnail": "https://api.openverse.org/v1/images/c1dbf5f4-2130-4e21-9f1f-9d68886cb0ce/thumb/"
+        },
+        {
+          "id": "6148d54c-abc7-4b49-8daf-7cc69d24d2ee",
+          "title": "Jamaica, Queens, NYC, USA-52",
+          "creator": "Familypapers",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/168023024@N05/51880813938",
+          "thumbnail": "https://api.openverse.org/v1/images/6148d54c-abc7-4b49-8daf-7cc69d24d2ee/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "phrase": 5,
+      "english": "This is delicious.",
+      "search_term": "delicious food plate",
+      "candidates": [
+        {
+          "id": "73c66a67-4ee0-4bc2-8c81-428a5691192b",
+          "title": "Food Recipe",
+          "creator": "Dana Tentis",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/food-recipe-G8QICMKLUV",
+          "thumbnail": "https://api.openverse.org/v1/images/73c66a67-4ee0-4bc2-8c81-428a5691192b/thumb/"
+        },
+        {
+          "id": "290d8c70-9faa-4a4f-89d2-4b495e6dbcfb",
+          "title": "Food Eat",
+          "creator": "Julian Jagtenberg",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/food-eat-E9J942MYLS",
+          "thumbnail": "https://api.openverse.org/v1/images/290d8c70-9faa-4a4f-89d2-4b495e6dbcfb/thumb/"
+        },
+        {
+          "id": "c1a2cf97-ddb6-422a-8029-5b7b09ad38a8",
+          "title": "Steak Asparagus",
+          "creator": "Snapwire",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/steak-asparagus-JMJZKYXUWD",
+          "thumbnail": "https://api.openverse.org/v1/images/c1a2cf97-ddb6-422a-8029-5b7b09ad38a8/thumb/"
+        },
+        {
+          "id": "cb69eefb-5465-414a-979a-05c7522528c9",
+          "title": "Bread Bun",
+          "creator": "JESHOOTS.com",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/bread-bun-UGX0HQQPWI",
+          "thumbnail": "https://api.openverse.org/v1/images/cb69eefb-5465-414a-979a-05c7522528c9/thumb/"
         }
       ]
     },
@@ -101,7 +437,48 @@
       "phrase": 11,
       "english": "Let us go up to the roof.",
       "search_term": "flat roof terrace",
-      "candidates": []
+      "candidates": [
+        {
+          "id": "46d3926e-9482-466b-ad51-b14689f5c450",
+          "title": "Palace Hotel - Buxton - seen from Terrace Road",
+          "creator": "ell brown",
+          "license": "by-sa",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/39415781@N06/15227692808",
+          "thumbnail": "https://api.openverse.org/v1/images/46d3926e-9482-466b-ad51-b14689f5c450/thumb/"
+        },
+        {
+          "id": "ec06a259-db80-4712-b3d6-b6608ac4781f",
+          "title": "Hadlow KENT",
+          "creator": "JOHN K THORNE",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/89918055@N05/51889454420",
+          "thumbnail": "https://api.openverse.org/v1/images/ec06a259-db80-4712-b3d6-b6608ac4781f/thumb/"
+        },
+        {
+          "id": "47ab225a-49bd-46b3-b4bb-eaeab8c39758",
+          "title": "C18 building predates the railway. Possibly once part of a terrace?",
+          "creator": "JOHN K THORNE",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/89918055@N05/54764876161",
+          "thumbnail": "https://api.openverse.org/v1/images/47ab225a-49bd-46b3-b4bb-eaeab8c39758/thumb/"
+        },
+        {
+          "id": "3108ca90-861f-4d60-b8c4-66db427a5e1f",
+          "title": "Art Deco, MATTHIAE'S CAFE AND BAKERY, 76-84, KEW ROAD",
+          "creator": "JOHN K THORNE",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/89918055@N05/54511693595",
+          "thumbnail": "https://api.openverse.org/v1/images/3108ca90-861f-4d60-b8c4-66db427a5e1f/thumb/"
+        }
+      ]
     },
     {
       "lesson": 8,
@@ -138,9 +515,95 @@
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
           "foreign_landing_url": "https://www.rawpixel.com/image/11515801/pile-t-shirts-dirty-laundry",
           "thumbnail": "https://api.openverse.org/v1/images/5c1156ba-a977-4f0c-a38a-64c3eddc267f/thumb/"
+        },
+        {
+          "id": "4a894f12-f51c-45be-abf1-1855b1526f08",
+          "title": "Folding blanket",
+          "creator": "Henry Söderlund",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/46563758@N04/52564921844",
+          "thumbnail": "https://api.openverse.org/v1/images/4a894f12-f51c-45be-abf1-1855b1526f08/thumb/"
         }
       ]
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 8,
+      "english": "My husband."
+    },
+    {
+      "lesson": 1,
+      "phrase": 9,
+      "english": "My wife."
+    },
+    {
+      "lesson": 1,
+      "phrase": 12,
+      "english": "Are you married? (to a man)"
+    },
+    {
+      "lesson": 1,
+      "phrase": 13,
+      "english": "Are you married? (to a woman)"
+    },
+    {
+      "lesson": 1,
+      "phrase": 14,
+      "english": "I'm still single. (male speaker)"
+    },
+    {
+      "lesson": 2,
+      "phrase": 12,
+      "english": "To your health. (said to someone after they finish eating or drinking)"
+    },
+    {
+      "lesson": 3,
+      "phrase": 1,
+      "english": "How old are you? (to a man)"
+    },
+    {
+      "lesson": 3,
+      "phrase": 2,
+      "english": "I am married. (male speaker)"
+    },
+    {
+      "lesson": 3,
+      "phrase": 7,
+      "english": "She is kind."
+    },
+    {
+      "lesson": 3,
+      "phrase": 8,
+      "english": "He is funny."
+    },
+    {
+      "lesson": 4,
+      "phrase": 6,
+      "english": "I am full. (male speaker)"
+    },
+    {
+      "lesson": 4,
+      "phrase": 7,
+      "english": "More, please."
+    },
+    {
+      "lesson": 5,
+      "phrase": 7,
+      "english": "How long have you lived here? (to a man)"
+    },
+    {
+      "lesson": 5,
+      "phrase": 8,
+      "english": "Is it far from here?"
+    },
+    {
+      "lesson": 5,
+      "phrase": 11,
+      "english": "My neighbour is nice. (a male neighbour)"
+    }
+  ]
 }

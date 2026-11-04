@@ -1,6 +1,189 @@
 {
   "found": [
     {
+      "lesson": 1,
+      "phrase": 6,
+      "english": "I have a headache",
+      "search_term": "a person holding their head in pain",
+      "candidates": [
+        {
+          "id": "9cef0fa5-63f7-4b10-944a-8ed66e202b29",
+          "title": "Today is the day of the strongest sons and daughters of Ukraine who defend the Homeland on land, in the sky and at sea – President presented state awards on Ukraine's Armed Forces Day.",
+          "creator": "President Of Ukraine",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/165930373@N06/53380123741",
+          "thumbnail": "https://api.openverse.org/v1/images/9cef0fa5-63f7-4b10-944a-8ed66e202b29/thumb/"
+        },
+        {
+          "id": "6282686b-bb85-4845-a0b3-828529d4d5be",
+          "title": "Today is the day of the strongest sons and daughters of Ukraine who defend the Homeland on land, in the sky and at sea – President presented state awards on Ukraine's Armed Forces Day.",
+          "creator": "President Of Ukraine",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/165930373@N06/53380123641",
+          "thumbnail": "https://api.openverse.org/v1/images/6282686b-bb85-4845-a0b3-828529d4d5be/thumb/"
+        },
+        {
+          "id": "50d2da53-25c7-4f6f-b139-0e2a87d6e423",
+          "title": "Today is the day of the strongest sons and daughters of Ukraine who defend the Homeland on land, in the sky and at sea – President presented state awards on Ukraine's Armed Forces Day.",
+          "creator": "President Of Ukraine",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/165930373@N06/53380563515",
+          "thumbnail": "https://api.openverse.org/v1/images/50d2da53-25c7-4f6f-b139-0e2a87d6e423/thumb/"
+        },
+        {
+          "id": "e9cec9a0-0d0c-4284-a05b-e3f7fa0dadce",
+          "title": "Today is the day of the strongest sons and daughters of Ukraine who defend the Homeland on land, in the sky and at sea – President presented state awards on Ukraine's Armed Forces Day.",
+          "creator": "President Of Ukraine",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/165930373@N06/53380563525",
+          "thumbnail": "https://api.openverse.org/v1/images/e9cec9a0-0d0c-4284-a05b-e3f7fa0dadce/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 7,
+      "english": "My stomach hurts",
+      "search_term": "a person holding their stomach",
+      "candidates": [
+        {
+          "id": "a5090c10-10d8-430f-a56d-0051e2f0e0fc",
+          "title": "physician administering potion patient is",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/14001859/image-cartoon-face-person",
+          "thumbnail": "https://api.openverse.org/v1/images/a5090c10-10d8-430f-a56d-0051e2f0e0fc/thumb/"
+        },
+        {
+          "id": "fdc3cc15-d10b-48db-8f5a-cce925391b76",
+          "title": "pregnant woman holding ultrasound picture",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3302999/free-photo-image-baby-accessories-pregnant-women-images-picture-pregnancy-accessory",
+          "thumbnail": "https://api.openverse.org/v1/images/fdc3cc15-d10b-48db-8f5a-cce925391b76/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 1,
+      "phrase": 8,
+      "english": "I have a fever",
+      "search_term": "a hand on a forehead checking for fever",
+      "candidates": []
+    },
+    {
+      "lesson": 2,
+      "phrase": 6,
+      "english": "Take it twice a day (to a man)",
+      "search_term": "medicine pills bottle",
+      "candidates": [
+        {
+          "id": "5f49599f-77a7-4a66-8882-8083631e26d5",
+          "title": "50 Formamint 'Wulfing' brand tablets",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/13951592/formamint-wulfing-brand-tablets-genatosan-ltd",
+          "thumbnail": "https://api.openverse.org/v1/images/5f49599f-77a7-4a66-8882-8083631e26d5/thumb/"
+        },
+        {
+          "id": "fd3e6728-3056-4a42-be12-484d89c472db",
+          "title": "Free medicine bottles image",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5922639/photo-image-background-public-domain-medicine",
+          "thumbnail": "https://api.openverse.org/v1/images/fd3e6728-3056-4a42-be12-484d89c472db/thumb/"
+        },
+        {
+          "id": "26fa61c2-a072-4b5f-a649-b7b7a7f39d56",
+          "title": "Rag Dolls Sacrifice",
+          "creator": "Michael 1952",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/20574219@N06/53137103723",
+          "thumbnail": "https://api.openverse.org/v1/images/26fa61c2-a072-4b5f-a649-b7b7a7f39d56/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 2,
+      "phrase": 8,
+      "english": "I want something for allergies",
+      "search_term": "allergy medicine pharmacy",
+      "candidates": []
+    },
+    {
+      "lesson": 4,
+      "phrase": 3,
+      "english": "back",
+      "search_term": "a person's back",
+      "candidates": [
+        {
+          "id": "49aec92f-9768-44ff-976a-b2e0d9fc2b80",
+          "title": "Woman Beach",
+          "creator": "Matt Moloney",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/woman-beach-PC1DH3QF9K",
+          "thumbnail": "https://api.openverse.org/v1/images/49aec92f-9768-44ff-976a-b2e0d9fc2b80/thumb/"
+        },
+        {
+          "id": "82c4b3af-7a3c-410c-adcf-ac8940098bb6",
+          "title": "Person People",
+          "creator": "Todd Diemer",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/person-people-TVUSUD00B6",
+          "thumbnail": "https://api.openverse.org/v1/images/82c4b3af-7a3c-410c-adcf-ac8940098bb6/thumb/"
+        },
+        {
+          "id": "28a24df5-7729-45e2-a5be-512cf1adf1b5",
+          "title": "Man Hiking",
+          "creator": "Matt Bango",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/man-hiking-EZZSLOHXVG",
+          "thumbnail": "https://api.openverse.org/v1/images/28a24df5-7729-45e2-a5be-512cf1adf1b5/thumb/"
+        },
+        {
+          "id": "19158211-1181-4c4d-b73e-eeaf7877f137",
+          "title": "Man Woman",
+          "creator": "Ben White",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/man-woman-UC6EE56J2G",
+          "thumbnail": "https://api.openverse.org/v1/images/19158211-1181-4c4d-b73e-eeaf7877f137/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "phrase": 10,
+      "english": "My back hurts",
+      "search_term": "a person holding their lower back in pain",
+      "candidates": []
+    },
+    {
       "lesson": 5,
       "phrase": 12,
       "english": "Do I need braces?",
@@ -8,5 +191,66 @@
       "candidates": []
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 1,
+      "english": "How are you today? (to a man)"
+    },
+    {
+      "lesson": 1,
+      "phrase": 2,
+      "english": "How are you today? (to a woman)"
+    },
+    {
+      "lesson": 1,
+      "phrase": 3,
+      "english": "What happened to you? (to a man)"
+    },
+    {
+      "lesson": 1,
+      "phrase": 9,
+      "english": "I feel dizzy (a man speaking)"
+    },
+    {
+      "lesson": 1,
+      "phrase": 11,
+      "english": "Looks like you have a cold (to a man)"
+    },
+    {
+      "lesson": 2,
+      "phrase": 11,
+      "english": "Do you have something for the stomach?"
+    },
+    {
+      "lesson": 3,
+      "phrase": 3,
+      "english": "Since when have you been feeling like this? (to a man)"
+    },
+    {
+      "lesson": 3,
+      "phrase": 6,
+      "english": "Are you allergic to any medicine? (to a man)"
+    },
+    {
+      "lesson": 3,
+      "phrase": 10,
+      "english": "It's nothing serious"
+    },
+    {
+      "lesson": 5,
+      "phrase": 11,
+      "english": "Does this hurt you? (to a man)"
+    },
+    {
+      "lesson": 6,
+      "phrase": 10,
+      "english": "I'm worried about him (a man speaking)"
+    },
+    {
+      "lesson": 6,
+      "phrase": 11,
+      "english": "Praise be to Allah, he is fine now"
+    }
+  ]
 }

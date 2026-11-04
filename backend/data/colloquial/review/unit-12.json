@@ -6,7 +6,204 @@
       "english": "My credit ran out.",
       "search_term": "prepaid phone card",
       "candidates": []
+    },
+    {
+      "lesson": 2,
+      "phrase": 9,
+      "english": "What do you think, shall we go together?",
+      "search_term": "two friends walking together",
+      "candidates": [
+        {
+          "id": "38b2b9ed-c3e2-4b1b-82c3-1d8abb3f2ce1",
+          "title": "Zàijiàn",
+          "creator": "Gauthier 郭天",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/131814204@N04/53450606530",
+          "thumbnail": "https://api.openverse.org/v1/images/38b2b9ed-c3e2-4b1b-82c3-1d8abb3f2ce1/thumb/"
+        },
+        {
+          "id": "f67c0d00-a8c2-42b0-8ec7-60cf343ccd7d",
+          "title": "Stepping into the past",
+          "creator": "Gauthier 郭天",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/131814204@N04/53857857900",
+          "thumbnail": "https://api.openverse.org/v1/images/f67c0d00-a8c2-42b0-8ec7-60cf343ccd7d/thumb/"
+        },
+        {
+          "id": "30945711-2d0b-4f8c-babf-c2d081593590",
+          "title": "Men in Black",
+          "creator": "Gauthier 郭天",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/131814204@N04/53398723411",
+          "thumbnail": "https://api.openverse.org/v1/images/30945711-2d0b-4f8c-babf-c2d081593590/thumb/"
+        },
+        {
+          "id": "da911885-5936-4ec9-8c9c-ae8d2d74235e",
+          "title": "The ladies",
+          "creator": "Go-tea 郭天",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/131814204@N04/53108117831",
+          "thumbnail": "https://api.openverse.org/v1/images/da911885-5936-4ec9-8c9c-ae8d2d74235e/thumb/"
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "phrase": 9,
+      "english": "I'll send a voice message.",
+      "search_term": "microphone icon",
+      "candidates": [
+        {
+          "id": "b450460a-0c9d-4b05-92b2-40e2fd1a239d",
+          "title": "Karaoke Manekineko",
+          "creator": "dalecruse",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/91873384@N04/54156414637",
+          "thumbnail": "https://api.openverse.org/v1/images/b450460a-0c9d-4b05-92b2-40e2fd1a239d/thumb/"
+        },
+        {
+          "id": "005e10ef-af1e-412a-9395-1da8f45cde46",
+          "title": "microphone",
+          "creator": "roland.radlinger",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/195360519@N05/51992495926",
+          "thumbnail": "https://api.openverse.org/v1/images/005e10ef-af1e-412a-9395-1da8f45cde46/thumb/"
+        },
+        {
+          "id": "c04f7d18-b409-43b1-84ed-7fe4b689f561",
+          "title": "EdTech Situation Room - AI Comic Style",
+          "creator": "Wesley Fryer",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/31442459@N00/53486935042",
+          "thumbnail": "https://api.openverse.org/v1/images/c04f7d18-b409-43b1-84ed-7fe4b689f561/thumb/"
+        },
+        {
+          "id": "343b50e8-8dc1-4a31-95c9-8778fa76d1ec",
+          "title": "Kennedy's Misinformation Challenge",
+          "creator": "exit78",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/28826830@N00/54940843807",
+          "thumbnail": "https://api.openverse.org/v1/images/343b50e8-8dc1-4a31-95c9-8778fa76d1ec/thumb/"
+        }
+      ]
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 3,
+      "english": "This is Samer (speaking)."
+    },
+    {
+      "lesson": 1,
+      "phrase": 4,
+      "english": "Good that you called."
+    },
+    {
+      "lesson": 1,
+      "phrase": 5,
+      "english": "What's new?"
+    },
+    {
+      "lesson": 1,
+      "phrase": 6,
+      "english": "I couldn't answer you a bit ago."
+    },
+    {
+      "lesson": 2,
+      "phrase": 6,
+      "english": "I'll meet you there."
+    },
+    {
+      "lesson": 2,
+      "phrase": 8,
+      "english": "I'll be there before you."
+    },
+    {
+      "lesson": 3,
+      "phrase": 2,
+      "english": "I can't come today."
+    },
+    {
+      "lesson": 3,
+      "phrase": 3,
+      "english": "Something came up for me."
+    },
+    {
+      "lesson": 3,
+      "phrase": 5,
+      "english": "I'd like us to meet another day."
+    },
+    {
+      "lesson": 3,
+      "phrase": 7,
+      "english": "Sorry for the sudden change."
+    },
+    {
+      "lesson": 3,
+      "phrase": 11,
+      "english": "I have to apologize for the appointment (cancel it)."
+    },
+    {
+      "lesson": 4,
+      "phrase": 2,
+      "english": "No, he's not here right now."
+    },
+    {
+      "lesson": 4,
+      "phrase": 3,
+      "english": "When will he be back?"
+    },
+    {
+      "lesson": 4,
+      "phrase": 4,
+      "english": "I don't know exactly, in a bit."
+    },
+    {
+      "lesson": 4,
+      "phrase": 8,
+      "english": "I'll tell him as soon as he arrives."
+    },
+    {
+      "lesson": 4,
+      "phrase": 10,
+      "english": "Thanks a lot."
+    },
+    {
+      "lesson": 4,
+      "phrase": 11,
+      "english": "Good that I didn't waste your time."
+    },
+    {
+      "lesson": 4,
+      "phrase": 12,
+      "english": "I'll pass him the news as soon as he's in."
+    },
+    {
+      "lesson": 5,
+      "phrase": 8,
+      "english": "Write to me when you arrive."
+    },
+    {
+      "lesson": 5,
+      "phrase": 12,
+      "english": "I'll reply to you later."
+    }
+  ]
 }

@@ -8,6 +8,8 @@
  * here so the size, the radius and the fade stay one decision.
  */
 const TONE = { right: 'var(--success)', wrong: 'var(--danger)', '': 'var(--border-hi)' }
+// A mark in the corner, so right and wrong are told apart by more than colour.
+const MARK = { right: '✓', wrong: '✗' }
 
 export default function AnswerSquare({ status = '', number, current, label, onClick }) {
   const tone = current && !status ? 'var(--warn)' : TONE[status]
@@ -24,11 +26,17 @@ export default function AnswerSquare({ status = '', number, current, label, onCl
         outline: current && status ? '2px solid var(--warn)' : undefined,
         outlineOffset: 2,
       }}
-      className={`shrink-0 w-9 h-9 grid place-items-center rounded-[var(--radius-sm)] border type-ui font-bold
+      className={`relative shrink-0 w-9 h-9 grid place-items-center rounded-[var(--radius-sm)] border type-ui font-bold
         tabular-nums leading-none transition-opacity hover:opacity-100
         ${current ? '' : 'opacity-80'} ${status ? '' : 'border-dashed'}`}
     >
       {number}
+      {MARK[status] && (
+        <span aria-hidden="true" style={{ background: tone }}
+          className="absolute -top-1.5 -end-1.5 size-4 grid place-items-center rounded-full text-[10px] leading-none text-[var(--bg)]">
+          {MARK[status]}
+        </span>
+      )}
     </button>
   )
 }

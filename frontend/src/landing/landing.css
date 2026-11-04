@@ -404,3 +404,5 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .landing-sections .tile { padding: var(--space-tile); text-decoration: none; color: var(--text); }
 .landing-page .landing-sections .tile-chip { padding-block: calc(var(--space-tile) / 2); }
 .landing-page .landing-sections .eyebrow { margin-bottom: .5rem; }
+/* The dialects: a group of tiles lit in Colloquial's hue, each tile a map of its country. */
+.landing-page .landing-sections .landing-dialect { flex-direction: column; justify-content: center; text-align: center; gap: .4rem; padding: var(--space-card); }
