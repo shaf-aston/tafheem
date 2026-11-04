@@ -134,8 +134,14 @@ For each word the entry explains, in the order the entry gives them, return:
   و or ف in front. Copy it; never write a form the lines do not print.
 - "say": that word in Latin letters, e.g. al-ruṭab, raṭṭaba, samiʿtu: ʿ for ع,
   ' for ء, long vowels ā ī ū, dotted ḥ ṣ ḍ ṭ ẓ. "" when "word" is "".
+- "means": the Arabic in those lines that says what the word means, copied
+  letter for letter: what follows its colon, or إِذَا ("when"), أَيْ ("that is")
+  or بِمَعْنَى ("meaning"). In وَيُقَالُ سَمِعْتُ بِالشَّيْءِ، إِذَا أَشَعْتُهُ it is
+  أَشَعْتُهُ. "" when the lines only use the word and never explain it.
 - "gloss": what the word means, a few plain English words ("ripe, soft dates",
-  "green plants, fresh fodder"), never a scrap of the line ("of plants"). For a
+  "green plants, fresh fodder"), never a scrap of the line ("of plants"). Where
+  "means" has Arabic, the gloss is its English, never the word's everyday
+  meaning: سَمِعْتُ بِالشَّيْءِ above is "made the thing known", not "I heard". For a
   group with no word, the English of those lines in a short sentence.
 - "examples": the sayings in those lines that use the word, each with "line"
   (its number), "arabic" (copied letter for letter from that line), "say" (in
@@ -157,7 +163,7 @@ Rules:
 Return a JSON object with this exact structure:
 {{
   "senses": [
-    {{"lines": [1], "word": "...", "say": "...", "gloss": "...", "examples": []}}
+    {{"lines": [1], "word": "...", "say": "...", "means": "...", "gloss": "...", "examples": []}}
   ]
 }}"""
 
