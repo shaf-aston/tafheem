@@ -11,7 +11,7 @@ from backend.services.nahw.syntax.mask import book_links
 from backend.services.nahw.syntax.facts import base_tokens
 from backend.services.nahw.syntax.repair.answer import untied_command
 from backend.services.nahw.syntax.repair.asked import asked_anna, asked_before_verb, asked_of_kana, asked_man, man_before_verb
-from backend.services.nahw.syntax.repair.called import called
+from backend.services.nahw.syntax.repair.called import called, called_annexes
 from backend.services.nahw.syntax.repair.dua import counted_times, dua_clause
 from backend.services.nahw.syntax.repair.hal import hal_clause, naat_beside_its_noun, no_khabar_on_full_verb
 from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, majrur_of_jar, naat_after_its_noun, la_over_its_khabar, zarf_is_no_subject, khabar_said_first, described_doer, elative_specified, hasr_khabar, object_of_noun, second_khabar, told_of_jar
@@ -56,6 +56,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         object_past_verb(tokens)
         relative_owed(tokens)
         called(tokens)
+        called_annexes(tokens)
         dua_clause(tokens)
         counted_times(tokens)
         object_of_noun(tokens)
