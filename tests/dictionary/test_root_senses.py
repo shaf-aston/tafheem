@@ -100,3 +100,16 @@ def test_a_line_that_only_leads_in_joins_the_quote_it_introduces():
     senses = root_senses.check(answer, lines)
     assert [s["lines"] for s in senses] == [[0, 1], [2, 2]]
     assert root_senses.fits(senses, 3)
+
+
+def test_the_model_copies_the_books_explanation_before_it_glosses():
+    # The model writes its answer in order: asked for the gloss first, it reached
+    # for a word's everyday sense and glossed سَمِعْتُ بِالشَّيْءِ، إِذَا أَشَعْتُهُ "I heard".
+    from backend.services.ai import prompts
+    shape = prompts.ROOT_ENTRY_SENSES_USER.rsplit('"senses"', 1)[1]
+    assert shape.index('"means"') < shape.index('"gloss"')
+
+
+def test_the_explanation_the_model_copied_is_not_kept():
+    answer = _answer(means="معروف")
+    assert all("means" not in s for s in root_senses.check(answer, LINES))
