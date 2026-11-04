@@ -10,8 +10,9 @@ mutant comes from the source sentence's own key (exact sets of score_iraab).
   twice   the same sentence a second time   -> identical cards
 
 A mutant of a sentence the app already got wrong is not counted (base_wrong). A wrong mutant
-is "flagged" when every wrong word's card carries `assumed`: the app said it had to choose
-a reading the typed harakat do not settle, so the miss is honest. Strict counts every wrong mutant.
+is "flagged" when every wrong word's card names the key's role as its other reading (`assumed.other`):
+the app said it had to choose a reading the typed harakat do not settle, and the other one is
+the right one, so the miss is honest. A flag naming some other role is still unflagged. Strict counts every wrong mutant.
 
 Pools and governors: data/nahw_rules/mutation_config.json. Baseline: mutation_baseline.json.
 Offline, about 1.5 s per keyed sentence (all exact sets: ~20 min).
@@ -87,6 +88,12 @@ def wrong_words(cards: list[dict], key: list[str], by_family: bool, also: dict |
     return [i for i, want in enumerate(key) if not right_role(plain_role(cards[i].get("role")), want, (also or {}).get(str(i), []), by_family)]
 
 
+def names_the_key(card: dict, want: str, also: list[str], by_family: bool) -> bool:
+    """The card's other reading (`assumed.other`) is the key's role."""
+    other = (card.get("assumed") or {}).get("other")
+    return bool(other) and right_role(plain_role(other), want, also, by_family)
+
+
 def keyed_rows(sets: list[str]) -> list[dict]:
     """Each exact set's rows, round robin so a limit still covers every set, one per sentence."""
     seen, rows = set(), []
@@ -104,7 +111,7 @@ def keyed_rows(sets: list[str]) -> list[dict]:
 
 
 def run(rows: list[dict], fails: dict) -> dict[str, dict]:
-    """Per mutation kind: right, wrong (strict), flagged (wrong, every wrong word `assumed`),
+    """Per mutation kind: right, wrong (strict), flagged (wrong, every wrong word names the key as its other reading),
     base_wrong (not counted), crashed, and the ids of the sentences whose mutant was right."""
     stats: dict[str, dict] = defaultdict(lambda: {"right": 0, "wrong": 0, "flagged": 0, "base_wrong": 0, "crashed": 0, "whole": []})
     every = CONFIG["twice_every"]
@@ -141,7 +148,8 @@ def run(rows: list[dict], fails: dict) -> dict[str, dict]:
                 row["whole"].append(ex["id"])
                 continue
             row["wrong"] += 1
-            flagged = len(ans["words"]) == len(key) and all(ans["words"][i].get("assumed") for i in bad)
+            flagged = len(ans["words"]) == len(key) and all(
+                names_the_key(ans["words"][i], key[i], (ex.get("also") or {}).get(str(i), []), by_family and same_key) for i in bad)
             row["flagged"] += flagged
             fails[kind].append({"id": ex["id"], "set": ex["set"], "sentence": ex["sentence"], "mutated": sentence,
                                 "flagged": flagged, "wrong": [f"{strip_diacritics(ans['words'][i]['word'])}: "
