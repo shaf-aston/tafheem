@@ -1369,3 +1369,7 @@ def test_a_masdar_of_the_heart_after_the_verb_is_the_maful_li_ajlih():
 
 def test_a_heart_masdar_added_to_an_plus_verb_is_the_maful_li_ajlih():
     assert _role("وَغَيْرُهُ أَحَبُّ إِلَيَّ مِنْهُ خَشْيَةَ أَنْ يُكَبَّ فِي النَّارِ عَلَى وَجْهِهِ", 4) == "مفعول لأجله"
+
+
+def test_a_numeral_after_a_passive_participle_noun_is_its_naat():
+    assert _role("شَارَكَ جَمِيعُ الْمُرَشَّحِينَ فِي الْمُنَاظَرَةِ إِلَّا مُرَشَّحًا وَاحِدًا اعْتَذَرَ لِأَسْبَابٍ صِحِّيَّةٍ", 7) == "صفة"

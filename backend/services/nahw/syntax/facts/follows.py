@@ -193,7 +193,7 @@ def _follows(token: dict, s: Sentence) -> str:
         measure = listed(head, "tamyeez_head") and token.get("pos_camel") != "adj"
         # آمِرًا أحدًا: after a participle at work a plain noun in nasb is its object (slot.py);
         # with ال on both it follows it (إِنَّ الْمُهَنْدِسَ الْعَجُوزَ)
-        governed = (mine == "a" and at_work(head, s) and not is_participle(token)
+        governed = (mine == "a" and at_work(head, s) == "active" and not is_participle(token)
                     and not token.get("stt") == head.get("stt") == "d")
         return "naat" if agrees(token, head) and not measure and not governed else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers

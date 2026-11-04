@@ -2,6 +2,8 @@
 No sentence is needed for any of these; every other module here builds on them."""
 from __future__ import annotations
 
+import re
+
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
 from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, letters, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw.book import book_words, is_diptote, elative_shape, measure, participle_shape, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
@@ -421,6 +423,8 @@ def is_describing(token: dict) -> bool:
 
 
 PASSIVE_PARTICIPLE = "مَ1ْ2ُو3"  # مَفْعُول: مفتوحٌ بابُه, its noun the نائب فاعل
+# a participle of forms II to X (مُ…) is passive by the fatha before its last root letter (مُرَشَّح، مُسْتَخْدَم), active by the kasra
+DERIVED_PASSIVE = re.compile(r"^مُ.*2[\u064b-\u0652]*\u064e[\u064b-\u0652]*3")
 
 
 def works_as_verb(token: dict) -> str | None:
@@ -430,7 +434,8 @@ def works_as_verb(token: dict) -> str | None:
     if is_verb(token):
         return "passive" if is_passive(token) else "active"
     if is_participle(token):
-        return "passive" if measure(token.get("pattern", "")).startswith(PASSIVE_PARTICIPLE) else "active"
+        shape = measure(token.get("pattern", ""))
+        return "passive" if shape.startswith(PASSIVE_PARTICIPLE) or DERIVED_PASSIVE.match(shape) else "active"
     return None
 
 
