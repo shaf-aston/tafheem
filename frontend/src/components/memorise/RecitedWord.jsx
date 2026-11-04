@@ -78,21 +78,24 @@ export default function RecitedWord({ word, at, ayah, recite, accent, cover, onS
           >
             {printed}
           </button>
+          {!mark.heard && wrote && (
+            // What the ear wrote, when it is not the page's word but the mark
+            // was not red. It hangs under the word and takes no room, so the
+            // line never re-wraps when it arrives (styles/recite.css): a
+            // reciter can always check what the ear heard, and the page holds
+            // still while they do.
+            <ArabicText
+              size="sm"
+              aria-hidden
+              title="what the ear wrote; press the word to hear yourself"
+              className="recite-wrote"
+            >
+              {wrote}
+            </ArabicText>
+          )}
           {opened && <MarkCard ayah={ayah} at={at} recite={recite} anchor={anchor} onStartAt={onStartAt} />}
         </span>
       ) : printed}
-      {!mark.heard && wrote && (
-        // What the ear wrote, when it is not the page's word but the mark was
-        // not red: faint and dashed, so it reads as the ear's note and never as
-        // a verdict. A reciter checking the ear can always see what it heard.
-        <ArabicText
-          size="sm"
-          title="what the ear wrote; press the word to hear yourself"
-          className="recite-heard border border-dashed rounded-[var(--radius-sm)] px-1.5 text-[var(--text-faint)] border-[var(--border-hi)]"
-        >
-          {`← ${wrote}`}
-        </ArabicText>
-      )}
       {mark.heard && (
         <ArabicText
           size="sm"
