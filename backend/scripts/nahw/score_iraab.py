@@ -232,6 +232,11 @@ def same_role(have: str, want: str, by_family: bool) -> bool:
     return bool(have) and family(want) is not None and family(have) == family(want)
 
 
+def right_role(have: str, want: str, also: list[str], by_family: bool) -> bool:
+    """The card's role is the key's, or another answer the books accept for that word (a row's "also")."""
+    return any(same_role(have, ok, by_family) for ok in (want, *also))
+
+
 def score_exact(name: str, api: str | None, show: int) -> Counter:
     """Score a set keyed one exact role per word. A blank card role is a gap; any other
     role that is not the key is confident wrong. Roles are compared exactly, harakat aside, or by
@@ -251,7 +256,7 @@ def score_exact(name: str, api: str | None, show: int) -> Counter:
         for i, want in enumerate(key):
             have = plain_role(cards[i].get("role")) if aligned else ""
             row["roles"] += 1
-            if any(same_role(have, ok, ex.get("by") == "family") for ok in [want, *ex.get("also", {}).get(str(i), [])]):
+            if right_role(have, want, ex.get("also", {}).get(str(i), []), ex.get("by") == "family"):
                 row["right"] += 1
             elif have:
                 row["confident_wrong"] += 1
