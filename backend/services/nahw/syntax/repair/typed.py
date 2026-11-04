@@ -156,9 +156,17 @@ def described_known(tokens: list[dict]) -> None:
     """مَرَرْتُ بِأَحْمَدَ الْكَرِيمِ، أَطْعَمَ الْغَنِيُّ الْفَقِيرَ الْجَائِعَ: a noun known by ال or by being a name is
     added to nothing (Ajrumiyya p14: العلم and ذو الأداة from the المعارف), so a describing word with ال straight
     after it, in its case, is no مضاف إليه of it, nor a second object beside it on its verb: it describes it,
-    its صفة, which agrees with its noun in التعريف (Tasheel 3.10.1), whatever the parser hung it on."""
-    for noun, word in pairwise(tokens):
-        known = is_name(noun) or (noun["pos"] == "NOM" and noun.get("stt") == "d" and noun["form"].startswith("ال"))
+    its صفة, which agrees with its noun in التعريف (Tasheel 3.10.1), whatever the parser hung it on. A second
+    describing word after the first (يَسِيرُ الرَّاكِبُ الْجَوَادَ الْمُضَمَّرَ السَّرِيعَ) describes the same noun."""
+    by_id = {t["id"]: t for t in tokens}
+
+    def is_known(noun: dict) -> bool:
+        return is_name(noun) or (noun["pos"] == "NOM" and noun.get("stt") == "d" and noun["form"].startswith("ال"))
+
+    for before, word in pairwise(tokens):
+        owner = by_id.get(before["head"]) if before["rel"] == "MOD" and is_describing(before) else None
+        noun = owner if owner and is_known(owner) else before
+        known = is_known(noun)
         beside = (word["head"] == noun["id"] and word["rel"] in ("---", "IDF")) \
             or (word["head"] == noun["head"] and word["rel"] == noun["rel"] == "OBJ")
         if (known and beside and word.get("stt") == "d" and is_describing(word)

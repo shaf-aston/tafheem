@@ -60,6 +60,8 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
             return None
         # ما النافية is a particle; إذا before a verb is a ظرف, whatever the parser tagged it
         read = reading(bases[i])
+        if read == "wonder":
+            return None  # مَا أَسْرَعَ مَا تَغَيَّرَتْ: the ما of wonder asks for no answer
         kind = reading(bases[i], "kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
         if not frame["noun"] and read and read != frame["family"]:
             return None  # إِنَّا جَعَلْنَا: the particle's one reading is إنّ, no condition

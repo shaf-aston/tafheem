@@ -1365,3 +1365,130 @@ def test_a_conditional_noun_the_analyser_files_as_a_particle_is_a_noun():
 
 def test_a_jar_before_an_and_its_verb_is_a_harf_jarr():
     assert _role("يَسْعَى الْمَسْؤُولُونَ إِلَى أَنْ يُوَفِّرُوا فُرَصًا", 2) == "حرف جر"
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    # واو الحال: the و brings a sentence, its raf' noun the mubtada, the word told of it the khabar
+    ("لاَ يَزَالُ نَاسٌ مِنْ أُمَّتِي ظَاهِرِينَ حَتَّى يَأْتِيَهُمْ أَمْرُ اللَّهِ وَهُمْ ظَاهِرُونَ", 11, "خبر"),
+    ("دَخَلَ الْوَزِيرُ الْقَاعَةَ مُبْتَسِمًا وَالصَّحَفِيُّونَ يَنْتَظِرُونَهُ بِفَارِغِ الصَّبْرِ", 4, "مبتدأ"),
+    ("مَنْ حَلَفَ عَلَى مَالِ امْرِئٍ مُسْلِمٍ بِغَيْرِ حَقِّهِ لَقِيَ اللَّهَ وَهُوَ عَلَيْهِ غَضْبَانُ", 12, "خبر"),
+    # ما before a fronted phrase and a raf' noun is the negation, not a relative
+    ("مَا بَيْنَ خَلْقِ آدَمَ إِلَى قِيَامِ السَّاعَةِ خَلْقٌ أَكْبَرُ مِنَ الدَّجَّالِ", 0, "حرف"),
+    # ما after a مضاف or a preposition, with its عائد inside a jar, is the relative
+    ("سَأُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِعْ عَلَيْهِ صَبْرًا", 2, "مضاف إليه"),
+    # a و that opens a clause is no joiner: the two khabars of the two mubtadas
+    ("الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى وَالْيَدُ الْعُلْيَا الْمُنْفِقَةُ وَالسُّفْلَى السَّائِلَةُ", 8, "خبر"),
+    ("يَا عَبْدَ الرَّحْمَنِ بْنَ سَمُرَةَ لاَ تَسْأَلِ الإِمَارَةَ", 3, "صفة"),
+    # the oath: the relative is sworn by, its صلة is the nominal sentence
+    ("وَالَّذِي نَفْسِي بِيَدِهِ لاَ تَدْخُلُونَ الْجَنَّةَ حَتَّى تُؤْمِنُوا", 0, "مجرور"),
+    ("وَالَّذِي نَفْسِي بِيَدِهِ لاَ تَدْخُلُونَ الْجَنَّةَ حَتَّى تُؤْمِنُوا", 1, "مبتدأ"),
+    # أمّا: the noun after it is the mubtada, the فاء answer its khabar
+    ("فَأَمَّا الَّذِي يَرَى النَّاسُ أَنَّهَا النَّارُ فَمَاءٌ بَارِدٌ", 6, "خبر"),
+    ("وَأَمَّا مَنْ كَانَ مِنْ أَهْلِ الشَّقَاءِ فَيُيَسَّرُ لِعَمَلِ أَهْلِ الشَّقَاوَةِ", 1, "مبتدأ"),
+    # كان: the اسم, the name added to بنو, a relative as the khabar, a noun joined after وَلَا
+    ("كَانَ الْمُهَنْدِسُونَ يَعْمَلُونَ لَيْلًا وَنَهَارًا حَتَّى اكْتَمَلَ الْجِسْرُ قَبْلَ الْمَوْعِدِ الْمُحَدَّدِ", 1, "اسم كان"),
+    ("كَانَتْ بَنُو إِسْرَائِيلَ يَغْتَسِلُونَ عُرَاةً", 2, "مضاف إليه"),
+    ("لَيْسَ الْمِسْكِينُ الَّذِي تَرُدُّهُ التَّمْرَةُ وَالتَّمْرَتَانِ وَلاَ اللُّقْمَةُ وَلاَ اللُّقْمَتَانِ", 2, "خبر كان"),
+    ("لَيْسَ الْمِسْكِينُ الَّذِي تَرُدُّهُ التَّمْرَةُ وَالتَّمْرَتَانِ وَلاَ اللُّقْمَةُ وَلاَ اللُّقْمَتَانِ", 7, "معطوف"),
+    # the light لكن after a و opens a sentence: the noun after it is its mubtada
+    ("لاَ هِجْرَةَ بَعْدَ الْفَتْحِ وَلَكِنْ جِهَادٌ وَنِيَّةٌ وَإِذَا اسْتُنْفِرْتُمْ فَانْفِرُوا", 5, "مبتدأ"),
+    # a verb has one doer: the second raf' noun is the khabar of a left-out mubtada
+    ("إِنَّ فِيكَ لَخَصْلَتَيْنِ يُحِبُّهُمَا اللَّهُ الْحِلْمُ وَالأَنَاةُ", 5, "خبر"),
+])
+def test_clause_structure_of_hadith_matn(sentence, at, role):
+    assert _role(sentence, at) == role
+
+
+def test_a_time_name_is_the_maful_fihi_though_the_list_never_named_it():
+    assert _role("هَلْ رَأَى أَحَدٌ مِنْكُمُ الْبَارِحَةَ رُؤْيَا", 4) == "مفعول فيه"
+
+
+def test_a_time_word_in_nasb_after_a_verb_that_takes_no_object_is_the_maful_fihi():
+    assert _role("مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", 2) == "مفعول فيه"
+
+
+@pytest.mark.parametrize("sentence, at", [
+    ("هَلْ سَتَنْجَحُ الْجُهُودُ الدِّبْلُومَاسِيَّةُ فِي وَقْفِ التَّصْعِيدِ بَيْنَ الطَّرَفَيْنِ", 7),
+    ("لاَ هِجْرَةَ بَعْدَ الْفَتْحِ وَلَكِنْ جِهَادٌ وَنِيَّةٌ", 2),
+])
+def test_a_time_or_place_word_in_nasb_hung_on_a_noun_or_on_la_is_the_maful_fihi(sentence, at):
+    assert _role(sentence, at) == "مفعول فيه"
+
+
+def test_a_pointer_with_a_time_word_in_nasb_after_it_is_the_maful_fihi():
+    assert _role("أَعْلَنَتِ الشَّرِكَةُ أَنَّ أَرْبَاحَهَا ارْتَفَعَتْ بِنِسْبَةِ عَشَرَةٍ فِي الْمِئَةِ هَذَا الْعَامَ", 9) == "مفعول فيه"
+
+
+def test_a_single_act_masdar_with_a_weak_radical_is_the_maful_mutlaq():
+    assert _role("لَمْ يَخْطُ خَطْوَةً إِلاَّ رُفِعَ بِهَا دَرَجَةً", 2) == "مفعول مطلق"
+
+
+def test_an_amount_word_after_a_verb_is_the_maful_mutlaq_not_a_hal():
+    assert _role("وَاللَّهِ لَوْ تَعْلَمُونَ مَا أَعْلَمُ لَبَكَيْتُمْ كَثِيرًا", 6) == "مفعول مطلق"
+
+
+def test_a_describing_word_of_the_doer_shape_with_ta_marbuta_is_a_hal():
+    assert _role("كَانَتْ بَنُو إِسْرَائِيلَ يَغْتَسِلُونَ عُرَاةً", 4) == "حال"
+
+
+def test_a_masdar_after_a_passive_verb_whose_object_became_its_deputy_is_a_hal():
+    assert _role("لاَ يُقْتَلُ قُرَشِيٌّ صَبْرًا بَعْدَ هَذَا الْيَوْمِ إِلَى يَوْمِ الْقِيَامَةِ", 3) == "حال"
+    assert _role("لَمْ يَخْطُ خَطْوَةً إِلاَّ رُفِعَ بِهَا دَرَجَةً", 6) == "مفعول به"  # a noun of a single act names a thing
+
+
+def test_a_masdar_of_the_heart_after_the_verb_is_the_maful_li_ajlih():
+    assert _role("مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", 4) == "مفعول لأجله"
+
+
+def test_a_heart_masdar_added_to_an_plus_verb_is_the_maful_li_ajlih():
+    assert _role("وَغَيْرُهُ أَحَبُّ إِلَيَّ مِنْهُ خَشْيَةَ أَنْ يُكَبَّ فِي النَّارِ عَلَى وَجْهِهِ", 4) == "مفعول لأجله"
+
+
+def test_a_numeral_after_a_passive_participle_noun_is_its_naat():
+    assert _role("شَارَكَ جَمِيعُ الْمُرَشَّحِينَ فِي الْمُنَاظَرَةِ إِلَّا مُرَشَّحًا وَاحِدًا اعْتَذَرَ لِأَسْبَابٍ صِحِّيَّةٍ", 7) == "صفة"
+
+
+def test_a_second_describing_word_with_al_describes_the_same_noun():
+    assert _role("إِنَّ فِي الْجَنَّةِ لَشَجَرَةً يَسِيرُ الرَّاكِبُ الْجَوَادَ الْمُضَمَّرَ السَّرِيعَ مِائَةَ عَامٍ", 8) == "صفة"
+
+
+def test_an_indefinite_word_after_an_construct_of_an_unknown_noun_is_its_naat():
+    assert _role("يَسْعَى الْمَسْؤُولُونَ إِلَى أَنْ يُوَفِّرُوا فُرَصَ عَمَلٍ جَدِيدَةً لِلشَّبَابِ الْعَاطِلِينَ", 7) == "صفة"
+
+
+def test_a_noun_showing_no_case_after_an_elative_is_its_tamyeez():
+    assert _role("أَعْظَمُ النَّاسِ أَجْرًا فِي الصَّلاَةِ أَبْعَدُهُمْ فَأَبْعَدُهُمْ مَمْشًى", 7) == "تمييز"
+
+
+def test_a_masdar_added_to_its_doer_governs_the_object_after_it():
+    assert _role("أَدَّى إِهْمَالُ الْمَسْؤُولِينَ صِيَانَةَ الْجُسُورِ الْقَدِيمَةِ إِلَى انْهِيَارِ أَحَدِهَا الْأُسْبُوعَ الْمَاضِيَ", 3) == "مفعول به"
+
+
+def test_the_noun_after_lawla_is_its_mubtada():
+    assert _role("كَادَتِ الْمُفَاوَضَاتُ تَنْهَارُ لَوْلَا تَدَخُّلُ الْوَسِيطِ الدَّوْلِيِّ فِي اللَّحْظَةِ الْأَخِيرَةِ", 4) == "مبتدأ"
+
+
+def test_a_noun_after_illa_is_no_badal_of_a_noun_in_another_clause():
+    assert _role("لاَ يَعْلَمُ مَا تَغِيضُ الأَرْحَامُ إِلاَّ اللَّهُ", 6) == "فاعل"
+
+
+def test_a_relative_ma_that_is_the_one_object_of_a_passive_verb_is_its_deputy():
+    assert _role("مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", 8) == "نائب فاعل"
+
+
+def test_kayfa_before_a_verb_in_a_recorded_ayah_is_the_hal():
+    # the treebank tags كيف a particle; the books name it the حال of the verbal clause after it (not before a noun)
+    assert iraab.analyze("أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ")["words"][2]["role"] == "حَالٌ"
+
+
+def test_a_built_or_unseen_case_zarf_word_is_not_the_maful_fihi_of_a_nominal_sentence():
+    assert _role("أَيْنَ الْكِتَابُ", 0) == "خبر"
+    assert _role("الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى", 1) == "صفة"
+
+
+def test_an_indefinite_word_after_a_construct_with_no_verb_above_is_the_khabar():
+    assert _role("خَاتَمُ فِضَّةٍ جَمِيلٌ", 2) == "خبر"
+
+
+def test_an_amount_word_after_a_verb_that_takes_an_object_is_left_to_the_other_rules():
+    assert _role("الَّذِي يَقْرَأُ كَثِيرًا يَزْدَادُ عِلْمُهُ", 2) == "حال"

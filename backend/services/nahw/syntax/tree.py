@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from backend.services.nahw.book import (book_spelling, card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
-from backend.services.nahw.syntax.facts import (Sentence, is_particle, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
+from backend.services.nahw.syntax.facts import (Sentence, is_passive, is_particle, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
                                           is_nasab, is_verb, read_as, reading, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.nahw.syntax.followers import FOLLOWERS, chain_first
@@ -372,6 +372,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if governor and is_preposition(governor):
             return masdar["after_preposition"]["job"], masdar["after_preposition"]["case"]
         rel = token["rel"]
+        if (governor and rel == "OBJ" and is_passive(governor)
+                and not any(t["head"] == governor["id"] and t["rel"] in ("SBJ", "OBJ") and t is not token and t["pos"] != "PRT" for t in drawn)):
+            return masdar["after_passive"]["job"], masdar["after_passive"]["case"]
         return (masdar["job_by_rel"][rel], masdar["case_by_rel"][rel]) if rel in masdar["job_by_rel"] else None
 
     kind_of_ma = {token["id"]: kind for token in drawn if (kind := ma_kind(token, sentence))}
