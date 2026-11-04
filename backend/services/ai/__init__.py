@@ -179,16 +179,19 @@ def explain_root_entry_lines(root: str, lines: list[str], reference: str | None 
     )
 
 
-def explain_root_entry_senses(root: str, lines: list[str]) -> dict:
+def explain_root_entry_senses(root: str, lines: list[str], reference: str | None = None) -> dict:
     """A piece of a Maqayees entry cut into the words it explains, each with its lines.
 
     Returns the model's answer as it came; root_senses.check holds it against
-    the book before anything keeps or shows it. No reference English is sent:
-    it cost tokens and its meanings leaked onto the wrong lines.
+    the book before anything keeps or shows it. `reference` is the whole
+    entry's kept English: without it the model read الغرب as "west" and السمع
+    (a wolf's cub by a hyena) as "the hearing", where with it it had both right.
     """
     numbered = "\n".join(f"{i + 1}. {line}" for i, line in enumerate(lines))
+    shared = (prompts.ROOT_ENTRY_LINES_REFERENCE.format(english=reference[: get_settings().root_entry_truncate_chars])
+              if reference else "")
     return _ask(
-        prompts.ROOT_ENTRY_SENSES_USER.format(root=root, numbered=numbered, count=len(lines)),
+        prompts.ROOT_ENTRY_SENSES_USER.format(root=root, numbered=numbered, count=len(lines), reference=shared),
         max_tokens=get_settings().root_senses_max_tokens,
     )
 

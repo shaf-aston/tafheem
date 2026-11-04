@@ -865,6 +865,7 @@ def word_ai(monkeypatch):
 
     def _explain(root, lines, reference=None):
         state["asked"] += 1
+        state["reference"] = reference
         return state["answer"]
 
     monkeypatch.setattr(router_module.ai_service, "is_ai_available", lambda: state["available"])
@@ -923,3 +924,11 @@ def test_shipped_words_are_badged_as_the_books_translation(client, word_ai, kept
     body = _words(client, "كتب").json()
     assert body["source"]["key"] == "maqayees_senses"
     assert word_ai["asked"] == 0
+
+
+def test_words_made_on_the_spot_are_handed_the_whole_entrys_english(client, word_ai, kept):
+    # Without it the model read الغرب as "west" and a wolf's cub as "the hearing"
+    kept.put("كتب", "Al-Khansā' said, of the gathering.")
+    _install_lined(client)
+    _words(client, "كتب")
+    assert word_ai["reference"] == "Al-Khansā' said, of the gathering."

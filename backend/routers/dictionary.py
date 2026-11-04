@@ -373,13 +373,17 @@ async def get_root_entry_senses(root: Root) -> RootEntrySensesResponse:
     lines, truncated = root_gloss.line_budget(root_gloss.rest_of(entry), get_settings().root_entry_truncate_chars)
     kept = root_english.get_senses(book_root, len(lines)) if truncated else None
     if kept is None:
-        # Asked in chunks at once: a short answer each comes back sooner, fits the
-        # token budget, and a chunk that misfits is asked again alone.
-        ask = partial(ai_service.explain_root_entry_senses, root)
-        kept = root_senses.joined(await asyncio.gather(*(
-            _ask_ai(root_senses.cut, ask, chunk, operation="word-by-word English of a Maqayees entry")
-            for chunk in root_gloss.chunks(lines, get_settings().root_senses_chunk_chars)
-        )))
+        # Asked a chunk at a time: a short answer each fits the token budget, and a
+        # chunk that misfits is asked again alone. One after another, not at once:
+        # at once, a long entry's chunks spent the model service's tokens-per-minute
+        # together and failed (live, five of ten roots asked in a row).
+        ask = partial(ai_service.explain_root_entry_senses, root, reference=root_english.get(book_root))
+        parts = []
+        for chunk in root_gloss.chunks(lines, get_settings().root_senses_chunk_chars):
+            parts.append(await _ask_ai(root_senses.cut, ask, chunk, operation="word-by-word English of a Maqayees entry"))
+            if parts[-1] is None:
+                break
+        kept = root_senses.joined(parts)
         if kept is None:
             raise HTTPException(
                 status_code=502,
