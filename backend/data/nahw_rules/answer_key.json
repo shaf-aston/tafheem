@@ -7,7 +7,8 @@
     "hadith": "data/nahw_rules/hadith_sentences.json", "rules": "data/nahw_rules/rule_sentences.json",
     "probe": "data/nahw_rules/probe_sentences.json",
     "blind": "data/nahw_rules/blind_sentences.json",
-    "battery": "data/nahw_rules/battery_sentences.json"
+    "battery": "data/nahw_rules/battery_sentences.json",
+    "matn": "data/nahw_rules/matn_sentences.json"
   },
   "families": {
     "fil": [

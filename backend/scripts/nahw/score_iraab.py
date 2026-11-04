@@ -28,6 +28,9 @@ kept where they agreed. It splits three ways: "tune" may be looked at while fixi
 --set battery is 79 sentences (43 grammar, 36 Qur'an openings) read by hand word by word: the
 key is what the app answered where that was right, the book's role where it was not (those words
 fail until the engine is fixed); a row's "note" names the words with two valid answers.
+--set matn is 100 harder sentences: 60 vowelled hadith matn clauses (bukhari, muslim) and 40 MSA
+sentences, keyed blind by two readers; where they differed the books settled it. A row's "also" gives,
+per word, the other answers the books accept, each scored right.
 Rows in these may carry "signs", the sign the book gives chosen words (word
 index to sign), so the case line is scored as well as the role.
 
@@ -114,10 +117,10 @@ def held_out(name: str) -> list[dict]:
 
 
 SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
-        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery")},
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery", "matn")},
         "blind": partial(fresh_sentences, "blind")}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery", "matn")
 BASELINE = DATA / "nahw_rules" / "score_baseline.json"
 
 
@@ -248,7 +251,7 @@ def score_exact(name: str, api: str | None, show: int) -> Counter:
         for i, want in enumerate(key):
             have = plain_role(cards[i].get("role")) if aligned else ""
             row["roles"] += 1
-            if same_role(have, want, ex.get("by") == "family"):
+            if any(same_role(have, ok, ex.get("by") == "family") for ok in [want, *ex.get("also", {}).get(str(i), [])]):
                 row["right"] += 1
             elif have:
                 row["confident_wrong"] += 1
