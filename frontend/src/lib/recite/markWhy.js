@@ -15,7 +15,10 @@ export const whyOf = (mark, underlined = false) => {
     return bySoundOnly(mark) ? 'The ear wrote down something else, but the sound check is sure you said it right.' : 'Said right.'
   }
   if (mark.state === MISSED) return 'Not heard.'
-  if (mark.state === CHECK) return 'The model could not confirm this word. It may be your slip or a mishearing.'
+  if (mark.state === CHECK) {
+    if (mark.sounds?.letter_ok === false && mark.sure != null) return 'Both ears heard a different letter here. It may be your slip or a mishearing: press Mine to hear yourself.'
+    return 'The model could not confirm this word. It may be your slip or a mishearing.'
+  }
   if (mark.state === WRONG) {
     if (!(mark.said && sameSpokenWord(mark.said, mark.word))) return 'A different word was heard.'
     return `The letters matched but the sound did not, likely a vowel or letter slip${underlined ? ' at the underlined part' : ''}.`
