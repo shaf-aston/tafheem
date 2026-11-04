@@ -1357,3 +1357,7 @@ def test_an_amount_word_after_a_verb_is_the_maful_mutlaq_not_a_hal():
 
 def test_a_describing_word_of_the_doer_shape_with_ta_marbuta_is_a_hal():
     assert _role("كَانَتْ بَنُو إِسْرَائِيلَ يَغْتَسِلُونَ عُرَاةً", 4) == "حال"
+
+
+def test_a_masdar_after_a_passive_verb_whose_object_became_its_deputy_is_a_hal():
+    assert _role("لاَ يُقْتَلُ قُرَشِيٌّ صَبْرًا بَعْدَ هَذَا الْيَوْمِ إِلَى يَوْمِ الْقِيَامَةِ", 3) == "حال"
