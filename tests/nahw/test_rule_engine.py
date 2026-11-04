@@ -1416,3 +1416,7 @@ def test_a_built_or_unseen_case_zarf_word_is_not_the_maful_fihi_of_a_nominal_sen
 
 def test_an_indefinite_word_after_a_construct_with_no_verb_above_is_the_khabar():
     assert _role("خَاتَمُ فِضَّةٍ جَمِيلٌ", 2) == "خبر"
+
+
+def test_an_amount_word_after_a_verb_that_takes_an_object_is_left_to_the_other_rules():
+    assert _role("الَّذِي يَقْرَأُ كَثِيرًا يَزْدَادُ عِلْمُهُ", 2) == "حال"
