@@ -1401,3 +1401,8 @@ def test_a_noun_after_illa_is_no_badal_of_a_noun_in_another_clause():
 
 def test_a_relative_ma_that_is_the_one_object_of_a_passive_verb_is_its_deputy():
     assert _role("مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", 8) == "نائب فاعل"
+
+
+def test_kayfa_before_a_verb_in_a_recorded_ayah_is_the_hal():
+    # the treebank tags كيف a particle; the books name it the حال of the verbal clause after it (not before a noun)
+    assert iraab.analyze("أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ")["words"][2]["role"] == "حَالٌ"

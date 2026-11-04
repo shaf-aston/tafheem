@@ -17,7 +17,7 @@ import sqlite3
 from pathlib import Path
 
 from backend.services.nahw import book as nahw_book
-from backend.services.text.arabic_text import alef_written_out
+from backend.services.text.arabic_text import alef_written_out, strip_diacritics
 from backend.services.text.arabic_text import words as split_words
 from backend.services.core.readonly_db import ReadOnlyDb
 
@@ -126,6 +126,20 @@ def _hide(node: dict, written: set[int]) -> None:
         node["hidden"] = True
 
 
+def _question_states(node: dict, words: list[str], rule: dict) -> None:
+    """أَلَمْ تَرَ كَيْفَ فَعَلَ: a question word the treebank tags a particle (tarkeeb.json `question_states`) with a
+    verb next to it in its unit is that clause's حال, as the books say; before a noun it is left as recorded."""
+    kind = nahw_book.tarkeeb_rules()["treebank"]["particle_kinds"][rule["kind"]]
+    verb = nahw_book.term(rule["next"])["ar"]
+    children = node.get("children", [])
+    for child, after in zip(children, children[1:]):
+        if (child.get("role") == kind and "word" in child and strip_diacritics(words[child["word"]]) in rule["words"]
+                and after.get("role") == verb):
+            child.update(role=nahw_book.term(rule["job"])["ar"], tone=nahw_book.term(rule["job"])["tone"])
+    for child in children:
+        _question_states(child, words, rule)
+
+
 def _named(node: dict, count: list[int]) -> None:
     """Count the words whose job is actually named, so coverage is measured, not claimed."""
     if node.get("children"):
@@ -150,6 +164,7 @@ def for_ayah(surah: int, ayah: int) -> dict | None:
     words = json.loads(row["words"])
     tree = json.loads(row["tree"])
     _hide(tree, set(json.loads(row["written"])))
+    _question_states(tree, words, settings["question_states"])
     named = [0]
     _named(tree, named)
     return {

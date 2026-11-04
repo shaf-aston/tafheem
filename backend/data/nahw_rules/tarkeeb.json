@@ -58,6 +58,10 @@
       "ar": "صِفَةٌ",
       "tone": "sifah"
     },
+    "hal": {
+      "ar": "حَالٌ",
+      "tone": "sifah"
+    },
     "murakkab_tawsifi": {
       "ar": "مُرَكَّبٌ تَوْصِيْفِيٌّ",
       "tone": "sifah"
@@ -162,6 +166,8 @@
     "noun_only": ["مضاف إليه"],
     "_question_nouns_comment": "A question word the treebank tags a particle that a خبر hangs on is a question noun, the مبتدأ that خبر tells about (وَمَا أَدْرَاكَ، مَنْ ذَا الَّذِي، مَتَىٰ هَٰذَا الْوَعْدُ): a particle is told nothing, and only the hamza and هل are question particles (Mughni V1 p107: أيهم أشد، استفهامية وأنها مبتدأ وأشد خبر). `never_mubtada`: the two question particles, and the words that ask when, where or how, a ظرف or حال: they stay as the treebank has them.",
     "question_nouns": {"kinds": ["حرف استفهام"], "told_by": ["خبر"], "never_mubtada": ["هل", "أ", "متى", "أين", "أيان", "أنى", "كيف"]},
+    "_question_states_comment": "كَيْفَ is a question noun (the books), the حال of the full verbal clause after it (أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ), the خبر before a noun (كَيْفَ حَالُكَ); the treebank tags it a particle. Read time (tarkeeb_store), as the stored record is not rebuilt: a leaf of one of these words with the treebank's `kind`, whose next neighbour in its unit is a verb, is named `job`. Before a noun it stays as recorded. Book page unchecked (Mughni, باب كيف).",
+    "question_states": {"words": ["كيف"], "kind": "حرف استفهام", "next": "fil", "job": "hal"},
     "_tone_comment": "Matched as substrings, first hit wins, so مفعول به and مفعول مطلق share one entry.",
     "relation_tones": [
       [
