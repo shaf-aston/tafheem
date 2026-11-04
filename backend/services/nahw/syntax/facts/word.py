@@ -439,9 +439,13 @@ def works_as_verb(token: dict) -> str | None:
     return None
 
 
-def is_masdar(token: dict) -> bool:
-    """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا، خَطْوَةً), judged by the analyser's pattern."""
-    return token.get("pos_camel") == "noun" and measure(token.get("pattern") or "").startswith(tuple(book_words("masdar_patterns")))
+def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
+    """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا، خَطْوَةً), judged by the analyser's pattern.
+    weak_or_doubled=False takes a doubled or hollow root's pattern as written, for a word with nothing else
+    saying it is a doing: طَوْقًا is فَعْل, and a collar all the same; a single act (ـة) is a doing, so it is read through."""
+    pattern = (token.get("pattern") or "").removeprefix("ال")
+    shape = measure(pattern) if weak_or_doubled or strip_diacritics(pattern).endswith("ة") else pattern
+    return token.get("pos_camel") == "noun" and shape.startswith(tuple(book_words("masdar_patterns")))
 
 
 def is_name(token: dict) -> bool:
