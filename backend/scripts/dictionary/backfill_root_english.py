@@ -32,6 +32,7 @@ import argparse
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from functools import partial
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
@@ -60,20 +61,6 @@ def entries_to_do(limit: int | None, mode: str) -> list[tuple[str, str | list[st
     return todo[:limit] if limit else todo
 
 
-def chunks(lines: list[str], budget: int) -> list[list[str]]:
-    """Whole lines grouped so each group stays within `budget` characters. A
-    line longer than that is its own group: half a line is not translatable."""
-    groups: list[list[str]] = []
-    spent = 0
-    for line in lines:
-        if not groups or spent + len(line) > budget:
-            groups.append([])
-            spent = 0
-        groups[-1].append(line)
-        spent += len(line)
-    return groups
-
-
 def make_prose(root: str, body: str) -> None:
     english = str(ai_service.explain_root_entry(root, body).get("english", "")).strip()
     if not english:
@@ -83,7 +70,7 @@ def make_prose(root: str, body: str) -> None:
 
 def make_lines(root: str, lines: list[str]) -> None:
     english: list[str] = []
-    for chunk in chunks(lines, get_settings().root_entry_truncate_chars):
+    for chunk in root_gloss.chunks(lines, get_settings().root_entry_truncate_chars):
         for _ in range(2):  # a miscounted answer gets one more go
             got = ai_service.explain_root_entry_lines(root, chunk, root_english.get(root)).get("lines")
             if (isinstance(got, list) and len(got) == len(chunk)
@@ -96,23 +83,13 @@ def make_lines(root: str, lines: list[str]) -> None:
 
 
 def make_senses(root: str, lines: list[str]) -> None:
-    """Each chunk cut on its own, its line numbers then moved along to where the
-    chunk starts. A word whose lines straddle two chunks becomes two senses."""
-    senses: list[dict] = []
-    start = 0
-    for chunk in chunks(lines, get_settings().root_entry_truncate_chars):
-        for _ in range(2):  # an answer that does not fit the book gets one more go
-            got = root_senses.check(ai_service.explain_root_entry_senses(root, chunk, root_english.get(root)), chunk)
-            if got:
-                break
-        else:
-            raise ValueError(f"could not cut {len(chunk)} lines into words")
-        for sense in got:
-            sense["lines"] = [n + start for n in sense["lines"]]
-            for example in sense["examples"]:
-                example["line"] += start
-        senses += got
-        start += len(chunk)
+    """Cut a chunk at a time, as the live press does (root_senses.cut, joined)."""
+    ask = partial(ai_service.explain_root_entry_senses, root, reference=root_english.get(root))
+    senses = root_senses.joined([
+        root_senses.cut(ask, chunk) for chunk in root_gloss.chunks(lines, get_settings().root_senses_chunk_chars)
+    ])
+    if senses is None:
+        raise ValueError(f"could not cut {len(lines)} lines into words")
     root_english.put_senses(root, senses, shipped=True)
 
 

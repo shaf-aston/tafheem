@@ -1,4 +1,6 @@
 """The entry cut into its words: the model's answer held against the book."""
+import json
+
 from backend.services.dictionary import root_senses
 
 LINES = [
@@ -38,11 +40,42 @@ def test_a_saying_from_another_senses_line_is_dropped():
     assert root_senses.check(_answer(examples=[example]), LINES)[1]["examples"] == []
 
 
-def test_lines_out_of_order_or_missing_are_refused_whole():
-    assert root_senses.check(_answer(lines=[3]), LINES) is None
-    assert root_senses.check({"senses": _answer()["senses"][:2]}, LINES) is None
+def test_a_skipped_or_doubled_line_stays_with_the_word_before_it():
+    skipped = root_senses.check(_answer(lines=[3]), LINES)
+    assert [s["lines"] for s in skipped] == [[0, 1], [2, 2], [3, 3]]
+    assert skipped[1]["examples"]  # still in its own line
+    doubled = root_senses.check(_answer(lines=[1, 3]), LINES)
+    assert [s["lines"] for s in doubled] == [[0, 0], [1, 2], [3, 3]]
+    assert root_senses.check({"senses": _answer()["senses"][:2]}, LINES)[-1]["lines"] == [1, 3]
+
+
+def test_an_answer_that_misreads_the_entry_is_refused_whole():
+    # More than a third of the lines left for check to place: not a slip.
+    assert root_senses.check({"senses": _answer()["senses"][:1]}, LINES) is None
     assert root_senses.check(_answer(gloss=""), LINES) is None
     assert root_senses.check({"lines": []}, LINES) is None
+
+
+def test_cut_asks_once_more_when_the_first_answer_does_not_fit():
+    answers = iter([json.JSONDecodeError("cut off", "", 0), {"senses": []}, _answer()])
+
+    def ask(lines):
+        answer = next(answers)
+        if isinstance(answer, Exception):
+            raise answer
+        return answer
+
+    assert root_senses.cut(ask, LINES) is None  # two tries, both spent
+    assert root_senses.cut(ask, LINES)[1]["word"] == "الرُّطَبُ"
+
+
+def test_chunks_join_into_one_entry_with_their_lines_moved_along():
+    first, second = root_senses.check(_answer(), LINES), root_senses.check(_answer(), LINES)
+    joined = root_senses.joined([first, second])
+    assert [s["lines"] for s in joined][3:] == [[4, 4], [5, 6], [7, 7]]
+    assert joined[4]["examples"][0]["line"] == 6
+    assert root_senses.fits(joined, 8)
+    assert root_senses.joined([first, None]) is None
 
 
 def test_kept_senses_must_still_fit_the_book():

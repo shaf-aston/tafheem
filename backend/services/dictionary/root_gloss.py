@@ -86,6 +86,7 @@ def opening_of(translation: str) -> str:
 
 _LEADING_PUNCTUATION = re.compile(r"^[.،؛:\s]+")
 _HAS_WORDS = re.compile(r"[^.،؛:\s]")
+_HAS_LETTER = re.compile(r"[\u0621-\u064A]")
 
 # The end of a claim: a full stop followed by white space. Only the full stop,
 # deliberately: the book's commas and its ؛ separate clauses inside one claim.
@@ -116,12 +117,20 @@ def line_budget(arabic: str, budget: int) -> tuple[list[str], bool]:
     never cut: half a verse is not something anyone reads or translates alone.
     The first line that does not fit ends the list, and the flag says so.
     """
-    lines = [
-        piece
-        for paragraph in arabic.split("\n")
-        for piece in ([paragraph] if VERSE_GAP in paragraph else _CLAIM_END.split(paragraph))
-        if piece.strip()
-    ]
+    lines: list[str] = []
+    held = ""
+    for paragraph in arabic.split("\n"):
+        for piece in ([paragraph] if VERSE_GAP in paragraph else _CLAIM_END.split(paragraph)):
+            # A piece with no letter is not a line: ". . . ." standing for the half-verse the
+            # print leaves out (cut at each stop, nine lines of "."), a stray page number. It
+            # goes with the line after it, or the last line when none follows.
+            if _HAS_LETTER.search(piece):
+                lines.append(f"{held} {piece.strip()}".lstrip())
+                held = ""
+            else:
+                held = f"{held} {piece.strip()}".strip()
+    if held and lines:
+        lines[-1] += f" {held}"
     kept: list[str] = []
     spent = 0
     for line in (line.strip() for line in lines):
@@ -130,3 +139,17 @@ def line_budget(arabic: str, budget: int) -> tuple[list[str], bool]:
             return kept, True
         kept.append(line)
     return kept, False
+
+
+def chunks(lines: list[str], budget: int) -> list[list[str]]:
+    """Whole lines grouped so each group stays within `budget` characters. A
+    line longer than that is its own group: half a line is not translatable."""
+    groups: list[list[str]] = []
+    spent = 0
+    for line in lines:
+        if not groups or spent + len(line) > budget:
+            groups.append([])
+            spent = 0
+        groups[-1].append(line)
+        spent += len(line)
+    return groups
