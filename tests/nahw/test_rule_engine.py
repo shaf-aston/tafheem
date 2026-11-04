@@ -1377,3 +1377,7 @@ def test_a_numeral_after_a_passive_participle_noun_is_its_naat():
 
 def test_a_second_describing_word_with_al_describes_the_same_noun():
     assert _role("إِنَّ فِي الْجَنَّةِ لَشَجَرَةً يَسِيرُ الرَّاكِبُ الْجَوَادَ الْمُضَمَّرَ السَّرِيعَ مِائَةَ عَامٍ", 8) == "صفة"
+
+
+def test_an_indefinite_word_after_an_construct_of_an_unknown_noun_is_its_naat():
+    assert _role("يَسْعَى الْمَسْؤُولُونَ إِلَى أَنْ يُوَفِّرُوا فُرَصَ عَمَلٍ جَدِيدَةً لِلشَّبَابِ الْعَاطِلِينَ", 7) == "صفة"
