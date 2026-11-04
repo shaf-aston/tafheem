@@ -342,8 +342,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     if opener and read_as(opener, "istinaf") and typed_or_parsed_case(token) == "u":
         return "predicate"
     if (s.verbless and rel == "OBJ" and s.head(token) and is_preposition(s.head(token)) and not jarr_takes(token, s)
-            and typed_case_of(token) in (None, "u")):
-        return "subject"  # لله الحمدُ: the noun after a fronted jar-majrur khabar is the مبتدأ
+            and not is_one(s.head(token)["lemma"], "jarr", "oath_only") and typed_case_of(token) in (None, "u")):
+        return "subject"  # لله الحمدُ: the noun after a fronted jar-majrur khabar is the مبتدأ; not after a و (وَالْيَدُ الْعُلْيَا الْمُنْفِقَةُ)
     if is_verb(token):  # a verb is only ever a khabar by its link; its clause is named from the tree above
         return "predicate" if rel == "PRD" else "none"
     head = s.head(token)

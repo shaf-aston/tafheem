@@ -332,7 +332,7 @@ def excepted_after_la(token: dict, s: Sentence) -> tuple[dict, dict, dict] | Non
 def ma_kind(token: dict, s: Sentence) -> str | None:
     """What a ما with a verb hung on it after it is, by its عائد (مغني اللبيب، ما المصدرية):
     the relative's صلة holds a pronoun going back to it, ما المصدرية's never does. So "relative"
-    while the verb has a place one could sit in: a هـ on it (أعجبني ما كتبتَه), a hidden هو for
+    while the verb has a place one could sit in: a هـ on it or on its jar (أعجبني ما كتبتَه, سأنبئك بتأويل ما لم تستطع عليه صبرا), a hidden هو for
     its doer (ما نفعك), an object it may take and lacks (أكلتُ ما طبختَ, the default when both
     readings stand). "masdar" when every place is taken by another word: its object written
     (أكره ما يهمل الطلابُ دروسَهم), a passive's نائب فاعل written (بما تُرِكَ العملُ), or a verb
@@ -343,7 +343,8 @@ def ma_kind(token: dict, s: Sentence) -> str | None:
     if not verb:
         return None
     kids = s.kids(verb)
-    pronouns = [t for t in kids if is_suffix(t) and t.get("pos_camel") == "pron"]
+    # the verb's own pronouns, and those of the jar it holds (استطعتَ عليه)
+    pronouns = [t for k in kids for t in ([k] if is_suffix(k) else s.kids(k) if is_preposition(k) else []) if is_suffix(t) and t.get("pos_camel") == "pron"]
     if any(strip_diacritics(t["form"]).strip("+") == "ه" for t in pronouns):  # the هـ that goes back to ما
         return "relative"
     named = [t for t in kids if t["rel"] in ("SBJ", "OBJ") and not is_suffix(t) and not is_verb(t)]

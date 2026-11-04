@@ -114,9 +114,12 @@ def _tool_next(token: dict, s: facts.Sentence) -> str:
 
 def _timed(token: dict, s: facts.Sentence) -> str:
     """The word after it is لم or دام (data: istithna_verbs `timed_ma_before`) and it does not
-    open the sentence: ما المصدرية الظرفية, "as long as" (البيعان بالخيار ما لم يتفرقا)."""
+    open the sentence: ما المصدرية الظرفية, "as long as" (البيعان بالخيار ما لم يتفرقا). Added to a noun
+    before it, or after a preposition, it is in jarr: the ما of a noun, the relative, not a time word
+    (سَأُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِعْ عَلَيْهِ صَبْرًا; Mughni, ما الاسمية)."""
     after, before = facts.next_word(token, s), s.by_id.get(token["id"] - 1)
-    return "yes" if before and after and is_one(
+    in_jarr = token["rel"] == "IDF" or bool(before and facts.is_preposition(before))
+    return "yes" if before and after and not in_jarr and is_one(
         after["lemma"] or after["form"], "istithna_verbs", "timed_ma_before") else "no"
 
 
@@ -152,11 +155,14 @@ def _fronted(token: dict, s: facts.Sentence) -> str:
     in raf': the khabar came first, so the noun is its مبتدأ مؤخر and the ما only negates; a ما with
     its khabar first does not work as ليس (Tasheel 1.9 n6 p23). A describing word there (وما عند الله
     خيرٌ، باقٍ) is told of the ما, the relative, and is its khabar. Its majrur, and what is added to
-    it (في بيتِ زيدٍ), are in jarr; a joined one (فيه، عندي) is no word of its own."""
+    it (في بيتِ زيدٍ), are in jarr; a joined one (فيه، عندي) is no word of its own. A مضاف إليه
+    of a word inside it, in whatever case it shows (مَا بَيْنَ خَلْقِ آدَمَ ... خَلْقٌ: آدَمَ's fatha is its jarr) is inside it too."""
     words = [t for t in s.tokens if t["id"] > token["id"] and not facts.is_suffix(t)]
     at = 0
+    inside = set()  # the words of the fronted phrase: what is added to them or governed by them is no noun to ask for
     while at < len(words) and (facts.is_preposition(words[at]) or facts.is_zarf(words[at], s)
-                               or facts.typed_case_of(words[at]) == "i"):
+                               or facts.typed_case_of(words[at]) == "i" or words[at]["rel"] == "IDF" and words[at]["head"] in inside):
+        inside.add(words[at]["id"])
         at += 1
     noun = words[at] if 0 < at < len(words) else None
     return "yes" if noun and facts.noun_tagged(noun) and facts.typed_case_of(noun) == "u" \

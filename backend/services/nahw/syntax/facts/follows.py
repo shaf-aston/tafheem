@@ -117,10 +117,11 @@ def _follows(token: dict, s: Sentence) -> str:
         return "tawkeed"
     if not head:
         return "none"
-    # دخل المديرُ وهو مبتسمٌ: a raf' pronoun straight after the و, hung on this word, is its
-    # مبتدأ; the و brings a sentence (واو الحال), joining no noun (Tasheel 3.7)
+    # دخل المديرُ وهو مبتسمٌ، وَالْيَدُ الْعُلْيَا الْمُنْفِقَةُ: a raf' pronoun or noun straight after the و, hung
+    # on this word as its subject, is its مبتدأ; the و brings a sentence (واو الحال), joining no noun (Tasheel 3.7)
     opener = s.by_id.get(head["id"] + 1)
-    if opener and opener["id"] < token["id"] and opener["head"] == token["id"] and is_subject_pronoun(opener):
+    if opener and opener["id"] < token["id"] and opener["head"] == token["id"] and (
+            is_subject_pronoun(opener) or opener["rel"] == "SBJ" and noun_tagged(opener)):
         return "none"
     # لكنّ is also an inna sister; it joins only when no clause of its own follows, or as the light لكنْ
     if (head["pos"] == "PRT" or joins_clauses(head, s)) and read_as(head, "atf") \
