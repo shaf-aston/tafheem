@@ -7,7 +7,7 @@ Backend resolution order (auto mode):
 
 Public functions mirror the old groq/__init__.py interface so routers
 need no changes:
-    analyze_sarf, explain_root_entry, explain_root_entry_lines, get_backend_name
+    analyze_sarf, explain_root_entry, explain_root_entry_lines, explain_root_entry_senses, get_backend_name
 """
 from __future__ import annotations
 
@@ -122,6 +122,21 @@ def explain_root_entry(root: str, entry: str) -> dict:
     )
 
 
+def gist_lexicon_entry(book: str, root: str, entry: str) -> dict:
+    """One English line saying what a Lisan or Taj entry covers ({"gist": ...}).
+
+    Made ahead of time by the backfill script, never on a reader's press. The
+    Arabic is the app's own copy of the book, never anything a reader typed.
+    """
+    settings = get_settings()
+    return _ask(
+        prompts.LEXICON_GIST_USER.format(
+            book=book, root=root, entry=entry[: settings.lexicon_gist_entry_chars],
+        ),
+        max_tokens=settings.lexicon_gist_max_tokens,
+    )
+
+
 def translate_sentence(text: str, facts: str) -> dict:
     """A reader's Arabic phrase or sentence as one English sentence, from the grammar's facts.
 
@@ -144,17 +159,37 @@ def render_in_arabic(text: str) -> dict:
     )
 
 
-def explain_root_entry_lines(root: str, lines: list[str]) -> dict:
+def explain_root_entry_lines(root: str, lines: list[str], reference: str | None = None) -> dict:
     """A Maqayees entry put into English line by line, keeping the numbering.
 
     The caller owns the split and the count check: this hands the lines over
     numbered and returns whatever came back, and the router refuses an answer
     whose count does not match rather than showing English under the wrong
     Arabic. The Arabic is the app's own copy of the book, never reader input.
+    `reference` is the whole entry's kept English, so the lines name people and
+    places the way the prose does.
     """
     numbered = "\n".join(f"{i + 1}. {line}" for i, line in enumerate(lines))
+    # Cut to what the model reads of an entry anyway: it is a word list, not a second entry.
+    shared = (prompts.ROOT_ENTRY_LINES_REFERENCE.format(english=reference[: get_settings().root_entry_truncate_chars])
+              if reference else "")
     return _ask(
-        prompts.ROOT_ENTRY_LINES_USER.format(root=root, numbered=numbered, count=len(lines)),
+        prompts.ROOT_ENTRY_LINES_USER.format(root=root, numbered=numbered, count=len(lines), reference=shared),
+        max_tokens=get_settings().root_entry_max_tokens,
+    )
+
+
+def explain_root_entry_senses(root: str, lines: list[str], reference: str | None = None) -> dict:
+    """A Maqayees entry cut into the words it explains, each with its lines.
+
+    Returns the model's answer as it came; root_senses.check holds it against
+    the book before the router keeps or shows any of it.
+    """
+    numbered = "\n".join(f"{i + 1}. {line}" for i, line in enumerate(lines))
+    shared = (prompts.ROOT_ENTRY_LINES_REFERENCE.format(english=reference[: get_settings().root_entry_truncate_chars])
+              if reference else "")
+    return _ask(
+        prompts.ROOT_ENTRY_SENSES_USER.format(root=root, numbered=numbered, count=len(lines), reference=shared),
         max_tokens=get_settings().root_entry_max_tokens,
     )
 

@@ -28,14 +28,14 @@ import MushafPages from './MushafPages'
 import RecitationBar, { Glyph, PLAY } from './RecitationBar'
 import SplitBar from './SplitBar'
 import { NoTouchButton, ScrollPad } from './NoTouchReading'
-import ArabicText from '../ui/ArabicText'
-import ReadingOptions from '../ui/ReadingOptions'
-import CloseButton from '../ui/CloseButton'
-import ErrorAlert from '../ui/ErrorAlert'
-import Segmented from '../ui/Segmented'
-import Stepper from '../ui/Stepper'
-import { Skeleton } from '../ui/Skeleton'
-import SourceBadge from '../ui/SourceBadge'
+import ArabicText from '../ui/text/ArabicText'
+import ReadingOptions from '../ui/inputs/ReadingOptions'
+import CloseButton from '../ui/buttons/CloseButton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import Segmented from '../ui/inputs/Segmented'
+import Stepper from '../ui/inputs/Stepper'
+import { Skeleton } from '../ui/feedback/Skeleton'
+import SourceBadge from '../ui/feedback/SourceBadge'
 
 /** The English under one ayah: the chosen translation once it has arrived,
  *  the corpus's word-by-word gloss before that, so nothing is credited to a
@@ -122,6 +122,15 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
         </ReadingOptions>
         <CloseButton onClick={onClose} aria-label="Close the surah" className="shrink-0" />
       </header>
+
+      {/* How far through the surah the reading is: a 2px line that fills as the
+          ayah in view moves on, held under the app's header so it is always
+          there and never in the way (.read-line in components.css). */}
+      {data && (
+        <div className="read-line" role="progressbar" aria-label="How far through the surah"
+          aria-valuemin={1} aria-valuemax={data.ayah_count} aria-valuenow={here}
+          style={{ '--read': Math.min(1, here / data.ayah_count) }}><i /></div>
+      )}
 
       {/* Not on a phone: the Surah, Ayah and Juz pickers above already jump to an
           ayah, and the strip cost the reading a row. */}

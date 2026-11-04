@@ -163,7 +163,8 @@
       { "arabic": "توكيد", "meaning": "A word that stresses the one before it and copies its ending, as in جاء القوم كلُّهم." },
       { "arabic": "بدل", "meaning": "A word that renames the one before it and copies its ending, as in جاء أخوك زيدٌ." },
       { "arabic": "حرف عطف", "meaning": "A joining word: و, ف, ثم, أو." },
-      { "arabic": "معطوف", "meaning": "The word after a حرف عطف. It copies the ending of the word it is joined to." }
+      { "arabic": "معطوف", "meaning": "The word after a حرف عطف. It copies the ending of the word it is joined to." },
+      { "arabic": "معطوف عليه", "meaning": "The word a معطوف is joined to: the first of the list. Its ending comes from its own place in the sentence, and every معطوف copies it." }
     ]},
     { "title": "إعراب الفعل", "terms": [
       { "arabic": "فعل أمر", "meaning": "A command verb, as in اكتبْ. It is مبني." },

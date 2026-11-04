@@ -1,7 +1,10 @@
-/** A world's header: back button, scene, name, idea. Colour from --w. `back` names where the button goes (default: all worlds). */
+/**
+ * A world's header: back button, scene, name, idea. Colour from --w. `back` names where the button goes (default: all worlds).
+ * On a phone it is one compact line, emblem, name and Arabic, with the idea behind "About this world" (growWorlds.css).
+ */
 import { sayIn } from '../../lib/text/say'
-import Emblem from '../ui/Emblem'
-import ArabicText from '../ui/ArabicText'
+import Emblem from '../ui/display/Emblem'
+import ArabicText from '../ui/text/ArabicText'
 
 const say = sayIn('en')
 
@@ -18,6 +21,12 @@ export default function WorldHeader({ world, onBack, back = say('Worlds'), child
           <p className="grow-world-scene">{world.scene}</p>
           <h2>{world.name}</h2>
           <p className="grow-world-idea">{world.idea}</p>
+          {/* A phone: the idea folds behind a press, so the world's first
+              screen is its name and the way in, not a paragraph. */}
+          <details className="grow-world-about">
+            <summary>{say('About this world')}</summary>
+            <p>{world.idea}</p>
+          </details>
         </div>
         <span className="grow-world-pic">
           <Emblem id={world.id} size={64} />

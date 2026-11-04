@@ -833,18 +833,38 @@
     {
       "title": "Rejected",
       "ar": "المردود",
-      "terms": [
+      "by": "Why is a report left aside? Its teller is not shown to be likely truthful: a gap in the chain, or a fault in a narrator.",
+      "axes": [
         {
-          "ar": "المردود",
-          "en": "Rejected",
-          "say": "A report whose teller is not shown to be likely truthful.",
-          "quote": "وفيها المردود: وهو الذي لم يرجح صدق المخبر به",
-          "book": "nuzha",
-          "page": "PageV01P055",
-          "answers": {
-            "why": "The teller's truthfulness is not shown to be likely"
-          }
+          "id": "why",
+          "q": "What is missing?"
         },
+        {
+          "id": "where",
+          "q": "Where is the gap?"
+        },
+        {
+          "id": "how",
+          "q": "How many are missing, and how?"
+        },
+        {
+          "id": "plain",
+          "q": "Plain to see, or hidden?"
+        },
+        {
+          "id": "who",
+          "q": "Who is at fault?"
+        },
+        {
+          "id": "what",
+          "q": "What goes wrong?"
+        },
+        {
+          "id": "verdict",
+          "q": "What becomes of the hadith?"
+        }
+      ],
+      "terms": [
         {
           "ar": "الضعيف",
           "en": "Da'if (weak)",
@@ -862,374 +882,475 @@
               "why": "Both begin weak; da'if stays so because nothing fitting backs it."
             }
           ]
-        }
-      ],
-      "by": "Why is the report left aside?",
-      "axes": [
-        {
-          "id": "why",
-          "q": "What is missing?"
-        }
-      ]
-    },
-    {
-      "title": "A gap in the chain",
-      "ar": "السقط",
-      "terms": [
-        {
-          "ar": "المعلق",
-          "en": "Mu'allaq (hung)",
-          "say": "The compiler drops one or more narrators at his own end of the chain.",
-          "quote": "من مبادئ السند من تصرف مصنف ... فالأول ... المعلق، سواء كان الساقط واحدا، أم أكثر",
-          "book": "nuzha",
-          "page": "PageV01P098",
-          "lugha": "muʿallaq: hung, as a thing hangs from a roof with nothing below",
-          "answers": {
-            "where": "The start (the compiler's end)",
-            "how": "One or more, from the start",
-            "plain": "Plain"
-          },
-          "confuse": [
-            {
-              "ar": "المعضل",
-              "why": "They can overlap: two in a row dropped at the compiler's end is both. Muʿallaq is named by place (the compiler's end, any number); muʿdal by count (two or more in a row, anywhere)."
-            }
-          ]
         },
         {
-          "ar": "المرسل",
-          "en": "Mursal",
-          "say": "A Successor attributes words to the Prophet ﷺ directly; whoever stood between them is dropped (a Companion, or more).",
-          "quote": "والثاني: وهو ما سقط من آخره من بعد التابعي ... هو \"المرسل\"",
-          "book": "nuzha",
-          "page": "PageV01P100",
-          "lugha": "mursal: let loose, sent off without a tether",
-          "answers": {
-            "where": "The end (after the Successor)",
-            "how": "Whoever stood after the Successor",
-            "plain": "Plain"
-          },
-          "confuse": [
-            {
-              "ar": "المنقطع",
-              "why": "Both have a narrator missing; mursal is the Successor skipping to the Prophet, munqati' is a gap elsewhere. Most hadith scholars keep the names apart; the jurists and uṣūlīs call any broken chain mursal."
-            },
-            {
-              "ar": "المرسل الخفي",
-              "why": "The plain mursal shows its gap at the Companion; the hidden mursal looks joined, because the two lived at the same time but never met."
-            }
-          ]
-        },
-        {
-          "ar": "المعضل",
-          "en": "Mu'dal",
-          "say": "Two or more narrators missing one after another.",
-          "quote": "إن كان باثنين فصاعدا، مع التوالي، فهو \"المعضل\"",
-          "book": "nuzha",
-          "page": "PageV01P102",
-          "lugha": "muʿḍal: from aʿḍala, made intractable, as an illness that defeats the doctor",
-          "answers": {
-            "where": "Anywhere",
-            "how": "Two or more, one after another",
-            "plain": "Plain"
-          },
-          "confuse": [
-            {
-              "ar": "المنقطع",
-              "why": "Both lose narrators in the middle: two in a row make it mu'dal, otherwise it is munqati'."
-            }
-          ]
-        },
-        {
-          "ar": "المنقطع",
-          "en": "Munqati' (broken)",
-          "say": "Narrators missing, but not two in a row.",
-          "quote": "وإلا، فإن كان الساقط ... باثنين ... غير متواليين، في موضعين مثلا، فهو المنقطع",
-          "book": "nuzha",
-          "page": "PageV01P102",
-          "lugha": "munqaṭiʿ: cut off",
-          "answers": {
-            "where": "Anywhere",
-            "how": "One, or several not in a row",
-            "plain": "Plain"
-          },
-          "confuse": [
-            {
-              "ar": "المقطوع",
-              "why": "Munqati' is a broken chain; maqtu' is a whole chain whose words stop at a Successor. The roots look alike, the ideas do not."
-            }
-          ]
-        },
-        {
-          "ar": "المدلس",
-          "en": "Tadlis (concealing)",
-          "say": "A narrator leaves out who told him and words it, with 'from' or 'said', as if he heard it from the one above.",
-          "quote": "المدلس -بفتح اللام- سمي بذلك لكون الراوي لم يسم من حدثه، وأوهم سماعه للحديث ممن لم يحدثه به",
+          "ar": "السقط الواضح",
+          "en": "A gap you can see",
+          "say": "A narrator did not live in the time of the one he narrates from, or lived then but never met him: anyone can tell from the dates.",
+          "quote": "يكون واضحا يحصل الاشتراك في معرفته، ككون الراوي، مثلا، لم يعاصر من روى عنه",
           "book": "nuzha",
           "page": "PageV01P103",
-          "lugha": "tadlīs: from dalas, the half-light where a buyer misses a flaw",
           "answers": {
-            "where": "Between a narrator and his teacher",
-            "how": "One left out, worded as if heard",
+            "plain": "Plain"
+          },
+          "kids": [
+            {
+              "ar": "المعلق",
+              "en": "Mu'allaq (hung)",
+              "say": "The compiler drops one or more narrators at his own end of the chain.",
+              "quote": "من مبادئ السند من تصرف مصنف ... فالأول ... المعلق، سواء كان الساقط واحدا، أم أكثر",
+              "book": "nuzha",
+              "page": "PageV01P098",
+              "lugha": "muʿallaq: hung, as a thing hangs from a roof with nothing below",
+              "answers": {
+                "where": "The start (the compiler's end)",
+                "how": "One or more, from the start",
+                "plain": "Plain"
+              },
+              "confuse": [
+                {
+                  "ar": "المعضل",
+                  "why": "They can overlap: two in a row dropped at the compiler's end is both. Muʿallaq is named by place (the compiler's end, any number); muʿdal by count (two or more in a row, anywhere)."
+                }
+              ]
+            },
+            {
+              "ar": "المرسل",
+              "en": "Mursal",
+              "say": "A Successor attributes words to the Prophet ﷺ directly; whoever stood between them is dropped (a Companion, or more).",
+              "quote": "والثاني: وهو ما سقط من آخره من بعد التابعي ... هو \"المرسل\"",
+              "book": "nuzha",
+              "page": "PageV01P100",
+              "lugha": "mursal: let loose, sent off without a tether",
+              "answers": {
+                "where": "The end (after the Successor)",
+                "how": "Whoever stood after the Successor",
+                "plain": "Plain"
+              },
+              "confuse": [
+                {
+                  "ar": "المنقطع",
+                  "why": "Both have a narrator missing; mursal is the Successor skipping to the Prophet, munqati' is a gap elsewhere. Most hadith scholars keep the names apart; the jurists and uṣūlīs call any broken chain mursal."
+                },
+                {
+                  "ar": "المرسل الخفي",
+                  "why": "The plain mursal shows its gap at the Companion; the hidden mursal looks joined, because the two lived at the same time but never met."
+                }
+              ]
+            },
+            {
+              "ar": "المعضل",
+              "en": "Mu'dal",
+              "say": "Two or more narrators missing one after another.",
+              "quote": "إن كان باثنين فصاعدا، مع التوالي، فهو \"المعضل\"",
+              "book": "nuzha",
+              "page": "PageV01P102",
+              "lugha": "muʿḍal: from aʿḍala, made intractable, as an illness that defeats the doctor",
+              "answers": {
+                "where": "Anywhere",
+                "how": "Two or more, one after another",
+                "plain": "Plain"
+              },
+              "confuse": [
+                {
+                  "ar": "المنقطع",
+                  "why": "Both lose narrators in the middle: two in a row make it mu'dal, otherwise it is munqati'."
+                }
+              ]
+            },
+            {
+              "ar": "المنقطع",
+              "en": "Munqati' (broken)",
+              "say": "Narrators missing, but not two in a row.",
+              "quote": "وإلا، فإن كان الساقط ... باثنين ... غير متواليين، في موضعين مثلا، فهو المنقطع",
+              "book": "nuzha",
+              "page": "PageV01P102",
+              "lugha": "munqaṭiʿ: cut off",
+              "answers": {
+                "where": "Anywhere",
+                "how": "One, or several not in a row",
+                "plain": "Plain"
+              },
+              "confuse": [
+                {
+                  "ar": "المقطوع",
+                  "why": "Munqati' is a broken chain; maqtu' is a whole chain whose words stop at a Successor. The roots look alike, the ideas do not."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ar": "السقط الخفي",
+          "en": "A gap hidden",
+          "say": "The chain looks joined. Only the imams who know the routes of hadith and the hidden flaws of chains can see it.",
+          "quote": "أو يكون خفيا فلا يدركه إلا الأئمة الحذاق المطلعون على طرق الحديث وعلل الأسانيد",
+          "book": "nuzha",
+          "page": "PageV01P103",
+          "answers": {
             "plain": "Hidden"
           },
-          "confuse": [
+          "kids": [
             {
-              "ar": "المرسل الخفي",
-              "why": "In tadlis the narrator did meet the one he skips to; in the hidden mursal he only lived at the same time and never met him."
+              "ar": "المدلس",
+              "en": "Tadlis (concealing)",
+              "say": "A narrator leaves out who told him and words it, with 'from' or 'said', as if he heard it from the one above.",
+              "quote": "المدلس -بفتح اللام- سمي بذلك لكون الراوي لم يسم من حدثه، وأوهم سماعه للحديث ممن لم يحدثه به",
+              "book": "nuzha",
+              "page": "PageV01P103",
+              "lugha": "tadlīs: from dalas, the half-light where a buyer misses a flaw",
+              "answers": {
+                "where": "Between a narrator and his teacher",
+                "how": "One left out, worded as if heard",
+                "plain": "Hidden"
+              },
+              "confuse": [
+                {
+                  "ar": "المرسل الخفي",
+                  "why": "In tadlis the narrator did meet the one he skips to; in the hidden mursal he only lived at the same time and never met him."
+                },
+                {
+                  "ar": "المعنعن",
+                  "why": "'From' (ʿan) is the wording tadlis hides behind; a mu'an'an chain is read as heard unless its narrator is known for tadlis."
+                }
+              ]
             },
             {
               "ar": "المعنعن",
-              "why": "'From' (ʿan) is the wording tadlis hides behind; a mu'an'an chain is read as heard unless its narrator is known for tadlis."
+              "en": "Mu'an'an",
+              "say": "Told with 'from' (عن). Read as heard when the narrator is not a mudallis and the two lived at the same time (Muslim's condition). Al-Bukhari also required that they are known to have met once, and Ibn Hajar calls that the chosen view.",
+              "quote": "وعنعنة المعاصر محمولة على السماع ... بخلاف غير المعاصر فإنها تكون مرسلة ... أو منقطعة",
+              "book": "nuzha",
+              "page": "PageV01P158",
+              "lugha": "muʿanʿan: told with ʿan, 'from'",
+              "answers": {
+                "where": "None, if the two are shown to have met (or, on Muslim's view, lived at the same time)",
+                "how": "None, read as heard",
+                "plain": "Looks joined"
+              }
+            },
+            {
+              "ar": "المرسل الخفي",
+              "en": "Hidden mursal",
+              "say": "He lived at the same time as the one he narrates from, but is not known to have met him.",
+              "quote": "فأما إن عاصره، ولم يعرف أنه لقيه، فهو المرسل الخفي",
+              "book": "nuzha",
+              "page": "PageV01P104",
+              "answers": {
+                "where": "Between two who never met",
+                "how": "One left out, looks joined",
+                "plain": "Hidden"
+              }
             }
           ]
         },
         {
-          "ar": "المرسل الخفي",
-          "en": "Hidden mursal",
-          "say": "He lived at the same time as the one he narrates from, but is not known to have met him.",
-          "quote": "فأما إن عاصره، ولم يعرف أنه لقيه، فهو المرسل الخفي",
+          "ar": "العدالة",
+          "en": "A fault in his integrity",
+          "say": "One of the five causes that touch his uprightness: lying, being accused of lying, sinning, innovating, or being unknown.",
+          "quote": "ثم الطعن يكون بعشرة أشياء بعضها أشد في القدح من بعض: خمسة منها تتعلق بالعدالة",
           "book": "nuzha",
-          "page": "PageV01P104",
-          "answers": {
-            "where": "Between two who never met",
-            "how": "One left out, looks joined",
-            "plain": "Hidden"
-          }
-        },
-        {
-          "ar": "المعنعن",
-          "en": "Mu'an'an",
-          "say": "Told with 'from' (عن). Read as heard when the narrator is not a mudallis and the two lived at the same time (Muslim's condition). Al-Bukhari also required that they are known to have met once, and Ibn Hajar calls that the chosen view.",
-          "quote": "وعنعنة المعاصر محمولة على السماع ... بخلاف غير المعاصر فإنها تكون مرسلة ... أو منقطعة",
-          "book": "nuzha",
-          "page": "PageV01P158",
-          "lugha": "muʿanʿan: told with ʿan, 'from'",
-          "answers": {
-            "where": "None, if the two are shown to have met (or, on Muslim's view, lived at the same time)",
-            "how": "None, read as heard",
-            "plain": "Looks joined"
-          }
-        }
-      ],
-      "by": "Where is the chain broken, and how?",
-      "axes": [
-        {
-          "id": "where",
-          "q": "Where is the gap?"
-        },
-        {
-          "id": "how",
-          "q": "How many are missing, and how?"
-        },
-        {
-          "id": "plain",
-          "q": "Plain to see, or hidden?"
-        }
-      ]
-    },
-    {
-      "title": "A fault in a narrator",
-      "ar": "الطعن",
-      "terms": [
-        {
-          "ar": "الموضوع",
-          "en": "Mawdu' (fabricated)",
-          "say": "The narrator lies about the Prophet.",
-          "quote": "فالقسم الأول: -وهو الطعن بكذب الراوي في الحديث النبوي- هو الموضوع",
-          "book": "nuzha",
-          "page": "PageV01P107",
-          "lugha": "mawḍūʿ: put down, fabricated",
-          "kind": "mawdu_listed",
-          "answers": {
-            "who": "A liar",
-            "what": "Invented words",
-            "verdict": "Never told, except to warn"
-          },
-          "confuse": [
+          "page": "PageV01P106",
+          "kids": [
+            {
+              "ar": "الموضوع",
+              "en": "Mawdu' (fabricated)",
+              "say": "The narrator lies about the Prophet.",
+              "quote": "فالقسم الأول: -وهو الطعن بكذب الراوي في الحديث النبوي- هو الموضوع",
+              "book": "nuzha",
+              "page": "PageV01P107",
+              "lugha": "mawḍūʿ: put down, fabricated",
+              "kind": "mawdu_listed",
+              "answers": {
+                "who": "A liar",
+                "what": "Invented words",
+                "verdict": "Never told, except to warn"
+              },
+              "confuse": [
+                {
+                  "ar": "المتروك",
+                  "why": "Both are the worst; mawdu' is a known fabrication, matruk is told by one accused of lying but not proved to have lied here."
+                }
+              ]
+            },
             {
               "ar": "المتروك",
-              "why": "Both are the worst; mawdu' is a known fabrication, matruk is told by one accused of lying but not proved to have lied here."
+              "en": "Matruk (abandoned)",
+              "say": "The narrator is accused of lying.",
+              "quote": "والقسم الثاني من أقسام المردود: -وهو ما يكون بسبب تهمة الراوي بالكذب- ... هو المتروك",
+              "book": "nuzha",
+              "page": "PageV01P112",
+              "lugha": "matrūk: abandoned",
+              "answers": {
+                "who": "One accused of lying",
+                "what": "His lone report",
+                "verdict": "Left aside"
+              }
+            },
+            {
+              "ar": "الفاسق",
+              "en": "Fasiq (wrongdoer)",
+              "say": "A narrator who sins in deed or word, though not to the point of disbelief.",
+              "quote": "أو فسقه: أي: بالفعل أو القول، مما لم يبلغ الكفر",
+              "book": "nuzha",
+              "page": "PageV01P107",
+              "lugha": "fāsiq: one who steps outside the bounds",
+              "answers": {
+                "who": "One who sins openly, short of disbelief",
+                "what": "His reports",
+                "verdict": "His hadith is called munkar"
+              },
+              "confuse": [
+                {
+                  "ar": "المبتدع",
+                  "why": "The fasiq is faulted for a deed or a word; the mubtadi‘ for a belief he made up. Nuzha counts them as the fifth and the ninth causes."
+                }
+              ]
+            },
+            {
+              "ar": "المبتدع",
+              "en": "Mubtadi' (innovator)",
+              "say": "A narrator who holds a belief made up against what is known from the Prophet ﷺ, out of a doubt and not out of stubbornness. Whether his report is taken depends on his innovation.",
+              "quote": "أو بدعته: وهي اعتقاد ما أحدث على خلاف المعروف عن النبي صلى الله عليه وسلم، لا بمعاندة، بل بنوع شبهة",
+              "book": "nuzha",
+              "page": "PageV01P107",
+              "lugha": "bidʿa: a thing made new",
+              "answers": {
+                "who": "One who holds a made-up belief",
+                "what": "His reports",
+                "verdict": "Refused if his belief is disbelief; otherwise taken unless he calls to it and the report backs it"
+              },
+              "confuse": [
+                {
+                  "ar": "الفاسق",
+                  "why": "The mubtadi‘ is faulted for a belief, the fasiq for a deed or a word."
+                }
+              ]
+            },
+            {
+              "ar": "المبهم",
+              "en": "Mubham (unnamed)",
+              "say": "A narrator who is not named at all, as in 'a man told me'.",
+              "quote": "أو لا يسمى الراوي، اختصارا من الراوي عنه. كقوله: أخبرني فلان، أو شيخ، أو رجل، أو بعضهم، أو ابن فلان",
+              "book": "nuzha",
+              "page": "PageV01P125",
+              "lugha": "mubham: left unclear",
+              "answers": {
+                "who": "One whose name is not given",
+                "what": "His report",
+                "verdict": "Not taken until he is named"
+              },
+              "confuse": [
+                {
+                  "ar": "مجهول العين",
+                  "why": "The mubham is not named at all; the one unknown in person is named, but only one narrator ever took from him. Nuzha says he is like the mubham."
+                }
+              ]
             }
           ]
         },
         {
-          "ar": "المتروك",
-          "en": "Matruk (abandoned)",
-          "say": "The narrator is accused of lying.",
-          "quote": "والقسم الثاني من أقسام المردود: -وهو ما يكون بسبب تهمة الراوي بالكذب- ... هو المتروك",
+          "ar": "الضبط",
+          "en": "A fault in his memory",
+          "say": "One of the five causes that touch his precision: gross mistakes, heedlessness, delusion, going against the trustworthy, or poor memory.",
+          "quote": "ثم الطعن يكون بعشرة أشياء بعضها أشد في القدح من بعض: خمسة منها تتعلق بالعدالة، وخمسة تتعلق بالضبط",
           "book": "nuzha",
-          "page": "PageV01P112",
-          "lugha": "matrūk: abandoned",
-          "answers": {
-            "who": "One accused of lying",
-            "what": "His lone report",
-            "verdict": "Left aside"
-          }
-        },
-        {
-          "ar": "المنكر",
-          "en": "Munkar (denounced)",
-          "say": "A weak narrator goes against stronger ones; their version is ma'ruf (known). Some earlier scholars also call a weak narrator's lone report munkar, even with nothing against it.",
-          "quote": "وإن وقعت المخالفة مع الضعف؛ فالراجح يقال له: \"المعروف\"، ومقابله يقال ... له: \"المنكر\"",
-          "book": "nuzha",
-          "page": "PageV01P086",
-          "lugha": "munkar: disowned, found strange",
-          "answers": {
-            "who": "A weak narrator",
-            "what": "Goes against the trustworthy",
-            "verdict": "Rejected; the other is the maʿruf"
-          },
-          "confuse": [
+          "page": "PageV01P106",
+          "kids": [
+            {
+              "ar": "المنكر",
+              "en": "Munkar (denounced)",
+              "say": "A weak narrator goes against stronger ones; their version is ma'ruf (known). Some earlier scholars also call a weak narrator's lone report munkar, even with nothing against it.",
+              "quote": "وإن وقعت المخالفة مع الضعف؛ فالراجح يقال له: \"المعروف\"، ومقابله يقال ... له: \"المنكر\"",
+              "book": "nuzha",
+              "page": "PageV01P086",
+              "lugha": "munkar: disowned, found strange",
+              "answers": {
+                "who": "A weak narrator",
+                "what": "Goes against the trustworthy",
+                "verdict": "Rejected; the other is the maʿruf"
+              },
+              "confuse": [
+                {
+                  "ar": "الشاذ",
+                  "why": "Both go against better narrators; shadhdh is a trustworthy narrator doing it, munkar a weak one. Ibn Hajar keeps them apart on exactly that."
+                }
+              ]
+            },
             {
               "ar": "الشاذ",
-              "why": "Both go against better narrators; shadhdh is a trustworthy narrator doing it, munkar a weak one. Ibn Hajar keeps them apart on exactly that."
-            }
-          ]
-        },
-        {
-          "ar": "الشاذ",
-          "en": "Shadhdh (odd)",
-          "say": "An acceptable narrator goes against a stronger one; the stronger version is mahfuz (kept).",
-          "quote": "الشاذ: ما رواه المقبول مخالفا لمن هو أولى منه",
-          "book": "nuzha",
-          "page": "PageV01P085",
-          "lugha": "shādhdh: standing apart from the group",
-          "answers": {
-            "who": "An acceptable narrator (thiqa or ṣadūq)",
-            "what": "Goes against those more trustworthy",
-            "verdict": "Rejected; the other is the mahfuz"
-          }
-        },
-        {
-          "ar": "المعلل",
-          "en": "Mu'allal (flawed)",
-          "say": "A hidden flaw that harms it, found by gathering its routes.",
-          "quote": "والمعلل لغة: ما فيه علة، واصطلاحا: ما فيه علة خفية قادحة",
-          "book": "nuzha",
-          "page": "PageV01P070",
-          "lugha": "muʿallal: carrying an ʿilla, a hidden ailment",
-          "kind": "ilal",
-          "answers": {
-            "who": "A narrator's hidden mistake (wahm), found by the experts",
-            "what": "A hidden flaw in a chain that looks sound",
-            "verdict": "Weak, once the flaw is shown"
-          }
-        },
-        {
-          "ar": "المدرج",
-          "en": "Mudraj (inserted)",
-          "say": "Words that are not the hadith's get into its text.",
-          "quote": "وأما مدرج المتن: فهو أن يقع في المتن كلام ليس منه",
-          "book": "nuzha",
-          "page": "PageV01P115",
-          "lugha": "mudraj: slipped in, inserted",
-          "answers": {
-            "who": "A narrator adding his own words or chain",
-            "what": "Something joined to the hadith that was not in it",
-            "verdict": "The addition is cut out"
-          },
-          "confuse": [
+              "en": "Shadhdh (odd)",
+              "say": "An acceptable narrator goes against a stronger one; the stronger version is mahfuz (kept).",
+              "quote": "الشاذ: ما رواه المقبول مخالفا لمن هو أولى منه",
+              "book": "nuzha",
+              "page": "PageV01P085",
+              "lugha": "shādhdh: standing apart from the group",
+              "answers": {
+                "who": "An acceptable narrator (thiqa or ṣadūq)",
+                "what": "Goes against those more trustworthy",
+                "verdict": "Rejected; the other is the mahfuz"
+              }
+            },
             {
-              "ar": "المزيد في متصل الأسانيد",
-              "why": "Both add something; mudraj adds words to the text or a chain, mazid adds one narrator in the middle of a joined chain."
-            }
-          ]
-        },
-        {
-          "ar": "المقلوب",
-          "en": "Maqlub (reversed)",
-          "say": "Names or words put in the wrong order, as Murra ibn Ka'b for Ka'b ibn Murra.",
-          "quote": "أو إن كانت المخالفة بتقديم أو تأخير أي في الأسماء كمرة بن كعب، وكعب بن ... مرة؛ لأن اسم أحدهما اسم أبي الآخر، فهذا هو المقلوب",
-          "book": "nuzha",
-          "page": "PageV01P116",
-          "lugha": "maqlūb: turned over",
-          "answers": {
-            "who": "A narrator swapping",
-            "what": "Names or wording exchanged",
-            "verdict": "Rejected as told"
-          },
-          "confuse": [
+              "ar": "المعلل",
+              "en": "Mu'allal (flawed)",
+              "say": "A hidden flaw that harms it, found by gathering its routes.",
+              "quote": "والمعلل لغة: ما فيه علة، واصطلاحا: ما فيه علة خفية قادحة",
+              "book": "nuzha",
+              "page": "PageV01P070",
+              "lugha": "muʿallal: carrying an ʿilla, a hidden ailment",
+              "kind": "ilal",
+              "answers": {
+                "who": "A narrator's hidden mistake (wahm), found by the experts",
+                "what": "A hidden flaw in a chain that looks sound",
+                "verdict": "Weak, once the flaw is shown"
+              }
+            },
+            {
+              "ar": "المدرج",
+              "en": "Mudraj (inserted)",
+              "say": "Words that are not the hadith's get into its text.",
+              "quote": "وأما مدرج المتن: فهو أن يقع في المتن كلام ليس منه",
+              "book": "nuzha",
+              "page": "PageV01P115",
+              "lugha": "mudraj: slipped in, inserted",
+              "answers": {
+                "who": "A narrator adding his own words or chain",
+                "what": "Something joined to the hadith that was not in it",
+                "verdict": "The addition is cut out"
+              },
+              "confuse": [
+                {
+                  "ar": "المزيد في متصل الأسانيد",
+                  "why": "Both add something; mudraj adds words to the text or a chain, mazid adds one narrator in the middle of a joined chain."
+                }
+              ]
+            },
+            {
+              "ar": "المقلوب",
+              "en": "Maqlub (reversed)",
+              "say": "Names or words put in the wrong order, as Murra ibn Ka'b for Ka'b ibn Murra.",
+              "quote": "أو إن كانت المخالفة بتقديم أو تأخير أي في الأسماء كمرة بن كعب، وكعب بن ... مرة؛ لأن اسم أحدهما اسم أبي الآخر، فهذا هو المقلوب",
+              "book": "nuzha",
+              "page": "PageV01P116",
+              "lugha": "maqlūb: turned over",
+              "answers": {
+                "who": "A narrator swapping",
+                "what": "Names or wording exchanged",
+                "verdict": "Rejected as told"
+              },
+              "confuse": [
+                {
+                  "ar": "المضطرب",
+                  "why": "Maqlub is one swap; mudtarib is tellings that clash with no way to prefer one."
+                }
+              ]
+            },
             {
               "ar": "المضطرب",
-              "why": "Maqlub is one swap; mudtarib is tellings that clash with no way to prefer one."
-            }
-          ]
-        },
-        {
-          "ar": "المضطرب",
-          "en": "Mudtarib (shaky)",
-          "say": "Told in conflicting ways, with nothing to prefer one over another.",
-          "quote": "أو كانت المخالفة بإبداله، أي: الراوي، ولا مرجح لإحدى الروايتين على ... الأخرى، فهذا هو المضطرب",
-          "book": "nuzha",
-          "page": "PageV01P117",
-          "lugha": "muḍṭarib: shaken, disordered",
-          "answers": {
-            "who": "One or more narrators",
-            "what": "Clashing tellings of equal weight",
-            "verdict": "Weak. If one telling can be preferred, it is no longer mudtarib: the preferred one is taken."
-          }
-        },
-        {
-          "ar": "المزيد في متصل الأسانيد",
-          "en": "An extra narrator in a joined chain",
-          "say": "One narrator added in the middle of a chain by a less exact teller; the shorter chain is kept when its narrator said he heard it.",
-          "quote": "إن كانت المخالفة بزيادة راو في أثناء الإسناد، ومن لم يزدها أتقن ممن زادها، فهذا هو المزيد في متصل الأسانيد",
-          "book": "nuzha",
-          "page": "PageV01P117",
-          "answers": {
-            "who": "A less exact narrator",
-            "what": "A name added in the chain",
-            "verdict": "The shorter chain is kept"
-          }
-        },
-        {
-          "ar": "المصحف",
-          "en": "Musahhaf (a dot changed)",
-          "say": "A letter changed by its dots while the written shape stays, as العوام بن مُراجِم read as مُزاحِم.",
-          "quote": "إن كانت المخالفة بتغيير حرف، أو حروف، مع بقاء صورة الخط في السياق: فإن كان ذلك بالنسبة إلى النقط فالمصحف",
-          "book": "nuzha",
-          "page": "PageV01P118",
-          "lugha": "taṣḥīf: from ṣaḥīfa, the error of one who learnt from pages, not from teachers",
-          "answers": {
-            "who": "A copyist or reader",
-            "what": "Dots misplaced",
-            "verdict": "The right reading is restored"
-          },
-          "confuse": [
+              "en": "Mudtarib (shaky)",
+              "say": "Told in conflicting ways, with nothing to prefer one over another.",
+              "quote": "أو كانت المخالفة بإبداله، أي: الراوي، ولا مرجح لإحدى الروايتين على ... الأخرى، فهذا هو المضطرب",
+              "book": "nuzha",
+              "page": "PageV01P117",
+              "lugha": "muḍṭarib: shaken, disordered",
+              "answers": {
+                "who": "One or more narrators",
+                "what": "Clashing tellings of equal weight",
+                "verdict": "Weak. If one telling can be preferred, it is no longer mudtarib: the preferred one is taken."
+              }
+            },
+            {
+              "ar": "المزيد في متصل الأسانيد",
+              "en": "An extra narrator in a joined chain",
+              "say": "One narrator added in the middle of a chain by a less exact teller; the shorter chain is kept when its narrator said he heard it.",
+              "quote": "إن كانت المخالفة بزيادة راو في أثناء الإسناد، ومن لم يزدها أتقن ممن زادها، فهذا هو المزيد في متصل الأسانيد",
+              "book": "nuzha",
+              "page": "PageV01P117",
+              "answers": {
+                "who": "A less exact narrator",
+                "what": "A name added in the chain",
+                "verdict": "The shorter chain is kept"
+              }
+            },
+            {
+              "ar": "المصحف",
+              "en": "Musahhaf (a dot changed)",
+              "say": "A letter changed by its dots while the written shape stays, as العوام بن مُراجِم read as مُزاحِم.",
+              "quote": "إن كانت المخالفة بتغيير حرف، أو حروف، مع بقاء صورة الخط في السياق: فإن كان ذلك بالنسبة إلى النقط فالمصحف",
+              "book": "nuzha",
+              "page": "PageV01P118",
+              "lugha": "taṣḥīf: from ṣaḥīfa, the error of one who learnt from pages, not from teachers",
+              "answers": {
+                "who": "A copyist or reader",
+                "what": "Dots misplaced",
+                "verdict": "The right reading is restored"
+              },
+              "confuse": [
+                {
+                  "ar": "المحرف",
+                  "why": "Both change a word without changing its written skeleton: dots for musahhaf, vowels for muharraf."
+                }
+              ]
+            },
             {
               "ar": "المحرف",
-              "why": "Both change a word without changing its written skeleton: dots for musahhaf, vowels for muharraf."
+              "en": "Muharraf (a vowel changed)",
+              "say": "The same word with its vowels wrong while the letters stand.",
+              "quote": "وإن كان بالنسبة إلى الشكل فالمحرف",
+              "book": "nuzha",
+              "page": "PageV01P119",
+              "answers": {
+                "who": "A copyist or reader",
+                "what": "Vowels misplaced",
+                "verdict": "The right reading is restored"
+              }
+            },
+            {
+              "ar": "سيئ الحفظ",
+              "en": "Sayyi' al-hifz (poor memory)",
+              "say": "A narrator whose being right does not outweigh his mistakes. Joined by a fitting route, his report can rise to hasan through others.",
+              "quote": "ثم سوء الحفظ: وهو السبب العاشر من أسباب الطعن، والمراد به: من لم يرجح جانب إصابته على جانب خطئه",
+              "book": "nuzha",
+              "page": "PageV01P129",
+              "lugha": "sayyiʾ al-ḥifẓ: bad at keeping",
+              "answers": {
+                "who": "One who is wrong about as often as right",
+                "what": "His reports",
+                "verdict": "Weak; hasan through others if a fitting route backs it"
+              },
+              "confuse": [
+                {
+                  "ar": "المختلط",
+                  "why": "Poor memory is his state all along; the mukhtalit was sound first and failed later."
+                },
+                {
+                  "ar": "الحسن لغيره",
+                  "why": "This is the weak report that a fitting route lifts to hasan through others."
+                }
+              ]
+            },
+            {
+              "ar": "المختلط",
+              "en": "Mukhtalit (memory failed later)",
+              "say": "A narrator whose memory went bad later, from old age, loss of sight or burnt books. What he told before is kept apart if it can be told apart; if not, the report is held back.",
+              "quote": "أو إن كان سوء الحفظ طارئا على الراوي؛ إما لكبره، أو لذهاب بصره، أو لاحتراق كتبه أو عدمها",
+              "book": "nuzha",
+              "page": "PageV01P129",
+              "lugha": "mukhtaliṭ: mixed up",
+              "answers": {
+                "who": "One whose memory failed later",
+                "what": "What he told after it failed",
+                "verdict": "Taken from before the failure if it can be told apart; otherwise held back"
+              },
+              "confuse": [
+                {
+                  "ar": "سيئ الحفظ",
+                  "why": "The mukhtalit was sound at first; the one of poor memory never was."
+                }
+              ]
             }
           ]
-        },
-        {
-          "ar": "المحرف",
-          "en": "Muharraf (a vowel changed)",
-          "say": "The same word with its vowels wrong while the letters stand.",
-          "quote": "وإن كان بالنسبة إلى الشكل فالمحرف",
-          "book": "nuzha",
-          "page": "PageV01P119",
-          "answers": {
-            "who": "A copyist or reader",
-            "what": "Vowels misplaced",
-            "verdict": "The right reading is restored"
-          }
-        }
-      ],
-      "by": "What did the narrator get wrong?",
-      "axes": [
-        {
-          "id": "who",
-          "q": "Who is at fault?"
-        },
-        {
-          "id": "what",
-          "q": "What goes wrong?"
-        },
-        {
-          "id": "verdict",
-          "q": "What becomes of the hadith?"
         }
       ]
     },

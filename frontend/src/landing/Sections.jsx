@@ -1,7 +1,7 @@
 import { accentOf, GROUPS, LISTED } from '../lib/nav/tabs.js'
-import ArabicText from '../components/ui/ArabicText.jsx'
-import TabGroups from '../components/ui/TabGroups.jsx'
-import Tile from '../components/ui/Tile.jsx'
+import ArabicText from '../components/ui/text/ArabicText.jsx'
+import TabGroups from '../components/ui/inputs/TabGroups.jsx'
+import Tile from '../components/ui/display/Tile.jsx'
 import { CountryIcons, CountryMap } from '../components/colloquial/CountryMap'
 import { colorFor } from '../theme'
 import dialectFile from '../lib/colloquial/dialectsPreview.json'
@@ -13,9 +13,8 @@ const SHOWN = GROUPS.filter((group) => LISTED.some((tab) => tab.group === group.
 const SPOKEN = [{ id: 'spoken', label: 'Spoken dialects' }]
 const DIALECTS = dialectFile.dialects.map((d) => ({ ...d, id: d.key, group: 'spoken' }))
 
-// Phone: tools sit two per row and dialect maps shrink, so the dialects are not ten screens down.
-// Every section of the app, one panel per group as the All sections menu groups them: one tap opens that tab.
-// The dialects get the full-width panel below, each drawn as the course picker draws it (CountryMap).
+// Every section of the app, laid out as the All sections menu lays it out: one tap opens that tab.
+// The dialects follow as one more group, each drawn as the course picker draws it (CountryMap).
 export default function Sections() {
   const colloq = accentOf('colloq')
   const hue = colorFor('tab', 'colloq')
@@ -24,10 +23,12 @@ export default function Sections() {
       <div className="wrap">
         <h2 id="landing-sections-title">{links.sections.title}</h2>
         <div className="landing-sections-groups">
-          <TabGroups groups={SHOWN} tabs={LISTED} className="landing-sections-panel" grid="landing-sections-grid grid-cols-2 sm:grid-cols-1">
+          {/* One group to a row, every row on the same tile columns, so the groups line up
+              down the page: a phone's tiles fill the row, a wide screen's keep one width. */}
+          <TabGroups groups={SHOWN} tabs={LISTED}
+            grid="gap-2 grid-cols-[repeat(auto-fill,minmax(12rem,1fr))] lg:grid-cols-[repeat(auto-fill,12rem)]">
             {(tab, index) => (
-              <Tile key={tab.id} as="a" href={`${links.tool}/${tab.id}`} variant="chip" accent={accentOf(tab.id)} style={{ '--i': index }}
-                className="landing-tool">
+              <Tile key={tab.id} as="a" href={`${links.tool}/${tab.id}`} variant="chip" accent={accentOf(tab.id)} style={{ '--i': index }}>
                 <span className="flex items-center gap-2 type-ui font-semibold">
                   <span aria-hidden="true" className="w-2.5 h-2.5 rounded-full shrink-0 bg-[var(--c)]" />
                   {tab.label}
@@ -36,8 +37,8 @@ export default function Sections() {
               </Tile>
             )}
           </TabGroups>
-          <TabGroups groups={SPOKEN} tabs={DIALECTS} className="landing-sections-panel landing-sections-spotlight"
-            grid="landing-sections-grid grid-cols-2 sm:grid-cols-4">
+          <TabGroups groups={SPOKEN} tabs={DIALECTS}
+            grid="gap-2 grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] lg:grid-cols-[repeat(auto-fill,9rem)]">
             {(d, index) => (
               <Tile key={d.key} as="a" href={`${links.tool}/colloq/${d.key}`} variant="chip" accent={colloq} style={{ '--i': index }}
                 className="landing-dialect">

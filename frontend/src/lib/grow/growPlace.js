@@ -1,6 +1,6 @@
 /**
- * Grow's screens as addresses: /app/grow (home), /app/grow/hadith (a world), /app/grow/hadith/lesson (a lesson there).
- * A book world goes deeper: /app/grow/fiqh/tahara (a part), /app/grow/fiqh/tahara/wudu (a lesson), /app/grow/fiqh/review.
+ * Grow's screens as addresses: /grow (home), /grow/hadith (a world), /grow/hadith/lesson (a lesson there).
+ * A book world goes deeper: /grow/fiqh/tahara (a part), /grow/fiqh/tahara/wudu (a lesson), /grow/fiqh/review.
  * Pure. `placeOf` reads the tab's value (lib/nav/tabUrl.js writes it), `valueOf` writes one; GrowPanel is the caller.
  * A lesson's cards are not in the address: arriving at one starts a fresh lesson.
  */

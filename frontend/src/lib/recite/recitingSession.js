@@ -2,7 +2,7 @@
  * One recitation: the microphone, the recordings, the readings and the
  * sureness checks, with no React in it.
  *
- * lib/useReciting.js is the page's handle on this and holds nothing but the
+ * lib/recite/useReciting.js is the page's handle on this and holds nothing but the
  * view it is given. Kept apart so the part that has broken most, which
  * recording an answer belongs to, can be driven by tests with a scripted
  * recorder instead of a browser (recitingSession.test.js); the outside world
@@ -19,8 +19,9 @@
  *
  * A recording is not allowed to grow forever. At each pause, or after `window-s`
  * seconds with none, a fresh one starts, and what was heard up to then is kept
- * in front of it, joined so that words in both are said once. An hour of
- * reciting is many short recordings, never one long one.
+ * in front of it, simply concatenated: a word said again stays in, and reading
+ * a repeat is follow.js's job (its `back` step). An hour of reciting is many
+ * short recordings, never one long one.
  *
  * Nothing is recorded until the reader asks, the microphone is let go the
  * moment they stop, and it stops itself after a long silence, which is the same
@@ -30,8 +31,10 @@ import * as api from '../../api'
 import dictationConfig from '../../config/dictation.json'
 import config from '../../config/recite.json'
 import * as dictation from '../speech/dictation'
-import { CHECK, SAID, follow, isOfPage, joinWindows, wordsHeard } from './follow'
+import { CHECK, SAID, follow, isOfPage, wordsHeard } from './follow'
 import * as journal from './journal'
+import { allowanceLeft, asksPerMinute, cutReason, readyToSend, recentAsks, spokeSince } from './pacing'
+import { byPlace, settledScores, surer } from './scores'
 import * as microphone from '../speech/microphone'
 
 const STEP_MS = config['step-s'] * 1000
@@ -44,47 +47,6 @@ const KEEP_RECORDINGS = config['keep-recordings']
 // How far the voice meter can lag a cut and still count as "spoken in this
 // window": the same tick length the meter itself reads at.
 const LEVEL_LAG_MS = dictationConfig['level-check-ms']
-
-/**
- * Why a recording should stop itself: a pause after a phrase, or long enough
- * is long enough. Null before any voice has been heard in this window at
- * all, on purpose: a reciter thinking before starting is never cut, that is
- * left to the microphone's own quiet-stop.
- */
-export const cutReason = (now, began, lastVoice, pauseMs, windowMs) => {
-  if (lastVoice < began) return null
-  if (now - lastVoice >= pauseMs) return 'pause'
-  if (now - began >= windowMs) return 'max'
-  return null
-}
-
-/** Whether a voice has been heard since this recording began, allowing for the meter's own lag. */
-export const spokeSince = (lastVoice, began, lagMs) => lastVoice >= began - lagMs
-
-/**
- * The asks of the last minute, newest last, with the older ones dropped. What
- * the ear's allowance is counted against; see allowanceLeft.
- */
-export const recentAsks = (now, asks) => asks.filter((at) => now - at < 60000)
-
-/**
- * How many more readings may be asked for right now. Both kinds are counted,
- * the mid-phrase ones and the one at each pause, because the ear's allowance
- * does not tell them apart. Only the mid-phrase ones give way to it.
- */
-export const allowanceLeft = (now, asks, perMinute) => perMinute - recentAsks(now, asks).length
-
-/**
- * How many readings a minute to ask for: the server's own count (its listening
- * keys times each key's allowance) less the margin recite.json explains, or the
- * fixed figure when the server gave none.
- */
-export const asksPerMinute = (fromServer) =>
-  fromServer > 0 ? Math.floor(fromServer * config['asks-share']) : config['asks-per-minute']
-
-/** Whether it is time to ask for a reading: free, something new to send, paced by how long the last one took, and inside the ear's allowance. */
-export const readyToSend = (now, asked, took, stepMs, busy, chunksLen, sent, left = Infinity) =>
-  !busy && chunksLen > sent && now - asked >= Math.max(stepMs, took) && left > 0
 
 /**
  * What to tell a reciter when a reading fails, and how to log it: a network
@@ -104,54 +66,6 @@ export const problemOf = (error) => {
   const detail = error.response.data?.detail
   if (typeof detail === 'string') return { kind: 'server', text: detail }
   return { kind: 'server', text: `The server failed on this reading (error ${error.response.status}).` }
-}
-
-/**
- * A word's score: { sure, weak, weakFrom, at, take }. `sure` is how likely the
- * ear found the word, `weak` the text of its least likely piece and `weakFrom`
- * the characters of the word before it, `at` the second of the recording the
- * word sits at, `take` which recording that is. `detail` is the server's own
- * {weak, weak_from, at} for the word, when it gave one.
- */
-export const scoreOf = (sure, detail, take = null) => (
-  { sure, weak: detail?.weak, weakFrom: detail?.weak_from, at: detail?.at, take }
-)
-
-/**
- * One reading's per-ayah answer as scores, keyed by page place; words it did not
- * reach are left out. `detail` is the answer's per-ayah detail, `take` the
- * recording it was scored from.
- */
-export const byPlace = (answer = {}, ayahs, detail = {}, take = null) => {
-  const out = {}
-  for (const { key, from, count } of ayahs) {
-    // A count that differs is an ayah the two spellings split into different
-    // words; its words cannot be told apart, so it keeps the page's marks.
-    const sures = answer[key]
-    if (sures?.length !== count) continue
-    sures.forEach((sure, k) => {
-      if (sure != null) out[from + k] = scoreOf(sure, detail[key]?.[k], take)
-    })
-  }
-  return out
-}
-
-/**
- * A recording's scores, less the low ones it has no right to give: a low score
- * accuses only a word in [from, to), the page words it heard right and settled.
- * Outside them the sound was cut mid-word or never held the word (check() scores
- * the whole ayah), so low there means "not in this recording", and it showed
- * the next words red until a later check, two seconds on, cleared them.
- */
-export const settledScores = (scores, from, to) => Object.fromEntries(
-  Object.entries(scores).filter(([at, { sure }]) => sure >= config['sure-at'] || (Number(at) >= from && Number(at) < to)),
-)
-
-/** The surer of two recordings' scores for each page place, each with its own detail. */
-export const surer = (a, b) => {
-  const out = { ...a }
-  for (const [at, score] of Object.entries(b)) if (!out[at] || out[at].sure < score.sure) out[at] = score
-  return out
 }
 
 /**
@@ -190,6 +104,17 @@ export const queueCheck = (queue, job, max) => {
   return { queue: [...next.slice(0, drop), ...next.slice(drop + 1)], dropped: next[drop] }
 }
 
+/**
+ * Add a reading to the transcript: one entry a recording, in the order the
+ * recordings began. A newer reading of a recording replaces its own entry
+ * (it holds more of the same sound); nothing is deduped across recordings.
+ */
+const addToTranscript = (transcript, window, words) => {
+  const at = transcript.findIndex((entry) => entry.window === window)
+  if (at === -1) return [...transcript, { window, words }]
+  return [...transcript.slice(0, at), { window, words }, ...transcript.slice(at + 1)]
+}
+
 /** What a session shows before anything has been said. */
 export const EMPTY_VIEW = {
   state: 'idle',
@@ -205,8 +130,12 @@ export const EMPTY_VIEW = {
   // and a perfect recitation of al-Fatihah ended with one word showing.
   now: { from: 0, words: [] },
   ended: false,
+  // Everything the ear returned while on this page, raw: [{ window, words }],
+  // one entry a recording. Not filtered by page, not deduped. For the reciter
+  // to read what was heard; the marks above never read it.
+  transcript: [],
   // How sure the ear has been of each page word, by its place on the page, in
-  // the same two halves. Each is a score, see scoreOf. Within a recording the newest reading wins: it holds
+  // the same two halves. Each is a score, see scores.js. Within a recording the newest reading wins: it holds
   // more of the sound, and an early reading scores words not said yet, up to
   // 0.1 for one word in six (measured on 69 cut recordings), which kept for
   // good would pass that word however it was then said. Across recordings the
@@ -234,9 +163,9 @@ const REAL = {
 /**
  * `update(page)` tells the session what it is listening against, and the
  * newest one is read at the moment each value is needed, never kept per
- * recording: { fusha, trial, perMinute, pageWords, ayahs }. `ayahs` are the page's lines the ear
- * can check by sound, each { key, from, count }: its "surah:ayah", where its
- * words start on the page and how many; empty for a text the backend has no
+ * recording: { fusha, tuned, perMinute, pageWords, ayahs }. `ayahs` are the page's lines the ear
+ * can check by sound, each { key, from, count, spoken }: its "surah:ayah", where its
+ * words start on the page, how many, and the page places of the spoken ones; empty for a text the backend has no
  * plain spelling of, and marks are then the page's alone. `onChange` gets a new
  * view object every time anything shown changes.
  */
@@ -311,7 +240,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
     job.abort = new AbortController()
     const timer = setTimeout(() => job.abort.abort(), CHECK_TIMEOUT_MS)
     note('check.sent', { session: sessionId, reading: job.reading })
-    checkReading(job.blob, { heard: job.heard, check: job.ayahs, trial: page.trial, reading: job.reading, signal: job.abort.signal })
+    checkReading(job.blob, { heard: job.heard, check: job.ayahs, tuned: page.tuned, reading: job.reading, signal: job.abort.signal })
       .then(({ sure, detail }) => {
         note('check.answered', { session: sessionId, reading: job.reading })
         job.apply(sure, detail)
@@ -457,6 +386,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
           // A window with nothing of this page in it is the room, not the
           // reciter. Letting one through put موسيقى on the page as a word said.
           if (!live()) return
+          if (words.length) set((was) => ({ transcript: addToTranscript(was.transcript, thisWindow, words) }))
           // Placed on the whole Qur'an, a reading is this page's only if it
           // was found here: ٱللَّهِ alone once kept every reading of 2:255 on
           // al-Fatihah. Too short to place, one shared word is enough.
@@ -550,25 +480,9 @@ export function createRecitingSession({ onChange, deps = {} }) {
 
     made.ondataavailable = (event) => {
       if (event.data.size) chunks.push(event.data)
-      // One request at a time, and no request that is going to be wasted.
-      //
-      // A reading part way through a recording is only worth asking for if it
-      // comes back while that recording is still going. When the ear is slower
-      // than that, the recording has already ended by the time it answers and
-      // the reading taken at the pause, which holds every word this one held,
-      // replaces it unread. Eight readings were being asked for where four
-      // were wanted, and the four that mattered queued behind the four that
-      // did not: a mark took eighteen seconds to appear instead of five.
-      //
-      // So: wait for the ear to be free, and then for as long as the last
-      // reading actually took, never less than step-s. On a quick ear that is
-      // step-s and readings keep flowing; on this machine it is five seconds
-      // or so, which for an ayah-length recording means the only reading asked
-      // for is the one at the pause, which is the one that settles the marks.
-      //
-      // And inside the ear's allowance: going over it is a refusal, not a slow
-      // answer, and it rests the fast ear for a minute. The reading at a pause
-      // is never held back for it (see asks-per-minute); this one is.
+      // One request at a time, and none that will be wasted: wait for the ear
+      // to be free, then as long as the last reading took (never under step-s),
+      // and inside the ear's allowance (asks-per-minute; a pause is never held).
       const at = Date.now()
       const left = allowanceLeft(at, asks, asksPerMinute(page.perMinute))
       if (readyToSend(at, asked, took, STEP_MS, !!sending, chunks.length, sent, left)) send()
@@ -600,7 +514,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       // recording's. Its scores are folded into `before` either way, which
       // loses nothing: the surer of the two always wins there.
       set((was) => ({
-        before: joinWindows(was.before, latest),
+        before: [...was.before, ...latest],
         now: was.now.from === thisWindow ? { from: thisWindow, words: [] } : was.now,
         scores: { before: surer(was.scores.before, was.scores.now), now: {} },
       }))
@@ -669,7 +583,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       clearInterval(cutTimer)
       if (recorder?.state === 'recording') recorder.stop()
     }
-    set({ before: [], now: { from: windows, words: [] }, scores: { before: {}, now: {} }, ended: false, elsewhere: null })
+    set({ before: [], now: { from: windows, words: [] }, scores: { before: {}, now: {} }, transcript: [], ended: false, elsewhere: null })
   }
 
   /**
@@ -697,6 +611,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       before: carry,
       now: view.now.words.length ? view.now : { from: windows, words: [] },
       scores: { before: {}, now: {} },
+      transcript: [],
       ended: false,
       checking: checkQueue.length,
     })

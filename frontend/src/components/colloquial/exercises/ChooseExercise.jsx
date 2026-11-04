@@ -13,8 +13,8 @@ import { useState } from 'react'
 import { colloquialImageUrl } from '../../../api'
 import { useAnswerKeys } from '../../../lib/quiz/useAnswerKeys'
 import { sayIn } from '../../../lib/text/say'
-import QuizOption from '../../quiz/QuizOption'
-import ArabicText from '../../ui/ArabicText'
+import QuizOption from '../../practice/QuizOption'
+import ArabicText from '../../ui/text/ArabicText'
 
 const say = sayIn('en')
 

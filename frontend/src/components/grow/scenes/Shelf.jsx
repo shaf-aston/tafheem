@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 import { sayIn } from '../../../lib/text/say'
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 
 const say = sayIn('en')
 const LABELS = { known: 'learnt', learning: 'learning', new: 'not met yet' }

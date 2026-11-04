@@ -40,13 +40,19 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 | `lib/learner/` | `progress`, `profile`, `rewards`, `learnerLevel` and their hooks |
 | `lib/motion/` | `motion`, `useReveal`, `useTilt`, `useInView`, `useSwipe`, `scrollToEl`, `useRail`, `wheelFind` |
 | `lib/text/` | `arabicText`, `editDistance`, `shuffle`, `verse`, `say`, `confidence` |
-| `lib/speech/` | `speak`, `pronounce`, `microphone`, `dictation`, `soundalike` |
+| `lib/speech/` | `speak`, `pronounce`, `microphone`, `dictation` |
 | `lib/theme/` | `accent`, `colorScheme`, `tone` |
 | `lib/hooks/` | `useMedia`, `useModal`, `useMoment`, `useSlowPending`, `useSearch` |
 | `lib/<tab>/` | everything only that tab uses, e.g. `lib/quiz/useQuizRound.js`, `lib/nahw/govArc.js` |
 
-`components/ui/` is the kit (buttons, chips, `SearchBox`, `SectionHeader`,
-`Disclosure`, …): only parts two or more tabs draw. A part one tab draws sits
+`components/ui/` is the kit: only parts two or more tabs draw. It is sorted by job:
+`buttons/` (things you press), `inputs/` (things you choose or type into: chips,
+`SearchBox`, `Segmented`, `ZoomBar`), `overlays/` (`BottomSheet`, `Popover`, `Tooltip`,
+`Disclosure`), `feedback/` (loading, empty, error, source badge), `text/` (Arabic and
+reading text) and `display/` (marks, `SectionHeader`, `Tile`). Larger parts several tabs draw sit in
+a shared folder beside the tabs: `grammar/` (`WordCard`, the tarkeeb figure), `practice/` (the quiz
+board, `LessonRunner` and its cards), `profile/` and `level/`. A tab never imports another tab's folder
+(eslint enforces it). A part one tab draws sits
 in that tab's `components/` folder, and its data (JSON, presets) in that tab's
 `lib/` folder; there is no `src/data/`. Text sizes come from `type-*` classes (`config/theme.json`
 → `styles/text.css`); `eyebrow` is the one small caps label. A panel never

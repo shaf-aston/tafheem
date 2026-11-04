@@ -3,12 +3,13 @@ import { createPortal } from 'react-dom'
 
 import { ayahAudioUrl, play, playFrom } from '../../lib/quran/ayahAudio'
 import { CHECK, MISSED, SAID, WRONG } from '../../lib/recite/follow'
-import { weakParts, whyOf } from '../../lib/memorise/markWhy'
+import { bySoundOnly, weakParts, whyOf } from '../../lib/recite/markWhy'
+import { asArabic } from '../../lib/recite/sounds'
 import { LOOK, WAITING_LOOK } from '../../lib/recite/reciteColors'
 import { PHONE, useMedia } from '../../lib/hooks/useMedia'
-import config from '../../config/recite.json'
+import config from '../../config/memorise.json'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import { hitArea } from './hitArea'
 
 const LEAD_IN_S = config['card-lead-in-s']
@@ -43,6 +44,20 @@ function WordShown({ word, weak, weakFrom, colour }) {
   )
 }
 
+/**
+ * What the sounds ear heard, letter by letter, and what the page wants when they
+ * differ. Shown only: it does not colour the word until its training clears the bar.
+ */
+function SoundsRow({ sounds }) {
+  const slip = [!sounds.letter_ok && 'a letter', !sounds.vowel_ok && 'a vowel'].filter(Boolean).join(' and ')
+  return (
+    <>
+      <Row label="Sounds heard"><ArabicText size="sm">{asArabic(sounds.heard) || 'nothing'}</ArabicText></Row>
+      {slip && <Row label={`Expected (${slip} differs)`}><ArabicText size="sm">{asArabic(sounds.expected)}</ArabicText></Row>}
+    </>
+  )
+}
+
 function WordBody({ mark, word }) {
   const look = LOOK[mark.state] ?? WAITING_LOOK
   const percent = mark.sure == null ? null : Math.round(mark.sure * 100)
@@ -60,6 +75,7 @@ function WordBody({ mark, word }) {
       <p className="type-body my-2 text-[var(--text)]">{whyOf(mark, underlined)}</p>
       <Row label="Page"><ArabicText size="sm">{word}</ArabicText></Row>
       <Row label="Heard">{mark.said ? <ArabicText size="sm">{mark.said}</ArabicText> : 'nothing'}</Row>
+      {mark.sounds && <SoundsRow sounds={mark.sounds} />}
       {percent != null && (
         <div className="py-1.5 border-t border-[var(--border)] type-small" style={{ color: look.colour }}>
           <span className="text-[var(--text-dim)]">Model sure it was said right: {percent}%</span>
@@ -77,12 +93,14 @@ function AyahBody({ ayah, words, recite }) {
   const heard = words.map((one) => one.said).filter(Boolean).join(' ')
   // Only what there is: "2 not sure", and "All right" when nothing else is.
   const tally = [SAID, CHECK, WRONG, MISSED].filter(count).map((state) => `${count(state)} ${LOOK[state].label}`)
-  const problems = words.map((one, k) => ({ one, k })).filter(({ one }) => PROBLEM.includes(one.state))
+  const problems = words.map((one, k) => ({ one, k })).filter(({ one }) => PROBLEM.includes(one.state) || bySoundOnly(one))
+  const soundOnly = words.filter(bySoundOnly).length
   return (
     <>
       <p className="type-body font-medium">Ayah {ayah.label}</p>
       <p className="type-small text-[var(--text-dim)] tabular-nums">
         {words.length && count(SAID) === words.length ? 'All right' : tally.join(', ') || 'Nothing reached yet'}
+        {soundOnly > 0 && `, ${soundOnly} heard differently, passed by sound`}
       </p>
       <Row label="Heard">{heard ? <ArabicText size="sm">{heard}</ArabicText> : 'nothing'}</Row>
       {problems.map(({ one, k }) => (
@@ -92,7 +110,7 @@ function AyahBody({ ayah, words, recite }) {
           onClick={() => recite.setOpen({ at: ayah.from + k })}
           className={`w-full flex justify-between items-baseline gap-3 py-1.5 border-t border-[var(--border)] cursor-pointer bg-transparent ${focus}`}
         >
-          <span className="type-small" style={{ color: LOOK[one.state].colour }}>{LOOK[one.state].label}</span>
+          <span className="type-small" style={{ color: LOOK[one.state].colour }}>{bySoundOnly(one) ? 'passed by sound' : LOOK[one.state].label}</span>
           <ArabicText size="sm">{ayah.printed[k]}</ArabicText>
         </button>
       ))}

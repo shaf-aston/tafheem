@@ -48,9 +48,12 @@ function set(next) {
  * A tab opened with nothing, then given a place on that same tab, is one step: the
  * blank one is filled in, or back would land on a page that looks unchanged. Not on a
  * tab whose blank is its own home (`ownHome` in tabs.js): back from a lesson lands on Grow's own page.
+ * `over`: the place only moves on within what the tab is already showing (the next page of the
+ * same surah), so on the same tab it takes the step's place instead of adding one.
  */
-function stepOnto(steps, at, place) {
-  const blank = steps[at] && steps[at].tab === place.tab && !steps[at].value && !homeTabs.has(place.tab)
+function stepOnto(steps, at, place, over = false) {
+  const here = steps[at]
+  const blank = here && here.tab === place.tab && (over || (!here.value && !homeTabs.has(place.tab)))
   const walked = [...steps.slice(0, blank ? at : at + 1), place]
   return { steps: walked, at: walked.length - 1 }
 }
@@ -139,9 +142,9 @@ export function onJump(listener) {
  * Record a place reached. True if it was a step; false for a repeat of where
  * we already are, which is not one, and nothing on screen should move for it.
  */
-export function visit(tab, value = null) {
+export function visit(tab, value = null, { over = false } = {}) {
   if (samePlace(snapshot.steps[snapshot.at], { tab, value })) return false
-  const next = stepOnto(snapshot.steps, snapshot.at, { tab, value })
+  const next = stepOnto(snapshot.steps, snapshot.at, { tab, value }, over)
   writeTabToUrl(tab, value, { replace: next.at === snapshot.at, state: { step: next.at } })
   set(next)
   return true

@@ -9,19 +9,20 @@ Every step runs from any checkout, on this PC or in a cloud session; nothing is 
 | 2. Run | `python backend/scripts/recitation/finetune_ear/cloud.py` | bundles `ear/` into one file, pushes it to Kaggle's free GPU, waits, fetches |
 | 3. Judge | `backend/data/models/finetune-ear/verdict.json` | every candidate scored on the same held clips as the served and untuned ears |
 | 4. Ship | `python backend/scripts/recitation/finetune_ear/cloud.py --ship` | uploads a kept `ear-tuned/` to the Hugging Face repo the pin names and moves the pin on master |
-| 5. Serve | nothing to do | Oracle pulls master every 5 minutes and loads that revision (`services/recitation/listen.py` `_engine`) |
+| 5. Serve | nothing to do | Oracle pulls master every 5 minutes and loads that revision (`services/recitation/whisper.py` `_engine`) |
 
-`--fetch` waits for the last run and fetches it. A run takes hours; watch it at the link `cloud.py` prints.
+`--fetch` waits for the last run and fetches it. `--loop finetune_sounds` runs the sounds loop instead (`../finetune_sounds/README.md`). A run takes hours; watch it at the link `cloud.py` prints.
 On Lightning.ai or Colab: `python -m ear.run` from this folder, on a GPU machine.
 
 ## Files
 
 ```
-cloud.py               this PC: bundle, push, wait, fetch; --ship
+cloud.py               this PC: bundle, push, wait, fetch; --ship; --loop picks which loop folder
 kernel-metadata.json   which Kaggle notebook, GPU, attached data (Tarteel v1)
 ear/                   runs on the GPU machine, in this order:
   run.py               the run: hold out tests, score untuned + served, walk PLAN, write verdict.json
   split.py             which clips are held for the judge and which are taught (v13's seeded split)
+  parquet.py           reading big Hugging Face parquet sets cheaply (the sounds loop reuses it)
   sources.py           where clips come from: learners, professionals, Tadabur, everyayah replay
   sound.py             recordings as 16 kHz numbers; training clips made harder (speed, room, noise)
   text.py              the Qur'an's own text; matching a printed ayah; what the model can write
@@ -57,7 +58,7 @@ New ayahs is the only proof an ear learnt listening rather than text; profession
 ## Words
 
 - **untuned**: `tarteel-ai/whisper-base-ar-quran` as published, the model every ear descends from.
-- **served** (champion): `recitation_trial_model` in master's `backend/config.py` (`repo@revision`). The app serves it and the judge scores it, so the two never differ.
+- **served** (champion): `recitation_tuned_model` in master's `backend/config.py` (`repo@revision`). The app serves it and the judge scores it, so the two never differ.
 - **held**: the ear a candidate must beat; the served one until a candidate wins. Also: the clips no run trains on.
 - **blend**: two ears' numbers mixed, tensor by tensor; no training.
 - **replay**: professional recitation (`tarteel-ai/everyayah`, reciters the test never hears) mixed into training so the ear keeps hearing what it was first taught.

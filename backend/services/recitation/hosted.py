@@ -1,6 +1,6 @@
 """Sound in, words out, done on somebody else's machine.
 
-The same job as listen.py and the same one function, so the two are swappable:
+The same job as whisper.py and the same one function, so the two are swappable:
 whoever calls `transcribe` cannot tell which of them answered. This one sends the
 recording to Groq, who run `listening_model`. Free, and nothing here is paid
 for.
@@ -29,9 +29,13 @@ from __future__ import annotations
 
 import io
 import logging
+import wave
 from functools import lru_cache
 
+import numpy as np
+
 from backend.config import get_settings
+from backend.services.recitation import loudness
 from backend.services.recitation.recording import kind_of
 
 log = logging.getLogger(__name__)
@@ -55,12 +59,49 @@ def transcribe(audio: bytes, key: str, language: str | None = None, hint: str = 
     `language`: hear it in that one; none lets Groq pick within the two above.
     `hint`: text Whisper reads first, sets register. Empty sends none.
     """
+    said = []
+    for piece in _pieces(audio):
+        # Later pieces keep the first piece's language and read the words before them, as Whisper does
+        # across its own 30s windows: guessed afresh, one Qur'an piece came back translated into English,
+        # and with no words before it another began with an invented "Surah Al-Fatihah".
+        heard, language = _hear(piece, key, language, said[-1] if said else hint)
+        said.append(heard)
+    return " ".join(filter(None, said))
+
+
+def _hear(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str, str]:
+    """One piece heard and its language, asked again as Arabic if Groq took it for neither."""
     heard, spoken = _ask(audio, key, language, hint)
     if language or spoken in _EXPECTED.values():
-        return heard
+        return heard, language or spoken
 
     log.info("heard as %s, which is neither, so reading it again as Arabic", spoken)
-    return _ask(audio, key, "ar", hint)[0]
+    return _ask(audio, key, "ar", hint)[0], "ar"
+
+
+def _pieces(audio: bytes) -> list[bytes]:
+    """The recording as is when it fits Groq's 30s, else cut at quiet moments into 16kHz WAV pieces."""
+    from backend.services.recitation import whisper
+
+    settings = get_settings()
+    sound = whisper.sound_of(audio)
+    cuts = loudness.quiet_cuts(sound, loudness.SAMPLE_RATE, settings.listening_piece_s,
+                               settings.listening_cut_search_s, settings.listening_cut_window_s)
+    if not cuts:
+        return [audio]
+    log.info("cut a %.1fs recording into %d pieces", len(sound) / loudness.SAMPLE_RATE, len(cuts) + 1)
+    return [_wav(piece) for piece in np.split(sound, cuts)]
+
+
+def _wav(sound) -> bytes:
+    """Mono 16-bit WAV of decoded sound."""
+    out = io.BytesIO()
+    with wave.open(out, "wb") as file:
+        file.setnchannels(1)
+        file.setsampwidth(2)
+        file.setframerate(loudness.SAMPLE_RATE)
+        file.writeframes((np.clip(sound, -1, 1) * 32767).astype("<i2").tobytes())
+    return out.getvalue()
 
 
 # One client per key, kept: the ears take turns, and a cache of one rebuilt

@@ -3,7 +3,7 @@ Each pass reads naming's found entry for the word and rewrites only the card's r
 reason; they run in the order below, because a later one rewrites text an earlier one wrote:
 
     governor's pair name → passive name → sister's name → excepting noun → also → attached pieces
-    → the doer and the pronouns written on → زائدة باء → كافة ما → counted → followed → condition
+    → the doer and the pronouns written on → ها of attention → زائدة باء → كافة ما → counted → followed → condition
 
 While they run, a card's reason is held as its parts (card["said"], a reason.Reason) and
 written back once at the end, so no pass searches text another pass wrote.
@@ -17,7 +17,7 @@ from backend.services.nahw.card_wording import condition, counting, names, piece
 from backend.services.nahw.card_wording.reason import Reason
 
 PASSES = (names.pair, names.printed, names.sister, names.tool, names.also,
-          pieces.pieces, pieces.doer, pieces.extra_ba, pieces.kaffa, counting.counted, counting.followed,
+          pieces.pieces, pieces.doer, pieces.attention, pieces.extra_ba, pieces.kaffa, counting.counted, counting.followed,
           condition.condition)
 
 

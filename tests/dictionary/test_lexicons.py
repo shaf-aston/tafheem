@@ -88,6 +88,15 @@ def test_arabic_inside_an_english_sentence_is_fenced_off():
     assert fenced == "⁨كتب⁩ 1, aor."
 
 
+def test_a_lane_headword_keeps_its_first_spelling_only():
+    """Perseus lists the unvowelled spellings after the headword as more <orth>
+    tags; Lane printed only the first, and a heading of five spellings was lost."""
+    said = builder.Lane()._said(
+        '<orth extent="full" lang="ar">xaArijiy~N</orth> <orth lang="ar">xArj</orth> '
+        '<orth lang="ar">xArjY</orth> One who goes out, <foreign lang="ar">xaraja</foreign>.')
+    assert said == f"⁨{builder._arabic('xaArijiy~N')}⁩ One who goes out, ⁨خَرَجَ⁩."
+
+
 # ── which book is which ──────────────────────────────────────────────────────
 # The shelf and the books above the reading rules. None of these touches a file:
 # what they decide is who is on the shelf and in what order, which is exactly
@@ -235,3 +244,25 @@ def test_no_database_says_so_rather_than_saying_the_root_is_unknown(tmp_path, mo
     monkeypatch.setattr(lexicons, "DATABASE", tmp_path / "not-built.db")
     assert lexicons.status() == lexicons.MISSING
     assert lexicons.entries_for("كتب") == []
+
+
+# ── the one-line gist ───────────────────────────────────────────────────────
+def test_a_kept_gist_reaches_its_book_and_only_its_book(tmp_path, monkeypatch):
+    from backend.services.dictionary import lexicon_gists
+    monkeypatch.setattr(lexicon_gists, "GISTS_FILE", tmp_path / "gists.json")
+    lexicon_gists.put("lisan", "خصر", "  cold; and  the waist ")
+    lexicon_gists.put("lane", "خصر", "never kept: Lane is in English")
+    assert lexicon_gists.get("lisan", "خصر") == "cold; and the waist"
+    assert lexicon_gists.get("taj", "خصر") is None
+    assert lexicon_gists.get("lane", "خصر") is None
+
+
+def test_the_shelf_sends_the_gist_with_its_own_badge_and_not_the_filing_key():
+    from backend.routers.dictionary import _shelf_entry
+    entry = {"book": "lisan", "title": "لسان العرب", "english": "x", "author": "a", "died": 711,
+             "language": "ar", "source": "openiti-lexicons", "book_root": None, "text": "t", "filed": "خصر"}
+    sent = _shelf_entry(entry, "cold; and the waist").model_dump()
+    assert sent["gist"] == "cold; and the waist"
+    assert sent["gist_source"]["key"] == "lexicon_gist"
+    assert "filed" not in sent
+    assert _shelf_entry(entry, None).gist_source is None

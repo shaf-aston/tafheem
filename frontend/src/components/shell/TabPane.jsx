@@ -10,7 +10,7 @@
  */
 import { Suspense, memo } from 'react'
 
-import { AnalyzerSkeleton } from '../ui/Skeleton'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 
 const TabPane = memo(function TabPane({ tab, handoff, accent, onGo, onVisit, onProgress }) {
   const Panel = tab.Component

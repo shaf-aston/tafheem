@@ -15,8 +15,8 @@
  */
 import { useState } from 'react'
 
-import Segmented from '../ui/Segmented'
-import SmallButton from '../ui/SmallButton'
+import Segmented from '../ui/inputs/Segmented'
+import SmallButton from '../ui/buttons/SmallButton'
 import settings from '../../config/timelines.json'
 import { nearest, positions, scaleModes, yearTicks } from '../../lib/timelines/time'
 import { useMedia, PHONE } from '../../lib/hooks/useMedia'

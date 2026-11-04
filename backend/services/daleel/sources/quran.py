@@ -11,7 +11,6 @@ same pass rather than worked out again later.
 """
 from __future__ import annotations
 
-import sqlite3
 from typing import Iterable
 
 from backend.services.quran import corpus as quran_corpus
@@ -25,44 +24,40 @@ class QuranSource:
     id = "corpus"
 
     def passages(self) -> Iterable[Passage]:
-        if not quran_corpus.DATABASE.exists():
+        if (conn := quran_corpus._db()) is None:
             return
 
         english = _english_by_ayah()
 
-        conn = sqlite3.connect(f"file:{quran_corpus.DATABASE}?mode=ro", uri=True)
-        try:
-            rows = conn.execute(
-                "SELECT surah, ayah, word, form, root FROM segment "
-                "ORDER BY surah, ayah, word, segment"
-            )
+        rows = conn.execute(
+            "SELECT surah, ayah, word, form, root FROM segment "
+            "ORDER BY surah, ayah, word, segment"
+        )
 
-            current: tuple[int, int] | None = None
-            words: list[str] = []
-            roots: list[str] = []
-            word_no: int | None = None
+        current: tuple[int, int] | None = None
+        words: list[str] = []
+        roots: list[str] = []
+        word_no: int | None = None
 
-            for surah, ayah, word, form, root in rows:
-                if current != (surah, ayah):
-                    if current is not None:
-                        yield _passage(current, words, roots, english)
-                    current, words, roots, word_no = (surah, ayah), [], [], None
+        for surah, ayah, word, form, root in rows:
+            if current != (surah, ayah):
+                if current is not None:
+                    yield _passage(current, words, roots, english)
+                current, words, roots, word_no = (surah, ayah), [], [], None
 
-                # Segments of one word are glued back together; a new word
-                # number starts a new word. This is the whole reassembly.
-                if word == word_no:
-                    words[-1] += form
-                else:
-                    words.append(form)
-                    word_no = word
+            # Segments of one word are glued back together; a new word
+            # number starts a new word. This is the whole reassembly.
+            if word == word_no:
+                words[-1] += form
+            else:
+                words.append(form)
+                word_no = word
 
-                if root and root not in roots:
-                    roots.append(root)
+            if root and root not in roots:
+                roots.append(root)
 
-            if current is not None:
-                yield _passage(current, words, roots, english)
-        finally:
-            conn.close()
+        if current is not None:
+            yield _passage(current, words, roots, english)
 
 
 def _passage(
@@ -87,17 +82,13 @@ def _english_by_ayah() -> dict[tuple[int, int], str]:
     Read in one go rather than per ayah: it is 77,429 short strings, and one
     query beats 6,236 of them by enough to matter on every rebuild.
     """
-    if not quran_meanings.DATABASE.exists():
+    if (conn := quran_meanings._db()) is None:
         return {}
 
-    conn = sqlite3.connect(f"file:{quran_meanings.DATABASE}?mode=ro", uri=True)
-    try:
-        out: dict[tuple[int, int], list[str]] = {}
-        for surah, ayah, en in conn.execute(
-            "SELECT surah, ayah, en FROM meaning ORDER BY surah, ayah, word"
-        ):
-            if en:
-                out.setdefault((surah, ayah), []).append(en)
-        return {k: " ".join(v) for k, v in out.items()}
-    finally:
-        conn.close()
+    out: dict[tuple[int, int], list[str]] = {}
+    for surah, ayah, en in conn.execute(
+        "SELECT surah, ayah, en FROM meaning ORDER BY surah, ayah, word"
+    ):
+        if en:
+            out.setdefault((surah, ayah), []).append(en)
+    return {k: " ".join(v) for k, v in out.items()}

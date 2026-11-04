@@ -23,6 +23,9 @@ async function load(url) {
   return response.json()
 }
 
+/** A book's index as a query: one key for the hook and for fetching ahead (lib/grow/growOpen.js). */
+export const bookSourceQuery = (world) => ({ queryKey: ['grow-source', world.id], queryFn: () => load(indexPath(world.source)), staleTime: Infinity })
+
 // The record when it cannot be read: nothing answered.
 const NOTHING = []
 
@@ -48,7 +51,7 @@ function stateOf(index, record) {
 export function useBookWorlds(worlds, view) {
   const { refresh } = useRecord()
   const sources = useQueries({
-    queries: worlds.map((world) => ({ queryKey: ['grow-source', world.id], queryFn: () => load(indexPath(world.source)), staleTime: Infinity })),
+    queries: worlds.map(bookSourceQuery),
   })
   const summaries = useQueries({
     queries: worlds.map((world) => ({ ...summaryQuery(world.module), retry: 1 })),

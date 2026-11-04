@@ -15,11 +15,11 @@ import { REVIEW } from './useBookWorld'
 const DAY = 24 * 60 * 60 * 1000
 export const KNOBS = knobs.suggest
 
-/** A module row's answers in `world`, every meaning language of its record together ("quiz", "quiz:ur"). */
-function usageOf(world, modules) {
+/** The answers in every module row `belongs` claims, summed: how many, how many right, the latest; null for none. */
+export function usageOf(belongs, modules = []) {
   let used = null
   for (const row of modules) {
-    if (row.module.split(':')[0] !== world.module) continue
+    if (!belongs(row.module)) continue
     used ??= { answers: 0, right: 0, lastAt: '' }
     used.answers += row.attempts
     used.right += row.correct
@@ -28,14 +28,23 @@ function usageOf(world, modules) {
   return used
 }
 
-/** One world's score and the main reason for it: 'recent' (used lately), 'level' (fits the level) or null. */
-export function scoreOf(world, modules, level, now, k = KNOBS) {
-  const used = usageOf(world, modules)
-  const fit = world.id === level ? k['level-fit'] : 0
-  if (!used) return { score: fit, why: fit ? 'level' : null }
+/** Recent use of what `usageOf` summed: 0.5^(days since / half-life) × log2(1 + answers) × (1 + share wrong); 0 for none. */
+export function recentOf(used, now, k = KNOBS) {
+  if (!used) return 0
   const days = Math.max(0, (now - Date.parse(used.lastAt)) / DAY)
   const wrong = used.answers ? 1 - used.right / used.answers : 0
-  const recent = 0.5 ** (days / k['half-life-days']) * Math.log2(1 + used.answers) * (1 + wrong)
+  return 0.5 ** (days / k['half-life-days']) * Math.log2(1 + used.answers) * (1 + wrong)
+}
+
+/** Whether a module row is `world`'s record, in any meaning language ("quiz", "quiz:ur"). */
+export const ofWorld = (world) => (module) => module.split(':')[0] === world.module
+
+/** One world's score and the main reason for it: 'recent' (used lately), 'level' (fits the level) or null. */
+export function scoreOf(world, modules, level, now, k = KNOBS) {
+  const used = usageOf(ofWorld(world), modules)
+  const fit = world.id === level ? k['level-fit'] : 0
+  if (!used) return { score: fit, why: fit ? 'level' : null }
+  const recent = recentOf(used, now, k)
   return { score: recent + fit, why: recent >= fit ? 'recent' : 'level' }
 }
 

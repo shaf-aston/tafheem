@@ -1,6 +1,6 @@
 /** Above every level below the top: the way back up, and the same place in another dialect. */
 import { colorFor } from '../../../theme'
-import WheelPicker from '../../ui/WheelPicker'
+import WheelPicker from '../../ui/inputs/WheelPicker'
 import { FOCUS } from '../parts/Face'
 
 // Where you are, each earlier step a button back to it.

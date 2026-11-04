@@ -26,7 +26,7 @@ from tokenizers import Tokenizer
 from backend.config import data_path, get_settings
 from backend.services.nahw.syntax import decode
 from backend.services.nahw.syntax.mask import book_mask
-from backend.services.sarf.morphology import reading_root
+from backend.services.sarf.morphology import reading_lemma, reading_root
 from backend.services.text.harakat import NO_ANALYSIS, base_of, stuck_letters, typed_case, weak_last
 
 logger = logging.getLogger(__name__)
@@ -184,6 +184,22 @@ def _clitic_token_feats(token: str, order: str, stem: dict) -> dict:
     }
 
 
+def _pronoun_cut_off(a: dict) -> dict:
+    """أَيّكُم: the dictionary files a few words with their attached pronoun (enc0) left unsplit; the
+    pronoun is cut off after the lemma's letters, as every other word's is (كِتاب_+كُم), so it stands
+    in the sentence as the word's مضاف إليه."""
+    from camel_tools.utils.dediac import dediac_ar
+
+    atbtok, lex = a.get("atbtok") or "", dediac_ar(a.get("lex") or "")
+    if "_" in atbtok or not str(a.get("enc0", "")).endswith(("_poss", "_dobj", "_pron")):
+        return a
+    starts = [i for i, ch in enumerate(atbtok) if dediac_ar(ch)]  # where each letter, not a mark, stands
+    if len(starts) <= len(lex) or dediac_ar(atbtok[:starts[len(lex)]]) != lex:
+        return a
+    cut = starts[len(lex)]
+    return {**a, "atbtok": f"{atbtok[:cut]}_+{atbtok[cut:]}"}
+
+
 def _split_word(word: str, a: dict) -> list[dict]:
     """One CAMeL analysis dict -> a list of subtoken dicts (one per CATiB
     clitic/baseword), each with form/lemma/pos/pos_camel/ud/asp/vox/stt/cas/
@@ -192,22 +208,28 @@ def _split_word(word: str, a: dict) -> list[dict]:
     """
     from camel_tools.utils.dediac import dediac_ar
 
+    root = reading_root(a)
+
     def clean(text: str, fallback: str | None = None) -> str:
         d = dediac_ar(text)
         return d.replace("_", "").replace("ـ", "") or (d if fallback is None else fallback)
 
     def baseword(form: str, lex_default: str, pos: str, ud: str, **extra) -> dict:
         return {
-            "form": form, "lemma": dediac_ar(a.get("lex", lex_default)),
+            "form": form, "lemma": reading_lemma(word, a, root) if "lex" in a else dediac_ar(lex_default),
             "pos": pos, "pos_camel": a.get("pos", ""), "ud": ud,
             "asp": a.get("asp", "na"), "vox": a.get("vox", "na"),
             "stt": a.get("stt", "na"), "cas": a.get("cas", "na"), "num": a.get("num", "na"),
             "per": a.get("per", "na"), "gen": a.get("gen", "na"),
-            "root": reading_root(a),
+            "root": root,
             "diac": a.get("diac", ""),
             "weak_last": weak_last(a), "base": base_of(word, a.get("atbtok")), **extra, "token_type": "baseword",
         }
 
+    if not a.get("catib6") and (cut := _pronoun_cut_off(a)) is not a:
+        # أَيّكُم: an entry with no tags of its own, its pronoun still a word: the word's coarse tag, then a noun's
+        coarse = _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
+        a = {**cut, "catib6": f"{coarse}+NOM", "ud": f"{coarse}+PRON"}
     if not a.get("catib6") or "atbtok" not in a:
         # The analyzer found nothing for this word; its pick's own tag is all
         # there is, so it is reported as a single unsplit token.

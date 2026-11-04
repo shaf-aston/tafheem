@@ -14,8 +14,8 @@ import { mushafPagesQuery } from '../../api'
 import surahs from '../../lib/quran/surahs.json'
 import { isCentred, pageFontPx, wordsOf } from '../../lib/quran/mushafFit'
 import { themeVariable } from '../../theme'
-import ErrorAlert from '../ui/ErrorAlert'
-import { Skeleton } from '../ui/Skeleton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 const knob = (key) => Number(themeVariable(`--mushaf-${key}`))
 const BASMALA = 'بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ'

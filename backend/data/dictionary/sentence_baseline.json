@@ -1,0 +1,15 @@
+{
+ "set": {
+  "broke": 0,
+  "aligned": 1000,
+  "english": 3593,
+  "junk": 0,
+  "covered": 1361,
+  "facts": 1000
+ },
+ "quran": {
+  "rows_hit": 2806,
+  "run_found": 379,
+  "run_right": 331
+ }
+}

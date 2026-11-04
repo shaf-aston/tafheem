@@ -20,9 +20,9 @@ import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
 import XpCard from './XpCard'
 import LevelSetting from '../level/LevelSetting'
-import ErrorAlert from '../ui/ErrorAlert'
-import { Skeleton } from '../ui/Skeleton'
-import SmallButton from '../ui/SmallButton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { Skeleton } from '../ui/feedback/Skeleton'
+import SmallButton from '../ui/buttons/SmallButton'
 
 export default function ProfileView({ name }) {
   const { module, account, overview, stats, learnt, covered, rewards } = useProgressFacts(name)

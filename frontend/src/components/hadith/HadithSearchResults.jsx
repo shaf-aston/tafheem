@@ -10,28 +10,33 @@
  * fall in, each a tap away (`onOpenBook`) for narrowing by topic instead of
  * retyping. Narrators whose name starts with the words typed sit above the hits,
  * each a tap to his page. A search that only names a collection ("bukhari") opens it.
+ * `places` (the PlaceStrip) stands under the box, always in view. While a search is showing, "← Books", the ✕ and Esc
+ * all clear it and bring the books back.
  */
+import { useEffect, useEffectEvent } from 'react'
+
 import { searchHadith } from '../../api'
-import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
-import { useNarratorMatches } from '../../lib/hadith/useNarrators'
+import { useHadithCollections } from './useHadithCollections'
+import { useNarratorMatches } from './useNarrators'
 import { useSearch } from '../../lib/hooks/useSearch'
 
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
-import ErrorAlert from '../ui/ErrorAlert'
-import EmptyState from '../ui/EmptyState'
-import IndexNotBuilt from '../ui/IndexNotBuilt'
-import MicButton from '../ui/MicButton'
-import { NarratorLinks } from './NarratorParts'
-import RecentRow from '../ui/RecentRow'
-import SearchBox from '../ui/SearchBox'
-import ShowRest from '../ui/ShowRest'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
-import StatusNote, { CorrectedNote, NoteWord } from '../ui/StatusNote'
+import Chip from '../ui/inputs/Chip'
+import ChipRow from '../ui/inputs/ChipRow'
+import CloseButton from '../ui/buttons/CloseButton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import EmptyState from '../ui/feedback/EmptyState'
+import IndexNotBuilt from '../ui/feedback/IndexNotBuilt'
+import MicButton from '../ui/buttons/MicButton'
+import { NarratorLinks } from './narrators/NarratorParts'
+import RecentRow from '../ui/inputs/RecentRow'
+import SearchBox from '../ui/inputs/SearchBox'
+import ShowRest from '../ui/buttons/ShowRest'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
+import StatusNote, { CorrectedNote, NoteWord } from '../ui/feedback/StatusNote'
 import HadithCards from './HadithCards'
 import HadithOptions from './HadithOptions'
 
-export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, menu, children }) {
+export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, places, children }) {
   const { collections, of } = useHadithCollections()
   const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
     historyKey: 'hadith-history',
@@ -47,6 +52,16 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
   }
 
   const searching = mutation.isPending || mutation.isError || Boolean(data)
+
+  // Esc leaves the results for the books, unless a sheet is open: Esc closes that first.
+  const leave = useEffectEvent((event) => {
+    if (event.key === 'Escape' && !document.querySelector('dialog[open]')) clear()
+  })
+  useEffect(() => {
+    if (!searching) return undefined
+    document.addEventListener('keydown', leave)
+    return () => document.removeEventListener('keydown', leave)
+  }, [searching])
 
   return (
     <div className="space-y-3">
@@ -68,8 +83,21 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
           accent={accent}
           title="Say what you are looking for"
         />
-        {menu}
       </SearchBox>
+
+      {places}
+
+      {searching && (
+        <div className="flex items-center gap-3">
+          <button type="button" onClick={clear} className="press tap type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors">
+            &larr; Books
+          </button>
+          <p className="flex-1 min-w-0 truncate type-small text-[var(--text-dim)] m-0">
+            {data ? <>Results for &ldquo;{data.query}&rdquo;</> : 'Searching…'}
+          </p>
+          <CloseButton onClick={clear} aria-label="Close search" className="shrink-0" />
+        </div>
+      )}
 
       {!searching && <RecentRow items={history.map((h) => h.q)} accent={accent} onPick={submit} />}
 

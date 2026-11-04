@@ -19,9 +19,9 @@ import { DialectList, TopicList, UnitList } from './course/Lists'
 import { Breadcrumbs, DialectSwitch } from './course/Breadcrumbs'
 import TopicView from './topic/TopicView'
 import WordsView from './words/WordsView'
-import ErrorAlert from '../ui/ErrorAlert'
-import SectionHeader from '../ui/SectionHeader'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import SectionHeader from '../ui/display/SectionHeader'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 
 const BLURB = TABS.find((t) => t.id === 'colloq')?.blurb
 

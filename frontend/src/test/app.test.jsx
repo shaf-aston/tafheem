@@ -1,14 +1,19 @@
 // @vitest-environment happy-dom
 // The whole app opens with no backend: the shell draws its header, a tab, and
 // the offline banner, and moving to another tab shows that tab.
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import App from '../App'
 import home from '../config/home.json'
+import { PLAN_KEY } from '../lib/learner/plan'
+import { writeRaw } from '../lib/store/stored'
 
 describe('app shell', () => {
+  // The first visit's questions are test/onboarding.test.jsx's; here they were skipped.
+  beforeEach(() => writeRaw(PLAN_KEY, JSON.stringify({ done: true })))
+
   it('opens on Home when nothing is saved', async () => {
     renderScreen(<App />)
     expect(await screen.findByRole('heading', { name: home.copy['title-first'] })).toBeTruthy()

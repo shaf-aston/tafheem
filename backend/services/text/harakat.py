@@ -58,6 +58,15 @@ def own_letters(word: str, before: int, after: int) -> str:
     return "".join(letter + "".join(sorted(marks)) for letter, marks in marked[before:len(marked) - after])
 
 
+def plural_alef(verb: str) -> str:
+    """The verb cut from its attached pronoun, with the alef after واو الجماعة given back: it is
+    written only at the word's end (Hamʿ V3 p514: ولا بعد واو الجمع غير المتطرفة نحو ضربوك
+    واضربوه), so ضَرَبُوهُ is ضَرَبُوا. A vowel on the و makes it the verb's own (سَرُوَ)."""
+    marked = letters(verb)
+    plural = marked and marked[-1][0] == "و" and not marked[-1][1] - {SUKUN}
+    return verb + "ا" if plural else verb
+
+
 def typed_case(word: str, stuck_on: int = 0) -> str | None:
     """Case read off the last typed vowel, or None when the reader left it bare.
 
@@ -219,10 +228,13 @@ def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
     the second count is kept apart for best_reading to weigh (أَبُوْهُ is not أَبُّوهُ).
     """
     mine, theirs = letters(typed), letters(reading)
-    if [bare_letters(c) for c, _ in mine] != [bare_letters(c) for c, _ in theirs]:
-        return 0, 0
-    if wasl_typed(mine) and theirs[0][0] in "أإ":
-        return None  # اِفْعَلِي typed with its hamzat al-wasl is not the أَفْعَل its letters also spell
+    if (spelled := [bare_letters(c) for c, _ in mine]) != (read_as := [bare_letters(c) for c, _ in theirs]):
+        # a typed ة is the feminine's letter, never the pronoun ه: حِجَارَةٌ is not حَجّارُهُ
+        return None if len(spelled) == len(read_as) and ("ة", "ه") in zip(spelled, read_as) else (0, 0)
+    if any(wasl_typed(mine[at:]) and theirs[at][0] in "أإ" for at in (0, 1)):
+        # اِفْعَلِي typed with its hamzat al-wasl, opening the word or after a joined وَ/فَ (وَاشْرَبُوا), is not
+        # the أَفْعَل its letters also spell
+        return None
     agreed = doubled = 0
     for (_, said), (_, read) in zip(mine, theirs):
         said_v, read_v = {_MARK[m] for m in said if m in _MARK}, {_MARK[m] for m in read if m in _MARK}
@@ -241,11 +253,22 @@ def best_reading(typed: str, readings: list[dict]) -> dict | None:
     as the noun فَتْح. A reading spelled with the very letters typed comes first, then the
     one doubling no letter otherwise than typed, then the one sharing most typed vowels,
     then the given (best first) order: a bare انك agrees with anything but must not beat
-    إِنَّكَ, nor the أَلْبَاب sharing more vowels beat الْبَاب, nor أَبُّوهُ beat أَبُوه for أَبُوْهُ."""
+    إِنَّكَ, nor the أَلْبَاب sharing more vowels beat الْبَاب, nor أَبُّوهُ beat أَبُوه for أَبُوْهُ.
+    A typed tanween is a sign of the noun (Ibn Aqil V1 p15: بالجر والتنوين), so no verb fits it
+    (كَمْ وَلَدًا is not the dual past وَلَدَا, which CAMeL writes with its د bare); only the light
+    emphasis nun is written as a fatha tanween on a present or command (لَنَسْفَعًا)."""
     letters_typed = [c for c, _ in letters(typed)]
     scored = [((letters_typed == [c for c, _ in letters(r.get("diac", ""))], -found[1], found[0]), i)
-              for i, r in enumerate(readings) if (found := vowel_agreement(typed, r.get("diac", ""))) is not None]
+              for i, r in enumerate(readings) if (found := vowel_agreement(typed, r.get("diac", ""))) is not None
+              and _fits_tanween(typed, r)]
     return readings[max(scored, key=lambda pair: (pair[0], -pair[1]))[1]] if scored else None
+
+
+def _fits_tanween(typed: str, reading: dict) -> bool:
+    """A reading the typed tanween allows: any but a verb, or a present or command with a fatha tanween."""
+    if reading.get("pos") != "verb" or not has_tanween(typed):
+        return True
+    return reading.get("asp") != "p" and "ً" in typed
 
 
 def drops_ya(word: str, lemma: str) -> bool:
@@ -304,7 +327,7 @@ def opens_active(word: str, present: bool) -> bool:
     return "َ" in opening
 
 
-def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
+def typed_passive(word: str, present: bool, stuck_on: int = 0, weak_last: bool = False) -> bool:
     """فُعِلَ and يُفْعَلُ by their vowels.
 
     A past verb's opening damma is passive only with the kasra of فُعِلَ inside it:
@@ -313,6 +336,8 @@ def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
     damma too (يُكَافِئُ is active), so there the fatha
     before the last stem letter is what separates يُكَافَأُ from it. The kasra of
     كُتِبَتِ sits on a root letter, not the last one, which is why the end is not read.
+    A weak last letter gone, before the plural ending (صَلَّى: يُصَلُّونَ) or by jazm (لم يُعْطِ),
+    leaves the fatha of يُدْعَوْنَ، لم يُدْعَ on the last letter standing.
     """
     marked = letters(word)
     if len(marked) < 3 or "ُ" not in (marked[0][1] if present else _opening_vowel(marked)):
@@ -324,7 +349,8 @@ def typed_passive(word: str, present: bool, stuck_on: int = 0) -> bool:
         return any("ِ" in marks or (SHADDA in marks and letter != "ن") for letter, marks in marked[1:-1])
     # an attached pronoun (stuck_on letters) is read past: the fatha of أُكْرِمَكَ is its nasb
     stem = _without_ending(marked[:len(marked) - stuck_on])
-    return len(stem) >= 3 and "َ" in stem[-2][1]
+    dropped = weak_last and stem[-1][0] not in WEAK_ENDS
+    return len(stem) >= 3 and "َ" in stem[-1 if dropped else -2][1]
 
 
 def moved_for_wasl(word: str, after: str = "") -> bool:
@@ -350,7 +376,13 @@ def past_passive_shape(word: str) -> bool:
     letter, last = marked[-1]
     closes = "َ" in last or SUKUN in last or (
         letter == "ت" and marked[-2][0] != "ا" and last <= {"ِ"})
-    return any("ِ" in marks for _, marks in marked[1:-1]) and closes
+    inside = marked[1:-1]
+    kasra = max((i for i, (_, marks) in enumerate(inside) if "ِ" in marks), default=None)
+    # the letter joined to the last takes the kasra (Alfiyya: فَأَوَّلَ الفِعْلِ اضْمُمَنْ وَالمُتَّصِلْ بِالآخِرِ
+    # اكْسِرْ); those before it are sakin or take the first's damma (تُدُحْرِجَ، اُسْتُحْلِيَ، تُغُوفِلَ, Ibn
+    # Aqil), so none before it has a fatha or an alif: سُلْطَانِيَ is a noun with ياء المتكلم on it
+    return kasra is not None and closes and not any(
+        "َ" in marks or letter == "ا" for letter, marks in inside[:kasra])
 
 
 ROOT_PLACES = "فعل"  # in a shape (أَفْعَلَ), the letters that stand for the root's

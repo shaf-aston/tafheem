@@ -20,8 +20,9 @@ from typing import Any, NamedTuple
 from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services.sarf import noun_reader
 from backend.services.sarf import verb_reader
-from backend.services.nahw.book import book_words, is_built_word, is_mabni, is_one, six_noun_case
-from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, typed_case, unread, vowel_agreement, letters
+from backend.services.quran import corpus as quran_corpus
+from backend.services.nahw.book import book_map, book_words, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
+from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -141,6 +142,10 @@ _MOD_LABEL: dict[str, str] = {
     "i": "indicative (مرفوع)", "s": "subjunctive (منصوب)", "j": "jussive (مجزوم)",
 }
 
+# the kinds known by what they are, with no ال: a pronoun, a pointer, a name, a relative (Ibn Aqil V1 p86:
+# وغيره معرفة كهم وذي وهند وابني والغلام والذي), though CAMeL files them indefinite
+_KNOWN_KINDS = frozenset({"pron", "pron_dem", "pron_rel", "noun_prop"})
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Internal helpers
@@ -177,6 +182,7 @@ class Reading(NamedTuple):
     lemma: str
     root: str  # CAMeL's, a # kept for a weak radical it could not pin down; "" for none
     rooted: bool  # False for a word that has no root at all (has_no_root)
+    verb: bool = False  # read as a verb: its lemma is looked for among its root's verbs (roots.lemma_of)
 
 
 def root_pattern(root: str) -> str:
@@ -196,7 +202,7 @@ def root_pattern(root: str) -> str:
     return clean
 
 
-def root_in_arabic(root: str, lemma: str = "") -> str:
+def root_in_arabic(root: str, lemma: str = "", word: str = "") -> str:
     """'ktb' → 'كتب', a root as every tab shows and searches it.
 
     The radicals used to be joined with hyphens, which read as three letters
@@ -206,25 +212,40 @@ def root_in_arabic(root: str, lemma: str = "") -> str:
     A # (typically an elided weak letter, ق#ل for قالوا) is settled by
     services/dictionary/roots.py against the roots the books really file, `lemma`
     choosing between two that fit; one no book files stays no root, never a
-    guess dressed as an answer. Without a lemma it is not settled. A root of
+    guess dressed as an answer. Without a lemma it is not settled; `word`, the form
+    read, overrules a lemma that is not its own. A root of
     two letters (لس for ليس) is the one a book files the lemma under, or none.
     """
     from backend.services.dictionary import roots  # it reads with this module
 
     pattern = root_pattern(root)
     if pattern and (lemma or len(pattern) < roots.FEWEST_RADICALS):
-        pattern = roots.settle(pattern, lemma)
+        pattern = roots.settle(pattern, lemma, word)
     return shown_root(pattern)
 
 
 def reading_root(a: dict) -> str:
     """The root of one CAMeL reading as every tab shows it; "" for a word with none.
 
-    CAMeL still files a root for لم, هو, الذي and their kind (has_no_root). The lemma
-    settles a # only for a word built from a root (ROOTED_POS).
+    CAMeL still files a root for لم, هو, الذي and their kind (has_no_root), and for a foreign
+    name (م.#.س for موسى) the Qur'an tags with none. The lemma settles a # only for a word
+    built from a root (ROOTED_POS).
     """
+    from backend.services.dictionary import roots  # it reads with this module
+
     pos = a.get("pos") or ""
-    return "" if has_no_root(pos) else root_in_arabic(a.get("root") or "", (a.get("lex") or "") if pos in ROOTED_POS else "")
+    if pos == "noun_prop" and roots.tagged_rootless(a.get("diac") or ""):
+        return ""
+    return "" if has_no_root(pos) else root_in_arabic(a.get("root") or "", (a.get("lex") or "") if pos in ROOTED_POS else "", a.get("diac") or "")
+
+
+def reading_lemma(word: str, a: dict, root: str | None = None) -> str:
+    """The bare lemma of one reading, for the cards and the parser alike: a lemma the word does not carry
+    is not its lemma (رأيت filed under راوند), so the Qur'an's for its root (roots.lemma_of)."""
+    from backend.services.dictionary import roots  # it reads with this module
+    pos = (a.get("pos") or "").lower()
+    return roots.lemma_of(strip_diacritics(a.get("lex") or a.get("diac") or word), strip_diacritics(word),
+                          reading_root(a) if root is None else root, pos == "verb")
 
 
 def _build_features(a: dict) -> str:
@@ -239,7 +260,8 @@ def _build_features(a: dict) -> str:
 
     if asp in _ASP_LABEL:
         parts.append(_ASP_LABEL[asp])
-    if mod in _MOD_LABEL and a.get("pos") == "verb":
+    # only the present verb takes a mood: the past and the command are built (Ibn Aqil V1 p35: وفعل أمر ومضي بنيا)
+    if mod in _MOD_LABEL and a.get("pos") == "verb" and asp == "i":
         parts.append(_MOD_LABEL[mod])
     if vox == "p":
         parts.append("passive (مبني للمجهول)")
@@ -255,7 +277,7 @@ def _build_features(a: dict) -> str:
         parts.append("plural (جمع)")
     if per in ("1", "2", "3"):
         parts.append({"1": "1st person", "2": "2nd person", "3": "3rd person"}.get(per, f"person {per}"))
-    if stt == "d":
+    if stt == "d" or a.get("pos") in _KNOWN_KINDS:
         parts.append("definite (معرفة)")
     elif stt == "i":
         parts.append("indefinite (نكرة)")
@@ -264,15 +286,17 @@ def _build_features(a: dict) -> str:
     return ", ".join(parts)
 
 
-def _as_command(word: str, a: dict, before: str, after: str) -> dict:
+def _as_command(word: str, a: dict, before: str, after: str, after_read: str = "") -> dict:
     """CAMeL's word list has no اِجْلِسِي، ارْحَمُوا or قُمْ, so it offers a name or another
     tense; sarf's own table names the command (verb_reader), by the same rules the
     Sarf tab conjugates with. Only a verb or a noun is overruled: لَمْ and مِنْ have a
     command's shape too, and أَفْضَلُ is a comparative whatever sarf can build."""
-    if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(strip_diacritics(a.get("lex") or "")):
+    if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(a.get("lex") or ""):
         return a  # مُنْذُ أَمْسِ: a built time word is never the command its letters spell
+    if a.get("pos") != "verb" and verb_reader.called(before, after, after_read):
+        return a  # يَا رَبِّ، رَبِّ اغْفِرْ لِي: a noun called, not رَبَّى's command
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
-    root = root_in_arabic(a.get("root") or "", a.get("lex") or "")  # a verb or a noun, so rooted
+    root = root_in_arabic(a.get("root") or "", a.get("lex") or "", word)  # a verb or a noun, so rooted
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
     cell = verb_reader.command(word, governed, root) or verb_reader.command(paused(word, after), governed, root)
     if cell is None:
@@ -282,22 +306,25 @@ def _as_command(word: str, a: dict, before: str, after: str) -> dict:
             "lex": verb_reader.past(cell) or a.get("lex")}
 
 
-def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str = "") -> dict[str, Any]:
+def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str = "", after_read: str = "") -> dict[str, Any]:
     """Convert a raw CAMeL analysis dict into our standard morphology dict; `before` is
     the bare word typed before it, which can make a command shape a present verb, and
-    `after` the word typed after it, whose hamzat al-wasl can turn a sukun to kasra."""
-    a = _as_command(word, a, before, after)
+    `after` the word typed after it, whose hamzat al-wasl can turn a sukun to kasra, read as `after_read` (its tense)."""
+    a = _as_command(word, a, before, after, after_read)
     pos = (a.get("pos") or "").lower()
     word_type = _pos_type(pos)
     root_ar = reading_root(a)
 
-    lex = a.get("lex") or a.get("diac") or word
-    lemma = strip_diacritics(lex)
+    lemma = reading_lemma(word, a, root_ar)
     guessed = NO_ANALYSIS in a.get("atbtok", "")
 
     cas = a.get("cas", "na") or "na"
-    # A built word (a past verb, a pronoun) has no case: its last vowel is not one.
-    case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if is_mabni(pos, a.get("asp"), base_of(word, a.get("atbtok"))) else CASE_NAME.get(typed_case(word)))
+    # A built word (a past verb, a pronoun) has no case: its last vowel is not one. Nor is a
+    # noun's attached pronoun's (the fatha of أَخِيكَ is the kaf's), and on ياء المتكلم the case
+    # is unseen (the fatha of سُلْطَانِيَ is the ya's own).
+    unseen = is_mabni(pos, a.get("asp"), base_of(word, a.get("atbtok"))) or a.get("enc0") == "1s_poss"
+    pronoun = stuck_letters({"form": piece} for piece in (a.get("atbtok") or "").split("_")) if pos in NOUNISH else 0
+    case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if unseen else CASE_NAME.get(typed_case(word, pronoun)))
 
     return {
         "word": word,
@@ -428,6 +455,17 @@ _NEVER_SEEN = -99.0
 # Word-level analysis
 # ─────────────────────────────────────────────────────────────────────────────
 
+def _seen_verb(past: str) -> bool:
+    """The dictionary's training text uses this verb, given by its past (هَدَى, not هَدَنَ), as the dictionary
+    spells it: every letter, its hamza too (هَدَا is not هَدَأ), and every vowel both write (ضَرِبَ is not ضَرَبَ)."""
+    return any(a.get("pos") == "verb" and a.get(_LIKELIHOOD, _NEVER_SEEN) > _NEVER_SEEN
+               and strip_diacritics(a["lex"]).translate(_WASL) == strip_diacritics(past)
+               and vowel_agreement(past, a["lex"]) is not None for a in _analyses(past))
+
+
+_WASL = str.maketrans("ٱ", "ا")  # the dictionary writes a past's hamzat al-wasl so (ٱِسْتَغْفَر)
+
+
 def _analyses(word: str) -> list[dict]:
     """Every CAMeL reading of one word, the likeliest lemma first; [] when CAMeL is not there.
 
@@ -489,7 +527,7 @@ def readings(word: str) -> list[Reading]:
         root = root_pattern(a.get("root") or "") if rooted else ""
         if _UNKNOWN_RADICAL in root and pos not in ROOTED_POS:
             root = ""
-        reading = Reading(strip_diacritics(a.get("lex") or ""), root, rooted)
+        reading = Reading(strip_diacritics(a.get("lex") or ""), root, rooted, pos == "verb")
         if reading.lemma and reading not in out:
             out.append(reading)
     return out
@@ -505,7 +543,7 @@ def gloss_as(reading: dict, pos: str | None) -> str:
     English kept: the grammar's job for a word CAMeL lists under more than one (فَإِنَّ is
     "so indeed", the condition's فَإِنْ "so if"). A reading CAMeL has of that class spelled with
     the word's own letters gives the sense, the likeliest first; with none the gloss stands."""
-    gloss = reading.get("gloss") or ""
+    gloss = reading.get("gloss") or _lemma_gloss(reading)
     if not pos or reading.get("pos") == pos:
         return gloss
     written = strip_diacritics(reading.get("base") or reading.get("word") or "")
@@ -515,6 +553,14 @@ def gloss_as(reading: dict, pos: str | None) -> str:
         return gloss
     stem = reading.get("stemgloss")
     return "+".join(other.get("stemgloss") or piece if piece == stem else piece for piece in gloss.split("+"))
+
+
+def _lemma_gloss(reading: dict) -> str:
+    """A verb only sarf's table read (verb_reader) has no gloss of its own: it means what the
+    dictionary's reading of its lemma, in its class, means (آتِنَا is آتَى's: give, not أَتَى's come); "" for none."""
+    lemma = reading.get("lemma") or ""
+    return next((a["stemgloss"] for a in _analyses(lemma) if a.get("pos") == reading.get("pos")
+                 and strip_diacritics(a.get("lex") or "") == lemma), "")
 
 
 def has_comparative(word: str) -> bool:
@@ -597,7 +643,8 @@ def _reading(word: str, readings: list[dict]) -> dict:
     # a reading spelled with the letters typed goes first, even one vowel off, before another word's
     # letters that say nothing either way (خُلُقُهُ is خُلْقُهُ, not خَلَقَة)
     same = [r for r in real if [bare_letters(c) for c, _ in letters(r.get("diac", ""))] == [bare_letters(c) for c, _ in letters(word)]]
-    return best_reading(word, same) or nearest_reading(word, same) or best_reading(word, real) or readings[0]
+    # with none agreeing, one spelled as typed (حِجَارَةٌ, which the dictionary has only as حَجّارَةٌ)
+    return best_reading(word, same) or nearest_reading(word, same) or best_reading(word, real) or (same or readings)[0]
 
 
 def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:
@@ -618,22 +665,41 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         return [{} for _ in tokens]
 
     steps = []  # each word's vowels as evidence, and its ranked readings
-    for token, ranked, after in zip(tokens, all_ranked, [*tokens[1:], ""], strict=True):
+    paused = {}  # a هاء السكت's word: the word as said joined (مَالِيَهْ → مَالِيَ)
+    for i, (token, ranked, after) in enumerate(zip(tokens, all_ranked, [*tokens[1:], ""], strict=True)):
         # a kasra that may be a moved sukun is no evidence for the reading
         evidence = token[:-1] if moved_for_wasl(token, after) else token
+        if said := _without_sakt(tokens, i, disambiguator):
+            evidence, ranked = said
+            paused[i] = evidence
         if unread(ranked) and (twin := verb_reader.known_as(token)) and (twin_ranked := _ranked([twin], disambiguator)):
             # a verb the dictionary lacks but sarf's table has (فَلْيَسْتَعْفِفْ): it reads the table's spelling of it
             ranked, evidence = twin_ranked[0], twin
-        if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token)) and sarf.get("asp") != "c" \
+        # زيدا typed bare fits the verb زَيَّدَا too, but that one adds a shadda the writing lacks and the name none
+        # (الأصل عدم الزيادة), so the name in nasb is read where it adds fewer. A particle stays (الا is إِلَّا)
+        agreeing, read = _agreeing(evidence, ranked), _reading(evidence, ranked)
+        if (not agreeing or read.get("pos") == "verb" and _added(read, token)) and (name := _name_in_nasb(token, disambiguator)) \
+                and (not agreeing or _added(name, token) < _added(read, token)):
+            ranked = [name]
+        if read.get("pos") == "verb" and (name := _quran_name(evidence, _widened(token, ranked))):
+            ranked = [name]
+        if lam := _emphasis_lam(evidence, disambiguator):
+            ranked = [lam]
+        if jarred := _jarred_ma(evidence):
+            ranked = [jarred]
+        if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token, _seen_verb)) \
+                and (sarf.get("asp") != "c" or "enc0" in sarf) \
                 and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
             # يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
-            # the table's own tense is only spelled otherwise: the dictionary's stays. A command is left to
-            # repair.typed (verb_reader.command), which reads its attached pronoun (اِهْدِنَا) as the table cannot
-            ranked = [{"lex": evidence, **sarf, "diac": evidence}]
-        elif not steps and not _agreeing(evidence, ranked) and (asked := _asked_reading(evidence, disambiguator)):
+            # the table's own tense is only spelled otherwise: the dictionary's stays. A command alone is left to
+            # repair.typed (verb_reader.command); one with its object pronoun written on (اِهْدِنَا) is split here
+            ranked = [{"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}]  # its past, else the verb's own letters
+        elif not steps and (asked := _asked_reading(evidence, ranked, after, disambiguator)):
             ranked = [asked]
-        elif not _agreeing(evidence, ranked) and (noun := noun_reader.reading_of(evidence)):
-            # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off
+        elif not _agreeing(evidence, ranked) and (noun := noun_reader.reading_of(evidence) or next(
+                filter(None, (_joined_noun(evidence, letter, "CONJ", prc2=f"{name}_conj") for letter, name in _JOINING)), None)):
+            # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off;
+            # one with a joining و or ف on it (وَإِقَامِ الصَّلَاةِ) is that noun with the particle put back
             ranked = [noun]
         steps.append((evidence, ranked))
     out = [_reading(*step) for step in steps]
@@ -646,10 +712,24 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         better = best_reading(evidence, wider)
         if better and (vowel_agreement(evidence, better.get("diac", "")) or found)[1] < found[1]:
             out[i], steps[i] = better, (evidence, wider)
+    # ضُرِبْتُ، أُعْطِيتُ: a past verb's ending names its doer (تُ أنا، تَ أنت، تْ هي), and sarf's table reads it off
+    # the typed vowels; a reading of another doer, agreeing only where the dictionary leaves the ending bare
+    # or not at all (it lacks most passives), is not the word: the one of that doer is, or the doer is the table's.
+    # One the typed vowels contradict is no evidence for the verb either (كُسِيتُ is كَسَا's passive, not كَسِيَ)
+    for i, (evidence, ranked) in enumerate(steps):
+        if out[i].get("pos") == "verb" and out[i].get("asp") == "p" and (said := verb_reader.reading_of(evidence, _seen_verb)) \
+                and said.get("asp") == "p":
+            keys = (*DOER, "lex") if vowel_agreement(evidence, out[i].get("diac", "")) is None else DOER
+            if not _same(out[i], said, keys):
+                out[i] = next((r for r in _widened(tokens[i], ranked) if r.get("asp") == "p" and _same(r, said, keys)),
+                              {**out[i], **{key: said[key] for key in keys if key in said}})
     # a noun already joined to "my" takes no second mudaf ilayh: before a genitive noun
-    # أَبِي is the six nouns' jarr (أَبِي الطَّبِيبِ), not "my father"
+    # أَبِي is the six nouns' jarr (أَبِي الطَّبِيبِ), not "my father"; so before a name that
+    # shows no case at all (أَبِي مُوسَى), which a jarr fits as well as any
     for i in range(len(out) - 1):
-        if out[i].get("enc0") == "1s_poss" and out[i + 1].get("pos") == "noun" and out[i + 1].get("cas") == "g":
+        after = out[i + 1]
+        if out[i].get("enc0") == "1s_poss" and after.get("pos", "").startswith("noun") \
+                and (after.get("cas") == "g" or after.get("pos") == "noun_prop" and typed_case(tokens[i + 1]) is None):
             word, ranked = steps[i]
             out[i] = best_reading(word, [r for r in ranked if r.get("enc0") != "1s_poss"
                                          and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
@@ -667,6 +747,13 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the verb reads the typed vowels at least as well, or the reading kept contradicts them (ظُلْمُكَ for ظَلَمَكَ)
             if said is not None and (here is None or said >= here):
                 out[i] = verb
+    # أَكْرَمَ مُصْطَفَى يَحْيَى: nothing before the sentence's first word puts it in nasb, so a typed fatha
+    # the past verb reads as well as a noun's nasb (the elative أَكْرَمَ, here before a name showing no case) is that verb
+    if out and out[0].get("cas") == "a" and typed_case(tokens[0]) == "a":
+        word, ranked = steps[0]
+        verb = best_reading(word, [r for r in _widened(tokens[0], ranked) if r.get("pos") == "verb" and r.get("asp") == "p"])
+        if verb and best_reading(word, [verb, out[0]]) is verb:
+            out[0] = verb
     # الْعِلْمُ أَنْفَعُ مِنَ الْمَالِ: after a noun opening the sentence in raf', a word that is either
     # أَفْعَلُ "I do" or the elative is that noun's khabar, and a verb khabar needs a pronoun back to
     # its مبتدأ (رابط جملة الخبر, Ibn Aqil on the Alfiyya); "I" with nothing on it has none
@@ -674,6 +761,15 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             and out[1].get("pos") == "verb" and out[1].get("per") == "1" and out[1].get("enc0") in ("0", "na", None) \
             and (elative := noun_reader.reading_of(steps[1][0])):
         out[1] = elative
+    # وَالْآخِرَةُ خَيْرٌ وَأَبْقَى: a word joined by و onto an elative, which the typed vowels read as that
+    # elative as well as a verb ("and I remain"), is the elative: a verb is joined onto a noun only when the
+    # noun is like a verb, as the active participle is (Ibn Aqil on the Alfiyya V3 p244), and an elative is not
+    for i in range(1, len(out)):
+        if out[i].get("pos") == "verb" and out[i - 1].get("pos") in NOUNISH \
+                and elative_shape(out[i - 1].get("pattern", ""), out[i - 1].get("lex", "")):
+            word = steps[i][0]  # the only shape of sarf's nouns a verb spells too is أَفْعَل, the elative's
+            if (noun := _joined_noun(word, "و", "CONJ", prc2="wa_conj")) and best_reading(word, [noun]):
+                out[i] = noun
     # مَنْ جَدَّ وَجَدَ: a مضاف needs its مضاف إليه straight after it, so a bare construct noun
     # before a و, a preposition or nothing is not the word typed (here the verb جَدَّ)
     # لَا رَيْبَ فِيهِ: after لا النافية للجنس the noun's missing tanween is لا's building on fatha
@@ -682,43 +778,238 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         after_la = i > 0 and is_one(bare_letters(out[i - 1].get("diac", "")), "la_jins")
         if _bare_construct(reading) and not after_la and not _takes_mudaf_ilayh(*((out[i + 1], tokens[i + 1]) if i + 1 < len(out) else ({}, ""))):
             word, ranked = steps[i]
+            pool = _widened(tokens[i], ranked)
+            if reading.get("prc3") == "Aa_ques" and (split := _asked_split(word)):  # أَذَهَبَ زَيْدٌ: not "the gold of"
+                pool += [_joined_onto(split[0], r, "INTERROG_PART", prc3="Aa_ques") for r in _rest_readings(split[1])]
             # the word's whole list too (أَكْبَرُ's own indefinite reading may be ranked out), never a guessed name
-            out[i] = best_reading(word, [r for r in _widened(tokens[i], ranked)
+            out[i] = best_reading(word, [r for r in pool
                                          if not _bare_construct(r) and r.get("pos") != "noun_prop"]) or reading
     # نصر زيد بكرا، زيد نصر بكرا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به).
     # A noun read in nasb (بكرا's alif of tanween is written, typed vowels or none), in a line of
-    # nouns alone, has none but a verb before it: the first word that reads as a past verb adding
-    # no letter the writing lacks (زَيَّدَ's shadda: الأصل عدم الزيادة). Typed vowels still choose
-    nasb = next((i for i, r in enumerate(out) if i and r.get("cas") == "a"), None)
-    if nasb and all(r.get("pos") in NOUNISH for r in out):
-        for i in range(nasb):
-            verb = best_reading(tokens[i], [r for r in _widened(tokens[i], steps[i][1])
-                                            if r.get("pos") == "verb" and "ّ" not in r.get("diac", "")])
+    # nouns alone, has none but a verb before it, or is that verb when the fatha is typed (زَيْدٌ أَكْرَمَ
+    # ضَيْفًا: the fatha a diptote's nasb would be is the past verb's; أَبُوهُ's و is raf', no fatha
+    # to give the verb): the first word that reads as a past verb adding
+    # no letter the writing lacks (زَيَّدَ's shadda: الأصل عدم الزيادة). Typed vowels still choose, and a
+    # typed tanween is a sign of the noun (Ibn Aqil V1 p15: بالجر والتنوين): زَيْدٌ فَاهِمٌ الدَّرْسَ, never فَأَهِم.
+    # A pronoun is a noun too (هُوَ أَكْرَمَ ضَيْفًا: المضمر من أقسام الاسم, Ibn Aqil on the Alfiyya);
+    # the word after a مضاف is مجرور (وَالثَّانِيَ اجْرُرْ): هَذَا كِتَابُ أَحْمَدَ's fatha is a diptote's jarr.
+    # A participle with its tanween before it is its عامل already (Ibn Aqil V3 p106: كفعله اسم فاعل في العمل …
+    # هذا ضارب زيدا الآن أو غدا): أَنَا ضَارِبٌ زَيْدًا has no verb in it
+    nasb = next((i for i, r in enumerate(out) if i and r.get("cas") == "a" and not _bare_construct(out[i - 1])), None)
+    if nasb and all(r.get("pos") in NOUNISH or r.get("pos", "").startswith("pron") for r in out) \
+            and not any(has_tanween(word) and participle_shape(r.get("pattern", "")) for word, r in zip(tokens[:nasb], out)):
+        for i in range(nasb + (typed_case(tokens[nasb]) == "a")):
+            verb = best_reading(tokens[i], [
+                r for r in _widened(tokens[i], steps[i][1]) if r.get("pos") == "verb" and "ّ" not in r.get("diac", "")])
             if verb:
                 out[i] = verb
                 break
+    # أكل الطعام: a sentence tells a full thought, built of two nouns or a verb and a noun (Ibn Aqil V1 p14:
+    # الكلام ... اللفظ المفيد فائدة يحسن السكوت عليها ... ولا يتركب الكلام إلا من اسمين ... أو من فعل واسم).
+    # A مضاف typed bare with nothing but its مضاف إليه after it tells none, so where it reads as a past verb
+    # adding no letter, that verb with its hidden doer is the sentence. Typed vowels still choose (أَكْلُ الطَّعَامِ)
+    if len(out) == 2 and _bare_construct(out[0]) and out[1].get("cas") == "g":
+        verb = best_reading(tokens[0], [r for r in _widened(tokens[0], steps[0][1])
+                                        if r.get("pos") == "verb" and r.get("asp") == "p" and "ّ" not in r.get("diac", "")])
+        if verb:
+            out[0] = verb
+    # قال إبراهيم لأبيه آزر: typed bare, a word the Qur'an says alone only as a name is that name where the
+    # dictionary reads a verb and no noun comes next to be its doer or what it is done to (the sentence ends,
+    # or a new one opens: آزر أنا ذاهب); a noun next keeps the verb (آزر الجيش الشعب). Only a verb's shape is
+    # foreign to a name: a noun read so stays (في قلبي حنين: longing, not the battle)
+    for i, reading in enumerate(out):
+        if reading.get("pos") == "verb" and not any(r.get("pos") in NOUNISH for r in out[i + 1:i + 2]) \
+                and (name := _quran_name(tokens[i], _widened(tokens[i], steps[i][1]), bare=True)):
+            out[i] = name
+    for i in range(1, len(out)):
+        if _wants_present(out[i - 1], out[i]) and (present := _present_reading(tokens[i], steps[i][1])):
+            out[i] = present
+    for i, said in paused.items():
+        out[i] = {**out[i], "said": said}
     return out
 
 
-def _asked_reading(typed: str, disambiguator=None) -> dict | None:
-    """أَذَاهِبٌ زَيْدٌ: the question hamza (closed_words istifham, a one-letter word) opens the
-    sentence before a full clause, written onto its first word; the dictionary lacks it on a
-    noun, so the rest of the word is read and the hamza put back as its proclitic, as CAMeL
-    writes a وَ (وَ+_ذاهِب)."""
+def _wants_present(before: dict, reading: dict) -> bool:
+    """A past verb straight after أَنْ، لَنْ، كَيْ ...: the particles that put a present verb in nasb."""
+    return reading.get("pos") == "verb" and reading.get("asp") == "p" \
+        and is_one(strip_diacritics(before.get("diac", "")), "nasb_mudari", "before_a_present_verb")
+
+
+def _present_reading(token: str, ranked: list[dict]) -> dict | None:
+    """أَنْ أَقْرَأَ: the final fatha is the present verb's nasb as well as the past verb أَقْرَأَ's (form IV,
+    "he made read"), and a past verb is never what a nasb particle works on. The present reading the typed
+    vowels do not contradict is the word; None where no such reading exists (أَنْ جَاءَ)."""
+    return best_reading(token, [r for r in _widened(token, ranked) if r.get("pos") == "verb" and r.get("asp") == "i"])
+
+
+def as_said(tokens: list[str], picks: list[dict]) -> list[str]:
+    """The words as said joined to the next, which the parser and the cards read: a هاء السكت's
+    word without it (pick reads مَالِيَهْ as مَالِيَ), every other word as typed."""
+    return [picked.get("said") or token for token, picked in zip(tokens, picks, strict=True)]
+
+
+def _without_sakt(tokens: list[str], i: int, disambiguator=None) -> tuple[str, list[dict]] | None:
+    """مَالِيَهْ، هِيَهْ: a word with a هاء السكت's shape is read as said joined to the next, without
+    it (Mufassal: إذا أدرجت قلت مالي), when what is left is built on its vowel (closed_words
+    haa_sakt): a pronoun, a question or pointing word (لِمَ، عَلَامَ), or a word with ياء المتكلم."""
+    if not (rest := sakt_off(tokens[i])):
+        return None
+    ranked = (_ranked([*tokens[:i], rest, *tokens[i + 1:]], disambiguator) or [[]] * len(tokens))[i]
+    found = _reading(rest, ranked)
+    built = is_mabni(found.get("pos", "")) or str(found.get("enc0", "")).startswith("1s")
+    return (rest, ranked) if built and _agreeing(rest, ranked) else None
+
+
+def _name_in_nasb(typed: str, disambiguator=None) -> dict | None:
+    """رَأَيْتُ زَيْدًا: CAMeL files a name without the alif its nasb tanween is written on, so a word
+    none of its readings fits (زَيَّدَا is two vowels off), ending in that alif, is the word its letters
+    before it spell, in nasb. One whose stem it does not know at all stays unread (مُسْرِعًا), and
+    one with another vowel on that alif or before it is no nasb (مُحَمَّدُا). The reading is the one the
+    typed vowels fit (وَعَمْرًا is no عُمَر); a name whose letter is written only out of nasb (farqa_waw:
+    عَمْرو) is read with it back."""
+    marked = letters(typed)
+    if len(marked) < 3 or marked[-1][0] != "ا" or (marked[-1][1] | marked[-2][1]) - {"ً"}:
+        return None
+    stem = "".join(letter + "".join(marks - {"ً"}) for letter, marks in marked[:-1])
+    def read(spelled: str) -> list[dict]:
+        return [r for r in (_ranked([spelled], disambiguator) or [[]])[0] if NO_ANALYSIS not in r.get("atbtok", "")]
+    farqa = book_map("farqa_waw", "letter")
+    readings = read(stem) + [{**r, "diac": r["diac"].removesuffix(farqa), "atbtok": r["atbtok"].removesuffix(farqa)}
+                             for name in book_words("farqa_waw") if bare_letters(stem).endswith(name.removesuffix(farqa))
+                             for r in read(stem + farqa)]
+    known = best_reading(stem, readings) or (readings[0] if readings else None)
+    # the alif goes on the word's own split, so a وَ before the name stays its own piece (جِئْتُ وَزَيْدًا)
+    return known and {**known, "cas": "a", "diac": known["diac"] + "ًا", "atbtok": known["atbtok"] + "ًا"}
+
+
+def _quran_name(typed: str, readings: list[dict], bare: bool = False) -> dict | None:
+    """كَانَ اسْمُ أَبِيهِ آزَرَ: a foreign name may wear a verb's shape (Sharh al-Tasrih V2 p708: أعجمي على
+    وزن فاعل كآزر), and the dictionary, lacking the name, reads the verb. Where the Qur'an's hand-tagged
+    corpus says these letters alone only as a proper noun (quran.corpus.name_of) and the dictionary has
+    no name spelled so, the word is that name, by the vowels the reader typed: one typed bare says
+    nothing either way, and stays the dictionary's unless `bare` (pick's reading by what comes after)."""
+    spelled = bare_letters(typed)
+    if not quran_corpus.is_loaded() or any(r.get("pos") == "noun_prop" and bare_letters(r.get("diac", "")) == spelled for r in readings):
+        return None
+    if not ((lemma := quran_corpus.name_of(typed)) and (found := vowel_agreement(typed, lemma)) and (found[0] or bare)):
+        return None
+    case = {vowel: camel for camel, vowel in CAMEL_CASE.items()}.get(typed_case(typed) or "", "na")
+    return {"pos": "noun_prop", "diac": typed, "lex": lemma, "atbtok": typed, "catib6": "PROP", "ud": "PROPN",
+            "bw": f"{typed}/NOUN_PROP", "pattern": "", "enc0": "0", "stt": "i", "cas": case, "num": "s", "gen": "m",
+            "asp": "na", "vox": "na", "per": "na", "mod": "na", "prc0": "0", "prc1": "0", "prc2": "0", "prc3": "0", "source": "quran"}
+
+
+def _asked_split(typed: str) -> tuple[str, str] | None:
+    """The question hamza written onto the front of a word (its fatha with it), and the rest of the word."""
     marked = letters(typed)
     hamza = next((w for w in book_words("istifham") if len(w) == 1), None)
     if not (hamza and len(marked) > 2 and marked[0][0] == hamza and "َ" in marked[0][1]):
         return None
     asked = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
-    rest = typed[len(asked):]
-    ranked = (_ranked([rest], disambiguator) or [[]])[0]
+    return asked, typed[len(asked):]
+
+
+def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=None) -> dict | None:
+    """أَذَاهِبٌ زَيْدٌ: the question hamza (closed_words istifham, a one-letter word) opens the
+    sentence before a full clause, written onto its first word; the dictionary lacks it on a
+    noun, so the rest of the word is read and the hamza put back as its proclitic, as CAMeL
+    writes a وَ (وَ+_ذاهِب). Read so where no reading of the whole word fits its vowels, or where
+    the rest is a حرف جر and the next word is typed in jarr (أَفِي اللَّهِ شَكٌّ: no verb or name puts
+    the noun after it in jarr, so أَفِي is not "I fulfil")."""
+    if not (split := _asked_split(typed)):
+        return None
+    asked, rest = split
+    if _agreeing(typed, ranked) and not (strip_diacritics(rest) in book_words("jarr") and typed_case(after) == "i"):
+        return None
+    ranked = _rest_readings(rest, disambiguator)
     if not _agreeing(rest, ranked):
         return None
-    found = _reading(rest, ranked)
-    return {**found, "diac": asked + found.get("diac", ""), "atbtok": f"{asked}+_" + found.get("atbtok", ""),
+    return _joined_onto(asked, _reading(rest, ranked), "INTERROG_PART", prc3="Aa_ques")
+
+
+def _emphasis_lam(typed: str, disambiguator=None) -> dict | None:
+    """وَإِنَّكَ لَعَلَى خُلُقٍ عَظِيمٍ: after إنّ the لام of emphasis comes onto its khabar, a jar-majroor
+    or ظرف too (closed_words `khabar_lam`). The dictionary never writes a لام onto a حرف جر or ظرف, so
+    it reads لِ+عَلِيّ or a verb; but a جار takes no جار after it, so the word is that لام on the
+    particle, after إنّ or not (وَاللَّهِ لَعَلَى الْحَقِّ أَنْتَ: the لام of the oath's answer). Not with a
+    typed kasra (لِمَنْ: the جار on مَن who), nor where a verb reads the letters too (إِنَّ اللَّهَ لَعَنَ
+    الْكَافِرِينَ، لمن bare as لُمْنَ). A لام typed with a fatha onto any other word that no reading of the
+    whole word fits (لَأَنْتُمْ أَشَدُّ رَهْبَةً: the dictionary has only لِ+ a verb) is that لام too: the
+    jarr لام takes a fatha only before a pronoun joined on (لَكَ), which the dictionary reads whole
+    (closed_words ghair_amila_other `_fatha_lam`)."""
+    lam = book_map("ghair_amila_other", "khabar_lam")
+    marked = letters(typed)
+    if not (marked and marked[0][0] == lam["lam"] and not marked[0][1] - {"َ"}):
+        return None
+    said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
+    rest = typed[len(said):]
+    whole = [r for r in (_ranked([typed], None) or [[]])[0] if _agreeing(typed, [r])]
+    if any(strip_diacritics(rest) in book_words(family) for family in lam["onto"]):
+        if any(r.get("pos") == "verb" for r in whole):
+            return None
+    elif whole:
+        return None
+    ranked = _rest_readings(rest, disambiguator)
+    return _joined_onto(said, _reading(rest, ranked), "EMPHATIC_PART", prc1="la_emph") if _agreeing(rest, ranked) else None
+
+
+def _jarred_ma(typed: str) -> dict | None:
+    """فِيمَ، عَمَّ، إِلَامَ، لِمَاذَا: the ما that asks, jarred, is written with its حرف جر as one word (closed_words
+    istifham `jarred_ma`). CAMeL splits some (فِيمَ) and files the rest as another word (عَمَّ a verb, إِلَامَ "pains",
+    لِمَ unsplit), so the two are read here, as CAMeL writes بِمَ (a one-letter حرف جر before) and فِيمَ (a word, ما after)."""
+    bare = strip_diacritics(typed)
+    if not (pair := book_map("istifham", "jarred_ma").get(bare)) or (mark := book_map("istifham", "jarred_ma_marked").get(bare)) and mark not in typed:
+        return None
+    jar, ma, *proclitic = pair
+    shared = {"diac": typed, "prc2": "0", "prc3": "0", "per": "na", "asp": "na", "vox": "na", "mod": "na", "num": "na", "gen": "na",
+              "catib6": "PRT+NOM", "ud": "ADP+PRON", "root": "م.#", "bw": f"{jar}/PREP+{ma}/INTERROG_PART",
+              "gloss": book_map("istifham", "jarred_ma_gloss").get(bare, "")}
+    if proclitic:
+        return {**shared, "lex": strip_diacritics(ma), "pos": "pron_interrog", "atbtok": f"{jar}+_{ma}", "prc0": "0", "prc1": proclitic[0],
+                "enc0": "0", "stt": "i", "cas": "u"}
+    return {**shared, "lex": jar, "pos": "prep", "atbtok": f"{jar}_+{ma}", "prc0": "na", "prc1": "0", "enc0": "ma_interrog", "stt": "na", "cas": "na"}
+
+
+def _rest_readings(rest: str, disambiguator=None) -> list[dict]:
+    """The readings of what is left once a one-letter particle is off: the word itself, not an
+    abbreviation spelled like it (فِي)."""
+    return [r for r in (_ranked([rest], disambiguator) or [[]])[0] if r.get("pos") != "abbrev"]
+
+
+def _joined_noun(typed: str, letter: str, tag: str, **proclitic) -> dict | None:
+    """وَأَدْوَمُ: the noun sarf's shapes read once a one-letter particle is off (noun_reader takes ال,
+    a ة and a pronoun, not a particle before them), the particle put back."""
+    marked = letters(typed)
+    if not (marked and marked[0][0] == letter):
+        return None
+    said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
+    noun = noun_reader.reading_of(typed[len(said):])
+    return _joined_onto(said, noun, tag, **proclitic) if noun else None
+
+
+def _joined_onto(said: str, found: dict, tag: str, **proclitic) -> dict:
+    """A reading with a one-letter particle put back in front of it, as CAMeL writes a وَ (وَ+_ذاهِب)."""
+    return {**found, "diac": said + found.get("diac", ""), "atbtok": f"{said}+_" + found.get("atbtok", ""),
             "catib6": "PRT+" + found.get("catib6", ""), "ud": "PART+" + found.get("ud", ""),
-            "bw": f"{asked}/INTERROG_PART+" + found.get("bw", ""), "prc3": "Aa_ques",
-            "pattern": asked + found.get("pattern", "")}
+            "bw": f"{said}/{tag}+" + found.get("bw", ""), "pattern": said + found.get("pattern", ""), **proclitic}
+
+
+def _added(reading: dict, typed: str) -> int:
+    """The shaddas a reading puts on that the typed word lacks: letters the writing does not show."""
+    return reading.get("diac", "").count("ّ") - typed.count("ّ")
+
+
+DOER = ("per", "gen", "num")
+# the one-letter joining particles, and CAMeL's name for each (prc2)
+_JOINING = (("و", "wa"), ("ف", "fa"))
+
+
+def _same(reading: dict, said: dict, keys: tuple[str, ...]) -> bool:
+    """The reading has what sarf's table said of these (its person, gender, number, verb), where both said one;
+    a verb by its letters, the two spelling its last vowel otherwise (ضَرَب، ضَرَبَ). A reading that leaves one
+    unsaid does not contradict it (the dictionary's أَلَسْتُ is ليس, its number left "-")."""
+    return all(bare_letters(reading.get(key) or "") == bare_letters(said[key]) for key in keys
+               if "-" not in (said.get(key, "-"), reading.get(key, "-")))
 
 
 def _agreeing(typed: str, ranked: list[dict]) -> bool:
@@ -756,9 +1047,10 @@ def analyze_sentence(sentence: str, picks: list[dict] | None = None) -> list[dic
 
     if _CAMEL_AVAILABLE:
         picks = picks or pick(tokens)
+        tokens = as_said(tokens, picks)
         before = ["", *map(strip_diacritics, tokens[:-1])]
-        return [_analysis_dict_from_camel(t, a, b, n) if a else analyze_word(t)
-                for t, a, b, n in zip(tokens, picks, before, [*tokens[1:], ""], strict=True)]
+        return [_analysis_dict_from_camel(t, a, b, n, r.get("asp", "")) if a else analyze_word(t)
+                for t, a, b, n, r in zip(tokens, picks, before, [*tokens[1:], ""], [*picks[1:], {}], strict=True)]
 
     if _QALSADI_AVAILABLE:
         return [_analyze_qalsadi(t) for t in tokens]

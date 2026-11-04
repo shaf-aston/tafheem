@@ -6,6 +6,8 @@ import { firstThese, idle, inTurn } from './lib/api/warm'
 import { useHealth } from './lib/api/useHealth'
 import { moodFrom } from './lib/shell/mood'
 import { TOOLS } from './lib/nav/tools'
+import { replay } from './lib/motion/replay'
+import { setHeaderHeight } from './lib/shell/headerHeight'
 import { useTabNavigation } from './lib/nav/useTabNavigation'
 import { useTools } from './lib/nav/useTools'
 
@@ -14,7 +16,7 @@ import BackendBanner from './components/shell/BackendBanner'
 import TabPane from './components/shell/TabPane'
 import CursorLight from './components/shell/CursorLight'
 import CommandBar from './components/shell/CommandBar'
-import Mascot from './components/ui/Mascot'
+import Mascot from './components/ui/display/Mascot'
 import ProfileButton from './components/profile/ProfileButton'
 import SettingsPanel from './components/shell/SettingsPanel'
 import SpatialHome from './components/shell/SpatialHome'
@@ -22,8 +24,9 @@ import SourceFooter from './components/shell/SourceFooter'
 import TabStrip from './components/shell/TabStrip'
 import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
+import InstallButton from './components/shell/InstallButton'
 import SectionsMenu from './components/shell/SectionsMenu'
-import ArabicText from './components/ui/ArabicText'
+import ArabicText from './components/ui/text/ArabicText'
 
 const queryClient = new QueryClient({
   // The data is fixed for the life of the backend: keep every answer, so a
@@ -57,17 +60,19 @@ function AppContent() {
   // The bar's tabs go first: on a slow phone the queue takes seconds, and a tab
   // that has to wait its turn opened in ~430ms where one fetched ahead took ~160ms.
   const openingDock = useRef(dock)
+  // The tab the page opened on fetches its data now, beside its code, not after it.
+  const firstTab = useRef(activeTab)
+  useEffect(() => { openTab(firstTab.current) }, [])
   useEffect(() => {
     const order = firstThese(TABS.map((t) => t.id), openingDock.current)
     idle(() => inTurn(order.map((id) => () => openTab(id))))
   }, [])
 
   // The header is pinned, so anything else pinned sits under it: its height is
-  // published as --app-header-h, kept true as it wraps on a narrow screen.
+  // published as --app-header-h (lib/shell/headerHeight), kept true as it wraps on a narrow screen.
   const pinHeader = useCallback((node) => {
     if (!node) return
-    const root = document.documentElement
-    new ResizeObserver(() => root.style.setProperty('--app-header-h', `${node.offsetHeight}px`)).observe(node)
+    new ResizeObserver(() => setHeaderHeight(node.offsetHeight)).observe(node)
   }, [])
 
   return (
@@ -125,12 +130,13 @@ function AppContent() {
           </div>
 
           {/* Sits midway between the tools and the search, matching the colophon at the foot. */}
-          <ArabicText as="p" className="phone-hide whitespace-nowrap">فَفِرُّوا إِلَى اللَّهِ</ArabicText>
+          <ArabicText as="p" className="phone-hide whitespace-nowrap gold-sheen" onPointerEnter={(e) => replay(e.currentTarget)}>فَفِرُّوا إِلَى اللَّهِ</ArabicText>
 
           <div className="flex items-center gap-2 min-w-0">
             {/* Home has the command line and the tabs on a phone; the header keeps pen, profile, gear. */}
             <div className="phone-hide min-w-0"><CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} /></div>
             <ProfileButton />
+            <InstallButton />
             <button
               type="button"
               onClick={() => setSettingsOpen(true)}
@@ -158,7 +164,7 @@ function AppContent() {
 
       {/* The tabpanel role sits on the inner element, not on <main>: overriding
           main's own role would leave the page with no main landmark to skip to. */}
-      <main id="main" tabIndex={-1} className="shell pt-4 pb-8 sm:pt-5 glass rounded-[var(--radius-lg)] focus:outline-none">
+      <main id="main" tabIndex={-1} className="shell pt-4 pb-8 sm:pt-5 glass pane-fill rounded-[var(--radius-lg)] focus:outline-none">
         <div role="tabpanel" id="tabpanel" aria-labelledby={`tab-${activeTab}`}>
           {/* The last few tabs stay alive, hidden (React's Activity): a switch
               back shows the panel as it was, with no fetch, no fade and no

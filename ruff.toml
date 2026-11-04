@@ -1,0 +1,11 @@
+# The only Python lint the repo runs: real mistakes (syntax errors, unused or
+# undefined names), nothing about style. Facades (__init__.py) import names to
+# re-export them, so an "unused" import there is the point.
+target-version = "py313"
+extend-exclude = ["frontend", "backend/data/parser"]
+
+[lint]
+select = ["E9", "F"]
+
+[lint.per-file-ignores]
+"__init__.py" = ["F401"]

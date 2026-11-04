@@ -70,7 +70,10 @@ def test_the_khabar_of_ma_and_laysa_behind_an_extra_ba(sentence, word, role):
 @pytest.mark.parametrize("sentence, word, role", [("مَا زَيْدٌ بِالْبَيْتِ", "بِالْبَيْتِ", "مجرور"),
                                                   ("مَا زَيْدٌ كَأَسَدٍ", "كَأَسَدٍ", "مجرور"),  # the كاف is no extra باء
                                                   ("مَا أَنْتَ إِلَّا بَشَرٌ", "أَنْتَ", "مبتدأ"),
-                                                  ("مَا أَحْسَنَ زَيْدًا", "زَيْدًا", "مفعول به")])
+                                                  ("مَا أَحْسَنَ زَيْدًا", "زَيْدًا", "مفعول به"),
+                                                  # a name in jarr by its fatha after a مضاف is no khabar in nasb
+                                                  ("مَا عِقَابُ إِبْرَاهِيمَ", "إِبْرَاهِيمَ", "مضاف إليه"),
+                                                  ("مَا ابْنُ زَيْدٍ قَائِمًا", "قَائِمًا", "خبر كان")])
 def test_ma_governs_nothing_without_its_khabar(sentence, word, role):
     assert card(sentence, word)["role"] == role
 

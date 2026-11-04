@@ -7,9 +7,9 @@ import { useState } from 'react'
 import { ahead } from '../../lib/api/warm'
 import { useDrag } from '../../lib/shell/useDrag'
 import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
-import ArabicText from '../ui/ArabicText'
-import TabGroups from '../ui/TabGroups'
-import Tile from '../ui/Tile'
+import ArabicText from '../ui/text/ArabicText'
+import TabGroups from '../ui/inputs/TabGroups'
+import Tile from '../ui/display/Tile'
 import DockSlots from './DockSlots'
 
 // `dock` is the ids on the phone bar, `onDock(id, slot)` changes it (lib/nav/dock.js);
@@ -40,7 +40,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
       onClose={close}
       onClick={closeOnBackdrop(close)}
       aria-labelledby="sections-title"
-      className="sections-menu m-auto p-0 bg-transparent max-w-[min(var(--sheet-wide),92vw)] w-full"
+      className="phone-sheet m-auto p-0 bg-transparent max-w-[min(var(--sheet-wide),92vw)] w-full"
     >
       <div
         className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]

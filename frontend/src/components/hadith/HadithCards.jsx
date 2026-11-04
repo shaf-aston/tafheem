@@ -9,11 +9,11 @@
  * because the green dot by the collection's name says it once for all of them.
  * Without it (search, Starred) hadiths from several collections meet, so the
  * label names the collection and every card carries its grading.
- * Narrators come from each card's own book (lib/useNarrators), so names are tappable and the
- * family fold shows in a book, in search and in Starred alike. So do the weak points: a hadith
- * whose chain has any carries one quiet "2 weak points" chip that opens the drawing, where each
- * weak narrator is marked and ranked and each doubtful link lettered (lib/weak); a hadith that classical
- * books speak of carries a "Scholars" chip to the same drawing, where their words are quoted.
+ * Narrators come from each card's own book (hadith/useNarrators), so names are tappable and the
+ * family fold shows in a book, in search and in Starred alike. Each hadith with a chain carries one quiet
+ * "Chain" chip ("Chain · 2 weak" where it has weak points) that opens the sheet (hadith/chain/ChainSheet): the chain drawn,
+ * its weak points ranked and doubtful links lettered (hadith/chain/weak), what classical books say of it and the words, one
+ * tab each; a hadith with no chain that those books speak of carries "Verdicts" to the same sheet.
  * Under each one's words, its reference as sunnah.com prints it (hadith/HadithReference).
  * Side by side (English left, Arabic right, as sunnah.com sets them) unless the reader turned it
  * off; a book in two columns, or a phone, stacks them.
@@ -21,23 +21,23 @@
  */
 import { useState } from 'react'
 
-import { useHadithCollections } from '../../lib/hadith/useHadithCollections'
-import { useHadithFavorites } from '../../lib/hadith/useHadithFavorites'
-import { useKin, useNarrators, useWeakNotes } from '../../lib/hadith/useNarrators'
-import { useHideChain } from '../../lib/hadith/useHideChain'
-import { useSideBySide } from '../../lib/hadith/useSideBySide'
+import { useHadithCollections } from './useHadithCollections'
+import { useHadithFavorites } from './favorites/useHadithFavorites'
+import { useKin, useNarrators, useWeakNotes } from './useNarrators'
+import { useHideChain } from './useHideChain'
+import { useSideBySide } from './useSideBySide'
 import { drawnChain } from '../../lib/hadith/rijal'
-import { weakLinks, weakPoints } from '../../lib/hadith/weak'
+import { weakLinks, weakPoints } from './chain/weak'
 
-import ChainSheet from './ChainSheet'
-import Chip from '../ui/Chip'
-import CopyButton from '../ui/CopyButton'
-import FavoriteStar from './FavoriteStar'
+import ChainSheet from './chain/ChainSheet'
+import Chip from '../ui/inputs/Chip'
+import CopyButton from '../ui/buttons/CopyButton'
+import FavoriteStar from './favorites/FavoriteStar'
 import GradeMark from './GradeMark'
 import HadithReference from './HadithReference'
-import HadithText from '../ui/HadithText'
-import NarrationFamily from './NarrationFamily'
-import NarratorSheet from './NarratorSheet'
+import HadithText from '../ui/text/HadithText'
+import NarrationFamily from './family/NarrationFamily'
+import NarratorSheet from './narrators/NarratorSheet'
 export default function HadithCards({ items, accent, collection, columns = false, onNarrator, onHadith }) {
   const [hideChain] = useHideChain()
   const { isFavorite, toggle } = useHadithFavorites()
@@ -104,31 +104,10 @@ export default function HadithCards({ items, accent, collection, columns = false
                   {!(collection && of(collection).sahih) && (
                     <GradeMark grades={h.grades} sahihBy={of(h.collection).sahih ? of(h.collection).name : null} cite={h.cite} />
                   )}
-                  {points > 0 && (
+                  {(h.cut || rulings.length > 0) && (
                     <Chip quiet tinted accent={accent} onClick={() => setDrawn(h)}>
-                      {points} weak point{points > 1 && 's'}
+                      {h.cut ? (points > 0 ? `Chain · ${points} weak` : 'Chain') : 'Verdicts'}
                     </Chip>
-                  )}
-                  {rulings.length > 0 && (
-                    <Chip quiet tinted accent={accent} onClick={() => setDrawn(h)}>
-                      Scholars
-                    </Chip>
-                  )}
-                  {h.cut && (
-                    <button
-                      type="button"
-                      onClick={() => setDrawn(h)}
-                      title="Draw the chain"
-                      aria-label="Draw the chain"
-                      className="press tap shrink-0 grid place-items-center text-[var(--text-faint)] hover:text-[var(--text-dim)] transition-colors"
-                    >
-                      <svg aria-hidden="true" viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                        <circle cx="12" cy="4" r="2" />
-                        <circle cx="6" cy="20" r="2" />
-                        <circle cx="18" cy="20" r="2" />
-                        <path d="M12 6v5M12 11l-6 7M12 11l6 7" />
-                      </svg>
-                    </button>
                   )}
                   <CopyButton small label="Copy" text={[h.arabic, h.english].filter(Boolean).join('\n\n')} />
                   <FavoriteStar on={isFavorite(h)} onClick={() => toggle(h)} />

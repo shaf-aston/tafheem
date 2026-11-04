@@ -1,13 +1,23 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { batchOf } from './journal'
-import {
-  allowanceLeft, asksPerMinute, byPlace, createRecitingSession, cutReason, keepRecording, problemOf, queueCheck, readyToSend, recentAsks, settledScores, spokeSince, surer,
-} from './recitingSession'
+import { ayahAt } from '../memorise/memorise'
+import { follow, SAID } from './follow'
+import { allowanceLeft, asksPerMinute, cutReason, readyToSend, recentAsks, spokeSince } from './pacing'
+import { createRecitingSession, keepRecording, problemOf, queueCheck } from './recitingSession'
+import { byPlace, settledScores, surer } from './scores'
 
-const ayahs = [{ key: '1:6', from: 17, count: 3 }, { key: '1:7', from: 20, count: 9 }]
+const ayahs = [ayahAt('1:6', [...'ابت'], 17), ayahAt('1:7', [...'ثجحخدذرزس'], 20)]
 
 describe('sureness by page place', () => {
+  it('skips lone pause signs, which the server never scores', () => {
+    // 2:5 as the page splits it: a pause sign stands after رَّبِّهِمۡ.
+    const page = 'أُوْلَٰٓئِكَ عَلَىٰ هُدٗى مِّن رَّبِّهِمۡ وَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ'.split(' ')
+    const placed = byPlace({ '2:5': [1, 1, 1, 1, 0.1, 1, 1, 1] }, [ayahAt('2:5', [...page.slice(0, 5), 'ۖ', ...page.slice(5)], 0)])
+    expect(placed[4].sure).toBe(0.1)
+    expect(placed[5]).toBeUndefined()
+    expect(placed[8].sure).toBe(1)
+  })
+
   it('places each ayah at its words and leaves unreached and mismatched words out', () => {
     expect(byPlace({ '1:6': [0.2, null, 1], '1:7': [1, 1] }, ayahs, {}, 3)).toEqual({ 17: { sure: 0.2, take: 3 }, 19: { sure: 1, take: 3 } })
   })
@@ -238,30 +248,6 @@ describe('queueCheck cap', () => {
   })
 })
 
-describe('journal batchOf', () => {
-  it('takes nothing from an empty queue', () => {
-    expect(batchOf([], 20)).toEqual([])
-  })
-
-  it('takes every event when under the max', () => {
-    const queue = [1, 2, 3]
-    expect(batchOf(queue, 20)).toEqual([1, 2, 3])
-  })
-
-  it('takes exactly the max when the queue is exactly that long', () => {
-    const queue = Array.from({ length: 20 }, (_, i) => i)
-    expect(batchOf(queue, 20)).toEqual(queue)
-  })
-
-  it('takes only the first max when the queue is longer, keeping an exact duplicate event rather than folding it away', () => {
-    const queue = ['dup', 'dup', ...Array.from({ length: 19 }, (_, i) => i)]
-    const batch = batchOf(queue, 20)
-    expect(batch).toHaveLength(20)
-    expect(batch.filter((e) => e === 'dup')).toEqual(['dup', 'dup'])
-    expect(batch).not.toContain(18) // the 21st event, left for the next batch
-  })
-})
-
 /**
  * The whole loop, driven with a scripted recorder and a scripted ear. Each case
  * is a bug this loop has had: which recording an answer belongs to, and what
@@ -356,22 +342,46 @@ describe('a reciting session', () => {
     expect(h.session.view().now.words).toEqual([])
   })
 
-  it('asks for the trial ear on the check only, never on the reading, when the page says so', async () => {
+  it('keeps a transcript of every reading: repeats, off-page words, one entry a recording, cleared on a turn', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    const said = () => h.session.view().transcript.flatMap((r) => r.words)
+    await h.session.start()
+    await h.midPhrase()
+    await h.answer(0, 'الحمد لله')
+    // A newer reading of the same recording replaces its entry, not adds one.
+    await h.pause()
+    await h.answer(1, 'الحمد لله رب')
+    expect(said()).toEqual(['الحمد', 'لله', 'رب'])
+    // The same phrase again in the next recording appears again, undeduped.
+    await h.midPhrase()
+    await h.answer(2, 'الحمد لله رب')
+    expect(said()).toEqual(['الحمد', 'لله', 'رب', 'الحمد', 'لله', 'رب'])
+    // A reading that is not of this page is still heard.
+    await h.pause()
+    await h.answer(3, 'موسيقى هادئة')
+    // Said twice, so heard twice: lining up reads it as going back (follow.js).
+    expect(h.heard()).toEqual(['الحمد', 'لله', 'رب', 'الحمد', 'لله', 'رب'])
+    expect(said().slice(-2)).toEqual(['موسيقى', 'هادئة'])
+    h.session.turn([])
+    expect(said()).toEqual([])
+  })
+
+  it('asks for the tuned ear on the check only, never on the reading, when the page says so', async () => {
+    const h = harness()
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     h.speak()
     await h.pause()
     await h.answer(0, 'الحمد لله رب العالمين')
-    expect(h.readings[0].options.trial).toBeUndefined()
-    expect(h.checks[0].options.trial).toBeFalsy()
-    h.session.update({ ...h.page, trial: true })
+    expect(h.readings[0].options.tuned).toBeUndefined()
+    expect(h.checks[0].options.tuned).toBeFalsy()
+    h.session.update({ ...h.page, tuned: true })
     await h.midPhrase()
     await h.answer(1, 'الحمد لله رب العالمين الرحمن')
-    expect(h.readings[1].options.trial).toBeUndefined()
+    expect(h.readings[1].options.tuned).toBeUndefined()
     h.checks[0].answer({ '1:2': [1, 1, 1, 1] })
     await h.wait(0)
-    expect(h.checks.at(-1).options.trial).toBe(true)
+    expect(h.checks.at(-1).options.tuned).toBe(true)
   })
 
   it('gives up on a reading still out when the phrase ends, and keeps the one taken at the pause', async () => {
@@ -386,7 +396,7 @@ describe('a reciting session', () => {
     expect(h.heard()).toEqual(PAGE.slice(0, 4))
   })
 
-  it('joins two phrases without saying the overlap twice', async () => {
+  it('keeps a word heard in two recordings, which lining up reads as said once', async () => {
     const h = harness()
     await h.session.start()
     await h.midPhrase()
@@ -397,7 +407,9 @@ describe('a reciting session', () => {
     await h.answer(2, 'العالمين الرحمن الرحيم')
     await h.pause()
     await h.answer(3, 'العالمين الرحمن الرحيم')
-    expect(h.session.view().before).toEqual(PAGE)
+    const { before } = h.session.view()
+    expect(before).toEqual([...PAGE.slice(0, 4), ...PAGE.slice(3)])
+    expect(follow(PAGE, before, { ended: true }).words.every((w) => w.state === SAID)).toBe(true)
   })
 
   it('lets the microphone go at once on stop, and still keeps the last reading', async () => {
@@ -440,7 +452,7 @@ describe('a reciting session', () => {
 
   it('drops a sureness answer about the old place that arrives after a jump', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     h.speak()
     await h.pause()
@@ -455,7 +467,7 @@ describe('a reciting session', () => {
 
   it('turns the page without cutting the recording, and carries on from what was said after its last word', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     h.speak()
     await h.pause()
@@ -481,7 +493,7 @@ describe('a reciting session', () => {
 
   it('keeps the recording that was going when the page turned, and none of its old-page scores', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     h.speak()
     await h.pause()
@@ -509,7 +521,7 @@ describe('a reciting session', () => {
 
   it('asks no more sureness checks about a page that is done, so they cannot hold its turn up', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     h.speak()
     await h.pause()
@@ -524,7 +536,7 @@ describe('a reciting session', () => {
 
   it('keeps a check that answers after the page was found done, so its last ayah is still weighed', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     h.speak()
     await h.pause()
@@ -537,7 +549,7 @@ describe('a reciting session', () => {
 
   it("takes the server's place: sure elsewhere moves nothing onto the page, home clears it", async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     await h.midPhrase()
     expect(h.readings[0].options.near).toBe('1:2-1:2')
@@ -561,7 +573,7 @@ describe('a reciting session', () => {
 
   it('sends an unsure reading in front of the next so it is placed with it, and a home answer clears it', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     const unsure = { surah: 2, ayah: 38, sure: false, home: false }
     await h.session.start()
     await h.midPhrase()
@@ -630,7 +642,7 @@ describe('a reciting session', () => {
 
   it('drops an early score the newer reading of the same recording did not give, so it cannot turn a word red', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     await h.midPhrase()
     await h.answer(0, 'الحمد لله')
@@ -646,7 +658,7 @@ describe('a reciting session', () => {
 
   it('files a sureness answer that arrives after the fold under the words already kept', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     h.speak()
     await h.pause()
@@ -662,7 +674,7 @@ describe('a reciting session', () => {
 
   it('keeps the weak piece and second of a word with the recording its mark names', async () => {
     const h = harness()
-    h.page.ayahs = [{ key: '1:2', from: 0, count: 4 }]
+    h.page.ayahs = [{ key: '1:2', from: 0, count: 4, spoken: [0, 1, 2, 3] }]
     await h.session.start()
     h.speak()
     await h.pause()

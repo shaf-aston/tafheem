@@ -19,11 +19,10 @@ import pytest
 from backend.models.analyze import ROLE_KEYS, WordAnalysis
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
-from backend.services.nahw import rule_engine
 from backend.services.nahw import syntax
 from backend.services.text.arabic_text import words
 from backend.services.nahw.book import term_ar
-from tests.nahw_helpers import needs_parser
+from tests.nahw_helpers import analyze, cards, needs_parser, tree_roles
 
 pytestmark = needs_parser
 
@@ -152,6 +151,69 @@ def test_a_noun_with_its_own_pronoun_is_no_command(sentence: str, role: str):
     assert word["role"].startswith(role), word
 
 
+@pytest.mark.parametrize("sentence, at, want", [
+    # a noun read with a sign of the noun is never a command (Ibn Aqil V1 p15: بالجر والتنوين والندا وأل)
+    ("الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", 3, "مضاف إليه"),
+    ("الشُّكْرُ لِلَّهِ رَبِّ", 2, "صفة"),  # no sentence of asking describes (V3 p198)
+    ("سُبْحَانَ رَبِّ الْعَالَمِينَ", 1, "مضاف إليه"),
+    ("يَا رَبِّ", 1, "منادى"),
+    ("يَا رَبِّ اغْفِرْ لِي", 1, "منادى"),
+    ("رَبِّ ابْنَكَ", 0, "فعل"),  # nearest case: opening the sentence, it is the command "raise"
+    ("يَا زَيْدُ رَبِّ ابْنَكَ", 2, "فعل"),  # nearest case: in jarr after زيدُ, it is no صفة of it
+    ("أَلَا يَا اسْجُدُوا لِلَّهِ", 2, "فعل"),  # nearest case: after يا, a word read as no noun
+])
+def test_a_noun_with_a_sign_of_the_noun_is_no_command(sentence: str, at: int, want: str):
+    assert cards(sentence)[at]["role"] == want
+
+
+@pytest.mark.parametrize("sentence, want", [
+    # an elative takes no object (Ashmuni V2 p312: أجمعوا على أنه لا ينصب المفعول به): its nasb noun is its تمييز
+    ("زَيْدٌ أَكْبَرُ مِنْكَ سِنًّا", "تمييز"),
+    ("هُوَ أَكْبَرُ مِنْكَ سِنًّا", "تمييز"),
+    ("زَيْدٌ ضَارِبٌ بَكْرًا", "مفعول به"),  # nearest case: a participle works as its verb does
+])
+def test_an_elative_takes_no_object(sentence: str, want: str):
+    assert cards(sentence)[-1]["role"] == want
+
+
+@pytest.mark.parametrize("sentence, want", [
+    # with no vowel typed, the sentence vouches for the command: the dictionary has no reading at all
+    ("اكتبي درسك", ["فعل", "مفعول به"]),
+    ("يا سعاد اكتبي درسك", ["حرف", "منادى", "فعل", "مفعول به"]),
+    # or the parser hung an object on what the dictionary read as an elative, which takes none
+    ("ارفعي صوتك", ["فعل", "مفعول به"]),
+    ("يا سعاد ارفعي صوتك", ["حرف", "منادى", "فعل", "مفعول به"]),
+    ("أخي أكبر مني", ["مبتدأ", "خبر", "حرف جر"]),  # nearest case: an elative with no object stays one
+    ("عمي كريم", ["مبتدأ", "خبر"]),  # nearest case: a noun's own pronoun, hung as its مضاف إليه
+])
+def test_a_bare_command_the_sentence_vouches_for(sentence: str, want: str):
+    assert [c["role"] for c in cards(sentence)] == want
+
+
+@pytest.mark.parametrize("sentence, sign, said", [
+    ("قُومِي", "مبني على حذف النون", "و«ي» ضمير متصل مبني في محل رفع فاعل"),  # the ي is its doer, said once
+    ("ارْفَعِي صَوْتَكِ", "مبني على حذف النون", "و«ي» ضمير متصل مبني في محل رفع فاعل"),
+    ("اُكْتُبِي", "مبني على حذف النون", "وفاعله ضمير متصل (أنتِ)"),  # nearest case: the ي kept inside the verb
+    ("أَكْرِمْنِي", "مبني على السكون", "و«ني» ضمير متصل مبني في محل نصب مفعول به"),  # nearest case: an object
+])
+def test_a_command_to_a_woman_is_built_on_dropping_the_nun(sentence: str, sign: str, said: str):
+    verb = cards(sentence)[0]
+    assert verb["sign"] == sign
+    assert said in verb["reason"] and verb["reason"].count("فاعل") == 1  # one doer, said once
+
+
+@pytest.mark.parametrize("sentence, sign", [
+    ("اُكْتُبُوهُ", "مبني على حذف النون"),  # the plural's alef drops before a pronoun (Hamʿ V3 p514)
+    ("اُكْتُبُوا", "مبني على حذف النون"),  # nearest case: no pronoun, the alef written
+    ("ضَرَبُوهُ", "مبني على الضم"),
+    ("رَمَوْهُ", "مبني على الضم"),
+    ("ضَرَبُوا", "مبني على الضم"),  # nearest case: no pronoun
+    ("ضَرَبَهُ", "مبني على الفتح"),  # nearest case: one doer, no plural's و
+])
+def test_a_verb_with_the_plurals_waw_before_a_pronoun(sentence: str, sign: str):
+    assert cards(sentence)[0]["sign"] == sign
+
+
 @pytest.mark.parametrize("sentence, want", [
     ("سَرَّنِي مَا صَنَعْتَهُ", ["فعل", "فاعل", "فعل"]),  # ما after the verb's own pronoun is its doer
     ("مَا رَأَيْتُهُ", ["حرف", "فعل"]),                    # nearest case: ما opening the sentence negates
@@ -161,9 +223,24 @@ def test_a_noun_with_its_own_pronoun_is_no_command(sentence: str, role: str):
     ("جَاءَ زَيْدٌ رَاكِبًا", ["فعل", "فاعل", "حال"]),  # nearest case: indefinite, a حال
     ("كَانَ النَّاسُ أُمَّةً وَاحِدَةً", ["فعل", "اسم كان", "خبر كان", "صفة"]),
     ("إِنَّ مِنَ الْبَيَانِ لَسِحْرًا", ["حرف", "حرف جر", "مجرور", "اسم إن"]),  # the jar-majrur stands first as the khabar
+    ("إِنَّ فِي ذَلِكَ لَآيَةً", ["حرف", "حرف جر", "مجرور", "اسم إن"]),  # إنّ has no object: the noun hung as one is its اسم
     ("عَادَ الْوَلَدُ مِنَ الْمَدْرَسَةِ فَرِحاً", ["فعل", "فاعل", "حرف جر", "مجرور", "حال"]),
     ("محمد بن عبد الله نبي كريم", ["مبتدأ", "صفة", "مضاف إليه", "مضاف إليه", "خبر", "صفة"]),
     ("زَيْدٌ ضَارِبٌ بَكْرًا", ["مبتدأ", "خبر", "مفعول به"]),  # no ال after a name: the khabar
+    ("زَيْدٌ صَاحِبُ مَالٍ كَثِيرٍ", ["مبتدأ", "خبر", "مضاف إليه", "صفة"]),  # added to an indefinite: still indefinite
+    ("زَيْدٌ صَاحِبُ الْمَالِ كَرِيمٌ", ["مبتدأ", "صفة", "مضاف إليه", "خبر"]),  # nearest case: added to a definite, a صفة
+    ("زَيْدٌ صَاحِبُ الْمَالِ", ["مبتدأ", "خبر", "مضاف إليه"]),  # both definite: the first the مبتدأ (Ibn Aqil V1 p232: زيد أخوك)
+    ("أَنَا ضَارِبٌ زَيْدًا", ["مبتدأ", "خبر", "مفعول به"]),  # the participle works as its verb (V3 p106): no verb read
+    ("زيد جالس عمرا", ["مبتدأ", "فعل", "مفعول به"]),  # nearest case: no tanween written, جَالَسَ the verb
+    ("جَاءُوا مُسْرِعِينَ", ["فعل", "حال"]),  # the dictionary's past, and the plural read off its ending
+    ("قَاتِلُوا مُسْرِعِينَ", ["فعل", "حال"]),  # a command no less
+    ("مَرَرْتُ بِرِجَالٍ مُسْرِعِينَ", ["فعل", "مجرور", "صفة"]),  # nearest case: after an indefinite plural, its صفة
+    ("إِنَّ الطُّلَّابَ مُسْرِعُونَ", ["حرف", "اسم إن", "خبر إن"]),
+    ("حضر الطلاب الا زيدا", ["فعل", "فاعل", "حرف", "مستثنى"]),
+    # a command to a woman with its object written on: the ي before هِ is her, no noun's ending
+    ("اُكْتُبِيهِ الْآنَ", ["فعل", "مفعول فيه"]),
+    # a time word its own verb hangs on is the main verb's ظرف, however the parser links it (as a خبر here)
+    ("كُلَّمَا جَاءَ زَيْدٌ أَكْرَمْتُهُ", ["مفعول فيه", "فعل", "فاعل", "فعل"]),  # bare الا is إِلَّا, not the name آلًا
     ("إِنَّ الْمُهَنْدِسَ الْعَجُوزَ نَشِيطٌ", ["حرف", "اسم إن", "صفة", "خبر إن"]),  # ال on both: it follows
     ("ابْتَاعَ الْخَبَّازُ صَاعًا شَعِيرًا", ["فعل", "فاعل", "مفعول به", "تمييز"]),  # after a measure
     ("اشْتَرَيْتُ رِطْلًا كَامِلًا", ["فعل", "مفعول به", "صفة"]),  # nearest case: an adjective after one
@@ -557,6 +634,7 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("مَنْ أَنْتَ", ["مبتدأ", "خبر"]),
     ("مَنْ هَذَا؟", ["مبتدأ", "خبر"]),
     ("مَنْ أَبُوكَ", ["مبتدأ", "خبر"]),
+    ("أَيُّكُمْ أَحْسَنُ عَمَلًا", ["مبتدأ", "خبر", "تمييز"]),  # أيّ filed with its pronoun unsplit
     ("قَالَ مَا اسْمُكَ", ["فعل", "مبتدأ", "خبر"]),
     ("يَا أَخِي مَا اسْمُكَ", ["حرف", "منادى", "مبتدأ", "خبر"]),
     ("وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ", ["مبتدأ", "فعل", "مبتدأ", "خبر", "مضاف إليه"]),  # a verb of informing, its second object a question
@@ -569,10 +647,62 @@ def test_the_wonder_form_is_told_by_its_shape_and_its_noun(sentence: str, expect
     ("مَا جَاءَ إِلَّا زَيْدٌ", ["حرف", "فعل", "حرف", "فاعل"]),
     ("مَنْ جَاءَ", ["مبتدأ", "فعل"]),
     ("مَنْ فِي الْبَيْتِ", ["مبتدأ", "حرف جر", "مجرور"]),
+    # ما with its khabar first, a جار ومجرور or ظرف, negates and its noun is the مبتدأ مؤخر
+    ("مَا فِي الدَّارِ أَحَدٌ", ["حرف", "حرف جر", "مجرور", "مبتدأ"]),
+    ("مَا فِيهِ عَيْبٌ", ["حرف", "حرف جر", "مبتدأ"]),
+    ("مَا عِنْدِي مَالٌ", ["حرف", "مفعول فيه", "مبتدأ"]),
+    ("مَا لَكَ عَلَيَّ سُلْطَانٌ", ["حرف", "حرف جر", "حرف جر", "مبتدأ"]),
+    ("وَمَا عِنْدَ اللَّهِ خَيْرٌ", ["مبتدأ", "مفعول فيه", "مضاف إليه", "خبر"]),
+    ("الَّذِي فِي الدَّارِ رَجُلٌ", ["مبتدأ", "حرف جر", "مجرور", "خبر"]),
+    # the parser hangs خير under the ظرف, which takes no subject: it is the relative's khabar
+    ("وَمَا عِنْدَ اللَّهِ خَيْرٌ وَأَبْقَى", ["مبتدأ", "مفعول فيه", "مضاف إليه", "خبر", "معطوف"]),
+    # the question hamza on a جار: the noun after it in jarr is its majrur, not a verb's (أَفِي "I fulfil")
+    ("أَفِي اللَّهِ شَكٌّ", ["حرف جر", "مجرور", "مبتدأ"]),
+    ("أَفِي بِعَهْدِي", ["فعل", "مجرور"]),
     ("إِنَّ مَا عِنْدَ اللَّهِ هُوَ خَيْرٌ لَكُمْ", ["حرف", "اسم إن", "مفعول فيه", "مضاف إليه", "مبتدأ", "خبر إن", "حرف جر"]),
 ])
 def test_a_question_word_heads_the_noun_after_it(sentence: str, expected: list[str]):
-    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
+    # the rules' own names: وَمَا أَدْرَاكَ مَا يَوْمُ الدِّينِ is an ayah, whose record names its roles vowelled
+    assert [w["role"] for w in iraab.analyze(sentence, recorded=False)["words"]] == expected
+
+
+@pytest.mark.parametrize("sentence, negates", [
+    ("مَا فِي الدَّارِ أَحَدٌ", True),
+    ("مَا عِنْدِي مَالٌ", True),
+    ("مَا فِي بَيْتِ زَيْدٍ أَحَدٌ", True),
+    ("مَا فِي الدَّارِ الْكَبِيرَةِ أَحَدٌ", True),
+    ("مَا فِي الدَّارِ", False),
+    ("وَمَا عِنْدَ اللَّهِ خَيْرٌ", False),
+    ("وَمَا عِنْدَ اللَّهِ بَاقٍ", False),
+])
+def test_ma_before_a_fronted_khabar_and_its_raf_noun_is_the_negation(sentence: str, negates: bool):
+    words = iraab.analyze(sentence)["words"]
+    assert ("النافية" in words[0]["reason"]) is negates
+    assert ("مبتدأ مؤخر" in words[-1]["reason"]) is negates
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    # أَبْقَى reads as the elative and as "and I remain": joined onto an elative, it is that elative
+    ("وَالْآخِرَةُ خَيْرٌ وَأَبْقَى", ["مبتدأ", "خبر", "معطوف"]),
+    ("هُوَ أَعْلَمُ وَأَحْكَمُ", ["مبتدأ", "خبر", "معطوف"]),
+    # one the dictionary lacks, read by sarf's shape once the و is off
+    ("الْآخِرَةُ أَبْقَى وَأَدْوَمُ", ["مبتدأ", "خبر", "معطوف"]),
+    # the typed vowels still choose (the past verb's fatha, the verb's damma), and a participle takes a verb
+    ("زَيْدٌ خَيْرٌ وَأَحْسَنَ إِلَيَّ", ["مبتدأ", "خبر", "فعل", "حرف جر"]),
+    ("زَيْدٌ قَائِمٌ وَأَدُومُ", ["مبتدأ", "خبر", "فعل"]),
+    ("زَيْدٌ قَائِمٌ وَأَبْقَى عَمْرًا", ["مبتدأ", "خبر", "فعل", "مفعول به"]),
+    # a verb is joined onto an active participle, which is like a verb (Ibn Aqil V3 p244)
+    ("زَيْدٌ قَائِمٌ وَأَبْقَى", ["مبتدأ", "خبر", "فعل"]),
+    ("هُوَ مُقِيمٌ وَأَبْقَى", ["مبتدأ", "خبر", "فعل"]),
+])
+def test_a_word_joined_onto_an_elative_is_an_elative(sentence: str, expected: list[str]):
+    assert [w["role"] for w in cards(sentence)] == expected
+
+
+@pytest.mark.parametrize("sentence, sign", [("أَيُّكُمْ أَحْسَنُ عَمَلًا", "ضمة"), ("أَيُّ الْأَعْمَالِ أَفْضَلُ", "ضمة"),
+                                            ("مَنْ أَبُوكَ", "مبني")])
+def test_ayy_alone_of_the_question_words_takes_a_case(sentence: str, sign: str):
+    assert iraab.analyze(sentence)["words"][0]["sign"].startswith(sign)
 
 
 @pytest.mark.parametrize("sentence, negations", [
@@ -648,6 +778,8 @@ def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: 
     ("أَعْطَى الرَّجُلُ الْفَقِيرَ دِرْهَمًا", ["فعل", "فاعل", "مفعول به", "مفعول به"]),
     # آتى takes two objects, so the second is never a حال
     ("لَا يُؤْتُونَ النَّاسَ نَقِيرًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),
+    # a command a noun reading had (آتٍ, one coming) is آتَى's: its second object no بدل of the first
+    ("آتِ ذَا الْقُرْبَى حَقَّهُ", ["فعل", "مفعول به", "مضاف إليه", "مفعول به"]),
     # nearest case: an indefinite word after one object stays the حال
     ("جَاءَ الرَّجُلُ ضَاحِكًا", ["فعل", "فاعل", "حال"])])
 def test_two_objects_of_a_verb_of_giving_are_both_objects_and_a_case_clash_is_no_naat(sentence: str, roles: list[str]):
@@ -677,6 +809,12 @@ def test_a_pronoun_on_a_present_verb_is_not_read_as_its_passive_vowel():
     # the fatha before كَ in أُكْرِمَكَ is the verb's nasb; يُكْرَمُ is the passive
     assert "مجهول" not in _read("إِذَنْ أُكْرِمَكَ")["words"][1]["reason"]
     assert "مجهول" in _read("يُكْرَمُ الضَّيْفُ")["words"][0]["reason"]
+
+
+def test_a_verb_whose_weak_last_letter_went_before_its_waw_is_read_by_the_letter_left():
+    # صَلَّى: the ى is gone before the waw of يُصَلُّونَ, whose damma is the active's
+    words = _read("فِي الْمَسْجِدِ رِجَالٌ يُصَلُّونَ")["words"]
+    assert words[-1]["role"] == "فعل" and "مجهول" not in words[-1]["reason"]
 
 
 @pytest.mark.parametrize("sentence, particle, verb", [
@@ -874,7 +1012,8 @@ def test_a_relative_after_a_command_is_its_object_and_its_sila_a_verb():
 def test_a_conditional_noun_before_laysa_is_its_mubtada_not_its_ism():
     assert _role("مَنْ ظَلَمَنَا فَلَيْسَ صَدِيقًا", 0) == "مبتدأ"  # ليس comes after it: it governs nothing before
     words = iraab.analyze("مَنْ كَذَبَ فَلَيْسَ صَادِقًا", recorded=False)["words"]
-    assert "اسم شرط" in words[0]["role"] and "كان" not in words[0]["role"] and "ليس" not in words[0]["role"]
+    # كذب has no object, so its hidden هو points back to مَنْ: the مبتدأ, called the conditional noun it is
+    assert words[0]["role"] == "مبتدأ" and words[0]["reason"].startswith("اسم شرط جازم")
 
 
 def test_a_form_four_command_is_a_verb_but_a_name_stays_a_name():
@@ -882,3 +1021,221 @@ def test_a_form_four_command_is_a_verb_but_a_name_stays_a_name():
     assert sign("أَكْرِمُوا الضَّيْفَ", 0) == sign("أَفْشُوا السَّلَامَ", 0) == "مبني على حذف النون"
     assert _role("جَاءَ أَحْمَدُ", 1) == "فاعل"
     assert _role("أَحْمَدْ", 0) != "فعل"  # a name in pause keeps its own vowels
+
+
+_DROPPED, _MEEM = "وحرف النداء محذوف تقديره يا", "والميم المشددة عوض عن حرف النداء المحذوف"
+
+
+@pytest.mark.parametrize("sentence, want", [
+    # a command and its object pronoun the dictionary has no reading of: اِهْدِنَا is هَدَى + نا
+    ("اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", ["فعل", "مفعول به", "صفة"]),
+    ("أَعْطِنَا كِتَابًا", ["فعل", "مفعول به"]),
+    ("زِدْنِي عِلْمًا", ["فعل", "مفعول به"]),
+])
+def test_a_command_with_its_object_pronoun_written_on(sentence: str, want: list):
+    assert [c["role"] for c in cards(sentence)] == want
+
+
+@pytest.mark.parametrize("sentence, at, role, said", [
+    # يا is left off before a called noun (Ibn Aqil V3 p256: عبد الله اركب)
+    ("رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً", 0, "منادى", _DROPPED),
+    ("رَبَّنَا اغْفِرْ لَنَا", 0, "منادى", _DROPPED),
+    ("عَبْدَ اللَّهِ ارْكَبْ", 0, "منادى", _DROPPED),
+    ("عَبْدَ بَيْتِ اللَّهِ ارْكَبْ", 0, "منادى", _DROPPED),  # the command after a chain of مضاف إليه
+    ("ربنا اِغْفِرْ لَنَا", 0, "منادى", _DROPPED),  # its case not typed: the command after it says it
+    ("رب العالمين اِغْفِرْ لِي", 0, "منادى", _DROPPED),  # the command after the مضاف إليه
+    ("رَبِّ اغْفِرْ لِي", 0, "منادى", _DROPPED),
+    ("رَبَّنَا ظَلَمْنَا أَنْفُسَنَا", 0, "منادى", _DROPPED),  # its verb has an object of its own: no job left for it
+    ("رَبَّنَا إِنَّنَا آمَنَّا", 0, "منادى", _DROPPED),  # nothing after إنّ works on a word before it
+    ("كِتَابَ زَيْدٍ قَرَأْتُ", 0, "مفعول به", None),  # nearest case: the verb has no other object
+    ("كِتَابَ زَيْدٍ قَرَأْتُ غِلَافَهُ", 0, "مفعول به", None),  # nearest case: busied with its pronoun (الاشتغال)
+    ("غُلَامَ زَيْدٍ أَعْطَيْتُ دِرْهَمًا", 0, "مفعول به", None),  # nearest case: a verb of two objects  # the kasra the ياء المتكلم left when it went (V3 p274: يا عبدِ)
+    ("اللَّهُمَّ", 0, "منادى", _MEEM),  # يا put at the end as the doubled ميم
+    ("يَا رَبَّنَا", 1, "منادى", None),  # nearest case: يا typed, nothing left off
+    ("رَبُّنَا اغْفِرْ لَنَا", 0, "مبتدأ", None),  # nearest case: typed in raf', no call
+    ("كِتَابَهُ قَرَأَ زَيْدٌ", 0, "مفعول به", None),  # nearest case: no command after it
+    ("رَأَيْتُ عَبْدَ اللَّهِ اذْهَبْ", 1, "مفعول به", None),  # nearest case: a command after it, but it does not open the sentence
+])
+def test_a_call_with_no_ya_typed(sentence: str, at: int, role: str, said: str | None):
+    card = cards(sentence)[at]
+    assert card["role"] == role
+    assert all((wording == said) == (wording in card["reason"]) for wording in (_DROPPED, _MEEM)), card["reason"]
+    if role == "منادى":  # the يا left off is no word of the sentence; a typed one is
+        assert card["governor"] == (None if said else 0)
+
+
+_MY_YA = "وياء المتكلم المحذوفة ضمير متصل مبني في محل جر مضاف إليه"
+
+
+@pytest.mark.parametrize("sentence, at, gone", [
+    # the ياء المتكلم went and left its kasra (Ibn Aqil V3 p274: يا عبدِ): nasb, unseen before the ya, never a command
+    ("يَا قَوْمِ اعْبُدُوا اللَّهَ", 1, True),
+    ("يَا رَبِّ", 1, True),  # after يا, not رَبَّى's command
+    ("رَبِّ اغْفِرْ لِي", 0, True),
+    ("رَبِّ زِدْنِي عِلْمًا", 0, True),  # the command after it with its object written on
+    ("يَا رَبِّي", 1, False),  # nearest case: the ya typed, a piece of its own
+])
+def test_a_called_noun_whose_ya_went(sentence: str, at: int, gone: bool):
+    card = cards(sentence)[at]
+    assert (card["role"], card["case"], card["sign"]) == ("منادى", "nasb", "فتحة مقدرة على ما قبل ياء المتكلم")
+    assert "command" not in card["notes"]
+    assert (_MY_YA in card["reason"]) == gone, card["reason"]
+
+
+_ATTENTION = "وها حرف تنبيه مبني على السكون لا محل له من الإعراب"
+
+
+@pytest.mark.parametrize("sentence, said", [
+    # أيّ is described only by a noun with ال, a pointer or a relative (Ibn Aqil V3 p268)
+    ("يَا أَيُّهَا الَّذِينَ آمَنُوا", "الَّذِينَ"),
+    ("يَا أَيُّهَا هَذَا", "هَذَا"),
+    ("يَا أَيُّهَا النَّاسُ", "النَّاسُ"),
+    ("يَا أَيَّتُهَا النَّفْسُ", "النَّفْسُ"),
+])
+def test_the_called_ayyu_is_built_on_damma_and_described(sentence: str, said: str):
+    read = analyze(sentence)
+    called, described = read["words"][1], read["words"][2]
+    # أيّ مبني على الضم في محل نصب, its ها of attention written on, a particle with no place
+    assert (called["role"], called["sign"]) == ("منادى", "مبني على الضم")
+    assert _ATTENTION in called["reason"], called["reason"]
+    assert (described["word"], described["role"]) == (said, "صفة")
+    # the picture: يا, then أيّ with its صفة, the unit as a whole the منادى
+    assert tree_roles(read["tree"]["tree"])[:3] == ["حرف نداء", "منادى", "موصوف"]
+
+
+def test_a_called_noun_with_no_ha_says_no_attention():
+    card = cards("يَا زَيْدُ")[1]  # nearest case: a called noun with no ها written on
+    assert card["sign"] == "مبني على الضم" and _ATTENTION not in card["reason"]
+
+
+@pytest.mark.parametrize("sentence, at, said, unsaid", [
+    ("يَا أَيُّهَا الَّذِينَ آمَنُوا", 2, "definite (معرفة)", "indefinite"),  # a relative is known (Ibn Aqil V1 p86)
+    ("هَذَا كِتَابٌ", 0, "definite (معرفة)", "indefinite"),  # a pointer
+    ("جَاءَ زَيْدٌ", 1, "definite (معرفة)", "indefinite"),  # a name
+    ("هَذَا كِتَابٌ", 1, "indefinite (نكرة)", "definite (معرفة)"),  # nearest case: a noun with no ال
+    ("جَاءَ زَيْدٌ", 0, "perfect (ماضٍ)", "indicative"),  # the past is built, no mood (V1 p35)
+])
+def test_a_card_note_says_what_the_word_is(sentence: str, at: int, said: str, unsaid: str):
+    notes = cards(sentence)[at]["notes"]
+    assert said in notes and unsaid not in notes, notes
+
+
+def test_a_word_opening_before_no_command_may_be_the_command():
+    card = cards("رَبِّ الْوَلَدَ")[0]  # nearest case: رَبَّى's command, its object after it
+    assert (card["role"], card["aspect"]) == ("فعل", "c")
+
+
+@pytest.mark.parametrize("sentence, aspect", [
+    ("جَاءُوا مُسْرِعِينَ", "p"),  # the dictionary's past, never a command spelled جَاِئُوا it left a mark off
+    ("قُومُوا مُسْرِعِينَ", "c"),  # nearest case: the command typed in full
+])
+def test_a_past_verb_read_with_its_vowels_stays_past(sentence: str, aspect: str):
+    assert cards(sentence)[0]["aspect"] == aspect
+
+
+@pytest.mark.parametrize("sentence, at, aspect", [
+    ("كُلُوا وَاشْرَبُوا", 1, "c"),  # the hamzat al-wasl after a joined وَ: not the past أَشْرَبُوا
+    ("وَاسْتَغْفِرُوا اللَّهَ", 0, "c"),
+    ("وَأَشْرَبُوا فِي قُلُوبِهِمُ الْعِجْلَ", 0, "p"),  # nearest case: its hamza written, the past أَشْرَبَ (2:93)
+])
+def test_hamzat_al_wasl_after_a_joined_letter_is_still_the_command(sentence: str, at: int, aspect: str):
+    assert cards(sentence)[at]["aspect"] == aspect
+
+
+@pytest.mark.parametrize("sentence, at, want", [
+    ("أُمِّ اسْمَعِي", 0, "منادى"),  # its damma is the noun أُمّ the dictionary read, not the particle أَمْ
+    ("أُمُّ زَيْدٍ كَرِيمَةٌ", 0, "مبتدأ"),
+    ("أَزَيْدٌ عِنْدَكَ أَمْ عَمْرٌو", 2, "حرف"),  # nearest case: the particle typed with its fatha
+    ("جَاءَ زَيْدٌ ثُمَّ عَمْرٌو", 2, "حرف"),  # nearest case: ثُمَّ, read as an adverb, keeps its damma rule
+])
+def test_a_noun_typed_with_its_vowels_is_no_joining_particle(sentence: str, at: int, want: str):
+    assert cards(sentence)[at]["role"] == want
+
+
+def test_a_kasra_with_tanween_is_no_dropped_ya():
+    assert cards("زَيْدٍ اذْهَبْ")[0]["role"] != "منادى"  # nearest case: the tanween stands on no ياء المتكلم
+
+
+_BUSIED = "والناصب له فعل محذوف وجوبًا يفسره الفعل المذكور"
+
+
+@pytest.mark.parametrize("sentence, at, role, governor, busied", [
+    ("زَيْدًا ضَرَبْتُ", 0, "مفعول به", 1, False),  # its doer in the verb: تُ
+    ("زَيْدًا نَصَرْنَا", 0, "مفعول به", 1, False),
+    ("زَيْدًا اضْرِبْ", 0, "مفعول به", 1, False),  # a command's hidden أنت
+    ("زَيْدًا ضَرَبُوا", 0, "مفعول به", 1, False),  # the و of many, written on
+    ("الْكِتَابَ ارْفَعِي", 0, "مفعول به", 1, False),  # the ي hung as its doer is no pronoun busying it
+    ("عِلْمًا طَلَبَ زَيْدٌ", 0, "مفعول به", 1, False),  # its doer after it
+    ("كِتَابًا أُعْطِيتُ", 0, "مفعول به", 1, False),  # a passive verb of giving, its deputy the تُ, keeps one (V2 p123)
+    ("جُبَّةً كُسِيتُ", 0, "مفعول به", 1, False),
+    ("كِتَابًا أُعْطِيَ", 0, "مفعول به", 1, False),  # its deputy the هو hidden in it
+    ("زَيْدًا ضَرَبْتُهُ", 0, "مفعول به", None, True),  # الاشتغال: the verb busied with its pronoun
+    ("زَيْدًا اضْرِبْهُ", 0, "مفعول به", None, True),
+    ("زَيْدًا ضَرَبُوهُ", 0, "مفعول به", None, True),
+    ("زَيْدًا أَنَا ضَارِبُهُ", 0, "مفعول به", None, True),  # a participle doing its verb's work, the same (V2 p142)
+    ("زَيْدًا ضَرَبْتُ غُلَامَهُ", 0, "مفعول به", None, True),  # busied with its سببي (V2 p128)
+    ("زَيْدًا ضَرَبْتُ غُلَامَ صَاحِبِهِ", 0, "مفعول به", None, True),  # the pronoun deeper down the إضافة chain
+    ("زَيْدًا مَرَرْتُ بِغُلَامِهِ", 0, "مفعول به", None, True),  # the سببي through a جار
+    ("زَيْدًا ضَرَبَ غُلَامُهُ", 0, "مفعول به", 1, False),  # nearest case: the سببي is the doer, not worked on in nasb
+    ("زَيْدًا ضَرَبْتُ أَخَاكَ", 0, "مفعول به", 1, False),  # nearest case: كَ is no pronoun of the one away, as زيد is
+    ("رَأَيْتُ زَيْدًا يَضْرِبُ غُلَامَهُ", 1, "مفعول به", 0, False),  # nearest case: the object comes after its verb
+    ("زَيْدًا مَرَرْتُ بِهِ", 0, "مفعول به", None, True),  # through a جار
+    ("عِلْمًا طَلَبَهُ زَيْدٌ", 0, "مفعول به", None, True),
+    ("زَيْدٌ ضَرَبْتُهُ", 0, "مبتدأ", None, False),  # nearest case: typed in raf'
+    ("إِنَّ زَيْدًا ضَرَبْتُهُ", 1, "اسم إن", 0, False),  # nearest case: إنّ puts it in nasb
+    ("رَأَيْتُ زَيْدًا يَضْرِبُهُ عَمْرٌو", 1, "مفعول به", 0, False),  # nearest case: the verb before it governs it
+    ("أَعْطَيْتُهُ دِرْهَمًا", 1, "مفعول به", 0, False),  # nearest case: after its busied verb, not before
+    ("كَتَبْتُ لَهُ رِسَالَةً", 2, "مفعول به", 0, False),  # nearest case: after a verb busied through a جار
+])
+def test_an_object_put_before_its_verb(sentence: str, at: int, role: str, governor: int | None, busied: bool):
+    """زَيْدًا ضَرَبْتُ: a nasb noun before a verb that has its doer is its object (Ibn Aqil V2 p129); before a
+    verb busied with a pronoun back to it, the object of a verb like that one, left out (V2 p128)."""
+    card = cards(sentence)[at]
+    assert (card["role"], card["governor"]) == (role, governor)
+    assert (_BUSIED in card["reason"]) == busied, card["reason"]
+
+
+@pytest.mark.parametrize("sentence, said", [
+    # a command is never a صفة (Ibn Aqil V3 p198: لا تقع الجملة الطلبية صفة): hung on the called noun it is the call's answer
+    ("رَبِّ اغْفِرْ لِي", True),
+    ("رَبِّ زِدْنِي عِلْمًا", True),
+    ("رَأَيْتُ رَجُلًا يَكْتُبُ", False),  # nearest case: a told verb on a noun no one calls is its صفة
+])
+def test_a_command_hung_on_the_called_noun_is_no_sifah(sentence: str, said: bool):
+    tree = analyze(sentence)["tree"]["tree"]
+    assert ("صفة" not in tree_roles(tree)) == said, tree_roles(tree)
+
+
+@pytest.mark.parametrize("sentence, want", [
+    # an adjective on فَعِل the dictionary lacks, in its sound plural, is a describing word: a hal after the doer
+    ("جَاءَ الطُّلَّابُ فَرِحِينَ", "حال"),
+    ("رَجَعَ الْمُسَافِرُونَ حَزِنِينَ", "حال"),
+    ("جَاءَ الطُّلَّابُ لَاعِبِينَ", "حال"),  # nearest case: the dictionary knows it, same shape of sentence
+    ("رَأَيْتُ الطُّلَّابَ", "مفعول به"),  # nearest case: with no describing word the noun stays the object
+])
+def test_a_sound_plural_adjective_the_dictionary_lacks_is_a_hal(sentence: str, want: str):
+    assert cards(sentence)[-1]["role"] == want
+
+
+@pytest.mark.parametrize("sentence, at, want", [
+    # a past verb is never what a nasb particle works on (Tasheel 4.1.1): the present verb the vowels allow is the word
+    ("أُحِبُّ أَنْ أَقْرَأَ", 2, ("فعل", "nasb")),
+    ("أُرِيدُ أَنْ تَقْرَأَ", 2, ("فعل", "nasb")),
+    ("لَنْ أَقْرَأَ", 1, ("فعل", "nasb")),
+    ("عَلِمْتُ أَنْ جَاءَ زَيْدٌ", 2, ("فعل", "mabni")),  # nearest case: no present verb reads جَاءَ, so it stays the past verb
+])
+def test_a_verb_after_a_nasb_particle_is_the_present_one(sentence: str, at: int, want: tuple):
+    card = cards(sentence)[at]
+    assert (card["role"], card["case"]) == want
+
+
+@pytest.mark.parametrize("sentence, role", [
+    # typed bare, a plain noun read in nasb after the doer is no نعت (a نعت is made of a describing word): the object
+    ("شرب الطفل اللبن", "مفعول به"),
+    ("شرب الولد الماء", "مفعول به"),
+    ("جاء الرجل الكريم", "صفة"),  # nearest case: a describing word after the doer stays its نعت
+    ("حضر الطلاب أنفسهم", "توكيد"),  # a word of emphasis after the doer stays its توكيد
+    ("حضر الملك عينه", "توكيد"),
+])
+def test_a_bare_plain_noun_in_nasb_after_the_doer_is_the_object(sentence: str, role: str):
+    assert cards(sentence)[-1]["role"] == role

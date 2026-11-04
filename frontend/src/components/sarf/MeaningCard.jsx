@@ -1,6 +1,6 @@
-import RootActions from '../ui/RootActions'
-import ShowRest from '../ui/ShowRest'
-import { Skeleton } from '../ui/Skeleton'
+import RootActions from '../ui/buttons/RootActions'
+import ShowRest from '../ui/buttons/ShowRest'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 /**
  * What the word means, and the two ways out of this tab.

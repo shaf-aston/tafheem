@@ -61,22 +61,13 @@ import re
 from dataclasses import dataclass
 from difflib import SequenceMatcher
 
+from backend.config import get_settings
 from backend.services.text.arabic_text import alef_written_out, bare_letters
 
 # Only Arabic letters and the spaces between them survive. This is what removes
 # the numbers Whisper writes into long recitations, and any stray Latin.
 _NOT_ARABIC = re.compile(r"[^ء-ي\s]+")
 
-# The length of the runs compared in the first pass. Three is the same size
-# SQLite's trigram index uses for the app's other Arabic search, so the two agree
-# on what "nearly the same words" means.
-_RUN = 3
-
-# How much of the ayah having been recited counts for, once it is known to hold
-# the words. At 0 the two ayahs ending in the same phrase are indistinguishable;
-# at 1 anybody stopping halfway is punished for it. Half of each keeps the right
-# answer first in both.
-_COVERAGE_WEIGHT = 0.5
 
 
 def _clean(letters: str) -> str:
@@ -109,9 +100,10 @@ def folded(text: str) -> str:
     return spellings(text)[0]
 
 
-def _runs(text: str) -> frozenset[str]:
+def _runs(text: str, run: int) -> frozenset[str]:
+    """Every `run` letters in a row (recitation_match_run), spaces ignored."""
     packed = text.replace(" ", "")
-    return frozenset(packed[i:i + _RUN] for i in range(len(packed) - _RUN + 1))
+    return frozenset(packed[i:i + run] for i in range(len(packed) - run + 1))
 
 
 @dataclass(frozen=True)
@@ -144,23 +136,25 @@ def prepare(ayahs) -> tuple[Ready, ...]:
     of the wait, done once it is nothing.
     """
     ready = []
+    run = get_settings().recitation_match_run
     for surah, ayah, arabic in ayahs:
         folds = tuple(dict.fromkeys(spellings(arabic)))
-        runs = frozenset().union(*(_runs(fold) for fold in folds))
+        runs = frozenset().union(*(_runs(fold, run) for fold in folds))
         ready.append(Ready(int(surah), int(ayah), arabic, folds, runs))
     return tuple(ready)
 
 
-def best(heard: str, ayahs: tuple[Ready, ...], limit: int = 5,
-         considered: int = 120) -> list[Match]:
+def best(heard: str, ayahs: tuple[Ready, ...], limit: int = 5) -> list[Match]:
     """The ayahs closest to what was heard, best first.
 
     Nothing is returned for silence, or for sound with no Arabic words in it,
     which is the ordinary result of a microphone that picked up a room rather
     than a reciter.
     """
+    settings = get_settings()
+    coverage = settings.recitation_match_coverage
     query = folded(heard)
-    wanted = _runs(query)
+    wanted = _runs(query, settings.recitation_match_run)
     if not wanted:
         return []
 
@@ -178,9 +172,9 @@ def best(heard: str, ayahs: tuple[Ready, ...], limit: int = 5,
             return 0.0
         holds = shared / len(wanted)
         recited = shared / len(row.runs) if row.runs else 0.0
-        return holds * (1 - _COVERAGE_WEIGHT + _COVERAGE_WEIGHT * recited)
+        return holds * (1 - coverage + coverage * recited)
 
-    rough = sorted(ayahs, key=roughly, reverse=True)[:considered]
+    rough = sorted(ayahs, key=roughly, reverse=True)[:settings.recitation_match_considered]
 
     scored = []
     for row in rough:
@@ -190,7 +184,7 @@ def best(heard: str, ayahs: tuple[Ready, ...], limit: int = 5,
             shared = sum(block.size for block in matcher.get_matching_blocks())
             holds = shared / len(query)
             recited = shared / len(fold) if fold else 0.0
-            weighed = holds * (1 - _COVERAGE_WEIGHT + _COVERAGE_WEIGHT * recited)
+            weighed = holds * (1 - coverage + coverage * recited)
             if weighed > best_score:
                 best_score, best_recited = weighed, recited
         scored.append(Match(

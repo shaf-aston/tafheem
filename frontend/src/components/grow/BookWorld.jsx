@@ -5,12 +5,13 @@
  * an area's id or a part's. `state` from lib/grow/useBookWorld.js; a lesson plays in LessonRunner.
  */
 import { areaOf } from '../../lib/grow/bookLesson'
+import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 import { REVIEW } from '../../lib/grow/useBookWorld'
 import { sayIn } from '../../lib/text/say'
-import ArabicText from '../ui/ArabicText'
-import ErrorAlert from '../ui/ErrorAlert'
-import PrimaryButton from '../ui/PrimaryButton'
-import { Skeleton } from '../ui/Skeleton'
+import ArabicText from '../ui/text/ArabicText'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
+import { Skeleton } from '../ui/feedback/Skeleton'
 import WorldBackdrop from './WorldBackdrop'
 import Glossary from './Glossary'
 import LessonPath from './LessonPath'
@@ -78,6 +79,7 @@ export default function BookWorld({ world, accent, state: book, place, onBack, o
   const part = book.parts.find((one) => one.id === place && one.lessons.length)
   const area = part ? areaOf(book.areas, part.id) : book.areas.find((one) => one.id === place && one.total)
   const loading = !book.ready && !book.error
+  const phone = useMedia(PHONE)
   let body
   if (part) body = <LessonPath part={part} onStart={onStart} />
   else if (area) body = <Tiles items={area.parts} onOpen={onPart} />
@@ -93,12 +95,14 @@ export default function BookWorld({ world, accent, state: book, place, onBack, o
       {book.ready && (
         <div className="grow-book">
           {book.offline && <p className="grow-hint">{say('Your progress could not be loaded, so it is not shown. The lessons still work.')}</p>}
-          <Next book={book} accent={accent} onStart={onStart} />
+          {!phone && <Next book={book} accent={accent} onStart={onStart} />}
           {body}
           <Glossary book={book.book} onStart={onStart} />
           <p className="grow-hint">{say('{book} ({madhhab}). Arabic is the book’s own words; the English is ours. Learn it with a teacher too.', { book: book.book.book, madhhab: book.book.madhhab })}</p>
         </div>
       )}
+      {/* A phone: the next lesson pinned above the tab bar, wherever the book is scrolled to. */}
+      {phone && book.ready && <div className="grow-start-pin"><Next book={book} accent={accent} onStart={onStart} /></div>}
     </div>
   )
 }

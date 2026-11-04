@@ -33,13 +33,13 @@ import { getAyahEditions, getQuranEditions } from '../../api'
 import { passageLabel } from '../../lib/quran/tafsir'
 import { useRemembered } from '../../lib/store/useRemembered'
 
-import ArabicText from '../ui/ArabicText'
-import Disclosure from '../ui/Disclosure'
-import ErrorAlert from '../ui/ErrorAlert'
-import Segmented from '../ui/Segmented'
-import ShowRest from '../ui/ShowRest'
-import { Skeleton } from '../ui/Skeleton'
-import SourceBadge from '../ui/SourceBadge'
+import ArabicText from '../ui/text/ArabicText'
+import Disclosure from '../ui/overlays/Disclosure'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import Segmented from '../ui/inputs/Segmented'
+import ShowRest from '../ui/buttons/ShowRest'
+import { Skeleton } from '../ui/feedback/Skeleton'
+import SourceBadge from '../ui/feedback/SourceBadge'
 
 /** What to call a book on a button: its short name, in its own script.
  *  Seven full titles is a wall of text to read through, so the picker uses the

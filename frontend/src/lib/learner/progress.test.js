@@ -70,7 +70,7 @@ describe('whose record', () => {
   })
 
   // Through axios itself, not a spy on api.get: the name is added on the way
-  // out (api.js), so only a real request shows it.
+  // out (api/client.js), so only a real request shows it.
   const sending = () => {
     const sent = []
     api.defaults.adapter = async (config) => {

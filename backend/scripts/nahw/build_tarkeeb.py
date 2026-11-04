@@ -44,7 +44,7 @@ from backend.services.text import arabic_text
 from backend.services.nahw import book as nahw_book
 from backend.services.quran import corpus as quran_corpus
 
-DATABASE = Path(__file__).parent.parent.parent / "data" / "tarkeeb" / "tarkeeb.db"
+DATABASE = tarkeeb_store.DATABASE
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS tarkeeb (
@@ -145,14 +145,23 @@ def _words_of(rows: list[dict], settings: dict) -> tuple[list[dict], dict[int, i
     for row in rows:
         if row["rel_label_ar"] in settings["not_a_relation"]:
             continue
-        word = words[belongs[int(row["token_id"])]]
+        token = int(row["token_id"])
+        word = words[belongs[token]]
         # Every piece that has a job, in written order: أَفَلَا is three.
-        word.setdefault("pieces", []).append(row["pos_ar"])
+        word.setdefault("parts", []).append((row["pos_ar"], row["rel_label_ar"]))
         # أَلَيْسَ: the question hamza carries the word's arrow, but its stem says what the word is, a verb;
         # بِئْسَمَا is two stems, and the first is the word's
         if "STEM" in row["features"].split("|") and id(word) not in stemmed:
             stemmed.add(id(word))
             word["pos"] = row["pos"]
+            word["lemma"] = row["lemma_ar"]
+        ref = int(row["ref_token_id"])  # a sentence's root points at itself
+        if ref != token and "STEM" not in row["features"].split("|") and belongs.get(ref) == belongs[token]:
+            # لَعَلَىٰ، وَإِنَّكَ: a prefix or ending hung on its own word's stem (لام التوكيد on عَلَى, the كَ
+            # that is إِنَّ's noun) says what is inside the word; the word's job is the stem's (عَلَى متعلق).
+            # The stem of بِعَزِيزٍ hung on its بِ is the word's own: the بِ carries the unit's job
+            continue
+        word.setdefault("pieces", []).append(row["pos_ar"])
         if "relation" in word:
             continue
         word["relation"] = row["rel_label_ar"]
@@ -163,9 +172,16 @@ def _words_of(rows: list[dict], settings: dict) -> tuple[list[dict], dict[int, i
             head = by_token.get(int(row["ref_token_id"]))
             word["states_head"] = _states_particle(word["relation"], head, kinds)
 
-    for word in words:
+    asked = settings["question_nouns"]
+    told = {word["head"] for word in words if word.get("relation") in asked["told_by"]}
+    for index, word in enumerate(words):
         pieces = word.get("pieces", [])
-        word["particle"] = bool(pieces) and all(piece in kinds for piece in pieces)
+        # مَا in وَمَا أَدْرَاكَ: a question word a خبر hangs on is a noun, that خبر's مبتدأ
+        word["asked"] = index in told and bool(pieces) and pieces[0] in asked["kinds"] \
+            and arabic_text.strip_diacritics(word.get("lemma", "")) not in asked["never_mubtada"]
+        word["particle"] = bool(pieces) and all(piece in kinds for piece in pieces) \
+            and not any(job in settings["noun_only"] for piece, job in word.get("parts", ()) if piece not in kinds) \
+            and not word["asked"]
     return words, belongs
 
 
@@ -208,6 +224,18 @@ def _opening_role(word: dict, settings: dict) -> dict:
 def _sentence_names(settings: dict) -> set[str]:
     """How a whole clause is labelled, whichever kind it is."""
     return {nahw_book.term(key)["ar"] for key in settings["sentence_labels"].values()}
+
+
+def _attached(index: int, words: list[dict], settings: dict) -> str | None:
+    """A متعلق named by the word it hangs on, as the live tree names it: عَلَيْكَ is
+    مُتَعَلِّقٌ بِـأَنزَلَ, and hung on a word no one writes it is مُتَعَلِّقٌ بِمَحْذُوْفٍ."""
+    attached, word = settings["attached"], words[index]
+    if word.get("relation") != attached["relation"] or word.get("head") in (None, index):
+        return None
+    head = words[word["head"]]
+    if head["text"] == settings["unwritten_mark"]:
+        return attached["elided"]
+    return attached["frame"].format(word=head["text"].removeprefix((head.get("connector") or {}).get("text", "")))
 
 
 def _particle(kind: str, settings: dict) -> dict:
@@ -282,23 +310,28 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
         # Written the app's way where the app has a wording for it, and left in
         # the treebank's own words where it does not.
         said, raw = nahw_book.relation_wording(relation)
-        role = opening["ar"] if opens_clause else said
+        role = opening["ar"] if opens_clause else _attached(index, words, settings) or said
         tone = opening["tone"] if opens_clause else tone_of(relation)
         # Inside its own unit a particle is what it is (فِى is حَرْفُ جَرٍّ); the
-        # unit it heads carries the job (the jar-majroor is مُتَعَلِّقٌ).
+        # unit it heads carries the job (the jar-majroor is مُتَعَلِّقٌ). فِيهَا is that whole unit
+        # in one word, its مجرور inside it, so it keeps the unit's job.
         kind = (word.get("pieces") or [""])[0]
-        own = (_particle(kind, settings) if word.get("particle")
+        whole = not children[index] and any(piece not in settings["particle_kinds"] for piece, _ in word.get("parts", ()))
+        own = (_particle(kind, settings) if word.get("particle") and not whole
                else nahw_book.term(settings["unit_heads"][kind])
                if children[index] and kind in settings["unit_heads"] else None)
         clause = settings["constituent_labels"].get(word.get("constituent"))
-        if own is None and children[index] and clause in _sentence_names(settings):
-            # هُوَ heading هُوَ ٱللَّهُ أَحَدٌ is its mubtada; the clause is the مفعول به
+        if own is None and children[index] and (clause in _sentence_names(settings) or word.get("asked")):
+            # هُوَ heading هُوَ ٱللَّهُ أَحَدٌ is its mubtada; the clause is the مفعول به. So is مَا
+            # in مَا مَنَعَكَ, told by مَنَعَكَ, whatever the clause it heads is called
             own = _opening_role(word, settings)
 
         leaf = {"word": index, **(nahw_book.shown(own) if own else {"role": role, "tone": tone})}
-        if word.get("particle") and len(word["pieces"]) > 1:
-            # أَفَلَا: question, extra فَ, negation, each named by what it is.
-            leaf["parts"] = [nahw_book.shown(_particle(piece, settings)) for piece in word["pieces"]]
+        if word.get("particle") and len(word["parts"]) > 1:
+            # أَفَلَا: question, extra فَ, negation, each named by what it is; the كَ of إِنَّكَ by its job
+            leaf["parts"] = [nahw_book.shown(_particle(piece, settings)) if piece in settings["particle_kinds"]
+                             else {"role": nahw_book.relation_wording(job)[0], "tone": tone_of(job)}
+                             for piece, job in word["parts"]]
         if raw and not opens_clause and not own:
             # Said plainly rather than dressed up: this wording is the treebank's,
             # not the book's, and the page draws it as the weaker claim it is.
@@ -314,7 +347,7 @@ def _tree_of(words: list[dict], settings: dict, tone_of) -> dict | None:
             # فَ its own column by `prefix_arabic`.
             piece = nahw_book.shown(nahw_book.term(joined["key"]))
             leaf["prefix_arabic"] = joined["text"]
-            leaf["parts"] = [piece, {"role": leaf["role"], "tone": leaf["tone"]}]
+            leaf["parts"] = [piece, *(leaf.get("parts") or [{"role": leaf["role"], "tone": leaf["tone"]}])]
 
         if not children[index]:
             if sentence:
@@ -368,7 +401,7 @@ def gates(words: list[dict], tree: dict, corpus_words: list[str], vocabulary: se
     if sorted(_leaves(tree, [])) != list(range(len(words))):
         return "coverage"
 
-    if unknown := {
+    if {
         word["relation"]
         for word in words
         if word.get("relation") not in (None, *vocabulary)
@@ -396,10 +429,10 @@ def build(treebank: Path, labels: Path) -> None:
     ayahs = read_rows(treebank)
     print(f"read {len(ayahs)} ayahs from {treebank.name}")
 
-    DATABASE.parent.mkdir(parents=True, exist_ok=True)
-    db = sqlite3.connect(DATABASE)
-    # every row is rewritten, so an older layout of the table goes with them
-    db.execute("DROP TABLE IF EXISTS tarkeeb")
+    # built in a file beside it and moved into place, so a run that breaks leaves the old one whole
+    building = DATABASE.with_suffix(".building")
+    building.unlink(missing_ok=True)
+    db = sqlite3.connect(building)
     db.executescript(SCHEMA)
 
     kept = 0
@@ -446,8 +479,9 @@ def build(treebank: Path, labels: Path) -> None:
 
     db.commit()
     db.close()
+    building.replace(DATABASE)
 
-    total = len(ayahs)
+    total = len(ayahs) or 1
     print(f"\nkept {kept} of {total} ayahs ({kept / total:.1%})")
     for gate, count in rejected.most_common():
         print(f"  rejected at {gate:<12} {count:5d} ({count / total:.1%})")

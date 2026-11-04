@@ -13,7 +13,7 @@ import { useState } from 'react'
 import surahs from '../../lib/quran/surahs.json'
 import { JUZ_COUNT, juzOf, juzStart } from '../../lib/quran/juz'
 import { SURAH_CHOICES } from '../../lib/quran/surahRef'
-import WheelPicker from '../ui/WheelPicker'
+import WheelPicker from '../ui/inputs/WheelPicker'
 
 export default function QuranPlacePicker({ surah, ayah, accent, onReadSurah, onOpenAyah }) {
   // The surah in the first wheel: the open one, until another is picked here.

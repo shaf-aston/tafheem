@@ -22,6 +22,16 @@
 }
 
 
+/* The page's pane is never shorter than the screen under the header, so the
+   footer starts below the fold whatever the panel holds. A panel still loading
+   is short, and the footer sat mid-screen until the page arrived and shoved it
+   away: the largest layout shift on every tab (measured, about 0.2 each). */
+.pane-fill {
+  min-height: calc(100vh - var(--app-header-h, 3.5rem));
+  min-height: calc(100lvh - var(--app-header-h, 3.5rem));
+}
+
+
 .glass::before {
   content: '';
   position: absolute;

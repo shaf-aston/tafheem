@@ -6,7 +6,7 @@
  * Which picture and hue each section wears is timelines.json's, read through
  * lib/timelines/look; the card look is timelines/TileCard.
  */
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import TileCard from './TileCard'
 import { sectionLook } from '../../lib/timelines/look'
 

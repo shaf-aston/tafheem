@@ -2,7 +2,7 @@
  * Tafheem's offline worker. vite/offline.js writes the plan in at build, in place of the PLAN placeholder below;
  * src/config/offline.json holds the rules it was made from.
  *
- *  - The core (code, styles, fonts, icons) is saved when the worker installs, so /app opens with no signal.
+ *  - The core (code, styles, fonts, icons) is saved when the worker installs, so the app opens with no signal.
  *  - Hashed files never change, so a saved one is used as is.
  *  - Other files (word lists, books) are shown from the phone at once and refreshed behind.
  *  - Server answers named in `keep` are asked for fresh; the saved copy stands in when there is
@@ -75,10 +75,10 @@ async function ranged(request, response) {
   })
 }
 
-/** /app and every /app/<tab>: the page from the network, or the saved shell when it cannot come. */
+/** Every app page (all but the landing page and the recorder): from the network, or the saved shell when it cannot come. */
 async function page(request, url) {
   const network = fetch(request)
-  const app = url.pathname === '/app' || url.pathname.startsWith('/app/')
+  const app = url.pathname !== '/' && !url.pathname.startsWith('/record')
   const shell = app && await caches.match(SHELL)
   if (!shell) return network
   const first = await Promise.race([network.catch(() => null), late()])

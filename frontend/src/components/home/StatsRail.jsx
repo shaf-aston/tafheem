@@ -17,8 +17,8 @@ import knobs from '../../config/home.json'
 import LogInButton from '../profile/LogInButton'
 import ProfileDialog from '../profile/ProfileDialog'
 import Ranking from '../profile/Ranking'
-import { Skeleton } from '../ui/Skeleton'
-import SmallButton from '../ui/SmallButton'
+import { Skeleton } from '../ui/feedback/Skeleton'
+import SmallButton from '../ui/buttons/SmallButton'
 
 const { stats: copy } = knobs
 const TOP = 3

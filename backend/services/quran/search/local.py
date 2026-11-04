@@ -78,6 +78,43 @@ def whole_ayah(query: str) -> Hit | None:
     return best[1] if whole else None
 
 
+# Where a typist and the Qur'an's spelling differ most: hamza seats and long alif (وآتوا / وءاتوا).
+# ayah_run drops them inside a word but keeps a first letter, as one alif, so لينا is never إلينا.
+_SEATS_RE = re.compile("[ءأإآئؤا]")
+_HAMZA_RE = re.compile("[ءأإآئؤ]")
+
+
+def ayah_run(query: str) -> tuple[Hit, int] | None:
+    """The ayah holding the query's words (two or more, each whole) as one run in order, and the
+    run's first word number there (1-based, as meanings.db counts); else None. The index is asked
+    for "every word present" first, so text that is not the Qur'an's costs well under a millisecond."""
+    wanted = [_key(w) for w in words(query)]
+    wanted = [w for w in wanted if w]
+    conn = _db()
+    if len(wanted) < 2 or conn is None:
+        return None
+    # The index is asked with the words it spells as a typist does; the run check below takes the rest.
+    # A word too short for the index is a full scan (_rows), so then every word is asked after all.
+    plain = [w for w in words(query) if not _HAMZA_RE.search(w)]
+    if not any(len(spelling.fold(w)) >= TRIGRAM_MIN for w in plain):
+        plain = words(query)
+    asked = " ".join(_NOT_LETTERS_RE.sub(" ", spelling.fold(" ".join(plain))).split())
+    for surah, ayah, arabic, fold in sorted(_rows(conn, asked, every=True), key=lambda r: (r[0], r[1])):
+        count, keys = len(words(arabic)), [_key(w) for w in fold.split()]
+        # The fold holds the ayah twice where its two spellings differ, word for word.
+        spellings = [keys[:count]] + ([keys[count:]] if len(keys) == 2 * count else [])
+        for start in range(count - len(wanted) + 1):
+            if all(any(s[start + i] == w for s in spellings) for i, w in enumerate(wanted)):
+                return Hit(surah=surah, ayah=ayah, arabic_text=arabic, source=_SOURCE), start + 1
+    return None
+
+
+def _key(word: str) -> str:
+    """A word as ayah_run compares it: folded letters, a first hamza or alif as alif, none after."""
+    word = _NOT_LETTERS_RE.sub("", spelling.fold(word))
+    return _SEATS_RE.sub("ا", word[:1]) + _SEATS_RE.sub("", word[1:])
+
+
 def _ranked(query: str, every: bool = False) -> list[tuple[float, Hit]]:
     """Every ayah that answers the query, with its score, best first; with
     `every`, only ayahs holding every word of it."""

@@ -16,7 +16,8 @@ the conditions from here instead, so they agree.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import condition_of, is_one, named_roles
+from backend.services.nahw.book import condition_of, is_one, kaffa_sister, named_roles
+from backend.services.nahw.syntax.facts import reading
 
 NAMED = named_roles()
 
@@ -32,7 +33,7 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
 
     def joined(i: int) -> bool:
         return any(is_one(piece, "atf") for piece in before[i]) or (
-            i > 0 and named[i - 1] in (NAMED.harf, None) and is_one(strip_diacritics(bases[i - 1]["form"]), "atf"))
+            i > 0 and named[i - 1] in (NAMED.harf, None) and is_one(bases[i - 1]["form"], "atf"))
 
     def verb_at(i: int) -> int:
         """The فعل الشرط's index: straight after the opener, or past a particle hung on it
@@ -43,17 +44,20 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         return k
 
     def opens(i: int) -> dict | None:
-        frame = condition_of(strip_diacritics(bases[i]["form"]))
+        frame = condition_of(bases[i]["form"])
         v = verb_at(i)
         if not frame or v >= len(bases) or (i and not joined(i)):
+            return None
+        # إنما: the lemma is the pair, a ما الكافة cut off the إنّ sister it stops, so no إنْ of a condition
+        if kaffa_sister(bases[i]["lemma"]):
             return None
         # لولا زيدٌ: a particle of امتناع لوجود opens on a noun; before a verb it urges and opens none
         if (named[v] == NAMED.fil) == (frame.get("before") == "noun") or (frame.get("before") == "noun" and bases[v]["pos"] not in ("NOM", "PROP")):
             return None
         # ما النافية is a particle; إذا before a verb is a ظرف, whatever the parser tagged it
-        reading = bases[i].get("reading") or {}
-        kind = reading.get("kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
-        if not frame["noun"] and reading and reading["family"] not in ("jazm", frame["family"]):
+        read = reading(bases[i])
+        kind = reading(bases[i], "kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
+        if not frame["noun"] and read and read != frame["family"]:
             return None  # إِنَّا جَعَلْنَا: the particle's one reading is إنّ, no condition
         # مَا تَزْرَعْ تَحْصُدْ: ما النافية puts no verb in jazm, so a jussive verb after it shows the
         # conditional noun, whatever the parser tagged it
@@ -91,7 +95,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         if pick:
             answer, (tie_at, tie) = clause_head(pick[0]), pick
         else:
-            answer = next((k for k in verbs if not joined(k) and (cases[k] == "jazm" or bases[k].get("asp") == "p")), None)
+            # a present verb showing no ending may be the answer a particle (إن) puts in jazm; a noun
+            # sharing its letters with a relative needs the answer to show it (مَنْ يدرسُ ينجحُ)
+            answer = next((k for k in verbs if not joined(k) and (cases[k] == "jazm" or bases[k].get("asp") == "p"
+                                                                  or cases[k] is None and not frame["shared"])), None)
             tie, tie_at = None, answer
         # a present verb in jazm right after مَنْ is never a relative's: it opens a condition
         if answer is None and frame["shared"] and not (cases[verb] == "jazm" and span):

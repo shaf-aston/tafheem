@@ -1,8 +1,8 @@
-import CopyButton from '../ui/CopyButton'
-import Chip from '../ui/Chip'
-import Segmented from '../ui/Segmented'
-import SourceBadge from '../ui/SourceBadge'
-import { GoButton } from '../ui/RootActions'
+import CopyButton from '../ui/buttons/CopyButton'
+import Chip from '../ui/inputs/Chip'
+import Segmented from '../ui/inputs/Segmented'
+import SourceBadge from '../ui/feedback/SourceBadge'
+import { GoButton } from '../ui/buttons/RootActions'
 import Argument from './Argument'
 import Discussion from './Discussion'
 

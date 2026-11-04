@@ -4,6 +4,8 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 """
 import pytest
 
+from backend.services.dictionary import roots
+from backend.services.quran import corpus as quran_corpus
 from backend.services.sarf import morphology
 from backend.services.text.harakat import vowel_agreement
 
@@ -95,3 +97,70 @@ def test_vowel_agreement():
     assert agree("كتب", "كَتَبَ") == (0, 0)                 # nothing typed, nothing to weigh
     assert agree("زَيْدٌ", "زَيْدٍ") is None          # the same letter, a different ending
     assert agree("زَيْدٌ", "زَيْدًا") == (0, 0)             # the tanween alef adds a letter: no verdict
+    assert agree("حِجَارَةٌ", "حَجّارُهُ") is None     # a typed ة is never the pronoun ه
+    assert agree("حجاره", "حِجارَة") == (0, 0)           # a typed ه may be a ة written loosely: no verdict
+
+
+def test_with_no_reading_agreeing_one_spelled_as_typed_is_kept():
+    # حِجَارَةٌ "stones": the dictionary has only حَجّارَة, a vowel and a shadda off, and "his حَجّار"
+    readings = [{"diac": "حَجّارُهُ", "atbtok": "حَجّارُ_+هُ"}, {"diac": "حَجّارَةٌ", "atbtok": "حَجّارَةٌ"}]
+    assert morphology._reading("حِجَارَةٌ", readings)["diac"] == "حَجّارَةٌ"
+
+
+@needs_camel
+@pytest.mark.parametrize("past, seen", [
+    ("هَدَى", True), ("آتَى", True), ("اِسْتَغْفَرَ", True),   # its hamzat al-wasl written ٱ in the dictionary
+    ("ضَرَبَ", True),
+    ("هَدَنَ", False),   # a verb no text the dictionary learnt from uses
+    ("هَدَا", False),    # read as هَدَأ: the same letters but its hamza
+    ("ضَرِبَ", False),   # read as ضَرَبَ: the same letters but a vowel both write
+])
+def test_a_verb_is_seen_only_as_the_dictionary_spells_it(past: str, seen: bool):
+    assert morphology._seen_verb(past) is seen
+
+
+@needs_camel
+@pytest.mark.parametrize("word, lemma", [("اِهْدِنَا", "هدى"), ("آتِنَا", "آتى"), ("أَعْطِنَا", "أعطى")])
+def test_a_command_with_its_object_written_on_is_split_off_the_pronoun(word: str, lemma: str):
+    # اِهْدِنَا، آتِنَا: the dictionary has no reading, sarf's closest is a dual of a verb no text uses (هَدَنَ)
+    tag = morphology.analyze_sentence(f"{word} كِتَابًا")[0]
+    assert (tag["aspect"], tag["number"], tag["lemma"], tag["enclitic"]) == ("c", "s", lemma, "1p_dobj")
+
+
+@needs_camel
+def test_a_command_the_table_reads_with_no_one_past_is_named_by_its_own_letters():
+    # فَاقْبَلْهَا: the table's closest cells name no one past, so the word is the verb alone, its فَ and هَا peeled off
+    tag = morphology.analyze_sentence("فَاقْبَلْهَا")[0]
+    assert tag["lemma"] == "اقبل"
+
+
+@needs_camel
+@pytest.mark.skipif(not quran_corpus.is_loaded(), reason="corpus.db not built")
+@pytest.mark.parametrize("word", ["رَأَيْتُ", "يَرَى", "تَرَ"])
+def test_a_lemma_the_word_does_not_carry_is_the_qurans_lemma_of_its_root(word):
+    # CAMeL files every form of رأى (see) under راوند (rhubarb), and ظن وأخواتها is known by its lemma
+    assert morphology.analyze_sentence(word)[0]["lemma"] == "رأى"
+    assert roots.readings(word)[0].lemma == "رأى"  # the dictionary reads it so too
+
+
+@needs_camel
+@pytest.mark.skipif(not quran_corpus.is_loaded(), reason="corpus.db not built")
+def test_a_noun_takes_the_qurans_noun_lemma_not_its_verbs():
+    assert morphology.analyze_sentence("ٱلْمُعْتَدِينَ")[0]["lemma"] == "معتدي"  # CAMeL: متعدي; اعتدى is the verb
+
+
+@needs_camel
+@pytest.mark.skipif(not quran_corpus.is_loaded(), reason="corpus.db not built")
+@pytest.mark.parametrize("sentence, word, pos", [
+    ("كَانَ اسْمُ أَبِيهِ آزَرَ", "آزَرَ", "noun_prop"),  # the Qur'an's name (6:74), in فاعَلَ's shape
+    ("آزَرَ زَيْدٌ عَمْرًا", "آزَرَ", "verb"),            # opening the sentence: the verb stays
+    ("كان اسم أبيه آزر", "آزر", "noun_prop"),             # typed bare, nothing after it for the verb to take
+    ("قال إبراهيم لأبيه آزر", "آزر", "noun_prop"),
+    ("الرجل آزر صديقه", "آزر", "verb"),                   # a noun after it: what the verb is done to
+    ("آزر الجيش الشعب", "آزر", "verb"),
+    ("قال لأبيه سافر", "سافر", "verb"),                   # the Qur'an knows no name سافر
+    ("قال إبراهيم لأبيه آزر أنا ذاهب", "آزر", "noun_prop"),  # a new sentence opens after it
+    ("في قلبي حنين", "حنين", "noun"),                     # a noun's shape: the word, not the Qur'an's name
+])
+def test_a_quran_name_in_a_verbs_shape(sentence, word, pos):
+    assert _pos_of(sentence, word) == pos

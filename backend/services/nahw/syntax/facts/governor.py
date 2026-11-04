@@ -2,12 +2,12 @@
 inna, kana, kaada, zanna, the called or the excepting particle)."""
 from __future__ import annotations
 
-from backend.services.nahw.book import is_plain_noun
+from backend.services.nahw.book import is_one, is_plain_noun, six_noun_case
 from backend.services.nahw.syntax.facts.word import is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_tanween, typed_or_parsed_case, unlike, subject_link, NOUN_LINKS
 from backend.services.nahw.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.nahw.syntax.facts.kind import calling_head
-from backend.services.nahw.syntax.facts.follows import with_waw
-from backend.services.nahw.syntax.facts.slot import place_time, verb_place
+from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
+from backend.services.nahw.syntax.facts.slot import busied_before, place_time, verb_place
 
 
 def _governor(token: dict, s: Sentence) -> str:
@@ -16,6 +16,12 @@ def _governor(token: dict, s: Sentence) -> str:
     if word:
         s.governed_by[token["id"]] = word["id"]
     return kind
+
+
+def _worker(token: dict, s: Sentence, place: str, worker: dict | None) -> tuple[str, dict | None]:
+    """The verb or participle filling `place` works on the word, unless it is busied with a pronoun back
+    to it (زَيْدًا ضَرَبْتُهُ، زَيْدًا أَنَا ضَارِبُهُ): then one like it, left out, no word of the sentence."""
+    return "verb", None if place == "object" and busied_before(token, s) else worker
 
 
 def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
@@ -36,25 +42,29 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
             return "verb", head
         return "verb", next((k for k in s.kids(token) if is_verb(k)), None)  # مَتَى سافر
     if calling := calling_head(token, s):
-        return calling, head
-    if with_waw(token, s):
-        return "verb", verb_above(head, s)  # the verb before واو المعية works on the noun after it
+        # اللهمّ، رَبَّنَا اغْفِرْ: a call with no يا typed is governed by the يا left off, no word of the sentence
+        return calling, None if calling == "nida" and not (head and is_one(head["lemma"], "nida")) else head
+    if verb := verb_joined_by_waw(token, s):
+        return "verb", verb  # the verb before واو المعية works on the noun after it
     if jarr_takes(token, s):
         return "harf_jarr", head
     under_verb = bool(head) and is_verb(head)
     # كنتُ آمرًا أحدًا: the participle governs its object as its verb would; asked before
     # the idafa, since a مضاف إليه is never منصوب (فاهمٌ الدرسَ)
-    if head and not under_verb and verb_place(token, s) in ("object", "subject"):
-        return "verb", head
+    if head and not under_verb and (place := verb_place(token, s)) in ("object", "subject"):
+        return _worker(token, s, place, head)
     if rel == "IDF" and not (under_verb and typed != "i"):
         return "idafa", head
     # ذائقةُ الموتِ: the noun in jarr straight after a noun in construct is its mudaf ilayh
     if head and head.get("stt") == "c" and head["id"] == token["id"] - 1 and typed == "i" and not under_verb:
         return "idafa", head
-    # a noun with tanween is complete (ضَرَبَ زَيْدٌ مَرْيَمَ), so nothing after it is its مضاف إليه
+    # a noun with tanween is complete (ضَرَبَ زَيْدٌ مَرْيَمَ), so nothing after it is its مضاف إليه;
+    # one of the six nouns with its case letter is a مضاف by that letter (أَبُو مُوسَى), whatever موسى shows
     if rel == "---" and head and is_plain_noun(head) and head["id"] == token["id"] - 1 \
             and not typed_tanween(head) \
-            and (typed_or_parsed_case(token) == "i" or shows_jarr(token)) and not any(subject_link(c) for c in s.kids(token)) \
+            and (typed_or_parsed_case(token) == "i" or shows_jarr(token)
+                 or six_noun_case(head["base"], head["lemma"])) \
+            and not any(subject_link(c) for c in s.kids(token)) \
             and not ("dem" in token.get("pos_camel", "") and s.verbless):
         return "idafa", head
     # ظن الولد الأمر سهلا: a modifier after the first object is the verb's second
@@ -64,16 +74,16 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     named_by_kana = rel == "MOD" and under_verb and typed != "a" and s.family(head) == "kana" \
         and head["id"] == token["id"] - 1
     # مَنْ غَشَّنَا فَلَيْسَ مِنَّا: a governor works on what comes after it, so a noun before ليس is not its اسم
-    # (only a خبر may be put first: قائمًا كان زيدٌ)
-    ahead = head and (head["id"] < token["id"] or rel == "PRD")
+    # (only a خبر may be put first: قائمًا كان زيدٌ; and the one asked: مَنْ كَانَ مَعَكَ)
+    ahead = head and (head["id"] < token["id"] or rel == "PRD" or rel == "SBJ" and "interrog" in token.get("pos_camel", ""))
     if ahead and (second or named_by_kana or rel in (*NOUN_LINKS, "PRD") or (rel == "IDF" and typed != "i")):
         family = s.family(head)
         if family:
             return family, head
     if rel in ("TMZ", "OBJ") and head and not under_verb and head["pos"] != "PRT":
         return "noun", head  # عشرون كتابًا: a number or measure
-    if verb_place(token, s) != "none":
-        return "verb", verb_above(token, s) or head  # مسافرٌ غدًا: a participle works like its verb
+    if (place := verb_place(token, s)) != "none":
+        return _worker(token, s, place, verb_above(token, s) or head)  # مسافرٌ غدًا: a participle works like its verb
     if rel == "MOD" and head and not is_verb(token):
         if unlike(token, head) or told_of_subject(token, head):
             above = s.head(head)

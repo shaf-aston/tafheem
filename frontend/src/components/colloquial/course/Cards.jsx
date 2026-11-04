@@ -1,7 +1,7 @@
 /** The choice cards every level of the course list is drawn from. */
 import { unitNumber } from '../../../lib/colloquial/place'
-import ArabicText from '../../ui/ArabicText'
-import SpeakButton from '../../ui/SpeakButton'
+import ArabicText from '../../ui/text/ArabicText'
+import SpeakButton from '../../ui/buttons/SpeakButton'
 import { FOCUS } from '../parts/Face'
 import PhrasePicture from '../parts/PhrasePicture'
 

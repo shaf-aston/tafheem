@@ -81,7 +81,7 @@ export function told(arabic, cut, names) {
  * overlapping the place his name stands. A name it did not link stays plain.
  * Each name in the box is a `member` (a box may join several: أيوب، ويونس) with
  * its own words, cut to the box so an aside after it stays out, and its `note`
- * (a weak narrator, from usul.db, starting where his slice starts), for lib/weak.
+ * (a weak narrator, from usul.db, starting where his slice starts), for hadith/chain/weak.
  * The box carries the `ties` that start at any member: the links of the chain a
  * source puts in doubt, each saying who said the word before that name.
  */

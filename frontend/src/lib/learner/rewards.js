@@ -32,3 +32,5 @@ export const FLOAT_MS = config['float-ms']
 /** Daily goal choices (as remembered strings) and the default. */
 export const GOALS = config.goals.map(String)
 export const GOAL = String(config.goal)
+/** Where the picked daily goal is remembered (Grow's home shows it; the first-visit plan sets it). */
+export const GOAL_KEY = 'grow-goal'

@@ -71,7 +71,7 @@
 .lift:hover,
 .lift:focus-visible,
 .lift:has(> .stretch:focus-visible) {
-  transform: translateY(-2px);
+  transform: translateY(calc(var(--motion-lift-px) * -1px));
   box-shadow: var(--shadow-pop);
 }
 
@@ -138,15 +138,27 @@ details:not([open]) > .glide {
     transform calc(var(--motion-base-ms) * 1ms) ease-out,
     border-color calc(var(--motion-base-ms) * 1ms) ease-out,
     background-color calc(var(--motion-base-ms) * 1ms) ease-out,
-    color calc(var(--motion-base-ms) * 1ms) ease-out;
+    color calc(var(--motion-base-ms) * 1ms) ease-out,
+    opacity calc(var(--motion-base-ms) * 1ms) ease-out,
+    filter calc(var(--motion-base-ms) * 1ms) ease-out;
 }
 
 
 .option:not(:disabled):hover,
 .option:not(:disabled):focus-visible {
-  transform: translateY(-2px);
+  transform: translateY(calc(var(--motion-lift-px) * -1px));
   background-color: color-mix(in srgb, var(--c) 7%, var(--surface-hi));
   border-color: var(--c);
+}
+
+
+/* A wrong pick sinks: pressed a little into the page and greyed, its verdict
+   still riding its border. No shake: the shake said "error" louder than the
+   answer said what was right. */
+.option[data-verdict='wrong'] {
+  transform: translateY(1px) scale(0.98);
+  filter: grayscale(0.6);
+  opacity: 0.75;
 }
 
 
@@ -166,7 +178,7 @@ dialog {
    while the launcher sprang in, so two taps in the same header felt like two
    apps. The launcher is left out: its ring has its own arrival (.dance), and
    its scrim already fades in command.css. A sheet pinned to the bottom of a
-   phone (.sections-menu there, a BottomSheet's mt-auto) slides up instead,
+   phone (.phone-sheet there, a BottomSheet's mt-auto) slides up instead,
    from where the finger is. */
 /* :where(), so the leave rule below, plainer, still wins while leaving. */
 dialog:where([open]:not(.sh-dialog)) > * {
@@ -201,10 +213,22 @@ dialog[data-leaving]::backdrop {
 }
 
 
+/* On a phone, More and Settings (.phone-sheet) and every BottomSheet rise on a
+   light spring, the page behind softens out of focus a little, and the sheet's
+   tiles follow it up one after another. Phones only: on a wide screen these are
+   dialogs in the middle of the page, and arrive as one piece like the rest. */
 @media (max-width: 39.99rem) {
-  dialog:where(.sections-menu[open]) > *,
+  dialog:where(.phone-sheet[open]) > *,
   dialog:where(.mt-auto[open]) > * {
-    animation-name: sheet-up;
+    animation: sheet-up calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
+  }
+  dialog:where(.phone-sheet[open], .mt-auto[open])::backdrop {
+    backdrop-filter: blur(calc(var(--motion-soften-px) * 1px));
+  }
+  dialog:where(.phone-sheet[open]) .rise-in {
+    --rise-uncover: 0%;
+    animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease)
+      calc((var(--motion-base-ms) + min(var(--i, 0), var(--motion-reveal-cap)) * var(--motion-stagger-ms)) * 1ms) backwards;
   }
 }
 
@@ -225,8 +249,47 @@ dialog::backdrop {
     var(--surface) 75%
   );
   background-size: 200% 100%;
-  animation: shimmer calc(1.4s * var(--motion-scale)) infinite;
+  animation: shimmer calc(var(--loop-shimmer-ms) * var(--motion-scale) * 1ms) infinite;
   border-radius: var(--radius-sm);
+}
+
+
+/* The qalam writing (ui/feedback/Skeleton InkLine): pen and line share one
+   duration and curve, so the gold appears exactly under the nib. ease-in-out,
+   not the settle curve: settle front-loads the move, and the pen darted across
+   in a third of the pass then sat still, which read as a flick, not writing. Right to left,
+   as Arabic is written. Multiplied by --motion-scale like the shimmer, so the
+   Animations setting stills it, the line then sitting whole. */
+.ink-line {
+  --ink-ms: calc(var(--motion-ink-ms) * var(--motion-scale) * 1ms);
+  position: relative;
+  width: min(16rem, 70%);
+  height: 1.5rem; /* the h-6 bar it stands in for, so the placeholder keeps its height */
+}
+.ink-line-trail {
+  position: absolute;
+  inset: auto 0 0.2rem 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(to left, var(--palette-gold), color-mix(in srgb, var(--palette-gold) 40%, transparent));
+  transform-origin: right;
+  animation: ink-write var(--ink-ms) ease-in-out infinite;
+}
+.ink-line-pen {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  --c: var(--palette-gold);
+  animation: ink-pen var(--ink-ms) ease-in-out infinite;
+}
+@keyframes ink-write {
+  0% { transform: scaleX(0); opacity: 1; }
+  70% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+@keyframes ink-pen {
+  0% { right: 0; }
+  70%, 100% { right: calc(100% - 1rem); }
 }
 
 
@@ -281,9 +344,11 @@ dialog::backdrop {
   display: inline-block;
   line-height: var(--gloss-box);
   border-radius: var(--radius-sm);
+  /* transform is the lift card below: the word rises as its gloss springs out. */
   transition:
     color calc(var(--motion-instant-ms) * 1ms) ease,
-    background calc(var(--motion-instant-ms) * 1ms) ease;
+    background calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
 }
 
 
@@ -324,7 +389,6 @@ dialog::backdrop {
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(-4px);
   opacity: 0;
   pointer-events: none;
   z-index: var(--layer-raised);
@@ -339,7 +403,8 @@ dialog::backdrop {
   box-shadow: var(--shadow-pop);
   transition:
     opacity calc(var(--motion-instant-ms) * 1ms) ease,
-    transform calc(var(--motion-instant-ms) * 1ms) ease;
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+  transform: translateX(-50%) translateY(-4px) scale(0.92);
 }
 
 
@@ -352,6 +417,17 @@ dialog::backdrop {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+
+/* The lift card: the word under the pointer rises a little as its gloss springs
+   out beneath it (the springing is the gloss's transform above), so the pair
+   reads as one card picked up off the line. Small on purpose: the line has to
+   stay readable around it. */
+.surah-row:not(:active) .gloss-word[data-gloss]:hover,
+.surah-row:not(:active) .gloss-word[data-gloss]:focus-visible {
+  transform: translateY(calc(var(--motion-lift-px) * -1px));
+}
+.gloss-all .gloss-word[data-gloss] { transform: none; }
 
 
 
@@ -419,6 +495,14 @@ dialog::backdrop {
 }
 
 
+/* Picked up, it casts the same pop shadow as every .lift card; not over a glow,
+   which is its own shadow. */
+.word:not(.glow):hover,
+.word:not(.glow):focus-visible {
+  box-shadow: var(--shadow-pop);
+}
+
+
 /* The word you opened. It grows a little and lifts, so the detail panel hanging
    below it reads as belonging to a particular word rather than floating over
    the row; and the word itself comes up a shade, because the one you are
@@ -449,13 +533,6 @@ dialog::backdrop {
 /* One tab on the strip, and the lit line under the chosen one. */
 .tab-btn {
   transition: color calc(var(--motion-base-ms) * 1ms) ease;
-}
-
-
-.tab-line {
-  transition:
-    background-color calc(var(--motion-base-ms) * 1ms) ease,
-    box-shadow calc(var(--motion-base-ms) * 1ms) ease;
 }
 
 
@@ -790,6 +867,50 @@ button.tile:hover { border-color: var(--c); }
 }
 
 
+/* The desktop strip's underline (shell/TabStrip): one line that glides to the open
+   tab, stretching to its width, its colour easing into the new tab's. Placed by
+   transform from the strip's top-left corner, so a wrapped row is reached too. */
+.tab-glide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px; /* TabStrip's LINE_PX: scaleX stretches it to the tab, so the glide is transform only */
+  height: 2px;
+  border-radius: 999px;
+  background: var(--c);
+  transform-origin: 0 0;
+  pointer-events: none;
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+    background-color calc(var(--motion-spring-ms) * 1ms) ease;
+}
+
+
+/* Where the browser can tie one box to another (CSS anchor positioning), the
+   line is tied to the open tab and nothing is measured: the open tab names
+   itself the anchor, the line takes its edges, and a change of tab or a rewrap
+   moves it with no script at all. TabStrip measures only where this is missing. */
+@supports (anchor-name: --tab-on) {
+  .tab-btn[aria-selected='true'] { anchor-name: --tab-on; }
+  .tab-glide {
+    position-anchor: --tab-on;
+    width: auto;
+    left: calc(anchor(left) + 4px);
+    right: calc(anchor(right) + 4px);
+    top: calc(anchor(bottom) - 1px);
+    transform: none;
+    opacity: 0;
+    transition:
+      left calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+      right calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+      top calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+      background-color calc(var(--motion-spring-ms) * 1ms) ease;
+  }
+  /* No open tab here (a page the strip does not list): no line, not a stray one. */
+  [role='tablist']:has(.tab-btn[aria-selected='true']) > .tab-glide { opacity: 1; }
+}
+
+
 /* The phone tab bar (shell/BottomNav): pinned at the bottom, clear of the home
    indicator, and the page keeps room under it so nothing hides behind. */
 .bottom-nav {
@@ -808,12 +929,43 @@ button.tile:hover { border-color: var(--c); }
   width: 3.25rem;
   height: 1.75rem;
   border-radius: 999px;
-  transition: background-color calc(var(--motion-base-ms) * 1ms) ease;
 }
 
 
+/* The pill behind the tab that is on (shell/BottomNav). --at is which place, --of how
+   many: it sits in the middle of its column, level with the marks (the buttons' pt-2),
+   and glides from one to the next with the settle curve, its colour easing into the new tab's. */
+.bottom-nav-pill {
+  /* One column wide, so moving it a whole column is translate: 100% (transform only,
+     no layout per frame); the pill shape is centred inside it. */
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: calc(100% / var(--of));
+  height: 1.75rem;
+  translate: calc(var(--at) * 100%) 0;
+  pointer-events: none;
+  transition: translate calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
+}
+.bottom-nav-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 3.25rem;
+  translate: -50% 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c) 18%, transparent);
+  transition: background-color calc(var(--motion-spring-ms) * 1ms) ease;
+}
+
+
+/* The mark on the pill rises a few px as it arrives (the shared rise-in, with a spring),
+   so the eye lands where the pill does. */
 .bottom-nav-on {
-  background: color-mix(in srgb, currentColor 18%, transparent);
+  --rise-y: 4px;
+  --rise-uncover: 0%;
+  --rise-from: 1;
+  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
 }
 
 /* Holding the current tab: Top, Back, Bottom rise above the thumb (lib/jumpFan.js). */
@@ -833,6 +985,7 @@ button.tile:hover { border-color: var(--c); }
   color: var(--text);
   text-align: center;
   box-shadow: var(--shadow-pop);
+  --rise-uncover: 0%;
   animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease) both;
   transition: background-color calc(var(--motion-instant-ms) * 1ms), color calc(var(--motion-instant-ms) * 1ms);
 }
@@ -857,11 +1010,11 @@ button.tile:hover { border-color: var(--c); }
     display: none;
   }
   /* More opens as a sheet rising from the bottom, where the finger already is. */
-  .sections-menu {
+  .phone-sheet {
     margin: auto 0 0;
     max-width: 100vw;
   }
-  .sections-menu > div {
+  .phone-sheet > div {
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
   }
@@ -869,7 +1022,7 @@ button.tile:hover { border-color: var(--c); }
 
 
 /* ── Chain drawing ─────────────────────────────────────────────────────────
-   hadith/ChainDrawing. A rung is a one-pixel line; a row of strands that split
+   hadith/chain/ChainDrawing. A rung is a one-pixel line; a row of strands that split
    from one narrator (chain-split) or meet at one (chain-merge) gets a bar
    across the tops or feet of its columns, from the middle of the first to the
    middle of the last, so the lines read as one tree. */
@@ -1002,7 +1155,7 @@ button.tile:hover { border-color: var(--c); }
 .xp-done { color: var(--text-dim); }
 .xp-done .xp-dot { background: var(--xp-tone); border-color: var(--xp-tone); }
 .xp-now { color: var(--text); }
-.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse 1.6s ease-in-out infinite; }
+.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse calc(var(--loop-pulse-ms) * var(--motion-scale) * 1ms) ease-in-out infinite; }
 @keyframes xp-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--xp-tone) 25%, transparent); } }
 @media (prefers-reduced-motion: reduce) {
   .xp-bar > span, .xp-step, .xp-now .xp-dot { animation: none; }
@@ -1079,3 +1232,86 @@ button.mushaf-word {
   line-height: 2;
   color: var(--text-faint);
 }
+
+
+/* The hadith collections as spines on a shelf (hadith/books/HadithCollectionPicker).
+   Each spine stands on the shelf's edge; pointed at it lifts, opened it tips out
+   towards the reader in the accent. The two Sahih books carry a gold band. On a
+   narrow screen the shelf scrolls sideways rather than wrapping to a second row. */
+.shelf {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.375rem;
+  padding: 1rem 0.5rem 0;
+  border-bottom: 3px solid var(--border-hi);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.shelf-spine {
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 7.5rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-hi);
+  border-bottom: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background:
+    linear-gradient(var(--border) 0 0) top 0.6rem left 0 / 100% 1px no-repeat,
+    linear-gradient(var(--border) 0 0) bottom 0.6rem left 0 / 100% 1px no-repeat,
+    var(--surface-hi);
+  color: var(--text-dim);
+  transform-origin: bottom center;
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    background-color calc(var(--motion-base-ms) * 1ms) ease-out,
+    color calc(var(--motion-base-ms) * 1ms) ease-out;
+}
+.shelf-spine > span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: 600;
+  font-size: 0.8rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.shelf-spine[data-sahih] {
+  background:
+    linear-gradient(var(--palette-gold) 0 0) top 0.6rem left 0 / 100% 2px no-repeat,
+    linear-gradient(var(--palette-gold) 0 0) bottom 0.6rem left 0 / 100% 2px no-repeat,
+    var(--surface-hi);
+}
+.shelf-spine:hover,
+.shelf-spine:focus-visible {
+  transform: translateY(calc(var(--motion-lift-px) * -2px));
+  color: var(--text);
+}
+.shelf-spine:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+.shelf-spine[aria-pressed='true'] {
+  transform: translateY(-6px) rotate(-5deg);
+  background-color: var(--c);
+  color: var(--surface);
+  border-color: var(--c);
+}
+
+
+/* The surah's reading line (quran/QuranReader): under the header, held below the
+   app's own header as the page scrolls, filling as the ayah in view moves on. */
+.read-line {
+  position: sticky;
+  top: var(--app-header-h, 0px);
+  z-index: var(--layer-sticky);
+  height: 2px;
+  margin-top: -2px;
+  background: transparent;
+}
+.read-line > i {
+  display: block;
+  height: 100%;
+  background: var(--c);
+  transform-origin: left;
+  transform: scaleX(var(--read));
+  transition: transform calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease);
+}
+[dir='rtl'] .read-line > i { transform-origin: right; }

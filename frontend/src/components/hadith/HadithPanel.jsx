@@ -2,7 +2,7 @@
  * Hadith: browse a collection by book, or search across it.
  *
  * Same shape as TimelinesPanel and DaleelPanel: fetch the small fixed list
- * once (the collections), own where the tab is (lib/hadithPlace, the same
+ * once (the collections), own where the tab is (hadith/hadithPlace, the same
  * "adjusted during render" pattern TimelinesPanel follows for its own place),
  * and hand the actual work to small named components that read from there.
  */
@@ -10,32 +10,32 @@ import { useEffect, useState } from 'react'
 import { useArrivalWhenReady } from '../../lib/nav/useArrival'
 import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith } from '../../api'
-import { bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from '../../lib/hadith/hadithPlace'
-import { useHadithFavorites } from '../../lib/hadith/useHadithFavorites'
+import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith, usulGuideQuery } from '../../api'
+import { bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from './hadithPlace'
+import { useHadithFavorites } from './favorites/useHadithFavorites'
 import { nearest, tabNow, trailFor, useJourney } from '../../lib/nav/journey'
 import { TRAIL_STEPS } from '../../lib/nav/session'
 
-import Chip from '../ui/Chip'
-import ChipRow from '../ui/ChipRow'
-import EmptyState from '../ui/EmptyState'
-import SectionHeader from '../ui/SectionHeader'
-import ErrorAlert from '../ui/ErrorAlert'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
-import StatusNote from '../ui/StatusNote'
-import HadithCollectionPicker from './HadithCollectionPicker'
-import HadithBookList from './HadithBookList'
+import Chip from '../ui/inputs/Chip'
+import ChipRow from '../ui/inputs/ChipRow'
+import EmptyState from '../ui/feedback/EmptyState'
+import SectionHeader from '../ui/display/SectionHeader'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
+import StatusNote from '../ui/feedback/StatusNote'
+import HadithCollectionPicker from './books/HadithCollectionPicker'
+import HadithBookList from './books/HadithBookList'
 import HadithCards from './HadithCards'
-import HadithMoreMenu from './HadithMoreMenu'
+import PlaceStrip from './PlaceStrip'
 import HadithOptions from './HadithOptions'
-import HadithList from './HadithList'
+import HadithList from './books/HadithList'
 import HadithSearchResults from './HadithSearchResults'
-import NarratorList from './NarratorList'
-import NarratorPage from './NarratorPage'
-import ScholarTerms from './ScholarTerms'
-import TermsView from './TermsView'
-import Code from '../ui/Code'
-import SourceBadge from '../ui/SourceBadge'
+import NarratorList from './narrators/NarratorList'
+import NarratorPage from './narrators/NarratorPage'
+import ScholarTerms from './terms/ScholarTerms'
+import TermsView from './terms/TermsView'
+import Code from '../ui/text/Code'
+import SourceBadge from '../ui/feedback/SourceBadge'
 import { useSources } from '../../lib/api/useSources'
 
 const noop = () => {}
@@ -52,11 +52,14 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   // watched (the same request his page makes), so a name lands once it arrives, a reloaded trail too.
   const client = useQueryClient()
   const { steps, at } = useJourney()
-  const onTrail = new Set([narrator, ...nearest(trailFor(steps, tabNow(steps, at), at), at, TRAIL_STEPS).shown.map((step) => narratorOf(step.value))])
+  const shown = nearest(trailFor(steps, tabNow(steps, at), at), at, TRAIL_STEPS).shown
+  const onTrail = new Set([narrator, ...shown.map((step) => narratorOf(step.value))])
   onTrail.delete(null)
   const pages = useQueries({ queries: [...onTrail].map((id) => narratorQuery(id)) })
   const names = Object.fromEntries([...onTrail].map((id, n) => [id, pages[n].data?.name_en]))
-  const named = (q) => nameOfPlace(q, collections, (id) => names[id])
+  // A Terms group on the trail reads by its title, from the guide the Terms view already holds.
+  const guide = useQuery({ ...usulGuideQuery, enabled: termsGroup != null || shown.some((step) => termsGroupOf(step.value) != null) })
+  const named = (q) => nameOfPlace(q, collections, (id) => names[id], (n) => guide.data?.glossary?.[n]?.title)
   const source = useSources().sources.find((s) => s.key === 'hadith')
 
   // A link naming a book starts that book loading beside the collections, not after them.
@@ -188,10 +191,10 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
         onNarrator={openNarrator}
         onHadith={openHadith}
         onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}
-        menu={(
-          <HadithMoreMenu accent={accent} items={[
-            { label: '★ Starred', count: favorites.length, on: starred, pick: () => setStarred(!starred) },
-            { label: 'Narrators', hint: 'who passed them on', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
+        places={(
+          <PlaceStrip accent={accent} items={[
+            { label: 'Starred', hint: 'hadith you kept', count: favorites.length, on: starred, pick: () => setStarred(!starred) },
+            { label: 'Rijal', hint: 'who passed them on', on: listing === NARRATORS_PLACE, pick: () => (listing === NARRATORS_PLACE ? go(place) : onGo('hadith', NARRATORS_PLACE)) },
             { label: 'Scholars', hint: 'what they said of them', on: listing === SCHOLARS_PLACE, pick: () => (listing === SCHOLARS_PLACE ? go(place) : onGo('hadith', SCHOLARS_PLACE)) },
             { label: 'Terms', hint: 'the words of the science', on: listing === TERMS_PLACE, pick: () => (listing === TERMS_PLACE ? go(place) : onGo('hadith', TERMS_PLACE)) },
           ]} />

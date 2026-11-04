@@ -27,12 +27,12 @@ from backend.config import get_settings
 from backend.services.text.arabic_text import has_arabic
 from backend.services.quran.search import local, remote
 from backend.services.quran.search.hit import Hit
-from backend.services.quran.search.local import whole_ayah
+from backend.services.quran.search.local import ayah_run, whole_ayah
 from backend.services.core.timing import timed
 
 logger = logging.getLogger(__name__)
 
-__all__ = ["Hit", "search", "whole_ayah"]
+__all__ = ["Hit", "ayah_run", "search", "whole_ayah"]
 
 
 def search(query: str, limit: int | None = None) -> tuple[list[Hit], list[tuple[str, str]]]:

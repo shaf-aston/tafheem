@@ -11,8 +11,8 @@ import { useMutation } from '@tanstack/react-query'
 import { makeCheckedSentence } from '../../api'
 import { smartError } from '../../lib/api/apiError'
 
-import ArabicText from '../ui/ArabicText'
-import SmallButton from '../ui/SmallButton'
+import ArabicText from '../ui/text/ArabicText'
+import SmallButton from '../ui/buttons/SmallButton'
 
 export default function PracticeSentence({ say }) {
   const [meaning, setMeaning] = useState(false)

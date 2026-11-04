@@ -2,6 +2,7 @@
 import pytest
 
 from backend.services.sarf import morphology
+from backend.services.text.arabic_text import bare_letters
 from backend.services.sarf import noun_reader
 from backend.services.nahw.syntax.facts import Sentence
 from tests.nahw_helpers import analyze, needs_parser
@@ -156,6 +157,8 @@ def test_question_hamza_split_only_off_the_first_word_that_needs_it():
     (["ما", "زيد", "ذاهبا"], False),       # a particle is there to work the nasb
     (["يا", "نصر", "بكرا"], False),        # يا works it (منادى), nothing else need be a verb
     (["نصر", "عصا"], False),               # the alif is عصا's own letter, no nasb to work
+    (["زَيْدٌ", "فَاهِمٌ", "الدَّرْسَ"], False),  # a typed tanween is a sign of the noun: no فَأَهِم
+    (["زَيْدٌ", "فَاهِمْ", "الدَّرْسَ"], True),   # nearest case: no tanween, the verb reading stands
 ])
 def test_a_bare_first_word_is_the_verb_a_written_nasb_needs(words, verb):
     assert ("verb" in [r.get("pos") for r in morphology.pick(words)]) is verb
@@ -168,11 +171,38 @@ def test_the_verb_is_the_plainest_reading_before_the_nasb():
 
 
 @needs_parser
+@pytest.mark.parametrize("word, diac", [
+    ("زيدا", "زَيْدًا"),  # the name adds no letter; the verb زَيَّدَا adds a shadda (الأصل عدم الزيادة)
+    ("جدا", "جِدّاً"),   # nearest case: جِدًّا's shadda is the stem's too, so the ranked reading stays
+])
+def test_a_bare_word_is_read_adding_the_fewest_letters(word, diac):
+    assert morphology.pick([word])[0].get("diac") == diac
+
+
+@needs_parser
+@pytest.mark.parametrize("word, per, num, verb", [
+    ("ضُرِبْتُ", "1", "s", "ضرب"),  # the dictionary has no passive: its active ضَرَبْتُ, not ضَرَبَتْ
+    ("ضُرِبْتِ", "2", "s", "ضرب"),
+    ("ضُرِبَتْ", "3", "s", "ضرب"),
+    ("أُعْطِيتُ", "1", "s", "أعطى"),  # أُعْطِيَتْ agrees but for the ending it leaves bare
+    ("رُمِيتُ", "1", "s", "رمى"),
+    ("كُسِيتُ", "1", "s", "كسا"),  # كَسِيَ "got clothed" contradicts its vowels: sarf's verb is the word
+    ("كتبت", "3", "s", "كتب"),  # nearest case: typed bare, no ending says the doer, the ranked one stays
+    ("أَلَسْتُ", "1", "-", "ليس"),  # the dictionary leaves ليس's number unsaid: no clash with the table's أَلَسَ
+])
+def test_a_past_verb_s_ending_names_its_doer(word, per, num, verb):
+    reading = morphology.pick([word])[0]
+    assert (reading.get("per"), reading.get("num"), bare_letters(reading.get("lex", ""))) == (per, num, bare_letters(verb))
+
+
+@needs_parser
 @pytest.mark.parametrize("sentence, roles", [
     ("نصر زيد بكرا", ["فعل", "فاعل", "مفعول به"]),  # typed bare: the nasb alif is written
     ("ضرب زيد عمرا", ["فعل", "فاعل", "مفعول به"]),
     ("جئت بكرة", ["فعل", "مفعول فيه"]),            # بُكْرَة keeps its ة: still the time word
     ("جاء زيد راكبا", ["فعل", "فاعل", "حال"]),       # a state word stays the hal
+    ("ضربوا زيدا", ["فعل", "مفعول به"]),             # not the verb زَيَّدَا: its shadda is no letter written
+    ("رأيت زيدا", ["فعل", "مفعول به"]),
 ])
 def test_bare_text_reads_its_written_nasb(sentence, roles):
     assert _roles(sentence) == roles
@@ -192,6 +222,8 @@ def test_written_nasb_is_the_alif_of_tanween(typed, diac, case):
 
 @pytest.mark.parametrize("form, lemma, found", [
     ("بكرا", "بكرة", False),   # بَكَرًا: no ة, another word
+    ("البكر", "بكرة", False),  # nor with the article
+    ("سنين", "سنة", True),     # a plural drops it
     ("بكرة", "بكرة", True),
     ("ساعات", "ساعة", True),   # its ة written ت in the plural
     ("يوما", "يوم", True),
@@ -216,3 +248,23 @@ def test_a_written_nasb_after_the_subject_is_the_object(head_typed, rel, moved):
              _tok(3, "عمر", "PROP", 2, rel.removesuffix("-diptote"), **last)]
     subject_clash(words)
     assert ((words[2]["head"], words[2]["rel"]) == (1, "OBJ")) is moved
+
+
+@pytest.mark.parametrize("state, rel", [("i", "SBJ"), ("d", "MOD")])
+def test_a_pointer_hung_on_the_indefinite_noun_after_it_is_its_mubtada(state, rel):
+    """هَذِهِ حِجَارَةٌ: a نعت follows its noun, so the pointer is the mubtada; a definite noun after it
+    (هَذِهِ الْحِجَارَةُ) is its بدل or صفة, and the two make no sentence by themselves."""
+    from backend.services.nahw.syntax.repair.khabar import after_pointer
+    words = [_tok(1, "هذه", "NOM", 2, "MOD", pos_camel="pron_dem"), _tok(2, "حجارة", "NOM", 0, "---", stt=state)]
+    after_pointer(words)
+    assert words[0]["rel"] == rel
+
+
+@pytest.mark.parametrize("pos, rel", [("PROP", "SBJ"), ("NOM", "OBJ")])
+def test_a_bare_name_after_a_verb_of_saying_is_its_doer(pos, rel):
+    """قال زيد هو يكتب typed bare: a verb of saying takes a told sentence or a word meaning one, never a
+    name, so the name is its doer; a plain noun (قال كلام) keeps the parser's reading."""
+    from backend.services.nahw.syntax.repair.subject_clash import subject_clash
+    words = [_tok(1, "قال", "VRB", 0, "---"), _tok(2, "زيد" if pos == "PROP" else "كلام", pos, 1, "OBJ")]
+    subject_clash(words)
+    assert words[1]["rel"] == rel

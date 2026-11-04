@@ -5,9 +5,8 @@
  * an answer it could not line up. These views never split anything again: a
  * second cut on the client is how English ends up under the wrong Arabic.
  *
- * Two ways to read the same pairs. LinePage gives every line its own row with
- * its English under it (a tick box hides the English until a line is tapped).
- * LineSpotlight takes one line at a time, English hidden until asked for.
+ * LineSpotlight takes one line at a time, English hidden until asked for. (The
+ * page of every line under its English gave way to EntryWords, Word by word.)
  */
 import { useCallback, useState } from 'react'
 
@@ -15,7 +14,7 @@ import { entryLines } from '../../lib/dictionary/entryLines'
 import { useRememberedFlag } from '../../lib/store/useRemembered'
 
 import { Line } from './EntryArabic'
-import SmallButton from '../ui/SmallButton'
+import SmallButton from '../ui/buttons/SmallButton'
 
 
 /** Which line is current. Clamped at both ends, not wrapped: the entry has an end. */
@@ -32,9 +31,6 @@ function useLineCursor(count) {
   return { i, go, prev, next, onKeyDown }
 }
 
-/** Two digits in Arabic-Indic figures, to sit among the Arabic. */
-const arabicNumber = (n) => n.toLocaleString('ar-EG', { minimumIntegerDigits: 2, useGrouping: false })
-
 /** A quiet tick box above a view, for how it reads; the choice is remembered. */
 const Tick = ({ checked, onChange, accent, children }) => (
   <label className="type-small text-[var(--text-dim)] flex items-center justify-end gap-2">
@@ -42,53 +38,6 @@ const Tick = ({ checked, onChange, accent, children }) => (
     {children}
   </label>
 )
-
-export function LinePage({ lines, accent }) {
-  const [tapToShow, setTapToShow] = useRememberedFlag('dict.lines-tap', false)
-  const [open, setOpen] = useState(() => new Set())
-  const toggle = (n) => setOpen((was) => {
-    const now = new Set(was)
-    if (!now.delete(n)) now.add(n)
-    return now
-  })
-
-  return (
-    <div className="space-y-2" style={{ '--c': accent }}>
-      <Tick checked={tapToShow} onChange={setTapToShow} accent={accent}>Tap a line for its English</Tick>
-      <div role="list" aria-label="Lines of the entry">
-        {lines.map((pair, n) => {
-          const shown = !tapToShow || open.has(n)
-          const tap = tapToShow && {
-            role: 'button',
-            tabIndex: 0,
-            'aria-expanded': shown,
-            onClick: () => toggle(n),
-            onKeyDown: (e) => {
-              if (e.key !== 'Enter' && e.key !== ' ') return
-              e.preventDefault()
-              toggle(n)
-            },
-          }
-          return (
-            <div key={n} role="listitem" className="entry-row">
-              <div className="entry-row-body" {...tap}>
-                <span className="entry-num type-tiny" aria-hidden="true">{arabicNumber(n + 1)}</span>
-                <div className="flex-1 min-w-0 space-y-0.5">
-                  <Line line={entryLines(pair.arabic)[0]} size="lg" />
-                  {shown && (
-                    <p dir="ltr" className={`type-body text-[var(--text)] ${tapToShow ? 'entry-rise' : ''}`}>
-                      {pair.english}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
 
 export function LineSpotlight({ lines, accent }) {
   const cursor = useLineCursor(lines.length)

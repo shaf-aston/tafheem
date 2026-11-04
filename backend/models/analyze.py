@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from pydantic import BaseModel, Field
 
+from backend.config import get_settings
 from backend.models.common import Source
 from backend.models.tarkeeb import TarkeebTree
 from backend.services.text.arabic_text import shown_root
@@ -12,7 +13,7 @@ from backend.services.text.arabic_text import shown_root
 # Trust-boundary caps: user text flows into LLM prompts and NLP engines, 
 # unbounded input is a token-cost / latency attack surface. Reject loud (422).
 class AnalyzeRequest(BaseModel):
-    sentence: str = Field(min_length=1, max_length=2000)
+    sentence: str = Field(min_length=1, max_length=get_settings().max_sentence_chars)
 
 
 # Every role name the word grid knows how to colour. The role itself is written

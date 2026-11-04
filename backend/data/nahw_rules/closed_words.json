@@ -93,6 +93,10 @@
    "effect": "calls the noun after it (munada); a single definite munada is built on damma, else nasb",
    "_called_nouns": "أيّ (أيّة) with the ها of attention is the munada itself, built on damma; the noun with ال after it is its صفة (Tasheel, al-nida)",
    "called_nouns": ["أيها", "أيتها"],
+   "_described_by": "أيّ is described only by a genus noun with أل (الرجل), a pointer (يا أيهذا) or a relative with أل (يا أيها الذي فعل كذا): the word kinds besides the noun with أل (Ibn Aqil V3 p268: ولا توصف أي إلا باسم جنس محلى بأل ... أو باسم إشارة ... أو بموصول محلى بأل)",
+   "described_by": ["pron_dem", "pron_rel"],
+   "_attention": "أيّ and أيّة are called with the ها of attention written on (أَيُّهَا، أَيَّتُهَا): the called noun is built on damma, the ها a particle with no place (Ibn Aqil V3 p268: فأي منادى مفرد مبنى على الضم وها زائدة)",
+   "attention": {"letters": "ها", "said": "وها حرف تنبيه مبني على السكون لا محل له من الإعراب"},
    "_called_alone": "اللهمّ is يا الله: يا dropped from the front and the ميم put at the end in its place, so it is the called noun with no particle before it (Ibn Jinni, al-Luma' p113)",
    "called_alone": ["اللهم"],
    "words": [
@@ -173,6 +177,16 @@
    "ar": "أفعال لازمة",
    "_comment": "Verbs that take no object (الفعل اللازم). After ما they leave no slot for a pronoun going back to ما (العائد), and a صلة with no عائد is ما المصدرية, never the relative (مغني اللبيب، ما المصدرية؛ شرح ابن عقيل، الموصول). Read by facts.ma_kind.",
    "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي"]
+  },
+  "noun_describers": {
+   "ar": "الصفة الغالبة",
+   "_comment": "Describing words used as nouns for the one they describe: مؤمن is a believer, صالح a good deed. Only such a word may stand for its noun left out (Ibn Aqil V3 p205, on the Alfiyya: وما من المنعوت والنعت عُقِل يجوز حذفه), so after a verb that wants an object and has none it is that object (مَنْ عَمِلَ صَالِحًا، وَمَنْ يَقْتُلْ مُؤْمِنًا). Any other describing word there is a حال (دَخَلَ الضَّيْفُ مُبْتَسِمًا). Kept: the participles the Quranic Treebank makes a verb's object at least twice and at least twice as often as its حال, by their lemma. Read by facts.stands_for_its_noun.",
+   "words": ["صالح", "مؤمن", "كافر", "ظالم", "محسن", "مجرم", "فاسق", "مسلم", "مشرك", "مفسد", "مسرف", "متقي", "متق", "صابر", "صادق", "شاكر", "خاسر", "كاذب", "منفق", "مقسط", "مجاهد", "مرسل", "ضال", "خائن", "منكر", "شهيد", "مقيم", "باقي", "باق", "سافل"]
+  },
+  "describing_names": {
+   "ar": "العلم المنقول عن صفة",
+   "_comment": "Names taken over from a describing word (the Alfiyya on العلم: ومنه منقولٌ كفضلٍ وأسد). The dictionary reads خالد as 'immortal', never as a name, so after a verb that wants an object and has none the word is that name, the object, not a حال (أكرم محمد خالدا). Read by facts.stands_for_its_noun.",
+   "words": ["خالد", "سعيد", "عامر", "حامد", "سالم", "كريم", "ماجد", "فاضل", "راشد", "رشيد", "أمين", "جميل", "عادل", "كامل", "منير", "نبيل", "طاهر", "ناصر", "شاكر", "صالح", "حسن", "محمود", "مسعود", "منصور"]
   },
   "istithna_verbs": {
    "ar": "خلا وعدا وحاشا",
@@ -346,6 +360,8 @@
     "رد",
     "ترك"
    ],
+   "_one_object": "`one_object`: the verbs of `ambiguous` the book reads in their sense taking one object (رأى of the eye; وجد it keys with two, وجدت العلم نافعًا, Tasheel 3.8.1 p71), read in that sense unless an أنّ clause stands for both objects: a name after their object names it again, its بدل (Tasheel 3.10.3 p94: رأيت أخاك زيدًا), a word in nasb is its حال (رأيت صديقك مسرعًا), not a second object.",
+   "one_object": ["رأى"],
    "ambiguous": {
     "علم": "zanna-type 'knew that X was Y' (two objects) vs 'knew X' (one object) vs noun 'flag / science' vs the passive/intensive form 'taught'",
     "رأى": "zanna-type 'considered' (two objects) vs 'saw with the eye' (one object)",
@@ -528,6 +544,8 @@
   "ghair_amila_other": {
    "ar": "حروف غير عاملة أخرى",
    "card": {"named": "حرف", "does": "", "named_as": {"ل": "لام التوكيد"}},
+   "_khabar_lam": "the لام of emphasis comes onto the khabar of إنّ (Alfiyya: وبعد ذات الكسر تصحب الخبر لام ابتداء), a jar-majroor or ظرف too (وَإِنَّكَ لَعَلَى خُلُقٍ عَظِيمٍ، إِنَّ اللَّهَ لَمَعَ الْمُحْسِنِينَ); the dictionary never writes it onto a حرف جر or ظرف (morphology._emphasis_lam)",
+   "khabar_lam": {"lam": "ل", "onto": ["jarr", "zarf_makan"]},
    "effect": "draws attention, answers, explains, urges, or adds a nuance; governs nothing",
    "_fatha_lam": "a لام written onto a word with a fatha is the لام of emphasis (لَيَقُولَنَّ، إِنَّ زَيْدًا لَجَالِسٌ: اللام المزحلقة), governing nothing; the jarr لام takes a kasra, a fatha only before an attached pronoun (لَهُ), which the parser keeps as its own word (particles._emphasis_lam)",
    "words": [
@@ -614,7 +632,13 @@
    "ar": "أدوات الاستفهام",
    "effect": "turns the sentence into a question; the particles govern nothing, the nouns take a role in the sentence (subject, object, adverb, ...)",
    "_before_verb": "The place a question noun fills when it opens a verb clause whose verb has no object of its own (Tasheel 2.4.7 p47): what or how many is asked is the object (ماذا قرأت، كم كتابًا قرأت), how is the hal (كيف جئت), when and where the maf'ul fihi (متى سافر، أين جلس). Read by services/nahw/syntax/facts.py.",
-   "before_verb": {"ماذا": "object", "كم": "object", "كيف": "state", "متى": "place_time", "أين": "place_time", "أيان": "place_time"},
+   "before_verb": {"ماذا": "object", "كم": "object", "كيف": "state", "أنى": "state", "متى": "place_time", "أين": "place_time", "أيان": "place_time"},
+   "particle_tagged_nouns": ["أنى"],
+   "_particle_tagged_nouns": "question nouns the analyser files with the particles (أَنَّى, read as أَنَّ and a letter): أَنَّى يَكُونُ لَهُ وَلَدٌ is كيف (Tasheel 2.4.7 p47 lists the question nouns); read as the noun, it fills the place كيف does.",
+   "_jarred_ma": "ما that asks, after a حرف جر, loses its alif and keeps the fatha (Mughni al-Labib, ما الاستفهامية: ويجب حذف ألف ما الاستفهامية إذا جرت وإبقاء الفتحة دليلا عليها نحو فيم وإلام وعلام وبم): the one written word is the حرف جر and the ما it governs. Each entry: written letters -> [the حرف جر, the ما, and for a one-letter حرف جر CAMeL's name for it as a proclitic], read as the two. عم and لم are also words of their own (عَمَّ the verb, لَمْ the jazm particle), so they count only with the mark the question word is typed with (`jarred_ma_marked`).",
+   "jarred_ma": {"فيم": ["فِي", "مَ"], "مم": ["مِنْ", "مَ"], "عم": ["عَنْ", "مَ"], "إلام": ["إِلَى", "مَ"], "علام": ["عَلَى", "مَ"], "حتام": ["حَتَّى", "مَ"], "لم": ["لِ", "مَ", "li_prep"], "لماذا": ["لِ", "مَاذَا", "li_prep"]},
+   "jarred_ma_marked": {"عم": "ّ", "لم": "ِ"},
+   "jarred_ma_gloss": {"فيم": "in what", "مم": "from what", "عم": "about what", "إلام": "to what", "علام": "on what", "حتام": "until what", "لم": "why", "لماذا": "why"},
    "inflected": ["أي"],
    "heads": ["ما", "من", "ماذا", "كم"],
    "_heads": "question nouns that are no ظرف or hal: with a noun after them they are the mubtada and that noun the khabar (مَنْ أبوك، ما هي، القارعة ما القارعة: Sibawayh, on Ibn Aqil's Alfiyya; notes, Musnad p12). متى، أين، كيف stand for a time, place or state, so they are the khabar brought to the front (متى السفرُ). Read by services/nahw/syntax/facts/sentence.py.",
@@ -709,11 +733,12 @@
   "zarf_zaman": {
    "ar": "ظروف الزمان",
    "effect": "adverb of time (maf'ul fihi), nasb, or mudaf; a few are built (mabni) as in إذ إذا متى",
-   "_carriers": "A word of whole or part added to a time or place word stands in its place as the maf'ul fihi (كلَّ يومٍ، بعضَ الليلِ).",
+   "_carriers": "A word of whole or part added to a time or place word stands in its place as the maf'ul fihi (كلَّ يومٍ، بعضَ الليلِ); so does a number (adad_mudaf) counting one (لبثتُ عشرَ سنينَ، صمتُ ثلاثةَ أيامٍ), the ما ينوب عن الظرف of Ibn Aqil.",
    "conditional_nouns": ["إذا"],
    "conditional_adverbs": ["إذا"],
    "_conditional_nouns": "إذا before a past verb is a time word holding the meaning of a condition, not jussive (Tasheel 4.3.1 p112): its own clause is in the place of jarr as its مضاف إليه. Read with jazm's list by nahw_book.condition_of; particle_tree.json tells it from إذا الفجائية.",
-   "carriers": ["كل", "بعض"],
+   "carriers": ["كل", "بعض", "ذات"],
+   "_ذات": "ذات added to a time word is used as a time word only, always in nasb: سير عليه ذات يوم، وسير عليه ذات ليلة، بمنزلة ذات مرة (Sibawayh, al-Kitab V1 p226); والمستعمل ظرفا لا غير ما لزم النصب نحو قولك سرنا ذات مرة (Zamakhshari, al-Mufassal p81).",
    "_built": "Time words built on one ending whatever their place (Tasheel): the vowel typed on them is part of the word, not a case (زارنا أمسِ: مبني على الكسر في محل نصب).",
    "built": ["أمس", "الآن", "إذ", "منذ", "مذ"],
    "words": [
@@ -748,6 +773,10 @@
     "عام",
     "سنة",
     "شهر",
+    "ليل",
+    "نهار",
+    "صباح",
+    "دهر",
     "أسبوع",
     "يوما",
     "ليلة",
@@ -1027,6 +1056,8 @@
    "effect": "written joined to the word before it: genitive/accusative suffix on nouns, verbs and particles (كتابه، ضربه، إنه), or the subject ending of a verb",
    "on_nouns": ["ي", "نا", "ك", "كما", "كم", "كن", "ه", "ها", "هما", "هم", "هن"],
    "on_verbs": ["ني", "نا", "ك", "كما", "كم", "كن", "ه", "ها", "هما", "هم", "هن"],
+   "absent": ["ه", "ها", "هما", "هم", "هن"],
+   "_absent": "The pronouns of the one away (ضمير الغائب): only these stand for a noun said before it, a noun being one away, so only these are the pronoun of الاشتغال (Ibn Aqil V2 p128: ضمير الاسم السابق; زَيْدًا ضَرَبْتُهُ), never نا or ك (رَبَّنَا ظَلَمْنَا أَنْفُسَنَا).",
    "_on_verbs": "The object pronouns a verb takes (ظَلَمَكَ، أَكْرَمَنِي): the same as a noun's, but me is ني, its نون of protection kept (نون الوقاية).",
    "words": [
     "ي",
@@ -1079,6 +1110,20 @@
    "emphasis": ["ن"],
    "_farika": "The alif after the plural و is written only at the word's end (تَخَافُوا, تَخَافُوهُمْ): with the pronoun off it comes back.",
    "farika": {"و": "وا"}
+  },
+  "farqa_waw": {
+   "ar": "الواو الفارقة",
+   "effect": "a letter written on a name only to tell it from another (عَمْرو from عُمَر), in raf' and jarr; in nasb the tanween's alif tells them apart, so it is dropped (رأيت عَمْرًا)",
+   "_book": "Suyuti, Ham' al-Hawami' V3 p518: وزيدت الواو أيضا في (عمرو) وذلك للفرق بينه وبين (عمر) ولهذا اختصت بحالة الرفع والجر لأنه حالة النصب يكتب بألف دون عمر فيظهر الفرق",
+   "letter": "و",
+   "words": ["عمرو"]
+  },
+  "haa_sakt": {
+   "ar": "هاء السكت",
+   "effect": "a ه added in a pause after a word built on a vowel, to keep that vowel: a حرف with no place in the sentence, the word read as it is without it",
+   "_book": "Awdah al-Masalik (الوقف، هاء السكت): ياء المتكلم and هي، هو built on fatha (مَا هِيَهْ، مَالِيَهْ، سُلْطَانِيَهْ), and ما of question under جر (لِمَهْ); never a word that takes i'rab (جَاءَ زَيْدٌ) nor a sakin one. Mufassal: it is sakin, moving it is a fault.",
+   "letter": "ه",
+   "said": "والهاء للسكت حرف مبني على السكون لا محل له من الإعراب"
   },
   "ismfil": {
    "ar": "أسماء الأفعال",
@@ -1165,9 +1210,13 @@
     "ذراع",
     "قنطار",
     "كوب"
-   ]
+   ],
+   "_measures_comment": "`measures`: the words above that are measures, not numbers. After one that is indefinite, مِن can bring the tamyeez in its place (رطلٌ من عسلٍ، كوبٌ من القهوة: roles.json understood.measured); a number's cannot (غيرَ ذي العَدَد).",
+   "measures": ["رطل", "كيلو", "لتر", "متر", "فدان", "صاع", "مد", "أوقية", "غرام", "جرام", "ميل", "شبر", "ذراع", "قنطار", "كوب"]
   },
   "participle_patterns": {
+    "_doing": "`doing`: the measures of the doer and the done-to (فاعل, مفعول, and the مُ of forms II to X), not the صفة مشبهة. A word of its verb's own root on another measure repeats the doing itself, so it is the مفعول مطلق (فَرِحَ فَرَحًا، ضَحِكَتْ ضَحِكًا عَالِيًا), while one on these is a hal (قام قائمًا، وَلَّى مُدْبِرًا).",
+    "doing": ["1ائِ3", "1ا2ِ3", "آ2ِ3", "1ا2ِي", "مُ", "مَ1ْ2ُو3"],
    "ar": "أوزان اسم الفاعل واسم المفعول والصفة المشبهة",
    "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل (آ2ِ3 when the first root letter is a hamza: آمِر، آكِل), 1ائِ3 the same with a hollow middle letter (سائق، قائم، صائم), 1ا2ِي the same with a weak last letter (باكية، داعيًا), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
    "words": ["1ائِ3", 
@@ -1230,8 +1279,8 @@
   },
   "verbless_masdars": {
    "ar": "مصادر منصوبة بفعل محذوف وجوبًا (سماعية)",
-   "effect": "Heard masdars whose verb is never said (Ibn Aqil on the Alfiyya, المفعول المطلق: حذف عامل المصدر وجوبًا): in nasb and indefinite, wherever they stand, each is a مفعول مطلق of that unsaid verb (جَدَّ جِدًّا), never an object of the word before it (مجتهداتٌ جدًّا). Lemmas as the parser spells them.",
-   "words": ["جد", "حق", "أيض", "شكر", "حمد", "عجب", "قطع", "يقين", "سقي", "رعي"]
+   "effect": "Heard masdars whose verb is never said (Ibn Aqil on the Alfiyya, المفعول المطلق: حذف عامل المصدر وجوبًا): in nasb and indefinite, wherever they stand, each is a مفعول مطلق of that unsaid verb (جَدَّ جِدًّا), never an object of the word before it (مجتهداتٌ جدًّا). معاذ is a masdar of the measure مَفْعَل, which also makes nouns of place, so it is listed (Ibn Jinni, al-Munsif: مصدرا فألزم النصب نحو سبحان الله ولبيك ومعاذ الله). Lemmas as the parser spells them.",
+   "words": ["جد", "حق", "أيض", "شكر", "حمد", "عجب", "قطع", "يقين", "سقي", "رعي", "معاذ"]
   },
   "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",
@@ -1270,7 +1319,21 @@
    "book": "Tasheel 4.3.5 p118",
    "effect": "أَفْعَل (أَعْلَى، أَكْبَر) is no describing word at work: it takes no object, so its إضافة is معنوية محضة, never the لفظية of a participle (أَعْلَى صَوْتِهِ)",
    "words": [
-    "أَ1ْ2َ"
+    "أَ1ْ2َ",
+    "أَ1َ2ّ",
+    "أَ1ُ2ّ",
+    "أَ1ِ2ّ"
+   ],
+   "_doubled": "A doubled root merges its two like letters: أَفْعَل is أَفَلّ (أَشَدّ، أَحَقّ، أَقَلّ), its nasb noun a تمييز (Ibn Aqil V3 p174: هو أشد حمرة من زيد ... وههنا ينتصب تمييزا). The analyser writes the vowel before the merged letter as the verb's (أَشُدّ، أَحِبّ), so each is listed.",
+   "_hamza_dropped": "خير and شر are أفعل التفضيل that, most often, drop the hamza of أخير and أشر (Ibn Malik, Sharh al-Kafiya, V2 p1121: وغالبا أغناهم خير وشر عن قولهم أخير منه وأشر): زيدٌ خيرٌ من عمرٍو، وما عند الله خيرٌ. Their pattern is فَعْل, so they are listed by word.",
+   "hamza_dropped": ["خير", "شر"]
+  },
+  "adjective_patterns": {
+   "ar": "أوزان الصفة المشبهة",
+   "book": "Tasheel 3.10.1 (the na't is a derived word)",
+   "effect": "فَعِل (فَرِحٌ، حَزِنٌ، تَعِبٌ) is an adjective that describes, not a name: a word on this measure the dictionary lacks (فَرِحِينَ) is read as the adjective, its sound plural or dual and its case told by the ending",
+   "words": [
+    "1َ2ِ"
    ]
   },
   "times_counted": {
@@ -1280,6 +1343,22 @@
    "words": [
     "مرة"
    ]
+  },
+  "compound_number": {
+    "ar": "العدد المركب",
+    "effect": "The numbers 11 to 19: a unit (`words`) and عشر/عشرة (`second`) typed after it are one number, built on the fatha of both parts whatever its place, which both parts show (ثلاثةَ عشرَ: مبني على فتح الجزأين في محل رفع فاعل). `dual` is اثنا/اثنتا, ملحق بالمثنى: it inflects by its letters (اثنا in raf', اثني in nasb and jarr), only the عشر is built (Tasheel 1.4.3 p10, as rule_sentences r012 keys it).",
+    "words": ["أحد", "إحدى", "ثلاثة", "ثلاث", "أربعة", "أربع", "خمسة", "خمس", "ستة", "ست", "سبعة", "سبع", "ثمانية", "ثماني", "ثمان", "تسعة", "تسع"],
+    "ordinals": ["حادي", "حادية", "ثاني", "ثانية", "ثالث", "ثالثة", "رابع", "رابعة", "خامس", "خامسة", "سادس", "سادسة", "سابع", "سابعة", "ثامن", "ثامنة", "تاسع", "تاسعة"],
+    "_ordinals": "`ordinals`: الحادي عشر to التاسع عشر are built on the fatha of both parts the same, the place told by the noun they describe (جاء الرجلُ الحاديَ عشرَ: صفة).",
+    "dual": ["اثنا", "اثني", "اثنتا", "اثنتي", "اثنان", "اثنتان", "اثنين", "اثنتين"],
+    "second": ["عشر", "عشرة"]
+  },
+  "adad_mudaf": {
+    "_hundreds": "`hundreds`: مائة written onto its unit as one word (ثلاثَمائةِ صفحةٍ): the unit wears the number's case, the مائة after it is its مضاف إليه, so the last vowel typed is the مائة's jarr.",
+    "hundreds": ["مائة", "مئة"],
+   "ar": "ألفاظ العدد التي تضاف إلى معدودها",
+   "effect": "Three to ten, the hundred and the thousand are added to what they count, which is مجرور (ثلاثُ سنينَ، مئةُ كتابٍ). The number is a noun, no describing word at work, so its إضافة is معنوية بمعنى «من» (ثلاثٌ من السنين), never the لفظية of a participle, though CAMeL tags it an adjective",
+   "words": ["ثلاث", "ثلاثة", "أربع", "أربعة", "خمس", "خمسة", "ست", "ستة", "سبع", "سبعة", "ثمان", "ثماني", "ثمانية", "تسع", "تسعة", "عشر", "عشرة", "مئة", "مائة", "ألف"]
   },
   "dua_nouns": {
    "ar": "أسماء الدعاء والتحية",

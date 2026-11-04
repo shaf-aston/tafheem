@@ -14,7 +14,7 @@
  * the cursor is for that box to point at the row by id. Two of these can be on
  * a page, so the prefix has to differ.
  */
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import TabMark from './TabMark'
 import { grouped, rowId } from '../../lib/nav/commandRoutes'
 

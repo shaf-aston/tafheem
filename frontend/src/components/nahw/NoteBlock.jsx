@@ -10,7 +10,7 @@ import { isArabic } from '../../lib/text/arabicText'
 import { parseMarked, stripMarks } from '../../lib/nahw/notes'
 import { notePageUrl } from '../../api'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 
 const pieceKey = (blockId, field, at) => `${blockId}:${field}:${at}`
 

@@ -3,9 +3,9 @@
  * Same card either way; `value` is the word you were on, absent on a first visit.
  */
 import { isArabic } from '../../lib/text/arabicText'
-import ArabicText from '../ui/ArabicText'
-import PrimaryButton from '../ui/PrimaryButton'
-import Tile from '../ui/Tile'
+import ArabicText from '../ui/text/ArabicText'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
+import Tile from '../ui/display/Tile'
 
 export default function ResumeCard({ tab, accent, value, label, goLabel, progressText, onGo }) {
   const shown = tab.place ? tab.place(value) : value

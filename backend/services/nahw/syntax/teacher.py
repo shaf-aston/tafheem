@@ -12,10 +12,11 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import book_words, case_of, is_one, teacher_rules
+from backend.services.nahw.book import book_words, case_of, is_one, is_subject_pronoun, roles_keyed, teacher_rules
 from backend.services.nahw.syntax.facts import (
-    Sentence, is_built, is_built_zarf, is_called_noun, is_object_pronoun, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of, noun_tagged)
-from backend.services.nahw.syntax.naming import FOLLOWERS, NAMED, base_tokens, roles_keyed
+    Sentence, is_built, is_built_zarf, is_called_noun, is_object_pronoun, is_zarf, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of, noun_tagged)
+from backend.services.nahw.syntax.followers import FOLLOWERS
+from backend.services.nahw.syntax.naming import NAMED, base_tokens
 from backend.services.text.harakat import CASE_NAME
 
 # the role groups are the card's colour keys (data/nahw_rules/roles.json), so a new role joins its group there
@@ -47,7 +48,7 @@ def _passive_has_no_doer(bases, tokens, roles):
             yield from (i for i in _kid_indices(verb, bases) if roles[i] == NAMED.fail)
 
 
-def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> dict:
+def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict, s: Sentence) -> dict:
     """What decides whether the vowel typed on a word can be held against its job.
 
     `free` lists the (wanted, typed) case pairs that only look like a clash ("au":
@@ -62,6 +63,9 @@ def _vowel_facts(token: dict, bases: list[dict], roles: list, by_id: dict) -> di
         free |= {"au", "ai"}
     if shows_nasb_by_kasra(token):
         free.add("ai")
+    # إِنَّ عِنْدَنَا ضَيْفًا: a place or time word is in nasb whatever it tells (it is the khabar in the place of raf')
+    if is_zarf(token, s):
+        free.add("ua")
     mudaf_ilayh = any(roles[k] == NAMED.mudaf_ilayh for k in _kid_indices(token, bases))
     if token.get("stt") != "d" and not bare.startswith("ال") and not mudaf_ilayh:
         free.add("ia")
@@ -78,9 +82,10 @@ def _clashes(role: str | None, shown: str | None, ending: dict) -> bool:
 
 def _typed_case_fits_role(bases, tokens, roles):
     by_id = {t["id"]: t for t in tokens}
+    s = Sentence(tokens)
     for i, (token, role) in enumerate(zip(bases, roles)):
         shown = typed_case_of(token)
-        if not is_verb(token) and _clashes(role, shown, _vowel_facts(token, bases, roles, by_id)):
+        if not is_verb(token) and _clashes(role, shown, _vowel_facts(token, bases, roles, by_id, s)):
             yield i
 
 
@@ -97,9 +102,11 @@ def _ism_inna_needs_inna(bases, tokens, roles):
 
 
 def _follower_needs_noun(bases, tokens, roles):
-    """A follower copies a noun, so some noun (a pointer like هذا counts) must come before it."""
+    """A follower copies a noun, so some noun (a pointer like هذا counts) must come before it,
+    or the doer a verb holds: ذَهَبْتُ أَنَا، قُمْ أَنْتَ repeat the تاء and the hidden أنت."""
     for i, (token, role) in enumerate(zip(bases, roles)):
-        if role in FOLLOWERS and not any(_is_noun(t) for t in tokens if t["id"] < token["id"]):
+        if role in FOLLOWERS and not any(_is_noun(t) for t in tokens if t["id"] < token["id"]) \
+                and not (i and is_verb(bases[i - 1]) and is_subject_pronoun(token)):
             yield i
 
 

@@ -17,14 +17,14 @@ import { useQuery } from '@tanstack/react-query'
 import { asbabQuery, getAyahEditions } from '../../api'
 import { bySurah, matching, needsSearch, quotedWords, reportsIn } from '../../lib/timelines/asbabList'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import EmptyState from '../ui/EmptyState'
-import ErrorAlert from '../ui/ErrorAlert'
-import SearchBox from '../ui/SearchBox'
-import SourceBadge from '../ui/SourceBadge'
-import TranslationStrip from '../ui/TranslationStrip'
-import { Skeleton } from '../ui/Skeleton'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import EmptyState from '../ui/feedback/EmptyState'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import SearchBox from '../ui/inputs/SearchBox'
+import SourceBadge from '../ui/feedback/SourceBadge'
+import TranslationStrip from '../ui/text/TranslationStrip'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 const HOW = {
   named: 'This report names the event',

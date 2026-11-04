@@ -19,7 +19,7 @@ from pydantic import SecretStr
 from backend.config import get_settings
 from backend.main import app
 from backend.services.learner import journal
-from backend.services.recitation import ears
+from backend.services.recitation import ears, errors
 
 SOUND = b"pretend this is a recording"
 
@@ -172,8 +172,8 @@ def test_a_mistyped_ear_name_still_leaves_the_app_able_to_listen(both, monkeypat
 def test_an_unreadable_recording_stops_the_chain_rather_than_walking_it(both):
     """Trying the next ear only spends more seconds reaching the same answer:
     no engine can read a recording that has no sound in it."""
-    asked = both(hosted_fails=ears.Unreadable("no sound in it"))
-    with pytest.raises(ears.Unreadable):
+    asked = both(hosted_fails=errors.Unreadable("no sound in it"))
+    with pytest.raises(errors.Unreadable):
         ears.hear(SOUND, None, "")
     assert asked == ["hosted"]
 
@@ -182,7 +182,7 @@ def test_an_unreadable_recording_is_answered_415_and_not_500(monkeypatch):
     """It reached the reader as "Could not make that out", which blames the
     listening for something the recording did. Record it again is actionable."""
     def unreadable(*a, **k):
-        raise ears.Unreadable("That recording could not be read. Record it again.")
+        raise errors.Unreadable("That recording could not be read. Record it again.")
 
     monkeypatch.setattr("backend.routers.listen.recitation.hear", unreadable)
     # A real webm header with nothing playable behind it, which is what the

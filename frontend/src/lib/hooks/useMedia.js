@@ -7,7 +7,7 @@ import { themeVariable } from '../../theme'
 export const PHONE = '(max-width: 39.99rem)'
 
 // The least width, in px, the Terms tree is ever drawn whole at (theme.json layout terms-tree-min); the tree's own
-// width at its smallest legible scale (lib/termsChart wholeWidth) raises it.
+// width at its smallest legible scale (hadith/terms/termsChart wholeWidth) raises it.
 export const TERMS_TREE_MIN = Number(themeVariable('--layout-terms-tree-min'))
 // The widest the page shell grows, in px (theme.json layout shell, in rem).
 export const SHELL_MAX = parseFloat(themeVariable('--layout-shell')) * 16

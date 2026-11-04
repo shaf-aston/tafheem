@@ -5,9 +5,9 @@ import { makeRandom } from '../../lib/memorise/memorise'
 import { drillOf, fill, whereOf } from '../../lib/similar/similar'
 import copy from '../../config/similar.json'
 
-import ArabicText from '../ui/ArabicText'
-import EmptyState from '../ui/EmptyState'
-import PrimaryButton from '../ui/PrimaryButton'
+import ArabicText from '../ui/text/ArabicText'
+import EmptyState from '../ui/feedback/EmptyState'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
 
 const COLOR = { self: colorFor('similar', 'mine'), other: colorFor('similar', 'twin') }
 

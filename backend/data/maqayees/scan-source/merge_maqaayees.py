@@ -1,4 +1,4 @@
-import json, glob, os, re, sys
+import json, os, sys
 
 # The summary at the foot prints Arabic letters, and a Windows console is
 # cp1252 by default — without this the script does all its work and then dies

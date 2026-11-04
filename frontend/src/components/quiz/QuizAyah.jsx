@@ -8,9 +8,9 @@ import { useQuery } from '@tanstack/react-query'
 
 import { ayahQueries } from '../../lib/quiz/quizAyah'
 
-import ArabicText from '../ui/ArabicText'
-import Mark from '../ui/Mark'
-import ShowRest from '../ui/ShowRest'
+import ArabicText from '../ui/text/ArabicText'
+import Mark from '../ui/display/Mark'
+import ShowRest from '../ui/buttons/ShowRest'
 
 // A word's position reads "surah:ayah:word"; the word number is the last part.
 const numberOf = (word) => Number(String(word.position).split(':').pop())

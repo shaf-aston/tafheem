@@ -19,14 +19,14 @@ import { useRemembered, useRememberedFlag } from '../../lib/store/useRemembered'
 import NoteBlock from './NoteBlock'
 import NoteCards from './NoteCards'
 import { TopicList, TopicSelect, TopicSteps } from './NoteTopics'
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import EmptyState from '../ui/EmptyState'
-import FlagButton from '../ui/FlagButton'
-import ErrorAlert from '../ui/ErrorAlert'
-import Segmented from '../ui/Segmented'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
-import SmallButton from '../ui/SmallButton'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import EmptyState from '../ui/feedback/EmptyState'
+import FlagButton from '../ui/buttons/FlagButton'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import Segmented from '../ui/inputs/Segmented'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
+import SmallButton from '../ui/buttons/SmallButton'
 
 const MODES = [
   { id: 'read', label: 'Read' },
@@ -78,14 +78,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
   if (isPending) {
     return (
       <div className="space-y-4" style={{ '--c': accent }}>
-        <div className="flex flex-wrap items-center gap-2">
-          <Segmented label="How to use the notes" options={MODES} value={mode} onChange={setMode} accent={accent} />
-          {mode !== 'cards' && (
-            <FlagButton value={english} onChange={setEnglish} accent={accent} title="Show the English under each line">
-              English
-            </FlagButton>
-          )}
-        </div>
+        <NoteModes mode={mode} onMode={setMode} english={english} onEnglish={setEnglish} accent={accent} />
         <AnalyzerSkeleton />
       </div>
     )
@@ -124,17 +117,11 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
       <div className="space-y-4 min-w-0">
       <TopicSelect topics={topics} current={topic.id} onPick={setTopic} />
 
-      <div className="flex flex-wrap items-center gap-2">
-        <Segmented label="How to use the notes" options={MODES} value={mode} onChange={setMode} accent={accent} />
-        {mode !== 'cards' && (
-          <FlagButton value={english} onChange={setEnglish} accent={accent} title="Show the English under each line">
-            English
-          </FlagButton>
-        )}
+      <NoteModes mode={mode} onMode={setMode} english={english} onEnglish={setEnglish} accent={accent}>
         {topic.tamreen.length > 0 && onTamreen && (
           <SmallButton onClick={onTamreen} className="ms-auto">Practise this in Tamreen</SmallButton>
         )}
-      </div>
+      </NoteModes>
 
       {mode !== 'read' && (
         <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label={mode === 'cards' ? 'What to ask' : 'What to hide'}>
@@ -186,6 +173,22 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
       )}
       <TopicSteps topics={topics} current={topic.id} onPick={setTopic} />
       </div>
+    </div>
+  )
+}
+
+
+/** How the notes are used (read, test, cards) and the English switch: drawn the same while they load, so nothing moves when they arrive. */
+function NoteModes({ mode, onMode, english, onEnglish, accent, children }) {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <Segmented label="How to use the notes" options={MODES} value={mode} onChange={onMode} accent={accent} />
+      {mode !== 'cards' && (
+        <FlagButton value={english} onChange={onEnglish} accent={accent} title="Show the English under each line">
+          English
+        </FlagButton>
+      )}
+      {children}
     </div>
   )
 }

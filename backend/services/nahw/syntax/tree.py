@@ -13,13 +13,14 @@ from __future__ import annotations
 
 from backend.services.nahw.book import (book_spelling, card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
-from backend.services.nahw.syntax.facts import (Sentence, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, is_passive, previous_noun,
-                                          is_nasab, is_verb, read_as, excepted_after_la, shown_cases, noun_tagged,
+from backend.services.nahw.syntax.facts import (Sentence, is_particle, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
+                                          is_nasab, is_verb, read_as, reading, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
-from backend.services.nahw.syntax.naming import FOLLOWERS, NAMED, base_tokens, opens_with_verb, tone
+from backend.services.nahw.syntax.followers import FOLLOWERS, chain_first
+from backend.services.nahw.syntax.naming import NAMED, base_tokens, opens_with_verb, tone
 from backend.services.nahw.syntax.doer import DOER, doer as _doer, person_key as _person, persons as _persons
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import SHADDA, five_verb_nun, has_tanween, letters, own_letters
+from backend.services.text.harakat import SHADDA, has_tanween, letters, own_letters
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
@@ -85,7 +86,8 @@ def _quieted(node: dict) -> dict:
 
 
 QUIET_UNDER_JOB = {term_ar(unit["label"]) for unit in role_units() if unit.get("quiet_under_job")}
-UNIT_CHILDREN = {unit["child"] for unit in role_units()} | set(FOLLOWERS) | {card_keys().atf}
+ATF = card_keys().atf
+UNIT_CHILDREN = {unit["child"] for unit in role_units()} | set(FOLLOWERS) | {ATF}
 
 
 def _finer(token: dict, role: str | None, family: str | None) -> str | None:
@@ -93,14 +95,14 @@ def _finer(token: dict, role: str | None, family: str | None) -> str | None:
     a particle read one way of several (particles.stamp) by that reading's name."""
     if family in FRAMES["leaf_by_family"] and role != NAMED.harf:
         card = CARDS.get(family, {})
-        named = card.get("named_as", {}).get(book_spelling(strip_diacritics(token["form"])), card.get("named"))
+        named = card.get("named_as", {}).get(book_spelling(token["form"]), card.get("named"))
         return FRAMES["leaf_by_family"][family].format(named=named)
     if role == NAMED.harf and (reading := token.get("reading")):
         card = CARDS.get(reading["family"], {})
         word = strip_diacritics(token["form"]).strip("+")
         return reading["named"] or card.get("chart") or card.get("chart_as", {}).get(word) or card.get("named_as", {}).get(
             word, card.get("named", role))
-    if family is None and role == NAMED.harf and is_prefix(token) and is_one(strip_diacritics(token["form"]), "atf"):
+    if family is None and role == NAMED.harf and is_prefix(token) and is_one(token["form"], "atf"):
         family = "atf"  # وَمَنْ شاء: a وَ written onto a new sentence is named by its letters, as its card is
     card = CARDS.get(family) or {}
     word = strip_diacritics(token["form"]).strip("+")
@@ -124,16 +126,11 @@ def _command_name(token: dict, drawn: list[dict], family_of: dict) -> str | None
     return None
 
 
-def _read(token: dict) -> str | None:
-    """The family particles.stamp read the word as, if it read it."""
-    return (token.get("reading") or {}).get("family")
-
-
 def _sentence_label(roles: dict[int, str | None], tokens: list[dict], named: list[dict]) -> str:
     # مَنْ شاء فليصمه، لو كنتُ ... لأمرتُ: a condition opens it (syntax.condition)
     if named and named[0].get("condition", {}).get("part") == "opener":
         return CONDITION
-    if wonder := next((FRAMES["sentence_by_family"][_read(t)] for t in tokens if _read(t) in FRAMES["sentence_by_family"]), None):
+    if wonder := next((FRAMES["sentence_by_family"][reading(t)] for t in tokens if reading(t) in FRAMES["sentence_by_family"]), None):
         return term_ar(wonder)  # ما أحسن زيدًا
     if any("interrog" in t.get("pos_camel", "") for t in tokens):
         return QUESTION
@@ -175,6 +172,26 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             moved = waw if waw and is_prefix(waw) else token
             moved = {**moved, "head": bases[at_gov]["id"]}
             drawn[[t["id"] for t in drawn].index(moved["id"])], by_id[moved["id"]] = moved, moved
+    # وَإِقَامِ الصَّلَاةِ وَإِيتَاءِ الزَّكَاةِ وَالْحَجِّ: the parser chains a list, each و on the معطوف before it;
+    # every معطوف of a chain is joined on its first word, the معطوف عليه, as its card says
+    # (card_wording.counting.followed), so each حرف عطف hangs on that word and the معطوفات stand side by side
+    def joins(token: dict) -> bool:  # a حرف عطف, still named حرف here: the chart's finer name comes later (_finer)
+        return role_of.get(token["id"]) in (NAMED.harf, ATF) and is_one(token["form"], "atf")
+
+    def joined_on(at: int) -> int | None:  # the word a معطوف's و hangs on
+        waw = by_id.get(by_id[at]["head"])
+        return waw["head"] if role_of.get(at) == NAMED.matoof and waw and joins(waw) and waw["head"] in by_id else None
+    for waw in [t for t in drawn if joins(t) and t["head"] in by_id]:
+        if (first := chain_first(waw["head"], joined_on)) != waw["head"]:
+            moved = {**waw, "head": first}
+            drawn[[t["id"] for t in drawn].index(moved["id"])], by_id[moved["id"]] = moved, moved
+    # جاء الولدُ وهو يبكي: the parser can hang the مبتدأ under the verb after it; the verb's sentence
+    # is the مبتدأ's khabar, so the verb hangs on the مبتدأ and the مبتدأ where the verb hung
+    for verb in [t for t in drawn if is_verb(t)]:
+        subject = next((t for t in drawn if t["head"] == verb["id"] and t["id"] < verb["id"]
+                        and role_of.get(t["id"]) == NAMED.mubtada), None)
+        for moved in ({**subject, "head": verb["head"]}, {**verb, "head": subject["id"]}) if subject else ():
+            drawn[[t["id"] for t in drawn].index(moved["id"])], by_id[moved["id"]] = moved, moved
     # الحمدُ لله، زيدٌ في الدار: a jar-majroor or ظرف in the khabar slot hangs on a word no one
     # writes (ثابت), which is the khabar. It takes the column before the unit; `written` -1,
     # -2.. is the column of no typed word, a number of its own so it joins no word's run.
@@ -208,11 +225,21 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if not subject or any(role_of[k["id"]] in khabars and (k["id"] == subject["head"] or k["head"] in (
                 subject["id"], subject["head"])) for k in drawn):
             continue
+        # كوبٌ كبيرٌ من القهوة: مِن on an indefinite measure brings the tamyeez (roles.json
+        # understood.measured), a word that describes the measure, not its khabar
+        if strip_diacritics(held["form"]) in kept["measured"]["particles"] and not definite(subject) \
+                and listed(subject, "tamyeez_head", "measures"):
+            continue
         # the books write مبتدأ، خبر (ثابت)، ق (ثابت) side by side, so the khabar sits beside
         # the unit; a subject the unit headed (the لِ of الحمدُ لله) comes out beside them too
         # قال الضيفُ سلامٌ عليكم: a subject a verb hangs as its object heads the sentence it says,
         # so the unit and the khabar stay inside it, not beside it among the verb's own words
         inside = subject["rel"] == "OBJ" and subject["head"] in by_id and is_verb(by_id[subject["head"]])
+        # قال لي زيد هو يكتب: a jar or ظرف hangs on a verb when there is one, an unwritten word only when there
+        # is none (Mughni V1 p566: لا بد من تعلقهما بالفعل أو ما يشبهه ... فإن لم يكن شيء من هذه الأربعة موجودا قدر),
+        # so one hung on the very verb whose said sentence the subject heads is that verb's, outside the sentence
+        if inside and held["head"] == subject["head"]:
+            continue
         if inside:
             held = {**held, "head": subject["id"]}
             drawn[[t["id"] for t in drawn].index(held["id"])], by_id[held["id"]] = held, held
@@ -236,14 +263,17 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     # لا إله إلا الله: the khabar left out because it is known, between the noun and إلا
     # (roles.json exception_after_la), the name after إلا standing for its hidden pronoun
     after_la = FRAMES["exception_after_la"]
+    mubdal_minhu: dict[int, dict] = {}  # the hidden khabar's own hidden pronoun, which the بدل stands for
     for token in list(drawn):
         if role_of.get(token["id"]) == NAMED.badal and (hit := excepted_after_la(token, sentence)):
             noun, illa, entry = hit
-            understand(entry["khabar"], after_la["khabar_named"], [t["id"] for t in drawn].index(illa["id"]),
-                       head=noun["head"], rel="PRD", pos="NOM", pos_camel="")
+            said = understand(entry["khabar"], after_la["khabar_named"], [t["id"] for t in drawn].index(illa["id"]),
+                              head=noun["head"], rel="PRD", pos="NOM", pos_camel="")
+            if "mubdal_minhu" in entry:
+                mubdal_minhu[said["id"]] = entry["mubdal_minhu"]
     said_verb = kept["verb"]
     saying = FRAMES["said_clause"]
-    unsaid_objects: set[int] = set()  # nouns that are the object of a verb no one writes
+    named_by_unsaid: set[int] = set()  # nouns whose job a word no one writes gives: its object, its khabar
     replies: set[int] = set()  # the unwritten verbs that answer a question
     detail_of: dict[int, str] = {}
 
@@ -252,26 +282,26 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         verb = understand(text, NAMED.fil, drawn.index(noun), pos="VRB", pos_camel="", base=text, asp="na", **place)
         # شكرًا: the unwritten verb's own masdar; الصِّدْقَ الصِّدْقَ: one with ال urged on the
         # hearer is the object of an unwritten الزم (الإغراء, Tasheel 3.8.1)
-        masdar = is_masdar(noun) and not strip_diacritics(noun["form"]).startswith("ال")
+        masdar = (is_masdar(noun) or listed(noun, "verbless_masdars")) and not strip_diacritics(noun["form"]).startswith("ال")
         role_of[noun["id"]] = said_verb["noun"]["masdar" if masdar else "other"]
         why_of[noun["id"]] = None  # the dash was for a case no job fitted; now one does
         under = {**noun, "head": verb["id"]}
         drawn[drawn.index(noun)], by_id[noun["id"]] = under, under
-        unsaid_objects.add(noun["id"])
+        named_by_unsaid.add(noun["id"])
         return verb
 
     # أهلًا وسهلًا، شكرًا لك: a منصوب noun that heads its own sentence, named by no word, is the
     # object of a verb no one writes, beside the noun it governs. Alone, its nasb shows as
-    # tanween, or as the case of the words that follow it (الصلواتِ الخمسَ): a fatha with none
-    # (نِعْمَ، أَجْمَلَ) is a verb's
+    # tanween, or as the case of the words that follow it (الصلواتِ الخمسَ), or by a مضاف إليه, which no
+    # verb takes (سُبْحَانَ اللَّهِ، مَعَاذَ اللَّهِ: Ibn Jinni, al-Munsif): a fatha with none (نِعْمَ، أَجْمَلَ) is a verb's
     for noun in [t for t in drawn if t["id"] in typed_at and role_of[t["id"]] is None
                  and t["head"] not in by_id and t["pos"] == "NOM" and "a" in shown_cases(t)
-                 and (has_tanween(t.get("typed")) or any(role_of[k["id"]] in FOLLOWERS for k in drawn if k["head"] == t["id"]))]:
+                 and (has_tanween(t.get("typed")) or any(role_of[k["id"]] in (*FOLLOWERS, NAMED.mudaf_ilayh) for k in drawn if k["head"] == t["id"]))]:
         hang_on_unsaid_verb(noun, said_verb["word"], head=0, rel="---")
     # ماذا فرض الله ... فقال الصلواتِ: after a question for an object, the noun a verb of saying
     # hangs is the answer, the object of the question's verb, which is drawn as an unwritten word
     asked = asked_verb(sentence)
-    for noun in [t for t in drawn if asked and t["id"] > asked["id"] and t["id"] not in unsaid_objects and role_of[t["id"]] == said_verb["noun"]["other"]
+    for noun in [t for t in drawn if asked and t["id"] > asked["id"] and t["id"] not in named_by_unsaid and role_of[t["id"]] == said_verb["noun"]["other"]
                  and t["id"] in typed_at and noun_tagged(t) and "a" in shown_cases(t)
                  and role_of.get(t["head"]) == NAMED.fil
                  and strip_diacritics(by_id[t["head"]]["lemma"]) in saying["verbs"]]:
@@ -279,6 +309,46 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         verb = hang_on_unsaid_verb(noun, text, head=noun["head"], rel="OBJ")
         replies.add(verb["id"])
         detail_of[noun["id"]] = said_verb["reply"]["detail"].format(verb=text)
+    # لولا زيدٌ لهلك عمرٌو: the noun after لولا is a مبتدأ whose khabar, a general being, is always
+    # left out (roles.json condition by_word `khabar`); it is drawn hidden after the noun, before the answer
+    for i, found in enumerate(named):
+        opens = found.get("condition", {})
+        frame = condition_of(bases[i]["form"]) if opens.get("part") == "opener" else None
+        if not frame or not frame.get("khabar") or opens.get("answer") is None or opens.get("verb") is None:
+            continue
+        noun = by_id[bases[opens["verb"]]["id"]]
+        if any(role_of.get(t["id"]) in khabars and t["head"] == noun["id"] for t in drawn):
+            continue
+        # after the noun and the words hung under it (لولا رحمةُ اللهِ)
+        start = drawn.index(noun)
+        place = next((k for k in range(start, len(drawn)) if not _hangs_under(drawn[k], noun, by_id)), len(drawn))
+        said_khabar = understand(frame["khabar"], NAMED.khabar, place, head=noun["id"], rel="PRD", pos="NOM", pos_camel="")
+        detail_of[said_khabar["id"]] = frame["khabar_detail"]
+    # بابُ الفاعلِ، كوبٌ كبيرٌ من القهوة: a noun phrase alone, its head in raf' or in no case shown,
+    # with no verb, no khabar, no فاعل (أذاهبٌ زيدٌ: the doer stands for the khabar) and no question
+    # word (أيوسفُ الفائزُ أم طارقٌ asks: أم is on the istifham list) in it, is a title or an
+    # answer: the khabar of a مبتدأ no one writes, هذا (roles.json understood.subject). A nasb head was taken above (شكرًا).
+    alone = kept["subject"]
+
+    def a_title(noun: dict) -> bool:
+        """The one head of several typed words, a noun that is no pronoun and has no job but مبتدأ,
+        not shown out of raf', in words with no verb, khabar, فاعل or question word."""
+        if noun["id"] not in typed_at:  # a hidden word has no reading to ask
+            return False
+        cases = shown_cases(noun)
+        return noun_tagged(noun) and not noun.get("pos_camel", "").startswith("pron") \
+            and role_of[noun["id"]] in (None, NAMED.mubtada) and not (cases & {"a", "i"} and "u" not in cases) \
+            and not any(is_verb(t) or role_of.get(t["id"]) in (*khabars, NAMED.fail) for t in drawn) \
+            and not any(t["id"] in typed_at and listed(t, "istifham") and not is_preposition(t) for t in drawn)
+    heads = [t for t in drawn if t["head"] not in by_id]
+    if len(heads) == 1 and len(bases) > 1 and a_title(noun := heads[0]):
+        said_subject = understand(alone["voweled"], NAMED.mubtada, drawn.index(noun), head=0, rel="SBJ", pos="NOM", pos_camel="")
+        role_of[noun["id"]] = alone["noun"]
+        why_of[noun["id"]] = None
+        under = {**noun, "head": said_subject["id"], "rel": "PRD"}
+        drawn[drawn.index(noun)], by_id[noun["id"]] = under, under
+        named_by_unsaid.add(noun["id"])
+        detail_of[noun["id"]] = alone["detail"]
     at = {token["id"]: index for index, token in enumerate(drawn)}
     # what each unit does for the word above it: هذا البيتُ is drawn with the noun over its
     # pointer, but the pair is the مبتدأ, not a صفة of the khabar
@@ -334,13 +404,15 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         name_of[key] = pair.get(role_of[key], name_of[key])
     name_of.update(dict.fromkeys(replies, said_verb["word"]))
     name_of.update(fronted)  # the question's verb, said no more than it is: unwritten
+    # في البيت رجلٌ كريمٌ: a مبتدأ مؤخر heading its own unit is one as a whole, as on its own
+    job_of.update({key: name for key, name in fronted.items() if job_of.get(key) == role_of[key]})
     # كَأَنَّ رَأْسَهُ زَبِيبَةٌ، أَصْبَحَ الْجَوُّ بَارِدًا: the two a sister governs are called after
     # that sister (اسم كأنّ، خبر أصبح), the family's mother (إنّ، كان) only naming the family
     for token, found in zip(bases, named):
         role, at_gov = role_of.get(token["id"]), found.get("governor")
         if not role or at_gov is None or family_of.get(bases[at_gov]["id"]) not in SISTERS:
             continue
-        mother, sister = SISTERS[family_of[bases[at_gov]["id"]]], book_spelling(strip_diacritics(bases[at_gov]["lemma"]))
+        mother, sister = SISTERS[family_of[bases[at_gov]["id"]]], book_spelling(bases[at_gov]["lemma"])
         if role.endswith(f" {mother}") and sister != mother:
             name_of[token["id"]] = f"{role.removesuffix(mother)}{sister}"
             if job_of.get(token["id"]) == role:
@@ -385,7 +457,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if (word in masdar["words"] and SHADDA not in token["form"] and (placed := job_by_place(token))
                 and kind_of_ma.get(token["id"], "masdar") == "masdar"
                 and any(t["head"] == token["id"] and role_of[t["id"]] == NAMED.fil for t in drawn)):
-            name_of[token["id"]] = (masdar["named_by_word"].get(word) or (token.get("reading") or {}).get("named")
+            name_of[token["id"]] = (masdar["named_by_word"].get(word) or reading(token, "named")
                                     or CARDS[masdar["family"]]["named"])
             label_of[token["id"]] = masdar["label"]
             job_of[token["id"]], place_of[token["id"]] = placed[0], in_place(placed[1])
@@ -400,10 +472,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                     place_of[token["id"]] = in_place(after["case"])
             framed.add(token["id"])
     # اللهُ أكبرُ inside a longer sentence: a مبتدأ with its خبر hung on it is a sentence too,
-    # and so is لا النافية للجنس with its noun
+    # and so is لا النافية للجنس with its noun, and هو with the verb's sentence its khabar (وهو يبكي)
     nominal |= {token["id"] for token in drawn if token["head"] in by_id and (
-        _read(token) == "la_jins" or (role_of[token["id"]] == NAMED.mubtada and any(
-            t["head"] == token["id"] and role_of[t["id"]] == NAMED.khabar for t in drawn)))}
+        reading(token) == "la_jins" or (role_of[token["id"]] == NAMED.mubtada and any(
+            t["head"] == token["id"] and job_of[t["id"]] == NAMED.khabar for t in drawn)))}
     after_waw = FRAMES["clause_after_waw"]
     for token in drawn:
         waw = by_id.get(token["head"])
@@ -414,6 +486,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             framed.add(token["id"])
     # يَحْمِلُ حَقِيبَةً after رَجُلًا, كَأَنَّ رَأْسَهُ زَبِيبَةٌ after حَبَشِيٌّ, يَرْكُضُ after جَاءَ الطَّالِبُ
     after_noun = FRAMES["clause_after_noun"]
+    described: dict[int, dict] = {}  # the noun each such sentence describes, by the sentence's id
     for token in drawn:
         head = by_id.get(token["head"])
         if (token["rel"] != "MOD" or not head or token["id"] in place_of or token["id"] < head["id"]
@@ -428,7 +501,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         known, case = definite(head), typed_or_parsed_case(head)
         if not known and (head.get("stt") != "i" or not case):  # مَا، مَتَى: no case shown, nothing to describe
             continue
-        job_of[token["id"]] = after_noun["definite" if known else "indefinite"]
+        job_of[token["id"]], described[token["id"]] = after_noun["definite" if known else "indefinite"], head
         if not known and role_of.get(head["id"]) in after_noun["on_khabar"] and is_participle(head):
             # جميلٌ يحب الجمال: a second khabar, no صفة
             name_of[head["id"]], job_of[token["id"]] = counted_name(role_of[head["id"]], 0), counted_name(role_of[head["id"]], 1)
@@ -441,8 +514,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                  if job_of[token["id"]] == NAMED.silah and token["id"] not in place_of}
     clauses = {token["id"] for token in drawn if job_of[token["id"]] == NAMED.silah} | set(place_of) | nominal | replies
     for token in drawn:
-        if _read(token) in FRAMES["unit_by_family"]:
-            label_of[token["id"]] = term_ar(FRAMES["unit_by_family"][_read(token)])
+        if reading(token) in FRAMES["unit_by_family"]:
+            label_of[token["id"]] = term_ar(FRAMES["unit_by_family"][reading(token)])
     # قال: لا إله إلا الله: the sentence a verb of saying hangs as its object is its مقول القول
     saying = FRAMES["said_clause"]
     for token in drawn:
@@ -470,22 +543,34 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             head = by_id[head]["head"]
         return head
 
-    unit_less = {t["id"] for t in drawn if _read(t) in FRAMES["unit_less"]}
+    unit_less = {t["id"] for t in drawn if reading(t) in FRAMES["unit_less"]}
     roots = []
     for token in drawn:
         up = parent(token)
         while up in unit_less:  # واللهُ أكبرُ: the و stands beside its sentence, heading nothing
             up = parent(by_id[up])
-        if up in children_of and up != token["id"]:
+        # رِزْقُ اللَّهِ عَزَّ وَجَلَّ: a حال tells the state of its صاحب, it is no part of that noun, so it
+        # stands beside it in the unit the noun stands in, not inside the noun's own box; nor inside
+        # the jar-majroor of a مجرور صاحب (مَرَرْتُ بِزَيْدٍ رَاكِبًا: beside it, on the verb)
+        if job_of[token["id"]] == NAMED.haal and up in by_id and noun_tagged(by_id[up]) and not is_verb(by_id[up]):
+            detail_of[token["id"]] = after_noun["owner"].format(word=columns[at[up]])
+            up = parent(by_id[up])
+            while up in by_id and is_preposition(by_id[up]):
+                up = parent(by_id[up])
+        # a word drawn under a word already under it would close a loop (the moves above re-hang links)
+        if up in children_of and up != token["id"] and not _inside(by_id[up], token, children_of):
             children_of[up].append(token)
         else:
             roots.append(token)
     roots = roots or [drawn[0]]
     # هذا بيتٌ كبيرٌ: the مبتدأ is said of the whole khabar unit, not of its head word,
-    # so it is drawn beside that unit under the sentence rather than inside it
+    # so it is drawn beside that unit under the sentence rather than inside it; so it is
+    # beside the khabar a حال of it stands beside (هذا زيدٌ قائمًا: مبتدأ، خبر، حال)
     top = roots[0]
     subjects = [kid for kid in children_of[top["id"]] if role_of[kid["id"]] == NAMED.mubtada]
-    if len(roots) == 1 and role_of[top["id"]] == NAMED.khabar and 0 < len(subjects) < len(children_of[top["id"]]):
+    beside_hal = len(roots) > 1 and all(job_of[t["id"]] == NAMED.haal for t in roots[1:])
+    pulled = (len(roots) == 1 or beside_hal) and role_of[top["id"]] == NAMED.khabar and 0 < len(subjects) < len(children_of[top["id"]]) + beside_hal
+    if pulled:
         children_of[top["id"]] = [kid for kid in children_of[top["id"]] if kid not in subjects]
         roots = subjects + roots
     # هل أنتَ تكتبُ، ما أنتَ إلا بشر، مَنْ أنتَ في المدينة: a unit typed wholly before or after the unit it
@@ -509,7 +594,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     for i, found in enumerate(named):
         if found.get("condition", {}).get("part") != "opener" or found["condition"]["answer"] is None:
             continue
-        condition = condition_of(strip_diacritics(bases[i]["form"]))
+        condition = condition_of(bases[i]["form"])
         opener, verb, answer = (bases[i], bases[found["condition"]["verb"]], bases[found["condition"]["answer"]])
         if not condition["noun"]:
             name_of[opener["id"]] = condition["opener"]  # إن: حرف شرط جازم; a noun keeps its place
@@ -548,21 +633,37 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         outer = next((a for a in opened if up and _inside(up, by_id[a], children_of)), None)
         if up and outer is not None and up["id"] in holder:
             _move(holder, up, holder[outer])
-    root = roots[0]
+    # وَمَنْ يُشْرِكْ: a particle typed before the opener, which the parser hung on the answer, comes
+    # before the whole condition, so it stands at the front of the condition's unit, not in the answer
+    for answer_id, (opener, *_) in opened.items():
+        for kid in [k for k in children_of[answer_id] if k["pos"] == "PRT" and at[k["id"]] < at[opener["id"]]]:
+            opened[answer_id] += (_take(holder, kid),)
+    # a مبتدأ drawn beside its khabar unit heads no sentence, nor does that khabar: each keeps its
+    # job under the sentence, a مبتدأ with words of its own too (كِتَابُ الطَّالِبِ جَدِيدٌ، لَزَيْدٌ أَفْضَلُ); so is
+    # any half of a sentence drawn in several halves side by side (رَجُلٌ كَرِيمٌ فِي الدَّارِ: the مبتدأ unit beside
+    # its unwritten خبر ثابت): the sentence is all of them, none is it alone
+    root = None if pulled or len(roots) > 1 else roots[0]
 
     seen: set[int] = set()
+    chained: set[int] = set()  # a معطوف عليه already drawn apart from the list it heads
 
     # every verb no typed word is the doer of, outermost first, so a khabar's pronoun can
-    # go back to its subject: the اسم كان inside كنتَ, or the مبتدأ above يكتبُ
+    # go back to its subject: the اسم كان inside كنتَ, or the مبتدأ above يكتبُ; a صفة's or حال's
+    # to the noun it describes (Ibn Aqil V3 p197: لا بد للجملة الواقعة صفة من ضمير يربطها
+    # بالموصوف): حِجَارَةٌ لَا تَنْطِقُ is هي
     persons_of: dict[int, list[str]] = {}
     subjects = {NAMED.mubtada, NAMED.ism_inna, *DOER["explicit"]}
     for token in sorted(drawn, key=lambda t: depth(t)):
+        # قُومِي: the doer may be a pronoun written onto the verb, kept inside its leaf
+        on_it = named[typed_at[token["id"]]].get("attached", []) if token["id"] in typed_at else []
         if role_of[token["id"]] != NAMED.fil or any(
-                role_of[kid["id"]] in DOER["explicit"] for kid in drawn if kid["head"] == token["id"]):
+                role_of[kid["id"]] in DOER["explicit"] for kid in drawn if kid["head"] == token["id"]) \
+                or any(piece["role"] in DOER["explicit"] for piece in on_it):
             continue
         up = by_id.get(token["head"])
         nouns = [t for t in drawn if role_of[t["id"]] in subjects and t["id"] != token["id"] and (
-            t["id"] == token["head"] or (token["rel"] == "PRD" and t["head"] == token["head"]))]
+            t["id"] == token["head"] or (token["rel"] == "PRD" and t["head"] == token["head"]))] or (
+            [described[token["id"]]] if token["id"] in described else [])
         owner = [_person({"per": "3", **{k: v for k, v in nouns[0].items() if v not in (None, "na")}})] if nouns else (
             persons_of.get(up["id"]) if up and token["rel"] == "PRD" else None)
         if owner is None and any(_inside(token, by_id[reply], children_of) for reply in replies):
@@ -570,6 +671,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         persons_of[token["id"]] = _persons(token, owner)
 
     doer_of: dict[int, dict] = {}  # the doer drawn inside each typed verb, said on its card too
+
+    def said_of(token: dict) -> str | None:
+        """What the books say of a unit beyond its job: its place (في محل نصب), then whose it is (حال من «الله»)."""
+        return " ".join(filter(None, (place_of.get(token["id"]), detail_of.get(token["id"])))) or None
 
     def pieces(token: dict, leaf: dict) -> dict:
         """The leaf with what is written after a verb (ـها) and its doer, in the order
@@ -582,10 +687,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         doer = _doer(token, family_of[token["id"]], persons_of[token["id"]]) if token["id"] in persons_of else None
         if doer and token["id"] in typed_at:
             doer_of[token["id"]] = doer
-        if not attached and not doer:
+        stands_for = mubdal_minhu.get(token["id"])
+        inner = {**stands_for, "tone": tone(NAMED.badal), "hidden": True} if stands_for else None
+        if not attached and not doer and not inner:
             return leaf
         own = {key: leaf[key] for key in ("role", "tone", "gap", "detail") if key in leaf}
-        return {**leaf, "parts": [own] + ([doer] if doer else []) + attached}
+        return {**leaf, "parts": [own] + ([doer] if doer else []) + ([inner] if inner else []) + attached}
 
     def kind_of(token: dict) -> str:
         """A unit with no name of its own is still a sentence when its head opens one,
@@ -599,9 +706,10 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             return VERBAL
         if family_of[token["id"]] == "inna":
             return NOMINAL
-        # وَأَطِيعُوا hung on its وَ: the joined sentence is what the وَ brings
+        # وَأَطِيعُوا hung on its وَ: the joined sentence is what the وَ brings; a condition's answer is
+        # drawn in the condition's own unit (وَمَنْ شَاءَ أَفْطَرَ), so the وَ beside it names nothing
         if token["pos"] == "PRT":
-            return next((kind for kid in children_of[token["id"]] if (kind := kind_of(kid))), "")
+            return next((kind for kid in children_of[token["id"]] if kid["id"] not in opened and (kind := kind_of(kid))), "")
         return ""
 
     def node(token: dict) -> dict:
@@ -612,9 +720,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         index = at[token["id"]]
         if not kids:
             leaf = pieces(token, _leaf(index, role_of[token["id"]], why_of.get(token["id"]), name_of[token["id"]]))
-            # a صلة of one verb is still a clause, its doer the pronoun hidden in it
-            return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]) or leaf["tone"],
-                    "detail": place_of.get(token["id"]), "children": [leaf]} if token["id"] in clauses else leaf
+            # a صلة of one verb is still a clause, its doer the pronoun hidden in it; a khabar
+            # whose مبتدأ is drawn beside it is a word (هذا زيدٌ قائمًا)
+            if token["id"] in clauses - nominal:
+                return {"role": job_of[token["id"]], "label": VERBAL, "tone": tone(job_of[token["id"]]) or leaf["tone"],
+                        "detail": said_of(token), "children": [leaf]}
+            return {"detail": detail_of[token["id"]], **leaf} if token["id"] in detail_of else leaf
         kid_roles = [job_of[kid["id"]] for kid in kids if job_of[kid["id"]]]
         if token is root and role_of[token["id"]] and token["id"] not in opened and (own := _label(token, kid_roles, kids)) and not names_a_sentence(own):
             # كِتَابُ الطَّالِبِ جَدِيدٌ: the مضاف heads its unit, but the خبر hangs outside it;
@@ -627,6 +738,25 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                 inside = [(index, whole), *((at[kid["id"]], unit(kid)) for kid in beside)]
                 return {"role": None, "label": top_label, "tone": None, "detail": None,
                         "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
+        # جاء زيدٌ وعمرٌو، وَإِقَامِ الصَّلَاةِ وَإِيتَاءِ الزَّكَاةِ: the word the معطوفات are joined on, with what is its
+        # own (its مضاف إليه, its صفة), is the معطوف عليه; the job belongs to the whole list, drawn above all of it
+        joined = [kid for kid in kids if joins(kid) and any(job_of[k["id"]] == NAMED.matoof for k in children_of[kid["id"]])]
+        if joined and token["id"] not in chained:
+            start = min(at[kid["id"]] for kid in joined)
+            rest = [kid for kid in kids if at[kid["id"]] >= start]
+            children_of[token["id"]] = [kid for kid in kids if kid not in rest]
+            seen.discard(token["id"])
+            chained.add(token["id"])
+            first = node(token)
+            seen.add(token["id"])
+            own = {"role": NAMED.matoof_alayh, "tone": tone(NAMED.matoof_alayh)}
+            first = {**first, **own, **({"parts": [{**first["parts"][0], **own}, *first["parts"][1:]]} if first.get("parts") else {})}
+            seen.update(kid["id"] for kid in rest)
+            inside = [(index, first), *((at[kid["id"]], unit(kid)) for kid in rest)]
+            job = None if token is root or is_particle(token) else job_of[token["id"]]
+            label = top_label if token is root and token["id"] not in opened else ""
+            return {"role": job, "label": label, "tone": tone(job), "detail": said_of(token),
+                    "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
         seen.update(kid["id"] for kid in kids)
         inside = [(at[kid["id"]], unit(kid)) for kid in kids]
         role = role_of[token["id"]]
@@ -650,17 +780,23 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         # verb is finished by is that verb's khabar as a whole.
         job = NAMED.khabar_kaada if completes_kaada(token, sentence) else (
             job_of[token["id"]] if token["id"] in framed
-            else None if token is root or token["pos"] == "PRT" or job_of[token["id"]] == NAMED.fil
+            else None if token is root or is_particle(token) or job_of[token["id"]] == NAMED.fil
             else job_of[token["id"]])
         # مِن نارٍ: a jar-majroor with a word to hang on is named by it, متعلق بـX
         if token["id"] in hung:
             label = FRAMES["attached"].format(word=kept["word"])
         elif label == JAR_MAJROOR and (up := parent(token)) in at:
+            # فِي سَنَةٍ أَوْ فِي ثَلَاثِ سِنِينَ: hung on a حرف عطف, it is معطوف on the jar-majroor that
+            # حرف follows, and hangs where that one hangs (the معطوف follows its معطوف عليه)
+            # A حرف عطف at the root follows nothing: no word to look at, so no loop.
+            while is_one(by_id[up]["form"], "atf") and (followed := by_id.get(parent(by_id[up]))) \
+                    and is_preposition(followed) and parent(followed) in at:
+                job, up = NAMED.matoof, parent(followed)
             label = FRAMES["attached"].format(word=columns[at[up]])
         return {"role": job,
                 "label": label,
                 "tone": tone(job) or tone(role),
-                "detail": place_of.get(token["id"]) or detail_of.get(token["id"]),
+                "detail": said_of(token),
                 # right to left, so the picture reads in the order they were typed
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
 
@@ -687,7 +823,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     tree = _quieted(_unbracket(tree))
     covered = sum(1 for found in named if found["role"])
     return {"words": columns, "written": written, "tree": tree, "coverage": round(covered / len(words), 2),
-            "unsaid": [role_of[token["id"]] if token["id"] in unsaid_objects else None for token in bases],  # the job on the card too
+            "unsaid": [role_of[token["id"]] if token["id"] in named_by_unsaid else None for token in bases],  # the job on the card too
             # the picture's finer name (حرف ناسخ, فعل أمر, فعل مجهول) where it says more than the role
             "finer": [name_of.get(token["id"]) if name_of.get(token["id"]) != role_of[token["id"]] else None for token in bases],
             # the doer no typed word is (هو hidden in يكتبُ, the تاء of كتبتُ): the card says it as the picture draws it
@@ -725,6 +861,14 @@ def _take(holder: dict[int, list[dict]], token: dict) -> dict:
     than the one asked with (6:139's answer هم did, and a list.remove of it failed)."""
     kids = holder[token["id"]]
     return kids.pop(next(i for i, kid in enumerate(kids) if kid["id"] == token["id"]))
+
+
+def _hangs_under(token: dict, top: dict, by_id: dict[int, dict]) -> bool:
+    """Whether a word is `top` or hangs under it, read up its heads: for the parser's links,
+    before `children_of` is made (`_inside` reads down it)."""
+    while token is not None and token["id"] != top["id"]:
+        token = by_id.get(token["head"])
+    return token is not None
 
 
 def _inside(token: dict, top: dict, children_of: dict[int, list[dict]]) -> bool:

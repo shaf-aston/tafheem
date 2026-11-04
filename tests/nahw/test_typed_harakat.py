@@ -108,6 +108,16 @@ def test_a_final_ta_is_the_verbs_only_when_it_is_not_a_plural_ending():
         assert not harakat.past_passive_shape(word)
 
 
+def test_the_passive_kasra_is_on_the_letter_joined_to_the_last():
+    """Alfiyya: فأول الفعل اضممن والمتصل بالآخر اكسر; before that kasra a letter is sakin or takes
+    the first's damma (تُدُحْرِجَ، اُسْتُحْلِيَ، تُغُوفِلَ, Ibn Aqil), never a fatha or an alif."""
+    for word in ("تُدُحْرِجَ", "تُغُوفِلَ", "اُسْتُعْمِلَ", "أُكْرِمَ", "قُوتِلَ", "عُلِّمَ", "اُنْطُلِقَ"):
+        assert harakat.past_passive_shape(word)
+    # a fatha or an alif before the kasra: a noun (مُعَلِّمَ), or one with ياء المتكلم (سُلْطانِيَ)
+    for word in ("سُلْطَانِيَ", "سُلْطَانِيَهْ", "سُلْطانِيَ", "حُسَامِيَ", "مُعَلِّمَ"):
+        assert not harakat.past_passive_shape(word)
+
+
 def test_a_present_passive_is_read_before_its_plural_or_dual_ending():
     for word in ("يُعَلَّمُونَ", "يُكْتَبْنَ", "يُكْتَبَانِ", "يُكْتَبُ"):
         assert harakat.typed_passive(word, present=True)

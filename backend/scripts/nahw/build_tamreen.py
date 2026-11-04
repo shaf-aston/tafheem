@@ -140,7 +140,7 @@ def build_one(slug: str) -> dict:
         if not m:
             raise ValueError(f"{slug}: cannot place {title!r}")
         # A picture question with no letter ("11.") is a question of one part.
-        number, letter, question = int(m[1]), m[2] or "a", _tidy(m[3])
+        letter, question = m[2] or "a", _tidy(m[3])
         if letter == "a":
             group = {"id": f"{slug}-e{len(examples) + 1:02d}", "section": section, "picture": picture,
                      "instruction": _tidy((item["media"] or {}).get("caption")), "parts": []}

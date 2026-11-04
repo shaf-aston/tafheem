@@ -107,7 +107,7 @@ def _preposition_over_its_noun(toks, heads, rels) -> None:
     for d, dep in enumerate(toks[:-1], 1):
         noun = toks[d]
         if not (dep["pos"] == "PRT" and heads[d - 1] == d + 1
-                and is_one(strip_diacritics(dep["form"]).strip("+"), "jarr") and noun_tagged(noun)
+                and is_one(dep["form"], "jarr") and noun_tagged(noun)
                 and "i" in (noun.get("case"), CAMEL_CASE.get(noun.get("cas")))):
             continue
         heads[d - 1], rels[d - 1] = heads[d], rels[d]
@@ -189,7 +189,7 @@ def _exception_word_by_case(toks, heads, rels) -> None:
                 or after.get("form", "").startswith("+") or not is_one(dep.get("form", ""), "istithna_verbs")
                 or above(heads, d, d + 1)):
             continue
-        case, verb = _case(after), d > 1 and is_one(strip_diacritics(toks[d - 2].get("form", "")), "istithna_verbs", "masdar_ma")
+        case, verb = _case(after), d > 1 and is_one(toks[d - 2].get("form", ""), "istithna_verbs", "masdar_ma")
         if case == "i" and not verb:
             dep.update(pos="PRT", pos_camel="prep")
             heads[d], rels[d] = d, "OBJ"

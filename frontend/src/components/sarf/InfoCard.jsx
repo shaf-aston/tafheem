@@ -1,4 +1,4 @@
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 
 /** One fact about the word: its root, its pattern or its verb class. */
 export default function InfoCard({ label, value, gloss, arabic, accent, i }) {

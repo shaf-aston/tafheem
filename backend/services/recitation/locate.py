@@ -21,12 +21,8 @@ from collections import defaultdict
 from dataclasses import dataclass
 from difflib import SequenceMatcher
 
-from backend.services.recitation.place import PLACES_IT, letters
-
-# Starts compared letter by letter; the rest are left out by their votes alone.
-_KEEP = 8
-# Words a reading may gain or drop against the text, either side of a start.
-_SLACK = 2
+from backend.config import get_settings
+from backend.services.recitation.place import bare_word
 
 
 @dataclass(frozen=True)
@@ -52,7 +48,7 @@ def build(ayahs) -> Line:
     words, where = [], []
     for key, text in ayahs:
         for word in text.split():
-            if folded := letters(word):
+            if folded := bare_word(word):
                 words.append(folded)
                 where.append(key)
     index = defaultdict(list)
@@ -63,25 +59,27 @@ def build(ayahs) -> Line:
 
 
 def _spots(heard: list[str], line: Line) -> list[tuple[float, int]]:
-    """(score, start) of the places that hold at least PLACES_IT heard words, best first."""
+    """(score, start) of the places that hold at least recitation_place_min_words heard words, best first."""
+    settings = get_settings()
+    keep, slack, min_words = settings.recitation_place_keep, settings.recitation_place_slack, settings.recitation_place_min_words
     votes = defaultdict(float)
     for i, word in enumerate(heard):
         for at in line.index.get(word, ()):
             votes[at - i] += line.weight[word]
-    near = lambda start: sum(votes.get(start + k, 0) for k in range(-_SLACK, _SLACK + 1))
+    near = lambda start: sum(votes.get(start + k, 0) for k in range(-slack, slack + 1))
     starts = []
     for start in sorted(votes, key=near, reverse=True):
         if all(abs(start - other) > len(heard) for other in starts):
             starts.append(start)
-        if len(starts) == _KEEP:
+        if len(starts) == keep:
             break
     said = " ".join(heard)
     out = []
     for start in starts:
-        lo, hi = max(start - _SLACK, 0), min(start + len(heard) + _SLACK, len(line.words))
+        lo, hi = max(start - slack, 0), min(start + len(heard) + slack, len(line.words))
         span = line.words[lo:hi]
         hits = [b for b in SequenceMatcher(None, heard, list(span), autojunk=False).get_matching_blocks() if b.size]
-        if sum(b.size for b in hits) < PLACES_IT:
+        if sum(b.size for b in hits) < min_words:
             continue
         # Compared only over the stretch the reading covers: first to last
         # matched word, widened by the heard words left unmatched at either
@@ -95,7 +93,7 @@ def _spots(heard: list[str], line: Line) -> list[tuple[float, int]]:
 
 
 def find(heard: str, line: Line, margin: float, fit: float, near: tuple[int, int] | None = None) -> Place | None:
-    """Where `heard` starts, or None when no place holds PLACES_IT of its words.
+    """Where `heard` starts, or None when no place holds recitation_place_min_words of its words.
 
     Sure needs the best place to fit at least `fit` (0 to 1) and beat the next
     by `margin`; a lone candidate has no rival, so fit alone guards it.
@@ -103,11 +101,11 @@ def find(heard: str, line: Line, margin: float, fit: float, near: tuple[int, int
     fits within `margin` of the best is taken, since carrying on is likelier
     than a jump that the words cannot tell apart.
     """
-    found = _spots([w for w in map(letters, heard.split()) if w], line)
+    found = _spots([w for w in map(bare_word, heard.split()) if w], line)
     if not found:
         return None
     best = found[0]
-    home = [spot for spot in found if near and near[0] - _SLACK <= spot[1] < near[1]]
+    home = [spot for spot in found if near and near[0] - get_settings().recitation_place_slack <= spot[1] < near[1]]
     if home and home[0][0] >= best[0] - margin:
         return Place(*line.where[home[0][1]], sure=True, home=True)
     rival = found[1][0] if len(found) > 1 else 0.0

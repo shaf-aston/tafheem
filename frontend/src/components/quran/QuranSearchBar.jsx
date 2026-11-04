@@ -13,10 +13,10 @@ import { hasDiacritics } from '../../lib/text/arabicText'
 import { KIND, readQuranQuery } from '../../lib/quran/quranIntent'
 import { ayahProblem } from '../../lib/quran/surahRef'
 
-import ArabicText from '../ui/ArabicText'
-import MicButton from '../ui/MicButton'
-import { GoButton } from '../ui/RootActions'
-import SearchBox from '../ui/SearchBox'
+import ArabicText from '../ui/text/ArabicText'
+import MicButton from '../ui/buttons/MicButton'
+import { GoButton } from '../ui/buttons/RootActions'
+import SearchBox from '../ui/inputs/SearchBox'
 
 export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSearch, onHeard, busy, accent }) {
   const { kind, surahs, ayah, problem } = useMemo(() => readQuranQuery(value), [value])
@@ -83,7 +83,7 @@ export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSea
                 onClick={() => open(m)}
                 disabled={Boolean(ayahProblem(m, ayah))}
                 style={{ '--i': i, '--c': accent }}
-                className="rise-in w-full flex items-center justify-between gap-3 text-left px-3 py-2
+                className="rise-in crisp w-full flex items-center justify-between gap-3 text-left px-3 py-2
                   rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)]
                   hover:border-[var(--c)] transition-colors disabled:opacity-50"
               >

@@ -7,8 +7,8 @@
  */
 import { GLOSSARY } from '../../lib/nahw/grammarTerms'
 
-import ArabicText from '../ui/ArabicText'
-import Disclosure from '../ui/Disclosure'
+import ArabicText from '../ui/text/ArabicText'
+import Disclosure from '../ui/overlays/Disclosure'
 
 export default function GrammarGlossary() {
   return (

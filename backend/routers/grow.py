@@ -2,8 +2,7 @@
 
 Read from hand-written files and served as they are: data/grow/sources.json
 names every book quoted, and data/grow/worlds/<world>/ holds a world's paths
-and units, one file each. Nothing here judges a recitation (that is /api/listen/check
-and /check-text) and nothing here makes a ruling: every ruling in the files
+and units, one file each. Nothing here judges a recitation (that is /api/listen/check) and nothing here makes a ruling: every ruling in the files
 is a scholar's own sentence, quoted.
 
 The Grow tab's Prayer world reads /worlds/prayer (frontend lib/grow/usePrayerWorld.js):

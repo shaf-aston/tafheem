@@ -2,11 +2,9 @@
 No sentence is needed for any of these; every other module here builds on them."""
 from __future__ import annotations
 
-import re
-
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
-from backend.services.nahw.book import book_words, is_diptote, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
+from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, letters, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
+from backend.services.nahw.book import book_words, is_diptote, elative_shape, measure, participle_shape, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
 # a root letter is what is left once the letters that come and go are removed
@@ -21,6 +19,21 @@ def is_suffix(token: dict) -> bool:
 def is_prefix(token: dict) -> bool:
     """A letter written onto the word after it (ف+, و+, ل+)."""
     return token.get("form", "").endswith("+")
+
+
+def is_emphasis_lam(tokens: list[dict], i: int) -> bool:
+    """لَيَقُولَنَّ، لَلْحُسْنَى، لَزَيْدٌ: a لام written onto a word with a fatha typed on it is the لام of
+    emphasis, governing nothing (closed_words ghair_amila_other `_fatha_lam`); لَهُ keeps its jarr, since
+    the parser leaves that لام a word of its own before the pronoun. So is one written onto a حرف جر,
+    typed bare or not (وإنك لعلى خلق عظيم): a جار takes no جار after it."""
+    base = tokens[i + 1] if i + 1 < len(tokens) else None
+    if tokens[i]["form"] != "ل+" or base is None:
+        return False
+    at = 0  # the لام's letter in the typed word: after the pieces written in front of it (وَلَـ، فَلَـ)
+    while at < i and is_prefix(tokens[i - 1 - at]):
+        at += 1
+    marked = letters(base.get("typed") or "")
+    return is_preposition(base) or at < len(marked) and "َ" in marked[at][1]
 
 
 def base_tokens(words: list[str], tokens: list[dict]) -> list[dict]:
@@ -57,24 +70,47 @@ def subject_link(token: dict) -> bool:
     return token["rel"] in SUBJECTS
 
 
+def holds_doer(verb: dict, kids) -> bool:
+    """The verb's doer is settled: in the verb itself (own_doer: أَكْرَمْتُ، a command's hidden أنت, Tasheel 2.4.1 p30)
+    or one hung on it."""
+    return own_doer(verb) or verb.get("asp") == "c" or any(subject_link(k) for k in kids)
+
+
+def own_doer(verb: dict) -> bool:
+    """The doer is in the verb itself: written on as تُ، نا، تَ, or hidden as أنا، نحن، أنت (Tasheel 2.4.1 p30),
+    so a command's too, always said to the one spoken to; and the ا، و، ن of two or many (ضَرَبَا، ضَرَبُوا،
+    ضَرَبْنَ), never a mere sign of number before a doer named after it (Sharh Qatr al-Nada p182: فلا يقال
+    قاما أخواك ولا قاموا اخوتك ... أخواك قاما فيكون أخواك مبتدأ وما بعده فعل وفاعل)."""
+    return (verb.get("per") in ("1", "2") or verb.get("num") in ("d", "p")) and not is_passive(verb)
+
+
 def attached_pronoun(token: dict) -> bool:
     """A pronoun written onto the word before it: عِلْمُ+هُ."""
     return token.get("pos_camel") == "pron" and is_suffix(token)
+
+
+def reading(token: dict | None, key: str = "family") -> str | None:
+    """What particles.stamp read the word as (its family, kind, named, sense), if it read it."""
+    return ((token or {}).get("reading") or {}).get(key)
 
 
 def read_as(token: dict, family: str) -> bool:
     """The word works as one of this family: by the one reading particles.stamp gave it
     (لا before a bare noun in nasb is the لا of genus, never a joining word), else by the
     family's list, for a word with one reading only."""
-    reading = token.get("reading")
-    if reading:
-        return reading["family"] == family
+    if read := reading(token):
+        return read == family
     return family not in token.get("judged", ()) and is_one(token["lemma"], family)
 
 
+def takes_two_objects(verb: dict) -> bool:
+    """ظن وأخواتها، أعطى وأخواتها: a verb that works on two objects."""
+    return is_one(verb["lemma"], "zanna") or is_one(verb["lemma"], "two_objects_give")
+
+
 def is_verb(token: dict) -> bool:
-    if token.get("reading"):
-        return token["reading"]["kind"] == "fil"  # أَلَا is a particle, whatever the parser tagged it
+    if kind := reading(token, "kind"):
+        return kind == "fil"  # أَلَا is a particle, whatever the parser tagged it
     if has_tanween(token.get("typed")):
         return False  # a verb never carries tanween, whatever the parser tagged it
     if verb_tagged(token):  # VRB-PASS is a verb too
@@ -97,9 +133,13 @@ def is_built(token: dict) -> bool:
     """A word that keeps one ending whatever its job (a pronoun, pointer, relative or question
     word, nahw_book.is_mabni), except the dual of a pointer or a relative (هَذَانِ، اللَّتَانِ):
     that one inflects by its letters, the alef in raf' and the ya in nasb and jarr
-    (Tasheel: المثنى من أسماء الإشارة والموصولات معرب), so its last kasra is no ending it is built on."""
+    (Tasheel: المثنى من أسماء الإشارة والموصولات معرب), so its last kasra is no ending it is built on;
+    nor أيّ, the one question word that takes a case (closed_words istifham `inflected`)."""
     kind = token.get("pos_camel", "")
-    return is_mabni(kind) and not (token.get("num") == "d" and any(k in kind for k in ("dem", "rel")))
+    if token.get("compound") in ("built", "ordinal", "second"):
+        return True  # ثلاثةَ عشرَ: built on the fatha of both parts (repair.compound_number)
+    return (is_mabni(kind) and not (token.get("num") == "d" and any(k in kind for k in ("dem", "rel")))
+            and not ("interrog" in kind and is_one(token["lemma"], "istifham", "inflected")))
 
 
 def case_shown(token: dict) -> str | None:
@@ -124,7 +164,7 @@ def is_passive(token: dict) -> bool:
     if token.get("vox") == "p":
         # the typed opening vowel outranks the tag: لا يَغْلَقُ الرهنُ is active
         return not opens_active(typed, present)
-    return typed_passive(typed, present, token.get("stuck_on", 0))
+    return typed_passive(typed, present, token.get("stuck_on", 0), token.get("weak_last"))
 
 
 def typed_tanween(token: dict) -> bool:
@@ -140,17 +180,36 @@ def has_added(token: dict, tokens: list[dict]) -> bool:
 def typed_case_of(token: dict) -> str | None:
     """The case the reader typed on the word: its last vowel, or for one of the six nouns
     as a مضاف the long letter standing for it (أَخُوْ، أَخَا، أَخِيْ زَيْدٍ; أَبَاهُ)."""
+    if token.get("compound") in ("built", "ordinal", "second"):
+        return None  # ثلاثةَ عشرَ: the fatha is the number's build, no nasb
+    if unit := _hundred_unit(token.get("typed") or ""):
+        return typed_case(unit)  # ثَلَاثَمِائَةِ: the unit shows the case, the last kasra is مائة's jarr
     if drops_ya(token.get("typed") or "", token["lemma"]):
         return None  # هَذَا قَاضٍ: the tanween stands on the ya that went, raf' or jarr alike
     shown = typed_case(token.get("typed") or "", token.get("stuck_on", 0))
     return shown or written_nasb(token) or six_noun_case(token["base"], token["lemma"])
 
 
+def _hundred_unit(typed: str) -> str | None:
+    """ثلاثمائة to تسعمائة written as one word: the unit, as typed, when the rest is the hundred
+    (closed_words adad_mudaf `hundreds`) it is added to."""
+    bare = strip_diacritics(typed)
+    for hundred in book_words("adad_mudaf", "hundreds"):
+        if bare.endswith(hundred) and is_one(bare[: -len(hundred)], "adad_mudaf"):
+            return "".join(c + "".join(sorted(m)) for c, m in letters(typed)[: len(bare) - len(hundred)])
+    return None
+
+
+def typed_bare(token: dict) -> bool:
+    """The reader typed the word with no vowel at all (زيد بكرا): its case is not shown, only read."""
+    typed = token.get("typed") or ""
+    return bool(typed) and typed == strip_diacritics(typed)
+
+
 def written_nasb(token: dict) -> str | None:
     """زيد بكرا typed bare: the alif of نصب tanween is written, not voweled (رسم المصحف و الإملاء),
     so it shows the nasb on its own when the word's reading puts that tanween on it; عصا's alif is its own."""
-    typed = token.get("typed") or ""
-    if not typed or typed != strip_diacritics(typed) or not typed.endswith("ا"):
+    if not typed_bare(token) or not token["typed"].endswith("ا"):
         return None
     # only nasb tanween is written with an alif, so any tanween before it is that one
     return CASE_LETTER["nasb"] if TANWEEN & set(token.get("diac", "")[-2:]) else None
@@ -169,28 +228,33 @@ def shows_jarr(token: dict) -> bool:
 
 
 def case_unseen(token: dict) -> bool:
-    """A مقصور noun the reader left bare (السُّفْلَى، الدُّنْيَا): its case is unseen on the alif
-    (مقدرة للتعذر) in all three, so the parser's case for it is a guess and no evidence."""
+    """A مقصور noun or name the reader left bare (السُّفْلَى، الدُّنْيَا، مُوسَى): its case is unseen on the alif
+    (مقدرة للتعذر) in all three, so the parser's case for it is a guess and no evidence. So is
+    a noun's before ياء المتكلم (صَدِيقِي), the kasra there being the ya's (لاشتغال المحل)."""
     form, lemma = strip_diacritics(token.get("form", "")), strip_diacritics(token.get("lemma", ""))
+    my = bool(token.get("stuck_on")) and strip_diacritics(token.get("typed") or "").endswith("ي")
     # only a declinable noun is مقصور; a built one ending in ا (مَا، إِذَا، هَذَا) has no case to hide
-    return token.get("pos_camel") in ("noun", "adj") and not typed_case_of(token) and (
-        form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
+    return token.get("pos_camel") in ("noun", "adj", "noun_prop") and not typed_case_of(token) and (
+        my or form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
 
 
 def shown_cases(token: dict) -> set[str]:
-    """Every case the word's ending can mean: the one typed or parsed, and nasb too for a
-    ـات word typed with a kasra; any of the three for a مقصور noun whose case is unseen."""
-    if case_unseen(token):
+    """Every case the word's ending can mean: the one typed or parsed, nasb too for a ـات word
+    typed with a kasra and jarr too for a diptote typed with a fatha (لِأَبِيهِ آزَرَ); any of the
+    three for a مقصور noun whose case is unseen, or a name whose case neither its vowels nor its reading show (آزر)."""
+    if case_unseen(token) or token.get("pos_camel") == "noun_prop" and typed_or_parsed_case(token) is None:
         return {"u", "a", "i"}
     shown = typed_or_parsed_case(token)
-    return {shown, "a"} if shows_nasb_by_kasra(token) else {shown} - {None}
+    if shows_nasb_by_kasra(token) or shown == "a" and shows_jarr(token):
+        return {shown, "a", "i"}
+    return {shown} - {None}
 
 
 def is_preposition(token: dict) -> bool:
     """A particle of the book's list of حروف الجر, or one the parser tags a preposition; a word
     particles.stamp read one way (حتى before إذا is no جر) is what that reading says."""
-    reading = token.get("reading")
-    return token["pos"] == "PRT" and (reading["family"] == "jarr" if reading else token.get("pos_camel") == "prep" or read_as(token, "jarr"))
+    read = reading(token)
+    return token["pos"] == "PRT" and (read == "jarr" if read else token.get("pos_camel") == "prep" or read_as(token, "jarr"))
 
 
 def typed_or_parsed_case(token: dict) -> str | None:
@@ -199,7 +263,7 @@ def typed_or_parsed_case(token: dict) -> str | None:
 
 
 def same_case(token: dict, head: dict) -> bool:
-    """The word and the noun it hangs on wear one case."""
+    """The word and the noun it hangs on wear one case. A built word shows none, so nothing follows it by case."""
     return bool(shown_cases(token) & shown_cases(head)) and not is_verb(head)
 
 
@@ -208,10 +272,27 @@ def agrees(token: dict, head: dict) -> bool:
     idafa counts as definite, so an indefinite word after a definite or construct noun does
     not agree; a dual describes only a dual (مُحَمَّدٌ وَعَلِيٌّ مُجْتَهِدَانِ: the khabar of both).
     Only the dual is compared: a plural not of people takes a singular na't (الكتبُ الجديدةُ);
-    and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا)."""
+    and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا). A noun read
+    as a مضاف with nothing added to it is no مضاف (ضَلَّ ضَلَالًا بَعِيدًا typed bare: ضلال). A name
+    is definite by itself whatever its tag says (Ajrumiyya p14: والمعرفة خمسة أشياء … والاسم العلم), so a word
+    showing tanween never describes it (شرب زيد الماء باردا); رَبِّ after لِلَّهِ shows none."""
     dual = [t.get("num") == "d" for t in (token, head) if noun_tagged(t)]
-    return same_case(token, head) and not (token.get("stt") == "i" and head.get("stt") in ("d", "c")) \
-        and len(set(dual)) < 2
+    known = head.get("stt") == "d" or head.get("stt") == "c" and head.get("mudaf", True)
+    named = head.get("pos_camel") == "noun_prop" and (typed_tanween(token) or written_nasb(token))
+    # الرجلُ الحاديَ عشرَ: a compound ordinal is built, so it stands in its noun's case by its place
+    in_case = same_case(token, head) or token.get("compound") == "ordinal"
+    return in_case and not (token.get("stt") == "i" and known or named) and len(set(dual)) < 2
+
+
+def describes(token: dict, head: dict) -> bool:
+    """A وصف that can be its noun's na't: it agrees with it (`agrees`) and, where both are tagged
+    and the noun is one thing, in gender too (Tasheel 3.10.1: the na't follows its noun in
+    تذكير and تأنيث). A plural not of people takes a feminine singular (الكتبُ الجديدةُ), so a
+    plural noun's gender is not asked; a singular's must be tagged on both to be matched. الطالبُ
+    المجتهدُ is a na't; الدينُ النصيحةُ cannot be (a feminine word told of a masculine one)."""
+    genders = {t.get("gen") for t in (token, head)}
+    matched = head.get("num") == "p" or genders <= {"m", "f"} and len(genders) == 1
+    return is_describing(token) and agrees(token, head) and matched
 
 
 def unlike(token: dict, head: dict) -> bool:
@@ -234,6 +315,14 @@ def indefinite_nasb(token: dict) -> bool:
 def is_state_word(token: dict) -> bool:
     """What a hal is made of: a participle, or any word beginning مـ."""
     return is_participle(token) or bare_letters(token.get("typed") or "")[:1] == "م"
+
+
+def stands_for_its_noun(token: dict) -> bool:
+    """A describing word that may stand for the noun it describes, left out: one used as a noun for
+    whoever it describes (الصفة الغالبة: صالحًا، مؤمنًا), or a name taken from a describing word that
+    the dictionary reads only as that word (خالدًا). Read by its lemma, so typed vowels or none give
+    the same answer. Any other describing word describes a state: مبتسمًا، واقفًا."""
+    return listed(token, "noun_describers") or listed(token, "describing_names")
 
 
 def state_or_specification(token: dict, head: dict) -> str:
@@ -265,9 +354,20 @@ def is_called_alone(token: dict) -> bool:
     return listed(token, "nida", "called_alone")
 
 
+def my_ya_dropped(token: dict) -> bool:
+    """يَا عَبْدِ، رَبِّ اغْفِرْ لِي: a called noun typed with a kasra and no tanween is مضاف to the ياء المتكلم,
+    which went and left its kasra (Ibn Aqil V3 p274: حذف الياء والاستغناء بالكسرة). Typed on (يَا رَبِّي), the ya hides the case."""
+    return typed_case_of(token) == "i" and not has_tanween(token.get("typed") or "")
+
+
 def is_called_noun(token: dict) -> bool:
     """أيها، أيتها: the noun يا calls, though the parser tags it a particle."""
     return listed(token, "nida", "called_nouns")
+
+
+def is_particle(token: dict) -> bool:
+    """Tagged a particle, and one: never أيها, the noun يا calls (Ibn Aqil V3 p268: فأي منادى)."""
+    return token["pos"] == "PRT" and not is_called_noun(token)
 
 
 def _skeleton(word: str) -> list[str]:
@@ -290,18 +390,31 @@ def same_root(token: dict, other: dict) -> bool:
     return _skeleton(token["lemma"]) == _skeleton(other["lemma"])
 
 
+def on_doing_measure(token: dict) -> bool:
+    """On the measure of a doer or a done-to (closed_words participle_patterns `doing`), not a صفة مشبهة's."""
+    return measure(token.get("pattern") or "").startswith(tuple(book_words("participle_patterns", "doing")))
+
+
 def is_participle(token: dict) -> bool:
     """An active or passive participle, or an adjective: what a hal is made of.
-    A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا."""
+    A word the morphology does not know (مسرعا) is judged by its مـ and its ending ـا. A name
+    on a participle's measure (حَامِدًا) is none: a name is definite by itself, a hal never."""
     typed = bare_letters(token.get("typed") or "")
+    name = token.get("pos_camel") == "noun_prop"
     return (token.get("ud") == "ADJ" or token.get("pos_camel") == "adj"
-            or measure(token.get("pattern", "")).startswith(tuple(book_words("participle_patterns")))
-            or (token.get("pos_camel") == "noun_prop" and typed[:1] == "م" and typed[-1:] == "ا"))
+            or participle_shape(token.get("pattern", "")) and not name
+            or (name and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
 def is_elative(token: dict) -> bool:
-    """أَعْلَى، أَكْبَر: the analyser's pattern holds the elative's shape (closed_words elative_patterns), with or without ال or a proclitic."""
-    return any(shape in token.get("pattern", "") for shape in book_words("elative_patterns"))
+    """أَعْلَى، أَكْبَر، خَيْر: an elative (book.elative_shape)."""
+    return elative_shape(token.get("pattern", ""), token["lemma"])
+
+
+def is_describing(token: dict) -> bool:
+    """A وصف: a participle, an adjective or an elative (كريمٌ، باقٍ، خيرٌ), the word a khabar is made of
+    when it describes what it is told of."""
+    return is_participle(token) or is_elative(token)
 
 
 PASSIVE_PARTICIPLE = "مَ1ْ2ُو3"  # مَفْعُول: مفتوحٌ بابُه, its noun the نائب فاعل
@@ -316,22 +429,6 @@ def works_as_verb(token: dict) -> str | None:
     if is_participle(token):
         return "passive" if measure(token.get("pattern", "")).startswith(PASSIVE_PARTICIPLE) else "active"
     return None
-
-
-def measure(pattern: str) -> str:
-    """The analyser's pattern laid back on its measure: a doubled root writes its last two
-    radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
-    in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3), a last radical hamza keeps its seat in place of the 3
-    (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3)."""
-    pattern = pattern.removeprefix("ال")
-    if "3" not in pattern and "2" in pattern:
-        pattern = re.sub(r"(?<=2)([\u064b-\u0652]*[اوي]?)[ءأإئؤ]", r"\g<1>3", pattern, count=1)
-    if "3" not in pattern and "2" + SHADDA in pattern:
-        return pattern.replace("2" + SHADDA, "2" + SUKUN + "3", 1)
-    if "2" not in pattern:  # قِيَام 1ِيا3: the weak letter stands as the 2, and the alef after it implies its fatha
-        pattern = re.sub(r"(?<=1[\u064b-\u0652])[وي](?=[\u064b-\u0652]?[اوي]?3)", "2", pattern, count=1)
-        return pattern.replace("2ا", "2َا")
-    return pattern
 
 
 def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
@@ -359,6 +456,8 @@ def listed(token: dict, family: str, part: str = "words") -> bool:
     to صباح and may misread the second (كُوبًا as كوان)."""
     form = strip_diacritics(token["form"])
     bare = form[:-1] if form.endswith("ا") and typed_tanween(token) else form
-    # بُكْرَة's ة is its own letter, written ة or ت in all its forms: بكرا (بَكَرًا) is another word
-    lemma = token["lemma"] if not token["lemma"].endswith("ة") or "ة" in form or "ت" in form else ""
+    # بُكْرَة's ة is its own letter, written ة or ت wherever its letters stand: بكرا (بَكَرًا), its
+    # letters with no ة, alone or with a nasb alef, is another word. A plural drops it (سنين of سنة).
+    written = form.removeprefix("ال")
+    lemma = token["lemma"] if not token["lemma"].endswith("ة") or token["lemma"][:-1] not in (written, written.removesuffix("ا")) else ""
     return any(is_one(spelling, family, part) for spelling in (lemma, form, bare) if spelling)

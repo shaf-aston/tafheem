@@ -5,7 +5,7 @@
 import { fill } from '../../lib/shell/homeCopy'
 import { LEVEL_COPY, LEVELS, levelOf } from '../../lib/learner/learnerLevel'
 import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
-import Segmented from '../ui/Segmented'
+import Segmented from '../ui/inputs/Segmented'
 
 const OPTIONS = LEVELS.map((level) => ({ id: level.id, label: level.label }))
 

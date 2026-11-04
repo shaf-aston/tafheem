@@ -4,7 +4,7 @@
  */
 import { entryLines } from '../../lib/dictionary/entryLines'
 
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 
 /**
  * One line of the entry, laid out the way the book lays it out.

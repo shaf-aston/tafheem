@@ -25,7 +25,7 @@ from huggingface_hub import snapshot_download  # noqa: E402
 from transformers import WhisperForConditionalGeneration, WhisperTokenizerFast  # noqa: E402
 
 NAME = re.search(r"NAME = f'(.+)'", (HERE / 'ear' / 'settings.py').read_text()).group(1).replace('{SIZE}', 'base')
-PIN = re.search(r'recitation_trial_model: str = "(.+?)@(.+?)"', (HERE.parents[1] / 'config.py').read_text(encoding='utf-8'))
+PIN = re.search(r'recitation_tuned_model: str = "(.+?)@(.+?)"', (HERE.parents[1] / 'config.py').read_text(encoding='utf-8'))
 work = Path(tempfile.mkdtemp())
 
 

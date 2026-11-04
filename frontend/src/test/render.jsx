@@ -1,7 +1,7 @@
 /**
  * Render a whole screen (or one hook) in a test: a fresh query cache and a fake backend.
  *
- * Every backend request goes through api.js's one axios client, so the fake
+ * Every backend request goes through api/client.js's one axios client, so the fake
  * sits at its adapter and no api function is mocked one by one. `routes` maps
  * 'GET /path' to the data it answers (or a function of the request); a
  * request not listed fails as a 404, the way a backend that is down would,

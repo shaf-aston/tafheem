@@ -236,3 +236,33 @@ def test_punctuation_typed_around_the_words_finds_the_same_ayah(index):
         hits, swaps = quran_search.search(search_query(typed))
         assert _keys(hits)[0] == (5, 5)
         assert swaps == []
+
+
+def test_a_run_inside_an_ayah_is_found_with_where_it_starts(index) -> None:
+    """Part of an ayah, typed the ordinary way, names the ayah and the run's first
+    word, counted from 1 as the word-by-word English is."""
+    hit, start = local.ayah_run("الكتاب لا ريب")
+    assert (hit.surah, hit.ayah, start) == (2, 2, 2)
+    hit, start = local.ayah_run("الرَّحْمَنِ الرَّحِيمِ")
+    assert (hit.surah, hit.ayah, start) == (1, 1, 3)  # the first ayah in order that holds it
+
+
+def test_words_an_ayah_holds_but_not_as_one_run_are_no_run(index) -> None:
+    assert local.ayah_run("الرحيم الرحمن") is None  # out of order
+    assert local.ayah_run("بسم الله الكريم") is None  # one word no ayah has there
+    assert local.ayah_run("الرحيم") is None  # one word is a word, not a run
+
+
+def test_a_run_typed_with_a_hamza_seat_the_index_spells_otherwise(index) -> None:
+    """أب typed with its hamza; the run check takes the seat out on both sides."""
+    hit, start = local.ayah_run("أَبٌ وأم")
+    assert (hit.surah, hit.ayah, start) == (3, 3, 1)
+
+
+def test_a_word_s_first_hamza_or_alif_is_kept(index) -> None:
+    """Only a seat inside a word is left out: with the first one gone too, لله (to Allah)
+    was الله, and the name لينا was the Qur'an's إلينا, so "I'm Lina" read "Indeed, to Us"."""
+    assert local.ayah_run("بسم لله") is None
+    assert local.ayah_run("ب وأم") is None
+    hit, start = local.ayah_run("ءَبٌ وأم")  # a seat written apart is still the same first letter
+    assert (hit.surah, hit.ayah, start) == (3, 3, 1)

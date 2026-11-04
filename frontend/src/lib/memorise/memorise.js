@@ -32,7 +32,7 @@
  * the other teaches the wrong spelling.
  */
 
-import { recitedForm, sameSpokenWord } from '../text/arabicText'
+import { isSpoken, recitedForm, sameSpokenWord } from '../text/arabicText'
 import { shuffled } from '../text/shuffle'
 import config from '../../config/memorise.json'
 import quiz from '../../config/quiz.json'
@@ -56,6 +56,16 @@ const SPACING_DROPS_AT = config['spacing-drops-at-share']
 
 /** The words of one line, as written. Splitting on spaces is all Arabic needs. */
 export const wordsOf = (text) => (text ?? '').split(/\s+/).filter(Boolean)
+
+/**
+ * One ayah's place in a run of words starting at `from`. `spoken` holds the page
+ * places of the words the ear scores: the server drops lone pause signs (ۖ ۚ),
+ * so its scores land on these, never on `from + k`.
+ */
+export const ayahAt = (key, said, from) => ({
+  key, from, count: said.length,
+  spoken: said.flatMap((word, k) => (isSpoken(word) ? [from + k] : [])),
+})
 
 /**
  * Whole lines gathered into pages.
@@ -190,13 +200,16 @@ export function blanksFor(page, share, random) {
  * @param page      the lines of one page
  * @param startWord which word of the page, counted across all its lines, to
  *                  begin on
+ * @param cue       whether that word is left printed. The top of a page needs
+ *                  one word to begin from; a word the reader pressed does not,
+ *                  they chose it, and printing it would give it away.
  */
-export function fromMemory(page, startWord = 0) {
+export function fromMemory(page, startWord = 0, cue = true) {
   const blanks = new Set()
   let at = 0
   page.forEach((line, l) => {
     wordsOf(line.arabic).forEach((_, w) => {
-      if (at > startWord) blanks.add(`${l}:${w}`)
+      if (at > startWord || (!cue && at === startWord)) blanks.add(`${l}:${w}`)
       at += 1
     })
   })
@@ -253,15 +266,12 @@ export function optionsFor(answer, pool, random, count = CHOICES) {
   return shuffled(options, random)
 }
 
-/** True when what was typed is the word that was taken out. */
-export const isRight = (typed, actual) => sameSpokenWord(typed, actual)
-
 /** How many gaps were filled correctly, out of how many there were. */
 export function score(page, blanks, answers) {
   let right = 0
   for (const key of blanks) {
     const [l, w] = key.split(':').map(Number)
-    if (isRight(answers[key] ?? '', wordsOf(page[l].arabic)[w])) right += 1
+    if (sameSpokenWord(answers[key] ?? '', wordsOf(page[l].arabic)[w])) right += 1
   }
   return { right, total: blanks.size }
 }

@@ -7,7 +7,7 @@
  * either. The placeholder says which.
  */
 import { takesLatin } from '../../../lib/colloquial/answer'
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 
 export default function TypedExercise({ exercise, value, onChange, status }) {
   const answered = Boolean(status)

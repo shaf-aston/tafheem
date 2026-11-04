@@ -49,7 +49,7 @@ const page = await (await chromium.launch()).newPage()
 const errors = []
 page.on('pageerror', (e) => errors.push(e.message))
 
-await page.goto(`${APP}/app/dict`, { waitUntil: 'networkidle' })
+await page.goto(`${APP}/dict`, { waitUntil: 'networkidle' })
 await ready(page)
 check('nothing walked yet, no trail', await trail(page).count(), 0)
 
@@ -81,7 +81,7 @@ check('and there is no arrow left to press', await trail(page).locator('button[a
 // A pasted link opens on the word it names, as a new step on the saved path
 // (probe-session.mjs covers the path itself). We were on the blank first step,
 // so the link is the only word, one step back from nothing.
-await page.goto(`${APP}/app/dict?q=%D8%B3%D8%B7%D8%B1`, { waitUntil: 'networkidle' })
+await page.goto(`${APP}/dict?q=%D8%B3%D8%B7%D8%B1`, { waitUntil: 'networkidle' })
 await ready(page)
 check('a shared link opens on that word', await page.locator('#dict-input').inputValue(), 'سطر')
 check('as a step on the path', await steps(page), 'سطر:here')
@@ -104,7 +104,7 @@ for (const [tab, field, first, second] of [
   ['daleel', '#daleel-input', 'patience', 'الصبر'],
   ['sarf', '#sarf-input', 'كتب', 'درس'],
 ]) {
-  await page.goto(`${APP}/app/${tab}`, { waitUntil: 'networkidle' })
+  await page.goto(`${APP}/${tab}`, { waitUntil: 'networkidle' })
   await ready(page)
   for (const word of [first, second]) {
     await page.fill(field, word)

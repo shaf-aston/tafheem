@@ -116,7 +116,7 @@ export function useTabNavigation() {
   // made once, so a hidden panel is not rendered again for a switch. Only the
   // tab on screen is heard; a hidden one finishing a search is not a step.
   const said = useMemo(() => Object.fromEntries(TABS.map(({ id }) => [id, {
-    onVisit: (value) => activeRef.current === id && visit(id, value),
+    onVisit: (value, over) => activeRef.current === id && visit(id, value, { over }),
     onProgress: (report) => { if (activeRef.current === id) setRound(report) },
   }])), [])
 

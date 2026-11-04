@@ -1,7 +1,7 @@
 // One topic as a scene: its pictures come first, then the conversation and practice.
 import { useState } from 'react'
 
-import TranslationStrip from '../../ui/TranslationStrip'
+import TranslationStrip from '../../ui/text/TranslationStrip'
 import Dialogue from './Dialogue'
 import { FOCUS } from '../parts/Face'
 import Mosaic from './Mosaic'

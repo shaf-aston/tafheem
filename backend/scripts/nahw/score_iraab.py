@@ -35,10 +35,11 @@ back off the harakat would score the reader's vowels, not the analyser.
     venv/Scripts/python -m backend.scripts.nahw.score_iraab --set fresh
     venv/Scripts/python -m backend.scripts.nahw.score_iraab --api http://127.0.0.1:8000 --show 20
 
---check scores the five exact sets and fails (exit 1) when any names fewer words
-right than data/nahw_rules/score_baseline.json says it did, or the reader broke on
-a sentence; CI runs it. After a
-change that rightly moves a score, --save-baseline writes the new counts.
+--check scores the exact sets and fails (exit 1) when any names fewer words right
+than data/nahw_rules/score_baseline.json says it did, when a sentence the baseline
+had wholly right is wrong now, or when the reader broke on a sentence; CI runs it.
+--set checked is scored the same way here. After a change that rightly moves a
+score, --save-baseline writes the new counts and the wholly right sentences.
 
     venv/Scripts/python -m backend.scripts.nahw.score_iraab --check
 """
@@ -94,7 +95,8 @@ def checked_sentences() -> list[dict]:
     """Fresh sentences written for testing, kept only where three separate
     readings agreed on every word; nothing was tuned on them."""
     path = DATA.parent / KEY["sources"]["checked"]
-    return [{"id": f"c{i}", **ex} for i, ex in enumerate(json.loads(path.read_text(encoding="utf-8")), 1)]
+    return [{"id": f"c{i}", **ex, "key": ex["roles"], "split": "hold", "chapter": "checked", "by": "family"}
+            for i, ex in enumerate(json.loads(path.read_text(encoding="utf-8")), 1)]
 
 
 def fresh_sentences(name: str = "fresh") -> list[dict]:
@@ -112,8 +114,17 @@ SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_se
         **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe")},
         "blind": partial(fresh_sentences, "blind")}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked")
 BASELINE = DATA / "nahw_rules" / "score_baseline.json"
+
+
+class Scores(Counter):
+    """A set's counts, and the ids of the sentences it got wholly right: the gate holds each of
+    those, so a change that fixes one sentence and breaks another cannot pass on its total."""
+
+    def __init__(self, counts: Counter = (), whole: frozenset[str] = frozenset()):
+        super().__init__(counts)
+        self.whole = whole
 
 
 def sign_matches(have: str | None, want: str) -> bool:
@@ -207,11 +218,21 @@ def disagreements(cards: list[dict], tree: dict | None) -> list[tuple[int, str, 
     return out
 
 
+def same_role(have: str, want: str, by_family: bool) -> bool:
+    """The card's role is the key's: exactly, harakat aside, or for a set keyed in the book's
+    broader words (checked: حرف for حرف جر, اسم إن for اسم لا) by the family both belong to."""
+    if not by_family:
+        return have == want
+    return bool(have) and family(want) is not None and family(have) == family(want)
+
+
 def score_exact(name: str, api: str | None, show: int) -> Counter:
     """Score a set keyed one exact role per word. A blank card role is a gap; any other
-    role that is not the key is confident wrong. Roles are compared exactly, harakat aside.
-    Returns the whole set's counts."""
+    role that is not the key is confident wrong. Roles are compared exactly, harakat aside, or by
+    family for a set keyed in broader words (same_role). Returns the whole set's counts and the
+    sentences it got wholly right."""
     stats: dict[str, Counter] = {}
+    whole: set[str] = set()
     bad_lines, clashes = [], []
     for ex in SETS[name]():
         answer = routed(ex["sentence"], api)
@@ -224,7 +245,7 @@ def score_exact(name: str, api: str | None, show: int) -> Counter:
         for i, want in enumerate(key):
             have = plain_role(cards[i].get("role")) if aligned else ""
             row["roles"] += 1
-            if have == want:
+            if same_role(have, want, ex.get("by") == "family"):
                 row["right"] += 1
             elif have:
                 row["confident_wrong"] += 1
@@ -243,6 +264,8 @@ def score_exact(name: str, api: str | None, show: int) -> Counter:
         row["disagree"] = len(clash)
         clashes += [f"{ex['id']:>6}  {cards[i]['word']}: card {c}, tree {t}" for i, c, t in clash]
         row["whole"] = int(aligned and row["right"] == row["roles"])
+        if row["whole"]:
+            whole.add(ex["id"])
         if wrong:
             bad_lines.append(f"{ex['id']:>6}  {ex['sentence']}  | " + " | ".join(wrong))
         for group in ("all", ex["split"], f"chapter: {ex['chapter']}"):
@@ -266,31 +289,38 @@ def score_exact(name: str, api: str | None, show: int) -> Counter:
     if show:
         print("Card/tree disagreements:")
         print(*clashes[:show], sep="\n")
-    return stats["all"]
+    return Scores(stats["all"], whole=frozenset(whole))
 
 
 def check(api: str | None, save: bool) -> int:
-    """Each exact set's words right against the baseline: 1 when any set fell or the
-    reader broke on a sentence, else 0.
-    `save` writes today's counts as the new baseline instead."""
+    """Each exact set against the baseline: 1 when any set names fewer words right, any sentence
+    the baseline had wholly right is no longer so, or the reader broke on a sentence; else 0.
+    A total alone would let a change that fixes one sentence and breaks another through.
+    `save` writes today's counts and wholly right sentences as the new baseline instead."""
     counts = {name: score_exact(name, api, 0) for name in EXACT}
     got = {name: c["right"] for name, c in counts.items()}
     crashed = {name: c["crashed"] for name, c in counts.items() if c["crashed"]}
+    whole = {name: sorted(getattr(c, "whole", ())) for name, c in counts.items()}
     if save:
-        BASELINE.write_text(json.dumps(got, indent=2) + "\n", encoding="utf-8")
+        BASELINE.write_text(json.dumps({**got, "whole": whole}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"Baseline saved: {got}")
         return 0
     base = json.loads(BASELINE.read_text(encoding="utf-8"))
     fell = {name: (base[name], got[name]) for name in EXACT if got[name] < base.get(name, 0)}
+    lost = {name: sorted(set(base.get("whole", {}).get(name, ())) - set(whole[name])) for name in EXACT}
+    lost = {name: ids for name, ids in lost.items() if ids}
     for name in EXACT:
         print(f"{name:<8} {got[name]} right, baseline {base.get(name, 0)}")
     if crashed:
         print(f"The reader broke (sentences per set): {crashed}")
     if fell:
         print("Fell below the baseline: " + ", ".join(f"{n} {b} -> {g}" for n, (b, g) in fell.items()))
-    if fell or crashed:
+    if lost:
+        print("Right in the baseline, wrong now: " + ", ".join(f"{n} {' '.join(ids)}" for n, ids in lost.items()))
+    if fell or crashed or lost:
         return 1
-    if any(got[name] > base.get(name, 0) for name in EXACT):
+    if any(got[name] > base.get(name, 0) for name in EXACT) or any(
+            set(whole[name]) - set(base.get("whole", {}).get(name, ())) for name in EXACT):
         print("Better than the baseline: run --save-baseline so it cannot slip back.")
     return 0
 

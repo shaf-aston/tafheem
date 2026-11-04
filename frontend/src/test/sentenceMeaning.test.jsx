@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { fireEvent, screen } from '@testing-library/react'
 
 import { renderScreen } from './render'
-import SentenceMeaning from '../components/dictionary/SentenceMeaning'
+import SentenceMeaning from '../components/ui/text/SentenceMeaning'
 
 const source = { label: 'AI', confidence: 'guessed', detail: '' }
 const data = {

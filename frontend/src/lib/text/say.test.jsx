@@ -18,14 +18,14 @@ import { fillIn, sayIn } from './say'
 // panel renders through say(), even though they are declared beside the data.
 const SOURCES = [
   '../../components/quiz/QuizPanel.jsx',
-  '../../components/quiz/QuizBoard.jsx',
-  '../../components/quiz/QuizOption.jsx',
+  '../../components/practice/QuizBoard.jsx',
+  '../../components/practice/QuizOption.jsx',
   '../../components/quiz/QuizInsights.jsx',
   '../../components/quiz/QuizExample.jsx',
   '../../components/quiz/PracticeSentence.jsx',
   '../../components/quiz/SurahCoverage.jsx',
   '../../components/quiz/QuizSetup.jsx',
-  '../../components/ui/AutoAdvanceToggle.jsx',
+  '../../components/ui/buttons/AutoAdvanceToggle.jsx',
   '../quiz/quizBanks.js',
   '../quiz/quizNote.js',
 ]

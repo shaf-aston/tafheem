@@ -1,15 +1,22 @@
 """Hearing a recitation and finding the ayah.
 
-Five pieces, each with one job, so any of them can be replaced without the
+These pieces, each with one job, so any of them can be replaced without the
 others noticing:
 
-    hosted.py   sound  -> words        the same job, done on Groq's machines
-    listen.py   sound  -> words        the engine on this computer
-    ears.py     the two above as one interface, and the order they are tried in
-    match.py    words  -> ayahs        pure, no files, no network
-    place.py    words  -> page stretch pure, where a recording sits on a page
-    locate.py   words  -> place        pure, where in the whole Qur'an a reading is
-    this file   asks for words, and hands the corpus to the matcher
+    hosted.py    sound -> words         the same job, done on Groq's machines
+    whisper.py   sound -> words         the engine on this computer
+    letters.py   sound -> letters       a small Qur'an model on this computer, for placing
+    ears.py                             the three above as one interface, and the order they are tried in
+    errors.py                           what the ears raise, and the lock they share
+    recording.py                        what kind of sound file a recording is
+    loudness.py  sound -> sound         brings quiet recitations up, cuts long ones
+    spelling.py  words -> words         the ear's own spelling of the page
+    match.py     words -> ayahs         pure, no files, no network
+    place.py     words -> page stretch  pure, where a recording sits on a page
+    locate.py    words -> place         pure, where in the whole Qur'an a reading is
+    checker.py   sound -> sure          how sure the ear is of each page word
+    sounds.py    sound -> sounds        which letters and vowels were heard, beside the expected ones; display only
+    this file                           asks for words, and hands the corpus to the matcher
 
 Which ear answers is ears.py's business and nothing above this package knows
 there is a choice at all. It used to be one `if` here; it is an interface and an
@@ -30,12 +37,14 @@ from backend.config import data_path, get_settings
 from backend.services.quran import corpus as quran_corpus
 from backend.services.text.refs import SURAHS
 from backend.services.core.timing import timed
-from backend.services.recitation import ears, letters, listen, locate, match, place
-# Re-exported so a caller catches them from the package it already talks
-# to. Which piece in here raises which is this package's own business,
-# and a route that imports them by submodule has to know.
-from backend.services.recitation.ears import Unreadable
-from backend.services.recitation.listen import NotInstalled
+from backend.services.recitation import checker, ears, locate, match, place, sounds
+# Re-exported so a caller uses only this package. Which piece in here owns
+# which is this package's own business, and a route that imports by submodule
+# has to know.
+from backend.services.recitation.ears import would_answer_locally
+from backend.services.recitation.errors import NotInstalled, Unreadable
+from backend.services.recitation.recording import kind_of
+from backend.services.recitation.whisper import tuned_model
 from backend.services.recitation.spelling import as_heard
 from backend.services.recitation.match import Match
 
@@ -72,9 +81,8 @@ def warm() -> None:
     model is not: it answers a search box, only ever without Groq, and the
     first such search pays about a second.
     """
-    listen.warm()
-    if "letters" in get_settings().listening_ears:
-        letters.warm()
+    ears.warm()
+    sounds.warm()
     try:
         _ayahs()
         _line()
@@ -103,6 +111,35 @@ def find(heard: str, limit: int = 5) -> list[Match]:
     return match.best(heard, _ayahs(), limit=limit)
 
 
+def is_recitation(match_ayahs: bool, recite: bool) -> bool:
+    """Either flag makes a reading a recitation (see hear)."""
+    return match_ayahs or recite
+
+
+def health() -> dict:
+    """The ear lines of /api/health, so the route names no ear."""
+    return {
+        # Which ear would answer a spoken search right now. Here for the same
+        # reason ai_backend is: an engine that quietly stopped working should be
+        # visible, not guessed at from how slow the app feels.
+        "ear": ears.active(),
+        # Words and a search are heard by the same chain, so this is the same ear
+        # as "ear", named as the recitation model asks for it (its Qur'an model
+        # rather than its general one, when the answering ear is the one on this machine).
+        "recite_ear": ears.active(reciting=True),
+        # How sure the ear is of each word is always scored by the model on this
+        # machine (see ears.py's "Word sureness"), whichever ear wrote the words
+        # down, so it is named on its own. The tuned model's name when one is
+        # installed, else empty; the page offers the "Fine-tuned" checking
+        # choice only when this is set.
+        "recite_tuned": tuned_model(),
+        "recite_sure": ears.named("here").name(reciting=True),
+        # How many readings a minute the page may ask for, all keys together;
+        # lib/recite/recitingSession.js paces itself by it.
+        "listen_per_minute": ears.per_minute(),
+    }
+
+
 def hear(
     audio: bytes, match_ayahs: bool, recite: bool = False, fusha: bool = True,
 ) -> tuple[str, list[Match]]:
@@ -117,7 +154,7 @@ def hear(
       Qur'an model here drops every hint because it hears worse with one.
     """
     settings = get_settings()
-    reciting = match_ayahs or recite
+    reciting = is_recitation(match_ayahs, recite)
     text = transcribe(
         audio,
         language=settings.recitation_language if reciting else None,
@@ -161,10 +198,11 @@ def find_place(heard: str, near: tuple[int, int] | None = None, before: str = ""
     )
 
 
-def _detail(word: dict) -> dict:
-    """The {weak, weak_from, at} a word card needs, out of listen.weigh's word."""
+def _detail(word: dict, heard: dict | None) -> dict:
+    """The {weak, weak_from, at, sounds} a word card needs, out of checker.weigh's
+    word and sounds.hear_sounds' (None when sounds were not heard)."""
     weak = word["weak"]
-    return {"weak": weak and weak["text"], "weak_from": weak and weak["start"], "at": word["at"]}
+    return {"weak": weak and weak["text"], "weak_from": weak and weak["start"], "at": word["at"], "sounds": heard}
 
 
 def check(
@@ -173,7 +211,9 @@ def check(
     """How sure the ear is of each word of these ayahs, from this recording.
 
     Two dicts by ayah, one entry per word: the sureness, 0 to 1, and its
-    {"weak", "weak_from", "at"} detail (see _detail). Both are None for a word this
+    {"weak", "weak_from", "at", "sounds"} detail (see _detail). `sounds` is
+    {"heard", "expected", "letter_ok", "vowel_ok"} or None; it is only shown and
+    never changes a sureness. Both are None for a word this
     recording does not reach: it was said in another one, and scoring it here
     would call it unsaid. Both empty when the recording does not place on these ayahs,
     or places on more words than one recording can hold. The page words are
@@ -202,31 +242,15 @@ def check(
     if last - first > settings.recitation_sure_max_words:
         log.info("placed on %d words, more than one recording holds; not checked", last - first)
         return {}, {}
-    weighed = timed("checked", listen.weigh, audio, words[first:last], model, words=last - first)
+    weighed = timed("checked", checker.weigh, audio, words[first:last], model, words=last - first)
     sure = {key: [None] * owner.count(key) for key in dict.fromkeys(owner)}
     detail = {key: [None] * owner.count(key) for key in sure}
+    expected = {key: sounds.expected_for(key, owner.count(key)) for key in sure}
+    heard = timed("sounds", sounds.hear_sounds, audio, [
+        expected[owner[i]] and expected[owner[i]][i - owner.index(owner[i])] for i in range(first, last)
+    ], words=last - first) or [None] * (last - first)
     for i, word in zip(range(first, last), weighed):
         key = owner[i]
         sure[key][i - owner.index(key)] = round(word["sure"], 3)
-        detail[key][i - owner.index(key)] = _detail(word)
+        detail[key][i - owner.index(key)] = _detail(word, heard[i - first])
     return sure, detail
-
-
-def check_text(audio: bytes, heard: str, expected: str, model: str | None = None) -> tuple[list[float], list[dict]]:
-    """How sure the ear is of each word of `expected`, a phrase that is not an ayah.
-
-    For words a learner was shown and asked to say, a takbir or a tashahhud:
-    the whole phrase is scored, not placed first the way check() places ayahs.
-    The reader was told exactly what to say, so there is nothing to find, and
-    placing needs two words in a row to agree, which a two-word phrase heard
-    with one slip never has. One number per word of `expected` as the ear
-    spells it (spelling.as_heard), which is one per word as written: the phrase
-    is vowelled plain Arabic with no pause signs. Nothing when nothing was
-    heard, or the phrase is longer than one recording holds. Alongside the
-    numbers, one detail per word, as check() gives.
-    """
-    words = as_heard(expected)
-    if not heard.strip() or not words or len(words) > get_settings().recitation_sure_max_words:
-        return [], []
-    weighed = timed("checked-text", listen.weigh, audio, words, model, words=len(words))
-    return [round(w["sure"], 3) for w in weighed], [_detail(w) for w in weighed]

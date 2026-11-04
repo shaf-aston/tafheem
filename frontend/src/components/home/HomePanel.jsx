@@ -25,13 +25,15 @@ import { useMedia, PHONE } from '../../lib/hooks/useMedia'
 import { levelOf } from '../../lib/learner/learnerLevel'
 import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
 
-import ArabicText from '../ui/ArabicText'
-import ErrorAlert from '../ui/ErrorAlert'
-import TabGroups from '../ui/TabGroups'
+import ArabicText from '../ui/text/ArabicText'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import TabGroups from '../ui/inputs/TabGroups'
 import CommandField from '../shell/CommandField'
 import CommandResults from '../shell/CommandResults'
 import LogInButton from '../profile/LogInButton'
 import LevelPicker from '../level/LevelPicker'
+import Onboarding from '../onboarding/Onboarding'
+import { usePlan } from '../../lib/learner/usePlan'
 import FahmWord from './FahmWord'
 import GrowNext from './GrowNext'
 import ModuleCard from './ModuleCard'
@@ -51,7 +53,8 @@ export default function HomePanel({ accent, onGo }) {
   const [name] = useState(getProfile)
   const overview = useQuery(overviewQuery(name))
   const { steps } = useJourney()
-  const level = levelOf(useLearnerLevel().level)?.grow ?? null
+  const { level: levelId, chosen } = useLearnerLevel()
+  const level = levelOf(levelId)?.grow ?? null
   const health = useHealth()
   const line = useCommandLine(LISTED, (row) => onGo(row.tabId, row.value))
   const sums = progressByTab(overview.data?.modules)
@@ -62,11 +65,16 @@ export default function HomePanel({ accent, onGo }) {
 
   const resume = resumePlace(steps, LISTED, HOME)
   const first = !resume
+  // A first visit is asked a few questions once, unless a level is already chosen (sign-up, another device); skipped or
+  // done, it is the three-level picker as before.
+  const { plan } = usePlan()
+  const asked = first && !plan.done && !chosen
   const lead = tabOf(resume?.tab ?? FALLBACK[0])
+  if (asked) return <div className="panel isolate" style={{ '--c': accent }}><Onboarding onGo={onGo} /></div>
   // One step in Grow picked from the record, unless it is the place on the card. With no path walked (a new visit),
   // only one the learner was studying: what fits the level is the picker's to offer.
   const next = (
-    <GrowNext modules={overview.data?.modules} level={level} copy={copy} onGo={onGo} studiedOnly={first}
+    <GrowNext modules={overview.data?.modules} pending={overview.isPending} level={level} copy={copy} onGo={onGo} studiedOnly={first}
       skip={!first && lead.id === 'grow' ? resume.value : undefined} />
   )
   const card = (tab, at) => (
@@ -92,7 +100,7 @@ export default function HomePanel({ accent, onGo }) {
       {/* Beside the tiles on a wide screen, the progress column, held in view as the page scrolls. */}
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_var(--layout-rail)] lg:gap-8 lg:items-start">
         <div className="space-y-6">
-          <div className="cb" data-wide>
+          <div className="cb md:max-w-xl" data-wide>
             <CommandField line={line} name={NAME} placeholder={phone ? copy['placeholder-phone'] : copy.placeholder} showing={showing}
               trailing={!line.query && <ArabicText as="span" size="sm" className="cb-hint-ar" aria-hidden="true">{copy['placeholder-ar']}</ArabicText>} />
             {showing && (
@@ -104,7 +112,7 @@ export default function HomePanel({ accent, onGo }) {
 
           {/* The quiet word sits in the room beside the card, on a phone as on a laptop, and scrolls with the page. */}
           <div className="flex items-center gap-3 md:gap-6">
-            <div className="space-y-4 md:max-w-2xl flex-1 md:flex-[3] min-w-0">
+            <div className="space-y-4 md:max-w-xl flex-1 md:flex-[3] min-w-0">
               {/* A returning learner on a new visit (no path walked) sees what they were studying above the picker. */}
               {first && next}
               {/* A first visit asks how much Arabic you know, and starts there; after that, where you stopped. */}
@@ -121,7 +129,7 @@ export default function HomePanel({ accent, onGo }) {
               )}
             </div>
             {/* On a phone the first visit's three tall level cards need the full width, so the word waits for a wider screen there. */}
-            <FahmWord className={`${first ? 'hidden md:block' : 'w-24'} shrink-0 md:w-auto md:shrink md:flex-1 md:max-w-[20rem] min-w-0 select-none`} />
+            <FahmWord className={`${first ? 'hidden md:block' : 'w-24'} -translate-y-2 md:-translate-y-6 shrink-0 md:w-auto md:shrink md:flex-1 md:max-w-[24rem] min-w-0 select-none`} />
           </div>
 
           <section className="space-y-4" aria-labelledby="home-all">

@@ -17,10 +17,10 @@
  */
 import { useEffect, useRef, useState } from 'react'
 
-import ArabicText from '../ui/ArabicText'
-import SmallButton from '../ui/SmallButton'
+import ArabicText from '../ui/text/ArabicText'
+import SmallButton from '../ui/buttons/SmallButton'
 import TimelineHadith from './TimelineHadith'
-import TimelineRefs from './TimelineRefs'
+import TimelineRefs from '../ui/text/TimelineRefs'
 import { TRAD } from '../../lib/timelines/look'
 import { canFold, pathRows, readingOrder, stepIds } from '../../lib/timelines/steps'
 import { scrollToEl } from '../../lib/motion/scrollToEl'

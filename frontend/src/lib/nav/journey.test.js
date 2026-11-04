@@ -273,6 +273,25 @@ describe('the journey and the back arrow', () => {
     expect(browser.history.state.step).toBe(0)
   })
 
+  it('takes the place of the step it moves on from when it only moves on within it', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict&q=a')
+    journey.visit('dict', 'b')
+    browser.history.pushState.mockClear()
+    expect(journey.visit('dict', 'c', { over: true })).toBe(true)
+    expect(browser.history.replaceState).toHaveBeenCalledTimes(1)
+    expect(browser.history.pushState).not.toHaveBeenCalled()
+    expect(browser.history.state.step).toBe(1)
+    expect(journey.lastPlaceOn('dict')).toBe('c')
+  })
+
+  it('still adds a step for a move within a tab that comes from another tab', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict&q=a')
+    journey.visit('quran', '1:1')
+    browser.history.pushState.mockClear()
+    journey.visit('dict', 'b', { over: true })
+    expect(browser.history.pushState).toHaveBeenCalledTimes(1)
+  })
+
   it('keeps a home tab opened with nothing as a step of its own, so back returns to it', async () => {
     const { browser, journey } = await freshJourney('?tab=grow')
     expect(journey.visit('grow', 'basics/lesson')).toBe(true)

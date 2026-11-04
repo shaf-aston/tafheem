@@ -11,7 +11,7 @@
  * Which family, group and comparison show is the Map's place (lib/map/mapPlace.js),
  * so each has an address; `onGo` moves to another.
  */
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import { FAMILIES, differs, sharedWith } from '../../lib/map/manhajData'
 import { MANHAJ } from '../../lib/map/mapPlace'
 
@@ -58,9 +58,9 @@ export default function ManhajView({ place, onGo }) {
                 onClick={() => at({ group: g.id })}
                 className="pbs-card text-right p-3.5 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] flex flex-col gap-0.5"
               >
-                <ArabicText as="p" size="base">{g.ar}</ArabicText>
-                <p className="type-body text-[var(--text)]">{g.en}</p>
-                <p className="type-ui text-[var(--text-faint)]">{g.era}</p>
+                <ArabicText as="p" size="lg">{g.ar}</ArabicText>
+                <p className="type-small text-[var(--text-dim)]">{g.en}</p>
+                <p className="type-tiny text-[var(--text-faint)]">{g.era}</p>
               </button>
             ))}
           </div>
@@ -89,7 +89,7 @@ function GroupPage({ family, group, other, onCompare }) {
 
       <dl className="grid gap-x-4 gap-y-1.5 sm:grid-cols-[9rem_1fr] type-body">
         <dt className="text-[var(--text-faint)]">Found today</dt><dd className="text-[var(--text-dim)]">{group.where}</dd>
-        <dt className="text-[var(--text-faint)]">Main texts</dt><dd className="text-[var(--text-dim)]">{group.texts.join(' · ')}</dd>
+        <dt className="text-[var(--text-faint)]">Main texts</dt><ArabicText as="dd" size="base" className="text-[var(--text-dim)]">{group.texts.join(' · ')}</ArabicText>
       </dl>
 
       <section>
@@ -142,7 +142,7 @@ function GroupPage({ family, group, other, onCompare }) {
               >
                 <div className="flex items-baseline gap-2 mb-1">
                   <p className="type-body font-bold text-[var(--text)] flex-1">{q.en}</p>
-                  <ArabicText as="span" size="sm" className="text-[var(--text-faint)]">{q.ar}</ArabicText>
+                  <ArabicText as="span" size="base" className="text-[var(--text-dim)]">{q.ar}</ArabicText>
                   {d === true && <span className="eyebrow text-[var(--danger)]">Differ</span>}
                   {d === false && <span className="type-ui text-[var(--text-faint)]">same</span>}
                 </div>

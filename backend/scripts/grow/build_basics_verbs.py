@@ -15,6 +15,9 @@ Sarf tab draws its tables with; data/grow/basics_verbs.json only names the verbs
   command   اُكْتُبْ      أمر, for the two "you" persons only
 
 The particles (سَ سَوْفَ لا لَمْ لَنْ مَا) are put in front by the browser (lib/grow/wordForms.js).
+
+`families` are the verb patterns (lib/grow/verbPatterns.js): one root on a few of forms I–X, each the past for "he"
+(form VI, done to each other, the past for "they"), with the English the source gives it.
 """
 from __future__ import annotations
 
@@ -67,9 +70,22 @@ def forms_of(root: str, bab: str) -> dict:
     return forms
 
 
+# Form VI is mostly said of "they": تَكَاتَبُوا they wrote to each other.
+SAID_OF = {"VI": "they (m)"}
+
+
+def family_of(family: dict) -> dict:
+    """One root's verbs on its patterns: {form: {ar, en}}, form I on the family's باب."""
+    forms = {}
+    for form, en in family["en"].items():
+        rows = {row["person"]: row["cells"] for row in conjugation.conjugate(family["root"], family["bab"] if form == "I" else form)["rows"]}
+        forms[form] = {"ar": nfc(rows[SAID_OF.get(form, "he")]["madi"]), "en": en}
+    return {"id": family["id"], "root": family["root"], "forms": forms}
+
+
 def build(source: dict) -> dict:
     verbs = [{**verb, "forms": forms_of(verb["root"], verb["bab"])} for verb in source["verbs"]]
-    return {"persons": list(PERSONS), "verbs": verbs}
+    return {"persons": list(PERSONS), "verbs": verbs, "families": [family_of(family) for family in source["families"]]}
 
 
 def text(data: dict) -> str:

@@ -7,7 +7,7 @@
  * and what they say is the backend's.
  *
  * The place in the tab is written as "section/event", so
- * /app/timelines/seerah/hijrah opens that event, and the back arrow steps through the events
+ * /timelines/seerah/hijrah opens that event, and the back arrow steps through the events
  * read rather than leaving the app.
  */
 import { useState } from 'react'
@@ -18,12 +18,12 @@ import { useQuery } from '@tanstack/react-query'
 import { timelinesQuery } from '../../api'
 import { nameOfPlace, parsePlace, placeOf } from '../../lib/timelines/address'
 
-import SectionHeader from '../ui/SectionHeader'
-import Segmented from '../ui/Segmented'
-import ErrorAlert from '../ui/ErrorAlert'
-import EmptyState from '../ui/EmptyState'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
-import StatusNote from '../ui/StatusNote'
+import SectionHeader from '../ui/display/SectionHeader'
+import Segmented from '../ui/inputs/Segmented'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import EmptyState from '../ui/feedback/EmptyState'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
+import StatusNote from '../ui/feedback/StatusNote'
 import TimelineBoard from './TimelineBoard'
 import TimelineSection from './TimelineSection'
 

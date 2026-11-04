@@ -10,9 +10,9 @@ import { useQuery } from '@tanstack/react-query'
 import { shareOf, surahShares } from '../../lib/quiz/coverage'
 import { surahCoverage, surahList } from '../../lib/quiz/quizBanks'
 
-import ArabicText from '../ui/ArabicText'
-import Disclosure from '../ui/Disclosure'
-import { Skeleton } from '../ui/Skeleton'
+import ArabicText from '../ui/text/ArabicText'
+import Disclosure from '../ui/overlays/Disclosure'
+import { Skeleton } from '../ui/feedback/Skeleton'
 
 export default function SurahCoverage({ words, covering, learnt, say, language }) {
   const [open, setOpen] = useState(false)

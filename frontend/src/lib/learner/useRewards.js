@@ -25,5 +25,5 @@ export function useRewards(name) {
     return () => clearTimeout(wait)
   }, [gain])
 
-  return { rewards: rewards.data, gain }
+  return { rewards: rewards.data, pending: rewards.isPending, gain }
 }

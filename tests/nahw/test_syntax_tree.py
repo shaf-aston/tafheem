@@ -3,7 +3,7 @@ from backend.services.nahw.book import role_units
 from backend.services.nahw.syntax import tree
 from backend.services.nahw.book import condition_of, term_ar
 from tests.nahw_helpers import tree_roles as roles_in
-from tests.nahw.test_naming import named, token
+from tests.nahw.test_naming import jar_told_of, named, pointer_name_state, token
 
 
 def built(words, toks):
@@ -54,6 +54,21 @@ def test_two_words_pointing_at_each_other_still_draw():
     assert [child["word"] for child in drawn["tree"]["children"]] == [0, 1]
 
 
+def test_words_in_a_loop_go_back_to_a_tree_and_still_draw():
+    words = ["كَتَبَ", "زَيْدٌ", "رِسَالَةً"]
+    toks = [token(1, "كتب", "كتب", "VRB", 3, "---", asp="p"), token(2, "زيد", "زيد", "PROP", 1, "SBJ", cas="n"),
+            token(3, "رسالة", "رسالة", "NOM", 2, "OBJ", cas="a")]
+    found = named(words, toks)  # the repairs leave no loop
+    assert [f["role"] for f in found] == ["فعل", "فاعل", "مفعول به"]
+    toks[0]["head"], toks[1]["head"], toks[2]["head"] = 2, 1, 0  # a loop made after them, a word beside it
+    drawn = tree.build(words, toks, found)
+    assert sorted(leaf["word"] for leaf in _leaves(drawn["tree"])) == [0, 1, 2]
+
+
+def _leaves(node):
+    return [node] if "word" in node else [leaf for kid in node["children"] for leaf in _leaves(kid)]
+
+
 def test_nothing_is_drawn_when_the_words_do_not_line_up():
     toks = [token(1, "كتب", "كتب", "VRB", 0, "---")]
     drawn = tree.build(["كَتَبَ", "زَيْدٌ"], toks, [{"role": None, "case": None}] * 2)
@@ -87,7 +102,8 @@ def test_a_word_hung_on_an_attached_particle_is_drawn_under_what_the_particle_jo
     assert drawn["words"] == ["جَاءَ", "مُحَمَّدٌ", "وَ", "عَلِيٌّ"]
     joined = drawn["tree"]["children"][1]  # the noun with its معطوف inside, not a second root
     assert joined["children"][0]["word"] == 1
-    assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "فاعل", "حرف عطف", "معطوف"]  # the unit plays the faa'il
+    # the unit plays the faa'il; its first word is what the معطوف is joined on
+    assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "معطوف عليه", "حرف عطف", "معطوف"]
 
 
 def test_a_verb_clause_hung_on_a_mubtada_is_its_khabar_in_the_place_of_raf():
@@ -172,7 +188,10 @@ def test_a_name_with_its_ibn_is_no_murakkab_tawsifi():
     found = name_roles(words, toks)
     assert found[1]["also"] and "بدل" in found[1]["also"]
     top = drawing.build(words, toks, found)["tree"]
-    assert top["label"] == "" and top["children"][0]["role"] == "متبوع"
+    # alone, the name is the khabar of an unwritten هذا (test_phrase_alone); the group under it keeps its shape
+    hadha, group = top["children"]
+    assert hadha["role"] == "مبتدأ" and group["role"] == "خبر"
+    assert group["label"] == "" and group["children"][0]["role"] == "متبوع"
 
 
 def test_a_masdar_with_al_urged_alone_is_the_object_of_an_unwritten_verb():
@@ -183,3 +202,77 @@ def test_a_masdar_with_al_urged_alone_is_the_object_of_an_unwritten_verb():
             token(2, "الصدق", "صدق", "NOM", 1, "MOD", stt="d", cas="a", pos_camel="noun", pattern="ال1ِ2ْ3")]
     found = teacher.review(words, toks, named(words, toks))
     assert tree.build(words, toks, found)["unsaid"][0] == "مفعول به"
+
+
+def hal_sentence(second, second_rel, **second_feats):
+    """جاء الولدُ وهو يبكي, as the parser links it: هو under the verb, the verb on the و."""
+    toks = [token(1, "جاء", "جاء", "VRB", 0, "---", vox="a", asp="p"),
+            token(2, "الولد", "ولد", "NOM", 1, second_rel, stt="d", **second_feats),
+            token(3, "و+", "و", "PRT", 1, "MOD", pos_camel="conj", token_type="prc2"),
+            token(4, "هو", "هو", "NOM", 5, "SBJ", pos_camel="pron", cas="n"),
+            token(5, "يبكي", "بكى", "VRB", 3, "OBJ", vox="a", asp="i")]
+    return built(["جَاءَ", second, "وَهُوَ", "يَبْكِي"], toks)["tree"]
+
+
+def test_waw_a_pronoun_and_a_verb_after_a_verb_draw_a_nominal_hal_with_a_verbal_khabar():
+    # جاء الولدُ وهو يبكي: الواو حالية، هو مبتدأ، وجملة يبكي خبره في محل رفع، والجملة الاسمية في محل نصب حال
+    drawn = hal_sentence("الْوَلَدُ", "SBJ", cas="n")
+    waw, hal = drawn["children"][2:]
+    assert waw["role"] == "واو الحال"
+    assert (hal["role"], hal["label"], hal["detail"]) == ("حال", term_ar("jumlah_ismiyyah"), "في محل نصب")
+    subject, khabar = hal["children"]
+    assert subject["role"] == "مبتدأ"
+    assert (khabar["role"], khabar["label"], khabar["detail"]) == ("خبر", tree.VERBAL, "في محل رفع")
+    assert [leaf["role"] for leaf in khabar["children"]] == ["فعل"]
+
+
+def test_the_hal_clause_is_the_same_after_a_verbs_object():
+    # رأيتُ الولدَ وهو يبكي
+    drawn = hal_sentence("الْوَلَدَ", "OBJ", cas="a")
+    assert [kid["role"] for kid in drawn["children"]] == ["فعل", "مفعول به", "واو الحال", "حال"]
+    assert [kid["role"] for kid in drawn["children"][3]["children"]] == ["مبتدأ", "خبر"]
+
+
+def test_a_mubtada_the_parser_hung_under_its_verb_heads_the_sentence():
+    # هو يبكي, linked with هو under the verb: still a nominal sentence, the verb's clause its khabar
+    toks = [token(1, "هو", "هو", "NOM", 2, "SBJ", pos_camel="pron", cas="n"),
+            token(2, "يبكي", "بكى", "VRB", 0, "---", vox="a", asp="i")]
+    drawn = built(["هُوَ", "يَبْكِي"], toks)["tree"]
+    assert drawn["label"] == term_ar("jumlah_ismiyyah")
+    assert [(kid["role"], kid.get("detail")) for kid in drawn["children"]] == [("مبتدأ", None), ("خبر", "في محل رفع")]
+
+
+def test_a_fronted_khabar_names_its_mubtada_unit_the_mubtada_moved_back():
+    # فِي الْبَيْتِ رَجُلٌ كَرِيمٌ: the مبتدأ with its صفة is the مبتدأ مؤخر as a whole
+    toks = [token(1, "في", "في", "PRT", 0, "---", pos_camel="prep"), token(2, "البيت", "بيت", "NOM", 1, "OBJ", stt="d", cas="g"),
+            token(3, "رجل", "رجل", "NOM", 1, "SBJ", cas="n"), token(4, "كريم", "كريم", "NOM", 3, "MOD", pos_camel="adj", cas="n")]
+    drawn = built(["فِي", "الْبَيْتِ", "رَجُلٌ", "كَرِيمٌ"], toks)["tree"]
+    assert [kid["role"] for kid in drawn["children"]] == ["خبر مقدم", None, "مبتدأ مؤخر"]
+    assert [kid["role"] for kid in drawn["children"][2]["children"]] == ["موصوف", "صفة"]
+
+
+def test_a_question_word_in_jarr_draws_the_jar_majrur_as_the_fronted_khabar():
+    # لِمَنْ هَذَا الْكِتَابُ
+    drawn = built(*jar_told_of(True, "OBJ"))["tree"]
+    assert [kid["role"] for kid in drawn["children"]] == ["خبر مقدم", None, "مبتدأ مؤخر"]
+    assert [kid["role"] for kid in drawn["children"][1]["children"]] == ["حرف جر", "مجرور"]
+
+
+def test_a_hal_of_the_khabar_stands_beside_the_mubtada_and_khabar():
+    # هَذَا زَيْدٌ قَائِمًا: مبتدأ، خبر، حال side by side under the sentence, no sentence boxed inside it
+    drawn = built(*pointer_name_state())["tree"]
+    assert drawn["label"] == term_ar("jumlah_ismiyyah")
+    assert [(kid["role"], kid.get("children")) for kid in drawn["children"]] == [("مبتدأ", None), ("خبر", None), ("حال", None)]
+
+
+def test_a_mubtada_drawn_beside_its_khabar_unit_keeps_its_job_and_the_khabar_its_own():
+    # كِتَابُ الطَّالِبِ جَدِيدٌ فِي الصَّفِّ, with the مبتدأ hung under its khabar: neither one heads the sentence
+    toks = [token(1, "كتاب", "كتاب", "NOM", 3, "SBJ", stt="c", cas="n"),
+            token(2, "الطالب", "طالب", "NOM", 1, "IDF", stt="d", cas="g"),
+            token(3, "جديد", "جديد", "NOM", 0, "---", ud="ADJ", cas="n"),
+            token(4, "في", "في", "PRT", 3, "MOD", pos_camel="prep"),
+            token(5, "الصف", "صف", "NOM", 4, "OBJ", stt="d", cas="g")]
+    drawn = built(["كِتَابُ", "الطَّالِبِ", "جَدِيدٌ", "فِي", "الصَّفِّ"], toks)["tree"]
+    assert drawn["label"] == term_ar("jumlah_ismiyyah")
+    assert [kid["role"] for kid in drawn["children"]] == ["مبتدأ", "خبر"]
+    assert [kid["role"] for kid in drawn["children"][0]["children"]] == ["مضاف", "مضاف إليه"]

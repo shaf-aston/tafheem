@@ -1,5 +1,12 @@
 /* Grow home, worlds, lessons (components/grow/*). World colour = --w (theme.json `world`). Step map styles: grow.css. */
 
+/* Grow's three type rungs, each written once and worn by every place that needs it:
+   a title, a bold line at reading size, and a small capitals label. */
+.grow-today h3, .grow-world-title h2, .grow-done-title, .grow-rule-title { font-size: var(--type-title); font-weight: 800; color: var(--text); }
+.grow-worlds-h, .grow-tile-name { font-size: var(--type-body); font-weight: 800; color: var(--text); }
+.grow-done-stats dt, .grow-rule-book figcaption, .grow-done-missed h4 { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
+
+
 .grow-home { display: grid; gap: 18px; }
 .grow-hint { font-size: var(--type-ui); color: var(--text-dim); line-height: 1.5; }
 
@@ -7,16 +14,34 @@
 .grow-lesson-bar { display: block; height: 8px; border-radius: 9px; background: var(--surface-hi); overflow: hidden; }
 .grow-lesson-bar i { display: block; height: 100%; border-radius: 9px; background: var(--w, var(--c)); transition: width calc(var(--motion-spring-ms) * 1ms) ease; }
 
-/* ── home: level, streak, today's XP ── */
-.grow-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-.grow-stat { display: grid; align-content: start; gap: 4px; padding: 12px 14px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
-.grow-stat-wide { grid-column: span 2; }
-.grow-stat dt { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
-.grow-stat dd { display: grid; gap: 6px; font-size: var(--type-body); font-weight: 700; color: var(--text); }
-.grow-stat-small { font-size: var(--type-small); font-weight: 400; color: var(--text-dim); }
-@media (max-width: 560px) {
-  .grow-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* ── home: today's lesson beside the strip of level, streak and goal ── */
+.grow-lead { display: grid; gap: 12px; }
+@media (min-width: 64rem) {
+  .grow-lead { grid-template-columns: minmax(0, 1fr) 16rem; align-items: start; }
+  .grow-lead .grow-strip { flex-direction: column; align-items: stretch; }
+  .grow-lead .grow-strip-item + .grow-strip-item { border-inline-start: 0; border-top: 1px solid var(--border); padding-inline-start: 0; padding-top: 10px; }
 }
+
+/* ── home: level, streak, today's XP as one slim strip ── */
+.grow-strip {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  padding: 10px 14px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border);
+}
+/* Laid out while the record is read, so the worlds below do not move when it lands. */
+.grow-strip[data-pending] { visibility: hidden; }
+.grow-strip-item { display: grid; gap: 2px; min-width: 0; }
+.grow-strip-item + .grow-strip-item { border-inline-start: 1px solid var(--border); padding-inline-start: 14px; }
+.grow-strip-item dt { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); }
+.grow-strip-item dd { display: grid; gap: 4px; font-size: var(--type-ui); font-weight: 700; color: var(--text); }
+.grow-strip-item dd .grow-lesson-bar { height: 5px; }
+.grow-strip-item[data-met] dd { color: var(--c); }
+.grow-goal-pick > summary { cursor: pointer; list-style: none; text-decoration: underline dotted; text-underline-offset: 3px; }
+.grow-goal-pick > summary::-webkit-details-marker { display: none; }
+.grow-goal-pick[open] > .grow-goals { margin-top: 6px; }
+
+/* ── home: the worlds on labelled shelves ── */
+.grow-shelf { display: grid; gap: 8px; }
+.grow-shelf-h { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
 
 /* ── home: today's lesson, the one thing to press ── */
 .grow-today {
@@ -25,29 +50,40 @@
   border: 1px solid color-mix(in srgb, var(--w) 40%, var(--border));
 }
 .grow-today-kicker { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--w); }
-.grow-today h3 { font-size: var(--type-title); font-weight: 800; color: var(--text); text-wrap: balance; }
+.grow-today h3 { text-wrap: balance; }
 .grow-today-holds { font-size: var(--type-ui); color: var(--text-dim); }
 .grow-nexts:empty { display: none; }
-.grow-nexts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; margin-top: 4px; }
+.grow-nexts { --grow-next-h: 52px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 8px; margin-top: 4px; }
+/* A phone shows the first three next steps and a More button for the rest, so the level and the worlds stay near. */
+.grow-nexts-more { display: none; }
+/* While the worlds load only the one slot shows; the steps are there, hidden, and appear together. */
+.grow-nexts[data-settling] > :not(.grow-next-slot) { display: none; }
+@media (max-width: 39.99rem) {
+  .grow-nexts:not([data-open]) > :nth-child(n + 4) { display: none; }
+  /* The room a phone's three steps and the More button take (3 rows, 2 gaps, the 44px button and its gap), held while they load. */
+  /* The More button's room (44px and its gap), held under the three ghost steps. */
+  .grow-nexts[data-settling] { padding-bottom: 52px; }
+  .grow-nexts:not([data-open], [data-settling]):has(> :nth-child(4)) + .grow-nexts-more { display: block; justify-self: center; min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: var(--type-ui); font-weight: 700; color: var(--w); }
+}
 .grow-next {
-  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; text-align: start;
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: var(--grow-next-h); padding: 8px 12px; text-align: start;
   border-radius: var(--radius-md); background: var(--surface); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
   transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease;
 }
-.grow-next-slot { border-color: var(--border); background: var(--surface-hi); opacity: 0.5; }
+.grow-next-slot { min-height: 60px; border-radius: var(--radius-md); }
 .grow-next:hover { border-color: var(--w); background: color-mix(in srgb, var(--w) 8%, var(--surface)); }
 .grow-next-ar { font-size: 1.15rem; line-height: 1; color: var(--w); }
 .grow-next-text { display: grid; min-width: 0; font-size: var(--type-small); color: var(--text-dim); }
 .grow-next-text b { font-weight: 700; color: var(--text); }
-.grow-next-text span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Two lines, wrapped at a word: one line cut short mid-word ("why the poem was w…") lost the point of the step. */
+.grow-next-text span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; overflow-wrap: break-word; }
 .grow-next-go { font-size: 1.3rem; color: var(--w); }
 @media (prefers-reduced-motion: reduce) { .grow-next { transition: none; } }
 
 /* a guest's log-in offer, on the title line */
 
 /* ── home: the worlds ── */
-.grow-worlds-h { font-size: var(--type-body); font-weight: 800; color: var(--text); }
-.grow-worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.grow-worlds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 12px; }
 .grow-world-tile {
   display: grid; gap: 6px; align-content: end; min-height: 150px; padding: 14px; text-align: start;
   border-radius: var(--radius-lg); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
@@ -57,8 +93,11 @@
 .grow-world-tile:not(:disabled):hover { border-color: var(--w); }
 .grow-world-tile:disabled { opacity: 0.55; cursor: default; border-style: dashed; }
 .grow-tile-ar { color: var(--w); font-size: 2rem; line-height: 1.2; }
-.grow-tile-name { font-size: var(--type-body); font-weight: 800; color: var(--text); }
 .grow-tile-status { font-size: var(--type-small); color: var(--text-dim); }
+/* The picture keeps its own row at the top (emblem.css pins it there), so a long Arabic name never runs under it.
+   Two worlds across on a phone, so the worlds are a glance, not a long scroll. */
+.grow-world-tile.grow-world-tile { min-height: 0; padding-top: 74px; }
+@media (max-width: 39.99rem) { .grow-tile-ar { font-size: 1.5rem; } }
 
 /* ── a world's backdrop: a faded picture under the whole screen (components/grow/Backdrop.jsx) ── */
 /* The world screen wears .grow-world so the layer has something to fill; isolation keeps the layer's z-index under the content and nothing else. */
@@ -70,11 +109,28 @@
 .grow-world-hd { display: grid; gap: 14px; margin-bottom: 18px; }
 .grow-back { justify-self: start; display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 12px 0 6px; border-radius: 999px; font-size: var(--type-ui); color: var(--text-dim); background: var(--surface); border: 1px solid var(--border); }
 .grow-back:hover { color: var(--text); }
-.grow-world-title { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 18px 20px; border-radius: var(--radius-lg); background: linear-gradient(160deg, color-mix(in srgb, var(--w, var(--c)) 24%, var(--surface)), var(--surface)); border: 1px solid color-mix(in srgb, var(--w, var(--c)) 35%, var(--border)); }
+.grow-world-title { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 18px 20px; border-radius: var(--radius-lg); background: linear-gradient(160deg, color-mix(in srgb, var(--w, var(--c)) 24%, var(--surface)), var(--surface)); border: 1px solid color-mix(in srgb, var(--w, var(--c)) 35%, var(--border)); }
 .grow-world-scene { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--w, var(--c)); }
-.grow-world-title h2 { font-size: var(--type-title); font-weight: 800; color: var(--text); }
+/* The words take the room and the picture wraps under them when there is not enough:
+   the picture (emblem and Arabic name) never shrinks, and on a phone it squeezed
+   Basics' idea into a column a word wide, the header 650 px tall. */
+.grow-world-title > div { flex: 1 1 16rem; min-width: 0; }
 .grow-world-idea { font-size: var(--type-ui); color: var(--text-dim); max-width: 40ch; }
 .grow-world-ar { font-size: 3rem; line-height: 1; color: var(--w, var(--c)); }
+.grow-world-about { display: none; font-size: var(--type-ui); color: var(--text-dim); }
+.grow-world-about > summary { cursor: pointer; color: var(--w, var(--c)); font-weight: 600; }
+.grow-world-about > p { margin-top: 4px; }
+/* A phone: one compact line, emblem, name and Arabic; the idea folds away. */
+@media (max-width: 39.99rem) {
+  .grow-world-hd { gap: 10px; margin-bottom: 12px; }
+  .grow-world-title { flex-wrap: nowrap; align-items: center; padding: 10px 14px; gap: 12px; }
+  .grow-world-title > div { flex: 1 1 auto; }
+  .grow-world-scene, .grow-world-idea { display: none; }
+  .grow-world-about { display: block; }
+  .grow-world-pic { order: -1; display: flex; align-items: center; gap: 8px; }
+  .grow-world-pic svg { width: 36px; height: 36px; }
+  .grow-world-ar { font-size: 1.6rem; }
+}
 
 /* ── the Words world: its stages ── */
 .grow-world-body { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); align-items: start; }
@@ -84,6 +140,14 @@
 @media (min-width: 880px) {
   .grow-world-body { grid-template-columns: minmax(0, 1fr) minmax(260px, 320px); gap: 20px; }
   .grow-world-side { order: 0; position: sticky; top: 16px; }
+}
+/* Start, in every world: beside the picture on a wide screen; on a phone one bar
+   pinned above the tab bar, under the thumb however far the world is scrolled.
+   Which one is drawn is the PHONE query (lib/hooks/useMedia), so there is one button. */
+.grow-start-pin {
+  position: sticky; z-index: var(--layer-sticky); margin-top: 16px;
+  bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px));
+  padding: 10px 0 8px; background: linear-gradient(transparent, var(--bg) 35%);
 }
 .grow-stages { display: grid; gap: 8px; }
 .grow-stage-row { display: grid; grid-template-columns: 36px minmax(0, 1fr); align-items: center; gap: 4px 12px; padding: 10px 12px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
@@ -97,9 +161,33 @@
 .grow-stage-text b { font-size: var(--type-ui); color: var(--text); }
 
 /* ── a lesson ── */
-.grow-lesson { display: grid; gap: 20px; max-width: 560px; margin: 0 auto; }
+.grow-lesson { display: flex; flex-direction: column; gap: 20px; max-width: 560px; margin: 0 auto; }
+/* On a phone the lesson fills the screen and Check/Continue sits at its foot, by the thumb and above the tab bar: the
+   spare room goes between the question and the button, not under it. A pointer screen keeps the button by the answers. */
+@media (max-width: 39.99rem) {
+  .grow-lesson:has(.grow-lesson-foot) { min-height: calc(100dvh - 4.75rem - var(--layout-nav) - env(safe-area-inset-bottom, 0px)); }
+  .grow-lesson-foot { position: sticky; bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px)); z-index: var(--layer-sticky); }
+}
 .grow-lesson-top { display: flex; align-items: center; gap: 12px; }
 .grow-lesson-top .grow-lesson-bar { flex: 1; height: 12px; }
+/* The lesson's bar, a segment per card that keeps how each went (LessonRunner Segments). */
+.grow-segments { flex: 1; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 3px; height: 12px; }
+.grow-segments > i { border-radius: 4px; background: var(--surface-hi); transition: background-color calc(var(--motion-base-ms) * 1ms) ease-out; }
+.grow-segments > i[data-here] { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--w) 45%, transparent); }
+.grow-segments > i[data-mark='seen'] { background: var(--w); }
+.grow-segments > i[data-mark='right'] { background: var(--success); }
+.grow-segments > i[data-mark='wrong'] { background: var(--danger); }
+.grow-lesson-done .grow-segments { flex: none; width: min(100%, 22rem); height: 8px; justify-self: center; margin-inline: auto; }
+
+/* A wide screen: a teaching card in two columns, the Arabic big on the left, the
+   meaning, its notes and the way on to the right, using the width. */
+@media (min-width: 64rem) {
+  .grow-lesson:has(.grow-teach-ar) { max-width: 920px; }
+  .grow-card:has(> .grow-teach-ar) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 28px; align-items: start; }
+  .grow-card:has(> .grow-teach-ar) > * { grid-column: 2; }
+  .grow-card > .grow-teach-ar { grid-column: 1; grid-row: 1 / span 8; align-self: stretch; display: grid; place-items: center; font-size: 3.4rem; }
+  .grow-lesson:has(.grow-teach-ar) .grow-lesson-foot { margin-inline-start: calc(50% + 14px); }
+}
 .grow-card { display: grid; gap: 14px; animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) both; }
 .grow-card-tag { justify-self: start; font-size: max(var(--type-micro), 0.6875rem); /* the 11px floor, as text.css gives .type-micro */ font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--w) 20%, var(--surface)); color: var(--w); }
 .grow-card-ask { font-size: var(--type-body); color: var(--text-dim); }
@@ -108,20 +196,22 @@
 .grow-teach-also { display: flex; justify-content: center; align-items: baseline; gap: 0.75rem; color: var(--text-dim); font-size: var(--type-body); }
 .grow-teach-note { padding: 12px 14px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--w) 8%, var(--surface)); color: var(--text); font-size: var(--type-body); line-height: 1.6; text-wrap: pretty; }
 .grow-options { display: grid; gap: 10px; }
-.grow-option { min-height: 52px; padding: 12px 16px; text-align: start; border-radius: var(--radius-md); border: 2px solid var(--border-hi); background: var(--surface); color: var(--text); font-size: var(--type-body); transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease; }
+/* Short answers two by two (components/practice/exercises/OneOf): Arabic words always, short English once a row fits two. */
+.grow-options-ar.grow-options-two { grid-template-columns: 1fr 1fr; }
+@media (min-width: 480px) { .grow-options-two { grid-template-columns: 1fr 1fr; } }
+.grow-option { --option-number-bg: var(--surface-hi); display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 12px 16px; text-align: start; border-radius: var(--radius-md); border: 2px solid var(--border-hi); background: var(--surface); color: var(--text); font-size: var(--type-body); transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease; }
 .grow-option:not(:disabled):hover { border-color: color-mix(in srgb, var(--w) 60%, var(--border-hi)); }
 .grow-option[data-mark='picked'] { border-color: var(--w); background: color-mix(in srgb, var(--w) 14%, var(--surface)); }
 .grow-option[data-mark='right'] { border-color: var(--success); background: color-mix(in srgb, var(--success) 16%, var(--surface)); }
 .grow-option[data-mark='wrong'] { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 14%, var(--surface)); }
 .grow-option:disabled { cursor: default; }
-.grow-lesson-foot { display: grid; gap: 10px; padding: 14px; margin: 0 -14px; border-radius: var(--radius-lg); }
+.grow-lesson-foot { display: grid; gap: 10px; padding: 14px; margin: auto -14px 0; border-radius: var(--radius-lg); }
 .grow-lesson-foot[data-result='right'] { background: color-mix(in srgb, var(--success) 14%, var(--surface)); }
 .grow-lesson-foot[data-result='wrong'] { background: color-mix(in srgb, var(--danger) 12%, var(--surface)); }
 .grow-lesson-say { font-weight: 800; color: var(--text); }
 
 /* ── a lesson's end ── */
-.grow-lesson-done { text-align: center; padding-top: 24px; }
-.grow-done-title { font-size: var(--type-title); font-weight: 800; color: var(--text); }
+.grow-lesson-done { text-align: center; padding-top: 24px; justify-items: center; }
 .grow-done-score { color: var(--text-dim); }
 
 @media (prefers-reduced-motion: reduce) {
@@ -133,7 +223,6 @@
 .grow-goals { display: flex; gap: 4px; }
 .grow-goal { min-width: 36px; min-height: 28px; padding: 0 8px; border-radius: 999px; font-size: var(--type-small); font-weight: 700; color: var(--text-dim); border: 1px solid var(--border); }
 .grow-goal[aria-checked='true'] { color: var(--bg); background: var(--c); border-color: var(--c); }
-.grow-stat[data-met] { border-color: color-mix(in srgb, var(--c) 55%, var(--border)); }
 
 /* ── hadith: teach line, whole text, the gap ── */
 .grow-teach-line { font-size: var(--type-body); font-weight: 600; line-height: 1.5; }
@@ -141,6 +230,7 @@
 .grow-gap-line { font-size: 1.9rem; line-height: 2; }
 .grow-gap { display: inline-block; min-width: 3em; padding: 0 6px; border-bottom: 3px solid var(--w); color: var(--w); }
 .grow-options-ar .grow-option { text-align: center; font-size: 1.4rem; }
+.grow-options-ar .grow-option > :last-child { flex: 1; }
 
 /* ── a world's picture: the stage line, the shelf, the sky (components/grow/scenes) ── */
 .grow-stage-line { display: grid; gap: 6px; font-size: var(--type-ui); color: var(--text); font-weight: 700; }
@@ -172,9 +262,10 @@
 .grow-book-review { min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 2px solid var(--w); color: var(--w); background: var(--surface); font-weight: 700; }
 .grow-book-review:hover { background: color-mix(in srgb, var(--w) 12%, var(--surface)); }
 
-/* A book world's cards (components/grow/exercises): the book's sentence, sorting, ordering. */
-.grow-rule-title { font-size: var(--type-title); font-weight: 800; color: var(--text); }
+/* A book world's cards (components/practice/exercises): the book's sentence, sorting, ordering. */
 .grow-rule-ar { padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); line-height: 1.9; }
+/* The line a choose card asks about stands centred over its answers; a rule card's longer text keeps to the right. */
+.grow-choose-ar { text-align: center; }
 .grow-rule-en { font-size: var(--type-body); line-height: 1.6; color: var(--text); }
 .grow-ask-strong { font-weight: 700; color: var(--text); }
 .grow-option-check { padding-inline-start: 44px; position: relative; }
@@ -194,7 +285,7 @@
 .grow-order-deck .grow-order-step { width: auto; }
 
 /* ── Geometric art: an eight-point star tile, drawn in the world's colour through a mask (no colour of its own) ── */
-.grow-world-title, .grow-world-tile { position: relative; isolation: isolate; overflow: hidden; }
+.grow-world-title, .grow-world-tile, .grow-today { position: relative; isolation: isolate; overflow: hidden; }
 .grow-world-title::after, .grow-world-tile::after {
   content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: var(--w, var(--c)); opacity: 0.12;
@@ -203,7 +294,7 @@
 .grow-world-tile::after { opacity: 0.1; mask-size: 26px, 100%; }
 
 /* ── A part's lessons as a winding path of stars (components/grow/LessonPath.jsx) ── */
-.grow-path { --step: clamp(1rem, 6vw, 2.25rem); --star: 64px; display: grid; gap: 14px; padding: 18px 0 8px; }
+.grow-path { position: relative; isolation: isolate; --step: clamp(1rem, 6vw, 2.25rem); --star: 64px; display: grid; gap: 14px; padding: 18px 0 8px; }
 .grow-path-row {
   display: flex; align-items: center; gap: 14px; width: 100%; min-height: var(--star);
   padding-inline-start: calc((var(--x) + 2) * var(--step)); text-align: start; color: var(--text); cursor: pointer;
@@ -214,7 +305,7 @@
   content: ''; position: absolute; inset: 0; background: var(--fill); clip-path: polygon(50% 0, 64.6% 14.6%, 85.4% 14.6%, 85.4% 35.4%, 100% 50%, 85.4% 64.6%, 85.4% 85.4%, 64.6% 85.4%, 50% 100%, 35.4% 85.4%, 14.6% 85.4%, 14.6% 64.6%, 0 50%, 14.6% 35.4%, 14.6% 14.6%, 35.4% 14.6%);
   filter: drop-shadow(0 5px 0 color-mix(in srgb, var(--fill) 58%, black));
 }
-.grow-path-row:hover .grow-path-star { transform: translateY(-2px); }
+.grow-path-row:hover .grow-path-star { transform: translateY(calc(var(--motion-lift-px) * -1px)); }
 .grow-path-row:active .grow-path-star { transform: translateY(3px); }
 .grow-path-mark { position: relative; font-weight: 800; font-size: var(--type-body); font-variant-numeric: tabular-nums; }
 .grow-path-row[data-s='now'] .grow-path-star { --fill: var(--w); color: var(--bg); }
@@ -260,7 +351,6 @@
 .grow-option[data-mark='right'] { animation: pop calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease); }
 
 /* ── The end of a lesson: a medal in a burst, three numbers, the level ── */
-.grow-lesson-done { justify-items: center; }
 .grow-medal { position: relative; width: 132px; height: 132px; }
 .grow-medal span {
   position: absolute; inset: 24px; display: grid; place-items: center; border-radius: 50%;
@@ -278,12 +368,43 @@
 }
 .grow-done-stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 10px; width: 100%; }
 .grow-done-stats div { display: grid; gap: 2px; padding: 12px 8px; border-radius: var(--radius-lg); border: 2px solid color-mix(in srgb, var(--w) 30%, var(--border)); background: var(--surface); }
-.grow-done-stats dt { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
 .grow-done-stats dd { font-size: var(--type-title); font-weight: 800; color: var(--w); }
 .grow-done-level { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; width: 100%; font-size: var(--type-ui); color: var(--text-dim); text-align: start; }
 .grow-done-level .grow-lesson-bar { grid-column: 1 / -1; }
+/* The seed in the medal sprouts: the stem draws up, then the leaves open from where
+   they join it. Drawn in the medal's own dark ink, so it reads on the gold. */
+.grow-sprout { overflow: visible; color: color-mix(in srgb, var(--grow-gold) 25%, black); }
+.grow-sprout-seed { fill: currentColor; }
+.grow-sprout-stem {
+  fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: 0;
+  animation: grow-stem calc(var(--motion-spring-ms) * 1.5 * 1ms) var(--motion-settle-ease) calc(var(--motion-spring-ms) * 1ms) backwards;
+}
+.grow-sprout-leaf {
+  fill: var(--success); transform-box: fill-box;
+  animation: pop calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) calc(var(--motion-spring-ms) * 2.3 * 1ms) backwards;
+}
+.grow-sprout-left { transform-origin: 100% 100%; }
+.grow-sprout-right { transform-origin: 0% 100%; animation-delay: calc(var(--motion-spring-ms) * 2.6 * 1ms); }
+@keyframes grow-stem { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+/* Confetti thrown up from the medal as the lesson ends, falling away past the
+   numbers: thrown up, turning, fading as it lands. Once, never looping. */
+.grow-confetti { position: absolute; left: 50%; top: 50%; pointer-events: none; }
+.grow-medal .grow-confetti i {
+  position: absolute; width: 7px; height: 11px; margin: 0; border-radius: 2px; background: var(--tone); opacity: 0;
+  transform: none;
+  animation: grow-confetti calc(var(--motion-spring-ms) * 5 * 1ms) var(--motion-settle-ease)
+    calc(var(--i) * var(--motion-stagger-ms) * 1ms) backwards;
+}
+@keyframes grow-confetti {
+  0% { transform: translate(0, 0) rotate(0deg) scale(0.4); opacity: 1; }
+  30% { transform: translate(calc(var(--x) * 0.6), -110px) rotate(calc(var(--turn) * 0.4)); opacity: 1; }
+  100% { transform: translate(var(--x), 160px) rotate(var(--turn)); opacity: 0; }
+}
 @media (prefers-reduced-motion: reduce) {
   .grow-medal i, .grow-option[data-mark='wrong'], .grow-option[data-mark='right'] { animation: none; }
+  .grow-sprout-stem, .grow-sprout-leaf, .grow-medal .grow-confetti i { animation: none; }
 }
 
 /* ── Two looks, taken in turn by a book's parts (lib/grow/bookLesson.js LOOKS): courtyard stars and a garden of leaves.
@@ -291,7 +412,6 @@
 [data-look='garden'] .grow-world-title::after, .grow-world-tile[data-look='garden']::after {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M6 34C6 19 16 8 34 6c-2 17-13 28-28 28zM6 34L30 10' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E"), linear-gradient(to left, black, transparent 70%);
 }
-.grow-path { position: relative; isolation: isolate; }
 .grow-path::before {
   content: ''; position: absolute; inset: 0 auto 0 0; width: calc(var(--step) * 4 + var(--star)); z-index: -1; pointer-events: none;
   background: var(--w); opacity: 0.06; mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 3l4.9 7.3 8.6-1.8-1.8 8.6L39 22l-7.3 4.9 1.8 8.6-8.6-1.8L20 41l-4.9-7.3-8.6 1.8 1.8-8.6L1 22l7.3-4.9-1.8-8.6 8.6 1.8z' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E"), linear-gradient(black, black); mask-size: 30px, 100%; mask-composite: intersect;
@@ -313,7 +433,6 @@
 /* ── Reading as a lesson: the English leads and the book's words sit under it; a sort shows the rows that slipped;
       an extra lesson is a smaller node; the path and the next button keep to a column on a wide screen ── */
 .grow-rule-book { margin: 0; display: grid; gap: 6px; }
-.grow-rule-book figcaption { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
 .grow-sort-row[data-miss] { border-color: var(--danger); box-shadow: inset 4px 0 0 var(--danger); }
 .grow-path-row[data-extra] { --star: 48px; padding-inline-start: calc((var(--x) + 2) * var(--step) + 8px); }
 .grow-path-extra {
@@ -323,7 +442,6 @@
 .grow-book .grow-path { width: 100%; max-width: 560px; margin-inline: auto; }
 .grow-book-next > :first-child { width: auto; flex: 0 1 420px; }
 .grow-done-missed { display: grid; gap: 8px; width: 100%; text-align: start; padding: 12px 14px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); }
-.grow-done-missed h4 { font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); }
 .grow-done-missed ul { display: grid; gap: 8px; font-size: var(--type-ui); line-height: 1.5; color: var(--text); }
 .grow-done-missed b { display: block; }
 .grow-done-go { display: grid; gap: 8px; width: 100%; }
@@ -343,7 +461,8 @@
 .grow-leave .grow-leave-stay { background: var(--w); color: var(--bg); }
 
 /* A book's glossary, folded under its tiles or path: a filter, then each term with its meaning and lesson. */
-.grow-glossary { width: 100%; max-width: 560px; margin-inline: auto; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 14px; }
+/* One column and one edge with the rest of the book world: it sat centred at half width. */
+.grow-glossary { width: 100%; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 14px; }
 .grow-glossary summary { cursor: pointer; font-weight: 700; }
 .grow-glossary input { width: 100%; margin: 12px 0 4px; padding: 8px 10px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); }
 .grow-glossary dl { display: grid; gap: 10px; margin: 8px 0 0; }

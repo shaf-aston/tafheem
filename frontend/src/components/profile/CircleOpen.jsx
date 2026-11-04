@@ -14,12 +14,12 @@ import {
 
 import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
-import SearchBox from '../ui/SearchBox'
-import Segmented from '../ui/Segmented'
-import ErrorAlert from '../ui/ErrorAlert'
-import { Skeleton } from '../ui/Skeleton'
-import SmallButton from '../ui/SmallButton'
-import WheelPicker from '../ui/WheelPicker'
+import SearchBox from '../ui/inputs/SearchBox'
+import Segmented from '../ui/inputs/Segmented'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import { Skeleton } from '../ui/feedback/Skeleton'
+import SmallButton from '../ui/buttons/SmallButton'
+import WheelPicker from '../ui/inputs/WheelPicker'
 
 const ROLES = [{ id: 'member', label: 'Member' }, { id: 'admin', label: 'Admin' }]
 

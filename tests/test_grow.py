@@ -18,8 +18,6 @@ from fastapi.testclient import TestClient
 from backend.config import get_settings
 from backend.main import app
 from backend.routers import grow
-from backend.services import recitation
-from backend.services.recitation import listen
 from backend.services.recitation.spelling import as_heard
 
 client = TestClient(app)
@@ -226,57 +224,3 @@ def test_every_phrase_is_one_ear_word_per_written_word():
         for step in path.steps:
             if step.arabic:
                 assert len(as_heard(step.arabic)) == len(step.arabic.split()), step.id
-
-
-def test_a_phrase_is_scored_whole(monkeypatch):
-    asked = []
-    monkeypatch.setattr(
-        listen, "weigh", lambda audio, words, model=None: asked.append(words) or [{"sure": 0.91234, "weak": {"text": "ـَ", "start": 1}, "at": 1.5}] * len(words),
-    )
-    assert recitation.check_text(b"x", "سبحان ربي", "سُبْحَانَ رَبِّيَ الْعَظِيمِ") == ([0.912] * 3, [{"weak": "ـَ", "weak_from": 1, "at": 1.5}] * 3)
-    assert len(asked[0]) == 3
-
-
-def test_nothing_heard_or_too_long_is_not_scored(monkeypatch):
-    monkeypatch.setattr(listen, "weigh", lambda *a: (_ for _ in ()).throw(AssertionError("scored")))
-    assert recitation.check_text(b"x", "  ", "اللَّهُ أَكْبَرُ") == ([], [])
-    monkeypatch.setattr(get_settings(), "recitation_sure_max_words", 1)
-    assert recitation.check_text(b"x", "الله اكبر", "اللَّهُ أَكْبَرُ") == ([], [])
-
-
-def test_check_text_route_answers_per_word(monkeypatch):
-    monkeypatch.setattr(
-        recitation, "check_text", lambda audio, heard, expected, model=None: ([1.0, 0.4], [{"weak": None, "weak_from": None, "at": 0.5}, {"weak": "ـِ", "weak_from": 2, "at": 1.1}]),
-    )
-    resp = client.post(
-        "/api/listen/check-text", params={"heard": "الله اكبر", "expected": "اللَّهُ أَكْبَرُ"},
-        files={"audio": ("r.webm", WEBM)},
-    )
-    assert resp.status_code == 200
-    assert resp.json() == {"sure": [1.0, 0.4], "detail": [{"weak": None, "weak_from": None, "at": 0.5}, {"weak": "ـِ", "weak_from": 2, "at": 1.1}]}
-
-
-def test_check_text_route_refuses_what_is_not_a_recording(monkeypatch):
-    monkeypatch.setattr(recitation, "check_text", lambda *a: (_ for _ in ()).throw(AssertionError("scored")))
-    resp = client.post(
-        "/api/listen/check-text", params={"heard": "الله", "expected": "اللَّهُ"},
-        files={"audio": ("r.webm", b"not a recording at all")},
-    )
-    assert resp.status_code == 415
-
-
-def test_check_text_route_with_nothing_heard_answers_empty(monkeypatch):
-    monkeypatch.setattr(recitation, "check_text", lambda *a: (_ for _ in ()).throw(AssertionError("scored")))
-    resp = client.post(
-        "/api/listen/check-text", params={"heard": "", "expected": "اللَّهُ"}, files={"audio": ("r.webm", WEBM)},
-    )
-    assert resp.json() == {"sure": [], "detail": []}
-
-
-def test_check_text_route_refuses_an_oversize_phrase(monkeypatch):
-    monkeypatch.setattr(get_settings(), "recitation_check_heard_max_chars", 5)
-    resp = client.post(
-        "/api/listen/check-text", params={"heard": "x", "expected": "اللَّهُ أَكْبَرُ"},
-        files={"audio": ("r.webm", WEBM)},
-    )
-    assert resp.status_code == 422

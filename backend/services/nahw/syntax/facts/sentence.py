@@ -3,9 +3,9 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one
+from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one, is_subject_pronoun
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, present_verb_tagged, subject_link
+from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -33,7 +33,7 @@ def khabar_behind_ba(ba: dict, noun: dict) -> bool:
     """مَا اللَّهُ بِغَافِلٍ، لَسْتُ بِغَافِلٍ: a زائدة باء written onto the khabar of ما or ليس (Ibn Aqil on
     وبعد ما وليس جرّ البا الخبر); a word with ال after the باء, unless a participle, is a plain
     jar-majrur (ما زيدٌ بالبيت), while an annexed one is the khabar still (أَلَسْتُ بِرَبِّكُمْ)."""
-    return is_prefix(ba) and is_extra_ba(ba["form"].strip("+")) and noun_tagged(noun) \
+    return is_prefix(ba) and is_extra_ba(ba["form"]) and noun_tagged(noun) \
         and (noun.get("stt") != "d" or is_participle(noun))
 
 
@@ -76,12 +76,15 @@ class Sentence:
         """(the question noun, the noun after it) when a question noun that is no ظرف or hal
         (closed_words istifham heads) opens a verbless clause on a noun: the question noun
         is the mubtada and that noun its khabar (مَا هِيَ، مَنْ أَبُوكَ، الْقَارِعَةُ مَا الْقَارِعَةُ).
-        A verb before it (قَالَ مَا اسْمُكَ) leaves the asked clause verbless; one after it does not."""
+        A verb before it (قَالَ مَا اسْمُكَ) leaves the asked clause verbless; one after it does not.
+        One in jarr is no mubtada (لِمَنْ هذا الكتابُ: the جار ومجرور is the fronted khabar). The indefinite
+        nasb noun after كم is its tamyeez, not what is told of it (كَمْ وَلَدًا فِي الْحَدِيقَةِ)."""
         words = [t for t in self.tokens if not is_suffix(t)]
         return next(((asked, told) for asked, told in zip(words, words[1:])
-                     if not any(is_verb(t) for t in words[words.index(asked):])
+                     if not any(is_verb(t) for t in words[words.index(asked):]) and not puts_in_jarr(asked, self)
                      and read_as(asked, "istifham") and is_one(asked["lemma"], "istifham", "heads")
-                     and told["pos"] == "NOM" and not is_preposition(told)), None)  # ما ذاهبٌ المسلمون: ما negates
+                     and told["pos"] == "NOM" and not is_preposition(told)
+                     and not (listed(asked, "tamyeez_head") and indefinite_nasb(told))), None)  # ما ذاهبٌ المسلمون: ما negates
 
     def _hijazi(self) -> tuple[dict, dict, dict] | None:
         """(ما, its ism, its khabar) of ما الحجازية, which works like ليس (Tasheel 1.9 n6
@@ -93,8 +96,9 @@ class Sentence:
         if not (self.verbless and len(words) >= 3 and words[0]["lemma"] == "ما" and noun_tagged(words[1])
                 and (is_mabni(words[1].get("pos_camel", "")) or typed_or_parsed_case(words[1]) != "a")):
             return None
-        khabar = next((t for t in words[2:] if noun_tagged(t) and t.get("stt") == "i"
-                       and typed_or_parsed_case(t) == "a"), None)
+        # a noun straight after a مضاف is its مضاف إليه, never the khabar: ما عِقَابُ إِبْرَاهِيمَ asks
+        khabar = next((t for before, t in zip(words[1:], words[2:]) if noun_tagged(t) and t.get("stt") == "i"
+                       and before.get("stt") != "c" and typed_or_parsed_case(t) == "a"), None)
         # مَا اللَّهُ بِغَافِلٍ: its khabar may stand behind a زائدة باء, jarr in its letters (data:
         # closed_words extra_ba `on`); a word with ال after the باء is a plain jar-majrur (ما زيدٌ بالبيت)
         if not khabar and extra_ba_on(words[0]["lemma"]) and len(words) >= 4 and khabar_behind_ba(words[2], words[3]):
@@ -159,6 +163,10 @@ class Sentence:
         first = next((k for k in kids if k["rel"] == "OBJ" and k["pos"] != "PRT"), None)
         if any(k["pos"] == "PRT" and is_one(k["lemma"], "inna") for k in kids):
             return True
+        # رَأَيْتُ صَدِيقَكَ مُسْرِعًا: a verb with an everyday one-object sense (closed_words zanna `one_object`,
+        # رأى of the eye) is read in it, so the word in nasb after its object is that object's حال
+        if is_one(verb["lemma"], "zanna", "one_object"):
+            return False
         return bool(first) and any(k["id"] > first["id"] and k["rel"] in ("OBJ", "MOD") and noun_tagged(k)
                                    and typed_or_parsed_case(k) in (None, "a") for k in kids)
 
@@ -200,13 +208,33 @@ def place_case(token: dict, s: "Sentence") -> str | None:
 def told_of_lone_mubtada(token: dict, head: dict, s: Sentence) -> bool:
     """الدينُ النصيحةُ: a verbless sentence resting on one noun with nothing else said of
     it, so the plain noun in its case after it is its khabar; a describing word
-    (الطبيبُ الماهرُ) stays its صفة (Tasheel 1.4 p6). Made definite by its مضاف إليه
-    (الطهورُ شطرُ الإيمانِ) it is a khabar too: a plain noun names a thing, it does not describe one."""
-    plain_mudaf = token.get("stt") == "c" and token.get("pos_camel") == "noun" and not is_participle(token)
+    (الطبيبُ الماهرُ، الطالبُ المجتهدُ: one tagged a noun too) stays its صفة when it agrees with it (`describes`; Tasheel 1.4 p6). Made definite by its مضاف إليه
+    (الطهورُ شطرُ الإيمانِ) it is a khabar too: a plain noun names a thing, it does not describe one, and one of
+    a participle's shape no less (زيدٌ صاحبُ المالِ): the two parts alike definite, the first is the mubtada
+    (Ibn Aqil V1 p232: زيد أخوك). So is a name, definite by itself whatever its tanween (أخوك زيدٌ)."""
+    plain_mudaf = token.get("stt") == "c" and token.get("pos_camel") == "noun"
     return s.verbless and head["rel"] == "---" and noun_tagged(head) \
-        and same_case(token, head) and (token.get("stt") == "d" or plain_mudaf) and token.get("ud") != "ADJ" \
+        and (is_built(head) or same_case(token, head)) and (token.get("stt") == "d" or plain_mudaf or is_name(token)) and token.get("ud") != "ADJ" and not (token.get("stt") == "d" and describes(token, head)) \
         and [t for t in s.tokens if t["rel"] == "---"] == [head] \
-        and all(k is token or k["rel"] == "IDF" for k in s.kids(head))
+        and all(k is token or k["rel"] == "IDF" or _in_silah(k, head, token) for k in s.kids(head))
+
+
+def _in_silah(kid: dict, relative: dict, told: dict) -> bool:
+    """A word between a relative and what is told of it is its صلة, one noun with it
+    (الموصول وصلته كالكلمة الواحدة): اَلَّتِي فِي الْبَيْتِ أُمِّي, في البيت is no second thing said."""
+    return listed(relative, "mawsul") and relative["id"] < kid["id"] < told["id"]
+
+
+def at_work(word: dict, s: Sentence) -> str | None:
+    """works_as_verb, for a word working on the noun after it: a verb always; an indefinite participle only
+    leaning on something, a khabar, a صفة, a حال, or a question or negation before it (Ibn Aqil V3 p106:
+    وولي استفهاما او حرف ندا او نفيا او جا صفة او مسندا), and one with ال whatever its place. One that is
+    itself a verb's doer or object leans on nothing: قابلتُ مسافرةً صبورةً, so صبورة is its صفة, never its object."""
+    if not (kind := works_as_verb(word)) or is_verb(word):
+        return kind
+    above = s.head(word)
+    leans = word.get("stt") == "d" or not (above and is_verb(above) and word["rel"] in NOUN_LINKS)
+    return kind if leans else None
 
 
 def verb_above(token: dict, s: Sentence) -> dict | None:
@@ -217,6 +245,38 @@ def verb_above(token: dict, s: Sentence) -> dict | None:
         return head
     up = s.head(head) if head else None
     return up if up and is_verb(up) else None
+
+
+def busied(verb: dict, s: Sentence) -> bool:
+    """زَيْدًا ضَرَبْتُهُ، زَيْدًا مَرَرْتُ بِهِ: the verb works on a pronoun of its own, by itself or through a
+    جار, or on a word the pronoun is added to (its سببي: زَيْدًا ضَرَبْتُ غُلَامَهُ، غُلَامَ صَاحِبِهِ، مَرَرْتُ بِغُلَامِهِ),
+    so a noun in nasb put before it is not its object (الاشتغال, Ibn Aqil V2 p128: أو في سببيه وهو المضاف
+    إلى ضمير الاسم السابق). The سببي must be in nasb or jarr by it: typed with its damma it is the doer (زَيْدًا ضَرَبَ
+    غُلَامُهُ), and زيدًا stays the object put first. The pronoun is one of the one away, as that noun is (رَبَّنَا
+    ظَلَمْنَا أَنْفُسَنَا: نا is the speakers', and ربنا is called)."""
+    return any((_absent_pronoun(k) and not subject_link(k))
+               or ((is_preposition(k) or (k["rel"] == "OBJ" and typed_or_parsed_case(k) != "u")) and _reaches_pronoun(k, s))
+               for k in s.kids(verb))
+
+
+def _reaches_pronoun(word: dict, s: Sentence) -> bool:
+    """A pronoun hangs below the word through its مجرور or مضاف إليه, however deep (غلامِ صاحبِه)."""
+    seen, below = set(), [word]
+    while below:
+        if (at := below.pop())["id"] in seen:
+            continue
+        seen.add(at["id"])
+        for kid in s.kids(at):
+            if kid["rel"] in ("OBJ", "IDF"):
+                if _absent_pronoun(kid):
+                    return True
+                below.append(kid)
+    return False
+
+
+def _absent_pronoun(token: dict) -> bool:
+    """+هُ، +هَا، +هُمْ: a pronoun written on that can stand for a noun said before it (closed_words damir_muttasil absent)."""
+    return attached_pronoun(token) and is_one(token["form"], "damir_muttasil", "absent")
 
 
 def next_word(token: dict, s: Sentence) -> dict | None:
@@ -230,6 +290,28 @@ def previous_noun(token: dict, s: Sentence) -> dict | None:
         if not is_suffix(t):
             return t if noun_tagged(t) and not is_verb(t) else None
     return None
+
+
+def is_known(token: dict, s: Sentence) -> bool:
+    """معرفة: a noun with ال, a name, a pronoun, or a مضاف to a known noun (جميعُهم، كتابُ اللهِ);
+    a مضاف to an unknown one stays unknown (كتابُ رجلٍ)."""
+    if token.get("stt") == "d" or token["pos"] == "PROP":
+        return True
+    added = next((k for k in s.kids(token) if k["rel"] == "IDF"), None) if token.get("stt") == "c" else None
+    return bool(added) and is_known(added, s)
+
+
+def excepted_from(illa: dict, s: Sentence) -> dict | None:
+    """The مستثنى منه: the noun before إلا, out of any جار ومجرور or إضافة that only adds to a noun
+    (ما جاء أحدٌ من الضيوف إلا زيدٌ: زيدٌ is excepted from أحد, not from الضيوف). A جار hung on a verb
+    adds to no noun, so its majrur is the one excepted from (ما مررت بأحدٍ إلا زيدٍ)."""
+    noun = previous_noun(illa, s)
+    while noun and (up := s.head(noun)):
+        holder = up if noun["rel"] == "IDF" else s.head(up) if noun["rel"] == "OBJ" and is_preposition(up) else None
+        if not holder or not noun_tagged(holder) or is_verb(holder):
+            break
+        noun = holder
+    return noun
 
 
 def excepted_after_la(token: dict, s: Sentence) -> tuple[dict, dict, dict] | None:
@@ -284,3 +366,16 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
             t["pos"] in ("NOM", "PROP", "VRB", "VRB-PASS") and t["id"] < head["id"] for t in s.tokens):
         return False  # the و of an oath opens its clause; after a word it joins
     return not any(noun_tagged(t) and head["id"] < t["id"] < token["id"] for t in s.tokens)
+
+
+def quoted_head(token: dict, s: Sentence) -> bool:
+    """قال الضيفُ سلامٌ عليكم، قال زيدٌ الجوُّ جميلٌ: a verb has one doer (Tasheel 2.4.1), so a raf'
+    word a verb of saying (roles.json said_clause) holds after its doer is no second one but heads
+    the sentence it says, its مقول القول, named inside as that sentence would be on its own.
+    قُلْ هُوَ اللَّهُ أَحَدٌ: a command's doer is the hidden أنت, so it holds one before any word.
+    قال إبراهيمُ أنا أكسرُ: a detached pronoun of raf' is raf' by its own form, untyped or not.
+    قُلْتُ أَنَا ذَاهِبٌ: a verb of the first or second person holds its doer in itself (its تاء)."""
+    head = s.head(token)
+    return (token["rel"] == "OBJ" and (typed_or_parsed_case(token) == "u" or is_subject_pronoun(token)) and head is not None and is_verb(head)
+            and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
+            and holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"])))

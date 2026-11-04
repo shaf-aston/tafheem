@@ -30,15 +30,18 @@ import { laneEntry } from '../../lib/dictionary/laneEntry'
 import { useLexicons } from '../../lib/dictionary/classicalBooks'
 import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
+import { useMedia } from '../../lib/hooks/useMedia'
 import { colorFor } from '../../theme'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/dictionary/useLaneTidy'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import ErrorAlert from '../ui/ErrorAlert'
-import FlagButton from '../ui/FlagButton'
-import ShowRest from '../ui/ShowRest'
-import SourceBadge from '../ui/SourceBadge'
+import ArabicText from '../ui/text/ArabicText'
+import Fenced from '../ui/text/Fenced'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import FlagButton from '../ui/buttons/FlagButton'
+import ShowRest from '../ui/buttons/ShowRest'
+import BookHeader from './BookHeader'
+import LaneIndex from './LaneIndex'
+import SourceBadge from '../ui/feedback/SourceBadge'
 
 /** How the three kinds of nothing are told apart. Never one sentence for all. */
 const NOTHING = {
@@ -49,6 +52,9 @@ const NOTHING = {
 
 /** Added to that one sentence only, and only when there is another root to try. */
 const ELSEWHERE = ' The other root above may be the one they file it under.'
+
+/** Where a book uses the card's width (Tailwind's lg), the same as Ibn Faris's side by side. */
+const WIDE = '(min-width: 64rem)'
 
 /**
  * `shown` is the book on screen; the others stay mounted but hidden, so a
@@ -105,6 +111,7 @@ function BookEntry({ entry, root, accent }) {
   const lane = entry.book === LANE
   const [tidy, setTidy] = useLaneTidy()
   const [open, setOpen] = useState(false)
+  const wide = useMedia(WIDE)
   // Lane in his own sections; the Arabic books as paragraphs (lib/entryLines).
   const shown = useMemo(() => (lane ? laneEntry(entry.text, { tidy }) : paragraphs(entry.text)), [lane, entry.text, tidy])
   const anchor = useId()
@@ -117,32 +124,27 @@ function BookEntry({ entry, root, accent }) {
 
   return (
     <article className="p-4 space-y-2">
-      <header className="flex items-center gap-x-2 gap-y-1.5 flex-wrap">
-        {/* The book's name leads every block: its title, or its badge where the
-            badge already is the title (Lane), so one name is never printed twice. */}
-        {entry.title === entry.source?.label ? <SourceBadge source={entry.source} /> : (arabic
-          ? <ArabicText size="sm" className="font-medium text-[var(--text)]">{entry.title}</ArabicText>
-          : <span className="type-body font-medium text-[var(--text)]">{entry.title}</span>)}
-        <span className="type-small text-[var(--text-faint)]">
-          {entry.author}{entry.died ? `, d. ${entry.died}` : ''}
-          {arabic ? '' : ' · in English'}
-        </span>
-        {/* In the header, not at the foot: under a long entry a badge at the
-            bottom was a screen away from the name it vouches for. */}
-        <div className="ms-auto flex items-center gap-2">
-          {/* Only Lane carries the scholar's marks, so only his title has the switch. */}
-          {lane && (
-            <FlagButton value={tidy} onChange={setTidy} accent={accent} title={LANE_TIDY_TITLE}>
-              {LANE_TIDY_LABEL}
-            </FlagButton>
-          )}
-          {entry.title !== entry.source?.label && <SourceBadge source={entry.source} />}
-        </div>
-      </header>
+      <BookHeader title={entry.title} author={entry.author} died={entry.died} arabic={arabic} source={entry.source}>
+        {/* Only Lane carries the scholar's marks, so only his title has the switch. */}
+        {lane && (
+          <FlagButton value={tidy} onChange={setTidy} accent={accent} title={LANE_TIDY_TITLE}>
+            {LANE_TIDY_LABEL}
+          </FlagButton>
+        )}
+      </BookHeader>
 
       <div className="space-y-2">
         {/* Said before the entry, not after: a reader who typed امر and is shown
             the book's أمر must know that before they read a word of it. */}
+        {/* One line saying what the entry covers, for a reader who cannot read
+            the Arabic below it. Not a translation, and badged as a model's. */}
+        {entry.gist && (
+          <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1 type-body text-[var(--text)] max-w-[var(--lexicon-reading-w)]">
+            <span>{entry.gist}</span>
+            <SourceBadge source={entry.gist_source} />
+          </p>
+        )}
+
         {entry.book_root && (
           <p className="type-small text-[var(--text-faint)]">
             Nothing under {root}; this is the entry the book files under{' '}
@@ -154,43 +156,33 @@ function BookEntry({ entry, root, accent }) {
             own scrollbar, which hid the same words and also took the wheel off
             the page inside it. How tall the snippet stands is theme.json's
             lexicon.entry-h, the same knob that used to set the box. */}
-        {/* Two rows of the index, the rest a press away: forty-odd headwords
-            stood half a screen deep between Lane's name and his first word. */}
-        {lane && (
-          <ShowRest lines={3} accent={accent} more="All words">
-            <LaneIndex forms={shown} onJump={jump} accent={accent} />
-          </ShowRest>
-        )}
+        {/* Three rows of the index and a box to find the rest: forty-odd
+            headwords stood half a screen deep between Lane's name and his first word. */}
+        {lane && !wide && <LaneIndex forms={shown} onJump={jump} accent={accent} />}
 
-        <ShowRest height="var(--lexicon-entry-h)" open={open} onOpenChange={setOpen}>
-          {lane ? <LaneEntry forms={shown} anchor={anchor} /> : (
-            <div className="space-y-2">
-              {shown.map((said, i) => (
-                <ArabicText key={i} as="p" size="sm">{said}</ArabicText>
-              ))}
-            </div>
-          )}
-        </ShowRest>
+        {/* A wide screen: Lane's entry at its reading width, his index beside
+            it, held in view; the Arabic books, opened, in two columns read right
+            to left like the printed page, where one column left half the card empty. */}
+        <div className={lane && wide ? 'grid grid-cols-[minmax(0,var(--lexicon-reading-w))_minmax(14rem,1fr)] gap-8 items-start' : ''}>
+          <ShowRest height="var(--lexicon-entry-h)" open={open} onOpenChange={setOpen}>
+            {lane ? <LaneEntry forms={shown} anchor={anchor} /> : (
+              // Folded, one column at the reading width, against the right
+              // edge where Arabic starts; Lisan and the Taj ran the card's full
+              // width, 150 letters a line, and the eye lost its place.
+              <div dir="rtl" className={`space-y-2 ${wide && open
+                ? 'columns-2 gap-10 [column-rule:1px_solid_var(--border)]' : 'max-w-[var(--lexicon-reading-w)] ml-auto'}`}>
+                {shown.map((said, i) => (
+                  <ArabicText key={i} as="p" size="sm">{said}</ArabicText>
+                ))}
+              </div>
+            )}
+          </ShowRest>
+          {lane && wide && <LaneIndex forms={shown} onJump={jump} accent={accent} rail />}
+        </div>
       </div>
     </article>
   )
 }
-
-/**
- * Every headword in the entry, one press from its section. Lane on a common
- * root runs to thousands of words; this is how a reader finds the one they came
- * for without reading down to it. Right to left, like the words themselves.
- */
-const LaneIndex = ({ forms, onJump, accent }) => (
-  <nav dir="rtl" aria-label="Words in this entry" className="flex flex-wrap gap-1.5">
-    {forms.map((form, i) => form.word && (
-      <Chip key={i} arabic accent={accent} onClick={() => onJump(i)}
-        title={form.form ? `Form ${form.form}` : undefined}>
-        {form.word}
-      </Chip>
-    ))}
-  </nav>
-)
 
 /** Whether a section has more than one sense, so its first is numbered too. */
 const hasSenses = (form) => form.senses.some((sense) => sense.kind === 'sense' && sense.number > 1)
@@ -256,7 +248,7 @@ function LaneEntry({ forms, anchor }) {
                         : undefined
                   }
                 >
-                  {piece.text}
+                  <Fenced text={piece.text} />
                 </span>
               ))}
             </p>

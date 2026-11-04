@@ -6,7 +6,7 @@
  * conversation is found without knowing where it is filed.
  *
  * The place in the tab is the question's id (ids are unique across topics), so
- * /app/dawah/who-made-god opens that answer and the back arrow steps through
+ * /dawah/who-made-god opens that answer and the back arrow steps through
  * the answers read. Each point carries its own evidence underneath, reusing the
  * timelines' reference row (pieces in components/dawah, wording in dawah.json): a Qur'an reference opens the ayah itself. A matching
  * IslamQA fatwa is linked at the foot as further reading.
@@ -20,11 +20,11 @@ import { useRemembered } from '../../lib/store/useRemembered'
 import { matches } from '../../lib/dawah/dawahSearch'
 import knobs from '../../config/dawah.json'
 
-import SectionHeader from '../ui/SectionHeader'
-import SearchBox from '../ui/SearchBox'
-import ErrorAlert from '../ui/ErrorAlert'
-import EmptyState from '../ui/EmptyState'
-import { AnalyzerSkeleton } from '../ui/Skeleton'
+import SectionHeader from '../ui/display/SectionHeader'
+import SearchBox from '../ui/inputs/SearchBox'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import EmptyState from '../ui/feedback/EmptyState'
+import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import TopicTile from './TopicTile'
 import QuestionList from './QuestionList'
 import Answer from './Answer'

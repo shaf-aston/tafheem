@@ -12,7 +12,7 @@ import { useMemo } from 'react'
 
 import { bankOf } from '../../../lib/colloquial/answer'
 import { shuffled } from '../../../lib/text/shuffle'
-import ArabicText from '../../ui/ArabicText'
+import ArabicText from '../../ui/text/ArabicText'
 
 /**
  * The tiles in a fixed scrambled order for this exercise. Fixed, because a new

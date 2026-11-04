@@ -14,12 +14,13 @@ import { LEVEL_KEY } from '../../lib/learner/learnerLevel'
 import { copyGuestShelf, pullShelf, startShelf } from '../../lib/store/shelf'
 import { readRaw } from '../../lib/store/stored'
 
-import BottomSheet from '../ui/BottomSheet'
-import PrimaryButton from '../ui/PrimaryButton'
+import BottomSheet from '../ui/overlays/BottomSheet'
+import SheetHeader from '../ui/overlays/SheetHeader'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
 import ProfileView from './ProfileView'
-import SearchBox from '../ui/SearchBox'
-import Segmented from '../ui/Segmented'
-import SmallButton from '../ui/SmallButton'
+import SearchBox from '../ui/inputs/SearchBox'
+import Segmented from '../ui/inputs/Segmented'
+import SmallButton from '../ui/buttons/SmallButton'
 import LevelSetting from '../level/LevelSetting'
 
 const MODES = [{ id: 'login', label: 'Log in' }, { id: 'signup', label: 'Sign up' }]
@@ -31,16 +32,9 @@ export default function ProfileDialog({ onClose }) {
 
   return (
     <BottomSheet label={title} onClose={onClose} className="p-5 space-y-4">
-      <div className="flex items-baseline justify-between gap-3">
+      <SheetHeader onClose={onClose} className="">
         <h2 className="type-head text-base font-bold text-[var(--text)]">{title}</h2>
-        <button
-          type="button"
-          onClick={onClose}
-          className="type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors"
-        >
-          Close
-        </button>
-      </div>
+      </SheetHeader>
       {name ? <ProfileView name={name} /> : <SignIn />}
     </BottomSheet>
   )

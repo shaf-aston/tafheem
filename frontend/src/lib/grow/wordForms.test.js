@@ -4,8 +4,8 @@ import basics from '../../../public/grow/basics.json'
 import data from '../../../public/grow/basics-verbs.json'
 import { makeRandom } from '../quiz/quiz'
 import {
-  ADDRESSED, PERSONS, POSSESSORS, TENSES, WRONG_VERB, arabicOptions, canPossess, englishOptions, meanings,
-  possessiveTable, verbTable,
+  ADDRESSED, PERSONS, POSSESSORS, TENSES, WRONG_VERB, arabicOptions, canPossess, englishOptions, meanings, objectTable,
+  possessiveTable, questionTable, relativeTable, verbTable,
 } from './wordForms'
 
 const nfc = (text) => text.normalize('NFC')
@@ -136,6 +136,55 @@ describe('possessiveTable', () => {
   it('follows ال’s sun-letter spelling in the wrong form', () => {
     expect(at(possessiveTable({ ar: 'شَمْس', en: 'sun' }), 'wrong:al:his').ar).toBe(nfc('الشَّمْسُهُ'))
     expect(at(possessiveTable({ ar: 'سَيَّارَة', en: 'car' }), 'wrong:al:my').ar).toBe(nfc('السَّيَّارَتِي'))
+  })
+})
+
+describe('objectTable', () => {
+  const hear = data.verbs.find((verb) => verb.id === 'hear')
+  it('joins him, her, me… to the past for “he”', () => {
+    const entries = objectTable(hear)
+    expect(at(entries, 'him')).toMatchObject({ ar: nfc('سَمِعَهُ'), en: 'he heard him' })
+    expect(at(entries, 'me')).toMatchObject({ ar: nfc('سَمِعَنِي'), en: 'he heard me' })
+    expect(at(entries, 'you')).toMatchObject({ ar: nfc('سَمِعَكَ'), en: 'he heard you (one man)' })
+    expect(at(entries, 'you-all')).toMatchObject({ ar: nfc('سَمِعَكُمْ'), en: 'he heard you (all of you)' })
+  })
+  it('sets “he heard us” beside “we heard”, one mark apart, and ـِي for me with no meaning', () => {
+    const entries = objectTable(hear)
+    expect(at(entries, 'us').ar).toBe(nfc('سَمِعَنَا'))
+    expect(at(entries, 'we')).toMatchObject({ ar: nfc('سَمِعْنَا'), en: 'we heard' })
+    expect(at(entries, 'wrong:ya:me')).toEqual({ key: 'wrong:ya:me', ar: nfc('سَمِعِي'), en: null })
+  })
+})
+
+describe('relativeTable', () => {
+  it('sets الَّذِي, الَّتِي and الَّذِينَ before the verb for their person', () => {
+    const entries = relativeTable(write)
+    expect(at(entries, 'the-man')).toMatchObject({ ar: nfc('الَّذِي كَتَبَ'), en: 'the man who wrote' })
+    expect(at(entries, 'the-woman')).toMatchObject({ ar: nfc('الَّتِي كَتَبَتْ'), en: 'the woman who wrote' })
+    expect(at(entries, 'those')).toMatchObject({ ar: nfc('الَّذِينَ كَتَبُوا'), en: 'those who wrote' })
+    expect(at(entries, 'the-man-now')).toMatchObject({ ar: nfc('الَّذِي يَكْتُبُ'), en: 'the man who writes' })
+    expect(at(entries, 'those-now')).toMatchObject({ ar: nfc('الَّذِينَ يَكْتُبُونَ'), en: 'those who write' })
+  })
+  it('never pairs one with another person’s verb, which would say “that which…”', () => {
+    for (const verb of data.verbs) expect(relativeTable(verb).some((entry) => entry.ar.startsWith(nfc('الَّذِي ')) && entry.ar.includes(verb.forms.she.past))).toBe(false)
+  })
+})
+
+describe('questionTable', () => {
+  const entries = questionTable(write)
+  it('asks with هَلْ or أَ before the past, هَلْ before the present, and مَنْ, مَاذَا, أَيْنَ', () => {
+    expect(at(entries, 'did:he')).toMatchObject({ ar: nfc('هَلْ كَتَبَ؟'), en: 'did he write?' })
+    expect(at(entries, 'a-did:he')).toMatchObject({ ar: nfc('أَكَتَبَ؟'), en: 'did he write?' })
+    expect(at(entries, 'does:they')).toMatchObject({ ar: nfc('هَلْ يَكْتُبُونَ؟'), en: 'do they write?' })
+    expect(at(entries, 'does:she').en).toBe('does she write?')
+    expect(at(entries, 'who')).toMatchObject({ ar: nfc('مَنْ كَتَبَ؟'), en: 'who wrote?' })
+    expect(at(entries, 'what:you')).toMatchObject({ ar: nfc('مَاذَا كَتَبْتَ؟'), en: 'what did you write (one man)?' })
+    expect(at(entries, 'where:we')).toMatchObject({ ar: nfc('أَيْنَ كَتَبْنَا؟'), en: 'where did we write?' })
+    expect(at(entries, 'said:she')).toMatchObject({ ar: nfc('كَتَبَتْ'), en: 'she wrote' })
+  })
+  it('writes أَ apart only as the mistake, with no meaning', () => {
+    expect(at(entries, 'wrong:apart:he')).toEqual({ key: 'wrong:apart:he', ar: nfc('أَ كَتَبَ؟'), en: null })
+    expect(at(entries, 'who:she')).toBeUndefined()
   })
 })
 

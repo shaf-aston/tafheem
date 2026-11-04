@@ -20,9 +20,9 @@ greedy CTC decode:
                  finer reviewer label.
 
 Ikhfaa, idgham, iqlab, ghunnah and qalqalah are out of scope by instruction:
-their symbols (the nasalised m̃ ñ j̃ w̃ ŋ, and qalqalah's Q, which the
-reference phonemizer emits but this model's vocab has no token for at all) are
-stripped from both the reference and the decode before anything is compared.
+their symbols (the nasalised m̃ ñ j̃ w̃ ŋ, and qalqalah's Q) are stripped
+from both the reference and the decode before anything is compared
+(services/recitation/sounds.py, which owns that comparison).
 
 Reference phonemes come from Hetchy/Quranic-Phonemizer (MIT), word by word.
 Checked over the 38 surahs this dataset actually uses: every symbol it wrote
@@ -55,7 +55,6 @@ import argparse
 import audioop
 import difflib
 import io
-import itertools
 import json
 import statistics
 import sys
@@ -71,14 +70,15 @@ from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2ForCTC
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402
+from backend.scripts.recitation.paths import CHECKS  # noqa: E402
 from backend.scripts.recitation.score_recitation_checker import (  # noqa: E402
     marks_to_places, recordings, seconds, unplaced,
 )
+from backend.services.recitation.sound_compare import VOWELS, collapse, flatten, word_verdicts  # noqa: E402
 from backend.services.recitation.spelling import as_heard  # noqa: E402
 
-HERE = Path(__file__).resolve().parents[2] / "data" / "recitation_checks"
-RESULTS = HERE / "phoneme_results.jsonl"
-REPORT = HERE / "phoneme_report.txt"
+RESULTS = CHECKS / "phoneme_results.jsonl"
+REPORT = CHECKS / "phoneme_report.txt"
 
 MODEL_ID = "quran-dev/wav2vec2-ctc-quran-phoneme-run66-iqratts-mix-final-20260909"
 SAMPLE_RATE = 16_000
@@ -92,11 +92,6 @@ LONGEST_S = 30
 # running rather than grabbing every core on a box with little RAM to spare.
 TORCH_THREADS = 2
 
-# Ikhfaa, idgham, iqlab, ghunnah, qalqalah symbols (see module docstring).
-# "Q" never appears in a decode (not in this model's vocab); still stripped
-# from the reference so it is never compared against.
-TAJWEED_EXCLUDE = frozenset({"m̃", "ñ", "j̃", "w̃", "ŋ", "Q"})
-VOWELS = frozenset({"a", "a:", "i", "i:", "u", "u:", "aˤ", "aˤ:"})
 # The dataset's clips are cut loosely around an ayah (score_recitation_checker.py
 # notes the same thing: "the clips split long ayahs"). A clip holding only part
 # of the ayah looks, to a whole-ayah comparison, like the reciter dropped every
@@ -108,21 +103,27 @@ VOWELS = frozenset({"a", "a:", "i", "i:", "u", "u:", "aˤ", "aˤ:"})
 MATCH_RATE_FLOOR = 0.7
 
 
-def _vocab() -> dict[str, int]:
+def vocab_file(source: str = MODEL_ID) -> Path:
+    """vocab.json of a Hugging Face id or of a local folder (a model trained here)."""
+    if Path(source).is_dir():
+        return Path(source) / "vocab.json"
+    from huggingface_hub import hf_hub_download
+    return Path(hf_hub_download(source, "vocab.json"))
+
+
+def _vocab(source: str = MODEL_ID) -> dict[str, int]:
     """id2sym isn't a tokenizer file (this is CTC over raw phonemes, not
     text), so it is read straight from vocab.json rather than loaded as a
     text processor."""
-    from huggingface_hub import hf_hub_download
-    path = hf_hub_download(MODEL_ID, "vocab.json")
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+    return json.loads(vocab_file(source).read_text(encoding="utf-8"))
 
 
-def load_model():
+def load_model(source: str = MODEL_ID):
     torch.set_num_threads(TORCH_THREADS)
-    fe = Wav2Vec2FeatureExtractor.from_pretrained(MODEL_ID)
-    model = Wav2Vec2ForCTC.from_pretrained(MODEL_ID, low_cpu_mem_usage=True)
+    fe = Wav2Vec2FeatureExtractor.from_pretrained(source)
+    model = Wav2Vec2ForCTC.from_pretrained(source, low_cpu_mem_usage=True)
     model.eval()
-    id2sym = {i: s for s, i in _vocab().items()}
+    id2sym = {i: s for s, i in _vocab(source).items()}
     return model, fe, id2sym
 
 
@@ -144,52 +145,13 @@ def wav_floats(audio: bytes) -> np.ndarray:
 
 
 def decode(model, fe, id2sym: dict[int, str], audio: bytes) -> tuple[list[str], list[int]]:
-    """Greedy CTC decode: collapsed symbols (blank/unk dropped) and each one's
-    run length in frames, in the same order. Blank is id 0 (<pad>), this
-    checkpoint's CTC convention (config.pad_token_id == 0)."""
+    """Greedy CTC decode (sound_compare.collapse): symbols and each one's run length in
+    frames. Blank is id 0 (<pad>), this checkpoint's CTC convention
+    (config.pad_token_id == 0)."""
     inputs = fe(wav_floats(audio), sampling_rate=SAMPLE_RATE, return_tensors="pt")
     with torch.no_grad():
         logits = model(**inputs).logits[0]
-    ids = logits.argmax(-1).tolist()
-    symbols, runs = [], []
-    for sym_id, group in itertools.groupby(ids):
-        n = sum(1 for _ in group)
-        if sym_id in (0, 1):  # <pad> (blank), <unk>
-            continue
-        symbols.append(id2sym[sym_id])
-        runs.append(n)
-    return symbols, runs
-
-
-def flatten(ph_by_word: tuple[tuple[str, ...], ...]) -> tuple[list[str], list[int]]:
-    """Reference phonemes, tajweed symbols dropped, with each one's word index."""
-    flat, idx = [], []
-    for w, word in enumerate(ph_by_word):
-        for p in word:
-            if p in TAJWEED_EXCLUDE:
-                continue
-            flat.append(p)
-            idx.append(w)
-    return flat, idx
-
-
-def word_verdicts(opcodes, ref_flat: list[str], ref_word_idx: list[int], n_words: int):
-    """Per expected word: True (every phoneme of that kind matched), False (one
-    was substituted or dropped), or None (the word has none of that kind)."""
-    bad = [False] * len(ref_flat)
-    for tag, a1, a2, _b1, _b2 in opcodes:
-        if tag in ("replace", "delete"):
-            for i in range(a1, a2):
-                bad[i] = True
-    artic: list[bool | None] = [None] * n_words
-    length: list[bool | None] = [None] * n_words
-    for i, w in enumerate(ref_word_idx):
-        ok = not bad[i]
-        if ref_flat[i] in VOWELS:
-            length[w] = ok if length[w] is None else (length[w] and ok)
-        else:
-            artic[w] = ok if artic[w] is None else (artic[w] and ok)
-    return artic, length
+    return collapse(logits.argmax(-1).tolist(), id2sym)
 
 
 def vowel_durations(opcodes, ref_flat: list[str], pred_runs: list[int]) -> tuple[list[float], list[float]]:

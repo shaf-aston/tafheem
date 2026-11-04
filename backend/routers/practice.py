@@ -54,7 +54,7 @@ async def generate_practice(request: PracticeRequest, response: Response, later:
 
 
 @router.get("/kept", response_model=KeptQuestions)
-async def kept_practice(sentence: str | None = Query(None, max_length=2000)) -> KeptQuestions:
+async def kept_practice(sentence: str | None = Query(None, max_length=get_settings().max_sentence_chars)) -> KeptQuestions:
     """Every question filed so far, or only one sentence's. No screen reads it yet: it is the
     way back into what /api/practice filed, for a review screen to come."""
     wanted = arabic_sentence(sentence, "Sentence") if sentence else None

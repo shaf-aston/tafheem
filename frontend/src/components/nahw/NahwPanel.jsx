@@ -14,10 +14,10 @@ import IraabAnalyzer from './IraabAnalyzer'
 import NotesPanel from './NotesPanel'
 import TamreenPanel from './TamreenPanel'
 import TarkeebPanel from './TarkeebPanel'
-import Disclosure from '../ui/Disclosure'
+import Disclosure from '../ui/overlays/Disclosure'
 import GrammarGlossary from './GrammarGlossary'
-import SectionHeader from '../ui/SectionHeader'
-import Segmented from '../ui/Segmented'
+import SectionHeader from '../ui/display/SectionHeader'
+import Segmented from '../ui/inputs/Segmented'
 
 const VIEWS = [
   // Named, not explained: the header above already says what each one is.

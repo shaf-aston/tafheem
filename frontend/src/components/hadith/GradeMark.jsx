@@ -2,11 +2,11 @@
  * A hadith's grading, said quietly: a coloured dot and the leading verdict.
  * Press it for the next layer, every scholar's verdict and the hadith's page
  * on sunnah.com. Which verdict leads, and which colour it wears, is
- * lib/hadithGrade reading hadith.json; this file only draws.
+ * hadith/books/hadithGrade reading hadith.json; this file only draws.
  */
-import { familyOf, leadGrade } from '../../lib/hadith/hadithGrade'
+import { familyOf, leadGrade } from './books/hadithGrade'
 
-import Popover from '../ui/Popover'
+import Popover from '../ui/overlays/Popover'
 
 const TONE = { success: 'var(--success)', warn: 'var(--warn)', danger: 'var(--danger)' }
 

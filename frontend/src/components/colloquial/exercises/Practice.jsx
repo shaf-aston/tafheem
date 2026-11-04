@@ -2,8 +2,8 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { scrollToEl } from '../../../lib/motion/scrollToEl'
-import AnswerSquare from '../../ui/AnswerSquare'
-import SmallButton from '../../ui/SmallButton'
+import AnswerSquare from '../../ui/inputs/AnswerSquare'
+import SmallButton from '../../ui/buttons/SmallButton'
 import ExerciseHost from './ExerciseHost'
 
 const ACCENT = 'var(--primary)'

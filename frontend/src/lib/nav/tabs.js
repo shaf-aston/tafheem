@@ -18,6 +18,7 @@ import { MODULE as QUIZ_MODULE, table } from '../quiz/quizBanks'
 import { WORDS_MODULE } from '../colloquial/wordPractice'
 import { panel } from './panel'
 import { nameOf } from '../grow/growPlace'
+import { growOpen } from '../grow/growOpen'
 import grow from '../../config/worlds.json'
 import { quranOpen } from '../quran/quranOpen'
 import { similarOpen } from '../similar/similarOpen'
@@ -43,7 +44,7 @@ const MapPanel = panel(() => import('../../components/map/MapPanel'))
 // `half`: two tabs share one slot. Nahw + Sarf: shortest labels, used together.
 // `group`: its heading in All sections, an id from GROUPS.
 // `blurb`: one plain line on what you do there (Home's cards).
-// `emblem`: the tab's picture (components/ui/Emblem.jsx), on its title and wherever
+// `emblem`: the tab's picture (components/ui/display/Emblem.jsx), on its title and wherever
 //   only a small mark fits (phone bar, search rail, launcher ring). Unique across tabs.
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
 // `modules`: other names its answers are filed under in the progress store, so a
@@ -82,7 +83,7 @@ export const TABS = [
   // Similar verses, متشابهات: telling look-alike ayat apart, next to learning them by heart.
   { id: 'similar', label: 'Similar',        short: 'Similar', arabic: 'متشابهات', emblem: 'similar', Component: SimilarPanel, open: similarOpen, study: true, blurb: "Tell look-alike verses apart, and drill the wording", group: 'practise' },
   // Grow, نبات (3:37): a little every day: words, fiqh, Quran and hadith.
-  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   emblem: 'words', Component: GrowPanel, study: true, blurb: "A little every day: words, fiqh, Quran and hadith", group: 'practise', modules: GROW_MODULES, ownHome: true, place: (value) => nameOf(value, grow.worlds) },
+  { id: 'grow',   label: 'Grow!',      short: 'Grow',   arabic: 'نبات',   emblem: 'words', Component: GrowPanel, open: growOpen, study: true, blurb: "A little every day: words, fiqh, Quran and hadith", group: 'practise', modules: GROW_MODULES, ownHome: true, place: (value) => nameOf(value, grow.worlds) },
   { id: 'quiz',   label: 'Quiz',       short: 'Quiz',   arabic: 'اختبار', emblem: 'quiz', Component: QuizPanel, open: table, blurb: "Practise words and meanings, and review what is due", group: 'practise' },
   { id: 'timelines', label: 'Timelines', short: 'Time', arabic: 'التاريخ', emblem: 'timelines', Component: TimelinesPanel, open: load(timelinesQuery), study: true, blurb: "See events and their ayat laid out in order", group: 'more' },
   { id: 'dawah',  label: 'Dawah',      short: 'Dawah',  arabic: 'دعوة',   emblem: 'dawah', Component: DawahPanel, open: load(dawahQuery), study: true, blurb: "Answers to common questions, with the evidence", group: 'more' },

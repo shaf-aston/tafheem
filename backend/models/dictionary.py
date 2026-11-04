@@ -119,6 +119,13 @@ class RootMeaningResponse(BaseModel):
     # only when there is English to badge, so the card never shows a credit for
     # something it is not displaying.
     english_source: Source | None = None
+    # Whether the whole entry's English is already kept (the whole-book run), so
+    # opening it costs no model call. A wide screen opens it beside the Arabic at
+    # once when it is; otherwise it waits for the reader's press.
+    english_kept: bool = False
+    # Whether the entry cut into its words is kept, so the card can open on
+    # Word by word without a model call.
+    senses_kept: bool = False
 
 
 class LexiconEntry(BaseModel):
@@ -136,6 +143,10 @@ class LexiconEntry(BaseModel):
     book_root: str | None = None
     text: str
     source: Source
+    # One English line saying what the entry covers, for the Arabic books only,
+    # made ahead of time (services/dictionary/lexicon_gists). Absent until made.
+    gist: str | None = None
+    gist_source: Source | None = None
 
 
 class LexiconsResponse(BaseModel):
@@ -188,5 +199,38 @@ class RootEntryLinesResponse(BaseModel):
     lines: list[EntryLine]
     # True when the entry was longer than the model was given: the lines cover
     # its opening, and the card says so.
+    truncated: bool = False
+    source: Source
+
+
+class SenseExample(BaseModel):
+    """A saying from the book that uses the word, its Arabic cut from the book's line."""
+
+    arabic: str
+    say: str = ""
+    english: str
+
+
+class EntrySense(BaseModel):
+    """One word the entry explains, with the book's own lines about it.
+
+    `word` is cut from those lines (services/dictionary/root_senses), never the
+    model's spelling; "" for lines that explain no word."""
+
+    arabic: list[str]
+    word: str = ""
+    say: str = ""
+    gloss: str
+    examples: list[SenseExample] = []
+
+
+class RootEntrySensesResponse(BaseModel):
+    """The rest of a Maqayees entry cut into the words it explains.
+
+    Only ever sent when every line of the rest sits under exactly one word, in
+    order; an answer that could not be lined up is refused by the backend."""
+
+    root: str
+    senses: list[EntrySense]
     truncated: bool = False
     source: Source

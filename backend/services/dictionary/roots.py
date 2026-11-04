@@ -28,6 +28,7 @@ from backend.services.dictionary import service as dictionary_service
 from backend.services.nahw import book as nahw_book
 from backend.services.quran import corpus as quran_corpus
 from backend.services.dictionary import root_meaning
+from backend.services.text.harakat import HIDDEN_CASE
 from backend.services.text.arabic_text import (
     as_root_letters,
     bare_letters,
@@ -98,7 +99,7 @@ def spelling(root: str) -> str:
     return ""
 
 
-def settle(pattern: str, lemma: str = "") -> str:
+def settle(pattern: str, lemma: str = "", word: str = "") -> str:
     """CAMeL's root made one a book files; "" when none does.
 
     A root CAMeL spells out whole is kept only if it is one: three to five
@@ -109,13 +110,18 @@ def settle(pattern: str, lemma: str = "") -> str:
     the one whose letters the lemma carries (بيت is ب#ت with its ي), then و, the
     commoner. A root the lemma is filed under is tried too when it has CAMeL's
     sure letters in place: CAMeL has ماء as م## though the books file it under م و ه.
+    A lemma with a sure letter the typed `word` lacks is not its lemma (CAMeL files رأيت,
+    see, under راوند, rhubarb), so the word's own filing and letters choose instead.
     """
+    if word and lemma and not _lemma_of(lemma, word):
+        lemma = ""
+    pattern = pattern.replace("ة", "")  # never a radical: CAMeL's خدجة for خديجة is خدج
     if UNKNOWN not in pattern and len(pattern) >= FEWEST_RADICALS:
         if not ROOT_SHAPE.fullmatch(pattern):
             return ""
         # A book files a three-letter root it knows; a longer one (خنزر, قسطس) it seldom lists as one.
         return spelling(pattern) if len(pattern) == FEWEST_RADICALS else pattern
-    filed = _filed_roots(lemma) if lemma else []
+    filed = _filed_roots(lemma or word) if lemma or word else []
     if len(pattern) < FEWEST_RADICALS:  # a slip: the lemma's own root, holding the letters CAMeL gave
         short = as_root_letters(pattern)
         return next((spelt for root in filed if root_letters_in_order(short, as_root_letters(root)) == len(short)
@@ -127,13 +133,39 @@ def settle(pattern: str, lemma: str = "") -> str:
     if not fits:
         return ""
     # The lemma's letters with its hamza kept: folded for searching, قَرَأ carried no ء and ق.ر.# came out قرو.
-    lemma_letters = as_root_letters(lemma)
+    lemma_letters = as_root_letters(lemma or word)
 
     def score(fit: tuple[str, str]) -> tuple[int, int]:
         _, letters = fit
         return _key(letters) in filed_keys, root_letters_in_order(as_root_letters(letters), lemma_letters)
 
     return max(fits, key=score)[0]  # max keeps the first of equals: و before ي before ء
+
+
+def lemma_of(lemma: str, word: str, root: str, verb: bool) -> str:
+    """CAMeL's lemma when `word` carries it; else the Qur'an's most used lemma of the word's
+    root and kind that the word does carry (رأيت: رأى, where CAMeL says راوند, rhubarb); with none, CAMeL's."""
+    if not word or _lemma_of(lemma, word):
+        return lemma
+    filed = _corpus_roots().get(_key(root)) if root else None
+    forms = _corpus(quran_corpus.occurrences_of_root, filed, 0, default={}).get("forms", []) if filed else []
+    kind = "V" if verb else "N"
+    fits = [bare for form in forms if form["pos"] == kind and _lemma_of(bare := strip_diacritics(form["lemma"]), word)]
+    letters = as_root_letters(strip_diacritics(word))
+    # the one holding most of the word's letters, then the most used: المعتدين is معتدي's, not عدو's
+    return max(fits, key=lambda bare: root_letters_in_order(as_root_letters(bare), letters), default=lemma)
+
+
+def _lemma_of(lemma: str, word: str) -> bool:
+    """Whether `word` carries each sure letter of `lemma` in order: a weak letter, a hamza and
+    ة can drop or change (قال of قول, بيوت of بيت, سنين of سنة), a doubled letter be written once
+    (أهلة of هلال), and a dual's or plural's ن go before what it is joined to (أبواه of أبوان);
+    no other letter can."""
+    spelled = as_root_letters(lemma)
+    if spelled.endswith(HIDDEN_CASE):
+        spelled = spelled[:-1]
+    sure = re.sub(r"(.)\1", r"\1", "".join(letter for letter in spelled if letter not in WEAK + ("ا", "ة")))
+    return root_letters_in_order(sure, as_root_letters(strip_diacritics(word))) == len(sure)
 
 
 def _in_place(root: str, pattern: str) -> bool:
@@ -148,6 +180,11 @@ def _filed_roots(word: str) -> list[str]:
     if corpus := _corpus(quran_corpus.root_of, word, default=""):
         found.append(corpus)
     return found
+
+
+def tagged_rootless(word: str) -> bool:
+    """Whether the Qur'an tags `word` with no root: a particle, or a foreign name (موسى، إبراهيم)."""
+    return _corpus(quran_corpus.root_of, word, default=None) == ""
 
 
 def readings(word: str) -> list:
@@ -167,7 +204,8 @@ def _read_whole(word: str) -> list:
 
     out = []
     for reading in morphology.readings(word):
-        settled = reading._replace(root=settle(reading.root, reading.lemma) if reading.root else "")
+        root = settle(reading.root, reading.lemma, word) if reading.root else ""
+        settled = reading._replace(root=root, lemma=lemma_of(reading.lemma, strip_diacritics(word), root, reading.verb))
         if settled not in out:
             out.append(settled)
     return out

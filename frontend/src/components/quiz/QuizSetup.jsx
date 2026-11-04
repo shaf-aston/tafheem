@@ -1,9 +1,9 @@
 import { DIRECTIONS, MEANINGS } from '../../lib/quiz/quiz'
 import { BANKS, QUIZ, WHOLE_SET_SCOPES } from '../../lib/quiz/quizBanks'
 
-import Segmented from '../ui/Segmented'
+import Segmented from '../ui/inputs/Segmented'
 import SettingsPill from './SettingsPill'
-import WheelPicker from '../ui/WheelPicker'
+import WheelPicker from '../ui/inputs/WheelPicker'
 
 /**
  * The Quiz tab's one quiet line of setup, so the question is the first thing you

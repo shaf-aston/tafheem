@@ -1,7 +1,7 @@
 /**
  * The kit: every token and every element, drawn from the live code.
  *
- * Reached at /app/kit and listed nowhere (the tab is `hidden`). Tokens are
+ * Reached at /kit and listed nowhere (the tab is `hidden`). Tokens are
  * read from theme.json, so a new one appears here with no edit to this file;
  * the elements are the real ui/ primitives, so a restyle shows here the moment
  * it lands. The token names printed beside each element are written by hand
@@ -16,30 +16,31 @@ import { tokenGroups, variableName } from '../../theme'
 import { CONFIDENCE } from '../../lib/text/confidence'
 import mascot from '../../config/mascot.json'
 
-import ArabicText from '../ui/ArabicText'
-import Chip from '../ui/Chip'
-import Disclosure from '../ui/Disclosure'
-import EmptyState from '../ui/EmptyState'
-import ErrorAlert from '../ui/ErrorAlert'
-import IndexNotBuilt from '../ui/IndexNotBuilt'
-import Mascot from '../ui/Mascot'
-import MicButton from '../ui/MicButton'
-import Popover from '../ui/Popover'
-import PrimaryButton from '../ui/PrimaryButton'
-import RetryButton from '../ui/RetryButton'
-import SearchBox from '../ui/SearchBox'
-import SectionHeader from '../ui/SectionHeader'
-import Segmented from '../ui/Segmented'
-import ShowRest from '../ui/ShowRest'
-import { AnalyzerSkeleton, Skeleton } from '../ui/Skeleton'
-import SmallButton from '../ui/SmallButton'
-import SourceBadge from '../ui/SourceBadge'
-import SpeakButton from '../ui/SpeakButton'
-import StatusNote from '../ui/StatusNote'
-import Tooltip from '../ui/Tooltip'
-import TranslationStrip from '../ui/TranslationStrip'
-import TwinCards from '../ui/TwinCards'
-import WheelPicker from '../ui/WheelPicker'
+import ArabicText from '../ui/text/ArabicText'
+import Chip from '../ui/inputs/Chip'
+import Disclosure from '../ui/overlays/Disclosure'
+import EmptyState from '../ui/feedback/EmptyState'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import IndexNotBuilt from '../ui/feedback/IndexNotBuilt'
+import Mascot from '../ui/display/Mascot'
+import MicButton from '../ui/buttons/MicButton'
+import Popover from '../ui/overlays/Popover'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
+import RetryButton from '../ui/buttons/RetryButton'
+import SearchBox from '../ui/inputs/SearchBox'
+import SectionHeader from '../ui/display/SectionHeader'
+import Segmented from '../ui/inputs/Segmented'
+import ShowRest from '../ui/buttons/ShowRest'
+import { AnalyzerSkeleton, Skeleton } from '../ui/feedback/Skeleton'
+import SmallButton from '../ui/buttons/SmallButton'
+import KitMotion from './KitMotion'
+import SourceBadge from '../ui/feedback/SourceBadge'
+import SpeakButton from '../ui/buttons/SpeakButton'
+import StatusNote from '../ui/feedback/StatusNote'
+import Tooltip from '../ui/overlays/Tooltip'
+import TranslationStrip from '../ui/text/TranslationStrip'
+import TwinCards from '../ui/text/TwinCards'
+import WheelPicker from '../ui/inputs/WheelPicker'
 
 // A value drawn as a swatch: a literal colour or a reference to a colour token.
 const COLOURISH = /^(#[0-9a-f]{3,8}|rgba?\(|hsla?\(|color-mix\(|var\(--)/i
@@ -52,6 +53,7 @@ const TWIN_QUERY = {
   idle: {
     data: {
       key: '2:59',
+      text: TWIN_MINE.text,
       partners: [{
         key: '7:162',
         text: 'فَبَدَّلَ الَّذِينَ ظَلَمُوا مِنْهُمْ قَوْلًا غَيْرَ الَّذِي قِيلَ لَهُمْ',
@@ -309,27 +311,6 @@ function Elements({ accent }) {
   )
 }
 
-function Motion() {
-  // Remounting is what replays a one-shot animation; the key is the whole trick.
-  const [run, setRun] = useState(0)
-  return (
-    <Card title="Motion" note=".dance, .rise-in, .skeleton (the shimmer); durations from the motion and dance groups">
-      <SmallButton onClick={() => setRun((n) => n + 1)}>Replay</SmallButton>
-      <div key={run} className="flex flex-wrap items-center gap-4">
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="dance rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] px-4 py-3 type-small"
-            style={{ '--i': i }}>.dance {i}</div>
-        ))}
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="rise-in rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] px-4 py-3 type-small"
-            style={{ '--i': i }}>.rise-in {i}</div>
-        ))}
-        <div className="skeleton h-10 w-40" aria-hidden="true" />
-      </div>
-    </Card>
-  )
-}
-
 export default function KitPanel({ accent }) {
   return (
     <div className="space-y-6">
@@ -346,8 +327,8 @@ export default function KitPanel({ accent }) {
       <h2 className="text-sm font-semibold text-[var(--text-dim)]">Elements</h2>
       <Elements accent={accent} />
 
-      {/* No "Motion" heading: the card's own title says it. */}
-      <Motion />
+      <h2 className="text-sm font-semibold text-[var(--text-dim)]">Motion</h2>
+      <KitMotion />
     </div>
   )
 }

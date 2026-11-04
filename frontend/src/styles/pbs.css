@@ -16,7 +16,7 @@
   overflow: hidden;
   transition: transform calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) var(--motion-ease), box-shadow calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) ease;
 }
-.pbs-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.pbs-card:hover { transform: translateY(calc(var(--motion-lift-px) * -1px)); box-shadow: var(--shadow-lift); }
 .pbs-card .pbs-go {
   position: absolute; bottom: 8px; right: 12px;
   opacity: 0; transform: translateX(6px);
@@ -30,7 +30,7 @@
   transform-origin: center;
   transition: transform calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) var(--motion-ease);
 }
-.pbs-kid:hover { transform: translateY(-2px) scale(1.035); }
+.pbs-kid:hover { transform: translateY(calc(var(--motion-lift-px) * -1px)) scale(1.035); }
 .pbs-branch:hover { transform: scale(1.03); }
 
 @media (prefers-reduced-motion: reduce) {

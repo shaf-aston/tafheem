@@ -4,9 +4,10 @@
  * held in view. `state` from lib/grow/useLessonWorld.js.
  */
 import { sayIn } from '../../lib/text/say'
-import ErrorAlert from '../ui/ErrorAlert'
-import PrimaryButton from '../ui/PrimaryButton'
-import { Skeleton } from '../ui/Skeleton'
+import { PHONE, useMedia } from '../../lib/hooks/useMedia'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
+import { Skeleton } from '../ui/feedback/Skeleton'
 import { SCENES } from './scenes'
 import WorldHeader from './WorldHeader'
 
@@ -56,6 +57,12 @@ function StageLine({ world, lessons }) {
 
 export default function LessonWorld({ world, accent, state: lessons, onBack, onStart }) {
   const Scene = SCENES[world.view]
+  const phone = useMedia(PHONE)
+  const start = lessons.ready && (
+    <PrimaryButton accent={accent} disabled={!lessons.fresh && !lessons.dueCount} onClick={onStart}>
+      {say('Start a lesson')}
+    </PrimaryButton>
+  )
   return (
     <div style={{ '--w': accent }}>
       <WorldHeader world={world} onBack={onBack} />
@@ -72,13 +79,14 @@ export default function LessonWorld({ world, accent, state: lessons, onBack, onS
             <p className="grow-hint tabular-nums">
               {say('{learnt} learnt · {due} due for review · {fresh} not met yet', { learnt: lessons.learnt, due: lessons.dueCount, fresh: lessons.fresh })}
             </p>
-            <PrimaryButton accent={accent} disabled={!lessons.fresh && !lessons.dueCount} onClick={onStart}>
-              {say('Start a lesson')}
-            </PrimaryButton>
+            {!phone && start}
             <p className="grow-hint">{say('Learnt means right again on another day.')}</p>
           </aside>
         </div>
       )}
+      {/* A phone: the same button pinned above the tab bar, under the thumb
+          however far down the world is scrolled (growWorlds.css). */}
+      {phone && start && <div className="grow-start-pin">{start}</div>}
     </div>
   )
 }

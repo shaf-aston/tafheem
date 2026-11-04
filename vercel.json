@@ -10,7 +10,7 @@
       "destination": "/app.html"
     },
     {
-      "source": "/app/:tab/:place*",
+      "source": "/:tab(home|nahw|sarf|quran|daleel|hadith|dict|dictionary|mem|memorise|similar|grow|quiz|timelines|dawah|colloq|colloquial|map|kit|iraab|tarkeeb)/:place*",
       "destination": "/app.html"
     },
     {
@@ -34,5 +34,12 @@
       "claude/*": false
     }
   },
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- frontend vercel.json backend/data/hadith/chain.json"
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- frontend vercel.json backend/data/hadith/chain.json",
+  "redirects": [
+    {
+      "source": "/app/:path+",
+      "destination": "/:path+",
+      "permanent": true
+    }
+  ]
 }

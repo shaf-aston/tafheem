@@ -33,6 +33,8 @@ _NOT_LETTER = re.compile("[^\u0621-\u063A\u0641-\u064A\u0671]")
 _QUOTED = re.compile('["\u201c\u201d\u00ab\u00bb{}()]')
 # A full stop ends a sentence; a name never runs on past one.
 _STOP = re.compile("[.\u061f!]")
+# A comma closes one narrator's name: "A، B، C، قالوا" is three names, not one of the length of all three.
+_COMMA = re.compile("[،,]$")
 # The wa or fa joined to the front of a word, with its vowel.
 _ATTACHED = re.compile("^[وف][ً-ٰٟ]*")
 # A word as printed: its letters and vowels, with commas and direction marks gone.
@@ -54,6 +56,7 @@ class _Word(NamedTuple):
     word: str
     quoted: bool
     stop: bool
+    comma: bool
 
 
 def _bare(word: str) -> str:
@@ -110,14 +113,15 @@ def chain_of(arabic: str | None) -> Cut:
 
     The books do not mark where the chain ends, so it is walked, link by link: a passing-on word (حدثنا، عن) then a
     name, until a saying word (قال، أنها) that no further link follows. The body starts at that last saying word,
-    so "قالت النساء" keeps its verb. A name past `name` words, running on past a full stop, or holding a quote, a
+    so "قالت النساء" keeps its verb. A name (a comma ends one) past `name` words, running on past a full stop, or holding a quote, a
     bracket or the chain's note on itself (بهذا الإسناد), or a text that does not open with a link, means the end is
     not plain: the whole text comes back as the body, or the cut made before the latest hands word (أن طاوسا
     أخبره reads on; أن النبي نهى عن reads on and fails, so the cut at أن stands)."""
     text = arabic or ""
     whole = Cut("", "", text, None)
     tokens = list(re.finditer(r"\S+", text))
-    words = [_Word(m.start(), _bare(m.group()), bool(_QUOTED.search(m.group())), bool(_STOP.search(m.group())))
+    words = [_Word(m.start(), _bare(m.group()), bool(_QUOTED.search(m.group())), bool(_STOP.search(m.group())),
+                   bool(_COMMA.search(m.group())))
              for m in _outside_asides(tokens, [m.group() == _RULE["aside"] for m in tokens])]
     words = [w for w in words if w.word or w.quoted or w.stop]
     if not words or words[0].word not in _LINKS:
@@ -165,6 +169,7 @@ def chain_of(arabic: str | None) -> Cut:
                 if name > _RULE["name"]:
                     return held
             ended = ended or words[i].stop
+            name = 0 if words[i].comma else name
             i += 1
         if i == len(words):
             return held

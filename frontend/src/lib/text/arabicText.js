@@ -27,6 +27,9 @@ export const hasDiacritics = (text) => DIACRITICS.test(text ?? '')
  * commandRoutes each had their own copy of this range, drifting apart. */
 export const isArabic = (text) => /[؀-ۿ]/.test(text ?? '')
 
+/** True when a mushaf word is spoken: it has a letter, so a lone pause sign (ۖ ۚ) is not. */
+export const isSpoken = (word) => /[ء-يٱ]/.test(word ?? '')
+
 /**
  * Whether a text is written mainly in Arabic letters. Lane's entries sit where
  * a book's Arabic goes but are English with Arabic words in them, and set
@@ -122,25 +125,6 @@ export const sameSpokenWord = (typed, printed) => {
   const theirs = recitedForms(printed)
   return [...recitedForms(typed)].some((form) => form !== '' && theirs.has(form))
 }
-
-// ة and ه sound the same at the end of a spoken word, and colloquial spelling
-// is not standardised, so for speech the two are one letter.
-const TA_MARBUTA = /ة/g
-
-/**
- * A phrase as it is spoken, for checking a typed or transcribed answer in
- * Colloquial. Unlike recitedForm it keeps word breaks (answers are whole
- * phrases) and folds ة into ه (spoken, not spelled): anything that is not a
- * letter becomes one space.
- */
-export const spokenForm = (text) =>
-  bareForm(text)
-    .replace(TATWEEL, '')
-    .replace(ALIF_MAQSURA, 'ي')
-    .replace(TA_MARBUTA, 'ه')
-    .replace(NOT_A_LETTER, ' ')
-    .replace(/ +/g, ' ')
-    .trim()
 
 // Letters joining nothing after them (ا د ذ ر ز و and the hamza and final forms).
 const JOINS_NOTHING_ONWARD = 'ءاأإآٱدذرزوؤةى'

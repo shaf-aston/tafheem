@@ -12,10 +12,10 @@ import { useEffect, useRef, useState } from 'react'
 import { isArabic } from '../../lib/text/arabicText'
 import { NOTES, runOf } from '../../lib/nahw/notes'
 
-import ArabicText from '../ui/ArabicText'
-import EmptyState from '../ui/EmptyState'
-import PrimaryButton from '../ui/PrimaryButton'
-import SmallButton from '../ui/SmallButton'
+import ArabicText from '../ui/text/ArabicText'
+import EmptyState from '../ui/feedback/EmptyState'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
+import SmallButton from '../ui/buttons/SmallButton'
 
 // A whole paragraph at the large size fills the screen; only a short card gets it.
 const LONG_CARD = 80

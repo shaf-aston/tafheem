@@ -17,6 +17,7 @@
 
 /* The round close button, also a lesson's ×. */
 .grow-x { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-hi); display: grid; place-items: center; font-size: 1.2rem; color: var(--text-dim); }
+.grow-x:disabled { opacity: 0.4; cursor: default; } /* the first step has nowhere to go back to; say so, as SmallButton does */
 
 @media (max-width: 400px) {
   .grow-prac { gap: 12px; }

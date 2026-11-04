@@ -5,12 +5,19 @@ the roles, the teacher's checks, the naming tree and the bracket tree's vocabula
 from __future__ import annotations
 
 import json
+import re
 from functools import lru_cache
 from pathlib import Path
 from types import SimpleNamespace
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import PRESENT_PREFIX, has_tanween, letters
+from backend.services.text.harakat import (
+    PRESENT_PREFIX,
+    SHADDA,
+    SUKUN,
+    has_tanween,
+    letters,
+)
 
 RULES = Path(__file__).parent.parent.parent / "data" / "nahw_rules"
 
@@ -38,6 +45,16 @@ def book_words(family: str, part: str = "words") -> frozenset[str]:
     return frozenset(_closed()["families"][family][part])
 
 
+@lru_cache(maxsize=None)
+def _verbs_with_objects() -> frozenset[str]:
+    return frozenset(book_file("verb_objects.json")["verbs"])
+
+
+def takes_object(lemma: str) -> bool:
+    """A verb a noun is the object of in a third of its Qur'an uses (scripts/nahw/build_verb_objects.py)."""
+    return book_spelling(lemma) in _verbs_with_objects()
+
+
 def book_map(family: str, part: str) -> dict[str, str]:
     """A family's word -> value table (the place a question noun fills, ...)."""
     return _closed()["families"][family][part]
@@ -45,11 +62,11 @@ def book_map(family: str, part: str) -> dict[str, str]:
 
 def extra_ba_on(verb: str) -> dict | None:
     """كفى، ليس: the rule a زائدة باء on this verb follows (rel, role, place_case, alone), or none."""
-    return _closed()["families"]["extra_ba"]["on"].get(verb)
+    return _closed()["families"]["extra_ba"]["on"].get(book_spelling(verb))
 
 
 def is_extra_ba(letter: str) -> bool:
-    return letter in _closed()["families"]["extra_ba"]["words"]
+    return book_spelling(letter) in _closed()["families"]["extra_ba"]["words"]
 
 
 def extra_ba_named() -> str:
@@ -76,7 +93,7 @@ def doer_written_in(lemma: str, family: str) -> bool:
 
 def kaffa_sister(word: str) -> str | None:
     """إنما → إن: the إن sister a كافة ما is written onto, for a bare word; none otherwise."""
-    family = _closed()["families"]["inna"]
+    family, word = _closed()["families"]["inna"], book_spelling(word)
     ma = family["kaffa"]["ma"]
     return word[:-len(ma)] if word.endswith(ma) and word[:-len(ma)] in family["words"] else None
 
@@ -92,10 +109,13 @@ def book_merges(family: str) -> dict:
     return _closed()["families"][family].get("merges", {})
 
 
+@lru_cache(maxsize=8192)
 def book_spelling(lemma: str) -> str:
-    """The parser's lemma as the book writes it: an attached clitic's '+' aside, and
-    the wasl alif ٱ (ٱنفك) written ا (انفك)."""
-    return lemma.strip("+").replace("ٱ", "ا")
+    """The parser's lemma or form as the book writes it: bare letters (the maddah and the
+    Quran's small marks off too, which the parser's own cleaning keeps), an attached clitic's
+    '+' aside, and the wasl alif ٱ (ٱنفك) written ا (انفك). Every question this module asks
+    of a word spells it so first: a caller passes the token's lemma or form as it is."""
+    return strip_diacritics(lemma).strip("+").replace("ٱ", "ا")
 
 
 def is_one(lemma: str, family: str, part: str = "words") -> bool:
@@ -129,6 +149,36 @@ def joined_off(word: str) -> tuple[str, ...]:
     return tuple(dict.fromkeys(stem for _, stem in sorted(found, key=lambda peeled: peeled[0])))
 
 
+def sakt_off(word: str) -> str | None:
+    """The typed word without a هاء السكت, when it has that shape: a sakin ه after a letter
+    with fatha (مَالِيَهْ، هِيَهْ، لِمَهْ). Whether it is one is the rest's reading: only a word
+    built on its vowel takes it (closed_words haa_sakt); on one that takes i'rab (كِتَابَهْ) the ه
+    is a pronoun."""
+    marked = letters(word)
+    if len(marked) > 1 and marked[-1] == (_closed()["families"]["haa_sakt"]["letter"], {SUKUN}) and "َ" in marked[-2][1]:
+        return word[:word.rindex(marked[-1][0])]
+    return None
+
+
+def attention_off(word: str, lemma: str) -> str | None:
+    """أَيُّهَا is أَيُّ with the ها of attention written on: the called noun without it, else None
+    (closed_words nida `attention`)."""
+    tail = _closed()["families"]["nida"]["attention"]["letters"]
+    if not is_one(lemma, "nida", "called_nouns") or not strip_diacritics(word).endswith(tail):
+        return None
+    return word[:word.rindex(tail[0])]
+
+
+def attention_said() -> str:
+    """What a card says of that ها (closed_words nida `attention`)."""
+    return _closed()["families"]["nida"]["attention"]["said"]
+
+
+def sakt_said() -> str:
+    """What a card says of the هاء السكت it shows (closed_words haa_sakt)."""
+    return _closed()["families"]["haa_sakt"]["said"]
+
+
 @lru_cache(maxsize=None)
 def family_cards() -> tuple[tuple[str, dict], ...]:
     """(family, card) for every family whose words govern (إن وأخواتها، حروف الجر...): what
@@ -154,7 +204,7 @@ def only_adverb(lemma: str) -> bool:
     """On the book's time or place list and on no other family's: إذ، قبل، مع are nouns
     (ظروف) whatever a parser tags them; لمّا, also a particle of jazm, is not settled here."""
     families = _closed()["families"]
-    word = lemma.strip("+")
+    word = book_spelling(lemma)
     return any(word in families[f]["words"] for f in ADVERB_FAMILIES) and not any(
         word in kept.get("words", []) for name, kept in families.items() if name not in ADVERB_FAMILIES)
 
@@ -162,7 +212,7 @@ def only_adverb(lemma: str) -> bool:
 def is_built_word(lemma: str) -> bool:
     """أمس، حيث، الآن: a time or place word built on one ending (closed_words `built`); and
     حيثما، أينما، متى, a condition's time or place word, built whether or not an answer follows."""
-    word = lemma.strip("+")
+    word = book_spelling(lemma)
     opened = condition_of(word)
     return any(word in book_words(f, "built") for f in ADVERB_FAMILIES) or bool(
         opened and opened["adverb"] and opened["built"])
@@ -173,7 +223,7 @@ def six_noun_case(base: str, lemma: str) -> str | None:
     لِأَخِيهِ), from the bare base word (joined letters and pronoun off) and its lemma.
     A lemma ending in a case letter (CAMeL's أبو، the book's ذو، فو) carries it on its stem."""
     by_letter = book_map("six_nouns", "case_by_letter")
-    lemma = strip_diacritics(lemma)
+    lemma = book_spelling(lemma)
     one_of = lemma in book_words("six_nouns") or lemma[:-1] in book_words("six_nouns")
     stem = lemma[:-1] if lemma[-1:] in by_letter else lemma
     if not one_of or bare_letters(base[:-1]) != bare_letters(stem):
@@ -197,6 +247,34 @@ def is_diptote(typed: str, pos: str, lemma: str, *, attached: bool, annexed: boo
     marked = letters(typed)
     return (bool(marked) and "َ" in marked[-1][1] and not has_tanween(typed) and not strip_diacritics(typed).startswith(("ال", "ٱل"))
             and not (attached or annexed or is_mabni(pos) or is_one(lemma, "tamyeez_head")))
+
+
+def measure(pattern: str) -> str:
+    """The analyser's pattern laid back on its measure: a doubled root writes its last two
+    radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
+    in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3), a last radical hamza keeps its seat in place of the 3
+    (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3)."""
+    pattern = pattern.removeprefix("ال")
+    if "3" not in pattern and "2" in pattern:
+        pattern = re.sub(r"(?<=2)([\u064b-\u0652]*[اوي]?)[ءأإئؤ]", r"\g<1>3", pattern, count=1)
+    if "3" not in pattern and "2" + SHADDA in pattern:
+        return pattern.replace("2" + SHADDA, "2" + SUKUN + "3", 1)
+    if "2" not in pattern:  # قِيَام 1ِيا3: the weak letter stands as the 2, and the alef after it implies its fatha
+        pattern = re.sub(r"(?<=1[\u064b-\u0652])[وي](?=[\u064b-\u0652]?[اوي]?3)", "2", pattern, count=1)
+        return pattern.replace("2ا", "2َا")
+    return pattern
+
+
+def participle_shape(pattern: str) -> bool:
+    """ضَارِب، مُكْرَم، فَرِح: the analyser's pattern laid on a measure of the participles and the صفة
+    المشبهة (closed_words participle_patterns)."""
+    return measure(pattern).startswith(tuple(book_words("participle_patterns")))
+
+
+def elative_shape(pattern: str, lemma: str) -> bool:
+    """أَعْلَى، أَكْبَر: the analyser's pattern holds the elative's shape (closed_words elative_patterns), with or without ال or a proclitic;
+    خير and شر have lost its hamza, so they are listed by word (`hamza_dropped`)."""
+    return any(shape in pattern for shape in book_words("elative_patterns")) or is_one(lemma, "elative_patterns", "hamza_dropped")
 
 
 def is_fem_plural(base: str, number: str) -> bool:
@@ -231,6 +309,11 @@ def role_table() -> dict[str, tuple[str | None, str | None]]:
     return {role: (drawn["key"], drawn["tone"]) for role, drawn in _roles()["roles"].items()}
 
 
+def roles_keyed(*keys: str) -> tuple[str, ...]:
+    """Every role the card colours by one of these keys (`fail` is فاعل and نائب فاعل)."""
+    return tuple(role for role, (key, _tone) in role_table().items() if key in keys)
+
+
 @lru_cache(maxsize=1)
 def named_roles() -> SimpleNamespace:
     """The roles the code itself tests for, by id (`named_roles().mubtada`); roles.json spells them."""
@@ -259,7 +342,7 @@ def condition_of(word: str) -> dict | None:
     `adverb` whether it names a time or a place (متى، أينما), `built` whether it is مبني
     (every conditional word but أيّ), `shared` whether a relative or a question word has its
     letters too (مَنْ، ما، متى), so only an answer shows it opens a condition (إذا has none)."""
-    frame = frames()["condition"]
+    frame, word = frames()["condition"], book_spelling(word)
     words = _closed()["families"]
     # a member whose condition differs from its family's lays its own over it (لولا: before a noun)
     return next(({**frame, **own, **own.get("by_word", {}).get(word, {}), "family": family, "noun": part == "conditional_nouns",
@@ -317,14 +400,26 @@ def unseen_case(role: str | None) -> str | None:
 def reason(role: str, mabni: bool = False) -> str:
     """The reason a card wearing this role shows; a role with no entry is just named, never
     given another role's text. A mabni word (الذي، هذا) fills the place of its case
-    rather than wearing it, so its reason says so and keeps only the rule."""
-    said = teacher_rules()["reasons"].get(role) or f"{role}."
-    place = case_of(role)
+    rather than wearing it, so its reason says so and keeps only the rule. A name written
+    vowelled (a recorded ayah's مُبْتَدَأٌ) is the book's bare one; a particle the book has no
+    entry for (the treebank's حرف نفي، لام التوكيد) is said built, with no place."""
+    reasons, words = teacher_rules()["reasons"], teacher_rules()["case_said"]
+    name = role if role in reasons or case_of(role) else strip_diacritics(role)  # فعل ماضٍ is the book's own
+    said = reasons.get(name) or (words["particle"].format(role=name) if name in particle_names() else f"{role}.")
+    place = case_of(name)
     if not (mabni and place):
         return said
-    words = teacher_rules()["case_said"]
     rule = said[said.find("القاعدة"):] if "القاعدة" in said else ""
-    return f"{words['mabni_noun'].format(place=words['place'][place], role=role)}. {rule}".strip()
+    return f"{words['mabni_noun'].format(place=words['place'][place], role=name)}. {rule}".strip()
+
+
+@lru_cache(maxsize=1)
+def particle_names() -> frozenset[str]:
+    """Every name the treebank gives a particle (tarkeeb.json `particle_kinds`), bare:
+    a shared term spelled as the term (حرف مشبه بالفعل), any other as written (حرف نفي)."""
+    terms = tarkeeb_rules()["terms"]
+    return frozenset(strip_diacritics(terms[named]["ar"] if named in terms else named)
+                     for named in tarkeeb_rules()["treebank"]["particle_kinds"].values())
 
 
 # ── The bracket tree's vocabulary (tarkeeb.json): one wording for every tree ──

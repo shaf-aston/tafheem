@@ -1,4 +1,4 @@
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 
 // One topic on the home grid: how many questions it holds, its name and what it covers.
 export default function TopicTile({ topic, index, selected, onPick }) {

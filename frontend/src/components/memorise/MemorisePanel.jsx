@@ -11,50 +11,55 @@
  * no knowledge of the screen; the books are in lib/memorise/books.js, with no knowledge
  * of either. This file only shows what those two decide.
  */
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { BOOKS } from '../../lib/memorise/books'
 import { DIFFICULTIES, printedPageOf, score } from '../../lib/memorise/memorise'
 import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 
+import { nextGapOnEnter } from './gapKeys'
 import Line from './Line'
 import ReciteStrip from './ReciteStrip'
 import SettingsSheet from './SettingsSheet'
-import EmptyState from '../ui/EmptyState'
-import Chip from '../ui/Chip'
-import ErrorAlert from '../ui/ErrorAlert'
-import PrimaryButton from '../ui/PrimaryButton'
-import SectionHeader from '../ui/SectionHeader'
-import Segmented from '../ui/Segmented'
-import Stepper from '../ui/Stepper'
-import WheelPicker from '../ui/WheelPicker'
-import { Skeleton } from '../ui/Skeleton'
+import EmptyState from '../ui/feedback/EmptyState'
+import Chip from '../ui/inputs/Chip'
+import ErrorAlert from '../ui/feedback/ErrorAlert'
+import PrimaryButton from '../ui/buttons/PrimaryButton'
+import SectionHeader from '../ui/display/SectionHeader'
+import Segmented from '../ui/inputs/Segmented'
+import Stepper from '../ui/inputs/Stepper'
+import WheelPicker from '../ui/inputs/WheelPicker'
+import { Skeleton } from '../ui/feedback/Skeleton'
 import {
-  difficultyOf, HIDDEN, useAnswers, useArrivedPage, useBookPage, useGaps, useHowYouAnswer,
-  usePageSteps, useReciteState, useReciteTurns, waysOf, withinPart,
+  difficultyOf, HIDDEN, useArrivedPage, useBookPage, useGaps, useHowYouAnswer,
+  usePageSteps, useReciteState, useReciteTurns, WAYS, withinPart,
 } from './hooks'
+import { gapsScope, useAnswers } from './useAnswers'
 
 export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
-  const { answers, setAnswers, checked, setChecked, shown, setShown, fresh } = useAnswers()
-  const { way, setWay, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay } = useHowYouAnswer(fresh)
+  const { way, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay } = useHowYouAnswer()
   const {
     bookId, book, parts, part, data, isPending, isError, error, refetch, pages, page, pageNumber, meaning,
     setMeaning, pinned, openAt, openPart, openPage, openBook, pageOfLine,
-  } = useBookPage({ fresh, setWay })
+  } = useBookPage({ incoming })
+  const { answers, setAnswers, checked, setChecked, shown, setShown, fresh } = useAnswers(
+    gapsScope({ bookId, part, pageNumber, way, difficulty, deal, pinned }),
+  )
   // The mushaf page this one actually is, when the layout has been built. Null
   // means the pages were sized by word count, and saying "page 3 of 21" without
   // claiming a printed number is the honest thing to show for that.
   const printedPage = printedPageOf(page)
   const { recitedPage, reciting, startFrom, startLabel, show } = useReciteState({ page, book, pinned, shown, setShown })
   const { blanks, choices } = useGaps({
-    data, page, pageNumber, deal, difficulty, way, hidden, startFrom,
+    data, page, pageNumber, deal, difficulty, way, hidden, startFrom, pinned,
   })
   const marks = page ? score(page, blanks, answers) : { right: 0, total: 0 }
-  const { partBy, stepPage, atStart, atEnd, swipe, slide } = usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart })
-  const { card, listen, elsewhere, where, askToGo, goElsewhere, setStayed } = useReciteTurns({
-    way, hidden, reciting, recitedPage, bookId, part, pageNumber, pinned, pages, partBy, openPart, pageOfLine,
+  const landing = useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart })
+  const card = useRef(null)
+  const { partBy, stepPage, atStart, atEnd, swipe, slide } = usePageSteps({ card, parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart, landing })
+  const { listen, elsewhere, where, askToGo, goElsewhere, setStayed } = useReciteTurns({
+    card, way, hidden, reciting, recitedPage, bookId, part, pageNumber, pinned, pages, partBy, openPart, pageOfLine,
   })
-  useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart })
 
   // How you practise, chosen once and left: beside the pickers on a wide screen,
   // behind one pill on a phone, where the pickers and both of these were three
@@ -70,7 +75,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const stamp = `${bookId}/${part}/${pageNumber}/${reciting.listening}`
   const opened = asked?.stamp === stamp ? asked : null
   const setOpen = (place) => setAsked(place && { ...place, stamp })
-  const ways = waysOf(book)
+  const ways = WAYS
   const missing = way === 'recite'
     ? [{ id: 'none', label: 'Show all' }, { id: HIDDEN, label: 'Hidden' }]
     : DIFFICULTIES.map((d) => ({ id: d.id, label: d.label }))
@@ -110,7 +115,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
 
   // Above the page and again under it, so a page read to its end turns from there.
   const pageSteps = (
-    <span className="flex items-center gap-2">
+    <span className="tap-thumb flex items-center gap-4">
       <Chip accent={accent} onClick={() => stepPage(-1)} disabled={atStart}>Previous</Chip>
       <Chip accent={accent} onClick={() => stepPage(1)} disabled={atEnd}>Next</Chip>
     </span>
@@ -147,18 +152,18 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
           : <>{answerWay}{missingSwitch}</>}
       </div>
 
-      {isPending && <Skeleton className="h-40 w-full" />}
+      {(isPending || landing) && <Skeleton className="h-40 w-full" />}
 
       {isError && (
         <ErrorAlert title="That part could not be read" error={error} fallback="The text comes from the Qur\'an tab\'s own source." onRetry={refetch} />
       )}
 
-      {data && pages.length === 0 && <EmptyState>Nothing to memorise here.</EmptyState>}
+      {data && !landing && pages.length === 0 && <EmptyState>Nothing to memorise here.</EmptyState>}
 
-      {page && (
+      {page && !landing && (
         <>
           {/* One wrapping row: the page and its arrows, then what helps. */}
-          <div className="flex items-center gap-2 flex-wrap text-sm text-[var(--text-dim)]">
+          <div className="tap-thumb flex items-center gap-2 flex-wrap text-sm text-[var(--text-dim)]">
             {/* A picker, not steps alone: stepping is fine for the next page
                 and useless for the fifteenth. The mushaf page, when known,
                 is the number a memoriser already uses, so it is the label. */}
@@ -213,7 +218,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             )}
           </div>
 
-          <div ref={card} data-recite-page="" key={`${bookId}/${part}/${pageNumber}`} {...slide}
+          <div ref={card} data-recite-page="" key={`${bookId}/${part}/${pageNumber}`} {...slide} onKeyDown={nextGapOnEnter}
             className={`rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-4 scroll-mt-4 ${slide.className}`}>
             {/* A flowing book runs its lines on as a printed mushaf does: one
                 block, justified, each ayah ending in its number, and never a
@@ -251,11 +256,12 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
               ))}
             </div>
             {/* Run on, a line has nowhere under it for its English, so the
-                page's translation follows the Arabic, one ayah to a line. */}
+                page's translation follows the Arabic. Newspaper columns fill the
+                width however long each ayah is, one column on a phone. */}
             {book.flow && meaning && (
-              <ol className="space-y-2">
+              <ol className="columns-[22rem] gap-x-10">
                 {page.filter((line) => line.english).map((line) => (
-                  <li key={line.id} className="type-body text-[var(--text-dim)] leading-relaxed max-w-prose">
+                  <li key={line.id} className="type-body text-[var(--text-dim)] leading-relaxed break-inside-avoid mb-2">
                     <span className="type-small text-[var(--text-faint)] tabular-nums" aria-hidden="true">{withinPart(line.label)}. </span>
                     {line.english}
                   </li>
@@ -268,7 +274,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             <ReciteStrip
               listening={reciting.listening}
               problem={reciting.problem}
-              heard={reciting.heard}
+              transcript={reciting.transcript}
               marks={reciting.marks}
               lines={recitedPage.lines}
               accent={accent}

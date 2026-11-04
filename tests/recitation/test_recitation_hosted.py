@@ -16,7 +16,7 @@ from pydantic import SecretStr
 
 from backend.config import get_settings
 from backend.services import recitation
-from backend.services.recitation import hosted, listen
+from backend.services.recitation import hosted, whisper
 
 
 @pytest.fixture(autouse=True)
@@ -38,9 +38,9 @@ def sound(monkeypatch):
     # Stood in at the engine's own door rather than at ours, so what the
     # decoder is handed is still really handed, and a test can still prove the
     # recording never went to the disk on the way.
-    listen._last = None
+    whisper._last = None
     yield handed
-    listen._last = None
+    whisper._last = None
 
 
 SOUND = b"pretend this is a recording"
@@ -108,7 +108,7 @@ def test_a_recitation_is_heard_on_groq_when_it_is_available_too(monkeypatch):
     monkeypatch.setattr(hosted, "is_available", lambda key: True)
     asked = []
     monkeypatch.setattr(hosted, "transcribe", lambda *a, **k: asked.append("groq") or "x")
-    monkeypatch.setattr(listen, "transcribe", lambda *a, **k: asked.append("here") or "x")
+    monkeypatch.setattr(whisper, "transcribe", lambda *a, **k: asked.append("here") or "x")
     recitation.transcribe(SOUND, language="ar")
     recitation.transcribe(SOUND, language=None)
     assert asked == ["groq", "groq"]
@@ -121,7 +121,7 @@ def test_a_recitation_never_gets_the_register_hint(monkeypatch):
     def read(path, **how):
         fake.how = how
         return [], None
-    monkeypatch.setattr(listen, "_engine", lambda name: type("M", (), {"transcribe": staticmethod(read)})())
+    monkeypatch.setattr(whisper, "engine", lambda name: type("M", (), {"transcribe": staticmethod(read)})())
     monkeypatch.setattr(hosted, "is_available", lambda key: False)
     # The hint is Whisper's, so the Whisper ear is the one asked here.
     monkeypatch.setattr(get_settings(), "listening_ears", "hosted,here")
@@ -182,7 +182,7 @@ def test_a_language_it_did_get_right_is_not_asked_twice(groq):
 def test_no_internet_falls_back_to_this_machine(groq, monkeypatch):
     """The one that matters: a dead cloud must never reach the reader."""
     groq(fail=ConnectionError("getaddrinfo failed"))
-    monkeypatch.setattr(listen, "transcribe", lambda audio, language=None, hint="": "heard here")
+    monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="": "heard here")
     assert recitation.transcribe(SOUND) == "heard here"
 
 
@@ -190,7 +190,7 @@ def test_a_retired_key_or_a_spent_allowance_falls_back_too(groq, monkeypatch):
     """Both have happened on this key. Neither is news the reader can act on."""
     for failure in (PermissionError("401 invalid api key"), RuntimeError("429 rate limit")):
         groq(fail=failure)
-        monkeypatch.setattr(listen, "transcribe", lambda audio, language=None, hint="": "heard here")
+        monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="": "heard here")
         assert recitation.transcribe(SOUND) == "heard here"
 
 
@@ -228,7 +228,7 @@ def test_switching_it_off_keeps_every_recording_on_this_machine(monkeypatch):
 def test_an_empty_recording_is_never_sent(groq, monkeypatch):
     """Nothing recorded is answered here, before any machine is troubled."""
     fake = groq()
-    monkeypatch.setattr(listen, "transcribe", lambda audio, language=None, hint="": "")
+    monkeypatch.setattr(whisper, "transcribe", lambda audio, language=None, hint="": "")
     assert recitation.transcribe(b"") == ""
     assert fake.asked == []
 
@@ -260,3 +260,39 @@ def test_an_upload_is_named_by_what_it_really_is(monkeypatch):
     webm = b"\x1a\x45\xdf\xa3" + bytes(16)
     hosted.transcribe(webm, KEY, "ar")
     assert fake.asked[1]["file"].name == "recording.webm"
+
+
+def _speech_with_breaths(seconds, breaths, rate=16000):
+    """Steady tone standing in for a voice, silent for half a second at each breath (seconds)."""
+    sound = np.full(int(seconds * rate), 0.3, dtype=np.float32)
+    for at in breaths:
+        sound[int(at * rate):int((at + 0.5) * rate)] = 0
+    return sound
+
+
+def test_a_long_recitation_is_cut_in_its_breaths_and_heard_in_order(groq, monkeypatch, sound):
+    """Groq cuts past 30s blindly, through words; pieces cut here land in a breath instead."""
+    import faster_whisper.audio
+
+    monkeypatch.setattr(faster_whisper.audio, "decode_audio",
+                        lambda path: _speech_with_breaths(70, breaths=[21, 45]))
+    fake = groq([("الأول", "Arabic"), ("الثاني", "Arabic"), ("الثالث", "Arabic")])
+    assert hosted.transcribe(SOUND, KEY) == "الأول الثاني الثالث"
+    assert [ask["file"].name for ask in fake.asked] == ["recording.wav"] * 3
+    # One language for the recording, and each piece reads the words heard before it.
+    assert [ask.get("language") for ask in fake.asked] == [None, "ar", "ar"]
+    assert [ask.get("prompt") for ask in fake.asked] == [None, "الأول", "الثاني"]
+
+
+def test_cuts_fall_in_silence_and_no_piece_runs_long():
+    from backend.services.recitation.loudness import quiet_cuts
+
+    rate = 16000
+    cuts = quiet_cuts(_speech_with_breaths(70, breaths=[21, 45]), rate, 28, 10, 0.5)
+    assert [round(c / rate) for c in cuts] == [21, 45]
+    edges = [0, *cuts, 70 * rate]
+    assert all(b - a <= 28 * rate for a, b in zip(edges, edges[1:]))
+    # No breath anywhere still cuts, at the longest allowed length.
+    assert len(quiet_cuts(np.full(70 * rate, 0.3, dtype=np.float32), rate, 28, 10, 0.5)) == 2
+    # Exactly the longest length is sent whole.
+    assert quiet_cuts(np.zeros(28 * rate, dtype=np.float32), rate, 28, 10, 0.5) == []

@@ -1,4 +1,4 @@
-import ArabicText from '../ui/ArabicText'
+import ArabicText from '../ui/text/ArabicText'
 import BlockTitle from './BlockTitle'
 import SlotHead from './SlotHead'
 

@@ -17,15 +17,14 @@ from backend.services.text.harakat import (
     PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
 from backend.services.sarf.morphology import has_comparative
 from backend.services.nahw.book import (
-    book_file, book_map, book_words, condition_of, family_cards, frames, is_mabni, is_one)
+    book_file, book_map, book_spelling, book_words, condition_of, family_cards, frames, is_mabni, is_one)
 from backend.services.nahw.syntax import facts, walker
 
 
 def _lemma(token: dict) -> str:
     """The word's lemma, spelled as the reader typed it: إِذًا (a tanween) is the spelling of
     إذن, which the time word إذا never takes (data: nasb_mudari `tanween_spells`)."""
-    lemma = strip_diacritics(token["lemma"]).strip("+")
-    written = strip_diacritics(token["form"]).strip("+")
+    lemma, written = book_spelling(token["lemma"]), book_spelling(token["form"])
     if written != lemma and written.endswith(lemma) and written in _words():
         lemma = written  # فَلَمّا: the dictionary files the negation لَمّا under ما; the word written is لما
     spelled = book_map("nasb_mudari", "tanween_spells").get(lemma)
@@ -88,9 +87,10 @@ def _negated(token: dict, s: facts.Sentence) -> str:
 
 def _joins(token: dict, s: facts.Sentence) -> str:
     """The noun after it wears the case of the noun before it: جاء زيدٌ لا عمرٌو, ما جاء
-    الطلابُ إلا زيدٌ. Nothing to share a case with (ما جاء إلا زيدٌ) or a case apart
+    الطلابُ إلا زيدٌ; before إلا, the noun excepted from, out of any جار ومجرور or إضافة that adds
+    to it (ما جاء أحدٌ من الضيوف إلا زيدٌ). Nothing to share a case with (ما جاء إلا زيدٌ) or a case apart
     (لا إلهَ إلا اللهُ) says no."""
-    before, after = facts.previous_noun(token, s), facts.next_word(token, s)
+    before, after = facts.excepted_from(token, s), facts.next_word(token, s)
     if not (before and after and facts.noun_tagged(after)):
         return "no"
     behind = s.by_id.get(before["id"] - 1)
@@ -108,7 +108,7 @@ def _joins(token: dict, s: facts.Sentence) -> str:
 def _tool_next(token: dict, s: facts.Sentence) -> str:
     """The word after it is خلا, عدا or حاشا (ما عدا زيدًا): the ما that turns them into a masdar."""
     after = facts.next_word(token, s)
-    return "yes" if after and is_one(strip_diacritics(after["form"]), "istithna_verbs") else "no"
+    return "yes" if after and is_one(after["form"], "istithna_verbs") else "no"
 
 
 def _timed(token: dict, s: facts.Sentence) -> str:
@@ -116,7 +116,7 @@ def _timed(token: dict, s: facts.Sentence) -> str:
     open the sentence: ما المصدرية الظرفية, "as long as" (البيعان بالخيار ما لم يتفرقا)."""
     after, before = facts.next_word(token, s), s.by_id.get(token["id"] - 1)
     return "yes" if before and after and is_one(
-        strip_diacritics(after["lemma"] or after["form"]), "istithna_verbs", "timed_ma_before") else "no"
+        after["lemma"] or after["form"], "istithna_verbs", "timed_ma_before") else "no"
 
 
 def _answered(token: dict, s: facts.Sentence) -> str:
@@ -146,16 +146,32 @@ def _told(token: dict, s: facts.Sentence) -> str:
     return "noun" if told and facts.noun_tagged(told) and not facts.is_verb(told) else "other"
 
 
+def _fronted(token: dict, s: facts.Sentence) -> str:
+    """ما في الدار أحدٌ، ما لك عليّ سلطانٌ: one or more جار ومجرور or ظرف straight after it, then a noun
+    in raf': the khabar came first, so the noun is its مبتدأ مؤخر and the ما only negates; a ما with
+    its khabar first does not work as ليس (Tasheel 1.9 n6 p23). A describing word there (وما عند الله
+    خيرٌ، باقٍ) is told of the ما, the relative, and is its khabar. Its majrur, and what is added to
+    it (في بيتِ زيدٍ), are in jarr; a joined one (فيه، عندي) is no word of its own."""
+    words = [t for t in s.tokens if t["id"] > token["id"] and not facts.is_suffix(t)]
+    at = 0
+    while at < len(words) and (facts.is_preposition(words[at]) or facts.is_zarf(words[at], s)
+                               or facts.typed_case_of(words[at]) == "i"):
+        at += 1
+    noun = words[at] if 0 < at < len(words) else None
+    return "yes" if noun and facts.noun_tagged(noun) and facts.typed_case_of(noun) == "u" \
+        and not facts.is_describing(noun) else "no"
+
+
 def _opens(token: dict, s: facts.Sentence) -> str:
-    """The noun after it opens a sentence of its own: a definite noun in raf' with an
-    indefinite one in raf' after it that does not describe it, its khabar (واللهُ أكبرُ)."""
+    """The noun after it opens a sentence of its own: a known noun in raf' with an unknown
+    one in raf' after it, its khabar (واللهُ أكبرُ); a known one after it (والطلابُ جميعُهم)
+    stresses or describes it, so the و joins."""
     noun = facts.next_word(token, s)
     told = facts.next_word(noun, s) if noun else None
     if not (noun and told and facts.noun_tagged(noun) and facts.noun_tagged(told)) or facts.is_verb(told):
         return "no"
-    definite = noun.get("stt") == "d" or noun["pos"] == "PROP"
-    return "yes" if definite and facts.typed_or_parsed_case(noun) == "u" \
-        and facts.typed_or_parsed_case(told) == "u" and told.get("stt") != "d" else "no"
+    return "yes" if facts.is_known(noun, s) and facts.typed_or_parsed_case(noun) == "u" \
+        and facts.typed_or_parsed_case(told) == "u" and not facts.is_known(told, s) else "no"
 
 
 def _pronoun_of(verb: dict, s: facts.Sentence) -> dict | None:
@@ -167,7 +183,7 @@ def _asked_after(token: dict, s: facts.Sentence) -> bool:
     """A question word stands straight after it (data: istifham `words`); a preposition does not
     count (مِنْ لَيْلَةٍ)."""
     after = facts.next_word(token, s)
-    return bool(after) and not facts.is_preposition(after) and is_one(strip_diacritics(after["form"]), "istifham")
+    return bool(after) and not facts.is_preposition(after) and is_one(after["form"], "istifham")
 
 
 def _after_object(noun: dict, s: facts.Sentence) -> dict | None:
@@ -206,7 +222,7 @@ def _wonder_parts(token: dict, s: facts.Sentence) -> tuple[dict, dict] | None:
     # after a noun object a second indefinite nasb noun is no wonder (ما أعطى الرجل كتابًا); after a
     # pronoun it is a second object only of a verb that takes two (ما أعطاها كتابًا), else the
     # tamyeez (ما أجملها ليلةً)
-    lemma = strip_diacritics(verb["lemma"])
+    lemma = verb["lemma"]
     second = _after_object(noun, s) and (not pronoun or is_one(lemma, "two_objects_give") or is_one(lemma, "zanna"))
     return None if second else (verb, noun)
 
@@ -220,7 +236,7 @@ def _informing(token: dict, s: facts.Sentence) -> dict | None:
     object written on it and a question word after that, the clause which is its second object."""
     verb = facts.next_word(token, s)
     pronoun = _pronoun_of(verb, s) if verb else None
-    lemma = strip_diacritics(verb["lemma"]) if verb else ""
+    lemma = verb["lemma"] if verb else ""
     return verb if pronoun and (is_one(lemma, "two_objects_give") or is_one(lemma, "zanna")) \
         and _asked_after(pronoun, s) else None
 
@@ -333,6 +349,7 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "timed": (("yes", "no"), _timed),
     "answered": (("yes", "no"), _answered),
     "told": (("noun", "other"), _told),
+    "fronted": (("yes", "no"), _fronted),
     "wonder": (("yes", "no"), _wonder),
     "asks": (("yes", "no"), _asks),
     "restricted": (("yes", "no"), _restricted),
@@ -375,19 +392,10 @@ def _merged(tokens: list[dict], s: facts.Sentence) -> None:
 
 
 def _emphasis_lam(tokens: list[dict], s: facts.Sentence) -> None:
-    """لَيَقُولَنَّ، لَلْحُسْنَى، لَآيَاتٍ: a لام written onto a word with a fatha typed on it is the
-    لام of emphasis, governing nothing (closed_words ghair_amila_other `_fatha_lam`); لَهُ keeps
-    its jarr, since the parser leaves that لام a word of its own before the pronoun."""
+    """لَيَقُولَنَّ، لَلْحُسْنَى، لَآيَاتٍ: the لام of emphasis (facts.is_emphasis_lam) is read so."""
     named = dict(family_cards())["ghair_amila_other"]["named_as"]
     for i, token in enumerate(tokens):
-        base = tokens[i + 1] if i + 1 < len(tokens) else None
-        if token["form"] != "ل+" or base is None or facts.is_prefix(base):
-            continue
-        at = 0  # the لام's letter in the typed word: after the pieces written in front of it (وَلَـ، فَلَـ)
-        while at < i and facts.is_prefix(tokens[i - 1 - at]):
-            at += 1
-        marked = letters(base.get("typed") or "")
-        if at < len(marked) and "َ" in marked[at][1]:
+        if facts.is_emphasis_lam(tokens, i):
             token["reading"] = {"family": "ghair_amila_other", "named": named["ل"], "kind": "harf", "book": None}
 
 
@@ -396,7 +404,7 @@ def _emphasis_lam_frees_its_word(tokens: list[dict]) -> None:
     a place the parser gave it (here خبر إنّ) is the place of the word it is written onto, and the لام
     hangs on that word, as in إِنَّ زَيْدًا لَجَالِسٌ."""
     for lam, word in zip(tokens, tokens[1:]):
-        if (lam.get("reading") or {}).get("family") != "ghair_amila_other" or lam["form"] != "ل+" \
+        if facts.reading(lam) != "ghair_amila_other" or lam["form"] != "ل+" \
                 or lam["head"] in (0, word["id"]):
             continue  # لَزَيْدٌ قَائِمٌ: a لام the sentence rests on took no other word's place
         if word["head"] == lam["id"]:
@@ -406,14 +414,25 @@ def _emphasis_lam_frees_its_word(tokens: list[dict]) -> None:
 
 def _hasr_frees_its_words(tokens: list[dict]) -> None:
     """لا تعبدوا إلا الله: the إلا of restriction excepts nothing, so the word the parser hung on
-    it belongs to the verb above it, as in ما ضربتُ إلا زيدًا (Tasheel 3.8.7 p85)."""
-    by_id = {t["id"]: t for t in tokens}
+    it belongs to the verb above it, as in ما ضربتُ إلا زيدًا (Tasheel 3.8.7 p85). It takes the place
+    the verb leaves open, so one in raf' under a verb with no doer yet is that doer whatever the
+    parser hung it as (ما أنقذ الغريقَ إلا فتًى جريءٌ: فتى shows its raf' on its نعت)."""
+    s = facts.Sentence(tokens)
     for particle in tokens:
-        verb = by_id.get(particle["head"])
-        if (particle.get("reading") or {}).get("family") == "hasr" and verb and facts.is_verb(verb):
-            for kid in tokens:
-                if kid["head"] == particle["id"]:
-                    kid["head"] = verb["id"]
+        verb = s.head(particle)
+        if facts.reading(particle) == "hasr" and verb and facts.is_verb(verb):
+            open_doer = not facts.own_doer(verb) and not facts.holds_doer(verb, s.kids(verb))
+            for kid in s.kids(particle):
+                kid["head"] = verb["id"]
+                if open_doer and kid["rel"] == "OBJ" and _typed_raf(kid, s):
+                    kid["rel"] = "SBJ"
+
+
+def _typed_raf(word: dict, s: facts.Sentence) -> bool:
+    """The reader typed the word in raf', or, its case unseen (فتى), typed its نعت so: a نعت wears its noun's case."""
+    if facts.case_unseen(word):
+        return any(k["rel"] == "MOD" and facts.describes(k, word) and facts.typed_case_of(k) == "u" for k in s.kids(word))
+    return facts.typed_case_of(word) == "u"
 
 
 def _wonder_settles_its_words(tokens: list[dict]) -> None:
@@ -422,7 +441,7 @@ def _wonder_settles_its_words(tokens: list[dict]) -> None:
     tags and hangs these differently from one sentence to the next, so they are written over."""
     s = facts.Sentence(tokens)
     for ma in tokens:
-        if (ma.get("reading") or {}).get("family") != "wonder" or not (parts := _wonder_parts(ma, s)):
+        if facts.reading(ma) != "wonder" or not (parts := _wonder_parts(ma, s)):
             continue
         verb, noun = parts
         ma.update(pos="NOM", pos_camel="pron_rel")
@@ -441,21 +460,26 @@ def _asks_settles_its_words(tokens: list[dict]) -> None:
     """ما اسمك، وما أدراك: a ما or من read as the question word is a built noun. With a clause
     of its own after it (the verb of informing) it is that verb's مبتدأ; otherwise it is the
     khabar brought to the front and the noun after it its مبتدأ, hung on it. Standing after a verb,
-    its clause is that verb's (قال ما اسمك). The parser tags and hangs these differently from one
-    sentence to the next, so they are written over."""
+    its clause is that verb's (قال ما اسمك). Hung on a preposition (لِمَنْ هذا الكتابُ) it is that
+    preposition's majrur, and the جار ومجرور is the fronted khabar the noun hangs on. The parser
+    tags and hangs these differently from one sentence to the next, so they are written over."""
     s = facts.Sentence(tokens)
+    def before(token: dict) -> dict | None:
+        return next((t for t in reversed(tokens) if t["id"] < token["id"] and not facts.is_suffix(t)), None)
     for ma in tokens:
-        if (ma.get("reading") or {}).get("family") != "istifham":
+        if facts.reading(ma) != "istifham":
             continue
         ma.update(pos="NOM", pos_camel="pron_interrog")
-        if verb := _informing(ma, s):
+        jar = s.head(ma) if ma["rel"] == "OBJ" else None
+        if not (jar and facts.is_preposition(jar)) and (verb := _informing(ma, s)):
             ma["head"], ma["rel"] = verb["id"], "SBJ"
             verb["head"], verb["rel"] = 0, "---"
             continue
-        noun = facts.next_word(ma, s)
-        noun["head"], noun["rel"] = ma["id"], "SBJ"
-        before = next((t for t in reversed(tokens) if t["id"] < ma["id"] and not facts.is_suffix(t)), None)
-        ma["head"], ma["rel"] = (before["id"], "---") if before and facts.is_verb(before) else (0, "---")
+        top = jar if jar and facts.is_preposition(jar) else ma
+        if (noun := facts.next_word(ma, s)) and not facts.is_verb(noun):
+            noun["head"], noun["rel"] = top["id"], "SBJ"
+        verb = before(top)
+        top["head"], top["rel"] = (verb["id"], "---") if verb and facts.is_verb(verb) else (0, "---")
 
 
 def _idhan_settles_its_words(tokens: list[dict]) -> None:
@@ -492,7 +516,7 @@ def stamp(tokens: list[dict]) -> None:
         if (word := _word(token, s)) == "other":
             continue
         token["judged"] = _judged(word)
-        if word != strip_diacritics(token["lemma"]).strip("+"):
+        if word != book_spelling(token["lemma"]):
             token["lemma"] = word  # إِذًا is إذن, to every list
         values = {"word": word, **{axis: answer(token, s) for axis, (_, answer) in AXES.items()}}
         if found := walker.walk(values, _tree()):

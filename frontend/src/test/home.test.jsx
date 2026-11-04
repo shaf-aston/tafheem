@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 // Home offers where you stopped and the recent tabs from the journey, a first-visit
 // start when there is no path, and every tab in view under its group.
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, fireEvent, screen, within } from '@testing-library/react'
 
 import { renderScreen } from './render'
@@ -9,10 +9,14 @@ import HomePanel from '../components/home/HomePanel'
 import { visit } from '../lib/nav/journey'
 import { HOME, LISTED } from '../lib/nav/tabs'
 import { LEVEL_KEY, LEVELS, levelOf } from '../lib/learner/learnerLevel'
+import { PLAN_KEY } from '../lib/learner/plan'
 import { readRaw, writeRaw } from '../lib/store/stored'
 import knobs from '../config/home.json'
 
 describe('Home', () => {
+  // A first visit is asked its questions once (test/onboarding.test.jsx); here they were skipped, which leaves the picker.
+  beforeEach(() => writeRaw(PLAN_KEY, JSON.stringify({ done: true })))
+
   it('on a first visit asks how much Arabic you know, one row a level', () => {
     renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />)
     const fork = screen.getByRole('region', { name: knobs.copy['fork-label'] })

@@ -5,16 +5,17 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../../lib/memorise/books'
 import {
   blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, makeRandom,
-  optionsFor, pagesOf, wordsOf,
+  ayahAt, optionsFor, pagesOf, wordsOf,
 } from '../../lib/memorise/memorise'
 import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
 import { useSlide, useSwipe } from '../../lib/motion/useSwipe'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
-import { useReciting } from '../../lib/memorise/useReciting'
+import { WAITING } from '../../lib/recite/follow'
+import { useReciting } from '../../lib/recite/useReciting'
 import { useSetting } from '../../lib/store/settings'
 import { warm } from '../../lib/api/warm'
 import { useArrivalEffect } from '../../lib/nav/useArrival'
-import recite from '../../config/recite.json'
+import config from '../../config/memorise.json'
 
 // The setting itself, not a copy of one of its numbers. Every id here comes
 // from DIFFICULTIES, so a miss means memorise.json names a default that is not
@@ -32,16 +33,21 @@ export const HIDDEN = DEFAULT_DIFFICULTY
 export const withinPart = (label) => label.split(':').pop()
 
 // How long a finished page stays up, marked, before the next one turns in.
-const TURN_AFTER_MS = recite['turn-after-s'] * 1000
+const TURN_AFTER_MS = config['turn-after-s'] * 1000
 
 // A page as a step on the back arrow's path: its first line, "2:6", with the
 // book in front when it is not the Qur'an, "jazariyya/3:12".
 const PLACE = /^(?:([a-z]+)\/)?(\d+):(\d+)$/
+// The book, part and line a link names, or null for none (or a book that is not here).
+const linkOf = (incoming) => {
+  const [, book = DEFAULT_BOOK, part, line] = PLACE.exec(incoming ?? '') ?? []
+  return part && BOOKS[book] ? { book, part: Number(part), line: Number(line) } : null
+}
 const placeOf = (bookId, part, line) => `${bookId === DEFAULT_BOOK ? '' : `${bookId}/`}${part}:${line.id}`
 
 // Two ways to answer the same gap. Typing is recall; choosing is recognition,
 // which is easier, and the only one that works without an Arabic keyboard.
-const WAYS = [
+export const WAYS = [
   { id: 'type', label: 'Type it' },
   // The count is read, never typed: "Pick from four" would start lying the day
   // option-count changes.
@@ -50,30 +56,9 @@ const WAYS = [
   // Nothing is taken out here, so the whole page is shown.
   { id: 'recite', label: 'Recite it' },
 ]
-/** The ways this book offers. */
-export const waysOf = (book) => WAYS.filter((w) => !w.onlyIf || w.onlyIf(book))
-
-/** What has been answered, whether the page is marked, and the words shown. */
-export function useAnswers() {
-  const [answers, setAnswers] = useState({})
-  const [checked, setChecked] = useState(false)
-  // Words uncovered by asking rather than by saying them. Kept apart from the
-  // marks for exactly that reason: being shown a word is not reciting it.
-  const [shown, setShown] = useState(() => new Set())
-  // Anything that changes which words are missing starts the attempt over.
-  // Done here, where the reader asks for the change, rather than by watching
-  // the gaps afterwards, a watcher would also fire on the first render and
-  // clear a page nobody had touched yet.
-  const fresh = () => {
-    setAnswers({})
-    setChecked(false)
-    setShown(new Set())
-  }
-  return { answers, setAnswers, checked, setChecked, shown, setShown, fresh }
-}
 
 /** How the reader answers and how much is missing. */
-export function useHowYouAnswer(fresh) {
+export function useHowYouAnswer() {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY)
   // Bumped to deal a fresh set of gaps over the same page.
   const [deal, setDeal] = useState(1)
@@ -87,20 +72,22 @@ export function useHowYouAnswer(fresh) {
   // ever a word of this page, so a shorter page cannot leave it pointing off
   // the end.
   const hidden = way === 'recite' && difficulty !== 'none'
-  const chooseDifficulty = (id) => { setDifficulty(id); fresh() }
-  const reDeal = () => { setDeal((n) => n + 1); fresh() }
-  const chooseWay = (id) => { setWay(id); fresh() }
-  return { way, setWay, hidden, difficulty, deal, chooseDifficulty, reDeal, chooseWay }
+  return { way, setWay, hidden, difficulty, deal, chooseDifficulty: setDifficulty, reDeal: () => setDeal((n) => n + 1), chooseWay: setWay }
 }
 
-/** The book, part and page open, the word started on, and the moves between places. */
-export function useBookPage({ fresh, setWay }) {
-  const [bookId, setBookId] = useState(DEFAULT_BOOK)
+/**
+ * The book, part and page open, the word started on, and the moves between places.
+ * A page opened from a link starts on the link's book and part, so the surah it names is
+ * what loads, not the first one and then that.
+ */
+export function useBookPage({ incoming }) {
+  const [start] = useState(() => linkOf(incoming))
+  const [bookId, setBookId] = useState(start?.book ?? DEFAULT_BOOK)
   // What the reader picked, which is nothing until they pick; the part
   // actually open is derived below, once the book has said what its parts are.
-  const [chosen, setChosen] = useState(null)
+  const [chosen, setChosen] = useState(start?.part ?? null)
   const [pageNumber, setPageNumber] = useState(0)
-  const [meaning, setMeaning] = useState(BOOKS[DEFAULT_BOOK].meaningDefault ?? false)
+  const [meaning, setMeaning] = useState(BOOKS[bookId].meaningDefault ?? false)
   // The word the reader pressed to start on, or null for "they did not say".
   // A page is not always begun at its top: somebody revising picks up where
   // they stopped, or goes back over the one ayah they keep losing. It is
@@ -136,11 +123,11 @@ export function useBookPage({ fresh, setWay }) {
   const page = pages[pageNumber] ?? null
 
   // A new page, book or part is a new place, so the last one's starting word
-  // means nothing on it. Changing the starting word itself also starts over,
-  // because it moves what is covered.
-  const openAt = (at) => { setPinned(at); fresh() }
-  const openPart = (id, n = 0) => { setChosen(id); setPageNumber(n); setPinned(null); fresh() }
-  const openPage = (n) => { setPageNumber(n); setPinned(null); fresh() }
+  // means nothing on it. The answers are not cleared here: they are kept under
+  // the page's gaps (useAnswers), so going back finds them.
+  const openAt = setPinned
+  const openPart = (id, n = 0) => { setChosen(id); setPageNumber(n); setPinned(null) }
+  const openPage = (n) => { setPageNumber(n); setPinned(null) }
   // Switching books starts over at that book's own first part and its own
   // meaning-shown default, the Qur'an's "off by default" is not a preference
   // to carry across to a book most readers cannot already recite from memory.
@@ -150,8 +137,6 @@ export function useBookPage({ fresh, setWay }) {
     setPageNumber(0)
     setPinned(null)
     setMeaning(BOOKS[id].meaningDefault ?? false)
-    setWay((was) => (waysOf(BOOKS[id]).some((w) => w.id === was) ? was : 'type'))
-    fresh()
   }
   // The pages of a part, fetched (or cached), and which holds a line (-1 for none).
   const pageOfLine = (b, partId, lineId) => client.fetchQuery(bookPartQuery(b, partId)).then(({ lines }) => {
@@ -165,22 +150,32 @@ export function useBookPage({ fresh, setWay }) {
 }
 
 /** Stepping a page either way, across parts, by button or swipe. */
-export function usePageSteps({ parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart }) {
+export function usePageSteps({ card, parts, part, pages, pageNumber, bookId, pageOfLine, openPage, openPart, landing }) {
   // The part `by` either side of this one: past a surah's last page is the next
   // surah, before its first is the one before.
   const partBy = (by) => parts?.[parts.findIndex((p) => p.id === part) + by]
+  const turned = useRef(false)
   const stepPage = (by) => {
+    turned.current = true
     const n = pageNumber + by
     if (n >= 0 && n < pages.length) return openPage(n)
     const next = partBy(by)
     if (by > 0) return openPart(next.id, 0)
     pageOfLine(bookId, next.id).then(([, all]) => openPart(next.id, all.length - 1)).catch(() => {})
   }
+  // A page turned by hand (the buttons under the page, a swipe) opens at its top: left
+  // where it was, the reader landed at the end of the new page, below what they were turning to.
+  useEffect(() => {
+    if (!turned.current) return
+    turned.current = false
+    if (card.current?.getBoundingClientRect().top < 0) scrollToEl(card.current, 'top')
+  }, [card, part, pageNumber])
   const atStart = pageNumber === 0 && !partBy(-1)
   const atEnd = pageNumber >= pages.length - 1 && !partBy(1)
   const swipe = useSwipe(!atStart && (() => stepPage(-1)), !atEnd && (() => stepPage(1)))
-  // Where the page falls in the book, so a step either way slides in from its own side.
-  const slide = useSlide((parts?.findIndex((p) => p.id === part) ?? 0) * 10000 + pageNumber)
+  // Where the page falls in the book, so a step either way slides in from its own side;
+  // a link finding its page is no step, so it does not slide.
+  const slide = useSlide((parts?.findIndex((p) => p.id === part) ?? 0) * 10000 + pageNumber, landing)
   return { partBy, stepPage, atStart, atEnd, swipe, slide }
 }
 
@@ -194,7 +189,7 @@ export function useReciteState({ page, book, pinned, shown, setShown }) {
     const lines = []
     for (const line of page ?? []) {
       const said = wordsOf(line.arabic)
-      lines.push({ key: line.label, label: withinPart(line.label), from: words.length, count: said.length })
+      lines.push({ ...ayahAt(line.label, said, words.length), label: withinPart(line.label) })
       words.push(...said)
     }
     return { words, lines }
@@ -224,8 +219,8 @@ export function useReciteState({ page, book, pinned, shown, setShown }) {
    * already on the screen.
    */
   const nextCovered = () => {
-    for (let at = Math.max(reciting.marks.at, startFrom + 1); at < recitedPage.words.length; at += 1) {
-      if (!shown.has(at) && reciting.marks.words[at]?.state === 'waiting') return at
+    for (let at = Math.max(reciting.marks.at, pinned == null ? startFrom + 1 : startFrom); at < recitedPage.words.length; at += 1) {
+      if (!shown.has(at) && reciting.marks.words[at]?.state === WAITING) return at
     }
     return -1
   }
@@ -252,17 +247,17 @@ export function useReciteState({ page, book, pinned, shown, setShown }) {
 }
 
 /** Which words are missing, and the options offered for them. */
-export function useGaps({ data, page, pageNumber, deal, difficulty, way, hidden, startFrom }) {
+export function useGaps({ data, page, pageNumber, deal, difficulty, way, hidden, startFrom, pinned }) {
 
   // The gaps depend on the page, the difficulty and the deal; and on nothing
   // else, so typing an answer never moves them.
   const blanks = useMemo(
     () => {
       if (!page) return new Set()
-      if (hidden) return fromMemory(page, startFrom)
+      if (hidden) return fromMemory(page, startFrom, pinned == null)
       return blanksFor(page, difficultyOf(difficulty).share, makeRandom(pageNumber * 131 + deal))
     },
-    [page, hidden, startFrom, difficulty, pageNumber, deal],
+    [page, hidden, startFrom, pinned, difficulty, pageNumber, deal],
   )
 
   // Every word of the whole part, not just this page: three wrong options taken
@@ -291,11 +286,12 @@ export function useGaps({ data, page, pageNumber, deal, difficulty, way, hidden,
 }
 
 /** The microphone and the page turning under it: stopping, forgetting, carrying on, and reciting from elsewhere. */
-export function useReciteTurns({ way, hidden, reciting, recitedPage, bookId, part, pageNumber, pinned, pages, partBy, openPart, pageOfLine }) {
+export function useReciteTurns({ card, way, hidden, reciting, recitedPage, bookId, part, pageNumber, pinned, pages, partBy, openPart, pageOfLine }) {
   // Whether recording again carries on the same recitation or begins the page
   // afresh. The reader's own choice, in the settings panel, because both are
   // reasonable: one person paused to look a word up, another gave up.
   const resume = useSetting('resume-reciting')
+  const turnsItself = useSetting('turn-page-itself')
   const [stayed, setStayed] = useState(null)
 
   /**
@@ -338,7 +334,6 @@ export function useReciteTurns({ way, hidden, reciting, recitedPage, bookId, par
    * (turn(), not forget(), so the recording under way is kept), and the new
    * page is followed from wherever they are on it.
    */
-  const card = useRef(null)
   const carryOnAt = (partId, n) => {
     if (partId === part && n === pageNumber) return
     turning.current = true
@@ -373,11 +368,11 @@ export function useReciteTurns({ way, hidden, reciting, recitedPage, bookId, par
   // A moment on the finished page first, marks settled and weighed, so a
   // slip in its last ayah is seen before the page goes.
   useEffect(() => {
-    if (way !== 'recite' || !listening || !reciting.finished) return
+    if (way !== 'recite' || !listening || !reciting.finished || !turnsItself) return
     const timer = setTimeout(turnPage, TURN_AFTER_MS)
     return () => clearTimeout(timer)
-  }, [way, listening, reciting.finished])  // eslint-disable-line react-hooks/exhaustive-deps
-  return { card, listen, elsewhere, where, askToGo, goElsewhere, setStayed }
+  }, [way, listening, reciting.finished, turnsItself])  // eslint-disable-line react-hooks/exhaustive-deps
+  return { listen, elsewhere, where, askToGo, goElsewhere, setStayed }
 }
 
 /**
@@ -386,25 +381,34 @@ export function useReciteTurns({ way, hidden, reciting, recitedPage, bookId, par
  * The page landed on is that step already, even when the step named a later
  * line on it ("2:255" opens the page from 2:250): recording it again would
  * push a new step and trap the back arrow there.
+ * `landing` is true from a link's first render until its page is found (the part's first page is
+ * not it), so the panel shows nothing of the book in between rather than a page that then jumps.
  */
 export function useArrivedPage({ arrival, incoming, onVisit, bookId, part, page, pageOfLine, openBook, openPart }) {
   const arriving = useRef(false)
   const landed = useRef(null)
+  const inPart = useRef(null)
+  const [landing, setLanding] = useState(() => linkOf(incoming) !== null)
   useArrivalEffect(arrival, () => {
-    const [, b = DEFAULT_BOOK, p, line] = PLACE.exec(incoming ?? '') ?? []
-    if (!p || !BOOKS[b]) return
+    const link = linkOf(incoming)
+    if (!link) return setLanding(false)
     arriving.current = true
-    pageOfLine(b, Number(p), Number(line)).then(([n, all]) => {
+    pageOfLine(link.book, link.part, link.line).then(([n, all]) => {
       const at = Math.max(n, 0)
-      landed.current = placeOf(b, Number(p), all[at][0])
-      if (b !== bookId) openBook(b)
-      openPart(Number(p), at)
-    }).catch(() => {}).finally(() => { arriving.current = false })
+      landed.current = placeOf(link.book, link.part, all[at][0])
+      if (link.book !== bookId) openBook(link.book)
+      openPart(link.part, at)
+    }).catch(() => {}).finally(() => { arriving.current = false; setLanding(false) })
   })
   const here = page && placeOf(bookId, part, page[0])
   useEffect(() => {
-    if (!here || arriving.current || here === landed.current) return
+    if (!here || arriving.current) return
+    // Another page of the part already open takes its step's place; a new part or book is a step.
+    const over = inPart.current === `${bookId}/${part}`
+    inPart.current = `${bookId}/${part}`
+    if (here === landed.current) return
     landed.current = null
-    onVisit?.(here)
+    onVisit?.(here, over)
   }, [here])  // eslint-disable-line react-hooks/exhaustive-deps
+  return landing
 }

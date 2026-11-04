@@ -1,6 +1,6 @@
 /**
  * "Complete it" for any Arabic line: its longest word blanked, three wrong words from other lines.
- * Pure. Used by lib/grow/hadithLesson.js and lib/grow/quranLesson.js; drawn by components/grow/exercises/GapCard.jsx.
+ * Pure. Used by lib/grow/hadithLesson.js and lib/grow/quranLesson.js; drawn by components/practice/exercises/GapCard.jsx.
  */
 import { shuffled } from '../text/shuffle'
 

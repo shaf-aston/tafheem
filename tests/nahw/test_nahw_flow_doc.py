@@ -29,7 +29,8 @@ def test_every_path_named_exists():
 
 
 def test_the_repair_order_is_the_codes():
-    calls = [n.func for n in ast.walk(ast.parse(inspect.getsource(correct))) if isinstance(n, ast.Call)]
+    calls = [n.func for n in sorted((n for n in ast.walk(ast.parse(inspect.getsource(correct))) if isinstance(n, ast.Call)),
+                                    key=lambda n: (n.lineno, n.col_offset))]
     names = [f.attr if isinstance(f, ast.Attribute) else f.id for f in calls]
     assert _listed("repair") == [n for n in names if n not in ("len", "base_tokens")]
 

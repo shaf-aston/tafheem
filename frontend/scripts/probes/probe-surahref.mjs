@@ -15,7 +15,7 @@ const check = (label, ok, detail = '') => {
 }
 page.on('pageerror', (e) => { problems++; console.log('PAGEERROR', e.message.slice(0, 300)) })
 
-await page.goto('http://localhost:5173/app/quran', { waitUntil: 'networkidle' })
+await page.goto('http://localhost:5173/quran', { waitUntil: 'networkidle' })
 const box = page.locator('#surah-ref')
 
 await box.fill('Nisa 45')
@@ -39,7 +39,7 @@ check('a bare name opens the surah reader', (await page.locator('body').innerTex
 await page.screenshot({ path: process.env.PROBE_SHOT ?? 'probe-surahref.png' })
 
 const bar = page.locator('.cb > .cb-field .cb-input')
-await page.goto('http://localhost:5173/app/nahw', { waitUntil: 'networkidle' })
+await page.goto('http://localhost:5173/nahw', { waitUntil: 'networkidle' })
 await bar.fill('baqarah 255')
 await page.waitForTimeout(400)
 check('header bar offers Open ayah 2:255', (await page.locator('body').innerText()).includes('Al-Baqarah 255'))

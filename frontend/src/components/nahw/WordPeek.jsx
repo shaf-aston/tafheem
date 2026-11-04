@@ -9,8 +9,8 @@ import { useEffect, useRef } from 'react'
 
 import { caseLabel } from '../../lib/nahw/grammarTerms'
 import { roleVar } from '../../lib/nahw/roleColors'
-import ArabicText from '../ui/ArabicText'
-import CloseButton from '../ui/CloseButton'
+import ArabicText from '../ui/text/ArabicText'
+import CloseButton from '../ui/buttons/CloseButton'
 
 // "… القاعدة: …" restates the reason as a rule; the popup keeps the reason itself.
 const reasonOnly = (reason) => (reason ?? '').split('. القاعدة')[0]
@@ -35,7 +35,7 @@ export default function WordPeek({ word, english, at, onClose, onMore, onLookup 
       role="dialog"
       aria-label={`${word.word}: ${word.role ?? ''}`}
       tabIndex={-1}
-      className="rise-in absolute z-[var(--layer-tip)] w-[min(18rem,calc(100vw-2rem))] -translate-x-1/2 p-3 space-y-1.5
+      className="rise-in crisp absolute z-[var(--layer-tip)] w-[min(18rem,calc(100vw-2rem))] -translate-x-1/2 p-3 space-y-1.5
         rounded-[var(--radius-md)] bg-[var(--surface-hi)] border border-[var(--border-hi)] shadow-xl outline-none"
       style={{ left: at.x, top: at.y }}
     >

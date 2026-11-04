@@ -38,6 +38,10 @@ class Ai(BaseSettings):
     root_entry_max_tokens: int = 3500
     # Longest Maqayees entry is ~15,000 chars; 6000 is what the smallest local model can hold.
     root_entry_truncate_chars: int = 6000
+    # The one-line gist of a Lisan or Taj entry: a sentence back, and the opening
+    # of the entry in, which is where both books state the root's senses.
+    lexicon_gist_max_tokens: int = 300
+    lexicon_gist_entry_chars: int = 4000
 
     @property
     def effective_backend(self) -> str:
@@ -57,6 +61,9 @@ class Nahw(BaseSettings):
 
     # Longer sentences are refused (422): the parser and the rules grow with length.
     max_sentence_words: int = Field(default=160, gt=0)  # the longest ayah (2:282) is about 130 words
+    # The same sentence, counted in letters: the cap every route a sentence goes to shares (2:282 is
+    # about 1300), so a whole ayah the chart draws also gets its English and its practice.
+    max_sentence_chars: int = Field(default=2000, gt=0)
     # Analyses a minute per visitor (POST /api/analyze); the parser costs far more than a page's own clicks.
     analyze_per_minute: int = Field(default=60, gt=0)
     # Recent sentences kept read in memory: the Analyse page and its practice questions ask for the same
@@ -141,6 +148,8 @@ class Dictionary(BaseSettings):
     sentence_translation: str = "saheeh-en"
     # Word by word, each piece of a word shows up to this many of CAMeL's senses.
     sentence_senses: int = Field(default=2, gt=0)
+    # What the model is handed instead: a word's senses out of context, for it to choose the one the sentence needs.
+    sentence_fact_senses: int = Field(default=4, gt=0)
     # One English sentence back, plus a reasoning model's thinking.
     sentence_max_tokens: int = Field(default=1200, gt=0)
 
@@ -174,6 +183,13 @@ class Listening(BaseSettings):
     # Vowels cost about 2 points of word error against none, a little under 1 against the old hint. Empty sends no hint.
     # Only the hosted ear sends it (recitation.hear); the Qur'an model on this machine never gets a hint.
     recitation_hosted_hint: str = "إِيَّاكَ نَعْبُدُ"
+    # Groq's Whisper hears 30s at a time and cuts longer audio blindly: on 49:2-3 (60-90s) words were lost or doubled
+    # at the seam and vowelling flipped mid-text. So a longer recording is cut here first, at the quietest
+    # `listening_cut_window_s` within the last `listening_cut_search_s` of each `listening_piece_s` piece.
+    listening_piece_s: float = Field(default=28.0, gt=0)
+    listening_cut_search_s: float = Field(default=10.0, gt=0)
+    # Half a second: a stop inside a word is shorter, so it cannot win; at 0.25s one cut fell inside بعضكم.
+    listening_cut_window_s: float = Field(default=0.5, gt=0)
     # Short because the local engine answers in ~3s and a slow cloud answer has already lost; Groq turbo takes ~0.5s.
     listening_timeout_s: float = 4.0
     # Rest for a transient failure (no internet, rate limit, bad gateway); a settled one (rejected key, missing model) retires the ear.
@@ -194,16 +210,24 @@ class Listening(BaseSettings):
     #   RECITATION_MODEL=data/models/finetune-ear/ear-tuned
     #   LISTENING_EARS=here          (else Groq answers first and the folder is only the fallback)
     recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
-    # Empty means no trial offered. Loaded like recitation_model; a learner's "Trial" listening hears
-    # and checks with it alone. Written and pushed by scripts/recitation/finetune_ear/cloud.py --ship; each of
+    # Empty means no tuned model offered. Loaded like recitation_model; a learner who picks "Fine-tuned" has
+    # each word checked by it; Groq still writes the words down. Written and pushed by scripts/recitation/finetune_ear/cloud.py --ship; each of
     # its commits carries the scores that won (git log backend/config.py).
-    recitation_trial_model: str = "shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a"
+    recitation_tuned_model: str = "shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a"
     # Search boxes are dictation, and the Qur'an model knows no other words:
     # "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ, "mercy" as مَسْكُوبُ, where base heard both.
     # A recording is a recitation only when its language is asked for by name.
     dictation_model: str = "base"
     # tilawa's small Qur'an model (services/recitation/letters.py); writes letters in one pass. Only places.
     recitation_letters_path: str = "data/models/tilawa"
+    # The sounds ear (services/recitation/sounds.py): a wav2vec2 letter-and-vowel model, int8, built by
+    # scripts/recitation/build_sounds_ear.py. Display only: it never changes a word's colour.
+    recitation_sounds: bool = True
+    recitation_sounds_path: str = "data/models/phoneme-ear"
+    # Each ayah's expected sounds word by word, so the server needs no phonemizer.
+    recitation_sounds_reference_path: str = "data/quran/phonemes.json"
+    # Longer recordings are not listened to for sounds; the sureness check hears 30s at most too.
+    recitation_sounds_max_seconds: float = Field(default=30, gt=0)
     recitation_device: str = "cpu"
     recitation_compute: str = "int8"
     # Pinned: a few seconds of speech is too little for language detection, and a wrong guess returns the wrong language.
@@ -268,6 +292,19 @@ class Listening(BaseSettings):
     recitation_place_fit: float = Field(default=0.9, gt=0, le=1)
     # Words of an unsure reading carried in front of the next one's lookup; more drags the fit of a fresh reading down.
     recitation_place_carry_words: int = Field(default=8, gt=0)
+    # Words heard in order that place a recording on the page or in the Qur'an. One shared word does not: النَّاسِ is in every ayah of an-Nas.
+    recitation_place_min_words: int = Field(default=2, gt=0)
+    # Starts compared letter by letter (locate.py); the rest are left out by their votes alone.
+    recitation_place_keep: int = Field(default=8, gt=0)
+    # Words a reading may gain or drop against the text, either side of a start (locate.py).
+    recitation_place_slack: int = Field(default=2, gt=0)
+    # Length of the runs the ayah matcher compares first. Three is the size SQLite's trigram index uses for the app's other Arabic search.
+    recitation_match_run: int = Field(default=3, gt=0)
+    # How much of an ayah having been recited counts, once it is known to hold the words. At 0 the two ayahs ending in
+    # the same phrase tie; at 1 anybody stopping halfway is punished. Half of each keeps the right answer first in both.
+    recitation_match_coverage: float = Field(default=0.5, gt=0, le=1)
+    # Ayahs the first, cheap pass hands on to be compared properly.
+    recitation_match_considered: int = Field(default=120, gt=0)
     # A minute of browser audio is about 1 MB.
     recitation_max_mb: int = Field(default=12, gt=0)
     # No default-book setting on purpose: the panel opens on the manifest's first book, then the reader's last choice.
@@ -288,7 +325,7 @@ class Speech(BaseSettings):
     # in and out over speech_fade_ms, so it starts and stops without a click.
     speech_peak: float = Field(default=0.9, gt=0, le=1)
     speech_fade_ms: int = Field(default=8, ge=0, le=100)
-    # The recording studio (services/recitation/recordings.py): who may add a person's voice for a word.
+    # The recording studio (services/speech_recordings.py): who may add a person's voice for a word.
     # Empty turns the studio off. A recording is at most recording_max_kb, and is saved
     # trimmed of the quiet around it, with speech_lead_ms put back on each side.
     recorder_key: SecretStr = SecretStr("")
@@ -571,7 +608,7 @@ def get_settings() -> Settings:
 
 @lru_cache()
 def confined(name: str, value: str) -> Path:
-    """Checking half of data_path, also for a model folder named by its value (services/recitation/listen.py); cached per value (not per name, which froze the first path a test set)."""
+    """Checking half of data_path, also for a model folder named by its value (services/recitation/whisper.py); cached per value (not per name, which froze the first path a test set)."""
     base = Path(__file__).resolve().parent
     target = (base / value).resolve()
     if not target.is_relative_to(base):

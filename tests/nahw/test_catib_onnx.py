@@ -3,8 +3,10 @@
 Skips cleanly, rather than failing, when the model files have not been
 dropped into backend/data/parser/ (see catib_onnx.py's docstring).
 """
+
 import pytest
 
+from backend.services.quran import corpus as quran_corpus
 from backend.services.sarf import morphology
 from backend.services.nahw.syntax import catib_onnx
 from backend.services.nahw.syntax.catib_onnx import parse
@@ -33,3 +35,32 @@ def test_verb_subject_object():
 
 def test_empty_input_returns_empty_list():
     assert parse([], []) == []
+
+
+def test_a_sentence_rooted_on_a_harf_atf_still_gets_its_roles():
+    """Al-Baqarah 2:259, as the Qur'an writes it: the parser roots the whole ayah on its first أَوْ,
+    and a jar-majroor hung on that حرف عطف used to crash the tree (KeyError 'pos'), leaving every
+    word of the ayah unnamed. Found by the Dictionary's sentence yardstick."""
+    from backend.services.nahw import iraab
+
+    ayah = (
+        "أَوْ كَٱلَّذِى مَرَّ عَلَىٰ قَرْيَةٍۢ وَهِىَ خَاوِيَةٌ عَلَىٰ عُرُوشِهَا قَالَ أَنَّىٰ يُحْىِۦ "
+        "هَـٰذِهِ ٱللَّهُ بَعْدَ مَوْتِهَا ۖ فَأَمَاتَهُ ٱللَّهُ مِا۟ئَةَ عَامٍۢ ثُمَّ بَعَثَهُۥ ۖ قَالَ "
+        "كَمْ لَبِثْتَ ۖ قَالَ لَبِثْتُ يَوْمًا أَوْ بَعْضَ يَوْمٍۢ ۖ قَالَ بَل لَّبِثْتَ مِا۟ئَةَ "
+        "عَامٍۢ فَٱنظُرْ إِلَىٰ طَعَامِكَ وَشَرَابِكَ لَمْ يَتَسَنَّهْ ۖ وَٱنظُرْ إِلَىٰ حِمَارِكَ "
+        "وَلِنَجْعَلَكَ ءَايَةًۭ لِّلنَّاسِ ۖ وَٱنظُرْ إِلَى ٱلْعِظَامِ كَيْفَ نُنشِزُهَا ثُمَّ "
+        "نَكْسُوهَا لَحْمًۭا ۚ فَلَمَّا تَبَيَّنَ لَهُۥ قَالَ أَعْلَمُ أَنَّ ٱللَّهَ عَلَىٰ كُلِّ "
+        "شَىْءٍۢ قَدِيرٌۭ"
+    )
+    read = iraab.analyze(ayah, recorded=False)
+    assert read["read_failed"] is False
+    assert any(word.get("role") for word in read["words"])
+
+
+@pytest.mark.skipif(not quran_corpus.is_loaded(), reason="corpus.db not built")
+def test_the_parser_reads_the_lemma_the_word_carries():
+    # CAMeL files رأيت under راوند (rhubarb), letters the word lacks: the parser takes رأى, as the cards do
+    typed = ["رَأَيْتُ", "صَدِيقَكَ"]
+    catib_onnx.warm()
+    tokens = parse(typed, morphology.pick(typed, catib_onnx.disambiguator()))
+    assert tokens[0]["lemma"] == "رأى"

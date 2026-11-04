@@ -33,7 +33,7 @@ Date 2026-10-23 · `/lifecycle`. Builds on `2026-10-23-basics-alif-lam.md` (Home
 - **Per-account memory** = the shelf (`useRemembered` key → `@name/key`, synced to the server). A guest keeps theirs on the device, and sign-up with "keep" copies it across.
 - **Evidence** = `/overview` → per module `{attempts, correct, learnt}`. It is signed-in only, because guests share one record.
 - **No level concept anywhere.** "Level 3" in Grow is XP rank, so the new idea is labelled **"Your Arabic"** in the UI to keep the two apart.
-- **Quiz** is vocabulary only. **Grow** cards come from `components/grow/exercises` and are run by `LessonRunner`.
+- **Quiz** is vocabulary only. **Grow** cards come from `components/practice/exercises` and are run by `LessonRunner`.
 
 ## 3 · Flow (taps from Home)
 

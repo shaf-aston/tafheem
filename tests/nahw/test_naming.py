@@ -1,8 +1,8 @@
 """The naming layer reads links plus typed vowels, so both are tested without a model."""
 import pytest
 
-from backend.services.nahw.syntax import facts, naming
-from backend.services.nahw.syntax.repair import correct
+from backend.services.nahw.syntax import facts, followers, naming
+from backend.services.nahw.syntax.repair import correct, untangle
 from backend.services.text.harakat import typed_case, typed_passive
 
 
@@ -35,6 +35,34 @@ def test_typed_case_and_passive():
     assert not typed_passive("كُنَّا", present=False)
     assert typed_passive("حُفَّتِ", present=False)  # a doubled verb's shadda stands for the kasra
     assert typed_passive("يُكَافَأُ", present=True)
+
+
+def test_a_word_left_in_a_loop_takes_back_the_parsers_link_or_the_root():
+    toks = [token(1, "كتب", "كتب", "VRB", 2, "MOD"), token(2, "زيد", "زيد", "PROP", 1, "SBJ"),
+            token(3, "عمرو", "عمرو", "PROP", 3, "OBJ")]
+    untangle(toks, {1: (0, "---"), 2: (1, "SBJ"), 3: (3, "OBJ")})
+    assert [(t["head"], t["rel"]) for t in toks] == [(0, "---"), (1, "SBJ"), (0, "OBJ")]
+
+
+def test_the_repairs_hand_on_no_loop():
+    toks = [token(1, "زيد", "زيد", "PROP", 2, "SBJ"), token(2, "كريم", "كريم", "NOM", 1, "MOD")]
+    correct(["زَيْدٌ", "كَرِيمٌ"], toks)
+    by_id = {t["id"]: t for t in toks}
+    for t in toks:
+        up, steps = t["head"], 0
+        while up in by_id and steps <= len(toks):
+            up, steps = by_id[up]["head"], steps + 1
+        assert up == 0
+
+
+@pytest.mark.parametrize("verb, passive", [
+    ("يُصَلُّونَ", False), ("يُعْطُونَ", False),  # صَلَّى، أَعْطَى: the weak last letter gone before the ending
+    ("يُدْعَوْنَ", True), ("يُصَلَّوْنَ", True), ("تُعْطَيْنَ", True),  # its fatha on the letter left standing
+    ("يُعْطَيَانِ", True), ("يُصَلِّيَانِ", False),  # the weak letter kept before the dual ending
+    ("يُدْعَ", True), ("يُعْطِ", False),  # or gone by jazm
+])
+def test_a_weak_last_verb_shows_its_voice_on_the_letter_left_before_the_ending(verb: str, passive: bool):
+    assert typed_passive(verb, present=True, weak_last=True) is passive
 
 
 def test_verb_sentence():
@@ -348,6 +376,18 @@ def test_a_word_joined_in_front_is_split_with_its_own_tag(monkeypatch):
     assert [(t["form"], t["pos"]) for t in pieces] == [("ف+", "PRT"), ("ليست", "VRB")]
 
 
+@pytest.mark.parametrize("atbtok, lex, split", [
+    ("أَيّكُم", "أَيّ", ["أي", "+كم"]),  # filed with its pronoun unsplit: cut where the word's own letters end
+    ("أَيّكُم", "كُم", ["أيكم"]),  # the word's letters are not where it starts: left whole
+])
+def test_a_word_filed_with_its_pronoun_unsplit_is_cut_after_its_own_letters(monkeypatch, atbtok, lex, split):
+    from backend.services.nahw.syntax import catib_onnx
+    monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
+        ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
+    reading = {"atbtok": atbtok, "catib6": "", "ud": "", "pos": "pron_interrog", "lex": lex, "enc0": "2mp_poss"}
+    assert [t["form"] for t in catib_onnx._split_word("أَيُّكُمْ", reading)] == split
+
+
 @pytest.mark.parametrize("front, passive", [(1, True), (0, False)])
 def test_a_passive_verb_is_read_past_the_waw_joined_in_front(front, passive):
     # وَيُغْسَلُ: the و's fatha is not the verb's first vowel; read as one word it hides the damma
@@ -549,16 +589,24 @@ def test_a_command_hung_on_ya_is_no_second_called_noun():
 
 def test_a_detached_pronoun_after_its_verb_is_tawkeed():
     toks = [token(1, "ذهبت", "ذهب", "VRB", 0, "---", vox="a", asp="p", per="1"),
-            token(2, "أنا", "أنا", "NOM", 1, "SBJ", pos_camel="pron", cas="n")]
+            token(2, "أنا", "أنا", "NOM", 1, "SBJ", pos_camel="pron", cas="n", per="1")]
     assert roles(["ذَهَبْتُ", "أَنَا"], toks) == ["فعل", "توكيد"]
+    # قُلْ هُوَ: the hidden doer is أنت, so هو repeats nothing; it opens the sentence قل says
+    toks = [token(1, "قل", "قال", "VRB", 0, "---", vox="a", asp="c", per="2"),
+            token(2, "هو", "هو", "NOM", 1, "SBJ", pos_camel="pron", cas="n", per="3")]
+    assert roles(["قُلْ", "هُوَ"], toks)[1] != "توكيد"
 
 
-def test_a_first_person_verb_takes_the_noun_after_it_as_its_object():
-    # كِلَا keeps its alif in every case, so CAMeL's raf' guess says nothing; the تُ is the doer
-    toks = [token(1, "رأيت", "رأى", "VRB", 0, "---", vox="a", asp="p", per="1"),
+@pytest.mark.parametrize("verb, form, per, num", [
+    ("رَأَيْتُ", "رأيت", "1", "s"),  # the تُ is the doer
+    ("رَأَوْا", "رأوا", "3", "p"),  # the و of many is the doer (own_doer)
+])
+def test_a_verb_holding_its_doer_takes_the_noun_after_it_as_its_object(verb, form, per, num):
+    # كِلَا keeps its alif in every case, so CAMeL's raf' guess says nothing
+    toks = [token(1, form, "رأى", "VRB", 0, "---", vox="a", asp="p", per=per, num=num),
             token(2, "كلا", "كلا", "NOM", 1, "SBJ", pos_camel="noun", cas="n", stt="c"),
             token(3, "الصديقين", "صديق", "NOM", 2, "IDF", pos_camel="noun", stt="d", cas="g")]
-    assert roles(["رَأَيْتُ", "كِلَا", "الصَّدِيقَيْنِ"], toks) == ["فعل", "مفعول به", "مضاف إليه"]
+    assert roles([verb, "كِلَا", "الصَّدِيقَيْنِ"], toks) == ["فعل", "مفعول به", "مضاف إليه"]
 
 
 @pytest.mark.parametrize("words, describer, role", [
@@ -727,3 +775,124 @@ def test_the_place_the_parser_gave_an_emphasis_lam_is_its_words():
             token(3, "ل+", "ل+", "PRT", 1, "PRD", token_type="prc1"), token(4, "سحر", "سحر", "NOM", 3, "OBJ")]
     assert roles(words, toks)[2] == "خبر إن"
     assert [(t["head"], t["rel"]) for t in toks[2:]] == [(4, "MOD"), (1, "PRD")]
+
+
+def jar_told_of(asked, rel_of_noun):
+    """لِزَيْدٍ / لِمَنْ, then هَذَا الْكِتَابُ, as the parser links it: هذا hung on the majrur."""
+    majrur = token(2, "من", "من", "NOM", 1, "OBJ", pos_camel="pron_rel", stt="na") if asked else \
+        token(2, "زيد", "زيد", "PROP", 1, "OBJ", pos_camel="noun_prop", cas="g")
+    toks = [token(1, "ل+", "ل+", "PRT", 0, "---", pos_camel="prep", token_type="prc1"), majrur,
+            token(3, "هذا", "هذا", "NOM", 2, rel_of_noun, pos_camel="pron_dem"),
+            token(4, "الكتاب", "كتاب", "NOM", 3, "MOD", stt="d", cas="n")]
+    return ["لِمَنْ" if asked else "لِزَيْدٍ", "هَذَا", "الْكِتَابُ"], toks
+
+
+@pytest.mark.parametrize("asked", [False, True])
+def test_a_noun_hung_as_the_subject_of_a_majrur_is_told_of_by_the_fronted_jar(asked):
+    # لِزَيْدٍ هَذَا الْكِتَابُ، لِمَنْ هَذَا الْكِتَابُ: الجار والمجرور متعلق بمحذوف خبر مقدم، هذا مبتدأ مؤخر
+    words, toks = jar_told_of(asked, "SBJ")
+    assert roles(words, toks) == ["مجرور", "مبتدأ", "صفة"]
+    assert [(t["head"], t["rel"]) for t in toks[1:3]] == [(1, "OBJ"), (1, "SBJ")]
+
+
+def test_a_question_word_after_a_preposition_stays_its_majrur():
+    # لِمَنْ هَذَا: the parser can hang هذا under مَن another way; مَن is still in jarr, never the مبتدأ
+    words, toks = jar_told_of(True, "OBJ")
+    assert roles(words, toks) == ["مجرور", "مبتدأ", "صفة"]
+    assert toks[1]["pos_camel"] == "pron_interrog"
+
+
+def test_a_wasf_in_jarr_keeps_its_own_doer():
+    # لِلْكَرِيمِ أَبُوهُ جَزَاءٌ: أبوه is the doer of the وصف, not a مبتدأ told of by the jar
+    from backend.services.nahw.syntax.repair.khabar import told_of_jar
+    toks = [token(1, "ل+", "ل+", "PRT", 0, "---", pos_camel="prep", token_type="prc1"),
+            token(2, "الكريم", "كريم", "NOM", 1, "OBJ", pos_camel="adj", stt="d", cas="g"),
+            token(3, "أبو", "أب", "NOM", 2, "SBJ", stt="c", cas="n")]
+    told_of_jar(toks)
+    assert toks[2]["head"] == 2
+
+
+def pointer_name_state():
+    """هَذَا زَيْدٌ قَائِمًا, as the parser links it: the pointer and the state both hung on the name."""
+    return ["هَذَا", "زَيْدٌ", "قَائِمًا"], [
+        token(1, "هذا", "هذا", "NOM", 2, "MOD", pos_camel="pron_dem"),
+        token(2, "زيد", "زيد", "PROP", 0, "---", pos_camel="noun_prop", cas="n"),
+        token(3, "قائما", "قائم", "NOM", 2, "MOD", pos_camel="adj", cas="a")]
+
+
+def test_a_nasb_word_after_a_pointer_and_its_khabar_is_a_hal_not_the_khabar():
+    # هذا مبتدأ، زيدٌ خبر، قائمًا حال: a plain khabar is marfu', so the typed fatha keeps it off the khabar
+    assert roles(*pointer_name_state()) == ["مبتدأ", "خبر", "حال"]
+
+
+@pytest.mark.parametrize("has_ism", [False, True])
+def test_a_noun_in_nasb_hung_as_the_object_of_inna_is_its_ism(has_ism):
+    # إِنَّ فِي ذَلِكَ لَآيَةً: إنّ takes no object; with its اسم already beside it, the noun is left alone
+    from backend.services.nahw.syntax.repair.subject_clash import inna_object
+    toks = [token(1, "إن", "إن", "PRT", 0, "---", pos_camel="verb_pseudo"),
+            token(2, "في", "في", "PRT", 1, "PRD", pos_camel="prep"),
+            token(3, "ذلك", "ذلك", "NOM", 2, "OBJ", pos_camel="pron_dem"),
+            token(4, "آية", "آية", "NOM", 1, "OBJ", typed="آيَةً", cas="a")]
+    if has_ism:
+        toks.append(token(5, "زيد", "زيد", "NOM", 1, "SBJ", typed="زَيْدًا", cas="a"))
+    inna_object(toks)
+    assert toks[3]["rel"] == ("OBJ" if has_ism else "SBJ")
+
+
+@pytest.mark.parametrize("typed, link, moved", [
+    ("بَكْرًا", "MOD", True),   # زَيْدٌ نَصَرَ بَكْرًا: the منصوب is the verb's, not the noun's
+    ("بَكْرٌ", "MOD", False),   # nearest case: a word in raf' is no منصوب for the verb to own
+    ("بَكْرًا", "OBJ", False),  # nearest case: an object on the noun says the noun works as a verb
+])
+def test_a_word_in_nasb_hung_on_the_noun_past_its_verb_is_the_verbs(typed, link, moved):
+    from backend.services.nahw.syntax.repair.subject_clash import object_past_verb
+    toks = [token(1, "زيد", "زيد", "NOM", 0, "---", pos_camel="noun_prop", typed="زَيْدٌ"),
+            token(2, "نصر", "نصر", "VRB", 1, "PRD", pos_camel="verb", asp="p", typed="نَصَرَ"),
+            token(3, "بكر", "بكر", "NOM", 1, link, pos_camel="noun_prop", typed=typed)]
+    object_past_verb(toks)
+    assert toks[2]["head"] == (2 if moved else 1)
+
+
+@pytest.mark.parametrize("pattern, link, command", [
+    ("أَ1ْ2َ3", "OBJ", True),   # ارفع صوتك: an object on what the dictionary read as an elative
+    ("أَ1ْ2َ3", "MOD", False),  # nearest case: a word hung on it as no object vouches for nothing
+    ("1َ2ِ3", "OBJ", False),    # nearest case: an object on a word that is no elative
+])
+def test_only_an_object_on_an_elative_vouches_for_a_bare_command(pattern, link, command):
+    toks = [token(1, "أرفع", "أرفع", "NOM", 0, "---", pos_camel="noun", pattern=pattern, diac="أَرْفَعُ", root="رفع"),
+            token(2, "صوت", "صوت", "NOM", 1, link, pos_camel="noun", cas="a"),
+            token(3, "+ك", "أنت", "NOM", 2, "IDF", pos_camel="pron", token_type="enc0")]
+    correct(["ارفع", "صوتك"], toks)
+    assert (toks[0]["asp"] == "c") == command
+
+
+
+@pytest.mark.parametrize("typed, ya", [
+    ("قُومِي", "فاعل"),       # the ي a noun reading split off as "my" is the command's doer
+    ("قَوْمِي", "مضاف إليه"),  # nearest case: typed as the noun, the ي is its owner
+])
+def test_the_ya_on_a_command_to_a_woman_is_its_doer(typed, ya):
+    toks = [token(1, "قوم", "قَوْم", "NOM", 0, "---", pos_camel="noun", diac="قَوْمِي", root="قوم"),
+            token(2, "+ي", "أنا", "NOM", 1, "IDF", pos_camel="pron", token_type="enc0")]
+    assert named([typed], toks)[0]["attached"][0]["role"] == ya
+
+
+def test_a_mudaf_is_as_definite_as_the_word_added_to_it():
+    """Ibn Aqil V3 p43: the idafa narrows the first noun when the second is indefinite (غلام امرأة) and makes it
+    definite when the second is (غلام زيد). A name is definite though CAMeL reads زيدٍ with its tanween as indefinite."""
+    from backend.services.nahw.syntax.repair.khabar import _indefinite
+    for added, indefinite in ((token(2, "مال", "مال", "NOM", 1, "IDF", stt="i"), True),
+                              (token(2, "عمرو", "عمرو", "PROP", 1, "IDF", stt="i", pos_camel="noun_prop"), False),
+                              (token(2, "المال", "مال", "NOM", 1, "IDF", stt="d"), False)):
+        mudaf = token(1, "صاحب", "صاحب", "NOM", 0, "---", stt="c")
+        assert _indefinite(mudaf, [mudaf, added]) is indefinite, added["form"]
+
+
+def test_a_follower_of_the_called_ayyuha_follows_it_though_it_is_tagged_a_particle():
+    # يا أيها الذين آمنوا: الذين is أيّ's صفة; يا, a real particle, is still climbed past
+    words = [{"id": 1, "form": "يا", "pos": "PRT", "lemma": "يا", "head": 2},
+             {"id": 2, "form": "أيها", "pos": "PRT", "lemma": "أيها", "head": 0},
+             {"id": 3, "form": "الذين", "pos": "NOM", "lemma": "الذي", "head": 2},
+             {"id": 4, "form": "زيد", "pos": "NOM", "lemma": "زيد", "head": 1}]
+    assert followers.followed(words[2], words, words) == 1
+    assert followers.followed(words[3], words, words) == 1
