@@ -1397,3 +1397,7 @@ def test_the_noun_after_lawla_is_its_mubtada():
 
 def test_a_noun_after_illa_is_no_badal_of_a_noun_in_another_clause():
     assert _role("لاَ يَعْلَمُ مَا تَغِيضُ الأَرْحَامُ إِلاَّ اللَّهُ", 6) == "فاعل"
+
+
+def test_a_relative_ma_that_is_the_one_object_of_a_passive_verb_is_its_deputy():
+    assert _role("مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", 8) == "نائب فاعل"
