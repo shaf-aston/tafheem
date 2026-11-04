@@ -1353,3 +1353,7 @@ def test_a_command_with_a_joined_fa_the_dictionary_lacks_is_a_verb():
 
 def test_a_noun_with_tanween_is_described_by_the_tanween_noun_after_it_not_added_to_it():
     assert _role("إِذَا كَانَ يَوْمٌ صَحْوٌ", 3) == "صفة"
+
+
+def test_a_ya_typed_as_a_marked_maqsura_is_the_pronoun_of_the_speaker():
+    assert _role("وَغَيْرُهُ أَحَبُّ إِلَىَّ مِنْهُ", 2) == "حرف جر"  # إِلَىَّ is إِلَيَّ
