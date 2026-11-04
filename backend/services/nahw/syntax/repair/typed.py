@@ -4,6 +4,7 @@ from __future__ import annotations
 from itertools import pairwise
 
 from backend.services.sarf import verb_reader
+from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
@@ -35,8 +36,11 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
         token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
         token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
-        # نِعْمَ الْوَكِيلُ: a verb of praise or blame typed with its fatha is that past verb, whatever the reading
-        if is_one(token["lemma"], "praise_blame") and typed_case(word, token["stuck_on"]) == "a" and not has_tanween(word):
+        # نِعْمَ الْوَكِيلُ: a verb of praise or blame typed with its fatha is that past verb, whatever the reading; typed bare,
+        # the word straight before a noun with ال is that verb, whose doer is such a noun (Ibn Aqil V2, باب نعم وبئس)
+        bare = strip_diacritics(word) == word
+        if is_one(token["lemma"], "praise_blame") and not has_tanween(word) and (typed_case(word, token["stuck_on"]) == "a" or (
+                bare and i + 1 < len(words) and strip_diacritics(words[i + 1]).startswith("ال"))):
             token.update(pos="VRB", asp="p")
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever the reading. A verb is also tried on its own
         # letters (فَاقْبَلْهَا); a noun never, or the يَدِ of وَيَدِهِ would be a command, except a name the list only

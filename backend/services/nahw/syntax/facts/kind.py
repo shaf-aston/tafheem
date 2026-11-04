@@ -62,8 +62,8 @@ def joins_clauses(token: dict, s: Sentence) -> bool:
     """ثم is a noun to the parser, but a listed joining word between two nouns, or bare
     before a verb, is the particle, as is any typed with its damma: the place-word is ثَمَّ.
     A noun the dictionary read with a vowel typed on it is that noun (أُمُّ زَيْدٍ، يَا أُمِّ: not أَمْ)."""
-    if not read_as(token, "atf") or owns_pronoun(token, s):
-        return False
+    if not read_as(token, "atf") or owns_pronoun(token, s) or token.get("stt") == "d":
+        return False  # الأم: a joining word takes no ال (Ibn Aqil V1 p15, among the signs of the noun: أل)
     if token.get("pos_camel") in ("noun", "noun_prop", "adj") and (vowel_agreement(token.get("typed") or "", token.get("diac", "")) or (0,))[0]:
         return False
     marked = letters(token.get("typed") or "")

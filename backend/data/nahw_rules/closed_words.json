@@ -702,7 +702,7 @@
     "عين": "emphasis 'itself' (with pronoun suffix) vs noun 'eye / spring'",
     "كل": "emphasis 'all of it' (with pronoun suffix, after a noun) vs ordinary mudaf noun 'every / all' before an indefinite noun (كل رجل) or a definite plural",
     "جميع": "emphasis 'all' (with pronoun suffix) vs ordinary noun 'all' as mudaf or hal",
-    "كلا": "emphasis 'both' (with pronoun suffix, masculine dual) vs ordinary mudaf 'both' vs rebuke particle كلا; CAMeL spells it كلى (كلتى) before the pronoun, so the list holds both",
+    "كلا": "emphasis 'both' (with pronoun suffix, masculine dual) vs ordinary mudaf 'both' vs rebuke particle كلا; CAMeL spells it كلى (كلتى) before the pronoun, and typed bare it is كلي (كلتي), the ya of nasb and jarr when added to a pronoun (كليهما، كلتيهما), so the list holds all",
     "كلتا": "emphasis 'both' (with pronoun suffix, feminine dual) vs ordinary mudaf 'both'",
     "عامة": "emphasis 'all' (rare) vs noun 'general / common'",
     "أجمع": "emphasis after كل (كله أجمع); hardly used as an ordinary word",
@@ -717,6 +717,8 @@
     "كلتا",
     "كلى",
     "كلتى",
+    "كلي",
+    "كلتي",
     "عامة"
    ],
    "without_pronoun": [
