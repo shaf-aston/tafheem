@@ -1407,3 +1407,8 @@ def test_a_relative_ma_that_is_the_one_object_of_a_passive_verb_is_its_deputy():
 def test_kayfa_before_a_verb_in_a_recorded_ayah_is_the_hal():
     # the treebank tags كيف a particle; the books name it the حال of the verbal clause after it (not before a noun)
     assert iraab.analyze("أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ")["words"][2]["role"] == "حَالٌ"
+
+
+def test_a_built_or_unseen_case_zarf_word_is_not_the_maful_fihi_of_a_nominal_sentence():
+    assert _role("أَيْنَ الْكِتَابُ", 0) == "خبر"
+    assert _role("الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى", 1) == "صفة"
