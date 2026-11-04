@@ -322,8 +322,9 @@ def _noun_place(frame: dict, verb: int, found: list[dict], verb_token: dict) -> 
     """The place of a conditional noun the parser gave none (Tasheel): a time or place word
     (متى، أينما) is a ظرف; مَنْ or ما whose verb already has its object (مَنْ صامَ رمضانَ) is
     the مبتدأ; one before a verb of the first or second person with no object (مَا تَزْرَعْ)
-    is that object, the doer being the hidden أنت. Else it is called only what it is: its verb
-    may need no object (مبتدأ) or lack the one it stands for (مفعول به), and the parser has not said which."""
+    is that object, the doer being the hidden أنت. One before a verb the book lists as taking none (طَالَ)
+    is the مبتدأ (intransitive_verbs). Else it is called only what it is: its verb may need no object
+    (مبتدأ) or lack the one it stands for (مفعول به), and the parser has not said which."""
     places = frame["places"]
     if frame["adverb"]:
         return places["adverb"]
@@ -331,6 +332,8 @@ def _noun_place(frame: dict, verb: int, found: list[dict], verb_token: dict) -> 
         return places["filled"]
     if verb_token.get("per") in ("1", "2"):
         return places["object"]
+    if is_one(verb_token["lemma"], "intransitive_verbs"):
+        return places["filled"]
     return frame["opener"]
 
 

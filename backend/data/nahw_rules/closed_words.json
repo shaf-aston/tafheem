@@ -177,7 +177,7 @@
   "intransitive_verbs": {
    "ar": "أفعال لازمة",
    "_comment": "Verbs that take no object (الفعل اللازم). After ما they leave no slot for a pronoun going back to ما (العائد), and a صلة with no عائد is ما المصدرية, never the relative (مغني اللبيب، ما المصدرية؛ شرح ابن عقيل، الموصول). Read by facts.ma_kind and repair.relative_owed: a relative after such a verb and its doer describes the doer (جاء الرجل الذي رأيته). The verbs of coming, escaping, falling, appearing and happening reach their place by a preposition, never by an object, like ذهب and خرج.",
-   "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي", "جاء", "نجا", "سقط", "هرب", "طار", "ظهر", "غاب", "مرض", "فاز", "حدث", "نما"]
+   "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي", "جاء", "نجا", "سقط", "هرب", "طار", "ظهر", "غاب", "مرض", "فاز", "حدث", "نما", "طال"]
   },
   "noun_describers": {
    "ar": "الصفة الغالبة",
