@@ -293,8 +293,8 @@ def _as_command(word: str, a: dict, before: str, after: str, after_read: str = "
     command's shape too, and أَفْضَلُ is a comparative whatever sarf can build."""
     if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(a.get("lex") or ""):
         return a  # مُنْذُ أَمْسِ: a built time word is never the command its letters spell
-    if a.get("pos") != "verb" and verb_reader.called(before, after, after_read):
-        return a  # يَا رَبِّ، رَبِّ اغْفِرْ لِي: a noun called, not رَبَّى's command
+    if a.get("pos") != "verb" and (verb_reader.called(before, after, after_read) or verb_reader.noun_marked(word, before, a.get("lex") or "")):
+        return a  # يَا رَبِّ، رَبِّ اغْفِرْ لِي: a noun called, not رَبَّى's command; عَلَى مَالِ: a noun in jarr
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
     root = root_in_arabic(a.get("root") or "", a.get("lex") or "", word)  # a verb or a noun, so rooted
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
@@ -688,13 +688,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [lam]
         if jarred := _jarred_ma(evidence):
             ranked = [jarred]
-        if not _agreeing(evidence, ranked) and (sarf := verb_reader.reading_of(token, _seen_verb)) \
-                and (sarf.get("asp") != "c" or "enc0" in sarf) \
-                and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
-            # يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
-            # the table's own tense is only spelled otherwise: the dictionary's stays. A command alone is left to
-            # repair.typed (verb_reader.command); one with its object pronoun written on (اِهْدِنَا) is split here
-            ranked = [{"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}]  # its past, else the verb's own letters
+        if not _agreeing(evidence, ranked) and (table := _table_verb(token, evidence, ranked)):
+            ranked = [table]
         elif not steps and (asked := _asked_reading(evidence, ranked, after, disambiguator)):
             ranked = [asked]
         elif not _agreeing(evidence, ranked) and (noun := noun_reader.reading_of(evidence) or next(
@@ -911,6 +906,16 @@ def _asked_split(typed: str) -> tuple[str, str] | None:
     return asked, typed[len(asked):]
 
 
+def _table_verb(typed: str, evidence: str, ranked: list[dict]) -> dict | None:
+    """يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
+    the table's own tense is only spelled otherwise: the dictionary's stays. A command alone is left to
+    repair.typed (verb_reader.command), which cuts nothing off; one with a letter joined on (فَاعْزِمُوا) or its
+    object pronoun written on (اِهْدِنَا) is split here."""
+    if (sarf := verb_reader.reading_of(typed, _seen_verb)) and (sarf.get("asp") != "c" or "+" in sarf.get("atbtok", "")) \
+            and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
+        return {"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}  # its past, else the verb's own letters
+
+
 def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=None) -> dict | None:
     """أَذَاهِبٌ زَيْدٌ: the question hamza (closed_words istifham, a one-letter word) opens the
     sentence before a full clause, written onto its first word; the dictionary lacks it on a
@@ -918,7 +923,8 @@ def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=Non
     writes a وَ (وَ+_ذاهِب). Read so where no reading of the whole word fits its vowels, or where
     the rest is a حرف جر and the next word is typed in jarr (أَفِي اللَّهِ شَكٌّ: no verb or name puts
     the noun after it in jarr, so أَفِي is not "I fulfil"), or where the rest is a jazm particle typed
-    with its sukun (أَلَمْ نَشْرَحْ: not the verb أَلَمَّ)."""
+    with its sukun (أَلَمْ نَشْرَحْ: not the verb أَلَمَّ). A rest the dictionary has no reading of that holds
+    its vowels is read off sarf's table (أَيَعْجِزُ: the dictionary has يَعْجَزُ, not يَعْجِزُ)."""
     if not (split := _asked_split(typed)):
         return None
     asked, rest = split
@@ -929,7 +935,8 @@ def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=Non
         return None
     ranked = _rest_readings(rest, disambiguator)
     if not _agreeing(rest, ranked):
-        return None
+        table = _table_verb(rest, rest, [])  # none of its readings holds the vowels typed, so none competes
+        return _joined_onto(asked, {**verb_reader.pieces([], letters(rest)), **table}, "INTERROG_PART", prc3="Aa_ques") if table else None
     return _joined_onto(asked, _reading(rest, ranked), "INTERROG_PART", prc3="Aa_ques")
 
 

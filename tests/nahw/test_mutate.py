@@ -44,3 +44,9 @@ def test_the_check_fails_on_a_lost_mutant_or_more_unflagged_misses(monkeypatch, 
     assert mutate.check(worse, {"a", "b"}, partial=False) == 1
     flagged = {"bare": {**level["bare"], "wrong": 2, "flagged": 1}}
     assert mutate.check(flagged, {"a", "b"}, partial=False) == 0
+
+
+def test_a_word_with_two_book_answers_is_right_either_way():
+    cards = [{"role": "فعل"}, {"role": "حال"}]
+    assert mutate.wrong_words(cards, ["فعل", "مفعول مطلق"], False, {"1": ["حال"]}) == []
+    assert mutate.wrong_words(cards, ["فعل", "مفعول مطلق"], False) == [1]

@@ -77,6 +77,10 @@ def subject_clash(tokens: list[dict]) -> None:
                 and not is_built(token) and not is_zarf(token, s)):
             continue
         # جَاءَ خَلِيفَةُ عُمَرَ: a diptote's fatha is its jarr, so the مضاف إليه stays
+        # بَنُو إِسْرَائِيلَ: left unlabelled (---) under a مضاف, a diptote's fatha is its jarr
+        if token["rel"] == "---" and shows_jarr(token) and not typed_tanween(head):
+            token["rel"] = "IDF"
+            continue
         clash = (token["rel"] in ("MOD", "---") or (token["rel"] == "IDF" and not shows_jarr(token))) \
             and _in_nasb(token) and not (indefinite_nasb(token) and (is_state_word(token) or same_root(token, verb)))
         # the parser may hang it there unlabelled (---) rather than as IDF; either way an إضافة is meant
@@ -275,17 +279,25 @@ def relative_owed(tokens: list[dict]) -> None:
     """كَافَأَ الْمُدِيرُ الَّذِي نَجَحَ: a relative straight after a verb's doer, the verb still owing its
     object, is that object: the doer is complete without a صفة, the verb is not without what it is done
     to. The parser hangs it on the doer as its صفة; it goes to the verb, where every axis and the
-    picture read it alike. Not after a verb the book lists as taking none (intransitive_verbs), nor a كان-sister (Tasheel 1.9: it works on an اسم and a خبر), where
-    it stays the doer's صفة, nor a passive one, whose object is its doer already."""
+    picture read it alike. Not after a verb the book lists as taking none (intransitive_verbs), where
+    it stays the doer's صفة, nor a passive one, whose object is its doer already. After كان and its
+    sisters, which are told of, not given an object, and with no khabar yet, it is the khabar (Tasheel 1.9)."""
     s = Sentence(tokens)
     for token in tokens:
         doer = s.head(token)
         verb = s.head(doer) if doer else None
         if (token["rel"] == "MOD" and token["pos"] != "PRT" and listed(token, "mawsul") and doer["id"] == token["id"] - 1
                 and subject_link(doer) and verb and is_verb(verb) and not is_passive(verb)
-                and not is_one(verb["lemma"], "intransitive_verbs") and s.family(verb) != "kana"
+                and not is_one(verb["lemma"], "intransitive_verbs")
                 and not any(k["rel"] == "OBJ" for k in s.kids(verb))):
-            token["head"], token["rel"] = verb["id"], "OBJ"
+            # كَانَ الطَّالِبُ الَّذِي نَجَحَ يَدْرُسُ: كان is told of, not given an object, so with its khabar said it stays the
+            # صفة; with none (لَيْسَ الْمِسْكِينُ الَّذِي تَرُدُّهُ التَّمْرَةُ) it is the khabar
+            if s.family(verb) == "kana":
+                if any(k["rel"] == "PRD" for k in s.kids(verb)):
+                    continue
+                token["head"], token["rel"] = verb["id"], "PRD"
+            else:
+                token["head"], token["rel"] = verb["id"], "OBJ"
 
 
 def kana_subject(tokens: list[dict]) -> None:
@@ -299,7 +311,11 @@ def kana_subject(tokens: list[dict]) -> None:
         verb = s.head(token)
         if not (verb and s.family(verb) == "kana" and verb["id"] < token["id"] and noun_tagged(token)):
             continue
-        if token["rel"] == "PRD" and typed_case_of(token) == "u" and not any(subject_link(k) for k in s.kids(verb)):
+        kids = s.kids(verb)
+        # كَانَ الْمُهَنْدِسُونَ يَعْمَلُونَ: the parser may hang the اسم as a modifier, with the khabar beside it
+        if not any(subject_link(k) for k in kids) and (token["rel"] == "PRD" and typed_case_of(token) == "u" or (
+                token["rel"] == "MOD" and typed_or_parsed_case(token) == "u" and token["id"] == verb["id"] + 1
+                and any(k["rel"] == "PRD" for k in kids))):
             token["rel"] = "SBJ"
         elif (token["rel"] == "MOD" and token["id"] == verb["id"] + 1 and typed_case_of(token) is None
               and not any(subject_link(k) for k in s.kids(verb)) and any(k["rel"] == "PRD" and k["id"] > token["id"] for k in s.kids(verb))):

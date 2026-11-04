@@ -1327,6 +1327,78 @@ def test_a_relative_typed_bare_after_a_preposition_is_not_read_as_a_command():
     assert _role("مررت بالذي ساعدني", 1) == "مجرور"
 
 
+@pytest.mark.parametrize("sentence, at, role", [
+    ("مَنْ حَلَفَ عَلَى مَالِ امْرِئٍ مُسْلِمٍ", 3, "مجرور"),  # مَالِ typed in jarr after على, not the command مِلْ
+    ("لَا خَيْرَ فِي قَرَارٍ يُتَّخَذُ دُونَ دِرَاسَةٍ", 5, "مفعول فيه"),  # دُونَ is the book's ظرف, not a verb
+])
+def test_a_noun_with_the_noun_s_sign_is_never_read_as_the_command_its_letters_spell(sentence, at, role):
+    assert _role(sentence, at) == role
+
+
+def test_khilal_is_a_noun_of_place_not_the_preposition_camel_files_it_as():
+    assert _role("انْخَفَضَتِ الصَّادِرَاتُ انْخِفَاضًا حَادًّا خِلَالَ الْأَشْهُرِ الثَّلَاثَةِ", 4) == "مفعول فيه"
+
+
+def test_a_verb_after_the_question_hamza_the_dictionary_lacks_is_read_off_the_table():
+    assert [_role("أَيَعْجِزُ أَحَدُكُمْ أَنْ يَقْرَأَ", i) for i in (0, 1)] == ["فعل", "فاعل"]  # the dictionary has يَعْجَزُ, not يَعْجِزُ
+
+
+def test_a_verb_spelled_alike_in_the_active_and_the_passive_is_read_as_the_active():
+    assert _role("هَلْ تُضَارُّونَ فِي رُؤْيَةِ الشَّمْسِ", 1) == "فعل"
+
+
+def test_a_command_with_a_joined_fa_the_dictionary_lacks_is_a_verb():
+    assert _role("إِذَا دَعَوْتُمُ اللَّهَ فَاعْزِمُوا", 3) == "فعل"
+
+
+def test_a_noun_with_tanween_is_described_by_the_tanween_noun_after_it_not_added_to_it():
+    assert _role("إِذَا كَانَ يَوْمٌ صَحْوٌ", 3) == "صفة"
+
+
+def test_a_ya_typed_as_a_marked_maqsura_is_the_pronoun_of_the_speaker():
+    assert _role("وَغَيْرُهُ أَحَبُّ إِلَىَّ مِنْهُ", 2) == "حرف جر"  # إِلَىَّ is إِلَيَّ
+
+
+def test_a_conditional_noun_the_analyser_files_as_a_particle_is_a_noun():
+    assert _role("لَنْ نَتَرَاجَعَ مَهْمَا طَالَ الزَّمَنُ", 2) in ("مبتدأ", "مفعول فيه")
+
+
+def test_a_jar_before_an_and_its_verb_is_a_harf_jarr():
+    assert _role("يَسْعَى الْمَسْؤُولُونَ إِلَى أَنْ يُوَفِّرُوا فُرَصًا", 2) == "حرف جر"
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    # واو الحال: the و brings a sentence, its raf' noun the mubtada, the word told of it the khabar
+    ("لاَ يَزَالُ نَاسٌ مِنْ أُمَّتِي ظَاهِرِينَ حَتَّى يَأْتِيَهُمْ أَمْرُ اللَّهِ وَهُمْ ظَاهِرُونَ", 11, "خبر"),
+    ("دَخَلَ الْوَزِيرُ الْقَاعَةَ مُبْتَسِمًا وَالصَّحَفِيُّونَ يَنْتَظِرُونَهُ بِفَارِغِ الصَّبْرِ", 4, "مبتدأ"),
+    ("مَنْ حَلَفَ عَلَى مَالِ امْرِئٍ مُسْلِمٍ بِغَيْرِ حَقِّهِ لَقِيَ اللَّهَ وَهُوَ عَلَيْهِ غَضْبَانُ", 12, "خبر"),
+    # ما before a fronted phrase and a raf' noun is the negation, not a relative
+    ("مَا بَيْنَ خَلْقِ آدَمَ إِلَى قِيَامِ السَّاعَةِ خَلْقٌ أَكْبَرُ مِنَ الدَّجَّالِ", 0, "حرف"),
+    # ما after a مضاف or a preposition, with its عائد inside a jar, is the relative
+    ("سَأُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِعْ عَلَيْهِ صَبْرًا", 2, "مضاف إليه"),
+    # a و that opens a clause is no joiner: the two khabars of the two mubtadas
+    ("الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى وَالْيَدُ الْعُلْيَا الْمُنْفِقَةُ وَالسُّفْلَى السَّائِلَةُ", 8, "خبر"),
+    ("يَا عَبْدَ الرَّحْمَنِ بْنَ سَمُرَةَ لاَ تَسْأَلِ الإِمَارَةَ", 3, "صفة"),
+    # the oath: the relative is sworn by, its صلة is the nominal sentence
+    ("وَالَّذِي نَفْسِي بِيَدِهِ لاَ تَدْخُلُونَ الْجَنَّةَ حَتَّى تُؤْمِنُوا", 0, "مجرور"),
+    ("وَالَّذِي نَفْسِي بِيَدِهِ لاَ تَدْخُلُونَ الْجَنَّةَ حَتَّى تُؤْمِنُوا", 1, "مبتدأ"),
+    # أمّا: the noun after it is the mubtada, the فاء answer its khabar
+    ("فَأَمَّا الَّذِي يَرَى النَّاسُ أَنَّهَا النَّارُ فَمَاءٌ بَارِدٌ", 6, "خبر"),
+    ("وَأَمَّا مَنْ كَانَ مِنْ أَهْلِ الشَّقَاءِ فَيُيَسَّرُ لِعَمَلِ أَهْلِ الشَّقَاوَةِ", 1, "مبتدأ"),
+    # كان: the اسم, the name added to بنو, a relative as the khabar, a noun joined after وَلَا
+    ("كَانَ الْمُهَنْدِسُونَ يَعْمَلُونَ لَيْلًا وَنَهَارًا حَتَّى اكْتَمَلَ الْجِسْرُ قَبْلَ الْمَوْعِدِ الْمُحَدَّدِ", 1, "اسم كان"),
+    ("كَانَتْ بَنُو إِسْرَائِيلَ يَغْتَسِلُونَ عُرَاةً", 2, "مضاف إليه"),
+    ("لَيْسَ الْمِسْكِينُ الَّذِي تَرُدُّهُ التَّمْرَةُ وَالتَّمْرَتَانِ وَلاَ اللُّقْمَةُ وَلاَ اللُّقْمَتَانِ", 2, "خبر كان"),
+    ("لَيْسَ الْمِسْكِينُ الَّذِي تَرُدُّهُ التَّمْرَةُ وَالتَّمْرَتَانِ وَلاَ اللُّقْمَةُ وَلاَ اللُّقْمَتَانِ", 7, "معطوف"),
+    # the light لكن after a و opens a sentence: the noun after it is its mubtada
+    ("لاَ هِجْرَةَ بَعْدَ الْفَتْحِ وَلَكِنْ جِهَادٌ وَنِيَّةٌ وَإِذَا اسْتُنْفِرْتُمْ فَانْفِرُوا", 5, "مبتدأ"),
+    # a verb has one doer: the second raf' noun is the khabar of a left-out mubtada
+    ("إِنَّ فِيكَ لَخَصْلَتَيْنِ يُحِبُّهُمَا اللَّهُ الْحِلْمُ وَالأَنَاةُ", 5, "خبر"),
+])
+def test_clause_structure_of_hadith_matn(sentence, at, role):
+    assert _role(sentence, at) == role
+
+
 def test_a_time_name_is_the_maful_fihi_though_the_list_never_named_it():
     assert _role("هَلْ رَأَى أَحَدٌ مِنْكُمُ الْبَارِحَةَ رُؤْيَا", 4) == "مفعول فيه"
 

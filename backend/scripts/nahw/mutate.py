@@ -31,7 +31,7 @@ from collections import Counter, defaultdict
 from itertools import zip_longest
 from pathlib import Path
 
-from backend.scripts.nahw.score_iraab import DATA, EXACT, SETS, plain_role, routed, same_role
+from backend.scripts.nahw.score_iraab import DATA, EXACT, SETS, plain_role, right_role, routed
 from backend.services.text.arabic_text import bare_letters, strip_diacritics, words
 
 RULES = DATA / "nahw_rules"
@@ -80,11 +80,11 @@ def mutations(ex: dict) -> list[tuple[str, str, list[str]]]:
     return out
 
 
-def wrong_words(cards: list[dict], key: list[str], by_family: bool) -> list[int]:
+def wrong_words(cards: list[dict], key: list[str], by_family: bool, also: dict | None = None) -> list[int]:
     """Indexes of the words whose role is not the key's; every word when the count differs."""
     if len(cards) != len(key):
         return list(range(max(len(cards), len(key))))
-    return [i for i, want in enumerate(key) if not same_role(plain_role(cards[i].get("role")), want, by_family)]
+    return [i for i, want in enumerate(key) if not right_role(plain_role(cards[i].get("role")), want, (also or {}).get(str(i), []), by_family)]
 
 
 def keyed_rows(sets: list[str]) -> list[dict]:
@@ -115,7 +115,7 @@ def run(rows: list[dict], fails: dict) -> dict[str, dict]:
         if base.get("read_failed"):
             stats["base"]["crashed"] += 1
             continue
-        base_right = not wrong_words(base["words"], ex["key"], by_family)
+        base_right = not wrong_words(base["words"], ex["key"], by_family, ex.get("also"))
         if n % every == 0:
             again = routed(ex["sentence"], None)
             shape = lambda a: [(plain_role(c.get("role")), c.get("case")) for c in a["words"]]
@@ -134,7 +134,8 @@ def run(rows: list[dict], fails: dict) -> dict[str, dict]:
             if ans.get("read_failed"):
                 row["crashed"] += 1
                 continue
-            bad = wrong_words(ans["words"], key, by_family and kind in ("bare", "rename", "noun"))
+            same_key = kind in ("bare", "rename", "noun")
+            bad = wrong_words(ans["words"], key, by_family and same_key, ex.get("also") if same_key else None)
             if not bad:
                 row["right"] += 1
                 row["whole"].append(ex["id"])

@@ -4,7 +4,9 @@ A conditional word has the front of its sentence (له الصدارة): it opens
 leads its clause and a verb comes straight after, its فعل الشرط. A conditional noun (مَنْ،
 ما) shares its letters with a relative or a question word, so it opens one only when an
 answer follows too: a verb tied to it by its letter (فَلْيَصُمْهُ), else one in jazm, else
-a past verb, never one joined on by a conjunction (closed_words.json, conditional_nouns). The
+a past verb, never one joined on by a conjunction (closed_words.json, conditional_nouns). A
+conditional noun nothing else shares its letters with (مَهْمَا) needs no clause to lead: it
+opens after one, its answer having come first (لَنْ نَتَرَاجَعَ مَهْمَا طَالَ الزَّمَنُ). The
 letter that ties an answer (فَ) may stand on a noun clause or a particle in front of it (فَلَهُ،
 فَإِنَّ، فَلَا): the book ties an answer exactly when it could not stand as a condition itself, so
 that is an answer too, and a plain past verb after فَ is not enough to prove one (roles.json).
@@ -46,7 +48,9 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
     def opens(i: int) -> dict | None:
         frame = condition_of(bases[i]["form"])
         v = verb_at(i)
-        if not frame or v >= len(bases) or (i and not joined(i)):
+        # a noun no relative or question word shares its letters with opens after a clause too, its answer
+        # having come first (لَنْ نَتَرَاجَعَ مَهْمَا طَالَ الزَّمَنُ)
+        if not frame or v >= len(bases) or (i and not joined(i) and (frame["shared"] or not frame["noun"])):
             return None
         # إنما: the lemma is the pair, a ما الكافة cut off the إنّ sister it stops, so no إنْ of a condition
         if kaffa_sister(bases[i]["lemma"]):
@@ -56,6 +60,8 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
             return None
         # ما النافية is a particle; إذا before a verb is a ظرف, whatever the parser tagged it
         read = reading(bases[i])
+        if read == "wonder":
+            return None  # مَا أَسْرَعَ مَا تَغَيَّرَتْ: the ما of wonder asks for no answer
         kind = reading(bases[i], "kind") or ("harf" if bases[i]["pos"] == "PRT" else "ism")
         if not frame["noun"] and read and read != frame["family"]:
             return None  # إِنَّا جَعَلْنَا: the particle's one reading is إنّ, no condition
