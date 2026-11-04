@@ -88,8 +88,10 @@ def _follows(token: dict, s: Sentence) -> str:
     if excepting and excepting["pos"] == "PRT" and read_as(excepting, "istithna") \
             and s.negated_before(excepting):
         before = excepted_from(excepting, s)
-        # no case shown (لا اله الا الله، لا إله إلا هو): the إتباع, the stronger reading (Tasheel 3.8.7)
-        if before and (shown := case_shown(token)) in (None, place_case(before, s)):
+        # no case shown (لا اله الا الله، لا إله إلا هو): the إتباع, the stronger reading (Tasheel 3.8.7); the noun
+        # excepted from stands in the word's own clause: لَا يَعْلَمُ مَا تَغِيضُ الْأَرْحَامُ إِلَّا اللَّهُ leaves the doer
+        # of يعلم out (الاستثناء المفرّغ), and الأرحام is the doer of another verb
+        if before and verb_above(before, s) is verb_above(token, s) and (shown := case_shown(token)) in (None, place_case(before, s)):
             return "badal"
     head = s.head(token)
     # هذا البستانُ: the noun with ال a pointer points at, hung on it or (as some parses

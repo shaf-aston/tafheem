@@ -1393,3 +1393,7 @@ def test_a_masdar_added_to_its_doer_governs_the_object_after_it():
 
 def test_the_noun_after_lawla_is_its_mubtada():
     assert _role("كَادَتِ الْمُفَاوَضَاتُ تَنْهَارُ لَوْلَا تَدَخُّلُ الْوَسِيطِ الدَّوْلِيِّ فِي اللَّحْظَةِ الْأَخِيرَةِ", 4) == "مبتدأ"
+
+
+def test_a_noun_after_illa_is_no_badal_of_a_noun_in_another_clause():
+    assert _role("لاَ يَعْلَمُ مَا تَغِيضُ الأَرْحَامُ إِلاَّ اللَّهُ", 6) == "فاعل"
