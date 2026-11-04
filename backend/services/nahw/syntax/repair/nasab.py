@@ -43,8 +43,9 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
 
 def _names(word: dict, son: dict) -> bool:
     """A name, or a bare word before بن written without its alef: the alef drops only between
-    two names, so عليُّ بنُ أبي طالبٍ is a name whatever the reading calls عليّ."""
-    return is_name(word) or (_bare(word) and strip_diacritics(son.get("typed") or son["form"]) == "بن")
+    two names, so عليُّ بنُ أبي طالبٍ is a name whatever the reading calls عليّ. So is the last word
+    of a name added to one (يَا عَبْدَ الرَّحْمَنِ بْنَ سَمُرَةَ: الرحمن ends the name عبد الرحمن)."""
+    return is_name(word) or ((_bare(word) or word["rel"] == "IDF") and strip_diacritics(son.get("typed") or son["form"]) == "بن")
 
 
 def _bare(word: dict) -> bool:
