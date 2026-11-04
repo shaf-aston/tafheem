@@ -53,7 +53,8 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         head = next((t for t in tokens if t["id"] == token["head"]), None)
         noun = read_noun and (any(t["head"] == token["id"] and t.get("token_type") == "enc0" and t["rel"] != "OBJ" for t in tokens)
                               or i > 0 and is_one(bases[i - 1]["base"], "nida")
-                              or token["rel"] == "IDF" or token["rel"] == "MOD" and head is not None and typed_or_parsed_case(head) == "i")
+                              or token["rel"] == "IDF" or token["rel"] == "MOD" and head is not None and typed_or_parsed_case(head) == "i"
+                              or verb_reader.noun_marked(word, bases[i - 1]["base"] if i else "", token["lemma"]))
         if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not noun:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))

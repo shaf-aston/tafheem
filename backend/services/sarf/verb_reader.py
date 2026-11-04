@@ -19,8 +19,8 @@ from functools import lru_cache
 from pathlib import Path
 
 from backend.services.sarf import conjugation
-from backend.services.text.harakat import KASRA, SUKUN, letters, plural_alef
-from backend.services.nahw.book import book_words, is_one
+from backend.services.text.harakat import KASRA, SUKUN, letters, plural_alef, typed_case
+from backend.services.nahw.book import book_words, is_one, only_adverb
 
 _READING = Path(__file__).parent.parent.parent / "data" / "sarf" / "reading.json"
 _LONG = set("اوي")  # a sukun typed on a long letter is the reader's habit, not a vowel the table must hold
@@ -250,6 +250,13 @@ def called(before: str, after: str, read_as: str = "") -> bool:
     command with its object written on (رَبِّ زِدْنِي) that command() alone cannot split. A noun after is no command
     said (رَبِّ ابْنَكَ: "raise your son", not ابْنَ + كَ)."""
     return is_one(before, "nida") or not before and (read_as == "c" or command(after) is not None)
+
+
+def noun_marked(word: str, before: str, lemma: str) -> bool:
+    """A word with a sign of the noun on it is never the command its letters spell (Ibn Aqil V1 p15: بالجر): typed in
+    jarr after a preposition (عَلَى مَالِ), or a word the book lists only as a ظرف (Ajrumiyya 1/18: دُونَ, a time
+    or place noun in nasb). `before` is the bare word typed before it, `lemma` the dictionary's."""
+    return only_adverb(lemma) or is_one(before, "jarr") and typed_case(word) == "i"
 
 
 def known_as(word: str) -> str | None:

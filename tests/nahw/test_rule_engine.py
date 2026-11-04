@@ -1325,3 +1325,11 @@ def test_a_mudaf_to_a_known_noun_before_an_indefinite_one_is_the_mubtada():
 
 def test_a_relative_typed_bare_after_a_preposition_is_not_read_as_a_command():
     assert _role("مررت بالذي ساعدني", 1) == "مجرور"
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    ("مَنْ حَلَفَ عَلَى مَالِ امْرِئٍ مُسْلِمٍ", 3, "مجرور"),  # مَالِ typed in jarr after على, not the command مِلْ
+    ("لَا خَيْرَ فِي قَرَارٍ يُتَّخَذُ دُونَ دِرَاسَةٍ", 5, "مفعول فيه"),  # دُونَ is the book's ظرف, not a verb
+])
+def test_a_noun_with_the_noun_s_sign_is_never_read_as_the_command_its_letters_spell(sentence, at, role):
+    assert _role(sentence, at) == role

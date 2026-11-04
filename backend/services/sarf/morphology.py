@@ -293,8 +293,8 @@ def _as_command(word: str, a: dict, before: str, after: str, after_read: str = "
     command's shape too, and أَفْضَلُ is a comparative whatever sarf can build."""
     if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(a.get("lex") or ""):
         return a  # مُنْذُ أَمْسِ: a built time word is never the command its letters spell
-    if a.get("pos") != "verb" and verb_reader.called(before, after, after_read):
-        return a  # يَا رَبِّ، رَبِّ اغْفِرْ لِي: a noun called, not رَبَّى's command
+    if a.get("pos") != "verb" and (verb_reader.called(before, after, after_read) or verb_reader.noun_marked(word, before, a.get("lex") or "")):
+        return a  # يَا رَبِّ، رَبِّ اغْفِرْ لِي: a noun called, not رَبَّى's command; عَلَى مَالِ: a noun in jarr
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
     root = root_in_arabic(a.get("root") or "", a.get("lex") or "", word)  # a verb or a noun, so rooted
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
