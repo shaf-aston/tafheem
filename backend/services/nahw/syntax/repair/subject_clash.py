@@ -5,7 +5,8 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
 from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import (
-    Sentence, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time)
+    Sentence, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
+from backend.services.nahw.syntax.facts.word import takes_two_objects
 
 
 def excepted_after_doer(tokens: list[dict]) -> None:
@@ -167,15 +168,19 @@ def doer_after_object(tokens: list[dict]) -> None:
     """أَدْهَشَ الْجُمْهُورَ السَّاحِرُ: the object may come before the doer. A word hung on a verb
     as its subject that the reader typed in nasb, with a raf' word hung on it straight after,
     is the object and that raf' word the doer: a نعت wears its noun's case, and a مضاف إليه is
-    in jarr."""
+    in jarr. أَكْرَمَ أَبَاهُ الْوَلَدُ typed bare: the six nouns' alif shows the nasb, so the noun straight after it that
+    shows no case (hung on the verb as a second object) is the doer, as no verb keeps two objects but a verb of two."""
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
         if not (verb and is_verb(verb) and token["rel"] == "SBJ" and typed_case_of(token) == "a"
                 and not is_mabni(token.get("pos_camel", ""))):
             continue
-        doer = next((k for k in s.kids(token) if k["id"] == token["id"] + 1 and k["rel"] in ("MOD", "IDF")
+        doer = (next((k for k in s.kids(token) if k["id"] == token["id"] + 1 and k["rel"] in ("MOD", "IDF")
                      and noun_tagged(k) and typed_case_of(k) == "u"), None)
+                or next((k for k in [next_word(token, s)] if k and k["rel"] == "OBJ" and k["head"] == verb["id"]
+                     and noun_tagged(k) and typed_case_of(k) is None and k.get("stt") == "d"
+                     and not takes_two_objects(verb) and not holds_doer(verb, [x for x in s.kids(verb) if x is not token])), None))
         if doer:
             token["rel"] = "OBJ"
             doer["head"], doer["rel"] = verb["id"], "SBJ"
@@ -261,7 +266,7 @@ def relative_owed(tokens: list[dict]) -> None:
     """كَافَأَ الْمُدِيرُ الَّذِي نَجَحَ: a relative straight after a verb's doer, the verb still owing its
     object, is that object: the doer is complete without a صفة, the verb is not without what it is done
     to. The parser hangs it on the doer as its صفة; it goes to the verb, where every axis and the
-    picture read it alike. Not after a verb the book lists as taking none (intransitive_verbs), where
+    picture read it alike. Not after a verb the book lists as taking none (intransitive_verbs), nor a كان-sister (Tasheel 1.9: it works on an اسم and a خبر), where
     it stays the doer's صفة, nor a passive one, whose object is its doer already."""
     s = Sentence(tokens)
     for token in tokens:
@@ -269,7 +274,7 @@ def relative_owed(tokens: list[dict]) -> None:
         verb = s.head(doer) if doer else None
         if (token["rel"] == "MOD" and token["pos"] != "PRT" and listed(token, "mawsul") and doer["id"] == token["id"] - 1
                 and subject_link(doer) and verb and is_verb(verb) and not is_passive(verb)
-                and not is_one(verb["lemma"], "intransitive_verbs")
+                and not is_one(verb["lemma"], "intransitive_verbs") and s.family(verb) != "kana"
                 and not any(k["rel"] == "OBJ" for k in s.kids(verb))):
             token["head"], token["rel"] = verb["id"], "OBJ"
 
@@ -287,6 +292,9 @@ def kana_subject(tokens: list[dict]) -> None:
             continue
         if token["rel"] == "PRD" and typed_case_of(token) == "u" and not any(subject_link(k) for k in s.kids(verb)):
             token["rel"] = "SBJ"
+        elif (token["rel"] == "MOD" and token["id"] == verb["id"] + 1 and typed_case_of(token) is None
+              and not any(subject_link(k) for k in s.kids(verb)) and any(k["rel"] == "PRD" and k["id"] > token["id"] for k in s.kids(verb))):
+            token["rel"] = "SBJ"  # كَانَ الطِّفْلُ يَلْعَبُ typed bare: the first noun after كان is its اسم, the khabar comes after it
         elif not (subject_link(token) and not any(k["rel"] == "PRD" for k in s.kids(verb))):
             continue
         told = next((k for k in s.kids(token) if k["id"] > token["id"] and k["rel"] == "MOD"

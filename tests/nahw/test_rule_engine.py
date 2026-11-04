@@ -1420,3 +1420,31 @@ def test_an_indefinite_word_after_a_construct_with_no_verb_above_is_the_khabar()
 
 def test_an_amount_word_after_a_verb_that_takes_an_object_is_left_to_the_other_rules():
     assert _role("الَّذِي يَقْرَأُ كَثِيرًا يَزْدَادُ عِلْمُهُ", 2) == "حال"
+
+
+def test_bare_al_umm_is_a_noun_not_the_particle_am():
+    # a joining word takes no ال (Ibn Aqil V1 p15): الأم typed bare is the noun
+    assert _role("كانت الأم تطبخ", 1) == "اسم كان"
+    assert _role("الأم تطبخ الطعام", 0) == "مبتدأ"
+
+
+def test_bare_nima_before_a_noun_with_al_is_the_verb_of_praise_with_its_doer():
+    assert [_role("نعم الرجل زيد", i) for i in range(3)] == ["فعل", "فاعل", "مبتدأ"]
+
+
+def test_bare_noun_after_kana_with_a_verb_after_it_is_its_ism():
+    assert _role("كان الطفل يلعب", 1) == "اسم كان"
+
+
+def test_a_relative_after_the_ism_of_kana_describes_it_and_is_no_object():
+    # كان works on an اسم and a خبر (Tasheel 1.9), so the relative stays the ism's صفة
+    assert _role("كان الطالب الذي نجح في الامتحان يدرس ليلا ونهارا", 2) == "صفة"
+
+
+def test_bare_noun_after_illa_with_the_doer_before_it_is_its_badal():
+    assert _role("ما جاء أحد إلا زيد", 4) == "بدل"
+
+
+def test_bare_noun_straight_after_the_six_noun_in_nasb_is_the_doer():
+    # no verb keeps two objects but a verb of two (Ibn Aqil V1 p184): the alif of أباه shows the nasb
+    assert [_role("أكرم أباه الولد", i) for i in (1, 2)] == ["مفعول به", "فاعل"]

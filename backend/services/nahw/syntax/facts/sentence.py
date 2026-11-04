@@ -15,7 +15,7 @@ def praised_noun(token: dict, s: "Sentence") -> bool:
     hung it on the verb as a second subject or on the doer as its modifier. The follows axis
     and the slot both ask this, so neither calls it a صفة or a second doer."""
     head = s.head(token)
-    if not head or typed_or_parsed_case(token) != "u" or not noun_tagged(token):
+    if not head or typed_case_of(token) not in (None, "u") or not noun_tagged(token):
         return False
     verb = head if is_verb(head) else s.head(head)
     if not verb or not is_verb(verb) or not is_one(verb["lemma"], "praise_blame"):
