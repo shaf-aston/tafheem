@@ -57,6 +57,11 @@ def place_time(token: dict, s: Sentence) -> bool:
     """A listed time or place word that is a verb's مفعول فيه (Tasheel 3.2 p67): it
     modifies the verb with no vowel or fatha (the parser may draw that as idafa), or it
     stands before its verb with the verb hanging off it (مَتَى سافر)."""
+    head = s.head(token)
+    # هَذَا الْعَامَ: a pointer with a time word in nasb straight after it stands for the pair, the zarf
+    if "dem" in token.get("pos_camel", "") and head and is_verb(head) and any(
+            k["id"] == token["id"] + 1 and is_zarf(k, s) and typed_case_of(k) == "a" for k in s.kids(token)):
+        return True
     if not is_zarf(token, s):
         return False
     if is_built_zarf(token) and head and is_verb(head) and token["rel"] in ("MOD", "IDF"):

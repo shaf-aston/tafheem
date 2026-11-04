@@ -1341,3 +1341,7 @@ def test_a_time_word_in_nasb_after_a_verb_that_takes_no_object_is_the_maful_fihi
 ])
 def test_a_time_or_place_word_in_nasb_hung_on_a_noun_or_on_la_is_the_maful_fihi(sentence, at):
     assert _role(sentence, at) == "مفعول فيه"
+
+
+def test_a_pointer_with_a_time_word_in_nasb_after_it_is_the_maful_fihi():
+    assert _role("أَعْلَنَتِ الشَّرِكَةُ أَنَّ أَرْبَاحَهَا ارْتَفَعَتْ بِنِسْبَةِ عَشَرَةٍ فِي الْمِئَةِ هَذَا الْعَامَ", 9) == "مفعول فيه"
