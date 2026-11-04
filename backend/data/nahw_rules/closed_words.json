@@ -1279,20 +1279,20 @@
   "reason_masdars": {
    "ar": "مصادر قلبية تأتي مفعولا لأجله",
    "effect": "a masdar of the heart (a feeling or intent), indefinite or a مضاف, in nasb under a verb of another root, is its مفعول لأجله: قام الطلاب احترامًا. Any other masdar there is a حال (جاء ركضًا). Lemmas as the parser spells them.",
-   "words": ["احترام", "ٱحترام", "إكرام", "تعظيم", "إجلال", "خوف", "خشية", "رهبة", "رغبة", "حب", "طمع", "رجاء", "شوق", "حياء", "حذر", "ابتغاء", "ٱبتغاء", "طلب", "تأديب", "إخلاص", "شفقة", "رحمة", "تقدير", "إعجاب", "حرص", "اتقاء", "ٱتقاء", "طاعة", "تكريم", "رأفة", "كراهية", "إشفاق", "اعتراف", "ٱعتراف", "امتنان", "ٱمتنان"]
+   "words": ["احترام", "ٱحترام", "إكرام", "تعظيم", "إجلال", "خوف", "خشية", "رهبة", "رغبة", "حب", "طمع", "رجاء", "شوق", "حياء", "حذر", "ابتغاء", "ٱبتغاء", "إيمان", "احتساب", "ٱحتساب", "طلب", "تأديب", "إخلاص", "شفقة", "رحمة", "تقدير", "إعجاب", "حرص", "اتقاء", "ٱتقاء", "طاعة", "تكريم", "رأفة", "كراهية", "إشفاق", "اعتراف", "ٱعتراف", "امتنان", "ٱمتنان"]
   },
   "verbless_masdars": {
    "ar": "مصادر منصوبة بفعل محذوف وجوبًا (سماعية)",
    "effect": "Heard masdars whose verb is never said (Ibn Aqil on the Alfiyya, المفعول المطلق: حذف عامل المصدر وجوبًا): in nasb and indefinite, wherever they stand, each is a مفعول مطلق of that unsaid verb (جَدَّ جِدًّا), never an object of the word before it (مجتهداتٌ جدًّا). معاذ is a masdar of the measure مَفْعَل, which also makes nouns of place, so it is listed (Ibn Jinni, al-Munsif: مصدرا فألزم النصب نحو سبحان الله ولبيك ومعاذ الله). Lemmas as the parser spells them.",
    "words": ["جد", "حق", "أيض", "شكر", "حمد", "عجب", "قطع", "يقين", "سقي", "رعي", "معاذ"]
   },
-  "tamyeez_verbs": {
   "masdar_adjectives": {
    "ar": "صفات تنوب عن المصدر",
    "book": "Ibn Aqil V2 p172 (وقد ينوب عنه ما عليه دل); Qur'an 9:82 (فَلْيَضْحَكُوا قَلِيلًا وَلْيَبْكُوا كَثِيرًا)",
    "effect": "An amount word in nasb after a verb says how much the doing was, the masdar left out (بكى كثيرًا = بكاءً كثيرًا): the verb's مفعول مطلق, never a حال.",
    "words": ["كثير", "قليل", "طويل"]
   },
+  "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",
    "effect": "after a complete sentence built on one of these, an indefinite accusative noun is a tamyeez of the relation: طاب المكان هواء، امتلأ الكوب ماء، كفى بالمرء كذبًا. Lemmas as the parser spells them (a hamzat-wasl verb comes back with alef wasla).",
    "words": [
