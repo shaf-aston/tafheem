@@ -413,6 +413,10 @@ def _nominal_place(token: dict, s: Sentence) -> str:
                        for k in said if not is_suffix(k))
             return "subject" if told else "none"
     if rel == "MOD" and head:
+        # أَحَبُّ إِلَيَّ مِنْهُ خَشْيَةَ أَنْ يُكَبَّ: a heart's masdar added to أنْ and its verb gives the reason (Tasheel 3.8.3
+        # p73), as a tamyeez is a noun that says what was counted or measured, added to no clause
+        if purpose(token, head) and any(k["rel"] == "IDF" and k["pos"] == "PRT" for k in s.kids(token)):
+            return "purpose"
         # اشتريت رطلين زيتًا: after a measure a plain noun in nasb is its tamyeez, though the two differ in number
         if listed(head, "tamyeez_head") and indefinite_nasb(token) and token.get("pos_camel") != "adj":
             return "specification"

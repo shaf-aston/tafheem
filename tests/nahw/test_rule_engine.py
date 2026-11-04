@@ -1365,3 +1365,7 @@ def test_a_masdar_after_a_passive_verb_whose_object_became_its_deputy_is_a_hal()
 
 def test_a_masdar_of_the_heart_after_the_verb_is_the_maful_li_ajlih():
     assert _role("مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", 4) == "مفعول لأجله"
+
+
+def test_a_heart_masdar_added_to_an_plus_verb_is_the_maful_li_ajlih():
+    assert _role("وَغَيْرُهُ أَحَبُّ إِلَيَّ مِنْهُ خَشْيَةَ أَنْ يُكَبَّ فِي النَّارِ عَلَى وَجْهِهِ", 4) == "مفعول لأجله"
