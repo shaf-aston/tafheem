@@ -13,7 +13,6 @@ import { nextAfter } from '../../lib/grow/bookLesson'
 import { landingOf, placeOf, valueOf } from '../../lib/grow/growPlace'
 import { BOOK_IDS, BOOKS, WORLD_IDS, WORLDS, missingLessonHooks, worldOf } from '../../lib/grow/worlds'
 import { goBack } from '../../lib/nav/journey'
-import { useOpenAtTopKeepBack } from '../../lib/motion/scrollToEl'
 import { getProfile } from '../../lib/learner/profile'
 import { useHadithWorld } from '../../lib/grow/useHadithWorld'
 import { usePrayerWorld } from '../../lib/grow/usePrayerWorld'
@@ -28,6 +27,7 @@ import { useWordsWorld } from '../../lib/grow/useWordsWorld'
 import BookWorld from './BookWorld'
 import GrowHome from './GrowHome'
 import LessonRunner from '../practice/LessonRunner'
+import Screen from '../ui/display/Screen'
 import LessonWorld from './LessonWorld'
 import { Skeleton } from '../ui/feedback/Skeleton'
 
@@ -77,12 +77,8 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   // A lesson the book does not have, or a review with nothing due: that world's page instead.
   if (cards && !cards.length) setView({ at: 'world', id: view.id, ...(view.part && { part: view.part }) })
 
-  // Which screen this is. Each one arrives as one piece (styles/growWorlds.css .grow-screen), fading in once rather than
-  // every block replaying its own rise, which washed the page pale on every tap; and opens at its top, as a fresh page
-  // would: the tab's scroll was kept, so a world opened from low on Grow's page landed on its footer while its top filled in.
-  // Back up a level lands where it was left.
+  // Which screen this is: each opens at its top and arrives as one piece (ui/display/Screen.jsx).
   const screenKey = view.at === 'lesson' ? `lesson/${playing}` : valueOf(view) ?? 'home'
-  useOpenAtTopKeepBack(screenKey, { home: 0, world: view.part ? 2 : 1, lesson: 3 }[view.at])
 
   const [, rememberBook] = useRemembered(LAST_BOOK, BOOK_IDS, '')
   const go = (next) => {
@@ -130,5 +126,9 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
         onOpen={open} onStart={start} onStartBook={startBook} />
     )
   }
-  return <div key={screenKey} className="panel grow-screen fade-in">{screen}</div>
+  return (
+    <Screen id={screenKey} depth={{ home: 0, world: view.part ? 2 : 1, lesson: 3 }[view.at]} className="panel grow-screen">
+      {screen}
+    </Screen>
+  )
 }

@@ -29,7 +29,9 @@ export default function WordsView({ unit, at }) {
   const words = lesson.vocabulary
   // The mode rides on the address (?words=cards in a shared link), so a reload or a link keeps it.
   const [mode, setModeNow] = useState(() => readViewParam('words', MODE_IDS) ?? 'browse')
-  const setMode = (next) => { setModeNow(next); writeViewParams({ words: next === 'browse' ? '' : next }) }
+  // A mode picked here rises in, as an answer to the tap; the first arrives with its screen (ui/display/Screen.jsx).
+  const [picked, setPicked] = useState(false)
+  const setMode = (next) => { setModeNow(next); setPicked(true); writeViewParams({ words: next === 'browse' ? '' : next }) }
   const dialect = unit.dialect_key
   // Review plans from the words' record: fetched ahead when the topic opens, and again
   // on reaching for the modes (only if an answer has made it old), so it opens at once.
@@ -53,8 +55,8 @@ export default function WordsView({ unit, at }) {
           <Segmented label="How to learn the words" accent="var(--primary)" value={shown} onChange={setMode} options={modes} />
         </div>
       </header>
-      {/* Keyed by the mode, so each one rises in as the rest of the tab's views do. */}
-      <div key={shown} className="rise-in">
+      {/* Keyed by the mode, so a newly picked one rises in. */}
+      <div key={shown} className={picked ? 'rise-in' : undefined}>
         {shown === 'browse' && (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />)}
         {shown === 'cards' && <WordCards words={words} />}
         {shown === 'match' && <WordMatch words={words} />}
