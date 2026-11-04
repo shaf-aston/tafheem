@@ -745,6 +745,7 @@
    "carriers": ["كل", "بعض", "ذات"],
    "_ذات": "ذات added to a time word is used as a time word only, always in nasb: سير عليه ذات يوم، وسير عليه ذات ليلة، بمنزلة ذات مرة (Sibawayh, al-Kitab V1 p226); والمستعمل ظرفا لا غير ما لزم النصب نحو قولك سرنا ذات مرة (Zamakhshari, al-Mufassal p81).",
    "_built": "Time words built on one ending whatever their place (Tasheel): the vowel typed on them is part of the word, not a case (زارنا أمسِ: مبني على الكسر في محل نصب).",
+   "_بارحة": "البارحة, the night just gone, is a time name like ليلة: every name of time takes nasb as maf'ul fihi (Tasheel 3.2 p67).",
    "built": ["أمس", "الآن", "إذ", "منذ", "مذ"],
    "words": [
     "إذ",
@@ -785,6 +786,7 @@
     "أسبوع",
     "يوما",
     "ليلة",
+    "البارحة",
     "لما",
     "كلما",
     "قبل",
@@ -1221,13 +1223,14 @@
   },
   "participle_patterns": {
     "_doing": "`doing`: the measures of the doer and the done-to (فاعل, مفعول, and the مُ of forms II to X), not the صفة مشبهة. A word of its verb's own root on another measure repeats the doing itself, so it is the مفعول مطلق (فَرِحَ فَرَحًا، ضَحِكَتْ ضَحِكًا عَالِيًا), while one on these is a hal (قام قائمًا، وَلَّى مُدْبِرًا).",
-    "doing": ["1ائِ3", "1ا2ِ3", "آ2ِ3", "1ا2ِي", "مُ", "مَ1ْ2ُو3"],
+    "doing": ["1ائِ3", "1ا2ِ3", "آ2ِ3", "1ا2ِي", "1ُ2اَة", "مُ", "مَ1ْ2ُو3"],
    "ar": "أوزان اسم الفاعل واسم المفعول والصفة المشبهة",
-   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل (آ2ِ3 when the first root letter is a hamza: آمِر، آكِل), 1ائِ3 the same with a hollow middle letter (سائق، قائم، صائم), 1ا2ِي the same with a weak last letter (باكية، داعيًا), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
+   "effect": "an indefinite accusative word of one of these shapes, after a verb with its doer, is a hal (a derived describing word, Tasheel 3.8.6). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): 1ا2ِ3 is فاعل (آ2ِ3 when the first root letter is a hamza: آمِر، آكِل), 1ائِ3 the same with a hollow middle letter (سائق، قائم، صائم), 1ا2ِي the same with a weak last letter (باكية، داعيًا), 1ُ2اَة the broken plural of a doer with a weak last letter (عُرَاة، غُزَاة، رُمَاة), مُ is every active or passive participle of forms II to X, مَ1ْ2ُو3 is مفعول; the صفة مشبهة: 1َ2ِ3 فَعِل (فَرِحًا), 1َ2ِي3 فَعِيل (سَعِيدًا), 1َ2ْ3َان فَعْلان (غَضْبَانَ).",
    "words": ["1ائِ3", 
     "1ا2ِ3",
     "آ2ِ3",
     "1ا2ِي",
+    "1ُ2اَة",
     "مُ",
     "مَ1ْ2ُو3",
     "1َ2ِ3",
@@ -1280,12 +1283,18 @@
   "reason_masdars": {
    "ar": "مصادر قلبية تأتي مفعولا لأجله",
    "effect": "a masdar of the heart (a feeling or intent), indefinite or a مضاف, in nasb under a verb of another root, is its مفعول لأجله: قام الطلاب احترامًا. Any other masdar there is a حال (جاء ركضًا). Lemmas as the parser spells them.",
-   "words": ["احترام", "ٱحترام", "إكرام", "تعظيم", "إجلال", "خوف", "خشية", "رهبة", "رغبة", "حب", "طمع", "رجاء", "شوق", "حياء", "حذر", "ابتغاء", "ٱبتغاء", "طلب", "تأديب", "إخلاص", "شفقة", "رحمة", "تقدير", "إعجاب", "حرص", "اتقاء", "ٱتقاء", "طاعة", "تكريم", "رأفة", "كراهية", "إشفاق", "اعتراف", "ٱعتراف", "امتنان", "ٱمتنان"]
+   "words": ["احترام", "ٱحترام", "إكرام", "تعظيم", "إجلال", "خوف", "خشية", "رهبة", "رغبة", "حب", "طمع", "رجاء", "شوق", "حياء", "حذر", "ابتغاء", "ٱبتغاء", "إيمان", "احتساب", "ٱحتساب", "طلب", "تأديب", "إخلاص", "شفقة", "رحمة", "تقدير", "إعجاب", "حرص", "اتقاء", "ٱتقاء", "طاعة", "تكريم", "رأفة", "كراهية", "إشفاق", "اعتراف", "ٱعتراف", "امتنان", "ٱمتنان"]
   },
   "verbless_masdars": {
    "ar": "مصادر منصوبة بفعل محذوف وجوبًا (سماعية)",
    "effect": "Heard masdars whose verb is never said (Ibn Aqil on the Alfiyya, المفعول المطلق: حذف عامل المصدر وجوبًا): in nasb and indefinite, wherever they stand, each is a مفعول مطلق of that unsaid verb (جَدَّ جِدًّا), never an object of the word before it (مجتهداتٌ جدًّا). معاذ is a masdar of the measure مَفْعَل, which also makes nouns of place, so it is listed (Ibn Jinni, al-Munsif: مصدرا فألزم النصب نحو سبحان الله ولبيك ومعاذ الله). Lemmas as the parser spells them.",
    "words": ["جد", "حق", "أيض", "شكر", "حمد", "عجب", "قطع", "يقين", "سقي", "رعي", "معاذ"]
+  },
+  "masdar_adjectives": {
+   "ar": "صفات تنوب عن المصدر",
+   "book": "Ibn Aqil V2 p172 (وقد ينوب عنه ما عليه دل); Qur'an 9:82 (فَلْيَضْحَكُوا قَلِيلًا وَلْيَبْكُوا كَثِيرًا)",
+   "effect": "An amount word in nasb after a verb says how much the doing was, the masdar left out (بكى كثيرًا = بكاءً كثيرًا): the verb's مفعول مطلق, never a حال.",
+   "words": ["كثير", "قليل", "طويل"]
   },
   "tamyeez_verbs": {
    "ar": "أفعال يأتي بعدها تمييز النسبة",

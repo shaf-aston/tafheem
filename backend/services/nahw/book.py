@@ -253,10 +253,13 @@ def measure(pattern: str) -> str:
     """The analyser's pattern laid back on its measure: a doubled root writes its last two
     radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
     in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3), a last radical hamza keeps its seat in place of the 3
-    (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3)."""
+    (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3), a weak last radical before the ة of a single act keeps its seat
+    too (خَطْوَة 1َ2ْوَة → 1َ2ْ3َة)."""
     pattern = pattern.removeprefix("ال")
     if "3" not in pattern and "2" in pattern:
         pattern = re.sub(r"(?<=2)([\u064b-\u0652]*[اوي]?)[ءأإئؤ]", r"\g<1>3", pattern, count=1)
+    if "3" not in pattern and "2" in pattern:
+        pattern = re.sub(r"(?<=2[\u064b-\u0652])[وي](?=[\u064b-\u0652]?ة)", "3", pattern, count=1)
     if "3" not in pattern and "2" + SHADDA in pattern:
         return pattern.replace("2" + SHADDA, "2" + SUKUN + "3", 1)
     if "2" not in pattern:  # قِيَام 1ِيا3: the weak letter stands as the 2, and the alef after it implies its fatha
