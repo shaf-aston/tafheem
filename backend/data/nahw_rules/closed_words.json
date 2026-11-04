@@ -741,6 +741,7 @@
    "carriers": ["كل", "بعض", "ذات"],
    "_ذات": "ذات added to a time word is used as a time word only, always in nasb: سير عليه ذات يوم، وسير عليه ذات ليلة، بمنزلة ذات مرة (Sibawayh, al-Kitab V1 p226); والمستعمل ظرفا لا غير ما لزم النصب نحو قولك سرنا ذات مرة (Zamakhshari, al-Mufassal p81).",
    "_built": "Time words built on one ending whatever their place (Tasheel): the vowel typed on them is part of the word, not a case (زارنا أمسِ: مبني على الكسر في محل نصب).",
+   "_بارحة": "البارحة, the night just gone, is a time name like ليلة: every name of time takes nasb as maf'ul fihi (Tasheel 3.2 p67).",
    "built": ["أمس", "الآن", "إذ", "منذ", "مذ"],
    "words": [
     "إذ",
@@ -781,6 +782,7 @@
     "أسبوع",
     "يوما",
     "ليلة",
+    "البارحة",
     "لما",
     "كلما",
     "قبل",

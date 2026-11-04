@@ -1325,3 +1325,7 @@ def test_a_mudaf_to_a_known_noun_before_an_indefinite_one_is_the_mubtada():
 
 def test_a_relative_typed_bare_after_a_preposition_is_not_read_as_a_command():
     assert _role("مررت بالذي ساعدني", 1) == "مجرور"
+
+
+def test_a_time_name_is_the_maful_fihi_though_the_list_never_named_it():
+    assert _role("هَلْ رَأَى أَحَدٌ مِنْكُمُ الْبَارِحَةَ رُؤْيَا", 4) == "مفعول فيه"
