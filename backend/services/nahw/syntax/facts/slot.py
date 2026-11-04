@@ -235,9 +235,11 @@ def verb_place(token: dict, s: Sentence) -> str:
         if not before and typed == "a" and rel in ("OBJ", "MOD") and listed(token, "masdar_adjectives") and token.get("stt") == "i":
             return "absolute"  # لَبَكَيْتُمْ كَثِيرًا: the amount of the doing, its masdar left out (Ibn Aqil V2 p172)
         # رَأَيْتُ كِلَا الصَّدِيقَيْنِ: a verb of the first or second person holds its doer (تُ، نا، تَ),
-        # so the noun after it is its object, however the parser hung it or what case it guessed
+        # so the noun after it is its object, however the parser hung it or what case it guessed; a describing
+        # word that stands for no noun is a state (يَغْتَسِلُونَ عُرَاةً)
         if (own_doer(head) and not before
                 and rel in NOUN_LINKS and typed != "u"
+                and not (is_state_word(token) and not stands_for_its_noun(token))
                 and not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)):
             return "object"
         if (not before and typed in (None, "a") and token.get("stt") in ("i", "c")

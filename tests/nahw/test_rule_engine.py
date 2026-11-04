@@ -1353,3 +1353,7 @@ def test_a_single_act_masdar_with_a_weak_radical_is_the_maful_mutlaq():
 
 def test_an_amount_word_after_a_verb_is_the_maful_mutlaq_not_a_hal():
     assert _role("وَاللَّهِ لَوْ تَعْلَمُونَ مَا أَعْلَمُ لَبَكَيْتُمْ كَثِيرًا", 6) == "مفعول مطلق"
+
+
+def test_a_describing_word_of_the_doer_shape_with_ta_marbuta_is_a_hal():
+    assert _role("كَانَتْ بَنُو إِسْرَائِيلَ يَغْتَسِلُونَ عُرَاةً", 4) == "حال"
