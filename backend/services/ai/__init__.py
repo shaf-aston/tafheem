@@ -189,7 +189,7 @@ def explain_root_entry_senses(root: str, lines: list[str]) -> dict:
     numbered = "\n".join(f"{i + 1}. {line}" for i, line in enumerate(lines))
     return _ask(
         prompts.ROOT_ENTRY_SENSES_USER.format(root=root, numbered=numbered, count=len(lines)),
-        max_tokens=get_settings().root_entry_senses_max_tokens,
+        max_tokens=get_settings().root_senses_max_tokens,
     )
 
 

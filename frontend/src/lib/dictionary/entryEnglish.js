@@ -12,8 +12,8 @@ const STOPPED = 'The backend may have stopped since this page was opened.'
  * The rest of the entry in English, in three shapes (one per view, see SHAPE).
  * Together is kept for every root, so a failure there is real and the message
  * offers to try again. Words and lines are kept for fewer, so they are often
- * made on the spot, and the server fails a first try often enough that one
- * more is worth it.
+ * made on the spot. The server asks again for words itself, a chunk at a time;
+ * lines it does not, and fails a first try often enough that one more is worth it.
  */
 export const ENGLISH = {
   words: {
@@ -22,7 +22,6 @@ export const ENGLISH = {
     failed: "Couldn't find the words in the entry",
     fallback: STOPPED,
     after: ' The Together view still shows the whole entry.',
-    retry: 1,
   },
   together: {
     key: 'root-entry-english',

@@ -8,18 +8,9 @@ checks that answer against the book before anything keeps or shows it.
 The Arabic is never the model's. Each sense names its lines by number, so the
 book's own lines are what the card prints; the word and every example saying
 must be found in those lines (the vowel marks aside, which a model drops), and
-what is shown is the book's spelling of it, cut from the line. An answer whose
-lines do not cover the entry in order is refused whole: English under the wrong
-Arabic is a false claim about the book. A word or a saying that cannot be found
-is dropped, never shown as the model wrote it.
-
-Long entries are asked for in pieces (`make`): one request for a whole long
-entry ran past the model service's tokens-per-minute limit and failed every
-time, where pieces of a few hundred letters each pass.
-
-A line that only leads into a quote ("قال الشاعر:") is joined to the line it
-introduces, so a poem is one row, not a row saying "The poet said" and a
-row of verse.
+what is shown is the book's spelling of it, cut from the line. Every line is
+printed under exactly one sense, in order (see check). A word or a saying that
+cannot be found is dropped, never shown as the model wrote it.
 
 Kept shape, one dict per sense: {"lines": [first, last], "word", "say",
 "gloss", "examples": [{"line", "arabic", "say", "english"}]}, lines counted
@@ -27,7 +18,7 @@ from 0. `shown` turns it into what the card reads, with the Arabic lines in.
 """
 from __future__ import annotations
 
-from typing import Callable
+import json
 
 from backend.services.text.arabic_text import DIACRITICS_RE
 
@@ -73,25 +64,39 @@ def check(answer: object, lines: list[str]) -> list[dict] | None:
     """The model's answer as kept senses, or None when it does not fit the book.
 
     `answer` is the model's JSON ({"senses": [...]}, lines numbered from 1);
-    `lines` is the entry as root_gloss.line_budget cut it.
+    `lines` is the entry as root_gloss.line_budget cut it. Every line ends up
+    under exactly one sense, in order. A line the model skipped or gave twice
+    stays with the word before it, as the book runs on from a word into the
+    next; an answer that leaves more than a third of the lines to that is
+    refused, as one that misread the entry.
     """
     raw = answer.get("senses") if isinstance(answer, dict) else None
     if not isinstance(raw, list) or not raw or not lines:
         return None
-    senses, expected = [], 0
+    spans, given = [], 0
     for item in raw:
         if not isinstance(item, dict):
             return None
         span = item.get("lines")
         if not (isinstance(span, list) and span and all(isinstance(n, int) for n in span)):
             return None
-        first, last = min(span) - 1, max(span) - 1
         gloss = _text(item.get("gloss"))
-        # In order, nothing skipped, nothing twice: the lines are the book's,
-        # and every one of them is printed under exactly one sense.
-        if first != expected or last >= len(lines) or not gloss:
+        if not gloss:
             return None
-        expected = last + 1
+        first = max(min(span) - 1, spans[-1][1] + 1 if spans else 0)
+        last = min(max(span) - 1, len(lines) - 1)
+        if first <= last:  # else only lines an earlier word already has
+            spans.append([first, last, item, gloss])
+            given += last - first + 1
+    if not spans or len(lines) - given > len(lines) // 3:
+        return None
+    spans[0][0] = 0
+    for before, after in zip(spans, spans[1:]):
+        before[1] = after[0] - 1
+    spans[-1][1] = len(lines) - 1
+
+    senses = []
+    for first, last, item, gloss in spans:
         word = find(" ".join(lines[first:last + 1]), _text(item.get("word")))
         examples = [e for e in (_example(x, first, last, lines) for x in item.get("examples") or []) if e]
         senses.append({
@@ -102,7 +107,7 @@ def check(answer: object, lines: list[str]) -> list[dict] | None:
             "gloss": gloss,
             "examples": examples,
         })
-    return _joined_to_quotes(senses, lines) if expected == len(lines) else None
+    return _joined_to_quotes(senses, lines)
 
 
 def _leads_in(text: str) -> bool:
@@ -111,7 +116,8 @@ def _leads_in(text: str) -> bool:
 
 
 def _joined_to_quotes(senses: list[dict], lines: list[str]) -> list[dict]:
-    """Each wordless sense whose lines only lead in, folded into the sense after it."""
+    """Each wordless sense whose lines only lead in, folded into the sense after
+    it, so a poem is one row, not "The poet said" and then a row of verse."""
     out: list[dict] = []
     carry: int | None = None
     for i, sense in enumerate(senses):
@@ -121,59 +127,42 @@ def _joined_to_quotes(senses: list[dict], lines: list[str]) -> list[dict]:
             carry = None
         if (not sense["word"] and i + 1 < len(senses)
                 and all(_leads_in(lines[n]) for n in range(first, last + 1))):
-            carry = sense["lines"][0]
+            carry = first
             continue
         out.append(sense)
     return out
 
 
-def cut(lines: list[str], budget: int) -> list[list[str]]:
-    """Whole lines in pieces of about `budget` letters. A piece never ends on a
-    line that leads into a quote: the quote must be read with it."""
-    pieces: list[list[str]] = []
-    spent = 0
-    for line in lines:
-        if pieces and spent + len(line) > budget and not _leads_in(pieces[-1][-1]):
-            pieces.append([])
-            spent = 0
-        if not pieces:
-            pieces.append([])
-        pieces[-1].append(line)
-        spent += len(line)
-    return pieces
+def cut(ask, lines: list[str]) -> list[dict] | None:
+    """`lines` cut into senses by `ask(lines)`, the model's answer, checked; one
+    more go for an answer that does not fit or does not parse. None after two."""
+    for _ in range(2):
+        try:
+            senses = check(ask(lines), lines)
+        except json.JSONDecodeError:  # an answer cut off mid-JSON
+            continue
+        if senses is not None:
+            return senses
+    return None
 
 
-def make(lines: list[str], ask: Callable[[list[str]], object], budget: int,
-         most: int | None = None) -> tuple[list[dict] | None, int]:
-    """The entry cut into its words, asked for a piece at a time.
-
-    `ask(piece)` is the model call; each piece's answer is checked on its own,
-    with one more try when it does not fit, and its line numbers moved along to
-    where the piece starts. A word whose lines straddle two pieces becomes two
-    senses. Only the first `most` pieces are asked for. Returns the senses and
-    how many lines they cover, or (None, 0) when a piece would not fit twice.
-    """
-    senses: list[dict] = []
-    start = 0
-    for piece in cut(lines, budget)[:most]:
-        for _ in range(2):
-            got = check(ask(piece), piece)
-            if got:
-                break
-        else:
-            return None, 0
-        for sense in got:
-            sense["lines"] = [n + start for n in sense["lines"]]
-            for example in sense["examples"]:
-                example["line"] += start
-        senses += got
-        start += len(piece)
-    return senses, start
-
-
-def covered(lines: list[str], budget: int, most: int | None = None) -> int:
-    """How many lines `make` asks about, worked out without asking."""
-    return sum(len(piece) for piece in cut(lines, budget)[:most])
+def joined(parts: list[list[dict] | None]) -> list[dict] | None:
+    """Senses cut chunk by chunk (root_gloss.chunks) as one entry's: line
+    numbers moved along to where each chunk starts. None when any chunk failed,
+    since a gap would leave lines with no word. A word whose lines straddle two
+    chunks becomes two senses."""
+    if not parts or any(part is None for part in parts):
+        return None
+    senses, start = [], 0
+    for part in parts:
+        for sense in part:
+            senses.append({
+                **sense,
+                "lines": [n + start for n in sense["lines"]],
+                "examples": [{**e, "line": e["line"] + start} for e in sense["examples"]],
+            })
+        start += part[-1]["lines"][1] + 1  # check covers a chunk to its last line
+    return senses
 
 
 def fits(senses: object, count: int) -> bool:

@@ -27,3 +27,39 @@ def test_a_word_in_the_reference_is_not_missing():
     except (urllib.error.URLError, TimeoutError) as down:
         pytest.skip(f"reference server unreachable: {down}")
     assert missing(["keefak", "zzzqxq"]) == ["zzzqxq"]
+
+
+def test_every_picture_exists_is_credited_and_is_not_repeated_in_a_topic():
+    """Shipped data: no dead picture link, no uncredited photo, no two words of a topic sharing one picture."""
+    import json
+    from collections import defaultdict
+    from backend.config import data_path
+
+    root = data_path("colloquial_dir")
+    spine = json.loads((root / "spine.json").read_text(encoding="utf-8"))
+    words = json.loads((root / "words.json").read_text(encoding="utf-8"))["words"]
+    credits: dict[str, dict] = {}
+
+    def credited(image: str) -> bool:
+        folder, name = image.split("/", 1)
+        if folder not in credits:
+            file = root / "images" / folder / "attribution.json"
+            credits[folder] = json.loads(file.read_text(encoding="utf-8")) if file.exists() else {}
+        return "*" in credits[folder] or name in credits[folder] or name in credits[folder].get("files", {})
+
+    for key, word in words.items():
+        if word.get("image"):
+            assert (root / "images" / word["image"]).exists(), f"{key}: {word['image']} is missing"
+            assert credited(word["image"]), f"{key}: {word['image']} has no credit"
+    for unit in spine["units"]:
+        for lesson in unit["lessons"]:
+            for phrase in lesson["phrases"]:
+                if phrase.get("image"):
+                    assert (root / "images" / phrase["image"]).exists(), f"{phrase['slot']}: {phrase['image']} is missing"
+                    assert credited(phrase["image"]), f"{phrase['slot']}: {phrase['image']} has no credit"
+            seen = defaultdict(list)
+            for key in lesson.get("words", []):
+                if words.get(key, {}).get("image"):
+                    seen[words[key]["image"]].append(key)
+            shared = {image: keys for image, keys in seen.items() if len(keys) > 1}
+            assert not shared, f"{unit['unit']}/{lesson['lesson']} repeats a picture: {shared}"

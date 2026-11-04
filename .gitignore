@@ -240,6 +240,10 @@ frontend/scripts/ears-report.txt
 # Vercel CLI working folder
 .vercel/
 
+# Claude Code's own scratch state: git worktrees it makes for background agents
+# (each a full nested checkout, its own .git), never project source
+.claude/
+
 # A 53MB program, fetched not written. tunnel/README.md says where from.
 tunnel/cloudflared.exe
 

@@ -88,5 +88,65 @@
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "foreign_landing_url": "https://www.flickr.com/photos/38766930@N05/4507399504",
     "search_term": "box of tissues"
+  },
+  "l01-p02-two-women-talking.jpg": {
+    "id": "2a11a9e7-b4a2-46d9-9d9e-cebbfed73fb3",
+    "title": "Two women talking on the steps as shadow woman looks on",
+    "creator": "snelson951",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/106274066@N07/55021423244",
+    "search_term": "two women talking"
+  },
+  "l01-p04-smiling-man.jpg": {
+    "id": "4899a2dc-b32b-4526-8e13-262b60aca425",
+    "title": "Smiling Man",
+    "creator": "Matt Moloney",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/smiling-man-3LMPSCJQGQ",
+    "search_term": "smiling man"
+  },
+  "l01-p05-smiling-woman.jpg": {
+    "id": "cf558d2c-9a95-4dc5-8e67-486d16ba63d2",
+    "title": "Smiling Woman",
+    "creator": "Matt Moloney",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/smiling-woman-W6GFOSFAXA",
+    "search_term": "smiling woman"
+  },
+  "l01-p06-sad-man.jpg": {
+    "id": "701d579d-bc35-4029-9e25-fddb090fe363",
+    "title": "Sad man village Arnold Peter",
+    "creator": null,
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/8899152/image-paper-watercolor-art",
+    "search_term": "sad man"
+  },
+  "l01-p07-sad-woman.jpg": {
+    "id": "4998c6a0-2861-4d84-abe2-ca461a8a288c",
+    "title": "Sad Woman",
+    "creator": "",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://stocksnap.io/photo/sad-woman-8TVOG5RHOA",
+    "search_term": "sad woman"
+  },
+  "l06-p12-calendar-page.jpg": {
+    "id": "85df85d4-cd04-4f94-b870-ddc3b58aa225",
+    "title": "Calendar Page",
+    "creator": "thegetty",
+    "license": "cc0",
+    "license_version": "1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "foreign_landing_url": "https://www.rawpixel.com/image/14311981/calendar-page",
+    "search_term": "calendar page"
   }
 }

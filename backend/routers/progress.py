@@ -42,6 +42,7 @@ from backend.models.progress import (
     Shelf,
     SignUpIn,
 )
+from backend.services.learner import identity as guest_identity
 from backend.services.learner import progress_store
 from backend.services.learner.username import GUEST, clean_name
 
@@ -141,8 +142,8 @@ async def sign_up(body: SignUpIn, user: str = TYPED, device: str = DEVICE) -> Ac
     """
     if not progress_store.sign_up(user):
         raise HTTPException(status_code=409, detail="That username is taken")
-    if body.keep and device != GUEST:
-        progress_store.claim_guest(user, device)
+    if body.keep:
+        guest_identity.merge(device, user)
     return Account(**progress_store.account(user))
 
 

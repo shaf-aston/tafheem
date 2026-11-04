@@ -1,0 +1,186 @@
+{
+  "found": {
+    "jumper": {
+      "english": "jumper",
+      "search_term": "jumper clothing item",
+      "candidates": []
+    },
+    "outing": {
+      "english": "outing",
+      "search_term": "family outing park",
+      "candidates": [
+        {
+          "id": "418bc920-e5c3-4716-83ea-0a5b043a010f",
+          "title": "Ickworth Park (NT) 05-10-2013",
+          "creator": "Karen Roe",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/28752865@N08/16148707362",
+          "thumbnail": "https://api.openverse.org/v1/images/418bc920-e5c3-4716-83ea-0a5b043a010f/thumb/"
+        },
+        {
+          "id": "a67f4872-590a-4cf2-add6-2091ad238850",
+          "title": "Ickworth Park (NT) 05-10-2013",
+          "creator": "Karen Roe",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/28752865@N08/15962170140",
+          "thumbnail": "https://api.openverse.org/v1/images/a67f4872-590a-4cf2-add6-2091ad238850/thumb/"
+        },
+        {
+          "id": "81351ec6-4947-4544-b9c2-6de93cddcce6",
+          "title": "Ickworth Park (NT) 05-10-2013",
+          "creator": "Karen Roe",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/28752865@N08/15963699037",
+          "thumbnail": "https://api.openverse.org/v1/images/81351ec6-4947-4544-b9c2-6de93cddcce6/thumb/"
+        },
+        {
+          "id": "4af76297-36fc-4fba-9e73-58abfb79ae12",
+          "title": "Ickworth Park (NT) 05-10-2013",
+          "creator": "Karen Roe",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/28752865@N08/15527155364",
+          "thumbnail": "https://api.openverse.org/v1/images/4af76297-36fc-4fba-9e73-58abfb79ae12/thumb/"
+        }
+      ]
+    },
+    "walk": {
+      "english": "walk",
+      "search_term": "walk hobby activity",
+      "candidates": []
+    },
+    "balcony": {
+      "english": "balcony",
+      "search_term": "balcony with plants",
+      "candidates": [
+        {
+          "id": "ed588f27-b9ed-4ff4-a6fa-3188504e5838",
+          "title": "Beach Sand",
+          "creator": "Kimberly Richards",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/beach-sand-7ECA118A10",
+          "thumbnail": "https://api.openverse.org/v1/images/ed588f27-b9ed-4ff4-a6fa-3188504e5838/thumb/"
+        },
+        {
+          "id": "f52d3b54-4fe6-4a3c-8346-33c0a72c7cdb",
+          "title": "People Man",
+          "creator": "Clem Onojeghuo",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/people-man-C1O1OYG1FB",
+          "thumbnail": "https://api.openverse.org/v1/images/f52d3b54-4fe6-4a3c-8346-33c0a72c7cdb/thumb/"
+        },
+        {
+          "id": "1a0f2a31-d8f5-43e7-829a-f36dd128c2e7",
+          "title": "Flower Pot",
+          "creator": "Mary",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/flower-pot-MDXQNZYYMM",
+          "thumbnail": "https://api.openverse.org/v1/images/1a0f2a31-d8f5-43e7-829a-f36dd128c2e7/thumb/"
+        },
+        {
+          "id": "d13fab5b-fa81-4563-89e6-5bae1f995518",
+          "title": "Architecture Building",
+          "creator": "Nikolaj Erema",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/architecture-building-RCEZUL7M5V",
+          "thumbnail": "https://api.openverse.org/v1/images/d13fab5b-fa81-4563-89e6-5bae1f995518/thumb/"
+        }
+      ]
+    },
+    "torrent": {
+      "english": "torrent",
+      "search_term": "rushing flood water",
+      "candidates": [
+        {
+          "id": "c488572a-b58e-43a3-a69c-d90fa4301ed0",
+          "title": "North Cambria Fuel Company Tipple and the 1977 Johnstown Flood",
+          "creator": "daveynin",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/44124370018@N01/51390767481",
+          "thumbnail": "https://api.openverse.org/v1/images/c488572a-b58e-43a3-a69c-d90fa4301ed0/thumb/"
+        },
+        {
+          "id": "5d355374-0ecb-48f9-b997-b7b81189a116",
+          "title": "Waters on the day",
+          "creator": "₡ґǘșϯγ Ɗᶏ Ⱪᶅṏⱳդ",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/148598741@N02/55060722720",
+          "thumbnail": "https://api.openverse.org/v1/images/5d355374-0ecb-48f9-b997-b7b81189a116/thumb/"
+        },
+        {
+          "id": "067c529d-bb52-4aa6-abdc-1882f69aa6b0",
+          "title": "Flooding (191/365)",
+          "creator": "aparlette",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/9297241@N02/53063717360",
+          "thumbnail": "https://api.openverse.org/v1/images/067c529d-bb52-4aa6-abdc-1882f69aa6b0/thumb/"
+        },
+        {
+          "id": "0c86157e-1f83-450a-ad87-db30992a2c74",
+          "title": "Nature's raw beauty and untamed power unleashed.",
+          "creator": "kewl",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/58411470@N00/54298402969",
+          "thumbnail": "https://api.openverse.org/v1/images/0c86157e-1f83-450a-ad87-db30992a2c74/thumb/"
+        }
+      ]
+    }
+  },
+  "needs_search_term": [
+    "air",
+    "warm",
+    "season",
+    "dry",
+    "to-change",
+    "light-weight",
+    "to-wear",
+    "trip",
+    "errand",
+    "outside",
+    "pleasant",
+    "nice",
+    "to-go-out",
+    "to-stay",
+    "to-postpone",
+    "to-cancel",
+    "to-depend",
+    "slippery",
+    "to-stop",
+    "to-pass",
+    "bulletin",
+    "degree-temperature",
+    "tomorrow",
+    "rise",
+    "drop",
+    "highest",
+    "lowest",
+    "accurate",
+    "to-expect",
+    "to-check",
+    "to-rise",
+    "to-drop"
+  ]
+}

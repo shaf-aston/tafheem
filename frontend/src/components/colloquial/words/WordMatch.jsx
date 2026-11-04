@@ -4,9 +4,9 @@
 // setting at a time, split evenly, so a long topic is several short boards and none is tiny.
 // A warm-up: nothing here is filed for review, since finding a word among a few is
 // easier than recalling it.
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import settings from '../../../config/colloquial.json'
+import settings from '../../../config/colloquial-display.json'
 import { shuffled } from '../../../lib/text/shuffle'
 import ArabicText from '../../ui/text/ArabicText'
 import SmallButton from '../../ui/buttons/SmallButton'
@@ -26,13 +26,21 @@ export default function WordMatch({ words }) {
   const [picked, setPicked] = useState(null)   // { side, arabic }
   const [missed, setMissed] = useState([])     // the last wrong pair, as `${side}:${arabic}`, until the next tap
   const done = board.found.length === board.left.length
+  // The last pair disables the last tiles; focus goes to what comes next.
+  const after = useRef(null)
+  useEffect(() => { if (done) after.current?.querySelector('button')?.focus() }, [done])
 
-  const tap = (side, arabic) => {
+  const tap = (side, arabic, event) => {
     if (board.found.includes(arabic)) return
     setMissed([])
     if (!picked || picked.side === side) return setPicked({ side, arabic })
     setPicked(null)
-    if (picked.arabic === arabic) return setBoard((b) => ({ ...b, found: [...b.found, arabic] }))
+    if (picked.arabic === arabic) {
+      // The tile tapped is about to be disabled; focus moves on to the next open one in its column.
+      const column = event.currentTarget.closest('ul')
+      requestAnimationFrame(() => column?.querySelector('button:not([disabled])')?.focus())
+      return setBoard((b) => ({ ...b, found: [...b.found, arabic] }))
+    }
     setBoard((b) => ({ ...b, slips: b.slips + 1 }))
     setMissed([`${picked.side}:${picked.arabic}`, `${side}:${arabic}`])
   }
@@ -48,7 +56,7 @@ export default function WordMatch({ words }) {
           type="button"
           disabled={found}
           aria-pressed={on}
-          onClick={() => tap(side, word.arabic)}
+          onClick={(event) => tap(side, word.arabic, event)}
           className={`press w-full min-h-14 rounded-[var(--radius)] border-2 bg-[var(--surface)] px-3 py-2 transition-[opacity,border-color] ${FOCUS}
             ${found ? 'opacity-30 border-[var(--success)]' : on ? 'border-[var(--primary)]' : 'border-[var(--border)] hover:border-[var(--border-hi)]'}
             ${missed.includes(id) ? 'shake border-[var(--danger)]' : ''}`}
@@ -75,9 +83,9 @@ export default function WordMatch({ words }) {
           {done ? 'All matched' : `${board.found.length} of ${board.left.length} matched`} · {board.slips} {board.slips === 1 ? 'slip' : 'slips'}
           {rounds > 1 && ` · board ${board.round + 1} of ${rounds}`}
         </span>
-        {done && (board.round < rounds - 1
+        {done && <span ref={after}>{board.round < rounds - 1
           ? <SmallButton onClick={() => restart(board.round + 1)}>Next board →</SmallButton>
-          : <SmallButton onClick={() => restart(0)}>Play again</SmallButton>)}
+          : <SmallButton onClick={() => restart(0)}>Play again</SmallButton>}</span>}
       </div>
     </div>
   )

@@ -1,0 +1,329 @@
+{
+  "found": {
+    "ointment": {
+      "english": "ointment",
+      "search_term": "ointment medical photo",
+      "candidates": [
+        {
+          "id": "0236de1d-5641-4be5-a727-508cf7b0459c",
+          "title": "If your pills are expired, they need to be retired at Naval Hospital Bremerton Pharmacy 210423-N-HU933-464",
+          "creator": "NavyMedicine",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/61270229@N05/51143796680",
+          "thumbnail": "https://api.openverse.org/v1/images/0236de1d-5641-4be5-a727-508cf7b0459c/thumb/"
+        }
+      ]
+    },
+    "prescription": {
+      "english": "prescription",
+      "search_term": "medical prescription",
+      "candidates": [
+        {
+          "id": "2f17a6fa-2f8f-4836-ba19-06d77c89618a",
+          "title": "Pills Medicine",
+          "creator": "Freestocks.org",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/pills-medicine-S5WGVL18A9",
+          "thumbnail": "https://api.openverse.org/v1/images/2f17a6fa-2f8f-4836-ba19-06d77c89618a/thumb/"
+        },
+        {
+          "id": "ca66e2e7-3ad9-4112-b70a-092e3594f1cf",
+          "title": "Pills Medicine",
+          "creator": "Freestocks.org",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/pills-medicine-1ZOMOXPNDS",
+          "thumbnail": "https://api.openverse.org/v1/images/ca66e2e7-3ad9-4112-b70a-092e3594f1cf/thumb/"
+        },
+        {
+          "id": "a7713add-3641-40ea-ba2c-0b731cd6c6d7",
+          "title": "Pills Medicine",
+          "creator": "Michal Jarmoluk",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/pills-medicine-LKXZF7NM97",
+          "thumbnail": "https://api.openverse.org/v1/images/a7713add-3641-40ea-ba2c-0b731cd6c6d7/thumb/"
+        },
+        {
+          "id": "424421e3-6e0f-4049-9e36-76906dce4eef",
+          "title": "Pills Medicine",
+          "creator": "Michal Jarmoluk",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/pills-medicine-A608M2R440",
+          "thumbnail": "https://api.openverse.org/v1/images/424421e3-6e0f-4049-9e36-76906dce4eef/thumb/"
+        }
+      ]
+    },
+    "patient": {
+      "english": "patient (sick person)",
+      "search_term": "hospital patient",
+      "candidates": [
+        {
+          "id": "1689b2fb-11cc-4458-b0ad-12b7a6215b46",
+          "title": "Hospital Patient",
+          "creator": "Direct Media",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/hospital-patient-OHIFBU89LZ",
+          "thumbnail": "https://api.openverse.org/v1/images/1689b2fb-11cc-4458-b0ad-12b7a6215b46/thumb/"
+        },
+        {
+          "id": "e91e5e43-3ae0-4eaf-a51f-200b3eeec807",
+          "title": "Hospital Patient",
+          "creator": "Direct Media",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/hospital-patient-GLTQGUJLY0",
+          "thumbnail": "https://api.openverse.org/v1/images/e91e5e43-3ae0-4eaf-a51f-200b3eeec807/thumb/"
+        },
+        {
+          "id": "39dfda22-7c1e-40b8-88dd-d8bcc1c66fb5",
+          "title": "Hospital Patient",
+          "creator": "Direct Media",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/hospital-patient-HMY3E2UQPN",
+          "thumbnail": "https://api.openverse.org/v1/images/39dfda22-7c1e-40b8-88dd-d8bcc1c66fb5/thumb/"
+        },
+        {
+          "id": "c4aaef64-f3b6-4ced-ac9c-8aeb0f651887",
+          "title": "Hospital Patient",
+          "creator": "Direct Media",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/hospital-patient-LRAS7OWEBL",
+          "thumbnail": "https://api.openverse.org/v1/images/c4aaef64-f3b6-4ced-ac9c-8aeb0f651887/thumb/"
+        }
+      ]
+    },
+    "injection": {
+      "english": "injection",
+      "search_term": "injection medical photo",
+      "candidates": [
+        {
+          "id": "15d54c53-8fab-40d2-8276-eed21ac8a2ce",
+          "title": null,
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6051532/free-public-domain-cc0-photo",
+          "thumbnail": "https://api.openverse.org/v1/images/15d54c53-8fab-40d2-8276-eed21ac8a2ce/thumb/"
+        },
+        {
+          "id": "08639cf4-0d76-4061-b267-80d68084eb73",
+          "title": null,
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6048738/free-public-domain-cc0-photo",
+          "thumbnail": "https://api.openverse.org/v1/images/08639cf4-0d76-4061-b267-80d68084eb73/thumb/"
+        },
+        {
+          "id": "c9e2e21c-00ad-421f-ad13-9610405b2293",
+          "title": "COVID-19 vaccines City Employees, March",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/9658525/image-person-covid19-woman",
+          "thumbnail": "https://api.openverse.org/v1/images/c9e2e21c-00ad-421f-ad13-9610405b2293/thumb/"
+        },
+        {
+          "id": "14dbb99e-b565-4b6f-950a-3a4628f4bdd6",
+          "title": "24th MEU Sailors, Air Force",
+          "creator": "U.S. Navy Medicine",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3394003/free-photo-image-alaska-army-career",
+          "thumbnail": "https://api.openverse.org/v1/images/14dbb99e-b565-4b6f-950a-3a4628f4bdd6/thumb/"
+        }
+      ]
+    },
+    "neck": {
+      "english": "neck",
+      "search_term": "human neck",
+      "candidates": [
+        {
+          "id": "4e5251a7-cd4e-44ae-bb1b-c14feb2f0e8b",
+          "title": "Muscles trunk: écorché figures showing",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/13953043/image-cartoon-face-person",
+          "thumbnail": "https://api.openverse.org/v1/images/4e5251a7-cd4e-44ae-bb1b-c14feb2f0e8b/thumb/"
+        },
+        {
+          "id": "c57d09eb-03ac-42e6-ac02-0a61a0fc44cf",
+          "title": "Myologie complette en couleur et",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/13952270/image-face-person-art",
+          "thumbnail": "https://api.openverse.org/v1/images/c57d09eb-03ac-42e6-ac02-0a61a0fc44cf/thumb/"
+        },
+        {
+          "id": "1aa9621a-e1b4-4014-b854-a4fc0e8eed3e",
+          "title": "anatomical illustration 1921 German edition",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/10006044/image-face-person-art",
+          "thumbnail": "https://api.openverse.org/v1/images/1aa9621a-e1b4-4014-b854-a4fc0e8eed3e/thumb/"
+        },
+        {
+          "id": "f09ac56f-8855-4c14-a04f-299af9b37dcd",
+          "title": "tall spoon long bowl; human",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/7455648/photo-image-face-wood-public-domain",
+          "thumbnail": "https://api.openverse.org/v1/images/f09ac56f-8855-4c14-a04f-299af9b37dcd/thumb/"
+        }
+      ]
+    },
+    "throat": {
+      "english": "throat",
+      "search_term": "human throat",
+      "candidates": [
+        {
+          "id": "95fdf665-d335-4a49-b499-a873099d2f2a",
+          "title": "Laverack's embrocation : horses cattle",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/13958790/image-paper-horse-cow",
+          "thumbnail": "https://api.openverse.org/v1/images/95fdf665-d335-4a49-b499-a873099d2f2a/thumb/"
+        },
+        {
+          "id": "e271df16-9897-4deb-a39a-cce39a0bdebe",
+          "title": "Group A Strep",
+          "creator": "National Institutes of Health (NIH)",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/132318516@N08/52606905281",
+          "thumbnail": "https://api.openverse.org/v1/images/e271df16-9897-4deb-a39a-cce39a0bdebe/thumb/"
+        },
+        {
+          "id": "72cdd16d-c30d-4655-b1fc-0a579e5424bf",
+          "title": "Meet Brian and Matt",
+          "creator": "susanbellphotography",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/140624712@N08/52355015589",
+          "thumbnail": "https://api.openverse.org/v1/images/72cdd16d-c30d-4655-b1fc-0a579e5424bf/thumb/"
+        },
+        {
+          "id": "94f86dbc-3548-4ea1-9a05-1de8922c7069",
+          "title": "New Zealand Tui.",
+          "creator": "Bernard Spragg",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/88123769@N02/53504960671",
+          "thumbnail": "https://api.openverse.org/v1/images/94f86dbc-3548-4ea1-9a05-1de8922c7069/thumb/"
+        }
+      ]
+    },
+    "to-open": {
+      "english": "to open",
+      "search_term": "opening a door",
+      "candidates": [
+        {
+          "id": "036e0500-d0f2-4101-8178-cf87ee3bf93f",
+          "title": "Opening Holy Door [reverse] (1675)",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/10014765/the-opening-the-holy-door-reverse-1675-giovanni-martino-hamerani",
+          "thumbnail": "https://api.openverse.org/v1/images/036e0500-d0f2-4101-8178-cf87ee3bf93f/thumb/"
+        },
+        {
+          "id": "e3896383-5c15-4b3d-b10c-87e2b90413d5",
+          "title": "Shop Store",
+          "creator": "Mike Petrucci",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/shop-store-I93PW8NE0F",
+          "thumbnail": "https://api.openverse.org/v1/images/e3896383-5c15-4b3d-b10c-87e2b90413d5/thumb/"
+        },
+        {
+          "id": "4dba4883-5cff-4e01-9179-66c9efbc9c96",
+          "title": "Interior Indoor",
+          "creator": "Philipp Berndt",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/interior-indoor-Q0EGF4XNXG",
+          "thumbnail": "https://api.openverse.org/v1/images/4dba4883-5cff-4e01-9179-66c9efbc9c96/thumb/"
+        },
+        {
+          "id": "121668a1-f8cc-4da9-a3dd-31a7f9774ecd",
+          "title": "Wardrobe Closet",
+          "creator": "Oliver Klein",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/wardrobe-closet-YISUDLOYC3",
+          "thumbnail": "https://api.openverse.org/v1/images/121668a1-f8cc-4da9-a3dd-31a7f9774ecd/thumb/"
+        }
+      ]
+    }
+  },
+  "needs_search_term": [
+    "health",
+    "pain",
+    "rest",
+    "recovery",
+    "better",
+    "to-sleep",
+    "to-feel",
+    "to-hurt",
+    "to-rest",
+    "pharmacist",
+    "nurse",
+    "test",
+    "diagnosis",
+    "treatment",
+    "breath",
+    "serious",
+    "to-breathe",
+    "to-examine",
+    "to-come-back",
+    "swollen",
+    "dentist",
+    "to-rinse",
+    "to-brush",
+    "operation",
+    "surgeon",
+    "visit",
+    "visiting-hours",
+    "to-visit",
+    "to-stay",
+    "to-leave",
+    "to-measure"
+  ]
+}

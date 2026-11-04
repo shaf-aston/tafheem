@@ -540,7 +540,7 @@ def test_lines_put_as_shipped_land_in_the_tracked_file(kept):
 
 
 def test_chunks_keep_whole_lines_within_the_budget():
-    from backend.scripts.dictionary.backfill_root_english import chunks
+    from backend.services.dictionary.root_gloss import chunks
 
     assert chunks(["aa", "bb", "cc"], 4) == [["aa", "bb"], ["cc"]]
     # A line over the budget is a chunk of its own, never split or dropped.
@@ -897,11 +897,22 @@ def test_words_made_on_the_spot_are_kept_and_not_asked_for_twice(client, word_ai
     assert _get(client, "كتب")["senses_kept"] is True
 
 
-def test_an_answer_that_skips_a_line_is_refused(client, word_ai):
-    word_ai["answer"] = {"senses": [{"lines": [1], "word": "", "gloss": "x"},
-                                    {"lines": [3], "word": "", "gloss": "y"}]}
+def test_an_answer_that_misreads_the_entry_is_refused_after_one_more_go(client, word_ai):
+    word_ai["answer"] = {"senses": [{"lines": [1], "word": "", "gloss": "x"}]}
     _install_lined(client)
     assert _words(client, "كتب").status_code == 502
+    assert word_ai["asked"] == 2
+
+
+def test_a_long_entry_is_asked_in_chunks_and_joined(client, word_ai, monkeypatch):
+    from backend.config import get_settings
+
+    monkeypatch.setattr(get_settings(), "root_senses_chunk_chars", 20)
+    word_ai["answer"] = {"senses": [{"lines": [1], "word": "", "gloss": "x"}]}
+    _install_lined(client)
+    body = _words(client, "كتب").json()
+    assert word_ai["asked"] == 3  # one chunk a line
+    assert [s["arabic"] for s in body["senses"]] == [["ومن ذلك الكتاب."], ["وقال الشاعر:"], ["صدر البيت ... عجزه"]]
 
 
 def test_shipped_words_are_badged_as_the_books_translation(client, word_ai, kept):

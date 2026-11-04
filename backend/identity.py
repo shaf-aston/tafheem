@@ -7,44 +7,36 @@ X-Tafheem-Guest (docs/plans/2026-10-24-device-guest.md); no header at all is the
 
 A FastAPI dependency, not middleware: only the routes that read or write one
 learner's record ask for it, so the Qur'an, dictionary and the rest never pay
-for a lookup. The spelling rules live in services/learner/username.py, the accounts
-table in services/learner/progress_store.py; this file only joins them to a request.
+for a lookup. This file is a thin adapter: it only pulls the two headers off the
+request and turns a bad one into a 422. The whole guest-to-account lifecycle --
+what a header means, the spelling rules, and sign-up's "keep" merge -- is owned
+by services/learner/identity.py (see its docstring for the full picture).
 """
 from __future__ import annotations
 
-from urllib.parse import unquote
-
 from fastapi import Depends, Header, HTTPException
 
-from backend.services.learner import progress_store
-from backend.services.learner.username import GUEST, clean_name, device_key, is_guest
+from backend.services.learner.identity import has_account, resolve_device, resolve_name
+from backend.services.learner.username import GUEST, is_guest
 
 PROFILE_HEADER = "X-Tafheem-Profile"
 GUEST_HEADER = "X-Tafheem-Guest"
 
 
-def _device(sent: str | None) -> str:
-    if sent is None:
-        return GUEST
-    try:
-        return device_key(sent)
-    except ValueError as error:
-        raise HTTPException(status_code=422, detail=str(error)) from None
-
-
 def guest(sent: str | None = Header(None, alias=GUEST_HEADER)) -> str:
     """This device's guest record, or the shared one when the page names no device."""
-    return _device(sent)
+    try:
+        return resolve_device(sent)
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from None
 
 
 def typed_name(sent: str | None = Header(None, alias=PROFILE_HEADER),
                device: str | None = Header(None, alias=GUEST_HEADER)) -> str:
     """The cleaned name from the header, or the device's guest record when there is none.
     A name wins, so the device id is not even read for someone logged in."""
-    if sent is None:
-        return _device(device)
     try:
-        return clean_name(unquote(sent))
+        return resolve_name(sent, device)
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from None
 
@@ -58,7 +50,7 @@ def typed(name: str = Depends(typed_name)) -> str:
 
 def _signed_up(name: str) -> str:
     """Refused unless signed up, so a deleted account files nothing."""
-    if not progress_store.has_account(name):
+    if not has_account(name):
         raise HTTPException(status_code=401, detail="Log in again: no account with that username")
     return name
 
