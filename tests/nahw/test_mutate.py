@@ -20,14 +20,17 @@ def test_a_three_word_sentence_gets_no_governor_mutant():
     assert {k for k, _, _ in mutate.mutations(ex)} == {"bare", "rename"}
 
 
-def test_a_wrong_mutant_is_flagged_only_when_every_wrong_card_says_it_assumed(monkeypatch):
+def test_a_wrong_mutant_is_flagged_only_when_every_wrong_card_names_the_key_as_its_other_reading(monkeypatch):
     ex = {"id": "x1", "set": "t", "sentence": "كُتِبَ الدَّرْسُ", "key": ["فعل", "نائب فاعل"]}
     right = {"words": [{"word": "كُتِبَ", "role": "فعل"}, {"word": "الدَّرْسُ", "role": "نائب فاعل"}]}
     bare = {"words": [{"word": "كتب", "role": "فعل"}, {"word": "الدرس", "role": "مفعول به"}]}
     monkeypatch.setattr(mutate, "routed", lambda s, api: right if s == ex["sentence"] else bare)
     stats = mutate.run([ex], defaultdict(list))
     assert (stats["bare"]["wrong"], stats["bare"]["flagged"]) == (1, 0)
-    bare["words"][1]["assumed"] = {"vox": "p"}
+    bare["words"][1]["assumed"] = {"other": "فاعل", "if": 0}
+    stats = mutate.run([ex], defaultdict(list))
+    assert (stats["bare"]["wrong"], stats["bare"]["flagged"]) == (1, 0)
+    bare["words"][1]["assumed"] = {"other": "نائب فاعل", "if": 0}
     stats = mutate.run([ex], defaultdict(list))
     assert (stats["bare"]["wrong"], stats["bare"]["flagged"]) == (1, 1)
 

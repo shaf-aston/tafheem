@@ -189,6 +189,12 @@ def _scored(word: str) -> tuple[tuple[Cell, int], ...]:
     return tuple(found.items())
 
 
+def voices(marked: list[tuple[str, set]], asp: str) -> set[str]:
+    """The voices (a, p) this typed verb can have in that tense, off the table: كتب is كَتَبَ or كُتِبَ."""
+    camel = _config()["camel"]
+    return {camel[cell.column]["vox"] for cell in read(_spell(marked)) if camel[cell.column]["asp"] == asp}
+
+
 def past(cell: Cell) -> str:
     """The dictionary form of the cell's verb, its past for "he" (أَفْشَى، أَقَامَ);
     "" when the command fits more than one باب and the past is not known."""

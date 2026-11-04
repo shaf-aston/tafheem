@@ -59,16 +59,15 @@
   "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"},
   "passive": "مبني للمجهول",
   "assumed": {
-   "_comment": "A reading the typed harakat did not settle (morphology.pick `assumed`), said on its card by card_wording.assumption. `vox` holds the voice NOT chosen: p = the verb was read active, the passive is the other reading. `via` is a noun whose job (via_roles) rests on that verb's voice; {word} is the verb.",
+   "_comment": "A reading the typed harakat did not settle (morphology._rival, read a second time by iraab._rivalled), said on its card by card_wording.assumption. `vox` holds the voice NOT chosen: p = the verb was read active, the passive is the other reading. `other` is the job the word has in the second reading ({other}) if the rival word ({word}) is read the other way.",
    "vox": {
     "p": {"ar": "وقُرئ مبنيًا للمعلوم لعدم كتابة الحركات، ويحتمل المبني للمجهول فيكون ما بعده نائب فاعل",
           "en": "Read as active because no harakat were typed. As passive, the noun after it would be the نائب فاعل."},
     "a": {"ar": "وقُرئ مبنيًا للمجهول لعدم كتابة الحركات، ويحتمل المبني للمعلوم فيكون ما بعده فاعلًا",
           "en": "Read as passive because no harakat were typed. As active, the noun after it would be the doer."}
    },
-   "via": {"ar": "وإعرابه مبني على كون «{word}» مبنيًا للمعلوم أو للمجهول، والحركات لم تُكتب فلا يتعين أحدهما",
-           "en": "This role depends on whether «{word}» is active or passive. No harakat were typed, so the app had to choose."},
-   "via_roles": ["فاعل", "نائب فاعل", "مفعول به"]
+   "other": {"ar": "وإعرابه على هذه القراءة لعدم كتابة الحركات، ويحتمل أن يكون «{other}» إن قُرئت «{word}» على الوجه الآخر",
+             "en": "Read this way because no harakat were typed. If «{word}» is read the other way, this is the {other}."}
   },
   "unvowelled": {"ar": "لم تُكتب الحركات: يُقرأ البناء للمعلوم أو للمجهول والإعراب من ترتيب الكلمات. اكتب الحركات لقراءة أدق.",
                  "en": "No harakat typed: voice and case are read from word order. Add harakat for an exact reading."},

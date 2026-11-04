@@ -17,12 +17,13 @@ import logging
 import re
 from typing import Any, NamedTuple
 
+from backend.config import get_settings
 from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
 from backend.services.sarf import expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
 from backend.services.nahw.book import book_map, book_words, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
-from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
+from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -343,7 +344,6 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
         "aspect": a.get("asp") or "na",
         "mood": a.get("mod") or "na",
         "voice": a.get("vox") or "na",
-        "assumed": a.get("assumed") or None,  # a reading the typed harakat did not settle (pick)
         "state": a.get("stt") or "na",
         "pattern": a.get("pattern") or "",
         # the root's last letter is و or ي (عصا, قاضي): the root string above is empty for those
@@ -824,8 +824,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     for i, said in paused.items():
         out[i] = {**out[i], "said": said}
     for i, (evidence, ranked) in enumerate(steps):
-        if guess := _assumed(evidence, out[i], ranked):
-            out[i] = {**out[i], "assumed": guess}
+        if rival := _rival(evidence, out[i], ranked):
+            out[i] = {**out[i], "rival": rival}
     return out
 
 
@@ -1016,8 +1016,6 @@ def _added(reading: dict, typed: str) -> int:
 
 
 DOER = ("per", "gen", "num")
-# readings written only in harakat: voice (كَتَبَ, كُتِبَ). A reading chosen on these while the vowels typed leave the other value open is a guess
-ASSUMABLE = ("vox",)
 # the one-letter joining particles, and CAMeL's name for each (prc2)
 _JOINING = (("و", "wa"), ("ف", "fa"))
 
@@ -1038,21 +1036,37 @@ def _agreeing(typed: str, ranked: list[dict]) -> bool:
                                 and [bare_letters(c) for c, _ in letters(r.get("diac", ""))] == spelled]) is not None
 
 
-def _assumed(typed: str, read: dict, ranked: list[dict]) -> dict[str, str]:
-    """{"vox": "p"}: each feature this reading was chosen on while the typed vowels leave the other value open
-    (كتب bare is كَتَبَ or كُتِبَ), with the value not chosen. Only where a ranked reading of the same lemma,
-    part of speech and tense has that other value, is spelled with the letters typed and no typed vowel
-    contradicts it; typed harakat that rule the other out leave nothing assumed."""
-    guess = {}
-    for feature in ASSUMABLE:
-        # a typed vowel against the reading kept is the word speaking (فُتِحَ kept as فَتَحَ): not a guess
-        if read.get(feature) in (None, "na") or vowel_agreement(typed, read.get("diac", "")) is None:
-            continue
-        others = [r for r in ranked if r.get(feature) not in (read.get(feature), None, "na")
-                  and all(r.get(key) == read.get(key) for key in ("lex", "pos", "asp")) and _agreeing(typed, [r])]
-        if others:
-            guess[feature] = others[0][feature]
-    return guess
+def _kind(reading: dict) -> str | None:
+    """verb, noun or particle: the kinds a word's two readings can differ in."""
+    pos = reading.get("pos", "")
+    return ("verb" if pos == "verb" else "noun" if pos in NOUNISH - {"abbrev"} or pos.startswith("pron")
+            else "particle" if pos.startswith(("part", "prep", "conj")) else None)
+
+
+def _other_voice(typed: str, read: dict) -> str | None:
+    """The voice sarf's table also gives the verb's letters as typed (كتب: كَتَبَ and كُتِبَ), its joined letters
+    and pronoun cut off; None where the table has only the voice read, or the verb takes no object (ذهب)."""
+    if is_one(read.get("lex", ""), "intransitive_verbs"):
+        return None
+    marked, bare = letters(typed), base_of(typed, read.get("atbtok"))
+    at = "".join(c for c, _ in marked).find(bare)
+    other = "p" if read["vox"] == "a" else "a"
+    return other if at >= 0 and other in verb_reader.voices(marked[at:at + len(bare)], read["asp"]) else None
+
+
+def _rival(typed: str, read: dict, ranked: list[dict]) -> dict | None:
+    """The other reading the typed letters leave open, the one a second reading swaps in: the verb's other
+    voice (كتب bare is كَتَبَ or كُتِبَ), else a close-ranked reading of another kind (verb, noun, particle)
+    spelled with the letters typed. A word with a vowel typed on it speaks for itself (سِرْتُ, فُتِحَ kept as
+    فَتَحَ): only a bare word has a rival."""
+    if not no_vowels_typed([typed]):
+        return None
+    if read.get("pos") == "verb" and read.get("vox") in ("a", "p") and read.get("asp") in ("p", "i") \
+            and (other := _other_voice(typed, read)):
+        return {**read, "vox": other}
+    kind = _kind(read)
+    return next((r for r in ranked[:get_settings().rival_ranks]
+                 if kind and _kind(r) not in (None, kind) and NO_ANALYSIS not in r.get("atbtok", "") and _agreeing(typed, [r])), None)
 
 
 def _widened(token: str, ranked: list[dict]) -> list[dict]:
