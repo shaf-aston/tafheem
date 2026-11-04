@@ -1,5 +1,5 @@
 /**
- * Hear this word. A small speaker icon; lib/speech/speak.js picks the voice.
+ * Hear this word. A small speaker icon (its tap area reaches 44px around it); lib/speech/speak.js picks the voice.
  */
 import { ahead } from '../../../lib/api/warm'
 import { useEffect, useRef, useState } from 'react'
@@ -67,7 +67,8 @@ export default function SpeakButton({ text, ref, shortcut, early, onFail, label 
       aria-label={state === 'speaking' ? 'Stop' : state === 'failed' ? FAILED : label}
       title={state === 'failed' ? FAILED : shortcut ? `${label} (${shortcut})` : label}
       aria-busy={state === 'busy'}
-      className={`shrink-0 w-7 h-7 grid place-items-center rounded-full border transition-colors ${look}
+      className={`relative shrink-0 w-7 h-7 grid place-items-center rounded-full border transition-colors ${look}
+        after:absolute after:-inset-2 after:content-['']
         ${state === 'busy' ? 'animate-pulse' : ''} ${className}`}
     >
       {glyph}

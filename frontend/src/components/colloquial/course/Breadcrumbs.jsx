@@ -6,15 +6,15 @@ import { FOCUS } from '../parts/Face'
 // Where you are, each earlier step a button back to it.
 export function Breadcrumbs({ steps }) {
   return (
-    <nav aria-label="Where you are" className="flex flex-wrap items-center gap-x-2 gap-y-1 type-small">
+    <nav aria-label="Where you are" className="flex flex-wrap items-center gap-x-2 type-small">
       {steps.map((step, i) => {
         const last = i === steps.length - 1
         return (
           <span key={step.label} className="flex items-center gap-2">
             {i > 0 && <span aria-hidden className="text-[var(--text-faint)]">›</span>}
             {last
-              ? <span aria-current="page" className="text-[var(--text)] font-medium">{step.label}</span>
-              : <button type="button" onClick={step.go} className={`press text-[var(--text-dim)] hover:text-[var(--text)] underline-offset-4 hover:underline rounded ${FOCUS}`}>{step.label}</button>}
+              ? <span aria-current="page" className="text-[var(--text)] font-medium py-1.5">{step.label}</span>
+              : <button type="button" onClick={step.go} className={`press text-[var(--text-dim)] hover:text-[var(--text)] underline-offset-4 hover:underline rounded py-1.5 ${FOCUS}`}>{step.label}</button>}
           </span>
         )
       })}
