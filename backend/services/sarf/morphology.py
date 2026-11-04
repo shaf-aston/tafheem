@@ -917,11 +917,15 @@ def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=Non
     noun, so the rest of the word is read and the hamza put back as its proclitic, as CAMeL
     writes a وَ (وَ+_ذاهِب). Read so where no reading of the whole word fits its vowels, or where
     the rest is a حرف جر and the next word is typed in jarr (أَفِي اللَّهِ شَكٌّ: no verb or name puts
-    the noun after it in jarr, so أَفِي is not "I fulfil")."""
+    the noun after it in jarr, so أَفِي is not "I fulfil"), or where the rest is a jazm particle typed
+    with its sukun (أَلَمْ نَشْرَحْ: not the verb أَلَمَّ)."""
     if not (split := _asked_split(typed)):
         return None
     asked, rest = split
-    if _agreeing(typed, ranked) and not (strip_diacritics(rest) in book_words("jarr") and typed_case(after) == "i"):
+    bare_rest = strip_diacritics(rest)
+    asks_onto = (bare_rest in book_words("jarr") and typed_case(after) == "i") \
+        or (bare_rest in book_words("jazm") and rest.endswith("ْ"))
+    if _agreeing(typed, ranked) and not asks_onto:
         return None
     ranked = _rest_readings(rest, disambiguator)
     if not _agreeing(rest, ranked):
