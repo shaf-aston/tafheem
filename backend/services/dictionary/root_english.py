@@ -43,7 +43,7 @@ LINES_KEPT_FILE = _DATA / "english_lines.kept.json"
 # Named for the prompt that made them (prompts.ROOT_ENTRY_SENSES_USER): a better prompt moves to a
 # new pair of files, so what the old one made is left behind and each root is made again when next
 # asked for. The server's kept file cannot be edited from here, so this is how its answers are retired.
-SENSES_MADE_WITH = 2
+SENSES_MADE_WITH = 3
 SENSES_FILE = _DATA / f"english_senses.v{SENSES_MADE_WITH}.json"
 SENSES_KEPT_FILE = _DATA / f"english_senses.v{SENSES_MADE_WITH}.kept.json"
 

@@ -375,7 +375,7 @@ async def get_root_entry_senses(root: Root) -> RootEntrySensesResponse:
     if kept is None:
         # Asked in chunks at once: a short answer each comes back sooner, fits the
         # token budget, and a chunk that misfits is asked again alone.
-        ask = partial(ai_service.explain_root_entry_senses, root, reference=root_english.get(book_root))
+        ask = partial(ai_service.explain_root_entry_senses, root)
         kept = root_senses.joined(await asyncio.gather(*(
             _ask_ai(root_senses.cut, ask, chunk, operation="word-by-word English of a Maqayees entry")
             for chunk in root_gloss.chunks(lines, get_settings().root_senses_chunk_chars)

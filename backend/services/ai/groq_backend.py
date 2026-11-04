@@ -14,6 +14,19 @@ T = TypeVar("T")
 
 _RETRIABLE_STATUS = {429, 500, 502, 503, 504}
 _AUTH_FAILURE_STATUS = {401, 403}
+# The longest a retry waits when the service names a wait; past it the reader
+# is better told to try again than left looking at a loading bar.
+_MOST_WAIT_S = 20.0
+
+
+def _told_to_wait(exc: Exception) -> float | None:
+    """The seconds a 429's Retry-After header asks for, capped; None without one."""
+    headers = getattr(getattr(exc, "response", None), "headers", None) or {}
+    try:
+        seconds = float(headers.get("retry-after", ""))
+    except (TypeError, ValueError):
+        return None
+    return min(max(seconds, 0.0), _MOST_WAIT_S)
 
 
 class GroqBackend(AIBackend):
@@ -105,7 +118,10 @@ class GroqBackend(AIBackend):
 
     @staticmethod
     def _backoff(attempt: int, base: float, exc: Exception) -> None:
-        delay = base * (2 ** attempt)
+        # A rate limit says how long to wait. A token-per-minute limit wants
+        # seconds, not the one and two the doubling gives, and three quick
+        # tries inside one window all failed where one patient one passes.
+        delay = _told_to_wait(exc) or base * (2 ** attempt)
         logger.warning("Groq error (attempt %d), retry in %.1fs: %s", attempt + 1, delay, exc)
         time.sleep(delay)
 

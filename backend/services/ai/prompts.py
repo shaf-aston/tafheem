@@ -120,9 +120,9 @@ numbered. Cut it into the words it explains, for a learner who cannot read
 classical Arabic.
 
 Root: {root}
-The entry, line by line:
+The entry, line by line (it may be one piece of a longer entry):
 {numbered}
-{reference}
+
 For each word the entry explains, in the order the entry gives them, return:
 - "lines": the numbers of the lines about that word. Every line from 1 to {count}
   belongs to exactly one word, in order. A line that only gives a saying built
@@ -132,7 +132,8 @@ For each word the entry explains, in the order the entry gives them, return:
   a report from a scholar) form their own group with "word" left "".
 - "word": the word itself, copied letter for letter from those lines, without
   و or ف in front. Copy it; never write a form the lines do not print.
-- "say": that word in Latin letters, e.g. al-ruṭab, raṭṭaba. "" when "word" is "".
+- "say": that word in Latin letters, e.g. al-ruṭab, raṭṭaba, samiʿtu: ʿ for ع,
+  ' for ء, long vowels ā ī ū, dotted ḥ ṣ ḍ ṭ ẓ. "" when "word" is "".
 - "gloss": what the word means, a few plain English words ("ripe, soft dates",
   "green plants, fresh fodder"), never a scrap of the line ("of plants"). For a
   group with no word, the English of those lines in a short sentence.
@@ -146,6 +147,8 @@ Rules:
   never from a neighbouring one: أَطْعَمْتَهُمْ رُطَبًا is "you fed them ripe dates",
   not "green fodder". Words one vowel apart are different words: رُطَب ripe
   dates, رُطْب pasture, رَطْب moist.
+- A line that explains with إِذَا ("when") or أَيْ ("that is") means what follows
+  it: نَصَرْتُ بَلَدَ كَذَا، إِذَا أَتَيْتَهُ is "I came to such a land", not "I helped".
 - بِضَمِّ الرَّاءِ and the like say which vowel a letter takes ("with u on the r"),
   not anything about height or raising.
 - A name stays a name: people, poets, tribes and places are named, never translated.

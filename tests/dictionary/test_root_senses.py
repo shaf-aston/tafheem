@@ -88,3 +88,15 @@ def test_shown_carries_each_senses_own_lines():
     shown = root_senses.shown(root_senses.check(_answer(), LINES), LINES)
     assert shown[1]["arabic"] == LINES[1:3]
     assert shown[2]["word"] == ""
+
+
+def test_a_line_that_only_leads_in_joins_the_quote_it_introduces():
+    lines = ["قَالَ الشَّاعِرُ:", "صدر البيت ... عجزه", "وَاللَّهُ أَعْلَمُ."]
+    answer = {"senses": [
+        {"lines": [1], "word": "", "gloss": "The poet said"},
+        {"lines": [2], "word": "", "gloss": "A verse"},
+        {"lines": [3], "word": "", "gloss": "God knows best"},
+    ]}
+    senses = root_senses.check(answer, lines)
+    assert [s["lines"] for s in senses] == [[0, 1], [2, 2]]
+    assert root_senses.fits(senses, 3)

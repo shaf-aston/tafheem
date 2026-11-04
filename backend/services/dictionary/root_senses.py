@@ -107,7 +107,30 @@ def check(answer: object, lines: list[str]) -> list[dict] | None:
             "gloss": gloss,
             "examples": examples,
         })
-    return senses
+    return _joined_to_quotes(senses, lines)
+
+
+def _leads_in(text: str) -> bool:
+    """A line that only introduces what follows: قال الشاعر:, قال:."""
+    return text.rstrip().endswith(":")
+
+
+def _joined_to_quotes(senses: list[dict], lines: list[str]) -> list[dict]:
+    """Each wordless sense whose lines only lead in, folded into the sense after
+    it, so a poem is one row, not "The poet said" and then a row of verse."""
+    out: list[dict] = []
+    carry: int | None = None
+    for i, sense in enumerate(senses):
+        first, last = sense["lines"]
+        if carry is not None:
+            sense["lines"] = [carry, last]
+            carry = None
+        if (not sense["word"] and i + 1 < len(senses)
+                and all(_leads_in(lines[n]) for n in range(first, last + 1))):
+            carry = first
+            continue
+        out.append(sense)
+    return out
 
 
 def cut(ask, lines: list[str]) -> list[dict] | None:
