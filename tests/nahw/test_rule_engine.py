@@ -1333,3 +1333,7 @@ def test_a_relative_typed_bare_after_a_preposition_is_not_read_as_a_command():
 ])
 def test_a_noun_with_the_noun_s_sign_is_never_read_as_the_command_its_letters_spell(sentence, at, role):
     assert _role(sentence, at) == role
+
+
+def test_khilal_is_a_noun_of_place_not_the_preposition_camel_files_it_as():
+    assert _role("انْخَفَضَتِ الصَّادِرَاتُ انْخِفَاضًا حَادًّا خِلَالَ الْأَشْهُرِ الثَّلَاثَةِ", 4) == "مفعول فيه"
