@@ -22,7 +22,7 @@ from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_ar
 from backend.services.sarf import expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
-from backend.services.nahw.book import book_map, book_words, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
+from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
 from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
@@ -688,7 +688,9 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [lam]
         if jarred := _jarred_ma(evidence):
             ranked = [jarred]
-        if not _agreeing(evidence, ranked) and (table := _table_verb(token, evidence, ranked)):
+        if answer := _answer_command(tokens[:i], token, evidence, ranked):
+            ranked = [answer]
+        elif not _agreeing(evidence, ranked) and (table := _table_verb(token, evidence, ranked)):
             ranked = [table]
         elif not steps and (asked := _asked_reading(evidence, ranked, after, disambiguator)):
             ranked = [asked]
@@ -739,7 +741,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                 i + 1 < len(out) and expects.verb_after(tokens, out, i + 1)):
             word, ranked = steps[i]
             here = vowel_agreement(word, out[i].get("diac", ""))
-            verb = best_reading(word, [r for r in _widened(tokens[i], ranked) if r.get("pos") == "verb"])
+            verb = best_reading(word, [r for r in _widened(tokens[i], ranked) if r.get("pos") == "verb"])                 or (unread(ranked) and no_vowels_typed([word]) and _table_verb(word, word, [], bare=True) or None)
             said = vowel_agreement(word, verb.get("diac", "")) if verb else None
             # the verb reads the typed vowels at least as well, or the reading kept contradicts them (ظُلْمُكَ for ظَلَمَكَ)
             if said is not None and (here is None or said >= here):
@@ -900,23 +902,39 @@ def _quran_name(typed: str, readings: list[dict], bare: bool = False) -> dict | 
 
 
 def _asked_split(typed: str) -> tuple[str, str] | None:
-    """The question hamza written onto the front of a word (its fatha with it), and the rest of the word."""
+    """The question hamza written onto the front of a word (its fatha with it, or with no vowel typed on the word at
+    all), and the rest of the word."""
     marked = letters(typed)
     hamza = next((w for w in book_words("istifham") if len(w) == 1), None)
-    if not (hamza and len(marked) > 2 and marked[0][0] == hamza and "َ" in marked[0][1]):
+    if not (hamza and len(marked) > 2 and marked[0][0] == hamza and ("َ" in marked[0][1] or no_vowels_typed([typed]))):
         return None
     asked = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
     return asked, typed[len(asked):]
 
 
-def _table_verb(typed: str, evidence: str, ranked: list[dict]) -> dict | None:
+def _table_verb(typed: str, evidence: str, ranked: list[dict], bare: bool = False) -> dict | None:
     """يَسْتَعْتِبُوا، تَسْتَحِ: no reading the dictionary has is the word typed, so the table's is. One of
     the table's own tense is only spelled otherwise: the dictionary's stays. A command alone is left to
     repair.typed (verb_reader.command), which cuts nothing off; one with a letter joined on (فَاعْزِمُوا) or its
-    object pronoun written on (اِهْدِنَا) is split here."""
-    if (sarf := verb_reader.reading_of(typed, _seen_verb)) and (sarf.get("asp") != "c" or "+" in sarf.get("atbtok", "")) \
+    object pronoun written on (اِهْدِنَا) is split here. A word typed with no vowel (`bare`), which the dictionary has
+    no reading of, is read off the table too, where its root is one the books file (dictionary.roots.spelling)."""
+    from backend.services.dictionary import roots  # it reads with this module
+    if (sarf := verb_reader.reading_of(typed, _seen_verb, roots.spelling if bare else None)) and (sarf.get("asp") != "c" or "+" in sarf.get("atbtok", "")) \
             and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
         return {"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}  # its past, else the verb's own letters
+
+
+def _answer_command(before: list[str], typed: str, evidence: str, ranked: list[dict]) -> dict | None:
+    """فَاعْزِمُوا typed bare (فاعزموا): the answer to a condition that is a command takes the ف (Ibn Aqil V4 p37: إن جاء
+    زيد فاضربه), so a word with a ف on its front that the dictionary has no reading of, after a word that opens a
+    condition, is that ف and a command of a root the books file, read off sarf's table."""
+    def opens(word: str) -> bool:
+        spelled = strip_diacritics(word)
+        return bool(condition_of(spelled) or spelled[:1] in "وف" and condition_of(spelled[1:]))
+
+    if (typed[:1] == "ف" and unread(ranked) and no_vowels_typed([typed]) and any(opens(word) for word in before)
+            and (table := _table_verb(typed, evidence, ranked, bare=True)) and table.get("asp") == "c"):
+        return table
 
 
 def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=None) -> dict | None:
@@ -934,11 +952,12 @@ def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=Non
     bare_rest = strip_diacritics(rest)
     asks_onto = (bare_rest in book_words("jarr") and typed_case(after) == "i") \
         or (bare_rest in book_words("jazm") and rest.endswith("ْ"))
-    if _agreeing(typed, ranked) and not asks_onto:
+    bare = no_vowels_typed([typed])
+    if _agreeing(typed, ranked) and not asks_onto and not (bare and unread(ranked)):
         return None
     ranked = _rest_readings(rest, disambiguator)
-    if not _agreeing(rest, ranked):
-        table = _table_verb(rest, rest, [])  # none of its readings holds the vowels typed, so none competes
+    if not _agreeing(rest, ranked) or bare and unread(ranked):
+        table = _table_verb(rest, rest, [], bare)  # none of its readings holds the vowels typed, so none competes
         return _joined_onto(asked, {**verb_reader.pieces([], letters(rest)), **table}, "INTERROG_PART", prc3="Aa_ques") if table else None
     return _joined_onto(asked, _reading(rest, ranked), "INTERROG_PART", prc3="Aa_ques")
 

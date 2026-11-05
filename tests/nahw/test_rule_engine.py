@@ -1598,3 +1598,14 @@ def test_a_nasb_noun_straight_after_the_ism_of_kana_is_its_khabar():
 
 def test_bare_lam_after_a_relative_is_the_jazm_particle_not_a_verb():
     assert _role("سأنبئك بتأويل ما لم تستطع عليه صبرا", 3) == "حرف"
+
+
+def test_a_bare_verb_the_dictionary_lacks_is_read_off_sarfs_table_in_a_verb_position():
+    # Ibn Aqil V4 p37: the answer of a condition that is a command takes the ف (إن جاء زيد فاضربه); a question hamza and
+    # هل want a verb (Tasheel); the root is one the books file, so a name shaped like a verb stays a name
+    assert _role("إذا دعوتم الله فاعزموا في الدعاء", 3) == "فعل"
+    assert _role("وإذا استنفرتم فانفروا", 2) == "فعل"
+    assert _role("أيعجز أحدكم أن يقرأ ثلث القرآن في ليلة", 0) == "فعل"
+    assert _role("أيعجز أحدكم أن يقرأ ثلث القرآن في ليلة", 1) == "فاعل"
+    assert _role("هل تضارون في رؤية الشمس", 1) == "فعل"
+    assert _role("أفاسق أنت", 0) != "فعل"  # a name the dictionary reads is not re-read as a verb

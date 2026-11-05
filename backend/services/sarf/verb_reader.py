@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import re
+from collections import Counter
 from collections.abc import Callable
 from dataclasses import dataclass, field, replace
 from functools import lru_cache
@@ -277,15 +278,25 @@ def known_as(word: str) -> str | None:
     return None
 
 
-def reading_of(word: str, known: Callable[[str], bool] | None = None) -> dict | None:
+def reading_of(word: str, known: Callable[[str], bool] | None = None, rooted: Callable[[str], bool] | None = None) -> dict | None:
     """A verb the dictionary cannot read even as the table spells it (يَسْتَعْتِبُوا), read off
     the table in the dictionary's own features (reading.json `camel`): {pos, asp, vox, ...}.
     None unless the closest cells agree on its tense and voice. What they do not agree on is
     left out, not guessed: تَسْتَحِ is "she" or "you", أَفْشُوا has فشو or فشي; both are verbs.
     `known` says whether the dictionary has a verb, by its past: of the closest cells, the verbs
     it has are the word's, and where it has none of them, a verb it has with an object pronoun
-    written on is (اِهْدِنَا is هَدَى + نا, not a dual of هَدَنَ, a verb no text it learnt from uses)."""
-    for front, rest, closest in _cuts(word):
+    written on is (اِهْدِنَا is هَدَى + نا, not a dual of هَدَنَ, a verb no text it learnt from uses).
+    `rooted` says whether a root is one a book files: given, the word is read bare, with no vowel typed, off every
+    cell the table has for its letters (يعجز: يَعْجِزُ، يُعْجَزُ), of the roots the books file, and of those the sound
+    roots (every radical written in the word) before the weak and doubled, which the table spells the same way for
+    any letters (انفروا is نفر, not the VII of فري)."""
+    for front, rest, closest in _cuts(word, bare=bool(rooted)):
+        if rooted:
+            written = Counter(letter for letter, _ in letters(word))
+            closest = [c for c in closest if rooted(c.root)]
+            closest = [c for c in closest if not Counter(c.root) - written] or closest
+            if not closest:
+                continue
         if known:
             seen = [c for c in closest if known(past(c))]
             if not seen and (split := _with_object(word, known)) and known(split.get("lex", "")):
@@ -325,17 +336,18 @@ def _with_object(word: str, known: Callable[[str], bool] | None = None) -> dict 
     return None
 
 
-def _cuts(word: str):
+def _cuts(word: str, bare: bool = False):
     """(the letters written onto its front, the rest, the table's closest cells for the rest), fewest
-    joined letters (وَ، فَ، لْ) first; only the vowels typed are evidence, so a bare word yields none."""
+    joined letters (وَ، فَ، لْ) first; only the vowels typed are evidence, so a bare word yields none, unless
+    `bare` asks for it: then no cell is closer than another, and all are given."""
     marked = letters(word)
     for cut in range(min(len(marked), _JOINED_MOST) + 1):
         front, rest = marked[:cut], marked[cut:]
-        if not all(letter in _joined() for letter, _ in front) or not _voweled(rest):
+        if not all(letter in _joined() for letter, _ in front) or not (bare or _voweled(rest)):
             continue
         found = dict(_scored(_spell(rest)))
         if found:
-            yield front, rest, [cell for cell, score in found.items() if score == min(found.values())]
+            yield front, rest, [cell for cell, score in found.items() if bare or score == min(found.values())]
 
 
 def pieces(front: list, verb: list, pronoun: list = ()) -> dict:
