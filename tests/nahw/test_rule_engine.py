@@ -1668,3 +1668,9 @@ def test_a_bare_noun_ending_the_sentence_on_an_anna_with_no_khabar_is_its_khabar
 def test_bare_lam_on_the_ism_behind_a_fronted_khabar_of_inna_is_the_lam_of_ibtida():
     # Alfiyya: وتصحب الواسط معمول الخبر والفصل واسما حل قبله الخبر (page unchecked); لسحرا is no verb, and no ism is one
     assert _role("إن من البيان لسحرا", 3) == "اسم إن"
+
+
+def test_a_second_bare_sentence_after_a_waw_has_its_own_mubtada_and_khabar():
+    # عطف الجمل (Ibn Aqil, page unchecked): الحلال بين والحرام بين is two sentences; one khabar after two nouns joined stays one
+    assert [_role("الحلال بين والحرام بين", i) for i in (2, 3)] == ["مبتدأ", "خبر"]
+    assert _role("الحلال والحرام بين", 1) == "معطوف"

@@ -17,7 +17,9 @@ def hal_clause(bases: list[dict], tokens: list[dict]) -> None:
     clause after و: the verb on the و, the pronoun on the verb. A raf' noun does the same, after a
     clause already said (not as the first word: والله يعلم). A khabar of a noun or pronoun after
     the و that the parser hung on the verb before (SBJ on it, a المبتدأ, its khabar elsewhere)
-    hangs on the و as well, so it is the khabar (Tasheel 1.4.4 p11), not a hal on the verb."""
+    hangs on the و as well, so it is the khabar (Tasheel 1.4.4 p11), not a hal on the verb. After a sentence already said
+    (الْحَلَالُ بَيِّنٌ وَالْحَرَامُ بَيِّنٌ, typed bare) the parser may hang the noun and the khabar both on the و: the
+    و joins a second sentence (عطف الجمل, page unchecked), so the noun is told of that khabar, as above."""
     s = Sentence(tokens)
     for subject, after in zip(bases, bases[1:]):
         waw = s.by_id.get(subject["id"] - 1)
@@ -33,6 +35,9 @@ def hal_clause(bases: list[dict], tokens: list[dict]) -> None:
                 and told["id"] > subject["id"] and told["head"] != waw["id"]
                 and typed_case_of(told) in (None, "u")):
             told["head"], told["rel"] = waw["id"], "OBJ"
+        elif subject["rel"] == "SBJ" and told is waw and (clause := s.head(waw)) and clause["head"] == 0 and clause["id"] < waw["id"]                 and (khabar := next((k for k in s.kids(waw) if k["id"] > subject["id"] and k["rel"] in ("OBJ", "PRD")
+                                     and noun_tagged(k) and not is_verb(k) and typed_case_of(k) in (None, "u")), None)):
+            subject["head"] = khabar["id"]
 
 
 def _opens_clause(noun: dict) -> bool:

@@ -83,7 +83,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - la_over_its_khabar: لا hung under the word after its noun → لا heads the pair, the noun its اسم, that word its خبر (`backend/services/nahw/syntax/repair/khabar.py`)
 - hasr_khabar: a noun after إلا in a negated verbless clause → the khabar of the mubtada before it (`backend/services/nahw/syntax/repair/khabar.py`)
 - described_doer: a singular وصف after a negation or question word, then a raf' noun → the وصف heads the clause (مبتدأ), the noun its doer (`backend/services/nahw/syntax/repair/khabar.py`)
-- hal_clause: و + a raf' pronoun or opening noun + a verb or a khabar → a hal clause, the noun its mubtada (`backend/services/nahw/syntax/repair/hal.py`)
+- hal_clause: و + a raf' pronoun or opening noun + a verb or a khabar → a hal clause, the noun its mubtada; after a sentence already said, the noun and the khabar both hung on the و (الحلال بين والحرام بين) → the noun told of that khabar (`backend/services/nahw/syntax/repair/hal.py`)
 - oath_relative: an opening و + a relative whose main clause is answered by a lam, لا, ما, قد or إن → the oath: the relative is its majrur, its nominal صلة kept (`backend/services/nahw/syntax/repair/clause.py`)
 - amma_clause: أما + one noun + a فاء answer → the noun is the mubtada, the answer its khabar, a verb it was doer of its صلة (`backend/services/nahw/syntax/repair/clause.py`)
 - negated_conjunct: و + لا + a known noun hung on the لا → joined to the noun before the و, the لا only stressing the negation (`backend/services/nahw/syntax/repair/clause.py`)
