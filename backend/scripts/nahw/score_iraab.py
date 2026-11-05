@@ -117,10 +117,10 @@ def held_out(name: str) -> list[dict]:
 
 
 SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
-        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery", "matn")},
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery", "matn", "round3")},
         "blind": partial(fresh_sentences, "blind")}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery", "matn")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery", "matn", "round3")
 BASELINE = DATA / "nahw_rules" / "score_baseline.json"
 
 
