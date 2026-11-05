@@ -1,8 +1,7 @@
 """Repair 2: a word hung on a verb's subject that the typed vowels forbid there is the verb's object."""
 from __future__ import annotations
 
-from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
+from backend.services.nahw.book import extra_ba_on, is_mabni, is_one, is_subject_pronoun, says
 from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import (
     Sentence, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
@@ -67,7 +66,7 @@ def subject_clash(tokens: list[dict]) -> None:
         if verb and is_verb(verb) and token["rel"] == "OBJ" and not holds_doer(verb, s.kids(verb)) \
                 and ((typed := typed_case_of(token)) == "u" or typed is None and token["id"] > verb["id"]
                      and is_name(token) and typed_or_parsed_case(token) != "a"
-                     and strip_diacritics(verb["lemma"]) in frames()["said_clause"]["verbs"]):
+                     and says(verb["lemma"])):
             token["rel"] = "SBJ"
     for token in tokens:
         head = s.head(token)
@@ -125,7 +124,7 @@ def name_told_to(tokens: list[dict]) -> None:
     for token in tokens:
         verb, before = s.head(token), previous_noun(token, s)
         if verb and is_verb(verb) and token["rel"] == "OBJ" and is_name(token) and before \
-                and strip_diacritics(verb["lemma"]) in frames()["said_clause"]["verbs"] \
+                and says(verb["lemma"]) \
                 and typed_or_parsed_case(before) == "i" and "i" in shown_cases(token):
             token["head"], token["rel"] = before["id"], "MOD"
 

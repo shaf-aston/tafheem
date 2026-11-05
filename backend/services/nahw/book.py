@@ -338,6 +338,11 @@ def frames() -> dict:
     return _roles()["frames"]
 
 
+def says(lemma: str) -> bool:
+    """A verb of saying (roles.json said_clause): it takes the sentence it tells, never a name, as its object."""
+    return strip_diacritics(lemma) in frames()["said_clause"]["verbs"]
+
+
 def condition_of(word: str) -> dict | None:
     """The condition a bare word may open: its family's entry in the condition frame, found
     by the family whose `conditional_particles` (إن جازم، لو غير جازم) or `conditional_nouns`

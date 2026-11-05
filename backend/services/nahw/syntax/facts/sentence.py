@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_built_word, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb
+from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_built_word, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
 
@@ -413,7 +413,7 @@ def quoted_head(token: dict, s: Sentence) -> bool:
     قُلْتُ أَنَا ذَاهِبٌ: a verb of the first or second person holds its doer in itself (its تاء)."""
     head = s.head(token)
     return (token["rel"] == "OBJ" and (typed_or_parsed_case(token) == "u" or is_subject_pronoun(token)) and head is not None and is_verb(head)
-            and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
+            and head["id"] < token["id"] and says(head["lemma"])
             and holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"])))
 
 
