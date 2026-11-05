@@ -30,6 +30,7 @@ key is what the app answered where that was right, the book's role where it was 
 fail until the engine is fixed); a row's "note" names the words with two valid answers.
 --set round2 is 100 more (n001-n060 hadith, t001-t040 MSA), keyed blind by two readers, unseen by the engine until scored.
 --set round3 is 100 more again (p001-p060 hadith, u001-u040 MSA), written and keyed blind the same way, scored before any fix.
+--set round4 is 100 more (x001-x060 hadith, y001-y040 MSA), written and keyed blind the same way, scored on the merged engine before any fix.
 --set matn is 100 harder sentences: 60 vowelled hadith matn clauses (bukhari, muslim) and 40 MSA
 sentences, keyed blind by two readers; where they differed the books settled it. A row's "also" gives,
 per word, the other answers the books accept, each scored right.
@@ -119,10 +120,10 @@ def held_out(name: str) -> list[dict]:
 
 
 SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
-        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery", "matn", "round2", "round3")},
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery", "matn", "round2", "round3", "round4")},
         "blind": partial(fresh_sentences, "blind")}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery", "matn", "round2", "round3")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery", "matn", "round2", "round3", "round4")
 BASELINE = DATA / "nahw_rules" / "score_baseline.json"
 
 
