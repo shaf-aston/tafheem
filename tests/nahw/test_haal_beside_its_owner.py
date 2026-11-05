@@ -89,7 +89,10 @@ def test_a_noun_is_a_mudaf_only_with_something_added(stt, mudaf, agree):
 @needs_parser
 def test_the_waw_before_a_condition_stands_at_its_front_and_the_answer_holds_its_own_words():
     top = tree("ومن يشرك بالله فقد ضل ضلال بعيدا")
-    assert top["label"] == "جُمْلَةٌ شَرْطِيَّةٌ" and top["children"][0]["role"] == "حرف عطف"
+    first = top["children"][0]
+    while first.get("children"):  # the opener is the مبتدأ of مَنْ, so the waw may sit in its brace; it still opens the unit
+        first = first["children"][0]
+    assert top["label"] == "جُمْلَةٌ شَرْطِيَّةٌ" and first["role"] == "حرف عطف"
     answer = next(n for n in top["children"] if n.get("role") == "جواب الشرط")
     assert [n.get("role") for n in answer["children"]] == ["حرف", "فعل", "مفعول مطلق"]
 

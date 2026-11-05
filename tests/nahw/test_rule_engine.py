@@ -514,7 +514,7 @@ def test_two_conditions_joined_by_waw_are_two_conditions_not_one_verb_governing_
     read = _read("مَنْ شَاءَ فَلْيَصُمْهُ وَمَنْ شَاءَ أَفْطَرَ")
     words = read["words"]
     assert read["summary"] == term_ar("jumlah_shartiyyah")
-    assert [words[i]["role"] for i in (0, 3)] == ["اسم شرط جازم"] * 2
+    assert [words[i]["role"] for i in (0, 3)] == ["مبتدأ"] * 2  # شَاءَ holds no doer of its own: the noun is it (naming._noun_place)
     assert [words[i].get("governor") for i in (1, 2, 4, 5)] == [0, 0, 3, 3]
     assert "جواب الشرط" in words[5]["reason"] and "رابطة" in words[2]["reason"]
 
@@ -1656,3 +1656,47 @@ def test_a_fa_before_the_oath_waw_leaves_the_oath_its_sworn_by_majrur():
     # Ibn Aqil vol 4 p42 (bab al-qasam): the فاء only ties the oath on; the sworn-by is still the oath's majrur
     assert _role("فَوَاللَّهِ إِنِّي لَأُعْطِي الرَّجُلَ", 0) == "مجرور"
     assert _role("فَوَالَّذِي نَفْسِي بِيَدِهِ لَا يُؤْمِنُ أَحَدُكُمْ", 0) == "مجرور"
+
+
+def test_a_known_word_then_man_with_its_sila_is_told_by_it():
+    # Ibn Aqil V1 p216: the mubtada is known, and man with its sila is one word, the khabar; man never describes a noun
+    assert [_role("الْكَيِّسُ مَنْ دَانَ نَفْسَهُ وَعَمِلَ لِمَا بَعْدَ الْمَوْتِ", i) for i in (0, 1)] == ["مبتدأ", "خبر"]
+    # after the second و the same: the clause rests on the known word, not on the first man
+    assert [_role("الْكَيِّسُ مَنْ دَانَ نَفْسَهُ وَالْعَاجِزُ مَنْ أَتْبَعَ نَفْسَهُ هَوَاهَا", i) for i in (4, 5)] == ["مبتدأ", "خبر"]
+    # a word with a khabar of its own keeps man's clause as its na't-less relative: nothing owed
+    assert _role("جَاءَ الرَّجُلُ مَنْ نَجَحَ", 2) != "خبر"
+    # the الذي family only after a particle that cannot govern the noun
+    assert [_role("لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ", i) for i in (4, 5)] == ["مبتدأ", "خبر"]
+    assert _role("الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ", 1) == "صفة"
+
+
+def test_man_asks_before_a_noun_though_a_preposition_or_a_relative_clause_follows():
+    # man never negates, so the preposition after the khabar (ما أنت بعالم) shows nothing; a relative's sila is no clause of its own
+    assert [_role("مَنْ أَحَقُّ النَّاسِ بِحُسْنِ صَحَابَتِي", i) for i in (0, 1)] == ["مبتدأ", "خبر"]
+    assert [_role("مَنِ الَّذِي يَضْمَنُ لِلْمُسْتَثْمِرِ", i) for i in (0, 1)] == ["مبتدأ", "خبر"]
+    assert _role("مَا أَنْتَ بِعَالِمٍ", 1) != "مبتدأ"  # ما can negate: the preposition keeps it from asking
+
+
+def test_a_conditional_noun_before_a_verb_with_no_doer_of_its_own_is_the_mubtada():
+    # the verb's hidden doer goes back to the noun (asked.man_before_verb): ذبح has none written, so man is its mubtada
+    assert _role("مَنْ ذَبَحَ قَبْلَ الصَّلَاةِ فَإِنَّمَا يَذْبَحُ لِنَفْسِهِ وَمَنْ ذَبَحَ بَعْدَ الصَّلَاةِ فَقَدْ تَمَّ نُسُكُهُ", 7) == "مبتدأ"
+    assert _role("مَنْ تَشَرَّفَ لَهَا تَسْتَشْرِفْهُ", 0) == "مبتدأ"
+    # with a doer written, the verb needs no pronoun back and the noun is its object
+    assert _role("مَنْ يَضْرِبْ زَيْدٌ يَضْرِبْ", 0) == "مفعول به"
+
+
+def test_a_passive_verbs_relative_is_its_deputy_though_a_doer_was_said_before():
+    # Ibn Aqil V2 (the passive): the verb that is not told of its doer raises the done-to; a doer said in an earlier clause is no pronoun for it
+    assert _role("شَارَكَ فِي الْحَمْلَةِ الْجَمِيعُ فَجُمِعَ مِنَ التَّبَرُّعَاتِ مَا يَكْفِي لِبِنَاءِ مُسْتَشْفًى", 7) == "نائب فاعل"
+    # a verb that is not passive keeps the relative as the object the doer said before has left it
+    assert _role("شَارَكَ الْجَمِيعُ فَجَمَعَ مِنَ التَّبَرُّعَاتِ مَا يَكْفِي لِبِنَاءِ مُسْتَشْفًى", 5) == "مفعول به"
+
+
+def test_a_noun_after_a_fa_verb_clause_with_a_waw_noun_before_it_is_still_joined():
+    # Tasheel 3.7: a hal clause opens with the waw alone; a fa before its verb ties it to the sentence before
+    assert _role("شَارَكَ الْجَمِيعُ حَتَّى الْأَطْفَالُ وَالشُّيُوخُ فَجُمِعَ مِنَ التَّبَرُّعَاتِ مَا يَكْفِي", 4) == "معطوف"
+
+
+def test_a_ma_the_parser_calls_the_doer_of_a_passive_verb_is_its_deputy():
+    # Ibn Aqil V2 (the passive): the one raised in the doer's place is the deputy, however the parser linked the ما
+    assert _role("وَاللَّهِ لَقَدْ أُنْجِزَ فِي هَذَا الْمَشْرُوعِ مَا يَزِيدُ عَلَى ثَلَاثِمِئَةٍ وَخَمْسِينَ كِيلُومِتْرًا", 6) == "نائب فاعل"
