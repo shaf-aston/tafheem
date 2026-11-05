@@ -1767,3 +1767,9 @@ def test_a_noun_after_a_fa_verb_clause_with_a_waw_noun_before_it_is_still_joined
 def test_a_ma_the_parser_calls_the_doer_of_a_passive_verb_is_its_deputy():
     # Ibn Aqil V2 (the passive): the one raised in the doer's place is the deputy, however the parser linked the ما
     assert _role("وَاللَّهِ لَقَدْ أُنْجِزَ فِي هَذَا الْمَشْرُوعِ مَا يَزِيدُ عَلَى ثَلَاثِمِئَةٍ وَخَمْسِينَ كِيلُومِتْرًا", 6) == "نائب فاعل"
+def test_a_passive_verb_of_two_objects_names_its_deputy_and_the_object_left():
+    # Tasheel 1.10 p26 (page unchecked for the passive): the first object is raised to the doer's place, the second stays منصوب
+    sentence = "عُلِّمَ الْمُتَدَرِّبُونَ لُغَةَ الْإِشَارَةِ خِلَالَ شَهْرٍ وَاحِدٍ"
+    assert [_role(sentence, i) for i in (1, 2)] == ["نائب فاعل", "مفعول به"]
+
+
