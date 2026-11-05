@@ -11,7 +11,7 @@
  * no knowledge of the screen; the books are in lib/memorise/books.js, with no knowledge
  * of either. This file only shows what those two decide.
  */
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 import { BOOKS } from '../../lib/memorise/books'
 import { DIFFICULTIES, printedPageOf, score } from '../../lib/memorise/memorise'
@@ -32,8 +32,9 @@ import WheelPicker from '../ui/inputs/WheelPicker'
 import { Skeleton } from '../ui/feedback/Skeleton'
 import {
   difficultyOf, HIDDEN, useArrivedPage, useBookPage, useGaps, useHowYouAnswer,
-  usePageSteps, useReciteState, useReciteTurns, WAYS, withinPart,
+  usePageSteps, WAYS, withinPart,
 } from './hooks'
+import { useOpenCard, useReciteState, useReciteTurns } from './useRecite'
 import { gapsScope, useAnswers } from './useAnswers'
 import useFollowScroll from './useFollowScroll'
 
@@ -67,16 +68,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   // behind one pill on a phone, where the pickers and both of these were three
   // rows before the page began.
   const phone = useMedia(PHONE)
-  // The word or ayah whose card is open: { at } or { line }. Only a place; the
-  // card reads the live marks, so what it shows keeps up with the recitation.
-  const [asked, setAsked] = useState(null)
-  // Closed by the reader, Esc or a press outside (MarkCard), and here by a page
-  // turn or by stopping; never by a mark changing under it. A card is stamped
-  // with the page and listening state it was opened in, and only counts while
-  // they are unchanged.
-  const stamp = `${bookId}/${part}/${pageNumber}/${reciting.listening}`
-  const opened = asked?.stamp === stamp ? asked : null
-  const setOpen = (place) => setAsked(place && { ...place, stamp })
+  const [opened, setOpen] = useOpenCard(`${bookId}/${part}/${pageNumber}/${reciting.listening}`)
   const ways = WAYS
   const missing = way === 'recite'
     ? [{ id: 'none', label: 'Show all' }, { id: HIDDEN, label: 'Hidden' }]
