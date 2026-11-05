@@ -26,6 +26,11 @@ def hal_clause(bases: list[dict], tokens: list[dict]) -> None:
         if not (is_subject_pronoun(subject) or (waw["id"] > 1 and _opens_clause(subject))):
             continue
         told = s.head(subject)
+        # شارك الجميع حتى الأطفال والشيوخ فجمع: a فاء written on the verb begins a clause of its own, which is no state
+        # (the hal clause is tied by the واو alone: Tasheel 3.7), so the noun after the و only joins what is before it
+        fa = s.by_id.get(after["id"] - 1)
+        if fa and fa["pos"] == "PRT" and fa["lemma"].strip("+") == "ف":
+            continue
         if is_verb(after) and (subject["head"] in (waw["id"], waw["head"]) or after["head"] == subject["id"]):
             after["head"], after["rel"] = waw["id"], "OBJ"
             subject["head"], subject["rel"] = after["id"], "SBJ"
