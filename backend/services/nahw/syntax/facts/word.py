@@ -414,6 +414,13 @@ def is_participle(token: dict) -> bool:
             or (name and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
+def names_a_thing(token: dict) -> bool:
+    """سَلَكَ طَرِيقًا: a noun the analyser reads as a noun, on the صفة مشبهة's measure only (فَعِيل), not a
+    doer's or a done-to's (on_doing_measure). The analyser reads some describing words so too (غَزِيرَةً), so the
+    caller trusts it only where the parser linked the word as the verb's object."""
+    return token.get("pos_camel") == "noun" and not on_doing_measure(token) and token.get("ud") != "ADJ"
+
+
 def is_elative(token: dict) -> bool:
     """أَعْلَى، أَكْبَر، خَيْر: an elative (book.elative_shape)."""
     return elative_shape(token.get("pattern", ""), token["lemma"])
