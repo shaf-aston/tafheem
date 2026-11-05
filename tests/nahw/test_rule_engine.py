@@ -1646,3 +1646,10 @@ def test_a_bare_verb_the_dictionary_lacks_is_read_off_sarfs_table_in_a_verb_posi
     assert _role("أيعجز أحدكم أن يقرأ ثلث القرآن في ليلة", 1) == "فاعل"
     assert _role("هل تضارون في رؤية الشمس", 1) == "فعل"
     assert _role("أفاسق أنت", 0) != "فعل"  # a name the dictionary reads is not re-read as a verb
+
+
+def test_a_bare_place_word_with_its_mudaf_ilayh_is_the_zarf_not_a_follower():
+    # Tasheel 3.2 p67: a place word on no other list, added to a noun of its own, is the zarf; a noun's نعت or مضاف إليه is not
+    assert _role("لا هجرة بعد الفتح ولكن جهاد", 2) == "مفعول فيه"
+    assert _role("هل ستنجح الجهود الدبلوماسية في وقف التصعيد بين الطرفين", 7) == "مفعول فيه"
+    assert _role("اللهم فإني أظن أنك قد وضعت الحرب بيننا وبينهم", 7) == "مفعول فيه"

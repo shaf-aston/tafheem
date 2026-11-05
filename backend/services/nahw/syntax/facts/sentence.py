@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_built_word, is_extra_ba, is_mabni, is_one, is_subject_pronoun
+from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_built_word, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
 
@@ -410,10 +410,12 @@ def counts(token: dict) -> bool:
 
 def zarf_in_nasb(token: dict, s: Sentence) -> bool:
     """بَيْنَ الطَّرَفَيْنِ، بَعْدَ الْفَتْحِ: a listed time or place word hung as a modifier, vowelled with a fatha or a case that
-    shows nothing (ين), never bare: a noun's نعت or مضاف إليه is not put in nasb, so it is the zarf (Tasheel 3.2 p67).
-    Not a built word (أَيْنَ الْكِتَابُ: the khabar), one whose case is unseen (الْيَدُ الْعُلْيَا: a صفة), nor what a number counts
+    shows nothing (ين), or bare where it is a place word added to a noun of its own (وقف التصعيد بين الطرفين, بعد الفتح,
+    بيننا): no other word of the books' lists is spelled so, and a noun's نعت or مضاف إليه is not put in nasb, so it is the zarf
+    (Tasheel 3.2 p67). Not a built word (أَيْنَ الْكِتَابُ: the khabar), one whose case is unseen (الْيَدُ الْعُلْيَا: a صفة), nor what a number counts
     (ثَلَاثِ سِنِينَ: the number's مضاف إليه)."""
-    return (token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") and not typed_bare(token)
+    bare_place = typed_bare(token) and only_adverb(token["lemma"]) and listed(token, "zarf_makan")         and any(k["rel"] == "IDF" for k in s.kids(token))
+    return (token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") and (bare_place or not typed_bare(token))
             and not is_built(token) and not case_unseen(token) and is_zarf(token, s)
             and not (s.head(token) and listed(s.head(token), "adad_mudaf")))
 
