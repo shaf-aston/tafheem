@@ -1658,3 +1658,8 @@ def test_a_bare_place_word_with_its_mudaf_ilayh_is_the_zarf_not_a_follower():
 def test_a_bare_noun_after_a_masdar_and_its_doer_is_the_masdars_object():
     # Alfiyya, إعمال المصدر: بفعله المصدر ألحق في العمل مضافا (Ibn Aqil V3, page unchecked)
     assert _role("أدى إهمال المسؤولين صيانة الجسور القديمة إلى انهيار", 3) == "مفعول به"
+
+
+def test_a_bare_noun_ending_the_sentence_on_an_anna_with_no_khabar_is_its_khabar():
+    # Tasheel 1.8: إنّ and its sisters take an اسم and a خبر, so the pair cannot be left without one
+    assert _role("ولو أن ما في الأرض من شجرة أقلام", 7) == "خبر إن"

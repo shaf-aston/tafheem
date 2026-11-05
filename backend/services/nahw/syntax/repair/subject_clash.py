@@ -406,7 +406,8 @@ def inna_second_khabar(tokens: list[dict]) -> None:
     """لَا رَيْبَ فِيهِ هُدًى: إنّ and its sisters, لا النافية للجنس too, take one اسم and a خبر (Tasheel 1.8, 3.7.3), so a noun
     the parser hung on one as a second subject, after its khabar, is a second khabar (تعدد الخبر). So is a noun in raf'
     the parser hung as a مضاف إليه, which is never in raf' (وَلَوْ أَنَّ مَا فِي الْأَرْضِ مِنْ شَجَرَةٍ أَقْلَامٌ), when
-    the pair has none yet and the noun comes after the اسم."""
+    the pair has none yet and the noun comes after the اسم; typed bare, the noun that ends the sentence on the pair that has
+    none is the khabar, since the pair cannot stand without it."""
     s = Sentence(tokens)
     for governor in tokens:
         if s.family(governor) != "inna":
@@ -414,7 +415,8 @@ def inna_second_khabar(tokens: list[dict]) -> None:
         subject = next((k for k in s.kids(governor) if subject_link(k)), None)
         if subject and not any(k["rel"] == "PRD" for k in s.kids(governor)):
             told = next((t for t in tokens if t["id"] > subject["id"] and t["rel"] == "IDF" and noun_tagged(t)
-                         and typed_case_of(t) == "u" and above([x["head"] for x in tokens], t["id"], subject["id"])), None)
+                         and (typed_case_of(t) == "u" or typed_case_of(t) is None and t is tokens[-1])
+                         and above([x["head"] for x in tokens], t["id"], subject["id"])), None)
             if told:
                 told["head"], told["rel"] = governor["id"], "PRD"
                 s = Sentence(tokens)
