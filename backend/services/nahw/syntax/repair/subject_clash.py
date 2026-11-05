@@ -5,7 +5,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
 from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import (
-    Sentence, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
+    Sentence, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
 from backend.services.nahw.syntax.facts.word import takes_two_objects
 
 
@@ -329,7 +329,8 @@ def kana_subject(tokens: list[dict]) -> None:
     s = Sentence(tokens)
     for token in tokens:
         verb = s.head(token)
-        if not (verb and s.family(verb) == "kana" and verb["id"] < token["id"] and noun_tagged(token)):
+        if not (verb and s.family(verb) == "kana" and verb["id"] < token["id"] and noun_tagged(token)
+                and not stays_adverb(token)):
             continue
         kids = s.kids(verb)
         # كَانَ الْمُهَنْدِسُونَ يَعْمَلُونَ: the parser may hang the اسم as a modifier, with the khabar beside it

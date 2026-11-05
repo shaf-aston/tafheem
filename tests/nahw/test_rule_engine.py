@@ -1656,3 +1656,35 @@ def test_a_fa_before_the_oath_waw_leaves_the_oath_its_sworn_by_majrur():
     # Ibn Aqil vol 4 p42 (bab al-qasam): the فاء only ties the oath on; the sworn-by is still the oath's majrur
     assert _role("فَوَاللَّهِ إِنِّي لَأُعْطِي الرَّجُلَ", 0) == "مجرور"
     assert _role("فَوَالَّذِي نَفْسِي بِيَدِهِ لَا يُؤْمِنُ أَحَدُكُمْ", 0) == "مجرور"
+
+
+def test_qat_and_awd_and_a_cut_off_ba3d_stay_the_adverb_whatever_the_parser_calls_them():
+    # Awdah V2 p232: قط وعوض لا يفارقان الظرفية; Ibn Aqil V3 p73: قبل/بعد cut off from their idafa are built on damma, still a zarf
+    assert _role("مَا رَأَيْتُهُ قَطُّ", 2) == "مفعول فيه"
+    assert _role("لَا أُكَلِّمُهُ عَوْضُ", 2) == "مفعول فيه"
+    assert _role("جَاءَ زَيْدٌ بَعْدُ", 2) == "مفعول فيه"
+    assert _role("أَمَّا بَعْدُ فَإِنَّ الْعِلْمَ نُورٌ", 1) == "مفعول فيه"
+    assert _role("جَاءَ زَيْدٌ بَعْدَ عَمْرٍو", 2) == "مفعول فيه"
+    assert _role("اخْتَبَأَ الْقِطُّ خَلْفَ السِّتَارَةِ", 1) == "فاعل"  # with ال it is the noun, the cat
+
+
+def test_an_elative_read_as_a_verb_is_the_elative_when_a_min_phrase_follows():
+    # Tashil V1 p132: the elative's مفضول, in jarr by مِنْ, follows it or what it governs; a doer straight after keeps the verb
+    assert _role("مَا كُنْتُ قَطُّ أَقْوَى وَلَا أَيْسَرَ مِنِّي", 5) == "معطوف"
+    assert _role("حَتَّى أَكُونَ أَحَبَّ إِلَيْهِ مِنْ وَالِدِهِ", 2) == "خبر كان"  # the doubled shape
+    assert _role("فَلْيُبَلِّغِ الشَّاهِدُ الْغَائِبَ فَإِنَّ الشَّاهِدَ عَسَى أَنْ يُبَلِّغَ مَنْ هُوَ أَوْعَى لَهُ مِنْهُ", 10) == "خبر"
+    assert _role("مَا أَنْعَمَ اللَّهُ عَلَيَّ مِنْ نِعْمَةٍ", 1) == "فعل"
+    assert _role("أَكْرَمَ زَيْدٌ عَمْرًا مِنْ بَيْتِهِ", 0) == "فعل"
+    assert _role("أَرْسَلَ إِلَيْهِ فَأَخَذَ مِنْهُ", 0) == "فعل"  # a verb stands before the مِنْ: it is that verb's, not the elative's
+
+
+def test_an_elative_straight_after_an_indefinite_noun_in_jarr_is_its_sifa():
+    # Tasheel 3.10.1: the na't follows its noun; the elative's fatha is a diptote's jarr as well
+    assert _role("فَرُبَّ مُبَلَّغٍ أَوْعَى مِنْ سَامِعٍ", 2) == "صفة"
+    assert _role("مَا تَقَرَّبَ إِلَيَّ عَبْدِي بِشَيْءٍ أَحَبَّ إِلَيَّ مِمَّا افْتَرَضْتُ عَلَيْهِ", 5) == "صفة"
+
+
+def test_an_opening_oath_waw_leaves_a_named_sworn_by_majrur_whatever_the_answer_opens_with():
+    # Ibn Aqil V4 p42 (bab al-qasam): the sworn-by is the oath's majrur; the answer opens with ما، قد، ل، إن، لا
+    assert _role("وَاللَّهِ مَا أَنْعَمَ اللَّهُ عَلَيَّ مِنْ نِعْمَةٍ", 0) == "مجرور"
+    assert _role("وَاللَّهِ لَقَدْ بَذَلْنَا كُلَّ مَا نَمْلِكُ مِنْ جُهْدٍ وَمَالٍ", 0) == "مجرور"

@@ -8,7 +8,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
-from backend.services.nahw.syntax.facts import Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, shown_cases, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
+from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_name, is_preposition, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
@@ -115,6 +115,19 @@ def _plural_case(word: str, token: dict, tokens: list[dict]) -> str:
     if head and verb_tagged(head):
         return "a"
     return head.get("cas", "na") if head else "na"
+
+
+def adverb_only(tokens: list[dict]) -> None:
+    """مَا رَأَيْتُهُ قَطُّ، أَمَّا بَعْدُ: قط and عوض never leave the adverb (Awdah al-Masalik V2 p232: ما لا يفارق الظرفية
+    أصلا), and قبل/بعد cut off from their مضاف إليه are built on the damma (Ibn Aqil V3 p73): neither is a doer, a
+    mubtada or a khabar, so a word the parser hung so is a modifier of its head, the ظرف of the clause; so is one hung
+    as the object of أَمَّا (أَمَّا بَعْدُ), a particle that is no preposition."""
+    s = Sentence(tokens)
+    for token in tokens:
+        head = s.head(token)
+        if stays_adverb(token) and (token["rel"] in (*SUBJECTS, "PRD")
+                                    or token["rel"] == "OBJ" and head and head["pos"] == "PRT" and not is_preposition(head)):
+            token["rel"] = "MOD"
 
 
 def since_jarr(tokens: list[dict]) -> None:

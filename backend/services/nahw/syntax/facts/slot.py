@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
 from backend.services.nahw.syntax.facts.word import is_built, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
-from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
+from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, stays_adverb, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
 NAMED = named_roles()
@@ -64,7 +64,8 @@ def place_time(token: dict, s: Sentence) -> bool:
         return True
     if not is_zarf(token, s):
         return False
-    if is_built_zarf(token) and head and is_verb(head) and token["rel"] in ("MOD", "IDF", "OBJ"):
+    if is_built_zarf(token) and head and (is_verb(head) and token["rel"] in ("MOD", "IDF", "OBJ")
+                                          or stays_adverb(token) and token["rel"] == "MOD"):
         # سافر أمسِ، سَنَبْنِي الْمَصْنَعَ حَيْثُ تَتَوَفَّرُ الْمِيَاهُ: its vowel is built in, so it says nothing of its case, and no
         # verb takes a built time or place word as its object, however the parser links it (Tasheel 3.2 p67)
         return True

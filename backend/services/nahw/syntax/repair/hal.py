@@ -4,7 +4,7 @@ masdar that agrees with it is its na't."""
 from __future__ import annotations
 
 from backend.services.nahw.book import is_one, is_plain_noun, is_subject_pronoun
-from backend.services.nahw.syntax.facts import Sentence, describes, indefinite_nasb, is_verb, noun_tagged, same_root, typed_case_of
+from backend.services.nahw.syntax.facts import Sentence, describes, indefinite_nasb, is_elative, is_verb, noun_tagged, same_root, typed_case_of
 
 # the verbs that take a خبر or a second object (closed_words families): any other verb takes neither
 _TOLD_BY = (("kana", "words"), ("kana", "needs_negation"), ("kana", "needs_ma"), ("kaada", "words"), ("zanna", "words"))
@@ -67,3 +67,15 @@ def naat_beside_its_noun(tokens: list[dict]) -> None:
         if (token["rel"] == "MOD" and verb and is_verb(verb) and noun and noun["head"] == verb["id"]
                 and noun_tagged(noun) and same_root(noun, verb) and token.get("stt") == "i" and describes(token, noun)):
             token["head"] = noun["id"]
+
+
+def elative_describes(tokens: list[dict]) -> None:
+    """رُبَّ مُبَلَّغٍ أَوْعَى مِنْ سَامِعٍ، بِشَيْءٍ أَحَبَّ إِلَيَّ: an elative straight after an indefinite noun that
+    is no doer or mubtada (typed in nasb or jarr), with no case shown or a fatha (a diptote's jarr too), is that noun's na't (Tasheel 3.10.1:
+    the na't follows its noun, and an elative is one of the words that describe), whatever the parser hung it on."""
+    s = Sentence(tokens)
+    for token in tokens:
+        noun = s.by_id.get(token["id"] - 1)
+        if (noun and token["head"] != noun["id"] and noun_tagged(token) and is_elative(token) and is_plain_noun(noun)
+                and noun.get("stt") == "i" and typed_case_of(noun) in ("a", "i") and typed_case_of(token) in (None, "a")):
+            token["head"], token["rel"] = noun["id"], "MOD"

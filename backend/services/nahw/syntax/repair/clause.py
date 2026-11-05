@@ -1,14 +1,14 @@
-"""Repair 7: clauses a particle opens or a speaker leaves short, that the parser reads as a plain sentence: an oath over a relative, أمّا and its answer, a noun joined after وَلَا, a khabar after the doer."""
+"""Repair 7: clauses a particle opens or a speaker leaves short, that the parser reads as a plain sentence: an oath over a relative or a noun, أمّا and its answer, a noun joined after وَلَا, a khabar after the doer."""
 from __future__ import annotations
 
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, is_known, is_preposition, is_suffix, is_verb, noun_tagged, typed_case_of
+from backend.services.nahw.syntax.facts import Sentence, is_known, is_preposition, is_suffix, is_verb, noun_tagged, stays_adverb, typed_case_of
 
 
-def oath_relative(tokens: list[dict]) -> None:
-    """وَالَّذِي نَفْسِي بِيَدِهِ لَا تَدْخُلُونَ الْجَنَّةَ: the و that opens a sentence is the oath (closed_words
-    jarr `oath_only`); the relative after it is the sworn-by, its majrur, and what follows it is
-    its صلة, a nominal one (نفسي بيده: the khabar a jar-majrur said after its mubtada). The sentence
+def oath_clause(tokens: list[dict]) -> None:
+    """وَالَّذِي نَفْسِي بِيَدِهِ لَا تَدْخُلُونَ الْجَنَّةَ، وَاللَّهِ مَا أَنْعَمَ اللَّهُ عَلَيَّ: the و that opens a sentence is
+    the oath (closed_words jarr `oath_only`); the relative or the noun in jarr after it is the sworn-by, its majrur, and
+    what follows a relative is its صلة, a nominal one (نفسي بيده: the khabar a jar-majrur said after its mubtada). The sentence
     is an oath only when the main clause is its answer (closed_words jarr `oath_answer`: the lam,
     لا, ما, قد, إن; Ibn Aqil vol 4 p42): without one the و resumes (وَالَّذِينَ هُمْ عَنِ اللَّغْوِ مُعْرِضُونَ)."""
     s = Sentence(tokens)
@@ -17,8 +17,10 @@ def oath_relative(tokens: list[dict]) -> None:
     lead = int(bool(tokens) and tokens[0]["pos"] == "PRT" and tokens[0]["lemma"].strip("+") == "ف")
     first, relative = (tokens + [None, None, None])[lead:lead + 2]
     if not (root and first and relative and first["pos"] == "PRT" and is_one(first["lemma"], "jarr", "oath_only")
-            and is_one(relative["lemma"], "mawsul") and not is_one(relative["lemma"], "jazm", "conditional_nouns")
             and root["id"] > relative["id"]):
+        return
+    sworn_relative = is_one(relative["lemma"], "mawsul") and not is_one(relative["lemma"], "jazm", "conditional_nouns")
+    if not (sworn_relative or noun_tagged(relative) and typed_case_of(relative) == "i"):
         return
     # the answer is a particle under the main clause, or the clause's own head (فَوَالَّذِي لَا إِلَهَ غَيْرُهُ إِنَّ أَحَدَكُمْ)
     if not (is_one(root["lemma"], "jarr", "oath_answer") or any(
@@ -26,6 +28,8 @@ def oath_relative(tokens: list[dict]) -> None:
         return
     first["head"], first["rel"] = root["id"], "MOD"
     relative["head"], relative["rel"] = first["id"], "OBJ"
+    if not sworn_relative:
+        return
     named = next((k for k in s.kids(relative) if noun_tagged(k) and not is_verb(k) and k["id"] > relative["id"]), None)
     jar = next((k for k in s.kids(relative) if is_preposition(k) and named and k["id"] > named["id"]), None)
     if named and jar:  # the khabar a jar-majrur, the noun before it its mubtada
@@ -45,7 +49,7 @@ def amma_clause(tokens: list[dict]) -> None:
     for amma in tokens:
         noun = s.by_id.get(amma["id"] + 1)
         if not (root and noun and amma["pos"] == "PRT" and is_one(amma["lemma"], "ghair_amila_other", "detail")
-                and noun_tagged(noun) and not is_verb(noun) and root["id"] > noun["id"]):
+                and noun_tagged(noun) and not is_verb(noun) and not stays_adverb(noun) and root["id"] > noun["id"]):
             continue
         if not any(t["pos"] == "PRT" and t["lemma"].strip("+") == "ف" and t["head"] == root["id"] and t["id"] > noun["id"] for t in tokens):
             continue
