@@ -79,8 +79,17 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
                         kid["rel"] = "SBJ"
             elif verb and merged_prefix(own, book_words("ta_merges")):
                 token["asp"] = "i"  # تَطَّوَّعَ: the shadda is the second ta' merged in, so it is present
+        # وَالَّذِي نَفْسِي بِيَدِهِ لَأَقْضِيَنَّ: a word the dictionary only guessed as a name, typed ending in the nun of emphasis (a vowel,
+        # then نَّ), is a present verb, as only a verb takes that nun (Ibn Aqil V1 p23: ومما يميز الفعل نون أقبلن ... لنخرجنك يا شعيب)
+        if token.get("guessed") and token.get("pos_camel") == "noun_prop" and _emphatic_nun(word):
+            token.update(pos="VRB", pos_camel="verb", asp="i", ud="VERB")
         token["mudaf"] = has_added(token, tokens)
 
+
+
+def _emphatic_nun(word: str) -> bool:
+    nun, marks = letters(word)[-1]
+    return nun == "ن" and {"َ", "ّ"} <= marks
 
 
 def _participle_plural(word: str) -> bool:

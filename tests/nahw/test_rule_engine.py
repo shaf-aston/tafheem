@@ -1452,3 +1452,35 @@ def test_an_indefinite_word_after_a_construct_with_no_verb_above_is_the_khabar()
 
 def test_an_amount_word_after_a_verb_that_takes_an_object_is_left_to_the_other_rules():
     assert _role("الَّذِي يَقْرَأُ كَثِيرًا يَزْدَادُ عِلْمُهُ", 2) == "حال"
+
+
+def test_a_number_counting_a_time_word_is_the_maful_fihi_and_that_word_its_tamyeez():
+    # Awdah al-Masalik V2 p231: the numbers specified by a time or place name stand in for the zarf
+    assert _role("إِنَّ خَلْقَ أَحَدِكُمْ يُجْمَعُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ لَيْلَةً", 7) == "مفعول فيه"
+    assert _role("إِنَّ خَلْقَ أَحَدِكُمْ يُجْمَعُ فِي بَطْنِ أُمِّهِ أَرْبَعِينَ لَيْلَةً", 8) == "تمييز"
+
+
+def test_a_hundred_added_to_a_time_word_is_the_maful_fihi_though_hung_as_an_object():
+    assert _role("إِنَّ فِي الْجَنَّةِ لَشَجَرَةً يَسِيرُ الرَّاكِبُ الْجَوَادَ الْمُضَمَّرَ السَّرِيعَ مِائَةَ عَامٍ", 9) == "مفعول فيه"
+
+
+def test_inna_with_a_noun_in_nasb_is_no_negation_and_ila_excepts_from_its_ism():
+    # إِنَّ is not the إن that denies: تِسْعَةً is its اسم and the word after إِلاَّ the مستثنى
+    assert _role("إِنَّ لِلَّهِ تِسْعَةً وَتِسْعِينَ اسْمًا مِائَةً إِلاَّ وَاحِدًا", 2) == "اسم إن"
+    assert _role("إِنَّ لِلَّهِ تِسْعَةً وَتِسْعِينَ اسْمًا مِائَةً إِلاَّ وَاحِدًا", 7) == "مستثنى"
+
+
+def test_a_number_before_its_counted_noun_is_the_object_not_a_state():
+    assert _role("اشْتَرَتِ الْمَكْتَبَةُ خَمْسَةً وَعِشْرِينَ كِتَابًا نَادِرًا مِنْ مَزَادٍ عَلَنِيٍّ", 2) == "مفعول به"
+
+
+def test_the_doer_of_an_outer_verb_comes_last_after_the_relative_clause():
+    sentence = "شَارَكَتْ فِي الْقِمَّةِ الَّتِي اسْتَضَافَتْهَا الْعَاصِمَةُ إِحْدَى عَشْرَةَ دَوْلَةً إِفْرِيقِيَّةً"
+    assert _role(sentence, 5) == "فاعل"
+    assert _role(sentence, 6) == "فاعل"
+
+
+def test_an_oath_answer_with_the_emphatic_nun_is_a_verb_and_the_place_word_after_it_a_maful_fihi():
+    sentence = "وَالَّذِي نَفْسِي بِيَدِهِ لأَقْضِيَنَّ بَيْنَكُمَا بِكِتَابِ اللَّهِ"
+    assert _role(sentence, 3) == "فعل"
+    assert _role(sentence, 4) == "مفعول فيه"

@@ -41,7 +41,8 @@ def hasr_khabar(tokens: list[dict]) -> None:
     """مَا جَزَاؤُهُ إِلَّا سَجْنُهُ، مَا مُحَمَّدٌ إِلَّا رَسُولٌ: after a negation, إلا excepts nothing; the
     word after it takes the place the sentence leaves for it (closed_words hasr, Tasheel 3.8.7 p85).
     A verbless clause with its mubtada said leaves the khabar, so a noun the parser hung on an إلا
-    that hangs on that mubtada is its khabar, and the negation and إلا hang on it."""
+    that hangs on that mubtada is its khabar, and the negation and إلا hang on it. Not when the mubtada is typed in
+    nasb: that إن is إنّ, and إلا then excepts from its اسم."""
     s = Sentence(tokens)
     for told in tokens:
         illa = s.head(told)
@@ -54,7 +55,8 @@ def hasr_khabar(tokens: list[dict]) -> None:
             continue  # ما جاء إلا زيدٌ: a verb in the clause takes the word after إلا
         held = s.head(illa)
         subject = held if held is not negation else next((k for k in s.kids(negation) if k in before and subject_link(k)), None)
-        if subject and subject is not negation and noun_tagged(subject):
+        # إِنَّ لِلَّهِ تِسْعَةً ... إِلَّا وَاحِدًا: a noun the reader put in nasb after إن is إنّ's اسم, so that إن denies nothing (Tasheel 1.8 p21)
+        if subject and subject is not negation and noun_tagged(subject) and typed_case_of(subject) != "a":
             # the khabar takes the clause's place (قالوا إن هذا إلا سحر: the said clause)
             told["head"], told["rel"] = negation["head"], negation["rel"]
             for word in (subject, illa, negation):

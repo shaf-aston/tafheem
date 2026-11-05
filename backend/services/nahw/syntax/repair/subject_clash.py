@@ -214,6 +214,26 @@ def late_doer(tokens: list[dict]) -> None:
             s = Sentence(tokens)
 
 
+def outer_doer(tokens: list[dict]) -> None:
+    """شَارَكَتْ فِي الْقِمَّةِ الَّتِي اسْتَضَافَتْهَا الْعَاصِمَةُ إِحْدَى عَشْرَةَ دَوْلَةً: a verb has one doer (Tasheel 2.4.1), so
+    a second raf' noun the parser hung on a verb that holds its doer already, in a clause that hangs below an earlier verb
+    with no doer, is that earlier verb's: the doer comes last, after the صلة (الفاعل المؤخر)."""
+    s = Sentence(tokens)
+    for token in tokens:
+        verb = s.head(token)
+        if not (verb and is_verb(verb) and token["rel"] == "SBJ" and noun_tagged(token) and typed_case_of(token) != "a"
+                and not is_passive(verb)
+                and any(k is not token and subject_link(k) and noun_tagged(k) and k["id"] < token["id"] for k in s.kids(verb))):
+            continue
+        outer, seen = s.head(verb), set()
+        while outer and not (is_verb(outer) and outer["id"] < verb["id"]) and outer["id"] not in seen:
+            seen.add(outer["id"])
+            outer = s.head(outer)
+        if outer and is_verb(outer) and not is_passive(outer) and not holds_doer(outer, s.kids(outer)):
+            token["head"], token["rel"] = outer["id"], "SBJ"
+            s = Sentence(tokens)
+
+
 def verb_under_fronted_object(tokens: list[dict]) -> None:
     """عِلْمًا طَلَبَ زَيْدٌ: the مفعول به may come before its verb (Jumla Filiyya p4). A verb with
     its own doer, after it or in it (زَيْدًا ضَرَبْتُ، زَيْدًا اضْرِبْ), that the parser hung as the صفة of a
