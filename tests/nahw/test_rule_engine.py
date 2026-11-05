@@ -1767,3 +1767,43 @@ def test_a_noun_after_a_fa_verb_clause_with_a_waw_noun_before_it_is_still_joined
 def test_a_ma_the_parser_calls_the_doer_of_a_passive_verb_is_its_deputy():
     # Ibn Aqil V2 (the passive): the one raised in the doer's place is the deputy, however the parser linked the ما
     assert _role("وَاللَّهِ لَقَدْ أُنْجِزَ فِي هَذَا الْمَشْرُوعِ مَا يَزِيدُ عَلَى ثَلَاثِمِئَةٍ وَخَمْسِينَ كِيلُومِتْرًا", 6) == "نائب فاعل"
+
+
+def test_a_masdar_the_books_list_as_a_reason_is_the_maful_li_ajlih():
+    # Tasheel 3.8.3: the reason masdars (closed_words reason_masdars) answer "why", a masdar of a feeling or a motive; each row is its own case
+    assert _role("إِنَّ مُوسَى كَانَ رَجُلًا حَيِيًّا سِتِّيرًا، لَا يُرَى مِنْ جِلْدِهِ شَيْءٌ اسْتِحْيَاءً مِنْهُ", 11) == "مفعول لأجله"
+    assert _role("أَغْلَقَتِ الْمَدَارِسُ أَبْوَابَهَا يَوْمَيْنِ حِفَاظًا عَلَى سَلَامَةِ الطُّلَّابِ وَتَجَنُّبًا لِتَفَشِّي الْعَدْوَى بَيْنَ التَّلَامِيذِ", 4) == "مفعول لأجله"
+    assert _role("سَارَ الْمُتَظَاهِرُونَ وَالطَّرِيقَ إِلَى الْبَرْلَمَانِ احْتِجَاجًا عَلَى الْقَرَارِ وَسَارَ الصَّحَفِيُّونَ وَالْمُصَوِّرُونَ خَلْفَهُمْ رَغْبَةً فِي نَقْلِ الْحَدَثِ", 5) == "مفعول لأجله"
+
+
+def test_a_time_or_place_noun_the_books_list_is_the_zarf_though_it_stands_in_nasb():
+    # Ibn Aqil V2 (the zarf): طَوَالَ، بِضْعَةَ أَيَّامٍ، دُبُرَ name a stretch of time or a place
+    assert _role("شَجَّعَ وَدَعَمَ الْمُدَرِّبُ اللَّاعِبِينَ الشَّبَابَ طَوَالَ الْمَوْسِمِ وَلَمْ يَتَخَلَّ عَنْهُمْ حَتَّى فِي أَصْعَبِ الظُّرُوفِ", 5) == "مفعول فيه"
+    assert _role("سَارَ الْمُسَافِرُ وَالنِّيلَ بِضْعَةَ أَيَّامٍ حَتَّى بَلَغَ مَدِينَةَ أَسْوَانَ وَهُوَ مُتْعَبٌ لَكِنَّهُ سَعِيدٌ", 3) == "مفعول فيه"
+    assert _role("يَأْتِي الْمَسِيحُ مِنْ قِبَلِ الْمَشْرِقِ، هِمَّتُهُ الْمَدِينَةُ، حَتَّى يَنْزِلَ دُبُرَ أُحُدٍ، ثُمَّ تَصْرِفُ الْمَلَائِكَةُ وَجْهَهُ قِبَلَ الشَّامِ", 9) == "مفعول فيه"
+
+
+def test_a_time_word_in_nasb_the_parser_hung_as_a_doer_is_the_zarf():
+    # a doer is never in nasb (كُلَّ يَوْمٍ), so the word the reader typed in nasb is the zarf of the verb after it
+    assert _role("كُلُّ سُلَامَى مِنَ النَّاسِ عَلَيْهِ صَدَقَةٌ كُلَّ يَوْمٍ تَطْلُعُ فِيهِ الشَّمْسُ وَالْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ", 6) == "مفعول فيه"
+
+
+def test_a_noun_on_the_sifa_mushabbaha_measure_after_a_verb_is_its_object_not_a_state():
+    # Ibn Aqil: the state is a derived word (a doer, a done-to); فَعِيل names a thing (طَرِيق), and نَبِيّ is no describing word
+    assert _role("مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ طَرِيقًا إِلَى الْجَنَّةِ", 2) == "مفعول به"
+    assert _role("مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ طَرِيقًا إِلَى الْجَنَّةِ", 9) == "مفعول به"
+    # a verb the parser hung as the object (إِلَّا رَعَى) is no object, so بَعَثَ still takes the noun
+    assert _role("مَا بَعَثَ اللَّهُ نَبِيًّا إِلَّا رَعَى الْغَنَمَ، فَقَالَ أَصْحَابُهُ: وَأَنْتَ؟ فَقَالَ: نَعَمْ، كُنْتُ أَرْعَاهَا عَلَى قَرَارِيطَ لِأَهْلِ مَكَّةَ", 3) == "مفعول به"
+    # but a describing word the analyser also calls a noun (غَزِيرَةً) stays the state of the verb
+    assert _role("هَاجَمَتِ الْعَاصِفَةُ السَّاحِلَ هُجُومًا عَنِيفًا، وَأَغْلَقَتِ الْمَوَانِئُ أَبْوَابَهَا حِفَاظًا عَلَى السُّفُنِ، وَالْأَمْطَارُ تَهْطِلُ غَزِيرَةً", 13) == "حال"
+
+
+def test_what_follows_a_verb_of_praise_or_blame_is_its_tamyeez_a_describing_word_too():
+    # Ibn Aqil V3 (نِعْمَ وبِئْسَ): نِعْمَ رَجُلًا، and a describing word in the same place (شَرِيكًا، نَاصِحًا) is no state
+    sentence = "نِعْمَ شَرِيكًا لِلْمُسْتَثْمِرِينَ الْمَصْرِفُ الَّذِي يَدْعَمُ مَشَارِيعَهُمْ وَبِئْسَ نَاصِحًا مَنْ يُشَجِّعُهُمْ عَلَى الْمُغَامَرَةِ بِلَا دِرَاسَةٍ"
+    assert [_role(sentence, i) for i in (1, 8)] == ["تمييز", "تمييز"]
+
+
+def test_a_masdar_after_a_verb_whose_object_is_already_said_is_its_absolute_object():
+    # a verb of one object takes no second: لَا يَقْبِضُ الْعِلْمَ انْتِزَاعًا, the masdar after the object says how
+    assert _role("إِنَّ اللَّهَ لَا يَقْبِضُ الْعِلْمَ انْتِزَاعًا يَنْتَزِعُهُ مِنَ الْعِبَادِ، وَلَكِنْ يَقْبِضُ الْعِلْمَ بِقَبْضِ الْعُلَمَاءِ", 5) == "مفعول مطلق"

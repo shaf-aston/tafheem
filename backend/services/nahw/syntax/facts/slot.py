@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
-from backend.services.nahw.syntax.facts.word import is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
+from backend.services.nahw.syntax.facts.word import is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, stays_adverb, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
@@ -79,6 +79,9 @@ def place_time(token: dict, s: Sentence) -> bool:
     if head and is_verb(head) and token["rel"] == "OBJ" and (
             typed_case_of(token) == "a" and (counts(token) and is_zarf(token, s) or is_one(head["lemma"], "intransitive_verbs"))
             or typed_case_of(token) in (None, "a") and listed(token, "zarf_makan")):
+        return True
+    # صَدَقَةٌ كُلَّ يَوْمٍ تَطْلُعُ فِيهِ الشَّمْسُ: a doer is never in nasb, so a time or place word the reader put in nasb that the parser hung as one is the zarf
+    if head and is_verb(head) and token["rel"] == "SBJ" and typed_case_of(token) == "a":
         return True
     if head and works_as_verb(head) and (is_verb(head) or token["rel"] == "MOD"):
         return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") or opens_verb
@@ -160,7 +163,7 @@ def wants_object(verb: dict, kids: list[dict]) -> bool:
     (قتل زيد عمرا ظالما), as one that seldom takes a noun does (جاء زيد راكبا، فَتَقْعُدَ مَذْمُومًا) and a passive
     (قُتِلَ مَظْلُومًا)."""
     return (not is_passive(verb) and takes_object(verb["lemma"]) and not is_one(verb["lemma"], "intransitive_verbs")
-            and not any(k["rel"] == "OBJ" for k in kids))
+            and not any(k["rel"] == "OBJ" and not is_verb(k) for k in kids))  # a verb the parser hung as its OBJ (إِلَّا رَعَى) is no object
 
 
 def busied_before(token: dict, s: Sentence) -> bool:
@@ -296,14 +299,20 @@ def verb_place(token: dict, s: Sentence) -> str:
                 and token.get("stt") == "i" and (told and told["rel"] == "---" or any(
                     t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head)
                     or (t["id"] < token["id"] and verb_place(t, s) == "subject") for t in siblings)):
-            if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token):
+            # نِعْمَ شَرِيكًا، بِئْسَ نَاصِحًا: what follows a verb of praise or blame is always its تمييز, a describing word too
+            if is_one(head["lemma"], "tamyeez_verbs") and not is_participle(token) or is_one(head["lemma"], "praise_blame"):
                 return "specification"
             if is_participle(token) and stands_for_its_noun(token) and wants_object(head, siblings):
                 return "object"  # أكرم محمد خالدا، مَنْ عَمِلَ صَالِحًا: the describing word stands for its noun
             if is_participle(token) and same_root(token, head) and not on_doing_measure(token):
                 return "absolute"  # فَرِحَ فَرَحًا، ضَحِكَتْ ضَحِكًا: its own root off a doer's measure is the doing again
-            if is_participle(token):
+            if is_participle(token) and not (rel == "OBJ" and names_a_thing(token)):
                 return "state"
+            # لَا يَقْبِضُ الْعِلْمَ انْتِزَاعًا: a verb of one object that has it said (the first thing in nasb after it) takes no
+            # second, so a masdar after it tells the doing again, its مفعول مطلق (Alfiyya, باب المفعول المطلق: المصدر اسم ما سوى الزمان من مدلولي الفعل)
+            if (rel == "MOD" and is_masdar(token) and typed == "a" and s.family(head) != "zanna" and not is_one(head["lemma"], "two_objects_give")
+                    and any(t["rel"] == "OBJ" and t["id"] < token["id"] and not is_verb(t) and typed_case_of(t) == "a" for t in siblings)):
+                return "absolute"
             if rel != "TMZ" and is_plain_noun(token) and not same_root(token, head) and not is_one(head["lemma"], "intransitive_verbs"):
                 # لَا يُقْتَلُ قُرَشِيٌّ صَبْرًا: a passive verb's one object became its deputy, so a masdar after it is a state;
                 # a noun of a single act or kind (ـة: رُفِعَ بِهَا دَرَجَةً) names a thing, so it stays an object
