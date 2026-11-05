@@ -1767,6 +1767,8 @@ def test_a_noun_after_a_fa_verb_clause_with_a_waw_noun_before_it_is_still_joined
 def test_a_ma_the_parser_calls_the_doer_of_a_passive_verb_is_its_deputy():
     # Ibn Aqil V2 (the passive): the one raised in the doer's place is the deputy, however the parser linked the ما
     assert _role("وَاللَّهِ لَقَدْ أُنْجِزَ فِي هَذَا الْمَشْرُوعِ مَا يَزِيدُ عَلَى ثَلَاثِمِئَةٍ وَخَمْسِينَ كِيلُومِتْرًا", 6) == "نائب فاعل"
+
+
 def test_a_passive_verb_of_two_objects_names_its_deputy_and_the_object_left():
     # Tasheel 1.10 p26 (page unchecked for the passive): the first object is raised to the doer's place, the second stays منصوب
     sentence = "عُلِّمَ الْمُتَدَرِّبُونَ لُغَةَ الْإِشَارَةِ خِلَالَ شَهْرٍ وَاحِدٍ"
@@ -1786,6 +1788,12 @@ def test_a_noun_with_a_sentence_left_loose_after_it_is_its_mubtada():
 def test_a_pronoun_is_built_so_its_fatha_makes_it_no_hal_or_tamyeez():
     # a fatha on a built word is no sign of nasb (facts.indefinite_nasb)
     assert _role("بَيْنَمَا رَجُلٌ يَجُرُّ إِزَارَهُ مِنَ الْخُيَلَاءِ خُسِفَ بِهِ فَهُوَ يَتَجَلْجَلُ فِي الْأَرْضِ إِلَى يَوْمِ الْقِيَامَةِ", 8) == "مبتدأ"
+
+
+def test_a_relative_after_a_noun_describes_the_noun_its_idafa_is_added_to():
+    # Tasheel 3.10.1: the relative follows the مضاف the parser links it to (أرشيف), not the مضاف إليه nearest it (المكتبة); a name is known
+    assert _role("إِنَّ فِي أَرْشِيفِ الْمَكْتَبَةِ الْوَطَنِيَّةِ الَّذِي أُسِّسَ قَبْلَ مِئَةٍ وَخَمْسِينَ عَامًا", 5) == "صفة"
+    assert _role("الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا", 2) == "صفة"
 
 
 def test_a_conditional_or_relative_noun_that_a_complete_verb_hangs_on_is_its_mubtada():

@@ -5,7 +5,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, written_nasb, attached_pronoun, noun_tagged
-from backend.services.nahw.syntax.facts.sentence import Sentence, described_noun, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
+from backend.services.nahw.syntax.facts.sentence import Sentence, describable_nouns, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
 
@@ -165,7 +165,7 @@ def _follows(token: dict, s: Sentence) -> str:
         return "none"
     # الطالبُ الذي نجح، بِاسْمِ رَبِّكَ الَّذِي خَلَقَ: a relative straight after a known noun (with ال, or added to one)
     # is its صفة (one owed to a verb as its object went to it in repair.relative_owed: كافأ المديرُ الذي نجح)
-    if listed(token, "mawsul") and is_known(head, s) and described_noun(token, s) is head:
+    if listed(token, "mawsul") and is_known(head, s) and head in describable_nouns(token, s):
         return "naat"
     mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
     # الطفل الباكي typed bare: the parser hung a describing word straight after its noun, and no case is shown on it
