@@ -177,7 +177,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
              **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]], named)}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
     for found_condition in conditions:
-        _conditioned(found, found_condition, bases)
+        _conditioned(found, found_condition, bases, s)
     for step in FINISHES:
         step(Named(found, bases, tokens, s, words))
     return found
@@ -287,7 +287,7 @@ def _jazm_by_condition(c: dict, named: list, cases: list) -> None:
             cases[c[part]] = "jazm"
 
 
-def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
+def _conditioned(found: list[dict], c: dict, bases: list[dict], s: facts.Sentence) -> None:
     """A condition the book's test found (syntax.condition): a conditional noun keeps the place
     it was named for (مَنْ يصبرْ: مبتدأ); with none, it takes the book's (_noun_place), never
     the relative the picture would call it; a جازم opener governs both its verbs, rather
@@ -296,7 +296,7 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
     opener = found[c["opener"]]
     # a time or place word (متى، إذا) is always the ظرف, whatever place it was named for
     if frame["noun"] and (not opener["role"] or opener["role"] == NAMED.harf or frame["adverb"]):
-        opener.update(role=_noun_place(frame, c["verb"], found, bases[c["verb"]]), book=None)
+        opener.update(role=_noun_place(frame, c["verb"], found, bases[c["verb"]], s), book=None)
     if frame["built"]:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
     opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"],
@@ -318,12 +318,14 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
                              "tie": c["tie"] if part == "answer" else None, "named": frame.get(f"{part}_named")}
 
 
-def _noun_place(frame: dict, verb: int, found: list[dict], verb_token: dict) -> str:
+def _noun_place(frame: dict, verb: int, found: list[dict], verb_token: dict, s: facts.Sentence) -> str:
     """The place of a conditional noun the parser gave none (Tasheel): a time or place word
     (متى، أينما) is a ظرف; مَنْ or ما whose verb already has its object (مَنْ صامَ رمضانَ) is
     the مبتدأ; one before a verb of the first or second person with no object (مَا تَزْرَعْ)
     is that object, the doer being the hidden أنت. One before a verb the book lists as taking none (طَالَ)
-    is the مبتدأ (intransitive_verbs). Else it is called only what it is: its verb may need no object
+    is the مبتدأ (intransitive_verbs), and so is one before a verb with its object pronoun written on it
+    (فَمَنْ أَخَذَهُ) or a كان-sister, which takes a khabar and no object (مَنْ كَانَ يُؤْمِنُ: Tasheel 1.9, ترفع الاسم
+    وتنصب الخبر). Else it is called only what it is: its verb may need no object
     (مبتدأ) or lack the one it stands for (مفعول به), and the parser has not said which."""
     places = frame["places"]
     if frame["adverb"]:
@@ -332,7 +334,7 @@ def _noun_place(frame: dict, verb: int, found: list[dict], verb_token: dict) -> 
         return places["filled"]
     if verb_token.get("per") in ("1", "2"):
         return places["object"]
-    if is_one(verb_token["lemma"], "intransitive_verbs"):
+    if is_one(verb_token["lemma"], "intransitive_verbs") or in_family(verb_token["lemma"], "kana")             or any(k["rel"] == "OBJ" for k in s.kids(verb_token)):
         return places["filled"]
     return frame["opener"]
 

@@ -686,6 +686,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [name]
         if lam := _emphasis_lam(evidence, disambiguator):
             ranked = [lam]
+        if oath := _fa_before_oath(evidence, ranked, disambiguator):
+            ranked = [oath]
         if jarred := _jarred_ma(evidence):
             ranked = [jarred]
         if not _agreeing(evidence, ranked) and (table := _table_verb(token, evidence, ranked)):
@@ -967,6 +969,20 @@ def _emphasis_lam(typed: str, disambiguator=None) -> dict | None:
         return None
     ranked = _rest_readings(rest, disambiguator)
     return _joined_onto(said, _reading(rest, ranked), "EMPHATIC_PART", prc1="la_emph") if _agreeing(rest, ranked) else None
+
+
+def _fa_before_oath(typed: str, ranked: list[dict], disambiguator=None) -> dict | None:
+    """فَوَاللَّهِ إِنِّي لَأُعْطِي، فَوَالَّذِي نَفْسِي بِيَدِهِ: a فاء written before the oath's واو (closed_words jarr
+    `oath_only`; Ibn Aqil vol 4 p42, bab al-qasam: the oath's answer follows it, the فاء only ties it to what came
+    before). The dictionary reads the two letters and the sworn-by as one guessed name ("والله") under the فاء; the
+    word is the فاء put back on what the rest reads as when it stands alone (وَاللَّهِ: وَ + الله)."""
+    marked = letters(typed)
+    if not (len(marked) > 1 and marked[0][0] == "ف" and not marked[0][1] - {"َ"} and is_one(marked[1][0], "jarr", "oath_only")
+            and _reading(typed, ranked).get("pos") == "noun_prop"):
+        return None
+    said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
+    rest = _rest_readings(typed[len(said):], disambiguator)
+    return _joined_onto(said, _reading(typed[len(said):], rest), "CONJ", prc2="fa_conj")         if rest and str(rest[0].get("prc2", "")).startswith("wa_") else None
 
 
 def _jarred_ma(typed: str) -> dict | None:
