@@ -80,8 +80,10 @@ class Sentence:
         One in jarr is no mubtada (لِمَنْ هذا الكتابُ: the جار ومجرور is the fronted khabar). The indefinite
         nasb noun after كم is its tamyeez, not what is told of it (كَمْ وَلَدًا فِي الْحَدِيقَةِ)."""
         words = [t for t in self.tokens if not is_suffix(t)]
+        # مَنِ الَّذِي يَضْمَنُ: the verb in a relative's صلة is no verb of the clause
         return next(((asked, told) for asked, told in zip(words, words[1:])
-                     if not any(is_verb(t) for t in words[words.index(asked):]) and not puts_in_jarr(asked, self)
+                     if not any(is_verb(t) for t in words[words.index(asked):] if t["id"] not in self.below(told) or not listed(told, "mawsul"))
+                     and not puts_in_jarr(asked, self)
                      and read_as(asked, "istifham") and is_one(asked["lemma"], "istifham", "heads")
                      and told["pos"] == "NOM" and not is_preposition(told)
                      and not (listed(asked, "tamyeez_head") and indefinite_nasb(told))), None)  # ما ذاهبٌ المسلمون: ما negates
@@ -110,6 +112,16 @@ class Sentence:
 
     def kids(self, token: dict) -> list[dict]:
         return self._kids.get(token["id"], [])
+
+    def below(self, token: dict) -> set[int]:
+        """The ids of every word hung under the token, at any depth."""
+        found, queue = set(), [token]
+        while queue:
+            for kid in self.kids(queue.pop()):
+                if kid["id"] not in found:
+                    found.add(kid["id"])
+                    queue.append(kid)
+        return found
 
     def family(self, word: dict) -> str | None:
         """Which family a governing word belongs to: inna, kana, kaada or zanna."""

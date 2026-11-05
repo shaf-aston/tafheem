@@ -372,7 +372,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if governor and is_preposition(governor):
             return masdar["after_preposition"]["job"], masdar["after_preposition"]["case"]
         rel = token["rel"]
-        if (governor and rel == "OBJ" and is_passive(governor)
+        if (governor and rel in ("SBJ", "OBJ") and is_passive(governor)
                 and not any(t["head"] == governor["id"] and t["rel"] in ("SBJ", "OBJ") and t is not token and t["pos"] != "PRT" for t in drawn)):
             return masdar["after_passive"]["job"], masdar["after_passive"]["case"]
         return (masdar["job_by_rel"][rel], masdar["case_by_rel"][rel]) if rel in masdar["job_by_rel"] else None
