@@ -684,7 +684,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [name]
         if read.get("pos") == "verb" and (name := _quran_name(evidence, _widened(token, ranked))):
             ranked = [name]
-        if lam := _emphasis_lam(evidence, disambiguator):
+        if lam := _emphasis_lam(evidence, disambiguator, _after_fronted_khabar(tokens[:i])):
             ranked = [lam]
         if jarred := _jarred_ma(evidence):
             ranked = [jarred]
@@ -962,7 +962,15 @@ def _asked_reading(typed: str, ranked: list[dict], after: str, disambiguator=Non
     return _joined_onto(asked, _reading(rest, ranked), "INTERROG_PART", prc3="Aa_ques")
 
 
-def _emphasis_lam(typed: str, disambiguator=None) -> dict | None:
+def _after_fronted_khabar(before: list[str]) -> bool:
+    """إِنَّ فِي ذَلِكَ لَعِبْرَةً: the words before are إنّ (or a sister), a جار, and its majrur (up to three words), so the
+    word now is the ism that waits behind its khabar."""
+    spelled = [strip_diacritics(w) for w in before]
+    inna = next((j for j in range(len(spelled) - 2, -1, -1) if is_one(spelled[j], "inna")), None)
+    return inna is not None and spelled[inna + 1] in book_words("jarr") and 2 <= len(spelled) - inna <= 5
+
+
+def _emphasis_lam(typed: str, disambiguator=None, fronted_khabar: bool = False) -> dict | None:
     """وَإِنَّكَ لَعَلَى خُلُقٍ عَظِيمٍ: after إنّ the لام of emphasis comes onto its khabar, a jar-majroor
     or ظرف too (closed_words `khabar_lam`). The dictionary never writes a لام onto a حرف جر or ظرف, so
     it reads لِ+عَلِيّ or a verb; but a جار takes no جار after it, so the word is that لام on the
@@ -971,7 +979,9 @@ def _emphasis_lam(typed: str, disambiguator=None) -> dict | None:
     الْكَافِرِينَ، لمن bare as لُمْنَ). A لام typed with a fatha onto any other word that no reading of the
     whole word fits (لَأَنْتُمْ أَشَدُّ رَهْبَةً: the dictionary has only لِ+ a verb) is that لام too: the
     jarr لام takes a fatha only before a pronoun joined on (لَكَ), which the dictionary reads whole
-    (closed_words ghair_amila_other `_fatha_lam`)."""
+    (closed_words ghair_amila_other `_fatha_lam`). Typed bare, the لام of ابتداء comes onto the ism of إنّ that waits
+    behind a fronted khabar (إِنَّ مِنَ الْبَيَانِ لَسِحْرًا; Alfiyya: وتصحب الواسط معمول الخبر والفصل واسما حل قبله الخبر,
+    page unchecked), unless the whole word is a noun the dictionary has (لسحرا is no verb: no ism is one)."""
     lam = book_map("ghair_amila_other", "khabar_lam")
     marked = letters(typed)
     if not (marked and marked[0][0] == lam["lam"] and not marked[0][1] - {"َ"}):
@@ -982,7 +992,7 @@ def _emphasis_lam(typed: str, disambiguator=None) -> dict | None:
     if any(strip_diacritics(rest) in book_words(family) for family in lam["onto"]):
         if any(r.get("pos") == "verb" for r in whole):
             return None
-    elif whole:
+    elif [r for r in whole if r.get("pos") != "verb" and not unread([r])] if fronted_khabar and no_vowels_typed([typed]) else whole:
         return None
     ranked = _rest_readings(rest, disambiguator)
     return _joined_onto(said, _reading(rest, ranked), "EMPHATIC_PART", prc1="la_emph") if _agreeing(rest, ranked) else None

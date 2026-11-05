@@ -1663,3 +1663,8 @@ def test_a_bare_noun_after_a_masdar_and_its_doer_is_the_masdars_object():
 def test_a_bare_noun_ending_the_sentence_on_an_anna_with_no_khabar_is_its_khabar():
     # Tasheel 1.8: إنّ and its sisters take an اسم and a خبر, so the pair cannot be left without one
     assert _role("ولو أن ما في الأرض من شجرة أقلام", 7) == "خبر إن"
+
+
+def test_bare_lam_on_the_ism_behind_a_fronted_khabar_of_inna_is_the_lam_of_ibtida():
+    # Alfiyya: وتصحب الواسط معمول الخبر والفصل واسما حل قبله الخبر (page unchecked); لسحرا is no verb, and no ism is one
+    assert _role("إن من البيان لسحرا", 3) == "اسم إن"
