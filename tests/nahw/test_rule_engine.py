@@ -1640,3 +1640,19 @@ def test_bare_lam_after_a_relative_is_the_jazm_particle_not_a_verb():
 def test_hayth_hung_as_an_object_is_still_the_maful_fihi():
     # the parser links حيث as the verb's object when a long coordination follows; its damma is its build, no doer's raf'
     assert _role("سَنَبْنِي الْمَصْنَعَ حَيْثُ تَتَوَفَّرُ الْمِيَاهُ وَالْكَهْرَبَاءُ وَالْأَيْدِي الْعَامِلَةُ", 2) == "مفعول فيه"
+def test_a_relative_after_a_noun_and_its_describing_word_describes_the_noun():
+    # Tasheel 3.10.1: the na't follows its noun, whatever other na't stand between; الذي after التقرير السنوي is a صفة
+    assert _role("قَرَأْتُ التَّقْرِيرَ السَّنَوِيَّ الَّذِي أَصْدَرَتْهُ الْوِزَارَةُ", 3) == "صفة"
+
+
+def test_a_conditional_noun_before_a_verb_that_takes_no_object_is_the_mubtada():
+    # Tasheel 1.9: كان takes a khabar, no object; Alfiyya: a verb of cleanliness (توضأ) is لازم; a pronoun on the verb is its object
+    assert _role("مَنْ كَانَ يُؤْمِنُ بِاللَّهِ فَلْيَقُلْ خَيْرًا", 0) == "مبتدأ"
+    assert _role("مَنْ تَوَضَّأَ فَأَحْسَنَ الْوُضُوءَ خَرَجَتْ خَطَايَاهُ", 0) == "مبتدأ"
+    assert _role("فَمَنْ أَخَذَهُ أَخَذَ بِحَظٍّ وَافِرٍ", 0) == "مبتدأ"
+
+
+def test_a_fa_before_the_oath_waw_leaves_the_oath_its_sworn_by_majrur():
+    # Ibn Aqil vol 4 p42 (bab al-qasam): the فاء only ties the oath on; the sworn-by is still the oath's majrur
+    assert _role("فَوَاللَّهِ إِنِّي لَأُعْطِي الرَّجُلَ", 0) == "مجرور"
+    assert _role("فَوَالَّذِي نَفْسِي بِيَدِهِ لَا يُؤْمِنُ أَحَدُكُمْ", 0) == "مجرور"

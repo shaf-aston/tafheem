@@ -80,7 +80,7 @@ def test_battery_set_is_well_formed_and_its_ids_are_unique_across_the_exact_sets
     assert len(rows) == 79
     for s in rows:
         assert len(s["key"]) == len(words(s["sentence"])) and all(s["key"]), s["id"]
-    for s in (*held_out("matn"), *held_out("round3")):  # an "also" answer names a word of its sentence and is not the key itself
+    for s in (*held_out("matn"), *held_out("round2"), *held_out("round3")):  # an "also" answer names a word of its sentence and is not the key itself
         n = len(words(s["sentence"]))
         assert len(s["key"]) == n and all(0 <= int(i) < n and s["key"][int(i)] not in alts for i, alts in s.get("also", {}).items()), s["id"]
     ids = [r["id"] for name in EXACT for r in SETS[name]()]

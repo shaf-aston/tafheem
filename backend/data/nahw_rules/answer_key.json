@@ -9,6 +9,7 @@
     "blind": "data/nahw_rules/blind_sentences.json",
     "battery": "data/nahw_rules/battery_sentences.json",
     "matn": "data/nahw_rules/matn_sentences.json",
+    "round2": "data/nahw_rules/round2_sentences.json",
     "round3": "data/nahw_rules/round3_sentences.json"
   },
   "families": {

@@ -13,12 +13,16 @@ def oath_relative(tokens: list[dict]) -> None:
     لا, ما, قد, إن; Ibn Aqil vol 4 p42): without one the و resumes (وَالَّذِينَ هُمْ عَنِ اللَّغْوِ مُعْرِضُونَ)."""
     s = Sentence(tokens)
     root = next((t for t in tokens if t["head"] == 0), None)
-    first, relative = (tokens + [None, None])[:2]
-    if not (root and relative and first["pos"] == "PRT" and is_one(first["lemma"], "jarr", "oath_only")
+    # فَوَالَّذِي: a فاء ties the oath to what came before (Ibn Aqil vol 4 p42), so the و is the next piece
+    lead = int(bool(tokens) and tokens[0]["pos"] == "PRT" and tokens[0]["lemma"].strip("+") == "ف")
+    first, relative = (tokens + [None, None, None])[lead:lead + 2]
+    if not (root and first and relative and first["pos"] == "PRT" and is_one(first["lemma"], "jarr", "oath_only")
             and is_one(relative["lemma"], "mawsul") and not is_one(relative["lemma"], "jazm", "conditional_nouns")
             and root["id"] > relative["id"]):
         return
-    if not any(k["pos"] == "PRT" and k["id"] < root["id"] and is_one(k["lemma"], "jarr", "oath_answer") for k in s.kids(root)):
+    # the answer is a particle under the main clause, or the clause's own head (فَوَالَّذِي لَا إِلَهَ غَيْرُهُ إِنَّ أَحَدَكُمْ)
+    if not (is_one(root["lemma"], "jarr", "oath_answer") or any(
+            k["pos"] == "PRT" and k["id"] < root["id"] and is_one(k["lemma"], "jarr", "oath_answer") for k in s.kids(root))):
         return
     first["head"], first["rel"] = root["id"], "MOD"
     relative["head"], relative["rel"] = first["id"], "OBJ"
