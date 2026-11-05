@@ -185,7 +185,8 @@ class Sentence:
                 and sum(1 for t in self.tokens if t["id"] > particle["id"] and not is_suffix(t)) == 1)
 
     def negated_before(self, word: dict) -> bool:
-        return any(t["pos"] == "PRT" and t["id"] < word["id"] and is_one(t["lemma"], "negation")
+        # إِنَّ لِلَّهِ تِسْعَةً ... إِلَّا وَاحِدًا: an إن the particle tree reads as إنّ denies nothing, so إلا excepts
+        return any(t["pos"] == "PRT" and t["id"] < word["id"] and is_one(t["lemma"], "negation") and not read_as(t, "inna")
                    for t in self.tokens)
 
     def asked_of(self, token: dict) -> bool:
@@ -390,13 +391,21 @@ def quoted_head(token: dict, s: Sentence) -> bool:
 
 
 def is_zarf(token: dict, s: Sentence) -> bool:
-    """A listed time or place word, or كل/بعض or a number added to one (كلَّ يومٍ، عشرَ سنينَ)."""
+    """A listed time or place word, or كل/بعض or a number counting one (كلَّ يومٍ، عشرَ سنينَ، أَرْبَعِينَ لَيْلَةً): the number
+    stands in for the ظرف it counts (Awdah al-Masalik V2 p231, باب المفعول فيه: أسماء العدد المميزة بهما، سرت عشرين يوما)."""
     if token["pos"] == "PRT":
         return False
     if listed(token, "zarf_zaman") or listed(token, "zarf_makan"):
         return True
-    return (listed(token, "zarf_zaman", "carriers") or listed(token, "adad_mudaf")) and any(
-        k["rel"] == "IDF" and (listed(k, "zarf_zaman") or listed(k, "zarf_makan")) for k in s.kids(token))
+    return (listed(token, "zarf_zaman", "carriers") or counts(token)) and any(
+        k["rel"] in ("IDF", "TMZ") and (listed(k, "zarf_zaman") or listed(k, "zarf_makan")) for k in s.kids(token))
+
+
+def counts(token: dict) -> bool:
+    """A number (3 to 10 and the hundred added to what they count; 11 to 99 followed by their تمييز, compound
+    ones too), not a measure word (رطل)."""
+    return (listed(token, "adad_mudaf") or listed(token, "compound_number")
+            or (listed(token, "tamyeez_head") and not listed(token, "tamyeez_head", "measures")))
 
 
 def zarf_in_nasb(token: dict, s: Sentence) -> bool:

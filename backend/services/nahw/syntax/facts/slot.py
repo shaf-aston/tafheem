@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
 from backend.services.nahw.syntax.facts.word import is_built, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
-from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
+from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
 NAMED = named_roles()
@@ -71,7 +71,11 @@ def place_time(token: dict, s: Sentence) -> bool:
     opens_verb = typed_or_parsed_case(token) in (None, "a") and any(
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
     # مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ: a verb that is لازم (closed_words `intransitive_verbs`) leaves a time word typed in nasb no object to be
-    if head and is_verb(head) and token["rel"] == "OBJ" and typed_case_of(token) == "a" and is_one(head["lemma"], "intransitive_verbs"):
+    # يَسِيرُ مِائَةَ عَامٍ: a number counting a time word is that zarf wherever the parser hung it (Awdah V2 p231); لَأَقْضِيَنَّ بَيْنَكُمَا:
+    # so is a place word the reader put in nasb, no verb takes it as an object (Tasheel 3.2 p67)
+    if head and is_verb(head) and token["rel"] == "OBJ" and (
+            typed_case_of(token) == "a" and (counts(token) and is_zarf(token, s) or is_one(head["lemma"], "intransitive_verbs"))
+            or typed_case_of(token) in (None, "a") and listed(token, "zarf_makan")):
         return True
     if head and works_as_verb(head) and (is_verb(head) or token["rel"] == "MOD"):
         return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") or opens_verb
@@ -276,6 +280,9 @@ def verb_place(token: dict, s: Sentence) -> str:
             return "second_object"
         if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
             return "purpose"
+        # اشْتَرَتِ الْمَكْتَبَةُ خَمْسَةً وَعِشْرِينَ كِتَابًا: a number is a noun the tamyeez counts, never a state, though CAMeL tags it an adjective
+        if counts(token) and rel == "OBJ" and typed in (None, "a") and not after_first:
+            return "object"
         # زَيْدٌ أَكْرَمَ ضَيْفًا: a verb said of the مبتدأ the sentence rests on holds its doer, the
         # pronoun back to it its khabar must carry (رابط جملة الخبر, Ibn Aqil on the Alfiyya)
         told = s.head(head)

@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged
+from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, written_nasb, attached_pronoun, noun_tagged
 from backend.services.nahw.syntax.facts.sentence import Sentence, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
@@ -207,9 +207,9 @@ def _follows(token: dict, s: Sentence) -> str:
         governed = (mine == "a" and at_work(head, s) == "active" and not is_participle(token)
                     and not token.get("stt") == head.get("stt") == "d")
         # يُوَفِّرُوا فُرَصَ عَمَلٍ جَدِيدَةً: under a verb, a مضاف to an unknown noun is unknown (is_known), so an indefinite word describes it
-        # (خَاتَمُ فِضَّةٍ جَمِيلٌ with no verb: the khabar, told_of_lone_mubtada); only when the word is vowelled, as a bare
-        # كِتَابُ طَالِبٍ جَدِيدًا leaves the hal open
-        unknown_head = {**head, "stt": "i"} if head.get("stt") == "c" and not typed_bare(token) and verb_above(token, s) and not is_known(head, s) else head
+        # (خَاتَمُ فِضَّةٍ جَمِيلٌ with no verb: the khabar, told_of_lone_mubtada); unless the word shows its nasb by its written
+        # alif (a bare كِتَابُ طَالِبٍ جَدِيدًا leaves the hal open); a bare جَدِيدَة shows no case, so it is the صفة
+        unknown_head = {**head, "stt": "i"} if head.get("stt") == "c" and not written_nasb(token) and verb_above(token, s) and not is_known(head, s) else head
         return "naat" if agrees(token, unknown_head) and not measure and not governed else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers
     if told_of_subject(token, head) or indefinite_nasb(token):
