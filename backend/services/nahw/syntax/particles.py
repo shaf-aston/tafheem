@@ -266,9 +266,11 @@ def _asks_nominal(token: dict, s: facts.Sentence) -> bool:
     # مَنِ الَّذِي يَضْمَنُ: a relative's صلة is no clause of its own. Only ما can be the negation that a preposition
     # or an إلا after the noun would show (ما أنت بعالمٍ); مَنْ أَحَقُّ النَّاسِ بِحُسْنِ صَحَابَتِي asks all the same
     clause = s.below(after) if is_one(after["lemma"], "mawsul") else set()
-    negates = is_one(token["lemma"], "negation")
+    # a verb that is no saying straight before takes it as its object, so what follows is its nominal صلة (فَلْيُبَلِّغِ ... مَنْ
+    # هُوَ أَوْعَى لَهُ مِنْهُ), and a preposition after it then ends the asking too (rule from the Tasheel chapter on الموصول, page unchecked)
+    shut = is_one(token["lemma"], "negation") or not _opens_clause(token, s)
     return not any((facts.is_verb(t) and t["id"] not in clause)
-                   or (negates and (facts.is_preposition(t) or (t["pos"] == "PRT" and is_one(t["lemma"], "hasr"))))
+                   or (shut and (facts.is_preposition(t) or (t["pos"] == "PRT" and is_one(t["lemma"], "hasr"))))
                    for t in later) and _opens(token, s) == "no"
 
 
