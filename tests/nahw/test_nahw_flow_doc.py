@@ -1,22 +1,27 @@
 """docs/glossary/nahw-flow.md is the map of the nahw engine: it must name files that exist and
 list each stage's rules exactly as the code registers them, in the code's order."""
-import ast
-import inspect
 import json
 import re
 from pathlib import Path
 
 from backend.services.nahw.syntax import mask, teacher
 from backend.services.nahw.syntax.facts import AXES
-from backend.services.nahw.syntax.repair import correct
+from backend.services.nahw.syntax.repair import PASSES
 
 ROOT = Path(__file__).resolve().parents[2]
 DOC = (ROOT / "docs/glossary/nahw-flow.md").read_text(encoding="utf-8")
+# One glossary list entry is a name, one plain line and its file; the detail is in the function's docstring.
+# Just above the median entry when this cap was set (179 characters).
+ENTRY_MAX = 200
+
+
+def _entries(name: str = r"\w+") -> list[str]:
+    bodies = re.findall(rf"<!-- list:{name} -->\n(.*?)<!-- /list -->", DOC, re.S)
+    return [line for body in bodies for line in body.splitlines() if line.startswith("- ")]
 
 
 def _listed(name: str) -> list[str]:
-    body = re.search(rf"<!-- list:{name} -->\n(.*?)<!-- /list -->", DOC, re.S).group(1)
-    return [line[2:].split(":")[0].strip() for line in body.splitlines() if line.startswith("- ")]
+    return [line[2:].split(":")[0].strip() for line in _entries(name)]
 
 
 def _leaves(node: dict) -> list[str]:
@@ -29,10 +34,12 @@ def test_every_path_named_exists():
 
 
 def test_the_repair_order_is_the_codes():
-    calls = [n.func for n in sorted((n for n in ast.walk(ast.parse(inspect.getsource(correct))) if isinstance(n, ast.Call)),
-                                    key=lambda n: (n.lineno, n.col_offset))]
-    names = [f.attr if isinstance(f, ast.Attribute) else f.id for f in calls]
-    assert _listed("repair") == [n for n in names if n not in ("len", "base_tokens")]
+    # book_links runs first and untangle last on every sentence; PASSES runs between them
+    assert _listed("repair") == ["book_links", *(repair.__name__ for repair, _ in PASSES), "untangle"]
+
+
+def test_a_list_entry_is_one_short_line():
+    assert [e[:40] for e in _entries() if len(e) > ENTRY_MAX] == []
 
 
 def test_the_rule_registries_match():
