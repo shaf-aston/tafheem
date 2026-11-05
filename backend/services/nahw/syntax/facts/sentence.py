@@ -429,6 +429,19 @@ def zarf_in_nasb(token: dict, s: Sentence) -> bool:
             and not (s.head(token) and listed(s.head(token), "adad_mudaf")))
 
 
+def is_cut_off(token: dict) -> bool:
+    """أَمَّا بَعْدُ، مِنْ قَبْلُ: قبل، بعد and the directions typed on the damma with nothing added to them are built
+    (closed_words zarf_zaman `cut_off`; Ibn Aqil V3 p73)."""
+    return (token["pos"] != "PRT" and typed_case_of(token) == "u" and not token.get("mudaf")
+            and listed(token, "zarf_zaman", "cut_off"))
+
+
+def stays_adverb(token: dict) -> bool:
+    """قط، عوض (closed_words zarf_zaman `never_leaves`) and a قبل/بعد cut off: words that are never a doer, mubtada,
+    khabar or اسم كان; with ال it is a plain noun (الْقِطُّ the cat)."""
+    return token["pos"] != "PRT" and token.get("stt") != "d" and (listed(token, "zarf_zaman", "never_leaves") or is_cut_off(token))
+
+
 def is_built_zarf(token: dict) -> bool:
-    """أمسِ، حيثُ، الآن: a time or place word built on one ending (closed_words `built`)."""
-    return token["pos"] != "PRT" and is_built_word(token["lemma"])
+    """أمسِ، حيثُ، الآن: a time or place word built on one ending (closed_words `built`), or one cut off from its مضاف إليه."""
+    return token["pos"] != "PRT" and (is_built_word(token["lemma"]) or is_cut_off(token))

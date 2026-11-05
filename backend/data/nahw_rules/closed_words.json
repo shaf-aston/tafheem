@@ -750,7 +750,11 @@
    "_ذات": "ذات added to a time word is used as a time word only, always in nasb: سير عليه ذات يوم، وسير عليه ذات ليلة، بمنزلة ذات مرة (Sibawayh, al-Kitab V1 p226); والمستعمل ظرفا لا غير ما لزم النصب نحو قولك سرنا ذات مرة (Zamakhshari, al-Mufassal p81).",
    "_built": "Time words built on one ending whatever their place (Tasheel): the vowel typed on them is part of the word, not a case (زارنا أمسِ: مبني على الكسر في محل نصب).",
    "_بارحة": "البارحة, the night just gone, is a time name like ليلة: every name of time takes nasb as maf'ul fihi (Tasheel 3.2 p67).",
-   "built": ["أمس", "الآن", "إذ", "منذ", "مذ"],
+   "built": ["أمس", "الآن", "إذ", "منذ", "مذ", "قط", "عوض"],
+   "_never_leaves": "قط and عوض never leave the adverb (ما لا يفارق الظرفية أصلا, Awdah al-Masalik V2 p232: ما فعلته قط), so they are never a doer, mubtada or khabar, and are built (Tasheel V1 p94: قط للوقت الماضي عموما ... قط وقط وقط).",
+   "never_leaves": ["قط", "عوض"],
+   "_cut_off": "قبل and بعد, the directions and their like, are built on the damma when the مضاف إليه is left out and its meaning meant (Alfiyya: واضمم بناء غيرا إن عدمت ما له أضيف ناويا ما عدما; Ibn Aqil V3 p65, p73): من قبلُ ومن بعدُ، أما بعدُ. Typed so, with nothing added to them, they are built; with a مضاف إليه they are plain nouns.",
+   "cut_off": ["قبل", "بعد", "فوق", "تحت", "أمام", "خلف", "دون", "يمين", "شمال"],
    "words": [
     "إذ",
     "إذا",

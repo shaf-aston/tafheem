@@ -785,6 +785,13 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # the word's whole list too (أَكْبَرُ's own indefinite reading may be ranked out), never a guessed name
             out[i] = best_reading(word, [r for r in pool
                                          if not _bare_construct(r) and r.get("pos") != "noun_prop"]) or reading
+    # أَوْعَى لَهُ مِنْهُ، أَعْظَمَ فِي نَفْسِي مِنْ صِدْقِي: the elative is followed by, or by what it governs and then, the مِنْ-phrase (Tashil V1 p132), so a word with the
+    # elative's shape, read as a verb, straight before a preposition and a مِنْ within the next three words with no verb
+    # before it, is that elative; a doer (أَنْعَمَ اللَّهُ عَلَيَّ مِنْ نِعْمَةٍ) or an object straight after it keeps the verb
+    for i in range(len(out) - 1):
+        if out[i].get("pos") == "verb" and out[i + 1].get("pos") == "prep" and _min_phrase_follows(out[i + 1:i + 4]) \
+                and (elative := _elative_reading(tokens[i], steps[i])):
+            out[i] = elative
     # نصر زيد بكرا، زيد نصر بكرا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به).
     # A noun read in nasb (بكرا's alif of tanween is written, typed vowels or none), in a line of
     # nouns alone, has none but a verb before it, or is that verb when the fatha is typed (زَيْدٌ أَكْرَمَ
@@ -1117,6 +1124,24 @@ def _rival(typed: str, read: dict, ranked: list[dict]) -> dict | None:
 def _widened(token: str, ranked: list[dict]) -> list[dict]:
     """The context ranker's readings, then the word's whole list, never one CAMeL could not analyse."""
     return [r for r in ranked + (_ranked([token], None) or [[]])[0] if NO_ANALYSIS not in r.get("atbtok", "")]
+
+
+def _min_phrase_follows(after: list[dict]) -> bool:
+    """A مِنْ among these words, with no verb before it: the elative's مفضول (Tashil V1 p132)."""
+    for reading in after:
+        if reading.get("pos") == "verb":
+            return False
+        if reading.get("pos") == "prep" and reading.get("lex") == "مِن":
+            return True
+    return False
+
+
+def _elative_reading(token: str, step: tuple) -> dict | None:
+    """The word as the elative noun: sarf's shape أَفْعَل, or the dictionary's own reading with the
+    elative's pattern (the doubled أَحَبّ، أَدَقّ, which sarf's shapes lack), the typed vowels choosing."""
+    word, ranked = step
+    return noun_reader.reading_of(word) or best_reading(word, [
+        r for r in _widened(token, ranked) if r.get("pos") in NOUNISH and elative_shape(r.get("pattern", ""), r.get("lex", ""))])
 
 
 def _bare_construct(reading: dict) -> bool:
