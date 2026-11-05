@@ -939,6 +939,8 @@
   },
   "mawsul": {
    "ar": "الأسماء الموصولة",
+   "mubham": ["من", "ما"],
+   "mubham_note": "relatives of no fixed gender or number, which no noun takes as its sifa (Ibn Aqil V1 p146, al-mawsul al-mushtarak: man and ma serve every gender and number); page unchecked",
    "effect": "heads a relative clause (sila) whose returning pronoun (aid) refers back to it; the clause is the relative's complement, and the relative fills a role in the outer sentence",
    "words": [
     "الذي",

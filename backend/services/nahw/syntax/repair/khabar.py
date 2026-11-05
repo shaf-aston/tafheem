@@ -135,6 +135,38 @@ def after_pointer(tokens: list[dict]) -> None:
             token["rel"] = "SBJ"
 
 
+def relative_khabar(tokens: list[dict]) -> None:
+    """الْكَيِّسُ مَنْ دَانَ نَفْسَهُ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ: a known word opening the clause, then a
+    relative with its صلة, and nothing else said of that word, is told by the relative: both are definite, so the
+    first is the mubtada and the relative its khabar (Ibn Aqil V1 p216: المبتدأ معرفة، and the موصول
+    with its صلة is one word, the khabar of the clause). مَنْ and ما are never a صفة (they are
+    mubham, no noun takes them as one); the الذي family only after a particle that cannot be a noun's governor (إنما),
+    since الرجل الذي نجح alone is a phrase. The relative heads the clause, the known word hangs on it as its
+    subject, as the parser draws المؤمن من أمنه الناس."""
+    s = Sentence(tokens)
+    for relative in tokens:
+        noun = s.head(relative)
+        if not (noun and relative["rel"] == "MOD" and "pron_rel" in relative.get("pos_camel", "")
+                and noun["id"] == relative["id"] - 1 and noun_tagged(noun) and not is_verb(noun)
+                and is_known(noun, s) and typed_case_of(noun) in (None, "u")):
+            continue
+        above = s.head(noun)
+        if noun["head"] != 0 and not (above and above["pos"] == "PRT" and above.get("pos_camel") != "prep"):
+            continue
+        if not (is_one(relative["lemma"], "mawsul", "mubham") or above):
+            continue
+        inside = s.below(relative)
+        # nothing else is said of the known word, and no word after the relative's clause says it
+        if any(k is not relative and k["rel"] in ("PRD", "SBJ", "OBJ") for k in s.kids(noun)):
+            continue
+        if any(t["id"] > relative["id"] and t["id"] not in inside and t["pos"] != "PRT" and t["head"] in (noun["id"], noun["head"], 0)
+               for t in tokens):
+            continue
+        relative["head"], relative["rel"] = noun["head"], noun["rel"]
+        noun["head"], noun["rel"] = relative["id"], "SBJ"
+        s = Sentence(tokens)
+
+
 def majrur_of_jar(tokens: list[dict]) -> None:
     """هَلْ مِنْ مُجِيبٍ، مَا لَنَا مِنْ شَافِعٍ: the noun written straight after a preposition word of its own (not a letter joined to the noun: لَآيَاتٍ) is its
     مجرور; where the parser hung it as a subject of the preposition (or of the word before it), it is the
