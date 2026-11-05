@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
-from backend.services.nahw.syntax.facts.word import is_built, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
+from backend.services.nahw.syntax.facts.word import is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
@@ -88,9 +88,11 @@ def masdar_object(token: dict, s: Sentence) -> bool:
     """أَدَّى إِهْمَالُ الْمَسْؤُولِينَ صِيَانَةَ الْجُسُورِ: a masdar added to its doer works as its verb on the noun
     in nasb after that doer, its object (Alfiyya, باب إعمال المصدر: بِفِعْلِهِ الْمَصْدَرَ أَلْحِقْ فِي الْعَمَلِ مُضَافًا؛
     Ibn Aqil V3, page unchecked). A word of the masdar's own root, or a state word, after it is its absolute object or
-    hal."""
+    hal. Typed bare, the noun the parser links as its object is that object, as a second مضاف إليه or a describing word
+    (is_describing) would not be linked so."""
     head = s.head(token)
-    return bool(head and token["rel"] in ("OBJ", "MOD") and typed_case_of(token) == "a" and is_masdar(head)
+    object_case = typed_case_of(token) == "a" or typed_case_of(token) is None and token["rel"] == "OBJ" and not is_describing(token)
+    return bool(head and token["rel"] in ("OBJ", "MOD") and object_case and is_masdar(head)
                 and not (same_root(token, head) or is_state_word(token) or listed(token, "masdar_adjectives"))
                 and any(k["rel"] == "IDF" and k["id"] < token["id"] for k in s.kids(head)))
 

@@ -1653,3 +1653,8 @@ def test_a_bare_place_word_with_its_mudaf_ilayh_is_the_zarf_not_a_follower():
     assert _role("لا هجرة بعد الفتح ولكن جهاد", 2) == "مفعول فيه"
     assert _role("هل ستنجح الجهود الدبلوماسية في وقف التصعيد بين الطرفين", 7) == "مفعول فيه"
     assert _role("اللهم فإني أظن أنك قد وضعت الحرب بيننا وبينهم", 7) == "مفعول فيه"
+
+
+def test_a_bare_noun_after_a_masdar_and_its_doer_is_the_masdars_object():
+    # Alfiyya, إعمال المصدر: بفعله المصدر ألحق في العمل مضافا (Ibn Aqil V3, page unchecked)
+    assert _role("أدى إهمال المسؤولين صيانة الجسور القديمة إلى انهيار", 3) == "مفعول به"
