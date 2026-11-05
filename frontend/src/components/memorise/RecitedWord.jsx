@@ -2,6 +2,7 @@ import { useRef } from 'react'
 
 import { MISSED, WAITING } from '../../lib/recite/follow'
 import { LOOK, SHOWN } from '../../lib/recite/reciteColors'
+import { sameSpokenWord } from '../../lib/text/arabicText'
 
 import ArabicText from '../ui/text/ArabicText'
 import MarkCard from './MarkCard'
@@ -32,6 +33,7 @@ export default function RecitedWord({ word, at, ayah, recite, accent, cover, onS
   const here = at === recite.at
   const added = recite.extras.filter((extra) => extra.after === at)
   const reached = mark.state !== WAITING
+  const wrote = reached && mark.said && !sameSpokenWord(mark.said, word) ? mark.said : ''
   const opened = recite.open?.at === at
   // A covered word shows nothing until it has been reached, right or wrong, or
   // asked for. The cover is the word itself drawn in no colour on a soft block
@@ -76,6 +78,21 @@ export default function RecitedWord({ word, at, ayah, recite, accent, cover, onS
           >
             {printed}
           </button>
+          {!mark.heard && wrote && (
+            // What the ear wrote, when it is not the page's word but the mark
+            // was not red. It hangs under the word and takes no room, so the
+            // line never re-wraps when it arrives (styles/recite.css): a
+            // reciter can always check what the ear heard, and the page holds
+            // still while they do.
+            <ArabicText
+              size="sm"
+              aria-hidden
+              title="what the ear wrote; press the word to hear yourself"
+              className="recite-wrote"
+            >
+              {wrote}
+            </ArabicText>
+          )}
           {opened && <MarkCard ayah={ayah} at={at} recite={recite} anchor={anchor} onStartAt={onStartAt} />}
         </span>
       ) : printed}

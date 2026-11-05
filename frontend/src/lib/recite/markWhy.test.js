@@ -13,6 +13,12 @@ describe('why a word is marked', () => {
     expect(whyOf({ state: CHECK })).toMatch(/could not confirm/)
   })
 
+  it('says when both ears heard a different letter', () => {
+    const both = { state: CHECK, word: 'ظَلَمُوا', said: 'دلموا', sure: 0.99, sounds: { letter_ok: false } }
+    expect(whyOf(both)).toMatch(/Both ears heard a different letter/)
+    expect(whyOf({ ...both, sounds: { letter_ok: true } })).toMatch(/could not confirm/)
+  })
+
   it('tells a different word from the same letters said off', () => {
     expect(whyOf({ state: WRONG, word: 'نَعْبُدُ', said: 'المسكين' })).toBe('A different word was heard.')
     expect(whyOf({ state: WRONG, word: 'نَعْبُدُ', said: 'نَعْبِدُ' })).toMatch(/letters matched/)

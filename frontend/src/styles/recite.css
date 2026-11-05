@@ -74,3 +74,19 @@
   mask-image: linear-gradient(to right, black 92%, transparent);
 }
 .recite-transcript > * { display: inline; line-height: inherit; }
+
+/* What the ear wrote under a word it was unsure of (RecitedWord): hung below
+   the word in the gap between lines, so it takes no room and the line never
+   re-wraps when it arrives. Faint, so it reads as the ear's note, not a verdict. */
+.recite-wrote {
+  position: absolute;
+  top: 82%;
+  left: 50%;
+  translate: -50% 0;
+  white-space: nowrap;
+  pointer-events: none;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: var(--text-faint);
+  animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease) backwards;
+}
