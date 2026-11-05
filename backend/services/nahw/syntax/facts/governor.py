@@ -3,7 +3,7 @@ inna, kana, kaada, zanna, the called or the excepting particle)."""
 from __future__ import annotations
 
 from backend.services.nahw.book import is_one, is_plain_noun, six_noun_case
-from backend.services.nahw.syntax.facts.word import is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_tanween, typed_or_parsed_case, unlike, subject_link, NOUN_LINKS
+from backend.services.nahw.syntax.facts.word import is_built, is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_tanween, typed_or_parsed_case, unlike, subject_link, NOUN_LINKS
 from backend.services.nahw.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.nahw.syntax.facts.kind import calling_head
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
@@ -53,7 +53,9 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
     # the idafa, since a مضاف إليه is never منصوب (فاهمٌ الدرسَ)
     if head and not under_verb and (place := verb_place(token, s)) in ("object", "subject"):
         return _worker(token, s, place, head)
-    if rel == "IDF" and not (under_verb and typed != "i"):
+    # a مضاف إليه is never مرفوع (وَفِي كُلٍّ خَيْرٌ, الْقَاعِدُ فِيهَا خَيْرٌ): the damma typed on a noun the parser added to the one before
+    # it makes it the start of a sentence of its own (slot.py), unless it is built and shows no case
+    if rel == "IDF" and not (under_verb and typed != "i") and not (typed == "u" and not is_built(token)):
         return "idafa", head
     # ذائقةُ الموتِ: the noun in jarr straight after a noun in construct is its mudaf ilayh
     if head and head.get("stt") == "c" and head["id"] == token["id"] - 1 and typed == "i" and not under_verb:

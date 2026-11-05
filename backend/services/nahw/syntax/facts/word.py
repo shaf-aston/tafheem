@@ -316,8 +316,8 @@ def told_of_subject(token: dict, head: dict) -> bool:
 
 def indefinite_nasb(token: dict) -> bool:
     """An indefinite word in nasb: a hal or tamyeez, never a na't. A pronoun stuck on makes it
-    definite (حَفِيدَهُ), as ال does."""
-    return typed_or_parsed_case(token) == "a" and token.get("stt") != "d" and not token.get("stuck_on")
+    definite (حَفِيدَهُ), as ال does. A built word (فَهُوَ) shows no case by its vowel."""
+    return typed_or_parsed_case(token) == "a" and token.get("stt") != "d" and not token.get("stuck_on") and not is_built(token)
 
 
 def is_state_word(token: dict) -> bool:
