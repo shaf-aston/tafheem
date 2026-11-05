@@ -1635,3 +1635,8 @@ def test_a_nasb_noun_straight_after_the_ism_of_kana_is_its_khabar():
 
 def test_bare_lam_after_a_relative_is_the_jazm_particle_not_a_verb():
     assert _role("سأنبئك بتأويل ما لم تستطع عليه صبرا", 3) == "حرف"
+
+
+def test_hayth_hung_as_an_object_is_still_the_maful_fihi():
+    # the parser links حيث as the verb's object when a long coordination follows; its damma is its build, no doer's raf'
+    assert _role("سَنَبْنِي الْمَصْنَعَ حَيْثُ تَتَوَفَّرُ الْمِيَاهُ وَالْكَهْرَبَاءُ وَالْأَيْدِي الْعَامِلَةُ", 2) == "مفعول فيه"

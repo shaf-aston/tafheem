@@ -64,8 +64,10 @@ def place_time(token: dict, s: Sentence) -> bool:
         return True
     if not is_zarf(token, s):
         return False
-    if is_built_zarf(token) and head and is_verb(head) and token["rel"] in ("MOD", "IDF"):
-        return True  # سافر أمسِ: its kasra is built in, so it says nothing of its case
+    if is_built_zarf(token) and head and is_verb(head) and token["rel"] in ("MOD", "IDF", "OBJ"):
+        # سافر أمسِ، سَنَبْنِي الْمَصْنَعَ حَيْثُ تَتَوَفَّرُ الْمِيَاهُ: its vowel is built in, so it says nothing of its case, and no
+        # verb takes a built time or place word as its object, however the parser links it (Tasheel 3.2 p67)
+        return True
     # مسافرٌ غدًا: a participle works like its verb
     # كُلَّمَا جَاءَ زَيْدٌ أَكْرَمْتُهُ: its own verb hung on it, whatever link it has to the verb above
     opens_verb = typed_or_parsed_case(token) in (None, "a") and any(
