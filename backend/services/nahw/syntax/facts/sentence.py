@@ -312,19 +312,25 @@ def previous_noun(token: dict, s: Sentence) -> dict | None:
     return None
 
 
-def described_noun(token: dict, s: Sentence) -> dict | None:
-    """The noun a word after its describing words belongs to: the noun straight before, or past the
-    صفات already hung on a noun (التقرير السنوي الذي أصدرته: الذي describes التقرير, Tasheel 3.10.1: النعت يتبع المنعوت)."""
+def describable_nouns(token: dict, s: Sentence) -> list[dict]:
+    """The nouns a word after its describing words may belong to: the noun straight before, the noun each صفة already hung on it
+    describes (التقرير السنوي الذي أصدرته: الذي describes التقرير, Tasheel 3.10.1: النعت يتبع المنعوت), and the مضاف a مضاف إليه is added to
+    (أرشيف المكتبة الوطنية الذي أسس: the archive was founded, not the library); the parser's link says which of them."""
+    nouns = []
     noun = previous_noun(token, s)
-    while noun and noun["rel"] == "MOD" and (up := s.head(noun)) and up["id"] < noun["id"] and noun_tagged(up) and not is_verb(up):
+    while noun:
+        nouns.append(noun)
+        up = s.head(noun)
+        if not (noun["rel"] in ("MOD", "IDF") and up and up["id"] < noun["id"] and noun_tagged(up) and not is_verb(up)):
+            break
         noun = up
-    return noun
+    return nouns
 
 
 def is_known(token: dict, s: Sentence) -> bool:
     """معرفة: a noun with ال, a name, a pronoun, or a مضاف to a known noun (جميعُهم، كتابُ اللهِ);
     a مضاف to an unknown one stays unknown (كتابُ رجلٍ)."""
-    if token.get("stt") == "d" or token["pos"] == "PROP":
+    if token.get("stt") == "d" or is_name(token):
         return True
     added = next((k for k in s.kids(token) if k["rel"] == "IDF"), None) if token.get("stt") == "c" else None
     return bool(added) and is_known(added, s)

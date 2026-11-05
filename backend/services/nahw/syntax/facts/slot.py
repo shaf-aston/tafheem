@@ -355,6 +355,37 @@ def verb_place(token: dict, s: Sentence) -> str:
     return "none"
 
 
+def _sentence_noun(token: dict, s: Sentence) -> bool:
+    """A noun that can start a sentence: not a called noun (يَا حَسْرَتَاهُ), not a describing word (a verb the tagger took for one:
+    تَجِدُونَ), not a pronoun written onto another word."""
+    return (noun_tagged(token) and not is_suffix(token) and token.get("pos_camel") != "adj"
+            and not any(k.get("pos_camel") in ("part_voc", "interj") for k in s.kids(token)))
+
+
+def _heads_clause(token: dict, s: Sentence) -> bool:
+    """بَيْنَمَا رَجُلٌ يَجُرُّ إِزَارَهُ، فَإِذَا الْمُسْتَهْلِكُونَ يَتَذَمَّرُونَ: a noun or pronoun the reader put in raf' (or left
+    bare) with a sentence of its own left loose after it (the parser's `---`, a verb or a describing noun) is the mubtada
+    that sentence tells of (Tasheel 1.4 p6: the mubtada is the noun the sentence is about, its khabar a sentence). Not a
+    word the parser already made some word's part (IDF)."""
+    return (_sentence_noun(token, s) and not s.asks and token["rel"] not in ("IDF", "PRD")
+            and (typed_or_parsed_case(token) in (None, "u") or is_built(token))
+            and any(k["rel"] == "---" and k["id"] > token["id"] and not is_suffix(k) for k in s.kids(token)))
+
+
+def _opens_clause(token: dict, s: Sentence) -> bool:
+    """مَنِ اسْتَطَاعَ مِنْكُمُ الْبَاءَةَ، مَنْ لَا يَجْمَعُ: a relative, conditional or question noun (not ما, whose place the condition and
+    ma_kind settle) that a verb after it hangs on, a verb with nothing left to take (wants_object) and no mubtada before the noun for
+    it to be the khabar of (خَيْرُكُمْ مَنْ تَعَلَّمَ), is the mubtada of that clause (Tasheel 1.4 p6); its verb is its صلة or its شرط."""
+    camel = token.get("pos_camel", "")
+    verb = next((k for k in s.kids(token) if is_verb(k) and k["id"] > token["id"]), None)
+    return bool(verb and token["rel"] in ("---", "MOD", "OBJ") and noun_tagged(token) and is_built(token)
+                and ("pron_rel" in camel or "interrog" in camel) and strip_diacritics(token["form"]) != "ما"
+                and not wants_object(verb, s.kids(verb))
+                and not any(t["id"] < token["id"] and noun_tagged(t) and not is_suffix(t)
+                            and (t["rel"] == "---" or subject_link(t) and not is_verb(s.head(t) or t))
+                            for t in s.tokens))
+
+
 def _nominal_place(token: dict, s: Sentence) -> str:
     """The place of a word no verb governs: the nominal sentence, mubtada and khabar
     (Tasheel 1.4 p6), with the hal and tamyeez a noun can take. The parser's link is
@@ -391,7 +422,13 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         return "subject"  # لله الحمدُ: the noun after a fronted jar-majrur khabar is the مبتدأ; not after a و (وَالْيَدُ الْعُلْيَا الْمُنْفِقَةُ)
     if is_verb(token):  # a verb is only ever a khabar by its link; its clause is named from the tree above
         return "predicate" if rel == "PRD" else "none"
+    if _heads_clause(token, s) or _opens_clause(token, s):
+        return "subject"
+    if rel == "IDF" and typed_case_of(token) == "u" and not is_built(token) and noun_tagged(token):
+        return "subject"  # وَفِي كُلٍّ خَيْرٌ: the parser's idafa, refused by the damma (governor.py), leaves the noun to tell or be told of
     head = s.head(token)
+    if rel == "---" and head and noun_tagged(token) and not is_suffix(token) and _heads_clause(head, s):
+        return "predicate"  # المستقبلُ أفضلُ: the loose describing word the parser left under its mubtada is that mubtada's khabar
     camel = token.get("pos_camel", "")
     if s.asks:
         # أيُّ الأعمالِ أفضلُ: the question noun with a case of its own and a مضاف إليه is the
@@ -445,7 +482,7 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # noun is the khabar and the verb its صفة
         if not pointer and any(c["rel"] == "PRD" or (is_verb(c) and c["id"] > token["id"]) for c in kids):
             return "subject"
-        if noun_tagged(token) and (s.verbless or quoted or quoted_on):
+        if noun_tagged(token) and (s.verbless or quoted or quoted_on or not token["head"] and _sentence_noun(token, s) and not any(is_verb(k) for k in kids)):
             loose = sorted([t for t in s.tokens if t["rel"] == "---" and noun_tagged(t)] + [head] * quoted_on,
                            key=lambda t: t["id"])
             if loose != [token]:

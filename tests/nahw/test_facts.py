@@ -289,8 +289,9 @@ def test_each_family_slot_reaches_its_leaf():
         assert walker.walk({**base, "governor": governor, "slot": slot_answer})[0] == role
     for governor in ("verb", "none"):
         assert walker.walk({**base, "governor": governor, "slot": "none"}) is None
-    # a passive ظن has no places of its own
-    assert walker.walk({**base, "voice": "passive", "governor": "zanna", "slot": "subject"}) is None
+    # a passive ظن keeps a نائب فاعل and one مفعول به
+    assert walker.walk({**base, "voice": "passive", "governor": "zanna", "slot": "subject"})[0] == "نائب فاعل"
+    assert walker.walk({**base, "voice": "passive", "governor": "zanna", "slot": "object"})[0] == "مفعول به"
 
 
 def test_slot_second_object_is_a_position_fact_not_a_governor_fact():

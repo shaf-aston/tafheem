@@ -1807,3 +1807,40 @@ def test_what_follows_a_verb_of_praise_or_blame_is_its_tamyeez_a_describing_word
 def test_a_masdar_after_a_verb_whose_object_is_already_said_is_its_absolute_object():
     # a verb of one object takes no second: لَا يَقْبِضُ الْعِلْمَ انْتِزَاعًا, the masdar after the object says how
     assert _role("إِنَّ اللَّهَ لَا يَقْبِضُ الْعِلْمَ انْتِزَاعًا يَنْتَزِعُهُ مِنَ الْعِبَادِ، وَلَكِنْ يَقْبِضُ الْعِلْمَ بِقَبْضِ الْعُلَمَاءِ", 5) == "مفعول مطلق"
+
+def test_a_passive_verb_of_two_objects_names_its_deputy_and_the_object_left():
+    # Tasheel 1.10 p26 (page unchecked for the passive): the first object is raised to the doer's place, the second stays منصوب
+    sentence = "عُلِّمَ الْمُتَدَرِّبُونَ لُغَةَ الْإِشَارَةِ خِلَالَ شَهْرٍ وَاحِدٍ"
+    assert [_role(sentence, i) for i in (1, 2)] == ["نائب فاعل", "مفعول به"]
+
+
+def test_a_noun_with_a_sentence_left_loose_after_it_is_its_mubtada():
+    # Tasheel 1.4 p6: the parser hangs the noun on the particle before it and leaves its sentence beside it; the noun is what that sentence tells of
+    assert _role("بَيْنَمَا رَجُلٌ يَجُرُّ إِزَارَهُ مِنَ الْخُيَلَاءِ خُسِفَ بِهِ", 1) == "مبتدأ"  # a verb loose after it
+    assert [_role("إِنْ تَلْتَزِمِ الدُّوَلُ بِتَعَهُّدَاتِهَا فَالْمُسْتَقْبَلُ أَفْضَلُ لِلْأَجْيَالِ", i) for i in (4, 5)] == ["مبتدأ", "خبر"]  # a describing word loose
+    assert _role("الْبَيِّعَانِ بِالْخِيَارِ مَا لَمْ يَتَفَرَّقَا", 0) == "مبتدأ"  # the root noun of a sentence whose verb is in another clause
+    # the noun stays what its own place says when it is called, or is a describing word the tagger took for a verb
+    assert _role("يَا لَلْعَدَالَةِ لِلْمَظْلُومِينَ وَا حَسْرَتَاهُ عَلَى حَقٍّ ضَاعَ", 4) != "مبتدأ"
+    assert _role("تَجِدُونَ مِنْ شَرِّ النَّاسِ ذَا الْوَجْهَيْنِ الَّذِي يَأْتِي هَؤُلَاءِ بِوَجْهٍ وَهَؤُلَاءِ بِوَجْهٍ", 0) != "مبتدأ"
+
+
+def test_a_pronoun_is_built_so_its_fatha_makes_it_no_hal_or_tamyeez():
+    # a fatha on a built word is no sign of nasb (facts.indefinite_nasb)
+    assert _role("بَيْنَمَا رَجُلٌ يَجُرُّ إِزَارَهُ مِنَ الْخُيَلَاءِ خُسِفَ بِهِ فَهُوَ يَتَجَلْجَلُ فِي الْأَرْضِ إِلَى يَوْمِ الْقِيَامَةِ", 8) == "مبتدأ"
+
+
+def test_a_relative_after_a_noun_describes_the_noun_its_idafa_is_added_to():
+    # Tasheel 3.10.1: the relative follows the مضاف the parser links it to (أرشيف), not the مضاف إليه nearest it (المكتبة); a name is known
+    assert _role("إِنَّ فِي أَرْشِيفِ الْمَكْتَبَةِ الْوَطَنِيَّةِ الَّذِي أُسِّسَ قَبْلَ مِئَةٍ وَخَمْسِينَ عَامًا", 5) == "صفة"
+    assert _role("الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا", 2) == "صفة"
+
+
+def test_a_conditional_or_relative_noun_that_a_complete_verb_hangs_on_is_its_mubtada():
+    assert _role("قَالَ رَسُولُ اللَّهِ: مَنْ لَمْ يُجْمِعِ الصِّيَامَ قَبْلَ الْفَجْرِ فَلَا صِيَامَ لَهُ", 3) == "مبتدأ"
+    # a mubtada already before it makes it the khabar (خَيْرُكُمْ مَنْ تَعَلَّمَ), as a sentence that has none does not
+    assert _role("خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ", 1) == "خبر"
+
+
+def test_a_damma_on_a_noun_the_parser_added_to_another_makes_it_no_mudaf_ilayh():
+    # a مضاف إليه is never مرفوع: وَفِي كُلٍّ خَيْرٌ, سَتَكُونُ فِتَنٌ الْقَاعِدُ فِيهَا خَيْرٌ
+    assert _role("سَتَكُونُ فِتَنٌ الْقَاعِدُ فِيهَا خَيْرٌ مِنَ الْقَائِمِ", 2) == "مبتدأ"
