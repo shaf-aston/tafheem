@@ -230,8 +230,9 @@ def verb_place(token: dict, s: Sentence) -> str:
         # says nothing here: a verb has no مضاف إليه (أَكْرِمْ مَنْ زَارَكَ), and it reads يَسْعَدُ مَنْ as verb and object
         if not before and rel in ("MOD", "IDF", "OBJ") and token["pos"] != "PRT" and listed(token, "mawsul"):
             told = s.head(head)
-            # حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ: a doer said earlier (أَحَدُكُمْ) is the one the verb's hidden pronoun goes back to
-            said = any(subject_link(t) and noun_tagged(t) and t["id"] < head["id"] for t in s.tokens)
+            # حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ: a doer said earlier (أَحَدُكُمْ) is the one the verb's hidden pronoun goes back to;
+            # a passive verb has no such doer (فَجُمِعَ مِنَ التَّبَرُّعَاتِ مَا يَكْفِي: the relative is its deputy)
+            said = not is_passive(head) and any(subject_link(t) and noun_tagged(t) and t["id"] < head["id"] for t in s.tokens)
             if not (holds_doer(head, siblings) or said or (told and noun_tagged(told) and told["id"] < head["id"])):
                 return "subject"
             if not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings):
