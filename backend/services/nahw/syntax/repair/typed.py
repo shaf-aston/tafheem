@@ -141,8 +141,7 @@ def jarr_after_mudaf(tokens: list[dict]) -> None:
     and the مضاف drops its tanween (نُونًا تَلِي الْإِعْرَابَ أَوْ تَنْوِينًا مِمَّا تُضِيفُ احْذِفْ), so a word the
     parser hung elsewhere, straight after a noun typed with its case but no tanween, is that noun's
     مضاف إليه. A word known already (ال or a name: بِسْمِ اللَّهِ الرَّحْمَنِ) is added to nothing, and a fatha
-    on a word put in jarr is a diptote's, which never takes tanween (مَرَرْتُ بِمَسَاجِدَ كَثِيرَةٍ: its صفة).
-    A مضاف the parser hung under that word takes the word's place first, so the link closes no loop."""
+    on a word put in jarr is a diptote's, which never takes tanween (مَرَرْتُ بِمَسَاجِدَ كَثِيرَةٍ: its صفة)."""
     s = Sentence(tokens)
     for before, word in pairwise(tokens):
         if (typed_case_of(word) == "i" and noun_tagged(word)
@@ -150,10 +149,27 @@ def jarr_after_mudaf(tokens: list[dict]) -> None:
                 # كَمْ كِتَابٍ قَرَأْتُ: a built word never takes tanween, so كم الخبرية adds its noun too
                 and (typed_case_of(before) is not None or is_built(before)) and not typed_tanween(before)
                 and not (typed_case_of(before) == "a" and puts_in_jarr(before, s))):
-            if above([t["head"] for t in tokens], before["id"], word["id"]):
-                before["head"], before["rel"] = word["head"], word["rel"]
-            word["head"], word["rel"] = before["id"], "IDF"
-            before["mudaf"] = True
+            _add_to(tokens, before, word)
+
+
+def nunless_mudaf(tokens: list[dict]) -> None:
+    """كَانَتْ بَنُو إِسْرَائِيلَ typed bare: the nun of a sound masculine plural is dropped when it is added
+    (Alfiyya: نُونًا تَلِي الْإِعْرَابَ أَوْ تَنْوِينًا مِمَّا تُضِيفُ احْذِفْ), so one written with a final و and no nun is the
+    مضاف of the noun straight after it, which shows no case of its own to say otherwise, whatever the parser hung it on."""
+    for before, word in pairwise(tokens):
+        if (noun_tagged(before) and before.get("num") == "p" and before.get("gen") == "m"
+                and strip_diacritics(before.get("typed") or "").endswith("و")
+                and noun_tagged(word) and word["rel"] != "IDF" and typed_case_of(word) is None):
+            _add_to(tokens, before, word)
+
+
+def _add_to(tokens: list[dict], before: dict, word: dict) -> None:
+    """`word` is the مضاف إليه of `before`. A مضاف the parser hung under that word takes the word's place first,
+    so the link closes no loop."""
+    if above([t["head"] for t in tokens], before["id"], word["id"]):
+        before["head"], before["rel"] = word["head"], word["rel"]
+    word["head"], word["rel"] = before["id"], "IDF"
+    before["mudaf"] = True
 
 
 def described_known(tokens: list[dict]) -> None:

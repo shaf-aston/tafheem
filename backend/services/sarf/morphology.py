@@ -731,9 +731,12 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                                          and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
     # صِلْ مَنْ قَطَعَكَ، هَلْ نَضَجَ التِّينُ: a word after a governor that wants a verb (expects.json: لم، لن، هل،
     # a relative whose صلة is a sentence ...) which the typed vowels read as well as a verb (قَطَعَكَ the verb, or
-    # the noun "your pieces") is that verb. A relative opening the sentence may be a question instead (مَنْ أَبُوكَ)
+    # the noun "your pieces") is that verb. A relative opening the sentence may be a question instead (مَنْ أَبُوكَ).
+    # A word that itself wants the verb after it (ما لَمْ تَسْتَطِعْ: لم puts its verb in jazm) is that particle, which
+    # the relative's sentence begins with, never the verb its letters also spell
     for i in range(1, len(out)):
-        if out[i].get("pos") != "verb" and expects.verb_after(tokens, out, i):
+        if out[i].get("pos") != "verb" and expects.verb_after(tokens, out, i) and not (
+                i + 1 < len(out) and expects.verb_after(tokens, out, i + 1)):
             word, ranked = steps[i]
             here = vowel_agreement(word, out[i].get("diac", ""))
             verb = best_reading(word, [r for r in _widened(tokens[i], ranked) if r.get("pos") == "verb"])

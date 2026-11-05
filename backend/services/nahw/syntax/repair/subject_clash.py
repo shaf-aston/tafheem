@@ -353,6 +353,22 @@ def kana_fronted_khabar(tokens: list[dict]) -> None:
             noun["rel"], told["rel"] = "PRD", "SBJ"
 
 
+def kana_nasb_khabar(tokens: list[dict]) -> None:
+    """كَانَ اللَّهُ الصَّمَدَ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so a noun the reader typed in
+    nasb straight after the اسم, which the parser hung on the verb as an object or a modifier while the verb has no
+    خبر yet, is that خبر; a time or place word is left, which a khabar may be or a ظرف beside it."""
+    s = Sentence(tokens)
+    for verb in tokens:
+        if s.family(verb) != "kana":
+            continue
+        kids = s.kids(verb)
+        ism = next((k for k in kids if subject_link(k) and k["id"] > verb["id"]), None)
+        noun = ism and next((k for k in kids if k["id"] == ism["id"] + 1 and k["rel"] in ("OBJ", "MOD") and noun_tagged(k)
+                             and typed_case_of(k) == "a" and not is_zarf(k, s)), None)
+        if noun and not any(k["rel"] == "PRD" for k in kids):
+            noun["rel"] = "PRD"
+
+
 def inna_object(tokens: list[dict]) -> None:
     """إِنَّ فِي ذَلِكَ لَآيَةً: إنّ and its sisters take an اسم in nasb and a خبر (Tasheel 1.8), and no
     object, so a noun in nasb the parser hung on one as its object, with no اسم beside it, is that اسم;
