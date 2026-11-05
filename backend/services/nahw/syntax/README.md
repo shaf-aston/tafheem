@@ -88,7 +88,7 @@ PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --check   # 
 PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --save-baseline  # only when better
 ```
 
-Add each fix's test to `tests/nahw/test_rule_engine.py` with a **sibling sentence** the fix was not built
+Add each fix's test to `tests/nahw/test_word_roles.py` with a **sibling sentence** the fix was not built
 from (`tests/nahw_helpers.py` has the parser mark, `analyze` and the picture walk every such test uses).
 `tests/nahw/test_nahw_held_out.py` is an examiner's set the rules were never tuned on: a fix is checked
 there, never written from it. Then mutation-check it: revert the fix's file (`git show HEAD:<file> > <file>`), confirm the test

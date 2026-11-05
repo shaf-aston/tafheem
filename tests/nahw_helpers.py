@@ -65,3 +65,29 @@ def tree_roles(node: dict, key: str = "role") -> list:
     for child in node.get("children", []):
         found += tree_roles(child, key)
     return found
+
+
+# Two sentences, one of each kind, so both branches of the engine are walked.
+VERBAL = "ذهب الولد إلى المدرسة"     # jumlah fi'liyyah
+
+
+NOMINAL = "الكتاب جديد"              # jumlah ismiyyah
+
+
+def analysed(sentence: str) -> list[dict]:
+    """The cards as the page gets them: the rule engine names no job, the book's tree does."""
+    return _read(sentence)["words"]
+
+
+def _read(sentence: str) -> dict:
+    return iraab.analyze(sentence)
+
+
+NADA = "فَنَادَى بِأَعْلَى صَوْتِهِ وَيْلٌ لِلأَعْقَابِ مِنَ النَّارِ مَرَّتَيْنِ أَوْ ثَلاَثًا"
+
+
+def _role(sentence: str, i: int) -> str:
+    return iraab.analyze(sentence, recorded=False)["words"][i]["role"]
+
+
+_ATTENTION = "وها حرف تنبيه مبني على السكون لا محل له من الإعراب"
