@@ -102,7 +102,11 @@ def _joins(token: dict, s: facts.Sentence) -> str:
         # لا اله الا الله typed bare, لا إله إلا هو: the اسم لا named before إلا is the
         # excepted-from, so it is an exception, not a حصر (Tasheel 3.8.7). Elsewhere a case
         # that cannot show (ما أنقذ الغريقَ إلا فتًى) tells nothing: the verb may still want its فاعل.
-        return "yes" if behind and facts.read_as(behind, "la_jins") else "no"
+        # ما جاء أحد إلا زيد typed bare: the noun excepted from is the doer of the very verb the إلا hangs on, a verb the book
+        # lists as taking no object (intransitive_verbs), so the word after is its بدل (ما أكرم المعلم إلا فتى may be its object)
+        verb = s.head(before) or {}
+        doer_given = before["rel"] == "SBJ" and facts.is_verb(verb) and verb is s.head(token) and is_one(verb["lemma"], "intransitive_verbs")
+        return "yes" if doer_given or (behind and facts.read_as(behind, "la_jins")) else "no"
     return "yes" if mine == facts.place_case(before, s) else "no"
 
 

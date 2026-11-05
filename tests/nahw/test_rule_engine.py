@@ -1328,6 +1328,46 @@ def test_a_relative_typed_bare_after_a_preposition_is_not_read_as_a_command():
 
 
 @pytest.mark.parametrize("sentence, at, role", [
+    ("مَنْ حَلَفَ عَلَى مَالِ امْرِئٍ مُسْلِمٍ", 3, "مجرور"),  # مَالِ typed in jarr after على, not the command مِلْ
+    ("لَا خَيْرَ فِي قَرَارٍ يُتَّخَذُ دُونَ دِرَاسَةٍ", 5, "مفعول فيه"),  # دُونَ is the book's ظرف, not a verb
+])
+def test_a_noun_with_the_noun_s_sign_is_never_read_as_the_command_its_letters_spell(sentence, at, role):
+    assert _role(sentence, at) == role
+
+
+def test_khilal_is_a_noun_of_place_not_the_preposition_camel_files_it_as():
+    assert _role("انْخَفَضَتِ الصَّادِرَاتُ انْخِفَاضًا حَادًّا خِلَالَ الْأَشْهُرِ الثَّلَاثَةِ", 4) == "مفعول فيه"
+
+
+def test_a_verb_after_the_question_hamza_the_dictionary_lacks_is_read_off_the_table():
+    assert [_role("أَيَعْجِزُ أَحَدُكُمْ أَنْ يَقْرَأَ", i) for i in (0, 1)] == ["فعل", "فاعل"]  # the dictionary has يَعْجَزُ, not يَعْجِزُ
+
+
+def test_a_verb_spelled_alike_in_the_active_and_the_passive_is_read_as_the_active():
+    assert _role("هَلْ تُضَارُّونَ فِي رُؤْيَةِ الشَّمْسِ", 1) == "فعل"
+
+
+def test_a_command_with_a_joined_fa_the_dictionary_lacks_is_a_verb():
+    assert _role("إِذَا دَعَوْتُمُ اللَّهَ فَاعْزِمُوا", 3) == "فعل"
+
+
+def test_a_noun_with_tanween_is_described_by_the_tanween_noun_after_it_not_added_to_it():
+    assert _role("إِذَا كَانَ يَوْمٌ صَحْوٌ", 3) == "صفة"
+
+
+def test_a_ya_typed_as_a_marked_maqsura_is_the_pronoun_of_the_speaker():
+    assert _role("وَغَيْرُهُ أَحَبُّ إِلَىَّ مِنْهُ", 2) == "حرف جر"  # إِلَىَّ is إِلَيَّ
+
+
+def test_a_conditional_noun_the_analyser_files_as_a_particle_is_a_noun():
+    assert _role("لَنْ نَتَرَاجَعَ مَهْمَا طَالَ الزَّمَنُ", 2) in ("مبتدأ", "مفعول فيه")
+
+
+def test_a_jar_before_an_and_its_verb_is_a_harf_jarr():
+    assert _role("يَسْعَى الْمَسْؤُولُونَ إِلَى أَنْ يُوَفِّرُوا فُرَصًا", 2) == "حرف جر"
+
+
+@pytest.mark.parametrize("sentence, at, role", [
     # واو الحال: the و brings a sentence, its raf' noun the mubtada, the word told of it the khabar
     ("لاَ يَزَالُ نَاسٌ مِنْ أُمَّتِي ظَاهِرِينَ حَتَّى يَأْتِيَهُمْ أَمْرُ اللَّهِ وَهُمْ ظَاهِرُونَ", 11, "خبر"),
     ("دَخَلَ الْوَزِيرُ الْقَاعَةَ مُبْتَسِمًا وَالصَّحَفِيُّونَ يَنْتَظِرُونَهُ بِفَارِغِ الصَّبْرِ", 4, "مبتدأ"),
@@ -1484,3 +1524,114 @@ def test_an_oath_answer_with_the_emphatic_nun_is_a_verb_and_the_place_word_after
     sentence = "وَالَّذِي نَفْسِي بِيَدِهِ لأَقْضِيَنَّ بَيْنَكُمَا بِكِتَابِ اللَّهِ"
     assert _role(sentence, 3) == "فعل"
     assert _role(sentence, 4) == "مفعول فيه"
+
+
+def test_bare_al_umm_is_a_noun_not_the_particle_am():
+    # a joining word takes no ال (Ibn Aqil V1 p15): الأم typed bare is the noun
+    assert _role("كانت الأم تطبخ", 1) == "اسم كان"
+    assert _role("الأم تطبخ الطعام", 0) == "مبتدأ"
+
+
+def test_bare_nima_before_a_noun_with_al_is_the_verb_of_praise_with_its_doer():
+    assert [_role("نعم الرجل زيد", i) for i in range(3)] == ["فعل", "فاعل", "مبتدأ"]
+
+
+def test_bare_noun_after_kana_with_a_verb_after_it_is_its_ism():
+    assert _role("كان الطفل يلعب", 1) == "اسم كان"
+
+
+def test_a_relative_after_the_ism_of_kana_describes_it_and_is_no_object():
+    # كان works on an اسم and a خبر (Tasheel 1.9), so the relative stays the ism's صفة
+    assert _role("كان الطالب الذي نجح في الامتحان يدرس ليلا ونهارا", 2) == "صفة"
+
+
+def test_bare_noun_after_illa_with_the_doer_before_it_is_its_badal():
+    assert _role("ما جاء أحد إلا زيد", 4) == "بدل"
+
+
+def test_bare_noun_straight_after_the_six_noun_in_nasb_is_the_doer():
+    # no verb keeps two objects but a verb of two (Ibn Aqil V1 p184): the alif of أباه shows the nasb
+    assert [_role("أكرم أباه الولد", i) for i in (1, 2)] == ["مفعول به", "فاعل"]
+
+
+def test_bare_noun_after_a_called_noun_with_no_damma_is_its_mudaf_ilayh():
+    assert _role("يا عبد الله اجتهد", 2) == "مضاف إليه"
+
+
+def test_bare_tanween_alif_of_a_called_participle_makes_the_noun_after_it_its_object():
+    # a word with tanween is complete, so nothing is added to it; the six nouns' alif is not tanween (يا أخا العرب)
+    assert _role("يا سائقا الشاحنة تمهل", 2) == "مفعول به"
+    assert _role("يا أخا العرب تعال", 2) == "مضاف إليه"
+
+
+def test_bare_part_noun_with_a_pronoun_back_to_the_noun_before_it_is_its_badal():
+    # the sameness of case is not tested when no case is typed (Tasheel 3.10.4 p95: بدل البعض والاشتمال)
+    assert _role("قرأت الكتاب نصفه", 2) == "بدل"
+    assert _role("أعجبني البستان جماله", 2) == "بدل"
+
+
+def test_bare_second_noun_after_the_doer_of_a_verb_of_two_objects_is_its_first_object():
+    assert [_role("أعطى المعلم الطالب كتابا", i) for i in (1, 2, 3)] == ["فاعل", "مفعول به", "مفعول به"]
+
+
+def test_bare_emphasis_words_stay_tawkeed():
+    assert _role("رأيت الصديقين كليهما", 2) == "توكيد"
+    assert _role("حضر الضيوف أجمعون", 2) == "توكيد"
+    assert _role("حضر الخليفة عمر", 2) == "بدل"
+
+
+def test_bare_noun_before_a_verb_with_its_own_doer_and_no_pronoun_back_is_its_fronted_object():
+    # a مبتدأ needs a pronoun back to it in the verb's clause; the doer of الطلاب نجحوا is that pronoun
+    assert _role("الكتاب قرأ الطالب", 0) == "مفعول به"
+    assert _role("الحق نقول", 0) == "مفعول به"
+    assert _role("الطلاب نجحوا", 0) == "مبتدأ"
+
+
+def test_bare_lakin_with_one_word_after_it_joins_that_word():
+    # no khabar can follow a single word, so the light لكن is meant (Tasheel 1.8 p20); with a khabar after, it stays the inna sister
+    assert _role("ما جاء زيد لكن عمرو", 4) == "معطوف"
+    assert _role("لا تصحب الأحمق لكن العاقل", 4) == "معطوف"
+    assert _role("لكن الطالب مجتهد", 1) == "اسم إن"
+
+
+def test_bare_describing_word_after_its_noun_is_its_sifa_whatever_ending_the_parser_guessed():
+    # no case is shown for the two to disagree in, and ين is a dual or a plural alike (Tasheel 3.10.1: the na't follows its noun)
+    assert _role("سمعت صوت الطفل الباكي في الليل", 3) == "صفة"
+    assert _role("رحبت بالزائرين اللطيفين", 2) == "صفة"
+    assert _role("الدين النصيحة", 1) == "خبر"
+
+
+def test_bare_noun_with_a_pronoun_back_to_a_doer_whose_verb_owes_an_object_is_that_object():
+    assert _role("ارتدى المحارب درعه", 2) == "مفعول به"
+
+
+def test_bare_describing_word_after_an_indefinite_idafa_under_a_verb_is_its_sifa_not_a_hal():
+    # a hal's owner is known and a describer of a نكرة is its صفة (Tasheel 3.10.1); a bare جديدة shows no nasb for a hal to need
+    assert _role("يسعى المسؤولون إلى أن يوفروا فرص عمل جديدة للشباب", 7) == "صفة"
+    assert _role("قرأ الطالب كتاب طالب جديدا", 4) == "حال"
+
+def test_bare_word_after_a_pronoun_with_no_case_given_is_its_khabar():
+    # a nominal sentence rests on its khabar (Tasheel 1.4 p6); a diptote or a name shows no case to say otherwise
+    assert _role("لقي الله وهو غضبان", 3) == "خبر"
+    assert _role("لقي الله وهم ظاهرون", 3) == "خبر"
+
+
+def test_bare_describing_word_after_a_noun_showing_no_case_is_its_sifa():
+    assert _role("حلف على مال امرئ مسلم", 4) == "صفة"
+
+
+def test_bare_plural_without_its_nun_is_the_mudaf_of_the_noun_after_it():
+    # Alfiyya: نونا تلي الإعراب أو تنوينا مما تضيف احذف
+    assert _role("كانت بنو إسرائيل يغتسلون عراة", 2) == "مضاف إليه"
+    assert _role("جاء معلمو المدرسة", 2) == "مضاف إليه"
+
+
+def test_a_nasb_noun_straight_after_the_ism_of_kana_is_its_khabar():
+    # Tasheel 1.9: كان and its sisters put their khabar in nasb; حقا is a masdar word only elsewhere
+    assert _role("كَانَ اللَّهُ الصَّمَدَ", 2) == "خبر كان"
+    assert _role("كَانَ الْعَيْنُ حَقًّا", 2) == "خبر كان"
+    assert _role("كَانَ زَيْدٌ يَوْمًا مُسَافِرًا", 2) == "مفعول فيه"  # a time word beside the khabar stays a ظرف
+
+
+def test_bare_lam_after_a_relative_is_the_jazm_particle_not_a_verb():
+    assert _role("سأنبئك بتأويل ما لم تستطع عليه صبرا", 3) == "حرف"

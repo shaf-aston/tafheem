@@ -170,8 +170,9 @@ def is_passive(token: dict) -> bool:
 
 
 def typed_tanween(token: dict) -> bool:
-    """The reader typed tanween on the word: it is complete, nothing is added to it."""
-    return has_tanween(token.get("typed") or "")
+    """The reader typed tanween on the word: it is complete, nothing is added to it. Typed bare, the alif
+    written for nasb tanween shows it too (يا سائقا الشاحنة: سائقا is no مضاف)."""
+    return has_tanween(token.get("typed") or "") or written_nasb(token) is not None
 
 
 def has_added(token: dict, tokens: list[dict]) -> bool:
@@ -280,12 +281,14 @@ def agrees(token: dict, head: dict) -> bool:
     and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا). A noun read
     as a مضاف with nothing added to it is no مضاف (ضَلَّ ضَلَالًا بَعِيدًا typed bare: ضلال). A name
     is definite by itself whatever its tag says (Ajrumiyya p14: والمعرفة خمسة أشياء … والاسم العلم), so a word
-    showing tanween never describes it (شرب زيد الماء باردا); رَبِّ after لِلَّهِ shows none."""
-    dual = [t.get("num") == "d" for t in (token, head) if noun_tagged(t)]
+    showing tanween never describes it (شرب زيد الماء باردا); رَبِّ after لِلَّهِ shows none. Typed bare, a word
+    ending ين is a dual or a plural alike (الزائرين اللطيفين), so it is no dual; a word of no
+    case at all, typed bare, has none to disagree in, nor has one after a noun showing none (مَالِ امْرِئٍ مُسْلِمٍ)."""
+    dual = [t.get("num") == "d" and not (typed_bare(t) and t["form"].endswith("ين")) for t in (token, head) if noun_tagged(t)]
     known = head.get("stt") == "d" or head.get("stt") == "c" and head.get("mudaf", True)
     named = head.get("pos_camel") == "noun_prop" and (typed_tanween(token) or written_nasb(token))
     # الرجلُ الحاديَ عشرَ: a compound ordinal is built, so it stands in its noun's case by its place
-    in_case = same_case(token, head) or token.get("compound") == "ordinal"
+    in_case = same_case(token, head) or token.get("compound") == "ordinal" or typed_bare(token) and not (shown_cases(token) and shown_cases(head))
     return in_case and not (token.get("stt") == "i" and known or named) and len(set(dual)) < 2
 
 

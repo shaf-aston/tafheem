@@ -70,6 +70,10 @@ class Nahw(BaseSettings):
     # sentence one after the other, and the parser is most of each answer's time.
     analyses_kept: int = Field(default=256, ge=0)
     catib_parser_enabled: bool = True
+    # A word the typed letters leave open (كتب: كَتَبَ or كُتِبَ) is read a second time the other way: the rival reading
+    # is looked for among this many of the word's best-ranked readings, and at most this many rivals are swapped in at once.
+    rival_ranks: int = Field(default=3, gt=0)
+    rivals_read: int = Field(default=4, gt=0)
     # The top disambiguator reading comes from bare letters and can contradict typed vowels (آفِلًا for typed أَفَلَا);
     # the first of these that agrees is used. Scoring all costs nothing extra. 40 because a rare passive (أُكِلَ) can rank below the 20th.
     catib_readings: int = 40

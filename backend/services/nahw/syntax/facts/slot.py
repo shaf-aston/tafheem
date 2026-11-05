@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
-from backend.services.nahw.syntax.facts.word import is_built, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
+from backend.services.nahw.syntax.facts.word import is_built, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
@@ -108,8 +108,8 @@ def _object_of_participle(token: dict, head: dict) -> bool:
     if is_elative(head):
         return False
     rel, typed = token["rel"], typed_case_of(token)
-    if rel == "OBJ":
-        return typed_or_parsed_case(token) == "a"
+    if rel == "OBJ":  # يا سائقا الشاحنة typed bare: the head's tanween alif already made it the object, its case unseen
+        return typed_or_parsed_case(token) == "a" or (typed is None and typed_tanween(head))
     return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
         rel == "MOD" and (typed_or_parsed_case(head) != "a" or token.get("pos_camel") != "adj")
         and not (typed_or_parsed_case(head) == "a" and token.get("stt") == head.get("stt") == "d")
@@ -179,8 +179,10 @@ def verb_place(token: dict, s: Sentence) -> str:
     absolute object (same root), a hal or a tamyeez."""
     if place_time(token, s):
         return "place_time"
-    if s.head(token) and listed(token, "verbless_masdars") and token.get("stt") == "i" and typed_or_parsed_case(token) in (None, "a"):
-        return "absolute"  # مجتهداتٌ جِدًّا: a heard masdar whose verb is never said (جَدَّ جِدًّا); a lone one (شكرًا) gets its drawn verb (understood.verb)
+    if s.head(token) and listed(token, "verbless_masdars") and token.get("stt") == "i" and typed_or_parsed_case(token) in (None, "a") and token["rel"] != "PRD":
+        # مجتهداتٌ جِدًّا: a heard masdar whose verb is never said (جَدَّ جِدًّا); a lone one (شكرًا) gets its drawn verb
+        # (understood.verb); not the khabar of كان (كَانَ الْعَيْنُ حَقًّا)
+        return "absolute"
     if is_object_pronoun(token):
         return "object"  # إيّاك نعبد، ما عبدنا إلا إيّاه: the detached pronoun of nasb is only an object
     if verb_joined_by_waw(token, s):
@@ -319,9 +321,10 @@ def verb_place(token: dict, s: Sentence) -> str:
             if is_passive(head):
                 nouns = [t for t in (*siblings, token) if t["rel"] in NOUN_LINKS]
                 return "subject" if rel != "OBJ" or is_deputy(token, nouns) else "object"
-            # the parser reads letters only, so a nominative "object" with no subject is the subject
+            # the parser reads letters only, so a nominative "object" with no subject is the subject; a verb holding
+            # its doer in itself (الحق نقول) wants none
             return "object" if rel == "OBJ" and (
-                typed_or_parsed_case(token) != "u" or any(t["rel"] == "SBJ" for t in siblings)) else "subject"
+                typed_or_parsed_case(token) != "u" or own_doer(head) or any(t["rel"] == "SBJ" for t in siblings)) else "subject"
         if rel == "TMZ":
             return "specification"
     if rel == "MOD" and head:
@@ -407,8 +410,9 @@ def _nominal_place(token: dict, s: Sentence) -> str:
     if rel in SUBJECTS:
         return "subject"
     kids = s.kids(token)
-    # وهو مبتسمٌ: the sentence a و brings rests on its khabar, as a whole one does on its own
-    if rel == "OBJ" and head and head["pos"] == "PRT" and typed_or_parsed_case(token) == "u" \
+    # وهو مبتسمٌ: the sentence a و brings rests on its khabar, as a whole one does on its own; typed bare, a word the
+    # dictionary gives no case (وهو غضبان، وهم ظاهرون) is no less that khabar, only one showing nasb or jarr is not
+    if rel == "OBJ" and head and head["pos"] == "PRT" and typed_or_parsed_case(token) in ("u", None) \
             and any(subject_link(c) and c["id"] < token["id"] for c in kids):
         return "predicate"
     quoted = quoted_head(token, s)

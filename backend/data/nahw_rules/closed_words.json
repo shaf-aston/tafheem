@@ -179,7 +179,7 @@
   "intransitive_verbs": {
    "ar": "أفعال لازمة",
    "_comment": "Verbs that take no object (الفعل اللازم). After ما they leave no slot for a pronoun going back to ما (العائد), and a صلة with no عائد is ما المصدرية, never the relative (مغني اللبيب، ما المصدرية؛ شرح ابن عقيل، الموصول). Read by facts.ma_kind and repair.relative_owed: a relative after such a verb and its doer describes the doer (جاء الرجل الذي رأيته). The verbs of coming, escaping, falling, appearing and happening reach their place by a preposition, never by an object, like ذهب and خرج.",
-   "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي", "جاء", "نجا", "سقط", "هرب", "طار", "ظهر", "غاب", "مرض", "فاز", "حدث", "نما"]
+   "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي", "جاء", "نجا", "سقط", "هرب", "طار", "ظهر", "غاب", "مرض", "فاز", "حدث", "نما", "طال"]
   },
   "noun_describers": {
    "ar": "الصفة الغالبة",
@@ -702,7 +702,7 @@
     "عين": "emphasis 'itself' (with pronoun suffix) vs noun 'eye / spring'",
     "كل": "emphasis 'all of it' (with pronoun suffix, after a noun) vs ordinary mudaf noun 'every / all' before an indefinite noun (كل رجل) or a definite plural",
     "جميع": "emphasis 'all' (with pronoun suffix) vs ordinary noun 'all' as mudaf or hal",
-    "كلا": "emphasis 'both' (with pronoun suffix, masculine dual) vs ordinary mudaf 'both' vs rebuke particle كلا; CAMeL spells it كلى (كلتى) before the pronoun, so the list holds both",
+    "كلا": "emphasis 'both' (with pronoun suffix, masculine dual) vs ordinary mudaf 'both' vs rebuke particle كلا; CAMeL spells it كلى (كلتى) before the pronoun, and typed bare it is كلي (كلتي), the ya of nasb and jarr when added to a pronoun (كليهما، كلتيهما), so the list holds all",
     "كلتا": "emphasis 'both' (with pronoun suffix, feminine dual) vs ordinary mudaf 'both'",
     "عامة": "emphasis 'all' (rare) vs noun 'general / common'",
     "أجمع": "emphasis after كل (كله أجمع); hardly used as an ordinary word",
@@ -717,6 +717,8 @@
     "كلتا",
     "كلى",
     "كلتى",
+    "كلي",
+    "كلتي",
     "عامة"
    ],
    "without_pronoun": [
@@ -743,6 +745,7 @@
    "conditional_adverbs": ["إذا"],
    "_conditional_nouns": "إذا before a past verb is a time word holding the meaning of a condition, not jussive (Tasheel 4.3.1 p112): its own clause is in the place of jarr as its مضاف إليه. Read with jazm's list by nahw_book.condition_of; particle_tree.json tells it from إذا الفجائية.",
    "carriers": ["كل", "بعض", "ذات"],
+   "_خلال": "خلال is a noun, the middle, not a preposition: it is listed among no حروف الجر (Ibn Aqil V2 p293), and is used as a place or time word (جلسنا خلال الحي وخلال دور القوم أي بين البيوت ووسط الدور, Lisan al-Arab, خلل; فجاسوا خلال الديار, Quran 17:5).",
    "_ذات": "ذات added to a time word is used as a time word only, always in nasb: سير عليه ذات يوم، وسير عليه ذات ليلة، بمنزلة ذات مرة (Sibawayh, al-Kitab V1 p226); والمستعمل ظرفا لا غير ما لزم النصب نحو قولك سرنا ذات مرة (Zamakhshari, al-Mufassal p81).",
    "_built": "Time words built on one ending whatever their place (Tasheel): the vowel typed on them is part of the word, not a case (زارنا أمسِ: مبني على الكسر في محل نصب).",
    "_بارحة": "البارحة, the night just gone, is a time name like ليلة: every name of time takes nasb as maf'ul fihi (Tasheel 3.2 p67).",
@@ -793,7 +796,8 @@
     "بعد",
     "لدن",
     "حينا",
-    "دهرا"
+    "دهرا",
+    "خلال"
    ],
    "ambiguous": {
     "إذ": "adverb 'when' (past) vs preposition-like 'since / then' vs a particle of surprise",
@@ -835,7 +839,8 @@
     "بعد": "adverb 'after' vs plain mudaf noun; also the word 'after' in بعد أن",
     "لدن": "adverb 'from the time of' vs none; see also zarf_makan",
     "حينا": "adverb 'for a while' vs plain noun",
-    "دهرا": "adverb 'for ages' vs plain noun 'time / era'"
+    "دهرا": "adverb 'for ages' vs plain noun 'time / era'",
+    "خلال": "adverb 'during' (a noun meaning the middle, in nasb) vs the same noun after a preposition (من خلال); see also zarf_makan"
    }
   },
   "zarf_makan": {
@@ -883,7 +888,8 @@
     "جوار",
     "مكان",
     "يمينا",
-    "شمالا"
+    "شمالا",
+    "خلال"
    ],
    "ambiguous": {
     "حيث": "adverb 'where' (built, takes a clause) vs none; always adverbial",
@@ -926,7 +932,8 @@
     "جوار": "adverb 'beside' vs plain noun 'neighbourhood'",
     "مكان": "adverb 'in place of' vs plain noun 'place'",
     "يمينا": "adverb 'to the right' vs plain noun 'an oath'",
-    "شمالا": "adverb 'to the left' vs plain noun"
+    "شمالا": "adverb 'to the left' vs plain noun",
+    "خلال": "adverb 'among' (a noun meaning the middle, in nasb) vs the same noun after a preposition (من خلال); the book lists no preposition by this name"
    }
   },
   "mawsul": {

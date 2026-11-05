@@ -4,19 +4,21 @@ from __future__ import annotations
 from itertools import pairwise
 
 from backend.services.sarf import verb_reader
+from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
-from backend.services.nahw.book import book_words, is_built_word, is_one, only_adverb
+from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
-from backend.services.nahw.syntax.facts import Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, shown_cases, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged
+from backend.services.nahw.syntax.facts import Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_name, noun_tagged, puts_in_jarr, shown_cases, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
 
 
 def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
     """Reads what was typed into each base word: its vowels, and its kind and tense where they or the book say otherwise."""
     for i, (word, token) in enumerate(zip(words, bases)):
         token["typed"] = word
-        # a tenseless "verb" CAMeL reads as a noun or adjective is that noun (اللهُ أكبرُ); a word the book lists only as a ظرف is a noun
+        # a tenseless "verb" CAMeL reads as a noun or adjective is that noun (اللهُ أكبرُ); a word the book lists only as a ظرف,
+        # or only as a conditional noun (مَهْمَا: Tasheel, the jazm conditionals other than إن and إذما are nouns), is a noun
         if ((verb_tagged(token) and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"))
-                or (token["pos"] == "PRT" and only_adverb(token["lemma"]))):
+                or (token["pos"] == "PRT" and (only_adverb(token["lemma"]) or _only_conditional_noun(token["lemma"])))):
             token["pos"] = "NOM"
         # مُنْذُ أَمْسِ: the letters of a time word built on one ending are that word, never the command they spell
         built = is_built_word(token["base"])
@@ -34,8 +36,11 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
         token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
         token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
-        # نِعْمَ الْوَكِيلُ: a verb of praise or blame typed with its fatha is that past verb, whatever the reading
-        if is_one(token["lemma"], "praise_blame") and typed_case(word, token["stuck_on"]) == "a" and not has_tanween(word):
+        # نِعْمَ الْوَكِيلُ: a verb of praise or blame typed with its fatha is that past verb, whatever the reading; typed bare,
+        # the word straight before a noun with ال is that verb, whose doer is such a noun (Ibn Aqil V2, باب نعم وبئس)
+        bare = strip_diacritics(word) == word
+        if is_one(token["lemma"], "praise_blame") and not has_tanween(word) and (typed_case(word, token["stuck_on"]) == "a" or (
+                bare and i + 1 < len(words) and strip_diacritics(words[i + 1]).startswith("ال"))):
             token.update(pos="VRB", asp="p")
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever the reading. A verb is also tried on its own
         # letters (فَاقْبَلْهَا); a noun never, or the يَدِ of وَيَدِهِ would be a command, except a name the list only
@@ -53,7 +58,8 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         head = next((t for t in tokens if t["id"] == token["head"]), None)
         noun = read_noun and (any(t["head"] == token["id"] and t.get("token_type") == "enc0" and t["rel"] != "OBJ" for t in tokens)
                               or i > 0 and is_one(bases[i - 1]["base"], "nida")
-                              or token["rel"] == "IDF" or token["rel"] == "MOD" and head is not None and typed_or_parsed_case(head) == "i")
+                              or token["rel"] == "IDF" or token["rel"] == "MOD" and head is not None and typed_or_parsed_case(head) == "i"
+                              or verb_reader.noun_marked(word, bases[i - 1]["base"] if i else "", token["lemma"]))
         if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not noun:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
@@ -121,13 +127,30 @@ def since_jarr(tokens: list[dict]) -> None:
             noun["head"], noun["rel"] = since["id"], "OBJ"
 
 
+def _only_conditional_noun(lemma: str) -> bool:
+    """مهما, حيثما: a condition's noun that no relative or question word shares its letters with."""
+    opened = condition_of(lemma)
+    return bool(opened and opened["noun"] and not opened["shared"])
+
+
+def described_after_tanween(tokens: list[dict]) -> None:
+    """يَوْمٌ صَحْوٌ: the tanween of a noun goes for its إضافة (Ibn Aqil V3 p40: تنوينا مما تضيف احذف), so a noun
+    typed with tanween has no مضاف إليه after it; a noun typed with tanween in its own case that the parser
+    hung so is its صفة. A participle's nasb object is another word (object_after_tanween)."""
+    s = Sentence(tokens)
+    for token in tokens:
+        head = s.head(token)
+        if (head and token["rel"] == "IDF" and noun_tagged(token) and not works_as_verb(head)
+                and typed_tanween(head) and typed_tanween(token) and typed_case_of(token) == typed_case_of(head)):
+            token["rel"] = "MOD"
+
+
 def jarr_after_mudaf(tokens: list[dict]) -> None:
     """زَيْدٌ أَكْرَمُ رِجَالٍ: a noun typed in jarr with no جار is a مضاف إليه (Alfiyya: وَالثَّانِيَ اجْرُرْ),
     and the مضاف drops its tanween (نُونًا تَلِي الْإِعْرَابَ أَوْ تَنْوِينًا مِمَّا تُضِيفُ احْذِفْ), so a word the
     parser hung elsewhere, straight after a noun typed with its case but no tanween, is that noun's
     مضاف إليه. A word known already (ال or a name: بِسْمِ اللَّهِ الرَّحْمَنِ) is added to nothing, and a fatha
-    on a word put in jarr is a diptote's, which never takes tanween (مَرَرْتُ بِمَسَاجِدَ كَثِيرَةٍ: its صفة).
-    A مضاف the parser hung under that word takes the word's place first, so the link closes no loop."""
+    on a word put in jarr is a diptote's, which never takes tanween (مَرَرْتُ بِمَسَاجِدَ كَثِيرَةٍ: its صفة)."""
     s = Sentence(tokens)
     for before, word in pairwise(tokens):
         if (typed_case_of(word) == "i" and noun_tagged(word)
@@ -135,10 +158,27 @@ def jarr_after_mudaf(tokens: list[dict]) -> None:
                 # كَمْ كِتَابٍ قَرَأْتُ: a built word never takes tanween, so كم الخبرية adds its noun too
                 and (typed_case_of(before) is not None or is_built(before)) and not typed_tanween(before)
                 and not (typed_case_of(before) == "a" and puts_in_jarr(before, s))):
-            if above([t["head"] for t in tokens], before["id"], word["id"]):
-                before["head"], before["rel"] = word["head"], word["rel"]
-            word["head"], word["rel"] = before["id"], "IDF"
-            before["mudaf"] = True
+            _add_to(tokens, before, word)
+
+
+def nunless_mudaf(tokens: list[dict]) -> None:
+    """كَانَتْ بَنُو إِسْرَائِيلَ typed bare: the nun of a sound masculine plural is dropped when it is added
+    (Alfiyya: نُونًا تَلِي الْإِعْرَابَ أَوْ تَنْوِينًا مِمَّا تُضِيفُ احْذِفْ), so one written with a final و and no nun is the
+    مضاف of the noun straight after it, which shows no case of its own to say otherwise, whatever the parser hung it on."""
+    for before, word in pairwise(tokens):
+        if (noun_tagged(before) and before.get("num") == "p" and before.get("gen") == "m"
+                and strip_diacritics(before.get("typed") or "").endswith("و")
+                and noun_tagged(word) and word["rel"] != "IDF" and typed_case_of(word) is None):
+            _add_to(tokens, before, word)
+
+
+def _add_to(tokens: list[dict], before: dict, word: dict) -> None:
+    """`word` is the مضاف إليه of `before`. A مضاف the parser hung under that word takes the word's place first,
+    so the link closes no loop."""
+    if above([t["head"] for t in tokens], before["id"], word["id"]):
+        before["head"], before["rel"] = word["head"], word["rel"]
+    word["head"], word["rel"] = before["id"], "IDF"
+    before["mudaf"] = True
 
 
 def described_known(tokens: list[dict]) -> None:

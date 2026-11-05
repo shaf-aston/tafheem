@@ -15,7 +15,7 @@ def praised_noun(token: dict, s: "Sentence") -> bool:
     hung it on the verb as a second subject or on the doer as its modifier. The follows axis
     and the slot both ask this, so neither calls it a صفة or a second doer."""
     head = s.head(token)
-    if not head or typed_or_parsed_case(token) != "u" or not noun_tagged(token):
+    if not head or typed_case_of(token) not in (None, "u") or not noun_tagged(token):
         return False
     verb = head if is_verb(head) else s.head(head)
     if not verb or not is_verb(verb) or not is_one(verb["lemma"], "praise_blame"):
@@ -132,7 +132,7 @@ class Sentence:
 
     def _family_of(self, word: dict) -> str | None:
         lemma = word["lemma"]
-        if (is_one(lemma, "inna") and not is_light(word)) or read_as(word, "la_jins"):
+        if (is_one(lemma, "inna") and not is_light(word) and not self.one_word_after(word)) or read_as(word, "la_jins"):
             return "inna"
         if is_one(lemma, "kana", "like_laysa"):
             # ما alone works as ليس only as ما الحجازية; any other ما (ما اسمك) governs nothing
@@ -176,6 +176,13 @@ class Sentence:
         return any(before and before["id"] < particle["id"] and noun_tagged(before)
                    and not is_verb(before)
                    for before in (self.head(particle), self.by_id.get(particle["id"] - 1)))
+
+    def one_word_after(self, particle: dict) -> bool:
+        """ما جاء زيد لكن عمرو: a single word ends the sentence after the particle, so an inna sister has no خبر
+        to be given: typed bare, the light لكن (Tasheel 1.8 p20) that joins that word is meant. Only a sister the
+        books list as joining (closed_words atf)."""
+        return (typed_bare(particle) and is_one(particle["lemma"], "atf")
+                and sum(1 for t in self.tokens if t["id"] > particle["id"] and not is_suffix(t)) == 1)
 
     def negated_before(self, word: dict) -> bool:
         # إِنَّ لِلَّهِ تِسْعَةً ... إِلَّا وَاحِدًا: an إن the particle tree reads as إنّ denies nothing, so إلا excepts
