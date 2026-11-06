@@ -8,7 +8,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
-from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_name, is_preposition, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
+from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_known, is_name, is_preposition, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
 
 
 def typed_words(bases: list[dict], tokens: list[dict]) -> None:
@@ -194,26 +194,24 @@ def _add_to(tokens: list[dict], before: dict, word: dict) -> None:
     before["mudaf"] = True
 
 
-def described_known(tokens: list[dict]) -> None:
-    """مَرَرْتُ بِأَحْمَدَ الْكَرِيمِ، أَطْعَمَ الْغَنِيُّ الْفَقِيرَ الْجَائِعَ: a noun known by ال or by being a name is
+def described_known(s: Sentence) -> None:
+    """مَرَرْتُ بِأَحْمَدَ الْكَرِيمِ، أَطْعَمَ الْغَنِيُّ الْفَقِيرَ الْجَائِعَ: a noun known (facts.is_known) is
     added to nothing (Ajrumiyya p14: العلم and ذو الأداة from the المعارف), so a describing word with ال straight
     after it, in its case, is no مضاف إليه of it, nor a second object beside it on its verb: it describes it,
     its صفة, which agrees with its noun in التعريف (Tasheel 3.10.1), whatever the parser hung it on. A second
     describing word after the first (يَسِيرُ الرَّاكِبُ الْجَوَادَ الْمُضَمَّرَ السَّرِيعَ) describes the same noun."""
-    by_id = {t["id"]: t for t in tokens}
+    def describable(noun: dict) -> bool:  # known and added to nothing: a pronoun, pointer or relative takes no صفة here
+        return is_known(noun, s) and not has_added(noun, s.tokens) and not is_built(noun)
 
-    def is_known(noun: dict) -> bool:
-        return is_name(noun) or (noun["pos"] == "NOM" and noun.get("stt") == "d" and noun["form"].startswith("ال"))
-
-    for before, word in pairwise(tokens):
-        owner = by_id.get(before["head"]) if before["rel"] == "MOD" and is_describing(before) else None
-        noun = owner if owner and is_known(owner) else before
-        known = is_known(noun)
+    for before, word in pairwise(s.tokens):
+        owner = s.head(before) if before["rel"] == "MOD" and is_describing(before) else None
+        noun = owner if owner and describable(owner) else before
+        known = describable(noun)
         beside = (word["head"] == noun["id"] and word["rel"] in ("---", "IDF")) \
             or (word["head"] == noun["head"] and word["rel"] == noun["rel"] == "OBJ")
         if (known and beside and word.get("stt") == "d" and is_describing(word)
                 and (not shown_cases(word) or shown_cases(word) & shown_cases(noun))):
-            word["head"], word["rel"] = noun["id"], "MOD"
+            s.relink(word, noun["id"], "MOD")
 
 
 def emphasis_lam_opener(tokens: list[dict]) -> None:

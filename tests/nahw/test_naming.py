@@ -880,12 +880,11 @@ def test_the_ya_on_a_command_to_a_woman_is_its_doer(typed, ya):
 def test_a_mudaf_is_as_definite_as_the_word_added_to_it():
     """Ibn Aqil V3 p43: the idafa narrows the first noun when the second is indefinite (غلام امرأة) and makes it
     definite when the second is (غلام زيد). A name is definite though CAMeL reads زيدٍ with its tanween as indefinite."""
-    from backend.services.nahw.syntax.repair.khabar import _indefinite
     for added, indefinite in ((token(2, "مال", "مال", "NOM", 1, "IDF", stt="i"), True),
                               (token(2, "عمرو", "عمرو", "PROP", 1, "IDF", stt="i", pos_camel="noun_prop"), False),
                               (token(2, "المال", "مال", "NOM", 1, "IDF", stt="d"), False)):
         mudaf = token(1, "صاحب", "صاحب", "NOM", 0, "---", stt="c")
-        assert _indefinite(mudaf, [mudaf, added]) is indefinite, added["form"]
+        assert (not facts.is_known(mudaf, facts.Sentence([mudaf, added]))) is indefinite, added["form"]
 
 
 def test_a_follower_of_the_called_ayyuha_follows_it_though_it_is_tagged_a_particle():

@@ -65,12 +65,7 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
         return "verb_jazm" if jazm else "verb"
     if after["pos"] == "PRT" or ((cond := condition_of(_lemma(after))) and not cond["shared"]):
         return "tool"
-    bare = strip_diacritics(typed or after["form"])
-    pronoun = any(t["head"] == after["id"] and facts.is_suffix(t) for t in s.tokens)
-    # a name is definite unless CAMeL itself read it indefinite (ضِرَارَ of لا ضرارَ, tagged a name)
-    named = after["pos"] == "PROP" and after.get("stt") != "i"
-    definite = bare.startswith("ال") or named or after.get("stt") == "d" or pronoun
-    return "noun" if definite else "indefinite_noun"
+    return "noun" if facts.is_known(after, s) else "indefinite_noun"
 
 
 def _moved_still(verb: dict, s: facts.Sentence) -> bool:
