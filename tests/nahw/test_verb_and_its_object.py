@@ -4,7 +4,7 @@ it (شرب زيد الماء), and a name a verb of saying took as its object (�
 import pytest
 
 from backend.services.nahw.book import takes_object
-from backend.services.nahw.syntax.facts import agrees, shown_cases, stands_for_its_noun
+from backend.services.nahw.syntax.facts import Sentence, agrees, shown_cases, stands_for_its_noun
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, doer_first, name_told_to
 from tests.nahw.test_naming import VERB, token
 from tests.nahw_helpers import cards, needs_corpus, needs_parser, parsed_as
@@ -119,20 +119,20 @@ def test_the_khabar_of_kana_is_no_badal_of_the_noun_before_it(name):
 ])
 def test_a_noun_hung_on_a_verb_as_its_mudaf_ilayh_is_its_doer_or_object(noun, verb, rel):
     toks = [token(1, "شرب", "شرب", "VRB", 0, "---", **{**VERB, **verb}), token(2, "الماء", "ماء", "NOM", 1, "IDF", **noun)]
-    added_to_verb(toks)
+    added_to_verb(Sentence(toks))
     assert toks[1]["rel"] == rel
 
 
 def test_a_noun_hung_on_a_verb_that_has_a_doer_is_its_object():
     toks = [token(1, "شرب", "شرب", "VRB", 0, "---", **VERB), token(2, "زيد", "زيد", "PROP", 1, "SBJ"),
             token(3, "الماء", "ماء", "NOM", 1, "IDF")]
-    added_to_verb(toks)
+    added_to_verb(Sentence(toks))
     assert toks[2]["rel"] == "OBJ"
 
 
 def test_a_mudaf_ilayh_on_a_noun_stays():
     toks = [token(1, "كتاب", "كتاب", "NOM", 0, "---"), token(2, "الله", "الله", "PROP", 1, "IDF")]
-    added_to_verb(toks)
+    added_to_verb(Sentence(toks))
     assert toks[1]["rel"] == "IDF"
 
 
@@ -148,13 +148,13 @@ def name_then_noun(second: dict, first: str = "زيد", **verb) -> list[dict]:
 ])
 def test_after_a_bare_name_the_word_its_case_lets_be_no_follower_is_the_verbs_object(second):
     toks = name_then_noun(second)
-    doer_first(toks)
+    doer_first(Sentence(toks))
     assert (toks[1]["rel"], toks[2]["head"], toks[2]["rel"]) == ("SBJ", 1, "OBJ")
 
 
 def test_after_a_name_showing_raf_a_word_in_nasb_is_the_verbs_object():
     toks = name_then_noun(token(3, "عمرا", "عمرو", "PROP", 2, "---", cas="a", pos_camel="noun_prop"), "زَيْدٌ")
-    doer_first(toks)
+    doer_first(Sentence(toks))
     assert (toks[1]["rel"], toks[2]["head"], toks[2]["rel"]) == ("SBJ", 1, "OBJ")
 
 
@@ -167,7 +167,7 @@ def test_after_a_name_showing_raf_a_word_in_nasb_is_the_verbs_object():
 ])
 def test_a_word_that_may_follow_the_name_or_a_verb_with_its_own_doer_is_left(second, verb):
     toks = name_then_noun(second, **verb)
-    doer_first(toks)
+    doer_first(Sentence(toks))
     assert (toks[1]["rel"], toks[2]["head"]) == ("OBJ", 2)
 
 
@@ -178,7 +178,7 @@ def told_to(name: dict, verb: str = "قال", before_case: str = "g") -> list[di
 
 def test_a_name_a_verb_of_saying_took_after_a_noun_in_jarr_follows_that_noun():
     toks = told_to(token(4, "آزر", "آزر", "PROP", 1, "OBJ", cas="g", pos_camel="noun_prop"))
-    name_told_to(toks)
+    name_told_to(Sentence(toks))
     assert (toks[3]["head"], toks[3]["rel"]) == (3, "MOD")
 
 
@@ -190,7 +190,7 @@ def test_a_name_a_verb_of_saying_took_after_a_noun_in_jarr_follows_that_noun():
 ])
 def test_a_name_any_other_verb_holds_or_that_cannot_wear_jarr_stays(name, verb, before_case):
     toks = told_to(name, verb, before_case)
-    name_told_to(toks)
+    name_told_to(Sentence(toks))
     assert (toks[3]["head"], toks[3]["rel"]) == (1, "OBJ")
 
 

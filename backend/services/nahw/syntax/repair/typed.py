@@ -117,12 +117,12 @@ def _plural_case(word: str, token: dict, tokens: list[dict]) -> str:
     return head.get("cas", "na") if head else "na"
 
 
-def adverb_only(tokens: list[dict]) -> None:
+def adverb_only(s: Sentence) -> None:
     """مَا رَأَيْتُهُ قَطُّ، أَمَّا بَعْدُ: قط and عوض never leave the adverb (Awdah al-Masalik V2 p232: ما لا يفارق الظرفية
     أصلا), and قبل/بعد cut off from their مضاف إليه are built on the damma (Ibn Aqil V3 p73): neither is a doer, a
     mubtada or a khabar, so a word the parser hung so is a modifier of its head, the ظرف of the clause; so is one hung
     as the object of أَمَّا (أَمَّا بَعْدُ), a particle that is no preposition."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         head = s.head(token)
         if stays_adverb(token) and (token["rel"] in (*SUBJECTS, "PRD")
@@ -146,11 +146,11 @@ def _only_conditional_noun(lemma: str) -> bool:
     return bool(opened and opened["noun"] and not opened["shared"])
 
 
-def described_after_tanween(tokens: list[dict]) -> None:
+def described_after_tanween(s: Sentence) -> None:
     """يَوْمٌ صَحْوٌ: the tanween of a noun goes for its إضافة (Ibn Aqil V3 p40: تنوينا مما تضيف احذف), so a noun
     typed with tanween has no مضاف إليه after it; a noun typed with tanween in its own case that the parser
     hung so is its صفة. A participle's nasb object is another word (object_after_tanween)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         head = s.head(token)
         if (head and token["rel"] == "IDF" and noun_tagged(token) and not works_as_verb(head)
@@ -158,13 +158,13 @@ def described_after_tanween(tokens: list[dict]) -> None:
             token["rel"] = "MOD"
 
 
-def jarr_after_mudaf(tokens: list[dict]) -> None:
+def jarr_after_mudaf(s: Sentence) -> None:
     """زَيْدٌ أَكْرَمُ رِجَالٍ: a noun typed in jarr with no جار is a مضاف إليه (Alfiyya: وَالثَّانِيَ اجْرُرْ),
     and the مضاف drops its tanween (نُونًا تَلِي الْإِعْرَابَ أَوْ تَنْوِينًا مِمَّا تُضِيفُ احْذِفْ), so a word the
     parser hung elsewhere, straight after a noun typed with its case but no tanween, is that noun's
     مضاف إليه. A word known already (ال or a name: بِسْمِ اللَّهِ الرَّحْمَنِ) is added to nothing, and a fatha
     on a word put in jarr is a diptote's, which never takes tanween (مَرَرْتُ بِمَسَاجِدَ كَثِيرَةٍ: its صفة)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for before, word in pairwise(tokens):
         if (typed_case_of(word) == "i" and noun_tagged(word)
                 and noun_tagged(before) and before.get("stt") != "d" and not is_name(before)

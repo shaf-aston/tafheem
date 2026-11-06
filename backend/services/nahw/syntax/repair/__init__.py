@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from backend.services.nahw.syntax import particles
 from backend.services.nahw.syntax.mask import book_links
-from backend.services.nahw.syntax.facts import base_tokens
+from backend.services.nahw.syntax.facts import Sentence, base_tokens
 from backend.services.nahw.syntax.repair.answer import untied_command
 from backend.services.nahw.syntax.repair.asked import asked_anna, asked_before_verb, asked_of_kana, asked_man, man_before_verb
 from backend.services.nahw.syntax.repair.called import called, called_annexes
@@ -21,70 +21,71 @@ from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, exc
 from backend.services.nahw.syntax.repair.typed import adverb_only, described_after_tanween, described_known, emphasis_lam_opener, jarr_after_mudaf, nunless_mudaf, since_jarr, typed_words
 
 
-# Each repair and what it reads: "tokens", the parser's tokens; "bases", only the typed words; "both", the two.
+# Each repair and what it reads: the parser's "tokens", the typed words' "bases", "both", the "sentence" (links kept
+# in step by `Sentence.relink`), or the "bases_sentence".
 PASSES = (
     (typed_words, "both"),
-    (adverb_only, "tokens"),
+    (adverb_only, "sentence"),
     (compound_number, "bases"),
     (since_jarr, "tokens"),
-    (jarr_after_mudaf, "tokens"),
+    (jarr_after_mudaf, "sentence"),
     (nunless_mudaf, "tokens"),
     (emphasis_lam_opener, "tokens"),
     (asked_man, "both"),
-    (man_before_verb, "both"),
+    (man_before_verb, "bases_sentence"),
     (asked_anna, "tokens"),
-    (asked_before_verb, "tokens"),
-    (asked_of_kana, "tokens"),
-    (added_to_verb, "tokens"),
-    (excepted_after_doer, "tokens"),
-    (first_object_owed, "tokens"),
-    (subject_clash, "tokens"),
+    (asked_before_verb, "sentence"),
+    (asked_of_kana, "sentence"),
+    (added_to_verb, "sentence"),
+    (excepted_after_doer, "sentence"),
+    (first_object_owed, "sentence"),
+    (subject_clash, "sentence"),
     (described_known, "tokens"),  # after: the object subject_clash moved onto the verb is a noun it describes
-    (name_told_to, "tokens"),
-    (repeated_doer, "tokens"),
-    (kana_subject, "tokens"),
-    (kana_fronted_khabar, "tokens"),
-    (kana_nasb_khabar, "tokens"),
-    (inna_object, "tokens"),
-    (inna_second_khabar, "tokens"),
-    (zanna_pair, "tokens"),
-    (praise_specified, "tokens"),
-    (doer_first, "tokens"),
-    (doer_after_object, "tokens"),
-    (late_doer, "tokens"),
-    (outer_doer, "tokens"),
-    (verb_under_fronted_object, "tokens"),
-    (object_after_tanween, "tokens"),
-    (described_after_tanween, "tokens"),
-    (object_past_verb, "tokens"),
-    (relative_owed, "tokens"),
-    (called, "tokens"),
-    (called_annexes, "tokens"),
-    (dua_clause, "tokens"),
-    (counted_times, "tokens"),
-    (object_of_noun, "tokens"),
-    (elative_specified, "tokens"),
-    (after_pointer, "tokens"),
-    (relative_khabar, "tokens"),
-    (majrur_of_jar, "tokens"),
-    (told_of_jar, "tokens"),
-    (zarf_is_no_subject, "tokens"),
-    (khabar_said_first, "tokens"),
-    (second_khabar, "tokens"),
-    (naat_after_its_noun, "tokens"),
-    (before_la, "tokens"),
-    (la_over_its_khabar, "tokens"),
-    (hasr_khabar, "tokens"),
-    (described_doer, "tokens"),
-    (hal_clause, "both"),
-    (oath_clause, "tokens"),
-    (amma_clause, "tokens"),
-    (negated_conjunct, "tokens"),
-    (doer_then_khabar, "tokens"),
-    (no_khabar_on_full_verb, "tokens"),
-    (naat_beside_its_noun, "tokens"),
-    (elative_describes, "tokens"),
-    (nasab, "both"),
+    (name_told_to, "sentence"),
+    (repeated_doer, "sentence"),
+    (kana_subject, "sentence"),
+    (kana_fronted_khabar, "sentence"),
+    (kana_nasb_khabar, "sentence"),
+    (inna_object, "sentence"),
+    (inna_second_khabar, "sentence"),
+    (zanna_pair, "sentence"),
+    (praise_specified, "sentence"),
+    (doer_first, "sentence"),
+    (doer_after_object, "sentence"),
+    (late_doer, "sentence"),
+    (outer_doer, "sentence"),
+    (verb_under_fronted_object, "sentence"),
+    (object_after_tanween, "sentence"),
+    (described_after_tanween, "sentence"),
+    (object_past_verb, "sentence"),
+    (relative_owed, "sentence"),
+    (called, "sentence"),
+    (called_annexes, "sentence"),
+    (dua_clause, "sentence"),
+    (counted_times, "sentence"),
+    (object_of_noun, "sentence"),
+    (elative_specified, "sentence"),
+    (after_pointer, "sentence"),
+    (relative_khabar, "sentence"),
+    (majrur_of_jar, "sentence"),
+    (told_of_jar, "sentence"),
+    (zarf_is_no_subject, "sentence"),
+    (khabar_said_first, "sentence"),
+    (second_khabar, "sentence"),
+    (naat_after_its_noun, "sentence"),
+    (before_la, "sentence"),
+    (la_over_its_khabar, "sentence"),
+    (hasr_khabar, "sentence"),
+    (described_doer, "sentence"),
+    (hal_clause, "bases_sentence"),
+    (oath_clause, "sentence"),
+    (amma_clause, "sentence"),
+    (negated_conjunct, "sentence"),
+    (doer_then_khabar, "sentence"),
+    (no_khabar_on_full_verb, "sentence"),
+    (naat_beside_its_noun, "sentence"),
+    (elative_describes, "sentence"),
+    (nasab, "bases_sentence"),
     (untied_command, "tokens"),
     (particles.stamp, "tokens"),
 )
@@ -96,8 +97,10 @@ def correct(words: list[str], tokens: list[dict]) -> None:
     if len(bases := base_tokens(words, tokens)) == len(words):
         for word, base in zip(words, bases):
             base["typed"] = word
-        reads = {"tokens": (tokens,), "bases": (bases,), "both": (bases, tokens)}
+        s = Sentence(tokens)
+        reads = {"tokens": (tokens,), "bases": (bases,), "both": (bases, tokens), "sentence": (s,), "bases_sentence": (bases, s)}
         for repair, kind in PASSES:
+            s.refresh()  # a pass may change more than links (a retag): the next reads the tokens as it left them
             repair(*reads[kind])
     untangle(tokens, parsed)
 

@@ -12,14 +12,14 @@ def _under(token: dict, ancestor: dict, tokens: list[dict]) -> bool:
     return above([t["head"] for t in tokens], token["head"], ancestor["id"])
 
 
-def nasab(bases: list[dict], tokens: list[dict]) -> None:
+def nasab(bases: list[dict], s: Sentence) -> None:
     """محمدُ بنُ عبدِ اللهِ: ابن or بنت between a name and the noun after it is the name's صفة,
     in its case, and مضاف to that noun (Tasheel 3.10.1): the three are one name, never a
     mubtada and its khabar, typed vowels or none. A name typed with tanween is complete,
     so ابن after it opens what is told of it (زيدٌ ابنُ عمرٍو) and is left to the parser.
     The name keeps its own place in the sentence, or the one the ابن held when the parser
     hung the name under it."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for name, son, after in zip(bases, bases[1:], bases[2:]):
         if not (_names(name, son) and listed(son, "nasab") and noun_tagged(after)
                 and not typed_tanween(name)):
@@ -33,11 +33,11 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
         for _ in tokens:
             if not (over := next((w for w in (son, after) if _under(name, w, tokens)), None)):
                 break
-            name["head"], name["rel"] = over["head"], over["rel"]
-        son["head"], son["rel"] = name["id"], "MOD"
-        after["head"], after["rel"] = son["id"], "IDF"
+            s.relink(name, over["head"], over["rel"])
+        s.relink(son, name["id"], "MOD")
+        s.relink(after, son["id"], "IDF")
         son["mudaf"] = True
-        _told_of(name, _name_goes_on(after, bases, tokens), bases, tokens)
+        _told_of(name, _name_goes_on(after, bases, s), bases, s)
 
 
 def _names(word: dict, son: dict) -> bool:
@@ -52,35 +52,35 @@ def _bare(word: dict) -> bool:
     return not word["form"].startswith("ال") and not typed_tanween(word)
 
 
-def _told_of(name: dict, end: dict, bases: list[dict], tokens: list[dict]) -> None:
+def _told_of(name: dict, end: dict, bases: list[dict], s: Sentence) -> None:
     """محمدُ بنُ عبدِ اللهِ رسولُ اللهِ، عمرُ بنُ الخطابِ خليفةٌ: a full name opening a sentence
     with no verb is its mubtada and the noun straight after the name its khabar, however
     the parser hung it (as the name's صفة, or a root of its own)."""
     first, at = bases[0], bases.index(end) + 1
-    if not (name is first or _under(name, first, tokens)) or at >= len(bases) \
-            or any(verb_tagged(t) for t in tokens) or any(t["head"] == first["id"] and t["rel"] == "PRD" for t in tokens):
+    if not (name is first or _under(name, first, s.tokens)) or at >= len(bases) \
+            or any(verb_tagged(t) for t in s.tokens) or any(t["head"] == first["id"] and t["rel"] == "PRD" for t in s.tokens):
         return
     khabar = bases[at]
     if not noun_tagged(khabar) or listed(khabar, "nasab"):
         return
-    first["head"], first["rel"] = 0, "---"
-    khabar["head"], khabar["rel"] = first["id"], "PRD"
+    s.relink(first, 0, "---")
+    s.relink(khabar, first["id"], "PRD")
 
 
-def _name_goes_on(word: dict, bases: list[dict], tokens: list[dict]) -> dict:
+def _name_goes_on(word: dict, bases: list[dict], s: Sentence) -> dict:
     """عبدِ اللهِ، عبدِ المطلبِ: the father's name is itself a مضاف (CAMeL's construct state)
     and the noun after it its مضاف إليه, wherever the parser hung that noun (as a khabar).
     Returns the name's last word."""
     at = bases.index(word)
     while at + 1 < len(bases):
         nxt = bases[at + 1]
-        if not noun_tagged(nxt) or listed(nxt, "nasab") or _under(word, nxt, tokens):
+        if not noun_tagged(nxt) or listed(nxt, "nasab") or _under(word, nxt, s.tokens):
             return word
         # the reading may miss the construct state: a bare noun (no ال, no tanween) before a
         # name, a noun with ال, or a noun typed with kasra (أبي طالبٍ) is its مضاف all the same
         if word.get("stt") != "c" and not (_bare(word) and (is_name(nxt) or nxt.get("stt") == "d" or _typed_kasra(nxt))):
             return word
-        nxt["head"], nxt["rel"] = word["id"], "IDF"
+        s.relink(nxt, word["id"], "IDF")
         word["mudaf"] = True
         word, at = nxt, at + 1
     return word
