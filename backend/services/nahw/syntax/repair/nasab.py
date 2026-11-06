@@ -26,9 +26,8 @@ def nasab(bases: list[dict], tokens: list[dict]) -> None:
             continue
         # محمدُ بنُ عبدِ اللهِ بنِ عبدِ المطلبِ: the second ابن describes the whole name عبد الله,
         # so it hangs on that name's first word, the مضاف
-        while name["rel"] == "IDF" and (head := s.head(name)) and head["id"] < name["id"] \
-                and not listed(head, "nasab"):
-            name = head
+        name = s.climb(name, lambda w: w["rel"] != "IDF" or not (up := s.head(w)) or up["id"] >= w["id"]
+                       or listed(up, "nasab"))
         # climb the name out from under the ابن and its noun into the place they held;
         # no more climbs than words, so links that already loop cannot spin it forever
         for _ in tokens:

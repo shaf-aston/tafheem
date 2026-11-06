@@ -110,6 +110,15 @@ class Sentence:
     def head(self, token: dict) -> dict | None:
         return self.by_id.get(token["head"])
 
+    def climb(self, token: dict | None, stop) -> dict | None:
+        """The first word at or above `token` that `stop` accepts. None when the climb runs past the root;
+        a word already met (links that loop) ends it there, as no word above it would be new."""
+        seen = set()
+        while token and not stop(token) and token["id"] not in seen:
+            seen.add(token["id"])
+            token = self.head(token)
+        return token
+
     def kids(self, token: dict) -> list[dict]:
         return self._kids.get(token["id"], [])
 

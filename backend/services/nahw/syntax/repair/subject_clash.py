@@ -204,10 +204,7 @@ def late_doer(tokens: list[dict]) -> None:
                 and typed_case_of(token) == "u" and noun_tagged(head) and head["id"] < token["id"]
                 and "u" not in shown_cases(head)):
             continue
-        verb, seen = head, set()
-        while verb and not is_verb(verb) and verb["id"] not in seen:
-            seen.add(verb["id"])
-            verb = s.head(verb)
+        verb = s.climb(head, is_verb)
         if not (verb and is_verb(verb) and verb["id"] < head["id"] and not own_doer(verb)):
             continue
         # a word the parser called the doer that the reader typed in nasb is the object, not a doer
@@ -230,10 +227,7 @@ def outer_doer(tokens: list[dict]) -> None:
                 and not is_passive(verb)
                 and any(k is not token and subject_link(k) and noun_tagged(k) and k["id"] < token["id"] for k in s.kids(verb))):
             continue
-        outer, seen = s.head(verb), set()
-        while outer and not (is_verb(outer) and outer["id"] < verb["id"]) and outer["id"] not in seen:
-            seen.add(outer["id"])
-            outer = s.head(outer)
+        outer = s.climb(s.head(verb), lambda up: is_verb(up) and up["id"] < verb["id"])
         if outer and is_verb(outer) and not is_passive(outer) and not holds_doer(outer, s.kids(outer)):
             token["head"], token["rel"] = outer["id"], "SBJ"
             s = Sentence(tokens)
