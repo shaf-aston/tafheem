@@ -20,12 +20,14 @@ import argparse
 import sqlite3
 import sys
 import time
+from contextlib import closing
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
 from backend.services.core import provenance  # noqa: E402, needs the path above
+from backend.services.core.building import building  # noqa: E402, needs the path above
 from backend.services.daleel.sources import registry  # noqa: E402
 from backend.services.text.arabic_text import both_spellings  # noqa: E402
 
@@ -120,17 +122,9 @@ CREATE TABLE book (
 def build(only: str | None = None) -> dict[str, int]:
     # The same checked path the search reads, never a second way of working it
     # out: this function overwrites whatever it names.
-    target = data_path("daleel_index_path")
-    target.parent.mkdir(parents=True, exist_ok=True)
-    scratch = target.with_suffix(".building")
-
-    if scratch.exists():
-        scratch.unlink()
-
-    conn = sqlite3.connect(scratch)
     counts: dict[str, int] = {}
     catalogue: set[tuple[str, str]] = set()
-    try:
+    with building(data_path("daleel_index_path")) as scratch, closing(sqlite3.connect(scratch)) as conn:
         conn.executescript(_SCHEMA)
 
         for source in registry.SOURCES:
@@ -173,16 +167,6 @@ def build(only: str | None = None) -> dict[str, int]:
         print(f"  {'catalogue':<12} {len(catalogue):>7,} books")
         print(f"  {'words':<12} {fill_words(conn):>7,} passages indexed by word")
         print(f"  {'meta':<12} {fill_meta(conn):>7,} passages filed by source")
-
-        conn.close()
-    except Exception:
-        conn.close()
-        scratch.unlink(missing_ok=True)
-        raise
-
-    # One operation, not delete-then-rename: the working index is never gone
-    # before its replacement is there.
-    scratch.replace(target)
     return counts
 
 

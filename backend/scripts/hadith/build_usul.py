@@ -19,9 +19,8 @@ For each hadith number told more than once it counts the narrators at each place
 compares the words of the tellings (services/hadith/usul/family.py), and prints the families with a picture
 and those left without one, by reason. `--sample FILE` also writes families laid out for checking by hand.
 
-Rebuilding is safe at any time: it writes a fresh file beside the old one and
-moves it into place at the end, like build_rijal.py. It stops, leaving the old
-file, if the number of notes moves more than `max_change_ratio` against it.
+Rebuilding is safe at any time (services/core/building.py). It stops, leaving the old
+file, if the rows of the notes, rulings or families move more than `max_change_ratio` against it.
 """
 from __future__ import annotations
 
@@ -33,11 +32,13 @@ import difflib
 import itertools
 import random
 from collections import Counter
+from contextlib import closing
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
+from backend.services.core.building import building  # noqa: E402
 from backend.services.hadith import chain, loader  # noqa: E402
 from backend.services.hadith.chain import chain_of  # noqa: E402
 from backend.services.hadith.rijal import store as rijal_store  # noqa: E402
@@ -114,21 +115,6 @@ def add_notes(conn: sqlite3.Connection, mentions: dict[tuple, list], found: dict
             if level >= weak_from:
                 conn.execute("INSERT OR IGNORE INTO note VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (*key, start, who, level, kind))
     return conn.execute("SELECT COUNT(*) FROM note").fetchone()[0]
-
-
-def guard_change(target: Path, table: str, now: int, ratio: float) -> None:
-    """Stop the build when `table` of the built file `target` would change by more than `ratio` of its rows."""
-    if not target.exists():
-        return
-    before = sqlite3.connect(f"file:{target}?mode=ro", uri=True)
-    try:
-        was = before.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
-    except sqlite3.OperationalError:   # a file built before this table existed
-        was = 0
-    before.close()
-    if was and abs(now - was) / was > ratio:
-        raise SystemExit(f"{table} rows went {was:,} to {now:,}, more than {ratio:.0%}. Old file kept; "
-                         "delete it to accept the new count.")
 
 
 def read_texts(cfg: dict) -> dict[str, str]:
@@ -483,12 +469,12 @@ def build(sample: Path | None = None) -> None:
         raise SystemExit("usul.json pages the books do not bear out:\n  " + "\n  ".join(problems))
     entries = read_books(cfg, texts)
     size, window = cfg["join"]["name_words"], cfg["join"]["nisba_window"]
-    target = data_path("usul_index_path")
-    scratch = target.with_suffix(".building.db")
-    scratch.unlink(missing_ok=True)
-    rijal = sqlite3.connect(f"file:{source}?mode=ro", uri=True)
-    conn = sqlite3.connect(scratch)
-    try:
+    guarded = ["note", "family_place", "family_word"]
+    if any(entries[kc["book"]] for kc in cfg["rulings"]["kinds"].values()):
+        guarded.append("ruling")
+    with (building(data_path("usul_index_path"), guard=(cfg["max_change_ratio"], guarded)) as scratch,
+          closing(sqlite3.connect(f"file:{source}?mode=ro", uri=True)) as rijal,
+          closing(sqlite3.connect(scratch)) as conn):
         conn.executescript(_SCHEMA)
         rows = narrator_rows(rijal)
         mentions = mentions_by_hadith(rijal)
@@ -571,7 +557,6 @@ def build(sample: Path | None = None) -> None:
                           for who, (level, terms, kind, grade) in found.items()])
         conn.executemany("INSERT INTO gap VALUES (?, ?, ?)", [(what, text, n) for (what, text), n in gaps.items()])
         notes = add_notes(conn, mentions, found, cfg["weak_from"])
-        guard_change(target, "note", notes, cfg["max_change_ratio"])
 
         pairs_by: dict[tuple[int, int], list] = {}
         for p in pair_list:
@@ -584,12 +569,9 @@ def build(sample: Path | None = None) -> None:
         if any(entries[kc["book"]] for kc in cfg["rulings"]["kinds"].values()):
             ruling_report = add_rulings(conn, entries, our_hadith(), narrators_by_hadith(rijal, rows),
                                        [names.forms(row, names.words) for row in rows.values()], cfg)
-            guard_change(target, "ruling", conn.execute("SELECT COUNT(*) FROM ruling").fetchone()[0], cfg["max_change_ratio"])
 
         # The versions fold: narrators counted at each place of a number's chains, and words one telling alone has.
         family_report, family_results = add_families(conn, mentions, our_hadith(), rows, cfg)
-        for table in ("family_place", "family_word"):
-            guard_change(target, table, conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0], cfg["max_change_ratio"])
 
         # What the page counts of him in our books.
         weak: dict[int, set] = {}
@@ -608,14 +590,6 @@ def build(sample: Path | None = None) -> None:
         totals = conn.execute(
             "SELECT kind, collection, COUNT(*) FROM link GROUP BY kind, collection ORDER BY kind, collection").fetchall()
         conn.commit()
-    except BaseException:
-        conn.close()
-        scratch.unlink(missing_ok=True)
-        raise
-    finally:
-        rijal.close()
-    conn.close()
-    scratch.replace(target)
 
     print("\n".join(ruling_report))
     print("\n".join(family_report))

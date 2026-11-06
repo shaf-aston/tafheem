@@ -31,6 +31,10 @@ from pathlib import Path
 
 import httpx
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+
+from backend.services.core.building import building  # noqa: E402, needs the path above
+
 DATA_DIR = Path(__file__).parent.parent.parent / "data" / "quran"
 OUT = DATA_DIR / "mushaf" / "madani-1421.json"  # its entry is in mushaf/printings.json
 
@@ -158,15 +162,13 @@ def build() -> None:
     if names != list(range(1, SURAHS + 1)) or basmalas != SURAHS - len(NO_BASMALA_LINE):
         raise SystemExit(f"Not the whole printing: {len(names)} surah names, {basmalas} basmalas")
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    temporary = OUT.with_suffix(".building")
     payload = {
         "_about": "Madani 1421 (KFGQPC V2), 604 pages. Built by backend/scripts/quran/build_mushaf.py from "
                   "api.quran.com (line_v2, text_qpc_hafs); read only by backend/services/quran/mushaf.py.",
         "pages": pages,
     }
-    temporary.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    temporary.replace(OUT)
+    with building(OUT) as temporary:
+        temporary.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"Built {OUT}: {TOTAL_PAGES} pages, {len(names)} surahs")
 
 

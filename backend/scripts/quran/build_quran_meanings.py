@@ -37,10 +37,15 @@ from __future__ import annotations
 import sqlite3
 import sys
 import time
+from contextlib import closing
 from pathlib import Path
 from typing import NamedTuple
 
 import httpx
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+
+from backend.services.core.building import building  # noqa: E402, needs the path above
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data" / "quran"
 DATABASE = DATA_DIR / "meanings.db"
@@ -228,58 +233,51 @@ def meaning_rows(found: Harvest) -> tuple[list[tuple], int]:
 
 
 def build(dry_run: bool = False) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    building = DATABASE.with_suffix(".building")
-    building.unlink(missing_ok=True)
+    with building(DATABASE, dry_run=dry_run) as scratch, closing(sqlite3.connect(scratch)) as db:
+        db.executescript(SCHEMA)
 
-    db = sqlite3.connect(building)
-    db.executescript(SCHEMA)
+        with httpx.Client(headers={"Accept": "application/json"}) as client:
+            listing = chapters(client)
+            languages = ", ".join(LANGUAGES)
+            print(f"Fetching the word-by-word {languages} of {len(listing)} surahs…")
 
-    with httpx.Client(headers={"Accept": "application/json"}) as client:
-        listing = chapters(client)
-        languages = ", ".join(LANGUAGES)
-        print(f"Fetching the word-by-word {languages} of {len(listing)} surahs…")
-
-        db.executemany(
-            "INSERT INTO surah (id, name_en, name_ar, ayahs) VALUES (?, ?, ?, ?)",
-            [
-                (c["id"], c["name_simple"], c["name_arabic"], c["verses_count"])
-                for c in listing
-            ],
-        )
-
-        total = englishless = 0
-        for chapter in listing:
-            surah = chapter["id"]
-            found = words_of(client, surah)
-            rows, dropped = meaning_rows(found)
-            db.executemany("INSERT OR REPLACE INTO meaning VALUES (?, ?, ?, ?, ?)", rows)
-            db.executemany("INSERT OR REPLACE INTO uthmani VALUES (?, ?, ?, ?)", found.uthmani)
-            db.executemany("INSERT OR REPLACE INTO ayah_end VALUES (?, ?, ?)", found.ends)
-            db.commit()
-            total += len(rows)
-            englishless += dropped
-            missing = sum(1 for row in rows if not row[4])
-            print(
-                f"  {surah:3}. {chapter['name_simple']:<24} {len(rows):>5} words"
-                + (f"   {missing} with no Urdu" if missing else "")
+            db.executemany(
+                "INSERT INTO surah (id, name_en, name_ar, ayahs) VALUES (?, ?, ?, ?)",
+                [
+                    (c["id"], c["name_simple"], c["name_arabic"], c["verses_count"])
+                    for c in listing
+                ],
             )
-            time.sleep(PAUSE_SECONDS)
 
-    db.execute("CREATE INDEX meaning_ayah ON meaning (surah, ayah)")
-    db.execute("CREATE INDEX uthmani_ayah ON uthmani (surah, ayah)")
-    db.commit()
-    db.close()
+            total = englishless = 0
+            for chapter in listing:
+                surah = chapter["id"]
+                found = words_of(client, surah)
+                rows, dropped = meaning_rows(found)
+                db.executemany("INSERT OR REPLACE INTO meaning VALUES (?, ?, ?, ?, ?)", rows)
+                db.executemany("INSERT OR REPLACE INTO uthmani VALUES (?, ?, ?, ?)", found.uthmani)
+                db.executemany("INSERT OR REPLACE INTO ayah_end VALUES (?, ?, ?)", found.ends)
+                db.commit()
+                total += len(rows)
+                englishless += dropped
+                missing = sum(1 for row in rows if not row[4])
+                print(
+                    f"  {surah:3}. {chapter['name_simple']:<24} {len(rows):>5} words"
+                    + (f"   {missing} with no Urdu" if missing else "")
+                )
+                time.sleep(PAUSE_SECONDS)
+
+        db.execute("CREATE INDEX meaning_ayah ON meaning (surah, ayah)")
+        db.execute("CREATE INDEX uthmani_ayah ON uthmani (surah, ayah)")
+        db.commit()
 
     if englishless:
         print(f"\n{englishless} words were glossed in another language but not English, and were not stored.")
 
     if dry_run:
-        print(f"\nDry run, {total:,} words. Left at {building}; {DATABASE} is untouched.")
+        print(f"\nDry run, {total:,} words. Left at {scratch}; {DATABASE} is untouched.")
         return
 
-    # Swapped in only now, so an interrupted run leaves the old file untouched.
-    building.replace(DATABASE)
     size_mb = DATABASE.stat().st_size / 1_000_000
     print(f"\nDone, {total:,} words in {DATABASE} ({size_mb:.1f} MB)")
 

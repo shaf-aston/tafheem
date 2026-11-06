@@ -47,6 +47,7 @@ import httpx
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
+from backend.services.core.building import building  # noqa: E402
 from backend.services.text.arabic_text import strip_diacritics  # noqa: E402
 
 DATA = Path(__file__).parent.parent.parent / "data"
@@ -114,11 +115,9 @@ def download_urdu(refresh: bool = False) -> None:
     print(f"Downloading the Urdu Wiktionary extraction to {URDU_DUMP.name}…")
     with httpx.stream("GET", URDU_SOURCE, timeout=300, follow_redirects=True) as response:
         response.raise_for_status()
-        building = URDU_DUMP.with_suffix(".building")
-        with open(building, "wb") as out:
+        with building(URDU_DUMP) as scratch, open(scratch, "wb") as out:
             for chunk in response.iter_bytes():
                 out.write(chunk)
-    building.replace(URDU_DUMP)
     print(f"  {URDU_DUMP.stat().st_size / 1_000_000:.1f} MB")
 
 

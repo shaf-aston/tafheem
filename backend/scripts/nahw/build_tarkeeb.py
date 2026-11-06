@@ -35,10 +35,12 @@ import json
 import sqlite3
 import sys
 from collections import Counter, defaultdict
+from contextlib import closing
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
+from backend.services.core.building import building  # noqa: E402
 from backend.services.nahw import tarkeeb_store  # noqa: E402
 from backend.services.text import arabic_text
 from backend.services.nahw import book as nahw_book
@@ -429,57 +431,52 @@ def build(treebank: Path, labels: Path) -> None:
     ayahs = read_rows(treebank)
     print(f"read {len(ayahs)} ayahs from {treebank.name}")
 
-    # built in a file beside it and moved into place, so a run that breaks leaves the old one whole
-    building = DATABASE.with_suffix(".building")
-    building.unlink(missing_ok=True)
-    db = sqlite3.connect(building)
-    db.executescript(SCHEMA)
+    with building(DATABASE) as scratch, closing(sqlite3.connect(scratch)) as db:
+        db.executescript(SCHEMA)
 
-    kept = 0
-    rejected: Counter[str] = Counter()
-    for (surah, ayah), sentences in sorted(ayahs.items()):
-        corpus_words = [word["arabic"] for word in quran_corpus.tags_for_ayah(surah, ayah)]
-        words: list[dict] = []
-        branches: list[dict] = []
-        failed = None
+        kept = 0
+        rejected: Counter[str] = Counter()
+        for (surah, ayah), sentences in sorted(ayahs.items()):
+            corpus_words = [word["arabic"] for word in quran_corpus.tags_for_ayah(surah, ayah)]
+            words: list[dict] = []
+            branches: list[dict] = []
+            failed = None
 
-        for rows in sentences:
-            piece, _ = _words_of(rows, settings)
-            tree = _tree_of(piece, settings, nahw_book.relation_tone)
-            if tree is None:
-                failed = "contiguity"
-                break
-            # Each sentence's word numbers restart; shift them into the ayah.
-            _shift(tree, len(words))
-            words += piece
-            branches.append(tree)
+            for rows in sentences:
+                piece, _ = _words_of(rows, settings)
+                tree = _tree_of(piece, settings, nahw_book.relation_tone)
+                if tree is None:
+                    failed = "contiguity"
+                    break
+                # Each sentence's word numbers restart; shift them into the ayah.
+                _shift(tree, len(words))
+                words += piece
+                branches.append(tree)
 
-        if failed is None:
-            # An ayah of several sentences is one tree with each as a branch.
-            tree = branches[0] if len(branches) == 1 else {
-                "role": "", "tone": "default", "children": branches,
-            }
-            failed = gates(words, tree, corpus_words, vocabulary)
+            if failed is None:
+                # An ayah of several sentences is one tree with each as a branch.
+                tree = branches[0] if len(branches) == 1 else {
+                    "role": "", "tone": "default", "children": branches,
+                }
+                failed = gates(words, tree, corpus_words, vocabulary)
 
-        if failed:
-            rejected[failed] += 1
-            continue
+            if failed:
+                rejected[failed] += 1
+                continue
 
-        written = [i for i, w in enumerate(words) if not w["elided"]]
-        db.execute(
-            "INSERT INTO tarkeeb (surah, ayah, words, tree, letters, written)"
-            " VALUES (?, ?, ?, ?, ?, ?)",
-            (surah, ayah,
-             json.dumps([w["text"] for w in words], ensure_ascii=False),
-             json.dumps(tree, ensure_ascii=False),
-             tarkeeb_store.letters([words[i]["text"] for i in written]),
-             json.dumps(written)),
-        )
-        kept += 1
+            written = [i for i, w in enumerate(words) if not w["elided"]]
+            db.execute(
+                "INSERT INTO tarkeeb (surah, ayah, words, tree, letters, written)"
+                " VALUES (?, ?, ?, ?, ?, ?)",
+                (surah, ayah,
+                 json.dumps([w["text"] for w in words], ensure_ascii=False),
+                 json.dumps(tree, ensure_ascii=False),
+                 tarkeeb_store.letters([words[i]["text"] for i in written]),
+                 json.dumps(written)),
+            )
+            kept += 1
 
-    db.commit()
-    db.close()
-    building.replace(DATABASE)
+        db.commit()
 
     total = len(ayahs) or 1
     print(f"\nkept {kept} of {total} ayahs ({kept / total:.1%})")
