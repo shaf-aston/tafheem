@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 _TAGS_RE = re.compile(r"\[[^\]]*\]|<[^>]*>")
 # The word every clause's name opens with (data/nahw_rules/tarkeeb.json).
 _CLAUSE = term_ar("jumlah_ismiyyah").split()[0]
-# Where a model's sense is filed (progress_store), so every server process reads the first one kept.
+# Where a model's sense is filed (attempts), so every server process reads the first one kept.
 # Renamed whenever SENTENCE_USER changes, so answers filed under an older prompt are never reused.
 # "arabic" is the other direction's answer, filed the same way.
 _KEPT, _QUESTION, _ARABIC = "dict", "meaning3", "arabic"

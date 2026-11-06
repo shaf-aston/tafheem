@@ -1,7 +1,7 @@
 """What a learner has answered, and what it says about them.
 
 Thin on purpose: every rule about what counts as still-to-review, and every
-piece of SQL, lives in services/learner/progress_store.py. This file only turns a
+piece of SQL, lives in services/learner (attempts, accounts, circles). This file only turns a
 request into a call and the answer into a response model.
 
 Nothing here knows what an item is. The quiz sends the id of a meaning; the
@@ -42,7 +42,7 @@ from backend.models.progress import (
     Shelf,
     SignUpIn,
 )
-from backend.services.learner import accounts, attempts, circles, progress_store
+from backend.services.learner import accounts, attempts, circles, lifecycle
 from backend.services.learner.username import GUEST, clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
@@ -85,7 +85,7 @@ async def leave_feedback(note: FeedbackIn, user: str = USER) -> AttemptSaved:
 @router.delete("", response_model=Forgotten)
 async def forget_progress(user: str = USER) -> Forgotten:
     """Delete every answer and the shelf of this name. The Settings wipe calls it."""
-    return Forgotten(deleted=progress_store.forget(user))
+    return Forgotten(deleted=lifecycle.forget(user))
 
 
 @router.get("/summary", response_model=ProgressSummary)
@@ -142,7 +142,7 @@ async def sign_up(body: SignUpIn, user: str = TYPED, device: str = DEVICE) -> Ac
     if not accounts.sign_up(user):
         raise HTTPException(status_code=409, detail="That username is taken")
     if body.keep and device != GUEST:
-        progress_store.claim_guest(user, device)
+        lifecycle.claim_guest(user, device)
     return Account(**accounts.account(user))
 
 
@@ -164,7 +164,7 @@ def get_account(user: str = NAMED) -> Account:
 @router.delete("/account", response_model=Forgotten)
 async def delete_account(user: str = NAMED) -> Forgotten:
     """Delete this username, every answer it gave and its shelf; the name is free again."""
-    return Forgotten(deleted=progress_store.delete_account(user))
+    return Forgotten(deleted=lifecycle.delete_account(user))
 
 
 @router.get("/saved", response_model=Shelf)

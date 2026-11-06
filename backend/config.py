@@ -504,7 +504,7 @@ class Progress(BaseSettings):
     rewards_xp_per_answer: int = Field(default=10, gt=0)
     # Level n needs this × n XP to reach n + 1.
     rewards_level_step: int = Field(default=100, gt=0)
-    # A device's guest record with no answer for this many days is deleted at startup (progress_store.sweep_guests).
+    # A device's guest record with no answer for this many days is deleted at startup (lifecycle.sweep_guests).
     # Long, not Firebase's 30: spaced review brings a known word back weeks later, and that guest must find it.
     # Runs as the "guest_sweep" startup step: a startup_background set in .env must name it, or nothing is swept.
     progress_guest_days: int = Field(default=180, gt=0)
@@ -516,7 +516,7 @@ class Progress(BaseSettings):
     beta_list_accounts: bool = True
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20
-    # Circle kinds (services/learner/progress_store.py): each kind's members_see_details flag. True: every joined
+    # Circle kinds (services/learner/circles.py): each kind's members_see_details flag. True: every joined
     # member sees every other member's full overview; False: only admins (and admins of circles above) do.
     circle_kinds: dict[str, bool] = {"friends": True, "family": False, "class": False, "team": False}
     circle_name_max: int = Field(default=60, gt=0)

@@ -158,7 +158,7 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
   rebuilt, never hand-edited (see `backend/data/maqayees/README.md`).
 - `backend/data/progress.db`: learners' answers, and every Nahw practice question as it was
   generated (from `data/practice/templates.json`, filed under its badge's source; `GET /api/practice/kept`). The
-  one database written while running, opened only by `services/learner/progress_store.py`. Rows are
+  one database written while running, opened only by `services/learner/progress_db.py`. Rows are
   filed under the learner's username (no password): the page sends it on every request (`api.js` interceptor) in the `X-Tafheem-Profile`
   header, `identity.py` `current_user()` cleans it (rules only in `services/learner/username.py`) and
   refuses a name with no account. `POST /api/progress/signup` and `/login` return the account, its name the kept spelling
@@ -169,7 +169,7 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
   keys are bare). That one account's keys are its shelf: `lib/store/shelf.js` pulls it from
   `GET /api/progress/saved` at start-up and log-in and `PUT`s it back a moment after any change (at once when the page is hidden),
   so it follows the name to any device. Log-in and log-out reload the page.
-  Circles (`/api/progress/circles...`, rules all in `progress_store`): a circle has a kind (config `circle_kinds`, each with
+  Circles (`/api/progress/circles...`, rules in `services/learner/circles.py` and `circle_rules.py`): a circle has a kind (config `circle_kinds`, each with
   `members_see_details`) and may sit inside one its creator administers. An admin invites an existing username, who sees
   nothing until they accept; admins invite, remove, change roles and delete; the last admin cannot leave while others are in.
   Joined members see the circle's ranking (`/leaderboard?circle=`). A member's overview is visible to themselves, admins of

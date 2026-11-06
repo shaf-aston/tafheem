@@ -1,4 +1,4 @@
-"""XP and level from answers. Pure; progress_store feeds it.
+"""XP and level from answers. Pure; attempts.py feeds it.
 
 - A right answer earns `xp_per_answer` once per item per local day; wrong earns 0.
 - Level n needs `level_step * n` XP to reach n + 1.

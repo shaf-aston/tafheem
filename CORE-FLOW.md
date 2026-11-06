@@ -66,7 +66,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 
 | Tab | Screen | Data call | Route | Logic | Data |
 |---|---|---|---|---|---|
-| home | `components/home/HomePanel.jsx` | `fetchOverview` (`lib/learner/progress.js`) | `routers/progress.py` | `services/learner/progress_store.py` | `data/progress.db` |
+| home | `components/home/HomePanel.jsx` | `fetchOverview` (`lib/learner/progress.js`) | `routers/progress.py` | `services/learner/attempts.py` | `data/progress.db` |
 | nahw | `components/nahw/NahwPanel.jsx` | `analyzeIraab` | `routers/analyze.py` | `services/nahw/iraab.py`, `services/nahw/syntax/` | `data/nahw_rules/`, `data/tarkeeb/tarkeeb.db` |
 | sarf | `components/sarf/SarfPanel.jsx` | `analyzeMorphology`, `conjugateForm` | `routers/morphology.py` | `services/sarf/conjugation.py`, `services/sarf/` | `data/sarf/` |
 | quran | `components/quran/QuranPanel.jsx` | `quranSurahQuery` (`lib/quran/quranOpen.js`), `searchQuran` | `routers/quran.py` | `services/quran/service.py`, `services/quran/corpus.py` | `data/quran/corpus.db`, `data/quran/library.db` |
@@ -75,7 +75,7 @@ built `.json` files are made by `backend/scripts/` and are not in git.
 | dict | `components/dictionary/DictionaryPanel.jsx` | `searchDictionary` | `routers/dictionary.py` | `services/dictionary/service.py` | `data/arabic_dictionary.json`, `data/lexicons.db` |
 | mem | `components/memorise/MemorisePanel.jsx` | `getQuranSurah`, `getSimilar` (`lib/memorise/books.js`) | `routers/quran.py` | `services/quran/mutashabihat.py`, `services/quran/service.py` | `data/quran/mutashabihat.json`, `frontend/public/jazariyya/poem.json` |
 | grow | `components/grow/GrowPanel.jsx` | `getGrowWorld` (Prayer); the other worlds read `frontend/public/grow/` | `routers/grow.py` | none: the route serves the files; `lib/grow/lesson.js` paces, `lib/grow/<world>Lesson.js` builds the cards | `data/grow/sources.json`, `data/grow/worlds/prayer/` |
-| quiz | `components/quiz/QuizPanel.jsx` | `lib/quiz/quizBanks.js`, `fetchReviewItems` (`lib/learner/progress.js`) | `routers/progress.py` | `services/learner/progress_store.py` | `frontend/public/words/`, `data/progress.db` |
+| quiz | `components/quiz/QuizPanel.jsx` | `lib/quiz/quizBanks.js`, `fetchReviewItems` (`lib/learner/progress.js`) | `routers/progress.py` | `services/learner/attempts.py` | `frontend/public/words/`, `data/progress.db` |
 | timelines | `components/timelines/TimelinesPanel.jsx` | `timelinesQuery` | `routers/timelines.py` | `services/timelines.py`, `services/text/refs.py`, `services/quran/asbab.py` | `data/timelines/` |
 | dawah | `components/dawah/DawahPanel.jsx` | `dawahQuery` | `routers/dawah.py` | `services/dawah.py` | `data/dawah/dawah.json` |
 | colloq | `components/colloquial/ColloquialPanel.jsx` | `colloquialQuery`, `colloquialUnitQuery` | `routers/colloquial.py` | `services/colloquial/loader.py` | `data/colloquial/` |

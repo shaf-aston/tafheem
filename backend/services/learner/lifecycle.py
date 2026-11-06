@@ -1,4 +1,5 @@
-"""Learner records, mid-split.
+"""Whole-learner moves and wipes: forget, delete an account, hand a device's guest record to a new
+account, sweep idle devices.
 """
 from __future__ import annotations
 

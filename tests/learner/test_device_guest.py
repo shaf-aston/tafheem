@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import accounts, attempts, progress_db, progress_store
+from backend.services.learner import accounts, attempts, lifecycle, progress_db
 from backend.services.learner.username import GUEST, clean_name, device_key, is_guest
 
 client = TestClient(app)
@@ -231,7 +231,7 @@ def test_the_sweep_drops_idle_devices_only():
         aged("amina", 400)
         aged(GUEST, 400)
     attempts.leave_feedback(module="quiz", message="typo", user=idle)
-    assert progress_store.sweep_guests(180) == 2
+    assert lifecycle.sweep_guests(180) == 2
     users = {row[0] for row in db.execute("SELECT user FROM attempts")}
     assert users == {fresh, "amina", GUEST}
     assert len(attempts.summary("quiz", fresh)) == 2
@@ -242,10 +242,10 @@ def test_the_sweep_never_reaches_past_the_prefix():
     """The range stops at "guest;", so a name sorting just after the prefix is never swept."""
     with progress_db.connection():
         aged("guest;x", 400), aged("guest", 400), aged("guests", 400)
-    assert progress_store.sweep_guests(180) == 0
+    assert lifecycle.sweep_guests(180) == 0
 
 
 def test_the_sweep_keeps_a_device_answering_at_the_edge():
     with progress_db.connection():
         aged(device_key(PHONE), 179)
-    assert progress_store.sweep_guests(180) == 0
+    assert lifecycle.sweep_guests(180) == 0
