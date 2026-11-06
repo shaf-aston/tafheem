@@ -7,8 +7,10 @@
  */
 import { useQueries } from '@tanstack/react-query'
 
+import { fetchStatic, staticQuery } from '../api/staticQuery'
 import { lessonCards, partOfLesson, partsDue, partsOf, reviewCards } from './bookLesson'
 import { indexPath, partPath } from './bookSplit'
+import { sourceQuery } from './useLessonWorld'
 import { summaryQuery, useRecord } from '../learner/record'
 
 /** Where the book world last studied is remembered (GrowPanel writes it, Grow home leads with it). */
@@ -17,14 +19,8 @@ export const LAST_BOOK = 'grow-last-book'
 /** The lesson id a review goes by, in the address and to `makeLesson`. */
 export const REVIEW = 'review'
 
-async function load(url) {
-  const response = await fetch(url)
-  if (!response.ok) throw new Error(`Could not load the book (${response.status})`)
-  return response.json()
-}
-
 /** A book's index as a query: one key for the hook and for fetching ahead (lib/grow/growOpen.js). */
-export const bookSourceQuery = (world) => ({ queryKey: ['grow-source', world.id], queryFn: () => load(indexPath(world.source)), staleTime: Infinity })
+export const bookSourceQuery = (world) => sourceQuery(world, () => fetchStatic(indexPath(world.source), 'the book'))
 
 // The record when it cannot be read: nothing answered.
 const NOTHING = []
@@ -60,7 +56,7 @@ export function useBookWorlds(worlds, view) {
   const states = worlds.map((_, i) => stateOf(sources[i].data, records[i]))
   const wanted = worlds.flatMap((world, i) => partsWanted(world, view, sources[i].data, states[i]?.due ?? []).map((id) => ({ world, id })))
   const parts = useQueries({
-    queries: wanted.map(({ world, id }) => ({ queryKey: ['grow-part', world.id, id], queryFn: () => load(partPath(world.source, id)), staleTime: Infinity })),
+    queries: wanted.map(({ world, id }) => staticQuery(partPath(world.source, id), 'the book')),
   })
 
   return Object.fromEntries(worlds.map((world, i) => {
