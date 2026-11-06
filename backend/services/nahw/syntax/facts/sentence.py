@@ -42,6 +42,11 @@ class Sentence:
 
     def __init__(self, tokens: list[dict]):
         self.tokens = tokens
+        self.refresh()
+
+    def refresh(self) -> None:
+        """Read the tokens again, every lookup: for a change of more than links (a retag)."""
+        tokens = self.tokens
         self.by_id = {t["id"]: t for t in tokens}
         self._kids: dict[int, list[dict]] = {}
         for t in tokens:
@@ -109,6 +114,16 @@ class Sentence:
 
     def head(self, token: dict) -> dict | None:
         return self.by_id.get(token["head"])
+
+    def relink(self, token: dict, head: int, rel: str) -> None:
+        """Hang the token on the word with id `head` as `rel`, and keep the lookups that follow the links in step.
+        The kid lists are replaced, never edited, so a loop already walking one finishes on the links it started with."""
+        self._kids[token["head"]] = [k for k in self._kids.get(token["head"], []) if k is not token]
+        token["head"], token["rel"] = head, rel
+        kids = self._kids.get(head, [])
+        self._kids[head] = [*(k for k in kids if k["id"] < token["id"]), token, *(k for k in kids if k["id"] > token["id"])]
+        self._family.clear()
+        self.asked_pair = self._asked_pair()
 
     def climb(self, token: dict | None, stop) -> dict | None:
         """The first word at or above `token` that `stop` accepts. None when the climb runs past the root;
