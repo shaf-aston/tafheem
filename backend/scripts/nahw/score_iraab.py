@@ -66,7 +66,7 @@ from functools import partial
 from pathlib import Path
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics, words
-from backend.services.nahw.book import book_file, family_cards, named_roles, role_table
+from backend.services.nahw.book import book_file, family_cards, fused_preposition, named_roles, role_table
 
 DATA = Path(__file__).resolve().parent.parent.parent / "data"
 KEY = json.loads((DATA / "nahw_rules" / "answer_key.json").read_text(encoding="utf-8"))
@@ -236,8 +236,11 @@ def same_role(have: str, want: str, by_family: bool) -> bool:
     return bool(have) and family(want) is not None and family(have) == family(want)
 
 
-def right_role(have: str, want: str, also: list[str], by_family: bool) -> bool:
-    """The card's role is the key's, or another answer the books accept for that word (a row's "also")."""
+def right_role(have: str, want: str, also: list[str], by_family: bool, word: str) -> bool:
+    """The card's role is the key's, or another answer the books accept for that word (a row's "also"), or the
+    other half of a preposition written with its pronoun (فيه: حرف جر or مجرور, book.fused_preposition)."""
+    if fused_preposition(word) and {have, want} == {"حرف جر", "مجرور"}:
+        return True
     return any(same_role(have, ok, by_family) for ok in (want, *also))
 
 
@@ -260,7 +263,7 @@ def score_exact(name: str, api: str | None, show: int) -> Counter:
         for i, want in enumerate(key):
             have = plain_role(cards[i].get("role")) if aligned else ""
             row["roles"] += 1
-            if right_role(have, want, ex.get("also", {}).get(str(i), []), ex.get("by") == "family"):
+            if right_role(have, want, ex.get("also", {}).get(str(i), []), ex.get("by") == "family", cards[i]["word"] if aligned else ""):
                 row["right"] += 1
             elif have:
                 row["confident_wrong"] += 1

@@ -123,6 +123,21 @@ def is_one(lemma: str, family: str, part: str = "words") -> bool:
     return book_spelling(lemma) in book_words(family, part)
 
 
+def fused_preposition(word: str) -> bool:
+    """A preposition written as one word with the pronoun or the ما/من it governs (فيه، عليه، إليك، وبك، فله،
+    مما، ممن، فيم): the word is both the preposition and its مجرور, so a key may name either (حرف جر or
+    مجرور). The oath letters و ت are no preposition here, and the ى of على، إلى shows as ي before it."""
+    plain = re.sub("[^ء-ي]", "", strip_diacritics(word))
+    suffixes = book_words("damir_muttasil", "on_nouns") | {"ما", "من", "م"}
+    prepositions = book_words("jarr") - set(_closed()["families"]["jarr"]["oath_only"])
+    for rest in (plain, plain[1:] if plain[:1] in ("و", "ف") else ""):
+        for p in prepositions:
+            for stem in {p, p[:-1] + "ي"} if p.endswith("ى") else {p}:
+                if rest.startswith(stem) and rest[len(stem):] in suffixes:
+                    return True
+    return False
+
+
 @lru_cache(maxsize=4096)
 def joined_off(word: str) -> tuple[str, ...]:
     """What is left of `word` with the letters the book writes onto it taken off, the fewest first.

@@ -85,13 +85,13 @@ def wrong_words(cards: list[dict], key: list[str], by_family: bool, also: dict |
     """Indexes of the words whose role is not the key's; every word when the count differs."""
     if len(cards) != len(key):
         return list(range(max(len(cards), len(key))))
-    return [i for i, want in enumerate(key) if not right_role(plain_role(cards[i].get("role")), want, (also or {}).get(str(i), []), by_family)]
+    return [i for i, want in enumerate(key) if not right_role(plain_role(cards[i].get("role")), want, (also or {}).get(str(i), []), by_family, cards[i]["word"])]
 
 
 def names_the_key(card: dict, want: str, also: list[str], by_family: bool) -> bool:
     """The card's other reading (`assumed.other`) is the key's role."""
     other = (card.get("assumed") or {}).get("other")
-    return bool(other) and right_role(plain_role(other), want, also, by_family)
+    return bool(other) and right_role(plain_role(other), want, also, by_family, card["word"])
 
 
 def keyed_rows(sets: list[str]) -> list[dict]:

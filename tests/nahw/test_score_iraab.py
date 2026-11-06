@@ -165,3 +165,15 @@ def test_a_reader_that_breaks_says_so(monkeypatch):
     monkeypatch.setattr(catib_onnx, "parse", broken)
     read = syntax.read("كَيْفَ حَالُكَ", [{}, {}])
     assert read["failed"] is True and all(r["role"] is None for r in read["roles"])
+
+
+def test_a_preposition_with_its_pronoun_is_either_half():
+    from backend.scripts.nahw.score_iraab import right_role
+    from backend.services.nahw.book import fused_preposition
+    for fused in ("فِيهِ", "عَلَيْهِ", "إِلَيْكَ", "وَبِكَ", "فَلَهُ", "مِنْهُمَا"):
+        assert fused_preposition(fused), fused
+        assert right_role("حرف جر", "مجرور", [], False, fused) and right_role("مجرور", "حرف جر", [], False, fused)
+    for other in ("بِالنِّيَّاتِ", "كِتَابِهِ", "مِنْ", "وَاللَّهِ", "تَاللَّهِ"):
+        assert not fused_preposition(other), other
+        assert not right_role("حرف جر", "مجرور", [], False, other)
+    assert not right_role("فاعل", "مجرور", [], False, "فِيهِ")
