@@ -40,7 +40,7 @@ def test_nothing_but_blanks_is_nothing_heard():
 
 def test_a_missing_model_fails_loud(monkeypatch, tmp_path):
     monkeypatch.setattr(get_settings(), "recitation_letters_path", "data/no-such-model-here")
-    monkeypatch.setattr(letters, "_loaded", None)
+    monkeypatch.setattr(letters._model, "_loaded", None)
     assert not letters.installed()
     with pytest.raises(errors.NotInstalled):
         letters.read(np.zeros(1600, dtype=np.float32))
@@ -89,7 +89,7 @@ def test_the_letters_model_waits_for_the_processor_like_the_others(monkeypatch):
             held.append(errors.local_lock.locked())
             return (np.zeros((1, 3, 2), dtype=np.float32),)
 
-    monkeypatch.setattr(letters, "_engine", lambda: (Session(), ["a", "b"], 1))
+    monkeypatch.setattr(letters._model, "_loaded", (Session(), (["a", "b"], 1)))
     letters.read(np.zeros(1600, dtype=np.float32))
     assert held == [True]
     assert not errors.local_lock.locked()

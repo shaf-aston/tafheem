@@ -91,7 +91,7 @@ def test_a_check_still_answers_when_the_sounds_cannot_be_heard(monkeypatch):
     monkeypatch.setattr(get_settings(), "recitation_sounds", True)
     monkeypatch.setattr(sounds, "_reference", lambda: {"112:1": [["q"]] * 4})
     monkeypatch.setattr(sounds, "installed", lambda: True)
-    monkeypatch.setattr(sounds, "_engine", lambda: (_ for _ in ()).throw(sounds.NotInstalled("gone")))
+    monkeypatch.setattr(sounds._model, "load", lambda: (_ for _ in ()).throw(sounds.NotInstalled("gone")))
     monkeypatch.setattr(sounds.whisper, "sound_of", lambda audio: [0.0] * 1600)
     sure, detail = recitation.check(b"sound", "قل هو الله أحد", ["112:1"])
     assert sure == {"112:1": [0.9] * 4}
