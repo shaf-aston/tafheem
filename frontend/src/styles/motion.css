@@ -177,6 +177,11 @@
 }
 
 
+/* A screen inside a tab (components/ui/display/Screen.jsx) fades as one piece,
+   from near full: its cards ride it rather than each rising in after the last. */
+.screen { --fade-from: var(--motion-screen-from); }
+
+
 /* ── The soft vocabulary: reveal, elevation, tilt ───────────────────────────
    Three classes, no keyframe of their own. Their knobs are theme.json's motion
    (reveal-*, tilt-*) and shadow (e1-e3) groups.

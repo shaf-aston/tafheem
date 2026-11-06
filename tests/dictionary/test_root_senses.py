@@ -1,4 +1,6 @@
 """The entry cut into its words: the model's answer held against the book."""
+import json
+
 from backend.services.dictionary import root_senses
 
 LINES = [
@@ -38,11 +40,42 @@ def test_a_saying_from_another_senses_line_is_dropped():
     assert root_senses.check(_answer(examples=[example]), LINES)[1]["examples"] == []
 
 
-def test_lines_out_of_order_or_missing_are_refused_whole():
-    assert root_senses.check(_answer(lines=[3]), LINES) is None
-    assert root_senses.check({"senses": _answer()["senses"][:2]}, LINES) is None
+def test_a_skipped_or_doubled_line_stays_with_the_word_before_it():
+    skipped = root_senses.check(_answer(lines=[3]), LINES)
+    assert [s["lines"] for s in skipped] == [[0, 1], [2, 2], [3, 3]]
+    assert skipped[1]["examples"]  # still in its own line
+    doubled = root_senses.check(_answer(lines=[1, 3]), LINES)
+    assert [s["lines"] for s in doubled] == [[0, 0], [1, 2], [3, 3]]
+    assert root_senses.check({"senses": _answer()["senses"][:2]}, LINES)[-1]["lines"] == [1, 3]
+
+
+def test_an_answer_that_misreads_the_entry_is_refused_whole():
+    # More than a third of the lines left for check to place: not a slip.
+    assert root_senses.check({"senses": _answer()["senses"][:1]}, LINES) is None
     assert root_senses.check(_answer(gloss=""), LINES) is None
     assert root_senses.check({"lines": []}, LINES) is None
+
+
+def test_cut_asks_once_more_when_the_first_answer_does_not_fit():
+    answers = iter([json.JSONDecodeError("cut off", "", 0), {"senses": []}, _answer()])
+
+    def ask(lines):
+        answer = next(answers)
+        if isinstance(answer, Exception):
+            raise answer
+        return answer
+
+    assert root_senses.cut(ask, LINES) is None  # two tries, both spent
+    assert root_senses.cut(ask, LINES)[1]["word"] == "الرُّطَبُ"
+
+
+def test_chunks_join_into_one_entry_with_their_lines_moved_along():
+    first, second = root_senses.check(_answer(), LINES), root_senses.check(_answer(), LINES)
+    joined = root_senses.joined([first, second])
+    assert [s["lines"] for s in joined][3:] == [[4, 4], [5, 6], [7, 7]]
+    assert joined[4]["examples"][0]["line"] == 6
+    assert root_senses.fits(joined, 8)
+    assert root_senses.joined([first, None]) is None
 
 
 def test_kept_senses_must_still_fit_the_book():
@@ -55,3 +88,28 @@ def test_shown_carries_each_senses_own_lines():
     shown = root_senses.shown(root_senses.check(_answer(), LINES), LINES)
     assert shown[1]["arabic"] == LINES[1:3]
     assert shown[2]["word"] == ""
+
+
+def test_a_line_that_only_leads_in_joins_the_quote_it_introduces():
+    lines = ["قَالَ الشَّاعِرُ:", "صدر البيت ... عجزه", "وَاللَّهُ أَعْلَمُ."]
+    answer = {"senses": [
+        {"lines": [1], "word": "", "gloss": "The poet said"},
+        {"lines": [2], "word": "", "gloss": "A verse"},
+        {"lines": [3], "word": "", "gloss": "God knows best"},
+    ]}
+    senses = root_senses.check(answer, lines)
+    assert [s["lines"] for s in senses] == [[0, 1], [2, 2]]
+    assert root_senses.fits(senses, 3)
+
+
+def test_the_model_copies_the_books_explanation_before_it_glosses():
+    # The model writes its answer in order: asked for the gloss first, it reached
+    # for a word's everyday sense and glossed سَمِعْتُ بِالشَّيْءِ، إِذَا أَشَعْتُهُ "I heard".
+    from backend.services.ai import prompts
+    shape = prompts.ROOT_ENTRY_SENSES_USER.rsplit('"senses"', 1)[1]
+    assert shape.index('"means"') < shape.index('"gloss"')
+
+
+def test_the_explanation_the_model_copied_is_not_kept():
+    answer = _answer(means="معروف")
+    assert all("means" not in s for s in root_senses.check(answer, LINES))

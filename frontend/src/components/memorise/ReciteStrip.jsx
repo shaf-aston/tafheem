@@ -9,8 +9,6 @@
  * The microphone is the one big thing on it, because starting is the one thing
  * this screen is for. Everything else is quieter and sits around it.
  */
-import { useEffect, useRef } from 'react'
-
 import { CHECK, MISSED, SAID, WRONG } from '../../lib/recite/follow'
 import { LOOK, verdictOf } from '../../lib/recite/reciteColors'
 
@@ -19,11 +17,6 @@ import Chip from '../ui/inputs/Chip'
 import MicMark from '../ui/display/MicMark'
 
 export default function ReciteStrip({ listening, problem, transcript, marks, lines, accent, status, help, onStart, onStop, onStartAt }) {
-  // Kept at the end as it grows, so the newest words are the ones in view.
-  const scroller = useRef(null)
-  useEffect(() => {
-    if (scroller.current) scroller.current.scrollTop = scroller.current.scrollHeight
-  }, [transcript])
   const tally = { [SAID]: 0, [CHECK]: 0, [WRONG]: 0, [MISSED]: 0 }
   for (const word of marks.words) if (word.state in tally) tally[word.state] += 1
   const live = accent || 'var(--primary)'
@@ -58,11 +51,9 @@ export default function ReciteStrip({ listening, problem, transcript, marks, lin
             {listening ? (marks.started ? 'Listening…' : 'Listening. Start from the top of the page.') : 'Press to start reciting'}
           </p>
           <p className="type-small text-[var(--text-faint)] truncate">{status}</p>
-          {listening && transcript.length > 0 && (
-            <ArabicText as="p" size="sm" ref={scroller} className="text-[var(--text-faint)] block max-h-24 overflow-y-auto">
-              {transcript.join(' ')}
-            </ArabicText>
-          )}
+          <p className="recite-transcript type-small text-[var(--text-faint)]">
+            {listening && transcript.length > 0 && <ArabicText size="sm">{transcript.join(' ')}</ArabicText>}
+          </p>
         </div>
 
         <div className="hidden sm:flex items-center gap-3 shrink-0 tabular-nums type-small">

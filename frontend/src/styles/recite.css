@@ -1,0 +1,92 @@
+/* ── A word being recited (components/memorise/RecitedWord.jsx) ──────────────
+   Every word on a recited page wears the same box from the first frame: a
+   border, a little padding, a corner. What changes as the reciter goes is only
+   paint inside that box, never its size, so the page never moves under the
+   reader's eye when a word is said.
+
+   A covered word is the word itself, drawn in no colour on a soft block: the
+   block is exactly the word's size, so uncovering it is the ink fading in where
+   the block was. --look is the colour its state gives it (lib/recite/reciteColors). */
+.recite-word {
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 0 0.15em;
+  color: var(--look, var(--text));
+  transition:
+    color calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+    border-color calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease),
+    box-shadow calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease);
+}
+
+/* The block itself: a layer at the height of the letters, not of the line, so
+   a page of covers reads as a page of hidden words rather than of slabs. It is
+   always there and only its opacity changes, so it can fade out as the ink
+   fades in. */
+.recite-word::before {
+  content: "";
+  position: absolute;
+  inset: 24% 0 20%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--surface-hi);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
+    border-color calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease);
+}
+
+.recite-word[data-covered] { color: transparent; user-select: none; }
+.recite-word[data-covered]::before { opacity: 1; }
+
+/* Where the reciter is: a line under it, drawn as a shadow so it takes no room;
+   on a covered word, the block's own edge. */
+.recite-word[data-here]:not([data-covered]) { box-shadow: 0 2px 0 var(--here, var(--primary)); }
+.recite-word[data-covered][data-here]::before { border-color: var(--here, var(--primary)); }
+
+/* Given, not said: dashed, so it never reads as said even to someone who cannot
+   tell the two greys apart. A decoration, so it takes no room either. */
+.recite-word[data-state="shown"] {
+  text-decoration: underline dashed var(--text-faint);
+  text-underline-offset: 0.35em;
+}
+
+/* Never said at all: nothing to colour, so it is outlined. */
+.recite-word[data-state="missed"] { border-color: var(--danger); }
+
+/* What the ear heard instead, and words said that are not in the book: they
+   arrive rather than appear. */
+.recite-heard { animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease) backwards; }
+
+/* The dock's one line of what the ear returned: the newest words at its
+   reading end, the oldest slipping off the far side. The line is laid out
+   left to right around right-to-left text, so what overflows is the start of
+   the Arabic, never the newest word. Its height is held from the start, so the
+   dock does not grow when the first words come back. */
+.recite-transcript {
+  direction: ltr;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 2rem;
+  line-height: 2rem;
+  mask-image: linear-gradient(to right, black 92%, transparent);
+}
+.recite-transcript > * { display: inline; line-height: inherit; }
+
+/* What the ear wrote under a word it was unsure of (RecitedWord): hung below
+   the word in the gap between lines, so it takes no room and the line never
+   re-wraps when it arrives. Faint, so it reads as the ear's note, not a verdict. */
+.recite-wrote {
+  position: absolute;
+  top: 82%;
+  left: 50%;
+  translate: -50% 0;
+  white-space: nowrap;
+  pointer-events: none;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: var(--text-faint);
+  animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease) backwards;
+}

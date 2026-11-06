@@ -21,8 +21,8 @@ export function DialectList({ dialects, go }) {
   const hue = colorFor('tab', 'colloq')
   return (
     <Grid>
-      {dialects.map((d, i) => (
-        <Card key={d.key} index={i} hue={hue} kicker={d.where} title={d.label} gloss={d.gloss} arabic={d.arabic}
+      {dialects.map((d) => (
+        <Card key={d.key} hue={hue} kicker={d.where} title={d.label} gloss={d.gloss} arabic={d.arabic}
           note={unitsNote(d.units)} onClick={() => go({ dialect: d.key })}
           more={<CountryIcons codes={d.countries} />}
           picture={<CountryMap codes={d.countries} cities={d.cities} hue={hue} className="w-24 sm:w-32 shrink-0" />} />
@@ -42,19 +42,18 @@ const shelfOf = (u) => (u.samples?.length ? 'words' : 'talk')
 
 export function UnitList({ dialect, go }) {
   const card = (u) => {
-    const i = dialect.units.indexOf(u)
     const hue = colorAt('unit', unitNumber(u.unit))
     const open = u.written ? () => go({ dialect: dialect.key, unit: u.unit }) : undefined
-    if (shelfOf(u) === 'words') return <WordUnitCard key={u.unit} index={i} hue={hue} unit={u} onClick={open} />
+    if (shelfOf(u) === 'words') return <WordUnitCard key={u.unit} hue={hue} unit={u} onClick={open} />
     return u.written && u.cover
-      ? <UnitCard key={u.unit} index={i} hue={hue} unit={u} onClick={open} />
-      : <Card key={u.unit} index={i} hue={hue} kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}
+      ? <UnitCard key={u.unit} hue={hue} unit={u} onClick={open} />
+      : <Card key={u.unit} hue={hue} kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}
           note={u.written ? `${u.lessons.length} topics` : 'Coming'} onClick={open} />
   }
   const shelves = SHELVES.map((s) => ({ ...s, units: dialect.units.filter((u) => shelfOf(u) === s.key) })).filter((s) => s.units.length)
-  if (shelves.length < 2) return <Grid key={dialect.key}>{dialect.units.map(card)}</Grid>
+  if (shelves.length < 2) return <Grid>{dialect.units.map(card)}</Grid>
   return (
-    <div key={dialect.key} className="space-y-6">
+    <div className="space-y-6">
       {shelves.map((s) => (
         <section key={s.key} className="space-y-2" aria-labelledby={`shelf-${s.key}`}>
           <div className="flex flex-wrap items-baseline gap-x-3">
@@ -91,7 +90,7 @@ export function TopicList({ dialect, unit, go }) {
   const hue = colorAt('unit', unitNumber(unit.unit))
   const open = (at, words) => go({ dialect: dialect.key, unit: unit.unit, at, words })
   return (
-    <div key={unit.unit} className="space-y-3">
+    <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-3">
         <h2 className="type-figure font-semibold text-[var(--text)]">{unit.title}</h2>
         <UnitWordBank dialect={dialect.key} unit={unit.unit} />
@@ -103,7 +102,7 @@ export function TopicList({ dialect, unit, go }) {
             {lessons.map((l, n) => {
               const i = from + n
               return (
-                <Card key={l.lesson} index={i} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} image={l.picture}
+                <Card key={l.lesson} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} image={l.picture}
                   note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words · Pictures · Cards · Quiz` : l.words ? 'Phrases' : undefined}
                   onClick={l.written ? () => open(i, !l.phrases) : undefined}
                   twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => open(i, true) }} />

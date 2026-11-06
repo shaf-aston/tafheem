@@ -22,6 +22,20 @@ export function glideTo(top) {
   globalThis.scrollTo({ top, behavior: far || motionOff() ? 'auto' : 'smooth' })
 }
 
+/**
+ * Keep `el` in the clear band of the screen: below the app's header and above
+ * `bottom` (the top of whatever is docked at the foot of the screen). Nothing
+ * moves while it is inside the band; once it leaves, the page glides until it
+ * sits a third of the way down the band, so what comes next is in view too.
+ */
+export function keepInSight(el, bottom = window.innerHeight) {
+  if (!el) return
+  const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
+  const { top, bottom: end } = el.getBoundingClientRect()
+  if (top >= header && end <= bottom) return
+  glideTo(globalThis.scrollY + top - (header + (bottom - header) / 3))
+}
+
 const MOVES = ['wheel', 'touchstart', 'keydown', 'pointerdown']
 
 /**

@@ -94,6 +94,13 @@ def test_a_verse_is_one_line_and_prose_is_cut_at_its_full_stops():
     assert cut is False
 
 
+def test_a_piece_with_no_letter_goes_with_the_next_line_not_alone():
+    # سعل prints a half-verse with its other half left out as dots: once nine lines of ".".
+    text = "قول الهذلي:\n. . . . وأسعلته الأمرع\nفإنه يريد.\n206"
+    lines, _ = root_gloss.line_budget(text, 100)
+    assert lines == ["قول الهذلي:", ". . . . وأسعلته الأمرع", "فإنه يريد. 206"]
+
+
 def test_the_budget_ends_at_a_whole_line_and_says_so():
     assert root_gloss.line_budget("أول.\nثان.\nثالث.", 10) == (["أول.", "ثان."], True)
     # The first line is kept even past the budget: nothing is not an answer.

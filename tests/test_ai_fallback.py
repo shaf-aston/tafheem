@@ -53,3 +53,16 @@ def test_a_rejected_key_is_named_in_the_reason_the_health_line_shows():
     backend.retire(permanent_failure(rejected(401)))
     assert "key was rejected" in backend.retired_reason
     assert not backend.is_available()
+
+
+def test_a_rate_limit_waits_as_long_as_it_is_told_within_reason():
+    from backend.services.ai.groq_backend import _told_to_wait
+
+    class Said(Exception):
+        def __init__(self, wait):
+            self.response = type("R", (), {"headers": {"retry-after": wait}})()
+
+    assert _told_to_wait(Said("7.5")) == 7.5
+    assert _told_to_wait(Said("600")) == 20.0
+    assert _told_to_wait(Said("soon")) is None
+    assert _told_to_wait(ValueError()) is None

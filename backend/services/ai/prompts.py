@@ -120,7 +120,7 @@ numbered. Cut it into the words it explains, for a learner who cannot read
 classical Arabic.
 
 Root: {root}
-The entry, line by line:
+The entry, line by line (it may be one piece of a longer entry):
 {numbered}
 {reference}
 For each word the entry explains, in the order the entry gives them, return:
@@ -132,9 +132,16 @@ For each word the entry explains, in the order the entry gives them, return:
   a report from a scholar) form their own group with "word" left "".
 - "word": the word itself, copied letter for letter from those lines, without
   و or ف in front. Copy it; never write a form the lines do not print.
-- "say": that word in Latin letters, e.g. al-ruṭab, raṭṭaba. "" when "word" is "".
+- "say": that word in Latin letters, e.g. al-ruṭab, raṭṭaba, samiʿtu: ʿ for ع,
+  ' for ء, long vowels ā ī ū, dotted ḥ ṣ ḍ ṭ ẓ. "" when "word" is "".
+- "means": the Arabic in those lines that says what the word means, copied
+  letter for letter: what follows its colon, or إِذَا ("when"), أَيْ ("that is")
+  or بِمَعْنَى ("meaning"). In وَيُقَالُ سَمِعْتُ بِالشَّيْءِ، إِذَا أَشَعْتُهُ it is
+  أَشَعْتُهُ. "" when the lines only use the word and never explain it.
 - "gloss": what the word means, a few plain English words ("ripe, soft dates",
-  "green plants, fresh fodder"), never a scrap of the line ("of plants"). For a
+  "green plants, fresh fodder"), never a scrap of the line ("of plants"). Where
+  "means" has Arabic, the gloss is its English, never the word's everyday
+  meaning: سَمِعْتُ بِالشَّيْءِ above is "made the thing known", not "I heard". For a
   group with no word, the English of those lines in a short sentence.
 - "examples": the sayings in those lines that use the word, each with "line"
   (its number), "arabic" (copied letter for letter from that line), "say" (in
@@ -146,6 +153,8 @@ Rules:
   never from a neighbouring one: أَطْعَمْتَهُمْ رُطَبًا is "you fed them ripe dates",
   not "green fodder". Words one vowel apart are different words: رُطَب ripe
   dates, رُطْب pasture, رَطْب moist.
+- A line that explains with إِذَا ("when") or أَيْ ("that is") means what follows
+  it: نَصَرْتُ بَلَدَ كَذَا، إِذَا أَتَيْتَهُ is "I came to such a land", not "I helped".
 - بِضَمِّ الرَّاءِ and the like say which vowel a letter takes ("with u on the r"),
   not anything about height or raising.
 - A name stays a name: people, poets, tribes and places are named, never translated.
@@ -154,7 +163,7 @@ Rules:
 Return a JSON object with this exact structure:
 {{
   "senses": [
-    {{"lines": [1], "word": "...", "say": "...", "gloss": "...", "examples": []}}
+    {{"lines": [1], "word": "...", "say": "...", "means": "...", "gloss": "...", "examples": []}}
   ]
 }}"""
 
