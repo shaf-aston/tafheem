@@ -50,6 +50,6 @@ def test_the_check_fails_on_a_lost_mutant_or_more_unflagged_misses(monkeypatch, 
 
 
 def test_a_word_with_two_book_answers_is_right_either_way():
-    cards = [{"role": "فعل"}, {"role": "حال"}]
+    cards = [{"role": "فعل", "word": "جاء"}, {"role": "حال", "word": "ركضا"}]
     assert mutate.wrong_words(cards, ["فعل", "مفعول مطلق"], False, {"1": ["حال"]}) == []
     assert mutate.wrong_words(cards, ["فعل", "مفعول مطلق"], False) == [1]
