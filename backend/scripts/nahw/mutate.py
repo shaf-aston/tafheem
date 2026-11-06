@@ -28,6 +28,7 @@ import json
 import re
 import sys
 import time
+import zlib
 from collections import Counter, defaultdict
 from itertools import zip_longest
 from pathlib import Path
@@ -123,7 +124,7 @@ def run(rows: list[dict], fails: dict) -> dict[str, dict]:
             stats["base"]["crashed"] += 1
             continue
         base_right = not wrong_words(base["words"], ex["key"], by_family, ex.get("also"))
-        if n % every == 0:
+        if zlib.crc32(ex["id"].encode()) % every == 0:  # by id, so adding a set never moves the sample
             again = routed(ex["sentence"], None)
             shape = lambda a: [(plain_role(c.get("role")), c.get("case")) for c in a["words"]]
             same = shape(base) == shape(again)
