@@ -6,8 +6,7 @@ from __future__ import annotations
 
 import pytest
 from backend.services.nahw import iraab
-from backend.services.sarf import morphology
-from tests.nahw_helpers import analysed, cards, NADA, needs_parser, _read, _role
+from tests.nahw_helpers import analysed, cards, NADA, needs_parser, parsed_as, _read, _role
 
 pytestmark = needs_parser
 
@@ -391,8 +390,11 @@ def test_a_relative_after_a_known_noun_is_its_sifa_and_after_illa_the_excepted(s
     assert _role(sentence, at) == role
 
 
-def test_a_negation_is_a_particle_even_when_the_parser_hangs_its_verb_under_it():
-    assert _role("مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ", 3) == "حرف"  # not the و's majrur
+@pytest.mark.parametrize("rel", [None, "OBJ", "SBJ"])
+def test_a_negation_is_a_particle_even_when_the_parser_hangs_its_verb_under_it(rel):
+    sentence = "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ"
+    with parsed_as("قلى", 7, rel):  # token 7 is the negation: the verb under it, by MOD or another relation
+        assert _role(sentence, 3) == "حرف"  # not the و's majrur
 
 
 def test_a_noun_with_no_case_shown_after_a_preposition_is_its_majrur():

@@ -7,7 +7,6 @@ from __future__ import annotations
 import pytest
 from backend.models.analyze import WordAnalysis
 from backend.services.nahw import iraab
-from backend.services.text.arabic_text import words
 from backend.services.nahw.book import term_ar
 from tests.nahw_helpers import analysed, cards, NADA, needs_parser, NOMINAL, VERBAL, _ATTENTION, _read, _role
 

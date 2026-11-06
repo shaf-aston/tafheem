@@ -516,7 +516,7 @@ def _negation_settles_its_words(tokens: list[dict]) -> None:
     for ma in tokens:
         if facts.reading(ma) != "negation":
             continue
-        verb = next((k for k in s.kids(ma) if k["id"] > ma["id"] and k["rel"] == "MOD" and facts.is_verb(k)), None)
+        verb = next((k for k in s.kids(ma) if k["id"] > ma["id"] and facts.is_verb(k)), None)  # by whatever relation it hangs
         if not verb or above([t["head"] for t in tokens], ma["head"], verb["id"]):
             continue
         for kid in s.kids(ma):

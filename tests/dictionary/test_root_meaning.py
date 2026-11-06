@@ -858,8 +858,6 @@ _WORD_ANSWER = {"senses": [
 @pytest.fixture()
 def word_ai(monkeypatch):
     """A stand-in for the word-by-word model call. Counts how often it is asked."""
-    from backend.routers import dictionary as router_module
-
     state = {"available": True, "answer": _WORD_ANSWER, "asked": 0}
 
     def _explain(root, lines, reference=None):
