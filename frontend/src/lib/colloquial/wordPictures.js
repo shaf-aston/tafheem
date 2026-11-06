@@ -40,6 +40,10 @@ const BODY = [
     id: 'hand', label: 'Hand', art: 'hand', view: [0, 0, 240, 300],
     spots: { fingernail: [131, 42], finger: [103, 76], thumb: [42, 146], 'palm-hand': [116, 178], hand: [176, 196], wrist: [116, 262] },
   },
+  {
+    id: 'leg', label: 'Leg', art: 'leg', view: [0, 0, 240, 400],
+    spots: { thigh: [112, 60], knee: [116, 140], leg: [118, 230], calf: [86, 220], ankle: [124, 312], heel: [88, 362], foot: [176, 376] },
+  },
 ]
 
 // Map boards: one dot per country, at a spot inside it chosen by hand ([lon, lat]),
