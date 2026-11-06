@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import accounts, attempts, progress_db, progress_store
+from backend.services.learner import accounts, attempts, circles, progress_db
 from backend.services.learner.username import clean_name
 
 client = TestClient(app)
@@ -442,9 +442,9 @@ def test_the_old_teams_become_circles_with_their_members_invited(tmp_path):
     """)
     old.commit(), old.close()
     progress_db.reset_connection()
-    mine = progress_store.my_circles("amina")
+    mine = circles.my_circles("amina")
     assert [(c["name"], c["kind"], c["role"], c["status"]) for c in mine] == [("coach", "team", "member", "invited")]
-    coach = progress_store.my_circles("coach")
+    coach = circles.my_circles("coach")
     assert [(c["role"], c["status"]) for c in coach] == [("admin", "joined")]
     assert not progress_db.connection().execute("SELECT 1 FROM sqlite_master WHERE name = 'teams'").fetchone()
 

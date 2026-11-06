@@ -42,7 +42,7 @@ from backend.models.progress import (
     Shelf,
     SignUpIn,
 )
-from backend.services.learner import accounts, attempts, progress_store
+from backend.services.learner import accounts, attempts, circles, progress_store
 from backend.services.learner.username import GUEST, clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
@@ -194,7 +194,7 @@ def get_leaderboard(module: str = _MODULE, circle: int | None = None, user: str 
     """A circle's joined members by words learnt, or the global top accounts plus the asker's own place."""
     if circle is not None:
         with _refused():
-            return Leaderboard(rows=progress_store.circle_ranking(circle, module, user), you=None)
+            return Leaderboard(rows=circles.circle_ranking(circle, module, user), you=None)
     rows, you = accounts.leaderboard(module, user)
     return Leaderboard(rows=rows[: get_settings().leaderboard_size], you=you)
 
@@ -221,8 +221,8 @@ def _refused():
 
 
 def _circles(user: str) -> CircleList:
-    mine = [CircleItem(**{**row, "invitedBy": row.pop("invited_by")}) for row in progress_store.my_circles(user)]
-    return CircleList(kinds=progress_store.circle_kinds(), circles=mine)
+    mine = [CircleItem(**{**row, "invitedBy": row.pop("invited_by")}) for row in circles.my_circles(user)]
+    return CircleList(kinds=circles.circle_kinds(), circles=mine)
 
 
 def _member_name(typed: str) -> str:
@@ -240,21 +240,21 @@ def list_circles(user: str = NAMED) -> CircleList:
 def create_circle(body: CircleIn, user: str = NAMED) -> CircleDetail:
     """Make a circle, with me as its admin."""
     with _refused():
-        return CircleDetail(**progress_store.circle_detail(
-            progress_store.create_circle(user, body.name, body.kind, body.parent), user))
+        return CircleDetail(**circles.circle_detail(
+            circles.create_circle(user, body.name, body.kind, body.parent), user))
 
 
 @router.get("/circles/{circle}", response_model=CircleDetail)
 def get_circle(circle: int, user: str = NAMED) -> CircleDetail:
     """One circle and the people the asker may see in it."""
     with _refused():
-        return CircleDetail(**progress_store.circle_detail(circle, user))
+        return CircleDetail(**circles.circle_detail(circle, user))
 
 
 @router.delete("/circles/{circle}", response_model=CircleList)
 def delete_circle(circle: int, user: str = NAMED) -> CircleList:
     with _refused():
-        progress_store.delete_circle(circle, user)
+        circles.delete_circle(circle, user)
     return _circles(user)
 
 
@@ -263,28 +263,28 @@ def invite_member(circle: int, body: InviteIn, user: str = NAMED) -> CircleDetai
     """An admin invites an existing username; they see nothing until they accept."""
     member = _member_name(body.member)
     with _refused():
-        progress_store.invite(circle, user, member, body.role)
-        return CircleDetail(**progress_store.circle_detail(circle, user))
+        circles.invite(circle, user, member, body.role)
+        return CircleDetail(**circles.circle_detail(circle, user))
 
 
 @router.post("/circles/{circle}/accept", response_model=CircleList)
 def accept_invite(circle: int, user: str = NAMED) -> CircleList:
     with _refused():
-        progress_store.accept(circle, user)
+        circles.accept(circle, user)
     return _circles(user)
 
 
 @router.post("/circles/{circle}/decline", response_model=CircleList)
 def decline_invite(circle: int, user: str = NAMED) -> CircleList:
     with _refused():
-        progress_store.decline(circle, user)
+        circles.decline(circle, user)
     return _circles(user)
 
 
 @router.post("/circles/{circle}/leave", response_model=CircleList)
 def leave_circle(circle: int, user: str = NAMED) -> CircleList:
     with _refused():
-        progress_store.leave(circle, user)
+        circles.leave(circle, user)
     return _circles(user)
 
 
@@ -292,24 +292,24 @@ def leave_circle(circle: int, user: str = NAMED) -> CircleList:
 def remove_member(circle: int, member: str, user: str = NAMED) -> CircleDetail:
     name = _member_name(member)
     with _refused():
-        progress_store.remove(circle, user, name)
-        return CircleDetail(**progress_store.circle_detail(circle, user))
+        circles.remove(circle, user, name)
+        return CircleDetail(**circles.circle_detail(circle, user))
 
 
 @router.put("/circles/{circle}/members/{member}", response_model=CircleDetail)
 def set_member_role(circle: int, member: str, body: RoleIn, user: str = NAMED) -> CircleDetail:
     name = _member_name(member)
     with _refused():
-        progress_store.set_role(circle, user, name, body.role)
-        return CircleDetail(**progress_store.circle_detail(circle, user))
+        circles.set_role(circle, user, name, body.role)
+        return CircleDetail(**circles.circle_detail(circle, user))
 
 
 @router.put("/circles/{circle}/parent", response_model=CircleDetail)
 def set_circle_parent(circle: int, body: ParentIn, user: str = NAMED) -> CircleDetail:
     """An admin moves a circle inside another circle they admin, or out to stand on its own."""
     with _refused():
-        progress_store.move_circle(circle, user, body.parent)
-        return CircleDetail(**progress_store.circle_detail(circle, user))
+        circles.move_circle(circle, user, body.parent)
+        return CircleDetail(**circles.circle_detail(circle, user))
 
 
 @router.get("/circles/{circle}/members/{member}/overview", response_model=Overview)
@@ -317,4 +317,4 @@ def get_member_overview(circle: int, member: str, user: str = NAMED) -> Overview
     """A joined member's overview, for whoever the circles' rules let see it."""
     name = _member_name(member)
     with _refused():
-        return _overview(progress_store.member_overview(circle, user, name))
+        return _overview(circles.member_overview(circle, user, name))
