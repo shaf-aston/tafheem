@@ -107,7 +107,7 @@ class RootMeaningResponse(BaseModel):
     root" are different sentences and are never allowed to look the same."""
 
     root: str          # the exact letters searched, so a mismatch is visible
-    status: str        # missing | broken | ready, see services/dictionary/root_meaning.py
+    status: str        # missing | broken | ready, see services/core/availability.py
     # The spelling the book itself files this entry under, sent only when it is
     # not the one searched. Typing بدا reaches the entry printed بدأ, and without
     # saying so the reader takes an answer about one root as an answer about the

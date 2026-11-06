@@ -23,6 +23,7 @@ from pathlib import Path
 from typing import Iterator
 
 from backend.services.text.arabic_text import normalize_root
+from backend.services.core.availability import BROKEN, MISSING, READY
 from backend.services.dictionary.root_meaning import read_fold
 from backend.services.core.readonly_db import ReadOnlyDb
 
@@ -35,8 +36,6 @@ DATABASE = Path(__file__).parent.parent.parent / "data" / "lexicons.db"
 # from there rather than copied here: two tables that disagree about the alphabet
 # would send the same root to two different entries.
 _FOLD_BESIDE = Path(__file__).parent.parent.parent / "data" / "maqayees"
-
-MISSING, BROKEN, READY = "missing", "broken", "ready"
 
 _fold: dict[int, int] | None = None
 
