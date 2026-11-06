@@ -6,10 +6,8 @@ says what the *root* has meant since the beginning. They answer different
 questions, so they are kept apart rather than merged into one search.
 
 The book is not shipped. Ibn Faris's Maqayees al-Lugha is being extracted
-separately, and until that lands there is nothing here to read. This module is
-the seam it drops into: one shape a provider must satisfy, one factory, one
-JSON-file reader. A different book, or a second one, means writing another
-provider, not touching the router, the response, or the UI.
+separately, and until that lands there is nothing here to read. This module reads
+it from one JSON file.
 
 Nothing here ever invents a meaning. A root the book does not cover comes back
 empty and says so; a book that is not installed says *that*, which is a
@@ -22,9 +20,9 @@ import json
 import logging
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Protocol
 
 from backend.config import get_settings
+from backend.services.core.availability import BROKEN, MISSING, READY
 from backend.services.text.arabic_text import normalize_root
 from backend.services.dictionary import root_english
 from backend.services.dictionary import root_gloss
@@ -32,40 +30,6 @@ from backend.services.dictionary import root_gloss
 logger = logging.getLogger(__name__)
 
 _BACKEND_ROOT = Path(__file__).resolve().parent.parent.parent
-
-# What the file can be in. Reported as-is so the reader is told which of the
-# three situations they are in, never a guess that flatters the app:
-#   missing, no file on this machine; the book was never installed
-#   broken: a file is there but could not be read; something is wrong, say so
-#   ready: loaded, and a miss really means the book has no entry
-MISSING, BROKEN, READY = "missing", "broken", "ready"
-
-
-class RootMeaningProvider(Protocol):
-    """What any classical-meaning book must be able to do."""
-
-    source_key: str
-
-    def load(self) -> None:
-        """Read the book into memory. Called once at startup, never per request."""
-
-    def status(self) -> str:
-        """MISSING, BROKEN or READY; see above."""
-
-    def book_root_of(self, root: str) -> str | None:
-        """The spelling the book files this root under, or None if it has none."""
-
-    def lookup(self, root: str) -> dict | None:
-        """This root's entry, or None if the book does not cover it."""
-
-    def roots(self) -> list[str]:
-        """Every root the book files, under the spelling it files them by.
-
-        For work that goes through the whole book, putting the entries into
-        English ahead of time, so nothing has to reach past this interface into
-        how a particular book happens to be stored.
-        """
-
 
 SPELLING_FILE = "spelling.json"
 
@@ -235,10 +199,10 @@ class JsonFileProvider:
         }
 
 
-_provider: RootMeaningProvider | None = None
+_provider: JsonFileProvider | None = None
 
 
-def get_provider() -> RootMeaningProvider:
+def get_provider() -> JsonFileProvider:
     """The classical book this install is using. One per process."""
     global _provider
     if _provider is None:

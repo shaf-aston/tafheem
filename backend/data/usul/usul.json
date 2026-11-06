@@ -4,7 +4,7 @@
     "levels: Ibn Hajar's twelve ranks of narrators, Taqrib al-Tahdhib preface. terms are his words for each level, plus the data's spelling (صحابي, رمي). Matched whole words, longest term first, on text folded the same way (letters only, one alef, one hamza seat). The level of a narrator is the highest matched, except that under: N marks a level defined as falling short of level N, whose terms count only when no term above N was matched (Ibn Hajar: level 5 is من قصر عن الرابعة قليلا, so a ثقة with رمي stays 3). Words no term takes are listed in usul.db's gap table and never guessed.",
     "kind: what sort of weakness the level is. kinds: a term that is a different sort inside its level (رمي in level 5 is an innovation, the rest of 5 are memory).",
     "weak_from: the lowest level that counts as a weak point. Below it nothing is marked.",
-    "max_change_ratio: the build stops if the number of notes moves more than this against the file it would replace, so a broken rule cannot ship quietly.",
+    "max_change_ratio: the build stops if the rows of notes, rulings or families move more than this against the file it would replace, so a broken rule cannot ship quietly.",
     "gap_print: how many of the commonest unmatched wordings the build prints.",
     "levels_source: the sources key the twelve levels come from, printed under each weak point.",
     "lift: the one place a source says support lifts, or does not lift, a weakness. Keyed by level, or by kind where the level has several. A level with no entry has no line. lifts: false is a source saying it is not lifted. book is a key of sources.",

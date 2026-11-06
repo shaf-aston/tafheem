@@ -18,11 +18,13 @@ from __future__ import annotations
 
 import sqlite3
 import sys
+from contextlib import closing
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
+from backend.services.core.building import building  # noqa: E402
 from backend.services.quran import corpus as quran_corpus  # noqa: E402
 from backend.services.text.arabic_text import both_spellings  # noqa: E402
 
@@ -54,14 +56,8 @@ def build() -> int:
             "corpus.db is not here. Run backend/scripts/quran/build_quran_corpus.py first."
         )
 
-    target = data_path("quran_search_index_path")
-    target.parent.mkdir(parents=True, exist_ok=True)
-    scratch = target.with_suffix(".building")
-    scratch.unlink(missing_ok=True)
-
-    conn = sqlite3.connect(scratch)
     written = 0
-    try:
+    with building(data_path("quran_search_index_path")) as scratch, closing(sqlite3.connect(scratch)) as conn:
         conn.executescript(_SCHEMA)
         for surah in range(1, _SURAHS + 1):
             # ayah_texts already knows how to glue segments into words and words
@@ -78,15 +74,6 @@ def build() -> int:
             )
             written += len(rows)
         conn.commit()
-        conn.close()
-    except Exception:
-        conn.close()
-        scratch.unlink(missing_ok=True)
-        raise
-
-    # One operation, not delete-then-rename: the working index is never gone
-    # before its replacement is there.
-    scratch.replace(target)
     return written
 
 

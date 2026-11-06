@@ -16,12 +16,14 @@ from __future__ import annotations
 import json
 import sqlite3
 from collections import Counter
+from contextlib import closing
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
+from backend.services.core.building import building  # noqa: E402
 from backend.services.text import spelling  # noqa: E402
 from backend.services.hadith import words  # noqa: E402
 from backend.services.hadith.chain import chain_of  # noqa: E402
@@ -112,13 +114,8 @@ def index_text(conn: sqlite3.Connection) -> None:
 
 
 def build() -> dict[str, int]:
-    target = data_path("hadith_index_path")
-    scratch = target.with_suffix(".building.db")
-    scratch.unlink(missing_ok=True)
-
-    conn = sqlite3.connect(scratch)
     counts: dict[str, int] = {}
-    try:
+    with building(data_path("hadith_index_path")) as scratch, closing(sqlite3.connect(scratch)) as conn:
         conn.executescript(_SCHEMA)
 
         arabic_names = json.loads((data_path("hadith_dir") / "book_names.json").read_text(encoding="utf-8"))
@@ -151,13 +148,6 @@ def build() -> dict[str, int]:
 
         index_text(conn)
         conn.commit()
-        conn.close()
-    except Exception:
-        conn.close()
-        scratch.unlink(missing_ok=True)
-        raise
-
-    scratch.replace(target)
     return counts
 
 

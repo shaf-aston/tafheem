@@ -15,48 +15,24 @@ from __future__ import annotations
 
 import json
 import logging
-import time
 
 import numpy as np
 
-from backend.config import data_path, get_settings
 from backend.services.recitation import loudness
-from backend.services.recitation.errors import NotInstalled, local_lock
-from backend.services.core.timing import timed
+from backend.services.recitation.errors import NotInstalled
+from backend.services.recitation.local_model import LocalModel
 
 log = logging.getLogger(__name__)
 
-_MODEL = "fastconformer_full_mixed.onnx"
-_loaded: tuple | None = None
+
+def _pieces_and_blank(folder):
+    meta = json.loads((folder / "export_metadata.json").read_text(encoding="utf-8"))
+    vocab = json.loads((folder / "vocab.json").read_text(encoding="utf-8"))
+    return [vocab[str(i)] for i in range(len(vocab))], int(meta["blank_id"])
 
 
-def _engine():
-    """(session, pieces, blank id), loaded on first use and kept."""
-    global _loaded
-    if _loaded is not None:
-        return _loaded
-    folder = data_path("recitation_letters_path")
-    try:
-        import onnxruntime as ort
-        meta = json.loads((folder / "export_metadata.json").read_text(encoding="utf-8"))
-        vocab = json.loads((folder / "vocab.json").read_text(encoding="utf-8"))
-        started = time.perf_counter()
-        options = ort.SessionOptions()
-        options.intra_op_num_threads = get_settings().recitation_threads
-        session = ort.InferenceSession(str(folder / _MODEL), options,
-                                       providers=["CPUExecutionProvider"])
-    except Exception as exc:
-        raise NotInstalled(f"the letters model could not be loaded from {folder}: {exc}") from exc
-    pieces = [vocab[str(i)] for i in range(len(vocab))]
-    _loaded = (session, pieces, int(meta["blank_id"]))
-    log.info("loaded  model=letters  threads=%d  %.0fms", options.intra_op_num_threads,
-             (time.perf_counter() - started) * 1000)
-    return _loaded
-
-
-def installed() -> bool:
-    """The model file is here. Whether it loads is found out on first use."""
-    return (data_path("recitation_letters_path") / _MODEL).is_file()
+_model = LocalModel("letters", "recitation_letters_path", "fastconformer_full_mixed.onnx", _pieces_and_blank)
+installed = _model.installed
 
 
 def spelled(best: np.ndarray, pieces: list[str], blank: int) -> str:
@@ -70,22 +46,19 @@ def read(sound: np.ndarray) -> str:
     """What was recited, as letters, from sound already decoded by whisper.sound_of."""
     if len(sound) == 0:
         return ""
-    session, pieces, blank = _engine()
     signal = np.asarray(sound, dtype=np.float32)[None, :]
-    # Under the same lock as the Whisper models: this one is handed the same
-    # cores (recitation_threads), and a spoken search falling back to Whisper
-    # here does not wait at the route's recitation turn, so without it the two
-    # could run at once and each take longer than both one after the other.
-    with local_lock:
-        (logprobs,) = timed("placed-by-letters", session.run, None,
-                            {"audio_signal": signal, "length": np.array([signal.shape[1]], np.int64)},
-                            s=round(signal.shape[1] / loudness.SAMPLE_RATE, 1))
-    return spelled(logprobs[0].argmax(axis=-1), pieces, blank)
+    # Under the same lock as the Whisper models (LocalModel.run): a spoken search
+    # falling back to Whisper does not wait at the route's recitation turn, so
+    # without it the two could run at once and each take longer than one after the other.
+    (logprobs,) = _model.run("placed-by-letters",
+                             {"audio_signal": signal, "length": np.array([signal.shape[1]], np.int64)},
+                             s=round(signal.shape[1] / loudness.SAMPLE_RATE, 1))
+    return spelled(logprobs[0].argmax(axis=-1), *_model.extra)
 
 
 def warm() -> None:
     """Load it now. Never raises; a missing model is said in the log."""
     try:
-        _engine()
+        _model.load()
     except NotInstalled as exc:
         log.info("placing by letters is unavailable: %s", exc)

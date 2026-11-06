@@ -19,22 +19,20 @@ from __future__ import annotations
 
 import json
 import logging
-import time
 from functools import lru_cache
 
 import numpy as np
 
 from backend.config import data_path, get_settings
-from backend.services.core.timing import timed
 from backend.services.recitation import loudness, whisper
 from backend.services.recitation.sound_compare import collapse, compare
-from backend.services.recitation.errors import NotInstalled, local_lock
+from backend.services.recitation.errors import NotInstalled
+from backend.services.recitation.local_model import LocalModel
 
 log = logging.getLogger(__name__)
 
 MODEL = "model.int8.onnx"
 VOCAB = "vocab.json"
-_loaded: tuple | None = None
 
 
 @lru_cache(maxsize=1)
@@ -52,42 +50,20 @@ def expected_for(key: str, count: int) -> list[list[str]] | None:
     return words if words is not None and len(words) == count else None
 
 
-def installed() -> bool:
-    """The model file is here. Whether it loads is found out on first use."""
-    return (data_path("recitation_sounds_path") / MODEL).is_file()
+def _symbols_by_id(folder):
+    return {i: s for s, i in json.loads((folder / VOCAB).read_text(encoding="utf-8")).items()}
 
 
-def _engine():
-    """(session, symbols by id), loaded on first use and kept."""
-    global _loaded
-    if _loaded is not None:
-        return _loaded
-    folder = data_path("recitation_sounds_path")
-    try:
-        import onnxruntime as ort
-        vocab = json.loads((folder / VOCAB).read_text(encoding="utf-8"))
-        started = time.perf_counter()
-        options = ort.SessionOptions()
-        options.intra_op_num_threads = get_settings().recitation_threads
-        session = ort.InferenceSession(str(folder / MODEL), options, providers=["CPUExecutionProvider"])
-    except Exception as exc:
-        raise NotInstalled(f"the sounds model could not be loaded from {folder}: {exc}") from exc
-    _loaded = (session, {i: s for s, i in vocab.items()})
-    log.info("loaded  model=sounds  threads=%d  %.0fms", options.intra_op_num_threads,
-             (time.perf_counter() - started) * 1000)
-    return _loaded
+_model = LocalModel("sounds", "recitation_sounds_path", MODEL, _symbols_by_id)
+installed = _model.installed
 
 
 def listen(sound: np.ndarray) -> tuple[list[str], list[int]]:
     """The sounds heard in a recording and each one's run in frames (see collapse).
     `sound` is 16kHz mono floats, as whisper.sound_of makes."""
-    session, id2sym = _engine()
     signal = np.asarray(sound, dtype=np.float32)[None, :]
-    # Under the same lock as the other local models: they share the cores.
-    with local_lock:
-        (logits,) = timed("sounds-heard", session.run, None, {"audio": signal},
-                          s=round(signal.shape[1] / loudness.SAMPLE_RATE, 1))
-    return collapse(logits[0].argmax(axis=-1).tolist(), id2sym)
+    (logits,) = _model.run("sounds-heard", {"audio": signal}, s=round(signal.shape[1] / loudness.SAMPLE_RATE, 1))
+    return collapse(logits[0].argmax(axis=-1).tolist(), _model.extra)
 
 
 def hear_sounds(audio: bytes, expected_per_word: list[list[str] | None]) -> list[dict | None]:
@@ -117,6 +93,6 @@ def warm() -> None:
     if not get_settings().recitation_sounds or not installed():
         return
     try:
-        _engine()
+        _model.load()
     except NotInstalled as exc:
         log.info("sounds are unavailable: %s", exc)

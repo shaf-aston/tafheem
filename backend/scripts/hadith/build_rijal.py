@@ -15,11 +15,13 @@ from __future__ import annotations
 import json
 import sqlite3
 import sys
+from contextlib import closing
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path  # noqa: E402, needs the path above
+from backend.services.core.building import building  # noqa: E402
 from backend.services.hadith import loader, words  # noqa: E402
 from backend.services.hadith.rijal import cache, parse  # noqa: E402
 
@@ -114,23 +116,13 @@ def add_mentions(conn: sqlite3.Connection) -> tuple[int, int, int, int, list[tup
 def build() -> None:
     if not cache.book_pages():
         raise SystemExit("no cached book pages. Run: python backend/scripts/hadith/fetch_rijal.py muslim 24")
-    target = data_path("rijal_index_path")
-    scratch = target.with_suffix(".building.db")
-    scratch.unlink(missing_ok=True)
-    conn = sqlite3.connect(scratch)
-    try:
+    with building(data_path("rijal_index_path")) as scratch, closing(sqlite3.connect(scratch)) as conn:
         conn.executescript(_SCHEMA)
         narrators = add_narrators(conn)
         ours, linked, placed, seen, lost = add_mentions(conn)
         if not placed:  # hadith.db missing or the wrong books: an empty index would read as "nobody narrated anything"
             raise SystemExit(f"no names placed in {ours:,} of our hadith: the old file is kept. Is hadith.db built?")
         conn.commit()
-        conn.close()
-    except BaseException:  # SystemExit too: a refused build leaves no half file
-        conn.close()
-        scratch.unlink(missing_ok=True)
-        raise
-    scratch.replace(target)
 
     print(f"narrators: {narrators:,} pages parsed")
     print(f"hadith linked: {linked:,}/{ours:,} = {linked / max(ours, 1):.1%}")

@@ -42,11 +42,13 @@ import re
 import shutil
 import sqlite3
 import sys
+from contextlib import closing
 from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
+from backend.services.core.building import building  # noqa: E402
 from backend.services.text.arabic_text import bare_letters  # noqa: E402
 
 _ROOT = Path(__file__).resolve().parents[2] / "data" / "books"
@@ -244,66 +246,53 @@ def _copy_in(source_dir: Path, manifest: dict) -> list[str]:
 def build(dry_run: bool = False) -> None:
     manifest = _load_manifest()
 
-    conn = sqlite3.connect(":memory:" if dry_run else _scratch())
-    conn.executescript(_SCHEMA)
+    with building(_DB, dry_run=dry_run) as scratch, closing(sqlite3.connect(scratch)) as conn:
+        conn.executescript(_SCHEMA)
 
-    # Dedup is per collection, not per book, and the order of the manifest is
-    # what decides the winner. Al-Hidaya is a commentary that quotes the whole
-    # of Bidayat al-Mubtadi inside itself, so the same sentence is genuinely in
-    # both files; listing the matn first means the matn keeps it and the reader
-    # is not shown one sentence twice under two names.
-    seen: dict[tuple[str, str], str] = {}
-    duplicates: dict[str, int] = {}
+        # Dedup is per collection, not per book, and the order of the manifest is
+        # what decides the winner. Al-Hidaya is a commentary that quotes the whole
+        # of Bidayat al-Mubtadi inside itself, so the same sentence is genuinely in
+        # both files; listing the matn first means the matn keeps it and the reader
+        # is not shown one sentence twice under two names.
+        seen: dict[tuple[str, str], str] = {}
+        duplicates: dict[str, int] = {}
 
-    for book in manifest["books"]:
-        path = _COPIES / book["file"]
-        if not path.exists():
-            print(f"  MISSING  {book['title']}  ({book['file']})")
-            continue
-
-        parsed = parse(path.read_text(encoding="utf-8"))
-        conn.execute(
-            "INSERT INTO book VALUES (?,?,?,?,?)",
-            (book["file"], book["collection"], book["title"],
-             book["author"], book.get("died")),
-        )
-
-        kept = 0
-        for page, heading, arabic in parsed.passages:
-            key = (book["collection"], bare_letters(arabic))
-            if key in seen:
-                duplicates[book["file"]] = duplicates.get(book["file"], 0) + 1
+        for book in manifest["books"]:
+            path = _COPIES / book["file"]
+            if not path.exists():
+                print(f"  MISSING  {book['title']}  ({book['file']})")
                 continue
-            seen[key] = book["file"]
+
+            parsed = parse(path.read_text(encoding="utf-8"))
             conn.execute(
-                "INSERT INTO passage (file, collection, page, heading, arabic)"
-                " VALUES (?,?,?,?,?)",
-                (book["file"], book["collection"], page, heading, arabic),
+                "INSERT INTO book VALUES (?,?,?,?,?)",
+                (book["file"], book["collection"], book["title"],
+                 book["author"], book.get("died")),
             )
-            kept += 1
 
-        dropped = duplicates.get(book["file"], 0)
-        print(f"  {kept:6,} passages  {book['title']}"
-              f"   (dropped {dropped:,} duplicate, {parsed.too_short:,} too short,"
-              f" {parsed.broken_alif:,} spaced-hamza)")
+            kept = 0
+            for page, heading, arabic in parsed.passages:
+                key = (book["collection"], bare_letters(arabic))
+                if key in seen:
+                    duplicates[book["file"]] = duplicates.get(book["file"], 0) + 1
+                    continue
+                seen[key] = book["file"]
+                conn.execute(
+                    "INSERT INTO passage (file, collection, page, heading, arabic)"
+                    " VALUES (?,?,?,?,?)",
+                    (book["file"], book["collection"], page, heading, arabic),
+                )
+                kept += 1
 
-    total = conn.execute("SELECT count(*) FROM passage").fetchone()[0]
-    print(f"\n  {total:,} passages kept, {sum(duplicates.values()):,} duplicates dropped")
+            dropped = duplicates.get(book["file"], 0)
+            print(f"  {kept:6,} passages  {book['title']}"
+                  f"   (dropped {dropped:,} duplicate, {parsed.too_short:,} too short,"
+                  f" {parsed.broken_alif:,} spaced-hamza)")
 
-    if dry_run:
-        print("  dry run: nothing written")
-        conn.close()
-        return
-
-    conn.commit()
-    conn.close()
-    _scratch().replace(_DB)
-    print(f"  wrote {_DB}")
-
-
-def _scratch() -> Path:
-    """Written beside the real file and moved over it only once it is whole."""
-    return _DB.with_suffix(".building")
+        total = conn.execute("SELECT count(*) FROM passage").fetchone()[0]
+        print(f"\n  {total:,} passages kept, {sum(duplicates.values()):,} duplicates dropped")
+        conn.commit()
+    print(f"  dry run: left at {scratch}, {_DB} untouched" if dry_run else f"  wrote {_DB}")
 
 
 def main() -> None:

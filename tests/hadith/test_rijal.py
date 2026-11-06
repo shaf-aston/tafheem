@@ -245,7 +245,7 @@ def test_a_build_that_places_no_name_keeps_the_old_file(built, monkeypatch):
     with pytest.raises(SystemExit):
         build_rijal.build()
     assert built.get("/api/rijal/narrators/6659").status_code == 200
-    assert not build_rijal.data_path("rijal_index_path").with_suffix(".building.db").exists()
+    assert not list(build_rijal.data_path("rijal_index_path").parent.glob("*.building"))
 
 
 def test_place_finds_a_name_after_a_vowelled_particle():

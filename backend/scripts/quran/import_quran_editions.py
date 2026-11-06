@@ -62,6 +62,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from backend.config import data_path, get_settings  # noqa: E402, needs the path above
+from backend.services.core.building import building  # noqa: E402
 from backend.services.text.markup import as_text  # noqa: E402
 
 # The four words the app is allowed to print on a badge. Kept in step with
@@ -444,73 +445,46 @@ def build(only: str | None = None) -> dict[str, tuple[int, int]]:
         check(edition_id, spec)
 
     target = data_path("quran_library_path")
-    target.parent.mkdir(parents=True, exist_ok=True)
-    scratch = target.with_suffix(".building")
-    scratch.unlink(missing_ok=True)
-
-    # With --only the scratch starts as a copy, so the books not named here keep
-    # exactly the rows they already had.
     fresh = not (only and target.exists())
-    if not fresh:
-        shutil.copy2(target, scratch)
-
-    conn = sqlite3.connect(scratch)
     counts: dict[str, tuple[int, int]] = {}
-    try:
-        if fresh:
-            conn.executescript(SCHEMA)
-        for edition_id, spec in wanted.items():
-            counts[edition_id] = write_edition(conn, edition_id, spec)
+    with building(target) as scratch:
+        # With --only the scratch starts as a copy, so the books not named here keep
+        # exactly the rows they already had.
+        if not fresh:
+            shutil.copy2(target, scratch)
+        with contextlib.closing(sqlite3.connect(scratch)) as conn:
+            if fresh:
+                conn.executescript(SCHEMA)
+            for edition_id, spec in wanted.items():
+                counts[edition_id] = write_edition(conn, edition_id, spec)
+                conn.commit()
+                passages, ayahs = counts[edition_id]
+                print(f"  {edition_id:<16} {passages:>6,} passages over {ayahs:>6,} ayahs")
+
+            # A book taken out of the manifest goes out of the library with it.
+            # Without this it stayed forever: the list of books said one thing and
+            # the app went on showing another, and the only way to find out was to
+            # notice a name in the picker that nobody had put there. The manifest is
+            # what is true; this file is derived from it.
+            gone = [
+                row[0] for row in conn.execute("SELECT id FROM edition")
+                if row[0] not in books
+            ]
+            for edition_id in gone:
+                conn.execute("DELETE FROM passage WHERE edition = ?", (edition_id,))
+                conn.execute("DELETE FROM covers WHERE edition = ?", (edition_id,))
+                conn.execute("DELETE FROM edition WHERE id = ?", (edition_id,))
+                print(f"  {edition_id:<16} removed, the manifest no longer names it")
+
+            # Every book's place in the reading order, not just the ones written
+            # here. It is a fact about the manifest as a whole, so importing one
+            # book must not leave the others holding a position from an older
+            # version of that list.
+            conn.executemany(
+                "UPDATE edition SET ordinal = ? WHERE id = ?",
+                list(enumerate(books)),
+            )
             conn.commit()
-            passages, ayahs = counts[edition_id]
-            print(f"  {edition_id:<16} {passages:>6,} passages over {ayahs:>6,} ayahs")
-
-        # A book taken out of the manifest goes out of the library with it.
-        # Without this it stayed forever: the list of books said one thing and
-        # the app went on showing another, and the only way to find out was to
-        # notice a name in the picker that nobody had put there. The manifest is
-        # what is true; this file is derived from it.
-        gone = [
-            row[0] for row in conn.execute("SELECT id FROM edition")
-            if row[0] not in books
-        ]
-        for edition_id in gone:
-            conn.execute("DELETE FROM passage WHERE edition = ?", (edition_id,))
-            conn.execute("DELETE FROM covers WHERE edition = ?", (edition_id,))
-            conn.execute("DELETE FROM edition WHERE id = ?", (edition_id,))
-            print(f"  {edition_id:<16} removed, the manifest no longer names it")
-
-        # Every book's place in the reading order, not just the ones written
-        # here. It is a fact about the manifest as a whole, so importing one
-        # book must not leave the others holding a position from an older
-        # version of that list.
-        conn.executemany(
-            "UPDATE edition SET ordinal = ? WHERE id = ?",
-            list(enumerate(books)),
-        )
-        conn.commit()
-        conn.close()
-    except BaseException:
-        conn.close()
-        scratch.unlink(missing_ok=True)
-        raise
-
-    try:
-        # One operation, not delete-then-rename: the old library is never gone
-        # before the new one is there, so an interruption costs the run and not
-        # the books.
-        scratch.replace(target)
-    except PermissionError:
-        # Windows will not replace a file another process has open, and the
-        # running app holds the library open for reading. Said plainly, because
-        # "PermissionError: [WinError 32]" reads like a broken script rather
-        # than like "stop the server and run this again".
-        scratch.unlink(missing_ok=True)
-        raise SystemExit(
-            f"{target.name} is open in another process, so it cannot be replaced.\n"
-            "  Stop the backend, run this again, then start it back up. "
-            "The library on disk is untouched."
-        ) from None
     return counts
 
 
@@ -528,7 +502,16 @@ def main() -> int:
         return 0
 
     print("Importing into the Qur'an library")
-    counts = build(args.only)
+    try:
+        counts = build(args.only)
+    except PermissionError:
+        # Windows will not replace a file another process has open, and the running app holds the
+        # library open for reading; "WinError 32" reads like a broken script, not "stop the server".
+        raise SystemExit(
+            f"{data_path('quran_library_path').name} is open in another process, so it cannot be replaced.\n"
+            "  Stop the backend, run this again, then start it back up. "
+            "The library on disk is untouched."
+        ) from None
     passages = sum(passage for passage, _ in counts.values())
     print(f"\n{len(counts)} edition(s), {passages:,} passages, in {data_path('quran_library_path')}")
     return 0
