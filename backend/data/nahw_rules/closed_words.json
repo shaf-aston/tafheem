@@ -750,6 +750,7 @@
    "_ذات": "ذات added to a time word is used as a time word only, always in nasb: سير عليه ذات يوم، وسير عليه ذات ليلة، بمنزلة ذات مرة (Sibawayh, al-Kitab V1 p226); والمستعمل ظرفا لا غير ما لزم النصب نحو قولك سرنا ذات مرة (Zamakhshari, al-Mufassal p81).",
    "_built": "Time words built on one ending whatever their place (Tasheel): the vowel typed on them is part of the word, not a case (زارنا أمسِ: مبني على الكسر في محل نصب).",
    "_بارحة": "البارحة, the night just gone, is a time name like ليلة: every name of time takes nasb as maf'ul fihi (Tasheel 3.2 p67).",
+   "_names_of_times": "The names of a stretch of the day or year, merged in from the teacher's own list (teacher.json kinds.time, now gone): سحر is checked (Ajrumiyya, باب ظرف الزمان: وغدوة وبكرة وسحرا); فجر، ظهر، عصر، مغرب، شتاء، صيف، ربيع، خريف are UNCHECKED: no page of the books in backend/data/books names them, they stay as the teacher's list had them.",
    "built": ["أمس", "الآن", "إذ", "منذ", "مذ", "قط", "عوض"],
    "_never_leaves": "قط and عوض never leave the adverb (ما لا يفارق الظرفية أصلا, Awdah al-Masalik V2 p232: ما فعلته قط), so they are never a doer, mubtada or khabar, and are built (Tasheel V1 p94: قط للوقت الماضي عموما ... قط وقط وقط).",
    "never_leaves": ["قط", "عوض"],
@@ -803,7 +804,16 @@
     "حينا",
     "دهرا",
     "خلال",
-    "طوال"
+    "طوال",
+    "سحر",
+    "فجر",
+    "ظهر",
+    "عصر",
+    "مغرب",
+    "شتاء",
+    "صيف",
+    "ربيع",
+    "خريف"
    ],
    "ambiguous": {
     "إذ": "adverb 'when' (past) vs preposition-like 'since / then' vs a particle of surprise",

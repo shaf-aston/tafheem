@@ -251,9 +251,7 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
             return kinds["idafa"]["min"]  # ثلاثُ سنينَ: a number is a noun, though CAMeL tags it an adjective
         if (facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ") and not facts.is_elative(mudaf):
             return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite; أعلى صوتِه is not, it works on nothing
-        bare = strip_diacritics(token["form"]).strip("+").removeprefix("ال")
-        if any(is_one(bare, family) or is_one(bare + "ا", family) or facts.listed(token, family) for family in ("zarf_zaman", "zarf_makan")) \
-                or bare in kinds["time"]:
+        if facts.is_zarf(token, s):
             return kinds["idafa"]["fi"]  # مكرُ الليلِ
         bare = book_spelling(token["lemma"])
         return kinds["idafa"]["min" if bare in kinds["material"] else "lam"]

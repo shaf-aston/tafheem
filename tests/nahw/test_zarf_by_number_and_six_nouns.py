@@ -50,3 +50,15 @@ def test_my_father_and_his_father_stay_what_they_are():
     assert role("أَبُوهُ مُوسَى", 1) == "خبر"  # added to ه already: no مضاف to موسى
     father = cards("جَاءَ أَبِي زَيْدٌ")[1]  # زيد shows its case: أبي is my father, not أبو زيد
     assert father["role"] == "فاعل" and "«ي» ضمير متصل" in father["reason"]
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, expected", [
+    ("سَافَرْتُ فَجْرًا", "مفعول فيه"),  # فجر, عصر, مغرب, the seasons: once only the teacher's list held them
+    ("سَافَرْنَا صَيْفًا", "مفعول فيه"),
+    ("رَجَعْتُ عَصْرًا", "مفعول فيه"),
+    ("أَحْبَبْتُ الشِّتَاءَ", "مفعول به"),  # loved, not in: the season is what is loved
+    ("ظَهَرَ الْحَقُّ", "فعل"),  # a verb spelled like a listed time word stays a verb
+])
+def test_a_name_of_a_part_of_the_day_or_year_is_a_time_when_the_verb_happens_in_it(sentence, expected):
+    assert role(sentence, 1 if expected != "فعل" else 0) == expected
