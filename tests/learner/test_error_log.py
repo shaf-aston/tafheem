@@ -12,7 +12,7 @@ import logging
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import attempts, progress_store
+from backend.services.learner import accounts, attempts
 
 
 def test_a_crash_is_logged_with_path_and_profile_not_body(monkeypatch, caplog):
@@ -20,7 +20,7 @@ def test_a_crash_is_logged_with_path_and_profile_not_body(monkeypatch, caplog):
         raise RuntimeError("disk on fire")
 
     monkeypatch.setattr(attempts, "record", broken)
-    monkeypatch.setattr(progress_store, "has_account", lambda _name: True)
+    monkeypatch.setattr(accounts, "has_account", lambda _name: True)
     client = TestClient(app, raise_server_exceptions=False)
     with caplog.at_level(logging.ERROR, logger="backend.main"):
         response = client.post("/api/progress/attempts", headers={"X-Tafheem-Profile": "amina"},

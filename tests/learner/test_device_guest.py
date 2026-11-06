@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import attempts, progress_db, progress_store
+from backend.services.learner import accounts, attempts, progress_db, progress_store
 from backend.services.learner.username import GUEST, clean_name, device_key, is_guest
 
 client = TestClient(app)
@@ -165,7 +165,7 @@ def test_a_device_never_becomes_an_account():
     answer(on(PHONE), "a")
     client.post("/api/progress/feedback", headers=on(LAPTOP), json={"module": "quiz", "message": "typo"})
     progress_db.reset_connection()
-    assert progress_store.account_names() == []
+    assert accounts.account_names() == []
 
 
 def test_a_device_is_not_ranked():

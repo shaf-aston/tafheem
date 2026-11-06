@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import attempts, progress_db, progress_store
+from backend.services.learner import accounts, attempts, progress_db, progress_store
 from backend.services.learner.username import clean_name
 
 client = TestClient(app)
@@ -461,8 +461,8 @@ def test_the_last_admin_cannot_leave_while_others_are_in_the_circle():
 
 
 def test_the_password_columns_go_from_a_fresh_file_and_from_one_already_at_step_two():
-    accounts = lambda: [r[1] for r in progress_db.connection().execute("PRAGMA table_info(accounts)")]  # noqa: E731
-    assert accounts() == ["name", "at", "public"]                                   # fresh file
+    columns = lambda: [r[1] for r in progress_db.connection().execute("PRAGMA table_info(accounts)")]  # noqa: E731
+    assert columns() == ["name", "at", "public"]                                   # fresh file
     progress_db.reset_connection()
     path = progress_db.data_path("progress_db_path")
     path.unlink()
@@ -475,8 +475,8 @@ def test_the_password_columns_go_from_a_fresh_file_and_from_one_already_at_step_
     old.execute("INSERT INTO accounts (name, pass, key) VALUES ('amina', 'p', 'k')")
     old.commit()
     old.close()
-    assert progress_store.has_account("amina")                                      # opens, migrates, keeps the row
-    assert accounts() == ["name", "at", "public"]
+    assert accounts.has_account("amina")                                      # opens, migrates, keeps the row
+    assert columns() == ["name", "at", "public"]
 
 
 def test_the_overview_counts_every_module_and_the_days_in_a_row():

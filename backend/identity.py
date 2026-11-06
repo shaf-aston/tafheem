@@ -16,7 +16,7 @@ from urllib.parse import unquote
 
 from fastapi import Depends, Header, HTTPException
 
-from backend.services.learner import progress_store
+from backend.services.learner import accounts
 from backend.services.learner.username import GUEST, clean_name, device_key, is_guest
 
 PROFILE_HEADER = "X-Tafheem-Profile"
@@ -58,7 +58,7 @@ def typed(name: str = Depends(typed_name)) -> str:
 
 def _signed_up(name: str) -> str:
     """Refused unless signed up, so a deleted account files nothing."""
-    if not progress_store.has_account(name):
+    if not accounts.has_account(name):
         raise HTTPException(status_code=401, detail="Log in again: no account with that username")
     return name
 

@@ -12,7 +12,7 @@ from fastapi.testclient import TestClient
 
 from backend.main import app
 from backend.services import ai
-from backend.services.learner import progress_db, progress_store
+from backend.services.learner import accounts, progress_db
 from backend.services.learner import sentence_check
 from backend.services.learner.sentence_check import check
 
@@ -109,7 +109,7 @@ def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
     monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
     progress_db.reset_connection()
-    progress_store.sign_up("amina")
+    accounts.sign_up("amina")
     yield
     progress_db.reset_connection()
 
