@@ -5,6 +5,7 @@
  */
 import { useEffect, useRef } from 'react'
 
+import WheelPicker from '../ui/inputs/WheelPicker'
 import ArabicText from '../ui/text/ArabicText'
 
 const pagesOf = (n) => `${n} ${n === 1 ? 'page' : 'pages'}`
@@ -50,16 +51,14 @@ export function TopicList({ topics, current, onPick }) {
 
 export function TopicSelect({ topics, current, onPick }) {
   return (
-    <label className="lg:hidden flex flex-col gap-1 type-small text-[var(--text-dim)]">
-      Topic
-      <select
+    <div className="lg:hidden">
+      <WheelPicker
+        label="Topic"
+        options={topics.map((t) => ({ id: t.id, label: t.title, hint: t.arabic, keys: [t.arabic] }))}
         value={current}
-        onChange={(e) => onPick(e.target.value)}
-        className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text)] px-3 py-2 text-base"
-      >
-        {topics.map((t) => <option key={t.id} value={t.id}>{t.arabic} — {t.title}</option>)}
-      </select>
-    </label>
+        onChange={onPick}
+      />
+    </div>
   )
 }
 

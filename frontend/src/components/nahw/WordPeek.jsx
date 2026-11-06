@@ -46,12 +46,12 @@ export default function WordPeek({ word, english, at, onClose, onMore, onLookup 
         </div>
         <CloseButton onClick={onClose} />
       </div>
-      <p className="text-sm" dir="rtl" lang="ar">
+      <p className="type-ui" dir="rtl" lang="ar">
         <span style={{ color: roleVar(word.role_key) }}>{word.name ?? word.role}</span>
         {word.case && <span className="text-[var(--text-dim)]"> · {caseLabel(word.case)}{word.sign ? ` (${word.sign})` : ''}</span>}
       </p>
-      {word.reason && <p className="text-xs text-[var(--text-dim)] leading-relaxed" dir="rtl" lang="ar">{reasonOnly(word.reason)}</p>}
-      <div className="flex gap-3 pt-1 text-xs">
+      {word.reason && <p className="type-label text-[var(--text-dim)] leading-relaxed" dir="rtl" lang="ar">{reasonOnly(word.reason)}</p>}
+      <div className="flex gap-3 pt-1 type-label">
         <button type="button" className="underline text-[var(--text-dim)] hover:text-[var(--text)]" onClick={onMore}>Full card</button>
         <button type="button" className="underline text-[var(--text-dim)] hover:text-[var(--text)]" onClick={onLookup}>Dictionary</button>
       </div>

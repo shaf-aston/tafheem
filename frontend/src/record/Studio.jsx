@@ -93,7 +93,7 @@ export default function Studio() {
   if (!key) {
     return (
       <main className="mx-auto max-w-md p-4 pt-16 text-[var(--text)]">
-        <h1 className="mb-4 text-xl">Recording studio</h1>
+        <h1 className="mb-4 type-title">Recording studio</h1>
         <form onSubmit={(e) => { e.preventDefault(); writeDevice(KEY, typed); setKey(typed) }}>
           <input type="password" value={typed} onChange={(e) => setTyped(e.target.value)} placeholder="Recorder key"
             className="w-full rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-3" />
@@ -105,7 +105,7 @@ export default function Studio() {
   const button = 'rounded-[var(--radius-md)] border border-[var(--border-hi)] bg-[var(--surface-hi)] px-5 py-3 disabled:opacity-40'
   return (
     <main className="mx-auto flex min-h-dvh max-w-xl flex-col items-center gap-6 p-4 pt-12 text-center text-[var(--text)]">
-      {counts && <p className="text-sm text-[var(--text-dim)]">{counts.done} kept · {counts.left} to go</p>}
+      {counts && <p className="type-ui text-[var(--text-dim)]">{counts.done} kept · {counts.left} to go</p>}
       {error && <p className="text-[var(--danger)]">{error}</p>}
       {word ? (
         <>
@@ -119,7 +119,7 @@ export default function Studio() {
             <button className={button} onClick={redo} disabled={!take}>Redo (R)</button>
           </div>
           {take && <audio key={take.url} src={take.url} controls autoPlay />}
-          <p className="text-sm text-[var(--text-faint)]">Say the word once, clearly, with every ending. Quiet before and after is trimmed.</p>
+          <p className="type-ui text-[var(--text-faint)]">Say the word once, clearly, with every ending. Quiet before and after is trimmed.</p>
         </>
       ) : counts && <p>Every word is recorded.</p>}
     </main>

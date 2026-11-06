@@ -19,7 +19,7 @@ export default function TarkeebTools({ view }) {
         aria-label="Show larger"
         title="Show larger"
         onClick={() => view.setBig(true)}
-        className="press tap shrink-0 px-3 py-2 text-xs rounded-[var(--radius-md)] border border-[var(--border)] text-[var(--text-dim)]"
+        className="press tap shrink-0 px-3 py-2 type-label rounded-[var(--radius-md)] border border-[var(--border)] text-[var(--text-dim)]"
       >
         <span aria-hidden="true">⤢</span>
       </button>

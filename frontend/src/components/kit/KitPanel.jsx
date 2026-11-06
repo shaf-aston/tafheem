@@ -91,7 +91,7 @@ function Card({ title, note, wide = false, children }) {
         min-w-0 ${wide ? 'md:col-span-2 lg:col-span-3' : ''}`}
     >
       <header>
-        <h3 className="text-sm font-semibold text-[var(--text)]">{title}</h3>
+        <h3 className="type-ui font-semibold text-[var(--text)]">{title}</h3>
         {note && <p className="type-micro text-[var(--text-faint)] break-words">{note}</p>}
       </header>
       {children}
@@ -219,7 +219,7 @@ function Elements({ accent }) {
 
       <Demo name="ShowRest" tokens="--text-dim --text-faint">
         <ShowRest lines={2} accent={accent}>
-          <p className="text-sm text-[var(--text-dim)]">{LONG_TEXT}</p>
+          <p className="type-ui text-[var(--text-dim)]">{LONG_TEXT}</p>
         </ShowRest>
       </Demo>
 
@@ -317,17 +317,17 @@ export default function KitPanel({ accent }) {
       <SectionHeader tab="kit"
         subtitle="Every token and every element, drawn from the live code." />
 
-      <h2 className="text-sm font-semibold text-[var(--text-dim)]">Tokens</h2>
+      <h2 className="type-ui font-semibold text-[var(--text-dim)]">Tokens</h2>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {tokenGroups().map(([group, entries]) => (
           <TokenCard key={group} group={group} entries={entries} />
         ))}
       </div>
 
-      <h2 className="text-sm font-semibold text-[var(--text-dim)]">Elements</h2>
+      <h2 className="type-ui font-semibold text-[var(--text-dim)]">Elements</h2>
       <Elements accent={accent} />
 
-      <h2 className="text-sm font-semibold text-[var(--text-dim)]">Motion</h2>
+      <h2 className="type-ui font-semibold text-[var(--text-dim)]">Motion</h2>
       <KitMotion />
     </div>
   )

@@ -145,10 +145,10 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
       <div className="flex items-start justify-between gap-3 flex-wrap">
         {data.summary && (
           <div
-            className="rise-in flex items-center gap-2 text-sm px-3 py-2 rounded-[var(--radius-md)]
+            className="rise-in flex items-center gap-2 type-ui px-3 py-2 rounded-[var(--radius-md)]
               bg-[var(--surface)] border border-[var(--border)]"
           >
-            <span className="text-[var(--text-faint)] text-xs uppercase tracking-wide">Sentence</span>
+            <span className="text-[var(--text-faint)] type-label uppercase tracking-wide">Sentence</span>
             <span className="text-[var(--text)]">{data.summary}</span>
             <SourceBadge source={data.source} />
           </div>

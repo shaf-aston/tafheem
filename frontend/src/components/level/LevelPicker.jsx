@@ -36,7 +36,7 @@ export default function LevelPicker({ copy, onGo }) {
                   <span className="type-small text-[var(--text-dim)]">{level.blurb}</span>
                 </span>
               </span>
-              <span aria-hidden="true" className="text-xl" style={{ color: accent }}>›</span>
+              <span aria-hidden="true" className="type-title" style={{ color: accent }}>›</span>
             </Tile>
           )
         })}

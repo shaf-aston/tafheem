@@ -66,7 +66,7 @@ export default function TimelineSection({ section, library, chosen, report, onPi
           {/* The chosen tile above already names it, English and Arabic. On a
               phone the tiles keep only the Arabic, so the name is shown here
               there alone; wider, it stays for screen readers. */}
-          <h3 className="text-lg font-semibold text-[var(--text)] min-[521px]:sr-only">{section.name}</h3>
+          <h3 className="type-heading font-semibold text-[var(--text)] min-[521px]:sr-only">{section.name}</h3>
           <p className="type-small text-[var(--text-dim)]">{section.sub}</p>
         </div>
         {section.map && (

@@ -29,7 +29,7 @@ export default function ProfileView({ name }) {
 
   return (
     <div className="space-y-4">
-      <div dir="auto" className="text-lg font-bold text-[var(--text)] truncate">{name}</div>
+      <div dir="auto" className="type-heading font-bold text-[var(--text)] truncate">{name}</div>
       {account.isError && (
         <ErrorAlert inline title="Could not load your profile." onRetry={() => account.refetch()} />
       )}
@@ -55,7 +55,7 @@ function Fact({ name, value, className = '' }) {
   return (
     <div className={`rounded-[var(--radius-sm)] border border-[var(--border)] p-3 ${className}`}>
       <dt className="type-small text-[var(--text-faint)]">{name}</dt>
-      <dd className="text-lg font-bold text-[var(--text)]">
+      <dd className="type-heading font-bold text-[var(--text)]">
         {value ?? <Skeleton className="h-6 w-12" />}
       </dd>
     </div>

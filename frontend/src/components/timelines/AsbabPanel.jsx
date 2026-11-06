@@ -62,7 +62,7 @@ export default function AsbabPanel({ section, event, accent, chosen, onChoose, o
   return (
     <section className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-5 space-y-3">
       <header className="flex items-baseline justify-between gap-2 flex-wrap">
-        <h4 className="text-sm font-semibold text-[var(--text)]">Why these ayahs came down</h4>
+        <h4 className="type-ui font-semibold text-[var(--text)]">Why these ayahs came down</h4>
         <span className="type-tiny text-[var(--text-faint)]">
           {reports.length} report{reports.length === 1 ? '' : 's'}
         </span>
@@ -102,8 +102,8 @@ export default function AsbabPanel({ section, event, accent, chosen, onChoose, o
                   title={report.surah_name}
                   className="flex w-full items-baseline gap-3 text-start px-2 py-2 rounded-[var(--radius-sm)] hover:bg-[var(--surface-hi)]"
                 >
-                  <span className="w-12 shrink-0 text-sm font-medium tabular-nums" style={{ color: accent }}>{report.ref}</span>
-                  <span className="min-w-0 line-clamp-2 text-sm text-[var(--text-dim)]">{quotedWords(report.opening)}</span>
+                  <span className="w-12 shrink-0 type-ui font-medium tabular-nums" style={{ color: accent }}>{report.ref}</span>
+                  <span className="min-w-0 line-clamp-2 type-ui text-[var(--text-dim)]">{quotedWords(report.opening)}</span>
                 </button>
               </li>
             ))}
@@ -172,7 +172,7 @@ function OneReport({ report, count, books, source, accent, onBack, onGo }) {
                     Report {i + 1} of {english.length}
                   </p>
                 )}
-                <p className="text-sm text-[var(--text-dim)] leading-snug whitespace-pre-line">{text}</p>
+                <p className="type-ui text-[var(--text-dim)] leading-snug whitespace-pre-line">{text}</p>
               </div>
             ))}
           </div>
