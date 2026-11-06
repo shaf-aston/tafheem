@@ -746,9 +746,9 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             verb = best_reading(word, [r for r in _widened(tokens[i], ranked) if r.get("pos") == "verb"])                 or (unread(ranked) and no_vowels_typed([word]) and _table_verb(word, word, [], bare=True) or None)
             said = vowel_agreement(word, verb.get("diac", "")) if verb else None
             # the verb reads the typed vowels at least as well, or the reading kept contradicts them (ظُلْمُكَ for ظَلَمَكَ);
-            # a name the dictionary files (هَلْ سَامِر مَوْجُود) stays a name while it fits them: its own vowels are only
+            # a name the dictionary files, typed with vowels (هَلْ سَامِر مَوْجُود), stays a name while it fits them: its own vowels are only
             # partly marked, so a verb that marks more of them is not a better fit
-            name = out[i].get("pos") == "noun_prop"
+            name = out[i].get("pos") == "noun_prop" and not no_vowels_typed([word])
             if said is not None and (here is None or not name and said >= here):
                 out[i] = verb
     # أَكْرَمَ مُصْطَفَى يَحْيَى: nothing before the sentence's first word puts it in nasb, so a typed fatha
