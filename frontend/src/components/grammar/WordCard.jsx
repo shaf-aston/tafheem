@@ -13,6 +13,7 @@
  */
 import { useEffect, useRef } from 'react'
 
+import { useDismiss } from '../../lib/hooks/useDismiss'
 import { caseLabel, isUnnamed, typeLabel } from '../../lib/nahw/grammarTerms'
 import { roleVar } from '../../lib/nahw/roleColors'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
@@ -36,15 +37,8 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
     scrollToEl(cardRef.current, 'nearest')
   }, [word])
 
-  useEffect(() => {
-    if (!word) return
-    const onKeyDown = (e) => {
-      // Claimed, so a view around the card does not close on the same press.
-      if (e.key === 'Escape') { e.preventDefault(); onClose() }
-    }
-    document.addEventListener('keydown', onKeyDown)
-    return () => document.removeEventListener('keydown', onKeyDown)
-  }, [word, onClose])
+  // Claimed, so a view around the card does not close on the same press.
+  useDismiss(cardRef, (e) => { e.preventDefault(); onClose() }, { outside: false, enabled: !!word })
 
   if (!word) return null
 

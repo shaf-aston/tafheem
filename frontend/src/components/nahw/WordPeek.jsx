@@ -7,6 +7,7 @@
  */
 import { useEffect, useRef } from 'react'
 
+import { useDismiss } from '../../lib/hooks/useDismiss'
 import { caseLabel } from '../../lib/nahw/grammarTerms'
 import { roleVar } from '../../lib/nahw/roleColors'
 import ArabicText from '../ui/text/ArabicText'
@@ -17,17 +18,8 @@ const reasonOnly = (reason) => (reason ?? '').split('. القاعدة')[0]
 
 export default function WordPeek({ word, english, at, onClose, onMore, onLookup }) {
   const box = useRef(null)
-  useEffect(() => {
-    const outside = (event) => { if (!box.current?.contains(event.target)) onClose() }
-    const escape = (event) => { if (event.key === 'Escape') onClose() }
-    document.addEventListener('pointerdown', outside)
-    document.addEventListener('keydown', escape)
-    box.current?.focus()
-    return () => {
-      document.removeEventListener('pointerdown', outside)
-      document.removeEventListener('keydown', escape)
-    }
-  }, [onClose])
+  useDismiss(box, onClose)
+  useEffect(() => { box.current?.focus() }, [])
 
   return (
     <div
