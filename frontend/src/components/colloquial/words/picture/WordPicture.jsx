@@ -18,6 +18,7 @@ import Spelling from '../../parts/Spelling'
 import BodyArt from './BodyArt'
 import MapArt from './MapArt'
 import SceneArt from './SceneArt'
+import ThingArt from './ThingArt'
 
 const STEPS = [{ id: 'explore', label: 'Explore' }, { id: 'test', label: 'Test' }]
 
@@ -65,7 +66,7 @@ function Said({ words }) {
 function Art({ board }) {
   if (board.art === 'map') return <MapArt view={board.view} keys={board.spots.map((s) => s.key)} />
   // Each draws only the boards it knows, and nothing for the rest.
-  return <><BodyArt art={board.art} /><SceneArt board={board} /></>
+  return <><BodyArt art={board.art} /><SceneArt board={board} /><ThingArt art={board.art} /></>
 }
 
 export function Board({ board, step = 'test' }) {

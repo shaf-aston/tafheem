@@ -76,6 +76,36 @@ export const SCENES = [
       wind: [96, 160], umbrella: [256, 178], hot: [30, 176], 'cold-weather': [30, 232],
     },
   },
+  {
+    id: 'outfit', label: 'Outfit', art: 'outfit', view: [0, 0, 280, 430],
+    spots: {
+      hat: [140, 20], glasses: [140, 60], earring: [112, 73], collar: [130, 102], scarf: [168, 140], tie: [140, 148],
+      jacket: [108, 150], sleeve: [78, 172], shirt: [140, 190], pocket: [109, 207], button: [140, 214],
+      belt: [104, 237], watch: [210, 234], glove: [70, 252], trousers: [122, 300], handbag: [210, 298],
+      sock: [118, 384], shoe: [112, 412],
+    },
+    also: { jeans: 'trousers' },
+  },
+  {
+    id: 'traditional', label: 'Traditional dress', art: 'traditional', view: [0, 0, 360, 380],
+    spots: { keffiyeh: [62, 36], thobe: [62, 220], headscarf: [180, 34], abaya: [180, 230], turban: [298, 30], robe: [298, 200] },
+  },
+  {
+    id: 'table', label: 'Table', art: 'table', view: [0, 0, 300, 300],
+    spots: {
+      tablecloth: [22, 18], napkin: [60, 100], fork: [96, 150], plate: [150, 130], knife: [210, 150], spoon: [226, 108],
+      bowl: [262, 180], 'glass-cup': [238, 60], cup: [58, 206], teaspoon: [112, 226], kettle: [172, 232],
+      'salt-shaker': [244, 226], 'sugar-bowl': [238, 262],
+    },
+    also: { teapot: 'kettle' },
+  },
+  {
+    id: 'plant', label: 'Plant', art: 'plant', view: [0, 0, 300, 400],
+    spots: {
+      tree: [150, 100], leaf: [130, 66], fruit: [196, 62], branch: [112, 153], bark: [141, 196], trunk: [158, 226],
+      root: [124, 335], seed: [238, 300], flower: [262, 214], petal: [272, 186], bud: [232, 232],
+    },
+  },
 ]
 
 /** Panel boards: one panel per word, in a grid, each drawn by SceneArt's panel of that board. */

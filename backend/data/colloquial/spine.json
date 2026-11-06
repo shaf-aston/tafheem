@@ -495,8 +495,7 @@
             {
               "slot": "family",
               "english": "Family.",
-              "search_term": "family photo together",
-              "image": "unit-02/l01-p01-family-photo-together.jpg"
+              "search_term": "family photo together"
             },
             {
               "slot": "my-mother",
@@ -540,8 +539,7 @@
             {
               "slot": "how-many-people-are-in-your-family-to-a-man",
               "english": "How many people are in your family? (to a man)",
-              "search_term": "family photo together",
-              "image": "unit-02/l01-p10-family-photo-together.jpg"
+              "search_term": "family photo together"
             },
             {
               "slot": "i-have-a-brother-and-two-sisters",

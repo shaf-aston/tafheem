@@ -1,6 +1,6 @@
 /**
  * The body drawings behind WordPicture's spots: a face, a whole figure with its
- * organs showing through, and an open hand. Plain shapes in theme colours, so
+ * organs showing through, an open hand and a leg. Plain shapes in theme colours, so
  * they read in light and dark. The spots' places are lib/colloquial/wordPictures.js,
  * drawn to the same viewBox; move a part here and move its spot there.
  */
@@ -85,7 +85,21 @@ function Hand() {
   )
 }
 
-const ART = { face: Face, figure: Figure, hand: Hand }
+// A leg from the side, the foot pointing right: thigh, knee, calf, ankle, heel.
+function Leg() {
+  return (
+    <g>
+      <path d="M72 0 H156 Q160 60 156 112 Q152 150 142 170 Q136 230 142 290 Q146 312 152 326 Q202 334 228 372 Q234 394 208 394 H78 Q70 390 74 360 Q84 342 86 318 Q82 270 76 220 Q68 160 66 110 Q64 50 72 0 Z" {...SKIN} />
+      <ellipse cx="116" cy="140" rx="24" ry="20" fill="none" stroke="var(--border-hi)" strokeWidth="2" />
+      <path d="M88 176 Q76 236 90 300" {...LINE} strokeWidth="2" opacity=".55" />
+      <circle cx="140" cy="312" r="9" fill="none" stroke="var(--border-hi)" strokeWidth="2" />
+      <path d="M170 362 Q196 360 218 370 M176 382 H214" {...LINE} strokeWidth="2" opacity=".55" />
+      <path d="M74 372 Q78 392 96 394" {...LINE} stroke="var(--text-faint)" strokeWidth="3" />
+    </g>
+  )
+}
+
+const ART = { face: Face, figure: Figure, hand: Hand, leg: Leg }
 
 export default function BodyArt({ art }) {
   const Art = ART[art]

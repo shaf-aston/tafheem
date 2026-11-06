@@ -46,11 +46,13 @@ export default function WordsView({ unit, at }) {
   // Browse and Review lay many tiles side by side; the rest are one card wide.
   return (
     <article className={`${WIDE.has(shown) ? 'max-w-5xl' : 'max-w-xl'} mx-auto space-y-6`}>
-      {/* The topic's title is already on the trail above, one step before Words. */}
       {/* One width in every mode, so the modes stay put when Review widens the page. */}
-      <header className="w-full max-w-xl mx-auto flex flex-wrap items-end justify-between gap-3">
-        {/* A heading, so the word groups under it (h4) sit one level down from the tab's h2. */}
-        <h3 className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</h3>
+      {/* Headed like a phrase topic (topic/TopicView.jsx), so every topic says its own name, not only the trail. */}
+      <header className="w-full max-w-xl mx-auto space-y-4">
+        <div>
+          <p className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
+          <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
+        </div>
         <div {...onHover(client, record)}>
           <Segmented label="How to learn the words" accent="var(--primary)" value={shown} onChange={setMode} options={modes} />
         </div>
