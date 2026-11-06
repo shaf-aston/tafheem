@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import THEME from '../../config/theme.json'
 import { forgetProgress } from '../learner/progress'
 import {
   fillShelf, forgetKey, forgetSaved, forgetProgressKeys, onChange, onReplaced, progressKey, readRaw, readSaved, shelfOf, writeRaw, writeSaved,
@@ -96,6 +97,7 @@ describe('filed under who is logged in', () => {
     data.set('guest', 'ab'.repeat(16))
     data.set('recorder-key', 'sk-1')
     data.set('install-dismissed', '1')
+    data.set(THEME.themes['hint-key'], 'dark')
     data.set('c', '3')
     expect(shelfOf('')).toEqual({ c: '3' })
   })
@@ -105,12 +107,13 @@ describe('filed under who is logged in', () => {
     data.set('guest', 'ab'.repeat(16))
     data.set('recorder-key', 'sk-1')
     data.set('install-dismissed', '1')
+    data.set(THEME.themes['hint-key'], 'dark')
     data.set('c', '3')
     let held
     forgetProgress.mockImplementationOnce(async () => { held = data.get('guest'); return { deleted: true } })
     await forgetSaved()
     expect(held).toBe('ab'.repeat(16))
-    expect([...data.keys()]).toEqual(['guest', 'recorder-key', 'install-dismissed'])
+    expect([...data.keys()]).toEqual(['guest', 'recorder-key', 'install-dismissed', THEME.themes['hint-key']])
     expect(location.reload).toHaveBeenCalledOnce()
   })
 

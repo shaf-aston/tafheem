@@ -19,6 +19,7 @@
 import { useCallback, useMemo, useSyncExternalStore } from 'react'
 
 import PROFILE from '../../config/profile.json'
+import THEME from '../../config/theme.json'
 import { forgetProgress } from '../learner/progress'
 
 /** Keys that belong to this browser, not to whoever uses it: never a shelf, never wiped by Start over. */
@@ -27,6 +28,7 @@ export const DEVICE_KEYS = Object.freeze({
   guest: PROFILE.deviceKey,
   recorder: 'recorder-key',
   installDismissed: 'install-dismissed',
+  themeHint: THEME.themes['hint-key'],
 })
 const DEVICE_ONLY = new Set(Object.values(DEVICE_KEYS))
 

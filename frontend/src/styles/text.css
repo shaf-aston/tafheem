@@ -176,6 +176,12 @@ textarea.arabic-lg {
     font-family: var(--font-head);
     letter-spacing: -0.01em;
   }
+  /* The heading rungs (theme.json type): lead, heading, title, display. A utility beside one wins,
+     so a size that grows with the screen is type-title md:text-3xl. */
+  .type-lead { font-size: var(--type-lead); }
+  .type-heading { font-size: var(--type-heading); }
+  .type-title { font-size: var(--type-title); }
+  .type-display { font-size: var(--type-display); }
   /* .eyebrow-lg: the same label a rung up, heading a block of its own (Home). */
   .eyebrow-lg { --eyebrow-size: var(--type-label); }
   .eyebrow {

@@ -15,7 +15,7 @@ function Lines({ hue, kicker, title, gloss, arabic, note, more, image }) {
       {image && <PhrasePicture phrase={{ image }} alt="" className="float-end ms-3 w-12 h-12 rounded-[var(--radius-md)]" />}
       <span className="flex items-baseline justify-between gap-3">
         <span className="eyebrow" style={{ color: hue }}>{kicker}</span>
-        {arabic && <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text-dim)]">{arabic}</span>}
+        {arabic && <ArabicText size="sm" className="text-[var(--text-dim)]">{arabic}</ArabicText>}
       </span>
       <span className="block type-ui font-semibold text-[var(--text)] mt-1">{title}</span>
       {gloss && <i className="block type-small text-[var(--text-dim)]">{gloss}</i>}
@@ -60,7 +60,7 @@ export function Card({ hue, index, onClick, twin, picture, ...lines }) {
         <>
           <span className="min-w-0"><Lines hue={hue} {...lines} arabic={null} /></span>
           <span className="flex flex-col items-end gap-1 self-stretch">
-            <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text-dim)]">{lines.arabic}</span>
+            <ArabicText size="sm" className="text-[var(--text-dim)]">{lines.arabic}</ArabicText>
             {picture}
           </span>
         </>

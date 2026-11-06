@@ -36,7 +36,7 @@ function PackRow({ pack, bytes, status = 'none', done = 0, total = 0 }) {
   return (
     <li className="flex items-center justify-between gap-3">
       <span className="min-w-0 space-y-0.5">
-        <span className="block text-sm font-medium text-[var(--text)]">
+        <span className="block type-ui font-medium text-[var(--text)]">
           {pack.label} <span className="type-small font-normal text-[var(--text-faint)] tabular-nums">· {sizeLabel(bytes)}</span>
         </span>
         <span className="block type-small text-[var(--text-faint)] leading-snug">

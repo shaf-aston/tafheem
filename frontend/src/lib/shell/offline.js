@@ -10,6 +10,7 @@
 import { useSyncExternalStore } from 'react'
 
 import knobs from '../../config/offline.json'
+import { loadStatic } from '../api/staticQuery'
 import { fill } from './homeCopy'
 
 export const { copy, packs: PACKS } = knobs
@@ -55,7 +56,7 @@ let planOnce = null
 /** The built plan, and how much of each pack is already saved. Asked for when Settings opens. */
 export function loadPacks() {
   if (!state.supported) return
-  planOnce ??= fetch(PLAN_URL).then((res) => res.json()).then(async (plan) => {
+  planOnce ??= loadStatic(PLAN_URL, 'the offline plan').then(async (plan) => {
     set({ plan })
     for (const pack of PACKS) {
       const files = plan.packs[pack.id]?.files ?? []

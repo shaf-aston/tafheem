@@ -11,6 +11,7 @@
  * Which family, group and comparison show is the Map's place (lib/map/mapPlace.js),
  * so each has an address; `onGo` moves to another.
  */
+import WheelPicker from '../ui/inputs/WheelPicker'
 import ArabicText from '../ui/text/ArabicText'
 import { FAMILIES, differs, sharedWith } from '../../lib/map/manhajData'
 import { MANHAJ } from '../../lib/map/mapPlace'
@@ -81,7 +82,7 @@ function GroupPage({ family, group, other, onCompare }) {
     <article className="flex flex-col gap-5">
       <div>
         <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-          <h3 className="text-xl font-bold text-[var(--text)]">{group.en}</h3>
+          <h3 className="type-title font-bold text-[var(--text)]">{group.en}</h3>
           <ArabicText as="p" size="lg" className="font-bold">{group.ar}</ArabicText>
         </div>
         <p className="type-ui text-[var(--text-faint)]">{group.era} · {group.origin}</p>
@@ -114,14 +115,12 @@ function GroupPage({ family, group, other, onCompare }) {
           <h4 className="eyebrow eyebrow-lg flex-1">Where it stands</h4>
           <label className="type-ui text-[var(--text-dim)] flex items-center gap-2">
             Compare with
-            <select
+            <WheelPicker
+              label="Compare with"
+              options={[{ id: '', label: 'None' }, ...family.groups.filter((g) => g !== group).map((g) => ({ id: g.id, label: g.en }))]}
               value={other?.id ?? ''}
-              onChange={(e) => onCompare(e.target.value)}
-              className="tap rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] text-[var(--text)] px-2 py-1"
-            >
-              <option value="">—</option>
-              {family.groups.filter((g) => g !== group).map((g) => <option key={g.id} value={g.id}>{g.en}</option>)}
-            </select>
+              onChange={onCompare}
+            />
           </label>
         </div>
         {other && (

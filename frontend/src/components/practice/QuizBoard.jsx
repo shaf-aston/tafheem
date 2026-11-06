@@ -164,7 +164,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
       <div className="flex items-start justify-between gap-3 flex-wrap min-h-9">
         <div aria-live="polite" className="flex-1 min-w-0 max-sm:order-last max-sm:basis-full">
           {answered && (
-            <p className="text-sm" style={{ color: correct ? 'var(--success)' : 'var(--danger)' }}>
+            <p className="type-ui" style={{ color: correct ? 'var(--success)' : 'var(--danger)' }}>
               {/* A right answer already says so on the option it was; the
                   words are kept here for screen readers only, since this is
                   the line that gets announced. */}
@@ -209,7 +209,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
             disabled={!answered}
             style={{ background: accent, color: 'var(--bg)', '--c': accent }}
             className={`flex items-center gap-2 ps-5 pe-3 py-2 rounded-[var(--radius-md)] whitespace-nowrap
-              text-sm font-semibold glow hover:brightness-110 active:translate-y-px
+              type-ui font-semibold glow hover:brightness-110 active:translate-y-px
               transition-[filter,transform] sm:order-first ${answered ? '' : 'max-sm:invisible sm:hidden'}`}
           >
             {say(past ? 'Back to the question' : 'Next word')}

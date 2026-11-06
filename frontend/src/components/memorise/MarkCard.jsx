@@ -6,6 +6,7 @@ import { CHECK, MISSED, SAID, WRONG } from '../../lib/recite/follow'
 import { bySoundOnly, weakParts, whyOf } from '../../lib/recite/markWhy'
 import { asArabic } from '../../lib/recite/sounds'
 import { LOOK, WAITING_LOOK } from '../../lib/recite/reciteColors'
+import { useDismiss } from '../../lib/hooks/useDismiss'
 import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 import config from '../../config/memorise.json'
 
@@ -136,18 +137,7 @@ export default function MarkCard({ ayah, at, recite, anchor, onStartAt }) {
   const card = useRef(null)
   const close = useRef(null)
 
-  useEffect(() => {
-    const onKey = (event) => event.key === 'Escape' && recite.setOpen(null)
-    const onPress = (event) => {
-      if (!anchor.current?.contains(event.target) && !card.current?.contains(event.target)) recite.setOpen(null)
-    }
-    document.addEventListener('keydown', onKey)
-    document.addEventListener('pointerdown', onPress)
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.removeEventListener('pointerdown', onPress)
-    }
-  }, [anchor, recite])
+  useDismiss([anchor, card], () => recite.setOpen(null))
 
   // Focus goes into the card when it opens, so a keyboard reader does not have
   // to tab through a page to reach one that sits at the end of the document,

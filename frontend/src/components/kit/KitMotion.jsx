@@ -9,6 +9,7 @@ import { useState } from 'react'
 
 import EmptyState from '../ui/feedback/EmptyState'
 import Mascot from '../ui/display/Mascot'
+import ArabicText from '../ui/text/ArabicText'
 import Odometer from '../ui/text/Odometer'
 import SmallButton from '../ui/buttons/SmallButton'
 
@@ -20,7 +21,7 @@ function Move({ title, owner, children }) {
     <section className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 space-y-3 min-w-0">
       <header className="flex items-start justify-between gap-2">
         <div>
-          <h3 className="text-sm font-semibold text-[var(--text)]">{title}</h3>
+          <h3 className="type-ui font-semibold text-[var(--text)]">{title}</h3>
           <p className="type-micro text-[var(--text-faint)] break-words">{owner}</p>
         </div>
         <SmallButton onClick={() => setRun((n) => n + 1)}>Replay</SmallButton>
@@ -59,11 +60,11 @@ export default function KitMotion() {
         <div className={`lift ${box} w-fit`}>Point at me</div>
       </Move>
       <Move title="Twins differ" owner=".twin-same, .twin-diff · ui/text/TwinCards">
-        <p dir="rtl" className="arabic text-xl flex gap-2">
+        <ArabicText as="p" className="type-title flex gap-2">
           <span className="twin-same text-[var(--text-dim)]">إِنَّ</span>
           <span className="twin-diff" style={{ color: 'var(--danger)' }}>اللَّهَ</span>
           <span className="twin-same text-[var(--text-dim)]">غَفُورٌ</span>
-        </p>
+        </ArabicText>
       </Move>
       <Move title="Nothing found" owner=".dots-gather · ui/feedback/EmptyState">
         <EmptyState>No entries.</EmptyState>

@@ -16,6 +16,7 @@
 import { useCallback } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
+import { fetchStatic } from '../api/staticQuery'
 import config from './reciters.json'
 import { RECITERS, ayahAudioUrl } from './ayahAudio'
 
@@ -26,10 +27,7 @@ async function fetchRecitation(surah, reciterId) {
     .replace('{reciter}', reciter.quran_id)
     .replace('{surah}', surah)
   try {
-    const response = await fetch(url)
-    if (!response.ok) throw new Error(`Recitation timings: ${response.status}`)
-
-    const { audio_files: files = [] } = await response.json()
+    const { audio_files: files = [] } = await fetchStatic(url, 'the recitation timings')
     const byAyah = {}
     for (const file of files) {
       const [, ayah] = file.verse_key.split(':')

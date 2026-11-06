@@ -90,7 +90,7 @@ export default function TamreenBrowse({ exercises, tags, coverage, accent }) {
       ) : (
         <section className="space-y-4 min-w-0">
           <div>
-            <h3 className="flex items-baseline gap-2 text-lg font-semibold">
+            <h3 className="flex items-baseline gap-2 type-heading font-semibold">
               <ArabicText size="base">{selected.ar}</ArabicText>
               <span>{selected.en}</span>
             </h3>

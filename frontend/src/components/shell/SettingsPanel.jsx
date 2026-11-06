@@ -50,7 +50,7 @@ export default function SettingsPanel({ open, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <SheetHeader onClose={onClose} className="">
-          <h2 id="settings-title" className="type-head text-base font-bold text-[var(--text)]">
+          <h2 id="settings-title" className="type-head type-lead font-bold text-[var(--text)]">
             Settings
           </h2>
         </SheetHeader>
@@ -183,7 +183,7 @@ function Setting({ setting }) {
       <div className="flex items-center justify-between gap-3">
         <Name
           htmlFor={setting.type === 'switch' ? id : undefined}
-          className="text-sm font-medium text-[var(--text)]"
+          className="type-ui font-medium text-[var(--text)]"
         >
           {setting.label}
         </Name>
@@ -259,7 +259,7 @@ function SourceRow({ source }) {
   return (
     <li className="space-y-0.5">
       <div className="flex items-baseline justify-between gap-2 flex-wrap">
-        <span className="text-sm text-[var(--text)]">{source.label}</span>
+        <span className="type-ui text-[var(--text)]">{source.label}</span>
         <span className="type-small shrink-0" style={{ color: level.color }}>{level.say}</span>
       </div>
       <p className={faint} title={source.detail}>{source.where || source.detail}</p>

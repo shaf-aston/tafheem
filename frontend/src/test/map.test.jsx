@@ -43,7 +43,8 @@ describe('the map', () => {
     expect(visits.at(-1)).toBe('manhaj/fiqh')
     fireEvent.click(screen.getByRole('button', { name: /Ḥanafī/ }))
     expect(visits.at(-1)).toBe('manhaj/fiqh/hanafi')
-    fireEvent.change(screen.getByRole('combobox', { name: /Compare with/ }), { target: { value: 'maliki' } })
+    fireEvent.click(screen.getByRole('button', { name: /Compare with/ }))
+    fireEvent.click(screen.getByRole('option', { name: /Mālikī/ }))
     expect(visits.at(-1)).toBe('manhaj/fiqh/hanafi/maliki')
     expect(screen.getByText(/^Differ on/)).toBeTruthy()
 

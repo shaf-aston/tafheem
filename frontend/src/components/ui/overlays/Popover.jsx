@@ -9,7 +9,9 @@
  * pill. Not Disclosure: a <details> pushes its content into the page, and
  * inside a wrapping row that reflows the row, which is the thing this avoids.
  */
-import { useEffect, useId, useRef, useState } from 'react'
+import { useId, useRef, useState } from 'react'
+
+import { useDismiss } from '../../../lib/hooks/useDismiss'
 
 export default function Popover({ label, title, align = 'end', children }) {
   const [open, setOpen] = useState(false)
@@ -17,21 +19,10 @@ export default function Popover({ label, title, align = 'end', children }) {
   const pill = useRef(null)
   const id = useId()
 
-  useEffect(() => {
-    if (!open) return undefined
-    const outside = (event) => { if (!box.current?.contains(event.target)) setOpen(false) }
-    const escape = (event) => {
-      if (event.key !== 'Escape') return
-      setOpen(false)
-      pill.current?.focus()
-    }
-    document.addEventListener('pointerdown', outside)
-    document.addEventListener('keydown', escape)
-    return () => {
-      document.removeEventListener('pointerdown', outside)
-      document.removeEventListener('keydown', escape)
-    }
-  }, [open])
+  useDismiss(box, (event) => {
+    setOpen(false)
+    if (event.type === 'keydown') pill.current?.focus()
+  }, { enabled: open })
 
   return (
     <div ref={box} className="relative">

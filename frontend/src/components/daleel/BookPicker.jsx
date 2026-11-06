@@ -202,7 +202,7 @@ export default function BookPicker({ books, onChange, accent, sourceLabel, folde
             dir={isArabic(typed) ? 'rtl' : 'ltr'}
             lang={isArabic(typed) ? 'ar' : 'en'}
             style={{ '--c': accent }}
-            className={`w-full rounded-[var(--radius-sm)] px-2 py-1.5 text-sm
+            className={`w-full rounded-[var(--radius-sm)] px-2 py-1.5 type-ui
               bg-[var(--bg)] border border-[var(--border)] text-[var(--text)]
               placeholder:text-[var(--text-faint)] focus:border-[var(--c)]
               focus:outline-none transition-colors
@@ -257,7 +257,7 @@ export default function BookPicker({ books, onChange, accent, sourceLabel, folde
                           {book.name}
                         </ArabicText>
                       ) : (
-                        <div className="book-name text-sm">{book.name}</div>
+                        <div className="book-name type-ui">{book.name}</div>
                       )}
                       <div className="book-sub type-small text-[var(--text-faint)]" dir="ltr">
                         {book.english}

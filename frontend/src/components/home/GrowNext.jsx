@@ -74,7 +74,7 @@ export default function GrowNext({ modules, pending = false, level, copy, skip, 
               <span className="type-small text-[var(--text-faint)]">{reason}</span>
             </span>
           </span>
-          <span aria-hidden="true" className="text-xl" style={{ color: accent }}>›</span>
+          <span aria-hidden="true" className="type-title" style={{ color: accent }}>›</span>
         </Tile>
       </div>
     </section>

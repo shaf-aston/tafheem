@@ -43,7 +43,7 @@ export default function SentenceMeaning({ data, accent, onGo, onLookup, bare = f
 
       {!bare && <>
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <h3 className="text-sm text-[var(--text-dim)]">Word by word</h3>
+        <h3 className="type-ui text-[var(--text-dim)]">Word by word</h3>
         <SourceBadge source={data.words_source} />
       </div>
       <div className="flex flex-wrap justify-center gap-2" dir={toArabic ? 'ltr' : 'rtl'}>

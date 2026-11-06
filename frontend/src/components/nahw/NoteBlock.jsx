@@ -100,7 +100,7 @@ export default function NoteBlock({ topicId, block, testing, hidden, revealed, o
         {english && block.en && <English>{marked('en')}</English>}
       </div>
     ) : (
-      <h3 className="text-lg font-semibold">{marked('en')}</h3>
+      <h3 className="type-heading font-semibold">{marked('en')}</h3>
     ),
     rule: (
       <div className="space-y-1.5">

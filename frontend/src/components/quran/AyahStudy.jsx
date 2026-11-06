@@ -115,7 +115,7 @@ export default function AyahStudy({ surah, ayah, onGo, onClose, accent, sheet })
           </div>
           {opened && <WordCard word={opened} onGo={onGo} onClose={() => setOpenWord(null)} exclude="quran" />}
           <div className="flex items-center gap-3 flex-wrap">
-            <p className="text-xs text-[var(--text-faint)]">Tap a word for its grammar and root</p>
+            <p className="type-label text-[var(--text-faint)]">Tap a word for its grammar and root</p>
             {lookAlikes > 0 && onGo && (
               <GoButton data-look-alikes={lookAlikes} onClick={() => onGo('similar', `${surah}:${ayah}`)}>
                 {lookAlikes === 1 ? similarCopy['look-alike'] : fill(similarCopy['look-alikes'], { n: lookAlikes })}
@@ -164,7 +164,7 @@ function AyahTarkeeb({ surah, ayah }) {
   return (
     <section className="space-y-3 pt-2">
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <h3 className="text-sm text-[var(--text-dim)]">
+        <h3 className="type-ui text-[var(--text-dim)]">
           How the words join <ArabicText size="sm" className="text-[var(--text)]">التَّرْكِيْب</ArabicText>
         </h3>
         <div className="flex items-center gap-2">

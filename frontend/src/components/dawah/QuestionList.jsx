@@ -13,7 +13,7 @@ export default function QuestionList({ rows, current, onPick }) {
               aria-current={on ? 'true' : undefined}
               style={on ? { borderColor: 'var(--c)', color: 'var(--text)' } : undefined}
               className="press w-full text-left rounded-[var(--radius-sm)] border-s-2 border-transparent
-                px-3 py-2 text-sm text-[var(--text-dim)] hover:text-[var(--text)] hover:bg-[var(--surface-hi)]
+                px-3 py-2 type-ui text-[var(--text-dim)] hover:text-[var(--text)] hover:bg-[var(--surface-hi)]
                 transition-colors"
             >
               {question.q}

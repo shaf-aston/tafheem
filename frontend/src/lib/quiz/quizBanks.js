@@ -20,6 +20,7 @@
  * the same topic, the same verb pattern, or the same surah.
  */
 import settings from '../../config/quiz.json'
+import { loadStatic, staticQuery } from '../api/staticQuery'
 import { fetchReviewItems } from '../learner/progress'
 
 export const QUIZ = {
@@ -84,29 +85,14 @@ export const WHOLE_SET_SCOPES = [
   { id: 'quran', label: 'Whole Qur’an', group: 'quran:all' },
 ]
 
-async function fetchJson(path) {
-  const response = await fetch(path)
-  if (!response.ok) throw new Error(`Could not load ${path} (${response.status})`)
-  return response.json()
-}
+const wordFile = (file) => loadStatic(`${WORDS_DIR}/${file}.json`, `the word list (${file})`)
 
-/** The three files, fetched once between them and then remembered. */
-let loading = null
-export function table() {
-  loading ??= Promise.all([
-    fetchJson(`${WORDS_DIR}/words.json`),
-    fetchJson(`${WORDS_DIR}/cuts.json`),
-    fetchJson(`${WORDS_DIR}/index.json`),
-  ]).then(([words, cuts, index]) => ({ words: words.words, cuts, index }))
-  return loading
-}
+/** The three files, each fetched once and remembered. */
+export const table = () => Promise.all(['words', 'cuts', 'index'].map(wordFile))
+  .then(([words, cuts, index]) => ({ words: words.words, cuts, index }))
 
-/** How much of the Qur'an each lemma covers, fetched once and remembered. */
-let covering = null
-export function coverage() {
-  covering ??= fetchJson(`${WORDS_DIR}/coverage.json`)
-  return covering
-}
+/** How much of the Qur'an each lemma covers. */
+export const coverage = () => wordFile('coverage')
 
 /**
  * One everyday sentence per word that has no ayah to show, keyed by the word's
@@ -114,19 +100,10 @@ export function coverage() {
  * an example. The word sits in {braces} inside its sentence, inflected as the
  * sentence needs, so the card can mark it.
  */
-export const sentencesQuery = {
-  queryKey: ['quiz-sentences'],
-  queryFn: () => fetchJson(`${WORDS_DIR}/sentences.json`).then((file) => file.sentences),
-  retry: false,
-  staleTime: Infinity,
-}
+export const sentencesQuery = { ...staticQuery(`${WORDS_DIR}/sentences.json`, 'the sentences'), select: (file) => file.sentences, retry: false }
 
 /** The same per surah, only fetched when the surah list is opened. */
-let bySurah = null
-export function surahCoverage() {
-  bySurah ??= fetchJson(`${WORDS_DIR}/surah_coverage.json`)
-  return bySurah
-}
+export const surahCoverage = () => wordFile('surah_coverage')
 
 /** Each surah's number and names, from the word table already loaded. */
 export async function surahList() {

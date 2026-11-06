@@ -104,7 +104,7 @@ export default function TamreenPractise({ exercises, tags = [], accent, onProgre
 
       {/* Where you are, what kind of question, and its topics (press one to practise only that). */}
       <div className="flex flex-wrap items-center gap-2">
-        <p className="text-sm font-medium text-[var(--text)] me-1">Question {i + 1} of {list.length}</p>
+        <p className="type-ui font-medium text-[var(--text)] me-1">Question {i + 1} of {list.length}</p>
         <span className="type-small text-[var(--text-faint)] me-auto">{KIND_BADGE[entry.kind]}</span>
         {entry.item.tags.map((key) => {
           const named = tags.find((one) => one.key === key)
