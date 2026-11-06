@@ -17,6 +17,8 @@ describe('staticQuery', () => {
     expect(await loadStatic('/words/words.json', 'the words')).toEqual({ words: [1, 2] })
     expect(await queryClient.fetchQuery(staticQuery('/words/words.json', 'the words'))).toEqual({ words: [1, 2] })
     expect(fetch).toHaveBeenCalledTimes(1)
+    await loadStatic('/words/cuts.json', 'the words')
+    expect(fetch).toHaveBeenCalledTimes(2)
   })
 
   it('says what could not be loaded and with which status, and does not cache the failure', async () => {
