@@ -4,6 +4,9 @@ import re
 
 from backend.scripts.nahw.score_iraab import fresh_sentences, routed
 from backend.services.text.arabic_text import words
+from tests.nahw_helpers import needs_parser
+
+pytestmark = needs_parser
 
 
 def cards(sentence: str) -> list[dict]:

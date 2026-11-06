@@ -1,6 +1,9 @@
 """After a word that wants a verb (هل، لن، لم، a relative ...), a bare word that reads as a verb as well as a
 noun is the verb; typed vowels that only a noun fits keep the noun (data/nahw_rules/expects.json)."""
 from backend.scripts.nahw.score_iraab import routed
+from tests.nahw_helpers import needs_parser
+
+pytestmark = needs_parser
 
 
 def roles(sentence: str) -> list[str]:
