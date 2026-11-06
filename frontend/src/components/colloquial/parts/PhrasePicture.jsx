@@ -13,8 +13,9 @@ import { useState } from 'react'
 
 import { colloquialImageUrl } from '../../../api'
 
-// `alt` is empty where the English is already printed beside the picture.
-export default function PhrasePicture({ phrase, alt = phrase.english, className = '' }) {
+// `alt` is empty where the English is already printed beside the picture. `eager` is the first
+// picture on a screen: it is what the page paints last, so it is not left to load lazily.
+export default function PhrasePicture({ phrase, alt = phrase.english, eager = false, className = '' }) {
   const [gone, setGone] = useState(false)
   const box = `overflow-hidden bg-[var(--surface-hi)] ${className}`
   if (!phrase.image || gone) return <div aria-hidden="true" className={box} />
@@ -22,7 +23,8 @@ export default function PhrasePicture({ phrase, alt = phrase.english, className 
     <img
       src={colloquialImageUrl(phrase.image)}
       alt={alt}
-      loading="lazy"
+      loading={eager ? 'eager' : 'lazy'}
+      fetchPriority={eager ? 'high' : undefined}
       onError={() => setGone(true)}
       className={`${box} ${phrase.image.endsWith('.svg') ? 'object-contain p-[min(12%,0.75rem)]' : 'object-cover'}`}
     />

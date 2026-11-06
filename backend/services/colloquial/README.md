@@ -41,7 +41,7 @@ frontend/src/                            the drawing
     exercises/      one file per exercise type + registry.js, mirroring the backend's
     parts/          small pieces every level uses (PhrasePicture, Spelling, Face)
   lib/colloquial/   logic with no drawing: place (the tree as a URL), answer, wordGroups, wordPractice
-  colloquial.json   the page's own knobs (not the content rules)
+  colloquial-display.json   the page's own knobs (not the content rules)
 ```
 
 ## Adding something

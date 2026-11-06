@@ -1,6 +1,31 @@
 {
   "found": [
     {
+      "lesson": 1,
+      "phrase": 1,
+      "english": "What would you like to drink? (to a man)",
+      "search_term": "waiter asking customer at a cafe",
+      "candidates": []
+    },
+    {
+      "lesson": 1,
+      "phrase": 12,
+      "english": "No sugar at all.",
+      "search_term": "unsweetened drink",
+      "candidates": [
+        {
+          "id": "d766b823-e6df-4d38-ab29-dd0be5ea4851",
+          "title": "Drinking chocolate milk, but burning plenty of calories.",
+          "creator": "theslowlane",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/90536753@N00/54042668342",
+          "thumbnail": "https://api.openverse.org/v1/images/d766b823-e6df-4d38-ab29-dd0be5ea4851/thumb/"
+        }
+      ]
+    },
+    {
       "lesson": 2,
       "phrase": 1,
       "english": "Where's the menu?",
@@ -50,6 +75,27 @@
     },
     {
       "lesson": 2,
+      "phrase": 2,
+      "english": "Do you have an English menu?",
+      "search_term": "menu with two languages",
+      "candidates": []
+    },
+    {
+      "lesson": 2,
+      "phrase": 3,
+      "english": "What do you have today?",
+      "search_term": "waiter presenting daily specials",
+      "candidates": []
+    },
+    {
+      "lesson": 2,
+      "phrase": 8,
+      "english": "What do you recommend I get?",
+      "search_term": "waiter recommending a dish to customer",
+      "candidates": []
+    },
+    {
+      "lesson": 2,
       "phrase": 10,
       "english": "Is there a dish of the day?",
       "search_term": "specials board at restaurant",
@@ -95,6 +141,13 @@
           "thumbnail": "https://api.openverse.org/v1/images/9267d645-3c41-4d6c-bfb3-ff5ace5181b1/thumb/"
         }
       ]
+    },
+    {
+      "lesson": 4,
+      "phrase": 12,
+      "english": "Bless your hands, the food was delicious.",
+      "search_term": "chef receiving compliment",
+      "candidates": []
     },
     {
       "lesson": 5,
@@ -170,5 +223,26 @@
       ]
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 2,
+      "english": "What would you like to drink? (to a woman)"
+    },
+    {
+      "lesson": 6,
+      "phrase": 4,
+      "english": "Bismillah (in the name of Allah)."
+    },
+    {
+      "lesson": 6,
+      "phrase": 7,
+      "english": "Thank Allah, I'm full."
+    },
+    {
+      "lesson": 6,
+      "phrase": 12,
+      "english": "Next time it's on us."
+    }
+  ]
 }

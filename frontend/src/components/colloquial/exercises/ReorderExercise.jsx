@@ -23,7 +23,10 @@ import ArabicText from '../../ui/text/ArabicText'
 const scramble = (exercise) => {
   let seed = [...exercise.id].reduce((total, letter) => total * 31 + letter.charCodeAt(0), 7) % 2147483647
   const next = () => (seed = (seed * 48271) % 2147483647) / 2147483647
-  return shuffled(bankOf(exercise), next)
+  const bank = bankOf(exercise)
+  const tiles = shuffled(bank, next)
+  // A shuffle that lands in the answer's own order is no puzzle: turn it by one.
+  return tiles.length > 1 && tiles.join(' ') === exercise.answer ? [...tiles.slice(1), tiles[0]] : tiles
 }
 
 function Tile({ word, onClick, dim }) {
@@ -71,7 +74,16 @@ export default function ReorderExercise({ exercise, value, onChange, status }) {
           <Tile
             key={`${word}-${place}`}
             word={word}
-            onClick={answered ? null : () => onChange(chosen.filter((_, i) => i !== place))}
+            onClick={answered ? null : (event) => {
+              // This tile leaves the sentence; focus goes to the one now in its place, else the bank.
+              const sentence = event.currentTarget.closest('ol')
+              const exercise = sentence?.closest('[data-exercise]')
+              requestAnimationFrame(() => {
+                const left = sentence?.querySelectorAll('button')
+                ;(left?.[Math.min(place, left.length - 1)] ?? exercise?.querySelector('ul button:not([disabled])'))?.focus()
+              })
+              onChange(chosen.filter((_, i) => i !== place))
+            }}
           />
         ))}
       </ol>
@@ -81,7 +93,14 @@ export default function ReorderExercise({ exercise, value, onChange, status }) {
             key={at}
             word={word}
             dim={used[at]}
-            onClick={answered || used[at] ? null : () => onChange([...chosen, word])}
+            onClick={answered || used[at] ? null : (event) => {
+              // This tile is about to be disabled; focus moves on to the next free one,
+              // or, with the bank used up, to Check.
+              const bank = event.currentTarget.closest('ul')
+              requestAnimationFrame(() => (bank?.querySelector('button:not([disabled])')
+                ?? bank?.closest('[data-exercise]')?.querySelector('button.cta'))?.focus())
+              onChange([...chosen, word])
+            }}
           />
         ))}
       </ul>

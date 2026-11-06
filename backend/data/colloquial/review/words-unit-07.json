@@ -1,0 +1,418 @@
+{
+  "found": {
+    "towel": {
+      "english": "towel",
+      "search_term": "towel home interior",
+      "candidates": [
+        {
+          "id": "e9e2c5e7-c8e3-4f18-99b0-8dcc4d394d7e",
+          "title": "Cozy bedroom with elegant decor featuring a bed, fresh linens, and a book resting on the nightstand in a warm setting",
+          "creator": "nenadstojkovicart",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/202846129@N03/54584437065",
+          "thumbnail": "https://api.openverse.org/v1/images/e9e2c5e7-c8e3-4f18-99b0-8dcc4d394d7e/thumb/"
+        },
+        {
+          "id": "7f13b236-9428-41e8-a353-ad1a9a8c09f1",
+          "title": "Cozy bedroom with natural light and modern decor in a calm setting during the day",
+          "creator": "nenadstojkovicart",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/202846129@N03/54583258082",
+          "thumbnail": "https://api.openverse.org/v1/images/7f13b236-9428-41e8-a353-ad1a9a8c09f1/thumb/"
+        },
+        {
+          "id": "03d4d07b-7187-4fd3-bec1-25c001d655b0",
+          "title": "Cozy interior of a bedroom with a double bed, linen, and natural light in a serene home setting",
+          "creator": "nenadstojkovicart",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/202846129@N03/54584134746",
+          "thumbnail": "https://api.openverse.org/v1/images/03d4d07b-7187-4fd3-bec1-25c001d655b0/thumb/"
+        },
+        {
+          "id": "60b29eac-3873-490d-a22f-b4a7a587f6bd",
+          "title": "Cozy bedroom interior with a vintage bed and a stylish vanity in soft lighting",
+          "creator": "nenadstojkovicart",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/202846129@N03/54584352503",
+          "thumbnail": "https://api.openverse.org/v1/images/60b29eac-3873-490d-a22f-b4a7a587f6bd/thumb/"
+        }
+      ]
+    },
+    "to-eat": {
+      "english": "to eat",
+      "search_term": "eating a sandwich",
+      "candidates": [
+        {
+          "id": "6bff3fdc-46bd-4c9f-b9af-b79989db474b",
+          "title": "Food Sandwich",
+          "creator": "Julien Sister",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/food-sandwich-D8ED06DFE2",
+          "thumbnail": "https://api.openverse.org/v1/images/6bff3fdc-46bd-4c9f-b9af-b79989db474b/thumb/"
+        },
+        {
+          "id": "2c3e3215-fa5d-4b2f-a72d-449c6ed3893f",
+          "title": "Greens Plate",
+          "creator": "Kristin Hardwick",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/greens-plate-L1MN7U6GBJ",
+          "thumbnail": "https://api.openverse.org/v1/images/2c3e3215-fa5d-4b2f-a72d-449c6ed3893f/thumb/"
+        },
+        {
+          "id": "e57303ed-66af-43e2-b094-b0a2f713fc1a",
+          "title": "Restaurant Sandwiches",
+          "creator": "Kristin Hardwick",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/restaurant-sandwiches-69PAN2SH2Y",
+          "thumbnail": "https://api.openverse.org/v1/images/e57303ed-66af-43e2-b094-b0a2f713fc1a/thumb/"
+        },
+        {
+          "id": "fb4d9dfc-8630-4fbe-8b38-4c7d582427f9",
+          "title": "Fast Food",
+          "creator": "Mike Moloney",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/fast-food-MU88DSXA3X",
+          "thumbnail": "https://api.openverse.org/v1/images/fb4d9dfc-8630-4fbe-8b38-4c7d582427f9/thumb/"
+        }
+      ]
+    },
+    "dinner": {
+      "english": "dinner",
+      "search_term": "dinner table plates",
+      "candidates": [
+        {
+          "id": "ef8c94e3-40b7-4f68-b004-bacdc6a8fa7a",
+          "title": "Restaurant Food",
+          "creator": "Jay Wennington",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/restaurant-food-47E77904CB",
+          "thumbnail": "https://api.openverse.org/v1/images/ef8c94e3-40b7-4f68-b004-bacdc6a8fa7a/thumb/"
+        },
+        {
+          "id": "a440e3ed-4f34-46df-900d-8b12cfc741fb",
+          "title": "Food Potatoes",
+          "creator": "Tohm Brigitte",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/food-potatoes-7YQ9N87VG8",
+          "thumbnail": "https://api.openverse.org/v1/images/a440e3ed-4f34-46df-900d-8b12cfc741fb/thumb/"
+        },
+        {
+          "id": "e7026119-6c48-453f-b0e5-753a3d8cdca4",
+          "title": "Food Photography",
+          "creator": "Dave Meier",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/food-photography-C41BF38AB9",
+          "thumbnail": "https://api.openverse.org/v1/images/e7026119-6c48-453f-b0e5-753a3d8cdca4/thumb/"
+        },
+        {
+          "id": "8b6ccfee-7241-4f59-a8ef-24afe0136f1c",
+          "title": "Oatmeal Honey",
+          "creator": "Jennifer Pallian",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/oatmeal-honey-NBCKVD5IDL",
+          "thumbnail": "https://api.openverse.org/v1/images/8b6ccfee-7241-4f59-a8ef-24afe0136f1c/thumb/"
+        }
+      ]
+    },
+    "team": {
+      "english": "team",
+      "search_term": "team sport action",
+      "candidates": [
+        {
+          "id": "aa89f377-ba64-4c7e-8fea-e1c835b86363",
+          "title": "Fall colors in eastern United States and Canada",
+          "creator": "NASA Goddard Photo and Video",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/24662369@N07/15225458169",
+          "thumbnail": "https://api.openverse.org/v1/images/aa89f377-ba64-4c7e-8fea-e1c835b86363/thumb/"
+        },
+        {
+          "id": "434657c2-7383-4bdc-b260-da07535dadf5",
+          "title": "750MC Birkett Relay, 29 October 2022",
+          "creator": "hockeyshooter",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/32332324@N00/52463939437",
+          "thumbnail": "https://api.openverse.org/v1/images/434657c2-7383-4bdc-b260-da07535dadf5/thumb/"
+        },
+        {
+          "id": "e0d15ebb-096f-4eff-8cee-9cf7bee9eab6",
+          "title": "750MC Birkett Relay, 29 October 2022",
+          "creator": "hockeyshooter",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/32332324@N00/52464439381",
+          "thumbnail": "https://api.openverse.org/v1/images/e0d15ebb-096f-4eff-8cee-9cf7bee9eab6/thumb/"
+        },
+        {
+          "id": "f0307b48-d51a-4d67-8e02-0e13d4a14336",
+          "title": "750MC Birkett Relay, 29 October 2022",
+          "creator": "hockeyshooter",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/32332324@N00/52464722149",
+          "thumbnail": "https://api.openverse.org/v1/images/f0307b48-d51a-4d67-8e02-0e13d4a14336/thumb/"
+        }
+      ]
+    },
+    "training": {
+      "english": "training",
+      "search_term": "training sport action",
+      "candidates": [
+        {
+          "id": "9aa1c6d5-b9d4-42b7-98a3-187ef1273449",
+          "title": "140930-D-DB155-007",
+          "creator": "DoD News Photos",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/127934495@N07/15221611308",
+          "thumbnail": "https://api.openverse.org/v1/images/9aa1c6d5-b9d4-42b7-98a3-187ef1273449/thumb/"
+        },
+        {
+          "id": "29499df7-2aff-4ff6-8ebd-47da9830087a",
+          "title": "NYC Mini Cruise 2014",
+          "creator": "Massachusetts Maritime Academy",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/80152048@N02/15407483632",
+          "thumbnail": "https://api.openverse.org/v1/images/29499df7-2aff-4ff6-8ebd-47da9830087a/thumb/"
+        },
+        {
+          "id": "bcf407da-0e88-40af-be4d-a2fed9c92292",
+          "title": "140930-D-DB155-008",
+          "creator": "DoD News Photos",
+          "license": "pdm",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/127934495@N07/15221454939",
+          "thumbnail": "https://api.openverse.org/v1/images/bcf407da-0e88-40af-be4d-a2fed9c92292/thumb/"
+        },
+        {
+          "id": "812127cc-967b-4c78-b693-c7510026c849",
+          "title": "TPE 68 Close up at Caistor Lane LC",
+          "creator": "kitmasterbloke",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/58415659@N00/52291011344",
+          "thumbnail": "https://api.openverse.org/v1/images/812127cc-967b-4c78-b693-c7510026c849/thumb/"
+        }
+      ]
+    },
+    "exercise": {
+      "english": "exercise",
+      "search_term": "exercise sport action",
+      "candidates": [
+        {
+          "id": "418dd8b6-e870-4d9c-ae06-b73dbba77113",
+          "title": "Cycling City",
+          "creator": "Burst",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/cycling-city-E5BW2K6ZYK",
+          "thumbnail": "https://api.openverse.org/v1/images/418dd8b6-e870-4d9c-ae06-b73dbba77113/thumb/"
+        },
+        {
+          "id": "d29fd84a-5f9a-4f15-aa57-2f51b04e25c4",
+          "title": "Skateboarder Sidewalk",
+          "creator": "Burst",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/skateboarder-sidewalk-NH8J97NEVN",
+          "thumbnail": "https://api.openverse.org/v1/images/d29fd84a-5f9a-4f15-aa57-2f51b04e25c4/thumb/"
+        },
+        {
+          "id": "fcd2c1c4-e162-40f6-8d24-570fc9030e2d",
+          "title": "Skateboarder Shoes",
+          "creator": "Burst",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/skateboarder-shoes-BTZE6FHZIV",
+          "thumbnail": "https://api.openverse.org/v1/images/fcd2c1c4-e162-40f6-8d24-570fc9030e2d/thumb/"
+        },
+        {
+          "id": "61834684-60f9-4771-a72a-dae82622199d",
+          "title": "Ballet Dancing",
+          "creator": "tom@hk",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/62424894@N00/295380997",
+          "thumbnail": "https://api.openverse.org/v1/images/61834684-60f9-4771-a72a-dae82622199d/thumb/"
+        }
+      ]
+    },
+    "to-win": {
+      "english": "to win",
+      "search_term": "winner trophy",
+      "candidates": [
+        {
+          "id": "bb785b7b-3a31-4b3e-b9b4-f211e5592862",
+          "title": "Triple trophies, world sport championship",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/11189184/triple-trophies-world-sport-championship",
+          "thumbnail": "https://api.openverse.org/v1/images/bb785b7b-3a31-4b3e-b9b4-f211e5592862/thumb/"
+        },
+        {
+          "id": "c8fa012a-cad3-4acc-a138-c07a6d71db02",
+          "title": "Golden trophy, football championship, Belgium",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/11189195/golden-trophy-football-championship-belgium",
+          "thumbnail": "https://api.openverse.org/v1/images/c8fa012a-cad3-4acc-a138-c07a6d71db02/thumb/"
+        },
+        {
+          "id": "17e7657f-2c4d-493d-8c42-5a98ccb5eeae",
+          "title": "Golden trophy, sport world cup",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/11189349/golden-trophy-sport-world-cup",
+          "thumbnail": "https://api.openverse.org/v1/images/17e7657f-2c4d-493d-8c42-5a98ccb5eeae/thumb/"
+        },
+        {
+          "id": "4fbc239c-6ef2-4d71-9868-249df14d8990",
+          "title": "George III two-handled covered cup",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/8627240/photo-image-art-vintage-golden",
+          "thumbnail": "https://api.openverse.org/v1/images/4fbc239c-6ef2-4d71-9868-249df14d8990/thumb/"
+        }
+      ]
+    },
+    "to-ride": {
+      "english": "to ride",
+      "search_term": "riding horse",
+      "candidates": [
+        {
+          "id": "c7387087-fd9a-47fd-a60b-91052a02cc25",
+          "title": "Free humans riding horses pathway",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5901282/photo-image-public-domain-person-free",
+          "thumbnail": "https://api.openverse.org/v1/images/c7387087-fd9a-47fd-a60b-91052a02cc25/thumb/"
+        },
+        {
+          "id": "d419330e-cf00-4f40-8751-1e6a7a178f57",
+          "title": "Vishnu Riding Horse Composed Female",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/9202572/image-watercolors-vintage-person",
+          "thumbnail": "https://api.openverse.org/v1/images/d419330e-cf00-4f40-8751-1e6a7a178f57/thumb/"
+        },
+        {
+          "id": "f2ee909a-a399-402c-91af-a7aa09b27efc",
+          "title": "silhouette person riding horse along",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3286129/free-photo-image-animal-cc0-creative-commons",
+          "thumbnail": "https://api.openverse.org/v1/images/f2ee909a-a399-402c-91af-a7aa09b27efc/thumb/"
+        },
+        {
+          "id": "1d9b7c6f-af15-45be-bc20-ae327e7582c0",
+          "title": "man riding horse. Collotype Eadweard",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/13966637/man-riding-horse-collotype-after-eadweard-muybridge-1887",
+          "thumbnail": "https://api.openverse.org/v1/images/1d9b7c6f-af15-45be-bc20-ae327e7582c0/thumb/"
+        }
+      ]
+    }
+  },
+  "needs_search_term": [
+    "to-wake-up",
+    "to-wash",
+    "to-shower",
+    "to-get-dressed",
+    "to-leave",
+    "working-hours",
+    "early",
+    "afternoon",
+    "employee",
+    "break",
+    "to-work",
+    "to-finish",
+    "to-call",
+    "to-rest",
+    "to-come-back",
+    "to-go",
+    "busy",
+    "to-sleep",
+    "to-read",
+    "to-watch",
+    "to-go-out",
+    "late",
+    "day",
+    "weekend",
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "today",
+    "tomorrow",
+    "yesterday",
+    "day-off",
+    "next",
+    "hobby",
+    "free-time",
+    "book",
+    "to-write",
+    "to-learn",
+    "to-grow",
+    "to-travel",
+    "to-play"
+  ]
+}

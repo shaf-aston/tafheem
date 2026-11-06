@@ -1,5 +1,5 @@
 /**
- * Hear this word. A small speaker icon; lib/speech/speak.js picks the voice.
+ * Hear this word. A small speaker icon (its tap area reaches 44px around it); lib/speech/speak.js picks the voice.
  */
 import { ahead } from '../../../lib/api/warm'
 import { useEffect, useRef, useState } from 'react'
@@ -11,8 +11,9 @@ import { prepare, speak, stop } from '../../../lib/speech/speak'
 // names that key in the tooltip. `early` readies the voice on arrival, for a
 // button that is the point of its view; others ready it on hover or focus.
 // `label` and `glyph` make it another way of hearing, the letter-by-letter
-// button say, with the same states, voices and stopping.
-export default function SpeakButton({ text, ref, shortcut, early, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
+// button say, with the same states, voices and stopping. `onFail` hears when no
+// voice could say it, so a question that needs the sound can offer another way.
+export default function SpeakButton({ text, ref, shortcut, early, onFail, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
   // idle | busy (finding a voice) | speaking | failed
   const [state, setState] = useState('idle')
   const accent = useAccent()
@@ -44,7 +45,9 @@ export default function SpeakButton({ text, ref, shortcut, early, label = 'Say i
       await voice.done
       if (alive.current) setState('idle')
     } catch (err) {
-      if (alive.current) setState(err.interrupted ? 'idle' : 'failed')
+      if (!alive.current) return
+      setState(err.interrupted ? 'idle' : 'failed')
+      if (!err.interrupted) onFail?.()
     } finally {
       mine.current = false
     }
@@ -64,7 +67,8 @@ export default function SpeakButton({ text, ref, shortcut, early, label = 'Say i
       aria-label={state === 'speaking' ? 'Stop' : state === 'failed' ? FAILED : label}
       title={state === 'failed' ? FAILED : shortcut ? `${label} (${shortcut})` : label}
       aria-busy={state === 'busy'}
-      className={`shrink-0 w-7 h-7 grid place-items-center rounded-full border transition-colors ${look}
+      className={`relative shrink-0 w-7 h-7 grid place-items-center rounded-full border transition-colors ${look}
+        after:absolute after:-inset-2 after:content-['']
         ${state === 'busy' ? 'animate-pulse' : ''} ${className}`}
     >
       {glyph}

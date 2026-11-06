@@ -36,3 +36,9 @@ export const getRootEntryEnglish = (root) =>
 // whatever arrives here is safe to print interleaved.
 export const getRootEntryLines = (root) =>
   api.get('/dictionary/root-meaning/english/lines', { params: { root } }).then((r) => r.data)
+
+// The same entry cut into the words it explains, each with the book's lines
+// about it. The backend finds every word and saying in those lines and refuses
+// an answer that does not cover them in order.
+export const getRootEntrySenses = (root) =>
+  api.get('/dictionary/root-meaning/english/senses', { params: { root } }).then((r) => r.data)

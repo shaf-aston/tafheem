@@ -1,6 +1,7 @@
 """Arabic-English dictionary search."""
 
 import asyncio
+import sys
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -11,11 +12,13 @@ from backend.models.dictionary import (
     DictionaryEntry,
     DictionaryResponse,
     EntryLine,
+    EntrySense,
     LexiconEntry,
     LexiconsResponse,
     ReadAs,
     RootEntryEnglishResponse,
     RootEntryLinesResponse,
+    RootEntrySensesResponse,
     RootMeaning,
     RootMeaningResponse,
     SentenceResponse,
@@ -26,6 +29,7 @@ from backend.services.dictionary import service as dictionary_service
 from backend.services.dictionary import lexicons
 from backend.services.dictionary import lexicon_gists
 from backend.services.core import provenance
+from backend.services.dictionary import root_english
 from backend.services.dictionary import root_entry
 from backend.services.dictionary import root_gloss
 from backend.services.dictionary import root_meaning
@@ -165,7 +169,14 @@ async def get_root_meaning(root: Root) -> RootMeaningResponse:
             provenance.of(entry.english_source_key)
             if entry.english_source_key else None
         ),
+        english_kept=root_english.get(root_meaning.book_root_of(root) or root) is not None,
+        senses_kept=_senses_kept(entry.meaning, root_meaning.book_root_of(root) or root),
     )
+
+
+def _senses_kept(meaning: dict, book_root: str) -> bool:
+    lines, _ = root_gloss.line_budget(root_gloss.rest_of(meaning), sys.maxsize)
+    return bool(lines) and root_english.get_senses(book_root, len(lines)) is not None
 
 
 @router.get("/lexicons", response_model=LexiconsResponse)
@@ -247,6 +258,18 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
     return RootEntryLinesResponse(
         root=root,
         lines=[EntryLine(arabic=a, english=e) for a, e in done.lines],
+        truncated=done.truncated,
+        source=provenance.of(done.source),
+    )
+
+
+@router.get("/root-meaning/english/senses", response_model=RootEntrySensesResponse)
+async def get_root_entry_senses(root: Root) -> RootEntrySensesResponse:
+    """The rest of the entry cut into the words it explains, each beside its lines."""
+    done = await _retold(root_entry.senses, root, "word-by-word English of a Maqayees entry")
+    return RootEntrySensesResponse(
+        root=root,
+        senses=[EntrySense(**s) for s in done.senses],
         truncated=done.truncated,
         source=provenance.of(done.source),
     )

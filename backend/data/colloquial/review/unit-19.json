@@ -1,53 +1,99 @@
 {
   "found": [
     {
-      "lesson": 6,
-      "phrase": 3,
-      "english": "He is wearing a red shirt.",
-      "search_term": "red t-shirt",
+      "lesson": 1,
+      "phrase": 7,
+      "english": "I want to transfer money to this account.",
+      "search_term": "bank money transfer",
       "candidates": [
         {
-          "id": "54fc599a-2def-48e8-b49b-f3c4def7922e",
-          "title": "Coca-Cola red t-shirt, location unknown",
-          "creator": null,
+          "id": "dd30c87c-7c2f-46e3-beb2-80a8c6866dfc",
+          "title": "The Family Bis",
+          "creator": "₡ґǘșϯγ Ɗᶏ Ⱪᶅṏⱳդ",
           "license": "cc0",
           "license_version": "1.0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/6112854/photo-image-public-domain-logo-t-shirt",
-          "thumbnail": "https://api.openverse.org/v1/images/54fc599a-2def-48e8-b49b-f3c4def7922e/thumb/"
+          "foreign_landing_url": "https://www.flickr.com/photos/148598741@N02/53541654993",
+          "thumbnail": "https://api.openverse.org/v1/images/dd30c87c-7c2f-46e3-beb2-80a8c6866dfc/thumb/"
         },
         {
-          "id": "1a8f7959-ba26-4426-80e4-13d5b42514c6",
-          "title": "Man Retro",
-          "creator": "Oliver%20Sj%F6str%F6m",
-          "license": "cc0",
+          "id": "5dbc1fa9-a40e-477f-867b-694c727caa1e",
+          "title": "10470844736_0430c4a86f_o",
+          "creator": "somalia investment",
+          "license": "pdm",
           "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://stocksnap.io/photo/man-retro-TMSG2Q3I3N",
-          "thumbnail": "https://api.openverse.org/v1/images/1a8f7959-ba26-4426-80e4-13d5b42514c6/thumb/"
-        },
-        {
-          "id": "6c7ff7e0-be2e-4708-8c69-300e1cf267c2",
-          "title": "Chief’s Poncho by Mapuche",
-          "creator": "artinstitutechicago",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/9025360/chiefs-poncho-mapuche",
-          "thumbnail": "https://api.openverse.org/v1/images/6c7ff7e0-be2e-4708-8c69-300e1cf267c2/thumb/"
-        },
-        {
-          "id": "cd30d1bf-a3eb-4634-a822-d1de9b65f733",
-          "title": "Apulian Red-Figure Volute Krater Fragment",
-          "creator": "thegetty",
-          "license": "cc0",
-          "license_version": "1.0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-          "foreign_landing_url": "https://www.rawpixel.com/image/14281225/apulian-red-figure-volute-krater-fragment-darius-painter",
-          "thumbnail": "https://api.openverse.org/v1/images/cd30d1bf-a3eb-4634-a822-d1de9b65f733/thumb/"
+          "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/194345160@N07/51669492481",
+          "thumbnail": "https://api.openverse.org/v1/images/5dbc1fa9-a40e-477f-867b-694c727caa1e/thumb/"
         }
       ]
     }
   ],
-  "needs_search_term": []
+  "needs_search_term": [
+    {
+      "lesson": 1,
+      "phrase": 8,
+      "english": "How much is the transfer fee?"
+    },
+    {
+      "lesson": 3,
+      "phrase": 3,
+      "english": "How much is this package?"
+    },
+    {
+      "lesson": 3,
+      "phrase": 11,
+      "english": "Can the service be activated today?"
+    },
+    {
+      "lesson": 4,
+      "phrase": 9,
+      "english": "Please hurry."
+    },
+    {
+      "lesson": 4,
+      "phrase": 10,
+      "english": "I don't speak Arabic well."
+    },
+    {
+      "lesson": 5,
+      "phrase": 4,
+      "english": "I am fine, thank Allah."
+    },
+    {
+      "lesson": 5,
+      "phrase": 12,
+      "english": "Did you see what happened?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 1,
+      "english": "My child is lost."
+    },
+    {
+      "lesson": 6,
+      "phrase": 2,
+      "english": "He is five years old."
+    },
+    {
+      "lesson": 6,
+      "phrase": 9,
+      "english": "Have you seen a small child?"
+    },
+    {
+      "lesson": 6,
+      "phrase": 10,
+      "english": "This is his photo."
+    },
+    {
+      "lesson": 6,
+      "phrase": 11,
+      "english": "We found him!"
+    },
+    {
+      "lesson": 6,
+      "phrase": 12,
+      "english": "Thank you for your help."
+    }
+  ]
 }

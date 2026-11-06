@@ -24,12 +24,14 @@
             {
               "slot": "how-are-you-to-a-man",
               "english": "How are you? (to a man)",
-              "search_term": "two men talking"
+              "search_term": "two men talking",
+              "image": "unit-01/l01-p03-two-men-talking.jpg"
             },
             {
               "slot": "how-are-you-to-a-woman",
               "english": "How are you? (to a woman)",
-              "search_term": "two women talking"
+              "search_term": "two women talking",
+              "image": "unit-01/l01-p04-two-women-talking.jpg"
             },
             {
               "slot": "good-thank-god",
@@ -354,7 +356,8 @@
             },
             {
               "slot": "this-is-my-father",
-              "english": "This is my father."
+              "english": "This is my father.",
+              "search_term": "father portrait"
             },
             {
               "slot": "this-is-my-mother",
@@ -366,7 +369,8 @@
             },
             {
               "slot": "i-have-two-brothers-and-a-sister",
-              "english": "I have two brothers and a sister."
+              "english": "I have two brothers and a sister.",
+              "search_term": "siblings family photo"
             },
             {
               "slot": "how-many-people-are-in-your-family-to-a-man",
@@ -381,7 +385,8 @@
             },
             {
               "slot": "this-is-my-friend-samer",
-              "english": "This is my friend Samer."
+              "english": "This is my friend Samer.",
+              "search_term": "two friends together"
             },
             {
               "slot": "i-d-like-to-introduce-you-to-my-father-to-a-man",
@@ -433,7 +438,8 @@
             },
             {
               "slot": "my-nationality-is-syrian",
-              "english": "My nationality is Syrian."
+              "english": "My nationality is Syrian.",
+              "search_term": "Syria flag"
             },
             {
               "slot": "where-do-you-live-to-a-man",
@@ -497,23 +503,30 @@
             },
             {
               "slot": "my-father",
-              "english": "My father."
+              "english": "My father.",
+              "search_term": "father portrait"
             },
             {
               "slot": "my-brother",
-              "english": "My brother."
+              "english": "My brother.",
+              "search_term": "brothers together"
             },
             {
               "slot": "my-sister",
-              "english": "My sister."
+              "english": "My sister.",
+              "search_term": "sisters together"
             },
             {
               "slot": "my-son",
-              "english": "My son."
+              "english": "My son.",
+              "search_term": "father and son",
+              "image": "unit-02/l01-p06-father-and-son.jpg"
             },
             {
               "slot": "my-daughter",
-              "english": "My daughter."
+              "english": "My daughter.",
+              "search_term": "father and daughter",
+              "image": "unit-02/l01-p07-father-and-daughter.jpg"
             },
             {
               "slot": "my-husband",
@@ -530,7 +543,8 @@
             },
             {
               "slot": "i-have-a-brother-and-two-sisters",
-              "english": "I have a brother and two sisters."
+              "english": "I have a brother and two sisters.",
+              "search_term": "siblings family photo"
             },
             {
               "slot": "are-you-married-to-a-man",
@@ -559,7 +573,9 @@
             },
             {
               "slot": "hungry-female-speaker",
-              "english": "Hungry. (female speaker)"
+              "english": "Hungry. (female speaker)",
+              "search_term": "empty dinner plate",
+              "image": "unit-02/l02-p02-empty-dinner-plate.jpg"
             },
             {
               "slot": "thirsty-male-speaker",
@@ -641,7 +657,8 @@
             {
               "slot": "i-have-two-children",
               "english": "I have two children.",
-              "search_term": "two children playing"
+              "search_term": "two children playing",
+              "image": "unit-02/l03-p03-two-children-playing.jpg"
             },
             {
               "slot": "where-does-your-family-live",
@@ -657,7 +674,8 @@
             {
               "slot": "he-is-tall",
               "english": "He is tall.",
-              "search_term": "tall man"
+              "search_term": "tall man",
+              "image": "unit-02/l03-p06-tall-man.jpg"
             },
             {
               "slot": "she-is-kind",
@@ -669,15 +687,18 @@
             },
             {
               "slot": "my-older-brother",
-              "english": "My older brother."
+              "english": "My older brother.",
+              "search_term": "brothers together"
             },
             {
               "slot": "my-younger-sister",
-              "english": "My younger sister."
+              "english": "My younger sister.",
+              "search_term": "sisters together"
             },
             {
               "slot": "my-cousin-my-father-s-brother-s-son",
-              "english": "My cousin. (my father's brother's son)"
+              "english": "My cousin. (my father's brother's son)",
+              "search_term": "family relatives together"
             },
             {
               "slot": "my-grandparents",
@@ -717,7 +738,9 @@
             },
             {
               "slot": "this-is-delicious",
-              "english": "This is delicious."
+              "english": "This is delicious.",
+              "search_term": "delicious food plate",
+              "image": "unit-02/l04-p05-delicious-food-plate.jpg"
             },
             {
               "slot": "i-am-full-male-speaker",
@@ -872,7 +895,8 @@
             {
               "slot": "the-street-is-quiet",
               "english": "The street is quiet.",
-              "search_term": "quiet street"
+              "search_term": "quiet street",
+              "image": "unit-02/l06-p07-quiet-street.jpg"
             },
             {
               "slot": "how-many-floors-does-your-house-have-to-a-man",
@@ -1186,7 +1210,8 @@
             {
               "slot": "do-you-have-ready-made-kibbeh",
               "english": "Do you have ready-made kibbeh?",
-              "search_term": "kibbeh on a plate"
+              "search_term": "kibbeh on a plate",
+              "image": "unit-03/l02-p09-kibbeh-on-a-plate.jpg"
             },
             {
               "slot": "this-bread-is-very-hot",
@@ -1257,7 +1282,8 @@
             },
             {
               "slot": "this-dish-smells-delicious",
-              "english": "This dish smells delicious"
+              "english": "This dish smells delicious",
+              "search_term": "delicious food dish"
             },
             {
               "slot": "how-long-does-it-need-to-stay-on-the-fire",
@@ -1337,7 +1363,8 @@
             },
             {
               "slot": "i-love-trying-new-dishes",
-              "english": "I love trying new dishes"
+              "english": "I love trying new dishes",
+              "search_term": "variety of food dishes"
             },
             {
               "slot": "i-don-t-like-this-food",
@@ -1898,7 +1925,8 @@
             },
             {
               "slot": "please-i-want-to-go-to-old-damascus",
-              "english": "Please, I want to go to Old Damascus."
+              "english": "Please, I want to go to Old Damascus.",
+              "search_term": "Damascus old city street"
             },
             {
               "slot": "can-you-take-me-to-bab-touma",
@@ -2098,7 +2126,8 @@
             },
             {
               "slot": "the-next-bus-is-emptier-better",
-              "english": "The next bus is emptier, better."
+              "english": "The next bus is emptier, better.",
+              "search_term": "empty bus interior"
             }
           ],
           "words": ["bus", "microbus", "bus-stop", "station", "ticket", "seat", "number", "route", "direction", "roundabout", "passenger", "driver", "fare", "crowded", "empty", "free-available", "next", "to-get-on", "to-get-off", "to-wait", "to-stop"]
@@ -2128,7 +2157,8 @@
             {
               "slot": "the-church",
               "english": "the church",
-              "search_term": "church exterior"
+              "search_term": "church exterior",
+              "image": "unit-05/l04-p04-church-exterior.jpg"
             },
             {
               "slot": "the-hospital",
@@ -2223,7 +2253,8 @@
             },
             {
               "slot": "busy-occupied",
-              "english": "Busy / Occupied."
+              "english": "Busy / Occupied.",
+              "search_term": "taxi occupied sign"
             },
             {
               "slot": "how-long-does-the-way-take",
@@ -2894,7 +2925,8 @@
             },
             {
               "slot": "i-saw-my-friends-in-the-evening",
-              "english": "I saw my friends in the evening."
+              "english": "I saw my friends in the evening.",
+              "search_term": "friends evening gathering"
             }
           ],
           "words": ["evening", "night", "sunset", "dinner", "home", "friend", "family", "television", "tv-series", "film", "sofa", "bed", "bath", "shower", "to-sleep", "to-read", "to-watch", "to-go-out", "late"]
@@ -2911,11 +2943,13 @@
             },
             {
               "slot": "today-is-sunday",
-              "english": "Today is Sunday."
+              "english": "Today is Sunday.",
+              "search_term": "calendar sunday"
             },
             {
               "slot": "tomorrow-is-monday",
-              "english": "Tomorrow is Monday."
+              "english": "Tomorrow is Monday.",
+              "search_term": "calendar monday"
             },
             {
               "slot": "next-week-there-s-a-meeting-on-tuesday",
@@ -2939,7 +2973,8 @@
             {
               "slot": "on-saturday-we-go-to-the-market",
               "english": "On Saturday we go to the market.",
-              "search_term": "street market"
+              "search_term": "street market",
+              "image": "unit-07/l04-p08-street-market.jpg"
             },
             {
               "slot": "what-do-you-plan-to-do-on-the-weekend",
@@ -3021,7 +3056,8 @@
             },
             {
               "slot": "i-spend-my-time-with-my-family",
-              "english": "I spend my time with my family."
+              "english": "I spend my time with my family.",
+              "search_term": "family time together"
             },
             {
               "slot": "time-passes-quickly-when-i-read",
@@ -3196,7 +3232,8 @@
             {
               "slot": "the-manager-wants-to-talk-to-you",
               "english": "The manager wants to talk to you.",
-              "search_term": "closed office door"
+              "search_term": "closed office door",
+              "image": "unit-08/l02-p02-closed-office-door.jpg"
             },
             {
               "slot": "i-received-your-email",
@@ -3449,7 +3486,8 @@
             },
             {
               "slot": "don-t-forget-the-school-uniform-to-a-boy",
-              "english": "Don't forget the school uniform. (to a boy)"
+              "english": "Don't forget the school uniform. (to a boy)",
+              "search_term": "school uniform clothes"
             },
             {
               "slot": "my-son-is-a-diligent-student",
@@ -3631,7 +3669,8 @@
             },
             {
               "slot": "take-it-twice-a-day-to-a-man",
-              "english": "Take it twice a day (to a man)"
+              "english": "Take it twice a day (to a man)",
+              "search_term": "medicine pills bottle"
             },
             {
               "slot": "before-eating-or-after",
@@ -3640,7 +3679,8 @@
             },
             {
               "slot": "i-want-something-for-allergies",
-              "english": "I want something for allergies"
+              "english": "I want something for allergies",
+              "search_term": "allergy medicine pharmacy"
             },
             {
               "slot": "do-you-have-band-aids",
@@ -3737,7 +3777,8 @@
             {
               "slot": "head",
               "english": "head",
-              "search_term": "a human head"
+              "search_term": "a human head",
+              "image": "unit-09/l04-p01-a-human-head.jpg"
             },
             {
               "slot": "stomach-belly",
@@ -4329,7 +4370,8 @@
             },
             {
               "slot": "the-temperature-will-be-thirty-degrees",
-              "english": "The temperature will be thirty degrees."
+              "english": "The temperature will be thirty degrees.",
+              "search_term": "thermometer temperature"
             },
             {
               "slot": "the-weather-will-be-sunny-all-week",
@@ -4523,7 +4565,8 @@
             },
             {
               "slot": "today-s-gathering-is-very-nice",
-              "english": "Today's gathering is very nice."
+              "english": "Today's gathering is very nice.",
+              "search_term": "family gathering living room"
             },
             {
               "slot": "don-t-be-shy-the-house-is-your-house",
@@ -4720,7 +4763,8 @@
             },
             {
               "slot": "take-another-date",
-              "english": "Take another date."
+              "english": "Take another date.",
+              "search_term": "dates fruit bowl"
             },
             {
               "slot": "we-pray-maghrib-first-then-we-eat",
@@ -5167,7 +5211,8 @@
             {
               "slot": "i-can-t-hear-you",
               "english": "I can't hear you.",
-              "search_term": "headphones"
+              "search_term": "headphones",
+              "image": "unit-12/l06-p04-headphones.jpg"
             },
             {
               "slot": "can-you-hear-me-well",
@@ -5235,7 +5280,8 @@
             {
               "slot": "how-are-you-today-to-a-woman",
               "english": "How are you today? (to a woman)",
-              "search_term": "two women talking"
+              "search_term": "two women talking",
+              "image": "unit-13/l01-p02-two-women-talking.jpg"
             },
             {
               "slot": "what-s-wrong-with-you-to-a-man",
@@ -5245,22 +5291,26 @@
             {
               "slot": "i-m-happy-today-m",
               "english": "I'm happy today. (m)",
-              "search_term": "smiling man"
+              "search_term": "smiling man",
+              "image": "unit-13/l01-p04-smiling-man.jpg"
             },
             {
               "slot": "i-m-happy-today-f",
               "english": "I'm happy today. (f)",
-              "search_term": "smiling woman"
+              "search_term": "smiling woman",
+              "image": "unit-13/l01-p05-smiling-woman.jpg"
             },
             {
               "slot": "i-m-a-little-upset-m",
               "english": "I'm a little upset. (m)",
-              "search_term": "sad man"
+              "search_term": "sad man",
+              "image": "unit-13/l01-p06-sad-man.jpg"
             },
             {
               "slot": "i-m-a-little-upset-f",
               "english": "I'm a little upset. (f)",
-              "search_term": "sad woman"
+              "search_term": "sad woman",
+              "image": "unit-13/l01-p07-sad-woman.jpg"
             },
             {
               "slot": "i-m-very-tired-m",
@@ -5606,7 +5656,8 @@
             {
               "slot": "i-will-be-more-careful-next-time",
               "english": "I will be more careful next time.",
-              "search_term": "calendar page"
+              "search_term": "calendar page",
+              "image": "unit-13/l06-p12-calendar-page.jpg"
             }
           ],
           "words": ["apology", "excuse", "fault", "mistake", "intention", "forgiveness", "to-apologise", "to-forgive", "to-pardon", "to-regret", "to-accept", "sorry", "careful"]
@@ -5665,7 +5716,8 @@
             {
               "slot": "we-visited-my-grandma-today",
               "english": "We visited my grandma today",
-              "search_term": "grandmother with grandchildren"
+              "search_term": "grandmother with grandchildren",
+              "image": "unit-14/l01-p09-grandmother-with-grandchildren.jpg"
             },
             {
               "slot": "congratulations-on-the-eid",
@@ -6301,7 +6353,8 @@
             },
             {
               "slot": "i-want-a-one-way-ticket-only",
-              "english": "I want a one-way ticket only."
+              "english": "I want a one-way ticket only.",
+              "search_term": "airline ticket"
             },
             {
               "slot": "is-there-a-free-seat-on-the-next-bus",
@@ -6479,7 +6532,8 @@
             },
             {
               "slot": "thanks-the-room-is-very-nice",
-              "english": "Thanks, the room is very nice."
+              "english": "Thanks, the room is very nice.",
+              "search_term": "hotel room interior"
             }
           ],
           "section": "Staying",
@@ -6527,7 +6581,9 @@
             },
             {
               "slot": "i-need-to-change-the-flight",
-              "english": "I need to change the flight."
+              "english": "I need to change the flight.",
+              "search_term": "airport departure board",
+              "image": "unit-15/l04-p08-airport-departure-board.jpg"
             },
             {
               "slot": "i-missed-the-flight-what-do-i-do",
@@ -6537,7 +6593,8 @@
             {
               "slot": "where-s-the-complaints-office",
               "english": "Where's the complaints office?",
-              "search_term": "customer service desk"
+              "search_term": "customer service desk",
+              "image": "unit-15/l04-p10-customer-service-desk.jpg"
             },
             {
               "slot": "nobody-answered-me",
@@ -6582,11 +6639,13 @@
             },
             {
               "slot": "walk-straight-then-turn-left",
-              "english": "Walk straight, then turn left"
+              "english": "Walk straight, then turn left",
+              "search_term": "street direction sign"
             },
             {
               "slot": "i-want-a-guided-tour",
-              "english": "I want a tour with a guide"
+              "english": "I want a tour with a guide",
+              "search_term": "tour guide group"
             },
             {
               "slot": "can-i-take-photos-here",
@@ -6618,7 +6677,8 @@
             },
             {
               "slot": "how-beautiful-this-place-is",
-              "english": "How beautiful this place is!"
+              "english": "How beautiful this place is!",
+              "search_term": "scenic landscape view"
             }
           ],
           "words": ["tourist", "guide", "tour", "museum", "castle", "masjid", "old-city", "ruins", "antiquities", "landmark", "view", "map", "photo", "entry-ticket", "opening-hours", "entrance", "to-visit", "to-take-photo", "old", "ancient", "beautiful"]
@@ -6684,7 +6744,9 @@
             },
             {
               "slot": "drink-plenty-of-water",
-              "english": "Drink plenty of water"
+              "english": "Drink plenty of water",
+              "search_term": "glass of water",
+              "image": "unit-15/l06-p11-glass-of-water.jpg"
             },
             {
               "slot": "the-children-are-building-a-sandcastle",
@@ -6708,7 +6770,8 @@
             {
               "slot": "do-you-have-good-dates",
               "english": "Do you have good dates?",
-              "search_term": "box of dates"
+              "search_term": "box of dates",
+              "image": "unit-15/l07-p02-box-of-dates.jpg"
             },
             {
               "slot": "i-want-a-box-of-spices-as-a-gift",
@@ -6784,7 +6847,8 @@
             },
             {
               "slot": "we-are-travelling-with-the-whole-family",
-              "english": "We are travelling with the whole family"
+              "english": "We are travelling with the whole family",
+              "search_term": "family travel suitcase"
             },
             {
               "slot": "we-booked-a-house-near-the-beach",
@@ -7092,7 +7156,8 @@
             {
               "slot": "my-sister-got-married-last-month",
               "english": "My sister got married last month.",
-              "search_term": "a wedding celebration"
+              "search_term": "a wedding celebration",
+              "image": "unit-16/l04-p08-a-wedding-celebration.jpg"
             },
             {
               "slot": "we-heard-they-had-a-baby-boy",
@@ -7358,7 +7423,8 @@
             },
             {
               "slot": "put-your-shoes-on-the-rack",
-              "english": "Put your shoes on the rack"
+              "english": "Put your shoes on the rack",
+              "search_term": "shoe rack shelf"
             },
             {
               "slot": "clothes-must-be-clean",
@@ -7385,7 +7451,8 @@
             },
             {
               "slot": "please-silence-your-phone",
-              "english": "Please put your phone on silent"
+              "english": "Please put your phone on silent",
+              "search_term": "smartphone silent mode"
             },
             {
               "slot": "i-forgot-to-silence-my-phone",
@@ -7510,7 +7577,8 @@
             },
             {
               "slot": "i-want-to-sign-up-my-son-for-the-childrens-circle",
-              "english": "I want to sign up my son for the children's circle"
+              "english": "I want to sign up my son for the children's circle",
+              "search_term": "children sitting circle classroom"
             },
             {
               "slot": "how-old-is-the-child",
@@ -7777,7 +7845,9 @@
             },
             {
               "slot": "we-live-in-the-flat-next-door",
-              "english": "We live in the flat next door"
+              "english": "We live in the flat next door",
+              "search_term": "apartment building exterior",
+              "image": "unit-18/l04-p03-apartment-building-exterior.jpg"
             },
             {
               "slot": "i-brought-you-some-food",
@@ -7876,7 +7946,8 @@
             },
             {
               "slot": "i-want-to-transfer-money-to-this-account",
-              "english": "I want to transfer money to this account."
+              "english": "I want to transfer money to this account.",
+              "search_term": "bank money transfer"
             },
             {
               "slot": "how-much-is-the-transfer-fee",
@@ -8142,7 +8213,9 @@
             },
             {
               "slot": "my-car-hit-another-car",
-              "english": "My car hit another car."
+              "english": "My car hit another car.",
+              "search_term": "car accident collision",
+              "image": "unit-19/l05-p03-car-accident-collision.jpg"
             },
             {
               "slot": "i-am-fine-thank-allah",
@@ -8293,14 +8366,14 @@
           "title": "Numbers Beyond Ten",
           "section": "Numbers and dates",
           "phrases": [],
-          "words": ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "two-hundred", "thousand", "million", "billion", "first", "second-2nd", "third-3rd", "fourth-4th", "fifth-5th", "sixth-6th", "seventh-7th", "eighth-8th", "ninth-9th", "tenth-10th", "last", "half", "quarter", "one-third", "two-thirds", "three-quarters", "plus", "minus", "to-count", "per-cent"]
+          "words": ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "two-hundred", "thousand", "million", "billion", "first", "second-2nd", "third-3rd", "fourth-4th", "fifth-5th", "sixth-6th", "seventh-7th", "eighth-8th", "ninth-9th", "tenth-10th", "last", "quarter", "one-third", "two-thirds", "three-quarters", "plus", "minus", "to-count", "per-cent"]
         },
         {
           "lesson": "lesson-05",
           "title": "Amounts and Measures",
           "section": "Numbers and dates",
           "phrases": [],
-          "words": ["all", "some", "most", "several", "whole", "everything", "nothing", "many", "few", "both", "each", "part", "zero", "half", "pair", "dozen", "per-cent", "fraction", "one-third", "only", "a-lot", "a-little", "less", "too-much", "somewhat", "at-least", "litre", "metre", "kilometre", "centimetre", "gram", "tonne", "length", "width", "height", "enough", "double", "extra", "previous", "kilo", "piece", "bottle"]
+          "words": ["many", "few", "both", "each", "part", "zero", "pair", "dozen", "fraction", "too-much", "somewhat", "litre", "metre", "kilometre", "centimetre", "gram", "tonne", "length", "width", "height", "double", "extra", "previous", "kilo", "piece", "bottle"]
         },
         {
           "lesson": "lesson-06",
@@ -8334,14 +8407,14 @@
           "title": "Making, Moving and Handling",
           "section": "Handling and feeling",
           "phrases": [],
-          "words": ["to-come", "to-make", "to-do", "to-start", "to-use", "to-follow", "to-lead", "to-show", "to-gather", "to-spend", "to-lend", "to-repair", "to-build", "to-lift", "to-push", "to-pull", "to-throw", "to-hold", "to-catch", "to-shake", "to-squeeze", "to-press", "to-tear", "to-stretch", "to-separate", "to-fix-fasten", "to-dig", "to-saw", "to-paint", "to-sew", "to-glue", "to-lock", "to-harvest", "to-plant", "to-water", "to-protect", "to-warn", "to-escape", "to-burn", "to-destroy"]
+          "words": ["to-come", "to-make", "to-do", "to-start", "to-use", "to-follow", "to-lead", "to-show", "to-gather", "to-spend", "to-lend", "to-repair", "to-build", "to-catch", "to-shake", "to-squeeze", "to-press", "to-tear", "to-stretch", "to-separate", "to-fix-fasten", "to-dig", "to-saw", "to-paint", "to-sew", "to-glue", "to-lock", "to-harvest", "to-plant", "to-water", "to-protect", "to-warn", "to-escape", "to-burn", "to-destroy"]
         },
         {
           "lesson": "lesson-04",
           "title": "Mind and Heart Verbs",
           "section": "Handling and feeling",
           "phrases": [],
-          "words": ["to-feel", "to-love", "to-hate", "to-fear", "to-worry", "to-envy", "to-wish", "to-think", "to-remember", "to-realise", "to-believe", "to-doubt", "to-suppose", "to-guess", "to-wonder", "to-seem", "to-become", "to-remain", "to-belong", "to-contain", "to-deserve", "to-promise", "to-lie-untruth", "to-trust", "to-betray", "to-refuse", "to-admit", "to-deny", "to-obey", "to-fight", "to-defend", "to-attack", "to-quarrel", "to-punish", "to-blame", "to-threaten", "to-congratulate", "to-support", "to-care", "to-respect", "to-hug", "to-kiss"]
+          "words": ["to-feel", "to-love", "to-hate", "to-fear", "to-worry", "to-envy", "to-wish", "to-believe", "to-doubt", "to-suppose", "to-guess", "to-wonder", "to-seem", "to-become", "to-remain", "to-belong", "to-contain", "to-deserve", "to-promise", "to-lie-untruth", "to-trust", "to-betray", "to-refuse", "to-admit", "to-deny", "to-obey", "to-fight", "to-defend", "to-attack", "to-quarrel", "to-punish", "to-blame", "to-threaten", "to-congratulate", "to-support", "to-care", "to-respect", "to-hug", "to-kiss"]
         }
       ]
     },
@@ -8354,28 +8427,36 @@
           "title": "Describing Words",
           "section": "Describing",
           "phrases": [],
-          "words": ["long", "round", "straight", "sharp", "smooth", "rough", "deep", "shallow", "narrow", "quiet", "loud", "audible", "faint", "awake", "asleep", "healthy", "tidy", "messy", "hidden", "temporary", "permanent", "famous", "popular", "common", "rare", "special", "normal", "modern", "public", "private", "general", "main", "official", "personal", "international", "foreign", "false", "fake", "simple", "complicated", "necessary", "useful", "similar"]
+          "words": ["deep", "shallow", "narrow", "quiet", "loud", "audible", "faint", "awake", "asleep", "healthy", "tidy", "messy", "hidden", "temporary", "permanent", "famous", "popular", "common", "rare", "special", "normal", "modern", "public", "private", "general", "main", "official", "personal", "international", "foreign", "false", "fake", "simple", "complicated", "necessary", "useful", "similar"]
         },
         {
           "lesson": "lesson-02",
           "title": "Opposites",
           "section": "Describing",
+          "pairs": true,
           "phrases": [],
           "words": ["easy", "difficult", "rich", "poor", "clean", "dirty", "fast", "slow", "high", "low", "beautiful", "ugly", "soft", "hard", "thick", "thin-not-thick", "alive", "dead", "same", "different", "possible", "impossible", "allowed", "forbidden", "noisy", "calm", "generous", "stingy", "brave", "cowardly", "polite", "rude", "clever", "stupid", "top", "bottom", "inside", "outside", "early", "late", "war", "peace", "male", "female"]
         },
         {
           "lesson": "lesson-03",
+          "title": "Colours, Shapes and Materials",
+          "section": "Describing",
+          "phrases": [],
+          "words": ["red", "blue", "orange", "pink", "brown", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "sharp", "smooth", "rough", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric"]
+        },
+        {
+          "lesson": "lesson-04",
           "title": "Feelings",
           "section": "Feelings and character",
           "phrases": [],
           "words": ["happy", "sad", "angry", "upset", "scared", "worried", "bored", "lonely", "embarrassed", "excited", "proud", "shy", "relaxed", "jealous", "surprised", "amazed", "shocked", "nervous", "confused", "curious", "hopeful", "optimistic", "disappointed", "desperate", "confident", "satisfied", "love", "hate", "sorrow", "pity", "envy", "shame", "regret", "longing", "relief", "to-smile", "to-laugh", "tears", "to-sigh", "to-tremble"]
         },
         {
-          "lesson": "lesson-04",
+          "lesson": "lesson-05",
           "title": "Character and Manners",
           "section": "Feelings and character",
           "phrases": [],
-          "words": ["kind", "generous", "polite", "honest", "brave", "patient-calm", "stubborn", "hard-working", "patience", "respect", "generosity", "loyal", "humble", "wise", "trustworthy", "helpful", "gentle", "sincere", "fair", "merciful", "noble", "liar", "coward", "fool", "arrogant", "selfish", "greedy", "envious", "cruel", "unjust", "cunning", "manners", "morals", "honesty", "loyalty", "humility", "justice", "wisdom", "dignity", "modesty"]
+          "words": ["kind", "honest", "patient-calm", "stubborn", "hard-working", "patience", "respect", "generosity", "loyal", "humble", "wise", "trustworthy", "helpful", "gentle", "sincere", "fair", "merciful", "noble", "liar", "coward", "fool", "arrogant", "selfish", "greedy", "envious", "cruel", "unjust", "cunning", "manners", "morals", "honesty", "loyalty", "humility", "justice", "wisdom", "dignity", "modesty"]
         }
       ]
     },
@@ -8392,20 +8473,27 @@
         },
         {
           "lesson": "lesson-02",
+          "title": "Clothes and Accessories",
+          "section": "The body",
+          "phrases": [],
+          "words": ["dress", "shirt", "trousers", "jeans", "skirt", "shorts", "jacket", "jumper", "coat", "suit", "uniform", "hat", "scarf", "glove", "sock", "shoe", "boots", "pocket", "button", "zip", "sleeve", "collar", "pyjamas", "underwear", "vest", "nightgown", "slippers", "sandals", "shoelace", "robe", "abaya", "thobe", "turban", "keffiyeh", "headscarf", "belt", "glasses", "necklace", "bracelet", "earring", "watch", "handbag", "tie"]
+        },
+        {
+          "lesson": "lesson-03",
           "title": "Men, Women and Relatives",
           "section": "People",
           "phrases": [],
           "words": ["man", "woman", "boy", "girl", "teenager", "adult", "old-man", "old-woman", "child", "baby", "father", "mother", "parents", "son", "daughter", "brother", "sister", "grandfather", "grandmother", "uncle-paternal", "aunt-paternal", "uncle-maternal", "aunt-maternal", "cousin", "married", "single", "stepfather", "stepmother", "son-in-law", "daughter-in-law", "fiance", "widow", "widower", "divorced", "orphan", "friend", "neighbour", "guest", "stranger", "enemy", "foreigner", "visitor", "citizen", "companion"]
         },
         {
-          "lesson": "lesson-03",
+          "lesson": "lesson-04",
           "title": "Jobs and Trades",
           "section": "People",
           "phrases": [],
           "words": ["teacher", "engineer", "nurse", "lawyer", "accountant", "journalist", "manager", "cook", "baker", "police-officer", "secretary", "merchant", "worker", "tailor", "carpenter", "mechanic", "builder", "house-painter", "barber", "cleaner", "blacksmith", "gardener", "singer", "writer", "artist", "actor", "poet", "photographer", "soldier", "judge", "firefighter", "minister", "ambassador", "student", "professor", "researcher", "scientist", "doctor", "veterinarian", "midwife", "paramedic", "guide", "flight-attendant", "porter"]
         },
         {
-          "lesson": "lesson-04",
+          "lesson": "lesson-05",
           "title": "Countries and Nationalities",
           "section": "People",
           "phrases": [],
@@ -8450,7 +8538,7 @@
           "title": "Land and Sky",
           "section": "Plants and land",
           "phrases": [],
-          "words": ["sky", "sun", "moon", "star", "planet", "cloud", "rainbow", "horizon", "sunrise", "earth", "world", "continent", "mountain", "hill", "valley", "desert", "oasis", "island", "forest", "cave", "volcano", "earthquake", "rock", "stone", "soil", "sand", "grass", "plant", "tree", "sea", "river", "lake", "ocean", "waterfall", "spring-water", "well-water", "gulf", "coast", "beach", "wave"]
+          "words": ["sky", "sun", "moon", "star", "planet", "cloud", "rainbow", "horizon", "sunrise", "earth", "world", "continent", "mountain", "hill", "valley", "desert", "oasis", "island", "forest", "cave", "volcano", "earthquake", "rock", "stone", "soil", "sand", "river", "lake", "ocean", "waterfall", "spring-water", "well-water", "gulf", "coast", "beach", "wave"]
         }
       ]
     },
@@ -8460,48 +8548,34 @@
       "lessons": [
         {
           "lesson": "lesson-01",
-          "title": "Colours, Shapes and Materials",
-          "section": "Looks",
-          "phrases": [],
-          "words": ["red", "blue", "orange", "pink", "brown", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "thick", "thin-not-thick", "sharp", "smooth", "rough", "hard", "soft", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric"]
-        },
-        {
-          "lesson": "lesson-02",
-          "title": "Clothes and Accessories",
-          "section": "Looks",
-          "phrases": [],
-          "words": ["dress", "shirt", "trousers", "jeans", "skirt", "shorts", "jacket", "jumper", "coat", "suit", "uniform", "hat", "scarf", "glove", "sock", "shoe", "boots", "pocket", "button", "zip", "sleeve", "collar", "pyjamas", "underwear", "vest", "nightgown", "slippers", "sandals", "shoelace", "robe", "abaya", "thobe", "turban", "keffiyeh", "headscarf", "belt", "glasses", "necklace", "bracelet", "earring", "watch", "handbag", "tie"]
-        },
-        {
-          "lesson": "lesson-03",
           "title": "Kitchen and Tableware",
           "section": "At home",
           "phrases": [],
           "words": ["pot", "frying-pan", "ladle", "plate", "bowl", "spoon", "fork", "knife", "glass-cup", "cup", "oven", "kitchen", "tap", "cooker", "dishes", "fridge", "cupboard", "table", "cutting-board", "colander", "grater", "peeler", "whisk", "tongs", "lid", "can-opener", "kettle", "stove", "blender", "microwave", "toaster", "freezer", "dishwasher", "tablecloth", "teaspoon", "straw", "toothpick", "salt-shaker", "sugar-bowl", "jar", "tin", "lunch-box", "water-bottle"]
         },
         {
-          "lesson": "lesson-04",
+          "lesson": "lesson-02",
           "title": "Tools and Hardware",
           "section": "At home",
           "phrases": [],
           "words": ["scissors", "adhesive-tape", "saw", "drill", "spanner", "axe", "shovel", "pliers", "measuring-tape", "chisel", "screw", "hammer", "nail", "screwdriver", "ladder", "toolbox", "bulb", "rope", "chain", "wire", "thread", "needle", "hook", "bucket", "broom", "mop", "sponge", "hose", "wood", "iron", "metal", "paint", "cement", "brick", "wall", "ceiling", "garage", "heater", "toilet", "fence", "socket", "plug", "switch", "cable"]
         },
         {
-          "lesson": "lesson-05",
+          "lesson": "lesson-03",
           "title": "School and Office Things",
           "section": "Out and about",
           "phrases": [],
-          "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "encyclopedia", "paper", "envelope", "school-bag", "ruler", "scissors", "glue", "adhesive-tape", "stapler", "paper-clip", "folder", "calculator", "calendar", "printer", "bell", "desk", "chair", "table", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket"]
+          "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "encyclopedia", "paper", "envelope", "school-bag", "ruler", "glue", "stapler", "paper-clip", "folder", "calculator", "calendar", "printer", "bell", "desk", "chair", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket"]
         },
         {
-          "lesson": "lesson-06",
+          "lesson": "lesson-04",
           "title": "City, Roads and Vehicles",
           "section": "Out and about",
           "phrases": [],
           "words": ["car", "bus", "taxi", "motorbike", "bicycle", "truck", "helicopter", "tractor", "train", "ship", "tyre", "road", "traffic-light", "roundabout", "engine", "wheel", "steering-wheel", "brake", "seatbelt", "car-horn", "windscreen", "headlight", "fuel", "tunnel", "highway", "pavement", "junction", "pedestrian-crossing", "parking", "driving-licence", "city", "street", "bridge", "port", "capital", "building", "tower", "skyscraper", "factory", "fountain", "court", "prison", "cemetery"]
         },
         {
-          "lesson": "lesson-07",
+          "lesson": "lesson-05",
           "title": "Sport and Games",
           "section": "Out and about",
           "phrases": [],
@@ -8532,14 +8606,14 @@
           "title": "Pantry, Grains and Dairy",
           "section": "Pantry and plate",
           "phrases": [],
-          "words": ["grains", "wheat", "barley", "oats", "rice", "flour", "semolina", "bulgur", "freekeh", "couscous", "vermicelli", "nuts", "almond", "walnut", "pistachio", "peanut", "hazelnut", "cashew", "pine-nuts", "seed", "sesame", "black-seed", "milk", "yoghurt", "labneh", "cheese", "cream", "butter", "ghee", "vinegar", "yeast", "jam", "honey", "tahini", "molasses", "olive-oil", "pickles", "chocolate", "cinnamon", "cumin", "turmeric", "sumac"]
+          "words": ["grains", "wheat", "barley", "oats", "rice", "flour", "semolina", "bulgur", "freekeh", "couscous", "vermicelli", "nuts", "almond", "walnut", "pistachio", "peanut", "hazelnut", "cashew", "pine-nuts", "sesame", "black-seed", "milk", "yoghurt", "labneh", "cheese", "cream", "butter", "ghee", "vinegar", "yeast", "jam", "honey", "tahini", "molasses", "olive-oil", "pickles", "chocolate", "cinnamon", "cumin", "turmeric", "sumac"]
         },
         {
           "lesson": "lesson-04",
           "title": "Meat, Fish and Dishes",
           "section": "Pantry and plate",
           "phrases": [],
-          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "meatballs", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "cumin", "cinnamon", "turmeric", "sumac", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding"]
+          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "meatballs", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding"]
         }
       ]
     },

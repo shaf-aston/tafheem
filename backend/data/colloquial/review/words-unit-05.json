@@ -1,0 +1,136 @@
+{
+  "found": {
+    "local-money": {
+      "english": "local money (pound, riyal…)",
+      "search_term": "banknotes coins",
+      "candidates": [
+        {
+          "id": "7376b829-00ab-4f04-9d10-2755b9961c48",
+          "title": "Money Euros",
+          "creator": "Martin Vorel",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/money-euros-WX191DV28C",
+          "thumbnail": "https://api.openverse.org/v1/images/7376b829-00ab-4f04-9d10-2755b9961c48/thumb/"
+        },
+        {
+          "id": "ca57dd40-9849-4e7f-80e9-a4784ae18b0e",
+          "title": "Free US dollar banknotes image",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/5917366/image-public-domain-money-free",
+          "thumbnail": "https://api.openverse.org/v1/images/ca57dd40-9849-4e7f-80e9-a4784ae18b0e/thumb/"
+        },
+        {
+          "id": "f8f51574-5857-4c29-8182-c5028fd028b1",
+          "title": "John W. Viant, 25¢ Obsolete Scrip, 1862 - Lowell, Indiana",
+          "creator": "Shook Photos",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/24724221@N07/51844133804",
+          "thumbnail": "https://api.openverse.org/v1/images/f8f51574-5857-4c29-8182-c5028fd028b1/thumb/"
+        },
+        {
+          "id": "8759157f-bd8c-4bbf-83d8-ef2e10829e4f",
+          "title": "Stack of coins",
+          "creator": "mededeler",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/132603569@N08/52697778002",
+          "thumbnail": "https://api.openverse.org/v1/images/8759157f-bd8c-4bbf-83d8-ef2e10829e4f/thumb/"
+        }
+      ]
+    },
+    "neighbourhood": {
+      "english": "neighbourhood",
+      "search_term": "neighbourhood street",
+      "candidates": [
+        {
+          "id": "b092959a-484f-4f77-b576-260432a9a629",
+          "title": "Couple Love",
+          "creator": "Vladimir Kudinov",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/couple-love-FP4R72OQII",
+          "thumbnail": "https://api.openverse.org/v1/images/b092959a-484f-4f77-b576-260432a9a629/thumb/"
+        },
+        {
+          "id": "cedc5828-9eba-45b1-8647-d5eceab40b7b",
+          "title": "Chair Street",
+          "creator": "Eduard Militaru",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/chair-street-BVMX1PW3D2",
+          "thumbnail": "https://api.openverse.org/v1/images/cedc5828-9eba-45b1-8647-d5eceab40b7b/thumb/"
+        },
+        {
+          "id": "3a90e339-d409-4d13-b1a1-6ae1969b14b2",
+          "title": "House Houses",
+          "creator": "Jakob Owens",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/house-houses-SSH4W814FT",
+          "thumbnail": "https://api.openverse.org/v1/images/3a90e339-d409-4d13-b1a1-6ae1969b14b2/thumb/"
+        },
+        {
+          "id": "68745526-4b1f-41a6-a33b-cffa5d7fc023",
+          "title": "Santamonica Street",
+          "creator": "Jay Mantri",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/santamonica-street-EE7CC8DF17",
+          "thumbnail": "https://api.openverse.org/v1/images/68745526-4b1f-41a6-a33b-cffa5d7fc023/thumb/"
+        }
+      ]
+    }
+  },
+  "needs_search_term": [
+    "fare",
+    "address",
+    "to-stop",
+    "to-go",
+    "to-take",
+    "to-wait",
+    "to-arrive",
+    "to-drive",
+    "side",
+    "end",
+    "near",
+    "far",
+    "in-front-of",
+    "behind",
+    "next-to",
+    "opposite",
+    "after",
+    "before",
+    "first",
+    "last",
+    "lost",
+    "open",
+    "to-turn",
+    "to-ask",
+    "to-find",
+    "number",
+    "route",
+    "crowded",
+    "empty",
+    "next",
+    "to-get-on",
+    "to-get-off",
+    "on-foot",
+    "trip",
+    "journey",
+    "occupied",
+    "to-travel",
+    "to-drop-off"
+  ]
+}

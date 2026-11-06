@@ -359,23 +359,36 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  * said right: a wrong vowel has the same letters, and the transcript cannot see
  * it. How far to trust the sound, and what that catches and costs, is
  * `sure-at` in recite.json.
+ *
+ * And sureness alone never overrules two ears that agree. A word the
+ * transcript wrote with a different letter, which the sounds ear (sounds.js,
+ * letter by letter) also heard with a different letter, is not passed however
+ * sure the sureness is: ظَلَمُوا said with a د came back دلموا and دَلَمُو, and
+ * a 99% sureness called it right. Measured on the reviewers' marks, sureness
+ * passes about half of real letter slips (recitation_checks/sweep.txt). It
+ * stays orange, never red: two ears that mishear can still agree.
  */
 export const bySound = (marks, scores) => {
   const sureAt = config['sure-at']
   const words = marks.words.map((mark, i) => {
     const score = scores[i]
-    const next = judged(mark, score?.sure, sureAt)
+    const next = judged(mark, score?.sure, sureAt, score?.sounds?.letter_ok === false)
     return score ? { ...next, ...score } : next
   })
   return { ...marks, words }
 }
 
-/** One mark after the ear's say: a number, or undefined when the sound never checked it. */
-const judged = (mark, s, sureAt) => {
+/**
+ * One mark after the ear's say: `s` a number, or undefined when the sound never
+ * checked it; `letterHeard` whether the sounds ear heard a different letter.
+ */
+const judged = (mark, s, sureAt, letterHeard) => {
   if (mark.state === WAITING || mark.state === SAID) {
     if (s == null || mark.state === WAITING) return mark
     return s < sureAt ? { ...mark, state: WRONG, heard: '' } : mark
   }
-  if (s == null) return { ...mark, state: CHECK, heard: '' }
+  // Written differently (not missed) and heard differently: two ears agree.
+  const twoEars = letterHeard && mark.state !== MISSED
+  if (s == null || (s >= sureAt && twoEars)) return { ...mark, state: CHECK, heard: '' }
   return s >= sureAt ? { ...mark, state: SAID, heard: '' } : mark
 }

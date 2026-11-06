@@ -474,10 +474,9 @@
 .grow-lesson-top .grow-x { flex-shrink: 0; }
 .grow-done-missed li p { margin: 2px 0; text-align: right; }
 
-/* A screen of Grow (home, a world, a part, a lesson) arrives as one piece: one short fade from near full, worn by
-   GrowPanel's keyed wrapper, as a pop-up's tiles ride its box (components.css). Each block replaying its own staggered
+/* A screen of Grow (home, a world, a part, a lesson) arrives as one piece: the shared screen fade (ui/display/Screen.jsx,
+   motion.css .screen), as a pop-up's tiles ride its box (components.css). Each block replaying its own staggered
    rise from arrive-from washed the whole page pale and then darkened it block by block, on every tap and every back.
    A lesson's own card still rises (.grow-card): that is the answer to a tap inside the screen, not a new screen. */
-.grow-screen { --fade-from: 0.85; }
 .grow-screen .rise-in, .grow-screen .grow-world-tile { animation: none; }
 

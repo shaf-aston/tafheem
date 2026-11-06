@@ -20,6 +20,7 @@ import { Breadcrumbs, DialectSwitch } from './course/Breadcrumbs'
 import TopicView from './topic/TopicView'
 import WordsView from './words/WordsView'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
+import Screen from '../ui/display/Screen'
 import SectionHeader from '../ui/display/SectionHeader'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 
@@ -30,6 +31,18 @@ function Topic({ dialect, unit, at, words }) {
   if (isPending) return <AnalyzerSkeleton />
   if (isError) return <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={error} onRetry={refetch} />
   return words || !data.lessons[at].phrases.length ? <WordsView unit={data} at={at} /> : <TopicView unit={data} at={at} />
+}
+
+// The next topic the dialect has written, so a learner flows on instead of climbing back out.
+function NextTopic({ unit, at, onGo }) {
+  const next = unit.lessons.findIndex((l, i) => i > at && l.written)
+  if (next < 0) return null
+  return (
+    <button type="button" onClick={() => onGo(next)}
+      className="press mt-12 w-full py-4 rounded-[var(--radius-md)] border border-[var(--border)] type-ui font-semibold text-[var(--text)] hover:border-[var(--border-hi)] focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
+      Next topic: {unit.lessons[next].title} →
+    </button>
+  )
 }
 
 export default function ColloquialPanel({ incoming, arrival, onVisit }) {
@@ -75,14 +88,19 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
         </div>
       )}
 
-      {catalogue.data && !dialect && <DialectList dialects={dialects} go={go} />}
-      {dialect && !unit && <UnitList dialect={dialect} go={go} />}
-      {unit && lessonAt === null && <TopicList dialect={dialect} unit={unit} go={go} />}
-
-      {unit && lessonAt !== null && (
-        <div key={`${unit.unit}/${lessonAt}/${words}`} className="rise-in">
-          <Topic dialect={dialect.key} unit={unit.unit} at={lessonAt} words={words} />
-        </div>
+      {/* Each step down is a screen: it opens at its top, and back up lands where it was left. */}
+      {catalogue.data && (
+        <Screen id={placeOf(place, dialects) ?? 'top'} depth={!dialect ? 0 : !unit ? 1 : lessonAt === null ? 2 : 3}>
+          {!dialect && <DialectList dialects={dialects} go={go} />}
+          {dialect && !unit && <UnitList dialect={dialect} go={go} />}
+          {unit && lessonAt === null && <TopicList dialect={dialect} unit={unit} go={go} />}
+          {unit && lessonAt !== null && (
+            <>
+              <Topic dialect={dialect.key} unit={unit.unit} at={lessonAt} words={words} />
+              <NextTopic unit={unit} at={lessonAt} onGo={(next) => go({ dialect: dialect.key, unit: unit.unit, at: next, words: false })} />
+            </>
+          )}
+        </Screen>
       )}
     </div>
     </Accent.Provider>

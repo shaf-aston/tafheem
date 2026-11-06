@@ -43,6 +43,7 @@ from backend.models.progress import (
     SignUpIn,
 )
 from backend.services.learner import accounts, attempts, circles, lifecycle
+from backend.services.learner import identity as guest_identity
 from backend.services.learner.username import GUEST, clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
@@ -141,8 +142,8 @@ async def sign_up(body: SignUpIn, user: str = TYPED, device: str = DEVICE) -> Ac
     """
     if not accounts.sign_up(user):
         raise HTTPException(status_code=409, detail="That username is taken")
-    if body.keep and device != GUEST:
-        lifecycle.claim_guest(user, device)
+    if body.keep:
+        guest_identity.merge(device, user)
     return Account(**accounts.account(user))
 
 

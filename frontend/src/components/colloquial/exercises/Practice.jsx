@@ -1,6 +1,7 @@
 // Practice: one exercise at a time under a row of answer squares.
 import { useEffect, useRef, useState } from 'react'
 
+import { scrollToEl } from '../../../lib/motion/scrollToEl'
 import AnswerSquare from '../../ui/inputs/AnswerSquare'
 import SmallButton from '../../ui/buttons/SmallButton'
 import ExerciseHost from './ExerciseHost'
@@ -18,6 +19,17 @@ export default function Practice({ exercises }) {
   // without scrolling, so the answer stays where the learner is looking.
   const nextButton = useRef(null)
   useEffect(() => { if (answered) nextButton.current?.focus({ preventScroll: true }) }, [answered, at])
+  // Next unmounts itself, so focus would fall to the page: it goes to the new exercise's first control.
+  const body = useRef(null)
+  const moved = useRef(false)
+  useEffect(() => {
+    if (!moved.current) return
+    moved.current = false
+    // A new exercise whose question sits under the header (Next pressed far down) glides up to it, as on the Quiz board.
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
+    if (body.current?.getBoundingClientRect().top < header) scrollToEl(body.current, 'top')
+    body.current?.querySelector('input:not([readonly]), button:not([disabled])')?.focus({ preventScroll: true })
+  }, [at])
   const status = (id) => (!(id in results) ? '' : results[id].correct ? 'right' : 'wrong')
 
   return (
@@ -34,7 +46,7 @@ export default function Practice({ exercises }) {
           />
         ))}
       </div>
-      <div className="p-5 space-y-5">
+      <div ref={body} className="p-5 space-y-5 scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
         <ExerciseHost
           key={current.id}
           exercise={current}
@@ -46,7 +58,7 @@ export default function Practice({ exercises }) {
           <span className="type-small text-[var(--text-dim)]">
             {finished ? `${right} of ${exercises.length} right` : `${Object.keys(results).length} of ${exercises.length} done`}
           </span>
-          {answered && at < exercises.length - 1 && <SmallButton ref={nextButton} onClick={() => setAt(at + 1)}>Next exercise →</SmallButton>}
+          {answered && at < exercises.length - 1 && <SmallButton ref={nextButton} onClick={() => { moved.current = true; setAt(at + 1) }}>Next exercise →</SmallButton>}
         </div>
       </div>
     </div>

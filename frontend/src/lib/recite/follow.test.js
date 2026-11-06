@@ -441,6 +441,23 @@ describe('weighing in the ear', () => {
     expect(bySound(marks, scored([0.1])).words[0]).toEqual({ word: 'a', state: WRONG, heard: '', sure: 0.1 })
   })
 
+  it('sureness alone never passes a letter both ears heard differently', () => {
+    // ظَلَمُوا said with a د: the transcript wrote دلموا (marked doubtful or
+    // wrong), the sounds ear heard دَلَمُو, and sureness was 99%.
+    const slip = { sure: 0.99, sounds: { heard: 'dalamu', expected: 'DHalamu', letter_ok: false, vowel_ok: true } }
+    const fine = { sure: 0.99, sounds: { heard: 'DHalamu', expected: 'DHalamu', letter_ok: true, vowel_ok: true } }
+    expect(bySound(marks, [null, slip]).words[1].state).toBe(CHECK)
+    // Doubt, never an accusation: two ears can mishear the same way.
+    expect(bySound(marks, [null, slip]).words[1].state).not.toBe(WRONG)
+    // One ear disagreeing is not enough: sureness still passes it.
+    expect(bySound(marks, [null, fine]).words[1].state).toBe(SAID)
+    expect(bySound(marks, [null, { sure: 0.99 }]).words[1].state).toBe(SAID)
+    // A word the transcript wrote right is left to sureness as before.
+    expect(bySound(marks, [slip]).words[0].state).toBe(SAID)
+    // A word the transcript never wrote has only one ear against it.
+    expect(bySound(marks, [null, null, slip]).words[2].state).toBe(SAID)
+  })
+
   it('a word passed on sound shows no misheard word under it', () => {
     expect(bySound(marks, scored([1, 1])).words[1]).toEqual({ word: 'b', state: SAID, heard: '', sure: 1 })
   })

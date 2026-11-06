@@ -1,6 +1,7 @@
 // One topic as a scene: its pictures come first, then the conversation and practice.
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
+import SmallButton from '../../ui/buttons/SmallButton'
 import TranslationStrip from '../../ui/text/TranslationStrip'
 import Dialogue from './Dialogue'
 import { FOCUS } from '../parts/Face'
@@ -10,6 +11,9 @@ import Practice from '../exercises/Practice'
 import Sheet from './Sheet'
 import WordBank from '../words/WordBank'
 import WordGrid from '../words/WordGrid'
+import WordPicture from '../words/picture/WordPicture'
+import { pictureBoards } from '../../../lib/colloquial/wordPictures'
+import { scrollToEl } from '../../../lib/motion/scrollToEl'
 
 function Act({ kicker, title, children }) {
   return (
@@ -44,6 +48,8 @@ function Words({ words }) {
 
 function Scene({ unit, lesson, number, place }) {
   const [open, setOpen] = useState(null)
+  // The practice sits several screens down a phone; one tap from the top takes you to it.
+  const practice = useRef(null)
   return (
     <article className="space-y-12">
       <div className="space-y-5">
@@ -53,7 +59,10 @@ function Scene({ unit, lesson, number, place }) {
             <p className="eyebrow text-[var(--text-faint)]">Topic {number}</p>
             <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
           </div>
-          <WordBank unit={unit} at={number - 1} />
+          <div className="flex flex-wrap gap-2">
+            <SmallButton onClick={() => scrollToEl(practice.current, 'top')} className="type-ui px-4 py-2">Practice ↓</SmallButton>
+            <WordBank unit={unit} at={number - 1} />
+          </div>
         </header>
         <Mosaic phrases={lesson.phrases} onOpen={setOpen} />
       </div>
@@ -63,6 +72,14 @@ function Scene({ unit, lesson, number, place }) {
         <Act kicker="Words" title={`${lesson.vocabulary.length} words for this topic`}>
           <Words words={lesson.vocabulary} />
         </Act>
+      )}
+      {/* Where the words have a drawing (a family tree, a house, a clock), see them on it. */}
+      {pictureBoards(lesson.vocabulary ?? []).length > 0 && (
+        <div className="max-w-3xl mx-auto">
+          <Act kicker="See it" title="On the picture">
+            <WordPicture words={lesson.vocabulary} />
+          </Act>
+        </div>
       )}
       {open !== null && <Sheet phrases={lesson.phrases} at={open} onAt={setOpen} onClose={() => setOpen(null)} place={place} />}
 
@@ -74,7 +91,7 @@ function Scene({ unit, lesson, number, place }) {
           <Pairs pairs={lesson.de_book} />
         </Act>
       </div>
-      <div className="max-w-3xl mx-auto">
+      <div ref={practice} className="max-w-3xl mx-auto scroll-mt-[calc(var(--app-header-h,0px)+1rem)]">
         <Act kicker="Your turn" title="Practice">
           <Practice exercises={lesson.exercises} />
         </Act>

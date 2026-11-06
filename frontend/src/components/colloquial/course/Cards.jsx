@@ -25,21 +25,20 @@ function Lines({ hue, kicker, title, gloss, arabic, note, more, image }) {
   )
 }
 
-const lookOf = (hue, index) => {
+const lookOf = (hue) => {
   const tint = (pct) => `color-mix(in oklab, ${hue} ${pct}%, transparent)`
   return {
-    '--i': index,
     background: `linear-gradient(90deg, ${tint(26)}, transparent 38%, transparent 62%, ${tint(26)}), var(--surface)`,
     borderColor: tint(40),
   }
 }
 
-export function Card({ hue, index, onClick, twin, picture, ...lines }) {
-  const look = lookOf(hue, index)
+export function Card({ hue, onClick, twin, picture, ...lines }) {
+  const look = lookOf(hue)
   const half = `lift press group text-start w-full px-5 py-4 ${FOCUS}`
   if (twin) {
     return (
-      <div style={look} className="rise-in grid grid-cols-2 rounded-[var(--radius-lg)] border overflow-hidden">
+      <div style={look} className="grid grid-cols-2 rounded-[var(--radius-lg)] border overflow-hidden">
         <button type="button" onClick={onClick} aria-label={`${lines.title}: ${lines.note}`} className={half}><Lines hue={hue} {...lines} /></button>
         <button type="button" onClick={twin.onClick} aria-label={`${lines.title}: ${twin.title} ${twin.kicker.toLowerCase()}`} className={`${half} border-s`} style={{ borderColor: look.borderColor }}>
           <Lines hue={hue} {...twin} />
@@ -53,7 +52,7 @@ export function Card({ hue, index, onClick, twin, picture, ...lines }) {
       onClick={onClick}
       disabled={!onClick}
       style={look}
-      className={`rise-in ${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS} ${picture ? 'grid grid-cols-[1fr_auto] items-center gap-4' : ''}`}
+      className={`${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS} ${picture ? 'grid grid-cols-[1fr_auto] items-center gap-4' : ''}`}
     >
       {picture ? (
         // The Arabic name sits over the picture, so the English lines get the width.
@@ -74,11 +73,11 @@ export function Card({ hue, index, onClick, twin, picture, ...lines }) {
 // on it. It takes the height the words make and never adds its own (contain: size).
 // The speaker faces left, off the start of the Arabic. The whole card opens the unit; the speaker is
 // drawn above that and only speaks, the words beside it letting a click through.
-export function UnitCard({ hue, index, unit, onClick }) {
+export function UnitCard({ hue, unit, onClick }) {
   const { cover } = unit
   const number = unitNumber(unit.unit)
   return (
-    <div style={lookOf(hue, index)} className="rise-in lift press relative grid grid-rows-[auto_auto_1fr] px-5 py-4 rounded-[var(--radius-lg)] border">
+    <div style={lookOf(hue)} className="lift press relative grid grid-rows-[auto_auto_1fr] px-5 py-4 rounded-[var(--radius-lg)] border">
       <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`stretch absolute inset-0 rounded-[var(--radius-lg)] ${FOCUS}`} />
       <span className="flex items-baseline justify-between gap-3 eyebrow">
         <span style={{ color: hue }}>Unit {number}</span>
@@ -96,6 +95,31 @@ export function UnitCard({ hue, index, unit, onClick }) {
         </span>
       </span>
     </div>
+  )
+}
+
+// A unit of words alone has no phrase to open on, so its card says what it teaches:
+// one word from each of its first topics, each with its small picture, and its size.
+export function WordUnitCard({ hue, unit, onClick }) {
+  const number = unitNumber(unit.unit)
+  return (
+    <button type="button" onClick={onClick} style={lookOf(hue)} aria-label={`Unit ${number}: ${unit.title}`}
+      className={`lift press text-start w-full flex flex-col px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS}`}>
+      <span className="flex items-baseline justify-between gap-3 eyebrow">
+        <span style={{ color: hue }}>Unit {number}</span>
+        <span className="text-[var(--text-faint)]">{unit.lessons.length} topics · {unit.words} words</span>
+      </span>
+      <span className="type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
+      <span className="flex flex-wrap gap-1.5 mt-auto pt-3">
+        {unit.samples.map((s) => (
+          <span key={s.english} className="inline-flex items-center gap-1.5 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] ps-1 pe-2 py-0.5">
+            <PhrasePicture phrase={s} alt="" className="w-6 h-6 p-0.5! rounded-[var(--radius-sm)]" />
+            <span lang="ar" dir="rtl" className="arabic-sm text-[var(--text)]">{s.arabic.split(' / ')[0]}</span>
+            <span className="type-small text-[var(--text-faint)]">{s.english}</span>
+          </span>
+        ))}
+      </span>
+    </button>
   )
 }
 

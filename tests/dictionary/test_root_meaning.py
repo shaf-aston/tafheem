@@ -356,6 +356,8 @@ def kept(monkeypatch, tmp_path):
     monkeypatch.setattr(root_english, "STORE_FILE", tmp_path / "english_entries.json")
     monkeypatch.setattr(root_english, "LINES_FILE", tmp_path / "english_lines.json")
     monkeypatch.setattr(root_english, "LINES_KEPT_FILE", tmp_path / "english_lines.kept.json")
+    monkeypatch.setattr(root_english, "SENSES_FILE", tmp_path / "english_senses.json")
+    monkeypatch.setattr(root_english, "SENSES_KEPT_FILE", tmp_path / "english_senses.kept.json")
     monkeypatch.setattr(root_english, "_cache", {})
     return root_english
 
@@ -538,7 +540,7 @@ def test_lines_put_as_shipped_land_in_the_tracked_file(kept):
 
 
 def test_chunks_keep_whole_lines_within_the_budget():
-    from backend.scripts.dictionary.backfill_root_english import chunks
+    from backend.services.dictionary.root_gloss import chunks
 
     assert chunks(["aa", "bb", "cc"], 4) == [["aa", "bb"], ["cc"]]
     # A line over the budget is a chunk of its own, never split or dropped.
@@ -826,3 +828,106 @@ def test_a_verse_stays_whole_even_with_a_full_stop_in_it(client, line_ai):
                               ensure_ascii=False))
     answer = _lined(client, "كتب").json()
     assert [pair["arabic"] for pair in answer["lines"]] == ["صدر البيت. تمامه ... عجز البيت"]
+
+
+def test_the_card_is_told_when_the_whole_entry_s_english_is_already_kept(client, monkeypatch):
+    """A wide screen opens kept English beside the Arabic at once; English that
+    would need a model call waits for the reader's press."""
+    from backend.routers import dictionary as router_module
+    client.install(json.dumps({"كتب": {"core_meaning": "الجمع"}}, ensure_ascii=False))
+    monkeypatch.setattr(router_module.root_english, "get", lambda root: "kept" if root == "كتب" else None)
+    assert _get(client, "كتب")["english_kept"] is True
+    monkeypatch.setattr(router_module.root_english, "get", lambda root: None)
+    assert _get(client, "كتب")["english_kept"] is False
+
+
+# ── The entry cut into its words ─────────────────────────────────────────────
+# The model only says which lines go with which word; the Arabic shown is the
+# book's, and an answer that does not cover the lines in order is refused.
+
+def _words(client, root):
+    return client.get("/api/dictionary/root-meaning/english/senses", params={"root": root})
+
+
+_WORD_ANSWER = {"senses": [
+    {"lines": [1], "word": "الكتاب", "say": "al-kitāb", "gloss": "the book", "examples": []},
+    {"lines": [2, 3], "word": "", "say": "", "gloss": "A poet said so.", "examples": []},
+]}
+
+
+@pytest.fixture()
+def word_ai(monkeypatch):
+    """A stand-in for the word-by-word model call. Counts how often it is asked."""
+    from backend.routers import dictionary as router_module
+
+    state = {"available": True, "answer": _WORD_ANSWER, "asked": 0}
+
+    def _explain(root, lines, reference=None):
+        state["asked"] += 1
+        state["reference"] = reference
+        return state["answer"]
+
+    monkeypatch.setattr(ai_service, "is_ai_available", lambda: state["available"])
+    monkeypatch.setattr(ai_service, "explain_root_entry_senses", _explain)
+    return state
+
+
+def _install_lined(client):
+    client.install(json.dumps({"كتب": {"core_meaning": "الجمع", "body": _LINED_BODY}},
+                              ensure_ascii=False))
+
+
+def test_each_word_comes_back_with_the_books_own_lines(client, word_ai):
+    _install_lined(client)
+    body = _words(client, "كتب").json()
+    assert [s["arabic"] for s in body["senses"]] == [
+        ["ومن ذلك الكتاب."], ["وقال الشاعر:", "صدر البيت ... عجزه"],
+    ]
+    assert body["senses"][0]["word"] == "الكتاب"
+    assert body["source"]["key"] == "ai"
+
+
+def test_words_made_on_the_spot_are_kept_and_not_asked_for_twice(client, word_ai, kept):
+    _install_lined(client)
+    _words(client, "كتب")
+    _words(client, "كتب")
+    assert word_ai["asked"] == 1
+    assert kept.get_senses("كتب", 3) is not None
+    # And the card is told, so it can open on Word by word without a call
+    assert _get(client, "كتب")["senses_kept"] is True
+
+
+def test_an_answer_that_misreads_the_entry_is_refused_after_one_more_go(client, word_ai):
+    word_ai["answer"] = {"senses": [{"lines": [1], "word": "", "gloss": "x"}]}
+    _install_lined(client)
+    assert _words(client, "كتب").status_code == 502
+    assert word_ai["asked"] == 2
+
+
+def test_a_long_entry_is_asked_in_chunks_and_joined(client, word_ai, monkeypatch):
+    from backend.config import get_settings
+
+    monkeypatch.setattr(get_settings(), "root_senses_chunk_chars", 20)
+    word_ai["answer"] = {"senses": [{"lines": [1], "word": "", "gloss": "x"}]}
+    _install_lined(client)
+    body = _words(client, "كتب").json()
+    assert word_ai["asked"] == 3  # one chunk a line
+    assert [s["arabic"] for s in body["senses"]] == [["ومن ذلك الكتاب."], ["وقال الشاعر:"], ["صدر البيت ... عجزه"]]
+
+
+def test_shipped_words_are_badged_as_the_books_translation(client, word_ai, kept):
+    from backend.services.dictionary import root_senses
+
+    kept.put_senses("كتب", root_senses.check(_WORD_ANSWER, _LINED_BODY.split("\n")[1:]), shipped=True)
+    _install_lined(client)
+    body = _words(client, "كتب").json()
+    assert body["source"]["key"] == "maqayees_senses"
+    assert word_ai["asked"] == 0
+
+
+def test_words_made_on_the_spot_are_handed_the_whole_entrys_english(client, word_ai, kept):
+    # Without it the model read الغرب as "west" and a wolf's cub as "the hearing"
+    kept.put("كتب", "Al-Khansā' said, of the gathering.")
+    _install_lined(client)
+    _words(client, "كتب")
+    assert word_ai["reference"] == "Al-Khansā' said, of the gathering."

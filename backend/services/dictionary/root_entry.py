@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import sys
 from enum import Enum
+from functools import partial
 from typing import NamedTuple
 
 from backend.config import get_settings
 from backend.services import ai
-from backend.services.dictionary import root_english, root_gloss, root_meaning
+from backend.services.dictionary import root_english, root_gloss, root_meaning, root_senses
 
 
 class Refused(Enum):
@@ -28,6 +29,12 @@ class Retold(NamedTuple):
 
 class Lined(NamedTuple):
     lines: list[tuple[str, str]]  # (Arabic, English)
+    truncated: bool
+    source: str
+
+
+class Worded(NamedTuple):
+    senses: list[dict]  # each word with its own lines of the book
     truncated: bool
     source: str
 
@@ -94,3 +101,38 @@ def lines(root: str) -> Lined | Refused:
             return Refused.MISPAIRED  # English under the wrong Arabic is a false claim about the book
         root_english.put_lines(book_root, kept)
     return Lined(list(zip(cut, kept)), truncated, "ai")
+
+
+def senses(root: str) -> Worded | Refused:
+    """The rest of the entry cut into the words it explains, each beside its lines: the same rest, cut
+    the same way, as `lines`. The model only says which lines go with which word and root_senses holds
+    that against the book. Asked a chunk at a time, one after another, because at once a long entry's
+    chunks spent the model service's tokens-per-minute together and failed."""
+    book = _book_entry(root)
+    if isinstance(book, Refused):
+        return book
+    book_root, entry = book
+    rest = root_gloss.rest_of(entry)
+    every_line, _ = root_gloss.line_budget(rest, sys.maxsize)
+    if not every_line:
+        return Refused.NO_REST
+    kept = root_english.get_senses(book_root, len(every_line))
+    if kept is not None:
+        shipped = root_english.shipped_senses(book_root, len(every_line))
+        return Worded(root_senses.shown(kept, every_line), False, "maqayees_senses" if shipped else "ai")
+    cut, truncated = root_gloss.line_budget(rest, get_settings().root_entry_truncate_chars)
+    kept = root_english.get_senses(book_root, len(cut)) if truncated else None
+    if kept is None:
+        if not ai.is_ai_available():
+            return Refused.NO_AI
+        ask = partial(ai.explain_root_entry_senses, root, reference=root_english.get(book_root))
+        parts = []
+        for chunk in root_gloss.chunks(cut, get_settings().root_senses_chunk_chars):
+            parts.append(root_senses.cut(ask, chunk))
+            if parts[-1] is None:
+                break
+        kept = root_senses.joined(parts)
+        if kept is None:
+            return Refused.MISPAIRED
+        root_english.put_senses(book_root, kept)
+    return Worded(root_senses.shown(kept, cut), truncated, "ai")

@@ -1,0 +1,327 @@
+{
+  "found": {
+    "floor": {
+      "english": "floor",
+      "search_term": "floor home interior",
+      "candidates": [
+        {
+          "id": "6742c9cc-6d87-4578-8785-60c92e70807e",
+          "title": "Apartment Bed",
+          "creator": "Medhat Ayad",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/apartment-bed-EGXWIV409M",
+          "thumbnail": "https://api.openverse.org/v1/images/6742c9cc-6d87-4578-8785-60c92e70807e/thumb/"
+        },
+        {
+          "id": "750a327c-f6d8-427e-b9b2-8bc7090bb05d",
+          "title": "Home House",
+          "creator": "Breather",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/home-house-87ONRC5PWV",
+          "thumbnail": "https://api.openverse.org/v1/images/750a327c-f6d8-427e-b9b2-8bc7090bb05d/thumb/"
+        },
+        {
+          "id": "c6b1bca4-7448-44c9-bddc-0459ddc4739a",
+          "title": "Kitchen Interior",
+          "creator": "Matt Bango",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/kitchen-interior-3ZX53UFU8B",
+          "thumbnail": "https://api.openverse.org/v1/images/c6b1bca4-7448-44c9-bddc-0459ddc4739a/thumb/"
+        },
+        {
+          "id": "a7f0154c-d1f4-440b-8d90-efe0f38af32c",
+          "title": "Staircase Interior",
+          "creator": "Matt Bango",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/staircase-interior-CIMIPMHUXZ",
+          "thumbnail": "https://api.openverse.org/v1/images/a7f0154c-d1f4-440b-8d90-efe0f38af32c/thumb/"
+        }
+      ]
+    },
+    "landlord": {
+      "english": "landlord",
+      "search_term": "landlord portrait person",
+      "candidates": []
+    },
+    "balcony": {
+      "english": "balcony",
+      "search_term": "balcony with plants",
+      "candidates": [
+        {
+          "id": "ed588f27-b9ed-4ff4-a6fa-3188504e5838",
+          "title": "Beach Sand",
+          "creator": "Kimberly Richards",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/beach-sand-7ECA118A10",
+          "thumbnail": "https://api.openverse.org/v1/images/ed588f27-b9ed-4ff4-a6fa-3188504e5838/thumb/"
+        },
+        {
+          "id": "f52d3b54-4fe6-4a3c-8346-33c0a72c7cdb",
+          "title": "People Man",
+          "creator": "Clem Onojeghuo",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/people-man-C1O1OYG1FB",
+          "thumbnail": "https://api.openverse.org/v1/images/f52d3b54-4fe6-4a3c-8346-33c0a72c7cdb/thumb/"
+        },
+        {
+          "id": "1a0f2a31-d8f5-43e7-829a-f36dd128c2e7",
+          "title": "Flower Pot",
+          "creator": "Mary",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/flower-pot-MDXQNZYYMM",
+          "thumbnail": "https://api.openverse.org/v1/images/1a0f2a31-d8f5-43e7-829a-f36dd128c2e7/thumb/"
+        },
+        {
+          "id": "d13fab5b-fa81-4563-89e6-5bae1f995518",
+          "title": "Architecture Building",
+          "creator": "Nikolaj Erema",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/architecture-building-RCEZUL7M5V",
+          "thumbnail": "https://api.openverse.org/v1/images/d13fab5b-fa81-4563-89e6-5bae1f995518/thumb/"
+        }
+      ]
+    },
+    "table": {
+      "english": "table",
+      "search_term": "table home furniture",
+      "candidates": [
+        {
+          "id": "6742c9cc-6d87-4578-8785-60c92e70807e",
+          "title": "Apartment Bed",
+          "creator": "Medhat Ayad",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/apartment-bed-EGXWIV409M",
+          "thumbnail": "https://api.openverse.org/v1/images/6742c9cc-6d87-4578-8785-60c92e70807e/thumb/"
+        },
+        {
+          "id": "0aa6ba6c-1a2b-440f-ad71-460a1bbffd40",
+          "title": "Interior Dining",
+          "creator": "Kristin Hardwick",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/interior-dining-VMJ6JJFFWR",
+          "thumbnail": "https://api.openverse.org/v1/images/0aa6ba6c-1a2b-440f-ad71-460a1bbffd40/thumb/"
+        },
+        {
+          "id": "4b2ad2c9-9652-451d-bd45-a51e37c7f90c",
+          "title": "Interior Dining",
+          "creator": "Kristin Hardwick",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/interior-dining-LHKILYV8X0",
+          "thumbnail": "https://api.openverse.org/v1/images/4b2ad2c9-9652-451d-bd45-a51e37c7f90c/thumb/"
+        },
+        {
+          "id": "07821a53-d863-43d0-b7d6-4c7e18983925",
+          "title": "Chill Chillout",
+          "creator": "Anthony Tran",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://stocksnap.io/photo/chill-chillout-Q6XLNSOUUO",
+          "thumbnail": "https://api.openverse.org/v1/images/07821a53-d863-43d0-b7d6-4c7e18983925/thumb/"
+        }
+      ]
+    },
+    "fridge": {
+      "english": "fridge",
+      "search_term": "refrigerator home furniture",
+      "candidates": [
+        {
+          "id": "134a3f86-aa96-4061-b06d-c081b65626c8",
+          "title": "Industrial exposition, 1926, ' Fridgidaire'",
+          "creator": "libraryofcongress",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6993403/industrial-exposition-1926-fridgidaire",
+          "thumbnail": "https://api.openverse.org/v1/images/134a3f86-aa96-4061-b06d-c081b65626c8/thumb/"
+        },
+        {
+          "id": "07131774-6505-4bb5-afee-2ac904312583",
+          "title": "Honey Brook (vicinity) Pennsylvania. Cheap",
+          "creator": "libraryofcongress",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/12110014/image-art-vintage-public-domain",
+          "thumbnail": "https://api.openverse.org/v1/images/07131774-6505-4bb5-afee-2ac904312583/thumb/"
+        },
+        {
+          "id": "64841300-9116-4e34-a0e6-a58f2bd12097",
+          "title": "Kitchens of New Bern Tour",
+          "creator": "FoodBankCENC.org",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/36654051@N07/15226664739",
+          "thumbnail": "https://api.openverse.org/v1/images/64841300-9116-4e34-a0e6-a58f2bd12097/thumb/"
+        },
+        {
+          "id": "f131b376-9336-4568-b1d0-b8ce942be043",
+          "title": "P1010301",
+          "creator": "cheryljns",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/14627182@N06/13621635443",
+          "thumbnail": "https://api.openverse.org/v1/images/f131b376-9336-4568-b1d0-b8ce942be043/thumb/"
+        }
+      ]
+    },
+    "air-conditioner": {
+      "english": "air conditioner",
+      "search_term": "air conditioner",
+      "candidates": [
+        {
+          "id": "45d4736e-6c22-49e9-9f7b-8a45352e6cee",
+          "title": "Original public domain image Wikimedia",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3290348/free-photo-image-air-conditioner-appliance-cc0",
+          "thumbnail": "https://api.openverse.org/v1/images/45d4736e-6c22-49e9-9f7b-8a45352e6cee/thumb/"
+        },
+        {
+          "id": "00e1d7c0-5a27-4057-a6d8-2fbdb6a63771",
+          "title": "Original public domain image Wikimedia",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3290494/free-photo-image-air-conditioner-appliance-balcony",
+          "thumbnail": "https://api.openverse.org/v1/images/00e1d7c0-5a27-4057-a6d8-2fbdb6a63771/thumb/"
+        },
+        {
+          "id": "12561103-65d8-488a-9d71-264a29ffd8ed",
+          "title": "Apartment building yellow wall.",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/3295858/free-photo-image-air-conditioner-apartment-building-appliance",
+          "thumbnail": "https://api.openverse.org/v1/images/12561103-65d8-488a-9d71-264a29ffd8ed/thumb/"
+        },
+        {
+          "id": "0ad873b7-fc3f-4a25-a4b8-c782f4ef0aaa",
+          "title": "Mizonokuchi, 4th Apr",
+          "creator": null,
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.rawpixel.com/image/6074073/mizonokuchi-4th-apr",
+          "thumbnail": "https://api.openverse.org/v1/images/0ad873b7-fc3f-4a25-a4b8-c782f4ef0aaa/thumb/"
+        }
+      ]
+    },
+    "leak": {
+      "english": "leak",
+      "search_term": "leaking tap",
+      "candidates": [
+        {
+          "id": "e7f19e96-e9d9-4ad6-b6c4-a275b349d006",
+          "title": "Heather Cox Richardson",
+          "creator": "nordique",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/28435100@N00/52154824092",
+          "thumbnail": "https://api.openverse.org/v1/images/e7f19e96-e9d9-4ad6-b6c4-a275b349d006/thumb/"
+        },
+        {
+          "id": "33c449b6-47a3-4a72-8451-cf7fc9d74b9f",
+          "title": "Tap is not leaking now",
+          "creator": "cosmicwindblown4",
+          "license": "cc0",
+          "license_version": "1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/191273461@N04/52644594914",
+          "thumbnail": "https://api.openverse.org/v1/images/33c449b6-47a3-4a72-8451-cf7fc9d74b9f/thumb/"
+        },
+        {
+          "id": "30fb7c67-fcec-489b-af85-8bbc49110651",
+          "title": "Project 366 #147: 260524 The Big Drip",
+          "creator": "comedy_nose",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/23408922@N07/53748631388",
+          "thumbnail": "https://api.openverse.org/v1/images/30fb7c67-fcec-489b-af85-8bbc49110651/thumb/"
+        }
+      ]
+    },
+    "nail": {
+      "english": "nail",
+      "search_term": "nail home interior",
+      "candidates": [
+        {
+          "id": "0e0025eb-ed22-4df9-8051-089a086af097",
+          "title": "multimedia desk",
+          "creator": "grantlairdjr",
+          "license": "by",
+          "license_version": "2.0",
+          "license_url": "https://creativecommons.org/licenses/by/2.0/",
+          "foreign_landing_url": "https://www.flickr.com/photos/48889108472@N01/147348118",
+          "thumbnail": "https://api.openverse.org/v1/images/0e0025eb-ed22-4df9-8051-089a086af097/thumb/"
+        }
+      ]
+    },
+    "neighbour": {
+      "english": "neighbour",
+      "search_term": "neighbours chatting over fence",
+      "candidates": []
+    }
+  },
+  "needs_search_term": [
+    "rent",
+    "deposit",
+    "lease",
+    "tenant",
+    "year",
+    "to-rent",
+    "to-move-in",
+    "to-view",
+    "furnished",
+    "included",
+    "to-work",
+    "spacious",
+    "fault",
+    "plumber",
+    "electrician",
+    "cost",
+    "to-leak",
+    "to-close",
+    "to-call",
+    "respect",
+    "to-live",
+    "to-borrow",
+    "to-help",
+    "to-cooperate",
+    "to-apologise",
+    "to-receive",
+    "to-visit",
+    "to-move",
+    "next-door"
+  ]
+}
