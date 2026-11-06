@@ -31,7 +31,7 @@ def naat_after_its_noun(s: Sentence) -> None:
     for token in tokens:
         head = s.head(token)
         if (head and token["rel"] == "MOD" and head["id"] > token["id"] and head["head"] == 0
-                and noun_tagged(token) and noun_tagged(head) and not works_as_verb(head)
+                and noun_tagged(token) and noun_tagged(head) and head.get("stt") != "c"
                 and not is_known(head, s) and is_known(token, s)):
             s.relink(token, 0, "---")
             s.relink(head, token["id"], "PRD")
