@@ -17,7 +17,7 @@ from backend.services.text.harakat import (
     PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
 from backend.services.sarf.morphology import has_comparative
 from backend.services.nahw.book import (
-    book_file, book_map, book_spelling, book_words, condition_of, family_cards, frames, is_mabni, is_one)
+    book_file, book_map, book_spelling, book_words, condition_of, family_cards, is_mabni, is_one, says)
 from backend.services.nahw.syntax import facts, walker
 from backend.services.nahw.syntax.mask import above
 
@@ -283,9 +283,8 @@ def _opens_clause(token: dict, s: facts.Sentence) -> bool:
     and so does a preposition (لا يعلمُ ما في الغيبِ), unless the verb is one of saying, whose quoted
     speech it opens (قالوا ما أنتم إلا بشرٌ; data: roles.json said_clause)."""
     before = next((t for t in reversed(s.tokens) if t["id"] < token["id"] and not facts.is_suffix(t)), None)
-    saying = frames()["said_clause"]["verbs"]
     return not (before and (facts.is_preposition(before)
-                            or (facts.is_verb(before) and strip_diacritics(before["lemma"]) not in saying)))
+                            or (facts.is_verb(before) and not says(before["lemma"]))))
 
 
 def _restricted(token: dict, s: facts.Sentence) -> str:

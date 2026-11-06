@@ -80,6 +80,10 @@ closed_words.json (the list)  → nahw_book question  → naming FINISHES step (
 
 Rule of thumb: fix the cause by a grammar rule. Never key a fix to one sentence or one hadith.
 
+A new repair is one function in its `repair/` module: it takes the `Sentence` (`s`, with `bases` first when it reads the
+typed words) and moves links with `s.relink`. Then one line in `PASSES` (`repair/__init__.py`, the order) and one line in
+`docs/glossary/nahw-flow.md` (a test keeps the two equal).
+
 ## Verifying a change
 
 ```
@@ -88,7 +92,7 @@ PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --check   # 
 PYTHONPATH=$PWD venv/bin/python -m backend.scripts.nahw.score_iraab --save-baseline  # only when better
 ```
 
-Add each fix's test to `tests/nahw/test_rule_engine.py` with a **sibling sentence** the fix was not built
+Add each fix's test to `tests/nahw/test_word_roles.py` with a **sibling sentence** the fix was not built
 from (`tests/nahw_helpers.py` has the parser mark, `analyze` and the picture walk every such test uses).
 `tests/nahw/test_nahw_held_out.py` is an examiner's set the rules were never tuned on: a fix is checked
 there, never written from it. Then mutation-check it: revert the fix's file (`git show HEAD:<file> > <file>`), confirm the test

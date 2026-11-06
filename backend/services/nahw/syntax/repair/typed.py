@@ -11,10 +11,10 @@ from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_name, is_preposition, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
 
 
-def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None:
-    """Reads what was typed into each base word: its vowels, and its kind and tense where they or the book say otherwise."""
-    for i, (word, token) in enumerate(zip(words, bases)):
-        token["typed"] = word
+def typed_words(bases: list[dict], tokens: list[dict]) -> None:
+    """Reads what was typed into each base word (`typed`, set by `correct`): its vowels, and its kind and tense where they or the book say otherwise."""
+    for i, token in enumerate(bases):
+        word = token["typed"]
         # a tenseless "verb" CAMeL reads as a noun or adjective is that noun (اللهُ أكبرُ); a word the book lists only as a ظرف,
         # or only as a conditional noun (مَهْمَا: Tasheel, the jazm conditionals other than إن and إذما are nouns), is a noun
         if ((verb_tagged(token) and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"))
@@ -40,13 +40,13 @@ def typed_words(words: list[str], bases: list[dict], tokens: list[dict]) -> None
         # the word straight before a noun with ال is that verb, whose doer is such a noun (Ibn Aqil V2, باب نعم وبئس)
         bare = strip_diacritics(word) == word
         if is_one(token["lemma"], "praise_blame") and not has_tanween(word) and (typed_case(word, token["stuck_on"]) == "a" or (
-                bare and i + 1 < len(words) and strip_diacritics(words[i + 1]).startswith("ال"))):
+                bare and i + 1 < len(bases) and strip_diacritics(bases[i + 1]["typed"]).startswith("ال"))):
             token.update(pos="VRB", asp="p")
         # اُكْتُبْ، أَكْرِمْ: the typed command is the tense, whatever the reading. A verb is also tried on its own
         # letters (فَاقْبَلْهَا); a noun never, or the يَدِ of وَيَدِهِ would be a command, except a name the list only
         # guessed (فَادْفَعُوا). A noun read with the vowels typed stays that noun unless the command is typed in full (سَمِّ),
         # and so does a past verb (جَاءُوا is the dictionary's past, never a command spelled جَاِئُوا it left a mark off)
-        after = words[i + 1] if i + 1 < len(words) else ""
+        after = bases[i + 1]["typed"] if i + 1 < len(bases) else ""
         verb = verb_tagged(token)
         agrees = vowel_agreement(word, token.get("diac", "")) is not None
         read_noun = token.get("pos_camel") == "noun" and agrees
@@ -117,12 +117,12 @@ def _plural_case(word: str, token: dict, tokens: list[dict]) -> str:
     return head.get("cas", "na") if head else "na"
 
 
-def adverb_only(tokens: list[dict]) -> None:
+def adverb_only(s: Sentence) -> None:
     """مَا رَأَيْتُهُ قَطُّ، أَمَّا بَعْدُ: قط and عوض never leave the adverb (Awdah al-Masalik V2 p232: ما لا يفارق الظرفية
     أصلا), and قبل/بعد cut off from their مضاف إليه are built on the damma (Ibn Aqil V3 p73): neither is a doer, a
     mubtada or a khabar, so a word the parser hung so is a modifier of its head, the ظرف of the clause; so is one hung
     as the object of أَمَّا (أَمَّا بَعْدُ), a particle that is no preposition."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         head = s.head(token)
         if stays_adverb(token) and (token["rel"] in (*SUBJECTS, "PRD")
@@ -146,11 +146,11 @@ def _only_conditional_noun(lemma: str) -> bool:
     return bool(opened and opened["noun"] and not opened["shared"])
 
 
-def described_after_tanween(tokens: list[dict]) -> None:
+def described_after_tanween(s: Sentence) -> None:
     """يَوْمٌ صَحْوٌ: the tanween of a noun goes for its إضافة (Ibn Aqil V3 p40: تنوينا مما تضيف احذف), so a noun
     typed with tanween has no مضاف إليه after it; a noun typed with tanween in its own case that the parser
     hung so is its صفة. A participle's nasb object is another word (object_after_tanween)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         head = s.head(token)
         if (head and token["rel"] == "IDF" and noun_tagged(token) and not works_as_verb(head)
@@ -158,13 +158,13 @@ def described_after_tanween(tokens: list[dict]) -> None:
             token["rel"] = "MOD"
 
 
-def jarr_after_mudaf(tokens: list[dict]) -> None:
+def jarr_after_mudaf(s: Sentence) -> None:
     """زَيْدٌ أَكْرَمُ رِجَالٍ: a noun typed in jarr with no جار is a مضاف إليه (Alfiyya: وَالثَّانِيَ اجْرُرْ),
     and the مضاف drops its tanween (نُونًا تَلِي الْإِعْرَابَ أَوْ تَنْوِينًا مِمَّا تُضِيفُ احْذِفْ), so a word the
     parser hung elsewhere, straight after a noun typed with its case but no tanween, is that noun's
     مضاف إليه. A word known already (ال or a name: بِسْمِ اللَّهِ الرَّحْمَنِ) is added to nothing, and a fatha
     on a word put in jarr is a diptote's, which never takes tanween (مَرَرْتُ بِمَسَاجِدَ كَثِيرَةٍ: its صفة)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for before, word in pairwise(tokens):
         if (typed_case_of(word) == "i" and noun_tagged(word)
                 and noun_tagged(before) and before.get("stt") != "d" and not is_name(before)

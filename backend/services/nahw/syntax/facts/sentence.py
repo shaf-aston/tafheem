@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_built_word, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb
+from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_built_word, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
 
@@ -42,6 +42,11 @@ class Sentence:
 
     def __init__(self, tokens: list[dict]):
         self.tokens = tokens
+        self.refresh()
+
+    def refresh(self) -> None:
+        """Read the tokens again, every lookup: for a change of more than links (a retag)."""
+        tokens = self.tokens
         self.by_id = {t["id"]: t for t in tokens}
         self._kids: dict[int, list[dict]] = {}
         for t in tokens:
@@ -109,6 +114,25 @@ class Sentence:
 
     def head(self, token: dict) -> dict | None:
         return self.by_id.get(token["head"])
+
+    def relink(self, token: dict, head: int, rel: str) -> None:
+        """Hang the token on the word with id `head` as `rel`, and keep the lookups that follow the links in step.
+        The kid lists are replaced, never edited, so a loop already walking one finishes on the links it started with."""
+        self._kids[token["head"]] = [k for k in self._kids.get(token["head"], []) if k is not token]
+        token["head"], token["rel"] = head, rel
+        kids = self._kids.get(head, [])
+        self._kids[head] = [*(k for k in kids if k["id"] < token["id"]), token, *(k for k in kids if k["id"] > token["id"])]
+        self._family.clear()
+        self.asked_pair = self._asked_pair()
+
+    def climb(self, token: dict | None, stop) -> dict | None:
+        """The first word at or above `token` that `stop` accepts. None when the climb runs past the root;
+        a word already met (links that loop) ends it there, as no word above it would be new."""
+        seen = set()
+        while token and not stop(token) and token["id"] not in seen:
+            seen.add(token["id"])
+            token = self.head(token)
+        return token
 
     def kids(self, token: dict) -> list[dict]:
         return self._kids.get(token["id"], [])
@@ -413,7 +437,7 @@ def quoted_head(token: dict, s: Sentence) -> bool:
     قُلْتُ أَنَا ذَاهِبٌ: a verb of the first or second person holds its doer in itself (its تاء)."""
     head = s.head(token)
     return (token["rel"] == "OBJ" and (typed_or_parsed_case(token) == "u" or is_subject_pronoun(token)) and head is not None and is_verb(head)
-            and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
+            and head["id"] < token["id"] and says(head["lemma"])
             and holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"])))
 
 

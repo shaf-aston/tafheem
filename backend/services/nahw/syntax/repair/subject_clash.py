@@ -1,19 +1,18 @@
 """Repair 2: a word hung on a verb's subject that the typed vowels forbid there is the verb's object."""
 from __future__ import annotations
 
-from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import extra_ba_on, frames, is_mabni, is_one, is_subject_pronoun
+from backend.services.nahw.book import extra_ba_on, is_mabni, is_one, is_subject_pronoun, says
 from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import (
     Sentence, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
 from backend.services.nahw.syntax.facts.word import takes_two_objects
 
 
-def excepted_after_doer(tokens: list[dict]) -> None:
+def excepted_after_doer(s: Sentence) -> None:
     """حضر الضيوف غير بكر typed bare: a verb's doer comes first and an excepting noun (غير، سوى: closed_words istithna)
     after the whole group (Tasheel 3.8.7), so with no vowel to tell them, the noun before the excepting word that the
     parser made the verb's object is the doer, and the excepting word, which it made the doer, is the excepted."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for verb in tokens:
         if not is_verb(verb) or is_passive(verb) or own_doer(verb):
             continue
@@ -26,12 +25,12 @@ def excepted_after_doer(tokens: list[dict]) -> None:
             noun["rel"], word["rel"] = "SBJ", "OBJ"
 
 
-def first_object_owed(tokens: list[dict]) -> None:
+def first_object_owed(s: Sentence) -> None:
     """مَنَحَ المدير المعلم كتابا typed bare: a verb of two objects (closed_words two_objects_give) with its doer and one
     object owes the other, so a noun straight after the doer that shows no case and the analyser reads as no adjective
     (a صفة is one), which the parser hung on the doer as its modifier, or on the verb as a second doer
     (أعطى المعلم الطالب كتابا), is that object."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for verb in tokens:
         if not is_verb(verb) or is_passive(verb) or not is_one(verb["lemma"], "two_objects_give"):
             continue
@@ -41,10 +40,10 @@ def first_object_owed(tokens: list[dict]) -> None:
         owed = next((k for k in [*s.kids(doer), *kids] if k["rel"] in ("MOD", "SBJ") and k is not doer and k["id"] == doer["id"] + 1
                      and noun_tagged(k) and typed_case_of(k) is None and k.get("pos_camel") != "adj"), None) if doer else None
         if owed and len(objects) == 1 and owed["id"] < objects[0]["id"]:
-            owed["head"], owed["rel"] = verb["id"], "OBJ"
+            s.relink(owed, verb["id"], "OBJ")
 
 
-def subject_clash(tokens: list[dict]) -> None:
+def subject_clash(s: Sentence) -> None:
     """A word the parser hung on a verb's subject that the typed vowels forbid there is the verb's object.
     أَعْطَى الرَّجُلُ الْفَقِيرَ دِرْهَمًا، ضَرَبَ زَيْدٌ عَمْرًا: a نعت wears its noun's case (Tasheel 3.10.1),
     so a word in nasb after the subject's damma is no نعت; a hal (جَاءَ زَيْدٌ رَاكِبًا) or the verb's own
@@ -61,13 +60,13 @@ def subject_clash(tokens: list[dict]) -> None:
     name, and with no case shown the doer comes first (Awdah al-Masalik 2/118): قال زيد هو يكتب. Any
     other verb keeps the parser's reading, which weighs its meaning (كتب الدرس, يا غلام سم الله). A verb
     holding its doer in itself (قُلْتُ) takes no second one: قُلْتُ زَيْدٌ قَائِمٌ."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         verb = s.head(token)
         if verb and is_verb(verb) and token["rel"] == "OBJ" and not holds_doer(verb, s.kids(verb)) \
                 and ((typed := typed_case_of(token)) == "u" or typed is None and token["id"] > verb["id"]
                      and is_name(token) and typed_or_parsed_case(token) != "a"
-                     and strip_diacritics(verb["lemma"]) in frames()["said_clause"]["verbs"]):
+                     and says(verb["lemma"])):
             token["rel"] = "SBJ"
     for token in tokens:
         head = s.head(token)
@@ -87,9 +86,9 @@ def subject_clash(tokens: list[dict]) -> None:
         added = (token["rel"] in ("IDF", "---") and typed_tanween(head)
                  and typed_case_of(token) in ("a", None) and not any(k["rel"] == "OBJ" for k in s.kids(verb)))
         if clash or added:
-            token["head"], token["rel"] = verb["id"], "OBJ"
+            s.relink(token, verb["id"], "OBJ")
             head["mudaf"] = has_added(head, tokens)
-            s = Sentence(tokens)
+            s.refresh()
 
 
 def _in_nasb(token: dict) -> bool:
@@ -99,14 +98,14 @@ def _in_nasb(token: dict) -> bool:
         and not is_describing(token) and not any(listed(token, "tawkeed", part) for part in ("with_pronoun", "without_pronoun"))
 
 
-def added_to_verb(tokens: list[dict]) -> None:
+def added_to_verb(s: Sentence) -> None:
     """شرب الماء: being a مضاف is the noun's alone (Ibn Ya'ish V1 p89: ومن خواص الاسم الإضافة. والمراد بالإضافة هنا
     أن يكون الاسم مضافا ... وذلك مختص بالأسماء), so a noun the parser hung on a verb as its مضاف إليه is the
     verb's doer or object. The doer comes straight after its verb (Ibn Aqil V2 p95: الأصل أن يلي الفاعل الفعل
     من غير أن يفصل بينه وبين الفعل فاصل), so it is the doer, unless it is typed in nasb or the verb holds its
     doer already; typed in jarr, it is left as read, and so is a time or place word, the verb's مفعول فيه
     (Tasheel 3.2 p67; صُمْتُ يَوْمَ الْخَمِيسِ)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         verb = s.head(token)
         if not (verb and is_verb(verb) and token["rel"] == "IDF" and noun_tagged(token)) or typed_case_of(token) == "i" \
@@ -116,34 +115,34 @@ def added_to_verb(tokens: list[dict]) -> None:
         token["rel"] = "OBJ" if has_doer or typed_case_of(token) == "a" else "SBJ"
 
 
-def name_told_to(tokens: list[dict]) -> None:
+def name_told_to(s: Sentence) -> None:
     """قَالَ إِبْرَاهِيمُ لِأَبِيهِ آزَرَ: a verb of saying takes as its object only a sentence it tells or a
     word meaning one (Tasheel V1 p73: يحكى بالقول وفروعه الجمل، وينصب به المفرد المؤدي معناها), never a
     name. A name the parser made its object whose ending can be jarr (a diptote's fatha is its jarr)
     straight after a noun in jarr wears that noun's case: it names it again, its بدل."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         verb, before = s.head(token), previous_noun(token, s)
         if verb and is_verb(verb) and token["rel"] == "OBJ" and is_name(token) and before \
-                and strip_diacritics(verb["lemma"]) in frames()["said_clause"]["verbs"] \
+                and says(verb["lemma"]) \
                 and typed_or_parsed_case(before) == "i" and "i" in shown_cases(token):
-            token["head"], token["rel"] = before["id"], "MOD"
+            s.relink(token, before["id"], "MOD")
 
 
-def repeated_doer(tokens: list[dict]) -> None:
+def repeated_doer(s: Sentence) -> None:
     """قُلْتُ أَنَا الْحَقَّ: a detached pronoun of raf' straight after a verb of its person repeats the doer the
     verb holds (التوكيد اللفظي, Tasheel 3.10.3 p94; facts.follows). The parser may hang it as the subject of a
     word after it in nasb or jarr, which a مبتدأ never has for its khabar (Qatr al-Nada p13: الخبر مرفوع), so
     it hangs on the verb it follows."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         verb, head = s.by_id.get(token["id"] - 1), s.head(token)
         if (verb and is_verb(verb) and is_subject_pronoun(token) and verb.get("per") == token.get("per")
                 and token["rel"] == "SBJ" and head and head["id"] > token["id"] and typed_or_parsed_case(head) in ("a", "i")):
-            token["head"] = verb["id"]
+            s.relink(token, verb["id"], token["rel"])
 
 
-def doer_first(tokens: list[dict]) -> None:
+def doer_first(s: Sentence) -> None:
     """ضَرَبَ مُوسَى عِيسَى: when neither name shows its case the doer must come first, so order alone
     tells them apart (Awdah al-Masalik 2/118: وجوبه ... أن يخشى اللبس). The parser hangs the second
     on the first as one name; it is the verb's object, and the first its doer. A name typed with no
@@ -154,7 +153,7 @@ def doer_first(tokens: list[dict]) -> None:
     A name with ال showing no case is left: the ال looks back to the description it was named from
     (Ibn Aqil V1 p184: أكثر ما تدخل على المنقول من صفة ... للدلالة على الالتفات إلى ما نقلت عنه من صفة),
     so it may describe the first (جاء زيد الكريم)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         first = s.head(token)
         verb = s.head(first) if first else None
@@ -165,17 +164,16 @@ def doer_first(tokens: list[dict]) -> None:
                      or typed_or_parsed_case(token) == "a") \
                 and not any(subject_link(k) for k in s.kids(verb) if k is not first):
             first["rel"] = "SBJ"
-            token["head"], token["rel"] = verb["id"], "OBJ"
-            s = Sentence(tokens)
+            s.relink(token, verb["id"], "OBJ")
 
 
-def doer_after_object(tokens: list[dict]) -> None:
+def doer_after_object(s: Sentence) -> None:
     """أَدْهَشَ الْجُمْهُورَ السَّاحِرُ: the object may come before the doer. A word hung on a verb
     as its subject that the reader typed in nasb, with a raf' word hung on it straight after,
     is the object and that raf' word the doer: a نعت wears its noun's case, and a مضاف إليه is
     in jarr. أَكْرَمَ أَبَاهُ الْوَلَدُ typed bare: the six nouns' alif shows the nasb, so the noun straight after it that
     shows no case (hung on the verb as a second object) is the doer, as no verb keeps two objects but a verb of two."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         verb = s.head(token)
         if not (verb and is_verb(verb) and token["rel"] == "SBJ" and typed_case_of(token) == "a"
@@ -188,27 +186,23 @@ def doer_after_object(tokens: list[dict]) -> None:
                      and not takes_two_objects(verb) and not holds_doer(verb, [x for x in s.kids(verb) if x is not token])), None))
         if doer:
             token["rel"] = "OBJ"
-            doer["head"], doer["rel"] = verb["id"], "SBJ"
-            s = Sentence(tokens)
+            s.relink(doer, verb["id"], "SBJ")
 
 
-def late_doer(tokens: list[dict]) -> None:
+def late_doer(s: Sentence) -> None:
     """إِنَّمَا يَخْشَى اللَّهَ مِنْ عِبَادِهِ الْعُلَمَاءُ: the doer may come last, after the object and the words
     that fill the verb's clause (الفاعل المؤخر). A noun the reader typed in raf' that the parser hung as the
     نعت or مضاف إليه of a noun that cannot be raf' (typed in nasb or jarr), below a verb with no doer yet, is
     neither: a نعت wears its noun's case and a مضاف إليه is in jarr. It is that verb's doer, and the verb then
     holds no hidden one. A word the parser called the doer that the reader typed in nasb is the verb's object."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         head = s.head(token)
         if not (head and token["rel"] in ("MOD", "IDF") and noun_tagged(token) and not is_verb(token)
                 and typed_case_of(token) == "u" and noun_tagged(head) and head["id"] < token["id"]
                 and "u" not in shown_cases(head)):
             continue
-        verb, seen = head, set()
-        while verb and not is_verb(verb) and verb["id"] not in seen:
-            seen.add(verb["id"])
-            verb = s.head(verb)
+        verb = s.climb(head, is_verb)
         if not (verb and is_verb(verb) and verb["id"] < head["id"] and not own_doer(verb)):
             continue
         # a word the parser called the doer that the reader typed in nasb is the object, not a doer
@@ -216,31 +210,26 @@ def late_doer(tokens: list[dict]) -> None:
         if not holds_doer(verb, [k for k in s.kids(verb) if k not in objects]):
             for k in objects:
                 k["rel"] = "OBJ"
-            token["head"], token["rel"] = verb["id"], "SBJ"
-            s = Sentence(tokens)
+            s.relink(token, verb["id"], "SBJ")
 
 
-def outer_doer(tokens: list[dict]) -> None:
+def outer_doer(s: Sentence) -> None:
     """شَارَكَتْ فِي الْقِمَّةِ الَّتِي اسْتَضَافَتْهَا الْعَاصِمَةُ إِحْدَى عَشْرَةَ دَوْلَةً: a verb has one doer (Tasheel 2.4.1), so
     a second raf' noun the parser hung on a verb that holds its doer already, in a clause that hangs below an earlier verb
     with no doer, is that earlier verb's: the doer comes last, after the صلة (الفاعل المؤخر)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         verb = s.head(token)
         if not (verb and is_verb(verb) and token["rel"] == "SBJ" and noun_tagged(token) and typed_case_of(token) != "a"
                 and not is_passive(verb)
                 and any(k is not token and subject_link(k) and noun_tagged(k) and k["id"] < token["id"] for k in s.kids(verb))):
             continue
-        outer, seen = s.head(verb), set()
-        while outer and not (is_verb(outer) and outer["id"] < verb["id"]) and outer["id"] not in seen:
-            seen.add(outer["id"])
-            outer = s.head(outer)
+        outer = s.climb(s.head(verb), lambda up: is_verb(up) and up["id"] < verb["id"])
         if outer and is_verb(outer) and not is_passive(outer) and not holds_doer(outer, s.kids(outer)):
-            token["head"], token["rel"] = outer["id"], "SBJ"
-            s = Sentence(tokens)
+            s.relink(token, outer["id"], "SBJ")
 
 
-def verb_under_fronted_object(tokens: list[dict]) -> None:
+def verb_under_fronted_object(s: Sentence) -> None:
     """عِلْمًا طَلَبَ زَيْدٌ: the مفعول به may come before its verb (Jumla Filiyya p4). A verb with
     its own doer, after it or in it (زَيْدًا ضَرَبْتُ، زَيْدًا اضْرِبْ), that the parser hung as the صفة of a
     nasb noun before it heads the sentence instead: a noun at its head in nasb has no word to put it
@@ -251,7 +240,7 @@ def verb_under_fronted_object(tokens: list[dict]) -> None:
     Typed bare (الكتاب قرأ الطالب، الحق نقول), the noun shows no case, but a مبتدأ needs a pronoun back to it in the
     verb's clause (الرابط, Ibn Aqil V1, page unchecked): a verb with a noun for its doer or a doer of the first or second person,
     and no pronoun on it, leaves only the object."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for verb in tokens:
         noun = s.head(verb)
         if not (noun and is_verb(verb) and noun["head"] == 0 and noun["id"] < verb["id"]
@@ -265,17 +254,16 @@ def verb_under_fronted_object(tokens: list[dict]) -> None:
             continue
         if own_doer(verb) or any(subject_link(k) and k["id"] > verb["id"] for k in kids) \
                 or (is_passive(verb) and is_one(verb["lemma"], "two_objects_give")):
-            verb["head"], verb["rel"] = 0, "---"
-            noun["head"], noun["rel"] = verb["id"], "OBJ"
-            s = Sentence(tokens)
+            s.relink(verb, 0, "---")
+            s.relink(noun, verb["id"], "OBJ")
 
 
-def object_after_tanween(tokens: list[dict]) -> None:
+def object_after_tanween(s: Sentence) -> None:
     """يَا سَائِقًا الشَّاحِنَةَ: a word with tanween is complete, so nothing after it is its
     مضاف إليه; a participle typed so takes the word the parser hung on it that way, in nasb,
     as its object; typed bare, the alif of the participle's tanween says the same, and the noun after it
     shows no case."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         head = s.head(token)
         if (head and token["rel"] == "IDF" and works_as_verb(head) and typed_tanween(head)
@@ -283,26 +271,26 @@ def object_after_tanween(tokens: list[dict]) -> None:
             token["rel"] = "OBJ"
 
 
-def object_past_verb(tokens: list[dict]) -> None:
+def object_past_verb(s: Sentence) -> None:
     """زَيْدٌ نَصَرَ بَكْرًا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به), and a plain
     noun puts nothing in nasb, so a word in nasb the parser hung past the verb onto the noun that verb
     itself hangs on is the verb's, to be told object, hal or tamyeez by its own rule."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         head = s.head(token)
         verb = head and next((k for k in s.kids(head) if is_verb(k) and k["id"] < token["id"]), None)
         if verb and token["rel"] == "MOD" and noun_tagged(token) and typed_case_of(token) == "a":
-            token["head"] = verb["id"]
+            s.relink(token, verb["id"], token["rel"])
 
 
-def relative_owed(tokens: list[dict]) -> None:
+def relative_owed(s: Sentence) -> None:
     """كَافَأَ الْمُدِيرُ الَّذِي نَجَحَ: a relative straight after a verb's doer, the verb still owing its
     object, is that object: the doer is complete without a صفة, the verb is not without what it is done
     to. The parser hangs it on the doer as its صفة; it goes to the verb, where every axis and the
     picture read it alike. Not after a verb the book lists as taking none (intransitive_verbs), where
     it stays the doer's صفة, nor a passive one, whose object is its doer already. After كان and its
     sisters, which are told of, not given an object, and with no khabar yet, it is the khabar (Tasheel 1.9)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         doer = s.head(token)
         verb = s.head(doer) if doer else None
@@ -315,18 +303,18 @@ def relative_owed(tokens: list[dict]) -> None:
             if s.family(verb) == "kana":
                 if any(k["rel"] == "PRD" for k in s.kids(verb)):
                     continue
-                token["head"], token["rel"] = verb["id"], "PRD"
+                s.relink(token, verb["id"], "PRD")
             else:
-                token["head"], token["rel"] = verb["id"], "OBJ"
+                s.relink(token, verb["id"], "OBJ")
 
 
-def kana_subject(tokens: list[dict]) -> None:
+def kana_subject(s: Sentence) -> None:
     """لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so
     a word the parser made the خبر that the reader typed in raf', with no اسم beside it, is the
     اسم; what the parser hung on it after it (here بِالصُّرَعَةِ) is the خبر. So too when the
     parser had the اسم right but hung the خبر on it (لَيْسَ الطَّالِبُ بِكَسُولٍ), leaving كان none,
     or hung the باء that carries it on the verb as a modifier (لَسْتُ بِغَافِلٍ)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         verb = s.head(token)
         if not (verb and s.family(verb) == "kana" and verb["id"] < token["id"] and noun_tagged(token)
@@ -346,8 +334,8 @@ def kana_subject(tokens: list[dict]) -> None:
         told = next((k for k in s.kids(token) if k["id"] > token["id"] and k["rel"] == "MOD"
                      and (k["pos"] == "PRT" or typed_case_of(k) == "a")), None)
         if told:
-            told["head"], told["rel"] = verb["id"], "PRD"
-        s = Sentence(tokens)
+            s.relink(told, verb["id"], "PRD")
+        s.refresh()
     # لَسْتُ بِغَافِلٍ: its اسم is the تُ written onto it, and the باء the parser hung on it as a modifier
     # carries its خبر (data: closed_words extra_ba `on`); بِالْبَيْتِ أَحَدٌ after it is a خبر before its اسم
     for ba in tokens:
@@ -358,11 +346,11 @@ def kana_subject(tokens: list[dict]) -> None:
             ba["rel"] = rule["rel"]
 
 
-def kana_fronted_khabar(tokens: list[dict]) -> None:
+def kana_fronted_khabar(s: Sentence) -> None:
     """لَيْسَ الْبِرَّ أَنْ تُوَلُّوا: كان and its sisters put their خبر in nasb (Tasheel 1.9), so a noun the reader typed in
     nasb straight after the verb is its khabar, though the parser made it the اسم; the word it made the khabar
     (here أَنْ with its verb), not in nasb, is the اسم."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for verb in tokens:
         if s.family(verb) != "kana":
             continue
@@ -374,11 +362,11 @@ def kana_fronted_khabar(tokens: list[dict]) -> None:
             noun["rel"], told["rel"] = "PRD", "SBJ"
 
 
-def kana_nasb_khabar(tokens: list[dict]) -> None:
+def kana_nasb_khabar(s: Sentence) -> None:
     """كَانَ اللَّهُ الصَّمَدَ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so a noun the reader typed in
     nasb straight after the اسم, which the parser hung on the verb as an object or a modifier while the verb has no
     خبر yet, is that خبر; a time or place word is left, which a khabar may be or a ظرف beside it."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for verb in tokens:
         if s.family(verb) != "kana":
             continue
@@ -390,11 +378,11 @@ def kana_nasb_khabar(tokens: list[dict]) -> None:
             noun["rel"] = "PRD"
 
 
-def inna_object(tokens: list[dict]) -> None:
+def inna_object(s: Sentence) -> None:
     """إِنَّ فِي ذَلِكَ لَآيَةً: إنّ and its sisters take an اسم in nasb and a خبر (Tasheel 1.8), and no
     object, so a noun in nasb the parser hung on one as its object, with no اسم beside it, is that اسم;
     a sound feminine plural's kasra is its nasb (لَآيَاتٍ)."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         head = s.head(token)
         if (token["rel"] == "OBJ" and head and s.family(head) == "inna" and noun_tagged(token)
@@ -403,13 +391,13 @@ def inna_object(tokens: list[dict]) -> None:
             token["rel"] = "SBJ"
 
 
-def inna_second_khabar(tokens: list[dict]) -> None:
+def inna_second_khabar(s: Sentence) -> None:
     """لَا رَيْبَ فِيهِ هُدًى: إنّ and its sisters, لا النافية للجنس too, take one اسم and a خبر (Tasheel 1.8, 3.7.3), so a noun
     the parser hung on one as a second subject, after its khabar, is a second khabar (تعدد الخبر). So is a noun in raf'
     the parser hung as a مضاف إليه, which is never in raf' (وَلَوْ أَنَّ مَا فِي الْأَرْضِ مِنْ شَجَرَةٍ أَقْلَامٌ), when
     the pair has none yet and the noun comes after the اسم; typed bare, the noun that ends the sentence on the pair that has
     none is the khabar, since the pair cannot stand without it."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for governor in tokens:
         if s.family(governor) != "inna":
             continue
@@ -419,22 +407,21 @@ def inna_second_khabar(tokens: list[dict]) -> None:
                          and (typed_case_of(t) == "u" or typed_case_of(t) is None and t is tokens[-1])
                          and above([x["head"] for x in tokens], t["id"], subject["id"])), None)
             if told:
-                told["head"], told["rel"] = governor["id"], "PRD"
-                s = Sentence(tokens)
+                s.relink(told, governor["id"], "PRD")
         for token in s.kids(governor):
             if token["rel"] == "SBJ" and noun_tagged(token) and any(
                     k["rel"] == "PRD" and k["id"] < token["id"] for k in s.kids(governor)):
                 token["rel"] = "PRD"
 
 
-def zanna_pair(tokens: list[dict]) -> None:
+def zanna_pair(s: Sentence) -> None:
     """حَسِبَ الرَّجُلُ الطَّرِيقَ قَصِيرًا: ظنّ and its sisters enter a مبتدأ and its خبر and put both
     in nasb as their two objects (Alfiyya: انصب بفعل القلب جزأي ابتدا). The parser may keep the pair
     as it was, the first word the subject of the second, and hang the second anywhere (on the verb,
     or on its doer); with the reader's fatha on both, after the nearest verb before them being one of
     ظنّ's (by the book's list: the family test wants the two objects already on the verb), the first is that verb's first object and the second its second. A doer the parser took for
     the object, typed in raf', is the verb's doer."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for first in tokens:
         second = s.head(first)
         verb = second and next((t for t in reversed(tokens[:tokens.index(first)]) if is_verb(t)), None)
@@ -444,24 +431,23 @@ def zanna_pair(tokens: list[dict]) -> None:
         for doer in tokens:
             if doer["head"] in (verb["id"], second["id"]) and doer["rel"] in ("OBJ", "MOD") \
                     and verb["id"] < doer["id"] < first["id"] and typed_case_of(doer) == "u":
-                doer["head"], doer["rel"] = verb["id"], "SBJ"
-        first["head"], first["rel"] = verb["id"], "OBJ"
-        second["head"], second["rel"] = verb["id"], "OBJ"
-        s = Sentence(tokens)
+                s.relink(doer, verb["id"], "SBJ")
+        s.relink(first, verb["id"], "OBJ")
+        s.relink(second, verb["id"], "OBJ")
 
 
-def praise_specified(tokens: list[dict]) -> None:
+def praise_specified(s: Sentence) -> None:
     """نِعْمَ رَجُلًا زَيْدٌ: the فاعل of a verb of praise or blame may be a pronoun hidden in it, which
     an indefinite noun in nasb straight after explains as its تمييز; the raf' noun after that is
     the one praised (Ibn Aqil, باب نعم وبئس). The parser takes the تمييز for an object and hangs the
     praised noun on it; both go on the verb, as the pattern reads."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for verb in tokens:
         specifier = s.by_id.get(verb["id"] + 1)
         if not (is_verb(verb) and is_one(verb["lemma"], "praise_blame") and specifier
                 and noun_tagged(specifier) and indefinite_nasb(specifier)):
             continue
-        specifier["head"], specifier["rel"] = verb["id"], "TMZ"
+        s.relink(specifier, verb["id"], "TMZ")
         praised = s.by_id.get(specifier["id"] + 1)
         if praised and noun_tagged(praised):
-            praised["head"], praised["rel"] = verb["id"], "SBJ"
+            s.relink(praised, verb["id"], "SBJ")
