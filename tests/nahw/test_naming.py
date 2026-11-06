@@ -680,7 +680,7 @@ def test_one_test_says_when_a_word_does_a_verbs_work():
 def _kana(*toks):
     from backend.services.nahw.syntax.repair.subject_clash import kana_subject
     toks = list(toks)
-    kana_subject(toks)
+    kana_subject(facts.Sentence(toks))
     return [(t["head"], t["rel"]) for t in toks]
 
 
@@ -808,7 +808,7 @@ def test_a_wasf_in_jarr_keeps_its_own_doer():
     toks = [token(1, "ل+", "ل+", "PRT", 0, "---", pos_camel="prep", token_type="prc1"),
             token(2, "الكريم", "كريم", "NOM", 1, "OBJ", pos_camel="adj", stt="d", cas="g"),
             token(3, "أبو", "أب", "NOM", 2, "SBJ", stt="c", cas="n")]
-    told_of_jar(toks)
+    told_of_jar(facts.Sentence(toks))
     assert toks[2]["head"] == 2
 
 
@@ -835,7 +835,7 @@ def test_a_noun_in_nasb_hung_as_the_object_of_inna_is_its_ism(has_ism):
             token(4, "آية", "آية", "NOM", 1, "OBJ", typed="آيَةً", cas="a")]
     if has_ism:
         toks.append(token(5, "زيد", "زيد", "NOM", 1, "SBJ", typed="زَيْدًا", cas="a"))
-    inna_object(toks)
+    inna_object(facts.Sentence(toks))
     assert toks[3]["rel"] == ("OBJ" if has_ism else "SBJ")
 
 
@@ -849,7 +849,7 @@ def test_a_word_in_nasb_hung_on_the_noun_past_its_verb_is_the_verbs(typed, link,
     toks = [token(1, "زيد", "زيد", "NOM", 0, "---", pos_camel="noun_prop", typed="زَيْدٌ"),
             token(2, "نصر", "نصر", "VRB", 1, "PRD", pos_camel="verb", asp="p", typed="نَصَرَ"),
             token(3, "بكر", "بكر", "NOM", 1, link, pos_camel="noun_prop", typed=typed)]
-    object_past_verb(toks)
+    object_past_verb(facts.Sentence(toks))
     assert toks[2]["head"] == (2 if moved else 1)
 
 
@@ -880,12 +880,11 @@ def test_the_ya_on_a_command_to_a_woman_is_its_doer(typed, ya):
 def test_a_mudaf_is_as_definite_as_the_word_added_to_it():
     """Ibn Aqil V3 p43: the idafa narrows the first noun when the second is indefinite (غلام امرأة) and makes it
     definite when the second is (غلام زيد). A name is definite though CAMeL reads زيدٍ with its tanween as indefinite."""
-    from backend.services.nahw.syntax.repair.khabar import _indefinite
     for added, indefinite in ((token(2, "مال", "مال", "NOM", 1, "IDF", stt="i"), True),
                               (token(2, "عمرو", "عمرو", "PROP", 1, "IDF", stt="i", pos_camel="noun_prop"), False),
                               (token(2, "المال", "مال", "NOM", 1, "IDF", stt="d"), False)):
         mudaf = token(1, "صاحب", "صاحب", "NOM", 0, "---", stt="c")
-        assert _indefinite(mudaf, [mudaf, added]) is indefinite, added["form"]
+        assert (not facts.is_known(mudaf, facts.Sentence([mudaf, added]))) is indefinite, added["form"]
 
 
 def test_a_follower_of_the_called_ayyuha_follows_it_though_it_is_tagged_a_particle():

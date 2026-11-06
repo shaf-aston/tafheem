@@ -17,6 +17,7 @@
  */
 
 import { getQuranSurah } from '../../api'
+import { loadStatic } from '../api/staticQuery'
 import { PAGE_WORDS, wordsOf } from './memorise'
 import { SURAH_CHOICES } from '../quran/surahRef'
 
@@ -24,14 +25,7 @@ import { SURAH_CHOICES } from '../quran/surahRef'
  * The poem, fetched at most once however many times it is asked for; its
  * baabs and its verses are two questions about one small file, not two files.
  */
-let poemOnce = null
-const poem = () => {
-  poemOnce ??= fetch('/jazariyya/poem.json').then((res) => {
-    if (!res.ok) throw new Error('Could not read the Jazariyyah text')
-    return res.json()
-  })
-  return poemOnce
-}
+const poem = () => loadStatic('/jazariyya/poem.json', 'the Jazariyyah text')
 
 /**
  * The poem's baabs, each with the verses it runs over. A section marks the

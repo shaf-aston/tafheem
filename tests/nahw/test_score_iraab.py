@@ -2,7 +2,7 @@
 import re
 
 from backend.scripts.nahw.score_iraab import (
-    KEY, book_sentences, disagreements, family, fresh_sentences, held_out, routed,
+    EXACT, KEY, SETS, book_sentences, disagreements, family, fresh_sentences, held_out, routed,
     sign_matches)
 from backend.services.nahw.syntax.naming import ROLES
 from backend.services.text.arabic_text import bare_letters, words
@@ -73,6 +73,18 @@ def test_hadith_and_rules_sets_are_well_formed():
             n = len(words(s["sentence"]))
             assert len(s["key"]) == n and set(s["key"]) <= FRESH_ROLES, s["id"]
             assert s["source"] and all(0 <= int(i) < n for i in s.get("signs", {})), s["id"]
+
+
+def test_battery_set_is_well_formed_and_its_ids_are_unique_across_the_exact_sets():
+    rows = held_out("battery")
+    assert len(rows) == 79
+    for s in rows:
+        assert len(s["key"]) == len(words(s["sentence"])) and all(s["key"]), s["id"]
+    for s in (*held_out("matn"), *held_out("round2"), *held_out("round3"), *held_out("round4"), *held_out("round5")):  # an "also" answer names a word of its sentence and is not the key itself
+        n = len(words(s["sentence"]))
+        assert len(s["key"]) == n and all(0 <= int(i) < n and s["key"][int(i)] not in alts for i, alts in s.get("also", {}).items()), s["id"]
+    ids = [r["id"] for name in EXACT for r in SETS[name]()]
+    assert len(ids) == len(set(ids))  # mutation_baseline.json names sentences by id alone
 
 
 def test_a_sign_matches_with_or_without_the_cards_note():
@@ -153,3 +165,15 @@ def test_a_reader_that_breaks_says_so(monkeypatch):
     monkeypatch.setattr(catib_onnx, "parse", broken)
     read = syntax.read("كَيْفَ حَالُكَ", [{}, {}])
     assert read["failed"] is True and all(r["role"] is None for r in read["roles"])
+
+
+def test_a_preposition_with_its_pronoun_is_either_half():
+    from backend.scripts.nahw.score_iraab import right_role
+    from backend.services.nahw.book import fused_preposition
+    for fused in ("فِيهِ", "عَلَيْهِ", "إِلَيْكَ", "وَبِكَ", "فَلَهُ", "مِنْهُمَا"):
+        assert fused_preposition(fused), fused
+        assert right_role("حرف جر", "مجرور", [], False, fused) and right_role("مجرور", "حرف جر", [], False, fused)
+    for other in ("بِالنِّيَّاتِ", "كِتَابِهِ", "مِنْ", "وَاللَّهِ", "تَاللَّهِ"):
+        assert not fused_preposition(other), other
+        assert not right_role("حرف جر", "مجرور", [], False, other)
+    assert not right_role("فاعل", "مجرور", [], False, "فِيهِ")

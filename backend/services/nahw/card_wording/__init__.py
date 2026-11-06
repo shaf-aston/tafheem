@@ -4,6 +4,7 @@ reason; they run in the order below, because a later one rewrites text an earlie
 
     governor's pair name → passive name → sister's name → excepting noun → also → attached pieces
     → the doer and the pronouns written on → ها of attention → زائدة باء → كافة ما → counted → followed → condition
+    → assumed
 
 While they run, a card's reason is held as its parts (card["said"], a reason.Reason) and
 written back once at the end, so no pass searches text another pass wrote.
@@ -13,12 +14,12 @@ key on the found entry; the pass words it. Each pass takes (cards, roles), so it
 without the parser."""
 from __future__ import annotations
 
-from backend.services.nahw.card_wording import condition, counting, names, pieces
+from backend.services.nahw.card_wording import assumption, condition, counting, names, pieces
 from backend.services.nahw.card_wording.reason import Reason
 
 PASSES = (names.pair, names.printed, names.sister, names.tool, names.also,
           pieces.pieces, pieces.doer, pieces.attention, pieces.extra_ba, pieces.kaffa, counting.counted, counting.followed,
-          condition.condition)
+          condition.condition, assumption.assumed)
 
 
 def word(cards: list[dict], roles: list[dict]) -> None:

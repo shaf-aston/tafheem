@@ -104,15 +104,16 @@ ALLOWED_STOPS = {
                                "كان names its اسم and خبر; an object of it stays unnamed"),
     ("كاد وأخواتها", "slot"): (VERB_ONLY | {"specification", "none"},
                                "كاد names its اسم and خبر; an object of it stays unnamed"),
-    ("ظن وأخواتها", "voice"): ({"passive", "none"},
-                               "a passive ظن has no places of its own (none cannot occur: ظن is a verb)"),
+    ("ظن وأخواتها", "voice"): ({"none"}, "none cannot occur: ظن is a verb"),
     ("ظن المبنية للمعلوم", "slot"): ({"predicate", "absolute", "purpose", "place_time", "accompaniment", "none"},
                                      "ظن's places are its doer and two objects; a khabar or an adverb is not one"),
+    ("ظن المبنية للمجهول", "slot"): ({"predicate", "absolute", "purpose", "place_time", "accompaniment", "none"},
+                                     "a passive ظن keeps its نائب فاعل and one object; a khabar or an adverb is not a place"),
     ("الفعل", "slot"): ({"predicate", "none"}, "a khabar is not a place a verb gives"),
     ("الفاعل ونائبه", "voice"): ({"none"}, "a doer always has its verb above it"),
-    ("ما له عامل آخر", "slot"): ((VERB_ONLY - {"place_time"}) | {"none"},
+    ("ما له عامل آخر", "slot"): ((VERB_ONLY - {"place_time", "purpose"}) | {"none"},
                                  "only a verb gives those places (a place or time word there is the khabar's, "
-                                 "its own leaf); none is a word the nominal sentence cannot place"),
+                                 "a reason masdar its own leaf); none is a word the nominal sentence cannot place"),
 }
 
 

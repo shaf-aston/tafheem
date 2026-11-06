@@ -32,7 +32,7 @@ export default function Sheet({ phrases, at, onAt, onClose, place, noun = 'phras
     <BottomSheet label={phrase.english} onClose={onClose} className="max-h-[var(--sheet-tall)] overflow-y-auto">
       {/* The phrase slides and follows a finger; the close button and the steps stay put. */}
       <div {...swipe} className="relative overflow-x-hidden">
-        <CloseButton onClick={onClose} className={`absolute top-2 end-2 z-10 bg-[var(--bg)] ${FOCUS}`} />
+        <CloseButton onClick={onClose} className={`absolute top-2 end-2 z-[var(--layer-raised)] bg-[var(--bg)] ${FOCUS}`} />
         <div key={at} {...slide}>
           <Face
             phrase={phrase}

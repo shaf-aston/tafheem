@@ -72,7 +72,7 @@ export default function TarkeebPanel({ accent, onWordByWord }) {
           <div className="flex items-center justify-between gap-3 flex-wrap">
             {/* One book is named by its badge beside the count; the line saying
                 it too printed the same name twice on one row. */}
-            <p className="text-sm text-[var(--text-dim)]">
+            <p className="type-ui text-[var(--text-dim)]">
               {all.length} worked examples
               {books.length > 1 && (
                 <>
@@ -162,7 +162,7 @@ function Example({ example, topic, showBook, accent, onWordByWord }) {
     <article ref={ref} className="space-y-3">
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div
-          className="flex items-center gap-2 text-sm px-3 py-2 rounded-[var(--radius-md)]
+          className="flex items-center gap-2 type-ui px-3 py-2 rounded-[var(--radius-md)]
             bg-[var(--surface)] border border-[var(--border)]"
         >
           <span className="text-[var(--text)]">{example.translation}</span>

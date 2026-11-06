@@ -6,7 +6,13 @@
     "fresh": "data/nahw_rules/fresh_sentences.json", "exam": "data/nahw_rules/exam_sentences.json",
     "hadith": "data/nahw_rules/hadith_sentences.json", "rules": "data/nahw_rules/rule_sentences.json",
     "probe": "data/nahw_rules/probe_sentences.json",
-    "blind": "data/nahw_rules/blind_sentences.json"
+    "blind": "data/nahw_rules/blind_sentences.json",
+    "battery": "data/nahw_rules/battery_sentences.json",
+    "matn": "data/nahw_rules/matn_sentences.json",
+    "round2": "data/nahw_rules/round2_sentences.json",
+    "round3": "data/nahw_rules/round3_sentences.json",
+    "round4": "data/nahw_rules/round4_sentences.json",
+    "round5": "data/nahw_rules/round5_sentences.json"
   },
   "families": {
     "fil": [

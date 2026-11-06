@@ -14,6 +14,7 @@
  */
 import { useEffect, useId, useRef, useState } from 'react'
 
+import { useDismiss } from '../../../lib/hooks/useDismiss'
 import { wheelFind } from '../../../lib/motion/wheelFind'
 import theme from '../../../config/theme.json'
 import ArabicText from '../text/ArabicText'
@@ -63,12 +64,8 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
 
-  useEffect(() => {
-    if (!open) return undefined
-    const outside = (event) => { if (!box.current?.contains(event.target)) close(false) }
-    document.addEventListener('pointerdown', outside)
-    return () => document.removeEventListener('pointerdown', outside)
-  }, [open])
+  // Escape is the wheel's own key (onKeyDown), which also puts focus back on the pill.
+  useDismiss(box, () => close(false), { escape: false, enabled: open })
 
   // A row outside the middle copy jumps, unseen, to the same choice inside it.
   const recentre = (row) => {

@@ -4,8 +4,8 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, read_as, takes_two_objects, shown_cases, told_of_subject, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged
-from backend.services.nahw.syntax.facts.sentence import Sentence, excepted_from, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above
+from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, written_nasb, attached_pronoun, noun_tagged
+from backend.services.nahw.syntax.facts.sentence import Sentence, describable_nouns, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
 
@@ -15,7 +15,8 @@ def stands_for(token: dict, s: Sentence) -> bool:
     quality of it (أكلت الرغيفَ ثلثَه، نفعني المعلمُ علمُه). A صفة is neither a name nor
     carries that pronoun. Only in a sentence with a verb: after a bare mubtada a definite
     noun is its khabar (اللهُ ربُّنا); nor after a verb of two objects, whose second object
-    stands there (أعطيت الولدَ كتابَه)."""
+    stands there (أعطيت الولدَ كتابَه). Typed bare, no case is shown on it, so the sameness is not tested
+    (قرأت الكتاب نصفه: the parser's guess at a bare ending is no case the reader gave)."""
     before = previous_noun(token, s)
     if s.verbless or not before or token["rel"] == "IDF":
         return False
@@ -33,7 +34,7 @@ def stands_for(token: dict, s: Sentence) -> bool:
     mine = typed_or_parsed_case(token)
     # a name is definite though it wears tanween (أعجبني زيدٌ علمُه)
     definite = before.get("stt") in ("d", "c") or before["pos"] == "PROP"
-    if not (names and definite and same_case(token, before)):
+    if not (names and definite and (same_case(token, before) or typed_bare(token))):
         return False
     # جاء الرجلُ أبوه عالمٌ: an indefinite noun in its case after it is its khabar, so the
     # noun opens a sentence of its own (a حال) and stands for nothing
@@ -41,6 +42,10 @@ def stands_for(token: dict, s: Sentence) -> bool:
     if after and mine and noun_tagged(after) and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
         return False
     verb = verb_above(before, s)
+    # ارتدى المحارب درعه typed bare: a doer straight before it leaves its verb its object, which this word is
+    if (verb and typed_bare(token) and not same_case(token, before) and subject_link(before) and before["rel"] != "OBJ"
+            and not is_one(verb["lemma"], "intransitive_verbs") and not any(k["rel"] == "OBJ" and k is not token for k in s.kids(verb))):
+        return False
     # رَأَيْتُ أَخَاكَ زَيْدًا (Tasheel 3.10.3 p94: بدل): a verb with a one-object sense too (closed_words zanna
     # `one_object`: رأى of the eye) takes a name that names its object again as that object's بدل
     one_sense = verb and token["pos"] == "PROP" and is_one(verb["lemma"], "zanna", "one_object")
@@ -88,8 +93,10 @@ def _follows(token: dict, s: Sentence) -> str:
     if excepting and excepting["pos"] == "PRT" and read_as(excepting, "istithna") \
             and s.negated_before(excepting):
         before = excepted_from(excepting, s)
-        # no case shown (لا اله الا الله، لا إله إلا هو): the إتباع, the stronger reading (Tasheel 3.8.7)
-        if before and (shown := case_shown(token)) in (None, place_case(before, s)):
+        # no case shown (لا اله الا الله، لا إله إلا هو): the إتباع, the stronger reading (Tasheel 3.8.7); the noun
+        # excepted from stands in the word's own clause: لَا يَعْلَمُ مَا تَغِيضُ الْأَرْحَامُ إِلَّا اللَّهُ leaves the doer
+        # of يعلم out (الاستثناء المفرّغ), and الأرحام is the doer of another verb
+        if before and verb_above(token, s) in (None, verb_above(before, s)) and (shown := case_shown(token)) in (None, place_case(before, s)):
             return "badal"
     head = s.head(token)
     # هذا البستانُ: the noun with ال a pointer points at, hung on it or (as some parses
@@ -100,6 +107,8 @@ def _follows(token: dict, s: Sentence) -> str:
         return "naat"
     if is_nasab(token):
         return "naat"
+    if zarf_in_nasb(token, s):
+        return "none"  # بَعْدَ الْفَتْحِ: a time or place word in nasb is the zarf, no follower
     # يا أيها الناسُ، يا أيها الذين آمنوا، يا أيهذا: the noun with ال, relative or pointer after أيها is its صفة
     if head and is_called_noun(head) and (token.get("stt") == "d" or is_one(token.get("pos_camel", ""), "nida", "described_by")):
         return "naat"
@@ -117,19 +126,20 @@ def _follows(token: dict, s: Sentence) -> str:
         return "tawkeed"
     if not head:
         return "none"
-    # دخل المديرُ وهو مبتسمٌ: a raf' pronoun straight after the و, hung on this word, is its
-    # مبتدأ; the و brings a sentence (واو الحال), joining no noun (Tasheel 3.7)
+    # دخل المديرُ وهو مبتسمٌ، وَالْيَدُ الْعُلْيَا الْمُنْفِقَةُ: a raf' pronoun or noun straight after the و, hung
+    # on this word as its subject, is its مبتدأ; the و brings a sentence (واو الحال), joining no noun (Tasheel 3.7)
     opener = s.by_id.get(head["id"] + 1)
-    if opener and opener["id"] < token["id"] and opener["head"] == token["id"] and is_subject_pronoun(opener):
+    if opener and opener["id"] < token["id"] and opener["head"] == token["id"] and (
+            is_subject_pronoun(opener) or opener["rel"] == "SBJ" and noun_tagged(opener)):
         return "none"
     # لكنّ is also an inna sister; it joins only when no clause of its own follows, or as the light لكنْ
     if (head["pos"] == "PRT" or joins_clauses(head, s)) and read_as(head, "atf") \
-            and (not is_one(head["lemma"], "inna") or is_light(head)) and s.noun_before(head):
+            and (not is_one(head["lemma"], "inna") or is_light(head) or s.one_word_after(head)) and s.noun_before(head):
         return "atf"
     # الخليفة عمر: a bare name right after a noun with ال is that noun's badal
     if token["pos"] == "PROP" and token["rel"] == "MOD" and head["id"] == token["id"] - 1 \
             and head["pos"] == "NOM" and head["form"].startswith("ال") and not is_verb(head) \
-            and not has_tanween(token.get("typed")):
+            and not has_tanween(token.get("typed")) and not listed(token, "tawkeed", "without_pronoun"):
         return "badal"
     # جاء الأميرُ خالدٌ: an indefinite word can be no صفة of a noun with ال; wearing that noun's
     # raf' or jarr (a nasb one is its حال) where a verb stands over it, it is its بدل
@@ -146,20 +156,27 @@ def _follows(token: dict, s: Sentence) -> str:
     # a صفة comes after the noun it describes: هَذَانِ hung on the قَلَمَانِ after it is the mubtada
     if token["rel"] != "MOD" or is_verb(head) or head["id"] > token["id"]:
         return "none"
+    # هُوَ الْحَيُّ: a pronoun is described by nothing (Ibn Yaish on the Mufassal V2 p330: المضمرات لا توصف), so the
+    # noun with ال after a detached pronoun follows it as its بدل
+    if is_subject_pronoun(head) and token.get("stt") == "d" and noun_tagged(token):
+        return "badal"
     # زيدٌ أبوه كريمٌ: a word whose subject stands before it is told of that subject, a khabar
     if any(k["rel"] == "SBJ" and k["id"] < token["id"] for k in s.kids(token)):
         return "none"
-    # الطالبُ الذي نجح: a relative straight after a noun with ال is its صفة (one owed to a verb as its
-    # object went to it in repair.relative_owed: كافأ المديرُ الذي نجح)
-    if listed(token, "mawsul") and head.get("stt") == "d" and head["id"] == token["id"] - 1:
+    # الطالبُ الذي نجح، بِاسْمِ رَبِّكَ الَّذِي خَلَقَ: a relative straight after a known noun (with ال, or added to one)
+    # is its صفة (one owed to a verb as its object went to it in repair.relative_owed: كافأ المديرُ الذي نجح)
+    if listed(token, "mawsul") and is_known(head, s) and head in describable_nouns(token, s):
         return "naat"
     mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
+    # الطفل الباكي typed bare: the parser hung a describing word straight after its noun, and no case is shown on it
+    # for the two to disagree in, so its place under the noun stands
+    bare_describer = typed_bare(token) and (is_describing(token) or token.get("pos_camel") == "adj")
     # مدرسةُ البلدِ الكبيرةُ: a صفة of the مضاف comes after its مضاف إليه, in the مضاف's case
     mudaf = s.head(head) if head["rel"] == "IDF" else None
     if mine and mine != theirs and mudaf and not is_verb(mudaf) and mine == typed_or_parsed_case(mudaf) \
             and token.get("stt") == head.get("stt") == "d":
         return "naat"
-    if mine and theirs and not shown_cases(token) & shown_cases(head) and token.get("stt") == head.get("stt") == "d":
+    if mine and theirs and not shown_cases(token) & shown_cases(head) and token.get("stt") == head.get("stt") == "d" and not bare_describer:
         return "none"  # أعطى الغنيُّ الفقيرَ: with ال both show their case, and a na't wears its noun's
     if told_of_lone_mubtada(token, head, s):
         return "none"
@@ -181,15 +198,19 @@ def _follows(token: dict, s: Sentence) -> str:
         return "naat" if head["pos"] == "PROP" or head.get("stt") == "c" else "badal"
     # السُّفْلَى: a مقصور noun shows no case, so any its noun wears is its own
     # الرجلُ الحاديَ عشرَ: a compound ordinal is built and shows none, its place its noun's
-    if (mine or case_unseen(token)) and shown_cases(token) & shown_cases(head) or token.get("compound") == "ordinal":
+    if bare_describer or (mine or case_unseen(token)) and shown_cases(token) & shown_cases(head) or token.get("compound") == "ordinal":
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
         # (شَعِيرًا has the فعيل shape, so the morphology's adjective tag tells, not the shape)
         measure = listed(head, "tamyeez_head") and token.get("pos_camel") != "adj"
         # آمِرًا أحدًا: after a participle at work a plain noun in nasb is its object (slot.py);
         # with ال on both it follows it (إِنَّ الْمُهَنْدِسَ الْعَجُوزَ)
-        governed = (mine == "a" and at_work(head, s) and not is_participle(token)
+        governed = (mine == "a" and at_work(head, s) == "active" and not is_participle(token)
                     and not token.get("stt") == head.get("stt") == "d")
-        return "naat" if agrees(token, head) and not measure and not governed else "none"
+        # يُوَفِّرُوا فُرَصَ عَمَلٍ جَدِيدَةً: under a verb, a مضاف to an unknown noun is unknown (is_known), so an indefinite word describes it
+        # (خَاتَمُ فِضَّةٍ جَمِيلٌ with no verb: the khabar, told_of_lone_mubtada); unless the word shows its nasb by its written
+        # alif (a bare كِتَابُ طَالِبٍ جَدِيدًا leaves the hal open); a bare جَدِيدَة shows no case, so it is the صفة
+        unknown_head = {**head, "stt": "i"} if head.get("stt") == "c" and not written_nasb(token) and verb_above(token, s) and not is_known(head, s) else head
+        return "naat" if agrees(token, unknown_head) and not measure and not governed else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers
     if told_of_subject(token, head) or indefinite_nasb(token):
         return "none"

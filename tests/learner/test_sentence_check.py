@@ -12,7 +12,7 @@ from fastapi.testclient import TestClient
 
 from backend.main import app
 from backend.services import ai
-from backend.services.learner import progress_store
+from backend.services.learner import accounts, progress_db
 from backend.services.learner import sentence_check
 from backend.services.learner.sentence_check import check
 
@@ -107,16 +107,16 @@ NAME = {"X-Tafheem-Profile": quote("amina")}
 @pytest.fixture(autouse=True)
 def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
-    monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
-    progress_store.reset_connection()
-    progress_store.sign_up("amina")
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
+    progress_db.reset_connection()
+    accounts.sign_up("amina")
     yield
-    progress_store.reset_connection()
+    progress_db.reset_connection()
 
 
 def learn(keys):
     """Answer each word right, spread over a month, so the schedule calls it learnt."""
-    db = progress_store._db()
+    db = progress_db.connection()
     with db:
         for key in keys:
             for days in (30, 20, 10, 4, 1):

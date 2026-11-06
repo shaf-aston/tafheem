@@ -35,14 +35,14 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 | Folder | Holds |
 |---|---|
 | `lib/nav/` | `tabs.js` registry, `tabUrl`, `journey`, `session`, `recent`/`dock` bar rules, `useTabNavigation`, shortcuts, command line, arrival |
-| `lib/api/` | `apiError`, `useHealth`, `useSources`, `warm` |
+| `lib/api/` | `apiError`, `queryClient`, `staticQuery` (shipped files), `useHealth`, `useSources`, `warm` |
 | `lib/store/` | `stored` (localStorage), `settings`, `useRemembered`, `shelf` |
 | `lib/learner/` | `progress`, `profile`, `rewards`, `learnerLevel` and their hooks |
 | `lib/motion/` | `motion`, `useReveal`, `useTilt`, `useInView`, `useSwipe`, `scrollToEl`, `useRail`, `wheelFind` |
 | `lib/text/` | `arabicText`, `editDistance`, `shuffle`, `verse`, `say`, `confidence` |
 | `lib/speech/` | `speak`, `pronounce`, `microphone`, `dictation` |
 | `lib/theme/` | `accent`, `colorScheme`, `tone` |
-| `lib/hooks/` | `useMedia`, `useModal`, `useMoment`, `useSlowPending`, `useSearch` |
+| `lib/hooks/` | `useDismiss`, `useMedia`, `useModal`, `useMoment`, `useSlowPending`, `useSearch` |
 | `lib/<tab>/` | everything only that tab uses, e.g. `lib/quiz/useQuizRound.js`, `lib/nahw/govArc.js` |
 
 `components/ui/` is the kit: only parts two or more tabs draw. It is sorted by job:

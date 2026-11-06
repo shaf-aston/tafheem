@@ -142,7 +142,7 @@ export default function NotesPanel({ accent, topic: asked, onTamreen }) {
             above are Arabic only, so without it the heading is the one place
             the two names never meet. */}
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
-          <h3 id="note-topic" tabIndex={-1} className="text-lg font-semibold scroll-mt-24 outline-none">{topic.title}</h3>
+          <h3 id="note-topic" tabIndex={-1} className="type-heading font-semibold scroll-mt-24 outline-none">{topic.title}</h3>
           {topic.arabic && <ArabicText size="lg" className="font-semibold text-[var(--text-dim)]">{topic.arabic}</ArabicText>}
         </div>
         <p className="type-small text-[var(--text-faint)]">{topic.pages} {topic.pages === 1 ? 'page' : 'pages'} of the teacher&apos;s notes</p>

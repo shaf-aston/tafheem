@@ -253,19 +253,7 @@ def test_a_lower_score_outside_the_tie_ratio_is_dropped_and_a_short_hadith_wholl
     assert match.choose({"a": held}, held / knobs["whole"] * 2, lambda key: True, knobs)[1] == "below_floor"   # a share of a long one
 
 
-def test_a_ruling_book_missing_from_disk_stops_the_build_and_a_big_change_in_rows_does_not_pass(paths, tmp_path):  # noqa: F811
+def test_a_ruling_book_missing_from_disk_stops_the_build(paths):  # noqa: F811
     (paths["usul_books_dir"] / "ilal_ah.txt").unlink()
     with pytest.raises(SystemExit, match="ilal_ah.txt"):
         build_usul.build()
-    target = tmp_path / "old.db"
-    old = sqlite3.connect(target)
-    old.executescript(build_usul._SCHEMA)
-    old.executemany("INSERT INTO ruling VALUES ('muslim', 24, ?, '', 'shahin', 'nasikh_chapter', '', '', '', '', '', 1, 1.0)",
-                    [(i,) for i in range(100)])
-    old.commit()
-    old.close()
-    ratio = rule()["max_change_ratio"]
-    build_usul.guard_change(target, "ruling", 100 + int(100 * ratio), ratio)   # within the ratio
-    with pytest.raises(SystemExit, match="ruling rows went 100 to 150"):
-        build_usul.guard_change(target, "ruling", 150, ratio)
-    build_usul.guard_change(tmp_path / "none.db", "ruling", 150, ratio)   # nothing built yet

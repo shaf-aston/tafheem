@@ -19,7 +19,7 @@ from backend.services.nahw.book import book_words, card_keys, is_mabni, verb_asp
 # Every entry below carries a `role_key` beside its Arabic role: the stable name
 # the word grid colours by, the same idea as a tarkeeb node's `tone`. The names
 # themselves are the contract's, `models/analyze.py ROLE_KEYS`, and
-# tests/nahw/test_rule_engine.py holds the two lists together.
+# tests/nahw/test_role_keys.py holds the two lists together.
 
 # CAMeL's tags for each particle family; a word on the family's list counts too
 # the role a card wears until the book's tree names its job
@@ -66,7 +66,7 @@ def _entry(tag: dict, kind: str, role: str, key: str | None, case: str | None,
     return {"word": tag["word"], "root": tag.get("root") or None, "type": kind, "role": role,
             "role_key": key, "case": case, "sign": None, "reason": reason_ar,
             "notes": tag.get("features") or "", "source": "rule_engine",
-            "aspect": tag.get("aspect"), "camel": tag}
+            "aspect": tag.get("aspect"), "assumed": tag.get("assumed"), "camel": tag}
 
 
 def _harf_entry(tag: dict, role: str, why: str) -> dict:

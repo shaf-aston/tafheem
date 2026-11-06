@@ -14,7 +14,7 @@ export default function Answer({ topic, question, library, accent, onGo, step, m
       <div className="space-y-2">
         {/* Only a search mixes topics; otherwise the lit tile above already names it. */}
         {searching && <p className="eyebrow" style={{ color: accent }}>{topic.title}</p>}
-        <h3 className="text-xl font-semibold leading-snug text-[var(--text)]">{question.q}</h3>
+        <h3 className="type-title font-semibold leading-snug text-[var(--text)]">{question.q}</h3>
       </div>
 
       <div

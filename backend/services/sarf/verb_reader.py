@@ -13,14 +13,15 @@ from __future__ import annotations
 
 import json
 import re
+from collections import Counter
 from collections.abc import Callable
 from dataclasses import dataclass, field, replace
 from functools import lru_cache
 from pathlib import Path
 
 from backend.services.sarf import conjugation
-from backend.services.text.harakat import KASRA, SUKUN, letters, plural_alef
-from backend.services.nahw.book import book_words, is_one
+from backend.services.text.harakat import KASRA, SUKUN, letters, plural_alef, typed_case
+from backend.services.nahw.book import book_words, is_one, only_adverb
 
 _READING = Path(__file__).parent.parent.parent / "data" / "sarf" / "reading.json"
 _LONG = set("اوي")  # a sukun typed on a long letter is the reader's habit, not a vowel the table must hold
@@ -189,6 +190,12 @@ def _scored(word: str) -> tuple[tuple[Cell, int], ...]:
     return tuple(found.items())
 
 
+def voices(marked: list[tuple[str, set]], asp: str) -> set[str]:
+    """The voices (a, p) this typed verb can have in that tense, off the table: كتب is كَتَبَ or كُتِبَ."""
+    camel = _config()["camel"]
+    return {camel[cell.column]["vox"] for cell in read(_spell(marked)) if camel[cell.column]["asp"] == asp}
+
+
 def past(cell: Cell) -> str:
     """The dictionary form of the cell's verb, its past for "he" (أَفْشَى، أَقَامَ);
     "" when the command fits more than one باب and the past is not known."""
@@ -252,6 +259,13 @@ def called(before: str, after: str, read_as: str = "") -> bool:
     return is_one(before, "nida") or not before and (read_as == "c" or command(after) is not None)
 
 
+def noun_marked(word: str, before: str, lemma: str) -> bool:
+    """A word with a sign of the noun on it is never the command its letters spell (Ibn Aqil V1 p15: بالجر): typed in
+    jarr after a preposition (عَلَى مَالِ), or a word the book lists only as a ظرف (Ajrumiyya 1/18: دُونَ, a time
+    or place noun in nasb). `before` is the bare word typed before it, `lemma` the dictionary's."""
+    return only_adverb(lemma) or is_one(before, "jarr") and typed_case(word) == "i"
+
+
 def known_as(word: str) -> str | None:
     """A word the dictionary has no reading for, written as sarf's table prints it, its joined
     letters (وَ، فَ، لْ) kept as typed: فَلْيَسْتَعْفِفْ is فَلْيَسْتَعِفَّ, which the dictionary reads.
@@ -264,26 +278,38 @@ def known_as(word: str) -> str | None:
     return None
 
 
-def reading_of(word: str, known: Callable[[str], bool] | None = None) -> dict | None:
+def reading_of(word: str, known: Callable[[str], bool] | None = None, rooted: Callable[[str], bool] | None = None) -> dict | None:
     """A verb the dictionary cannot read even as the table spells it (يَسْتَعْتِبُوا), read off
     the table in the dictionary's own features (reading.json `camel`): {pos, asp, vox, ...}.
     None unless the closest cells agree on its tense and voice. What they do not agree on is
     left out, not guessed: تَسْتَحِ is "she" or "you", أَفْشُوا has فشو or فشي; both are verbs.
     `known` says whether the dictionary has a verb, by its past: of the closest cells, the verbs
     it has are the word's, and where it has none of them, a verb it has with an object pronoun
-    written on is (اِهْدِنَا is هَدَى + نا, not a dual of هَدَنَ, a verb no text it learnt from uses)."""
-    for front, rest, closest in _cuts(word):
+    written on is (اِهْدِنَا is هَدَى + نا, not a dual of هَدَنَ, a verb no text it learnt from uses).
+    `rooted` says whether a root is one a book files: given, the word is read bare, with no vowel typed, off every
+    cell the table has for its letters (يعجز: يَعْجِزُ، يُعْجَزُ), of the roots the books file, and of those the sound
+    roots (every radical written in the word) before the weak and doubled, which the table spells the same way for
+    any letters (انفروا is نفر, not the VII of فري)."""
+    for front, rest, closest in _cuts(word, bare=bool(rooted)):
+        if rooted:
+            written = Counter(letter for letter, _ in letters(word))
+            closest = [c for c in closest if rooted(c.root)]
+            closest = [c for c in closest if not Counter(c.root) - written] or closest
+            if not closest:
+                continue
         if known:
             seen = [c for c in closest if known(past(c))]
             if not seen and (split := _with_object(word, known)) and known(split.get("lex", "")):
                 return split
             closest = seen or closest
-        if len({tuple(_config()["camel"][c.column].items()) for c in closest}) != 1:
+        # تُضَارُّونَ: a doubled letter takes the same marks in the active and the passive, and the voice is then
+        # the active's (the passive is the marked form); cells that differ in tense are still no reading
+        if len({tuple((k, v) for k, v in _config()["camel"][c.column].items() if k != "vox") for c in closest}) != 1:
             continue
         cells = [{**_config()["camel"][c.column], "per": c.person, "gen": c.gender, "num": c.number, "root": c.root,
                   "lex": past(c), "weak_last": c.root[-1:] in "وي"} for c in closest]
-        return {"pos": "verb", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)},
-                **(_pieces(front, rest) if front else {})}
+        return {"pos": "verb", "vox": "a", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)},
+                **(pieces(front, rest) if front else {})}
     return _with_object(word, known)
 
 
@@ -306,24 +332,25 @@ def _with_object(word: str, known: Callable[[str], bool] | None = None) -> dict 
             continue
         person = _ENCLITIC.get("".join(c for c, _ in pronoun)) or _ENCLITIC["كِ" if "ِ" in pronoun[-1][1] else "كَ"]
         joined = found.get("catib6", "").count("PRT")  # فَاهْدِنَا: the فَ the table read the verb behind
-        return {**found, **_pieces(verb[:joined], verb[joined:], pronoun), "enc0": f"{person}_dobj"}
+        return {**found, **pieces(verb[:joined], verb[joined:], pronoun), "enc0": f"{person}_dobj"}
     return None
 
 
-def _cuts(word: str):
+def _cuts(word: str, bare: bool = False):
     """(the letters written onto its front, the rest, the table's closest cells for the rest), fewest
-    joined letters (وَ، فَ، لْ) first; only the vowels typed are evidence, so a bare word yields none."""
+    joined letters (وَ، فَ، لْ) first; only the vowels typed are evidence, so a bare word yields none, unless
+    `bare` asks for it: then no cell is closer than another, and all are given."""
     marked = letters(word)
     for cut in range(min(len(marked), _JOINED_MOST) + 1):
         front, rest = marked[:cut], marked[cut:]
-        if not all(letter in _joined() for letter, _ in front) or not _voweled(rest):
+        if not all(letter in _joined() for letter, _ in front) or not (bare or _voweled(rest)):
             continue
         found = dict(_scored(_spell(rest)))
         if found:
-            yield front, rest, [cell for cell, score in found.items() if score == min(found.values())]
+            yield front, rest, [cell for cell, score in found.items() if bare or score == min(found.values())]
 
 
-def _pieces(front: list, verb: list, pronoun: list = ()) -> dict:
+def pieces(front: list, verb: list, pronoun: list = ()) -> dict:
     """The dictionary's split of a verb the table read (atbtok, catib6, ud): each joined letter a
     particle (فَ+، وَ+ a conjunction, لْ+ of the command), the verb, its object pronoun (فَ+_اقْبَلْ_+هَا)."""
     return {"atbtok": "_".join([*(_spell([p]) + "+" for p in front), _spell(verb), *(["+" + _spell(pronoun)] if pronoun else [])]),

@@ -1,0 +1,11 @@
+{
+ "why": "Pools and governors for backend/scripts/nahw/mutate.py. A name or noun swapped for another of its pool, a governor put before a two-word nominal sentence: the grammar says the answer moves in a known way.",
+ "names": ["زيد", "محمد", "خالد", "بكر", "سعيد", "حامد", "سعد"],
+ "nouns": ["الطالب", "المعلم", "الولد", "الرجل", "الطبيب", "التاجر"],
+ "nominal_key": ["مبتدأ", "خبر"],
+ "governors": {
+  "inna": {"word": "إِنَّ", "nasb": 0, "key": ["حرف", "اسم إن", "خبر إن"]},
+  "kana": {"word": "كَانَ", "nasb": 1, "key": ["فعل", "اسم كان", "خبر كان"]}
+ },
+ "twice_every": 10
+}

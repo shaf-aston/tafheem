@@ -6,7 +6,7 @@ LABELS = ["<bos>", "---", "IDF", "MOD", "OBJ", "PRD", "SBJ", "TMZ", "TPC"]
 
 
 def tok(pos, **feats):
-    return {"pos": pos, "pos_camel": "noun", "case": None, **feats}
+    return {"pos": pos, "pos_camel": "noun", "case": None, "lemma": "", "base": "", **feats}
 
 
 def linked(toks, heads, rels):

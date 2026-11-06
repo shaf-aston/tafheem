@@ -83,7 +83,7 @@ function Step({ step, n, depth, ctx }) {
           type="button"
           onClick={() => pick(step.id)}
           aria-current={isHere ? 'step' : undefined}
-          className={`${depth ? 'text-sm' : 'text-sm font-medium'} text-start text-[var(--text)]
+          className={`${depth ? 'type-ui' : 'type-ui font-medium'} text-start text-[var(--text)]
             underline-offset-4 decoration-dotted hover:underline`}
           style={isHere ? { color: accent } : undefined}
         >
@@ -103,7 +103,7 @@ function Step({ step, n, depth, ctx }) {
           and its moments all wait behind it. */}
       {!isShut && (
         <>
-          <p className="text-sm text-[var(--text-dim)] leading-snug max-w-prose mt-0.5">{step.summary}</p>
+          <p className="type-ui text-[var(--text-dim)] leading-snug max-w-prose mt-0.5">{step.summary}</p>
 
           <TimelineRefs
             flags={step.flags?.filter((f) => f !== TRAD)}

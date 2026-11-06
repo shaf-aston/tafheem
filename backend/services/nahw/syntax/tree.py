@@ -11,9 +11,9 @@ its word, and a word no rule could name is left as a gap rather than guessed.
 """
 from __future__ import annotations
 
-from backend.services.nahw.book import (book_spelling, card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units,
+from backend.services.nahw.book import (book_spelling, card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units, says,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
-from backend.services.nahw.syntax.facts import (Sentence, is_particle, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
+from backend.services.nahw.syntax.facts import (Sentence, is_passive, is_particle, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
                                           is_nasab, is_verb, read_as, reading, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.nahw.syntax.followers import FOLLOWERS, chain_first
@@ -272,7 +272,6 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             if "mubdal_minhu" in entry:
                 mubdal_minhu[said["id"]] = entry["mubdal_minhu"]
     said_verb = kept["verb"]
-    saying = FRAMES["said_clause"]
     named_by_unsaid: set[int] = set()  # nouns whose job a word no one writes gives: its object, its khabar
     replies: set[int] = set()  # the unwritten verbs that answer a question
     detail_of: dict[int, str] = {}
@@ -304,7 +303,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     for noun in [t for t in drawn if asked and t["id"] > asked["id"] and t["id"] not in named_by_unsaid and role_of[t["id"]] == said_verb["noun"]["other"]
                  and t["id"] in typed_at and noun_tagged(t) and "a" in shown_cases(t)
                  and role_of.get(t["head"]) == NAMED.fil
-                 and strip_diacritics(by_id[t["head"]]["lemma"]) in saying["verbs"]]:
+                 and says(by_id[t["head"]]["lemma"])]:
         text = columns[next(i for i, t in enumerate(drawn) if t["id"] == asked["id"])]
         verb = hang_on_unsaid_verb(noun, text, head=noun["head"], rel="OBJ")
         replies.add(verb["id"])
@@ -338,7 +337,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         cases = shown_cases(noun)
         return noun_tagged(noun) and not noun.get("pos_camel", "").startswith("pron") \
             and role_of[noun["id"]] in (None, NAMED.mubtada) and not (cases & {"a", "i"} and "u" not in cases) \
-            and not any(is_verb(t) or role_of.get(t["id"]) in (*khabars, NAMED.fail) for t in drawn) \
+            and not any(is_verb(t) or role_of.get(t["id"]) in (*khabars, NAMED.fail) or t["head"] == noun["id"] and t["rel"] == "PRD" for t in drawn) \
             and not any(t["id"] in typed_at and listed(t, "istifham") and not is_preposition(t) for t in drawn)
     heads = [t for t in drawn if t["head"] not in by_id]
     if len(heads) == 1 and len(bases) > 1 and a_title(noun := heads[0]):
@@ -372,6 +371,9 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         if governor and is_preposition(governor):
             return masdar["after_preposition"]["job"], masdar["after_preposition"]["case"]
         rel = token["rel"]
+        if (governor and rel in ("SBJ", "OBJ") and is_passive(governor)
+                and not any(t["head"] == governor["id"] and t["rel"] in ("SBJ", "OBJ") and t is not token and t["pos"] != "PRT" for t in drawn)):
+            return masdar["after_passive"]["job"], masdar["after_passive"]["case"]
         return (masdar["job_by_rel"][rel], masdar["case_by_rel"][rel]) if rel in masdar["job_by_rel"] else None
 
     kind_of_ma = {token["id"]: kind for token in drawn if (kind := ma_kind(token, sentence))}
@@ -521,7 +523,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     for token in drawn:
         verb = by_id.get(token["head"])
         if verb and token["rel"] == "OBJ" and token["id"] in clauses and role_of.get(verb["id"]) == NAMED.fil \
-                and strip_diacritics(verb["lemma"]) in saying["verbs"]:
+                and says(verb["lemma"]):
             job_of[token["id"]] = saying["job"]
             place_of[token["id"]] = in_place(saying["case"])
             framed.add(token["id"])

@@ -17,7 +17,7 @@ export function flyTo(from, to) {
   ghost.setAttribute('aria-hidden', 'true')
   Object.assign(ghost.style, {
     position: 'fixed', left: `${a.left}px`, top: `${a.top}px`, width: `${a.width}px`, height: `${a.height}px`,
-    margin: '0', pointerEvents: 'none', zIndex: 'var(--z-pop, 50)',
+    margin: '0', pointerEvents: 'none', zIndex: 'var(--layer-tip)',
   })
   document.body.append(ghost)
   const dx = b.left + b.width / 2 - (a.left + a.width / 2)

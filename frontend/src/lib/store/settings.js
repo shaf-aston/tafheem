@@ -18,9 +18,9 @@ import { useSyncExternalStore } from 'react'
 
 import config from '../../config/settings.json'
 import {
-  FIRST_CHOICE, applyTheme, followDevice, followsDevice, rememberTheme, resolveTheme, themeChoices, themeVariable,
+  FIRST_CHOICE, applyTheme, followDevice, followsDevice, resolveTheme, themeChoices, themeVariable,
 } from '../../theme'
-import { forgetKey, onReplaced, readSaved, writeSaved } from './stored'
+import { DEVICE_KEYS, forgetKey, onReplaced, readSaved, writeDevice, writeSaved } from './stored'
 
 /** Every setting, in the order the panel shows them. */
 // The look setting is the one whose options are not written here: they are
@@ -77,7 +77,8 @@ export function applySettings(root = rootElement()) {
   // land on top of it instead of being overwritten by it.
   if (THEME_SETTING) {
     applyTheme(root, resolveTheme(chosen[THEME_SETTING.key]))
-    rememberTheme(chosen[THEME_SETTING.key])
+    // Where the next page load sees it before any script runs. Only the app writes it: the landing is always dark.
+    writeDevice(DEVICE_KEYS.themeHint, chosen[THEME_SETTING.key])
   }
   for (const setting of SETTINGS) {
     const value = chosen[setting.key]

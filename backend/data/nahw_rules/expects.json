@@ -1,0 +1,17 @@
+{
+ "_comment": "What word class must follow a governor, read by services/sarf/expects.py for morphology.pick. Each rule: `after` names the word before (any of: a closed_words family list, family + part, minus `except`; explicit `words`; the reading it was given, `pos` or `enc0_ends`), `next` the class the word after it must be (only `verb`), `why` the source. It never invents a reading: where the reading kept is not of that class, a ranked reading of that class which the typed vowels fit as well is taken. `not_first`: the governor is not the sentence's first word (an opening مَنْ or ما may be a question).",
+ "rules": [
+  {"name": "jazm", "after": {"family": "jazm", "part": "before_a_present_verb"}, "next": "verb",
+   "why": "سيبويه، الكتاب: «واعلم أن حروف الجزم لا تجزم إلا الأفعال»؛ وابن هشام، شرح قطر الندى: «إذا دخل عليه نحو أن ولن ولم ولما امتنع رفعه لأن الاسم لا يقع بعدها»"},
+  {"name": "nasb", "after": {"family": "nasb_mudari", "part": "before_a_present_verb", "except": ["أن", "حتى"]}, "next": "verb",
+   "why": "ابن هشام، شرح قطر الندى (النص نفسه): لن وكي ونحوهما لا يقع الاسم بعدها؛ وأن بلا حركات قد تكون أنّ، وحتى تجر الاسم (حتى مطلع الفجر)، فلا يُنظر إليهما"},
+  {"name": "sawf", "after": {"words": ["سوف"]}, "next": "verb",
+   "why": "ابن هشام، مغني اللبيب: «السين وسوف ... تخلصه للاستقبال فلا تدخل على غيره» أي على المضارع وحده"},
+  {"name": "question", "after": {"words": ["هل"]}, "next": "verb",
+   "why": "سيبويه، الكتاب: «إذا اجتمع بعد حروف الاستفهام نحو هل وكيف ومن اسم وفعل، كان الفعل بأن يلي حرف الاستفهام أولى؛ لأنها عندهم في الأصل من الحروف التي يذكر بعدها الفعل»؛ وهل وحدها حرف، أما كيف ومن وأين ومتى فأسماء يليها المبتدأ كثيرًا (كيف حالك) فلا تؤخذ"},
+  {"name": "conditional", "after": {"words": ["مهما", "حيثما", "أينما", "إذما", "كيفما", "هلا", "لوما"]}, "next": "verb",
+   "why": "ابن هشام، أوضح المسالك: «يجب النصب إذا وقع الاسم بعد ما يختص بالفعل كأدوات التحضيض ... وأدوات الاستفهام غير الهمزة ... وأدوات الشرط، نحو حيثما زيدا لقيته»"},
+  {"name": "relative", "after": {"pos": "pron_rel", "enc0_ends": "_rel"}, "next": "verb", "not_first": true,
+   "why": "ابن عقيل، شرح الألفية: «صلة الموصول لا تكون إلا جملة أو شبه جملة»؛ فكلمة بعد الموصول تقرؤها الحركات فعلًا كما تقرؤها اسمًا هي الفعل"}
+ ]
+}

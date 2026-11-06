@@ -157,7 +157,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
       {page && !landing && (
         <>
           {/* One wrapping row: the page and its arrows, then what helps. */}
-          <div className="tap-thumb flex items-center gap-2 flex-wrap text-sm text-[var(--text-dim)]">
+          <div className="tap-thumb flex items-center gap-2 flex-wrap type-ui text-[var(--text-dim)]">
             {/* A picker, not steps alone: stepping is fine for the next page
                 and useless for the fifteenth. The mushaf page, when known,
                 is the number a memoriser already uses, so it is the label. */}
@@ -310,7 +310,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
                   typing would be answering each gap as it is filled, which is
                   the thing this panel is built not to do. */}
               {checked && (
-                <p className="text-sm text-center text-[var(--text-dim)]" aria-live="polite">
+                <p className="type-ui text-center text-[var(--text-dim)]" aria-live="polite">
                   {marks.right} of {marks.total} right
                   {marks.right < marks.total && ', the missed words are shown above'}
                 </p>

@@ -2,6 +2,8 @@
 No sentence is needed for any of these; every other module here builds on them."""
 from __future__ import annotations
 
+import re
+
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
 from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, letters, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw.book import book_words, is_diptote, elative_shape, measure, participle_shape, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
@@ -121,7 +123,7 @@ def is_verb(token: dict) -> bool:
     # naming marks a typed command shape (asp c): بِعِ البيتَ، اعْبُدُوا. Not Form IV's أَفْعِلْ,
     # which a name shares (أَحْمَدْ), where CAMeL knows the name; a name it only guessed, or one
     # the typed vowels contradict (أَكْرِمْ is not أَكْرَم), is no evidence, so the command stands
-    if token.get("asp") == "c" and (strip_diacritics(typed)[:1] != "أ" or token.get("guessed")
+    if token.get("asp") == "c" and not listed(token, "mawsul") and (strip_diacritics(typed)[:1] != "أ" or token.get("guessed")
                                     or vowel_agreement(typed, token.get("diac") or "") is None):
         return token.get("pos_camel") in ("noun", "noun_prop")  # نَمْ is not the noun نَمّ
     return token.get("pos_camel") == "noun_prop" and (
@@ -168,8 +170,9 @@ def is_passive(token: dict) -> bool:
 
 
 def typed_tanween(token: dict) -> bool:
-    """The reader typed tanween on the word: it is complete, nothing is added to it."""
-    return has_tanween(token.get("typed") or "")
+    """The reader typed tanween on the word: it is complete, nothing is added to it. Typed bare, the alif
+    written for nasb tanween shows it too (يا سائقا الشاحنة: سائقا is no مضاف)."""
+    return has_tanween(token.get("typed") or "") or written_nasb(token) is not None
 
 
 def has_added(token: dict, tokens: list[dict]) -> bool:
@@ -233,9 +236,12 @@ def case_unseen(token: dict) -> bool:
     a noun's before ياء المتكلم (صَدِيقِي), the kasra there being the ya's (لاشتغال المحل)."""
     form, lemma = strip_diacritics(token.get("form", "")), strip_diacritics(token.get("lemma", ""))
     my = bool(token.get("stuck_on")) and strip_diacritics(token.get("typed") or "").endswith("ي")
+    marked = letters(token.get("typed") or "")
+    # الْبَاكِي: a منقوص's bare ya after a kasra carries no vowel, so raf' and jarr alike are unseen (مقدرة للثقل)
+    bare_ya = len(marked) > 1 and marked[-1] == ("ي", set()) and KASRA in marked[-2][1] and strip_diacritics(token.get("lemma", "")).endswith("ي")
     # only a declinable noun is مقصور; a built one ending in ا (مَا، إِذَا، هَذَا) has no case to hide
     return token.get("pos_camel") in ("noun", "adj", "noun_prop") and not typed_case_of(token) and (
-        my or form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
+        my or bare_ya or form.endswith("ى") or (form.endswith("ا") and lemma[-1:] in ("ى", "ا")))
 
 
 def shown_cases(token: dict) -> set[str]:
@@ -275,12 +281,14 @@ def agrees(token: dict, head: dict) -> bool:
     and only a noun's: a verb reading's number is its doer's (ضَحِكًا read as ضَحِكَا). A noun read
     as a مضاف with nothing added to it is no مضاف (ضَلَّ ضَلَالًا بَعِيدًا typed bare: ضلال). A name
     is definite by itself whatever its tag says (Ajrumiyya p14: والمعرفة خمسة أشياء … والاسم العلم), so a word
-    showing tanween never describes it (شرب زيد الماء باردا); رَبِّ after لِلَّهِ shows none."""
-    dual = [t.get("num") == "d" for t in (token, head) if noun_tagged(t)]
+    showing tanween never describes it (شرب زيد الماء باردا); رَبِّ after لِلَّهِ shows none. Typed bare, a word
+    ending ين is a dual or a plural alike (الزائرين اللطيفين), so it is no dual; a word of no
+    case at all, typed bare, has none to disagree in, nor has one after a noun showing none (مَالِ امْرِئٍ مُسْلِمٍ)."""
+    dual = [t.get("num") == "d" and not (typed_bare(t) and t["form"].endswith("ين")) for t in (token, head) if noun_tagged(t)]
     known = head.get("stt") == "d" or head.get("stt") == "c" and head.get("mudaf", True)
     named = head.get("pos_camel") == "noun_prop" and (typed_tanween(token) or written_nasb(token))
     # الرجلُ الحاديَ عشرَ: a compound ordinal is built, so it stands in its noun's case by its place
-    in_case = same_case(token, head) or token.get("compound") == "ordinal"
+    in_case = same_case(token, head) or token.get("compound") == "ordinal" or typed_bare(token) and not (shown_cases(token) and shown_cases(head))
     return in_case and not (token.get("stt") == "i" and known or named) and len(set(dual)) < 2
 
 
@@ -308,8 +316,8 @@ def told_of_subject(token: dict, head: dict) -> bool:
 
 def indefinite_nasb(token: dict) -> bool:
     """An indefinite word in nasb: a hal or tamyeez, never a na't. A pronoun stuck on makes it
-    definite (حَفِيدَهُ), as ال does."""
-    return typed_or_parsed_case(token) == "a" and token.get("stt") != "d" and not token.get("stuck_on")
+    definite (حَفِيدَهُ), as ال does. A built word (فَهُوَ) shows no case by its vowel."""
+    return typed_or_parsed_case(token) == "a" and token.get("stt") != "d" and not token.get("stuck_on") and not is_built(token)
 
 
 def is_state_word(token: dict) -> bool:
@@ -406,6 +414,13 @@ def is_participle(token: dict) -> bool:
             or (name and typed[:1] == "م" and typed[-1:] == "ا"))
 
 
+def names_a_thing(token: dict) -> bool:
+    """سَلَكَ طَرِيقًا: a noun the analyser reads as a noun, on the صفة مشبهة's measure only (فَعِيل), not a
+    doer's or a done-to's (on_doing_measure). The analyser reads some describing words so too (غَزِيرَةً), so the
+    caller trusts it only where the parser linked the word as the verb's object."""
+    return token.get("pos_camel") == "noun" and not on_doing_measure(token) and token.get("ud") != "ADJ"
+
+
 def is_elative(token: dict) -> bool:
     """أَعْلَى، أَكْبَر، خَيْر: an elative (book.elative_shape)."""
     return elative_shape(token.get("pattern", ""), token["lemma"])
@@ -418,6 +433,8 @@ def is_describing(token: dict) -> bool:
 
 
 PASSIVE_PARTICIPLE = "مَ1ْ2ُو3"  # مَفْعُول: مفتوحٌ بابُه, its noun the نائب فاعل
+# a participle of forms II to X (مُ…) is passive by the fatha before its last root letter (مُرَشَّح، مُسْتَخْدَم), active by the kasra
+DERIVED_PASSIVE = re.compile(r"^مُ.*2[\u064b-\u0652]*\u064e[\u064b-\u0652]*3")
 
 
 def works_as_verb(token: dict) -> str | None:
@@ -427,17 +444,18 @@ def works_as_verb(token: dict) -> str | None:
     if is_verb(token):
         return "passive" if is_passive(token) else "active"
     if is_participle(token):
-        return "passive" if measure(token.get("pattern", "")).startswith(PASSIVE_PARTICIPLE) else "active"
+        shape = measure(token.get("pattern", ""))
+        return "passive" if shape.startswith(PASSIVE_PARTICIPLE) or DERIVED_PASSIVE.match(shape) else "active"
     return None
 
 
 def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
-    """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا), judged by the analyser's pattern.
-    weak_or_doubled=False takes a doubled or hollow root's pattern as written, for a word
-    with nothing else saying it is a doing: طَوْقًا is فَعْل, and a collar all the same."""
-    pattern = token.get("pattern") or ""
-    return token.get("pos_camel") == "noun" and (measure(pattern) if weak_or_doubled else pattern.removeprefix("ال")).startswith(
-        tuple(book_words("masdar_patterns")))
+    """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا، خَطْوَةً), judged by the analyser's pattern.
+    weak_or_doubled=False takes a doubled or hollow root's pattern as written, for a word with nothing else
+    saying it is a doing: طَوْقًا is فَعْل, and a collar all the same; a single act (ـة) is a doing, so it is read through."""
+    pattern = (token.get("pattern") or "").removeprefix("ال")
+    shape = measure(pattern) if weak_or_doubled or strip_diacritics(pattern).endswith("ة") else pattern
+    return token.get("pos_camel") == "noun" and shape.startswith(tuple(book_words("masdar_patterns")))
 
 
 def is_name(token: dict) -> bool:

@@ -123,6 +123,21 @@ def is_one(lemma: str, family: str, part: str = "words") -> bool:
     return book_spelling(lemma) in book_words(family, part)
 
 
+def fused_preposition(word: str) -> bool:
+    """A preposition written as one word with the pronoun or the ما/من it governs (فيه، عليه، إليك، وبك، فله،
+    مما، ممن، فيم): the word is both the preposition and its مجرور, so a key may name either (حرف جر or
+    مجرور). The oath letters و ت are no preposition here, and the ى of على، إلى shows as ي before it."""
+    plain = re.sub("[^ء-ي]", "", strip_diacritics(word))
+    suffixes = book_words("damir_muttasil", "on_nouns") | {"ما", "من", "م"}
+    prepositions = book_words("jarr") - set(_closed()["families"]["jarr"]["oath_only"])
+    for rest in (plain, plain[1:] if plain[:1] in ("و", "ف") else ""):
+        for p in prepositions:
+            for stem in {p, p[:-1] + "ي"} if p.endswith("ى") else {p}:
+                if rest.startswith(stem) and rest[len(stem):] in suffixes:
+                    return True
+    return False
+
+
 @lru_cache(maxsize=4096)
 def joined_off(word: str) -> tuple[str, ...]:
     """What is left of `word` with the letters the book writes onto it taken off, the fewest first.
@@ -242,6 +257,11 @@ def is_mabni(pos: str, aspect: str | None = None, base: str = "") -> bool:
     return any(kind in pos for kind in MABNI_KINDS)
 
 
+def is_definite_kind(pos: str) -> bool:
+    """A pronoun, pointer or relative is definite by what it is (Tasheel V1 p21: مضمر ... ومشار به ... وموصول); a question word asks, so it is not."""
+    return is_mabni(pos) and "interrog" not in pos
+
+
 def is_diptote(typed: str, pos: str, lemma: str, *, attached: bool, annexed: bool) -> bool:
     """A fatha for the kasra (الممنوع من الصرف): no tanween, ال, pronoun, مضاف إليه (طَرِيقَ جَهَنَّمَ) or build (ثَلَاثَةَ عَشَرَ)."""
     marked = letters(typed)
@@ -253,10 +273,13 @@ def measure(pattern: str) -> str:
     """The analyser's pattern laid back on its measure: a doubled root writes its last two
     radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
     in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3), a last radical hamza keeps its seat in place of the 3
-    (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3)."""
+    (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3), a weak last radical before the ة of a single act keeps its seat
+    too (خَطْوَة 1َ2ْوَة → 1َ2ْ3َة)."""
     pattern = pattern.removeprefix("ال")
     if "3" not in pattern and "2" in pattern:
         pattern = re.sub(r"(?<=2)([\u064b-\u0652]*[اوي]?)[ءأإئؤ]", r"\g<1>3", pattern, count=1)
+    if "3" not in pattern and "2" in pattern:
+        pattern = re.sub(r"(?<=2[\u064b-\u0652])[وي](?=[\u064b-\u0652]?ة)", "3", pattern, count=1)
     if "3" not in pattern and "2" + SHADDA in pattern:
         return pattern.replace("2" + SHADDA, "2" + SUKUN + "3", 1)
     if "2" not in pattern:  # قِيَام 1ِيا3: the weak letter stands as the 2, and the alef after it implies its fatha
@@ -333,6 +356,11 @@ def role_units() -> list[dict]:
 def frames() -> dict:
     """The jobs a governor gives the units under it in the bracket picture (roles.json)."""
     return _roles()["frames"]
+
+
+def says(lemma: str) -> bool:
+    """A verb of saying (roles.json said_clause): it takes the sentence it tells, never a name, as its object."""
+    return strip_diacritics(lemma) in frames()["said_clause"]["verbs"]
 
 
 def condition_of(word: str) -> dict | None:

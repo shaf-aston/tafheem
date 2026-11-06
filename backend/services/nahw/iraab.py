@@ -28,7 +28,7 @@ from backend.services.nahw import signs
 from backend.services.nahw import syntax
 from backend.services.nahw import tarkeeb_store
 from backend.services.nahw import tree_columns
-from backend.services.text.harakat import CASE_LETTER, CASE_NAME, typed_case
+from backend.services.text.harakat import CASE_LETTER, CASE_NAME, no_vowels_typed, typed_case
 from backend.services.nahw.book import case_of, is_object_stem, particle_names, reason, sakt_said, teacher_rules
 from backend.services.nahw.syntax.tree import names_a_sentence as names_a_sentence
 from backend.services.nahw.syntax.naming import NAMED, role_key
@@ -56,7 +56,11 @@ def _read(sentence: str, recorded: bool) -> dict:
     picks = morphology.pick(words(sentence), syntax.disambiguator())  # the one reading, cards and parser alike
     tags = morphology.analyze_sentence(sentence, picks)
     record = tarkeeb_store.for_sentence(sentence) if recorded else None
+    if record:  # the treebank names every word: nothing is left to a guess
+        tags = [{**tag, "assumed": None} for tag in tags]
     parsed = record or syntax.read(sentence, picks)
+    if not record:
+        _rivalled(sentence, picks, tags, parsed)
     tree = _drawn(record) if record else parsed["tree"]
     return {
         "words": _paused(cards(tags, parsed["roles"]), words(sentence), picks),
@@ -65,7 +69,27 @@ def _read(sentence: str, recorded: bool) -> dict:
         "tree": tree,
         "parse": parsed.get("parse"),
         "read_failed": bool(parsed.get("failed")),
+        "unvowelled": teacher_rules()["case_said"]["unvowelled"] if no_vowels_typed(words(sentence)) else None,
     }
+
+
+def _rivalled(sentence: str, picks: list[dict], tags: list[dict], parsed: dict) -> None:
+    """A word the typed letters leave open has a rival reading (morphology._rival). The sentence is read once more
+    with the rivals swapped in (at most settings rivals_read); a word whose job is then another says so on its tag,
+    `assumed` {"other": its job, "if": the rival word that makes it so}, and a verb whose voice flipped says that
+    ({"vox"}). A sentence whose letters settle every word has no rival and costs no second read."""
+    rivals = {i: p["rival"] for i, p in enumerate(picks) if p.get("rival")}
+    rivals = dict(list(rivals.items())[:get_settings().rivals_read])
+    if not rivals or parsed.get("failed") or len(parsed["roles"]) != len(tags):
+        return
+    second = syntax.read(sentence, [rivals.get(i, p) for i, p in enumerate(picks)])
+    if second.get("failed"):
+        return
+    for j, (tag, one, two) in enumerate(zip(tags, parsed["roles"], second["roles"])):
+        if j in rivals and rivals[j].get("pos") == picks[j].get("pos") == "verb" and rivals[j]["vox"] != picks[j]["vox"]:
+            tag["assumed"] = {"vox": rivals[j]["vox"]}
+        elif two["role"] and strip_diacritics(two["role"]) != strip_diacritics(one["role"] or ""):
+            tag["assumed"] = {"other": two["role"], "if": min(rivals, key=lambda i: abs(i - j))}
 
 
 def _paused(cards: list[dict], written: list[str], picks: list[dict]) -> list[dict]:

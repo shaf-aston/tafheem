@@ -133,7 +133,7 @@ export default function HomePanel({ accent, onGo }) {
           </div>
 
           <section className="space-y-4" aria-labelledby="home-all">
-            <h3 id="home-all" className="type-head text-xl font-semibold">{copy.all}</h3>
+            <h3 id="home-all" className="type-head type-title font-semibold">{copy.all}</h3>
             {/* One goal to a row: its one-word name over its tiles. */}
             <div className="space-y-5">
               <TabGroups groups={SHOWN_GROUPS} tabs={OTHERS} heading="h4"

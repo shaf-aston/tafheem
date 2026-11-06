@@ -33,7 +33,7 @@ export default function ProfileDialog({ onClose }) {
   return (
     <BottomSheet label={title} onClose={onClose} className="p-5 space-y-4">
       <SheetHeader onClose={onClose} className="">
-        <h2 className="type-head text-base font-bold text-[var(--text)]">{title}</h2>
+        <h2 className="type-head type-lead font-bold text-[var(--text)]">{title}</h2>
       </SheetHeader>
       {name ? <ProfileView name={name} /> : <SignIn />}
     </BottomSheet>

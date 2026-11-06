@@ -22,7 +22,7 @@ export default function XpCard({ rewards }) {
       className="xp-card col-span-2 text-start rounded-[var(--radius-sm)] border border-[var(--border)] p-3 space-y-2"
       style={{ '--xp-tone': tone }}>
       <div className="flex items-baseline justify-between gap-2">
-        <span className="text-lg font-bold text-[var(--text)]">
+        <span className="type-heading font-bold text-[var(--text)]">
           Lv {rewards.level} · {rank.en} <span dir="rtl">{rank.ar}</span>
         </span>
         <span className="type-small tabular-nums text-[var(--text-dim)]"><Odometer value={rewards.into} /> / {rewards.need} XP</span>

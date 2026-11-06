@@ -25,6 +25,16 @@ apart from theirs, keyed blind by two readers who never saw the app's answer and
 kept where they agreed. It splits three ways: "tune" may be looked at while fixing,
 "verify" shows whether a fix carried to sentences it was not written against, and
 "hold" is scored once, at the end.
+--set battery is 79 sentences (43 grammar, 36 Qur'an openings) read by hand word by word: the
+key is what the app answered where that was right, the book's role where it was not (those words
+fail until the engine is fixed); a row's "note" names the words with two valid answers.
+--set round2 is 100 more (n001-n060 hadith, t001-t040 MSA), keyed blind by two readers, unseen by the engine until scored.
+--set round3 is 100 more again (p001-p060 hadith, u001-u040 MSA), written and keyed blind the same way, scored before any fix.
+--set round4 is 100 more (x001-x060 hadith, y001-y040 MSA), written and keyed blind the same way, scored on the merged engine before any fix.
+--set round5 is 100 more (z001-z060 hadith, w001-w040 MSA), the same way, scored before the cleanup and any further fix.
+--set matn is 100 harder sentences: 60 vowelled hadith matn clauses (bukhari, muslim) and 40 MSA
+sentences, keyed blind by two readers; where they differed the books settled it. A row's "also" gives,
+per word, the other answers the books accept, each scored right.
 Rows in these may carry "signs", the sign the book gives chosen words (word
 index to sign), so the case line is scored as well as the role.
 
@@ -56,7 +66,7 @@ from functools import partial
 from pathlib import Path
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics, words
-from backend.services.nahw.book import book_file, family_cards, named_roles, role_table
+from backend.services.nahw.book import book_file, family_cards, fused_preposition, named_roles, role_table
 
 DATA = Path(__file__).resolve().parent.parent.parent / "data"
 KEY = json.loads((DATA / "nahw_rules" / "answer_key.json").read_text(encoding="utf-8"))
@@ -111,10 +121,10 @@ def held_out(name: str) -> list[dict]:
 
 
 SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
-        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe")},
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery", "matn", "round2", "round3", "round4", "round5")},
         "blind": partial(fresh_sentences, "blind")}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery", "matn", "round2", "round3", "round4", "round5")
 BASELINE = DATA / "nahw_rules" / "score_baseline.json"
 
 
@@ -226,6 +236,14 @@ def same_role(have: str, want: str, by_family: bool) -> bool:
     return bool(have) and family(want) is not None and family(have) == family(want)
 
 
+def right_role(have: str, want: str, also: list[str], by_family: bool, word: str) -> bool:
+    """The card's role is the key's, or another answer the books accept for that word (a row's "also"), or the
+    other half of a preposition written with its pronoun (فيه: حرف جر or مجرور, book.fused_preposition)."""
+    if fused_preposition(word) and {have, want} == {"حرف جر", "مجرور"}:
+        return True
+    return any(same_role(have, ok, by_family) for ok in (want, *also))
+
+
 def score_exact(name: str, api: str | None, show: int) -> Counter:
     """Score a set keyed one exact role per word. A blank card role is a gap; any other
     role that is not the key is confident wrong. Roles are compared exactly, harakat aside, or by
@@ -245,7 +263,7 @@ def score_exact(name: str, api: str | None, show: int) -> Counter:
         for i, want in enumerate(key):
             have = plain_role(cards[i].get("role")) if aligned else ""
             row["roles"] += 1
-            if same_role(have, want, ex.get("by") == "family"):
+            if right_role(have, want, ex.get("also", {}).get(str(i), []), ex.get("by") == "family", cards[i]["word"] if aligned else ""):
                 row["right"] += 1
             elif have:
                 row["confident_wrong"] += 1

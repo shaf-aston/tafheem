@@ -47,7 +47,7 @@ export default function QuizOption({ option, index, lang, say, answered, picked,
     >
       <OptionNumber index={index} />
       {lang === 'en' ? (
-        <span className="option-word text-sm">{option.text}</span>
+        <span className="option-word type-ui">{option.text}</span>
       ) : (
         <ArabicText lang={lang} className="option-word leading-tight">{option.text}</ArabicText>
       )}

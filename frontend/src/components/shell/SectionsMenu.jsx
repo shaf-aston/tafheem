@@ -48,7 +48,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between gap-2">
-          <h2 id="sections-title" className="type-head text-base font-bold text-[var(--text)]">All sections</h2>
+          <h2 id="sections-title" className="type-head type-lead font-bold text-[var(--text)]">All sections</h2>
           <div className="flex items-center">
             {editable && (
               <button
@@ -64,7 +64,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
           </div>
         </div>
         {editing && (
-          <section className="sm:hidden sticky top-0 z-10 -mt-2 pt-2 pb-3 space-y-2 bg-[var(--surface)] border-b border-[var(--border)]">
+          <section className="sm:hidden sticky top-0 z-[var(--layer-sticky)] -mt-2 pt-2 pb-3 space-y-2 bg-[var(--surface)] border-b border-[var(--border)]">
             <h3 className="type-small text-[var(--text-faint)]">On the bar</h3>
             <DockSlots size={size} tabs={dock.map((id) => tabs.find((tab) => tab.id === id))} colorOf={colorOf} drag={drag} grip={grip} />
             <p className="type-small text-[var(--text-faint)]">Drag a tab to a place on the bar, or back down to leave it. Or tap one to pin it.</p>
@@ -118,7 +118,7 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
         <div
           aria-hidden="true"
           style={{ left: drag.x, top: drag.y, '--c': colorOf(drag.id) }}
-          className="fixed z-50 -translate-x-1/2 -translate-y-full pointer-events-none px-3 py-1.5 rounded-[var(--radius-sm)]
+          className="fixed z-[var(--layer-tip)] -translate-x-1/2 -translate-y-full pointer-events-none px-3 py-1.5 rounded-[var(--radius-sm)]
             border border-[var(--c)] bg-[var(--surface-hi)] text-[var(--c)] type-small font-semibold shadow-[var(--shadow-lift)]"
         >
           {tabs.find((tab) => tab.id === drag.id)?.label}

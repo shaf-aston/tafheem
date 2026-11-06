@@ -46,6 +46,11 @@ def letters(word: str) -> list[tuple[str, set]]:
     return out
 
 
+def no_vowels_typed(tokens: list[str]) -> bool:
+    """True when no letter of any word carries a short vowel or tanween (a sukun or shadda alone is not one)."""
+    return not any(marks.intersection(VOWEL) for token in tokens for _, marks in letters(token))
+
+
 def stuck_letters(pieces) -> int:
     """How many letters of an attached pronoun (ـها) the `+` pieces among these tokens hold."""
     return sum(len(bare_letters(t["form"].strip("+"))) for t in pieces if t["form"].startswith("+"))
@@ -257,11 +262,17 @@ def best_reading(typed: str, readings: list[dict]) -> dict | None:
     A typed tanween is a sign of the noun (Ibn Aqil V1 p15: بالجر والتنوين), so no verb fits it
     (كَمْ وَلَدًا is not the dual past وَلَدَا, which CAMeL writes with its د bare); only the light
     emphasis nun is written as a fatha tanween on a present or command (لَنَسْفَعًا)."""
-    letters_typed = [c for c, _ in letters(typed)]
-    scored = [((letters_typed == [c for c, _ in letters(r.get("diac", ""))], -found[1], found[0]), i)
+    letters_typed = _spelled(typed)
+    scored = [((letters_typed == _spelled(r.get("diac", "")), -found[1], found[0]), i)
               for i, r in enumerate(readings) if (found := vowel_agreement(typed, r.get("diac", ""))) is not None
               and _fits_tanween(typed, r)]
     return readings[max(scored, key=lambda pair: (pair[0], -pair[1]))[1]] if scored else None
+
+
+def _spelled(word: str) -> list[str]:
+    """The letters as written, a ى with a vowel or shadda on it a ياء: a maqsura bears no mark, so إِلَىَّ is
+    إِلَيَّ (إِلَى + the speaker's ي), not إِلَى."""
+    return ["ي" if letter == "ى" and marks else letter for letter, marks in letters(word)]
 
 
 def _fits_tanween(typed: str, reading: dict) -> bool:

@@ -69,7 +69,7 @@ def test_hasr_khabar_waits_for_a_verbless_clause(with_verb):
         words.append(_tok(3, "قال", "VRB", 2, "MOD"))
     n = len(words)
     words += [_tok(n + 1, "إلا", "PRT", 2, "MOD"), _tok(n + 2, "حق", "NOM", n + 1, "OBJ")]
-    hasr_khabar(words)
+    hasr_khabar(Sentence(words))
     told = words[-1]
     assert (told["head"], told["rel"]) == ((n + 1, "OBJ") if with_verb else (0, "---"))
 
@@ -95,7 +95,7 @@ def test_hasr_khabar_needs_each_of_its_parts(change, moved):
         told.update(pos="VRB", pos_camel="verb")
     elif change == "subject_particle":
         words[1].update(pos="PRT", pos_camel="part")
-    hasr_khabar(words)
+    hasr_khabar(Sentence(words))
     assert (told["head"] == 0) is moved
 
 
@@ -246,7 +246,7 @@ def test_a_written_nasb_after_the_subject_is_the_object(head_typed, rel, moved):
     last = dict(typed="عمرا", diac="عَمْراً") if rel != "IDF-diptote" else dict(typed="عُمَرَ", diac="عُمَرَ")
     words = [_tok(1, "ضرب", "VRB", 0, "---"), _tok(2, "زيد", "PROP", 1, "SBJ", typed=head_typed),
              _tok(3, "عمر", "PROP", 2, rel.removesuffix("-diptote"), **last)]
-    subject_clash(words)
+    subject_clash(Sentence(words))
     assert ((words[2]["head"], words[2]["rel"]) == (1, "OBJ")) is moved
 
 
@@ -256,7 +256,7 @@ def test_a_pointer_hung_on_the_indefinite_noun_after_it_is_its_mubtada(state, re
     (هَذِهِ الْحِجَارَةُ) is its بدل or صفة, and the two make no sentence by themselves."""
     from backend.services.nahw.syntax.repair.khabar import after_pointer
     words = [_tok(1, "هذه", "NOM", 2, "MOD", pos_camel="pron_dem"), _tok(2, "حجارة", "NOM", 0, "---", stt=state)]
-    after_pointer(words)
+    after_pointer(Sentence(words))
     assert words[0]["rel"] == rel
 
 
@@ -266,5 +266,19 @@ def test_a_bare_name_after_a_verb_of_saying_is_its_doer(pos, rel):
     name, so the name is its doer; a plain noun (قال كلام) keeps the parser's reading."""
     from backend.services.nahw.syntax.repair.subject_clash import subject_clash
     words = [_tok(1, "قال", "VRB", 0, "---"), _tok(2, "زيد" if pos == "PROP" else "كلام", pos, 1, "OBJ")]
-    subject_clash(words)
+    subject_clash(Sentence(words))
     assert words[1]["rel"] == rel
+
+
+@pytest.mark.parametrize("known, pos, kind, moved", [
+    ("زيد", "PROP", "noun_prop", True),  # a name is known though CAMeL files it indefinite (stt "i"): the mubtada
+    ("هو", "NOM", "pron", True),  # so is a pronoun
+    ("رجل", "NOM", "noun", False),  # an indefinite noun is no mubtada before another
+])
+def test_a_known_word_hung_before_an_indefinite_one_is_the_mubtada_whatever_stt_camel_gave_it(known, pos, kind, moved):
+    """زَيْدٌ طَالِبٌ: a صفة stands after its noun, so the known word hung on the indefinite one after it is the mubtada
+    and that one its khabar (Tasheel V1 p21: the name and the pronoun are known)."""
+    from backend.services.nahw.syntax.repair.khabar import naat_after_its_noun
+    words = [_tok(1, known, pos, 2, "MOD", pos_camel=kind), _tok(2, "طالب", "NOM", 0, "---")]
+    naat_after_its_noun(Sentence(words))
+    assert ((words[0]["head"], words[1]["head"], words[1]["rel"]) == (0, 1, "PRD")) is moved

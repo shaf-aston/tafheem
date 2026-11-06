@@ -289,8 +289,9 @@ def test_each_family_slot_reaches_its_leaf():
         assert walker.walk({**base, "governor": governor, "slot": slot_answer})[0] == role
     for governor in ("verb", "none"):
         assert walker.walk({**base, "governor": governor, "slot": "none"}) is None
-    # a passive ظن has no places of its own
-    assert walker.walk({**base, "voice": "passive", "governor": "zanna", "slot": "subject"}) is None
+    # a passive ظن keeps a نائب فاعل and one مفعول به
+    assert walker.walk({**base, "voice": "passive", "governor": "zanna", "slot": "subject"})[0] == "نائب فاعل"
+    assert walker.walk({**base, "voice": "passive", "governor": "zanna", "slot": "object"})[0] == "مفعول به"
 
 
 def test_slot_second_object_is_a_position_fact_not_a_governor_fact():
@@ -337,6 +338,16 @@ def test_a_noun_is_known_by_al_by_a_name_or_through_the_word_added_to_it():
     assert facts.is_known(token(1, "زيد", "زيد", "PROP", 0, "---"), facts.Sentence([]))
 
 
+def test_a_name_pronoun_pointer_or_relative_is_known_whatever_stt_camel_gave_it_but_a_question_word_is_not():
+    # CAMeL files every name and many pronouns, pointers and relatives indefinite (stt "i"): Tasheel V1 p21, the book
+    # counts them known (مضمر وعلم ومشار به وموصول); a question word asks, so it names nothing
+    def known(word, pos_camel, pos="NOM"):
+        return facts.is_known(token(1, word, word, pos, 0, "---", stt="i", pos_camel=pos_camel), facts.Sentence([]))
+    assert all(known(word, kind) for word, kind in (("آدم", "noun_prop"), ("أنا", "pron"), ("هذا", "pron_dem"), ("الذي", "pron_rel")))
+    assert not known("من", "pron_interrog")
+    assert not known("رجل", "noun")
+
+
 def test_a_describing_word_in_another_case_is_no_sifah_of_the_known_noun_before_it():
     from backend.services.nahw.syntax.repair.typed import described_known
 
@@ -344,8 +355,8 @@ def test_a_describing_word_in_another_case_is_no_sifah_of_the_known_noun_before_
         return [token(1, "أطعم", "أطعم", "VRB", 0, "---", **VERB), token(2, "الفقير", "فقير", "NOM", 1, "OBJ", stt="d", cas="a"),
                 token(3, "الجائع", "جائع", "NOM", 1, "OBJ", stt="d", cas=case, pos_camel="adj")]
     toks = sentence("a")  # أَطْعَمَ الْفَقِيرَ الْجَائِعَ: its case, so its صفة
-    described_known(toks)
+    described_known(facts.Sentence(toks))
     assert (toks[2]["head"], toks[2]["rel"]) == (2, "MOD")
     toks = sentence("n")  # raf' after a nasb noun: it describes some other noun, and stays as the parser hung it
-    described_known(toks)
+    described_known(facts.Sentence(toks))
     assert (toks[2]["head"], toks[2]["rel"]) == (1, "OBJ")

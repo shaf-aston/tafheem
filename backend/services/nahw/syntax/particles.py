@@ -17,8 +17,9 @@ from backend.services.text.harakat import (
     PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
 from backend.services.sarf.morphology import has_comparative
 from backend.services.nahw.book import (
-    book_file, book_map, book_spelling, book_words, condition_of, family_cards, frames, is_mabni, is_one)
+    book_file, book_map, book_spelling, book_words, condition_of, family_cards, is_mabni, is_one, says)
 from backend.services.nahw.syntax import facts, walker
+from backend.services.nahw.syntax.mask import above
 
 
 def _lemma(token: dict) -> str:
@@ -64,12 +65,7 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
         return "verb_jazm" if jazm else "verb"
     if after["pos"] == "PRT" or ((cond := condition_of(_lemma(after))) and not cond["shared"]):
         return "tool"
-    bare = strip_diacritics(typed or after["form"])
-    pronoun = any(t["head"] == after["id"] and facts.is_suffix(t) for t in s.tokens)
-    # a name is definite unless CAMeL itself read it indefinite (ضِرَارَ of لا ضرارَ, tagged a name)
-    named = after["pos"] == "PROP" and after.get("stt") != "i"
-    definite = bare.startswith("ال") or named or after.get("stt") == "d" or pronoun
-    return "noun" if definite else "indefinite_noun"
+    return "noun" if facts.is_known(after, s) else "indefinite_noun"
 
 
 def _moved_still(verb: dict, s: facts.Sentence) -> bool:
@@ -101,7 +97,11 @@ def _joins(token: dict, s: facts.Sentence) -> str:
         # لا اله الا الله typed bare, لا إله إلا هو: the اسم لا named before إلا is the
         # excepted-from, so it is an exception, not a حصر (Tasheel 3.8.7). Elsewhere a case
         # that cannot show (ما أنقذ الغريقَ إلا فتًى) tells nothing: the verb may still want its فاعل.
-        return "yes" if behind and facts.read_as(behind, "la_jins") else "no"
+        # ما جاء أحد إلا زيد typed bare: the noun excepted from is the doer of the very verb the إلا hangs on, a verb the book
+        # lists as taking no object (intransitive_verbs), so the word after is its بدل (ما أكرم المعلم إلا فتى may be its object)
+        verb = s.head(before) or {}
+        doer_given = before["rel"] == "SBJ" and facts.is_verb(verb) and verb is s.head(token) and is_one(verb["lemma"], "intransitive_verbs")
+        return "yes" if doer_given or (behind and facts.read_as(behind, "la_jins")) else "no"
     return "yes" if mine == facts.place_case(before, s) else "no"
 
 
@@ -113,9 +113,12 @@ def _tool_next(token: dict, s: facts.Sentence) -> str:
 
 def _timed(token: dict, s: facts.Sentence) -> str:
     """The word after it is لم or دام (data: istithna_verbs `timed_ma_before`) and it does not
-    open the sentence: ما المصدرية الظرفية, "as long as" (البيعان بالخيار ما لم يتفرقا)."""
+    open the sentence: ما المصدرية الظرفية, "as long as" (البيعان بالخيار ما لم يتفرقا). Added to a noun
+    before it, or after a preposition, it is in jarr: the ما of a noun, the relative, not a time word
+    (سَأُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِعْ عَلَيْهِ صَبْرًا; Mughni, ما الاسمية)."""
     after, before = facts.next_word(token, s), s.by_id.get(token["id"] - 1)
-    return "yes" if before and after and is_one(
+    in_jarr = token["rel"] == "IDF" or bool(before and facts.is_preposition(before))
+    return "yes" if before and after and not in_jarr and is_one(
         after["lemma"] or after["form"], "istithna_verbs", "timed_ma_before") else "no"
 
 
@@ -151,11 +154,14 @@ def _fronted(token: dict, s: facts.Sentence) -> str:
     in raf': the khabar came first, so the noun is its مبتدأ مؤخر and the ما only negates; a ما with
     its khabar first does not work as ليس (Tasheel 1.9 n6 p23). A describing word there (وما عند الله
     خيرٌ، باقٍ) is told of the ما, the relative, and is its khabar. Its majrur, and what is added to
-    it (في بيتِ زيدٍ), are in jarr; a joined one (فيه، عندي) is no word of its own."""
+    it (في بيتِ زيدٍ), are in jarr; a joined one (فيه، عندي) is no word of its own. A مضاف إليه
+    of a word inside it, in whatever case it shows (مَا بَيْنَ خَلْقِ آدَمَ ... خَلْقٌ: آدَمَ's fatha is its jarr) is inside it too."""
     words = [t for t in s.tokens if t["id"] > token["id"] and not facts.is_suffix(t)]
     at = 0
+    inside = set()  # the words of the fronted phrase: what is added to them or governed by them is no noun to ask for
     while at < len(words) and (facts.is_preposition(words[at]) or facts.is_zarf(words[at], s)
-                               or facts.typed_case_of(words[at]) == "i"):
+                               or facts.typed_case_of(words[at]) == "i" or words[at]["rel"] == "IDF" and words[at]["head"] in inside):
+        inside.add(words[at]["id"])
         at += 1
     noun = words[at] if 0 < at < len(words) else None
     return "yes" if noun and facts.noun_tagged(noun) and facts.typed_case_of(noun) == "u" \
@@ -252,7 +258,14 @@ def _asks_nominal(token: dict, s: facts.Sentence) -> bool:
             or not (is_mabni(after.get("pos_camel", "")) or facts.typed_case_of(after) in (None, "u")):
         return False
     later = [t for t in s.tokens if t["id"] > token["id"] and not facts.is_suffix(t)]
-    return not any(facts.is_verb(t) or facts.is_preposition(t) or (t["pos"] == "PRT" and is_one(t["lemma"], "hasr"))
+    # مَنِ الَّذِي يَضْمَنُ: a relative's صلة is no clause of its own. Only ما can be the negation that a preposition
+    # or an إلا after the noun would show (ما أنت بعالمٍ); مَنْ أَحَقُّ النَّاسِ بِحُسْنِ صَحَابَتِي asks all the same
+    clause = s.below(after) if is_one(after["lemma"], "mawsul") else set()
+    # a verb that is no saying straight before takes it as its object, so what follows is its nominal صلة (فَلْيُبَلِّغِ ... مَنْ
+    # هُوَ أَوْعَى لَهُ مِنْهُ), and a preposition after it then ends the asking too (rule from the Tasheel chapter on الموصول, page unchecked)
+    shut = is_one(token["lemma"], "negation") or not _opens_clause(token, s)
+    return not any((facts.is_verb(t) and t["id"] not in clause)
+                   or (shut and (facts.is_preposition(t) or (t["pos"] == "PRT" and is_one(t["lemma"], "hasr"))))
                    for t in later) and _opens(token, s) == "no"
 
 
@@ -265,9 +278,8 @@ def _opens_clause(token: dict, s: facts.Sentence) -> bool:
     and so does a preposition (لا يعلمُ ما في الغيبِ), unless the verb is one of saying, whose quoted
     speech it opens (قالوا ما أنتم إلا بشرٌ; data: roles.json said_clause)."""
     before = next((t for t in reversed(s.tokens) if t["id"] < token["id"] and not facts.is_suffix(t)), None)
-    saying = frames()["said_clause"]["verbs"]
     return not (before and (facts.is_preposition(before)
-                            or (facts.is_verb(before) and strip_diacritics(before["lemma"]) not in saying)))
+                            or (facts.is_verb(before) and not says(before["lemma"]))))
 
 
 def _restricted(token: dict, s: facts.Sentence) -> str:
@@ -496,6 +508,22 @@ def _idhan_settles_its_words(tokens: list[dict]) -> None:
         verb["asp"] = "i"
 
 
+def _negation_settles_its_words(tokens: list[dict]) -> None:
+    """وَمَا قَلَىٰ: a negation is said of the verb after it and hangs on it as its modifier (مَا نَجَحَ زَيْدٌ). The
+    parser may hang the verb under the particle, which then stands where the verb stands, as the object of the و
+    before it (Tasheel 1.7 p18: only a noun is a حرف جر's majrur); the two are swapped."""
+    s = facts.Sentence(tokens)
+    for ma in tokens:
+        if facts.reading(ma) != "negation":
+            continue
+        verb = next((k for k in s.kids(ma) if k["id"] > ma["id"] and facts.is_verb(k)), None)  # by whatever relation it hangs
+        if not verb or above([t["head"] for t in tokens], ma["head"], verb["id"]):
+            continue
+        for kid in s.kids(ma):
+            kid["head"] = verb["id"]
+        verb["head"], verb["rel"], ma["head"], ma["rel"] = ma["head"], ma["rel"], verb["id"], "MOD"
+
+
 @lru_cache(maxsize=1)
 def _retagged() -> frozenset[str]:
     """The words with a leaf that writes a new word class over the parser's (data: `retag`)."""
@@ -529,6 +557,7 @@ def stamp(tokens: list[dict]) -> None:
     _emphasis_lam(tokens, s)
     _emphasis_lam_frees_its_word(tokens)
     _hasr_frees_its_words(tokens)
+    _negation_settles_its_words(tokens)
     _wonder_settles_its_words(tokens)
     _asks_settles_its_words(tokens)
     _idhan_settles_its_words(tokens)

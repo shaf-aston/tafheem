@@ -3,9 +3,9 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_extra_ba, is_mabni, is_one, is_subject_pronoun
+from backend.services.nahw.book import ADVERB_FAMILIES, doer_written_in, extra_ba_on, frames, is_built_word, is_definite_kind, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
+from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -15,7 +15,7 @@ def praised_noun(token: dict, s: "Sentence") -> bool:
     hung it on the verb as a second subject or on the doer as its modifier. The follows axis
     and the slot both ask this, so neither calls it a صفة or a second doer."""
     head = s.head(token)
-    if not head or typed_or_parsed_case(token) != "u" or not noun_tagged(token):
+    if not head or typed_case_of(token) not in (None, "u") or not noun_tagged(token):
         return False
     verb = head if is_verb(head) else s.head(head)
     if not verb or not is_verb(verb) or not is_one(verb["lemma"], "praise_blame"):
@@ -42,6 +42,11 @@ class Sentence:
 
     def __init__(self, tokens: list[dict]):
         self.tokens = tokens
+        self.refresh()
+
+    def refresh(self) -> None:
+        """Read the tokens again, every lookup: for a change of more than links (a retag)."""
+        tokens = self.tokens
         self.by_id = {t["id"]: t for t in tokens}
         self._kids: dict[int, list[dict]] = {}
         for t in tokens:
@@ -80,8 +85,10 @@ class Sentence:
         One in jarr is no mubtada (لِمَنْ هذا الكتابُ: the جار ومجرور is the fronted khabar). The indefinite
         nasb noun after كم is its tamyeez, not what is told of it (كَمْ وَلَدًا فِي الْحَدِيقَةِ)."""
         words = [t for t in self.tokens if not is_suffix(t)]
+        # مَنِ الَّذِي يَضْمَنُ: the verb in a relative's صلة is no verb of the clause
         return next(((asked, told) for asked, told in zip(words, words[1:])
-                     if not any(is_verb(t) for t in words[words.index(asked):]) and not puts_in_jarr(asked, self)
+                     if not any(is_verb(t) for t in words[words.index(asked):] if t["id"] not in self.below(told) or not listed(told, "mawsul"))
+                     and not puts_in_jarr(asked, self)
                      and read_as(asked, "istifham") and is_one(asked["lemma"], "istifham", "heads")
                      and told["pos"] == "NOM" and not is_preposition(told)
                      and not (listed(asked, "tamyeez_head") and indefinite_nasb(told))), None)  # ما ذاهبٌ المسلمون: ما negates
@@ -108,8 +115,37 @@ class Sentence:
     def head(self, token: dict) -> dict | None:
         return self.by_id.get(token["head"])
 
+    def relink(self, token: dict, head: int, rel: str) -> None:
+        """Hang the token on the word with id `head` as `rel`, and keep the lookups that follow the links in step.
+        The kid lists are replaced, never edited, so a loop already walking one finishes on the links it started with."""
+        self._kids[token["head"]] = [k for k in self._kids.get(token["head"], []) if k is not token]
+        token["head"], token["rel"] = head, rel
+        kids = self._kids.get(head, [])
+        self._kids[head] = [*(k for k in kids if k["id"] < token["id"]), token, *(k for k in kids if k["id"] > token["id"])]
+        self._family.clear()
+        self.asked_pair = self._asked_pair()
+
+    def climb(self, token: dict | None, stop) -> dict | None:
+        """The first word at or above `token` that `stop` accepts. None when the climb runs past the root;
+        a word already met (links that loop) ends it there, as no word above it would be new."""
+        seen = set()
+        while token and not stop(token) and token["id"] not in seen:
+            seen.add(token["id"])
+            token = self.head(token)
+        return token
+
     def kids(self, token: dict) -> list[dict]:
         return self._kids.get(token["id"], [])
+
+    def below(self, token: dict) -> set[int]:
+        """The ids of every word hung under the token, at any depth."""
+        found, queue = set(), [token]
+        while queue:
+            for kid in self.kids(queue.pop()):
+                if kid["id"] not in found:
+                    found.add(kid["id"])
+                    queue.append(kid)
+        return found
 
     def family(self, word: dict) -> str | None:
         """Which family a governing word belongs to: inna, kana, kaada or zanna."""
@@ -132,7 +168,7 @@ class Sentence:
 
     def _family_of(self, word: dict) -> str | None:
         lemma = word["lemma"]
-        if (is_one(lemma, "inna") and not is_light(word)) or read_as(word, "la_jins"):
+        if (is_one(lemma, "inna") and not is_light(word) and not self.one_word_after(word)) or read_as(word, "la_jins"):
             return "inna"
         if is_one(lemma, "kana", "like_laysa"):
             # ما alone works as ليس only as ما الحجازية; any other ما (ما اسمك) governs nothing
@@ -177,8 +213,16 @@ class Sentence:
                    and not is_verb(before)
                    for before in (self.head(particle), self.by_id.get(particle["id"] - 1)))
 
+    def one_word_after(self, particle: dict) -> bool:
+        """ما جاء زيد لكن عمرو: a single word ends the sentence after the particle, so an inna sister has no خبر
+        to be given: typed bare, the light لكن (Tasheel 1.8 p20) that joins that word is meant. Only a sister the
+        books list as joining (closed_words atf)."""
+        return (typed_bare(particle) and is_one(particle["lemma"], "atf")
+                and sum(1 for t in self.tokens if t["id"] > particle["id"] and not is_suffix(t)) == 1)
+
     def negated_before(self, word: dict) -> bool:
-        return any(t["pos"] == "PRT" and t["id"] < word["id"] and is_one(t["lemma"], "negation")
+        # إِنَّ لِلَّهِ تِسْعَةً ... إِلَّا وَاحِدًا: an إن the particle tree reads as إنّ denies nothing, so إلا excepts
+        return any(t["pos"] == "PRT" and t["id"] < word["id"] and is_one(t["lemma"], "negation") and not read_as(t, "inna")
                    for t in self.tokens)
 
     def asked_of(self, token: dict) -> bool:
@@ -292,10 +336,28 @@ def previous_noun(token: dict, s: Sentence) -> dict | None:
     return None
 
 
+def describable_nouns(token: dict, s: Sentence) -> list[dict]:
+    """The nouns a word after its describing words may belong to: the noun straight before, the noun each صفة already hung on it
+    describes (التقرير السنوي الذي أصدرته: الذي describes التقرير, Tasheel 3.10.1: النعت يتبع المنعوت), and the مضاف a مضاف إليه is added to
+    (أرشيف المكتبة الوطنية الذي أسس: the archive was founded, not the library); the parser's link says which of them."""
+    nouns = []
+    noun = previous_noun(token, s)
+    while noun:
+        nouns.append(noun)
+        up = s.head(noun)
+        if not (noun["rel"] in ("MOD", "IDF") and up and up["id"] < noun["id"] and noun_tagged(up) and not is_verb(up)):
+            break
+        noun = up
+    return nouns
+
+
 def is_known(token: dict, s: Sentence) -> bool:
-    """معرفة: a noun with ال, a name, a pronoun, or a مضاف to a known noun (جميعُهم، كتابُ اللهِ);
-    a مضاف to an unknown one stays unknown (كتابُ رجلٍ)."""
-    if token.get("stt") == "d" or token["pos"] == "PROP":
+    """معرفة, the one reading of "is this noun definite" (Tasheel V1 p21: مضمر وعلم ومشار به وموصول ومضاف وذو أداة): a noun
+    with ال, a name, a pronoun, pointer or relative (CAMeL files many of these and every name indefinite, stt "i", so its
+    stt is read only for ال; a name CAMeL only guessed, "backoff", is no evidence, it files any unknown word a name), or a
+    مضاف to a known noun (جميعُهم، كتابُ اللهِ). A مضاف to an unknown one stays unknown
+    (Ibn Aqil V3 p43: it narrows the first, makes it definite only when the second is: غلام امرأة، غلام زيد)."""
+    if token.get("stt") == "d" or (is_name(token) and not token.get("guessed")) or is_definite_kind(token.get("pos_camel", "")):
         return True
     added = next((k for k in s.kids(token) if k["rel"] == "IDF"), None) if token.get("stt") == "c" else None
     return bool(added) and is_known(added, s)
@@ -332,7 +394,7 @@ def excepted_after_la(token: dict, s: Sentence) -> tuple[dict, dict, dict] | Non
 def ma_kind(token: dict, s: Sentence) -> str | None:
     """What a ما with a verb hung on it after it is, by its عائد (مغني اللبيب، ما المصدرية):
     the relative's صلة holds a pronoun going back to it, ما المصدرية's never does. So "relative"
-    while the verb has a place one could sit in: a هـ on it (أعجبني ما كتبتَه), a hidden هو for
+    while the verb has a place one could sit in: a هـ on it or on its jar (أعجبني ما كتبتَه, سأنبئك بتأويل ما لم تستطع عليه صبرا), a hidden هو for
     its doer (ما نفعك), an object it may take and lacks (أكلتُ ما طبختَ, the default when both
     readings stand). "masdar" when every place is taken by another word: its object written
     (أكره ما يهمل الطلابُ دروسَهم), a passive's نائب فاعل written (بما تُرِكَ العملُ), or a verb
@@ -343,7 +405,8 @@ def ma_kind(token: dict, s: Sentence) -> str | None:
     if not verb:
         return None
     kids = s.kids(verb)
-    pronouns = [t for t in kids if is_suffix(t) and t.get("pos_camel") == "pron"]
+    # the verb's own pronouns, and those of the jar it holds (استطعتَ عليه)
+    pronouns = [t for k in kids for t in ([k] if is_suffix(k) else s.kids(k) if is_preposition(k) else []) if is_suffix(t) and t.get("pos_camel") == "pron"]
     if any(strip_diacritics(t["form"]).strip("+") == "ه" for t in pronouns):  # the هـ that goes back to ما
         return "relative"
     named = [t for t in kids if t["rel"] in ("SBJ", "OBJ") and not is_suffix(t) and not is_verb(t)]
@@ -377,5 +440,53 @@ def quoted_head(token: dict, s: Sentence) -> bool:
     قُلْتُ أَنَا ذَاهِبٌ: a verb of the first or second person holds its doer in itself (its تاء)."""
     head = s.head(token)
     return (token["rel"] == "OBJ" and (typed_or_parsed_case(token) == "u" or is_subject_pronoun(token)) and head is not None and is_verb(head)
-            and head["id"] < token["id"] and strip_diacritics(head["lemma"]) in frames()["said_clause"]["verbs"]
+            and head["id"] < token["id"] and says(head["lemma"])
             and holds_doer(head, (t for t in s.kids(head) if t is not token and t["id"] < token["id"])))
+
+
+def is_zarf(token: dict, s: Sentence) -> bool:
+    """A listed time or place word, or كل/بعض or a number counting one (كلَّ يومٍ، عشرَ سنينَ، أَرْبَعِينَ لَيْلَةً): the number
+    stands in for the ظرف it counts (Awdah al-Masalik V2 p231, باب المفعول فيه: أسماء العدد المميزة بهما، سرت عشرين يوما)."""
+    if token["pos"] == "PRT":
+        return False
+    if any(listed(token, family) for family in ADVERB_FAMILIES):
+        return True
+    return (listed(token, "zarf_zaman", "carriers") or counts(token)) and any(
+        k["rel"] in ("IDF", "TMZ") and any(listed(k, family) for family in ADVERB_FAMILIES) for k in s.kids(token))
+
+
+def counts(token: dict) -> bool:
+    """A number (3 to 10 and the hundred added to what they count; 11 to 99 followed by their تمييز, compound
+    ones too), not a measure word (رطل)."""
+    return (listed(token, "adad_mudaf") or listed(token, "compound_number")
+            or (listed(token, "tamyeez_head") and not listed(token, "tamyeez_head", "measures")))
+
+
+def zarf_in_nasb(token: dict, s: Sentence) -> bool:
+    """بَيْنَ الطَّرَفَيْنِ، بَعْدَ الْفَتْحِ: a listed time or place word hung as a modifier, vowelled with a fatha or a case that
+    shows nothing (ين), or bare where it is a place word added to a noun of its own (وقف التصعيد بين الطرفين, بعد الفتح,
+    بيننا): no other word of the books' lists is spelled so, and a noun's نعت or مضاف إليه is not put in nasb, so it is the zarf
+    (Tasheel 3.2 p67). Not a built word (أَيْنَ الْكِتَابُ: the khabar), one whose case is unseen (الْيَدُ الْعُلْيَا: a صفة), nor what a number counts
+    (ثَلَاثِ سِنِينَ: the number's مضاف إليه)."""
+    bare_place = typed_bare(token) and only_adverb(token["lemma"]) and listed(token, "zarf_makan")         and any(k["rel"] == "IDF" for k in s.kids(token))
+    return (token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") and (bare_place or not typed_bare(token))
+            and not is_built(token) and not case_unseen(token) and is_zarf(token, s)
+            and not (s.head(token) and listed(s.head(token), "adad_mudaf")))
+
+
+def is_cut_off(token: dict) -> bool:
+    """أَمَّا بَعْدُ، مِنْ قَبْلُ: قبل، بعد and the directions typed on the damma with nothing added to them are built
+    (closed_words zarf_zaman `cut_off`; Ibn Aqil V3 p73)."""
+    return (token["pos"] != "PRT" and typed_case_of(token) == "u" and not token.get("mudaf")
+            and listed(token, "zarf_zaman", "cut_off"))
+
+
+def stays_adverb(token: dict) -> bool:
+    """قط، عوض (closed_words zarf_zaman `never_leaves`) and a قبل/بعد cut off: words that are never a doer, mubtada,
+    khabar or اسم كان; with ال it is a plain noun (الْقِطُّ the cat)."""
+    return token["pos"] != "PRT" and token.get("stt") != "d" and (listed(token, "zarf_zaman", "never_leaves") or is_cut_off(token))
+
+
+def is_built_zarf(token: dict) -> bool:
+    """أمسِ، حيثُ، الآن: a time or place word built on one ending (closed_words `built`), or one cut off from its مضاف إليه."""
+    return token["pos"] != "PRT" and (is_built_word(token["lemma"]) or is_cut_off(token))

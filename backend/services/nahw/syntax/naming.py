@@ -12,7 +12,7 @@ from typing import NamedTuple, TypedDict
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import (
     book_spelling, extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
-    book_map, book_merges, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
+    book_map, book_merges, takes_object, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
 from backend.services.nahw.syntax import condition, facts, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
@@ -133,9 +133,11 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
     attached = {t["id"]: found.role if (found := walker.walk(answers[t["id"]])) else None
                 for t in tokens if t["id"] not in base_ids}
     role_by_id = {token["id"]: role for token, role in zip(bases, named)} | attached
-    # a particle with a مجرور under it is a حرف جر: the one name, for card and picture
+    # a particle with a مجرور under it is a حرف جر: the one name, for card and picture; so is a جار whose
+    # majrur is أَنْ and its verb, a masdar in the place of jarr (إِلَى أَنْ يُوَفِّرُوا; Tasheel 3.3 p79)
     for t in tokens:
         if t["pos"] == "PRT" and any(role_by_id.get(kid["id"]) == NAMED.majroor
+                                     or is_one(t["lemma"], "jarr") and is_one(kid["lemma"], "nasb_mudari")
                                      for kid in tokens if kid["head"] == t["id"]):
             role_by_id[t["id"]] = NAMED.harf_jarr
     named = [role_by_id[token["id"]] for token in bases]
@@ -175,7 +177,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
              **_governed(i, role, token, bases, tokens, governed_by, word_of, answers[token["id"]], named)}
             for i, (role, case, token, found) in enumerate(zip(named, cases, bases, walked))]
     for found_condition in conditions:
-        _conditioned(found, found_condition, bases)
+        _conditioned(found, found_condition, bases, s)
     for step in FINISHES:
         step(Named(found, bases, tokens, s, words))
     return found
@@ -249,9 +251,7 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
             return kinds["idafa"]["min"]  # ثلاثُ سنينَ: a number is a noun, though CAMeL tags it an adjective
         if (facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ") and not facts.is_elative(mudaf):
             return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite; أعلى صوتِه is not, it works on nothing
-        bare = strip_diacritics(token["form"]).strip("+").removeprefix("ال")
-        if any(is_one(bare, family) or is_one(bare + "ا", family) or facts.listed(token, family) for family in ("zarf_zaman", "zarf_makan")) \
-                or bare in kinds["time"]:
+        if facts.is_zarf(token, s):
             return kinds["idafa"]["fi"]  # مكرُ الليلِ
         bare = book_spelling(token["lemma"])
         return kinds["idafa"]["min" if bare in kinds["material"] else "lam"]
@@ -285,7 +285,7 @@ def _jazm_by_condition(c: dict, named: list, cases: list) -> None:
             cases[c[part]] = "jazm"
 
 
-def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
+def _conditioned(found: list[dict], c: dict, bases: list[dict], s: facts.Sentence) -> None:
     """A condition the book's test found (syntax.condition): a conditional noun keeps the place
     it was named for (مَنْ يصبرْ: مبتدأ); with none, it takes the book's (_noun_place), never
     the relative the picture would call it; a جازم opener governs both its verbs, rather
@@ -294,7 +294,7 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
     opener = found[c["opener"]]
     # a time or place word (متى، إذا) is always the ظرف, whatever place it was named for
     if frame["noun"] and (not opener["role"] or opener["role"] == NAMED.harf or frame["adverb"]):
-        opener.update(role=_noun_place(frame, c["verb"], found, bases[c["verb"]]), book=None)
+        opener.update(role=_noun_place(frame, c["verb"], found, bases[c["verb"]], s, bases[c["opener"]]), book=None)
     if frame["built"]:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
     opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"],
@@ -316,18 +316,30 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict]) -> None:
                              "tie": c["tie"] if part == "answer" else None, "named": frame.get(f"{part}_named")}
 
 
-def _noun_place(frame: dict, verb: int, found: list[dict], verb_token: dict) -> str:
+def _noun_place(frame: dict, verb: int, found: list[dict], verb_token: dict, s: facts.Sentence, opener: dict) -> str:
     """The place of a conditional noun the parser gave none (Tasheel): a time or place word
     (متى، أينما) is a ظرف; مَنْ or ما whose verb already has its object (مَنْ صامَ رمضانَ) is
     the مبتدأ; one before a verb of the first or second person with no object (مَا تَزْرَعْ)
-    is that object, the doer being the hidden أنت. Else it is called only what it is: its verb
-    may need no object (مبتدأ) or lack the one it stands for (مفعول به), and the parser has not said which."""
+    is that object, the doer being the hidden أنت. One before a verb the book lists as taking none (طَالَ)
+    is the مبتدأ (intransitive_verbs), and so is one before a verb with its object pronoun written on it
+    (فَمَنْ أَخَذَهُ) or a كان-sister, which takes a khabar and no object (مَنْ كَانَ يُؤْمِنُ: Tasheel 1.9, ترفع الاسم
+    وتنصب الخبر). A verb holding no doer of its own holds the pronoun back to the noun, so it is the مبتدأ
+    (مَنْ ذَبَحَ قَبْلَ الصَّلَاةِ); one with a doer of its own and no object has the noun as its fronted object
+    (مَا تَدَّخِرِ الْأُسْرَةُ), as asked.man_before_verb reads مَنْ (Ibn Ya'ish on the Mufassal). Else it is
+    called only what it is: its verb may need no object (مبتدأ) or lack the one it stands for (مفعول به),
+    and the parser has not said which."""
     places = frame["places"]
     if frame["adverb"]:
         return places["adverb"]
     if any(word["role"] == places["object"] and word.get("governor") == verb for word in found):
         return places["filled"]
     if verb_token.get("per") in ("1", "2"):
+        return places["object"]
+    if is_one(verb_token["lemma"], "intransitive_verbs") or in_family(verb_token["lemma"], "kana")             or any(k["rel"] == "OBJ" for k in s.kids(verb_token)):
+        return places["filled"]
+    if not facts.holds_doer(verb_token, [k for k in s.kids(verb_token) if k is not opener]):
+        return places["filled"]
+    if takes_object(verb_token["lemma"]) and not facts.is_passive(verb_token):
         return places["object"]
     return frame["opener"]
 

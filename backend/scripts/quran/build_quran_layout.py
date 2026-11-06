@@ -26,9 +26,14 @@ from __future__ import annotations
 import sqlite3
 import sys
 import time
+from contextlib import closing
 from pathlib import Path
 
 import httpx
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+
+from backend.services.core.building import building  # noqa: E402, needs the path above
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data" / "quran"
 DATABASE = DATA_DIR / "layout.db"
@@ -99,31 +104,24 @@ def pages_of(client: httpx.Client, surah: int) -> list[tuple[int, int, int]]:
 
 
 def build() -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    temporary = DATABASE.with_suffix(".building")
-    temporary.unlink(missing_ok=True)
+    with building(DATABASE) as scratch, closing(sqlite3.connect(scratch)) as db:
+        db.executescript(SCHEMA)
 
-    db = sqlite3.connect(temporary)
-    db.executescript(SCHEMA)
+        with httpx.Client() as client:
+            for surah in range(1, 115):
+                rows = pages_of(client, surah)
+                db.executemany("INSERT INTO page (surah, ayah, page) VALUES (?, ?, ?)", rows)
+                db.commit()
+                print(f"  surah {surah:3}: {len(rows):3} ayahs, pages {rows[0][2]}–{rows[-1][2]}")
+                time.sleep(PAUSE_SECONDS)
 
-    with httpx.Client() as client:
-        for surah in range(1, 115):
-            rows = pages_of(client, surah)
-            db.executemany("INSERT INTO page (surah, ayah, page) VALUES (?, ?, ?)", rows)
-            db.commit()
-            print(f"  surah {surah:3}: {len(rows):3} ayahs, pages {rows[0][2]}–{rows[-1][2]}")
-            time.sleep(PAUSE_SECONDS)
+        # Fail loud rather than shipping a database that is quietly wrong: the
+        # Madani printing has exactly 604 pages and every one of them carries text.
+        seen = {row[0] for row in db.execute("SELECT DISTINCT page FROM page")}
+        if seen != set(range(1, TOTAL_PAGES + 1)):
+            missing = sorted(set(range(1, TOTAL_PAGES + 1)) - seen)
+            raise SystemExit(f"Not the {MUSHAF}, {len(missing)} pages have no ayah: {missing[:10]}")
 
-    # Fail loud rather than shipping a database that is quietly wrong: the
-    # Madani printing has exactly 604 pages and every one of them carries text.
-    seen = {row[0] for row in db.execute("SELECT DISTINCT page FROM page")}
-    db.close()
-    if seen != set(range(1, TOTAL_PAGES + 1)):
-        temporary.unlink(missing_ok=True)
-        missing = sorted(set(range(1, TOTAL_PAGES + 1)) - seen)
-        raise SystemExit(f"Not the {MUSHAF}, {len(missing)} pages have no ayah: {missing[:10]}")
-
-    temporary.replace(DATABASE)
     print(f"Built {DATABASE}, {MUSHAF}")
 
 

@@ -43,4 +43,5 @@ async def analyze_sentence(request: AnalyzeRequest, response: Response = None) -
         tree=read["tree"],
         parse=read.get("parse"),
         read_failed=read.get("read_failed", False),
+        unvowelled=read.get("unvowelled"),
     )

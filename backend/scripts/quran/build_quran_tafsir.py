@@ -36,12 +36,14 @@ from __future__ import annotations
 import sqlite3
 import sys
 import time
+from contextlib import closing
 from pathlib import Path
 
 import httpx
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
+from backend.services.core.building import building  # noqa: E402, needs the path above
 from backend.services.text.markup import as_text  # noqa: E402, needs the path above
 
 DATA_DIR = Path(__file__).parent.parent.parent / "data" / "quran"
@@ -154,64 +156,56 @@ def read_passage(surah: int, ayah: int, payload: dict) -> tuple[str, list[int]]:
 
 def build() -> None:
     counts = ayah_counts()
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    temporary = DATABASE.with_suffix(".building")
-    temporary.unlink(missing_ok=True)
-
-    db = sqlite3.connect(temporary)
-    db.executescript(SCHEMA)
-
     fetched = 0
+    with building(DATABASE) as scratch, closing(sqlite3.connect(scratch)) as db:
+        db.executescript(SCHEMA)
 
-    with httpx.Client() as client:
-        about = whose(client)
-        for surah, total in counts:
-            done: set[int] = set()
-            for ayah in range(1, total + 1):
-                if ayah in done:
-                    continue
-                payload = _get(client, f"/tafsirs/{TAFSIR}/by_ayah/{surah}:{ayah}")
-                fetched += 1
+        with httpx.Client() as client:
+            about = whose(client)
+            for surah, total in counts:
+                done: set[int] = set()
+                for ayah in range(1, total + 1):
+                    if ayah in done:
+                        continue
+                    payload = _get(client, f"/tafsirs/{TAFSIR}/by_ayah/{surah}:{ayah}")
+                    fetched += 1
 
-                text, covered = read_passage(surah, ayah, payload)
-                # Marked done whether or not the passage is stored: an ayah
-                # this answer covered has been asked about, and asking again
-                # costs a request for the same words.
-                done.update(covered)
-                if not text or not covered:
+                    text, covered = read_passage(surah, ayah, payload)
+                    # Marked done whether or not the passage is stored: an ayah
+                    # this answer covered has been asked about, and asking again
+                    # costs a request for the same words.
+                    done.update(covered)
+                    if not text or not covered:
+                        time.sleep(PAUSE_SECONDS)
+                        continue
+
+                    # The passage is named by the ayah it opens on, so the same
+                    # passage reached from any of its ayahs is stored once.
+                    entry = f"{surah}:{min(covered)}"
+                    db.execute("INSERT OR IGNORE INTO entry (id, text) VALUES (?, ?)", (entry, text))
+                    db.executemany(
+                        "INSERT OR REPLACE INTO covers (surah, ayah, entry) VALUES (?, ?, ?)",
+                        [(surah, number, entry) for number in covered],
+                    )
                     time.sleep(PAUSE_SECONDS)
-                    continue
 
-                # The passage is named by the ayah it opens on, so the same
-                # passage reached from any of its ayahs is stored once.
-                entry = f"{surah}:{min(covered)}"
-                db.execute("INSERT OR IGNORE INTO entry (id, text) VALUES (?, ?)", (entry, text))
-                db.executemany(
-                    "INSERT OR REPLACE INTO covers (surah, ayah, entry) VALUES (?, ?, ?)",
-                    [(surah, number, entry) for number in covered],
-                )
-                time.sleep(PAUSE_SECONDS)
+                db.commit()
+                held = db.execute("SELECT COUNT(*) FROM covers WHERE surah = ?", (surah,)).fetchone()[0]
+                print(f"  surah {surah:3}: {held:3}/{total} ayahs covered  ({fetched} requests so far)")
 
-            db.commit()
-            held = db.execute("SELECT COUNT(*) FROM covers WHERE surah = ?", (surah,)).fetchone()[0]
-            print(f"  surah {surah:3}: {held:3}/{total} ayahs covered  ({fetched} requests so far)")
+        name, author = about
+        db.execute("INSERT INTO about (name, author) VALUES (?, ?)", (name, author))
+        db.commit()
 
-    name, author = about
-    db.execute("INSERT INTO about (name, author) VALUES (?, ?)", (name, author))
-    db.commit()
+        ayahs = db.execute("SELECT COUNT(*) FROM covers").fetchone()[0]
+        entries = db.execute("SELECT COUNT(*) FROM entry").fetchone()[0]
 
-    ayahs = db.execute("SELECT COUNT(*) FROM covers").fetchone()[0]
-    entries = db.execute("SELECT COUNT(*) FROM entry").fetchone()[0]
-    db.close()
+        # Fail loud rather than shipping a database that is mostly empty. A tafsir
+        # that reached under half the Qur'an means the run broke, not that the
+        # scholar was quiet.
+        if ayahs < 3000:
+            raise SystemExit(f"Only {ayahs} ayahs covered, that is a broken run, not a tafsir.")
 
-    # Fail loud rather than shipping a database that is mostly empty. A tafsir
-    # that reached under half the Qur'an means the run broke, not that the
-    # scholar was quiet.
-    if ayahs < 3000:
-        temporary.unlink(missing_ok=True)
-        raise SystemExit(f"Only {ayahs} ayahs covered, that is a broken run, not a tafsir.")
-
-    temporary.replace(DATABASE)
     print(f"Built {DATABASE}, {name}: {entries} passages over {ayahs} ayahs, {fetched} requests")
 
 

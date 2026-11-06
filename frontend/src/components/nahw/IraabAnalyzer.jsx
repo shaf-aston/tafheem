@@ -29,6 +29,7 @@ import BookPath from '../grammar/BookPath'
 import CopyButton from '../ui/buttons/CopyButton'
 import Disclosure from '../ui/overlays/Disclosure'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
+import StatusNote from '../ui/feedback/StatusNote'
 import ExampleChips from '../ui/inputs/ExampleChips'
 import MicButton from '../ui/buttons/MicButton'
 import SearchBox from '../ui/inputs/SearchBox'
@@ -144,10 +145,10 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
       <div className="flex items-start justify-between gap-3 flex-wrap">
         {data.summary && (
           <div
-            className="rise-in flex items-center gap-2 text-sm px-3 py-2 rounded-[var(--radius-md)]
+            className="rise-in flex items-center gap-2 type-ui px-3 py-2 rounded-[var(--radius-md)]
               bg-[var(--surface)] border border-[var(--border)]"
           >
-            <span className="text-[var(--text-faint)] text-xs uppercase tracking-wide">Sentence</span>
+            <span className="text-[var(--text-faint)] type-label uppercase tracking-wide">Sentence</span>
             <span className="text-[var(--text)]">{data.summary}</span>
             <SourceBadge source={data.source} />
           </div>
@@ -157,6 +158,12 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
           <CopyButton text={buildIraabExportText(data)} />
         </div>
       </div>
+
+      {data.unvowelled && (
+        <StatusNote>
+          {data.unvowelled.en} <ArabicText size="tiny">{data.unvowelled.ar}</ArabicText>
+        </StatusNote>
+      )}
 
       {data.tree && (
         // An ayah drawn from its record carries the words the book supplies,

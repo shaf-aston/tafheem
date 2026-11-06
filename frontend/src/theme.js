@@ -24,7 +24,7 @@ const isColor = (value) => typeof value === 'string' && value.startsWith('#')
 const THEMES_GROUP = 'themes'
 const REFERENCE = '@'
 
-const { base: BASE_THEME, 'hint-key': HINT_KEY, device: DEVICE, looks: LOOKS, tone: TONE } = theme[THEMES_GROUP]
+const { base: BASE_THEME, device: DEVICE, looks: LOOKS, tone: TONE } = theme[THEMES_GROUP]
 
 /** Every look there is, in file order. Nothing else in the code names one. */
 export const THEME_NAMES = Object.keys(LOOKS)
@@ -134,19 +134,6 @@ export function applyTheme(root = document.documentElement, name = BASE_THEME) {
   root.dataset.theme = active
   root.style.colorScheme = colorScheme(schemeOf(active))
   doc.querySelector('meta[name="theme-color"]')?.setAttribute('content', variables['--bg'])
-}
-
-/**
- * Keep the reader's choice where the next page load can see it before any script
- * runs. Only the app calls this: the landing page always wears the dark look and
- * must not overwrite what the reader chose here.
- */
-export function rememberTheme(choice) {
-  try {
-    localStorage.setItem(HINT_KEY, choice)
-  } catch {
-    // Private browsing: the first paint is the dark ground, then the right one.
-  }
 }
 
 /**

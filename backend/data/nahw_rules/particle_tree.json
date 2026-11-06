@@ -529,6 +529,28 @@
         ]
       },
       {
+        "branch": "لكن",
+        "book": "1.8 p20",
+        "is": "لكن",
+        "split": "doubled",
+        "children": [
+          {
+            "branch": "لكن الخفيفة",
+            "book": "1.8 p20",
+            "is": "no",
+            "split": "starts",
+            "children": [
+              {
+                "branch": "لكن بعد الواو، حرف ابتداء لا عاطفة (مغني اللبيب 1/384)",
+                "book": "1.8 p20",
+                "is": "yes",
+                "role": "istinaf"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "branch": "الواو",
         "book": "3.10.4 p95",
         "is": "و",

@@ -49,7 +49,7 @@ from pathlib import Path
 from backend.services import ai
 from backend.services.dictionary import sentence_meaning
 from backend.services.dictionary import service as dictionary_service
-from backend.services.learner import progress_store
+from backend.services.learner import progress_db
 from backend.services.quran import search as quran_search
 from backend.services.text.arabic_text import words
 
@@ -81,20 +81,20 @@ def offline():
     the gitignored Qur'an index and dictionary left out, so a laptop and CI score alike; all put
     back afterwards. The Qur'an paths are scored by score_quran instead."""
     handed: list[str] = []
-    real = (ai.translate_sentence, progress_store.data_path, quran_search.whole_ayah, quran_search.ayah_run,
+    real = (ai.translate_sentence, progress_db.data_path, quran_search.whole_ayah, quran_search.ayah_run,
             dictionary_service.meaning_of)
     with tempfile.TemporaryDirectory() as folder:
         ai.translate_sentence = lambda text, facts: handed.append(facts) or {"english": "-"}
-        progress_store.data_path = lambda _name: Path(folder) / "progress.db"
+        progress_db.data_path = lambda _name: Path(folder) / "progress.db"
         quran_search.whole_ayah = quran_search.ayah_run = lambda _text: None
         dictionary_service.meaning_of = lambda _word: ""
-        progress_store.reset_connection()
+        progress_db.reset_connection()
         try:
             yield handed
         finally:
-            (ai.translate_sentence, progress_store.data_path, quran_search.whole_ayah, quran_search.ayah_run,
+            (ai.translate_sentence, progress_db.data_path, quran_search.whole_ayah, quran_search.ayah_run,
              dictionary_service.meaning_of) = real
-            progress_store.reset_connection()
+            progress_db.reset_connection()
 
 
 def score(entries: list[dict], show: int = 0) -> dict:

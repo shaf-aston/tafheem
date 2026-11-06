@@ -18,7 +18,7 @@ def asked_man(bases: list[dict], tokens: list[dict]) -> None:
         first["pos_camel"] = "pron_interrog"
 
 
-def man_before_verb(bases: list[dict], tokens: list[dict]) -> None:
+def man_before_verb(bases: list[dict], s: Sentence) -> None:
     """مَنْ أَكْرَمَ ضَيْفًا، مَنْ أَكْرَمْتَ: an opening مَنْ the parser hung loose on the verb after
     it is a noun with a job. A verb whose doer is the hidden هو holds the pronoun back to it, so
     مَنْ is the مبتدأ and the verb its khabar, as مَنْ جَاءَ reads; a verb with a doer of its own
@@ -26,17 +26,16 @@ def man_before_verb(bases: list[dict], tokens: list[dict]) -> None:
     other), so one that has its object already (مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا) leaves مَنْ the مبتدأ."""
     if len(bases) < 2 or not (_man(man := bases[0]) and man["rel"] == "MOD" and is_verb(verb := bases[1])):
         return
-    s = Sentence(tokens)
     own_object = any(k["rel"] == "OBJ" and k is not man for k in s.kids(verb))
     if not own_object and (verb.get("per") in ("1", "2") or any(subject_link(k) for k in s.kids(verb))):
-        man["head"], man["rel"] = verb["id"], "OBJ"
+        s.relink(man, verb["id"], "OBJ")
         return
     if (held := s.head(man)) is not verb:  # مَنْ نَصَرَ بَكْرًا: a منصوب has no عامل but the verb
         if held is None or typed_case_of(held) != "a":
             return
-        held["head"], held["rel"] = verb["id"], "OBJ"
-    man["head"], man["rel"] = 0, "---"
-    verb["head"], verb["rel"] = man["id"], "MOD"
+        s.relink(held, verb["id"], "OBJ")
+    s.relink(man, 0, "---")
+    s.relink(verb, man["id"], "MOD")
 
 
 def asked_anna(tokens: list[dict]) -> None:
@@ -47,38 +46,41 @@ def asked_anna(tokens: list[dict]) -> None:
             token.update(pos="NOM", pos_camel="adv_interrog")
 
 
-def asked_before_verb(tokens: list[dict]) -> None:
+def asked_before_verb(s: Sentence) -> None:
     """كَمْ طَالِبًا نَجَحَ، مَاذَا حَدَثَ، كَمْ بَلَدٍ زُرْتُ: a question noun that asks for the object (closed_words
     istifham before_verb) next to the verb after it, whichever of the two the parser hung on the other. A verb
     with a doer of its own holds no pronoun back to the question noun, and a مبتدأ's khabar needs one (كَمْ كِتَابًا
     قَرَأْتَهُ), so with no object of its own, active and not one the book lists as taking none, it has the question
     noun as its fronted object (man_before_verb reads مَنْ the same); a verb holding no doer of its own holds the pronoun back to it, so
-    the question noun is the مبتدأ and the verb its khabar, as مَنْ جَاءَ reads."""
-    s = Sentence(tokens)
+    the question noun is the مبتدأ and the verb its khabar, as مَنْ جَاءَ reads. How, when and where (state, place_time)
+    are said of their verb whatever it holds (أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ): the verb the parser hung under the question
+    noun takes its place and the noun hangs on the verb."""
+    tokens = s.tokens
     for token in tokens:
-        if book_map("istifham", "before_verb").get(strip_diacritics(token["form"])) != "object":
+        asked = book_map("istifham", "before_verb").get(strip_diacritics(token["form"]))
+        if asked is None or (verb := _verb_beside(token, s)) is None:
             continue
-        verb = _verb_beside(token, s)
-        if verb is None:
+        if asked != "object":
+            if verb["head"] == token["id"]:
+                _hang_under(s, token, verb, "MOD")
             continue
         kids = [k for k in s.kids(verb) if k is not token]
         if holds_doer(verb, kids):
             if (token["rel"] != "OBJ" and not is_passive(verb) and not is_one(verb["lemma"], "intransitive_verbs")
                     and not any(k["rel"] == "OBJ" for k in kids)):
-                _hang_under(token, verb, "OBJ")
+                _hang_under(s, token, verb, "OBJ")
         elif is_passive(verb) or not takes_object(verb["lemma"]) or is_one(verb["lemma"], "intransitive_verbs"):
             if s.head(token) is verb:
-                _hang_under(verb, token, "MOD")
-        s = Sentence(tokens)
+                _hang_under(s, verb, token, "MOD")
 
 
-def asked_of_kana(tokens: list[dict]) -> None:
+def asked_of_kana(s: Sentence) -> None:
     """كَيْفَ أَصْبَحْتَ، أَيْنَ كُنْتَ، مَاذَا كَانَ الْجَوَابُ: a question noun (closed_words istifham before_verb) before a
     كان-sister that has said no khabar is that khabar, brought to the front (قَائِمًا كَانَ زَيْدٌ); the doer
     after the verb is its اسم. مَنْ كَانَ مَعَكَ: مَنْ, with no doer after the verb, is its اسم. Only the verb straight
     after it is its own (مَنْ ظَلَمَنَا فَلَيْسَ صَدِيقًا: ليس is the شرط's answer, not مَنْ's). The parser hung it as a
     modifier or an object."""
-    s = Sentence(tokens)
+    tokens = s.tokens
     for token in tokens:
         asks = book_map("istifham", "before_verb").get(strip_diacritics(token["form"])) is not None
         verb = _verb_beside(token, s)
@@ -86,11 +88,11 @@ def asked_of_kana(tokens: list[dict]) -> None:
             continue
         kids = [k for k in s.kids(verb) if k is not token]
         if asks and not any(k["rel"] == "PRD" for k in kids):
-            _hang_under(token, verb, "PRD")
+            _hang_under(s, token, verb, "PRD")
         elif not asks and not any(subject_link(k) for k in kids):
-            _hang_under(token, verb, "SBJ")
+            _hang_under(s, token, verb, "SBJ")
             token["pos_camel"] = "pron_interrog"
-        s = Sentence(tokens)
+            s.refresh()  # the question word now counts in `asks`
 
 
 def _verb_beside(token: dict, s: Sentence) -> dict | None:
@@ -101,11 +103,11 @@ def _verb_beside(token: dict, s: Sentence) -> dict | None:
     return next((k for k in s.kids(token) if is_verb(k) and k["id"] > token["id"] and k["rel"] == "MOD"), None)
 
 
-def _hang_under(low: dict, high: dict, rel: str) -> None:
+def _hang_under(s: Sentence, low: dict, high: dict, rel: str) -> None:
     """Swap two words: `high` takes `low`'s place in the sentence and `low` hangs on it as `rel`."""
     if high["head"] == low["id"]:
-        high["head"], high["rel"] = low["head"], low["rel"]
-    low["head"], low["rel"] = high["id"], rel
+        s.relink(high, low["head"], low["rel"])
+    s.relink(low, high["id"], rel)
 
 
 def _man(token: dict) -> bool:

@@ -35,8 +35,8 @@ def cards(sentence: str) -> list[dict]:
 
 
 @contextmanager
-def parsed_as(form: str, head: str | None = None, rel: str | None = None):
-    """Inside it, the parser hangs the word typed `form` on the word `head` and/or by `rel`, as
+def parsed_as(form: str, head: str | int | None = None, rel: str | None = None):
+    """Inside it, the parser hangs the word typed `form` on the word `head` (or the token with that id) and/or by `rel`, as
     another machine's floats may when its scores sit near a tie (بعيدا on ضل by 0.27): a repair
     that must hold whichever way the tie falls is tested both ways. No reading is kept across it."""
     decode = catib_onnx._decode
@@ -46,7 +46,7 @@ def parsed_as(form: str, head: str | None = None, rel: str | None = None):
         forms = [t["form"] for t in toks]
         for i, t in enumerate(toks):
             if t["form"] == form:
-                heads[i], rels[i] = forms.index(head) + 1 if head else heads[i], rel or rels[i]
+                heads[i], rels[i] = (head if isinstance(head, int) else forms.index(head) + 1) if head else heads[i], rel or rels[i]
         return heads, rels
 
     catib_onnx._decode = forced
@@ -65,3 +65,29 @@ def tree_roles(node: dict, key: str = "role") -> list:
     for child in node.get("children", []):
         found += tree_roles(child, key)
     return found
+
+
+# Two sentences, one of each kind, so both branches of the engine are walked.
+VERBAL = "ذهب الولد إلى المدرسة"     # jumlah fi'liyyah
+
+
+NOMINAL = "الكتاب جديد"              # jumlah ismiyyah
+
+
+def analysed(sentence: str) -> list[dict]:
+    """The cards as the page gets them: the rule engine names no job, the book's tree does."""
+    return _read(sentence)["words"]
+
+
+def _read(sentence: str) -> dict:
+    return iraab.analyze(sentence)
+
+
+NADA = "فَنَادَى بِأَعْلَى صَوْتِهِ وَيْلٌ لِلأَعْقَابِ مِنَ النَّارِ مَرَّتَيْنِ أَوْ ثَلاَثًا"
+
+
+def _role(sentence: str, i: int) -> str:
+    return iraab.analyze(sentence, recorded=False)["words"][i]["role"]
+
+
+_ATTENTION = "وها حرف تنبيه مبني على السكون لا محل له من الإعراب"

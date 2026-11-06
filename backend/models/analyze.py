@@ -36,7 +36,7 @@ ROLE_KEYS = frozenset({
 
 
 # Every word type a card can carry, as frontend/src/config/grammar.json `types` names them
-# (punc is the one the page never labels). tests/nahw/test_rule_engine.py holds the two together.
+# (punc is the one the page never labels). tests/nahw/test_role_keys.py holds the two together.
 WORD_TYPES = frozenset({"ism", "fi'l", "harf", "damir", "zarf", "punc"})
 
 
@@ -62,6 +62,9 @@ class WordAnalysis(BaseModel):
     # word it follows. Unset where the parser drew no such word.
     governor: int | None = None
     follows: int | None = None
+    # What the app had to guess because no harakat were typed: {"vox": "p"} = read active, passive is the
+    # other reading; {"via": 0} = this role rests on word 0's guess. Unset where the vowels settle it.
+    assumed: dict[str, str | int] | None = None
 
     @classmethod
     def from_raw(cls, w: dict) -> "WordAnalysis":
@@ -87,6 +90,7 @@ class WordAnalysis(BaseModel):
             book=w.get("book"),
             governor=w.get("governor"),
             follows=w.get("follows"),
+            assumed=w.get("assumed"),
         )
 
 
@@ -103,3 +107,6 @@ class AnalyzeResponse(BaseModel):
     # True when the reader broke on this sentence (the server log has why): its blank
     # roles are then a crash, not words the rules could not name.
     read_failed: bool = False
+    # {"ar", "en"}: the one line the page shows when the sentence was typed with no short vowel on any word,
+    # so voice and case were read from word order. Unset when any word carries a vowel.
+    unvowelled: dict[str, str] | None = None

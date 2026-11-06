@@ -26,6 +26,10 @@ const siblingImports = (feature) => ({
   },
 })
 
+// Class-name patterns for the house-rule lint below, as esquery regexes.
+const CLASS_Z = String.raw`/(?:^|[\s:])-?z-\d/`
+const CLASS_TEXT = String.raw`/(?:^|[\s:])text-(?:xs|sm|base|lg|xl)(?=\s|$)/`
+
 export default defineConfig([
   globalIgnores(['dist']),
   {
@@ -55,6 +59,24 @@ export default defineConfig([
     files: ['src/**/*.{js,jsx}'],
     ignores: ['**/*.test.{js,jsx}'],
     rules: { 'max-lines': ['warn', { max: 300, skipBlankLines: true, skipComments: true }] },
+  },
+  {
+    // House rules the markup cannot break: one dropdown (ui/inputs/WheelPicker), the one stacking scale
+    // (theme.json layer, as z-[var(--layer-x)]) and the one text scale (type-* classes, styles/text.css).
+    files: ['src/**/*.jsx'],
+    ignores: ['**/*.test.jsx', 'src/components/ui/inputs/WheelPicker.jsx'],
+    rules: {
+      'no-restricted-syntax': ['error',
+        { selector: "JSXOpeningElement[name.name='select']", message: 'Use ui/inputs/WheelPicker, the one dropdown.' },
+        ...[
+          [CLASS_Z, 'A bare z-<n>: use z-[var(--layer-...)] from theme.json layer.'],
+          [CLASS_TEXT, 'Tailwind text-xs/sm/base/lg/xl: use the type-label/ui/lead/heading/title classes (styles/text.css).'],
+        ].flatMap(([pattern, message]) => ['Literal', 'TemplateElement'].map((node) => ({
+          selector: `JSXAttribute[name.name='className'] ${node}[${node === 'Literal' ? 'value' : 'value.raw'}=${pattern}]`,
+          message,
+        }))),
+      ],
+    },
   },
   ...[...FEATURES, ...SHARED].map(siblingImports),
   {

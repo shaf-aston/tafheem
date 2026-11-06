@@ -5,6 +5,7 @@ import json
 
 import pytest
 
+from backend.services import ai as ai_service
 from backend.services.dictionary.root_meaning import BROKEN, MISSING, READY, JsonFileProvider
 
 
@@ -364,7 +365,6 @@ def kept(monkeypatch, tmp_path):
 @pytest.fixture()
 def ai(monkeypatch):
     """A stand-in AI. Records what it was handed; answers what it is told to."""
-    from backend.routers import dictionary as router_module
 
     state = {"available": True, "answer": {"english": "gathering one thing to another"}, "seen": None}
 
@@ -372,8 +372,8 @@ def ai(monkeypatch):
         state["seen"] = (root, entry)
         return state["answer"]
 
-    monkeypatch.setattr(router_module.ai_service, "is_ai_available", lambda: state["available"])
-    monkeypatch.setattr(router_module.ai_service, "explain_root_entry", _explain)
+    monkeypatch.setattr(ai_service, "is_ai_available", lambda: state["available"])
+    monkeypatch.setattr(ai_service, "explain_root_entry", _explain)
     return state
 
 
@@ -666,7 +666,6 @@ def _lined(client, root):
 @pytest.fixture()
 def line_ai(monkeypatch):
     """A stand-in for the line-by-line model call. Counts how often it is asked."""
-    from backend.routers import dictionary as router_module
 
     state = {"available": True, "answer": None, "seen": None, "asked": 0}
 
@@ -678,8 +677,8 @@ def line_ai(monkeypatch):
             "lines": [f"English {i + 1}" for i in range(len(lines))]
         }
 
-    monkeypatch.setattr(router_module.ai_service, "is_ai_available", lambda: state["available"])
-    monkeypatch.setattr(router_module.ai_service, "explain_root_entry_lines", _explain)
+    monkeypatch.setattr(ai_service, "is_ai_available", lambda: state["available"])
+    monkeypatch.setattr(ai_service, "explain_root_entry_lines", _explain)
     return state
 
 
@@ -859,8 +858,6 @@ _WORD_ANSWER = {"senses": [
 @pytest.fixture()
 def word_ai(monkeypatch):
     """A stand-in for the word-by-word model call. Counts how often it is asked."""
-    from backend.routers import dictionary as router_module
-
     state = {"available": True, "answer": _WORD_ANSWER, "asked": 0}
 
     def _explain(root, lines, reference=None):
@@ -868,8 +865,8 @@ def word_ai(monkeypatch):
         state["reference"] = reference
         return state["answer"]
 
-    monkeypatch.setattr(router_module.ai_service, "is_ai_available", lambda: state["available"])
-    monkeypatch.setattr(router_module.ai_service, "explain_root_entry_senses", _explain)
+    monkeypatch.setattr(ai_service, "is_ai_available", lambda: state["available"])
+    monkeypatch.setattr(ai_service, "explain_root_entry_senses", _explain)
     return state
 
 

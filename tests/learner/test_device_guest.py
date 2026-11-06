@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import progress_store
+from backend.services.learner import accounts, attempts, lifecycle, progress_db
 from backend.services.learner.username import GUEST, clean_name, device_key, is_guest
 
 client = TestClient(app)
@@ -27,10 +27,10 @@ LAPTOP = "ab" * 16
 @pytest.fixture(autouse=True)
 def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
-    monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
-    progress_store.reset_connection()
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
+    progress_db.reset_connection()
     yield
-    progress_store.reset_connection()
+    progress_db.reset_connection()
 
 
 def on(device=None, name=None):
@@ -106,7 +106,7 @@ def test_a_bad_device_id_is_refused_not_filed():
     response = answer(on("not-an-id"), "to-write")
     assert response.status_code == 422
     assert response.json()["detail"] == "Not a device id"
-    assert progress_store._db().execute("SELECT COUNT(*) FROM attempts").fetchone()[0] == 0
+    assert progress_db.connection().execute("SELECT COUNT(*) FROM attempts").fetchone()[0] == 0
 
 
 def test_a_logged_in_name_wins_over_the_device():
@@ -124,7 +124,7 @@ def test_a_bad_device_id_beside_a_name_is_not_read():
 
 def test_checked_practice_reads_the_devices_record(monkeypatch):
     asked = []
-    monkeypatch.setattr(progress_store, "summary", lambda module, user: asked.append(user) or [])
+    monkeypatch.setattr(attempts, "summary", lambda module, user: asked.append(user) or [])
     client.post("/api/practice/checked", headers=on(PHONE))
     assert asked == [device_key(PHONE)]
 
@@ -164,8 +164,8 @@ def test_a_device_never_becomes_an_account():
     """Opening the file turns names from before sign-up into accounts; a device's record is not one."""
     answer(on(PHONE), "a")
     client.post("/api/progress/feedback", headers=on(LAPTOP), json={"module": "quiz", "message": "typo"})
-    progress_store.reset_connection()
-    assert progress_store.account_names() == []
+    progress_db.reset_connection()
+    assert accounts.account_names() == []
 
 
 def test_a_device_is_not_ranked():
@@ -187,7 +187,7 @@ def test_keep_moves_only_this_devices_answers_and_reports():
     assert items(on(PHONE)) == []
     assert items(on(LAPTOP)) == ["to-go"]
     assert items(on()) == ["to-sit"]
-    assert [row[0] for row in progress_store._db().execute("SELECT user FROM feedback")] == ["amina"]
+    assert [row[0] for row in progress_db.connection().execute("SELECT user FROM feedback")] == ["amina"]
 
 
 def test_keep_from_a_page_with_no_device_takes_nothing():
@@ -217,35 +217,35 @@ def test_start_over_wipes_only_this_device():
 # The sweep (G8)
 
 def aged(user, days, item="a"):
-    progress_store._db().execute(
+    progress_db.connection().execute(
         "INSERT INTO attempts (user, module, item, correct, at) VALUES (?, 'quiz', ?, 1, datetime('now', ?))",
         (user, item, f"-{days} days"))
 
 
 def test_the_sweep_drops_idle_devices_only():
     idle, fresh = device_key(PHONE), device_key(LAPTOP)
-    db = progress_store._db()
+    db = progress_db.connection()
     with db:
         aged(idle, 200), aged(idle, 181, "b")
         aged(fresh, 300), aged(fresh, 10, "b")  # an old answer, but used lately: kept whole
         aged("amina", 400)
         aged(GUEST, 400)
-    progress_store.leave_feedback(module="quiz", message="typo", user=idle)
-    assert progress_store.sweep_guests(180) == 2
+    attempts.leave_feedback(module="quiz", message="typo", user=idle)
+    assert lifecycle.sweep_guests(180) == 2
     users = {row[0] for row in db.execute("SELECT user FROM attempts")}
     assert users == {fresh, "amina", GUEST}
-    assert len(progress_store.summary("quiz", fresh)) == 2
+    assert len(attempts.summary("quiz", fresh)) == 2
     assert [row[0] for row in db.execute("SELECT user FROM feedback")] == [""]
 
 
 def test_the_sweep_never_reaches_past_the_prefix():
     """The range stops at "guest;", so a name sorting just after the prefix is never swept."""
-    with progress_store._db():
+    with progress_db.connection():
         aged("guest;x", 400), aged("guest", 400), aged("guests", 400)
-    assert progress_store.sweep_guests(180) == 0
+    assert lifecycle.sweep_guests(180) == 0
 
 
 def test_the_sweep_keeps_a_device_answering_at_the_edge():
-    with progress_store._db():
+    with progress_db.connection():
         aged(device_key(PHONE), 179)
-    assert progress_store.sweep_guests(180) == 0
+    assert lifecycle.sweep_guests(180) == 0

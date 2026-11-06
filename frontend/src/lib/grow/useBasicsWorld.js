@@ -2,6 +2,7 @@
  * The Basics world: a beginner's first words with and without ال (public/grow/basics.json), and between them the small
  * additions that change a word (verbs: public/grow/basics-verbs.json; the path: lib/grow/basicsSkills.js); recorded under module 'basics'.
  */
+import { fetchStatic } from '../api/staticQuery'
 import { useLessonWorld } from './useLessonWorld'
 import { useRememberedFlag } from '../store/useRemembered'
 import { keyOfBasic } from './alifLam'
@@ -10,18 +11,12 @@ import { basicsCards, pathItems } from './basicsSkills'
 export const SOURCE_URL = '/grow/basics.json'
 const VERBS_URL = '/grow/basics-verbs.json'
 
-async function json(url) {
-  const response = await fetch(url)
-  if (!response.ok) throw new Error(`Could not load the basics (${response.status})`)
-  return response.json()
-}
-
 // The verbs (and their pattern families) are only for the verb skills: without them (offline, before the file is saved)
 // the words and the rest still load.
-const verbsOrNone = () => json(VERBS_URL).then(({ verbs, families }) => ({ verbs, families }), () => ({ verbs: null, families: null }))
+const verbsOrNone = () => fetchStatic(VERBS_URL, 'the basics').then(({ verbs, families }) => ({ verbs, families }), () => ({ verbs: null, families: null }))
 
 export async function load() {
-  const [{ words, path, people }, { verbs, families }] = await Promise.all([json(SOURCE_URL), verbsOrNone()])
+  const [{ words, path, people }, { verbs, families }] = await Promise.all([fetchStatic(SOURCE_URL, 'the basics'), verbsOrNone()])
   const items = pathItems(words, { verbs, families, people, path })
   return { order: items, all: items }
 }

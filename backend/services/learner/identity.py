@@ -2,7 +2,7 @@
 
 The one module that owns the guest -> account lifecycle end to end, so answering
 "what happens to my guest answers when I sign up" never needs identity.py,
-username.py, progress_store.py and routers/progress.py read together.
+username.py, accounts.py, lifecycle.py and routers/progress.py read together.
 
 Three kinds of "who" a request can be about:
 
@@ -13,7 +13,7 @@ Three kinds of "who" a request can be about:
 - A per-device guest (``services.learner.username.DEVICE`` + 32 lowercase hex, e.g.
   ``"guest:<id>"``): one record per device, made the moment a page sends its own
   ``X-Tafheem-Guest`` header. Isolated from every other device and from the legacy
-  record. Idle ones are cleaned up by ``progress_store.sweep_guests``.
+  record. Idle ones are cleaned up by ``lifecycle.sweep_guests``.
 - A real signed-up account: a ``clean_name``'d username with a row in ``accounts``.
 
 The lifecycle's one seam is sign-up's "keep" (``merge``): it moves a device's own
@@ -27,14 +27,14 @@ guests' answers mixed together and no single signer could honestly claim them.
 Everything that decides what those headers *mean* lives here, in
 ``services/learner/username.py`` (the spelling and shape rules: ``clean_name``,
 ``device_key``, ``is_guest``, ``GUEST``, ``DEVICE``) and in
-``services/learner/progress_store.py`` (the rows themselves: ``claim_guest``,
-``sweep_guests``, ``has_account``).
+``services/learner/lifecycle.py`` and ``accounts.py`` (the rows themselves:
+``claim_guest``, ``sweep_guests``, ``has_account``).
 """
 from __future__ import annotations
 
 from urllib.parse import unquote
 
-from backend.services.learner import progress_store
+from backend.services.learner import accounts, lifecycle
 from backend.services.learner.username import GUEST, clean_name, device_key, is_guest
 
 __all__ = ["GUEST", "is_guest", "resolve_device", "resolve_name", "has_account", "merge"]
@@ -59,7 +59,7 @@ def resolve_name(sent: str | None, device: str | None) -> str:
 
 def has_account(name: str) -> bool:
     """Whether `name` is a signed-up account. False for the legacy guest and any device record too."""
-    return progress_store.has_account(name)
+    return accounts.has_account(name)
 
 
 def merge(device: str, account: str) -> None:
@@ -70,4 +70,4 @@ def merge(device: str, account: str) -> None:
     that names no device takes nothing.
     """
     if device != GUEST:
-        progress_store.claim_guest(account, device)
+        lifecycle.claim_guest(account, device)

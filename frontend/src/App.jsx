@@ -1,7 +1,8 @@
 import { Activity, useCallback, useEffect, useRef, useState } from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClientProvider } from '@tanstack/react-query'
 
 import { FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/nav/tabs'
+import { queryClient } from './lib/api/queryClient'
 import { firstThese, idle, inTurn } from './lib/api/warm'
 import { useHealth } from './lib/api/useHealth'
 import { moodFrom } from './lib/shell/mood'
@@ -27,12 +28,6 @@ import InstallBanner from './components/shell/InstallBanner'
 import InstallButton from './components/shell/InstallButton'
 import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/text/ArabicText'
-
-const queryClient = new QueryClient({
-  // The data is fixed for the life of the backend: keep every answer, so a
-  // second visit is instant and a fetch-ahead (lib/api/warm) is never repeated.
-  defaultOptions: { queries: { retry: 1, staleTime: Infinity, gcTime: 30 * 60_000 } },
-})
 
 // Logs how long each tab's opening data took, `[open] hadith 212ms`; 0ms = already cached.
 // The tab's code comes too (lib/nav/tabs.js `panel`); a failed fetch is tried again on opening.
