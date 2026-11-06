@@ -68,7 +68,7 @@ _REFUSED = {
 
 
 @router.post("/checked", response_model=CheckedSentence)
-async def checked_sentence(user: str = USER) -> CheckedSentence:
+async def generate_checked_sentence(user: str = USER) -> CheckedSentence:
     """A short AI sentence using only words this learner has learnt, every word checked."""
     done = await asyncio.to_thread(checked_sentence.make, user)
     if isinstance(done, checked_sentence.Refused):
