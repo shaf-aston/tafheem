@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import progress_db, progress_store
+from backend.services.learner import attempts, progress_db, progress_store
 from backend.services.learner.username import clean_name
 
 client = TestClient(app)
@@ -132,8 +132,8 @@ def test_login_finds_a_signed_up_name_only():
 
 
 def test_names_used_before_signup_existed_can_log_in():
-    progress_store.record(module="quiz", item="to-go", correct=True, user="bilal")  # from before accounts
-    progress_store.leave_feedback(module="quiz", message="x", user="cyra")  # reported, never answered
+    attempts.record(module="quiz", item="to-go", correct=True, user="bilal")  # from before accounts
+    attempts.leave_feedback(module="quiz", message="x", user="cyra")  # reported, never answered
     progress_db.reset_connection()  # a restart, where the old names become accounts
     assert login("Bilal").status_code == 200
     assert login("Cyra").status_code == 200
@@ -165,10 +165,10 @@ def test_without_keep_old_answers_stay_unnamed():
 
 
 def test_keep_leaves_the_shared_ai_question_cache_alone():
-    progress_store.keep_questions(module="meaning", sentence="s", source="ai",
+    attempts.keep_questions(module="meaning", sentence="s", source="ai",
                                   questions=[{"question": "q", "answer": "a"}])
     signup("Amina", keep=True)
-    assert len(progress_store.kept_questions("meaning")) == 1
+    assert len(attempts.kept_questions("meaning")) == 1
 
 
 def test_signup_and_login_need_a_name():
@@ -195,7 +195,7 @@ def test_deleting_the_account_frees_the_name_and_wipes_only_its_answers():
     assert client.delete("/api/progress/account", headers=as_("Amina")).json() == {"deleted": 1}
     progress_db.reset_connection()  # a restart must not bring the name back from its reports
     assert login("Amina").status_code == 404
-    assert progress_store.summary("quiz", "amina") == []
+    assert attempts.summary("quiz", "amina") == []
     assert items("Bilal") == ["to-read"]
     assert signup("Amina").status_code == 200
 
@@ -504,4 +504,4 @@ def test_the_overview_counts_what_is_learnt_in_each_module_on_its_own():
     body = client.get("/api/progress/overview", headers=as_("Amina")).json()
     assert {m["module"]: m["learnt"] for m in body["modules"]} == {"basics": 1, "quiz": 1}
     assert body["learnt"] == 2
-    assert [progress_store.learnt(module, "amina") for module in ("basics", "quiz", "nahw")] == [1, 1, 0]
+    assert [attempts.learnt(module, "amina") for module in ("basics", "quiz", "nahw")] == [1, 1, 0]

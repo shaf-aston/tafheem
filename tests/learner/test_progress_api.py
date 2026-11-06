@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import progress_db, progress_store
+from backend.services.learner import attempts, progress_db
 
 client = TestClient(app)
 
@@ -92,8 +92,8 @@ def test_an_oversized_context_is_refused():
 
 def test_the_page_cannot_choose_whose_record_it_writes():
     post(module="quiz", item="to-write", correct=False, user="someone-else")
-    assert progress_store.review_items("quiz", "local") == ["to-write"]
-    assert progress_store.review_items("quiz", "someone-else") == []
+    assert attempts.review_items("quiz", "local") == ["to-write"]
+    assert attempts.review_items("quiz", "someone-else") == []
 
 
 def test_feedback_is_kept_and_survives_the_wipe():

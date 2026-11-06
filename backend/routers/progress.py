@@ -42,7 +42,7 @@ from backend.models.progress import (
     Shelf,
     SignUpIn,
 )
-from backend.services.learner import progress_store
+from backend.services.learner import attempts, progress_store
 from backend.services.learner.username import GUEST, clean_name
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
@@ -55,8 +55,8 @@ _TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner'
 async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
     """File one answer; return its XP and new totals. Only the old shared record earns none: it is many people's."""
     own = user != GUEST
-    earns = own and attempt.correct and progress_store.earns(attempt.module, attempt.item, user, attempt.tz)
-    row_id = progress_store.record(
+    earns = own and attempt.correct and attempts.earns(attempt.module, attempt.item, user, attempt.tz)
+    row_id = attempts.record(
         module=attempt.module,
         item=attempt.item,
         correct=attempt.correct,
@@ -67,7 +67,7 @@ async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
     return AttemptSaved(
         id=row_id,
         earned=get_settings().rewards_xp_per_answer if earns else 0,
-        rewards=Rewards(**progress_store.rewards(user, attempt.tz)) if own else None,
+        rewards=Rewards(**attempts.rewards(user, attempt.tz)) if own else None,
     )
 
 
@@ -77,7 +77,7 @@ async def leave_feedback(note: FeedbackIn, user: str = USER) -> AttemptSaved:
     message = note.message.strip()
     if not message:
         raise HTTPException(status_code=422, detail="message is empty")
-    return AttemptSaved(id=progress_store.leave_feedback(
+    return AttemptSaved(id=attempts.leave_feedback(
         module=note.module, item=note.item, message=message, user=user,
     ))
 
@@ -104,7 +104,7 @@ def get_summary(module: str = _MODULE, user: str = USER) -> ProgressSummary:
                 dueAt=row["due_at"],
                 words=row["words"],
             )
-            for row in progress_store.summary(module, user)
+            for row in attempts.summary(module, user)
         ],
     )
 
@@ -112,13 +112,13 @@ def get_summary(module: str = _MODULE, user: str = USER) -> ProgressSummary:
 @router.get("/overview", response_model=Overview)
 def get_overview(tz: int = _TZ, user: str = USER) -> Overview:
     """Every module this learner answered in, with totals and the streak of days."""
-    return _overview(progress_store.overview(user, tz))
+    return _overview(attempts.overview(user, tz))
 
 
 @router.get("/rewards", response_model=Rewards)
 def get_rewards(tz: int = _TZ, user: str = OWN) -> Rewards:
     """XP, level, streak, for an account or a device's guest. Cheap (no FSRS replay), for the header."""
-    return Rewards(**progress_store.rewards(user, tz))
+    return Rewards(**attempts.rewards(user, tz))
 
 
 def _overview(found: dict) -> Overview:
@@ -129,7 +129,7 @@ def _overview(found: dict) -> Overview:
 @router.get("/review", response_model=ReviewList)
 def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
     """Items due for review now, earliest first."""
-    return ReviewList(module=module, items=progress_store.review_items(module, user))
+    return ReviewList(module=module, items=attempts.review_items(module, user))
 
 
 @router.post("/signup", response_model=Account)

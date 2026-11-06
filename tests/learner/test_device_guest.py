@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import progress_db, progress_store
+from backend.services.learner import attempts, progress_db, progress_store
 from backend.services.learner.username import GUEST, clean_name, device_key, is_guest
 
 client = TestClient(app)
@@ -124,7 +124,7 @@ def test_a_bad_device_id_beside_a_name_is_not_read():
 
 def test_checked_practice_reads_the_devices_record(monkeypatch):
     asked = []
-    monkeypatch.setattr(progress_store, "summary", lambda module, user: asked.append(user) or [])
+    monkeypatch.setattr(attempts, "summary", lambda module, user: asked.append(user) or [])
     client.post("/api/practice/checked", headers=on(PHONE))
     assert asked == [device_key(PHONE)]
 
@@ -230,11 +230,11 @@ def test_the_sweep_drops_idle_devices_only():
         aged(fresh, 300), aged(fresh, 10, "b")  # an old answer, but used lately: kept whole
         aged("amina", 400)
         aged(GUEST, 400)
-    progress_store.leave_feedback(module="quiz", message="typo", user=idle)
+    attempts.leave_feedback(module="quiz", message="typo", user=idle)
     assert progress_store.sweep_guests(180) == 2
     users = {row[0] for row in db.execute("SELECT user FROM attempts")}
     assert users == {fresh, "amina", GUEST}
-    assert len(progress_store.summary("quiz", fresh)) == 2
+    assert len(attempts.summary("quiz", fresh)) == 2
     assert [row[0] for row in db.execute("SELECT user FROM feedback")] == [""]
 
 

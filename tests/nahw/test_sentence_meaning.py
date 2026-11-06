@@ -14,7 +14,7 @@ import pytest
 from backend.services import ai
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
-from backend.services.learner import progress_db, progress_store
+from backend.services.learner import attempts, progress_db
 from backend.services.dictionary import sentence_meaning
 from backend.services.dictionary import service as dictionary_service
 from backend.services.quran import search as quran_search
@@ -119,7 +119,7 @@ def test_an_empty_answer_is_not_filed(typed, monkeypatch) -> None:
 
 
 def test_an_old_filing_with_picks_is_not_reused(typed, monkeypatch) -> None:
-    progress_store.keep_questions(module="dict", sentence="البيت كبير", source="ai",
+    attempts.keep_questions(module="dict", sentence="البيت كبير", source="ai",
                                   questions=[{"question": "meaning", "answer": "Old wording"}, {"question": "senses", "answer": "2,2"},
                                              {"question": "meaning2", "answer": "Made under the settled-gloss prompt"}])
     monkeypatch.setattr(ai, "translate_sentence", _model(typed, {"english": "The house is big"}))

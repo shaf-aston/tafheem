@@ -12,14 +12,14 @@ import logging
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import progress_store
+from backend.services.learner import attempts, progress_store
 
 
 def test_a_crash_is_logged_with_path_and_profile_not_body(monkeypatch, caplog):
     def broken(*_args, **_kwargs):
         raise RuntimeError("disk on fire")
 
-    monkeypatch.setattr(progress_store, "record", broken)
+    monkeypatch.setattr(attempts, "record", broken)
     monkeypatch.setattr(progress_store, "has_account", lambda _name: True)
     client = TestClient(app, raise_server_exceptions=False)
     with caplog.at_level(logging.ERROR, logger="backend.main"):

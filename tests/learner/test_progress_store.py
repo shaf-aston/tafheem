@@ -24,7 +24,7 @@ from datetime import datetime, timedelta, timezone
 import pytest
 
 from backend.config import get_settings
-from backend.services.learner import progress_db, progress_store
+from backend.services.learner import attempts, progress_db, progress_store
 
 
 @pytest.fixture()
@@ -39,7 +39,7 @@ def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
     monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
     progress_db.reset_connection()
-    yield progress_store
+    yield attempts
     progress_db.reset_connection()
     get_settings.cache_clear()
 
@@ -176,11 +176,11 @@ def test_forget_empties_every_module_for_one_learner(store):
     answer(store, "to-write", False, module="quiz")
     answer(store, "2:255:3", False, module="iraab")
     store.record(module="quiz", item="to-read", correct=False, user="someone-else")
-    assert store.forget() == 2
+    assert progress_store.forget() == 2
     assert store.review_items("quiz") == []
     assert store.review_items("iraab") == []
     assert store.review_items("quiz", "someone-else") == ["to-read"]
-    assert store.forget() == 0
+    assert progress_store.forget() == 0
 
 
 def test_learners_do_not_see_each_other(store):
