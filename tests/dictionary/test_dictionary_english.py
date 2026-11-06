@@ -14,7 +14,7 @@ from backend.config import get_settings
 from backend.routers import dictionary as router_module
 from backend.services import ai
 from backend.services.dictionary import service
-from backend.services.learner import progress_store
+from backend.services.learner import progress_db
 
 ENTRIES = [
     {"arabic": "جرى", "root": "جري", "definitions": ["to flow, to run a course, to happen"]},
@@ -39,12 +39,12 @@ def small(monkeypatch):
 @pytest.fixture
 def client(monkeypatch, tmp_path):
     # Answers are filed in a store of this test's own, not the real one.
-    monkeypatch.setattr(progress_store, "data_path", lambda _name: tmp_path / "progress.db")
-    progress_store.reset_connection()
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: tmp_path / "progress.db")
+    progress_db.reset_connection()
     app = FastAPI()
     app.include_router(router_module.router)
     yield TestClient(app)
-    progress_store.reset_connection()
+    progress_db.reset_connection()
 
 
 def test_a_past_form_finds_the_headword_whose_definition_is_the_verb(small) -> None:

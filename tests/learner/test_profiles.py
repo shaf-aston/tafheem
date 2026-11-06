@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import progress_store
+from backend.services.learner import accounts, attempts, circles, progress_db
 from backend.services.learner.username import clean_name
 
 client = TestClient(app)
@@ -24,10 +24,10 @@ client = TestClient(app)
 @pytest.fixture(autouse=True)
 def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
-    monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
-    progress_store.reset_connection()
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
+    progress_db.reset_connection()
     yield
-    progress_store.reset_connection()
+    progress_db.reset_connection()
 
 
 def as_(name):
@@ -93,7 +93,7 @@ def test_no_name_is_the_old_shared_record():
 @pytest.mark.parametrize("bad", ["<x>", "local", "x" * 41])
 def test_a_bad_name_is_refused_not_filed(bad):
     assert answer(bad, "to-write").status_code == 422
-    assert progress_store._db().execute("SELECT COUNT(*) FROM attempts").fetchone()[0] == 0
+    assert progress_db.connection().execute("SELECT COUNT(*) FROM attempts").fetchone()[0] == 0
 
 
 def test_forget_wipes_only_the_name_asking():
@@ -132,9 +132,9 @@ def test_login_finds_a_signed_up_name_only():
 
 
 def test_names_used_before_signup_existed_can_log_in():
-    progress_store.record(module="quiz", item="to-go", correct=True, user="bilal")  # from before accounts
-    progress_store.leave_feedback(module="quiz", message="x", user="cyra")  # reported, never answered
-    progress_store.reset_connection()  # a restart, where the old names become accounts
+    attempts.record(module="quiz", item="to-go", correct=True, user="bilal")  # from before accounts
+    attempts.leave_feedback(module="quiz", message="x", user="cyra")  # reported, never answered
+    progress_db.reset_connection()  # a restart, where the old names become accounts
     assert login("Bilal").status_code == 200
     assert login("Cyra").status_code == 200
     assert signup("Bilal").status_code == 409
@@ -165,10 +165,10 @@ def test_without_keep_old_answers_stay_unnamed():
 
 
 def test_keep_leaves_the_shared_ai_question_cache_alone():
-    progress_store.keep_questions(module="meaning", sentence="s", source="ai",
+    attempts.keep_questions(module="meaning", sentence="s", source="ai",
                                   questions=[{"question": "q", "answer": "a"}])
     signup("Amina", keep=True)
-    assert len(progress_store.kept_questions("meaning")) == 1
+    assert len(attempts.kept_questions("meaning")) == 1
 
 
 def test_signup_and_login_need_a_name():
@@ -193,9 +193,9 @@ def test_deleting_the_account_frees_the_name_and_wipes_only_its_answers():
     answer("Bilal", "to-read")
     client.post("/api/progress/feedback", headers=as_("Amina"), json={"module": "quiz", "message": "typo"})
     assert client.delete("/api/progress/account", headers=as_("Amina")).json() == {"deleted": 1}
-    progress_store.reset_connection()  # a restart must not bring the name back from its reports
+    progress_db.reset_connection()  # a restart must not bring the name back from its reports
     assert login("Amina").status_code == 404
-    assert progress_store.summary("quiz", "amina") == []
+    assert attempts.summary("quiz", "amina") == []
     assert items("Bilal") == ["to-read"]
     assert signup("Amina").status_code == 200
 
@@ -206,14 +206,14 @@ def test_a_deleted_accounts_reports_go_to_nobody():
     client.post("/api/progress/feedback", headers=as_("Amina"), json={"module": "quiz", "message": "typo"})
     client.delete("/api/progress/account", headers=as_("Amina"))
     signup("Bilal", keep=True)
-    progress_store.reset_connection()
-    users = [row[0] for row in progress_store._db().execute("SELECT user FROM feedback")]
+    progress_db.reset_connection()
+    users = [row[0] for row in progress_db.connection().execute("SELECT user FROM feedback")]
     assert users == [""]
     assert client.get("/api/progress/accounts").json() == {"names": ["bilal"]}
 
 
 def test_the_leaderboard_ranks_accounts_by_words_learnt_and_finds_you():
-    db_answer = lambda name, item, days: progress_store._db().execute(  # noqa: E731
+    db_answer = lambda name, item, days: progress_db.connection().execute(  # noqa: E731
         "INSERT INTO attempts (user, module, item, correct, at) VALUES (?, 'quiz', ?, 1, datetime('now', ?))",
         (name, item, f"-{days} days"))
     for name in ("Amina", "Bilal", "Cyra"):
@@ -221,7 +221,7 @@ def test_the_leaderboard_ranks_accounts_by_words_learnt_and_finds_you():
     for item in ("a", "b"):  # right on two separate days: learnt
         db_answer("bilal", item, 3), db_answer("bilal", item, 2)
     db_answer("amina", "a", 3), db_answer("amina", "a", 2)
-    progress_store._db().commit()
+    progress_db.connection().commit()
     answer(None, "a")  # the guest record is nobody's, so it is not ranked
     body = client.get("/api/progress/leaderboard", params={"module": "quiz"}, headers=as_("Cyra")).json()
     assert [(r["rank"], r["name"], r["learnt"]) for r in body["rows"]] == [
@@ -441,12 +441,12 @@ def test_the_old_teams_become_circles_with_their_members_invited(tmp_path):
         INSERT INTO teams (team, member) VALUES ('coach', 'amina');
     """)
     old.commit(), old.close()
-    progress_store.reset_connection()
-    mine = progress_store.my_circles("amina")
+    progress_db.reset_connection()
+    mine = circles.my_circles("amina")
     assert [(c["name"], c["kind"], c["role"], c["status"]) for c in mine] == [("coach", "team", "member", "invited")]
-    coach = progress_store.my_circles("coach")
+    coach = circles.my_circles("coach")
     assert [(c["role"], c["status"]) for c in coach] == [("admin", "joined")]
-    assert not progress_store._db().execute("SELECT 1 FROM sqlite_master WHERE name = 'teams'").fetchone()
+    assert not progress_db.connection().execute("SELECT 1 FROM sqlite_master WHERE name = 'teams'").fetchone()
 
 
 def test_the_last_admin_cannot_leave_while_others_are_in_the_circle():
@@ -461,27 +461,27 @@ def test_the_last_admin_cannot_leave_while_others_are_in_the_circle():
 
 
 def test_the_password_columns_go_from_a_fresh_file_and_from_one_already_at_step_two():
-    accounts = lambda: [r[1] for r in progress_store._db().execute("PRAGMA table_info(accounts)")]  # noqa: E731
-    assert accounts() == ["name", "at", "public"]                                   # fresh file
-    progress_store.reset_connection()
-    path = progress_store.data_path("progress_db_path")
+    columns = lambda: [r[1] for r in progress_db.connection().execute("PRAGMA table_info(accounts)")]  # noqa: E731
+    assert columns() == ["name", "at", "public"]                                   # fresh file
+    progress_db.reset_connection()
+    path = progress_db.data_path("progress_db_path")
     path.unlink()
     for suffix in ("-wal", "-shm"):
         path.with_name(path.name + suffix).unlink(missing_ok=True)
     old = sqlite3.connect(path)
-    old.executescript(progress_store.SCHEMA)
-    for step, script in enumerate(progress_store.MIGRATIONS[:2], start=1):
+    old.executescript(progress_db.SCHEMA)
+    for step, script in enumerate(progress_db.MIGRATIONS[:2], start=1):
         old.executescript(f"BEGIN; {script} PRAGMA user_version = {step}; COMMIT;")
     old.execute("INSERT INTO accounts (name, pass, key) VALUES ('amina', 'p', 'k')")
     old.commit()
     old.close()
-    assert progress_store.has_account("amina")                                      # opens, migrates, keeps the row
-    assert accounts() == ["name", "at", "public"]
+    assert accounts.has_account("amina")                                      # opens, migrates, keeps the row
+    assert columns() == ["name", "at", "public"]
 
 
 def test_the_overview_counts_every_module_and_the_days_in_a_row():
     signup("Amina")
-    db = progress_store._db()
+    db = progress_db.connection()
     with db:
         for module, correct, days in [("quiz", 1, 0), ("quiz", 0, 1), ("quiz:ur", 1, 1), ("quiz", 1, 3)]:
             db.execute("INSERT INTO attempts (user, module, item, correct, at) VALUES ('amina', ?, 'a', ?, "
@@ -495,7 +495,7 @@ def test_the_overview_counts_every_module_and_the_days_in_a_row():
 def test_the_overview_counts_what_is_learnt_in_each_module_on_its_own():
     """One item id in two modules is two records: right twice a day apart is learnt in one, a lucky guess in the other."""
     signup("Amina")
-    db = progress_store._db()
+    db = progress_db.connection()
     with db:
         for module, item, days in [("quiz", "a", 2), ("basics", "a", 2), ("basics", "b", 2), ("quiz", "a", 1),
                                    ("basics", "b", 1)]:
@@ -504,4 +504,4 @@ def test_the_overview_counts_what_is_learnt_in_each_module_on_its_own():
     body = client.get("/api/progress/overview", headers=as_("Amina")).json()
     assert {m["module"]: m["learnt"] for m in body["modules"]} == {"basics": 1, "quiz": 1}
     assert body["learnt"] == 2
-    assert [progress_store.learnt(module, "amina") for module in ("basics", "quiz", "nahw")] == [1, 1, 0]
+    assert [attempts.learnt(module, "amina") for module in ("basics", "quiz", "nahw")] == [1, 1, 0]

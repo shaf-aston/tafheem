@@ -11,7 +11,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import progress_store
+from backend.services.learner import progress_db
 from backend.services.learner.rewards import level_of, rewards_of
 
 client = TestClient(app)
@@ -22,11 +22,11 @@ AS = {"X-Tafheem-Profile": quote(NAME)}
 @pytest.fixture(autouse=True)
 def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
-    monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
-    progress_store.reset_connection()
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
+    progress_db.reset_connection()
     client.post("/api/progress/signup", json={"keep": False}, headers=AS)
     yield
-    progress_store.reset_connection()
+    progress_db.reset_connection()
 
 
 def answer(item="kitab", correct=True, headers=AS, **more):

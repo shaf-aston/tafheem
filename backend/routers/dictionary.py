@@ -1,7 +1,6 @@
 """Arabic-English dictionary search."""
 
 import asyncio
-import sys
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -23,12 +22,11 @@ from backend.models.dictionary import (
     SentenceWord,
 )
 from backend.models.morphology import VerbVerdict
-from backend.services import ai as ai_service
 from backend.services.dictionary import service as dictionary_service
 from backend.services.dictionary import lexicons
 from backend.services.dictionary import lexicon_gists
 from backend.services.core import provenance
-from backend.services.dictionary import root_english
+from backend.services.dictionary import root_entry
 from backend.services.dictionary import root_gloss
 from backend.services.dictionary import root_meaning
 from backend.services.dictionary import roots
@@ -206,128 +204,49 @@ def _shelf_entry(entry: dict, gist: str | None) -> LexiconEntry:
     )
 
 
-def _book_entry(root: str) -> tuple[str, dict]:
-    """(the spelling the book files it under, its entry), or 503 with no book.
+_REFUSED = {
+    root_entry.Refused.NO_BOOK: (503, "The classical entries are not loaded, so there is nothing to put into English."),
+    root_entry.Refused.NO_ENTRY: (
+        404, "The book prints no entry under those letters, so there is nothing to put into English."),
+    root_entry.Refused.NO_REST: (
+        404, "The book prints nothing after the origin sense here, so there is nothing to line up."),
+    root_entry.Refused.NO_AI: (
+        503, f"No AI is reachable, so the entry cannot be put into English right now. {_ARABIC_UNHARMED}"),
+    root_entry.Refused.EMPTY: (502, "The AI answered with nothing to show."),
+    # The prose English is still there, so the card loses only this view.
+    root_entry.Refused.MISPAIRED: (
+        502, "The English could not be lined up with the Arabic this time, "
+             "so it is not shown. The English of the whole entry is unaffected."),
+}
 
-    Readings are kept under the book's spelling: a reader who writes هدى where
-    the book wrote هدي reaches the same entry and the same English of it.
-    """
-    if root_meaning.status() != root_meaning.READY:
-        raise HTTPException(
-            status_code=503,
-            detail="The classical entries are not loaded, so there is nothing to put into English.",
-        )
-    return root_meaning.book_root_of(root) or root, root_meaning.lookup(root) or {}
 
-
-async def _ask_ai(func, *args, operation: str) -> dict:
-    """One model call, or a plain 503 when there is no model to call."""
-    if not await asyncio.to_thread(ai_service.is_ai_available):
-        raise HTTPException(
-            status_code=503,
-            detail=f"No AI is reachable, so the entry cannot be put into English right now. {_ARABIC_UNHARMED}",
-        )
-    return await call_service(
-        func, *args, operation=operation, timeout_msg=f"The AI took too long. {_ARABIC_UNHARMED}",
+async def _retold(func, root: str, operation: str):
+    """`root_entry.english` or `.lines` in a worker thread; a refusal becomes its HTTP error."""
+    done = await call_service(
+        func, root, operation=operation, timeout_msg=f"The AI took too long. {_ARABIC_UNHARMED}",
     )
+    if isinstance(done, root_entry.Refused):
+        status, detail = _REFUSED[done]
+        raise HTTPException(status_code=status, detail=detail)
+    return done
 
 
 @router.get("/root-meaning/english", response_model=RootEntryEnglishResponse)
 async def get_root_entry_english(root: Root) -> RootEntryEnglishResponse:
-    """The entry retold in English, for a reader who cannot read the Arabic.
-
-    Made only when the reader asks for it. The card already prints the opening
-    sentence as the origin sense, so the answer carries only what follows, the
-    way the Arabic beside it does; a one-sentence answer is kept whole rather
-    than answered with nothing.
-    """
-    book_root, entry = _book_entry(root)
-    arabic = entry.get("body", "")
-    if not arabic:
-        # Nothing to retell is not a failure of the model, and must not be
-        # reported as one: the print itself has no entry, or leaves it blank.
-        raise HTTPException(
-            status_code=404,
-            detail="The book prints no entry under those letters, so there is nothing to put into English.",
-        )
-
-    # The whole-book run has read every root. English made here, on the spot
-    # by whichever model answers, is shown under its own badge and never kept:
-    # kept, it would come back next time wearing the whole-book run's badge.
-    english, source = root_english.get(book_root), "maqayees_translation"
-    if english is None:
-        answer = await _ask_ai(
-            ai_service.explain_root_entry, root, arabic, operation="English of a Maqayees entry",
-        )
-        english, source = str(answer.get("english", "")).strip(), "ai"
-        if not english:
-            raise HTTPException(status_code=502, detail="The AI answered with nothing to show.")
-
+    """The entry retold in English, for a reader who cannot read the Arabic. Made only when asked."""
+    done = await _retold(root_entry.english, root, "English of a Maqayees entry")
     return RootEntryEnglishResponse(
-        root=root,
-        english=english.removeprefix(root_gloss.opening_of(english)).lstrip() or english,
-        truncated=len(arabic) > get_settings().root_entry_truncate_chars,
-        source=provenance.of(source),
+        root=root, english=done.english, truncated=done.truncated, source=provenance.of(done.source),
     )
 
 
 @router.get("/root-meaning/english/lines", response_model=RootEntryLinesResponse)
 async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
-    """The rest of the entry with one English line under each Arabic line.
-
-    Covers what the card's "rest of the entry" panel shows. The backend owns the
-    split and pairs the two, so the screen never lines them up itself. English
-    kept for every line of the entry (the shipped whole-book run) is answered
-    whole; only when none is kept is the opening cut to what the model can read
-    and asked for on the spot.
-    """
-    book_root, entry = _book_entry(root)
-    rest = root_gloss.rest_of(entry)
-    every_line, _ = root_gloss.line_budget(rest, sys.maxsize)
-    if not every_line:
-        raise HTTPException(
-            status_code=404,
-            detail="The book prints nothing after the origin sense here, so there is nothing to line up.",
-        )
-
-    # Trusted only while it still matches the entry line for line: a book file
-    # that has changed shape since makes the kept English a mispairing.
-    kept = root_english.get_lines(book_root, len(every_line))
-    if kept is not None:
-        # The shipped whole-book run wears the book's own translation badge, as the
-        # prose does; English a reader's press made on the spot stays "AI".
-        shipped = root_english.shipped_lines(book_root, len(every_line))
-        return RootEntryLinesResponse(
-            root=root,
-            lines=[EntryLine(arabic=a, english=e) for a, e in zip(every_line, kept)],
-            truncated=False,
-            source=provenance.of("maqayees_lines" if shipped else "ai"),
-        )
-
-    lines, truncated = root_gloss.line_budget(rest, get_settings().root_entry_truncate_chars)
-    # Uncut, this is the entry already asked for above; only a cut opening can
-    # have English of its own kept.
-    kept = root_english.get_lines(book_root, len(lines)) if truncated else None
-    if kept is None:
-        answer = await _ask_ai(
-            ai_service.explain_root_entry_lines, root, lines, root_english.get(book_root),
-            operation="line-by-line English of a Maqayees entry",
-        )
-        made = answer.get("lines")
-        kept = [str(line).strip() for line in made] if isinstance(made, list) else []
-        if len(kept) != len(lines) or not all(kept):
-            # English under the wrong Arabic is a false claim about the book;
-            # the prose English is still there, so the card loses only this view.
-            raise HTTPException(
-                status_code=502,
-                detail="The English could not be lined up with the Arabic this time, "
-                       "so it is not shown. The English of the whole entry is unaffected.",
-            )
-        await asyncio.to_thread(root_english.put_lines, book_root, kept)
-
+    """The rest of the entry with one English line under each Arabic line (the card's "rest of the entry")."""
+    done = await _retold(root_entry.lines, root, "line-by-line English of a Maqayees entry")
     return RootEntryLinesResponse(
         root=root,
-        lines=[EntryLine(arabic=a, english=e) for a, e in zip(lines, kept)],
-        truncated=truncated,
-        source=provenance.of("ai"),
+        lines=[EntryLine(arabic=a, english=e) for a, e in done.lines],
+        truncated=done.truncated,
+        source=provenance.of(done.source),
     )

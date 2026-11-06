@@ -23,7 +23,7 @@ from backend.services import ai
 from backend.services.dictionary import service as dictionary_service
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
-from backend.services.learner import progress_store
+from backend.services.learner import attempts
 from backend.services.quran import library as quran_library
 from backend.services.quran import meanings as quran_meanings
 from backend.services.quran import search as quran_search
@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 _TAGS_RE = re.compile(r"\[[^\]]*\]|<[^>]*>")
 # The word every clause's name opens with (data/nahw_rules/tarkeeb.json).
 _CLAUSE = term_ar("jumlah_ismiyyah").split()[0]
-# Where a model's sense is filed (progress_store), so every server process reads the first one kept.
+# Where a model's sense is filed (attempts), so every server process reads the first one kept.
 # Renamed whenever SENTENCE_USER changes, so answers filed under an older prompt are never reused.
 # "arabic" is the other direction's answer, filed the same way.
 _KEPT, _QUESTION, _ARABIC = "dict", "meaning3", "arabic"
@@ -202,14 +202,14 @@ def _asked(text: str, question: str, ask) -> str:
     if not (kept := _kept(text, question)):
         if not (answer := str(ask() or "").strip()):
             raise ValueError("the model answered with nothing")
-        progress_store.keep_questions(module=_KEPT, sentence=text, source="ai",
+        attempts.keep_questions(module=_KEPT, sentence=text, source="ai",
                                       questions=[{"question": question, "answer": answer}])
         kept = _kept(text, question)
     return kept
 
 
 def _kept(text: str, question: str) -> str | None:
-    return next((r["answer"] for r in progress_store.kept_questions(_KEPT, text) if r["question"] == question), None)
+    return next((r["answer"] for r in attempts.kept_questions(_KEPT, text) if r["question"] == question), None)
 
 
 def translate_english(text: str) -> dict:

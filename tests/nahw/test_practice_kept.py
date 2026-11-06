@@ -10,7 +10,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import progress_store
+from backend.services.learner import attempts, progress_db
 
 client = TestClient(app)
 SENTENCE = "ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ"
@@ -19,10 +19,10 @@ SENTENCE = "ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَ�
 @pytest.fixture(autouse=True)
 def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
-    monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
-    progress_store.reset_connection()
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
+    progress_db.reset_connection()
     yield
-    progress_store.reset_connection()
+    progress_db.reset_connection()
 
 
 def kept(sentence=None):
@@ -59,7 +59,7 @@ def test_a_broken_database_still_answers(monkeypatch):
     def refuse(**_):
         raise OSError("disk full")
 
-    monkeypatch.setattr(progress_store, "keep_questions", refuse)
+    monkeypatch.setattr(attempts, "keep_questions", refuse)
     response = client.post("/api/practice", json={"sentence": SENTENCE})
     assert response.status_code == 200
     assert response.json()["questions"]
