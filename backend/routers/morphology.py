@@ -25,12 +25,11 @@ from backend.models.morphology import (
     MorphologyResponse,
 
 )
-from backend.services import ai as ai_service
 from backend.services.sarf import conjugation
-from backend.services.sarf import morphology
 from backend.services.core import provenance
 from backend.services.sarf import answer as sarf_word
-from backend.utils import call_service, normalize_text, require_arabic
+from backend.services.sarf import word_meaning
+from backend.utils import normalize_text, require_arabic
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/morphology", tags=["morphology"])
@@ -57,23 +56,8 @@ async def analyze_meaning(request: MeaningRequest) -> MeaningResponse:
     word = normalize_text(request.word, "Word")
     require_arabic(word, "Word")
 
-    if not await asyncio.to_thread(ai_service.is_ai_available):
-        return MeaningResponse()
-
-    tag = await asyncio.to_thread(morphology.analyze_word, word)
-    tags_str = morphology.tags_as_string([tag])
-    # Optional enrichment: a failure here is never worth an error screen over a
-    # table the reader already has, so it degrades to "no meaning" instead.
-    try:
-        ai_result = await call_service(
-            ai_service.analyze_sarf,
-            word,
-            tags_str,
-            operation="Sarf AI analysis",
-            timeout_msg="AI service timed out.",
-        )
-    except HTTPException as exc:
-        logger.warning("Sarf AI failed for '%s': %s", word, exc.detail)
+    ai_result = await asyncio.to_thread(word_meaning.of, word)
+    if ai_result is None:
         return MeaningResponse()
 
     meaning = ai_result.get("meaning") or None

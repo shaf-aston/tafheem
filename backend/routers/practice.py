@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import asyncio
 import logging
-import random
 
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Query, Response
 
@@ -25,12 +24,11 @@ from backend.models.practice import (
     PracticeResponse,
 )
 from backend.identity import USER
-from backend.services import ai
 from backend.services.nahw import iraab
 from backend.services.nahw import practice as practice_service
 from backend.services.learner import attempts
 from backend.services.core import provenance
-from backend.services.learner import sentence_check
+from backend.services.learner import checked_sentence
 from backend.utils import Timings, arabic_sentence
 
 logger = logging.getLogger(__name__)
@@ -62,24 +60,21 @@ async def kept_practice(sentence: str | None = Query(None, max_length=get_settin
     return KeptQuestions(questions=[KeptQuestion(**row) for row in rows])
 
 
+_REFUSED = {
+    checked_sentence.Refused.TOO_FEW: (409, "Learn {min} words first"),
+    checked_sentence.Refused.NO_AI: (503, "No AI is set up on this server"),
+    checked_sentence.Refused.FAILED: (503, "Could not make a checked sentence, try again"),
+}
+
+
 @router.post("/checked", response_model=CheckedSentence)
 async def checked_sentence(user: str = USER) -> CheckedSentence:
     """A short AI sentence using only words this learner has learnt, every word checked."""
-    learnt = [row for row in await asyncio.to_thread(attempts.summary, "quiz", user) if row["known"]]
-    settings = get_settings()
-    words = sentence_check.learnt_words(learnt)
-    if len(words) < settings.sentence_min_learnt:
-        raise HTTPException(409, f"Learn {settings.sentence_min_learnt} words first")
-    if not ai.is_ai_available():
-        raise HTTPException(503, "No AI is set up on this server")
-    allowed = sentence_check.allowed(words)
-    given = random.sample([word["ar"] for word in words], min(len(words), settings.sentence_prompt_words))
-    made = await asyncio.to_thread(
-        ai.checked_sentence, given, lambda ar: not sentence_check.check(ar, allowed),
-    )
-    if made is None:
-        raise HTTPException(503, "Could not make a checked sentence, try again")
-    return CheckedSentence(**made, words=given)
+    done = await asyncio.to_thread(checked_sentence.make, user)
+    if isinstance(done, checked_sentence.Refused):
+        status, detail = _REFUSED[done]
+        raise HTTPException(status, detail.format(min=get_settings().sentence_min_learnt))
+    return CheckedSentence(**done)
 
 
 def _answer(sentence: str, questions: list[PracticeQuestion], source_key: str, later: BackgroundTasks) -> PracticeResponse:
