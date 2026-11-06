@@ -257,6 +257,11 @@ def is_mabni(pos: str, aspect: str | None = None, base: str = "") -> bool:
     return any(kind in pos for kind in MABNI_KINDS)
 
 
+def is_definite_kind(pos: str) -> bool:
+    """A pronoun, pointer or relative is definite by what it is (Tasheel V1 p21: مضمر ... ومشار به ... وموصول); a question word asks, so it is not."""
+    return is_mabni(pos) and "interrog" not in pos
+
+
 def is_diptote(typed: str, pos: str, lemma: str, *, attached: bool, annexed: bool) -> bool:
     """A fatha for the kasra (الممنوع من الصرف): no tanween, ال, pronoun, مضاف إليه (طَرِيقَ جَهَنَّمَ) or build (ثَلَاثَةَ عَشَرَ)."""
     marked = letters(typed)

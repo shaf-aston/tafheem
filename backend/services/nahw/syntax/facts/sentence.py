@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import doer_written_in, extra_ba_on, frames, is_built_word, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says
+from backend.services.nahw.book import ADVERB_FAMILIES, doer_written_in, extra_ba_on, frames, is_built_word, is_definite_kind, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
 
@@ -352,9 +352,12 @@ def describable_nouns(token: dict, s: Sentence) -> list[dict]:
 
 
 def is_known(token: dict, s: Sentence) -> bool:
-    """معرفة: a noun with ال, a name, a pronoun, or a مضاف to a known noun (جميعُهم، كتابُ اللهِ);
-    a مضاف to an unknown one stays unknown (كتابُ رجلٍ)."""
-    if token.get("stt") == "d" or is_name(token):
+    """معرفة, the one reading of "is this noun definite" (Tasheel V1 p21: مضمر وعلم ومشار به وموصول ومضاف وذو أداة): a noun
+    with ال, a name, a pronoun, pointer or relative (CAMeL files many of these and every name indefinite, stt "i", so its
+    stt is read only for ال; a name CAMeL only guessed, "backoff", is no evidence, it files any unknown word a name), or a
+    مضاف to a known noun (جميعُهم، كتابُ اللهِ). A مضاف to an unknown one stays unknown
+    (Ibn Aqil V3 p43: it narrows the first, makes it definite only when the second is: غلام امرأة، غلام زيد)."""
+    if token.get("stt") == "d" or (is_name(token) and not token.get("guessed")) or is_definite_kind(token.get("pos_camel", "")):
         return True
     added = next((k for k in s.kids(token) if k["rel"] == "IDF"), None) if token.get("stt") == "c" else None
     return bool(added) and is_known(added, s)
@@ -446,10 +449,10 @@ def is_zarf(token: dict, s: Sentence) -> bool:
     stands in for the ظرف it counts (Awdah al-Masalik V2 p231, باب المفعول فيه: أسماء العدد المميزة بهما، سرت عشرين يوما)."""
     if token["pos"] == "PRT":
         return False
-    if listed(token, "zarf_zaman") or listed(token, "zarf_makan"):
+    if any(listed(token, family) for family in ADVERB_FAMILIES):
         return True
     return (listed(token, "zarf_zaman", "carriers") or counts(token)) and any(
-        k["rel"] in ("IDF", "TMZ") and (listed(k, "zarf_zaman") or listed(k, "zarf_makan")) for k in s.kids(token))
+        k["rel"] in ("IDF", "TMZ") and any(listed(k, family) for family in ADVERB_FAMILIES) for k in s.kids(token))
 
 
 def counts(token: dict) -> bool:

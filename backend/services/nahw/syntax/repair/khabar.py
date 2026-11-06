@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, is_known, noun_tagged, is_name, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, is_known, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(s: Sentence) -> None:
@@ -31,8 +31,8 @@ def naat_after_its_noun(s: Sentence) -> None:
     for token in tokens:
         head = s.head(token)
         if (head and token["rel"] == "MOD" and head["id"] > token["id"] and head["head"] == 0
-                and noun_tagged(token) and noun_tagged(head) and head.get("stt") == "i"
-                and (token.get("stt") == "d" and token["form"].startswith("ال") or token.get("stt") == "c" and is_known(token, s))):
+                and noun_tagged(token) and noun_tagged(head) and not works_as_verb(head)
+                and not is_known(head, s) and is_known(token, s)):
             s.relink(token, 0, "---")
             s.relink(head, token["id"], "PRD")
 
@@ -121,9 +121,9 @@ def after_pointer(s: Sentence) -> None:
         while token["rel"] == "SBJ" and head and head["head"] and _in_shibh_jumla(head, s):
             head = s.head(head)
         if (head and head["head"] == 0 and head["pos"] in ("NOM", "PROP") and not is_verb(head) and (token["rel"] == "MOD" or token["rel"] == "SBJ" and is_describing(token))
-                and (head.get("pos_camel") in ("pron_dem", "pron_rel", "noun_prop") or head.get("stt") == "d")
+                and is_known(head, s)
                 and token["id"] > head["id"] and token.get("pos_camel") in ("noun", "adj")
-                and _indefinite(token, tokens) and typed_case_of(token) != "a"
+                and not is_known(token, s) and typed_case_of(token) != "a"
                 and not any(t is not token and t["head"] == head["id"] and t["rel"] in ("PRD", "SBJ") for t in tokens)):
             s.relink(token, 0, "---")
             s.relink(head, token["id"], "SBJ")
@@ -131,7 +131,7 @@ def after_pointer(s: Sentence) -> None:
         # follows its noun, so the pointer is that noun's mubtada, as it hangs in هَذَا رَجُلٌ
         elif (token.get("pos_camel") == "pron_dem" and token["rel"] == "MOD" and head and head["head"] == 0
                 and head["id"] > token["id"] and head.get("pos_camel") in ("noun", "adj")
-                and _indefinite(head, tokens) and typed_case_of(head) != "a"):
+                and not is_known(head, s) and typed_case_of(head) != "a"):
             token["rel"] = "SBJ"
 
 
@@ -199,7 +199,7 @@ def zarf_is_no_subject(s: Sentence) -> None:
     for token in tokens if s.verbless else ():
         head = s.head(token)
         if (token["rel"] == "SBJ" and is_zarf(token, s) and typed_case_of(token) != "u" and head
-                and head["head"] == 0 and head["id"] > token["id"] and noun_tagged(head) and _indefinite(head, tokens)):
+                and head["head"] == 0 and head["id"] > token["id"] and noun_tagged(head) and not is_known(head, s)):
             token["rel"] = "MOD"
 
 
@@ -213,23 +213,13 @@ def khabar_said_first(s: Sentence) -> None:
         if particle["pos"] == "PRT" and particle["head"] == 0 and len(khabars) == 2:
             first, second = khabars
             if (is_zarf(first, s) and first["id"] < second["id"] and noun_tagged(second)
-                    and _indefinite(second, tokens)):
+                    and not is_known(second, s)):
                 second["rel"] = "SBJ"
 
 
 def _in_shibh_jumla(token: dict, s: Sentence) -> bool:
     """A ظرف or a preposition: the head of a شبه جملة, which tells of nothing by a subject of its own."""
     return is_zarf(token, s) or is_preposition(token)
-
-
-def _indefinite(token: dict, tokens: list[dict]) -> bool:
-    """Without ال: read so, or read as a مضاف with nothing added to it (الملاحون أقوياء), which it then is not, or
-    a مضاف to an indefinite word, which it narrows but leaves indefinite (Ibn Aqil V3 p43: وتفيد الاسم الأول تخصيصا
-    إن كان المضاف إليه نكرة نحو هذا غلام امرأة وتعريفا إن كان المضاف إليه معرفة): زَيْدٌ صَاحِبُ مَالٍ."""
-    if token.get("stt") != "c":
-        return token.get("stt") == "i"
-    added = next((t for t in tokens if t["head"] == token["id"] and t["rel"] == "IDF"), None)
-    return added is None or (not is_name(added) and _indefinite(added, tokens))
 
 
 def object_of_noun(s: Sentence) -> None:
@@ -248,7 +238,7 @@ def object_of_noun(s: Sentence) -> None:
         token["rel"] = "PRD"
         if is_elative(token):
             for kid in s.kids(opener):
-                if kid["rel"] == "OBJ" and kid["id"] > token["id"] and typed_case_of(kid) == "a" and kid.get("stt") == "i":
+                if kid["rel"] == "OBJ" and kid["id"] > token["id"] and typed_case_of(kid) == "a" and not is_known(kid, s):
                     s.relink(kid, token["id"], "TMZ")
         s.refresh()
 
@@ -261,5 +251,5 @@ def elative_specified(s: Sentence) -> None:
     for token in tokens:
         head = s.head(token)
         if head and token["rel"] == "IDF" and is_elative(head) and typed_case_of(token) == "a" \
-                and token.get("stt") == "i" and not shows_jarr(token):
+                and not is_known(token, s) and not shows_jarr(token):
             token["rel"] = "TMZ"

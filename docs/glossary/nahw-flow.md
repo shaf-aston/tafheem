@@ -124,6 +124,8 @@ Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` �
 - voice: active / passive (`backend/services/nahw/syntax/facts/voice.py`)
 <!-- /list -->
 
+Whether a noun is definite is asked of one fact only, `facts.is_known` (`backend/services/nahw/syntax/facts/sentence.py`): ال, a name, a pronoun, pointer or relative, or a مضاف to one of these (Tasheel V1 p21); the khabar and typed repairs and the particle tree ask it there, not CAMeL's `stt`. A time or place word is asked of `facts.is_zarf` the same way, over the one list in `closed_words.json` (`book.ADVERB_FAMILIES`).
+
 The answers walk the book tree (`backend/services/nahw/syntax/walker.py`, `backend/data/nahw_rules/naming_tree.json`); the leaf is the role. Then: particle with a مجرور, or a جار whose majrur is أَنْ and its verb (إِلَى أَنْ يُوَفِّرُوا) → حرف جر; case per word (typed vowel first, else the role's case from `backend/data/nahw_rules/teacher.json` `case_of_role`); followers copy their head's case; pair names (اسم لا); conditions (`backend/services/nahw/syntax/condition.py`; a conditional noun before a verb with no doer of its own is the مبتدأ, the verb's hidden doer going back to it: مَنْ ذَبَحَ, and the fronted object where the verb has a doer written and takes an object: مَا تَدَّخِرِ الْأُسْرَةُ, `naming._noun_place`; a conditional noun no relative or question word shares its letters with opens after a clause too, its answer first, and before a verb listed as taking no object, a كان-sister (Tasheel 1.9) or a verb with its object pronoun written on it (فَمَنْ أَخَذَهُ) it is the مبتدأ: لَنْ نَتَرَاجَعَ مَهْمَا طَالَ الزَّمَنُ).
 
 Roles the tree can give:

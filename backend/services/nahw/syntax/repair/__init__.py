@@ -40,7 +40,7 @@ PASSES = (
     (excepted_after_doer, "sentence"),
     (first_object_owed, "sentence"),
     (subject_clash, "sentence"),
-    (described_known, "tokens"),  # after: the object subject_clash moved onto the verb is a noun it describes
+    (described_known, "sentence"),  # after: the object subject_clash moved onto the verb is a noun it describes
     (name_told_to, "sentence"),
     (repeated_doer, "sentence"),
     (kana_subject, "sentence"),

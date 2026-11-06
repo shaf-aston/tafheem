@@ -268,3 +268,17 @@ def test_a_bare_name_after_a_verb_of_saying_is_its_doer(pos, rel):
     words = [_tok(1, "قال", "VRB", 0, "---"), _tok(2, "زيد" if pos == "PROP" else "كلام", pos, 1, "OBJ")]
     subject_clash(Sentence(words))
     assert words[1]["rel"] == rel
+
+
+@pytest.mark.parametrize("known, pos, kind, moved", [
+    ("زيد", "PROP", "noun_prop", True),  # a name is known though CAMeL files it indefinite (stt "i"): the mubtada
+    ("هو", "NOM", "pron", True),  # so is a pronoun
+    ("رجل", "NOM", "noun", False),  # an indefinite noun is no mubtada before another
+])
+def test_a_known_word_hung_before_an_indefinite_one_is_the_mubtada_whatever_stt_camel_gave_it(known, pos, kind, moved):
+    """زَيْدٌ طَالِبٌ: a صفة stands after its noun, so the known word hung on the indefinite one after it is the mubtada
+    and that one its khabar (Tasheel V1 p21: the name and the pronoun are known)."""
+    from backend.services.nahw.syntax.repair.khabar import naat_after_its_noun
+    words = [_tok(1, known, pos, 2, "MOD", pos_camel=kind), _tok(2, "طالب", "NOM", 0, "---")]
+    naat_after_its_noun(Sentence(words))
+    assert ((words[0]["head"], words[1]["head"], words[1]["rel"]) == (0, 1, "PRD")) is moved
