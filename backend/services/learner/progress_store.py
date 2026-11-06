@@ -1,130 +1,18 @@
-"""What a learner has answered, right and wrong, and how long it took.
-
-The only module that opens data/progress.db, and the first thing in this app to
-write to a database while serving. Every other store here is built once by a
-script and read afterwards, so the rules that make a read-only store safe are
-not enough: this one opens read-write, in WAL mode, with a busy timeout, because
-FastAPI answers on several threads and two answers can land at once.
-
-Deliberately ignorant of what an item is. It stores a module's own stable id and
-nothing about the thing itself: the quiz sends a meaningKey, a future i'raab or
-dictation panel sends whatever names its own questions. What kind of word that
-id refers to is the caller's business, and the caller already holds the table
-that says so; copying those tags in here would make a second copy that goes
-stale every time the word list is rebuilt.
-
-`user` is the learner's username (services/learner/username.py), or a guest record for
-answers given while nobody is logged in: the device's own ("guest:<id>"), or GUEST from a
-page that names no device. The questions table is a cache of AI answers shared by
-everyone, so it stays under GUEST and claim_guest leaves it alone.
+"""Learner records, mid-split.
 """
 from __future__ import annotations
 
 import json
 import sqlite3
-import threading
 from datetime import datetime, timedelta, timezone
 
-from backend.config import data_path, get_settings
+from backend.config import get_settings
+from backend.services.learner import circle_rules
 from backend.services.learner import review_schedule
 from backend.services.learner import rewards as reward_rules
+from backend.services.learner.progress_db import connection
 from backend.services.learner.username import DEVICE, GUEST
 
-_local = threading.local()
-
-SCHEMA = f"""
-CREATE TABLE IF NOT EXISTS attempts (
-    id      INTEGER PRIMARY KEY,
-    user    TEXT    NOT NULL DEFAULT '{GUEST}',
-    module  TEXT    NOT NULL,
-    item    TEXT    NOT NULL,
-    correct INTEGER NOT NULL CHECK (correct IN (0, 1)),
-    ms      INTEGER CHECK (ms >= 0),
-    context TEXT,
-    at      TEXT    NOT NULL DEFAULT (datetime('now'))
-);
-CREATE INDEX IF NOT EXISTS ix_attempts ON attempts (user, module, item, id);
--- Questions a panel generated, kept the moment they were made so an AI answer
--- is paid for once and can be read back later. `source` is the provenance key
--- the page showed (sources.json), so a row says who wrote it the same way the
--- badge did. The same question for the same sentence is kept once.
-CREATE TABLE IF NOT EXISTS questions (
-    id       INTEGER PRIMARY KEY,
-    user     TEXT    NOT NULL DEFAULT '{GUEST}',
-    module   TEXT    NOT NULL,
-    sentence TEXT    NOT NULL,
-    question TEXT    NOT NULL,
-    answer   TEXT    NOT NULL,
-    hint     TEXT,
-    source   TEXT    NOT NULL,
-    at       TEXT    NOT NULL DEFAULT (datetime('now')),
-    UNIQUE (user, module, sentence, question)
-);
-CREATE INDEX IF NOT EXISTS ix_questions ON questions (user, module, sentence, id);
-CREATE TABLE IF NOT EXISTS feedback (
-    id      INTEGER PRIMARY KEY,
-    user    TEXT    NOT NULL DEFAULT '{GUEST}',
-    module  TEXT    NOT NULL,
-    item    TEXT,
-    message TEXT    NOT NULL,
-    at      TEXT    NOT NULL DEFAULT (datetime('now'))
-);
-CREATE TABLE IF NOT EXISTS accounts (
-    name TEXT PRIMARY KEY,
-    at   TEXT NOT NULL DEFAULT (datetime('now'))
-);
--- The shelf: everything the page keeps for one account (settings, Grow steps,
--- favourites), as the page's own key -> text, one JSON object per name. Opaque
--- here on purpose: the page owns those keys, so a new one needs no change here.
-CREATE TABLE IF NOT EXISTS saved (
-    user TEXT PRIMARY KEY,
-    data TEXT NOT NULL,
-    at   TEXT NOT NULL DEFAULT (datetime('now'))
-);
--- Names typed before sign-up existed are accounts already, so their owners can log in. Guest records never are.
-INSERT OR IGNORE INTO accounts (name, at)
-    SELECT user, MIN(at) FROM (SELECT user, at FROM attempts UNION ALL SELECT user, at FROM feedback)
-    WHERE user NOT IN ('{GUEST}', '') AND user NOT LIKE '{DEVICE}%' GROUP BY user;
-"""
-
-# Changes to tables that already exist, in order; PRAGMA user_version counts how many ran.
-# Append only: a step that has run on a learner's file never runs again.
-MIGRATIONS = (
-    # Passphrase and sign-in key columns, dropped by step 3; kept so a fresh file runs the same steps as an old one.
-    "ALTER TABLE accounts ADD COLUMN pass TEXT; ALTER TABLE accounts ADD COLUMN key TEXT;",
-    # Circles replace teams. `public` is whether the account shows in the global ranking. Every old team
-    # becomes a circle named for its owner (admin, joined); its members are INVITED, since they never agreed.
-    # `teams` is made first only so a file that never had one runs the same moves.
-    """
-    ALTER TABLE accounts ADD COLUMN public INTEGER NOT NULL DEFAULT 1;
-    CREATE TABLE circles (
-        id     INTEGER PRIMARY KEY,
-        name   TEXT NOT NULL,
-        kind   TEXT NOT NULL,
-        parent INTEGER,
-        at     TEXT NOT NULL DEFAULT (datetime('now'))
-    );
-    CREATE TABLE circle_members (
-        circle     INTEGER NOT NULL,
-        member     TEXT    NOT NULL,
-        role       TEXT    NOT NULL CHECK (role IN ('admin', 'member')),
-        status     TEXT    NOT NULL CHECK (status IN ('invited', 'joined')),
-        invited_by TEXT    NOT NULL,
-        at         TEXT    NOT NULL DEFAULT (datetime('now')),
-        PRIMARY KEY (circle, member)
-    );
-    CREATE INDEX ix_circle_members_member ON circle_members (member);
-    CREATE TABLE IF NOT EXISTS teams (team TEXT NOT NULL, member TEXT NOT NULL);
-    INSERT INTO circles (name, kind) SELECT DISTINCT team, 'team' FROM teams;
-    INSERT INTO circle_members (circle, member, role, status, invited_by)
-        SELECT id, name, 'admin', 'joined', name FROM circles;
-    INSERT OR IGNORE INTO circle_members (circle, member, role, status, invited_by)
-        SELECT c.id, t.member, 'member', 'invited', t.team FROM teams t JOIN circles c ON c.name = t.team;
-    DROP TABLE teams;
-    """,
-    # Accounts are by username alone again: the two columns step 1 added go.
-    "ALTER TABLE accounts DROP COLUMN pass; ALTER TABLE accounts DROP COLUMN key;",
-)
 
 # Counts and timing in one pass. Whether an item is due is not here: it is worked
 # out by replaying the item's answers (see _replay), so nothing extra is stored.
@@ -174,37 +62,6 @@ _ANSWERS = "SELECT item, at, correct FROM attempts WHERE user = ? AND module = ?
 _EVERY_ANSWER = "SELECT module, item, at, correct FROM attempts WHERE user = ? ORDER BY id"
 
 
-def _db() -> sqlite3.Connection:
-    """One read-write connection per thread, with the file made if it is missing.
-
-    WAL so a read of the summary never blocks a write of an answer, and a busy
-    timeout because without one SQLite gives up the instant two writes overlap,
-    which auto-advance answering makes ordinary rather than rare.
-    """
-    if getattr(_local, "db", None) is None:
-        path = data_path("progress_db_path")
-        path.parent.mkdir(parents=True, exist_ok=True)
-        db = sqlite3.connect(path, check_same_thread=False)
-        db.row_factory = sqlite3.Row
-        db.execute("PRAGMA journal_mode=WAL")
-        db.execute(f"PRAGMA busy_timeout={get_settings().progress_busy_timeout_ms}")
-        db.executescript(SCHEMA)
-        done = db.execute("PRAGMA user_version").fetchone()[0]
-        for step, script in enumerate(MIGRATIONS[done:], start=done + 1):
-            db.executescript(f"BEGIN; {script} PRAGMA user_version = {step}; COMMIT;")
-        db.commit()
-        _local.db = db
-    return _local.db
-
-
-def reset_connection() -> None:
-    """Forget this thread's connection, so a test can point the setting elsewhere."""
-    db = getattr(_local, "db", None)
-    if db is not None:
-        db.close()
-    _local.db = None
-
-
 def record(
     *,
     module: str,
@@ -215,7 +72,7 @@ def record(
     user: str = GUEST,
 ) -> int:
     """File one answer. Returns the row id, so a caller can prove it landed."""
-    db = _db()
+    db = connection()
     with db:
         cursor = db.execute(
             "INSERT INTO attempts (user, module, item, correct, ms, context) "
@@ -235,7 +92,7 @@ def record(
 def leave_feedback(*, module: str, message: str, item: str | None = None, user: str = GUEST) -> int:
     """File a note about something that looks wrong. Kept apart from answers, so
     the Settings wipe clears a learner's record without losing their reports."""
-    db = _db()
+    db = connection()
     with db:
         cursor = db.execute(
             "INSERT INTO feedback (user, module, item, message) VALUES (?, ?, ?, ?)",
@@ -257,7 +114,7 @@ def keep_questions(
         for q in questions
         if q.get("question") and q.get("answer")
     ]
-    db = _db()
+    db = connection()
     with db:
         before = db.total_changes
         db.executemany(
@@ -275,7 +132,7 @@ def kept_questions(module: str, sentence: str | None = None, user: str = GUEST) 
     if sentence is not None:
         sql += " AND sentence = ?"
         args.append(sentence)
-    return [dict(row) for row in _db().execute(sql + " ORDER BY id", args).fetchall()]
+    return [dict(row) for row in connection().execute(sql + " ORDER BY id", args).fetchall()]
 
 
 def forget(user: str = GUEST) -> int:
@@ -284,7 +141,7 @@ def forget(user: str = GUEST) -> int:
     Whole learner, not per module: the button that calls it says "clear it all",
     and a list of module names here would drift from the panels that file answers.
     """
-    db = _db()
+    db = connection()
     with db:
         cursor = db.execute("DELETE FROM attempts WHERE user = ?", (user,))
         db.execute("DELETE FROM saved WHERE user = ?", (user,))
@@ -293,18 +150,18 @@ def forget(user: str = GUEST) -> int:
 
 def sign_up(name: str) -> bool:
     """Make the account. False when the username is taken."""
-    db = _db()
+    db = connection()
     with db:
         return db.execute("INSERT OR IGNORE INTO accounts (name) VALUES (?)", (name,)).rowcount == 1
 
 
 def has_account(name: str) -> bool:
-    return _db().execute("SELECT 1 FROM accounts WHERE name = ?", (name,)).fetchone() is not None
+    return connection().execute("SELECT 1 FROM accounts WHERE name = ?", (name,)).fetchone() is not None
 
 
 def account(name: str) -> dict | None:
     """Who, since when (UTC ISO), how many answers given and whether in the global ranking; None when not signed up."""
-    row = _db().execute(
+    row = connection().execute(
         "SELECT name, at, public, (SELECT COUNT(*) FROM attempts WHERE user = name) AS answers "
         "FROM accounts WHERE name = ?", (name,)).fetchone()
     if row is None:
@@ -319,7 +176,7 @@ def delete_account(name: str) -> int:
     Reports about questions are kept, as the plain wipe keeps them, but filed under
     nobody (''): under the guest they would pass to whoever signs up next.
     """
-    db = _db()
+    db = connection()
     with db:
         deleted = db.execute("DELETE FROM attempts WHERE user = ?", (name,)).rowcount
         db.execute("UPDATE feedback SET user = '' WHERE user = ?", (name,))
@@ -334,13 +191,13 @@ def delete_account(name: str) -> int:
 
 def shelf(user: str) -> dict[str, str]:
     """What the page last kept for this name; empty when nothing was."""
-    row = _db().execute("SELECT data FROM saved WHERE user = ?", (user,)).fetchone()
+    row = connection().execute("SELECT data FROM saved WHERE user = ?", (user,)).fetchone()
     return json.loads(row["data"]) if row else {}
 
 
 def keep_shelf(user: str, data: dict[str, str]) -> None:
     """Replace this name's shelf whole: the page always sends all of it."""
-    db = _db()
+    db = connection()
     with db:
         db.execute(
             "INSERT INTO saved (user, data) VALUES (?, ?) "
@@ -351,7 +208,7 @@ def keep_shelf(user: str, data: dict[str, str]) -> None:
 
 def account_names() -> list[str]:
     """Every username, A to Z."""
-    return [row["name"] for row in _db().execute("SELECT name FROM accounts ORDER BY name")]
+    return [row["name"] for row in connection().execute("SELECT name FROM accounts ORDER BY name")]
 
 
 def learnt(module: str, name: str) -> int:
@@ -364,7 +221,7 @@ def _learnt_everywhere(user: str) -> dict[str, int]:
     """`learnt` for every module this learner answered in, from one read of their answers: the overview is read
     again after every answer, so it does not replay module by module."""
     now = datetime.now(timezone.utc)
-    cards = _fold(_db().execute(_EVERY_ANSWER, (user,)), lambda row: (row["module"], row["item"]))
+    cards = _fold(connection().execute(_EVERY_ANSWER, (user,)), lambda row: (row["module"], row["item"]))
     counts: dict[str, int] = {}
     for (module, _item), card in cards.items():
         counts[module] = counts.get(module, 0) + review_schedule.is_known(card, now)
@@ -383,7 +240,7 @@ def local_today(minutes: int = 0):
 
 def earns(module: str, item: str, user: str, minutes: int = 0) -> bool:
     """True if this item has not been answered right yet today (so a right answer earns)."""
-    found = _db().execute(_EARNED_TODAY, (user, module, item, _shift(minutes), local_today(minutes).isoformat()))
+    found = connection().execute(_EARNED_TODAY, (user, module, item, _shift(minutes), local_today(minutes).isoformat()))
     return found.fetchone() is None
 
 
@@ -391,11 +248,11 @@ def rewards(user: str, minutes: int = 0) -> dict:
     """XP, XP today, level and streak, on the learner's days (services/learner/rewards.py)."""
     settings = get_settings()
     today = local_today(minutes)
-    days = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_EARNED, (_shift(minutes), user))]
-    answered = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_DAYS, (_shift(minutes), user))]
+    days = [datetime.fromisoformat(row["day"]).date() for row in connection().execute(_EARNED, (_shift(minutes), user))]
+    answered = [datetime.fromisoformat(row["day"]).date() for row in connection().execute(_DAYS, (_shift(minutes), user))]
     return {
         **reward_rules.rewards_of(days, today, settings.rewards_xp_per_answer, settings.rewards_level_step),
-        "streak": _streak(answered, today),
+        "streak": reward_rules.streak(answered, today),
     }
 
 
@@ -408,28 +265,15 @@ def overview(user: str, minutes: int = 0) -> dict:
     modules = [
         {**dict(row), "learnt": known.get(row["module"], 0),
          "last_at": datetime.fromisoformat(row["last_at"]).replace(tzinfo=timezone.utc).isoformat()}
-        for row in _db().execute(_MODULES, (user,))
+        for row in connection().execute(_MODULES, (user,))
     ]
     totals = {key: sum(row[key] for row in modules) for key in ("attempts", "correct", "learnt")}
-    days = [datetime.fromisoformat(row["day"]).date() for row in _db().execute(_DAYS, (_shift(minutes), user))]
-    return {"modules": modules, **totals, "streak": _streak(days, local_today(minutes))}
-
-
-def _streak(days: list, today) -> int:
-    """Days in a row with an answer, newest first in `days` (the learner's own days). Today counts;
-    a day not yet answered in leaves yesterday's streak standing."""
-    day = today if days and days[0] == today else today - timedelta(days=1)
-    streak = 0
-    for answered in days:
-        if answered != day:
-            break
-        streak += 1
-        day -= timedelta(days=1)
-    return streak
+    days = [datetime.fromisoformat(row["day"]).date() for row in connection().execute(_DAYS, (_shift(minutes), user))]
+    return {"modules": modules, **totals, "streak": reward_rules.streak(days, local_today(minutes))}
 
 
 def _answers(module: str, name: str) -> int:
-    return _db().execute("SELECT COUNT(*) FROM attempts WHERE user = ? AND module = ?", (name, module)).fetchone()[0]
+    return connection().execute("SELECT COUNT(*) FROM attempts WHERE user = ? AND module = ?", (name, module)).fetchone()[0]
 
 
 def _ranked(names: list[str], module: str) -> list[dict]:
@@ -448,32 +292,26 @@ def _ranked(names: list[str], module: str) -> list[dict]:
 
 def leaderboard(module: str, user: str) -> tuple[list[dict], dict | None]:
     """The global ranking: accounts that show in it, and `user`'s own row, ranked among them even when hidden."""
-    shown = [row["name"] for row in _db().execute("SELECT name FROM accounts WHERE public = 1 ORDER BY name")]
+    shown = [row["name"] for row in connection().execute("SELECT name FROM accounts WHERE public = 1 ORDER BY name")]
     ranked = _ranked(shown if user in shown or not has_account(user) else [*shown, user], module)
     return [row for row in ranked if row["name"] in shown], next((row for row in ranked if row["name"] == user), None)
 
 
 def set_public(user: str, public: bool) -> None:
-    db = _db()
+    db = connection()
     with db:
         db.execute("UPDATE accounts SET public = ? WHERE name = ?", (int(public), user))
 
 
-# Circles: people grouped by kind (config circle_kinds), nestable. A member is invited first and sees
-# nothing until they accept; an invited row shows only to admins and to the invited person.
-
-ROLES = ("admin", "member")
-
-
 def _circle(circle: int) -> sqlite3.Row:
-    row = _db().execute("SELECT * FROM circles WHERE id = ?", (circle,)).fetchone()
+    row = connection().execute("SELECT * FROM circles WHERE id = ?", (circle,)).fetchone()
     if row is None:
         raise LookupError("No such circle")
     return row
 
 
 def _member(circle: int, name: str) -> sqlite3.Row | None:
-    return _db().execute("SELECT * FROM circle_members WHERE circle = ? AND member = ?", (circle, name)).fetchone()
+    return connection().execute("SELECT * FROM circle_members WHERE circle = ? AND member = ?", (circle, name)).fetchone()
 
 
 def _joined(circle: int, name: str) -> bool:
@@ -498,13 +336,13 @@ def _above(circle: int) -> list[int]:
     parent = _circle(circle)["parent"]
     while parent is not None and parent not in found:
         found.append(parent)
-        parent = _db().execute("SELECT parent FROM circles WHERE id = ?", (parent,)).fetchone()["parent"]
+        parent = connection().execute("SELECT parent FROM circles WHERE id = ?", (parent,)).fetchone()["parent"]
     return found
 
 
 def _others(circle: int, name: str) -> tuple[bool, bool]:
     """Whether anyone else is in the circle, and whether another joined admin is."""
-    rows = _db().execute("SELECT member, role, status FROM circle_members WHERE circle = ? AND member != ?",
+    rows = connection().execute("SELECT member, role, status FROM circle_members WHERE circle = ? AND member != ?",
                          (circle, name)).fetchall()
     return bool(rows), any(r["role"] == "admin" and r["status"] == "joined" for r in rows)
 
@@ -528,7 +366,7 @@ def create_circle(user: str, name: str, kind: str, parent: int | None = None) ->
         raise ValueError(f"Kind must be one of: {', '.join(circle_kinds())}")
     if parent is not None:
         _need_admin(parent, user)
-    db = _db()
+    db = connection()
     with db:
         made = db.execute("INSERT INTO circles (name, kind, parent) VALUES (?, ?, ?)", (name, kind, parent)).lastrowid
         db.execute("INSERT INTO circle_members (circle, member, role, status, invited_by) "
@@ -543,33 +381,26 @@ def move_circle(circle: int, admin: str, parent: int | None) -> None:
         _need_admin(parent, admin)
         if parent == circle or circle in _above(parent):
             raise ValueError("A circle cannot go inside itself or a circle inside it")
-    db = _db()
+    db = connection()
     with db:
         db.execute("UPDATE circles SET parent = ? WHERE id = ?", (parent, circle))
 
 
 def my_circles(user: str) -> list[dict]:
     """Every circle `user` is in or invited to, the invites marked by status."""
-    return [dict(row) for row in _db().execute(
+    return [dict(row) for row in connection().execute(
         "SELECT c.id, c.name, c.kind, c.parent, m.role, m.status, m.invited_by FROM circle_members m "
         "JOIN circles c ON c.id = m.circle WHERE m.member = ? ORDER BY m.status DESC, c.name", (user,))]
 
 
 def can_see(viewer: str, target: str) -> bool:
-    """Whether `viewer` may open `target`'s full overview: themselves; an admin of a circle `target` is joined
-    in or of any circle above it; or a fellow member of a circle whose kind shows members' details."""
-    if viewer == target:
-        return True
-    kinds = get_settings().circle_kinds
-    mine = {row["circle"]: row for row in _db().execute(
+    """Whether `viewer` may open `target`'s full overview (the rule is circle_rules.can_see)."""
+    mine = {row["circle"]: (row["role"], row["kind"]) for row in connection().execute(
         "SELECT m.circle, m.role, c.kind FROM circle_members m JOIN circles c ON c.id = m.circle "
         "WHERE m.member = ? AND m.status = 'joined'", (viewer,))}
-    for row in _db().execute("SELECT circle FROM circle_members WHERE member = ? AND status = 'joined'", (target,)):
-        if any(c in mine and mine[c]["role"] == "admin" for c in (row["circle"], *_above(row["circle"]))):
-            return True
-        if row["circle"] in mine and kinds.get(mine[row["circle"]]["kind"]):
-            return True
-    return False
+    theirs = {row["circle"]: [row["circle"], *_above(row["circle"])] for row in connection().execute(
+        "SELECT circle FROM circle_members WHERE member = ? AND status = 'joined'", (target,))}
+    return circle_rules.can_see(viewer, target, mine, theirs, get_settings().circle_kinds)
 
 
 def circle_detail(circle: int, user: str) -> dict:
@@ -581,13 +412,13 @@ def circle_detail(circle: int, user: str) -> dict:
     above = any(_admin(parent, user) for parent in _above(circle))
     if not (_joined(circle, user) or above):
         raise PermissionError("You are not in this circle")
-    rows = _db().execute("SELECT member, role, status FROM circle_members WHERE circle = ? ORDER BY member", (circle,))
+    rows = connection().execute("SELECT member, role, status FROM circle_members WHERE circle = ? ORDER BY member", (circle,))
     members = [
         {"name": row["member"], "role": row["role"], "status": row["status"],
          "seeable": row["status"] == "joined" and can_see(user, row["member"])}
         for row in rows if admin or row["status"] == "joined"
     ]
-    inside = [dict(row) for row in _db().execute(
+    inside = [dict(row) for row in connection().execute(
         "SELECT id, name, kind FROM circles WHERE parent = ? ORDER BY name", (circle,))] if admin or above else []
     return {"id": found["id"], "name": found["name"], "kind": found["kind"], "parent": found["parent"],
             "role": me["role"] if me and me["status"] == "joined" else None, "members": members, "inside": inside}
@@ -598,7 +429,7 @@ def circle_ranking(circle: int, module: str, user: str) -> list[dict]:
     _circle(circle)
     if not _joined(circle, user):
         raise PermissionError("You are not in this circle")
-    names = [row["member"] for row in _db().execute(
+    names = [row["member"] for row in connection().execute(
         "SELECT member FROM circle_members WHERE circle = ? AND status = 'joined' ORDER BY member", (circle,))]
     return _ranked(names, module)
 
@@ -613,20 +444,20 @@ def member_overview(circle: int, viewer: str, member: str) -> dict:
 
 def invite(circle: int, admin: str, member: str, role: str) -> None:
     _need_admin(circle, admin)
-    if role not in ROLES:
+    if role not in circle_rules.ROLES:
         raise ValueError("A role is admin or member")
     if not has_account(member):
         raise LookupError("No account with that username")
     if _member(circle, member):
         raise ValueError(f"{member} is already in this circle or invited to it")
-    db = _db()
+    db = connection()
     with db:
         db.execute("INSERT INTO circle_members (circle, member, role, status, invited_by) "
                    "VALUES (?, ?, ?, 'invited', ?)", (circle, member, role, admin))
 
 
 def accept(circle: int, user: str) -> None:
-    db = _db()
+    db = connection()
     with db:
         changed = db.execute("UPDATE circle_members SET status = 'joined' "
                              "WHERE circle = ? AND member = ? AND status = 'invited'", (circle, user)).rowcount
@@ -635,7 +466,7 @@ def accept(circle: int, user: str) -> None:
 
 
 def decline(circle: int, user: str) -> None:
-    db = _db()
+    db = connection()
     with db:
         changed = db.execute("DELETE FROM circle_members WHERE circle = ? AND member = ? AND status = 'invited'",
                              (circle, user)).rowcount
@@ -651,7 +482,7 @@ def leave(circle: int, user: str) -> None:
     others, other_admin = _others(circle, user)
     if _admin(circle, user) and others and not other_admin:
         raise ValueError("You are the only admin: make someone else an admin first")
-    db = _db()
+    db = connection()
     with db:
         db.execute("DELETE FROM circle_members WHERE circle = ? AND member = ?", (circle, user))
         if not others:
@@ -662,7 +493,7 @@ def remove(circle: int, admin: str, member: str) -> None:
     _need_admin(circle, admin)
     if member == admin:
         raise ValueError("Use leave to go yourself")
-    db = _db()
+    db = connection()
     with db:
         gone = db.execute("DELETE FROM circle_members WHERE circle = ? AND member = ?", (circle, member)).rowcount
     if not gone:
@@ -671,13 +502,13 @@ def remove(circle: int, admin: str, member: str) -> None:
 
 def set_role(circle: int, admin: str, member: str, role: str) -> None:
     _need_admin(circle, admin)
-    if role not in ROLES:
+    if role not in circle_rules.ROLES:
         raise ValueError("A role is admin or member")
     if not _joined(circle, member):
         raise LookupError("Not a joined member of this circle")
     if member == admin and role != "admin" and not _others(circle, admin)[1]:
         raise ValueError("You are the only admin: make someone else an admin first")
-    db = _db()
+    db = connection()
     with db:
         db.execute("UPDATE circle_members SET role = ? WHERE circle = ? AND member = ?", (role, circle, member))
 
@@ -685,7 +516,7 @@ def set_role(circle: int, admin: str, member: str, role: str) -> None:
 def delete_circle(circle: int, admin: str) -> None:
     """End a circle; the circles inside it lose their parent."""
     _need_admin(circle, admin)
-    db = _db()
+    db = connection()
     with db:
         _drop(db, circle)
 
@@ -705,7 +536,7 @@ def _tidy(db: sqlite3.Connection, circle: int) -> None:
 
 def claim_guest(user: str, guest: str = GUEST) -> None:
     """Move one guest record's answers and reports (the signing-up device's) onto `user`."""
-    db = _db()
+    db = connection()
     with db:
         db.execute("UPDATE attempts SET user = ? WHERE user = ?", (user, guest))
         db.execute("UPDATE feedback SET user = ? WHERE user = ?", (user, guest))
@@ -726,7 +557,7 @@ def sweep_guests(days: int) -> int:
     GUEST record are never touched. Two statements in one write transaction, each choosing the idle
     devices itself, so an answer landing meanwhile waits for the lock and is never deleted with them.
     """
-    db = _db()
+    db = connection()
     since = (f"-{days} days",)
     with db:
         db.execute(f"UPDATE feedback SET user = '' WHERE user IN ({_IDLE_DEVICES})", since)
@@ -748,10 +579,10 @@ def summary(module: str, user: str = GUEST) -> list[dict]:
     what happened is that they walked away. None means nothing timed honestly.
     """
     cap = get_settings().progress_timing_cap_ms
-    rows = _db().execute(_SUMMARY, (cap, user, module)).fetchall()
+    rows = connection().execute(_SUMMARY, (cap, user, module)).fetchall()
     cards = _replay(module, user)
     words: dict[str, list[str]] = {}
-    for row in _db().execute(_WORDS, (user, module)):
+    for row in connection().execute(_WORDS, (user, module)):
         words.setdefault(row["item"], []).append(row["word"])
     now = datetime.now(timezone.utc)
 
@@ -772,7 +603,7 @@ def summary(module: str, user: str = GUEST) -> list[dict]:
 
 def _replay(module: str, user: str) -> dict:
     """Each item's FSRS card in `module`."""
-    return _fold(_db().execute(_ANSWERS, (user, module)), lambda row: row["item"])
+    return _fold(connection().execute(_ANSWERS, (user, module)), lambda row: row["item"])
 
 
 def _fold(rows, key) -> dict:

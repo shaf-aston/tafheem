@@ -14,7 +14,7 @@ import pytest
 from backend.services import ai
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
-from backend.services.learner import progress_store
+from backend.services.learner import progress_db, progress_store
 from backend.services.dictionary import sentence_meaning
 from backend.services.dictionary import service as dictionary_service
 from backend.services.quran import search as quran_search
@@ -59,11 +59,11 @@ def typed(monkeypatch, tmp_path):
         {**_word("البيت", "noun", "d", "the+house"), "lemma": "بَيْت"}, _word("كبير", "adj", "i", "large;great")])
     monkeypatch.setattr(quran_search, "whole_ayah", lambda text: None)
     monkeypatch.setattr(quran_search, "ayah_run", lambda text: None)
-    monkeypatch.setattr(progress_store, "data_path", lambda _name: tmp_path / "progress.db")
-    progress_store.reset_connection()
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: tmp_path / "progress.db")
+    progress_db.reset_connection()
     asked = []
     yield asked
-    progress_store.reset_connection()
+    progress_db.reset_connection()
 
 
 def _model(typed, reply):
@@ -96,7 +96,7 @@ def test_the_model_gets_the_grammars_facts_and_gives_the_sense_once(typed, monke
     assert typed[0].splitlines() == [
         "1. البيت — بَيْت (noun, مبتدأ, raf'): the house", "2. كبير — كَبِير (adj, خبر, raf'): large/great"]
     # Another server process: nothing in memory, the same store on disk.
-    progress_store.reset_connection()
+    progress_db.reset_connection()
     monkeypatch.setattr(ai, "translate_sentence", _model(typed, {"english": "The house is large"}))
     assert sentence_meaning.translate("البيت كبير") == first and len(typed) == 1
 

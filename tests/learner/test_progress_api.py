@@ -15,7 +15,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import progress_store
+from backend.services.learner import progress_db, progress_store
 
 client = TestClient(app)
 
@@ -23,10 +23,10 @@ client = TestClient(app)
 @pytest.fixture(autouse=True)
 def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
-    monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
-    progress_store.reset_connection()
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
+    progress_db.reset_connection()
     yield
-    progress_store.reset_connection()
+    progress_db.reset_connection()
 
 
 def post(**body):
@@ -100,7 +100,7 @@ def test_feedback_is_kept_and_survives_the_wipe():
     ok = client.post("/api/progress/feedback", json={"module": "tamreen", "item": "q1", "message": " wrong harakah "})
     assert ok.status_code == 200 and ok.json()["id"] == 1
     client.delete("/api/progress")
-    rows = progress_store._db().execute("SELECT module, item, message FROM feedback").fetchall()
+    rows = progress_db.connection().execute("SELECT module, item, message FROM feedback").fetchall()
     assert [tuple(r) for r in rows] == [("tamreen", "q1", "wrong harakah")]
 
 

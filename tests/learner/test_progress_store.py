@@ -24,7 +24,7 @@ from datetime import datetime, timedelta, timezone
 import pytest
 
 from backend.config import get_settings
-from backend.services.learner import progress_store
+from backend.services.learner import progress_db, progress_store
 
 
 @pytest.fixture()
@@ -37,10 +37,10 @@ def store(tmp_path, monkeypatch):
     monkeypatch.setenv("PROGRESS_DB_PATH", "data/test-progress.db")
     get_settings.cache_clear()
     target = tmp_path / "progress.db"
-    monkeypatch.setattr(progress_store, "data_path", lambda _name: target)
-    progress_store.reset_connection()
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
+    progress_db.reset_connection()
     yield progress_store
-    progress_store.reset_connection()
+    progress_db.reset_connection()
     get_settings.cache_clear()
 
 
@@ -55,7 +55,7 @@ def stats_for(store, item, module="quiz"):
 def test_makes_its_own_database_and_can_be_opened_twice(store, tmp_path):
     """No build script: the first answer makes the file, and reopening keeps it."""
     answer(store, "to-write", True)
-    store.reset_connection()  # a second thread, or a restart
+    progress_db.reset_connection()  # a second thread, or a restart
     answer(store, "to-write", True)
     assert stats_for(store, "to-write")["attempts"] == 2
 
@@ -69,7 +69,7 @@ def test_records_right_and_wrong(store):
 
 def answer_at(store, item, correct, when, module="quiz"):
     """File an answer with an explicit UTC time, as the column stores it."""
-    db = store._db()
+    db = progress_db.connection()
     with db:
         db.execute(
             "INSERT INTO attempts (module, item, correct, at) VALUES (?, ?, ?, ?)",
@@ -194,7 +194,7 @@ def test_learners_do_not_see_each_other(store):
 def test_context_is_kept_as_given(store):
     store.record(module="quiz", item="to-write", correct=True,
                  context={"bank": "quranic", "direction": "ar-en"})
-    row = store._db().execute("SELECT context FROM attempts").fetchone()
+    row = progress_db.connection().execute("SELECT context FROM attempts").fetchone()
     assert '"quranic"' in row["context"]
 
 
