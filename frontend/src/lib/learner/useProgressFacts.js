@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { shareOf } from '../quiz/coverage'
 import { accountQuery, overviewQuery } from './record'
-import { MEANINGS } from '../quiz/quiz'
+import { LANGUAGE_KEY, MEANINGS } from '../quiz/quiz'
 import { moduleFor, QUIZ } from '../quiz/quizBanks'
 import { useQuizCoverage } from '../quiz/useQuizCoverage'
 import { useRemembered } from '../store/useRemembered'
@@ -16,7 +16,7 @@ import { useRewards } from './useRewards'
  * the Urdu module, not the default's.
  */
 export function useProgressFacts(name) {
-  const [language] = useRemembered('quiz-language', Object.keys(MEANINGS), QUIZ.language)
+  const [language] = useRemembered(LANGUAGE_KEY, Object.keys(MEANINGS), QUIZ.language)
   const module = moduleFor(language)
   const account = useQuery(accountQuery(name))
   const overview = useQuery(overviewQuery(name))

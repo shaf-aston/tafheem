@@ -14,6 +14,7 @@ import { PLAN_KEY } from '../lib/learner/plan'
 import { writeRaw } from '../lib/store/stored'
 import data from '../../public/grow/basics.json'
 import verbs from '../../public/grow/basics-verbs.json'
+import letters from '../../public/grow/letters.json'
 
 const items = pathItems(data.words, { verbs: verbs.verbs, families: verbs.families, people: data.people, path: data.path })
 
@@ -33,7 +34,7 @@ const shared = (rows) => ({
 })
 const seen = (id, due = false) => ({ item: id, due, dueAt: '2026-10-23T00:00:00Z', known: false })
 const home = () => <GrowPanel incoming={null} arrival={null} onVisit={() => {}} />
-const hero = () => screen.findByRole('heading', { level: 3, name: /Your first steps|Keep your garden growing/ })
+const hero = () => screen.findByRole('heading', { level: 3, name: /Your first letters|Your first steps|Keep your garden growing/ })
 
 describe('basics', () => {
   beforeEach(() => localStorage.clear())
@@ -194,9 +195,16 @@ describe('basics', () => {
       expect(screen.getByText('Today · about 10 minutes')).toBeTruthy()
     })
 
-    it('leads someone who cannot read yet with the Basics', async () => {
+    it('leads someone who cannot read yet with the letters, and the Basics once every letter is learnt', async () => {
       plan({ goals: ['understand'], read: 'no', hifz: 'none', minutes: '5' })
-      renderScreen(home(), { routes: shared([]) })
+      const { unmount } = renderScreen(home(), { routes: shared([]) })
+      await waitFor(async () => expect((await hero()).textContent).toBe('Your first letters'))
+      unmount()
+      const learnt = letters.letters.map((one) => ({ item: one.id, due: false, dueAt: '2026-10-23T00:00:00Z', known: true }))
+      renderScreen(home(), { routes: {
+        'GET /progress/summary': (config) => ({ items: config.params.module === 'letters' ? learnt : [] }),
+        'POST /progress/attempts': { earned: 1 },
+      } })
       await waitFor(async () => expect((await hero()).textContent).toBe('Your first steps'))
     })
 

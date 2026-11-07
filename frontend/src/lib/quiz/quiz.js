@@ -42,6 +42,9 @@ import settings from '../../config/quiz.json'
  * English sentence calls it, because "a اردو meaning" reads badly and reorders
  * itself the moment a right-to-left word lands mid-sentence.
  */
+/** Where the chosen meaning language is kept (the Quiz's picker, the first-visit questions). */
+export const LANGUAGE_KEY = 'quiz-language'
+
 export const MEANINGS = {
   en: { label: 'English', name: 'English', short: 'EN', tail: false },
   ur: { label: 'اردو', name: 'Urdu', short: 'UR', tail: true },

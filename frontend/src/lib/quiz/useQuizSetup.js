@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { DIRECTIONS, MEANINGS } from './quiz'
+import { DIRECTIONS, LANGUAGE_KEY, MEANINGS } from './quiz'
 import { BANKS, groupsFor, QUIZ, WHOLE_SET_SCOPES } from './quizBanks'
 import { levelOf } from '../learner/learnerLevel'
 import { useLearnerLevel } from '../learner/useLearnerLevel'
@@ -29,7 +29,7 @@ export function useQuizSetup() {
   // The setup is remembered, the round is not: a half-answered question put
   // back on screen would start a clock on a word last seen a week ago.
   // Defaults stay quiz.json's to set, so a first visit is unchanged.
-  const [language, setLanguage] = useRemembered('quiz-language', LANGUAGE_IDS, QUIZ.language)
+  const [language, setLanguage] = useRemembered(LANGUAGE_KEY, LANGUAGE_IDS, QUIZ.language)
   const [savedDirection, setDirection] = useRemembered('quiz-direction', DIRECTION_IDS, QUIZ.direction)
   // A direction remembered while another language was on is not wrong, it just
   // belongs to that one. Switching language lands on plain Arabic-to-yours

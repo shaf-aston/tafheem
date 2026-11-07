@@ -108,14 +108,14 @@ describe('Next for you: picked from the first-visit plan', () => {
     expect(onGo).toHaveBeenCalledWith('colloq')
   })
 
-  it('a Grow world from the plan starts its step', async () => {
+  it('a Grow world from the plan starts its step: the letters, for one who cannot read yet', async () => {
     plan({ goals: ['understand'], read: 'no', hifz: 'none', minutes: '5' })
     const onGo = vi.fn()
     renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
     const next = await screen.findByRole('region', PLANNED)
-    await within(next).findByText('Basics')
+    await within(next).findByText('Letters')
     fireEvent.click(within(next).getByRole('button'))
-    expect(onGo).toHaveBeenCalledWith('grow', 'basics/lesson')
+    expect(onGo).toHaveBeenCalledWith('grow', 'letters/lesson')
   })
 
   it('is not offered twice: not when it is the place on the card', async () => {
