@@ -11,6 +11,7 @@ import { scrollToTop } from '../../../lib/motion/scrollToEl'
 import { readViewParam, writeViewParams } from '../../../lib/nav/tabUrl'
 import Segmented from '../../ui/inputs/Segmented'
 import Practice from '../exercises/Practice'
+import SpellingKey from '../parts/SpellingKey'
 import WordCards from './WordCards'
 import WordGallery from './WordGallery'
 import WordMatch from './WordMatch'
@@ -60,6 +61,7 @@ export default function WordsView({ unit, at }) {
           <Segmented label="How to learn the words" accent="var(--primary)" value={shown} onChange={setMode} options={modes} />
         </div>
       </header>
+      {shown !== 'quiz' && <div className="w-full max-w-xl mx-auto"><SpellingKey keys={unit.transliteration_key} /></div>}
       {/* Keyed by the mode, so a newly picked one rises in. */}
       <div key={shown} className={picked ? 'rise-in' : undefined}>
         {shown === 'browse' && (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />)}

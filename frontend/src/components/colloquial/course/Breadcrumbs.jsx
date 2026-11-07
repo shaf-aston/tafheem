@@ -29,7 +29,7 @@ export function Breadcrumbs({ steps }) {
 export function DialectSwitch({ dialects, current, onPick }) {
   return (
     <div className="ms-auto flex items-center gap-2 type-small text-[var(--text-faint)]">
-      <span className="hidden sm:inline">Same place in</span>
+      <span className="hidden sm:inline">Same topic in</span>
       <WheelPicker label="Dialect" options={dialects.map((d) => ({ id: d.key, label: d.label }))}
         value={current} onChange={onPick} accent={colorFor('tab', 'colloq')} />
     </div>

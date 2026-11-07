@@ -9,6 +9,7 @@ import Mosaic from './Mosaic'
 import Pairs from './Pairs'
 import Practice from '../exercises/Practice'
 import Sheet from './Sheet'
+import SpellingKey from '../parts/SpellingKey'
 import WordBank from '../words/WordBank'
 import WordGrid from '../words/WordGrid'
 import WordPicture from '../words/picture/WordPicture'
@@ -64,6 +65,7 @@ function Scene({ unit, lesson, number, place }) {
             <WordBank unit={unit} at={number - 1} />
           </div>
         </header>
+        <SpellingKey keys={unit.transliteration_key} />
         <Mosaic phrases={lesson.phrases} onOpen={setOpen} />
       </div>
       {/* Phrases first, then the topic's words on their own: a learner needs far
