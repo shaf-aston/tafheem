@@ -36,6 +36,11 @@ describe('lettersCards', () => {
     expect(ids.every((id) => byId[id].family === 'ba')).toBe(true)
   })
 
+  it('marks every card a letter card, so the letter is drawn large', () => {
+    const cards = lettersCards({ fresh: [byId.ba], reviews: [byId.mim] }, letters, fixed)
+    expect(cards.every((card) => card.glyph)).toBe(true)
+  })
+
   it('asks a review once', () => {
     expect(lettersCards({ fresh: [], reviews: [byId.mim] }, letters, fixed)).toHaveLength(1)
   })
