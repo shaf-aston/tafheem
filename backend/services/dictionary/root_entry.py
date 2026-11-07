@@ -126,13 +126,19 @@ def senses(root: str) -> Worded | Refused:
         if not ai.is_ai_available():
             return Refused.NO_AI
         ask = partial(ai.explain_root_entry_senses, root, reference=root_english.get(book_root))
-        parts = []
-        for chunk in root_gloss.chunks(cut, get_settings().root_senses_chunk_chars):
-            parts.append(root_senses.cut(ask, chunk))
-            if parts[-1] is None:
+        parts, read = [], 0
+        for chunk in root_gloss.chunks(cut, get_settings().root_senses_chunk_chars, fold_tail=True):
+            part = root_senses.cut(ask, chunk)
+            if part is None:
                 break
-        kept = root_senses.joined(parts)
-        if kept is None:
+            parts.append(part)
+            read += len(chunk)
+        if not parts:
             return Refused.MISPAIRED
+        kept = root_senses.joined(parts)
+        if read < len(cut):
+            # A later chunk failed: the opening that was read is shown as the
+            # opening, and not kept, so the next look asks again for the rest
+            return Worded(root_senses.shown(kept, cut[:read]), True, "ai")
         root_english.put_senses(book_root, kept)
     return Worded(root_senses.shown(kept, cut), truncated, "ai")

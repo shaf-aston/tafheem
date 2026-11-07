@@ -214,15 +214,13 @@ export default function BookPicker({ books, onChange, accent, sourceLabel, folde
               : 'Type to narrow the list, click a book to add it'}
           </p>
 
-          {/* Two columns once there is room: the library is long enough that a
-              single column buries half of it below the scroll. On a narrow
-              screen it stays one column, where two would squeeze the names. */}
-          {/* The fade signals more rows below the clip rather than letting a
-              name look cut off mid-letter. */}
-          <div className="relative">
-          <ul className="max-h-40 sm:max-h-52 overflow-y-auto sm:grid sm:grid-cols-2 sm:gap-x-1">
+          {/* The whole list, in as many columns as fit, and the page scrolls it.
+              A box of its own, a few rows tall with the rest scrolled inside it,
+              read as a drop-down on a page that is otherwise empty until a
+              search, and a scroll inside a scroll traps a thumb on a phone. */}
+          <ul className="grid grid-cols-[repeat(auto-fill,minmax(min(16rem,100%),1fr))] gap-x-1">
             {listed.length === 0 ? (
-              <li className="px-2 py-1.5 type-small text-[var(--text-faint)]">
+              <li className="col-span-full px-2 py-1.5 type-small text-[var(--text-faint)]">
                 No book here is called that.
               </li>
             ) : (
@@ -277,12 +275,6 @@ export default function BookPicker({ books, onChange, accent, sourceLabel, folde
               ))
             )}
           </ul>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute bottom-0 inset-x-0 h-6"
-            style={{ background: 'linear-gradient(to bottom, transparent, var(--surface))' }}
-          />
-          </div>
         </div>
       </div>
       </>}

@@ -141,9 +141,11 @@ def line_budget(arabic: str, budget: int) -> tuple[list[str], bool]:
     return kept, False
 
 
-def chunks(lines: list[str], budget: int) -> list[list[str]]:
+def chunks(lines: list[str], budget: int, fold_tail: bool = False) -> list[list[str]]:
     """Whole lines grouped so each group stays within `budget` characters. A
-    line longer than that is its own group: half a line is not translatable."""
+    line longer than that is its own group: half a line is not translatable.
+    `fold_tail`: a last group under a third of the budget joins the one before,
+    since a few lines alone leave the model too little to place them by."""
     groups: list[list[str]] = []
     spent = 0
     for line in lines:
@@ -152,4 +154,6 @@ def chunks(lines: list[str], budget: int) -> list[list[str]]:
             spent = 0
         groups[-1].append(line)
         spent += len(line)
+    if fold_tail and len(groups) > 1 and spent < budget / 3:
+        groups[-2].extend(groups.pop())
     return groups
