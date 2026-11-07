@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import { FIRST_SURAH, LAST_SURAH } from './surahRef'
 import { useMedia } from '../hooks/useMedia'
 import { scrollToEl } from '../motion/scrollToEl'
-import { showRow } from './surahRows'
+import { rowAt, showRow } from './surahRows'
 import { useSlide, useSwipe } from '../motion/useSwipe'
 import QURAN from '../../config/quran.json'
 
@@ -47,11 +47,24 @@ export function useSurahPlace({ surah, ayah }, data, onPlace, onClose) {
   }, [stacked, ayah, data])
   const goTo = useCallback((n) => { showRow(list.current, n); setHere(n) }, [])
   const open = (n) => { setTapped(n); onPlace({ surah, ayah: n }) }
-  // Focus goes back to the ayah's row, not lost with the close button.
+  // Closing the study hands its half back to the surah: the list is taller and the page under it
+  // shorter, and none of that may move what is being read. The row at the top is noted on the way
+  // out and put back if the change disturbed it, so a close never lands anywhere else.
+  const resting = useRef(null)
+  useLayoutEffect(() => {
+    const row = resting.current
+    if (stacked || row === null) return
+    resting.current = null
+    if (list.current && rowAt(list.current) !== row) { showRow(list.current, row); setHere(row) }
+  }, [stacked])
+  // Focus goes back to the ayah's row, not lost with the close button. The sheet is given back its
+  // usual size if it had been taken full screen, or it would open full screen next time; a size the reader dragged to is kept.
   const shut = useCallback(() => {
+    resting.current = stacked && list.current ? rowAt(list.current) : null
+    setShare((now) => (now <= FULL ? SPLIT.share : now))
     onPlace({ surah, ayah: null })
     list.current?.children[ayah - 1]?.querySelector('[role="button"]')?.focus({ preventScroll: true })
-  }, [onPlace, surah, ayah])
+  }, [onPlace, surah, ayah, stacked])
   const changeSurah = useCallback((n) => onPlace({ surah: n, ayah: null }), [onPlace])
 
   // ← → change surah and Esc shuts the study, then the reader. Not while typing,
@@ -74,10 +87,12 @@ export function useSurahPlace({ surah, ayah }, data, onPlace, onClose) {
 
   // On a phone the study is a sheet: its tabs, and a word or a tab that needs
   // room, ask the sheet for the whole screen. Stepping scrolls the surah to the ayah.
+  // Stepping is not a tap on a row, so the list follows it, back onto the ayah first tapped as much as any other.
+  const step = (n) => { setTapped(null); onPlace({ surah, ayah: n }) }
   const sheet = stacked && {
     onFull: () => setShare(FULL),
-    onPrev: ayah > 1 ? () => onPlace({ surah, ayah: ayah - 1 }) : null,
-    onNext: ayah < data?.ayah_count ? () => onPlace({ surah, ayah: ayah + 1 }) : null,
+    onPrev: ayah > 1 ? () => step(ayah - 1) : null,
+    onNext: ayah < data?.ayah_count ? () => step(ayah + 1) : null,
   }
 
   return {
