@@ -16,6 +16,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 
 import { useDismiss } from '../../../lib/hooks/useDismiss'
 import { wheelFind } from '../../../lib/motion/wheelFind'
+import { glide } from '../../../lib/motion/motion'
 import theme from '../../../config/theme.json'
 import ArabicText from '../text/ArabicText'
 
@@ -50,7 +51,7 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
     if (!item) return
     setAt(index)
     steering.current = smooth
-    list.scrollTo({ top: item.offsetTop - list.clientHeight / 2 + item.offsetHeight / 2, behavior: smooth ? 'smooth' : 'instant' })
+    list.scrollTo({ top: item.offsetTop - list.clientHeight / 2 + item.offsetHeight / 2, behavior: smooth ? glide() : 'instant' })
   }
 
   const close = (refocus) => { setOpen(false); setTyped(''); if (refocus) pill.current?.focus() }

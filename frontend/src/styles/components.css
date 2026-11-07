@@ -1442,6 +1442,9 @@ button.mushaf-word {
 .tucked { max-width: var(--layout-field); }
 .tucked-form {
   display: grid;
+  /* minmax(0, 1fr): a grid track is as wide as its widest content by default, and a
+     side-scrolling chip row is wide, so the form pushed the page sideways on a phone. */
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 1fr;
   transition:
     grid-template-rows calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),

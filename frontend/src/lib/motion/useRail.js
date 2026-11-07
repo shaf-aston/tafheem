@@ -6,6 +6,7 @@
  * `key` re-measures when what the strip holds changes.
  */
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { glide } from './motion'
 
 const PAGE = 0.8 // share of the visible width one arrow press moves
 const EDGE = 4   // px of slack before an end counts as reached
@@ -26,7 +27,7 @@ export function useRail(key) {
     return () => window.removeEventListener('resize', measure)
   }, [measure, key])
 
-  const page = (dir) => strip.current.scrollBy({ left: dir * strip.current.clientWidth * PAGE, behavior: 'smooth' })
+  const page = (dir) => strip.current.scrollBy({ left: dir * strip.current.clientWidth * PAGE, behavior: glide() })
 
   return { strip, ends, measure, page }
 }

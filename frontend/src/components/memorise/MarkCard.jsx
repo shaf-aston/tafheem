@@ -6,6 +6,7 @@ import { CHECK, MISSED, SAID, WRONG } from '../../lib/recite/follow'
 import { bySoundOnly, weakParts, whyOf } from '../../lib/recite/markWhy'
 import { asArabic } from '../../lib/recite/sounds'
 import { LOOK, WAITING_LOOK } from '../../lib/recite/reciteColors'
+import { glide } from '../../lib/motion/motion'
 import { useDismiss } from '../../lib/hooks/useDismiss'
 import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 import config from '../../config/memorise.json'
@@ -159,11 +160,10 @@ export default function MarkCard({ ayah, at, recite, anchor, onStartAt }) {
     const el = card.current
     const from = anchor.current
     if (!phone || !el || !from) return
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const hidden = from.getBoundingClientRect().bottom - (el.getBoundingClientRect().top - SCROLL_GAP_PX)
     const above = from.getBoundingClientRect().top - SCROLL_GAP_PX
     const top = hidden > 0 ? hidden : Math.min(0, above)
-    if (top) window.scrollBy({ top, behavior: reduced ? 'auto' : 'smooth' })
+    if (top) window.scrollBy({ top, behavior: glide() })
   }, [phone, anchor])
 
   // On a wide screen the card hangs from its anchor, centred on it, then is

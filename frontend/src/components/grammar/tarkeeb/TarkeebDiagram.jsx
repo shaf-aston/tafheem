@@ -15,6 +15,7 @@ import { isQuranic, joinedOn, joinsOn, seatSmallAlef } from '../../../lib/text/a
 import { roleVar } from '../../../lib/nahw/roleColors'
 import { GAP, cells, fold, foldRows, groupThreads, hiddenWords, rows, runs, threadSpans, tones } from '../../../lib/nahw/tarkeebLayout'
 import { useRail } from '../../../lib/motion/useRail'
+import { glide } from '../../../lib/motion/motion'
 import theme from '../../../config/theme.json'
 
 import Tooltip from '../../ui/overlays/Tooltip'
@@ -167,7 +168,7 @@ export default function TarkeebDiagram({ tarkeeb, mode = 'split', whole = false,
   const goTo = (index) => {
     const view = strip.current
     const middle = along(view, view.querySelectorAll('.tk-word')[index])
-    view.scrollTo({ left: middle - view.clientWidth / 2, behavior: 'smooth' })
+    view.scrollTo({ left: middle - view.clientWidth / 2, behavior: glide() })
   }
 
   return (
