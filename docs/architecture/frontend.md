@@ -35,7 +35,7 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 | Folder | Holds |
 |---|---|
 | `lib/nav/` | `tabs.js` registry, `tabUrl`, `journey`, `session`, `recent`/`dock` bar rules, `useTabNavigation`, shortcuts, command line, arrival |
-| `lib/api/` | `apiError`, `queryClient`, `staticQuery` (shipped files), `useHealth`, `useSources`, `warm` |
+| `lib/api/` | `apiError`, `queryClient`, `staticQuery` (shipped files), `useHealth`, `useSources`, `warm`, `useMutation` (TanStack's, holding its request through StrictMode and a hidden tab) |
 | `lib/store/` | `stored` (localStorage), `settings`, `useRemembered`, `shelf` |
 | `lib/learner/` | `progress`, `profile`, `rewards`, `learnerLevel` and their hooks |
 | `lib/motion/` | `motion`, `useReveal`, `useTilt`, `useInView`, `useSwipe`, `scrollToEl`, `useRail`, `wheelFind` |
@@ -47,7 +47,7 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 
 `components/ui/` is the kit: only parts two or more tabs draw. It is sorted by job:
 `buttons/` (things you press), `inputs/` (things you choose or type into: chips,
-`SearchBox`, `Segmented`, `ZoomBar`), `overlays/` (`BottomSheet`, `Popover`, `Tooltip`,
+`SearchBox`, `Tucked`, `Segmented`, `ZoomBar`), `overlays/` (`BottomSheet`, `Popover`, `Tooltip`,
 `Disclosure`), `feedback/` (loading, empty, error, source badge), `text/` (Arabic and
 reading text) and `display/` (marks, `SectionHeader`, `Tile`). Larger parts several tabs draw sit in
 a shared folder beside the tabs: `grammar/` (`WordCard`, the tarkeeb figure), `practice/` (the quiz

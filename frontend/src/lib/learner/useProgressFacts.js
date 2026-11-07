@@ -11,7 +11,7 @@ import { useRewards } from './useRewards'
 /**
  * A logged-in learner's figures, read the one way the profile and Home's progress
  * column both show them, on one cache: the account, the overview (streak), XP,
- * the words learnt and how much of the Qur'an they cover. Words are counted in
+ * the words learnt and how much of the Qur'an they cover (`share` 0 to 1, `covered` as shown). Words are counted in
  * the language the quiz was last set to, so an Urdu learner's are filed under
  * the Urdu module, not the default's.
  */
@@ -24,5 +24,5 @@ export function useProgressFacts(name) {
   const { rewards, gain } = useRewards(name)
   // Nothing learnt covers nothing; something learnt waits for the word table.
   const covered = !stats.data ? null : learnt.length === 0 ? '0%' : share === null ? null : `${shareOf(share, language)}%`
-  return { module, account, overview, stats, learnt, covered, rewards, gain }
+  return { module, account, overview, stats, learnt, share, covered, rewards, gain }
 }

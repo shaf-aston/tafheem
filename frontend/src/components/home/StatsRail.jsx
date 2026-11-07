@@ -1,8 +1,7 @@
 /**
- * Home's progress column on a wide screen: the few figures that say how you are
- * doing (level, streak, words learnt, how much of the Qur'an, answers) and the
- * top of the ranking, with the way into the full profile. Figures from
- * lib/learner/useProgressFacts, the same the profile shows; words from home.json `stats`.
+ * Home's progress column on a wide screen, in the profile's order (profile/CalmProgress): this week, then how much
+ * you understand, then quieter the level, the streak and the top of the ranking, with the way into the full profile.
+ * Figures from lib/learner/useProgressFacts, the same the profile shows; words from home.json `stats`.
  */
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -14,6 +13,7 @@ import { useProgressFacts } from '../../lib/learner/useProgressFacts'
 import { colorFor } from '../../theme'
 import knobs from '../../config/home.json'
 
+import { Fact, ThisWeek, Understanding } from '../profile/CalmProgress'
 import LogInButton from '../profile/LogInButton'
 import ProfileDialog from '../profile/ProfileDialog'
 import Ranking from '../profile/Ranking'
@@ -26,9 +26,10 @@ const TOP = 3
 export default function StatsRail({ name }) {
   return (
     <aside aria-label={copy.title} className="space-y-4 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] p-4">
-      <h3 className="eyebrow">{copy.title}</h3>
+      {/* Logged in, "This week" heads the column; the aside keeps the title as its name. */}
       {name ? <Facts name={name} /> : (
         <>
+          <h3 className="eyebrow">{copy.title}</h3>
           <p className="type-small text-[var(--text-dim)]">{copy.guest}</p>
           <LogInButton />
         </>
@@ -39,19 +40,20 @@ export default function StatsRail({ name }) {
 
 function Facts({ name }) {
   const [open, setOpen] = useState(false)
-  const { module, account, overview, stats, learnt, covered, rewards } = useProgressFacts(name)
+  const { module, account, overview, stats, learnt, share, covered, rewards } = useProgressFacts(name)
   const board = useQuery(leaderboardQuery(module))
   const streak = overview.data?.streak
   return (
     <>
-      <Level rewards={rewards} />
-      <dl className="grid grid-cols-2 gap-2">
-        <Stat name={copy.streak} value={streak !== undefined && fill(copy[streak === 1 ? 'days-one' : 'days-many'], { n: streak })} />
-        <Stat name={copy.learnt} value={stats.data && learnt.length} />
-        <Stat name={copy.quran} value={covered} />
-        <Stat name={copy.answers} value={account.data?.answers} />
-      </dl>
-      <Ranking board={board} name={name} title={copy.board} limit={TOP} compact />
+      <ThisWeek overview={overview} stats={stats} learnt={learnt} account={account} />
+      <Understanding share={share} covered={covered} />
+      <div className="calm-more space-y-4">
+        <Level rewards={rewards} />
+        <dl>
+          <Fact name={copy.streak} value={streak !== undefined && fill(copy[streak === 1 ? 'days-one' : 'days-many'], { n: streak })} />
+        </dl>
+        <Ranking board={board} name={name} title={copy.board} limit={TOP} compact />
+      </div>
       <SmallButton onClick={() => setOpen(true)}>{copy.open} →</SmallButton>
       {open && <ProfileDialog onClose={() => setOpen(false)} />}
     </>
@@ -63,8 +65,8 @@ function Level({ rewards }) {
   if (!rewards) return <Skeleton className="h-12 w-full" />
   const rank = rankOf(rewards.level)
   return (
-    <div className="space-y-1.5" style={{ '--xp-tone': colorFor('tab', 'grow') }}>
-      <p className="font-bold text-[var(--text)]">
+    <div className="space-y-2" style={{ '--xp-tone': colorFor('tab', 'grow') }}>
+      <p className="type-small font-semibold text-[var(--text)]">
         {fill(copy.level, { n: rewards.level })} · {rank.en} <span dir="rtl">{rank.ar}</span>
       </p>
       <div className="xp-bar" role="progressbar" aria-valuemin={0} aria-valuemax={rewards.need} aria-valuenow={rewards.into}>
@@ -73,17 +75,6 @@ function Level({ rewards }) {
       <p className="type-small tabular-nums text-[var(--text-faint)]">
         {fill(copy['xp-left'], { n: rewards.need - rewards.into, next: rewards.level + 1 })}
       </p>
-    </div>
-  )
-}
-
-function Stat({ name, value }) {
-  return (
-    <div className="rounded-[var(--radius-sm)] border border-[var(--border)] px-3 py-2">
-      <dt className="type-tiny text-[var(--text-faint)]">{name}</dt>
-      <dd className="font-bold tabular-nums text-[var(--text)]">
-        {value || value === 0 ? value : <Skeleton className="h-5 w-10" />}
-      </dd>
     </div>
   )
 }

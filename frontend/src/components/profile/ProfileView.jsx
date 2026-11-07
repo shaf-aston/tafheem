@@ -1,8 +1,9 @@
 /**
- * The logged-in profile: who, since when, how far along, the streak and each
- * module's record, your circles, and where that puts you among everyone else.
- * Words learnt is the ranking's measure because it is the one figure that
- * cannot be bought by answering a lot.
+ * The logged-in profile, calm on top and more as you go down: this week in one
+ * card, then how much you understand, then the level, the streak, each module's
+ * record, your circles and where that puts you among everyone else. Words learnt
+ * is the ranking's measure because it is the one figure that cannot be bought by
+ * answering a lot.
  */
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
@@ -15,17 +16,18 @@ import { forgetShelf } from '../../lib/store/shelf'
 import { ARMED_MS, useMoment } from '../../lib/hooks/useMoment'
 import { useProgressFacts } from '../../lib/learner/useProgressFacts'
 
+import { Fact, ThisWeek, Understanding } from './CalmProgress'
 import CirclesView from './CirclesView'
 import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
 import XpCard from './XpCard'
 import LevelSetting from '../level/LevelSetting'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
-import { Skeleton } from '../ui/feedback/Skeleton'
 import SmallButton from '../ui/buttons/SmallButton'
 
 export default function ProfileView({ name }) {
-  const { module, account, overview, stats, learnt, covered, rewards } = useProgressFacts(name)
+  const { module, account, overview, stats, learnt, share, covered, rewards } = useProgressFacts(name)
+  const streak = overview.data?.streak
 
   return (
     <div className="space-y-4">
@@ -33,31 +35,20 @@ export default function ProfileView({ name }) {
       {account.isError && (
         <ErrorAlert inline title="Could not load your profile." onRetry={() => account.refetch()} />
       )}
+      <div className="card"><ThisWeek overview={overview} stats={stats} learnt={learnt} account={account} /></div>
+      <Understanding share={share} covered={covered} />
       <LevelSetting />
-      <dl className="grid grid-cols-2 gap-3">
+      <div className="calm-more space-y-4">
         <XpCard rewards={rewards} />
-        <Fact name="Joined" value={account.data && new Date(account.data.joined).toLocaleDateString()} />
-        <Fact name="Answers given" value={account.data?.answers} />
-        <Fact name="Words learnt" value={stats.data && learnt.length} />
-        <Fact name="Of the Qur’an" value={covered} />
-        <Fact className="col-span-2" name="Streak"
-          value={overview.data && `${overview.data.streak} ${overview.data.streak === 1 ? 'day' : 'days'} in a row`} />
-      </dl>
-      <ModuleRows overview={overview} />
-      <CirclesView name={name} module={module} />
-      <Global name={name} module={module} account={account} />
+        <dl>
+          <Fact name="Days in a row" value={streak !== undefined && `${streak} ${streak === 1 ? 'day' : 'days'}`} />
+          <Fact name="Joined" value={account.data && new Date(account.data.joined).toLocaleDateString()} />
+        </dl>
+        <ModuleRows overview={overview} />
+        <CirclesView name={name} module={module} />
+        <Global name={name} module={module} account={account} />
+      </div>
       <Leave />
-    </div>
-  )
-}
-
-function Fact({ name, value, className = '' }) {
-  return (
-    <div className={`rounded-[var(--radius-sm)] border border-[var(--border)] p-3 ${className}`}>
-      <dt className="type-small text-[var(--text-faint)]">{name}</dt>
-      <dd className="type-heading font-bold text-[var(--text)]">
-        {value ?? <Skeleton className="h-6 w-12" />}
-      </dd>
     </div>
   )
 }

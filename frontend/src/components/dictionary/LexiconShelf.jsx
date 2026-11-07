@@ -66,7 +66,7 @@ export default function LexiconShelf({ root: asked, shown, hasAlternates, accent
   if (!asked) return null
   const entries = data?.entries ?? []
 
-  // Each book is a block in the frame the caller draws, one on screen at a
+  // Each book is a block in the caller's section, one on screen at a
   // time; the shelf adds no frame or heading of its own. Its heading used to
   // list the books by name, which went stale the day a root came back without one.
   if (entries.length) {
@@ -82,7 +82,7 @@ export default function LexiconShelf({ root: asked, shown, hasAlternates, accent
   if (!data && !isError) return null
 
   return (
-    <div className="p-4 border-t border-[var(--border)]">
+    <div>
       {isError && (
         <ErrorAlert title="The dictionaries could not be read" error={error} onRetry={() => refetch()} />
       )}
@@ -123,7 +123,7 @@ function BookEntry({ entry, root, accent }) {
   }
 
   return (
-    <article className="p-4 space-y-2">
+    <article className="space-y-2">
       <BookHeader title={entry.title} author={entry.author} died={entry.died} arabic={arabic} source={entry.source}>
         {/* Only Lane carries the scholar's marks, so only his title has the switch. */}
         {lane && (

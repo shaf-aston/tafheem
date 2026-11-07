@@ -11,7 +11,7 @@
  * same root travels to the conjugator and the dictionary.
  */
 import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation } from '../../lib/api/useMutation'
 
 import { getQuranRoot, searchQuran } from '../../api'
 import { AYAH_REF, FIRST_SURAH, LAST_SURAH, isAyah } from '../../lib/quran/surahRef'
@@ -24,6 +24,7 @@ import EmptyState from '../ui/feedback/EmptyState'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
 import RootActions from '../ui/buttons/RootActions'
 import QuranReader from './QuranReader'
+import QuranOpening from './QuranOpening'
 import QuranPlacePicker from './QuranPlacePicker'
 import QuranSearchBar from './QuranSearchBar'
 import SectionHeader from '../ui/display/SectionHeader'
@@ -137,10 +138,15 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
   const onPlace = (place) => (place.ayah ? openResult(place) : setAt(place))
 
   const busy = search.isPending
+  // Nothing in hand: no place open, no matches, no root. The tab then opens on
+  // today's ayah and where the reader stopped, above the ways to find one.
+  const idle = !at && !showMatches && !rootLookup.data
 
   return (
     <div className="panel">
       <SectionHeader tab="quran" />
+
+      {idle && <QuranOpening accent={accent} onOpen={openResult} />}
 
       <RecentRow
         items={recent.map((h) => `${h.surah}:${h.ayah}`)}

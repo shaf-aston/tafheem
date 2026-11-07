@@ -26,6 +26,8 @@ const sameSet = (a, b) => a.length === b.length && a.every((one) => b.includes(o
 const why = (card) => card.why
 // A choose card may name what each wrong option got wrong (lib/grow/alifLam.js), so the reader hears about their own pick.
 const whyNot = (card, value) => card.wrong?.[value] ?? card.why
+// The verdict ("Correct", "Not quite") is the feedback panel's own; a meaning card's one line is the meaning, either way.
+const means = (card) => say('It means: {answer}', { answer: card.answerText.replace(/[.\s]*$/, '.') })
 
 export const KINDS = {
   teach: { Card: TeachCard },
@@ -35,13 +37,14 @@ export const KINDS = {
     Card: MeaningCard,
     ready: picked,
     check: (card, value) => value === card.question.answerId,
-    correction: (card) => say('Not quite. It means: {answer}', { answer: card.answerText.replace(/[.\s]*$/, '.') }),
+    correction: means,
+    because: means,
   },
   gap: {
     Card: GapCard,
     ready: picked,
     check: (card, value) => value === card.gap.answer,
-    correction: (card) => say('Not quite. The missing word is {answer}.', { answer: card.answerText }),
+    correction: (card) => say('The missing word is {answer}.', { answer: card.answerText }),
   },
   rule: { Card: RuleCard },
   choose: { Card: ChooseCard, ready: picked, check: (card, value) => value === card.answer, correction: whyNot, because: why },

@@ -8,12 +8,8 @@ import { useQuery } from '@tanstack/react-query'
 
 import { ayahQueries } from '../../lib/quiz/quizAyah'
 
-import ArabicText from '../ui/text/ArabicText'
-import Mark from '../ui/display/Mark'
+import MarkedAyah from '../ui/text/MarkedAyah'
 import ShowRest from '../ui/buttons/ShowRest'
-
-// A word's position reads "surah:ayah:word"; the word number is the last part.
-const numberOf = (word) => Number(String(word.position).split(':').pop())
 
 export default function QuizAyah({ ayah: [surah, ayah, wordNumber], accent }) {
   const [arabicQuery, englishQuery] = ayahQueries(surah, ayah)
@@ -26,16 +22,7 @@ export default function QuizAyah({ ayah: [surah, ayah, wordNumber], accent }) {
 
   return (
     <div className="border-t border-[var(--border)] pt-3 space-y-2">
-      <ArabicText as="p" size="lg" className="text-[var(--text)] text-center">
-        {arabic.data.words.map((word, i) => (
-          <span key={i}>
-            {i > 0 && ' '}
-            {numberOf(word) === wordNumber ? (
-              <Mark accent={accent}>{word.uthmani || word.arabic}</Mark>
-            ) : (word.uthmani || word.arabic)}
-          </span>
-        ))}
-      </ArabicText>
+      <MarkedAyah words={arabic.data.words} word={wordNumber} accent={accent} size="lg" className="text-[var(--text)] text-center" />
       {text && (
         <ShowRest lines={3} accent={accent}>
           <p className="type-body text-[var(--text-dim)] text-center">{text}</p>

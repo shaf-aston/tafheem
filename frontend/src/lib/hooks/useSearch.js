@@ -10,7 +10,7 @@
  * or words (lib/quranIntent), so it keeps its own.
  */
 import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation } from '../api/useMutation'
 
 import { useArrival, useArrivalEffect, useHeld } from '../nav/useArrival'
 import { useHistory } from '../nav/useHistory'

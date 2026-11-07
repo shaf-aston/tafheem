@@ -63,8 +63,8 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
     //
     // The sections button sits beside the tablist, not in it: a tablist may
     // hold only tabs, and screen readers count its children as tabs.
-    <div className="key-hint-host relative flex gap-0.5 sm:gap-1">
-      <div ref={list} className="relative flex flex-1 min-w-0 flex-wrap gap-0.5 sm:gap-1" role="tablist" aria-label="Tools">
+    <div className="key-hint-host relative flex gap-0.5 sm:gap-1 md:gap-2">
+      <div ref={list} className="relative flex flex-1 min-w-0 flex-wrap gap-0.5 sm:gap-1 md:gap-2" role="tablist" aria-label="Tools">
         {tabs.map((tab, i) => {
           const selected = active === tab.id
           const tabAccent = colorOf(tab.id)
@@ -87,16 +87,14 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
                 flex: tab.half ? '0.5 1 0' : '1 1 0',
               }}
               className={`tab-btn relative ${selected ? '' : tierClass(i, fixed)} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
-                py-1.5 px-0.5 sm:px-2 type-body font-medium ${selected ? '' : 'tab-idle'}`}
+                py-1.5 px-0.5 sm:px-2 type-body font-medium leading-tight grid justify-items-center ${selected ? '' : 'tab-idle'}`}
             >
               <span className="sm:hidden">{tab.short}</span>
               <span className="hidden sm:inline">{tab.label}</span>
-              {/* Sized by .arabic alone. A size class here does nothing,
-                  .arabic already sets one and wins, so adding one only
-                  looks like it works while shrinking nothing, or shrinks
-                  this label away from every other Arabic word on screen. */}
-              {/* Waits for xl: English + Arabic together crowd below that. */}
-              <ArabicText className="text-[var(--text-faint)] ml-1.5 hidden xl:inline">
+              {/* Under the English, not beside it: side by side, a row of eight
+                  tabs ran into one line of words with no gap to read between.
+                  Stacked, each tab is its own column, and the Arabic fits from md. */}
+              <ArabicText size="sm" className="text-[var(--text-faint)] hidden md:block">
                 {tab.arabic}
               </ArabicText>
             </button>

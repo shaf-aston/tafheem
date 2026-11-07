@@ -1,7 +1,7 @@
 import { Activity, useCallback, useEffect, useRef, useState } from 'react'
 import { QueryClientProvider } from '@tanstack/react-query'
 
-import { FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/nav/tabs'
+import { DOCK, FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/nav/tabs'
 import { queryClient } from './lib/api/queryClient'
 import { firstThese, idle, inTurn } from './lib/api/warm'
 import { useHealth } from './lib/api/useHealth'
@@ -19,9 +19,10 @@ import CursorLight from './components/shell/CursorLight'
 import CommandBar from './components/shell/CommandBar'
 import Mascot from './components/ui/display/Mascot'
 import ProfileButton from './components/profile/ProfileButton'
+import ProfileDialog from './components/profile/ProfileDialog'
+import AskSheet from './components/shell/AskSheet'
 import SettingsPanel from './components/shell/SettingsPanel'
 import SpatialHome from './components/shell/SpatialHome'
-import SourceFooter from './components/shell/SourceFooter'
 import TabStrip from './components/shell/TabStrip'
 import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
@@ -46,6 +47,8 @@ function AppContent() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
+  // The phone bar's Ask and Me: each a sheet, mounted only while open.
+  const [sheet, setSheet] = useState(null)
   const tools = useTools(TOOLS, switchTab)
   const { status } = useHealth()
   const accent = accentOf(activeTab)
@@ -130,7 +133,8 @@ function AppContent() {
           <div className="flex items-center gap-2 min-w-0">
             {/* Home has the command line and the tabs on a phone; the header keeps pen, profile, gear. */}
             <div className="phone-hide min-w-0"><CommandBar tabs={LISTED} colorOf={accentOf} onGo={switchTab} /></div>
-            <ProfileButton />
+            {/* A phone reaches it from the bar's Me. */}
+            <span className="phone-hide"><ProfileButton /></span>
             <InstallButton />
             <button
               type="button"
@@ -184,26 +188,13 @@ function AppContent() {
         </div>
       </main>
 
-      {/* The credits used to be one hardcoded line that named three sources and
-          stayed the same on every tab, including tabs that read none of them.
-          It now names what THIS tab is built on, read from data/sources.json;
-          so a source added to a panel appears here without anyone remembering
-          to come and edit a sentence. */}
-      <footer className="border-t border-[var(--border)] mt-16 py-8 text-[var(--text-faint)]">
-        {/* The same width as everything above it. It was held to a narrower
-            column of its own, which is why a list of thirteen sources wrapped
-            into a stripe while two thirds of the page sat empty beside it. */}
-        <div className="shell space-y-5">
-          {/* Home is every tab; a hidden tab (Map, Kit) reads no source of its own. */}
-          {activeTab !== HOME && LISTED.some((tab) => tab.id === activeTab) && <SourceFooter tab={activeTab} offline={status === 'error'} onSeeAll={() => setSettingsOpen(true)} />}
-
-          {/* The colophon, on the same pane as the page and only as wide as its
-              words, so the backdrop still shows around it. */}
-          <div className="pt-4 border-t border-[var(--border)]">
-            <div className="glass rounded-[var(--radius-lg)] w-fit mx-auto px-8 py-4">
-              <ArabicText as="p">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ</ArabicText>
-            </div>
-          </div>
+      {/* No list of sources at the foot any more: each answer carries its own
+          badge, beside the claim it backs, and the whole list is in Settings.
+          The same thirteen names under every tab only repeated them. */}
+      <footer className="app-footer mt-16 py-8">
+        {/* The colophon, only as wide as its words, so the backdrop still shows around it. */}
+        <div className="glass rounded-[var(--radius-lg)] w-fit mx-auto px-8 py-4">
+          <ArabicText as="p">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ</ArabicText>
         </div>
       </footer>
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} onGo={switchTab} />
@@ -226,6 +217,7 @@ function AppContent() {
         here={activeTab}
         dock={dock}
         onDock={placeInDock}
+        size={DOCK.length}
       >
         {/* The tools phones hide from the top bar, kept one tap inside More. */}
         <section className="sm:hidden space-y-2">
@@ -249,7 +241,10 @@ function AppContent() {
           ))}
         </section>
       </SectionsMenu>
-      <BottomNav tabs={LISTED} dock={dock} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} hint={activeTab === HOME} />
+      <BottomNav tabs={LISTED} dock={dock} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)}
+        onAsk={() => setSheet('ask')} onMe={() => setSheet('me')} onHover={openTab} />
+      {sheet === 'ask' && <AskSheet tabs={LISTED} colorOf={accentOf} onGo={switchTab} onClose={() => setSheet(null)} />}
+      {sheet === 'me' && <ProfileDialog onClose={() => setSheet(null)} />}
       {/* Drawn last so it sits over the page, and once for the whole app. */}
       <CursorLight />
     </div>

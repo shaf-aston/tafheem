@@ -28,4 +28,12 @@ describe('Segmented', () => {
     render(<Segmented label="View" captioned options={options} value="tree" onChange={() => {}} />)
     expect(screen.getByText('View').className).toContain('eyebrow')
   })
+
+  // Under the English, not beside it, so Nahw's three views fit one row on a phone.
+  it('sets an option\'s Arabic name under its English, in Arabic', () => {
+    render(<Segmented label="View" options={[{ id: 'a', label: 'Analyse', arabic: 'تحليل' }]} value="a" onChange={() => {}} />)
+    const arabic = screen.getByText('تحليل')
+    expect(arabic.getAttribute('lang')).toBe('ar')
+    expect(arabic.previousSibling.textContent).toBe('Analyse')
+  })
 })
