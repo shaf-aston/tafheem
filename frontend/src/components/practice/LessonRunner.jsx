@@ -152,7 +152,8 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
         )}
         {asks && !result
           ? <PrimaryButton ref={go} accent={accent} disabled={!kind.ready(value, card)} onClick={check}>{say('Check')}</PrimaryButton>
-          : <PrimaryButton ref={go} accent={accent} onClick={next}>{say('Continue')}</PrimaryButton>}
+          // After a check the button takes the verdict's colour, so the whole panel says right or wrong.
+          : <PrimaryButton ref={go} accent={result ? `var(--${result === 'right' ? 'success' : 'danger'})` : accent} onClick={next}>{say('Continue')}</PrimaryButton>}
       </div>
     </div>
   )
