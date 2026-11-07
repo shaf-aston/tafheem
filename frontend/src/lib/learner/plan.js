@@ -69,6 +69,9 @@ export function readPlan(raw) {
   return plan
 }
 
+/** Whether any question has an answer: a run begun, or one reopened from Settings to change. */
+export const begun = (plan) => STEPS.some((step) => !step.items && [plan[step.id]].flat().some((one) => one != null))
+
 /** The plan as it is stored. */
 export const writePlan = (plan) => JSON.stringify(readPlan(plan))
 

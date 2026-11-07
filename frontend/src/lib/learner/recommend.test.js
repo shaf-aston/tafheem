@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { worldOf } from '../grow/worlds'
 import { LISTED } from '../nav/tabs'
 import { readPlan, STEPS } from './plan'
-import { PLACES, RANK, recommend } from './recommend'
+import { answered, leadOf, PLACES, RANK, recommend } from './recommend'
 
 const NOW = Date.parse('2026-10-28T12:00:00Z')
 const ago = (days) => new Date(NOW - days * 864e5).toISOString()
@@ -93,5 +93,21 @@ describe('recommend: said, then done', () => {
 
   it('with nothing said and nothing done, offers only the first steps', () => {
     expect(top({}, [], 5)).toEqual(['basics', 'words'])
+  })
+})
+
+describe('answered and leadOf: the plan, once given, picks where Today starts', () => {
+  const any = () => true
+  it('a skipped plan picks nothing', () => {
+    expect(answered(readPlan({ done: true }))).toBe(false)
+    expect(leadOf(readPlan({ done: true }), any)).toBeNull()
+    expect(leadOf(readPlan({ ...AISHA }), any)).toBeNull() // not finished yet
+  })
+
+  it('takes the best-ranked world Today can open, passing over tabs', () => {
+    expect(leadOf(readPlan({ ...AISHA, done: true }), any, [], NOW)).toBe('basics')
+    expect(leadOf(readPlan({ ...BILAL, done: true }), any, [], NOW)).toBe('words')
+    expect(leadOf(readPlan({ ...OMAR, done: true }), any, [], NOW)).not.toBe('colloq')
+    expect(leadOf(readPlan({ ...BILAL, done: true }), (id) => id === 'basics', [], NOW)).toBe('basics')
   })
 })
