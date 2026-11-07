@@ -19,7 +19,7 @@ from backend.main import app  # noqa: E402
 from backend.scripts.hadith.build_hadith_index import _SCHEMA, index_text  # noqa: E402
 from backend.scripts.hadith import build_hadith_meaning  # noqa: E402
 from backend.services.text import spelling  # noqa: E402
-from backend.services.sarf import morphology
+from backend.services.sarf import engine
 from backend.services.hadith import loader, meaning, search, words  # noqa: E402
 
 _ROWS = [
@@ -223,7 +223,7 @@ def test_a_word_nothing_is_near_is_reported_not_guessed(db):
     assert found.hits == [] and found.corrected == [] and found.unmatched == ["xqzvw"]
 
 
-@pytest.mark.skipif(not morphology._CAMEL_AVAILABLE, reason="CAMeL data not installed: the lemma joins نيات to النيات")
+@pytest.mark.skipif(engine.camel is None, reason="CAMeL data not installed: the lemma joins نيات to النيات")
 def test_front_particles_do_not_hide_a_word(db):
     """The fixture spells it بِالنِّيَّاتِ; typing النيات or نيات must reach it."""
     assert [h.number for h in search.search("النيات", 10).hits] == [1]

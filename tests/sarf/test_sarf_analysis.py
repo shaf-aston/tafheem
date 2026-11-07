@@ -1,11 +1,11 @@
 """A word's whole Sarf answer, called without the web layer."""
 import pytest
 
-from backend.services.sarf import morphology
+from backend.services.sarf import engine
 from backend.services.sarf import answer as sarf_word
 
 
-@pytest.mark.skipif(not morphology._CAMEL_AVAILABLE, reason="CAMeL data not installed")
+@pytest.mark.skipif(engine.camel is None, reason="CAMeL data not installed")
 def test_istaqbala_conjugates_as_form_x_not_as_qabala():
     got = sarf_word.analyze("اِسْتَقْبَلَ", None)
     assert got.root and got.table and got.table.rows

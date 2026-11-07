@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import pytest
 
-from backend.services.sarf import morphology
+from backend.services.sarf import engine, morphology
 from backend.services.dictionary import sentence_meaning
 from backend.services.text.harakat import NO_ANALYSIS
 from tests.nahw_helpers import cards, needs_parser
@@ -123,7 +123,7 @@ def test_no_word_shows_camels_mark_as_english() -> None:
     assert sentence_meaning.read_words("لننزعن من كل شيعة")[0][0]["english"] == ""
 
 
-@pytest.mark.skipif(not morphology._CAMEL_AVAILABLE, reason="CAMeL data not installed")
+@pytest.mark.skipif(engine.camel is None, reason="CAMeL data not installed")
 def test_a_lone_words_meaning_is_its_own_not_its_joined_letters(monkeypatch) -> None:
     """The Sarf page's meaning, when the dictionary has none: وَكَتَبَ means "write", not "and"."""
     from backend.services.dictionary import service as dictionary_service

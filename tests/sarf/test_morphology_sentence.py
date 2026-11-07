@@ -6,14 +6,14 @@ import pytest
 
 from backend.services.dictionary import roots
 from backend.services.quran import corpus as quran_corpus
-from backend.services.sarf import morphology
+from backend.services.sarf import engine, morphology
 from backend.services.text.harakat import vowel_agreement
 
 VERB_SENTENCE = "ذهب الولد إلى المدرسة"  # "the boy went to school"
 NOUN_SENTENCE = "الذهب غالٍ"  # "gold is expensive"
 
 needs_camel = pytest.mark.skipif(
-    not morphology._CAMEL_AVAILABLE, reason="CAMeL Tools not installed"
+    engine.camel is None, reason="CAMeL Tools not installed"
 )
 
 
