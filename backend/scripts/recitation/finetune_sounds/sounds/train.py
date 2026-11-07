@@ -4,7 +4,7 @@ from pathlib import Path
 
 import numpy as np
 import torch
-from ear.sound import augmented, noise_bank, room_bank, sound_of
+from ear.sound import augmented, noise_bank, opened, room_bank
 from transformers import Trainer, TrainingArguments, Wav2Vec2FeatureExtractor, Wav2Vec2ForCTC
 
 from . import settings as S
@@ -24,7 +24,7 @@ class Clips(torch.utils.data.Dataset):
 
     def __getitem__(self, i):
         item = self.items[i]
-        x = sound_of(Path(item['path']).read_bytes())
+        x = opened(item['path'])
         if self.hard:
             x = augmented(x, *self.hard, np.random.default_rng())
         return {'input_values': self.fe(x, sampling_rate=S.RATE).input_values[0], 'labels': self.labels[item['ayah']]}

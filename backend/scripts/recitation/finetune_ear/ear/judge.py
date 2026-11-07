@@ -5,21 +5,25 @@ import numpy as np
 from . import settings as S
 
 
-def hear(ear, tests, revision=None):
-    """Per test group, (errors, words) for each clip and what was heard, heard as the app hears (faster-whisper,
-    one guess, untimed, each clip alone)."""
+def listen(model, sound):
+    """What a faster-whisper model hears in one clip, as the app hears it: one guess, untimed, the clip alone."""
+    segments = model.transcribe(np.asarray(sound, dtype=np.float32), language='ar', beam_size=1,
+                                without_timestamps=True, condition_on_previous_text=False)[0]
+    return ' '.join(s.text for s in segments)
+
+
+def hear(ear, tests):
+    """Per test group, (errors, words) for each clip and what was heard."""
     import jiwer
     from faster_whisper import WhisperModel
 
     from .text import bare
-    m = WhisperModel(str(ear), revision=revision, device='cuda', compute_type='float16')
+    m = WhisperModel(str(ear), device='cuda', compute_type='float16')
     out = {}
     for group, rows in tests.items():
         counts, heard = [], []
         for x, said in zip(rows['sound'], rows['said']):
-            segments = m.transcribe(np.asarray(x, dtype=np.float32), language='ar', beam_size=1,
-                                    without_timestamps=True, condition_on_previous_text=False)[0]
-            h = bare(' '.join(s.text for s in segments))
+            h = bare(listen(m, x))
             w = jiwer.process_words(bare(said), h)
             counts.append((w.substitutions + w.deletions + w.insertions, len(bare(said).split())))
             heard.append(h)
@@ -58,5 +62,7 @@ def verdict(held, cand, untuned):
     # already past the band may stay (within noise) but not slip further.
     forgot = bool(wrong(cand['professional']['counts']) > wrong(untuned['professional']['counts']) + S.FORGET
                   and gains['professional']['high'] < 0)
-    return {'keep': bool(better) and not worse and not forgot, 'better': better, 'worse': worse, 'forgot': forgot,
+    # Word error only refuses: whether an ear catches slips better is ear_bench's call (cloud.py --ship), so an
+    # ear no worse here is handed back to be benched, not thrown away for missing a word-error margin.
+    return {'keep': not worse and not forgot, 'better': better, 'worse': worse, 'forgot': forgot,
             'gains': gains}

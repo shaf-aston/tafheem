@@ -21,7 +21,7 @@ WORDS = np.random.default_rng(1).integers(5, 20, size=400)
 def fake_ear(new, pro, seed):
     """An ear by its per-word error rate on each group; each clip's errors drawn over the same words."""
     r = np.random.default_rng(seed)
-    return {g: {'counts': np.stack([r.binomial(WORDS, p), WORDS], 1)} for g, p in (('new ayahs', new), ('professional', pro))}
+    return {g: {'counts': np.stack([r.binomial(WORDS, p), WORDS], 1)} for g, p in (('new ayahs', new), ('professional', pro), ('rough professional', pro))}
 
 
 def shifted(base, group, points):
@@ -47,7 +47,7 @@ CASES = [  # (what, held, candidate, keep?)
     ('same ear', served, served, False),
     ('untuned against served', served, untuned, False),
     ('learns 3 points', served, both(served, -3, 0), True),
-    ('learns 1 point: under the margin', served, both(served, -1, 0), False),
+    ('learns 0.5 point: under the margin', served, both(served, -0.5, 0), False),
     ('learns 2.5 points, all from two clips: unsure', lumpy, served, False),
     ('learns 3, pros 0.3 worse by noise, already past the band', served, pro_noise, True),
     ('learns 3, pros 0.8 surely worse, already past the band', served, both(served, -3, 0.8), False),

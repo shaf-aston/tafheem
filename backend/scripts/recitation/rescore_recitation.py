@@ -26,6 +26,7 @@ models can be compared without either overwriting the other.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -34,7 +35,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
-from backend.config import data_path, get_settings  # noqa: E402
+from backend.config import confined, data_path, get_settings  # noqa: E402
 from backend.services.recitation import checker  # noqa: E402
 from backend.scripts.recitation.paths import DOWNLOADS  # noqa: E402
 from backend.scripts.recitation.score_recitation_checker import (  # noqa: E402
@@ -44,7 +45,11 @@ from backend.scripts.recitation.score_recitation_checker import (  # noqa: E402
 
 
 def pieces_path(model: str) -> Path:
-    """One file per model, named after it, so runs of two models never mix."""
+    """One file per model, so runs of two models never mix. A folder here is named by its weights, not its
+    path: every Kaggle run lands its ear in the same ear-tuned/, and a path name handed a new ear the old one's scores."""
+    folder = confined("recitation_model", model)
+    if folder.is_dir():
+        model = "folder-" + hashlib.sha256((folder / "model.bin").read_bytes()).hexdigest()[:16]
     return DOWNLOADS / f"pieces-{re.sub('[^a-z0-9]+', '-', model.lower()).strip('-')}.jsonl"
 
 
@@ -58,14 +63,13 @@ def transcripts() -> dict[str, str]:
     return out
 
 
-def run(ayahs: dict[str, str], limit: int | None) -> Path:
-    model = get_settings().recitation_model
+def run(ayahs: dict[str, str], limit: int | None, model: str) -> Path:
     out_path = pieces_path(model)
     heard_of = transcripts()
     done = set()
     if out_path.exists():
         done = {json.loads(line)["id"] for line in out_path.open(encoding="utf-8")}
-    print(f"{model}: {len(done)} already done, {len(heard_of)} to do", flush=True)
+    print(f"{model}: {len(done)} of {len(heard_of)} recordings already scored", flush=True)
 
     with out_path.open("a", encoding="utf-8") as out:
         for count, (rid, audio, key, _marks) in enumerate(recordings(ayahs)):
@@ -75,7 +79,7 @@ def run(ayahs: dict[str, str], limit: int | None) -> Path:
                 continue
             around, a, b, reach = stretch(ayahs, key, heard_of[rid])
             started = time.perf_counter()
-            got = checker.scores(audio, around)[a:b]
+            got = checker.scores(audio, around, model)[a:b]
             row = {
                 "id": rid, "model": model, "ayah": key, "reach": reach,
                 "probs": [[round(p, 4) for p in w["probs"]] for w in got],
@@ -92,9 +96,10 @@ def run(ayahs: dict[str, str], limit: int | None) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--limit", type=int, help="only the first N recordings")
+    parser.add_argument("--model", help="which ear; the one in config by default")
     args = parser.parse_args()
     ayahs = json.loads(data_path("quran_imlaei_path").read_text(encoding="utf-8"))
-    where = run(ayahs, args.limit)
+    where = run(ayahs, args.limit, args.model or get_settings().recitation_model)
     rows = sum(1 for _ in where.open(encoding="utf-8"))
     print(f"{rows} recordings in {where}")
 

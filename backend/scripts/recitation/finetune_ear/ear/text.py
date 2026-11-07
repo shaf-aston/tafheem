@@ -5,10 +5,14 @@ import requests
 from transformers import WhisperConfig, WhisperProcessor
 
 from . import settings as S
+from .spelling import as_heard  # the app's own (services/recitation/spelling.py), zipped in by cloud.py
 
 # Plain vowelled spelling, the spelling this model writes; Uthmani would score right words as wrong.
 _verses = requests.get('https://api.quran.com/api/v4/quran/verses/imlaei', timeout=60).json()['verses']
 IMLAEI = {v['verse_key']: v['text_imlaei'] for v in _verses}
+# What an ear is taught and judged on: the spelling the app checks each word in. Taught raw imlaei, the last
+# tuned ear read a word-initial shadda (مِّن) the checker never asks about, and scored 9 of 252 right words low.
+SAID = {k: ' '.join(as_heard(t)) for k, t in IMLAEI.items()}
 _uthmani = requests.get('https://api.quran.com/api/v4/quran/verses/uthmani', timeout=60).json()['verses']
 
 
@@ -29,8 +33,8 @@ processor = WhisperProcessor.from_pretrained(S.NAME, language='ar', task='transc
 # Whisper writes so many marks at most, start marks included. An ayah spelt in more can be
 # neither taught (training stops on it) nor heard whole, so it is left out on both sides.
 _most = WhisperConfig.from_pretrained(S.NAME).max_target_positions
-SAYABLE = {k for k, t in IMLAEI.items() if len(processor.tokenizer(t).input_ids) <= _most}
-print(len(IMLAEI) - len(SAYABLE), 'ayahs too long for the model to write, left out', flush=True)
+SAYABLE = {k for k, t in SAID.items() if len(processor.tokenizer(t).input_ids) <= _most}
+print(len(SAID) - len(SAYABLE), 'ayahs too long for the model to write, left out', flush=True)
 
 
 def canon(key):
