@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { FIRST_SURAH, LAST_SURAH } from './surahRef'
 import { useMedia, WIDE } from '../hooks/useMedia'
 import { scrollToEl } from '../motion/scrollToEl'
-import { rowAt, showRow } from './surahRows'
+import { showRow } from './surahRows'
 import { useSlide, useSwipe } from '../motion/useSwipe'
 import QURAN from '../../config/quran.json'
 
@@ -45,24 +45,13 @@ export function useSurahPlace({ surah, ayah }, data, onPlace, onClose) {
   }, [stacked, ayah, data])
   const goTo = useCallback((n) => { showRow(list.current, n); setHere(n) }, [])
   const open = (n) => { setTapped(n); onPlace({ surah, ayah: n }) }
-  // Closing the study hands its half back to the surah: the list is taller and the page under it
-  // shorter, and none of that may move what is being read. The row at the top is noted on the way
-  // out and put back if the change disturbed it, so a close never lands anywhere else.
-  const resting = useRef(null)
-  useLayoutEffect(() => {
-    const row = resting.current
-    if (stacked || row === null) return
-    resting.current = null
-    if (list.current && rowAt(list.current) !== row) { showRow(list.current, row); setHere(row) }
-  }, [stacked])
   // Focus goes back to the ayah's row, not lost with the close button. The sheet is given back its
   // usual size if it had been taken full screen, or it would open full screen next time; a size the reader dragged to is kept.
   const shut = useCallback(() => {
-    resting.current = stacked && list.current ? rowAt(list.current) : null
     setShare((now) => (now <= FULL ? SPLIT.share : now))
     onPlace({ surah, ayah: null })
     list.current?.children[ayah - 1]?.querySelector('[role="button"]')?.focus({ preventScroll: true })
-  }, [onPlace, surah, ayah, stacked])
+  }, [onPlace, surah, ayah])
   const changeSurah = useCallback((n) => onPlace({ surah: n, ayah: null }), [onPlace])
 
   // ← → change surah and Esc shuts the study, then the reader. Not while typing,

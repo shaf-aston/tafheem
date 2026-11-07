@@ -23,40 +23,8 @@ function mount(place, onPlace = vi.fn()) {
   return view
 }
 
-describe('useSurahPlace: closing the study', () => {
+describe('useSurahPlace: the study sheet', () => {
   beforeEach(phone)
-
-  it('keeps the reader on the same row when the layout change moves the list', () => {
-    const onPlace = vi.fn()
-    const { result, rerender } = mount({ surah: 2, ayah: 31 }, onPlace)
-    expect(result.current.stacked).toBe(true)
-    act(() => result.current.shut())
-    expect(onPlace).toHaveBeenCalledWith({ surah: 2, ayah: null })
-    // The browser put the list somewhere else while the study went (here: back to the start).
-    result.current.list.current.scrollTop = 0
-    rerender({ place: { surah: 2, ayah: null }, onPlace })
-    expect(result.current.stacked).toBe(false)
-    expect(result.current.list.current.scrollTop).toBe(3000)
-    expect(result.current.here).toBe(31)
-  })
-
-  it('leaves the list alone when the close did not disturb it', () => {
-    const onPlace = vi.fn()
-    const { result, rerender } = mount({ surah: 2, ayah: 31 }, onPlace)
-    const list = result.current.list.current
-    list.scrollTop = 3040   // part-way down a row: a restore would snap it to the row's top
-    act(() => result.current.shut())
-    rerender({ place: { surah: 2, ayah: null }, onPlace })
-    expect(list.scrollTop).toBe(3040)
-  })
-
-  it('does not restore on its own later: only a close asks for it', () => {
-    const onPlace = vi.fn()
-    const { result, rerender } = mount({ surah: 2, ayah: null }, onPlace)
-    result.current.list.current.scrollTop = 800
-    rerender({ place: { surah: 2, ayah: null }, onPlace })
-    expect(result.current.list.current.scrollTop).toBe(800)
-  })
 
   it('a study taken full screen is given its usual size back, a size the reader dragged to is kept', () => {
     const onPlace = vi.fn()
