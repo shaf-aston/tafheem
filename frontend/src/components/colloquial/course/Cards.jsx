@@ -1,5 +1,6 @@
 /** The choice cards every level of the course list is drawn from. */
 import { unitNumber } from '../../../lib/colloquial/place'
+import { topicsNote } from '../../../lib/colloquial/seen'
 import ArabicText from '../../ui/text/ArabicText'
 import SpeakButton from '../../ui/buttons/SpeakButton'
 import { FOCUS } from '../parts/Face'
@@ -73,7 +74,7 @@ export function Card({ hue, onClick, twin, picture, ...lines }) {
 // on it. It takes the height the words make and never adds its own (contain: size).
 // The speaker faces left, off the start of the Arabic. The whole card opens the unit; the speaker is
 // drawn above that and only speaks, the words beside it letting a click through.
-export function UnitCard({ hue, unit, onClick }) {
+export function UnitCard({ hue, unit, done = 0, onClick }) {
   const { cover } = unit
   const number = unitNumber(unit.unit)
   return (
@@ -81,7 +82,7 @@ export function UnitCard({ hue, unit, onClick }) {
       <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`stretch absolute inset-0 rounded-[var(--radius-lg)] ${FOCUS}`} />
       <span className="flex items-baseline justify-between gap-3 eyebrow">
         <span style={{ color: hue }}>Unit {number}</span>
-        <span className="text-[var(--text-faint)]">{unit.lessons.length} topics</span>
+        <span className="text-[var(--text-faint)]">{topicsNote(unit.lessons.length, done)}</span>
       </span>
       <span className="type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
       <span className="flex gap-3.5 mt-2">
@@ -100,14 +101,14 @@ export function UnitCard({ hue, unit, onClick }) {
 
 // A unit of words alone has no phrase to open on, so its card says what it teaches:
 // one word from each of its first topics, each with its small picture, and its size.
-export function WordUnitCard({ hue, unit, onClick }) {
+export function WordUnitCard({ hue, unit, done = 0, onClick }) {
   const number = unitNumber(unit.unit)
   return (
     <button type="button" onClick={onClick} style={lookOf(hue)} aria-label={`Unit ${number}: ${unit.title}`}
       className={`lift press text-start w-full flex flex-col px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS}`}>
       <span className="flex items-baseline justify-between gap-3 eyebrow">
         <span style={{ color: hue }}>Unit {number}</span>
-        <span className="text-[var(--text-faint)]">{unit.lessons.length} topics · {unit.words} words</span>
+        <span className="text-[var(--text-faint)]">{topicsNote(unit.lessons.length, done)} · {unit.words} words</span>
       </span>
       <span className="type-ui font-semibold text-[var(--text)] mt-1">{unit.title}</span>
       <span className="flex flex-wrap gap-1.5 mt-auto pt-3">

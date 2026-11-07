@@ -24,6 +24,7 @@ import Screen from '../ui/display/Screen'
 import SectionHeader from '../ui/display/SectionHeader'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import StatusNote from '../ui/feedback/StatusNote'
+import { markSeen } from '../../lib/colloquial/seen'
 
 const BLURB = TABS.find((t) => t.id === 'colloq')?.blurb
 
@@ -69,13 +70,16 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   const go = (there) => {
     setLost(false)
     setPlace(there)
-    onVisit?.(placeOf(there, dialects))
+    const where = placeOf(there, dialects)
+    if (typeof there?.at === 'number') markSeen(where)
+    onVisit?.(where)
   }
   // An arrival names a place; followed during render so a reload paints on it, not the top first.
   if (useArrivalWhenReady(arrival, Boolean(catalogue.data))) {
     const found = parsePlace(incoming, dialects)
     setPlace(found)
     setLost(Boolean(incoming) && !found)
+    if (typeof found?.at === 'number') markSeen(placeOf(found, dialects))
   }
 
   const steps = trailOf(place, dialects).map((step) => ({ label: step.label, go: () => go(step.place) }))
