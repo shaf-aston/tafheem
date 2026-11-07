@@ -2,8 +2,7 @@
  * The glossary of the science as a tree the Map's chart can draw, pure data.
  *
  * Built here in the shape lib/shell/pbsLayout and shell/PbsChart take (root, branches with a hue `c`, kids as
- * [arabic, english, tappable] triples), and never through lib/pbsTree's chartTree: its DEEP/SUB keys belong to
- * the Map's sciences and would graft their sub-topics onto these. Every box is tappable (a third `true`), since
+ * [arabic, english, tappable] triples), and never from the Map's science trees (lib/shell/pbsData). Every box is tappable (a third `true`), since
  * a tap on a term opens its card; the chart is two levels, so a term's own kids show only in `branchChart`.
  */
 import { layoutChart, SMALLEST_LABEL } from '../../../lib/shell/pbsLayout'

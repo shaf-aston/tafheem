@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import knobs from '../../config/pbsChart.json'
 import { CHARTS } from './pbsData'
 import { layoutChart, SMALLEST_LABEL, widthAtLabel } from './pbsLayout'
-import { chartTree, viewConfig } from './pbsTree'
+import { viewConfig } from './pbsTree'
 
 const { levels } = knobs
 const wide = (text) => text.length * 0.8 // a face far wider than the estimate: nearly everything has to wrap
@@ -12,10 +12,10 @@ const wide = (text) => text.length * 0.8 // a face far wider than the estimate: 
 function* views() {
   for (const chart of CHARTS) {
     const walk = function* (node, path) {
-      yield [`${chart.id}/${path.join('/')}`, viewConfig(node, path.length ? [] : chart.config.footnote)]
+      yield [`${chart.id}/${path.join('/')}`, viewConfig(node, path.length ? [] : chart.footnote)]
       for (const [i, kid] of node.kids.entries()) if (kid.kids.length) yield* walk(kid, [...path, i])
     }
-    yield* walk(chartTree(chart), [])
+    yield* walk(chart.tree, [])
   }
 }
 

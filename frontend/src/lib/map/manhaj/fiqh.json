@@ -1,0 +1,429 @@
+{
+  "id": "fiqh",
+  "ar": "المذاهب الفقهية",
+  "en": "Schools of law",
+  "note": "How each school ranks and uses the sources of law (uṣūl).",
+  "questions": [
+    {
+      "id": "sources",
+      "ar": "ترتيب الأدلة",
+      "en": "Order of sources"
+    },
+    {
+      "id": "khabar",
+      "ar": "خبر الواحد",
+      "en": "Single-chain ḥadīth"
+    },
+    {
+      "id": "qiyas",
+      "ar": "القياس",
+      "en": "Analogy"
+    },
+    {
+      "id": "istihsan",
+      "ar": "الاستحسان",
+      "en": "Juristic preference"
+    },
+    {
+      "id": "maslaha",
+      "ar": "المصالح المرسلة",
+      "en": "Unstated public interest"
+    },
+    {
+      "id": "amal",
+      "ar": "عمل أهل المدينة",
+      "en": "Practice of Medina"
+    },
+    {
+      "id": "sahabi",
+      "ar": "قول الصحابي",
+      "en": "A Companion’s opinion"
+    },
+    {
+      "id": "mursal",
+      "ar": "المرسل",
+      "en": "Mursal ḥadīth"
+    },
+    {
+      "id": "dharai",
+      "ar": "سد الذرائع",
+      "en": "Blocking the means"
+    },
+    {
+      "id": "urf",
+      "ar": "العرف",
+      "en": "Custom"
+    }
+  ],
+  "groups": [
+    {
+      "id": "hanafi",
+      "ar": "الحنفية",
+      "en": "Ḥanafī",
+      "era": "2nd c. AH",
+      "origin": "Abū Ḥanīfa (d. 150/767), Kūfa; Abū Yūsuf and Muḥammad al-Shaybānī",
+      "where": "Turkey, Central and South Asia, the Balkans, the Levant, parts of Egypt and Iraq",
+      "texts": [
+        "كتب ظاهر الرواية للشيباني",
+        "مختصر القدوري",
+        "الهداية للمرغيناني",
+        "رد المحتار لابن عابدين"
+      ],
+      "self": "The school of reasoned understanding (أهل الرأي) built on the Kūfan Companions’ teaching, chiefly Ibn Masʿūd.",
+      "beliefs": [
+        "Reasoning from causes, tested against strong general texts.",
+        "Strict conditions on single reports where the need is general.",
+        "Custom and juristic preference shape rulings."
+      ],
+      "positions": {
+        "sources": [
+          "q-s-ij-sah-qiyas-ist",
+          "Qur’an, Sunna, consensus, Companions’ views, analogy, juristic preference, custom."
+        ],
+        "khabar": [
+          "conditional",
+          "Not accepted against a general Qur’anic meaning, a matter of widespread need (عموم البلوى), or when its narrator acts against it."
+        ],
+        "qiyas": [
+          "yes-broad",
+          "Used widely."
+        ],
+        "istihsan": [
+          "yes",
+          "Accepted and used extensively."
+        ],
+        "maslaha": [
+          "via-other",
+          "Not a named source; reached through juristic preference and custom."
+        ],
+        "amal": [
+          "no",
+          "Not a proof."
+        ],
+        "sahabi": [
+          "yes",
+          "A proof, preferred over analogy."
+        ],
+        "mursal": [
+          "yes",
+          "Accepted from reliable early narrators."
+        ],
+        "dharai": [
+          "via-other",
+          "Applied in practice, not named as a source."
+        ],
+        "urf": [
+          "yes",
+          "A strong source; rulings built on custom change with it."
+        ]
+      }
+    },
+    {
+      "id": "maliki",
+      "ar": "المالكية",
+      "en": "Mālikī",
+      "era": "2nd c. AH",
+      "origin": "Mālik ibn Anas (d. 179/795), Medina",
+      "where": "North and West Africa, Upper Egypt, Sudan, parts of the Gulf",
+      "texts": [
+        "الموطأ",
+        "المدونة",
+        "الرسالة لابن أبي زيد",
+        "مختصر خليل"
+      ],
+      "self": "The school of the Prophet’s city, where the living practice of Medina carries the Sunna.",
+      "beliefs": [
+        "Medinan practice is a transmitted Sunna.",
+        "The aims of the law (public interest, blocking harm) are real sources.",
+        "Wide range of sources, ranked."
+      ],
+      "positions": {
+        "sources": [
+          "q-s-ij-amal-sah-qiyas-masl",
+          "Qur’an, Sunna, consensus, practice of Medina, Companions’ views, analogy, public interest, blocking the means, custom, juristic preference."
+        ],
+        "khabar": [
+          "conditional",
+          "Medinan practice outweighs a single report against it."
+        ],
+        "qiyas": [
+          "yes-broad",
+          "Used widely."
+        ],
+        "istihsan": [
+          "yes",
+          "Accepted (attributed to Mālik: “nine tenths of knowledge”)."
+        ],
+        "maslaha": [
+          "yes",
+          "A recognised source."
+        ],
+        "amal": [
+          "yes",
+          "A proof, ranked above single reports."
+        ],
+        "sahabi": [
+          "yes",
+          "A proof."
+        ],
+        "mursal": [
+          "yes",
+          "Accepted."
+        ],
+        "dharai": [
+          "yes",
+          "Used widely as a source."
+        ],
+        "urf": [
+          "yes",
+          "Accepted."
+        ]
+      }
+    },
+    {
+      "id": "shafii",
+      "ar": "الشافعية",
+      "en": "Shāfiʿī",
+      "era": "2nd–3rd c. AH",
+      "origin": "Muḥammad ibn Idrīs al-Shāfiʿī (d. 204/820), Iraq then Egypt",
+      "where": "Egypt, the Levant, Yemen, East Africa, South-East Asia, Kurdistan",
+      "texts": [
+        "الرسالة",
+        "الأم",
+        "منهاج الطالبين للنووي",
+        "تحفة المحتاج لابن حجر الهيتمي"
+      ],
+      "self": "The school that first set out legal theory in writing (الرسالة), binding reasoning to the texts.",
+      "beliefs": [
+        "Four sources: Qur’an, Sunna, consensus, analogy.",
+        "An authentic ḥadīth binds without further conditions.",
+        "Reasoning outside analogy is rejected."
+      ],
+      "positions": {
+        "sources": [
+          "q-s-ij-qiyas",
+          "Qur’an, Sunna, consensus, analogy."
+        ],
+        "khabar": [
+          "accept",
+          "An authentic single report binds; no extra conditions."
+        ],
+        "qiyas": [
+          "yes-only",
+          "The one accepted form of reasoning."
+        ],
+        "istihsan": [
+          "no",
+          "Rejected: “whoever uses istiḥsān has legislated.”"
+        ],
+        "maslaha": [
+          "no",
+          "Not independent; only within analogy."
+        ],
+        "amal": [
+          "no",
+          "Not a proof."
+        ],
+        "sahabi": [
+          "disputed",
+          "Old (Iraqi) view: a proof; new (Egyptian) view: not. Disputed in the school."
+        ],
+        "mursal": [
+          "limited",
+          "Rejected unless supported, e.g. the mursal of Saʿīd ibn al-Musayyib."
+        ],
+        "dharai": [
+          "no",
+          "Not a source."
+        ],
+        "urf": [
+          "limited",
+          "Only to understand wording and usage."
+        ]
+      }
+    },
+    {
+      "id": "hanbali",
+      "ar": "الحنابلة",
+      "en": "Ḥanbalī",
+      "era": "3rd c. AH",
+      "origin": "Aḥmad ibn Ḥanbal (d. 241/855), Baghdad",
+      "where": "Saudi Arabia, Qatar, parts of the Gulf and Levant",
+      "texts": [
+        "مسائل الإمام أحمد",
+        "المغني لابن قدامة",
+        "زاد المستقنع",
+        "كشاف القناع للبهوتي"
+      ],
+      "self": "The school of the people of ḥadīth: text and the Companions first, reasoning only as needed.",
+      "beliefs": [
+        "Text and Companions’ fatwas come before analogy.",
+        "A weak ḥadīth is preferred over analogy.",
+        "Blocking the means is used widely."
+      ],
+      "positions": {
+        "sources": [
+          "q-s-sah-weak-qiyas",
+          "Qur’an, Sunna, Companions’ fatwas, a weak ḥadīth over analogy, analogy only by need."
+        ],
+        "khabar": [
+          "accept",
+          "An authentic single report binds."
+        ],
+        "qiyas": [
+          "limited",
+          "Used when no text or Companion view exists."
+        ],
+        "istihsan": [
+          "yes",
+          "Accepted in a limited form."
+        ],
+        "maslaha": [
+          "limited",
+          "Accepted when tied to the law’s aims."
+        ],
+        "amal": [
+          "no",
+          "Not a proof."
+        ],
+        "sahabi": [
+          "yes",
+          "A proof, ranked high."
+        ],
+        "mursal": [
+          "yes",
+          "Accepted, preferred over analogy."
+        ],
+        "dharai": [
+          "yes",
+          "Used widely."
+        ],
+        "urf": [
+          "yes",
+          "Accepted."
+        ]
+      }
+    },
+    {
+      "id": "zahiri",
+      "ar": "الظاهرية",
+      "en": "Ẓāhirī",
+      "era": "3rd–5th c. AH",
+      "origin": "Dāwūd al-Ẓāhirī (d. 270/884); Ibn Ḥazm (d. 456/1064), al-Andalus",
+      "where": "Historically al-Andalus; few followers today, wide influence through Ibn Ḥazm",
+      "texts": [
+        "المحلى لابن حزم",
+        "الإحكام في أصول الأحكام"
+      ],
+      "self": "Taking the texts by their plain sense, without human reasoning added to the law.",
+      "beliefs": [
+        "Only Qur’an, Sunna and consensus.",
+        "All analogy is rejected.",
+        "What the texts do not forbid is permitted."
+      ],
+      "positions": {
+        "sources": [
+          "q-s-ij",
+          "Qur’an, Sunna, consensus of the Companions, and the indicant within the texts (الدليل)."
+        ],
+        "khabar": [
+          "accept",
+          "An authentic single report yields certain knowledge."
+        ],
+        "qiyas": [
+          "no",
+          "Rejected entirely."
+        ],
+        "istihsan": [
+          "no",
+          "Rejected."
+        ],
+        "maslaha": [
+          "no",
+          "Rejected."
+        ],
+        "amal": [
+          "no",
+          "Not a proof."
+        ],
+        "sahabi": [
+          "no",
+          "Not a proof."
+        ],
+        "mursal": [
+          "no",
+          "Rejected."
+        ],
+        "dharai": [
+          "no",
+          "Rejected."
+        ],
+        "urf": [
+          "no",
+          "Not a source."
+        ]
+      }
+    },
+    {
+      "id": "jafari",
+      "ar": "الجعفرية",
+      "en": "Jaʿfarī (Twelver)",
+      "era": "2nd c. AH onward",
+      "origin": "Jaʿfar al-Ṣādiq (d. 148/765); al-Ṭūsī, al-Muḥaqqiq and al-ʿAllāma al-Ḥillī",
+      "where": "Iran, Iraq, Bahrain, Lebanon, parts of the Gulf and South Asia",
+      "texts": [
+        "الكتب الأربعة (الكافي، الفقيه، التهذيب، الاستبصار)",
+        "شرائع الإسلام",
+        "المكاسب للأنصاري"
+      ],
+      "self": "The law of the Prophet’s House, as taught by the infallible imams.",
+      "beliefs": [
+        "The imams’ sayings are Sunna.",
+        "Reason is a source; analogy is not.",
+        "Living jurists (مجتهد) are followed (Uṣūlī view)."
+      ],
+      "positions": {
+        "sources": [
+          "q-s(imams)-ij-aql",
+          "Qur’an, Sunna (including the imams), consensus (as revealing an imam’s view), reason."
+        ],
+        "khabar": [
+          "accept",
+          "Accepted from reliable narrators (Uṣūlīs); Akhbārīs accept the Four Books broadly."
+        ],
+        "qiyas": [
+          "no",
+          "Rejected, except analogy whose cause the text states."
+        ],
+        "istihsan": [
+          "no",
+          "Rejected."
+        ],
+        "maslaha": [
+          "no",
+          "Not a source; reason fills that role."
+        ],
+        "amal": [
+          "no",
+          "Not a proof."
+        ],
+        "sahabi": [
+          "no",
+          "Only the imams’ sayings are proof."
+        ],
+        "mursal": [
+          "limited",
+          "Accepted from narrators known to narrate only from the reliable (disputed)."
+        ],
+        "dharai": [
+          "no",
+          "Not a named source."
+        ],
+        "urf": [
+          "limited",
+          "To understand wording and usage."
+        ]
+      }
+    }
+  ]
+}

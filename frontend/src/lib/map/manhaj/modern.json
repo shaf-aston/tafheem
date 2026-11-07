@@ -1,0 +1,671 @@
+{
+  "id": "modern",
+  "ar": "الحركات المعاصرة",
+  "en": "Modern movements",
+  "note": "Where each movement stands on today’s dividing questions.",
+  "questions": [
+    {
+      "id": "creed",
+      "ar": "العقيدة",
+      "en": "Creed school"
+    },
+    {
+      "id": "madhhab",
+      "ar": "التمذهب",
+      "en": "Following a madhhab"
+    },
+    {
+      "id": "tasawwuf",
+      "ar": "التصوف",
+      "en": "View of Sufism"
+    },
+    {
+      "id": "tawassul",
+      "ar": "التوسل والمولد",
+      "en": "Tawassul, mawlid, shrines"
+    },
+    {
+      "id": "politics",
+      "ar": "السياسة",
+      "en": "Political engagement"
+    },
+    {
+      "id": "change",
+      "ar": "طريق التغيير",
+      "en": "Method of change"
+    },
+    {
+      "id": "arms",
+      "ar": "العمل المسلح",
+      "en": "Armed action"
+    },
+    {
+      "id": "others",
+      "ar": "الموقف من المخالف",
+      "en": "View of other Muslims"
+    }
+  ],
+  "groups": [
+    {
+      "id": "salafi",
+      "ar": "السلفية العلمية",
+      "en": "Salafī (scholarly / quietist)",
+      "era": "20th c. (roots in Ibn Taymiyya and Muḥammad ibn ʿAbd al-Wahhāb)",
+      "origin": "Ibn Bāz, al-Albānī, Ibn ʿUthaymīn",
+      "where": "Saudi Arabia, the Gulf, worldwide",
+      "texts": [
+        "كتاب التوحيد لمحمد بن عبد الوهاب",
+        "العقيدة الواسطية",
+        "Works of al-Albānī and Ibn ʿUthaymīn"
+      ],
+      "self": "Returning to Islam as the Salaf practised it: pure tawḥīd, Sunna, no innovation.",
+      "beliefs": [
+        "Tawḥīd in worship is the first call.",
+        "Follow the evidence over a school.",
+        "Obey Muslim rulers; avoid partisanship."
+      ],
+      "positions": {
+        "creed": [
+          "athari",
+          "Atharī."
+        ],
+        "madhhab": [
+          "evidence",
+          "Follow the evidence; a school is a study aid, not binding (many Saudi scholars Ḥanbalī in practice)."
+        ],
+        "tasawwuf": [
+          "reject",
+          "Sufi orders rejected as innovation; purification by the Sunna accepted."
+        ],
+        "tawassul": [
+          "reject",
+          "Only by Allah’s names, one’s good deeds or a living person’s prayer; mawlid and seeking blessing at graves rejected."
+        ],
+        "politics": [
+          "avoid",
+          "Obedience to Muslim rulers; no parties, protests or public criticism."
+        ],
+        "change": [
+          "education",
+          "Purify belief and educate (التصفية والتربية)."
+        ],
+        "arms": [
+          "against",
+          "Rejected as a method."
+        ],
+        "others": [
+          "critical",
+          "Other groups corrected on specific points; Muslims, not disbelievers."
+        ]
+      }
+    },
+    {
+      "id": "haraki",
+      "ar": "السلفية الحركية (الصحوة)",
+      "en": "Activist Salafī (Ṣaḥwa)",
+      "era": "1980s–1990s",
+      "origin": "Safar al-Ḥawālī, Salmān al-ʿAwda; influenced by Brotherhood organising",
+      "where": "Saudi Arabia, the Gulf, Egypt",
+      "texts": [
+        "Lectures and books of the Ṣaḥwa shaykhs"
+      ],
+      "self": "Salafī belief joined to public engagement with the affairs of the Muslims.",
+      "beliefs": [
+        "Salafī creed.",
+        "Rulers may be publicly advised and criticised.",
+        "Organised activism."
+      ],
+      "positions": {
+        "creed": [
+          "athari",
+          "Atharī."
+        ],
+        "madhhab": [
+          "evidence",
+          "Follow the evidence."
+        ],
+        "tasawwuf": [
+          "reject",
+          "Sufi orders rejected as innovation; purification by the Sunna accepted."
+        ],
+        "tawassul": [
+          "reject",
+          "Only by Allah’s names, one’s good deeds or a living person’s prayer; mawlid and seeking blessing at graves rejected."
+        ],
+        "politics": [
+          "engage",
+          "Public critique and political engagement."
+        ],
+        "change": [
+          "activism",
+          "Preaching with organised activism."
+        ],
+        "arms": [
+          "against",
+          "Rejected as a method."
+        ],
+        "others": [
+          "critical",
+          "Critical on specific points; Muslims."
+        ]
+      }
+    },
+    {
+      "id": "jihadi",
+      "ar": "السلفية الجهادية",
+      "en": "Salafī-jihādī",
+      "era": "1980s onward",
+      "origin": "Abū Muḥammad al-Maqdisī, al-Qaeda; ISIS as its extreme",
+      "where": "Militant groups in conflict zones",
+      "texts": [
+        "ملة إبراهيم للمقدسي"
+      ],
+      "self": "Reviving jihad against rulers who do not rule by the Sharīʿa and against foreign powers.",
+      "beliefs": [
+        "Current rulers are illegitimate (ḥākimiyya).",
+        "Loyalty and disavowal (الولاء والبراء) as a core of creed.",
+        "Armed struggle is obligatory."
+      ],
+      "note": "Rejected and condemned by the great majority of scholars of every school, including the scholarly Salafīs, for its takfīr and violence.",
+      "positions": {
+        "creed": [
+          "athari",
+          "Atharī, with stress on ḥākimiyya and al-walāʾ wa al-barāʾ."
+        ],
+        "madhhab": [
+          "evidence",
+          "Follow the evidence."
+        ],
+        "tasawwuf": [
+          "reject",
+          "Sufi orders rejected as innovation; purification by the Sunna accepted."
+        ],
+        "tawassul": [
+          "reject",
+          "Only by Allah’s names, one’s good deeds or a living person’s prayer; mawlid and seeking blessing at graves rejected."
+        ],
+        "politics": [
+          "revolt",
+          "Current states and rulers illegitimate; revolt."
+        ],
+        "change": [
+          "armed",
+          "Armed struggle."
+        ],
+        "arms": [
+          "for",
+          "Endorsed."
+        ],
+        "others": [
+          "broad-takfir",
+          "Takfīr of rulers and their supporters; ISIS of wide circles of Muslims."
+        ]
+      }
+    },
+    {
+      "id": "deobandi",
+      "ar": "الديوبندية",
+      "en": "Deobandī",
+      "era": "1867",
+      "origin": "Dār al-ʿUlūm Deoband; Qāsim Nānotwī, Rashīd Aḥmad Gangohī",
+      "where": "South Asia, UK, South Africa",
+      "texts": [
+        "المهند على المفند",
+        "بهشتي زيور",
+        "Fatwas of Dār al-ʿUlūm"
+      ],
+      "self": "Ahl al-Sunna: Ḥanafī in law, Māturīdī in creed, Sufi in the path, guarding the Sunna against customs.",
+      "beliefs": [
+        "Strict Ḥanafī taqlīd.",
+        "Sufi allegiance (Chishtī, Naqshbandī, Qādirī, Suhrawardī).",
+        "Customs seen as innovation removed."
+      ],
+      "positions": {
+        "creed": [
+          "maturidi",
+          "Māturīdī (with Ashʿarī)."
+        ],
+        "madhhab": [
+          "taqlid",
+          "Strict Ḥanafī taqlīd."
+        ],
+        "tasawwuf": [
+          "accept-reformed",
+          "Accepted, with practices seen as innovation removed."
+        ],
+        "tawassul": [
+          "partial",
+          "Tawassul through the Prophet ﷺ and the righteous accepted (المهند); fixed mawlid gatherings and ʿurs rejected."
+        ],
+        "politics": [
+          "varied",
+          "Varied: JUI is a party; the Tablīghī offshoot avoids politics."
+        ],
+        "change": [
+          "education",
+          "Madrasas and fatwa."
+        ],
+        "arms": [
+          "varied",
+          "Mainstream against; the Taliban came out of Deobandī madrasas."
+        ],
+        "others": [
+          "critical",
+          "Critical of Barelwī practices and of anti-madhhab groups."
+        ]
+      }
+    },
+    {
+      "id": "barelwi",
+      "ar": "البريلوية (أهل السنة والجماعة)",
+      "en": "Barelwī",
+      "era": "Late 19th c.",
+      "origin": "Aḥmad Raḍā Khān (d. 1921), Bareilly",
+      "where": "South Asia, UK",
+      "texts": [
+        "فتاوى رضوية",
+        "حدائق بخشش (poetry)"
+      ],
+      "self": "Ahl al-Sunna wa al-Jamāʿa: love and honour of the Prophet ﷺ at the centre.",
+      "beliefs": [
+        "The Prophet ﷺ is light (نور), given knowledge of the unseen by Allah, present and witnessing (حاضر وناظر).",
+        "Tawassul, mawlid and visiting saints’ shrines are Sunna-rooted.",
+        "Ḥanafī and Qādirī."
+      ],
+      "positions": {
+        "creed": [
+          "maturidi",
+          "Māturīdī."
+        ],
+        "madhhab": [
+          "taqlid",
+          "Strict Ḥanafī taqlīd."
+        ],
+        "tasawwuf": [
+          "accept-full",
+          "Central, especially Qādirī; shrines and ʿurs."
+        ],
+        "tawassul": [
+          "accept",
+          "Tawassul, mawlid and shrine visits accepted and practised."
+        ],
+        "politics": [
+          "varied",
+          "Varied."
+        ],
+        "change": [
+          "devotion",
+          "Love of the Prophet ﷺ, devotional gatherings."
+        ],
+        "arms": [
+          "against",
+          "Rejected as a method."
+        ],
+        "others": [
+          "critical",
+          "Critical of Deobandīs and Wahhābīs (a historic fatwa over certain statements)."
+        ]
+      }
+    },
+    {
+      "id": "ahlehadith",
+      "ar": "أهل الحديث (الهند)",
+      "en": "Ahl-e-Ḥadīth (South Asia)",
+      "era": "19th c.",
+      "origin": "Nadhīr Ḥusayn Dehlawī, Ṣiddīq Ḥasan Khān",
+      "where": "Pakistan, India, Bangladesh, UK",
+      "texts": [
+        "Works of Ṣiddīq Ḥasan Khān"
+      ],
+      "self": "Following the Qur’an and ḥadīth directly, without imitation of a school.",
+      "beliefs": [
+        "No taqlīd.",
+        "Atharī creed.",
+        "Practice by the authentic ḥadīth (e.g. raising hands in prayer)."
+      ],
+      "positions": {
+        "creed": [
+          "athari",
+          "Atharī."
+        ],
+        "madhhab": [
+          "no-taqlid",
+          "Taqlīd of a school rejected."
+        ],
+        "tasawwuf": [
+          "reject",
+          "Sufi orders rejected as innovation; purification by the Sunna accepted."
+        ],
+        "tawassul": [
+          "reject",
+          "Only by Allah’s names, one’s good deeds or a living person’s prayer; mawlid and seeking blessing at graves rejected."
+        ],
+        "politics": [
+          "varied",
+          "Varied."
+        ],
+        "change": [
+          "education",
+          "Teaching and preaching."
+        ],
+        "arms": [
+          "varied",
+          "Mainstream against; some militant offshoots."
+        ],
+        "others": [
+          "critical",
+          "Critical of school-bound practice."
+        ]
+      }
+    },
+    {
+      "id": "ikhwan",
+      "ar": "الإخوان المسلمون",
+      "en": "Muslim Brotherhood",
+      "era": "1928",
+      "origin": "Ḥasan al-Bannā, Egypt; later Sayyid Quṭb, Yūsuf al-Qaraḍāwī",
+      "where": "Egypt, the Arab world, worldwide branches",
+      "texts": [
+        "رسالة التعاليم (الأصول العشرون)",
+        "مجموعة رسائل البنا"
+      ],
+      "self": "“A Salafī call, a Sunnī way, a Sufi reality, a political body…”: Islam as a complete way of life.",
+      "beliefs": [
+        "Islam covers state and society.",
+        "Gradual reform from the individual up to the state.",
+        "Cooperate on what is agreed; excuse each other on the rest."
+      ],
+      "positions": {
+        "creed": [
+          "broad",
+          "Broad: Ashʿarī, Māturīdī and Atharī members."
+        ],
+        "madhhab": [
+          "flexible",
+          "Flexible; choose from the schools (wasaṭiyya)."
+        ],
+        "tasawwuf": [
+          "accept-reformed",
+          "Accepted in a reformed, practical form."
+        ],
+        "tawassul": [
+          "side-issue",
+          "A disputed side issue, not a matter of creed (الأصول العشرون)."
+        ],
+        "politics": [
+          "engage",
+          "Full: parties, elections, unions."
+        ],
+        "change": [
+          "gradual",
+          "Gradual: individual, family, society, state."
+        ],
+        "arms": [
+          "against",
+          "Officially rejected since the 1970s; Quṭb’s ideas debated."
+        ],
+        "others": [
+          "inclusive",
+          "Cooperate on agreement, excuse disagreement."
+        ]
+      }
+    },
+    {
+      "id": "jamaat",
+      "ar": "الجماعة الإسلامية",
+      "en": "Jamaat-e-Islami",
+      "era": "1941",
+      "origin": "Abū al-Aʿlā Mawdūdī, Lahore",
+      "where": "Pakistan, India, Bangladesh, UK",
+      "texts": [
+        "تفهيم القرآن",
+        "Mawdūdī’s Four Basic Qur’anic Terms"
+      ],
+      "self": "An Islamic movement for establishing the religion (إقامة الدين) in every sphere.",
+      "beliefs": [
+        "Sovereignty belongs to Allah.",
+        "A disciplined, educated party to reform state and society."
+      ],
+      "positions": {
+        "creed": [
+          "broad",
+          "Broadly Sunnī, not tied to one kalām school."
+        ],
+        "madhhab": [
+          "flexible",
+          "Flexible."
+        ],
+        "tasawwuf": [
+          "critical",
+          "Critical of institutional Sufism."
+        ],
+        "tawassul": [
+          "side-issue",
+          "A side issue."
+        ],
+        "politics": [
+          "engage",
+          "Full: a political party."
+        ],
+        "change": [
+          "organised",
+          "A disciplined party working through ideas and elections."
+        ],
+        "arms": [
+          "against",
+          "Rejected as a method."
+        ],
+        "others": [
+          "inclusive",
+          "Inclusive."
+        ]
+      }
+    },
+    {
+      "id": "tablighi",
+      "ar": "جماعة التبليغ",
+      "en": "Tablīghī Jamāʿat",
+      "era": "1926",
+      "origin": "Muḥammad Ilyās Kandhlawī, Mewat (India)",
+      "where": "Worldwide; largest gathering at Raiwind and Tongi",
+      "texts": [
+        "فضائل الأعمال",
+        "حياة الصحابة"
+      ],
+      "self": "Reviving faith and practice in ordinary Muslims through going out (الخروج) in Allah’s path.",
+      "beliefs": [
+        "Six points: kalima, prayer, knowledge and dhikr, honour of Muslims, sincerity, dawah.",
+        "Stay out of politics and disputes."
+      ],
+      "positions": {
+        "creed": [
+          "maturidi",
+          "Māturīdī (Deobandī roots)."
+        ],
+        "madhhab": [
+          "taqlid",
+          "Follow one’s own school."
+        ],
+        "tasawwuf": [
+          "accept-reformed",
+          "Accepted (Deobandī style)."
+        ],
+        "tawassul": [
+          "partial",
+          "As Deobandīs."
+        ],
+        "politics": [
+          "avoid",
+          "Fully apolitical."
+        ],
+        "change": [
+          "dawah-tours",
+          "Travelling tours (خروج) among Muslims."
+        ],
+        "arms": [
+          "against",
+          "Rejected as a method."
+        ],
+        "others": [
+          "inclusive",
+          "Avoid disputes; work with all."
+        ]
+      }
+    },
+    {
+      "id": "tahrir",
+      "ar": "حزب التحرير",
+      "en": "Ḥizb al-Taḥrīr",
+      "era": "1953",
+      "origin": "Taqī al-Dīn al-Nabhānī, Jerusalem",
+      "where": "Worldwide; Central Asia, the Arab world, Europe",
+      "texts": [
+        "نظام الإسلام",
+        "الشخصية الإسلامية"
+      ],
+      "self": "A political party whose aim is resuming Islamic life by re-establishing the caliphate.",
+      "beliefs": [
+        "The caliphate is the first obligation of the age.",
+        "Single-chain ḥadīth not used in creed.",
+        "The party adopts specific rulings for members."
+      ],
+      "positions": {
+        "creed": [
+          "broad",
+          "Kalām-leaning; single-chain reports not accepted in creed."
+        ],
+        "madhhab": [
+          "adopted",
+          "Rulings adopted by the party (تبنّي)."
+        ],
+        "tasawwuf": [
+          "neutral",
+          "Not part of its method."
+        ],
+        "tawassul": [
+          "side-issue",
+          "Not a focus."
+        ],
+        "politics": [
+          "caliphate",
+          "Work only for the caliphate; no part in non-Islamic systems."
+        ],
+        "change": [
+          "nusra",
+          "Intellectual and political struggle, then seeking support from people of power (طلب النصرة)."
+        ],
+        "arms": [
+          "against",
+          "Non-violent as a method."
+        ],
+        "others": [
+          "inclusive",
+          "Muslims are Muslims; the systems are un-Islamic."
+        ]
+      }
+    },
+    {
+      "id": "modernist",
+      "ar": "الإصلاحية الحداثية",
+      "en": "Islamic modernism",
+      "era": "Late 19th c. onward",
+      "origin": "Jamāl al-Dīn al-Afghānī, Muḥammad ʿAbduh, Sayyid Aḥmad Khān; later Fazlur Rahman",
+      "where": "Universities and intellectuals worldwide",
+      "texts": [
+        "رسالة التوحيد لمحمد عبده",
+        "تفسير المنار (early)"
+      ],
+      "self": "Renewing Islamic thought by reason and fresh ijtihād to meet the modern age.",
+      "beliefs": [
+        "Reason and revelation agree.",
+        "Fresh ijtihād over inherited schools.",
+        "Reform of education and institutions."
+      ],
+      "positions": {
+        "creed": [
+          "rational",
+          "Rationalist; sympathetic to the Muʿtazila."
+        ],
+        "madhhab": [
+          "ijtihad",
+          "Fresh ijtihād; schools are historical."
+        ],
+        "tasawwuf": [
+          "critical",
+          "Critical of popular Sufism."
+        ],
+        "tawassul": [
+          "reject",
+          "Popular shrine practices rejected."
+        ],
+        "politics": [
+          "engage",
+          "Engaged."
+        ],
+        "change": [
+          "reform",
+          "Education, reinterpretation, institutions."
+        ],
+        "arms": [
+          "against",
+          "Rejected as a method."
+        ],
+        "others": [
+          "inclusive",
+          "Inclusive."
+        ]
+      }
+    },
+    {
+      "id": "quranist",
+      "ar": "القرآنيون",
+      "en": "Qur’ānists",
+      "era": "19th–20th c.",
+      "origin": "Ghulām Aḥmad Parwez, Aḥmad Ṣubḥī Manṣūr",
+      "where": "Small circles: South Asia, Egypt, online",
+      "texts": [
+        "Works of Parwez and Ṣubḥī Manṣūr"
+      ],
+      "self": "The Qur’an alone is the source of religion.",
+      "beliefs": [
+        "Ḥadīth is not binding.",
+        "Law from the Qur’an only."
+      ],
+      "note": "Rejecting the Sunna’s authority is held by scholars of every school above to put one outside Sunnī and Shīʿī Islam.",
+      "positions": {
+        "creed": [
+          "quran-only",
+          "Qur’an only; ḥadīth not binding."
+        ],
+        "madhhab": [
+          "none",
+          "Schools and ḥadīth-based law rejected."
+        ],
+        "tasawwuf": [
+          "reject",
+          "Rejected."
+        ],
+        "tawassul": [
+          "reject",
+          "Rejected."
+        ],
+        "politics": [
+          "varied",
+          "Varied."
+        ],
+        "change": [
+          "reform",
+          "Reinterpretation."
+        ],
+        "arms": [
+          "against",
+          "Rejected as a method."
+        ],
+        "others": [
+          "critical",
+          "Critical of ḥadīth-based Islam as a whole."
+        ]
+      }
+    }
+  ]
+}

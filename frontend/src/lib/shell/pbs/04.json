@@ -1,0 +1,1241 @@
+{
+  "id": "04",
+  "ar": "عُلوم القُرآن",
+  "en": "Qur'anic Sciences",
+  "frame": "السيوطي / الزركشي",
+  "hue": "teal",
+  "footnote": [
+    "Rule: every level-2 node is a نوع as الإتقان والبرهان divide it, never a باب inside one.",
+    "So الناسخ والمنسوخ sits with دلالات النظم, not النزول, being a property of the ruling; التجويد sits with الأداء beside القراءات, which it is not identical to.",
+    "Omitted as أبواب: المتواتر والشاذ من القراءات، الإمالة، المد، أسماء السور، العد الكوفي والبصري.",
+    "Excluded as separate sciences: التفسير itself, of which only أصوله appear; أحكام القرآن, which belongs to الفقه وأصوله."
+  ],
+  "root": {
+    "ar": "عُلوم القُرآن",
+    "en": "Qur'anic Sciences"
+  },
+  "branches": [
+    {
+      "ar": "النُّزول",
+      "en": "Revelation & its occasions",
+      "hue": "teal",
+      "kids": [
+        {
+          "ar": "كَيفِيّة النُّزول",
+          "en": "Modes of revelation",
+          "kids": [
+            {
+              "ar": "التنزيل الجملي والمنجَّم",
+              "en": "Whole and gradual revelation",
+              "kids": [
+                {
+                  "ar": "الإنزال إلى السماء الدنيا",
+                  "en": "Sent down whole to the lowest heaven"
+                },
+                {
+                  "ar": "التنزيل المنجَّم على النبي",
+                  "en": "Sent down in parts to the Prophet"
+                }
+              ]
+            },
+            {
+              "ar": "حكمة التنجيم",
+              "en": "Wisdom of gradual revelation"
+            },
+            {
+              "ar": "أنواع الوحي",
+              "en": "Kinds of revelation",
+              "kids": [
+                {
+                  "ar": "الرؤيا الصادقة",
+                  "en": "True dream"
+                },
+                {
+                  "ar": "صلصلة الجرس",
+                  "en": "Sound like a bell"
+                },
+                {
+                  "ar": "تمثّل الملك رجلًا",
+                  "en": "Angel appearing as a man"
+                },
+                {
+                  "ar": "النفث في الرُّوع",
+                  "en": "Inspiration cast into the heart"
+                },
+                {
+                  "ar": "الكلام بلا واسطة",
+                  "en": "Direct speech without intermediary"
+                }
+              ]
+            },
+            {
+              "ar": "كيفية تلقّيه",
+              "en": "How it was received"
+            }
+          ]
+        },
+        {
+          "ar": "أسباب النُّزول",
+          "en": "Occasions of revelation",
+          "kids": [
+            {
+              "ar": "صيغ سبب النزول",
+              "en": "Wording that states a cause",
+              "kids": [
+                {
+                  "ar": "الصريح",
+                  "en": "Explicit statement"
+                },
+                {
+                  "ar": "المحتمل",
+                  "en": "Probable statement"
+                }
+              ]
+            },
+            {
+              "ar": "العبرة بعموم اللفظ",
+              "en": "Generality of wording governs"
+            },
+            {
+              "ar": "تعدد النازل والسبب",
+              "en": "Many verses, many causes"
+            },
+            {
+              "ar": "كتب الأسباب",
+              "en": "Books on causes"
+            }
+          ]
+        },
+        {
+          "ar": "المَكّي والمَدَني",
+          "en": "Meccan & Medinan",
+          "kids": [
+            {
+              "ar": "ضوابط التمييز",
+              "en": "Criteria of distinction",
+              "kids": [
+                {
+                  "ar": "اعتبار زمن النزول",
+                  "en": "By time: before or after the Hijra"
+                },
+                {
+                  "ar": "اعتبار مكان النزول",
+                  "en": "By place of revelation"
+                },
+                {
+                  "ar": "اعتبار المخاطَب",
+                  "en": "By the addressed audience"
+                }
+              ]
+            },
+            {
+              "ar": "خصائص كلٍّ منهما",
+              "en": "Traits of each"
+            },
+            {
+              "ar": "فائدة معرفته",
+              "en": "Benefit of knowing it"
+            },
+            {
+              "ar": "ما نزل بمكة وحكمه مدني",
+              "en": "Revealed in Mecca, Medinan in ruling"
+            }
+          ]
+        },
+        {
+          "ar": "أوَّل وآخِر ما نَزَل",
+          "en": "First & last revealed",
+          "kids": [
+            {
+              "ar": "أول ما نزل مطلقًا",
+              "en": "First revealed overall",
+              "kids": [
+                {
+                  "ar": "اقرأ باسم ربك",
+                  "en": "Iqra, the opening of al-Alaq"
+                },
+                {
+                  "ar": "يا أيها المدثر",
+                  "en": "Ya ayyuha al-muddaththir"
+                },
+                {
+                  "ar": "الفاتحة",
+                  "en": "Al-Fatiha"
+                }
+              ]
+            },
+            {
+              "ar": "آخر ما نزل",
+              "en": "Last revealed",
+              "kids": [
+                {
+                  "ar": "آية الربا",
+                  "en": "Verse of usury"
+                },
+                {
+                  "ar": "واتقوا يومًا ترجعون فيه",
+                  "en": "Guard against a Day you return"
+                },
+                {
+                  "ar": "آية الدَّين",
+                  "en": "Verse of debt"
+                },
+                {
+                  "ar": "إذا جاء نصر الله",
+                  "en": "Surah al-Nasr"
+                }
+              ]
+            },
+            {
+              "ar": "أوائل الموضوعات",
+              "en": "Firsts by topic"
+            }
+          ]
+        },
+        {
+          "ar": "أحوال النُّزول",
+          "en": "Circumstances of revelation",
+          "kids": [
+            {
+              "ar": "الليلي والنهاري",
+              "en": "Night and day revelation"
+            },
+            {
+              "ar": "السفري والحضري",
+              "en": "Travel and residence"
+            },
+            {
+              "ar": "الصيفي والشتائي",
+              "en": "Summer and winter"
+            },
+            {
+              "ar": "ما نزل مرتين",
+              "en": "Revealed twice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ar": "الجَمع والرَّسم",
+      "en": "Collection & codex",
+      "hue": "amber",
+      "kids": [
+        {
+          "ar": "جَمع القُرآن",
+          "en": "Collection",
+          "kids": [
+            {
+              "ar": "في عهد النبي",
+              "en": "In the Prophet's time",
+              "kids": [
+                {
+                  "ar": "الحفظ في الصدور",
+                  "en": "Memorising in hearts"
+                },
+                {
+                  "ar": "الكتابة في الرقاع",
+                  "en": "Writing on materials"
+                }
+              ]
+            },
+            {
+              "ar": "جمع أبي بكر",
+              "en": "Abu Bakr's compilation"
+            },
+            {
+              "ar": "جمع عثمان",
+              "en": "Uthman's compilation"
+            },
+            {
+              "ar": "حرق المصاحف",
+              "en": "Burning other copies"
+            }
+          ]
+        },
+        {
+          "ar": "تَرتيب السُّوَر والآي",
+          "en": "Ordering of suras & verses",
+          "kids": [
+            {
+              "ar": "توقيفية الآي",
+              "en": "Verse order is divinely fixed"
+            },
+            {
+              "ar": "ترتيب السور والاجتهاد",
+              "en": "Surah order and ijtihad"
+            },
+            {
+              "ar": "مصاحف الصحابة",
+              "en": "Companions' codices"
+            }
+          ]
+        },
+        {
+          "ar": "رَسم المُصحَف",
+          "en": "Orthography of the codex",
+          "kids": [
+            {
+              "ar": "الرسم العثماني",
+              "en": "Uthmani script"
+            },
+            {
+              "ar": "قواعده الست",
+              "en": "Its six rules",
+              "kids": [
+                {
+                  "ar": "الحذف",
+                  "en": "Omission"
+                },
+                {
+                  "ar": "الزيادة",
+                  "en": "Addition"
+                },
+                {
+                  "ar": "الهمز",
+                  "en": "Hamza"
+                },
+                {
+                  "ar": "البدل",
+                  "en": "Substitution"
+                },
+                {
+                  "ar": "الوصل والفصل",
+                  "en": "Joining and separating"
+                },
+                {
+                  "ar": "ما فيه قراءتان",
+                  "en": "Word with two readings"
+                }
+              ]
+            },
+            {
+              "ar": "الحذف والزيادة",
+              "en": "Omission and addition"
+            },
+            {
+              "ar": "حكم الالتزام به",
+              "en": "Ruling on adhering to it"
+            }
+          ]
+        },
+        {
+          "ar": "نَقط المُصحَف وضَبطه",
+          "en": "Pointing & vocalisation",
+          "kids": [
+            {
+              "ar": "نقط الإعجام",
+              "en": "Dots distinguishing letters"
+            },
+            {
+              "ar": "نقط الإعراب",
+              "en": "Dots marking vowels"
+            },
+            {
+              "ar": "أبو الأسود والخليل",
+              "en": "Abu al-Aswad and al-Khalil"
+            },
+            {
+              "ar": "علامات الوقف",
+              "en": "Pause marks"
+            }
+          ]
+        },
+        {
+          "ar": "عَدّ الآي والتَّحزيب",
+          "en": "Verse count & divisions",
+          "kids": [
+            {
+              "ar": "المدني والمكي والكوفي والبصري",
+              "en": "Madinan, Meccan, Kufan, Basran counts",
+              "kids": [
+                {
+                  "ar": "المدني الأول",
+                  "en": "First Madinan count"
+                },
+                {
+                  "ar": "المدني الأخير",
+                  "en": "Last Madinan count"
+                },
+                {
+                  "ar": "المكي",
+                  "en": "Meccan count"
+                },
+                {
+                  "ar": "الكوفي",
+                  "en": "Kufan count"
+                },
+                {
+                  "ar": "البصري",
+                  "en": "Basran count"
+                },
+                {
+                  "ar": "الشامي",
+                  "en": "Syrian count"
+                }
+              ]
+            },
+            {
+              "ar": "أسباب الاختلاف",
+              "en": "Causes of difference"
+            },
+            {
+              "ar": "الأجزاء والأحزاب",
+              "en": "Juz and hizb divisions"
+            },
+            {
+              "ar": "التخميس والتعشير",
+              "en": "Marking fives and tens"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ar": "القِراءات والأداء",
+      "en": "Readings & recitation",
+      "hue": "indigo",
+      "kids": [
+        {
+          "ar": "الأحرُف السَّبعة",
+          "en": "The seven modes",
+          "kids": [
+            {
+              "ar": "معناها",
+              "en": "Their meaning"
+            },
+            {
+              "ar": "أقوال العلماء فيها",
+              "en": "Scholars' views on them",
+              "kids": [
+                {
+                  "ar": "لغات سبع من لغات العرب",
+                  "en": "Seven Arab dialects"
+                },
+                {
+                  "ar": "سبعة أوجه من الاختلاف",
+                  "en": "Seven kinds of variation"
+                },
+                {
+                  "ar": "التيسير لا العدد المحدد",
+                  "en": "Ease, not a fixed count"
+                }
+              ]
+            },
+            {
+              "ar": "علاقتها بالقراءات",
+              "en": "Link to the readings"
+            },
+            {
+              "ar": "حكمة التيسير",
+              "en": "Wisdom of ease"
+            }
+          ]
+        },
+        {
+          "ar": "القِراءات المُتواتِرة",
+          "en": "Canonical readings",
+          "kids": [
+            {
+              "ar": "القراء السبعة",
+              "en": "The seven reciters",
+              "kids": [
+                {
+                  "ar": "نافع",
+                  "en": "Nafi of Madinah"
+                },
+                {
+                  "ar": "ابن كثير",
+                  "en": "Ibn Kathir of Mecca"
+                },
+                {
+                  "ar": "أبو عمرو",
+                  "en": "Abu Amr of Basra"
+                },
+                {
+                  "ar": "ابن عامر",
+                  "en": "Ibn Amir of Syria"
+                },
+                {
+                  "ar": "عاصم",
+                  "en": "Asim of Kufa"
+                },
+                {
+                  "ar": "حمزة",
+                  "en": "Hamza of Kufa"
+                },
+                {
+                  "ar": "الكسائي",
+                  "en": "al-Kisai of Kufa"
+                }
+              ]
+            },
+            {
+              "ar": "الثلاثة المتمّمة",
+              "en": "The three completing the ten",
+              "kids": [
+                {
+                  "ar": "أبو جعفر",
+                  "en": "Abu Jafar"
+                },
+                {
+                  "ar": "يعقوب",
+                  "en": "Yaqub"
+                },
+                {
+                  "ar": "خلف",
+                  "en": "Khalaf"
+                }
+              ]
+            },
+            {
+              "ar": "شروط القراءة الصحيحة",
+              "en": "Conditions of a sound reading",
+              "kids": [
+                {
+                  "ar": "صحة السند",
+                  "en": "Sound chain"
+                },
+                {
+                  "ar": "موافقة الرسم",
+                  "en": "Agreement with the script"
+                },
+                {
+                  "ar": "موافقة العربية",
+                  "en": "Agreement with Arabic"
+                }
+              ]
+            },
+            {
+              "ar": "الطرق والروايات",
+              "en": "Routes and transmissions"
+            }
+          ]
+        },
+        {
+          "ar": "الشاذّ من القِراءات",
+          "en": "Non-canonical readings",
+          "kids": [
+            {
+              "ar": "ضابط الشذوذ",
+              "en": "Rule of the irregular",
+              "kids": [
+                {
+                  "ar": "المتواتر",
+                  "en": "Mass-transmitted"
+                },
+                {
+                  "ar": "المشهور",
+                  "en": "Well known"
+                },
+                {
+                  "ar": "الآحاد",
+                  "en": "Single-chain"
+                },
+                {
+                  "ar": "الشاذ",
+                  "en": "Irregular"
+                },
+                {
+                  "ar": "الموضوع",
+                  "en": "Fabricated"
+                },
+                {
+                  "ar": "المدرج",
+                  "en": "Interpolated"
+                }
+              ]
+            },
+            {
+              "ar": "القراءات الأربع",
+              "en": "The four extra readings",
+              "kids": [
+                {
+                  "ar": "ابن محيصن",
+                  "en": "Ibn Muhaysin"
+                },
+                {
+                  "ar": "اليزيدي",
+                  "en": "al-Yazidi"
+                },
+                {
+                  "ar": "الحسن البصري",
+                  "en": "al-Hasan al-Basri"
+                },
+                {
+                  "ar": "الأعمش",
+                  "en": "al-Amash"
+                }
+              ]
+            },
+            {
+              "ar": "الاحتجاج بها فقهًا ولغةً",
+              "en": "Using them in law and language"
+            },
+            {
+              "ar": "التفسير بها",
+              "en": "Explaining through them"
+            }
+          ]
+        },
+        {
+          "ar": "الرُّواة والأسانيد",
+          "en": "Transmitters & chains",
+          "kids": [
+            {
+              "ar": "الرواة عن كل قارئ",
+              "en": "Narrators from each reciter"
+            },
+            {
+              "ar": "الأسانيد المتصلة",
+              "en": "Connected chains"
+            },
+            {
+              "ar": "الإجازة والسند",
+              "en": "Licence and chain"
+            },
+            {
+              "ar": "طبقات القراء",
+              "en": "Generations of reciters"
+            }
+          ]
+        },
+        {
+          "ar": "التَّجويد وأحكامه",
+          "en": "Rules of articulation",
+          "kids": [
+            {
+              "ar": "مخارج الحروف",
+              "en": "Points of articulation",
+              "kids": [
+                {
+                  "ar": "الجوف",
+                  "en": "Oral cavity"
+                },
+                {
+                  "ar": "الحلق",
+                  "en": "Throat"
+                },
+                {
+                  "ar": "اللسان",
+                  "en": "Tongue"
+                },
+                {
+                  "ar": "الشفتان",
+                  "en": "Lips"
+                },
+                {
+                  "ar": "الخيشوم",
+                  "en": "Nasal passage"
+                }
+              ]
+            },
+            {
+              "ar": "الصفات",
+              "en": "Letter attributes"
+            },
+            {
+              "ar": "أحكام النون والميم",
+              "en": "Rules of noon and meem"
+            },
+            {
+              "ar": "المدود",
+              "en": "Prolongations"
+            },
+            {
+              "ar": "الإمالة والتفخيم",
+              "en": "Inclination and heaviness"
+            }
+          ]
+        },
+        {
+          "ar": "الوَقف والابتِداء",
+          "en": "Pause & resumption",
+          "kids": [
+            {
+              "ar": "التامّ والكافي والحسن",
+              "en": "Complete, sufficient, good pause"
+            },
+            {
+              "ar": "الوقف القبيح",
+              "en": "Bad pause"
+            },
+            {
+              "ar": "السكت والقطع",
+              "en": "Breathless stop and cut-off"
+            },
+            {
+              "ar": "علاماته",
+              "en": "Its marks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ar": "دَلالات النَّظم",
+      "en": "Signification of the text",
+      "hue": "slate",
+      "kids": [
+        {
+          "ar": "المُحكَم والمُتشابِه",
+          "en": "Clear & ambiguous",
+          "kids": [
+            {
+              "ar": "تعريفهما",
+              "en": "Their definition"
+            },
+            {
+              "ar": "الحروف المقطَّعة",
+              "en": "Disjointed letters"
+            },
+            {
+              "ar": "الراسخون في العلم",
+              "en": "Those firm in knowledge"
+            },
+            {
+              "ar": "التأويل والتفويض",
+              "en": "Interpretation and entrusting"
+            }
+          ]
+        },
+        {
+          "ar": "الناسِخ والمَنسوخ",
+          "en": "Abrogating & abrogated",
+          "kids": [
+            {
+              "ar": "أنواع النسخ",
+              "en": "Kinds of abrogation",
+              "kids": [
+                {
+                  "ar": "نسخ الحكم والتلاوة معًا",
+                  "en": "Both ruling and wording"
+                },
+                {
+                  "ar": "نسخ الحكم دون التلاوة",
+                  "en": "Ruling only, wording stays"
+                },
+                {
+                  "ar": "نسخ التلاوة دون الحكم",
+                  "en": "Wording only, ruling stays"
+                }
+              ]
+            },
+            {
+              "ar": "نسخ التلاوة والحكم",
+              "en": "Abrogating wording and ruling"
+            },
+            {
+              "ar": "شروطه",
+              "en": "Its conditions"
+            },
+            {
+              "ar": "المنسوخات المذكورة",
+              "en": "Cited abrogated verses"
+            }
+          ]
+        },
+        {
+          "ar": "العامّ والخاصّ",
+          "en": "General & particular",
+          "kids": [
+            {
+              "ar": "صيغ العموم",
+              "en": "Forms of generality"
+            },
+            {
+              "ar": "المخصِّصات المتصلة والمنفصلة",
+              "en": "Attached and separate specifiers",
+              "kids": [
+                {
+                  "ar": "المتصلة: الاستثناء والشرط والصفة والغاية",
+                  "en": "Attached: exception, condition, attribute, limit"
+                },
+                {
+                  "ar": "المنفصلة: آية أو سنة أو إجماع",
+                  "en": "Separate: verse, Sunnah, consensus"
+                }
+              ]
+            },
+            {
+              "ar": "العام المراد به الخصوص",
+              "en": "General meant as specific"
+            }
+          ]
+        },
+        {
+          "ar": "المُطلَق والمُقَيَّد",
+          "en": "Unrestricted & restricted",
+          "kids": [
+            {
+              "ar": "حمل المطلق على المقيَّد",
+              "en": "Reading absolute by restricted"
+            },
+            {
+              "ar": "اتحاد الحكم والسبب",
+              "en": "Same ruling and cause"
+            },
+            {
+              "ar": "أمثلته",
+              "en": "Its examples"
+            }
+          ]
+        },
+        {
+          "ar": "المُجمَل والمُبَيَّن",
+          "en": "Undetailed & clarified",
+          "kids": [
+            {
+              "ar": "أسباب الإجمال",
+              "en": "Causes of ambiguity"
+            },
+            {
+              "ar": "المبيَّن بالسنة",
+              "en": "Clarified by the Sunnah"
+            },
+            {
+              "ar": "تأخير البيان",
+              "en": "Delaying clarification"
+            }
+          ]
+        },
+        {
+          "ar": "غَريب القُرآن والوُجوه",
+          "en": "Rare words & polysemy",
+          "kids": [
+            {
+              "ar": "مفردات الغريب",
+              "en": "Rare vocabulary"
+            },
+            {
+              "ar": "الوجوه والنظائر",
+              "en": "Polysemes and parallels"
+            },
+            {
+              "ar": "المعرَّب في القرآن",
+              "en": "Loanwords in the Qur'an"
+            },
+            {
+              "ar": "كتب الغريب",
+              "en": "Books on rare words"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ar": "الإعجاز والأساليب",
+      "en": "Inimitability & style",
+      "hue": "rose",
+      "kids": [
+        {
+          "ar": "وُجوه الإعجاز",
+          "en": "Aspects of inimitability",
+          "kids": [
+            {
+              "ar": "البلاغي",
+              "en": "Rhetorical"
+            },
+            {
+              "ar": "الغيبي",
+              "en": "Unseen-related"
+            },
+            {
+              "ar": "العلمي",
+              "en": "Scientific"
+            },
+            {
+              "ar": "التشريعي",
+              "en": "Legislative"
+            },
+            {
+              "ar": "الصرفة وردّها",
+              "en": "Sarfa and its refutation"
+            }
+          ]
+        },
+        {
+          "ar": "الأمثال",
+          "en": "Parables",
+          "kids": [
+            {
+              "ar": "المصرَّحة والكامنة",
+              "en": "Explicit and implicit"
+            },
+            {
+              "ar": "فوائدها",
+              "en": "Their benefits"
+            },
+            {
+              "ar": "أمثلتها القرآنية",
+              "en": "Qur'anic examples"
+            }
+          ]
+        },
+        {
+          "ar": "الأقسام",
+          "en": "Oaths",
+          "kids": [
+            {
+              "ar": "المقسَم به والمقسَم عليه",
+              "en": "Sworn by and sworn upon"
+            },
+            {
+              "ar": "حكمة القسم",
+              "en": "Wisdom of oaths"
+            },
+            {
+              "ar": "حذف أداة القسم",
+              "en": "Omitting the oath particle"
+            }
+          ]
+        },
+        {
+          "ar": "القَصَص",
+          "en": "Narratives",
+          "kids": [
+            {
+              "ar": "أنواعه",
+              "en": "Its kinds"
+            },
+            {
+              "ar": "تكراره وحكمته",
+              "en": "Repetition and its wisdom"
+            },
+            {
+              "ar": "فوائده",
+              "en": "Its benefits"
+            },
+            {
+              "ar": "الفرق عن الأساطير",
+              "en": "Difference from legends"
+            }
+          ]
+        },
+        {
+          "ar": "الجَدَل والمُناسَبات",
+          "en": "Argument & coherence",
+          "kids": [
+            {
+              "ar": "أساليب الحِجاج",
+              "en": "Styles of argument"
+            },
+            {
+              "ar": "مناسبة الآيات",
+              "en": "Link between verses"
+            },
+            {
+              "ar": "مناسبة السور",
+              "en": "Link between surahs"
+            },
+            {
+              "ar": "فواصل الآي",
+              "en": "Verse endings"
+            }
+          ]
+        },
+        {
+          "ar": "فَواتِح السُّوَر",
+          "en": "Sura openings",
+          "kids": [
+            {
+              "ar": "أنواعها العشرة",
+              "en": "Its ten kinds",
+              "kids": [
+                {
+                  "ar": "الثناء",
+                  "en": "Praise"
+                },
+                {
+                  "ar": "حروف التهجي",
+                  "en": "Spelled letters"
+                },
+                {
+                  "ar": "النداء",
+                  "en": "Address"
+                },
+                {
+                  "ar": "الجمل الخبرية",
+                  "en": "Declarative sentences"
+                },
+                {
+                  "ar": "القسم",
+                  "en": "Oath"
+                },
+                {
+                  "ar": "الشرط",
+                  "en": "Condition"
+                },
+                {
+                  "ar": "الأمر",
+                  "en": "Command"
+                },
+                {
+                  "ar": "الاستفهام",
+                  "en": "Question"
+                },
+                {
+                  "ar": "الدعاء",
+                  "en": "Supplication"
+                },
+                {
+                  "ar": "التعليل",
+                  "en": "Giving a reason"
+                }
+              ]
+            },
+            {
+              "ar": "الحروف المقطَّعة",
+              "en": "Disjointed letters"
+            },
+            {
+              "ar": "الافتتاح بالحمد والنداء",
+              "en": "Opening with praise and address"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ar": "أُصول التَّفسير",
+      "en": "Principles of exegesis",
+      "hue": "violet",
+      "kids": [
+        {
+          "ar": "شُروط المُفَسِّر وآدابه",
+          "en": "The exegete's conditions",
+          "kids": [
+            {
+              "ar": "العلوم المطلوبة",
+              "en": "Required sciences",
+              "kids": [
+                {
+                  "ar": "اللغة",
+                  "en": "Language"
+                },
+                {
+                  "ar": "النحو",
+                  "en": "Grammar"
+                },
+                {
+                  "ar": "التصريف",
+                  "en": "Morphology"
+                },
+                {
+                  "ar": "الاشتقاق",
+                  "en": "Derivation"
+                },
+                {
+                  "ar": "المعاني والبيان والبديع",
+                  "en": "Rhetoric: meanings, style, ornament"
+                },
+                {
+                  "ar": "القراءات",
+                  "en": "Readings"
+                },
+                {
+                  "ar": "أصول الدين",
+                  "en": "Foundations of belief"
+                },
+                {
+                  "ar": "أصول الفقه",
+                  "en": "Legal theory"
+                },
+                {
+                  "ar": "أسباب النزول والقصص",
+                  "en": "Causes of revelation and stories"
+                },
+                {
+                  "ar": "الناسخ والمنسوخ",
+                  "en": "Abrogating and abrogated"
+                },
+                {
+                  "ar": "الفقه",
+                  "en": "Jurisprudence"
+                },
+                {
+                  "ar": "علم الموهبة",
+                  "en": "Bestowed knowledge"
+                }
+              ]
+            },
+            {
+              "ar": "صحة المعتقد",
+              "en": "Sound belief"
+            },
+            {
+              "ar": "التجرّد عن الهوى",
+              "en": "Freedom from desire"
+            },
+            {
+              "ar": "آدابه في الترجيح",
+              "en": "Its etiquette in preferring"
+            }
+          ]
+        },
+        {
+          "ar": "التَّفسير بالمأثور",
+          "en": "Transmission-based exegesis",
+          "kids": [
+            {
+              "ar": "القرآن بالقرآن",
+              "en": "Qur'an by the Qur'an"
+            },
+            {
+              "ar": "بالسنة",
+              "en": "By the Sunnah"
+            },
+            {
+              "ar": "بأقوال الصحابة",
+              "en": "By Companions' sayings"
+            },
+            {
+              "ar": "بالتابعين",
+              "en": "By the Followers"
+            },
+            {
+              "ar": "أشهر كتبه",
+              "en": "Best-known books"
+            }
+          ]
+        },
+        {
+          "ar": "التَّفسير بالرأي",
+          "en": "Reason-based exegesis",
+          "kids": [
+            {
+              "ar": "المحمود والمذموم",
+              "en": "Praised and blamed"
+            },
+            {
+              "ar": "شروط جوازه",
+              "en": "Conditions of permissibility"
+            },
+            {
+              "ar": "التفسير الإشاري",
+              "en": "Allusive exegesis"
+            },
+            {
+              "ar": "الاتجاهات الحديثة",
+              "en": "Modern trends"
+            }
+          ]
+        },
+        {
+          "ar": "الإسرائيليات",
+          "en": "Israelite reports",
+          "kids": [
+            {
+              "ar": "أقسامها",
+              "en": "Its categories",
+              "kids": [
+                {
+                  "ar": "ما وافق شرعنا",
+                  "en": "Agrees with our law"
+                },
+                {
+                  "ar": "ما خالفه",
+                  "en": "Contradicts it"
+                },
+                {
+                  "ar": "المسكوت عنه",
+                  "en": "Left unaddressed"
+                }
+              ]
+            },
+            {
+              "ar": "موقف العلماء منها",
+              "en": "Scholars' stance"
+            },
+            {
+              "ar": "مصادرها",
+              "en": "Its sources"
+            },
+            {
+              "ar": "أثرها في كتب التفسير",
+              "en": "Its effect on exegesis books"
+            }
+          ]
+        },
+        {
+          "ar": "طَبَقات المُفَسِّرين",
+          "en": "Generations of exegetes",
+          "kids": [
+            {
+              "ar": "مفسرو الصحابة",
+              "en": "Companion exegetes",
+              "kids": [
+                {
+                  "ar": "أبو بكر",
+                  "en": "Abu Bakr"
+                },
+                {
+                  "ar": "عمر",
+                  "en": "Umar"
+                },
+                {
+                  "ar": "عثمان",
+                  "en": "Uthman"
+                },
+                {
+                  "ar": "علي",
+                  "en": "Ali"
+                },
+                {
+                  "ar": "ابن مسعود",
+                  "en": "Ibn Masud"
+                },
+                {
+                  "ar": "ابن عباس",
+                  "en": "Ibn Abbas"
+                },
+                {
+                  "ar": "أبي بن كعب",
+                  "en": "Ubayy ibn Kab"
+                },
+                {
+                  "ar": "زيد بن ثابت",
+                  "en": "Zayd ibn Thabit"
+                },
+                {
+                  "ar": "أبو موسى الأشعري",
+                  "en": "Abu Musa al-Ashari"
+                },
+                {
+                  "ar": "عبد الله بن الزبير",
+                  "en": "Abdullah ibn al-Zubayr"
+                }
+              ]
+            },
+            {
+              "ar": "التابعون",
+              "en": "The Followers"
+            },
+            {
+              "ar": "مدارس مكة والمدينة والعراق",
+              "en": "Schools of Mecca, Madinah, Iraq",
+              "kids": [
+                {
+                  "ar": "مكة: ابن عباس",
+                  "en": "Mecca: Ibn Abbas"
+                },
+                {
+                  "ar": "المدينة: أبي بن كعب",
+                  "en": "Madinah: Ubayy ibn Kab"
+                },
+                {
+                  "ar": "العراق: ابن مسعود",
+                  "en": "Iraq: Ibn Masud"
+                }
+              ]
+            },
+            {
+              "ar": "طبقات المتأخرين",
+              "en": "Later generations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

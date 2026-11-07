@@ -1,0 +1,375 @@
+{
+  "id": "sufi",
+  "ar": "الطرق الصوفية",
+  "en": "Sufi orders",
+  "note": "How each order practises the path.",
+  "questions": [
+    {
+      "id": "dhikr",
+      "ar": "الذكر",
+      "en": "Dhikr style"
+    },
+    {
+      "id": "silsila",
+      "ar": "السلسلة",
+      "en": "Chain traced through"
+    },
+    {
+      "id": "emphasis",
+      "ar": "المنهج",
+      "en": "Main emphasis"
+    },
+    {
+      "id": "sama",
+      "ar": "السماع",
+      "en": "Music & audition"
+    },
+    {
+      "id": "khalwa",
+      "ar": "الخلوة",
+      "en": "Retreat"
+    },
+    {
+      "id": "shaykh",
+      "ar": "الشيخ والمريد",
+      "en": "Role of the shaykh"
+    },
+    {
+      "id": "madhhab",
+      "ar": "المذهب الفقهي",
+      "en": "Usual legal school"
+    }
+  ],
+  "groups": [
+    {
+      "id": "qadiri",
+      "ar": "القادرية",
+      "en": "Qādirī",
+      "era": "6th c. AH",
+      "origin": "ʿAbd al-Qādir al-Jīlānī (d. 561/1166), Baghdad",
+      "where": "Worldwide: Iraq, North and West Africa, South Asia, the Balkans",
+      "texts": [
+        "الغنية لطالبي طريق الحق",
+        "فتوح الغيب",
+        "الفتح الرباني"
+      ],
+      "self": "A path of strict adherence to the Sharīʿa, sincerity and service.",
+      "beliefs": [
+        "The law and the path are one.",
+        "Generosity, service and preaching to the public."
+      ],
+      "positions": {
+        "dhikr": [
+          "loud",
+          "Mainly aloud in gatherings, with silent dhikr too."
+        ],
+        "silsila": [
+          "ali",
+          "Through al-Junayd to ʿAli."
+        ],
+        "emphasis": [
+          "sharia-service",
+          "Adherence to the law, sincerity, service, preaching."
+        ],
+        "sama": [
+          "varies",
+          "Varies by branch."
+        ],
+        "khalwa": [
+          "yes",
+          "Used."
+        ],
+        "shaykh": [
+          "guide",
+          "A guide to whom the seeker gives allegiance."
+        ],
+        "madhhab": [
+          "any",
+          "Founder was Ḥanbalī/Shāfiʿī; followers of all schools."
+        ]
+      }
+    },
+    {
+      "id": "rifai",
+      "ar": "الرفاعية",
+      "en": "Rifāʿī",
+      "era": "6th c. AH",
+      "origin": "Aḥmad al-Rifāʿī (d. 578/1182), southern Iraq",
+      "where": "Iraq, Syria, Egypt, Turkey, the Balkans",
+      "texts": [
+        "البرهان المؤيد"
+      ],
+      "self": "A path of humility and breaking the self.",
+      "beliefs": [
+        "Humility and service above all.",
+        "Ecstatic practices in some branches."
+      ],
+      "positions": {
+        "dhikr": [
+          "loud",
+          "Aloud, often with drums."
+        ],
+        "silsila": [
+          "ali",
+          "Through al-Junayd to ʿAli."
+        ],
+        "emphasis": [
+          "humility",
+          "Humility, mercy to creation."
+        ],
+        "sama": [
+          "yes",
+          "Used, with drums."
+        ],
+        "khalwa": [
+          "yes",
+          "Used."
+        ],
+        "shaykh": [
+          "guide",
+          "A guide to whom the seeker gives allegiance."
+        ],
+        "madhhab": [
+          "shafii",
+          "Founder Shāfiʿī."
+        ]
+      },
+      "note": "Practices such as handling fire or piercing in some branches are criticised by many Sufis as well as others."
+    },
+    {
+      "id": "suhrawardi",
+      "ar": "السهروردية",
+      "en": "Suhrawardī",
+      "era": "6th–7th c. AH",
+      "origin": "Abū al-Najīb al-Suhrawardī; Shihāb al-Dīn ʿUmar al-Suhrawardī (d. 632/1234), Baghdad",
+      "where": "Historically Iraq, Iran and India; today mostly within other orders",
+      "texts": [
+        "عوارف المعارف"
+      ],
+      "self": "A sober path tied to law, learning and order.",
+      "beliefs": [
+        "Sufism as disciplined learning and manners.",
+        "Close to rulers and institutions."
+      ],
+      "positions": {
+        "dhikr": [
+          "both",
+          "Silent and aloud."
+        ],
+        "silsila": [
+          "ali",
+          "Through al-Junayd to ʿAli."
+        ],
+        "emphasis": [
+          "sober-learning",
+          "Sobriety, knowledge, manners (آداب)."
+        ],
+        "sama": [
+          "restricted",
+          "Allowed under conditions."
+        ],
+        "khalwa": [
+          "yes",
+          "Forty-day retreats."
+        ],
+        "shaykh": [
+          "guide",
+          "A guide to whom the seeker gives allegiance."
+        ],
+        "madhhab": [
+          "shafii",
+          "Shāfiʿī."
+        ]
+      }
+    },
+    {
+      "id": "shadhili",
+      "ar": "الشاذلية",
+      "en": "Shādhilī",
+      "era": "7th c. AH",
+      "origin": "Abū al-Ḥasan al-Shādhilī (d. 656/1258), Tunis and Egypt; Ibn ʿAṭāʾ Allāh",
+      "where": "North Africa, Egypt, the Levant, worldwide branches (Darqāwī, ʿAlawī, Bāʿalawī links)",
+      "texts": [
+        "الحكم العطائية",
+        "لطائف المنن",
+        "حزب البحر"
+      ],
+      "self": "A path of gratitude within ordinary life: no special dress, no leaving work.",
+      "beliefs": [
+        "Gratitude over hardship as the way.",
+        "Remain in society and earn a living."
+      ],
+      "positions": {
+        "dhikr": [
+          "loud",
+          "Aloud in the ḥaḍra, with litanies (أحزاب)."
+        ],
+        "silsila": [
+          "ali",
+          "Through al-Ḥasan to ʿAli."
+        ],
+        "emphasis": [
+          "gratitude-society",
+          "Gratitude, staying in society, no outward signs."
+        ],
+        "sama": [
+          "varies",
+          "Some branches use song."
+        ],
+        "khalwa": [
+          "limited",
+          "Limited."
+        ],
+        "shaykh": [
+          "guide",
+          "A guide to whom the seeker gives allegiance."
+        ],
+        "madhhab": [
+          "maliki",
+          "Mostly Mālikī."
+        ]
+      }
+    },
+    {
+      "id": "chishti",
+      "ar": "الجشتية",
+      "en": "Chishtī",
+      "era": "7th c. AH",
+      "origin": "Muʿīn al-Dīn Chishtī (d. 633/1236), Ajmer; Niẓām al-Dīn Awliyāʾ",
+      "where": "South Asia, UK",
+      "texts": [
+        "فوائد الفؤاد (sayings of Niẓām al-Dīn)"
+      ],
+      "self": "A path of love, serving the poor and staying away from rulers.",
+      "beliefs": [
+        "Love and service of all people.",
+        "Independence from rulers and their gifts."
+      ],
+      "positions": {
+        "dhikr": [
+          "loud",
+          "Aloud (جهري)."
+        ],
+        "silsila": [
+          "ali",
+          "To ʿAli."
+        ],
+        "emphasis": [
+          "love-service",
+          "Love, service to the poor, distance from rulers."
+        ],
+        "sama": [
+          "yes",
+          "Central (qawwālī)."
+        ],
+        "khalwa": [
+          "yes",
+          "Forty-day retreats (چله)."
+        ],
+        "shaykh": [
+          "guide",
+          "A guide to whom the seeker gives allegiance."
+        ],
+        "madhhab": [
+          "hanafi",
+          "Ḥanafī."
+        ]
+      }
+    },
+    {
+      "id": "naqshbandi",
+      "ar": "النقشبندية",
+      "en": "Naqshbandī",
+      "era": "8th c. AH",
+      "origin": "Bahāʾ al-Dīn Naqshband (d. 791/1389), Bukhara; renewed by Aḥmad Sirhindī (Mujaddidī) and Khālid al-Baghdādī",
+      "where": "Central Asia, Turkey, the Caucasus, Kurdistan, South Asia, worldwide",
+      "texts": [
+        "المكتوبات للسرهندي",
+        "رشحات عين الحياة"
+      ],
+      "self": "A sober path of following the Sunna and keeping inward presence with Allah.",
+      "beliefs": [
+        "“Solitude in the crowd”: inward retreat while living among people.",
+        "Strict following of the Sunna, avoiding innovation."
+      ],
+      "positions": {
+        "dhikr": [
+          "silent",
+          "Silent (خفي)."
+        ],
+        "silsila": [
+          "abu-bakr",
+          "Through Abu Bakr (unlike most orders)."
+        ],
+        "emphasis": [
+          "sunna-sobriety",
+          "Sobriety, following the Sunna, inner awareness."
+        ],
+        "sama": [
+          "no",
+          "Not used."
+        ],
+        "khalwa": [
+          "inward",
+          "Inward: “khalwat dar anjuman”."
+        ],
+        "shaykh": [
+          "guide-rabita",
+          "Guide, with the heart’s bond to the shaykh (رابطة)."
+        ],
+        "madhhab": [
+          "hanafi",
+          "Mostly Ḥanafī (Shāfiʿī among Kurds)."
+        ]
+      }
+    },
+    {
+      "id": "tijani",
+      "ar": "التجانية",
+      "en": "Tijānī",
+      "era": "13th c. AH",
+      "origin": "Aḥmad al-Tijānī (d. 1230/1815), Fez",
+      "where": "North and West Africa, Sudan",
+      "texts": [
+        "جواهر المعاني",
+        "صلاة الفاتح (litany)"
+      ],
+      "self": "A path received directly from the Prophet ﷺ, with simple fixed litanies.",
+      "beliefs": [
+        "Litanies: ṣalāt al-fātiḥ, the waẓīfa, the hailala.",
+        "Exclusive affiliation: no other order alongside it."
+      ],
+      "positions": {
+        "dhikr": [
+          "loud",
+          "Aloud in gatherings (الوظيفة، الهيللة)."
+        ],
+        "silsila": [
+          "prophet-direct",
+          "Directly from the Prophet ﷺ, met awake (a claim others dispute)."
+        ],
+        "emphasis": [
+          "litanies-exclusive",
+          "Fixed litanies and exclusive affiliation."
+        ],
+        "sama": [
+          "no",
+          "Not used."
+        ],
+        "khalwa": [
+          "no",
+          "Not required."
+        ],
+        "shaykh": [
+          "exclusive",
+          "Exclusive: no other order may be joined."
+        ],
+        "madhhab": [
+          "maliki",
+          "Mālikī."
+        ]
+      },
+      "note": "Claims about the founder’s direct meeting and the merit of ṣalāt al-fātiḥ are strongly disputed by other Sufis and non-Sufis."
+    }
+  ]
+}
