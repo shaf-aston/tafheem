@@ -265,6 +265,11 @@
 .grow-rule-ar { padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); line-height: 1.9; }
 /* The line a choose card asks about stands centred over its answers; a rule card's longer text keeps to the right. */
 .grow-choose-ar { text-align: center; }
+/* Letters (lib/grow/lettersLesson): one letter is the whole lesson, and ذ from ظ is only their dots, so a letter is
+   drawn far larger than a word: on the card, in its answers, and in the rule's line under it. */
+.grow-glyph .grow-teach-ar, .grow-glyph .grow-choose-ar { font-size: 4.5rem; line-height: 1.5; }
+.grow-glyph .grow-option .arabic { font-size: 2.4rem; line-height: 1.4; }
+.grow-glyph .grow-teach-note .arabic-sm { font-size: 1.5em; }
 .grow-rule-en { font-size: var(--type-body); line-height: 1.6; color: var(--text); }
 .grow-ask-strong { font-weight: 700; color: var(--text); }
 .grow-option-check { padding-inline-start: 44px; position: relative; }

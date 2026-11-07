@@ -1,4 +1,4 @@
-/** One answer from a few: a case to judge, or a gap in the book's sentence (`ar` with ____). */
+/** One answer from a few: a case to judge, or a gap in the book's sentence (`ar` with ____). `glyph`: the Arabic is single letters, drawn large. */
 import ArabicText from '../../ui/text/ArabicText'
 import Bayt from '../../ui/text/Bayt'
 import { hemistichs } from '../../../lib/text/verse'
@@ -16,7 +16,7 @@ export default function ChooseCard({ card, value, setValue, result }) {
   }
   const halves = card.ar ? hemistichs(card.ar) : []
   return (
-    <div className="grow-card">
+    <div className={card.glyph ? 'grow-card grow-glyph' : 'grow-card'}>
       <span className="grow-card-tag">{say(card.tag)}</span>
       <p className="grow-card-ask grow-ask-strong">{card.ask}</p>
       {card.ar && (

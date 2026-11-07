@@ -1,6 +1,7 @@
 /**
  * Teach card: a new word and its meaning, before it is asked; `also` (optional) sets a second form beside it, smaller
- * (Basics: the word without ال, or the form an addition changes); `note` (optional) says the rule in a line.
+ * (Basics: the word without ال, or the form an addition changes); `note` (optional) says the rule in a line; `glyph`
+ * (Letters) draws one letter far larger than a word, since its dots are the lesson.
  */
 import ArabicText from '../../ui/text/ArabicText'
 import { sayIn } from '../../../lib/text/say'
@@ -19,7 +20,7 @@ const Note = ({ text }) => (
 
 export default function TeachCard({ card }) {
   return (
-    <div className="grow-card grow-teach">
+    <div className={card.glyph ? 'grow-card grow-teach grow-glyph' : 'grow-card grow-teach'}>
       <span className="grow-card-tag">{say(card.tag)}</span>
       <ArabicText as="p" size="lg" className="grow-teach-ar">{card.ar}</ArabicText>
       <p className="grow-teach-en">{card.en}</p>

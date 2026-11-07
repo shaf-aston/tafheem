@@ -44,6 +44,7 @@ export function lettersCards(picked, all, random = Math.random) {
       tag: tagOf(isNew),
       ask: `Which one is ${letter.name}?`,
       arabic: true,
+      glyph: true,
       options: shuffled([letter, ...others], random).map((one) => ({ id: one.id, text: one.letter })),
       answer: letter.id,
       why: `${letter.letter} is ${letter.name}: ${letter.sound}.`,
@@ -59,6 +60,7 @@ export function lettersCards(picked, all, random = Math.random) {
       tag: tagOf(isNew),
       ask: 'What is this letter?',
       ar: letter.letter,
+      glyph: true,
       options: shuffled([letter, ...others], random).map((one) => ({ id: one.id, text: one.name })),
       answer: letter.id,
       why: `${letter.letter} is ${letter.name}: ${letter.sound}.`,
@@ -66,7 +68,7 @@ export function lettersCards(picked, all, random = Math.random) {
     }
   }
   return weave(picked, {
-    teach: (letter) => ({ kind: 'teach', id: `teach:${letter.id}`, tag: 'New letter', ar: letter.letter, en: `${letter.name} · ${letter.sound}`, note: joinLine(letter) }),
+    teach: (letter) => ({ kind: 'teach', id: `teach:${letter.id}`, tag: 'New letter', glyph: true, ar: letter.letter, en: `${letter.name} · ${letter.sound}`, note: joinLine(letter) }),
     asks: (letter, isNew) => (isNew ? [toLetter(letter, true), toName(letter, true)] : [random() < 0.5 ? toLetter(letter, false) : toName(letter, false)]),
   })
 }
