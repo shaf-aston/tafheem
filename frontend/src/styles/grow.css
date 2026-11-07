@@ -2,8 +2,9 @@
    theme's tokens. */
 
 /* ── the clean-days ring and the verdict under a recitation ── */
-.grow-prac { display: flex; align-items: center; gap: 18px; justify-content: center; margin: 16px 0 6px; }
-.grow-days-ring { position: relative; width: 84px; height: 84px; flex: none; }
+.grow-prac { display: flex; align-items: center; gap: clamp(12px, 4vw, 18px); justify-content: center; margin: 16px 0 6px; }
+/* A small phone draws the ring smaller, sized from the screen, not stepped at a breakpoint. */
+.grow-days-ring { position: relative; width: clamp(72px, 20vw, 84px); aspect-ratio: 1; flex: none; }
 .grow-days-ring svg { width: 100%; height: 100%; overflow: visible; }
 .grow-days-ring path { fill: none; stroke-width: 3.5; stroke-linecap: round; }
 .grow-days-ring span { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 800; font-size: var(--type-ui); color: var(--text); }
@@ -19,7 +20,3 @@
 .grow-x { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-hi); display: grid; place-items: center; font-size: 1.2rem; color: var(--text-dim); }
 .grow-x:disabled { opacity: 0.4; cursor: default; } /* the first step has nowhere to go back to; say so, as SmallButton does */
 
-@media (max-width: 400px) {
-  .grow-prac { gap: 12px; }
-  .grow-days-ring { width: 72px; height: 72px; }
-}

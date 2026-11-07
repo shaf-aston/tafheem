@@ -626,7 +626,7 @@
 
 /* A phone cannot hold a ring this wide: the satellites would touch. Drawn
    smaller rather than allowed to overlap. */
-@media (max-width: 40rem) {
+@media (max-width: 39.99rem) {
   /* A phone cannot hold the ring: thirteen tabs need a round wider than the
      screen (432px at 390px). So the ring becomes three columns, the orb at
      the top, and each tab still arrives with the same dance, only growing
