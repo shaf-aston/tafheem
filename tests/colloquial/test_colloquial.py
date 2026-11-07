@@ -604,8 +604,8 @@ def test_a_womans_form_written_like_the_mans_is_caught():
 
 # The module's picture rule: no photograph of a person (a learner's lesson is not the place for a
 # stranger's face, least of all a child's), nothing of alcohol or pork, no other faith's building or
-# symbol. The picture fetcher has no way to know, so the names it saves under are checked here: a
-# photo is named for what it shows. These few are named for a person but show none of one
+# symbol (services/colloquial/picture_rules.py, which the fetcher also refuses by). A search cannot tell
+# what a picture really shows, so the names it saves under are checked here: a photo is named for what it shows. These few are named for a person but show none of one
 # (a bedroom, a meal box, an arm, legs, an empty corridor, a workshop, a cradle, a basket).
 _NOT_OF_A_PERSON = {
     "unit-02/l07-p06-guest-bedroom.jpg", "unit-11/l06-p02-guest-bedroom.jpg", "unit-04/l05-p08-kids-meal-box.jpg",
@@ -618,18 +618,23 @@ def test_no_photograph_is_named_for_a_person_or_a_forbidden_thing():
     import re
 
     from backend.config import data_path
+    from backend.services.colloquial.picture_rules import forbidden
 
-    banned = re.compile(
-        r"(?<![a-z])(man|men|woman|women|boy|girl|child|children|kid|kids|baby|infant|father|mother|son|daughter|"
-        r"brother|sister|grandmother|grandfather|grandchildren|grandson|cousin|friend|person|people|teenager|bride|"
-        r"groom|couple|smiling|sad|portrait|barber|tailor|builder|doorman|pregnant|visitor|guest|seller|"
-        r"pork|wine|beer|church|crucifix|funeral|surgery|neck|chest|back)(?![a-z])"
-    )
     folder = data_path("colloquial_dir") / "images"
     named = []
     for photo in folder.rglob("*.jpg"):
         relative = photo.relative_to(folder).as_posix()
         subject = re.sub(r"^l\d+-p\d+-", "", photo.stem)
-        if banned.search(subject) and relative not in _NOT_OF_A_PERSON:
+        if forbidden(subject) and relative not in _NOT_OF_A_PERSON:
             named.append(relative)
     assert not named, f"photographs named for a person or a forbidden thing: {sorted(named)}"
+
+
+def test_the_picture_rule_names_people_and_forbidden_things_and_nothing_else():
+    from backend.services.colloquial.picture_rules import forbidden
+
+    for subject in ("father with child", "smiling-woman", "wine glass", "church exterior", "pork chops", "two men talking"):
+        assert forbidden(subject), subject
+    # Plain objects, even where a word merely contains a listed one ("son" in "season", "man" in "mango").
+    for subject in ("apple", "mango", "season", "wooden door", "teapot", "mosque exterior", None, ""):
+        assert not forbidden(subject), subject
