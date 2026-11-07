@@ -12,7 +12,7 @@ const { copy } = config
 const press = async (name) => fireEvent.click(await screen.findByRole('button', { name }))
 
 describe('first visit', () => {
-  it('takes a beginner from the questions straight into the Basics lesson', async () => {
+  it('takes one who cannot read yet from the questions straight into the first letters lesson', async () => {
     renderScreen(<App />, { routes: { 'GET /progress/summary': { items: [] } } })
     fireEvent.click(await screen.findByRole('checkbox', { name: /Understand the Qur/ }))
     await press(copy.continue)
@@ -24,6 +24,6 @@ describe('first visit', () => {
       await press(copy.continue)
     }
     await press(copy['ready-start'])
-    expect(await screen.findByText('means “the”', {}, { timeout: 3000 })).toBeTruthy()
+    expect(await screen.findByText(/^alif · /, {}, { timeout: 3000 })).toBeTruthy()
   })
 })

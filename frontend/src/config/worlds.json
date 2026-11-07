@@ -3,12 +3,34 @@
   "_lesson": "A lessons world's numbers: `new` new items, up to `most-new` when little is due, `size` items in all (the rest due reviews). `stages`: items learnt (server 'known') to finish each stage. `unit`: what the items are called. `surahs` (Quran): the surahs the items come from, in order.",
   "_shelves_comment": "How Grow's home groups the worlds into labelled rows (GrowHome.jsx), in this order; inside a row the worlds keep their order below. A world on no shelf joins the last row, so a new world is never lost from the home.",
   "shelves": [
-    { "id": "language", "label": "Language", "worlds": ["basics", "words", "sarf", "nahw"] },
+    { "id": "language", "label": "Language", "worlds": ["letters", "basics", "words", "sarf", "nahw"] },
     { "id": "belief", "label": "Belief", "worlds": ["aqidah", "jawhara", "wasitiyya"] },
     { "id": "practice", "label": "Practice", "worlds": ["fiqh", "prayer"] },
     { "id": "texts", "label": "Texts", "worlds": ["quran", "hadith"] }
   ],
   "worlds": [
+    {
+      "id": "letters",
+      "module": "letters",
+      "name": "Letters",
+      "arabic": "حروف",
+      "scene": "The alphabet",
+      "idea": "Can’t read Arabic yet? Start here: the 28 letters, those drawn alike side by side, each with its sound and how it joins.",
+      "live": true,
+      "kind": "lessons",
+      "unit": "letters",
+      "lesson": {
+        "new": 3,
+        "most-new": 4,
+        "size": 6
+      },
+      "stages": [
+        6,
+        14,
+        21,
+        28
+      ]
+    },
     {
       "id": "basics",
       "module": "basics",

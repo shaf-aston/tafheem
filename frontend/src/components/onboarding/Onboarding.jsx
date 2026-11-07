@@ -3,7 +3,8 @@
  * foot), a true fact after each pick, then the plan. Back keeps every answer (they are saved as they are given), and
  * Skip is always there: it only marks the run done, so Home falls back to the three-level picker. Starting writes
  * what was said where the rest of the app reads it: the level (lib/learner/useLearnerLevel.js), the daily goal
- * (Grow's home) and the plan itself (lib/learner/usePlan.js), and opens the level's first place.
+ * (Grow's home), the meaning language (the Quiz's) and the plan itself (lib/learner/usePlan.js), and opens the level's first place (the letters, for one
+ * who cannot read yet).
  * The order and the rules are lib/learner/flow.js and plan.js; the words are config/onboarding.json.
  */
 import { useState } from 'react'
@@ -16,6 +17,7 @@ import { GOALS, GOAL_KEY } from '../../lib/learner/rewards'
 import { getProfile } from '../../lib/learner/profile'
 import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
 import { usePlan } from '../../lib/learner/usePlan'
+import { LANGUAGE_KEY, MEANINGS } from '../../lib/quiz/quiz'
 import { writeRaw } from '../../lib/store/stored'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
 import Fact from './Fact'
@@ -54,8 +56,11 @@ export default function Onboarding({ onGo }) {
     if (level) choose(level)
     const xp = String(goalXpOf(plan))
     if (GOALS.includes(xp)) writeRaw(GOAL_KEY, xp)
+    // The language meanings are read in: the Quiz's (lib/quiz/useQuizSetup.js), where words are asked by meaning.
+    if (plan.lang in MEANINGS) writeRaw(LANGUAGE_KEY, plan.lang)
     save({ done: true })
-    onGo(...levelOf(level).start)
+    // One who cannot read yet starts on the letters; anyone else at their level's first place.
+    onGo(...(levelNumberOf(plan) === 0 ? config['start-unread'] : levelOf(level).start))
   }
   // The level the other way, when the check and what was said disagree.
   const other = () => {

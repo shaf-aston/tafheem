@@ -49,8 +49,8 @@ describe('onboarding.json places', () => {
 })
 
 describe('recommend: the four learners', () => {
-  it('starts someone who cannot read yet on Basics, then Prayer and Words', () => {
-    expect(top(AISHA)).toEqual(['basics', 'prayer', 'words'])
+  it('starts someone who cannot read yet on the letters, then Basics and Prayer', () => {
+    expect(top(AISHA)).toEqual(['letters', 'basics', 'prayer'])
   })
 
   it('gives a reader with few words the Words world, then Memorise for the short surahs', () => {
@@ -105,7 +105,7 @@ describe('answered and leadOf: the plan, once given, picks where Today starts', 
   })
 
   it('takes the best-ranked world Today can open, passing over tabs', () => {
-    expect(leadOf(readPlan({ ...AISHA, done: true }), any, [], NOW)).toBe('basics')
+    expect(leadOf(readPlan({ ...AISHA, done: true }), any, [], NOW)).toBe('letters')
     expect(leadOf(readPlan({ ...BILAL, done: true }), any, [], NOW)).toBe('words')
     expect(leadOf(readPlan({ ...OMAR, done: true }), any, [], NOW)).not.toBe('colloq')
     expect(leadOf(readPlan({ ...BILAL, done: true }), (id) => id === 'basics', [], NOW)).toBe('basics')

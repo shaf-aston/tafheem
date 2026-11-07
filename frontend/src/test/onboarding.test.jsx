@@ -81,8 +81,24 @@ describe('first-visit questions', () => {
     click('button', copy['ready-start'])
     expect(readRaw(LEVEL_KEY)).toBe('beginner')
     expect(readRaw(GOAL_KEY)).toBe('50')
+    expect(readRaw('quiz-language')).toBe('en')
     expect(planNow().done).toBe(true)
     expect(onGo).toHaveBeenCalledWith(...levelOf('beginner').start)
+  })
+})
+
+describe('first-visit questions: one who cannot read yet', () => {
+  beforeEach(() => localStorage.clear())
+
+  it('Start opens the letters, before the Basics', () => {
+    writeRaw(PLAN_KEY, JSON.stringify({ goals: ['understand'], read: 'no', lang: 'ur', hifz: 'none', minutes: '5' }))
+    const onGo = home()
+    while (!screen.queryByText(copy['ready-title'])) next()
+    expect(screen.getByText(/Letters · Basics/)).toBeTruthy()
+    click('button', copy['ready-start'])
+    expect(onGo).toHaveBeenCalledWith(...config['start-unread'])
+    // Urdu meanings, where words are asked by meaning.
+    expect(readRaw('quiz-language')).toBe('ur')
   })
 })
 
