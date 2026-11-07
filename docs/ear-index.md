@@ -45,7 +45,7 @@ Shared: `F/components/ui/buttons/MicButton.jsx` (one shot), `F/lib/speech/microp
 3. `B/__init__.py` `check`: ayah words come from `imlaei.json` through `spelling.as_heard` (`spelling.py`, pause signs dropped); `place.reach` finds the stretch heard (2 words in a row), extends to the ayah end, caps at `recitation_sure_max_words`.
 4. `B/checker.py` `weigh` / `scores`: Whisper gives each piece a probability; `aggregate` folds by `recitation_sure_of_word` (worst-but-one).
 5. Answer `{sure: {"2:5": [0..1 or null per spoken word]}, detail}`; null means this recording did not reach the word.
-6. Page: `ayahAt` (`F/lib/memorise/memorise.js`) lists each ayah's `spoken` page places (pause signs have none). `byPlace` (`scores.js`) maps scores onto those, `settledScores` and `surer` merge recordings, `bySound` (`follow.js`) turns numbers into colours at `sure-at` 0.95 (`recite.json`).
+6. Page: `ayahAt` (`F/lib/memorise/memorise.js`) lists each ayah's `spoken` page places (pause signs have none). `byPlace` (`scores.js`) maps scores onto those, `settledScores` and `surer` merge recordings, `bySound` (`follow.js`) turns numbers into colours: a found word red under `wrong-below` 0.1, a missed word passed at `said-at` 0.95 (`recite.json`).
 
 ## 4. Engines
 
@@ -64,7 +64,7 @@ Making the tuned ear: `backend/scripts/recitation/finetune_ear/` (README there):
 
 `backend/config.py`: `listening_ears`, `listening_hosted`, `listening_model`, `listening_fusha_hint`, `listening_timeout_s`, `listening_rest_s`, `listening_groq_api_keys`, `listening_rpm_per_key`, `recitation_model`, `recitation_tuned_model`, `dictation_model`, `recitation_hosted_hint`, `recitation_letters_path`, `recitation_device`, `recitation_compute`, `recitation_threads`, `recitation_language`, `recitation_beam`, `recitation_trim_silence`, `recitation_no_speech_max`, `recitation_loudness_*`, `recitation_sure_of_word`, `recitation_sure_max_words`, `recitation_window_block`, `recitation_place_*`, `recitation_check_ayahs_max`, `recitation_check_heard_max_chars`, `recitation_matches`, `recitation_max_mb`, `quran_imlaei_path`, `journal_path`.
 `F/config/dictation.json`: `too-short-s`, `quiet-stop-s`, `after-speech-s`, `voice-level`, `over-room`, `level-check-ms`, `judge-s`.
-`F/config/recite.json`: `window-s`, `pause-s`, `step-s`, `asks-share`, `asks-per-minute`, `tick-s`, `anchor-words`, `settle-words`, `costs`, `sure-at`, `check-timeout-s`, `check-queue-max`, `sound-alike-groups`, `journal-*`.
+`F/config/recite.json`: `window-s`, `pause-s`, `step-s`, `asks-share`, `asks-per-minute`, `tick-s`, `anchor-words`, `settle-words`, `costs`, `wrong-below`, `said-at`, `check-timeout-s`, `check-queue-max`, `sound-alike-groups`, `journal-*`.
 Settings (`F/config/settings.json`): `fusha`, `listening-ear`. Health: `GET /api/health` fields `ear`, `recite_ear`, `recite_tuned`, `recite_sure`, `listen_per_minute` (`backend/main.py`).
 
 ## 6. Tests and measurement

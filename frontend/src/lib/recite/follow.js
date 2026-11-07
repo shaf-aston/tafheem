@@ -340,8 +340,8 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  *
  * Lining up words compares letters only, so it passes a word said
  * with the wrong vowel and fails a right word the ear wrote down wrong.
- * Sureness is judged on sound, and recite.json's sure-at says how far to
- * trust it either way. A waiting word stays waiting.
+ * Sureness is judged on sound: recite.json's wrong-below says when it turns a
+ * found word red, said-at when it passes a word the transcript missed. A waiting word stays waiting.
  *
  * Two things this will not do, both of them a lie the page used to tell
  * ---------------------------------------------------------------------
@@ -358,7 +358,7 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  * So a word the transcript found is still red when the sound says it was not
  * said right: a wrong vowel has the same letters, and the transcript cannot see
  * it. How far to trust the sound, and what that catches and costs, is
- * `sure-at` in recite.json.
+ * `wrong-below` in recite.json.
  *
  * And sureness alone never overrules two ears that agree. A word the
  * transcript wrote with a different letter, which the sounds ear (sounds.js,
@@ -369,10 +369,9 @@ export const follow = (page, heard, { startAt = 0, ended = false, settle = confi
  * stays orange, never red: two ears that mishear can still agree.
  */
 export const bySound = (marks, scores) => {
-  const sureAt = config['sure-at']
   const words = marks.words.map((mark, i) => {
     const score = scores[i]
-    const next = judged(mark, score?.sure, sureAt, score?.sounds?.letter_ok === false)
+    const next = judged(mark, score?.sure, score?.sounds?.letter_ok === false)
     return score ? { ...next, ...score } : next
   })
   return { ...marks, words }
@@ -382,13 +381,13 @@ export const bySound = (marks, scores) => {
  * One mark after the ear's say: `s` a number, or undefined when the sound never
  * checked it; `letterHeard` whether the sounds ear heard a different letter.
  */
-const judged = (mark, s, sureAt, letterHeard) => {
+const judged = (mark, s, letterHeard) => {
   if (mark.state === WAITING || mark.state === SAID) {
     if (s == null || mark.state === WAITING) return mark
-    return s < sureAt ? { ...mark, state: WRONG, heard: '' } : mark
+    return s < config['wrong-below'] ? { ...mark, state: WRONG, heard: '' } : mark
   }
   // Written differently (not missed) and heard differently: two ears agree.
   const twoEars = letterHeard && mark.state !== MISSED
-  if (s == null || (s >= sureAt && twoEars)) return { ...mark, state: CHECK, heard: '' }
-  return s >= sureAt ? { ...mark, state: SAID, heard: '' } : mark
+  if (s == null || (s >= config['said-at'] && twoEars)) return { ...mark, state: CHECK, heard: '' }
+  return s >= config['said-at'] ? { ...mark, state: SAID, heard: '' } : mark
 }

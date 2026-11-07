@@ -39,7 +39,7 @@ export const byPlace = (answer = {}, ayahs, detail = {}, take = null) => {
  * the next words red until a later check, two seconds on, cleared them.
  */
 export const settledScores = (scores, from, to) => Object.fromEntries(
-  Object.entries(scores).filter(([at, { sure }]) => sure >= config['sure-at'] || (Number(at) >= from && Number(at) < to)),
+  Object.entries(scores).filter(([at, { sure }]) => sure >= config['said-at'] || (Number(at) >= from && Number(at) < to)),
 )
 
 /** The surer of two recordings' scores for each page place, each with its own detail. */
