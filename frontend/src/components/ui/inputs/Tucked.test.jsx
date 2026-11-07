@@ -17,6 +17,13 @@ const pill = () => screen.queryByRole('button', { name: /^Edit the question/ })
 const folded = () => document.querySelector('.tucked-form').hasAttribute('inert')
 
 describe('Tucked', () => {
+  it('hands the focus to the pill when it folds under the cursor', () => {
+    const { rerender } = render(form(null))
+    screen.getByRole('textbox').focus()
+    rerender(form({ hits: [] }))
+    expect(document.activeElement).toBe(pill())
+  })
+
   it('shows the whole form until there is an answer', () => {
     render(form(null))
     expect(pill()).toBeNull()

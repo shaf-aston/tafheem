@@ -128,6 +128,8 @@ export async function allWords() {
 // The cache entries the quiz, its insights and the learnt-words hook share. One
 // spelling each, so a refresh of one is a refresh of all.
 export const allWordsQuery = { queryKey: ['quiz-words', 'all'], queryFn: allWords }
+/** Each surah's word counts, one cache for the quiz's per-surah list and the Qur'an tab's Continue. */
+export const surahCoverageQuery = { queryKey: ['quiz-surah-coverage'], queryFn: surahCoverage }
 export const coverageQuery = { queryKey: ['quiz-coverage'], queryFn: coverage }
 
 /**

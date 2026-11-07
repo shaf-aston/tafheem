@@ -48,12 +48,12 @@ describe('lesson runner', () => {
     renderScreen(<LessonRunner cards={[card]} accent="#26c" onLeave={() => {}} />, { routes: { 'POST /progress/attempts': { earned: 0 } } })
     fireEvent.click(screen.getByRole('radio', { name: 'wrong w' }))
     fireEvent.click(screen.getByRole('button', { name: 'Check' }))
-    expect(screen.getByRole('status').textContent).toBe('Not quite Wrong one: no ال. It comes back at the end.')
+    expect(screen.getByRole('status').textContent).toBe('Not quite. Wrong one: no ال. It comes back at the end.')
     fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
     expect(screen.getByText('Again')).toBeTruthy()
     fireEvent.click(screen.getByRole('radio', { name: 'wrong w' }))
     fireEvent.click(screen.getByRole('button', { name: 'Check' }))
-    expect(screen.getByRole('status').textContent).toBe('Not quite Wrong one: no ال.')
+    expect(screen.getByRole('status').textContent).toBe('Not quite. Wrong one: no ال.')
     fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
     // The recap says what this reader got wrong, not the general rule.
     expect(screen.getByText('Wrong one: no ال.')).toBeTruthy()
@@ -153,6 +153,16 @@ describe('lesson runner', () => {
     expect(focus()).toBe(undefined)
   })
 
+  it('waits for the first answer before taking the screen, when it opened unasked (the Quiz)', () => {
+    const focus = () => document.documentElement.dataset.focus
+    renderScreen(<LessonRunner cards={['a', 'b'].map(choose)} accent="#26c" waitToFocus onLeave={() => {}} />,
+      { routes: { 'POST /progress/attempts': { earned: 0 } } })
+    expect(focus()).toBe(undefined)
+    fireEvent.click(screen.getByRole('radio', { name: 'right a' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }))
+    expect(focus()).toBe('lesson')
+  })
+
   it('says the verdict and the meaning, right or wrong, and marks the pick', () => {
     const meaning = {
       id: 'm', kind: 'meaning', tag: 'New word', answerText: 'the book',
@@ -163,14 +173,14 @@ describe('lesson runner', () => {
     expect(screen.getByRole('button', { name: 'Check' }).disabled).toBe(true)
     fireEvent.click(screen.getByRole('radio', { name: 'the pen' }))
     fireEvent.click(screen.getByRole('button', { name: 'Check' }))
-    expect(screen.getByRole('status').textContent).toBe('Not quite It means: the book. It comes back at the end.')
+    expect(screen.getByRole('status').textContent).toBe('Not quite. It means: the book. It comes back at the end.')
     expect(screen.getByRole('radio', { name: 'the pen' }).dataset.mark).toBe('wrong')
     expect(screen.getByRole('radio', { name: 'the book' }).dataset.mark).toBe('right')
     expect(document.querySelector('.grow-lesson-foot').dataset.result).toBe('wrong')
     fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
     fireEvent.click(screen.getByRole('radio', { name: 'the book' }))
     fireEvent.click(screen.getByRole('button', { name: 'Check' }))
-    expect(screen.getByRole('status').textContent).toBe('Correct It means: the book.')
+    expect(screen.getByRole('status').textContent).toBe('Correct. It means: the book.')
     expect(document.querySelector('.grow-lesson-foot').dataset.result).toBe('right')
   })
 

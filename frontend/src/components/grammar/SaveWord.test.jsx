@@ -25,7 +25,7 @@ describe('Save word for review', () => {
 
     expect(screen.getByRole('status').textContent).toBe('Saved → comes back in Review')
     expect(screen.getByRole('button', { name: 'Saved' }).getAttribute('aria-pressed')).toBe('true')
-    expect(readSavedWords()).toEqual([{ key: 'first', lemma: 'أَوَّل', root: 'أول', gloss: 'first', seen: '57:3' }])
+    expect(readSavedWords()).toEqual([{ key: 'first', lemma: 'أَوَّل' }])
     expect(await reviewKeys()).toEqual(['first'])
 
     fireEvent.click(screen.getByRole('button', { name: 'Saved' }))

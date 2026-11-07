@@ -19,7 +19,7 @@ describe('saved words', () => {
     expect(seenAt({ position: '2:255:3' })).toBe('2:255')
     expect(seenAt({ position: '3' })).toBeNull()
     const word = { lemma: 'أَوَّل', root: 'أول', position: '57:3:1' }
-    expect(savedEntry(word, WORDS[1])).toEqual({ key: 'first', lemma: 'أَوَّل', root: 'أول', gloss: 'first', seen: '57:3' })
+    expect(savedEntry(word, WORDS[1])).toEqual({ key: 'first', lemma: 'أَوَّل' })
   })
 
   it('asks a saved word until the store calls it known, never twice beside what is due', () => {

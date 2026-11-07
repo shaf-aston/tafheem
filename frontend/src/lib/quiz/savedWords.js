@@ -12,7 +12,7 @@ import { progressKey, readSaved } from '../store/stored'
 
 export const SAVED_WORDS = progressKey('saved-words')
 
-/** Every saved word, oldest first: `{ key, lemma, root, gloss, seen }`. */
+/** Every saved word, oldest first: `{ key, lemma }`. */
 export const readSavedWords = () => readSaved(SAVED_WORDS, [])
 
 /** The surah:ayah a corpus word was seen in ("2:255" of "2:255:3"), or null for a word from elsewhere. */
@@ -30,9 +30,7 @@ export function tableWordFor(lemma, words, coverage) {
 }
 
 /** The saved entry for a Qur'an word and the table word it is. */
-export const savedEntry = (word, match) => ({
-  key: match.meaningKey, lemma: word.lemma, root: word.root ?? '', gloss: match.en, seen: seenAt(word),
-})
+export const savedEntry = (word, match) => ({ key: match.meaningKey, lemma: word.lemma })
 
 /**
  * The saved words Review asks besides what the store says is due: any the

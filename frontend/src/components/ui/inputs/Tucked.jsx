@@ -14,7 +14,7 @@
  * The folded form stays in the page, inert, so what was typed in it survives
  * and the fold can be animated (styles/components.css, Tucked).
  */
-import { useId, useRef, useState } from 'react'
+import { useId, useLayoutEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 
 import ArabicText from '../text/ArabicText'
@@ -24,7 +24,14 @@ export default function Tucked({ answer, query = '', accent, children }) {
   const [reopenedOver, setReopenedOver] = useState(null)
   const tucked = Boolean(answer) && Boolean(query.trim()) && reopenedOver !== answer
   const form = useRef(null)
+  const pill = useRef(null)
   const id = useId()
+
+  // Folding makes the form inert, and a browser drops focus that sits in an inert
+  // box to the top of the page; a keyboard reader carries on from the pill instead.
+  useLayoutEffect(() => {
+    if (tucked && form.current?.contains(document.activeElement)) pill.current?.focus()
+  }, [tucked])
 
   // Opened in one go so the box is no longer inert when it is focused.
   const reopen = () => {
@@ -36,6 +43,7 @@ export default function Tucked({ answer, query = '', accent, children }) {
     <div className="tucked" style={{ '--c': accent }}>
       {tucked && (
         <button
+          ref={pill}
           type="button"
           onClick={reopen}
           aria-expanded="false"
