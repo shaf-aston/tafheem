@@ -548,6 +548,17 @@ def test_chunks_keep_whole_lines_within_the_budget():
     assert chunks([], 5) == []
 
 
+def test_chunks_can_fold_a_short_tail_into_the_group_before():
+    from backend.services.dictionary.root_gloss import chunks
+
+    # Three lines alone are too few to place by, so word by word folds them
+    assert chunks(["aaaa", "bbbb", "c"], 8, fold_tail=True) == [["aaaa", "bbbb", "c"]]
+    assert chunks(["aaaa", "bbbb", "c"], 8) == [["aaaa", "bbbb"], ["c"]]
+    # A tail of a third of the budget or more stays its own
+    assert chunks(["aaaa", "bbbb", "ccc"], 8, fold_tail=True) == [["aaaa", "bbbb"], ["ccc"]]
+    assert chunks(["a"], 8, fold_tail=True) == [["a"]]
+
+
 def test_the_shipped_lines_win_over_lines_made_on_the_server(kept):
     kept.LINES_KEPT_FILE.write_text(json.dumps({"كتب": ["older"]}), encoding="utf-8")
     kept.LINES_FILE.write_text(json.dumps({"كتب": ["whole-book run"]}), encoding="utf-8")
@@ -911,6 +922,27 @@ def test_a_long_entry_is_asked_in_chunks_and_joined(client, word_ai, monkeypatch
     body = _words(client, "كتب").json()
     assert word_ai["asked"] == 3  # one chunk a line
     assert [s["arabic"] for s in body["senses"]] == [["ومن ذلك الكتاب."], ["وقال الشاعر:"], ["صدر البيت ... عجزه"]]
+
+
+def test_a_later_chunk_that_fails_leaves_the_opening_shown_and_not_kept(client, word_ai, monkeypatch, kept):
+    from backend.config import get_settings
+
+    monkeypatch.setattr(get_settings(), "root_senses_chunk_chars", 20)
+    good = {"senses": [{"lines": [1], "word": "", "gloss": "x"}]}
+    asked = []
+
+    def _explain(root, lines, reference=None):
+        asked.append(lines)
+        return good if len(asked) <= 2 else {"senses": []}
+
+    monkeypatch.setattr(ai_service, "explain_root_entry_senses", _explain)
+    _install_lined(client)
+    response = _words(client, "كتب")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["truncated"] is True
+    assert [s["arabic"] for s in body["senses"]] == [["ومن ذلك الكتاب."], ["وقال الشاعر:"]]
+    assert kept.get_senses("كتب", 3) is None
 
 
 def test_shipped_words_are_badged_as_the_books_translation(client, word_ai, kept):
