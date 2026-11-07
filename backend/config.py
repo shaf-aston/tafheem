@@ -42,7 +42,11 @@ class Ai(BaseSettings):
     # budget: a whole entry outran root_entry_max_tokens, and chunks asked all at once spent
     # the model service's tokens-per-minute together and failed on long entries (ضرب).
     root_senses_chunk_chars: int = 1000
-    root_senses_max_tokens: int = 2200
+    # A chunk's reply copies its Arabic twice (each word's explanation, each saying), about 2 tokens
+    # per character of the chunk, so a full chunk's answer runs ~2000-2500 before any thinking: at
+    # 2200 it was cut off and every try failed (ذكر, حمد, شكر). The worst prompt is ~3100, so 3500
+    # stays under groq's 8000 per request, as root_entry_max_tokens does.
+    root_senses_max_tokens: int = 3500
     # The one-line gist of a Lisan or Taj entry: a sentence back, and the opening
     # of the entry in, which is where both books state the root's senses.
     lexicon_gist_max_tokens: int = 300
