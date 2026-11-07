@@ -73,13 +73,14 @@ export function CountryIcons({ codes = [], most = 4 }) {
   const known = codes.filter((c) => countries[c])
   if (known.length > most) return <span className="type-small text-[var(--text-faint)]">{known.length} countries</span>
   return (
-    <ul className="flex flex-wrap gap-x-3 gap-y-1 type-small text-[var(--text-faint)]">
+    // Spans, not a list: it sits inside a card's button, which may hold only phrasing content.
+    <span className="flex flex-wrap gap-x-3 gap-y-1 type-small text-[var(--text-faint)]">
       {known.map((code) => (
-        <li key={code} className="flex items-center gap-1.5">
+        <span key={code} className="flex items-center gap-1.5">
           <Flag code={code} />
           {countries[code].name}
-        </li>
+        </span>
       ))}
-    </ul>
+    </span>
   )
 }

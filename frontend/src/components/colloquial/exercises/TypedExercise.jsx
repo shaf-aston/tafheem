@@ -7,6 +7,7 @@
  * either. The placeholder says which.
  */
 import { takesLatin } from '../../../lib/colloquial/answer'
+import { isArabic } from '../../../lib/text/arabicText'
 import ArabicText from '../../ui/text/ArabicText'
 
 export default function TypedExercise({ exercise, value, onChange, status }) {
@@ -32,7 +33,7 @@ export default function TypedExercise({ exercise, value, onChange, status }) {
             // The Arabic class sets right to left, over dir="auto": an answer in Latin letters
             // ("ismak eh?") and the English placeholder read left to right, or the question
             // mark lands at the front.
-            direction: /[\u0600-\u06FF]/.test(value) ? 'rtl' : 'ltr',
+            direction: isArabic(value) ? 'rtl' : 'ltr',
           }}
         />
       </label>

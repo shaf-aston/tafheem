@@ -23,6 +23,8 @@ describe('CountryIcons', () => {
     expect(html).toContain('Kuwait')
     expect(html).toContain('Qatar')
     expect(html.match(/<img/g)).toHaveLength(2)
+    // Inside a card's button, so phrasing content only.
+    expect(html).not.toContain('<ul')
   })
 
   it('past the most, only how many: the map shows which', () => {
