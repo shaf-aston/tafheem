@@ -309,7 +309,12 @@ def test_a_picture_is_served_and_cannot_be_climbed_out_to():
         assert client.get("/api/colloquial/image/_probe/none.jpg").status_code == 404
         assert client.get("/api/colloquial/image/../dialects.json").status_code == 404
         assert client.get("/api/colloquial/image/%2e%2e/dialects.json").status_code == 404
+        # Not a picture: bookkeeping beside the pictures is never served, and a NUL is a 404, not a 500.
+        (folder / "note.json").write_text("{}")
+        assert client.get("/api/colloquial/image/_probe/note.json").status_code == 404
+        assert client.get("/api/colloquial/image/%00x").status_code == 404
     finally:
+        (folder / "note.json").unlink(missing_ok=True)
         (folder / "x.jpg").unlink()
         folder.rmdir()
 

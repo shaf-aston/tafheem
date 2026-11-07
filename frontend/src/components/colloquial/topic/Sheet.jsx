@@ -21,6 +21,7 @@ export default function Sheet({ phrases, at, onAt, onClose, place, noun = 'phras
   // Arrows step through the phrases; Esc, focus and the backdrop are the sheet's.
   useEffect(() => {
     const onKey = (e) => {
+      if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
       if (e.key === 'ArrowRight' && at < phrases.length - 1) onAt(at + 1)
       else if (e.key === 'ArrowLeft' && at > 0) onAt(at - 1)
     }

@@ -81,7 +81,18 @@ const mapBoard = ({ codes, ...board }, words) => {
  * The boards this topic's words fill, each { id, label, art, view, spots: [{ key, x, y, area?, words }] };
  * [] if none. A spot with an `area` is tapped anywhere inside it; the rest are dots.
  */
+// Built once per topic's words: the topic, its Picture tab and the picture itself all ask.
+const built = new WeakMap()
+
+const NONE = []
+
 export function pictureBoards(words) {
+  if (!words.length) return NONE
+  if (!built.has(words)) built.set(words, buildBoards(words))
+  return built.get(words)
+}
+
+function buildBoards(words) {
   const byId = Object.fromEntries(words.map((w) => [w.id, w]))
   const boards = [
     ...BODY.map((b) => sceneBoard(b, byId)),

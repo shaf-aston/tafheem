@@ -7,6 +7,13 @@ const wordsOf = (ids) => ids.map((id) => ({ id, english: id, arabic: `ع${id}` }
 const inside = (b) => b.spots.every(({ x, y }) => x >= b.view[0] && y >= b.view[1] && x <= b.view[0] + b.view[2] && y <= b.view[1] + b.view[3])
 
 describe('pictureBoards', () => {
+  it('builds a topic\'s boards once, however many parts of the page ask', () => {
+    const words = wordsOf(topic('The Body, Head to Toe').words)
+    expect(pictureBoards(words)).toBe(pictureBoards(words))
+    // A topic with no words has none, and costs nothing to ask again.
+    expect(pictureBoards([])).toBe(pictureBoards([]))
+  })
+
   it('puts the body topic on a face, a figure, a hand and a leg, every spot a real word of it', () => {
     const boards = pictureBoards(wordsOf(topic('The Body, Head to Toe').words))
     expect(boards.map((b) => b.id)).toEqual(['face', 'figure', 'hand', 'leg'])

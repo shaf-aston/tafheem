@@ -30,11 +30,18 @@ export default function Practice({ exercises }) {
     if (body.current?.getBoundingClientRect().top < header) scrollToEl(body.current, 'top')
     body.current?.querySelector('input:not([readonly]), button:not([disabled])')?.focus({ preventScroll: true })
   }, [at])
+  // Twelve squares do not fit a phone: the row follows the current one, so progress is never scrolled out of sight.
+  const row = useRef(null)
+  useEffect(() => {
+    const strip = row.current
+    const chip = strip?.children[at]
+    if (chip) strip.scrollTo({ left: chip.offsetLeft - (strip.clientWidth - chip.offsetWidth) / 2, behavior: 'auto' })
+  }, [at])
   const status = (id) => (!(id in results) ? '' : results[id].correct ? 'right' : 'wrong')
 
   return (
     <div className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
-      <div className="flex gap-3 overflow-x-auto px-5 py-4 border-b border-[var(--border)] bg-[var(--surface-hi)]" role="group" aria-label="Exercises">
+      <div ref={row} className="flex gap-3 overflow-x-auto px-5 py-4 border-b border-[var(--border)] bg-[var(--surface-hi)]" role="group" aria-label="Exercises">
         {exercises.map((e, n) => (
           <AnswerSquare
             key={e.id}

@@ -81,7 +81,8 @@ function sectionsOf(lessons) {
 
 // The unit's word bank sits on the topic list; the unit loads once and is shared with the topics.
 function UnitWordBank({ dialect, unit }) {
-  const { data } = useQuery(colloquialUnitQuery(dialect, unit))
+  const { data, isError } = useQuery(colloquialUnitQuery(dialect, unit))
+  if (isError) return <span className="type-small text-[var(--text-faint)]">The word bank did not load.</span>
   return data ? <WordBank unit={data} /> : null
 }
 

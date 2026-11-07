@@ -23,6 +23,7 @@ import ErrorAlert from '../ui/feedback/ErrorAlert'
 import Screen from '../ui/display/Screen'
 import SectionHeader from '../ui/display/SectionHeader'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
+import StatusNote from '../ui/feedback/StatusNote'
 
 const BLURB = TABS.find((t) => t.id === 'colloq')?.blurb
 
@@ -49,6 +50,8 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   const catalogue = useQuery(colloquialQuery)
   const dialects = catalogue.data?.dialects ?? []
   const [place, setPlace] = useState(null)
+  // A link that named a unit or topic the dialect has not written opens the top; this says so, until the next step.
+  const [lost, setLost] = useState(false)
   const client = useQueryClient()
 
   const dialect = place && dialects.find((d) => d.key === place.dialect)
@@ -64,11 +67,16 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
   // One way to move: every step down or up the tree is a place on the journey,
   // so a reload, a pasted link and the back arrow all land where the reader was.
   const go = (there) => {
+    setLost(false)
     setPlace(there)
     onVisit?.(placeOf(there, dialects))
   }
   // An arrival names a place; followed during render so a reload paints on it, not the top first.
-  if (useArrivalWhenReady(arrival, Boolean(catalogue.data))) setPlace(parsePlace(incoming, dialects))
+  if (useArrivalWhenReady(arrival, Boolean(catalogue.data))) {
+    const found = parsePlace(incoming, dialects)
+    setPlace(found)
+    setLost(Boolean(incoming) && !found)
+  }
 
   const steps = trailOf(place, dialects).map((step) => ({ label: step.label, go: () => go(step.place) }))
 
@@ -87,6 +95,8 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
           {dialects.length > 1 && <DialectSwitch dialects={dialects} current={dialect.key} onPick={(key) => go(switchPlace(place, key, dialects))} />}
         </div>
       )}
+
+      {lost && <StatusNote>That link did not match a lesson here, so this is the start.</StatusNote>}
 
       {/* Each step down is a screen: it opens at its top, and back up lands where it was left. */}
       {catalogue.data && (

@@ -82,11 +82,13 @@ export default function ChooseExercise({ exercise, value, onChange, status, acce
               aria-pressed={mine}
               onClick={() => onChange(label)}
               style={{ borderColor: tone ?? (mine ? 'var(--border-hi)' : 'var(--border)') }}
-              className={`w-full rounded-[var(--radius)] border bg-[var(--surface)] p-3 text-start
+              className={`relative w-full rounded-[var(--radius)] border bg-[var(--surface)] p-3 text-start
                 transition-colors hover:border-[var(--border-hi)] disabled:hover:border-inherit
                 ${answered && !tone ? 'opacity-55' : ''}`}
             >
-              <Picture file={option.image} alt={label} />
+              {/* Colour is not the only sign of a verdict; the words announce it (ExerciseHost). */}
+              <Picture file={option.image} alt="" />
+              {tone && <span aria-hidden="true" className="absolute top-1.5 end-1.5 grid size-6 place-items-center rounded-full type-label font-bold text-white" style={{ background: tone }}>{label === exercise.answer ? '✓' : '✗'}</span>}
               <ArabicText as="span" size="base" className="mt-2 block text-center">
                 {label}
               </ArabicText>

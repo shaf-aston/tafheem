@@ -1,5 +1,5 @@
 // @vitest-environment happy-dom
-import { fireEvent, render } from '@testing-library/react'
+import { act, fireEvent, render } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import Screen from './Screen'
@@ -27,6 +27,14 @@ describe('Screen', () => {
     fireEvent.animationEnd(inner)
     expect(shown(container).className).toBe('screen fade-in')
     fireEvent.animationEnd(shown(container))
+    expect(shown(container).className).toBe('screen')
+  })
+
+  it('a fade cut short (the tab hidden mid-way) settles too, through the DOM event', () => {
+    const { container, rerender } = render(<Screen id="a" depth={0}>one</Screen>)
+    rerender(<Screen id="b" depth={1}>two</Screen>)
+    expect(shown(container).className).toBe('screen fade-in')
+    act(() => { shown(container).dispatchEvent(new Event('animationcancel')) })
     expect(shown(container).className).toBe('screen')
   })
 })

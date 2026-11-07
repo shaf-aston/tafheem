@@ -25,7 +25,7 @@ export default function TypedExercise({ exercise, value, onChange, status }) {
           // In English, which a beginner can read, and saying which letters will be marked.
           placeholder={takesLatin(exercise.accepted) ? 'Type it in Arabic, or how it sounds' : 'Type it in Arabic letters'}
           className={`w-full rounded-[var(--radius)] border bg-[var(--surface)] px-4 py-3
-            outline-none transition-colors focus:border-[var(--border-hi)]
+            transition-colors focus:border-[var(--border-hi)]
             ${answered ? 'opacity-70' : ''}`}
           style={{
             borderColor: status === 'wrong' ? 'var(--danger)' : status === 'right' ? 'var(--success)' : 'var(--border)',
