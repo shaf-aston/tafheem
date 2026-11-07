@@ -11,6 +11,11 @@ from backend.services.colloquial import loader, schema
 router = APIRouter(prefix="/api/colloquial", tags=["colloquial"])
 
 
+def _said(exc: KeyError) -> str:
+    """A KeyError's message without the quotes str() puts round it."""
+    return str(exc.args[0]) if exc.args else "not found"
+
+
 @router.get("", response_model=schema.Catalogue)
 async def get_catalogue() -> schema.Catalogue:
     """Every dialect with its unit and lesson titles, and nothing else.
@@ -27,7 +32,17 @@ async def get_compare(unit: str, lesson: str) -> schema.Compare:
     try:
         return schema.Compare(**await asyncio.to_thread(loader.compare, unit, lesson))
     except KeyError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
+        raise HTTPException(status_code=404, detail=_said(exc)) from exc
+
+
+# Before /{dialect}/{unit}: "image/x.jpg" is two pieces too, and would be read as a dialect and a unit.
+@router.get("/image/{relative:path}")
+async def get_image(relative: str) -> FileResponse:
+    """One phrase picture. An approved picture never changes, so it is cached for good."""
+    path = await asyncio.to_thread(loader.image_path, relative)
+    if path is None:
+        raise HTTPException(status_code=404, detail=f"no picture {relative}")
+    return FileResponse(path, headers={"Cache-Control": "public, max-age=31536000, immutable"})
 
 
 @router.get("/{dialect}/{unit}", response_model=schema.Unit)
@@ -41,13 +56,4 @@ async def get_unit(dialect: str, unit: str) -> schema.Unit:
     try:
         return schema.Unit(**await asyncio.to_thread(loader.unit, dialect, unit))
     except KeyError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
-
-
-@router.get("/image/{relative:path}")
-async def get_image(relative: str) -> FileResponse:
-    """One phrase picture. An approved picture never changes, so it is cached for good."""
-    path = await asyncio.to_thread(loader.image_path, relative)
-    if path is None:
-        raise HTTPException(status_code=404, detail=f"no picture {relative}")
-    return FileResponse(path, headers={"Cache-Control": "public, max-age=31536000, immutable"})
+        raise HTTPException(status_code=404, detail=_said(exc)) from exc

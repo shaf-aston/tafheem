@@ -306,6 +306,12 @@ def test_a_picture_is_served_and_cannot_be_climbed_out_to():
     try:
         client = TestClient(app)
         assert client.get("/api/colloquial/image/_probe/x.jpg").content == b"jpg"
+        # A picture straight under images/ is two pieces too: the picture route, not a dialect and a unit.
+        (folder.parent / "_root_probe.jpg").write_bytes(b"root")
+        assert client.get("/api/colloquial/image/_root_probe.jpg").content == b"root"
+        # A missing unit says so plainly, not wrapped in the quote marks a KeyError's text carries.
+        said = client.get("/api/colloquial/nowhere/unit-01").json()["detail"]
+        assert said.startswith("no dialect") and not said.startswith(('"', "'"))
         assert client.get("/api/colloquial/image/_probe/none.jpg").status_code == 404
         assert client.get("/api/colloquial/image/../dialects.json").status_code == 404
         assert client.get("/api/colloquial/image/%2e%2e/dialects.json").status_code == 404
@@ -315,6 +321,7 @@ def test_a_picture_is_served_and_cannot_be_climbed_out_to():
         assert client.get("/api/colloquial/image/%00x").status_code == 404
     finally:
         (folder / "note.json").unlink(missing_ok=True)
+        (folder.parent / "_root_probe.jpg").unlink(missing_ok=True)
         (folder / "x.jpg").unlink()
         folder.rmdir()
 
