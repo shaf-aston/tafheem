@@ -35,6 +35,7 @@ import LevelPicker from '../level/LevelPicker'
 import Onboarding from '../onboarding/Onboarding'
 import { usePlan } from '../../lib/learner/usePlan'
 import { begun } from '../../lib/learner/plan'
+import { answered } from '../../lib/learner/recommend'
 import FahmWord from './FahmWord'
 import GrowNext from './GrowNext'
 import ModuleCard from './ModuleCard'
@@ -117,8 +118,9 @@ export default function HomePanel({ accent, onGo }) {
               {/* A returning learner on a new visit (no path walked) sees what they were studying above the picker. */}
               {first && next}
               {/* A first visit asks how much Arabic you know, and starts there; after that, where you stopped. */}
+              {/* Once the plan is answered its pick above is the one start: the picker would be a second. */}
               {first
-                ? <LevelPicker copy={copy} onGo={onGo} />
+                ? !answered(plan) && <LevelPicker copy={copy} onGo={onGo} />
                 : <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume.value} label={copy['resume-label']} goLabel={copy['resume-go']}
                   progressText={progressText(sums[lead.id])} onGo={onGo} />}
               {!first && next}

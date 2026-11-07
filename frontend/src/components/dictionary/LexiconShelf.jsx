@@ -30,7 +30,7 @@ import { laneEntry } from '../../lib/dictionary/laneEntry'
 import { useLexicons } from '../../lib/dictionary/classicalBooks'
 import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
-import { useMedia } from '../../lib/hooks/useMedia'
+import { useMedia, WIDE } from '../../lib/hooks/useMedia'
 import { colorFor } from '../../theme'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/dictionary/useLaneTidy'
 
@@ -52,9 +52,6 @@ const NOTHING = {
 
 /** Added to that one sentence only, and only when there is another root to try. */
 const ELSEWHERE = ' The other root above may be the one they file it under.'
-
-/** Where a book uses the card's width (Tailwind's lg), the same as Ibn Faris's side by side. */
-const WIDE = '(min-width: 64rem)'
 
 /**
  * `shown` is the book on screen; the others stay mounted but hidden, so a
@@ -111,6 +108,7 @@ function BookEntry({ entry, root, accent }) {
   const lane = entry.book === LANE
   const [tidy, setTidy] = useLaneTidy()
   const [open, setOpen] = useState(false)
+  // Where a book uses the card's width (WIDE), the same as Ibn Faris's side by side.
   const wide = useMedia(WIDE)
   // Lane in his own sections; the Arabic books as paragraphs (lib/entryLines).
   const shown = useMemo(() => (lane ? laneEntry(entry.text, { tidy }) : paragraphs(entry.text)), [lane, entry.text, tidy])

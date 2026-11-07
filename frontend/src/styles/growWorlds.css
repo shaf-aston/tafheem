@@ -184,13 +184,15 @@
 .grow-lesson-done .grow-segments { flex: none; width: min(100%, 22rem); height: 8px; justify-self: center; margin-inline: auto; }
 
 /* A wide screen: a teaching card in two columns, the Arabic big on the left, the
-   meaning, its notes and the way on to the right, using the width. */
+   meaning, its notes and the way on to the right, using the width. A single letter
+   (.grow-glyph) stays one narrow column, as its question does, so Continue does not
+   jump from right to middle between the two. */
 @media (min-width: 64rem) {
-  .grow-lesson:has(.grow-teach-ar) { max-width: 920px; }
-  .grow-card:has(> .grow-teach-ar) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 28px; align-items: start; }
-  .grow-card:has(> .grow-teach-ar) > * { grid-column: 2; }
-  .grow-card > .grow-teach-ar { grid-column: 1; grid-row: 1 / span 8; align-self: stretch; display: grid; place-items: center; font-size: 3.4rem; }
-  .grow-lesson:has(.grow-teach-ar) .grow-lesson-foot { margin-inline-start: calc(50% + 14px); }
+  .grow-lesson:has(.grow-card:not(.grow-glyph) > .grow-teach-ar) { max-width: 920px; }
+  .grow-card:not(.grow-glyph):has(> .grow-teach-ar) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 28px; align-items: start; }
+  .grow-card:not(.grow-glyph):has(> .grow-teach-ar) > * { grid-column: 2; }
+  .grow-card:not(.grow-glyph) > .grow-teach-ar { grid-column: 1; grid-row: 1 / span 8; align-self: stretch; display: grid; place-items: center; font-size: 3.4rem; }
+  .grow-lesson:has(.grow-card:not(.grow-glyph) > .grow-teach-ar) .grow-lesson-foot { margin-inline-start: calc(50% + 14px); }
 }
 .grow-card { display: grid; gap: 14px; animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) both; }
 .grow-card-tag { justify-self: start; font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--w) 20%, var(--surface)); color: var(--w); }
@@ -492,3 +494,10 @@
    A lesson's own card still rises (.grow-card): that is the answer to a tap inside the screen, not a new screen. */
 .grow-screen .rise-in, .grow-screen .grow-world-tile { animation: none; }
 
+
+/* A short screen: the first visit's fact keeps its figure and line, and drops the
+   source, so it does not cover the options above Continue. */
+@media (max-height: 50rem) {
+  .onb-fact-source { display: none; }
+  .onb-fact-body { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+}

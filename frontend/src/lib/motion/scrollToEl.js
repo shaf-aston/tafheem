@@ -5,7 +5,7 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 
 import theme from '../../config/theme.json'
-import { motionOff } from './motion'
+import { glide, motionOff } from './motion'
 
 const ALIGN = { nearest: 'nearest', top: 'start', center: 'center' }
 
@@ -19,7 +19,7 @@ export function scrollToEl(el, align = 'nearest') {
 /** Scroll the page to `top` the same way: a glide, unless motion is off or it is far. */
 export function glideTo(top) {
   const far = Math.abs(top - globalThis.scrollY) > window.innerHeight * theme.motion['glide-screens']
-  globalThis.scrollTo({ top, behavior: far || motionOff() ? 'auto' : 'smooth' })
+  globalThis.scrollTo({ top, behavior: far ? 'auto' : glide() })
 }
 
 /**

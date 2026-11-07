@@ -118,6 +118,13 @@ describe('Next for you: picked from the first-visit plan', () => {
     expect(onGo).toHaveBeenCalledWith('grow', 'letters/lesson')
   })
 
+  it('is the one start on a first visit: the level picker is not shown beside it', async () => {
+    plan(OMAR)
+    renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />)
+    await screen.findByRole('region', PLANNED)
+    expect(screen.queryByRole('region', { name: knobs.copy['fork-label'] })).toBeNull()
+  })
+
   it('is not offered twice: not when it is the place on the card', async () => {
     plan(OMAR)
     renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />)

@@ -5,6 +5,8 @@ import { themeVariable } from '../../theme'
 
 // The phone width the stylesheet's bottom bar goes by.
 export const PHONE = '(max-width: 39.99rem)'
+// Tailwind's lg: the width where panes sit side by side (Home's rail, the Quran's two panes, a root's two columns).
+export const WIDE = '(min-width: 64rem)'
 
 // The least width, in px, the Terms tree is ever drawn whole at (theme.json layout terms-tree-min); the tree's own
 // width at its smallest legible scale (hadith/terms/termsChart wholeWidth) raises it.

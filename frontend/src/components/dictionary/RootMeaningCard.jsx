@@ -20,9 +20,8 @@ import { ENGLISH, englishQuery } from '../../lib/dictionary/entryEnglish'
 import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
 import { useHealth } from '../../lib/api/useHealth'
 import { useRemembered } from '../../lib/store/useRemembered'
-import { useMedia } from '../../lib/hooks/useMedia'
+import { useMedia, WIDE } from '../../lib/hooks/useMedia'
 
-const WIDE = '(min-width: 64rem)' // Tailwind's lg: where the rest and its English sit side by side
 
 import { Lines } from './EntryArabic'
 import EntryEnglish from './EntryEnglish'
