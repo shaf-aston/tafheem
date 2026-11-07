@@ -29,13 +29,12 @@ from backend.config import get_settings
 from backend.models.listen import Heard, HeardAyah, HeardPlace, Sureness
 from backend.services import recitation
 from backend.services.learner import journal
-from backend.services.recitation import NotInstalled, Unreadable, kind_of
+from backend.services.recitation import NotInstalled, Refused, Unreadable, kind_of, rules
 
 log = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/listen", tags=["listen"])
 
-AYAH_KEY = re.compile("[0-9]{1,3}:[0-9]{1,3}")
 # A reading id, the page's own or one made here: letters, digits, and the few
 # separators an id reasonably has. Anything else is ignored rather than
 # trusted, since it flows straight into a log line.
@@ -48,12 +47,6 @@ READING_ID = re.compile("[A-Za-z0-9._:-]{1,64}")
 # machine's ear answers (recitation.would_answer_locally); /check always waits, since
 # scoring is always local. Search words skip it; errors.local_lock guards them.
 _turn = asyncio.Lock()
-
-
-def is_audio(body: bytes) -> bool:
-    """What browsers record (webm, ogg, mp4) and what people upload (wav, mp3, flac),
-    told by the file's first bytes, not the name or type it claims."""
-    return kind_of(body) is not None
 
 
 def _reading_id(request: Request) -> str:
@@ -121,7 +114,9 @@ async def _read_recording(audio: UploadFile, filed: _Filed) -> bytes:
 
 
 def _refuse_unless_audio(body: bytes, filed: _Filed) -> None:
-    if not is_audio(body):
+    """What browsers record (webm, ogg, mp4) and what people upload (wav, mp3, flac),
+    told by the file's first bytes, not the name or type it claims."""
+    if kind_of(body) is None:
         raise filed.fail(415, "That file is not a sound recording.", "validate")
 
 
@@ -164,7 +159,7 @@ async def listen(
     recite: bool = Query(False, description="Qur'an being recited: heard in Arabic by the Qur'an ear, no ayahs looked up"),
     fusha: bool = Query(True, description="Lean towards classical Arabic; off hears any Arabic"),
     near: str | None = Query(
-        None, pattern=f"^{AYAH_KEY.pattern}-{AYAH_KEY.pattern}$",
+        None, pattern=f"^{rules.AYAH_KEY.pattern}-{rules.AYAH_KEY.pattern}$",
         description="The open page's first and last ayah, 2:1-2:5: also say where in the Qur'an this was",
     ),
     before: str = Query(
@@ -178,11 +173,10 @@ async def listen(
     read as the feature being broken when it is working exactly as it should.
     """
     with _filing(request, response, "reading") as filed:
-        # The same cap as /check's heard text: both are one reading's words.
-        if len(before) > get_settings().recitation_check_heard_max_chars:
-            raise filed.fail(
-                422, f"before must be at most {get_settings().recitation_check_heard_max_chars} characters.", "validate",
-            )
+        try:
+            rules.words_within_cap("before", before)
+        except Refused as exc:
+            raise filed.fail(422, str(exc), "validate") from None
         body = await _read_recording(audio, filed)
         is_recitation = recitation.is_recitation(match, recite)
         journal.note("reading.received", bytes=len(body), recite=is_recitation)
@@ -194,9 +188,8 @@ async def listen(
         # Checked before the ear is paid for, so a bad page never costs a reading.
         span = None
         if near:
-            first, last = (tuple(map(int, key.split(":"))) for key in near.split("-"))
             try:
-                span = await run_in_threadpool(recitation.page_span, first, last)
+                span = await run_in_threadpool(recitation.page_span, *rules.page_ends(near))
             except ValueError as exc:
                 raise filed.fail(422, f"{near} is not a page of the Qur'an", "place", exc) from None
 
@@ -212,7 +205,7 @@ async def listen(
                 return text, hits
             except Unreadable as exc:
                 # The recording, not the listening. It carried a real webm
-                # header and nothing playable behind it, so is_audio above let
+                # header and nothing playable behind it, so _refuse_unless_audio let
                 # it through; only opening it finds out. Told apart because
                 # "record it again" is something the reader can actually do,
                 # where "could not make that out" reads as the feature broken.
@@ -282,22 +275,12 @@ async def listen_check(
     A check past `_turn` runs to the end even if the page gives up; the page
     sends one check at a time, which bounds the cost.
     """
-    settings = get_settings()
     with _filing(request, response, "check") as filed:
-        checked = [key for key in check.split(",") if key]
-        if (len(checked) > settings.recitation_check_ayahs_max or len(set(checked)) != len(checked)
-                or not all(AYAH_KEY.fullmatch(key) for key in checked)):
-            raise filed.fail(
-                422,
-                f"check must be up to {settings.recitation_check_ayahs_max} different ayahs, as 1:1,1:2.",
-                "validate",
-            )
-        if len(heard) > settings.recitation_check_heard_max_chars:
-            raise filed.fail(
-                422,
-                f"heard must be at most {settings.recitation_check_heard_max_chars} characters.",
-                "validate",
-            )
+        try:
+            checked = rules.checked_ayahs(check)
+            rules.words_within_cap("heard", heard)
+        except Refused as exc:
+            raise filed.fail(422, str(exc), "validate") from None
 
         model = _tuned_model(tuned, filed)
         body = await _read_recording(audio, filed)

@@ -186,7 +186,7 @@ def test_an_unreadable_recording_is_answered_415_and_not_500(monkeypatch):
 
     monkeypatch.setattr("backend.routers.listen.recitation.hear", unreadable)
     # A real webm header with nothing playable behind it, which is what the
-    # browser sent: is_audio lets it through, only opening it finds out.
+    # browser sent: kind_of lets it through, only opening it finds out.
     answer = TestClient(app).post(
         "/api/listen", files={"audio": ("r.webm", b"\x1a\x45\xdf\xa3 and then nothing", "audio/webm")},
     )
