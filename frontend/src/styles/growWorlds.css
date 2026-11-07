@@ -137,7 +137,7 @@
 .grow-world-main { min-width: 0; }
 /* the stage and Start: first on a phone, so the one thing to press is never a scroll away; beside the picture on a wide screen, held in view */
 .grow-world-side { order: -1; display: grid; gap: 10px; padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); }
-@media (min-width: 880px) {
+@media (min-width: 64rem) {
   .grow-world-body { grid-template-columns: minmax(0, 1fr) minmax(260px, 320px); gap: 20px; }
   .grow-world-side { order: 0; position: sticky; top: 16px; }
 }
@@ -204,7 +204,7 @@
 .grow-options { display: grid; gap: 10px; }
 /* Short answers two by two (components/practice/exercises/OneOf): Arabic words always, short English once a row fits two. */
 .grow-options-ar.grow-options-two { grid-template-columns: 1fr 1fr; }
-@media (min-width: 480px) { .grow-options-two { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 40rem) { .grow-options-two { grid-template-columns: 1fr 1fr; } }
 .grow-option { --option-number-bg: var(--surface-hi); display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 12px 16px; text-align: start; border-radius: var(--radius-md); border: 2px solid var(--border-hi); background: var(--surface); color: var(--text); font-size: var(--type-body); transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, background calc(var(--motion-instant-ms) * 1ms) ease; }
 .grow-option:not(:disabled):hover { border-color: color-mix(in srgb, var(--w) 60%, var(--border-hi)); }
 .grow-option[data-mark='picked'] { border-color: var(--w); background: color-mix(in srgb, var(--w) 14%, var(--surface)); }
@@ -246,7 +246,7 @@
 .grow-spine[data-s='known'] { border-color: var(--w); color: var(--bg); background: var(--w); }
 .grow-spine[aria-pressed='true'] { transform: translateY(-6px); outline: 2px solid var(--text); outline-offset: 1px; }
 .grow-shelf-line { display: grid; gap: 8px; padding: 12px 14px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border); font-size: var(--type-ui); line-height: 1.5; }
-@media (min-width: 640px) { .grow-spines { grid-template-columns: repeat(21, minmax(0, 1fr)); } }
+@media (min-width: 40rem) { .grow-spines { grid-template-columns: repeat(21, minmax(0, 1fr)); } }
 
 .grow-sky { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
 .grow-constellation { margin: 0; display: grid; gap: 2px; padding: 6px 10px 8px; border-radius: var(--radius-md); background: var(--sky-bg); border: 1px solid var(--sky-edge); color: var(--sky-text); font-size: var(--type-small); }

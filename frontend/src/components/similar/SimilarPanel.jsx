@@ -102,7 +102,7 @@ export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
     open(next.id, standing(next.id) === 'due' ? 'drill' : 'compare')
   }
 
-  const list = <PairList pairs={pairs} chosen={chosen?.id} onChoose={(id) => open(id)} onAhead={ahead} standing={standing} className={phone ? '' : 'lg:max-h-[60vh] lg:overflow-y-auto lg:pr-1'} />
+  const list = <PairList pairs={pairs} chosen={chosen?.id} onChoose={(id) => open(id)} onAhead={ahead} standing={standing} className="lg:max-h-[60vh] lg:overflow-y-auto lg:pr-1" />
 
   return (
     <div className="panel">

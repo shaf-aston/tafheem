@@ -89,7 +89,6 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const missingLabel = way === 'recite' ? 'Words to say from memory' : 'How much is missing'
   const missingSwitch = (
     <Segmented
-      wrap={phone}
       label={missingLabel}
       title={way === 'recite' ? undefined : difficultyOf(difficulty).title}
       options={missing}
