@@ -8,7 +8,7 @@ import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { shareOf, surahShares } from '../../lib/quiz/coverage'
-import { surahCoverage, surahList } from '../../lib/quiz/quizBanks'
+import { surahCoverageQuery, surahList } from '../../lib/quiz/quizBanks'
 
 import ArabicText from '../ui/text/ArabicText'
 import Disclosure from '../ui/overlays/Disclosure'
@@ -16,7 +16,7 @@ import { Skeleton } from '../ui/feedback/Skeleton'
 
 export default function SurahCoverage({ words, covering, learnt, say, language }) {
   const [open, setOpen] = useState(false)
-  const bySurah = useQuery({ queryKey: ['quiz-surah-coverage'], queryFn: surahCoverage, enabled: open })
+  const bySurah = useQuery({ ...surahCoverageQuery, enabled: open })
   const surahs = useQuery({ queryKey: ['quiz-surahs'], queryFn: surahList, enabled: open })
   const shares = useMemo(
     () => (bySurah.data ? surahShares(words, covering, learnt, bySurah.data) : null),

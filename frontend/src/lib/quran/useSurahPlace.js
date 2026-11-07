@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import { FIRST_SURAH, LAST_SURAH } from './surahRef'
-import { useMedia } from '../hooks/useMedia'
+import { useMedia, WIDE } from '../hooks/useMedia'
 import { scrollToEl } from '../motion/scrollToEl'
 import { rowAt, showRow } from './surahRows'
 import { useSlide, useSwipe } from '../motion/useSwipe'
@@ -9,8 +9,6 @@ import QURAN from '../../config/quran.json'
 
 const { split: SPLIT } = QURAN
 const { full: FULL } = SPLIT
-// Wide enough for the surah and the study side by side; Tailwind's lg.
-const TWO_PANES = '(min-width: 64rem)'
 
 /**
  * Where the Quran reader is: the surah and ayah (`place`, owned by the caller
@@ -20,7 +18,7 @@ const TWO_PANES = '(min-width: 64rem)'
  * surah once it has come, from useSurahReading.
  */
 export function useSurahPlace({ surah, ayah }, data, onPlace, onClose) {
-  const twoPanes = useMedia(TWO_PANES)
+  const twoPanes = useMedia(WIDE)
 
   const list = useRef(null)
   // The ayah at the top of the list as it is scrolled: the rail follows it.

@@ -1,18 +1,22 @@
 /**
- * A lesson, one card at a time: pick, Check, Continue. Wrong cards return once at the end; no hearts.
+ * A lesson, one card at a time: pick, Check, Continue. Check marks the pick, then a panel rises at the foot with the
+ * verdict and one line, holding Continue. The lesson holds focus mode (lib/shell/focus.js) until its end screen. Wrong
+ * cards return once at the end; no hearts.
  * Cards are the exercise registry's; answers save like the Quiz's. Three right in a row shows a run; the end screen
  * sums the XP the server reported, how many were right first time, and how long the lesson took, recaps what was missed,
  * and offers the next lesson (`next`: its title and `go`) when there is one. Enter presses the footer's button (Check or
  * Continue), also from an answer option, and takes the focus once an answer is checked; leaving mid-lesson asks first
  * (focus in the question, Escape to stay), since it starts over. `onLeave` is the way on from the end screen; `onQuit`,
  * when given, is where the × goes instead (the Quiz rests there rather than dealing the next lesson). `guest`: nobody is
- * logged in, so the end screen says the XP is this device's until they log in.
+ * logged in, so the end screen says the XP is this device's until they log in. `waitToFocus`: the runner is there
+ * before anyone chose it (the Quiz's Basics), so the app's bars only step aside once the first card is answered.
  */
 import { useEffect, useRef, useState } from 'react'
 
 import { requeue } from '../../lib/grow/lesson'
 import { useRecord } from '../../lib/learner/record'
 import { rankOf, shareOf } from '../../lib/learner/rewards'
+import { useFocusMode } from '../../lib/shell/focus'
 import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/text/ArabicText'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
@@ -21,7 +25,7 @@ import Medal from './Celebration'
 
 const say = sayIn('en')
 
-export default function LessonRunner({ cards: first, accent, rewards, guest = false, next: after, onLeave, onQuit = onLeave }) {
+export default function LessonRunner({ cards: first, accent, rewards, guest = false, waitToFocus = false, next: after, onLeave, onQuit = onLeave }) {
   const { file } = useRecord()
   const [cards, setCards] = useState(first)
   const [at, setAt] = useState(0)
@@ -78,6 +82,8 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
   }
 
   const done = at >= cards.length
+  // While it runs the lesson has the screen: its × and bar are the only chrome. The end screen gives the app back.
+  useFocusMode(!done && (!waitToFocus || at > 0 || result !== null))
   if (done) return <LessonDone tally={tally} took={took} missed={missed} marks={marks} accent={accent} rewards={rewards} guest={guest} next={after} onLeave={onLeave} />
 
   const card = cards[at]
@@ -110,6 +116,10 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
     setResult(null)
   }
 
+  const said = result === 'right'
+    ? kind.because?.(card)
+    // A card comes back once: its second miss says only the answer.
+    : result && [kind.correction(card, value), !card.again && say('It comes back at the end.')].filter(Boolean).join(' ')
   const { Card } = kind
   return (
     <div className="grow-lesson" style={{ '--w': accent }}>
@@ -134,17 +144,17 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
       </div>
 
       <div className="grow-lesson-foot" data-result={result ?? undefined} inert={leaving}>
+        {/* The verdict, then one line: why, or the right answer. */}
         {result && (
           <p role="status" className="grow-lesson-say">
-            {result === 'right'
-              ? [say('Right!'), kind.because?.(card)].filter(Boolean).join(' ')
-              // A card comes back once: its second miss says only the answer.
-              : [kind.correction(card, value), !card.again && say('It comes back at the end.')].filter(Boolean).join(' ')}
+            <b>{say(result === 'right' ? 'Correct.' : 'Not quite.')}</b>
+            {said && <> <span>{said}</span></>}
           </p>
         )}
         {asks && !result
           ? <PrimaryButton ref={go} accent={accent} disabled={!kind.ready(value, card)} onClick={check}>{say('Check')}</PrimaryButton>
-          : <PrimaryButton ref={go} accent={accent} onClick={next}>{say('Continue')}</PrimaryButton>}
+          // After a check the button takes the verdict's colour, so the whole panel says right or wrong.
+          : <PrimaryButton ref={go} accent={result ? `var(--${result === 'right' ? 'success' : 'danger'})` : accent} onClick={next}>{say('Continue')}</PrimaryButton>}
       </div>
     </div>
   )

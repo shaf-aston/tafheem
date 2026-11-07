@@ -12,10 +12,11 @@ import { bookSourceQuery } from './useBookWorld'
 import { load as basics } from './useBasicsWorld'
 import { load as hadith } from './useHadithWorld'
 import { load as prayer } from './usePrayerWorld'
+import { load as letters } from './useLettersWorld'
 import { loadWords } from './useWordsWorld'
 import { loadQuran } from '../quran/useQuranWorld'
 
-const LOADERS = { basics: () => basics, hadith: () => hadith, prayer: () => prayer, words: loadWords, quran: loadQuran }
+const LOADERS = { letters: () => letters, basics: () => basics, hadith: () => hadith, prayer: () => prayer, words: loadWords, quran: loadQuran }
 
 const queriesOf = (world) => {
   const source = world.kind === 'book' ? bookSourceQuery(world) : LOADERS[world.id] && sourceQuery(world, LOADERS[world.id](world))

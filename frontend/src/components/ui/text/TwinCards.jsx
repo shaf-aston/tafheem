@@ -7,12 +7,11 @@
  */
 import { wordsOf } from '../../../lib/memorise/memorise'
 import { flagsOnPage, placeLine, wordFlags } from '../../../lib/similar/similar'
-import { smartError } from '../../../lib/api/apiError'
+import copy from '../../../config/similar.json'
 
 import ArabicText from './ArabicText'
 import EmptyState from '../feedback/EmptyState'
 import ErrorAlert from '../feedback/ErrorAlert'
-import RetryButton from '../buttons/RetryButton'
 import { Skeleton } from '../feedback/Skeleton'
 import SourceBadge from '../feedback/SourceBadge'
 
@@ -59,14 +58,9 @@ function TwinCard({ mine, text, partner, accent }) {
 export default function TwinCards({ mine, query, accent }) {
   const { data, isPending, isError, error, refetch } = query
   if (isPending) return <Skeleton className="h-24 w-full" />
-  if (isError) {
-    return (
-      <ErrorAlert title="Similar verses could not be read">
-        {smartError(error, 'They come from the Qur\'an tab\'s own source.')}
-        <RetryButton onClick={refetch} />
-      </ErrorAlert>
-    )
-  }
+  // The Similar tab's own words and ErrorAlert's own reason and retry, so the
+  // same failure never reads two ways.
+  if (isError) return <ErrorAlert title={copy.error} error={error} fallback={copy.fallback} onRetry={refetch} />
   if (!data?.partners?.length) return <EmptyState>No similar verses recorded for this ayah.</EmptyState>
   return (
     <div className="space-y-2">

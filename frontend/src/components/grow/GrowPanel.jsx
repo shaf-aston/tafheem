@@ -16,6 +16,7 @@ import { goBack } from '../../lib/nav/journey'
 import { getProfile } from '../../lib/learner/profile'
 import { useHadithWorld } from '../../lib/grow/useHadithWorld'
 import { usePrayerWorld } from '../../lib/grow/usePrayerWorld'
+import { useLettersWorld } from '../../lib/grow/useLettersWorld'
 import { useLessonSession } from '../../lib/grow/useLessonSession'
 import { useArrival } from '../../lib/nav/useArrival'
 import { useBasicsWorld } from '../../lib/grow/useBasicsWorld'
@@ -46,6 +47,7 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   const [name] = useState(getProfile)
   const { rewards, pending: rewardsPending } = useRewards(name)
   const lessons = {
+    letters: useLettersWorld(worldOf('letters')),
     basics: useBasicsWorld(worldOf('basics')),
     words: useWordsWorld(worldOf('words')),
     hadith: useHadithWorld(worldOf('hadith')),

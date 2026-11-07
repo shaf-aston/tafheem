@@ -83,7 +83,7 @@ export default function EntryWords({ senses, accent }) {
         <Segmented captioned compact label="The book's lines" options={BOOK} value={book} onChange={setBook} accent={accent} />
       </div>
       {layout === 'cards' ? (
-        <ol className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <ol className="grid gap-x-6 gap-y-4 sm:grid-cols-2 xl:grid-cols-3">
           {senses.map((sense, i) => (
             <WordCard key={i} sense={sense} show={show} open={sayings === 'open'} beside={beside} accent={accent} />
           ))}
@@ -142,11 +142,13 @@ function Sayings({ sense, show, open, accent }) {
  * One word as a card: the word large, its spelling and meaning under it, its
  * sayings, then the book's lines. Lines that name no word (a closing formula,
  * a scholar's report) span the grid as a note rather than pose as a word.
+ * A hairline over each, not a box round it: the cards sit inside Ibn Faris's
+ * section, and a box there was a box in a box.
  */
 function WordCard({ sense, show, open, beside, accent }) {
   const word = (show.ar && sense.word) || (show.lat && sense.say)
   return (
-    <li className={`rounded-xl border border-[var(--border)] p-4 flex flex-col gap-1.5 min-w-0 ${sense.word ? 'bg-[var(--surface-hi)]' : 'sm:col-span-full border-dashed'}`}>
+    <li className={`border-t border-[var(--border)] pt-3 flex flex-col gap-1.5 min-w-0 ${sense.word ? '' : 'sm:col-span-full'}`}>
       {show.ar && sense.word && <ArabicText size="lg" className="text-[var(--text)] text-right">{sense.word}</ArabicText>}
       {show.lat && sense.say && (
         <span className={word === sense.say ? 'type-body font-semibold text-[var(--text)]' : 'type-small italic text-[var(--text-faint)]'}>{sense.say}</span>

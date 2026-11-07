@@ -1,7 +1,8 @@
 /**
  * Grow's home: level, streak, daily goal, today's lesson with each world's next step, every world (unbuilt ones shown as coming).
- * Today leads with the book last studied (its next lesson, one tap away) once there is one, then the learner's level
- * (levels.json `grow`: a beginner's Basics, an advanced learner's Nahw), the Basics while begun on this device and with a
+ * Today leads with the book last studied (its next lesson, one tap away) once there is one, then the first-visit plan's
+ * best world (lib/learner/recommend.js), then the learner's level (levels.json `grow`: a beginner's Basics, an advanced
+ * learner's Nahw), the Basics while begun on this device and with a
  * lesson to give, and the words lesson otherwise;
  * a book with questions due shows its review as a step too.
  * A guest's log-in nudge rides on the title line (SectionHeader `aside`).
@@ -17,6 +18,8 @@ import { sayIn } from '../../lib/text/say'
 import { useRemembered } from '../../lib/store/useRemembered'
 import { levelOf } from '../../lib/learner/learnerLevel'
 import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
+import { leadOf } from '../../lib/learner/recommend'
+import { usePlan } from '../../lib/learner/usePlan'
 import LogInButton from '../profile/LogInButton'
 import Emblem from '../ui/display/Emblem'
 import ArabicText from '../ui/text/ArabicText'
@@ -117,7 +120,7 @@ const NextSlot = () => <span className="grow-next-slot skeleton" aria-hidden="tr
 const hasWork = (state) => state.ready && (state.fresh > 0 || state.dueCount > 0)
 
 /**
- * Today's lesson: the last book's next one when there is one, else the Basics while begun here and with work to give,
+ * Today's lesson: the last book's next one when there is one, else the letters while the plan starts there (alone: no other step needs reading yet), else the Basics while begun here and with work to give,
  * else the words lesson; then every world's next step.
  */
 function Today({ worldOf, lessons, books, onStart, onStartBook }) {
@@ -130,12 +133,18 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
     requestAnimationFrame(() => list.children[3]?.focus())
   }
   const [last] = useRemembered(LAST_BOOK, Object.keys(books), '')
-  // The world the learner's level starts from (levels.json `grow`); none until a level is chosen.
-  const leads = levelOf(useLearnerLevel().level)?.grow
-  const { words, basics } = lessons
-  const onBasics = (basics.begunHere || leads === 'basics') && !(basics.ready && !hasWork(basics))
-  const main = onBasics ? basics : words
-  const mainId = onBasics ? 'basics' : 'words'
+  // The world an answered plan starts from (one Today can lead: the letters until every one is learnt, the Basics, the
+  // words, a book), else the one the learner's level starts from (levels.json `grow`); none until either is given.
+  const { plan } = usePlan()
+  const { level } = useLearnerLevel()
+  const { words, basics, letters } = lessons
+  const spent = (state) => state.ready && !hasWork(state)
+  const canLead = (id) => (id === 'letters' && !spent(letters)) || id === 'basics' || id === 'words' || id in books
+  const leads = leadOf(plan, canLead) ?? levelOf(level)?.grow
+  const onLetters = leads === 'letters'
+  const onBasics = !onLetters && (basics.begunHere || leads === 'basics') && !spent(basics)
+  const main = onLetters ? letters : onBasics ? basics : words
+  const mainId = onLetters ? 'letters' : onBasics ? 'basics' : 'words'
   const empty = main.ready && !hasWork(main)
   const hadith = nextOf(lessons.hadith)
   const ayah = nextOf(lessons.quran)
@@ -154,7 +163,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
   // A step for every book, the hadith, the Quran, and whichever of the Basics and the words is not the lesson above;
   // one less when a book leads. A close guess is enough: it is what keeps the page still.
   const expected = Object.keys(books).length + 3 - (lead ? 1 : 0)
-  const settling = [basics, words, ...Object.values(books), lessons.hadith, lessons.quran].some((state) => !state.ready && !state.error)
+  const settling = [letters, basics, words, ...Object.values(books), lessons.hadith, lessons.quran].some((state) => !state.ready && !state.error)
   return (
     <section className="grow-today rise-in" style={{ '--w': accent }} aria-labelledby="grow-today-h">
       <span className="grow-today-art" aria-hidden="true"><Emblem id={lead ?? mainId} /></span>
@@ -167,17 +176,19 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
         </>
       ) : (
         <>
-          <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
-          <h3 id="grow-today-h">{onBasics ? say('Your first steps') : say('Keep your garden growing')}</h3>
+          <p className="grow-today-kicker">{say('Today · about {minutes} minutes', { minutes: plan.minutes ?? 5 })}</p>
+          <h3 id="grow-today-h">{onLetters ? say('Your first letters') : onBasics ? say('Your first steps') : say('Keep your garden growing')}</h3>
           <p className="grow-today-holds tabular-nums">{lineOf(main)}</p>
           <PrimaryButton accent={accent} disabled={!main.ready || empty} onClick={() => onStart(mainId)}>
             {empty ? say('Every word learnt and nothing due') : say('Start')}
           </PrimaryButton>
         </>
       )}
+      {/* Someone learning the letters is not offered steps that need reading: Today is just Start (the worlds stay below). */}
+      {!(onLetters && !lead) && <>
       <div className="grow-nexts" data-open={more ? '' : undefined} data-settling={settling ? '' : undefined}>
         {settling && Array.from({ length: expected }, (_, i) => <NextSlot key={i} />)}
-        {basics.ready && !basics.begunHere && hero !== 'basics' && (!leads || leads === 'basics') && (
+        {basics.ready && !basics.begunHere && hero !== 'basics' && (!leads || leads === 'basics' || leads === 'letters') && (
           <NextStep world={worldOf('basics')} where={say('New to Arabic?')} line={say('Start with ال, “the”')} onGo={() => onStart('basics')} />
         )}
         {basics.begunHere && hero !== 'basics' && hasWork(basics) && (
@@ -210,6 +221,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
         )}
       </div>
       <button type="button" className="grow-nexts-more" onClick={showMore}>{say('More for today')}</button>
+      </>}
     </section>
   )
 }

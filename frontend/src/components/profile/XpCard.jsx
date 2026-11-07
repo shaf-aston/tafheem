@@ -1,7 +1,8 @@
 /**
- * Level and XP as one card, in the profile the header's level opens: a bar that
- * fills on sight, what is left to the next level, and the growth path from Seed
- * to Fruit with you on it, shown at once rather than behind a tap.
+ * Level and XP, in the profile the header's level opens: a bar that fills on
+ * sight, what is left to the next level, and the growth path from Seed to Fruit
+ * with you on it, shown at once rather than behind a tap. No box of its own: it
+ * sits in the profile's quieter detail, below this week and understanding.
  */
 import { colorFor } from '../../theme'
 import config from '../../config/rewards.json'
@@ -11,7 +12,7 @@ import Odometer from '../ui/text/Odometer'
 
 export default function XpCard({ rewards }) {
   if (!rewards) {
-    return <div className="col-span-2 rounded-[var(--radius-sm)] border border-[var(--border)] p-3"><Skeleton className="h-10 w-full" /></div>
+    return <Skeleton className="h-10 w-full" />
   }
   const rank = rankOf(rewards.level)
   const share = shareOf(rewards)
@@ -19,10 +20,10 @@ export default function XpCard({ rewards }) {
   const tone = colorFor('tab', 'grow')
   return (
     <div
-      className="xp-card col-span-2 text-start rounded-[var(--radius-sm)] border border-[var(--border)] p-3 space-y-2"
+      className="xp-card text-start space-y-2"
       style={{ '--xp-tone': tone }}>
       <div className="flex items-baseline justify-between gap-2">
-        <span className="type-heading font-bold text-[var(--text)]">
+        <span className="font-semibold text-[var(--text)]">
           Lv {rewards.level} · {rank.en} <span dir="rtl">{rank.ar}</span>
         </span>
         <span className="type-small tabular-nums text-[var(--text-dim)]"><Odometer value={rewards.into} /> / {rewards.need} XP</span>

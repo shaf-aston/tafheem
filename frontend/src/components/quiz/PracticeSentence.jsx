@@ -6,7 +6,7 @@
  * never on page load, so nobody pays for a sentence they did not want.
  */
 import { useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation } from '../../lib/api/useMutation'
 
 import { makeCheckedSentence } from '../../api'
 import { smartError } from '../../lib/api/apiError'

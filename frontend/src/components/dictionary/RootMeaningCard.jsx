@@ -20,9 +20,8 @@ import { ENGLISH, englishQuery } from '../../lib/dictionary/entryEnglish'
 import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
 import { useHealth } from '../../lib/api/useHealth'
 import { useRemembered } from '../../lib/store/useRemembered'
-import { useMedia } from '../../lib/hooks/useMedia'
+import { useMedia, WIDE } from '../../lib/hooks/useMedia'
 
-const WIDE = '(min-width: 64rem)' // Tailwind's lg: where the rest and its English sit side by side
 
 import { Lines } from './EntryArabic'
 import EntryEnglish from './EntryEnglish'
@@ -65,7 +64,7 @@ export default function RootMeaningCard({ root: asked, hasAlternates, accent }) 
   if (!asked) return null
 
   return (
-    <section className="p-4 space-y-3" aria-label="Classical root sense">
+    <section className="space-y-3" aria-label="Classical root sense">
       {/* The badge is the book's name here, as on every book under it: the
           badge names the source, so a heading saying the same two lines above
           it was the book's name printed twice. Until it arrives the heading
@@ -242,7 +241,9 @@ function Body({
         )}
         {/* The sense itself sometimes ends on a line of verse the book cites,
             so it is laid out line by line for the same reason the rest is. */}
-        <div className="space-y-1">
+        {/* A thin rule in the accent at the edge the Arabic starts from sets
+            the book's words off, where a box round them would be one more box. */}
+        <div dir="rtl" className="dict-quote space-y-1" style={{ '--c': accent }}>
           <Lines text={core_meaning} style={{ color: accent }} />
         </div>
       </div>

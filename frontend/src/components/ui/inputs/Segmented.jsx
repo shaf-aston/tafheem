@@ -16,8 +16,12 @@
  *
  * `fill` spreads the choices across the full width, equally, for a row that is
  * the main switch of a screen (log in or sign up) rather than a small filter.
+ *
+ * An option's `arabic` is its Arabic name, set under the English rather than
+ * after it: "Analyse · تحليل" side by side made three choices too wide for one
+ * row on a phone, and a switch split over two rows reads as two switches.
  */
-import { useMedia, PHONE } from '../../../lib/hooks/useMedia'
+import ArabicText from '../text/ArabicText'
 
 export default function Segmented({
   label, options, value, onChange, accent, captioned = false, wrap = false, fill = false, compact = false, className = '', title,
@@ -29,8 +33,8 @@ export default function Segmented({
   // share each row's spare room, so a choice pushed to a second row does not sit alone at the left.
   // Each starts at its own word's width (grow, not flex-1): from zero, with a touch screen's
   // 44px floor (.tap) standing in for "no narrower than my word", every row "fit" and the words overlapped.
-  const phone = useMedia(PHONE)
-  const shape = wrap || phone ? 'flex-wrap rounded-2xl' : 'rounded-full'
+  // The phone is max-sm (below 40rem, the PHONE query): CSS, so the row never re-renders on a resize.
+  const shape = wrap ? 'flex-wrap rounded-2xl' : 'rounded-full max-sm:flex-wrap max-sm:rounded-2xl'
   const row = (
     <div
       className={`flex gap-0.5 p-0.5 ${shape} bg-[var(--surface)] border border-[var(--border)] ${className}`}
@@ -49,11 +53,16 @@ export default function Segmented({
             style={on
               ? { color: accent, background: `color-mix(in srgb, ${accent} 16%, transparent)` }
               : undefined}
-            className={`press tap inline-flex items-center ${phone && !compact ? 'grow justify-center' : ''} ${fill ? 'flex-1 justify-center py-2.5' : compact ? 'px-3 py-1.5' : 'px-3.5 py-1.5'} rounded-full ${compact ? 'type-label' : 'type-ui'} font-medium transition-colors ${
+            className={`press tap inline-flex items-center ${compact ? '' : 'max-sm:grow max-sm:justify-center'} ${fill ? 'flex-1 justify-center py-2.5' : compact ? 'px-3 py-1.5' : 'px-3.5 py-1.5'} rounded-full ${compact ? 'type-label' : 'type-ui'} font-medium transition-colors ${
               on ? '' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
             }`}
           >
-            {option.label}
+            {option.arabic ? (
+              <span className="flex flex-col items-center leading-tight">
+                {option.label}
+                <ArabicText size="tiny" className="leading-tight">{option.arabic}</ArabicText>
+              </span>
+            ) : option.label}
           </button>
         )
       })}

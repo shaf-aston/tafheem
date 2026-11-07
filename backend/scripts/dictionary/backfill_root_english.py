@@ -86,7 +86,7 @@ def make_senses(root: str, lines: list[str]) -> None:
     """Cut a chunk at a time, as the live press does (root_senses.cut, joined)."""
     ask = partial(ai_service.explain_root_entry_senses, root, reference=root_english.get(root))
     senses = root_senses.joined([
-        root_senses.cut(ask, chunk) for chunk in root_gloss.chunks(lines, get_settings().root_senses_chunk_chars)
+        root_senses.cut(ask, chunk) for chunk in root_gloss.chunks(lines, get_settings().root_senses_chunk_chars, fold_tail=True)
     ])
     if senses is None:
         raise ValueError(f"could not cut {len(lines)} lines into words")

@@ -11,3 +11,6 @@ export const reducedMotion = () =>
 export const motionOff = () =>
   reducedMotion() ||
   Number(getComputedStyle(document.documentElement).getPropertyValue('--motion-scale')) === 0
+
+/** The scroll behaviour for any JS scroll: a glide, unless motion is off. */
+export const glide = () => (motionOff() ? 'auto' : 'smooth')

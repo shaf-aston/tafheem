@@ -19,6 +19,7 @@ import { roleVar } from '../../lib/nahw/roleColors'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
 import ArabicText from '../ui/text/ArabicText'
 import BookPath from './BookPath'
+import SaveWord from './SaveWord'
 import RootActions from '../ui/buttons/RootActions'
 
 // A word of these types has no root by nature; any other rootless word is one
@@ -125,9 +126,11 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
             : "Root not found: the dictionary could not settle this word's root."}
         </p>
       )}
-      {word.root && onGo && (
-        <RootActions root={word.root} onGo={onGo} exclude={exclude} className="pt-0.5" />
-      )}
+      {/* The action row: where the root goes, and Save for a Qur'an word. */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-0.5 empty:hidden">
+        {word.root && onGo && <RootActions root={word.root} onGo={onGo} exclude={exclude} />}
+        <SaveWord word={word} />
+      </div>
     </div>
   )
 }

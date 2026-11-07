@@ -19,7 +19,7 @@ const search = async () => {
   const box = screen.getByRole('textbox')
   fireEvent.change(box, { target: { value: 'patience' } })
   fireEvent.keyDown(box, { key: 'Enter' })
-  await screen.findByText(/Results for/)
+  await screen.findByText(/\d+ results?$/)
 }
 
 describe('searching Hadith', () => {
@@ -39,6 +39,6 @@ describe('searching Hadith', () => {
     expect(screen.queryByText('the books')).toBeNull()
     leave()
     await waitFor(() => expect(screen.getByText('the books')).toBeTruthy())
-    expect(screen.queryByText(/Results for/)).toBeNull()
+    expect(screen.queryByText(/\d+ results?$/)).toBeNull()
   })
 })

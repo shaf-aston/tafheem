@@ -30,6 +30,7 @@ import MicButton from '../ui/buttons/MicButton'
 import { NarratorLinks } from './narrators/NarratorParts'
 import RecentRow from '../ui/inputs/RecentRow'
 import SearchBox from '../ui/inputs/SearchBox'
+import Tucked from '../ui/inputs/Tucked'
 import ShowRest from '../ui/buttons/ShowRest'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import StatusNote, { CorrectedNote, NoteWord } from '../ui/feedback/StatusNote'
@@ -66,24 +67,28 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
   return (
     <div className="space-y-3">
 
-      <SearchBox
-        id="hadith-search-input"
-        label="Arabic or English"
-        verb="search"
-        placeholder="patience, الصبر…"
-        value={query}
-        onChange={setQuery}
-        onSubmit={submit}
-        onClear={clear}
-        busy={mutation.isPending}
-        accent={accent}
-      >
-        <MicButton
-          onHeard={({ text }) => submit(text)}
+      {/* Folded into one pill holding the question once hits are up, so they
+          are the next thing down (ui/inputs/Tucked). */}
+      <Tucked answer={data} query={query} accent={accent}>
+        <SearchBox
+          id="hadith-search-input"
+          label="Arabic or English"
+          verb="search"
+          placeholder="patience, الصبر…"
+          value={query}
+          onChange={setQuery}
+          onSubmit={submit}
+          onClear={clear}
+          busy={mutation.isPending}
           accent={accent}
-          title="Say what you are looking for"
-        />
-      </SearchBox>
+        >
+          <MicButton
+            onHeard={({ text }) => submit(text)}
+            accent={accent}
+            title="Say what you are looking for"
+          />
+        </SearchBox>
+      </Tucked>
 
       {places}
 
@@ -93,7 +98,8 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
             &larr; Books
           </button>
           <p className="flex-1 min-w-0 truncate type-small text-[var(--text-dim)] m-0">
-            {data ? <>Results for &ldquo;{data.query}&rdquo;</> : 'Searching…'}
+            {/* The pill above already shows what was asked; here, only how much came back. */}
+            {data ? `${data.hits.length} ${data.hits.length === 1 ? 'result' : 'results'}` : 'Searching…'}
           </p>
           <CloseButton onClick={clear} aria-label="Close search" className="shrink-0" />
         </div>

@@ -4,10 +4,11 @@
  * same reading. The picture is left out when nothing could be joined.
  */
 import { Fragment, useLayoutEffect, useRef, useState } from 'react'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import { analyzeIraab, generatePractice, translateSentence } from '../../api'
 import { errorMessage, errorStatus } from '../../lib/api/apiError'
+import { useMutation } from '../../lib/api/useMutation'
 import { buildIraabExportText } from '../../lib/nahw/iraabExport'
 import { bareForm } from '../../lib/text/arabicText'
 import { UNNAMED, caseLabel, isUnnamed, reading } from '../../lib/nahw/grammarTerms'
@@ -33,6 +34,7 @@ import StatusNote from '../ui/feedback/StatusNote'
 import ExampleChips from '../ui/inputs/ExampleChips'
 import MicButton from '../ui/buttons/MicButton'
 import SearchBox from '../ui/inputs/SearchBox'
+import Tucked from '../ui/inputs/Tucked'
 import FlagButton from '../ui/buttons/FlagButton'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 
@@ -74,7 +76,9 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
 
   return (
     <div className="space-y-6">
-      <div className="space-y-3">
+      {/* Folded into one pill holding the sentence once it is analysed, so the
+          analysis is the next thing down (ui/inputs/Tucked). */}
+      <Tucked answer={analyze.data} query={sentence} accent={accent}>
         {/* The same field as Dictionary and Daleel, grown to a textarea: see
             ui/SearchBox's multiline mode. */}
         <SearchBox
@@ -99,7 +103,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
         </SearchBox>
 
         <ExampleChips examples={EXAMPLES} onPick={runExample} accent={accent} />
-      </div>
+      </Tucked>
 
       {analyze.isError && <AnalyzeError error={analyze.error} onRetry={submit} />}
       {analyze.isPending && <AnalyzerSkeleton />}

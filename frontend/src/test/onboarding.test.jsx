@@ -81,7 +81,56 @@ describe('first-visit questions', () => {
     click('button', copy['ready-start'])
     expect(readRaw(LEVEL_KEY)).toBe('beginner')
     expect(readRaw(GOAL_KEY)).toBe('50')
+    expect(readRaw('quiz-language')).toBe('en')
     expect(planNow().done).toBe(true)
     expect(onGo).toHaveBeenCalledWith(...levelOf('beginner').start)
+  })
+})
+
+describe('first-visit questions: one who cannot read yet', () => {
+  beforeEach(() => localStorage.clear())
+
+  it('Start opens the letters, before the Basics', () => {
+    writeRaw(PLAN_KEY, JSON.stringify({ goals: ['understand'], read: 'no', lang: 'ur', hifz: 'none', minutes: '5' }))
+    const onGo = home()
+    while (!screen.queryByText(copy['ready-title'])) next()
+    expect(screen.getByText(/Letters · Basics/)).toBeTruthy()
+    click('button', copy['ready-start'])
+    expect(onGo).toHaveBeenCalledWith(...config['start-unread'])
+    // Urdu meanings, where words are asked by meaning.
+    expect(readRaw('quiz-language')).toBe('ur')
+  })
+})
+
+describe('Change my answers, from Settings', () => {
+  beforeEach(() => localStorage.clear())
+
+  it('reopens the questions on Home with the answers given, after a level was set and paths were walked', async () => {
+    const { default: SettingsPanel } = await import('../components/shell/SettingsPanel')
+    const { visit } = await import('../lib/nav/journey')
+    writeRaw(LEVEL_KEY, 'beginner')
+    writeRaw(PLAN_KEY, JSON.stringify({ goals: ['speak'], read: 'slow', know: 'few', hifz: 'none', dialect: 'egyptian', minutes: '10', done: true }))
+    visit('dict', 'كتب')
+    const onGo = vi.fn()
+    const onClose = vi.fn()
+    const { unmount } = renderScreen(<SettingsPanel open onClose={onClose} onGo={onGo} />)
+    fireEvent.click(screen.getByRole('button', { name: copy.redo, hidden: true }))
+    expect(onClose).toHaveBeenCalled()
+    expect(onGo).toHaveBeenCalledWith('home')
+    expect(planNow()).toMatchObject({ done: false, goals: ['speak'], minutes: '10' })
+    unmount()
+
+    home()
+    expect(screen.getByRole('heading', { name: config.steps[0].question })).toBeTruthy()
+    expect(screen.getByRole('checkbox', { name: /Speak with people/ }).getAttribute('aria-checked')).toBe('true')
+    click('button', copy.skip)
+    expect(planNow()).toMatchObject({ done: true, goals: ['speak'] })
+  })
+
+  it('offers a skipped plan its first answers', async () => {
+    const { default: SettingsPanel } = await import('../components/shell/SettingsPanel')
+    writeRaw(PLAN_KEY, JSON.stringify({ done: true }))
+    renderScreen(<SettingsPanel open onClose={vi.fn()} onGo={vi.fn()} />)
+    expect(screen.getByRole('button', { name: copy['redo-first'], hidden: true })).toBeTruthy()
   })
 })

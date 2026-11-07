@@ -118,7 +118,7 @@
   },
   "space": {
     "_comment": "Gaps shared across tabs. panel is the gap between the blocks of every tab, header included (the .panel class). card and tile are the insides of .card and .tile.",
-    "panel": "1.25rem",
+    "panel": "1.5rem",
     "card": "1rem",
     "tile": "0.75rem"
   },
@@ -434,7 +434,9 @@
     "_terms_tree_comment": "The least page width, in px, at which the hadith Terms view draws the whole tree (components/hadith/terms/TermsView). A floor only: the tree's own width at its smallest legible scale (hadith/terms/termsChart wholeWidth) raises it, and below it a phone or tablet gets the groups as a list.",
     "terms-tree-min": 1100,
     "_rail_comment": "How wide Home's progress column stands beside the tiles on a wide screen (components/home/StatsRail).",
-    "rail": "17rem"
+    "rail": "17rem",
+    "_field_comment": "The widest a question form gets (ui/inputs/Tucked: the search and answer boxes, their chips, the slim pill they tuck into). Stretched across an 80rem page, a box for one word read as a banner, and the eye travelled a metre from the word to its return key.",
+    "field": "45rem"
   },
   "sheet": {
     "_comment": "How big a pop-up may get on a wide screen. Maximums, not widths: a phone stays full width. narrow is a short list of choices (settings, a Grow step), standard a pop-up with reading in it (the chain, a phrase, the word bank), wide a pop-up laid out in columns (the sections menu). tall is how much of the screen height any of them may take. narrator is the widest a name box grows in the chain drawing before it wraps.",
@@ -506,10 +508,10 @@
     "stagger-cap": "5"
   },
   "type": {
-    "_comment": "English text sizes. In rem, so a browser's own text setting still moves them; px would ignore it. micro/tiny/small are supporting labels, badges, captions, the note under a control. body is English being read rather than labelled: an ayah's translation, a verse's gloss. A translation set at a label size is the mistake this token exists to stop, so reach for body whenever the English is the content.",
-    "micro": "0.5625rem",
-    "tiny": "0.625rem",
-    "small": "0.6875rem",
+    "_comment": "English text sizes. In rem, so a browser's own text setting still moves them; px would ignore it. micro/tiny/small are supporting labels, badges, captions, the note under a control. None is under 0.75rem (12px): 9-11px labels were the hardest text in the app to read on a phone. body is English being read rather than labelled: an ayah's translation, a verse's gloss. A translation set at a label size is the mistake this token exists to stop, so reach for body whenever the English is the content.",
+    "micro": "0.75rem",
+    "tiny": "0.75rem",
+    "small": "0.8125rem",
     "body": "0.9375rem",
     "_figure_comment": "A number read at a glance rather than in a sentence: the three counts on the quiz panel's shut bar. Larger than body on purpose, it is what the row exists to show and it has to win against the words beside it.",
     "figure": "1.375rem",

@@ -24,11 +24,12 @@ import Disclosure from '../ui/overlays/Disclosure'
 import SheetHeader from '../ui/overlays/SheetHeader'
 import Segmented from '../ui/inputs/Segmented'
 import LevelSetting from '../level/LevelSetting'
+import RedoAnswers from '../onboarding/RedoAnswers'
 
 // Settings grouped by the module they change, in the order settings.json first names each.
 const SECTIONS = Object.entries(Object.groupBy(SETTINGS, (setting) => setting.section))
 
-export default function SettingsPanel({ open, onClose }) {
+export default function SettingsPanel({ open, onClose, onGo }) {
   const dialog = useModal(open)
   const health = useHealth()
 
@@ -59,6 +60,7 @@ export default function SettingsPanel({ open, onClose }) {
         <section aria-label="Learning" className="space-y-4">
           <h3 className="eyebrow text-[var(--text-faint)]">Learning</h3>
           <LevelSetting />
+          {onGo && <RedoAnswers onGo={onGo} onClose={onClose} />}
         </section>
 
         {SECTIONS.map(([section, all]) => {

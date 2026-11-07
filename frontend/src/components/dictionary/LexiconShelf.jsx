@@ -30,7 +30,7 @@ import { laneEntry } from '../../lib/dictionary/laneEntry'
 import { useLexicons } from '../../lib/dictionary/classicalBooks'
 import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
-import { useMedia } from '../../lib/hooks/useMedia'
+import { useMedia, WIDE } from '../../lib/hooks/useMedia'
 import { colorFor } from '../../theme'
 import { LANE, LANE_TIDY_LABEL, LANE_TIDY_TITLE, useLaneTidy } from '../../lib/dictionary/useLaneTidy'
 
@@ -53,9 +53,6 @@ const NOTHING = {
 /** Added to that one sentence only, and only when there is another root to try. */
 const ELSEWHERE = ' The other root above may be the one they file it under.'
 
-/** Where a book uses the card's width (Tailwind's lg), the same as Ibn Faris's side by side. */
-const WIDE = '(min-width: 64rem)'
-
 /**
  * `shown` is the book on screen; the others stay mounted but hidden, so a
  * book left half read, opened or tidied, is as it was when it is come back to.
@@ -66,7 +63,7 @@ export default function LexiconShelf({ root: asked, shown, hasAlternates, accent
   if (!asked) return null
   const entries = data?.entries ?? []
 
-  // Each book is a block in the frame the caller draws, one on screen at a
+  // Each book is a block in the caller's section, one on screen at a
   // time; the shelf adds no frame or heading of its own. Its heading used to
   // list the books by name, which went stale the day a root came back without one.
   if (entries.length) {
@@ -82,7 +79,7 @@ export default function LexiconShelf({ root: asked, shown, hasAlternates, accent
   if (!data && !isError) return null
 
   return (
-    <div className="p-4 border-t border-[var(--border)]">
+    <div>
       {isError && (
         <ErrorAlert title="The dictionaries could not be read" error={error} onRetry={() => refetch()} />
       )}
@@ -111,6 +108,7 @@ function BookEntry({ entry, root, accent }) {
   const lane = entry.book === LANE
   const [tidy, setTidy] = useLaneTidy()
   const [open, setOpen] = useState(false)
+  // Where a book uses the card's width (WIDE), the same as Ibn Faris's side by side.
   const wide = useMedia(WIDE)
   // Lane in his own sections; the Arabic books as paragraphs (lib/entryLines).
   const shown = useMemo(() => (lane ? laneEntry(entry.text, { tidy }) : paragraphs(entry.text)), [lane, entry.text, tidy])
@@ -123,7 +121,7 @@ function BookEntry({ entry, root, accent }) {
   }
 
   return (
-    <article className="p-4 space-y-2">
+    <article className="space-y-2">
       <BookHeader title={entry.title} author={entry.author} died={entry.died} arabic={arabic} source={entry.source}>
         {/* Only Lane carries the scholar's marks, so only his title has the switch. */}
         {lane && (

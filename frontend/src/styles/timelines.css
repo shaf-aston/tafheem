@@ -70,8 +70,8 @@
 .tl-event .tl-ico { width: 5.25rem; height: 5.25rem; left: -0.6rem; bottom: -0.9rem; }
 
 .tl-board { display: grid; gap: 0.75rem; grid-template-columns: 1fr; }
-@media (min-width: 560px) { .tl-board { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 900px) { .tl-board { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 40rem) { .tl-board { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 64rem) { .tl-board { grid-template-columns: repeat(3, 1fr); } }
 
 /* Top row of compact tiles: one per section, the chosen one stronger. */
 .tl-minis { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); }
@@ -84,7 +84,7 @@
   border-color: var(--tl-acc);
   box-shadow: inset 0 0 0 1px var(--tl-acc);
 }
-@media (max-width: 520px) {
+@media (max-width: 39.99rem) {
   /* One sliding row, not two: the second row pushed the map and the time bar
      under the bottom bar. */
   .tl-minis { display: flex; overflow-x: auto; gap: 0.375rem; scrollbar-width: none; scroll-snap-type: x proximity; margin-inline: -0.25rem; padding-inline: 0.25rem; }

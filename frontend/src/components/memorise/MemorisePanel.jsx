@@ -64,9 +64,9 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   })
   useFollowScroll(card, reciting.marks.at, reciting.listening)
 
-  // How you practise, chosen once and left: beside the pickers on a wide screen,
-  // behind one pill on a phone, where the pickers and both of these were three
-  // rows before the page began.
+  // How you practise is chosen once and left, so it waits behind one Settings
+  // pill on every screen: four rows of controls stood between the tab and the
+  // first ayah.
   const phone = useMedia(PHONE)
   const [opened, setOpen] = useOpenCard(`${bookId}/${part}/${pageNumber}/${reciting.listening}`)
   const ways = WAYS
@@ -89,7 +89,6 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
   const missingLabel = way === 'recite' ? 'Words to say from memory' : 'How much is missing'
   const missingSwitch = (
     <Segmented
-      wrap={phone}
       label={missingLabel}
       title={way === 'recite' ? undefined : difficultyOf(difficulty).title}
       options={missing}
@@ -98,9 +97,8 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
       accent={accent}
     />
   )
-  // On a phone the book, the gaps and the translation wait in one sheet, so
-  // the rows over the page are the way you answer, the surah and the page.
   const settingsRows = [
+    { caption: 'How you answer', control: answerWay },
     { caption: 'Book', control: <Segmented label="Book" options={Object.values(BOOKS)} value={bookId} onChange={openBook} accent={accent} /> },
     missingSwitch && { caption: missingLabel, control: missingSwitch },
     { caption: 'Translation', control: <Segmented label="Translation" options={[{ id: false, label: 'Off' }, { id: true, label: 'On' }]} value={meaning} onChange={setMeaning} accent={accent} /> },
@@ -121,17 +119,9 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
           switch under it already says what each way is. */}
       <SectionHeader tab="mem" />
 
-      {/* One row, no captions: each control's choices already say what it is,
-          and the captions were a second row of grey restating them. Their
-          words stay as screen-reader labels and hover titles. */}
-      {/* On a phone: the way you answer, always in sight, then the part and
-          one pill for what is chosen once and left (book, gaps, translation). */}
-      {phone && answerWay}
-      <div className="flex flex-wrap items-center gap-2">
-        {!phone && (
-          <WheelPicker label="Book" options={Object.values(BOOKS)} value={bookId} onChange={openBook} accent={accent} />
-        )}
-
+      {/* One quiet row, so the page comes first: where you are (part, page)
+          and one Settings pill for everything chosen once and left. */}
+      <div className="mem-bar tap-thumb">
         <WheelPicker
           label={book.partLabel}
           options={parts ?? []}
@@ -140,24 +130,8 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
           accent={accent}
           className="max-w-[18rem]"
         />
-
-        {phone
-          ? <SettingsSheet label={settingsWords.join(' · ')} rows={settingsRows} accent={accent} />
-          : <>{answerWay}{missingSwitch}</>}
-      </div>
-
-      {(isPending || landing) && <Skeleton className="h-40 w-full" />}
-
-      {isError && (
-        <ErrorAlert title="That part could not be read" error={error} fallback="The text comes from the Qur\'an tab\'s own source." onRetry={refetch} />
-      )}
-
-      {data && !landing && pages.length === 0 && <EmptyState>Nothing to memorise here.</EmptyState>}
-
-      {page && !landing && (
-        <>
-          {/* One wrapping row: the page and its arrows, then what helps. */}
-          <div className="tap-thumb flex items-center gap-2 flex-wrap type-ui text-[var(--text-dim)]">
+        {page && !landing && (
+          <>
             {/* A picker, not steps alone: stepping is fine for the next page
                 and useless for the fifteenth. The mushaf page, when known,
                 is the number a memoriser already uses, so it is the label. */}
@@ -177,29 +151,22 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             <Stepper label="page"
               onPrev={atStart ? null : () => stepPage(-1)}
               onNext={atEnd ? null : () => stepPage(1)} />
-            <span className="flex-1" />
-            {/* Only when there is something covered to uncover. Two sizes
-                of help, because being stuck on one word and having lost the
-                thread of a whole ayah are not the same trouble. What they
-                give is marked as given, never as recited. */}
-            {way !== 'recite' && (
-              <Chip accent={accent} onClick={reDeal}>New gaps</Chip>
-            )}
-            {/* Off to start with, and that is the point: "Say He (is) Allah
-                the One" names both words missing from 112:1. It is here for
-                when you are stuck, not for while you are trying. */}
-            {!phone && (
-              <Chip accent={accent} onClick={() => setMeaning((on) => !on)}>
-                {meaning ? 'Hide translation' : 'Show translation'}
-              </Chip>
-            )}
-            {/* Reciting says what to do in its own dock; typing has one
-                thing worth knowing first. */}
-            {way === 'type' && (
-              <span className="basis-full sm:basis-auto text-[var(--text-faint)]">vowels not needed</span>
-            )}
-          </div>
+          </>
+        )}
+        <span className="flex-1" />
+        <SettingsSheet summary={settingsWords.join(' · ')} rows={settingsRows} accent={accent} />
+      </div>
 
+      {(isPending || landing) && <Skeleton className="h-40 w-full" />}
+
+      {isError && (
+        <ErrorAlert title="That part could not be read" error={error} fallback="The text comes from the Qur\'an tab\'s own source." onRetry={refetch} />
+      )}
+
+      {data && !landing && pages.length === 0 && <EmptyState>Nothing to memorise here.</EmptyState>}
+
+      {page && !landing && (
+        <>
           {/* Mounted always, so a screen reader hears the question when it
               appears; empty, it takes no room. */}
           <div role="status" className="empty:absolute">
@@ -296,6 +263,11 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
             )
           ) : (
             <div className="space-y-2">
+              {/* Reciting says what to do in its own dock; typing has one
+                  thing worth knowing first. */}
+              {way === 'type' && !checked && (
+                <p className="type-small text-center text-[var(--text-faint)]">vowels not needed</p>
+              )}
               {/* One button, two jobs: mark the page, then clear it for another
                   go at the same gaps. "New gaps" is the other button because it
                   moves them, and after being shown the answers you want the
@@ -317,7 +289,12 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
               )}
             </div>
           )}
-          <div className="flex justify-center">{pageSteps}</div>
+          {/* New gaps sits with the page turns, under the page: both are
+              "another go", and neither needs to stand above the first ayah. */}
+          <div className="tap-thumb flex justify-center gap-4 flex-wrap">
+            {way !== 'recite' && <Chip accent={accent} onClick={reDeal}>New gaps</Chip>}
+            {pageSteps}
+          </div>
         </>
       )}
     </div>

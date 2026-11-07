@@ -91,3 +91,51 @@ describe('Next in Grow', () => {
     expect(onGo).toHaveBeenCalledWith('grow', 'jawhara/review')
   })
 })
+
+describe('Next for you: picked from the first-visit plan', () => {
+  const PLANNED = { name: knobs.copy['next-plan-label'] }
+  const plan = (answers) => writeRaw(PLAN_KEY, JSON.stringify({ ...answers, done: true }))
+  const OMAR = { goals: ['speak', 'understand'], read: 'slow', know: 'few', hifz: 'none', dialect: 'egyptian', minutes: '10' }
+
+  it("offers the plan's top place on a first visit, a tab when it is one, and one tap opens it", async () => {
+    plan(OMAR)
+    const onGo = vi.fn()
+    renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
+    const next = await screen.findByRole('region', PLANNED)
+    await within(next).findByText('Colloquial')
+    expect(next.textContent).toContain('For your goal: Speak with people')
+    fireEvent.click(within(next).getByRole('button'))
+    expect(onGo).toHaveBeenCalledWith('colloq')
+  })
+
+  it('a Grow world from the plan starts its step: the letters, for one who cannot read yet', async () => {
+    plan({ goals: ['understand'], read: 'no', hifz: 'none', minutes: '5' })
+    const onGo = vi.fn()
+    renderScreen(<HomePanel accent="var(--primary)" onGo={onGo} />)
+    const next = await screen.findByRole('region', PLANNED)
+    await within(next).findByText('Letters')
+    fireEvent.click(within(next).getByRole('button'))
+    expect(onGo).toHaveBeenCalledWith('grow', 'letters/lesson')
+  })
+
+  it('is the one start on a first visit: the level picker is not shown beside it', async () => {
+    plan(OMAR)
+    renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />)
+    await screen.findByRole('region', PLANNED)
+    expect(screen.queryByRole('region', { name: knobs.copy['fork-label'] })).toBeNull()
+  })
+
+  it('is not offered twice: not when it is the place on the card', async () => {
+    plan(OMAR)
+    renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />)
+    act(() => { visit('colloq') })
+    await screen.findByRole('button', { name: /Continue/ })
+    await waitFor(() => expect(screen.queryByRole('region', PLANNED)).toBeNull())
+  })
+
+  it('a skipped plan picks as before', async () => {
+    renderScreen(<HomePanel accent="var(--primary)" onGo={vi.fn()} />, { routes: used('jawhara', 6) })
+    await screen.findByRole('region', NEXT)
+    expect(screen.queryByRole('region', PLANNED)).toBeNull()
+  })
+})

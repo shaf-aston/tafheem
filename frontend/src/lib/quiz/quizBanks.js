@@ -21,7 +21,8 @@
  */
 import settings from '../../config/quiz.json'
 import { loadStatic, staticQuery } from '../api/staticQuery'
-import { fetchReviewItems } from '../learner/progress'
+import { fetchReviewItems, fetchSummary } from '../learner/progress'
+import { readSavedWords, savedToAsk } from './savedWords'
 
 export const QUIZ = {
   optionCount: settings['option-count'],
@@ -127,6 +128,8 @@ export async function allWords() {
 // The cache entries the quiz, its insights and the learnt-words hook share. One
 // spelling each, so a refresh of one is a refresh of all.
 export const allWordsQuery = { queryKey: ['quiz-words', 'all'], queryFn: allWords }
+/** Each surah's word counts, one cache for the quiz's per-surah list and the Qur'an tab's Continue. */
+export const surahCoverageQuery = { queryKey: ['quiz-surah-coverage'], queryFn: surahCoverage }
 export const coverageQuery = { queryKey: ['quiz-coverage'], queryFn: coverage }
 
 /**
@@ -144,9 +147,13 @@ export async function wordsFor(bankId, groupId = '', language = QUIZ.language) {
   // wrong long enough ago that it has since left the word list simply does not
   // come back, which is the honest answer: it cannot be asked any more.
   if (BANKS[bankId]?.live) {
-    // In the order the store gives, longest overdue first.
-    const owed = await fetchReviewItems(moduleFor(language))
-    const rank = new Map(owed.map((item, i) => [item, i]))
+    // In the order the store gives, longest overdue first, then the words
+    // saved from the reader that the store does not call known yet.
+    const module = moduleFor(language)
+    const owed = await fetchReviewItems(module)
+    const saved = readSavedWords()
+    const extra = saved.length ? savedToAsk(saved, await fetchSummary(module), owed) : []
+    const rank = new Map([...owed, ...extra].map((item, i) => [item, i]))
     return words
       .filter((word) => rank.has(word.meaningKey))
       .sort((a, b) => rank.get(a.meaningKey) - rank.get(b.meaningKey))

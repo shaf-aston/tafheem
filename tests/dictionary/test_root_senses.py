@@ -1,6 +1,8 @@
 """The entry cut into its words: the model's answer held against the book."""
 import json
 
+import pytest
+
 from backend.services.dictionary import root_senses
 
 LINES = [
@@ -113,3 +115,43 @@ def test_the_model_copies_the_books_explanation_before_it_glosses():
 def test_the_explanation_the_model_copied_is_not_kept():
     answer = _answer(means="معروف")
     assert all("means" not in s for s in root_senses.check(answer, LINES))
+
+
+def test_a_word_given_wrong_is_a_word_not_given():
+    # Its lines fall to the word before it, as a skipped line does.
+    for wrong in ({"gloss": ""}, {"lines": "2-3"}, {"lines": []}):
+        senses = _answer()["senses"]
+        senses.insert(1, {"lines": [2], "word": "الرطب", **wrong})
+        senses[2]["lines"] = [3]
+        assert [s["lines"] for s in root_senses.check({"senses": senses}, LINES)] == [[0, 1], [2, 2], [3, 3]]
+    assert root_senses.check({"senses": ["not a sense", *_answer()["senses"]]}, LINES)
+
+
+def test_cut_asks_once_more_when_the_call_itself_fails():
+    answers = iter([RuntimeError("Error code: 400 json_validate_failed"), _answer()])
+
+    def ask(lines):
+        answer = next(answers)
+        if isinstance(answer, Exception):
+            raise answer
+        return answer
+
+    assert root_senses.cut(ask, LINES)[1]["word"] == "الرُّطَبُ"
+
+
+def test_cut_raises_a_call_that_fails_both_times_and_a_timeout_at_once():
+
+    def broken(lines):
+        raise RuntimeError("refused")
+
+    with pytest.raises(RuntimeError):
+        root_senses.cut(broken, LINES)
+    calls = []
+
+    def slow(lines):
+        calls.append(1)
+        raise TimeoutError
+
+    with pytest.raises(TimeoutError):
+        root_senses.cut(slow, LINES)
+    assert len(calls) == 1

@@ -1,0 +1,257 @@
+{
+  "_comment": "Letters world: the 28 letters, taught by shape (the letters drawn alike, told apart by their dots, come together). `id` ascii, unique; `letter` the letter alone; `name` its English name, `ar` its Arabic name, vowelled; `sound` one short line on how it is said; `family` the letters with its shape, from which the wrong options are drawn first; `joins` false for the six letters that never join the letter after them (ا د ذ ر ز و).",
+  "letters": [
+    {
+      "id": "alif",
+      "letter": "ا",
+      "name": "alif",
+      "ar": "أَلِف",
+      "sound": "a long ā, or a seat for hamza (a catch in the throat)",
+      "family": "alif",
+      "joins": false
+    },
+    {
+      "id": "ba",
+      "letter": "ب",
+      "name": "bā’",
+      "ar": "بَاء",
+      "sound": "b, as in book",
+      "family": "ba",
+      "joins": true
+    },
+    {
+      "id": "ta",
+      "letter": "ت",
+      "name": "tā’",
+      "ar": "تَاء",
+      "sound": "t, as in tap",
+      "family": "ba",
+      "joins": true
+    },
+    {
+      "id": "tha",
+      "letter": "ث",
+      "name": "thā’",
+      "ar": "ثَاء",
+      "sound": "th, as in think",
+      "family": "ba",
+      "joins": true
+    },
+    {
+      "id": "nun",
+      "letter": "ن",
+      "name": "nūn",
+      "ar": "نُون",
+      "sound": "n, as in name",
+      "family": "ba",
+      "joins": true
+    },
+    {
+      "id": "ya",
+      "letter": "ي",
+      "name": "yā’",
+      "ar": "يَاء",
+      "sound": "y, as in yes, or a long ī",
+      "family": "ba",
+      "joins": true
+    },
+    {
+      "id": "jim",
+      "letter": "ج",
+      "name": "jīm",
+      "ar": "جِيم",
+      "sound": "j, as in jam",
+      "family": "jim",
+      "joins": true
+    },
+    {
+      "id": "ha",
+      "letter": "ح",
+      "name": "ḥā’",
+      "ar": "حَاء",
+      "sound": "a breathy h, pushed from the throat",
+      "family": "jim",
+      "joins": true
+    },
+    {
+      "id": "kha",
+      "letter": "خ",
+      "name": "khā’",
+      "ar": "خَاء",
+      "sound": "kh, as in the Scottish loch",
+      "family": "jim",
+      "joins": true
+    },
+    {
+      "id": "dal",
+      "letter": "د",
+      "name": "dāl",
+      "ar": "دَال",
+      "sound": "d, as in door",
+      "family": "dal",
+      "joins": false
+    },
+    {
+      "id": "dhal",
+      "letter": "ذ",
+      "name": "dhāl",
+      "ar": "ذَال",
+      "sound": "th, as in this",
+      "family": "dal",
+      "joins": false
+    },
+    {
+      "id": "ra",
+      "letter": "ر",
+      "name": "rā’",
+      "ar": "رَاء",
+      "sound": "a rolled r",
+      "family": "ra",
+      "joins": false
+    },
+    {
+      "id": "zay",
+      "letter": "ز",
+      "name": "zāy",
+      "ar": "زَاي",
+      "sound": "z, as in zoo",
+      "family": "ra",
+      "joins": false
+    },
+    {
+      "id": "waw",
+      "letter": "و",
+      "name": "wāw",
+      "ar": "وَاو",
+      "sound": "w, as in wet, or a long ū",
+      "family": "ra",
+      "joins": false
+    },
+    {
+      "id": "sin",
+      "letter": "س",
+      "name": "sīn",
+      "ar": "سِين",
+      "sound": "s, as in sun",
+      "family": "sin",
+      "joins": true
+    },
+    {
+      "id": "shin",
+      "letter": "ش",
+      "name": "shīn",
+      "ar": "شِين",
+      "sound": "sh, as in ship",
+      "family": "sin",
+      "joins": true
+    },
+    {
+      "id": "sad",
+      "letter": "ص",
+      "name": "ṣād",
+      "ar": "صَاد",
+      "sound": "a heavy s, said with the tongue low",
+      "family": "sad",
+      "joins": true
+    },
+    {
+      "id": "dad",
+      "letter": "ض",
+      "name": "ḍād",
+      "ar": "ضَاد",
+      "sound": "a heavy d",
+      "family": "sad",
+      "joins": true
+    },
+    {
+      "id": "tah",
+      "letter": "ط",
+      "name": "ṭā’",
+      "ar": "طَاء",
+      "sound": "a heavy t",
+      "family": "tah",
+      "joins": true
+    },
+    {
+      "id": "zah",
+      "letter": "ظ",
+      "name": "ẓā’",
+      "ar": "ظَاء",
+      "sound": "a heavy th, as in this",
+      "family": "tah",
+      "joins": true
+    },
+    {
+      "id": "ayn",
+      "letter": "ع",
+      "name": "‘ayn",
+      "ar": "عَيْن",
+      "sound": "a squeeze deep in the throat; English has no such sound",
+      "family": "ayn",
+      "joins": true
+    },
+    {
+      "id": "ghayn",
+      "letter": "غ",
+      "name": "ghayn",
+      "ar": "غَيْن",
+      "sound": "gh, like a gargled French r",
+      "family": "ayn",
+      "joins": true
+    },
+    {
+      "id": "fa",
+      "letter": "ف",
+      "name": "fā’",
+      "ar": "فَاء",
+      "sound": "f, as in fish",
+      "family": "fa",
+      "joins": true
+    },
+    {
+      "id": "qaf",
+      "letter": "ق",
+      "name": "qāf",
+      "ar": "قَاف",
+      "sound": "a deep k, from the back of the throat",
+      "family": "fa",
+      "joins": true
+    },
+    {
+      "id": "kaf",
+      "letter": "ك",
+      "name": "kāf",
+      "ar": "كَاف",
+      "sound": "k, as in kite",
+      "family": "kaf",
+      "joins": true
+    },
+    {
+      "id": "lam",
+      "letter": "ل",
+      "name": "lām",
+      "ar": "لَام",
+      "sound": "l, as in leaf",
+      "family": "kaf",
+      "joins": true
+    },
+    {
+      "id": "mim",
+      "letter": "م",
+      "name": "mīm",
+      "ar": "مِيم",
+      "sound": "m, as in moon",
+      "family": "mim",
+      "joins": true
+    },
+    {
+      "id": "hah",
+      "letter": "ه",
+      "name": "hā’",
+      "ar": "هَاء",
+      "sound": "h, as in hat",
+      "family": "mim",
+      "joins": true
+    }
+  ]
+}

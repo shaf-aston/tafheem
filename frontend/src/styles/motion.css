@@ -688,3 +688,17 @@
   transform: translateY(calc(var(--d) * -1lh));
   transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
 }
+
+
+/* ── Inside a lesson: the check moment (components/practice/LessonRunner) ──
+   On Check the pick answers at once: right, it flashes green for an instant; wrong, it shakes its head, quicker than
+   the Quiz's .shake (twice instant-ms, 240ms), while the right one is marked. Then the feedback panel rises from the
+   foot. With reduced motion asked for, the colours still say it and nothing moves. */
+@keyframes lesson-flash {
+  from { background-color: color-mix(in srgb, var(--success) 45%, var(--surface)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .grow-option[data-mark='right'][aria-checked='true'] { animation: lesson-flash calc(var(--motion-instant-ms) * 1ms) ease-out; }
+  .grow-option[data-mark='wrong'] { animation: shake calc(var(--motion-instant-ms) * 2 * 1ms) ease-in-out; }
+  .grow-lesson-foot[data-result] { animation: sheet-up calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) backwards; }
+}

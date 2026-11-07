@@ -35,6 +35,6 @@ describe('worlds', () => {
     expect(missingLessonHooks({})).toEqual(
       config.worlds.filter((world) => world.kind === 'lessons').map((world) => world.id),
     )
-    expect(missingLessonHooks({ basics: {}, words: {}, hadith: {}, quran: {}, prayer: {} })).toEqual([])
+    expect(missingLessonHooks({ letters: {}, basics: {}, words: {}, hadith: {}, quran: {}, prayer: {} })).toEqual([])
   })
 })

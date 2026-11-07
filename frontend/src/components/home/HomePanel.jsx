@@ -34,6 +34,8 @@ import LogInButton from '../profile/LogInButton'
 import LevelPicker from '../level/LevelPicker'
 import Onboarding from '../onboarding/Onboarding'
 import { usePlan } from '../../lib/learner/usePlan'
+import { begun } from '../../lib/learner/plan'
+import { answered } from '../../lib/learner/recommend'
 import FahmWord from './FahmWord'
 import GrowNext from './GrowNext'
 import ModuleCard from './ModuleCard'
@@ -66,16 +68,16 @@ export default function HomePanel({ accent, onGo }) {
   const resume = resumePlace(steps, LISTED, HOME)
   const first = !resume
   // A first visit is asked a few questions once, unless a level is already chosen (sign-up, another device); skipped or
-  // done, it is the three-level picker as before.
+  // done, it is the three-level picker as before. Reopened from Settings (not done, answers kept), it is asked again.
   const { plan } = usePlan()
-  const asked = first && !plan.done && !chosen
+  const asked = !plan.done && ((first && !chosen) || begun(plan))
   const lead = tabOf(resume?.tab ?? FALLBACK[0])
   if (asked) return <div className="panel isolate" style={{ '--c': accent }}><Onboarding onGo={onGo} /></div>
-  // One step in Grow picked from the record, unless it is the place on the card. With no path walked (a new visit),
-  // only one the learner was studying: what fits the level is the picker's to offer.
+  // One step picked from the record (or, once answered, the first-visit plan), unless it is the place on the card. With
+  // no path walked (a new visit) and no plan, only one the learner was studying: what fits the level is the picker's.
   const next = (
-    <GrowNext modules={overview.data?.modules} pending={overview.isPending} level={level} copy={copy} onGo={onGo} studiedOnly={first}
-      skip={!first && lead.id === 'grow' ? resume.value : undefined} />
+    <GrowNext modules={overview.data?.modules} pending={overview.isPending} level={level} plan={plan} copy={copy} onGo={onGo}
+      studiedOnly={first} skip={first ? undefined : { tab: lead.id, value: resume.value }} />
   )
   const card = (tab, at) => (
     <ModuleCard key={tab.id} tab={tab} accent={accentOf(tab.id)} index={at} progressText={progressText(sums[tab.id])} onOpen={onGo} />
@@ -116,8 +118,9 @@ export default function HomePanel({ accent, onGo }) {
               {/* A returning learner on a new visit (no path walked) sees what they were studying above the picker. */}
               {first && next}
               {/* A first visit asks how much Arabic you know, and starts there; after that, where you stopped. */}
+              {/* Once the plan is answered its pick above is the one start: the picker would be a second. */}
               {first
-                ? <LevelPicker copy={copy} onGo={onGo} />
+                ? !answered(plan) && <LevelPicker copy={copy} onGo={onGo} />
                 : <ResumeCard tab={lead} accent={accentOf(lead.id)} value={resume.value} label={copy['resume-label']} goLabel={copy['resume-go']}
                   progressText={progressText(sums[lead.id])} onGo={onGo} />}
               {!first && next}

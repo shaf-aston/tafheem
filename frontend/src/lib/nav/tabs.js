@@ -107,8 +107,9 @@ export const HOME = FIXED[0]
 export const START = GROUPS[0].id
 export const RECENT = ['daleel', 'mem', 'quiz']
 
-// The phone's bar until the reader changes it (lib/nav/dock.js): these, in this order, then More.
-export const DOCK = ['home', 'quran', 'dict', 'quiz']
+// The phone's two tab places until the reader changes them (lib/nav/dock.js); Ask,
+// Learn and Me follow them (shell/BottomNav), so Ask stands in the middle.
+export const DOCK = ['home', 'quran']
 
 /** A tab's colour, with the theme's own fallback rule. */
 export const accentOf = (id) => colorFor('tab', id)

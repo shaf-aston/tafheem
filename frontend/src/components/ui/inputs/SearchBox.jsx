@@ -65,8 +65,10 @@ export default function SearchBox({
   const Field = multiline ? 'textarea' : 'input'
   const said = hint ?? (verb && !filtering ? `Enter to ${verb}${children ? ', or say it' : ''}` : null)
 
+  // Capped on a wide screen: a box for one word stretched to the page's 80rem
+  // read as a banner, its return key a long way from the word typed.
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 max-w-[var(--layout-field)]">
       <label htmlFor={id} className="block type-ui font-medium text-[var(--text-dim)]">
         {label}
         {said && (
