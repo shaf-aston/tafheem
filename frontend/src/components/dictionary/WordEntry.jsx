@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { rootBabsQuery } from '../../api'
-import { entrySpans } from '../../lib/dictionary/entrySpan'
 import { plainPronunciation } from '../../lib/speech/pronounce'
 import { useSetting } from '../../lib/store/settings'
 
@@ -16,11 +15,6 @@ import RootActions from '../ui/buttons/RootActions'
 import SourceBadge from '../ui/feedback/SourceBadge'
 import StatusNote, { NoteWord } from '../ui/feedback/StatusNote'
 import VerbFormTag from '../ui/text/VerbFormTag'
-
-// Tailwind needs the literal class names present in source to keep them in the
-// build; a computed string like `sm:col-span-${n}` would be purged.
-const SM_SPAN = { 1: 'sm:col-span-1', 2: 'sm:col-span-2' }
-const LG_SPAN = { 1: 'lg:col-span-1', 2: 'lg:col-span-2', 3: 'lg:col-span-3' }
 
 /** A word that is no headword, found as the word it is a form of, or by its root. */
 export function ReadAsNote({ readAs }) {
@@ -36,13 +30,25 @@ export function ReadAsNote({ readAs }) {
 }
 
 export default function WordEntry({ data, accent, onGo, onLookup, aside = null }) {
-  // The badge at the top right opens the references behind the bab names.
+  // The badge opens the references behind the bab names.
   const [refs, setRefs] = useState(false)
   if (data.results.length === 0) {
     return (
       <EmptyState>No entries. Try the bare root, without prefixes or endings.</EmptyState>
     )
   }
+
+  const badge = (
+    <button
+      type="button"
+      onClick={() => setRefs((on) => !on)}
+      aria-expanded={refs}
+      aria-label="Show where each bab is recorded"
+    >
+      <SourceBadge source={data.source} />
+    </button>
+  )
+  const english = data.lang === 'en'
 
   return (
     <div className="space-y-3">
@@ -55,14 +61,8 @@ export default function WordEntry({ data, accent, onGo, onLookup, aside = null }
         </p>
         {/* The panel's own link, on this line rather than a row of its own above it. */}
         {aside}
-        <button
-          type="button"
-          onClick={() => setRefs((on) => !on)}
-          aria-expanded={refs}
-          aria-label="Show where each bab is recorded"
-        >
-          <SourceBadge source={data.source} />
-        </button>
+        {/* An Arabic answer carries its badge in its own card; the English grid has no one card to carry it. */}
+        {english && badge}
       </div>
 
       {/* Two questions, two shapes. An Arabic word asks what it means, and the
@@ -70,57 +70,49 @@ export default function WordEntry({ data, accent, onGo, onLookup, aside = null }
           carry that meaning, and the answer is the candidates side by side; the
           same full entries were a page and a half of scrolling to compare two
           of them. See dictionary/WordGrid.jsx. */}
-      {data.lang === 'en' ? (
+      {english ? (
         <WordGrid results={data.results} query={data.query} accent={accent} onGo={onGo} />
       ) : (
-        <Forms results={data.results} accent={accent} onGo={onGo} onLookup={onLookup} refs={refs} />
+        <Forms results={data.results} accent={accent} onGo={onGo} onLookup={onLookup} refs={refs} badge={badge} />
       )}
     </div>
   )
 }
 
 /**
- * The searched word in full, and the other words on its root as small cards.
+ * The searched word in its card, and the other words on its root as rows under it.
  *
  * The first result is the word asked about (the service puts the exact word
- * first), and it is read the way a dictionary entry is read. The rest are
- * there to be compared, أطلع against استطلع against اطلاع, so they sit side by
- * side in a grid, each row full and a card wide only where its lines wrap
- * (lib/entrySpan.js), so the eye moves across rather than down.
- * A drop-down would have hidden the very thing worth comparing.
+ * first), and it is the answer: the one card on the page. The rest are context,
+ * so they sit as quiet rows ruled off by a hairline. They were a grid of cards,
+ * each its own box with the same Conjugate and Qur'an pills, and on a phone the
+ * grid was one card wide: eight boxes, a screen and a half, saying the root's
+ * name eight times.
  */
-function Forms({ results, accent, onGo, onLookup, refs }) {
+function Forms({ results, accent, onGo, onLookup, refs, badge }) {
   const [lead, ...others] = results
-  const sm = entrySpans(others, 2)
-  const lg = entrySpans(others, 3)
   return (
     <>
-      <Entry entry={lead} accent={accent} i={0} onGo={onGo} onLookup={onLookup} refs={refs} />
+      <Entry entry={lead} accent={accent} onGo={onGo} onLookup={onLookup} refs={refs} badge={badge} />
       {others.length > 0 && (
-        <>
-          <p className="type-small text-[var(--text-faint)] pt-2">
+        <section aria-labelledby="dict-more" className="space-y-2 pt-2">
+          <h3 id="dict-more" className="eyebrow">
             {others.length === 1 ? 'One more word on this root' : `${others.length} more words on this root`}
-          </p>
-          {/* Grid default (stretch) so every card in a row shares that row's
-              height; a short card beside a tall one used to end early and read
-              as a mismatched row rather than one grid. */}
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          </h3>
+          <ol className="dict-rows">
             {others.map((entry, i) => (
-              <Entry
+              <Row
                 key={`${entry.arabic}-${entry.root || i}`}
                 entry={entry}
                 accent={accent}
                 i={i + 1}
                 onGo={onGo}
                 onLookup={onLookup}
-                compact
-                span={`${SM_SPAN[sm[i]]} ${LG_SPAN[lg[i]]}`}
-                wide={lg[i] >= 2}
                 sameRoot={entry.root === lead.root}
               />
             ))}
-          </div>
-        </>
+          </ol>
+        </section>
       )}
     </>
   )
@@ -132,58 +124,76 @@ function RootBabs({ root, refs }) {
   return data?.readings.length ? <VerbFormTag readings={data.readings} plain showSources={refs} /> : null
 }
 
-/**
- * One dictionary entry. Full for the word searched; compact for the words
- * beside it, where the root is left off when it is the same one printed
- * above, and its columns (`span`) come from the whole set (lib/entrySpan.js).
- * One type scale throughout (styles/text.css tokens): a card holding eight senses
- * reads at the same size as one holding a single line, only its footprint
- * differs.
- */
-function Entry({ entry, accent, i, onGo, onLookup, refs = false, compact = false, span = '', wide = false, sameRoot = false }) {
-  // Off by default for nobody, but one switch away for anyone who finds the
-  // extra words distracting. Read here rather than passed down, so the switch
-  // reaches the one place that draws them.
-  const showSynonyms = useSetting('synonyms')
+const hasSynonyms = (entry) => (entry.synonyms ?? []).some((list) => list.length > 0)
 
+/** An entry's senses: banded beside their synonyms where it has any and they are wanted, else a plain list. */
+function Senses({ entry, accent, onLookup, className }) {
+  // Off by default for nobody, but one switch away for anyone who finds the
+  // extra words distracting. Read here, the one place that draws them.
+  const showSynonyms = useSetting('synonyms')
+  if (!entry.definitions?.length) return null
+  if (showSynonyms && hasSynonyms(entry)) {
+    return <SenseBands definitions={entry.definitions} synonyms={entry.synonyms} accent={accent} onLookup={onLookup} />
+  }
   return (
-    <div
-      style={{ '--i': i }}
-      className={`rise-in rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)]
-        ${compact ? 'p-3 space-y-2' : 'p-4 space-y-3'} ${span}`}
-    >
+    <ol className={className}>
+      {entry.definitions.map((d, n) => <li key={n}>{plainPronunciation(d)}</li>)}
+    </ol>
+  )
+}
+
+/**
+ * The word searched, in full: the one card of the answer, its source badge in
+ * its foot beside where the root goes next. One type scale throughout
+ * (styles/text.css tokens).
+ */
+function Entry({ entry, accent, onGo, onLookup, refs, badge }) {
+  return (
+    <div style={{ '--i': 0 }} className="rise-in card space-y-3">
       {/* Two rows: word beside its sound, root beside its bab (from the books, never typed in). */}
       <div className="grid grid-cols-[auto_auto] justify-between items-baseline gap-x-3 gap-y-0.5" dir="rtl">
         <ArabicText as="div" style={{ color: accent }}>{entry.arabic}</ArabicText>
         <Pronunciation size="body">{entry.transliteration}</Pronunciation>
-        {entry.root && !sameRoot && (
-          <ArabicText as="div" className="text-[var(--text-faint)]">جذر: {entry.root}</ArabicText>
-        )}
-        {!compact && entry.root && <div dir="ltr"><RootBabs root={entry.root} refs={refs} /></div>}
+        {entry.root && <ArabicText as="div" className="text-[var(--text-faint)]">جذر: {entry.root}</ArabicText>}
+        {entry.root && <div dir="ltr"><RootBabs root={entry.root} refs={refs} /></div>}
       </div>
 
-      {/* A one-column card has no synonyms (that is what keeps it narrow), and
-          the band's empty word column would squeeze its senses to a sliver. */}
-      {entry.definitions?.length > 0 && (
-        showSynonyms && !(compact && !wide) ? (
-          <SenseBands
-            definitions={entry.definitions}
-            synonyms={entry.synonyms}
-            accent={accent}
-            onLookup={onLookup}
-          />
-        ) : (
-          <ol className="list-decimal ps-6 min-w-0 space-y-1.5 type-body text-[var(--text)] marker:text-[var(--text-faint)]">
-            {entry.definitions.map((d, n) => <li key={n}>{plainPronunciation(d)}</li>)}
-          </ol>
-        )
-      )}
+      <Senses entry={entry} accent={accent} onLookup={onLookup}
+        className="list-decimal ps-6 min-w-0 space-y-1.5 type-body text-[var(--text)] marker:text-[var(--text-faint)]" />
 
-      {entry.root && (
-        // showRoot=false: the root already prints above under "جذر:", so the
-        // bare repeat inside RootActions is dropped.
-        <RootActions root={entry.root} onGo={onGo} exclude="dict" showRoot={false} />
-      )}
+      <div className="flex flex-wrap items-center gap-2">
+        {/* showRoot=false: the root already prints above under "جذر:". */}
+        {entry.root && <RootActions root={entry.root} onGo={onGo} exclude="dict" showRoot={false} />}
+        <span className="ms-auto">{badge}</span>
+      </div>
     </div>
+  )
+}
+
+/**
+ * Another word on the root, as one row: the word at the edge Arabic starts
+ * from, its sound and its senses run on beside it, one paragraph. Its root and
+ * the ways on from it only when they differ from the card's: the same root's
+ * Conjugate and Qur'an are one press away in the card above.
+ */
+function Row({ entry, accent, i, onGo, onLookup, sameRoot }) {
+  const other = entry.root && !sameRoot
+  return (
+    <li style={{ '--i': i }} className="rise-in grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-2">
+      <div className="min-w-0">
+        <Pronunciation className="me-2">{entry.transliteration}</Pronunciation>
+        <Senses entry={entry} accent={accent} onLookup={onLookup}
+          className="dict-run-on inline type-body text-[var(--text)]" />
+      </div>
+      <div className="text-end">
+        <ArabicText as="div" style={{ color: accent }}>{entry.arabic}</ArabicText>
+        {other && <ArabicText as="div" size="sm" className="text-[var(--text-faint)]">جذر: {entry.root}</ArabicText>}
+      </div>
+      {other && (
+        <div className="col-span-full">
+          <RootActions root={entry.root} onGo={onGo} exclude="dict" showRoot={false} />
+        </div>
+      )}
+    </li>
   )
 }

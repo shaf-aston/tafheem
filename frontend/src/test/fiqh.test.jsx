@@ -46,7 +46,7 @@ describe('fiqh', () => {
     click('Continue')
     for (const name of ['Wash the face', 'Wash the arms, elbows included', 'Wipe the head', 'Wash the feet, ankles included']) click(name)
     click('Check')
-    expect(screen.getByRole('status').textContent).toMatch(/^Right! The fard are the four in the ayah/)
+    expect(screen.getByRole('status').textContent).toMatch(/^Correct The fard are the four in the ayah/)
     await waitFor(() => expect(filed.at(-1)).toMatchObject({ module: 'quduri', item: 'wudu/which-fard', correct: true }))
 
     // Teach, then the gap: a wrong word is marked and comes back at the end.

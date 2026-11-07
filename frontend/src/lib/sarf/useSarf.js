@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation } from '../api/useMutation'
 
 import { analyzeMorphology, analyzeMeaning, conjugateForm } from '../../api'
 import { useArrival, useArrivalEffect, useHeld } from '../nav/useArrival'

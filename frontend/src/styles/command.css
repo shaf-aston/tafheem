@@ -128,7 +128,7 @@
 .cb-key {
   flex-shrink: 0;
   font-family: var(--font-ui);
-  font-size: max(var(--type-tiny), 0.6875rem);
+  font-size: var(--type-tiny);
   letter-spacing: 0.04em;
   padding: 0.1rem 0.3rem;
   border: 1px solid var(--border);

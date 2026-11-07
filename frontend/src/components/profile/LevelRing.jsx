@@ -15,7 +15,7 @@ export default function LevelRing({ rewards, gain }) {
   const filled = shareOf(rewards) * AROUND
   return (
     <span className="level-ring" title={`${rank.en} · level ${rewards.level} · ${rewards.into} / ${rewards.need} XP`}>
-      <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
+      <svg viewBox="0 0 20 20" width="24" height="24" aria-hidden="true">
         <circle cx="10" cy="10" r={R} fill="none" stroke="var(--border)" strokeWidth="2" />
         <circle cx="10" cy="10" r={R} fill="none" stroke={colorFor('tab', 'grow')} strokeWidth="2" strokeLinecap="round"
           strokeDasharray={`${filled} ${AROUND}`} transform="rotate(-90 10 10)" className="level-ring-fill" />

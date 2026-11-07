@@ -26,6 +26,6 @@ export const TOOLS = [
     // Its own tab, hidden from the tab lists: this button is the way in.
     tab: 'map',
     paths: ['M9 3 3 5.5v15L9 18l6 2.5L21 18V3l-6 2.5L9 3Z', 'M9 3v15M15 5.5v15'],
-    phone: 'both',
+    phone: 'more',
   },
 ]

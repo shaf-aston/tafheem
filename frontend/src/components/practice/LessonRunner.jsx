@@ -1,5 +1,7 @@
 /**
- * A lesson, one card at a time: pick, Check, Continue. Wrong cards return once at the end; no hearts.
+ * A lesson, one card at a time: pick, Check, Continue. Check marks the pick, then a panel rises at the foot with the
+ * verdict and one line, holding Continue. The lesson holds focus mode (lib/shell/focus.js) until its end screen. Wrong
+ * cards return once at the end; no hearts.
  * Cards are the exercise registry's; answers save like the Quiz's. Three right in a row shows a run; the end screen
  * sums the XP the server reported, how many were right first time, and how long the lesson took, recaps what was missed,
  * and offers the next lesson (`next`: its title and `go`) when there is one. Enter presses the footer's button (Check or
@@ -13,6 +15,7 @@ import { useEffect, useRef, useState } from 'react'
 import { requeue } from '../../lib/grow/lesson'
 import { useRecord } from '../../lib/learner/record'
 import { rankOf, shareOf } from '../../lib/learner/rewards'
+import { useFocusMode } from '../../lib/shell/focus'
 import { sayIn } from '../../lib/text/say'
 import ArabicText from '../ui/text/ArabicText'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
@@ -78,6 +81,8 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
   }
 
   const done = at >= cards.length
+  // While it runs the lesson has the screen: its × and bar are the only chrome. The end screen gives the app back.
+  useFocusMode(!done)
   if (done) return <LessonDone tally={tally} took={took} missed={missed} marks={marks} accent={accent} rewards={rewards} guest={guest} next={after} onLeave={onLeave} />
 
   const card = cards[at]
@@ -110,6 +115,10 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
     setResult(null)
   }
 
+  const said = result === 'right'
+    ? kind.because?.(card)
+    // A card comes back once: its second miss says only the answer.
+    : result && [kind.correction(card, value), !card.again && say('It comes back at the end.')].filter(Boolean).join(' ')
   const { Card } = kind
   return (
     <div className="grow-lesson" style={{ '--w': accent }}>
@@ -134,12 +143,11 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
       </div>
 
       <div className="grow-lesson-foot" data-result={result ?? undefined} inert={leaving}>
+        {/* The verdict, then one line: why, or the right answer. */}
         {result && (
           <p role="status" className="grow-lesson-say">
-            {result === 'right'
-              ? [say('Right!'), kind.because?.(card)].filter(Boolean).join(' ')
-              // A card comes back once: its second miss says only the answer.
-              : [kind.correction(card, value), !card.again && say('It comes back at the end.')].filter(Boolean).join(' ')}
+            <b>{say(result === 'right' ? 'Correct' : 'Not quite')}</b>
+            {said && <> <span>{said}</span></>}
           </p>
         )}
         {asks && !result

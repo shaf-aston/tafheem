@@ -22,6 +22,7 @@ import MicButton from '../ui/buttons/MicButton'
 import PlaceLinks from '../ui/text/PlaceLinks'
 import RecentRow from '../ui/inputs/RecentRow'
 import SearchBox from '../ui/inputs/SearchBox'
+import Tucked from '../ui/inputs/Tucked'
 import SectionHeader from '../ui/display/SectionHeader'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import { CorrectedNote } from '../ui/feedback/StatusNote'
@@ -88,16 +89,18 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
         </ErrorAlert>
       )}
 
-      {/* Every recent word, whichever language it was in: they were split into
-          two lists by the toggle that used to sit above, and half of them were
-          hidden at any one time. Each chip is set in its own script. */}
-      <RecentRow
-        items={history.map((h) => h.q)}
-        accent={accent}
-        onPick={submit}
-      />
+      {/* Folded into one pill holding the word once its answer is up, so the
+          answer is the next thing down (ui/inputs/Tucked). */}
+      <Tucked answer={shown} query={query} accent={accent}>
+        {/* Every recent word, whichever language it was in: they were split into
+            two lists by the toggle that used to sit above, and half of them were
+            hidden at any one time. Each chip is set in its own script. */}
+        <RecentRow
+          items={history.map((h) => h.q)}
+          accent={accent}
+          onPick={submit}
+        />
 
-      <div className="space-y-3">
         {/* The same field as Daleel and the Qur'an tab, down to the keycap and
             the microphone: three tabs that take a word should not take it three
             different ways. See ui/SearchBox. */}
@@ -137,8 +140,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
             />
           </>
         )}
-
-      </div>
+      </Tucked>
 
       {mutation.isError && (
         <ErrorAlert title="Search failed" error={mutation.error} fallback="The dictionary file may not be installed yet." onRetry={() => submit()} />
@@ -200,17 +202,17 @@ function ClassicalRoot({ found, accent }) {
   const { data: shelf } = useLexicons(root)
   const books = classicalBooks(shelf?.entries)
   const [book, setBook] = useRemembered('dict.book', books.map((one) => one.id))
-  // One frame round every book, not a frame per book inside a frame per shelf:
-  // three borders deep, the page read as boxes before it read as dictionaries.
-  // The books are ruled off from each other instead.
+  // No frame round the books at all: a section under a small label, like the
+  // words on the root above it. Three borders deep, then one, the page still
+  // read as boxes before it read as dictionaries.
   return (
     <section
       id={CLASSICAL}
-      aria-label="Classical dictionaries"
-      className="rounded-[var(--radius-md)] border border-[var(--border)] overflow-hidden scroll-mt-24"
+      aria-labelledby={`${CLASSICAL}-h`}
+      className="flex flex-col gap-4 scroll-mt-24"
     >
-      <header className="px-4 py-2.5 bg-[var(--surface)] flex items-center gap-x-3 gap-y-2 flex-wrap">
-        <h3 className="type-body font-medium text-[var(--text)]">Classical dictionaries</h3>
+      <header className="flex items-center gap-x-3 gap-y-2 flex-wrap">
+        <h3 id={`${CLASSICAL}-h`} className="eyebrow">Classical dictionaries</h3>
         {hasAlternates && (
           <ChipRow label="Root" role="group" aria-label="Which root to look up">
             {[primary, ...alternates].map((one) => (
@@ -230,7 +232,7 @@ function ClassicalRoot({ found, accent }) {
       {books.length > 1 && (
         // Chips on one sliding line, the root row's own shape: as a segmented
         // control four names wrapped on a phone and left Lane alone on a second row.
-        <ChipRow scroll role="group" aria-label="Which book" className="px-4 pt-3">
+        <ChipRow scroll role="group" aria-label="Which book">
           {books.map((one) => (
             <Chip key={one.id} accent={accent} selected={book === one.id} onClick={() => setBook(one.id)}>
               {one.label}

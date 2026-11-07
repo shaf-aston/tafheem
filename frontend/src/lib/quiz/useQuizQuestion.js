@@ -1,10 +1,12 @@
 import { useEffect, useMemo } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { reviewQuery } from '../learner/record'
+import { reviewQuery, summaryQuery } from '../learner/record'
+import { useStoredSaved } from '../store/stored'
 import { buildQuestion, DIRECTIONS, makeRandom } from './quiz'
 import { allWordsQuery, bankInfo, moduleFor, QUIZ, sentencesQuery, wordsFor } from './quizBanks'
 import { ayahQueries } from './quizAyah'
+import { SAVED_WORDS, savedToAsk } from './savedWords'
 
 /**
  * The question on screen and the words it is drawn from, for what `setup`
@@ -57,8 +59,12 @@ export function useQuizQuestion(setup, round) {
   // round asks has to hold still while it is played, but the count on a
   // control the player is not looking at is only ever news, and a control
   // reading "1" while four are waiting is worse than one that moves.
+  // Saved words waiting count too, as wordsFor asks them (lib/quiz/savedWords.js).
   const review = useQuery(reviewQuery(moduleFor(language)))
-  const owed = review.data?.length ?? 0
+  const saved = useStoredSaved(SAVED_WORDS, [])
+  const summary = useQuery({ ...summaryQuery(moduleFor(language)), enabled: saved.length > 0 })
+  const waiting = saved.length && review.data && summary.data ? savedToAsk(saved, summary.data, review.data).length : 0
+  const owed = (review.data?.length ?? 0) + waiting
 
   // How many questions this selection can actually ask. A question is keyed on
   // meaning, not spelling, so two words meaning the same thing are one question

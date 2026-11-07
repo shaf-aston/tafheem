@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 
 import { quranOpen } from './quranOpen'
+import { todayAyah } from './todayAyah'
 import { DEFAULT_TRANSLATION, editionFor } from '../similar/useTranslation'
 
 describe('editionFor', () => {
@@ -35,9 +36,10 @@ describe('quranOpen', () => {
     ])
   })
 
-  it('asks for nothing with no place to open on', () => {
+  it("asks for today's ayah and its English with no place to open on", () => {
     const keys = []
     quranOpen({ prefetchQuery: (q) => keys.push(q.queryKey) }, 'not a place')
-    expect(keys).toEqual([])
+    const { surah, ayah } = todayAyah()
+    expect(keys).toEqual([['quran-ayah', surah, ayah], ['ayah-editions', surah, ayah, ['saheeh-en']]])
   })
 })

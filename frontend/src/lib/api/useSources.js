@@ -1,13 +1,13 @@
 /**
  * Every source the app is built on, fetched once and shared.
  *
- * Mirrors useHealth: one query key, so the line at the foot of a tab and the
- * full list in Settings read the same answer rather than asking twice. The
+ * Mirrors useHealth: one query key, so the badges beside answers, Daleel's book
+ * order and the full list in Settings read the same answer rather than asking twice. The
  * wording is the backend's, data/sources.json is the only place a source is
  * described, and nothing here invents or shortens a description.
  *
  * A failure is quiet on purpose. Not knowing where an answer came from is worth
- * saying (see SourceFooter), but it is not worth an error banner over the top
+ * saying (Settings does), but it is not worth an error banner over the top
  * of a page that is otherwise working.
  */
 import { useQuery } from '@tanstack/react-query'

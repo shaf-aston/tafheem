@@ -16,8 +16,14 @@
  *
  * `fill` spreads the choices across the full width, equally, for a row that is
  * the main switch of a screen (log in or sign up) rather than a small filter.
+ *
+ * An option's `arabic` is its Arabic name, set under the English rather than
+ * after it: "Analyse · تحليل" side by side made three choices too wide for one
+ * row on a phone, and a switch split over two rows reads as two switches.
  */
 import { useMedia, PHONE } from '../../../lib/hooks/useMedia'
+
+import ArabicText from '../text/ArabicText'
 
 export default function Segmented({
   label, options, value, onChange, accent, captioned = false, wrap = false, fill = false, compact = false, className = '', title,
@@ -53,7 +59,12 @@ export default function Segmented({
               on ? '' : 'text-[var(--text-faint)] hover:text-[var(--text-dim)]'
             }`}
           >
-            {option.label}
+            {option.arabic ? (
+              <span className="flex flex-col items-center leading-tight">
+                {option.label}
+                <ArabicText size="tiny" className="leading-tight">{option.arabic}</ArabicText>
+              </span>
+            ) : option.label}
           </button>
         )
       })}

@@ -13,13 +13,13 @@ import Tile from '../ui/display/Tile'
 import DockSlots from './DockSlots'
 
 // `dock` is the ids on the phone bar, `onDock(id, slot)` changes it (lib/nav/dock.js);
-// both left out, there is no bar to edit. Editing is the phone's: the strip a
-// wider screen has is its own rule.
-export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, dock, onDock, onHover, children }) {
+// both left out, there is no bar to edit; `size` is how many tab places the bar has.
+// Editing is the phone's: the strip a wider screen has is its own rule.
+export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, dock, onDock, size: places = 0, onHover, children }) {
   const dialog = useModal(open)
   const [editing, setEditing] = useState(false)
   const editable = Boolean(dock)
-  const size = editable ? Math.max(dock.length, 4) : 0
+  const size = editable ? Math.max(dock.length, places) : 0
   const onBar = (id) => dock?.includes(id)
   const { drag, grip } = useDrag((id, slot) => onDock(id, slot === 'more' ? null : Number(slot)))
 

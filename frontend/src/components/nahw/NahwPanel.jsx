@@ -21,9 +21,9 @@ import Segmented from '../ui/inputs/Segmented'
 
 const VIEWS = [
   // Named, not explained: the header above already says what each one is.
-  { id: 'analyse', label: 'Analyse · تحليل' },
-  { id: 'tamreen', label: 'Tamreen · تمرين' },
-  { id: 'notes', label: 'Notes · قواعد' },
+  { id: 'analyse', label: 'Analyse', arabic: 'تحليل' },
+  { id: 'tamreen', label: 'Tamreen', arabic: 'تمرين' },
+  { id: 'notes', label: 'Notes', arabic: 'قواعد' },
 ]
 
 // The two views this page used to have. A saved address still opens the page
