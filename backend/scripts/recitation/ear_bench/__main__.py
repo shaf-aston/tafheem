@@ -52,7 +52,7 @@ def main() -> None:
     if len(models) > 2:
         raise SystemExit("one ear, or two to compare")
     ayahs = json.loads(data_path("quran_imlaei_path").read_text(encoding="utf-8"))
-    cut = json.loads(RECITE.read_text(encoding="utf-8"))["sure-at"]
+    cut = json.loads(RECITE.read_text(encoding="utf-8"))["wrong-below"]
     by_model = {m: graded_words(ayahs, m) for m in models}
     out = []
     for m, words in by_model.items():

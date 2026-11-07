@@ -222,7 +222,9 @@ class Listening(BaseSettings):
     # A folder works too. To try a model tuned by scripts/recitation/finetune_ear, put in .env:
     #   RECITATION_MODEL=data/models/finetune-ear/ear-tuned
     #   LISTENING_EARS=here          (else Groq answers first and the folder is only the fallback)
-    recitation_model: str = "OdyAsh/faster-whisper-base-ar-quran"
+    # The tuned champion since 2026-11-07: on IqraEval at wrong-below 0.1, F1 0.68 to 0.73 and right words red
+    # 12.3% to 7.2% against OdyAsh/faster-whisper-base-ar-quran (ear_bench KEEP). Reverting this line serves OdyAsh again.
+    recitation_model: str = "shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a"
     # Empty means no tuned model offered. Loaded like recitation_model; a learner who picks "Fine-tuned" has
     # each word checked by it; Groq still writes the words down. Written and pushed by scripts/recitation/finetune_ear/cloud.py --ship; each of
     # its commits carries the scores that won (git log backend/config.py).
