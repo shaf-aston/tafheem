@@ -19,8 +19,11 @@ from 0. `shown` turns it into what the card reads, with the Arabic lines in.
 from __future__ import annotations
 
 import json
+import logging
 
 from backend.services.text.arabic_text import DIACRITICS_RE
+
+logger = logging.getLogger(__name__)
 
 
 def find(text: str, phrase: str) -> str:
@@ -67,28 +70,29 @@ def check(answer: object, lines: list[str]) -> list[dict] | None:
     `lines` is the entry as root_gloss.line_budget cut it. Every line ends up
     under exactly one sense, in order. A line the model skipped or gave twice
     stays with the word before it, as the book runs on from a word into the
-    next; an answer that leaves more than a third of the lines to that is
+    next, and so do the lines of a word given without line numbers or without
+    a gloss; an answer that leaves more than a third of the lines to that is
     refused, as one that misread the entry.
     """
     raw = answer.get("senses") if isinstance(answer, dict) else None
     if not isinstance(raw, list) or not raw or not lines:
+        logger.warning("word by word refused: no senses in the answer")
         return None
     spans, given = [], 0
     for item in raw:
-        if not isinstance(item, dict):
-            return None
-        span = item.get("lines")
+        span = item.get("lines") if isinstance(item, dict) else None
         if not (isinstance(span, list) and span and all(isinstance(n, int) for n in span)):
-            return None
+            continue
         gloss = _text(item.get("gloss"))
         if not gloss:
-            return None
+            continue
         first = max(min(span) - 1, spans[-1][1] + 1 if spans else 0)
         last = min(max(span) - 1, len(lines) - 1)
         if first <= last:  # else only lines an earlier word already has
             spans.append([first, last, item, gloss])
             given += last - first + 1
     if not spans or len(lines) - given > len(lines) // 3:
+        logger.warning("word by word refused: the answer placed %d of %d lines", given, len(lines))
         return None
     spans[0][0] = 0
     for before, after in zip(spans, spans[1:]):
@@ -135,14 +139,23 @@ def _joined_to_quotes(senses: list[dict], lines: list[str]) -> list[dict]:
 
 def cut(ask, lines: list[str]) -> list[dict] | None:
     """`lines` cut into senses by `ask(lines)`, the model's answer, checked; one
-    more go for an answer that does not fit or does not parse. None after two."""
+    more go for an answer that does not fit, does not parse, or never came (the
+    model service refuses an answer of its own that was not JSON). None after
+    two; a call that failed both times raises its error, a timeout at once."""
+    failed = []
     for _ in range(2):
         try:
             senses = check(ask(lines), lines)
-        except json.JSONDecodeError:  # an answer cut off mid-JSON
+        except TimeoutError:
+            raise
+        except Exception as exc:  # a failed call is a failed try, not a crash
+            logger.warning("word by word try failed: %s: %s", type(exc).__name__, exc)
+            failed.append(exc)
             continue
         if senses is not None:
             return senses
+    if len(failed) == 2 and not isinstance(failed[-1], json.JSONDecodeError):
+        raise failed[-1]
     return None
 
 
