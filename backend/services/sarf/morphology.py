@@ -19,67 +19,13 @@ from typing import Any, NamedTuple
 
 from backend.config import get_settings
 from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
-from backend.services.sarf import expects, noun_reader
+from backend.services.sarf import engine, expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
 from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
 from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
-
-# ─────────────────────────────────────────────────────────────────────────────
-# 1. CAMeL Tools, analyzer + MLE disambiguator
-# ─────────────────────────────────────────────────────────────────────────────
-_CAMEL_AVAILABLE = False
-_camel_analyzer = None
-_camel_mle = None        # MLE disambiguator (sentence-level, more accurate)
-_bw2ar = None
-
-try:
-    from camel_tools.morphology.database import MorphologyDB
-    from camel_tools.morphology.analyzer import Analyzer
-    from camel_tools.utils.charmap import CharMapper
-
-    _db = MorphologyDB.builtin_db()
-    _camel_analyzer = Analyzer(_db)  # v1.5+: no 'top' param; all analyses returned
-    _bw2ar = CharMapper.builtin_mapper("bw2ar")
-    _CAMEL_AVAILABLE = True
-    logger.info("CAMeL Tools morphological analyzer ready")
-
-    # Sentence-level disambiguation. Word-level selection cannot resolve
-    # undiacritised homographs (ذهب = "gold" or "he went") because the evidence
-    # that decides it lives in the neighbouring words, not the word itself.
-    try:
-        from camel_tools.disambig.mle import MLEDisambiguator
-        # Every reading, ranked, not just the top one: the typed vowels then
-        # choose among them (harakat.best_reading), which a single pick cannot allow.
-        _camel_mle = MLEDisambiguator.pretrained(top=1_000_000)
-        logger.info("CAMeL Tools MLE disambiguator ready")
-    except Exception as _exc:
-        logger.warning(
-            "MLE disambiguator unavailable (%s), sentences fall back to "
-            "word-level analysis", _exc
-        )
-
-except Exception as _exc:
-    logger.warning("CAMeL Tools not available (%s), falling back to Qalsadi", _exc)
-
-# ─────────────────────────────────────────────────────────────────────────────
-# 2. Qalsadi (only loaded when CAMeL is absent)
-# ─────────────────────────────────────────────────────────────────────────────
-_QALSADI_AVAILABLE = False
-_lemmatizer = None
-
-if not _CAMEL_AVAILABLE:
-    try:
-        import qalsadi.lemmatizer as _ql
-        _lemmatizer = _ql.Lemmatizer()
-        _QALSADI_AVAILABLE = True
-        logger.info("Qalsadi lemmatizer ready")
-    except Exception as _exc:
-        logger.warning("Qalsadi not available (%s), using PyArabic/bare only", _exc)
-
-# PyArabic is the third engine, and arabic_text is the module that looks for it.
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Lookup tables
@@ -153,9 +99,9 @@ _KNOWN_KINDS = frozenset({"pron", "pron_dem", "pron_rel", "noun_prop"})
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _bw_to_ar(bw: str) -> str:
-    if _bw2ar is not None:
+    if engine.bw2ar is not None:
         try:
-            return _bw2ar.map(bw)
+            return engine.bw2ar.map(bw)
         except Exception:
             pass
     return "".join(_BW_MAP.get(c, c) for c in bw)
@@ -475,10 +421,10 @@ def _analyses(word: str) -> list[dict]:
     carries how often its lemma, as that part of speech, occurs in CAMeL's training text
     (pos_lex_logprob); every pick below that falls back to "the first" now means the likeliest.
     """
-    if _camel_analyzer is None:
+    if engine.camel is None:
         return []
     try:
-        analyses = _camel_analyzer.analyze(word)
+        analyses = engine.camel.analyze(word)
     except Exception as exc:
         logger.debug("CAMeL analyze error for '%s': %s", word, exc)
         return []
@@ -487,7 +433,7 @@ def _analyses(word: str) -> list[dict]:
 
 def _analyze_word_camel_only(word: str) -> dict[str, Any] | None:
     """Word-level CAMeL Analyzer with diacritic-guided best-analysis selection."""
-    if _camel_analyzer is None:
+    if engine.camel is None:
         return None
     best = _pick_best_analysis(word, _analyses(word))
     return None if best is None else _analysis_dict_from_camel(word, best)
@@ -504,8 +450,8 @@ def readings(word: str) -> list[Reading]:
     word = word.strip()
     if not word or not has_arabic(word):
         return []
-    if _camel_analyzer is None:
-        return [Reading(_analyze_qalsadi(word)["lemma"], "", True)] if _QALSADI_AVAILABLE else []
+    if engine.camel is None:
+        return [Reading(_analyze_qalsadi(word)["lemma"], "", True)] if engine.qalsadi is not None else []
     analyses = _analyses(word)
     # The typed vowels choose first, as they do for a sentence; the readings they allow come
     # next, then the rest by how many typed marks they share: CAMeL has no command فِرُّوا,
@@ -575,7 +521,7 @@ def has_comparative(word: str) -> bool:
 
 def _analyze_qalsadi(word: str) -> dict[str, Any]:
     try:
-        result = _lemmatizer.lemmatize(word)  # type: ignore[union-attr]
+        result = engine.qalsadi.lemmatize(word)  # type: ignore[union-attr]
         lemma = str(result[0]) if isinstance(result, list) and result else str(result)
     except Exception as exc:
         logger.debug("qalsadi lemmatize failed for %r: %s", word, exc)
@@ -606,9 +552,9 @@ def _unanalysed(word: str, lemma: str, engine: str) -> dict[str, Any]:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def get_engine_name() -> str:
-    if _CAMEL_AVAILABLE:
+    if engine.camel is not None:
         return "camel-tools"
-    if _QALSADI_AVAILABLE:
+    if engine.qalsadi is not None:
         return "qalsadi"
     return "pyarabic" if HAS_PYARABIC else "bare"
 
@@ -618,10 +564,10 @@ def analyze_word(word: str) -> dict[str, Any]:
     word = word.strip()
     if not word or not has_arabic(word):
         return _analyze_bare(word)
-    if _CAMEL_AVAILABLE:
+    if engine.camel is not None:
         if result := _analyze_word_camel_only(word):
             return result
-    return _analyze_qalsadi(word) if _QALSADI_AVAILABLE else _analyze_bare(word)
+    return _analyze_qalsadi(word) if engine.qalsadi is not None else _analyze_bare(word)
 
 
 def _reading(word: str, readings: list[dict]) -> dict:
@@ -651,9 +597,9 @@ def _reading(word: str, readings: list[dict]) -> dict:
 def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:
     """Each word's CAMeL readings, best first, from the disambiguator (BERT) and, if it fails,
     the MLE; None when neither reads."""
-    for engine in filter(None, (disambiguator, _camel_mle)):
+    for reader in filter(None, (disambiguator, engine.mle)):
         try:
-            return [[scored.analysis for scored in word.analyses] for word in engine.disambiguate(tokens)]
+            return [[scored.analysis for scored in word.analyses] for word in reader.disambiguate(tokens)]
         except Exception as exc:
             logger.warning("CAMeL disambiguation failed: %s", exc)
     return None
@@ -1167,14 +1113,14 @@ def analyze_sentence(sentence: str, picks: list[dict] | None = None) -> list[dic
     if not tokens:
         return []
 
-    if _CAMEL_AVAILABLE:
+    if engine.camel is not None:
         picks = picks or pick(tokens)
         tokens = as_said(tokens, picks)
         before = ["", *map(strip_diacritics, tokens[:-1])]
         return [_analysis_dict_from_camel(t, a, b, n, r.get("asp", "")) if a else analyze_word(t)
                 for t, a, b, n, r in zip(tokens, picks, before, [*tokens[1:], ""], [*picks[1:], {}], strict=True)]
 
-    if _QALSADI_AVAILABLE:
+    if engine.qalsadi is not None:
         return [_analyze_qalsadi(t) for t in tokens]
 
     return [_analyze_bare(t) for t in tokens]

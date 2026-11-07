@@ -16,7 +16,7 @@ from fastapi.testclient import TestClient
 from backend.main import create_app
 from backend.services.text import arabic_text
 from backend.services.dictionary import service as dictionary_service
-from backend.services.sarf import morphology
+from backend.services.sarf import engine, morphology
 from backend.services.nahw import book as nahw_book
 from backend.services.quran import corpus as quran_corpus
 from backend.services.dictionary import roots
@@ -238,7 +238,7 @@ def test_camels_readings_come_likeliest_first(monkeypatch):
     unseen = {"lex": "وَتَر", "root": "w.t.r", "pos": "verb", "pos_lex_logprob": -99.0}
     common = {"lex": "تَرَك", "root": "t.r.k", "pos": "verb", "pos_lex_logprob": -3.1}
     rare = {"lex": "أَتْرَك", "root": "t.r.k", "pos": "verb", "pos_lex_logprob": -5.2}
-    monkeypatch.setattr(morphology, "_camel_analyzer", _Analyzer([unseen, rare, common]))
+    monkeypatch.setattr(engine, "camel", _Analyzer([unseen, rare, common]))
     assert [a["lex"] for a in morphology._analyses("يترك")] == ["تَرَك", "أَتْرَك", "وَتَر"]
 
 
