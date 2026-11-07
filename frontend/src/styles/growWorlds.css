@@ -168,6 +168,9 @@
 @media (max-width: 39.99rem) {
   .grow-lesson:has(.grow-lesson-foot) { min-height: calc(100dvh - 3rem - env(safe-area-inset-bottom, 0px)); }
   .grow-lesson-foot { position: sticky; bottom: env(safe-area-inset-bottom, 0px); z-index: var(--layer-sticky); }
+  /* Out of focus mode the tab bar is still there (Home's first-visit questions, a Quiz round before its first answer):
+     the button rests on top of it, not under it. */
+  :root:not([data-focus]) .grow-lesson-foot { bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px)); }
 }
 .grow-lesson-top { display: flex; align-items: center; gap: 12px; }
 .grow-lesson-top .grow-lesson-bar { flex: 1; height: 12px; }
