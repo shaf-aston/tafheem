@@ -21,6 +21,8 @@
     "answers-many": "{n} answers",
     "guest-go": "Log in",
     "next-label": "Next in Grow",
+    "next-plan-label": "Next for you",
+    "next-goal": "For your goal: {goal}",
     "next-go": "Start",
     "next-recent": "You were learning this",
     "next-level": "Fits your level",

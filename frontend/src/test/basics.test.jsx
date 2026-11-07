@@ -10,6 +10,7 @@ import GrowPanel from '../components/grow/GrowPanel'
 import { definite } from '../lib/grow/alifLam'
 import { pathItems } from '../lib/grow/basicsSkills'
 import { LEVEL_KEY } from '../lib/learner/learnerLevel'
+import { PLAN_KEY } from '../lib/learner/plan'
 import { writeRaw } from '../lib/store/stored'
 import data from '../../public/grow/basics.json'
 import verbs from '../../public/grow/basics-verbs.json'
@@ -179,6 +180,32 @@ describe('basics', () => {
       writeRaw(LEVEL_KEY, 'advanced')
       renderScreen(home(), { routes: shared([]) })
       expect(await screen.findByText('Continue · Nahw', {}, { timeout: 3000 })).toBeTruthy()
+    })
+  })
+
+  describe('Today by the first-visit plan', () => {
+    const plan = (answers) => writeRaw(PLAN_KEY, JSON.stringify({ ...answers, done: true }))
+
+    it("leads with the plan's best world over the level, for the minutes picked", async () => {
+      writeRaw(LEVEL_KEY, 'beginner')
+      plan({ goals: ['understand', 'memorise'], read: 'yes', know: 'few', hifz: 'amma', minutes: '10' })
+      renderScreen(home(), { routes: shared([]) })
+      await waitFor(async () => expect((await hero()).textContent).toBe('Keep your garden growing'))
+      expect(screen.getByText('Today · about 10 minutes')).toBeTruthy()
+    })
+
+    it('leads someone who cannot read yet with the Basics', async () => {
+      plan({ goals: ['understand'], read: 'no', hifz: 'none', minutes: '5' })
+      renderScreen(home(), { routes: shared([]) })
+      await waitFor(async () => expect((await hero()).textContent).toBe('Your first steps'))
+    })
+
+    it('a skipped plan leaves Today to the level', async () => {
+      writeRaw(LEVEL_KEY, 'beginner')
+      plan({})
+      renderScreen(home(), { routes: shared([]) })
+      await waitFor(async () => expect((await hero()).textContent).toBe('Your first steps'))
+      expect(screen.getByText('Today · about 5 minutes')).toBeTruthy()
     })
   })
 })

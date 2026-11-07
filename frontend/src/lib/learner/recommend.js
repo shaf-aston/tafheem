@@ -19,6 +19,9 @@ import { levelOf, matches } from './plan'
 export const PLACES = config.places
 export const RANK = config.rank
 
+/** Whether the plan was answered, not skipped: a goal or a level given, so it can pick for the learner. */
+export const answered = (plan) => plan.done && (plan.goals.length > 0 || levelOf(plan) !== null)
+
 /** How well a place suits `level`: inside its band 1, one step out `near-level`, further 0; any while unknown. */
 function fitOf(place, level, k) {
   if (level === null) return 1
@@ -64,4 +67,10 @@ export function recommend(plan, modules = [], now = Date.now(), k = RANK) {
     })
     .filter((one) => one.score > 0)
     .sort((a, b) => b.score - a.score || a.at - b.at)
+}
+
+/** The Grow world an answered plan starts Today from: its best-ranked place among the worlds `canLead` can open, or null. */
+export function leadOf(plan, canLead, modules = [], now = Date.now()) {
+  if (!answered(plan)) return null
+  return recommend(plan, modules, now).find((one) => one.place.world && canLead(one.place.world))?.place.world ?? null
 }

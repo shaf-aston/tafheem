@@ -1,7 +1,8 @@
 /**
  * Grow's home: level, streak, daily goal, today's lesson with each world's next step, every world (unbuilt ones shown as coming).
- * Today leads with the book last studied (its next lesson, one tap away) once there is one, then the learner's level
- * (levels.json `grow`: a beginner's Basics, an advanced learner's Nahw), the Basics while begun on this device and with a
+ * Today leads with the book last studied (its next lesson, one tap away) once there is one, then the first-visit plan's
+ * best world (lib/learner/recommend.js), then the learner's level (levels.json `grow`: a beginner's Basics, an advanced
+ * learner's Nahw), the Basics while begun on this device and with a
  * lesson to give, and the words lesson otherwise;
  * a book with questions due shows its review as a step too.
  * A guest's log-in nudge rides on the title line (SectionHeader `aside`).
@@ -17,6 +18,8 @@ import { sayIn } from '../../lib/text/say'
 import { useRemembered } from '../../lib/store/useRemembered'
 import { levelOf } from '../../lib/learner/learnerLevel'
 import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
+import { leadOf } from '../../lib/learner/recommend'
+import { usePlan } from '../../lib/learner/usePlan'
 import LogInButton from '../profile/LogInButton'
 import Emblem from '../ui/display/Emblem'
 import ArabicText from '../ui/text/ArabicText'
@@ -130,8 +133,11 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
     requestAnimationFrame(() => list.children[3]?.focus())
   }
   const [last] = useRemembered(LAST_BOOK, Object.keys(books), '')
-  // The world the learner's level starts from (levels.json `grow`); none until a level is chosen.
-  const leads = levelOf(useLearnerLevel().level)?.grow
+  // The world an answered plan starts from (one Today can lead: the Basics, the words, a book), else the one the
+  // learner's level starts from (levels.json `grow`); none until either is given.
+  const { plan } = usePlan()
+  const { level } = useLearnerLevel()
+  const leads = leadOf(plan, (id) => id === 'basics' || id === 'words' || id in books) ?? levelOf(level)?.grow
   const { words, basics } = lessons
   const onBasics = (basics.begunHere || leads === 'basics') && !(basics.ready && !hasWork(basics))
   const main = onBasics ? basics : words
@@ -167,7 +173,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
         </>
       ) : (
         <>
-          <p className="grow-today-kicker">{say('Today · about 5 minutes')}</p>
+          <p className="grow-today-kicker">{say('Today · about {minutes} minutes', { minutes: plan.minutes ?? 5 })}</p>
           <h3 id="grow-today-h">{onBasics ? say('Your first steps') : say('Keep your garden growing')}</h3>
           <p className="grow-today-holds tabular-nums">{lineOf(main)}</p>
           <PrimaryButton accent={accent} disabled={!main.ready || empty} onClick={() => onStart(mainId)}>

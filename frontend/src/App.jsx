@@ -206,7 +206,7 @@ function AppContent() {
           </div>
         </div>
       </footer>
-      <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} onGo={switchTab} />
       <SpatialHome
         open={spatialOpen}
         onClose={() => setSpatialOpen(false)}
