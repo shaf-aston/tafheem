@@ -120,7 +120,7 @@ const NextSlot = () => <span className="grow-next-slot skeleton" aria-hidden="tr
 const hasWork = (state) => state.ready && (state.fresh > 0 || state.dueCount > 0)
 
 /**
- * Today's lesson: the last book's next one when there is one, else the letters while the plan starts there, else the Basics while begun here and with work to give,
+ * Today's lesson: the last book's next one when there is one, else the letters while the plan starts there (alone: no other step needs reading yet), else the Basics while begun here and with work to give,
  * else the words lesson; then every world's next step.
  */
 function Today({ worldOf, lessons, books, onStart, onStartBook }) {
@@ -184,6 +184,8 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
           </PrimaryButton>
         </>
       )}
+      {/* Someone learning the letters is not offered steps that need reading: Today is just Start (the worlds stay below). */}
+      {!(onLetters && !lead) && <>
       <div className="grow-nexts" data-open={more ? '' : undefined} data-settling={settling ? '' : undefined}>
         {settling && Array.from({ length: expected }, (_, i) => <NextSlot key={i} />)}
         {basics.ready && !basics.begunHere && hero !== 'basics' && (!leads || leads === 'basics' || leads === 'letters') && (
@@ -219,6 +221,7 @@ function Today({ worldOf, lessons, books, onStart, onStartBook }) {
         )}
       </div>
       <button type="button" className="grow-nexts-more" onClick={showMore}>{say('More for today')}</button>
+      </>}
     </section>
   )
 }

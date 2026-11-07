@@ -199,6 +199,9 @@ describe('basics', () => {
       plan({ goals: ['understand'], read: 'no', hifz: 'none', minutes: '5' })
       const { unmount } = renderScreen(home(), { routes: shared([]) })
       await waitFor(async () => expect((await hero()).textContent).toBe('Your first letters'))
+      // Nothing that needs reading is offered beside it: Today is just Start.
+      expect(document.querySelector('.grow-nexts')).toBeNull()
+      expect(screen.queryByRole('button', { name: 'More for today' })).toBeNull()
       unmount()
       const learnt = letters.letters.map((one) => ({ item: one.id, due: false, dueAt: '2026-10-23T00:00:00Z', known: true }))
       renderScreen(home(), { routes: {
