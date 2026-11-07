@@ -3,8 +3,6 @@ import ArabicText from '../../ui/text/ArabicText'
 import PhrasePicture from './PhrasePicture'
 import Spelling from './Spelling'
 
-export const FOCUS = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]'
-
 const HUES = ['--primary', '--success', '--warn', '--danger']
 const TINT_PERCENT = 20
 const SCRIM_PERCENT = 94

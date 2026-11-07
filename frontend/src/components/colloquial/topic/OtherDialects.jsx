@@ -13,7 +13,6 @@ import { useSetting } from '../../../lib/store/settings'
 import ArabicText from '../../ui/text/ArabicText'
 import ErrorAlert from '../../ui/feedback/ErrorAlert'
 import { Skeleton } from '../../ui/feedback/Skeleton'
-import { FOCUS } from '../parts/Face'
 import Spelling from '../parts/Spelling'
 
 function Rows({ place, slot }) {
@@ -44,7 +43,7 @@ export default function OtherDialects({ place, slot }) {
   return (
     <div className="space-y-3">
       <button type="button" aria-expanded={open} onClick={() => setOpen(!open)}
-        className={`press block mx-auto type-small text-[var(--text-dim)] hover:text-[var(--text)] underline underline-offset-4 rounded ${FOCUS}`}>
+        className={`press block mx-auto type-small text-[var(--text-dim)] hover:text-[var(--text)] underline underline-offset-4 rounded`}>
         {open ? 'Hide the other dialects' : 'Say it in the other dialects'}
       </button>
       {open && <Rows place={place} slot={slot} />}

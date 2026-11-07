@@ -7,6 +7,12 @@
   "_comment-least-under-heading": "A heading in a word bank needs this many words; a smaller group joins the heading before it.",
   "least-under-heading": 3,
 
+  "_comment-words-preview": "How many of a phrase topic's words show before 'Show all': the full grid is several screens on a phone, and the conversation and practice below it are the topic's main work.",
+  "words-preview": 6,
+
+  "_comment-misses-before-shown": "On a Picture board's Test, how many wrong taps on one word before its place is ringed for the learner.",
+  "misses-before-shown": 2,
+
   "_comment-feature-every": "In a lesson's phrase mosaic, every this-many-th tile is drawn large, so the grid is not a wall of equal squares.",
   "feature-every": 7
 }

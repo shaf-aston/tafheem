@@ -1,10 +1,10 @@
 // One topic as a scene: its pictures come first, then the conversation and practice.
 import { useRef, useState } from 'react'
 
+import settings from '../../../config/colloquial-display.json'
 import SmallButton from '../../ui/buttons/SmallButton'
 import TranslationStrip from '../../ui/text/TranslationStrip'
 import Dialogue from './Dialogue'
-import { FOCUS } from '../parts/Face'
 import Mosaic from './Mosaic'
 import Pairs from './Pairs'
 import Practice from '../exercises/Practice'
@@ -28,9 +28,8 @@ function Act({ kicker, title, children }) {
   )
 }
 
-// The first few words, the rest a tap away: the full grid is several screens on a
-// phone, and the conversation and practice below it are the topic's main work.
-const PREVIEW = 6
+// The first few words, the rest a tap away (config/colloquial-display.json words-preview).
+const PREVIEW = settings['words-preview']
 
 function Words({ words }) {
   const [all, setAll] = useState(words.length <= PREVIEW)
@@ -39,7 +38,7 @@ function Words({ words }) {
       <WordGrid words={all ? words : words.slice(0, PREVIEW)} />
       {!all && (
         <button type="button" onClick={() => setAll(true)}
-          className={`press w-full py-3 rounded-[var(--radius-md)] border border-[var(--border)] type-ui text-[var(--text-dim)] hover:text-[var(--text)] hover:border-[var(--border-hi)] ${FOCUS}`}>
+          className={`press w-full py-3 rounded-[var(--radius-md)] border border-[var(--border)] type-ui text-[var(--text-dim)] hover:text-[var(--text)] hover:border-[var(--border-hi)]`}>
           Show all {words.length} words
         </button>
       )}

@@ -2,7 +2,6 @@
 import { useState } from 'react'
 
 import ArabicText from '../../ui/text/ArabicText'
-import { FOCUS } from '../parts/Face'
 import Spelling from '../parts/Spelling'
 
 const FACE = `col-start-1 row-start-1 flex flex-col items-center justify-center gap-1 px-4 py-6 text-center
@@ -31,7 +30,7 @@ function PairCard({ pair, response }) {
       type="button"
       onClick={() => setFlipped(!flipped)}
       style={{ perspective: '900px' }}
-      className={`press grid w-full rounded-[var(--radius-md)] ${FOCUS}`}
+      className={`press grid w-full rounded-[var(--radius-md)]`}
     >
       <Side item={pair} label="Ask" flipped={flipped} hidden={flipped} back={false} />
       <Side item={response} label="Answer" flipped={flipped} hidden={!flipped} back />

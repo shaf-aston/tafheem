@@ -3,7 +3,6 @@ import { unitNumber } from '../../../lib/colloquial/place'
 import { topicsNote } from '../../../lib/colloquial/seen'
 import ArabicText from '../../ui/text/ArabicText'
 import SpeakButton from '../../ui/buttons/SpeakButton'
-import { FOCUS } from '../parts/Face'
 import PhrasePicture from '../parts/PhrasePicture'
 
 // A choice card: its colour glows in from both ends and fades to nothing in the middle.
@@ -36,7 +35,7 @@ const lookOf = (hue) => {
 
 export function Card({ hue, onClick, twin, picture, ...lines }) {
   const look = lookOf(hue)
-  const half = `lift press group text-start w-full px-5 py-4 ${FOCUS}`
+  const half = `lift press group text-start w-full px-5 py-4`
   if (twin) {
     return (
       <div style={look} className="grid grid-cols-2 rounded-[var(--radius-lg)] border overflow-hidden">
@@ -53,7 +52,7 @@ export function Card({ hue, onClick, twin, picture, ...lines }) {
       onClick={onClick}
       disabled={!onClick}
       style={look}
-      className={`${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS} ${picture ? 'grid grid-cols-[1fr_auto] items-center gap-4' : ''}`}
+      className={`${onClick ? 'lift press' : 'opacity-50 cursor-default'} group text-start w-full px-5 py-4 rounded-[var(--radius-lg)] border ${picture ? 'grid grid-cols-[1fr_auto] items-center gap-4' : ''}`}
     >
       {picture ? (
         // The Arabic name sits over the picture, so the English lines get the width.
@@ -79,7 +78,7 @@ export function UnitCard({ hue, unit, done = 0, onClick }) {
   const number = unitNumber(unit.unit)
   return (
     <div style={lookOf(hue)} className="lift press relative grid grid-rows-[auto_auto_1fr] px-5 py-4 rounded-[var(--radius-lg)] border">
-      <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`stretch absolute inset-0 rounded-[var(--radius-lg)] ${FOCUS}`} />
+      <button type="button" onClick={onClick} aria-label={`Unit ${number}: ${unit.title}`} className={`stretch absolute inset-0 rounded-[var(--radius-lg)]`} />
       <span className="flex items-baseline justify-between gap-3 eyebrow">
         <span style={{ color: hue }}>Unit {number}</span>
         <span className="text-[var(--text-faint)]">{topicsNote(unit.lessons.length, done)}</span>
@@ -105,7 +104,7 @@ export function WordUnitCard({ hue, unit, done = 0, onClick }) {
   const number = unitNumber(unit.unit)
   return (
     <button type="button" onClick={onClick} style={lookOf(hue)} aria-label={`Unit ${number}: ${unit.title}`}
-      className={`lift press text-start w-full flex flex-col px-5 py-4 rounded-[var(--radius-lg)] border ${FOCUS}`}>
+      className={`lift press text-start w-full flex flex-col px-5 py-4 rounded-[var(--radius-lg)] border`}>
       <span className="flex items-baseline justify-between gap-3 eyebrow">
         <span style={{ color: hue }}>Unit {number}</span>
         <span className="text-[var(--text-faint)]">{topicsNote(unit.lessons.length, done)} · {unit.words} words</span>

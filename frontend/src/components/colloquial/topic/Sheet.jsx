@@ -8,7 +8,7 @@ import BottomSheet from '../../ui/overlays/BottomSheet'
 import CloseButton from '../../ui/buttons/CloseButton'
 import SmallButton from '../../ui/buttons/SmallButton'
 import SpeakButton from '../../ui/buttons/SpeakButton'
-import Face, { FOCUS } from '../parts/Face'
+import Face from '../parts/Face'
 import OtherDialects from './OtherDialects'
 import Spelling from '../parts/Spelling'
 
@@ -33,7 +33,7 @@ export default function Sheet({ phrases, at, onAt, onClose, place, noun = 'phras
     <BottomSheet label={phrase.english} onClose={onClose} className="max-h-[var(--sheet-tall)] overflow-y-auto">
       {/* The phrase slides and follows a finger; the close button and the steps stay put. */}
       <div {...swipe} className="relative overflow-x-hidden">
-        <CloseButton onClick={onClose} className={`absolute top-2 end-2 z-[var(--layer-raised)] bg-[var(--bg)] ${FOCUS}`} />
+        <CloseButton onClick={onClose} className={`absolute top-2 end-2 z-[var(--layer-raised)] bg-[var(--bg)]`} />
         <div key={at} {...slide}>
           <Face
             phrase={phrase}
