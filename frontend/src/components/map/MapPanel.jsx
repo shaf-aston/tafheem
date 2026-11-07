@@ -22,7 +22,7 @@ import { MANHAJ, placeOf, reachable, screenOf, upOf, valueOf } from '../../lib/m
 import { scrollToTop } from '../../lib/motion/scrollToEl'
 import { useArrival } from '../../lib/nav/useArrival'
 import { CHARTS } from '../../lib/shell/pbsData'
-import { chartTree, nodeAt, viewConfig } from '../../lib/shell/pbsTree'
+import { nodeAt, viewConfig } from '../../lib/shell/pbsTree'
 import { widthAtLabel } from '../../lib/shell/pbsLayout'
 import { useMedia, PHONE } from '../../lib/hooks/useMedia'
 import chartKnobs from '../../config/pbsChart.json'
@@ -35,9 +35,6 @@ import { useZoom } from '../../lib/hooks/useZoom'
 const CHART_MIN_REM = 56
 const FRAME_PAD_PX = 32
 const INDEX = { at: 'index' }
-
-/** Numbered 1 to 9 by how the sciences lead into each other, in threes that belong together: the law, the sources, the language. The arrow keys walk this same order. */
-const ORDER = [...CHARTS].sort((a, b) => a.id.localeCompare(b.id))
 
 const placeAt = (value) => placeOf(value, CHARTS, FAMILIES)
 
@@ -82,11 +79,11 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
   }
 
   const chart = place.at === 'chart' ? CHARTS.find((one) => one.id === place.id) : null
-  const tree = useMemo(() => (chart ? chartTree(chart) : null), [chart])
+  const tree = chart?.tree ?? null
   const path = useMemo(() => (tree ? reachable(tree, place.path) : []), [tree, place.path])
   const shown = tree && nodeAt(tree, path)
   const config = useMemo(
-    () => shown && viewConfig(shown, path.length ? [] : chart.config.footnote),
+    () => shown && viewConfig(shown, path.length ? [] : chart.footnote),
     [shown, path.length, chart],
   )
   // The chart's least width: on a phone, wide enough to read; elsewhere, a fixed floor.
@@ -108,9 +105,9 @@ export default function MapPanel({ incoming, arrival, onVisit }) {
     if (e.key === 'Escape' && place.at !== 'index') { e.preventDefault(); go(upOf({ ...place, path })); return }
     // The arrows scroll a chart that is focused; anywhere else on the page they walk the sciences.
     if (!chart || frame.current?.contains(e.target)) return
-    const i = ORDER.findIndex((one) => one.id === chart.id)
-    if (e.key === 'ArrowRight' && i < ORDER.length - 1) go({ at: 'chart', id: ORDER[i + 1].id, path: [] })
-    if (e.key === 'ArrowLeft' && i > 0) go({ at: 'chart', id: ORDER[i - 1].id, path: [] })
+    const i = CHARTS.findIndex((one) => one.id === chart.id)
+    if (e.key === 'ArrowRight' && i < CHARTS.length - 1) go({ at: 'chart', id: CHARTS[i + 1].id, path: [] })
+    if (e.key === 'ArrowLeft' && i > 0) go({ at: 'chart', id: CHARTS[i - 1].id, path: [] })
   })
   useEffect(() => {
     const onKey = (e) => press(e)
@@ -187,7 +184,7 @@ function MapIndex({ onGo }) {
   return (
     <div className="flex flex-col gap-5">
       <div className="grid gap-5 grid-cols-[repeat(auto-fill,minmax(18rem,1fr))]">
-        {ORDER.map((chart, delay) => (
+        {CHARTS.map((chart, delay) => (
           <IndexCard key={chart.id} label={chart.id} ar={chart.ar} en={chart.en} note={chart.frame} color={chart.accent}
             className="pbs-rise border-r-4" style={{ borderRightColor: chart.accent, '--d': `${delay * 55}ms` }}
             onClick={() => onGo({ at: 'chart', id: chart.id, path: [] })} />
