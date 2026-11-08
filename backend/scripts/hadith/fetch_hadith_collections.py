@@ -122,14 +122,15 @@ def from_hadith_json(book: dict) -> tuple[list[dict], list[dict]]:
     Its chapters are the books, each with its own Arabic name; chapter 0 is the
     author's introduction, dropped as books_of drops book 0. The English is the
     narrator's line and the text joined, as sunnah.com prints them. No grades:
-    the file carries none, and each hadith already ends naming who recorded it.
+    the file carries none, and each hadith already ends naming who recorded it
+    (the build reads that line to borrow its twin's grades, services/hadith/twin.py).
     """
     books = [{"number": c["id"], "name": c["english"], "arabic": c.get("arabic", "")}
              for c in book.get("chapters") or [] if c.get("id") and str(c.get("english") or "").strip()]
     in_book: dict[int, int] = {}
     hadiths = []
     for item in book.get("hadiths") or []:
-        text = (item.get("arabic") or "").strip()
+        text = " ".join((item.get("arabic") or "").split())  # the file breaks lines inside a hadith; sunnah.com prints one
         if not text or not isinstance(item.get("idInBook"), int):
             continue
         chapter = item.get("chapterId") or 0

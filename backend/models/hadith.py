@@ -25,6 +25,8 @@ class HadithGrade(BaseModel):
     """One scholar's verdict on one hadith, e.g. Al-Albani: Hasan Sahih."""
     by: str
     grade: str
+    # Where a borrowed verdict was given: "Tirmidhi 1655", the twin the grade is read from. "" for a hadith's own.
+    of: str = ""
 
 
 class HadithBook(BaseModel):

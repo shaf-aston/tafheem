@@ -5,7 +5,8 @@
     "scripts/hadith/fetch_hadith_collections.py and scripts/hadith/build_hadith_index.py; no code changes.",
     "short is the name the picker shows; arabic and arabic_short are the same two names in Arabic, so a search can name it either way. cite is the citation URL template sunnah.com uses, {number} filled with the hadith's own number.",
     "sahih marks a collection whose every hadith is graded sahih by the scholars, so its hadiths carry no grade of their own.",
-    "shelf names the shelf of the bookshelf a further book stands on, away from the six on the tab's own shelf. from names a source other than fawazahmed0/hadith-api, as repo:path in AhmedBaset/hadith-json."
+    "shelf names the shelf of the bookshelf a further book stands on, away from the six on the tab's own shelf. from names a source other than fawazahmed0/hadith-api, as repo:path in AhmedBaset/hadith-json.",
+    "recorded_as are the spellings of a collection's name in the closing line of a further book's hadith (رواه الترمذي). A collection with borrows_grades has no grades of its own: the build finds each hadith's twin in the books its closing line names and shows their grades, saying which hadith (services/hadith/twin.py). words is how many of its last words that line can span, cue the words that open it, agreed_upon the books متفق عليه names."
   ],
   "bukhari": {
     "name": "Sahih al-Bukhari",
@@ -13,7 +14,10 @@
     "arabic": "صحيح البخاري",
     "arabic_short": "البخاري",
     "cite": "https://sunnah.com/bukhari:{number}",
-    "sahih": true
+    "sahih": true,
+    "recorded_as": [
+      "بخاري"
+    ]
   },
   "muslim": {
     "name": "Sahih Muslim",
@@ -21,35 +25,50 @@
     "arabic": "صحيح مسلم",
     "arabic_short": "مسلم",
     "cite": "https://sunnah.com/muslim:{number}",
-    "sahih": true
+    "sahih": true,
+    "recorded_as": [
+      "مسلم"
+    ]
   },
   "abudawud": {
     "name": "Sunan Abi Dawud",
     "short": "Abu Dawud",
     "arabic": "سنن أبي داود",
     "arabic_short": "أبو داود",
-    "cite": "https://sunnah.com/abudawud:{number}"
+    "cite": "https://sunnah.com/abudawud:{number}",
+    "recorded_as": [
+      "داود"
+    ]
   },
   "tirmidhi": {
     "name": "Jami at-Tirmidhi",
     "short": "Tirmidhi",
     "arabic": "جامع الترمذي",
     "arabic_short": "الترمذي",
-    "cite": "https://sunnah.com/tirmidhi:{number}"
+    "cite": "https://sunnah.com/tirmidhi:{number}",
+    "recorded_as": [
+      "ترمذي"
+    ]
   },
   "nasai": {
     "name": "Sunan an-Nasa'i",
     "short": "Nasa'i",
     "arabic": "سنن النسائي",
     "arabic_short": "النسائي",
-    "cite": "https://sunnah.com/nasai:{number}"
+    "cite": "https://sunnah.com/nasai:{number}",
+    "recorded_as": [
+      "نسائي"
+    ]
   },
   "ibnmajah": {
     "name": "Sunan Ibn Majah",
     "short": "Ibn Majah",
     "arabic": "سنن ابن ماجه",
     "arabic_short": "ابن ماجه",
-    "cite": "https://sunnah.com/ibnmajah:{number}"
+    "cite": "https://sunnah.com/ibnmajah:{number}",
+    "recorded_as": [
+      "ماجه"
+    ]
   },
   "mishkat": {
     "name": "Mishkat al-Masabih",
@@ -58,7 +77,18 @@
     "arabic_short": "مشكاة",
     "cite": "https://sunnah.com/mishkat:{number}",
     "shelf": "Gathered by topic",
-    "from": "AhmedBaset/hadith-json:db/by_book/other_books/mishkat_almasabih.json"
+    "from": "AhmedBaset/hadith-json:db/by_book/other_books/mishkat_almasabih.json",
+    "borrows_grades": {
+      "words": 40,
+      "cue": [
+        "رواه",
+        "متفق"
+      ],
+      "agreed_upon": [
+        "bukhari",
+        "muslim"
+      ]
+    }
   },
   "nawawi": {
     "name": "Forty Hadith of an-Nawawi",
