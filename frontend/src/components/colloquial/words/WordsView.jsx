@@ -1,14 +1,13 @@
 // One topic's words on their own: see them all as pictures, learn them as cards, warm up by matching, quiz
 // yourself, then review what is due. A new way to learn words is a new mode here
 // and a component beside this one.
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { onHover, warm } from '../../../lib/api/warm'
 import { WORDS_MODULE, wordDrills } from '../../../lib/colloquial/wordPractice'
 import { summaryQuery } from '../../../lib/learner/record'
-import { useMedia, WIDE as LARGE_SCREEN } from '../../../lib/hooks/useMedia'
-import { holdGlideUnderHeader, scrollToTop } from '../../../lib/motion/scrollToEl'
+import { scrollToTop } from '../../../lib/motion/scrollToEl'
 import { readViewParam, writeViewParams } from '../../../lib/nav/tabUrl'
 import Segmented from '../../ui/inputs/Segmented'
 import Practice from '../exercises/Practice'
@@ -22,64 +21,66 @@ import WordPicture from './picture/WordPicture'
 import { pictureBoards } from '../../../lib/colloquial/wordPictures'
 
 const MODES = [{ id: 'browse', label: 'Browse' }, { id: 'cards', label: 'Cards' }, { id: 'match', label: 'Match' }, { id: 'quiz', label: 'Quiz' }, { id: 'review', label: 'Review' }]
-// Only where the words have a drawing to match (the body, countries): lib/colloquial/wordPictures.js.
-const PICTURE = { id: 'picture', label: 'Picture' }
 const WIDE = new Set(['browse', 'review'])
-const MODE_IDS = [...MODES, PICTURE].map((m) => m.id)
+// 'picture' was a mode of its own once; the drawing is in Browse now, so an old link to it opens there.
+const MODE_IDS = [...MODES.map((m) => m.id), 'picture']
 
 export default function WordsView({ unit, at }) {
   const lesson = unit.lessons[at]
   const words = lesson.vocabulary
-  // A topic with a drawing opens on it: the diagram is the way into these words, and behind a tab
-  // like the others nobody found it. Browse is one tap away; any other topic opens on Browse.
-  const home = pictureBoards(words).length ? 'picture' : 'browse'
   // The mode rides on the address (?words=cards in a shared link), so a reload or a link keeps it.
-  const [mode, setModeNow] = useState(() => readViewParam('words', MODE_IDS) ?? home)
+  const [mode, setModeNow] = useState(() => readViewParam('words', MODE_IDS) ?? 'browse')
   // A mode picked here rises in, as an answer to the tap; the first arrives with its screen (ui/display/Screen.jsx).
   const [picked, setPicked] = useState(false)
-  const setMode = (next) => { setModeNow(next); setPicked(true); writeViewParams({ words: next === home ? '' : next }) }
+  const setMode = (next) => { setModeNow(next); setPicked(true); writeViewParams({ words: next === 'browse' ? '' : next }) }
   const dialect = unit.dialect_key
   // Review plans from the words' record: fetched ahead when the topic opens, and again
   // on reaching for the modes (only if an answer has made it old), so it opens at once.
   const client = useQueryClient()
   const record = summaryQuery(WORDS_MODULE)
   useEffect(() => { warm(client, summaryQuery(WORDS_MODULE)) }, [client])
-  const modes = useMemo(() => (pictureBoards(words).length ? [...MODES.slice(0, 3), PICTURE, ...MODES.slice(3)] : MODES), [words])
-  // A topic with no drawing has no Picture mode: a link asking for one opens on Browse.
-  const shown = modes.some((m) => m.id === mode) ? mode : home
+  const shown = mode === 'picture' ? 'browse' : mode
+  // Where the words have a drawing (the body, a house, the countries: lib/colloquial/wordPictures.js) Browse
+  // opens with it, so they are met on it as well as in a list.
+  const drawn = useMemo(() => pictureBoards(words).length > 0, [words])
   const drills = useMemo(() => wordDrills(words, `${unit.unit}.${lesson.lesson}`, { dialect }), [words, unit.unit, lesson.lesson, dialect])
-
-  // The drawing is what a Picture view is for, and on a phone the topic's heading, the modes and the board
-  // choices stand above it: the heading is brought under the header, so the drawing is on the first screen.
-  // Held as the page settles, and let go the moment the reader scrolls.
-  const wide = useMedia(LARGE_SCREEN)
-  const heading = useRef(null)
-  useEffect(() => (shown === 'picture' && !wide ? holdGlideUnderHeader(heading.current) : undefined), [shown, wide])
 
   if (!words.length) return <p className="type-small text-[var(--text-faint)] text-center py-12">This topic has no words yet.</p>
 
   // Browse and Review lay many tiles side by side; the rest are one card wide.
   return (
-    <article className={`${WIDE.has(shown) ? 'max-w-5xl' : 'max-w-xl'} mx-auto space-y-6`}>
+    <article className={`${shown === 'browse' && drawn ? 'max-w-6xl' : WIDE.has(shown) ? 'max-w-5xl' : 'max-w-xl'} mx-auto space-y-6`}>
       {/* One width in every mode, so the modes stay put when Review widens the page. */}
       {/* Headed like a phrase topic (topic/TopicView.jsx), so every topic says its own name, not only the trail. */}
-      <header ref={heading} className="w-full max-w-xl mx-auto space-y-4">
+      <header className={`w-full space-y-4 ${shown === 'browse' && drawn ? '' : 'max-w-xl mx-auto'}`}>
         <div>
           <p className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
           <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
         </div>
         <div {...onHover(client, record)}>
-          <Segmented label="How to learn the words" accent="var(--primary)" value={shown} onChange={setMode} options={modes} />
+          <Segmented label="How to learn the words" accent="var(--primary)" value={shown} onChange={setMode} options={MODES} />
         </div>
       </header>
-      {/* Not over the drawing, whose words appear only once tapped, nor over the quiz. */}
-      {!['quiz', 'picture'].includes(shown) && <div className="w-full max-w-xl mx-auto"><SpellingKey keys={unit.transliteration_key} /></div>}
+      {/* Over the words, not the quiz; beside a drawing it heads the words' own column instead. */}
+      {shown !== 'quiz' && !(shown === 'browse' && drawn) && <div className="w-full max-w-xl mx-auto"><SpellingKey keys={unit.transliteration_key} /></div>}
       {/* Keyed by the mode, so a newly picked one rises in. */}
       <div key={shown} className={picked ? 'rise-in' : undefined}>
-        {shown === 'browse' && (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />)}
+        {shown === 'browse' && (drawn
+          ? (
+            // The drawing beside the words on a wide screen, held in view as they scroll past; over them on a phone.
+            <div className="space-y-8 lg:grid lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:items-start lg:gap-8 lg:space-y-0">
+              <div className="max-w-xl mx-auto w-full lg:sticky lg:top-[calc(var(--app-header-h,0px)+1rem)] lg:max-h-[calc(100dvh-var(--app-header-h,0px)-2rem)] lg:overflow-y-auto">
+                <WordPicture words={words} />
+              </div>
+              <div className="space-y-4 min-w-0">
+                <SpellingKey keys={unit.transliteration_key} />
+                {lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} narrow />}
+              </div>
+            </div>
+          )
+          : (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />))}
         {shown === 'cards' && <WordCards words={words} />}
         {shown === 'match' && <WordMatch words={words} />}
-        {shown === 'picture' && <WordPicture words={words} />}
         {shown === 'quiz' && <Practice exercises={drills} />}
         {shown === 'review' && <WordReview words={words} dialect={dialect} />}
       </div>

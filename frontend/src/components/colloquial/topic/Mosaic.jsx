@@ -7,9 +7,12 @@ import Face from '../parts/Face'
 
 const FEATURE_EVERY = settings['feature-every']
 
-export default function Mosaic({ phrases, onOpen, start = 0 }) {
+// `narrow` is a mosaic in a column beside something else (the diagram): fewer across, running down the page.
+const COLUMNS = { wide: 'grid-cols-2 sm:grid-cols-4 lg:grid-cols-6', narrow: 'grid-cols-2 sm:grid-cols-3' }
+
+export default function Mosaic({ phrases, onOpen, start = 0, narrow = false }) {
   return (
-    <ul className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
+    <ul className={`grid ${COLUMNS[narrow ? 'narrow' : 'wide']} gap-2 sm:gap-3`}>
       {phrases.map((phrase, i) => {
         const big = i % FEATURE_EVERY === 0 && Boolean(phrase.image) && phrases.length >= FEATURE_EVERY
         return (

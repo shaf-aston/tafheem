@@ -14,7 +14,7 @@ const runs = (words) => grouped(words).map(([category, group]) => [
   [group.filter((w) => w.image), group.filter((w) => !w.image)].filter((run) => run.length),
 ])
 
-export default function WordGallery({ words }) {
+export default function WordGallery({ words, narrow = false }) {
   const [open, setOpen] = useState(null)
   const sections = runs(words)
   // The sheet steps through the words in the order they are shown.
@@ -30,7 +30,7 @@ export default function WordGallery({ words }) {
           {category && <h3 className="eyebrow text-[var(--text-faint)]">{category}</h3>}
           {parts.map((run, p) => {
             const at = starts[firstRun[s] + p]
-            return <Mosaic key={at} phrases={run} start={at} onOpen={setOpen} />
+            return <Mosaic key={at} phrases={run} start={at} onOpen={setOpen} narrow={narrow} />
           })}
         </section>
       ))}

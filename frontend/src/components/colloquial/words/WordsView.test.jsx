@@ -19,39 +19,53 @@ const on = () => screen.getByRole('group', { name: 'How to learn the words' }).q
 beforeEach(() => { globalThis.scrollTo = vi.fn(); window.history.replaceState({}, '', '/colloq/fusha/unit-23/lesson-01/words') })
 afterEach(cleanup)
 
-describe('WordsView: where a topic opens', () => {
-  it('on its diagram when the words have one, with Browse a tap away', () => {
+describe('WordsView: Browse, with the drawing where the words have one', () => {
+  it('a topic with a drawing opens on Browse with the drawing in it, and has no tab of its own for it', () => {
     draw(topic(body))
-    expect(on()).toBe('Picture')
-    fireEvent.click(screen.getByRole('button', { name: 'Browse' }))
     expect(on()).toBe('Browse')
-  })
-
-  it('on Browse when the words have no drawing', () => {
-    draw(topic(['apple', 'bread', 'rice']))
-    expect(on()).toBe('Browse')
+    expect(screen.getByRole('button', { name: 'Face' })).toBeTruthy()   // the drawing's boards
+    expect(screen.getByRole('button', { name: 'Explore' })).toBeTruthy()
     expect(screen.queryByRole('button', { name: 'Picture' })).toBeNull()
+    const tabs = [...screen.getByRole('group', { name: 'How to learn the words' }).querySelectorAll('button')].map((b) => b.textContent)
+    expect(tabs).toEqual(['Browse', 'Cards', 'Match', 'Quiz', 'Review'])
   })
 
-  it('keeps a choice across a reload: Browse picked over a diagram stays Browse', () => {
+  it('the drawing sits beside the words in a wide layout and the words run in a narrow column', () => {
+    const { container } = draw(topic(body))
+    const split = container.querySelector('.lg\\:grid')
+    expect(split).not.toBeNull()
+    expect(split.querySelector('.lg\\:sticky')).not.toBeNull()   // the drawing is held in view
+    // The words under it use the narrow mosaic (3 across at most), not the 6-across wide one.
+    expect(container.querySelector('ul.grid.sm\\:grid-cols-3')).not.toBeNull()
+    expect(container.querySelector('ul.grid.lg\\:grid-cols-6')).toBeNull()
+  })
+
+  it('a topic with no drawing is the plain Browse, the wide mosaic and nothing beside it', () => {
+    const { container } = draw(topic(['apple', 'bread', 'rice']))
+    expect(on()).toBe('Browse')
+    expect(screen.queryByRole('button', { name: 'Explore' })).toBeNull()
+    expect(container.querySelector('.lg\\:sticky')).toBeNull()
+  })
+
+  it('an old ?words=picture link opens Browse', () => {
+    window.history.replaceState({ view: { words: 'picture' } }, '', '/colloq/fusha/unit-23/lesson-01/words')
+    draw(topic(body))
+    expect(on()).toBe('Browse')
+    expect(screen.getByRole('button', { name: 'Face' })).toBeTruthy()
+  })
+
+  it('a mode picked is kept across a reload', () => {
     const first = draw(topic(body))
-    fireEvent.click(screen.getByRole('button', { name: 'Browse' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Cards' }))
     first.unmount()
     draw(topic(body))
-    expect(on()).toBe('Browse')
-  })
-
-  it('a link asking for a mode a topic lacks opens on its own start', () => {
-    window.history.replaceState({ view: { words: 'picture' } }, '', '/colloq/fusha/unit-23/lesson-01/words')
-    draw(topic(['apple', 'bread', 'rice']))
-    expect(on()).toBe('Browse')
+    expect(on()).toBe('Cards')
   })
 
   it('the board and the Explore/Test step are kept across a reload and in a link', () => {
     const first = draw(topic(body))
     fireEvent.click(screen.getByRole('button', { name: 'Hand' }))
     fireEvent.click(screen.getByRole('button', { name: 'Test' }))
-    expect(window.location.search).toBe('')   // the choices ride the history entry; Share writes them out
     first.unmount()
     draw(topic(body))
     expect(screen.getByRole('button', { name: 'Hand' }).getAttribute('aria-pressed')).toBe('true')
@@ -64,7 +78,7 @@ describe('WordsView: where a topic opens', () => {
   })
 
   it('a link naming a board the topic lacks opens on the first', () => {
-    window.history.replaceState({ view: { words: 'picture', board: 'nowhere', step: 'test' } }, '', '/colloq/fusha/unit-23/lesson-01/words')
+    window.history.replaceState({ view: { board: 'nowhere', step: 'test' } }, '', '/colloq/fusha/unit-23/lesson-01/words')
     draw(topic(body))
     expect(screen.getByRole('button', { name: 'Face' }).getAttribute('aria-pressed')).toBe('true')
     expect(screen.getByRole('button', { name: 'Test' }).getAttribute('aria-pressed')).toBe('true')
