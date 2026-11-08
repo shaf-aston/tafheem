@@ -16,6 +16,7 @@ import vercel from '../vercel.json'
 const PRETTY = { '/app': '/app.html' }
 const TABS = vercel.rewrites.map((rule) => rule.source.match(/^\/:tab\(([^)]+)\)/)?.[1]).find(Boolean)
 const TAB_PAGE = new RegExp(`^(/app)?/(${TABS})(/.*)?$`)
+const FILE = /\/[^/]+\.\w+$/
 const prettyUrls = {
   name: 'pretty-urls',
   configureServer(server) { server.middlewares.use(rewrite) },
@@ -24,7 +25,8 @@ const prettyUrls = {
 function rewrite(req, _res, next) {
   const [path, query] = req.url.split('?')
   const bare = path.replace(/(.)\/$/, '$1')
-  const to = PRETTY[bare] ?? (TAB_PAGE.test(bare) ? PRETTY['/app'] : null)
+  // A file is never a page: /grow is a tab, but /grow/basics.json is Grow's data (a host serves the file first, too).
+  const to = PRETTY[bare] ?? (TAB_PAGE.test(bare) && !FILE.test(bare) ? PRETTY['/app'] : null)
   if (to) req.url = query ? `${to}?${query}` : to
   next()
 }
