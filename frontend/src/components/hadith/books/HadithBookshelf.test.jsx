@@ -12,7 +12,7 @@ const COLLECTIONS = [
   { id: 'bukhari', name: 'Sahih al-Bukhari', short: 'Bukhari', sahih: true },
   { id: 'muslim', name: 'Sahih Muslim', short: 'Muslim', sahih: true },
   { id: 'mishkat', name: 'Mishkat al-Masabih', short: 'Mishkat', arabic: 'مشكاة المصابيح', shelf: 'Gathered by topic',
-    by: 'al-Khatib at-Tabrizi', about: 'Hadith gathered topic by topic.', count: 4428 },
+    count: 4428 },
   { id: 'nawawi', name: 'Forty Hadith of an-Nawawi', short: 'Nawawi', shelf: 'Forty hadith', count: 42 },
 ]
 const ROUTES = { 'GET /hadith/collections': COLLECTIONS }
@@ -35,7 +35,7 @@ describe('the bookshelf', () => {
     expect(open.getAttribute('aria-pressed')).toBe('true')
   })
 
-  it('lays the books out shelf by shelf, each with its cover and its words, and opens the one picked', async () => {
+  it('lays the books out shelf by shelf, each with its cover, name and count, and opens the one picked', async () => {
     const onPick = vi.fn()
     renderScreen(<HadithBookshelf onPick={onPick} />, { routes: ROUTES })
     const topic = await screen.findByRole('region', { name: 'Gathered by topic' })
