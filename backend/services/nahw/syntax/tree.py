@@ -13,14 +13,14 @@ from __future__ import annotations
 
 from backend.services.nahw.book import (book_spelling, card_keys, clause_of, condition_of, family_cards, family_mother, frames, is_one, role_units, says,
                                        tarkeeb_rules, teacher_rules, term_ar, counted_name)
-from backend.services.nahw.syntax.facts import (Sentence, is_passive, is_particle, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, previous_noun,
+from backend.services.nahw.syntax.facts import (Sentence, is_passive, is_particle, listed, ma_kind, is_preposition, is_participle, asked_verb, is_prefix, completes_kaada, is_masdar, is_describing, is_zarf, previous_noun,
                                           is_nasab, is_verb, read_as, reading, excepted_after_la, shown_cases, noun_tagged,
                                           NOUN_LINKS, typed_or_parsed_case)
 from backend.services.nahw.syntax.followers import FOLLOWERS, chain_first
 from backend.services.nahw.syntax.naming import NAMED, base_tokens, opens_with_verb, tone
 from backend.services.nahw.syntax.doer import DOER, doer as _doer, person_key as _person, persons as _persons
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import SHADDA, has_tanween, letters, own_letters
+from backend.services.text.harakat import SHADDA, has_tanween, letters, own_letters, stuck_letters
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
@@ -62,14 +62,14 @@ def _label(head: dict, child_roles: list[str], kids: list[dict] = ()) -> str | N
     return ""
 
 
-def _unit_role(role: str | None, child_roles: list[str]) -> str | None:
+def _unit_role(head: dict, role: str | None, child_roles: list[str]) -> str | None:
     """What the head word is called inside its own unit.
 
     On its own it is a مبتدأ; inside كِتَابُ الطَّالِبِ it is the مضاف and the
     unit as a whole is the مبتدأ, which is how the books draw it.
     """
-    for unit in role_units():  # غَيْرَ زيدٍ keeps its مستثنى, as its card says
-        if unit["child"] in child_roles and "head_as" in unit:
+    for unit in role_units():  # غَيْرَ زيدٍ keeps its مستثنى, as its card says; a particle (إلا) is no noun to be renamed
+        if unit["child"] in child_roles and "head_as" in unit and not is_particle(head):
             return role if role in unit.get("head_keeps", ()) else unit["head_as"]
     return role
 
@@ -157,6 +157,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         before = [by_id[p["id"]] for p in found.get("attached", []) if p["id"] in split and p["before"]]
         after = [by_id[p["id"]] for p in found.get("attached", []) if p["id"] in split and not p["before"]]
         sizes = [len(bare_letters(t["form"].strip("+"))) for t in before + after]
+        if after:  # إِنِّي: the pronoun's نِي shares the one written nun with إِنَّ, so it is written as ي
+            sizes[-len(after)] -= sum(sizes[-len(after):]) - stuck_letters([*before, token, *after], word)
         spans = sizes[:len(before)] + [len(letters(word)) - sum(sizes)] + sizes[len(before):]
         drawn += before + [token] + after
         columns += [own_letters(word, sum(spans[:k]), sum(spans[k + 1:])) for k in range(len(spans))]
@@ -271,6 +273,23 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                               head=noun["head"], rel="PRD", pos="NOM", pos_camel="")
             if "mubdal_minhu" in entry:
                 mubdal_minhu[said["id"]] = entry["mubdal_minhu"]
+    # رجلٌ من الأنصار، غلامًا له: a noun for a thing works on nothing, so what hangs on it hangs on the
+    # word it is described by, which no one writes (roles.json understood): its صفة or, after a known noun, its حال
+    after_noun = FRAMES["clause_after_noun"]
+    for held in [t for t in drawn if role_of[t["id"]] in kept["slot"] and t["id"] not in hung]:
+        noun = by_id.get(held["head"])
+        if (not noun or noun["id"] > held["id"] or noun["id"] in understood or not noun_tagged(noun) or not role_of[noun["id"]]
+                or is_describing(noun) or is_masdar(noun) or is_zarf(noun, sentence)):
+            continue
+        known, case = definite(noun), typed_or_parsed_case(noun)
+        if strip_diacritics(held["form"]) in kept["measured"]["particles"] and listed(noun, "tamyeez_head", "measures"):
+            continue  # كوبٌ من القهوة: the tamyeez, not a description
+        if not case and not known:
+            continue
+        job = after_noun["definite" if known else "indefinite"]
+        said_word = understand(kept["voweled"] + kept["tanween"][after_noun["definite_case"] if known else case], job,
+                               drawn.index(held), head=noun["id"], rel="MOD", pos="NOM", pos_camel="", lemma=kept["word"])
+        hung.add(held["id"])
     said_verb = kept["verb"]
     named_by_unsaid: set[int] = set()  # nouns whose job a word no one writes gives: its object, its khabar
     replies: set[int] = set()  # the unwritten verbs that answer a question
@@ -766,7 +785,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         # a word the teacher dashed stays a dash at the head of its unit: مضاف would name it
         own = _label(token, kid_roles, kids)
         # a name with its ابن is the متبوع: موصوف or مبدل منه would pick one of the three readings
-        head_name = FOLLOWED if own is None else _unit_role(name_of[token["id"]], kid_roles)
+        head_name = FOLLOWED if own is None else _unit_role(token, name_of[token["id"]], kid_roles)
         inside.append((index, pieces(token, _leaf(index, role, why, None if why else head_name))))
         # الطالبُ مجتهدٌ في المدرسة: a خبر whose مبتدأ is drawn beside it is a word with its
         # jar-majroor, not a sentence
