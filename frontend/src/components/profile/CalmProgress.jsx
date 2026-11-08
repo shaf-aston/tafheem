@@ -5,15 +5,16 @@
  */
 import { useId } from 'react'
 
+import { useProgressFacts } from '../../lib/learner/useProgressFacts'
 import { weekOf } from '../../lib/learner/week'
 import { colorFor } from '../../theme'
 import { Skeleton } from '../ui/feedback/Skeleton'
 
 // Said of a day, for a screen reader and a pointer's tooltip; the dot alone says it to the eye.
-const SAYS = { studied: 'studied', rest: 'no answers', unknown: 'not in the record', ahead: 'still to come' }
+const SAYS = { studied: 'studied', rest: 'no answers', ahead: 'still to come' }
 
 /** The week's dots, words met and known, answers given, and one line that asks nothing. */
-export function ThisWeek({ overview, stats, learnt, account }) {
+export function ThisWeek({ overview, stats, learnt }) {
   const id = useId()
   return (
     <section aria-labelledby={id} className="space-y-4" style={{ '--week-tone': colorFor('tab', 'grow') }}>
@@ -22,7 +23,7 @@ export function ThisWeek({ overview, stats, learnt, account }) {
       <dl className="grid grid-cols-3 gap-2">
         <Count name="Words met" value={stats.data?.length} />
         <Count name="Now known" value={stats.data && learnt.length} />
-        <Count name="Answers" value={account.data?.answers} />
+        <Count name="Answers" value={overview.data?.attempts} />
       </dl>
       <p className="type-small text-[var(--text-dim)]">Come back when you can. Your words wait.</p>
     </section>
@@ -55,6 +56,20 @@ function Count({ name, value }) {
         {value ?? <Skeleton className="h-6 w-10" />}
       </dd>
     </div>
+  )
+}
+
+/**
+ * A guest's own progress, the top of what an account sees: the device keeps a record of its own, so the week and
+ * the understanding are there before any log-in; the level, the streak and the rankings wait for one.
+ */
+export function GuestProgress() {
+  const { overview, stats, learnt, share, covered } = useProgressFacts(null)
+  return (
+    <>
+      <ThisWeek overview={overview} stats={stats} learnt={learnt} />
+      <Understanding share={share} covered={covered} />
+    </>
   )
 }
 

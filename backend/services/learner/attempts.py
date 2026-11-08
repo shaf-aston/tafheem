@@ -58,6 +58,8 @@ ORDER BY module
 
 # `at` is UTC; the shift ("+60 minutes") gives the learner's day.
 _DAYS = "SELECT DISTINCT date(at, ?) AS day FROM attempts WHERE user = ? ORDER BY day DESC"
+# How far back the overview lists the days answered in: two weeks covers this week from any weekday.
+_RECENT_DAYS = 14
 
 # One row per (item, local day) answered right: XP source.
 _EARNED = "SELECT DISTINCT module, item, date(at, ?) AS day FROM attempts WHERE user = ? AND correct = 1"
@@ -191,9 +193,10 @@ def rewards(user: str, minutes: int = 0) -> dict:
 
 
 def overview(user: str, minutes: int = 0) -> dict:
-    """Every module this learner answered in, the totals, and the streak of days.
+    """Every module this learner answered in, the totals, the streak of days, and the days of the last two weeks.
 
-    Learnt is the leaderboard's measure. Streak counts the learner's days.
+    Learnt is the leaderboard's measure. Streak counts the learner's days. `days` are the local days answered in
+    since 13 days ago, newest first: enough for a week view on any weekday, without sending the whole history.
     """
     known = _learnt_everywhere(user)
     modules = [
@@ -203,7 +206,9 @@ def overview(user: str, minutes: int = 0) -> dict:
     ]
     totals = {key: sum(row[key] for row in modules) for key in ("attempts", "correct", "learnt")}
     days = [datetime.fromisoformat(row["day"]).date() for row in connection().execute(_DAYS, (_shift(minutes), user))]
-    return {"modules": modules, **totals, "streak": reward_rules.streak(days, local_today(minutes))}
+    today = local_today(minutes)
+    recent = [day.isoformat() for day in days if day > today - timedelta(days=_RECENT_DAYS)]
+    return {"modules": modules, **totals, "streak": reward_rules.streak(days, today), "days": recent}
 
 
 def _answers(module: str, name: str) -> int:

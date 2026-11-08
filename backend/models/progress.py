@@ -228,6 +228,8 @@ class Overview(BaseModel):
     correct: int
     learnt: int
     streak: int
+    # The learner's local days answered in over the last two weeks, newest first ("2026-11-07").
+    days: list[str] = []
 
 
 class ReviewList(BaseModel):
