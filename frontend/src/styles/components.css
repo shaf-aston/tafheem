@@ -1338,7 +1338,14 @@ button.mushaf-word {
     background-color calc(var(--motion-base-ms) * 1ms) ease-out,
     color calc(var(--motion-base-ms) * 1ms) ease-out;
 }
-.shelf-case > svg { width: 2.25rem; flex: 1; min-height: 0; }
+.shelf-case > svg {
+  width: 2.25rem;
+  flex: 1;
+  min-height: 0;
+  transition: transform calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease);
+}
+/* Pressed, the little case on the tile turns over once as the big one opens. */
+.shelf-case[aria-pressed='true'] > svg { transform: perspective(calc(var(--motion-tilt-perspective-px) * 1px)) rotateY(360deg); }
 .shelf-case > span {
   font-weight: 600;
   font-size: 0.75rem;
@@ -1352,17 +1359,15 @@ button.mushaf-word {
 .shelf-case:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
 .shelf-case[aria-pressed='true'] { background: var(--c); color: var(--surface); border-color: var(--c); }
 
-/* The bookcase opened (HadithBookcase): it grows in from the shelf's end, top
-   right, as a step towards it, and its shelves then settle one by one (.rise-in).
+/* The bookcase opened (HadithBookcase): it flips open out of the shelf's tile
+   (lib/motion/openFrom draws that), and its shelves then settle one by one (.rise-in).
    Each shelf is a row of books standing on a plank: the cover, then its words. */
 .bookcase {
   display: grid;
   gap: 1.5rem;
-  transform-origin: top right;
   --rise-y: -1rem;
   --rise-scale: 0.88;
   --rise-uncover: 0%;
-  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
 }
 .bookcase-shelf { display: grid; gap: 0.75rem; }
 .bookcase-row {
