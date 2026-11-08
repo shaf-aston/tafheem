@@ -28,7 +28,9 @@
   transition: transform calc(var(--motion-spring-ms) * 1ms * var(--motion-scale)) var(--motion-spring-ease);
   filter: drop-shadow(0 4px 10px color-mix(in srgb, var(--w) 35%, transparent));
 }
-.grow-world-tile:not(:disabled):hover .emblem { transform: translateY(-3px) scale(1.12) rotate(-3deg); }
+/* Hovered, the tile leans in 3D (.tilt), and a filter inside a 3D lean is drawn flat at rest size and then stretched:
+   the picture went soft. So its shadow goes while the tile leans; the tile's own glow (below) stands in for it. */
+.grow-world-tile:not(:disabled):hover .emblem { transform: translateY(-3px) scale(1.12) rotate(-3deg); filter: none; }
 .grow-world-tile:disabled .emblem { filter: grayscale(1); opacity: 0.6; }
 .grow-world-tile { min-height: 168px; }
 .grow-world-tile:not(:disabled):hover { box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--w) 55%, transparent); }
