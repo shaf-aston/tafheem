@@ -371,7 +371,7 @@ def parse(words: list[str], picks: list[dict]) -> list[dict]:
     for word, pick in zip(words, picks, strict=True):
         pieces = _split_word(word, pick)
         # the vowel of an attached pronoun is the pronoun's: عِلْمَهُ is in nasb, not raf'
-        stuck_on = stuck_letters(pieces)
+        stuck_on = stuck_letters(pieces, word)
         subtokens.extend({**t, "case": typed_case(word, stuck_on)} for t in pieces)
 
     heads, rels = _parse_forms(subtokens)

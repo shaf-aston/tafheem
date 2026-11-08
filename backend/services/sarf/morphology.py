@@ -270,7 +270,7 @@ def _analysis_dict_from_camel(word: str, a: dict, before: str = "", after: str =
     # noun's attached pronoun's (the fatha of أَخِيكَ is the kaf's), and on ياء المتكلم the case
     # is unseen (the fatha of سُلْطَانِيَ is the ya's own).
     unseen = is_mabni(pos, a.get("asp"), base_of(word, a.get("atbtok"))) or a.get("enc0") == "1s_poss"
-    pronoun = stuck_letters({"form": piece} for piece in (a.get("atbtok") or "").split("_")) if pos in NOUNISH else 0
+    pronoun = stuck_letters([{"form": piece} for piece in (a.get("atbtok") or "").split("_")], word) if pos in NOUNISH else 0
     case_str = CASE_NAME.get(CAMEL_CASE.get(cas)) or (None if unseen else CASE_NAME.get(typed_case(word, pronoun)))
 
     return {

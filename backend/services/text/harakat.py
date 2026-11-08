@@ -51,9 +51,21 @@ def no_vowels_typed(tokens: list[str]) -> bool:
     return not any(marks.intersection(VOWEL) for token in tokens for _, marks in letters(token))
 
 
-def stuck_letters(pieces) -> int:
-    """How many letters of an attached pronoun (ـها) the `+` pieces among these tokens hold."""
-    return sum(len(bare_letters(t["form"].strip("+"))) for t in pieces if t["form"].startswith("+"))
+def stuck_letters(pieces, word: str = "") -> int:
+    """How many letters of an attached pronoun (ـها) the `+` pieces among these tokens hold.
+
+    With the typed `word`, a letter the shadda of the word before it already doubles is written once:
+    إِنِّي is إِنَّ and ي, though the analyser's pronoun is نِي, so the pronoun holds one letter here, not two."""
+    pieces = list(pieces)
+    stuck = sum(len(bare_letters(t["form"].strip("+"))) for t in pieces if t["form"].startswith("+"))
+    marked = letters(word)
+    front = [bare_letters(t["form"].strip("+")) for t in pieces if not t["form"].startswith("+")]
+    back = [bare_letters(t["form"].strip("+")) for t in pieces if t["form"].startswith("+")]
+    held = sum(map(len, front))
+    short = held + stuck - len(marked)
+    # the doubled letter is the word's own last and the pronoun's first (أَلَّا is not: its lam is the particle's)
+    shared = stuck and marked and short > 0 and held and SHADDA in marked[held - 1][1] and front[-1][-1:] == back[0][:1]
+    return stuck - short if shared else stuck
 
 
 def own_letters(word: str, before: int, after: int) -> str:
