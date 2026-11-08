@@ -11,7 +11,7 @@ import { useArrivalWhenReady } from '../../lib/nav/useArrival'
 import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith, usulGuideQuery } from '../../api'
-import { BOOKCASE_PLACE, bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from './hadithPlace'
+import { BOOKSHELF_PLACE, bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from './hadithPlace'
 import { useHadithFavorites } from './favorites/useHadithFavorites'
 import { nearest, tabNow, trailFor, useJourney } from '../../lib/nav/journey'
 import { TRAIL_STEPS } from '../../lib/nav/session'
@@ -25,7 +25,7 @@ import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import StatusNote from '../ui/feedback/StatusNote'
 import HadithCollectionPicker from './books/HadithCollectionPicker'
 import HadithBookList from './books/HadithBookList'
-import HadithBookcase from './books/HadithBookcase'
+import HadithBookshelf from './books/HadithBookshelf'
 import HadithCards from './HadithCards'
 import PlaceStrip from './PlaceStrip'
 import HadithOptions from './HadithOptions'
@@ -203,14 +203,14 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
       >
         <ChipRow>
           <HadithCollectionPicker value={collection} onChange={pickCollection} accent={accent}
-            bookcaseOpen={listing === BOOKCASE_PLACE}
-            onBookcase={() => (listing === BOOKCASE_PLACE ? go(place) : onGo('hadith', BOOKCASE_PLACE))} />
+            bookshelfOpen={listing === BOOKSHELF_PLACE}
+            onBookshelf={() => (listing === BOOKSHELF_PLACE ? go(place) : onGo('hadith', BOOKSHELF_PLACE))} />
           {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this
               collection, unless the picker beside it already names it. */}
           {!starred && !listing && source && <SourceBadge source={collections.length > 1 ? source : { ...source, label: open.name }} className="ml-auto" />}
         </ChipRow>
-        {listing === BOOKCASE_PLACE ? (
-          <HadithBookcase accent={accent} onPick={pickCollection} />
+        {listing === BOOKSHELF_PLACE ? (
+          <HadithBookshelf accent={accent} onPick={pickCollection} />
         ) : listing === NARRATORS_PLACE ? (
           <NarratorList accent={accent} onOpen={openNarrator} />
         ) : listing === SCHOLARS_PLACE ? (

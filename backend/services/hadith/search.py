@@ -106,7 +106,7 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
     if not typed:
         return Result()
 
-    # Searching everywhere means the six: the bookcase's books mostly retell them, so each would come back
+    # Searching everywhere means the six: the bookshelf's books mostly retell them, so each would come back
     # twice. A shelved book is searched when it is named or picked.
     further = shelved()
     scope = collections or tuple(cid for cid, *_ in collections_of() if cid not in further)

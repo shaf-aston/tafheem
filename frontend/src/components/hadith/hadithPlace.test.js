@@ -53,7 +53,7 @@ describe('narrator places', () => {
 
 describe('list places', () => {
   it('knows the narrators and scholars lists, and no other place is one', () => {
-    expect(['narrators', 'scholars', 'bookcase'].map(listOf)).toEqual(['narrators', 'scholars', 'bookcase'])
+    expect(['narrators', 'scholars', 'bookshelf'].map(listOf)).toEqual(['narrators', 'scholars', 'bookshelf'])
     expect(['bukhari', 'narrator/1', '', null].map(listOf)).toEqual([null, null, null, null])
   })
 
@@ -72,7 +72,7 @@ describe('nameOfPlace', () => {
   it('names the lists, and a narrator once his name is known', () => {
     expect(nameOfPlace('narrators', collections)).toBe('Rijal')
     expect(nameOfPlace('scholars', collections)).toBe('Scholars')
-    expect(nameOfPlace('bookcase', collections)).toBe('Bookcase')
+    expect(nameOfPlace('bookshelf', collections)).toBe('Bookshelf')
     expect(nameOfPlace('terms', collections)).toBe('Terms')
     expect(nameOfPlace('terms/3', collections)).toBe('Terms')
     // A group reads by its title once the guide is in, so the trail is not "Terms › Terms"; the whole list stays "Terms".

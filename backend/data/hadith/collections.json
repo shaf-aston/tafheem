@@ -5,7 +5,7 @@
     "scripts/hadith/fetch_hadith_collections.py and scripts/hadith/build_hadith_index.py; no code changes.",
     "short is the name the picker shows; arabic and arabic_short are the same two names in Arabic, so a search can name it either way. cite is the citation URL template sunnah.com uses, {number} filled with the hadith's own number.",
     "sahih marks a collection whose every hadith is graded sahih by the scholars, so its hadiths carry no grade of their own.",
-    "shelf names the shelf of the bookcase a further book stands on, away from the six on the tab's own shelf; by and about are its cover's two lines. from names a source other than fawazahmed0/hadith-api, as repo:path in AhmedBaset/hadith-json."
+    "shelf names the shelf of the bookshelf a further book stands on, away from the six on the tab's own shelf; by and about are its cover's two lines. from names a source other than fawazahmed0/hadith-api, as repo:path in AhmedBaset/hadith-json."
   ],
   "bukhari": {
     "name": "Sahih al-Bukhari",

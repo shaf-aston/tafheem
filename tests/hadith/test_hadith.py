@@ -144,8 +144,8 @@ def test_router_lists_collections(db, client):
 
 
 @pytest.fixture()
-def bookcase(db):
-    """The tiny database plus Mishkat on the bookcase, retelling Bukhari's first hadith."""
+def bookshelf(db):
+    """The tiny database plus Mishkat on the bookshelf, retelling Bukhari's first hadith."""
     with sqlite3.connect(db) as conn:
         conn.execute("INSERT INTO collection (id, name, short, cite, shelf, author, about) VALUES "
                      "('mishkat', 'Mishkat al-Masabih', 'Mishkat', '', 'Gathered by topic', 'at-Tabrizi', 'By topic.')")
@@ -158,20 +158,20 @@ def bookcase(db):
     return db
 
 
-def test_a_shelved_book_lists_with_its_shelf_and_cover(bookcase, client):
+def test_a_shelved_book_lists_with_its_shelf_and_cover(bookshelf, client):
     found = {c["id"]: c for c in client.get("/api/hadith/collections").json()}
     assert found["bukhari"]["shelf"] == ""
     assert found["mishkat"] == {"id": "mishkat", "name": "Mishkat al-Masabih", "short": "Mishkat", "arabic": "", "sahih": False,
                                 "shelf": "Gathered by topic", "by": "at-Tabrizi", "about": "By topic.", "count": 1}
 
 
-def test_searching_everywhere_skips_the_bookcase_but_a_picked_book_is_searched(bookcase):
+def test_searching_everywhere_skips_the_bookshelf_but_a_picked_book_is_searched(bookshelf):
     assert [h.collection for h in search.search("intentions", 10).hits] == ["bukhari"]
     assert [h.collection for h in search.search("intentions", 10, ("mishkat",)).hits] == ["mishkat"]
     assert [h.collection for h in search.search("mishkat intentions", 10).hits] == ["mishkat"]
 
 
-def test_an_index_built_before_the_bookcase_still_lists_its_collections(db, client):
+def test_an_index_built_before_the_bookshelf_still_lists_its_collections(db, client):
     with sqlite3.connect(db) as conn:
         conn.execute("ALTER TABLE collection DROP COLUMN shelf")
     assert [c["id"] for c in client.get("/api/hadith/collections").json()] == ["bukhari"]

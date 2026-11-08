@@ -34,13 +34,13 @@ export function shortOf(q, books) {
 export const narratorOf = (q) => /^narrator\/(\d+)$/.exec(q ?? '')?.[1] ?? null
 export const narratorPlaceOf = (id) => `narrator/${id}`
 
-// The lists are the places "narrators", "scholars", "terms" and "bookcase" (the further books), apart from
+// The lists are the places "narrators", "scholars", "terms" and "bookshelf" (the further books), apart from
 // "narrator/<id>" and every collection.
 export const NARRATORS_PLACE = 'narrators'
 export const SCHOLARS_PLACE = 'scholars'
 export const TERMS_PLACE = 'terms'
-export const BOOKCASE_PLACE = 'bookcase'
-const LISTS = [NARRATORS_PLACE, SCHOLARS_PLACE, TERMS_PLACE, BOOKCASE_PLACE]
+export const BOOKSHELF_PLACE = 'bookshelf'
+const LISTS = [NARRATORS_PLACE, SCHOLARS_PLACE, TERMS_PLACE, BOOKSHELF_PLACE]
 // The Terms list keeps its open group in the place, "terms/3", so reload, Back and a shared link return to it.
 export const termsPlaceOf = (group) => `${TERMS_PLACE}/${group}`
 export const termsGroupOf = (q) => {
@@ -65,7 +65,7 @@ export const placeOf = (collection, book, number, part = '') => (
 export function nameOfPlace(q, collections = [], nameOf = () => null, groupName = () => null) {
   if (q === NARRATORS_PLACE) return 'Rijal'
   if (q === SCHOLARS_PLACE) return 'Scholars'
-  if (q === BOOKCASE_PLACE) return 'Bookcase'
+  if (q === BOOKSHELF_PLACE) return 'Bookshelf'
   if (listOf(q) === TERMS_PLACE) return groupName(termsGroupOf(q)) || 'Terms'
   if (narratorOf(q)) return nameOf(narratorOf(q)) || 'A narrator'
   const [id, book, hadith] = q.split('/')
