@@ -56,6 +56,17 @@ function hold(land) {
   return stop
 }
 
+/**
+ * A screen's start brought into view: glide until `el`'s top sits `gap` px under the app's header, re-aimed as
+ * the page grows around it (the first aim missed by 360px when what sits above it was still arriving), until the
+ * reader moves or motion['hold-ms'] passes. Returns the stop.
+ */
+export function holdGlideUnderHeader(el, gap = 16) {
+  if (!el) return () => {}
+  const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
+  return hold(() => glideTo(globalThis.scrollY + el.getBoundingClientRect().top - header - gap))
+}
+
 /** A link landing on `el`: at the top at once (an arrival, not a glide), held there as the page grows above it. */
 export function holdAtTop(el) {
   if (!el) return () => {}
