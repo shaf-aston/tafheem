@@ -50,15 +50,19 @@ const EXAMPLES = [
 // What the word row draws: each word's role, or arcs from governor to governed.
 const LENSES = ['roles', 'governs']
 
-export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null }) {
+// `more` is the page's own extras, drawn as rows under this sentence's (Full table,
+// Practice) so they read as one list, or alone when nothing is analysed yet.
+export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, more = null }) {
   const [sentence, setSentence] = useState(analyse ?? '')
   const [selectedWord, setSelectedWord] = useState(null)
   // A sentence analysed is a place reached; the trail shortens it to fit.
+  const practice = useMutation({ mutationFn: generatePractice })
+  // A new sentence drops the last one's questions.
   const analyze = useMutation({
     mutationFn: analyzeIraab,
-    onSuccess: (_, asked) => onVisit?.(asked),
+    onSuccess: (_, asked) => { practice.reset(); onVisit?.(asked) },
   })
-  const practice = useMutation({ mutationFn: generatePractice })
+  const shown = analyze.data && !analyze.isPending
 
   const submit = () => {
     const trimmed = sentence.trim()
@@ -111,7 +115,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
       {analyze.isPending && <AnalyzerSkeleton />}
 
       <div aria-live="polite">
-        {analyze.data && !analyze.isPending && (
+        {shown && (
           <AnalysisResults
             data={analyze.data}
             accent={accent}
@@ -122,9 +126,11 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null })
             detail={selectedWord && (
               <WordCard word={selectedWord} onClose={() => setSelectedWord(null)} onGo={onGo} exclude="nahw" />
             )}
+            more={more}
           />
         )}
       </div>
+      {!shown && more && <div>{more}</div>}
     </div>
   )
 }
@@ -140,7 +146,7 @@ function AnalyzeError({ error, onRetry }) {
 
 // `detail` is the opened word's card, drawn right under the grid it was
 // tapped in rather than after the practice block, where a tap looked ignored.
-function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, detail }) {
+function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, detail, more }) {
   const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
   const linked = data.words.some((w) => source(w) !== undefined)
   const governs = linked && lens === 'governs'
@@ -192,8 +198,12 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
       </p>
       {detail}
 
-      <FullIraabTable words={data.words} onRowClick={onWordClick} />
-      <PracticePanel practice={practice} sentence={data.sentence} accent={accent} />
+      {/* The extras: one list of rows, the page's own (`more`) after this sentence's. */}
+      <div>
+        <FullIraabTable words={data.words} onRowClick={onWordClick} />
+        <PracticePanel practice={practice} sentence={data.sentence} accent={accent} />
+        {more}
+      </div>
     </div>
   )
 }
@@ -400,7 +410,7 @@ function FullIraabTable({ words, onRowClick }) {
     if (row) onRowClick(words[Number(row.dataset.i)])
   }
   return (
-    <Disclosure framed label="Full table: every word, side by side" bodyClassName="overflow-x-auto [direction:rtl]">
+    <Disclosure ruled label="Full table" hint="Every word, side by side" bodyClassName="pb-4 overflow-x-auto [direction:rtl]">
         {/* Right to left like the books: the word first, its proof last, and the scroll
             opens on the word. Case and sign sit under the role (one reading, one cell);
             a sign that only repeats مبني is dropped. A phone has no room for the proof

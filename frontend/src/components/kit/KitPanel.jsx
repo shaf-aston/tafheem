@@ -208,11 +208,14 @@ function Elements({ accent }) {
         <ChoiceDemo accent={accent} />
       </Demo>
 
-      <Demo name="Disclosure" tokens="--text-faint --text --surface --border --radius-md">
+      <Demo name="Disclosure" tokens="--text-faint --text --border">
         <div className="space-y-3">
           <State label="quiet, shut"><Disclosure label="More detail">Hidden until opened.</Disclosure></State>
-          <State label="framed, open">
-            <Disclosure label="A framed body" framed defaultOpen tone="strong">Content inside the frame.</Disclosure>
+          <State label="ruled rows, one open">
+            <div>
+              <Disclosure ruled label="Full table" hint="Every word, side by side" defaultOpen>Content under the row.</Disclosure>
+              <Disclosure ruled label="Practice questions" hint="Check you followed this sentence">Shut.</Disclosure>
+            </div>
           </State>
         </div>
       </Demo>

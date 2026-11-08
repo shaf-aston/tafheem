@@ -2,46 +2,48 @@ import { useState } from 'react'
 
 import { errorMessage } from '../../lib/api/apiError'
 
+import Disclosure from '../ui/overlays/Disclosure'
 import SourceBadge from '../ui/feedback/SourceBadge'
 
+// One row of the extras under an analysis. Opening it is the ask: the questions
+// are made the first time it opens, so there is no separate Generate step.
 export default function PracticePanel({ practice, sentence, accent }) {
+  const make = () => practice.mutate(sentence)
   return (
-    <div className="border-t border-[var(--border)] pt-4">
-      <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
-        <div>
-          <div className="type-ui font-medium text-[var(--text)]">Practice questions</div>
-          <div className="type-label text-[var(--text-faint)]">Check you followed this sentence</div>
-        </div>
-        <button
-          type="button"
-          onClick={() => practice.mutate(sentence)}
-          disabled={practice.isPending}
-          style={{ '--c': accent, color: accent }}
-          className="px-4 py-1.5 type-ui rounded-[var(--radius-md)] border border-[var(--border)]
-            hover:border-[var(--c)] disabled:opacity-50 transition-colors"
-        >
-          {practice.isPending ? 'Generating…' : 'Generate'}
-        </button>
-      </div>
-
+    <Disclosure
+      ruled
+      label="Practice questions"
+      hint="Check you followed this sentence"
+      onToggle={(open) => { if (open && !practice.data && !practice.isPending) make() }}
+    >
+      {practice.isPending && <p className="type-ui text-[var(--text-faint)]">Making questions…</p>}
       {practice.isError && (
         <p className="type-ui" style={{ color: 'var(--danger)' }}>
-          {errorMessage(practice.error, 'Could not generate questions.')}
+          {errorMessage(practice.error, 'Could not make questions.')}{' '}
+          <button type="button" onClick={make} className="underline underline-offset-2">Try again</button>
         </p>
       )}
       {practice.data && !practice.isPending && (
-        <PracticeQuestions data={practice.data} accent={accent} />
+        <PracticeQuestions data={practice.data} accent={accent} onMore={make} />
       )}
-    </div>
+    </Disclosure>
   )
 }
 
-function PracticeQuestions({ data, accent }) {
+function PracticeQuestions({ data, accent, onMore }) {
   const [revealed, setRevealed] = useState({})
 
   return (
     <div className="space-y-3">
-      <div className="flex justify-end">
+      <div className="flex items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={onMore}
+          style={{ color: accent }}
+          className="type-label underline underline-offset-2 hover:opacity-80 transition-opacity"
+        >
+          New questions
+        </button>
         <SourceBadge source={data.source} />
       </div>
       {data.questions.map((q, i) => (

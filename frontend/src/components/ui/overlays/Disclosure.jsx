@@ -11,9 +11,10 @@
  * it costs no JavaScript. Only the look is ours.
  *
  * Two shapes, because the app genuinely has two: `quiet`, a faint line of text
- * with the content under it, and `framed`, a bordered box with its own header
- * strip for when the content inside is a slab, a wide table say, that needs an
- * edge drawn round it.
+ * with the content under it, and `ruled`, one row of a list of extras: a hairline
+ * above, a strong label, an optional faint `hint` beside it. Rows stacked with no
+ * gap between them read as one list, so every extra at the foot of a page looks
+ * the same whatever is inside it.
  */
 import { forwardRef, useState } from 'react'
 
@@ -23,11 +24,9 @@ const TONE = {
 }
 
 const Disclosure = forwardRef(function Disclosure(
-  { label, defaultOpen = false, framed = false, tone = 'quiet', onToggle, bodyClassName, className = '', children },
+  { label, hint, defaultOpen = false, ruled = false, tone = ruled ? 'strong' : 'quiet', onToggle, bodyClassName, className = '', children },
   ref,
 ) {
-  // Framed clips to its rounded corners with overflow-clip, not -hidden:
-  // hidden makes the box a scroll container and nothing inside can stay pinned.
   const [open, setOpen] = useState(defaultOpen)
   return (
     <details
@@ -42,14 +41,14 @@ const Disclosure = forwardRef(function Disclosure(
         setOpen(event.currentTarget.open)
         onToggle?.(event.currentTarget.open)
       }}
-      className={`group ${framed ? 'rounded-[var(--radius-md)] border border-[var(--border)] overflow-clip' : ''} ${className}`}
+      className={`group ${ruled ? 'border-t border-[var(--border)]' : ''} ${className}`}
     >
       <summary
         // list-none kills the browser's triangle in every engine, ours is drawn
         // below so that it can rotate and take the accent colour with it.
         className={`list-none cursor-pointer select-none flex items-center gap-2 transition-colors
           ${TONE[tone] ?? TONE.quiet}
-          ${framed ? 'px-4 py-2.5 bg-[var(--surface)] text-[var(--text-dim)]' : ''}`}
+          ${ruled ? 'py-3' : ''}`}
       >
         <svg
           aria-hidden="true"
@@ -65,20 +64,23 @@ const Disclosure = forwardRef(function Disclosure(
           // It is stored as a bare number so it can be arithmetic, hence the
           // calc rather than reading the variable straight into a duration.
           style={{ transitionDuration: 'calc(var(--motion-base-ms) * 1ms)' }}
-          // A framed bar can carry a figure the height of three of these, and an
-          // 11px arrow beside one reads as a speck rather than a control.
-          className={`shrink-0 transition-transform group-open:rotate-90 ${framed ? 'w-3.5 h-3.5' : ''}`}
+          className="shrink-0 transition-transform group-open:rotate-90"
         >
           <path d="M9 5l7 7-7 7" />
         </svg>
         {/* flex-1 so a label that is more than words, the quiz panel hands in a
             row of figures, can spread across the bar and push its own hint to
             the far end. A plain text label is unaffected. */}
-        <span className="min-w-0 flex-1">{label}</span>
+        {/* A phone drops the hint: wrapped under some labels and not others, the
+            rows came out uneven heights, and the label alone says what is inside. */}
+        <span className="min-w-0 flex-1">
+          {label}
+          {hint && <span className="hidden sm:inline ml-3 type-small font-normal text-[var(--text-faint)]">{hint}</span>}
+        </span>
       </summary>
 
       <div className="glide" data-open={open}>
-        <div className={bodyClassName ?? (framed ? '' : 'mt-2')}>{children}</div>
+        <div className={bodyClassName ?? (ruled ? 'pb-4' : 'mt-2')}>{children}</div>
       </div>
     </details>
   )

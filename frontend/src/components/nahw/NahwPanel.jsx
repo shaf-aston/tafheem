@@ -99,28 +99,30 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
       />
 
       {view === 'analyse' && (
-        <div className="space-y-5">
-          {/* Keyed by the sentence, so a new one starts fresh. */}
-          <IraabAnalyzer
-            key={fromExample ?? incoming ?? 'typed'}
-            accent={accent}
-            onGo={onGo}
-            onVisit={onVisit}
-            analyse={fromExample ?? incoming}
-          />
-          {/* Named for tarkeeb, not "worked examples": that reads as questions, which is Tamreen. */}
-          <Disclosure label="Tarkeeb book examples" tone="strong">
-            <div className="pt-4">
-              <TarkeebPanel accent={accent} onWordByWord={openWordByWord} />
-            </div>
-          </Disclosure>
-        </div>
+        // Keyed by the sentence, so a new one starts fresh. The page's extras ride
+        // in as `more`, rows in the same list as the sentence's own.
+        <IraabAnalyzer
+          key={fromExample ?? incoming ?? 'typed'}
+          accent={accent}
+          onGo={onGo}
+          onVisit={onVisit}
+          analyse={fromExample ?? incoming}
+          more={(
+            <>
+              {/* Named for tarkeeb, not "worked examples": that reads as questions, which is Tamreen. */}
+              <Disclosure ruled label="Tarkeeb book examples" hint="Checked diagrams from the books">
+                <TarkeebPanel accent={accent} onWordByWord={openWordByWord} />
+              </Disclosure>
+              <GrammarGlossary />
+            </>
+          )}
+        />
       )}
       {view === 'tamreen' && <TamreenPanel accent={accent} onProgress={onProgress} onNotes={openNotes} />}
       {view === 'notes' && <NotesPanel accent={accent} topic={noteTopic} onTamreen={() => chooseView('tamreen')} />}
 
-      {/* The one place the terms are put into English. */}
-      <GrammarGlossary />
+      {/* The one place the terms are put into English; Analyse has it among its extras. */}
+      {view !== 'analyse' && <GrammarGlossary />}
     </div>
   )
 }

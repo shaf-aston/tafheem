@@ -2,7 +2,7 @@
 // An analysed sentence is written out once, in the tree; its English and the
 // tools close the tree's card instead of a second card and a row of their own.
 import { describe, expect, it } from 'vitest'
-import { screen, within } from '@testing-library/react'
+import { fireEvent, screen, within } from '@testing-library/react'
 
 import { renderScreen } from './render'
 import IraabAnalyzer from '../components/nahw/IraabAnalyzer'
@@ -20,7 +20,8 @@ const ANALYSIS = {
 }
 const MEANING = { query: SENTENCE, kind: 'sentence', direction: 'ar', meaning: 'A useful book, this', source, ref: null, words: [], left_out: [] }
 
-const routes = { 'POST /analyze': ANALYSIS, 'GET /dictionary/sentence': MEANING }
+const PRACTICE = { questions: [{ question: 'What is the khabar?', answer: 'مُفِيدٌ', hint: '' }], source }
+const routes = { 'POST /analyze': ANALYSIS, 'GET /dictionary/sentence': MEANING, 'POST /practice': PRACTICE }
 
 describe('Nahw answer', () => {
   it('puts the English and the tools in the foot of the tree card', async () => {
@@ -39,5 +40,22 @@ describe('Nahw answer', () => {
     await screen.findByText('A useful book, this')
     // The answer holds the sentence's words, in the tree and the cards, never the sentence whole.
     expect(within(container.querySelector('[aria-live]')).queryByText(SENTENCE)).toBeNull()
+  })
+
+  it('draws the extras as one list of rows, the page\'s own after the sentence\'s', async () => {
+    renderScreen(<IraabAnalyzer analyse={SENTENCE} more={<details><summary>Page extra</summary></details>} />, { routes })
+    await screen.findByText('A useful book, this')
+    const rows = [...screen.getByText('Page extra').closest('div').children].map((d) => d.querySelector('summary').textContent)
+    expect(rows).toEqual(['Full tableEvery word, side by side', 'Practice questionsCheck you followed this sentence', 'Page extra'])
+  })
+
+  it('makes practice questions the first time the row opens', async () => {
+    renderScreen(<IraabAnalyzer analyse={SENTENCE} />, { routes })
+    await screen.findByText('A useful book, this')
+    const row = screen.getByText('Practice questions').closest('details')
+    row.open = true
+    fireEvent(row, new Event('toggle'))
+    expect(await screen.findByText('1. What is the khabar?')).toBeTruthy()
+    expect(screen.getByRole('button', { name: 'New questions' })).toBeTruthy()
   })
 })

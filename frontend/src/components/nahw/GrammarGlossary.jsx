@@ -12,7 +12,7 @@ import Disclosure from '../ui/overlays/Disclosure'
 
 export default function GrammarGlossary() {
   return (
-    <Disclosure label="What the terms mean">
+    <Disclosure ruled label="What the terms mean" hint="The grammar words in English">
       {/* One grid shared by every section (subgrid), so every meaning on the
           list starts on the same edge however long the term. */}
       <div className="grid gap-y-5 sm:grid-cols-[auto_1fr]">
