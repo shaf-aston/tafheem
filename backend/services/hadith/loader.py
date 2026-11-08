@@ -59,13 +59,13 @@ def share(word: str) -> float:
 
 @_per_build({}, maxsize=1)
 def shelved() -> dict[str, dict]:
-    """The further books, those standing on the bookshelf rather than the tab's own shelf: each one's shelf,
-    author, one line about it and how many hadiths it holds, by id. None from a build before the bookshelf."""
+    """The further books, those standing on the bookshelf rather than the tab's own shelf: each one's shelf
+    and how many hadiths it holds, by id. None from a build before the bookshelf."""
     if not any(column[1] == "shelf" for column in db().execute("PRAGMA table_info(collection)")):
         return {}
-    return {cid: {"shelf": shelf, "by": by, "about": about, "count": count}
-            for cid, shelf, by, about, count in db().execute(
-                "SELECT c.id, c.shelf, c.author, c.about, count(h.rowid) FROM collection c "
+    return {cid: {"shelf": shelf, "count": count}
+            for cid, shelf, count in db().execute(
+                "SELECT c.id, c.shelf, count(h.rowid) FROM collection c "
                 "LEFT JOIN hadith h ON h.collection_id = c.id WHERE c.shelf != '' GROUP BY c.id ORDER BY c.rowid")}
 
 

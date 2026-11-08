@@ -17,9 +17,7 @@ class HadithCollection(BaseModel):
     sahih: bool = False
     # A further book stands on this shelf of the bookshelf, not with the six on the tab's own shelf.
     shelf: str = ""
-    # Its cover: who gathered it, one line about it, and how many hadiths it holds. Only a shelved book has one.
-    by: str = ""
-    about: str = ""
+    # How many hadiths it holds. Only a shelved book says.
     count: int = 0
 
 
