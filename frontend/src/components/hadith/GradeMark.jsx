@@ -15,7 +15,10 @@ function Dot({ grade }) {
   return <span aria-hidden="true" style={{ background: tone }} className="inline-block w-1.5 h-1.5 rounded-full shrink-0" />
 }
 
-/** `sahihBy` names the Sahih collection a hadith comes from, which grades every hadith in it itself. */
+/**
+ * `sahihBy` names the Sahih collection a hadith comes from, which grades every hadith in it itself.
+ * A grade with `of` is borrowed: the hadith has none of its own, so it shows its twin's, in the book named there.
+ */
 export default function GradeMark({ grades = [], sahihBy = null, cite = '' }) {
   const lead = leadGrade(grades, sahihBy)
   if (!lead && !cite) return null
@@ -24,16 +27,16 @@ export default function GradeMark({ grades = [], sahihBy = null, cite = '' }) {
   return (
     <Popover
       label={lead ? <><Dot grade={lead.grade} />{lead.grade}</> : 'Source'}
-      title={lead ? `Graded ${lead.grade} by ${lead.by}. Press for every grading.` : 'Where this hadith is checked'}
+      title={lead ? `Graded ${lead.grade} by ${lead.by}${lead.of ? ` in ${lead.of}` : ''}. Press for every grading.` : 'Where this hadith is checked'}
     >
       <div className="space-y-2 max-w-[min(18rem,80vw)]">
         {all.length > 0 && (
           <ul className="m-0 p-0 list-none space-y-1">
             {all.map((g) => (
-              <li key={g.by} className="flex items-center gap-2 type-small">
+              <li key={`${g.by}${g.of}`} className="flex items-center gap-2 type-small">
                 <Dot grade={g.grade} />
                 <span className="text-[var(--text)]">{g.grade}</span>
-                <span className="text-[var(--text-faint)]">{g.by}</span>
+                <span className="text-[var(--text-faint)]">{g.by}{g.of && ` in ${g.of}`}</span>
               </li>
             ))}
           </ul>

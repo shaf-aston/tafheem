@@ -28,6 +28,9 @@ from backend.services.text import spelling  # noqa: E402
 from backend.services.hadith import words  # noqa: E402
 from backend.services.hadith.chain import chain_of  # noqa: E402
 from backend.services.hadith.lemma import lemma  # noqa: E402
+from backend.services.hadith import twin  # noqa: E402
+from backend.services.hadith.usul import match  # noqa: E402
+from backend.services.hadith.usul.rule import rule  # noqa: E402
 
 _SCHEMA = """
 CREATE TABLE collection (
@@ -116,6 +119,33 @@ def index_text(conn: sqlite3.Connection) -> None:
                      ((v, w, lang) for lang, w in vocabulary for v in {w} | spelling.deletes(w)))
 
 
+def borrow_grades(conn: sqlite3.Connection, collections: dict) -> dict[str, int]:
+    """Give each borrows_grades collection's hadith the grades of their twins in the books their closing line names
+    (services/hadith/twin.py). Returns {collection: how many found a twin}."""
+    borrowers = {key: meta["borrows_grades"] for key, meta in collections.items() if meta.get("borrows_grades")}
+    if not borrowers:
+        return {}
+    knobs = rule()["rulings"]["match"]
+    forms = {key: meta["recorded_as"] for key, meta in collections.items() if meta.get("recorded_as")}
+    rows = conn.execute("SELECT collection_id, number, part, arabic, grades FROM hadith WHERE collection_id IN (%s)"
+                        % ",".join("?" * (len(forms) + len(borrowers))), [*forms, *borrowers]).fetchall()
+    matn = {(c, n, p): match.tokens(chain_of(arabic).body) for c, n, p, arabic, _ in rows}
+    indexes = {c: match.Index({k: w for k, w in matn.items() if k[0] == c}, knobs["gram"]) for c in forms}
+    grades_of = {(c, n, p): json.loads(g) for c, n, p, _, g in rows}
+    found: dict[str, int] = {}
+    for c, n, p, arabic, _ in rows:
+        line = borrowers.get(c)
+        if not line:
+            continue
+        keys = twin.twins(" ".join(matn[c, n, p]), twin.recorders(arabic, forms, line), indexes, knobs)
+        grades = twin.borrowed(keys, grades_of, collections)
+        if grades:
+            conn.execute("UPDATE hadith SET grades = ? WHERE collection_id = ? AND number = ? AND part = ?",
+                         (json.dumps(grades, ensure_ascii=False), c, n, p))
+            found[c] = found.get(c, 0) + 1
+    return found
+
+
 def build() -> dict[str, int]:
     counts: dict[str, int] = {}
     with building(data_path("hadith_index_path")) as scratch, closing(sqlite3.connect(scratch)) as conn:
@@ -153,6 +183,8 @@ def build() -> dict[str, int]:
             counts[key] = len(raw.get("hadith", []))
             print(f"  {key}: {counts[key]:,} hadiths across {len(raw.get('books', [])):,} books")
 
+        for key, n in borrow_grades(conn, _collections()).items():
+            print(f"  {key}: {n:,} hadiths graded through their twins in the six")
         index_text(conn)
         conn.commit()
     return counts
