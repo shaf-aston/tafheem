@@ -6,13 +6,15 @@ import { screen, within } from '@testing-library/react'
 import { renderScreen } from './render'
 import ProfileView from '../components/profile/ProfileView'
 import StatsRail from '../components/home/StatsRail'
+import ProfileDialog from '../components/profile/ProfileDialog'
+import { dayKey } from '../lib/learner/week'
 
 const today = new Date().toISOString()
 const ROUTES = {
   'GET /progress/account': { name: 'amina', joined: today, answers: 42, public: true },
   'GET /progress/overview': {
     modules: [{ module: 'quiz', attempts: 42, correct: 30, learnt: 1, lastAt: today }],
-    attempts: 42, correct: 30, learnt: 1, streak: 2,
+    attempts: 42, correct: 30, learnt: 1, streak: 2, days: [dayKey(new Date())],
   },
   'GET /progress/summary': { items: [
     { item: 'a', attempts: 4, wrong: 0, known: true, words: [] },
@@ -35,10 +37,10 @@ describe('calm progress', () => {
     expect(await within(week).findByText('42')).toBeTruthy()
     expect(within(week).getByText('Words met').nextSibling.textContent).toBe('2')
     expect(within(week).getByText('Now known').nextSibling.textContent).toBe('1')
-    // Today and yesterday are the streak; the dots say so, today marked.
+    // The server lists today alone as answered in: one filled dot, today marked.
     const days = await within(week).findAllByRole('listitem')
     expect(days).toHaveLength(7)
-    expect(days.filter((day) => day.className.includes('week-studied')).length).toBeGreaterThanOrEqual(1)
+    expect(days.filter((day) => day.className.includes('week-studied')).length).toBe(1)
     expect(days.filter((day) => day.getAttribute('aria-current') === 'date')).toHaveLength(1)
 
     const understanding = screen.getByRole('region', { name: 'How much you understand' })
@@ -54,5 +56,12 @@ describe('calm progress', () => {
     const level = await screen.findByText(/^Lv 2 ·/)
     const streak = screen.getByText('Streak')
     expect(inOrder(week, understanding, level, streak)).toBe(true)
+  })
+
+  it('shows a guest this device’s own week and understanding over the log-in', async () => {
+    renderScreen(<ProfileDialog onClose={() => {}} />, { routes: ROUTES })
+    const week = screen.getByRole('region', { name: 'This week' })
+    expect(await within(week).findByText('42')).toBeTruthy()
+    expect(inOrder(week, screen.getByRole('region', { name: 'How much you understand' }), screen.getByText('Username'))).toBe(true)
   })
 })

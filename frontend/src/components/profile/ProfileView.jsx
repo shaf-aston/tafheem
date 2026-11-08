@@ -35,7 +35,7 @@ export default function ProfileView({ name }) {
       {account.isError && (
         <ErrorAlert inline title="Could not load your profile." onRetry={() => account.refetch()} />
       )}
-      <div className="card"><ThisWeek overview={overview} stats={stats} learnt={learnt} account={account} /></div>
+      <div className="card"><ThisWeek overview={overview} stats={stats} learnt={learnt} /></div>
       <Understanding share={share} covered={covered} />
       <LevelSetting />
       <div className="calm-more space-y-4">

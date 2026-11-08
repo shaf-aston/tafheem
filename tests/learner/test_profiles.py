@@ -9,6 +9,7 @@ Run: python -m pytest tests/learner/test_profiles.py
 from __future__ import annotations
 
 import sqlite3
+from datetime import date, timedelta
 from urllib.parse import quote
 
 import pytest
@@ -490,6 +491,18 @@ def test_the_overview_counts_every_module_and_the_days_in_a_row():
     assert [(m["module"], m["attempts"], m["correct"]) for m in body["modules"]] == [("quiz", 3, 2), ("quiz:ur", 1, 1)]
     assert (body["attempts"], body["correct"], body["streak"]) == (4, 3, 2)  # today and yesterday; day 3 is past a gap
     assert client.get("/api/progress/overview").json()["streak"] == 0
+
+
+def test_the_overview_lists_the_days_of_the_last_two_weeks_answered_in():
+    signup("Amina")
+    db = progress_db.connection()
+    with db:
+        for days in (0, 0, 2, 13, 14, 40):
+            db.execute("INSERT INTO attempts (user, module, item, correct, at) VALUES ('amina', 'quiz', 'a', 1, "
+                       "datetime('now', ?))", (f"-{days} days",))
+    today = date.fromisoformat(db.execute("SELECT date('now')").fetchone()[0])
+    body = client.get("/api/progress/overview", headers=as_("Amina")).json()
+    assert body["days"] == [(today - timedelta(days=n)).isoformat() for n in (0, 2, 13)]  # once each; 14 and 40 too old
 
 
 def test_the_overview_counts_what_is_learnt_in_each_module_on_its_own():

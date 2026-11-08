@@ -13,7 +13,7 @@ import { useProgressFacts } from '../../lib/learner/useProgressFacts'
 import { colorFor } from '../../theme'
 import knobs from '../../config/home.json'
 
-import { Fact, ThisWeek, Understanding } from '../profile/CalmProgress'
+import { Fact, GuestProgress, ThisWeek, Understanding } from '../profile/CalmProgress'
 import LogInButton from '../profile/LogInButton'
 import ProfileDialog from '../profile/ProfileDialog'
 import Ranking from '../profile/Ranking'
@@ -29,7 +29,7 @@ export default function StatsRail({ name }) {
       {/* Logged in, "This week" heads the column; the aside keeps the title as its name. */}
       {name ? <Facts name={name} /> : (
         <>
-          <h3 className="eyebrow">{copy.title}</h3>
+          <GuestProgress />
           <p className="type-small text-[var(--text-dim)]">{copy.guest}</p>
           <LogInButton />
         </>
@@ -40,12 +40,12 @@ export default function StatsRail({ name }) {
 
 function Facts({ name }) {
   const [open, setOpen] = useState(false)
-  const { module, account, overview, stats, learnt, share, covered, rewards } = useProgressFacts(name)
+  const { module, overview, stats, learnt, share, covered, rewards } = useProgressFacts(name)
   const board = useQuery(leaderboardQuery(module))
   const streak = overview.data?.streak
   return (
     <>
-      <ThisWeek overview={overview} stats={stats} learnt={learnt} account={account} />
+      <ThisWeek overview={overview} stats={stats} learnt={learnt} />
       <Understanding share={share} covered={covered} />
       <div className="calm-more space-y-4">
         <Level rewards={rewards} />

@@ -18,6 +18,7 @@ import BottomSheet from '../ui/overlays/BottomSheet'
 import SheetHeader from '../ui/overlays/SheetHeader'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
 import ProfileView from './ProfileView'
+import { GuestProgress } from './CalmProgress'
 import SearchBox from '../ui/inputs/SearchBox'
 import Segmented from '../ui/inputs/Segmented'
 import SmallButton from '../ui/buttons/SmallButton'
@@ -35,7 +36,8 @@ export default function ProfileDialog({ onClose }) {
       <SheetHeader onClose={onClose} className="">
         <h2 className="type-head type-lead font-bold text-[var(--text)]">{title}</h2>
       </SheetHeader>
-      {name ? <ProfileView name={name} /> : <SignIn />}
+      {/* A guest sees this device's own week first; logging in keeps it on any device. */}
+      {name ? <ProfileView name={name} /> : <><GuestProgress /><SignIn /></>}
     </BottomSheet>
   )
 }
