@@ -57,7 +57,9 @@ async def _collection_name(collection: str) -> str:
 @texts.get("/collections", response_model=list[HadithCollection])
 async def get_collections() -> list[HadithCollection]:
     found = await asyncio.to_thread(loader.collections)
-    return [HadithCollection(id=cid, name=name, short=short, sahih=sahih) for cid, name, short, *_, sahih in found]
+    shelved = await asyncio.to_thread(loader.shelved)
+    return [HadithCollection(id=cid, name=name, short=short, arabic=arabic, sahih=sahih, **shelved.get(cid, {}))
+            for cid, name, short, arabic, _, sahih in found]
 
 
 @texts.get("/{collection}/books", response_model=list[HadithBook])

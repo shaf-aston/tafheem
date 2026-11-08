@@ -1315,6 +1315,96 @@ button.mushaf-word {
   border-color: var(--c);
 }
 
+/* The bookcase at the shelf's end (HadithCollectionPicker): as tall as a spine and
+   wider, a small case of books drawn in it, opening the further books. A thin wall
+   sets it apart from the six; pressed, it fills in the accent like an open spine. */
+.shelf-case {
+  flex: 0 0 auto;
+  height: 7.5rem;
+  margin-inline-start: 0.5rem;
+  padding: 0.5rem 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+  border: 1px solid var(--border-hi);
+  border-bottom: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--surface);
+  color: var(--text-dim);
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    background-color calc(var(--motion-base-ms) * 1ms) ease-out,
+    color calc(var(--motion-base-ms) * 1ms) ease-out;
+}
+.shelf-case > svg { width: 2.25rem; flex: 1; min-height: 0; }
+.shelf-case > span {
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1.1;
+  text-align: center;
+  max-width: 3.5rem;
+  padding-bottom: 0.375rem;
+}
+.shelf-case:hover,
+.shelf-case:focus-visible { transform: translateY(calc(var(--motion-lift-px) * -2px)); color: var(--text); }
+.shelf-case:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+.shelf-case[aria-pressed='true'] { background: var(--c); color: var(--surface); border-color: var(--c); }
+
+/* The bookcase opened (HadithBookcase): it grows in from the shelf's end, top
+   right, as a step towards it, and its shelves then settle one by one (.rise-in).
+   Each shelf is a row of books standing on a plank: the cover, then its words. */
+.bookcase {
+  display: grid;
+  gap: 1.5rem;
+  transform-origin: top right;
+  --rise-y: -1rem;
+  --rise-scale: 0.88;
+  --rise-uncover: 0%;
+  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
+}
+.bookcase-shelf { display: grid; gap: 0.75rem; }
+.bookcase-row {
+  margin: 0;
+  padding: 0 0.5rem;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 0.75rem 1.25rem;
+  border-bottom: 3px solid var(--border-hi);
+}
+.bookcase-book {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.875rem;
+  padding-top: 0.5rem;
+}
+.bookcase-cover {
+  flex: 0 0 auto;
+  width: 4.5rem;
+  height: 6.25rem;
+  display: grid;
+  place-items: center;
+  padding: 0.375rem;
+  text-align: center;
+  border: 1px solid var(--border-hi);
+  border-bottom: 0;
+  border-radius: 2px var(--radius-sm) 0 0;
+  background:
+    linear-gradient(to right, color-mix(in oklab, var(--c) 45%, transparent) 0 5px, transparent 5px),
+    linear-gradient(var(--palette-gold) 0 0) top 0.5rem left 5px / 100% 1px no-repeat,
+    linear-gradient(var(--palette-gold) 0 0) bottom 0.5rem left 5px / 100% 1px no-repeat,
+    var(--surface-hi);
+  color: var(--text);
+  transform-origin: bottom center;
+  transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+}
+.bookcase-book:hover .bookcase-cover,
+.bookcase-book:focus-visible .bookcase-cover { transform: translateY(-4px) rotate(-3deg); }
+.bookcase-book > :last-child { padding-bottom: 0.625rem; }
+
 
 /* The surah's reading line (quran/QuranReader): under the header, held below the
    app's own header as the page scrolls, filling as the ayah in view moves on. */

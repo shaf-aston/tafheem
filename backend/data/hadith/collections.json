@@ -4,7 +4,8 @@
     "Adding a collection is an entry here plus a run of",
     "scripts/hadith/fetch_hadith_collections.py and scripts/hadith/build_hadith_index.py; no code changes.",
     "short is the name the picker shows; arabic and arabic_short are the same two names in Arabic, so a search can name it either way. cite is the citation URL template sunnah.com uses, {number} filled with the hadith's own number.",
-    "sahih marks a collection whose every hadith is graded sahih by the scholars, so its hadiths carry no grade of their own."
+    "sahih marks a collection whose every hadith is graded sahih by the scholars, so its hadiths carry no grade of their own.",
+    "shelf names the shelf of the bookcase a further book stands on, away from the six on the tab's own shelf; by and about are its cover's two lines. from names a source other than fawazahmed0/hadith-api, as repo:path in AhmedBaset/hadith-json."
   ],
   "bukhari": {
     "name": "Sahih al-Bukhari",
@@ -49,5 +50,35 @@
     "arabic": "سنن ابن ماجه",
     "arabic_short": "ابن ماجه",
     "cite": "https://sunnah.com/ibnmajah:{number}"
+  },
+  "mishkat": {
+    "name": "Mishkat al-Masabih",
+    "short": "Mishkat",
+    "arabic": "مشكاة المصابيح",
+    "arabic_short": "مشكاة",
+    "cite": "https://sunnah.com/mishkat:{number}",
+    "shelf": "Gathered by topic",
+    "by": "al-Khatib at-Tabrizi",
+    "about": "Al-Baghawi's Masabih filled out: hadith from the great books, gathered topic by topic.",
+    "from": "AhmedBaset/hadith-json:db/by_book/other_books/mishkat_almasabih.json"
+  },
+  "nawawi": {
+    "name": "Forty Hadith of an-Nawawi",
+    "short": "Nawawi",
+    "arabic": "الأربعون النووية",
+    "arabic_short": "النووية",
+    "cite": "https://sunnah.com/nawawi40:{number}",
+    "shelf": "Forty hadith",
+    "by": "Imam an-Nawawi",
+    "about": "Forty-two short hadith on which the religion turns."
+  },
+  "qudsi": {
+    "name": "Forty Hadith Qudsi",
+    "short": "Qudsi",
+    "arabic": "الأحاديث القدسية",
+    "arabic_short": "القدسية",
+    "cite": "https://sunnah.com/qudsi40:{number}",
+    "shelf": "Forty hadith",
+    "about": "Forty hadith in which the Prophet ﷺ tells what Allah said."
   }
 }

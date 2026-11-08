@@ -139,7 +139,42 @@ def client():
 def test_router_lists_collections(db, client):
     resp = client.get("/api/hadith/collections")
     assert resp.status_code == 200
-    assert resp.json() == [{"id": "bukhari", "name": "Sahih al-Bukhari", "short": "", "sahih": False}]
+    assert resp.json() == [{"id": "bukhari", "name": "Sahih al-Bukhari", "short": "", "arabic": "صحيح البخاري", "sahih": False,
+                            "shelf": "", "by": "", "about": "", "count": 0}]
+
+
+@pytest.fixture()
+def bookcase(db):
+    """The tiny database plus Mishkat on the bookcase, retelling Bukhari's first hadith."""
+    with sqlite3.connect(db) as conn:
+        conn.execute("INSERT INTO collection (id, name, short, cite, shelf, author, about) VALUES "
+                     "('mishkat', 'Mishkat al-Masabih', 'Mishkat', '', 'Gathered by topic', 'at-Tabrizi', 'By topic.')")
+        conn.execute("INSERT INTO book (collection_id, number, name) VALUES ('mishkat', 1, 'Faith')")
+        conn.execute("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
+                     "VALUES ('mishkat', 1, 1, '', 'إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ', 'Actions are judged by intentions')")
+        for table in ("hadith_fts", "word", "deletion"):
+            conn.execute(f"DELETE FROM {table}")
+        index_text(conn)
+    return db
+
+
+def test_a_shelved_book_lists_with_its_shelf_and_cover(bookcase, client):
+    found = {c["id"]: c for c in client.get("/api/hadith/collections").json()}
+    assert found["bukhari"]["shelf"] == ""
+    assert found["mishkat"] == {"id": "mishkat", "name": "Mishkat al-Masabih", "short": "Mishkat", "arabic": "", "sahih": False,
+                                "shelf": "Gathered by topic", "by": "at-Tabrizi", "about": "By topic.", "count": 1}
+
+
+def test_searching_everywhere_skips_the_bookcase_but_a_picked_book_is_searched(bookcase):
+    assert [h.collection for h in search.search("intentions", 10).hits] == ["bukhari"]
+    assert [h.collection for h in search.search("intentions", 10, ("mishkat",)).hits] == ["mishkat"]
+    assert [h.collection for h in search.search("mishkat intentions", 10).hits] == ["mishkat"]
+
+
+def test_an_index_built_before_the_bookcase_still_lists_its_collections(db, client):
+    with sqlite3.connect(db) as conn:
+        conn.execute("ALTER TABLE collection DROP COLUMN shelf")
+    assert [c["id"] for c in client.get("/api/hadith/collections").json()] == ["bukhari"]
 
 
 def test_router_lists_books_of_a_collection(db, client):

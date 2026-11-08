@@ -20,6 +20,11 @@ Written the way fetch_timeline_hadith.py already works it out: most
 collections key a hadith by their own `hadithnumber`; Muslim instead keys it
 by `arabicnumber`, the Abdul Baqi number sunnah.com prints as its reference.
 See that script's docstring for why the two must never be confused.
+
+A book fawazahmed0 lacks (Mishkat al-Masabih) names its own source in
+collections.json's `from`: AhmedBaset/hadith-json, another scrape of
+sunnah.com, one file per book holding its chapters and each hadith's number in
+it (`idInBook`, sunnah.com's own number) with Arabic and English beside it.
 """
 from __future__ import annotations
 
@@ -37,6 +42,8 @@ from backend.config import data_path  # noqa: E402, needs the path above
 
 EDITIONS = "https://cdn.jsdelivr.net/gh/fawazahmed0/hadith-api@1/editions"
 SOURCE = "https://github.com/fawazahmed0/hadith-api"
+# A `from` of "owner/repo:path" is read from this mirror of GitHub.
+GITHUB = "https://cdn.jsdelivr.net/gh/{repo}@main/{path}"
 NUMBER_FIELD = {"muslim": "arabicnumber"}
 
 
@@ -109,11 +116,50 @@ def hadiths_of(arabic: dict, english: dict, collection: str) -> list[dict]:
     return out
 
 
+def from_hadith_json(book: dict) -> tuple[list[dict], list[dict]]:
+    """One hadith-json book as (books, hadiths) in the shape hadiths_of writes.
+
+    Its chapters are the books, each with its own Arabic name; chapter 0 is the
+    author's introduction, dropped as books_of drops book 0. The English is the
+    narrator's line and the text joined, as sunnah.com prints them. No grades:
+    the file carries none, and each hadith already ends naming who recorded it.
+    """
+    books = [{"number": c["id"], "name": c["english"], "arabic": c.get("arabic", "")}
+             for c in book.get("chapters") or [] if c.get("id") and str(c.get("english") or "").strip()]
+    in_book: dict[int, int] = {}
+    hadiths = []
+    for item in book.get("hadiths") or []:
+        text = (item.get("arabic") or "").strip()
+        if not text or not isinstance(item.get("idInBook"), int):
+            continue
+        chapter = item.get("chapterId") or 0
+        in_book[chapter] = in_book.get(chapter, 0) + 1
+        english = item.get("english") or {}
+        hadiths.append({
+            "book": chapter,
+            "in_book": in_book[chapter],
+            "number": item["idInBook"],
+            "part": "",
+            "arabic": text,
+            "english": " ".join(filter(None, ((english.get("narrator") or "").strip(), (english.get("text") or "").strip()))),
+            "grades": [],
+        })
+    return books, hadiths
+
+
 def fetch_one(client: httpx.Client, key: str) -> None:
-    arabic = edition(client, f"ara-{key}")
-    english = edition(client, f"eng-{key}")
-    books = books_of(arabic.get("metadata") or {})
-    hadiths = hadiths_of(arabic, english, key)
+    if source := collections()[key].get("from"):
+        repo, _, path = source.partition(":")
+        reply = client.get(GITHUB.format(repo=repo, path=path), timeout=180)
+        reply.raise_for_status()
+        books, hadiths = from_hadith_json(reply.json())
+        url = f"https://github.com/{repo}"
+    else:
+        arabic = edition(client, f"ara-{key}")
+        english = edition(client, f"eng-{key}")
+        books = books_of(arabic.get("metadata") or {})
+        hadiths = hadiths_of(arabic, english, key)
+        url = SOURCE
     kept_books = {h["book"] for h in hadiths}
 
     out = data_path("hadith_dir") / f"{key}.json"
@@ -122,7 +168,7 @@ def fetch_one(client: httpx.Client, key: str) -> None:
             f"Every hadith of {key}, Arabic and English, grouped by book.",
             "Written by backend/scripts/hadith/fetch_hadith_collections.py; never edited by hand.",
         ],
-        "source": {"name": "fawazahmed0/hadith-api, from sunnah.com", "url": SOURCE,
+        "source": {"name": f"{url.removeprefix('https://github.com/')}, from sunnah.com", "url": url,
                     "fetched": datetime.now(timezone.utc).date().isoformat()},
         "books": [b for b in books if b["number"] in kept_books],
         "hadith": hadiths,
