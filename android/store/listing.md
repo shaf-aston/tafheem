@@ -20,7 +20,7 @@ Every answer says where it came from, so you can check it in the book.
 **Category:** Education. **Tags:** Education, Books and reference.
 **Contact email:** shafeinhashmi@gmail.com
 **Privacy policy:** https://tafheem-app.vercel.app/privacy.html
-**Graphics (this folder):** icon-512.png, feature-graphic.png (1024x500), phone screenshots 1 to 6.
+**Graphics:** icon `../store_icon.png` (512x512); in this folder: feature-graphic.png (1024x500), phone screenshots 1 to 6.
 
 ## App content answers (Policy, App content)
 - Ads: no.
