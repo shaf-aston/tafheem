@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "tafheem.app",
+      "sha256_cert_fingerprints": [
+        "BB:EF:DB:78:34:7B:93:9E:68:F4:2D:03:B8:CD:58:FD:A9:E2:AB:B9:F8:52:E1:24:5E:D3:1C:AC:19:93:79:2C"
+      ]
+    }
+  }
+]
