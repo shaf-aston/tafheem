@@ -225,10 +225,10 @@ class Listening(BaseSettings):
     # The tuned champion since 2026-11-07: on IqraEval at wrong-below 0.1, F1 0.68 to 0.73 and right words red
     # 12.3% to 7.2% against OdyAsh/faster-whisper-base-ar-quran (ear_bench KEEP). Reverting this line serves OdyAsh again.
     recitation_model: str = "shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a"
-    # Empty means no tuned model offered. Loaded like recitation_model; a learner who picks "Fine-tuned" has
-    # each word checked by it; Groq still writes the words down. Written and pushed by scripts/recitation/finetune_ear/cloud.py --ship; each of
-    # its commits carries the scores that won (git log backend/config.py).
-    recitation_tuned_model: str = "shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a"
+    # An ear on trial: a learner who picks "On trial" under Settings > Word checker has each word checked by it;
+    # Groq still writes the words down. Empty hides the choice. Loaded like recitation_model and set by hand;
+    # scripts/recitation/finetune_ear/cloud.py --ship serves a kept ear as recitation_model instead.
+    recitation_tuned_model: str = ""
     # Search boxes are dictation, and the Qur'an model knows no other words:
     # "knowledge" came back as ذَرَ ضِرِّ الْمُؤْمِنِينَ, "mercy" as مَسْكُوبُ, where base heard both.
     # A recording is a recitation only when its language is asked for by name.

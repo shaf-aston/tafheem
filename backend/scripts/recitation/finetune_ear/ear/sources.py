@@ -1,27 +1,29 @@
-"""Where clips come from: learners (taught and tested), professionals (tested), and the two big parquet sets,
-Tadabur (taught and tested) and everyayah (replayed). Each clip is a dict: sound, said, ayah, who, src, secs."""
+"""Where clips come from: learners (taught and tested), professionals (tested), and the big parquet sets,
+Tadabur (taught and tested), everyayah (replayed) and tlog (real app users, taught). Each clip is a dict: sound, said, ayah, who, src, secs."""
 import random
 import re
-import subprocess
+import sys
 import zlib
 from collections import Counter
 from pathlib import Path
 
+import pyarrow.parquet as pq
 import requests
 from datasets import Audio, Dataset, load_dataset
 
 from . import settings as S
-from .parquet import balanced, index, nonempty
-from .sound import sound_of
-from .text import IMLAEI, SAYABLE, SPELT, canon, letters
+from .judge import listen
+from .parquet import CLIPS, balanced, fetch, index, nonempty, saved
+from .sound import decoded, opened, sound_of
+from .text import IMLAEI, SAID, SAYABLE, SPELT, canon, letters
 
 
 def clip(sound, key, who, src, **more):
-    return {'sound': sound, 'said': IMLAEI[key], 'ayah': key, 'who': who, 'src': src, 'secs': len(sound) / S.RATE, **more}
+    return {'sound': sound, 'said': SAID[key], 'ayah': key, 'who': who, 'src': src, 'secs': len(sound) / S.RATE, **more}
 
 
-def fits(sound):
-    return 0 < len(sound) <= S.LONGEST
+def fits(sound):  # decoded, and short enough to be heard whole
+    return sound is not None and 0 < len(sound) <= S.LONGEST
 
 
 # Each learner source: which clips to keep, which ayah, and who recited (None: unknown, split by clip).
@@ -55,23 +57,18 @@ def _rows_of(name):
 
 def learner_clips():
     seen = Counter()
-    share = random.Random(5)
     for name, (clean, ayah, who) in LEARNERS.items():
         # Judged with the sound still undecoded, so rejected clips cost nothing.
         rows = (_rows_of(name).cast_column('audio', Audio(decode=False))
                 .filter(lambda r: clean(r) and ayah(r) in SAYABLE)
                 .map(lambda r, at: {'who': f'{name}:{who(r) or at}'}, with_indices=True))
         damaged = 0
-        for row in rows:
+        sounds = decoded(r['audio']['bytes'] or Path(r['audio']['path']).read_bytes() for r in rows)
+        for row, sound in zip(rows, sounds):  # every clip decoded, so the cap below picks exactly as one at a time did
             key = ayah(row)
-            if seen[key] >= S.PER_AYAH or share.random() > S.LEARNER_SHARE:
+            if seen[key] >= S.PER_AYAH:
                 continue
-            # Decoded one at a time: a damaged file is counted and skipped, not fatal to the run.
-            try:
-                sound = sound_of(row['audio']['bytes'] or Path(row['audio']['path']).read_bytes())
-            except subprocess.CalledProcessError:
-                damaged += 1
-                continue
+            damaged += sound is None
             if fits(sound):
                 seen[key] += 1
                 yield clip(sound, key, row['who'], name)
@@ -92,8 +89,11 @@ def professional_clips(skip):
         yield clip(sound_of(mp3.content), key, who, 'everyayah')
 
 
-def tadabur_plan(skip, target):
-    """Tadabur rows as (shard, row, who, ayah, part). Held reciters are tested whole; the rest are taught."""
+# --- the parquet sets. tadabur(), replay() and tlog() each take (skip, target) and return saved clips as
+# ((shard, row, who, ayah, part), path): the small columns are indexed, rows chosen, then only their sound fetched.
+
+def tadabur(skip, target):
+    """Held reciters are tested whole; the rest are taught."""
     off = Counter()
 
     def read(r):
@@ -113,11 +113,11 @@ def tadabur_plan(skip, target):
     test = [f + ('test',) for f in pick.sample(test, min(S.TADABUR_TEST, len(test)))]
     train = [f + ('train',) for f in balanced([f for f in found if not held(f[2]) and f[3] not in skip], target, pick)]
     print(f'tadabur: {len(test)} test clips from held reciters, {len(train)} train clips (wanted {target})', flush=True)
-    return nonempty(train, 'tadabur train clips') + nonempty(test, 'tadabur test clips')
+    return fetch(S.TADABUR, nonempty(train, 'tadabur train clips') + nonempty(test, 'tadabur test clips'))
 
 
-def replay_plan(skip, target):
-    """everyayah rows as (shard, row, who, ayah, 'train'), from reciters the professional test never hears."""
+def replay(skip, target):
+    """everyayah, taught, from reciters the professional test never hears."""
     tested = {name for names in S.PRO_TEST.values() for name in names}
 
     def read(r):
@@ -129,7 +129,7 @@ def replay_plan(skip, target):
     found = index(S.REPLAY, S.REPLAY_SHARDS, ['reciter', 'duration', 'text'], read)
     train = [f + ('train',) for f in balanced(found, target, random.Random(17))]
     print(f'replay: {len(train)} train clips; reciters:', dict(Counter(f[2] for f in train)), f'(wanted {target})', flush=True)
-    return nonempty(train, 'replay train clips')
+    return fetch(S.REPLAY, nonempty(train, 'replay train clips'))
 
 
 def held(name):
@@ -137,11 +137,43 @@ def held(name):
     return zlib.crc32(str(name).encode()) % S.HELD == 0
 
 
+def tlog_files():
+    """The clips cloud.py --tlog copied up: tlog is gated, and Kaggle gives a run sent from the command line
+    no secrets, so the run reads a private copy instead of Hugging Face."""
+    return sorted(Path('/kaggle/input').rglob('tlog-*.parquet')) or sys.exit(
+        f'no tlog copy attached: run cloud.py --tlog, which uploads {S.TLOG_COPY}')
+
+
+def tlog(skip, target):
+    """Real app users, taught only where the checker hears exactly the ayah meant.
+    The checker leaves the card before training."""
+    from faster_whisper import WhisperModel
+    checker = WhisperModel(S.TLOG_CHECKER, device='cuda', compute_type='float16')
+    rows, heard = [], 0
+    CLIPS.mkdir(exist_ok=True)
+    for path in tlog_files():
+        if len(rows) >= target:
+            break
+        shard = path.name
+        clips = pq.read_table(path, columns=['audio']).column('audio').to_pylist()
+        meant = [('{}:{}'.format(*a['path'].split('_')[:2]), a) for a in clips]
+        meant = [(key, a) for key, a in meant if key in SAYABLE and canon(key) not in skip]
+        # Decoded on the CPUs while the checker hears on the card, not one after the other.
+        for (key, _), sound in zip(meant, decoded(a['bytes'] for _, a in meant)):
+            if len(rows) >= target:
+                break
+            if not fits(sound):
+                continue
+            heard += 1
+            if letters(listen(checker, sound)) == letters(IMLAEI[key]):
+                saved(rows, (None, None, shard, key, 'train'), 'tlog', sound)
+    del checker
+    print(f'tlog: {len(rows)} of {heard} clips heard as the ayah meant, taught (wanted {target})', flush=True)
+    return nonempty(rows, 'tlog train clips')
+
+
 def parquet_clips(rows, src):
     for (_, _, who, key, part), path in rows:
-        try:
-            sound = sound_of(Path(path).read_bytes())
-        except subprocess.CalledProcessError:
-            continue
+        sound = opened(path)
         if fits(sound):
             yield clip(sound, key, f'{src}:{who}', src, part=part)

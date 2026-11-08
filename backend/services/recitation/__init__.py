@@ -132,7 +132,7 @@ def health() -> dict:
         # How sure the ear is of each word is always scored by the model on this
         # machine (see ears.py's "Word sureness"), whichever ear wrote the words
         # down, so it is named on its own. The tuned model's name when one is
-        # installed, else empty; the page offers the "Fine-tuned" checking
+        # installed, else empty; the page offers the "On trial" checking
         # choice only when this is set.
         "recite_tuned": tuned_model(),
         "recite_sure": ears.named("here").name(reciting=True),

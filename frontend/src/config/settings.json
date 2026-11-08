@@ -82,13 +82,13 @@
       "key": "listening-ear",
       "section": "Reciting",
       "label": "Word checker",
-      "help": "Groq writes down what you recite either way. This picks the model that checks each word: the base Qur'an model, or ours fine-tuned on Kaggle.",
+      "help": "Groq writes down what you recite either way. This picks the model that checks each word: the standard one, or a newer one on trial. Shown only while one is on trial.",
       "needs-health": "reciteTuned",
       "type": "choice",
       "default": "base",
       "options": [
-        { "id": "base",  "label": "Base" },
-        { "id": "tuned", "label": "Fine-tuned" }
+        { "id": "base",  "label": "Standard" },
+        { "id": "tuned", "label": "On trial" }
       ]
     },
     {

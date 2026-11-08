@@ -8,7 +8,7 @@ Turns a few seconds of voice into Arabic words. For a Qur'an recitation it also 
 
 Two jobs, kept apart:
 - **Writing the words down**: Groq first, then letters, then this machine (section 4).
-- **Checking each word**: always a Whisper model on this machine. The setting Settings > Reciting > Word checker (`F/config/settings.json`, key `listening-ear`) picks which one: **Base** (`recitation_model`) or **Fine-tuned** (`recitation_tuned_model`, `backend/config.py`). It changes only the checker. Groq writes the words either way. The choice is ignored while the server offers no tuned model (`F/lib/api/useHealth.js` `useTuned`, health field `recite_tuned`).
+- **Checking each word**: always a Whisper model on this machine. The setting Settings > Reciting > Word checker (`F/config/settings.json`, key `listening-ear`) picks which one: **Standard** (`recitation_model`) or **On trial** (`recitation_tuned_model`, `backend/config.py`, empty since the tuned ear became standard on 2026-11-07). It changes only the checker. Groq writes the words either way. The choice is hidden and ignored while the server offers no trial ear (`F/lib/api/useHealth.js` `useTuned`, health field `recite_tuned`).
 
 ## 2. Uses (every place that records voice)
 
@@ -53,9 +53,9 @@ Shared: `F/components/ui/buttons/MicButton.jsx` (one shot), `F/lib/speech/microp
 |---|---|---|---|
 | hosted | Groq `whisper-large-v3-turbo`, one ear per key | `listening_model`, `listening_groq_api_keys`, `listening_hosted`, `listening_timeout_s`, `listening_rpm_per_key` | first in `listening_ears`; writes the words for every use |
 | letters | CPU, tilawa ONNX in `data/models/tilawa` | `recitation_letters_path` | recitations only, second |
-| here | CPU faster-whisper: `OdyAsh/faster-whisper-base-ar-quran` (recitation), `base` (search boxes) | `recitation_model`, `dictation_model`, `recitation_device`, `recitation_compute` | last, never retired |
-| checker, Base | same model as here | `recitation_model` | every check when Word checker is Base |
-| checker, Fine-tuned | `shafTheG/quran-ear@<commit>` (Hugging Face) | `recitation_tuned_model` | every check when Word checker is Fine-tuned |
+| here | CPU faster-whisper: `shafTheG/quran-ear@<commit>` (recitation, Hugging Face), `base` (search boxes) | `recitation_model`, `dictation_model`, `recitation_device`, `recitation_compute` | last, never retired |
+| checker, Standard | same model as here | `recitation_model` | every check, unless Word checker is On trial |
+| checker, On trial | any model, set by hand; empty hides it | `recitation_tuned_model` | every check when Word checker is On trial |
 
 `whisper.py` `engine` loads a folder under `backend/`, or `repo@revision` pinned to one upload; first load downloads, later loads are offline.
 Making the tuned ear: `backend/scripts/recitation/finetune_ear/` (README there): `cloud.py` pushes to Kaggle, judges against the served ear, `--ship` uploads and moves the pin in `config.py`.
@@ -82,7 +82,7 @@ Settings (`F/config/settings.json`): `fusha`, `listening-ear`. Health: `GET /api
 ## 7. Glossary (code's words)
 
 - **ear**: anything turning sound into words (`ears.py:Ear`): hosted, letters, here.
-- **checker**: the model that scores each word's sureness (Base or Fine-tuned).
+- **checker**: the model that scores each word's sureness (Standard or On trial).
 - **reading**: one request about one recording. **window**: one recording between pauses.
 - **place / home**: where in the Qur'an a reading sits / whether that is on the open page (`locate.py`).
 - **sure**: 0 to 1 per spoken page word. **spoken**: the page places of words the ear scores (no pause signs).
@@ -94,6 +94,6 @@ Settings (`F/config/settings.json`): `fusha`, `listening-ear`. Health: `GET /api
 1. **Out-of-order ayahs.** `follow.js` `lineUp` is one alignment over the joined stream. Reciting 2:3 then 2:2 leaves 2:2 empty and paints the first 7 words of 2:4 orange. Aligning each window alone worked in a prototype.
 2. **Noise sets `elsewhere`.** Quiet pink noise got a sure place off the page (`recitingSession.js`). No word was marked, but `hooks.js` can offer a jump.
 3. **2:1 الٓمٓ is never marked** in any run. Cause not traced.
-4. **Fine-tuned checker reads مِّن falsely low.** It is scored with `as_heard` spelling, which drops a word-initial shadda (`spelling.py`), but it was trained on raw imlaei (`finetune_ear/ear/text.py`). 9 of 252 perfect words were low, all مِّن; Base: 0 of 253 below 0.95. The red spreads to neighbours on skips and swaps. Base separates a changed word (0 to 0.12) cleanly.
+4. ~~Fine-tuned checker reads مِّن falsely low.~~ Fixed: training now uses the `as_heard` spelling it is checked in (`finetune_ear/ear/text.py`). The served tuned ear marks right مِنْ red 2 times in 52 on IqraEval, the same as OdyAsh (2026-11-08).
 5. **Wrong ayah noticed late.** Reciting 2:10 on a 2:1-2:5 page marked nothing, but the place was unsure for the first ~8 s. A look-alike with identical text (31:5 on 2:5) passes; unavoidable.
 6. `imlaei.json (needed by `/check`) is gitignored and absent from `deploy/copy-data.sh`. The live server does score, so it has one; how it got there is not recorded.

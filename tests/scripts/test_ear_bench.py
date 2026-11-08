@@ -52,23 +52,41 @@ def test_gain_against_itself_is_zero():
 
 
 FEWEST = 20
+BASE, NEW = keep.Grade(0.80, 0.50, 0.05, 30), keep.Grade(0.90, 0.60, 0.05, 30)
+# 95% ranges of new minus current: AUC surely up, F1 surely up, right words red surely down.
+SURE_WIN = keep.Gains(auc=(0.05, 0.15), f1=(0.01, 0.1), false_red=(-0.02, -0.01))
 
 
 def test_verdict_keeps_clear_winner():
-    base, new = keep.Grade(0.80, 0.50, 0.05, 30), keep.Grade(0.90, 0.60, 0.05, 30)
-    assert keep.verdict(base, new, (0.05, 0.15), FEWEST) == (True, [])
+    assert keep.verdict(BASE, NEW, SURE_WIN, FEWEST) == (True, [])
 
 
 def test_verdict_too_few_slips_single_reason():
-    ok, why = keep.verdict(keep.Grade(0.8, 0.5, 0.05, 5), keep.Grade(0.9, 0.6, 0.05, 5), (0.05, 0.15), FEWEST)
+    ok, why = keep.verdict(keep.Grade(0.8, 0.5, 0.05, 5), keep.Grade(0.9, 0.6, 0.05, 5), SURE_WIN, FEWEST)
     assert not ok and why == ["too few slips to judge: 5, needs 20"]
 
 
 def test_verdict_refuses_when_gain_includes_zero():
-    ok, why = keep.verdict(keep.Grade(0.8, 0.5, 0.05, 30), keep.Grade(0.9, 0.6, 0.05, 30), (-0.02, 0.1), FEWEST)
+    ok, why = keep.verdict(BASE, NEW, SURE_WIN._replace(auc=(-0.02, 0.1)), FEWEST)
     assert not ok and len(why) == 1 and why[0].startswith("AUC gain could be chance")
 
 
-def test_verdict_refuses_more_right_words_red_than_today():
-    ok, why = keep.verdict(keep.Grade(0.8, 0.5, 0.05, 30), keep.Grade(0.9, 0.6, 0.06, 30), (0.05, 0.15), FEWEST)
-    assert not ok and why == ["marks more right words red: 0.060 vs 0.050"]
+def test_verdict_refuses_surely_more_right_words_red():
+    ok, why = keep.verdict(BASE, NEW, SURE_WIN._replace(false_red=(0.005, 0.02)), FEWEST)
+    assert not ok and len(why) == 1 and why[0].startswith("surely marks more right words red")
+
+
+def test_verdict_refuses_surely_lower_f1():
+    ok, why = keep.verdict(BASE, NEW, SURE_WIN._replace(f1=(-0.05, -0.01)), FEWEST)
+    assert not ok and len(why) == 1 and why[0].startswith("F1 surely lower")
+
+
+def test_verdict_noise_in_harm_does_not_block():
+    """F1 lower and more right words red on average, but each range spans zero: chance, so the sure AUC gain still keeps it."""
+    worse = keep.Grade(0.90, 0.45, 0.06, 30)
+    assert keep.verdict(BASE, worse, SURE_WIN._replace(f1=(-0.04, 0.02), false_red=(-0.01, 0.03)), FEWEST) == (True, [])
+
+
+def test_harms_alone_refuse_on_a_set_too_small_to_decide():
+    assert keep.harms(BASE, NEW, SURE_WIN._replace(false_red=(0.01, 0.02))) != []
+    assert keep.harms(BASE, NEW, SURE_WIN._replace(auc=(-0.5, 0.5))) == []

@@ -3,7 +3,9 @@
     python backend/scripts/recitation/finetune_ear/checks/judge_mutants.py
 
 Scenarios with known answers run against ear/judge.py; then each mutant (one small bug planted in the
-source) must change at least one answer. A surviving mutant means the scenarios cannot see that rule."""
+source) must change at least one answer. A surviving mutant means the scenarios cannot see that rule.
+Each answer is two: kept (no group worse, nothing forgotten) and better (a sure gain past a margin, recorded
+since 2026-11-06, no longer required: ear_bench decides on slips)."""
 import json
 import sys
 import types
@@ -21,7 +23,7 @@ WORDS = np.random.default_rng(1).integers(5, 20, size=400)
 def fake_ear(new, pro, seed):
     """An ear by its per-word error rate on each group; each clip's errors drawn over the same words."""
     r = np.random.default_rng(seed)
-    return {g: {'counts': np.stack([r.binomial(WORDS, p), WORDS], 1)} for g, p in (('new ayahs', new), ('professional', pro))}
+    return {g: {'counts': np.stack([r.binomial(WORDS, p), WORDS], 1)} for g, p in (('new ayahs', new), ('professional', pro), ('rough professional', pro))}
 
 
 def shifted(base, group, points):
@@ -43,19 +45,19 @@ lumpy['new ayahs']['counts'][:2, 0] += 60  # 2.5 points worse, all on two clips
 both = lambda e, new, pro: shifted(shifted(e, 'new ayahs', new), 'professional', pro)  # noqa: E731
 pro_noise = shifted(served, 'new ayahs', -3)
 pro_noise['professional']['counts'][:3, 0] += 5  # 0.3 points, on three clips: not surely worse
-CASES = [  # (what, held, candidate, keep?)
-    ('same ear', served, served, False),
-    ('untuned against served', served, untuned, False),
-    ('learns 3 points', served, both(served, -3, 0), True),
-    ('learns 1 point: under the margin', served, both(served, -1, 0), False),
-    ('learns 2.5 points, all from two clips: unsure', lumpy, served, False),
-    ('learns 3, pros 0.3 worse by noise, already past the band', served, pro_noise, True),
-    ('learns 3, pros 0.8 surely worse, already past the band', served, both(served, -3, 0.8), False),
-    ('learns 3, pros 1.5 worse: over the margin', inband, both(inband, -3, 1.5), False),
-    ('learns 3, pros 0.6 worse, still in the band', inband, both(inband, -3, 0.6), True),
-    ('learns 3, pros 0.9 worse, leaves the band', inband, both(inband, -3, 0.9), False),
-    ('repairs pros 1.3, new ayahs 0.5 worse', served, both(served, 0.5, -1.3), True),
-    ('repairs pros 1.3, new ayahs 2 worse', served, both(served, 2, -1.3), False),
+CASES = [  # (what, held, candidate, kept?, better?)
+    ('same ear', served, served, True, False),
+    ('untuned against served', served, untuned, False, True),
+    ('learns 3 points', served, both(served, -3, 0), True, True),
+    ('learns 0.5 point: under the margin', served, both(served, -0.5, 0), True, False),
+    ('learns 2.5 points, all from two clips: unsure', lumpy, served, True, False),
+    ('learns 3, pros 0.3 worse by noise, already past the band', served, pro_noise, True, True),
+    ('learns 3, pros 0.8 surely worse, already past the band', served, both(served, -3, 0.8), False, True),
+    ('learns 3, pros 1.5 worse: over the margin', inband, both(inband, -3, 1.5), False, True),
+    ('learns 3, pros 0.6 worse, still in the band', inband, both(inband, -3, 0.6), True, True),
+    ('learns 3, pros 0.9 worse, leaves the band', inband, both(inband, -3, 0.9), False, True),
+    ('repairs pros 1.3, new ayahs 0.5 worse', served, both(served, 0.5, -1.3), True, True),
+    ('repairs pros 1.3, new ayahs 2 worse', served, both(served, 2, -1.3), False, True),
 ]
 MUTANTS = [  # (in judge.py, planted instead)
     ("gains[g]['points'] >= m", "gains[g]['points'] >= 0"),
@@ -64,7 +66,6 @@ MUTANTS = [  # (in judge.py, planted instead)
     ("wrong(untuned['professional']['counts']) + S.FORGET", "wrong(held['professional']['counts']) + S.FORGET"),
     ("and gains['professional']['high'] < 0)", ')'),
     ('not worse and not forgot', 'not worse'),
-    ('bool(better) and', 'True and'),
     ('wrong(held) - wrong(cand)', 'wrong(cand) - wrong(held)'),
     ('counts[:, 0].sum() / counts[:, 1].sum()', 'counts[:, 0].mean()'),
 ]
@@ -78,13 +79,13 @@ def judge_from(code):
 
 
 def answers(judge):
-    return [judge.verdict(held, cand, untuned)['keep'] for _, held, cand, _ in CASES]
+    return [(v['keep'], bool(v['better'])) for v in (judge.verdict(held, cand, untuned) for _, held, cand, *_ in CASES)]
 
 
 code = (EAR / 'judge.py').read_text(encoding='utf-8')
 right = answers(judge_from(code))
-for (what, *_, want), got in zip(CASES, right):
-    print('ok  ' if got == want else 'WRONG', what)
+for (what, _, _, *want), got in zip(CASES, right):
+    print('ok  ' if got == tuple(want) else 'WRONG', what)
 alive = []
 for old, new in MUTANTS:
     assert old in code, f'mutant no longer matches judge.py: {old}'
@@ -94,8 +95,8 @@ for old, new in MUTANTS:
         caught = True
     if not caught:
         alive.append(old)
-wrong_cases = sum(got != want for (*_, want), got in zip(CASES, right))
-json.dumps([judge_from(code).verdict(h, c, untuned) for _, h, c, _ in CASES])  # verdict.json must be able to hold it
+wrong_cases = sum(got != tuple(want) for (_, _, _, *want), got in zip(CASES, right))
+json.dumps([judge_from(code).verdict(h, c, untuned) for _, h, c, *_ in CASES])  # verdict.json must be able to hold it
 print(f'{len(CASES) - wrong_cases}/{len(CASES)} decisions right; {len(MUTANTS) - len(alive)}/{len(MUTANTS)} planted bugs caught',
       *(f'\n  survived: {a}' for a in alive))
 sys.exit(1 if wrong_cases or alive else 0)

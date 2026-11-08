@@ -1,20 +1,13 @@
-"""Ears as folders faster-whisper loads (CTranslate2): the served one, the untuned one, blends, and a trained one."""
-import re
+"""Ears as folders faster-whisper loads (CTranslate2): the champion, the untuned one, blends, and a trained one."""
 import shutil
 import subprocess
-import urllib.request
 
-from huggingface_hub import snapshot_download
+from huggingface_hub import hf_hub_download, snapshot_download
 from transformers import GenerationConfig, WhisperForConditionalGeneration, WhisperTokenizerFast
 
 from . import settings as S
 from . import weights
 from .text import processor
-
-
-def served():
-    """(repo, revision) of the ear master's config.py pins: the one the app serves and the judge must beat."""
-    return re.search(S.SERVED_PIN, urllib.request.urlopen(S.SERVED).read().decode()).groups()
 
 
 def download(repo, revision, folder):
@@ -39,6 +32,9 @@ def export(model, folder):
     merged = S.OUT / 'ear-merged'
     model.save_pretrained(merged)
     WhisperTokenizerFast.from_pretrained(f'openai/whisper-{S.SIZE}').save_pretrained(merged)
+    # Its tokenizer.json as published, not as saved: Kaggle's newer tokenizers writes merges in a layout the
+    # app's 0.19 cannot read (run 28, 2026-11-07); the published file is what the champion ships, byte for byte.
+    shutil.copy(hf_hub_download(f'openai/whisper-{S.SIZE}', 'tokenizer.json'), merged / 'tokenizer.json')
     processor.feature_extractor.save_pretrained(merged)  # the processor alone no longer writes this file
     subprocess.run(['ct2-transformers-converter', '--model', str(merged), '--output_dir', str(folder), '--force',
                     '--copy_files', 'preprocessor_config.json', 'tokenizer.json', '--quantization', 'float16'], check=True)
