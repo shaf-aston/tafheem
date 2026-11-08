@@ -27,7 +27,7 @@ ear/                   runs on the GPU machine, in this order:
   run.py               the run: hold out tests, score untuned + champion, walk PLAN, write verdict.json
   split.py             which clips are held for the judge and which are taught (v13's seeded split)
   parquet.py           reading big Hugging Face parquet sets cheaply, clips kept decoded (the sounds loop reuses it)
-  sources.py           where clips come from: learners, professionals, Tadabur, everyayah replay, tlog
+  sources.py           where clips come from: learners, professionals, Tadabur, everyayah replay, tlog, Iqra phrases
   spread.py            which few of many files to read; cloud.py uses it too
   sound.py             recordings as 16 kHz numbers; training clips made harder (speed, room, noise, rough channel)
   text.py              the Qur'an's own text, spelt as the app checks it (SAID); what the model can write
@@ -52,6 +52,7 @@ checks/                run on this PC, no GPU:
 ## What it is taught
 
 - Learners (Tarteel v1), professionals (everyayah replay), Tadabur, and tlog: real app users. A tlog clip is taught only when large-v3-turbo hears exactly the ayah's letters, so a slip is never taught as right (`TLOG_*`).
+- **Iqra phrases** (2026-11-08, `IQRA_*`): `Iqra_TTS` (synthetic voices saying Qur'an phrases, ~half with a planted slip) is taught with `sentence_aug`, the text really said, so a slip is a labelled mistake the target contains; its clips of held ayahs make the `spoken slips` group (recorded, not a keep rule). The ayah is found from `sentence_ref`. `Iqra_train` (real voices) adds Qur'an phrases (half, never from held ayahs) and everyday fusha (the rest, with tashkeel). Phrases the IqraEval bench says are left out: `cloud.py` writes them into the bundle as `bench_phrases.json`, and a run without it stops.
 - Targets are spelt `as_heard`, the spelling the app scores in, so training and checking agree on every word.
 - `ROUGH_P` of training clips go through a worse channel: low-bitrate opus, phone band, old tape with hiss, or clipping. The `rough professional` held group measures that.
 
@@ -87,6 +88,7 @@ Words wrong never measures slip catching, so `--ship` asks `ear_bench` before an
 - **Judge against the served ear, not untuned:** the old gate would have shipped a worse pilot.
 - **Data coverage is the lever, not layers or rank** (2026-10-02 sweep all within noise). A better step needs a new-ayahs gain, i.e. more distinct ayahs, not more voices.
 - **tlog labels are only the ayah meant** (from the file name). Probe 2026-11-04: the local ear changes the text on 84% of shard 0 clips (many off-ayah or noise); on 300 Groq-labelled clips base AUC 0.800, tuned 0.788, no gain. A human-checked set is needed before any claim.
+- **Planted slips hide from ayah lookup:** a slipped sentence matches no ayah, so a source of slips must carry the meant text beside the said text (`Iqra_TTS` has `sentence_ref`); looking the ayah up from the said text dropped every slipped clip (2026-11-08).
 - **More hours of the same ayahs do not reach new ayahs** (2026-11-05: 64 h with tlog and the rough channel gained new voices 1.5 and Tadabur 2.0 points, new ayahs 0.46, within noise).
 - **Untuned base beats every tuned ear on professionals** in most runs; FORGET guards it.
 

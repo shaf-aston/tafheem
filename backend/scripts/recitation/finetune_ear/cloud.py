@@ -66,6 +66,15 @@ def status(kind='kernels', ref=KERNEL):
         return ''
 
 
+def bench_phrases():
+    """The phrases the IqraEval bench says, so training leaves them out (it never trains on the bench)."""
+    import pyarrow.parquet as pq
+    path = HERE.parents[2] / 'data' / 'recitation_checks' / 'downloads' / 'iqra' / 'data' / 'train-00000-of-00001.parquet'
+    if not path.exists():
+        sys.exit(f'no bench file at {path}: run backend/scripts/recitation/ear_bench once to fetch it')
+    return sorted(set(pq.read_table(path, columns=['sentence']).column('sentence').to_pylist()))
+
+
 def bundle(folder):
     """A copy of kernel-metadata.json and the one file it names, holding every loop's package whole, ready to push."""
     meta = json.loads((LOOP / 'kernel-metadata.json').read_text())
@@ -78,6 +87,7 @@ def bundle(folder):
                 z.write(f, f'{f.parent.name}/{f.name}')
         z.write(SHARED, SHARED.name)  # the server's own word judge, so training and serving mean the same by "wrong"
         z.write(SPELLING, 'ear/spelling.py')
+        z.writestr(f'ear/{S.BENCH_PHRASES}', json.dumps(bench_phrases(), ensure_ascii=False))
     (folder / meta['code_file']).write_text(LAUNCH.format(base64.b64encode(packed.getvalue()).decode(), PACKAGE))
     (folder / 'kernel-metadata.json').write_text(json.dumps(meta))
     return folder
