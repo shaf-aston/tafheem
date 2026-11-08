@@ -29,11 +29,14 @@ const MODE_IDS = [...MODES, PICTURE].map((m) => m.id)
 export default function WordsView({ unit, at }) {
   const lesson = unit.lessons[at]
   const words = lesson.vocabulary
+  // A topic with a drawing opens on it: the diagram is the way into these words, and behind a tab
+  // like the others nobody found it. Browse is one tap away; any other topic opens on Browse.
+  const home = pictureBoards(words).length ? 'picture' : 'browse'
   // The mode rides on the address (?words=cards in a shared link), so a reload or a link keeps it.
-  const [mode, setModeNow] = useState(() => readViewParam('words', MODE_IDS) ?? 'browse')
+  const [mode, setModeNow] = useState(() => readViewParam('words', MODE_IDS) ?? home)
   // A mode picked here rises in, as an answer to the tap; the first arrives with its screen (ui/display/Screen.jsx).
   const [picked, setPicked] = useState(false)
-  const setMode = (next) => { setModeNow(next); setPicked(true); writeViewParams({ words: next === 'browse' ? '' : next }) }
+  const setMode = (next) => { setModeNow(next); setPicked(true); writeViewParams({ words: next === home ? '' : next }) }
   const dialect = unit.dialect_key
   // Review plans from the words' record: fetched ahead when the topic opens, and again
   // on reaching for the modes (only if an answer has made it old), so it opens at once.
@@ -42,7 +45,7 @@ export default function WordsView({ unit, at }) {
   useEffect(() => { warm(client, summaryQuery(WORDS_MODULE)) }, [client])
   const modes = useMemo(() => (pictureBoards(words).length ? [...MODES.slice(0, 3), PICTURE, ...MODES.slice(3)] : MODES), [words])
   // A topic with no drawing has no Picture mode: a link asking for one opens on Browse.
-  const shown = modes.some((m) => m.id === mode) ? mode : 'browse'
+  const shown = modes.some((m) => m.id === mode) ? mode : home
   const drills = useMemo(() => wordDrills(words, `${unit.unit}.${lesson.lesson}`, { dialect }), [words, unit.unit, lesson.lesson, dialect])
 
   if (!words.length) return <p className="type-small text-[var(--text-faint)] text-center py-12">This topic has no words yet.</p>
@@ -61,7 +64,8 @@ export default function WordsView({ unit, at }) {
           <Segmented label="How to learn the words" accent="var(--primary)" value={shown} onChange={setMode} options={modes} />
         </div>
       </header>
-      {shown !== 'quiz' && <div className="w-full max-w-xl mx-auto"><SpellingKey keys={unit.transliteration_key} /></div>}
+      {/* Not over the drawing, whose words appear only once tapped, nor over the quiz. */}
+      {!['quiz', 'picture'].includes(shown) && <div className="w-full max-w-xl mx-auto"><SpellingKey keys={unit.transliteration_key} /></div>}
       {/* Keyed by the mode, so a newly picked one rises in. */}
       <div key={shown} className={picked ? 'rise-in' : undefined}>
         {shown === 'browse' && (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />)}
