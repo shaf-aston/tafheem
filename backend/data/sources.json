@@ -403,7 +403,7 @@
   "hadith": {
     "label": "Hadith collections",
     "confidence": "verified",
-    "detail": "The collection's own wording, Arabic and English, from fawazahmed0/hadith-api, itself mirrored from sunnah.com; grades are each scholar's own verdict as sunnah.com prints it; every hadith links back to its sunnah.com page",
+    "detail": "The collection's own wording, Arabic and English, from fawazahmed0/hadith-api, itself mirrored from sunnah.com (Mishkat al-Masabih, which it lacks, from AhmedBaset/hadith-json, the same sunnah.com text; sunnah.com has its first 24 books, 4,428 hadiths); grades are each scholar's own verdict as sunnah.com prints it; every hadith links back to its sunnah.com page",
     "url": "https://github.com/fawazahmed0/hadith-api",
     "where": "Every book and hadith. Stored locally.",
     "used_in": [

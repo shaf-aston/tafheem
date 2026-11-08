@@ -15,3 +15,10 @@ export function useHadithCollections() {
   }
   return { collections, of }
 }
+
+// The bookcase's books (those with a shelf) as [[shelf, books]], in the order the collections list holds them.
+export function shelvesOf(collections) {
+  const shelves = new Map()
+  for (const c of collections) if (c.shelf) shelves.set(c.shelf, [...(shelves.get(c.shelf) ?? []), c])
+  return [...shelves]
+}

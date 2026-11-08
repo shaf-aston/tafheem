@@ -37,7 +37,10 @@ CREATE TABLE collection (
     arabic TEXT NOT NULL DEFAULT '',
     arabic_short TEXT NOT NULL DEFAULT '',
     cite TEXT NOT NULL DEFAULT '',
-    sahih INTEGER NOT NULL DEFAULT 0
+    sahih INTEGER NOT NULL DEFAULT 0,
+    shelf TEXT NOT NULL DEFAULT '',  -- the bookcase shelf of a further book; '' for the six on the tab's own shelf
+    author TEXT NOT NULL DEFAULT '',
+    about TEXT NOT NULL DEFAULT ''
 );
 
 CREATE TABLE book (
@@ -127,14 +130,18 @@ def build() -> dict[str, int]:
 
             raw = json.loads(raw_path.read_text(encoding="utf-8"))
             conn.execute(
-                "INSERT INTO collection (id, name, short, arabic, arabic_short, cite, sahih) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO collection (id, name, short, arabic, arabic_short, cite, sahih, shelf, author, about) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (key, meta["name"], meta.get("short", meta["name"]), meta.get("arabic", ""), meta.get("arabic_short", ""),
-                 meta.get("cite", ""), int(bool(meta.get("sahih")))),
+                 meta.get("cite", ""), int(bool(meta.get("sahih"))), meta.get("shelf", ""), meta.get("by", ""),
+                 meta.get("about", "")),
             )
             arabic = arabic_names.get(key, {})
             conn.executemany(
                 "INSERT INTO book (collection_id, number, name, arabic) VALUES (?, ?, ?, ?)",
-                [(key, b["number"], b["name"], arabic.get(str(b["number"]), "")) for b in raw.get("books", [])],
+                # A fetch that carries its books' Arabic names (hadith-json) is taken at its word.
+                [(key, b["number"], b["name"], b.get("arabic") or arabic.get(str(b["number"]), ""))
+                 for b in raw.get("books", [])],
             )
             conn.executemany(
                 "INSERT INTO hadith (collection_id, book_number, number, part, in_book, arabic, english, grades) "

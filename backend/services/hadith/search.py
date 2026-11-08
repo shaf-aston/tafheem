@@ -28,7 +28,7 @@ from backend.services.text import fts
 from backend.services.text.arabic_text import has_arabic
 from backend.services.hadith import meaning, reference, repair, words
 from backend.services.hadith.lemma import lemma
-from backend.services.hadith.loader import books, db, is_built, numbered, share
+from backend.services.hadith.loader import books, db, is_built, numbered, share, shelved
 from backend.services.hadith.loader import collections as collections_of
 
 logger = logging.getLogger(__name__)
@@ -106,7 +106,11 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
     if not typed:
         return Result()
 
-    only, params = fts.only_in("h.collection_id", collections)
+    # Searching everywhere means the six: the bookcase's books mostly retell them, so each would come back
+    # twice. A shelved book is searched when it is named or picked.
+    further = shelved()
+    scope = collections or tuple(cid for cid, *_ in collections_of() if cid not in further)
+    only, params = fts.only_in("h.collection_id", scope)
     conn = db()
     try:
         content = _content(typed, settings)[:_MAX_TERMS]
@@ -124,7 +128,7 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
                 swapped = {words.bare(typed): used for typed, used in corrected}
                 meant = " ".join(swapped.get(words.bare(w), w) for w in asked.rest.split())
                 try:
-                    near = meaning.nearest(meant, pool, collections)
+                    near = meaning.nearest(meant, pool, scope)
                 except Exception:
                     # A model that cannot load (no network for the first fetch) costs meaning, not search.
                     logger.exception("hadith meaning search failed; answering by words alone")
