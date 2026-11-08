@@ -68,6 +68,15 @@ def stuck_letters(pieces, word: str = "") -> int:
     return stuck - short if shared else stuck
 
 
+def written_sizes(front: list, base: dict, back: list, word: str) -> list[int]:
+    """How many letters of the typed word each piece joined to `base` holds, `front` pieces then `back` ones
+    (إِنِّي: the pronoun's نِي shares the one written nun with إِنَّ, so it is written as ي)."""
+    sizes = [len(bare_letters(t["form"].strip("+"))) for t in front + back]
+    if back:
+        sizes[-len(back)] -= sum(sizes[-len(back):]) - stuck_letters([*front, base, *back], word)
+    return sizes
+
+
 def own_letters(word: str, before: int, after: int) -> str:
     """The typed word less `before` letters joined in front (فـ) and `after` of an attached
     pronoun (ـها), its own vowels kept: فَاقْبَلْهَا is اقْبَلْ."""

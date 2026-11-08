@@ -19,8 +19,8 @@ from backend.services.nahw.syntax.facts import (Sentence, is_passive, is_particl
 from backend.services.nahw.syntax.followers import FOLLOWERS, chain_first
 from backend.services.nahw.syntax.naming import NAMED, base_tokens, opens_with_verb, tone
 from backend.services.nahw.syntax.doer import DOER, doer as _doer, person_key as _person, persons as _persons
-from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import SHADDA, has_tanween, letters, own_letters, stuck_letters
+from backend.services.text.arabic_text import strip_diacritics
+from backend.services.text.harakat import SHADDA, has_tanween, letters, own_letters, written_sizes
 
 # What a unit is called, by the join that makes it. Spelled once, in
 # data/nahw_rules/tarkeeb.json, so a typed sentence, a book example and an ayah
@@ -156,9 +156,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
     for i, (word, token, found) in enumerate(zip(words, bases, named)):
         before = [by_id[p["id"]] for p in found.get("attached", []) if p["id"] in split and p["before"]]
         after = [by_id[p["id"]] for p in found.get("attached", []) if p["id"] in split and not p["before"]]
-        sizes = [len(bare_letters(t["form"].strip("+"))) for t in before + after]
-        if after:  # إِنِّي: the pronoun's نِي shares the one written nun with إِنَّ, so it is written as ي
-            sizes[-len(after)] -= sum(sizes[-len(after):]) - stuck_letters([*before, token, *after], word)
+        sizes = written_sizes(before, token, after, word)
         spans = sizes[:len(before)] + [len(letters(word)) - sum(sizes)] + sizes[len(before):]
         drawn += before + [token] + after
         columns += [own_letters(word, sum(spans[:k]), sum(spans[k + 1:])) for k in range(len(spans))]
