@@ -23,6 +23,8 @@ import TarkeebFigure from '../grammar/tarkeeb/TarkeebFigure'
 import TarkeebTools from '../grammar/tarkeeb/TarkeebTools'
 import PracticePanel from './PracticePanel'
 import SentenceMeaning from '../ui/text/SentenceMeaning'
+import TranslationStrip from '../ui/text/TranslationStrip'
+import { GoButton } from '../ui/buttons/RootActions'
 import WordPeek from './WordPeek'
 import WordCard from '../grammar/WordCard'
 import ArabicText from '../ui/text/ArabicText'
@@ -144,8 +146,10 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
   const governs = linked && lens === 'governs'
   const view = useTarkeebView(data.tree)
   const meaning = useSentenceMeaning(data.sentence)
+  const copy = <CopyButton text={buildIraabExportText(data)} label="Copy" />
   return (
     <div className="space-y-4">
+      {/* With a tree, Copy sits in the tree card's foot, not on a row of its own. */}
       <div className="flex items-start justify-between gap-3 flex-wrap">
         {data.summary && (
           <div
@@ -157,10 +161,7 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
             <SourceBadge source={data.source} />
           </div>
         )}
-        <div className="flex items-center gap-2">
-          {data.tree && <TarkeebTools view={view} />}
-          <CopyButton text={buildIraabExportText(data)} />
-        </div>
+        {!data.tree && copy}
       </div>
 
       {data.unvowelled && (
@@ -173,9 +174,10 @@ function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, de
         // An ayah drawn from its record carries the words the book supplies,
         // (هُوَ) or an elided khabar, and the mark it writes them with.
         <ChartWithPeek data={data} view={view} glosses={meaning.data?.words}
-          onMore={onWordClick} onLookup={onGo && ((w) => onGo('dict', w))} />
+          onMore={onWordClick} onLookup={onGo && ((w) => onGo('dict', w))}
+          foot={<EnglishFoot meaning={meaning} accent={accent} onGo={onGo}><TarkeebTools view={view} />{copy}</EnglishFoot>} />
       )}
-      <EnglishMeaning meaning={meaning} accent={accent} onGo={onGo} />
+      {!data.tree && <EnglishMeaning meaning={meaning} accent={accent} onGo={onGo} />}
       <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked}
         corner={linked && (
           <FlagButton value={governs} onChange={(on) => setLens(on ? 'governs' : 'roles')} accent={accent}
@@ -208,8 +210,34 @@ function useSentenceMeaning(sentence) {
   })
 }
 
-// The English straight under the analysis: the sentence card already says what it
-// is, so no heading names it again.
+// The foot of the tree's card: the English, beside the chart's tools. The tree
+// already writes the sentence out, so the English is not set under a third copy
+// of it. The tools are there before the English arrives, so nothing moves.
+function EnglishFoot({ meaning, accent, onGo, children }) {
+  const data = meaning.data?.words ? meaning.data : null
+  return (
+    <TranslationStrip pad="px-5 py-3" className="rounded-b-[var(--radius-lg)] flex flex-wrap items-center gap-x-3 gap-y-2">
+      {/* Too little room beside the tools (a phone, Merged/Split shown): they drop under it. */}
+      <div className="flex-[1_1_10rem] min-w-0 space-y-2 rise-in">
+        {data && (
+          <p lang="en" className={`type-body leading-relaxed ${data.meaning ? 'text-[var(--text)]' : 'text-[var(--text-dim)]'}`}>
+            {data.meaning || 'The translator could not be reached, so only the words below.'}
+          </p>
+        )}
+        {data?.left_out?.length > 0 && (
+          <p className="type-small text-[var(--text-dim)]">Left out, not Arabic: {data.left_out.join(', ')}</p>
+        )}
+        {data?.ref && onGo && (
+          <GoButton onClick={() => onGo('quran', data.ref)} style={{ '--c': accent }}>Open ayah {data.ref}</GoButton>
+        )}
+      </div>
+      <div className="ml-auto flex items-center gap-2">{children}</div>
+    </TranslationStrip>
+  )
+}
+
+// With no tree, the sentence's own card: the Arabic, then the English under it.
+// The card above already says what it is, so no heading names it again.
 function EnglishMeaning({ meaning, accent, onGo }) {
   if (!meaning.data?.words) return null
   return (
@@ -229,7 +257,7 @@ function nthWord(list, nth, text, key) {
 }
 
 // The chart, with a tapped word answered in a small panel under it, in place.
-function ChartWithPeek({ data, view, glosses, onMore, onLookup }) {
+function ChartWithPeek({ data, view, glosses, onMore, onLookup, foot }) {
   const [peek, setPeek] = useState(null)
   const frame = useRef(null)
   const glossOf = (nth, text) => nthWord(glosses, nth, text, 'arabic')?.english
@@ -245,7 +273,8 @@ function ChartWithPeek({ data, view, glosses, onMore, onLookup }) {
   }
   return (
     <div ref={frame} className="relative">
-      <TarkeebFigure tarkeeb={data.tree} view={view} onWord={open} glossOf={glosses && glossOf} />
+      <TarkeebFigure tarkeeb={data.tree} view={view} onWord={open} glossOf={glosses && glossOf}
+        foot={foot} />
       {peek && (
         <WordPeek {...peek} onClose={() => setPeek(null)}
           onMore={() => { onMore(peek.word); setPeek(null) }}
