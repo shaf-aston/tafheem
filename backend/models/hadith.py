@@ -15,7 +15,7 @@ class HadithCollection(BaseModel):
     arabic: str = ""
     # Every hadith in it is graded sahih, so none carries a grade of its own.
     sahih: bool = False
-    # A further book stands on this shelf of the bookcase, not with the six on the tab's own shelf.
+    # A further book stands on this shelf of the bookshelf, not with the six on the tab's own shelf.
     shelf: str = ""
     # Its cover: who gathered it, one line about it, and how many hadiths it holds. Only a shelved book has one.
     by: str = ""

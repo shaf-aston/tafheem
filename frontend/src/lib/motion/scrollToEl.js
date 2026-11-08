@@ -59,12 +59,18 @@ function hold(land) {
 /**
  * A screen's start brought into view: glide until `el`'s top sits `gap` px under the app's header, re-aimed as
  * the page grows around it (the first aim missed by 360px when what sits above it was still arriving), until the
- * reader moves or motion['hold-ms'] passes. Returns the stop.
+ * reader moves or motion['hold-ms'] passes. Returns the stop. `el` may be mid-animation (openFrom): the aim
+ * is its laid-out place (offsetTop, which ignores transforms), not where the animation has drawn it.
  */
 export function holdGlideUnderHeader(el, gap = 16) {
   if (!el) return () => {}
   const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
-  return hold(() => glideTo(globalThis.scrollY + el.getBoundingClientRect().top - header - gap))
+  const laidOutTop = () => {
+    let top = 0
+    for (let n = el; n; n = n.offsetParent) top += n.offsetTop
+    return top
+  }
+  return hold(() => glideTo(laidOutTop() - header - gap))
 }
 
 /** A link landing on `el`: at the top at once (an arrival, not a glide), held there as the page grows above it. */

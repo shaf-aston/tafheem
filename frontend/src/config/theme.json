@@ -301,7 +301,7 @@
     "_tilt_comment": "The .tilt class: a card leans toward the pointer on a mouse hover, never on touch. max-deg is the most it leans, perspective-px how far the viewer is from it (smaller is more dramatic).",
     "tilt-max-deg": 3,
     "tilt-perspective-px": 900,
-    "_open_comment": "A thing opening out of the tile that opened it (lib/motion/openFrom.js, the hadith bookcase): it starts small on the tile, turned this many degrees away so its back is hidden, and swings round to face the reader as it grows. Past 90 the first part of the swing is out of sight, so the flip reads as the tile turning over.",
+    "_open_comment": "A thing opening out of the tile that opened it (lib/motion/openFrom.js, the hadith bookshelf): it starts small on the tile, turned this many degrees away so its back is hidden, and swings round to face the reader as it grows. Past 90 the first part of the swing is out of sight, so the flip reads as the tile turning over.",
     "open-deg": 140,
     "_shake_comment": "How long a wrong answer shakes its head. The .shake class in styles/motion.css lasts this long, and the code that clears a shaking tile after it waits this long too, so the two cannot drift apart.",
     "shake-ms": 330,

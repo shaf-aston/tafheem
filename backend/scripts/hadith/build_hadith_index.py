@@ -38,7 +38,7 @@ CREATE TABLE collection (
     arabic_short TEXT NOT NULL DEFAULT '',
     cite TEXT NOT NULL DEFAULT '',
     sahih INTEGER NOT NULL DEFAULT 0,
-    shelf TEXT NOT NULL DEFAULT '',  -- the bookcase shelf of a further book; '' for the six on the tab's own shelf
+    shelf TEXT NOT NULL DEFAULT '',  -- the bookshelf shelf of a further book; '' for the six on the tab's own shelf
     author TEXT NOT NULL DEFAULT '',
     about TEXT NOT NULL DEFAULT ''
 );
