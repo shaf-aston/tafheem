@@ -31,7 +31,8 @@ function Plank({ shelf, books, index, onPick }) {
                 <ArabicText>{b.arabic || b.short || b.name}</ArabicText>
               </span>
               <span className="bookshelf-words">
-                <span className="type-ui font-semibold text-[var(--text)] group-hover:text-[var(--c)] transition-colors">{/* No break at a hyphen: "an-" alone at a line's end. */}{b.name.replaceAll('-', '\u2011')}</span>
+                {/* No break at a hyphen: "an-" alone at a line's end. */}
+                <span className="bookshelf-name type-ui font-semibold text-[var(--text)] group-hover:text-[var(--c)] transition-colors">{b.name.replaceAll('-', '\u2011')}</span>
                 {b.count > 0 && <span className="type-small tabular-nums text-[var(--text-dim)]">{b.count.toLocaleString()} hadiths</span>}
               </span>
             </button>
