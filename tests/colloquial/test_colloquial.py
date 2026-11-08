@@ -306,10 +306,22 @@ def test_a_picture_is_served_and_cannot_be_climbed_out_to():
     try:
         client = TestClient(app)
         assert client.get("/api/colloquial/image/_probe/x.jpg").content == b"jpg"
+        # A picture straight under images/ is two pieces too: the picture route, not a dialect and a unit.
+        (folder.parent / "_root_probe.jpg").write_bytes(b"root")
+        assert client.get("/api/colloquial/image/_root_probe.jpg").content == b"root"
+        # A missing unit says so plainly, not wrapped in the quote marks a KeyError's text carries.
+        said = client.get("/api/colloquial/nowhere/unit-01").json()["detail"]
+        assert said.startswith("no dialect") and not said.startswith(('"', "'"))
         assert client.get("/api/colloquial/image/_probe/none.jpg").status_code == 404
         assert client.get("/api/colloquial/image/../dialects.json").status_code == 404
         assert client.get("/api/colloquial/image/%2e%2e/dialects.json").status_code == 404
+        # Not a picture: bookkeeping beside the pictures is never served, and a NUL is a 404, not a 500.
+        (folder / "note.json").write_text("{}")
+        assert client.get("/api/colloquial/image/_probe/note.json").status_code == 404
+        assert client.get("/api/colloquial/image/%00x").status_code == 404
     finally:
+        (folder / "note.json").unlink(missing_ok=True)
+        (folder.parent / "_root_probe.jpg").unlink(missing_ok=True)
         (folder / "x.jpg").unlink()
         folder.rmdir()
 
@@ -595,3 +607,41 @@ def test_a_womans_form_written_like_the_mans_is_caught():
     # A dialect that says both alike writes and spells both alike: no fault.
     assert loader._gender_faults([man, {**woman, "transliteration": "ismak eh?"}]) == []
     assert loader._gender_faults([man, {**woman, "arabic": "اسمِك ايه؟"}]) == []
+
+
+# The module's picture rule: no photograph of a person (a learner's lesson is not the place for a
+# stranger's face, least of all a child's), nothing of alcohol or pork, no other faith's building or
+# symbol (services/colloquial/picture_rules.py, which the fetcher also refuses by). A search cannot tell
+# what a picture really shows, so the names it saves under are checked here: a photo is named for what it shows. These few are named for a person but show none of one
+# (a bedroom, a meal box, an arm, legs, an empty corridor, a workshop, a cradle, a basket).
+_NOT_OF_A_PERSON = {
+    "unit-02/l07-p06-guest-bedroom.jpg", "unit-11/l06-p02-guest-bedroom.jpg", "unit-04/l05-p08-kids-meal-box.jpg",
+    "unit-06/l01-p01-woman-shopping-for-a-dress.jpg", "unit-14/l05-p10-baby-cradle.jpg",
+    "unit-14/l05-p11-baby-gift-basket.jpg", "words/player.jpg", "words/passenger.jpg", "words/carpenter.jpg",
+}
+
+
+def test_no_photograph_is_named_for_a_person_or_a_forbidden_thing():
+    import re
+
+    from backend.config import data_path
+    from backend.services.colloquial.picture_rules import forbidden
+
+    folder = data_path("colloquial_dir") / "images"
+    named = []
+    for photo in folder.rglob("*.jpg"):
+        relative = photo.relative_to(folder).as_posix()
+        subject = re.sub(r"^l\d+-p\d+-", "", photo.stem)
+        if forbidden(subject) and relative not in _NOT_OF_A_PERSON:
+            named.append(relative)
+    assert not named, f"photographs named for a person or a forbidden thing: {sorted(named)}"
+
+
+def test_the_picture_rule_names_people_and_forbidden_things_and_nothing_else():
+    from backend.services.colloquial.picture_rules import forbidden
+
+    for subject in ("father with child", "smiling-woman", "wine glass", "church exterior", "pork chops", "two men talking"):
+        assert forbidden(subject), subject
+    # Plain objects, even where a word merely contains a listed one ("son" in "season", "man" in "mango").
+    for subject in ("apple", "mango", "season", "wooden door", "teapot", "mosque exterior", None, ""):
+        assert not forbidden(subject), subject

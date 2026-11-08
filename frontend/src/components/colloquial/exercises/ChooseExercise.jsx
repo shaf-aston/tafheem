@@ -6,33 +6,17 @@
  * Picture options are a grid of tiles. Same exercise type either way, because
  * the learner is doing the same thing, and an option is told apart by carrying
  * an image or not. A picture that fails to load leaves its word, so a lesson
- * never breaks on one missing file.
+ * never breaks on one missing file (parts/PhrasePicture).
  */
-import { useState } from 'react'
-
-import { colloquialImageUrl } from '../../../api'
 import { useAnswerKeys } from '../../../lib/quiz/useAnswerKeys'
 import { sayIn } from '../../../lib/text/say'
 import QuizOption from '../../practice/QuizOption'
 import ArabicText from '../../ui/text/ArabicText'
+import PhrasePicture from '../parts/PhrasePicture'
 
 const say = sayIn('en')
 
 const labelOf = (option) => (typeof option === 'string' ? option : option.label)
-
-function Picture({ file, alt }) {
-  const [gone, setGone] = useState(false)
-  if (!file || gone) return null
-  return (
-    <img
-      src={colloquialImageUrl(file)}
-      alt={alt}
-      loading="lazy"
-      onError={() => setGone(true)}
-      className="w-full aspect-[4/3] object-cover rounded-[var(--radius-sm)] bg-[var(--surface-hi)]"
-    />
-  )
-}
 
 export default function ChooseExercise({ exercise, value, onChange, status, accent }) {
   const answered = Boolean(status)
@@ -82,11 +66,13 @@ export default function ChooseExercise({ exercise, value, onChange, status, acce
               aria-pressed={mine}
               onClick={() => onChange(label)}
               style={{ borderColor: tone ?? (mine ? 'var(--border-hi)' : 'var(--border)') }}
-              className={`w-full rounded-[var(--radius)] border bg-[var(--surface)] p-3 text-start
+              className={`relative w-full rounded-[var(--radius)] border bg-[var(--surface)] p-3 text-start
                 transition-colors hover:border-[var(--border-hi)] disabled:hover:border-inherit
                 ${answered && !tone ? 'opacity-55' : ''}`}
             >
-              <Picture file={option.image} alt={label} />
+              {/* Colour is not the only sign of a verdict; the words announce it (ExerciseHost). */}
+              <PhrasePicture phrase={{ image: option.image }} alt="" className="w-full aspect-[4/3] rounded-[var(--radius-sm)]" />
+              {tone && <span aria-hidden="true" className="absolute top-1.5 end-1.5 grid size-6 place-items-center rounded-full type-label font-bold text-white" style={{ background: tone }}>{label === exercise.answer ? '✓' : '✗'}</span>}
               <ArabicText as="span" size="base" className="mt-2 block text-center">
                 {label}
               </ArabicText>

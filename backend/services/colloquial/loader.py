@@ -407,13 +407,22 @@ def compare(name: str, lesson: str) -> dict:
     return {"unit": name, "lesson": lesson, "dialects": dialects}
 
 
+PICTURE_SUFFIXES = frozenset({".jpg", ".jpeg", ".png", ".webp", ".svg"})
+
+
 def image_path(relative: str):
     """A picture file under the content's own images folder, or None.
 
     `relative` is what a phrase's `image` field holds, like
     "unit-01/greeting.jpg". Resolved and checked to still sit inside the
-    folder, so a request cannot climb out of it with "..".
+    folder, so a request cannot climb out of it with "..". Only picture files
+    are served: the folder also holds bookkeeping (attribution, choices) that is
+    not for the browser, and that would be cached for a year as if it never changed.
     """
     folder = (data_path("colloquial_dir") / "images").resolve()
-    target = (folder / relative).resolve()
-    return target if target.is_file() and folder in target.parents else None
+    try:
+        target = (folder / relative).resolve()
+    except (ValueError, OSError):  # an embedded NUL, or a name the system refuses
+        return None
+    inside = folder in target.parents and target.suffix.lower() in PICTURE_SUFFIXES
+    return target if inside and target.is_file() else None

@@ -73,4 +73,14 @@ describe('ExerciseHost', () => {
     expect(html).toContain('قهوة')
     expect(html).toContain('/colloquial/image/a/b.jpg')
   })
+  it('an answered picture choice marks the right tile and the wrong pick with a sign, not colour alone', () => {
+    const options = [{ label: 'قهوة', image: 'a/b.jpg' }, { label: 'شاي', image: 'a/c.jpg' }, 'ماء']
+    const html = renderToStaticMarkup(
+      <ExerciseHost exercise={{ ...base, answer: 'قهوة', type: 'choose', options }} saved={{ correct: false, value: 'شاي' }} />,
+    )
+    expect(html).toContain('✓')
+    expect(html).toContain('✗')
+    // The word is printed under the picture, so the picture itself is not read a second time.
+    expect(html).toContain('alt=""')
+  })
 })

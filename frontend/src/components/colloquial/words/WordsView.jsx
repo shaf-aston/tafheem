@@ -7,9 +7,11 @@ import { useQueryClient } from '@tanstack/react-query'
 import { onHover, warm } from '../../../lib/api/warm'
 import { WORDS_MODULE, wordDrills } from '../../../lib/colloquial/wordPractice'
 import { summaryQuery } from '../../../lib/learner/record'
+import { scrollToTop } from '../../../lib/motion/scrollToEl'
 import { readViewParam, writeViewParams } from '../../../lib/nav/tabUrl'
 import Segmented from '../../ui/inputs/Segmented'
 import Practice from '../exercises/Practice'
+import SpellingKey from '../parts/SpellingKey'
 import WordCards from './WordCards'
 import WordGallery from './WordGallery'
 import WordMatch from './WordMatch'
@@ -43,6 +45,8 @@ export default function WordsView({ unit, at }) {
   const shown = modes.some((m) => m.id === mode) ? mode : 'browse'
   const drills = useMemo(() => wordDrills(words, `${unit.unit}.${lesson.lesson}`, { dialect }), [words, unit.unit, lesson.lesson, dialect])
 
+  if (!words.length) return <p className="type-small text-[var(--text-faint)] text-center py-12">This topic has no words yet.</p>
+
   // Browse and Review lay many tiles side by side; the rest are one card wide.
   return (
     <article className={`${WIDE.has(shown) ? 'max-w-5xl' : 'max-w-xl'} mx-auto space-y-6`}>
@@ -57,6 +61,7 @@ export default function WordsView({ unit, at }) {
           <Segmented label="How to learn the words" accent="var(--primary)" value={shown} onChange={setMode} options={modes} />
         </div>
       </header>
+      {shown !== 'quiz' && <div className="w-full max-w-xl mx-auto"><SpellingKey keys={unit.transliteration_key} /></div>}
       {/* Keyed by the mode, so a newly picked one rises in. */}
       <div key={shown} className={picked ? 'rise-in' : undefined}>
         {shown === 'browse' && (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />)}
@@ -66,6 +71,13 @@ export default function WordsView({ unit, at }) {
         {shown === 'quiz' && <Practice exercises={drills} />}
         {shown === 'review' && <WordReview words={words} dialect={dialect} />}
       </div>
+      {/* Looking is the first step, not the last: the page ends by offering the next one, as a topic ends with its next topic. */}
+      {shown === 'browse' && (
+        <button type="button" onClick={() => { setMode('cards'); scrollToTop() }}
+          className="press block w-full max-w-xl mx-auto py-4 rounded-[var(--radius-md)] border border-[var(--border-hi)] type-ui font-semibold text-[var(--primary)] hover:bg-[var(--surface-hi)] focus-visible:outline-2 focus-visible:outline-[var(--primary)]">
+          Now learn them as cards →
+        </button>
+      )}
     </article>
   )
 }

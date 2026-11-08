@@ -55,6 +55,15 @@
    shift sideways when one grows a scrollbar. */
 html {
   scrollbar-gutter: stable;
+  /* A control reached by keyboard (or a link to an anchor) is scrolled to clear the sticky header,
+     and on a phone the fixed tab bar, not left under them (WCAG 2.2 "Focus Not Obscured"). */
+  scroll-padding-top: calc(var(--app-header-h, 0px) + 0.5rem);
+}
+
+@media (max-width: 639.98px) {
+  html {
+    scroll-padding-bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px) + 0.5rem);
+  }
 }
 
 

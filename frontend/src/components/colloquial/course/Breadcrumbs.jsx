@@ -1,7 +1,6 @@
 /** Above every level below the top: the way back up, and the same place in another dialect. */
 import { colorFor } from '../../../theme'
 import WheelPicker from '../../ui/inputs/WheelPicker'
-import { FOCUS } from '../parts/Face'
 
 // Where you are, each earlier step a button back to it.
 export function Breadcrumbs({ steps }) {
@@ -10,11 +9,12 @@ export function Breadcrumbs({ steps }) {
       {steps.map((step, i) => {
         const last = i === steps.length - 1
         return (
-          <span key={step.label} className="flex items-center gap-2">
-            {i > 0 && <span aria-hidden className="text-[var(--text-faint)]">›</span>}
+          <span key={`${i}-${step.label}`} className="flex items-center gap-2">
             {last
               ? <span aria-current="page" className="text-[var(--text)] font-medium py-1.5">{step.label}</span>
-              : <button type="button" onClick={step.go} className={`press text-[var(--text-dim)] hover:text-[var(--text)] underline-offset-4 hover:underline rounded py-1.5 ${FOCUS}`}>{step.label}</button>}
+              : <button type="button" onClick={step.go} className={`press text-[var(--text-dim)] hover:text-[var(--text)] underline-offset-4 hover:underline rounded py-1.5`}>{step.label}</button>}
+            {/* Each step carries the mark after it, so a trail that wraps never starts a line with one. */}
+            {!last && <span aria-hidden className="text-[var(--text-faint)]">›</span>}
           </span>
         )
       })}
@@ -28,7 +28,7 @@ export function Breadcrumbs({ steps }) {
 export function DialectSwitch({ dialects, current, onPick }) {
   return (
     <div className="ms-auto flex items-center gap-2 type-small text-[var(--text-faint)]">
-      <span className="hidden sm:inline">Same place in</span>
+      <span className="hidden sm:inline">Same topic in</span>
       <WheelPicker label="Dialect" options={dialects.map((d) => ({ id: d.key, label: d.label }))}
         value={current} onChange={onPick} accent={colorFor('tab', 'colloq')} />
     </div>

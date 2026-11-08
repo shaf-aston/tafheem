@@ -5,7 +5,8 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { colloquialUnitQuery } from '../../../api'
-import { unitNumber } from '../../../lib/colloquial/place'
+import { nameOfPlace, parsePlace, unitNumber } from '../../../lib/colloquial/place'
+import { isSeen, seenInUnit, topicsNote, useSeen } from '../../../lib/colloquial/seen'
 import { colorAt, colorFor } from '../../../theme'
 import { CountryIcons, CountryMap } from '../CountryMap'
 import WordBank from '../words/WordBank'
@@ -19,15 +20,27 @@ const unitsNote = (units) => {
 
 export function DialectList({ dialects, go }) {
   const hue = colorFor('tab', 'colloq')
+  // Where this device was last, if that topic is still there: one tap back to it.
+  const { last } = useSeen()
+  const back = parsePlace(last, dialects)
+  const backDialect = back && dialects.find((d) => d.key === back.dialect)
   return (
-    <Grid>
-      {dialects.map((d) => (
-        <Card key={d.key} hue={hue} kicker={d.where} title={d.label} gloss={d.gloss} arabic={d.arabic}
-          note={unitsNote(d.units)} onClick={() => go({ dialect: d.key })}
-          more={<CountryIcons codes={d.countries} />}
-          picture={<CountryMap codes={d.countries} cities={d.cities} hue={hue} className="w-24 sm:w-32 shrink-0" />} />
-      ))}
-    </Grid>
+    <div className="space-y-4">
+      {back && typeof back.at === 'number' && (
+        <div className="sm:max-w-md">
+          <Card hue={hue} kicker="Continue where you left off" title={nameOfPlace(last, dialects)}
+            note={`${backDialect.label} · Unit ${unitNumber(back.unit)}`} onClick={() => go(back)} />
+        </div>
+      )}
+      <Grid>
+        {dialects.map((d) => (
+          <Card key={d.key} hue={hue} kicker={d.where} title={d.label} gloss={d.gloss} arabic={d.arabic}
+            note={unitsNote(d.units)} onClick={() => go({ dialect: d.key })}
+            more={<CountryIcons codes={d.countries} />}
+            picture={<CountryMap codes={d.countries} cities={d.cities} hue={hue} className="w-24 sm:w-32 shrink-0" />} />
+        ))}
+      </Grid>
+    </div>
   )
 }
 
@@ -41,14 +54,16 @@ const SHELVES = [
 const shelfOf = (u) => (u.samples?.length ? 'words' : 'talk')
 
 export function UnitList({ dialect, go }) {
+  const record = useSeen()
   const card = (u) => {
+    const done = seenInUnit(record, dialect.key, u.unit)
     const hue = colorAt('unit', unitNumber(u.unit))
     const open = u.written ? () => go({ dialect: dialect.key, unit: u.unit }) : undefined
-    if (shelfOf(u) === 'words') return <WordUnitCard key={u.unit} hue={hue} unit={u} onClick={open} />
+    if (shelfOf(u) === 'words') return <WordUnitCard key={u.unit} hue={hue} unit={u} done={done} onClick={open} />
     return u.written && u.cover
-      ? <UnitCard key={u.unit} hue={hue} unit={u} onClick={open} />
+      ? <UnitCard key={u.unit} hue={hue} unit={u} done={done} onClick={open} />
       : <Card key={u.unit} hue={hue} kicker={`Unit ${unitNumber(u.unit)}`} title={u.title}
-          note={u.written ? `${u.lessons.length} topics` : 'Coming'} onClick={open} />
+          note={u.written ? topicsNote(u.lessons.length, done) : 'Coming'} onClick={open} />
   }
   const shelves = SHELVES.map((s) => ({ ...s, units: dialect.units.filter((u) => shelfOf(u) === s.key) })).filter((s) => s.units.length)
   if (shelves.length < 2) return <Grid>{dialect.units.map(card)}</Grid>
@@ -81,12 +96,14 @@ function sectionsOf(lessons) {
 
 // The unit's word bank sits on the topic list; the unit loads once and is shared with the topics.
 function UnitWordBank({ dialect, unit }) {
-  const { data } = useQuery(colloquialUnitQuery(dialect, unit))
+  const { data, isError } = useQuery(colloquialUnitQuery(dialect, unit))
+  if (isError) return <span className="type-small text-[var(--text-faint)]">The word bank did not load.</span>
   return data ? <WordBank unit={data} /> : null
 }
 
 // A topic with phrases and words is a twin card: its phrases one half, its words the other.
 export function TopicList({ dialect, unit, go }) {
+  const record = useSeen()
   const hue = colorAt('unit', unitNumber(unit.unit))
   const open = (at, words) => go({ dialect: dialect.key, unit: unit.unit, at, words })
   return (
@@ -102,7 +119,7 @@ export function TopicList({ dialect, unit, go }) {
             {lessons.map((l, n) => {
               const i = from + n
               return (
-                <Card key={l.lesson} hue={hue} kicker={`Topic ${i + 1}`} title={l.title} image={l.picture}
+                <Card key={l.lesson} hue={hue} kicker={`Topic ${i + 1}${isSeen(record, dialect.key, unit.unit, l.lesson) ? ' · Seen' : ''}`} title={l.title} image={l.picture}
                   note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words · Pictures · Cards · Quiz` : l.words ? 'Phrases' : undefined}
                   onClick={l.written ? () => open(i, !l.phrases) : undefined}
                   twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => open(i, true) }} />

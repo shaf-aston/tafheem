@@ -25,13 +25,13 @@
               "slot": "how-are-you-to-a-man",
               "english": "How are you? (to a man)",
               "search_term": "two men talking",
-              "image": "unit-01/l01-p03-two-men-talking.jpg"
+              "image": "emoji/1f4ac.svg"
             },
             {
               "slot": "how-are-you-to-a-woman",
               "english": "How are you? (to a woman)",
               "search_term": "two women talking",
-              "image": "unit-01/l01-p04-two-women-talking.jpg"
+              "image": "emoji/1f5e3.svg"
             },
             {
               "slot": "good-thank-god",
@@ -42,8 +42,7 @@
             {
               "slot": "great-fine",
               "english": "Great / Fine.",
-              "search_term": "thumbs up",
-              "image": "unit-01/l01-p06-thumbs-up.jpg"
+              "search_term": "thumbs up"
             },
             {
               "slot": "what-s-your-name-to-a-man",
@@ -519,14 +518,12 @@
             {
               "slot": "my-son",
               "english": "My son.",
-              "search_term": "father and son",
-              "image": "unit-02/l01-p06-father-and-son.jpg"
+              "search_term": "father and son"
             },
             {
               "slot": "my-daughter",
               "english": "My daughter.",
-              "search_term": "father and daughter",
-              "image": "unit-02/l01-p07-father-and-daughter.jpg"
+              "search_term": "father and daughter"
             },
             {
               "slot": "my-husband",
@@ -657,8 +654,7 @@
             {
               "slot": "i-have-two-children",
               "english": "I have two children.",
-              "search_term": "two children playing",
-              "image": "unit-02/l03-p03-two-children-playing.jpg"
+              "search_term": "two children playing"
             },
             {
               "slot": "where-does-your-family-live",
@@ -675,7 +671,7 @@
               "slot": "he-is-tall",
               "english": "He is tall.",
               "search_term": "tall man",
-              "image": "unit-02/l03-p06-tall-man.jpg"
+              "image": "emoji/1f4cf.svg"
             },
             {
               "slot": "she-is-kind",
@@ -2157,8 +2153,7 @@
             {
               "slot": "the-church",
               "english": "the church",
-              "search_term": "church exterior",
-              "image": "unit-05/l04-p04-church-exterior.jpg"
+              "search_term": "church exterior"
             },
             {
               "slot": "the-hospital",
@@ -3233,7 +3228,7 @@
               "slot": "the-manager-wants-to-talk-to-you",
               "english": "The manager wants to talk to you.",
               "search_term": "closed office door",
-              "image": "unit-08/l02-p02-closed-office-door.jpg"
+              "image": "emoji/1f6aa.svg"
             },
             {
               "slot": "i-received-your-email",
@@ -3530,7 +3525,7 @@
               "slot": "i-speak-arabic-and-english",
               "english": "I speak Arabic and English.",
               "search_term": "English Arabic dictionary",
-              "image": "unit-08/l06-p06-english-arabic-dictionary.jpg"
+              "image": "emoji/1f4d6.svg"
             },
             {
               "slot": "what-are-your-strengths-to-a-man",
@@ -3824,8 +3819,7 @@
             {
               "slot": "neck",
               "english": "neck",
-              "search_term": "a neck",
-              "image": "unit-09/l04-p09-a-neck.jpg"
+              "search_term": "a neck"
             },
             {
               "slot": "my-back-hurts",
@@ -5212,7 +5206,7 @@
               "slot": "i-can-t-hear-you",
               "english": "I can't hear you.",
               "search_term": "headphones",
-              "image": "unit-12/l06-p04-headphones.jpg"
+              "image": "emoji/1f3a7.svg"
             },
             {
               "slot": "can-you-hear-me-well",
@@ -5281,7 +5275,7 @@
               "slot": "how-are-you-today-to-a-woman",
               "english": "How are you today? (to a woman)",
               "search_term": "two women talking",
-              "image": "unit-13/l01-p02-two-women-talking.jpg"
+              "image": "emoji/1f4ac.svg"
             },
             {
               "slot": "what-s-wrong-with-you-to-a-man",
@@ -5292,25 +5286,25 @@
               "slot": "i-m-happy-today-m",
               "english": "I'm happy today. (m)",
               "search_term": "smiling man",
-              "image": "unit-13/l01-p04-smiling-man.jpg"
+              "image": "emoji/1f60a.svg"
             },
             {
               "slot": "i-m-happy-today-f",
               "english": "I'm happy today. (f)",
               "search_term": "smiling woman",
-              "image": "unit-13/l01-p05-smiling-woman.jpg"
+              "image": "emoji/1f642.svg"
             },
             {
               "slot": "i-m-a-little-upset-m",
               "english": "I'm a little upset. (m)",
               "search_term": "sad man",
-              "image": "unit-13/l01-p06-sad-man.jpg"
+              "image": "emoji/1f61e.svg"
             },
             {
               "slot": "i-m-a-little-upset-f",
               "english": "I'm a little upset. (f)",
               "search_term": "sad woman",
-              "image": "unit-13/l01-p07-sad-woman.jpg"
+              "image": "emoji/1f614.svg"
             },
             {
               "slot": "i-m-very-tired-m",
@@ -5717,7 +5711,7 @@
               "slot": "we-visited-my-grandma-today",
               "english": "We visited my grandma today",
               "search_term": "grandmother with grandchildren",
-              "image": "unit-14/l01-p09-grandmother-with-grandchildren.jpg"
+              "image": "emoji/1f475.svg"
             },
             {
               "slot": "congratulations-on-the-eid",
@@ -6771,7 +6765,7 @@
               "slot": "do-you-have-good-dates",
               "english": "Do you have good dates?",
               "search_term": "box of dates",
-              "image": "unit-15/l07-p02-box-of-dates.jpg"
+              "image": "emoji/1f334.svg"
             },
             {
               "slot": "i-want-a-box-of-spices-as-a-gift",
@@ -6860,7 +6854,7 @@
               "slot": "i-will-take-my-camera-with-me",
               "english": "I will take my camera with me",
               "search_term": "camera",
-              "image": "unit-15/l08-p05-camera.jpg"
+              "image": "emoji/1f4f7.svg"
             },
             {
               "slot": "what-a-beautiful-view",

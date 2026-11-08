@@ -9,7 +9,6 @@ import SheetHeader from '../../ui/overlays/SheetHeader'
 import Segmented from '../../ui/inputs/Segmented'
 import SmallButton from '../../ui/buttons/SmallButton'
 import SpeakButton from '../../ui/buttons/SpeakButton'
-import { FOCUS } from '../parts/Face'
 import Spelling from '../parts/Spelling'
 
 // Repeats across topics show once: a word by its meaning's id, a phrase by its Arabic.
@@ -26,7 +25,7 @@ const wordsOf = (lessons) => unique(lessons.filter((l) => l.written).flatMap((l)
 function Bank({ rows, onClose, scope, title }) {
   return (
     <BottomSheet label={title} onClose={onClose} className="max-h-[var(--sheet-tall)] flex flex-col">
-      <SheetHeader onClose={onClose} closeClassName={FOCUS}>
+      <SheetHeader onClose={onClose}>
         <p className="eyebrow text-[var(--text-faint)]">Word bank</p>
         <h2 className="type-ui font-semibold text-[var(--text)] truncate">{title}</h2>
       </SheetHeader>

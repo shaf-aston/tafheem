@@ -16,8 +16,13 @@ the tab lists them as coming. It may not leave half a lesson.
 ```json
 { "units": [ { "unit": "unit-01", "title": "First Conversations",
   "lessons": [ { "lesson": "lesson-01", "title": "Greetings and Names",
-    "phrases": [ { "slot": "hello", "english": "Hello.", "search_term": "person waving hello" } ] } ] } ] }
+    "phrases": [ { "slot": "hello", "english": "Hello.", "search_term": "welcome sign" } ] } ] } ] }
 ```
+
+A `search_term` is what the picture fetcher looks for. Lesson pictures may not be photographs of people,
+or of alcohol, pork, or another faith's building or symbol (`services/colloquial/picture_rules.py`): the
+fetcher leaves such a slot or word without a picture, and a test fails if a saved photo is named for one.
+Give a person-word an emoji (`emoji/<codepoint>.svg`) or leave it to the plain tile.
 
 A lesson's `words` lists the ids of the words that topic teaches, in order: every
 common word of the scene, not only those in its phrases. See "Words" below.

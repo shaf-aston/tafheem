@@ -27,7 +27,7 @@ export default function WordGallery({ words }) {
     <div className="space-y-6">
       {sections.map(([category, parts], s) => (
         <section key={category} className="space-y-2">
-          {category && <h4 className="eyebrow text-[var(--text-faint)]">{category}</h4>}
+          {category && <h3 className="eyebrow text-[var(--text-faint)]">{category}</h3>}
           {parts.map((run, p) => {
             const at = starts[firstRun[s] + p]
             return <Mosaic key={at} phrases={run} start={at} onOpen={setOpen} />

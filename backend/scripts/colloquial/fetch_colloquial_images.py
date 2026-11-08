@@ -37,6 +37,10 @@ over them in one sitting and `reject` any that are wrong:
 A word is only searched for when its line in words.json has a `search_term`;
 "from" or "also" have nothing to show and simply never get one.
 
+A subject lessons may not show (people, alcohol, pork, another faith's building: services/colloquial/
+picture_rules.py) is never searched for: its slot or word is left without a picture, and listed under
+`withheld` in the review file, to be drawn or given an emoji instead.
+
 Only pictures licensed for commercial use and for modification are asked for, and
 the 600 px thumbnail is fetched, never the full original.
 """
@@ -53,6 +57,7 @@ import httpx
 
 from backend.config import data_path
 from backend.services.colloquial import wordlist
+from backend.services.colloquial.picture_rules import forbidden
 
 API = "https://api.openverse.org/v1/images/"
 HEADERS = {"User-Agent": "tafheem-colloquial/1.0 (https://tafheem-app.vercel.app; learning app image proposals)"}
@@ -156,7 +161,7 @@ def outline(spine: dict, unit: str) -> dict:
 def propose(unit: str, lesson: int | None, client: httpx.Client) -> dict:
     spine_file, review_file, _ = paths(unit)
     lessons = outline(json.loads(spine_file.read_text(encoding="utf-8")), unit)["lessons"]
-    found, missing = [], []
+    found, missing, withheld = [], [], []
     for lesson_at, one in enumerate(lessons, start=1):
         if lesson and lesson_at != lesson:
             continue
@@ -167,8 +172,11 @@ def propose(unit: str, lesson: int | None, client: httpx.Client) -> dict:
             if not phrase.get("search_term"):
                 missing.append(where)
                 continue
+            if forbidden(phrase["search_term"]):
+                withheld.append(where | {"search_term": phrase["search_term"]})
+                continue
             found.append(where | {"search_term": phrase["search_term"], "candidates": search(phrase["search_term"], client)})
-    review = {"found": found, "needs_search_term": missing}
+    review = {"found": found, "needs_search_term": missing, "withheld": withheld}
     review_file.parent.mkdir(parents=True, exist_ok=True)
     review_file.write_text(json.dumps(review, ensure_ascii=False, indent=2), encoding="utf-8")
     return review
@@ -207,7 +215,7 @@ def propose_words(unit: str, lesson: int | None, client: httpx.Client) -> dict:
     meanings = json.loads(_words_file().read_text(encoding="utf-8"))["words"]
     ids = [one for at, topic in enumerate(outline(json.loads(spine_file.read_text(encoding="utf-8")), unit)["lessons"], start=1)
            if not lesson or at == lesson for one in topic.get("words", [])]
-    found, missing = {}, []
+    found, missing, withheld = {}, [], []
     for one in dict.fromkeys(ids):
         meaning = meanings.get(one, {})
         if meaning.get("image"):
@@ -215,9 +223,12 @@ def propose_words(unit: str, lesson: int | None, client: httpx.Client) -> dict:
         if not meaning.get("search_term"):
             missing.append(one)
             continue
+        if forbidden(one) or forbidden(meaning["search_term"]):
+            withheld.append(one)
+            continue
         found[one] = {"english": meaning["english"], "search_term": meaning["search_term"],
                       "candidates": search(meaning["search_term"], client)}
-    review = {"found": found, "needs_search_term": missing}
+    review = {"found": found, "needs_search_term": missing, "withheld": withheld}
     review_file = data_path("colloquial_dir") / "review" / f"words-{unit}.json"
     review_file.parent.mkdir(parents=True, exist_ok=True)
     review_file.write_text(json.dumps(review, ensure_ascii=False, indent=2), encoding="utf-8")

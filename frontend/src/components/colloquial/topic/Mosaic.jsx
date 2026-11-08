@@ -3,7 +3,7 @@
 // it. A tile with no picture is only as tall as its words.
 // `start` numbers a later group on from the ones before it, so tiles open the right item.
 import settings from '../../../config/colloquial-display.json'
-import Face, { FOCUS } from '../parts/Face'
+import Face from '../parts/Face'
 
 const FEATURE_EVERY = settings['feature-every']
 
@@ -13,13 +13,13 @@ export default function Mosaic({ phrases, onOpen, start = 0 }) {
       {phrases.map((phrase, i) => {
         const big = i % FEATURE_EVERY === 0 && Boolean(phrase.image) && phrases.length >= FEATURE_EVERY
         return (
-          <li key={phrase.arabic + phrase.english} className={big ? 'col-span-2 sm:row-span-2' : ''}>
+          <li key={`${start + i}-${phrase.arabic}`} className={big ? 'col-span-2 sm:row-span-2' : ''}>
             <button
               type="button"
               onClick={() => onOpen(start + i)}
               aria-label={`${phrase.english} (${phrase.arabic})`}
               className={`press group block w-full h-full rounded-[var(--radius-md)] border border-[var(--border)]
-                hover:border-[var(--border-hi)] overflow-hidden transition-colors ${FOCUS}`}
+                hover:border-[var(--border-hi)] overflow-hidden transition-colors`}
             >
               <Face
                 phrase={phrase}

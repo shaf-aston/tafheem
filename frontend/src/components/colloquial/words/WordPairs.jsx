@@ -8,7 +8,6 @@ import { speak } from '../../../lib/speech/speak'
 import { useAccent } from '../../../lib/theme/accent'
 import ArabicText from '../../ui/text/ArabicText'
 import Segmented from '../../ui/inputs/Segmented'
-import { FOCUS } from '../parts/Face'
 import PhrasePicture from '../parts/PhrasePicture'
 import Spelling from '../parts/Spelling'
 
@@ -20,7 +19,7 @@ function Side({ word, covered, onReveal, of }) {
     return (
       <button type="button" onClick={onReveal} aria-label={`Show the opposite of ${of}`}
         className={`h-full min-h-28 w-full rounded-[var(--radius-md)] border border-dashed border-[var(--border-hi)]
-          type-small text-[var(--text-faint)] hover:text-[var(--text-dim)] ${FOCUS}`}>
+          type-small text-[var(--text-faint)] hover:text-[var(--text-dim)]`}>
         Say it, then tap
       </button>
     )
@@ -29,7 +28,7 @@ function Side({ word, covered, onReveal, of }) {
     <button type="button" onClick={() => speak(word.arabic, { accent }).catch(() => {})}
       aria-label={`${word.english}: hear it`}
       className={`h-full min-h-28 w-full rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-3
-        flex flex-col items-center justify-center gap-1 text-center hover:border-[var(--border-hi)] ${FOCUS}`}>
+        flex flex-col items-center justify-center gap-1 text-center hover:border-[var(--border-hi)]`}>
       {word.image && <PhrasePicture phrase={word} alt="" className="size-12 rounded-[var(--radius-sm)]" />}
       <ArabicText as="span" size="base" className="text-[var(--text)]">{word.arabic}</ArabicText>
       <Spelling className="block">{word.transliteration}</Spelling>

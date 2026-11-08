@@ -45,8 +45,10 @@ export function useSurahPlace({ surah, ayah }, data, onPlace, onClose) {
   }, [stacked, ayah, data])
   const goTo = useCallback((n) => { showRow(list.current, n); setHere(n) }, [])
   const open = (n) => { setTapped(n); onPlace({ surah, ayah: n }) }
-  // Focus goes back to the ayah's row, not lost with the close button.
+  // Focus goes back to the ayah's row, not lost with the close button. The sheet is given back its
+  // usual size if it had been taken full screen, or it would open full screen next time; a size the reader dragged to is kept.
   const shut = useCallback(() => {
+    setShare((now) => (now <= FULL ? SPLIT.share : now))
     onPlace({ surah, ayah: null })
     list.current?.children[ayah - 1]?.querySelector('[role="button"]')?.focus({ preventScroll: true })
   }, [onPlace, surah, ayah])
@@ -72,10 +74,12 @@ export function useSurahPlace({ surah, ayah }, data, onPlace, onClose) {
 
   // On a phone the study is a sheet: its tabs, and a word or a tab that needs
   // room, ask the sheet for the whole screen. Stepping scrolls the surah to the ayah.
+  // Stepping is not a tap on a row, so the list follows it, back onto the ayah first tapped as much as any other.
+  const step = (n) => { setTapped(null); onPlace({ surah, ayah: n }) }
   const sheet = stacked && {
     onFull: () => setShare(FULL),
-    onPrev: ayah > 1 ? () => onPlace({ surah, ayah: ayah - 1 }) : null,
-    onNext: ayah < data?.ayah_count ? () => onPlace({ surah, ayah: ayah + 1 }) : null,
+    onPrev: ayah > 1 ? () => step(ayah - 1) : null,
+    onNext: ayah < data?.ayah_count ? () => step(ayah + 1) : null,
   }
 
   return {

@@ -67,12 +67,13 @@ export default function Dialogue({ lines }) {
       </ol>
       <div className="flex items-center gap-3 p-4 border-t border-[var(--border)]">
         <div className="flex-1">
-          <PrimaryButton onClick={() => setShown(shown + 1)} disabled={done}>
-            {done ? 'The end' : shown ? 'Next line' : 'Start the scene'}
+          {/* At the end it turns into Replay rather than going disabled, so a keyboard keeps its place. */}
+          <PrimaryButton onClick={() => setShown(done ? 0 : shown + 1)}>
+            {done ? 'Replay' : shown ? 'Next line' : 'Start the scene'}
           </PrimaryButton>
         </div>
         <span className="type-small tabular-nums text-[var(--text-faint)]">{shown} / {lines.length}</span>
-        <SmallButton onClick={() => setShown(done ? 0 : lines.length)}>{done ? 'Replay' : 'Show all'}</SmallButton>
+        {!done && <SmallButton onClick={() => setShown(lines.length)}>Show all</SmallButton>}
       </div>
     </div>
   )

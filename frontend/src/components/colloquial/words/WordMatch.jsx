@@ -10,7 +10,6 @@ import settings from '../../../config/colloquial-display.json'
 import { shuffled } from '../../../lib/text/shuffle'
 import ArabicText from '../../ui/text/ArabicText'
 import SmallButton from '../../ui/buttons/SmallButton'
-import { FOCUS } from '../parts/Face'
 
 const BOARD = settings['match-board']
 
@@ -57,7 +56,7 @@ export default function WordMatch({ words }) {
           disabled={found}
           aria-pressed={on}
           onClick={(event) => tap(side, word.arabic, event)}
-          className={`press w-full min-h-14 rounded-[var(--radius)] border-2 bg-[var(--surface)] px-3 py-2 transition-[opacity,border-color] ${FOCUS}
+          className={`press w-full min-h-14 rounded-[var(--radius)] border-2 bg-[var(--surface)] px-3 py-2 transition-[opacity,border-color]
             ${found ? 'opacity-30 border-[var(--success)]' : on ? 'border-[var(--primary)]' : 'border-[var(--border)] hover:border-[var(--border-hi)]'}
             ${missed.includes(id) ? 'shake border-[var(--danger)]' : ''}`}
         >

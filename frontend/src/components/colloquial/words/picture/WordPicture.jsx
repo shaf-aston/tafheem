@@ -6,6 +6,7 @@
 // for review. The boards and their spots are lib/colloquial/wordPictures.js.
 import { useMemo, useRef, useState } from 'react'
 
+import settings from '../../../../config/colloquial-display.json'
 import { pictureBoards } from '../../../../lib/colloquial/wordPictures'
 import { speak } from '../../../../lib/speech/speak'
 import { useAccent } from '../../../../lib/theme/accent'
@@ -17,6 +18,7 @@ import SpeakButton from '../../../ui/buttons/SpeakButton'
 import Spelling from '../../parts/Spelling'
 import BodyArt from './BodyArt'
 import MapArt from './MapArt'
+import PanelArt from './PanelArt'
 import SceneArt from './SceneArt'
 import ThingArt from './ThingArt'
 
@@ -27,8 +29,8 @@ const fresh = (board) => ({
   at: 0, found: [], slips: 0, misses: 0, tapped: null, wrong: false,
 })
 
-// Misses on one word before its place is shown.
-const SHOW_AFTER = 2
+// Misses on one word before its place is shown (config/colloquial-display.json misses-before-shown).
+const SHOW_AFTER = settings['misses-before-shown']
 
 // The spot under a tap: the country or dot tapped, else the nearest dot within reach.
 function spotAt(event, board) {
@@ -66,7 +68,7 @@ function Said({ words }) {
 function Art({ board }) {
   if (board.art === 'map') return <MapArt view={board.view} keys={board.spots.map((s) => s.key)} />
   // Each draws only the boards it knows, and nothing for the rest.
-  return <><BodyArt art={board.art} /><SceneArt board={board} /><ThingArt art={board.art} /></>
+  return <><BodyArt art={board.art} /><SceneArt board={board} /><PanelArt board={board} /><ThingArt art={board.art} /></>
 }
 
 export function Board({ board, step = 'test' }) {

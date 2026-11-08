@@ -7,7 +7,6 @@ import ArabicText from '../../ui/text/ArabicText'
 import MicButton from '../../ui/buttons/MicButton'
 import SmallButton from '../../ui/buttons/SmallButton'
 import SpeakButton from '../../ui/buttons/SpeakButton'
-import { FOCUS } from '../parts/Face'
 import PhrasePicture from '../parts/PhrasePicture'
 import Spelling from '../parts/Spelling'
 
@@ -30,7 +29,7 @@ export default function WordCards({ words }) {
           onClick={() => setTurned(!turned)}
           aria-label={turned ? `${word.arabic}, show the English` : `${word.english}, show the Arabic`}
           className={`press w-full min-h-48 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)]
-            hover:border-[var(--border-hi)] flex flex-col items-center justify-center gap-2 p-6 ${FOCUS}`}
+            hover:border-[var(--border-hi)] flex flex-col items-center justify-center gap-2 p-6`}
         >
           {/* The picture is the meaning without English, so it stays on both sides. */}
           {word.image && <PhrasePicture phrase={word} alt="" className="w-32 h-32 rounded-[var(--radius-md)]" />}

@@ -16,7 +16,7 @@
  * `id` names the screen (a new one is a new screen), `depth` how far down the
  * tree it sits.
  */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useOpenAtTopKeepBack } from '../../../lib/motion/scrollToEl'
 
@@ -27,9 +27,18 @@ export default function Screen({ id, depth, className = '', children }) {
   const arriving = id !== seen
   // Its own fade only: the moves of what is inside it bubble here too.
   const settle = (e) => { if (e.target === e.currentTarget) setSeen(id) }
+  // React has no onAnimationCancel (it warned and ignored it), so a fade cut short, as when the tab
+  // is hidden mid-way, settles through the DOM event, or the fade class would stay on and replay.
+  const box = useRef(null)
+  useEffect(() => {
+    const el = box.current
+    const cancelled = (e) => { if (e.target === el) setSeen(id) }
+    el?.addEventListener('animationcancel', cancelled)
+    return () => el?.removeEventListener('animationcancel', cancelled)
+  }, [id])
   return (
-    <div key={id} className={['screen', arriving && 'fade-in', className].filter(Boolean).join(' ')}
-      onAnimationEnd={settle} onAnimationCancel={settle}>
+    <div key={id} ref={box} className={['screen', arriving && 'fade-in', className].filter(Boolean).join(' ')}
+      onAnimationEnd={settle}>
       {children}
     </div>
   )

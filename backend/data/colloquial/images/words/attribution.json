@@ -1,54 +1,4 @@
 {
-  "father.jpg": {
-    "id": "a7819dca-2d09-45e6-a738-e598aa476982",
-    "title": "Free father holding child's hand",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/5912976/image-public-domain-hands-kid",
-    "search_term": "father with child"
-  },
-  "brother.jpg": {
-    "id": "14d34338-6d1a-450a-829f-7da4091ddf6f",
-    "title": "Two brothers smiling",
-    "creator": "InOutPeaceProject",
-    "license": "by-sa",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/93485852@N05/10015046524",
-    "search_term": "two brothers smiling"
-  },
-  "baby.jpg": {
-    "id": "2ed0757b-25e1-4b8c-88a1-3878ec022746",
-    "title": "Baby smiles at net distribution",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/8759407/baby-smiles-net-distribution",
-    "search_term": "baby smiling"
-  },
-  "child.jpg": {
-    "id": "bfbc01c8-4783-4354-a83a-62e8e47ce31d",
-    "title": "Father Son",
-    "creator": "Family Moments",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/father-son-HBKFP7NCLL",
-    "search_term": "young child smiling"
-  },
-  "mother.jpg": {
-    "id": "84005e87-a2a9-45ab-aed2-580fca6db46f",
-    "title": "Mother Joy",
-    "creator": "Direct Media",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/mother-joy-JURGOKWYHI",
-    "search_term": "mother holding baby"
-  },
   "wedding.jpg": {
     "id": "5318f344-f16e-425c-8bc0-4cb551ef7af7",
     "title": "Wedding Rings",
@@ -589,16 +539,6 @@
     "foreign_landing_url": "https://www.flickr.com/photos/35854555@N04/4551299260",
     "search_term": "old stone citadel fortress"
   },
-  "to-walk.jpg": {
-    "id": "caabe2d4-daa2-42f1-81ba-3cce5a71215e",
-    "title": "Walking Pedestrians",
-    "creator": "Freestocks.org",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/walking-pedestrians-I1R1CWCB19",
-    "search_term": "people walking on sidewalk"
-  },
   "morning.jpg": {
     "id": "8f3ffafe-eae9-42b8-951a-e6d73b668b1a",
     "title": "Sunrise Morning",
@@ -629,16 +569,6 @@
     "foreign_landing_url": "https://www.rawpixel.com/image/5970221/night-sky-stars-over-lake",
     "search_term": "night sky stars"
   },
-  "person.jpg": {
-    "id": "2cd309b9-3aac-4343-b8ad-c7fc23a8d1f5",
-    "title": "Business Man",
-    "creator": "Direct Media",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/business-man-IVZBYWKEFM",
-    "search_term": "portrait of smiling man"
-  },
   "gate.jpg": {
     "id": "cbf5cdde-a6a3-4993-9c60-8e21151c00de",
     "title": "Rustic wooden gate",
@@ -658,86 +588,6 @@
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "foreign_landing_url": "https://www.rawpixel.com/image/3372174/free-photo-image-garden-cobblestone-pavement",
     "search_term": "street corner"
-  },
-  "family.jpg": {
-    "id": "4aa6f500-17c6-40eb-825e-fa2b028291d9",
-    "title": "Black Family",
-    "creator": "Family First",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/black-family-6KRBT8MYES",
-    "search_term": "happy family portrait"
-  },
-  "sister.jpg": {
-    "id": "3297893b-2c6e-4402-8381-2aa7498765c3",
-    "title": "Two sisters with big smiles. A young girl looks on in the background",
-    "creator": "snelson951",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/106274066@N07/54514963046",
-    "search_term": "two sisters smiling"
-  },
-  "son.jpg": {
-    "id": "bfbc01c8-4783-4354-a83a-62e8e47ce31d",
-    "title": "Father Son",
-    "creator": "Family Moments",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/father-son-HBKFP7NCLL",
-    "search_term": "son family portrait"
-  },
-  "friend.jpg": {
-    "id": "bc629205-a072-4efb-a6a7-e87878cc61e0",
-    "title": "Friends Fun",
-    "creator": "Matt Moloney",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/friends-fun-TK55STNQN8",
-    "search_term": "two friends laughing"
-  },
-  "married.jpg": {
-    "id": "aaac8cde-426e-4d93-bff4-0b36ce40b673",
-    "title": "Portrait Married Couple (Lorenz Kraffter",
-    "creator": "themet",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/9183916/image-family-merz-1460",
-    "search_term": "married couple"
-  },
-  "grandson.jpg": {
-    "id": "337d9321-52b6-4539-9e94-d9c7326d60c5",
-    "title": "Leslie Maud Adkin their grandson",
-    "creator": "museumofnewzealand",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/9856639/leslie-and-maud-adkin-with-their-grandson-derek-circa-1948",
-    "search_term": "grandson family portrait"
-  },
-  "cousin.jpg": {
-    "id": "f55a16b3-bd14-48f5-9687-604f2ec5eaa3",
-    "title": "What's Buzzin', Cousin?",
-    "creator": "Czar Hey",
-    "license": "by-sa",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/161174688@N08/51705430475",
-    "search_term": "cousins children"
-  },
-  "to-drink.jpg": {
-    "id": "46ced96a-be58-4ecf-a095-0854a4afbf3a",
-    "title": "Boy drinks water from glass in a cozy home environment",
-    "creator": "nenad53",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/202780880@N02/54565493623",
-    "search_term": "drinking water from glass"
   },
   "lunch.jpg": {
     "id": "ce1623ee-9792-4e92-8466-47587231f6f4",
@@ -759,16 +609,6 @@
     "foreign_landing_url": "https://stocksnap.io/photo/table-dining-CPZJJ7K3YJ",
     "search_term": "dining table set for dinner"
   },
-  "glass-cup.jpg": {
-    "id": "b8ff34da-8d9b-4914-9f42-0ca601a533df",
-    "title": "Holding Glass",
-    "creator": "Helena Lopes",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/holding-glass-V0ZNGACCAS",
-    "search_term": "drinking glass on white"
-  },
   "room.jpg": {
     "id": "376308a1-0cd8-4940-a974-54ccdf14dbe1",
     "title": "Room Coffee",
@@ -788,16 +628,6 @@
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "foreign_landing_url": "https://stocksnap.io/photo/hallway-corridor-7FCC862604",
     "search_term": "hallway corridor"
-  },
-  "blanket.jpg": {
-    "id": "4a894f12-f51c-45be-abf1-1855b1526f08",
-    "title": "Folding blanket",
-    "creator": "Henry Söderlund",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/46563758@N04/52564921844",
-    "search_term": "folded blanket"
   },
   "cauliflower.jpg": {
     "id": "ae897e14-3807-47b5-9225-639d1763a094",
@@ -909,16 +739,6 @@
     "foreign_landing_url": "https://www.rawpixel.com/image/5907720/photo-image-book-public-domain-wooden",
     "search_term": "recipe book"
   },
-  "pork.jpg": {
-    "id": "6bad06b5-bd8f-4199-b419-64e423dd4ece",
-    "title": "Free pork chops image",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/5918395/image-background-public-domain-plant",
-    "search_term": "raw pork meat"
-  },
   "stall.jpg": {
     "id": "e0101095-1bcf-4575-ae01-9cce272de9a1",
     "title": "August Macke's The ghost in the house stalls: Still life with a cat (1910) famous painting. Original from Wikimedia Commons. Digitally enhanced by rawpixel.",
@@ -929,16 +749,6 @@
     "foreign_landing_url": "https://www.flickr.com/photos/153584064@N07/51927340106",
     "search_term": "stall on table"
   },
-  "seller.jpg": {
-    "id": "326103a4-12ed-412e-a60a-cdbd4d935dda",
-    "title": "The Vegetable Seller",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/9206490/the-vegetable-seller",
-    "search_term": "market seller"
-  },
   "coffee-beans.jpg": {
     "id": "776bc62f-59c4-4e7d-80a7-f40adb1eab71",
     "title": "Roasted coffee beans background",
@@ -948,16 +758,6 @@
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "foreign_landing_url": "https://www.rawpixel.com/image/6042182/photo-image-background-public-domain-coffee",
     "search_term": "roasted coffee beans"
-  },
-  "menu.jpg": {
-    "id": "6e244d3d-a090-4831-aeb9-b17fa1c08a0c",
-    "title": "Restaurant Menu",
-    "creator": "Alex Jones",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/restaurant-menu-A86F06A723",
-    "search_term": "restaurant menu"
   },
   "starter.jpg": {
     "id": "0d57e61e-a97c-407b-a122-4e8784d2299b",
@@ -988,16 +788,6 @@
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "foreign_landing_url": "https://www.flickr.com/photos/195311218@N08/52177106215",
     "search_term": "takeaway food box"
-  },
-  "guest.jpg": {
-    "id": "7a41f3fc-c5de-49be-abe2-26651e3a9ee6",
-    "title": "Sir J. J. Guest. Mezzotint",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/14019173/sir-guest-mezzotint-walker-1852-after-buckner",
-    "search_term": "guest portrait person"
   },
   "meter.jpg": {
     "id": "102e88a0-341c-4640-b731-e9d157221e83",
@@ -1069,26 +859,6 @@
     "foreign_landing_url": "https://stocksnap.io/photo/passenger-vehicle-06H84R1IBB",
     "search_term": "bus passengers"
   },
-  "suit.jpg": {
-    "id": "efa39fcd-df4b-48a8-abb2-a81a703fc81a",
-    "title": "Pixie suit as bed, 1944. Photograph by Major Wilfred Herbert James Sale, MC, 3rd/4th County of London Yeomanry (Sharpshooters), World War Two, North West Europe, 1944. A member of a British tank crew demonstrates the versatility of the new 'pixie suit'. T",
-    "creator": "WWII in View",
-    "license": "pdm",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/191031534@N08/55169177991",
-    "search_term": "suit clothing item"
-  },
-  "fitting-room.jpg": {
-    "id": "c2ef842c-4c98-4885-a568-0cb84d64600c",
-    "title": "Man organizing clothes in drawer at a clothing store fitting room",
-    "creator": "nenad53",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/202780880@N02/54561169598",
-    "search_term": "clothes fitting room"
-  },
   "cotton.jpg": {
     "id": "a16fda78-0e32-491a-9596-d95c300fb9f7",
     "title": "Cotton plant Andreas Christian Ferdinand",
@@ -1159,76 +929,6 @@
     "foreign_landing_url": "https://stocksnap.io/photo/tennis-player-QYIGLB4JE9",
     "search_term": "player sport action"
   },
-  "to-lift-weights.jpg": {
-    "id": "04502094-eb76-4ca9-9faf-98cb4250f0ff",
-    "title": "Somali man lifts weights gym",
-    "creator": "The African Union Mission in Somalia",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/3372747/free-photo-image-africa-back-cc0",
-    "search_term": "lifting weights"
-  },
-  "stomach.jpg": {
-    "id": "5d0330d1-2ae2-408c-a75a-160fab3db14f",
-    "title": "Free stomach close image",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/5908322/image-public-domain-water-drops-free",
-    "search_term": "human stomach"
-  },
-  "surgery.jpg": {
-    "id": "27de891b-8a7d-443e-bae0-79b08f90338d",
-    "title": "doctor performs minor surgery order",
-    "creator": "The African Union Mission in Somalia",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/3373082/free-photo-image-nurse-africa-career",
-    "search_term": "surgery medical photo"
-  },
-  "chest.jpg": {
-    "id": "b67179a5-478c-4dd7-878d-d381ecddf608",
-    "title": "Free woman's hand chest",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/5925711/photo-image-public-domain-woman-free",
-    "search_term": "human chest"
-  },
-  "back.jpg": {
-    "id": "786fbce6-c0fd-418f-9364-a1941ade79db",
-    "title": "Anatomy: écorché human back, showing",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/13975019/photo-image-face-person-black-background",
-    "search_term": "human back"
-  },
-  "gum.jpg": {
-    "id": "6077de9d-462e-410c-b471-316fd37bd851",
-    "title": "Do you have small teeth? Maybe your gums are just to big, thus making your teeth look small. Gingival re-contouring may be the answer. Dr. McOmie can let you know if gingival re-contouring is right for you. https://t.co/qQEdFx5KWL",
-    "creator": "mcomiefamilydentistry",
-    "license": "by-sa",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/142777349@N02/42758920001",
-    "search_term": "gums teeth"
-  },
-  "reception-desk.jpg": {
-    "id": "f6f3f4f9-26fb-4338-be80-c88d8fcc9445",
-    "title": "Telephone box as reception desk",
-    "creator": "Matt From London",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/57868312@N00/53888473704",
-    "search_term": "reception desk"
-  },
   "promenade.jpg": {
     "id": "1e86f7fe-5631-42eb-a072-5f066d6ab5ac",
     "title": "Sketch Seaside Town Promenade",
@@ -1238,36 +938,6 @@
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "foreign_landing_url": "https://www.rawpixel.com/image/9164295/sketch-seaside-town-with-promenade",
     "search_term": "seaside promenade"
-  },
-  "incense.jpg": {
-    "id": "c8daafa2-03be-490e-946c-e20b8c26ba42",
-    "title": "Incense Burner Form Praying Mantis",
-    "creator": "themet",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/9185059/incense-burner-form-praying-mantis",
-    "search_term": "incense burner"
-  },
-  "tray.jpg": {
-    "id": "a146ce2e-991f-4128-a30d-d3f8d1f6cd9f",
-    "title": "DSC_8274: a man pouring sauce on a tray of food",
-    "creator": "PattayaPatrol",
-    "license": "by-sa",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/194424926@N05/54275088383",
-    "search_term": "tray kitchen cooking"
-  },
-  "gathering.jpg": {
-    "id": "9e972c32-0e45-4c33-ac93-8f0998777f98",
-    "title": "family gathering (16 May 1920)",
-    "creator": "museumofnewzealand",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/9949918/family-gathering-16-may-1920-leslie-adkin",
-    "search_term": "family gathering"
   },
   "dish.jpg": {
     "id": "35d8e309-c9a5-483b-91ab-c237a282cb00",
@@ -1288,86 +958,6 @@
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "foreign_landing_url": "https://www.rawpixel.com/image/9687673/covered-spice-bowl",
     "search_term": "spices bowls"
-  },
-  "cannon.jpg": {
-    "id": "f2243c53-a622-4d62-9ba9-eaede81181a0",
-    "title": "Scenes from the Pirates Landing at Alki on Saturday, July 27, 2015. Pirate boat was approaching shore with cannon's firing. Mayor Ed Murray presents keys of city to Pirates in a few scenes.",
-    "creator": "Chas Redmond",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/34768732@N00/19241849451",
-    "search_term": "cannon celebration scene"
-  },
-  "groom.jpg": {
-    "id": "029a3f2c-1b11-49fa-a438-c8ec3c0088f8",
-    "title": "Miss Gerselman Jessie J Groom",
-    "creator": "thegetty",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/14308155/miss-gerselman-jessie-groom",
-    "search_term": "groom portrait person"
-  },
-  "bride.jpg": {
-    "id": "34ce1792-02f8-486a-8cb3-cf5372382e25",
-    "title": "Jewish bride Rembrandt van Rijn",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/8924061/the-jewish-bride",
-    "search_term": "bride portrait person"
-  },
-  "folk-dance.jpg": {
-    "id": "39623636-efe6-41e6-b9a4-b15ee61db2ca",
-    "title": "Brickman pool area folk dance",
-    "creator": "libraryofcongress",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/3799842/photo-image-people-summer-vintage",
-    "search_term": "folk dance"
-  },
-  "infant.jpg": {
-    "id": "8529ffa9-9021-45a1-bb14-504de631456d",
-    "title": "Two infants. album: Oliver family",
-    "creator": "museumofnewzealand",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/9910715/image-face-person-furniture",
-    "search_term": "infant family portrait"
-  },
-  "pregnant.jpg": {
-    "id": "e0636dfa-fb16-4fbe-9e56-2e1537eefcea",
-    "title": "Pregnant Woman",
-    "creator": "Skitter Photo",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/pregnant-woman-40B226DC63",
-    "search_term": "pregnant woman"
-  },
-  "ceremony.jpg": {
-    "id": "fbafb255-edd3-418e-8331-d44ed42cdfeb",
-    "title": "Fire/Rescue Academy 16 Graduation ceremony",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/9677299/image-face-person-fire",
-    "search_term": "graduation ceremony"
-  },
-  "funeral.jpg": {
-    "id": "ceaf5dcb-5aae-4bbb-b26f-cb0257629cf1",
-    "title": "Funeral Queen Elizabeth II",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/9647199/photo-image-flower-woman-public-domain",
-    "search_term": "funeral flowers"
   },
   "grave.jpg": {
     "id": "8770cca6-709b-455b-9b54-f7d66f93fc51",
@@ -1429,16 +1019,6 @@
     "foreign_landing_url": "https://www.rawpixel.com/image/10070813/shaker-cupboard-with-drawers-c-1936-howard-weld",
     "search_term": "cupboard home furniture"
   },
-  "doorman.jpg": {
-    "id": "a809c885-e4be-47c3-bd49-307048cdc0f4",
-    "title": "Mayflower Hotel (doorman), Washington, D.C",
-    "creator": "libraryofcongress",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/6994453/mayflower-hotel-doorman-washington-dc",
-    "search_term": "hotel doorman"
-  },
   "sim-card.jpg": {
     "id": "2302fc6a-0166-4b9d-b3c6-46036d041da3",
     "title": "SIM Card storage small box.",
@@ -1479,36 +1059,6 @@
     "foreign_landing_url": "https://www.rawpixel.com/image/3338184/free-photo-image-skin-pixabay-cc0",
     "search_term": "human skin"
   },
-  "teenager.jpg": {
-    "id": "1ce8155e-cafc-4ad7-9012-06b72f9607bf",
-    "title": "Teenager Headphones",
-    "creator": "Candace McDaniel",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/teenager-headphones-DYFWA5XPVS",
-    "search_term": "teenager portrait person"
-  },
-  "visitor.jpg": {
-    "id": "8676c983-a8e9-4d28-b85b-815c7e107a0b",
-    "title": "Museum Visitor",
-    "creator": "ghs1922",
-    "license": "pdm",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/47282338@N03/51709306199",
-    "search_term": "museum visitor"
-  },
-  "tailor.jpg": {
-    "id": "dc055687-d26a-448e-bd51-647d630fc5bd",
-    "title": "tailor assistant work. Gouache drawing",
-    "creator": null,
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/13951511/tailor-and-assistant-work-gouache-drawing",
-    "search_term": "tailor at work"
-  },
   "carpenter.jpg": {
     "id": "bd9d7152-82ac-4e51-98a0-4d95ed25af12",
     "title": "Carpenter Workshop",
@@ -1518,36 +1068,6 @@
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "foreign_landing_url": "https://stocksnap.io/photo/carpenter-workshop-YPM6VH3FCW",
     "search_term": "carpenter at work"
-  },
-  "builder.jpg": {
-    "id": "50b6db32-0770-4f22-9cd2-aad9688d26c1",
-    "title": "Construction Builder",
-    "creator": "Michal Jarmoluk",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/construction-builder-A5Q1BUP3OF",
-    "search_term": "builder at work"
-  },
-  "barber.jpg": {
-    "id": "d1c3493a-d60f-4427-8874-1a485e618f09",
-    "title": "Barber Louis McDowell demonstrates stropping",
-    "creator": "libraryofcongress",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://www.rawpixel.com/image/6291024/barber-louis-mcdowell-demonstrates-stropping-his-razor",
-    "search_term": "barber at work"
-  },
-  "mule.jpg": {
-    "id": "ecf2e4ad-84ed-4ebf-8e4a-201b4e311482",
-    "title": "Facts about Mules",
-    "creator": "World Animal Foundation",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/196494244@N04/52952541820",
-    "search_term": "mule farm animal"
   },
   "cheetah.jpg": {
     "id": "7d6c7dd5-cb0d-4033-aba6-e5f51928961c",
@@ -2039,16 +1559,6 @@
     "foreign_landing_url": "https://www.rawpixel.com/image/6037430/photo-image-public-domain-free-olive",
     "search_term": "olive oil bottle"
   },
-  "grandmother.jpg": {
-    "id": "271d8797-31e0-430b-9399-5c12a1d43142",
-    "title": "Mother Generation",
-    "creator": "Candace McDaniel",
-    "license": "cc0",
-    "license_version": "1.0",
-    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "foreign_landing_url": "https://stocksnap.io/photo/mother-generation-PEFKCYN1NY",
-    "search_term": "elderly woman portrait smiling"
-  },
   "beef.jpg": {
     "id": "58d09761-878f-41da-abff-1ae2a1a4c54b",
     "title": "A5 Kobe Beef",
@@ -2079,16 +1589,6 @@
     "foreign_landing_url": "https://www.flickr.com/photos/156111741@N07/53623210430",
     "search_term": "tabbouleh"
   },
-  "sandcastle.jpg": {
-    "id": "cef2a6d8-0da1-4f4f-bd3a-19ba715a46e2",
-    "title": "Building sandcastles",
-    "creator": "quinet",
-    "license": "by",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/91994044@N00/51761717528",
-    "search_term": "sandcastle"
-  },
   "minaret.jpg": {
     "id": "de9ce94c-6a59-4640-9983-33707055503d",
     "title": "Amir Khayrbak Funerary Complex",
@@ -2108,16 +1608,6 @@
     "license_url": "https://creativecommons.org/licenses/by/2.0/",
     "foreign_landing_url": "https://www.flickr.com/photos/46191841@N00/52347086261",
     "search_term": "quran book"
-  },
-  "foal.jpg": {
-    "id": "b4f0224f-cb17-4df9-9a7c-c1a327c2425b",
-    "title": "Austria-01128 - Mare and Foal",
-    "creator": "archer10 (Dennis)",
-    "license": "by-sa",
-    "license_version": "2.0",
-    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
-    "foreign_landing_url": "https://www.flickr.com/photos/22490717@N02/21660235361",
-    "search_term": "foal"
   },
   "horn.jpg": {
     "id": "d38697af-1e58-436f-b6d9-e71ab0e19d00",

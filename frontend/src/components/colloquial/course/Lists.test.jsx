@@ -1,6 +1,8 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { describe, expect, it } from 'vitest'
-import { UnitList } from './Lists'
+import { beforeEach, describe, expect, it } from 'vitest'
+import { forgetSeen, markSeen } from '../../../lib/colloquial/seen'
+import { DialectList, TopicList, UnitList } from './Lists'
 
 const topic = (phrases) => ({ lesson: 'lesson-01', title: 't', written: true, phrases, words: 3 })
 const talk = (n) => ({ unit: `unit-0${n}`, title: `Talk ${n}`, written: true, lessons: [topic(4)], cover: null, samples: [], words: 0 })
@@ -28,5 +30,29 @@ describe('UnitList', () => {
 
   it('draws one unheaded grid when a dialect has one kind of unit', () => {
     expect(list([talk(1), talk(2)])).not.toContain('<h2')
+  })
+})
+
+describe('what this device has opened', () => {
+  beforeEach(() => forgetSeen())
+  const unit = { ...talk(1), lessons: [{ ...topic(4), lesson: 'lesson-01' }, { ...topic(4), lesson: 'lesson-02', title: 'second' }] }
+  const dialect = { key: 'fusha', label: 'Fusha', where: 'Everywhere', units: [unit], countries: [], cities: [] }
+
+  it('a unit says how many of its topics were opened, and a topic says it was', () => {
+    markSeen('fusha/unit-01/lesson-02')
+    expect(renderToStaticMarkup(<UnitList dialect={dialect} go={() => {}} />)).toContain('1 of 2 topics seen')
+    const topics = renderToStaticMarkup(<QueryClientProvider client={new QueryClient()}><TopicList dialect={dialect} unit={unit} go={() => {}} /></QueryClientProvider>)
+    expect(topics).toContain('Topic 2 · Seen')
+    expect(topics).not.toContain('Topic 1 · Seen')
+  })
+
+  it('the dialect list offers the way back to the last topic, and nothing before one was opened', () => {
+    const none = renderToStaticMarkup(<DialectList dialects={[dialect]} go={() => {}} />)
+    expect(none).not.toContain('Continue where you left off')
+    markSeen('fusha/unit-01/lesson-02')
+    const some = renderToStaticMarkup(<DialectList dialects={[dialect]} go={() => {}} />)
+    expect(some).toContain('Continue where you left off')
+    expect(some).toContain('second')
+    expect(some).toContain('Fusha · Unit 1')
   })
 })

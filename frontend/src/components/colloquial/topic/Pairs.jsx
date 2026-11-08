@@ -2,7 +2,6 @@
 import { useState } from 'react'
 
 import ArabicText from '../../ui/text/ArabicText'
-import { FOCUS } from '../parts/Face'
 import Spelling from '../parts/Spelling'
 
 const FACE = `col-start-1 row-start-1 flex flex-col items-center justify-center gap-1 px-4 py-6 text-center
@@ -30,13 +29,13 @@ function PairCard({ pair, response }) {
     <button
       type="button"
       onClick={() => setFlipped(!flipped)}
-      aria-pressed={flipped}
-      aria-label={`${pair.english}. ${flipped ? 'Showing the answer' : 'Press to see the answer'}`}
       style={{ perspective: '900px' }}
-      className={`press grid w-full rounded-[var(--radius-md)] ${FOCUS}`}
+      className={`press grid w-full rounded-[var(--radius-md)]`}
     >
       <Side item={pair} label="Ask" flipped={flipped} hidden={flipped} back={false} />
       <Side item={response} label="Answer" flipped={flipped} hidden={!flipped} back />
+      {/* The card reads its own face; this says it turns. */}
+      {!flipped && <span className="sr-only">Press to see the answer</span>}
     </button>
   )
 }
