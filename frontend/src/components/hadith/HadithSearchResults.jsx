@@ -10,10 +10,14 @@
  * fall in, each a tap away (`onOpenBook`) for narrowing by topic instead of
  * retyping. Narrators whose name starts with the words typed sit above the hits,
  * each a tap to his page. A search that only names a collection ("bukhari") opens it.
+ * `beside` (the collection shelf) stands to the right of the box on a wide screen and steps aside while
+ * the box is in use (focused, holding a question, or showing hits), so the box takes the whole width;
+ * it comes back a beat after the box is left alone, so a pointer crossing between the two does not make
+ * either jump (.search-beside in components.css). On a phone it stands under the box.
  * `places` (the PlaceStrip) stands under the box, always in view. While a search is showing, "← Books", the ✕ and Esc
  * all clear it and bring the books back.
  */
-import { useEffect, useEffectEvent } from 'react'
+import { useEffect, useEffectEvent, useState } from 'react'
 
 import { searchHadith } from '../../api'
 import { useHadithCollections } from './useHadithCollections'
@@ -37,7 +41,7 @@ import StatusNote, { CorrectedNote, NoteWord } from '../ui/feedback/StatusNote'
 import HadithCards from './HadithCards'
 import HadithOptions from './HadithOptions'
 
-export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, places, children }) {
+export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, places, beside, children }) {
   const { collections, of } = useHadithCollections()
   const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
     historyKey: 'hadith-history',
@@ -53,6 +57,8 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
   }
 
   const searching = mutation.isPending || mutation.isError || Boolean(data)
+  const [focused, setFocused] = useState(false)
+  const inUse = focused || searching || Boolean(query.trim())
 
   // Esc leaves the results for the books, unless a sheet is open: Esc closes that first.
   const leave = useEffectEvent((event) => {
@@ -67,8 +73,15 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
   return (
     <div className="space-y-3">
 
+      <div className="search-beside" data-in-use={inUse || undefined}>
       {/* Folded into one pill holding the question once hits are up, so they
-          are the next thing down (ui/inputs/Tucked). */}
+          are the next thing down (ui/inputs/Tucked). Focus is watched on this wrapper, so moving
+          between the box, its clear button and the microphone is not leaving it. */}
+      <div
+        className="search-beside-main"
+        onFocus={() => setFocused(true)}
+        onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false) }}
+      >
       <Tucked answer={data} query={query} accent={accent}>
         <SearchBox
           id="hadith-search-input"
@@ -89,6 +102,9 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
           />
         </SearchBox>
       </Tucked>
+      </div>
+      {beside && <div className="search-beside-shelf">{beside}</div>}
+      </div>
 
       {places}
 

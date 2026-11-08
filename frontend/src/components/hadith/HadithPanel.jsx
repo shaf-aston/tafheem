@@ -200,15 +200,19 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
             { label: 'Terms', hint: 'the words of the science', on: listing === TERMS_PLACE, pick: () => (listing === TERMS_PLACE ? go(place) : onGo('hadith', TERMS_PLACE)) },
           ]} />
         )}
-      >
-        <ChipRow>
+        beside={(
           <HadithCollectionPicker value={collection} onChange={pickCollection} accent={accent}
             bookshelfOpen={listing === BOOKSHELF_PLACE}
             onBookshelf={() => (listing === BOOKSHELF_PLACE ? go(place) : onGo('hadith', BOOKSHELF_PLACE))} />
-          {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this
-              collection, unless the picker beside it already names it. */}
-          {!starred && !listing && source && <SourceBadge source={collections.length > 1 ? source : { ...source, label: open.name }} className="ml-auto" />}
-        </ChipRow>
+        )}
+      >
+        {/* The dictionary's badge: the dot is how far the text can be trusted, the label is this
+            collection, unless the shelf beside the search box already names it. */}
+        {!starred && !listing && source && (
+          <ChipRow>
+            <SourceBadge source={collections.length > 1 ? source : { ...source, label: open.name }} className="ml-auto" />
+          </ChipRow>
+        )}
         {listing === BOOKSHELF_PLACE ? (
           <HadithBookshelf accent={accent} onPick={pickCollection} />
         ) : listing === NARRATORS_PLACE ? (
