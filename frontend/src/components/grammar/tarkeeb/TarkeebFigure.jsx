@@ -8,10 +8,11 @@ import Tooltip from '../../ui/overlays/Tooltip'
  * A tarkeeb diagram in its card. When any word was left open, a line underneath
  * says how much was placed, so a tidy picture never implies everything was;
  * `openWhy`, when given, explains in a hover who left it open. `view`
- * (useTarkeebView) is set from the controls in the header above, which also
- * open the same diagram larger, filling the screen, with every row drawn.
+ * (useTarkeebView) is set from the controls in the header above, or in the
+ * card's `foot`, which also open the same diagram larger, filling the screen,
+ * with every row drawn. `foot` closes the card: the sentence's English.
  */
-export default function TarkeebFigure({ tarkeeb, openWhy, view, onWord, glossOf }) {
+export default function TarkeebFigure({ tarkeeb, openWhy, view, onWord, glossOf, foot }) {
   // A book's own worked example carries no coverage: the book placed every word.
   const { coverage = 1 } = tarkeeb
   const { big, setBig, mode } = view
@@ -22,11 +23,11 @@ export default function TarkeebFigure({ tarkeeb, openWhy, view, onWord, glossOf 
     : 'left open'
   return (
     <div className="space-y-2">
-      <div
-        className="rise-in p-5 rounded-[var(--radius-lg)] bg-[var(--surface)]
-          border border-[var(--border)]"
-      >
-        <TarkeebDiagram tarkeeb={tarkeeb} mode={mode} onWord={onWord} glossOf={glossOf} />
+      <div className="rise-in rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]">
+        <div className={foot ? 'px-5 pt-5 pb-1' : 'p-5'}>
+          <TarkeebDiagram tarkeeb={tarkeeb} mode={mode} onWord={onWord} glossOf={glossOf} />
+        </div>
+        {foot}
       </div>
       {coverage < 1 && (
         <p className="text-center type-small text-[var(--text-faint)]">
