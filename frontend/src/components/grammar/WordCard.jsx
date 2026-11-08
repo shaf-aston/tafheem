@@ -2,9 +2,10 @@
  * One word's full grammar and root, shown inline. Shared by Nahw's word grid and
  * AyahStudy's word chips so the two cannot show different facts.
  *
- * Not a dialog: an overlay put half the card off screen at the line's right edge
+ * Not a dialog itself: an overlay put half the card off screen at the line's right edge
  * and covered the next line's words. Escape closes it and opening moves focus and
- * scroll to it; there is no backdrop or focus trap.
+ * scroll to it; there is no backdrop or focus trap. Nahw's analyser puts it in a
+ * BottomSheet, where the sheet brings those.
  *
  * It opens right under the chip that was tapped, and both callers' chips
  * already carry the word, its part of speech, its meaning and its role, so the
