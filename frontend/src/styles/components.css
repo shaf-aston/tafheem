@@ -1254,6 +1254,33 @@ button.mushaf-word {
 }
 
 
+/* The search box with the collection shelf to its right (hadith/HadithSearchResults). On a wide
+   screen the shelf takes the room beside the box; once the box is in use (data-in-use: focused,
+   holding a question or showing hits) the shelf folds away and the box takes the whole row. It
+   comes back after a beat (the transition delay runs only on the way back), so a pointer or focus
+   passing between the two does not make either jump. Narrow screens stack them and nothing moves. */
+.search-beside { display: grid; gap: 0.75rem; }
+@media (min-width: 56rem) {
+  .search-beside { display: flex; align-items: flex-end; gap: 1rem; }
+  .search-beside-main { flex: 1 1 0; min-width: 0; }
+  .search-beside-shelf {
+    flex: 0 1 auto;
+    max-width: 26rem;
+    overflow: hidden;
+    transition:
+      max-width calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease) calc(var(--motion-enter-ms) * 1ms),
+      opacity calc(var(--motion-base-ms) * 1ms) ease-out calc(var(--motion-enter-ms) * 1ms),
+      visibility 0s calc(var(--motion-enter-ms) * 1ms);
+  }
+  /* Folded away it is also out of the tab order, once the fold has finished. */
+  .search-beside[data-in-use] .search-beside-shelf {
+    max-width: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 0s, 0s, calc(var(--motion-enter-ms) * 1ms);
+  }
+}
+
 /* The hadith collections as spines on a shelf (hadith/books/HadithCollectionPicker).
    Each spine stands on the shelf's edge; pointed at it lifts, opened it tips out
    towards the reader in the accent. The two Sahih books carry a gold band. On a
