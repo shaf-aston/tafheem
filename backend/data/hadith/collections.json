@@ -5,7 +5,7 @@
     "scripts/hadith/fetch_hadith_collections.py and scripts/hadith/build_hadith_index.py; no code changes.",
     "short is the name the picker shows; arabic and arabic_short are the same two names in Arabic, so a search can name it either way. cite is the citation URL template sunnah.com uses, {number} filled with the hadith's own number.",
     "sahih marks a collection whose every hadith is graded sahih by the scholars, so its hadiths carry no grade of their own.",
-    "shelf names the shelf of the bookshelf a further book stands on, away from the six on the tab's own shelf; by and about are its cover's two lines. from names a source other than fawazahmed0/hadith-api, as repo:path in AhmedBaset/hadith-json.",
+    "shelf names the shelf of the bookshelf a further book stands on, away from the six on the tab's own shelf. from names a source other than fawazahmed0/hadith-api, as repo:path in AhmedBaset/hadith-json.",
     "recorded_as are the spellings of a collection's name in the closing line of a further book's hadith (رواه الترمذي). A collection with borrows_grades has no grades of its own: the build finds each hadith's twin in the books its closing line names and shows their grades, saying which hadith (services/hadith/twin.py). words is how many of its last words that line can span, cue the words that open it, agreed_upon the books متفق عليه names."
   ],
   "bukhari": {
@@ -77,8 +77,6 @@
     "arabic_short": "مشكاة",
     "cite": "https://sunnah.com/mishkat:{number}",
     "shelf": "Gathered by topic",
-    "by": "al-Khatib at-Tabrizi",
-    "about": "Al-Baghawi's Masabih filled out: hadith from the great books, gathered topic by topic.",
     "from": "AhmedBaset/hadith-json:db/by_book/other_books/mishkat_almasabih.json",
     "borrows_grades": {
       "words": 40,
@@ -98,9 +96,7 @@
     "arabic": "الأربعون النووية",
     "arabic_short": "النووية",
     "cite": "https://sunnah.com/nawawi40:{number}",
-    "shelf": "Forty hadith",
-    "by": "Imam an-Nawawi",
-    "about": "Forty-two short hadith on which the religion turns."
+    "shelf": "Forty hadith"
   },
   "qudsi": {
     "name": "Forty Hadith Qudsi",
@@ -108,7 +104,6 @@
     "arabic": "الأحاديث القدسية",
     "arabic_short": "القدسية",
     "cite": "https://sunnah.com/qudsi40:{number}",
-    "shelf": "Forty hadith",
-    "about": "Forty hadith in which the Prophet ﷺ tells what Allah said."
+    "shelf": "Forty hadith"
   }
 }

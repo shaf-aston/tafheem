@@ -41,9 +41,7 @@ CREATE TABLE collection (
     arabic_short TEXT NOT NULL DEFAULT '',
     cite TEXT NOT NULL DEFAULT '',
     sahih INTEGER NOT NULL DEFAULT 0,
-    shelf TEXT NOT NULL DEFAULT '',  -- the bookshelf shelf of a further book; '' for the six on the tab's own shelf
-    author TEXT NOT NULL DEFAULT '',
-    about TEXT NOT NULL DEFAULT ''
+    shelf TEXT NOT NULL DEFAULT ''  -- the bookshelf shelf of a further book; '' for the six on the tab's own shelf
 );
 
 CREATE TABLE book (
@@ -160,11 +158,10 @@ def build() -> dict[str, int]:
 
             raw = json.loads(raw_path.read_text(encoding="utf-8"))
             conn.execute(
-                "INSERT INTO collection (id, name, short, arabic, arabic_short, cite, sahih, shelf, author, about) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO collection (id, name, short, arabic, arabic_short, cite, sahih, shelf) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 (key, meta["name"], meta.get("short", meta["name"]), meta.get("arabic", ""), meta.get("arabic_short", ""),
-                 meta.get("cite", ""), int(bool(meta.get("sahih"))), meta.get("shelf", ""), meta.get("by", ""),
-                 meta.get("about", "")),
+                 meta.get("cite", ""), int(bool(meta.get("sahih"))), meta.get("shelf", "")),
             )
             arabic = arabic_names.get(key, {})
             conn.executemany(

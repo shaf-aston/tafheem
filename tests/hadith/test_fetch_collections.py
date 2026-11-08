@@ -32,10 +32,10 @@ def test_each_hadith_keeps_its_number_and_counts_its_place_in_its_book():
     assert hadiths[1]["english"] == "Anas said." and hadiths[0]["grades"] == []
 
 
-def test_every_shelved_book_names_its_shelf_and_cover():
+def test_every_shelved_book_has_a_citation():
     shelved = {key: meta for key, meta in collections().items() if meta.get("shelf")}
     assert "mishkat" in shelved
-    assert all(meta.get("about") and "{number}" in meta["cite"] for meta in shelved.values())
+    assert all("{number}" in meta["cite"] for meta in shelved.values())
 
 
 def test_a_line_break_inside_a_hadith_is_one_space():
