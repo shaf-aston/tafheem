@@ -29,7 +29,7 @@ def doer(cards: list[dict], roles: list[dict]) -> None:
             reason.extras.append(line.format(detail=drawn["detail"]))
         for piece in found.get("attached", []):
             if not piece["before"] and piece.get("role") and (place := case_of(piece["role"])):
-                reason.extras.append(said["piece_said"].format(form=piece["form"], place=said["place"][place], role=piece["role"]))
+                reason.extras.append(said["piece_said"].format(form=piece["written"], place=said["place"][place], role=piece["role"]))
 
 
 def attention(cards: list[dict], roles: list[dict]) -> None:

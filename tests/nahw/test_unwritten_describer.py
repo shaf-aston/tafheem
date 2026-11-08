@@ -71,3 +71,13 @@ def test_a_particle_before_a_badl_keeps_its_own_name():
 ])
 def test_the_one_written_nun_of_inna_stays_with_inna(sentence, columns):
     assert drawn(sentence)[0] == columns
+
+
+@pytest.mark.parametrize("sentence, said, not_said", [
+    ("إِنِّي طَالِبٌ", "«ي» ضمير", "«ني»"),
+    ("كَأَنِّي طَالِبٌ", "«ي» ضمير", "«ني»"),
+    ("إِنَّنِي طَالِبٌ", "«ني» ضمير", "«ي» ضمير"),  # both nuns written: the pronoun is نِي
+])
+def test_the_card_says_the_pronoun_the_picture_cuts(sentence, said, not_said):
+    reason = client.post("/api/analyze", json={"sentence": sentence}).json()["words"][0]["reason"]
+    assert said in reason and not_said not in reason

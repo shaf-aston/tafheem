@@ -84,7 +84,7 @@ def test_a_tied_answer_names_its_letter_and_a_conditional_noun_says_what_it_is_f
 def test_a_verb_says_its_drawn_doer_and_a_pronoun_written_on_it_says_its_place():
     cards = [{"role": "فعل", "type": "fi'l", "reason": "فعل ماضٍ مبني على الفتح. القاعدة: الفعل الماضي مبني"}]
     found = [{"doer": {"role": "فاعل", "detail": "ضمير مستتر تقديره هو"},
-              "attached": [{"before": False, "form": "نا", "role": "مفعول به"}]}]
+              "attached": [{"before": False, "form": "نا", "written": "نا", "role": "مفعول به"}]}]
     card_wording.run([pieces.doer], cards, found)
     assert cards[0]["reason"] == ("فعل ماضٍ مبني على الفتح، وفاعله ضمير مستتر تقديره هو، "
                                   "و«نا» ضمير متصل مبني في محل نصب مفعول به. القاعدة: الفعل الماضي مبني")

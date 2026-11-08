@@ -18,7 +18,7 @@ from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_the
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
 from backend.services.text.harakat import (
     CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
-    typed_case)
+    typed_case, written_sizes)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -51,6 +51,7 @@ class Piece(TypedDict, total=False):
     role: str | None
     before: bool  # written before the word (بِـ، وَ) or after it (ـها)
     form: str
+    written: str  # the letters of it the typed word holds (إِنِّي: ي, not نِي)
     family: str | None
     reading: dict | None
     named: str  # حرف جر زائد: a name a finishing step gave it
@@ -108,6 +109,15 @@ class FoundEntry(TypedDict, total=False):
     gap: Gap  # set by the teacher: the rule a dashed role broke
     name: str  # set from the picture: its finer name (اسم ليس)
     doer: Doer  # set from the picture: the doer drawn inside a verb, said on its card too
+
+
+def _written(piece: dict, base: dict, word: str, tokens: list[dict], attached: dict, word_of: dict, at: int) -> str:
+    """The letters of this piece the typed word holds (إِنِّي: the pronoun is نِي, written ي, as the picture cuts it)."""
+    mine = [t for t in tokens if t["id"] in attached and word_of.get(t["id"]) == at]
+    front, back = [t for t in mine if facts.is_prefix(t)], [t for t in mine if not facts.is_prefix(t)]
+    form = piece["form"].strip("+")
+    size = written_sizes(front, base, back, word)[(front + back).index(piece)]
+    return form[len(form) - size:] if size < len(form) else form
 
 
 def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
@@ -171,6 +181,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
              "my_ya": role == NAMED.munada and facts.my_ya_dropped(token),
              # إيّاك: the pronoun on إيّا is a letter of the one detached pronoun, not a piece of its own
              "attached": [] if facts.is_object_pronoun(token) else [{"id": t["id"], "role": role_by_id[t["id"]], "before": facts.is_prefix(t), "form": t["form"].strip("+"),
+                           "written": _written(t, token, words[i], tokens, attached, word_of, i),
                            "family": _family(t, bases, joined, onto=joined[i]) if role_by_id[t["id"]] in (NAMED.harf, NAMED.harf_jarr) else None,
                            "reading": t.get("reading")}
                           for t in tokens if t["id"] in attached and word_of.get(t["id"]) == i],
