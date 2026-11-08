@@ -49,6 +49,12 @@ def build():
         return Dataset.from_generator(sources.parquet_clips, gen_kwargs={
             'rows': rows(skip, round(len(learners) * share / rest)), 'src': src})
 
+    def phrases(src, share, rows):  # Iqra's: shares of what the sources above make, so they never shrink those
+        return Dataset.from_generator(sources.phrase_clips, gen_kwargs={
+            'rows': rows(skip, round(len(learners) / rest * share)), 'src': src})
+
+    spoken = phrases('iqra slips', S.IQRA_SLIPS_SHARE, sources.slips)
+    real = phrases('iqra real', S.IQRA_REAL_SHARE, sources.real_phrases)
     big = fetched('tadabur', S.TADABUR_SHARE, sources.tadabur)
     replay = fetched('replay', S.REPLAY_SHARE, sources.replay)
     tlog = fetched('tlog', S.TLOG_SHARE, sources.tlog)
@@ -56,11 +62,14 @@ def build():
     shutil.rmtree(parquet.CLIPS)
     shutil.rmtree(parquet.FILES, ignore_errors=True)
     tests['tadabur new voices'] = big.filter(lambda part: part == 'test', input_columns='part')
+    tests['spoken slips'] = spoken.filter(lambda part: part == 'test', input_columns='part')
     empty = [g for g, v in tests.items() if not len(v)]
     if empty:
         raise SystemExit(f'test groups with no clips: {empty}')
     taught = concatenate_datasets([learners.select_columns(KEPT), big.filter(lambda part: part == 'train', input_columns='part').select_columns(KEPT),
-                                   replay.select_columns(KEPT), tlog.select_columns(KEPT)]).shuffle(seed=7)
+                                   replay.select_columns(KEPT), tlog.select_columns(KEPT),
+                                   spoken.filter(lambda part: part == 'train', input_columns='part').select_columns(KEPT),
+                                   real.select_columns(KEPT)]).shuffle(seed=7)
     hours = Counter()
     for src, secs in zip(taught['src'], taught['secs']):
         hours[src] += secs / 3600

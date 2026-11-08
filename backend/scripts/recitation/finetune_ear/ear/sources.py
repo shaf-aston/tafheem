@@ -1,10 +1,12 @@
 """Where clips come from: learners (taught and tested), professionals (tested), and the big parquet sets,
 Tadabur (taught and tested), everyayah (replayed) and tlog (real app users, taught). Each clip is a dict: sound, said, ayah, who, src, secs."""
+import json
 import random
 import re
 import sys
 import zlib
 from collections import Counter
+from importlib import resources
 from pathlib import Path
 
 import pyarrow.parquet as pq
@@ -15,11 +17,12 @@ from . import settings as S
 from .judge import listen
 from .parquet import CLIPS, balanced, fetch, index, nonempty, saved
 from .sound import decoded, opened, sound_of
-from .text import IMLAEI, SAID, SAYABLE, SPELT, canon, letters
+from .spelling import as_heard
+from .text import IMLAEI, SAID, SAYABLE, SPELT, WRITABLE, ayahs_of, canon, letters
 
 
-def clip(sound, key, who, src, **more):
-    return {'sound': sound, 'said': SAID[key], 'ayah': key, 'who': who, 'src': src, 'secs': len(sound) / S.RATE, **more}
+def clip(sound, key, who, src, said=None, **more):
+    return {'sound': sound, 'said': said or SAID[key], 'ayah': key, 'who': who, 'src': src, 'secs': len(sound) / S.RATE, **more}
 
 
 def fits(sound):  # decoded, and short enough to be heard whole
@@ -132,6 +135,73 @@ def replay(skip, target):
     return fetch(S.REPLAY, nonempty(train, 'replay train clips'))
 
 
+# --- Iqra's phrases: Qur'an phrases and everyday fusha, each clip with its own text, not an ayah's.
+
+def _bench():
+    """The benched phrases' letters; cloud.py wrote them into the bundle."""
+    where = resources.files(__package__).joinpath(S.BENCH_PHRASES)  # inside a zip on Kaggle, so not a plain Path
+    if not where.is_file():
+        sys.exit(f'no {S.BENCH_PHRASES}: run through cloud.py, which writes the benched phrases into the bundle')
+    return [letters(s) for s in json.loads(where.read_text(encoding='utf-8'))]
+
+
+def _phrase(text, bench, spoken=None):
+    """(said, the ayahs it sits in, whether it counts as the Qur'an) for a clip's text, or None where it cannot be
+    taught: unreadable, too long for the model to write, or a benched phrase or a piece of one. A short phrase
+    sits in some ayah by chance, so it counts as the Qur'an only from IQRA_PHRASE_MIN letters; its ayahs stay known.
+    `text` is what was meant (where the ayah is found); `spoken`, when given, is what the clip really says."""
+    said = ' '.join(as_heard(spoken or text))
+    spelt = letters(text)
+    if not said or '\ufffd' in (spoken or text) or not WRITABLE(said) or any(b in spelt or spelt in b for b in bench):
+        return None
+    ayahs = ayahs_of(spelt)
+    return said, ayahs, bool(ayahs) and len(spelt) >= S.IQRA_PHRASE_MIN
+
+
+def _split(found, skip):
+    """Held ayahs' phrases are tested, the rest taught; a phrase in both kinds of ayah is dropped."""
+    return [f for f in found if f[-1] and not f[-1] & skip], [f for f in found if f[-1] and f[-1] <= skip]
+
+
+def slips(skip, target):
+    """Synthetic voices saying Qur'an phrases, half with planted slips; the target is what is said."""
+    bench = _bench()
+
+    def read(r):
+        got = _phrase(r['sentence_ref'], bench, r['sentence_aug'])  # a planted slip no longer matches any ayah
+        return got and (f"{r['speaker']}/{r['label']}", got[0], got[1])
+
+    found = index(S.IQRA_SLIPS, S.IQRA_SLIPS_SHARDS, ['sentence_ref', 'sentence_aug', 'speaker', 'label'], read)
+    train, test = _split(found, skip)
+    pick = random.Random(23)
+    test = [f for f in test if f[2].endswith('/augmented')]  # clean clips would only test what the other groups do
+    train = [f[:4] + ('train',) for f in balanced(train, target, pick)]
+    test = [f[:4] + ('test',) for f in pick.sample(test, min(S.IQRA_SLIPS_TEST, len(test)))]
+    print(f"iqra slips: {len(train)} train clips ({sum(f[2].endswith('/augmented') for f in train)} with a slip), "
+          f'{len(test)} test clips (wanted {target})', flush=True)
+    return fetch(S.IQRA_SLIPS, nonempty(train, 'iqra slips train clips') + nonempty(test, 'iqra slips test clips'))
+
+
+def real_phrases(skip, target):
+    """Real voices: Qur'an phrases (never from held ayahs) and everyday fusha, in the proportion IQRA_QURAN_PART."""
+    bench = _bench()
+
+    def read(r):
+        got = _phrase(r['tashkeel_sentence'], bench)
+        return got and ('quran' if got[2] else 'speech', got[0], got[1])
+
+    found = index(S.IQRA_REAL, S.IQRA_REAL_SHARDS, ['tashkeel_sentence'], read)
+    quran = _split([f for f in found if f[2] == 'quran'], skip)[0]
+    speech = [f for f in found if f[2] == 'speech' and not f[-1] & skip]  # a held ayah's short phrase is not speech
+    pick = random.Random(29)
+    wanted = round(target * S.IQRA_QURAN_PART)
+    chosen = pick.sample(quran, min(wanted, len(quran))) + pick.sample(speech, min(target - wanted, len(speech)))
+    chosen = [f[:4] + ('train',) for f in chosen]
+    print(f"iqra real: {sum(f[2] == 'quran' for f in chosen)} Qur'an phrases, "
+          f"{sum(f[2] == 'speech' for f in chosen)} everyday fusha (wanted {target})", flush=True)
+    return fetch(S.IQRA_REAL, nonempty(chosen, 'iqra real train clips'))
+
+
 def held(name):
     """One Tadabur reciter in HELD, by a fixed hash, never trained on."""
     return zlib.crc32(str(name).encode()) % S.HELD == 0
@@ -170,6 +240,13 @@ def tlog(skip, target):
     del checker
     print(f'tlog: {len(rows)} of {heard} clips heard as the ayah meant, taught (wanted {target})', flush=True)
     return nonempty(rows, 'tlog train clips')
+
+
+def phrase_clips(rows, src):
+    for (_, _, who, said, part), path in rows:
+        sound = opened(path)
+        if fits(sound):
+            yield clip(sound, '', f'{src}:{who}', src, said=said, part=part)
 
 
 def parquet_clips(rows, src):

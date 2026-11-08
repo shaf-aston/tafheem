@@ -72,6 +72,26 @@ TLOG_TRY = 200  # clips copied per file, picked at random, and heard
 TLOG_SHARE = 0.1  # of the training clips: wants ~3,700, the checker passes ~900 either way
 TLOG_CHECKER = 'large-v3-turbo'
 
+# Iqra: IqraEval's challenge training sets (CC BY-NC 4.0, ungated). Their clips are phrases, so each carries its own text.
+# Slips: 7 synthetic voices say Qur'an phrases, about half with a planted slip (a letter changed, a word swapped,
+# a vowel). The audio says `sentence_aug`, so that is the target: taught the printed ayah over a slip, an ear
+# learns to hear slips as right (README, "Training on correct text hides slips"). The clean half, same voices,
+# stops it learning "synthetic voice means slip". Phrases from held ayahs are never taught; their slip clips are
+# the 'spoken slips' test.
+IQRA_SLIPS = 'IqraEval/Iqra_TTS'
+IQRA_SLIPS_SHARDS = 3  # of 13 files, 4,260 clips each
+IQRA_SLIPS_SHARE = 0.1  # of what the sources above make (not of the final set)
+IQRA_SLIPS_TEST = 300  # 'spoken slips' clips at most
+# Real voices: 71,391 clips, fully vowelled. A quarter are Qur'an phrases, the rest everyday fusha ("متى تكون مشغولا").
+IQRA_REAL = 'IqraEval/Iqra_train'
+IQRA_REAL_SHARDS = 5  # of 29 files, ~2,460 clips each
+IQRA_REAL_SHARE = 0.16  # of what the sources above make
+IQRA_QURAN_PART = 0.5  # of those, the part that is Qur'an phrases
+IQRA_PHRASE_MIN = 14  # letters a phrase needs before it counts as sitting inside the Qur'an (shorter match by chance)
+# The benched phrases (ear_bench/iqra.py), written into the bundle by cloud.py: never taught, so no ear has heard
+# a slip of them. IqraEval's Iqra_TTS and Iqra_train hold 12 of them.
+BENCH_PHRASES = 'bench_phrases.json'
+
 # --- making clips harder (sound.py); training clips only, test clips never ---
 # Recipe: Muno459/zipformer_p-arabic-v2 card.
 NOISE_SET = 'obadx/freesound-commercial-50k-noise-only'  # per-clip CC0 / CC-BY
