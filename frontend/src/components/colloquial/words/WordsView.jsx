@@ -1,13 +1,14 @@
 // One topic's words on their own: see them all as pictures, learn them as cards, warm up by matching, quiz
 // yourself, then review what is due. A new way to learn words is a new mode here
 // and a component beside this one.
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { onHover, warm } from '../../../lib/api/warm'
 import { WORDS_MODULE, wordDrills } from '../../../lib/colloquial/wordPractice'
 import { summaryQuery } from '../../../lib/learner/record'
-import { scrollToTop } from '../../../lib/motion/scrollToEl'
+import { useMedia, WIDE as LARGE_SCREEN } from '../../../lib/hooks/useMedia'
+import { holdGlideUnderHeader, scrollToTop } from '../../../lib/motion/scrollToEl'
 import { readViewParam, writeViewParams } from '../../../lib/nav/tabUrl'
 import Segmented from '../../ui/inputs/Segmented'
 import Practice from '../exercises/Practice'
@@ -48,6 +49,13 @@ export default function WordsView({ unit, at }) {
   const shown = modes.some((m) => m.id === mode) ? mode : home
   const drills = useMemo(() => wordDrills(words, `${unit.unit}.${lesson.lesson}`, { dialect }), [words, unit.unit, lesson.lesson, dialect])
 
+  // The drawing is what a Picture view is for, and on a phone the topic's heading, the modes and the board
+  // choices stand above it: the heading is brought under the header, so the drawing is on the first screen.
+  // Held as the page settles, and let go the moment the reader scrolls.
+  const wide = useMedia(LARGE_SCREEN)
+  const heading = useRef(null)
+  useEffect(() => (shown === 'picture' && !wide ? holdGlideUnderHeader(heading.current) : undefined), [shown, wide])
+
   if (!words.length) return <p className="type-small text-[var(--text-faint)] text-center py-12">This topic has no words yet.</p>
 
   // Browse and Review lay many tiles side by side; the rest are one card wide.
@@ -55,7 +63,7 @@ export default function WordsView({ unit, at }) {
     <article className={`${WIDE.has(shown) ? 'max-w-5xl' : 'max-w-xl'} mx-auto space-y-6`}>
       {/* One width in every mode, so the modes stay put when Review widens the page. */}
       {/* Headed like a phrase topic (topic/TopicView.jsx), so every topic says its own name, not only the trail. */}
-      <header className="w-full max-w-xl mx-auto space-y-4">
+      <header ref={heading} className="w-full max-w-xl mx-auto space-y-4">
         <div>
           <p className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
           <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
