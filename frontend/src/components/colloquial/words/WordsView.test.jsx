@@ -46,4 +46,27 @@ describe('WordsView: where a topic opens', () => {
     draw(topic(['apple', 'bread', 'rice']))
     expect(on()).toBe('Browse')
   })
+
+  it('the board and the Explore/Test step are kept across a reload and in a link', () => {
+    const first = draw(topic(body))
+    fireEvent.click(screen.getByRole('button', { name: 'Hand' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Test' }))
+    expect(window.location.search).toBe('')   // the choices ride the history entry; Share writes them out
+    first.unmount()
+    draw(topic(body))
+    expect(screen.getByRole('button', { name: 'Hand' }).getAttribute('aria-pressed')).toBe('true')
+    expect(screen.getByRole('button', { name: 'Test' }).getAttribute('aria-pressed')).toBe('true')
+    // The start writes nothing: back on the first picture and Explore, a fresh visit.
+    fireEvent.click(screen.getByRole('button', { name: 'Face' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Explore' }))
+    expect(window.history.state?.view?.board).toBeUndefined()
+    expect(window.history.state?.view?.step).toBeUndefined()
+  })
+
+  it('a link naming a board the topic lacks opens on the first', () => {
+    window.history.replaceState({ view: { words: 'picture', board: 'nowhere', step: 'test' } }, '', '/colloq/fusha/unit-23/lesson-01/words')
+    draw(topic(body))
+    expect(screen.getByRole('button', { name: 'Face' }).getAttribute('aria-pressed')).toBe('true')
+    expect(screen.getByRole('button', { name: 'Test' }).getAttribute('aria-pressed')).toBe('true')
+  })
 })

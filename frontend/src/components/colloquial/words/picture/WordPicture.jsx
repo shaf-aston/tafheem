@@ -7,6 +7,7 @@
 import { useMemo, useRef, useState } from 'react'
 
 import settings from '../../../../config/colloquial-display.json'
+import { readViewParam, writeViewParams } from '../../../../lib/nav/tabUrl'
 import { pictureBoards } from '../../../../lib/colloquial/wordPictures'
 import { speak } from '../../../../lib/speech/speak'
 import { useAccent } from '../../../../lib/theme/accent'
@@ -187,8 +188,12 @@ export function Board({ board, step = 'test' }) {
 
 export default function WordPicture({ words }) {
   const boards = useMemo(() => pictureBoards(words), [words])
-  const [id, setId] = useState(boards[0]?.id)
-  const [step, setStep] = useState('explore')
+  // Which picture, and Explore or Test, ride on the address like the mode does (?board=outfit&step=test),
+  // so a reload or a shared link keeps them; the first picture and Explore are the start, and write nothing.
+  const [id, setIdNow] = useState(() => readViewParam('board', boards.map((b) => b.id)) ?? boards[0]?.id)
+  const [step, setStepNow] = useState(() => readViewParam('step', STEPS.map((s) => s.id)) ?? 'explore')
+  const setId = (next) => { setIdNow(next); writeViewParams({ board: next === boards[0]?.id ? '' : next }) }
+  const setStep = (next) => { setStepNow(next); writeViewParams({ step: next === 'explore' ? '' : next }) }
   const board = boards.find((b) => b.id === id) ?? boards[0]
   if (!board) return null
   return (
