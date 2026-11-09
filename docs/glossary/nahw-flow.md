@@ -96,7 +96,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - nasab: name + ابن/بن + noun → صفة and مضاف chain; next noun = خبر in a verbless sentence (`backend/services/nahw/syntax/repair/nasab.py`)
 - untied_command: a command read as a jazm condition's answer (إن تضربْ أضربْ) with no فاء on it → jussive present, جواب الشرط (`backend/services/nahw/syntax/repair/answer.py`)
 - stamp: particle families from the particle decision tree, one reading per small word (`backend/services/nahw/syntax/particles.py`)
-- untangle: a word two repairs left in a loop → the parser's own link back, or the root (`backend/services/nahw/syntax/repair/__init__.py`)
+- untangle: after book_links and every repair, a word left in a loop → the parser's own link back, or the root (`backend/services/nahw/syntax/repair/__init__.py`)
 <!-- /list -->
 
 Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` → `vetoes`):

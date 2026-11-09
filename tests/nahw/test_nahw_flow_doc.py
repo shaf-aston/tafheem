@@ -34,7 +34,7 @@ def test_every_path_named_exists():
 
 
 def test_the_repair_order_is_the_codes():
-    # book_links runs first and untangle last on every sentence; PASSES runs between them
+    # book_links runs first, PASSES between, and untangle after each of them (listed once, last)
     assert _listed("repair") == ["book_links", *(repair.__name__ for repair, _ in PASSES), "untangle"]
 
 
