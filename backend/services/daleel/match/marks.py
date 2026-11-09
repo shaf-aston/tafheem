@@ -2,6 +2,12 @@
 
 The screen knows nothing about how Arabic is matched; it gets [start, end)
 character offsets into the passage it already has, and marks those.
+
+    marks                  the one entry point, run once per kept passage
+      _folded_with_origin  fold the text as the index does, remembering where
+                           each folded letter came from (a table per letter)
+      words.uses           the same rule that ranked the passage, on the fold
+      _widened, _merged    back to whole printed words, overlaps made one
 """
 from __future__ import annotations
 
