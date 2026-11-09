@@ -991,3 +991,13 @@ def test_a_conditional_or_relative_noun_that_a_complete_verb_hangs_on_is_its_mub
 def test_a_damma_on_a_noun_the_parser_added_to_another_makes_it_no_mudaf_ilayh():
     # a مضاف إليه is never مرفوع: وَفِي كُلٍّ خَيْرٌ, سَتَكُونُ فِتَنٌ الْقَاعِدُ فِيهَا خَيْرٌ
     assert _role("سَتَكُونُ فِتَنٌ الْقَاعِدُ فِيهَا خَيْرٌ مِنَ الْقَائِمِ", 2) == "مبتدأ"
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence", [
+    "لَعَلِّي طَالِبٌ",  # the dictionary has only لَعَلَّنِي, so the short ي read as the name عَلِيّ
+    "لَيْتِي طَالِبٌ",  # the same short ي on another sister
+    "لَعَلَّكَ طَالِبٌ",  # nearest case: a pronoun the dictionary has
+])
+def test_a_sister_of_inna_with_its_pronoun_is_the_particle_and_its_ism(sentence: str):
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == ["حرف", "خبر إن"]
