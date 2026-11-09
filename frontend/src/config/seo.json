@@ -1,0 +1,74 @@
+{
+  "site": "https://tafheem-app.vercel.app",
+  "name": "Tafheem",
+  "title": "Tafheem: Qur'an grammar (i'rab) word by word, and a recitation checker",
+  "description": "Learn Quranic Arabic grammar word by word: i'rab, nahw and sarf for every ayah, roots in four classical dictionaries, and a recitation checker that marks the exact word you got wrong. Free.",
+  "image": {
+    "path": "/og.jpg",
+    "alt": "Al-Alaq 96:1 with each word's grammar role"
+  },
+  "keywords": [
+    "Quran i'rab word by word",
+    "Quranic Arabic grammar",
+    "nahw and sarf",
+    "Arabic grammar checker",
+    "Quran recitation mistake checker",
+    "Arabic verb conjugator",
+    "Arabic root dictionary",
+    "Lane's Lexicon"
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "priority": 1.0
+    },
+    {
+      "path": "/app",
+      "priority": 0.9
+    },
+    {
+      "path": "/privacy.html",
+      "priority": 0.2
+    }
+  ],
+  "noindex": [
+    "/record"
+  ],
+  "features": [
+    "I'rab (grammatical analysis) of every Qur'an word, with its role, case and governor",
+    "Nahw and sarf: sentence parsing and full verb conjugation, weak roots included",
+    "Recitation checker that marks the exact word you got wrong as you recite",
+    "Roots in Lane's Lexicon, Lisan al-Arab, Taj al-Arus and Maqayis al-Lugha",
+    "Hadith search with narrator chains and grading",
+    "Quizzes and memorisation practice"
+  ],
+  "faq": [
+    {
+      "q": "What is Tafheem?",
+      "a": "A free study app for Quranic and classical Arabic. It shows the grammar (i'rab) of every word of the Qur'an, conjugates verbs, looks up roots in classical dictionaries and checks your recitation."
+    },
+    {
+      "q": "How is Tafheem different from Tarteel?",
+      "a": "Tarteel checks whether you said the right words. Tafheem also explains each word's grammar, its role, case and root, so you learn why the ayah reads the way it does."
+    },
+    {
+      "q": "Can I check the i'rab of my own Arabic sentence?",
+      "a": "Yes. Type plain Arabic, with or without vowels, and Tafheem parses it: each word's role, case ending and what governs it."
+    },
+    {
+      "q": "Is Tafheem free?",
+      "a": "Yes. It is free to use in the browser, and the core works offline."
+    }
+  ],
+  "ai_bots": [
+    "GPTBot",
+    "OAI-SearchBot",
+    "ChatGPT-User",
+    "ClaudeBot",
+    "Claude-SearchBot",
+    "PerplexityBot",
+    "Google-Extended",
+    "Applebot-Extended",
+    "CCBot"
+  ]
+}
