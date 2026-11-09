@@ -1,21 +1,21 @@
 # Play Store listing (paste into Play Console, Grow, Store listing)
 
-**App name** (30 max): Tafheem: Qur'an Arabic
+**App name** (30 max): Tafheem: Quran Word by Word
 
-**Short description** (80 max): Understand the Qur'an word by word: grammar, roots, hadith and hifz checking.
+**Short description** (80 max): Learn Quranic Arabic word by word: i'rab, roots, nahw, sarf, hifz checker.
 
 **Full description:**
-Tafheem helps you understand the Arabic you read and hear in salah, word by word.
+Understand the Quran word by word, in the Arabic you hear in salah.
 
-- Qur'an: every ayah with its translation, the grammar (i'raab) of each word, and tafsir.
-- Nahw: type any Arabic sentence and see what each word is doing and why it ends the way it does, by the rules of the classical books.
-- Sarf: the root and pattern of any word, and its full conjugation.
-- Memorise: recite from memory and Tafheem follows along, showing every slip.
-- Hadith: the six books, searchable in Arabic or English, with grading and narrators.
-- Dictionary: classical lexicons side by side, from a root, a word or an English meaning.
-- Quizzes and a daily path to learn a few words at a time.
+- Quran word by word: translation, i'rab (grammar) of every word, and tafsir.
+- Arabic grammar (nahw): paste any sentence, see each word's role and ending.
+- Sarf: root, pattern and full conjugation of any word.
+- Hifz checker: recite from memory, see every slip.
+- Hadith: the six books, Arabic or English, with grading.
+- Arabic dictionary: classical lexicons by root, word or English meaning.
+- Daily Quranic Arabic lessons and quizzes.
 
-Every answer says where it came from, so you can check it in the book.
+Every answer shows its source, so you can check it in the book.
 
 **Category:** Education. **Tags:** Education, Books and reference.
 **Contact email:** shafeinhashmi@gmail.com
