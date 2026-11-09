@@ -27,6 +27,7 @@ import TranslationStrip from '../ui/text/TranslationStrip'
 import { GoButton } from '../ui/buttons/RootActions'
 import WordPeek from './WordPeek'
 import WordCard from '../grammar/WordCard'
+import BottomSheet from '../ui/overlays/BottomSheet'
 import ArabicText from '../ui/text/ArabicText'
 import BookPath from '../grammar/BookPath'
 import CopyButton from '../ui/buttons/CopyButton'
@@ -124,7 +125,10 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
             picked={analyze.data.words.indexOf(selectedWord)}
             practice={practice}
             detail={selectedWord && (
-              <WordCard word={selectedWord} onClose={() => setSelectedWord(null)} onGo={onGo} exclude="nahw" />
+              <BottomSheet label={`${selectedWord.word}: grammar`} onClose={() => setSelectedWord(null)}
+                className="max-h-[var(--sheet-tall)] overflow-y-auto p-3">
+                <WordCard word={selectedWord} onClose={() => setSelectedWord(null)} onGo={onGo} exclude="nahw" />
+              </BottomSheet>
             )}
             more={more}
           />
@@ -144,8 +148,8 @@ function AnalyzeError({ error, onRetry }) {
   )
 }
 
-// `detail` is the opened word's card, drawn right under the grid it was
-// tapped in rather than after the practice block, where a tap looked ignored.
+// `detail` is the opened word's card, a pop-up over the page: closing it leaves the
+// page where it was, whichever of the chart, grid or table opened it.
 function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, detail, more }) {
   const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
   const linked = data.words.some((w) => source(w) !== undefined)
