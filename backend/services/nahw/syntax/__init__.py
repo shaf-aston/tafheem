@@ -20,6 +20,7 @@ from backend.services.core import provenance
 from backend.services.sarf.morphology import as_said
 from backend.services.text.arabic_text import words as split_words
 from backend.services.nahw.syntax import teacher, tree
+from backend.services.nahw.syntax.picture.names import FRAMES
 from backend.services.nahw.syntax.repair import correct
 from backend.services.nahw.syntax.naming import NAMED, roles as name_roles
 from backend.services.text.harakat import CASE_NAME
@@ -113,7 +114,7 @@ def read(sentence: str, picks: list[dict]) -> dict:
                 job, case = ma
                 word.update(role=job or NAMED.harf, case=CASE_NAME[case] if case else None, built=bool(job))
                 if not job:
-                    word["named"] = tree.FRAMES["masdar"]["named_by_word"]["ما"]
+                    word["named"] = FRAMES["masdar"]["named_by_word"]["ما"]
                 word.pop("gap", None)
         for i, (said, word) in enumerate(zip(typed, written)):
             if said != word:  # مَالِيَهْ, read as مَالِيَ: its last column shows the هاء السكت as typed

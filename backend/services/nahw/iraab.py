@@ -30,7 +30,7 @@ from backend.services.nahw import tarkeeb_store
 from backend.services.nahw import tree_columns
 from backend.services.text.harakat import CASE_LETTER, CASE_NAME, no_vowels_typed, typed_case
 from backend.services.nahw.book import case_of, is_object_stem, particle_names, reason, sakt_said, teacher_rules
-from backend.services.nahw.syntax.tree import names_a_sentence as names_a_sentence
+from backend.services.nahw.syntax.picture.names import names_a_sentence
 from backend.services.nahw.syntax.naming import NAMED, role_key
 from backend.services.nahw.syntax.facts.word import is_built
 

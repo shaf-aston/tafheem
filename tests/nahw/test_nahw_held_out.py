@@ -104,7 +104,7 @@ EXPECTED_GOVERNOR = {
     "جَاءَ مَنْ نَجَحَ": {2: None},
 }
 # a command's doer is the hidden أنت, so the noun after it is its object (slot.verb_place); a noun with a
-# pronoun stuck on is definite, so a clause after it is its حال, not a صفة (tree.definite)
+# pronoun stuck on is definite, so a clause after it is its حال, not a صفة (hang.definite)
 EXPECTED_PICTURE = {
     "اكْتُبْ الدَّرْسَ": ["فعل أمر", "مفعول به"],
     "لِيَقُمْ زَيْدٌ": ["لام الأمر", "فعل مضارع للأمر", "فاعل"],
