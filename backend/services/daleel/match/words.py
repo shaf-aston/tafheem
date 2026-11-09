@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import re
 from functools import lru_cache
+from itertools import product
 from typing import Iterator
 
 from backend.services.text import fts
@@ -16,7 +17,15 @@ PROCLITIC = "(?:[وف]?(?:لل|[بلك]?(?:ال)?))"
 ARABIC_LETTER = "ء-يٱ-ۓﭐ-﷿ﹰ-﻿"
 NOT_LETTER = f"(?![a-z{ARABIC_LETTER}])"
 PROCLITIC_AT_START = re.compile(f"^{PROCLITIC}")
+# The same, written out: every way it can be spelled, and the empty one. A
+# short list, so each can be looked back for at a fixed width.
+PROCLITICS = tuple(sorted(
+    {"".join(letters) for size in range(5) for letters in product("وفلبكا", repeat=size)
+     if re.fullmatch(PROCLITIC, "".join(letters))},
+    key=len,
+))
 WORDS = re.compile(f"[a-z{ARABIC_LETTER}]+")
+_ARABIC_LETTER = re.compile(f"[{ARABIC_LETTER}]")
 
 # A short word with a letter joined on that is a word of its own: لما is
 # "when", not ل and ما, and was being passed off as a clean find for ما.
@@ -46,17 +55,38 @@ def pattern(term: str, whole: bool = False) -> re.Pattern:
         # some of them pages of English, and it was 81ms of a search for god.
         found = f"{word}(?<![a-z]{re.escape(term)})"
     elif len(term) < fts.TRIGRAM_MIN:
-        found = f"(?<![{ARABIC_LETTER}]){PROCLITIC}{word}{NOT_LETTER}"
+        # The same order for the same reason: the word, then a look back for
+        # what may be joined on in front of it and for the edge before that.
+        # Opening with the edge, رب for "god" was 60ms of ranking on the server.
+        found = f"{word}(?:{_joined_on_in_front(term)}){NOT_LETTER}"
     else:
         found = word
     return re.compile(found + (NOT_LETTER if whole else ""))
 
 
+def _joined_on_in_front(term: str) -> str:
+    """Behind the term, one of the `PROCLITICS` and before it no Arabic letter."""
+    return "|".join(
+        f"(?<={re.escape(joined + term)})(?<![{ARABIC_LETTER}]{re.escape(joined + term)})"
+        for joined in PROCLITICS
+    )
+
+
 def uses(term: str, text: str, whole: bool = False) -> Iterator[re.Match]:
-    """Each place the term is used as a word in the text. See `pattern`."""
+    """Each place the term is used as a word in the text, as group 1. See `pattern`."""
+    short = has_arabic(term) and len(term) < fts.TRIGRAM_MIN
     for found in pattern(term, whole).finditer(text):
-        if text[found.start():found.end(1)].lstrip("وف") not in OWN_WORDS:
+        if _as_written(text, found, short).lstrip("وف") not in OWN_WORDS:
             yield found
+
+
+def _as_written(text: str, found: re.Match, short: bool) -> str:
+    """The word found, and for a short one what is joined on in front of it."""
+    start = found.start(1)
+    if short:
+        while start > 0 and _ARABIC_LETTER.match(text[start - 1]):
+            start -= 1
+    return text[start:found.end(1)]
 
 
 def first_use(term: str, text: str) -> int:
