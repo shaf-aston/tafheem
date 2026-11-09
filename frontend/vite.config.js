@@ -6,6 +6,7 @@ import { bootShellPlugin } from './vite/bootShell'
 import { growBooks } from './vite/growBooks'
 import { offline } from './vite/offline'
 import { preloadFont } from './vite/preloadFont'
+import { seo } from './vite/seo'
 import vercel from '../vercel.json'
 
 // The landing page is the front door, so it is index.html and needs no rewrite.
@@ -32,7 +33,7 @@ function rewrite(req, _res, next) {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), prettyUrls, preloadFont, bootShellPlugin, growBooks, offline],
+  plugins: [react(), tailwindcss(), prettyUrls, preloadFont, bootShellPlugin, growBooks, offline, seo],
   build: {
     rollupOptions: {
       // A second real page, not a route: the app has no router, and the
