@@ -1,0 +1,12 @@
+{
+  "package": "tafheem.app",
+  "language": "en-GB",
+  "track": "alpha",
+  "key_file": "../play-key.json",
+  "bundle": "../app-release-bundle.aab",
+  "icon": "../store_icon.png",
+  "feature_graphic": "feature-graphic.png",
+  "screenshots": ["1-home.png", "2-quran.png", "3-nahw.png", "4-mem.png", "5-hadith.png", "6-dict.png"],
+  "contact_email": "shafeinhashmi@gmail.com",
+  "privacy_url": "https://tafheem-app.vercel.app/privacy.html"
+}

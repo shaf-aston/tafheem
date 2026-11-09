@@ -1,0 +1,10 @@
+upload.keystore
+signing.env
+*.aab
+*.apk
+*.idsig
+build/
+app/build/
+.gradle/
+local.properties
+play-key.json
