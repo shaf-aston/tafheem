@@ -20,10 +20,12 @@ make both slower to read.
 from __future__ import annotations
 
 import contextvars
+import gzip
 import json
 import logging
 import logging.handlers
 import re
+import shutil
 import threading
 from datetime import datetime
 from pathlib import Path
@@ -146,7 +148,8 @@ _searches_from: str | None = None
 def note_search(tab: str, q: str, hits: list[str], **fields: Any) -> None:
     """One search someone typed and the ids it returned, best first, to the
     search log (`search_log_path`). Kept whole, never rotated away: these are
-    real questions, the material a yardstick or training set is made from."""
+    real questions, the material a yardstick or training set is made from.
+    Today's file is plain; each finished day is gzipped beside it (~10x smaller)."""
     global _searches_from
     path = get_settings().search_log_path
     if path != _searches_from:
@@ -157,13 +160,23 @@ def note_search(tab: str, q: str, hits: list[str], **fields: Any) -> None:
                     old.close()
                 full = (_PROJECT_ROOT / path).resolve()
                 full.parent.mkdir(parents=True, exist_ok=True)
-                handler = logging.FileHandler(full, encoding="utf-8")
+                # backupCount 0: no finished day is ever deleted.
+                handler = logging.handlers.TimedRotatingFileHandler(full, when="midnight", backupCount=0, encoding="utf-8")
+                handler.namer = lambda name: name + ".gz"
+                handler.rotator = _gzip
                 handler.setFormatter(logging.Formatter("%(message)s"))
                 _searches.addHandler(handler)
                 _searches_from = path
     line = {"at": datetime.now().astimezone().isoformat(timespec="seconds"), "tab": tab, "q": q, "hits": hits}
     line.update({k: _jsonable(v) for k, v in fields.items() if v not in (None, "", ())})
-    _searches.info(json.dumps(line, ensure_ascii=False))
+    _searches.info(json.dumps(line, ensure_ascii=False, separators=(",", ":")))
+
+
+def _gzip(source: str, dest: str) -> None:
+    """A finished day of the search log, compressed in place of the plain file."""
+    with open(source, "rb") as plain, gzip.open(dest, "wb") as packed:
+        shutil.copyfileobj(plain, packed)
+    Path(source).unlink()
 
 
 def note_page(event: dict[str, Any]) -> None:

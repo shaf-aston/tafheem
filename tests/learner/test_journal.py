@@ -9,8 +9,10 @@ Run: python -m pytest tests/learner/test_journal.py
 """
 from __future__ import annotations
 
+import gzip
 import json
 import threading
+from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
@@ -237,3 +239,14 @@ def test_a_badly_shaped_page_id_is_replaced_and_the_new_one_used_throughout(jour
     made = resp.headers["X-Reading-Id"]
     assert made != "has spaces/and slashes"
     assert {row["reading"] for row in route_lines(journal_file, "check.")} == {made}
+
+
+def test_a_finished_day_of_searches_is_gzipped_and_kept():
+    journal.note_search("hadith", "patience", ["bukhari:1"])
+    journal._searches.handlers[0].doRollover()
+    journal.note_search("hadith", "anger", ["muslim:2"])
+    plain = Path(get_settings().search_log_path)
+    packed = list(plain.parent.glob(plain.name + ".*.gz"))
+    assert len(packed) == 1 and not list(plain.parent.glob(plain.name + ".*[0-9]"))
+    assert json.loads(gzip.decompress(packed[0].read_bytes()))["q"] == "patience"
+    assert json.loads(plain.read_text(encoding="utf-8"))["q"] == "anger"
