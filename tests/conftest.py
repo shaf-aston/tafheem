@@ -18,6 +18,7 @@ from backend.services.learner import journal
 def _journal_writes_to_tmp(tmp_path, monkeypatch):
     monkeypatch.setattr(get_settings(), "journal_path", str(tmp_path / "journal.jsonl"))
     monkeypatch.setattr(journal, "_built_from", None)
+    monkeypatch.setattr(get_settings(), "search_log_path", str(tmp_path / "searches.jsonl"))
     yield
 
 

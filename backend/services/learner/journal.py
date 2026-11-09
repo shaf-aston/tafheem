@@ -137,6 +137,35 @@ def note(kind: str, **fields: Any) -> None:
     _journal.info(json.dumps(line, ensure_ascii=False))
 
 
+_searches = logging.getLogger("app.searches")
+_searches.propagate = False
+_searches.setLevel(logging.INFO)
+_searches_from: str | None = None
+
+
+def note_search(tab: str, q: str, hits: list[str], **fields: Any) -> None:
+    """One search someone typed and the ids it returned, best first, to the
+    search log (`search_log_path`). Kept whole, never rotated away: these are
+    real questions, the material a yardstick or training set is made from."""
+    global _searches_from
+    path = get_settings().search_log_path
+    if path != _searches_from:
+        with _configure_lock:
+            if path != _searches_from:
+                for old in list(_searches.handlers):
+                    _searches.removeHandler(old)
+                    old.close()
+                full = (_PROJECT_ROOT / path).resolve()
+                full.parent.mkdir(parents=True, exist_ok=True)
+                handler = logging.FileHandler(full, encoding="utf-8")
+                handler.setFormatter(logging.Formatter("%(message)s"))
+                _searches.addHandler(handler)
+                _searches_from = path
+    line = {"at": datetime.now().astimezone().isoformat(timespec="seconds"), "tab": tab, "q": q, "hits": hits}
+    line.update({k: _jsonable(v) for k, v in fields.items() if v not in (None, "", ())})
+    _searches.info(json.dumps(line, ensure_ascii=False))
+
+
 def note_page(event: dict[str, Any]) -> None:
     """One line the page reported about itself, through POST /api/journal.
 
