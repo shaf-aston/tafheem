@@ -12,8 +12,14 @@ export function rowAt(list) {
   return lo + 1
 }
 
-/** Put an ayah's row at the top of the list, moving the list and not the page. */
-export function showRow(list, ayah) {
+/** Put an ayah's row at the top of the list, `into` px down it, moving the list and not the page. */
+export function showRow(list, ayah, into = 0) {
   const row = list?.children[ayah - 1]
-  if (row) list.scrollTop = row.offsetTop
+  if (row) list.scrollTop = row.offsetTop + into
+}
+
+/** Where the list is now, as a row and how far into it: what showRow puts back, whatever the rows around it do. */
+export function lookingAt(list) {
+  const row = rowAt(list)
+  return { ayah: row, into: Math.max(0, list.scrollTop - (list.children[row - 1]?.offsetTop ?? 0)) }
 }
