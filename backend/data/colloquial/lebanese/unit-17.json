@@ -312,7 +312,7 @@
           "prompt": "Put these words in a natural order: \"هيدا / غالي / كتير\"",
           "words": [
             "هيدا",
-            "غَالِي",
+            "غالي",
             "كتير"
           ],
           "answer": "هيدا غالي كتير",

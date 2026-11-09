@@ -263,6 +263,7 @@
           "prompt": "Coffee with no sugar at all.",
           "answer": "قَهْوَة بِدُون سُكّر أَبَدِن",
           "accepted": [
+            "قَهْوَة بِدُون سُكّر أَبَدِن",
             "bidoon sukkar aban",
             "قَهْوَة بِدُون سُكّر"
           ],
@@ -318,12 +319,13 @@
           "prompt": "Order: I like my coffee bitter.",
           "answer": "بَحِبّ الْقَهْوَة مُرّة",
           "accepted": [
+            "بَحِبّ الْقَهْوَة مُرّة",
             "ba7ibb il qahwa murra"
           ],
           "words": [
-            "بحب",
-            "القهوة",
-            "مرة"
+            "بَحِبّ",
+            "الْقَهْوَة",
+            "مُرّة"
           ],
           "too_formal": {
             "item": "أحب",
@@ -337,12 +339,13 @@
           "prompt": "Order: A big cup of coffee.",
           "answer": "كُوب قَهْوَة كْبِير",
           "accepted": [
+            "كُوب قَهْوَة كْبِير",
             "koob qahwa kbeer"
           ],
           "words": [
-            "كوب",
-            "قهوة",
-            "كبير"
+            "كُوب",
+            "قَهْوَة",
+            "كْبِير"
           ],
           "too_formal": {
             "item": "فنجان",
@@ -496,6 +499,7 @@
           "prompt": "Do you have an English menu?",
           "answer": "عِنْدُك مِنْيُو بِالإِنْجِلِيزِي؟",
           "accepted": [
+            "عِنْدُك مِنْيُو بِالإِنْجِلِيزِي؟",
             "3indak menu"
           ],
           "too_formal": {
@@ -530,12 +534,13 @@
           "prompt": "What do you have today?",
           "answer": "شنو عِنْدُك الْيُوم؟",
           "accepted": [
+            "شنو عِنْدُك الْيُوم؟",
             "shuno 3indak il yoom?"
           ],
           "words": [
             "شنو",
-            "عندك",
-            "اليوم"
+            "عِنْدُك",
+            "الْيُوم"
           ],
           "too_formal": {
             "item": "ماذا",
@@ -646,6 +651,7 @@
           "prompt": "هَل انْت جَاهِز تِطْلُب؟",
           "answer": "أَي، بِدِّي المندي",
           "accepted": [
+            "أَي، بِدِّي المندي",
             "أَي، بِدِّي"
           ],
           "too_formal": {
@@ -675,6 +681,7 @@
           "prompt": "Without onion please",
           "answer": "بِدُون بَصَل، لَو سَمَحْت",
           "accepted": [
+            "بِدُون بَصَل، لَو سَمَحْت",
             "bidoon basal, law samaht"
           ],
           "too_formal": {
@@ -708,10 +715,11 @@
           "prompt": "I want mandi with bread",
           "answer": "بِدِّي المندي مع خبز",
           "accepted": [
+            "بِدِّي المندي مع خبز",
             "biddi il mandi ma3 khubz"
           ],
           "words": [
-            "بدي",
+            "بِدِّي",
             "المندي",
             "مع",
             "خبز"
@@ -852,6 +860,7 @@
           "prompt": "The bill, please.",
           "answer": "الْحِسَاب، لَو سَمَحْت",
           "accepted": [
+            "الْحِسَاب، لَو سَمَحْت",
             "il 7isab, law samaht"
           ],
           "too_formal": {
@@ -885,12 +894,13 @@
           "prompt": "The bill, please.",
           "answer": "الْحِسَاب، لَو سَمَحْت",
           "accepted": [
+            "الْحِسَاب، لَو سَمَحْت",
             "il 7isab, law samaht"
           ],
           "words": [
-            "الحساب",
-            "لو",
-            "سمحت"
+            "الْحِسَاب",
+            "لَو",
+            "سَمَحْت"
           ],
           "too_formal": {
             "item": "الفاتورة",

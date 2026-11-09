@@ -366,7 +366,7 @@
           "prompt": "Put these words in a natural order: \"هذا / غالي / وايد\"",
           "words": [
             "هذا",
-            "غَالِي",
+            "غالي",
             "وايد"
           ],
           "answer": "هذا غالي وايد",
@@ -836,8 +836,8 @@
           "type": "reorder",
           "prompt": "Put these words in a natural order: \"الأجرة / بكم؟\"",
           "words": [
-            "الأجرة؟",
-            "بكم"
+            "الأجْرَة؟",
+            "بِكَم"
           ],
           "answer": "بِكَم الأجْرَة؟",
           "accepted": [

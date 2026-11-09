@@ -413,8 +413,8 @@
           "type": "reorder",
           "prompt": "Put these words in order: \"سميتك / شنو\".",
           "words": [
-            "سميتك",
-            "شنو"
+            "سْمِيتَك",
+            "شْنُو"
           ],
           "answer": "شْنُو سْمِيتَك؟",
           "accepted": [
@@ -856,9 +856,9 @@
           "type": "reorder",
           "prompt": "Put these words in order: \"تقدري / تعاوني / واش\".",
           "words": [
-            "تعاوني",
-            "واش",
-            "تقدري"
+            "تْعَاوْنِي",
+            "وَاش",
+            "تْقْدْرِي"
           ],
           "answer": "وَاش تْقْدْرِي تْعَاوْنِي؟",
           "accepted": [
@@ -1273,7 +1273,7 @@
           "prompt": "Put these words in order: \"غدا / نشوفك\".",
           "words": [
             "غَدَّا",
-            "نشوفك"
+            "نْشُوفَك"
           ],
           "answer": "نْشُوفَك غَدَّا",
           "accepted": [
@@ -1694,9 +1694,9 @@
           "type": "reorder",
           "prompt": "Put these words in order: \"كاين / فين / السوق\".",
           "words": [
-            "السوق",
-            "فين",
-            "كاين"
+            "السُّوق",
+            "فِين",
+            "كَايِن"
           ],
           "answer": "فِين كَايِن السُّوق؟",
           "accepted": [

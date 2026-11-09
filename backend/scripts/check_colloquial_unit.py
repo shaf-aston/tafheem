@@ -4,8 +4,13 @@
 
 Prints "ok" or every fault, so a unit can be fixed before it is added to dialects.json.
 """
+import io
 import json
 import sys
+
+# Ensure UTF-8 output encoding on Windows
+if sys.platform == "win32":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 from backend.config import data_path
 from backend.services.colloquial import loader
