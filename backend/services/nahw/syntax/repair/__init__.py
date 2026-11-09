@@ -94,6 +94,7 @@ PASSES = (
 def correct(words: list[str], tokens: list[dict]) -> None:
     parsed = {t["id"]: (t["head"], t["rel"]) for t in tokens}  # a tree: every word reaches the root (decode)
     book_links(tokens)
+    untangle(tokens, parsed)
     if len(bases := base_tokens(words, tokens)) == len(words):
         for word, base in zip(words, bases):
             base["typed"] = word
@@ -102,13 +103,14 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         for repair, kind in PASSES:
             s.refresh()  # a pass may change more than links (a retag): the next reads the tokens as it left them
             repair(*reads[kind])
-    untangle(tokens, parsed)
+            untangle(tokens, parsed)  # the next pass walks up the links, and a walk round a loop never ends
 
 
 def untangle(tokens: list[dict], parsed: dict[int, tuple[int, str]]) -> None:
     """Each repair moves one link; two of them may close a loop (a word under a word under
     itself), which no sentence has: every word hangs on a word that reaches the root. A word
-    left in a loop takes back the parser's own link, or hangs on the root when that loops too."""
+    left in a loop takes back the parser's own link, or hangs on the root when that loops too.
+    Runs after every repair, so none reads a loop (وهو الله لا إله إلا هو froze in excepted_from)."""
     by_id = {t["id"]: t for t in tokens}
 
     def looped(token: dict) -> bool:

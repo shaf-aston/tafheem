@@ -1,4 +1,7 @@
-"""Cost and robustness at the input edge: a sentence is capped by words, and one huge word is just one gap."""
+"""Cost and robustness at the input edge: a sentence is capped by words, one huge word is just one gap,
+and no sentence reads forever."""
+import threading
+
 import pytest
 from fastapi import HTTPException
 
@@ -6,6 +9,24 @@ from backend.config import get_settings
 from backend.services.nahw.syntax import teacher, tree
 from backend.utils import arabic_sentence
 from tests.nahw.test_naming import named, token
+from tests.nahw_helpers import analyze, needs_parser
+
+READ_CAP_SECONDS = 60  # each reads in under 2 s; a walk round a loop never returns
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence", [
+    "وَهُوَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ",  # 28:70: two repairs hung وَ and اللَّهُ on each other, and the إلا walk went round
+    "هُوَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ",  # nearest case: no وَ, never looped
+])
+def test_a_loop_the_repairs_close_is_undone_before_the_next_repair_walks_it(sentence):
+    analyze("بِسْمِ اللَّهِ")  # the models load outside the cap
+    read = {}
+    worker = threading.Thread(target=lambda: read.update(cards=analyze(sentence)["words"]), daemon=True)
+    worker.start()
+    worker.join(READ_CAP_SECONDS)
+    assert "cards" in read, "still reading"
+    assert [c["role"] for c in read["cards"]] == ["مبتدأ", "خبر", "حرف", "اسم لا", "حرف", "بدل"]
 
 
 def test_a_sentence_over_the_word_limit_is_refused_and_the_limit_itself_is_allowed():

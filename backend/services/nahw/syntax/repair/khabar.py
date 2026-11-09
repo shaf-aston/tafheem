@@ -186,7 +186,7 @@ def told_of_jar(s: Sentence) -> None:
     for token in tokens if s.verbless else ():
         majrur = s.head(token)
         jar = s.head(majrur) if majrur else None
-        if (token["rel"] == "SBJ" and majrur["rel"] == "OBJ" and jar and is_preposition(jar)
+        if (jar and token["rel"] == "SBJ" and majrur["rel"] == "OBJ" and is_preposition(jar)
                 and noun_tagged(majrur) and not works_as_verb(majrur)):
             s.relink(token, jar["id"], token["rel"])
 
