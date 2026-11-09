@@ -367,6 +367,9 @@ class Journal(BaseSettings):
     # Page batches are capped by event count and wire size so one runaway session cannot fill the journal with an unbounded POST.
     journal_page_events_max: int = Field(default=50, gt=0)
     journal_page_bytes_max: int = Field(default=65536, gt=0)
+    # Every search people type and what came back (journal.note_search). Never rotated: it is the
+    # record of real questions that a search yardstick, and later any training, is built from.
+    search_log_path: str = "logs/searches.jsonl"
 
 
 class Daleel(BaseSettings):

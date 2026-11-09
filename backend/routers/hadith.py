@@ -36,6 +36,7 @@ from backend.services.hadith import search as hadith_search
 from backend.services.hadith.rijal import family
 from backend.services.hadith.rijal import store as rijal
 from backend.services.hadith.usul import store as usul
+from backend.services.learner import journal
 from backend.utils import search_query
 
 texts = APIRouter(prefix="/api/hadith", tags=["hadith"])
@@ -43,6 +44,8 @@ narrators = APIRouter(prefix="/api/rijal", tags=["rijal"])
 rulings = APIRouter(prefix="/api/usul", tags=["usul"])
 
 _MAX_COLLECTIONS = 10
+# How many of a search's hits the search log keeps: the yardstick scores the top 10.
+_LOGGED_HITS = 10
 CollectionName = Annotated[str, StringConstraints(max_length=60)]
 
 
@@ -103,6 +106,8 @@ async def search(
     chosen = tuple(dict.fromkeys(c for c in collections[:_MAX_COLLECTIONS] if c in known))
 
     found = await asyncio.to_thread(hadith_search.search, query, None, chosen)
+    journal.note_search("hadith", query, [f"{h.collection}:{h.number}" for h in found.hits[:_LOGGED_HITS]],
+                        collections=chosen, corrected=found.corrected)
     return HadithSearchResponse(
         query=query,
         collections=list(found.collections),

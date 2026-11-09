@@ -6,6 +6,7 @@ they mean and do not change answer when a collection is fetched.
 """
 from __future__ import annotations
 
+import json
 import sqlite3
 import sys
 from pathlib import Path
@@ -15,6 +16,7 @@ from fastapi.testclient import TestClient
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
+from backend.config import get_settings  # noqa: E402
 from backend.main import app  # noqa: E402
 from backend.scripts.hadith.build_hadith_index import _SCHEMA, index_text  # noqa: E402
 from backend.scripts.hadith import build_hadith_meaning  # noqa: E402
@@ -217,6 +219,14 @@ def test_router_search(db, client):
     body = resp.json()
     assert body["ready"] is True
     assert [h["number"] for h in body["hits"]] == [3]
+
+
+def test_every_search_is_kept_in_the_search_log_with_what_it_found(db, client):
+    client.get("/api/hadith/search", params={"q": "light"})
+    client.get("/api/hadith/search", params={"q": "light"})
+    lines = [json.loads(line) for line in Path(get_settings().search_log_path).read_text(encoding="utf-8").splitlines()]
+    assert len(lines) == 2  # a repeated search is a second real search, kept as one
+    assert lines[0]["tab"] == "hadith" and lines[0]["q"] == "light" and lines[0]["hits"][0].endswith(":3")
 
 
 def test_router_search_with_no_query_says_ready_without_searching(db, client):
