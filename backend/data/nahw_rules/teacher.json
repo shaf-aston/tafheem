@@ -55,7 +55,7 @@
   "nun_on": {"emphasis": "الفتح", "women": "السكون"},
   "compound_on": {"both": "فتح الجزأين", "one": "الفتح"}, "_compound_on": "A compound number (repair.compound_number): ثلاثة عشر is built on the fatha of both parts, the عشر after اثنا on its own fatha (signs._noun_sign).",
   "la_jins_on": {"vowel": "الفتح", "dual": "الياء", "sound_plural": "الياء", "on_alef": "الفتح المقدر على الألف"},
-  "condition": {"_comment": "The part names (فعل الشرط، جواب الشرط) are roles.json frames.condition; `is` says one on a card.", "is": "وهو {name}", "jazm": "{part} مجزوم", "by_family": {"jazm": {"place": "{part} في محل جزم", "ties": {"ف": "والفاء رابطة لجواب الشرط"}}, "ghair_amila_other": {"place": "{part}، وجملته لا محل لها من الإعراب", "ties": {"ل": "واللام واقعة في جواب الشرط"}, "subject": "وخبره محذوف وجوبًا تقديره موجود"}, "zarf_zaman": {"place": {"verb": "{part}، وجملته في محل جر بالإضافة", "answer": "{part}، وجملته لا محل لها من الإعراب"}, "ties": {"ف": "والفاء رابطة لجواب الشرط"}}}},
+  "condition": {"_comment": "The part names (فعل الشرط، جواب الشرط) are roles.json frames.condition; `is` says one on a card.", "is": "وهو {name}", "jazm": "{part} مجزوم", "by_family": {"jazm": {"place": "{part} في محل جزم", "ties": {"ف": "والفاء رابطة لجواب الشرط"}}, "ghair_amila_other": {"place": {"verb": "وجملة الشرط لا محل لها من الإعراب", "answer": "{part}، وجملته لا محل لها من الإعراب"}, "ties": {"ل": "واللام واقعة في جواب الشرط"}, "subject": "وخبره محذوف وجوبًا تقديره موجود"}, "zarf_zaman": {"place": {"verb": "وجملة الشرط في محل جر بالإضافة", "answer": "{part}، وجملته لا محل لها من الإعراب"}, "ties": {"ف": "والفاء رابطة لجواب الشرط"}}}},
   "tense": {"p": "فعل ماضٍ", "c": "فعل أمر", "i": "فعل مضارع"},
   "passive": "مبني للمجهول",
   "assumed": {

@@ -503,6 +503,12 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
             job_of[token["id"]], place_of[token["id"]] = after_waw["job"], in_place(after_waw["case"])
             name_of[waw["id"]] = after_waw["waw"]
             framed.add(token["id"])
+    # فَلْيَتَّقِ after الدِّينِ: a conjunction written onto the verb joins its sentence to the one before
+    # (عطف جملة), it does not describe the noun beside it
+    def joined_on(token: dict) -> bool:
+        return token["id"] in typed_at and any(
+            piece["before"] and is_one(piece["form"], "atf") for piece in named[typed_at[token["id"]]].get("attached", []))
+
     # يَحْمِلُ حَقِيبَةً after رَجُلًا, كَأَنَّ رَأْسَهُ زَبِيبَةٌ after حَبَشِيٌّ, يَرْكُضُ after جَاءَ الطَّالِبُ
     after_noun = FRAMES["clause_after_noun"]
     described: dict[int, dict] = {}  # the noun each such sentence describes, by the sentence's id
@@ -510,7 +516,8 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
         head = by_id.get(token["head"])
         if (token["rel"] != "MOD" or not head or token["id"] in place_of or token["id"] < head["id"]
                 or job_of[token["id"]] not in (None, NAMED.fil, NAMED.harf)
-                or not (is_verb(token) or family_of[token["id"]] == "inna")):
+                or not (is_verb(token) or family_of[token["id"]] == "inna")
+                or joined_on(token)):
             continue
         if not noun_tagged(head):  # on the verb: the noun it describes is the verb's, just before it
             head = next((t for t in reversed(drawn) if t["head"] == head["id"] and t["id"] < token["id"]
@@ -629,7 +636,7 @@ def build(words: list[str], tokens: list[dict], named: list[dict]) -> dict:
                 ties.append(_take(holder, tied))
         verb_case, answer_case = condition.get("verb_case"), condition["case"] if ties else None
         # لولا زيدٌ: the noun is a مبتدأ, no فعل الشرط; the answer is جواب لولا
-        verb_job = None if condition.get("subject") else condition["verb"]
+        verb_job = None if condition.get("subject") else condition.get("verb_named") or condition["verb"]
         for unit, job, case in ((verb, verb_job, verb_case), (answer, condition.get("answer_named") or condition["answer"], answer_case)):
             job_of[unit["id"]] = job
             place_of[unit["id"]] = in_place(case) if case else said["no_place"]

@@ -411,6 +411,15 @@ def _emphasis_lam(tokens: list[dict], s: facts.Sentence) -> None:
             token["reading"] = {"family": "ghair_amila_other", "named": named["ل"], "kind": "harf", "book": None}
 
 
+def _qad_names_its_sense(tokens: list[dict], s: facts.Sentence) -> None:
+    """فَقَدِ اسْتَكْمَلَ: قَدْ before a past verb is the particle of تحقيق (data: ghair_amila_other
+    `before_past`). Before a present verb it is تقليل or توقع by the meaning, so it keeps its plain name."""
+    named = book_map("ghair_amila_other", "before_past")
+    for token in tokens:
+        if (name := named.get(book_spelling(token["lemma"]))) and facts.reading(token) in (None, "ghair_amila_other")                 and (after := facts.next_word(token, s)) and facts.is_verb(after) and after.get("asp") == "p":
+            token["reading"] = {"family": "ghair_amila_other", "named": name, "kind": "harf", "book": None}
+
+
 def _emphasis_lam_frees_its_word(tokens: list[dict]) -> None:
     """إِنَّ هَذَا لَسِحْرٌ، إِنَّ اللَّهَ لَغَفُورٌ: the لام of emphasis (_emphasis_lam) governs nothing, so
     a place the parser gave it (here خبر إنّ) is the place of the word it is written onto, and the لام
@@ -555,6 +564,7 @@ def stamp(tokens: list[dict]) -> None:
             token.update(retag)
     _merged(tokens, s)
     _emphasis_lam(tokens, s)
+    _qad_names_its_sense(tokens, s)
     _emphasis_lam_frees_its_word(tokens)
     _hasr_frees_its_words(tokens)
     _negation_settles_its_words(tokens)

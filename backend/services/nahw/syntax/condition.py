@@ -93,11 +93,11 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
             span.append(k)
         verbs = [k for k in span if named[k] == NAMED.fil]
         tied = [(k, letter) for k in span if (letter := next((t for t in frame["ties"] if t in before[k]), None))]
-        # a tied verb first; else any other word the tying letter is written on (فَلَهُ، فَإِنَّ، فَهُوَ، فَلَا):
-        # a noun sentence or a particle is an answer whatever follows, a plain past verb only
-        # where nothing shares its letters with a relative or a question word
-        pick = next(((k, t) for k, t in tied if k in verbs and (not frame["shared"] or needs_the_tie(frame, k))), None) or next(
-            ((k, t) for k, t in tied if k not in verbs), None)
+        # the first word the tying letter is written on is the answer (فَلَهُ، فَإِنَّ، فَهُوَ، فَلَا، فَقَدْ):
+        # a noun sentence or a particle is one whatever follows, a plain past verb only where nothing
+        # shares its letters with a relative or a question word. A later tied clause is joined on to
+        # it (فَقَدِ اسْتَكْمَلَ ... فَلْيَتَّقِ), it does not replace it
+        pick = next(((k, t) for k, t in tied if k not in verbs or not frame["shared"] or needs_the_tie(frame, k)), None)
         if pick:
             answer, (tie_at, tie) = clause_head(pick[0]), pick
         else:

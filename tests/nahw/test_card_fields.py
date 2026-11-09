@@ -241,7 +241,7 @@ def test_word_types_are_the_pages():
     ("إِنْ تَدْرُسْ تَنْجَحْ", 2, "جواب الشرط مجزوم"),
     # لو governs nothing: its clauses have no place, and a لام ties on its answer
     ("لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ", 0, "حرف شرط غير جازم"),
-    ("لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ", 1, "فعل الشرط، وجملته لا محل لها"),
+    ("لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ", 1, "وجملة الشرط لا محل لها"),
     ("لَوْ جَاءَ زَيْدٌ لَأَكْرَمْتُهُ", 3, "واللام واقعة في جواب الشرط، وهو جواب الشرط"),
     ("إِنَّ الطَّالِبَ مُجْتَهِدٌ", 0, "ناسخ")])  # nearest case: إنّ before its noun
 def test_a_verb_after_a_conditional_particle_makes_it_a_condition(sentence: str, index: int, said: str):

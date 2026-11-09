@@ -94,7 +94,7 @@ def test_the_waw_before_a_condition_stands_at_its_front_and_the_answer_holds_its
         first = first["children"][0]
     assert top["label"] == "جُمْلَةٌ شَرْطِيَّةٌ" and first["role"] == "حرف عطف"
     answer = next(n for n in top["children"] if n.get("role") == "جواب الشرط")
-    assert [n.get("role") for n in answer["children"]] == ["حرف", "فعل", "مفعول مطلق"]
+    assert [n.get("role") for n in answer["children"]] == ["حرف تحقيق", "فعل", "مفعول مطلق"]
 
 
 @needs_parser
