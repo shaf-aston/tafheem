@@ -1,11 +1,11 @@
 # Play Store listing (paste into Play Console, Grow, Store listing)
 
-**App name** (30 max): Tafheem: Quran Word by Word
+**App name** (30 max): Tafheem: Quran Grammar & I'rab
 
-**Short description** (80 max): Learn Quranic Arabic word by word: i'rab, roots, nahw, sarf, hifz checker.
+**Short description** (80 max): I'rab of every Quran word: nahw, sarf, roots. Plus a hifz mistake checker.
 
 **Full description:**
-Understand the Quran word by word, in the Arabic you hear in salah.
+Quran grammar, word by word: the i'rab, root and meaning of every word you recite in salah.
 
 - Quran word by word: translation, i'rab (grammar) of every word, and tafsir.
 - Arabic grammar (nahw): paste any sentence, see each word's role and ending.
