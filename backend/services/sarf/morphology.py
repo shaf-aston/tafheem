@@ -636,6 +636,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [oath]
         if jarred := _jarred_ma(evidence):
             ranked = [jarred]
+        if sister := _inna_short_me(evidence):
+            ranked = [sister]
         if answer := _answer_command(tokens[:i], token, evidence, ranked):
             ranked = [answer]
         elif not _agreeing(evidence, ranked) and (table := _table_verb(token, evidence, ranked)):
@@ -1009,6 +1011,23 @@ def _joined_onto(said: str, found: dict, tag: str, **proclitic) -> dict:
     return {**found, "diac": said + found.get("diac", ""), "atbtok": f"{said}+_" + found.get("atbtok", ""),
             "catib6": "PRT+" + found.get("catib6", ""), "ud": "PART+" + found.get("ud", ""),
             "bw": f"{said}/{tag}+" + found.get("bw", ""), "pattern": said + found.get("pattern", ""), **proclitic}
+
+
+def _inna_short_me(typed: str) -> dict | None:
+    """لَعَلِّي، لَيْتِي: a sister of إنّ takes "me" as ـنِي or a bare ـي (Alfiyya, نون الوقاية: وليتني فشا وليتي ندرا ومع لعل اعكس),
+    and the dictionary may hold only the ـنِي one; the bare ـي is that sister and its ism, never a name or verb."""
+    bare = bare_letters(typed)
+    # a written ي: لَعَلَى is لَ + عَلَى, its ى no pronoun
+    if not (strip_diacritics(typed).endswith("ي") and is_one(bare[:-1], "inna")) or any(
+            r.get("pos") == "verb_pseudo" for r in _analyses(bare)):
+        return None
+    full = next((r for r in _analyses(bare[:-1] + "ني") if r.get("pos") == "verb_pseudo"), None)
+    if not full:
+        return None
+    stem = re.sub("[ً-ِْ]$", "", full["stem"])  # its last vowel gives way to the ي's kasra
+    reading = {**full, "diac": stem + "ِي", "atbtok": full["stem"] + "_+ي", "bw": re.sub(r"\+نِي/", "+ي/", full["bw"]),
+               "pattern": full["pattern"].removesuffix("نِي") + "ي"}
+    return reading if best_reading(typed, [reading]) else None
 
 
 def _added(reading: dict, typed: str) -> int:
