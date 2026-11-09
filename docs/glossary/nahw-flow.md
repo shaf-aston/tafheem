@@ -80,6 +80,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - zarf_is_no_subject: a place or time word hung as the subject of the indefinite noun after it → that noun's شبه جملة, the khabar said first (`backend/services/nahw/syntax/repair/khabar.py`)
 - khabar_said_first: two khabars hung on a pair-governing particle, a place or time word then an indefinite noun → the noun is its name (`backend/services/nahw/syntax/repair/khabar.py`)
 - second_khabar: an adjective hung on an adjective khabar → a second khabar, not its صفة (`backend/services/nahw/syntax/repair/khabar.py`)
+- khabar_is_a_clause: a known noun, a مضاف to a pronoun of the one away, a known raf' noun, no verb (الْعَيْنَانِ زِنَاهُمَا النَّظَرُ) → the last heads the clause, the first two are its subjects: the khabar of the first is the sentence after it, tied by the pronoun (Ibn Aqil V1, page unchecked) (`backend/services/nahw/syntax/repair/khabar.py`)
 - naat_after_its_noun: a word with ال hung before the indefinite word that heads a verbless sentence → the mubtada, that word its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - before_la: a noun hung on لا from before it → the mubtada, the لا clause its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - la_over_its_khabar: لا hung under the word after its noun → لا heads the pair, the noun its اسم, that word its خبر (`backend/services/nahw/syntax/repair/khabar.py`)

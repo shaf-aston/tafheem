@@ -1,7 +1,7 @@
 """The one step that corrects the parser's tokens, in place, before anything reads them.
 Each repair is its own module, run in the order below; `naming` and everything after only read.
 
-    book links → typed words → a built ظرف that stays one → a compound number → منذ before a noun → jarr after a مضاف → a plural's nunless مضاف → لام الابتداء → مَنْ that asks → مَنْ before its verb → كم/ماذا before a verb with no object → a question noun that is كان's khabar or اسم → a noun added to a verb → an excepting word after the doer → the first object owed → subject clash → a known noun described → a name told to → a doer said again → كان's raf' khabar → كان's fronted nasb khabar → كان's nasb khabar after its اسم → إنّ's nasb object → إنّ's second khabar → ظنّ's two objects → praise's تمييز → the doer first where no case shows → doer after the object → doer last → a second doer to the outer verb → verb under its fronted object → object after tanween → object past verb → a relative owed to its verb → verb under يا → praying noun → times counted → object of a plain noun → an elative's تمييز → indefinite after a definite opener → a relative that tells a known opener → noun told of by a jar → second khabar → noun before لا → حصر khabar → described doer → و هو + verb → an oath over a relative or a noun → أمّا and its answer → a noun joined after وَلَا → a second raf' noun after the doer → no خبر on a full verb → a na't after the verb's masdar → ابن between names → untied command answering a condition → particle readings → no loop left
+    book links → typed words → a built ظرف that stays one → a compound number → منذ before a noun → jarr after a مضاف → a plural's nunless مضاف → لام الابتداء → مَنْ that asks → مَنْ before its verb → كم/ماذا before a verb with no object → a question noun that is كان's khabar or اسم → a noun added to a verb → an excepting word after the doer → the first object owed → subject clash → a known noun described → a name told to → a doer said again → كان's raf' khabar → كان's fronted nasb khabar → كان's nasb khabar after its اسم → إنّ's nasb object → إنّ's second khabar → ظنّ's two objects → praise's تمييز → the doer first where no case shows → doer after the object → doer last → a second doer to the outer verb → verb under its fronted object → object after tanween → object past verb → a relative owed to its verb → verb under يا → praying noun → times counted → object of a plain noun → an elative's تمييز → indefinite after a definite opener → a relative that tells a known opener → noun told of by a jar → second khabar → a khabar that is a clause → noun before لا → حصر khabar → described doer → و هو + verb → an oath over a relative or a noun → أمّا and its answer → a noun joined after وَلَا → a second raf' noun after the doer → no خبر on a full verb → a na't after the verb's masdar → ابن between names → untied command answering a condition → particle readings → no loop left
 
 A split that does not line up with the typed words keeps only the book's links."""
 from __future__ import annotations
@@ -15,7 +15,7 @@ from backend.services.nahw.syntax.repair.called import called, called_annexes
 from backend.services.nahw.syntax.repair.clause import amma_clause, doer_then_khabar, negated_conjunct, oath_clause
 from backend.services.nahw.syntax.repair.dua import counted_times, dua_clause
 from backend.services.nahw.syntax.repair.hal import elative_describes, hal_clause, naat_beside_its_noun, no_khabar_on_full_verb
-from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, majrur_of_jar, naat_after_its_noun, la_over_its_khabar, zarf_is_no_subject, khabar_said_first, described_doer, elative_specified, hasr_khabar, object_of_noun, relative_khabar, second_khabar, told_of_jar
+from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, majrur_of_jar, naat_after_its_noun, la_over_its_khabar, zarf_is_no_subject, khabar_said_first, described_doer, elative_specified, hasr_khabar, khabar_is_a_clause, object_of_noun, relative_khabar, second_khabar, told_of_jar
 from backend.services.nahw.syntax.repair.nasab import nasab
 from backend.services.nahw.syntax.repair.number import compound_number
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, excepted_after_doer, first_object_owed, name_told_to, repeated_doer, doer_after_object, doer_first, late_doer, outer_doer, kana_subject, kana_fronted_khabar, kana_nasb_khabar, inna_object, inna_second_khabar, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
@@ -74,6 +74,7 @@ def correct(words: list[str], tokens: list[dict]) -> None:
         zarf_is_no_subject(tokens)
         khabar_said_first(tokens)
         second_khabar(tokens)
+        khabar_is_a_clause(tokens)
         naat_after_its_noun(tokens)
         before_la(tokens)
         la_over_its_khabar(tokens)

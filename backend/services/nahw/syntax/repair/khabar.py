@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, is_known, noun_tagged, is_name, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_known, noun_tagged, is_name, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(tokens: list[dict]) -> None:
@@ -17,6 +17,31 @@ def second_khabar(tokens: list[dict]) -> None:
                 and is_participle(head) and is_participle(token) and token.get("stt") == head.get("stt") == "i"
                 and typed_or_parsed_case(token) == typed_or_parsed_case(head)):
             token["head"], token["rel"] = head["head"], "PRD"
+
+
+def khabar_is_a_clause(tokens: list[dict]) -> None:
+    """الْعَيْنَانِ زِنَاهُمَا النَّظَرُ: a known noun, then a مضاف to a pronoun of the one away, then a known raf' noun, with
+    no verb: the khabar of the first is the whole sentence after it (the khabar may be a sentence, tied to its mubtada
+    by a pronoun that goes back to it; Ibn Aqil V1 on الخبر الجملة, page unchecked). The second is that sentence's
+    mubtada and the last its khabar, so the last heads the clause and the first two hang on it as زَيْدٌ أَبُوهُ قَائِمٌ is drawn.
+    The parser makes the second the head and the other two its subjects."""
+    s = Sentence(tokens)
+    for mid in tokens:
+        above = s.head(mid)
+        if not (noun_tagged(mid) and not is_verb(mid) and mid.get("stt") == "c" and (not above or above["pos"] == "PRT")
+                and any(attached_pronoun(k) and is_one(k["form"], "damir_muttasil", "absent") for k in s.kids(mid))):
+            continue
+        subjects = [k for k in s.kids(mid) if k["rel"] == "SBJ" and noun_tagged(k) and not is_verb(k) and is_known(k, s)
+                    and typed_case_of(k) in (None, "u")]
+        first, last = [k for k in subjects if k["id"] < mid["id"]], [k for k in subjects if k["id"] > mid["id"]]
+        if len(first) == len(last) == 1 and not any(is_verb(k) for k in s.kids(mid)):
+            for kid in s.kids(mid):
+                if kid["id"] > last[0]["id"]:
+                    kid["head"] = last[0]["id"]
+            last[0]["head"], last[0]["rel"] = mid["head"], mid["rel"]
+            mid["head"], mid["rel"] = last[0]["id"], "SBJ"
+            first[0]["head"] = last[0]["id"]
+            s = Sentence(tokens)
 
 
 def naat_after_its_noun(tokens: list[dict]) -> None:
