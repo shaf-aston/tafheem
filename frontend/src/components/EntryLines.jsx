@@ -22,8 +22,10 @@ import './entryLines.css'
 
 /** Which line is current. Clamped at both ends, not wrapped: the entry has an end. */
 function useLineCursor(count) {
-  const [i, setI] = useState(0)
-  const go = useCallback((n) => setI(Math.min(Math.max(n, 0), count - 1)), [count])
+  const [at, setAt] = useState(0)
+  // Clamped on every read too: a refetch can leave fewer lines than `at` points past.
+  const i = Math.max(Math.min(at, count - 1), 0)
+  const go = useCallback((n) => setAt(Math.min(Math.max(n, 0), count - 1)), [count])
   const prev = () => go(i - 1)
   const next = () => go(i + 1)
   const onKeyDown = (e) => {
@@ -110,7 +112,7 @@ export function LineSpotlight({ lines, accent }) {
             style={{
               background: n === i
                 ? 'var(--c)'
-                : n < i ? 'color-mix(in srgb, var(--c) 40%, transparent)' : 'var(--border)',
+                : n < i ? 'color-mix(in srgb, var(--c) var(--entry-lines-done-tint), transparent)' : 'var(--border)',
             }}
           />
         ))}
@@ -118,17 +120,20 @@ export function LineSpotlight({ lines, accent }) {
 
       <div className="py-4 space-y-3 text-center">
         <Line line={entryLines(lines[i].arabic)[0]} size="lg" />
-        <button
-          type="button"
-          className="entry-english type-body"
-          data-hidden={hidden}
-          aria-label={hidden ? 'Show the English' : undefined}
-          disabled={!hidden}
-          onClick={() => setShownAt(i)}
-          dir="ltr"
-        >
-          {lines[i].english}
-        </button>
+        {hidden ? (
+          <button
+            type="button"
+            className="entry-english type-body"
+            data-hidden
+            aria-label="Show the English"
+            onClick={() => setShownAt(i)}
+            dir="ltr"
+          >
+            {lines[i].english}
+          </button>
+        ) : (
+          <p className="entry-english type-body" dir="ltr">{lines[i].english}</p>
+        )}
       </div>
 
       <div className="flex items-center justify-between gap-3">

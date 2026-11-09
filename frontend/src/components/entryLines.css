@@ -17,7 +17,7 @@
 .entry-seg:hover { background: var(--surface-hi); }
 .entry-seg[aria-pressed='true'] {
   color: var(--c);
-  background: color-mix(in srgb, var(--c) 16%, transparent);
+  background: color-mix(in srgb, var(--c) var(--entry-lines-selected-tint), transparent);
 }
 /* A verse keeps its gap, so it takes its own row rather than flowing; a flex
    row keeps its number beside the first half instead of on a row of its own. */
@@ -27,7 +27,7 @@
 /* The English re-enters with a short rise each time the line changes. */
 .entry-rise { animation: entry-rise calc(var(--motion-base-ms) * 1ms) ease backwards; }
 @keyframes entry-rise {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(var(--entry-lines-rise)); }
   to   { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) { .entry-rise { animation: none; } }
@@ -40,4 +40,4 @@
   color: var(--text);
   transition: filter calc(var(--motion-base-ms) * 1ms) ease;
 }
-.entry-english[data-hidden='true'] { filter: blur(7px); cursor: pointer; }
+.entry-english[data-hidden='true'] { filter: blur(var(--entry-lines-blur)); cursor: pointer; }

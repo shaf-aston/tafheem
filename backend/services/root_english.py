@@ -11,11 +11,10 @@ per Arabic line, for the view that prints them interleaved. They are separate
 files because a reader with one is not owed the other, and mixing shapes in one
 file would make every reader check which it got.
 
-Two things fill the prose store. A reader pressing the button fills one root.
-The backfill script fills the rest, and can be stopped and started because it
-skips whatever is already here. The lines store is filled by the same script
-(--lines) into the shipped file, and by readers' presses into the kept one.
-Either way an entry is only ever put into English once per shape.
+Only the backfill script fills the prose store, and it can be stopped and
+started because it skips whatever is already here. The lines store is filled by
+the same script (--lines) into the shipped file, and by readers' presses into
+the kept one. Either way an entry is only ever put into English once per shape.
 
 These are caches, not sources: deleting a file loses nothing but the time it
 took to make. The book itself is untouched by any of this.
@@ -124,6 +123,11 @@ def get_lines(root: str, count: int) -> list[str] | None:
     return None
 
 
+def has_shipped_lines(root: str, count: int) -> bool:
+    """Whether the shipped file alone holds this root's lines at this length."""
+    return len(_store(LINES_FILE, _is_lines).get(root) or []) == count
+
+
 def put(root: str, english: str) -> None:
     """Keep this prose English. Only the backfill script makes it, so it goes
     into the shipped file."""
@@ -169,3 +173,8 @@ def _keep(path: Path, keeps, root: str, value) -> None:
 def count() -> int:
     """How many entries have prose English so far."""
     return len(_prose())
+
+
+def count_lines() -> int:
+    """How many roots have shipped line-by-line English so far."""
+    return len(_store(LINES_FILE, _is_lines))

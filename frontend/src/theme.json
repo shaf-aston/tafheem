@@ -69,6 +69,13 @@
     "idle-tint": "40%",
     "hover-tint": "65%"
   },
+  "entry-lines": {
+    "_comment": "The line-by-line views of a Maqayees entry (EntryLines). selected-tint is how much of the card's colour fills the chosen line, done-tint the lines already passed in the one-at-a-time strip, blur the hidden English, rise how far the English climbs as a new line arrives.",
+    "selected-tint": "16%",
+    "done-tint": "40%",
+    "blur": "7px",
+    "rise": "6px"
+  },
   "timeline": {
     "_comment": "The timelines tab: acc-s and acc-l are the saturation and lightness every section hue is drawn at (its accent), ink-l the lightness of text in that hue; then the map's two grounds. Every section wears the tab's own colour, so the Seerah and the unseen sections read as one design.",
     "acc-s": "52%",

@@ -15,7 +15,7 @@ each entry, in chunks the model can read, into data/maqayees/english_lines.json.
 Safe to stop at any point: it skips whatever has already been done, so running
 it again picks up where it left off. Nothing here writes to the book itself.
 
-A run takes hours and nobody is watching it, so one bad answer does not end it; 
+A run takes hours and nobody is watching it, so one bad answer does not end it;
 only a run of them does, which is what a used-up daily allowance looks like.
 
 Which AI it uses is not this script's decision, it is whichever one the app is
@@ -26,6 +26,7 @@ filling the file with failures.
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -46,7 +47,8 @@ def entries_to_do(limit: int | None, by_line: bool) -> list[tuple[str, str | lis
         entry = root_meaning.lookup(root) or {}
         if by_line:
             lines, _ = root_gloss.line_budget(root_gloss.rest_of(entry), sys.maxsize)
-            if lines and root_english.get_lines(root, len(lines)) is None:
+            # The shipped file only: English a reader's press kept still has to ship.
+            if lines and not root_english.has_shipped_lines(root, len(lines)):
                 todo.append((root, lines))
         elif entry.get("body") and not root_english.get(root):
             todo.append((root, entry["body"]))
@@ -67,24 +69,52 @@ def chunks(lines: list[str], budget: int) -> list[list[str]]:
     return groups
 
 
+max_waits = 20  # set from --max-waits
+
+
+def ask_patiently(func, *args):
+    """Call the AI; a rate limit is a wait, never a failure. The per-minute
+    allowance refills, and the backend's own short retries do not outlast it."""
+    for _ in range(max_waits + 1):
+        try:
+            return func(*args)
+        except Exception as exc:  # noqa: BLE001
+            text = str(exc)
+            if "rate_limit" not in text and "429" not in text:
+                raise
+            found = re.search(r"try again in ([\d.]+)(ms|s)", text)
+            seconds = (float(found[1]) / (1000 if found[2] == "ms" else 1)) if found else 15
+            print(f"\nrate limit, waiting {seconds + 1:.1f}s", flush=True)
+            time.sleep(seconds + 1)
+    raise RuntimeError("still rate limited after waiting")
+
+
 def make_prose(root: str, body: str) -> None:
-    english = str(ai_service.explain_root_entry(root, body).get("english", "")).strip()
+    english = str(ask_patiently(ai_service.explain_root_entry, root, body).get("english", "")).strip()
     if not english:
         raise ValueError("the AI answered with nothing")
     root_english.put(root, english)
 
 
+def english_for(root: str, chunk: list[str]) -> list[str]:
+    """One English line per line of `chunk`. A model that keeps miscounting a
+    chunk is asked about each half instead, down to single lines."""
+    for _ in range(2):  # a miscounted answer gets one more go
+        got = ask_patiently(ai_service.explain_root_entry_lines, root, chunk).get("lines")
+        if (isinstance(got, list) and len(got) == len(chunk)
+                and all(isinstance(g, str) and g.strip() for g in got)):
+            return got
+    if len(chunk) == 1:
+        raise ValueError("could not line up a single line")
+    print(f"\nsplit {len(chunk)} lines", flush=True)
+    half = len(chunk) // 2
+    return english_for(root, chunk[:half]) + english_for(root, chunk[half:])
+
+
 def make_lines(root: str, lines: list[str]) -> None:
     english: list[str] = []
     for chunk in chunks(lines, get_settings().root_entry_truncate_chars):
-        for _ in range(2):  # a miscounted answer gets one more go
-            got = ai_service.explain_root_entry_lines(root, chunk).get("lines")
-            if (isinstance(got, list) and len(got) == len(chunk)
-                    and all(isinstance(g, str) and g.strip() for g in got)):
-                english += got
-                break
-        else:
-            raise ValueError(f"could not line up {len(chunk)} lines")
+        english += english_for(root, chunk)
     root_english.put_lines(root, english, shipped=True)
 
 
@@ -102,12 +132,32 @@ def main() -> int:
     parser.add_argument("--lines", action="store_true", help="make the line-by-line English")
     parser.add_argument("--workers", type=int, default=4, help="roots asked at once")
     parser.add_argument(
+        "--max-waits", type=int, default=20,
+        help="rate-limit waits allowed per call before it counts as a failure",
+    )
+    parser.add_argument(
         "--model",
         help="use this model instead of the configured one. Each model has its own "
              "daily allowance, so once one is spent the book can carry on under "
              "another rather than waiting for tomorrow.",
     )
+    parser.add_argument(
+        "--account", type=int, default=0,
+        help="which Groq account to spend: 0 is the shared key, 1.. the listening "
+             "keys. The allowance is per account per model, so one process per "
+             "pair runs the book in a day.",
+    )
     args = parser.parse_args()
+    global max_waits
+    max_waits = args.max_waits
+
+    if args.account:
+        settings = get_settings()
+        own = [key for key in settings.listening_keys if key != settings.groq_api_key.strip()]
+        if args.account > len(own):
+            print(f"Only {len(own)} listening keys are set, so there is no account {args.account}.")
+            return 1
+        settings.groq_api_key = own[args.account - 1]
 
     if args.model:
         # This process exists to run the book through once. Nothing else reads
@@ -127,7 +177,8 @@ def main() -> int:
         return 1
 
     todo = entries_to_do(args.limit, args.lines)
-    print(f"{root_english.count()} already done, {len(todo)} to go, using {ai_service.get_backend_name()}")
+    kept = root_english.count_lines if args.lines else root_english.count
+    print(f"{kept()} already done, {len(todo)} to go, using {ai_service.get_backend_name()}")
 
     make = make_lines if args.lines else make_prose
 
@@ -160,7 +211,7 @@ def main() -> int:
 
     print(f"\n{done} entries put into English"
           + (f", {failed} could not be" if failed else "")
-          + f". {root_english.count()} kept in total, "
+          + f". {kept()} kept in total, "
           f"{len(todo) - done - failed} of this run left.")
     return 0
 
