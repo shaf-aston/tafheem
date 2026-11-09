@@ -13,7 +13,8 @@ const TAKE_OVER = ['pointerdown', 'wheel', 'touchstart', 'keydown']
  * new list (the reader keys it), so it starts with only the first screen of
  * rows drawn, the rest following once those are on screen. `target` is the
  * ayah to open at: it may be past the first screen, so it is scrolled to once
- * its row exists. Rows off the screen are laid out at a guessed height
+ * its row exists (or, once a study is closed, the place the reader was looking at, as a row and
+ * how far down it, so the close changes nothing they see). Rows off the screen are laid out at a guessed height
  * (.surah-row) and the Quran face arrives late, so the row moves as the rows
  * around it take their real size: it is held in place through every such
  * change until the reader scrolls or taps for themselves. `still` is reading
@@ -21,11 +22,14 @@ const TAKE_OVER = ['pointerdown', 'wheel', 'touchstart', 'keydown']
  */
 export default function AyahList({ listRef, ayahs, target, still, onScrolled, children: row }) {
   const rows = useDeferredValue(ayahs, ayahs.slice(0, FIRST_PAINT_ROWS))
-  const reached = target && rows.length >= target
+  // A row to open at, or a row and how far down it (where the reader was looking when a study closed).
+  const aimAt = typeof target === 'object' ? target?.ayah : target
+  const aimInto = typeof target === 'object' ? target?.into ?? 0 : 0
+  const reached = aimAt && rows.length >= aimAt
   useLayoutEffect(() => {
     const list = listRef.current
     if (!reached || !list) return undefined
-    const aim = () => showRow(list, target)
+    const aim = () => showRow(list, aimAt, aimInto)
     aim()
     const sizes = new ResizeObserver(aim)
     for (const one of list.children) sizes.observe(one)
@@ -35,7 +39,9 @@ export default function AyahList({ listRef, ayahs, target, still, onScrolled, ch
     }
     TAKE_OVER.forEach((type) => document.addEventListener(type, release, { capture: true, passive: true }))
     return release
-  }, [listRef, reached, target])
+  // `target` itself, not only what is in it: a hold let go at the reader's touch is taken up again by the next
+  // one even when it names the same row (the study closed over the row it was opened at).
+  }, [listRef, reached, aimAt, aimInto, target])
 
   // Unlike other scroll panes, the surah hands a swipe on to the page at its
   // ends, so on a phone the search above is never out of reach.

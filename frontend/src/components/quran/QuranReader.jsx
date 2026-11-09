@@ -52,7 +52,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
   } = useSurahReading(surah)
   const {
     twoPanes, stacked, list, here, setHere, tapped, panes, share, setShare,
-    goTo, open, shut, changeSurah, swipe, slide, sheet,
+    goTo, open, shut, changeSurah, swipe, slide, sheet, resting,
   } = useSurahPlace(place, data, onPlace, onClose)
   const mushaf = useMushaf()
 
@@ -163,7 +163,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
           )}
           {data && !mushaf.printing && (
             <div className={`flex ${stacked ? 'h-full' : 'h-[var(--layout-pane)]'}`}>
-              <AyahList listRef={list} ayahs={data.ayahs} target={ayah === tapped ? null : ayah} still={noTouch} onScrolled={setHere}>
+              <AyahList listRef={list} ayahs={data.ayahs} target={ayah ? (ayah === tapped ? null : ayah) : resting} still={noTouch} onScrolled={setHere}>
                 {(row) => (
                   <AyahRow
                     key={row.ayah}
