@@ -30,3 +30,20 @@ def test_lamma_is_not_marked_for_ma():
 def test_nothing_to_mark():
     assert marks("", ("ما",)) == ()
     assert marks("كتاب", ()) == ()
+
+
+def test_the_fast_fold_says_what_the_letter_by_letter_one_says():
+    from backend.services.daleel.match.marks import (
+        _folded_letter_by_letter,
+        _folded_with_origin,
+    )
+
+    for text in (
+        "إِنَّ ٱللَّهَ مَعَ ٱلصَّـٰبِرِينَ",
+        "وَأَقِيمُوا۟ ٱلصَّلَوٰةَ وَءَاتُوا۟ ٱلزَّكَوٰةَ",
+        "عَلَىٰ هُدًى مِّن رَّبِّهِمْ",
+        "God is with the patient صبر",
+        "",
+    ):
+        for written in (False, True):
+            assert _folded_with_origin(text, written) == _folded_letter_by_letter(text, written)
