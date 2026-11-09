@@ -135,6 +135,11 @@ piece did not help (right words red unchanged): stops are not why last words are
 
 This PC and the Oracle server have no GPU (Oracle `RECITATION_THREADS=2`); training runs only on Kaggle.
 
+Traps:
+- Kaggle runs at most 2 GPU sessions at once; a third push fails "Maximum batch GPU session count of 2 reached". The CLI cannot cancel a run, and the web Stop button shows a CAPTCHA. Cancel through the SDK: `api.build_kaggle_client().kernels.kernels_api_client.cancel_kernel_session(ApiCancelKernelSessionRequest(kernel_session_id=<id>))` (`kagglesdk`). The id is `run.id` from the signed-in page's `POST /api/i/kernels.KernelsService/ListKernelVersions` (body `{kernelId, pageSize}`, header `x-xsrf-token` from the `XSRF-TOKEN` cookie).
+- `kaggle kernels logs` prints nothing while a run is live; the SDK's `get_kernel_session_logs_stream` (user and slug, no version) replays the live log.
+- `--ship` runs ear_bench for over 10 minutes. A shell timeout kills `cloud.py` but leaves its ear_bench child running; stop the child by PID before shipping again.
+
 ## Keys
 
 - Kaggle: `~/.kaggle/kaggle.json` (or `KAGGLE_USERNAME` + `KAGGLE_KEY`).
