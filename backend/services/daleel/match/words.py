@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+from functools import lru_cache
 from typing import Iterator
 
 from backend.services.text import fts
@@ -22,6 +23,7 @@ WORDS = re.compile(f"[a-z{ARABIC_LETTER}]+")
 OWN_WORDS = frozenset({"لما"})
 
 
+@lru_cache(maxsize=1024)
 def pattern(term: str, whole: bool = False) -> re.Pattern:
     """What counts as using the term, as a pattern whose group 1 is the term.
 
@@ -37,7 +39,12 @@ def pattern(term: str, whole: bool = False) -> re.Pattern:
     """
     word = f"({re.escape(term)})"
     if not has_arabic(term):
-        found = f"(?<![a-z]){word}"
+        # The word first and the edge test after it, looking back across the
+        # word: the same rule, but a pattern opening with letters is found by
+        # a fast scan, while one opening with a look-behind is tried at every
+        # character. Ranking runs this a dozen times over each of 240 passages,
+        # some of them pages of English, and it was 81ms of a search for god.
+        found = f"{word}(?<![a-z]{re.escape(term)})"
     elif len(term) < fts.TRIGRAM_MIN:
         found = f"(?<![{ARABIC_LETTER}]){PROCLITIC}{word}{NOT_LETTER}"
     else:

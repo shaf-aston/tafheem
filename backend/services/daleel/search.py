@@ -20,7 +20,7 @@ from backend.services.text import fts
 from backend.services.daleel.index.candidates import candidates
 from backend.services.daleel.index.connection import db
 from backend.services.daleel.match.marks import Span, marks
-from backend.services.daleel.match.rank import Tier, close_enough, rank_of, spread
+from backend.services.daleel.match.rank import Tier, page_of
 from backend.services.daleel.query.expand import Expansion, expand
 from backend.services.daleel.query.lexicon import DictionaryLexicon
 
@@ -73,8 +73,7 @@ def search(
     rows = candidates(conn, expansion, limit * settings.daleel_candidate_factor, tuple(books))
     lap("candidates")
 
-    ranked = close_enough(sorted(((rank_of(row, expansion), row) for row in rows), key=lambda i: i[0]), expansion)
-    page = spread(ranked, limit)
+    page = page_of(rows, expansion, limit)
     lap("rank")
 
     shown = (*expansion.phrase_terms, *expansion.typed, *expansion.related)

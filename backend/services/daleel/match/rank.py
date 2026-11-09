@@ -4,6 +4,8 @@ Every candidate gets a rank of four numbers, all smaller-is-better: its `Tier`,
 a strength within that tier, where the first hit falls, and how long the
 passage is. `close_enough` then drops poor guesses at a misspelling, and
 `spread` picks the page so every book with an answer gets a place on it.
+
+`page_of` is the step `search` runs; read it first, the rest is its parts.
 """
 from __future__ import annotations
 
@@ -43,6 +45,13 @@ class Tier(IntEnum):
 
 # Stronger than any count of whole words, so the phrase always leads its tier.
 PHRASE = 1000
+
+
+def page_of(rows: list[IndexedPassage], expansion: Expansion, limit: int) -> Ranked:
+    """The candidates that make the page, best first: each ranked, poor
+    guesses at a misspelling dropped, then spread so every book gets a place."""
+    ranked = sorted(((rank_of(row, expansion), row) for row in rows), key=lambda item: item[0])
+    return spread(close_enough(ranked, expansion), limit)
 
 
 def rank_of(row: IndexedPassage, expansion: Expansion) -> Rank:
