@@ -99,8 +99,8 @@ is step 5 below. Hadith weak points, in order: `components/hadith/HadithCards.js
    Treebank recorded is read from that record (`tarkeeb_store.py`); anything else goes to
    `services/nahw/syntax/`: `catib_onnx.py` links the words, `facts.py` answers five questions per
    word, `walker.py` walks the book's tree (`data/nahw_rules/naming_tree.json`) to the role and
-   its page, `teacher.py` dashes any name that breaks a stated rule, and `tree.py` draws the
-   brackets from the same reading, so cards and picture cannot disagree. A word no rule
+   its page, `teacher.py` dashes any name that breaks a stated rule, and `tree.py` (its phases are in
+   `syntax/picture/`) draws the brackets from the same reading, so cards and picture cannot disagree. A word no rule
    settles stays a gap. `iraab.cards` builds each card once, `signs.py` writes its sign, and
    the line above the cards is the picture's own top label, never a second guess.
 3. **The Qur'an is looked up, never guessed.** `services/quran/corpus.py` reads the

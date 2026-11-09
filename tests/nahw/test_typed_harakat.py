@@ -5,7 +5,7 @@ the parser is fed letters only and the same links come back for both.
 """
 
 from backend.services.text import harakat
-from backend.services.nahw.syntax import tree
+from backend.services.nahw.syntax.picture import names
 from tests.nahw.test_naming import named, roles, token
 from tests.nahw.test_syntax_tree import built
 
@@ -45,7 +45,7 @@ def test_passive_verb_takes_a_naib_fail_and_draws_a_verbal_unit():
     words = ["كُتِبَ", "الدَّرْسُ"]
     assert roles(words, toks) == ["فعل", "نائب فاعل"]
     drawn = built(words, toks)
-    assert drawn["tree"]["label"] == tree.VERBAL
+    assert drawn["tree"]["label"] == names.VERBAL
 
 
 def test_passive_with_a_typed_fatha_keeps_that_noun_as_an_object():

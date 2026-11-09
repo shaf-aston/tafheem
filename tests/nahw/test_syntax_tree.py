@@ -1,6 +1,7 @@
 """The bracket picture for a typed sentence, built from the parser's links."""
 from backend.services.nahw.book import role_units
 from backend.services.nahw.syntax import tree
+from backend.services.nahw.syntax.picture import names
 from backend.services.nahw.book import condition_of, term_ar
 from tests.nahw_helpers import tree_roles as roles_in
 from tests.nahw.test_naming import jar_told_of, named, pointer_name_state, token
@@ -16,7 +17,7 @@ def test_verb_sentence_is_one_bracket():
             token(3, "رسالة", "رسالة", "NOM", 1, "OBJ", cas="a")]
     drawn = built(["كَتَبَ", "الطَّالِبُ", "رِسَالَةً"], toks)
     assert drawn["coverage"] == 1.0
-    assert drawn["tree"]["label"] == tree.VERBAL
+    assert drawn["tree"]["label"] == names.VERBAL
     assert [child["word"] for child in drawn["tree"]["children"]] == [0, 1, 2]
     assert roles_in(drawn["tree"]) == ["فعل", "فاعل", "مفعول به"]
     assert drawn["tree"]["children"][0]["tone"] == "fil"
@@ -82,14 +83,14 @@ def test_a_jar_majroor_is_named_by_the_word_it_hangs_on_not_given_the_job_harf()
             token(3, "القبور", "قبر", "NOM", 2, "OBJ", stt="d", cas="g")]
     drawn = built(["مَا", "فِي", "الْقُبُورِ"], toks)
     unit = next(child for child in drawn["tree"]["children"] if child.get("children"))
-    assert unit["label"] == tree.FRAMES["attached"].format(word="مَا")
+    assert unit["label"] == names.FRAMES["attached"].format(word="مَا")
     assert unit["role"] is None
     assert [child["role"] for child in unit["children"]] == ["حرف جر", "مجرور"]
 
 
 def test_the_labels_are_the_shared_terms():
-    assert tree.VERBAL == term_ar("jumlah_filiyyah")
-    assert {tree._label({"pos": "NOM"}, [unit["child"]]) for unit in role_units() if not unit.get("on_particle")}         == {term_ar(unit["label"]) for unit in role_units() if not unit.get("on_particle")}
+    assert names.VERBAL == term_ar("jumlah_filiyyah")
+    assert {names.unit_label({"pos": "NOM"}, [unit["child"]]) for unit in role_units() if not unit.get("on_particle")}         == {term_ar(unit["label"]) for unit in role_units() if not unit.get("on_particle")}
 
 
 def test_a_word_hung_on_an_attached_particle_is_drawn_under_what_the_particle_joins():
@@ -148,12 +149,12 @@ def test_a_condition_draws_particle_condition_and_answer_side_by_side_with_the_m
             token(5, "تدرس", "درس", "VRB", 0, "---", vox="a", asp="i", pos_camel="verb")]
     drawn = built(["إِنْ", "تُرِدْ", "أَنْ", "تَنْجَحَ", "تَدْرُسْ"], toks)["tree"]
     condition = condition_of("إن")
-    assert drawn["label"] == tree.CONDITION
+    assert drawn["label"] == names.CONDITION
     particle, verb, answer = drawn["children"]
     assert particle["role"] == condition["particle"]
     assert (verb["role"], answer["role"]) == (condition["verb"], condition["answer"])
     masdar = verb["children"][1]
-    assert (masdar["label"], masdar["role"]) == (tree.FRAMES["masdar"]["label"], "مفعول به")
+    assert (masdar["label"], masdar["role"]) == (names.FRAMES["masdar"]["label"], "مفعول به")
 
 
 def test_a_role_has_one_colour_in_every_tree():
@@ -168,9 +169,8 @@ def test_a_role_has_one_colour_in_every_tree():
 
 
 def test_only_a_sentence_gets_a_line_above_the_cards():
-    from backend.services.nahw.syntax import tree as drawing
-    assert drawing.names_a_sentence(drawing.NOMINAL) and drawing.names_a_sentence(drawing.VERBAL)
-    assert not drawing.names_a_sentence("مُرَكَّبٌ تَوْصِيْفِيٌّ") and not drawing.names_a_sentence(None)
+    assert names.names_a_sentence(names.NOMINAL) and names.names_a_sentence(names.VERBAL)
+    assert not names.names_a_sentence("مُرَكَّبٌ تَوْصِيْفِيٌّ") and not names.names_a_sentence(None)
 
 
 def test_a_name_with_its_ibn_is_no_murakkab_tawsifi():
@@ -222,7 +222,7 @@ def test_waw_a_pronoun_and_a_verb_after_a_verb_draw_a_nominal_hal_with_a_verbal_
     assert (hal["role"], hal["label"], hal["detail"]) == ("حال", term_ar("jumlah_ismiyyah"), "في محل نصب")
     subject, khabar = hal["children"]
     assert subject["role"] == "مبتدأ"
-    assert (khabar["role"], khabar["label"], khabar["detail"]) == ("خبر", tree.VERBAL, "في محل رفع")
+    assert (khabar["role"], khabar["label"], khabar["detail"]) == ("خبر", names.VERBAL, "في محل رفع")
     assert [leaf["role"] for leaf in khabar["children"]] == ["فعل"]
 
 
