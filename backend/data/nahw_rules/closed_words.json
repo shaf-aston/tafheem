@@ -548,6 +548,8 @@
   "ghair_amila_other": {
    "ar": "حروف غير عاملة أخرى",
    "card": {"named": "حرف", "does": "", "named_as": {"ل": "لام التوكيد"}},
+   "_before_past": "قد before a past verb brings the deed about for sure (حرف تحقيق); before a present verb it is تقليل or توقع by the meaning, so it is left a plain حرف (services/nahw/syntax/particles._qad_names_its_sense)",
+   "before_past": {"قد": "حرف تحقيق"},
    "_khabar_lam": "the لام of emphasis comes onto the khabar of إنّ (Alfiyya: وبعد ذات الكسر تصحب الخبر لام ابتداء), a jar-majroor or ظرف too (وَإِنَّكَ لَعَلَى خُلُقٍ عَظِيمٍ، إِنَّ اللَّهَ لَمَعَ الْمُحْسِنِينَ); the dictionary never writes it onto a حرف جر or ظرف (morphology._emphasis_lam)",
    "khabar_lam": {"lam": "ل", "onto": ["jarr", "zarf_makan"]},
    "_detail": "أما is a particle of condition and emphasis, and mostly of detail (حرف شرط وتوكيد دائما وتفصيل غالبا); the فاء after it joins the answer, and the one word between them is the mubtada the answer tells of (فأما اليتيم فلا تقهر، فأما من أعطى واتقى) (Ibn Hisham, Awdah al-Masalik, vol 4 p231-232, فصل في أما)",

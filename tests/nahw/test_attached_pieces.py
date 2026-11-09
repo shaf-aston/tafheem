@@ -83,7 +83,7 @@ def test_lau_opens_a_condition_whose_answer_its_lam_ties_on():
     top = body["tree"]["tree"]
     # book shape: the لام stands beside the answer's sentence, not inside it
     assert [kid["role"] for kid in top["children"]] == [
-        "حرف شرط غير جازم", "فعل الشرط", "حرف واقع في جواب الشرط", "جواب الشرط"]
+        "حرف شرط غير جازم", "جملة الشرط", "حرف واقع في جواب الشرط", "جواب الشرط"]
     assert {top["children"][i]["detail"] for i in (1, 3)} == {"لا محل لها من الإعراب"}
 
 
