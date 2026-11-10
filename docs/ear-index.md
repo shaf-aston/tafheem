@@ -43,7 +43,7 @@ Shared: `F/components/ui/buttons/MicButton.jsx` (one shot), `F/lib/speech/microp
 1. `recitingSession.js` `pumpChecks` (one at a time, queue `check-queue-max`) calls `F/api/recite.js` `checkReading`: `POST /listen/check?heard&check=2:1,...&tuned`. 
 2. `routers/listen.py` validates ayah list and `heard` length, picks the model (`_tuned_model`, 503 if none is set), waits on `_turn`.
 3. `B/__init__.py` `check`: ayah words come from `imlaei.json` through `spelling.as_heard` (`spelling.py`, pause signs dropped); `place.reach` finds the stretch heard (2 words in a row), extends to the ayah end, caps at `recitation_sure_max_words`.
-4. `B/checker.py` `weigh` / `scores`: Whisper gives each piece a probability; `aggregate` folds by `recitation_sure_of_word` (worst-but-one).
+4. `B/checker.py` `weigh` / `scores`: Whisper gives each piece a probability; `aggregate` folds by `recitation_sure_of_word` (worst).
 5. Answer `{sure: {"2:5": [0..1 or null per spoken word]}, detail}`; null means this recording did not reach the word.
 6. Page: `ayahAt` (`F/lib/memorise/memorise.js`) lists each ayah's `spoken` page places (pause signs have none). `byPlace` (`scores.js`) maps scores onto those, `settledScores` and `surer` merge recordings, `bySound` (`follow.js`) turns numbers into colours: a found word red under `wrong-below` 0.1, a missed word passed at `said-at` 0.95 (`recite.json`).
 

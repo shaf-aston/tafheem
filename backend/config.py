@@ -271,14 +271,13 @@ class Listening(BaseSettings):
     # Below this it is left alone, so a silent room is never lifted into a word.
     recitation_loudness_floor: float = 0.002
     recitation_loudness_most: float = 20.0
-    # How a word's pieces become one sureness: "worst" (strict), "mean", "worst-but-one" (forgives one bad piece,
-    # e.g. a word-final vowel where the reciter stopped). Swept over 1,950 recordings, 6,832 judged words (sweep.txt),
-    # matched at the same vowel-slip catch:
-    #   worst, under 0.1          5.1% marked though right, 62% of vowel slips
-    #   worst-but-one, under 0.9  3.2% marked though right, 61% of vowel slips
-    # Cost: whole-word slips caught 9% vs 27%, weakest number here (only 34 such words in the corpus).
-    # See rescore_recitation.py, sweep_sureness.py.
-    recitation_sure_of_word: str = "worst-but-one"
+    # How a word's pieces become one sureness: "worst" (its least sure piece), "mean", "worst-but-one" (forgives
+    # one bad piece). "worst-but-one" also forgave a dropped silent letter, which is one bad piece: it caught 22% of
+    # them. ear_bench, ear 0034c0bd, 2026-11-10, each rule at its own red cut (frontend recite.json wrong-below):
+    #   IqraEval: AUC 0.918 vs 0.896 (gain 0.012 to 0.032), slips caught 81% vs 73%, right words red 7.2% both
+    #   marked recordings never trained on: no sure harm (35 slips, AUC gain -0.057 to +0.037)
+    # The cut sits near zero, so it moves with the ear: re-grade both together (finetune_ear/README.md).
+    recitation_sure_of_word: str = "worst"
     # Decoder holds 448 pieces, ~3 per word; a ten-second recording holds far fewer than this, so more means placing went wrong.
     recitation_sure_max_words: int = 100
     # Frames of sound handed to the ear when scoring words; a frame is 10ms, so 1500 is 15s.

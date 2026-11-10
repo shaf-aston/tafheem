@@ -433,13 +433,14 @@ describe('weighing in the ear', () => {
   })
 
   it('blames a said word under wrong-below, passes a missed one only at said-at', () => {
-    expect(states([0.09, 1, 0.5, 0])).toEqual([WRONG, SAID, MISSED, WAITING])
+    expect(states([0.0001, 1, 0.5, 0])).toEqual([WRONG, SAID, MISSED, WAITING])
+    expect(states([0.001])[0]).toBe(SAID)
     expect(states([0.5, 0.94])).toEqual([SAID, WRONG, CHECK, WAITING])
     expect(states([0.1, 0.95])).toEqual([SAID, SAID, CHECK, WAITING])
   })
 
   it('a said word blamed on sound names no word, because the transcript heard it right', () => {
-    expect(bySound(marks, scored([0.05])).words[0]).toEqual({ word: 'a', state: WRONG, heard: '', sure: 0.05 })
+    expect(bySound(marks, scored([0.0001])).words[0]).toEqual({ word: 'a', state: WRONG, heard: '', sure: 0.0001 })
   })
 
   it('sureness alone never passes a letter both ears heard differently', () => {
@@ -475,8 +476,8 @@ describe('weighing in the ear', () => {
   it('a word judged wrong keeps what was said, how sure the ear was, its weakest piece and where it sits', () => {
     const page = ['قُلْ', 'هُوَ', 'ٱللَّهُ']
     const judgedWords = follow(page, ['قل', 'هو', 'الله'], { ended: true })
-    const answer = bySound(judgedWords, [null, { sure: 0.05, weak: 'ـُ', at: 1.2, take: 4 }, null])
-    expect(answer.words[1]).toMatchObject({ state: WRONG, heard: '', said: 'هو', sure: 0.05, weak: 'ـُ', at: 1.2, take: 4 })
+    const answer = bySound(judgedWords, [null, { sure: 0.0001, weak: 'ـُ', at: 1.2, take: 4 }, null])
+    expect(answer.words[1]).toMatchObject({ state: WRONG, heard: '', said: 'هو', sure: 0.0001, weak: 'ـُ', at: 1.2, take: 4 })
   })
 
   it('keeps the vowels of what was said, and both pieces of a word the engine cut in two', () => {
