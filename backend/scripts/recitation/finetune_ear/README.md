@@ -107,6 +107,8 @@ Words wrong never measures slip catching, so `--ship` asks `ear_bench` before an
 
 Scoring changed after v13 (faster-whisper, pause signs stripped, 600-clip cap), so later rows sit lower; the ratios match.
 
+**What the champion misses (0034c0bd, IqraEval, cut 0.1, 2026-11-10).** 955 slips, 73% caught. By kind: swapped consonant 503, 93% caught; wrong short vowel 182, 72%; **dropped consonant 149, 22% (116 of the 260 misses)**; dropped vowel 59, 37%; long/short vowel 9, 0%. A dropped consonant with a sukun (next sound a consonant) is almost never caught: ل 0/19, ض 0/10, ذ 0/10, د 2/19, ع 1/10. The ear scores each written letter, and a silent letter that is skipped leaves its neighbours to carry its piece. Next run targets that, not more slips of every kind: train on clips with a sukun letter cut out, and check whether the word rule (`worst-but-one`) hides a single missing letter.
+
 ## Next levers (research 2026-11-05)
 
 **Read first (ear_bench on IqraEval, 2026-11-06).** `ear_bench` now decides on IqraEval (`ear_bench/iqra.py`: 955
