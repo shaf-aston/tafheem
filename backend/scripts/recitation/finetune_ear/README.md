@@ -109,6 +109,8 @@ Scoring changed after v13 (faster-whisper, pause signs stripped, 600-clip cap), 
 
 **What the champion misses (0034c0bd, IqraEval, cut 0.1, 2026-11-10).** 955 slips, 73% caught. By kind: swapped consonant 503, 93% caught; wrong short vowel 182, 72%; **dropped consonant 149, 22% (116 of the 260 misses)**; dropped vowel 59, 37%; long/short vowel 9, 0%. A dropped consonant with a sukun (next sound a consonant) is almost never caught: ل 0/19, ض 0/10, ذ 0/10, د 2/19, ع 1/10. The ear scores each written letter, and a silent letter that is skipped leaves its neighbours to carry its piece. Next run targets that, not more slips of every kind: train on clips with a sukun letter cut out, and check whether the word rule (`worst-but-one`) hides a single missing letter.
 
+**It does (same data, same ear).** Rule, AUC, slips caught / dropped consonants caught at 7.2% red: `worst` 0.918, 81% / 47% (cut 2.6e-4); `worst-but-one` 0.896, 73% / 22% (cut 0.10); `mean` 0.888, 62% / 32%. At 4.7% red: `worst` 77% / 37%, `worst-but-one` 70% / 19%. The gap (0.022) is about 4x the AUC noise. Not switched yet: `worst` was dropped because it reddened right words in real app recordings, and its cut sits near zero, so one small shift in the ear moves it a lot. Switch only after the marked app recordings agree.
+
 ## Next levers (research 2026-11-05)
 
 **Read first (ear_bench on IqraEval, 2026-11-06).** `ear_bench` now decides on IqraEval (`ear_bench/iqra.py`: 955
