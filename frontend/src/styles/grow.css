@@ -1,4 +1,4 @@
 /* The round close button: a lesson's × (practice/LessonRunner.jsx) and the first-visit questions' back
    (onboarding/Onboarding.jsx). Colour is the theme's tokens. */
-.grow-x { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-hi); display: grid; place-items: center; font-size: 1.2rem; color: var(--text-dim); }
+.grow-x { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-hi); display: grid; place-items: center; font-size: var(--type-heading); color: var(--text-dim); }
 .grow-x:disabled { opacity: 0.4; cursor: default; } /* the first step has nowhere to go back to; say so, as SmallButton does */

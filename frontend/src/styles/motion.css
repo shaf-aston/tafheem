@@ -348,7 +348,7 @@
 }
 .qalam[data-mood='idle'] .qalam-eye {
   transform: translate(calc(var(--look-x, 0) * 1.6px), calc(var(--look-y, 0) * 1.6px));
-  transition: transform calc(var(--motion-base-ms) * 1ms) ease-out;
+  transition: transform calc(var(--motion-base-ms) * 1ms) ease;
 }
 
 

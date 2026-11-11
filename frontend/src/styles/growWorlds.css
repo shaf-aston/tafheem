@@ -77,7 +77,7 @@
 .grow-next-text b { font-weight: 700; color: var(--text); }
 /* Two lines, wrapped at a word: one line cut short mid-word ("why the poem was w…") lost the point of the step. */
 .grow-next-text span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; overflow-wrap: break-word; }
-.grow-next-go { font-size: 1.3rem; color: var(--w); }
+.grow-next-go { font-size: var(--type-figure); color: var(--w); }
 @media (prefers-reduced-motion: reduce) { .grow-next { transition: none; } }
 
 /* a guest's log-in offer, on the title line */
@@ -176,7 +176,7 @@
 .grow-lesson-top .grow-lesson-bar { flex: 1; height: 12px; }
 /* The lesson's bar, a segment per card that keeps how each went (LessonRunner Segments). */
 .grow-segments { flex: 1; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 3px; height: 12px; }
-.grow-segments > i { border-radius: 4px; background: var(--surface-hi); transition: background-color calc(var(--motion-base-ms) * 1ms) ease-out; }
+.grow-segments > i { border-radius: 4px; background: var(--surface-hi); transition: background-color calc(var(--motion-base-ms) * 1ms) ease; }
 .grow-segments > i[data-here] { box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--w) 45%, transparent); }
 .grow-segments > i[data-mark='seen'] { background: var(--w); }
 .grow-segments > i[data-mark='right'] { background: var(--success); }

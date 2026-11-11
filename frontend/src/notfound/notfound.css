@@ -31,14 +31,14 @@
 .notfound-page .notfound-copy {
   margin-top: 1rem;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: var(--type-lead);
   text-wrap: balance;
 }
 .notfound-page .cta-row { justify-content: center; }
 .notfound-page .notfound-path {
   margin-top: 3rem;
   font-family: var(--font-label);
-  font-size: .78rem;
+  font-size: var(--type-tiny);
   letter-spacing: .08em;
   color: color-mix(in srgb, var(--muted) 70%, transparent);
   word-break: break-all;
