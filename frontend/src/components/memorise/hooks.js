@@ -9,7 +9,7 @@ import {
 } from '../../lib/memorise/memorise'
 import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
 import { useSlide, useSwipe } from '../../lib/motion/useSwipe'
-import { scrollToEl } from '../../lib/motion/scrollToEl'
+import { bringUp } from '../../lib/motion/scrollToEl'
 import { warm } from '../../lib/api/warm'
 import { useArrivalEffect } from '../../lib/nav/useArrival'
 
@@ -161,7 +161,7 @@ export function usePageSteps({ card, parts, part, pages, pageNumber, bookId, pag
   useEffect(() => {
     if (!turned.current) return
     turned.current = false
-    if (card.current?.getBoundingClientRect().top < 0) scrollToEl(card.current, 'top')
+    bringUp(card.current)
   }, [card, part, pageNumber])
   const atStart = pageNumber === 0 && !partBy(-1)
   const atEnd = pageNumber >= pages.length - 1 && !partBy(1)

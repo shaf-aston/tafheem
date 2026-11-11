@@ -184,7 +184,7 @@ export default function MicButton({ onHeard, match = false, recite = false, anyA
           className={`mic-host relative w-10 h-10 grid place-items-center rounded-full border
             transition-colors duration-[calc(var(--motion-instant-ms)*1ms)]
             ${recording
-              ? 'text-[var(--on-accent)] border-transparent shadow-sm'
+              ? 'text-[var(--on-accent)] border-transparent e1'
               : 'border-[var(--border-hi)] text-[var(--text-faint)] hover:text-[var(--text)] hover:border-[var(--text-faint)]'}
             ${busy ? 'opacity-70 cursor-wait' : ''}`}
         >
