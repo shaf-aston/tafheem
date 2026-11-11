@@ -42,6 +42,7 @@ from backend.models.progress import (
     Shelf,
     SignUpIn,
 )
+from backend.services.core import audit
 from backend.services.learner import accounts, attempts, circles, lifecycle
 from backend.services.learner import identity as guest_identity
 from backend.services.learner.username import GUEST, clean_name
@@ -141,9 +142,11 @@ async def sign_up(body: SignUpIn, user: str = TYPED, device: str = DEVICE) -> Ac
     devices had ids) keeps nothing: the shared record it wrote to holds every such guest's answers, not its own.
     """
     if not accounts.sign_up(user):
+        audit.event("signup_taken", user=user)
         raise HTTPException(status_code=409, detail="That username is taken")
     if body.keep:
         guest_identity.merge(device, user)
+    audit.event("signup", user=user, kept=body.keep)
     return Account(**accounts.account(user))
 
 
@@ -152,7 +155,9 @@ async def log_in(user: str = TYPED) -> Account:
     """The account of a signed-up username, holding its one spelling."""
     found = accounts.account(user)
     if found is None:
+        audit.event("login_unknown", user=user)
         raise HTTPException(status_code=404, detail="No account with that username")
+    audit.event("login", user=user)
     return Account(**found)
 
 
@@ -165,7 +170,9 @@ def get_account(user: str = NAMED) -> Account:
 @router.delete("/account", response_model=Forgotten)
 async def delete_account(user: str = NAMED) -> Forgotten:
     """Delete this username, every answer it gave and its shelf; the name is free again."""
-    return Forgotten(deleted=lifecycle.delete_account(user))
+    deleted = lifecycle.delete_account(user)
+    audit.event("account_deleted", user=user, answers=deleted)
+    return Forgotten(deleted=deleted)
 
 
 @router.get("/saved", response_model=Shelf)
@@ -187,6 +194,7 @@ async def put_shelf(body: Shelf, user: str = NAMED) -> Shelf:
 def put_public(body: PublicIn, user: str = NAMED) -> Account:
     """Show in, or hide from, the global ranking."""
     accounts.set_public(user, body.public)
+    audit.event("account_public", user=user, public=body.public)
     return Account(**accounts.account(user))
 
 

@@ -210,7 +210,7 @@ def test_a_deleted_accounts_reports_go_to_nobody():
     progress_db.reset_connection()
     users = [row[0] for row in progress_db.connection().execute("SELECT user FROM feedback")]
     assert users == [""]
-    assert client.get("/api/progress/accounts").json() == {"names": ["bilal"]}
+    assert accounts.account_names() == ["bilal"]
 
 
 def test_the_leaderboard_ranks_accounts_by_words_learnt_and_finds_you():
@@ -275,14 +275,15 @@ def test_start_over_and_delete_empty_the_shelf():
     assert shelf("Amina").json() == {"data": {}}
 
 
-# Beta: the log-in box lists every username, so testers can pick one.
+# Beta: the log-in box can list every username, so testers can pick one. Off unless switched on:
+# with no password, the list is every account anyone can act as (docs/plans/2026-11-11-security.md).
 
-def test_while_in_beta_every_username_is_listed(monkeypatch):
+def test_usernames_are_not_listed_unless_beta_is_switched_on(monkeypatch):
     from backend.config import get_settings
     signup("Bilal"), signup("Amina")
-    assert client.get("/api/progress/accounts").json() == {"names": ["amina", "bilal"]}
-    monkeypatch.setattr(get_settings(), "beta_list_accounts", False)
     assert client.get("/api/progress/accounts").status_code == 404
+    monkeypatch.setattr(get_settings(), "beta_list_accounts", True)
+    assert client.get("/api/progress/accounts").json() == {"names": ["amina", "bilal"]}
 
 
 # Circles: invited people are invisible until they accept; what a viewer may see of a member follows the roles.

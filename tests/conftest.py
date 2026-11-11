@@ -10,15 +10,19 @@ from __future__ import annotations
 import pytest
 
 from backend.config import get_settings
+from backend.services.core import audit
 from backend.services.nahw import iraab
 from backend.services.learner import journal
 
 
 @pytest.fixture(autouse=True)
-def _journal_writes_to_tmp(tmp_path, monkeypatch):
+def _journal_writes_to_tmp(tmp_path, tmp_path_factory, monkeypatch):
     monkeypatch.setattr(get_settings(), "journal_path", str(tmp_path / "journal.jsonl"))
     monkeypatch.setattr(journal, "_built_from", None)
     monkeypatch.setattr(get_settings(), "search_log_path", str(tmp_path / "searches.jsonl"))
+    # Its own folder: a test may use tmp_path as a cache and check nothing else landed in it.
+    monkeypatch.setattr(get_settings(), "security_log_path", str(tmp_path_factory.mktemp("security") / "security.jsonl"))
+    monkeypatch.setattr(audit, "_built_from", None)
     yield
 
 

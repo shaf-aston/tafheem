@@ -51,6 +51,11 @@ def test_a_wrong_key_is_refused(studio):
     assert studio.get("/api/recordings/todo", headers={"X-Recorder-Key": "nope"}).status_code == 403
 
 
+def test_a_key_that_is_not_ascii_is_refused_not_a_crash(studio):
+    """hmac.compare_digest refuses a str holding a non-ASCII letter; that was a 500 (and a stack in the log)."""
+    assert studio.get("/api/recordings/todo", headers={"X-Recorder-Key": "سمسم".encode()}).status_code == 403
+
+
 @needs_ffmpeg
 def test_a_kept_take_is_trimmed_indexed_and_leaves_the_todo(studio):
     key = {"X-Recorder-Key": "sesame"}

@@ -20,14 +20,16 @@ from backend.routers import (
 from backend.services import ai as ai_service
 from backend.services import recitation, speech
 from backend.services.dictionary import service as dictionary_service
-from backend.services.core import provenance
+from backend.services.core import audit, provenance
+from backend.services.core.headers import ApiHeaders, crash_headers
+from backend.services.core.ratelimit import visitor
 from backend.services.quran import service as quran_service
 from backend.services.dictionary import root_meaning
 from backend.services.core import startup
 from backend.services.nahw import syntax
 from backend.services.hadith.usul import store as usul
 from backend.services.sarf.morphology import get_engine_name
-from backend.identity import PROFILE_HEADER
+from backend.identity import GUEST_HEADER, PROFILE_HEADER
 from backend.services.learner.username import GUEST
 
 # Answers that are the same for everyone and change only when the app does, so
@@ -51,6 +53,12 @@ CACHEABLE = re.compile(
     r")"
 )
 CACHE_ONE_DAY = "public, max-age=86400"
+
+# Every header the page sends (frontend/src: profile, device, the recitation's reading id, the
+# speaking queue's hint, the recording studio's key). A new one is added here or the dev server refuses it.
+CORS_HEADERS = [
+    "Content-Type", "X-Request-ID", PROFILE_HEADER, GUEST_HEADER, "X-Reading-Id", "X-Speak-Ahead", "X-Recorder-Key",
+]
 
 
 def cacheable(method: str, status: int, path: str, existing: str | None) -> bool:
@@ -120,10 +128,19 @@ def create_app() -> FastAPI:
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
+        # Who is asking travels in the headers below, never in a cookie, so a page from another
+        # site has nothing of the learner's to borrow. Live, the page calls its own address
+        # (vercel.json rewrites /api), so this list only matters for a dev server.
+        allow_credentials=False,
+        allow_methods=["GET", "POST", "PUT", "DELETE"],
+        allow_headers=CORS_HEADERS,
+        expose_headers=["X-Request-ID"],
     )
+
+    # Last added, so outermost: it sees every answer, CORS refusals included, and stamps each with
+    # X-Request-ID. The visitor is decided by the rate limiter's rule, one place for which proxy to trust.
+    app.add_middleware(ApiHeaders)  # nosniff, a dead-page CSP and no-referrer on every /api answer
+    app.add_middleware(audit.SecurityLog, client=lambda scope: visitor(Request(scope)))
 
     for router in (
         analyze.router,
@@ -155,7 +172,9 @@ def create_app() -> FastAPI:
     async def log_crash(request: Request, error: Exception) -> JSONResponse:
         logger.error("%s %s failed for profile %r: %r", request.method, request.url.path,
                      request.headers.get(PROFILE_HEADER, GUEST), error)
-        return JSONResponse(status_code=500, content={"detail": "The server hit an error."})
+        # The id lets a learner's report be matched to the security log's line for it.
+        return JSONResponse(status_code=500, content={"detail": "The server hit an error."},
+                            headers=crash_headers(getattr(request.state, "request_id", "")))
 
     @app.get("/api/health")
     async def health(response: Response) -> dict:

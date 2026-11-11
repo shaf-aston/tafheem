@@ -17,5 +17,5 @@ def of(word: str) -> dict | None:
     try:
         return ai.analyze_sarf(word, tags)
     except Exception as exc:
-        logger.warning("Sarf AI failed for '%s': %s", word, exc)
+        logger.warning("Sarf AI failed for %r: %s", word, exc)  # %r: a typed newline cannot start a fake log line
         return None

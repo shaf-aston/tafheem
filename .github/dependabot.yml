@@ -1,0 +1,33 @@
+# Proposes updates as pull requests; nothing merges by itself, and every proposal runs CI (ci.yml)
+# like any other change. Weekly and grouped, so it is one PR per ecosystem a week, not a stream.
+# Security fixes come as soon as GitHub knows of them, whatever this schedule says.
+# See docs/plans/2026-11-11-security.md (Supply chain).
+version: 2
+updates:
+  # The commit each workflow step is pinned to (ci.yml, security.yml).
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+
+  # requirements*.txt. Most are floors (>=), so this mostly raises a floor past a known-bad release.
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      python:
+        update-types: [minor, patch]
+
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      frontend:
+        update-types: [minor, patch]

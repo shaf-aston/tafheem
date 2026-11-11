@@ -176,8 +176,8 @@ Short glossary: `CORE-FLOW.md`. Per module: `docs/glossary/`.
   Joined members see the circle's ranking (`/leaderboard?circle=`). A member's overview is visible to themselves, admins of
   a circle they are in or of any circle above it, and fellow members where the kind shows details (`can_see`); else 403.
   `/leaderboard` alone is the global ranking of accounts with `public` on, plus your own row; `PUT /account/public` hides you.
-  Old `teams` became circles (migration 2), their members invited. While `beta_list_accounts` is on, `GET /accounts` lists every username for the
-  sign-in box.
+  Old `teams` became circles (migration 2), their members invited. While `beta_list_accounts` is on (off by default since launch: a list of every name is a list to guess against),
+  `GET /accounts` lists every username for the sign-in box; off, it is a 404 and the box simply shows no list.
 - `backend/data/nahw_notes/`: the teacher's theory notes, one file per topic, read only by
   `services/nahw/notes.py` (format: its `FORMAT.md`). Testable pieces are marked in place as
   `{{role|text}}`; the Notes view in Nahw hides them or turns them into flashcards

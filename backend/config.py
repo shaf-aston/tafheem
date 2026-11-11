@@ -369,6 +369,9 @@ class Journal(BaseSettings):
     # Every search people type and what came back (journal.note_search). Never rotated: it is the
     # record of real questions that a search yardstick, and later any training, is built from.
     search_log_path: str = "logs/searches.jsonl"
+    # The security log (services/core/audit.py): refused and failed answers and account events, one JSON
+    # line each, no bodies, no typed text. Rotated by deploy/logrotate.conf, not here: two processes write it.
+    security_log_path: str = "logs/security.jsonl"
 
 
 class Daleel(BaseSettings):
@@ -531,8 +534,9 @@ class Progress(BaseSettings):
     username_max: int = 40
     # Largest shelf (everything the page keeps for one account) the server takes, in bytes.
     saved_max_bytes: int = Field(default=512_000, gt=0)
-    # Beta testing: the log-in box lists every username so a tester can pick one. Off before launch.
-    beta_list_accounts: bool = True
+    # Beta testing: the log-in box lists every username so a tester can pick one. Off: the app is
+    # launched, and with no password the list is every account anyone could act as. On only for a test server.
+    beta_list_accounts: bool = False
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20
     # Circle kinds (services/learner/circles.py): each kind's members_see_details flag. True: every joined

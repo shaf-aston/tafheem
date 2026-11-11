@@ -12,12 +12,30 @@
 			roll_size 10mb
 			roll_keep 10
 		}
+		# Never kept: who someone is (the profile and device headers say it with no password, so a
+		# copy of them is the account), the recording studio's key, and anything typed into a search.
+		# The visitor's address stays: usage.sh and security-report.sh need it, and it rolls away.
 		format filter {
 			request>headers>X-Vercel-Proxy-Signature delete
 			request>headers>X-Vercel-Proxied-For delete
+			request>headers>X-Tafheem-Profile delete
+			request>headers>X-Tafheem-Guest delete
+			request>headers>X-Recorder-Key delete
+			request>uri query {
+				delete q
+				delete text
+				delete sentence
+				delete word
+			}
 		}
 	}
+	header -Server
 	handle /api/* {
+		# The largest thing anyone sends is a recitation (listening_max_mb, 12 MiB, routers/listen.py). Past this the
+		# request is refused here, before the backend spools it to disk.
+		request_body {
+			max_size 14MiB
+		}
 		reverse_proxy 127.0.0.1:8000 127.0.0.1:8001 {
 			health_uri /api/health
 			health_interval 5s
@@ -31,7 +49,16 @@
 			lb_try_interval 250ms
 		}
 	}
+	# The website's copy here gets the same headers vercel.json gives the live one. The backend
+	# sets its own for /api (services/core/headers.py).
 	handle {
+		header {
+			Strict-Transport-Security "max-age=31536000"
+			X-Content-Type-Options nosniff
+			X-Frame-Options DENY
+			Referrer-Policy strict-origin-when-cross-origin
+			Permissions-Policy "microphone=(self), camera=(), geolocation=(), payment=(), usb=()"
+		}
 		root * /home/ubuntu/site
 		try_files {path} {path}.html {path}/index.html
 		file_server

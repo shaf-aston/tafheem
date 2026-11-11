@@ -52,10 +52,11 @@ async def generate_practice(request: PracticeRequest, response: Response, later:
 
 
 @router.get("/kept", response_model=KeptQuestions)
-async def kept_practice(sentence: str | None = Query(None, max_length=get_settings().max_sentence_chars)) -> KeptQuestions:
-    """Every question filed so far, or only one sentence's. No screen reads it yet: it is the
-    way back into what /api/practice filed, for a review screen to come."""
-    wanted = arabic_sentence(sentence, "Sentence") if sentence else None
+async def kept_practice(sentence: str = Query(..., min_length=1, max_length=get_settings().max_sentence_chars)) -> KeptQuestions:
+    """One sentence's filed questions. No screen reads it yet: it is the way back into what
+    /api/practice filed, for a review screen to come. The sentence is required: without it this
+    answered every sentence anyone ever typed (docs/plans/2026-11-11-security.md)."""
+    wanted = arabic_sentence(sentence, "Sentence")
     rows = await asyncio.to_thread(attempts.kept_questions, MODULE, wanted)
     return KeptQuestions(questions=[KeptQuestion(**row) for row in rows])
 
