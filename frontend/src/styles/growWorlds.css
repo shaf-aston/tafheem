@@ -11,8 +11,8 @@
 .grow-hint { font-size: var(--type-ui); color: var(--text-dim); line-height: 1.5; }
 
 /* a thin bar any screen here uses: level, stage, lesson */
-.grow-lesson-bar { display: block; height: 8px; border-radius: 9px; background: var(--surface-hi); overflow: hidden; }
-.grow-lesson-bar i { display: block; height: 100%; border-radius: 9px; background: var(--w, var(--c)); transition: width calc(var(--motion-spring-ms) * 1ms) ease; }
+.grow-lesson-bar { display: block; height: 8px; border-radius: var(--radius-pill); background: var(--surface-hi); overflow: hidden; }
+.grow-lesson-bar i { display: block; height: 100%; border-radius: var(--radius-pill); background: var(--w, var(--c)); transition: width calc(var(--motion-spring-ms) * 1ms) ease; }
 
 /* ── home: today's lesson beside the strip of level, streak and goal ── */
 .grow-lead { display: grid; gap: 12px; }

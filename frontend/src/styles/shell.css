@@ -186,7 +186,7 @@
 .bottom-nav-ask > span {
   display: grid; place-items: center;
   width: 3.25rem; height: 3.25rem; margin-top: -1.125rem;
-  border-radius: 1.125rem;
+  border-radius: var(--radius-lg);
   background: var(--primary); color: var(--on-accent);
   box-shadow: var(--shadow-lift);
   transition: transform calc(var(--motion-instant-ms) * 1ms) ease;

@@ -202,7 +202,7 @@
   height: 0.85rem;
   border: 1.75px solid var(--tone, var(--border-hi));
   border-top: 0;
-  border-radius: 0 0 1.1rem 1.1rem;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   position: relative;
   opacity: 0.85;
 }
@@ -262,11 +262,11 @@
 
 /* a word that opens its answer: a soft wash of its own colour on hover, not a
    second underline over the one it already has */
-.tk-word[role='button'] { cursor: pointer; border-radius: var(--radius-sm, 4px); position: relative; }
+.tk-word[role='button'] { cursor: pointer; border-radius: var(--radius-sm); position: relative; }
 .tk-word[role='button']:hover .tk-text,
 .tk-word[role='button']:focus-visible .tk-text {
   background: color-mix(in srgb, var(--tone, var(--border-hi)) 14%, transparent);
-  border-radius: var(--radius-sm, 4px) var(--radius-sm, 4px) 0 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
 }
 /* its English, word for word, the moment the pointer is on it; drawn over the word,
    in the room the scroller keeps above its words, so the names under it stay in view */
@@ -280,7 +280,7 @@
   margin-bottom: 0.15rem;
   z-index: 2;
   padding: 0.15rem 0.5rem;
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--radius-sm);
   background: var(--surface-hi);
   border: 1px solid var(--border-hi);
   color: var(--text);

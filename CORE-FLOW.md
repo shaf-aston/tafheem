@@ -14,7 +14,7 @@ python -m uvicorn backend.main:app --reload --port 8000   # backend, project roo
 cd frontend && npm run dev                                 # frontend, open http://localhost:5173
 venv/Scripts/python -m pytest tests -q                     # backend tests
 venv/Scripts/python -m backend.scripts.worktree new|remove NAME|ci  # ready copy, data linked from ../tafheem-data; drop it safely; or tests with no data, as CI
-cd frontend && npm test && npm run lint                    # frontend tests
+cd frontend && npm test && npm run lint && npm run lint:css   # frontend tests, eslint, then the style rules (radius, text size, z-index tokens)
 EAR=http://127.0.0.1:8000 node frontend/scripts/probes/probe-ear.mjs  # reciting, end to end
 venv/Scripts/python -m backend.scripts.nahw.score_iraab [--set checked]  # i'raab roles vs the books, or the 72 checked sentences
 venv/Scripts/python -m backend.scripts.quran.score_mutashabihat  # similar-verse finder vs the benchmark
