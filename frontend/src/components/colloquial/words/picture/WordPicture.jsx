@@ -9,8 +9,6 @@ import { useMemo, useRef, useState } from 'react'
 import settings from '../../../../config/colloquial-display.json'
 import { readViewParam, writeViewParams } from '../../../../lib/nav/tabUrl'
 import { pictureBoards } from '../../../../lib/colloquial/wordPictures'
-import { speak } from '../../../../lib/speech/speak'
-import { useAccent } from '../../../../lib/theme/accent'
 import { shuffled } from '../../../../lib/text/shuffle'
 import ArabicText from '../../../ui/text/ArabicText'
 import Segmented from '../../../ui/inputs/Segmented'
@@ -49,7 +47,7 @@ function spotAt(event, board) {
 }
 
 // A place's words, all of them: "in" and "inside" share one panel.
-function Said({ words }) {
+function Said({ words, hear }) {
   return (
     <div className="space-y-1">
       {words.map((w) => (
@@ -59,7 +57,8 @@ function Said({ words }) {
             <Spelling className="block">{w.transliteration}</Spelling>
             <p className="type-small text-[var(--text-dim)]">{w.english}</p>
           </div>
-          <SpeakButton text={w.arabic} />
+          {/* Only the first word is said on a tap; the others wait for their button. */}
+          <SpeakButton text={w.arabic} hear={w === words[0] ? hear : 0} />
         </div>
       ))}
     </div>
@@ -72,10 +71,15 @@ function Art({ board }) {
   return <><BodyArt art={board.art} /><SceneArt board={board} /><PanelArt board={board} /><ThingArt art={board.art} /></>
 }
 
-export function Board({ board, step = 'test' }) {
+// Beside the words on a wide screen (`split`) the drawing is held in view, as tall as the window allows,
+// and the picker and the question are held to its right, so the whole of the exercise is on screen at once.
+const CONTROLS = 'space-y-4 lg:col-start-2 lg:row-start-1 lg:sticky lg:top-[var(--app-header-h,0px)] lg:z-10 lg:bg-[color-mix(in_oklab,var(--bg)_88%,transparent)] lg:backdrop-blur-md lg:pt-4 lg:pb-2'
+const CANVAS = 'space-y-2 max-w-xl mx-auto w-full lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--app-header-h,0px)+1rem)]'
+
+export function Board({ board, step = 'test', toolbar = null, split = false }) {
   const [game, setGame] = useState(() => fresh(board))
   const [picked, setPicked] = useState(null)
-  const accent = useAccent()
+  const [heard, setHeard] = useState(0)
   const svg = useRef(null)
   const exploring = step === 'explore'
   const ask = game.queue[game.at]
@@ -88,9 +92,10 @@ export function Board({ board, step = 'test' }) {
     if (exploring) {
       const spot = board.spots.find((s) => s.key === key)
       if (!spot) return
+      // Heard as it is tapped, through the speaker button, so a voice still being
+      // made shows it is busy and one that cannot say it shows that too.
       setPicked(key)
-      // Heard as it is tapped; a voice that will not start leaves the words on screen.
-      speak(spot.words[0].arabic, { accent }).catch(() => {})
+      setHeard((n) => n + 1)
       return
     }
     if (!key || done) return
@@ -101,10 +106,12 @@ export function Board({ board, step = 'test' }) {
   }
 
   return (
-    <div className="space-y-4">
+    <>
+    <div className={split ? CONTROLS : 'space-y-4'}>
+      {toolbar}
       <div className="min-h-24 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 flex items-center justify-center gap-3 text-center" aria-live="polite">
         {exploring ? (
-          pickedSpot ? <Said words={pickedSpot.words} />
+          pickedSpot ? <Said words={pickedSpot.words} hear={heard} />
             : <span className="type-body text-[var(--text-dim)]">Tap any place to hear its name</span>
         ) : done ? (
           <span className="type-body font-medium text-[var(--text)]">All found · {game.slips} {game.slips === 1 ? 'slip' : 'slips'}</span>
@@ -125,8 +132,10 @@ export function Board({ board, step = 'test' }) {
           </>
         )}
       </div>
+    </div>
+    <div className={split ? CANVAS : 'space-y-4'}>
       <svg ref={svg} viewBox={board.view.join(' ')} role="group" aria-label={`${board.label}: ${exploring ? 'tap a place to hear its name' : 'tap the place'}`}
-        className="w-full max-w-md max-h-[70vh] mx-auto block touch-manipulation cursor-pointer select-none"
+        className={`w-full max-w-md max-h-[70vh] mx-auto block touch-manipulation cursor-pointer select-none ${split ? 'lg:max-h-[calc(100dvh-var(--app-header-h,0px)-5rem)]' : ''}`}
         onClick={(e) => answer(spotAt(e, board))}>
         <Art board={board} />
         {/* A led-out dot's line to its place, under the dots. */}
@@ -183,10 +192,12 @@ export function Board({ board, step = 'test' }) {
         {done && <SmallButton onClick={() => setGame(fresh(board))}>Play again</SmallButton>}
       </div>}
     </div>
+    </>
   )
 }
 
-export default function WordPicture({ words }) {
+// `children` are what sits beside the drawing on a wide screen (the words); with none, it is the drawing alone.
+export default function WordPicture({ words, children }) {
   const boards = useMemo(() => pictureBoards(words), [words])
   // Which picture, and Explore or Test, ride on the address like the mode does (?board=outfit&step=test),
   // so a reload or a shared link keeps them; the first picture and Explore are the start, and write nothing.
@@ -196,8 +207,8 @@ export default function WordPicture({ words }) {
   const setStep = (next) => { setStepNow(next); writeViewParams({ step: next === 'explore' ? '' : next }) }
   const board = boards.find((b) => b.id === id) ?? boards[0]
   if (!board) return null
-  return (
-    <div className="space-y-4">
+  const split = children != null
+  const toolbar = (
       <div className="flex flex-wrap items-center justify-between gap-3">
         {boards.length > 1 ? (
           <Segmented label="Which picture" accent="var(--primary)" value={board.id} onChange={setId} wrap
@@ -205,7 +216,11 @@ export default function WordPicture({ words }) {
         ) : <p className="eyebrow text-[var(--text-faint)]">{board.label}</p>}
         <Segmented label="Explore or test" accent="var(--primary)" value={step} onChange={setStep} compact options={STEPS} />
       </div>
-      <Board key={`${board.id}-${step}`} board={board} step={step} />
+  )
+  return (
+    <div className={split ? 'space-y-4 lg:grid lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:items-start lg:gap-x-8 lg:space-y-0' : 'space-y-4'}>
+      <Board key={`${board.id}-${step}`} board={board} step={step} toolbar={toolbar} split={split} />
+      {split && <div className="min-w-0 space-y-4 lg:col-start-2 lg:row-start-2">{children}</div>}
     </div>
   )
 }

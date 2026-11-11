@@ -1,11 +1,14 @@
 // @vitest-environment happy-dom
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { StrictMode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import spine from '../../../../../backend/data/colloquial/spine.json'
 import WordsView from './WordsView'
+import { speak } from '../../../lib/speech/speak'
 
+vi.mock('../../../lib/speech/speak', () => ({ speak: vi.fn(), prepare: vi.fn(), stop: vi.fn() }))
 vi.mock('../../../lib/learner/record', () => ({ useRecord: () => ({ file: vi.fn() }), summaryQuery: () => ({ queryKey: ['summary'], queryFn: async () => [] }) }))
 
 const word = (id) => ({ id, english: id, arabic: `ك${id}`, transliteration: id, category: 'things' })
@@ -35,6 +38,12 @@ describe('WordsView: Browse, with the drawing where the words have one', () => {
     const split = container.querySelector('.lg\\:grid')
     expect(split).not.toBeNull()
     expect(split.querySelector('.lg\\:sticky')).not.toBeNull()   // the drawing is held in view
+    // The picker and the question are held beside it (not above it), so none of the exercise scrolls away.
+    const held = [...split.querySelectorAll('.lg\\:sticky')]
+    const beside = held.find((e) => e.querySelector('[aria-live=polite]'))
+    expect(beside.className).toContain('lg:col-start-2')
+    expect(beside.contains(screen.getByRole('button', { name: 'Explore' }))).toBe(true)
+    expect(held.find((e) => e.querySelector('svg')).className).toContain('lg:col-start-1')
     // The words under it use the narrow mosaic (3 across at most), not the 6-across wide one.
     expect(container.querySelector('ul.grid.sm\\:grid-cols-3')).not.toBeNull()
     expect(container.querySelector('ul.grid.lg\\:grid-cols-6')).toBeNull()
@@ -52,6 +61,45 @@ describe('WordsView: Browse, with the drawing where the words have one', () => {
     draw(topic(body))
     expect(on()).toBe('Browse')
     expect(screen.getByRole('button', { name: 'Face' })).toBeTruthy()
+  })
+
+  it('tapping a dot says its word through the speaker button: busy while the voice is made, and failed if it cannot', async () => {
+    let fail
+    speak.mockReturnValueOnce(new Promise((_, reject) => { fail = reject }))
+    const { container } = draw(topic(body))
+    fireEvent.click(container.querySelector('circle[data-key]'))
+    const button = await screen.findByRole('button', { name: 'Say it aloud' })
+    expect(speak).toHaveBeenCalledTimes(1)
+    expect(button.getAttribute('aria-busy')).toBe('true')   // not silent: the screen says it is working
+    fail(new Error('No voice could say this'))
+    expect((await screen.findByRole('button', { name: 'No voice could say this' }))).toBeTruthy()   // and says when it cannot
+  })
+
+  it('one tap is one ask, even where React runs an effect twice (the second would be said slowly)', async () => {
+    speak.mockClear()
+    speak.mockReturnValue(new Promise(() => {}))
+    const { container } = render(<StrictMode><QueryClientProvider client={new QueryClient()}><WordsView unit={unit(topic(body))} at={0} /></QueryClientProvider></StrictMode>)
+    fireEvent.click(container.querySelector('circle[data-key]'))
+    await screen.findByRole('button', { name: 'Say it aloud' })
+    expect(speak).toHaveBeenCalledTimes(1)
+  })
+
+  it('a second tap while the first is answered does not flip the button to idle', async () => {
+    speak.mockClear()
+    let first, endFirst
+    speak.mockReturnValueOnce(new Promise((resolve) => { first = resolve }))
+    const firstDone = new Promise((resolve) => { endFirst = resolve })
+    const { container } = draw(topic(body))
+    const dot = container.querySelector('circle[data-key]')
+    fireEvent.click(dot)
+    const button = await screen.findByRole('button', { name: 'Say it aloud' })
+    first({ id: 'server', done: firstDone })
+    await screen.findByRole('button', { name: 'Stop' })
+    speak.mockReturnValueOnce(new Promise(() => {}))   // the second ask stays pending
+    fireEvent.click(dot)
+    endFirst()   // the first falls quiet because the second took the player
+    await new Promise((r) => setTimeout(r, 20))
+    expect(button.getAttribute('aria-busy')).toBe('true')   // still the second's, not reset to idle
   })
 
   it('a mode picked is kept across a reload', () => {

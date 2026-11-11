@@ -13,7 +13,9 @@ import { prepare, speak, stop } from '../../../lib/speech/speak'
 // `label` and `glyph` make it another way of hearing, the letter-by-letter
 // button say, with the same states, voices and stopping. `onFail` hears when no
 // voice could say it, so a question that needs the sound can offer another way.
-export default function SpeakButton({ text, ref, shortcut, early, onFail, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
+// `hear` is a count: each time it rises the word is said, so a tap elsewhere (a dot
+// on a drawing) is heard through this button and shows its busy and failed states.
+export default function SpeakButton({ text, ref, shortcut, early, hear = 0, onFail, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
   // idle | busy (finding a voice) | speaking | failed
   const [state, setState] = useState('idle')
   const accent = useAccent()
@@ -21,6 +23,8 @@ export default function SpeakButton({ text, ref, shortcut, early, onFail, label 
   // Whether the sound playing is this button's, and whether it is still on screen.
   const mine = useRef(false)
   const alive = useRef(true)
+  // Which ask the button is answering, so an older one that falls quiet cannot reset a newer one's state.
+  const asked = useRef(0)
 
   useEffect(() => { if (early) prepare(text, { accent }) }, [early, text, accent])
 
@@ -33,25 +37,38 @@ export default function SpeakButton({ text, ref, shortcut, early, onFail, label 
     }
   }, [text])
 
-  const press = async () => {
-    if (state === 'busy') return
-    if (state === 'speaking') return stop()
+  const say = async () => {
+    const turn = ++asked.current
     setState('busy')
     mine.current = true
     try {
       const voice = await speak(text, { accent })
       if (!alive.current) return stop()
+      if (turn !== asked.current) return   // a newer ask owns the button now
       setState('speaking')
       await voice.done
-      if (alive.current) setState('idle')
+      if (alive.current && turn === asked.current) setState('idle')
     } catch (err) {
-      if (!alive.current) return
+      if (!alive.current || turn !== asked.current) return
       setState(err.interrupted ? 'idle' : 'failed')
       if (!err.interrupted) onFail?.()
     } finally {
-      mine.current = false
+      if (turn === asked.current) mine.current = false
     }
   }
+
+  const press = () => {
+    if (state === 'busy') return
+    if (state === 'speaking') return stop()
+    say()
+  }
+
+  // Said once for each value of `hear`: on arrival when it is already above 0, and on every rise after.
+  // Remembered, so React's development double-run of an effect cannot ask twice (the second would be said slowly).
+  const heard = useRef(0)
+  useEffect(() => {
+    if (hear && hear !== heard.current) { heard.current = hear; say() }
+  }, [hear]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const look = state === 'failed'
     ? 'text-[var(--warn)] border-[var(--warn)]'
