@@ -79,7 +79,7 @@ export default function Onboarding({ onGo }) {
   }
 
   return (
-    <section ref={top} className="grow-lesson" style={{ '--w': ACCENT }} aria-label={copy.label}>
+    <section ref={top} data-onboarding className="grow-lesson" style={{ '--w': ACCENT }} aria-label={copy.label}>
       <div className="grow-lesson-top">
         <button type="button" className="grow-x" aria-label={copy.back} disabled={here === 0} onClick={() => setAt(here - 1)}>
           <span aria-hidden="true">‹</span>
