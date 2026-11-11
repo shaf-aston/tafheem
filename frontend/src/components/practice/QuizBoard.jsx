@@ -223,7 +223,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
                 Not on a touch screen: a phone has no Enter key. */}
             <kbd
               aria-hidden="true"
-              className="pointer-coarse:hidden px-1.5 py-0.5 rounded type-tiny font-semibold leading-none
+              className="pointer-coarse:hidden px-1.5 py-0.5 rounded-[var(--radius-xs)] type-tiny font-semibold leading-none
                 bg-[var(--bg)]/25 border border-current/30"
             >
               Enter ↵

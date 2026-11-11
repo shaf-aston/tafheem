@@ -33,7 +33,7 @@ export default function Face({ phrase, index, arabicSize = 'base', showEnglish =
         ? <PhrasePicture phrase={phrase} eager={eager} className="flex-1 min-h-0 w-full pt-6!" />
         : <PhrasePicture phrase={phrase} eager={eager} className="absolute inset-0 w-full h-full" />}
       {!phrase.image && <div aria-hidden="true" className="absolute inset-0" style={{ background: tint(index) }} />}
-      {numbered && <span className="absolute top-2 start-2 px-1.5 rounded bg-[var(--surface)]/85 type-micro tabular-nums text-[var(--text-dim)]">
+      {numbered && <span className="absolute top-2 start-2 px-1.5 rounded-[var(--radius-xs)] bg-[var(--surface)]/85 type-micro tabular-nums text-[var(--text-dim)]">
         {String(index + 1).padStart(2, '0')}
       </span>}
       {drawn

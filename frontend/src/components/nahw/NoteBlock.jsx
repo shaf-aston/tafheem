@@ -34,7 +34,7 @@ function Blank({ text, what, onReveal }) {
       type="button"
       onClick={onReveal}
       aria-label={`Hidden ${what}, press to show`}
-      className="inline-block min-w-[4ch] px-1 mx-0.5 rounded border border-dashed border-[var(--c)]
+      className="inline-block min-w-[4ch] px-1 mx-0.5 rounded-[var(--radius-xs)] border border-dashed border-[var(--c)]
         text-transparent select-none bg-[color-mix(in_srgb,var(--c)_8%,transparent)] hover:bg-[color-mix(in_srgb,var(--c)_16%,transparent)]
         transition-colors align-baseline"
     >

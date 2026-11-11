@@ -25,7 +25,7 @@ export default function OptionList({ part, picked, onToggle, checked }) {
           >
             <span
               aria-hidden="true"
-              className="w-4 h-4 rounded shrink-0 border border-[var(--border-hi)]"
+              className="w-4 h-4 rounded-[var(--radius-xs)] shrink-0 border border-[var(--border-hi)]"
               style={isPicked ? { background: 'var(--primary)', borderColor: 'var(--primary)' } : undefined}
             />
             <span className="flex-1 flex items-center gap-3 text-left"><OptionText part={part} option={option} /></span>

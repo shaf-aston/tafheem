@@ -34,7 +34,7 @@ export default function Segmented({
   // Each starts at its own word's width (grow, not flex-1): from zero, with a touch screen's
   // 44px floor (.tap) standing in for "no narrower than my word", every row "fit" and the words overlapped.
   // The phone is max-sm (below 40rem, the PHONE query): CSS, so the row never re-renders on a resize.
-  const shape = wrap ? 'flex-wrap rounded-2xl' : 'rounded-full max-sm:flex-wrap max-sm:rounded-2xl'
+  const shape = wrap ? 'flex-wrap rounded-[var(--radius-md)]' : 'rounded-full max-sm:flex-wrap max-sm:rounded-[var(--radius-md)]'
   const row = (
     <div
       className={`flex gap-0.5 p-0.5 ${shape} bg-[var(--surface)] border border-[var(--border)] ${className}`}

@@ -52,7 +52,7 @@ export default function QuizOption({ option, index, lang, say, answered, picked,
         <ArabicText lang={lang} className="option-word leading-tight">{option.text}</ArabicText>
       )}
       {verdict && (
-        <span className="absolute -top-2.5 end-3 px-1.5 rounded type-tiny font-medium leading-5 bg-[var(--surface)]">
+        <span className="absolute -top-2.5 end-3 px-1.5 rounded-[var(--radius-xs)] type-tiny font-medium leading-5 bg-[var(--surface)]">
           {verdict}
         </span>
       )}

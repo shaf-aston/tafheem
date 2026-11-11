@@ -12,7 +12,7 @@ export function Breadcrumbs({ steps }) {
           <span key={`${i}-${step.label}`} className="flex items-center gap-2">
             {last
               ? <span aria-current="page" className="text-[var(--text)] font-medium py-1.5">{step.label}</span>
-              : <button type="button" onClick={step.go} className={`press text-[var(--text-dim)] hover:text-[var(--text)] underline-offset-4 hover:underline rounded py-1.5`}>{step.label}</button>}
+              : <button type="button" onClick={step.go} className={`press text-[var(--text-dim)] hover:text-[var(--text)] underline-offset-4 hover:underline rounded-[var(--radius-xs)] py-1.5`}>{step.label}</button>}
             {/* Each step carries the mark after it, so a trail that wraps never starts a line with one. */}
             {!last && <span aria-hidden className="text-[var(--text-faint)]">›</span>}
           </span>

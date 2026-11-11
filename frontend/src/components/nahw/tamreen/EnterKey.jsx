@@ -2,7 +2,7 @@
 // used rather than from a line of hints.
 const EnterKey = () => (
   <kbd aria-hidden="true"
-    className="px-1.5 py-0.5 rounded type-tiny font-semibold leading-none bg-[var(--bg)]/25 border border-current/30">
+    className="px-1.5 py-0.5 rounded-[var(--radius-xs)] type-tiny font-semibold leading-none bg-[var(--bg)]/25 border border-current/30">
     Enter ↵
   </kbd>
 )
