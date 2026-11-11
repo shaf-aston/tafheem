@@ -74,7 +74,7 @@ export default function GrowNext({ modules, pending = false, level, plan, copy, 
     return (
       <section aria-labelledby="home-grow-next" className="space-y-2">
         <h3 id="home-grow-next" className="eyebrow eyebrow-lg">{label}</h3>
-        <Skeleton late className="h-17 w-full rounded-[var(--radius-lg)]" />
+        <Skeleton className="h-17 w-full rounded-[var(--radius-lg)]" />
       </section>
     )
   }
