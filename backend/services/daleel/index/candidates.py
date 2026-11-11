@@ -77,9 +77,8 @@ def candidates(
     # passages that did answer: fasting in القدوري found nothing at all.
     words = set(expansion.phrase_terms) | set(expansion.all_terms)
     if long_terms:
-        match = " OR ".join(fts.quoted(term) if term in words else f"roots:{fts.quoted(term)}"
-                            for term in long_terms)
-        for row in fairly(conn, match, per_source, books):
+        phrases = [fts.quoted(term) if term in words else f"roots:{fts.quoted(term)}" for term in long_terms]
+        for row in fairly(conn, phrases, per_source, books):
             found[row.key] = row
 
     # Matched as whole words, which is what the word index holds, so a
@@ -118,8 +117,7 @@ def loosely(
     if not runs:
         return []
 
-    match = " OR ".join(fts.quoted(run) for run in sorted(runs))
-    return fairly(conn, match, per_source, books)
+    return fairly(conn, [fts.quoted(run) for run in sorted(runs)], per_source, books)
 
 
 def is_a_word(term: str) -> bool:

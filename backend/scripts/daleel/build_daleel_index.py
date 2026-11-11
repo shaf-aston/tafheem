@@ -2,6 +2,7 @@
 
     python backend/scripts/daleel/build_daleel_index.py
     python backend/scripts/daleel/build_daleel_index.py --only corpus
+    python backend/scripts/daleel/build_daleel_index.py --champions   # add common-word lists to the index already there
 
 Reads each registered source, writes every passage into one FTS5 table, and
 prints how many came from each book so the count can be checked against what
@@ -25,9 +26,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
-from backend.config import data_path  # noqa: E402, needs the path above
+from backend.config import data_path, get_settings  # noqa: E402, needs the path above
 from backend.services.core import provenance  # noqa: E402, needs the path above
 from backend.services.core.building import building  # noqa: E402, needs the path above
+from backend.services.daleel.index import champions  # noqa: E402
 from backend.services.daleel.sources import registry  # noqa: E402
 from backend.services.text.arabic_text import both_spellings  # noqa: E402
 
@@ -167,6 +169,7 @@ def build(only: str | None = None) -> dict[str, int]:
         print(f"  {'catalogue':<12} {len(catalogue):>7,} books")
         print(f"  {'words':<12} {fill_words(conn):>7,} passages indexed by word")
         print(f"  {'meta':<12} {fill_meta(conn):>7,} passages filed by source")
+        print(f"  {'champions':<12} {fill_champions(conn):>7,} common words scored ahead")
     return counts
 
 
@@ -209,6 +212,27 @@ def fill_meta(conn: sqlite3.Connection) -> int:
     return conn.execute("SELECT count(*) FROM passage_meta").fetchone()[0]
 
 
+def fill_champions(conn: sqlite3.Connection) -> int:
+    """Score each common word's best passages per source once, here. Returns how many words.
+
+    Last, because it reads the finished passages and their sources.
+    """
+    settings = get_settings()
+    return champions.fill(conn, settings.daleel_champion_least_hits, settings.daleel_champion_depth)
+
+
+def add_champions() -> int:
+    """Give a finished index its champion lists, in place. Returns how many words.
+
+    Run again after changing daleel_champion_depth or daleel_champion_least_hits.
+    """
+    conn = sqlite3.connect(data_path("daleel_index_path"))
+    try:
+        return fill_champions(conn)
+    finally:
+        conn.close()
+
+
 def add_meta() -> int:
     """Give a finished index its meta table, in place. Returns how many rows.
 
@@ -248,7 +272,16 @@ def main() -> int:
         "--meta", action="store_true",
         help="Only add the source/book table to the index that is already there, in place",
     )
+    parser.add_argument(
+        "--champions", action="store_true",
+        help="Only add the champion lists (common words scored ahead) to the index that is already there",
+    )
     args = parser.parse_args()
+
+    if args.champions:
+        print("Scoring the common words' best passages")
+        print(f"Total: {add_champions():,} common words scored ahead")
+        return 0
 
     if args.meta:
         print("Adding the source and book table")

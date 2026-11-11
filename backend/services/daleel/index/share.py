@@ -1,6 +1,10 @@
 """Each source's share of the matches: its best few, so one big book cannot fill the page.
 
-Two ways of cutting it, which pick the same passages:
+Three ways of cutting it, which pick the same passages:
+
+- `champions.best`, tried first: a common word's best passages were scored when
+  the index was built, so they are read rather than worked out again. It says
+  when it cannot be sure, and the next one answers instead.
 
 - `best_per_source`, the ordinary one. Every source's passages are one unbroken
   run of rowids, because the build writes one source after another, so which
@@ -21,6 +25,7 @@ from typing import NamedTuple
 
 from backend.services.text import fts
 
+from backend.services.daleel.index import champions
 from backend.services.daleel.index.connection import db, has_table
 from backend.services.daleel.index.row import COLUMNS, IndexedPassage
 
@@ -28,9 +33,12 @@ log = logging.getLogger(__name__)
 
 
 def fairly(
-    conn: sqlite3.Connection, match: str, per_source: int, books: tuple[str, ...] = (),
+    conn: sqlite3.Connection, phrases: list[str], per_source: int, books: tuple[str, ...] = (),
 ) -> list[IndexedPassage]:
-    """The best `per_source` passages each source has for that match, in one question.
+    """The best `per_source` passages each source has for any of `phrases`, in one question.
+
+    `phrases` are FTS5 phrases, each already quoted or column-filtered, and a
+    passage matching any one of them is a match.
 
     The matching is left to the trigram index, which answers in rowids and
     never unpacks a passage; only the rows that survive the share are fetched
@@ -42,8 +50,9 @@ def fairly(
     156 sources kept their best passage that way and 149 do now. Putting
     passages holding every typed word first was tried too and kept only 121.
     """
+    match = " OR ".join(phrases)
     if not books and (spans := source_spans(conn)):
-        return best_per_source(conn, match, per_source, spans)
+        return best_per_source(conn, phrases, per_source, spans)
 
     only, chosen = fts.only_in("book", books)
     return list(map(IndexedPassage._make, conn.execute(
@@ -88,14 +97,35 @@ def _read_spans(conn: sqlite3.Connection) -> Spans | None:
 
 
 def best_per_source(
-    conn: sqlite3.Connection, match: str, per_source: int, spans: Spans,
+    conn: sqlite3.Connection, phrases: list[str], per_source: int, spans: Spans,
 ) -> list[IndexedPassage]:
     """The `per_source` best-scored matches of each source, then those rows in full.
 
-    FTS5 scores lower as better, and rowid breaks a tie, as the SQL version
-    orders them; the heap keeps the worst of the best on top to be replaced.
+    From the champion lists when they can answer exactly, else by scoring every match.
     Handed back a source at a time in the order of their names, as the SQL
     version's window hands them back, so a tie later on falls the same way.
+    """
+    kept = champions.best(conn, phrases, per_source, spans.starts)
+    if kept is None:
+        kept = scored(conn, " OR ".join(phrases), per_source, spans)
+
+    by_name = sorted(range(len(kept)), key=spans.sources.__getitem__)
+    ids = [rowid for at in by_name for _, rowid in kept[at]]
+    if not ids:
+        return []
+    rows = {row[0]: IndexedPassage._make(row[1:]) for row in conn.execute(
+        f"SELECT p.rowid, {COLUMNS} FROM passage p WHERE p.rowid IN ({','.join('?' * len(ids))})", ids,
+    )}
+    return [rows[rowid] for rowid in ids if rowid in rows]
+
+
+def scored(
+    conn: sqlite3.Connection, match: str, per_source: int, spans: Spans,
+) -> list[list[champions.Scored]]:
+    """Every match scored by FTS5, each source's best `per_source` kept, best first.
+
+    FTS5 scores lower as better, and rowid breaks a tie, as the SQL version
+    orders them; the heap keeps the worst of the best on top to be replaced.
     """
     kept: list[list[tuple[float, int]]] = [[] for _ in spans.starts]
     ends = (*spans.starts[1:], float("inf"))
@@ -111,12 +141,4 @@ def best_per_source(
             heapq.heappush(heap, (-score, -rowid))
         elif (-score, -rowid) > heap[0]:
             heapq.heapreplace(heap, (-score, -rowid))
-
-    by_name = sorted(range(len(kept)), key=spans.sources.__getitem__)
-    ids = [-rowid for at in by_name for _, rowid in sorted(kept[at], reverse=True)]
-    if not ids:
-        return []
-    rows = {row[0]: IndexedPassage._make(row[1:]) for row in conn.execute(
-        f"SELECT p.rowid, {COLUMNS} FROM passage p WHERE p.rowid IN ({','.join('?' * len(ids))})", ids,
-    )}
-    return [rows[rowid] for rowid in ids if rowid in rows]
+    return [[(-score, -rowid) for score, rowid in sorted(heap, reverse=True)] for heap in kept]

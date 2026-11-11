@@ -395,6 +395,12 @@ class Daleel(BaseSettings):
     daleel_candidate_factor: int = Field(default=20, gt=0)
     # The least each source may bring, however small the cap.
     daleel_per_source_least: int = Field(default=8, gt=0)
+    # Build-time only (index/champions.py). A word in at least this many passages gets a champion list:
+    # its best passages per source, scored once at build so a search reads them instead of scoring every match.
+    daleel_champion_least_hits: int = Field(default=1000, gt=0)
+    # How many of each source's best passages a champion list keeps. A search wanting more per source
+    # (past ~3x the default page) is asked the ordinary way. Written into the index, so changing it needs a rebuild.
+    daleel_champion_depth: int = Field(default=64, gt=0)
     # Books one search may name; a request naming hundreds is not a reader choosing.
     daleel_max_books: int = Field(default=40, gt=0)
     # Longer than the longest book name with room to spare; a longer one matches nothing.

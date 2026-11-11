@@ -141,7 +141,7 @@ def test_every_source_gets_its_share_of_the_places(index):
     """
     conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
     try:
-        rows = share.fairly(conn, f'"{_ARABIC_PRAYER}"', 1)
+        rows = share.fairly(conn, [f'"{_ARABIC_PRAYER}"'], 1)
     finally:
         conn.close()
 
@@ -154,7 +154,7 @@ def test_a_share_of_one_book_is_still_only_that_book(index):
     reader had just excluded and show one hit instead of two."""
     conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
     try:
-        rows = share.fairly(conn, f'"{_ARABIC_PRAYER}"', 8, ("\u0645\u062e\u062a\u0635\u0631 \u0627\u0644\u0642\u062f\u0648\u0631\u064a",))
+        rows = share.fairly(conn, [f'"{_ARABIC_PRAYER}"'], 8, ("\u0645\u062e\u062a\u0635\u0631 \u0627\u0644\u0642\u062f\u0648\u0631\u064a",))
     finally:
         conn.close()
 
@@ -167,7 +167,7 @@ def test_a_share_holds_the_better_passage_not_the_earlier_one(index):
     later. Cut by passage order, it went to whichever came first in the file."""
     conn = sqlite3.connect(f"file:{index}?mode=ro", uri=True)
     try:
-        rows = share.fairly(conn, '"النافلة" OR "جائزة"', 1)
+        rows = share.fairly(conn, ['"النافلة"', '"جائزة"'], 1)
     finally:
         conn.close()
 
