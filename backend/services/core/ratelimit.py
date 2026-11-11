@@ -60,6 +60,30 @@ class PerMinute:
         return False
 
 
+class Limit:
+    """A route dependency: a share a minute per visitor, and a ceiling for everyone together. Until the origin
+    gate (docs/plans/2026-11-11-security.md, Phase 2) a visitor's address can be forged; the ceiling keys on
+    nothing a request sends. `settings` names the two config fields; `busy` the two answers."""
+
+    def __init__(self, each: str, everyone: str, mine: str, busy: str) -> None:
+        self.each, self.everyone = PerMinute(each), PerMinute(everyone)
+        self.mine, self.busy = mine, busy
+
+    def __call__(self, request: Request) -> None:
+        if self.each.too_many(visitor(request)):
+            raise HTTPException(429, self.mine)
+        if self.everyone.too_many("everyone"):
+            raise HTTPException(429, self.busy)
+
+
+# The parser, for routes that read a whole sentence with it: the Analyse page asks /analyze, then
+# /dictionary/sentence and /practice for the same sentence, so those two share a count of their own.
+ANALYZE = Limit("analyze_per_minute", "analyze_all_per_minute",
+                "Too many analyses at once; try again in a minute", "Analysis is busy right now; try again in a minute")
+READ = Limit("sentence_per_minute", "sentence_all_per_minute",
+             "Too many sentences at once; try again in a minute", "Sentences are busy right now; try again in a minute")
+
+
 class OverBudget(HTTPException):
     """A model call this visitor, or everyone together, may not make this minute. An HTTPException, so
     unless something catches it the answer is a 429 (and a line in the security log). Code that turns a

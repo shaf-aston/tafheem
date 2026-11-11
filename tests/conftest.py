@@ -34,6 +34,8 @@ def _analyze_unlimited(monkeypatch):
     monkeypatch.setattr(get_settings(), "ai_all_per_minute", 10**9)
     monkeypatch.setattr(get_settings(), "analyze_all_per_minute", 10**9)
     monkeypatch.setattr(get_settings(), "speech_all_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "sentence_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "sentence_all_per_minute", 10**9)
 
 
 @pytest.fixture(autouse=True)

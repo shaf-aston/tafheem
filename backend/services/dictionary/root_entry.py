@@ -9,6 +9,7 @@ from typing import NamedTuple
 
 from backend.config import get_settings
 from backend.services import ai
+from backend.services.core.ratelimit import OverBudget
 from backend.services.dictionary import root_english, root_gloss, root_meaning, root_senses
 
 
@@ -128,7 +129,12 @@ def senses(root: str) -> Worded | Refused:
         ask = partial(ai.explain_root_entry_senses, root, reference=root_english.get(book_root))
         parts, read = [], 0
         for chunk in root_gloss.chunks(cut, get_settings().root_senses_chunk_chars, fold_tail=True):
-            part = root_senses.cut(ask, chunk)
+            try:
+                part = root_senses.cut(ask, chunk)
+            except OverBudget:
+                if not parts:
+                    raise
+                break  # the opening already paid for is shown, as for a later chunk that failed
             if part is None:
                 break
             parts.append(part)

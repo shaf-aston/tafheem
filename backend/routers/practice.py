@@ -12,7 +12,7 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from fastapi import APIRouter, BackgroundTasks, HTTPException, Query, Response
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Response
 
 from backend.config import get_settings
 from backend.models.practice import (
@@ -28,6 +28,7 @@ from backend.services.nahw import iraab
 from backend.services.nahw import practice as practice_service
 from backend.services.learner import attempts
 from backend.services.core import provenance
+from backend.services.core.ratelimit import READ
 from backend.services.learner import checked_sentence
 from backend.utils import Timings, arabic_sentence
 
@@ -38,7 +39,7 @@ router = APIRouter(prefix="/api/practice", tags=["practice"])
 MODULE = "nahw"
 
 
-@router.post("", response_model=PracticeResponse)
+@router.post("", response_model=PracticeResponse, dependencies=[Depends(READ)])
 async def generate_practice(request: PracticeRequest, response: Response, later: BackgroundTasks) -> PracticeResponse:
     sentence = arabic_sentence(request.sentence, "Sentence")
     timings = Timings()

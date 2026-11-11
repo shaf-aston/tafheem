@@ -78,6 +78,10 @@ class Nahw(BaseSettings):
     # Every *_all_* count is kept by each server process (two run), so the machine as a whole takes twice it.
     analyze_per_minute: int = Field(default=60, gt=0)
     analyze_all_per_minute: int = Field(default=600, gt=0)
+    # The same for a sentence's meaning and its practice questions (GET /api/dictionary/sentence, POST
+    # /api/practice), which also run the parser and share one count (services/core/ratelimit.READ).
+    sentence_per_minute: int = Field(default=60, gt=0)
+    sentence_all_per_minute: int = Field(default=600, gt=0)
     # Calls to the model (Groq) a minute, charged in services/ai._ask for each call that would reach it
     # (services/core/ratelimit.AI): an answer already on file costs nothing. One budget for every model-backed
     # route, so a person who rarely asks ten a minute is never near it. The second is for everyone together:
