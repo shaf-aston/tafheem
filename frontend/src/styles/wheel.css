@@ -1,0 +1,122 @@
+/* Wheel
+   The one dropdown, ui/inputs/WheelPicker: the pill that opens it and the spinning card. */
+
+
+/* ui/WheelPicker: a pill, and the floating wheel it opens. */
+.wheel-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.375rem 0.75rem;
+  font-size: var(--type-ui);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+
+.wheel-pill:hover:not(:disabled) { border-color: var(--border-hi); }
+
+
+/* Disabled reads by its dashed edge, not by fading the words: half-opacity text-dim measured 3.3:1 on the card. */
+.wheel-pill:disabled { color: var(--text-dim); border-style: dashed; cursor: not-allowed; }
+
+
+.wheel-card {
+  position: absolute;
+  z-index: var(--layer-popover);
+  top: calc(100% + 0.375rem);
+  left: 0;
+  /* Grows to its longest choice, between 16rem and 24rem; WheelPicker keeps it on screen. */
+  width: max-content;
+  min-width: 16rem;
+  max-width: min(24rem, calc(100vw - 2rem));
+  padding: 0.5rem;
+  background: var(--surface-hi);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop);
+}
+
+
+.wheel-card-narrow { width: 9rem; min-width: 0; }
+
+
+.wheel-type {
+  width: 100%;
+  padding: 0.375rem 0.625rem;
+  font-size: var(--type-ui);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+
+.wheel-type:focus { outline: none; border-color: var(--c); }
+
+
+/* Five rows show; the middle band marks the one Enter picks. */
+.wheel-window {
+  --wheel-row: 2.25rem;
+  position: relative;
+}
+
+
+.wheel-type + .wheel-window { margin-top: 0.5rem; }
+
+
+.wheel-window::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--wheel-row) * 2) 0 auto;
+  height: var(--wheel-row);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--c) 14%, transparent);
+  pointer-events: none;
+}
+
+
+.wheel-list {
+  height: calc(var(--wheel-row) * 5);
+  overflow-y: auto;
+  padding-block: calc(var(--wheel-row) * 2);
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  mask-image: linear-gradient(transparent, #000 35%, #000 65%, transparent);
+}
+
+
+.wheel-list::-webkit-scrollbar { display: none; }
+
+
+.wheel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: var(--wheel-row);
+  padding-inline: 0.625rem;
+  scroll-snap-align: center;
+  font-size: var(--type-ui);
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+
+.wheel-item[aria-selected='true'] { color: var(--text); font-weight: 600; }
+
+
+.wheel-item[aria-disabled='true'] { color: var(--text-faint); cursor: not-allowed; }
+
+
+.wheel-list:focus { outline: none; }
+
+
+.wheel-hint { color: var(--text-faint); white-space: nowrap; flex-shrink: 0; }
+
+
+.wheel-card-up { top: auto; bottom: calc(100% + 0.375rem); }

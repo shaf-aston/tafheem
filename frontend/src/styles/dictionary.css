@@ -1,0 +1,40 @@
+/* Dictionary
+   Dictionary entries: the run-on rows and the quoted classical text. */
+
+
+/* The dictionary's answer (dictionary/WordEntry, DictionaryPanel's ClassicalRoot):
+   the word asked about is the one .card; everything after it is a quiet section,
+   an .eyebrow over rows ruled off by a hairline. It was boxes inside boxes, and
+   on a phone the box edges and their padding were a good part of the page. */
+.dict-rows > * { padding-block: var(--space-tile); }
+
+
+.dict-rows > :first-child { padding-top: 0; }
+
+
+.dict-rows > * + * { border-top: 1px solid var(--border); }
+
+
+/* A row's senses run on as one paragraph, numbered in faint figures once there
+   are two: a list a line each stood a word's three senses three lines deep. */
+.dict-run-on { counter-reset: sense; }
+
+
+.dict-run-on > li { display: inline; counter-increment: sense; }
+
+
+.dict-run-on > li:not(:last-child)::after { content: '; '; }
+
+
+.dict-run-on > li:not(:only-child)::before {
+  content: counter(sense) ' ';
+  color: var(--text-faint);
+}
+
+
+/* A book's own words quoted: a thin rule in the tab's colour (--c) at the edge
+   the text starts from, in place of the box it used to sit in. */
+.dict-quote {
+  border-inline-start: 2px solid var(--c);
+  padding-inline-start: var(--space-tile);
+}

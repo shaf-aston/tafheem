@@ -1,3 +1,7 @@
+/* Shared UI
+   The shared pieces every tab draws: the page's controls, role colouring, hover lift and press, the glide and options, pop-up dialogs, the loading skeleton and the pen's ink line, cards and tiles and the call-to-action pill, the sideways rails, the folding question form. A rule for one tab's own screen belongs in that tab's file below, not here. */
+
+
 /* ── Chrome controls ────────────────────────────────────────────────────────
    A square button in the page furniture rather than inside a panel: the settings
    gear, the pen that opens the launcher. One class and one size token, so the
@@ -94,6 +98,7 @@
 .press:active {
   transform: scale(0.98);
 }
+
 
 .press:has(> .stretch):active:not(:has(> .stretch:active)) {
   transform: none;
@@ -241,6 +246,7 @@ dialog::backdrop {
 /* Shown only after patience-ms: fade-in with no length is a switch that flips late. */
 .late { opacity: 0; animation: fade-in 0s calc(var(--motion-patience-ms) * 1ms) forwards; }
 
+
 /* A tint of the text, not surface on surface: that shimmer all but vanished on plain parchment (the Quiz)
    and read only on a coloured card. A tint of the ink reads on any ground, in every look. */
 .skeleton {
@@ -270,6 +276,8 @@ dialog::backdrop {
   width: min(16rem, 70%);
   height: 1.5rem; /* the h-6 bar it stands in for, so the placeholder keeps its height */
 }
+
+
 .ink-line-trail {
   position: absolute;
   inset: auto 0 0.2rem 0;
@@ -279,6 +287,8 @@ dialog::backdrop {
   transform-origin: right;
   animation: ink-write var(--ink-ms) ease-in-out infinite;
 }
+
+
 .ink-line-pen {
   position: absolute;
   bottom: 0;
@@ -286,314 +296,18 @@ dialog::backdrop {
   --c: var(--palette-gold);
   animation: ink-pen var(--ink-ms) ease-in-out infinite;
 }
+
+
 @keyframes ink-write {
   0% { transform: scaleX(0); opacity: 1; }
   70% { transform: scaleX(1); opacity: 1; }
   100% { transform: scaleX(1); opacity: 0; }
 }
+
+
 @keyframes ink-pen {
   0% { right: 0; }
   70%, 100% { right: calc(100% - 1rem); }
-}
-
-
-/* Sibling dimming: hovering one word pushes the rest back so the pair you are
-   comparing stands out. Pure CSS, so it costs nothing per keystroke.
-
-   Deliberately gentle. At 0.45 opacity the rest of the ayah read as switched
-   off, and an ayah is a sentence: the words around the one under the cursor are
-   the context that makes it mean anything. This is a half-step back, enough to
-   see which word is being pointed at and not enough to stop reading the rest. */
-.peer-dim:has(.word:hover) .word:not(:hover),
-.peer-dim:has(.word:focus-visible) .word:not(:focus-visible) {
-  opacity: 0.72;
-  filter: saturate(0.85);
-}
-
-
-/* A word's English while the pointer rests on it, in the reading view.
-   The same idea as .peer-dim above and deliberately quieter: there, one word is
-   being studied; here, a surah is being read, and a page that reacts loudly to
-   every word the pointer crosses is a page nobody can read.
-   Only while a word is under the pointer: the line is the row's full width, so
-   resting in the empty space beside a short ayah dimmed it with nothing to show.
-   Not while the button is down in the row: that is a drag-select across words,
-   and a gloss or a dimming on every word it crosses is noise over the selection. */
-.surah-row:not(:active) .gloss-line:has(.gloss-word:hover) .gloss-word:not(:hover),
-.surah-row:not(:active) .gloss-line:has(.gloss-word:focus-visible) .gloss-word:not(:focus-visible) {
-  color: var(--text-dim);
-}
-
-
-/* One ayah of the reading view. Rows off the screen are not laid out until they
-   scroll near it: al-Baqarah is 286 rows and 27,000 elements, and laying all of
-   them out at once was a full second of the two the surah took to appear.
-   The intrinsic size is a guess at a row's height, only used for the scrollbar
-   while a row is skipped. */
-.surah-row {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 8rem;
-}
-
-
-/* A box of its own, not the inline span the glyphs sit in: an inline span is as
-   tall as its font's ascent plus descent (2em for the mushaf faces, far above
-   the letters), so a gloss hung off it floated away from its word, and the lit
-   highlight covered twice the word's height. Here the height is the one number
-   below, whatever the face. The line itself keeps its own, taller, line-height,
-   so nothing about the spacing between lines moves. */
-.gloss-word {
-  --gloss-box: 1.5;
-  position: relative;
-  display: inline-block;
-  line-height: var(--gloss-box);
-  border-radius: var(--radius-sm);
-  /* transform is the lift card below: the word rises as its gloss springs out. */
-  transition:
-    color calc(var(--motion-instant-ms) * 1ms) ease,
-    background calc(var(--motion-instant-ms) * 1ms) ease,
-    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
-}
-
-
-.gloss-word:hover,
-.gloss-word:focus-visible {
-  color: var(--text);
-}
-
-
-/* The word being recited. Read at arm's length while the recitation runs, so it
-   is a lit background rather than a colour change: a tinted word is hard to
-   pick out of a line of the same colour, and the reader is following along, not
-   inspecting one word. The transition is short on purpose, at three or four
-   words a second a slow fade never finishes before the next word starts. */
-.gloss-word-lit,
-.surah-row:not(:active) .gloss-line:has(.gloss-word:hover) .gloss-word-lit:not(:hover),
-.surah-row:not(:active) .gloss-line:has(.gloss-word:focus-visible) .gloss-word-lit:not(:focus-visible) {
-  color: var(--on-accent);
-  background: var(--c);
-}
-
-
-/* Hover-only text is generated content, which a selection never copies. */
-.tip-bubble::after {
-  content: attr(data-tip);
-}
-
-
-/* Isolated left to right, or "(is) for Allah" has its bracket flipped.
-   Under its word, where "Show all meanings" puts the same English. Above it, a
-   gloss on a first line went under the sticky header, and on every row it was
-   clipped by the row's paint containment (.surah-row); under the last line it
-   lands in the row's own translation, which is never clipped. */
-.gloss-word[data-gloss]::after {
-  content: attr(data-gloss);
-  direction: ltr;
-  unicode-bidi: isolate;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  opacity: 0;
-  pointer-events: none;
-  z-index: var(--layer-raised);
-  background: var(--c);
-  color: var(--on-accent);
-  font-family: var(--font-ui);
-  font-size: var(--type-small);
-  line-height: 1;
-  white-space: nowrap;
-  padding: 0.4rem 0.55rem;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-pop);
-  transition:
-    opacity calc(var(--motion-instant-ms) * 1ms) ease,
-    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
-  transform: translateX(-50%) translateY(-4px) scale(0.92);
-}
-
-
-/* Focus reveals the gloss exactly as the pointer does. The words are buttons, so
-   a keyboard reaches every one of them; without this it reached them and was
-   shown nothing. */
-.surah-row:not(:active) .gloss-word[data-gloss]:hover::after,
-.surah-row:not(:active) .gloss-word[data-gloss]:focus-visible::after,
-.gloss-word-peek[data-gloss]::after {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-
-/* The lift card: the word under the pointer rises a little as its gloss springs
-   out beneath it (the springing is the gloss's transform above), so the pair
-   reads as one card picked up off the line. Small on purpose: the line has to
-   stay readable around it. */
-.surah-row:not(:active) .gloss-word[data-gloss]:hover,
-.surah-row:not(:active) .gloss-word[data-gloss]:focus-visible {
-  transform: translateY(calc(var(--motion-lift-px) * -1px));
-}
-.gloss-all .gloss-word[data-gloss] { transform: none; }
-
-
-
-/* A learnt word: a soft underline, the colour the quiz uses for right. */
-.gloss-word-learnt {
-  text-decoration: underline var(--success-edge) 2px;
-  text-underline-offset: 0.5em;
-}
-
-
-/* "Show all meanings": every gloss sits under its word, always on. After the
-   hover rules, so hovering a word does not float its gloss back up. */
-.gloss-all .gloss-word {
-  line-height: inherit;
-}
-.gloss-all .gloss-word[data-gloss] {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  vertical-align: top;
-}
-.gloss-all .gloss-word[data-gloss]::after {
-  position: static;
-  opacity: 1;
-  transform: none;
-  /* transform snaps, never eases: eased from the floating gloss's offset, it left
-     every English stuck half its width to the left once the meanings came on. The
-     lean on hover is `translate`, a property of its own, so it can ease both ways. */
-  transition-property: opacity, translate;
-  transition-duration: calc(var(--motion-base-ms) * 1ms);
-  background: none;
-  box-shadow: none;
-  color: var(--text-dim);
-  white-space: normal;
-  max-width: 7rem;
-  text-align: center;
-  padding: 0.2rem 0 0.6rem;
-}
-/* Pointed at, the English leans a little toward where the reading goes. */
-.surah-row:not(:active) .gloss-all .gloss-word[data-gloss]:is(:hover, :focus-visible)::after {
-  transform: none;
-  translate: calc(var(--motion-nudge-px) * -1px) 0;
-}
-/* An underline would run through the English too, so a learnt word's English
-   carries the mark instead. */
-.gloss-all .gloss-word-learnt[data-gloss] {
-  text-decoration: none;
-}
-.gloss-all .gloss-word-learnt[data-gloss]::after {
-  color: var(--success);
-}
-
-.word {
-  transition:
-    opacity calc(var(--motion-instant-ms) * 1ms) ease,
-    filter calc(var(--motion-instant-ms) * 1ms) ease,
-    transform calc(var(--motion-instant-ms) * 1ms) ease,
-    box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
-}
-
-
-.word:hover,
-.word:focus-visible {
-  transform: translateY(-3px);
-}
-
-
-/* Picked up, it casts the same pop shadow as every .lift card; not over a glow,
-   which is its own shadow. */
-.word:not(.glow):hover,
-.word:not(.glow):focus-visible {
-  box-shadow: var(--shadow-pop);
-}
-
-
-/* The word you opened. It grows a little and lifts, so the detail panel hanging
-   below it reads as belonging to a particular word rather than floating over
-   the row; and the word itself comes up a shade, because the one you are
-   reading about should be the one your eye returns to. Both are small on
-   purpose: the row still has to scan as a row of equals. */
-.word-open,
-.word-open:hover {
-  transform: translateY(-3px) scale(1.06);
-}
-
-
-/* Only the button, never the whole chip: the panel is a child of it, and
-   brightening that too washed out the text it exists to show. */
-.word-open > button {
-  filter: brightness(1.15);
-}
-
-
-/* The header bar. The tint ratio lives here with every other surface mix
-   rather than inlined in the component. */
-.app-header {
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(8px);
-}
-
-
-/* One tab on the strip, and the lit line under the chosen one. */
-.tab-btn {
-  transition: color calc(var(--motion-base-ms) * 1ms) ease;
-}
-
-
-/* An unselected tab already hints at the colour it will turn, enough to tell
-   Sarf's red from Quran's teal at a glance, not enough to compete with the tab
-   you are actually on. How much of the hint shows is a theme.json knob. */
-/* Home's number-key hint (KeyHint.jsx): keyboards only (a phone has no number keys).
-   Its arrow sits on the strip's own bottom line: hung below it, the keycap reached
-   into the tops of Home's 48px heading. */
-.key-hint {
-  position: absolute; top: calc(100% - 0.375rem); translate: -50% 0; z-index: 1;
-  display: none; flex-direction: column; align-items: center; pointer-events: none;
-  opacity: 0.35;
-  transition: left calc(var(--motion-spring-ms) * 1.6 * 1ms) var(--motion-spring-ease), opacity calc(var(--motion-base-ms) * 1ms);
-}
-@media (hover: hover) and (pointer: fine) { .key-hint { display: flex; } }
-.key-hint-host:hover .key-hint { opacity: 1; }
-.key-hint[data-resting] { opacity: 0; }
-/* Not over the first-visit questions: their one task is the page, and the keycap landed on its top line. */
-:root:has([data-onboarding]) .key-hint { display: none; }
-.key-hint-arrow { width: 0; height: 0; border: 5px solid transparent; border-bottom-color: var(--text-faint); }
-.key-hint-key {
-  min-width: 1.25rem; height: 1.25rem; padding-inline: 0.375rem; display: grid; place-items: center;
-  border-radius: var(--radius-sm); border: 1px solid var(--text-faint); box-shadow: 0 2px 0 var(--text-faint);
-  background: var(--bg); color: var(--text); font: 600 var(--type-tiny) / 1 ui-monospace, monospace;
-  animation: key-tap calc(var(--motion-spring-ms) * 1ms) ease;
-}
-@keyframes key-tap { 50% { transform: translateY(2px); box-shadow: 0 0 0 var(--text-faint); } }
-.tab-idle {
-  color: color-mix(in srgb, var(--c) var(--tabstrip-idle-tint), var(--text-faint));
-}
-
-
-.tab-idle:hover {
-  color: color-mix(in srgb, var(--c) var(--tabstrip-hover-tint), var(--text));
-}
-
-
-/* ── The book picker's list ─────────────────────────────────────────────────
-   Two columns of books, some named in Arabic and some in English, each with a
-   quieter English name under it. Arabic carries the reading line-height, which
-   is nearly twice as tall as the English label beside it, so no two names on a
-   row began on the same line and the list came out ragged.
-
-   Both names sit on one rung here, and the rung under it is kept even where a
-   book has no English name, so every row is the same height whatever it holds
-   and the eye can run down either column. Set on the rows rather than on the
-   Arabic ladder, because the ladder is right everywhere else: it is only in a
-   list beside English that Arabic has something to line up with. */
-.book-name {
-  line-height: 1.6rem;
-}
-
-
-.book-sub {
-  line-height: 1.1rem;
-  min-height: 1.1rem;
 }
 
 
@@ -608,109 +322,7 @@ dialog::backdrop {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-
-  .word:hover,
-  .word:focus-visible {
-    transform: none;
-  }
 }
-
-
-/* command.css sets the satellite caption in --text-faint, which fails AA
-   against the satellite background (about 3.4:1). --text-dim clears AA
-   comfortably; the unselected dimming stays, it runs on opacity, not colour. */
-.sh-sat-arabic { color: var(--text-dim); }
-
-
-/* ui/WheelPicker: a pill, and the floating wheel it opens. */
-.wheel-pill {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  justify-content: space-between;
-  padding: 0.375rem 0.75rem;
-  font-size: var(--type-ui);
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-}
-
-
-.wheel-pill:hover:not(:disabled) { border-color: var(--border-hi); }
-
-
-/* Disabled reads by its dashed edge, not by fading the words: half-opacity text-dim measured 3.3:1 on the card. */
-.wheel-pill:disabled { color: var(--text-dim); border-style: dashed; cursor: not-allowed; }
-
-
-.wheel-card {
-  position: absolute;
-  z-index: var(--layer-popover);
-  top: calc(100% + 0.375rem);
-  left: 0;
-  /* Grows to its longest choice, between 16rem and 24rem; WheelPicker keeps it on screen. */
-  width: max-content;
-  min-width: 16rem;
-  max-width: min(24rem, calc(100vw - 2rem));
-  padding: 0.5rem;
-  background: var(--surface-hi);
-  border: 1px solid var(--border-hi);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-pop);
-}
-
-
-.wheel-card-narrow { width: 9rem; min-width: 0; }
-
-
-.wheel-type {
-  width: 100%;
-  padding: 0.375rem 0.625rem;
-  font-size: var(--type-ui);
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-}
-
-
-.wheel-type:focus { outline: none; border-color: var(--c); }
-
-
-/* Five rows show; the middle band marks the one Enter picks. */
-.wheel-window {
-  --wheel-row: 2.25rem;
-  position: relative;
-}
-
-
-.wheel-type + .wheel-window { margin-top: 0.5rem; }
-
-
-.wheel-window::before {
-  content: '';
-  position: absolute;
-  inset: calc(var(--wheel-row) * 2) 0 auto;
-  height: var(--wheel-row);
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--c) 14%, transparent);
-  pointer-events: none;
-}
-
-
-.wheel-list {
-  height: calc(var(--wheel-row) * 5);
-  overflow-y: auto;
-  padding-block: calc(var(--wheel-row) * 2);
-  scroll-snap-type: y mandatory;
-  scrollbar-width: none;
-  mask-image: linear-gradient(transparent, #000 35%, #000 65%, transparent);
-}
-
-
-.wheel-list::-webkit-scrollbar { display: none; }
 
 
 /* A picture set into a card's lower-left corner: it meets the border solid and
@@ -724,54 +336,6 @@ dialog::backdrop {
   mask-image: var(--soft-edge-x), var(--soft-edge-y);
   mask-composite: intersect;
 }
-
-
-.wheel-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  height: var(--wheel-row);
-  padding-inline: 0.625rem;
-  scroll-snap-align: center;
-  font-size: var(--type-ui);
-  color: var(--text-dim);
-  cursor: pointer;
-}
-
-
-.wheel-item[aria-selected='true'] { color: var(--text); font-weight: 600; }
-
-
-.wheel-item[aria-disabled='true'] { color: var(--text-faint); cursor: not-allowed; }
-
-
-.wheel-list:focus { outline: none; }
-
-
-.wheel-hint { color: var(--text-faint); white-space: nowrap; flex-shrink: 0; }
-
-
-.wheel-card-up { top: auto; bottom: calc(100% + 0.375rem); }
-
-
-/* Memorise's missing word: the same wheel, its pill drawn as a blank in the line. */
-.memorise-gap { display: inline-block; }
-
-
-.memorise-gap .wheel-pill,
-.memorise-gap .wheel-pill:hover:not(:disabled) {
-  justify-content: center;
-  padding: 0 0.25rem;
-  color: var(--gap-text, var(--text));
-  background: transparent;
-  border: 0;
-  border-bottom: 2px solid var(--gap-border);
-  border-radius: 0;
-}
-
-
-.memorise-gap .wheel-pill:focus-visible:not(:disabled) { outline: none; border-bottom-color: var(--c); box-shadow: 0 2px 0 0 color-mix(in srgb, var(--c) 40%, transparent); }
 
 
 /* Every tab's outer column: one gap between its blocks, from theme.json space.panel. */
@@ -834,6 +398,8 @@ dialog::backdrop {
 .cta-quiet:hover { background: color-mix(in srgb, var(--primary) var(--cta-quiet-wash), transparent); border-color: var(--primary); filter: none; }
 .cta-quiet::after { display: none; }
 }
+
+
 /* Reduced motion stops the passing light and the hover moves. */
 @media (prefers-reduced-motion: reduce) {
   .cta, .cta-arrow { transition: none; }
@@ -876,214 +442,6 @@ button.tile:hover { border-color: var(--c); }
 }
 
 
-/* The desktop strip's underline (shell/TabStrip): one line that glides to the open
-   tab, stretching to its width, its colour easing into the new tab's. Placed by
-   transform from the strip's top-left corner, so a wrapped row is reached too. */
-.tab-glide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px; /* TabStrip's LINE_PX: scaleX stretches it to the tab, so the glide is transform only */
-  height: 2px;
-  border-radius: var(--radius-pill);
-  background: var(--c);
-  transform-origin: 0 0;
-  pointer-events: none;
-  transition:
-    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
-    background-color calc(var(--motion-spring-ms) * 1ms) ease;
-}
-
-
-/* Where the browser can tie one box to another (CSS anchor positioning), the
-   line is tied to the open tab and nothing is measured: the open tab names
-   itself the anchor, the line takes its edges, and a change of tab or a rewrap
-   moves it with no script at all. TabStrip measures only where this is missing. */
-@supports (anchor-name: --tab-on) {
-  .tab-btn[aria-selected='true'] { anchor-name: --tab-on; }
-  .tab-glide {
-    position-anchor: --tab-on;
-    width: auto;
-    left: calc(anchor(left) + 4px);
-    right: calc(anchor(right) + 4px);
-    top: calc(anchor(bottom) - 1px);
-    transform: none;
-    opacity: 0;
-    transition:
-      left calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
-      right calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
-      top calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
-      background-color calc(var(--motion-spring-ms) * 1ms) ease;
-  }
-  /* No open tab here (a page the strip does not list): no line, not a stray one. */
-  [role='tablist']:has(.tab-btn[aria-selected='true']) > .tab-glide { opacity: 1; }
-}
-
-
-/* The phone tab bar (shell/BottomNav): pinned at the bottom, clear of the home
-   indicator, and the page keeps room under it so nothing hides behind. */
-.bottom-nav {
-  box-sizing: border-box;
-  height: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px));
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  border-top: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 96%, transparent);
-  backdrop-filter: blur(8px);
-}
-
-
-.bottom-nav-mark {
-  display: grid;
-  place-items: center;
-  width: 3.25rem;
-  height: 1.75rem;
-  border-radius: var(--radius-pill);
-}
-
-
-/* The pill behind the tab that is on (shell/BottomNav). --at is which place, --of how
-   many: it sits in the middle of its column, level with the marks (the buttons' pt-2),
-   and glides from one to the next with the settle curve, its colour easing into the new tab's. */
-.bottom-nav-pill {
-  /* One column wide, so moving it a whole column is translate: 100% (transform only,
-     no layout per frame); the pill shape is centred inside it. */
-  position: absolute;
-  top: 0.5rem;
-  left: 0;
-  width: calc(100% / var(--of));
-  height: 1.75rem;
-  translate: calc(var(--at) * 100%) 0;
-  pointer-events: none;
-  transition: translate calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
-}
-.bottom-nav-pill::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 50%;
-  width: 3.25rem;
-  translate: -50% 0;
-  border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--c) 18%, transparent);
-  transition: background-color calc(var(--motion-spring-ms) * 1ms) ease;
-}
-
-
-/* The mark on the pill rises a few px as it arrives (the shared rise-in, with a spring),
-   so the eye lands where the pill does. */
-.bottom-nav-on {
-  --rise-y: 4px;
-  --rise-uncover: 0%;
-  --rise-from: 1;
-  animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease) backwards;
-}
-
-/* Ask, the bar's middle place: a raised gold button, so the one box that takes
-   anything is the easiest thing on the bar to hit. */
-.bottom-nav-ask { align-content: start; }
-.bottom-nav-ask > span {
-  display: grid; place-items: center;
-  width: 3.25rem; height: 3.25rem; margin-top: -1.125rem;
-  border-radius: 1.125rem;
-  background: var(--primary); color: var(--on-accent);
-  box-shadow: var(--shadow-lift);
-  transition: transform calc(var(--motion-instant-ms) * 1ms) ease;
-}
-.bottom-nav-ask:active > span { transform: scale(0.94); }
-
-/* Focus mode (lib/shell/focus.js): while a lesson runs the app's own bars step
-   aside, so the question has the whole screen; the lesson's ✕ is the way out. */
-[data-focus] .app-header,
-[data-focus] .bottom-nav,
-[data-focus] .app-footer { display: none; }
-[data-focus] .bottom-nav-room { padding-bottom: env(safe-area-inset-bottom, 0px); }
-
-/* Holding the current tab: Top, Back, Bottom rise above the thumb (lib/jumpFan.js). */
-.bottom-nav .tap { touch-action: none; -webkit-touch-callout: none; user-select: none; }
-.jump-fan {
-  position: fixed;
-  bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px) + 0.5rem);
-  transform: translateX(-50%);
-  display: grid;
-  gap: 0.375rem;
-}
-.jump-fan > div {
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  text-align: center;
-  box-shadow: var(--shadow-pop);
-  --rise-uncover: 0%;
-  animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease) both;
-  transition: background-color calc(var(--motion-instant-ms) * 1ms), color calc(var(--motion-instant-ms) * 1ms);
-}
-.jump-fan > .jump-fan-lit { background: var(--c); border-color: var(--c); color: var(--surface); }
-
-
-/* The reader's player: held to the bottom of the screen while the reader is
-   on it, settling at the reader's end. Above the phone's bottom bar there. */
-.reader-dock {
-  position: sticky;
-  bottom: 0;
-  z-index: var(--layer-sticky);
-}
-
-@media (max-width: 39.99rem) {
-  .bottom-nav-room {
-    padding-bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px));
-  }
-  .reader-dock { bottom: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px)); }
-  /* Phones keep the top bar to pen, search and settings; these move into More. */
-  .phone-hide {
-    display: none;
-  }
-  /* More opens as a sheet rising from the bottom, where the finger already is. */
-  .phone-sheet {
-    margin: auto 0 0;
-    max-width: 100vw;
-  }
-  .phone-sheet > div {
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
-  }
-}
-
-
-/* ── Chain drawing ─────────────────────────────────────────────────────────
-   hadith/chain/ChainDrawing. A rung is a one-pixel line; a row of strands that split
-   from one narrator (chain-split) or meet at one (chain-merge) gets a bar
-   across the tops or feet of its columns, from the middle of the first to the
-   middle of the last, so the lines read as one tree. */
-.chain-line {
-  background: var(--border-hi);
-}
-.chain-split > *,
-.chain-merge > * {
-  position: relative;
-}
-.chain-split > *::before,
-.chain-merge > *::after {
-  content: '';
-  position: absolute;
-  inset-inline: 0;
-  border-top: 1px solid var(--border-hi);
-}
-.chain-split > *::before {
-  top: 0;
-}
-.chain-merge > *::after {
-  bottom: 0;
-}
-.chain-split > :first-child::before,
-.chain-merge > :first-child::after {
-  inset-inline-start: 50%;
-}
-.chain-split > :last-child::before,
-.chain-merge > :last-child::after {
-  inset-inline-end: 50%;
-}
-
 /* ── a sideways strip's round arrows (lib/motion/useRail) ─────────────
    The timeline's rail and the tarkeeb chart. Each hides at its end;
    a strip sets --rail-acc and --rail-ink to its own accent. */
@@ -1106,508 +464,26 @@ button.tile:hover { border-color: var(--c); }
   font-weight: 700;
   transition: opacity calc(var(--motion-base-ms) * 1ms) ease;
 }
+
+
 .tl-hue .rail-arrow { --rail-acc: var(--tl-acc); --rail-ink: var(--tl-ink); }
+
+
 .rail-arrow-l { left: -0.375rem; }
+
+
 .rail-arrow-r { right: -0.375rem; }
+
+
 .rail-arrow[disabled] { opacity: 0; pointer-events: none; }
+
+
 /* A touch screen swipes; the arrows would cover what they page. */
 @media (pointer: coarse) { .rail-arrow { display: none; } }
 
 
-/* ── scrolling, drawn in the page's own colours ─────────────────
-   .scroll-pane: a pane that scrolls on its own (the Quran reader's surah and
-   study). A thin thumb in the border colour, no track, and scrolling stops at
-   its ends rather than carrying the page with it. Relative, so what is placed
-   absolutely inside (a screen-reader label) is clipped with it, never left
-   hanging below the page.
-   .strip-x: a sideways strip of choices (the ayat rail, the reciters). No bar
-   at all, the ends fade to say there is more, and a wheel turns it sideways
-   (lib/useWheelX). */
-.scroll-pane {
-  position: relative;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-hi) transparent;
-}
-.strip-x {
-  display: flex;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  scroll-padding-inline: 2rem;
-  mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
-}
-.strip-x::-webkit-scrollbar { display: none; }
 /* A frame that scrolls sideways, its far edge dissolving to say there is more that way (the Terms tree). */
 .scroll-fade-x { overflow-x: auto; mask-image: linear-gradient(90deg, #000 calc(100% - 2rem), transparent); }
-
-/* Level ring on the profile button (profile/LevelRing.jsx). */
-.level-ring { position: relative; display: inline-flex; width: 24px; height: 24px; flex-shrink: 0; }
-.level-ring-n {
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  font-size: var(--type-micro); font-weight: 700; color: var(--text-dim); font-variant-numeric: tabular-nums;
-}
-.level-ring-fill { transition: stroke-dasharray calc(var(--motion-enter-ms) * 1ms * var(--motion-scale)) ease-out; }
-.level-ring-gain {
-  position: absolute; left: 50%; bottom: 100%; pointer-events: none;
-  font-size: var(--type-micro); font-weight: 700; color: var(--palette-lime); white-space: nowrap;
-  animation: level-gain calc(var(--motion-enter-ms) * 2 * 1ms * var(--motion-scale)) ease-out both;
-}
-@keyframes level-gain {
-  from { opacity: 0; transform: translate(-50%, 6px); }
-  25% { opacity: 1; }
-  to { opacity: 0; transform: translate(-50%, -10px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .level-ring-fill { transition: none; }
-  .level-ring-gain { animation: none; opacity: 0; }
-}
-
-/* Profile XP card (XpCard): the bar fills on sight; a tap opens the rank path. */
-.xp-bar { height: 0.6rem; border-radius: var(--radius-pill); background: var(--border); overflow: hidden; }
-.xp-bar > span {
-  display: block; height: 100%; border-radius: inherit; background: var(--xp-tone);
-  transform-origin: left; transform: scaleX(var(--xp-share));
-  animation: xp-fill calc(var(--motion-enter-ms) * 2 * 1ms * var(--motion-scale)) var(--motion-slide-ease) both;
-}
-@keyframes xp-fill { from { transform: scaleX(0); } }
-.xp-path { display: flex; justify-content: space-between; gap: 0.25rem; position: relative; padding-top: 0.5rem; }
-.xp-path::before { content: ''; position: absolute; top: 1.05rem; inset-inline: 0.6rem; height: 2px; background: var(--border); }
-.xp-step {
-  position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; flex: 1;
-  color: var(--text-faint); animation: rise-in calc(var(--motion-enter-ms) * 1ms * var(--motion-scale)) var(--motion-settle-ease) both;
-  --rise-from: 0; --rise-scale: 1;
-  animation-delay: calc(var(--i) * var(--motion-stagger-ms) * 2 * 1ms * var(--motion-scale)); /* one after another, Seed to Fruit */
-}
-.xp-dot { width: 0.9rem; height: 0.9rem; border-radius: var(--radius-pill); background: var(--surface); border: 2px solid var(--border); }
-.xp-done { color: var(--text-dim); }
-.xp-done .xp-dot { background: var(--xp-tone); border-color: var(--xp-tone); }
-.xp-now { color: var(--text); }
-.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse calc(var(--loop-pulse-ms) * var(--motion-scale) * 1ms) ease-in-out infinite; }
-@keyframes xp-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--xp-tone) 25%, transparent); } }
-@media (prefers-reduced-motion: reduce) {
-  .xp-bar > span, .xp-step, .xp-now .xp-dot { animation: none; }
-}
-
-/* The player's "back to the ayah being recited" chip: faded until pointed at,
-   so it says where the voice is without covering the reading. */
-.now-chip { opacity: 0.75; transition: opacity calc(var(--motion-base-ms) * 1ms) ease; }
-.now-chip:hover, .now-chip:focus-visible { opacity: 1; }
-
-
-/* ── The Qur'an reader's page view (components/quran/MushafPages) ────────────
-   A printed page, line for line. Each line is one row that never wraps: its
-   words spread to both edges as the print's do, and the page's font size (set
-   on the section, lib/mushafFit) is the largest its widest line fits at. The
-   face is the printing's: data-script names it, and only here is it mapped. */
-@font-face {
-  font-family: 'QPC Hafs';
-  /* The King Fahd Complex's Uthmanic Hafs, as published, unmodified (its licence). */
-  src: url('/fonts/qpc-hafs.woff2') format('woff2');
-  font-display: block;
-}
-.mushaf {
-  max-width: var(--mushaf-page);
-  margin-inline: auto;
-}
-.mushaf[data-script="qpc-hafs"] {
-  font-family: 'QPC Hafs', var(--font-quran);
-}
-.mushaf-page {
-  line-height: var(--mushaf-line-height);
-  padding-block: 1rem;
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
-}
-.mushaf-line {
-  display: flex;
-  justify-content: space-between;
-  gap: calc(var(--mushaf-gap-em) * 1em);
-  white-space: nowrap;
-}
-.mushaf-page[data-centred] .mushaf-line {
-  justify-content: center;
-}
-.mushaf-name,
-.mushaf-basmala {
-  justify-content: center;
-}
-.mushaf-name > span {
-  font-size: calc(var(--mushaf-name-em) * 1em);
-  padding-inline: 2em;
-  border: 1px solid color-mix(in oklab, var(--c) 45%, transparent);
-  border-radius: var(--radius-sm);
-  color: var(--c);
-}
-/* The ayah being studied is coloured, as a finger on the page would mark it;
-   a tinted box the height of the line hid the words of the line above. */
-.mushaf-word {
-  cursor: pointer;
-  transition: color calc(var(--motion-base-ms) * 1ms);
-}
-.mushaf-word:hover,
-.mushaf-word[data-open] {
-  color: var(--c);
-}
-button.mushaf-word {
-  font: inherit;
-  color: var(--c);
-}
-.mushaf-folio {
-  text-align: center;
-  font-family: var(--font-ui);
-  font-size: var(--type-tiny);
-  line-height: 2;
-  color: var(--text-faint);
-}
-
-
-/* The search box with the collection shelf to its right (hadith/HadithSearchResults). On a wide
-   screen the shelf takes the room beside the box; once the box is in use (data-in-use: focused,
-   holding a question or showing hits) the shelf folds away and the box takes the whole row. It
-   comes back after a beat (the transition delay runs only on the way back), so a pointer or focus
-   passing between the two does not make either jump. Narrow screens stack them and nothing moves. */
-/* minmax(0, 1fr): an auto column grew to the shelf's width and pushed the box and its mic past a phone's edge. */
-.search-beside { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
-@media (min-width: 56rem) {
-  .search-beside { display: flex; align-items: flex-end; gap: 1rem; }
-  .search-beside-main { flex: 1 1 0; min-width: 0; }
-  .search-beside-shelf {
-    flex: 0 1 auto;
-    max-width: 26rem;
-    /* A cap the shelf never reaches, so its height can fold too (below). */
-    max-height: 20rem;
-    overflow: hidden;
-    transition:
-      max-width calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease) calc(var(--motion-enter-ms) * 1ms),
-      max-height calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease) calc(var(--motion-enter-ms) * 1ms),
-      opacity calc(var(--motion-base-ms) * 1ms) ease-out calc(var(--motion-enter-ms) * 1ms),
-      visibility 0s calc(var(--motion-enter-ms) * 1ms);
-  }
-  /* Folded away it is also out of the tab order, once the fold has finished. */
-  .search-beside[data-in-use] .search-beside-shelf {
-    max-width: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition-delay: 0s, 0s, 0s, calc(var(--motion-enter-ms) * 1ms);
-  }
-  /* Once answers are up it folds its height as well: folded to no width it still stood its full height
-     beside the pill, which sits at the row's foot, and left a band ~110px tall of nothing above the
-     question. Only then, not on focus: the box would jump up the moment it was clicked. */
-  .search-beside[data-answered] .search-beside-shelf { max-height: 0; }
-}
-
-/* The hadith collections as spines on a shelf (hadith/books/HadithCollectionPicker).
-   Each spine stands on the shelf's edge; pointed at it lifts, opened it tips out
-   towards the reader in the accent. The two Sahih books carry a gold band. On a
-   narrow screen the shelf scrolls sideways rather than wrapping to a second row. */
-.shelf {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.375rem;
-  padding: 1rem 0.5rem 0;
-  border-bottom: 3px solid var(--border-hi);
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.shelf-spine {
-  flex: 0 0 auto;
-  width: 2.75rem;
-  height: 7.5rem;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--border-hi);
-  border-bottom: 0;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  background:
-    linear-gradient(var(--border) 0 0) top 0.6rem left 0 / 100% 1px no-repeat,
-    linear-gradient(var(--border) 0 0) bottom 0.6rem left 0 / 100% 1px no-repeat,
-    var(--surface-hi);
-  color: var(--text-dim);
-  transform-origin: bottom center;
-  transition:
-    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
-    background-color calc(var(--motion-base-ms) * 1ms) ease,
-    color calc(var(--motion-base-ms) * 1ms) ease;
-}
-.shelf-spine > span {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-weight: 600;
-  font-size: var(--type-small);
-  line-height: 1;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-.shelf-spine[data-sahih] {
-  background:
-    linear-gradient(var(--palette-gold) 0 0) top 0.6rem left 0 / 100% 2px no-repeat,
-    linear-gradient(var(--palette-gold) 0 0) bottom 0.6rem left 0 / 100% 2px no-repeat,
-    var(--surface-hi);
-}
-.shelf-spine:hover,
-.shelf-spine:focus-visible {
-  transform: translateY(calc(var(--motion-lift-px) * -2px));
-  color: var(--text);
-}
-.shelf-spine:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
-.shelf-spine[aria-pressed='true'] {
-  transform: translateY(-6px) rotate(-5deg);
-  background-color: var(--c);
-  color: var(--surface);
-  border-color: var(--c);
-}
-
-/* The bookshelf at the shelf's end (HadithCollectionPicker): as tall as a spine and
-   wider, a small bookshelf drawn in it, opening the further books. A thin wall
-   sets it apart from the six; pressed, it fills in the accent like an open spine. */
-.shelf-more {
-  flex: 0 0 auto;
-  height: 7.5rem;
-  margin-inline-start: 0.5rem;
-  padding: 0.5rem 0.5rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.375rem;
-  border: 1px solid var(--border-hi);
-  border-bottom: 0;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  background: var(--surface);
-  color: var(--text-dim);
-  transition:
-    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
-    background-color calc(var(--motion-base-ms) * 1ms) ease,
-    color calc(var(--motion-base-ms) * 1ms) ease;
-}
-.shelf-more > svg {
-  width: 2.25rem;
-  flex: 1;
-  min-height: 0;
-  transition: transform calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease);
-}
-/* Pressed, the little bookshelf on the tile turns over once as the big one opens. */
-.shelf-more[aria-pressed='true'] > svg { transform: perspective(calc(var(--motion-tilt-perspective-px) * 1px)) rotateY(360deg); }
-.shelf-more > span {
-  font-weight: 600;
-  font-size: var(--type-tiny);
-  line-height: 1.1;
-  text-align: center;
-  max-width: 3.5rem;
-  padding-bottom: 0.375rem;
-}
-.shelf-more:hover,
-.shelf-more:focus-visible { transform: translateY(calc(var(--motion-lift-px) * -2px)); color: var(--text); }
-.shelf-more:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
-.shelf-more[aria-pressed='true'] { background: var(--c); color: var(--surface); border-color: var(--c); }
-
-/* The bookshelf opened (HadithBookshelf): it flips open out of the shelf's tile
-   (lib/motion/openFrom draws that), and its planks then settle one by one (.rise-in).
-   A wooden frame round a darker back panel; each kind of book stands cover out on
-   its own plank, its Arabic title across the cover, its name and count beside it. */
-.bookshelf {
-  display: grid;
-  gap: 1rem;
-  --rise-y: -1rem;
-  --rise-scale: 0.88;
-  --rise-uncover: 0%;
-}
-.bookshelf-frame {
-  display: grid;
-  gap: 0;
-  padding: 0.75rem 0.75rem 0;
-  border: 0.625rem solid var(--border-hi);
-  border-radius: var(--radius-md);
-  background: color-mix(in oklab, var(--bg) 70%, var(--surface));
-  box-shadow: inset 0 0.5rem 1.5rem color-mix(in oklab, var(--bg) 80%, transparent), var(--shadow-e2);
-}
-.bookshelf-shelf { display: grid; gap: 0.5rem; padding-bottom: 0.75rem; }
-.bookshelf-shelf .eyebrow { padding-inline: 0.5rem; }
-.bookshelf-row {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  /* Books packed from the start, each on its own length of plank: side by side the
-     lengths join into one board (the last runs to the row's end), and a book that
-     wraps to a line of its own still stands on one. */
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 0.75rem;
-}
-.bookshelf-row > li {
-  flex: 0 1 auto;
-  min-width: 0;
-  padding-inline: 0.5rem 1.5rem;
-  border-bottom: 0.75rem solid var(--border-hi);
-}
-.bookshelf-row > li:last-child { flex-grow: 1; }
-.bookshelf-book {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.75rem;
-  padding-top: 0.75rem;
-  text-align: start;
-}
-.bookshelf-cover {
-  flex: 0 0 auto;
-  width: 5.5rem;
-  height: 7.5rem;
-  padding: 0.5rem;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  line-height: 1.6;
-  color: var(--text);
-  border: 1px solid var(--border-hi);
-  border-bottom: 0;
-  border-radius: 2px var(--radius-sm) 0 0;
-  background:
-    linear-gradient(to right, color-mix(in oklab, var(--c) 55%, transparent) 0 5px, transparent 5px),
-    linear-gradient(var(--palette-gold) 0 0) top 0.5rem left 5px / 100% 1px no-repeat,
-    linear-gradient(var(--palette-gold) 0 0) bottom 0.5rem left 5px / 100% 1px no-repeat,
-    color-mix(in oklab, var(--c) 14%, var(--surface));
-  transform-origin: bottom center;
-  transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
-}
-.bookshelf-book:hover .bookshelf-cover,
-.bookshelf-book:focus-visible .bookshelf-cover { transform: translateY(-0.375rem) rotate(-3deg); }
-.bookshelf-book:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
-/* The words beside the cover: its name and count, never taller than the cover. A
-   name past three lines ends in "…" rather than pushing above the cover. */
-.bookshelf-words {
-  min-width: 0;
-  max-width: 11rem;
-  display: grid;
-  gap: 0.125rem;
-  padding-bottom: 0.5rem;
-}
-.bookshelf-name {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  overflow: hidden;
-}
-
-
-/* The surah's reading line (quran/QuranReader): under the header, held below the
-   app's own header as the page scrolls, filling as the ayah in view moves on. */
-.read-line {
-  position: sticky;
-  top: var(--app-header-h, 0px);
-  z-index: var(--layer-sticky);
-  height: 2px;
-  margin-top: -2px;
-  background: transparent;
-}
-.read-line > i {
-  display: block;
-  height: 100%;
-  background: var(--c);
-  transform-origin: left;
-  transform: scaleX(var(--read));
-  transition: transform calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease);
-}
-[dir='rtl'] .read-line > i { transform-origin: right; }
-
-
-/* ── Calm progress (profile/CalmProgress, the profile and Home's progress column) ──
-   This week as a dot a day: filled when studied, an empty ring for a day without
-   answers and for the days still to come alike, so a missed day never looks
-   worse than tomorrow. The detail below sits
-   under one hairline, in plain rows rather than boxes. */
-.week-dots { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem; }
-.week-day { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-faint); }
-.week-dot { width: 1rem; height: 1rem; border-radius: var(--radius-pill); border: 2px solid var(--border); }
-.week-studied .week-dot { background: var(--week-tone); border-color: var(--week-tone); }
-.week-day[aria-current='date'] { color: var(--text); font-weight: 600; }
-.week-day[aria-current='date'] .week-dot { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--week-tone); }
-.calm-more { padding-top: 1rem; border-top: 1px solid var(--border); }
-.calm-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-block: 0.5rem; }
-.calm-row + .calm-row { border-top: 1px solid var(--border); }
-
-
-/* The dictionary's answer (dictionary/WordEntry, DictionaryPanel's ClassicalRoot):
-   the word asked about is the one .card; everything after it is a quiet section,
-   an .eyebrow over rows ruled off by a hairline. It was boxes inside boxes, and
-   on a phone the box edges and their padding were a good part of the page. */
-.dict-rows > * { padding-block: var(--space-tile); }
-.dict-rows > :first-child { padding-top: 0; }
-.dict-rows > * + * { border-top: 1px solid var(--border); }
-
-/* A row's senses run on as one paragraph, numbered in faint figures once there
-   are two: a list a line each stood a word's three senses three lines deep. */
-.dict-run-on { counter-reset: sense; }
-.dict-run-on > li { display: inline; counter-increment: sense; }
-.dict-run-on > li:not(:last-child)::after { content: '; '; }
-.dict-run-on > li:not(:only-child)::before {
-  content: counter(sense) ' ';
-  color: var(--text-faint);
-}
-
-/* A book's own words quoted: a thin rule in the tab's colour (--c) at the edge
-   the text starts from, in place of the box it used to sit in. */
-.dict-quote {
-  border-inline-start: 2px solid var(--c);
-  padding-inline-start: var(--space-tile);
-}
-
-
-/* ── Memorise settings row, and Save word for Review ───────────────────────
-   (memorise/MemorisePanel, memorise/SettingsSheet, grammar/SaveWord)
-   One quiet row over the page: where you are, then a Settings pill whose
-   summary of what is chosen sits fainter, so the pill reads as one word. */
-.mem-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-}
-.mem-settings {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.875rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  color: var(--text-dim);
-  transition: color calc(var(--motion-base-ms) * 1ms) ease;
-}
-.mem-settings:hover { color: var(--text); }
-.mem-settings-summary {
-  max-width: 12rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: var(--text-faint);
-}
-
-/* Save beside the root's destinations, the same pill; filled in the role
-   colour once saved, so a saved word is told apart at a glance. */
-.save-word {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-}
-.save-word-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.5rem;
-  line-height: 1;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  color: var(--text-dim);
-  transition: color calc(var(--motion-base-ms) * 1ms) ease, border-color calc(var(--motion-base-ms) * 1ms) ease;
-}
-.save-word-toggle:hover { color: var(--text); border-color: var(--c); }
-.save-word-toggle[aria-pressed='true'] { color: var(--c); border-color: var(--c); }
-.save-word-toggle > svg { width: 0.875rem; height: 0.875rem; }
-.save-word-said { color: var(--text-faint); }
-.save-word-said:not(:empty) { animation: fade-in calc(var(--motion-base-ms) * 1ms) ease; }
 
 
 /* ── Tucked (ui/inputs/Tucked): a question form folding into its pill ────────
@@ -1615,6 +491,8 @@ button.mushaf-word {
    question stands in its place. The fold runs on grid rows, the one way to
    animate to and from a height nobody has measured. */
 .tucked { max-width: var(--layout-field); }
+
+
 .tucked-form {
   display: grid;
   /* minmax(0, 1fr): a grid track is as wide as its widest content by default, and a
@@ -1625,7 +503,11 @@ button.mushaf-word {
     grid-template-rows calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease),
     opacity calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease);
 }
+
+
 .tucked-form[data-tucked] { grid-template-rows: 0fr; opacity: 0; }
+
+
 /* Clipped only while folded or folding: an open form left clipped cut the
    focus rings off the chips at its edges. Opening, the clip lifts once the
    form is fully out, or the half-open form would spill over the answer. */
@@ -1634,7 +516,10 @@ button.mushaf-word {
   overflow: visible;
   transition: overflow 0s calc(var(--motion-spring-ms) * 1ms) allow-discrete;
 }
+
+
 .tucked-form[data-tucked] .tucked-inner { overflow: hidden; transition-delay: 0s; }
+
 
 .tucked-pill {
   display: inline-flex;
@@ -1650,9 +535,15 @@ button.mushaf-word {
     border-color calc(var(--motion-instant-ms) * 1ms) ease,
     color calc(var(--motion-instant-ms) * 1ms) ease;
 }
+
+
 .tucked-pill:hover,
 .tucked-pill:focus-visible { border-color: var(--c); color: var(--c); }
+
+
 .tucked-pill:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+
+
 .tucked-query {
   min-width: 0;
   overflow: hidden;
@@ -1660,6 +551,7 @@ button.mushaf-word {
   white-space: nowrap;
   color: var(--text);
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   .tucked-form,

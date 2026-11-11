@@ -1,0 +1,65 @@
+/* Words
+   A word card in a row (the .word of Nahw's sentence and the Qur'an's study panel), its lift and the dimming of its peers. */
+
+
+/* Sibling dimming: hovering one word pushes the rest back so the pair you are
+   comparing stands out. Pure CSS, so it costs nothing per keystroke.
+
+   Deliberately gentle. At 0.45 opacity the rest of the ayah read as switched
+   off, and an ayah is a sentence: the words around the one under the cursor are
+   the context that makes it mean anything. This is a half-step back, enough to
+   see which word is being pointed at and not enough to stop reading the rest. */
+.peer-dim:has(.word:hover) .word:not(:hover),
+.peer-dim:has(.word:focus-visible) .word:not(:focus-visible) {
+  opacity: 0.72;
+  filter: saturate(0.85);
+}
+
+
+.word {
+  transition:
+    opacity calc(var(--motion-instant-ms) * 1ms) ease,
+    filter calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-instant-ms) * 1ms) ease,
+    box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
+}
+
+
+.word:hover,
+.word:focus-visible {
+  transform: translateY(-3px);
+}
+
+
+/* Picked up, it casts the same pop shadow as every .lift card; not over a glow,
+   which is its own shadow. */
+.word:not(.glow):hover,
+.word:not(.glow):focus-visible {
+  box-shadow: var(--shadow-pop);
+}
+
+
+/* The word you opened. It grows a little and lifts, so the detail panel hanging
+   below it reads as belonging to a particular word rather than floating over
+   the row; and the word itself comes up a shade, because the one you are
+   reading about should be the one your eye returns to. Both are small on
+   purpose: the row still has to scan as a row of equals. */
+.word-open,
+.word-open:hover {
+  transform: translateY(-3px) scale(1.06);
+}
+
+
+/* Only the button, never the whole chip: the panel is a child of it, and
+   brightening that too washed out the text it exists to show. */
+.word-open > button {
+  filter: brightness(1.15);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .word:hover,
+  .word:focus-visible {
+    transform: none;
+  }
+}

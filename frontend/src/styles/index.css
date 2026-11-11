@@ -7,6 +7,15 @@
 @import "./motion.css";
 @import "./text.css";
 @import "./components.css";
+@import "./shell.css";
+@import "./words.css";
+@import "./quran.css";
+@import "./daleel.css";
+@import "./wheel.css";
+@import "./memorise.css";
+@import "./progress.css";
+@import "./hadith.css";
+@import "./dictionary.css";
 @import "./tarkeeb.css";
 @import "./micMark.css";
 @import "./recite.css";
