@@ -23,6 +23,8 @@ export default function SpeakButton({ text, ref, shortcut, early, hear = 0, onFa
   // Whether the sound playing is this button's, and whether it is still on screen.
   const mine = useRef(false)
   const alive = useRef(true)
+  // Which ask the button is answering, so an older one that falls quiet cannot reset a newer one's state.
+  const asked = useRef(0)
 
   useEffect(() => { if (early) prepare(text, { accent }) }, [early, text, accent])
 
@@ -36,20 +38,22 @@ export default function SpeakButton({ text, ref, shortcut, early, hear = 0, onFa
   }, [text])
 
   const say = async () => {
+    const turn = ++asked.current
     setState('busy')
     mine.current = true
     try {
       const voice = await speak(text, { accent })
       if (!alive.current) return stop()
+      if (turn !== asked.current) return   // a newer ask owns the button now
       setState('speaking')
       await voice.done
-      if (alive.current) setState('idle')
+      if (alive.current && turn === asked.current) setState('idle')
     } catch (err) {
-      if (!alive.current) return
+      if (!alive.current || turn !== asked.current) return
       setState(err.interrupted ? 'idle' : 'failed')
       if (!err.interrupted) onFail?.()
     } finally {
-      mine.current = false
+      if (turn === asked.current) mine.current = false
     }
   }
 
@@ -59,8 +63,12 @@ export default function SpeakButton({ text, ref, shortcut, early, hear = 0, onFa
     say()
   }
 
-  // Said again on every rise of `hear` (not while a first ask is still being answered), and on arrival when it is already above 0.
-  useEffect(() => { if (hear && state !== 'busy') say() }, [hear]) // eslint-disable-line react-hooks/exhaustive-deps
+  // Said once for each value of `hear`: on arrival when it is already above 0, and on every rise after.
+  // Remembered, so React's development double-run of an effect cannot ask twice (the second would be said slowly).
+  const heard = useRef(0)
+  useEffect(() => {
+    if (hear && hear !== heard.current) { heard.current = hear; say() }
+  }, [hear]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const look = state === 'failed'
     ? 'text-[var(--warn)] border-[var(--warn)]'
