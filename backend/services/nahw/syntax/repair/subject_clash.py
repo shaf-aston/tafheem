@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.nahw.book import extra_ba_on, is_mabni, is_one, is_subject_pronoun, says
 from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import (
-    Sentence, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
+    Sentence, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_preposition, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
 from backend.services.nahw.syntax.facts.word import takes_two_objects
 
 
@@ -185,7 +185,12 @@ def doer_after_object(s: Sentence) -> None:
                      and noun_tagged(k) and typed_case_of(k) is None and k.get("stt") == "d"
                      and not takes_two_objects(verb) and not holds_doer(verb, [x for x in s.kids(verb) if x is not token])), None))
         if doer:
-            token["rel"] = "OBJ"
+            # وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ: كان takes no object, its nasb word is its خبر (Tasheel 1.9), and a
+            # jar-majroor the parser made the خبر hangs on that word instead
+            kana = s.family(verb) == "kana"
+            for jar in [k for k in s.kids(verb) if kana and k["rel"] == "PRD" and is_preposition(k)]:
+                s.relink(jar, token["id"], "MOD")
+            token["rel"] = "PRD" if kana else "OBJ"
             s.relink(doer, verb["id"], "SBJ")
 
 
@@ -349,17 +354,21 @@ def kana_subject(s: Sentence) -> None:
 def kana_fronted_khabar(s: Sentence) -> None:
     """لَيْسَ الْبِرَّ أَنْ تُوَلُّوا: كان and its sisters put their خبر in nasb (Tasheel 1.9), so a noun the reader typed in
     nasb straight after the verb is its khabar, though the parser made it the اسم; the word it made the khabar
-    (here أَنْ with its verb), not in nasb, is the اسم."""
+    (here أَنْ with its verb), not in nasb, is the اسم. A jar-majroor the parser made the khabar may stand between
+    (لَيْسَ لَهُ كُفُؤًا أَحَدٌ, its اسم then hung as a second subject): it hangs on the khabar instead."""
     tokens = s.tokens
     for verb in tokens:
         if s.family(verb) != "kana":
             continue
         kids = s.kids(verb)
-        noun = next((k for k in kids if k["id"] == verb["id"] + 1 and k["rel"] == "SBJ" and noun_tagged(k)
-                     and typed_case_of(k) == "a"), None)
-        told = next((k for k in kids if noun and k["id"] > noun["id"] and k["rel"] == "PRD" and typed_case_of(k) != "a"), None)
+        jars = [k for k in kids if k["rel"] == "PRD" and is_preposition(k) and k["id"] == verb["id"] + 1]
+        noun = next((k for k in kids if k["id"] == verb["id"] + 1 + (1 + len(s.below(jars[0])) if jars else 0)
+                     and k["rel"] == "SBJ" and noun_tagged(k) and typed_case_of(k) == "a"), None)
+        told = next((k for k in kids if noun and k["id"] > noun["id"] and k["rel"] in ("PRD", "SBJ") and typed_case_of(k) != "a"), None)
         if told:
             noun["rel"], told["rel"] = "PRD", "SBJ"
+            for jar in jars:
+                s.relink(jar, noun["id"], "MOD")
 
 
 def kana_nasb_khabar(s: Sentence) -> None:

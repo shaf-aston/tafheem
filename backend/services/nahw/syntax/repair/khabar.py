@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, is_known, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_known, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(s: Sentence) -> None:
@@ -176,6 +176,16 @@ def majrur_of_jar(s: Sentence) -> None:
         if (noun and is_preposition(jar) and not is_prefix(jar) and noun_tagged(noun) and not is_verb(noun) and noun["rel"] == "SBJ"
                 and noun["head"] in (jar["id"], jar["head"]) and not any(k["rel"] == "OBJ" for k in s.kids(jar))):
             s.relink(noun, jar["id"], "OBJ")
+
+
+def hung_on_pronoun(s: Sentence) -> None:
+    """إِنِّي مُكَاثِرٌ بِكُمُ الْأُمَمَ: a pronoun written onto a preposition governs nothing, so a word the
+    parser hung on it hangs, as the same link, on what the جار ومجرور hangs on (here the participle)."""
+    for token in s.tokens:
+        pronoun = s.head(token)
+        jar = s.head(pronoun) if pronoun else None
+        if jar and s.head(jar) and attached_pronoun(pronoun) and is_preposition(jar) and token["id"] > pronoun["id"]:
+            s.relink(token, jar["head"], token["rel"])
 
 
 def told_of_jar(s: Sentence) -> None:

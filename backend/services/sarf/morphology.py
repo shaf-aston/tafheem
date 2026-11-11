@@ -638,6 +638,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [jarred]
         if sister := _inna_short_me(evidence):
             ranked = [sister]
+        if not _agreeing(evidence, ranked) and (seated := _hamza_written_waw(evidence, disambiguator)):
+            ranked = [seated]
         if answer := _answer_command(tokens[:i], token, evidence, ranked):
             ranked = [answer]
         elif not _agreeing(evidence, ranked) and (table := _table_verb(token, evidence, ranked)):
@@ -1028,6 +1030,19 @@ def _inna_short_me(typed: str) -> dict | None:
     reading = {**full, "diac": stem + "ِي", "atbtok": full["stem"] + "_+ي", "bw": re.sub(r"\+نِي/", "+ي/", full["bw"]),
                "pattern": full["pattern"].removesuffix("نِي") + "ي"}
     return reading if best_reading(typed, [reading]) else None
+
+
+_SEATED_ON_WAW = re.compile("(?<=ُ)و(?=[ً-ِ])")
+
+
+def _hamza_written_waw(typed: str, disambiguator=None) -> dict | None:
+    """كُفُوًا، هُزُوًا: the Qur'an's hand writes a hamza seated on و after a damma as a bare و
+    (كُفُؤًا), so a voweled و after a damma that no reading fits is read as that ؤ, spelled as typed."""
+    seated = _SEATED_ON_WAW.sub("ؤ", typed)
+    if seated == typed:
+        return None
+    found = best_reading(seated, (_ranked([seated], disambiguator) or [[]])[0])
+    return found and {**found, "diac": found["diac"].replace("ؤ", "و"), "atbtok": found["atbtok"].replace("ؤ", "و")}
 
 
 def _added(reading: dict, typed: str) -> int:
