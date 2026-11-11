@@ -12,8 +12,9 @@
 			roll_size 10mb
 			roll_keep 10
 		}
-		# Never kept: who someone is (the profile and device headers say it with no password, so a
-		# copy of them is the account), the recording studio's key, and anything typed into a search.
+		# Never kept: who someone is (the profile and device headers), the device-token cookie (Caddy
+		# redacts it by default; deleted here so turning on log_credentials can never keep it), the
+		# recording studio's key, and anything typed into a search.
 		# The visitor's address stays: usage.sh and security-report.sh need it, and it rolls away.
 		format filter {
 			request>headers>X-Vercel-Proxy-Signature delete
@@ -21,6 +22,9 @@
 			request>headers>X-Tafheem-Profile delete
 			request>headers>X-Tafheem-Guest delete
 			request>headers>X-Recorder-Key delete
+			request>headers>Cookie delete
+			request>headers>Authorization delete
+			resp_headers>Set-Cookie delete
 			request>uri query {
 				delete q
 				delete text

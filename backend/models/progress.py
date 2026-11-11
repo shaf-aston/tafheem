@@ -81,6 +81,13 @@ class SignUpIn(BaseModel):
     """Move the guest's answers onto this name."""
 
 
+class LogInIn(BaseModel):
+    """Logging in to the username in the profile header."""
+
+    code: str | None = Field(None, max_length=40)
+    """The account's recovery code; needed once the account is claimed, unless this browser holds its token."""
+
+
 class Shelf(BaseModel):
     """Everything the page keeps for one account: its own key -> stored text."""
 
@@ -94,6 +101,22 @@ class Account(BaseModel):
     joined: str
     answers: int
     public: bool
+    proven: bool = True
+    """This browser holds the account's device token. False only for an account from before tokens, read by
+    name while claims are open: the page then logs in, which claims it (services/learner/tokens.py)."""
+
+
+class SignedIn(Account):
+    """Sign-up's and log-in's answer: the account, and the recovery code when a new one was made (shown once:
+    only its seal is kept). The device token itself goes in an HttpOnly cookie, never to the page."""
+
+    recovery: str | None = None
+
+
+class Recovery(BaseModel):
+    """A new recovery code, shown once; the old one no longer works."""
+
+    code: str
 
 
 class AccountNames(BaseModel):

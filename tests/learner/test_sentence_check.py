@@ -5,16 +5,16 @@ Run: python -m pytest tests/learner/test_sentence_check.py
 from __future__ import annotations
 
 import json
-from urllib.parse import quote
 
 import pytest
 from fastapi.testclient import TestClient
 
 from backend.main import app
 from backend.services import ai
-from backend.services.learner import accounts, progress_db
+from backend.services.learner import progress_db
 from backend.services.learner import sentence_check
 from backend.services.learner.sentence_check import check
+from tests.learner import sign_in
 
 LEMMAS = {"الكتاب": "كتاب", "كتب": "كتب", "الولد": "ولد", "البيت": "بيت"}
 def fake_lemma(word):
@@ -101,7 +101,7 @@ def test_three_bad_tries_give_nothing(monkeypatch):
 # ── the endpoint ─────────────────────────────────────────────────────────────
 
 client = TestClient(app)
-NAME = {"X-Tafheem-Profile": quote("amina")}
+NAME: dict[str, str] = {}  # amina and her device-token cookie, filled by the fixture
 
 
 @pytest.fixture(autouse=True)
@@ -109,7 +109,10 @@ def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
     monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
     progress_db.reset_connection()
-    accounts.sign_up("amina")
+    sign_in.forget_all()
+    sign_in.signup(client, "amina")
+    NAME.clear()
+    NAME.update(sign_in.as_("amina"))
     yield
     progress_db.reset_connection()
 

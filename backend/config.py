@@ -559,6 +559,15 @@ class Progress(BaseSettings):
     # Beta testing: the log-in box lists every username so a tester can pick one. Off: the app is
     # launched, and with no password the list is every account anyone could act as. On only for a test server.
     beta_list_accounts: bool = False
+    # Accounts from before device tokens (services/learner/tokens.py) have none. While this is on, the first
+    # page to log in to one claims it (trust on first use, logged as "token_claimed"), and until then its
+    # name alone still reads and answers, so a page from before tokens keeps working. Turn it off about a
+    # month after tokens ship (docs/plans/2026-11-11-security.md §5): an account nobody claimed by then can
+    # only be opened with a code the owner makes (python -m backend.scripts.recovery_code NAME).
+    account_claims_open: bool = True
+    # The device-token cookie is __Host- and Secure. A browser keeps no Secure cookie from plain http, so a dev
+    # server opened on a LAN address (http://192.168...) sets this False in .env; localhost does not need to.
+    cookie_secure: bool = True
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20
     # Circle kinds (services/learner/circles.py): each kind's members_see_details flag. True: every joined

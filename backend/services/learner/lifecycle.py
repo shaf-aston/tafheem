@@ -5,7 +5,7 @@ from __future__ import annotations
 
 
 from backend.config import get_settings
-from backend.services.learner import circles
+from backend.services.learner import circles, tokens
 from backend.services.learner.progress_db import connection
 from backend.services.learner.username import DEVICE, GUEST
 
@@ -34,6 +34,7 @@ def delete_account(name: str) -> int:
         deleted = db.execute("DELETE FROM attempts WHERE user = ?", (name,)).rowcount
         db.execute("UPDATE feedback SET user = '' WHERE user = ?", (name,))
         db.execute("DELETE FROM saved WHERE user = ?", (name,))
+        db.execute("DELETE FROM tokens WHERE name = ?", (name,))  # whoever signs up with the name next starts clean
         affected = [row["circle"] for row in db.execute("SELECT circle FROM circle_members WHERE member = ?", (name,))]
         db.execute("DELETE FROM circle_members WHERE member = ?", (name,))
         for circle in affected:
@@ -74,5 +75,8 @@ def sweep_guests(days: int) -> int:
 
 
 def sweep() -> int:
-    """`sweep_guests` at the configured age, for the startup step."""
-    return sweep_guests(get_settings().progress_guest_days)
+    """`sweep_guests` at the configured age, for the startup step, and device tokens as long idle with them
+    (services/learner/tokens.py): a phone not opened in that long logs in again with its recovery code."""
+    days = get_settings().progress_guest_days
+    tokens.sweep(days)
+    return sweep_guests(days)

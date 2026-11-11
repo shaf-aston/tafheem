@@ -34,10 +34,14 @@ from __future__ import annotations
 
 from urllib.parse import unquote
 
-from backend.services.learner import accounts, lifecycle
+from backend.config import get_settings
+from backend.services.learner import accounts, lifecycle, tokens
 from backend.services.learner.username import GUEST, clean_name, device_key, is_guest
 
-__all__ = ["GUEST", "is_guest", "resolve_device", "resolve_name", "has_account", "merge"]
+__all__ = ["GUEST", "is_guest", "resolve_device", "resolve_name", "has_account", "merge", "refused"]
+
+NO_ACCOUNT = "Log in again: no account with that username"
+NOT_PROVEN = "Log in again on this device"
 
 
 def resolve_device(sent: str | None) -> str:
@@ -60,6 +64,23 @@ def resolve_name(sent: str | None, device: str | None) -> str:
 def has_account(name: str) -> bool:
     """Whether `name` is a signed-up account. False for the legacy guest and any device record too."""
     return accounts.has_account(name)
+
+
+def refused(name: str, token: str | None, strict: bool = False) -> str | None:
+    """Why a request may not act as the account `name`, or None when it may (services/learner/tokens.py).
+
+    A token must be this account's. No token is allowed only for an account from before tokens that nobody
+    has claimed yet, while claims are open, and only where `strict` is off: reading and answering. A page from
+    before tokens keeps working until its owner's new page claims the account, and its 401 handler, which
+    forgets the stored name, never fires on the very name the new page needs to claim with. Wiping,
+    deleting, the shelf and circles are `strict` from day one: what a name alone could undo stays shut.
+    """
+    if not accounts.has_account(name):
+        return NO_ACCOUNT
+    if token is not None:
+        return None if tokens.owner(token) == name else NOT_PROVEN
+    lenient = not strict and get_settings().account_claims_open and not tokens.claimed(name)
+    return None if lenient else NOT_PROVEN
 
 
 def merge(device: str, account: str) -> None:

@@ -21,7 +21,7 @@ from backend.services import ai as ai_service
 from backend.services import recitation, speech
 from backend.services.dictionary import service as dictionary_service
 from backend.services.core import audit, provenance
-from backend.services.core.headers import ApiHeaders, crash_headers
+from backend.services.core.headers import ApiHeaders, SameOrigin, crash_headers
 from backend.services.core.ratelimit import visitor
 from backend.services.quran import service as quran_service
 from backend.services.dictionary import root_meaning
@@ -88,6 +88,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 logging.getLogger("httpx").addFilter(audit.NoQuery())  # a learner's search rides out as ?q=
+logging.getLogger("httpx2").addFilter(audit.NoQuery())  # its successor (huggingface_hub uses it today)
 
 
 @asynccontextmanager
@@ -129,9 +130,10 @@ def create_app() -> FastAPI:
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
-        # Who is asking travels in the headers below, never in a cookie, so a page from another
-        # site has nothing of the learner's to borrow. Live, the page calls its own address
-        # (vercel.json rewrites /api), so this list only matters for a dev server.
+        # No credentials: the device-token cookie (backend/identity.py) is the page's own, sent only to its
+        # own address, never on a request from another site. Live, the page calls its own address
+        # (vercel.json rewrites /api), and the dev server proxies /api, so this list only matters for a
+        # page served from elsewhere in development.
         allow_credentials=False,
         allow_methods=["GET", "POST", "PUT", "DELETE"],
         allow_headers=CORS_HEADERS,
@@ -140,6 +142,7 @@ def create_app() -> FastAPI:
 
     # Last added, so outermost: it sees every answer, CORS refusals included, and stamps each with
     # X-Request-ID. The visitor is decided by the rate limiter's rule, one place for which proxy to trust.
+    app.add_middleware(SameOrigin)  # no write to /api from another site's page; inside ApiHeaders, so its 403 is stamped
     app.add_middleware(ApiHeaders)  # nosniff, a dead-page CSP and no-referrer on every /api answer
     app.add_middleware(audit.SecurityLog, client=lambda scope: visitor(Request(scope)))
 

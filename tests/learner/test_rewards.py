@@ -5,7 +5,6 @@ Run: python -m pytest tests/learner/test_rewards.py
 from __future__ import annotations
 
 from datetime import date
-from urllib.parse import quote
 
 import pytest
 from fastapi.testclient import TestClient
@@ -13,10 +12,11 @@ from fastapi.testclient import TestClient
 from backend.main import app
 from backend.services.learner import progress_db
 from backend.services.learner.rewards import level_of, rewards_of
+from tests.learner import sign_in
 
 client = TestClient(app)
 NAME = "amina"
-AS = {"X-Tafheem-Profile": quote(NAME)}
+AS: dict[str, str] = {}  # the name and its device-token cookie, filled by the fixture
 
 
 @pytest.fixture(autouse=True)
@@ -24,7 +24,10 @@ def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
     monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
     progress_db.reset_connection()
-    client.post("/api/progress/signup", json={"keep": False}, headers=AS)
+    sign_in.forget_all()
+    sign_in.signup(client, NAME)
+    AS.clear()
+    AS.update(sign_in.as_(NAME))
     yield
     progress_db.reset_connection()
 

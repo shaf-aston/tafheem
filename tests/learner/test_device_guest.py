@@ -9,7 +9,6 @@ Run: python -m pytest tests/learner/test_device_guest.py
 """
 from __future__ import annotations
 
-from urllib.parse import quote
 
 import pytest
 from fastapi.testclient import TestClient
@@ -17,6 +16,7 @@ from fastapi.testclient import TestClient
 from backend.main import app
 from backend.services.learner import accounts, attempts, lifecycle, progress_db
 from backend.services.learner.username import GUEST, clean_name, device_key, is_guest
+from tests.learner import sign_in
 
 client = TestClient(app)
 
@@ -29,14 +29,16 @@ def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
     monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
     progress_db.reset_connection()
+    sign_in.forget_all()
     yield
     progress_db.reset_connection()
 
 
 def on(device=None, name=None):
-    """The headers the page sends: the device's id while nobody is logged in, the name once someone is."""
+    """The headers the page sends: the device's id while nobody is logged in, the name (and the browser its
+    device-token cookie) once someone is."""
     headers = {"X-Tafheem-Guest": device} if device is not None else {}
-    return {**headers, "X-Tafheem-Profile": quote(name)} if name is not None else headers
+    return sign_in.as_(name, **headers) if name is not None else headers
 
 
 def answer(headers, item, correct=True):
@@ -51,7 +53,9 @@ def items(headers):
 
 
 def signup(name, device=None, keep=False):
-    return client.post("/api/progress/signup", json={"keep": keep}, headers=on(device, name))
+    response = client.post("/api/progress/signup", json={"keep": keep}, headers=on(device, name))
+    sign_in.keep(name, response)
+    return response
 
 
 # The key

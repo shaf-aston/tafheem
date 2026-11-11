@@ -97,9 +97,10 @@ reading_id: contextvars.ContextVar[str] = contextvars.ContextVar("reading_id", d
 
 # A raw SDK exception carries the request that made it, headers and all,
 # which is the API key (see groq_backend.py's own note on this). A bearer
-# header or a gsk_-prefixed key is the shape that leaks; both are scrubbed
+# header, a gsk_-prefixed key or a learner's device token (tft_, services/learner/tokens.py) is the shape
+# that leaks; each is scrubbed
 # before a message or traceback ever reaches the journal file.
-_SECRET = re.compile(r"Bearer\s+\S+|gsk_[A-Za-z0-9]+", re.IGNORECASE)
+_SECRET = re.compile(r"Bearer\s+\S+|gsk_[A-Za-z0-9]+|tft_[A-Za-z0-9_-]+", re.IGNORECASE)
 _SCRUB_LIMIT = 300
 
 

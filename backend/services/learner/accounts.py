@@ -1,4 +1,5 @@
-"""Usernames, the shelf the page keeps for each, and the global ranking.
+"""Usernames, the shelf the page keeps for each, and the global ranking. Making one, and proving it is
+yours, is services/learner/tokens.py.
 """
 from __future__ import annotations
 
@@ -7,13 +8,6 @@ from datetime import datetime, timezone
 
 from backend.services.learner import attempts
 from backend.services.learner.progress_db import connection
-
-
-def sign_up(name: str) -> bool:
-    """Make the account. False when the username is taken."""
-    db = connection()
-    with db:
-        return db.execute("INSERT OR IGNORE INTO accounts (name) VALUES (?)", (name,)).rowcount == 1
 
 
 def has_account(name: str) -> bool:
@@ -54,8 +48,12 @@ def account_names() -> list[str]:
 
 
 def leaderboard(module: str, user: str) -> tuple[list[dict], dict | None]:
-    """The global ranking: accounts that show in it, and `user`'s own row, ranked among them even when hidden."""
-    shown = [row["name"] for row in connection().execute("SELECT name FROM accounts WHERE public = 1 ORDER BY name")]
+    """The global ranking: accounts that show in it, and `user`'s own row, ranked among them even when hidden.
+
+    An account from before tokens shows once it is claimed (services/learner/tokens.py): until then its name
+    alone opens it, and a public list of such names is a list of accounts to take."""
+    shown = [row["name"] for row in connection().execute(
+        "SELECT name FROM accounts WHERE public = 1 AND recovery IS NOT NULL ORDER BY name")]
     ranked = attempts.ranked(shown if user in shown or not has_account(user) else [*shown, user], module)
     return [row for row in ranked if row["name"] in shown], next((row for row in ranked if row["name"] == user), None)
 

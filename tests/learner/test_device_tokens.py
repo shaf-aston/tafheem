@@ -1,0 +1,321 @@
+"""A name alone no longer opens an account (docs/plans/2026-11-11-security.md §5, option B).
+
+Sign-up and log-in set a device token as an HttpOnly cookie, and hand back a recovery code once. What is
+checked: a typed name opens nothing it does not hold the token for; the recovery code works once and moves the
+account to another browser; accounts from before tokens keep working by name until the first log-in claims
+them, are hidden from the ranking meanwhile, and are never claimable by name once claims close; logging out
+ends one browser and "everywhere else" the others; nothing kept would open an account if the file leaked; and
+another site's page cannot write.
+
+Run: python -m pytest tests/learner/test_device_tokens.py
+"""
+from __future__ import annotations
+
+import json
+import sqlite3
+
+import pytest
+from fastapi.testclient import TestClient
+
+from backend.config import get_settings
+from backend.identity import cookie_name
+from backend.main import app
+from backend.scripts import recovery_code
+from backend.services.learner import journal, progress_db, tokens
+from tests.learner import sign_in
+from tests.learner.sign_in import as_
+
+client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def store(tmp_path, monkeypatch):
+    target = tmp_path / "progress.db"
+    monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
+    progress_db.reset_connection()
+    sign_in.forget_all()
+    yield
+    progress_db.reset_connection()
+
+
+def signup(name):
+    return sign_in.signup(client, name)
+
+
+def login(name, code=None, **more):
+    return sign_in.login(client, name, code, **more)
+
+
+def bare(name):
+    """What anyone can send: the name, and no cookie."""
+    return as_(None, **{"X-Tafheem-Profile": name})
+
+
+def account(headers):
+    return client.get("/api/progress/account", headers=headers)
+
+
+def old_account(name):
+    """An account from before tokens: a row with no recovery code, and nobody holding a token."""
+    db = progress_db.connection()
+    with db:
+        db.execute("INSERT INTO accounts (name) VALUES (?)", (name,))
+
+
+def events(kind):
+    try:
+        with open(get_settings().security_log_path, encoding="utf-8") as handle:
+            return [line for line in map(json.loads, handle) if line.get("kind") == kind]
+    except FileNotFoundError:
+        return []
+
+
+# Sign-up
+
+def test_sign_up_sets_a_cookie_no_script_can_read_and_shows_a_code_once():
+    response = signup("Amina")
+    assert response.status_code == 200
+    cookie = response.headers["set-cookie"]
+    assert cookie.startswith(f"{cookie_name()}=tft_") and cookie_name() == "__Host-tafheem"
+    for part in ("HttpOnly", "Secure", "SameSite=strict", "Path=/"):
+        assert part.lower() in cookie.lower(), part
+    assert "domain" not in cookie.lower()  # __Host-: this host only
+    body = response.json()
+    assert len(body["recovery"]) == 19 and body["recovery"].count("-") == 3
+    assert "tft_" not in response.text  # the token never reaches the page
+    assert account(as_("Amina")).json()["proven"] is True
+
+
+def test_a_typed_name_opens_nothing():
+    signup("Amina")
+    client.post("/api/progress/attempts", headers=as_("Amina"), json={"module": "quiz", "item": "a", "correct": True})
+    for method, path in [("get", "/api/progress/account"), ("get", "/api/progress/summary"),
+                         ("get", "/api/progress/overview"), ("post", "/api/progress/attempts"),
+                         ("delete", "/api/progress"), ("delete", "/api/progress/account"),
+                         ("get", "/api/progress/saved"), ("get", "/api/progress/circles")]:
+        response = getattr(client, method)(path, headers=bare("amina"),
+                                           **({"json": {"module": "quiz", "item": "b", "correct": True}}
+                                              if method == "post" else {}))
+        assert response.status_code == 401, path
+        assert response.json()["detail"] == "Log in again on this device"
+    assert account(as_("Amina")).json()["answers"] == 1  # nothing was wiped
+
+
+def test_another_accounts_token_opens_nothing():
+    signup("Amina"), signup("Bilal")
+    borrowed = {"X-Tafheem-Profile": "amina", **sign_in.cookie("bilal")}
+    assert account(borrowed).status_code == 401
+    assert account({"X-Tafheem-Profile": "amina", "Cookie": f"{cookie_name()}=tft_made-up"}).status_code == 401
+
+
+# Log-in and the recovery code
+
+def test_the_recovery_code_logs_in_once_and_hands_over_the_next():
+    code = signup("Amina").json()["recovery"]
+    sign_in.forget_all()  # another phone
+    assert login("Amina").status_code == 403
+    assert login("Amina").json()["detail"] == "Type this account's recovery code"
+    assert login("Amina", "0000-0000-0000-0000").status_code == 403
+    moved = login("Amina", code)
+    assert moved.status_code == 200 and moved.json()["recovery"] not in (None, code)
+    assert account(as_("Amina")).status_code == 200
+    sign_in.forget_all()
+    assert login("Amina", code).status_code == 403  # spent
+    assert login("Amina", moved.json()["recovery"]).status_code == 200
+    assert [e["user"] for e in events("login_refused")] == ["amina", "amina"]
+
+
+def test_a_code_is_read_however_it_was_typed():
+    code = signup("Amina").json()["recovery"]
+    sign_in.forget_all()
+    typed = code.lower().replace("-", " ").replace("0", "o").replace("1", "l")
+    assert login("Amina", typed).status_code == 200
+
+
+def test_a_browser_that_forgot_the_name_but_not_the_cookie_needs_no_code():
+    signup("Amina")
+    response = login("Amina")
+    assert response.status_code == 200 and response.json()["recovery"] is None
+    assert "set-cookie" not in response.headers  # the same token stays
+
+
+def test_a_new_code_retires_the_old_one():
+    first = signup("Amina").json()["recovery"]
+    second = client.post("/api/progress/recovery", headers=as_("Amina")).json()["code"]
+    sign_in.forget_all()
+    assert login("Amina", first).status_code == 403
+    assert login("Amina", second).status_code == 200
+    assert client.post("/api/progress/recovery", headers=bare("amina")).status_code == 401
+
+
+def test_two_devices_typing_one_code_at_once_log_in_one():
+    code = signup("Amina").json()["recovery"]
+    assert tokens.recover("amina", code) is not None
+    assert tokens.recover("amina", code) is None
+
+
+# Logging out
+
+def test_logging_out_ends_this_browser_and_only_this_one():
+    code = signup("Amina").json()["recovery"]
+    phone = as_("Amina")
+    sign_in.forget_all()
+    login("Amina", code)
+    laptop = as_("Amina")
+    response = client.delete("/api/progress/session", headers=phone)
+    assert response.status_code == 200
+    assert 'max-age=0' in response.headers["set-cookie"].lower() or "expires" in response.headers["set-cookie"].lower()
+    assert account(phone).status_code == 401
+    assert account(laptop).status_code == 200
+
+
+def test_logging_out_everywhere_else_keeps_this_browser():
+    code = signup("Amina").json()["recovery"]
+    phone = as_("Amina")
+    sign_in.forget_all()
+    login("Amina", code)
+    laptop = as_("Amina")
+    assert client.delete("/api/progress/sessions", headers=laptop).json() == {"deleted": 1}
+    assert account(phone).status_code == 401
+    assert account(laptop).status_code == 200
+
+
+def test_logging_in_as_someone_else_drops_the_old_token():
+    signup("Amina")
+    amina = as_("Amina")
+    signup_as_bilal = client.post("/api/progress/signup", json={"keep": False},
+                                  headers={"X-Tafheem-Profile": "bilal", **sign_in.cookie("amina")})
+    assert signup_as_bilal.status_code == 200
+    assert account(amina).status_code == 401  # one browser, one account: Amina's token went
+
+
+def test_a_deleted_name_signed_up_again_starts_with_no_old_tokens():
+    signup("Amina")
+    old = as_("Amina")
+    client.delete("/api/progress/account", headers=old)
+    sign_in.forget_all()
+    signup("Amina")
+    assert account(old).status_code == 401
+    assert progress_db.connection().execute("SELECT COUNT(*) FROM tokens").fetchone()[0] == 1
+
+
+# Accounts from before tokens
+
+def test_an_old_account_reads_by_name_until_its_first_log_in_claims_it():
+    old_account("amina")
+    assert account(bare("amina")).json()["proven"] is False  # the page then logs in, which claims it
+    assert client.post("/api/progress/attempts", headers=bare("amina"),
+                       json={"module": "quiz", "item": "a", "correct": True}).status_code == 200
+    claimed = login("Amina")
+    assert claimed.status_code == 200 and claimed.json()["recovery"]
+    assert [e["user"] for e in events("token_claimed")] == ["amina"]
+    assert account(bare("amina")).status_code == 401
+    assert account(as_("Amina")).json()["proven"] is True
+    sign_in.forget_all()
+    assert login("Amina").status_code == 403  # a second claimer needs the code
+
+
+def test_wiping_deleting_and_circles_need_the_token_even_for_an_old_account():
+    old_account("amina")
+    for method, path in [("delete", "/api/progress"), ("delete", "/api/progress/account"),
+                         ("get", "/api/progress/circles"), ("post", "/api/progress/recovery"),
+                         ("delete", "/api/progress/session")]:
+        assert getattr(client, method)(path, headers=bare("amina")).status_code == 401, path
+    assert client.put("/api/progress/saved", headers=bare("amina"), json={"data": {}}).status_code == 401
+    assert client.put("/api/progress/account/public", headers=bare("amina"), json={"public": False}).status_code == 401
+
+
+def test_an_unclaimed_name_is_not_in_the_ranking():
+    old_account("amina")
+    signup("Bilal")
+    names = lambda: [r["name"] for r in client.get("/api/progress/leaderboard", headers=as_("Bilal")).json()["rows"]]  # noqa: E731
+    assert names() == ["bilal"]
+    login("Amina")
+    assert sorted(names()) == ["amina", "bilal"]
+
+
+def test_once_claims_close_an_old_name_opens_nothing_until_the_owner_makes_a_code(monkeypatch, capsys):
+    monkeypatch.setattr(get_settings(), "account_claims_open", False)
+    old_account("amina")
+    assert account(bare("amina")).status_code == 401
+    assert login("Amina").status_code == 403
+    assert recovery_code.main(["Amina"]) == 0
+    code = capsys.readouterr().out.strip()
+    assert login("Amina", code).status_code == 200
+    assert [e["user"] for e in events("recovery_by_owner")] == ["amina"]
+
+
+def test_the_owner_can_log_a_taker_out_everywhere(capsys):
+    signup("Amina")
+    taker = as_("Amina")
+    assert recovery_code.main(["amina", "--log-out-everywhere"]) == 0
+    assert account(taker).status_code == 401
+    assert recovery_code.main(["nobody"]) == 1
+
+
+# What is kept
+
+def test_nothing_kept_would_open_an_account():
+    response = signup("Amina")
+    token, code = response.cookies.get(cookie_name()), response.json()["recovery"]
+    dump = "\n".join(progress_db.connection().iterdump())
+    assert token not in dump and code not in dump and code.replace("-", "") not in dump
+
+
+def test_a_token_in_an_error_message_is_scrubbed():
+    assert "tft_" not in journal.scrub("failed for tft_abcDEF-123_x")
+
+
+def test_an_answer_to_a_browser_with_a_cookie_is_never_cached():
+    response = client.get("/api/sources", headers={"Cookie": f"{cookie_name()}=tft_x"})
+    assert response.headers["cache-control"] in ("private, no-store", "public, max-age=86400")
+    response = client.get("/api/progress/summary", headers={"Cookie": f"{cookie_name()}=tft_x"})
+    assert response.headers["cache-control"] == "private, no-store"
+
+
+def test_idle_tokens_are_swept_with_idle_guests():
+    signup("Amina")
+    db = progress_db.connection()
+    with db:
+        db.execute("UPDATE tokens SET used = datetime('now', '-200 days')")
+    assert tokens.sweep(180) == 1
+    assert account(as_("Amina")).status_code == 401
+
+
+def test_a_days_use_is_written_once():
+    signup("Amina")
+    db = progress_db.connection()
+    with db:
+        db.execute("UPDATE tokens SET used = datetime('now', '-3 days')")
+    account(as_("Amina"))
+    fresh = db.execute("SELECT used > datetime('now', '-1 hour') FROM tokens").fetchone()[0]
+    assert fresh == 1
+
+
+def test_an_old_file_gains_the_token_table_and_keeps_its_accounts(tmp_path):
+    progress_db.reset_connection()
+    path = progress_db.data_path("progress_db_path")
+    path.unlink(missing_ok=True)
+    old = sqlite3.connect(path)
+    old.executescript(progress_db.SCHEMA)
+    for step, script in enumerate(progress_db.MIGRATIONS[:3], start=1):
+        old.executescript(f"BEGIN; {script} PRAGMA user_version = {step}; COMMIT;")
+    old.execute("INSERT INTO accounts (name) VALUES ('amina')")
+    old.commit()
+    old.close()
+    assert not tokens.claimed("amina")
+    assert login("Amina").status_code == 200
+
+
+# Another site's page
+
+@pytest.mark.parametrize("site, status", [("cross-site", 403), ("same-origin", 404), ("same-site", 404),
+                                          ("none", 404), (None, 404)])
+def test_another_sites_page_cannot_write(site, status):
+    headers = {"Sec-Fetch-Site": site} if site else {}
+    headers["X-Tafheem-Profile"] = "nobody"
+    assert client.post("/api/progress/login", headers=headers).status_code == status
+
+
+def test_another_sites_page_can_still_read():
+    assert client.get("/api/sources", headers={"Sec-Fetch-Site": "cross-site"}).status_code == 200
