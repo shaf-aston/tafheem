@@ -12,7 +12,7 @@ from typing import Any, Callable, TypeVar
 from fastapi import HTTPException
 
 from backend.config import get_settings
-from backend.services.text.arabic_text import has_arabic, spelled_out, unpunctuated, words
+from backend.services.text.arabic_text import foreign_letters, has_arabic, spelled_out, unpunctuated, words
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +51,19 @@ def arabic_sentence(text: str, field: str = "input") -> str:
         raise HTTPException(status_code=422, detail=f"{field} has no Arabic words.")
     if len(kept) > (limit := get_settings().max_sentence_words):
         raise HTTPException(status_code=422, detail=f"{field} is longer than {limit} words.")
+    if any(foreign_letters(word) for word in kept):
+        raise HTTPException(status_code=422, detail=f"{field} must be Arabic words only.")
     return " ".join(kept)
+
+
+def arabic_word(text: str, field: str = "input") -> str:
+    """One Arabic word and nothing else (HTTP 422): what is sent to a model as "the word" can then
+    carry no instruction alongside it."""
+    text = normalize_text(text, field)
+    kept = words(text)
+    if len(kept) != 1 or foreign_letters(text):
+        raise HTTPException(status_code=422, detail=f"{field} must be one Arabic word.")
+    return kept[0]
 
 
 _ENGLISH_RE = re.compile(r"[A-Za-z0-9'\s,.;:!?\-\"()]+")

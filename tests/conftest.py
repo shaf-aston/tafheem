@@ -30,6 +30,8 @@ def _journal_writes_to_tmp(tmp_path, tmp_path_factory, monkeypatch):
 def _analyze_unlimited(monkeypatch):
     """Suites that analyse hundreds of sentences from one client are not one hammering visitor."""
     monkeypatch.setattr(get_settings(), "analyze_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "ai_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "ai_all_per_minute", 10**9)
 
 
 @pytest.fixture(autouse=True)

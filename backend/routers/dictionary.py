@@ -29,6 +29,7 @@ from backend.services.dictionary import service as dictionary_service
 from backend.services.dictionary import lexicons
 from backend.services.dictionary import lexicon_gists
 from backend.services.core import provenance
+from backend.services.core.ratelimit import AI
 from backend.services.dictionary import root_english
 from backend.services.dictionary import root_entry
 from backend.services.dictionary import root_gloss
@@ -105,7 +106,7 @@ async def search_dictionary(
     )
 
 
-@router.get("/sentence", response_model=SentenceResponse)
+@router.get("/sentence", response_model=SentenceResponse, dependencies=[Depends(AI)])
 async def translate_sentence(
     q: str = Query(..., min_length=1, max_length=get_settings().max_sentence_chars, description="Arabic or English phrase or sentence"),
 ) -> SentenceResponse:
@@ -242,7 +243,7 @@ async def _retold(func, root: str, operation: str):
     return done
 
 
-@router.get("/root-meaning/english", response_model=RootEntryEnglishResponse)
+@router.get("/root-meaning/english", response_model=RootEntryEnglishResponse, dependencies=[Depends(AI)])
 async def get_root_entry_english(root: Root) -> RootEntryEnglishResponse:
     """The entry retold in English, for a reader who cannot read the Arabic. Made only when asked."""
     done = await _retold(root_entry.english, root, "English of a Maqayees entry")
@@ -251,7 +252,7 @@ async def get_root_entry_english(root: Root) -> RootEntryEnglishResponse:
     )
 
 
-@router.get("/root-meaning/english/lines", response_model=RootEntryLinesResponse)
+@router.get("/root-meaning/english/lines", response_model=RootEntryLinesResponse, dependencies=[Depends(AI)])
 async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
     """The rest of the entry with one English line under each Arabic line (the card's "rest of the entry")."""
     done = await _retold(root_entry.lines, root, "line-by-line English of a Maqayees entry")
@@ -263,7 +264,7 @@ async def get_root_entry_lines(root: Root) -> RootEntryLinesResponse:
     )
 
 
-@router.get("/root-meaning/english/senses", response_model=RootEntrySensesResponse)
+@router.get("/root-meaning/english/senses", response_model=RootEntrySensesResponse, dependencies=[Depends(AI)])
 async def get_root_entry_senses(root: Root) -> RootEntrySensesResponse:
     """The rest of the entry cut into the words it explains, each beside its lines."""
     done = await _retold(root_entry.senses, root, "word-by-word English of a Maqayees entry")

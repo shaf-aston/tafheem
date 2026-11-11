@@ -24,6 +24,7 @@ from backend.services.dictionary import service as dictionary_service
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
 from backend.services.learner import attempts
+from backend.services.text.arabic_text import foreign_letters
 from backend.services.quran import library as quran_library
 from backend.services.quran import meanings as quran_meanings
 from backend.services.quran import search as quran_search
@@ -194,14 +195,32 @@ def _facts(pairs: list[dict]) -> str:
         f"{p.get('senses') or p['english'] or '-'}" for n, p in enumerate(pairs, 1))
 
 
+# What a translation of a sentence never holds, and an answer steered by the text often does.
+_LINKISH = re.compile(r"https?:|www\.|@|<|>")
+
+
+def plausible(text: str, answer: object, arabic: bool) -> str:
+    """The model's answer if it reads as a rendering of `text`, else ValueError (so it is never filed
+    and shown to the next person who types the same text). The text is a reader's: it can carry
+    instructions however the prompt fences it (docs/plans/2026-11-11-security.md, T6)."""
+    if not isinstance(answer, str) or not (answer := answer.strip()):
+        raise ValueError("the model answered with nothing")
+    if _LINKISH.search(answer):
+        raise ValueError("the answer carries a link or markup")
+    if len(answer.split()) > 3 * len(text.split()) + 10:
+        raise ValueError("the answer is far longer than the text")
+    if arabic and foreign_letters(answer):
+        raise ValueError("an Arabic rendering with letters of another script")
+    return answer
+
+
 def _asked(text: str, question: str, ask) -> str:
     """One model answer per text, filed on disk under `question`: the server runs several
     processes, and a cache in each gave the same sentence two wordings by turns. A failure
-    or an empty answer raises and is not filed. Two first askings at once both ask, and
+    or an implausible answer raises and is not filed. Two first askings at once both ask, and
     both return the one the store kept first."""
     if not (kept := _kept(text, question)):
-        if not (answer := str(ask() or "").strip()):
-            raise ValueError("the model answered with nothing")
+        answer = plausible(text, ask(), arabic=question == _ARABIC)
         attempts.keep_questions(module=_KEPT, sentence=text, source="ai",
                                       questions=[{"question": question, "answer": answer}])
         kept = _kept(text, question)

@@ -75,6 +75,11 @@ class Nahw(BaseSettings):
     max_sentence_chars: int = Field(default=2000, gt=0)
     # Analyses a minute per visitor (POST /api/analyze); the parser costs far more than a page's own clicks.
     analyze_per_minute: int = Field(default=60, gt=0)
+    # Model-backed answers (word meaning, sentence meaning, a root entry in English, a checked sentence),
+    # shared across those routes (services/core/ratelimit.AI). Each is pressed for, one at a time, so a
+    # person rarely asks ten a minute. The second is for everyone together: what the Groq key can take.
+    ai_per_minute: int = Field(default=20, gt=0)
+    ai_all_per_minute: int = Field(default=120, gt=0)
     # Recent sentences kept read in memory: the Analyse page and its practice questions ask for the same
     # sentence one after the other, and the parser is most of each answer's time.
     analyses_kept: int = Field(default=256, ge=0)
