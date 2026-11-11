@@ -3,10 +3,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { BOOKS, bookPartQuery, bookPartsQuery, DEFAULT_BOOK } from '../../lib/memorise/books'
-import {
-  blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, makeRandom,
-  optionsFor, pagesOf, wordsOf,
-} from '../../lib/memorise/memorise'
+import { makeRandom, pagesOf, wordsOf } from '../../lib/memorise/memorise'
+import { blanksFor, CHOICES, DEFAULT_DIFFICULTY, DIFFICULTIES, fromMemory, optionsFor } from './gaps'
 import { readViewParam, writeViewParams } from '../../lib/nav/tabUrl'
 import { useSlide, useSwipe } from '../../lib/motion/useSwipe'
 import { bringUp } from '../../lib/motion/scrollToEl'

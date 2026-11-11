@@ -30,9 +30,11 @@ frontend/src/
   config/        one JSON per feature; the only place a number or a label is hardcoded
   components/    one folder per tab (nahw/, quran/, …) + ui/ (kit two or more tabs draw) + shell/ (header, settings, offline)
                  hadith/ holds its own logic beside its screens, a sub-folder per part (books/, chain/, narrators/,
-                 terms/, family/, favorites/); the other tabs follow as they are moved
-  lib/           one folder per tab not yet moved (same names as components/); lib/hadith/ holds only what
-                 other tabs borrow (chain words, narrator names). Plus the shared ones:
+                 terms/, family/, favorites/); memorise/ keeps its gap rules (gaps.js) and hooks beside its screens,
+                 and nahw/iraab/ the sentence analyser's parts; the other tabs follow as they are moved
+  lib/           one folder per tab not yet moved (same names as components/); lib/hadith/, lib/memorise/ and
+                 lib/similar/ hold only what other tabs borrow (chain words, narrator names; pages and words, the
+                 translation pick, the open hooks the tab registry calls). Plus the shared ones:
     nav/         tabs registry, URL ↔ tab, journey, dock/recent rules, command line
     api/         axios client errors, health, sources, warm-up
     store/       localStorage helpers, settings, shelf
