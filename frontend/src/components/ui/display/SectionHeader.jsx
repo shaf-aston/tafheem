@@ -16,7 +16,7 @@
  * the panel is for gives its room to the answer, which it was pushing under the
  * bottom bar.
  *
- * `tab` is the tab's id: its name, Arabic name and emblem then come from the
+ * `tab` is the tab's id: its name, Arabic name, emblem and (unless a subtitle is passed) its one line then come from the
  * registry (lib/nav/tabs.js), the one place they are written, so renaming a tab is
  * one edit. `title`, `arabic` and `emblem` passed as well win, for a panel that
  * names a step rather than itself.
@@ -28,6 +28,9 @@ import { TABS } from '../../../lib/nav/tabs'
 
 export default function SectionHeader({ tab, title, arabic, subtitle, emblem, aside = null, nameOf, history = true, answered = false }) {
   const named = tab ? TABS.find((t) => t.id === tab) : null
+  // A panel that names itself says what it is for in the registry's own line (Home's cards read it too), so
+  // every tab has one; a panel naming a step passes its title, and says its own line or none.
+  if (subtitle === undefined && title === undefined) subtitle = named?.blurb
   title ??= named?.label
   arabic ??= named?.arabic
   emblem ??= named?.emblem
