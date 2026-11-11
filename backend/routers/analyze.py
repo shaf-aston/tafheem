@@ -19,11 +19,14 @@ from backend.utils import Timings, arabic_sentence
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/analyze", tags=["analysis"])
 _limit = PerMinute("analyze_per_minute")
+_everyone = PerMinute("analyze_all_per_minute")  # until the origin gate, an address can be forged
 
 
 def _within_limit(http: Request) -> None:
     if _limit.too_many(visitor(http)):
         raise HTTPException(429, "Too many analyses at once; try again in a minute")
+    if _everyone.too_many("everyone"):
+        raise HTTPException(429, "Analysis is busy right now; try again in a minute")
 
 
 @router.post("", response_model=AnalyzeResponse, dependencies=[Depends(_within_limit)])

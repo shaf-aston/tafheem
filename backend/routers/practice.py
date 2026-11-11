@@ -12,7 +12,7 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Response
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Query, Response
 
 from backend.config import get_settings
 from backend.models.practice import (
@@ -24,7 +24,6 @@ from backend.models.practice import (
     PracticeResponse,
 )
 from backend.identity import USER
-from backend.services.core.ratelimit import AI
 from backend.services.nahw import iraab
 from backend.services.nahw import practice as practice_service
 from backend.services.learner import attempts
@@ -69,7 +68,7 @@ _REFUSED = {
 }
 
 
-@router.post("/checked", response_model=CheckedSentence, dependencies=[Depends(AI)])
+@router.post("/checked", response_model=CheckedSentence)
 async def generate_checked_sentence(user: str = USER) -> CheckedSentence:
     """A short AI sentence using only words this learner has learnt, every word checked."""
     done = await asyncio.to_thread(checked_sentence.make, user)

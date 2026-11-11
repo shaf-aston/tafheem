@@ -87,6 +87,7 @@ logging.basicConfig(
     ],
 )
 logger = logging.getLogger(__name__)
+logging.getLogger("httpx").addFilter(audit.NoQuery())  # a learner's search rides out as ?q=
 
 
 @asynccontextmanager

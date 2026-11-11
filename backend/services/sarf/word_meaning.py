@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 
 from backend.services import ai
+from backend.services.core.ratelimit import OverBudget
 from backend.services.sarf import morphology
 
 logger = logging.getLogger(__name__)
@@ -16,6 +17,8 @@ def of(word: str) -> dict | None:
     tags = morphology.tags_as_string([morphology.analyze_word(word)])
     try:
         return ai.analyze_sarf(word, tags)
+    except OverBudget:
+        raise
     except Exception as exc:
         logger.warning("Sarf AI failed for %r: %s", word, exc)  # %r: a typed newline cannot start a fake log line
         return None

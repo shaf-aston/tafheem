@@ -74,10 +74,14 @@ class Nahw(BaseSettings):
     # about 1300), so a whole ayah the chart draws also gets its English and its practice.
     max_sentence_chars: int = Field(default=2000, gt=0)
     # Analyses a minute per visitor (POST /api/analyze); the parser costs far more than a page's own clicks.
+    # The second is for everyone together, which no forged address gets past (the parser is the CPU's).
+    # Every *_all_* count is kept by each server process (two run), so the machine as a whole takes twice it.
     analyze_per_minute: int = Field(default=60, gt=0)
-    # Model-backed answers (word meaning, sentence meaning, a root entry in English, a checked sentence),
-    # shared across those routes (services/core/ratelimit.AI). Each is pressed for, one at a time, so a
-    # person rarely asks ten a minute. The second is for everyone together: what the Groq key can take.
+    analyze_all_per_minute: int = Field(default=600, gt=0)
+    # Calls to the model (Groq) a minute, charged in services/ai._ask for each call that would reach it
+    # (services/core/ratelimit.AI): an answer already on file costs nothing. One budget for every model-backed
+    # route, so a person who rarely asks ten a minute is never near it. The second is for everyone together:
+    # what the Groq key can take.
     ai_per_minute: int = Field(default=20, gt=0)
     ai_all_per_minute: int = Field(default=120, gt=0)
     # Recent sentences kept read in memory: the Analyse page and its practice questions ask for the same
@@ -356,7 +360,9 @@ class Speech(BaseSettings):
     # Every line made ahead (scripts/speech/premake_speech.py: Colloquial, quiz words, example sentences) is ~1.9 GB, so this leaves room past it.
     speech_cache_max_mb: float = Field(default=3000.0, gt=0)
     # Asks a minute per visitor; a phrase counts one ask per speech_chars_per_ask letters.
+    # The second is for everyone together (per server process, like analyze_all_per_minute).
     speech_per_minute: int = Field(default=60, gt=0)
+    speech_all_per_minute: int = Field(default=600, gt=0)
     speech_chars_per_ask: int = Field(default=40, gt=0)
 
 

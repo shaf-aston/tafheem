@@ -8,6 +8,7 @@ from collections import deque
 from fastapi import HTTPException, Request
 
 from backend.config import get_settings
+from backend.services.core import audit
 
 
 # Where the visitor's address is, most trusted first. Vercel's edge overwrites x-real-ip and
@@ -59,21 +60,36 @@ class PerMinute:
         return False
 
 
+class OverBudget(HTTPException):
+    """A model call this visitor, or everyone together, may not make this minute. An HTTPException, so
+    unless something catches it the answer is a 429 (and a line in the security log). Code that turns a
+    failed model call into a gentler answer re-raises this one: being refused is not the model failing."""
+
+    def __init__(self, detail: str) -> None:
+        super().__init__(429, detail)
+
+
 class Budget:
-    """A route dependency for routes that spend a model's quota (Groq): a fair share per visitor, and a
-    ceiling for everyone together. The ceiling keys on nothing a request sends, so no forged address
-    gets past it; it protects the key (and the hosted ear, which may share it) when the per-visitor
-    count cannot be trusted (docs/plans/2026-11-11-security.md, Phase 2). A 429 lands in the security log."""
+    """What the model's quota (Groq) may be spent on: a fair share per visitor, and a ceiling for
+    everyone together. Charged in services/ai._ask, once per call that would reach the model, so a
+    kept answer, a refused input and a page that asks twice for what is already on file cost nothing,
+    and a route added later cannot forget it. The ceiling keys on nothing a request sends, so no forged
+    address gets past it (docs/plans/2026-11-11-security.md, Phase 2)."""
 
     def __init__(self, each: str, everyone: str) -> None:
         self.each, self.everyone = PerMinute(each), PerMinute(everyone)
 
-    def __call__(self, request: Request) -> None:
-        if self.each.too_many(visitor(request)):
-            raise HTTPException(429, "Too many explanations at once; try again in a minute")
+    def spend(self) -> None:
+        """Charge one model call to this request's visitor. Outside a request (startup, a script under
+        backend/scripts) there is no visitor and nothing is charged: the server spending its own key on
+        its own work is not abuse."""
+        if not audit.request_id.get():
+            return
+        if self.each.too_many(audit.client_ip.get()):
+            raise OverBudget("Too many explanations at once; try again in a minute")
         if self.everyone.too_many("everyone"):
-            raise HTTPException(429, "Explanations are busy right now; try again in a minute")
+            raise OverBudget("Explanations are busy right now; try again in a minute")
 
 
-# One budget for every model-backed route, so a visitor cannot spread the same spend across routes.
+# One budget for every model call, so a visitor cannot spread the same spend across routes.
 AI = Budget("ai_per_minute", "ai_all_per_minute")

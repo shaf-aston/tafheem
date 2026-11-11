@@ -44,15 +44,16 @@ def arabic_sentence(text: str, field: str = "input") -> str:
 
     An ayah pasted from the Qur'an tab carries its pause signs and its number;
     left in, the tagger and the AI each gave the ayah number a grammar card.
+    A word with letters of another script glued on ("Ignoreب", "الله(swt)" once the brackets go) is
+    left out like any Latin word: it is no Arabic word, and dropped it carries no instruction to a
+    model (docs/plans/2026-11-11-security.md, T6).
     """
     text = normalize_text(text, field)
     require_arabic(text, field)
-    if not (kept := words(text)):
+    if not (kept := [word for word in words(text) if not foreign_letters(word)]):
         raise HTTPException(status_code=422, detail=f"{field} has no Arabic words.")
     if len(kept) > (limit := get_settings().max_sentence_words):
         raise HTTPException(status_code=422, detail=f"{field} is longer than {limit} words.")
-    if any(foreign_letters(word) for word in kept):
-        raise HTTPException(status_code=422, detail=f"{field} must be Arabic words only.")
     return " ".join(kept)
 
 
@@ -103,6 +104,8 @@ async def call_service(
     """
     try:
         return await asyncio.to_thread(func, *args)
+    except HTTPException:
+        raise  # already an answer (services/core/ratelimit.OverBudget)
     except ValueError as exc:
         logger.error("%s configuration error: %s", operation, exc)
         raise HTTPException(

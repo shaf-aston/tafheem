@@ -7,7 +7,7 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, HTTPException
 
 
 from backend.models.morphology import (
@@ -27,7 +27,6 @@ from backend.models.morphology import (
 )
 from backend.services.sarf import conjugation
 from backend.services.core import provenance
-from backend.services.core.ratelimit import AI
 from backend.services.sarf import answer as sarf_word
 from backend.services.sarf import word_meaning
 from backend.utils import arabic_word, normalize_text, require_arabic
@@ -46,7 +45,7 @@ async def analyze_morphology(request: MorphologyRequest) -> MorphologyResponse:
     return await asyncio.to_thread(sarf_word.analyze, word, request.form)
 
 
-@router.post("/meaning", response_model=MeaningResponse, dependencies=[Depends(AI)])
+@router.post("/meaning", response_model=MeaningResponse)
 async def analyze_meaning(request: MeaningRequest) -> MeaningResponse:
     """The AI enrichment for a word, asked for on its own.
 

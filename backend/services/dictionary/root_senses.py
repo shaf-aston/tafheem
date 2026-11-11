@@ -21,6 +21,7 @@ from __future__ import annotations
 import json
 import logging
 
+from backend.services.core.ratelimit import OverBudget
 from backend.services.text.arabic_text import DIACRITICS_RE
 
 logger = logging.getLogger(__name__)
@@ -146,7 +147,7 @@ def cut(ask, lines: list[str]) -> list[dict] | None:
     for _ in range(2):
         try:
             senses = check(ask(lines), lines)
-        except TimeoutError:
+        except (TimeoutError, OverBudget):
             raise
         except Exception as exc:  # a failed call is a failed try, not a crash
             logger.warning("word by word try failed: %s: %s", type(exc).__name__, exc)

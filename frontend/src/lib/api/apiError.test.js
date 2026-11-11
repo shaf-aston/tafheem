@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { smartError } from './apiError'
+import { retryServerErrors, smartError } from './apiError'
 
 const failure = (status, detail) => ({ response: { status, data: detail ? { detail } : {} } })
 
@@ -24,5 +24,20 @@ describe('smartError', () => {
 
   it('names the backend when there was no response at all', () => {
     expect(smartError({ code: 'ERR_NETWORK' })).toMatch(/reach the backend/)
+  })
+})
+
+describe('retryServerErrors', () => {
+  const once = retryServerErrors(1)
+
+  it('tries a server failure or a lost connection again, up to the count', () => {
+    expect(once(0, failure(502))).toBe(true)
+    expect(once(0, { code: 'ERR_NETWORK' })).toBe(true)
+    expect(once(1, failure(502))).toBe(false)
+  })
+
+  // A model route counts every ask against the reader's share, refused or not.
+  it('never asks again after a refusal', () => {
+    for (const status of [400, 404, 422, 429]) expect(once(0, failure(status))).toBe(false)
   })
 })

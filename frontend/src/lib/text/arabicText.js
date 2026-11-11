@@ -59,6 +59,22 @@ const TRAILING = /(?:\s|(?![@/])\p{P})+$/u
 /** The text with every punctuation mark a space: "القيامة." is القيامة. */
 export const unpunctuated = (text) => (text ?? '').replace(PUNCTUATION, ' ').replace(/\s+/g, ' ')
 
+// The backend's ARABIC_RE ranges (services/text/arabic_text.py), as \u escapes.
+const ARABIC_RANGES = '\\u0600-\\u06FF\\u0750-\\u077F\\u08A0-\\u08FF\\uFB50-\\uFDFF\\uFE70-\\uFEFF'
+// An Arabic letter proper (Lo): a pause sign or ۞ is not one, the backend's _has_arabic_letter.
+const ARABIC_LETTER = new RegExp(`(?=[${ARABIC_RANGES}])\\p{Lo}`, 'u')
+// A letter of any other script, the backend's foreign_letters.
+const FOREIGN_LETTER = new RegExp(`(?![${ARABIC_RANGES}])\\p{L}`, 'u')
+
+/**
+ * Exactly one Arabic word and no letter of another script: what /api/morphology/meaning
+ * accepts (backend/utils.arabic_word), so a caller can skip a request it would refuse.
+ * Punctuation splits as it does there: ك-ت-ب is three, (كتب) and كتب؟ are one.
+ */
+export const isOneArabicWord = (text) =>
+  !FOREIGN_LETTER.test(text ?? '') &&
+  unpunctuated(text).split(' ').filter((token) => ARABIC_LETTER.test(token)).length === 1
+
 /** A typed line without what trails off its end: "2:255." and "2:255؟" are 2:255. */
 export const untrailed = (text) => (text ?? '').trim().replace(TRAILING, '')
 

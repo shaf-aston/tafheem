@@ -4,6 +4,7 @@
  * the card that prefetches them on the press that opens the rest.
  */
 import { getRootEntryEnglish, getRootEntryLines, getRootEntrySenses } from '../../api'
+import { retryServerErrors } from '../api/apiError'
 
 /** Said when the backend stops answering mid-visit. */
 const STOPPED = 'The backend may have stopped since this page was opened.'
@@ -43,8 +44,20 @@ export const ENGLISH = {
 export const englishQuery = (english, root) => ({
   queryKey: [english.key, root],
   queryFn: () => english.get(root),
-  retry: english.retry ?? false,
+  // Never again after a refusal (a 4xx, 429 among them): the same answer comes back, and a
+  // model route's refusal still spends the reader's share of calls.
+  retry: english.retry ? retryServerErrors(english.retry) : false,
 })
 
 /** Which shape of English each view reads. */
 export const SHAPE = { words: 'words', together: 'together', one: 'lines' }
+
+/**
+ * The view the card shows. Opened by a press, or by choosing a view, it is the one chosen.
+ * Opened on its own (a wide screen, the prose English kept) it shows only English already
+ * kept: Together is kept for every root, Word by word for some (`senses_kept`), One at a
+ * time's lines for almost none, so either of those not kept would be a model call nobody
+ * pressed for, and Together stands in.
+ */
+export const shownView = (chosen, pressed, data) =>
+  pressed || chosen === 'together' || (chosen === 'words' && data?.senses_kept) ? chosen : 'together'

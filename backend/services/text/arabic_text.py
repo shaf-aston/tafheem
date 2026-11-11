@@ -81,9 +81,11 @@ def words(text: str) -> list[str]:
 
 
 def not_arabic(text: str) -> list[str]:
-    """What words() drops that a reader typed as a word: letters, none Arabic (hello, x).
+    """What a sentence leaves out that a reader typed as a word: letters, none Arabic (hello, x), or
+    Arabic with another script's letters glued on (Helloب, utils.arabic_sentence drops those too).
     A mark or a number is not a word, so it is not reported."""
-    return [w for w in _tokens(text) if any(c.isalpha() for c in w) and not _has_arabic_letter(w)]
+    return [w for w in _tokens(text)
+            if any(c.isalpha() for c in w) and (not _has_arabic_letter(w) or foreign_letters(w))]
 
 
 def unpunctuated(text: str) -> str:

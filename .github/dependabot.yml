@@ -3,6 +3,18 @@
 # Security fixes come as soon as GitHub knows of them, whatever this schedule says.
 # See docs/plans/2026-11-11-security.md (Supply chain).
 version: 2
+
+# Public PyPI for every pip lookup. Without it, Dependabot takes the --index-url line in
+# requirements-torch.txt (the PyTorch CPU index) as the index for ALL of / (it reads every file named
+# requirements*), and that index answers 403 for most packages (fastapi, python-multipart...), which
+# Dependabot reads as "no releases": pip updates would go quiet with no error. torch's own version
+# numbers are the same on PyPI. replaces-base makes this the index; no credentials (it is public).
+registries:
+  pypi:
+    type: python-index
+    url: https://pypi.org/simple
+    replaces-base: true
+
 updates:
   # The commit each workflow step is pinned to (ci.yml, security.yml).
   - package-ecosystem: github-actions
@@ -16,6 +28,7 @@ updates:
   # requirements*.txt. Most are floors (>=), so this mostly raises a floor past a known-bad release.
   - package-ecosystem: pip
     directory: /
+    registries: [pypi]  # see registries above
     schedule:
       interval: weekly
     open-pull-requests-limit: 5

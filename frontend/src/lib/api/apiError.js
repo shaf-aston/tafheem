@@ -8,6 +8,16 @@ export function errorStatus(error) {
 }
 
 /**
+ * A query's `retry`: a failed request tried again up to `times` times, but never one the
+ * server refused (4xx, 429 among them). Asked again it answers the same, and on a model
+ * route each refusal still counts against the reader's share of calls.
+ */
+export const retryServerErrors = (times) => (failures, error) => {
+  const status = errorStatus(error)
+  return failures < times && !(status >= 400 && status < 500)
+}
+
+/**
  * Returns a specific, actionable error message based on HTTP status code.
  * Falls back to the server's `detail` field, then the provided fallback string.
  *

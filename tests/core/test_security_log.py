@@ -121,3 +121,19 @@ def test_a_forged_address_cannot_put_control_characters_in_front_of_the_reader()
     audit.event("x", name="a\x1b[2Jb\x9bc")
     [line] = lines()
     assert line["name"] == "a?[2Jb?c"
+
+
+def test_what_a_learner_searched_never_lands_in_the_server_log(caplog):
+    """httpx logs each outbound address; the Qur'an search sends the learner's words as ?q=."""
+    import httpx
+    import logging
+
+    import backend.main  # noqa: F401, installs the filter
+    with caplog.at_level(logging.INFO, logger="httpx"):
+        with httpx.Client(transport=httpx.MockTransport(lambda request: httpx.Response(200))) as http:
+            http.get("https://api.quran.com/api/v4/search", params={"q": "رحمة", "size": 20})
+            http.post("https://api.groq.com/openai/v1/chat/completions")
+    lines = [r.getMessage() for r in caplog.records if r.name == "httpx"]
+    assert len(lines) == 2
+    assert "رحمة" not in lines[0] and "%D8" not in lines[0] and "api.quran.com/api/v4/search" in lines[0]
+    assert "api.groq.com" in lines[1] and "/v1/" in lines[1] and " 200 " in lines[1]  # deploy/usage.py still counts it

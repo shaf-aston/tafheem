@@ -32,6 +32,9 @@ jobs:
       # audited. torch comes from its own CPU index first: through requirements.txt alone, camel-tools
       # would pull the CUDA build and fill the runner's disk. pip-audit only warns that it cannot look
       # up a "+cpu" build; that one is audited by hand when requirements-torch.txt moves.
+      # pip-audit also audits pip itself; the runner's bundled pip can lag a pip advisory, which
+      # would turn this red over a tool the app never ships. Upgrade it first.
+      - run: python -m pip install --upgrade pip
       - run: pip install -r requirements-torch.txt
       - run: pip install -r requirements.txt pip-audit==2.9.0
       - run: pip-audit --progress-spinner off

@@ -163,3 +163,22 @@ class SecurityLog:
         finally:
             request_id.reset(id_token)
             client_ip.reset(ip_token)
+
+
+class NoQuery(logging.Filter):
+    """Drops the query from every address a library logs (httpx's "HTTP Request: GET https://...?q=..."):
+    the Qur'an search sends what a learner typed as ?q=, and uvicorn's own access log is already off for
+    the same reason (deploy/tafheem@.service). Host, path and status stay, which deploy/usage.py counts."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        if isinstance(record.args, tuple):
+            record.args = tuple(_no_query(arg) for arg in record.args)
+        return True
+
+
+def _no_query(arg: Any) -> Any:
+    text = str(arg) if type(arg).__name__ == "URL" or isinstance(arg, str) else None
+    if text and text.startswith(("http://", "https://")) and "?" in text:
+        return text.split("?", 1)[0] + "?…"
+    return arg
+

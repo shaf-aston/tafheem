@@ -10,6 +10,7 @@ from backend.services import speech
 def client(monkeypatch, tmp_path):
     calls = []
     speak_route._limit.asks.clear()
+    speak_route._everyone.asks.clear()
     monkeypatch.setattr(speech, "CACHE", tmp_path)
     monkeypatch.setattr(speech, "_stored", None)
     monkeypatch.setattr(speech.FastPitchVoice, "say", lambda self, text, speed=1.0: calls.append(text) or b"RIFF-fake")
@@ -76,6 +77,13 @@ def test_a_long_phrase_counts_as_several_asks(monkeypatch, tmp_path):
     ask = lambda text: app.get("/api/speak", params={"text": text}).status_code
     assert ask("ك" * 30) == 200  # three asks' worth
     assert ask("كتب") == 429
+
+
+def test_forging_a_new_address_each_time_still_meets_the_ceiling(monkeypatch, tmp_path):
+    app, _ = client(monkeypatch, tmp_path)
+    monkeypatch.setattr(get_settings(), "speech_all_per_minute", 2)
+    ask = lambda who: app.get("/api/speak", params={"text": "كتب"}, headers={"x-real-ip": who}).status_code  # noqa: E731
+    assert [ask("198.51.100.1"), ask("198.51.100.2"), ask("198.51.100.3")] == [200, 200, 429]
 
 
 def test_the_store_keeps_only_the_newest_words(monkeypatch, tmp_path):
