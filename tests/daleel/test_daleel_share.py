@@ -54,7 +54,7 @@ def built(tmp_path, monkeypatch):
 def _picked(monkeypatch, fast):
     if not fast:
         monkeypatch.setattr(share, "source_spans", lambda _conn: None)
-    return sorted(row.locator for row in share.fairly(connection.db(), '"صلاة"', 2))
+    return sorted(row.locator for row in share.fairly(connection.db(), ['"صلاة"'], 2))
 
 
 def test_the_heap_picks_what_the_sql_picks(built, monkeypatch):
@@ -81,7 +81,7 @@ def test_an_index_with_no_passages_has_no_runs(tmp_path, monkeypatch):
     not hand the heap an empty list of sources to index into."""
     _index(tmp_path, monkeypatch, [])
     assert share.source_spans(connection.db()) is None
-    assert share.fairly(connection.db(), '"صلاة"', 2) == []
+    assert share.fairly(connection.db(), ['"صلاة"'], 2) == []
 
 
 def test_the_runs_are_read_once_per_build(built, monkeypatch):
