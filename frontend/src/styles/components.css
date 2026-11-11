@@ -554,6 +554,7 @@ dialog::backdrop {
 }
 @media (hover: hover) and (pointer: fine) { .key-hint { display: flex; } }
 .key-hint-host:hover .key-hint { opacity: 1; }
+.key-hint[data-resting] { opacity: 0; }
 /* Not over the first-visit questions: their one task is the page, and the keycap landed on its top line. */
 :root:has([data-onboarding]) .key-hint { display: none; }
 .key-hint-arrow { width: 0; height: 0; border: 5px solid transparent; border-bottom-color: var(--text-faint); }
