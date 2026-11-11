@@ -37,6 +37,12 @@ describe('WordsView: Browse, with the drawing where the words have one', () => {
     const split = container.querySelector('.lg\\:grid')
     expect(split).not.toBeNull()
     expect(split.querySelector('.lg\\:sticky')).not.toBeNull()   // the drawing is held in view
+    // The picker and the question are held beside it (not above it), so none of the exercise scrolls away.
+    const held = [...split.querySelectorAll('.lg\\:sticky')]
+    const beside = held.find((e) => e.querySelector('[aria-live=polite]'))
+    expect(beside.className).toContain('lg:col-start-2')
+    expect(beside.contains(screen.getByRole('button', { name: 'Explore' }))).toBe(true)
+    expect(held.find((e) => e.querySelector('svg')).className).toContain('lg:col-start-1')
     // The words under it use the narrow mosaic (3 across at most), not the 6-across wide one.
     expect(container.querySelector('ul.grid.sm\\:grid-cols-3')).not.toBeNull()
     expect(container.querySelector('ul.grid.lg\\:grid-cols-6')).toBeNull()

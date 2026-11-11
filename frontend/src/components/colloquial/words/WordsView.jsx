@@ -67,16 +67,11 @@ export default function WordsView({ unit, at }) {
       <div key={shown} className={picked ? 'rise-in' : undefined}>
         {shown === 'browse' && (drawn
           ? (
-            // The drawing beside the words on a wide screen, held in view as they scroll past; over them on a phone.
-            <div className="space-y-8 lg:grid lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:items-start lg:gap-8 lg:space-y-0">
-              <div className="max-w-xl mx-auto w-full lg:sticky lg:top-[calc(var(--app-header-h,0px)+1rem)] lg:max-h-[calc(100dvh-var(--app-header-h,0px)-2rem)] lg:overflow-y-auto">
-                <WordPicture words={words} />
-              </div>
-              <div className="space-y-4 min-w-0">
-                <SpellingKey keys={unit.transliteration_key} />
-                {lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} narrow />}
-              </div>
-            </div>
+            // The drawing, with its picker and question, beside the words on a wide screen (all held in view as the words scroll past); over them on a phone.
+            <WordPicture words={words}>
+              <SpellingKey keys={unit.transliteration_key} />
+              {lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} narrow />}
+            </WordPicture>
           )
           : (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />))}
         {shown === 'cards' && <WordCards words={words} />}
