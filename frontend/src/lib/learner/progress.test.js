@@ -105,7 +105,7 @@ describe('whose record', () => {
     await signUp('bilal', false)
     await logIn('bilal')
     expect(sent.map((config) => config.headers.get('X-Tafheem-Profile'))).toEqual(['bilal', 'bilal'])
-    expect(JSON.parse(sent[0].data)).toEqual({ keep: false })
+    expect(JSON.parse(sent[0].data)).toEqual({ keep: false, shows_code: true })
   })
 
   it('a guest sends no name', async () => {
@@ -177,12 +177,14 @@ describe('proving this browser is the account\'s', () => {
     return sent
   }
 
-  it('logs in with the recovery code in the body only when one is typed', async () => {
+  it('logs in with the recovery code in the body only when one is typed, saying the code will be shown', async () => {
     vi.stubGlobal('localStorage', { getItem: () => null })
     const sent = answering({ name: 'bilal', recovery: 'AAAA-BBBB-CCCC-DDDD' })
     expect(await logIn('bilal', 'abcd-efgh')).toEqual({ name: 'bilal', recovery: 'AAAA-BBBB-CCCC-DDDD' })
     await logIn('bilal')
-    expect(sent.map((config) => JSON.parse(config.data))).toEqual([{ code: 'abcd-efgh' }, {}])
+    expect(sent.map((config) => JSON.parse(config.data))).toEqual([{ shows_code: true, code: 'abcd-efgh' }, { shows_code: true }])
+    await signUp('bilal', false)
+    expect(JSON.parse(sent[2].data)).toEqual({ keep: false, shows_code: true })
   })
 
   it('a 403 is the one refusal the code answers', () => {
@@ -205,14 +207,24 @@ describe('proving this browser is the account\'s', () => {
     expect([sent[0].method, sent[0].url]).toEqual(['delete', '/progress/sessions'])
   })
 
-  it('logging out tells the server, then goes back to the guest, even when the server is not there', async () => {
+  it('logging out tells the server, then goes back to the guest', async () => {
     const data = new Map([['profile', 'amina']])
     vi.stubGlobal('localStorage', { getItem: (k) => data.get(k) ?? null, removeItem: (k) => data.delete(k) })
     vi.stubGlobal('location', { reload: vi.fn() })
-    const sent = answering({ detail: 'down' }, 503)
+    const sent = answering({ deleted: true })
     await logOutHere()
     expect([sent[0].method, sent[0].url]).toEqual(['delete', '/progress/session'])
     expect(data.has('profile')).toBe(false)
     expect(location.reload).toHaveBeenCalledOnce()
+  })
+
+  it('a log-out the server did not hear throws and keeps the name: the cookie would still let it in', async () => {
+    const data = new Map([['profile', 'amina']])
+    vi.stubGlobal('localStorage', { getItem: (k) => data.get(k) ?? null, removeItem: (k) => data.delete(k) })
+    vi.stubGlobal('location', { reload: vi.fn() })
+    answering({ detail: 'down' }, 503)
+    await expect(logOutHere()).rejects.toThrow()
+    expect(data.get('profile')).toBe('amina')
+    expect(location.reload).not.toHaveBeenCalled()
   })
 })

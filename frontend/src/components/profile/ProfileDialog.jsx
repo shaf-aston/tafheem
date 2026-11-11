@@ -36,19 +36,21 @@ export default function ProfileDialog({ onClose }) {
   const name = getProfile()
   // Not "Log in or sign up": the switch right under the title says that.
   const title = name ? 'Your profile' : 'Your account'
+  // While a new recovery code is on screen the sheet stays: closing it would lose a code shown once.
+  const [held, setHeld] = useState(false)
 
   return (
-    <BottomSheet label={title} onClose={onClose} className="p-5 space-y-4">
-      <SheetHeader onClose={onClose} className="">
+    <BottomSheet held={held} label={title} onClose={onClose} className="p-5 space-y-4">
+      <SheetHeader onClose={held ? () => {} : onClose} closeClassName={held ? 'invisible' : ''} className="">
         <h2 className="type-head type-lead font-bold text-[var(--text)]">{title}</h2>
       </SheetHeader>
       {/* A guest sees this device's own week first; logging in keeps it on any device. */}
-      {name ? <ProfileView name={name} /> : <><GuestProgress /><SignIn /></>}
+      {name ? <ProfileView name={name} /> : <><GuestProgress /><SignIn onHold={setHeld} /></>}
     </BottomSheet>
   )
 }
 
-function SignIn() {
+function SignIn({ onHold = () => {} }) {
   const [mode, setMode] = useState('login')
   const [typed, setTyped] = useState('')
   const [keep, setKeep] = useState(true)
@@ -75,7 +77,7 @@ function SignIn() {
         logInAs(name)
       }
       // The browser is logged in already (the cookie is set); the reload waits until the code has been seen.
-      if (recovery) setShown({ code: recovery, finish })
+      if (recovery) { onHold(true); setShown({ code: recovery, finish }) }
       else await finish()
     } catch (refused) {
       if (!signingUp && needsCode(refused)) setAskCode(true)

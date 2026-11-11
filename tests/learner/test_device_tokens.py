@@ -231,7 +231,7 @@ def test_a_code_log_in_drops_the_token_this_browser_held_for_another_account():
     code = signup("Bilal").json()["recovery"]
     signup("Amina")
     amina = as_("Amina")
-    moved = client.post("/api/progress/login", json={"code": code},
+    moved = client.post("/api/progress/login", json={"code": code, "shows_code": True},
                         headers={"X-Tafheem-Profile": "bilal", **sign_in.cookie("amina")})
     assert moved.status_code == 200
     assert account(amina).status_code == 401
@@ -239,7 +239,7 @@ def test_a_code_log_in_drops_the_token_this_browser_held_for_another_account():
 
 def test_on_plain_http_the_cookie_is_not_secure(monkeypatch):
     monkeypatch.setattr(get_settings(), "cookie_secure", False)
-    response = client.post("/api/progress/signup", json={}, headers={"X-Tafheem-Profile": "amina"})
+    response = client.post("/api/progress/signup", json={"shows_code": True}, headers={"X-Tafheem-Profile": "amina"})
     cookie = response.headers["set-cookie"]
     assert cookie.startswith("tafheem=tft_") and "secure" not in cookie.lower() and "HttpOnly" in cookie
     token = response.cookies.get("tafheem")
@@ -249,7 +249,7 @@ def test_on_plain_http_the_cookie_is_not_secure(monkeypatch):
 def test_logging_in_as_someone_else_drops_the_old_token():
     signup("Amina")
     amina = as_("Amina")
-    signup_as_bilal = client.post("/api/progress/signup", json={"keep": False},
+    signup_as_bilal = client.post("/api/progress/signup", json={"keep": False, "shows_code": True},
                                   headers={"X-Tafheem-Profile": "bilal", **sign_in.cookie("amina")})
     assert signup_as_bilal.status_code == 200
     assert account(amina).status_code == 401  # one browser, one account: Amina's token went
@@ -412,3 +412,53 @@ def test_another_sites_page_can_still_read():
 ])
 def test_a_claim_records_the_device_family_only(agent, kind):
     assert audit.device_kind(agent) == kind
+
+
+# A page from before codes (auditor round 10): it never shows a code, so none is made for it
+
+def test_an_old_page_signs_up_an_unclaimed_account_that_the_new_page_claims_with_its_code():
+    old = sign_in.signup(client, "Amina", shows_code=False)
+    assert old.status_code == 200 and old.json()["recovery"] is None and cookie_name() not in old.cookies
+    assert not tokens.claimed("amina")
+    assert account(bare("amina")).json()["proven"] is False  # the old page goes on by name, as it always did
+    claimed = login("Amina")  # the new page, on its next load
+    assert claimed.json()["recovery"] and tokens.claimed("amina")
+
+
+def test_an_old_page_logging_in_to_an_unclaimed_account_claims_nothing():
+    old_account("amina")
+    old = sign_in.login(client, "Amina", shows_code=False)
+    assert old.status_code == 200 and old.json()["recovery"] is None and cookie_name() not in old.cookies
+    assert not tokens.claimed("amina")
+    assert [e["by"] for e in events("login")] == ["name"]
+
+
+def test_an_old_page_still_needs_the_code_for_a_claimed_account():
+    signup("Amina")
+    sign_in.forget_all()
+    assert sign_in.login(client, "Amina", shows_code=False).status_code == 403
+
+
+def test_with_claims_closed_an_old_page_signs_up_as_before(monkeypatch):
+    monkeypatch.setattr(get_settings(), "account_claims_open", False)
+    old = sign_in.signup(client, "Amina", shows_code=False)
+    assert old.json()["recovery"] and tokens.claimed("amina")  # no unclaimed account nobody could ever claim
+
+
+# Asking about many names without a token: which exist, which can be claimed
+
+def test_one_visitor_may_name_only_a_few_usernames_a_minute_without_a_token(monkeypatch):
+    monkeypatch.setattr(get_settings(), "names_per_minute", 3)
+    from backend.services.core import ratelimit
+    monkeypatch.setattr(ratelimit.NAMELESS, "asked", {})
+    old_account("amina")
+    assert all(account(bare("amina")).status_code == 200 for _ in range(10))  # one name, however often
+    assert [account(bare(n)).status_code for n in ("nobody1", "nobody2", "nobody3")] == [401, 401, 429]
+    signup("Bilal")
+    assert account(as_("Bilal")).status_code == 200  # a browser with its cookie is not counted
+
+
+def test_a_cross_site_refusal_logs_the_area_not_the_path():
+    client.post("/api/progress/circles/1/members/somechild", headers={"Sec-Fetch-Site": "cross-site"})
+    [line] = events("cross_site_write")
+    assert line["area"] == "/api/progress" and "somechild" not in json.dumps(line)

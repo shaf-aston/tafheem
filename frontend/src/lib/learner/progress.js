@@ -67,12 +67,16 @@ export async function forgetProgress() {
  * codes, by claiming it; anything else is a 403 asking for the code
  * (`needsCode`). Both throw, so the box can say why (taken, no such username,
  * wrong code, not a name).
+ *
+ * Both say `shows_code`: this page shows a new code (pages from before codes
+ * never did, so the server makes none for them; this page claims the account
+ * on its next load instead, and shows it then).
  */
 export const signUp = (typed, keep) =>
-  api.post(`${BASE}/signup`, { keep }, headers(typed)).then((r) => r.data)
+  api.post(`${BASE}/signup`, { keep, shows_code: true }, headers(typed)).then((r) => r.data)
 
 export const logIn = (typed, code) =>
-  api.post(`${BASE}/login`, code ? { code } : {}, headers(typed)).then((r) => r.data)
+  api.post(`${BASE}/login`, { shows_code: true, ...(code && { code }) }, headers(typed)).then((r) => r.data)
 
 /** A refusal that the recovery code would answer: missing or wrong. */
 export const needsCode = (error) => error?.response?.status === 403
@@ -89,12 +93,13 @@ export const logOutOthers = () => api.delete(`${BASE}/sessions`).then((r) => r.d
 
 /**
  * Log out here: the server forgets this browser's token and drops the cookie,
- * then the page goes back to the guest record. The server is told first but
- * not waited on for an answer that matters: offline, the page still logs out,
- * and the token left behind is swept once it goes unused.
+ * then the page goes back to the guest record. Only then: the cookie is out of
+ * the page's reach, and while it stays, anyone typing the name on this browser
+ * is let in without the code. So a log-out the server did not hear (offline, an
+ * error) throws, and the page stays logged in to say so.
  */
 export async function logOutHere() {
-  await landed(api.delete(`${BASE}/session`))
+  await api.delete(`${BASE}/session`)
   logOut()
 }
 

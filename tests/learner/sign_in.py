@@ -39,14 +39,16 @@ def as_(name: str | None, **more: str) -> dict[str, str]:
     return {"X-Tafheem-Profile": quote(name), **cookie(name), **more}
 
 
-def signup(client, name: str, keep_answers: bool = False, **more: str):
-    response = client.post("/api/progress/signup", json={"keep": keep_answers}, headers=as_(name, **more))
+def signup(client, name: str, keep_answers: bool = False, shows_code: bool = True, **more: str):
+    """As today's page signs up (it shows the code); `shows_code=False` is a page from before codes."""
+    response = client.post("/api/progress/signup", json={"keep": keep_answers, "shows_code": shows_code},
+                           headers=as_(name, **more))
     keep(name, response)
     return response
 
 
-def login(client, name: str, code: str | None = None, **more: str):
-    body = {"code": code} if code else {}
+def login(client, name: str, code: str | None = None, shows_code: bool = True, **more: str):
+    body = {"shows_code": shows_code, **({"code": code} if code else {})}
     response = client.post("/api/progress/login", json=body, headers=as_(name, **more))
     keep(name, response)
     return response

@@ -153,12 +153,17 @@ def sign_up(body: SignUpIn, response: Response, user: str = TYPED, device: str =
     `keep` moves this device's guest answers onto it. A page that names no device (one cached from before
     devices had ids) keeps nothing: the shared record it wrote to holds every such guest's answers, not its own.
     """
-    if (minted := tokens.open_account(user)) is None:
+    if body.shows_code or not get_settings().account_claims_open:
+        minted = tokens.open_account(user)
+        made = minted is not None
+    else:  # a page from before codes, which would never show one (SignUpIn.shows_code): its next load claims it
+        minted, made = None, tokens.open_unclaimed(user)
+    if not made:
         audit.event("signup_taken", user=user)
         raise HTTPException(status_code=409, detail="That username is taken")
     if body.keep:
         guest_identity.merge(device, user)
-    audit.event("signup", user=user, kept=body.keep)
+    audit.event("signup", user=user, kept=body.keep, claimed=minted is not None)
     return _signed_in(user, minted, response, held)
 
 
@@ -194,6 +199,9 @@ def log_in(request: Request, response: Response, body: LogInIn | None = None, us
             raise HTTPException(status_code=403, detail="That recovery code is not this account's")
         audit.event("login", user=user, by="code")
         return _signed_in(user, minted, response, held)
+    if get_settings().account_claims_open and not body.shows_code and not tokens.claimed(user):
+        audit.event("login", user=user, by="name")  # an old page, as before tokens: the new page claims it later
+        return _signed_in(user, None, response, None)
     if get_settings().account_claims_open and (minted := tokens.claim(user)) is not None:
         audit.event("token_claimed", user=user, device=audit.device_kind(request.headers.get("user-agent")))
         return _signed_in(user, minted, response, held)

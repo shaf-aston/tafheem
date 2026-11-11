@@ -39,7 +39,8 @@ describe('logging in with a recovery code', () => {
   }
 
   it('asks for the code only when refused, then shows the next one before logging in', async () => {
-    renderScreen(<ProfileDialog onClose={() => {}} />, { routes })
+    const onClose = vi.fn()
+    renderScreen(<ProfileDialog onClose={onClose} />, { routes })
     fireEvent.change(screen.getByLabelText('Username'), { target: { value: 'amina' } })
     expect(screen.queryByLabelText('Recovery code')).toBeNull()
     fireEvent.click(submit())
@@ -53,8 +54,10 @@ describe('logging in with a recovery code', () => {
     fireEvent.change(code, { target: { value: 'abcd-efgh-jkmn-pqrs' } })
     fireEvent.click(submit())
     expect((await screen.findByTestId('recovery-code')).textContent).toBe('NEW1-NEW2-NEW3-NEW4')
-    expect(sent).toEqual([{}, { code: 'wrong' }, { code: 'abcd-efgh-jkmn-pqrs' }])
+    expect(sent).toEqual([{ shows_code: true }, { shows_code: true, code: 'wrong' }, { shows_code: true, code: 'abcd-efgh-jkmn-pqrs' }])
     expect(location.reload).not.toHaveBeenCalled() // not until the code has been seen
+    fireEvent.click(screen.getByRole('button', { name: /close/i, hidden: true }))
+    expect(onClose).not.toHaveBeenCalled() // the sheet is held while the code shows: nothing closes it but saving
 
     fireEvent.click(screen.getByRole('button', { name: 'I have saved it' }))
     await waitFor(() => expect(location.reload).toHaveBeenCalledOnce())

@@ -31,7 +31,9 @@ describe('checking the kept name on load', () => {
   it('claims an account from before codes, and hands its new code to be shown', async () => {
     fetchAccount.mockResolvedValue({ name: 'amina', proven: false })
     logIn.mockResolvedValue({ name: 'amina', recovery: 'AAAA-BBBB-CCCC-DDDD' })
-    expect(await checkAccount('amina', onCode)).toMatchObject({ name: 'amina' })
+    const kept = await checkAccount('amina', onCode)
+    expect(kept).toMatchObject({ name: 'amina' })
+    expect(kept.recovery).toBeUndefined() // react-query keeps what is returned; the code goes only to onCode
     expect(logIn).toHaveBeenCalledWith('amina')
     expect(onCode).toHaveBeenCalledWith('AAAA-BBBB-CCCC-DDDD')
     expect(pullShelf).toHaveBeenCalledWith('amina') // refused before the claim, so pulled now

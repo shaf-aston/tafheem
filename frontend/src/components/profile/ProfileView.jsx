@@ -143,7 +143,17 @@ function Devices() {
 function Leave() {
   const [asking, setAsking] = useMoment(ARMED_MS)
   const [failed, setFailed] = useState(false)
+  const [stuck, setStuck] = useState(false)
 
+  // A 401 means this browser's cookie opens nothing any more: nothing is left to fear, so log out here too.
+  const leave = async () => {
+    try {
+      await logOutHere()
+    } catch (error) {
+      if (error.response?.status === 401) logOut()
+      else setStuck(true)
+    }
+  }
   const remove = async () => {
     try {
       await deleteAccount()
@@ -164,7 +174,13 @@ function Leave() {
 
   return (
     <div className="pt-2 border-t border-[var(--border)] space-y-3">
-      <div className="flex justify-end"><SmallButton onClick={logOutHere}>Log out</SmallButton></div>
+      <div className="flex justify-end"><SmallButton onClick={leave}>Log out</SmallButton></div>
+      {stuck && (
+        <p role="alert" className="type-small text-[var(--danger)] text-end">
+          Not logged out: the server did not hear it, and this device would still let your username in. Try again
+          when online.
+        </p>
+      )}
       <section aria-labelledby="danger-title" className="rounded-[var(--radius-md)] border border-[var(--danger-edge)] p-3 space-y-2">
         <h3 id="danger-title" className="type-small font-semibold text-[var(--danger)]">Danger zone</h3>
         <div className="flex flex-wrap justify-end gap-2">

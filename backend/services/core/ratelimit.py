@@ -60,6 +60,32 @@ class PerMinute:
         return False
 
 
+class Names:
+    """How many different names one visitor asked about this minute: a page carries one name, a script
+    probing which names exist or can be claimed (services/learner/identity.refused) carries many."""
+
+    def __init__(self, setting: str) -> None:
+        self.setting = setting
+        self.asked: dict[str, dict[str, float]] = {}
+
+    def too_many(self, who: str, name: str) -> bool:
+        now = time.monotonic()
+        if len(self.asked) > 10_000:  # never grows without end
+            self.asked.clear()
+        names = self.asked.setdefault(who, {})
+        for old in [n for n, at in names.items() if now - at > 60]:
+            del names[old]
+        if name not in names and len(names) >= getattr(get_settings(), self.setting):
+            return True
+        names[name] = now
+        return False
+
+
+# Names sent without a device token. Only a page from before tokens, or one not yet claimed, sends them;
+# a cookie-holding page is never counted.
+NAMELESS = Names("names_per_minute")
+
+
 class Limit:
     """A route dependency: a share a minute per visitor, and a ceiling for everyone together. Until the origin
     gate (docs/plans/2026-11-11-security.md, Phase 2) a visitor's address can be forged; the ceiling keys on

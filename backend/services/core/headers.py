@@ -87,7 +87,9 @@ class SameOrigin:
     async def __call__(self, scope, receive, send) -> None:
         if (scope["type"] == "http" and scope["method"] in _WRITES and scope["path"].startswith("/api/")
                 and (site := _header(scope, b"sec-fetch-site")) is not None and site not in _ALLOWED_SITES):
-            audit.event("cross_site_write", site=site.decode("latin-1"), path=scope["path"][:100])
+            # The area, never the whole path: a path can hold a username (audit.py logs routes, not paths).
+            area = "/".join(scope["path"].split("/")[:3])[:40]
+            audit.event("cross_site_write", site=site.decode("latin-1"), method=scope["method"], area=area)
             await send({"type": "http.response.start", "status": 403,
                         "headers": [(b"content-type", b"application/json")]})
             await send({"type": "http.response.body", "body": b'{"detail":"Not from this site"}'})

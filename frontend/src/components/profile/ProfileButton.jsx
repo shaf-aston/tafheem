@@ -53,7 +53,8 @@ export default function ProfileButton() {
       {/* Mounted only while open, so each opening starts from who is logged in. */}
       {open && <ProfileDialog onClose={() => setOpen(false)} />}
       {code && (
-        <BottomSheet label="Your recovery code" onClose={() => setCode('')} className="p-5 space-y-4">
+        // Held: one stray tap must not lose a code shown once; "I have saved it" is the way on.
+        <BottomSheet held label="Your recovery code" onClose={() => setCode('')} className="p-5 space-y-4">
           <p className="type-small text-[var(--text-dim)]">
             Accounts now have a recovery code, and this device has just claimed yours.
           </p>

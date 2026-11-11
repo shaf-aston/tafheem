@@ -23,6 +23,8 @@ from __future__ import annotations
 from fastapi import Depends, Header, HTTPException, Request, Response
 
 from backend.config import get_settings
+from backend.services.core import audit
+from backend.services.core.ratelimit import NAMELESS
 
 from backend.services.learner.identity import NOT_PROVEN, refused, resolve_device, resolve_name
 from backend.services.learner.username import GUEST, is_guest
@@ -90,6 +92,8 @@ def take_token(response: Response) -> None:
 def _signed_up(name: str, token: str | None, strict: bool = False) -> str:
     """Refused unless signed up and proven, so a deleted account files nothing and a typed name opens nothing.
     (`strict` and the one exception for accounts from before tokens: services/learner/identity.refused.)"""
+    if token is None and NAMELESS.too_many(audit.client_ip.get() or "", name):
+        raise HTTPException(status_code=429, detail="Too many usernames at once; wait a minute")
     if why := refused(name, token, strict):
         raise _log_in_again(why)
     return name

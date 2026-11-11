@@ -84,6 +84,14 @@ def open_account(name: str) -> tuple[str, str] | None:
         return _keep_token(db, name), code
 
 
+def open_unclaimed(name: str) -> bool:
+    """Make the account with no token or code yet, as accounts from before tokens were: for a page that would
+    never show a code (models/progress.SignUpIn.shows_code). False when the name is taken."""
+    db = connection()
+    with db:
+        return db.execute("INSERT OR IGNORE INTO accounts (name) VALUES (?)", (name,)).rowcount == 1
+
+
 def claimed(name: str) -> bool:
     row = connection().execute("SELECT recovery FROM accounts WHERE name = ?", (name,)).fetchone()
     return row is not None and row["recovery"] is not None

@@ -80,12 +80,22 @@ class SignUpIn(BaseModel):
     keep: bool = False
     """Move the guest's answers onto this name."""
 
+    shows_code: bool = False
+    """The page will show a new recovery code. Pages from before codes never did: for them, while claims are
+    open, no code is made (a code nobody saw would lock the account to this browser); the page that shows
+    codes claims the account on its next load instead."""
+
 
 class LogInIn(BaseModel):
     """Logging in to the username in the profile header."""
 
     code: str | None = Field(None, max_length=40)
     """The account's recovery code; needed once the account is claimed, unless this browser holds its token."""
+
+    shows_code: bool = False
+    """The page will show a new recovery code. Pages from before codes never did: for them, while claims are
+    open, no code is made (a code nobody saw would lock the account to this browser); the page that shows
+    codes claims the account on its next load instead."""
 
 
 class Shelf(BaseModel):

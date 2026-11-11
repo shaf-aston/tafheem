@@ -23,7 +23,8 @@ export async function checkAccount(name, onCode) {
       // The shelf is the account's own, so reading it needs the cookie this claim just set; the pull at start
       // was refused. (Pushes waited the same way, so this device's copy is still the one to keep in step.)
       await pullShelf(name)
-      return signed
+      // What is returned is react-query's to keep for half an hour: not with the code in it.
+      return { ...signed, recovery: undefined }
     } catch (error) {
       if (!needsCode(error)) throw error
       // Claimed a moment ago: by another tab of this browser (then the cookie is here now), or by someone

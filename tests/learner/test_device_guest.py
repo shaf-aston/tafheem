@@ -53,7 +53,7 @@ def items(headers):
 
 
 def signup(name, device=None, keep=False):
-    response = client.post("/api/progress/signup", json={"keep": keep}, headers=on(device, name))
+    response = client.post("/api/progress/signup", json={"keep": keep, "shows_code": True}, headers=on(device, name))
     sign_in.keep(name, response)
     return response
 
