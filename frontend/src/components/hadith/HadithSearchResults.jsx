@@ -73,7 +73,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
   return (
     <div className="space-y-3">
 
-      <div className="search-beside" data-in-use={inUse || undefined}>
+      <div className="search-beside" data-in-use={inUse || undefined} data-answered={searching || undefined}>
       {/* Folded into one pill holding the question once hits are up, so they
           are the next thing down (ui/inputs/Tucked). Focus is watched on this wrapper, so moving
           between the box, its clear button and the microphone is not leaving it. */}

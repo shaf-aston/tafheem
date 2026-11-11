@@ -1276,9 +1276,12 @@ button.mushaf-word {
   .search-beside-shelf {
     flex: 0 1 auto;
     max-width: 26rem;
+    /* A cap the shelf never reaches, so its height can fold too (below). */
+    max-height: 20rem;
     overflow: hidden;
     transition:
       max-width calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease) calc(var(--motion-enter-ms) * 1ms),
+      max-height calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease) calc(var(--motion-enter-ms) * 1ms),
       opacity calc(var(--motion-base-ms) * 1ms) ease-out calc(var(--motion-enter-ms) * 1ms),
       visibility 0s calc(var(--motion-enter-ms) * 1ms);
   }
@@ -1287,8 +1290,12 @@ button.mushaf-word {
     max-width: 0;
     opacity: 0;
     visibility: hidden;
-    transition-delay: 0s, 0s, calc(var(--motion-enter-ms) * 1ms);
+    transition-delay: 0s, 0s, 0s, calc(var(--motion-enter-ms) * 1ms);
   }
+  /* Once answers are up it folds its height as well: folded to no width it still stood its full height
+     beside the pill, which sits at the row's foot, and left a band ~110px tall of nothing above the
+     question. Only then, not on focus: the box would jump up the moment it was clicked. */
+  .search-beside[data-answered] .search-beside-shelf { max-height: 0; }
 }
 
 /* The hadith collections as spines on a shelf (hadith/books/HadithCollectionPicker).
