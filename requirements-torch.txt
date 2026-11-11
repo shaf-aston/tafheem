@@ -3,4 +3,4 @@
 # and ARM), and nothing here runs on a GPU: camel's BERT, the parser and the
 # recitation ears all run on the CPU. requirements.txt then finds torch there.
 --index-url https://download.pytorch.org/whl/cpu
-torch
+torch>=2.10.0  # CVE-2025-32434 (torch.load), CVE-2026-24747
