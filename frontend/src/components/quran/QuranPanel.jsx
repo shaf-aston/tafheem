@@ -27,6 +27,7 @@ import QuranReader from './QuranReader'
 import QuranOpening from './QuranOpening'
 import QuranPlacePicker from './QuranPlacePicker'
 import QuranSearchBar from './QuranSearchBar'
+import Tucked from '../ui/inputs/Tucked'
 import SectionHeader from '../ui/display/SectionHeader'
 import SourceBadge from '../ui/feedback/SourceBadge'
 import ArabicText from '../ui/text/ArabicText'
@@ -148,6 +149,11 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
 
       {idle && <QuranOpening accent={accent} onOpen={openResult} />}
 
+      {/* Folded into one pill holding the question once a verse is open from it, as the
+          other tabs' searches fold (ui/inputs/Tucked): Recent, the box and the three pickers
+          stood above the reader and pushed the verse to the foot of a laptop screen. The
+          reader's own ‹ › and number strip move through the surah meanwhile. */}
+      <Tucked answer={at} query={query} accent={accent}>
       <RecentRow
         items={recent.map((h) => `${h.surah}:${h.ayah}`)}
         accent={accent}
@@ -176,6 +182,7 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
         onReadSurah={readSurah}
         onOpenAyah={(surah, ayah) => openResult({ surah, ayah })}
       />
+      </Tucked>
 
       {search.isError && (
         // A search that cannot reach Quran.com falls back to the local index
