@@ -80,8 +80,17 @@ TLOG_CHECKER = 'large-v3-turbo'
 # the 'spoken slips' test.
 IQRA_SLIPS = 'IqraEval/Iqra_TTS'
 IQRA_SLIPS_SHARDS = 6  # of 13 files, 4,260 clips each
-IQRA_SLIPS_SHARE = 0.2  # of what the sources above make (not of the final set)
+IQRA_SLIPS_SHARE = 0.0  # of what the sources above make (not of the final set). 0.1 (v31), 0.2 (v32) both DROP:
+# its slipped clips hold 3 to 6+ changes each, never one (README). 0 still makes the 'spoken slips' test.
 IQRA_SLIPS_TEST = 300  # 'spoken slips' clips at most
+# Lone slips (v33): professional ayahs by reciters no test hears, each with ONE sound cut out or swapped, at a
+# place the phoneme ear timed and checked, taught with what it now says (ear_bench/spliced.py teach), plus the
+# untouched ayahs. Made on this PC and uploaded by cloud.py --lone; ayahs of the spliced test are never used.
+LONE_COPY = 'shafeinhashmi/lone-slips'
+LONE_SHARE = 0.2  # of what the sources above make, as IQRA_SLIPS_SHARE was
+# Slips kept per kind: wrong vowel length lands most often (47% of the build) and is already the
+# ear's best-caught kind, so it is held level with vowel and letter swaps (2026-11-11).
+LONE_KIND_CAP = 1200
 # Real voices: 71,391 clips, fully vowelled. A quarter are Qur'an phrases, the rest everyday fusha ("متى تكون مشغولا").
 IQRA_REAL = 'IqraEval/Iqra_train'
 IQRA_REAL_SHARDS = 5  # of 29 files, ~2,460 clips each

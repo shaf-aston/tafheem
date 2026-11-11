@@ -9,6 +9,7 @@ from collections import Counter
 from importlib import resources
 from pathlib import Path
 
+import numpy as np
 import pyarrow.parquet as pq
 import requests
 from datasets import Audio, Dataset, load_dataset
@@ -175,11 +176,12 @@ def slips(skip, target):
     train, test = _split(found, skip)
     pick = random.Random(23)
     test = [f for f in test if f[2].endswith('/augmented')]  # clean clips would only test what the other groups do
-    train = [f[:4] + ('train',) for f in balanced(train, target, pick)]
+    train = [f[:4] + ('train',) for f in balanced(train, target, pick)] if target else []
     test = [f[:4] + ('test',) for f in pick.sample(test, min(S.IQRA_SLIPS_TEST, len(test)))]
     print(f"iqra slips: {len(train)} train clips ({sum(f[2].endswith('/augmented') for f in train)} with a slip), "
           f'{len(test)} test clips (wanted {target})', flush=True)
-    return fetch(S.IQRA_SLIPS, nonempty(train, 'iqra slips train clips') + nonempty(test, 'iqra slips test clips'))
+    # A share of 0 still makes the 'spoken slips' test.
+    return fetch(S.IQRA_SLIPS, (nonempty(train, 'iqra slips train clips') if target else []) + nonempty(test, 'iqra slips test clips'))
 
 
 def real_phrases(skip, target):
@@ -240,6 +242,27 @@ def tlog(skip, target):
     del checker
     print(f'tlog: {len(rows)} of {heard} clips heard as the ayah meant, taught (wanted {target})', flush=True)
     return nonempty(rows, 'tlog train clips')
+
+
+def lone(skip, target):
+    """Professional ayahs with one sound cut out or swapped (ear_bench/spliced.py teach), each with what it now
+    says, plus the untouched ayahs they came from. cloud.py --lone uploads them as LONE_COPY."""
+    files = sorted(Path('/kaggle/input').rglob('lone-*.parquet')) or sys.exit(
+        f'no lone slips attached: run cloud.py --lone, which uploads {S.LONE_COPY}')
+    found = [(f, at, r['who'], r['said'], r['ayah']) for f in files
+             for at, r in enumerate(pq.read_table(f, columns=['ayah', 'who', 'said']).to_pylist())
+             if canon(r['ayah']) not in skip and WRITABLE(r['said'])]
+    chosen = random.Random(29).sample(found, min(target, len(found)))
+    rows = []
+    CLIPS.mkdir(exist_ok=True)
+    for f in sorted({c[0] for c in chosen}):
+        want = {c[1]: c for c in chosen if c[0] == f}
+        for at, pcm in enumerate(pq.read_table(f, columns=['pcm']).column('pcm').to_pylist()):
+            if at in want:
+                saved(rows, (None, None, want[at][2], want[at][3], 'train'), 'lone',
+                      np.frombuffer(pcm, dtype='<i2').astype(np.float32) / 32767)
+    print(f'lone slips: {len(rows)} train clips (wanted {target}, {len(found)} usable)', flush=True)
+    return nonempty(rows, 'lone slip clips')
 
 
 def phrase_clips(rows, src):

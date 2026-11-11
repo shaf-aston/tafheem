@@ -36,7 +36,7 @@ tests, taught, hours = split.build()
 run = {'libraries': {m: version(m) for m in ('torch', 'transformers', 'peft', 'faster-whisper', 'datasets')},
        'untuned': S.NAME, 'champion': S.CHAMPION, 'plan': S.PLAN, 'lora': S.LORA, 'learning_rate': S.LEARNING_RATE,
        'epochs': S.EPOCHS, 'seed': S.SEED, 'rough_p': S.ROUGH_P, 'tlog_share': S.TLOG_SHARE,
-       'iqra': {'slips': S.IQRA_SLIPS_SHARE, 'real': S.IQRA_REAL_SHARE, 'quran_part': S.IQRA_QURAN_PART},
+       'iqra': {'slips': S.IQRA_SLIPS_SHARE, 'real': S.IQRA_REAL_SHARE, 'quran_part': S.IQRA_QURAN_PART}, 'lone': S.LONE_SHARE,
        'rules': {'margin': S.MARGIN, 'forget': S.FORGET, 'sure': S.SURE},
        'hours': hours, 'taught': len(taught), 'tests': {k: len(v) for k, v in tests.items()}}
 heard, steps, held = {}, [], 'champion'

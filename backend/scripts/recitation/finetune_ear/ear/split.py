@@ -55,6 +55,7 @@ def build():
 
     spoken = phrases('iqra slips', S.IQRA_SLIPS_SHARE, sources.slips)
     real = phrases('iqra real', S.IQRA_REAL_SHARE, sources.real_phrases)
+    lone = phrases('lone slips', S.LONE_SHARE, sources.lone)
     big = fetched('tadabur', S.TADABUR_SHARE, sources.tadabur)
     replay = fetched('replay', S.REPLAY_SHARE, sources.replay)
     tlog = fetched('tlog', S.TLOG_SHARE, sources.tlog)
@@ -69,7 +70,7 @@ def build():
     taught = concatenate_datasets([learners.select_columns(KEPT), big.filter(lambda part: part == 'train', input_columns='part').select_columns(KEPT),
                                    replay.select_columns(KEPT), tlog.select_columns(KEPT),
                                    spoken.filter(lambda part: part == 'train', input_columns='part').select_columns(KEPT),
-                                   real.select_columns(KEPT)]).shuffle(seed=7)
+                                   real.select_columns(KEPT), lone.select_columns(KEPT)]).shuffle(seed=7)
     hours = Counter()
     for src, secs in zip(taught['src'], taught['secs']):
         hours[src] += secs / 3600
