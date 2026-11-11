@@ -86,6 +86,10 @@ class Nahw(BaseSettings):
     # A reading is one of each, and the page asks at most about one a second; this only stops a loop.
     recording_per_minute: int = Field(default=120, gt=0)
     recording_all_per_minute: int = Field(default=600, gt=0)
+    # Answers filed (POST /api/progress/attempts, services/core/ratelimit.ANSWER). A quick drill is a few a
+    # second at most; this stops a script walking the word list into the ranking in minutes.
+    answer_per_minute: int = Field(default=120, gt=0)
+    answer_all_per_minute: int = Field(default=6000, gt=0)
     # Sign-up and log-in, one count (services/core/ratelimit.ACCOUNT).
     account_per_minute: int = Field(default=10, gt=0)
     account_all_per_minute: int = Field(default=120, gt=0)

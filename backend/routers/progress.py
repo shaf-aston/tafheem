@@ -19,7 +19,7 @@ from backend.config import get_settings
 from backend.identity import (
     DEVICE, NAMED, OWN, PROVEN, PROVEN_USER, SESSION, TOKEN, TYPED, USER, give_token, prove, take_token,
 )
-from backend.services.core.ratelimit import ACCOUNT
+from backend.services.core.ratelimit import ACCOUNT, ANSWER
 from backend.models.progress import (
     Account,
     AccountNames,
@@ -50,7 +50,7 @@ from backend.models.progress import (
     SignUpIn,
 )
 from backend.services.core import audit
-from backend.services.learner import accounts, attempts, circles, lifecycle, tokens
+from backend.services.learner import accounts, attempts, circles, lifecycle, quiz_words, tokens
 from backend.services.learner import identity as guest_identity
 from backend.services.learner.username import GUEST, clean_name
 
@@ -60,9 +60,12 @@ _MODULE = Query("quiz", min_length=1, max_length=32, description="Which panel is
 _TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner's clock")
 
 
-@router.post("/attempts", response_model=AttemptSaved)
+@router.post("/attempts", response_model=AttemptSaved, dependencies=[Depends(ANSWER)])
 async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
-    """File one answer; return its XP and new totals. Only the old shared record earns none: it is many people's."""
+    """File one answer; return its XP and new totals. Only the old shared record earns none: it is many people's.
+    A quiz answer must name a word of the quiz's list (services/learner/quiz_words.py)."""
+    if not quiz_words.allowed(attempt.module, attempt.item):
+        raise HTTPException(status_code=422, detail="Not a word of the quiz")
     own = user != GUEST
     earns = own and attempt.correct and attempts.earns(attempt.module, attempt.item, user, attempt.tz)
     row_id = attempts.record(
