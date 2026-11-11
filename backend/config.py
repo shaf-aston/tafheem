@@ -82,6 +82,13 @@ class Nahw(BaseSettings):
     # /api/practice), which also run the parser and share one count (services/core/ratelimit.READ).
     sentence_per_minute: int = Field(default=60, gt=0)
     sentence_all_per_minute: int = Field(default=600, gt=0)
+    # Recordings (POST /api/listen and /api/listen/check share one count, services/core/ratelimit.RECORDING).
+    # A reading is one of each, and the page asks at most about one a second; this only stops a loop.
+    recording_per_minute: int = Field(default=120, gt=0)
+    recording_all_per_minute: int = Field(default=600, gt=0)
+    # Sign-up and log-in, one count (services/core/ratelimit.ACCOUNT).
+    account_per_minute: int = Field(default=10, gt=0)
+    account_all_per_minute: int = Field(default=120, gt=0)
     # Calls to the model (Groq) a minute, charged in services/ai._ask for each call that would reach it
     # (services/core/ratelimit.AI): an answer already on file costs nothing. One budget for every model-backed
     # route, so a person who rarely asks ten a minute is never near it. The second is for everyone together:

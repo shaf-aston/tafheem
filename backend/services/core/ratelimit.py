@@ -83,6 +83,14 @@ ANALYZE = Limit("analyze_per_minute", "analyze_all_per_minute",
 READ = Limit("sentence_per_minute", "sentence_all_per_minute",
              "Too many sentences at once; try again in a minute", "Sentences are busy right now; try again in a minute")
 
+# A recitation sends each reading to /listen and then /listen/check; the page paces itself under the hosted
+# ear's allowance (recite.json asks-share), so these are far above a real reciter and only stop a loop.
+RECORDING = Limit("recording_per_minute", "recording_all_per_minute",
+                  "Too many recordings at once; try again in a minute", "Listening is busy right now; try again in a minute")
+# Sign-up and log-in: a person does each once on a device.
+ACCOUNT = Limit("account_per_minute", "account_all_per_minute",
+                "Too many tries at once; wait a minute", "Accounts are busy right now; try again in a minute")
+
 
 class OverBudget(HTTPException):
     """A model call this visitor, or everyone together, may not make this minute. An HTTPException, so

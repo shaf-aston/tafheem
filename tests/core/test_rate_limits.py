@@ -1,4 +1,5 @@
-"""POST /api/analyze: a visitor past analyze_per_minute is refused with 429, and the limit is per visitor."""
+"""Every per-visitor limit refuses with 429 past its count, only that visitor, and each has a ceiling for everyone
+(services/core/ratelimit.Limit). The model budget is tested in test_ai_guard.py."""
 from fastapi.testclient import TestClient
 
 from backend.config import get_settings
@@ -39,3 +40,28 @@ def test_a_sentences_meaning_and_practice_share_a_parser_count(monkeypatch):
     assert app.post("/api/practice", json={"sentence": "hello"}, headers=who).status_code == 429
     assert app.post("/api/practice", json={"sentence": "hello"}, headers={"x-real-ip": "203.0.113.21"}).status_code == 422
     READ.each.asks.clear()
+
+
+def test_signing_up_and_logging_in_share_a_small_count(monkeypatch):
+    from backend.services.core.ratelimit import ACCOUNT
+    ACCOUNT.each.asks.clear()
+    monkeypatch.setattr(get_settings(), "account_per_minute", 2)
+    app = TestClient(create_app())
+    who = {"x-real-ip": "203.0.113.30", "X-Tafheem-Profile": "nobody-here"}
+    assert app.post("/api/progress/login", headers=who).status_code == 404
+    assert app.post("/api/progress/login", headers=who).status_code == 404
+    assert app.post("/api/progress/signup", json={"keep": False}, headers=who).status_code == 429
+    ACCOUNT.each.asks.clear()
+
+
+def test_recordings_have_a_count_of_their_own(monkeypatch):
+    from backend.services.core.ratelimit import RECORDING
+    RECORDING.each.asks.clear()
+    monkeypatch.setattr(get_settings(), "recording_per_minute", 1)
+    app = TestClient(create_app())
+    who = {"x-real-ip": "203.0.113.31"}
+    first = app.post("/api/listen/check", params={"heard": "x"}, files={"audio": ("a.webm", b"x", "audio/webm")}, headers=who)
+    assert first.status_code != 429
+    again = app.post("/api/listen", files={"audio": ("a.webm", b"x", "audio/webm")}, headers=who)
+    assert again.status_code == 429
+    RECORDING.each.asks.clear()

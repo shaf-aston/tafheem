@@ -13,10 +13,11 @@ from __future__ import annotations
 import json
 from contextlib import contextmanager
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 
 from backend.config import get_settings
 from backend.identity import DEVICE, NAMED, OWN, TYPED, USER
+from backend.services.core.ratelimit import ACCOUNT
 from backend.models.progress import (
     Account,
     AccountNames,
@@ -134,7 +135,7 @@ def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
     return ReviewList(module=module, items=attempts.review_items(module, user))
 
 
-@router.post("/signup", response_model=Account)
+@router.post("/signup", response_model=Account, dependencies=[Depends(ACCOUNT)])
 async def sign_up(body: SignUpIn, user: str = TYPED, device: str = DEVICE) -> Account:
     """Take a free username; the account handed back holds its one spelling, which the page keeps.
 
@@ -150,7 +151,7 @@ async def sign_up(body: SignUpIn, user: str = TYPED, device: str = DEVICE) -> Ac
     return Account(**accounts.account(user))
 
 
-@router.post("/login", response_model=Account)
+@router.post("/login", response_model=Account, dependencies=[Depends(ACCOUNT)])
 async def log_in(user: str = TYPED) -> Account:
     """The account of a signed-up username, holding its one spelling."""
     found = accounts.account(user)
