@@ -19,7 +19,7 @@ from backend.config import get_settings
 from backend.identity import (
     DEVICE, NAMED, OWN, PROVEN, PROVEN_USER, SESSION, TOKEN, TYPED, USER, give_token, prove, take_token,
 )
-from backend.services.core.ratelimit import ACCOUNT, ANSWER
+from backend.services.core.ratelimit import ACCOUNT, ANSWER, NAMELESS, visitor
 from backend.models.progress import (
     Account,
     AccountNames,
@@ -52,7 +52,7 @@ from backend.models.progress import (
 from backend.services.core import audit
 from backend.services.learner import accounts, attempts, circles, lifecycle, quiz_words, tokens
 from backend.services.learner import identity as guest_identity
-from backend.services.learner.username import GUEST, clean_name
+from backend.services.learner.username import GUEST, clean_name, is_guest
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
@@ -60,10 +60,14 @@ _MODULE = Query("quiz", min_length=1, max_length=32, description="Which panel is
 _TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner's clock")
 
 
-@router.post("/attempts", response_model=AttemptSaved, dependencies=[Depends(ANSWER)])
-async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
+@router.post("/attempts", response_model=AttemptSaved)
+async def record_attempt(request: Request, attempt: AttemptIn, user: str = USER) -> AttemptSaved:
     """File one answer; return its XP and new totals. Only the old shared record earns none: it is many people's.
-    A quiz answer must name a word of the quiz's list (services/learner/quiz_words.py)."""
+    A quiz answer must name a word of the quiz's list (services/learner/quiz_words.py).
+
+    The answer limit is per account, not per address: a class drilling together behind one address is many
+    learners. A guest's record is named by a header anyone can change, so a guest counts by address."""
+    ANSWER.check(visitor(request) if is_guest(user) else user)
     if not quiz_words.allowed(attempt.module, attempt.item):
         raise HTTPException(status_code=422, detail="Not a word of the quiz")
     own = user != GUEST
@@ -156,8 +160,10 @@ def sign_up(body: SignUpIn, response: Response, user: str = TYPED, device: str =
     if body.shows_code or not get_settings().account_claims_open:
         minted = tokens.open_account(user)
         made = minted is not None
-    else:  # a page from before codes, which would never show one (SignUpIn.shows_code): its next load claims it
-        minted, made = None, tokens.open_unclaimed(user)
+    else:  # a page from before codes, which would never show one (SignUpIn.shows_code): this browser holds the
+        # account, and the page that shows codes makes its first on its next load here (GET /account has_code)
+        token = tokens.open_without_code(user)
+        minted, made = ((token, None) if token else None), token is not None
     if not made:
         audit.event("signup_taken", user=user)
         raise HTTPException(status_code=409, detail="That username is taken")
@@ -187,6 +193,8 @@ def log_in(request: Request, response: Response, body: LogInIn | None = None, us
     A wrong or missing code is a 403, not a 401: the page asks for the code rather than logging out.
     """
     body = body or LogInIn()
+    if held is None and NAMELESS.too_many(audit.client_ip.get(), user):  # which names exist, which are claimable
+        raise HTTPException(status_code=429, detail="Too many usernames at once; wait a minute")
     if accounts.account(user) is None:
         audit.event("login_unknown", user=user)
         raise HTTPException(status_code=404, detail="No account with that username")
@@ -201,6 +209,9 @@ def log_in(request: Request, response: Response, body: LogInIn | None = None, us
         return _signed_in(user, minted, response, held)
     if get_settings().account_claims_open and not body.shows_code and not tokens.claimed(user):
         audit.event("login", user=user, by="name")  # an old page, as before tokens: the new page claims it later
+        if held is not None:  # one browser, one account: a token it held for another name goes
+            tokens.revoke(held)
+            take_token(response)
         return _signed_in(user, None, response, None)
     if get_settings().account_claims_open and (minted := tokens.claim(user)) is not None:
         audit.event("token_claimed", user=user, device=audit.device_kind(request.headers.get("user-agent")))
@@ -234,6 +245,9 @@ def new_recovery(body: RecoveryIn | None = None, who: tuple[str, str] = SESSION)
     owner makes a new one (scripts/recovery_code.py).
     """
     user, token = who
+    if (first := tokens.first_code(user)) is not None:  # signed up from a page that never showed a code
+        audit.event("recovery_new", user=user, by="first")
+        return Recovery(code=first)
     typed = (body or RecoveryIn()).code
     if typed:
         if not tokens.matches(user, typed):
@@ -270,7 +284,7 @@ def get_account(response: Response, user: str = NAMED, held: str | None = TOKEN)
     on every load, so this is where the cookie is renewed: a reader who keeps coming back stays logged in."""
     if held is not None:
         give_token(response, held)
-    return Account(**accounts.account(user), proven=held is not None)
+    return Account(**accounts.account(user), proven=held is not None, has_code=tokens.has_code(user))
 
 
 @router.delete("/account", response_model=Forgotten)

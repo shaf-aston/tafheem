@@ -45,7 +45,7 @@ export default function ProfileDialog({ onClose }) {
         <h2 className="type-head type-lead font-bold text-[var(--text)]">{title}</h2>
       </SheetHeader>
       {/* A guest sees this device's own week first; logging in keeps it on any device. */}
-      {name ? <ProfileView name={name} /> : <><GuestProgress /><SignIn onHold={setHeld} /></>}
+      {name ? <ProfileView name={name} onHold={setHeld} /> : <><GuestProgress /><SignIn onHold={setHeld} /></>}
     </BottomSheet>
   )
 }
@@ -72,8 +72,11 @@ function SignIn({ onHold = () => {} }) {
       const { name, recovery } = await (signingUp ? signUp(chosen, keep) : logIn(chosen, askCode ? code : ''))
       // A new name starts from the guest's shelf only if it kept the guest's answers; the level picked above goes either way.
       const fresh = () => startShelf(name, { [LEVEL_KEY]: readRaw(LEVEL_KEY) })
+      // The shelf never rejects, but a request can hang with no timeout: "I have saved it" waits a few seconds
+      // at most, so it can never leave the held sheet stuck.
       const finish = async () => {
-        await (signingUp ? (keep ? copyGuestShelf(name) : fresh()) : pullShelf(name))
+        const shelf = signingUp ? (keep ? copyGuestShelf(name) : fresh()) : pullShelf(name)
+        await Promise.race([shelf, new Promise((resolve) => setTimeout(resolve, 5000))])
         logInAs(name)
       }
       // The browser is logged in already (the cookie is set); the reload waits until the code has been seen.

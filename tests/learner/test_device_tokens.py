@@ -416,13 +416,47 @@ def test_a_claim_records_the_device_family_only(agent, kind):
 
 # A page from before codes (auditor round 10): it never shows a code, so none is made for it
 
-def test_an_old_page_signs_up_an_unclaimed_account_that_the_new_page_claims_with_its_code():
+def test_an_old_page_signs_up_an_account_its_browser_holds_and_the_new_page_makes_its_first_code():
     old = sign_in.signup(client, "Amina", shows_code=False)
-    assert old.status_code == 200 and old.json()["recovery"] is None and cookie_name() not in old.cookies
-    assert not tokens.claimed("amina")
-    assert account(bare("amina")).json()["proven"] is False  # the old page goes on by name, as it always did
-    claimed = login("Amina")  # the new page, on its next load
-    assert claimed.json()["recovery"] and tokens.claimed("amina")
+    assert old.status_code == 200 and old.json()["recovery"] is None  # no code that nobody would see
+    held = as_("Amina")  # but the browser holds the account: nobody else can claim it (auditor round 11)
+    assert tokens.claimed("amina") and not tokens.has_code("amina")
+    sign_in.forget_all()
+    assert login("Amina").status_code == 403  # another browser, even a new page, needs a code that does not exist
+    assert account(bare("amina")).status_code == 401  # and no name-only access either
+    seen = account(held).json()
+    assert seen["proven"] is True and seen["has_code"] is False  # the new page, on its next load here
+    first = client.post("/api/progress/recovery", headers=held).json()["code"]  # any age of token: none existed
+    assert tokens.has_code("amina") and account(held).json()["has_code"] is True
+    assert client.post("/api/progress/recovery", headers=held).status_code == 200  # minted moments ago: fresh
+    assert login("Amina", code=first).status_code == 403  # and the first code was replaced by that one
+
+
+def test_an_old_pages_account_needs_the_current_code_once_it_has_one():
+    sign_in.signup(client, "Amina", shows_code=False)
+    held = as_("Amina")
+    db = progress_db.connection()
+    with db:
+        db.execute("UPDATE tokens SET at = datetime('now', '-1 hour')")
+    assert client.post("/api/progress/recovery", headers=held).status_code == 200  # the first, without
+    assert client.post("/api/progress/recovery", headers=held).status_code == 403  # the next, only with it
+
+
+def test_an_old_page_in_a_browser_holding_another_account_drops_that_token():
+    signup("Alpha")
+    alpha = as_("Alpha")
+    old_account("beta")
+    old = client.post("/api/progress/login", json={}, headers={"X-Tafheem-Profile": "beta", **sign_in.cookie("alpha")})
+    assert old.status_code == 200 and "Max-Age=0" in old.headers["set-cookie"]
+    assert account(alpha).status_code == 401  # one browser, one account
+
+
+def test_log_in_counts_names_asked_without_a_token(monkeypatch):
+    monkeypatch.setattr(get_settings(), "names_per_minute", 2)
+    from backend.services.core import ratelimit
+    monkeypatch.setattr(ratelimit.NAMELESS, "asked", {})
+    codes = [sign_in.login(client, n, shows_code=False).status_code for n in ("a1", "a2", "a3")]
+    assert codes == [404, 404, 429]
 
 
 def test_an_old_page_logging_in_to_an_unclaimed_account_claims_nothing():
@@ -462,3 +496,30 @@ def test_a_cross_site_refusal_logs_the_area_not_the_path():
     client.post("/api/progress/circles/1/members/somechild", headers={"Sec-Fetch-Site": "cross-site"})
     [line] = events("cross_site_write")
     assert line["area"] == "/api/progress" and "somechild" not in json.dumps(line)
+
+
+def test_the_name_limit_has_a_ceiling_a_forged_address_does_not_pass(monkeypatch):
+    monkeypatch.setattr(get_settings(), "names_all_per_minute", 3)
+    from backend.services.core import ratelimit
+    monkeypatch.setattr(ratelimit.NAMELESS, "asked", {})
+    codes = [account({"X-Tafheem-Profile": f"n{i}", "X-Real-IP": f"203.0.113.{i}"}).status_code for i in range(5)]
+    assert codes == [401, 401, 401, 429, 429]
+
+
+def test_a_flood_of_addresses_evicts_the_oldest_and_resets_nobody(monkeypatch):
+    from backend.services.core import ratelimit
+    names = ratelimit.Names("names_per_minute", "names_all_per_minute")
+    monkeypatch.setattr(get_settings(), "names_per_minute", 1)
+    assert not names.too_many("victim-probe", "x") and names.too_many("victim-probe", "y")
+    for i in range(10_001):
+        names.too_many(f"a{i}", "z")
+    assert "victim-probe" not in names.asked and len(names.asked) <= 10_001  # evicted, oldest first
+    names.too_many("prober", "p")
+    assert names.too_many("prober", "q")  # still counted after the flood
+
+
+def test_the_name_limit_holds_under_threads(monkeypatch):
+    from backend.services.core import ratelimit
+    names = ratelimit.Names("names_per_minute", "names_all_per_minute")
+    with ThreadPoolExecutor(8) as pool:
+        list(pool.map(lambda i: [names.too_many("one", f"{i}-{j}") for j in range(300)], range(8)))  # no RuntimeError

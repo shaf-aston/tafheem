@@ -81,3 +81,16 @@ def test_answers_have_a_per_visitor_limit(monkeypatch):
     monkeypatch.setattr(ratelimit.ANSWER.each, "asks", {})
     codes = [answer("quiz", "train").status_code for _ in range(4)]
     assert codes.count(429) >= 1 and codes[0] == 200
+
+
+def test_the_answer_limit_is_per_account_so_a_class_behind_one_address_is_many(monkeypatch):
+    from backend.services.core import ratelimit
+    monkeypatch.setattr(get_settings(), "answer_per_minute", 2)
+    monkeypatch.setattr(ratelimit.ANSWER.each, "asks", {})
+    for name in ("Amina", "Bilal"):
+        sign_in.signup(client, name)
+    same_address = {"X-Real-IP": "203.0.113.9"}
+    codes = [client.post("/api/progress/attempts", headers={**as_(name), **same_address},
+                         json={"module": "quiz", "item": "train", "correct": True}).status_code
+             for name in ("Amina", "Bilal", "Amina", "Bilal", "Amina")]
+    assert codes == [200, 200, 200, 200, 429]

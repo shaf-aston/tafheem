@@ -27,7 +27,7 @@ import LevelSetting from '../level/LevelSetting'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
 import SmallButton from '../ui/buttons/SmallButton'
 
-export default function ProfileView({ name }) {
+export default function ProfileView({ name, onHold = () => {} }) {
   const { module, account, overview, stats, learnt, share, covered, rewards } = useProgressFacts(name)
   const streak = overview.data?.streak
 
@@ -50,7 +50,7 @@ export default function ProfileView({ name }) {
         <CirclesView name={name} module={module} />
         <Global name={name} module={module} account={account} />
       </div>
-      <Devices />
+      <Devices onHold={onHold} />
       <Leave />
     </div>
   )
@@ -80,7 +80,7 @@ function Global({ name, module, account }) {
  * This account's way in on other devices: a new recovery code (the old one stops working; shown once, here),
  * and logging every other device out, for a phone lost or lent. Each says what happened, or that it failed.
  */
-function Devices() {
+function Devices({ onHold }) {
   const [code, setCode] = useState('')
   const [said, setSaid] = useState('')
   const [busy, setBusy] = useState(false)
@@ -102,7 +102,9 @@ function Devices() {
     setBusy(false)
   }
   const fresh = () => act(async () => {
-    setCode(await newRecoveryCode(current))
+    const made = await newRecoveryCode(current)
+    onHold(true) // the old code is dead already: the sheet stays until this one is saved
+    setCode(made)
     setCurrent(null)
   })
   const others = () => act(async () => {
@@ -115,7 +117,7 @@ function Devices() {
       <p className="type-small text-[var(--text-faint)]">
         To log in on another device you type your recovery code there. Lost it, or someone saw it? Make a new one.
       </p>
-      {code && <RecoveryCode code={code} />}
+      {code && <RecoveryCode code={code} onDone={() => { setCode(''); onHold(false) }} />}
       {current !== null && (
         <label className="block space-y-1 type-small text-[var(--text-dim)]">
           <span>Current recovery code</span>

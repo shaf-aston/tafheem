@@ -74,3 +74,33 @@ describe('logging in with a recovery code', () => {
     expect(screen.getByRole('alert').textContent).toBe('amina: Log in again on this device.')
   })
 })
+
+describe('a new recovery code from the profile', () => {
+  beforeEach(() => {
+    localStorage.clear()
+    localStorage.setItem('profile', 'amina')
+  })
+
+  it('holds the sheet until the new code is saved: the old one is dead already', async () => {
+    const onClose = vi.fn()
+    const routes = {
+      'GET /progress/account': ACCOUNT,
+      'GET /progress/overview': { modules: [], attempts: 0, correct: 0, learnt: 0, streak: 0, days: [] },
+      'GET /progress/summary': { items: [] },
+      'GET /progress/rewards': { xp: 0, xpToday: 0, level: 1, into: 0, need: 100, streak: 0 },
+      'GET /progress/leaderboard': { rows: [], you: null },
+      'POST /progress/recovery': { code: 'NEXT-NEXT-NEXT-NEXT' },
+    }
+    renderScreen(<ProfileDialog onClose={onClose} />, { routes })
+    fireEvent.click(await screen.findByRole('button', { name: 'New recovery code' }))
+    expect((await screen.findByTestId('recovery-code')).textContent).toBe('NEXT-NEXT-NEXT-NEXT')
+    const close = screen.getByRole('button', { name: /close/i, hidden: true })
+    fireEvent.click(close)
+    expect(onClose).not.toHaveBeenCalled()
+
+    fireEvent.click(screen.getByRole('button', { name: 'I have saved it' }))
+    expect(screen.queryByTestId('recovery-code')).toBeNull()
+    fireEvent.click(close)
+    expect(onClose).toHaveBeenCalledOnce()
+  })
+})

@@ -114,6 +114,9 @@ class Account(BaseModel):
     proven: bool = True
     """This browser holds the account's device token. False only for an account from before tokens, read by
     name while claims are open: the page then logs in, which claims it (services/learner/tokens.py)."""
+    has_code: bool = True
+    """False for an account signed up from a page that never showed a code: this browser holds it, and the
+    page asks for its first code (POST /recovery) and shows it."""
 
 
 class SignedIn(Account):

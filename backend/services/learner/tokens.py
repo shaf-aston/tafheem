@@ -84,17 +84,40 @@ def open_account(name: str) -> tuple[str, str] | None:
         return _keep_token(db, name), code
 
 
-def open_unclaimed(name: str) -> bool:
-    """Make the account with no token or code yet, as accounts from before tokens were: for a page that would
-    never show a code (models/progress.SignUpIn.shows_code). False when the name is taken."""
+def open_without_code(name: str) -> str | None:
+    """Make the account with this browser's token but no recovery code yet: for a page that would never show
+    one (models/progress.SignUpIn.shows_code). The token makes it this browser's, so nobody can claim it; the
+    page that shows codes makes the first on its next load here (`first_code`). None when the name is taken."""
     db = connection()
     with db:
-        return db.execute("INSERT OR IGNORE INTO accounts (name) VALUES (?)", (name,)).rowcount == 1
+        if db.execute("INSERT OR IGNORE INTO accounts (name) VALUES (?)", (name,)).rowcount != 1:
+            return None
+        return _keep_token(db, name)
+
+
+# No code, and no device holding a token: an account from before tokens, which a log-in may claim.
+_UNCLAIMED = "recovery IS NULL AND NOT EXISTS (SELECT 1 FROM tokens WHERE tokens.name = accounts.name)"
 
 
 def claimed(name: str) -> bool:
+    """Whether the account is some device's: it has a code, or a browser holds its token."""
+    row = connection().execute(f"SELECT {_UNCLAIMED} AS open FROM accounts WHERE name = ?", (name,)).fetchone()
+    return row is not None and not row["open"]
+
+
+def has_code(name: str) -> bool:
     row = connection().execute("SELECT recovery FROM accounts WHERE name = ?", (name,)).fetchone()
     return row is not None and row["recovery"] is not None
+
+
+def first_code(name: str) -> str | None:
+    """The first recovery code of an account a browser already holds (`open_without_code`), to show once. None
+    when it has one already: then only the current code, or a log-in just now, makes another."""
+    code = new_code()
+    db = connection()
+    with db:
+        made = db.execute("UPDATE accounts SET recovery = ? WHERE name = ? AND recovery IS NULL", (_sealed(code), name))
+    return code if made.rowcount == 1 else None
 
 
 def claim(name: str) -> tuple[str, str] | None:
@@ -103,7 +126,7 @@ def claim(name: str) -> tuple[str, str] | None:
     code = new_code()
     db = connection()
     with db:
-        won = db.execute("UPDATE accounts SET recovery = ? WHERE name = ? AND recovery IS NULL",
+        won = db.execute(f"UPDATE accounts SET recovery = ? WHERE name = ? AND {_UNCLAIMED}",
                          (_sealed(code), name))
         if won.rowcount != 1:
             return None

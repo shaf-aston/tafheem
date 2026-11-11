@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import ipaddress
+import threading
 import time
 from collections import deque
 
@@ -46,8 +47,13 @@ class PerMinute:
     def __init__(self, setting: str) -> None:
         self.setting = setting
         self.asks: dict[str, deque[float]] = {}
+        self.lock = threading.Lock()  # sync routes run in a thread pool
 
     def too_many(self, who: str, cost: int = 1) -> bool:
+        with self.lock:
+            return self._too_many(who, cost)
+
+    def _too_many(self, who: str, cost: int) -> bool:
         now = time.monotonic()
         if len(self.asks) > 10_000:  # never grows without end
             self.asks.clear()
@@ -61,29 +67,39 @@ class PerMinute:
 
 
 class Names:
-    """How many different names one visitor asked about this minute: a page carries one name, a script
-    probing which names exist or can be claimed (services/learner/identity.refused) carries many."""
+    """How many different names one visitor, and everyone together, asked about this minute: a page carries
+    one name, a script probing which names exist or can be claimed (services/learner/identity.refused) carries
+    many. The ceiling keys on nothing a request sends, so a forged address does not get past it. Sync routes
+    run in a thread pool, hence the lock."""
 
-    def __init__(self, setting: str) -> None:
-        self.setting = setting
+    def __init__(self, each: str, everyone: str) -> None:
+        self.each, self.everyone = each, everyone
         self.asked: dict[str, dict[str, float]] = {}
+        self.lock = threading.Lock()
 
-    def too_many(self, who: str, name: str) -> bool:
-        now = time.monotonic()
-        if len(self.asked) > 10_000:  # never grows without end
-            self.asked.clear()
+    def _fits(self, who: str, name: str, setting: str, now: float) -> bool:
         names = self.asked.setdefault(who, {})
         for old in [n for n, at in names.items() if now - at > 60]:
             del names[old]
-        if name not in names and len(names) >= getattr(get_settings(), self.setting):
-            return True
-        names[name] = now
-        return False
+        return name in names or len(names) < getattr(get_settings(), setting)
+
+    def too_many(self, who: str, name: str) -> bool:
+        now = time.monotonic()
+        with self.lock:
+            while len(self.asked) > 10_000:  # never grows without end; the oldest visitor goes, not everyone
+                self.asked.pop(next(iter(self.asked)))
+            if not (self._fits(who, name, self.each, now) and self._fits(_EVERYONE, name, self.everyone, now)):
+                return True
+            self.asked[who][name] = self.asked[_EVERYONE][name] = now
+            for key in (who, _EVERYONE):  # most recent last, so the oldest is evicted first
+                self.asked[key] = self.asked.pop(key)
+            return False
 
 
 # Names sent without a device token. Only a page from before tokens, or one not yet claimed, sends them;
 # a cookie-holding page is never counted.
-NAMELESS = Names("names_per_minute")
+_EVERYONE = "*"  # never an address
+NAMELESS = Names("names_per_minute", "names_all_per_minute")
 
 
 class Limit:
@@ -96,7 +112,11 @@ class Limit:
         self.mine, self.busy = mine, busy
 
     def __call__(self, request: Request) -> None:
-        if self.each.too_many(visitor(request)):
+        self.check(visitor(request))
+
+    def check(self, who: str) -> None:
+        """The limit for `who` when a route counts by something other than the address (an account)."""
+        if self.each.too_many(who):
             raise HTTPException(429, self.mine)
         if self.everyone.too_many("everyone"):
             raise HTTPException(429, self.busy)
