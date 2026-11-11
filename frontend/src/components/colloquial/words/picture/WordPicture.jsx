@@ -9,8 +9,6 @@ import { useMemo, useRef, useState } from 'react'
 import settings from '../../../../config/colloquial-display.json'
 import { readViewParam, writeViewParams } from '../../../../lib/nav/tabUrl'
 import { pictureBoards } from '../../../../lib/colloquial/wordPictures'
-import { speak } from '../../../../lib/speech/speak'
-import { useAccent } from '../../../../lib/theme/accent'
 import { shuffled } from '../../../../lib/text/shuffle'
 import ArabicText from '../../../ui/text/ArabicText'
 import Segmented from '../../../ui/inputs/Segmented'
@@ -49,7 +47,7 @@ function spotAt(event, board) {
 }
 
 // A place's words, all of them: "in" and "inside" share one panel.
-function Said({ words }) {
+function Said({ words, hear }) {
   return (
     <div className="space-y-1">
       {words.map((w) => (
@@ -59,7 +57,8 @@ function Said({ words }) {
             <Spelling className="block">{w.transliteration}</Spelling>
             <p className="type-small text-[var(--text-dim)]">{w.english}</p>
           </div>
-          <SpeakButton text={w.arabic} />
+          {/* Only the first word is said on a tap; the others wait for their button. */}
+          <SpeakButton text={w.arabic} hear={w === words[0] ? hear : 0} />
         </div>
       ))}
     </div>
@@ -75,7 +74,7 @@ function Art({ board }) {
 export function Board({ board, step = 'test' }) {
   const [game, setGame] = useState(() => fresh(board))
   const [picked, setPicked] = useState(null)
-  const accent = useAccent()
+  const [heard, setHeard] = useState(0)
   const svg = useRef(null)
   const exploring = step === 'explore'
   const ask = game.queue[game.at]
@@ -88,9 +87,10 @@ export function Board({ board, step = 'test' }) {
     if (exploring) {
       const spot = board.spots.find((s) => s.key === key)
       if (!spot) return
+      // Heard as it is tapped, through the speaker button, so a voice still being
+      // made shows it is busy and one that cannot say it shows that too.
       setPicked(key)
-      // Heard as it is tapped; a voice that will not start leaves the words on screen.
-      speak(spot.words[0].arabic, { accent }).catch(() => {})
+      setHeard((n) => n + 1)
       return
     }
     if (!key || done) return
@@ -104,7 +104,7 @@ export function Board({ board, step = 'test' }) {
     <div className="space-y-4">
       <div className="min-h-24 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 flex items-center justify-center gap-3 text-center" aria-live="polite">
         {exploring ? (
-          pickedSpot ? <Said words={pickedSpot.words} />
+          pickedSpot ? <Said words={pickedSpot.words} hear={heard} />
             : <span className="type-body text-[var(--text-dim)]">Tap any place to hear its name</span>
         ) : done ? (
           <span className="type-body font-medium text-[var(--text)]">All found · {game.slips} {game.slips === 1 ? 'slip' : 'slips'}</span>

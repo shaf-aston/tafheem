@@ -13,7 +13,9 @@ import { prepare, speak, stop } from '../../../lib/speech/speak'
 // `label` and `glyph` make it another way of hearing, the letter-by-letter
 // button say, with the same states, voices and stopping. `onFail` hears when no
 // voice could say it, so a question that needs the sound can offer another way.
-export default function SpeakButton({ text, ref, shortcut, early, onFail, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
+// `hear` is a count: each time it rises the word is said, so a tap elsewhere (a dot
+// on a drawing) is heard through this button and shows its busy and failed states.
+export default function SpeakButton({ text, ref, shortcut, early, hear = 0, onFail, label = 'Say it aloud', glyph = <SpeakerGlyph />, className = '' }) {
   // idle | busy (finding a voice) | speaking | failed
   const [state, setState] = useState('idle')
   const accent = useAccent()
@@ -33,9 +35,7 @@ export default function SpeakButton({ text, ref, shortcut, early, onFail, label 
     }
   }, [text])
 
-  const press = async () => {
-    if (state === 'busy') return
-    if (state === 'speaking') return stop()
+  const say = async () => {
     setState('busy')
     mine.current = true
     try {
@@ -52,6 +52,15 @@ export default function SpeakButton({ text, ref, shortcut, early, onFail, label 
       mine.current = false
     }
   }
+
+  const press = () => {
+    if (state === 'busy') return
+    if (state === 'speaking') return stop()
+    say()
+  }
+
+  // Said again on every rise of `hear` (not while a first ask is still being answered), and on arrival when it is already above 0.
+  useEffect(() => { if (hear && state !== 'busy') say() }, [hear]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const look = state === 'failed'
     ? 'text-[var(--warn)] border-[var(--warn)]'

@@ -5,7 +5,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import spine from '../../../../../backend/data/colloquial/spine.json'
 import WordsView from './WordsView'
+import { speak } from '../../../lib/speech/speak'
 
+vi.mock('../../../lib/speech/speak', () => ({ speak: vi.fn(), prepare: vi.fn(), stop: vi.fn() }))
 vi.mock('../../../lib/learner/record', () => ({ useRecord: () => ({ file: vi.fn() }), summaryQuery: () => ({ queryKey: ['summary'], queryFn: async () => [] }) }))
 
 const word = (id) => ({ id, english: id, arabic: `ك${id}`, transliteration: id, category: 'things' })
@@ -52,6 +54,18 @@ describe('WordsView: Browse, with the drawing where the words have one', () => {
     draw(topic(body))
     expect(on()).toBe('Browse')
     expect(screen.getByRole('button', { name: 'Face' })).toBeTruthy()
+  })
+
+  it('tapping a dot says its word through the speaker button: busy while the voice is made, and failed if it cannot', async () => {
+    let fail
+    speak.mockReturnValueOnce(new Promise((_, reject) => { fail = reject }))
+    const { container } = draw(topic(body))
+    fireEvent.click(container.querySelector('circle[data-key]'))
+    const button = await screen.findByRole('button', { name: 'Say it aloud' })
+    expect(speak).toHaveBeenCalledTimes(1)
+    expect(button.getAttribute('aria-busy')).toBe('true')   // not silent: the screen says it is working
+    fail(new Error('No voice could say this'))
+    expect((await screen.findByRole('button', { name: 'No voice could say this' }))).toBeTruthy()   // and says when it cannot
   })
 
   it('a mode picked is kept across a reload', () => {
