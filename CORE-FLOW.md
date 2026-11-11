@@ -27,7 +27,8 @@ Folders, top down (one domain = one folder, same name on both sides):
 
 ```
 frontend/src/
-  config/        one JSON per feature; the only place a number or a label is hardcoded
+  config/        one JSON per feature: the numbers, the tab and feature labels and the theme live here, not in a component
+                 (a panel's own sentences sit in its JSX, or go through say() / lang/ in a tab that is translated)
   components/    one folder per tab (nahw/, quran/, …) + ui/ (kit two or more tabs draw) + shell/ (header, settings, offline)
                  hadith/ holds its own logic beside its screens, a sub-folder per part (books/, chain/, narrators/,
                  terms/, family/, favorites/); memorise/ keeps its gap rules (gaps.js) and hooks beside its screens,
