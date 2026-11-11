@@ -19,7 +19,9 @@ That is Fagin's threshold algorithm. A passage the lists left out and no rare
 word matched scores no better than the sum of the floors, so when each source's
 last kept passage beats that sum, nothing unseen could have taken its place.
 When it does not, `best` says so (None) and the search is asked the ordinary
-way, so this can only ever be faster, never different.
+way, so this can only ever be faster, never different. Only a question with
+one common word is tried: with two or more the floors' sum is too loose, and
+on the full index the check cost more than the ordinary search it replaced.
 
 A listed passage may also hold another common word whose list left it out. Its
 score for that word is worked out here (`score`, the same formula FTS5 uses,
@@ -135,7 +137,10 @@ def best(
     common = [p for p in phrases if lists and p in lists.words]
     # A list must hold one more than the page: its last entry is its floor,
     # and a page ending on the floor ties with what the list left out.
-    if not common or any(lists.words[p].depth <= per_source for p in common):
+    # One common word only: with two or more, the lists' floors add up too loose
+    # to prove the page, and on the full index the check read ~22k rows, scored
+    # ~6k passages' text, then gave up (قال رسول الله 1.6s ordinary, 5.4s with it).
+    if len(common) != 1 or lists.words[common[0]].depth <= per_source:
         return None
     words = {p: lists.words[p] for p in common}
     rare = [p for p in phrases if p not in words]

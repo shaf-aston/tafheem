@@ -97,8 +97,8 @@ def test_the_lists_pick_what_scoring_every_match_picks(built, monkeypatch):
 
     _ordinary(monkeypatch)
     assert fast == [_picked(phrases, size) for phrases, size in zip(questions, sizes)]
-    # Both paths are walked: many questions answered from the lists, some turned away.
-    assert len(questions) > answered > len(questions) // 3
+    # Both paths are walked: questions answered from the lists, others turned away.
+    assert len(questions) > answered > 0
 
 
 def test_a_page_as_long_as_a_list_is_asked_the_ordinary_way(built):
@@ -106,6 +106,13 @@ def test_a_page_as_long_as_a_list_is_asked_the_ordinary_way(built):
     starts = share.source_spans(conn).starts
     assert champions.best(conn, ['"قال"'], _DEPTH - 1, starts) is not None
     assert champions.best(conn, ['"قال"'], _DEPTH, starts) is None
+
+
+def test_a_question_with_two_common_words_is_asked_the_ordinary_way(built):
+    conn = connection.db()
+    starts = share.source_spans(conn).starts
+    assert champions.best(conn, ['"قال"', 'roots:"قول"'], 1, starts) is not None  # nearest case: one common word
+    assert champions.best(conn, ['"book"', '"الله"'], 1, starts) is None
 
 
 def test_a_question_with_no_common_word_is_asked_the_ordinary_way(built):
