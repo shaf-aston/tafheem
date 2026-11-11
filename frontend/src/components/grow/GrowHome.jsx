@@ -286,7 +286,7 @@ export default function GrowHome({ worlds, rewards, rewardsPending, guest, lesso
     <div className="grow-home">
       {/* No trail: Grow draws its own ways back (a world's back arrow, a lesson's ×), and its places are not words. */}
       <SectionHeader tab="grow" subtitle={say('A little every day, in every part of the app.')} history={false}
-        aside={guest ? <LogInButton>{say('Log in to keep your XP on any device')}</LogInButton> : null} />
+        aside={guest ? <LogInButton quiet>{say('Log in to keep your XP on any device')}</LogInButton> : null} />
       {resume && <Resume world={worldOf(resume.id)} onResume={onResume} />}
       {/* Today's lesson and the strip of level, streak and goal side by side on a
           wide screen, so the worlds come up a whole screen higher; on a phone the
