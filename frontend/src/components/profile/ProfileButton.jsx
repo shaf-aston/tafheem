@@ -28,6 +28,9 @@ export default function ProfileButton() {
   if (!name) {
     return (
       <span className="flex items-center gap-1.5 shrink-0">
+        {/* A bare number in a ring beside Log in read as a count of something; on a wide header it is named.
+            Hidden from a screen reader, which hears the ring's own "Level 1, Seed". */}
+        {rewards && <span aria-hidden="true" className="type-small text-[var(--text-faint)] max-lg:hidden">Level</span>}
         <LevelRing rewards={rewards} gain={gain} />
         <LogInButton quiet />
       </span>
