@@ -120,6 +120,12 @@ def recover(name: str, typed: str) -> tuple[str, str] | None:
         return _keep_token(db, name), code
 
 
+def matches(name: str, typed: str) -> bool:
+    """Whether `typed` is the account's current recovery code, without spending it."""
+    row = connection().execute("SELECT recovery FROM accounts WHERE name = ?", (name,)).fetchone()
+    return row is not None and row["recovery"] is not None and _opens(row["recovery"], typed)
+
+
 def new_recovery(name: str) -> str:
     """Replace the account's recovery code (the old one stops working) and return the new one, to show once."""
     code = new_code()
@@ -127,6 +133,14 @@ def new_recovery(name: str) -> str:
     with db:
         db.execute("UPDATE accounts SET recovery = ? WHERE name = ?", (_sealed(code), name))
     return code
+
+
+def fresh(token: str, minutes: int) -> bool:
+    """Whether this token was minted in the last `minutes`: a log-in just now, which may make a new recovery
+    code without typing the old one (routers/progress.py new_recovery)."""
+    row = connection().execute("SELECT at > datetime('now', ?) AS new FROM tokens WHERE hash = ?",
+                               (f"-{minutes} minutes", _hash(token))).fetchone()
+    return bool(row and row["new"])
 
 
 def owner(token: str) -> str | None:

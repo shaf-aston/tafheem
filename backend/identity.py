@@ -122,6 +122,11 @@ def proven(name: str = Depends(typed), token: str | None = Depends(device_token)
     return _signed_up(name, token, strict=True)
 
 
+def prove(name: str, token: str | None) -> str:
+    """`proven` inside a route that needs it only sometimes (the leaderboard, when it is a circle's)."""
+    return _signed_up(name, token, strict=True)
+
+
 def session(name: str = Depends(proven), token: str | None = Depends(device_token)) -> tuple[str, str]:
     """The account and this device's own token: for logging this device out, the others out, or a new
     recovery code. (`proven` already refuses a name without one; this says so where the token is used.)"""

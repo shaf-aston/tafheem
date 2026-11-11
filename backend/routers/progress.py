@@ -17,7 +17,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 
 from backend.config import get_settings
 from backend.identity import (
-    DEVICE, NAMED, OWN, PROVEN, PROVEN_USER, SESSION, TOKEN, TYPED, USER, give_token, take_token,
+    DEVICE, NAMED, OWN, PROVEN, PROVEN_USER, SESSION, TOKEN, TYPED, USER, give_token, prove, take_token,
 )
 from backend.services.core.ratelimit import ACCOUNT
 from backend.models.progress import (
@@ -41,6 +41,7 @@ from backend.models.progress import (
     ProgressSummary,
     PublicIn,
     Recovery,
+    RecoveryIn,
     ReviewList,
     Rewards,
     RoleIn,
@@ -141,7 +142,7 @@ def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
 
 
 @router.post("/signup", response_model=SignedIn, dependencies=[Depends(ACCOUNT)])
-async def sign_up(body: SignUpIn, response: Response, user: str = TYPED, device: str = DEVICE,
+def sign_up(body: SignUpIn, response: Response, user: str = TYPED, device: str = DEVICE,
                   held: str | None = TOKEN) -> SignedIn:
     """Take a free username; the account handed back holds its one spelling, which the page keeps, and the
     account's first recovery code. This browser gets the device token (services/learner/tokens.py).
@@ -159,10 +160,13 @@ async def sign_up(body: SignUpIn, response: Response, user: str = TYPED, device:
 
 
 _NEEDS_CODE = "Type this account's recovery code"
+_NEEDS_CURRENT = "Type your current recovery code to make a new one"
+# How long after logging in a device may make a new recovery code without typing the old one.
+_FRESH_MINUTES = 15
 
 
 @router.post("/login", response_model=SignedIn, dependencies=[Depends(ACCOUNT)])
-async def log_in(request: Request, response: Response, body: LogInIn | None = None, user: str = TYPED,
+def log_in(request: Request, response: Response, body: LogInIn | None = None, user: str = TYPED,
                  held: str | None = TOKEN) -> SignedIn:
     """The account of a signed-up username, holding its one spelling, with this browser proven to be its.
 
@@ -203,15 +207,30 @@ def _signed_in(user: str, minted: tuple[str, str] | None, response: Response, he
         if held is not None:
             tokens.revoke(held)
         give_token(response, token)
-    return SignedIn(**accounts.account(user), recovery=recovery)
+    if (account := accounts.account(user)) is None:  # deleted in the same moment by another of its devices
+        raise HTTPException(status_code=404, detail="No account with that username")
+    return SignedIn(**account, recovery=recovery)
 
 
 @router.post("/recovery", response_model=Recovery, dependencies=[Depends(ACCOUNT)])
-async def new_recovery(who: tuple[str, str] = SESSION) -> Recovery:
+def new_recovery(body: RecoveryIn | None = None, who: tuple[str, str] = SESSION) -> Recovery:
     """A new recovery code for this account, to move to another phone or because the old one was seen.
-    The old code stops working; logged-in devices stay logged in."""
-    user, _ = who
-    audit.event("recovery_new", user=user)
+    The old code stops working; logged-in devices stay logged in.
+
+    Only with the current code, or from a device that logged in within the last few minutes (a sudo mode, as
+    for a password change): the cookie alone is not enough, because any script running on the page sends it,
+    and a code is the one thing that opens the account from anywhere else. Lost the code on an old device? The
+    owner makes a new one (scripts/recovery_code.py).
+    """
+    user, token = who
+    typed = (body or RecoveryIn()).code
+    if typed:
+        if not tokens.matches(user, typed):
+            audit.event("recovery_refused", user=user)
+            raise HTTPException(status_code=403, detail="That recovery code is not this account's")
+    elif not tokens.fresh(token, _FRESH_MINUTES):
+        raise HTTPException(status_code=403, detail=_NEEDS_CURRENT)
+    audit.event("recovery_new", user=user, by="code" if typed else "fresh_login")
     return Recovery(code=tokens.new_recovery(user))
 
 
@@ -254,8 +273,9 @@ async def delete_account(response: Response, user: str = PROVEN) -> Forgotten:
 
 
 @router.get("/saved", response_model=Shelf)
-def get_shelf(user: str = NAMED) -> Shelf:
-    """What the page kept for this account, so it follows the name to another device."""
+def get_shelf(user: str = PROVEN) -> Shelf:
+    """What the page kept for this account, so it follows the name to another device. Its token always: the
+    shelf is the account's own settings, and an account from before tokens is claimed before it pulls."""
     return Shelf(data=accounts.shelf(user))
 
 
@@ -277,9 +297,12 @@ def put_public(body: PublicIn, user: str = PROVEN) -> Account:
 
 
 @router.get("/leaderboard", response_model=Leaderboard)
-def get_leaderboard(module: str = _MODULE, circle: int | None = None, user: str = USER) -> Leaderboard:
-    """A circle's joined members by words learnt, or the global top accounts plus the asker's own place."""
+def get_leaderboard(module: str = _MODULE, circle: int | None = None, user: str = USER,
+                    held: str | None = TOKEN) -> Leaderboard:
+    """A circle's joined members by words learnt, or the global top accounts plus the asker's own place.
+    A circle's needs this browser's token, as every other circle route does."""
     if circle is not None:
+        prove(user, held)
         with _refused():
             return Leaderboard(rows=circles.circle_ranking(circle, module, user), you=None)
     rows, you = accounts.leaderboard(module, user)

@@ -6,10 +6,12 @@ vi.mock('./progress', () => ({
   needsCode: (error) => error?.response?.status === 403,
 }))
 vi.mock('./profile', () => ({ logOutBecause: vi.fn() }))
+vi.mock('../store/shelf', () => ({ pullShelf: vi.fn() }))
 
 const { checkAccount } = await import('./accountCheck')
 const { fetchAccount, logIn } = await import('./progress')
 const { logOutBecause } = await import('./profile')
+const { pullShelf } = await import('../store/shelf')
 
 const refused = (status, detail) => Object.assign(new Error('refused'), { response: { status, data: { detail } } })
 
@@ -23,6 +25,7 @@ describe('checking the kept name on load', () => {
     expect(await checkAccount('amina', onCode)).toEqual({ name: 'amina', proven: true })
     expect(logIn).not.toHaveBeenCalled()
     expect(onCode).not.toHaveBeenCalled()
+    expect(pullShelf).not.toHaveBeenCalled()
   })
 
   it('claims an account from before codes, and hands its new code to be shown', async () => {
@@ -31,6 +34,7 @@ describe('checking the kept name on load', () => {
     expect(await checkAccount('amina', onCode)).toMatchObject({ name: 'amina' })
     expect(logIn).toHaveBeenCalledWith('amina')
     expect(onCode).toHaveBeenCalledWith('AAAA-BBBB-CCCC-DDDD')
+    expect(pullShelf).toHaveBeenCalledWith('amina') // refused before the claim, so pulled now
   })
 
   it('a claim lost to another tab of this browser is no reason to log out', async () => {
@@ -50,7 +54,7 @@ describe('checking the kept name on load', () => {
   })
 
   it('a name the server will not take from this browser logs out', async () => {
-    fetchAccount.mockRejectedValue(refused(401, 'Log in again: no account with that username'))
+    fetchAccount.mockRejectedValue(refused(401, 'Log in again on this device'))
     expect(await checkAccount('amina', onCode)).toBeNull()
     expect(logOutBecause).toHaveBeenCalledOnce()
   })

@@ -170,7 +170,7 @@ def test_a_name_without_an_account_cannot_read_or_write():
     body = {"module": "quiz", "item": "to-write", "correct": True}
     response = client.post("/api/progress/attempts", headers=as_("ghost"), json=body)
     assert response.status_code == 401
-    assert response.json()["detail"] == "Log in again: no account with that username"
+    assert response.json()["detail"] == "Log in again on this device"
     assert client.get("/api/progress/summary", headers=as_("ghost")).status_code == 401
 
 

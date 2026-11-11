@@ -13,6 +13,8 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import threading
+from concurrent.futures import ThreadPoolExecutor
 
 import pytest
 from fastapi.testclient import TestClient
@@ -149,10 +151,46 @@ def test_a_new_code_retires_the_old_one():
     assert client.post("/api/progress/recovery", headers=bare("amina")).status_code == 401
 
 
-def test_two_devices_typing_one_code_at_once_log_in_one():
+def test_a_spent_code_logs_in_nobody():
     code = signup("Amina").json()["recovery"]
     assert tokens.recover("amina", code) is not None
     assert tokens.recover("amina", code) is None
+
+
+def test_two_devices_typing_one_code_at_once_log_in_one(monkeypatch):
+    code = signup("Amina").json()["recovery"]
+    # Every device checks the code before any of them spends it: only the compare-and-set can pick one.
+    devices = 6
+    together = threading.Barrier(devices)
+    real = tokens._opens
+
+    def checked_then_wait(sealed, typed):
+        opened = real(sealed, typed)
+        together.wait(timeout=10)
+        return opened
+
+    monkeypatch.setattr(tokens, "_opens", checked_then_wait)
+    with ThreadPoolExecutor(devices) as pool:
+        results = list(pool.map(lambda _: tokens.recover("amina", code), range(devices)))
+    assert sum(result is not None for result in results) == 1
+    assert progress_db.connection().execute("SELECT COUNT(*) FROM tokens").fetchone()[0] == 2  # sign-up's, the winner's
+
+
+def test_an_old_session_makes_a_new_code_only_with_the_current_one():
+    code = signup("Amina").json()["recovery"]
+    db = progress_db.connection()
+    with db:  # this browser logged in an hour ago: a script on the page could be the one asking
+        db.execute("UPDATE tokens SET at = datetime('now', '-1 hour')")
+    asked = client.post("/api/progress/recovery", headers=as_("Amina"))
+    assert asked.status_code == 403 and asked.json()["detail"] == "Type your current recovery code to make a new one"
+    wrong = client.post("/api/progress/recovery", headers=as_("Amina"), json={"code": "0000-0000-0000-0000"})
+    assert wrong.status_code == 403 and [e["user"] for e in events("recovery_refused")] == ["amina"]
+    new = client.post("/api/progress/recovery", headers=as_("Amina"), json={"code": code.lower()})
+    assert new.status_code == 200 and new.json()["code"] != code
+    assert [e["by"] for e in events("recovery_new")] == ["code"]
+    sign_in.forget_all()
+    assert login("Amina", code).status_code == 403
+    assert login("Amina", new.json()["code"]).status_code == 200
 
 
 # Logging out
@@ -179,6 +217,33 @@ def test_logging_out_everywhere_else_keeps_this_browser():
     assert client.delete("/api/progress/sessions", headers=laptop).json() == {"deleted": 1}
     assert account(phone).status_code == 401
     assert account(laptop).status_code == 200
+
+
+def test_reading_the_account_renews_the_cookie():
+    signup("Amina")
+    held = sign_in.cookie("amina")["Cookie"].split("=", 1)[1]
+    renewed = account(as_("Amina"))
+    assert renewed.json()["proven"] is True
+    assert renewed.cookies.get(cookie_name()) == held and "Max-Age=31536000" in renewed.headers["set-cookie"]
+
+
+def test_a_code_log_in_drops_the_token_this_browser_held_for_another_account():
+    code = signup("Bilal").json()["recovery"]
+    signup("Amina")
+    amina = as_("Amina")
+    moved = client.post("/api/progress/login", json={"code": code},
+                        headers={"X-Tafheem-Profile": "bilal", **sign_in.cookie("amina")})
+    assert moved.status_code == 200
+    assert account(amina).status_code == 401
+
+
+def test_on_plain_http_the_cookie_is_not_secure(monkeypatch):
+    monkeypatch.setattr(get_settings(), "cookie_secure", False)
+    response = client.post("/api/progress/signup", json={}, headers={"X-Tafheem-Profile": "amina"})
+    cookie = response.headers["set-cookie"]
+    assert cookie.startswith("tafheem=tft_") and "secure" not in cookie.lower() and "HttpOnly" in cookie
+    token = response.cookies.get("tafheem")
+    assert account({"X-Tafheem-Profile": "amina", "Cookie": f"tafheem={token}"}).json()["proven"] is True
 
 
 def test_logging_in_as_someone_else_drops_the_old_token():
@@ -221,10 +286,19 @@ def test_wiping_deleting_and_circles_need_the_token_even_for_an_old_account():
     old_account("amina")
     for method, path in [("delete", "/api/progress"), ("delete", "/api/progress/account"),
                          ("get", "/api/progress/circles"), ("post", "/api/progress/recovery"),
-                         ("delete", "/api/progress/session")]:
+                         ("delete", "/api/progress/session"), ("get", "/api/progress/saved")]:
         assert getattr(client, method)(path, headers=bare("amina")).status_code == 401, path
     assert client.put("/api/progress/saved", headers=bare("amina"), json={"data": {}}).status_code == 401
     assert client.put("/api/progress/account/public", headers=bare("amina"), json={"public": False}).status_code == 401
+
+
+def test_a_circles_ranking_needs_the_token():
+    signup("Amina")
+    made = client.post("/api/progress/circles", headers=as_("Amina"), json={"name": "Class", "kind": "class"})
+    assert made.status_code == 200, made.text
+    ranking = f"/api/progress/leaderboard?module=quiz&circle={made.json()['id']}"
+    assert client.get(ranking, headers=bare("amina")).status_code == 401
+    assert client.get(ranking, headers=as_("Amina")).status_code == 200
 
 
 def test_an_unclaimed_name_is_not_in_the_ranking():
@@ -247,11 +321,14 @@ def test_once_claims_close_an_old_name_opens_nothing_until_the_owner_makes_a_cod
     assert [e["user"] for e in events("recovery_by_owner")] == ["amina"]
 
 
-def test_the_owner_can_log_a_taker_out_everywhere(capsys):
+def test_the_owners_new_code_logs_every_device_out_unless_told_not_to(capsys):
     signup("Amina")
     taker = as_("Amina")
-    assert recovery_code.main(["amina", "--log-out-everywhere"]) == 0
-    assert account(taker).status_code == 401
+    assert recovery_code.main(["amina", "--keep-devices"]) == 0
+    assert account(taker).status_code == 200
+    assert recovery_code.main(["amina"]) == 0
+    assert account(taker).status_code == 401  # nor can the taker make themselves a new code
+    assert [e["devices_logged_out"] for e in events("recovery_by_owner")] == [0, 1]
     assert recovery_code.main(["nobody"]) == 1
 
 
@@ -311,12 +388,14 @@ def test_an_old_file_gains_the_token_table_and_keeps_its_accounts(tmp_path):
 
 # Another site's page
 
-@pytest.mark.parametrize("site, status", [("cross-site", 403), ("same-origin", 404), ("same-site", 404),
-                                          ("none", 404), (None, 404)])
+@pytest.mark.parametrize("site, status", [("cross-site", 403), ("Cross-Site", 403), ("same-site", 403),
+                                          ("same-origin", 404), ("none", 404), (None, 404)])
 def test_another_sites_page_cannot_write(site, status):
+    """same-site too: the server's sslip.io name is not a public suffix, so any x.sslip.io is "the same site"."""
     headers = {"Sec-Fetch-Site": site} if site else {}
     headers["X-Tafheem-Profile"] = "nobody"
     assert client.post("/api/progress/login", headers=headers).status_code == status
+    assert len(events("cross_site_write")) == (status == 403)
 
 
 def test_another_sites_page_can_still_read():

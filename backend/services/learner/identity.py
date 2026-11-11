@@ -40,8 +40,10 @@ from backend.services.learner.username import GUEST, clean_name, device_key, is_
 
 __all__ = ["GUEST", "is_guest", "resolve_device", "resolve_name", "has_account", "merge", "refused"]
 
-NO_ACCOUNT = "Log in again: no account with that username"
+# One answer for "no such account" and "not this browser's": two would tell a stranger, unthrottled, which names
+# exist and which are not claimed yet (the accounts worth claiming). Log-in says which, behind its rate limit.
 NOT_PROVEN = "Log in again on this device"
+NO_ACCOUNT = NOT_PROVEN
 
 
 def resolve_device(sent: str | None) -> str:

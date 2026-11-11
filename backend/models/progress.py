@@ -113,6 +113,12 @@ class SignedIn(Account):
     recovery: str | None = None
 
 
+class RecoveryIn(BaseModel):
+    """Asking for a new recovery code: the current one, unless this device logged in moments ago."""
+
+    code: str | None = Field(default=None, max_length=40)
+
+
 class Recovery(BaseModel):
     """A new recovery code, shown once; the old one no longer works."""
 

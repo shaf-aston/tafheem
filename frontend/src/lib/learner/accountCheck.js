@@ -4,6 +4,7 @@
  */
 import { errorMessage } from '../api/apiError'
 import { logOutBecause } from './profile'
+import { pullShelf } from '../store/shelf'
 import { fetchAccount, logIn, needsCode } from './progress'
 
 /**
@@ -19,6 +20,9 @@ export async function checkAccount(name, onCode) {
     try {
       const signed = await logIn(name)
       if (signed.recovery) onCode(signed.recovery)
+      // The shelf is the account's own, so reading it needs the cookie this claim just set; the pull at start
+      // was refused. (Pushes waited the same way, so this device's copy is still the one to keep in step.)
+      await pullShelf(name)
       return signed
     } catch (error) {
       if (!needsCode(error)) throw error

@@ -8,9 +8,10 @@
 import { useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
+import { errorMessage } from '../../lib/api/apiError'
 import { startOver } from '../../lib/nav/journey'
 import { logOut } from '../../lib/learner/profile'
-import { deleteAccount, logOutHere, logOutOthers, newRecoveryCode, setPublic } from '../../lib/learner/progress'
+import { deleteAccount, logOutHere, logOutOthers, needsCode, newRecoveryCode, setPublic } from '../../lib/learner/progress'
 import { accountQuery, everyRanking, leaderboardQuery } from '../../lib/learner/record'
 import { forgetShelf } from '../../lib/store/shelf'
 import { ARMED_MS, useMoment } from '../../lib/hooks/useMoment'
@@ -83,17 +84,27 @@ function Devices() {
   const [code, setCode] = useState('')
   const [said, setSaid] = useState('')
   const [busy, setBusy] = useState(false)
+  // The current code, asked for once the server says this device logged in too long ago to skip it.
+  const [current, setCurrent] = useState(null)
   const act = async (work) => {
     setBusy(true)
     setSaid('')
     try {
       await work()
-    } catch {
-      setSaid('Could not reach the server. Try again.')
+    } catch (refused) {
+      if (needsCode(refused)) {
+        setCurrent((typed) => typed ?? '')
+        setSaid(errorMessage(refused))
+      } else {
+        setSaid('Could not reach the server. Try again.')
+      }
     }
     setBusy(false)
   }
-  const fresh = () => act(async () => setCode(await newRecoveryCode()))
+  const fresh = () => act(async () => {
+    setCode(await newRecoveryCode(current))
+    setCurrent(null)
+  })
   const others = () => act(async () => {
     const gone = await logOutOthers()
     setSaid(gone ? `Logged out ${gone} other ${gone === 1 ? 'device' : 'devices'}.` : 'No other device was logged in.')
@@ -105,8 +116,18 @@ function Devices() {
         To log in on another device you type your recovery code there. Lost it, or someone saw it? Make a new one.
       </p>
       {code && <RecoveryCode code={code} />}
+      {current !== null && (
+        <label className="block space-y-1 type-small text-[var(--text-dim)]">
+          <span>Current recovery code</span>
+          <input value={current} dir="ltr" autoComplete="one-time-code" autoCapitalize="characters" spellCheck={false}
+            placeholder="XXXX-XXXX-XXXX-XXXX" maxLength={40} onChange={(e) => setCurrent(e.target.value)}
+            className="w-full px-3 py-2 rounded-[var(--radius-sm)] border border-[var(--border)] bg-transparent
+              font-mono tracking-wider text-[var(--text)]" />
+          <span className="block text-[var(--text-faint)]">Lost it? The site&apos;s owner can make you a new one.</span>
+        </label>
+      )}
       <div className="flex flex-wrap gap-2">
-        <SmallButton disabled={busy} onClick={fresh}>New recovery code</SmallButton>
+        <SmallButton disabled={busy || current === ''} onClick={fresh}>New recovery code</SmallButton>
         <SmallButton disabled={busy} onClick={others}>Log out other devices</SmallButton>
       </div>
       <p aria-live="polite" className="type-small text-[var(--text-dim)]">{said}</p>

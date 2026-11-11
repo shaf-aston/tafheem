@@ -77,8 +77,12 @@ export const logIn = (typed, code) =>
 /** A refusal that the recovery code would answer: missing or wrong. */
 export const needsCode = (error) => error?.response?.status === 403
 
-/** A new recovery code; the old one stops working. Resolves the code, to show once. Throws. */
-export const newRecoveryCode = () => api.post(`${BASE}/recovery`).then((r) => r.data.code)
+/**
+ * A new recovery code; the old one stops working. Resolves the code, to show once. Throws: a 403
+ * (`needsCode`) asks for the current code, which is needed unless this device logged in moments ago.
+ */
+export const newRecoveryCode = (current) =>
+  api.post(`${BASE}/recovery`, current ? { code: current } : {}).then((r) => r.data.code)
 
 /** Log out every other device of this account. Resolves how many. Throws. */
 export const logOutOthers = () => api.delete(`${BASE}/sessions`).then((r) => r.data.deleted)

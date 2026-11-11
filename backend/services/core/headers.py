@@ -11,6 +11,8 @@ see docs/plans/2026-11-11-security.md (Headers).
 """
 from __future__ import annotations
 
+from backend.services.core import audit
+
 API_HEADERS = [
     (b"x-content-type-options", b"nosniff"),
     (b"content-security-policy", b"default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"),
@@ -63,7 +65,10 @@ class ApiHeaders:
 # What a browser says about where a request came from (Fetch Metadata). "none" is the reader typing an address;
 # same-site covers a dev page on another localhost port. vercel.app is a public suffix, so another *.vercel.app
 # site, a preview deployment included, is cross-site.
-_ALLOWED_SITES = {b"same-origin", b"same-site", b"none"}
+# Not "same-site": the page always calls /api on its own origin (the Vercel rewrite, the dev proxy), and the
+# server's own address is a sslip.io name, which is not on the public suffix list, so every other x.sslip.io
+# host would count as the same site.
+_ALLOWED_SITES = {b"same-origin", b"none"}
 _WRITES = {"POST", "PUT", "PATCH", "DELETE"}
 
 
@@ -82,6 +87,7 @@ class SameOrigin:
     async def __call__(self, scope, receive, send) -> None:
         if (scope["type"] == "http" and scope["method"] in _WRITES and scope["path"].startswith("/api/")
                 and (site := _header(scope, b"sec-fetch-site")) is not None and site not in _ALLOWED_SITES):
+            audit.event("cross_site_write", site=site.decode("latin-1"), path=scope["path"][:100])
             await send({"type": "http.response.start", "status": 403,
                         "headers": [(b"content-type", b"application/json")]})
             await send({"type": "http.response.body", "body": b'{"detail":"Not from this site"}'})

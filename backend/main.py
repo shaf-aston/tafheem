@@ -100,6 +100,8 @@ async def lifespan(_: FastAPI):
     logger.info("NLP engine   : %s", get_engine_name())
     logger.info("AI backend   : %s", ai_service.get_backend_name())
     logger.info("Ear          : %s", recitation.health()["ear"])
+    if not get_settings().cookie_secure:  # right for a dev server on plain http, wrong anywhere else
+        logger.warning("COOKIE_SECURE is off: the log-in cookie may travel over plain http. Dev only.")
     logger.info("Backend startup complete")
     yield
 
