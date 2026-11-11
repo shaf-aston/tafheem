@@ -76,6 +76,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - after_pointer: an indefinite word hung as the صفة of a definite opener (هذا، زيد) → that opener's khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - relative_khabar: a known opener, then مَنْ/ما with its صلة and nothing else said → the relative is its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - majrur_of_jar: the noun straight after a preposition that the parser hung as a subject (هَلْ مِنْ مُجِيبٍ) → the preposition's majrur (`backend/services/nahw/syntax/repair/khabar.py`)
+- hung_on_pronoun: a word hung on a pronoun joined to a preposition (بِكُمُ الْأُمَمَ) → the same link on the جار ومجرور's head (`backend/services/nahw/syntax/repair/khabar.py`)
 - told_of_jar: a noun hung as the subject of a preposition's majrur (لِزَيْدٍ هَذَا الْكِتَابُ، لِمَنْ هَذَا) → the مبتدأ of the fronted جار ومجرور (`backend/services/nahw/syntax/repair/khabar.py`)
 - zarf_is_no_subject: a place or time word hung as the subject of the indefinite noun after it → that noun's شبه جملة, the khabar said first (`backend/services/nahw/syntax/repair/khabar.py`)
 - khabar_said_first: two khabars hung on a pair-governing particle, a place or time word then an indefinite noun → the noun is its name (`backend/services/nahw/syntax/repair/khabar.py`)

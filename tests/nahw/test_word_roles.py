@@ -1001,3 +1001,34 @@ def test_a_damma_on_a_noun_the_parser_added_to_another_makes_it_no_mudaf_ilayh()
 ])
 def test_a_sister_of_inna_with_its_pronoun_is_the_particle_and_its_ism(sentence: str):
     assert [w["role"] for w in iraab.analyze(sentence)["words"]] == ["حرف", "خبر إن"]
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, expected", [
+    ("لَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ", ["حرف", "فعل", "حرف جر", "خبر كان", "اسم كان"]),  # 112:4 typed plainly: the Qur'an's و for ؤ
+    ("لَمْ يَكُنْ لَهُ كُفُؤًا أَحَدٌ", ["حرف", "فعل", "حرف جر", "خبر كان", "اسم كان"]),  # the ؤ spelling: both hung as subjects
+    ("كَانَ لَهُ رَجُلًا صَاحِبٌ", ["فعل", "حرف جر", "خبر كان", "اسم كان"]),
+    ("كَانَ زَيْدٌ رَجُلًا", ["فعل", "اسم كان", "خبر كان"]),  # nearest case: no jar-majroor before the khabar
+    ("أَدْهَشَ الْجُمْهُورَ السَّاحِرُ", ["فعل", "مفعول به", "فاعل"]),  # nearest case: a full verb keeps its object
+])
+def test_kana_takes_no_object_its_nasb_noun_after_a_jar_majroor_is_its_khabar(sentence: str, expected: list[str]):
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, expected", [
+    ("إِنِّي مُكَاثِرٌ بِكُمُ الْأُمَمَ", ["حرف", "خبر إن", "حرف جر", "مفعول به"]),  # hung on the pronoun كم, read as تمييز
+    ("زَيْدٌ ضَارِبٌ بِالْعَصَا الْكَلْبَ", ["مبتدأ", "خبر", "مجرور", "مفعول به"]),  # nearest case: a noun after the preposition
+])
+def test_a_pronoun_on_a_preposition_governs_nothing(sentence: str, expected: list[str]):
+    assert [w["role"] for w in iraab.analyze(sentence)["words"]] == expected
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, at, pos", [
+    ("لَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ", 3, "noun"),  # the Qur'an writes كُفُؤًا's hamza as a bare و: no verb كَفَوْا
+    ("أَتَتَّخِذُنَا هُزُوًا", 1, "noun"),  # هُزُؤًا the same
+    ("لَمْ يَدْعُوَ زَيْدٌ", 1, "verb"),  # nearest case: a real و after a damma that the dictionary reads
+])
+def test_a_waw_the_quran_writes_for_a_hamza_reads_as_that_hamza(sentence: str, at: int, pos: str):
+    assert iraab.analyze(sentence)["words"][at]["camel"]["pos"] == pos
