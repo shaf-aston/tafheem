@@ -565,8 +565,10 @@ class Progress(BaseSettings):
     # month after tokens ship (docs/plans/2026-11-11-security.md §5): an account nobody claimed by then can
     # only be opened with a code the owner makes (python -m backend.scripts.recovery_code NAME).
     account_claims_open: bool = True
-    # The device-token cookie is __Host- and Secure. A browser keeps no Secure cookie from plain http, so a dev
-    # server opened on a LAN address (http://192.168...) sets this False in .env; localhost does not need to.
+    # The device-token cookie is __Host- and Secure. Browsers keep a Secure cookie from plain http only on
+    # http://localhost, and Safari not even there. So a dev server opened on http://127.0.0.1, a LAN address
+    # (http://192.168..., a phone on the same wifi), or in Safari sets COOKIE_SECURE=false in .env (the cookie is
+    # then plain "tafheem"). Chrome, Edge and Firefox on http://localhost need nothing.
     cookie_secure: bool = True
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20

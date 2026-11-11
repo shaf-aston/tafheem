@@ -15,7 +15,7 @@
  * screen, or the review list is mysteriously empty a week later.
  */
 import { api } from '../../api'
-import { profileHeaders } from './profile'
+import { logOut, profileHeaders } from './profile'
 import { announce, tz } from './rewards'
 
 const BASE = '/progress'
@@ -57,14 +57,42 @@ export async function forgetProgress() {
 /**
  * Take a free username (`keep` moves the guest's answers onto it), or log in to
  * one already taken. Both resolve the account, whose `name` is the server's
- * spelling, the one to keep. Both throw, so the box can say why (taken, no such
- * username, not a name).
+ * spelling, the one to keep, and `recovery`: the account's new recovery code
+ * when one was made, to show once (the server keeps only its seal). The proof
+ * that this browser is the account's is an HttpOnly cookie the page never sees
+ * (backend/identity.py).
+ *
+ * Log-in sends the recovery code when one is typed. Without one it works on a
+ * browser already holding the account's cookie, or, for an account from before
+ * codes, by claiming it; anything else is a 403 asking for the code
+ * (`needsCode`). Both throw, so the box can say why (taken, no such username,
+ * wrong code, not a name).
  */
 export const signUp = (typed, keep) =>
   api.post(`${BASE}/signup`, { keep }, headers(typed)).then((r) => r.data)
 
-export const logIn = (typed) =>
-  api.post(`${BASE}/login`, {}, headers(typed)).then((r) => r.data)
+export const logIn = (typed, code) =>
+  api.post(`${BASE}/login`, code ? { code } : {}, headers(typed)).then((r) => r.data)
+
+/** A refusal that the recovery code would answer: missing or wrong. */
+export const needsCode = (error) => error?.response?.status === 403
+
+/** A new recovery code; the old one stops working. Resolves the code, to show once. Throws. */
+export const newRecoveryCode = () => api.post(`${BASE}/recovery`).then((r) => r.data.code)
+
+/** Log out every other device of this account. Resolves how many. Throws. */
+export const logOutOthers = () => api.delete(`${BASE}/sessions`).then((r) => r.data.deleted)
+
+/**
+ * Log out here: the server forgets this browser's token and drops the cookie,
+ * then the page goes back to the guest record. The server is told first but
+ * not waited on for an answer that matters: offline, the page still logs out,
+ * and the token left behind is swept once it goes unused.
+ */
+export async function logOutHere() {
+  await landed(api.delete(`${BASE}/session`))
+  logOut()
+}
 
 /** The profile page: `{ name, joined, answers }`. Throws, for react-query. */
 export const fetchAccount = () => api.get(`${BASE}/account`).then((r) => r.data)

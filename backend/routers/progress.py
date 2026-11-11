@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 from contextlib import contextmanager
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Response
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 
 from backend.config import get_settings
 from backend.identity import (
@@ -162,7 +162,7 @@ _NEEDS_CODE = "Type this account's recovery code"
 
 
 @router.post("/login", response_model=SignedIn, dependencies=[Depends(ACCOUNT)])
-async def log_in(response: Response, body: LogInIn | None = None, user: str = TYPED,
+async def log_in(request: Request, response: Response, body: LogInIn | None = None, user: str = TYPED,
                  held: str | None = TOKEN) -> SignedIn:
     """The account of a signed-up username, holding its one spelling, with this browser proven to be its.
 
@@ -188,7 +188,7 @@ async def log_in(response: Response, body: LogInIn | None = None, user: str = TY
         audit.event("login", user=user, by="code")
         return _signed_in(user, minted, response, held)
     if get_settings().account_claims_open and (minted := tokens.claim(user)) is not None:
-        audit.event("token_claimed", user=user)
+        audit.event("token_claimed", user=user, device=audit.device_kind(request.headers.get("user-agent")))
         return _signed_in(user, minted, response, held)
     audit.event("login_needs_code", user=user)
     raise HTTPException(status_code=403, detail=_NEEDS_CODE)
@@ -244,9 +244,11 @@ def get_account(response: Response, user: str = NAMED, held: str | None = TOKEN)
 
 
 @router.delete("/account", response_model=Forgotten)
-async def delete_account(user: str = PROVEN) -> Forgotten:
-    """Delete this username, every answer it gave and its shelf; the name is free again."""
+async def delete_account(response: Response, user: str = PROVEN) -> Forgotten:
+    """Delete this username, every answer it gave and its shelf; the name is free again. Its tokens go with
+    it, and this browser's cookie too."""
     deleted = lifecycle.delete_account(user)
+    take_token(response)
     audit.event("account_deleted", user=user, answers=deleted)
     return Forgotten(deleted=deleted)
 

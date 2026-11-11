@@ -1,8 +1,10 @@
 /**
  * Who is logged in: a username, kept in this browser and sent with every
- * progress call. No password, which is agreed. The rules for a name live on
- * the server only; this keeps whatever spelling the server handed back
- * (lib/learner/progress.js signUp, logIn).
+ * progress call. The name says whose record a call is about; the proof that
+ * this browser may act as it is the device-token cookie, HttpOnly, which the
+ * page never reads or sends by hand (backend/identity.py). The rules for a
+ * name live on the server only; this keeps whatever spelling the server handed
+ * back (lib/learner/progress.js signUp, logIn).
  *
  * Nobody logged in is this device's own guest record, named by a random id made once (`deviceId`), so two
  * guests on two devices never see each other's answers; sign-up with "keep" moves this device's onto the name.
@@ -22,8 +24,34 @@ const reload = () => globalThis.location.reload()
 /** Become `name`, the server's spelling of it. */
 export const logInAs = (name) => { writeDevice(CONFIG.storageKey, name); reload() }
 
-/** Back to this device's guest record. The shelf stays filed under the name for next time. */
+/** Back to this device's guest record. The shelf stays filed under the name for next time. Telling the server
+ * (so the cookie goes too) is lib/learner/progress.js logOutHere; this is the page's half. */
 export const logOut = () => { forgetDevice(CONFIG.storageKey); reload() }
+
+// Why the page logged itself out, kept across the reload for the log-in box to say once. sessionStorage: this
+// tab only, gone when it closes; blocked storage just loses the note.
+const NOTE = 'tafheem-logged-out'
+
+/** Log out by itself, leaving `why` for the log-in box (takeLoggedOutNote). */
+export function logOutBecause(why) {
+  try { globalThis.sessionStorage.setItem(NOTE, why) } catch { /* the note is a courtesy */ }
+  logOut()
+}
+
+let note = null
+
+/** The note logOutBecause left, '' when none. Taken out of storage on first asking, so the next load has none;
+ * held for the rest of this one, so a box opened twice (or a strict-mode double render) still says it. */
+export function takeLoggedOutNote() {
+  if (note !== null) return note
+  try {
+    note = globalThis.sessionStorage.getItem(NOTE) ?? ''
+    globalThis.sessionStorage.removeItem(NOTE)
+  } catch {
+    note = ''
+  }
+  return note
+}
 
 // 128 random bits as 32 lowercase hex: the only id the server takes (services/learner/username.py device_key).
 const ID = /^[0-9a-f]{32}$/

@@ -1,35 +1,37 @@
 /**
  * The header's "who is logged in": the username, or the guest's LogInButton, with the level
- * worn quietly beside it (LevelRing). A username the
- * server no longer knows (deleted in another tab) logs out by itself, rather
- * than every answer silently failing to save.
+ * worn quietly beside it (LevelRing).
+ *
+ * On each load it checks the name with the server (`checkAccount`). A name the server will not
+ * take from this browser (deleted in another tab, or an account this browser holds no token for)
+ * logs out by itself, saying why in the log-in box, rather than every answer silently failing to
+ * save. A name from before recovery codes is claimed by this browser there and then, while the
+ * server still allows it, and its new code shown once.
  */
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-import { getProfile, logOut } from '../../lib/learner/profile'
-import { fetchAccount } from '../../lib/learner/progress'
+import { checkAccount } from '../../lib/learner/accountCheck'
+import { getProfile, takeLoggedOutNote } from '../../lib/learner/profile'
 
 import { useRewards } from '../../lib/learner/useRewards'
 import LevelRing from './LevelRing'
 import LogInButton from './LogInButton'
 import ProfileDialog from './ProfileDialog'
+import RecoveryCode from './RecoveryCode'
+import BottomSheet from '../ui/overlays/BottomSheet'
 
 export default function ProfileButton() {
   const [name] = useState(getProfile)
   const [open, setOpen] = useState(false)
-  const check = () => fetchAccount().catch((error) => {
-    if (error.response?.status !== 401) throw error
-    logOut()
-    return null
-  })
-  useQuery({ queryKey: ['account-check', name], queryFn: check, enabled: !!name, retry: false })
+  const [code, setCode] = useState('')
+  useQuery({ queryKey: ['account-check', name], queryFn: () => checkAccount(name, setCode), enabled: !!name, retry: false })
   const { rewards, gain } = useRewards(name)
   if (!name) {
     return (
       <span className="flex items-center gap-1.5 shrink-0">
         <LevelRing rewards={rewards} gain={gain} />
-        <LogInButton quiet />
+        <LogInButton quiet opened={!!takeLoggedOutNote()} />
       </span>
     )
   }
@@ -50,6 +52,14 @@ export default function ProfileButton() {
       </button>
       {/* Mounted only while open, so each opening starts from who is logged in. */}
       {open && <ProfileDialog onClose={() => setOpen(false)} />}
+      {code && (
+        <BottomSheet label="Your recovery code" onClose={() => setCode('')} className="p-5 space-y-4">
+          <p className="type-small text-[var(--text-dim)]">
+            Accounts now have a recovery code, and this device has just claimed yours.
+          </p>
+          <RecoveryCode code={code} onDone={() => setCode('')} />
+        </BottomSheet>
+      )}
     </>
   )
 }

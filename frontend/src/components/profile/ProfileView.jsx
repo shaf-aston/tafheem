@@ -10,7 +10,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { startOver } from '../../lib/nav/journey'
 import { logOut } from '../../lib/learner/profile'
-import { deleteAccount, setPublic } from '../../lib/learner/progress'
+import { deleteAccount, logOutHere, logOutOthers, newRecoveryCode, setPublic } from '../../lib/learner/progress'
 import { accountQuery, everyRanking, leaderboardQuery } from '../../lib/learner/record'
 import { forgetShelf } from '../../lib/store/shelf'
 import { ARMED_MS, useMoment } from '../../lib/hooks/useMoment'
@@ -20,6 +20,7 @@ import { Fact, ThisWeek, Understanding } from './CalmProgress'
 import CirclesView from './CirclesView'
 import ModuleRows from './ModuleRows'
 import Ranking from './Ranking'
+import RecoveryCode from './RecoveryCode'
 import XpCard from './XpCard'
 import LevelSetting from '../level/LevelSetting'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
@@ -48,6 +49,7 @@ export default function ProfileView({ name }) {
         <CirclesView name={name} module={module} />
         <Global name={name} module={module} account={account} />
       </div>
+      <Devices />
       <Leave />
     </div>
   )
@@ -70,6 +72,45 @@ function Global({ name, module, account }) {
         Show me in the global ranking
       </label>
     </div>
+  )
+}
+
+/**
+ * This account's way in on other devices: a new recovery code (the old one stops working; shown once, here),
+ * and logging every other device out, for a phone lost or lent. Each says what happened, or that it failed.
+ */
+function Devices() {
+  const [code, setCode] = useState('')
+  const [said, setSaid] = useState('')
+  const [busy, setBusy] = useState(false)
+  const act = async (work) => {
+    setBusy(true)
+    setSaid('')
+    try {
+      await work()
+    } catch {
+      setSaid('Could not reach the server. Try again.')
+    }
+    setBusy(false)
+  }
+  const fresh = () => act(async () => setCode(await newRecoveryCode()))
+  const others = () => act(async () => {
+    const gone = await logOutOthers()
+    setSaid(gone ? `Logged out ${gone} other ${gone === 1 ? 'device' : 'devices'}.` : 'No other device was logged in.')
+  })
+  return (
+    <section aria-labelledby="devices-title" className="space-y-2">
+      <h3 id="devices-title" className="type-small font-semibold text-[var(--text)]">Other devices</h3>
+      <p className="type-small text-[var(--text-faint)]">
+        To log in on another device you type your recovery code there. Lost it, or someone saw it? Make a new one.
+      </p>
+      {code && <RecoveryCode code={code} />}
+      <div className="flex flex-wrap gap-2">
+        <SmallButton disabled={busy} onClick={fresh}>New recovery code</SmallButton>
+        <SmallButton disabled={busy} onClick={others}>Log out other devices</SmallButton>
+      </div>
+      <p aria-live="polite" className="type-small text-[var(--text-dim)]">{said}</p>
+    </section>
   )
 }
 
@@ -102,7 +143,7 @@ function Leave() {
 
   return (
     <div className="pt-2 border-t border-[var(--border)] space-y-3">
-      <div className="flex justify-end"><SmallButton onClick={logOut}>Log out</SmallButton></div>
+      <div className="flex justify-end"><SmallButton onClick={logOutHere}>Log out</SmallButton></div>
       <section aria-labelledby="danger-title" className="rounded-[var(--radius-md)] border border-[var(--danger-edge)] p-3 space-y-2">
         <h3 id="danger-title" className="type-small font-semibold text-[var(--danger)]">Danger zone</h3>
         <div className="flex flex-wrap justify-end gap-2">

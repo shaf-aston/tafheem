@@ -106,6 +106,18 @@ def event(kind: str, **fields: Any) -> None:
         logging.getLogger(__name__).exception("security log write failed")
 
 
+# What kind of device a user-agent says it is: the family alone, never the string (it is a fingerprint, and
+# forgeable anyway). Enough to settle "that claim was not my phone" (scripts/recovery_code.py). First match wins.
+_DEVICE_KINDS = (("iphone", "iPhone"), ("ipad", "iPad"), ("android", "Android"), ("windows", "Windows"),
+                 ("cros", "ChromeOS"), ("mac os", "Mac"), ("linux", "Linux"))
+
+
+def device_kind(user_agent: str | None) -> str:
+    """"Android", "iPhone", ... or "other" (curl, a bot, no header)."""
+    agent = (user_agent or "").lower()
+    return next((kind for marker, kind in _DEVICE_KINDS if marker in agent), "other")
+
+
 def _header(scope: dict, name: bytes) -> str:
     for key, value in scope.get("headers", ()):
         if key == name:

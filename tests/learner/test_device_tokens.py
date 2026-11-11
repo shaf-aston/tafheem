@@ -21,6 +21,7 @@ from backend.config import get_settings
 from backend.identity import cookie_name
 from backend.main import app
 from backend.scripts import recovery_code
+from backend.services.core import audit
 from backend.services.learner import journal, progress_db, tokens
 from tests.learner import sign_in
 from tests.learner.sign_in import as_
@@ -192,7 +193,8 @@ def test_logging_in_as_someone_else_drops_the_old_token():
 def test_a_deleted_name_signed_up_again_starts_with_no_old_tokens():
     signup("Amina")
     old = as_("Amina")
-    client.delete("/api/progress/account", headers=old)
+    deleted = client.delete("/api/progress/account", headers=old)
+    assert "Max-Age=0" in deleted.headers["set-cookie"]  # the browser's cookie goes with the account
     sign_in.forget_all()
     signup("Amina")
     assert account(old).status_code == 401
@@ -206,9 +208,9 @@ def test_an_old_account_reads_by_name_until_its_first_log_in_claims_it():
     assert account(bare("amina")).json()["proven"] is False  # the page then logs in, which claims it
     assert client.post("/api/progress/attempts", headers=bare("amina"),
                        json={"module": "quiz", "item": "a", "correct": True}).status_code == 200
-    claimed = login("Amina")
+    claimed = login("Amina", **{"User-Agent": "Mozilla/5.0 (Linux; Android 15; Pixel 9) Chrome/150"})
     assert claimed.status_code == 200 and claimed.json()["recovery"]
-    assert [e["user"] for e in events("token_claimed")] == ["amina"]
+    assert [(e["user"], e["device"]) for e in events("token_claimed")] == [("amina", "Android")]
     assert account(bare("amina")).status_code == 401
     assert account(as_("Amina")).json()["proven"] is True
     sign_in.forget_all()
@@ -319,3 +321,15 @@ def test_another_sites_page_cannot_write(site, status):
 
 def test_another_sites_page_can_still_read():
     assert client.get("/api/sources", headers={"Sec-Fetch-Site": "cross-site"}).status_code == 200
+
+
+@pytest.mark.parametrize("agent, kind", [
+    ("Mozilla/5.0 (iPhone; CPU iPhone OS 19_0 like Mac OS X) AppleWebKit/605.1.15 Safari/604.1", "iPhone"),
+    ("Mozilla/5.0 (Linux; Android 15; SM-S928B) AppleWebKit/537.36 Chrome/150 Mobile Safari/537.36", "Android"),
+    ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/150 Safari/537.36", "Windows"),
+    ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/19.0 Safari/605.1.15", "Mac"),
+    ("Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0", "Linux"),
+    ("curl/8.9.1", "other"), (None, "other"),
+])
+def test_a_claim_records_the_device_family_only(agent, kind):
+    assert audit.device_kind(agent) == kind
