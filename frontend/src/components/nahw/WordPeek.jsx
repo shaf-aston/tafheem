@@ -28,7 +28,7 @@ export default function WordPeek({ word, english, at, onClose, onMore, onLookup 
       aria-label={`${word.word}: ${word.role ?? ''}`}
       tabIndex={-1}
       className="rise-in crisp absolute z-[var(--layer-tip)] w-[min(18rem,calc(100vw-2rem))] -translate-x-1/2 p-3 space-y-1.5
-        rounded-[var(--radius-md)] bg-[var(--surface-hi)] border border-[var(--border-hi)] shadow-xl outline-none"
+        rounded-[var(--radius-md)] bg-[var(--surface-hi)] border border-[var(--border-hi)] shadow-[var(--shadow-pop)] outline-none"
       style={{ left: at.x, top: at.y }}
     >
       <div className="flex items-start justify-between gap-2">

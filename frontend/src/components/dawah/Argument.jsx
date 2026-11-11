@@ -18,7 +18,7 @@ export default function Argument({ points, library, accent, mode, copy, onGo }) 
             )}
             <span
               aria-hidden="true"
-              className="relative shrink-0 w-[1.6rem] h-[1.6rem] grid place-items-center rounded-full type-tiny font-semibold text-[var(--bg)]"
+              className="relative shrink-0 w-[1.6rem] h-[1.6rem] grid place-items-center rounded-full type-tiny font-semibold text-[var(--on-accent)]"
               style={{ background: accent }}
             >
               {i + 1}

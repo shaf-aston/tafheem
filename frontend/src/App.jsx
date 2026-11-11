@@ -11,6 +11,7 @@ import { replay } from './lib/motion/replay'
 import { setHeaderHeight } from './lib/shell/headerHeight'
 import { useTabNavigation } from './lib/nav/useTabNavigation'
 import { useTools } from './lib/nav/useTools'
+import seo from './config/seo.json'
 
 import Backdrop from './components/shell/Backdrop'
 import BackendBanner from './components/shell/BackendBanner'
@@ -52,6 +53,11 @@ function AppContent() {
   const tools = useTools(TOOLS, switchTab)
   const { status } = useHealth()
   const accent = accentOf(activeTab)
+  // The browser tab and its history name the tab you are on, not one name for all of them.
+  useEffect(() => {
+    const tab = TABS.find((t) => t.id === activeTab)
+    document.title = !tab || tab.id === HOME ? seo.name : `${tab.label} · ${seo.name}`
+  }, [activeTab])
 
   // Every tab's opening data, fetched once the page is idle, one tab at a time
   // so a tab pressed meanwhile is not queued behind all the others (lib/api/warm).

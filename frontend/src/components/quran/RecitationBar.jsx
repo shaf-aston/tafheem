@@ -91,7 +91,7 @@ export default function RecitationBar({ surah, count, from, here, recitation, re
         onClick={() => skipTo(at - 1)} disabled={at <= 1} aria-label="Previous ayah">
         <Glyph d="M6 5h2v14H6zM20 5v14L9 12z" />
       </button>
-      <button type="button" className={`${round} w-10 h-10 text-[var(--bg)] bg-[var(--c)]`}
+      <button type="button" className={`${round} w-10 h-10 text-[var(--on-accent)] bg-[var(--c)]`}
         onClick={() => (sounding ? stop() : start(at))} {...ahead(() => prefetch(urlFor(at)))}
         aria-label={sounding ? `Stop ${surah}:${sounding}` : `Play from ${surah}:${at}`}>
         <Glyph d={sounding ? 'M6 6h12v12H6z' : PLAY} />

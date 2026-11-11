@@ -72,7 +72,7 @@ export default function ChooseExercise({ exercise, value, onChange, status, acce
             >
               {/* Colour is not the only sign of a verdict; the words announce it (ExerciseHost). */}
               <PhrasePicture phrase={{ image: option.image }} alt="" className="w-full aspect-[4/3] rounded-[var(--radius-sm)]" />
-              {tone && <span aria-hidden="true" className="absolute top-1.5 end-1.5 grid size-6 place-items-center rounded-full type-label font-bold text-white" style={{ background: tone }}>{label === exercise.answer ? '✓' : '✗'}</span>}
+              {tone && <span aria-hidden="true" className="absolute top-1.5 end-1.5 grid size-6 place-items-center rounded-full type-label font-bold text-[var(--on-accent)]" style={{ background: tone }}>{label === exercise.answer ? '✓' : '✗'}</span>}
               <ArabicText as="span" size="base" className="mt-2 block text-center">
                 {label}
               </ArabicText>

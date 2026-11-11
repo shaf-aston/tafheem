@@ -40,7 +40,7 @@
   align-self: flex-start;
   max-width: 100%;
   padding: 0.125rem 0.625rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: var(--type-tiny);
   font-weight: 700;
   color: var(--tl-ink);

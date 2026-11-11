@@ -128,7 +128,7 @@ export default function SearchBox({
               className={`min-w-[calc(var(--layout-tap-min)*1px)] min-h-[calc(var(--layout-tap-min)*1px)] -my-1 grid place-items-center rounded-[var(--radius-sm)] shrink-0
                 transition-[filter,background,color] duration-[calc(var(--motion-instant-ms)*1ms)]
                 ${ready
-                  ? 'text-[var(--bg)] hover:brightness-110'
+                  ? 'text-[var(--on-accent)] hover:brightness-110'
                   : 'text-[var(--text-faint)] cursor-not-allowed'}`}
             >
               {busy ? (

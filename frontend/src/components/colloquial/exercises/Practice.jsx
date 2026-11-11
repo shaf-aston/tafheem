@@ -1,7 +1,7 @@
 // Practice: one exercise at a time under a row of answer squares.
 import { useEffect, useRef, useState } from 'react'
 
-import { scrollToEl } from '../../../lib/motion/scrollToEl'
+import { bringUp } from '../../../lib/motion/scrollToEl'
 import AnswerSquare from '../../ui/inputs/AnswerSquare'
 import SmallButton from '../../ui/buttons/SmallButton'
 import ExerciseHost from './ExerciseHost'
@@ -26,8 +26,7 @@ export default function Practice({ exercises }) {
     if (!moved.current) return
     moved.current = false
     // A new exercise whose question sits under the header (Next pressed far down) glides up to it, as on the Quiz board.
-    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
-    if (body.current?.getBoundingClientRect().top < header) scrollToEl(body.current, 'top')
+    bringUp(body.current)
     body.current?.querySelector('input:not([readonly]), button:not([disabled])')?.focus({ preventScroll: true })
   }, [at])
   // Twelve squares do not fit a phone: the row follows the current one, so progress is never scrolled out of sight.

@@ -7,7 +7,7 @@
  * who cannot read yet).
  * The order and the rules are lib/learner/flow.js and plan.js; the words are config/onboarding.json.
  */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import config from '../../config/onboarding.json'
 import { screensOf, answered, rightOf } from '../../lib/learner/flow'
@@ -18,6 +18,7 @@ import { getProfile } from '../../lib/learner/profile'
 import { useLearnerLevel } from '../../lib/learner/useLearnerLevel'
 import { usePlan } from '../../lib/learner/usePlan'
 import { LANGUAGE_KEY, MEANINGS } from '../../lib/quiz/quiz'
+import { bringUp } from '../../lib/motion/scrollToEl'
 import { writeRaw } from '../../lib/store/stored'
 import PrimaryButton from '../ui/buttons/PrimaryButton'
 import Fact from './Fact'
@@ -40,6 +41,14 @@ export default function Onboarding({ onGo }) {
   // The fact for the first pick, in the foot beside the button, so it is in view whatever the length of the options.
   const picked = screen.kind === 'step' ? [plan[screen.step.id]].flat()[0] : null
   const fact = picked ? factOf(screen.step, picked) : null
+  // A long list of options leaves Continue far down the page: the next screen
+  // glides up to its own top, so its question is what is in view, not its last options.
+  const top = useRef(null)
+  const moved = useRef(false)
+  useEffect(() => {
+    if (moved.current) bringUp(top.current)
+    moved.current = true
+  }, [here])
 
   const pick = (step, id) => {
     if (!step.multi) return save({ [step.id]: id })
@@ -70,7 +79,7 @@ export default function Onboarding({ onGo }) {
   }
 
   return (
-    <section className="grow-lesson" style={{ '--w': ACCENT }} aria-label={copy.label}>
+    <section ref={top} className="grow-lesson" style={{ '--w': ACCENT }} aria-label={copy.label}>
       <div className="grow-lesson-top">
         <button type="button" className="grow-x" aria-label={copy.back} disabled={here === 0} onClick={() => setAt(here - 1)}>
           <span aria-hidden="true">‹</span>

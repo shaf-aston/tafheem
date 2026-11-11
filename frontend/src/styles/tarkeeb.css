@@ -236,7 +236,7 @@
   margin: 0 auto;
   padding: 0.35rem 0.85rem;
   border: 1px dashed var(--border-hi);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 0.8rem;
   color: var(--text-dim);
 }

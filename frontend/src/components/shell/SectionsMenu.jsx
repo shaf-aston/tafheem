@@ -8,6 +8,7 @@ import { ahead } from '../../lib/api/warm'
 import { useDrag } from '../../lib/shell/useDrag'
 import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
 import ArabicText from '../ui/text/ArabicText'
+import CloseButton from '../ui/buttons/CloseButton'
 import TabGroups from '../ui/inputs/TabGroups'
 import Tile from '../ui/display/Tile'
 import DockSlots from './DockSlots'
@@ -60,7 +61,8 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
                 {editing ? 'Done' : 'Edit bar'}
               </button>
             )}
-            <button type="button" onClick={close} className="tap min-h-11 px-3 type-small font-semibold text-[var(--text-dim)]">Close</button>
+            {/* The round ✕ every other sheet closes with (Settings, Study, the profile). */}
+            <CloseButton onClick={close} />
           </div>
         </div>
         {editing && (

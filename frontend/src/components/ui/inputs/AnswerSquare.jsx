@@ -33,7 +33,7 @@ export default function AnswerSquare({ status = '', number, current, label, onCl
       {number}
       {MARK[status] && (
         <span aria-hidden="true" style={{ background: tone }}
-          className="absolute -top-1.5 -end-1.5 size-5 grid place-items-center rounded-full type-micro leading-none text-[var(--bg)]">
+          className="absolute -top-1.5 -end-1.5 size-5 grid place-items-center rounded-full type-micro leading-none text-[var(--on-accent)]">
           {MARK[status]}
         </span>
       )}

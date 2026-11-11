@@ -270,7 +270,7 @@ dialog::backdrop {
   position: absolute;
   inset: auto 0 0.2rem 0;
   height: 2px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: linear-gradient(to left, var(--palette-gold), color-mix(in srgb, var(--palette-gold) 40%, transparent));
   transform-origin: right;
   animation: ink-write var(--ink-ms) ease-in-out infinite;
@@ -366,7 +366,7 @@ dialog::backdrop {
 .gloss-word-lit,
 .surah-row:not(:active) .gloss-line:has(.gloss-word:hover) .gloss-word-lit:not(:hover),
 .surah-row:not(:active) .gloss-line:has(.gloss-word:focus-visible) .gloss-word-lit:not(:focus-visible) {
-  color: var(--bg);
+  color: var(--on-accent);
   background: var(--c);
 }
 
@@ -393,7 +393,7 @@ dialog::backdrop {
   pointer-events: none;
   z-index: var(--layer-raised);
   background: var(--c);
-  color: var(--bg);
+  color: var(--on-accent);
   font-family: var(--font-ui);
   font-size: var(--type-small);
   line-height: 1;
@@ -792,7 +792,7 @@ dialog::backdrop {
   border-radius: var(--radius-pill);
   font-weight: 700;
   background: var(--cta-fill, var(--primary-hi));
-  color: var(--bg);
+  color: var(--on-accent);
   transition:
     transform calc(var(--motion-base-ms) * 1ms) var(--motion-spring-ease),
     filter calc(var(--motion-base-ms) * 1ms) ease,
@@ -876,7 +876,7 @@ button.tile:hover { border-color: var(--c); }
   left: 0;
   width: 100px; /* TabStrip's LINE_PX: scaleX stretches it to the tab, so the glide is transform only */
   height: 2px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: var(--c);
   transform-origin: 0 0;
   pointer-events: none;
@@ -928,7 +928,7 @@ button.tile:hover { border-color: var(--c); }
   place-items: center;
   width: 3.25rem;
   height: 1.75rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 }
 
 
@@ -953,7 +953,7 @@ button.tile:hover { border-color: var(--c); }
   inset: 0 auto 0 50%;
   width: 3.25rem;
   translate: -50% 0;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--c) 18%, transparent);
   transition: background-color calc(var(--motion-spring-ms) * 1ms) ease;
 }
@@ -975,7 +975,7 @@ button.tile:hover { border-color: var(--c); }
   display: grid; place-items: center;
   width: 3.25rem; height: 3.25rem; margin-top: -1.125rem;
   border-radius: 1.125rem;
-  background: var(--primary); color: var(--bg);
+  background: var(--primary); color: var(--on-accent);
   box-shadow: var(--shadow-lift);
   transition: transform calc(var(--motion-instant-ms) * 1ms) ease;
 }
@@ -999,7 +999,7 @@ button.tile:hover { border-color: var(--c); }
 }
 .jump-fan > div {
   padding: 0.5rem 1rem;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
@@ -1156,7 +1156,7 @@ button.tile:hover { border-color: var(--c); }
 }
 
 /* Profile XP card (XpCard): the bar fills on sight; a tap opens the rank path. */
-.xp-bar { height: 0.6rem; border-radius: 999px; background: var(--border); overflow: hidden; }
+.xp-bar { height: 0.6rem; border-radius: var(--radius-pill); background: var(--border); overflow: hidden; }
 .xp-bar > span {
   display: block; height: 100%; border-radius: inherit; background: var(--xp-tone);
   transform-origin: left; transform: scaleX(var(--xp-share));
@@ -1171,7 +1171,7 @@ button.tile:hover { border-color: var(--c); }
   --rise-from: 0; --rise-scale: 1;
   animation-delay: calc(var(--i) * var(--motion-stagger-ms) * 2 * 1ms * var(--motion-scale)); /* one after another, Seed to Fruit */
 }
-.xp-dot { width: 0.9rem; height: 0.9rem; border-radius: 999px; background: var(--surface); border: 2px solid var(--border); }
+.xp-dot { width: 0.9rem; height: 0.9rem; border-radius: var(--radius-pill); background: var(--surface); border: 2px solid var(--border); }
 .xp-done { color: var(--text-dim); }
 .xp-done .xp-dot { background: var(--xp-tone); border-color: var(--xp-tone); }
 .xp-now { color: var(--text); }
@@ -1503,7 +1503,7 @@ button.mushaf-word {
    under one hairline, in plain rows rather than boxes. */
 .week-dots { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem; }
 .week-day { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-faint); }
-.week-dot { width: 1rem; height: 1rem; border-radius: 999px; border: 2px solid var(--border); }
+.week-dot { width: 1rem; height: 1rem; border-radius: var(--radius-pill); border: 2px solid var(--border); }
 .week-studied .week-dot { background: var(--week-tone); border-color: var(--week-tone); }
 .week-day[aria-current='date'] { color: var(--text); font-weight: 600; }
 .week-day[aria-current='date'] .week-dot { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--week-tone); }
@@ -1554,7 +1554,7 @@ button.mushaf-word {
   gap: 0.375rem;
   padding: 0.375rem 0.875rem;
   border: 1px solid var(--border);
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   color: var(--text-dim);
   transition: color calc(var(--motion-base-ms) * 1ms) ease-out;
 }
@@ -1582,7 +1582,7 @@ button.mushaf-word {
   padding: 0.25rem 0.5rem;
   line-height: 1;
   border: 1px solid var(--border);
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   color: var(--text-dim);
   transition: color calc(var(--motion-base-ms) * 1ms) ease-out, border-color calc(var(--motion-base-ms) * 1ms) ease-out;
 }
@@ -1625,7 +1625,7 @@ button.mushaf-word {
   gap: 0.625rem;
   max-width: 100%;
   padding: 0.5rem 1rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
   border: 1px solid var(--border-hi);
   background: var(--surface);
   color: var(--text-faint);
