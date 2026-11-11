@@ -6,7 +6,7 @@
   --faint: color-mix(in srgb, var(--text) 38%, transparent);
   position: relative; min-width: 0; min-height: 0; overflow: hidden;
   display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: .8rem;
-  padding: 1.4rem 1.2rem 1.3rem; border-radius: 18px;
+  padding: 1.4rem 1.2rem 1.3rem; border-radius: var(--radius-lg);
   border: 1px solid color-mix(in srgb, var(--gold) 25%, transparent); box-shadow: 0 30px 70px rgb(0 0 0 / .5);
   background:
     radial-gradient(40% 50% at 22% 24%, color-mix(in srgb, var(--gold-hi) 22%, transparent), transparent 70%),
@@ -17,7 +17,7 @@
 .ayah-dg .orb {
   position: absolute; border-radius: 50%; pointer-events: none;
   background: radial-gradient(circle, color-mix(in srgb, var(--gold-hi) 40%, transparent), transparent 70%);
-  animation: ayah-drift 9s ease-in-out infinite alternate;
+  animation: ayah-drift calc(9s * var(--motion-scale)) ease-in-out infinite alternate;
 }
 .ayah-dg .orb:nth-of-type(1) { width: 90px; height: 90px; left: 4%; top: 8%; }
 .ayah-dg .orb:nth-of-type(2) { width: 60px; height: 60px; right: 6%; top: 6%; animation-delay: -3s; }
@@ -36,7 +36,7 @@
 .ayah-dg .wd.ghost { align-items: center; }
 .ayah-dg .wd.ghost .ar {
   font-size: calc(var(--arabic-term-rem) * 1rem); line-height: 1.5; color: var(--muted);
-  border: 1.5px dashed color-mix(in srgb, var(--text) 35%, transparent); border-radius: 10px; padding: 0 .4rem .1rem;
+  border: 1.5px dashed color-mix(in srgb, var(--text) 35%, transparent); border-radius: var(--radius-sm); padding: 0 .4rem .1rem;
 }
 .ayah-dg .gl { grid-row: 2; unicode-bidi: isolate; text-align: center; font-family: var(--font-ui); font-size: .74rem; color: var(--muted); white-space: nowrap; padding-inline: .25rem; }
 .ayah-dg .tg { grid-row: 3; display: flex; justify-content: center; }
@@ -51,7 +51,7 @@
 .ayah-dg .br.on { opacity: 1; }
 .ayah-dg .br > * { grid-column: 1 / -1; }
 .ayah-dg .brace {
-  position: relative; height: .8rem; margin-inline: .35rem; border: 1.75px solid var(--tone); border-top: 0; border-radius: 0 0 1rem 1rem;
+  position: relative; height: .8rem; margin-inline: .35rem; border: 1.75px solid var(--tone); border-top: 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
   transform: scaleX(0); transition: transform var(--slow) ease .2s;
 }
 .ayah-dg .br.on .brace { transform: none; }
@@ -60,8 +60,8 @@
   justify-self: center; display: flex; gap: .35rem; align-items: baseline; margin-top: .4rem; white-space: nowrap;
   color: var(--tone); font-size: calc(var(--arabic-small-rem) * 1rem); line-height: 1.5; transition: opacity var(--slow);
 }
-.ayah-dg .nm .eq { color: var(--faint); font-family: var(--font-ui); font-size: .9rem; }
-.ayah-dg .nm.gold { background: var(--gold-hi); color: var(--ink); font-weight: 700; padding: .05rem .85rem .2rem; border-radius: 999px; box-shadow: 0 0 22px color-mix(in srgb, var(--gold-hi) 45%, transparent); }
+.ayah-dg .nm .eq { color: var(--faint); font-family: var(--font-ui); font-size: var(--type-ui); }
+.ayah-dg .nm.gold { background: var(--gold-hi); color: var(--ink); font-weight: 700; padding: .05rem .85rem .2rem; border-radius: var(--radius-pill); box-shadow: 0 0 22px color-mix(in srgb, var(--gold-hi) 45%, transparent); }
 .ayah-dg .nm.gold .eq { color: color-mix(in srgb, var(--ink) 55%, transparent); }
 /* The beat after a phrase forms: an arrow drops from its name to what it becomes. */
 .ayah-dg .then { justify-self: center; display: grid; justify-items: center; opacity: 0; transform: translateY(-6px); transition: opacity var(--slow), transform var(--slow); }
@@ -82,7 +82,7 @@
 .ayah-dg .tr.on { opacity: 1; transform: none; }
 .ayah-dg .ayah-play {
   position: absolute; z-index: 2; right: .8rem; bottom: .8rem; width: 44px; height: 44px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; font-size: .9rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: var(--type-ui); cursor: pointer;
   border: 1.5px solid color-mix(in srgb, var(--text) 50%, transparent); background: color-mix(in srgb, var(--ink) 82%, transparent); color: var(--text);
   transition: transform var(--med) var(--spring);
 }
