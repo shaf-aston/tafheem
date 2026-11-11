@@ -1,27 +1,46 @@
 /**
  * A pop-up that rises from the bottom on a phone and sits centred on a wider
- * screen. Mounted only while open. Native <dialog> through useModal, so Esc,
- * the backdrop, the focus trap and focus returning to the opener come free;
- * the page behind stops scrolling through the :modal rule in styles/components.css.
- * Closing by unmounting skips the browser's own focus return, so the opener
- * is noted on the first render and handed focus back here.
+ * screen. Native <dialog> through useModal, so Esc, the backdrop, the focus trap
+ * and focus returning to the opener come free; the page behind stops scrolling
+ * through the :modal rule in styles/components.css.
+ *
+ * Mounted only while open, by default. Closing by unmounting skips the browser's
+ * own focus return, so the opener is noted on the first render and handed focus
+ * back here. A sheet that has to keep its place while closed (Settings' scroll,
+ * the sections' edit mode) is always mounted and told `open` instead: it closes
+ * in place and the browser returns focus itself. That one wears .phone-sheet
+ * (styles/components.css), which also seats its box on the foot of a phone with
+ * room for the home bar and lets its tiles follow it up.
+ *
+ * `width` is a name from theme.json's sheet group: narrow, standard or wide, never
+ * wider than 92% of the screen. A heading inside names it with `labelledBy`, else `label`.
  */
 import { useEffect, useState } from 'react'
 
 import { closeOnBackdrop, useModal } from '../../../lib/hooks/useModal'
 
-export default function BottomSheet({ label, onClose, className = '', children }) {
-  const dialog = useModal(true)
+// Written out, since a class built from a name is a class Tailwind never sees.
+const WIDTH = {
+  narrow: 'sm:max-w-[min(var(--sheet-narrow),92vw)]',
+  standard: 'sm:max-w-[min(var(--sheet-standard),92vw)]',
+  wide: 'sm:max-w-[min(var(--sheet-wide),92vw)]',
+}
+
+export default function BottomSheet({ label, labelledBy, onClose, open, width = 'standard', className = '', children }) {
+  const kept = open !== undefined
+  const dialog = useModal(kept ? open : true)
   const [opener] = useState(() => document.activeElement)
-  useEffect(() => () => opener?.focus?.(), [opener])
+  useEffect(() => (kept ? undefined : () => opener?.focus?.()), [kept, opener])
   return (
     <dialog
       ref={dialog}
-      aria-label={label}
+      aria-label={labelledBy ? undefined : label}
+      aria-labelledby={labelledBy}
       onClose={onClose}
       onClick={closeOnBackdrop(onClose)}
-      className="m-0 mt-auto sm:m-auto p-0 w-full max-w-none sm:max-w-[var(--sheet-standard)] max-h-[100dvh] bg-transparent"
+      className={`m-0 mt-auto sm:m-auto p-0 w-full max-w-none ${WIDTH[width]} max-h-[100dvh] bg-transparent ${kept ? 'phone-sheet' : ''}`}
     >
+      {/* A click inside the box is not on the backdrop, so it never reaches closeOnBackdrop's target check. */}
       <div
         className={`bg-[var(--surface)] border border-[var(--border-hi)] rounded-t-[var(--radius-md)]
           sm:rounded-[var(--radius-md)] e2 ${className}`}
