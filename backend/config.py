@@ -25,33 +25,33 @@ class Ai(BaseSettings):
     groq_reasoning_effort: str = "low"
     # SDK default is 60s plus two silent retries, and on a rate limit it sleeps as long as Groq says
     # (29s seen 2026-09-05). Ours is the only retry loop now.
-    groq_timeout_seconds: float = 20.0
+    groq_timeout_seconds: float = Field(default=20.0, gt=0)
 
     ollama_url: str = "http://localhost:11434"
     ollama_model: str = "qwen2.5:3b"
 
     # Low so grammar answers repeat. Every AI backend reads this one.
     ai_temperature: float = 0.1
-    sarf_max_tokens: int = 1500
+    sarf_max_tokens: int = Field(default=1500, gt=0)
     # Between two ceilings, measured 2026-09-01. Below: thinking and the ~40-line JSON share this budget;
     # at 2000 the answer was cut off, failed the count check and retried for 20-40s.
     # Above: groq free refuses requests over 8000 tokens including prompt (biggest prompt ~3500); at 6000 got 413.
-    root_entry_max_tokens: int = 3500
+    root_entry_max_tokens: int = Field(default=3500, gt=0)
     # Longest Maqayees entry is ~15,000 chars; 6000 is what the smallest local model can hold.
-    root_entry_truncate_chars: int = 6000
+    root_entry_truncate_chars: int = Field(default=6000, gt=0)
     # Word by word is asked in chunks this long, one after another, each with its own reply
     # budget: a whole entry outran root_entry_max_tokens, and chunks asked all at once spent
     # the model service's tokens-per-minute together and failed on long entries (ضرب).
-    root_senses_chunk_chars: int = 1000
+    root_senses_chunk_chars: int = Field(default=1000, gt=0)
     # A chunk's reply copies its Arabic twice (each word's explanation, each saying), about 2 tokens
     # per character of the chunk, so a full chunk's answer runs ~2000-2500 before any thinking: at
     # 2200 it was cut off and every try failed (ذكر, حمد, شكر). The worst prompt is ~3100, so 3500
     # stays under groq's 8000 per request, as root_entry_max_tokens does.
-    root_senses_max_tokens: int = 3500
+    root_senses_max_tokens: int = Field(default=3500, gt=0)
     # The one-line gist of a Lisan or Taj entry: a sentence back, and the opening
     # of the entry in, which is where both books state the root's senses.
-    lexicon_gist_max_tokens: int = 300
-    lexicon_gist_entry_chars: int = 4000
+    lexicon_gist_max_tokens: int = Field(default=300, gt=0)
+    lexicon_gist_entry_chars: int = Field(default=4000, gt=0)
 
     @property
     def effective_backend(self) -> str:
@@ -117,7 +117,7 @@ class Nahw(BaseSettings):
     rivals_read: int = Field(default=4, gt=0)
     # The top disambiguator reading comes from bare letters and can contradict typed vowels (آفِلًا for typed أَفَلَا);
     # the first of these that agrees is used. Scoring all costs nothing extra. 40 because a rare passive (أُكِلَ) can rank below the 20th.
-    catib_readings: int = 40
+    catib_readings: int = Field(default=40, gt=0)
     # Holds encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json, config.json, clitic_feats.csv.
     # See catib_onnx.py's docstring for sources. Relative paths resolve inside backend/.
     catib_parser_dir: str = "data/parser"
@@ -131,17 +131,17 @@ class Quran(BaseSettings):
 
     # Quran.com's free, keyless API: ayah lookups (quran_service) and search (quran_search/remote.py).
     quran_api_base: str = "https://api.quran.com/api/v4"
-    quran_timeout_seconds: float = 15.0
-    quran_search_limit: int = 20
+    quran_timeout_seconds: float = Field(default=15.0, gt=0)
+    quran_search_limit: int = Field(default=20, gt=0)
     # "auto" tries Quran.com then the local index; "online"/"local" pin one.
     # Measured 2026-08-26: Quran.com ~770ms; network unplugged it takes 15.7s to give up with nothing.
     quran_search_source: str = "auto"
     # Deliberately far below quran_timeout_seconds: waiting past a second is worse than the local answer.
-    quran_search_timeout_seconds: float = 4.0
+    quran_search_timeout_seconds: float = Field(default=4.0, gt=0)
     # Built by backend/scripts/quran/build_quran_search_index.py, never written while serving.
     quran_search_index_path: str = "data/quran/search.db"
     # Some roots occur over a thousand times; list is capped, true total still shown.
-    root_occurrence_limit: int = 50
+    root_occurrence_limit: int = Field(default=50, gt=0)
     # Built by backend/scripts/quran/import_quran_editions.py, never written while serving.
     # The manifest is the only place a book is named; adding one needs no code change.
     quran_library_path: str = "data/quran/library.db"
@@ -186,9 +186,9 @@ class Dictionary(BaseSettings):
 
     dictionary_cache_size: int = 256
     # Fuzzy scan covers every indexed key, so a one-letter query matches thousands; past this cap extra candidates cannot change what is shown.
-    dictionary_fuzzy_candidates: int = 200
+    dictionary_fuzzy_candidates: int = Field(default=200, gt=0)
     # Without a minimum, single letters match inside every query: a search for اخذ returned alif, khaa and dhal.
-    dictionary_fuzzy_min_key: int = 3
+    dictionary_fuzzy_min_key: int = Field(default=3, gt=0)
     # The book whose English is the sense of a whole ayah typed into the dictionary (data/quran/editions.json).
     sentence_translation: str = "saheeh-en"
     # Word by word, each piece of a word shows up to this many of CAMeL's senses.
@@ -236,7 +236,7 @@ class Listening(BaseSettings):
     # Half a second: a stop inside a word is shorter, so it cannot win; at 0.25s one cut fell inside بعضكم.
     listening_cut_window_s: float = Field(default=0.5, gt=0)
     # Short because the local engine answers in ~3s and a slow cloud answer has already lost; Groq turbo takes ~0.5s.
-    listening_timeout_s: float = 4.0
+    listening_timeout_s: float = Field(default=4.0, gt=0)
     # Rest for a transient failure (no internet, rate limit, bad gateway); a settled one (rejected key, missing model) retires the ear.
     # Used only when the refusal does not say how long to wait.
     listening_rest_s: float = Field(default=60.0, gt=0)
@@ -283,7 +283,7 @@ class Listening(BaseSettings):
     # Choosing only from this list stops the guess drifting to Urdu or Persian. One name pins it again.
     dictation_languages: str = "ar,en"
     # Default was 5, five times the work for the same ayah every time; matching needs close, not right. Most of the speed win.
-    recitation_beam: int = 1
+    recitation_beam: int = Field(default=1, gt=0)
     # Browser recordings always carry silence before and after.
     recitation_trim_silence: bool = True
     # The untrimmed retry means silence reaches the model, which fills it with a real word (3s of nothing became وَالْمُؤْمِنِينَ).
@@ -311,7 +311,7 @@ class Listening(BaseSettings):
     # The cut sits near zero, so it moves with the ear: re-grade both together (finetune_ear/README.md).
     recitation_sure_of_word: str = "worst"
     # Decoder holds 448 pieces, ~3 per word; a ten-second recording holds far fewer than this, so more means placing went wrong.
-    recitation_sure_max_words: int = 100
+    recitation_sure_max_words: int = Field(default=100, gt=0)
     # Frames of sound handed to the ear when scoring words; a frame is 10ms, so 1500 is 15s.
     # Padding to the ear's full 30s costs the same as sound (5s and 25s recordings both took 1,410ms over 483 checks);
     # handing the recording's length rounded up to a block cut the middle check from 967ms to 541ms over 1,950 recordings.
@@ -329,8 +329,8 @@ class Listening(BaseSettings):
     recitation_repetition_penalty: float = 1.2
     # Measured on 12 recitations each, read/check ms: 4 threads 4029/1300, 8 3660/1109, 12 3147/912, 16 2717/887.
     # More is faster all the way up. 12 not 16: 16 buys 14% more and leaves nothing to draw the page while someone recites.
-    recitation_threads: int = 12
-    recitation_matches: int = 5
+    recitation_threads: int = Field(default=12, gt=0)
+    recitation_matches: int = Field(default=5, gt=0)
     # How much better the best place in the Qur'an must fit than the next before it is sure (locate.py).
     # 1,050 Groq readings in 4-word pieces: 0.05 placed 1,602 right and 2 wrong, 0.1 1,247 and 0, 0.15 1,012 and 0.
     recitation_place_margin: float = Field(default=0.1, gt=0, lt=1)
@@ -416,7 +416,7 @@ class Daleel(BaseSettings):
     # Hand-written: sources.json and worlds/<id>/, read once. See routers/grow.py.
     grow_dir: str = "data/grow"
     # Past a handful of passages the list is scrolled, not read.
-    daleel_result_limit: int = 12
+    daleel_result_limit: int = Field(default=12, gt=0)
     # How far "Show more" may widen one page. Each passage asks the index for
     # daleel_candidate_factor rows, so 48 is the most one question reads in.
     daleel_result_limit_max: int = Field(default=48, gt=0)
@@ -494,14 +494,14 @@ class Hadith(BaseSettings):
     # The narrator books (Taqrib, Ta'rif, Jami', Mukhtalitin) scripts/hadith/fetch_usul.py downloads; build_usul.py reads them, the app never does.
     usul_books_dir: str = "data/usul/books"
     # A hadith is read in full, so a long results page stops being read.
-    hadith_result_limit: int = 20
+    hadith_result_limit: int = Field(default=20, gt=0)
     # A typed word no search knows is swapped for the likeliest meant word
     # (services/text/spelling.py): at most this many slips per letter (a quarter:
     # one in a short word, two in a long one), each slip costing this much
     # log-frequency, so a word a slip further must be that much more common.
     spelling_edits_per_letter: float = 0.25
     # Below this many letters a word is mostly particle; one edit turns it into too many others.
-    spelling_min_letters: int = 3
+    spelling_min_letters: int = Field(default=3, gt=0)
     spelling_edit_cost: float = 3.0
     # How common a hadith word is: this much its share of everyday writing
     # (services/text/spelling.py everyday), the rest its share of the hadith. Everyday
@@ -528,10 +528,10 @@ class Hadith(BaseSettings):
     hadith_meaning_path: str = "data/hadith_meaning.db"
     hadith_meaning_model: str = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
     # The model was trained on 128 tokens; a long hadith is judged by its opening.
-    hadith_meaning_max_tokens: int = 128
+    hadith_meaning_max_tokens: int = Field(default=128, gt=0)
     # Word and meaning rankings are merged by reciprocal rank: 1/(k + rank) summed.
     # 60 is the standard constant; larger flattens the difference between ranks.
-    hadith_meaning_fusion_k: int = 60
+    hadith_meaning_fusion_k: int = Field(default=60, gt=0)
     # After the model fails to load (no network for its first fetch), searches
     # answer by words alone for this long before loading is tried again.
     hadith_meaning_retry_seconds: float = 300.0
@@ -544,7 +544,7 @@ class Progress(BaseSettings):
     progress_db_path: str = "data/progress.db"
     # Slower answers keep right/wrong but skip timing averages: past two minutes the question likely sat open,
     # and one such value buries every real answer around it.
-    progress_timing_cap_ms: int = 120_000
+    progress_timing_cap_ms: int = Field(default=120_000, gt=0)
     # FSRS-6 spaced review (services/learner/review_schedule.py): the chance of still remembering a word
     # when it comes due. Higher means more reviews; both knobs must be inside (0, 1).
     progress_review_retention: float = 0.9
@@ -553,9 +553,9 @@ class Progress(BaseSettings):
     progress_known_retrievability: float = 0.8
     # A first right answer comes back after this many hours to be confirmed; a wrong one is due at once.
     # A day keeps same-session guesses out of Review and makes "known" mean right on two separate days.
-    progress_learning_hours: int = 24
+    progress_learning_hours: int = Field(default=24, gt=0)
     # Without it SQLite gives up the moment two answers land together, which auto-advance makes ordinary.
-    progress_busy_timeout_ms: int = 5000
+    progress_busy_timeout_ms: int = Field(default=5000, gt=0)
     # XP per right answer, once per item per day (services/learner/rewards.py).
     rewards_xp_per_answer: int = Field(default=10, gt=0)
     # Level n needs this × n XP to reach n + 1.
@@ -565,7 +565,7 @@ class Progress(BaseSettings):
     # Runs as the "guest_sweep" startup step: a startup_background set in .env must name it, or nothing is swept.
     progress_guest_days: int = Field(default=180, gt=0)
     # Accounts (services/learner/username.py): a username, no password. Longest name allowed after cleaning.
-    username_max: int = 40
+    username_max: int = Field(default=40, gt=0)
     # Largest shelf (everything the page keeps for one account) the server takes, in bytes.
     saved_max_bytes: int = Field(default=512_000, gt=0)
     # Beta testing: the log-in box lists every username so a tester can pick one. Off: the app is
@@ -589,7 +589,7 @@ class Progress(BaseSettings):
     # then plain "tafheem"). Chrome, Edge and Firefox on http://localhost need nothing.
     cookie_secure: bool = True
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
-    leaderboard_size: int = 20
+    leaderboard_size: int = Field(default=20, gt=0)
     # Circle kinds (services/learner/circles.py): each kind's members_see_details flag. True: every joined
     # member sees every other member's full overview; False: only admins (and admins of circles above) do.
     circle_kinds: dict[str, bool] = {"friends": True, "family": False, "class": False, "team": False}
@@ -623,7 +623,7 @@ class Server(BaseSettings):
 
     # Declared because .env sets PORT and this class forbids unknown keys; dropping it fails startup.
     # The running port comes from the --port flag start.sh passes to uvicorn.
-    port: int = 8000
+    port: int = Field(default=8000, gt=0)
     # Startup loaders by name (services/core/startup.py STEPS). wait: done before the first request is served.
     startup_wait: list[str] = ["dictionary", "root_meanings"]
     # background: started and left to finish, so the first use finds them loaded. Drop a name on a small machine:
@@ -637,7 +637,7 @@ class Server(BaseSettings):
     ]
 
     # Longest question any search box sends (Daleel, Hadith, Dictionary, Qur'an); past it, a paste, not a search.
-    search_max_query_chars: int = 200
+    search_max_query_chars: int = Field(default=200, gt=0)
 
     cors_origins: list[str] = Field(
         default_factory=lambda: [
