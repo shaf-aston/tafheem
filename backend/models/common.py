@@ -4,6 +4,9 @@ from __future__ import annotations
 
 from pydantic import BaseModel
 
+# The largest row id any route accepts: a larger one cannot exist, and must not reach the database.
+ID_MAX = 2**31
+
 
 
 class Source(BaseModel):

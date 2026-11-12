@@ -6,6 +6,8 @@ import json
 
 from pydantic import BaseModel, Field, field_validator
 
+from backend.models.common import ID_MAX
+
 
 
 # ── Progress: what a learner has answered ────────────────────────────────────
@@ -152,13 +154,13 @@ class CircleIn(BaseModel):
 
     name: str = Field(min_length=1, max_length=200)
     kind: str = Field(min_length=1, max_length=32)
-    parent: int | None = None
+    parent: int | None = Field(default=None, ge=1, le=ID_MAX)
 
 
 class ParentIn(BaseModel):
     """The circle to move a circle inside, or None to stand it on its own."""
 
-    parent: int | None = None
+    parent: int | None = Field(default=None, ge=1, le=ID_MAX)
 
 
 class InviteIn(BaseModel):
