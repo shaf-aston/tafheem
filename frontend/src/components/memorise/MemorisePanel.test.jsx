@@ -18,6 +18,9 @@ describe('Memorise settings row', () => {
     expect(screen.queryByRole('group', { name: 'How you answer' })).toBeNull()
     expect(screen.queryByRole('button', { name: /translation/i })).toBeNull()
 
+    // The pill says what is chosen in words, not "1 in 3".
+    expect(screen.getByRole('button', { name: /^Settings/ }).textContent).toMatch(/1 word in 3 hidden/)
+
     fireEvent.click(screen.getByRole('button', { name: /^Settings/ }))
     const sheet = await screen.findByRole('dialog')
     for (const caption of ['How you answer', 'Book', 'How much is missing', 'Translation']) {
