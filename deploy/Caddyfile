@@ -6,6 +6,12 @@
 # Two backend copies run at once (tafheem@8000, tafheem@8001). sync.sh
 # restarts them one at a time; the health check below stops sending requests
 # to whichever one is mid-restart, so a deploy never drops a request.
+# Only Vercel may call /api: it adds X-Origin-Secret (ORIGIN_SECRET, vercel.json "routes"), and the
+# origin_gate snippet in this file refuses anything without it. The file holds the secret, so it lives only on
+# the server (root:caddy, 0640; setup.sh writes it). If it is missing, Caddy refuses the new config and keeps
+# the old one, so any reload path is safe. To change the secret, set it in both places, then reload.
+import /etc/caddy/origin-secret.caddy
+
 132-145-17-56.sslip.io {
 	log {
 		output file /var/log/caddy/access.log {
@@ -22,6 +28,7 @@
 			request>headers>X-Tafheem-Profile delete
 			request>headers>X-Tafheem-Guest delete
 			request>headers>X-Recorder-Key delete
+			request>headers>X-Origin-Secret delete
 			request>headers>Cookie delete
 			request>headers>Authorization delete
 			resp_headers>Set-Cookie delete
@@ -35,12 +42,14 @@
 	}
 	header -Server
 	handle /api/* {
+		import origin_gate
 		# The largest thing anyone sends is a recitation (listening_max_mb, 12 MiB, routers/listen.py). Past this the
 		# request is refused here, before the backend spools it to disk.
 		request_body {
 			max_size 14MiB
 		}
 		reverse_proxy 127.0.0.1:8000 127.0.0.1:8001 {
+			header_up -X-Origin-Secret
 			health_uri /api/health
 			health_interval 5s
 			health_timeout 3s
