@@ -56,7 +56,7 @@ const MapPanel = panel(() => import('../../components/map/MapPanel'))
 // `hidden`: reachable by URL only (journey and the panel mapping read TABS), left out of
 //   everything a person browses; those read LISTED.
 // Home is first, so it is where a visit with no saved place opens.
-// Order = All sections order; the strip is FIXED then RECENT, below. Related tabs sit together.
+// Order = All sections order; the strip is FIXED then WIDE, below. Related tabs sit together.
 // Grouped by what you came to do, one word each, so a choice is a goal, then a tab.
 export const GROUPS = [
   { id: 'start',    label: 'Start' },
@@ -96,16 +96,15 @@ export const TABS = [
 /** The tabs a person can browse to: strip, All sections, command bar, launcher, number keys. */
 export const LISTED = TABS.filter((tab) => !tab.hidden)
 
-// The strip: FIXED always shows, in this order, phones too. RECENT follows from
-// md: eight slots in all, so Home joining FIXED cost RECENT one; how many, and
-// what they are before anything is opened, oldest first;
-// opening another tab drops the oldest (lib/nav/recent.js).
+// The strip: FIXED always shows, in this order, phones too. WIDE follows from md:
+// eight in all, each always in its place with its number key. An open tab off
+// the strip shows after them while it is open (lib/nav/recent.js).
 export const FIXED = ['home', 'quran', 'nahw', 'sarf', 'dict']
 
 /** The tab the app opens on, and the group of All sections that holds only it. */
 export const HOME = FIXED[0]
 export const START = GROUPS[0].id
-export const RECENT = ['daleel', 'mem', 'quiz']
+export const WIDE = ['daleel', 'mem', 'quiz']
 
 // The phone's two tab places until the reader changes them (lib/nav/dock.js); Ask,
 // Learn and Me follow them (shell/BottomNav), so Ask stands in the middle.

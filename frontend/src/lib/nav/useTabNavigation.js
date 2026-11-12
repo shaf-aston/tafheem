@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
-import { DOCK, FIXED, LISTED, RECENT, TABS } from './tabs'
+import { DOCK, FIXED, LISTED, TABS, WIDE } from './tabs'
 import { useDock } from './dock'
 import { keepRecent, useStrip } from './recent'
 import { lastPlaceOn, onJump, ownsHome, startJourney, visit } from './journey'
@@ -99,7 +99,7 @@ export function useTabNavigation() {
     return holdAt(top)
   }, [activeTab])
 
-  const strip = useStrip(LISTED, FIXED, RECENT, activeTab)
+  const strip = useStrip(LISTED, FIXED, WIDE, activeTab)
   const [dock, placeInDock] = useDock(LISTED, DOCK)
 
   useTabShortcuts(strip, switchTab)

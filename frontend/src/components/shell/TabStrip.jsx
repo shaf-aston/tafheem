@@ -55,8 +55,9 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
   return (
     // No overflow here on purpose: setting one axis to auto makes the other
     // auto too, and the 1px underline below the strip would then raise a
-    // scrollbar. `tabs` is already the strip (lib/nav/recent.js): fixed tabs plus
-    // the recent ones, so it never outgrows the row; wrap is only the fallback.
+    // scrollbar. `tabs` is already the strip (lib/nav/recent.js): the same eight
+    // tabs in the same places, and the open one after them when it is not among
+    // them, so it never outgrows the row; wrap is only the fallback.
     //
     // The labels are type-body, the same size as the English being read
     // in the panels below.
