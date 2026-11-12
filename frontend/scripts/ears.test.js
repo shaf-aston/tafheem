@@ -319,7 +319,7 @@ describe.skipIf(!QURAN || (!GROQ && !DEEPGRAM && !LOCAL_URL && !Object.keys(kept
               if (go === attempts - 1) {
                 sum.failed += 1
                 if (NO_BACKOFF.has(name)) {
-                  throw new Error(`${name} could not be reached (${err.message}); check EARS_LOCAL_URL and the backend before re-running`)
+                  throw new Error(`${name} could not be reached (${err.message}); check EARS_LOCAL_URL and the backend before re-running`, { cause: err })
                 }
                 break
               }

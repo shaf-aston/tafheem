@@ -36,6 +36,9 @@ const seen = (id, due = false) => ({ item: id, due, dueAt: '2026-10-23T00:00:00Z
 const home = () => <GrowPanel incoming={null} arrival={null} onVisit={() => {}} />
 const hero = () => screen.findByRole('heading', { level: 3, name: /Your first letters|Your first steps|Keep your garden growing/ })
 
+// window.scrollY is a getter in newer happy-dom; redefine it rather than assign.
+const setScrollY = (value) => Object.defineProperty(window, 'scrollY', { value, configurable: true, writable: true })
+
 describe('basics', () => {
   beforeEach(() => localStorage.clear())
 
@@ -52,14 +55,14 @@ describe('basics', () => {
     renderScreen(home(), { routes: routes() })
     await hero()
     const scrolled = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
-    window.scrollY = 500
+    setScrollY(500)
     fireEvent.scroll(window)
     fireEvent.click(document.querySelector('.grow-world-tile'))
     await waitFor(() => expect(scrolled).toHaveBeenCalledWith(expect.objectContaining({ top: 0 })))
     fireEvent.click(document.querySelector('.grow-back'))
     await waitFor(() => expect(scrolled).toHaveBeenCalledWith(expect.objectContaining({ top: 500 })))
     scrolled.mockRestore()
-    window.scrollY = 0
+    setScrollY(0)
   })
 
   it('a tap from another tab opens the first lesson on what ال is, then asks "the book" both ways', async () => {
