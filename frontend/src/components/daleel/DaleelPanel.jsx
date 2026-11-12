@@ -183,7 +183,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
             is the occasional case, sits under it. See daleel/BookPicker. */}
         <BookPicker
           books={catalogue}
-          folded={hits.length > 0}
+          answered={hits.length > 0}
           onChange={narrow}
           accent={accent}
           sourceLabel={(key) => sources.find((s) => s.key === key)?.label ?? key}
