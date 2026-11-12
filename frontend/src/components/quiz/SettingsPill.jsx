@@ -2,8 +2,7 @@
  * Settings chosen once and left, folded behind one pill that says what they
  * are (ui/Popover). Each child is a captioned ui/Segmented or ui/WheelPicker
  * row; the grid dissolves each row's own wrapper so every caption shares one
- * column and the rows start level. A phone folds more behind it than a wide
- * screen does: the tab decides what goes in.
+ * column and the rows start level.
  */
 import Popover from '../ui/overlays/Popover'
 

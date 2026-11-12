@@ -5,7 +5,6 @@ import { MEANINGS } from '../../lib/quiz/quiz'
 import { QUIZ } from '../../lib/quiz/quizBanks'
 import { quizNote } from '../../lib/quiz/quizNote'
 import { fillIn, sayIn } from '../../lib/text/say'
-import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 import { useQuizQuestion } from '../../lib/quiz/useQuizQuestion'
 import { useQuizRound } from '../../lib/quiz/useQuizRound'
 import { useQuizScore } from '../../lib/quiz/useQuizScore'
@@ -51,7 +50,6 @@ export default function QuizPanel({ accent, onProgress }) {
   const { words, question, questionCount, enough, noneInLanguage, owed, dialect } = useQuizQuestion(setup, round)
   const { score, bestStreak, saving, record, clear } = useQuizScore(setup)
 
-  const phone = useMedia(PHONE)
   // Every English sentence on this tab goes through say(); fill() is for the
   // one sentence whose two halves are elements rather than text.
   const say = sayIn(language)
@@ -108,7 +106,7 @@ export default function QuizPanel({ accent, onProgress }) {
     <div className="panel" lang={bank.lesson ? 'en' : language} dir={language === 'en' || bank.lesson ? 'ltr' : 'rtl'}>
       <SectionHeader tab="quiz" say={say} />
 
-      <QuizSetup setup={setup} owed={owed} say={say} phone={phone} accent={accent} onChange={startRound} />
+      <QuizSetup setup={setup} owed={owed} say={say} accent={accent} onChange={startRound} />
 
       {bank.lesson ? <BasicsRound say={sayIn('en')} /> : (
         <>

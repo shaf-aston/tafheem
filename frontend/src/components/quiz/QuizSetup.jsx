@@ -7,15 +7,16 @@ import WheelPicker from '../ui/inputs/WheelPicker'
 
 /**
  * The Quiz tab's one quiet line of setup, so the question is the first thing you
- * see rather than something you scroll past three panels to reach. `setup` is
+ * see rather than something you scroll past three panels to reach: one pill that names
+ * the deck, the cut, the meaning's language and the direction, and opens onto the
+ * controls, at every width. `setup` is
  * useQuizSetup's; every choice goes to `onChange`, which starts a fresh round.
  * `owed` is the count of words due, worn on the Review control.
  */
-export default function QuizSetup({ setup, owed, say, phone, accent, onChange }) {
+export default function QuizSetup({ setup, owed, say, accent, onChange }) {
   const { language, direction, directions, bankId, bank, groups, scope, groupId, section } = setup
 
-  // A phone has no room for the narrowing beside the words, so it goes behind
-  // the same pill as the other two settings, and the pill names what it holds.
+  // The narrowing goes behind the same pill as the other settings, and the pill names what it holds.
   const scopeOptions = [
     ...WHOLE_SET_SCOPES.map(({ id, label, hint }) => ({ id, label: say(label), hint: say(hint) })),
     ...groups.map((s) => ({ id: s.id, label: say(s.label) })),
@@ -25,8 +26,8 @@ export default function QuizSetup({ setup, owed, say, phone, accent, onChange })
       {/* Which kind of cut, then which one; two short controls instead of
           one dropdown holding 28 topics, 114 surahs and 30 juz at once. */}
       <Segmented
-        captioned={phone}
-        wrap={phone}
+        captioned
+        wrap
         label={say('Narrow by')}
         options={scopeOptions}
         value={scope}
@@ -36,7 +37,7 @@ export default function QuizSetup({ setup, owed, say, phone, accent, onChange })
       {section && (
         <>
           {/* Behind the pill every control wears its caption, as its neighbours do. */}
-          {phone && <span className="eyebrow">{say('Which {kind}', { kind: say(section.label).toLowerCase() })}</span>}
+          <span className="eyebrow">{say('Which {kind}', { kind: say(section.label).toLowerCase() })}</span>
           <span className="block">
             <WheelPicker
               label={say('Which {kind}', { kind: say(section.label).toLowerCase() })}
@@ -55,12 +56,11 @@ export default function QuizSetup({ setup, owed, say, phone, accent, onChange })
       )}
     </>
   )
-  // Which set of words. Wide screens keep it on the line; a phone has no room
-  // for four options and a count beside the pill, so it goes behind the pill too.
+  // Which set of words, with the count owed on the one that holds it.
   const bankControl = (
     <Segmented
       captioned
-      wrap={phone}
+      wrap
       label={say('Words')}
       options={Object.entries(BANKS).map(([id, b]) => ({
         id,
@@ -74,28 +74,28 @@ export default function QuizSetup({ setup, owed, say, phone, accent, onChange })
     />
   )
   const pillWords = [
-    ...(phone ? [say(bank.label)] : []),
-    ...(phone && bank.grouped
+    say(bank.label),
+    ...(bank.grouped
       ? [section?.options.find((o) => o.id === groupId)?.label ?? scopeOptions.find((o) => o.id === scope)?.label]
       : []),
     // A lesson set asks in Grow's own ways, so the meaning's language and the direction say nothing about it.
     ...(bank.lesson ? [] : [MEANINGS[language].label, DIRECTIONS[direction].short]),
+    // Words owed was a count on the Review control; folded away it still shows on the pill.
+    ...(owed > 0 ? [say('{n} due', { n: owed })] : []),
   ].filter(Boolean)
 
   return (
     <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-      {!phone && bankControl}
-      {!phone && scopeControls}
-      {/* The two settings chosen once and left, folded behind one pill that
-          says what they are. All four controls on the line needed 1,170px of
-          a 1,120px column, so English wrapped on every screen. */}
+      {/* Everything chosen once and left, folded behind one pill that says what it holds. Beside the
+          question the four controls on a line needed 1,170px of a 1,120px column (English wrapped on
+          every screen), and a second row of them was the first thing between a visitor and the word. */}
       <SettingsPill
         label={pillWords.join(' · ')}
         title={`${say('Words')}, ${say('Meaning in')}, ${say('Direction')}`}
-        align={phone ? 'start' : 'end'}
+        align="start"
       >
-        {phone && bankControl}
-        {phone && scopeControls}
+        {bankControl}
+        {scopeControls}
         {!bank.lesson && <>
         <Segmented
           captioned
