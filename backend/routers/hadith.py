@@ -53,7 +53,7 @@ async def _collection_name(collection: str) -> str:
     """The collection's name, or 404 when there is no such collection."""
     name = await asyncio.to_thread(loader.collection_name, collection)
     if name is None:
-        raise HTTPException(status_code=404, detail=f"No hadith collection called {collection!r}")
+        raise HTTPException(status_code=404, detail="No such hadith collection.")
     return name
 
 
@@ -78,7 +78,7 @@ async def get_book(collection: str, number: int) -> HadithBookResponse:
     books = await asyncio.to_thread(loader.books, collection)
     book = next((b for b in books if b["number"] == number), None)
     if book is None:
-        raise HTTPException(status_code=404, detail=f"{collection} has no book {number}")
+        raise HTTPException(status_code=404, detail="No such book.")
 
     hadiths = await asyncio.to_thread(loader.hadiths, collection, number)
     return HadithBookResponse(
@@ -147,7 +147,7 @@ async def get_family(collection: str, number: int, part: str = Query("", max_len
     """The narrations sharing this number, each laid against `part` (the first when not given or unknown)."""
     found = await asyncio.to_thread(family.versions, collection, number, part)
     if found is None:
-        raise HTTPException(status_code=404, detail=f"{collection} {number} has fewer than two narrations")
+        raise HTTPException(status_code=404, detail="That hadith has fewer than two narrations.")
     return RijalFamily(**found)
 
 
@@ -164,7 +164,7 @@ async def list_narrators(generation: str = Query("", max_length=20), offset: int
 async def get_narrator(narrator_id: int) -> Narrator:
     found = await asyncio.to_thread(rijal.narrator, narrator_id)
     if found is None:
-        raise HTTPException(status_code=404, detail=f"No narrator {narrator_id}")
+        raise HTTPException(status_code=404, detail="No such narrator.")
     return Narrator(**found, usul=UsulFacts(**await asyncio.to_thread(usul.facts, narrator_id), source=provenance.of("usul")), source=provenance.of("rijal"))
 
 
@@ -201,7 +201,7 @@ async def get_term(kind: str, offset: int = Query(0, ge=0), limit: int = Query(0
     """A page of the hadith carrying this sort of ruling; limit 0 is the configured page, capped at its maximum."""
     found = await asyncio.to_thread(usul.term, kind, offset, limit)
     if found is None:
-        raise HTTPException(status_code=404, detail=f"No sort of ruling {kind}")
+        raise HTTPException(status_code=404, detail="No such sort of ruling.")
     return UsulTermHadith(kind=kind, total=found[0], items=found[1])
 
 

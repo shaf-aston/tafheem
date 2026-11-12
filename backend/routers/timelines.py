@@ -29,4 +29,4 @@ async def get_asbab(section: str, event: str) -> TimelineAsbab:
         found = await asyncio.to_thread(timelines.find, section, event)
         return TimelineAsbab(**await asyncio.to_thread(asbab.listing, *found))
     except KeyError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
+        raise HTTPException(status_code=404, detail="No such event.") from exc
