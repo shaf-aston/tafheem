@@ -21,7 +21,7 @@ import time
 from backend.config import confined, get_settings
 from backend.services.core.timing import timed
 from backend.services.recitation import loudness
-from backend.services.recitation.errors import NotInstalled, Unreadable, local_lock
+from backend.services.recitation.errors import NotInstalled, TooLong, Unreadable, local_lock
 
 log = logging.getLogger(__name__)
 
@@ -74,6 +74,8 @@ def sound_of(audio: bytes):
         raise Unreadable("That recording could not be read. Record it again.") from exc
 
     settings = get_settings()
+    if len(sound) > settings.listen_max_seconds * loudness.SAMPLE_RATE:
+        raise TooLong(f"That recording is over {settings.listen_max_seconds:g} seconds.")
     lifted = loudness.levelled(
         sound,
         target=settings.recitation_loudness_target,

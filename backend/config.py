@@ -353,6 +353,11 @@ class Listening(BaseSettings):
     recitation_match_considered: int = Field(default=120, gt=0)
     # A minute of browser audio is about 1 MB.
     recitation_max_mb: int = Field(default=12, gt=0)
+    # A reading is one window of at most 25s (frontend recite.json window-s); longer than this once decoded is
+    # refused before any model runs, so a few huge uploads cannot keep the CPU busy for minutes.
+    listen_max_seconds: float = Field(default=60, gt=0)
+    # Readings that may wait for the local ear's turn (routers/listen.py); one more is refused 503 at once.
+    listen_queue_max: int = Field(default=4, gt=0)
     # No default-book setting on purpose: the panel opens on the manifest's first book, then the reader's last choice.
     # A setting would be a second source that could disagree.
 
