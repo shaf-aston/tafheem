@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import logging
 import sqlite3
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Callable
 
 from backend.config import get_settings
 from backend.services.text import fts
@@ -30,7 +30,8 @@ log = logging.getLogger(__name__)
 
 
 def candidates(
-    conn: sqlite3.Connection, expansion: Expansion, cap: int, books: tuple[str, ...] = ()
+    conn: sqlite3.Connection, expansion: Expansion, cap: int, books: tuple[str, ...] = (),
+    lap: Callable[[str], None] = lambda step: None,
 ) -> list[IndexedPassage]:
     """Rows that could match, with every source getting a share of the places.
 
@@ -78,7 +79,7 @@ def candidates(
     words = set(expansion.phrase_terms) | set(expansion.all_terms)
     if long_terms:
         phrases = [fts.quoted(term) if term in words else f"roots:{fts.quoted(term)}" for term in long_terms]
-        for row in fairly(conn, phrases, per_source, books):
+        for row in fairly(conn, phrases, per_source, books, lap):
             found[row.key] = row
 
     # Matched as whole words, which is what the word index holds, so a
