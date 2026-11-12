@@ -309,3 +309,12 @@ def test_a_tuned_check_scores_with_the_tuned_model(monkeypatch):
         "/api/listen/check", params={"heard": "قل هو", "check": "112:1", "tuned": "true"}, files={"audio": ("r.webm", WEBM)},
     )
     assert resp.status_code == 200 and seen["model"] == "data/tuned"
+
+
+def test_a_missing_listening_model_is_a_503_that_names_no_path(monkeypatch):
+    def missing(*a, **k):
+        raise recitation.NotInstalled("the model could not be loaded from C:/secret/models/ear")
+    monkeypatch.setattr(recitation, "hear", missing)
+    resp = client.post("/api/listen", files={"audio": ("r.webm", WEBM)})
+    assert resp.status_code == 503
+    assert "secret" not in resp.text

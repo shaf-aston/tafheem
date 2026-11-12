@@ -214,7 +214,8 @@ async def listen(
             except NotInstalled as exc:
                 # A missing engine is a machine that was never set up, not a
                 # bad request.
-                raise filed.fail(503, str(exc), "hear", exc) from exc
+                # The exc text names a path on this machine: it stays in the log.
+                raise filed.fail(503, "Listening is not set up on this server.", "hear", exc) from exc
             except Exception as exc:
                 log.exception("listening failed")
                 raise filed.fail(
