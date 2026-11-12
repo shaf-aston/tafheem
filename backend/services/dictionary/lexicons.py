@@ -22,7 +22,7 @@ import zlib
 from pathlib import Path
 from typing import Iterator
 
-from backend.services.text.arabic_text import normalize_root
+from backend.services.text.arabic_text import doubled_twin, normalize_root
 from backend.services.core.availability import BROKEN, MISSING, READY
 from backend.services.dictionary.root_meaning import read_fold
 from backend.services.core.readonly_db import ReadOnlyDb
@@ -138,15 +138,44 @@ def _folded(key: str) -> str:
     return key.translate(_fold) if _fold else key
 
 
+_SELECT = (
+    "SELECT b.id, b.title, b.english, b.author, b.died, b.language,"
+    "       b.source, b.ord,"
+    "       e.head, e.body, e.root"
+    "  FROM entry e JOIN book b ON b.id = e.book"
+)
+_EXACT = _SELECT + " WHERE e.root = ?"
+# For a reader who writes امر where the book wrote أمر, and only where the folded
+# letters belong to one root in that book: هنأ and هنا fold together and are two.
+_LOOSE = _SELECT + (
+    " WHERE e.folded = ?"
+    "   AND (SELECT COUNT(DISTINCT root) FROM entry"
+    "         WHERE folded = e.folded AND book = e.book) = 1"
+)
+
+
+def _ways_in(root: str) -> Iterator[tuple[str, str]]:
+    """Each (query, key) a book may be reached by, most exact first.
+
+    The letters typed, then those letters folded, then a doubled root's other
+    spelling the same two ways: Lane heads مدد as مد, Lisan heads مد as مدد.
+    """
+    for spelling in (root, doubled_twin(root)):
+        if spelling:
+            yield _EXACT, spelling
+            yield _LOOSE, _folded(spelling)
+
+
 def entries_for(root: str) -> list[dict] | None:
     """Every book's entry for this root, best-attested spelling first.
 
-    The letters typed answer for themselves first. Only a book with nothing
-    under them is asked again under a folded spelling, so a root a book really
-    does hold can never be answered by a different one that merely looks like
-    it. And a folded spelling that two different roots share, هنأ and هنا, is
-    refused outright rather than settled by whichever was written first: a
-    reader shown the wrong root's entry has no way of knowing.
+    Each book is answered by the first way in that reaches it (_ways_in), so a
+    root a book really does hold can never be answered by a different one that
+    merely looks like it, and one book matching exactly does not stop another
+    being found under its own spelling. A folded spelling that two different
+    roots share, هنأ and هنا, is refused outright rather than settled by
+    whichever was written first: a reader shown the wrong root's entry has no
+    way of knowing.
 
     None when the database fails mid-read, which is not the same answer as no entry.
     """
@@ -155,41 +184,25 @@ def entries_for(root: str) -> list[dict] | None:
     if db is None or not root:
         return []
 
+    answered: dict[str, list[sqlite3.Row]] = {}
     try:
-        rows = db.execute(
-            "SELECT b.id, b.title, b.english, b.author, b.died, b.language,"
-            "       b.source, b.ord,"
-            "       e.head, e.body, e.root"
-            "  FROM entry e JOIN book b ON b.id = e.book"
-            " WHERE e.root = ?",
-            (root,),
-        ).fetchall()
-        answered = {row["id"] for row in rows}
-
-        # The second way in, for a reader who writes امر where the book wrote
-        # أمر. One book at a time: Lisan may hold the exact spelling while Lane
-        # holds only the folded one, and the reader should get both.
-        loose = db.execute(
-            "SELECT b.id, b.title, b.english, b.author, b.died, b.language,"
-            "       b.source, b.ord,"
-            "       e.head, e.body, e.root"
-            "  FROM entry e JOIN book b ON b.id = e.book"
-            " WHERE e.folded = ?"
-            "   AND (SELECT COUNT(DISTINCT root) FROM entry"
-            "         WHERE folded = e.folded AND book = e.book) = 1",
-            (_folded(root),),
-        ).fetchall()
+        for query, key in _ways_in(root):
+            reached: dict[str, list[sqlite3.Row]] = {}
+            for row in db.execute(query, (key,)):
+                reached.setdefault(row["id"], []).append(row)
+            for book, rows in reached.items():
+                answered.setdefault(book, rows)
     except sqlite3.Error as exc:
         logger.warning("could not read the dictionaries: %s", exc)
         return None
 
-    # Merged, then put back into the books' own order, longest entry first
-    # within a book. Without this a book that happened to hold the exact spelling
-    # would jump ahead of the ones that only matched folded. Measured on the
-    # unpacked text: the stored body is compressed, and its size is not its length.
+    # Put back into the books' own order, longest entry first within a book.
+    # Without this a book that happened to hold the exact spelling would jump
+    # ahead of the ones that only matched folded. Measured on the unpacked text:
+    # the stored body is compressed, and its size is not its length.
     found = sorted(
         ((row, zlib.decompress(row["body"]).decode("utf-8"))
-         for row in [*rows, *(row for row in loose if row["id"] not in answered)]),
+         for rows in answered.values() for row in rows),
         key=lambda pair: (pair[0]["ord"], -len(pair[1])),
     )
     # One card per book, not per entry. A book returns to a root in a later

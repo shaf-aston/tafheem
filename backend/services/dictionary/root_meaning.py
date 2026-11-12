@@ -23,7 +23,7 @@ from pathlib import Path
 
 from backend.config import get_settings
 from backend.services.core.availability import BROKEN, MISSING, READY
-from backend.services.text.arabic_text import normalize_root
+from backend.services.text.arabic_text import doubled_twin, normalize_root
 from backend.services.dictionary import root_english
 from backend.services.dictionary import root_gloss
 
@@ -165,12 +165,18 @@ class JsonFileProvider:
         The letters typed answer for themselves first. Only when the book has
         nothing under them is a second spelling tried, so a root the book really
         does hold can never be answered by a different one that merely looks
-        like it.
+        like it. Last comes a doubled root's other spelling: Ibn Faris heads مدد
+        as مد, so without it every doubled root read as missing from his book.
         """
         key = normalize_root(root)
-        if key in self._entries:
-            return key
-        return self._folded.get(key.translate(self._fold)) if self._fold else None
+        for spelling in (key, doubled_twin(key)):
+            if not spelling:
+                continue
+            if spelling in self._entries:
+                return spelling
+            if self._fold and (owner := self._folded.get(spelling.translate(self._fold))):
+                return owner
+        return None
 
     def lookup(self, root: str) -> dict | None:
         book_root = self.book_root_of(root)

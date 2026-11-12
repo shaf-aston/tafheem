@@ -316,6 +316,28 @@ def test_the_card_is_told_when_the_book_spells_the_root_differently(client, tmp_
     assert _get(client, "امر")["book_root"] == "أمر"
 
 
+def test_a_doubled_root_reaches_ibn_faris_who_heads_it_with_two_letters(client):
+    """Ibn Faris files مدد as مد, all 474 of his doubled roots that way; the
+    analyser and the other books hand over مدد, which read as "no entry"."""
+    client.install(json.dumps({"مد": {"core_meaning": "جر شيء في طول"}}, ensure_ascii=False))
+    body = _get(client, "مدد")
+    assert body["meaning"]["core_meaning"] == "جر شيء في طول"
+    assert body["book_root"] == "مد"
+
+
+def test_a_root_the_book_holds_whole_is_never_answered_by_its_two_letters(tmp_path):
+    """The twin is the last way in, after the letters typed and their fold."""
+    provider = _spelled(tmp_path, {
+        "مد": {"core_meaning": "the doubled root"},
+        "ردد": {"core_meaning": "held whole"}, "رد": {"core_meaning": "held short"},
+    })
+    assert provider.book_root_of("ردد") == "ردد"
+    assert provider.book_root_of("رد") == "رد"
+    assert provider.book_root_of("مدد") == "مد"
+    # Three letters whose last two differ have no twin to fall back on.
+    assert provider.book_root_of("مدر") is None
+
+
 def test_no_note_when_the_spelling_searched_is_the_one_printed(client):
     """Naming the same letters back reads as a correction that never happened."""
     client.install(json.dumps({"كتب": {"core_meaning": "الجمع"}}, ensure_ascii=False))

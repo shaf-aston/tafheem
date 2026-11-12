@@ -190,6 +190,21 @@ def normalize_root(text: str) -> str:
     return _NOT_ROOT_LETTER_RE.sub("", strip_diacritics(text))
 
 
+def doubled_twin(root: str) -> str | None:
+    """The other way a doubled root is written: مدد in full, مد as the books head it.
+
+    Ibn Faris and Lane file every doubled root under its two letters (مد, شبّ),
+    Lisan and Taj and the analyser under all three (مدد). Both are the same root, so a
+    reader who meets one spelling must still reach a book that uses the other.
+    None for any other root: a three-letter root whose last two letters differ has no twin.
+    """
+    if len(root) == 3 and root[1] == root[2]:
+        return root[:2]
+    if len(root) == 2:
+        return root + root[1]
+    return None
+
+
 # A letter as a root writes it: every seated hamza is the root's ء, and آتى keeps the ي of أتي as ى.
 _AS_ROOT = str.maketrans({"ى": "ي", "أ": "ء", "إ": "ء", "آ": "ء", "ؤ": "ء", "ئ": "ء", "ٱ": "ا"})
 
