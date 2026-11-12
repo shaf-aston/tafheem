@@ -132,6 +132,8 @@ READ = Limit("sentence_per_minute", "sentence_all_per_minute",
 # ear's allowance (recite.json asks-share), so these are far above a real reciter and only stop a loop.
 RECORDING = Limit("recording_per_minute", "recording_all_per_minute",
                   "Too many recordings at once; try again in a minute", "Listening is busy right now; try again in a minute")
+JOURNAL = Limit("journal_per_minute", "journal_all_per_minute",
+                "Too many reports at once; wait a minute", "Reports are busy right now; try again in a minute")
 # Answers: far above a learner drilling fast; it slows a script filing the whole word list as learnt.
 ANSWER = Limit("answer_per_minute", "answer_all_per_minute",
                "Too many answers at once; wait a minute", "Saving answers is busy right now; try again in a minute")

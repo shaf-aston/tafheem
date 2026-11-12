@@ -95,6 +95,9 @@ class Nahw(BaseSettings):
     names_per_minute: int = Field(default=30, gt=0)  # a classroom behind one address, on old pages
     names_all_per_minute: int = Field(default=600, gt=0)
     answer_all_per_minute: int = Field(default=6000, gt=0)
+    # The page's journal batches (POST /api/journal, ratelimit.JOURNAL): one every 2s while reciting, so this only stops a loop.
+    journal_per_minute: int = Field(default=120, gt=0)
+    journal_all_per_minute: int = Field(default=1200, gt=0)
     # Sign-up and log-in, one count (services/core/ratelimit.ACCOUNT).
     account_per_minute: int = Field(default=10, gt=0)
     account_all_per_minute: int = Field(default=120, gt=0)
