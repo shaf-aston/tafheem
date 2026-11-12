@@ -70,7 +70,7 @@ def test_failed_load_is_kept_and_reported_not_retried(fresh):
             catib_onnx.warm()
 
     assert len(calls) == 1
-    assert catib_onnx.state().startswith("failed: ImportError")
+    assert catib_onnx.state() == "failed"  # the why is logged, not shown on the public health line
     assert catib_onnx._parser is None
 
 
