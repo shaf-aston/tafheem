@@ -4,7 +4,7 @@
 
 /* ── Chrome controls ────────────────────────────────────────────────────────
    A square button in the page furniture rather than inside a panel: the settings
-   gear, the pen that opens the launcher. One class and one size token, so the
+   gear, the pen that opens the command line. One class and one size token, so the
    two ends of the header row line up instead of being two lookalikes that drift
    apart the first time one of them is edited. */
 .icon-button {
@@ -179,19 +179,16 @@ dialog {
 
 
 /* Every pop-up arrives the same way: its box rises in and its scrim fades, over
-   base-ms like a tab. Settings and All sections used to appear fully formed
-   while the launcher sprang in, so two taps in the same header felt like two
-   apps. The launcher is left out: its ring has its own arrival (.dance), and
-   its scrim already fades in command.css. A sheet pinned to the bottom of a
-   phone (.phone-sheet there, a BottomSheet's mt-auto) slides up instead,
-   from where the finger is. */
+   base-ms like a tab, so two taps in the same header feel like one app. A
+   sheet pinned to the bottom of a phone (.phone-sheet there, a BottomSheet's
+   mt-auto) slides up instead, from where the finger is. */
 /* :where(), so the leave rule below, plainer, still wins while leaving. */
-dialog:where([open]:not(.sh-dialog)) > * {
+dialog:where([open]) > * {
   animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-slide-ease) backwards;
 }
 
 
-dialog:where([open]:not(.sh-dialog))::backdrop {
+dialog:where([open])::backdrop {
   animation: fade-in calc(var(--motion-base-ms) * 1ms) ease;
   --fade-from: 0;
 }
@@ -210,7 +207,7 @@ dialog[data-leaving] > * {
 
 /* A pop-up arrives as one piece: its tiles ride the box's rise instead of
    springing in one by one after it (All sections flickered, 15 pops). */
-dialog:where([open]:not(.sh-dialog)) .rise-in { animation: none; }
+dialog:where([open]) .rise-in { animation: none; }
 
 
 dialog[data-leaving]::backdrop {

@@ -2,7 +2,7 @@
  * The tab registry: the one list of what this app is made of.
  *
  * Everything that needs to know the tabs reads this file: the strip under the
- * header, All sections, the command bar, the orbit launcher, the URL. Adding a tab is one
+ * header, All sections, the command bar, the URL. Adding a tab is one
  * entry here; nothing else is edited.
  *
  * Each panel's code is its own file (lib/nav/panel.js), so the first load carries the
@@ -45,7 +45,7 @@ const MapPanel = panel(() => import('../../components/map/MapPanel'))
 // `group`: its heading in All sections, an id from GROUPS.
 // `blurb`: one plain line on what you do there (Home's cards).
 // `emblem`: the tab's picture (components/ui/display/Emblem.jsx), on its title and wherever
-//   only a small mark fits (phone bar, search rail, launcher ring). Unique across tabs.
+//   only a small mark fits (phone bar, search rail). Unique across tabs.
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
 // `modules`: other names its answers are filed under in the progress store, so a
 //   progress row can say which tab it came from.
@@ -93,7 +93,7 @@ export const TABS = [
   { id: 'kit',    label: 'Kit',        short: 'Kit',    arabic: 'عدة',    emblem: 'kit', Component: KitPanel, hidden: true, blurb: "Small tools for study", group: 'more' },
 ]
 
-/** The tabs a person can browse to: strip, All sections, command bar, launcher, number keys. */
+/** The tabs a person can browse to: strip, All sections, command bar, number keys. */
 export const LISTED = TABS.filter((tab) => !tab.hidden)
 
 // The strip: FIXED always shows, in this order, phones too. WIDE follows from md:

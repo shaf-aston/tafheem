@@ -1,18 +1,15 @@
 /**
- * The box you type a command into. One of these, used in both places.
+ * The box you type a command into. One of these, wherever a command line is drawn.
  *
- * The header bar and the launcher behind the pen ask the same questions and
- * already share the same brain, useCommandLine. This is the rest of it: the
- * magnifying glass, the grey completion printed ahead of the cursor, and the
- * box itself. Written twice they drifted, and the launcher ended up a bare
- * underline with no glass and no completion, so the same typing behaved
- * differently depending on which one you opened.
+ * Every command line shares the same brain, useCommandLine. This is the rest of
+ * it: the magnifying glass, the grey completion printed ahead of the cursor, and
+ * the box itself, written once so the same typing behaves the same everywhere.
  *
  * It takes the whole line object rather than a dozen loose props, because what
  * a caller wants is "put the command line here", not to wire a combobox up by
  * hand. What is left for the caller to choose is only what genuinely differs:
- * the words in an empty box, and whatever sits at the right-hand end, which in
- * the header is the Ctrl K badge and in the launcher is nothing.
+ * the words in an empty box, and whatever sits at the right-hand end (in the
+ * header, the Ctrl K badge).
  */
 import { rowId } from '../../lib/nav/commandRoutes'
 

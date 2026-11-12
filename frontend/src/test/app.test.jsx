@@ -21,7 +21,7 @@ describe('app shell', () => {
 
   it('opens, says the backend is down, and switches tab', async () => {
     renderScreen(<App />)
-    expect(await screen.findByRole('button', { name: 'Open the launcher' })).toBeTruthy()
+    expect(await screen.findByRole('button', { name: 'Search or ask' })).toBeTruthy()
     expect(await screen.findByText(home.copy['offline-title'], {}, { timeout: 3000 })).toBeTruthy()
     fireEvent.click(screen.getAllByRole('tab', { name: /Quiz/ })[0])
     expect(await screen.findByRole('heading', { name: 'Quiz' }, { timeout: 3000 })).toBeTruthy()

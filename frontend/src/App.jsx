@@ -11,6 +11,8 @@ import { replay } from './lib/motion/replay'
 import { setHeaderHeight } from './lib/shell/headerHeight'
 import { useTabNavigation } from './lib/nav/useTabNavigation'
 import { useTools } from './lib/nav/useTools'
+import { ask } from './lib/shell/ask'
+import { PHONE } from './lib/hooks/useMedia'
 import seo from './config/seo.json'
 
 import Backdrop from './components/shell/Backdrop'
@@ -23,7 +25,6 @@ import ProfileButton from './components/profile/ProfileButton'
 import ProfileDialog from './components/profile/ProfileDialog'
 import AskSheet from './components/shell/AskSheet'
 import SettingsPanel from './components/shell/SettingsPanel'
-import SpatialHome from './components/shell/SpatialHome'
 import TabStrip from './components/shell/TabStrip'
 import BottomNav from './components/shell/BottomNav'
 import InstallBanner from './components/shell/InstallBanner'
@@ -46,7 +47,6 @@ const openTab = (id) => {
 function AppContent() {
   const { activeTab, alive, handoffs, switchTab, said, round, strip, dock, placeInDock } = useTabNavigation()
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [spatialOpen, setSpatialOpen] = useState(false)
   const [sectionsOpen, setSectionsOpen] = useState(false)
   // The phone bar's Ask and Me: each a sheet, mounted only while open.
   const [sheet, setSheet] = useState(null)
@@ -91,17 +91,17 @@ function AppContent() {
         <div className="shell py-1 flex items-center justify-between gap-3">
           {/* The name used to be printed here in two lines that said what every
               tab below already says. The pen is the name now, and clicking it
-              opens the launcher, so the corner went from a caption to a way
-              out to everything. The heading itself stays for a screen reader,
-              which has no picture to read. */}
+              asks: the cursor goes to the command line, or on a phone the Ask
+              sheet opens. One way to every tab is the strip and All sections;
+              the pen is the way to anything typed. The heading itself stays
+              for a screen reader, which has no picture to read. */}
           <h1 className="sr-only">Tafheem: Nahw and Sarf, Arabic grammar word by word, with the reason</h1>
           <div className="flex items-center gap-1">
           <button
             type="button"
-            onClick={() => setSpatialOpen(true)}
-            title="Everything, at once"
-            aria-label="Open the launcher"
-            aria-haspopup="dialog"
+            onClick={() => (matchMedia(PHONE).matches ? setSheet('ask') : ask())}
+            title="Search or ask (Ctrl K)"
+            aria-label="Search or ask"
             className="icon-button pen-badge"
           >
             {/* The pen says what the app is doing: waiting, working, or unable to
@@ -204,14 +204,6 @@ function AppContent() {
         </div>
       </footer>
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} onGo={switchTab} />
-      <SpatialHome
-        open={spatialOpen}
-        onClose={() => setSpatialOpen(false)}
-        tabs={LISTED}
-        colorOf={accentOf}
-        onGo={switchTab}
-        here={activeTab}
-      />
       <SectionsMenu
         open={sectionsOpen}
         onClose={() => setSectionsOpen(false)}

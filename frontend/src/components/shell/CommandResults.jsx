@@ -2,8 +2,8 @@
  * What the command line found, with the rail beside it.
  *
  * The rail is the seven tabs as their own letter, each in its own colour, and
- * it is the reason this is a component rather than a list inside the bar: the
- * orbit launcher shows the same rows the same way, and two copies of this would
+ * it is the reason this is a component rather than a list inside the bar: every
+ * command line shows the same rows the same way, and two copies of this would
  * have drifted apart the first time a group was renamed.
  *
  * It decides nothing. Rows come from lib/nav/commandRoutes, colours from the theme,

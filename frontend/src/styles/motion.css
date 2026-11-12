@@ -1,7 +1,7 @@
 /* ── Arriving as a group ────────────────────────────────────────────────────
    Things that come in together: each one small and gathered at the middle, then
-   springing out to where it belongs, one after another. Worn by the ring of tabs
-   in the launcher, and by anything else that should arrive rather than appear.
+   springing out to where it belongs, one after another. Worn by anything that
+   should arrive rather than appear (Kit shows it).
    Set --i on a thing to say where it falls in the order; leave it off and it
    arrives first. How small, how far and how long are theme.json's `dance` group.
 
@@ -125,8 +125,8 @@
 }
 
 
-/* One full turn, for anything that circles slowly forever (a star, the launcher's
-   outer ring); each wearer sets its own lap from theme.json's loop group. */
+/* One full turn, for anything that circles slowly forever (a star); each wearer
+   sets its own lap from theme.json's loop group. */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -410,34 +410,6 @@
 
 @keyframes qalam-sink {
   to { transform: translateY(10px) scale(0.92); opacity: 0.45; }
-}
-
-
-/* In the launcher the pen is not resting, it is dancing. Nothing is happening
-   in there yet, no answer is being waited for and nothing has been got right or
-   wrong, so the mood is idle and the idle bob is a pen sitting still. The orb
-   is the one place the pen has the stage to itself, so it gets a step of its
-   own: a sway from foot to foot with a turn on each side and a little lift in
-   the middle. Written against the mood as well as the place so that a real mood
-   still wins if this orb is ever given one; nothing here overrides being wrong.
-   Its tempo carries --motion-scale like every other loop, which is how the
-   Animations setting stops it with everything else. */
-.qalam[data-place='orb'][data-mood='idle'] .qalam-pen {
-  animation: qalam-dance calc(2s * var(--motion-scale)) ease-in-out infinite;
-}
-
-
-/* Six steps rather than three, and a jump between them: it leans hard onto one
-   side, springs up off it, lands leaning the other way, and comes back. The
-   scale is what makes it read as weight going into the floor and coming off it
-   again, which is the difference between a pen dancing and a pen wobbling. */
-@keyframes qalam-dance {
-  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  15% { transform: translate(-7px, 1px) rotate(-18deg) scale(0.97); }
-  30% { transform: translate(-4px, -14px) rotate(-8deg) scale(1.04); }
-  50% { transform: translate(0, -3px) rotate(0deg) scale(1); }
-  65% { transform: translate(7px, 1px) rotate(18deg) scale(0.97); }
-  80% { transform: translate(4px, -14px) rotate(8deg) scale(1.04); }
 }
 
 
