@@ -50,7 +50,7 @@ export function createCheckQueue({ checkReading, note, sessionId, tuned, onCount
    * Send the front of the queue, if the ear is free and there is one. A
    * check that does not answer within check-timeout-s is given up on rather
    * than left to hold checkBusy true forever: the abort is the job's own,
-   * held so start() can also give up on it when a new session begins.
+   * held so reset() can also give up on it when a new session begins.
    */
   const pump = () => {
     if (checkBusy) return

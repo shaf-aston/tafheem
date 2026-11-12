@@ -76,7 +76,7 @@ function Art({ board }) {
 const CONTROLS = 'space-y-4 lg:col-start-2 lg:row-start-1 lg:sticky lg:top-[var(--app-header-h,0px)] lg:z-10 lg:bg-[color-mix(in_oklab,var(--bg)_88%,transparent)] lg:backdrop-blur-md lg:pt-4 lg:pb-2'
 const CANVAS = 'space-y-2 max-w-xl mx-auto w-full lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--app-header-h,0px)+1rem)]'
 
-export function Board({ board, step = 'test', toolbar = null, split = false }) {
+function Board({ board, step = 'test', toolbar = null, split = false }) {
   const [game, setGame] = useState(() => fresh(board))
   const [picked, setPicked] = useState(null)
   const [heard, setHeard] = useState(0)
