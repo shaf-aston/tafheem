@@ -22,12 +22,13 @@ import uuid
 from collections.abc import AsyncIterator, Iterator
 from contextlib import asynccontextmanager, contextmanager
 
-from fastapi import APIRouter, File, HTTPException, Query, Request, Response, UploadFile
+from fastapi import APIRouter, Depends, File, HTTPException, Query, Request, Response, UploadFile
 from starlette.concurrency import run_in_threadpool
 
 from backend.config import get_settings
 from backend.models.listen import Heard, HeardAyah, HeardPlace, Sureness
 from backend.services import recitation
+from backend.services.core.ratelimit import RECORDING
 from backend.services.learner import journal
 from backend.services.recitation import NotInstalled, Refused, Unreadable, kind_of, rules
 
@@ -150,7 +151,7 @@ def _tuned_model(tuned: bool, filed: _Filed) -> str | None:
     return model
 
 
-@router.post("", response_model=Heard)
+@router.post("", response_model=Heard, dependencies=[Depends(RECORDING)])
 async def listen(
     request: Request,
     response: Response,
@@ -257,7 +258,7 @@ async def listen(
         )
 
 
-@router.post("/check", response_model=Sureness)
+@router.post("/check", response_model=Sureness, dependencies=[Depends(RECORDING)])
 async def listen_check(
     request: Request,
     response: Response,

@@ -32,6 +32,13 @@ def has_arabic(text: str) -> bool:
     return bool(ARABIC_RE.search(text))
 
 
+def foreign_letters(text: str) -> bool:
+    """True when `text` holds a letter of another script (Latin, Cyrillic...). Digits and marks do not count.
+    An Arabic letter glued to English ("Ignoreب") passes has_arabic and words(), and that is how an
+    instruction to a model rides in on an Arabic box: see docs/plans/2026-11-11-security.md (T6)."""
+    return any(unicodedata.category(c)[0] == "L" and not ARABIC_RE.match(c) for c in text)
+
+
 
 def marks_in_order(text: str) -> str:
     """Each letter's marks in one fixed order, length kept: shadda+damma and damma+shadda look alike but differ as text."""
@@ -74,9 +81,11 @@ def words(text: str) -> list[str]:
 
 
 def not_arabic(text: str) -> list[str]:
-    """What words() drops that a reader typed as a word: letters, none Arabic (hello, x).
+    """What a sentence leaves out that a reader typed as a word: letters, none Arabic (hello, x), or
+    Arabic with another script's letters glued on (Helloب, utils.arabic_sentence drops those too).
     A mark or a number is not a word, so it is not reported."""
-    return [w for w in _tokens(text) if any(c.isalpha() for c in w) and not _has_arabic_letter(w)]
+    return [w for w in _tokens(text)
+            if any(c.isalpha() for c in w) and (not _has_arabic_letter(w) or foreign_letters(w))]
 
 
 def unpunctuated(text: str) -> str:

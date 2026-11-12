@@ -74,7 +74,35 @@ class Nahw(BaseSettings):
     # about 1300), so a whole ayah the chart draws also gets its English and its practice.
     max_sentence_chars: int = Field(default=2000, gt=0)
     # Analyses a minute per visitor (POST /api/analyze); the parser costs far more than a page's own clicks.
+    # The second is for everyone together, which no forged address gets past (the parser is the CPU's).
+    # Every *_all_* count is kept by each server process (two run), so the machine as a whole takes twice it.
     analyze_per_minute: int = Field(default=60, gt=0)
+    analyze_all_per_minute: int = Field(default=600, gt=0)
+    # The same for a sentence's meaning and its practice questions (GET /api/dictionary/sentence, POST
+    # /api/practice), which also run the parser and share one count (services/core/ratelimit.READ).
+    sentence_per_minute: int = Field(default=60, gt=0)
+    sentence_all_per_minute: int = Field(default=600, gt=0)
+    # Recordings (POST /api/listen and /api/listen/check share one count, services/core/ratelimit.RECORDING).
+    # A reading is one of each, and the page asks at most about one a second; this only stops a loop.
+    recording_per_minute: int = Field(default=120, gt=0)
+    recording_all_per_minute: int = Field(default=600, gt=0)
+    # Answers filed (POST /api/progress/attempts, services/core/ratelimit.ANSWER). A quick drill is a few a
+    # second at most; this stops a script walking the word list into the ranking in minutes.
+    answer_per_minute: int = Field(default=120, gt=0)
+    # Different usernames one visitor may name without a device token in a minute (ratelimit.NAMELESS).
+    answer_address_per_minute: int = Field(default=1200, gt=0)  # every account from one address together
+    names_per_minute: int = Field(default=30, gt=0)  # a classroom behind one address, on old pages
+    names_all_per_minute: int = Field(default=600, gt=0)
+    answer_all_per_minute: int = Field(default=6000, gt=0)
+    # Sign-up and log-in, one count (services/core/ratelimit.ACCOUNT).
+    account_per_minute: int = Field(default=10, gt=0)
+    account_all_per_minute: int = Field(default=120, gt=0)
+    # Calls to the model (Groq) a minute, charged in services/ai._ask for each call that would reach it
+    # (services/core/ratelimit.AI): an answer already on file costs nothing. One budget for every model-backed
+    # route, so a person who rarely asks ten a minute is never near it. The second is for everyone together:
+    # what the Groq key can take.
+    ai_per_minute: int = Field(default=20, gt=0)
+    ai_all_per_minute: int = Field(default=120, gt=0)
     # Recent sentences kept read in memory: the Analyse page and its practice questions ask for the same
     # sentence one after the other, and the parser is most of each answer's time.
     analyses_kept: int = Field(default=256, ge=0)
@@ -351,7 +379,9 @@ class Speech(BaseSettings):
     # Every line made ahead (scripts/speech/premake_speech.py: Colloquial, quiz words, example sentences) is ~1.9 GB, so this leaves room past it.
     speech_cache_max_mb: float = Field(default=3000.0, gt=0)
     # Asks a minute per visitor; a phrase counts one ask per speech_chars_per_ask letters.
+    # The second is for everyone together (per server process, like analyze_all_per_minute).
     speech_per_minute: int = Field(default=60, gt=0)
+    speech_all_per_minute: int = Field(default=600, gt=0)
     speech_chars_per_ask: int = Field(default=40, gt=0)
 
 
@@ -369,6 +399,9 @@ class Journal(BaseSettings):
     # Every search people type and what came back (journal.note_search). Never rotated: it is the
     # record of real questions that a search yardstick, and later any training, is built from.
     search_log_path: str = "logs/searches.jsonl"
+    # The security log (services/core/audit.py): refused and failed answers and account events, one JSON
+    # line each, no bodies, no typed text. Rotated by deploy/logrotate.conf, not here: two processes write it.
+    security_log_path: str = "logs/security.jsonl"
 
 
 class Daleel(BaseSettings):
@@ -531,8 +564,20 @@ class Progress(BaseSettings):
     username_max: int = 40
     # Largest shelf (everything the page keeps for one account) the server takes, in bytes.
     saved_max_bytes: int = Field(default=512_000, gt=0)
-    # Beta testing: the log-in box lists every username so a tester can pick one. Off before launch.
-    beta_list_accounts: bool = True
+    # Beta testing: the log-in box lists every username so a tester can pick one. Off: the app is
+    # launched, and with no password the list is every account anyone could act as. On only for a test server.
+    beta_list_accounts: bool = False
+    # Accounts from before device tokens (services/learner/tokens.py) have none. While this is on, the first
+    # page to log in to one claims it (trust on first use, logged as "token_claimed"), and until then its
+    # name alone still reads and answers, so a page from before tokens keeps working. Turn it off about a
+    # month after tokens ship (docs/plans/2026-11-11-security.md §5): an account nobody claimed by then can
+    # only be opened with a code the owner makes (python -m backend.scripts.recovery_code NAME).
+    account_claims_open: bool = True
+    # The device-token cookie is __Host- and Secure. Browsers keep a Secure cookie from plain http only on
+    # http://localhost, and Safari not even there. So a dev server opened on http://127.0.0.1, a LAN address
+    # (http://192.168..., a phone on the same wifi), or in Safari sets COOKIE_SECURE=false in .env (the cookie is
+    # then plain "tafheem"). Chrome, Edge and Firefox on http://localhost need nothing.
+    cookie_secure: bool = True
     # How many accounts the leaderboard lists; the asker's own place is always sent too.
     leaderboard_size: int = 20
     # Circle kinds (services/learner/circles.py): each kind's members_see_details flag. True: every joined

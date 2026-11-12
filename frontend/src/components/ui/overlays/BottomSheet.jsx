@@ -5,21 +5,25 @@
  * the page behind stops scrolling through the :modal rule in styles/components.css.
  * Closing by unmounting skips the browser's own focus return, so the opener
  * is noted on the first render and handed focus back here.
+ *
+ * `held`: neither Esc nor the backdrop closes it, and a browser that closes it
+ * anyway (Chrome lets a second Esc through) finds it open again: for a sheet
+ * whose own button is the only way on (a recovery code, shown once).
  */
 import { useEffect, useState } from 'react'
 
 import { closeOnBackdrop, useModal } from '../../../lib/hooks/useModal'
 
-export default function BottomSheet({ label, onClose, className = '', children }) {
-  const dialog = useModal(true)
+export default function BottomSheet({ label, onClose, held = false, className = '', children }) {
+  const dialog = useModal(true, held)
   const [opener] = useState(() => document.activeElement)
   useEffect(() => () => opener?.focus?.(), [opener])
   return (
     <dialog
       ref={dialog}
       aria-label={label}
-      onClose={onClose}
-      onClick={closeOnBackdrop(onClose)}
+      onClose={held ? () => dialog.current?.showModal() : onClose}
+      onClick={held ? undefined : closeOnBackdrop(onClose)}
       className="m-0 mt-auto sm:m-auto p-0 w-full max-w-none sm:max-w-[var(--sheet-standard)] max-h-[100dvh] bg-transparent"
     >
       <div

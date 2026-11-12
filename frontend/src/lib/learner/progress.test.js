@@ -4,6 +4,7 @@ import { api } from '../../api'
 import {
   answerInvite, deleteAccount, fetchAccount, fetchAccountNames, fetchCircle, fetchLeaderboard, fetchMemberOverview,
   fetchReviewItems, fetchSummary, forgetProgress, inviteMember, leaveFeedback, moveCircle, recordAttempt, removeMember, logIn, signUp,
+  firstCode, logOutHere, logOutOthers, needsCode, newRecoveryCode,
 } from './progress'
 
 afterEach(() => vi.restoreAllMocks())
@@ -104,7 +105,7 @@ describe('whose record', () => {
     await signUp('bilal', false)
     await logIn('bilal')
     expect(sent.map((config) => config.headers.get('X-Tafheem-Profile'))).toEqual(['bilal', 'bilal'])
-    expect(JSON.parse(sent[0].data)).toEqual({ keep: false })
+    expect(JSON.parse(sent[0].data)).toEqual({ keep: false, shows_code: true })
   })
 
   it('a guest sends no name', async () => {
@@ -157,5 +158,75 @@ describe('circles, and the log-in list', () => {
   it('throws when beta is over, so the log-in list just goes', async () => {
     vi.spyOn(api, 'get').mockRejectedValue(refused(404))
     await expect(fetchAccountNames()).rejects.toThrow()
+  })
+})
+
+describe('proving this browser is the account\'s', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    delete api.defaults.adapter
+  })
+
+  const answering = (data, status = 200) => {
+    const sent = []
+    api.defaults.adapter = async (config) => {
+      sent.push(config)
+      if (status >= 400) throw Object.assign(new Error('refused'), { response: { status, data } })
+      return { data, status, statusText: 'OK', headers: {}, config }
+    }
+    return sent
+  }
+
+  it('logs in with the recovery code in the body only when one is typed, saying the code will be shown', async () => {
+    vi.stubGlobal('localStorage', { getItem: () => null })
+    const sent = answering({ name: 'bilal', recovery: 'AAAA-BBBB-CCCC-DDDD' })
+    expect(await logIn('bilal', 'abcd-efgh')).toEqual({ name: 'bilal', recovery: 'AAAA-BBBB-CCCC-DDDD' })
+    await logIn('bilal')
+    expect(sent.map((config) => JSON.parse(config.data))).toEqual([{ shows_code: true, code: 'abcd-efgh' }, { shows_code: true }])
+    await signUp('bilal', false)
+    expect(JSON.parse(sent[2].data)).toEqual({ keep: false, shows_code: true })
+  })
+
+  it('a 403 is the one refusal the code answers', () => {
+    expect(needsCode(refused(403))).toBe(true)
+    expect(needsCode(refused(401))).toBe(false)
+    expect(needsCode(refused(404))).toBe(false)
+    expect(needsCode(new Error('offline'))).toBe(false)
+  })
+
+  it('a new code and logging out the others call the server and resolve what it says', async () => {
+    vi.stubGlobal('localStorage', { getItem: () => null })
+    let sent = answering({ code: 'WXYZ-WXYZ-WXYZ-WXYZ' })
+    expect(await newRecoveryCode()).toBe('WXYZ-WXYZ-WXYZ-WXYZ')
+    expect([sent[0].method, sent[0].url]).toEqual(['post', '/progress/recovery'])
+    expect(JSON.parse(sent[0].data)).toEqual({})
+    await newRecoveryCode('abcd-efgh-jkmn-pqrs')
+    expect(JSON.parse(sent[1].data)).toEqual({ code: 'abcd-efgh-jkmn-pqrs' })
+    await firstCode()
+    expect(JSON.parse(sent[2].data)).toEqual({ first: true })
+    sent = answering({ deleted: 2 })
+    expect(await logOutOthers()).toBe(2)
+    expect([sent[0].method, sent[0].url]).toEqual(['delete', '/progress/sessions'])
+  })
+
+  it('logging out tells the server, then goes back to the guest', async () => {
+    const data = new Map([['profile', 'amina']])
+    vi.stubGlobal('localStorage', { getItem: (k) => data.get(k) ?? null, removeItem: (k) => data.delete(k) })
+    vi.stubGlobal('location', { reload: vi.fn() })
+    const sent = answering({ deleted: true })
+    await logOutHere()
+    expect([sent[0].method, sent[0].url]).toEqual(['delete', '/progress/session'])
+    expect(data.has('profile')).toBe(false)
+    expect(location.reload).toHaveBeenCalledOnce()
+  })
+
+  it('a log-out the server did not hear throws and keeps the name: the cookie would still let it in', async () => {
+    const data = new Map([['profile', 'amina']])
+    vi.stubGlobal('localStorage', { getItem: (k) => data.get(k) ?? null, removeItem: (k) => data.delete(k) })
+    vi.stubGlobal('location', { reload: vi.fn() })
+    answering({ detail: 'down' }, 503)
+    await expect(logOutHere()).rejects.toThrow()
+    expect(data.get('profile')).toBe('amina')
+    expect(location.reload).not.toHaveBeenCalled()
   })
 })

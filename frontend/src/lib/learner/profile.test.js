@@ -90,3 +90,39 @@ describe('deviceId', () => {
     expect(profileHeaders()).toEqual({ 'X-Tafheem-Profile': 'amina' })
   })
 })
+
+describe('logging out by itself', () => {
+  const load = async () => {
+    vi.resetModules()
+    return import('./profile')
+  }
+  afterEach(() => vi.unstubAllGlobals())
+
+  it('leaves its reason for the log-in box, which reads it once per page and never again', async () => {
+    const data = new Map([['profile', 'amina']])
+    const session = new Map()
+    vi.stubGlobal('localStorage', { getItem: (k) => data.get(k) ?? null, removeItem: (k) => data.delete(k) })
+    vi.stubGlobal('sessionStorage', {
+      getItem: (k) => session.get(k) ?? null, setItem: (k, v) => session.set(k, v), removeItem: (k) => session.delete(k),
+    })
+    vi.stubGlobal('location', { reload: vi.fn() })
+    const before = await load()
+    before.logOutBecause('amina: Log in again on this device.')
+    expect(data.has('profile')).toBe(false)
+    expect(location.reload).toHaveBeenCalledOnce()
+    const after = await load() // the reloaded page
+    expect(after.takeLoggedOutNote()).toBe('amina: Log in again on this device.')
+    expect(after.takeLoggedOutNote()).toBe('amina: Log in again on this device.')
+    expect((await load()).takeLoggedOutNote()).toBe('')
+  })
+
+  it('still logs out when the browser keeps no session storage', async () => {
+    vi.stubGlobal('localStorage', { getItem: () => null, removeItem: () => {} })
+    vi.stubGlobal('sessionStorage', { getItem: () => { throw new Error('blocked') }, setItem: () => { throw new Error('blocked') } })
+    vi.stubGlobal('location', { reload: vi.fn() })
+    const profile = await load()
+    profile.logOutBecause('why')
+    expect(location.reload).toHaveBeenCalledOnce()
+    expect(profile.takeLoggedOutNote()).toBe('')
+  })
+})

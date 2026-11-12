@@ -29,7 +29,7 @@ from backend.services.sarf import conjugation
 from backend.services.core import provenance
 from backend.services.sarf import answer as sarf_word
 from backend.services.sarf import word_meaning
-from backend.utils import normalize_text, require_arabic
+from backend.utils import arabic_word, normalize_text, require_arabic
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/morphology", tags=["morphology"])
@@ -53,18 +53,22 @@ async def analyze_meaning(request: MeaningRequest) -> MeaningResponse:
     waits on this, the table is already on screen by the time the frontend
     fires this request, so the wait is felt only by the one field that needs it.
     """
-    word = normalize_text(request.word, "Word")
-    require_arabic(word, "Word")
+    word = arabic_word(request.word, "Word")
 
     ai_result = await asyncio.to_thread(word_meaning.of, word)
     if ai_result is None:
         return MeaningResponse()
 
-    meaning = ai_result.get("meaning") or None
+    # Text or nothing: a model that answers a field with a list or a number is wrong, not a 500.
+    def text(key: str, longest: int) -> str | None:
+        value = ai_result.get(key)
+        return (value.strip()[:longest] or None) if isinstance(value, str) else None
+
+    meaning = text("meaning", 300)
     return MeaningResponse(
         meaning=meaning,
         meaning_source=provenance.of("ai") if meaning else None,
-        verb_class=ai_result.get("verb_class"),
+        verb_class=text("verb_class", 60),
     )
 
 

@@ -10,8 +10,12 @@ After=network.target
 [Service]
 User=ubuntu
 WorkingDirectory=/home/ubuntu/tafheem
-Environment=PATH=/home/ubuntu/tafheem/venv/bin
-ExecStart=/home/ubuntu/tafheem/venv/bin/uvicorn backend.main:app --host 127.0.0.1 --port %i
+# The venv first; /usr/bin for ffmpeg, which the recording studio runs (services/speech_recordings.py).
+Environment=PATH=/home/ubuntu/tafheem/venv/bin:/usr/bin:/bin
+# No access log here: uvicorn's would put every query string (?q=, ?text=, typed sentences) into
+# journald. Caddy's access log has the same requests with those parameters filtered out (deploy/Caddyfile),
+# and deploy/usage.sh counts from it; refusals are in logs/security.jsonl (services/core/audit.py).
+ExecStart=/home/ubuntu/tafheem/venv/bin/uvicorn backend.main:app --host 127.0.0.1 --port %i --no-access-log
 Restart=always
 RestartSec=5
 

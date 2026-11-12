@@ -18,7 +18,7 @@ import json
 from datetime import datetime, timedelta, timezone
 
 from backend.config import get_settings
-from backend.services.learner import review_schedule
+from backend.services.learner import quiz_words, review_schedule
 from backend.services.learner import rewards as reward_rules
 from backend.services.learner.progress_db import connection
 from backend.services.learner.username import GUEST
@@ -148,9 +148,11 @@ def kept_questions(module: str, sentence: str | None = None, user: str = GUEST) 
 
 
 def learnt(module: str, name: str) -> int:
-    """How many items this name has learnt in `module`: the leaderboard's measure."""
+    """How many items this name has learnt in `module`: the leaderboard's measure. In a quiz module only its
+    words count (services/learner/quiz_words.py), whatever was filed before that rule."""
     now = datetime.now(timezone.utc)
-    return sum(review_schedule.is_known(card, now) for card in _replay(module, name).values())
+    return sum(review_schedule.is_known(card, now) for item, card in _replay(module, name).items()
+               if quiz_words.allowed(module, item))
 
 
 def _learnt_everywhere(user: str) -> dict[str, int]:
@@ -159,8 +161,9 @@ def _learnt_everywhere(user: str) -> dict[str, int]:
     now = datetime.now(timezone.utc)
     cards = _fold(connection().execute(_EVERY_ANSWER, (user,)), lambda row: (row["module"], row["item"]))
     counts: dict[str, int] = {}
-    for (module, _item), card in cards.items():
-        counts[module] = counts.get(module, 0) + review_schedule.is_known(card, now)
+    for (module, item), card in cards.items():
+        if quiz_words.allowed(module, item):
+            counts[module] = counts.get(module, 0) + review_schedule.is_known(card, now)
     return counts
 
 

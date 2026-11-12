@@ -7,7 +7,7 @@ import { Fragment, useLayoutEffect, useRef, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { analyzeIraab, generatePractice, translateSentence } from '../../api'
-import { errorMessage, errorStatus } from '../../lib/api/apiError'
+import { errorMessage, errorStatus, retryServerErrors } from '../../lib/api/apiError'
 import { useMutation } from '../../lib/api/useMutation'
 import { buildIraabExportText } from '../../lib/nahw/iraabExport'
 import { bareForm } from '../../lib/text/arabicText'
@@ -221,6 +221,8 @@ function useSentenceMeaning(sentence) {
     queryFn: () => translateSentence(sentence),
     enabled: Boolean(sentence),
     staleTime: Infinity,
+    // A refusal (429 too many, 422) is not asked again: it answers the same and spends a model call.
+    retry: retryServerErrors(1),
   })
 }
 

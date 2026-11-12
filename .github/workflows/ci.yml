@@ -9,6 +9,12 @@ on:
   push:
     branches: [master]
 
+# Read the code and the parser-model release, nothing else: a step that is tricked into running
+# someone's code gets a token that can change nothing. Actions are pinned to a commit, not a tag,
+# because a tag can be moved; Dependabot (.github/dependabot.yml) proposes the new commit when one ships.
+permissions:
+  contents: read
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -17,8 +23,8 @@ jobs:
   backend:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5.6.0
         with:
           python-version: "3.13"
           cache: pip
@@ -35,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30  # a run takes about 10; a hang dumps where it is stuck (faulthandler_timeout) and stops here
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
       - name: Fetch the parser encoder
         id: model
         env:
@@ -46,12 +52,12 @@ jobs:
           else
             echo "::warning::No parser-model release with encoder.onnx: whole-sentence tests and the score check skipped"
           fi
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5.6.0
         if: steps.model.outputs.ready == 'true'
         with:
           python-version: "3.13"
           cache: pip
-      - uses: actions/cache@v4
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830  # v4.3.0
         if: steps.model.outputs.ready == 'true'
         with:
           path: ~/.camel_tools
@@ -75,8 +81,8 @@ jobs:
       run:
         working-directory: frontend
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4.4.0
         with:
           node-version: "22"
           cache: npm

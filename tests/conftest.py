@@ -10,22 +10,43 @@ from __future__ import annotations
 import pytest
 
 from backend.config import get_settings
+from backend.services.core import audit
 from backend.services.nahw import iraab
-from backend.services.learner import journal
+from backend.services.learner import journal, quiz_words
 
 
 @pytest.fixture(autouse=True)
-def _journal_writes_to_tmp(tmp_path, monkeypatch):
+def _journal_writes_to_tmp(tmp_path, tmp_path_factory, monkeypatch):
     monkeypatch.setattr(get_settings(), "journal_path", str(tmp_path / "journal.jsonl"))
     monkeypatch.setattr(journal, "_built_from", None)
     monkeypatch.setattr(get_settings(), "search_log_path", str(tmp_path / "searches.jsonl"))
+    # Its own folder: a test may use tmp_path as a cache and check nothing else landed in it.
+    monkeypatch.setattr(get_settings(), "security_log_path", str(tmp_path_factory.mktemp("security") / "security.jsonl"))
+    monkeypatch.setattr(audit, "_built_from", None)
     yield
+
+
+@pytest.fixture(autouse=True)
+def _any_quiz_item(monkeypatch):
+    """Suites name quiz items "a", "train", "to-go": the real word list is checked in
+    tests/learner/test_quiz_words.py, which puts it back."""
+    monkeypatch.setattr(quiz_words, "_keys", lambda: None)
 
 
 @pytest.fixture(autouse=True)
 def _analyze_unlimited(monkeypatch):
     """Suites that analyse hundreds of sentences from one client are not one hammering visitor."""
     monkeypatch.setattr(get_settings(), "analyze_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "ai_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "ai_all_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "analyze_all_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "speech_all_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "sentence_per_minute", 10**9)
+    monkeypatch.setattr(get_settings(), "sentence_all_per_minute", 10**9)
+    for name in ("recording_per_minute", "recording_all_per_minute", "account_per_minute", "account_all_per_minute",
+                 "answer_per_minute", "answer_all_per_minute", "names_per_minute", "names_all_per_minute",
+                 "answer_address_per_minute"):
+        monkeypatch.setattr(get_settings(), name, 10**9)
 
 
 @pytest.fixture(autouse=True)

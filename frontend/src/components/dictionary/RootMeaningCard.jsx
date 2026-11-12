@@ -16,7 +16,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { getRootMeaning } from '../../api'
 import config from '../../config/dictionary.json'
-import { ENGLISH, englishQuery } from '../../lib/dictionary/entryEnglish'
+import { ENGLISH, englishQuery, shownView } from '../../lib/dictionary/entryEnglish'
 import { BROKEN, MISSING, READY } from '../../lib/dictionary/loadStatus'
 import { useHealth } from '../../lib/api/useHealth'
 import { useRemembered } from '../../lib/store/useRemembered'
@@ -135,8 +135,10 @@ function Body({
   // are a convenience. Remembered, so a reader who prefers one keeps it.
   const [chosenView, setView] = useRemembered('dict.entry-view', VIEWS.map((v) => v.id))
   // Opened on its own (a wide screen), the card shows only English already
-  // kept: Word by word not yet made would be a model call nobody pressed for.
-  const view = chosenView === 'words' && !pressed && !data?.senses_kept ? 'together' : chosenView
+  // kept (lib/dictionary/entryEnglish.shownView). Choosing a view is a press:
+  // without it, choosing one not kept left Together on screen.
+  const view = shownView(chosenView, pressed, data)
+  const choose = (next) => { setOpened(true); setView(next) }
   const paired = view !== 'together'
 
   // Asked and got no answer at all. Say so, rather than showing a loading bar
@@ -311,7 +313,7 @@ function Body({
               className="w-fit"
               options={VIEWS}
               value={view}
-              onChange={setView}
+              onChange={choose}
             />
           )}
 
