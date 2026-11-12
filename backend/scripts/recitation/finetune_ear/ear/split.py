@@ -13,7 +13,7 @@ from . import settings as S
 from .sound import rough
 from .text import canon
 
-KEPT = ['sound', 'said', 'src', 'secs']
+KEPT = ['sound', 'said', 'page', 'src', 'secs']
 # What filters read. Given whole rows they unpacked every clip's sound: 25 clips a second, ~45 min a run.
 NAMES = ['who', 'ayah']
 

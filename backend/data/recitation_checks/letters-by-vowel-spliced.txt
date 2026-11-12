@@ -1,619 +1,619 @@
 Ear shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a, rule worst, cut 0.000256. Set spliced, 4093 slips, 5% caught.
-caught = slipped word red; red = right letter's piece below the cut. (few) = under 10 cases, too few to judge. 0 right words skipped (pieces did not line up).
+caught = slipped word red; heard = slipped word under half as sure as in the untouched recording; red = right letter's piece below the cut. (few) = under 10 cases, too few to judge. 0 right words skipped (pieces did not line up).
 
 SLIPS BY KIND
-kind                context                        n caught
-vowel length                                    1376     8%
-vowel swapped                                   1010     3%
-letter dropped                                   927     4%
-letter swapped                                   780     2%
+kind                context                        n caught  heard
+vowel length                                    1376     8%    47%
+vowel swapped                                   1010     3%    27%
+letter dropped                                   927     4%    21%
+letter swapped                                   780     2%    22%
 
 SLIPS BY KIND AND VOWEL
-kind                context                        n caught
-letter dropped      sukun after fatha            206     7%
-letter dropped      fatha                        204     4%
-letter dropped      sukun after damma             98     3%
-letter dropped      long fatha                    92     1%
-letter dropped      sukun after kasra             85     2%
-letter dropped      damma                         82     1%
-letter dropped      kasra                         81     1%
-letter dropped      long damma                    46     0%
-letter dropped      long kasra                    33     3%
-letter swapped      fatha                        301     2%
-letter swapped      long fatha                   142     1%
-letter swapped      kasra                         97     2%
-letter swapped      damma                         56     5%
-letter swapped      long kasra                    51     0%
-letter swapped      sukun after fatha             42     2%
-letter swapped      long damma                    33     6%
-letter swapped      sukun after kasra             32     0%
-letter swapped      sukun after damma             26     0%
-vowel length        fatha                        365    11%
-vowel length        long fatha                   247     8%
-vowel length        kasra                        239     8%
-vowel length        long kasra                   189    11%
-vowel length        damma                        188     7%
-vowel length        long damma                   148     3%
-vowel swapped       damma                        375     2%
-vowel swapped       kasra                        368     4%
-vowel swapped       fatha                        267     3%
+kind                context                        n caught  heard
+letter dropped      sukun after fatha            206     7%    36%
+letter dropped      fatha                        204     4%    19%
+letter dropped      sukun after damma             98     3%    28%
+letter dropped      long fatha                    92     1%    17%
+letter dropped      sukun after kasra             85     2%    18%
+letter dropped      damma                         82     1%     6%
+letter dropped      kasra                         81     1%    11%
+letter dropped      long damma                    46     0%    11%
+letter dropped      long kasra                    33     3%    18%
+letter swapped      fatha                        301     2%    27%
+letter swapped      long fatha                   142     1%    25%
+letter swapped      kasra                         97     2%    13%
+letter swapped      damma                         56     5%    16%
+letter swapped      long kasra                    51     0%    20%
+letter swapped      sukun after fatha             42     2%    29%
+letter swapped      long damma                    33     6%    15%
+letter swapped      sukun after kasra             32     0%    19%
+letter swapped      sukun after damma             26     0%     4%
+vowel length        fatha                        365    11%    57%
+vowel length        long fatha                   247     8%    62%
+vowel length        kasra                        239     8%    37%
+vowel length        long kasra                   189    11%    39%
+vowel length        damma                        188     7%    36%
+vowel length        long damma                   148     3%    39%
+vowel swapped       damma                        375     2%    33%
+vowel swapped       kasra                        368     4%    22%
+vowel swapped       fatha                        267     3%    25%
 
 SLIPS BY LETTER AND VOWEL (worst caught first)
-kind                context                        n caught
-vowel length    ت   fatha -> long fatha           20     0%
-letter dropped  م   sukun after damma             20     0%
-letter dropped  م   sukun after fatha             20     0%
-vowel length    ذ   long fatha -> fatha           20     0%
-vowel length    ل   kasra -> long kasra           20     0%
-vowel length    ن   fatha -> long fatha           20     0%
-vowel length    و   fatha -> long fatha           20     0%
-letter dropped  ل   sukun after damma             20     0%
-vowel length    م   kasra -> long kasra           20     0%
-vowel swapped   ت   kasra -> fatha                20     0%
-vowel length    ه   long damma -> damma           20     0%
-vowel swapped   ء   kasra -> fatha                20     0%
-vowel swapped   ء   damma -> fatha                20     0%
-vowel swapped   ب   kasra -> fatha                20     0%
-vowel swapped   ك   damma -> fatha                20     0%
-vowel swapped   ف   kasra -> fatha                20     0%
-vowel length    ف   fatha -> long fatha           20     0%
-letter swapped  ه   fatha                         20     0%
-letter swapped  و   fatha                         20     0%
-letter swapped  ه   kasra                         20     0%
-letter swapped  ن   fatha                         20     0%
-letter dropped  ل   sukun after fatha             20     0%
-vowel swapped   و   fatha -> kasra                20     0%
-letter dropped  ع   fatha                         20     0%
-vowel length    ت   kasra -> long kasra           20     0%
-vowel swapped   ل   kasra -> fatha                20     0%
-vowel length    ف   long kasra -> kasra           20     0%
-letter dropped  ت   damma                         20     0%
-letter swapped  ه   long fatha                    20     0%
-letter dropped  ن   sukun after kasra             20     0%
-letter swapped  ق   fatha                         20     0%
-vowel swapped   ع   fatha -> kasra                20     0%
-vowel swapped   ع   fatha -> damma                20     0%
-vowel length    ه   long fatha -> fatha           20     0%
-vowel length    ف   kasra -> long kasra           20     0%
-letter dropped  ي   fatha                         20     0%
-letter dropped  ل   sukun after kasra             20     0%
-vowel length    ل   long damma -> damma           20     0%
-vowel swapped   ء   kasra -> damma                20     0%
-vowel swapped   ه   kasra -> fatha                20     0%
-letter swapped  ك   fatha                         20     0%
-letter swapped  ي   fatha                         20     0%
-letter swapped  ء   long fatha                    19     0%
-vowel length    ك   long fatha -> fatha           18     0%
-vowel swapped   ء   damma -> kasra                18     0%
-letter swapped  ت   kasra                         18     0%
-vowel swapped   ن   fatha -> damma                16     0%
-vowel swapped   ت   damma -> kasra                16     0%
-letter dropped  ي   long fatha                    16     0%
-letter dropped  ت   kasra                         16     0%
-letter swapped  س   fatha                         16     0%
-letter swapped  ه   long kasra                    16     0%
-vowel swapped   ت   kasra -> damma                15     0%
-vowel length    ه   long kasra -> kasra           15     0%
-vowel swapped   ر   damma -> fatha                14     0%
-vowel length    ت   damma -> long damma           14     0%
-letter dropped  ن   sukun after fatha             14     0%
-vowel length    م   long damma -> damma           14     0%
-vowel swapped   ء   fatha -> damma                13     0%
-vowel length    ر   kasra -> long kasra           13     0%
-vowel swapped   م   damma -> kasra                13     0%
-vowel swapped   و   fatha -> damma                13     0%
-vowel swapped   ب   kasra -> damma                13     0%
-vowel swapped   ف   kasra -> damma                12     0%
-vowel length    ذ   fatha -> long fatha           12     0%
-vowel swapped   ي   damma -> fatha                12     0%
-letter swapped  ن   sukun after kasra             12     0%
-letter swapped  ق   long fatha                    12     0%
-letter swapped  م   long fatha                    12     0%
-vowel length    و   long fatha -> fatha           12     0%
-vowel swapped   ر   kasra -> fatha                11     0%
-vowel swapped   ل   damma -> fatha                11     0%
-letter swapped  م   fatha                         11     0%
-letter swapped  د   fatha                         11     0%
-letter swapped  ك   long fatha                    11     0%
-letter swapped  ر   fatha                         11     0%
-vowel length    ر   long damma -> damma           11     0%
-letter swapped  ع   fatha                         11     0%
-letter dropped  ع   sukun after fatha             11     0%
-vowel length    ي   long fatha -> fatha           11     0%
-letter swapped  ب   kasra                         10     0%
-vowel swapped   ح   kasra -> fatha                10     0%
-vowel length    ن   kasra -> long kasra           10     0%
-letter swapped  م   sukun after damma             10     0%
-vowel swapped   ق   damma -> fatha                10     0%
-letter swapped  ذ   long fatha                    10     0%
-letter swapped  خ   fatha                         10     0%
-letter dropped  ك   long fatha                    10     0%
-vowel length    ب   damma -> long damma           10     0%
-vowel length    ذ   long kasra -> kasra           10     0%
-letter dropped  ج   sukun after fatha             10     0%
-vowel swapped   ن   kasra -> fatha                10     0%
-vowel length    م   fatha -> long fatha           20     5%
-letter dropped  ن   sukun after damma             20     5%
-vowel swapped   ك   damma -> kasra                20     5%
-letter swapped  ه   damma                         20     5%
-vowel length    ء   fatha -> long fatha           20     5%
-letter dropped  و   fatha                         20     5%
-vowel length    ء   kasra -> long kasra           20     5%
-vowel length    م   long fatha -> fatha           20     5%
-vowel length    ه   damma -> long damma           20     5%
-vowel length    ل   long fatha -> fatha           20     5%
-vowel length    د   fatha -> long fatha           20     5%
-vowel length    م   damma -> long damma           20     5%
-letter swapped  ن   long fatha                    20     5%
-letter dropped  ي   sukun after fatha             20     5%
-letter dropped  و   sukun after fatha             20     5%
-letter swapped  ء   kasra                         20     5%
-vowel swapped   م   damma -> fatha                20     5%
-letter swapped  ء   fatha                         20     5%
-letter dropped  م   sukun after kasra             20     5%
-vowel swapped   ه   damma -> kasra                20     5%
-vowel length    ه   kasra -> long kasra           20     5%
-letter dropped  ك   fatha                         20     5%
-vowel swapped   ء   fatha -> kasra                20     5%
-letter swapped  ت   fatha                         20     5%
-letter dropped  ت   fatha                         20     5%
-vowel length    ء   damma -> long damma           20     5%
-letter swapped  ف   fatha                         20     5%
-vowel swapped   ه   kasra -> damma                20     5%
-vowel length    ب   long kasra -> kasra           19     5%
-vowel length    ل   long kasra -> kasra           17     6%
-vowel swapped   ح   fatha -> kasra                15     7%
-letter dropped  ف   fatha                         15     7%
-letter dropped  ه   damma                         15     7%
-vowel swapped   م   kasra -> damma                14     7%
-vowel length    م   long kasra -> kasra           14     7%
-vowel length    ر   damma -> long damma           14     7%
-vowel length    د   long damma -> damma           14     7%
-vowel swapped   س   kasra -> fatha                13     8%
-letter dropped  ء   sukun after damma             13     8%
-vowel length    ق   long damma -> damma           12     8%
-vowel swapped   ن   fatha -> kasra                12     8%
-vowel length    د   long fatha -> fatha           11     9%
-vowel swapped   ف   fatha -> kasra                11     9%
-vowel length    ي   fatha -> long fatha           20    10%
-vowel swapped   ه   damma -> fatha                20    10%
-letter swapped  ب   fatha                         20    10%
-vowel length    ح   fatha -> long fatha           20    10%
-vowel swapped   ت   damma -> fatha                20    10%
-vowel length    ه   fatha -> long fatha           20    10%
-vowel length    ء   long fatha -> fatha           20    10%
-vowel length    ع   fatha -> long fatha           20    10%
-letter swapped  ه   long damma                    20    10%
-letter dropped  ر   sukun after fatha             20    10%
-vowel length    ك   fatha -> long fatha           20    10%
-vowel length    د   damma -> long damma           10    10%
-letter dropped  م   fatha                         10    10%
-letter dropped  ه   sukun after fatha             10    10%
-vowel swapped   ف   fatha -> damma                15    13%
-vowel length    ح   long kasra -> kasra           15    13%
-vowel length    ح   long fatha -> fatha           14    14%
-vowel length    س   fatha -> long fatha           20    15%
-vowel length    ك   damma -> long damma           20    15%
-vowel length    ل   fatha -> long fatha           20    20%
-vowel length    ب   fatha -> long fatha           20    20%
-vowel swapped   م   kasra -> fatha                20    20%
-vowel length    ن   long fatha -> fatha           20    20%
-vowel length    س   kasra -> long kasra           14    21%
-vowel length    ر   long kasra -> kasra           14    21%
-letter dropped  ج   fatha                         13    23%
-vowel length    ج   fatha -> long fatha           20    25%
-vowel length    ب   kasra -> long kasra           20    25%
-vowel length    د   long kasra -> kasra           11    27%
-vowel length    ع   kasra -> long kasra           11    27%
-letter dropped  ت   sukun after fatha             10    30%
-vowel length    س   long fatha -> fatha           10    30%
-vowel swapped   ك   kasra -> fatha                13    31%
-vowel length    ش   fatha -> long fatha           20    40%
-vowel swapped   ي   damma -> kasra                 9     0%  (few)
-vowel swapped   ق   damma -> kasra                 9     0%  (few)
-vowel swapped   ي   fatha -> kasra                 9     0%  (few)
-letter swapped  ن   sukun after damma              9     0%  (few)
-vowel length    س   long damma -> damma            9     0%  (few)
-letter dropped  ذ   fatha                          8     0%  (few)
-vowel length    ي   damma -> long damma            8     0%  (few)
-letter dropped  س   kasra                          8     0%  (few)
-vowel length    ك   long damma -> damma            8     0%  (few)
-letter swapped  ب   long fatha                     8     0%  (few)
-vowel swapped   ع   kasra -> fatha                 8     0%  (few)
-vowel swapped   د   kasra -> fatha                 8     0%  (few)
-vowel length    ث   damma -> long damma            8     0%  (few)
-vowel swapped   ذ   kasra -> fatha                 7     0%  (few)
-vowel swapped   ب   damma -> kasra                 7     0%  (few)
-letter dropped  ك   damma                          7     0%  (few)
-letter dropped  و   long fatha                     7     0%  (few)
-vowel length    ق   long fatha -> fatha            7     0%  (few)
-vowel length    ح   kasra -> long kasra            7     0%  (few)
-letter dropped  د   long fatha                     7     0%  (few)
-letter dropped  م   kasra                          7     0%  (few)
-letter swapped  ه   sukun after fatha              7     0%  (few)
-letter swapped  د   long kasra                     7     0%  (few)
-vowel length    ق   damma -> long damma            7     0%  (few)
-vowel swapped   س   damma -> fatha                 7     0%  (few)
-vowel swapped   ر   damma -> kasra                 7     0%  (few)
-vowel swapped   م   fatha -> kasra                 6     0%  (few)
-letter dropped  ل   kasra                          6     0%  (few)
-vowel length    ن   long damma -> damma            6     0%  (few)
-vowel swapped   ه   fatha -> kasra                 6     0%  (few)
-letter dropped  ل   long damma                     6     0%  (few)
-letter dropped  ج   long fatha                     6     0%  (few)
-letter dropped  د   sukun after fatha              6     0%  (few)
-vowel swapped   ث   damma -> fatha                 6     0%  (few)
-vowel length    ف   long damma -> damma            6     0%  (few)
-letter swapped  ذ   fatha                          6     0%  (few)
-vowel length    ق   kasra -> long kasra            6     0%  (few)
-letter dropped  ب   kasra                          6     0%  (few)
-vowel swapped   ب   damma -> fatha                 6     0%  (few)
-letter dropped  ت   long damma                     6     0%  (few)
-letter swapped  د   sukun after fatha              6     0%  (few)
-letter dropped  د   fatha                          6     0%  (few)
-letter swapped  ق   long kasra                     6     0%  (few)
-letter swapped  ر   long fatha                     6     0%  (few)
-vowel swapped   ك   fatha -> kasra                 6     0%  (few)
-vowel swapped   س   damma -> kasra                 6     0%  (few)
-letter dropped  ل   fatha                          6     0%  (few)
-letter dropped  د   long damma                     6     0%  (few)
-letter dropped  ر   sukun after damma              6     0%  (few)
-letter swapped  ر   kasra                          6     0%  (few)
-letter dropped  ب   fatha                          6     0%  (few)
-letter dropped  ذ   long fatha                     6     0%  (few)
-letter swapped  ت   damma                          6     0%  (few)
-letter swapped  ث   fatha                          5     0%  (few)
-letter swapped  ل   kasra                          5     0%  (few)
-vowel length    ج   long fatha -> fatha            5     0%  (few)
-vowel length    ع   long fatha -> fatha            5     0%  (few)
-vowel swapped   ح   fatha -> damma                 5     0%  (few)
-vowel swapped   ل   fatha -> damma                 5     0%  (few)
-vowel swapped   ف   damma -> fatha                 5     0%  (few)
-letter dropped  ه   kasra                          5     0%  (few)
-vowel swapped   ل   damma -> kasra                 5     0%  (few)
-letter swapped  ي   long fatha                     5     0%  (few)
-letter swapped  ط   fatha                          5     0%  (few)
-letter dropped  ب   long fatha                     5     0%  (few)
-letter dropped  ر   fatha                          5     0%  (few)
-letter dropped  ء   kasra                          5     0%  (few)
-letter dropped  ع   damma                          5     0%  (few)
-letter dropped  ر   sukun after kasra              5     0%  (few)
-vowel swapped   د   damma -> kasra                 5     0%  (few)
-vowel swapped   ع   damma -> kasra                 5     0%  (few)
-letter swapped  س   kasra                          5     0%  (few)
-letter dropped  ق   fatha                          5     0%  (few)
-letter dropped  ل   long fatha                     5     0%  (few)
-vowel length    ق   long kasra -> kasra            5     0%  (few)
-letter dropped  ه   long damma                     5     0%  (few)
-vowel swapped   م   fatha -> damma                 5     0%  (few)
-letter dropped  ب   long kasra                     5     0%  (few)
-letter dropped  م   damma                          5     0%  (few)
-letter dropped  ع   long damma                     5     0%  (few)
-letter dropped  م   long fatha                     5     0%  (few)
-vowel swapped   ل   fatha -> kasra                 5     0%  (few)
-vowel length    ء   long damma -> damma            4     0%  (few)
-vowel length    خ   kasra -> long kasra            4     0%  (few)
-letter dropped  ف   long kasra                     4     0%  (few)
-vowel swapped   ه   fatha -> damma                 4     0%  (few)
-vowel length    ح   damma -> long damma            4     0%  (few)
-vowel length    ص   long kasra -> kasra            4     0%  (few)
-letter dropped  ر   damma                          4     0%  (few)
-vowel swapped   ش   kasra -> fatha                 4     0%  (few)
-letter dropped  ث   damma                          4     0%  (few)
-vowel length    ك   long kasra -> kasra            4     0%  (few)
-letter dropped  س   damma                          4     0%  (few)
-letter swapped  ل   long kasra                     4     0%  (few)
-vowel swapped   ع   damma -> fatha                 4     0%  (few)
-letter swapped  ب   long kasra                     4     0%  (few)
-vowel swapped   د   damma -> fatha                 4     0%  (few)
-letter dropped  ن   fatha                          4     0%  (few)
-vowel swapped   ح   damma -> fatha                 4     0%  (few)
-vowel length    ذ   damma -> long damma            4     0%  (few)
-letter dropped  ه   long kasra                     4     0%  (few)
-letter dropped  ن   long damma                     4     0%  (few)
-letter dropped  ذ   sukun after kasra              4     0%  (few)
-letter dropped  ج   long damma                     4     0%  (few)
-vowel swapped   ك   fatha -> damma                 4     0%  (few)
-vowel swapped   ص   kasra -> fatha                 4     0%  (few)
-vowel length    ث   long kasra -> kasra            4     0%  (few)
-vowel swapped   ن   damma -> kasra                 4     0%  (few)
-letter swapped  ء   damma                          4     0%  (few)
-vowel swapped   ج   damma -> fatha                 4     0%  (few)
-vowel swapped   ث   damma -> kasra                 4     0%  (few)
-letter dropped  ء   sukun after kasra              4     0%  (few)
-letter dropped  س   fatha                          4     0%  (few)
-letter swapped  ء   sukun after fatha              4     0%  (few)
-letter dropped  ل   long kasra                     4     0%  (few)
-vowel swapped   ي   fatha -> damma                 4     0%  (few)
-letter dropped  ف   kasra                          4     0%  (few)
-letter swapped  ر   sukun after fatha              3     0%  (few)
-vowel swapped   س   kasra -> damma                 3     0%  (few)
-letter swapped  ذ   long kasra                     3     0%  (few)
-letter dropped  ق   sukun after fatha              3     0%  (few)
-letter swapped  ن   long kasra                     3     0%  (few)
-letter dropped  خ   fatha                          3     0%  (few)
-letter dropped  ح   sukun after fatha              3     0%  (few)
-letter dropped  ظ   long kasra                     3     0%  (few)
-vowel swapped   ض   kasra -> damma                 3     0%  (few)
-letter dropped  ع   kasra                          3     0%  (few)
-vowel swapped   ق   kasra -> fatha                 3     0%  (few)
-vowel length    ظ   long kasra -> kasra            3     0%  (few)
-letter swapped  ن   kasra                          3     0%  (few)
-vowel length    ن   damma -> long damma            3     0%  (few)
-letter dropped  ح   fatha                          3     0%  (few)
-letter swapped  غ   fatha                          3     0%  (few)
-letter swapped  و   sukun after fatha              3     0%  (few)
-vowel swapped   ذ   damma -> kasra                 3     0%  (few)
-vowel swapped   ت   fatha -> kasra                 3     0%  (few)
-vowel length    ز   long fatha -> fatha            3     0%  (few)
-letter swapped  ص   fatha                          3     0%  (few)
-vowel swapped   ص   damma -> kasra                 3     0%  (few)
-letter swapped  س   sukun after damma              3     0%  (few)
-letter dropped  ك   sukun after kasra              3     0%  (few)
-letter swapped  ق   sukun after fatha              3     0%  (few)
-letter dropped  ه   long fatha                     3     0%  (few)
-letter dropped  ج   sukun after damma              3     0%  (few)
-letter swapped  د   sukun after kasra              3     0%  (few)
-vowel swapped   ظ   damma -> kasra                 3     0%  (few)
-vowel swapped   ش   fatha -> kasra                 3     0%  (few)
-letter dropped  ء   fatha                          3     0%  (few)
-vowel swapped   ز   damma -> fatha                 3     0%  (few)
-letter dropped  ن   damma                          3     0%  (few)
-letter dropped  ر   kasra                          3     0%  (few)
-letter swapped  ق   damma                          3     0%  (few)
-letter swapped  ب   long damma                     3     0%  (few)
-letter dropped  ب   damma                          3     0%  (few)
-vowel length    ف   damma -> long damma            3     0%  (few)
-letter dropped  ذ   kasra                          3     0%  (few)
-vowel length    ط   long kasra -> kasra            3     0%  (few)
-letter swapped  ن   long damma                     2     0%  (few)
-letter dropped  ك   long kasra                     2     0%  (few)
-letter swapped  ن   damma                          2     0%  (few)
-letter swapped  ي   damma                          2     0%  (few)
-letter dropped  ط   kasra                          2     0%  (few)
-vowel swapped   ر   fatha -> kasra                 2     0%  (few)
-letter swapped  ر   sukun after kasra              2     0%  (few)
-letter dropped  ك   long damma                     2     0%  (few)
-letter dropped  ش   fatha                          2     0%  (few)
-letter dropped  ص   fatha                          2     0%  (few)
-letter dropped  ض   kasra                          2     0%  (few)
-letter swapped  د   kasra                          2     0%  (few)
-letter swapped  س   sukun after kasra              2     0%  (few)
-letter swapped  د   long fatha                     2     0%  (few)
-letter dropped  ز   long kasra                     2     0%  (few)
-letter swapped  ك   sukun after kasra              2     0%  (few)
-letter dropped  غ   sukun after damma              2     0%  (few)
-letter swapped  ي   sukun after fatha              2     0%  (few)
-letter dropped  ف   long fatha                     2     0%  (few)
-letter dropped  د   sukun after damma              2     0%  (few)
-vowel length    ض   kasra -> long kasra            2     0%  (few)
-letter swapped  خ   long fatha                     2     0%  (few)
-vowel swapped   س   fatha -> damma                 2     0%  (few)
-vowel swapped   ع   kasra -> damma                 2     0%  (few)
-letter dropped  خ   long fatha                     2     0%  (few)
-letter dropped  ي   damma                          2     0%  (few)
-letter swapped  ش   damma                          2     0%  (few)
-vowel length    ط   kasra -> long kasra            2     0%  (few)
-letter dropped  ح   sukun after damma              2     0%  (few)
-letter swapped  ث   damma                          2     0%  (few)
-vowel length    و   long kasra -> kasra            2     0%  (few)
-letter dropped  ض   long damma                     2     0%  (few)
-letter swapped  ع   long fatha                     2     0%  (few)
-letter dropped  م   long kasra                     2     0%  (few)
-letter swapped  ب   damma                          2     0%  (few)
-vowel swapped   ز   damma -> kasra                 2     0%  (few)
-vowel length    د   kasra -> long kasra            2     0%  (few)
-vowel length    ي   long damma -> damma            2     0%  (few)
-letter dropped  ر   long fatha                     2     0%  (few)
-vowel swapped   ج   kasra -> damma                 2     0%  (few)
-letter swapped  ل   long damma                     2     0%  (few)
-letter swapped  ه   sukun after kasra              2     0%  (few)
-vowel swapped   ج   fatha -> kasra                 2     0%  (few)
-letter swapped  ت   long kasra                     2     0%  (few)
-letter swapped  ش   long fatha                     2     0%  (few)
-vowel length    ر   long fatha -> fatha            2     0%  (few)
-letter swapped  ث   sukun after kasra              2     0%  (few)
-vowel swapped   خ   kasra -> fatha                 2     0%  (few)
-letter dropped  ط   long kasra                     2     0%  (few)
-vowel length    و   kasra -> long kasra            2     0%  (few)
-letter dropped  ج   damma                          2     0%  (few)
-letter swapped  ق   kasra                          2     0%  (few)
-vowel swapped   ب   fatha -> kasra                 2     0%  (few)
-letter swapped  ك   sukun after fatha              2     0%  (few)
-letter dropped  ق   kasra                          2     0%  (few)
-letter dropped  ط   long fatha                     2     0%  (few)
-vowel swapped   ج   kasra -> fatha                 2     0%  (few)
-letter dropped  ب   sukun after fatha              2     0%  (few)
-vowel length    ت   long damma -> damma            2     0%  (few)
-letter dropped  ث   long fatha                     2     0%  (few)
-letter dropped  خ   sukun after fatha              2     0%  (few)
-vowel swapped   ذ   kasra -> damma                 2     0%  (few)
-vowel length    ك   kasra -> long kasra            2     0%  (few)
-letter dropped  ز   sukun after kasra              2     0%  (few)
-letter dropped  ع   long kasra                     2     0%  (few)
-letter swapped  غ   long fatha                     2     0%  (few)
-letter dropped  ض   sukun after fatha              2     0%  (few)
-letter dropped  ع   sukun after damma              2     0%  (few)
-letter swapped  ل   long fatha                     2     0%  (few)
-letter dropped  غ   long fatha                     2     0%  (few)
-letter dropped  ع   sukun after kasra              2     0%  (few)
-vowel swapped   و   kasra -> fatha                 2     0%  (few)
-vowel swapped   ق   kasra -> damma                 2     0%  (few)
-vowel length    ث   long fatha -> fatha            2     0%  (few)
-vowel swapped   د   fatha -> damma                 2     0%  (few)
-letter swapped  و   long fatha                     2     0%  (few)
-letter swapped  غ   kasra                          2     0%  (few)
-vowel swapped   ج   fatha -> damma                 2     0%  (few)
-vowel swapped   ش   damma -> fatha                 2     0%  (few)
-vowel swapped   ب   fatha -> damma                 2     0%  (few)
-vowel swapped   ت   fatha -> damma                 2     0%  (few)
-letter swapped  ج   fatha                          2     0%  (few)
-vowel swapped   ر   kasra -> damma                 1     0%  (few)
-letter swapped  ع   long kasra                     1     0%  (few)
-letter dropped  د   sukun after kasra              1     0%  (few)
-letter dropped  ح   damma                          1     0%  (few)
-vowel swapped   خ   damma -> kasra                 1     0%  (few)
-vowel length    ت   long kasra -> kasra            1     0%  (few)
-vowel length    غ   damma -> long damma            1     0%  (few)
-vowel length    ث   long damma -> damma            1     0%  (few)
-letter dropped  غ   fatha                          1     0%  (few)
-letter swapped  ء   long damma                     1     0%  (few)
-letter dropped  ت   long fatha                     1     0%  (few)
-letter dropped  ذ   long kasra                     1     0%  (few)
-vowel length    ض   long damma -> damma            1     0%  (few)
-letter dropped  ز   long fatha                     1     0%  (few)
-letter dropped  غ   long damma                     1     0%  (few)
-vowel swapped   د   fatha -> kasra                 1     0%  (few)
-letter dropped  ه   sukun after damma              1     0%  (few)
-letter swapped  ز   sukun after kasra              1     0%  (few)
-letter dropped  ش   sukun after damma              1     0%  (few)
-letter swapped  س   long kasra                     1     0%  (few)
-letter dropped  ه   fatha                          1     0%  (few)
-vowel swapped   ض   damma -> kasra                 1     0%  (few)
-vowel length    ج   long damma -> damma            1     0%  (few)
-letter dropped  ف   sukun after fatha              1     0%  (few)
-vowel length    ض   long kasra -> kasra            1     0%  (few)
-letter swapped  ج   sukun after kasra              1     0%  (few)
-letter swapped  ج   long fatha                     1     0%  (few)
-letter dropped  ف   damma                          1     0%  (few)
-vowel length    ذ   long damma -> damma            1     0%  (few)
-vowel swapped   ط   kasra -> fatha                 1     0%  (few)
-letter dropped  س   sukun after damma              1     0%  (few)
-letter swapped  ض   long damma                     1     0%  (few)
-vowel length    ص   long fatha -> fatha            1     0%  (few)
-letter dropped  ك   kasra                          1     0%  (few)
-vowel length    ح   long damma -> damma            1     0%  (few)
-vowel swapped   ز   fatha -> kasra                 1     0%  (few)
-letter dropped  ز   kasra                          1     0%  (few)
-vowel swapped   ح   damma -> kasra                 1     0%  (few)
-letter dropped  ف   sukun after damma              1     0%  (few)
-vowel swapped   ص   damma -> fatha                 1     0%  (few)
-letter dropped  س   long fatha                     1     0%  (few)
-letter dropped  ح   long fatha                     1     0%  (few)
-letter swapped  ت   long fatha                     1     0%  (few)
-vowel swapped   ض   kasra -> fatha                 1     0%  (few)
-letter swapped  ء   long kasra                     1     0%  (few)
-vowel length    غ   long kasra -> kasra            1     0%  (few)
-vowel swapped   ز   kasra -> damma                 1     0%  (few)
-vowel swapped   ي   kasra -> fatha                 1     0%  (few)
-letter swapped  ت   sukun after kasra              1     0%  (few)
-vowel length    ء   long kasra -> kasra            1     0%  (few)
-letter dropped  ذ   sukun after fatha              1     0%  (few)
-letter dropped  ظ   sukun after kasra              1     0%  (few)
-vowel swapped   د   kasra -> damma                 1     0%  (few)
-letter swapped  ق   long damma                     1     0%  (few)
-letter swapped  ك   long kasra                     1     0%  (few)
-letter swapped  ء   sukun after kasra              1     0%  (few)
-letter dropped  د   damma                          1     0%  (few)
-letter dropped  غ   damma                          1     0%  (few)
-vowel swapped   ط   damma -> fatha                 1     0%  (few)
-vowel swapped   غ   damma -> fatha                 1     0%  (few)
-letter swapped  ف   damma                          1     0%  (few)
-letter dropped  ل   damma                          1     0%  (few)
-letter swapped  ص   long fatha                     1     0%  (few)
-letter dropped  ق   long fatha                     1     0%  (few)
-letter swapped  س   long damma                     1     0%  (few)
-letter swapped  ب   sukun after kasra              1     0%  (few)
-letter swapped  ل   sukun after fatha              1     0%  (few)
-vowel length    و   long damma -> damma            1     0%  (few)
-vowel swapped   ن   kasra -> damma                 1     0%  (few)
-vowel swapped   ث   kasra -> fatha                 1     0%  (few)
-letter swapped  ج   sukun after damma              1     0%  (few)
-letter swapped  ش   fatha                          1     0%  (few)
-letter dropped  ص   long damma                     1     0%  (few)
-vowel swapped   خ   kasra -> damma                 1     0%  (few)
-vowel swapped   ش   damma -> kasra                 1     0%  (few)
-vowel swapped   غ   kasra -> fatha                 1     0%  (few)
-letter dropped  خ   damma                          1     0%  (few)
-vowel swapped   غ   damma -> kasra                 1     0%  (few)
-letter dropped  ط   damma                          1     0%  (few)
-letter swapped  ن   sukun after fatha              1     0%  (few)
-vowel swapped   ز   kasra -> fatha                 1     0%  (few)
-letter swapped  ح   fatha                          1     0%  (few)
-letter dropped  ش   damma                          1     0%  (few)
-letter swapped  غ   damma                          1     0%  (few)
-letter swapped  ف   long kasra                     1     0%  (few)
-letter swapped  ط   long fatha                     1     0%  (few)
-letter swapped  ذ   damma                          1     0%  (few)
-letter swapped  ك   sukun after damma              1     0%  (few)
-letter swapped  ذ   sukun after fatha              1     0%  (few)
-letter dropped  س   long damma                     1     0%  (few)
-letter dropped  س   sukun after kasra              1     0%  (few)
-letter swapped  خ   long kasra                     1     0%  (few)
-vowel length    ص   long damma -> damma            1     0%  (few)
-letter swapped  ق   sukun after damma              1     0%  (few)
-letter dropped  ن   kasra                          1     0%  (few)
-letter swapped  ص   kasra                          1     0%  (few)
-letter swapped  ر   long damma                     1     0%  (few)
-letter swapped  ذ   sukun after kasra              1     0%  (few)
-vowel length    ض   damma -> long damma            1     0%  (few)
-vowel swapped   و   damma -> fatha                 1     0%  (few)
-letter dropped  ف   long damma                     1     0%  (few)
-letter swapped  ت   sukun after damma              1     0%  (few)
-letter swapped  س   sukun after fatha              1     0%  (few)
-letter swapped  س   long fatha                     1     0%  (few)
-letter swapped  م   sukun after kasra              1     0%  (few)
-letter dropped  د   long kasra                     1     0%  (few)
-letter dropped  ب   sukun after kasra              1     0%  (few)
-vowel swapped   خ   damma -> fatha                 1     0%  (few)
-letter dropped  ظ   long damma                     1     0%  (few)
-letter swapped  ك   long damma                     1     0%  (few)
-letter dropped  ر   long damma                     1     0%  (few)
-vowel swapped   ث   fatha -> damma                 1     0%  (few)
-vowel length    ز   long damma -> damma            1     0%  (few)
-letter dropped  د   kasra                          1     0%  (few)
-letter swapped  ف   kasra                          1     0%  (few)
-vowel swapped   ص   kasra -> damma                 1     0%  (few)
-vowel length    ث   fatha -> long fatha            9    11%  (few)
-vowel length    ن   long kasra -> kasra            9    11%  (few)
-letter dropped  ك   sukun after fatha              9    11%  (few)
-letter swapped  ك   damma                          9    11%  (few)
-vowel swapped   ن   damma -> fatha                 9    11%  (few)
-vowel swapped   ل   kasra -> damma                 9    11%  (few)
-letter swapped  ب   sukun after fatha              8    12%  (few)
-vowel swapped   س   fatha -> kasra                 7    14%  (few)
-letter dropped  ز   fatha                          7    14%  (few)
-vowel length    ع   long damma -> damma            7    14%  (few)
-vowel length    ت   long fatha -> fatha            7    14%  (few)
-vowel length    ذ   kasra -> long kasra            7    14%  (few)
-vowel length    ش   long fatha -> fatha            6    17%  (few)
-letter dropped  س   sukun after fatha              6    17%  (few)
-vowel length    س   damma -> long damma            6    17%  (few)
-vowel length    ب   long damma -> damma            5    20%  (few)
-vowel swapped   ف   damma -> kasra                 5    20%  (few)
-vowel length    ل   damma -> long damma            5    20%  (few)
-letter dropped  ج   kasra                          5    20%  (few)
-letter swapped  ل   fatha                          5    20%  (few)
-vowel length    ز   kasra -> long kasra            5    20%  (few)
-vowel length    ج   damma -> long damma            5    20%  (few)
-letter dropped  ء   sukun after fatha              5    20%  (few)
-letter dropped  غ   sukun after fatha              5    20%  (few)
-vowel length    ف   long fatha -> fatha            5    20%  (few)
-letter dropped  ن   long fatha                     5    20%  (few)
-vowel length    ظ   damma -> long damma            4    25%  (few)
-vowel length    ع   long kasra -> kasra            4    25%  (few)
-vowel length    ش   kasra -> long kasra            4    25%  (few)
-letter dropped  ك   sukun after damma              4    25%  (few)
-vowel length    ب   long fatha -> fatha            7    29%  (few)
-letter dropped  ش   sukun after fatha              3    33%  (few)
-vowel length    ج   kasra -> long kasra            3    33%  (few)
-vowel length    ص   kasra -> long kasra            5    40%  (few)
-vowel length    ج   long kasra -> kasra            4    50%  (few)
-vowel length    ز   fatha -> long fatha            4    50%  (few)
-letter dropped  ص   sukun after fatha              2    50%  (few)
-vowel length    خ   long kasra -> kasra            2    50%  (few)
-vowel swapped   ظ   kasra -> damma                 2    50%  (few)
-letter swapped  م   kasra                          2    50%  (few)
-vowel length    ز   long kasra -> kasra            2    50%  (few)
-vowel length    س   long kasra -> kasra            3    67%  (few)
-letter dropped  ج   long kasra                     1   100%  (few)
-vowel length    ص   damma -> long damma            1   100%  (few)
-vowel length    ش   long kasra -> kasra            1   100%  (few)
-vowel length    خ   long fatha -> fatha            1   100%  (few)
-vowel swapped   ز   fatha -> damma                 1   100%  (few)
-letter swapped  ل   damma                          1   100%  (few)
-letter dropped  ف   sukun after kasra              1   100%  (few)
-letter dropped  ث   sukun after fatha              1   100%  (few)
+kind                context                        n caught  heard
+letter swapped  ه   kasra                         20     0%     0%
+letter dropped  ن   sukun after kasra             20     0%     0%
+vowel swapped   ه   kasra -> fatha                20     0%     0%
+letter swapped  ء   long fatha                    19     0%     0%
+vowel swapped   ن   fatha -> damma                16     0%     0%
+letter swapped  س   fatha                         16     0%     0%
+letter swapped  ن   sukun after kasra             12     0%     0%
+letter swapped  م   sukun after damma             10     0%     0%
+letter swapped  ذ   long fatha                    10     0%     0%
+vowel length    ه   long damma -> damma           20     0%     5%
+vowel swapped   ء   kasra -> fatha                20     0%     5%
+letter dropped  ع   fatha                         20     0%     5%
+vowel swapped   ل   kasra -> fatha                20     0%     5%
+letter dropped  ت   damma                         20     0%     5%
+letter dropped  ي   fatha                         20     0%     5%
+letter dropped  ت   kasra                         16     0%     6%
+letter dropped  ن   sukun after fatha             14     0%     7%
+vowel swapped   ف   kasra -> damma                12     0%     8%
+letter swapped  ع   fatha                         11     0%     9%
+letter dropped  ع   sukun after fatha             11     0%     9%
+vowel length    م   kasra -> long kasra           20     0%    10%
+letter swapped  ه   long fatha                    20     0%    10%
+vowel swapped   ع   fatha -> damma                20     0%    10%
+letter dropped  ك   long fatha                    10     0%    10%
+vowel length    ب   damma -> long damma           10     0%    10%
+vowel swapped   ن   kasra -> fatha                10     0%    10%
+letter swapped  ت   kasra                         18     0%    11%
+letter dropped  ي   long fatha                    16     0%    12%
+vowel length    ن   fatha -> long fatha           20     0%    15%
+vowel length    ف   long kasra -> kasra           20     0%    15%
+vowel swapped   ع   fatha -> kasra                20     0%    15%
+letter dropped  ل   sukun after kasra             20     0%    15%
+vowel swapped   ء   fatha -> damma                13     0%    15%
+vowel swapped   ب   kasra -> damma                13     0%    15%
+letter swapped  م   long fatha                    12     0%    17%
+vowel swapped   ل   damma -> fatha                11     0%    18%
+letter swapped  د   fatha                         11     0%    18%
+vowel swapped   ء   damma -> fatha                20     0%    20%
+vowel swapped   ب   kasra -> fatha                20     0%    20%
+letter swapped  ه   fatha                         20     0%    20%
+vowel length    ت   kasra -> long kasra           20     0%    20%
+vowel length    ل   long damma -> damma           20     0%    20%
+letter swapped  ك   fatha                         20     0%    20%
+letter swapped  ب   kasra                         10     0%    20%
+vowel swapped   ح   kasra -> fatha                10     0%    20%
+letter dropped  ج   sukun after fatha             10     0%    20%
+vowel swapped   ر   damma -> fatha                14     0%    21%
+vowel length    ت   damma -> long damma           14     0%    21%
+vowel length    ذ   long fatha -> fatha           20     0%    25%
+letter dropped  ل   sukun after damma             20     0%    25%
+vowel swapped   ف   kasra -> fatha                20     0%    25%
+letter dropped  ل   sukun after fatha             20     0%    25%
+vowel swapped   ء   kasra -> damma                20     0%    25%
+letter swapped  ه   long kasra                    16     0%    25%
+letter swapped  ق   long fatha                    12     0%    25%
+vowel swapped   ر   kasra -> fatha                11     0%    27%
+letter dropped  م   sukun after fatha             20     0%    30%
+letter swapped  ن   fatha                         20     0%    30%
+letter swapped  ق   fatha                         20     0%    30%
+vowel length    ف   kasra -> long kasra           20     0%    30%
+vowel length    ن   kasra -> long kasra           10     0%    30%
+vowel length    ر   kasra -> long kasra           13     0%    31%
+vowel swapped   م   damma -> kasra                13     0%    31%
+vowel swapped   و   fatha -> damma                13     0%    31%
+vowel swapped   ت   damma -> kasra                16     0%    31%
+vowel swapped   ء   damma -> kasra                18     0%    33%
+vowel swapped   ت   kasra -> damma                15     0%    33%
+vowel length    ه   long kasra -> kasra           15     0%    33%
+vowel length    ذ   fatha -> long fatha           12     0%    33%
+vowel swapped   ي   damma -> fatha                12     0%    33%
+vowel length    ل   kasra -> long kasra           20     0%    35%
+vowel swapped   و   fatha -> kasra                20     0%    35%
+vowel length    ه   long fatha -> fatha           20     0%    35%
+letter swapped  ر   fatha                         11     0%    36%
+vowel length    و   fatha -> long fatha           20     0%    40%
+letter swapped  خ   fatha                         10     0%    40%
+vowel length    ذ   long kasra -> kasra           10     0%    40%
+vowel length    م   long damma -> damma           14     0%    43%
+letter dropped  م   sukun after damma             20     0%    45%
+vowel swapped   ت   kasra -> fatha                20     0%    45%
+letter swapped  و   fatha                         20     0%    45%
+letter swapped  م   fatha                         11     0%    45%
+letter swapped  ك   long fatha                    11     0%    45%
+letter swapped  ي   fatha                         20     0%    50%
+vowel length    ر   long damma -> damma           11     0%    55%
+vowel length    ت   fatha -> long fatha           20     0%    55%
+vowel swapped   ك   damma -> fatha                20     0%    55%
+vowel length    ك   long fatha -> fatha           18     0%    56%
+vowel length    ي   long fatha -> fatha           11     0%    64%
+vowel swapped   ق   damma -> fatha                10     0%    70%
+vowel length    ف   fatha -> long fatha           20     0%    75%
+vowel length    و   long fatha -> fatha           12     0%    92%
+letter dropped  ن   sukun after damma             20     5%     0%
+vowel swapped   ه   kasra -> damma                20     5%     0%
+letter dropped  و   fatha                         20     5%     5%
+letter swapped  ء   fatha                         20     5%    10%
+letter dropped  م   sukun after kasra             20     5%    10%
+vowel swapped   ه   damma -> kasra                20     5%    10%
+letter swapped  ت   fatha                         20     5%    10%
+letter swapped  ه   damma                         20     5%    15%
+letter swapped  ء   kasra                         20     5%    15%
+letter dropped  ك   fatha                         20     5%    15%
+letter swapped  ن   long fatha                    20     5%    20%
+vowel swapped   ك   damma -> kasra                20     5%    25%
+vowel length    ه   damma -> long damma           20     5%    25%
+letter swapped  ف   fatha                         20     5%    25%
+vowel length    ه   kasra -> long kasra           20     5%    30%
+vowel swapped   ء   fatha -> kasra                20     5%    30%
+letter dropped  ت   fatha                         20     5%    30%
+vowel length    ء   kasra -> long kasra           20     5%    40%
+vowel length    م   damma -> long damma           20     5%    40%
+vowel length    ء   damma -> long damma           20     5%    40%
+letter dropped  ي   sukun after fatha             20     5%    45%
+vowel swapped   م   damma -> fatha                20     5%    45%
+letter dropped  و   sukun after fatha             20     5%    55%
+vowel length    م   fatha -> long fatha           20     5%    60%
+vowel length    ء   fatha -> long fatha           20     5%    65%
+vowel length    م   long fatha -> fatha           20     5%    65%
+vowel length    ل   long fatha -> fatha           20     5%    65%
+vowel length    د   fatha -> long fatha           20     5%    65%
+vowel length    ب   long kasra -> kasra           19     5%    26%
+vowel length    ل   long kasra -> kasra           17     6%    29%
+letter dropped  ه   damma                         15     7%     0%
+letter dropped  ف   fatha                         15     7%    20%
+vowel swapped   ح   fatha -> kasra                15     7%    67%
+vowel length    ر   damma -> long damma           14     7%     7%
+vowel swapped   م   kasra -> damma                14     7%    21%
+vowel length    م   long kasra -> kasra           14     7%    36%
+vowel length    د   long damma -> damma           14     7%    57%
+letter dropped  ء   sukun after damma             13     8%    15%
+vowel swapped   س   kasra -> fatha                13     8%    54%
+vowel swapped   ن   fatha -> kasra                12     8%    17%
+vowel length    ق   long damma -> damma           12     8%    50%
+vowel swapped   ف   fatha -> kasra                11     9%    36%
+vowel length    د   long fatha -> fatha           11     9%    73%
+letter swapped  ه   long damma                    20    10%     5%
+vowel swapped   ه   damma -> fatha                20    10%    20%
+vowel length    د   damma -> long damma           10    10%    20%
+vowel swapped   ت   damma -> fatha                20    10%    30%
+letter dropped  ر   sukun after fatha             20    10%    30%
+vowel length    ك   fatha -> long fatha           20    10%    30%
+vowel length    ه   fatha -> long fatha           20    10%    45%
+vowel length    ء   long fatha -> fatha           20    10%    45%
+vowel length    ع   fatha -> long fatha           20    10%    45%
+letter dropped  م   fatha                         10    10%    50%
+letter dropped  ه   sukun after fatha             10    10%    50%
+letter swapped  ب   fatha                         20    10%    55%
+vowel length    ي   fatha -> long fatha           20    10%    70%
+vowel length    ح   fatha -> long fatha           20    10%    70%
+vowel swapped   ف   fatha -> damma                15    13%    20%
+vowel length    ح   long kasra -> kasra           15    13%    20%
+vowel length    ح   long fatha -> fatha           14    14%    79%
+vowel length    س   fatha -> long fatha           20    15%    40%
+vowel length    ك   damma -> long damma           20    15%    55%
+vowel swapped   م   kasra -> fatha                20    20%     0%
+vowel length    ب   fatha -> long fatha           20    20%    50%
+vowel length    ل   fatha -> long fatha           20    20%    60%
+vowel length    ن   long fatha -> fatha           20    20%    70%
+vowel length    ر   long kasra -> kasra           14    21%    43%
+vowel length    س   kasra -> long kasra           14    21%    50%
+letter dropped  ج   fatha                         13    23%    69%
+vowel length    ب   kasra -> long kasra           20    25%    45%
+vowel length    ج   fatha -> long fatha           20    25%    95%
+vowel length    ع   kasra -> long kasra           11    27%    64%
+vowel length    د   long kasra -> kasra           11    27%    91%
+letter dropped  ت   sukun after fatha             10    30%    50%
+vowel length    س   long fatha -> fatha           10    30%    60%
+vowel swapped   ك   kasra -> fatha                13    31%    62%
+vowel length    ش   fatha -> long fatha           20    40%    85%
+letter swapped  ن   sukun after damma              9     0%     0%  (few)
+letter dropped  ذ   fatha                          8     0%     0%  (few)
+letter dropped  س   kasra                          8     0%     0%  (few)
+letter dropped  ك   damma                          7     0%     0%  (few)
+letter dropped  د   long fatha                     7     0%     0%  (few)
+letter dropped  م   kasra                          7     0%     0%  (few)
+letter swapped  ه   sukun after fatha              7     0%     0%  (few)
+vowel swapped   ر   damma -> kasra                 7     0%     0%  (few)
+vowel swapped   م   fatha -> kasra                 6     0%     0%  (few)
+letter dropped  د   sukun after fatha              6     0%     0%  (few)
+letter swapped  ذ   fatha                          6     0%     0%  (few)
+letter swapped  د   sukun after fatha              6     0%     0%  (few)
+letter swapped  ق   long kasra                     6     0%     0%  (few)
+letter dropped  د   long damma                     6     0%     0%  (few)
+letter swapped  ث   fatha                          5     0%     0%  (few)
+vowel swapped   ل   damma -> kasra                 5     0%     0%  (few)
+letter dropped  ر   fatha                          5     0%     0%  (few)
+letter dropped  ء   kasra                          5     0%     0%  (few)
+letter dropped  ع   damma                          5     0%     0%  (few)
+letter dropped  ق   fatha                          5     0%     0%  (few)
+letter dropped  ل   long fatha                     5     0%     0%  (few)
+letter dropped  ه   long damma                     5     0%     0%  (few)
+vowel swapped   م   fatha -> damma                 5     0%     0%  (few)
+letter dropped  م   damma                          5     0%     0%  (few)
+letter dropped  ع   long damma                     5     0%     0%  (few)
+letter dropped  م   long fatha                     5     0%     0%  (few)
+vowel length    ح   damma -> long damma            4     0%     0%  (few)
+letter dropped  ر   damma                          4     0%     0%  (few)
+letter dropped  ث   damma                          4     0%     0%  (few)
+letter dropped  س   damma                          4     0%     0%  (few)
+letter swapped  ل   long kasra                     4     0%     0%  (few)
+letter swapped  ب   long kasra                     4     0%     0%  (few)
+vowel swapped   د   damma -> fatha                 4     0%     0%  (few)
+letter dropped  ه   long kasra                     4     0%     0%  (few)
+letter dropped  ن   long damma                     4     0%     0%  (few)
+vowel swapped   ن   damma -> kasra                 4     0%     0%  (few)
+letter dropped  ل   long kasra                     4     0%     0%  (few)
+vowel swapped   س   kasra -> damma                 3     0%     0%  (few)
+letter dropped  ق   sukun after fatha              3     0%     0%  (few)
+letter swapped  ن   long kasra                     3     0%     0%  (few)
+letter dropped  ظ   long kasra                     3     0%     0%  (few)
+letter dropped  ع   kasra                          3     0%     0%  (few)
+vowel length    ظ   long kasra -> kasra            3     0%     0%  (few)
+letter swapped  ن   kasra                          3     0%     0%  (few)
+vowel length    ن   damma -> long damma            3     0%     0%  (few)
+letter dropped  ح   fatha                          3     0%     0%  (few)
+letter swapped  غ   fatha                          3     0%     0%  (few)
+letter swapped  و   sukun after fatha              3     0%     0%  (few)
+vowel swapped   ذ   damma -> kasra                 3     0%     0%  (few)
+letter swapped  ص   fatha                          3     0%     0%  (few)
+letter swapped  س   sukun after damma              3     0%     0%  (few)
+letter dropped  ج   sukun after damma              3     0%     0%  (few)
+letter swapped  د   sukun after kasra              3     0%     0%  (few)
+vowel swapped   ظ   damma -> kasra                 3     0%     0%  (few)
+letter dropped  ء   fatha                          3     0%     0%  (few)
+letter dropped  ر   kasra                          3     0%     0%  (few)
+letter swapped  ق   damma                          3     0%     0%  (few)
+letter dropped  ب   damma                          3     0%     0%  (few)
+letter dropped  ذ   kasra                          3     0%     0%  (few)
+letter swapped  ن   long damma                     2     0%     0%  (few)
+letter swapped  ي   damma                          2     0%     0%  (few)
+vowel swapped   ر   fatha -> kasra                 2     0%     0%  (few)
+letter dropped  ش   fatha                          2     0%     0%  (few)
+letter dropped  ص   fatha                          2     0%     0%  (few)
+letter swapped  د   kasra                          2     0%     0%  (few)
+letter swapped  د   long fatha                     2     0%     0%  (few)
+letter dropped  ز   long kasra                     2     0%     0%  (few)
+letter swapped  ك   sukun after kasra              2     0%     0%  (few)
+letter swapped  ي   sukun after fatha              2     0%     0%  (few)
+letter dropped  د   sukun after damma              2     0%     0%  (few)
+vowel length    ض   kasra -> long kasra            2     0%     0%  (few)
+vowel swapped   س   fatha -> damma                 2     0%     0%  (few)
+letter dropped  خ   long fatha                     2     0%     0%  (few)
+letter dropped  ي   damma                          2     0%     0%  (few)
+letter swapped  ش   damma                          2     0%     0%  (few)
+letter dropped  ح   sukun after damma              2     0%     0%  (few)
+letter swapped  ث   damma                          2     0%     0%  (few)
+letter dropped  ض   long damma                     2     0%     0%  (few)
+letter dropped  م   long kasra                     2     0%     0%  (few)
+letter swapped  ب   damma                          2     0%     0%  (few)
+vowel swapped   ز   damma -> kasra                 2     0%     0%  (few)
+vowel length    د   kasra -> long kasra            2     0%     0%  (few)
+letter dropped  ر   long fatha                     2     0%     0%  (few)
+letter swapped  ه   sukun after kasra              2     0%     0%  (few)
+letter swapped  ث   sukun after kasra              2     0%     0%  (few)
+vowel swapped   ب   fatha -> kasra                 2     0%     0%  (few)
+letter dropped  ق   kasra                          2     0%     0%  (few)
+letter dropped  ط   long fatha                     2     0%     0%  (few)
+letter dropped  ث   long fatha                     2     0%     0%  (few)
+vowel swapped   ذ   kasra -> damma                 2     0%     0%  (few)
+letter dropped  ز   sukun after kasra              2     0%     0%  (few)
+letter dropped  ع   long kasra                     2     0%     0%  (few)
+letter dropped  ض   sukun after fatha              2     0%     0%  (few)
+letter dropped  غ   long fatha                     2     0%     0%  (few)
+vowel swapped   و   kasra -> fatha                 2     0%     0%  (few)
+vowel swapped   د   fatha -> damma                 2     0%     0%  (few)
+vowel swapped   ج   fatha -> damma                 2     0%     0%  (few)
+vowel swapped   ب   fatha -> damma                 2     0%     0%  (few)
+letter swapped  ج   fatha                          2     0%     0%  (few)
+vowel swapped   ر   kasra -> damma                 1     0%     0%  (few)
+letter swapped  ع   long kasra                     1     0%     0%  (few)
+letter dropped  د   sukun after kasra              1     0%     0%  (few)
+letter dropped  ح   damma                          1     0%     0%  (few)
+vowel swapped   خ   damma -> kasra                 1     0%     0%  (few)
+vowel length    غ   damma -> long damma            1     0%     0%  (few)
+vowel length    ث   long damma -> damma            1     0%     0%  (few)
+letter dropped  غ   fatha                          1     0%     0%  (few)
+letter dropped  ذ   long kasra                     1     0%     0%  (few)
+vowel length    ض   long damma -> damma            1     0%     0%  (few)
+letter dropped  ز   long fatha                     1     0%     0%  (few)
+letter dropped  غ   long damma                     1     0%     0%  (few)
+letter dropped  ه   sukun after damma              1     0%     0%  (few)
+letter swapped  ز   sukun after kasra              1     0%     0%  (few)
+letter dropped  ه   fatha                          1     0%     0%  (few)
+letter dropped  ف   sukun after fatha              1     0%     0%  (few)
+letter swapped  ج   sukun after kasra              1     0%     0%  (few)
+letter swapped  ج   long fatha                     1     0%     0%  (few)
+letter dropped  ف   damma                          1     0%     0%  (few)
+letter swapped  ض   long damma                     1     0%     0%  (few)
+letter dropped  ك   kasra                          1     0%     0%  (few)
+vowel swapped   ز   fatha -> kasra                 1     0%     0%  (few)
+letter dropped  ز   kasra                          1     0%     0%  (few)
+vowel swapped   ح   damma -> kasra                 1     0%     0%  (few)
+letter dropped  ف   sukun after damma              1     0%     0%  (few)
+vowel swapped   ص   damma -> fatha                 1     0%     0%  (few)
+letter dropped  س   long fatha                     1     0%     0%  (few)
+letter dropped  ح   long fatha                     1     0%     0%  (few)
+vowel swapped   ض   kasra -> fatha                 1     0%     0%  (few)
+letter swapped  ء   long kasra                     1     0%     0%  (few)
+vowel length    غ   long kasra -> kasra            1     0%     0%  (few)
+vowel swapped   ي   kasra -> fatha                 1     0%     0%  (few)
+letter dropped  ظ   sukun after kasra              1     0%     0%  (few)
+vowel swapped   د   kasra -> damma                 1     0%     0%  (few)
+letter swapped  ق   long damma                     1     0%     0%  (few)
+letter swapped  ء   sukun after kasra              1     0%     0%  (few)
+letter dropped  د   damma                          1     0%     0%  (few)
+letter dropped  غ   damma                          1     0%     0%  (few)
+vowel swapped   غ   damma -> fatha                 1     0%     0%  (few)
+letter swapped  ف   damma                          1     0%     0%  (few)
+letter dropped  ل   damma                          1     0%     0%  (few)
+letter swapped  ص   long fatha                     1     0%     0%  (few)
+letter dropped  ق   long fatha                     1     0%     0%  (few)
+letter swapped  ل   sukun after fatha              1     0%     0%  (few)
+vowel length    و   long damma -> damma            1     0%     0%  (few)
+vowel swapped   ن   kasra -> damma                 1     0%     0%  (few)
+letter swapped  ج   sukun after damma              1     0%     0%  (few)
+letter swapped  ش   fatha                          1     0%     0%  (few)
+letter dropped  ص   long damma                     1     0%     0%  (few)
+vowel swapped   ش   damma -> kasra                 1     0%     0%  (few)
+vowel swapped   غ   kasra -> fatha                 1     0%     0%  (few)
+letter dropped  خ   damma                          1     0%     0%  (few)
+letter swapped  ن   sukun after fatha              1     0%     0%  (few)
+vowel swapped   ز   kasra -> fatha                 1     0%     0%  (few)
+letter swapped  ح   fatha                          1     0%     0%  (few)
+letter dropped  ش   damma                          1     0%     0%  (few)
+letter swapped  غ   damma                          1     0%     0%  (few)
+letter swapped  ف   long kasra                     1     0%     0%  (few)
+letter swapped  ط   long fatha                     1     0%     0%  (few)
+letter swapped  ذ   damma                          1     0%     0%  (few)
+letter swapped  ذ   sukun after fatha              1     0%     0%  (few)
+letter dropped  س   long damma                     1     0%     0%  (few)
+letter swapped  خ   long kasra                     1     0%     0%  (few)
+letter swapped  ق   sukun after damma              1     0%     0%  (few)
+letter dropped  ن   kasra                          1     0%     0%  (few)
+letter swapped  ص   kasra                          1     0%     0%  (few)
+letter swapped  ر   long damma                     1     0%     0%  (few)
+letter swapped  ذ   sukun after kasra              1     0%     0%  (few)
+vowel length    ض   damma -> long damma            1     0%     0%  (few)
+letter dropped  ف   long damma                     1     0%     0%  (few)
+letter swapped  ت   sukun after damma              1     0%     0%  (few)
+letter swapped  س   long fatha                     1     0%     0%  (few)
+letter dropped  د   long kasra                     1     0%     0%  (few)
+letter dropped  ب   sukun after kasra              1     0%     0%  (few)
+letter dropped  ظ   long damma                     1     0%     0%  (few)
+letter swapped  ك   long damma                     1     0%     0%  (few)
+letter dropped  ر   long damma                     1     0%     0%  (few)
+vowel length    ز   long damma -> damma            1     0%     0%  (few)
+letter dropped  د   kasra                          1     0%     0%  (few)
+letter swapped  ف   kasra                          1     0%     0%  (few)
+vowel swapped   ص   kasra -> damma                 1     0%     0%  (few)
+vowel swapped   ي   damma -> kasra                 9     0%    11%  (few)
+vowel swapped   ع   kasra -> fatha                 8     0%    12%  (few)
+vowel swapped   د   kasra -> fatha                 8     0%    12%  (few)
+vowel swapped   ذ   kasra -> fatha                 7     0%    14%  (few)
+vowel length    ق   damma -> long damma            7     0%    14%  (few)
+vowel swapped   ه   fatha -> kasra                 6     0%    17%  (few)
+letter dropped  ل   long damma                     6     0%    17%  (few)
+letter dropped  ب   kasra                          6     0%    17%  (few)
+letter dropped  د   fatha                          6     0%    17%  (few)
+vowel swapped   س   damma -> kasra                 6     0%    17%  (few)
+letter dropped  ل   fatha                          6     0%    17%  (few)
+letter dropped  ب   fatha                          6     0%    17%  (few)
+letter swapped  ت   damma                          6     0%    17%  (few)
+letter swapped  ل   kasra                          5     0%    20%  (few)
+letter dropped  ه   kasra                          5     0%    20%  (few)
+letter dropped  ر   sukun after kasra              5     0%    20%  (few)
+letter swapped  س   kasra                          5     0%    20%  (few)
+vowel length    ق   long kasra -> kasra            5     0%    20%  (few)
+letter dropped  ب   long kasra                     5     0%    20%  (few)
+vowel swapped   ل   fatha -> kasra                 5     0%    20%  (few)
+vowel swapped   ي   fatha -> kasra                 9     0%    22%  (few)
+letter dropped  ف   long kasra                     4     0%    25%  (few)
+vowel swapped   ع   damma -> fatha                 4     0%    25%  (few)
+letter dropped  ن   fatha                          4     0%    25%  (few)
+letter dropped  ج   long damma                     4     0%    25%  (few)
+vowel swapped   ك   fatha -> damma                 4     0%    25%  (few)
+vowel swapped   ص   kasra -> fatha                 4     0%    25%  (few)
+vowel swapped   ث   damma -> kasra                 4     0%    25%  (few)
+letter dropped  س   fatha                          4     0%    25%  (few)
+vowel swapped   ي   fatha -> damma                 4     0%    25%  (few)
+letter dropped  ف   kasra                          4     0%    25%  (few)
+vowel swapped   ب   damma -> kasra                 7     0%    29%  (few)
+letter dropped  و   long fatha                     7     0%    29%  (few)
+vowel length    ق   long fatha -> fatha            7     0%    29%  (few)
+letter swapped  د   long kasra                     7     0%    29%  (few)
+letter dropped  ل   kasra                          6     0%    33%  (few)
+vowel length    ن   long damma -> damma            6     0%    33%  (few)
+vowel length    ف   long damma -> damma            6     0%    33%  (few)
+vowel length    ق   kasra -> long kasra            6     0%    33%  (few)
+vowel swapped   ب   damma -> fatha                 6     0%    33%  (few)
+letter dropped  ت   long damma                     6     0%    33%  (few)
+letter swapped  ر   long fatha                     6     0%    33%  (few)
+letter swapped  ر   kasra                          6     0%    33%  (few)
+letter dropped  ذ   long fatha                     6     0%    33%  (few)
+letter swapped  ذ   long kasra                     3     0%    33%  (few)
+letter dropped  خ   fatha                          3     0%    33%  (few)
+letter dropped  ح   sukun after fatha              3     0%    33%  (few)
+vowel swapped   ت   fatha -> kasra                 3     0%    33%  (few)
+vowel swapped   ص   damma -> kasra                 3     0%    33%  (few)
+letter swapped  ق   sukun after fatha              3     0%    33%  (few)
+letter dropped  ه   long fatha                     3     0%    33%  (few)
+vowel swapped   ش   fatha -> kasra                 3     0%    33%  (few)
+letter swapped  ب   long damma                     3     0%    33%  (few)
+vowel length    ف   damma -> long damma            3     0%    33%  (few)
+vowel length    ط   long kasra -> kasra            3     0%    33%  (few)
+vowel swapped   ح   fatha -> damma                 5     0%    40%  (few)
+letter swapped  ط   fatha                          5     0%    40%  (few)
+letter dropped  ب   long fatha                     5     0%    40%  (few)
+vowel swapped   د   damma -> kasra                 5     0%    40%  (few)
+vowel swapped   ع   damma -> kasra                 5     0%    40%  (few)
+vowel swapped   س   damma -> fatha                 7     0%    43%  (few)
+vowel swapped   ق   damma -> kasra                 9     0%    44%  (few)
+vowel swapped   ك   fatha -> kasra                 6     0%    50%  (few)
+letter dropped  ر   sukun after damma              6     0%    50%  (few)
+vowel length    ء   long damma -> damma            4     0%    50%  (few)
+vowel swapped   ه   fatha -> damma                 4     0%    50%  (few)
+vowel length    ك   long kasra -> kasra            4     0%    50%  (few)
+vowel swapped   ح   damma -> fatha                 4     0%    50%  (few)
+letter dropped  ذ   sukun after kasra              4     0%    50%  (few)
+vowel length    ث   long kasra -> kasra            4     0%    50%  (few)
+letter swapped  ء   damma                          4     0%    50%  (few)
+letter dropped  ء   sukun after kasra              4     0%    50%  (few)
+letter swapped  ء   sukun after fatha              4     0%    50%  (few)
+letter dropped  ك   long kasra                     2     0%    50%  (few)
+letter swapped  ن   damma                          2     0%    50%  (few)
+letter dropped  ط   kasra                          2     0%    50%  (few)
+letter swapped  ر   sukun after kasra              2     0%    50%  (few)
+letter dropped  ك   long damma                     2     0%    50%  (few)
+letter dropped  ض   kasra                          2     0%    50%  (few)
+letter dropped  ف   long fatha                     2     0%    50%  (few)
+letter swapped  خ   long fatha                     2     0%    50%  (few)
+vowel swapped   ع   kasra -> damma                 2     0%    50%  (few)
+vowel length    ط   kasra -> long kasra            2     0%    50%  (few)
+vowel length    و   long kasra -> kasra            2     0%    50%  (few)
+letter swapped  ع   long fatha                     2     0%    50%  (few)
+vowel length    ي   long damma -> damma            2     0%    50%  (few)
+vowel swapped   ج   kasra -> damma                 2     0%    50%  (few)
+letter swapped  ل   long damma                     2     0%    50%  (few)
+vowel swapped   ج   fatha -> kasra                 2     0%    50%  (few)
+letter swapped  ت   long kasra                     2     0%    50%  (few)
+letter swapped  ش   long fatha                     2     0%    50%  (few)
+vowel swapped   خ   kasra -> fatha                 2     0%    50%  (few)
+letter dropped  ج   damma                          2     0%    50%  (few)
+letter swapped  ق   kasra                          2     0%    50%  (few)
+letter swapped  ك   sukun after fatha              2     0%    50%  (few)
+letter dropped  ب   sukun after fatha              2     0%    50%  (few)
+vowel length    ت   long damma -> damma            2     0%    50%  (few)
+letter swapped  غ   long fatha                     2     0%    50%  (few)
+letter dropped  ع   sukun after damma              2     0%    50%  (few)
+letter dropped  ع   sukun after kasra              2     0%    50%  (few)
+vowel length    ث   long fatha -> fatha            2     0%    50%  (few)
+letter swapped  غ   kasra                          2     0%    50%  (few)
+vowel swapped   ش   damma -> fatha                 2     0%    50%  (few)
+vowel swapped   ت   fatha -> damma                 2     0%    50%  (few)
+vowel length    ح   kasra -> long kasra            7     0%    57%  (few)
+vowel length    ع   long fatha -> fatha            5     0%    60%  (few)
+vowel swapped   ل   fatha -> damma                 5     0%    60%  (few)
+letter swapped  ي   long fatha                     5     0%    60%  (few)
+vowel length    ك   long damma -> damma            8     0%    62%  (few)
+letter swapped  ب   long fatha                     8     0%    62%  (few)
+vowel length    ث   damma -> long damma            8     0%    62%  (few)
+letter dropped  ج   long fatha                     6     0%    67%  (few)
+letter swapped  ر   sukun after fatha              3     0%    67%  (few)
+vowel swapped   ض   kasra -> damma                 3     0%    67%  (few)
+vowel swapped   ق   kasra -> fatha                 3     0%    67%  (few)
+letter dropped  ك   sukun after kasra              3     0%    67%  (few)
+vowel swapped   ز   damma -> fatha                 3     0%    67%  (few)
+letter dropped  ن   damma                          3     0%    67%  (few)
+vowel length    ي   damma -> long damma            8     0%    75%  (few)
+vowel length    خ   kasra -> long kasra            4     0%    75%  (few)
+vowel length    ص   long kasra -> kasra            4     0%    75%  (few)
+vowel swapped   ج   damma -> fatha                 4     0%    75%  (few)
+vowel length    س   long damma -> damma            9     0%    78%  (few)
+vowel swapped   ف   damma -> fatha                 5     0%    80%  (few)
+vowel swapped   ث   damma -> fatha                 6     0%    83%  (few)
+vowel length    ج   long fatha -> fatha            5     0%   100%  (few)
+vowel swapped   ش   kasra -> fatha                 4     0%   100%  (few)
+vowel length    ذ   damma -> long damma            4     0%   100%  (few)
+vowel length    ز   long fatha -> fatha            3     0%   100%  (few)
+letter swapped  س   sukun after kasra              2     0%   100%  (few)
+letter dropped  غ   sukun after damma              2     0%   100%  (few)
+vowel length    ر   long fatha -> fatha            2     0%   100%  (few)
+letter dropped  ط   long kasra                     2     0%   100%  (few)
+vowel length    و   kasra -> long kasra            2     0%   100%  (few)
+vowel swapped   ج   kasra -> fatha                 2     0%   100%  (few)
+letter dropped  خ   sukun after fatha              2     0%   100%  (few)
+vowel length    ك   kasra -> long kasra            2     0%   100%  (few)
+letter swapped  ل   long fatha                     2     0%   100%  (few)
+vowel swapped   ق   kasra -> damma                 2     0%   100%  (few)
+letter swapped  و   long fatha                     2     0%   100%  (few)
+vowel length    ت   long kasra -> kasra            1     0%   100%  (few)
+letter swapped  ء   long damma                     1     0%   100%  (few)
+letter dropped  ت   long fatha                     1     0%   100%  (few)
+vowel swapped   د   fatha -> kasra                 1     0%   100%  (few)
+letter dropped  ش   sukun after damma              1     0%   100%  (few)
+letter swapped  س   long kasra                     1     0%   100%  (few)
+vowel swapped   ض   damma -> kasra                 1     0%   100%  (few)
+vowel length    ج   long damma -> damma            1     0%   100%  (few)
+vowel length    ض   long kasra -> kasra            1     0%   100%  (few)
+vowel length    ذ   long damma -> damma            1     0%   100%  (few)
+vowel swapped   ط   kasra -> fatha                 1     0%   100%  (few)
+letter dropped  س   sukun after damma              1     0%   100%  (few)
+vowel length    ص   long fatha -> fatha            1     0%   100%  (few)
+vowel length    ح   long damma -> damma            1     0%   100%  (few)
+letter swapped  ت   long fatha                     1     0%   100%  (few)
+vowel swapped   ز   kasra -> damma                 1     0%   100%  (few)
+letter swapped  ت   sukun after kasra              1     0%   100%  (few)
+vowel length    ء   long kasra -> kasra            1     0%   100%  (few)
+letter dropped  ذ   sukun after fatha              1     0%   100%  (few)
+letter swapped  ك   long kasra                     1     0%   100%  (few)
+vowel swapped   ط   damma -> fatha                 1     0%   100%  (few)
+letter swapped  س   long damma                     1     0%   100%  (few)
+letter swapped  ب   sukun after kasra              1     0%   100%  (few)
+vowel swapped   ث   kasra -> fatha                 1     0%   100%  (few)
+vowel swapped   خ   kasra -> damma                 1     0%   100%  (few)
+vowel swapped   غ   damma -> kasra                 1     0%   100%  (few)
+letter dropped  ط   damma                          1     0%   100%  (few)
+letter swapped  ك   sukun after damma              1     0%   100%  (few)
+letter dropped  س   sukun after kasra              1     0%   100%  (few)
+vowel length    ص   long damma -> damma            1     0%   100%  (few)
+vowel swapped   و   damma -> fatha                 1     0%   100%  (few)
+letter swapped  س   sukun after fatha              1     0%   100%  (few)
+letter swapped  م   sukun after kasra              1     0%   100%  (few)
+vowel swapped   خ   damma -> fatha                 1     0%   100%  (few)
+vowel swapped   ث   fatha -> damma                 1     0%   100%  (few)
+vowel swapped   ل   kasra -> damma                 9    11%     0%  (few)
+letter swapped  ك   damma                          9    11%    11%  (few)
+vowel swapped   ن   damma -> fatha                 9    11%    44%  (few)
+vowel length    ن   long kasra -> kasra            9    11%    56%  (few)
+letter dropped  ك   sukun after fatha              9    11%    67%  (few)
+vowel length    ث   fatha -> long fatha            9    11%    78%  (few)
+letter swapped  ب   sukun after fatha              8    12%    62%  (few)
+vowel length    ذ   kasra -> long kasra            7    14%    14%  (few)
+vowel swapped   س   fatha -> kasra                 7    14%    29%  (few)
+letter dropped  ز   fatha                          7    14%    43%  (few)
+vowel length    ع   long damma -> damma            7    14%    43%  (few)
+vowel length    ت   long fatha -> fatha            7    14%    43%  (few)
+letter dropped  س   sukun after fatha              6    17%    50%  (few)
+vowel length    س   damma -> long damma            6    17%    50%  (few)
+vowel length    ش   long fatha -> fatha            6    17%    83%  (few)
+vowel length    ب   long damma -> damma            5    20%     0%  (few)
+letter dropped  ء   sukun after fatha              5    20%     0%  (few)
+letter dropped  ن   long fatha                     5    20%     0%  (few)
+vowel length    ل   damma -> long damma            5    20%    20%  (few)
+letter dropped  ج   kasra                          5    20%    20%  (few)
+vowel length    ز   kasra -> long kasra            5    20%    60%  (few)
+vowel length    ج   damma -> long damma            5    20%    60%  (few)
+vowel swapped   ف   damma -> kasra                 5    20%    80%  (few)
+letter swapped  ل   fatha                          5    20%    80%  (few)
+letter dropped  غ   sukun after fatha              5    20%    80%  (few)
+vowel length    ف   long fatha -> fatha            5    20%   100%  (few)
+vowel length    ظ   damma -> long damma            4    25%    75%  (few)
+vowel length    ع   long kasra -> kasra            4    25%    75%  (few)
+vowel length    ش   kasra -> long kasra            4    25%    75%  (few)
+letter dropped  ك   sukun after damma              4    25%    75%  (few)
+vowel length    ب   long fatha -> fatha            7    29%   100%  (few)
+vowel length    ج   kasra -> long kasra            3    33%    33%  (few)
+letter dropped  ش   sukun after fatha              3    33%    67%  (few)
+vowel length    ص   kasra -> long kasra            5    40%    80%  (few)
+letter swapped  م   kasra                          2    50%     0%  (few)
+vowel length    ز   long kasra -> kasra            2    50%     0%  (few)
+vowel length    خ   long kasra -> kasra            2    50%    50%  (few)
+vowel swapped   ظ   kasra -> damma                 2    50%    50%  (few)
+vowel length    ج   long kasra -> kasra            4    50%   100%  (few)
+vowel length    ز   fatha -> long fatha            4    50%   100%  (few)
+letter dropped  ص   sukun after fatha              2    50%   100%  (few)
+vowel length    س   long kasra -> kasra            3    67%    33%  (few)
+vowel swapped   ز   fatha -> damma                 1   100%     0%  (few)
+letter dropped  ج   long kasra                     1   100%   100%  (few)
+vowel length    ص   damma -> long damma            1   100%   100%  (few)
+vowel length    ش   long kasra -> kasra            1   100%   100%  (few)
+vowel length    خ   long fatha -> fatha            1   100%   100%  (few)
+letter swapped  ل   damma                          1   100%   100%  (few)
+letter dropped  ف   sukun after kasra              1   100%   100%  (few)
+letter dropped  ث   sukun after fatha              1   100%   100%  (few)
 
 RIGHT LETTERS BY VOWEL (all letters)
 letter              context                        n    red
