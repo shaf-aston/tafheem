@@ -29,6 +29,10 @@ updates:
   - package-ecosystem: pip
     directory: /
     registries: [pypi]  # see registries above
+    # tts_arabic installs from a pinned git commit, which Dependabot can only read by building it (running
+    # its setup code). It refuses that ("unexpected_external_code") and the whole pip job fails; it could never
+    # move a commit pin anyway, so that file is left out.
+    exclude-paths: ["requirements-nodeps.txt"]
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
