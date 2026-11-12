@@ -16,8 +16,8 @@ from backend.services.core import audit
 # x-vercel-forwarded-for with the address it saw (a visitor's own value never survives), and Caddy passes
 # them on untouched. X-Forwarded-For is last: Caddy rewrites it to its own peer, which behind Vercel is
 # Vercel's edge, so every learner would share one count. It is still the address on a direct call or a dev server.
-# Until the origin gate (docs/plans/2026-11-11-security.md, Phase 2) a caller that skips Vercel can send
-# x-real-ip itself and pick its own count; Budget's ceiling for everyone is what holds then.
+# The origin gate (docs/plans/2026-11-11-security.md, Phase 2) answers 403 to a caller that skips Vercel, so
+# none can send x-real-ip itself; Budget's ceiling for everyone still holds if the gate is ever off.
 _ADDRESS_HEADERS = ("x-real-ip", "x-vercel-forwarded-for", "x-forwarded-for")
 
 
