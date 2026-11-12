@@ -2,7 +2,8 @@
 import { describe, expect, it } from 'vitest'
 import { render } from '@testing-library/react'
 
-import Medal, { CONFETTI } from './Celebration'
+import Medal from './Celebration'
+import { CONFETTI } from './confettiPieces'
 
 describe('Medal', () => {
   it('draws the rays, the sprout and every piece of confetti, hidden from screen readers', () => {
