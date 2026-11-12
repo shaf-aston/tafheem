@@ -19,7 +19,7 @@ from backend.config import get_settings
 from backend.identity import (
     DEVICE, NAMED, OWN, PROVEN, PROVEN_USER, SESSION, TOKEN, TYPED, USER, give_token, prove, take_token,
 )
-from backend.services.core.ratelimit import ACCOUNT, ANSWER, NAMELESS, visitor
+from backend.services.core.ratelimit import ACCOUNT, ANSWER, ANSWER_PLACE, NAMELESS, visitor
 from backend.models.progress import (
     Account,
     AccountNames,
@@ -68,6 +68,8 @@ async def record_attempt(request: Request, attempt: AttemptIn, user: str = USER)
     The answer limit is per account, not per address: a class drilling together behind one address is many
     learners. A guest's record is named by a header anyone can change, so a guest counts by address."""
     ANSWER.check(visitor(request) if is_guest(user) else user)
+    if ANSWER_PLACE.too_many(visitor(request)):  # many accounts from one address: a class, or one person's script
+        raise HTTPException(status_code=429, detail=ANSWER.mine)
     if not quiz_words.allowed(attempt.module, attempt.item):
         raise HTTPException(status_code=422, detail="Not a word of the quiz")
     own = user != GUEST
@@ -157,7 +159,7 @@ def sign_up(body: SignUpIn, response: Response, user: str = TYPED, device: str =
     `keep` moves this device's guest answers onto it. A page that names no device (one cached from before
     devices had ids) keeps nothing: the shared record it wrote to holds every such guest's answers, not its own.
     """
-    if body.shows_code or not get_settings().account_claims_open:
+    if body.shows_code:
         minted = tokens.open_account(user)
         made = minted is not None
     else:  # a page from before codes, which would never show one (SignUpIn.shows_code): this browser holds the
@@ -245,10 +247,13 @@ def new_recovery(body: RecoveryIn | None = None, who: tuple[str, str] = SESSION)
     owner makes a new one (scripts/recovery_code.py).
     """
     user, token = who
+    body = body or RecoveryIn()
     if (first := tokens.first_code(user)) is not None:  # signed up from a page that never showed a code
         audit.event("recovery_new", user=user, by="first")
         return Recovery(code=first)
-    typed = (body or RecoveryIn()).code
+    if body.first:
+        raise HTTPException(status_code=409, detail="This account has a recovery code already")
+    typed = body.code
     if typed:
         if not tokens.matches(user, typed):
             audit.event("recovery_refused", user=user)

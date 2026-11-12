@@ -94,3 +94,15 @@ def test_the_answer_limit_is_per_account_so_a_class_behind_one_address_is_many(m
                          json={"module": "quiz", "item": "train", "correct": True}).status_code
              for name in ("Amina", "Bilal", "Amina", "Bilal", "Amina")]
     assert codes == [200, 200, 200, 200, 429]
+
+
+def test_one_address_has_its_own_answer_ceiling_across_accounts(monkeypatch):
+    from backend.services.core import ratelimit
+    monkeypatch.setattr(get_settings(), "answer_address_per_minute", 3)
+    monkeypatch.setattr(ratelimit.ANSWER_PLACE, "asks", {})
+    names = ("Amina", "Bilal", "Chen", "Dina")
+    for name in names:
+        sign_in.signup(client, name)
+    codes = [client.post("/api/progress/attempts", headers={**as_(name), "X-Real-IP": "203.0.113.7"},
+                         json={"module": "quiz", "item": "train", "correct": True}).status_code for name in names]
+    assert codes == [200, 200, 200, 429]

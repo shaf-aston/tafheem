@@ -5,7 +5,7 @@
 import { errorMessage } from '../api/apiError'
 import { logOutBecause } from './profile'
 import { pullShelf } from '../store/shelf'
-import { fetchAccount, logIn, needsCode, newRecoveryCode } from './progress'
+import { fetchAccount, firstCode, logIn, needsCode } from './progress'
 
 /**
  * The account, once this browser is proven to be its; `onCode` gets a recovery code made on the way.
@@ -17,8 +17,9 @@ export async function checkAccount(name, onCode) {
     const account = await fetchAccount()
     if (account.proven !== false) {
       // Signed up from a page that never showed a code: this browser holds the account, and makes its first
-      // code now. A failure is no reason to log out: the next load asks again.
-      if (account.has_code === false) await newRecoveryCode().then(onCode, () => {})
+      // code now. A failure is no reason to log out: the next load asks again. Another tab that made it first
+      // shows it there (a 409 here), rather than this tab replacing it.
+      if (account.has_code === false) await firstCode().then(onCode, () => {})
       return account
     }
     // An account from before codes that nobody has claimed: this browser claims it.

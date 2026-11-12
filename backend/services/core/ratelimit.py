@@ -75,10 +75,10 @@ class Names:
     def __init__(self, each: str, everyone: str) -> None:
         self.each, self.everyone = each, everyone
         self.asked: dict[str, dict[str, float]] = {}
+        self.all: dict[str, float] = {}  # everyone together, apart from the visitors so no flood evicts it
         self.lock = threading.Lock()
 
-    def _fits(self, who: str, name: str, setting: str, now: float) -> bool:
-        names = self.asked.setdefault(who, {})
+    def _fits(self, names: dict[str, float], name: str, setting: str, now: float) -> bool:
         for old in [n for n, at in names.items() if now - at > 60]:
             del names[old]
         return name in names or len(names) < getattr(get_settings(), setting)
@@ -88,17 +88,16 @@ class Names:
         with self.lock:
             while len(self.asked) > 10_000:  # never grows without end; the oldest visitor goes, not everyone
                 self.asked.pop(next(iter(self.asked)))
-            if not (self._fits(who, name, self.each, now) and self._fits(_EVERYONE, name, self.everyone, now)):
+            mine = self.asked.pop(who, {})
+            self.asked[who] = mine  # most recent last, so the oldest is evicted first
+            if not (self._fits(mine, name, self.each, now) and self._fits(self.all, name, self.everyone, now)):
                 return True
-            self.asked[who][name] = self.asked[_EVERYONE][name] = now
-            for key in (who, _EVERYONE):  # most recent last, so the oldest is evicted first
-                self.asked[key] = self.asked.pop(key)
+            mine[name] = self.all[name] = now
             return False
 
 
 # Names sent without a device token. Only a page from before tokens, or one not yet claimed, sends them;
 # a cookie-holding page is never counted.
-_EVERYONE = "*"  # never an address
 NAMELESS = Names("names_per_minute", "names_all_per_minute")
 
 
@@ -136,6 +135,8 @@ RECORDING = Limit("recording_per_minute", "recording_all_per_minute",
 # Answers: far above a learner drilling fast; it slows a script filing the whole word list as learnt.
 ANSWER = Limit("answer_per_minute", "answer_all_per_minute",
                "Too many answers at once; wait a minute", "Saving answers is busy right now; try again in a minute")
+# Answers from one address across its accounts: a classroom fits, one person's fifty accounts do not.
+ANSWER_PLACE = PerMinute("answer_address_per_minute")
 # Sign-up and log-in: a person does each once on a device.
 ACCOUNT = Limit("account_per_minute", "account_all_per_minute",
                 "Too many tries at once; wait a minute", "Accounts are busy right now; try again in a minute")

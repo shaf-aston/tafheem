@@ -4,7 +4,7 @@ import { api } from '../../api'
 import {
   answerInvite, deleteAccount, fetchAccount, fetchAccountNames, fetchCircle, fetchLeaderboard, fetchMemberOverview,
   fetchReviewItems, fetchSummary, forgetProgress, inviteMember, leaveFeedback, moveCircle, recordAttempt, removeMember, logIn, signUp,
-  logOutHere, logOutOthers, needsCode, newRecoveryCode,
+  firstCode, logOutHere, logOutOthers, needsCode, newRecoveryCode,
 } from './progress'
 
 afterEach(() => vi.restoreAllMocks())
@@ -202,6 +202,8 @@ describe('proving this browser is the account\'s', () => {
     expect(JSON.parse(sent[0].data)).toEqual({})
     await newRecoveryCode('abcd-efgh-jkmn-pqrs')
     expect(JSON.parse(sent[1].data)).toEqual({ code: 'abcd-efgh-jkmn-pqrs' })
+    await firstCode()
+    expect(JSON.parse(sent[2].data)).toEqual({ first: true })
     sent = answering({ deleted: 2 })
     expect(await logOutOthers()).toBe(2)
     expect([sent[0].method, sent[0].url]).toEqual(['delete', '/progress/sessions'])

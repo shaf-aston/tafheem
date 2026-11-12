@@ -130,6 +130,9 @@ class RecoveryIn(BaseModel):
     """Asking for a new recovery code: the current one, unless this device logged in moments ago."""
 
     code: str | None = Field(default=None, max_length=40)
+    first: bool = False
+    """Only the account's first code (the page's load-time ask): another tab that made it first gets a 409, not
+    a second code that would kill the one already on screen."""
 
 
 class Recovery(BaseModel):

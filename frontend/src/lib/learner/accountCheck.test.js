@@ -3,14 +3,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 vi.mock('./progress', () => ({
   fetchAccount: vi.fn(),
   logIn: vi.fn(),
-  newRecoveryCode: vi.fn(),
+  firstCode: vi.fn(),
   needsCode: (error) => error?.response?.status === 403,
 }))
 vi.mock('./profile', () => ({ logOutBecause: vi.fn() }))
 vi.mock('../store/shelf', () => ({ pullShelf: vi.fn() }))
 
 const { checkAccount } = await import('./accountCheck')
-const { fetchAccount, logIn, newRecoveryCode } = await import('./progress')
+const { fetchAccount, firstCode, logIn } = await import('./progress')
 const { logOutBecause } = await import('./profile')
 const { pullShelf } = await import('../store/shelf')
 
@@ -25,17 +25,17 @@ describe('checking the kept name on load', () => {
     fetchAccount.mockResolvedValue({ name: 'amina', proven: true })
     expect(await checkAccount('amina', onCode)).toEqual({ name: 'amina', proven: true })
     expect(logIn).not.toHaveBeenCalled()
-    expect(newRecoveryCode).not.toHaveBeenCalled()
+    expect(firstCode).not.toHaveBeenCalled()
     expect(onCode).not.toHaveBeenCalled()
     expect(pullShelf).not.toHaveBeenCalled()
   })
 
   it('makes the first code of an account this browser holds without one, and hands it to be shown', async () => {
     fetchAccount.mockResolvedValue({ name: 'amina', proven: true, has_code: false })
-    newRecoveryCode.mockResolvedValue('FRST-FRST-FRST-FRST')
+    firstCode.mockResolvedValue('FRST-FRST-FRST-FRST')
     expect(await checkAccount('amina', onCode)).toMatchObject({ name: 'amina' })
     expect(onCode).toHaveBeenCalledWith('FRST-FRST-FRST-FRST')
-    newRecoveryCode.mockRejectedValue(refused(403, 'Type your current recovery code to make a new one'))
+    firstCode.mockRejectedValue(refused(409, 'This account has a recovery code already')) // another tab's
     expect(await checkAccount('amina', onCode)).toMatchObject({ name: 'amina' }) // refused: no log-out
     expect(logOutBecause).not.toHaveBeenCalled()
   })

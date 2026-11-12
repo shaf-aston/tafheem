@@ -455,6 +455,7 @@ def test_log_in_counts_names_asked_without_a_token(monkeypatch):
     monkeypatch.setattr(get_settings(), "names_per_minute", 2)
     from backend.services.core import ratelimit
     monkeypatch.setattr(ratelimit.NAMELESS, "asked", {})
+    monkeypatch.setattr(ratelimit.NAMELESS, "all", {})
     codes = [sign_in.login(client, n, shows_code=False).status_code for n in ("a1", "a2", "a3")]
     assert codes == [404, 404, 429]
 
@@ -473,10 +474,21 @@ def test_an_old_page_still_needs_the_code_for_a_claimed_account():
     assert sign_in.login(client, "Amina", shows_code=False).status_code == 403
 
 
-def test_with_claims_closed_an_old_page_signs_up_as_before(monkeypatch):
+def test_with_claims_closed_an_old_page_still_makes_no_code_nobody_sees(monkeypatch):
     monkeypatch.setattr(get_settings(), "account_claims_open", False)
     old = sign_in.signup(client, "Amina", shows_code=False)
-    assert old.json()["recovery"] and tokens.claimed("amina")  # no unclaimed account nobody could ever claim
+    assert old.json()["recovery"] is None and tokens.claimed("amina") and not tokens.has_code("amina")
+    assert account(as_("Amina")).json()["has_code"] is False  # the new page makes and shows the first
+
+
+def test_only_the_first_tab_makes_the_first_code_the_others_do_not_replace_it():
+    sign_in.signup(client, "Amina", shows_code=False)
+    tab = as_("Amina")
+    first = client.post("/api/progress/recovery", json={"first": True}, headers=tab)
+    again = client.post("/api/progress/recovery", json={"first": True}, headers=tab)
+    assert first.status_code == 200 and again.status_code == 409
+    sign_in.forget_all()
+    assert login("Amina", code=first.json()["code"]).status_code == 200  # the one shown still works
 
 
 # Asking about many names without a token: which exist, which can be claimed
@@ -485,6 +497,7 @@ def test_one_visitor_may_name_only_a_few_usernames_a_minute_without_a_token(monk
     monkeypatch.setattr(get_settings(), "names_per_minute", 3)
     from backend.services.core import ratelimit
     monkeypatch.setattr(ratelimit.NAMELESS, "asked", {})
+    monkeypatch.setattr(ratelimit.NAMELESS, "all", {})
     old_account("amina")
     assert all(account(bare("amina")).status_code == 200 for _ in range(10))  # one name, however often
     assert [account(bare(n)).status_code for n in ("nobody1", "nobody2", "nobody3")] == [401, 401, 429]
@@ -502,6 +515,7 @@ def test_the_name_limit_has_a_ceiling_a_forged_address_does_not_pass(monkeypatch
     monkeypatch.setattr(get_settings(), "names_all_per_minute", 3)
     from backend.services.core import ratelimit
     monkeypatch.setattr(ratelimit.NAMELESS, "asked", {})
+    monkeypatch.setattr(ratelimit.NAMELESS, "all", {})
     codes = [account({"X-Tafheem-Profile": f"n{i}", "X-Real-IP": f"203.0.113.{i}"}).status_code for i in range(5)]
     assert codes == [401, 401, 401, 429, 429]
 
@@ -516,6 +530,16 @@ def test_a_flood_of_addresses_evicts_the_oldest_and_resets_nobody(monkeypatch):
     assert "victim-probe" not in names.asked and len(names.asked) <= 10_001  # evicted, oldest first
     names.too_many("prober", "p")
     assert names.too_many("prober", "q")  # still counted after the flood
+
+
+def test_a_flood_of_addresses_does_not_reset_the_ceiling(monkeypatch):
+    from backend.services.core import ratelimit
+    names = ratelimit.Names("names_per_minute", "names_all_per_minute")
+    monkeypatch.setattr(get_settings(), "names_all_per_minute", 2)
+    assert not names.too_many("a", "x") and not names.too_many("b", "y") and names.too_many("c", "z")
+    for i in range(10_002):
+        names.too_many(f"f{i}", "w")  # refused, but each forged address is a visitor entry
+    assert names.too_many("d", "v")  # the ceiling is still full
 
 
 def test_the_name_limit_holds_under_threads(monkeypatch):
