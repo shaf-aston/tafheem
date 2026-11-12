@@ -1,11 +1,10 @@
 import { Fragment } from 'react'
 
-import { UNNAMED, reading } from '../../../lib/nahw/grammarTerms'
+import { UNNAMED, reading, caseFrom } from '../../../lib/nahw/grammarTerms'
 import { roleVar } from '../../../lib/nahw/roleColors'
 import BookPath from '../../grammar/BookPath'
 import ArabicText from '../../ui/text/ArabicText'
 import Disclosure from '../../ui/overlays/Disclosure'
-import { source } from './wordSource'
 
 /**
  * The click lives on the row, one handler on the table body; the keyboard lives
@@ -68,7 +67,7 @@ export default function FullIraabTable({ words, onRowClick }) {
                   </td>
                   <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">{w.root || NONE}</ArabicText>
                   <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">
-                    {source(w) === undefined ? NONE : <>{w.governor == null && 'تابع لـ '}{words[source(w)].word}</>}
+                    {caseFrom(w) === undefined ? NONE : <>{w.governor == null && 'تابع لـ '}{words[caseFrom(w)].word}</>}
                   </ArabicText>
                   <td className="hidden md:table-cell py-3 px-3 text-[var(--text-dim)] min-w-[var(--layout-proof)]">{proof}</td>
                 </tr>

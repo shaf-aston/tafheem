@@ -49,3 +49,6 @@ export const GLOSSARY = config.sections.map(({ title, from, terms }) => ({
   title,
   terms: [...(from ? Object.values(config[from]) : []), ...(terms ?? [])],
 }))
+
+/** The word a word takes its case from, as an index: its عامل, or the word a تابع follows. Undefined for neither. */
+export const caseFrom = (word) => word.governor ?? word.follows ?? undefined

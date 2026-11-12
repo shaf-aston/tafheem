@@ -1,4 +1,5 @@
 import { useRemembered } from '../../../lib/store/useRemembered'
+import { caseFrom } from '../../../lib/nahw/grammarTerms'
 import { buildIraabExportText } from '../../../lib/nahw/iraabExport'
 import { useTarkeebView } from '../../../lib/nahw/useTarkeebView'
 import ArabicText from '../../ui/text/ArabicText'
@@ -11,9 +12,8 @@ import PracticePanel from '../PracticePanel'
 import ChartWithPeek from './ChartWithPeek'
 import FullIraabTable from './FullIraabTable'
 import { EnglishFoot, EnglishMeaning } from './SentenceEnglish'
-import { useSentenceMeaning } from './useSentenceMeaning'
+import { useSentenceMeaning } from '../../../lib/nahw/useSentenceMeaning'
 import WordGrid, { GovernsWhy } from './WordGrid'
-import { source } from './wordSource'
 
 // What the word row draws: each word's role, or arcs from governor to governed.
 const LENSES = ['roles', 'governs']
@@ -22,7 +22,7 @@ const LENSES = ['roles', 'governs']
 // page where it was, whichever of the chart, grid or table opened it.
 export default function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, detail, more }) {
   const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
-  const linked = data.words.some((w) => source(w) !== undefined)
+  const linked = data.words.some((w) => caseFrom(w) !== undefined)
   const governs = linked && lens === 'governs'
   const view = useTarkeebView(data.tree)
   const meaning = useSentenceMeaning(data.sentence)
@@ -66,7 +66,7 @@ export default function AnalysisResults({ data, accent, onGo, onWordClick, picke
           </FlagButton>
         )} />
       <p className="text-center type-small text-[var(--text-faint)]">
-        {governs && picked >= 0 && source(data.words[picked]) !== undefined
+        {governs && picked >= 0 && caseFrom(data.words[picked]) !== undefined
           ? <GovernsWhy words={data.words} i={picked} />
           : 'Tap a word for breakdown'}
       </p>

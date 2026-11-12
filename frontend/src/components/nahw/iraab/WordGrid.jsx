@@ -1,15 +1,14 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 
-import { isUnnamed, caseLabel } from '../../../lib/nahw/grammarTerms'
+import { isUnnamed, caseLabel, caseFrom } from '../../../lib/nahw/grammarTerms'
 import { arc } from '../../../lib/nahw/govArc'
 import { roleVar } from '../../../lib/nahw/roleColors'
 import ArabicText from '../../ui/text/ArabicText'
-import { source } from './wordSource'
 
 // "X governs Y" or "Y follows X", the typed words themselves.
 export function GovernsWhy({ words, i }) {
   const w = words[i]
-  const from = <ArabicText size="sm" className="text-[var(--text)]">{words[source(w)].word}</ArabicText>
+  const from = <ArabicText size="sm" className="text-[var(--text)]">{words[caseFrom(w)].word}</ArabicText>
   const to = <ArabicText size="sm" className="text-[var(--text)]">{w.word}</ArabicText>
   return w.governor != null
     ?<>{from} governs {to}: it gives it its case.</>
@@ -30,8 +29,8 @@ export default function WordGrid({ words, onClick, governs, picked, corner }) {
       const box = line.querySelector('svg').getBoundingClientRect()
       const cards = [...line.querySelectorAll('.word')].map((c) => c.getBoundingClientRect())
       const at = (i) => [cards[i].left - box.left + cards[i].width / 2, cards[i].top - box.top]
-      setArcs(words.flatMap((w, i) => (source(w) === undefined ? [] : [{
-        i, dashed: w.governor == null, ...arc(at(source(w)), at(i), ARC_CAP),
+      setArcs(words.flatMap((w, i) => (caseFrom(w) === undefined ? [] : [{
+        i, dashed: w.governor == null, ...arc(at(caseFrom(w)), at(i), ARC_CAP),
       }])))
     }
     measure()
