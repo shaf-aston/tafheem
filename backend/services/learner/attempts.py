@@ -101,14 +101,18 @@ def record(
     return int(cursor.lastrowid)
 
 
-def leave_feedback(*, module: str, message: str, item: str | None = None, user: str = GUEST) -> int:
+def leave_feedback(
+    *, module: str, message: str, item: str | None = None, user: str = GUEST,
+    email: str | None = None, updates: bool = False,
+) -> int:
     """File a note about something that looks wrong. Kept apart from answers, so
-    the Settings wipe clears a learner's record without losing their reports."""
+    the Settings wipe clears a learner's record without losing their reports.
+    `email` is where to reply, and `updates` that its writer asked for news there."""
     db = connection()
     with db:
         cursor = db.execute(
-            "INSERT INTO feedback (user, module, item, message) VALUES (?, ?, ?, ?)",
-            (user, module, item, message),
+            "INSERT INTO feedback (user, module, item, message, email, updates) VALUES (?, ?, ?, ?, ?, ?)",
+            (user, module, item, message, email, int(updates)),
         )
     return int(cursor.lastrowid)
 

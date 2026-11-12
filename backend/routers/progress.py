@@ -93,12 +93,15 @@ async def record_attempt(request: Request, attempt: AttemptIn, user: str = USER)
 
 @router.post("/feedback", response_model=AttemptSaved)
 async def leave_feedback(note: FeedbackIn, user: str = USER) -> AttemptSaved:
-    """File a report about a question that looks wrong."""
+    """File a report about a question that looks wrong, or the footer's note or request for updates."""
     message = note.message.strip()
-    if not message:
+    if note.updates and not note.email:
+        raise HTTPException(status_code=422, detail="updates need an email to go to")
+    if not message and not note.updates:
         raise HTTPException(status_code=422, detail="message is empty")
     return AttemptSaved(id=attempts.leave_feedback(
         module=note.module, item=note.item, message=message, user=user,
+        email=note.email, updates=note.updates,
     ))
 
 

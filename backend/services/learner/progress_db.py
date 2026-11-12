@@ -122,6 +122,8 @@ MIGRATIONS = (
     );
     CREATE INDEX ix_tokens_name ON tokens (name);
     """,
+    # The footer's note: an email to reply to, if its writer gave one, and whether they asked for updates there.
+    "ALTER TABLE feedback ADD COLUMN email TEXT; ALTER TABLE feedback ADD COLUMN updates INTEGER NOT NULL DEFAULT 0;",
 )
 
 

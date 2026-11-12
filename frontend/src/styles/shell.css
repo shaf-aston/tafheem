@@ -255,3 +255,37 @@
     display: none;
   }
 }
+
+
+/* The footer's note (components/shell/FooterNote.jsx): one centred line, quiet until used.
+   Plain classes, not utilities, because the landing page's reset zeroes utility padding. */
+.footer-note { display: grid; gap: .5rem; width: 100%; max-width: 46rem; margin: 1.25rem auto 0; padding-inline: 1rem; color: var(--text-dim); font-size: var(--type-small); }
+.footer-note .footer-note-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .5rem .75rem; }
+.footer-note .footer-note-field { display: flex; align-items: center; gap: .375rem; flex: 0 1 24rem; min-width: 0; }
+.footer-note input:not([type="checkbox"]) {
+  flex: 1; min-width: 0; min-height: var(--layout-tap); padding: .375rem .875rem;
+  border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--surface);
+  color: var(--text); font: inherit; font-size: var(--type-small);
+  transition: border-color calc(var(--motion-instant-ms) * 1ms) ease;
+}
+/* Brought into view above the phone's tab bar, not under it, when a field takes the cursor. */
+.footer-note input, .footer-note button { scroll-margin-block-end: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px) + 1rem); }
+.footer-note input:not([type="checkbox"]):focus-visible { outline: none; border-color: var(--c); }
+.footer-note input[aria-invalid="true"] { border-color: var(--danger); }
+.footer-note .footer-note-more > input { flex: 0 1 16rem; }
+.footer-note .footer-note-check { display: inline-flex; align-items: center; gap: .4rem; cursor: pointer; }
+.footer-note .footer-note-check input { accent-color: var(--c); width: 1rem; height: 1rem; }
+.footer-note .footer-note-send {
+  min-height: var(--layout-tap); padding: .375rem 1rem; border-radius: var(--radius-pill);
+  background: var(--c); color: var(--on-accent); font: inherit; font-size: var(--type-small); font-weight: 600;
+  transition: opacity calc(var(--motion-instant-ms) * 1ms) ease;
+}
+.footer-note .footer-note-send:disabled { background: transparent; box-shadow: inset 0 0 0 1px var(--border-hi); color: var(--text-faint); cursor: not-allowed; }
+.footer-note .footer-note-link {
+  color: var(--text-dim); font: inherit; text-decoration: underline; text-decoration-color: var(--border-hi);
+  text-underline-offset: 3px; min-height: var(--layout-pointer-tap);
+}
+.footer-note .footer-note-link:hover { color: var(--text); }
+.footer-note .footer-note-error { color: var(--danger); text-align: center; }
+.footer-note .footer-note-hint { color: var(--text-faint); text-align: center; }
+.footer-note .footer-note-row[role="status"] { color: var(--text); }

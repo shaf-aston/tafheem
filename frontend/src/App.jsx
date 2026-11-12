@@ -31,6 +31,7 @@ import InstallBanner from './components/shell/InstallBanner'
 import InstallButton from './components/shell/InstallButton'
 import SectionsMenu from './components/shell/SectionsMenu'
 import ArabicText from './components/ui/text/ArabicText'
+import FooterNote from './components/shell/FooterNote'
 
 // Logs how long each tab's opening data took, `[open] hadith 212ms`; 0ms = already cached.
 // The tab's code comes too (lib/nav/tabs.js `panel`); a failed fetch is tried again on opening.
@@ -202,6 +203,7 @@ function AppContent() {
         <div className="glass rounded-[var(--radius-lg)] w-fit mx-auto px-8 py-4">
           <ArabicText as="p">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ</ArabicText>
         </div>
+        <FooterNote where={activeTab} accent={accent} />
       </footer>
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} onGo={switchTab} />
       <SectionsMenu

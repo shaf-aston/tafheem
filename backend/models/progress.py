@@ -61,11 +61,18 @@ class AttemptSaved(BaseModel):
 
 
 class FeedbackIn(BaseModel):
-    """A note from the page about something that looks wrong."""
+    """A note from the page about something that looks wrong, or an idea, from the footer.
+
+    A note needs a message, unless it is only someone asking for updates (an email and
+    `updates`). The router checks that, after stripping, so "   " is no message."""
     module: str = Field(min_length=1, max_length=32)
     item: str | None = Field(default=None, max_length=200)
     """The question it is about, when there is one."""
-    message: str = Field(min_length=1, max_length=2000)
+    message: str = Field(default="", max_length=2000)
+    email: str | None = Field(default=None, max_length=254, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+    """Where to reply, when the writer gave one. Never required."""
+    updates: bool = False
+    """The writer asked for the occasional update at that email."""
 
 
 class Forgotten(BaseModel):
