@@ -137,3 +137,16 @@ def test_what_a_learner_searched_never_lands_in_the_server_log(caplog):
     assert len(lines) == 2
     assert "رحمة" not in lines[0] and "%D8" not in lines[0] and "api.quran.com/api/v4/search" in lines[0]
     assert "api.groq.com" in lines[1] and "/v1/" in lines[1] and " 200 " in lines[1]  # deploy/usage.py still counts it
+
+
+def test_a_crash_is_logged_without_the_key_its_error_carried(caplog):
+    from backend.main import create_app
+    crashing = create_app()
+
+    @crashing.get("/api/boom-key")
+    def boom():
+        raise RuntimeError("401 for Authorization: Bearer gsk_SECRETKEY123")
+
+    with caplog.at_level("ERROR"):
+        TestClient(crashing, raise_server_exceptions=False).get("/api/boom-key")
+    assert "boom-key" in caplog.text and "SECRETKEY123" not in caplog.text
