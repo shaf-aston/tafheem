@@ -69,6 +69,7 @@ service, with the query that needs it.
 from __future__ import annotations
 
 import argparse
+import html
 import re
 import sqlite3
 import sys
@@ -251,13 +252,20 @@ class Lane(Lexicon):
             # the next is that root's entry, headword, senses, quotations and all.
             cuts = list(self.ROOT.finditer(text))
             for index, cut in enumerate(cuts):
-                root = _arabic(cut.group(1))
-                if len(root) < 2:
-                    continue
                 end = cuts[index + 1].start() if index + 1 < len(cuts) else len(text)
-                if said := self._entry(text[cut.end():end]):
-                    found.append((root, said))
+                fragment = text[cut.end():end]
+                if self._unwritten(fragment) or not (said := self._entry(fragment)):
+                    continue
+                found.extend((root, said) for head in _lane_heads(cut.group(1))
+                             if len(root := _arabic(head)) >= 2)
         return found
+
+    def _unwritten(self, fragment: str) -> bool:
+        """A heading Lane never reached. Perseus keeps its place with the words
+        "See Supplement", a book the app does not hold; shown, it is a card with a
+        title and nothing under it. Read after the heading, which names the root."""
+        said = [line for block in self.BLOCK.split(fragment)[1:] if (line := self._said(block))]
+        return bool(said) and all(_SUPPLEMENT_ONLY.match(line) for line in said)
 
     def _entry(self, fragment: str) -> str:
         """One root's entry, a line per headword, the way the book sets it.
@@ -469,6 +477,30 @@ def _heads_of(heading: str) -> list[str]:
     if len(parts) > 1 and all(len(part.replace(" ", "")) >= 2 for part in parts):
         return parts
     return [heading]
+
+
+# Lane's root headings are not always one root. Perseus writes "mtr, &amp;c" (and
+# the rest), "Quasi tqY", "$Sw and $SY", "Dbw or DbY", "HY: or HY and Hyw". Read
+# whole, the English is turned into letters with the root (the "and" of "$Sw and
+# $SY" became ان د) and the entry was filed under a root that does not exist:
+# 121 real entries lost that way, تقي سعي حيي نسي غشي ضحو among them.
+# A root word is consonants only: the vowel letters a u i o, and Q c e, are what
+# keep "and", "or", "Quasi" and "see" from passing for one.
+_LANE_ROOT_WORD = re.compile(r"^[A'|>&<}btpvjHxd*rzs$SDTZEgfqklmnhwYy^{]{2,}$")
+# "gwY: see gw" names gwY; what follows "see" is where to look, not this entry.
+_LANE_POINTER = re.compile(r"\bsee\b.*", re.I | re.S)
+_SUPPLEMENT_ONLY = re.compile(r"^\s*See Supplement\b", re.I)
+
+
+def _lane_heads(heading: str) -> list[str]:
+    """The roots, in Buckwalter, that one Lane heading names.
+
+    A heading with no plain root word in it (safaro jalN, written vowelled) is
+    kept whole, as before, and its vowels fall away when it is filed.
+    """
+    heading = _LANE_POINTER.sub("", html.unescape(heading))
+    words = (word.replace("~", "") for word in re.split(r"[\s,;:()]+", heading))
+    return list(dict.fromkeys(w for w in words if _LANE_ROOT_WORD.match(w))) or [heading.strip()]
 
 
 # Perseus holds every Arabic word in Lane, the root headings and the Arabic

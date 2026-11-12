@@ -97,6 +97,43 @@ def test_a_lane_headword_keeps_its_first_spelling_only():
     assert said == f"⁨{builder._arabic('xaArijiy~N')}⁩ One who goes out, ⁨خَرَجَ⁩."
 
 
+@pytest.mark.parametrize(("heading", "roots"), [
+    # Lane's own words for "and the rest": the root is the first word only.
+    ("mtr, &amp;c", ["mtr"]),
+    ("fAlw* &amp;c.", ["fAlw*"]),
+    # One entry for two roots, joined by "and" or "or", which are not letters.
+    ("$Sw and $SY", ["$Sw", "$SY"]),
+    ("(dmw or dmY)", ["dmw", "dmY"]),
+    # A quasi-root is filed under its letters; "Quasi" is not the letter س.
+    ("Quasi tqY: or, accord. to some, tqw", ["tqY", "tqw"]),
+    ("txm and quasi txm", ["txm"]),
+    ("HY: or HY and Hyw", ["HY", "Hyw"]),
+    # What follows "see" is where to look, not what this entry is about.
+    ("gwY: see gw", ["gwY"]),
+    # A single root, as nearly every heading is.
+    ("ktb", ["ktb"]),
+    (" tr ", ["tr"]),
+    # No plain root word at all: kept whole, and its vowels go when it is filed.
+    ("safaro jalN", ["safaro jalN"]),
+])
+def test_a_lane_heading_names_its_roots_and_no_english(heading, roots):
+    """Read whole, "$Sw and $SY" was filed as شصوندشصى and nobody could reach it:
+    121 of Lane's entries, تقي سعي نسي غشي among them, were lost that way."""
+    assert builder._lane_heads(heading) == roots
+
+
+def test_a_heading_lane_never_reached_is_not_shelved():
+    """Perseus holds the place with "See Supplement", a book the app has not got."""
+    lane = builder.Lane()
+    stub = '<head><foreign lang="ar">yEr</foreign> &amp;c.</head><entryFree>See Supplement </entryFree>'
+    assert lane._unwritten(stub)
+    # A pointer with no entry block of its own is still a real line of Lane's.
+    pointer = '<head><foreign lang="ar">Ely</foreign></head> For words mentioned under this head, see art. Elw.'
+    assert not lane._unwritten(pointer)
+    written = stub.replace("See Supplement", '<orth lang="ar">yaEara</orth> He bleated')
+    assert not lane._unwritten(written)
+
+
 # ── which book is which ──────────────────────────────────────────────────────
 # The shelf and the books above the reading rules. None of these touches a file:
 # what they decide is who is on the shelf and in what order, which is exactly
@@ -227,6 +264,31 @@ def test_longest_means_the_text_not_the_stored_bytes(shelf):
     db.commit()
     db.close()
     assert lexicons.entries_for("كتب")[0]["text"].startswith("main main")
+
+
+def test_a_doubled_root_reaches_every_book_however_each_heads_it(shelf):
+    """Lane heads مدد as مد, Lisan as مدد. A reader holding either spelling
+    must reach both, and be told where the other book filed it."""
+    db = sqlite3.connect(shelf)
+    db.executemany("INSERT INTO entry VALUES (?,?,?,?,?)", [
+        ("lisan", "مدد", "مدد", "مدد", zlib.compress("Lisan on مدد".encode())),
+        ("lane", "مد", "مد", "مد", zlib.compress("Lane on مد".encode())),
+    ])
+    db.commit()
+    db.close()
+    full = {e["book"]: e["book_root"] for e in lexicons.entries_for("مدد")}
+    assert full == {"lisan": None, "lane": "مد"}
+    short = {e["book"]: e["book_root"] for e in lexicons.entries_for("مد")}
+    assert short == {"lisan": "مدد", "lane": None}
+
+
+def test_a_root_that_is_not_doubled_never_borrows_a_two_letter_entry(shelf):
+    """كتب has no twin: its last two letters differ, so كت is a different root."""
+    db = sqlite3.connect(shelf)
+    db.execute("INSERT INTO entry VALUES ('lisan', 'كت', 'كت', 'كت', ?)", (zlib.compress(b"kt"),))
+    db.commit()
+    db.close()
+    assert [e["book"] for e in lexicons.entries_for("كتب")] == ["lane"]
 
 
 def test_the_books_keep_their_own_order(shelf):
