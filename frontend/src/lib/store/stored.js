@@ -19,55 +19,16 @@
 import { useCallback, useMemo, useSyncExternalStore } from 'react'
 
 import PROFILE from '../../config/profile.json'
-import THEME from '../../config/theme.json'
 import { forgetProgress } from '../learner/progress'
 
-/** Keys that belong to this browser, not to whoever uses it: never a shelf, never wiped by Start over. */
-export const DEVICE_KEYS = Object.freeze({
-  profile: PROFILE.storageKey,
-  guest: PROFILE.deviceKey,
-  recorder: 'recorder-key',
-  installDismissed: 'install-dismissed',
-  themeHint: THEME.themes['hint-key'],
-})
+import { DEVICE_KEYS, forgetDevice, readDevice, store, writeDevice } from './device'
+
+// The device's own keys and calls live in ./device; they are part of this module's surface as before.
+export { DEVICE_KEYS, forgetDevice, readDevice, writeDevice }
 const DEVICE_ONLY = new Set(Object.values(DEVICE_KEYS))
 
 // Usernames never hold "@" (services/learner/username.py), and no bare key starts with it.
 const MARK = '@'
-
-/** The store itself, or null where there is none or it throws on touch. */
-function store() {
-  try {
-    return globalThis.localStorage ?? null
-  } catch {
-    return null
-  }
-}
-
-/** A key as the device holds it: the bare key, before any name is put on it. */
-export function readDevice(key, fallback = '') {
-  try {
-    return store()?.getItem(key) ?? fallback
-  } catch {
-    return fallback
-  }
-}
-
-export function writeDevice(key, text) {
-  try {
-    store()?.setItem(key, text)
-  } catch {
-    /* private browsing, the value still holds for this visit */
-  }
-}
-
-export function forgetDevice(key) {
-  try {
-    store()?.removeItem(key)
-  } catch {
-    /* nothing stored to remove */
-  }
-}
 
 /** Who is logged in on this device, '' for the guest. */
 const owner = () => readDevice(PROFILE.storageKey)
