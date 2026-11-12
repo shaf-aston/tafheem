@@ -3,7 +3,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { ayahAt } from '../memorise/memorise'
 import { follow, SAID } from './follow'
 import { allowanceLeft, asksPerMinute, cutReason, readyToSend, recentAsks, spokeSince } from './pacing'
-import { createRecitingSession, keepRecording, problemOf, queueCheck } from './recitingSession'
+import { queueCheck } from './checks'
+import { keepRecording, problemOf } from './readings'
+import { createRecitingSession } from './recitingSession'
 import { byPlace, settledScores, surer } from './scores'
 
 const ayahs = [ayahAt('1:6', [...'ابت'], 17), ayahAt('1:7', [...'ثجحخدذرزس'], 20)]

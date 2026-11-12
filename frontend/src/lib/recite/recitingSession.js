@@ -34,6 +34,8 @@ import * as dictation from '../speech/dictation'
 import { CHECK, SAID, follow, isOfPage, wordsHeard } from './follow'
 import * as journal from './journal'
 import { allowanceLeft, asksPerMinute, cutReason, readyToSend, recentAsks, spokeSince } from './pacing'
+import { createCheckQueue } from './checks'
+import { EMPTY_VIEW, addToTranscript, keepRecording, problemOf } from './readings'
 import { byPlace, settledScores, surer } from './scores'
 import * as microphone from '../speech/microphone'
 
@@ -41,114 +43,10 @@ const STEP_MS = config['step-s'] * 1000
 const TICK_MS = config['tick-s'] * 1000
 const WINDOW_MS = config['window-s'] * 1000
 const PAUSE_MS = config['pause-s'] * 1000
-const CHECK_TIMEOUT_MS = config['check-timeout-s'] * 1000
-const CHECK_QUEUE_MAX = config['check-queue-max']
 const KEEP_RECORDINGS = config['keep-recordings']
 // How far the voice meter can lag a cut and still count as "spoken in this
 // window": the same tick length the meter itself reads at.
 const LEVEL_LAG_MS = dictationConfig['level-check-ms']
-
-/**
- * What to tell a reciter when a reading fails, and how to log it: a network
- * drop, a server crash, and a bug in the page after the answer arrived are
- * told apart rather than shown as one grey "did not come back".
- */
-export const problemOf = (error) => {
-  if (!error?.isAxiosError) {
-    return { kind: 'page', text: 'The page failed to show that reading. It has been logged.' }
-  }
-  // A body that is not the backend's JSON came from the dev proxy, which
-  // answers 500 with nothing when the backend is down or restarting.
-  const fromProxy = error.response && typeof error.response.data !== 'object'
-  if (!error.response || fromProxy) {
-    return { kind: 'unreachable', text: "The app's server did not answer. It may be restarting; the next phrase will try again." }
-  }
-  const detail = error.response.data?.detail
-  if (typeof detail === 'string') return { kind: 'server', text: detail }
-  return { kind: 'server', text: `The server failed on this reading (error ${error.response.status}).` }
-}
-
-/**
- * Keep a recording by its take, dropping the oldest past `max`. A take that is
- * kept again (its reading grew) replaces its blob and keeps its place in line.
- */
-export const keepRecording = (store, take, blob, max) => {
-  store.set(take, blob)
-  while (store.size > max) store.delete(store.keys().next().value)
-}
-
-/**
- * What a newly-finished words reading does to the sureness checks waiting to
- * be sent: at most one is ever in flight (the session's own runner enforces
- * that), so this is only about what waits.
- *
- * A queued job not yet sent is replaced by a newer one for the same recording,
- * latest wins, because a later reading holds more of the sound; two identical
- * jobs queued back to back collapse the same way, to one. A job already sent
- * is left alone, the same choice already made for words: nothing here aborts
- * an in-flight check for a newer one. A different recording's job is never
- * touched, so recordings are checked in the order they finished, even a
- * recording's own final check past a later recording's first.
- *
- * Past `max` entries the oldest not-yet-sent job is dropped to make room: a
- * check nobody has asked for yet is worth less than one already on its way,
- * so the in-flight job at the front, when it is sent, is never the one
- * dropped. Returns the dropped job too, so the caller can journal it.
- */
-export const queueCheck = (queue, job, max) => {
-  const at = queue.findIndex((q) => q.window === job.window && !q.sent)
-  const next = at === -1 ? [...queue, job] : [...queue.slice(0, at), job, ...queue.slice(at + 1)]
-  if (next.length <= max) return { queue: next, dropped: null }
-  const drop = next.findIndex((q) => !q.sent)
-  if (drop === -1) return { queue: next, dropped: null }
-  return { queue: [...next.slice(0, drop), ...next.slice(drop + 1)], dropped: next[drop] }
-}
-
-/**
- * Add a reading to the transcript: one entry a recording, in the order the
- * recordings began. A newer reading of a recording replaces its own entry
- * (it holds more of the same sound); nothing is deduped across recordings.
- */
-const addToTranscript = (transcript, window, words) => {
-  const at = transcript.findIndex((entry) => entry.window === window)
-  if (at === -1) return [...transcript, { window, words }]
-  return [...transcript.slice(0, at), { window, words }, ...transcript.slice(at + 1)]
-}
-
-/** What a session shows before anything has been said. */
-export const EMPTY_VIEW = {
-  state: 'idle',
-  problem: '',
-  // Two halves on purpose: the recordings already finished, and the reading of
-  // the one still going. A new reading replaces the second half rather than
-  // piling onto it, which is what lets a mark change its mind.
-  before: [],
-  // Whose words these are, as well as what they are. Recordings overlap: the
-  // last reading of one is still being read when the next has begun, and on a
-  // slow ear that overlap is most of a recording. Without a name on them, the
-  // older recording finishing would clear the newer one's words off the page,
-  // and a perfect recitation of al-Fatihah ended with one word showing.
-  now: { from: 0, words: [] },
-  ended: false,
-  // Everything the ear returned while on this page, raw: [{ window, words }],
-  // one entry a recording. Not filtered by page, not deduped. For the reciter
-  // to read what was heard; the marks above never read it.
-  transcript: [],
-  // How sure the ear has been of each page word, by its place on the page, in
-  // the same two halves. Each is a score, see scores.js. Within a recording the newest reading wins: it holds
-  // more of the sound, and an early reading scores words not said yet, up to
-  // 0.1 for one word in six (measured on 69 cut recordings), which kept for
-  // good would pass that word however it was then said. Across recordings the
-  // surer one wins: a word is said once, and one clipped at a recording's
-  // edge should not unsay it.
-  scores: { before: {}, now: {} },
-  // Where in the Qur'an the reciter seems to be, { surah, ayah }, when what
-  // they recite is not on this page; null while they are on it.
-  elsewhere: null,
-  // How many sureness checks are queued or on their way. A page only turns
-  // once its own are back, or its last ayah would never be weighed.
-  checking: 0,
-}
 
 const REAL = {
   canRecord: microphone.canRecord,
@@ -217,66 +115,14 @@ export function createRecitingSession({ onChange, deps = {} }) {
   // one after it.
   let carried = ''
 
-  // Sureness checks, queued and sent one at a time: see queueCheck. Words never
-  // wait on this, a check is only ever fired and forgotten from send() below.
-  let checkQueue = []
-  let checkBusy = false
   // The latest (so the most complete) recording of each of the last few
   // windows, by take, so a word card can play what a mark was judged from.
   const recordings = new Map()
-
-  /**
-   * Send the front of the queue, if the ear is free and there is one. A
-   * check that does not answer within check-timeout-s is given up on rather
-   * than left to hold checkBusy true forever: the abort is the job's own,
-   * held so start() can also give up on it when a new session begins.
-   */
-  const pumpChecks = () => {
-    if (checkBusy) return
-    const job = checkQueue[0]
-    if (!job) return
-    checkBusy = true
-    job.sent = true
-    job.abort = new AbortController()
-    const timer = setTimeout(() => job.abort.abort(), CHECK_TIMEOUT_MS)
-    note('check.sent', { session: sessionId, reading: job.reading })
-    checkReading(job.blob, { heard: job.heard, check: job.ayahs, tuned: page.tuned, reading: job.reading, signal: job.abort.signal })
-      .then(({ sure, detail }) => {
-        note('check.answered', { session: sessionId, reading: job.reading })
-        job.apply(sure, detail)
-      })
-      .catch((error) => {
-        if (job.abort.signal.aborted) {
-          note('check.failed', { session: sessionId, reading: job.reading, kind: job.turned ? 'turned' : 'timeout' })
-          return
-        }
-        const { text } = problemOf(error)
-        note('check.failed', { session: sessionId, reading: job.reading, message: text })
-      })
-      .finally(() => {
-        clearTimeout(timer)
-        checkQueue = checkQueue.slice(1)
-        checkBusy = false
-        set({ checking: checkQueue.length })
-        pumpChecks()
-      })
-  }
-
-  /** Queue a sureness check, replacing a still-queued one for the same recording. */
-  const enqueueCheck = (job) => {
-    const was = checkQueue
-    const { queue: next, dropped } = queueCheck(was, job, CHECK_QUEUE_MAX)
-    if (dropped) {
-      note('check.dropped', { session: sessionId, reading: dropped.reading })
-    } else if (next.length === was.length) {
-      // A queued job that was replaced in place never gets sent; say so.
-      const at = next.findIndex((q, i) => q !== was[i])
-      if (at !== -1) note('check.aborted', { session: sessionId, reading: was[at].reading })
-    }
-    checkQueue = next
-    set({ checking: checkQueue.length })
-    pumpChecks()
-  }
+  // Sureness checks, queued and sent one at a time (checks.js).
+  const checks = createCheckQueue({
+    checkReading, note, sessionId: () => sessionId, tuned: () => page.tuned,
+    onCount: (checking) => set({ checking }),
+  })
 
   /** Let the microphone go and settle every mark still waiting for words. */
   const release = () => {
@@ -421,7 +267,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
             // A finished page asks nothing more: what is said now is the
             // next page's, and checks about this one would hold its turn up.
             if (checkAyahs.length && heard.text && !page.done) {
-              enqueueCheck({
+              checks.enqueue({
                 window: thisWindow,
                 reading,
                 blob,
@@ -603,9 +449,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
     // Not the old page any more, even before the panel says which is new, so
     // an answer landing in between is not placed on it either.
     page = { ...page, ayahs: [] }
-    const inFlight = checkQueue.find((q) => q.sent)
-    if (inFlight) { inFlight.turned = true; inFlight.abort?.abort() }
-    checkQueue = checkQueue.filter((q) => q.sent)
+    checks.turn()
     set({
       elsewhere: null,
       before: carry,
@@ -613,7 +457,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       scores: { before: {}, now: {} },
       transcript: [],
       ended: false,
-      checking: checkQueue.length,
+      checking: checks.count(),
     })
   }
 
@@ -631,8 +475,7 @@ export function createRecitingSession({ onChange, deps = {} }) {
       // A check still in flight belongs to the recitation that just ended;
       // waiting out its timeout would hold the new session's own checks
       // behind it. Queued-but-unsent ones are simply stale.
-      checkQueue[0]?.abort?.abort()
-      checkQueue = []
+      checks.reset()
       sessionId = Math.random().toString(36).slice(2, 10)
       recordings.clear()
       note('recite.start', { session: sessionId })

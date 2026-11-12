@@ -22,6 +22,18 @@ export function glideTo(top) {
   globalThis.scrollTo({ top, behavior: far ? 'auto' : glide() })
 }
 
+const headerHeight = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
+
+/**
+ * A new card whose top sits under the header (Next or Continue pressed far down
+ * the last one) glides up to it; one already in sight stays put. The quiz, the
+ * dialect exercises, a Memorise page turned by hand and the first-visit questions
+ * all move on this way. (Grow's lessons need none: focus mode fits them to the screen.)
+ */
+export function bringUp(el) {
+  if (el?.getBoundingClientRect().top < headerHeight()) scrollToEl(el, 'top')
+}
+
 /**
  * Keep `el` in the clear band of the screen: below the app's header and above
  * `bottom` (the top of whatever is docked at the foot of the screen). Nothing
@@ -30,7 +42,7 @@ export function glideTo(top) {
  */
 export function keepInSight(el, bottom = window.innerHeight) {
   if (!el) return
-  const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
+  const header = headerHeight()
   const { top, bottom: end } = el.getBoundingClientRect()
   if (top >= header && end <= bottom) return
   glideTo(globalThis.scrollY + top - (header + (bottom - header) / 3))
@@ -64,7 +76,7 @@ function hold(land) {
  */
 export function holdGlideUnderHeader(el, gap = 16) {
   if (!el) return () => {}
-  const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
+  const header = headerHeight()
   const laidOutTop = () => {
     let top = 0
     for (let n = el; n; n = n.offsetParent) top += n.offsetTop

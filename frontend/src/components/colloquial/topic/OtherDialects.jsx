@@ -43,7 +43,7 @@ export default function OtherDialects({ place, slot }) {
   return (
     <div className="space-y-3">
       <button type="button" aria-expanded={open} onClick={() => setOpen(!open)}
-        className={`press block mx-auto type-small text-[var(--text-dim)] hover:text-[var(--text)] underline underline-offset-4 rounded`}>
+        className={`press block mx-auto type-small text-[var(--text-dim)] hover:text-[var(--text)] underline underline-offset-4 rounded-[var(--radius-xs)]`}>
         {open ? 'Hide the other dialects' : 'Say it in the other dialects'}
       </button>
       {open && <Rows place={place} slot={slot} />}

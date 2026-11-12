@@ -39,7 +39,7 @@ const BIG_PATHS = {
   branch: 'M24 43V13M24 31c-9 0-13-6-13-13 9 0 13 6 13 13zM24 24c9 0 13-6 13-13-9 0-13 6-13 13z',
   dome: 'M9 39V27a15 15 0 0 1 30 0v12zM3 39h42M24 6v6M20 39v-8a4 4 0 0 1 8 0v8',
   hourglass: 'M11 5h26M11 43h26M13 5c0 13 11 13 11 19s-11 6-11 19M35 5c0 13-11 13-11 19s11 6 11 19',
-  // A Muslim grave: a mound and a plain rounded headstone, no cross.
+  // A Muslim grave: a mound and a plain rounded-[var(--radius-xs)] headstone, no cross.
   grave: 'M4 42h40M8 42c3-6 29-6 32 0M19 37V16a5 5 0 0 1 10 0v21',
   scales: 'M24 7v33M12 40h24M8 13h32M8 13L2 27a6.5 6.5 0 0 0 12 0zM40 13l-6 14a6.5 6.5 0 0 0 12 0z',
 }

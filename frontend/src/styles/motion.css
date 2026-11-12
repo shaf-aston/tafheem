@@ -348,7 +348,7 @@
 }
 .qalam[data-mood='idle'] .qalam-eye {
   transform: translate(calc(var(--look-x, 0) * 1.6px), calc(var(--look-y, 0) * 1.6px));
-  transition: transform calc(var(--motion-base-ms) * 1ms) ease-out;
+  transition: transform calc(var(--motion-base-ms) * 1ms) ease;
 }
 
 
@@ -510,6 +510,7 @@
    stills it. */
 .fahm { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .fahm svg { display: block; width: 100%; height: auto; overflow: hidden; }
+/* stylelint-disable-next-line declaration-property-value-disallowed-list -- the Fahm word is a drawing sized in px inside an SVG, not text on the page */
 .fahm-ink { font-family: var(--font-arabic); font-size: 100px; }
 .fahm-line {
   fill: none;

@@ -186,7 +186,8 @@ function MapIndex({ onGo }) {
       <div className="grid gap-5 grid-cols-[repeat(auto-fill,minmax(18rem,1fr))]">
         {CHARTS.map((chart, delay) => (
           <IndexCard key={chart.id} label={chart.id} ar={chart.ar} en={chart.en} note={chart.frame} color={chart.accent}
-            className="pbs-rise border-r-4" style={{ borderRightColor: chart.accent, '--d': `${delay * 55}ms` }}
+            // The tab tiles' own wash in the chart's colour, not a stripe down one side: the same mark as Home's and All sections' tiles.
+            className="pbs-rise tile-wash" style={{ '--c': chart.accent, '--d': `${delay * 55}ms` }}
             onClick={() => onGo({ at: 'chart', id: chart.id, path: [] })} />
         ))}
       </div>

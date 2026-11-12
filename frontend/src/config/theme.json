@@ -69,6 +69,10 @@
   "grow": {
     "_comment": "Grow's worlds. backdrop-opacity is how strongly a world's faded picture (components/grow/WorldBackdrop.jsx) shows through under its content: kept faint so the map and the cards stay the point. gold is what is learnt and won: a finished lesson's star, the medal, a run of right answers; the light look has its own, since its amber is deepened for text and reads brown as a fill.",
     "backdrop-opacity": 0.14,
+    "_arabic_comment": "The Arabic on Grow's cards that falls between rungs of the arabic ladder (more than 10% from any), in rem: tile-ar a world's name on its tile, teach-ar the word a card teaches beside its question, glyph-ar a letter shown alone. The others take the ladder's rungs.",
+    "tile-ar-rem": 2,
+    "teach-ar-rem": 3.4,
+    "glyph-ar-rem": 4.5,
     "gold": "@amber"
   },
   "sky": {
@@ -230,7 +234,9 @@
   },
   "daleel": {
     "_comment": "Daleel's passage cards. passage-h is how much of a passage shows before the rest folds behind Show all: one fold for the whole card, Arabic and English together, in rem so it is about three lines of the Arabic it quotes however small the English beside it is. Counted in the English's lines it cut the Arabic to one line on a phone.",
-    "passage-h": "11rem"
+    "passage-h": "11rem",
+    "_books_comment": "books-h: how much of the book list shows before a search, about four rows, with Show all for the rest. The whole list of fifty made the page five screens tall before anything was asked.",
+    "books-h": "15rem"
   },
   "command": {
     "_comment": "The command line: the bar in the header and the orbit launcher behind the pen. rest-w is how wide the bar sits when nobody is using it and open-w how wide it grows on focus, both in rem, so a longer placeholder needs a number changed here and not a class edited. orbit-r is the radius the seven tabs sit at in the launcher, sat-w the width of one of them, and rail-w the strip of letters beside a result list. hint is the keys line under the launcher's ring, which sits straight on the modal's scrim rather than on a card: quiet on a dark scrim, but a light look's scrim is a mid grey that only full ink reads on.",
@@ -437,7 +443,7 @@
     "terms-tree-min": 1100,
     "_rail_comment": "How wide Home's progress column stands beside the tiles on a wide screen (components/home/StatsRail).",
     "rail": "17rem",
-    "_field_comment": "The widest a question form gets (ui/inputs/Tucked: the search and answer boxes, their chips, the slim pill they tuck into). Stretched across an 80rem page, a box for one word read as a banner, and the eye travelled a metre from the word to its return key.",
+    "_field_comment": "The widest a question form gets (ui/inputs/QuestionForm: the search and answer boxes and their chips). Stretched across an 80rem page, a box for one word read as a banner, and the eye travelled a metre from the word to its return key.",
     "field": "45rem"
   },
   "sheet": {
@@ -449,6 +455,8 @@
     "narrator": "15rem"
   },
   "radius": {
+    "_xs_comment": "xs: keycaps, inline code and small marks, the 4px corner Tailwind's bare rounded gave them.",
+    "xs": "0.25rem",
     "sm": "0.5rem",
     "md": "0.85rem",
     "lg": "1.25rem",

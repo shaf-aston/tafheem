@@ -1,0 +1,118 @@
+/* Progress
+   The learner's progress: the level ring on the profile button, the XP card and its rank path, the week's dots and the calm progress rows. */
+
+
+/* Level ring on the profile button (profile/LevelRing.jsx). */
+.level-ring { position: relative; display: inline-flex; width: 24px; height: 24px; flex-shrink: 0; }
+
+
+.level-ring-n {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: var(--type-micro); font-weight: 700; color: var(--text-dim); font-variant-numeric: tabular-nums;
+}
+
+
+.level-ring-fill { transition: stroke-dasharray calc(var(--motion-enter-ms) * 1ms * var(--motion-scale)) ease-out; }
+
+
+.level-ring-gain {
+  position: absolute; left: 50%; bottom: 100%; pointer-events: none;
+  font-size: var(--type-micro); font-weight: 700; color: var(--palette-lime); white-space: nowrap;
+  animation: level-gain calc(var(--motion-enter-ms) * 2 * 1ms * var(--motion-scale)) ease-out both;
+}
+
+
+@keyframes level-gain {
+  from { opacity: 0; transform: translate(-50%, 6px); }
+  25% { opacity: 1; }
+  to { opacity: 0; transform: translate(-50%, -10px); }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .level-ring-fill { transition: none; }
+  .level-ring-gain { animation: none; opacity: 0; }
+}
+
+
+/* Profile XP card (XpCard): the bar fills on sight; a tap opens the rank path. */
+.xp-bar { height: 0.6rem; border-radius: var(--radius-pill); background: var(--border); overflow: hidden; }
+
+
+.xp-bar > span {
+  display: block; height: 100%; border-radius: inherit; background: var(--xp-tone);
+  transform-origin: left; transform: scaleX(var(--xp-share));
+  animation: xp-fill calc(var(--motion-enter-ms) * 2 * 1ms * var(--motion-scale)) var(--motion-slide-ease) both;
+}
+
+
+@keyframes xp-fill { from { transform: scaleX(0); } }
+
+
+.xp-path { display: flex; justify-content: space-between; gap: 0.25rem; position: relative; padding-top: 0.5rem; }
+
+
+.xp-path::before { content: ''; position: absolute; top: 1.05rem; inset-inline: 0.6rem; height: 2px; background: var(--border); }
+
+
+.xp-step {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; flex: 1;
+  color: var(--text-faint); animation: rise-in calc(var(--motion-enter-ms) * 1ms * var(--motion-scale)) var(--motion-settle-ease) both;
+  --rise-from: 0; --rise-scale: 1;
+  animation-delay: calc(var(--i) * var(--motion-stagger-ms) * 2 * 1ms * var(--motion-scale)); /* one after another, Seed to Fruit */
+}
+
+
+.xp-dot { width: 0.9rem; height: 0.9rem; border-radius: var(--radius-pill); background: var(--surface); border: 2px solid var(--border); }
+
+
+.xp-done { color: var(--text-dim); }
+
+
+.xp-done .xp-dot { background: var(--xp-tone); border-color: var(--xp-tone); }
+
+
+.xp-now { color: var(--text); }
+
+
+.xp-now .xp-dot { border-color: var(--xp-tone); background: var(--xp-tone); animation: xp-pulse calc(var(--loop-pulse-ms) * var(--motion-scale) * 1ms) ease-in-out infinite; }
+
+
+@keyframes xp-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--xp-tone) 25%, transparent); } }
+
+
+@media (prefers-reduced-motion: reduce) {
+  .xp-bar > span, .xp-step, .xp-now .xp-dot { animation: none; }
+}
+
+
+/* ── Calm progress (profile/CalmProgress, the profile and Home's progress column) ──
+   This week as a dot a day: filled when studied, an empty ring for a day without
+   answers and for the days still to come alike, so a missed day never looks
+   worse than tomorrow. The detail below sits
+   under one hairline, in plain rows rather than boxes. */
+.week-dots { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem; }
+
+
+.week-day { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-faint); }
+
+
+.week-dot { width: 1rem; height: 1rem; border-radius: var(--radius-pill); border: 2px solid var(--border); }
+
+
+.week-studied .week-dot { background: var(--week-tone); border-color: var(--week-tone); }
+
+
+.week-day[aria-current='date'] { color: var(--text); font-weight: 600; }
+
+
+.week-day[aria-current='date'] .week-dot { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--week-tone); }
+
+
+.calm-more { padding-top: 1rem; border-top: 1px solid var(--border); }
+
+
+.calm-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-block: 0.5rem; }
+
+
+.calm-row + .calm-row { border-top: 1px solid var(--border); }

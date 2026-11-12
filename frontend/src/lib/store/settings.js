@@ -20,7 +20,7 @@ import config from '../../config/settings.json'
 import {
   FIRST_CHOICE, applyTheme, followDevice, followsDevice, resolveTheme, themeChoices, themeVariable,
 } from '../../theme'
-import { DEVICE_KEYS, forgetKey, onReplaced, readSaved, writeDevice, writeSaved } from './stored'
+import { DEVICE_KEYS, forgetKey, onReplaced, readDevice, readSaved, writeDevice, writeSaved } from './stored'
 
 /** Every setting, in the order the panel shows them. */
 // The look setting is the one whose options are not written here: they are
@@ -62,8 +62,12 @@ let current = null
 function values() {
   if (!current) {
     const stored = saved()
+    // No look saved: start from the one this device last painted (a first visit from the landing page leaves
+    // its own dark look there), so the page and the ground the boot script drew agree. Unknown or none: the default.
+    const hinted = readDevice(DEVICE_KEYS.themeHint, null)
+    const start = (one) => (one.theme && hinted ? clean(one, hinted) : one.default)
     current = Object.fromEntries(
-      SETTINGS.map((one) => [one.key, one.key in stored ? clean(one, stored[one.key]) : one.default]),
+      SETTINGS.map((one) => [one.key, one.key in stored ? clean(one, stored[one.key]) : start(one)]),
     )
   }
   return current

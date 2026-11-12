@@ -34,7 +34,7 @@ export function InstallSteps({ kind }) {
         {kind === 'menu' && 'To install, open your browser’s menu (⋮), then tap Install app or Add to Home screen.'}
       </span>
       {kind === 'prompt' && (
-        <button type="button" onClick={install} className="tap shrink-0 rounded-[var(--radius-md)] px-3 py-1 font-semibold bg-[var(--c,var(--primary))] text-[var(--bg)]">
+        <button type="button" onClick={install} className="tap shrink-0 rounded-[var(--radius-md)] px-3 py-1 font-semibold bg-[var(--c,var(--primary))] text-[var(--on-accent)]">
           Install
         </button>
       )}

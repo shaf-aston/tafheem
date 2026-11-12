@@ -34,7 +34,7 @@ import MicButton from '../ui/buttons/MicButton'
 import { NarratorLinks } from './narrators/NarratorParts'
 import RecentRow from '../ui/inputs/RecentRow'
 import SearchBox from '../ui/inputs/SearchBox'
-import Tucked from '../ui/inputs/Tucked'
+import QuestionForm from '../ui/inputs/QuestionForm'
 import ShowRest from '../ui/buttons/ShowRest'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import StatusNote, { CorrectedNote, NoteWord } from '../ui/feedback/StatusNote'
@@ -73,16 +73,15 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
   return (
     <div className="space-y-3">
 
-      <div className="search-beside" data-in-use={inUse || undefined}>
-      {/* Folded into one pill holding the question once hits are up, so they
-          are the next thing down (ui/inputs/Tucked). Focus is watched on this wrapper, so moving
-          between the box, its clear button and the microphone is not leaving it. */}
+      <div className="search-beside" data-in-use={inUse || undefined} data-answered={searching || undefined}>
+      {/* The question form every tab shares (ui/inputs/QuestionForm). Focus is watched on this
+          wrapper, so moving between the box, its clear button and the microphone is not leaving it. */}
       <div
         className="search-beside-main"
         onFocus={() => setFocused(true)}
         onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false) }}
       >
-      <Tucked answer={data} query={query} accent={accent}>
+      <QuestionForm accent={accent}>
         <SearchBox
           id="hadith-search-input"
           label="Arabic or English"
@@ -101,7 +100,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
             title="Say what you are looking for"
           />
         </SearchBox>
-      </Tucked>
+      </QuestionForm>
       </div>
       {beside && <div className="search-beside-shelf">{beside}</div>}
       </div>

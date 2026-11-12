@@ -5,13 +5,12 @@
  * individual setting: a new entry in that file appears here on its own, with
  * its own label and help text. Adding a setting should never mean editing this.
  *
- * A native <dialog> is used on purpose, the browser gives focus trapping, Esc
- * to close and the backdrop for free, none of which is worth hand-writing.
+ * It is a BottomSheet (ui/overlays), kept mounted: a native <dialog>, so the browser gives focus
+ * trapping, Esc to close, the backdrop and focus back on the gear for free.
  */
 
 import { SETTINGS, resetSettings, setSetting, useSetting } from '../../lib/store/settings'
 import { useHealth } from '../../lib/api/useHealth'
-import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
 import { levelOf } from '../../lib/text/confidence'
 import { forgetSaved } from '../../lib/store/stored'
 import { useSources } from '../../lib/api/useSources'
@@ -22,6 +21,7 @@ import { InstallSteps } from './InstallBanner'
 import OfflinePanel from './OfflinePanel'
 import Disclosure from '../ui/overlays/Disclosure'
 import SheetHeader from '../ui/overlays/SheetHeader'
+import BottomSheet from '../ui/overlays/BottomSheet'
 import Segmented from '../ui/inputs/Segmented'
 import LevelSetting from '../level/LevelSetting'
 import RedoAnswers from '../onboarding/RedoAnswers'
@@ -30,69 +30,60 @@ import RedoAnswers from '../onboarding/RedoAnswers'
 const SECTIONS = Object.entries(Object.groupBy(SETTINGS, (setting) => setting.section))
 
 export default function SettingsPanel({ open, onClose, onGo }) {
-  const dialog = useModal(open)
   const health = useHealth()
 
   return (
-    <dialog
-      ref={dialog}
+    // Scrolls as one box. The source list below can run past the screen, and
+    // giving it its own scroller would leave two bars side by side.
+    <BottomSheet
+      open={open}
       onClose={onClose}
-      // A click that lands on the dialog itself is a click on the backdrop:
-      // every real control sits inside the box below.
-      onClick={closeOnBackdrop(onClose)}
-      aria-labelledby="settings-title"
-      className="phone-sheet m-auto p-0 bg-transparent max-w-[min(var(--sheet-narrow),92vw)] w-full"
+      labelledBy="settings-title"
+      width="narrow"
+      className="p-5 space-y-5 max-h-[var(--sheet-tall)] overflow-y-auto"
     >
-      <div
-        // Scrolls as one box. The source list below can run past the screen,
-        // and giving it its own scroller would leave two bars side by side.
-        className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-          p-5 space-y-5 max-h-[var(--sheet-tall)] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
+      <SheetHeader onClose={onClose} className="">
+        <h2 id="settings-title" className="type-head type-lead font-bold text-[var(--text)]">
+          Settings
+        </h2>
+      </SheetHeader>
+
+      {/* The learner's level is the account's, not the device's: kept on its shelf, not in settings.json. */}
+      <section aria-label="Learning" className="space-y-4">
+        <h3 className="eyebrow text-[var(--text-faint)]">Learning</h3>
+        <LevelSetting />
+        {onGo && <RedoAnswers onGo={onGo} onClose={onClose} />}
+      </section>
+
+      {SECTIONS.map(([section, all]) => {
+        const settings = all.filter((setting) => !setting['needs-health'] || health[setting['needs-health']])
+        return settings.length > 0 && (
+          <section key={section} aria-label={section} className="space-y-4">
+            <h3 className="eyebrow text-[var(--text-faint)]">{section}</h3>
+            {settings.map((setting) => (
+              <Setting key={setting.key} setting={setting} />
+            ))}
+          </section>
+        )
+      })}
+
+      <InstallPanel />
+
+      <OfflinePanel />
+
+      <SourceList />
+
+      <a
+        href="/"
+        target="_blank"
+        rel="noreferrer noopener"
+        className="block type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors"
       >
-        <SheetHeader onClose={onClose} className="">
-          <h2 id="settings-title" className="type-head type-lead font-bold text-[var(--text)]">
-            Settings
-          </h2>
-        </SheetHeader>
+        About this project ↗
+      </a>
 
-        {/* The learner's level is the account's, not the device's: kept on its shelf, not in settings.json. */}
-        <section aria-label="Learning" className="space-y-4">
-          <h3 className="eyebrow text-[var(--text-faint)]">Learning</h3>
-          <LevelSetting />
-          {onGo && <RedoAnswers onGo={onGo} onClose={onClose} />}
-        </section>
-
-        {SECTIONS.map(([section, all]) => {
-          const settings = all.filter((setting) => !setting['needs-health'] || health[setting['needs-health']])
-          return settings.length > 0 && (
-            <section key={section} aria-label={section} className="space-y-4">
-              <h3 className="eyebrow text-[var(--text-faint)]">{section}</h3>
-              {settings.map((setting) => (
-                <Setting key={setting.key} setting={setting} />
-              ))}
-            </section>
-          )
-        })}
-
-        <InstallPanel />
-
-        <OfflinePanel />
-
-        <SourceList />
-
-        <a
-          href="/"
-          target="_blank"
-          rel="noreferrer noopener"
-          className="block type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors"
-        >
-          About this project ↗
-        </a>
-
-        <StorageFooter />
-      </div>
-    </dialog>
+      <StorageFooter />
+    </BottomSheet>
   )
 }
 

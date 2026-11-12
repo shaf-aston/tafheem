@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { QUIZ } from '../../lib/quiz/quizBanks'
-import { scrollToEl } from '../../lib/motion/scrollToEl'
+import { bringUp } from '../../lib/motion/scrollToEl'
 import { flyTo } from '../../lib/motion/flyTo'
 
 import AnswerSquare from '../ui/inputs/AnswerSquare'
@@ -29,8 +29,8 @@ export default function QuizBoard({
 }) {
   const { history, reviewing, shown, strip } = round
   // The answered squares: a column on the far right until the round outgrows it.
-  // There from the first question, empty, so the first answer does not make room
-  // for it by squeezing the question card.
+  // There from the first question, holding only the one you are on, so the first
+  // answer does not make room for it by squeezing the question card.
   const railSide = history.length < QUIZ.stripSideMax
 
   return (
@@ -102,10 +102,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
   // A new question whose top sits under the header (Next pressed far down the
   // last one) glides up to it; one already in sight stays put.
   const card = useRef(null)
-  useEffect(() => {
-    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--app-header-h')) || 0
-    if (card.current?.getBoundingClientRect().top < header) scrollToEl(card.current, 'top')
-  }, [])
+  useEffect(() => { bringUp(card.current) }, [])
   const arabicPrompt = shown.promptLang === 'ar'
   // Right: the word picked flies up to the one it means and lands there
   // (lib/motion/flyTo). Wrong needs no flight; the option sinks (components.css).
@@ -226,7 +223,7 @@ function QuestionCard({ round, accent, say, fill, autoNext, setAutoNext, note, a
                 Not on a touch screen: a phone has no Enter key. */}
             <kbd
               aria-hidden="true"
-              className="pointer-coarse:hidden px-1.5 py-0.5 rounded type-tiny font-semibold leading-none
+              className="pointer-coarse:hidden px-1.5 py-0.5 rounded-[var(--radius-xs)] type-tiny font-semibold leading-none
                 bg-[var(--bg)]/25 border border-current/30"
             >
               Enter ↵
@@ -335,7 +332,9 @@ function MissedList({ history, reviewing, say, onReview }) {
  * round otherwise moves on and the correction is gone in a second or two.
  */
 function QuestionStrip({ history, reviewing, live, say, onReview, side = false }) {
-  if (!history.length) return null
+  // The side column is there from the first question; its square for the question
+  // you are on keeps it from reading as an empty, broken card until the first answer.
+  if (!history.length && !(side && live)) return null
 
   return (
     <div

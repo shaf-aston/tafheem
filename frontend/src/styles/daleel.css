@@ -1,0 +1,24 @@
+/* Daleel
+   Daleel's book picker rows. */
+
+
+/* ── The book picker's list ─────────────────────────────────────────────────
+   Two columns of books, some named in Arabic and some in English, each with a
+   quieter English name under it. Arabic carries the reading line-height, which
+   is nearly twice as tall as the English label beside it, so no two names on a
+   row began on the same line and the list came out ragged.
+
+   Both names sit on one rung here, and the rung under it is kept even where a
+   book has no English name, so every row is the same height whatever it holds
+   and the eye can run down either column. Set on the rows rather than on the
+   Arabic ladder, because the ladder is right everywhere else: it is only in a
+   list beside English that Arabic has something to line up with. */
+.book-name {
+  line-height: 1.6rem;
+}
+
+
+.book-sub {
+  line-height: 1.1rem;
+  min-height: 1.1rem;
+}

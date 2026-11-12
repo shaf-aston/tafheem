@@ -48,7 +48,7 @@ export function NoTouchButton({ on, onChange }) {
         onClick={() => (held.current ? (held.current = false) : onChange(!on))}
         onContextMenu={(e) => e.preventDefault()}
         className={`press tap select-none grid place-items-center w-[var(--layout-chip)] h-[var(--layout-chip)] rounded-full border transition-colors
-          ${on ? 'text-[var(--bg)] bg-[var(--c)] border-[var(--c)]' : 'text-[var(--text-faint)] border-[var(--border)]'}`}
+          ${on ? 'text-[var(--on-accent)] bg-[var(--c)] border-[var(--c)]' : 'text-[var(--text-faint)] border-[var(--border)]'}`}
       >
         {/* A pointing hand, struck through. */}
         <svg aria-hidden="true" viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

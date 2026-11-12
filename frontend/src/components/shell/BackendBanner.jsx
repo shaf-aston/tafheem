@@ -26,7 +26,7 @@ export default function BackendBanner({ status }) {
                 it, so it moves behind a summary instead of leading. */}
             <details className="mt-2">
               <summary className="cursor-pointer">The command, if you run it yourself</summary>
-              <code className="mt-1 block px-1 rounded bg-[var(--surface-hi)] text-[var(--text)]">
+              <code className="mt-1 block px-1 rounded-[var(--radius-xs)] bg-[var(--surface-hi)] text-[var(--text)]">
                 python -m uvicorn backend.main:app --reload
               </code>
             </details>

@@ -36,7 +36,7 @@ export default function AyahRail({ count, here, open, onPick }) {
               aria-current={n === here ? 'location' : undefined}
               aria-label={n === open ? `${n}, being studied` : undefined}
               className={`press tap shrink-0 min-w-9 px-2 py-1 rounded-full type-small tabular-nums transition-colors
-                ${n === open ? 'text-[var(--bg)] bg-[var(--c)]'
+                ${n === open ? 'text-[var(--on-accent)] bg-[var(--c)]'
                   : n === here ? 'text-[var(--text)] bg-[var(--surface-hi)]'
                     : 'text-[var(--text-faint)] hover:text-[var(--text)]'}`}
             >

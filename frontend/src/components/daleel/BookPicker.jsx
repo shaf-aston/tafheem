@@ -37,6 +37,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { nameMatches } from '../../lib/daleel/bookSearch'
 import { isArabic } from '../../lib/text/arabicText'
 
+import ShowRest from '../ui/buttons/ShowRest'
 import ArabicText from '../ui/text/ArabicText'
 import Chip from '../ui/inputs/Chip'
 import ChipRow from '../ui/inputs/ChipRow'
@@ -214,10 +215,13 @@ export default function BookPicker({ books, onChange, accent, sourceLabel, folde
               : 'Type to narrow the list, click a book to add it'}
           </p>
 
-          {/* The whole list, in as many columns as fit, and the page scrolls it.
+          {/* The list, in as many columns as fit, and the page scrolls it.
               A box of its own, a few rows tall with the rest scrolled inside it,
               read as a drop-down on a page that is otherwise empty until a
-              search, and a scroll inside a scroll traps a thumb on a phone. */}
+              search, and a scroll inside a scroll traps a thumb on a phone.
+              So it is cut, not boxed: about four rows, then Show all, the same
+              fold every long list in the app uses. A typed name narrows it under the cut. */}
+          <ShowRest height="var(--daleel-books-h)" accent={accent} more={`Show all ${listed.length} books`}>
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(min(16rem,100%),1fr))] gap-x-1">
             {listed.length === 0 ? (
               <li className="col-span-full px-2 py-1.5 type-small text-[var(--text-faint)]">
@@ -275,6 +279,7 @@ export default function BookPicker({ books, onChange, accent, sourceLabel, folde
               ))
             )}
           </ul>
+          </ShowRest>
         </div>
       </div>
       </>}

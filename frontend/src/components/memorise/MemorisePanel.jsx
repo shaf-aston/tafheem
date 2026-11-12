@@ -14,7 +14,8 @@
 import { useRef } from 'react'
 
 import { BOOKS } from '../../lib/memorise/books'
-import { DIFFICULTIES, printedPageOf, score } from '../../lib/memorise/memorise'
+import { printedPageOf } from '../../lib/memorise/memorise'
+import { DIFFICULTIES, score } from './gaps'
 import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 
 import { nextGapOnEnter } from './gapKeys'

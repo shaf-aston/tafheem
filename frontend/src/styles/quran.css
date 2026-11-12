@@ -1,0 +1,340 @@
+/* Quran
+   The Qur'an reader: word-by-word glosses, the surah rows and the tips, the printed mushaf page, the reading rail and the player's chip. */
+
+
+/* A word's English while the pointer rests on it, in the reading view.
+   The same idea as .peer-dim above and deliberately quieter: there, one word is
+   being studied; here, a surah is being read, and a page that reacts loudly to
+   every word the pointer crosses is a page nobody can read.
+   Only while a word is under the pointer: the line is the row's full width, so
+   resting in the empty space beside a short ayah dimmed it with nothing to show.
+   Not while the button is down in the row: that is a drag-select across words,
+   and a gloss or a dimming on every word it crosses is noise over the selection. */
+.surah-row:not(:active) .gloss-line:has(.gloss-word:hover) .gloss-word:not(:hover),
+.surah-row:not(:active) .gloss-line:has(.gloss-word:focus-visible) .gloss-word:not(:focus-visible) {
+  color: var(--text-dim);
+}
+
+
+/* One ayah of the reading view. Rows off the screen are not laid out until they
+   scroll near it: al-Baqarah is 286 rows and 27,000 elements, and laying all of
+   them out at once was a full second of the two the surah took to appear.
+   The intrinsic size is a guess at a row's height, only used for the scrollbar
+   while a row is skipped. */
+.surah-row {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 8rem;
+}
+
+
+/* A box of its own, not the inline span the glyphs sit in: an inline span is as
+   tall as its font's ascent plus descent (2em for the mushaf faces, far above
+   the letters), so a gloss hung off it floated away from its word, and the lit
+   highlight covered twice the word's height. Here the height is the one number
+   below, whatever the face. The line itself keeps its own, taller, line-height,
+   so nothing about the spacing between lines moves. */
+.gloss-word {
+  --gloss-box: 1.5;
+  position: relative;
+  display: inline-block;
+  line-height: var(--gloss-box);
+  border-radius: var(--radius-sm);
+  /* transform is the lift card below: the word rises as its gloss springs out. */
+  transition:
+    color calc(var(--motion-instant-ms) * 1ms) ease,
+    background calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+}
+
+
+.gloss-word:hover,
+.gloss-word:focus-visible {
+  color: var(--text);
+}
+
+
+/* The word being recited. Read at arm's length while the recitation runs, so it
+   is a lit background rather than a colour change: a tinted word is hard to
+   pick out of a line of the same colour, and the reader is following along, not
+   inspecting one word. The transition is short on purpose, at three or four
+   words a second a slow fade never finishes before the next word starts. */
+.gloss-word-lit,
+.surah-row:not(:active) .gloss-line:has(.gloss-word:hover) .gloss-word-lit:not(:hover),
+.surah-row:not(:active) .gloss-line:has(.gloss-word:focus-visible) .gloss-word-lit:not(:focus-visible) {
+  color: var(--on-accent);
+  background: var(--c);
+}
+
+
+/* Hover-only text is generated content, which a selection never copies. */
+.tip-bubble::after {
+  content: attr(data-tip);
+}
+
+
+/* Isolated left to right, or "(is) for Allah" has its bracket flipped.
+   Under its word, where "Show all meanings" puts the same English. Above it, a
+   gloss on a first line went under the sticky header, and on every row it was
+   clipped by the row's paint containment (.surah-row); under the last line it
+   lands in the row's own translation, which is never clipped. */
+.gloss-word[data-gloss]::after {
+  content: attr(data-gloss);
+  direction: ltr;
+  unicode-bidi: isolate;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: var(--layer-raised);
+  background: var(--c);
+  color: var(--on-accent);
+  font-family: var(--font-ui);
+  font-size: var(--type-small);
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0.4rem 0.55rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-pop);
+  transition:
+    opacity calc(var(--motion-instant-ms) * 1ms) ease,
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+  transform: translateX(-50%) translateY(-4px) scale(0.92);
+}
+
+
+/* Focus reveals the gloss exactly as the pointer does. The words are buttons, so
+   a keyboard reaches every one of them; without this it reached them and was
+   shown nothing. */
+.surah-row:not(:active) .gloss-word[data-gloss]:hover::after,
+.surah-row:not(:active) .gloss-word[data-gloss]:focus-visible::after,
+.gloss-word-peek[data-gloss]::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* The lift card: the word under the pointer rises a little as its gloss springs
+   out beneath it (the springing is the gloss's transform above), so the pair
+   reads as one card picked up off the line. Small on purpose: the line has to
+   stay readable around it. */
+.surah-row:not(:active) .gloss-word[data-gloss]:hover,
+.surah-row:not(:active) .gloss-word[data-gloss]:focus-visible {
+  transform: translateY(calc(var(--motion-lift-px) * -1px));
+}
+
+
+.gloss-all .gloss-word[data-gloss] { transform: none; }
+
+
+/* A learnt word: a soft underline, the colour the quiz uses for right. */
+.gloss-word-learnt {
+  text-decoration: underline var(--success-edge) 2px;
+  text-underline-offset: 0.5em;
+}
+
+
+/* "Show all meanings": every gloss sits under its word, always on. After the
+   hover rules, so hovering a word does not float its gloss back up. */
+.gloss-all .gloss-word {
+  line-height: inherit;
+}
+
+
+.gloss-all .gloss-word[data-gloss] {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+}
+
+
+.gloss-all .gloss-word[data-gloss]::after {
+  position: static;
+  opacity: 1;
+  transform: none;
+  /* transform snaps, never eases: eased from the floating gloss's offset, it left
+     every English stuck half its width to the left once the meanings came on. The
+     lean on hover is `translate`, a property of its own, so it can ease both ways. */
+  transition-property: opacity, translate;
+  transition-duration: calc(var(--motion-base-ms) * 1ms);
+  background: none;
+  box-shadow: none;
+  color: var(--text-dim);
+  white-space: normal;
+  max-width: 7rem;
+  text-align: center;
+  padding: 0.2rem 0 0.6rem;
+}
+
+
+/* Pointed at, the English leans a little toward where the reading goes. */
+.surah-row:not(:active) .gloss-all .gloss-word[data-gloss]:is(:hover, :focus-visible)::after {
+  transform: none;
+  translate: calc(var(--motion-nudge-px) * -1px) 0;
+}
+
+
+/* An underline would run through the English too, so a learnt word's English
+   carries the mark instead. */
+.gloss-all .gloss-word-learnt[data-gloss] {
+  text-decoration: none;
+}
+
+
+.gloss-all .gloss-word-learnt[data-gloss]::after {
+  color: var(--success);
+}
+
+
+/* ── scrolling, drawn in the page's own colours ─────────────────
+   .scroll-pane: a pane that scrolls on its own (the Quran reader's surah and
+   study). A thin thumb in the border colour, no track, and scrolling stops at
+   its ends rather than carrying the page with it. Relative, so what is placed
+   absolutely inside (a screen-reader label) is clipped with it, never left
+   hanging below the page.
+   .strip-x: a sideways strip of choices (the ayat rail, the reciters). No bar
+   at all, the ends fade to say there is more, and a wheel turns it sideways
+   (lib/useWheelX). */
+.scroll-pane {
+  position: relative;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hi) transparent;
+}
+
+
+.strip-x {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  scroll-padding-inline: 2rem;
+  mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+}
+
+
+.strip-x::-webkit-scrollbar { display: none; }
+
+
+/* The player's "back to the ayah being recited" chip: faded until pointed at,
+   so it says where the voice is without covering the reading. */
+.now-chip { opacity: 0.75; transition: opacity calc(var(--motion-base-ms) * 1ms) ease; }
+
+
+.now-chip:hover, .now-chip:focus-visible { opacity: 1; }
+
+
+/* ── The Qur'an reader's page view (components/quran/MushafPages) ────────────
+   A printed page, line for line. Each line is one row that never wraps: its
+   words spread to both edges as the print's do, and the page's font size (set
+   on the section, lib/mushafFit) is the largest its widest line fits at. The
+   face is the printing's: data-script names it, and only here is it mapped. */
+@font-face {
+  font-family: 'QPC Hafs';
+  /* The King Fahd Complex's Uthmanic Hafs, as published, unmodified (its licence). */
+  src: url('/fonts/qpc-hafs.woff2') format('woff2');
+  font-display: block;
+}
+
+
+.mushaf {
+  max-width: var(--mushaf-page);
+  margin-inline: auto;
+}
+
+
+.mushaf[data-script="qpc-hafs"] {
+  font-family: 'QPC Hafs', var(--font-quran);
+}
+
+
+.mushaf-page {
+  line-height: var(--mushaf-line-height);
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+
+.mushaf-line {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(var(--mushaf-gap-em) * 1em);
+  white-space: nowrap;
+}
+
+
+.mushaf-page[data-centred] .mushaf-line {
+  justify-content: center;
+}
+
+
+.mushaf-name,
+.mushaf-basmala {
+  justify-content: center;
+}
+
+
+.mushaf-name > span {
+  font-size: calc(var(--mushaf-name-em) * 1em);
+  padding-inline: 2em;
+  border: 1px solid color-mix(in oklab, var(--c) 45%, transparent);
+  border-radius: var(--radius-sm);
+  color: var(--c);
+}
+
+
+/* The ayah being studied is coloured, as a finger on the page would mark it;
+   a tinted box the height of the line hid the words of the line above. */
+.mushaf-word {
+  cursor: pointer;
+  transition: color calc(var(--motion-base-ms) * 1ms);
+}
+
+
+.mushaf-word:hover,
+.mushaf-word[data-open] {
+  color: var(--c);
+}
+
+
+button.mushaf-word {
+  font: inherit;
+  color: var(--c);
+}
+
+
+.mushaf-folio {
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: var(--type-tiny);
+  line-height: 2;
+  color: var(--text-faint);
+}
+
+
+/* The surah's reading line (quran/QuranReader): under the header, held below the
+   app's own header as the page scrolls, filling as the ayah in view moves on. */
+.read-line {
+  position: sticky;
+  top: var(--app-header-h, 0px);
+  z-index: var(--layer-sticky);
+  height: 2px;
+  margin-top: -2px;
+  background: transparent;
+}
+
+
+.read-line > i {
+  display: block;
+  height: 100%;
+  background: var(--c);
+  transform-origin: left;
+  transform: scaleX(var(--read));
+  transition: transform calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease);
+}
+
+
+[dir='rtl'] .read-line > i { transform-origin: right; }

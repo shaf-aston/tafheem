@@ -1,0 +1,331 @@
+/* Hadith
+   Hadith: the chain drawing, the book spines and the bookshelf, and the search box that sits beside the shelf. */
+
+
+/* ── Chain drawing ─────────────────────────────────────────────────────────
+   hadith/chain/ChainDrawing. A rung is a one-pixel line; a row of strands that split
+   from one narrator (chain-split) or meet at one (chain-merge) gets a bar
+   across the tops or feet of its columns, from the middle of the first to the
+   middle of the last, so the lines read as one tree. */
+.chain-line {
+  background: var(--border-hi);
+}
+
+
+.chain-split > *,
+.chain-merge > * {
+  position: relative;
+}
+
+
+.chain-split > *::before,
+.chain-merge > *::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  border-top: 1px solid var(--border-hi);
+}
+
+
+.chain-split > *::before {
+  top: 0;
+}
+
+
+.chain-merge > *::after {
+  bottom: 0;
+}
+
+
+.chain-split > :first-child::before,
+.chain-merge > :first-child::after {
+  inset-inline-start: 50%;
+}
+
+
+.chain-split > :last-child::before,
+.chain-merge > :last-child::after {
+  inset-inline-end: 50%;
+}
+
+
+/* The search box with the collection shelf to its right (hadith/HadithSearchResults). On a wide
+   screen the shelf takes the room beside the box; once the box is in use (data-in-use: focused,
+   holding a question or showing hits) the shelf folds away and the box takes the whole row. It
+   comes back after a beat (the transition delay runs only on the way back), so a pointer or focus
+   passing between the two does not make either jump. Narrow screens stack them and nothing moves. */
+/* minmax(0, 1fr): an auto column grew to the shelf's width and pushed the box and its mic past a phone's edge. */
+.search-beside { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+
+
+@media (min-width: 56rem) {
+  .search-beside { display: flex; align-items: flex-end; gap: 1rem; }
+  .search-beside-main { flex: 1 1 0; min-width: 0; }
+  .search-beside-shelf {
+    flex: 0 1 auto;
+    max-width: 26rem;
+    /* A cap the shelf never reaches, so its height can fold too (below). */
+    max-height: 20rem;
+    overflow: hidden;
+    transition:
+      max-width calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease) calc(var(--motion-enter-ms) * 1ms),
+      max-height calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease) calc(var(--motion-enter-ms) * 1ms),
+      opacity calc(var(--motion-base-ms) * 1ms) ease-out calc(var(--motion-enter-ms) * 1ms),
+      visibility 0s calc(var(--motion-enter-ms) * 1ms);
+  }
+  /* Folded away it is also out of the tab order, once the fold has finished. */
+  .search-beside[data-in-use] .search-beside-shelf {
+    max-width: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 0s, 0s, 0s, calc(var(--motion-enter-ms) * 1ms);
+  }
+  /* Once answers are up it folds its height as well: folded to no width it still stood its full height
+     beside the pill, which sits at the row's foot, and left a band ~110px tall of nothing above the
+     question. Only then, not on focus: the box would jump up the moment it was clicked. */
+  .search-beside[data-answered] .search-beside-shelf { max-height: 0; }
+}
+
+
+/* The hadith collections as spines on a shelf (hadith/books/HadithCollectionPicker).
+   Each spine stands on the shelf's edge; pointed at it lifts, opened it tips out
+   towards the reader in the accent. The two Sahih books carry a gold band. On a
+   narrow screen the shelf scrolls sideways rather than wrapping to a second row. */
+.shelf {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.375rem;
+  padding: 1rem 0.5rem 0;
+  border-bottom: 3px solid var(--border-hi);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+
+.shelf-spine {
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 7.5rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-hi);
+  border-bottom: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background:
+    linear-gradient(var(--border) 0 0) top 0.6rem left 0 / 100% 1px no-repeat,
+    linear-gradient(var(--border) 0 0) bottom 0.6rem left 0 / 100% 1px no-repeat,
+    var(--surface-hi);
+  color: var(--text-dim);
+  transform-origin: bottom center;
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    background-color calc(var(--motion-base-ms) * 1ms) ease,
+    color calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+
+.shelf-spine > span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: 600;
+  font-size: var(--type-small);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+
+.shelf-spine[data-sahih] {
+  background:
+    linear-gradient(var(--palette-gold) 0 0) top 0.6rem left 0 / 100% 2px no-repeat,
+    linear-gradient(var(--palette-gold) 0 0) bottom 0.6rem left 0 / 100% 2px no-repeat,
+    var(--surface-hi);
+}
+
+
+.shelf-spine:hover,
+.shelf-spine:focus-visible {
+  transform: translateY(calc(var(--motion-lift-px) * -2px));
+  color: var(--text);
+}
+
+
+.shelf-spine:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+
+
+.shelf-spine[aria-pressed='true'] {
+  transform: translateY(-6px) rotate(-5deg);
+  background-color: var(--c);
+  color: var(--surface);
+  border-color: var(--c);
+}
+
+
+/* The bookshelf at the shelf's end (HadithCollectionPicker): as tall as a spine and
+   wider, a small bookshelf drawn in it, opening the further books. A thin wall
+   sets it apart from the six; pressed, it fills in the accent like an open spine. */
+.shelf-more {
+  flex: 0 0 auto;
+  height: 7.5rem;
+  margin-inline-start: 0.5rem;
+  padding: 0.5rem 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+  border: 1px solid var(--border-hi);
+  border-bottom: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--surface);
+  color: var(--text-dim);
+  transition:
+    transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease),
+    background-color calc(var(--motion-base-ms) * 1ms) ease,
+    color calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+
+.shelf-more > svg {
+  width: 2.25rem;
+  flex: 1;
+  min-height: 0;
+  transition: transform calc(var(--motion-enter-ms) * 1ms) var(--motion-settle-ease);
+}
+
+
+/* Pressed, the little bookshelf on the tile turns over once as the big one opens. */
+.shelf-more[aria-pressed='true'] > svg { transform: perspective(calc(var(--motion-tilt-perspective-px) * 1px)) rotateY(360deg); }
+
+
+.shelf-more > span {
+  font-weight: 600;
+  font-size: var(--type-tiny);
+  line-height: 1.1;
+  text-align: center;
+  max-width: 3.5rem;
+  padding-bottom: 0.375rem;
+}
+
+
+.shelf-more:hover,
+.shelf-more:focus-visible { transform: translateY(calc(var(--motion-lift-px) * -2px)); color: var(--text); }
+
+
+.shelf-more:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+
+
+.shelf-more[aria-pressed='true'] { background: var(--c); color: var(--surface); border-color: var(--c); }
+
+
+/* The bookshelf opened (HadithBookshelf): it flips open out of the shelf's tile
+   (lib/motion/openFrom draws that), and its planks then settle one by one (.rise-in).
+   A wooden frame round a darker back panel; each kind of book stands cover out on
+   its own plank, its Arabic title across the cover, its name and count beside it. */
+.bookshelf {
+  display: grid;
+  gap: 1rem;
+  --rise-y: -1rem;
+  --rise-scale: 0.88;
+  --rise-uncover: 0%;
+}
+
+
+.bookshelf-frame {
+  display: grid;
+  gap: 0;
+  padding: 0.75rem 0.75rem 0;
+  border: 0.625rem solid var(--border-hi);
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--bg) 70%, var(--surface));
+  box-shadow: inset 0 0.5rem 1.5rem color-mix(in oklab, var(--bg) 80%, transparent), var(--shadow-e2);
+}
+
+
+.bookshelf-shelf { display: grid; gap: 0.5rem; padding-bottom: 0.75rem; }
+
+
+.bookshelf-shelf .eyebrow { padding-inline: 0.5rem; }
+
+
+.bookshelf-row {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* Books packed from the start, each on its own length of plank: side by side the
+     lengths join into one board (the last runs to the row's end), and a book that
+     wraps to a line of its own still stands on one. */
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.75rem;
+}
+
+
+.bookshelf-row > li {
+  flex: 0 1 auto;
+  min-width: 0;
+  padding-inline: 0.5rem 1.5rem;
+  border-bottom: 0.75rem solid var(--border-hi);
+}
+
+
+.bookshelf-row > li:last-child { flex-grow: 1; }
+
+
+.bookshelf-book {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  text-align: start;
+}
+
+
+.bookshelf-cover {
+  flex: 0 0 auto;
+  width: 5.5rem;
+  height: 7.5rem;
+  padding: 0.5rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  line-height: 1.6;
+  color: var(--text);
+  border: 1px solid var(--border-hi);
+  border-bottom: 0;
+  border-radius: 2px var(--radius-sm) 0 0;
+  background:
+    linear-gradient(to right, color-mix(in oklab, var(--c) 55%, transparent) 0 5px, transparent 5px),
+    linear-gradient(var(--palette-gold) 0 0) top 0.5rem left 5px / 100% 1px no-repeat,
+    linear-gradient(var(--palette-gold) 0 0) bottom 0.5rem left 5px / 100% 1px no-repeat,
+    color-mix(in oklab, var(--c) 14%, var(--surface));
+  transform-origin: bottom center;
+  transition: transform calc(var(--motion-spring-ms) * 1ms) var(--motion-spring-ease);
+}
+
+
+.bookshelf-book:hover .bookshelf-cover,
+.bookshelf-book:focus-visible .bookshelf-cover { transform: translateY(-0.375rem) rotate(-3deg); }
+
+
+.bookshelf-book:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+
+
+/* The words beside the cover: its name and count, never taller than the cover. A
+   name past three lines ends in "…" rather than pushing above the cover. */
+.bookshelf-words {
+  min-width: 0;
+  max-width: 11rem;
+  display: grid;
+  gap: 0.125rem;
+  padding-bottom: 0.5rem;
+}
+
+
+.bookshelf-name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}

@@ -22,7 +22,7 @@ export default function AutoAdvanceToggle({ value, onChange, accent, say = (s) =
       {/* A bare letter beside a word reads as a typo. Drawn as a key, the way
           the four answers draw their numbers, so it is plainly the key to press.
           Quieter by size (type-micro), not opacity, so contrast stays readable. */}
-      <kbd className="type-micro rounded border border-[var(--border-hi)] px-1 text-[var(--text-dim)]">A</kbd>
+      <kbd className="type-micro rounded-[var(--radius-xs)] border border-[var(--border-hi)] px-1 text-[var(--text-dim)]">A</kbd>
     </FlagButton>
   )
 }

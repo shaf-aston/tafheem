@@ -118,7 +118,7 @@ export default function GrowPanel({ incoming, arrival, handed = false, onVisit }
   } else if (view.at === 'lesson' && !sourceOf(view.id).error) {
     // Being dealt (a part still coming, the record catching up with the last lesson): the lesson's shape, not a flash of
     // its world. A world that could not load is shown, with its error.
-    screen = <Skeleton late className="h-96 w-full" />
+    screen = <Skeleton className="h-96 w-full" />
   } else if (view.at !== 'home') {
     const world = worldOf(view.id)
     screen = SCREENS[world.kind]({ world, lessons, books, view, back: home, go, start, startBook })

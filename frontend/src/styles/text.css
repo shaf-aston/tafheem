@@ -181,7 +181,6 @@ textarea.arabic-lg {
   .type-lead { font-size: var(--type-lead); }
   .type-heading { font-size: var(--type-heading); }
   .type-title { font-size: var(--type-title); }
-  .type-display { font-size: var(--type-display); }
   /* .eyebrow-lg: the same label a rung up, heading a block of its own (Home). */
   .eyebrow-lg { --eyebrow-size: var(--type-label); }
   .eyebrow {

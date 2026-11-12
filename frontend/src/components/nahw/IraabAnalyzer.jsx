@@ -3,43 +3,22 @@
  * a card for each word. One `/api/analyze` request returns both, so they are the
  * same reading. The picture is left out when nothing could be joined.
  */
-import { Fragment, useLayoutEffect, useRef, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 
-import { analyzeIraab, generatePractice, translateSentence } from '../../api'
-import { errorMessage, errorStatus, retryServerErrors } from '../../lib/api/apiError'
+import { analyzeIraab, generatePractice } from '../../api'
+import { errorMessage, errorStatus } from '../../lib/api/apiError'
 import { useMutation } from '../../lib/api/useMutation'
-import { buildIraabExportText } from '../../lib/nahw/iraabExport'
-import { bareForm } from '../../lib/text/arabicText'
-import { UNNAMED, caseLabel, isUnnamed, reading } from '../../lib/nahw/grammarTerms'
-import { arc } from '../../lib/nahw/govArc'
-import { roleVar } from '../../lib/nahw/roleColors'
-import { useRemembered } from '../../lib/store/useRemembered'
-import { useTarkeebView } from '../../lib/nahw/useTarkeebView'
 import { useArrivalEffect } from '../../lib/nav/useArrival'
 
-import SourceBadge from '../ui/feedback/SourceBadge'
-import TarkeebFigure from '../grammar/tarkeeb/TarkeebFigure'
-import TarkeebTools from '../grammar/tarkeeb/TarkeebTools'
-import PracticePanel from './PracticePanel'
-import SentenceMeaning from '../ui/text/SentenceMeaning'
-import TranslationStrip from '../ui/text/TranslationStrip'
-import { GoButton } from '../ui/buttons/RootActions'
-import WordPeek from './WordPeek'
 import WordCard from '../grammar/WordCard'
 import BottomSheet from '../ui/overlays/BottomSheet'
-import ArabicText from '../ui/text/ArabicText'
-import BookPath from '../grammar/BookPath'
-import CopyButton from '../ui/buttons/CopyButton'
-import Disclosure from '../ui/overlays/Disclosure'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
-import StatusNote from '../ui/feedback/StatusNote'
 import ExampleChips from '../ui/inputs/ExampleChips'
 import MicButton from '../ui/buttons/MicButton'
 import SearchBox from '../ui/inputs/SearchBox'
-import Tucked from '../ui/inputs/Tucked'
-import FlagButton from '../ui/buttons/FlagButton'
+import QuestionForm from '../ui/inputs/QuestionForm'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
+import AnalysisResults from './iraab/AnalysisResults'
 
 const EXAMPLES = [
   { arabic: 'ضَرَبَ زيدٌ عمراً', meaning: 'Zayd struck ʿAmr' },
@@ -47,9 +26,6 @@ const EXAMPLES = [
   { arabic: 'إِنَّ اللهَ غَفُورٌ رَحِيمٌ', meaning: 'Indeed Allah is Forgiving, Merciful' },
   { arabic: 'ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ', meaning: 'The student went to school' },
 ]
-
-// What the word row draws: each word's role, or arcs from governor to governed.
-const LENSES = ['roles', 'governs']
 
 // `more` is the page's own extras, drawn as rows under this sentence's (Full table,
 // Practice) so they read as one list, or alone when nothing is analysed yet.
@@ -83,9 +59,8 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
 
   return (
     <div className="space-y-6">
-      {/* Folded into one pill holding the sentence once it is analysed, so the
-          analysis is the next thing down (ui/inputs/Tucked). */}
-      <Tucked answer={analyze.data} query={sentence} accent={accent}>
+      {/* The question form every tab shares (ui/inputs/QuestionForm). */}
+      <QuestionForm accent={accent}>
         {/* The same field as Dictionary and Daleel, grown to a textarea: see
             ui/SearchBox's multiline mode. */}
         <SearchBox
@@ -110,7 +85,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
         </SearchBox>
 
         <ExampleChips examples={EXAMPLES} onPick={runExample} accent={accent} />
-      </Tucked>
+      </QuestionForm>
 
       {analyze.isError && <AnalyzeError error={analyze.error} onRetry={submit} />}
       {analyze.isPending && <AnalyzerSkeleton />}
@@ -145,333 +120,5 @@ function AnalyzeError({ error, onRetry }) {
     <ErrorAlert title={status === 504 ? 'Timed out' : 'Analysis failed'} onRetry={onRetry}>
       <div>{errorMessage(error)}</div>
     </ErrorAlert>
-  )
-}
-
-// `detail` is the opened word's card, a pop-up over the page: closing it leaves the
-// page where it was, whichever of the chart, grid or table opened it.
-function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, detail, more }) {
-  const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
-  const linked = data.words.some((w) => source(w) !== undefined)
-  const governs = linked && lens === 'governs'
-  const view = useTarkeebView(data.tree)
-  const meaning = useSentenceMeaning(data.sentence)
-  const copy = <CopyButton text={buildIraabExportText(data)} label="Copy" />
-  return (
-    <div className="space-y-4">
-      {/* With a tree, Copy sits in the tree card's foot, not on a row of its own. */}
-      <div className="flex items-start justify-between gap-3 flex-wrap">
-        {data.summary && (
-          <div
-            className="rise-in flex items-center gap-2 type-ui px-3 py-2 rounded-[var(--radius-md)]
-              bg-[var(--surface)] border border-[var(--border)]"
-          >
-            <span className="text-[var(--text-faint)] type-label uppercase tracking-wide">Sentence</span>
-            <span className="text-[var(--text)]">{data.summary}</span>
-            <SourceBadge source={data.source} />
-          </div>
-        )}
-        {!data.tree && copy}
-      </div>
-
-      {data.unvowelled && (
-        <StatusNote>
-          {data.unvowelled.en} <ArabicText size="tiny">{data.unvowelled.ar}</ArabicText>
-        </StatusNote>
-      )}
-
-      {data.tree && (
-        // An ayah drawn from its record carries the words the book supplies,
-        // (هُوَ) or an elided khabar, and the mark it writes them with.
-        <ChartWithPeek data={data} view={view} glosses={meaning.data?.words}
-          onMore={onWordClick} onLookup={onGo && ((w) => onGo('dict', w))}
-          foot={<EnglishFoot meaning={meaning} accent={accent} onGo={onGo}><TarkeebTools view={view} />{copy}</EnglishFoot>} />
-      )}
-      {!data.tree && <EnglishMeaning meaning={meaning} accent={accent} onGo={onGo} />}
-      <WordGrid words={data.words} onClick={onWordClick} governs={governs} picked={picked}
-        corner={linked && (
-          <FlagButton value={governs} onChange={(on) => setLens(on ? 'governs' : 'roles')} accent={accent}
-            title="Draw arrows from each governor to the word it governs">
-            see governance
-          </FlagButton>
-        )} />
-      <p className="text-center type-small text-[var(--text-faint)]">
-        {governs && picked >= 0 && source(data.words[picked]) !== undefined
-          ? <GovernsWhy words={data.words} i={picked} />
-          : 'Tap a word for breakdown'}
-      </p>
-      {detail}
-
-      {/* The extras: one list of rows, the page's own (`more`) after this sentence's. */}
-      <div>
-        <FullIraabTable words={data.words} onRowClick={onWordClick} />
-        <PracticePanel practice={practice} sentence={data.sentence} accent={accent} />
-        {more}
-      </div>
-    </div>
-  )
-}
-
-// The sentence in English, asked of the dictionary as soon as it is analysed:
-// the same answer the Dictionary tab gives a sentence. Its word-by-word list is
-// also what the chart shows on hover, so the one request serves both.
-function useSentenceMeaning(sentence) {
-  return useQuery({
-    queryKey: ['dictionary-sentence', sentence],
-    queryFn: () => translateSentence(sentence),
-    enabled: Boolean(sentence),
-    staleTime: Infinity,
-    // A refusal (429 too many, 422) is not asked again: it answers the same and spends a model call.
-    retry: retryServerErrors(1),
-  })
-}
-
-// The foot of the tree's card: the English, beside the chart's tools. The tree
-// already writes the sentence out, so the English is not set under a third copy
-// of it. The tools are there before the English arrives, so nothing moves.
-function EnglishFoot({ meaning, accent, onGo, children }) {
-  const data = meaning.data?.words ? meaning.data : null
-  return (
-    <TranslationStrip pad="px-5 py-3" className="rounded-b-[var(--radius-lg)] flex flex-wrap items-center gap-x-3 gap-y-2">
-      {/* Too little room beside the tools (a phone, Merged/Split shown): they drop under it. */}
-      <div className="flex-[1_1_10rem] min-w-0 space-y-2 rise-in">
-        {data && (
-          <p lang="en" className={`type-body leading-relaxed ${data.meaning ? 'text-[var(--text)]' : 'text-[var(--text-dim)]'}`}>
-            {data.meaning || 'The translator could not be reached, so only the words below.'}
-          </p>
-        )}
-        {data?.left_out?.length > 0 && (
-          <p className="type-small text-[var(--text-dim)]">Left out, not Arabic: {data.left_out.join(', ')}</p>
-        )}
-        {data?.ref && onGo && (
-          <GoButton onClick={() => onGo('quran', data.ref)} style={{ '--c': accent }}>Open ayah {data.ref}</GoButton>
-        )}
-      </div>
-      <div className="ml-auto flex items-center gap-2">{children}</div>
-    </TranslationStrip>
-  )
-}
-
-// With no tree, the sentence's own card: the Arabic, then the English under it.
-// The card above already says what it is, so no heading names it again.
-function EnglishMeaning({ meaning, accent, onGo }) {
-  if (!meaning.data?.words) return null
-  return (
-    <section aria-label="English meaning" className="rise-in">
-      <SentenceMeaning data={meaning.data} accent={accent} onGo={onGo} bare
-        onLookup={(w) => onGo?.('dict', w)} />
-    </section>
-  )
-}
-
-// The written word a chart word is: the analysis lists the words on the page in
-// order, so the nth is the one, unless the two spellings disagree (a word the
-// parser split differently), when the first with the same letters is.
-function nthWord(list, nth, text, key) {
-  const same = (item) => item && bareForm(item[key]) === bareForm(text)
-  return same(list?.[nth]) ? list[nth] : list?.find(same)
-}
-
-// The chart, with a tapped word answered in a small panel under it, in place.
-function ChartWithPeek({ data, view, glosses, onMore, onLookup, foot }) {
-  const [peek, setPeek] = useState(null)
-  const frame = useRef(null)
-  const glossOf = (nth, text) => nthWord(glosses, nth, text, 'arabic')?.english
-  const open = (text, nth, el) => {
-    const word = nthWord(data.words, nth, text, 'word')
-    if (!word) return onLookup?.(text)
-    const box = frame.current.getBoundingClientRect()
-    const at = el.getBoundingClientRect()
-    // kept inside the frame, so the panel never hangs off a phone's edge
-    const half = Math.min(144, box.width / 2)
-    const x = Math.min(Math.max(at.left + at.width / 2 - box.left, half), box.width - half)
-    setPeek({ word, english: glossOf(nth, text), text, at: { x, y: at.bottom - box.top + 6 } })
-  }
-  return (
-    <div ref={frame} className="relative">
-      <TarkeebFigure tarkeeb={data.tree} view={view} onWord={open} glossOf={glosses && glossOf}
-        foot={foot} />
-      {peek && (
-        <WordPeek {...peek} onClose={() => setPeek(null)}
-          onMore={() => { onMore(peek.word); setPeek(null) }}
-          onLookup={() => onLookup?.(peek.text)} />
-      )}
-    </div>
-  )
-}
-
-// The word a word takes its case from: its عامل, or the word a تابع follows.
-const source = (w) => w.governor ?? w.follows ?? undefined
-
-// "X governs Y" or "Y follows X", the typed words themselves.
-function GovernsWhy({ words, i }) {
-  const w = words[i]
-  const from = <ArabicText size="sm" className="text-[var(--text)]">{words[source(w)].word}</ArabicText>
-  const to = <ArabicText size="sm" className="text-[var(--text)]">{w.word}</ArabicText>
-  return w.governor != null
-    ?<>{from} governs {to}: it gives it its case.</>
-    : <>{to} follows {from} and copies its case.</>
-}
-
-// Governs view: one unbroken line (arcs cannot cross a wrap) with an arc above it
-// from each governor down into the word it governs; a follower's arc is dashed.
-const ARC_CAP = 56 // px the tallest arc climbs above the words
-function WordGrid({ words, onClick, governs, picked, corner }) {
-  const lineRef = useRef(null)
-  const [arcs, setArcs] = useState([])
-  useLayoutEffect(() => {
-    if (!governs) return undefined
-    const line = lineRef.current
-    function measure() {
-      // Measured against the svg the arcs are drawn in, so no offsetParent can skew them.
-      const box = line.querySelector('svg').getBoundingClientRect()
-      const cards = [...line.querySelectorAll('.word')].map((c) => c.getBoundingClientRect())
-      const at = (i) => [cards[i].left - box.left + cards[i].width / 2, cards[i].top - box.top]
-      setArcs(words.flatMap((w, i) => (source(w) === undefined ? [] : [{
-        i, dashed: w.governor == null, ...arc(at(source(w)), at(i), ARC_CAP),
-      }])))
-    }
-    measure()
-    const ro = new ResizeObserver(measure)
-    ro.observe(line)
-    // The cards rise in; measure again once they have landed.
-    line.addEventListener('animationend', measure)
-    document.fonts?.ready.then(measure)
-    return () => { ro.disconnect(); line.removeEventListener('animationend', measure) }
-  }, [governs, words])
-
-  // `corner` sits in the card's top-right, outside the scroller so it stays put.
-  return (
-    <div className="relative">
-    {corner && <div className="absolute top-2 right-2 z-[var(--layer-raised)] opacity-70 hover:opacity-100">{corner}</div>}
-    <div
-      dir="rtl"
-      className={`peer-dim p-5 rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-        ${corner ? 'pt-12' : ''} ${governs ? 'overflow-x-auto' : ''}`}
-    >
-      <div
-        ref={lineRef}
-        style={governs ? { paddingTop: ARC_CAP + 8 } : undefined}
-        className={`relative flex justify-center gap-3 ${governs ? 'flex-nowrap w-max min-w-full' : 'flex-wrap'}`}
-      >
-      {governs && (
-        <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none" aria-hidden="true">
-          {arcs.map((a) => (
-            <g key={a.i} stroke={roleVar(words[a.i].role_key)} fill="none" strokeWidth="2"
-              strokeLinecap="round" strokeLinejoin="round"
-              className="transition-opacity" style={{ opacity: picked < 0 || picked === a.i ? 1 : 0.25 }}>
-              <path d={a.d} strokeDasharray={a.dashed ? '4 5' : undefined} />
-              <path d={a.head} />
-            </g>
-          ))}
-        </svg>
-      )}
-      {words.map((word, i) => {
-        const key = word.role_key
-        return (
-          <button
-            key={`${word.word}-${i}`}
-            type="button"
-            onClick={() => onClick(word)}
-            aria-label={`${word.word}, ${isUnnamed(word) ? 'not named, see why' : (word.name ?? word.role) || 'details'}`}
-            style={{ '--i': i, '--c': roleVar(key) }}
-            className="word rise-in role glow
-              flex flex-col items-center gap-1.5 px-4 py-3 rounded-[var(--radius-md)]
-              bg-[var(--surface-hi)] border"
-          >
-            <ArabicText className="text-glow leading-tight">{word.word}</ArabicText>
-            {/* The term alone. What it means is in the glossary at the foot
-                of the page, once, not under every tag. */}
-            {word.role && (
-              <span className="type-tiny px-2 py-0.5 rounded-full role-tag">
-                {word.name ?? word.role}
-              </span>
-            )}
-            {word.case && (
-              <ArabicText size="tiny" className="text-[var(--text-faint)]">{caseLabel(word.case)}</ArabicText>
-            )}
-          </button>
-        )
-      })}
-      </div>
-    </div>
-    </div>
-  )
-}
-
-/**
- * The click lives on the row, one handler on the table body; the keyboard lives
- * on each word, a real button, so Tab reaches it and Enter opens it.
- */
-const NONE = UNNAMED
-
-// The full table's columns: the ones every screen shows side by side, then the proof,
-// which a phone moves under its row.
-const BESIDE = [['الكلمة', 'Word'], ['الإعراب', 'Role · case · sign'], ['الجذر', 'Root'], ['العامل', 'Governed by']]
-const PROOF = ['الدليل', 'Proof']
-
-function FullIraabTable({ words, onRowClick }) {
-  const pick = (e) => {
-    const row = e.target.closest('tr[data-i]')
-    if (row) onRowClick(words[Number(row.dataset.i)])
-  }
-  return (
-    <Disclosure ruled label="Full table" hint="Every word, side by side" bodyClassName="pb-4 overflow-x-auto [direction:rtl]">
-        {/* Right to left like the books: the word first, its proof last, and the scroll
-            opens on the word. Case and sign sit under the role (one reading, one cell);
-            a sign that only repeats مبني is dropped. A phone has no room for the proof
-            beside the rest, so it takes its own line under the word's row. */}
-        <table dir="rtl" className="w-full type-small border-collapse">
-          <thead>
-            <tr className="type-micro text-[var(--text-faint)] border-b border-[var(--border)] align-bottom">
-              {[...BESIDE, PROOF].map(([ar, en]) => (
-                <th key={en} className={`text-right font-normal py-2 px-3 ${en === PROOF[1] ? 'hidden md:table-cell' : ''}`}>
-                  <ArabicText size="sm" className="block text-[var(--text-dim)]">{ar}</ArabicText>
-                  <span dir="ltr" className="block">{en}</span>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody onClick={pick}>
-            {words.map((w, i) => {
-              const said = reading(w)  // one reading of case and sign, the same the copied text prints
-              const proof = (
-                <>
-                  <ArabicText size="sm" className="block leading-relaxed">{w.reason || NONE}</ArabicText>
-                  {w.reason && <BookPath path={w.book} />}
-                </>
-              )
-              return (
-                <Fragment key={`${w.word}-${i}`}>
-                <tr
-                  data-i={i}
-                  style={{ '--c': roleVar(w.role_key) }}
-                  className="md:border-b border-[var(--border)] cursor-pointer align-top transition-colors
-                    hover:bg-[var(--surface-hi)] role"
-                >
-                  <td className="py-3 px-3 whitespace-nowrap">
-                    <ArabicText as="button" type="button" className="rounded-[var(--radius-sm)] px-1">{w.word}</ArabicText>
-                  </td>
-                  <td className="py-3 px-3 whitespace-nowrap">
-                    <ArabicText size="sm" className="block" style={{ color: 'var(--c)' }}>{w.name ?? (w.role || '–')}</ArabicText>
-                    {said.length > 0 && (
-                      <ArabicText size="tiny" className="block mt-1 text-[var(--text-dim)]">{said.join(' · ')}</ArabicText>
-                    )}
-                  </td>
-                  <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">{w.root || NONE}</ArabicText>
-                  <ArabicText as="td" size="sm" className="py-3 px-3 text-[var(--text-dim)] whitespace-nowrap">
-                    {source(w) === undefined ? NONE : <>{w.governor == null && 'تابع لـ '}{words[source(w)].word}</>}
-                  </ArabicText>
-                  <td className="hidden md:table-cell py-3 px-3 text-[var(--text-dim)] min-w-[var(--layout-proof)]">{proof}</td>
-                </tr>
-                <tr data-i={i} className="md:hidden border-b border-[var(--border)] cursor-pointer">
-                  <td colSpan={BESIDE.length} className="pb-3 px-3 text-[var(--text-dim)]">{proof}</td>
-                </tr>
-                </Fragment>
-              )
-            })}
-          </tbody>
-        </table>
-    </Disclosure>
   )
 }

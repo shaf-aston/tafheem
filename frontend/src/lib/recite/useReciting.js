@@ -9,7 +9,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { bySound, follow } from './follow'
-import { createRecitingSession, EMPTY_VIEW } from './recitingSession'
+import { EMPTY_VIEW } from './readings'
+import { createRecitingSession } from './recitingSession'
 import { surer } from './scores'
 import { useSetting } from '../store/settings'
 import { useHealth, useTuned } from '../api/useHealth'

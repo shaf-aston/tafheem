@@ -3,7 +3,8 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, renderHook, waitFor } from '@testing-library/react'
 
 import { renderWithBackend } from '../../test/render'
-import { CHOICES, wordsOf } from '../../lib/memorise/memorise'
+import { wordsOf } from '../../lib/memorise/memorise'
+import { CHOICES } from './gaps'
 import { gapsScope, useAnswers } from './useAnswers'
 import { useBookPage, useGaps, useHowYouAnswer, usePageSteps, useArrivedPage, withinPart } from './hooks'
 

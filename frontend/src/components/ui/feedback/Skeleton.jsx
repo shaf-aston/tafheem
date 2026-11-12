@@ -3,10 +3,13 @@ import { useFirstOfKind } from '../../../lib/motion/useFirstOfKind'
 
 /**
  * Loading placeholder. Size it with Tailwind classes at the call site.
- * `late`: shown only once the wait passes patience-ms (.late), so a quick load goes straight to its answer, no flash.
+ * Late by default: shown only once the wait passes patience-ms (.late), so a quick load goes straight to
+ * its answer with no flash. The box is in the layout from the first frame (the wrapper only holds its
+ * opacity), so nothing moves when it appears. `late={false}` for a wait the reader just asked for, where
+ * the placeholder is the acknowledgement (AnalyzerSkeleton, whose pen shows at once).
  * A wrapper, since the shimmer is the skeleton's own animation.
  */
-export function Skeleton({ className = '', late = false }) {
+export function Skeleton({ className = '', late = true }) {
   const box = <div className={`skeleton ${className}`} />
   return late ? <div className="late">{box}</div> : box
 }
@@ -21,7 +24,7 @@ export function Skeleton({ className = '', late = false }) {
  */
 function InkLine() {
   const first = useFirstOfKind('ink-line')
-  if (!first) return <Skeleton className="h-6 w-1/3" />
+  if (!first) return <Skeleton late={false} className="h-6 w-1/3" />
   return (
     <div className="ink-line" aria-hidden="true">
       <span className="ink-line-trail" />
@@ -35,8 +38,8 @@ export function AnalyzerSkeleton() {
   return (
     <div className="space-y-3" aria-hidden="true">
       <InkLine />
-      <Skeleton className="h-28 w-full" />
-      <Skeleton className="h-4 w-1/2" />
+      <Skeleton late={false} className="h-28 w-full" />
+      <Skeleton late={false} className="h-4 w-1/2" />
     </div>
   )
 }

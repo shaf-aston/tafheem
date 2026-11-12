@@ -1,0 +1,95 @@
+/* Memorise
+   Memorise: the gap's picker, the settings row and Save word for Review. */
+
+
+/* Memorise's missing word: the same wheel, its pill drawn as a blank in the line. */
+.memorise-gap { display: inline-block; }
+
+
+.memorise-gap .wheel-pill,
+.memorise-gap .wheel-pill:hover:not(:disabled) {
+  justify-content: center;
+  padding: 0 0.25rem;
+  color: var(--gap-text, var(--text));
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--gap-border);
+  border-radius: 0;
+}
+
+
+.memorise-gap .wheel-pill:focus-visible:not(:disabled) { outline: none; border-bottom-color: var(--c); box-shadow: 0 2px 0 0 color-mix(in srgb, var(--c) 40%, transparent); }
+
+
+/* ── Memorise settings row, and Save word for Review ───────────────────────
+   (memorise/MemorisePanel, memorise/SettingsSheet, grammar/SaveWord)
+   One quiet row over the page: where you are, then a Settings pill whose
+   summary of what is chosen sits fainter, so the pill reads as one word. */
+.mem-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.mem-settings {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text-dim);
+  transition: color calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+
+.mem-settings:hover { color: var(--text); }
+
+
+.mem-settings-summary {
+  max-width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-faint);
+}
+
+
+/* Save beside the root's destinations, the same pill; filled in the role
+   colour once saved, so a saved word is told apart at a glance. */
+.save-word {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.save-word-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  line-height: 1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text-dim);
+  transition: color calc(var(--motion-base-ms) * 1ms) ease, border-color calc(var(--motion-base-ms) * 1ms) ease;
+}
+
+
+.save-word-toggle:hover { color: var(--text); border-color: var(--c); }
+
+
+.save-word-toggle[aria-pressed='true'] { color: var(--c); border-color: var(--c); }
+
+
+.save-word-toggle > svg { width: 0.875rem; height: 0.875rem; }
+
+
+.save-word-said { color: var(--text-faint); }
+
+
+.save-word-said:not(:empty) { animation: fade-in calc(var(--motion-base-ms) * 1ms) ease; }

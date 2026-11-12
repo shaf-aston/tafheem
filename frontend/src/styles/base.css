@@ -113,6 +113,8 @@ select option {
   /* Tailwind's transition-* classes take the app's own speed, so the
      Animations switch stops them too instead of leaving them on 150ms. */
   --default-transition-duration: calc(var(--motion-instant-ms) * 1ms);
+  /* rounded-full is the pill: the same round ends as theme.json's radius.pill. */
+  --radius-full: var(--radius-pill);
 }
 
 

@@ -1,13 +1,14 @@
 /**
  * All sections: every tab under its group, opened from the end of the strip.
- * Native <dialog>, as in SettingsPanel: Esc, backdrop and focus trap come free.
+ * A kept-mounted BottomSheet, as Settings is: Esc, backdrop and focus trap come free, and Edit bar survives a close.
  */
 import { useState } from 'react'
 
 import { ahead } from '../../lib/api/warm'
 import { useDrag } from '../../lib/shell/useDrag'
-import { closeOnBackdrop, useModal } from '../../lib/hooks/useModal'
+import BottomSheet from '../ui/overlays/BottomSheet'
 import ArabicText from '../ui/text/ArabicText'
+import CloseButton from '../ui/buttons/CloseButton'
 import TabGroups from '../ui/inputs/TabGroups'
 import Tile from '../ui/display/Tile'
 import DockSlots from './DockSlots'
@@ -16,7 +17,6 @@ import DockSlots from './DockSlots'
 // both left out, there is no bar to edit; `size` is how many tab places the bar has.
 // Editing is the phone's: the strip a wider screen has is its own rule.
 export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onGo, here, dock, onDock, size: places = 0, onHover, children }) {
-  const dialog = useModal(open)
   const [editing, setEditing] = useState(false)
   const editable = Boolean(dock)
   const size = editable ? Math.max(dock.length, places) : 0
@@ -35,18 +35,13 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
   const tap = (id) => (!editing ? go(id) : onBar(id) ? onDock(id, null) : dock.length < size && onDock(id, dock.length))
 
   return (
-    <dialog
-      ref={dialog}
+    <BottomSheet
+      open={open}
       onClose={close}
-      onClick={closeOnBackdrop(close)}
-      aria-labelledby="sections-title"
-      className="phone-sheet m-auto p-0 bg-transparent max-w-[min(var(--sheet-wide),92vw)] w-full"
+      labelledBy="sections-title"
+      width="wide"
+      className="p-5 space-y-5 max-h-[88dvh] overflow-y-auto"
     >
-      <div
-        className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border)]
-          p-5 space-y-5 max-h-[88dvh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
         <div className="flex items-center justify-between gap-2">
           <h2 id="sections-title" className="type-head type-lead font-bold text-[var(--text)]">All sections</h2>
           <div className="flex items-center">
@@ -60,7 +55,8 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
                 {editing ? 'Done' : 'Edit bar'}
               </button>
             )}
-            <button type="button" onClick={close} className="tap min-h-11 px-3 type-small font-semibold text-[var(--text-dim)]">Close</button>
+            {/* The round ✕ every other sheet closes with (Settings, Study, the profile). */}
+            <CloseButton onClick={close} />
           </div>
         </div>
         {editing && (
@@ -113,7 +109,6 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
           </TabGroups>
           {children}
         </div>
-      </div>
       {drag && (
         <div
           aria-hidden="true"
@@ -124,6 +119,6 @@ export default function SectionsMenu({ open, onClose, groups, tabs, colorOf, onG
           {tabs.find((tab) => tab.id === drag.id)?.label}
         </div>
       )}
-    </dialog>
+    </BottomSheet>
   )
 }

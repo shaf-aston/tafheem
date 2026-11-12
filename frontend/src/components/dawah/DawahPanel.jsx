@@ -113,7 +113,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
       />
 
       {!searching && (
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {data.topics.map((topic, i) => (
             <TopicTile key={topic.id} topic={topic} index={i} selected={topic.id === topicId}
               onPick={pickTopic} />

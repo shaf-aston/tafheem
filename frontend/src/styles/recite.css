@@ -85,7 +85,7 @@
   translate: -50% 0;
   white-space: nowrap;
   pointer-events: none;
-  font-size: 0.875rem;
+  font-size: var(--type-ui);
   line-height: 1;
   color: var(--text-faint);
   animation: rise-in calc(var(--motion-base-ms) * 1ms) var(--motion-settle-ease) backwards;

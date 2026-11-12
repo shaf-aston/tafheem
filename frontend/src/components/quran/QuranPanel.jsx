@@ -27,6 +27,7 @@ import QuranReader from './QuranReader'
 import QuranOpening from './QuranOpening'
 import QuranPlacePicker from './QuranPlacePicker'
 import QuranSearchBar from './QuranSearchBar'
+import QuestionForm from '../ui/inputs/QuestionForm'
 import SectionHeader from '../ui/display/SectionHeader'
 import SourceBadge from '../ui/feedback/SourceBadge'
 import ArabicText from '../ui/text/ArabicText'
@@ -148,6 +149,8 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
 
       {idle && <QuranOpening accent={accent} onOpen={openResult} />}
 
+      {/* The question form every tab shares (ui/inputs/QuestionForm). */}
+      <QuestionForm accent={accent}>
       <RecentRow
         items={recent.map((h) => `${h.surah}:${h.ayah}`)}
         accent={accent}
@@ -176,6 +179,7 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
         onReadSurah={readSurah}
         onOpenAyah={(surah, ayah) => openResult({ surah, ayah })}
       />
+      </QuestionForm>
 
       {search.isError && (
         // A search that cannot reach Quran.com falls back to the local index
