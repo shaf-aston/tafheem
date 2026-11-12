@@ -117,6 +117,16 @@
 
 
 
+/* ── the atlas ────────────────────────────────────────────── */
+/* An open event beside its map on a wide screen: the map and the time bar on
+   the left, held under the header while the story scrolls on the right, so
+   the first screen shows where and what together instead of a map with the
+   story a screen below it. One column under that, in the same order. */
+@media (min-width: 64rem) {
+  .tl-atlas { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+  .tl-atlas > :first-child { position: sticky; top: calc(var(--app-header-h, 0px) + 1rem); }
+}
+
 /* ── the reader ───────────────────────────────────────────── */
 .tl-reader {
   /* clip, not hidden: hidden makes the reader a scroll box, and the pinned year
