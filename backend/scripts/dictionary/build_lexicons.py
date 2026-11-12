@@ -237,8 +237,14 @@ class Lane(Lexicon):
     ROOT = re.compile(r'<div2\s+n="([^"]+)"\s+type="root"[^>]*>', re.I)
     # The two elements Perseus marks as Arabic: a headword, and Arabic quoted
     # inside an English sentence.
-    ARABIC = re.compile(r"<(foreign|orth)\b[^>]*\blang=\"ar\"[^>]*>(.*?)</\1>",
+    ARABIC = re.compile(r"<(foreign|orth)\b([^>]*\blang=\"ar\"[^>]*)>(.*?)</\1>",
                         re.I | re.S)
+    # Perseus follows a headword with every unvowelled spelling of it,
+    # "خَارِجِىٌّ خارج خارجى خارجي", each an <orth extent="full"> without the
+    # orig= the headword itself carries. Lane printed the headword only. Every
+    # other <orth> is a word Lane wrote: an aorist (orig="Bu"), a word an arrow
+    # points the reader to (type="arrow"), a derived form's own headword.
+    SPELLED_AGAIN = re.compile(r'\bextent="full"')
     # Where one headword ends and the next begins. The whole opening tag goes,
     # attributes and all: split at the "<" alone and the id and key print as
     # words in the entry.
@@ -285,16 +291,15 @@ class Lane(Lexicon):
 
         def turn(match):
             nonlocal headed
-            said = match.group(2).strip()
+            tag, attributes, said = match.group(1).lower(), match.group(2), match.group(3).strip()
             # A lone star is Lane's own typographic mark for the headword, not
             # the letter ذ that a star stands for everywhere else in this scheme.
             if said == "*":
                 return ""
-            # Perseus follows a headword with every unvowelled spelling of it as
-            # more <orth> tags, "خَارِجِىٌّ خارج خارجى خارجي", which printed as one
-            # long heading. Lane prints the first only; so does this.
-            if match.group(1).lower() == "orth":
-                if headed:
+            if tag == "orth":
+                # The first is the headword, orig= or not: the letter entries
+                # (ش, "The thirteenth letter") carry none.
+                if headed and self.SPELLED_AGAIN.search(attributes) and "orig=" not in attributes:
                     return ""
                 headed = True
             return _arabic(said)

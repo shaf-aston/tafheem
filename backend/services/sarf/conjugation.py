@@ -155,6 +155,19 @@ def hollow_past(word: str) -> tuple[str, str] | None:
     return radicals[0] + W.ALIF + radicals[2], radicals[1]
 
 
+def doubled_past(word: str) -> str | None:
+    """The bare past a مضعّف root is filed under, مدد -> مدّ, else None.
+
+    Lane heads a doubled root with its two letters and writes the verb مَدَّ, so
+    the root a reader types finds it only spelled this way. Three letters only:
+    a two-letter word (من, عن) is looked up as itself, never as a verb (مَنَّ).
+    """
+    radicals = letters(word)
+    if len(radicals) != 3 or radicals[1] != radicals[2]:
+        return None
+    return radicals[:2] + SHADDAH
+
+
 def conjugates() -> list[str]:
     """The root kinds the rules can shape today. Everything else is refused."""
     return _rules()["conjugates"]
