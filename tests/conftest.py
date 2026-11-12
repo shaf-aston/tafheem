@@ -7,6 +7,8 @@ merely running the suite.
 """
 from __future__ import annotations
 
+from datetime import date
+
 import pytest
 
 from backend.config import get_settings
@@ -24,6 +26,13 @@ def _journal_writes_to_tmp(tmp_path, tmp_path_factory, monkeypatch):
     monkeypatch.setattr(get_settings(), "security_log_path", str(tmp_path_factory.mktemp("security") / "security.jsonl"))
     monkeypatch.setattr(audit, "_built_from", None)
     yield
+
+
+@pytest.fixture(autouse=True)
+def _claims_still_open(monkeypatch):
+    """Claims close by date (Settings.claims_open); the suites must not start failing on that day. Tests of the
+    closing set the date themselves."""
+    monkeypatch.setattr(get_settings(), "account_claims_until", date(9999, 1, 1))
 
 
 @pytest.fixture(autouse=True)

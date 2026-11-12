@@ -4,7 +4,7 @@
     sudo -u ubuntu .venv/bin/python -m backend.scripts.recovery_code NAME --keep-devices
 
 For a learner who lost every device and the code with them, an account nobody claimed before
-`account_claims_open` was turned off, or one claimed by the wrong person while it was open (the security
+claims closed (`account_claims_until`), or one claimed by the wrong person while it was open (the security
 log's "token_claimed" line says by which address). Prints the code once; give it to the learner, who types it
 in Log in. The old code stops working, and every device's token ends too, so whoever took the account (or
 holds the lost phone) is logged out and cannot make themselves a new code. `--keep-devices` leaves the devices
