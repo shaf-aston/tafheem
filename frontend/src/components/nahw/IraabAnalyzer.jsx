@@ -83,7 +83,11 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
           />
         </SearchBox>
 
-        <ExampleChips examples={EXAMPLES} onPick={runExample} accent={accent} />
+        {/* Something to try before the first answer, as on the Dictionary;
+            once a sentence is analysed the answer has the room. */}
+        {!analyze.data && !analyze.isPending && (
+          <ExampleChips examples={EXAMPLES} onPick={runExample} accent={accent} />
+        )}
       </QuestionForm>
 
       {analyze.isError && <AnalyzeError error={analyze.error} onRetry={submit} />}
