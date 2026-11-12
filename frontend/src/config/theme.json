@@ -127,14 +127,13 @@
     "tile": "0.75rem"
   },
   "layer": {
-    "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, below the page so results sit over it, backdrop is the drifting-lights canvas, below even the seal, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, overlay a full-screen sheet, tip a tooltip over everything.",
+    "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, below the page so results sit over it, backdrop is the drifting-lights canvas, below even the seal, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, tip a tooltip over everything. A sheet needs none: a dialog sits in the browser's top layer, over all of these.",
     "raised": 1,
     "backdrop": -2,
     "seal": -1,
     "sticky": 10,
     "popover": 30,
     "header": 40,
-    "overlay": 50,
     "tip": 60
   },
   "backdrop": {
@@ -231,6 +230,11 @@
     "_comment": "The shelf of classical dictionaries under a root. entry-h is how much of an entry is shown before the rest is folded behind Show all: Taj al-Arus on أمر is 23,000 letters, and printed whole one book would bury the three under it. Enough to tell whether this is the entry wanted, not enough to be a wall. In rem, so a browser's own text setting moves it with the words. reading-w is the widest a line of English in a book runs: across a wide screen Lane's lines ran past a hundred letters and the eye lost its place going back to the next.",
     "entry-h": "13rem",
     "reading-w": "44rem"
+  },
+  "quran": {
+    "_comment": "today-h is the Quran tab's Today card placeholder: the measured median height of the card over the 30 ayahs of config/quran.json's today list (a laptop 174 to 365px, a phone 174 to 674px), so the search box under it moves as little as it can when the ayah lands. today-h-phone is the same on a phone.",
+    "today-h": "17rem",
+    "today-h-phone": "29rem"
   },
   "daleel": {
     "_comment": "Daleel's passage cards. passage-h is how much of a passage shows before the rest folds behind Show all: one fold for the whole card, Arabic and English together, in rem so it is about three lines of the Arabic it quotes however small the English beside it is. Counted in the English's lines it cut the Arabic to one line on a phone.",

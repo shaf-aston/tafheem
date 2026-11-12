@@ -47,11 +47,9 @@ function Today({ accent, onOpen }) {
     <section aria-label="Today’s ayah" className="space-y-2">
       <h3 className="eyebrow eyebrow-lg">Today</h3>
       {/* Drawn once both have settled, so the card grows once. The placeholder stands at the
-          card's median height over the 30 ayahs of config/quran.json's today list, measured
-          (174 to 365px on a laptop, 174 to 674px on a phone): at 8rem it was shorter than every one,
-          and the search box under it jumped down by up to 237px as the ayah arrived. */}
+          card's measured median height (theme.json quran.today-h), so the box under it barely moves. */}
       {!arabic.data || english.isPending ? (
-        <Skeleton className="h-[29rem] sm:h-[17rem] w-full" />
+        <Skeleton className="h-[var(--quran-today-h-phone)] sm:h-[var(--quran-today-h)] w-full" />
       ) : (
         <Tile variant="lead" accent={accent} className="w-full" onClick={() => onOpen(place)}>
           <ArabicText as="p" size="lg" className="text-[var(--text)]">
