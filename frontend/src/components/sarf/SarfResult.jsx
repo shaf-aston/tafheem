@@ -1,7 +1,7 @@
 import { verbClass } from '../../lib/sarf/verbClass'
 
 import { Skeleton } from '../ui/feedback/Skeleton'
-import SourceBadge from '../ui/feedback/SourceBadge'
+import SourcesChip from '../ui/feedback/SourcesChip'
 import VerbFormTag from '../ui/text/VerbFormTag'
 import BlockTitle from './BlockTitle'
 import { CONJUGATIONS } from './conjugations'
@@ -27,13 +27,17 @@ export default function SarfResult({ data, loading, meaningPending, swapPending,
       {/* The table and the meaning are two different claims: the table is a rule
           applied, the meaning may be a machine's guess. Labelled separately. */}
       <div className="flex items-center justify-between gap-2 flex-wrap">
-        {data.verb ? <VerbFormTag readings={data.verb.readings} /> : <span />}
-        <div className="flex items-center gap-2 flex-wrap">
-          <SourceBadge source={data.source} />
-          {data.meaning && data.meaning_source?.key !== data.source?.key && (
-            <SourceBadge source={data.meaning_source} />
-          )}
-        </div>
+        {data.verb ? <VerbFormTag readings={data.verb.readings} plain showSources={false} /> : <span />}
+        {/* One chip for everything that made this page: the table's rules, the meaning, and the
+            dictionaries that name the bab. */}
+        <SourcesChip
+          align="end"
+          sources={[
+            data.source,
+            data.meaning && data.meaning_source,
+            ...(data.verb?.readings ?? []).flatMap((reading) => reading.sources),
+          ]}
+        />
       </div>
 
       {/* Root first means root on the right, the way the rest of this tab reads. */}

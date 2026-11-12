@@ -35,7 +35,7 @@ import ErrorAlert from '../ui/feedback/ErrorAlert'
 import Segmented from '../ui/inputs/Segmented'
 import Stepper from '../ui/inputs/Stepper'
 import { Skeleton } from '../ui/feedback/Skeleton'
-import SourceBadge from '../ui/feedback/SourceBadge'
+import SourcesChip from '../ui/feedback/SourcesChip'
 
 /** The English under one ayah: the chosen translation once it has arrived,
  *  the corpus's word-by-word gloss before that, so nothing is credited to a
@@ -67,8 +67,7 @@ export default function QuranReader({ place, accent, onGo, onPlace, onClose }) {
     <>
       {data && <span className="type-small text-[var(--text-faint)] tabular-nums">{data.ayah_count} ayahs</span>}
       {/* The Arabic is the corpus's; the English may not be. Both are named. */}
-      {translation.ready && translation.book?.source && <SourceBadge source={translation.book.source} />}
-      {data?.source && <SourceBadge source={data.source} />}
+      <SourcesChip sources={[translation.ready && translation.book?.source, data?.source]} />
     </>
   )
 

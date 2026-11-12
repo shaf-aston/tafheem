@@ -13,7 +13,7 @@ import ArabicText from './ArabicText'
 import EmptyState from '../feedback/EmptyState'
 import ErrorAlert from '../feedback/ErrorAlert'
 import { Skeleton } from '../feedback/Skeleton'
-import SourceBadge from '../feedback/SourceBadge'
+import SourcesChip from '../feedback/SourcesChip'
 
 /** One verse as a row of words, the differing ones in the accent. Similar verses' Compare draws its verses with it too. */
 export function TwinRow({ label, words, flags, accent }) {
@@ -48,7 +48,7 @@ function TwinCard({ mine, text, partner, accent }) {
           {placeLine(mine.key, partner.key)}
           {partner.change_type && ` (${partner.change_type})`}
         </p>
-        <span className="flex gap-1">{partner.sources.map((s) => <SourceBadge key={s.label} source={s} />)}</span>
+        <SourcesChip sources={partner.sources} align="end" />
       </div>
     </article>
   )
