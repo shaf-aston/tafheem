@@ -18,9 +18,7 @@ import WordGrid, { GovernsWhy } from './WordGrid'
 // What the word row draws: each word's role, or arcs from governor to governed.
 const LENSES = ['roles', 'governs']
 
-// `detail` is the opened word's card, a pop-up over the page: closing it leaves the
-// page where it was, whichever of the chart, grid or table opened it.
-export default function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, detail, more }) {
+export default function AnalysisResults({ data, accent, onGo, onWordClick, picked, practice, more }) {
   const [lens, setLens] = useRemembered('nahw.analyse-lens', LENSES)
   const linked = data.words.some((w) => caseFrom(w) !== undefined)
   const governs = linked && lens === 'governs'
@@ -70,7 +68,6 @@ export default function AnalysisResults({ data, accent, onGo, onWordClick, picke
           ? <GovernsWhy words={data.words} i={picked} />
           : 'Tap a word for breakdown'}
       </p>
-      {detail}
 
       {/* The extras: one list of rows, the page's own (`more`) after this sentence's. */}
       <div>

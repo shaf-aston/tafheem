@@ -143,7 +143,6 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
         subtitle="Searchable in Arabic or in English. It quotes the books; it does not rule."
       />
 
-      {/* The question form every tab shares (ui/inputs/QuestionForm). */}
       <QuestionForm>
         {/* Every recent question, whichever language it was asked in, each chip
             set in its own script. They used to be split into two lists by the

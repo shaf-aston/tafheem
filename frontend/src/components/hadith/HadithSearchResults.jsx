@@ -74,8 +74,8 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
     <div className="space-y-3">
 
       <div className="search-beside" data-in-use={inUse || undefined} data-answered={searching || undefined}>
-      {/* The question form every tab shares (ui/inputs/QuestionForm). Focus is watched on this
-          wrapper, so moving between the box, its clear button and the microphone is not leaving it. */}
+      {/* Focus is watched on this wrapper, so moving between the box, its clear button and the
+          microphone is not leaving it. */}
       <div
         className="search-beside-main"
         onFocus={() => setFocused(true)}

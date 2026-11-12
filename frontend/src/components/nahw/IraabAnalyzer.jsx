@@ -59,7 +59,6 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
 
   return (
     <div className="space-y-6">
-      {/* The question form every tab shares (ui/inputs/QuestionForm). */}
       <QuestionForm>
         {/* The same field as Dictionary and Daleel, grown to a textarea: see
             ui/SearchBox's multiline mode. */}
@@ -99,16 +98,18 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
             onWordClick={setSelectedWord}
             picked={analyze.data.words.indexOf(selectedWord)}
             practice={practice}
-            detail={selectedWord && (
-              <BottomSheet label={`${selectedWord.word}: grammar`} onClose={() => setSelectedWord(null)}
-                className="max-h-[var(--sheet-tall)] overflow-y-auto p-3">
-                <WordCard word={selectedWord} onClose={() => setSelectedWord(null)} onGo={onGo} exclude="nahw" />
-              </BottomSheet>
-            )}
             more={more}
           />
         )}
       </div>
+      {/* The opened word's card, over the page (a dialog's top layer): closing it leaves the page where it
+          was, whichever of the chart, grid or table opened it. */}
+      {shown && selectedWord && (
+        <BottomSheet label={`${selectedWord.word}: grammar`} onClose={() => setSelectedWord(null)}
+          className="max-h-[var(--sheet-tall)] overflow-y-auto p-3">
+          <WordCard word={selectedWord} onClose={() => setSelectedWord(null)} onGo={onGo} exclude="nahw" />
+        </BottomSheet>
+      )}
       {!shown && more && <div>{more}</div>}
     </div>
   )
