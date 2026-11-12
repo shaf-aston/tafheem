@@ -4,6 +4,25 @@
   "buildCommand": "cd frontend && npm run build",
   "outputDirectory": "frontend/dist",
   "trailingSlash": false,
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "https://132-145-17-56.sslip.io/api/$1",
+      "transforms": [
+        {
+          "type": "request.headers",
+          "op": "set",
+          "target": {
+            "key": "x-origin-secret"
+          },
+          "args": "$ORIGIN_SECRET",
+          "env": [
+            "ORIGIN_SECRET"
+          ]
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/app",
@@ -12,10 +31,6 @@
     {
       "source": "/:tab(home|nahw|sarf|quran|daleel|hadith|dict|dictionary|mem|memorise|similar|grow|quiz|timelines|dawah|colloq|colloquial|map|kit|iraab|tarkeeb)/:place*",
       "destination": "/app.html"
-    },
-    {
-      "source": "/api/:path*",
-      "destination": "https://132-145-17-56.sslip.io/api/:path*"
     }
   ],
   "headers": [

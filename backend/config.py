@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+from datetime import UTC, date, datetime
 from functools import lru_cache
 from pathlib import Path
 
@@ -567,12 +568,17 @@ class Progress(BaseSettings):
     # Beta testing: the log-in box lists every username so a tester can pick one. Off: the app is
     # launched, and with no password the list is every account anyone could act as. On only for a test server.
     beta_list_accounts: bool = False
-    # Accounts from before device tokens (services/learner/tokens.py) have none. While this is on, the first
+    # Accounts from before device tokens (services/learner/tokens.py) have none. While claims are open, the first
     # page to log in to one claims it (trust on first use, logged as "token_claimed"), and until then its
     # name alone still reads and answers, so a page from before tokens keeps working. Turn it off about a
     # month after tokens ship (docs/plans/2026-11-11-security.md §5): an account nobody claimed by then can
     # only be opened with a code the owner makes (python -m backend.scripts.recovery_code NAME).
-    account_claims_open: bool = True
+    # Claims are open before this day (UTC) and shut from it on; unset, they never shut. The server's .env sets it.
+    account_claims_until: date | None = None
+
+    @property
+    def account_claims_open(self) -> bool:
+        return self.account_claims_until is None or datetime.now(UTC).date() < self.account_claims_until
     # The device-token cookie is __Host- and Secure. Browsers keep a Secure cookie from plain http only on
     # http://localhost, and Safari not even there. So a dev server opened on http://127.0.0.1, a LAN address
     # (http://192.168..., a phone on the same wifi), or in Safari sets COOKIE_SECURE=false in .env (the cookie is

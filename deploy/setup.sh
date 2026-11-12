@@ -19,6 +19,13 @@ curl -fsSL https://dl.cloudsmith.io/public/caddy/stable/gpg.key | sudo gpg --dea
 curl -fsSL https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt | sudo tee /etc/apt/sources.list.d/caddy-stable.list
 sudo apt-get update && sudo apt-get install -y caddy
 
+# The Caddyfile imports the origin gate's secret; a fresh machine gets a new one in ~/origin.secret, which
+# must also be set on Vercel (deploy/origin-secret.sh says how) before /api answers through the site.
+if ! sudo test -f /etc/caddy/origin-secret.caddy; then
+  (umask 077; openssl rand -hex 32 > ~/origin.secret)
+  bash deploy/origin-secret.sh < ~/origin.secret
+  echo "New origin secret in ~/origin.secret: set it as ORIGIN_SECRET on Vercel, then delete the file."
+fi
 sed "s/tafheem.duckdns.org/$HOST/" deploy/Caddyfile | sudo tee /etc/caddy/Caddyfile >/dev/null
 sudo systemctl restart caddy
 
@@ -34,4 +41,4 @@ sudo install -m 644 deploy/logrotate.conf /etc/logrotate.d/tafheem
 sudo systemctl daemon-reload
 sudo systemctl enable --now tafheem@8000 tafheem@8001
 
-echo "Done. Check it: curl -s https://$HOST/api/health"
+echo "Done. Check it: curl -s localhost:8000/api/health (https://$HOST/api/* answers 403 to all but Vercel)"

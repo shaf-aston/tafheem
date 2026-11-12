@@ -66,12 +66,12 @@ curl https://<your name>.duckdns.org/api/health
 
 ## 6. Point the site at it
 
-In `vercel.json` (repo root), add this above the `/app` line, with your own name in
-it:
-
-```json
-{ "source": "/api/:path*", "destination": "https://<your name>.duckdns.org/api/:path*" }
-```
+In `vercel.json` (repo root), the `routes` entry for `/api/(.*)` names the machine: put your own name in its
+`dest`. It also adds `X-Origin-Secret` from the project's `ORIGIN_SECRET` setting, and the machine's Caddy
+answers `/api` to nothing else. setup.sh made the secret (`~/origin.secret`): set it on Vercel for Production
+and Preview with `vercel env add ORIGIN_SECRET production --sensitive < origin.secret`, then delete the file.
+To change it later, run `deploy/origin-secret.sh` with the new one, set it on Vercel, redeploy, then
+`sudo systemctl reload caddy`.
 
 Push, and Vercel rebuilds. The browser then calls the site's own address and
 Vercel passes it back to the machine, so there is no cross-site problem to solve.
@@ -79,5 +79,5 @@ Vercel passes it back to the machine, so there is no cross-site problem to solve
 ## Keeping the machine
 
 Oracle may take back a machine that stays under 20% busy for 7 days. A free
-uptime checker such as UptimeRobot, pointed at `/api/health` every 5 minutes,
+uptime checker such as UptimeRobot, pointed at the site's `/api/health` (through Vercel) every 5 minutes,
 keeps it awake and tells you if it ever stops answering.

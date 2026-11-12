@@ -15,6 +15,7 @@ import json
 import sqlite3
 import threading
 from concurrent.futures import ThreadPoolExecutor
+from datetime import UTC, date, datetime, timedelta
 
 import pytest
 from fastapi.testclient import TestClient
@@ -310,8 +311,16 @@ def test_an_unclaimed_name_is_not_in_the_ranking():
     assert sorted(names()) == ["amina", "bilal"]
 
 
+def test_claims_shut_on_their_closing_day_not_the_day_before(monkeypatch):
+    today = datetime.now(UTC).date()
+    monkeypatch.setattr(get_settings(), "account_claims_until", today + timedelta(days=1))
+    assert get_settings().account_claims_open
+    monkeypatch.setattr(get_settings(), "account_claims_until", today)
+    assert not get_settings().account_claims_open
+
+
 def test_once_claims_close_an_old_name_opens_nothing_until_the_owner_makes_a_code(monkeypatch, capsys):
-    monkeypatch.setattr(get_settings(), "account_claims_open", False)
+    monkeypatch.setattr(get_settings(), "account_claims_until", date(2026, 1, 1))
     old_account("amina")
     assert account(bare("amina")).status_code == 401
     assert login("Amina").status_code == 403
@@ -475,7 +484,7 @@ def test_an_old_page_still_needs_the_code_for_a_claimed_account():
 
 
 def test_with_claims_closed_an_old_page_still_makes_no_code_nobody_sees(monkeypatch):
-    monkeypatch.setattr(get_settings(), "account_claims_open", False)
+    monkeypatch.setattr(get_settings(), "account_claims_until", date(2026, 1, 1))
     old = sign_in.signup(client, "Amina", shows_code=False)
     assert old.json()["recovery"] is None and tokens.claimed("amina") and not tokens.has_code("amina")
     assert account(as_("Amina")).json()["has_code"] is False  # the new page makes and shows the first
