@@ -139,3 +139,13 @@ def test_the_score_is_fts5s_own(built):
             assert champions.score(word.word, champions.lowered(columns), word.hits, lists.corpus) == pytest.approx(
                 rank, rel=1e-9,
             )
+
+
+def test_the_timing_says_which_way_the_scores_were_found(built):
+    conn = connection.db()
+    answered: list[str] = []
+    share.fairly(conn, ['"قال"'], 2, lap=answered.append)
+    turned_away: list[str] = []
+    share.fairly(conn, ['"قال"'], _DEPTH, lap=turned_away.append)
+    assert answered == ["lists"]
+    assert turned_away == ["lists", "scored"]

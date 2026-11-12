@@ -70,6 +70,8 @@ async def find(
 
     # Each step of the search, timed where it ends, so one curl of the live
     # server names the slow step: `curl -sI ... | grep -i server-timing`.
+    # Inside candidates, "lists" is the champion lists answering (or not) and
+    # "scored" appears only when they could not and every match was scored.
     since = [time.perf_counter()]
 
     def lap(step: str) -> None:
