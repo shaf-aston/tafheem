@@ -443,7 +443,7 @@
     "terms-tree-min": 1100,
     "_rail_comment": "How wide Home's progress column stands beside the tiles on a wide screen (components/home/StatsRail).",
     "rail": "17rem",
-    "_field_comment": "The widest a question form gets (ui/inputs/Tucked: the search and answer boxes, their chips, the slim pill they tuck into). Stretched across an 80rem page, a box for one word read as a banner, and the eye travelled a metre from the word to its return key.",
+    "_field_comment": "The widest a question form gets (ui/inputs/QuestionForm: the search and answer boxes and their chips). Stretched across an 80rem page, a box for one word read as a banner, and the eye travelled a metre from the word to its return key.",
     "field": "45rem"
   },
   "sheet": {

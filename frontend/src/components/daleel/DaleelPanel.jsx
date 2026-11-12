@@ -39,7 +39,7 @@ import ErrorAlert from '../ui/feedback/ErrorAlert'
 import RecentRow from '../ui/inputs/RecentRow'
 import { GoButton } from '../ui/buttons/RootActions'
 import SearchBox from '../ui/inputs/SearchBox'
-import Tucked from '../ui/inputs/Tucked'
+import QuestionForm from '../ui/inputs/QuestionForm'
 import SectionHeader from '../ui/display/SectionHeader'
 import ShowRest from '../ui/buttons/ShowRest'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
@@ -143,9 +143,8 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
         subtitle="Searchable in Arabic or in English. It quotes the books; it does not rule."
       />
 
-      {/* Folded into one pill holding the question once passages are up, so
-          they are the next thing down (ui/inputs/Tucked). */}
-      <Tucked answer={data} query={query} accent={accent}>
+      {/* The question form every tab shares (ui/inputs/QuestionForm). */}
+      <QuestionForm accent={accent}>
         {/* Every recent question, whichever language it was asked in, each chip
             set in its own script. They used to be split into two lists by the
             toggle above, so half of them were hidden at any one time. */}
@@ -190,7 +189,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
           accent={accent}
           sourceLabel={(key) => sources.find((s) => s.key === key)?.label ?? key}
         />
-      </Tucked>
+      </QuestionForm>
 
       <PlaceLinks query={query} onGo={onGo} accent={accent} />
 

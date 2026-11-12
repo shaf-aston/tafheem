@@ -47,7 +47,7 @@ place, `/app` opens Home (`components/home/HomePanel.jsx`), which lists every ta
 
 `components/ui/` is the kit: only parts two or more tabs draw. It is sorted by job:
 `buttons/` (things you press), `inputs/` (things you choose or type into: chips,
-`SearchBox`, `Tucked`, `Segmented`, `ZoomBar`), `overlays/` (`BottomSheet`, `Popover`, `Tooltip`,
+`SearchBox`, `QuestionForm`, `Segmented`, `ZoomBar`), `overlays/` (`BottomSheet`, `Popover`, `Tooltip`,
 `Disclosure`), `feedback/` (loading, empty, error, source badge), `text/` (Arabic and
 reading text) and `display/` (marks, `SectionHeader`, `Tile`). Larger parts several tabs draw sit in
 a shared folder beside the tabs: `grammar/` (`WordCard`, the tarkeeb figure), `practice/` (the quiz

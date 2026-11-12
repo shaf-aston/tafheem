@@ -22,7 +22,7 @@ import MicButton from '../ui/buttons/MicButton'
 import PlaceLinks from '../ui/text/PlaceLinks'
 import RecentRow from '../ui/inputs/RecentRow'
 import SearchBox from '../ui/inputs/SearchBox'
-import Tucked from '../ui/inputs/Tucked'
+import QuestionForm from '../ui/inputs/QuestionForm'
 import SectionHeader from '../ui/display/SectionHeader'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import { CorrectedNote } from '../ui/feedback/StatusNote'
@@ -89,9 +89,8 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
         </ErrorAlert>
       )}
 
-      {/* Folded into one pill holding the word once its answer is up, so the
-          answer is the next thing down (ui/inputs/Tucked). */}
-      <Tucked answer={shown} query={query} accent={accent}>
+      {/* The question form every tab shares (ui/inputs/QuestionForm). */}
+      <QuestionForm accent={accent}>
         {/* Every recent word, whichever language it was in: they were split into
             two lists by the toggle that used to sit above, and half of them were
             hidden at any one time. Each chip is set in its own script. */}
@@ -140,7 +139,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
             />
           </>
         )}
-      </Tucked>
+      </QuestionForm>
 
       {mutation.isError && (
         <ErrorAlert title="Search failed" error={mutation.error} fallback="The dictionary file may not be installed yet." onRetry={() => submit()} />

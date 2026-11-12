@@ -16,7 +16,7 @@ import ErrorAlert from '../ui/feedback/ErrorAlert'
 import ExampleChips from '../ui/inputs/ExampleChips'
 import MicButton from '../ui/buttons/MicButton'
 import SearchBox from '../ui/inputs/SearchBox'
-import Tucked from '../ui/inputs/Tucked'
+import QuestionForm from '../ui/inputs/QuestionForm'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import AnalysisResults from './iraab/AnalysisResults'
 
@@ -59,9 +59,8 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
 
   return (
     <div className="space-y-6">
-      {/* Folded into one pill holding the sentence once it is analysed, so the
-          analysis is the next thing down (ui/inputs/Tucked). */}
-      <Tucked answer={analyze.data} query={sentence} accent={accent}>
+      {/* The question form every tab shares (ui/inputs/QuestionForm). */}
+      <QuestionForm accent={accent}>
         {/* The same field as Dictionary and Daleel, grown to a textarea: see
             ui/SearchBox's multiline mode. */}
         <SearchBox
@@ -86,7 +85,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
         </SearchBox>
 
         <ExampleChips examples={EXAMPLES} onPick={runExample} accent={accent} />
-      </Tucked>
+      </QuestionForm>
 
       {analyze.isError && <AnalyzeError error={analyze.error} onRetry={submit} />}
       {analyze.isPending && <AnalyzerSkeleton />}
