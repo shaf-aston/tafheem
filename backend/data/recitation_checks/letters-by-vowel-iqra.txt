@@ -1,0 +1,348 @@
+Ear shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a, rule worst, cut 0.000256. Set iqra, 955 slips, 81% caught.
+caught = slipped word red; red = right letter's piece below the cut. (few) = under 10 cases, too few to judge. 0 right words skipped (pieces did not line up).
+
+SLIPS BY KIND
+kind                context                        n caught
+letter swapped                                   378    97%
+vowel swapped                                    203    73%
+letter dropped                                   149    47%
+heavy/light                                      135    98%
+vowel dropped                                     59    71%
+vowel length                                      20    55%
+sound added                                       11    64%
+
+SLIPS BY KIND AND VOWEL
+kind                context                        n caught
+heavy/light         fatha                        114    97%
+heavy/light         long fatha                    21   100%
+letter dropped      sukun after fatha             88    60%
+letter dropped      sukun after kasra             40    28%
+letter dropped      fatha                         11    55%
+letter dropped      sukun after damma             10     0%
+letter swapped      sukun after fatha            113   100%
+letter swapped      fatha                         96    90%
+letter swapped      sukun after damma             43   100%
+letter swapped      kasra                         39   100%
+letter swapped      sukun after kasra             31   100%
+letter swapped      long fatha                    17   100%
+letter swapped      shadda long kasra             10   100%
+letter swapped      long kasra                    10   100%
+letter swapped      long damma                    10   100%
+letter swapped      shadda fatha                   9    89%  (few)
+sound added         -                             11    64%
+vowel dropped       fatha                         31   100%
+vowel dropped       long damma                    10    90%
+vowel dropped       long fatha                     9     0%  (few)
+vowel dropped       damma                          9    22%  (few)
+vowel length        long damma                    11   100%
+vowel length        long fatha                     9     0%  (few)
+vowel swapped       fatha                         75    84%
+vowel swapped       damma                         64    67%
+vowel swapped       kasra                         54    59%
+vowel swapped       long fatha                    10   100%
+
+SLIPS BY LETTER AND VOWEL (worst caught first)
+kind                context                        n caught
+vowel swapped   ب   kasra -> fatha                11     0%
+vowel swapped   ر   kasra -> damma                11     0%
+vowel swapped   ن   fatha -> none                 11     0%
+letter swapped  ك   fatha                         10     0%
+letter dropped  ض   sukun after kasra             10     0%
+letter dropped  ح   sukun after fatha             10     0%
+letter dropped  ذ   sukun after damma             10     0%
+letter dropped  ث   sukun after kasra             11     9%
+vowel swapped   ر   damma -> fatha                11     9%
+letter dropped  ل   sukun after kasra             10    30%
+vowel swapped   د   damma -> fatha                10    40%
+letter dropped  ع   sukun after fatha             10    40%
+vowel swapped   ي   damma -> fatha                10    50%
+letter dropped  ث   fatha                         11    55%
+letter dropped  د   sukun after fatha             19    58%
+sound added     U   -                             11    64%
+vowel dropped   ل   long damma -> none            10    90%
+vowel swapped   ر   fatha -> none                 10    90%
+letter dropped  ف   sukun after fatha             21    90%
+heavy/light     ء   fatha -> fatha                27    93%
+heavy/light     ف   fatha -> fatha                20    95%
+heavy/light     و   fatha -> fatha                39   100%
+letter swapped  ز   sukun after fatha             31   100%
+letter swapped  ت   fatha                         29   100%
+vowel swapped   م   fatha -> damma                22   100%
+letter swapped  ت   sukun after fatha             22   100%
+letter swapped  ز   sukun after damma             22   100%
+letter swapped  ج   sukun after fatha             20   100%
+letter swapped  خ   sukun after fatha             20   100%
+letter swapped  د   fatha                         17   100%
+vowel swapped   ه   kasra -> damma                13   100%
+letter swapped  غ   sukun after damma             11   100%
+vowel swapped   ب   damma -> fatha                11   100%
+vowel length    ح   long damma -> damma           11   100%
+vowel swapped   ب   fatha -> damma                11   100%
+vowel swapped   ل   damma -> kasra                11   100%
+vowel swapped   ه   damma -> fatha                11   100%
+vowel dropped   س   fatha -> none                 11   100%
+vowel swapped   ت   fatha -> damma                11   100%
+vowel dropped   ع   fatha -> none                 11   100%
+letter swapped  ز   sukun after kasra             11   100%
+heavy/light     و   long fatha -> long fatha      11   100%
+letter swapped  س   sukun after kasra             10   100%
+heavy/light     ب   fatha -> fatha                10   100%
+letter swapped  ش   fatha                         10   100%
+vowel swapped   ت   long fatha -> long damma      10   100%
+letter swapped  ث   kasra                         10   100%
+letter swapped  د   shadda long kasra             10   100%
+vowel swapped   ط   fatha -> damma                10   100%
+vowel swapped   م   kasra -> damma                10   100%
+letter swapped  ذ   long kasra                    10   100%
+letter swapped  ص   sukun after fatha             10   100%
+letter swapped  ع   sukun after fatha             10   100%
+letter swapped  ظ   long damma                    10   100%
+letter swapped  ت   sukun after kasra             10   100%
+letter swapped  ح   fatha                         10   100%
+heavy/light     ع   long fatha -> long fatha      10   100%
+letter swapped  ذ   fatha                         10   100%
+letter swapped  ر   fatha                         10   100%
+letter swapped  س   kasra                         10   100%
+letter swapped  ش   sukun after damma             10   100%
+letter swapped  و   kasra                         10   100%
+letter dropped  ج   sukun after fatha             10   100%
+vowel length    ء   long fatha -> fatha            9     0%  (few)
+letter dropped  ل   sukun after fatha              9     0%  (few)
+vowel dropped   ن   long fatha -> none             9     0%  (few)
+vowel dropped   ث   damma -> none                  9    22%  (few)
+letter dropped  م   sukun after kasra              9    78%  (few)
+letter swapped  د   shadda fatha                   9    89%  (few)
+heavy/light     ل   fatha -> fatha                 9   100%  (few)
+letter dropped  ت   sukun after fatha              9   100%  (few)
+vowel swapped   ب   kasra -> damma                 9   100%  (few)
+heavy/light     ر   fatha -> fatha                 9   100%  (few)
+vowel dropped   ت   fatha -> none                  9   100%  (few)
+letter swapped  ث   long fatha                     9   100%  (few)
+letter swapped  ج   kasra                          9   100%  (few)
+letter swapped  ض   long fatha                     8   100%  (few)
+
+RIGHT LETTERS BY VOWEL (all letters)
+letter              context                        n    red
+all letters         sukun after word start       345     9%
+all letters         long-vowel letter           3573     2%
+all letters         shadda fatha                 680     2%
+all letters         sukun after fatha           1341     1%
+all letters         fatha                       5827     1%
+all letters         damma                       1848     1%
+all letters         kasra                       2154     1%
+all letters         sukun after damma            463     0%
+all letters         sukun after kasra            299     0%
+all letters         shadda damma                  90     0%
+all letters         shadda kasra                 105     0%
+
+RIGHT LETTERS BY LETTER
+letter              context                        n    red
+ى                   any                          112    29%
+ء                   any                           99    12%
+آ                   any                           97     7%
+ض                   any                          105     4%
+ل                   any                         1629     3%
+ب                   any                          535     3%
+ط                   any                          128     2%
+ذ                   any                          302     2%
+ش                   any                          163     2%
+د                   any                          287     1%
+إ                   any                          236     1%
+أ                   any                          551     1%
+ر                   any                          715     1%
+ا                   any                         2277     1%
+ت                   any                          531     1%
+ة                   any                          144     1%
+ع                   any                          455     1%
+ي                   any                          996     1%
+ن                   any                         1318     0%
+ه                   any                          727     0%
+ح                   any                          249     0%
+و                   any                         1202     0%
+ك                   any                          471     0%
+م                   any                         1292     0%
+ق                   any                          449     0%
+س                   any                          306     0%
+ف                   any                          629     0%
+ؤ                   any                           35     0%
+ث                   any                          133     0%
+ص                   any                           82     0%
+خ                   any                          103     0%
+غ                   any                           86     0%
+ظ                   any                           79     0%
+ز                   any                           80     0%
+ج                   any                           87     0%
+ئ                   any                           35     0%
+
+RIGHT LETTERS BY LETTER AND VOWEL (reddest first)
+letter              context                        n    red
+ب                   sukun after word start        10    70%
+ر                   shadda fatha                  17    47%
+ى                   long-vowel letter            112    29%
+ء                   fatha                         69    17%
+ل                   sukun after word start       257    10%
+ش                   sukun after fatha             37     8%
+ل                   long-vowel letter            213     8%
+آ                   long-vowel letter             97     7%
+ب                   sukun after fatha             49     6%
+ض                   shadda fatha                  17     6%
+ة                   damma                         17     6%
+ض                   kasra                         35     6%
+ض                   sukun after damma             18     6%
+ذ                   fatha                        106     4%
+ل                   sukun after damma             27     4%
+ذ                   sukun after fatha             27     4%
+د                   damma                         86     3%
+ط                   fatha                         92     3%
+ب                   damma                         35     3%
+ي                   damma                         71     3%
+أ                   sukun after fatha             36     3%
+ت                   kasra                         53     2%
+ع                   sukun after fatha             55     2%
+ل                   fatha                        557     1%
+ت                   shadda fatha                  75     1%
+أ                   damma                         77     1%
+ب                   kasra                        233     1%
+إ                   kasra                        236     1%
+ل                   sukun after fatha             84     1%
+ن                   shadda fatha                 170     1%
+أ                   fatha                        438     1%
+ن                   sukun after fatha            231     1%
+ا                   long-vowel letter           2277     1%
+ح                   fatha                        133     1%
+ت                   fatha                        281     1%
+ع                   fatha                        287     1%
+ي                   fatha                        296     1%
+ه                   damma                        309     1%
+ن                   kasra                        156     1%
+ه                   fatha                        166     1%
+ك                   damma                        235     0%
+و                   long-vowel letter            482     0%
+م                   kasra                        248     0%
+و                   fatha                        563     0%
+ي                   long-vowel letter            392     0%
+م                   fatha                        405     0%
+ن                   fatha                        470     0%
+ق                   damma                        110     0%
+ل                   shadda fatha                 217     0%
+ذ                   kasra                        101     0%
+س                   fatha                        131     0%
+ل                   damma                        136     0%
+ه                   kasra                        218     0%
+ر                   sukun after fatha             89     0%
+ب                   fatha                        136     0%
+ر                   kasra                        120     0%
+ء                   damma                         30     0%
+م                   damma                        211     0%
+ش                   sukun after damma             12     0%
+ك                   kasra                         60     0%
+ر                   fatha                        340     0%
+س                   damma                         35     0%
+ف                   fatha                        378     0%
+م                   shadda fatha                  45     0%
+ؤ                   damma                         18     0%
+ق                   sukun after word start        17     0%
+ه                   sukun after fatha             34     0%
+ك                   sukun after fatha             17     0%
+ث                   fatha                         62     0%
+ر                   damma                        123     0%
+ف                   kasra                        158     0%
+د                   fatha                         64     0%
+ص                   fatha                         55     0%
+ب                   shadda fatha                  28     0%
+ي                   sukun after fatha            173     0%
+م                   sukun after kasra             53     0%
+ب                   shadda damma                  18     0%
+ك                   fatha                        159     0%
+و                   sukun after fatha            132     0%
+ل                   sukun after kasra             24     0%
+ر                   sukun after kasra             17     0%
+د                   kasra                         52     0%
+ق                   fatha                        214     0%
+د                   sukun after fatha             52     0%
+م                   sukun after damma            283     0%
+ش                   fatha                         70     0%
+ن                   shadda damma                  26     0%
+ذ                   damma                         27     0%
+ض                   fatha                         26     0%
+س                   sukun after fatha             43     0%
+ن                   damma                         56     0%
+ث                   damma                         36     0%
+خ                   fatha                         78     0%
+ق                   sukun after fatha             60     0%
+ة                   fatha                         94     0%
+غ                   fatha                         78     0%
+ع                   kasra                         69     0%
+ظ                   fatha                         26     0%
+ح                   sukun after fatha             35     0%
+ح                   kasra                         54     0%
+ش                   kasra                         18     0%
+ح                   sukun after damma             10     0%
+ظ                   kasra                         10     0%
+ز                   sukun after fatha             28     0%
+ث                   sukun after word start        18     0%
+ز                   kasra                         34     0%
+ن                   sukun after damma             43     0%
+ش                   sukun after word start        16     0%
+ت                   sukun after fatha             25     0%
+ن                   shadda kasra                  35     0%
+ت                   shadda kasra                  17     0%
+ي                   shadda kasra                  19     0%
+ي                   shadda fatha                  26     0%
+س                   kasra                         46     0%
+ط                   kasra                         18     0%
+ف                   damma                         43     0%
+ظ                   sukun after fatha             26     0%
+ن                   sukun after kasra            131     0%
+م                   sukun after fatha             31     0%
+ف                   sukun after fatha             23     0%
+ج                   fatha                         43     0%
+د                   shadda fatha                  15     0%
+ل                   kasra                        104     0%
+ة                   kasra                         33     0%
+ذ                   sukun after kasra             32     0%
+ت                   damma                         71     0%
+ظ                   damma                         17     0%
+خ                   kasra                         16     0%
+ق                   kasra                         40     0%
+س                   shadda fatha                  24     0%
+ع                   damma                         44     0%
+ب                   shadda kasra                  26     0%
+ئ                   kasra                         17     0%
+و                   kasra                         16     0%
+ح                   damma                         17     0%
+ؤ                   sukun after damma             17     0%
+ل                   shadda damma                  10     0%
+ز                   fatha                         10     0%
+ج                   damma                         18     0%
+ف                   shadda fatha                  19     0%
+ص                   sukun after fatha             10     0%
+ي                   shadda damma                  19     0%
+ش                   shadda fatha                  10     0%
+س                   sukun after word start        18     0%
+ذ                   shadda fatha                   9    11%  (few)
+د                   sukun after kasra              9    11%  (few)
+ط                   sukun after fatha              9     0%  (few)
+ط                   sukun after damma              9     0%  (few)
+ج                   kasra                          9     0%  (few)
+س                   sukun after damma              9     0%  (few)
+ئ                   damma                          9     0%  (few)
+خ                   sukun after fatha              9     0%  (few)
+ز                   sukun after kasra              8     0%  (few)
+ق                   sukun after kasra              8     0%  (few)
+غ                   sukun after fatha              8     0%  (few)
+ج                   sukun after kasra              8     0%  (few)
+ف                   sukun after damma              8     0%  (few)
+ص                   damma                          8     0%  (few)
+ث                   shadda fatha                   8     0%  (few)
+ض                   sukun after fatha              9     0%  (few)
+ت                   sukun after damma              9     0%  (few)
+د                   shadda damma                   9     0%  (few)
+و                   damma                          9     0%  (few)
+ث                   sukun after kasra              9     0%  (few)
+ر                   sukun after damma              9     0%  (few)
+ص                   sukun after damma              9     0%  (few)
+م                   shadda kasra                   8     0%  (few)
+م                   shadda damma                   8     0%  (few)
+ج                   sukun after fatha              9     0%  (few)
+ئ                   sukun after word start         9     0%  (few)

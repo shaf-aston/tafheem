@@ -4,6 +4,7 @@
     python backend/scripts/recitation/finetune_ear/cloud.py --fetch  wait for the last run, then fetch its result
     python backend/scripts/recitation/finetune_ear/cloud.py --ship   upload a kept ear-tuned/ to Hugging Face and serve it
     python backend/scripts/recitation/finetune_ear/cloud.py --tlog   copy the tlog clips a run hears into a private Kaggle dataset
+    python backend/scripts/recitation/finetune_ear/cloud.py --lone   upload the lone slips ear_bench/spliced.py teach made
     python backend/scripts/recitation/finetune_ear/cloud.py --loop finetune_sounds   any of the above, for another loop folder
 
 The result lands in backend/data/models/<loop folder, dashed>/. The whole loop and its keys: README.md here.
@@ -12,6 +13,7 @@ import base64
 import io
 import json
 import os
+import random
 import re
 import shutil
 import subprocess
@@ -19,6 +21,7 @@ import sys
 import tempfile
 import time
 import zipfile
+from collections import Counter
 from pathlib import Path
 
 from ear import settings as S
@@ -80,6 +83,8 @@ def bundle(folder):
     meta = json.loads((LOOP / 'kernel-metadata.json').read_text())
     if LOOP == HERE and S.TLOG_SHARE:
         meta['dataset_sources'].append(S.TLOG_COPY)
+    if LOOP == HERE and S.LONE_SHARE:
+        meta['dataset_sources'].append(S.LONE_COPY)
     packed = io.BytesIO()
     with zipfile.ZipFile(packed, 'w', zipfile.ZIP_DEFLATED) as z:
         for f in sorted(HERE.parent.glob('finetune_*/*/*.py')):
@@ -114,16 +119,52 @@ def copy_tlog():
             pq.write_table(table.take(chosen), up / f'tlog-{Path(shard).stem}.parquet')
             print(f'{n}/{S.TLOG_SHARDS} {shard}: {len(chosen)} clips', flush=True)
         shutil.rmtree(whole)
-        (up / 'dataset-metadata.json').write_text(json.dumps(
-            {'title': S.TLOG_COPY.split('/')[1], 'id': S.TLOG_COPY, 'licenses': [{'name': 'unknown'}]}))
-        try:
-            kaggle('datasets', 'status', S.TLOG_COPY)
-            print(kaggle('datasets', 'version', '-p', str(up), '-m', f'{S.TLOG_SHARDS} files, {S.TLOG_TRY} clips each', '-q'))
-        except RuntimeError:  # not made yet; private unless told otherwise
-            print(kaggle('datasets', 'create', '-p', str(up), '-q'))
-    while 'ready' not in status('datasets', S.TLOG_COPY):  # a run pushed before this sees no files
+        upload(up, S.TLOG_COPY, f'{S.TLOG_SHARDS} files, {S.TLOG_TRY} clips each')
+
+
+def copy_lone():
+    """The lone slips ear_bench/spliced.py teach made, as parquet files of 16 kHz 16-bit sound and what each says."""
+    import wave
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    made = HERE.parents[2] / 'data' / 'recitation_checks' / 'downloads' / 'lone-slips'
+    rows = [json.loads(line) for line in (made / 'slips.jsonl').open(encoding='utf-8')]
+    random.Random(0).shuffle(rows)
+    per_kind, kept = Counter(), []
+    for r in rows:
+        if r['k'] is not None:
+            if per_kind[r['kind']] >= S.LONE_KIND_CAP:
+                continue
+            per_kind[r['kind']] += 1
+        kept.append(r)
+    rows = kept
+    print('slips kept per kind', dict(per_kind))
+    with tempfile.TemporaryDirectory() as folder:
+        up = Path(folder)
+        for n in range(0, len(rows), 2000):  # ~0.5 GB a file
+            part, pcm = rows[n:n + 2000], []
+            for r in part:
+                who, rest = r['id'].split('/')
+                ayah, _, k = rest.partition('#')
+                with wave.open(str(made / 'clips' / f"{who}-{ayah.replace(':', '_')}{'-' + k if k else ''}.wav")) as w:
+                    pcm.append(w.readframes(w.getnframes()))
+            pq.write_table(pa.table({'ayah': [r['key'] for r in part], 'who': [r['id'].split('/')[0] for r in part],
+                                     'said': [r['said'] for r in part], 'pcm': pcm}), up / f'lone-{n // 2000}.parquet')
+        upload(up, S.LONE_COPY, f"{len(rows)} clips, {sum(r['k'] is not None for r in rows)} with one slip")
+
+
+def upload(up, copy, message):
+    """Folder `up` as the private Kaggle dataset `copy`, then wait until a run would see its files."""
+    (up / 'dataset-metadata.json').write_text(json.dumps(
+        {'title': copy.split('/')[1], 'id': copy, 'licenses': [{'name': 'unknown'}]}))
+    try:
+        kaggle('datasets', 'status', copy)
+        print(kaggle('datasets', 'version', '-p', str(up), '-m', message, '-q'))
+    except RuntimeError:  # not made yet; private unless told otherwise
+        print(kaggle('datasets', 'create', '-p', str(up), '-q'))
+    while 'ready' not in status('datasets', copy):  # a run pushed before this sees no files
         time.sleep(EVERY)
-    print('copied:', S.TLOG_COPY)
+    print('copied:', copy)
 
 
 def git(*args):
@@ -171,6 +212,9 @@ if '--ship' in sys.argv:
     sys.exit()
 if '--tlog' in sys.argv:
     copy_tlog()
+    sys.exit()
+if '--lone' in sys.argv:
+    copy_lone()
     sys.exit()
 if '--fetch' not in sys.argv:
     with tempfile.TemporaryDirectory() as folder:
