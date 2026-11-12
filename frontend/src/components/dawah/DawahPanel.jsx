@@ -2,6 +2,8 @@
  * Dawah: the questions most often put to Islam, each with a reply and its evidence.
  *
  * Topic tiles first, then the topic's questions beside the answer being read.
+ * Once a topic is open the tiles fold to one row of chips over it, so the
+ * answer has the screen; "All topics" opens the tiles again.
  * Typing in the box searches every topic at once, so a question heard in a
  * conversation is found without knowing where it is filed.
  *
@@ -11,17 +13,20 @@
  * timelines' reference row (pieces in components/dawah, wording in dawah.json): a Qur'an reference opens the ayah itself. A matching
  * IslamQA fatwa is linked at the foot as further reading.
  */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useArrivalWhenReady } from '../../lib/nav/useArrival'
 import { useQuery } from '@tanstack/react-query'
 
 import { dawahQuery } from '../../api'
 import { useRemembered } from '../../lib/store/useRemembered'
 import { matches } from '../../lib/dawah/dawahSearch'
+import { bringUp } from '../../lib/motion/scrollToEl'
 import knobs from '../../config/dawah.json'
 
 import SectionHeader from '../ui/display/SectionHeader'
 import SearchBox from '../ui/inputs/SearchBox'
+import Chip from '../ui/inputs/Chip'
+import ChipRow from '../ui/inputs/ChipRow'
 import ErrorAlert from '../ui/feedback/ErrorAlert'
 import EmptyState from '../ui/feedback/EmptyState'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
@@ -37,6 +42,10 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
   const [questionId, setQuestionId] = useState(null)
   const [query, setQuery] = useState('')
   const [mode, setMode] = useRemembered('dawah-mode', knobs.modes.map((m) => m.id), knobs['reading-mode'])
+  // A topic picked far down the tiles: the tiles fold away above it, so the
+  // answer glides up into sight the way every other new card does.
+  const answer = useRef(null)
+  useEffect(() => { if (topicId) bringUp(answer.current) }, [topicId])
 
   // An arrival names a question; followed during render, so a deep link paints
   // on its answer rather than the tiles first.
@@ -112,11 +121,21 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
         accent={accent}
       />
 
-      {!searching && (
+      {!searching && topicId && (
+        <ChipRow scroll role="group" aria-label={copy.topics}>
+          <Chip tinted accent={accent} onClick={() => setTopicId(null)}>{copy['all-topics']}</Chip>
+          {data.topics.map((topic) => (
+            <Chip key={topic.id} tinted accent={accent} selected={topic.id === topicId} onClick={() => pickTopic(topic)}>
+              <span className="whitespace-nowrap">{topic.title}</span>
+            </Chip>
+          ))}
+        </ChipRow>
+      )}
+
+      {!searching && !topicId && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {data.topics.map((topic, i) => (
-            <TopicTile key={topic.id} topic={topic} index={i} selected={topic.id === topicId}
-              onPick={pickTopic} />
+            <TopicTile key={topic.id} topic={topic} index={i} onPick={pickTopic} />
           ))}
         </div>
       )}
@@ -124,7 +143,7 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
       {searching && rows.length === 0 && <EmptyState>{copy['no-match']}</EmptyState>}
 
       {rows.length > 0 && (
-        <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 items-start">
+        <div ref={answer} className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-5 items-start">
           <nav aria-label={copy.questions}>
             <QuestionList rows={rows} current={open.question.id} onPick={read} />
           </nav>

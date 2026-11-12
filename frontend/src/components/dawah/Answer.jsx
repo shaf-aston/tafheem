@@ -12,7 +12,7 @@ export default function Answer({ topic, question, library, accent, onGo, step, m
   return (
     <article key={question.id} className="fade-in rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-5 space-y-5">
       <div className="space-y-2">
-        {/* Only a search mixes topics; otherwise the lit tile above already names it. */}
+        {/* Only a search mixes topics; otherwise the lit chip above already names it. */}
         {searching && <p className="eyebrow" style={{ color: accent }}>{topic.title}</p>}
         <h3 className="type-title font-semibold leading-snug text-[var(--text)]">{question.q}</h3>
       </div>

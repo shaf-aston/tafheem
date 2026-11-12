@@ -1,17 +1,13 @@
 import ArabicText from '../ui/text/ArabicText'
 
-// One topic on the home grid: how many questions it holds, its name and what it covers.
-export default function TopicTile({ topic, index, selected, onPick }) {
+// One topic on the home grid: its name and what it covers. Shown only while no
+// topic is open; the open one is marked in the chip row that replaces the grid.
+export default function TopicTile({ topic, index, onPick }) {
   return (
     <button
       type="button"
       onClick={() => onPick(topic)}
-      aria-pressed={selected}
-      style={{
-        '--i': index,
-        borderColor: selected ? 'var(--c)' : undefined,
-        background: selected ? 'color-mix(in srgb, var(--c) 12%, var(--surface))' : undefined,
-      }}
+      style={{ '--i': index }}
       className={`rise-in lift press text-left rounded-[var(--radius-md)] border border-[var(--border)]
         bg-[var(--surface)] p-4 flex flex-col gap-2 hover:border-[var(--c)]`}
     >
