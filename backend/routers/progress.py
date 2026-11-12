@@ -67,9 +67,11 @@ async def record_attempt(request: Request, attempt: AttemptIn, user: str = USER)
 
     The answer limit is per account, not per address: a class drilling together behind one address is many
     learners. A guest's record is named by a header anyone can change, so a guest counts by address."""
-    ANSWER.check(visitor(request) if is_guest(user) else user)
-    if ANSWER_PLACE.too_many(visitor(request)):  # many accounts from one address: a class, or one person's script
+    # The address first: many accounts from one address (a class, or one person's script), refused before they
+    # are counted against their accounts or the everyone-together ceiling, which they must not use up.
+    if ANSWER_PLACE.too_many(visitor(request)):
         raise HTTPException(status_code=429, detail=ANSWER.mine)
+    ANSWER.check(visitor(request) if is_guest(user) else user)
     if not quiz_words.allowed(attempt.module, attempt.item):
         raise HTTPException(status_code=422, detail="Not a word of the quiz")
     own = user != GUEST

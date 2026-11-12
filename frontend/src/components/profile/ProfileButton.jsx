@@ -60,7 +60,7 @@ export default function ProfileButton() {
         <span className="truncate">{name}</span>
       </button>
       {/* Mounted only while open, so each opening starts from who is logged in. */}
-      {open && <ProfileDialog onClose={() => setOpen(false)} />}
+      {open && above(<ProfileDialog onClose={() => setOpen(false)} />)}
       {/* Held: one stray tap must not lose a code shown once; "I have saved it" is the way on. */}
       {code && above(
         <BottomSheet held label="Your recovery code" onClose={() => setCode('')} className="p-5 space-y-4">

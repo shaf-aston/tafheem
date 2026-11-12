@@ -106,3 +106,19 @@ def test_one_address_has_its_own_answer_ceiling_across_accounts(monkeypatch):
     codes = [client.post("/api/progress/attempts", headers={**as_(name), "X-Real-IP": "203.0.113.7"},
                          json={"module": "quiz", "item": "train", "correct": True}).status_code for name in names]
     assert codes == [200, 200, 200, 429]
+
+
+def test_answers_one_address_is_refused_do_not_use_up_everyone_elses(monkeypatch):
+    from backend.services.core import ratelimit
+    monkeypatch.setattr(get_settings(), "answer_address_per_minute", 2)
+    monkeypatch.setattr(get_settings(), "answer_all_per_minute", 4)
+    monkeypatch.setattr(ratelimit.ANSWER_PLACE, "asks", {})
+    monkeypatch.setattr(ratelimit.ANSWER.everyone, "asks", {})
+    sign_in.signup(client, "Amina")
+    sign_in.signup(client, "Bilal")
+
+    def answer(name, address):
+        return client.post("/api/progress/attempts", headers={**as_(name), "X-Real-IP": address},
+                           json={"module": "quiz", "item": "train", "correct": True}).status_code
+    assert [answer("Amina", "203.0.113.7") for _ in range(6)] == [200, 200, 429, 429, 429, 429]
+    assert answer("Bilal", "198.51.100.9") == 200  # the ceiling was charged twice, not six times
