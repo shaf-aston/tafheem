@@ -37,7 +37,8 @@ export default function KeyHint({ strip }) {
         if (hop() && !hovered) { clearInterval(timer); setResting(true) }
       }, motion['key-hint-ms'])
     }
-    const host = strip.current?.parentElement
+    // The strip it was handed, not its parent: hovering the tabs is what asks for the hint again.
+    const host = strip.current
     const enter = () => { hovered = true; at.current = 0; setResting(false); hop(); run() }
     const leave = () => { hovered = false }
     host?.addEventListener('pointerenter', enter)
