@@ -11,7 +11,7 @@ import json
 import sys
 import urllib.request
 
-BASE = sys.argv[1] if len(sys.argv) > 1 else "https://132-145-17-56.sslip.io"
+BASE = sys.argv[1] if len(sys.argv) > 1 else "https://tafheem-app.vercel.app"  # the origin answers /api only to Vercel
 EXPECT = {
     # أجوف: the root is typed, the dictionaries file the past (غَابَ).
     "غيب": ("I-daraba", "غِبْتَ", "يَغِيْبُ"),
