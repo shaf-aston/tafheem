@@ -72,7 +72,7 @@
 }
 .grow-next-slot { min-height: 60px; border-radius: var(--radius-md); }
 .grow-next:hover { border-color: var(--w); background: color-mix(in srgb, var(--w) 8%, var(--surface)); }
-.grow-next-ar { font-size: 1.15rem; line-height: 1; color: var(--w); }
+.grow-next-ar { font-size: calc(var(--arabic-small-rem) * 1rem); line-height: 1; color: var(--w); }
 .grow-next-text { display: grid; min-width: 0; font-size: var(--type-small); color: var(--text-dim); }
 .grow-next-text b { font-weight: 700; color: var(--text); }
 /* Two lines, wrapped at a word: one line cut short mid-word ("why the poem was w…") lost the point of the step. */
@@ -92,12 +92,12 @@
 }
 .grow-world-tile:not(:disabled):hover { border-color: var(--w); }
 .grow-world-tile:disabled { opacity: 0.55; cursor: default; border-style: dashed; }
-.grow-tile-ar { color: var(--w); font-size: 2rem; line-height: 1.2; }
+.grow-tile-ar { color: var(--w); font-size: calc(var(--grow-tile-ar-rem) * 1rem); line-height: 1.2; }
 .grow-tile-status { font-size: var(--type-small); color: var(--text-dim); }
 /* The picture keeps its own row at the top (emblem.css pins it there), so a long Arabic name never runs under it.
    Two worlds across on a phone, so the worlds are a glance, not a long scroll. */
 .grow-world-tile.grow-world-tile { min-height: 0; padding-top: 74px; }
-@media (max-width: 39.99rem) { .grow-tile-ar { font-size: 1.5rem; } }
+@media (max-width: 39.99rem) { .grow-tile-ar { font-size: calc(var(--arabic-reading-rem) * 1rem); } }
 
 /* ── a world's backdrop: a faded picture under the whole screen (components/grow/Backdrop.jsx) ── */
 /* The world screen wears .grow-world so the layer has something to fill; isolation keeps the layer's z-index under the content and nothing else. */
@@ -116,7 +116,7 @@
    Basics' idea into a column a word wide, the header 650 px tall. */
 .grow-world-title > div { flex: 1 1 16rem; min-width: 0; }
 .grow-world-idea { font-size: var(--type-ui); color: var(--text-dim); max-width: 40ch; }
-.grow-world-ar { font-size: 3rem; line-height: 1; color: var(--w, var(--c)); }
+.grow-world-ar { font-size: calc(var(--arabic-stage-rem) * 1rem); line-height: 1; color: var(--w, var(--c)); }
 .grow-world-about { display: none; font-size: var(--type-ui); color: var(--text-dim); }
 .grow-world-about > summary { cursor: pointer; color: var(--w, var(--c)); font-weight: 600; }
 .grow-world-about > p { margin-top: 4px; }
@@ -129,7 +129,7 @@
   .grow-world-about { display: block; }
   .grow-world-pic { order: -1; display: flex; align-items: center; gap: 8px; }
   .grow-world-pic svg { width: 36px; height: 36px; }
-  .grow-world-ar { font-size: 1.6rem; }
+  .grow-world-ar { font-size: calc(var(--arabic-reading-rem) * 1rem); }
 }
 
 /* ── the Words world: its stages ── */
@@ -191,13 +191,13 @@
   .grow-lesson:has(.grow-card:not(.grow-glyph) > .grow-teach-ar) { max-width: 920px; }
   .grow-card:not(.grow-glyph):has(> .grow-teach-ar) { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 28px; align-items: start; }
   .grow-card:not(.grow-glyph):has(> .grow-teach-ar) > * { grid-column: 2; }
-  .grow-card:not(.grow-glyph) > .grow-teach-ar { grid-column: 1; grid-row: 1 / span 8; align-self: stretch; display: grid; place-items: center; font-size: 3.4rem; }
+  .grow-card:not(.grow-glyph) > .grow-teach-ar { grid-column: 1; grid-row: 1 / span 8; align-self: stretch; display: grid; place-items: center; font-size: calc(var(--grow-teach-ar-rem) * 1rem); }
   .grow-lesson:has(.grow-card:not(.grow-glyph) > .grow-teach-ar) .grow-lesson-foot { margin-inline-start: calc(50% + 14px); }
 }
 .grow-card { display: grid; gap: 14px; animation: rise-in calc(var(--motion-spring-ms) * 1ms) var(--motion-settle-ease) both; }
 .grow-card-tag { justify-self: start; font-size: var(--type-micro); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: var(--radius-pill); background: color-mix(in srgb, var(--w) 20%, var(--surface)); color: var(--w); }
 .grow-card-ask { font-size: var(--type-body); color: var(--text-dim); }
-.grow-card-word, .grow-teach-ar { text-align: center; padding: 18px 8px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); font-size: 2.6rem; line-height: 1.6; }
+.grow-card-word, .grow-teach-ar { text-align: center; padding: 18px 8px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--border); font-size: calc(var(--arabic-display-rem) * 1rem); line-height: 1.6; }
 .grow-teach-en { text-align: center; font-size: var(--type-title); font-weight: 800; color: var(--text); }
 .grow-teach-also { display: flex; justify-content: center; align-items: baseline; gap: 0.75rem; color: var(--text-dim); font-size: var(--type-body); }
 .grow-teach-note { padding: 12px 14px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--w) 8%, var(--surface)); color: var(--text); font-size: var(--type-body); line-height: 1.6; text-wrap: pretty; }
@@ -230,9 +230,9 @@
 /* ── hadith: teach line, whole text, the gap ── */
 .grow-teach-line { font-size: var(--type-body); font-weight: 600; line-height: 1.5; }
 .grow-whole { display: grid; gap: 10px; padding-top: 8px; color: var(--text-dim); font-size: var(--type-ui); line-height: 1.6; }
-.grow-gap-line { font-size: 1.9rem; line-height: 2; }
+.grow-gap-line { font-size: calc(var(--arabic-chart-rem) * 1rem); line-height: 2; }
 .grow-gap { display: inline-block; min-width: 3em; padding: 0 6px; border-bottom: 3px solid var(--w); color: var(--w); }
-.grow-options-ar .grow-option { text-align: center; font-size: 1.4rem; }
+.grow-options-ar .grow-option { text-align: center; font-size: calc(var(--arabic-reading-rem) * 1rem); }
 .grow-options-ar .grow-option > :last-child { flex: 1; }
 
 /* ── a world's picture: the stage line, the shelf, the sky (components/grow/scenes) ── */
@@ -271,8 +271,8 @@
 .grow-choose-ar { text-align: center; }
 /* Letters (lib/grow/lettersLesson): one letter is the whole lesson, and ذ from ظ is only their dots, so a letter is
    drawn far larger than a word: on the card, in its answers, and in the rule's line under it. */
-.grow-glyph .grow-teach-ar, .grow-glyph .grow-choose-ar { font-size: 4.5rem; line-height: 1.5; }
-.grow-glyph .grow-option .arabic { font-size: 2.4rem; line-height: 1.4; }
+.grow-glyph .grow-teach-ar, .grow-glyph .grow-choose-ar { font-size: calc(var(--grow-glyph-ar-rem) * 1rem); line-height: 1.5; }
+.grow-glyph .grow-option .arabic { font-size: calc(var(--arabic-display-rem) * 1rem); line-height: 1.4; }
 .grow-glyph .grow-teach-note .arabic-sm { font-size: 1.5em; }
 .grow-rule-en { font-size: var(--type-body); line-height: 1.6; color: var(--text); }
 .grow-ask-strong { font-weight: 700; color: var(--text); }
@@ -360,14 +360,14 @@
 .grow-lesson-foot[data-result='wrong'] .grow-lesson-say::before { content: '✕'; }
 /* The ayah a Qur'anic word is asked from, the word marked, and Listen (exercises/AyahLine). */
 .grow-ayah-line { display: grid; justify-items: center; gap: 8px; }
-.grow-ayah-line-ar { text-align: center; font-size: 1.5rem; line-height: 2; color: var(--text-dim); }
+.grow-ayah-line-ar { text-align: center; font-size: calc(var(--arabic-reading-rem) * 1rem); line-height: 2; color: var(--text-dim); }
 .grow-ayah-line-ar mark { font-weight: 700; }
 
 /* ── The end of a lesson: a medal in a burst, three numbers, the level ── */
 .grow-medal { position: relative; width: 132px; height: 132px; }
 .grow-medal span {
   position: absolute; inset: 24px; display: grid; place-items: center; border-radius: 50%;
-  background: var(--grow-gold); color: color-mix(in srgb, var(--grow-gold) 25%, black); font-size: 2.2rem; font-weight: 800;
+  background: var(--grow-gold); color: color-mix(in srgb, var(--grow-gold) 25%, black); font-size: calc(var(--arabic-display-rem) * 1rem); font-weight: 800;
   box-shadow: 0 6px 0 color-mix(in srgb, var(--grow-gold) 60%, black);
 }
 .grow-medal i {

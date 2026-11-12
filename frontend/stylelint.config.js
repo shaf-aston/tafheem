@@ -23,11 +23,5 @@ export default {
       files: ['src/landing/**/*.css'],
       rules: { 'declaration-property-value-disallowed-list': rule(radius) },
     },
-    {
-      // Grow's lesson skin sets the size of the Arabic on each card (3.4rem, 4.5rem...) on its own ladder:
-      // --type-* is the ladder for Latin interface text. A non-Arabic size here still takes a token.
-      files: ['src/styles/growWorlds.css'],
-      rules: { 'declaration-property-value-disallowed-list': rule({ ...radius, 'z-index': STACK }) },
-    },
   ],
 }
