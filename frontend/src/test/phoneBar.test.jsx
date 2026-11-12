@@ -20,7 +20,7 @@ describe('phone bar', () => {
   it('is Home, Quran, Ask, Learn, Me, with Ask in the middle', () => {
     bar('home')
     const names = screen.getAllByRole('button').map((b) => b.getAttribute('aria-label') ?? b.textContent)
-    expect(names).toEqual(['Home', 'Quran', 'Ask: a word, root, ayah or sentence', 'Learn: all sections', 'Me: your progress and account'])
+    expect(names).toEqual(['Home', 'Quran', 'Ask: a word, root, ayah or sentence', 'All sections', 'Me: your progress and account'])
   })
 
   it('lights Learn, named for the tab, when the open tab is not on the bar', () => {
