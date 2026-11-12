@@ -89,8 +89,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
         </ErrorAlert>
       )}
 
-      {/* The question form every tab shares (ui/inputs/QuestionForm). */}
-      <QuestionForm accent={accent}>
+      <QuestionForm>
         {/* Every recent word, whichever language it was in: they were split into
             two lists by the toggle that used to sit above, and half of them were
             hidden at any one time. Each chip is set in its own script. */}

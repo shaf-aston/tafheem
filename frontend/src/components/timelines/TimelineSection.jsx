@@ -1,6 +1,8 @@
 /**
  * One chosen stretch of time: its heading, the map with the time bar under it,
- * a rail of its events, and the opened event read underneath. Time and place
+ * a rail of its events, and the opened event read underneath; on a wide
+ * screen the event and its rail sit beside the map (.tl-atlas). A section
+ * opens on its first event, so the first screen tells a story. Time and place
  * move together: dragging the bar previews an event on the map at once, and
  * letting go opens it. The map can be folded away by the heading, remembered;
  * a section with no places has the bar alone.
@@ -25,7 +27,7 @@ import { PHONE } from '../../lib/hooks/useMedia'
 
 const ACCENT = 'var(--tl-acc)'
 
-export default function TimelineSection({ section, library, chosen, report, onPick, onReport, onGo }) {
+export default function TimelineSection({ section, library, chosen, opened = true, report, onPick, onReport, onGo }) {
   // Open by default, except on a phone: there the map (kept tall enough to read its names) and the bar
   // filled the first screen and the events started under the tab bar. Its chip opens it, and the choice is kept.
   const [showMap, setShowMap] = useRememberedFlag('timeline-map-open', !window.matchMedia?.(PHONE).matches)
@@ -44,14 +46,15 @@ export default function TimelineSection({ section, library, chosen, report, onPi
   const mapAt = preview === null ? at : section.events[preview].place ?? null
 
   // Opening an event brings its reader to the top of the screen, except from
-  // the time bar: walking through time keeps the map and bar where they are.
+  // the time bar (walking through time keeps the map and bar where they are)
+  // and for the first event a section opens on, which nobody asked for yet.
   const reader = useRef(null)
   const fromBar = useRef(false)
   const chosenId = chosen?.id
   useEffect(() => {
-    if (chosenId && !fromBar.current) scrollToEl(reader.current, 'top')
+    if (chosenId && opened && !fromBar.current) scrollToEl(reader.current, 'top')
     fromBar.current = false
-  }, [chosenId])
+  }, [chosenId, opened])
   // Let go on the event already open: nothing to open, and no step in the history.
   const pickFromBar = (id) => {
     if (id === chosenId) return
@@ -76,12 +79,15 @@ export default function TimelineSection({ section, library, chosen, report, onPi
         )}
       </div>
 
-      {section.map && showMap && (
-        <TimelineMap section={section} library={library} accent={ACCENT} chosen={chosen} at={mapAt} upTo={upTo} onPick={onPick} />
-      )}
+      <div className={section.map && showMap ? 'tl-atlas' : undefined}>
+      <div className="space-y-3 min-w-0">
+        {section.map && showMap && (
+          <TimelineMap section={section} library={library} accent={ACCENT} chosen={chosen} at={mapAt} upTo={upTo} onPick={onPick} />
+        )}
+        <TimelineScrub section={section} index={index} accent={ACCENT} onPreview={setPreview} onPick={pickFromBar} />
+      </div>
 
-      <TimelineScrub section={section} index={index} accent={ACCENT} onPreview={setPreview} onPick={pickFromBar} />
-
+      <div className="space-y-3 min-w-0">
       <TimelineRail section={section} library={library} chosenId={chosen?.id ?? null}
         nearId={preview === null ? null : section.events[preview].id} onPick={onPick} />
 
@@ -125,6 +131,8 @@ export default function TimelineSection({ section, library, chosen, report, onPi
           )}
         </div>
       )}
+      </div>
+      </div>
     </section>
   )
 }

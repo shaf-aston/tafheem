@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { addRecent, keepRecent, readRecent, seedOf, stripOf } from './recent'
+import { keepRecent, stripOf } from './recent'
 
 // The registry's ids, in its order.
 const TABS = [
@@ -19,44 +19,21 @@ const TABS = [
 ]
 const FIXED = ['quran', 'nahw', 'sarf', 'dict']
 const SEED = ['daleel', 'mem', 'quiz', 'grow']
-const strip = (recent) => stripOf(TABS, FIXED, recent).map((t) => t.id)
-const open = (...picks) => picks.reduce((recent, id) => addRecent(recent, id, TABS, FIXED), seedOf(SEED))
+const strip = (active) => stripOf(TABS, FIXED, SEED, active).map((t) => t.id)
+const STEADY = ['quran', 'nahw', 'sarf', 'dict', 'daleel', 'mem', 'quiz', 'grow']
 
-describe('recent tabs', () => {
-  it('starts as the fixed tabs, then the seed', () => {
-    expect(strip(seedOf(SEED))).toEqual(['quran', 'nahw', 'sarf', 'dict', 'daleel', 'mem', 'quiz', 'grow'])
+describe('the strip', () => {
+  it('is the fixed tabs, then the seed, whichever of them is open', () => {
+    for (const id of STEADY) expect(strip(id)).toEqual(STEADY)
   })
 
-  it('puts a new tab in the oldest arrival\'s place, and moves nothing else', () => {
-    expect(open('hadith').slots).toEqual(['hadith', 'mem', 'quiz', 'grow'])
-    expect(open('hadith', 'dawah').slots).toEqual(['hadith', 'dawah', 'quiz', 'grow'])
-    // Round the slots and back to the first: hadith was the oldest arrival by then.
-    expect(open('hadith', 'dawah', 'colloq', 'timelines', 'sarf').slots).toEqual(['hadith', 'dawah', 'colloq', 'timelines'])
-    expect(open('hadith', 'dawah', 'colloq', 'timelines', 'daleel').slots).toEqual(['daleel', 'dawah', 'colloq', 'timelines'])
+  it('shows an open tab that is off the strip after them, and moves nothing', () => {
+    expect(strip('hadith')).toEqual([...STEADY, 'hadith'])
+    expect(strip('dawah')).toEqual([...STEADY, 'dawah'])
   })
 
-  it('keeps every other tab on its number key when one is replaced', () => {
-    const before = strip(open('hadith'))
-    const after = strip(open('hadith', 'dawah'))
-    const moved = before.filter((id, at) => after[at] !== id)
-    expect(moved).toEqual(['mem'])
-  })
-
-  it('changes nothing for a fixed tab or one already showing', () => {
-    const recent = open('hadith')
-    for (const id of ['nahw', 'dict', 'hadith']) expect(addRecent(recent, id, TABS, FIXED)).toBe(recent)
-  })
-
-  it('reads back what it saved, and starts again from anything broken or stale', () => {
-    const recent = open('hadith', 'dawah')
-    expect(readRecent(JSON.stringify(recent), TABS, FIXED, SEED)).toEqual(recent)
-    // An older save, the bare list, is still read: the next new tab takes its first slot.
-    expect(readRecent('["hadith","mem","quiz","grow"]', TABS, FIXED, SEED)).toEqual({ slots: ['hadith', 'mem', 'quiz', 'grow'], next: 0 })
-    for (const text of ['', 'not json', '5', '{"ids":[]}', '["hadith","grow"]', '["gone","mem","quiz","grow"]',
-      '["dict","mem","quiz","grow"]', '["mem","mem","quiz","grow"]',
-      '{"slots":["hadith","mem","quiz","grow"],"next":4}', '{"slots":["hadith","mem","quiz","grow"],"next":-1}']) {
-      expect(readRecent(text, TABS, FIXED, SEED)).toEqual(seedOf(SEED))
-    }
+  it('adds nothing for a tab that is not listed (a hidden one)', () => {
+    expect(strip('kit')).toEqual(STEADY)
   })
 })
 

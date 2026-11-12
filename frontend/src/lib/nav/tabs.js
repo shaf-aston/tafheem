@@ -2,7 +2,7 @@
  * The tab registry: the one list of what this app is made of.
  *
  * Everything that needs to know the tabs reads this file: the strip under the
- * header, All sections, the command bar, the orbit launcher, the URL. Adding a tab is one
+ * header, All sections, the command bar, the URL. Adding a tab is one
  * entry here; nothing else is edited.
  *
  * Each panel's code is its own file (lib/nav/panel.js), so the first load carries the
@@ -45,7 +45,7 @@ const MapPanel = panel(() => import('../../components/map/MapPanel'))
 // `group`: its heading in All sections, an id from GROUPS.
 // `blurb`: one plain line on what you do there (Home's cards).
 // `emblem`: the tab's picture (components/ui/display/Emblem.jsx), on its title and wherever
-//   only a small mark fits (phone bar, search rail, launcher ring). Unique across tabs.
+//   only a small mark fits (phone bar, search rail). Unique across tabs.
 // `open`: fetches the tab's opening data, run on idle and on hovering its tab.
 // `modules`: other names its answers are filed under in the progress store, so a
 //   progress row can say which tab it came from.
@@ -56,7 +56,7 @@ const MapPanel = panel(() => import('../../components/map/MapPanel'))
 // `hidden`: reachable by URL only (journey and the panel mapping read TABS), left out of
 //   everything a person browses; those read LISTED.
 // Home is first, so it is where a visit with no saved place opens.
-// Order = All sections order; the strip is FIXED then RECENT, below. Related tabs sit together.
+// Order = All sections order; the strip is FIXED then WIDE, below. Related tabs sit together.
 // Grouped by what you came to do, one word each, so a choice is a goal, then a tab.
 export const GROUPS = [
   { id: 'start',    label: 'Start' },
@@ -93,19 +93,18 @@ export const TABS = [
   { id: 'kit',    label: 'Kit',        short: 'Kit',    arabic: 'عدة',    emblem: 'kit', Component: KitPanel, hidden: true, blurb: "Small tools for study", group: 'more' },
 ]
 
-/** The tabs a person can browse to: strip, All sections, command bar, launcher, number keys. */
+/** The tabs a person can browse to: strip, All sections, command bar, number keys. */
 export const LISTED = TABS.filter((tab) => !tab.hidden)
 
-// The strip: FIXED always shows, in this order, phones too. RECENT follows from
-// md: eight slots in all, so Home joining FIXED cost RECENT one; how many, and
-// what they are before anything is opened, oldest first;
-// opening another tab drops the oldest (lib/nav/recent.js).
+// The strip: FIXED always shows, in this order, phones too. WIDE follows from md:
+// eight in all, each always in its place with its number key. An open tab off
+// the strip shows after them while it is open (lib/nav/recent.js).
 export const FIXED = ['home', 'quran', 'nahw', 'sarf', 'dict']
 
 /** The tab the app opens on, and the group of All sections that holds only it. */
 export const HOME = FIXED[0]
 export const START = GROUPS[0].id
-export const RECENT = ['daleel', 'mem', 'quiz']
+export const WIDE = ['daleel', 'mem', 'quiz']
 
 // The phone's two tab places until the reader changes them (lib/nav/dock.js); Ask,
 // Learn and Me follow them (shell/BottomNav), so Ask stands in the middle.

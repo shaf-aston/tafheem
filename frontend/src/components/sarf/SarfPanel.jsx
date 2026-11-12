@@ -24,8 +24,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
         subtitle="Where a word comes from: its three-letter root, its pattern, and how it conjugates."
       />
 
-      {/* The question form every tab shares (ui/inputs/QuestionForm). */}
-      <QuestionForm accent={accent}>
+      <QuestionForm>
       <div className="space-y-4">
         {/* The same field as Dictionary, Daleel and the Qur'an tab, down to the
             keycap and the microphone. See ui/SearchBox. */}

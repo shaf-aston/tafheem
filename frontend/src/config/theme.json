@@ -127,14 +127,13 @@
     "tile": "0.75rem"
   },
   "layer": {
-    "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, below the page so results sit over it, backdrop is the drifting-lights canvas, below even the seal, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, overlay a full-screen sheet, tip a tooltip over everything.",
+    "_comment": "The one stacking scale: every z-index in the app is one of these, never a bare number. Lowest first: raised lifts a piece over its neighbours, seal is the Quran backdrop, below the page so results sit over it, backdrop is the drifting-lights canvas, below even the seal, sticky is a bar that pins while scrolling, popover a floating panel opened from a button, header the app bar, tip a tooltip over everything. A sheet needs none: a dialog sits in the browser's top layer, over all of these.",
     "raised": 1,
     "backdrop": -2,
     "seal": -1,
     "sticky": 10,
     "popover": 30,
     "header": 40,
-    "overlay": 50,
     "tip": 60
   },
   "backdrop": {
@@ -232,6 +231,11 @@
     "entry-h": "13rem",
     "reading-w": "44rem"
   },
+  "quran": {
+    "_comment": "today-h is the Quran tab's Today card placeholder: the measured median height of the card over the 30 ayahs of config/quran.json's today list (a laptop 174 to 365px, a phone 174 to 674px), so the search box under it moves as little as it can when the ayah lands. today-h-phone is the same on a phone.",
+    "today-h": "17rem",
+    "today-h-phone": "29rem"
+  },
   "daleel": {
     "_comment": "Daleel's passage cards. passage-h is how much of a passage shows before the rest folds behind Show all: one fold for the whole card, Arabic and English together, in rem so it is about three lines of the Arabic it quotes however small the English beside it is. Counted in the English's lines it cut the Arabic to one line on a phone.",
     "passage-h": "11rem",
@@ -239,15 +243,11 @@
     "books-h": "15rem"
   },
   "command": {
-    "_comment": "The command line: the bar in the header and the orbit launcher behind the pen. rest-w is how wide the bar sits when nobody is using it and open-w how wide it grows on focus, both in rem, so a longer placeholder needs a number changed here and not a class edited. orbit-r is the radius the seven tabs sit at in the launcher, sat-w the width of one of them, and rail-w the strip of letters beside a result list. hint is the keys line under the launcher's ring, which sits straight on the modal's scrim rather than on a card: quiet on a dark scrim, but a light look's scrim is a mid grey that only full ink reads on.",
+    "_comment": "The command line: the bar in the header. rest-w is how wide the bar sits when nobody is using it and open-w how wide it grows on focus, both in rem, so a longer placeholder needs a number changed here and not a class edited. rail-w is the strip of letters beside a result list.",
     "rest-w": "13.5rem",
     "open-w": "24rem",
-    "orbit-r": "12.75rem",
-    "sat-w": "7rem",
     "rail-w": "2rem",
-    "results-h": "22rem",
-    "dim": "0.5",
-    "hint": "var(--text-faint)"
+    "results-h": "22rem"
   },
   "wheel": {
     "_comment": "Every dropdown is ui/WheelPicker. type-from is how many choices a list needs before its card shows a box to type in; a shorter list is quicker to spin. loop-from is how many a list needs before it spins round, last choice above the first; fewer than the five rows on show would see itself twice.",
@@ -255,7 +255,7 @@
     "loop-from": 5
   },
   "dance": {
-    "_comment": "How a group of things arrives: each one small and gathered at the middle, then springing out to where it belongs, one after another. Written as its own group rather than inside the launcher because it is the .dance class in styles/motion.css, which anything can wear: a ring of tabs, a row of cards, a set of chips. from-scale is how small each starts, from-spread how far along its own spoke it starts as a fraction of the full distance (1 means it does not travel, only grows), and beats how many springs the whole arrival lasts. The gap between one and the next is motion.stagger-ms, shared with every other staggered thing in the app.",
+    "_comment": "How a group of things arrives: each one small and gathered at the middle, then springing out to where it belongs, one after another. Written as its own group because it is the .dance class in styles/motion.css, which anything can wear: a ring of tabs, a row of cards, a set of chips. from-scale is how small each starts, from-spread how far along its own spoke it starts as a fraction of the full distance (1 means it does not travel, only grows), and beats how many springs the whole arrival lasts. The gap between one and the next is motion.stagger-ms, shared with every other staggered thing in the app.",
     "from-scale": "0.5",
     "from-spread": "0.06",
     "beats": "2"
@@ -323,7 +323,7 @@
     "_ease_comment": "The one curve the shared moves ride (the Map's rise and hover lifts). slide-ease and settle-ease are the other two named curves.",
     "ease": "cubic-bezier(.2,.7,.2,1)",
     "spring-ease": "cubic-bezier(.34,1.56,.64,1)",
-    "_settle_comment": "The curve for anything with weight: a box growing, a block of content arriving, the backdrop drifting. It eases out and stops, where spring-ease overshoots by a tenth; an overshoot suits a small thing landing (a star, the launcher ring) and makes a wide box or a column of text wobble.",
+    "_settle_comment": "The curve for anything with weight: a box growing, a block of content arriving, the backdrop drifting. It eases out and stops, where spring-ease overshoots by a tenth; an overshoot suits a small thing landing (a star, a chip) and makes a wide box or a column of text wobble.",
     "settle-ease": "cubic-bezier(.22,1,.36,1)",
     "_lift_comment": "The one hover lift: how far a card, an option or a tile rises under the pointer. Every hover that lifts reads this (.lift and its kin in components.css, pbs.css, growWorlds.css), so a card in one tab never hops further than a card in another.",
     "lift-px": 2,
@@ -339,7 +339,7 @@
     "patience-hold-ms": 400
   },
   "loop": {
-    "_comment": "The ambient loops that never end on their own: one lap of each, in ms. Every one is multiplied by motion.scale where it is used, so the Animations switch stills them all. The emblems are Grow's world pictures (styles/emblem.css): sway a leaf, tilt a lantern, spin a star, flicker a flame, glow rays, dash a drawn line, write a pen, lift a shape; late is how far behind a second copy runs. drift is the launcher's slow outer ring (styles/command.css), shimmer the loading bars' sweep, pulse the lit XP step.",
+    "_comment": "The ambient loops that never end on their own: one lap of each, in ms. Every one is multiplied by motion.scale where it is used, so the Animations switch stills them all. The emblems are Grow's world pictures (styles/emblem.css): sway a leaf, tilt a lantern, spin a star, flicker a flame, glow rays, dash a drawn line, write a pen, lift a shape; late is how far behind a second copy runs. shimmer is the loading bars' sweep, pulse the lit XP step.",
     "sway-ms": 3600,
     "tilt-ms": 4500,
     "spin-ms": 18000,
@@ -349,7 +349,6 @@
     "write-ms": 2600,
     "lift-ms": 3000,
     "late-ms": 1200,
-    "drift-ms": 90000,
     "shimmer-ms": 1400,
     "pulse-ms": 1600
   },
@@ -420,7 +419,7 @@
   "layout": {
     "_comment": "How wide the page is allowed to get. Everything down the middle of the app reads this one number through the .shell class, so the header, the tab strip, the banner and the panels can never disagree about where the edges are. It is a maximum, not a width: on any screen narrower than this the page simply fills it, which is what keeps the phone view working.",
     "shell": "80rem",
-    "_control_comment": "One square for every small control in the page chrome: the settings gear, the pen that opens the launcher, and the height of the command bar between them. One number, so the two ends of the header can never disagree about how tall the row is.",
+    "_control_comment": "One square for every small control in the page chrome: the settings gear, the pen that opens the command line, and the height of the command bar between them. One number, so the two ends of the header can never disagree about how tall the row is.",
     "control": "2.5rem",
     "_chip_comment": "How tall a chip stands, whatever is written in it. Said here rather than left to the text because a pill that takes its height from its own letters is a different height in Arabic than in English: a Recent row holding both came out with the Arabic pills at exactly twice the height of the English ones, a ragged row that looked like a browser bug and was not.",
     "chip": "1.9rem",
@@ -654,9 +653,6 @@
           "e2": "0 2px 4px rgba(30, 41, 80, 0.1), 0 10px 28px rgba(30, 41, 80, 0.14), inset 0 1px 0 var(--shadow-edge)",
           "e3": "0 4px 8px rgba(30, 41, 80, 0.1), 0 20px 48px rgba(30, 41, 80, 0.2), inset 0 1px 0 var(--shadow-edge)"
         },
-        "command": {
-          "hint": "var(--text)"
-        },
         "glow": {
           "strength": "0.2"
         },
@@ -687,7 +683,7 @@
     "label-tracking": "0.13em"
   },
   "mark": {
-    "_comment": "A tab's picture (components/ui/display/Emblem.jsx). size is the small mark where only a mark fits: the phone's bar, the dock editor, the search rail and rows, the launcher ring (TabMark). head is the picture before a panel's title (SectionHeader), a little taller than the title's capitals so it reads as the title's own.",
+    "_comment": "A tab's picture (components/ui/display/Emblem.jsx). size is the small mark where only a mark fits: the phone's bar, the dock editor, the search rail and rows (TabMark). head is the picture before a panel's title (SectionHeader), a little taller than the title's capitals so it reads as the title's own.",
     "size": "1.375rem",
     "head": "2.125rem"
   },

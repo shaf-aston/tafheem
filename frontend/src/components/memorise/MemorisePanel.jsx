@@ -104,7 +104,11 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
     missingSwitch && { caption: missingLabel, control: missingSwitch },
     { caption: 'Translation', control: <Segmented label="Translation" options={[{ id: false, label: 'Off' }, { id: true, label: 'On' }]} value={meaning} onChange={setMeaning} accent={accent} /> },
   ].filter(Boolean)
-  const settingsWords = [book.label, missing.find((o) => o.id === missingNow)?.label].filter(Boolean)
+  // What the pill says is what is chosen, in a sentence a reader would say: "1 word in 3 hidden", not "1 in 3".
+  const hiddenNow = way === 'recite'
+    ? (difficulty === 'none' ? 'page shown' : 'page hidden, said from memory')
+    : difficultyOf(difficulty).summary
+  const settingsWords = [book.label, hiddenNow].filter(Boolean)
 
   // Above the page and again under it, so a page read to its end turns from there.
   const pageSteps = (
@@ -267,7 +271,7 @@ export default function MemorisePanel({ accent, incoming, arrival, onVisit }) {
               {/* Reciting says what to do in its own dock; typing has one
                   thing worth knowing first. */}
               {way === 'type' && !checked && (
-                <p className="type-small text-center text-[var(--text-faint)]">vowels not needed</p>
+                <p className="type-small text-center text-[var(--text-faint)]">Type each missing word; vowel marks are optional.</p>
               )}
               {/* One button, two jobs: mark the page, then clear it for another
                   go at the same gaps. "New gaps" is the other button because it

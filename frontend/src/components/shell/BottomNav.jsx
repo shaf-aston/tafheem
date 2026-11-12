@@ -1,7 +1,8 @@
 /**
  * The phone's tab bar, pinned where the thumb rests: the reader's two docked tabs
  * (lib/nav/dock.js, Home and Qur'an until changed), Ask in the middle (one box for
- * any word, ayah or sentence), Learn (every other tab, the All sections sheet) and
+ * any word, ayah or sentence), All (every other tab, the All sections sheet, under the same
+ * four-square mark the desktop strip opens it with) and
  * Me (progress and account). Phones only; a wider screen keeps the TabStrip in the
  * header. Draws the registry, decides nothing, like TabStrip. Holding the current
  * tab opens its jump fan (lib/jumpFan.js).
@@ -14,7 +15,8 @@ import TabMark from './TabMark'
 // Line pictures for the three bar places that are not tabs, drawn like the emblems.
 const ICONS = {
   ask: ['M11 4.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Z', 'm20 20-4.2-4.2'],
-  learn: ['M12 21v-9', 'M12 12c0-4 3-7 8-7 0 4-3 7-8 7Z', 'M12 14c0-3-2.5-6-7-6 0 3.5 2.5 6 7 6Z'],
+  // The desktop strip's four squares: a sprout here read as Grow, which is a tab of its own.
+  all: ['M4.5 3h4A1.5 1.5 0 0 1 10 4.5v4A1.5 1.5 0 0 1 8.5 10h-4A1.5 1.5 0 0 1 3 8.5v-4A1.5 1.5 0 0 1 4.5 3Z', 'M15.5 3h4A1.5 1.5 0 0 1 21 4.5v4a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 14 8.5v-4A1.5 1.5 0 0 1 15.5 3Z', 'M4.5 14h4a1.5 1.5 0 0 1 1.5 1.5v4A1.5 1.5 0 0 1 8.5 21h-4A1.5 1.5 0 0 1 3 19.5v-4A1.5 1.5 0 0 1 4.5 14Z', 'M15.5 14h4a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a1.5 1.5 0 0 1-1.5-1.5v-4a1.5 1.5 0 0 1 1.5-1.5Z'],
   me: ['M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z', 'M4.5 21c1-4 4-6 7.5-6s6.5 2 7.5 6'],
 }
 const Icon = ({ name, size = 22 }) => (
@@ -34,7 +36,7 @@ export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, 
     <nav className="bottom-nav sm:hidden fixed inset-x-0 bottom-0 z-[var(--layer-header)] flex" aria-label="Main">
       {/* One pill for the whole bar, gliding to the tab that is on rather than
           blinking out under one and in under the next. Drawn first, so the
-          marks sit on top of it. Learn lights for every tab not on the bar. */}
+          marks sit on top of it. All lights for every tab not on the bar. */}
       <span
         className="bottom-nav-pill"
         aria-hidden="true"
@@ -66,15 +68,15 @@ export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, 
         onClick={onAll}
         {...(here ? bind : {})}
         aria-haspopup="dialog"
-        aria-label={here ? `All sections, now on ${here.label}` : 'Learn: all sections'}
+        aria-label={here ? `All sections, now on ${here.label}` : 'All sections'}
         aria-current={here ? 'page' : undefined}
         style={here ? { '--c': colorOf(active) } : undefined}
         className={`${item} ${elsewhere ? 'text-[var(--c)]' : 'text-[var(--text-dim)]'}`}
       >
         <span className={`bottom-nav-mark ${elsewhere ? 'bottom-nav-on' : ''}`} aria-hidden="true">
-          {here ? <TabMark tab={here} /> : <Icon name="learn" />}
+          {here ? <TabMark tab={here} /> : <Icon name="all" />}
         </span>
-        {here ? here.short : 'Learn'}
+        {here ? here.short : 'All'}
       </button>
       <button type="button" onClick={onMe} aria-haspopup="dialog" aria-label="Me: your progress and account" className={`${item} text-[var(--text-dim)]`}>
         <span className="bottom-nav-mark" aria-hidden="true"><Icon name="me" /></span>

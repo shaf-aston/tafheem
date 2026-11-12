@@ -8,7 +8,7 @@
       "key": "theme",
       "section": "General",
       "label": "Appearance",
-      "help": "Ink and Parchment are the default pair. Midnight is the blue-black look. Device follows your phone or computer.",
+      "help": "Device, the default, follows your phone or computer: Parchment (cream) when it is light, Ink (warm black) when it is dark. Midnight is a blue-black dark look.",
       "type": "choice",
       "theme": true
     },

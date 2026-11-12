@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { useCommandLine } from '../../lib/nav/useCommandLine'
+import { onAsk } from '../../lib/shell/ask'
 import { PHONE, useMedia } from '../../lib/hooks/useMedia'
 import CommandField from './CommandField'
 import CommandResults from './CommandResults'
@@ -37,21 +38,24 @@ export default function CommandBar({ tabs, colorOf, onGo }) {
     onEscape: () => input.current?.blur(),
   })
 
-  // Ctrl+K from anywhere. The number keys already jump tabs, so this is the one
+  // Ctrl+K from anywhere, or the pen (lib/shell/ask). The number keys already jump tabs, so this is the one
   // shortcut that has to work while another control has focus.
   useEffect(() => {
+    const take = () => {
+      input.current?.focus()
+      input.current?.select()
+    }
     const onKeyDown = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        // The launcher has a line of its own; pulling focus back to the header
-        // would type into a box nobody can see.
+        // An open sheet holds the focus; pulling it back to the header would type into a box nobody can see.
         if (document.querySelector('dialog[open]')) return
         e.preventDefault()
-        input.current?.focus()
-        input.current?.select()
+        take()
       }
     }
     window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+    const stop = onAsk(take)
+    return () => { window.removeEventListener('keydown', onKeyDown); stop() }
   }, [])
 
   const showing = open && line.rows.length > 0

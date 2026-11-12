@@ -15,7 +15,7 @@ export const moduleOf = (id) => worldOf(id)?.module ?? null
 // (React won't let a hook be called from a loop or a table), so missingLessonHooks below is
 // what keeps a forgotten one from failing silently instead.
 export const WORLD_IDS = WORLDS.filter((world) => world.live).map((world) => world.id)
-export const LESSON_WORLD_IDS = WORLDS.filter((world) => world.kind === 'lessons').map((world) => world.id)
+const LESSON_WORLD_IDS = WORLDS.filter((world) => world.kind === 'lessons').map((world) => world.id)
 export const BOOKS = WORLDS.filter((world) => world.kind === 'book')
 export const BOOK_IDS = BOOKS.map((world) => world.id)
 

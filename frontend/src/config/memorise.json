@@ -30,10 +30,10 @@
   "_comment-difficulties": "How much is taken out, as one word in every N. Named rather than numbered because 'one word in four' is what a reader chooses; 0.25 is not. 'none' sits at the front rather than after 'all', because it is where a page is first opened to be read, not the far end of a difficulty ladder. The default must be one of these ids.",
   "default-difficulty": "steady",
   "difficulties": [
-    { "id": "none",   "label": "None",  "title": "Nothing is missing: the whole page, to read", "share": 0 },
-    { "id": "gentle", "label": "1 in 5", "title": "One word in every five is missing", "share": 0.2 },
-    { "id": "steady", "label": "1 in 3", "title": "One word in every three is missing", "share": 0.3333333333333333 },
-    { "id": "hard",   "label": "Half",  "title": "Half the words are missing", "share": 0.5 },
-    { "id": "recall", "label": "All",   "title": "Every word but the one each line starts on", "share": 1 }
+    { "id": "none",   "label": "None",  "title": "Nothing is missing: the whole page, to read", "summary": "nothing hidden", "share": 0 },
+    { "id": "gentle", "label": "1 in 5", "title": "One word in every five is missing", "summary": "1 word in 5 hidden", "share": 0.2 },
+    { "id": "steady", "label": "1 in 3", "title": "One word in every three is missing", "summary": "1 word in 3 hidden", "share": 0.3333333333333333 },
+    { "id": "hard",   "label": "Half",  "title": "Half the words are missing", "summary": "half the words hidden", "share": 0.5 },
+    { "id": "recall", "label": "All",   "title": "Every word but the one each line starts on", "summary": "all but each line's first word hidden", "share": 1 }
   ]
 }

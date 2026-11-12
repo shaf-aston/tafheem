@@ -4,7 +4,9 @@
  *
  * Which of the two a line is, is lib/quranIntent's call; this only draws it and
  * hands the answer back. The line under the box says what Enter will do before
- * it is pressed, so the reading is never a surprise. It is the same SearchBox
+ * it is pressed, so the reading is never a surprise. Once that line has been
+ * acted on (`answered`), the hint and the near misses step aside for the answer;
+ * a problem still shows. It is the same SearchBox
  * and MicButton the Dictionary and Daleel use.
  */
 import { useMemo } from 'react'
@@ -18,7 +20,7 @@ import MicButton from '../ui/buttons/MicButton'
 import { GoButton } from '../ui/buttons/RootActions'
 import SearchBox from '../ui/inputs/SearchBox'
 
-export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSearch, onHeard, busy, accent }) {
+export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSearch, onHeard, busy, accent, answered = false }) {
   const { kind, surahs, ayah, problem } = useMemo(() => readQuranQuery(value), [value])
   const isPlace = kind === KIND.ayah || kind === KIND.surah
 
@@ -49,7 +51,7 @@ export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSea
       {problem ? (
         <p className="type-small" style={{ color: 'var(--danger)' }}>{problem}</p>
       ) : (
-        kind !== KIND.none && (
+        kind !== KIND.none && !answered && (
           <p className="text-[var(--text-faint)] type-small">
             {kind === KIND.text
               ? 'Enter searches the Qur’an for these words.'
@@ -63,7 +65,7 @@ export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSea
 
       {/* The words were read, but they are also a surah's exact name: offered
           on the side, never opened by Enter. */}
-      {kind === KIND.text && surahs.length > 0 && (
+      {kind === KIND.text && surahs.length > 0 && !answered && (
         <div className="flex flex-wrap gap-2">
           {surahs.map((m) => (
             <GoButton key={m.n} onClick={() => onOpen(m, null)} style={{ '--c': accent }}>
@@ -74,7 +76,7 @@ export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSea
       )}
 
       {/* A place: the closest is Enter's, the rest are near misses to pick. */}
-      {isPlace && surahs.length > 0 && (
+      {isPlace && surahs.length > 0 && !answered && (
         <ul className="space-y-1.5" aria-label="Matching surahs">
           {surahs.map((m, i) => (
             <li key={m.n}>

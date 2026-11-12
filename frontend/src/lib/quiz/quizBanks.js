@@ -104,7 +104,7 @@ export const coverage = () => wordFile('coverage')
 export const sentencesQuery = { ...staticQuery(`${WORDS_DIR}/sentences.json`, 'the sentences'), select: (file) => file.sentences, retry: false }
 
 /** The same per surah, only fetched when the surah list is opened. */
-export const surahCoverage = () => wordFile('surah_coverage')
+const surahCoverage = () => wordFile('surah_coverage')
 
 /** Each surah's number and names, from the word table already loaded. */
 export async function surahList() {

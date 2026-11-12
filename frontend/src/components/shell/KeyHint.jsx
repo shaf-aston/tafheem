@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { motionOff } from '../../lib/motion/motion'
 import { motion } from '../../theme'
+import { nextSpot } from '../../lib/shell/keyHint'
 
 // `strip` is the tablist.
 export default function KeyHint({ strip }) {
@@ -18,17 +19,12 @@ export default function KeyHint({ strip }) {
   const at = useRef(0)
 
   useEffect(() => {
-    // Its number is the tab's place in the strip (the key that opens it), so a
-    // tab a narrow screen hides is skipped, never renumbered.
     const hop = () => {
-      const tabs = [...(strip.current?.children ?? [])]
-      if (!tabs.some((tab) => tab.offsetWidth > 0)) return false
-      let n = at.current % tabs.length
-      while (tabs[n].offsetWidth === 0) n = (n + 1) % tabs.length
-      const tab = tabs[n]
-      setSpot({ n: n + 1, x: tab.offsetLeft + tab.offsetWidth / 2 })
-      at.current = n + 1
-      return at.current >= tabs.length
+      const next = nextSpot([...(strip.current?.children ?? [])], at.current)
+      if (!next) return false
+      setSpot(next)
+      at.current = next.n
+      return next.last
     }
     hop()
     if (motionOff()) return undefined
@@ -41,7 +37,8 @@ export default function KeyHint({ strip }) {
         if (hop() && !hovered) { clearInterval(timer); setResting(true) }
       }, motion['key-hint-ms'])
     }
-    const host = strip.current?.parentElement
+    // The strip it was handed, not its parent: hovering the tabs is what asks for the hint again.
+    const host = strip.current
     const enter = () => { hovered = true; at.current = 0; setResting(false); hop(); run() }
     const leave = () => { hovered = false }
     host?.addEventListener('pointerenter', enter)

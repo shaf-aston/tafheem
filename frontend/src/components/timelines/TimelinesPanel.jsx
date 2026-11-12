@@ -79,6 +79,8 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
   const shown = data.sections.filter((s) => science === ALL || s.science === science)
   // A science filter that hides the open section sends the tab back to the board.
   const section = shown.find((s) => s.id === place?.section)
+  // A section opened without an event opens on its first one.
+  const chosen = section && (section.events.find((e) => e.id === place.event) ?? section.events[0] ?? null)
   const filter = [
     { id: ALL, label: 'All' },
     ...data.sciences.map((s) => ({ id: s.key, label: s.name })),
@@ -105,10 +107,11 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
                 key={section.id}
                 section={section}
                 library={data}
-                chosen={section.events.find((e) => e.id === place.event) ?? null}
+                chosen={chosen}
+                opened={Boolean(place.event)}
                 report={place.report ?? null}
                 onPick={pick(section.id)}
-                onReport={report(section.id, place.event)}
+                onReport={report(section.id, chosen?.id ?? null)}
                 onGo={onGo}
               />
             )}

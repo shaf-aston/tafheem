@@ -1,6 +1,8 @@
-/* One file per job; new rules go in the file whose name fits, never in a new
-   sheet beside a component. The sheets after components.css are older single-feature
-   files kept whole. command.css sits second so components.css can override it. */
+/* One file per job; new rules go in the file whose name fits, never in a new sheet beside a
+   component. components.css is the shared kit every tab draws; the sheets after it are one per
+   feature (shell, words, quran, daleel, wheel, memorise, progress, hadith, dictionary), then the
+   older single-feature files (tarkeeb, timelines, grow...) kept whole. command.css sits second so
+   components.css can override it. */
 @import "./base.css";
 @import "./command.css";
 @import "./layers.css";

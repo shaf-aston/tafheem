@@ -1,10 +1,9 @@
 /**
  * What a typed line means, and where it should go.
  *
- * One reader for both command surfaces: the bar in the header and the orbit
- * launcher behind the pen. Neither of them decides anything about routing, they
- * only draw what this returns, so the two can never disagree about what "@قول"
- * or "2:255" does.
+ * One reader for every command line: the bar in the header, Home's line and the
+ * phone's Ask sheet. None of them decides anything about routing, they only draw
+ * what this returns, so they can never disagree about what "@قول" or "2:255" does.
  *
  * Pure on purpose. No fetch, no React, no clock. Every row it returns is just a
  * tab id and the value to hand that tab, which is exactly what App's switchTab
