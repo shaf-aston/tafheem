@@ -150,7 +150,7 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
       {idle && <QuranOpening accent={accent} onOpen={openResult} />}
 
       {/* The question form every tab shares (ui/inputs/QuestionForm). */}
-      <QuestionForm accent={accent}>
+      <QuestionForm>
       <RecentRow
         items={recent.map((h) => `${h.surah}:${h.ayah}`)}
         accent={accent}

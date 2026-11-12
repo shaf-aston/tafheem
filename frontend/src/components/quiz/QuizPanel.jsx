@@ -10,7 +10,6 @@ import { useQuizQuestion } from '../../lib/quiz/useQuizQuestion'
 import { useQuizRound } from '../../lib/quiz/useQuizRound'
 import { useQuizScore } from '../../lib/quiz/useQuizScore'
 import { useQuizSetup } from '../../lib/quiz/useQuizSetup'
-import { TABS } from '../../lib/nav/tabs'
 
 import BasicsRound from './BasicsRound'
 import QuizAyah from './QuizAyah'
@@ -24,9 +23,6 @@ import ErrorAlert from '../ui/feedback/ErrorAlert'
 import SectionHeader from '../ui/display/SectionHeader'
 import FeedbackButton from '../ui/buttons/FeedbackButton'
 import { Skeleton } from '../ui/feedback/Skeleton'
-
-// The tab's one line from the registry, through say() like every sentence here.
-const QUIZ_TAB = TABS.find((tab) => tab.id === 'quiz')
 
 // A fresh seed every time, so reloading the page gives a different first word
 // instead of the same one forever. Inside the round the seed only counts up,
@@ -110,7 +106,7 @@ export default function QuizPanel({ accent, onProgress }) {
     // and takes the direction of the text either side of it.
     // A lesson set (Basics) is Grow's cards, written in English whatever the meaning language.
     <div className="panel" lang={bank.lesson ? 'en' : language} dir={language === 'en' || bank.lesson ? 'ltr' : 'rtl'}>
-      <SectionHeader tab="quiz" title={say('Quiz')} subtitle={say(QUIZ_TAB.blurb)} />
+      <SectionHeader tab="quiz" say={say} />
 
       <QuizSetup setup={setup} owed={owed} say={say} phone={phone} accent={accent} onChange={startRound} />
 

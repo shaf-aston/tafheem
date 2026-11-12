@@ -60,7 +60,7 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
   return (
     <div className="space-y-6">
       {/* The question form every tab shares (ui/inputs/QuestionForm). */}
-      <QuestionForm accent={accent}>
+      <QuestionForm>
         {/* The same field as Dictionary and Daleel, grown to a textarea: see
             ui/SearchBox's multiline mode. */}
         <SearchBox

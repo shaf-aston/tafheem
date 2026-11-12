@@ -11,10 +11,6 @@
  * Its width is the field's (theme.json layout.field), so a box for one word is not a
  * banner across the page; see .question-form in styles/components.css.
  */
-export default function QuestionForm({ accent, children }) {
-  return (
-    <div className="question-form" style={{ '--c': accent }}>
-      {children}
-    </div>
-  )
+export default function QuestionForm({ children }) {
+  return <div className="question-form">{children}</div>
 }

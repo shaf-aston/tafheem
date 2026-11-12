@@ -81,7 +81,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
         onFocus={() => setFocused(true)}
         onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false) }}
       >
-      <QuestionForm accent={accent}>
+      <QuestionForm>
         <SearchBox
           id="hadith-search-input"
           label="Arabic or English"

@@ -144,7 +144,7 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
       />
 
       {/* The question form every tab shares (ui/inputs/QuestionForm). */}
-      <QuestionForm accent={accent}>
+      <QuestionForm>
         {/* Every recent question, whichever language it was asked in, each chip
             set in its own script. They used to be split into two lists by the
             toggle above, so half of them were hidden at any one time. */}
