@@ -12,7 +12,7 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from fastapi import APIRouter, BackgroundTasks, HTTPException, Query, Response
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, Response
 
 from backend.config import get_settings
 from backend.models.practice import (
@@ -28,6 +28,7 @@ from backend.services.nahw import iraab
 from backend.services.nahw import practice as practice_service
 from backend.services.learner import attempts
 from backend.services.core import provenance
+from backend.services.core.ratelimit import READ
 from backend.services.learner import checked_sentence
 from backend.utils import Timings, arabic_sentence
 
@@ -38,7 +39,7 @@ router = APIRouter(prefix="/api/practice", tags=["practice"])
 MODULE = "nahw"
 
 
-@router.post("", response_model=PracticeResponse)
+@router.post("", response_model=PracticeResponse, dependencies=[Depends(READ)])
 async def generate_practice(request: PracticeRequest, response: Response, later: BackgroundTasks) -> PracticeResponse:
     sentence = arabic_sentence(request.sentence, "Sentence")
     timings = Timings()
@@ -52,10 +53,11 @@ async def generate_practice(request: PracticeRequest, response: Response, later:
 
 
 @router.get("/kept", response_model=KeptQuestions)
-async def kept_practice(sentence: str | None = Query(None, max_length=get_settings().max_sentence_chars)) -> KeptQuestions:
-    """Every question filed so far, or only one sentence's. No screen reads it yet: it is the
-    way back into what /api/practice filed, for a review screen to come."""
-    wanted = arabic_sentence(sentence, "Sentence") if sentence else None
+async def kept_practice(sentence: str = Query(..., min_length=1, max_length=get_settings().max_sentence_chars)) -> KeptQuestions:
+    """One sentence's filed questions. No screen reads it yet: it is the way back into what
+    /api/practice filed, for a review screen to come. The sentence is required: without it this
+    answered every sentence anyone ever typed (docs/plans/2026-11-11-security.md)."""
+    wanted = arabic_sentence(sentence, "Sentence")
     rows = await asyncio.to_thread(attempts.kept_questions, MODULE, wanted)
     return KeptQuestions(questions=[KeptQuestion(**row) for row in rows])
 

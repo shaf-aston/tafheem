@@ -14,6 +14,10 @@
  *
  * `width` is a name from theme.json's sheet group: narrow, standard or wide, never
  * wider than 92% of the screen. A heading inside names it with `labelledBy`, else `label`.
+ *
+ * `held`: neither Esc nor the backdrop closes it, and a browser that closes it
+ * anyway (Chrome lets a second Esc through) finds it open again: for a sheet
+ * whose own button is the only way on (a recovery code, shown once).
  */
 import { useEffect, useState } from 'react'
 
@@ -26,9 +30,9 @@ const WIDTH = {
   wide: 'sm:max-w-[min(var(--sheet-wide),92vw)]',
 }
 
-export default function BottomSheet({ label, labelledBy, onClose, open, width = 'standard', className = '', children }) {
+export default function BottomSheet({ label, labelledBy, onClose, open, width = 'standard', held = false, className = '', children }) {
   const kept = open !== undefined
-  const dialog = useModal(kept ? open : true)
+  const dialog = useModal(kept ? open : true, held)
   const [opener] = useState(() => document.activeElement)
   useEffect(() => (kept ? undefined : () => opener?.focus?.()), [kept, opener])
   return (
@@ -36,8 +40,8 @@ export default function BottomSheet({ label, labelledBy, onClose, open, width = 
       ref={dialog}
       aria-label={labelledBy ? undefined : label}
       aria-labelledby={labelledBy}
-      onClose={onClose}
-      onClick={closeOnBackdrop(onClose)}
+      onClose={held ? () => dialog.current?.showModal() : onClose}
+      onClick={held ? undefined : closeOnBackdrop(onClose)}
       className={`m-0 mt-auto sm:m-auto p-0 w-full max-w-none ${WIDTH[width]} max-h-[100dvh] bg-transparent ${kept ? 'phone-sheet' : ''}`}
     >
       {/* A click inside the box is not on the backdrop, so it never reaches closeOnBackdrop's target check. */}

@@ -18,6 +18,8 @@ from fastapi.testclient import TestClient
 from backend.main import app
 from backend.services.learner import accounts, attempts, circles, progress_db
 from backend.services.learner.username import clean_name
+from tests.learner import sign_in
+from tests.learner.sign_in import as_
 
 client = TestClient(app)
 
@@ -27,13 +29,9 @@ def store(tmp_path, monkeypatch):
     target = tmp_path / "progress.db"
     monkeypatch.setattr(progress_db, "data_path", lambda _name: target)
     progress_db.reset_connection()
+    sign_in.forget_all()
     yield
     progress_db.reset_connection()
-
-
-def as_(name):
-    """The header the page sends: percent-encoded, since headers cannot carry Arabic."""
-    return {"X-Tafheem-Profile": quote(name)} if name is not None else {}
 
 
 def answer(name, item, correct=True):
@@ -107,11 +105,11 @@ def test_forget_wipes_only_the_name_asking():
 
 
 def signup(name, keep=False):
-    return client.post("/api/progress/signup", json={"keep": keep}, headers=as_(name))
+    return sign_in.signup(client, name, keep)
 
 
-def login(name):
-    return client.post("/api/progress/login", headers=as_(name))
+def login(name, code=None):
+    return sign_in.login(client, name, code)
 
 
 def test_signup_hands_back_the_one_spelling():
@@ -132,13 +130,39 @@ def test_login_finds_a_signed_up_name_only():
     assert login(" amina ").json()["name"] == "amina"
 
 
+def _old_file(steps: int):
+    """progress.db as a server `steps` migrations old left it: a connection to fill, and closed by the caller."""
+    progress_db.reset_connection()
+    path = progress_db.data_path("progress_db_path")
+    path.unlink(missing_ok=True)
+    for suffix in ("-wal", "-shm"):
+        path.with_name(path.name + suffix).unlink(missing_ok=True)
+    old = sqlite3.connect(path)
+    old.executescript(progress_db.SCHEMA)
+    for step, script in enumerate(progress_db.MIGRATIONS[:steps], start=1):
+        old.executescript(f"BEGIN; {script} PRAGMA user_version = {step}; COMMIT;")
+    return old
+
+
 def test_names_used_before_signup_existed_can_log_in():
-    attempts.record(module="quiz", item="to-go", correct=True, user="bilal")  # from before accounts
-    attempts.leave_feedback(module="quiz", message="x", user="cyra")  # reported, never answered
-    progress_db.reset_connection()  # a restart, where the old names become accounts
-    assert login("Bilal").status_code == 200
+    old = _old_file(3)
+    old.execute("INSERT INTO attempts (user, module, item, correct) VALUES ('bilal', 'quiz', 'to-go', 1)")
+    old.execute("INSERT INTO feedback (user, module, message) VALUES ('cyra', 'quiz', 'x')")  # reported, never answered
+    old.commit()
+    old.close()
+    assert login("Bilal").status_code == 200  # the upgrade made them accounts; the first log-in claims each
     assert login("Cyra").status_code == 200
     assert signup("Bilal").status_code == 409
+
+
+def test_an_answer_left_behind_never_brings_a_deleted_account_back():
+    """Once, at the upgrade, old names became accounts. It used to run on every connection, so an answer filed
+    just as its account was deleted made the account again, open to anyone typing the name."""
+    signup("Amina")
+    client.delete("/api/progress/account", headers=as_("Amina"))
+    attempts.record(module="quiz", item="to-go", correct=True, user="amina")  # the answer that landed late
+    progress_db.reset_connection()
+    assert not accounts.has_account("amina")
 
 
 def test_a_name_without_an_account_cannot_read_or_write():
@@ -146,7 +170,7 @@ def test_a_name_without_an_account_cannot_read_or_write():
     body = {"module": "quiz", "item": "to-write", "correct": True}
     response = client.post("/api/progress/attempts", headers=as_("ghost"), json=body)
     assert response.status_code == 401
-    assert response.json()["detail"] == "Log in again: no account with that username"
+    assert response.json()["detail"] == "Log in again on this device"
     assert client.get("/api/progress/summary", headers=as_("ghost")).status_code == 401
 
 
@@ -210,7 +234,7 @@ def test_a_deleted_accounts_reports_go_to_nobody():
     progress_db.reset_connection()
     users = [row[0] for row in progress_db.connection().execute("SELECT user FROM feedback")]
     assert users == [""]
-    assert client.get("/api/progress/accounts").json() == {"names": ["bilal"]}
+    assert accounts.account_names() == ["bilal"]
 
 
 def test_the_leaderboard_ranks_accounts_by_words_learnt_and_finds_you():
@@ -275,14 +299,15 @@ def test_start_over_and_delete_empty_the_shelf():
     assert shelf("Amina").json() == {"data": {}}
 
 
-# Beta: the log-in box lists every username, so testers can pick one.
+# Beta: the log-in box can list every username, so testers can pick one. Off unless switched on:
+# with no password, the list is every account anyone can act as (docs/plans/2026-11-11-security.md).
 
-def test_while_in_beta_every_username_is_listed(monkeypatch):
+def test_usernames_are_not_listed_unless_beta_is_switched_on(monkeypatch):
     from backend.config import get_settings
     signup("Bilal"), signup("Amina")
-    assert client.get("/api/progress/accounts").json() == {"names": ["amina", "bilal"]}
-    monkeypatch.setattr(get_settings(), "beta_list_accounts", False)
     assert client.get("/api/progress/accounts").status_code == 404
+    monkeypatch.setattr(get_settings(), "beta_list_accounts", True)
+    assert client.get("/api/progress/accounts").json() == {"names": ["amina", "bilal"]}
 
 
 # Circles: invited people are invisible until they accept; what a viewer may see of a member follows the roles.
@@ -463,21 +488,13 @@ def test_the_last_admin_cannot_leave_while_others_are_in_the_circle():
 
 def test_the_password_columns_go_from_a_fresh_file_and_from_one_already_at_step_two():
     columns = lambda: [r[1] for r in progress_db.connection().execute("PRAGMA table_info(accounts)")]  # noqa: E731
-    assert columns() == ["name", "at", "public"]                                   # fresh file
-    progress_db.reset_connection()
-    path = progress_db.data_path("progress_db_path")
-    path.unlink()
-    for suffix in ("-wal", "-shm"):
-        path.with_name(path.name + suffix).unlink(missing_ok=True)
-    old = sqlite3.connect(path)
-    old.executescript(progress_db.SCHEMA)
-    for step, script in enumerate(progress_db.MIGRATIONS[:2], start=1):
-        old.executescript(f"BEGIN; {script} PRAGMA user_version = {step}; COMMIT;")
+    assert columns() == ["name", "at", "public", "recovery"]                       # fresh file
+    old = _old_file(2)
     old.execute("INSERT INTO accounts (name, pass, key) VALUES ('amina', 'p', 'k')")
     old.commit()
     old.close()
     assert accounts.has_account("amina")                                      # opens, migrates, keeps the row
-    assert columns() == ["name", "at", "public"]
+    assert columns() == ["name", "at", "public", "recovery"]
 
 
 def test_the_overview_counts_every_module_and_the_days_in_a_row():

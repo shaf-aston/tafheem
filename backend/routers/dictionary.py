@@ -29,6 +29,7 @@ from backend.services.dictionary import service as dictionary_service
 from backend.services.dictionary import lexicons
 from backend.services.dictionary import lexicon_gists
 from backend.services.core import provenance
+from backend.services.core.ratelimit import READ
 from backend.services.dictionary import root_english
 from backend.services.dictionary import root_entry
 from backend.services.dictionary import root_gloss
@@ -105,7 +106,7 @@ async def search_dictionary(
     )
 
 
-@router.get("/sentence", response_model=SentenceResponse)
+@router.get("/sentence", response_model=SentenceResponse, dependencies=[Depends(READ)])
 async def translate_sentence(
     q: str = Query(..., min_length=1, max_length=get_settings().max_sentence_chars, description="Arabic or English phrase or sentence"),
 ) -> SentenceResponse:

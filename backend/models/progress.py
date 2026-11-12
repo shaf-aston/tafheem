@@ -80,6 +80,23 @@ class SignUpIn(BaseModel):
     keep: bool = False
     """Move the guest's answers onto this name."""
 
+    shows_code: bool = False
+    """The page will show a new recovery code. Pages from before codes never did: for them, while claims are
+    open, no code is made (a code nobody saw would lock the account to this browser); the page that shows
+    codes claims the account on its next load instead."""
+
+
+class LogInIn(BaseModel):
+    """Logging in to the username in the profile header."""
+
+    code: str | None = Field(None, max_length=40)
+    """The account's recovery code; needed once the account is claimed, unless this browser holds its token."""
+
+    shows_code: bool = False
+    """The page will show a new recovery code. Pages from before codes never did: for them, while claims are
+    open, no code is made (a code nobody saw would lock the account to this browser); the page that shows
+    codes claims the account on its next load instead."""
+
 
 class Shelf(BaseModel):
     """Everything the page keeps for one account: its own key -> stored text."""
@@ -94,6 +111,34 @@ class Account(BaseModel):
     joined: str
     answers: int
     public: bool
+    proven: bool = True
+    """This browser holds the account's device token. False only for an account from before tokens, read by
+    name while claims are open: the page then logs in, which claims it (services/learner/tokens.py)."""
+    has_code: bool = True
+    """False for an account signed up from a page that never showed a code: this browser holds it, and the
+    page asks for its first code (POST /recovery) and shows it."""
+
+
+class SignedIn(Account):
+    """Sign-up's and log-in's answer: the account, and the recovery code when a new one was made (shown once:
+    only its seal is kept). The device token itself goes in an HttpOnly cookie, never to the page."""
+
+    recovery: str | None = None
+
+
+class RecoveryIn(BaseModel):
+    """Asking for a new recovery code: the current one, unless this device logged in moments ago."""
+
+    code: str | None = Field(default=None, max_length=40)
+    first: bool = False
+    """Only the account's first code (the page's load-time ask): another tab that made it first gets a 409, not
+    a second code that would kill the one already on screen."""
+
+
+class Recovery(BaseModel):
+    """A new recovery code, shown once; the old one no longer works."""
+
+    code: str
 
 
 class AccountNames(BaseModel):

@@ -64,10 +64,6 @@ CREATE TABLE IF NOT EXISTS saved (
     data TEXT NOT NULL,
     at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
--- Names typed before sign-up existed are accounts already, so their owners can log in. Guest records never are.
-INSERT OR IGNORE INTO accounts (name, at)
-    SELECT user, MIN(at) FROM (SELECT user, at FROM attempts UNION ALL SELECT user, at FROM feedback)
-    WHERE user NOT IN ('{GUEST}', '') AND user NOT LIKE '{DEVICE}%' GROUP BY user;
 """
 
 # Changes to tables that already exist, in order; PRAGMA user_version counts how many ran.
@@ -107,6 +103,25 @@ MIGRATIONS = (
     """,
     # Accounts are by username alone again: the two columns step 1 added go.
     "ALTER TABLE accounts DROP COLUMN pass; ALTER TABLE accounts DROP COLUMN key;",
+    # Proof of owning an account (services/learner/tokens.py): the salted scrypt of its current recovery code,
+    # NULL until claimed, and one row per logged-in device holding the SHA-256 of that device's token and the
+    # day it was last used.
+    # First, once: names typed before sign-up existed become accounts, so their owners can log in. This ran on
+    # every connection before, so an answer filed just as its account was deleted brought the account back with
+    # no proof of anyone's (docs/plans/2026-11-11-security.md §5). Guest records never become accounts.
+    f"""
+    INSERT OR IGNORE INTO accounts (name, at)
+        SELECT user, MIN(at) FROM (SELECT user, at FROM attempts UNION ALL SELECT user, at FROM feedback)
+        WHERE user NOT IN ('{GUEST}', '') AND user NOT LIKE '{DEVICE}%' GROUP BY user;
+    ALTER TABLE accounts ADD COLUMN recovery TEXT;
+    CREATE TABLE tokens (
+        hash TEXT PRIMARY KEY,
+        name TEXT NOT NULL,
+        at   TEXT NOT NULL DEFAULT (datetime('now')),
+        used TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE INDEX ix_tokens_name ON tokens (name);
+    """,
 )
 
 

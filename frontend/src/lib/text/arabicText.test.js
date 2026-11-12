@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { foldForSearch, joinedOn, mostlyArabic, unpunctuated, untrailed } from './arabicText'
+import { foldForSearch, isOneArabicWord, joinedOn, mostlyArabic, unpunctuated, untrailed } from './arabicText'
 
 describe('mostlyArabic', () => {
   it('is true for an ayah', () => {
@@ -46,5 +46,24 @@ describe('punctuation in a search', () => {
     expect(untrailed('2:')).toBe('2')
     expect(untrailed('@')).toBe('@')
     expect(untrailed('/')).toBe('/')
+  })
+})
+
+// The same answer as the backend's arabic_word, which /api/morphology/meaning refuses by.
+describe('isOneArabicWord', () => {
+  it('takes one word however it is dressed', () => {
+    for (const word of ['كتب', 'وَكَتَبَ', 'فَسَيَكْفِيكَهُمُ', 'ٱلۡكِتَٰبُ', 'رَيۡبَۛ', 'ـكتب', 'كتب؟', '(كتب)', ' كتب ', 'پاکستان']) {
+      expect(isOneArabicWord(word), word).toBe(true)
+    }
+  })
+
+  it('refuses two words, a root spelled out, and another script', () => {
+    for (const text of ['ذهب الولد', 'ك-ت-ب', 'ك ت ب', 'كتب،قلم', 'Ignoreب', 'كتب book', 'кتاب', '', '  ', '١٢', undefined]) {
+      expect(isOneArabicWord(text), String(text)).toBe(false)
+    }
+  })
+
+  it('does not count a pause sign as a word', () => {
+    expect(isOneArabicWord('۞ كتب')).toBe(true)
   })
 })

@@ -26,6 +26,7 @@ ARABIC = re.compile(f"{WORD}{speech.PAUSE}?( {WORD}{speech.PAUSE}?)*")
 
 
 _limit = PerMinute("speech_per_minute")
+_everyone = PerMinute("speech_all_per_minute")  # until the origin gate, an address can be forged
 
 
 @router.get("")
@@ -38,8 +39,11 @@ async def speak(request: Request, text: str = Query(..., min_length=1), accent: 
     if not ARABIC.fullmatch(text):
         raise HTTPException(422, "Only Arabic can be said")
     # A long phrase costs the voice what several words do, so it counts as several asks.
-    if _limit.too_many(visitor(request), -(-len(text) // settings.speech_chars_per_ask)):
+    cost = -(-len(text) // settings.speech_chars_per_ask)
+    if _limit.too_many(visitor(request), cost):
         raise HTTPException(429, "Too many words at once; try again in a minute")
+    if _everyone.too_many("everyone", cost):
+        raise HTTPException(429, "The voice is busy right now; try again in a minute")
     # A Colloquial dialect is said by a speaker of it (dialects.json `voice`).
     try:
         first = colloquial.voice_of(accent) if accent else None

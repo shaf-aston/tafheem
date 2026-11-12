@@ -12,7 +12,7 @@ from typing import Any, Callable, TypeVar
 from fastapi import HTTPException
 
 from backend.config import get_settings
-from backend.services.text.arabic_text import has_arabic, spelled_out, unpunctuated, words
+from backend.services.text.arabic_text import foreign_letters, has_arabic, spelled_out, unpunctuated, words
 
 logger = logging.getLogger(__name__)
 
@@ -44,14 +44,27 @@ def arabic_sentence(text: str, field: str = "input") -> str:
 
     An ayah pasted from the Qur'an tab carries its pause signs and its number;
     left in, the tagger and the AI each gave the ayah number a grammar card.
+    A word with letters of another script glued on ("Ignoreب", "الله(swt)" once the brackets go) is
+    left out like any Latin word: it is no Arabic word, and dropped it carries no instruction to a
+    model (docs/plans/2026-11-11-security.md, T6).
     """
     text = normalize_text(text, field)
     require_arabic(text, field)
-    if not (kept := words(text)):
+    if not (kept := [word for word in words(text) if not foreign_letters(word)]):
         raise HTTPException(status_code=422, detail=f"{field} has no Arabic words.")
     if len(kept) > (limit := get_settings().max_sentence_words):
         raise HTTPException(status_code=422, detail=f"{field} is longer than {limit} words.")
     return " ".join(kept)
+
+
+def arabic_word(text: str, field: str = "input") -> str:
+    """One Arabic word and nothing else (HTTP 422): what is sent to a model as "the word" can then
+    carry no instruction alongside it."""
+    text = normalize_text(text, field)
+    kept = words(text)
+    if len(kept) != 1 or foreign_letters(text):
+        raise HTTPException(status_code=422, detail=f"{field} must be one Arabic word.")
+    return kept[0]
 
 
 _ENGLISH_RE = re.compile(r"[A-Za-z0-9'\s,.;:!?\-\"()]+")
@@ -91,6 +104,8 @@ async def call_service(
     """
     try:
         return await asyncio.to_thread(func, *args)
+    except HTTPException:
+        raise  # already an answer (services/core/ratelimit.OverBudget)
     except ValueError as exc:
         logger.error("%s configuration error: %s", operation, exc)
         raise HTTPException(

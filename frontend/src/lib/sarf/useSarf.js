@@ -4,6 +4,7 @@ import { useMutation } from '../api/useMutation'
 import { analyzeMorphology, analyzeMeaning, conjugateForm } from '../../api'
 import { useArrival, useArrivalEffect, useHeld } from '../nav/useArrival'
 import { useSlowPending } from '../hooks/useSlowPending'
+import { isOneArabicWord } from '../text/arabicText'
 
 /**
  * What the Sarf tab is asking about and what came back: the word in the box,
@@ -65,10 +66,14 @@ export function useSarf({ incoming, arrival, onVisit }) {
   }
 
   // Fires right after the table lands, not on every باب swap; the word hasn't
-  // changed, so asking again would just repeat the same network call.
+  // changed, so asking again would just repeat the same network call. Only for
+  // one Arabic word: the table takes two words or a root spelled out (ك-ت-ب),
+  // which the meaning route refuses, and each refusal still spends the reader's
+  // share of model calls.
   const { mutate: fetchMeaning } = meaning
   useEffect(() => {
-    if (mutation.data && !mutation.data.meaning) fetchMeaning({ word: mutation.data.word })
+    const asked = mutation.data
+    if (asked && !asked.meaning && isOneArabicWord(asked.word)) fetchMeaning({ word: asked.word })
   }, [mutation.data, fetchMeaning])
 
   // The box and the باب follow the word during the render.

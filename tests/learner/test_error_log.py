@@ -12,7 +12,7 @@ import logging
 from fastapi.testclient import TestClient
 
 from backend.main import app
-from backend.services.learner import accounts, attempts
+from backend.services.learner import accounts, attempts, tokens
 
 
 def test_a_crash_is_logged_with_path_and_profile_not_body(monkeypatch, caplog):
@@ -21,6 +21,7 @@ def test_a_crash_is_logged_with_path_and_profile_not_body(monkeypatch, caplog):
 
     monkeypatch.setattr(attempts, "record", broken)
     monkeypatch.setattr(accounts, "has_account", lambda _name: True)
+    monkeypatch.setattr(tokens, "claimed", lambda _name: False)  # an account from before tokens: its name reads
     client = TestClient(app, raise_server_exceptions=False)
     with caplog.at_level(logging.ERROR, logger="backend.main"):
         response = client.post("/api/progress/attempts", headers={"X-Tafheem-Profile": "amina"},

@@ -18,6 +18,7 @@ from backend.services.ai import prompts
 from backend.services.ai.base import AIBackend
 from backend.services.ai.groq_backend import GroqBackend
 from backend.services.ai.ollama_backend import OllamaBackend
+from backend.services.core import ratelimit
 from backend.services.core.fallback import permanent_failure
 
 logger = logging.getLogger(__name__)
@@ -81,6 +82,7 @@ def _ask(user_prompt: str, max_tokens: int, system: str | None = None) -> dict:
             "No AI backend available. Set GROQ_API_KEY in .env, or install Ollama "
             "(https://ollama.com) and run: ollama pull qwen2.5:3b"
         )
+    ratelimit.AI.spend()  # raises OverBudget, before a token is spent
     try:
         return backend.complete_json(
             messages=[
@@ -208,6 +210,8 @@ def checked_sentence(words: list[str], passes) -> dict | None:
     for _ in range(settings.sentence_max_tries):
         try:
             reply = _ask(prompt, max_tokens=settings.sentence_max_tokens)
+        except ratelimit.OverBudget:
+            raise
         except Exception as exc:  # a failed call is a failed try, not a crash
             logger.warning("checked sentence try failed: %r", exc)
             continue

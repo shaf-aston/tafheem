@@ -1,13 +1,14 @@
 /**
  * A native <dialog> kept in step with an `open` prop: showModal on true, close
  * on false. Native, so Esc, the backdrop and the focus trap come free. Returns
- * the ref for the <dialog>. Was copied into four panels.
+ * the ref for the <dialog>. Was copied into four panels. `held`: Esc does
+ * nothing, for a sheet that must be answered (a recovery code to save).
  */
 import { useEffect, useRef } from 'react'
 
 import { reducedMotion } from '../motion/motion'
 
-export function useModal(open) {
+export function useModal(open, held = false) {
   const ref = useRef(null)
   useEffect(() => {
     const element = ref.current
@@ -32,7 +33,7 @@ export function useModal(open) {
         if (element.open) element.close()
       }, ms)
     }
-    const cancel = (e) => { e.preventDefault(); leave() }
+    const cancel = (e) => { e.preventDefault(); if (!held) leave() }
     element.addEventListener('cancel', cancel)
     if (open && !element.open) element.showModal()
     if (!open && element.open) leave()
@@ -40,7 +41,7 @@ export function useModal(open) {
       element.removeEventListener('close', stale, true)
       element.removeEventListener('cancel', cancel)
     }
-  }, [open])
+  }, [open, held])
   // Closed when its tab is hidden (App keeps the panel alive) and shown again
   // on return: a modal left open in a hidden tab would leave the page inert.
   // Its own effect, run only on the way out: in the effect above this cleanup

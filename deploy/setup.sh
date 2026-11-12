@@ -5,7 +5,7 @@ set -e
 HOST="${1:?Pass your duckdns name, for example: bash deploy/setup.sh tafheem.duckdns.org}"
 
 sudo apt-get update
-sudo apt-get install -y python3-venv python3-dev build-essential debian-keyring debian-archive-keyring apt-transport-https curl
+sudo apt-get install -y python3-venv python3-dev build-essential debian-keyring debian-archive-keyring apt-transport-https curl ffmpeg
 
 python3 -m venv venv
 venv/bin/pip install --upgrade pip
@@ -29,6 +29,8 @@ sudo iptables -I INPUT $N -m state --state NEW -p tcp --dport 443 -j ACCEPT
 sudo netfilter-persistent save
 
 sudo cp "deploy/tafheem@.service" /etc/systemd/system/
+# The logs rotate once for both backend copies (see the file for why not from Python).
+sudo install -m 644 deploy/logrotate.conf /etc/logrotate.d/tafheem
 sudo systemctl daemon-reload
 sudo systemctl enable --now tafheem@8000 tafheem@8001
 

@@ -20,10 +20,12 @@ from itertools import pairwise
 
 from backend.config import get_settings
 from backend.services import ai
+from backend.services.core.ratelimit import OverBudget
 from backend.services.dictionary import service as dictionary_service
 from backend.services.nahw import iraab
 from backend.services.sarf import morphology
 from backend.services.learner import attempts
+from backend.services.text.arabic_text import foreign_letters
 from backend.services.quran import library as quran_library
 from backend.services.quran import meanings as quran_meanings
 from backend.services.quran import search as quran_search
@@ -180,6 +182,8 @@ def _model_sense(text: str, rows: list[dict], words_source: str = "camel", ref: 
     """The model's one sentence over the words' facts; no sense when it is unreachable."""
     try:
         meaning = _asked(text, _QUESTION, lambda: ai.translate_sentence(text, _facts(rows))["english"])
+    except OverBudget:
+        raise
     except Exception as exc:  # noqa: BLE001, a dead model leaves the word-by-word standing
         logger.info("sentence meaning  model failed: %s", exc)
         meaning = None
@@ -194,14 +198,43 @@ def _facts(pairs: list[dict]) -> str:
         f"{p.get('senses') or p['english'] or '-'}" for n, p in enumerate(pairs, 1))
 
 
+# What a translation of a sentence never holds, and an answer steered by the text often does: a link, an
+# address, a tag. Only a tag's opening: "<" alone is a fair rendering of "less than".
+_LINKISH = re.compile(r"https?:|www\.|@|</?[A-Za-z]")
+
+
+def plausible(text: str, answer: object, arabic: bool) -> str:
+    """The model's answer if it reads as a rendering of `text`, else ValueError (so it is never filed
+    and shown to the next person who types the same text). The text is a reader's: it can carry
+    instructions however the prompt fences it (docs/plans/2026-11-11-security.md, T6).
+    Loose on purpose: a refusal drops a real translation, so only what no rendering holds is refused.
+    A short text may well be rendered long (a two-word idiom), hence the floor of 30 words."""
+    if not isinstance(answer, str) or not (answer := answer.strip()):
+        raise ValueError("the model answered with nothing")
+    if _LINKISH.search(answer):
+        raise ValueError("the answer carries a link or markup")
+    if len(answer.split()) > max(3 * len(text.split()) + 10, 30):
+        raise ValueError("the answer is far longer than the text")
+    # A name kept in Latin letters in an Arabic rendering is fine when the English had it too (BBC, iPhone).
+    if arabic and any(foreign_letters(w) for w in answer.split() if w.strip(_PUNCT) not in _source_words(text)):
+        raise ValueError("an Arabic rendering with letters of another script")
+    return answer
+
+
+_PUNCT = ".,;:!?\"'()[]«»،؛؟"
+
+
+def _source_words(text: str) -> set[str]:
+    return {w.strip(_PUNCT) for w in text.split()}
+
+
 def _asked(text: str, question: str, ask) -> str:
     """One model answer per text, filed on disk under `question`: the server runs several
     processes, and a cache in each gave the same sentence two wordings by turns. A failure
-    or an empty answer raises and is not filed. Two first askings at once both ask, and
+    or an implausible answer raises and is not filed. Two first askings at once both ask, and
     both return the one the store kept first."""
     if not (kept := _kept(text, question)):
-        if not (answer := str(ask() or "").strip()):
-            raise ValueError("the model answered with nothing")
+        answer = plausible(text, ask(), arabic=question == _ARABIC)
         attempts.keep_questions(module=_KEPT, sentence=text, source="ai",
                                       questions=[{"question": question, "answer": answer}])
         kept = _kept(text, question)
@@ -221,6 +254,8 @@ def translate_english(text: str) -> dict:
             for w in dictionary_service.english_words(text)]
     try:
         meaning = _asked(text, _ARABIC, lambda: ai.render_in_arabic(text)["arabic"])
+    except OverBudget:
+        raise
     except Exception as exc:  # noqa: BLE001, a dead model leaves the word-by-word standing
         logger.info("sentence meaning  model failed: %s", exc)
         meaning = None

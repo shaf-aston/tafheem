@@ -25,9 +25,8 @@ def store(tmp_path, monkeypatch):
     progress_db.reset_connection()
 
 
-def kept(sentence=None):
-    params = {"sentence": sentence} if sentence else {}
-    response = client.get("/api/practice/kept", params=params)
+def kept(sentence=SENTENCE):
+    response = client.get("/api/practice/kept", params={"sentence": sentence})
     assert response.status_code == 200
     return response.json()["questions"]
 
@@ -52,7 +51,12 @@ def test_kept_filters_by_sentence():
     client.post("/api/practice", json={"sentence": SENTENCE})
     client.post("/api/practice", json={"sentence": "الكِتَابُ مُفِيدٌ"})
     assert {r["sentence"] for r in kept(SENTENCE)} == {SENTENCE}
-    assert len({r["sentence"] for r in kept()}) == 2
+    assert {r["sentence"] for r in kept("الكِتَابُ مُفِيدٌ")} == {"الكِتَابُ مُفِيدٌ"}
+
+
+def test_no_one_can_list_every_sentence_anyone_typed():
+    client.post("/api/practice", json={"sentence": SENTENCE})
+    assert client.get("/api/practice/kept").status_code == 422
 
 
 def test_a_broken_database_still_answers(monkeypatch):

@@ -61,7 +61,7 @@ def tidy(audio: bytes) -> bytes:
     trim = "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05"
     cut = f"{trim},areverse,{trim},areverse,adelay={int(lead * 1000)},apad=pad_dur={lead}"
     done = subprocess.run(
-        ["ffmpeg", "-loglevel", "error", "-i", "pipe:0", "-af", cut, "-ac", "1", "-ar", "22050",
+        ["ffmpeg", "-loglevel", "error", "-protocol_whitelist", "pipe", "-i", "pipe:0", "-af", cut, "-ac", "1", "-ar", "22050",
          "-b:a", "48k", "-f", "mp3", "pipe:1"],
         input=audio, capture_output=True, timeout=30, check=False,
     )

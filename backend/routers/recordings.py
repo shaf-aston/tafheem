@@ -20,7 +20,8 @@ def _allowed(key: str | None) -> None:
     expected = get_settings().recorder_key.get_secret_value()
     if not expected:
         raise HTTPException(404, "The recording studio is off")
-    if not key or not hmac.compare_digest(key, expected):
+    # As bytes: compare_digest refuses a str with a non-ASCII letter, which was a 500, not a 403.
+    if not key or not hmac.compare_digest(key.encode(), expected.encode()):
         raise HTTPException(403, "Wrong recorder key")
 
 

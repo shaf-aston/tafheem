@@ -13,10 +13,13 @@ from __future__ import annotations
 import json
 from contextlib import contextmanager
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 
 from backend.config import get_settings
-from backend.identity import DEVICE, NAMED, OWN, TYPED, USER
+from backend.identity import (
+    DEVICE, NAMED, OWN, PROVEN, PROVEN_USER, SESSION, TOKEN, TYPED, USER, give_token, prove, take_token,
+)
+from backend.services.core.ratelimit import ACCOUNT, ANSWER, ANSWER_PLACE, NAMELESS, visitor
 from backend.models.progress import (
     Account,
     AccountNames,
@@ -29,6 +32,7 @@ from backend.models.progress import (
     FeedbackIn,
     Forgotten,
     InviteIn,
+    LogInIn,
     ItemStats,
     Leaderboard,
     ModuleOverview,
@@ -36,15 +40,19 @@ from backend.models.progress import (
     ParentIn,
     ProgressSummary,
     PublicIn,
+    Recovery,
+    RecoveryIn,
     ReviewList,
     Rewards,
     RoleIn,
     Shelf,
+    SignedIn,
     SignUpIn,
 )
-from backend.services.learner import accounts, attempts, circles, lifecycle
+from backend.services.core import audit
+from backend.services.learner import accounts, attempts, circles, lifecycle, quiz_words, tokens
 from backend.services.learner import identity as guest_identity
-from backend.services.learner.username import GUEST, clean_name
+from backend.services.learner.username import GUEST, clean_name, is_guest
 
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
@@ -53,8 +61,19 @@ _TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner'
 
 
 @router.post("/attempts", response_model=AttemptSaved)
-async def record_attempt(attempt: AttemptIn, user: str = USER) -> AttemptSaved:
-    """File one answer; return its XP and new totals. Only the old shared record earns none: it is many people's."""
+async def record_attempt(request: Request, attempt: AttemptIn, user: str = USER) -> AttemptSaved:
+    """File one answer; return its XP and new totals. Only the old shared record earns none: it is many people's.
+    A quiz answer must name a word of the quiz's list (services/learner/quiz_words.py).
+
+    The answer limit is per account, not per address: a class drilling together behind one address is many
+    learners. A guest's record is named by a header anyone can change, so a guest counts by address."""
+    # The address first: many accounts from one address (a class, or one person's script), refused before they
+    # are counted against their accounts or the everyone-together ceiling, which they must not use up.
+    if ANSWER_PLACE.too_many(visitor(request)):
+        raise HTTPException(status_code=429, detail=ANSWER.mine)
+    ANSWER.check(visitor(request) if is_guest(user) else user)
+    if not quiz_words.allowed(attempt.module, attempt.item):
+        raise HTTPException(status_code=422, detail="Not a word of the quiz")
     own = user != GUEST
     earns = own and attempt.correct and attempts.earns(attempt.module, attempt.item, user, attempt.tz)
     row_id = attempts.record(
@@ -84,7 +103,7 @@ async def leave_feedback(note: FeedbackIn, user: str = USER) -> AttemptSaved:
 
 
 @router.delete("", response_model=Forgotten)
-async def forget_progress(user: str = USER) -> Forgotten:
+async def forget_progress(user: str = PROVEN_USER) -> Forgotten:
     """Delete every answer and the shelf of this name. The Settings wipe calls it."""
     return Forgotten(deleted=lifecycle.forget(user))
 
@@ -133,49 +152,167 @@ def get_review(module: str = _MODULE, user: str = USER) -> ReviewList:
     return ReviewList(module=module, items=attempts.review_items(module, user))
 
 
-@router.post("/signup", response_model=Account)
-async def sign_up(body: SignUpIn, user: str = TYPED, device: str = DEVICE) -> Account:
-    """Take a free username; the account handed back holds its one spelling, which the page keeps.
+@router.post("/signup", response_model=SignedIn, dependencies=[Depends(ACCOUNT)])
+def sign_up(body: SignUpIn, response: Response, user: str = TYPED, device: str = DEVICE,
+                  held: str | None = TOKEN) -> SignedIn:
+    """Take a free username; the account handed back holds its one spelling, which the page keeps, and the
+    account's first recovery code. This browser gets the device token (services/learner/tokens.py).
 
     `keep` moves this device's guest answers onto it. A page that names no device (one cached from before
     devices had ids) keeps nothing: the shared record it wrote to holds every such guest's answers, not its own.
     """
-    if not accounts.sign_up(user):
+    if body.shows_code:
+        minted = tokens.open_account(user)
+        made = minted is not None
+    else:  # a page from before codes, which would never show one (SignUpIn.shows_code): this browser holds the
+        # account, and the page that shows codes makes its first on its next load here (GET /account has_code)
+        token = tokens.open_without_code(user)
+        minted, made = ((token, None) if token else None), token is not None
+    if not made:
+        audit.event("signup_taken", user=user)
         raise HTTPException(status_code=409, detail="That username is taken")
     if body.keep:
         guest_identity.merge(device, user)
-    return Account(**accounts.account(user))
+    audit.event("signup", user=user, kept=body.keep, claimed=minted is not None)
+    return _signed_in(user, minted, response, held)
 
 
-@router.post("/login", response_model=Account)
-async def log_in(user: str = TYPED) -> Account:
-    """The account of a signed-up username, holding its one spelling."""
-    found = accounts.account(user)
-    if found is None:
+_NEEDS_CODE = "Type this account's recovery code"
+_NEEDS_CURRENT = "Type your current recovery code to make a new one"
+# How long after logging in a device may make a new recovery code without typing the old one.
+_FRESH_MINUTES = 15
+
+
+@router.post("/login", response_model=SignedIn, dependencies=[Depends(ACCOUNT)])
+def log_in(request: Request, response: Response, body: LogInIn | None = None, user: str = TYPED,
+                 held: str | None = TOKEN) -> SignedIn:
+    """The account of a signed-up username, holding its one spelling, with this browser proven to be its.
+
+    - This browser already holds the account's token (the page forgot the name, not the cookie): no code.
+    - With the recovery code: a token for this browser, and the next code (each code works once).
+    - An account from before tokens that nobody has claimed, while claims are open: the first browser to log
+      in claims it (trust on first use, logged so the owner can see and undo a race; the global ranking hides
+      unclaimed names meanwhile, so there is no list of them to race for).
+
+    A wrong or missing code is a 403, not a 401: the page asks for the code rather than logging out.
+    """
+    body = body or LogInIn()
+    if held is None and NAMELESS.too_many(audit.client_ip.get(), user):  # which names exist, which are claimable
+        raise HTTPException(status_code=429, detail="Too many usernames at once; wait a minute")
+    if accounts.account(user) is None:
+        audit.event("login_unknown", user=user)
         raise HTTPException(status_code=404, detail="No account with that username")
-    return Account(**found)
+    if held is not None and tokens.owner(held) == user:
+        audit.event("login", user=user, by="token")
+        return _signed_in(user, None, response, None)
+    if body.code:
+        if (minted := tokens.recover(user, body.code)) is None:
+            audit.event("login_refused", user=user)
+            raise HTTPException(status_code=403, detail="That recovery code is not this account's")
+        audit.event("login", user=user, by="code")
+        return _signed_in(user, minted, response, held)
+    if get_settings().account_claims_open and not body.shows_code and not tokens.claimed(user):
+        audit.event("login", user=user, by="name")  # an old page, as before tokens: the new page claims it later
+        if held is not None:  # one browser, one account: a token it held for another name goes
+            tokens.revoke(held)
+            take_token(response)
+        return _signed_in(user, None, response, None)
+    if get_settings().account_claims_open and (minted := tokens.claim(user)) is not None:
+        audit.event("token_claimed", user=user, device=audit.device_kind(request.headers.get("user-agent")))
+        return _signed_in(user, minted, response, held)
+    audit.event("login_needs_code", user=user)
+    raise HTTPException(status_code=403, detail=_NEEDS_CODE)
+
+
+def _signed_in(user: str, minted: tuple[str, str] | None, response: Response, held: str | None) -> SignedIn:
+    """The account, with the new token set as this browser's cookie. A token the browser held for another
+    account goes: one browser, one account at a time, and no token is left behind that nobody holds."""
+    recovery = None
+    if minted is not None:
+        token, recovery = minted
+        if held is not None:
+            tokens.revoke(held)
+        give_token(response, token)
+    if (account := accounts.account(user)) is None:  # deleted in the same moment by another of its devices
+        raise HTTPException(status_code=404, detail="No account with that username")
+    return SignedIn(**account, recovery=recovery)
+
+
+@router.post("/recovery", response_model=Recovery, dependencies=[Depends(ACCOUNT)])
+def new_recovery(body: RecoveryIn | None = None, who: tuple[str, str] = SESSION) -> Recovery:
+    """A new recovery code for this account, to move to another phone or because the old one was seen.
+    The old code stops working; logged-in devices stay logged in.
+
+    Only with the current code, or from a device that logged in within the last few minutes (a sudo mode, as
+    for a password change): the cookie alone is not enough, because any script running on the page sends it,
+    and a code is the one thing that opens the account from anywhere else. Lost the code on an old device? The
+    owner makes a new one (scripts/recovery_code.py).
+    """
+    user, token = who
+    body = body or RecoveryIn()
+    if (first := tokens.first_code(user)) is not None:  # signed up from a page that never showed a code
+        audit.event("recovery_new", user=user, by="first")
+        return Recovery(code=first)
+    if body.first:
+        raise HTTPException(status_code=409, detail="This account has a recovery code already")
+    typed = body.code
+    if typed:
+        if not tokens.matches(user, typed):
+            audit.event("recovery_refused", user=user)
+            raise HTTPException(status_code=403, detail="That recovery code is not this account's")
+    elif not tokens.fresh(token, _FRESH_MINUTES):
+        raise HTTPException(status_code=403, detail=_NEEDS_CURRENT)
+    audit.event("recovery_new", user=user, by="code" if typed else "fresh_login")
+    return Recovery(code=tokens.new_recovery(user))
+
+
+@router.delete("/session", response_model=Forgotten)
+async def log_out(response: Response, who: tuple[str, str] = SESSION) -> Forgotten:
+    """Log this browser out: its token opens nothing again, and the cookie goes. The account stays."""
+    user, token = who
+    tokens.revoke(token)
+    take_token(response)
+    audit.event("logout", user=user)
+    return Forgotten(deleted=1)
+
+
+@router.delete("/sessions", response_model=Forgotten)
+async def log_out_others(who: tuple[str, str] = SESSION) -> Forgotten:
+    """Log out every other device of this account (a lost or shared phone); this one stays logged in."""
+    user, token = who
+    gone = tokens.revoke_others(user, token)
+    audit.event("logout_others", user=user, devices=gone)
+    return Forgotten(deleted=gone)
 
 
 @router.get("/account", response_model=Account)
-def get_account(user: str = NAMED) -> Account:
-    """The profile page's facts about this username."""
-    return Account(**accounts.account(user))
+def get_account(response: Response, user: str = NAMED, held: str | None = TOKEN) -> Account:
+    """The profile page's facts about this username, and whether this browser holds its token. The page asks
+    on every load, so this is where the cookie is renewed: a reader who keeps coming back stays logged in."""
+    if held is not None:
+        give_token(response, held)
+    return Account(**accounts.account(user), proven=held is not None, has_code=tokens.has_code(user))
 
 
 @router.delete("/account", response_model=Forgotten)
-async def delete_account(user: str = NAMED) -> Forgotten:
-    """Delete this username, every answer it gave and its shelf; the name is free again."""
-    return Forgotten(deleted=lifecycle.delete_account(user))
+async def delete_account(response: Response, user: str = PROVEN) -> Forgotten:
+    """Delete this username, every answer it gave and its shelf; the name is free again. Its tokens go with
+    it, and this browser's cookie too."""
+    deleted = lifecycle.delete_account(user)
+    take_token(response)
+    audit.event("account_deleted", user=user, answers=deleted)
+    return Forgotten(deleted=deleted)
 
 
 @router.get("/saved", response_model=Shelf)
-def get_shelf(user: str = NAMED) -> Shelf:
-    """What the page kept for this account, so it follows the name to another device."""
+def get_shelf(user: str = PROVEN) -> Shelf:
+    """What the page kept for this account, so it follows the name to another device. Its token always: the
+    shelf is the account's own settings, and an account from before tokens is claimed before it pulls."""
     return Shelf(data=accounts.shelf(user))
 
 
 @router.put("/saved", response_model=Shelf)
-async def put_shelf(body: Shelf, user: str = NAMED) -> Shelf:
+async def put_shelf(body: Shelf, user: str = PROVEN) -> Shelf:
     """Replace this account's shelf whole with what the page holds now."""
     if len(json.dumps(body.data, ensure_ascii=False).encode()) > get_settings().saved_max_bytes:
         raise HTTPException(status_code=413, detail="Too much saved for one account")
@@ -184,16 +321,20 @@ async def put_shelf(body: Shelf, user: str = NAMED) -> Shelf:
 
 
 @router.put("/account/public", response_model=Account)
-def put_public(body: PublicIn, user: str = NAMED) -> Account:
+def put_public(body: PublicIn, user: str = PROVEN) -> Account:
     """Show in, or hide from, the global ranking."""
     accounts.set_public(user, body.public)
+    audit.event("account_public", user=user, public=body.public)
     return Account(**accounts.account(user))
 
 
 @router.get("/leaderboard", response_model=Leaderboard)
-def get_leaderboard(module: str = _MODULE, circle: int | None = None, user: str = USER) -> Leaderboard:
-    """A circle's joined members by words learnt, or the global top accounts plus the asker's own place."""
+def get_leaderboard(module: str = _MODULE, circle: int | None = None, user: str = USER,
+                    held: str | None = TOKEN) -> Leaderboard:
+    """A circle's joined members by words learnt, or the global top accounts plus the asker's own place.
+    A circle's needs this browser's token, as every other circle route does."""
     if circle is not None:
+        prove(user, held)
         with _refused():
             return Leaderboard(rows=circles.circle_ranking(circle, module, user), you=None)
     rows, you = accounts.leaderboard(module, user)
@@ -232,13 +373,13 @@ def _member_name(typed: str) -> str:
 
 
 @router.get("/circles", response_model=CircleList)
-def list_circles(user: str = NAMED) -> CircleList:
+def list_circles(user: str = PROVEN) -> CircleList:
     """Every circle I am in, and every invite waiting for me."""
     return _circles(user)
 
 
 @router.post("/circles", response_model=CircleDetail)
-def create_circle(body: CircleIn, user: str = NAMED) -> CircleDetail:
+def create_circle(body: CircleIn, user: str = PROVEN) -> CircleDetail:
     """Make a circle, with me as its admin."""
     with _refused():
         return CircleDetail(**circles.circle_detail(
@@ -246,21 +387,21 @@ def create_circle(body: CircleIn, user: str = NAMED) -> CircleDetail:
 
 
 @router.get("/circles/{circle}", response_model=CircleDetail)
-def get_circle(circle: int, user: str = NAMED) -> CircleDetail:
+def get_circle(circle: int, user: str = PROVEN) -> CircleDetail:
     """One circle and the people the asker may see in it."""
     with _refused():
         return CircleDetail(**circles.circle_detail(circle, user))
 
 
 @router.delete("/circles/{circle}", response_model=CircleList)
-def delete_circle(circle: int, user: str = NAMED) -> CircleList:
+def delete_circle(circle: int, user: str = PROVEN) -> CircleList:
     with _refused():
         circles.delete_circle(circle, user)
     return _circles(user)
 
 
 @router.post("/circles/{circle}/members", response_model=CircleDetail)
-def invite_member(circle: int, body: InviteIn, user: str = NAMED) -> CircleDetail:
+def invite_member(circle: int, body: InviteIn, user: str = PROVEN) -> CircleDetail:
     """An admin invites an existing username; they see nothing until they accept."""
     member = _member_name(body.member)
     with _refused():
@@ -269,28 +410,28 @@ def invite_member(circle: int, body: InviteIn, user: str = NAMED) -> CircleDetai
 
 
 @router.post("/circles/{circle}/accept", response_model=CircleList)
-def accept_invite(circle: int, user: str = NAMED) -> CircleList:
+def accept_invite(circle: int, user: str = PROVEN) -> CircleList:
     with _refused():
         circles.accept(circle, user)
     return _circles(user)
 
 
 @router.post("/circles/{circle}/decline", response_model=CircleList)
-def decline_invite(circle: int, user: str = NAMED) -> CircleList:
+def decline_invite(circle: int, user: str = PROVEN) -> CircleList:
     with _refused():
         circles.decline(circle, user)
     return _circles(user)
 
 
 @router.post("/circles/{circle}/leave", response_model=CircleList)
-def leave_circle(circle: int, user: str = NAMED) -> CircleList:
+def leave_circle(circle: int, user: str = PROVEN) -> CircleList:
     with _refused():
         circles.leave(circle, user)
     return _circles(user)
 
 
 @router.delete("/circles/{circle}/members/{member}", response_model=CircleDetail)
-def remove_member(circle: int, member: str, user: str = NAMED) -> CircleDetail:
+def remove_member(circle: int, member: str, user: str = PROVEN) -> CircleDetail:
     name = _member_name(member)
     with _refused():
         circles.remove(circle, user, name)
@@ -298,7 +439,7 @@ def remove_member(circle: int, member: str, user: str = NAMED) -> CircleDetail:
 
 
 @router.put("/circles/{circle}/members/{member}", response_model=CircleDetail)
-def set_member_role(circle: int, member: str, body: RoleIn, user: str = NAMED) -> CircleDetail:
+def set_member_role(circle: int, member: str, body: RoleIn, user: str = PROVEN) -> CircleDetail:
     name = _member_name(member)
     with _refused():
         circles.set_role(circle, user, name, body.role)
@@ -306,7 +447,7 @@ def set_member_role(circle: int, member: str, body: RoleIn, user: str = NAMED) -
 
 
 @router.put("/circles/{circle}/parent", response_model=CircleDetail)
-def set_circle_parent(circle: int, body: ParentIn, user: str = NAMED) -> CircleDetail:
+def set_circle_parent(circle: int, body: ParentIn, user: str = PROVEN) -> CircleDetail:
     """An admin moves a circle inside another circle they admin, or out to stand on its own."""
     with _refused():
         circles.move_circle(circle, user, body.parent)
@@ -314,7 +455,7 @@ def set_circle_parent(circle: int, body: ParentIn, user: str = NAMED) -> CircleD
 
 
 @router.get("/circles/{circle}/members/{member}/overview", response_model=Overview)
-def get_member_overview(circle: int, member: str, user: str = NAMED) -> Overview:
+def get_member_overview(circle: int, member: str, user: str = PROVEN) -> Overview:
     """A joined member's overview, for whoever the circles' rules let see it."""
     name = _member_name(member)
     with _refused():
