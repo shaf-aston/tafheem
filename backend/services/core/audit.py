@@ -53,7 +53,8 @@ _FIELD_MAX = 200
 _CONTROL = re.compile(r"[\x00-\x1f\x7f-\x9f]")
 
 # The answers worth a line on their own. 404 is not here: a mistyped surah is not an attack, and
-# routes where a 404 means something (an unknown account) write their own event.
+# routes where a 404 means something (an unknown account) write their own event. The one 404 kept is an
+# /api path no route owns (`_is_probe`): a scanner walking guesses, and it costs a line only then.
 # 405 is a probe for a method a route does not take (scanners walk PUT/DELETE across every path).
 WATCHED = frozenset({401, 403, 405, 413, 415, 422, 429})
 
@@ -131,6 +132,10 @@ def route_of(scope: dict) -> str:
     return getattr(route, "path", None) or "unmatched"
 
 
+def _is_probe(scope: dict, status: int) -> bool:
+    return status == 404 and route_of(scope) == "unmatched" and scope.get("path", "").startswith("/api")
+
+
 class SecurityLog:
     """Request id in, X-Request-ID out, and a line for every refused or failed answer."""
 
@@ -170,7 +175,7 @@ class SecurityLog:
             event("error", method=scope.get("method"), route=route_of(scope), status=500, **({"started": status} if status else {}))
             raise
         else:
-            if status in WATCHED or status >= 500:
+            if status in WATCHED or status >= 500 or _is_probe(scope, status):
                 event("refused" if status < 500 else "error", method=scope.get("method"), route=route_of(scope), status=status)
         finally:
             request_id.reset(id_token)

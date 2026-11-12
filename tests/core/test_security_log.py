@@ -150,3 +150,9 @@ def test_a_crash_is_logged_without_the_key_its_error_carried(caplog):
     with caplog.at_level("ERROR"):
         TestClient(crashing, raise_server_exceptions=False).get("/api/boom-key")
     assert "boom-key" in caplog.text and "SECRETKEY123" not in caplog.text
+
+
+def test_an_api_path_no_route_owns_is_logged_but_a_missing_word_is_not():
+    client.get("/api/no-such-thing")
+    client.get("/api/hadith/zzzmissing/books/1")  # a route that answers 404 itself: ordinary
+    assert [line["status"] for line in lines() if line["kind"] == "refused"] == [404]
