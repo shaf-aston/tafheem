@@ -17,7 +17,7 @@ export default function QuizSetup({ setup, owed, say, phone, accent, onChange })
   // A phone has no room for the narrowing beside the words, so it goes behind
   // the same pill as the other two settings, and the pill names what it holds.
   const scopeOptions = [
-    ...WHOLE_SET_SCOPES.map(({ id, label }) => ({ id, label: say(label) })),
+    ...WHOLE_SET_SCOPES.map(({ id, label, hint }) => ({ id, label: say(label), hint: say(hint) })),
     ...groups.map((s) => ({ id: s.id, label: say(s.label) })),
   ]
   const scopeControls = bank.grouped && (

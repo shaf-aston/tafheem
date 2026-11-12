@@ -50,6 +50,8 @@ export default function Segmented({
             type="button"
             onClick={() => onChange(option.id)}
             aria-pressed={on}
+            // A short label that is a name (a book's, a term of art) says what it names on hover.
+            title={option.hint}
             style={on
               ? { color: accent, background: `color-mix(in srgb, ${accent} 16%, transparent)` }
               : undefined}

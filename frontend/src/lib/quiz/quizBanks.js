@@ -82,8 +82,8 @@ export const BANKS = {
 export const WHOLE_SET_SCOPES = [
   // Named for what it is: the book's own 385-word list, not every word in the
   // Qur'an, that one is the entry below it.
-  { id: 'all', label: '80% book', group: '' },
-  { id: 'quran', label: 'Whole Qur’an', group: 'quran:all' },
+  { id: 'all', label: '80% book', group: '', hint: 'The book’s 385 words, which make up about 80% of the Qur’an’s text' },
+  { id: 'quran', label: 'Whole Qur’an', group: 'quran:all', hint: 'Every word in the Qur’an' },
 ]
 
 const wordFile = (file) => loadStatic(`${WORDS_DIR}/${file}.json`, `the word list (${file})`)
