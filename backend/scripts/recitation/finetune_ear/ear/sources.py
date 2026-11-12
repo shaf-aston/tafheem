@@ -22,8 +22,10 @@ from .spelling import as_heard
 from .text import IMLAEI, SAID, SAYABLE, SPELT, WRITABLE, ayahs_of, canon, letters
 
 
-def clip(sound, key, who, src, said=None, **more):
-    return {'sound': sound, 'said': said or SAID[key], 'ayah': key, 'who': who, 'src': src, 'secs': len(sound) / S.RATE, **more}
+def clip(sound, key, who, src, said=None, page='', **more):
+    """page: what the page says, only when it differs from said (a lone slip); train.py pushes the ear off it."""
+    return {'sound': sound, 'said': said or SAID[key], 'page': page, 'ayah': key, 'who': who, 'src': src,
+            'secs': len(sound) / S.RATE, **more}
 
 
 def fits(sound):  # decoded, and short enough to be heard whole
@@ -249,8 +251,8 @@ def lone(skip, target):
     says, plus the untouched ayahs they came from. cloud.py --lone uploads them as LONE_COPY."""
     files = sorted(Path('/kaggle/input').rglob('lone-*.parquet')) or sys.exit(
         f'no lone slips attached: run cloud.py --lone, which uploads {S.LONE_COPY}')
-    found = [(f, at, r['who'], r['said'], r['ayah']) for f in files
-             for at, r in enumerate(pq.read_table(f, columns=['ayah', 'who', 'said']).to_pylist())
+    found = [(f, at, r['who'], r['said'], ' '.join(as_heard(r['page'])) if r['page'] else '') for f in files
+             for at, r in enumerate(pq.read_table(f, columns=['ayah', 'who', 'said', 'page']).to_pylist())
              if canon(r['ayah']) not in skip and WRITABLE(r['said'])]
     chosen = random.Random(29).sample(found, min(target, len(found)))
     rows = []
@@ -259,17 +261,17 @@ def lone(skip, target):
         want = {c[1]: c for c in chosen if c[0] == f}
         for at, pcm in enumerate(pq.read_table(f, columns=['pcm']).column('pcm').to_pylist()):
             if at in want:
-                saved(rows, (None, None, want[at][2], want[at][3], 'train'), 'lone',
+                saved(rows, (None, None, want[at][2], want[at][3], 'train', want[at][4]), 'lone',
                       np.frombuffer(pcm, dtype='<i2').astype(np.float32) / 32767)
     print(f'lone slips: {len(rows)} train clips (wanted {target}, {len(found)} usable)', flush=True)
     return nonempty(rows, 'lone slip clips')
 
 
 def phrase_clips(rows, src):
-    for (_, _, who, said, part), path in rows:
+    for (_, _, who, said, part, *page), path in rows:
         sound = opened(path)
         if fits(sound):
-            yield clip(sound, '', f'{src}:{who}', src, said=said, part=part)
+            yield clip(sound, '', f'{src}:{who}', src, said=said, part=part, page=page[0] if page else '')
 
 
 def parquet_clips(rows, src):

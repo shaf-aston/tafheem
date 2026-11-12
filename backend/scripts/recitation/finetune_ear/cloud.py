@@ -149,7 +149,8 @@ def copy_lone():
                 with wave.open(str(made / 'clips' / f"{who}-{ayah.replace(':', '_')}{'-' + k if k else ''}.wav")) as w:
                     pcm.append(w.readframes(w.getnframes()))
             pq.write_table(pa.table({'ayah': [r['key'] for r in part], 'who': [r['id'].split('/')[0] for r in part],
-                                     'said': [r['said'] for r in part], 'pcm': pcm}), up / f'lone-{n // 2000}.parquet')
+                                     'said': [r['said'] for r in part],
+                                     'page': [r['sentence'] if r['k'] is not None else '' for r in part], 'pcm': pcm}), up / f'lone-{n // 2000}.parquet')
         upload(up, S.LONE_COPY, f"{len(rows)} clips, {sum(r['k'] is not None for r in rows)} with one slip")
 
 
@@ -218,7 +219,12 @@ if '--lone' in sys.argv:
     sys.exit()
 if '--fetch' not in sys.argv:
     with tempfile.TemporaryDirectory() as folder:
-        print(kaggle('kernels', 'push', '-p', str(bundle(Path(folder)))), f'\nlive: https://www.kaggle.com/code/{KERNEL}', flush=True)
+        pushed = kaggle('kernels', 'push', '-p', str(bundle(Path(folder))))
+        # A refused push (weekly GPU quota spent, 2026-11-12) still exits 0. Waiting on would find the last run
+        # ended and fetch its ear as if it were this one's.
+        if 'error' in pushed.lower():
+            raise SystemExit(f'Kaggle refused the run: {pushed}')
+        print(pushed, f'\nlive: https://www.kaggle.com/code/{KERNEL}', flush=True)
     time.sleep(EVERY)  # right after a push the status can still be the last run's
 while not any(end in (now := status()) for end in ENDED):
     time.sleep(EVERY)

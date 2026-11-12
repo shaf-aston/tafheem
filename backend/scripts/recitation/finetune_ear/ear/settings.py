@@ -91,6 +91,12 @@ LONE_SHARE = 0.2  # of what the sources above make, as IQRA_SLIPS_SHARE was
 # Slips kept per kind: wrong vowel length lands most often (47% of the build) and is already the
 # ear's best-caught kind, so it is held level with vowel and letter swaps (2026-11-11).
 LONE_KIND_CAP = 1200
+# The slip push (train.py, v34): on a lone slip, the ear asked about the page word should be less sure of its
+# worst piece than SLIP_BELOW, under the app's cut (recite.json wrong-below 0.000256). Taught the said text
+# alone, v33 stopped once the said word won, the page word still near 0.97 on the spliced test, and got surer
+# everywhere. SLIP_WEIGHT 1: the push weighs as one more token of the clip's loss. Untested; ear_bench decides.
+SLIP_BELOW = 1e-4
+SLIP_WEIGHT = 1.0
 # Real voices: 71,391 clips, fully vowelled. A quarter are Qur'an phrases, the rest everyday fusha ("متى تكون مشغولا").
 IQRA_REAL = 'IqraEval/Iqra_train'
 IQRA_REAL_SHARDS = 5  # of 29 files, ~2,460 clips each
