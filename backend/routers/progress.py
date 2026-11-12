@@ -211,13 +211,13 @@ def log_in(request: Request, response: Response, body: LogInIn | None = None, us
             raise HTTPException(status_code=403, detail="That recovery code is not this account's")
         audit.event("login", user=user, by="code")
         return _signed_in(user, minted, response, held)
-    if get_settings().account_claims_open and not body.shows_code and not tokens.claimed(user):
+    if get_settings().claims_open() and not body.shows_code and not tokens.claimed(user):
         audit.event("login", user=user, by="name")  # an old page, as before tokens: the new page claims it later
         if held is not None:  # one browser, one account: a token it held for another name goes
             tokens.revoke(held)
             take_token(response)
         return _signed_in(user, None, response, None)
-    if get_settings().account_claims_open and (minted := tokens.claim(user)) is not None:
+    if get_settings().claims_open() and (minted := tokens.claim(user)) is not None:
         audit.event("token_claimed", user=user, device=audit.device_kind(request.headers.get("user-agent")))
         return _signed_in(user, minted, response, held)
     audit.event("login_needs_code", user=user)

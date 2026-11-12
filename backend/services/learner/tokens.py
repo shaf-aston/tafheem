@@ -13,7 +13,7 @@ secret nobody chose. The recovery code is 80 bits, short enough to copy by hand,
 scrypt, as NIST SP 800-63B asks of a secret under 112 bits. A copy of progress.db opens no account.
 
 Accounts made before tokens existed have no recovery code (``recovery IS NULL``): "unclaimed". The first log-in
-to one claims it (trust on first use, logged as ``token_claimed``) while ``settings.account_claims_open`` holds;
+to one claims it (trust on first use, logged as ``token_claimed``) while ``settings.claims_open()`` holds;
 until then it is kept out of the global ranking, the one list of names worth claiming.
 """
 from __future__ import annotations

@@ -547,3 +547,23 @@ def test_the_name_limit_holds_under_threads(monkeypatch):
     names = ratelimit.Names("names_per_minute", "names_all_per_minute")
     with ThreadPoolExecutor(8) as pool:
         list(pool.map(lambda i: [names.too_many("one", f"{i}-{j}") for j in range(300)], range(8)))  # no RuntimeError
+
+
+def test_claims_close_by_themselves_on_the_date(monkeypatch):
+    from datetime import UTC, datetime, timedelta
+    settings = get_settings()
+    today = datetime.now(UTC).date()
+    monkeypatch.setattr(settings, "account_claims_until", today + timedelta(days=1))
+    assert settings.claims_open()
+    monkeypatch.setattr(settings, "account_claims_until", today)  # 00:00 UTC today has passed
+    assert not settings.claims_open()
+    monkeypatch.setattr(settings, "account_claims_until", today + timedelta(days=30))
+    monkeypatch.setattr(settings, "account_claims_open", False)  # the switch still closes them early
+    assert not settings.claims_open()
+
+
+def test_after_the_date_an_unclaimed_account_is_not_claimed(monkeypatch):
+    from datetime import UTC, datetime
+    old_account("amina")
+    monkeypatch.setattr(get_settings(), "account_claims_until", datetime.now(UTC).date())
+    assert login("Amina").status_code == 403 and not tokens.claimed("amina")

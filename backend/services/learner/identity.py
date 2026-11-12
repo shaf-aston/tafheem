@@ -81,7 +81,7 @@ def refused(name: str, token: str | None, strict: bool = False) -> str | None:
         return NO_ACCOUNT
     if token is not None:
         return None if tokens.owner(token) == name else NOT_PROVEN
-    lenient = not strict and get_settings().account_claims_open and not tokens.claimed(name)
+    lenient = not strict and get_settings().claims_open() and not tokens.claimed(name)
     return None if lenient else NOT_PROVEN
 
 
