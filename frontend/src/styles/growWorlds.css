@@ -54,17 +54,15 @@
 .grow-today-holds { font-size: var(--type-ui); color: var(--text-dim); }
 .grow-nexts:empty { display: none; }
 .grow-nexts { --grow-next-h: 52px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 8px; margin-top: 4px; }
-/* A phone shows the first three next steps and a More button for the rest, so the level and the worlds stay near. */
+/* The first three next steps and a More button for the rest, at every width: Start stays the one clear
+   choice, and on a phone the level and the worlds stay near. Three is one row of a laptop's grid. */
 .grow-nexts-more { display: none; }
 /* While the worlds load only the one slot shows; the steps are there, hidden, and appear together. */
 .grow-nexts[data-settling] > :not(.grow-next-slot) { display: none; }
-@media (max-width: 39.99rem) {
-  .grow-nexts:not([data-open]) > :nth-child(n + 4) { display: none; }
-  /* The room a phone's three steps and the More button take (3 rows, 2 gaps, the 44px button and its gap), held while they load. */
-  /* The More button's room (44px and its gap), held under the three ghost steps. */
-  .grow-nexts[data-settling] { padding-bottom: 52px; }
-  .grow-nexts:not([data-open], [data-settling]):has(> :nth-child(4)) + .grow-nexts-more { display: block; justify-self: center; min-height: 44px; padding: 0 16px; border-radius: var(--radius-pill); font-size: var(--type-ui); font-weight: 700; color: var(--w); }
-}
+.grow-nexts:not([data-open]) > :nth-child(n + 4) { display: none; }
+/* The More button's room (44px and its gap), held under the three ghost steps. */
+.grow-nexts[data-settling] { padding-bottom: 52px; }
+.grow-nexts:not([data-open], [data-settling]):has(> :nth-child(4)) + .grow-nexts-more { display: block; justify-self: center; min-height: 44px; padding: 0 16px; border-radius: var(--radius-pill); font-size: var(--type-ui); font-weight: 700; color: var(--w); }
 .grow-next {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: var(--grow-next-h); padding: 8px 12px; text-align: start;
   border-radius: var(--radius-md); background: var(--surface); border: 1px solid color-mix(in srgb, var(--w) 35%, var(--border));
