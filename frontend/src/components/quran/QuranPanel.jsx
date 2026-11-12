@@ -49,6 +49,10 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
 
   // The one box: a place or the words. What it is read as is lib/quranIntent's.
   const [query, setQuery] = useState('')
+  // The line last acted on. While the box still holds it, its answer is on
+  // screen and the lines under the box (what Enter will do, the near misses)
+  // have nothing left to say; typing brings them back.
+  const [asked, setAsked] = useState(null)
   // Whether the matches (searched or heard) are on screen: opening an ayah or
   // a surah puts them away.
   const [showMatches, setShowMatches] = useState(false)
@@ -105,6 +109,7 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
   const runSearch = (text = query.trim()) => {
     setHeard(null)
     if (!text) return
+    setAsked(text)
     setShowMatches(true)
     search.mutate(text)
     wordRoot.reset()
@@ -150,7 +155,9 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
       {idle && <QuranOpening accent={accent} onOpen={openResult} />}
 
       <QuestionForm>
-      <RecentRow
+      {/* Recent is a way in; with a place open the picker below already says
+          where the reader is, so the row steps aside. */}
+      {!at && <RecentRow
         items={recent.map((h) => `${h.surah}:${h.ayah}`)}
         accent={accent}
         onPick={(item) => {
@@ -158,13 +165,18 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
           openResult({ surah: Number(s), ayah: Number(a) })
         }}
         mono
-      />
+      />}
 
       <QuranSearchBar
         value={query}
         onChange={setQuery}
         onClear={() => { setQuery(''); setHeard(null); search.reset(); wordRoot.reset() }}
-        onOpen={(m, a) => (a === null ? readSurah(m.n) : openResult({ surah: m.n, ayah: a }))}
+        onOpen={(m, a) => {
+          setAsked(query)
+          if (a === null) readSurah(m.n)
+          else openResult({ surah: m.n, ayah: a })
+        }}
+        answered={query === asked}
         onSearch={runSearch}
         onHeard={onHeard}
         busy={busy}
