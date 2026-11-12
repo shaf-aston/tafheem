@@ -149,7 +149,8 @@ def copy_lone():
                 with wave.open(str(made / 'clips' / f"{who}-{ayah.replace(':', '_')}{'-' + k if k else ''}.wav")) as w:
                     pcm.append(w.readframes(w.getnframes()))
             pq.write_table(pa.table({'ayah': [r['key'] for r in part], 'who': [r['id'].split('/')[0] for r in part],
-                                     'said': [r['said'] for r in part], 'pcm': pcm}), up / f'lone-{n // 2000}.parquet')
+                                     'said': [r['said'] for r in part],
+                                     'page': [r['sentence'] if r['k'] is not None else '' for r in part], 'pcm': pcm}), up / f'lone-{n // 2000}.parquet')
         upload(up, S.LONE_COPY, f"{len(rows)} clips, {sum(r['k'] is not None for r in rows)} with one slip")
 
 

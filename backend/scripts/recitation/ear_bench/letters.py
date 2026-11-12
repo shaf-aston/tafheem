@@ -118,9 +118,10 @@ def letter_sures(tok: Tokenizer, word: str, lead: str, probs: list[float]) -> li
 def table(title: str, cells: dict, head: str, sort_key) -> list[str]:
     rows = sorted(cells.items(), key=sort_key)
     out = ["", title, head]
-    for (a, b, c), (n, hit) in rows:
+    for (a, b, c), (n, hit, *heard) in rows:
         mark = "  (few)" if n < FEW else ""
-        out.append(f"{a:<15} {b:<3} {c:<26} {n:>5} {hit / n:>6.0%}{mark}")
+        more = f" {heard[0] / n:>6.0%}" if heard and heard[0] is not None else ""
+        out.append(f"{a:<15} {b:<3} {c:<26} {n:>5} {hit / n:>6.0%}{more}{mark}")
     return out
 
 
@@ -155,18 +156,28 @@ def main() -> None:
                      / "snapshots").glob(f"{rev or '*'}*/tokenizer.json"))
     tok = Tokenizer.from_file(str(tok_file))
 
-    slips, right = defaultdict(lambda: [0, 0]), defaultdict(lambda: [0, 0])
-    by_kind, by_ctx = defaultdict(lambda: [0, 0]), defaultdict(lambda: [0, 0])
+    # heard (spliced only): the slipped word under half as sure as the same word in the untouched recording.
+    # It counts a change the ear noticed even when it stays above the cut, so a cell at 0% caught still says
+    # whether the ear is near (heard high) or deaf to it (heard low).
+    paired = args.set == "spliced"
+    start = (lambda: [0, 0, 0]) if paired else (lambda: [0, 0, None])
+    slips, right = defaultdict(start), defaultdict(lambda: [0, 0])
+    by_kind, by_ctx = defaultdict(start), defaultdict(start)
     unmatched = 0
     for words, k, (kind, letter, ctx), row in cases(args.set):
         if row["id"] not in probs:
             continue
         if k is not None:
-            caught = checker.aggregate(probs[row["id"]][k], args.rule) < cut
+            sure = checker.aggregate(probs[row["id"]][k], args.rule)
+            caught = sure < cut
+            twin = probs.get(row["id"].split("#")[0]) if paired else None
+            heard = twin is not None and sure < 0.5 * checker.aggregate(twin[k], args.rule)
             for cells, key in ((slips, (kind, letter, ctx)), (by_kind, (kind, "", "")),
                                (by_ctx, (kind, "", ctx.split(" -> ")[0]))):
                 cells[key][0] += 1
                 cells[key][1] += caught
+                if paired:
+                    cells[key][2] += heard
             continue
         for i, (w, p) in enumerate(zip(words, probs[row["id"]])):
             got = letter_sures(tok, w, "" if i == 0 else " ", p)
@@ -178,18 +189,19 @@ def main() -> None:
                     right[key][0] += 1
                     right[key][1] += s < cut
 
-    total = sum(n for n, _ in by_kind.values())
-    caught = sum(h for _, h in by_kind.values())
+    total = sum(n for n, *_ in by_kind.values())
+    caught = sum(h for _, h, *_ in by_kind.values())
     lines = [
         f"Ear {args.model}, rule {args.rule}, cut {cut}. Set {args.set}, {total} slips, {caught / total:.0%} caught.",
-        "caught = slipped word red; red = right letter's piece below the cut. (few) = under "
+        "caught = slipped word red; heard = slipped word under half as sure as in the untouched recording; "
+        "red = right letter's piece below the cut. (few) = under "
         f"{FEW} cases, too few to judge. {unmatched} right words skipped (pieces did not line up).",
     ]
-    head = f"{'kind':<15} {'':<3} {'context':<26} {'n':>5} {'caught':>6}"
+    head = f"{'kind':<15} {'':<3} {'context':<26} {'n':>5} {'caught':>6}" + (f" {'heard':>6}" if paired else "")
     lines += table("SLIPS BY KIND", by_kind, head, lambda x: -x[1][0])
     lines += table("SLIPS BY KIND AND VOWEL", by_ctx, head, lambda x: (x[0][0], -x[1][0]))
     lines += table("SLIPS BY LETTER AND VOWEL (worst caught first)", slips, head,
-                   lambda x: (x[1][0] < FEW, x[1][1] / x[1][0], -x[1][0]))
+                   lambda x: (x[1][0] < FEW, x[1][1] / x[1][0], (x[1][2] or 0) / x[1][0], -x[1][0]))
     rhead = f"{'letter':<15} {'':<3} {'context':<26} {'n':>5} {'red':>6}"
     lines += table("RIGHT LETTERS BY VOWEL (all letters)", {k: v for k, v in right.items() if k[0] == "all letters"},
                    rhead, lambda x: -x[1][1] / x[1][0])
