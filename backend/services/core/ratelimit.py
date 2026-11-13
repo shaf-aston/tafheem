@@ -16,8 +16,8 @@ from backend.services.core import audit
 # x-vercel-forwarded-for with the address it saw (a visitor's own value never survives), and Caddy passes
 # them on untouched. X-Forwarded-For is last: Caddy rewrites it to its own peer, which behind Vercel is
 # Vercel's edge, so every learner would share one count. It is still the address on a direct call or a dev server.
-# Until the origin gate (docs/plans/2026-11-11-security.md, Phase 2) a caller that skips Vercel can send
-# x-real-ip itself and pick its own count; Budget's ceiling for everyone is what holds then.
+# The origin gate (docs/plans/2026-11-11-security.md, Phase 2) answers 403 to a caller that skips Vercel, so
+# none can send x-real-ip itself; Budget's ceiling for everyone still holds if the gate is ever off.
 _ADDRESS_HEADERS = ("x-real-ip", "x-vercel-forwarded-for", "x-forwarded-for")
 
 
@@ -132,6 +132,8 @@ READ = Limit("sentence_per_minute", "sentence_all_per_minute",
 # ear's allowance (recite.json asks-share), so these are far above a real reciter and only stop a loop.
 RECORDING = Limit("recording_per_minute", "recording_all_per_minute",
                   "Too many recordings at once; try again in a minute", "Listening is busy right now; try again in a minute")
+JOURNAL = Limit("journal_per_minute", "journal_all_per_minute",
+                "Too many reports at once; wait a minute", "Reports are busy right now; try again in a minute")
 # Answers: far above a learner drilling fast; it slows a script filing the whole word list as learnt.
 ANSWER = Limit("answer_per_minute", "answer_all_per_minute",
                "Too many answers at once; wait a minute", "Saving answers is busy right now; try again in a minute")

@@ -373,6 +373,7 @@ def say(text: str, pressed: bool = True, first: str | None = None, speed: float 
             try:
                 audio = voice.say(text, speed)
             except ImportError as exc:  # not installed: will not fix itself
+                log.warning("voice %s retired: %s", voice.name, exc)
                 voice.retire(str(exc))
                 continue
             except Exception as exc:  # offline on first download, one odd word: rest, then retry
@@ -392,8 +393,8 @@ def say(text: str, pressed: bool = True, first: str | None = None, speed: float 
 
 
 def active() -> str:
-    """Which voice would say the next new word, for the health line, or why none would."""
+    """Which voice would say the next new word, for the health line, or "none"."""
     for voice in order():
         if not voice.retired_reason and not voice.resting():
             return voice.name
-    return "; ".join(f"{v.name}: {v.retired_reason or v.resting()}" for v in order()) or "none"
+    return "none"  # why each gave up is in the log, never in the public health line

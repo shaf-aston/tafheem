@@ -65,3 +65,16 @@ def test_recordings_have_a_count_of_their_own(monkeypatch):
     again = app.post("/api/listen", files={"audio": ("a.webm", b"x", "audio/webm")}, headers=who)
     assert again.status_code == 429
     RECORDING.each.asks.clear()
+
+
+def test_journal_reports_are_429_past_the_limit(monkeypatch):
+    from backend.services.core.ratelimit import JOURNAL
+    JOURNAL.each.asks.clear()
+    monkeypatch.setattr(get_settings(), "journal_per_minute", 2)
+    app = TestClient(create_app())
+    ask = lambda who: app.post("/api/journal", json={"events": []}, headers={"x-real-ip": who}).status_code  # noqa: E731
+    first = [ask("203.0.113.40"), ask("203.0.113.40")]
+    assert 429 not in first
+    assert ask("203.0.113.40") == 429
+    assert ask("203.0.113.41") != 429
+    JOURNAL.each.asks.clear()

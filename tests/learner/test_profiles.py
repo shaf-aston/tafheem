@@ -364,7 +364,7 @@ def test_declining_an_invite_deletes_it_and_a_stranger_cannot_invite():
     invite("Amina", cid, "Bilal")
     assert client.post(f"/api/progress/circles/{cid}/decline", headers=as_("Bilal")).status_code == 200
     assert client.get("/api/progress/circles", headers=as_("Bilal")).json()["circles"] == []
-    assert invite("Bilal", cid, "Cyra").status_code == 403
+    assert invite("Bilal", cid, "Cyra").status_code == 404  # no part in it: as if it did not exist
 
 
 def test_an_admin_sees_a_joined_members_overview_but_a_plain_member_does_not():
@@ -391,13 +391,13 @@ def test_an_ancestor_circles_admin_sees_down_and_only_an_admin_may_nest():
     top = make("Dana", "School", "class").json()["id"]
     join("Dana", top, "Eli")                                              # a plain member of the parent
     assert make("Eli", "Room", "class", parent=top).status_code == 403
-    assert make("Amina", "Room", "class", parent=top).status_code == 403  # not in the parent at all
+    assert make("Amina", "Room", "class", parent=top).status_code == 404  # not in the parent at all: as if it did not exist
     child = make("Dana", "Room 1", "class", parent=top).json()["id"]
     join("Dana", child, "Bilal")
     answer("Bilal", "a")
     assert seen_overview("Dana", child, "Bilal").status_code == 200
-    assert seen_overview("Eli", child, "Bilal").status_code == 403
-    assert detail("Eli", child).status_code == 403
+    assert seen_overview("Eli", child, "Bilal").status_code == 404
+    assert detail("Eli", child).status_code == 404
     client.delete(f"/api/progress/circles/{top}", headers=as_("Dana"))
     assert detail("Dana", child).json()["parent"] is None                 # children lose their parent
 
@@ -412,7 +412,7 @@ def test_moving_a_circle_inside_another_lets_that_circles_admin_see_it_and_movin
     room = make("Amina", "Room", "class").json()["id"]
     join("Amina", room, "Bilal")
     answer("Bilal", "a")
-    assert seen_overview("Dana", room, "Bilal").status_code == 403         # apart, so unseen
+    assert seen_overview("Dana", room, "Bilal").status_code == 404         # apart, so unseen
     moved = move("Amina", room, top)
     assert moved.status_code == 200 and moved.json()["parent"] == top
     assert move("Amina", room, top).status_code == 200                     # same parent: no-op
@@ -420,7 +420,7 @@ def test_moving_a_circle_inside_another_lets_that_circles_admin_see_it_and_movin
     assert [c["id"] for c in detail("Dana", top).json()["inside"]] == [room]
     out = move("Amina", room, None)
     assert out.status_code == 200 and out.json()["parent"] is None
-    assert seen_overview("Dana", room, "Bilal").status_code == 403
+    assert seen_overview("Dana", room, "Bilal").status_code == 404
     assert detail("Dana", top).json()["inside"] == []
 
 
@@ -439,9 +439,9 @@ def test_only_an_admin_of_both_circles_may_move_one():
     join("Dana", top, "Eli")                                               # a plain member of the target
     room = make("Amina", "Room", "class").json()["id"]
     join("Amina", room, "Eli", "admin")
-    assert move("Amina", room, top).status_code == 403                     # not in the target
+    assert move("Amina", room, top).status_code == 404                     # not in the target
     assert move("Eli", room, top).status_code == 403                       # member, not admin, of the target
-    assert move("Dana", room, top).status_code == 403                      # admin of the target only
+    assert move("Dana", room, top).status_code == 404                      # admin of the target only
     assert detail("Amina", room).json()["parent"] is None
 
 

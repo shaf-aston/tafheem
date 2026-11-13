@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 
 def status() -> str:
-    """"off", "missing files", "not loaded", "loading", "ready" or "failed: <why>",
+    """"off", "missing files", "not loaded", "loading", "ready" or "failed",
     for /api/health: no silent absence, and no "ready" for a parser that is not."""
     if not get_settings().catib_parser_enabled:
         return "off"

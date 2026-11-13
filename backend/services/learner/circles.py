@@ -32,8 +32,15 @@ def _admin(circle: int, name: str) -> bool:
     return bool(row and row["status"] == "joined" and row["role"] == "admin")
 
 
+def _no_such_for_outsiders(circle: int, name: str) -> None:
+    """A circle `name` has no part in answers as one that does not exist, so ids cannot be probed."""
+    if not _member(circle, name):
+        raise LookupError("No such circle")
+
+
 def _need_admin(circle: int, name: str) -> None:
     _circle(circle)
+    _no_such_for_outsiders(circle, name)
     if not _admin(circle, name):
         raise PermissionError("Only an admin of this circle can do that")
 
@@ -118,6 +125,8 @@ def circle_detail(circle: int, user: str) -> dict:
     me = _member(circle, user)
     admin = _admin(circle, user)
     above = any(_admin(parent, user) for parent in _above(circle))
+    if not above:
+        _no_such_for_outsiders(circle, user)
     if not (_joined(circle, user) or above):
         raise PermissionError("You are not in this circle")
     rows = connection().execute("SELECT member, role, status FROM circle_members WHERE circle = ? ORDER BY member", (circle,))
@@ -135,6 +144,7 @@ def circle_detail(circle: int, user: str) -> dict:
 def circle_ranking(circle: int, module: str, user: str) -> list[dict]:
     """The joined members of a circle by words learnt, for a joined member."""
     _circle(circle)
+    _no_such_for_outsiders(circle, user)
     if not _joined(circle, user):
         raise PermissionError("You are not in this circle")
     names = [row["member"] for row in connection().execute(
@@ -146,6 +156,7 @@ def member_overview(circle: int, viewer: str, member: str) -> dict:
     """A joined member's overview, if `viewer` may see it (can_see)."""
     _circle(circle)
     if not _joined(circle, member) or not can_see(viewer, member):
+        _no_such_for_outsiders(circle, viewer)
         raise PermissionError("You cannot see that member's progress")
     return attempts.overview(member)
 

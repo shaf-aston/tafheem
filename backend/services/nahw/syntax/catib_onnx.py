@@ -66,11 +66,11 @@ def files_present() -> bool:
 
 
 def state() -> str:
-    """"ready", "loading", "not loaded" or "failed: <why>", for /api/health."""
+    """"ready", "loading", "not loaded" or "failed", for /api/health (the why is in the log)."""
     if _parser is not None:
         return "ready"
     if _load_error:
-        return f"failed: {_load_error}"
+        return "failed"
     return "loading" if _load_lock.locked() else "not loaded"
 
 

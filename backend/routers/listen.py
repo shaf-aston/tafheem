@@ -30,7 +30,7 @@ from backend.models.listen import Heard, HeardAyah, HeardPlace, Sureness
 from backend.services import recitation
 from backend.services.core.ratelimit import RECORDING
 from backend.services.learner import journal
-from backend.services.recitation import NotInstalled, Refused, Unreadable, kind_of, rules
+from backend.services.recitation import NotInstalled, Refused, TooLong, Unreadable, kind_of, rules
 
 log = logging.getLogger(__name__)
 
@@ -48,6 +48,7 @@ READING_ID = re.compile("[A-Za-z0-9._:-]{1,64}")
 # machine's ear answers (recitation.would_answer_locally); /check always waits, since
 # scoring is always local. Search words skip it; errors.local_lock guards them.
 _turn = asyncio.Lock()
+_waiting = 0  # readings queued for `_turn`; listen_queue_max of them is as many as the CPU can ever catch up on
 
 
 def _reading_id(request: Request) -> str:
@@ -122,24 +123,37 @@ def _refuse_unless_audio(body: bytes, filed: _Filed) -> None:
 
 
 @asynccontextmanager
-async def _my_turn(request: Request, name: str) -> AsyncIterator[bool]:
+async def _my_turn(request: Request, name: str, filed: _Filed) -> AsyncIterator[bool]:
     """Hold `_turn` for one request. Yields False when the page gave up while it
-    waited, so the caller answers with nothing instead of spending the model."""
+    waited, so the caller answers with nothing instead of spending the model.
+    Refused 503 at once when listen_queue_max others already wait: the queue
+    cannot be filled with work nobody will wait for."""
+    global _waiting
+    if _waiting >= get_settings().listen_queue_max:
+        raise filed.fail(503, "Busy, try again in a moment.", "queue")
     queued = time.perf_counter()
-    async with _turn:
-        waited = (time.perf_counter() - queued) * 1000
-        # The wait a reciter feels is this plus the work, and only this one
-        # grows when readings pile up, so when a mark arrives late this line
-        # says whether the machine was slow or merely busy.
-        if waited >= 100:
-            log.info("queued  %.0fms", waited)
-        journal.note(f"{name}.queued", ms=round(waited))
-        if await request.is_disconnected():
-            log.info("the page gave up on that %s before its turn came", name)
-            journal.note(f"{name}.dropped")
-            yield False
-            return
-        yield True
+    _waiting += 1
+    counted = True
+    try:
+        async with _turn:
+            _waiting -= 1
+            counted = False
+            waited = (time.perf_counter() - queued) * 1000
+            # The wait a reciter feels is this plus the work, and only this one
+            # grows when readings pile up, so when a mark arrives late this line
+            # says whether the machine was slow or merely busy.
+            if waited >= 100:
+                log.info("queued  %.0fms", waited)
+            journal.note(f"{name}.queued", ms=round(waited))
+            if await request.is_disconnected():
+                log.info("the page gave up on that %s before its turn came", name)
+                journal.note(f"{name}.dropped")
+                yield False
+                return
+            yield True
+    finally:
+        if counted:  # left while still waiting: the page gave up or the task was cancelled
+            _waiting -= 1
 
 
 def _tuned_model(tuned: bool, filed: _Filed) -> str | None:
@@ -204,6 +218,8 @@ async def listen(
                     "reading.heard", ms=round((time.perf_counter() - heard_started) * 1000), chars=len(text),
                 )
                 return text, hits
+            except TooLong as exc:
+                raise filed.fail(413, "That recording is too long. Record a shorter passage.", "hear", exc) from exc
             except Unreadable as exc:
                 # The recording, not the listening. It carried a real webm
                 # header and nothing playable behind it, so _refuse_unless_audio let
@@ -214,7 +230,8 @@ async def listen(
             except NotInstalled as exc:
                 # A missing engine is a machine that was never set up, not a
                 # bad request.
-                raise filed.fail(503, str(exc), "hear", exc) from exc
+                # The exc text names a path on this machine: it stays in the log.
+                raise filed.fail(503, "Listening is not set up on this server.", "hear", exc) from exc
             except Exception as exc:
                 log.exception("listening failed")
                 raise filed.fail(
@@ -228,7 +245,7 @@ async def listen(
         # behind when this machine is the one about to spend it. A reading
         # Groq will answer costs this machine nothing to wait for.
         if is_recitation and recitation.would_answer_locally():
-            async with _my_turn(request, "reading") as wanted:
+            async with _my_turn(request, "reading", filed) as wanted:
                 if not wanted:
                     filed.done(200)
                     return Heard(text="", ayahs=[])
@@ -292,13 +309,15 @@ async def listen_check(
             return Sureness(sure={})
         _refuse_unless_audio(body, filed)
 
-        async with _my_turn(request, "check") as wanted:
+        async with _my_turn(request, "check", filed) as wanted:
             if not wanted:
                 filed.done(200)
                 return Sureness(sure={})
 
             try:
                 sure, detail = await run_in_threadpool(recitation.check, body, heard, checked, model)
+            except TooLong as exc:
+                raise filed.fail(413, "That recording is too long. Record a shorter passage.", "check", exc) from exc
             except Exception as exc:
                 log.exception("checking failed")
                 raise filed.fail(

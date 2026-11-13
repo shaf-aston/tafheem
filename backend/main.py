@@ -30,6 +30,7 @@ from backend.services.nahw import syntax
 from backend.services.hadith.usul import store as usul
 from backend.services.sarf.morphology import get_engine_name
 from backend.identity import GUEST_HEADER, PROFILE_HEADER
+from backend.services.learner.journal import scrub
 from backend.services.learner.username import GUEST
 
 # Answers that are the same for everyone and change only when the app does, so
@@ -176,8 +177,8 @@ def create_app() -> FastAPI:
     # The traceback follows from the server's own log.
     @app.exception_handler(Exception)
     async def log_crash(request: Request, error: Exception) -> JSONResponse:
-        logger.error("%s %s failed for profile %r: %r", request.method, request.url.path,
-                     request.headers.get(PROFILE_HEADER, GUEST), error)
+        logger.error("%s %s failed for profile %r: %s", request.method, request.url.path,
+                     request.headers.get(PROFILE_HEADER, GUEST), scrub(repr(error)))  # a key can ride in an SDK error
         # The id lets a learner's report be matched to the security log's line for it.
         return JSONResponse(status_code=500, content={"detail": "The server hit an error."},
                             headers=crash_headers(getattr(request.state, "request_id", "")))

@@ -43,7 +43,7 @@ from backend.services.recitation import checker, ears, locate, match, place, sou
 # which is this package's own business, and a route that imports by submodule
 # has to know.
 from backend.services.recitation.ears import would_answer_locally
-from backend.services.recitation.errors import NotInstalled, Unreadable
+from backend.services.recitation.errors import NotInstalled, TooLong, Unreadable
 from backend.services.recitation.rules import Refused
 from backend.services.recitation.recording import kind_of
 from backend.services.recitation.whisper import tuned_model

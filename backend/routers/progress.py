@@ -12,10 +12,12 @@ from __future__ import annotations
 
 import json
 from contextlib import contextmanager
+from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
+from fastapi import APIRouter, Depends, HTTPException, Path, Query, Request, Response
 
 from backend.config import get_settings
+from backend.models.common import ID_MAX
 from backend.identity import (
     DEVICE, NAMED, OWN, PROVEN, PROVEN_USER, SESSION, TOKEN, TYPED, USER, give_token, prove, take_token,
 )
@@ -57,6 +59,7 @@ from backend.services.learner.username import GUEST, clean_name, is_guest
 router = APIRouter(prefix="/api/progress", tags=["progress"])
 
 _MODULE = Query("quiz", min_length=1, max_length=32, description="Which panel is asking")
+Circle = Annotated[int, Path(ge=1, le=ID_MAX)]
 _TZ = Query(0, ge=-720, le=840, description="Minutes east of UTC on the learner's clock")
 
 
@@ -332,7 +335,7 @@ def put_public(body: PublicIn, user: str = PROVEN) -> Account:
 
 
 @router.get("/leaderboard", response_model=Leaderboard)
-def get_leaderboard(module: str = _MODULE, circle: int | None = None, user: str = USER,
+def get_leaderboard(module: str = _MODULE, circle: int | None = Query(None, ge=1, le=ID_MAX), user: str = USER,
                     held: str | None = TOKEN) -> Leaderboard:
     """A circle's joined members by words learnt, or the global top accounts plus the asker's own place.
     A circle's needs this browser's token, as every other circle route does."""
@@ -390,21 +393,21 @@ def create_circle(body: CircleIn, user: str = PROVEN) -> CircleDetail:
 
 
 @router.get("/circles/{circle}", response_model=CircleDetail)
-def get_circle(circle: int, user: str = PROVEN) -> CircleDetail:
+def get_circle(circle: Circle, user: str = PROVEN) -> CircleDetail:
     """One circle and the people the asker may see in it."""
     with _refused():
         return CircleDetail(**circles.circle_detail(circle, user))
 
 
 @router.delete("/circles/{circle}", response_model=CircleList)
-def delete_circle(circle: int, user: str = PROVEN) -> CircleList:
+def delete_circle(circle: Circle, user: str = PROVEN) -> CircleList:
     with _refused():
         circles.delete_circle(circle, user)
     return _circles(user)
 
 
 @router.post("/circles/{circle}/members", response_model=CircleDetail)
-def invite_member(circle: int, body: InviteIn, user: str = PROVEN) -> CircleDetail:
+def invite_member(circle: Circle, body: InviteIn, user: str = PROVEN) -> CircleDetail:
     """An admin invites an existing username; they see nothing until they accept."""
     member = _member_name(body.member)
     with _refused():
@@ -413,28 +416,28 @@ def invite_member(circle: int, body: InviteIn, user: str = PROVEN) -> CircleDeta
 
 
 @router.post("/circles/{circle}/accept", response_model=CircleList)
-def accept_invite(circle: int, user: str = PROVEN) -> CircleList:
+def accept_invite(circle: Circle, user: str = PROVEN) -> CircleList:
     with _refused():
         circles.accept(circle, user)
     return _circles(user)
 
 
 @router.post("/circles/{circle}/decline", response_model=CircleList)
-def decline_invite(circle: int, user: str = PROVEN) -> CircleList:
+def decline_invite(circle: Circle, user: str = PROVEN) -> CircleList:
     with _refused():
         circles.decline(circle, user)
     return _circles(user)
 
 
 @router.post("/circles/{circle}/leave", response_model=CircleList)
-def leave_circle(circle: int, user: str = PROVEN) -> CircleList:
+def leave_circle(circle: Circle, user: str = PROVEN) -> CircleList:
     with _refused():
         circles.leave(circle, user)
     return _circles(user)
 
 
 @router.delete("/circles/{circle}/members/{member}", response_model=CircleDetail)
-def remove_member(circle: int, member: str, user: str = PROVEN) -> CircleDetail:
+def remove_member(circle: Circle, member: str, user: str = PROVEN) -> CircleDetail:
     name = _member_name(member)
     with _refused():
         circles.remove(circle, user, name)
@@ -442,7 +445,7 @@ def remove_member(circle: int, member: str, user: str = PROVEN) -> CircleDetail:
 
 
 @router.put("/circles/{circle}/members/{member}", response_model=CircleDetail)
-def set_member_role(circle: int, member: str, body: RoleIn, user: str = PROVEN) -> CircleDetail:
+def set_member_role(circle: Circle, member: str, body: RoleIn, user: str = PROVEN) -> CircleDetail:
     name = _member_name(member)
     with _refused():
         circles.set_role(circle, user, name, body.role)
@@ -450,7 +453,7 @@ def set_member_role(circle: int, member: str, body: RoleIn, user: str = PROVEN) 
 
 
 @router.put("/circles/{circle}/parent", response_model=CircleDetail)
-def set_circle_parent(circle: int, body: ParentIn, user: str = PROVEN) -> CircleDetail:
+def set_circle_parent(circle: Circle, body: ParentIn, user: str = PROVEN) -> CircleDetail:
     """An admin moves a circle inside another circle they admin, or out to stand on its own."""
     with _refused():
         circles.move_circle(circle, user, body.parent)
@@ -458,7 +461,7 @@ def set_circle_parent(circle: int, body: ParentIn, user: str = PROVEN) -> Circle
 
 
 @router.get("/circles/{circle}/members/{member}/overview", response_model=Overview)
-def get_member_overview(circle: int, member: str, user: str = PROVEN) -> Overview:
+def get_member_overview(circle: Circle, member: str, user: str = PROVEN) -> Overview:
     """A joined member's overview, for whoever the circles' rules let see it."""
     name = _member_name(member)
     with _refused():

@@ -15,6 +15,10 @@ class Unreadable(RuntimeError):
     """
 
 
+class TooLong(Unreadable):
+    """The recording decodes, but runs past listen_max_seconds: refused before any model spends time on it."""
+
+
 class NotInstalled(RuntimeError):
     """The engine is not available on this machine. Said plainly, not guessed at."""
 

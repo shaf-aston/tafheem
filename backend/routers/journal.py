@@ -13,11 +13,12 @@ from __future__ import annotations
 
 import json
 
-from fastapi import APIRouter, HTTPException, Request, Response
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from pydantic import ValidationError
 
 from backend.config import get_settings
 from backend.models.journal import JournalBatch
+from backend.services.core.ratelimit import JOURNAL
 from backend.services.learner import journal
 
 router = APIRouter(prefix="/api/journal", tags=["journal"])
@@ -28,7 +29,7 @@ router = APIRouter(prefix="/api/journal", tags=["journal"])
 _DETAIL_BYTES_MAX = 4096
 
 
-@router.post("", status_code=204)
+@router.post("", status_code=204, dependencies=[Depends(JOURNAL)])
 async def post_events(request: Request) -> Response:
     """File every event the page reports, each as its own line."""
     settings = get_settings()
