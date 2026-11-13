@@ -42,6 +42,12 @@ jobs:
     timeout-minutes: 30  # a run takes about 10; a hang dumps where it is stuck (faulthandler_timeout) and stops here
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      # The scores below can move with the processor (onnxruntime picks its math kernels per CPU),
+      # so the log says which one this run got.
+      - name: Which CPU
+        run: |
+          lscpu | grep -E "^(Model name|Vendor ID|CPU\(s\)):"
+          echo "Kernels: $(grep -m1 '^flags' /proc/cpuinfo | grep -ow 'avx2\|fma\|avx512f\|avx512_vnni\|avx_vnni\|amx_tile' | sort -u | tr '\n' ' ')"
       - name: Fetch the parser encoder
         id: model
         env:
