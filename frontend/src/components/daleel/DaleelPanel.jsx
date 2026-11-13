@@ -138,17 +138,12 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
   )
 
   return (
-    <div className="panel">
+    <div className="panel panel-search">
       <SectionHeader tab="daleel"
         subtitle="Searchable in Arabic or in English. It quotes the books; it does not rule."
       />
 
       <QuestionForm>
-        {/* Every recent question, whichever language it was asked in, each chip
-            set in its own script. They used to be split into two lists by the
-            toggle above, so half of them were hidden at any one time. */}
-        {history.length > 0 && <RecentRow items={history.map((h) => h.q)} label="Recent" accent={accent} onPick={submit} />}
-
         {/* The same field as the Dictionary and the Quran tabs, down to the
             keycap and the microphone: three tabs that take a question should
             not take it three different ways. See ui/SearchBox. */}
@@ -173,10 +168,13 @@ export default function DaleelPanel({ accent, incoming, arrival, onGo, onVisit }
           />
         </SearchBox>
 
-        {/* Until anything has been asked, the same row offers questions to try, so the empty
-            page says what it can be asked. Under the box, as Nahw's and the Dictionary's
-            examples are: what you type in leads, and recent questions sit above it. */}
-        {history.length === 0 && <RecentRow items={settings.examples} label="Try" accent={accent} onPick={submit} />}
+        {/* Every recent question, whichever language it was asked in, each chip set in its
+            own script; until anything has been asked, questions to try in the same place, so
+            the empty page says what it can be asked. Under the box, as the Dictionary's Recent
+            and Nahw's examples are: what you type in leads. */}
+        {history.length > 0
+          ? <RecentRow items={history.map((h) => h.q)} label="Recent" accent={accent} onPick={submit} />
+          : <RecentRow items={settings.examples} label="Try" accent={accent} onPick={submit} />}
 
         {/* Below the search box, not above: most searches want the whole
             library, so the box that everyone uses leads and the filter, which

@@ -145,28 +145,14 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
 
   const busy = search.isPending
   // Nothing in hand: no place open, no matches, no root. The tab then opens on
-  // today's ayah and where the reader stopped, above the ways to find one.
+  // today's ayah and where the reader stopped, under the ways to find one.
   const idle = !at && !showMatches && !rootLookup.data
 
   return (
-    <div className="panel">
+    <div className="panel panel-search">
       <SectionHeader tab="quran" />
 
-      {idle && <QuranOpening accent={accent} onOpen={openResult} />}
-
       <QuestionForm>
-      {/* Recent is a way in; with a place open the picker below already says
-          where the reader is, so the row steps aside. */}
-      {!at && <RecentRow
-        items={recent.map((h) => `${h.surah}:${h.ayah}`)}
-        accent={accent}
-        onPick={(item) => {
-          const [s, a] = item.split(':')
-          openResult({ surah: Number(s), ayah: Number(a) })
-        }}
-        mono
-      />}
-
       <QuranSearchBar
         value={query}
         onChange={setQuery}
@@ -183,6 +169,19 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
         accent={accent}
       />
 
+      {/* Recent is a way in; with a place open the picker below already says
+          where the reader is, so the row steps aside. Under the box, as on the
+          other search tabs. */}
+      {!at && <RecentRow
+        items={recent.map((h) => `${h.surah}:${h.ayah}`)}
+        accent={accent}
+        onPick={(item) => {
+          const [s, a] = item.split(':')
+          openResult({ surah: Number(s), ayah: Number(a) })
+        }}
+        mono
+      />}
+
       <QuranPlacePicker
         accent={accent}
         surah={at?.surah ?? null}
@@ -191,6 +190,10 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
         onOpenAyah={(surah, ayah) => openResult({ surah, ayah })}
       />
       </QuestionForm>
+
+      {/* Today's ayah and where the reader stopped, under the ways to find one: the
+          box sat 590px down under it, below the fold on a phone. */}
+      {idle && <QuranOpening accent={accent} onOpen={openResult} />}
 
       {search.isError && (
         // A search that cannot reach Quran.com falls back to the local index

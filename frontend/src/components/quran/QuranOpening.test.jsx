@@ -22,13 +22,14 @@ const panel = () => <QuranPanel accent="#0a7" onGo={() => {}} onVisit={() => {}}
 describe('the Qur’an tab opening', () => {
   afterEach(() => Object.assign(journey, { steps: [], at: -1 }))
 
-  it("shows today's ayah over the search box, and no Continue with nowhere stopped", async () => {
+  it("shows today's ayah under the search box, and no Continue with nowhere stopped", async () => {
     renderScreen(panel(), { routes: ROUTES })
     const today = await screen.findByRole('button', { name: /The English line\./ })
     expect(today.textContent).toContain('نَصّ آخر')
     expect(today.textContent).toContain(`${surah}:${ayah}`)
     expect(screen.queryByRole('region', { name: 'Where you stopped' })).toBeNull()
-    expect(today.compareDocumentPosition(screen.getByPlaceholderText(/2:255/)) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    // The box first: on a phone it was under today's ayah, below the fold.
+    expect(today.compareDocumentPosition(screen.getByPlaceholderText(/2:255/)) & Node.DOCUMENT_POSITION_PRECEDING).toBeTruthy()
   })
 
   it('offers to carry on from the last ayah read', async () => {

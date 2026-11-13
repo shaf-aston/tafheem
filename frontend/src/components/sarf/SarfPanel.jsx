@@ -18,7 +18,7 @@ export default function SarfPanel({ accent, incoming, arrival, onGo, onVisit }) 
   } = useSarf({ incoming, arrival, onVisit })
 
   return (
-    <div className="panel">
+    <div className="panel panel-search">
       <SectionHeader
         tab="sarf"
         subtitle="Where a word comes from: its three-letter root, its pattern, and how it conjugates."

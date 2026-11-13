@@ -72,7 +72,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
   const submit = (given) => { if (!missing) lookUp(given) }
 
   return (
-    <div className="panel">
+    <div className="panel panel-search">
       <SectionHeader tab="dict" answered={Boolean(shown)}
         subtitle="Search an Arabic word, a root or an English meaning, or translate a whole Arabic sentence."
       />
@@ -90,15 +90,6 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
       )}
 
       <QuestionForm>
-        {/* Every recent word, whichever language it was in: they were split into
-            two lists by the toggle that used to sit above, and half of them were
-            hidden at any one time. Each chip is set in its own script. */}
-        <RecentRow
-          items={history.map((h) => h.q)}
-          accent={accent}
-          onPick={submit}
-        />
-
         {/* The same field as Daleel and the Qur'an tab, down to the keycap and
             the microphone: three tabs that take a word should not take it three
             different ways. See ui/SearchBox. */}
@@ -124,6 +115,15 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
           />
         </SearchBox>
 
+        {/* Every recent word, whichever language it was in, each chip set in its
+            own script. Under the box, not over it: what is typed leads, and on a
+            wide screen the box sits level with the title with this beneath it. */}
+        <RecentRow
+          items={history.map((h) => h.q)}
+          accent={accent}
+          onPick={submit}
+        />
+
         <PlaceLinks query={query} onGo={onGo} accent={accent} />
 
         {/* True whichever language is typed, so it no longer waits on a toggle
@@ -146,25 +146,10 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
 
       {mutation.isPending && !shown && <AnalyzerSkeleton />}
 
-      <CorrectedNote corrected={shown?.corrected} />
-      <ReadAsNote readAs={shown?.read_as} />
+      <AnswerFacts shown={shown} accent={accent} />
 
       {shown?.words && <SentenceMeaning data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
-      {/* The classical books sit under every word card, three or four screens
-          down on a phone; this is the way to them without the scroll. */}
-      {shown?.results && (
-        <WordEntry data={shown} accent={accent} onGo={onGo} onLookup={submit}
-          aside={shown.lang === 'ar' && (
-            <button
-              type="button"
-              onClick={() => scrollToEl(document.getElementById(CLASSICAL), 'top')}
-              style={{ '--c': accent }}
-              className="tap type-small text-[var(--text-faint)] hover:text-[var(--c)] transition-colors me-auto"
-            >
-              Classical dictionaries ↓
-            </button>
-          )} />
-      )}
+      {shown?.results && <WordEntry data={shown} accent={accent} onGo={onGo} onLookup={submit} />}
 
       {/* Under the word results, not above them: the meaning searched for is the
           answer, and the root's origin sense is the wider context behind it. On a
@@ -173,6 +158,42 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
       {/* Keyed by the search: a new search is a new question, so the choice of
           root starts over on the one it found. */}
       {shown?.lang === 'ar' && <ClassicalRoot key={shown.query} found={shown} accent={accent} />}
+    </div>
+  )
+}
+
+/**
+ * What there is to know about the answer before reading it, on one line: a
+ * word the search swapped, what a form was read as, how many entries came
+ * back, and the way down to the classical books. They were three rows between
+ * the box and the answer; on a wide screen this line sits under the title,
+ * beside the box (.panel-facts, styles/components.css).
+ */
+function AnswerFacts({ shown, accent }) {
+  const count = shown?.results?.length ?? 0
+  if (!shown?.corrected?.length && !shown?.read_as && !count) return null
+  return (
+    <div className="panel-facts">
+      <CorrectedNote corrected={shown.corrected} />
+      <ReadAsNote readAs={shown.read_as} />
+      {count > 0 && (
+        /* One is the usual answer for a whole Arabic word, the dictionary is
+           indexed by headword, but a part-word, a spaced root, or an English
+           search all come back with several. */
+        <p className="type-small text-[var(--text-dim)]">{count === 1 ? '1 entry' : `${count} entries`}</p>
+      )}
+      {/* The classical books sit under every word card, three or four screens
+          down on a phone; this is the way to them without the scroll. */}
+      {count > 0 && shown.lang === 'ar' && (
+        <button
+          type="button"
+          onClick={() => scrollToEl(document.getElementById(CLASSICAL), 'top')}
+          style={{ '--c': accent }}
+          className="tap type-small text-[var(--text-faint)] hover:text-[var(--c)] transition-colors"
+        >
+          Classical dictionaries ↓
+        </button>
+      )}
     </div>
   )
 }

@@ -443,7 +443,9 @@
     "_rail_comment": "How wide Home's progress column stands beside the tiles on a wide screen (components/home/StatsRail).",
     "rail": "17rem",
     "_field_comment": "The widest a question form gets (ui/inputs/QuestionForm: the search and answer boxes and their chips). Stretched across an 80rem page, a box for one word read as a banner, and the eye travelled a metre from the word to its return key.",
-    "field": "45rem"
+    "field": "45rem",
+    "_search_side_comment": "On a wide screen, the right-hand column a search tab's question form takes beside its title (styles/components.css .panel-search). Arabic is typed from the right, so the box sits where the eye already is, on the title's own line, and the answer starts near the top of the page instead of under a box in the left half with the right half empty.",
+    "search-side": "30rem"
   },
   "sheet": {
     "_comment": "How big a pop-up may get on a wide screen. Maximums, not widths: a phone stays full width. narrow is a short list of choices (settings, a Grow step), standard a pop-up with reading in it (the chain, a phrase, the word bank), wide a pop-up laid out in columns (the sections menu). tall is how much of the screen height any of them may take. narrator is the widest a name box grows in the chain drawing before it wraps.",
@@ -527,11 +529,12 @@
     "_label_comment": "The two rungs the rest of the app is written in: label is a control's own words (a chip, a select, a count) and ui is a line of English inside a control or a card. Tailwind's text-xs and text-sm are pointed at these two in styles/base.css, so every size in the app comes from this file and there is no second scale hiding in the components.",
     "label": "0.75rem",
     "ui": "0.875rem",
-    "_heading_comment": "Headings, smallest to largest: a sheet title (lead), a card or section heading (heading), a tab title (title), a quiz prompt (display). Tailwind's text-base to text-3xl point here.",
+    "_heading_comment": "Headings, smallest to largest: a sheet title (lead), a card or section heading (heading), a tab title on a phone (title), a quiz prompt (display), a tab title from a tablet up (masthead). Tailwind's text-base to text-4xl point here. masthead is a step above display because the title's Arabic beside it sits on the arabic ladder's display rung (2.4rem): at 1.875rem the English read as the smaller of the two names.",
     "lead": "1rem",
     "heading": "1.125rem",
     "title": "1.25rem",
-    "display": "1.875rem"
+    "display": "1.875rem",
+    "masthead": "2.25rem"
   },
   "_tarkeeb_comment": "The diagram has no sizes of its own any more. Its sentence is the arabic 'chart' rung, its role names 'term', a name inside another name 'small', and its + signs the English type 'body' size. Depth still reads as size, the steps are just shared with the rest of the app instead of being a second private ladder. Its colours are the 'role' group.",
   "pbs": {

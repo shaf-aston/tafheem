@@ -36,35 +36,43 @@ export default function SectionHeader({ tab, title, arabic, subtitle, emblem, as
   title ??= named && say(named.label)
   arabic ??= named?.arabic
   emblem ??= named?.emblem
+  // One wrapping row, not a title row with the line under it: on a search tab
+  // (.panel-search, styles/components.css) a wide screen moves the aside under
+  // the line, beside a box that has taken the right half, and an order change
+  // inside one row is all that takes.
   return (
-    <div>
-      <div className="flex items-baseline justify-between gap-4 flex-wrap">
-        {/* The picture centres on the title; the two names keep one baseline between them. */}
-        <div className="flex items-center gap-2.5 min-w-0">
-          {emblem && <Emblem id={emblem} className="section-emblem" />}
-          <div className="flex items-baseline gap-2 flex-wrap min-w-0">
-          {/* No leading at all on the title, so the line box holds the letters
-              and nothing else. A title and the sentence explaining it are one
-              thing, and the gap between them should be smaller than the gap to
-              whatever comes next, most of what used to sit there was empty line
-              box, not margin. */}
-          <h2 className="type-head type-title md:text-3xl font-semibold leading-none text-[var(--text)]">{title}</h2>
-          {arabic && (
-            /* arabic-inline, not the reading line-height: the tall empty line
-               box under one word was most of the gap beneath this header. */
-            <ArabicText className="arabic-inline section-title-ar text-[var(--text-faint)]">
-              {arabic}
-            </ArabicText>
-          )}
-          </div>
-        </div>
-
-        <div className="flex items-center justify-end gap-3 flex-wrap min-w-0 ms-auto">
-          {aside}
-          {history && <Trail nameOf={nameOf} />}
+    <div className="section-head flex items-baseline gap-x-4 flex-wrap">
+      {/* The picture centres on the title; the two names keep one baseline between them. */}
+      <div className="flex items-center gap-2.5 min-w-0">
+        {emblem && <Emblem id={emblem} className="section-emblem" />}
+        <div className="flex items-baseline gap-2 flex-wrap min-w-0">
+        {/* No leading at all on the title, so the line box holds the letters
+            and nothing else. A title and the sentence explaining it are one
+            thing, and the gap between them should be smaller than the gap to
+            whatever comes next, most of what used to sit there was empty line
+            box, not margin. */}
+        <h2 className="type-head type-title md:text-4xl font-semibold leading-none text-[var(--text)]">{title}</h2>
+        {arabic && (
+          /* arabic-inline, not the reading line-height: the tall empty line
+             box under one word was most of the gap beneath this header. The
+             full text colour at a medium weight: in the faint grey beside a
+             bold English name it read as a caption, not as the same name. */
+          <ArabicText className="arabic-inline section-title-ar font-medium text-[var(--text)]">
+            {arabic}
+          </ArabicText>
+        )}
         </div>
       </div>
-      {subtitle && <p className={`text-[var(--text-dim)] type-ui leading-snug mt-1 ${answered ? 'max-sm:hidden' : ''}`}>{subtitle}</p>}
+
+      <div className="section-aside flex items-center justify-end gap-3 flex-wrap min-w-0 ms-auto">
+        {aside}
+        {history && <Trail nameOf={nameOf} />}
+      </div>
+      {subtitle && (
+        <p className={`section-sub basis-full text-[var(--text-dim)] type-ui leading-snug mt-1.5 ${answered ? 'max-sm:hidden' : ''}`}>
+          {subtitle}
+        </p>
+      )}
     </div>
   )
 }
