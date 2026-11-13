@@ -23,7 +23,6 @@ import logging
 import sqlite3
 from typing import Callable, NamedTuple
 
-from backend.config import get_settings
 from backend.services.text import fts
 
 from backend.services.daleel.index import champions
@@ -111,8 +110,7 @@ def best_per_source(
     Handed back a source at a time in the order of their names, as the SQL
     version's window hands them back, so a tie later on falls the same way.
     """
-    kept = champions.best(conn, phrases, per_source, spans.starts,
-                          get_settings().daleel_champion_rescore_most)
+    kept = champions.best(conn, phrases, per_source, spans.starts)
     lap("lists")  # the time spent asking them, answered or not
     if kept is None:
         kept = scored(conn, " OR ".join(phrases), per_source, spans)
