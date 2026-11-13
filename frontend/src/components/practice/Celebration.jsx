@@ -8,15 +8,10 @@
  * Wear it inside an element that sets --w, the accent of the lesson.
  */
 
+import { CONFETTI } from './confettiPieces'
+
 /** A burst round the medal: pieces in the theme's colours, spaced evenly. */
 const BURST = Array.from({ length: 12 }, (_, i) => ({ angle: i * 30, tone: ['var(--w)', 'var(--grow-gold)', 'var(--success)'][i % 3] }))
-
-/** Confetti thrown up from the medal: where each piece lands sideways (px), how far it turns, its colour. Fixed, so a replay is the same throw. */
-export const CONFETTI = Array.from({ length: 24 }, (_, i) => ({
-  x: (((i * 37) % 100) - 50) * 3.2,
-  turn: ((i * 73) % 300) + 180,
-  tone: ['var(--w)', 'var(--grow-gold)', 'var(--success)', 'var(--palette-rose)'][i % 4],
-}))
 
 /** The seed in the medal: it sits, then a stem rises and two leaves open (.grow-sprout). */
 const Sprout = () => (

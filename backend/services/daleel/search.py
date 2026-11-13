@@ -70,7 +70,7 @@ def search(
     conn = db()
     if conn is None:
         return []
-    rows = candidates(conn, expansion, limit * settings.daleel_candidate_factor, tuple(books))
+    rows = candidates(conn, expansion, limit * settings.daleel_candidate_factor, tuple(books), lap)
     lap("candidates")
 
     page = page_of(rows, expansion, limit)

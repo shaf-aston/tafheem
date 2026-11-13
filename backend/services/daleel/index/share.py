@@ -21,7 +21,7 @@ import bisect
 import heapq
 import logging
 import sqlite3
-from typing import NamedTuple
+from typing import Callable, NamedTuple
 
 from backend.services.text import fts
 
@@ -34,6 +34,7 @@ log = logging.getLogger(__name__)
 
 def fairly(
     conn: sqlite3.Connection, phrases: list[str], per_source: int, books: tuple[str, ...] = (),
+    lap: Callable[[str], None] = lambda step: None,
 ) -> list[IndexedPassage]:
     """The best `per_source` passages each source has for any of `phrases`, in one question.
 
@@ -49,10 +50,13 @@ def fairly(
     was often never ranked: over sixteen questions on the real index, 112 of
     156 sources kept their best passage that way and 149 do now. Putting
     passages holding every typed word first was tried too and kept only 121.
+
+    `lap` is told which way the scores were found, "lists" or "scored", so
+    the Server-Timing header says whether the champion lists answered.
     """
     match = " OR ".join(phrases)
     if not books and (spans := source_spans(conn)):
-        return best_per_source(conn, phrases, per_source, spans)
+        return best_per_source(conn, phrases, per_source, spans, lap)
 
     only, chosen = fts.only_in("book", books)
     return list(map(IndexedPassage._make, conn.execute(
@@ -98,6 +102,7 @@ def _read_spans(conn: sqlite3.Connection) -> Spans | None:
 
 def best_per_source(
     conn: sqlite3.Connection, phrases: list[str], per_source: int, spans: Spans,
+    lap: Callable[[str], None] = lambda step: None,
 ) -> list[IndexedPassage]:
     """The `per_source` best-scored matches of each source, then those rows in full.
 
@@ -106,8 +111,10 @@ def best_per_source(
     version's window hands them back, so a tie later on falls the same way.
     """
     kept = champions.best(conn, phrases, per_source, spans.starts)
+    lap("lists")  # the time spent asking them, answered or not
     if kept is None:
         kept = scored(conn, " OR ".join(phrases), per_source, spans)
+        lap("scored")
 
     by_name = sorted(range(len(kept)), key=spans.sources.__getitem__)
     ids = [rowid for at in by_name for _, rowid in kept[at]]
