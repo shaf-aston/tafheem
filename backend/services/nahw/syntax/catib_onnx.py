@@ -41,6 +41,7 @@ class _Parser(NamedTuple):
     scorer_sess: object
     ar2bw: object
     disambiguator: object
+    bert: str = ""  # what runs the disambiguator's BERT: "onnxruntime" or "torch" (_disambiguator)
 
 
 # Built once by warm() (at startup, or else the first parse()) and published whole.
@@ -128,7 +129,7 @@ def _load() -> _Parser:
     disambiguator, which = _disambiguator(settings.catib_readings)
     ar2bw = CharMapper.builtin_mapper("ar2bw")
     logger.info("CATiB ONNX parser ready (%s, BERT on %s) in %.1fs", d, which, time.perf_counter() - started)
-    return _Parser(cfg, rel_labels, clitic_table, bpe, enc_sess, scorer_sess, ar2bw, disambiguator)
+    return _Parser(cfg, rel_labels, clitic_table, bpe, enc_sess, scorer_sess, ar2bw, disambiguator, which)
 
 
 def _disambiguator(top: int) -> tuple[object, str]:
@@ -361,6 +362,12 @@ def _parse_forms(toks: list[dict]) -> tuple[list[int], list[str]]:
 def disambiguator():
     """The loaded BERT disambiguator, or None while it is not loaded."""
     return _parser.disambiguator if _parser else None
+
+
+def bert_runtime() -> str:
+    """"onnxruntime" or "torch", what the loaded disambiguator runs on; "" while it is not loaded.
+    On /api/health, so a server whose ONNX build failed is seen back on torch."""
+    return _parser.bert if _parser else ""
 
 
 def parse(words: list[str], picks: list[dict]) -> list[dict]:

@@ -76,3 +76,16 @@ def test_failed_load_is_kept_and_reported_not_retried(fresh):
 
 def test_not_loaded_until_asked(fresh):
     assert catib_onnx.state() == "not loaded"
+
+
+def test_health_names_what_runs_the_bert(fresh):
+    from fastapi.testclient import TestClient
+
+    from backend.main import create_app
+
+    fresh.setattr(catib_onnx, "files_present", lambda: True)
+    client = TestClient(create_app())
+    assert client.get("/api/health").json()["parser_bert"] == ""  # not loaded yet
+    fresh.setattr(catib_onnx, "_parser", catib_onnx._Parser(
+        {}, [], [], None, object(), object(), None, _Disambiguator(), "onnxruntime"))
+    assert client.get("/api/health").json()["parser_bert"] == "onnxruntime"
