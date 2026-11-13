@@ -19,9 +19,10 @@ That is Fagin's threshold algorithm. A passage the lists left out and no rare
 word matched scores no better than the sum of the floors, so when each source's
 last kept passage beats that sum, nothing unseen could have taken its place.
 When it does not, `best` says so (None) and the search is asked the ordinary
-way, so this can only ever be faster, never different. Only a question with
-one common word is tried: with two or more the floors' sum is too loose, and
-on the full index the check cost more than the ordinary search it replaced.
+way, so this can only ever be faster, never different. With two or more
+common words the floors' sum is looser and more listed passages need a word
+their list left out scored from their text; past `rescore_most` of them the
+lists give up before reading any text, so trying costs the list rows alone.
 
 A listed passage may also hold another common word whose list left it out. Its
 score for that word is worked out here (`score`, the same formula FTS5 uses,
@@ -126,21 +127,24 @@ def lowered(row: Sequence[str | None]) -> list[str]:
 
 def best(
     conn: sqlite3.Connection, phrases: Sequence[str], per_source: int, starts: Sequence[int],
+    rescore_most: int = 200,
 ) -> list[list[Scored]] | None:
     """Each source's `per_source` best passages for the OR of `phrases`, best
     first, a list per source in `starts` order. None when the lists cannot
     answer this question exactly, and the caller asks FTS5 instead.
 
     `starts` is where each source's run of rowids begins (share.Spans).
+    `rescore_most` caps the passages whose text may be read to score a word
+    their list left out; more than that and the ordinary search is cheaper.
     """
     lists = stored(conn)
     common = [p for p in phrases if lists and p in lists.words]
     # A list must hold one more than the page: its last entry is its floor,
     # and a page ending on the floor ties with what the list left out.
-    # One common word only: with two or more, the lists' floors add up too loose
-    # to prove the page, and on the full index the check read ~22k rows, scored
-    # ~6k passages' text, then gave up (قال رسول الله 1.6s ordinary, 5.4s with it).
-    if len(common) != 1 or lists.words[common[0]].depth <= per_source:
+    # Two or more common words are tried too, but never at any price: on the
+    # full index قال رسول الله once scored ~6k passages' text, then gave up
+    # (1.6s ordinary, 5.4s with it). `unsure_of` stops that before any text.
+    if not common or any(lists.words[p].depth <= per_source for p in common):
         return None
     words = {p: lists.words[p] for p in common}
     rare = [p for p in phrases if p not in words]
@@ -171,7 +175,8 @@ def best(
     def unsure_of(known: dict[int, float]) -> dict[int, list[int]] | None:
         """Which passages may still be missing a common word and could reach the
         page if they held each at its floor; None when even that page would
-        fail the check at the end, so there is no point reading any text.
+        fail the check at the end, or when there are more than `rescore_most`
+        of them to read, so there is no point reading any text.
 
         A known sum is the worst a passage can score, so the per_source-th best
         of those is a bar nothing scoring above it can pass.
@@ -191,7 +196,7 @@ def best(
                     unsure[rowid] = missing
             if _unseen_could_win(_nth(best_case, per_source), floor[at]):
                 return None
-        return unsure
+        return unsure if len(unsure) <= rescore_most else None
 
     # Asked of the lists alone first, which is a millisecond. The rare words
     # can only lower scores, so this is a guess, not a proof: a question it
