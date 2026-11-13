@@ -133,26 +133,27 @@ async def _my_turn(request: Request, name: str, filed: _Filed) -> AsyncIterator[
         raise filed.fail(503, "Busy, try again in a moment.", "queue")
     queued = time.perf_counter()
     _waiting += 1
+    counted = True
     try:
-        await _turn.acquire()
+        async with _turn:
+            _waiting -= 1
+            counted = False
+            waited = (time.perf_counter() - queued) * 1000
+            # The wait a reciter feels is this plus the work, and only this one
+            # grows when readings pile up, so when a mark arrives late this line
+            # says whether the machine was slow or merely busy.
+            if waited >= 100:
+                log.info("queued  %.0fms", waited)
+            journal.note(f"{name}.queued", ms=round(waited))
+            if await request.is_disconnected():
+                log.info("the page gave up on that %s before its turn came", name)
+                journal.note(f"{name}.dropped")
+                yield False
+                return
+            yield True
     finally:
-        _waiting -= 1
-    try:
-        waited = (time.perf_counter() - queued) * 1000
-        # The wait a reciter feels is this plus the work, and only this one
-        # grows when readings pile up, so when a mark arrives late this line
-        # says whether the machine was slow or merely busy.
-        if waited >= 100:
-            log.info("queued  %.0fms", waited)
-        journal.note(f"{name}.queued", ms=round(waited))
-        if await request.is_disconnected():
-            log.info("the page gave up on that %s before its turn came", name)
-            journal.note(f"{name}.dropped")
-            yield False
-            return
-        yield True
-    finally:
-        _turn.release()
+        if counted:  # left while still waiting: the page gave up or the task was cancelled
+            _waiting -= 1
 
 
 def _tuned_model(tuned: bool, filed: _Filed) -> str | None:
