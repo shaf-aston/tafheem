@@ -2,12 +2,12 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-import { bootShellPlugin } from './vite/bootShell'
-import { growBooks } from './vite/growBooks'
-import { offline } from './vite/offline'
-import { preloadFont } from './vite/preloadFont'
-import { seo } from './vite/seo'
-import vercel from '../vercel.json'
+import { bootShellPlugin } from './vite/bootShell.js'
+import { growBooks } from './vite/growBooks.js'
+import { offline } from './vite/offline.js'
+import { preloadFont } from './vite/preloadFont.js'
+import { seo } from './vite/seo.js'
+import vercel from '../vercel.json' with { type: 'json' }
 
 // The landing page is the front door, so it is index.html and needs no rewrite.
 // The tool's door is /app; app.html is only the file behind it. A host
