@@ -437,6 +437,9 @@ class Daleel(BaseSettings):
     # How many of each source's best passages a champion list keeps. A search wanting more per source
     # (past ~3x the default page) is asked the ordinary way. Written into the index, so changing it needs a rebuild.
     daleel_champion_depth: int = Field(default=64, gt=0)
+    # Most passages a search scores from their text when two or more common words' lists overlap;
+    # past it the lists give up and the ordinary search runs. Read at search time, no rebuild.
+    daleel_champion_rescore_most: int = Field(default=200, ge=0)
     # Books one search may name; a request naming hundreds is not a reader choosing.
     daleel_max_books: int = Field(default=40, gt=0)
     # Longer than the longest book name with room to spare; a longer one matches nothing.
