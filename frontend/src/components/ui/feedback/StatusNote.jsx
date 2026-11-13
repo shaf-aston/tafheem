@@ -11,11 +11,12 @@ export default function StatusNote({ children }) {
   return <p role="status" className="type-small text-[var(--text-dim)]">{children}</p>
 }
 
-/** A word quoted in the line, set in its own script and a shade brighter. */
+/** A word quoted in the line, set in its own script and a shade brighter. Never
+ *  broken across lines: a spaced root (ء م ل) wrapped mid-word on a phone. */
 export function NoteWord({ text }) {
   return isArabic(text)
-    ? <ArabicText as="span" size="tiny" className="text-[var(--text)]">{text}</ArabicText>
-    : <span className="text-[var(--text)]">{text}</span>
+    ? <ArabicText as="span" size="tiny" className="text-[var(--text)] whitespace-nowrap">{text}</ArabicText>
+    : <span className="text-[var(--text)] whitespace-nowrap">{text}</span>
 }
 
 /** The typed words a search did not know and the known words it searched instead. */

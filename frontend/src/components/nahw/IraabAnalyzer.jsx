@@ -57,8 +57,10 @@ export default function IraabAnalyzer({ accent, onGo, onVisit, analyse = null, m
     if (analyse) analyze.mutate(analyse)
   })
 
+  // search-flow: inside Nahw's .panel-search this root steps aside (display: contents)
+  // so the form below is a cell of the panel's grid, beside the title on a wide screen.
   return (
-    <div className="space-y-6">
+    <div className="search-flow space-y-6">
       <QuestionForm>
         {/* The same field as Dictionary and Daleel, grown to a textarea: see
             ui/SearchBox's multiline mode. */}

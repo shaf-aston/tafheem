@@ -82,9 +82,12 @@
 
 
 /* A tab title's Arabic (ui/SectionHeader): from a tablet up the English steps
-   up to the display rung (md:text-3xl), so its Arabic takes the display rung too. */
+   up to the masthead rung (md:text-4xl), so its Arabic takes the display rung too. */
 @media (min-width: 48rem) {
   .section-title-ar { font-size: calc(var(--arabic-display-rem) * 1rem); }
+  /* The line under the title, a rung up with it: at the ui size it was smaller
+     than the text it introduces. */
+  .section-head > .section-sub { font-size: var(--type-lead); }
 }
 /* On a tab tile (.tile-wash, a size container), a long name (الحديث, التاريخ)
    shrinks to fit a phone's tile instead of running out of it. */
@@ -177,7 +180,7 @@ textarea.arabic-lg {
     letter-spacing: -0.01em;
   }
   /* The heading rungs (theme.json type): lead, heading, title, display. A utility beside one wins,
-     so a size that grows with the screen is type-title md:text-3xl. */
+     so a size that grows with the screen is type-title md:text-4xl. */
   .type-lead { font-size: var(--type-lead); }
   .type-heading { font-size: var(--type-heading); }
   .type-title { font-size: var(--type-title); }

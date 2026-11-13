@@ -98,7 +98,7 @@ select option {
 
 
 /* Tailwind's own sizes, pointed back at the same config. The app
-   is written in text-xs to text-3xl, and those were a
+   is written in text-xs to text-4xl, and those were a
    second scale nobody could retune from theme.json. The pixel values are
    unchanged; only where they come from is. Line heights stay Tailwind's.
    Set in @theme rather than as .text-xs rules so md:text-sm and every other
@@ -110,6 +110,7 @@ select option {
   --text-lg: var(--type-heading);
   --text-xl: var(--type-title);
   --text-3xl: var(--type-display);
+  --text-4xl: var(--type-masthead);
   /* Tailwind's transition-* classes take the app's own speed, so the
      Animations switch stops them too instead of leaving them on 150ms. */
   --default-transition-duration: calc(var(--motion-instant-ms) * 1ms);

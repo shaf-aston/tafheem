@@ -502,3 +502,61 @@ button.tile:hover { border-color: var(--c); }
   grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
 }
+
+
+/* ── A search tab's top (.panel-search on the tab's .panel) ──
+   On a wide screen the question form takes the right-hand column on the title's
+   own line: Arabic is typed from the right, and the right half sat empty while the
+   box, three rows down in the left half, pushed every answer below the fold. The
+   title, and the one line of facts about the answer (.panel-facts), take the left.
+   The panel itself is the grid, so nothing has to be wrapped to take part: a
+   section that draws its own form (Nahw's IraabAnalyzer) marks its root
+   .search-flow, which steps out of the way (display: contents) so the form inside
+   it is a cell of this grid. Everything else spans both columns, in DOM order,
+   under the two. A phone stacks the same DOM: title, box, facts, answer.
+   Row 2 is 1fr so a tall form's extra height lands under the facts, not between
+   the title and them. */
+@media (min-width: 64rem) {
+  .panel-search {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, var(--layout-search-side));
+    grid-template-rows: auto 1fr;
+    column-gap: 3rem;
+    row-gap: var(--space-panel);
+    align-items: start;
+  }
+  .panel-search > *,
+  .panel-search > .search-flow > * { grid-column: 1 / -1; margin-block: 0; }
+  .panel-search > .search-flow { display: contents; }
+  .panel-search > .section-head { grid-column: 1; grid-row: 1; }
+  .panel-search .question-form { grid-column: 2; grid-row: 1 / span 2; max-width: none; gap: 0.5rem; }
+  .panel-search > .panel-facts { grid-column: 1; grid-row: 2; }
+
+  /* The way back and a section's own switch (Nahw's views) go under the line
+     that says what the tab is for: the right of the title line is the box's now. */
+  .panel-search .section-head > .section-sub { order: 2; }
+  .panel-search .section-head > .section-aside { order: 3; flex-basis: 100%; justify-content: flex-start; margin-inline-start: 0; margin-top: 0.75rem; }
+
+  /* A slim bar, level with the title: its label is still there for a screen reader
+     and the placeholder says what to type, but a row above the box is a row the
+     answer starts under. */
+  .panel-search .search-label {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+  .panel-search .search-field { padding-block: 0.5rem; }
+  .panel-search .search-field.arabic-lg { font-size: calc(var(--arabic-chart-rem) * 1rem); }
+}
+
+/* A header's aside with nothing in it (no switch, no way back yet) takes no room. */
+.section-aside:empty { display: none; }
+
+/* The one line of facts about an answer (DictionaryPanel): what the word was read
+   as, how many entries, the way down to the books. Three rows of them sat between
+   the box and the answer. */
+.panel-facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+}

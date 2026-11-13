@@ -29,7 +29,7 @@ export function ReadAsNote({ readAs }) {
   )
 }
 
-export default function WordEntry({ data, accent, onGo, onLookup, aside = null }) {
+export default function WordEntry({ data, accent, onGo, onLookup }) {
   // The badge opens the references behind the bab names.
   const [refs, setRefs] = useState(false)
   if (data.results.length === 0) {
@@ -52,18 +52,10 @@ export default function WordEntry({ data, accent, onGo, onLookup, aside = null }
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        {/* One is the usual answer for a whole Arabic word, the dictionary is
-            indexed by headword, but a part-word, a spaced root, or an English
-            search all come back with several. */}
-        <p className="text-[var(--text-dim)] type-body">
-          {data.results.length === 1 ? '1 entry' : `${data.results.length} entries`}
-        </p>
-        {/* The panel's own link, on this line rather than a row of its own above it. */}
-        {aside}
-        {/* An Arabic answer carries its badge in its own card; the English grid has no one card to carry it. */}
-        {english && badge}
-      </div>
+      {/* The count and the way to the books sit in the panel's line of facts
+          (DictionaryPanel's AnswerFacts). An Arabic answer carries its badge in
+          its own card; the English grid has no one card to carry it. */}
+      {english && <div className="flex justify-end">{badge}</div>}
 
       {/* Two questions, two shapes. An Arabic word asks what it means, and the
           answer is one entry read in full. An English word asks which words

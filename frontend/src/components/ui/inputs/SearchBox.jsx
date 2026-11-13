@@ -27,6 +27,11 @@
  * goes in as children: the box's own edge already carries two controls and a
  * third in there would be a row of tiny targets.
  *
+ * On a search tab's wide screen the label is hidden and the field slimmed
+ * (.panel-search .search-label / .search-field, styles/components.css), so the
+ * box sits level with the tab's title; the label is still what a screen reader
+ * announces.
+ *
  * multiline swaps the input for a textarea in the same shell rather than a
  * second component: the label, hint, direction detection, clear button and
  * return button are one definition each tab shares. It starts one row tall,
@@ -69,7 +74,7 @@ export default function SearchBox({
   // read as a banner, its return key a long way from the word typed.
   return (
     <div className="space-y-3 max-w-[var(--layout-field)]">
-      <label htmlFor={id} className="block type-ui font-medium text-[var(--text-dim)]">
+      <label htmlFor={id} className="search-label block type-ui font-medium text-[var(--text-dim)]">
         {label}
         {said && (
           <span className="text-[var(--text-faint)] type-small font-normal ml-2">{said}</span>
@@ -94,7 +99,7 @@ export default function SearchBox({
             dir={rtl ? 'rtl' : 'ltr'}
             lang={rtl ? 'ar' : 'en'}
             style={{ '--c': accent }}
-            className={`w-full rounded-[var(--radius-md)] p-4 bg-[var(--surface)]
+            className={`search-field w-full rounded-[var(--radius-md)] p-4 bg-[var(--surface)]
               border border-[var(--border-hi)] text-[var(--text)]
               placeholder:text-[var(--text-faint)] focus:border-[var(--c)]
               focus:outline-none transition-colors

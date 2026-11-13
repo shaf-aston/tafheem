@@ -82,8 +82,10 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
   }
 
   return (
-    <div className="panel">
-      {/* The views ride on the title line: on their own row they read as a step before typing. */}
+    // Analyse is a search tab: its box takes the title line's right half on a wide
+    // screen (.panel-search), and the views move under the line saying what Nahw is for.
+    <div className={`panel ${view === 'analyse' ? 'panel-search' : ''}`}>
+      {/* The views ride on the title line on a phone: on their own row they read as a step before typing. */}
       <SectionHeader
         tab="nahw"
         aside={(
