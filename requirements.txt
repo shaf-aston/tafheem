@@ -54,7 +54,12 @@ packaging
 # its int8 layers; the model files are in backend/data/models/tilawa.
 # Also runs hadith search by meaning (services/hadith/meaning.py), whose
 # tokenizers and huggingface_hub arrive with faster-whisper.
-onnxruntime>=1.23
+# Pinned exactly: the parser's i'raab scores move with its version (1.29 reads
+# battery, round2 and round4 lower than 1.32), and score_baseline.json is saved
+# with 1.32.0, so CI, the server and the baseline must all run the same one.
+# A ">=" never upgrades a server that already has an older version. Change it
+# only together with a fresh score_iraab --save-baseline. 1.32 needs Python 3.11+.
+onnxruntime==1.32.0
 # Writes the parser's BERT disambiguator as an ONNX graph (scripts/nahw/build_disambig_onnx.py,
 # run by deploy/sync.sh); torch's exporter needs it. The app itself never imports it.
 onnx>=1.17
