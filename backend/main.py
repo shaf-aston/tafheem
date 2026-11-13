@@ -200,6 +200,8 @@ def create_app() -> FastAPI:
             "dictionary_loaded": dictionary_service.is_loaded(),
             "root_meaning_status": root_meaning.status(),
             "parser": syntax.status(),
+            # "onnxruntime" once data/disambig is built (deploy/sync.sh), "torch" if it is not or failed.
+            "parser_bert": syntax.bert_runtime(),
         }
 
     # Everything the app is built on, in one list. Sits beside /api/health

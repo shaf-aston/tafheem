@@ -38,6 +38,13 @@ def status() -> str:
     return catib_onnx.state() if catib_onnx.files_present() else "missing files"
 
 
+def bert_runtime() -> str:
+    """What the parser's BERT disambiguator runs on, "onnxruntime" or "torch", once loaded; else ""."""
+    from backend.services.nahw.syntax import catib_onnx
+
+    return catib_onnx.bert_runtime()
+
+
 def warm() -> None:
     """Load the parser now rather than on the first sentence typed. Does
     nothing when it is off or its files are absent, as read() would."""
