@@ -101,9 +101,15 @@ export default function Gardaan({ table, accent, form, options, onForm, swapPend
 
           {/* Arabic reads right to left, and so does the book's grid: ماضي sits on
               the right and نهي on the left. The direction lives on the scroll box so
-              a table too wide for the screen opens at ماضي, not at the passives. */}
+              a table too wide for the screen opens at ماضي, not at the passives.
+              Focusable and named, as the tarkeeb diagram's strip is: on a phone the
+              table runs off the edge, and a keyboard reader can only reach the rest
+              by scrolling a box that takes focus (axe scrollable-region-focusable). */}
           <div
             dir="rtl"
+            tabIndex={0}
+            role="region"
+            aria-label="Conjugation table, scroll sideways to see every column"
             className={`rise-in overflow-x-auto rounded-[var(--radius-md)] border border-[var(--border)] transition-opacity ${
               swapPending ? 'opacity-50' : ''
             }`}
