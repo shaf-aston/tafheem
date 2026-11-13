@@ -90,11 +90,33 @@ def test_arabic_inside_an_english_sentence_is_fenced_off():
 
 def test_a_lane_headword_keeps_its_first_spelling_only():
     """Perseus lists the unvowelled spellings after the headword as more <orth>
-    tags; Lane printed only the first, and a heading of five spellings was lost."""
+    tags, each extent="full" with no orig=; Lane printed only the first, and a
+    heading of five spellings was lost. As the file has it (x0.xml, خارجى)."""
     said = builder.Lane()._said(
-        '<orth extent="full" lang="ar">xaArijiy~N</orth> <orth lang="ar">xArj</orth> '
-        '<orth lang="ar">xArjY</orth> One who goes out, <foreign lang="ar">xaraja</foreign>.')
+        '<orth orig="" extent="full" lang="ar">xaArijiy~N</orth>'
+        ' <orth extent="full" lang="ar">*</orth> <orth extent="full" lang="ar">xArj</orth>'
+        ' <orth extent="full" lang="ar">xArjY</orth> One who goes out, <foreign lang="ar">xaraja</foreign>.')
     assert said == f"⁨{builder._arabic('xaArijiy~N')}⁩ One who goes out, ⁨خَرَجَ⁩."
+
+
+def test_a_lane_entry_keeps_its_aorist_and_the_words_its_arrows_point_to():
+    """Only those extra spellings go. An aorist (orig="Bu") and a word Lane
+    points the reader to (type="arrow") are words he wrote: dropped, كتب read
+    "aor. , inf. n." and every arrow pointed at nothing. As the file has it (k0.xml)."""
+    said = builder.Lane()._said(
+        '<orth orig="" extent="full" lang="ar">katabahu</orth> <orth extent="full" lang="ar">*</orth>'
+        ' , aor. <form n="infl"><orth orig="Bu" lang="ar">katuba</orth></form> , and ↓'
+        ' <orth type="arrow" lang="ar">kat~abahu</orth> He wrote it.')
+    arabic = builder._arabic
+    assert said == f"⁨{arabic('katabahu')}⁩ , aor. ⁨{arabic('katuba')}⁩ , and ↓ ⁨{arabic('kat~abahu')}⁩ He wrote it."
+
+
+def test_a_lane_letter_entry_keeps_its_headword_though_it_carries_no_orig():
+    """The alphabet's letters are headed by a bare <orth extent="full">, the very
+    shape a repeated spelling has; first in its entry, it is the headword."""
+    said = builder.Lane()._said(
+        '<orth extent="full" lang="ar">$</orth> The thirteenth letter of the alphabet.')
+    assert said == "⁨ش⁩ The thirteenth letter of the alphabet."
 
 
 @pytest.mark.parametrize(("heading", "roots"), [

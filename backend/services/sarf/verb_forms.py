@@ -93,11 +93,14 @@ def babs_of(word: str, sources: dict | None = None) -> dict:
     """
     sources = verb_sources.SOURCES if sources is None else sources
     found = _ask(sources, word)
-    if not any(verbs for verbs, _ in found) and (hollow := conjugation.hollow_past(word)):
-        # Both books file a أجوف verb under its past, غَابَ, never under the
-        # root غيب a reader types, so the root on its own found nothing.
-        past, weak = hollow
-        found = [(_hollow_babs(verbs, weak), key) for verbs, key in _ask(sources, past)]
+    if not any(verbs for verbs, _ in found):
+        # Both books file a verb under its past, never under the root a reader
+        # types: a أجوف under غَابَ (not غيب), a مضعّف under مَدَّ (not مدد).
+        if hollow := conjugation.hollow_past(word):
+            past, weak = hollow
+            found = [(_hollow_babs(verbs, weak), key) for verbs, key in _ask(sources, past)]
+        elif doubled := conjugation.doubled_past(word):
+            found = _ask(sources, doubled)
     return _verdict(found)
 
 

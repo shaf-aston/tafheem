@@ -99,6 +99,18 @@ def past_word(token: str, root: str) -> str | None:
     return word
 
 
+def said_past(past: str, root: str) -> str:
+    """The past as a reader meets it. Lane heads a doubled root with two letters
+    and may show its vowel only in the first person (شَحِحْتَ, read as شَحِ),
+    but the third person, the one a reader types and the books name, is always
+    فَعَّ: شَحَّ, ظَنَّ. Filed so, دَلِ and دَلَ are one verb with both babs."""
+    if len(root) != 2:
+        return past
+    # The letters as the past writes them: the root has lost أ's seat (أَبَّ under اب).
+    first, second = [ch for ch in past if ch.isalpha()][:2]
+    return f"{first}\u064e{second}\u0651\u064e"  # fatha; shaddah, fatha
+
+
 def verbs_of(root: str, body: str) -> list[dict]:
     """Every (past, babs) Lane states for this root's Form I."""
     section = form_one(body)
@@ -124,8 +136,8 @@ def verbs_of(root: str, body: str) -> list[dict]:
         for code in (table["hollow_alif"] if pair == ("ا", "a") else "~".join(pair).replace("ا", "a")
                      for pair in pairs if None not in pair):
             # A pair babs.json does not name (u~a) is a misread run, not a seventh bab.
-            if code in known and code not in found[past]:
-                found[past].append(code)
+            if code in known and code not in found[said_past(past, root)]:
+                found[said_past(past, root)].append(code)
     records = (verb_forms.record("I", past, babs) for past, babs in found.items())
     return [r for r in records if r is not None]
 

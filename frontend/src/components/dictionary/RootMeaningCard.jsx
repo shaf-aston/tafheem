@@ -227,7 +227,9 @@ function Body({
     // width the English already had, the Arabic ran to the far edge of a wide
     // screen and each line sat a whole screen away from its meaning.
     <div className="space-y-3">
-      <div className="space-y-3 max-w-[var(--lexicon-reading-w)]">
+      {/* With its English, the origin sense takes the card's width on a wide
+          screen (the pair below sits side by side); the rest keeps the column. */}
+      <div className={`space-y-3 max-w-[var(--lexicon-reading-w)] ${english ? 'lg:max-w-none' : ''}`}>
       <div>
         <div className="type-small text-[var(--text-faint)] mb-1">
           Origin sense of <Letters value={asked} />
@@ -243,22 +245,31 @@ function Body({
         )}
         {/* The sense itself sometimes ends on a line of verse the book cites,
             so it is laid out line by line for the same reason the rest is. */}
-        {/* A thin rule in the accent at the edge the Arabic starts from sets
-            the book's words off, where a box round them would be one more box. */}
-        <div dir="rtl" className="dict-quote space-y-1" style={{ '--c': accent }}>
-          <Lines text={core_meaning} style={{ color: accent }} />
+        {/* On a wide screen the Arabic on the right, where it starts, and its
+            English on the left facing it, as Together sets the rest of the
+            entry below; stacked, the English sat under a half-empty line and the
+            card's right half stood blank. One column again on anything narrower,
+            the book first. */}
+        <div className={english ? 'space-y-3 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start' : ''}>
+          {/* A thin rule in the accent at the edge the Arabic starts from sets
+              the book's words off, where a box round them would be one more box. */}
+          <div dir="rtl" className="dict-quote space-y-1 lg:col-start-2 lg:row-start-1" style={{ '--c': accent }}>
+            <Lines text={core_meaning} style={{ color: accent }} />
+          </div>
+
+          {/* The English sits under its own badge, not the card's. The Arabic
+              was typed by a person; this was read off a photograph of the page by
+              a machine, and one badge covering both would lend the weaker the
+              standing of the stronger. */}
+          {english && (
+            <div className="lg:col-start-1 lg:row-start-1 min-w-0">
+              <MachineEnglish source={data.english_source}>
+                <p className="type-body text-[var(--text-dim)]">{english}</p>
+              </MachineEnglish>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* The English sits under its own badge, not the card's. The Arabic above
-          was typed by a person; this was read off a photograph of the page by a
-          machine, and one badge covering both would lend the weaker the standing
-          of the stronger. */}
-      {english && (
-        <MachineEnglish source={data.english_source}>
-          <p className="type-body text-[var(--text-dim)]">{english}</p>
-        </MachineEnglish>
-      )}
 
       {sarf_pattern && (
         <div className="flex items-baseline gap-1.5 flex-wrap">

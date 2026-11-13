@@ -82,3 +82,27 @@ def test_build_reads_hollow_samia_past_over_first_pers_and_originally():
     # Only hollow roots step back: a doubled مَسَّ read past its "first pers." would be a~a.
     doubled = _lane("مَسَّهُ", ",", "first pers.", "مَسِسْتُهُ", ",", "aor.", "يَمَسُّهُ")
     assert build_lane_verbs.verbs_of("مسس", doubled) == []
+
+
+def test_a_doubled_root_typed_finds_the_verb_lane_files_under_its_past(monkeypatch):
+    """Lane files مدد's verb under مَدَّ; the root a reader types must still reach it,
+    the way a hollow root reaches غَابَ. A two-letter word is never taken for a verb."""
+    _sources(monkeypatch, lane={"مدّ": [{"form": "I", "past": "مَدَّ", "babs": ["a~u"]}],
+                                "منّ": [{"form": "I", "past": "مَنَّ", "babs": ["a~u"]}]})
+    root = client.get("/api/dictionary/babs", params={"root": "مدد"}).json()
+    assert [r["label"] for r in root["readings"]] == ["مَدَّ · باب نَصَرَ يَنْصُرُ"]
+    assert client.post("/api/morphology", json={"word": "مدد"}).json()["form"] == "I-nasara"
+    assert client.post("/api/morphology", json={"word": "من"}).json()["verb"]["readings"] == []
+
+
+def test_build_files_a_doubled_verb_under_its_third_person_past():
+    """Lane heads a doubled root with two letters and may show its bab only in the
+    first person: شَحِحْتَ read as the past شَحِ, filed under شح, which no root reaches.
+    Every way Lane writes it is one verb, شَحَّ, with each bab it states."""
+    first_person = _lane("شَحِحْتَ", ",", "aor.", "يَشَحُّ")
+    third_person = _lane("شَحَّ", ",", "aor.", "يَشُحُّ")
+    shahha = "\u0634\u064e\u062d\u0651\u064e"  # شَحَّ, its marks in the order the books store them
+    assert build_lane_verbs.verbs_of("شح", f"{first_person} {third_person}") == [
+        {"form": "I", "past": shahha, "babs": ["i~a", "a~u"]}]
+    # The root has lost the hamza's seat (اب); the past keeps it.
+    assert build_lane_verbs.verbs_of("اب", _lane("أَبَّ", ",", "aor.", "يَئِبُّ"))[0]["past"][0] == "أ"

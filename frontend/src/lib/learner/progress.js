@@ -136,8 +136,9 @@ export const fetchReviewItems = (module) =>
   api.get(`${BASE}/review`, { params: { module } }).then((r) => r.data.items)
 
 /** Report something that looks wrong. Resolves `{ saved }`; never rejects. */
-export async function leaveFeedback({ module, item, message }) {
-  return { saved: await landed(api.post(`${BASE}/feedback`, { module, item, message })) }
+/** A note, from a panel's "Report a problem" or the footer; the footer may add an email and ask for updates. */
+export async function leaveFeedback({ module, item, message, email, updates }) {
+  return { saved: await landed(api.post(`${BASE}/feedback`, { module, item, message, email, updates })) }
 }
 
 /** Every username, for the log-in box while in beta. Throws (404 once beta is over), for react-query. */

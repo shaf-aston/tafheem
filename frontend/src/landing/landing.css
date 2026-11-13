@@ -393,6 +393,8 @@ body { margin: 0; overflow-x: hidden; }
 .landing-page .finale-link:hover .cta { transform: translateY(-3px); background: var(--gold); }
 .landing-page .finale .cta { opacity: calc(.15 + var(--e) * .85); }
 .landing-page footer.legal { padding: 1.5rem var(--landing-gutter); text-align: center; color: var(--muted); font-size: var(--type-small); background: var(--ink); }
+.landing-page footer.legal .footer-note { margin-block: 0; margin-inline: auto; }
+.landing-page footer.legal .legal-line { margin-top: 1.25rem; }
 
 @media (max-width: 600px) {
   .landing-page .cta-row .cta { flex: 1 1 12rem; text-align: center; }

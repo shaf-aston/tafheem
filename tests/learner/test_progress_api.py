@@ -111,3 +111,21 @@ def test_feedback_is_kept_and_survives_the_wipe():
 ])
 def test_feedback_rejects_empty_or_oversize(body):
     assert client.post("/api/progress/feedback", json=body).status_code == 422
+
+
+def test_the_footer_keeps_an_email_and_a_request_for_updates():
+    note = client.post("/api/progress/feedback", json={
+        "module": "site", "item": "dictionary", "message": "Lane is great", "email": "a@b.co"})
+    asked = client.post("/api/progress/feedback", json={"module": "site", "email": "c@d.org", "updates": True})
+    assert note.status_code == 200 and asked.status_code == 200
+    rows = progress_db.connection().execute("SELECT item, message, email, updates FROM feedback ORDER BY id")
+    assert [tuple(r) for r in rows] == [("dictionary", "Lane is great", "a@b.co", 0), (None, "", "c@d.org", 1)]
+
+
+@pytest.mark.parametrize("body", [
+    {"module": "site", "updates": True},  # updates, but nowhere to send them
+    {"module": "site", "email": "a@b.co"},  # an email and nothing to say
+    {"module": "site", "message": "hi", "email": "not an email"},
+])
+def test_the_footer_refuses_a_note_with_nothing_to_act_on(body):
+    assert client.post("/api/progress/feedback", json=body).status_code == 422
