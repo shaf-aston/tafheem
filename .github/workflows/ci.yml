@@ -67,6 +67,12 @@ jobs:
           pip install -r requirements-torch.txt
           pip install -r requirements.txt pytest
           camel_data -i defaults
+      - name: Build CAMeL's BERT as ONNX and check it ranks as CAMeL's own does
+        if: steps.model.outputs.ready == 'true'
+        # the tests and scores below then run on the ONNX copy, as the server does
+        run: |
+          python -m backend.scripts.nahw.build_disambig_onnx
+          python -m backend.scripts.nahw.check_disambig_parity --ayahs 600
       - name: Whole-sentence tests
         if: steps.model.outputs.ready == 'true'
         # every nahw test: one named nowhere would be skipped here and go stale unseen, as 11 files once did

@@ -121,6 +121,10 @@ class Nahw(BaseSettings):
     # Holds encoder.onnx (int8), scorer.onnx, tokenizer.json, labels.json, config.json, clitic_feats.csv.
     # See catib_onnx.py's docstring for sources. Relative paths resolve inside backend/.
     catib_parser_dir: str = "data/parser"
+    # CAMeL's BERT disambiguator as ONNX (built by scripts/nahw/build_disambig_onnx.py, not in git):
+    # model.onnx, tokenizer.json, labels.json, config.json, mle_model.json. Without it the parser
+    # loads CAMeL's own torch copy instead, which ranks the same readings.
+    catib_disambig_dir: str = "data/disambig"
     # Adds the parser's own links, before and after the repairs, to each /api/analyze answer:
     # how a wrong role is traced on the server, where the model lives. Off for visitors.
     show_parse: bool = False

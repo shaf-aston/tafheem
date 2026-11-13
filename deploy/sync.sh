@@ -92,6 +92,12 @@ fi
 # Meaning vectors: the build itself knows what changed (text, model, length), re-encodes only
 # that, and takes seconds when nothing did. Low priority, so the live site stays quick.
 (cd "$H" && nice -n 19 venv/bin/python backend/scripts/hadith/build_hadith_meaning.py) || echo "hadith: meaning build failed, search runs on words alone"
+# CAMeL's BERT disambiguator as ONNX (the parser then loads no torch), built here from CAMeL's
+# own weights once, and again when the build script changes. Until it is built, or if the
+# build fails, the parser loads CAMeL's torch copy, which ranks the same readings.
+if [ ! -f "$H/backend/data/disambig/model.onnx" ] || [ "$H/backend/scripts/nahw/build_disambig_onnx.py" -nt "$H/backend/data/disambig/model.onnx" ]; then
+	(cd "$H" && nice -n 19 venv/bin/python -m backend.scripts.nahw.build_disambig_onnx) || echo "disambig: ONNX build failed, the parser keeps CAMeL's torch copy"
+fi
 (cd frontend && npm ci --silent && npm run build)
 rm -rf /home/ubuntu/site.new
 cp -r frontend/dist /home/ubuntu/site.new

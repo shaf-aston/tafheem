@@ -55,6 +55,9 @@ packaging
 # Also runs hadith search by meaning (services/hadith/meaning.py), whose
 # tokenizers and huggingface_hub arrive with faster-whisper.
 onnxruntime>=1.23
+# Writes the parser's BERT disambiguator as an ONNX graph (scripts/nahw/build_disambig_onnx.py,
+# run by deploy/sync.sh); torch's exporter needs it. The app itself never imports it.
+onnx>=1.17
 # FastAPI needs this to accept an uploaded recording at all.
 python-multipart>=0.0.31
 

@@ -228,6 +228,8 @@ backend/data/quran/imlaei.json
 
 # Over GitHub's 100 MB per-file limit; a push containing it is rejected outright
 backend/data/parser/encoder.onnx
+# CAMeL's BERT disambiguator as ONNX, built where it runs (scripts/nahw/build_disambig_onnx.py)
+backend/data/disambig/
 
 # Screenshots and scratch output from probing the running app
 frontend/*.png

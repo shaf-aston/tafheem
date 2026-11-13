@@ -76,7 +76,7 @@ def state() -> str:
 
 def warm() -> None:
     """Load the ONNX sessions, tokenizer and BERT disambiguator once (a ~110MB
-    int8 encoder plus CAMeL's BERT), at startup so the first sentence typed does
+    int8 encoder plus CAMeL's BERT, as ONNX when built), at startup so the first sentence typed does
     not wait, or on the first parse() when warming is off.
     """
     global _parser, _load_error
@@ -89,8 +89,9 @@ def warm() -> None:
             raise RuntimeError(f"CATiB parser failed to load: {_load_error}")
         try:
             loaded = _load()
-            # BERT's first run pulls in ~800 torch modules (2.7s); a practice word pays
-            # that here, so the first sentence typed reads in 0.3s like every later one
+            # BERT's first run is slow (torch pulls in ~800 modules, 2.7s; onnxruntime
+            # plans its graph); a practice word pays that here, so the first sentence
+            # typed reads in 0.3s like every later one
             loaded.disambiguator.disambiguate(["كتب"])
             _parser = loaded
         except Exception as exc:
@@ -120,16 +121,28 @@ def _load() -> _Parser:
     enc_sess = ort.InferenceSession(str(d / "encoder.onnx"), providers=["CPUExecutionProvider"])
     scorer_sess = ort.InferenceSession(str(d / "scorer.onnx"), providers=["CPUExecutionProvider"])
 
-    # Imported here, not at module top: camel_tools pulls in pandas/torch,
+    # Imported here, not at module top: camel_tools pulls in pandas,
     # which must load after onnxruntime.
-    from camel_tools.disambig.bert import BERTUnfactoredDisambiguator
     from camel_tools.utils.charmap import CharMapper
 
-    disambiguator = BERTUnfactoredDisambiguator.pretrained(
-        "msa", top=settings.catib_readings, use_gpu=False)
+    disambiguator, which = _disambiguator(settings.catib_readings)
     ar2bw = CharMapper.builtin_mapper("ar2bw")
-    logger.info("CATiB ONNX parser ready (%s) in %.1fs", d, time.perf_counter() - started)
+    logger.info("CATiB ONNX parser ready (%s, BERT on %s) in %.1fs", d, which, time.perf_counter() - started)
     return _Parser(cfg, rel_labels, clitic_table, bpe, enc_sess, scorer_sess, ar2bw, disambiguator)
+
+
+def _disambiguator(top: int) -> tuple[object, str]:
+    """CAMeL's BERT disambiguator, ranking `top` readings a word: the ONNX copy
+    (disambiguator_onnx.py) when it has been built, which needs no torch, else CAMeL's
+    own. The two rank alike (scripts/nahw/check_disambig_parity.py, run in CI)."""
+    from backend.services.nahw.syntax import disambiguator_onnx
+
+    onnx_dir = data_path("catib_disambig_dir")
+    if disambiguator_onnx.files_present(onnx_dir):
+        return disambiguator_onnx.OnnxDisambiguator(onnx_dir, top=top), "onnxruntime"
+    from camel_tools.disambig.bert import BERTUnfactoredDisambiguator
+
+    return BERTUnfactoredDisambiguator.pretrained("msa", top=top, use_gpu=False), "torch"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
