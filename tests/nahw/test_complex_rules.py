@@ -1,6 +1,8 @@
 """The rules the complex set (backend/data/nahw_rules/complex_sentences.json, labelled blind)
 exposed, each held by its sentence and by a sibling the same rule must leave alone: a fix
 for one construction that also bent the other would fail here."""
+import re
+
 import pytest
 
 from tests.nahw_helpers import analyze, cards, needs_parser
@@ -138,3 +140,93 @@ def test_a_jar_hangs_on_the_khabar_not_the_particle(sentence, label):
 ])
 def test_anna_and_its_pair_are_one_masdar(sentence, job):
     assert (job, "مَصْدَرٌ مُؤَوَّلٌ") in units(sentence)
+
+
+# ياء المتكلم on a noun takes the kasra, so the case cannot show, whether CAMeL names it 1s_poss (كتابي) or 1s_pron
+# (عندي, a ظرف); another pronoun leaves the vowel shown (عندكَ), and on a verb it is an object (أكرمني).
+@needs_parser
+@pytest.mark.parametrize("sentence, word, sign", [
+    ("عِنْدِي كِتَابٌ", "عِنْدِي", "فتحة مقدرة على ما قبل ياء المتكلم"),
+    ("كِتَابِي جَدِيدٌ", "كِتَابِي", "ضمة مقدرة على ما قبل ياء المتكلم"),
+    ("جَلَسْتُ عِنْدَكَ", "عِنْدَكَ", "فتحة"),
+    ("أَكْرَمَنِي زَيْدٌ", "أَكْرَمَنِي", "مبني على الفتح"),
+])
+def test_ya_of_the_speaker_hides_the_case(sentence, word, sign):
+    assert card(sentence, word)["sign"] == sign
+
+
+def _pronoun_said(sentence: str, word: str) -> str:
+    return re.search("«([^»]+)» ضمير", card(sentence, word)["reason"]).group(1)
+
+
+# The pronoun is named by the letters the word ends with: ي on a noun or particle (عندي، معي), ني on a verb, whose
+# ن is نون الوقاية (أكرمني).
+@needs_parser
+@pytest.mark.parametrize("sentence, word, said", [
+    ("عِنْدِي كِتَابٌ", "عِنْدِي", "ي"),
+    ("مَعِي قَلَمٌ", "مَعِي", "ي"),
+    ("أَكْرَمَنِي زَيْدٌ", "أَكْرَمَنِي", "ني"),
+])
+def test_a_pronoun_is_named_by_its_written_letters(sentence, word, said):
+    assert _pronoun_said(sentence, word) == said
+
+
+def _parts(sentence: str, at: int) -> list:
+    """The roles of the pieces the picture draws inside word `at` (its verb, its doer, its object)."""
+    def find(node):
+        if node.get("word") == at:
+            return node
+        return next(filter(None, map(find, node.get("children", []))), None)
+    return [p["role"] for p in find(analyze(sentence)["tree"]["tree"]).get("parts", [])]
+
+
+# يَفُوتُنَا, filed whole as one verb, still has its object written onto it: the card and the tree name «نا» مفعول به;
+# the verb with nothing written on it has no object.
+@needs_parser
+@pytest.mark.parametrize("sentence, has_object", [
+    ("كَادَ الْقِطَارُ يَفُوتُنَا", True),
+    ("كَادَ الْقِطَارُ يَفُوتُ", False),
+])
+def test_an_object_written_on_a_whole_verb(sentence, has_object):
+    assert ("مفعول به" in _parts(sentence, 2)) == has_object
+
+
+# No verb puts the word after it in jarr, only a preposition or a مضاف does (Ibn Aqil V1 p15: بالجر), so قَاضِي before
+# a noun in jarr is the noun, never the command to a woman its letters also spell; before an object in nasb it is that
+# command, and a feminine plural's kasra is its nasb.
+@needs_parser
+@pytest.mark.parametrize("sentence, word, role", [
+    ("جَاءَ قَاضِي الْمَدِينَةِ", "قَاضِي", "فاعل"),
+    ("قَاضِي الْخَصْمَ", "قَاضِي", "فعل"),
+    ("اُذْكُرِي الصَّالِحَاتِ", "اُذْكُرِي", "فعل"),
+    ("يَا هِنْدُ زُورِي الْجَارَاتِ", "زُورِي", "فعل"),
+])
+def test_a_mudaf_is_no_command(sentence, word, role):
+    assert card(sentence, word)["role"] == role
+
+
+# لَوْلَاكَ: لولا opens on a noun, and a pronoun written on it stands in that noun's place, the مبتدأ whose khabar is
+# left out (al-Akhfash's reading; Sibawayh has the pronoun in jarr by لولا), and the verb after is its answer; a
+# pronoun written on لعلّ is its اسم.
+@needs_parser
+@pytest.mark.parametrize("sentence, word, said, answer", [
+    ("لَوْلَاكَ لَهَلَكْتُ", "لَوْلَاكَ", "«ك» ضمير متصل مبني في محل رفع مبتدأ", "لَهَلَكْتُ"),
+    ("لَوْلَاهُ لَضَاعَ الْأَمْرُ", "لَوْلَاهُ", "«ه» ضمير متصل مبني في محل رفع مبتدأ", "لَضَاعَ"),
+    ("لَعَلَّكَ نَاجِحٌ", "لَعَلَّكَ", None, None),
+])
+def test_a_pronoun_on_lawla_is_its_mubtada(sentence, word, said, answer):
+    reason = card(sentence, word)["reason"]
+    assert (said in reason) if said else "مبتدأ" not in reason
+    assert answer is None or "جواب لولا" in card(sentence, answer)["reason"]
+
+
+# بِرَافِعِي رَايَاتِهِمْ: a sound masculine plural drops its ن to be مضاف (Ibn Aqil V1 p62: نون المثنى والمجموع تحذف
+# للإضافة), its ي still its sign; a singular whose own last letter is ي (قَاضِي) keeps its hidden kasra.
+@needs_parser
+@pytest.mark.parametrize("sentence, word, sign", [
+    ("مَرَرْتُ بِرَافِعِي رَايَاتِهِمْ", "بِرَافِعِي", "الياء، جمع مذكر سالم"),
+    ("جَاءَ مُعَلِّمُو الْمَدْرَسَةِ", "مُعَلِّمُو", "الواو، جمع مذكر سالم"),
+    ("مَرَرْتُ بِقَاضِي الْمَدِينَةِ", "بِقَاضِي", "كسرة مقدرة على الياء للثقل"),
+])
+def test_a_plural_loses_its_nun_to_be_mudaf(sentence, word, sign):
+    assert card(sentence, word)["sign"] == sign

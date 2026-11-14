@@ -16,6 +16,7 @@ from backend.services.nahw.syntax.facts import (
     shown_cases,
     typed_or_parsed_case,
 )
+from backend.services.nahw.syntax.condition import subject_id
 from backend.services.nahw.syntax.followers import FOLLOWERS
 from backend.services.nahw.syntax.naming import NAMED
 from backend.services.nahw.syntax.picture.hang import definite, hangs_under
@@ -175,7 +176,7 @@ def add_unwritten_verbs(c: Picture) -> None:
         frame = condition_of(bases[i]["form"]) if opens.get("part") == "opener" else None
         if not frame or not frame.get("khabar") or opens.get("answer") is None or opens.get("verb") is None:
             continue
-        noun = by_id[bases[opens["verb"]]["id"]]
+        noun = by_id[subject_id(i, found, bases)]
         if any(role_of.get(t["id"]) in khabars and t["head"] == noun["id"] for t in drawn):
             continue
         # after the noun and the words hung under it (لولا رحمةُ اللهِ)

@@ -157,7 +157,9 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
     cases = [_ending(role, token, _governor(bases, i), words[i + 1] if i + 1 < len(words) else "",
                      facts.puts_in_jarr(token, s), _lam_mood(token, before[i], i == 0))
              for i, (role, token) in enumerate(zip(named, bases))]
-    conditions = condition.find(bases, named, cases, before)
+    after = [[t["form"].strip("+") for t in tokens if t["id"] not in base_ids and not facts.is_prefix(t) and word_of.get(t["id"]) == i]
+             for i in range(len(bases))]
+    conditions = condition.find(bases, named, cases, before, after)
     for c in conditions:
         _jazm_by_condition(c, named, cases)
     take_their_ending(named, cases, bases, tokens)
@@ -310,11 +312,13 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict], s: facts.Sentenc
     if frame["built"]:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
     opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"],
-                           "kind": frame["opener"] if frame["noun"] else None}
-    if subject := frame.get("subject"):
-        # لولا زيدٌ: the noun after it is the مبتدأ, its khabar left out; the answer still answers
-        found[c["verb"]].update(role=subject, book=None)
-        found[c["verb"]]["condition"] = {"part": "subject", "opener": c["opener"], "family": frame["family"]}
+                           "kind": frame["opener"] if frame["noun"] else None, "masdar": c["masdar"]}
+    # لولا زيدٌ: the noun after it is the مبتدأ, its khabar left out; the answer still answers. A pronoun written
+    # on لولا is named so already (لَوْلَاكَ), and أنّ keeps its own name, its masdar the مبتدأ (لَوْلَا أَنَّكَ صَدِيقِي)
+    if (subject := frame.get("subject")) and c["verb"] != c["opener"]:
+        if not c["masdar"]:
+            found[c["verb"]].update(role=subject, book=None)
+        found[c["verb"]]["condition"] = {"part": "subject", "opener": c["opener"], "family": frame["family"], "masdar": c["masdar"]}
     for part in ("answer",) if subject else ("verb", "answer"):
         if c[part] is None:
             continue

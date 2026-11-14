@@ -17,8 +17,8 @@ from backend.services.nahw.syntax.repair.hal import elative_describes, hal_claus
 from backend.services.nahw.syntax.repair.khabar import after_pointer, jar_off_particle, before_la, hung_on_pronoun, majrur_of_jar, naat_after_its_noun, la_over_its_khabar, zarf_is_no_subject, khabar_said_first, described_doer, elative_specified, hasr_khabar, object_of_noun, relative_khabar, second_khabar, told_of_jar
 from backend.services.nahw.syntax.repair.nasab import nasab
 from backend.services.nahw.syntax.repair.number import compound_number
-from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, excepted_after_doer, first_object_owed, name_told_to, repeated_doer, doer_after_object, doer_first, late_doer, outer_doer, kana_subject, kana_fronted_khabar, kana_nasb_khabar, inna_object, inna_second_khabar, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
-from backend.services.nahw.syntax.repair.typed import adverb_only, described_after_tanween, described_known, emphasis_lam_opener, jarr_after_mudaf, nunless_mudaf, since_jarr, typed_words
+from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, pronoun_on_its_verb, excepted_after_doer, first_object_owed, name_told_to, repeated_doer, doer_after_object, doer_first, late_doer, outer_doer, kana_subject, kana_fronted_khabar, kana_nasb_khabar, inna_object, inna_second_khabar, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
+from backend.services.nahw.syntax.repair.typed import adverb_only, described_after_tanween, described_known, emphasis_lam_opener, jarr_after_mudaf, number_after_one, nunless_mudaf, since_jarr, typed_words
 
 
 # Each repair and what it reads: the parser's "tokens", the typed words' "bases", "both", the "sentence" (links kept
@@ -29,6 +29,7 @@ PASSES = (
     (compound_number, "bases"),
     (since_jarr, "tokens"),
     (jarr_after_mudaf, "sentence"),
+    (number_after_one, "sentence"),
     (nunless_mudaf, "tokens"),
     (emphasis_lam_opener, "tokens"),
     (asked_man, "both"),
@@ -36,6 +37,7 @@ PASSES = (
     (asked_anna, "tokens"),
     (asked_before_verb, "sentence"),
     (asked_of_kana, "sentence"),
+    (pronoun_on_its_verb, "sentence"),
     (added_to_verb, "sentence"),
     (excepted_after_doer, "sentence"),
     (first_object_owed, "sentence"),

@@ -240,7 +240,7 @@ def _as_command(word: str, a: dict, before: str, after: str, after_read: str = "
     command's shape too, and أَفْضَلُ is a comparative whatever sarf can build."""
     if (a.get("pos") or "").lower() not in ("verb", "noun", "noun_prop") or is_built_word(a.get("lex") or ""):
         return a  # مُنْذُ أَمْسِ: a built time word is never the command its letters spell
-    if a.get("pos") != "verb" and (verb_reader.called(before, after, after_read) or verb_reader.noun_marked(word, before, a.get("lex") or "")):
+    if a.get("pos") != "verb" and (verb_reader.called(before, after, after_read) or verb_reader.noun_marked(word, before, a.get("lex") or "", after)):
         return a  # يَا رَبِّ، رَبِّ اغْفِرْ لِي: a noun called, not رَبَّى's command; عَلَى مَالِ: a noun in jarr
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
     root = root_in_arabic(a.get("root") or "", a.get("lex") or "", word)  # a verb or a noun, so rooted
@@ -636,7 +636,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [oath]
         if jarred := _jarred_ma(evidence):
             ranked = [jarred]
-        if sister := _inna_short_me(evidence):
+        if sister := _inna_short_me(evidence) or _noun_only_particle(evidence):
             ranked = [sister]
         if not _agreeing(evidence, ranked) and (seated := _hamza_written_waw(evidence, disambiguator)):
             ranked = [seated]
@@ -682,7 +682,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                 and (after.get("cas") == "g" or after.get("pos") == "noun_prop" and typed_case(tokens[i + 1]) is None):
             word, ranked = steps[i]
             out[i] = best_reading(word, [r for r in ranked if r.get("enc0") != "1s_poss"
-                                         and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) or out[i]
+                                         and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) \
+                or _construct_plural(word, ranked, out[i]) or out[i]
     # صِلْ مَنْ قَطَعَكَ، هَلْ نَضَجَ التِّينُ: a word after a governor that wants a verb (expects.json: لم، لن، هل،
     # a relative whose صلة is a sentence ...) which the typed vowels read as well as a verb (قَطَعَكَ the verb, or
     # the noun "your pieces") is that verb. A relative opening the sentence may be a question instead (مَنْ أَبُوكَ).
@@ -999,6 +1000,23 @@ def _rest_readings(rest: str, disambiguator=None) -> list[dict]:
     return [r for r in (_ranked([rest], disambiguator) or [[]])[0] if r.get("pos") != "abbrev"]
 
 
+def _construct_plural(typed: str, ranked: list[dict], kept: dict) -> dict | None:
+    """مَرَرْتُ بِرَافِعِي رَايَاتِهِمْ: before its مضاف إليه the word is no "my" but a sound plural or a dual, its ن
+    dropped for the إضافة: the dictionary's own such reading where the typed vowels allow one (مُعَلِّمِي الْمَدْرَسَةِ),
+    else sarf's (noun_reader.construct_of), a one-letter preposition or joining letter the kept reading has put back."""
+    own = best_reading(typed, [r for r in ranked if r.get("enc0") in (None, "", "0") and r.get("stt") == "c"
+                               and r.get("num") in ("p", "d") and r.get("pos", "").startswith(("noun", "adj"))])
+    if own:
+        return own
+    front = next((key for key in ("prc1", "prc2") if str(kept.get(key, "0")) not in ("0", "na")), None)
+    if not front:
+        return noun_reader.construct_of(typed)
+    marked = letters(typed)
+    said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
+    found = noun_reader.construct_of(typed[len(said):])
+    return _joined_onto(said, found, "PREP" if kept[front].endswith("_prep") else "CONJ", **{front: kept[front]}) if found else None
+
+
 def _joined_noun(typed: str, letter: str, tag: str, **proclitic) -> dict | None:
     """وَأَدْوَمُ: the noun sarf's shapes read once a one-letter particle is off (noun_reader takes ال,
     a ة and a pronoun, not a particle before them), the particle put back."""
@@ -1032,6 +1050,25 @@ def _inna_short_me(typed: str) -> dict | None:
     reading = {**full, "diac": stem + "ِي", "atbtok": full["stem"] + "_+ي", "bw": re.sub(r"\+نِي/", "+ي/", full["bw"]),
                "pattern": full["pattern"].removesuffix("نِي") + "ي"}
     return reading if best_reading(typed, [reading]) else None
+
+
+def _noun_only_particle(typed: str) -> dict | None:
+    """لَوْلَاكَ، لَوْلَاهُ، لَوْلَايَ: لولا and لوما (حرف امتناع لوجود) open only on a noun (condition `before`), so a
+    pronoun written on one is that noun, its مبتدأ (Ibn Aqil, الابتداء: لولاي ولولاك ولولاه); never لَ + the verb وَلَّى."""
+    bare, marked = bare_letters(typed), letters(typed)
+    for particle in book_words("ghair_amila_other", "conditional_particles"):
+        said = bare[len(particle):]
+        own = (condition_of(particle) or {}).get("before") == "noun" and bare.startswith(particle) \
+            and said in book_words("damir_muttasil", "on_nouns") \
+            and next((r for r in _analyses(particle) if r.get("catib6") == "PRT"), None)
+        if not own:
+            continue
+        pronoun = "".join(letter + "".join(sorted(marks)) for letter, marks in marked[len(particle):])
+        reading = {**own, "diac": own["diac"] + pronoun, "atbtok": f"{own['atbtok']}_+{pronoun}", "catib6": "PRT+NOM",
+                   "ud": f"{own['ud']}+PRON", "enc0": f"{noun_reader.pronoun_name(said, marked[-1][1])}_pron",
+                   "bw": f"{own['bw']}+{pronoun}/PRON"}
+        return reading if best_reading(typed, [reading]) else None
+    return None
 
 
 _SEATED_ON_WAW = re.compile("(?<=ُ)و(?=[ً-ِ])")

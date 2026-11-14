@@ -18,19 +18,25 @@ the conditions from here instead, so they agree.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import condition_of, is_one, kaffa_sister, named_roles
+from backend.services.nahw.book import condition_of, frames, is_one, kaffa_sister, named_roles
 from backend.services.nahw.syntax.facts import reading
 
 NAMED = named_roles()
 
 
+def subject_id(i: int, found: dict, bases: list[dict]) -> int:
+    """The token لولا opened at word i opens on: the noun after it, or the pronoun written on it (لَوْلَاكَ)."""
+    at = found["condition"]["verb"]
+    return bases[at]["id"] if at != i else next(piece["id"] for piece in found["attached"] if not piece["before"])
+
+
 def find(bases: list[dict], named: list[str | None], cases: list[str | None],
-         before: list[list[str]]) -> list[dict]:
+         before: list[list[str]], after: list[list[str]]) -> list[dict]:
     """Each condition, in typed order: {opener, verb, answer, tie, tie_at, frame}, the first
     three typed-word indexes (`answer` None for a particle whose answer is not found, as لو
     with its answer left unsaid; `tie_at` the word the tying letter is written on, which is
     not the answer's own when a particle stands in front of it: فَلَا تُكْرِمْهُ). `before` is
-    the letters written onto each word ahead of it (وَ، فَ), bare."""
+    the letters written onto each word ahead of it (وَ، فَ), bare, and `after` those written after it (ـكَ)."""
     index = {base["id"]: k for k, base in enumerate(bases)}
 
     def joined(i: int) -> bool:
@@ -39,7 +45,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
 
     def verb_at(i: int) -> int:
         """The فعل الشرط's index: straight after the opener, or past a particle hung on it
-        (إذا لم تستحِ، إن لا تفعلوه): the particle is in its clause, not between."""
+        (إذا لم تستحِ، إن لا تفعلوه): the particle is in its clause, not between. لولا opens on
+        a noun, and a pronoun written on it is that noun (لَوْلَاكَ): its index is the opener's own."""
+        if after[i] and (condition_of(bases[i]["form"]) or {}).get("before") == "noun":
+            return i
         k = i + 1
         if k + 1 < len(bases) and bases[k]["pos"] == "PRT" and bases[k]["head"] == bases[k + 1]["id"]:
             return k + 1
@@ -49,14 +58,18 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         frame = condition_of(bases[i]["form"])
         v = verb_at(i)
         # a noun no relative or question word shares its letters with opens after a clause too, its answer
-        # having come first (لَنْ نَتَرَاجَعَ مَهْمَا طَالَ الزَّمَنُ)
-        if not frame or v >= len(bases) or (i and not joined(i) and (frame["shared"] or not frame["noun"])):
+        # having come first (لَنْ نَتَرَاجَعَ مَهْمَا طَالَ الزَّمَنُ); so does لولا, which opens on a noun only, its
+        # answer left out for the clause before it to tell (كَادَ الْقِطَارُ يَفُوتُنَا لَوْلَا أَنَّنَا أَسْرَعْنَا)
+        if not frame or v >= len(bases) or (i and not joined(i) and frame.get("before") != "noun"
+                                             and (frame["shared"] or not frame["noun"])):
             return None
         # إنما: the lemma is the pair, a ما الكافة cut off the إنّ sister it stops, so no إنْ of a condition
         if kaffa_sister(bases[i]["lemma"]):
             return None
         # لولا زيدٌ: a particle of امتناع لوجود opens on a noun; before a verb it urges and opens none
-        if (named[v] == NAMED.fil) == (frame.get("before") == "noun") or (frame.get("before") == "noun" and bases[v]["pos"] not in ("NOM", "PROP")):
+        # a masdar particle with its pair is a noun too (لَوْلَا أَنَّنَا أَسْرَعْنَا)
+        if (named[v] == NAMED.fil) == (frame.get("before") == "noun") or (
+                frame.get("before") == "noun" and v != i and bases[v]["pos"] not in ("NOM", "PROP") and not masdar(v)):
             return None
         # ما النافية is a particle; إذا before a verb is a ظرف, whatever the parser tagged it
         read = reading(bases[i])
@@ -68,6 +81,18 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # مَا تَزْرَعْ تَحْصُدْ: ما النافية puts no verb in jazm, so a jussive verb after it shows the
         # conditional noun, whatever the parser tagged it
         return None if frame["noun"] and kind == "harf" and cases[v] != "jazm" else frame
+
+    def masdar(k: int) -> bool:
+        return strip_diacritics(bases[k]["form"]) in frames()["masdar"]["words"]
+
+    def under(k: int, v: int) -> bool:
+        """Word k hangs, through typed words, on word v: in v's own clause."""
+        seen = set()
+        while k not in seen and (k := index.get(bases[k]["head"])) is not None:
+            if k == v:
+                return True
+            seen.add(k)
+        return False
 
     def needs_the_tie(frame: dict, k: int) -> bool:
         """The فاء on a verb shows an answer when the verb could not stand as a condition
@@ -90,7 +115,8 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         for k in range(verb + 1, len(bases)):
             if opens(k):
                 break
-            span.append(k)
+            if not (frame.get("before") == "noun" and under(k, verb)):  # أَنَّنَا أَسْرَعْنَا: the masdar's own verb answers nothing
+                span.append(k)
         verbs = [k for k in span if named[k] == NAMED.fil]
         tied = [(k, letter) for k in span if (letter := next((t for t in frame["ties"] if t in before[k]), None))]
         # the first word the tying letter is written on is the answer (فَلَهُ، فَإِنَّ، فَهُوَ، فَلَا، فَقَدْ):
@@ -109,5 +135,6 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # a present verb in jazm right after مَنْ is never a relative's: it opens a condition
         if answer is None and frame["shared"] and not (cases[verb] == "jazm" and span):
             continue  # مَنْ جاءَ؟ : no answer, so the relative or the question word
-        found.append({"opener": i, "verb": verb, "answer": answer, "tie": tie, "tie_at": tie_at, "frame": frame})
+        found.append({"opener": i, "verb": verb, "answer": answer, "tie": tie, "tie_at": tie_at, "frame": frame,
+                      "masdar": verb != i and masdar(verb)})
     return found

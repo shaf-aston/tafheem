@@ -128,7 +128,9 @@ def _topic_carries_its_verb(toks, heads, rels) -> None:
     """الوَلَدُ يَكْتُبُ: a noun before its verb is the mubtada and the verb's clause its
     khabar (Tasheel 1.4.4 p11), so the verb hangs on the noun. The parser, barred from
     making the noun the verb's subject, hangs it under the verb as a bare topic instead.
-    A noun in nasb is left: it is a fronted object. A detached pronoun of raf' is one too."""
+    A noun in nasb is left: it is a fronted object. A detached pronoun of raf' is one too. A و or ف written onto
+    the noun opens its whole clause (وَنَحْنُ نَلْتَزِمُ): the clause hangs under the letter (وَاللَّهُ أَكْبَرُ), but where
+    the letter hung on the verb the three would loop, so the noun stands first and the letter on it."""
     for d, dep in enumerate(toks, 1):
         h = heads[d - 1]
         if not (h > d and verb_tagged(toks[h - 1]) and rels[d - 1] in ("---", "TPC")
@@ -136,6 +138,9 @@ def _topic_carries_its_verb(toks, heads, rels) -> None:
             continue
         heads[d - 1], rels[d - 1] = heads[h - 1], rels[h - 1]
         heads[h - 1], rels[h - 1] = d, "---"
+        if heads[d - 1] == d - 1 and heads[d - 2] == h and toks[d - 2]["form"].endswith("+"):
+            heads[d - 1], rels[d - 1] = 0, "---"
+            heads[d - 2], rels[d - 2] = d, "MOD"
 
 
 def _case(tok: dict) -> str | None:

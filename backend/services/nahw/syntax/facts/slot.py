@@ -44,10 +44,12 @@ def _typed_before_its_root(token: dict, s: Sentence) -> bool:
 def zarf_of_khabar(token: dict, s: Sentence) -> bool:
     """الأستاذُ عندَ البابِ: in a verbless sentence a place or time word with its mudaf ilayh
     is the khabar's maf'ul fihi (the khabar itself is understood, Tasheel 1.4.4 p13); so is one the reader
-    typed in nasb, a mubtada never being منصوب (اليومَ خمرٌ، غدًا سفرٌ)."""
+    typed in nasb, a mubtada never being منصوب (اليومَ خمرٌ، غدًا سفرٌ). So is one hung on إنّ or لا, which govern only
+    their pair, whatever verbs the rest of the sentence holds (إِلَّا أَنَّهُ لَا نَبِيَّ بَعْدِي)."""
     # المرءُ مع مَن أحبّ: a verb inside the مضاف إليه's صلة still leaves the sentence verbless at its root
     rests = token["rel"] == "---" and any(k["rel"] in SUBJECTS for k in s.kids(token))
-    return ((s.verbless or rests) and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
+    on_particle = token["rel"] == "MOD" and (head := s.head(token)) is not None and s.family(head) == "inna"
+    return ((s.verbless or rests or on_particle) and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
             and token["rel"] in ("---", "MOD", "PRD")
             and typed_or_parsed_case(token) in (None, "a")
             and (any(k["rel"] == "IDF" for k in s.kids(token)) or _typed_before_its_root(token, s)))

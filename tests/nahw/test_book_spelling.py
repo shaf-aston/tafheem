@@ -63,7 +63,7 @@ def _opened(pos: str, kind: str | None) -> list[dict]:
     words = [{"id": 1, "form": "ما", "lemma": "ما", "pos": pos, "head": 2, "reading": {"family": "x", "kind": kind} if kind else None},
              {"id": 2, "form": "قرأ", "lemma": "قرأ", "pos": "VRB", "head": 0, "asp": "p"},
              {"id": 3, "form": "فهم", "lemma": "فهم", "pos": "VRB", "head": 2, "asp": "p"}]
-    return condition.find(words, [None, NAMED.fil, NAMED.fil], [None] * 3, [[], [], []])
+    return condition.find(words, [None, NAMED.fil, NAMED.fil], [None] * 3, [[], [], []], [[], [], []])
 
 
 def test_a_conditional_noun_is_a_noun_by_its_reading_before_its_tag():

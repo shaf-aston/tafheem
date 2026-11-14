@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.nahw.book import extra_ba_on, is_mabni, is_one, is_subject_pronoun, says
 from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import (
-    Sentence, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_preposition, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
+    Sentence, is_suffix, verb_tagged, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_preposition, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
 from backend.services.nahw.syntax.facts.word import takes_two_objects
 
 
@@ -313,6 +313,18 @@ def relative_owed(s: Sentence) -> None:
                 s.relink(token, verb["id"], "OBJ")
 
 
+def pronoun_on_its_verb(s: Sentence) -> None:
+    """فَوَجَدْتُهُ أَشْمَلَ: a pronoun written onto a verb is its object (ضمير متصل في محل نصب مفعول به), so one the parser
+    hung on another word hangs on its verb; كان's is its خبر (كُنْتُهُ), left as the parser hung it."""
+    word = None
+    for token in s.tokens:
+        if not is_suffix(token):
+            word = token
+        elif (attached_pronoun(token) and word and verb_tagged(word) and s.family(word) != "kana"
+              and token["head"] != word["id"]):
+            s.relink(token, word["id"], "OBJ")
+
+
 def kana_subject(s: Sentence) -> None:
     """لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so
     a word the parser made the خبر that the reader typed in raf', with no اسم beside it, is the
@@ -374,16 +386,24 @@ def kana_fronted_khabar(s: Sentence) -> None:
 def kana_nasb_khabar(s: Sentence) -> None:
     """كَانَ اللَّهُ الصَّمَدَ: كان and its sisters put their خبر in nasb (Tasheel 1.9), so a noun the reader typed in
     nasb straight after the اسم, which the parser hung on the verb as an object or a modifier while the verb has no
-    خبر yet, is that خبر; a time or place word is left, which a khabar may be or a ظرف beside it."""
+    خبر yet, is that خبر; a time or place word is left, which a khabar may be or a ظرف beside it. The اسم is in raf', so
+    one typed in nasb that the parser made the verb's only subject is the خبر too, the اسم the pronoun hidden in the
+    verb (سَتَكُونُ نَدَامَةً)."""
     tokens = s.tokens
     for verb in tokens:
         if s.family(verb) != "kana":
             continue
         kids = s.kids(verb)
+        if any(k["rel"] == "PRD" for k in kids):
+            continue
         ism = next((k for k in kids if subject_link(k) and k["id"] > verb["id"]), None)
+        if (ism and noun_tagged(ism) and typed_case_of(ism) == "a" and not is_zarf(ism, s)
+                and sum(subject_link(k) for k in kids) == 1):
+            ism["rel"] = "PRD"
+            continue
         noun = ism and next((k for k in kids if k["id"] == ism["id"] + 1 and k["rel"] in ("OBJ", "MOD") and noun_tagged(k)
                              and typed_case_of(k) == "a" and not is_zarf(k, s)), None)
-        if noun and not any(k["rel"] == "PRD" for k in kids):
+        if noun:
             noun["rel"] = "PRD"
 
 

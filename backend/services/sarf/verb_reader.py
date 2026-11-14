@@ -259,11 +259,19 @@ def called(before: str, after: str, read_as: str = "") -> bool:
     return is_one(before, "nida") or not before and (read_as == "c" or command(after) is not None)
 
 
-def noun_marked(word: str, before: str, lemma: str) -> bool:
+def noun_marked(word: str, before: str, lemma: str, after: str = "") -> bool:
     """A word with a sign of the noun on it is never the command its letters spell (Ibn Aqil V1 p15: بالجر): typed in
-    jarr after a preposition (عَلَى مَالِ), or a word the book lists only as a ظرف (Ajrumiyya 1/18: دُونَ, a time
-    or place noun in nasb). `before` is the bare word typed before it, `lemma` the dictionary's."""
-    return only_adverb(lemma) or is_one(before, "jarr") and typed_case(word) == "i"
+    jarr after a preposition (عَلَى مَالِ), a مضاف putting the noun after it in jarr, which no verb does (قَاضِي
+    الْمَدِينَةِ), or a word the book lists only as a ظرف (Ajrumiyya 1/18: دُونَ, a time or place noun in nasb).
+    `before` is the bare word typed before it, `after` the word typed after it, `lemma` the dictionary's."""
+    return only_adverb(lemma) or is_one(before, "jarr") and typed_case(word) == "i" or _put_in_jarr(after)
+
+
+def _put_in_jarr(word: str) -> bool:
+    """A definite noun typed in jarr, with no preposition of its own: its kasra is a مضاف's work. The kasra of a
+    feminine plural (اُذْكُرِي الصَّالِحَاتِ) or on the ن of a dual or plural is their nasb too, so says nothing."""
+    bare = "".join(letter for letter, _ in letters(word))
+    return bare.startswith("ال") and typed_case(word) == "i" and not bare.endswith(("ات", "ين", "ان"))
 
 
 def known_as(word: str) -> str | None:
