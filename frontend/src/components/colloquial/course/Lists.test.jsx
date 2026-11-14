@@ -56,3 +56,21 @@ describe('what this device has opened', () => {
     expect(some).toContain('Fusha · Unit 1')
   })
 })
+
+describe('a unit’s topic cards, as a new learner reads them', () => {
+  const unit = { ...talk(1), lessons: [{ ...topic(14), lesson: 'lesson-01', title: 'Greetings' }] }
+  const dialect = { key: 'fusha', label: 'Fusha', where: 'Everywhere', units: [unit], countries: [], cities: [] }
+  const html = () => renderToStaticMarkup(<QueryClientProvider client={new QueryClient()}><TopicList dialect={dialect} unit={unit} go={() => {}} /></QueryClientProvider>)
+
+  it('says what a topic holds, as its Words half does: a count, and that there is practice', () => {
+    expect(html()).toContain('14 phrases · practice')
+    expect(html()).toContain('3 to learn')
+  })
+
+  it('names each half by what it shows (no hidden name to differ), and the Words half says whose words they are', () => {
+    const buttons = html().match(/<button[^>]*>/g)
+    expect(buttons.length).toBeGreaterThanOrEqual(2)
+    for (const b of buttons) expect(b).not.toContain('aria-label')
+    expect(html()).toMatch(/<span class="sr-only">,\s*(<!-- -->)?\s*Greetings<\/span>/)
+  })
+})

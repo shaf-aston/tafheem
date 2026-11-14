@@ -29,7 +29,7 @@ describe('WordGallery', () => {
 
   it('opens a tile in the sheet and steps on into the next heading', () => {
     renderWithProviders(<WordGallery words={words} />)
-    fireEvent.click(screen.getByRole('button', { name: 'green (أخضر)' }))
+    fireEvent.click(screen.getByRole('button', { name: /\bgreen$/ }))
     expect(screen.getByText('3 / 6')).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: 'Next word' }))
     expect(screen.getByText('4 / 6')).toBeTruthy()
@@ -40,12 +40,25 @@ describe('WordGallery', () => {
       .map((en, n) => ({ id: en, arabic: `ص${n}`, english: en, category: 'little', image: `emoji/${en}.svg` }))
     const mixed = [{ id: 'i', arabic: 'أنا', english: 'I', category: 'little' }, ...pictured]
     const { container } = renderWithProviders(<WordGallery words={mixed} />)
-    const names = screen.getAllByRole('button').map((b) => b.getAttribute('aria-label'))
-    expect(names[0]).toBe('cat (ص0)')
-    expect(names.at(-1)).toBe('I (أنا)')
+    const tiles = screen.getAllByRole('button').map((b) => b.textContent)
+    expect(tiles[0]).toContain('cat')
+    expect(tiles.at(-1)).toContain('أنا')
     const big = container.querySelectorAll('li.col-span-2')
     expect(big).toHaveLength(1)
     expect(big[0].textContent).toContain('cat')
+    // A picture whose English is printed under it says nothing more: each word is said once.
+    const imgs = container.querySelectorAll('img')
+    expect(imgs.length).toBeGreaterThan(0)
+    for (const img of imgs) expect(img.getAttribute('alt')).toBe('')
+  })
+
+  it('names a tile by the words it shows, so it can be asked for by voice, and says each word once', () => {
+    renderWithProviders(<WordGallery words={words} />)
+    const tile = screen.getByRole('button', { name: /\bgreen$/ })
+    expect(tile.getAttribute('aria-label')).toBeNull()       // no hidden name that differs from what is seen
+    expect(tile.textContent).toContain('أخضر')
+    // The tile's number is decoration: it is seen, not said.
+    expect(tile.querySelector('[aria-hidden="true"].tabular-nums')).not.toBeNull()
   })
 
   it('draws no large tile when a run is too short to fill the rows beside it', () => {

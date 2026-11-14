@@ -4,10 +4,15 @@
 // tap turns the place green; a wrong one shakes and says what was tapped, and shows
 // the English as a hint; a second miss rings the right place, so a slip teaches. A warm-up like Match: nothing is filed
 // for review. The boards and their spots are lib/colloquial/wordPictures.js.
+//
+// On a figure the word explored (or, in Test, the word wrongly tapped) also stands beside its dot,
+// in the margin and never on the drawing (Callout), so the eye need not leave the dot. From the
+// keyboard the picture is one Tab stop: the arrow keys go from place to place, in reading order.
 import { useMemo, useRef, useState } from 'react'
 
 import settings from '../../../../config/colloquial-display.json'
 import { readViewParam, writeViewParams } from '../../../../lib/nav/tabUrl'
+import { placeCallout } from '../../../../lib/colloquial/calloutPlace'
 import { pictureBoards } from '../../../../lib/colloquial/wordPictures'
 import { shuffled } from '../../../../lib/text/shuffle'
 import ArabicText from '../../../ui/text/ArabicText'
@@ -16,12 +21,17 @@ import SmallButton from '../../../ui/buttons/SmallButton'
 import SpeakButton from '../../../ui/buttons/SpeakButton'
 import Spelling from '../../parts/Spelling'
 import BodyArt from './BodyArt'
+import Callout from './Callout'
 import MapArt from './MapArt'
 import PanelArt from './PanelArt'
 import SceneArt from './SceneArt'
 import ThingArt from './ThingArt'
+import usePictureFrame from './usePictureFrame'
 
 const STEPS = [{ id: 'explore', label: 'Explore' }, { id: 'test', label: 'Test' }]
+
+// Arrow keys step through the places in reading order: on, or back.
+const MOVES = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }
 
 const fresh = (board) => ({
   queue: shuffled(board.spots.flatMap((s) => s.words.map((word) => ({ word, key: s.key }))), Math.random),
@@ -81,12 +91,52 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
   const [picked, setPicked] = useState(null)
   const [heard, setHeard] = useState(0)
   const svg = useRef(null)
+  const art = useRef(null)
+  const frame = usePictureFrame(svg, art)
+  const [labelH, setLabelH] = useState(48)   // a first guess at the label's height, until it is measured
+  const [focusKey, setFocusKey] = useState(null)
   const exploring = step === 'explore'
   const ask = game.queue[game.at]
   const done = !ask
   const r = board.view[2] / 30
   const tappedSpot = board.spots.find((s) => s.key === game.tapped)
   const pickedSpot = board.spots.find((s) => s.key === picked)
+  // The place whose word stands beside it: the one tapped in Explore; in Test, a wrong tap (its word, in red).
+  const shownSpot = exploring ? pickedSpot : game.wrong ? tappedSpot : null
+  const tone = exploring ? 'var(--primary)' : 'var(--danger)'
+
+  // Where that word can stand beside its dot, if the drawing leaves a margin (a figure does, a house does not).
+  // No margin, nothing measurable (a test) or something in the way: null, and the card says it alone.
+  const stand = useMemo(() => {
+    if (!shownSpot || shownSpot.area || !frame) return null
+    const { px, scale } = frame
+    const seg = (from, to) => { const a = px(...from), b = px(...to); return { x0: a.x, y0: a.y, x1: b.x, y1: b.y } }
+    return placeCallout({
+      box: frame.box, art: frame.art, height: labelH,
+      dot: { ...px(shownSpot.x, shownSpot.y), r: r * 1.3 * scale },
+      others: board.spots.filter((s) => s !== shownSpot).map((s) => (s.area
+        ? seg([s.area[0], s.area[1]], [s.area[0] + s.area[2], s.area[1] + s.area[3]])
+        : { ...px(s.x, s.y), r: r * scale })),
+      lines: board.spots.filter((s) => s.to).map((s) => seg([s.x, s.y], s.to)),
+    })
+  }, [shownSpot, frame, labelH, board, r])
+  const joint = stand && frame.unpx(stand.line.x, stand.line.y)
+
+  // The places in reading order (row by row, left to right), for the arrow keys. One of them holds the Tab stop:
+  // the last one reached, or the first.
+  const order = useMemo(() => {
+    const at = (s) => (s.area ? [s.area[0] + s.area[2] / 2, s.area[1] + s.area[3] / 2] : [s.x, s.y])
+    return [...board.spots].sort((a, b) => {
+      const [ax, ay] = at(a), [bx, by] = at(b)
+      return Math.abs(ay - by) > r * 1.5 ? ay - by : ax - bx
+    }).map((s) => s.key)
+  }, [board, r])
+  const stop = order.includes(focusKey) ? focusKey : order[0]
+  const move = (from, by) => {
+    const next = order[(order.indexOf(from) + by + order.length) % order.length]
+    setFocusKey(next)
+    ;[...svg.current.querySelectorAll('[role="button"][data-key]')].find((e) => e.dataset.key === next)?.focus()
+  }
 
   const answer = (key) => {
     if (exploring) {
@@ -95,6 +145,7 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
       // Heard as it is tapped, through the speaker button, so a voice still being
       // made shows it is busy and one that cannot say it shows that too.
       setPicked(key)
+      setFocusKey(key)
       setHeard((n) => n + 1)
       return
     }
@@ -134,10 +185,11 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
       </div>
     </div>
     <div className={split ? CANVAS : 'space-y-4'}>
-      <svg ref={svg} viewBox={board.view.join(' ')} role="group" aria-label={`${board.label}: ${exploring ? 'tap a place to hear its name' : 'tap the place'}`}
-        className={`w-full max-w-md max-h-[70vh] mx-auto block touch-manipulation cursor-pointer select-none ${split ? 'lg:max-h-[calc(100dvh-var(--app-header-h,0px)-5rem)]' : ''}`}
+      <div className="relative mx-auto w-full max-w-md">
+      <svg ref={svg} viewBox={board.view.join(' ')} role="group" aria-label={`${board.label}: ${exploring ? 'tap a place to hear its name' : 'tap the place'}. Arrow keys go from place to place.`}
+        className={`w-full max-h-[70vh] block touch-manipulation cursor-pointer select-none ${split ? 'lg:max-h-[calc(100dvh-var(--app-header-h,0px)-5rem)]' : ''}`}
         onClick={(e) => answer(spotAt(e, board))}>
-        <Art board={board} />
+        <g ref={art}><Art board={board} /></g>
         {/* A led-out dot's line to its place, under the dots. */}
         {board.spots.filter((s) => s.to).map((s) => (
           <g key={`${s.key}-to`} aria-hidden="true" stroke="var(--text-dim)" strokeWidth={r / 6}>
@@ -145,6 +197,9 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
             <circle cx={s.to[0]} cy={s.to[1]} r={r / 3} fill="var(--text-dim)" />
           </g>
         ))}
+        {/* The line from the tapped dot to its word, under the dots. */}
+        {stand && <line aria-hidden="true" className="pointer-events-none" x1={shownSpot.x} y1={shownSpot.y} x2={joint.x} y2={joint.y}
+          stroke={tone} strokeWidth={r / 5} strokeLinecap="round" />}
         {/* After the misses run out, a ring around the place being asked for. */}
         {!exploring && ask && game.misses >= SHOW_AFTER && (() => {
           const s = board.spots.find((spot) => spot.key === ask.key)
@@ -159,13 +214,21 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
           const chosen = exploring && picked === s.key
           const ringed = !exploring && ask && game.misses >= SHOW_AFTER && ask.key === s.key
           const name = exploring ? s.words.map((w) => w.english).join(', ') : `Place ${i + 1}${found ? ', found' : ''}${ringed ? ', the ringed place' : ''}`
-          const keys = { onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); answer(s.key) } } }
+          const keys = {
+            tabIndex: s.key === stop ? 0 : -1,
+            onFocus: () => setFocusKey(s.key),
+            onKeyDown: (e) => {
+              if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); answer(s.key) }
+              else if (e.key in MOVES) { e.preventDefault(); move(s.key, MOVES[e.key]) }
+              else if (e.key === 'Home' || e.key === 'End') { e.preventDefault(); move(e.key === 'Home' ? order[0] : order.at(-1), 0) }
+            },
+          }
           if (s.area) {
             const [x, y, w, h] = s.area
             const tint = found ? 'var(--success)' : wrong ? 'var(--danger)' : chosen ? 'var(--primary)' : null
             return (
               <rect key={s.key} data-key={s.key} x={x + 2} y={y + 2} width={w - 4} height={h - 4} rx={Math.min(8, w / 6)}
-                role="button" tabIndex={0} aria-label={name} {...keys}
+                role="button" aria-label={name} {...keys}
                 className={`outline-none focus-visible:stroke-[var(--text)] ${wrong ? 'shake' : ''}`}
                 fill={tint ? `color-mix(in oklab, ${tint} 18%, transparent)` : 'transparent'}
                 // A faint dashed edge says the whole area can be tapped, without saying what it is.
@@ -176,7 +239,7 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
           }
           return (
             <circle key={s.key} data-key={s.key} cx={s.x} cy={s.y} r={wrong || chosen ? r * 1.3 : r}
-              role="button" tabIndex={0} aria-label={name} {...keys}
+              role="button" aria-label={name} {...keys}
               className={`outline-none focus-visible:stroke-[var(--text)] ${wrong ? 'shake' : ''}`}
               fill={found ? 'var(--success)' : wrong ? 'var(--danger)' : 'var(--primary)'}
               fillOpacity={exploring && !chosen ? 0.75 : 1}
@@ -184,6 +247,8 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
           )
         })}
       </svg>
+      {stand && <Callout words={shownSpot.words} at={stand} tone={tone} onHeight={setLabelH} />}
+      </div>
       {!exploring && <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="type-small text-[var(--text-dim)]">
           {/* Counted in words: a place can hold two ("husband" and "brother-in-law"). */}

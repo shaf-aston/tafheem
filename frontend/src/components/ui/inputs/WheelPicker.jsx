@@ -43,6 +43,10 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
   const home = loop ? n : 0
 
   const chosen = options.find((o) => o.id === value)
+  // Named by what it shows, then by what it is for ("Egyptian, Dialect"): a voice-control user
+  // says what they see (WCAG 2.5.3), and a screen reader still hears what the choice is of.
+  const shown = chosen ? chosen.label : placeholder
+  const name = typeof shown === 'string' && shown && shown !== label ? `${shown}, ${label}` : label
   const text = (words) => (arabic ? <ArabicText size="base">{words}</ArabicText> : words)
 
   const spin = (index, smooth = true) => {
@@ -115,7 +119,7 @@ export default function WheelPicker({ label, placeholder, options, value, onChan
       <button
         ref={pill}
         type="button"
-        aria-label={label}
+        aria-label={name}
         aria-haspopup={readOnly ? undefined : 'listbox'}
         aria-expanded={readOnly ? undefined : open}
         aria-disabled={readOnly || undefined}
