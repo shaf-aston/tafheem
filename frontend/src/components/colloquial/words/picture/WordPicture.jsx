@@ -1,5 +1,6 @@
 // Learn the words on a drawing: a body, a map, a family tree, a house, a clock and
 // more. Explore first: tap any place and hear its name, see it in Arabic and English.
+// On a figure the word also stands in the margin beside its dot (Callout), never on the drawing.
 // Then Test: one word at a time, in Arabic with its sound; tap where it is. A right
 // tap turns the place green; a wrong one shakes and says what was tapped, and shows
 // the English as a hint; a second miss rings the right place, so a slip teaches. A warm-up like Match: nothing is filed
@@ -8,6 +9,7 @@ import { useMemo, useRef, useState } from 'react'
 
 import settings from '../../../../config/colloquial-display.json'
 import { readViewParam, writeViewParams } from '../../../../lib/nav/tabUrl'
+import { placeCallout } from '../../../../lib/colloquial/calloutPlace'
 import { pictureBoards } from '../../../../lib/colloquial/wordPictures'
 import { shuffled } from '../../../../lib/text/shuffle'
 import ArabicText from '../../../ui/text/ArabicText'
@@ -16,10 +18,12 @@ import SmallButton from '../../../ui/buttons/SmallButton'
 import SpeakButton from '../../../ui/buttons/SpeakButton'
 import Spelling from '../../parts/Spelling'
 import BodyArt from './BodyArt'
+import Callout from './Callout'
 import MapArt from './MapArt'
 import PanelArt from './PanelArt'
 import SceneArt from './SceneArt'
 import ThingArt from './ThingArt'
+import usePictureFrame from './usePictureFrame'
 
 const STEPS = [{ id: 'explore', label: 'Explore' }, { id: 'test', label: 'Test' }]
 
@@ -81,12 +85,32 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
   const [picked, setPicked] = useState(null)
   const [heard, setHeard] = useState(0)
   const svg = useRef(null)
+  const art = useRef(null)
+  const frame = usePictureFrame(svg, art, board.id)
+  const [labelH, setLabelH] = useState(48)
   const exploring = step === 'explore'
   const ask = game.queue[game.at]
   const done = !ask
   const r = board.view[2] / 30
   const tappedSpot = board.spots.find((s) => s.key === game.tapped)
   const pickedSpot = board.spots.find((s) => s.key === picked)
+
+  // Where the tapped dot's word can stand beside it, if the drawing leaves a margin (a figure does, a house does not).
+  // No margin, nothing measurable (a test) or something in the way: null, and the card says it alone.
+  const stand = useMemo(() => {
+    if (!exploring || !pickedSpot || pickedSpot.area || !frame) return null
+    const { px, scale } = frame
+    const seg = (from, to) => { const a = px(...from), b = px(...to); return { x0: a.x, y0: a.y, x1: b.x, y1: b.y } }
+    return placeCallout({
+      box: frame.box, art: frame.art, height: labelH,
+      dot: { ...px(pickedSpot.x, pickedSpot.y), r: r * 1.3 * scale },
+      others: board.spots.filter((s) => s !== pickedSpot).map((s) => (s.area
+        ? seg([s.area[0], s.area[1]], [s.area[0] + s.area[2], s.area[1] + s.area[3]])
+        : { ...px(s.x, s.y), r: r * scale })),
+      lines: board.spots.filter((s) => s.to).map((s) => seg([s.x, s.y], s.to)),
+    })
+  }, [exploring, pickedSpot, frame, labelH, board, r])
+  const joint = stand && frame.unpx(stand.line.x, stand.line.y)
 
   const answer = (key) => {
     if (exploring) {
@@ -134,10 +158,11 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
       </div>
     </div>
     <div className={split ? CANVAS : 'space-y-4'}>
+      <div className="relative mx-auto w-full max-w-md">
       <svg ref={svg} viewBox={board.view.join(' ')} role="group" aria-label={`${board.label}: ${exploring ? 'tap a place to hear its name' : 'tap the place'}`}
         className={`w-full max-w-md max-h-[70vh] mx-auto block touch-manipulation cursor-pointer select-none ${split ? 'lg:max-h-[calc(100dvh-var(--app-header-h,0px)-5rem)]' : ''}`}
         onClick={(e) => answer(spotAt(e, board))}>
-        <Art board={board} />
+        <g ref={art}><Art board={board} /></g>
         {/* A led-out dot's line to its place, under the dots. */}
         {board.spots.filter((s) => s.to).map((s) => (
           <g key={`${s.key}-to`} aria-hidden="true" stroke="var(--text-dim)" strokeWidth={r / 6}>
@@ -145,6 +170,9 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
             <circle cx={s.to[0]} cy={s.to[1]} r={r / 3} fill="var(--text-dim)" />
           </g>
         ))}
+        {/* The line from the tapped dot to its word, under the dots. */}
+        {stand && <line aria-hidden="true" className="pointer-events-none" x1={pickedSpot.x} y1={pickedSpot.y} x2={joint.x} y2={joint.y}
+          stroke="var(--primary)" strokeWidth={r / 5} strokeLinecap="round" />}
         {/* After the misses run out, a ring around the place being asked for. */}
         {!exploring && ask && game.misses >= SHOW_AFTER && (() => {
           const s = board.spots.find((spot) => spot.key === ask.key)
@@ -184,6 +212,8 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
           )
         })}
       </svg>
+      {stand && <Callout words={pickedSpot.words} at={stand} onHeight={setLabelH} />}
+      </div>
       {!exploring && <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="type-small text-[var(--text-dim)]">
           {/* Counted in words: a place can hold two ("husband" and "brother-in-law"). */}
