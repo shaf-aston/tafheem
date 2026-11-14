@@ -815,3 +815,14 @@ def test_a_waw_before_its_verb_opens_no_maful_maahu(sentence):
     """واو المعية follows a clause: with the verb after the و, the word after it is no مفعول معه."""
     from tests.nahw_helpers import cards
     assert cards(sentence)[0]["role"] == "مبتدأ"
+
+
+# a pronoun the dictionary left unsplit is cut off by its letters; نون الوقاية stands before a verb's ي, never a noun's
+@pytest.mark.parametrize("atbtok, enc, cut", [
+    ("دِينِي", "1s_poss", "دِينِ_+ي"),
+    ("يَزُورُنِي", "1s_dobj", "يَزُورُ_+نِي"),
+    ("يَفُوتُنَا", "1p_dobj", "يَفُوتُ_+نَا"),
+])
+def test_an_unsplit_pronoun_is_cut_by_its_letters(atbtok, enc, cut):
+    from backend.services.nahw.syntax.catib_onnx import _pronoun_cut_off
+    assert _pronoun_cut_off({"atbtok": atbtok, "enc0": enc})["atbtok"] == cut

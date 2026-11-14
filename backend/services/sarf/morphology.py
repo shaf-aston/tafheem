@@ -651,6 +651,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # تَبَسُّمُكَ، أَدْوَمُهَا: a masdar or an elative the dictionary lacks, by sarf's shapes, its pronoun split off;
             # one with a joining و or ف on it (وَإِقَامِ الصَّلَاةِ) is that noun with the particle put back
             ranked = [noun]
+        elif not _agreeing(evidence, ranked) and (plural := _sound_fem_plural(evidence, disambiguator)):
+            ranked = [plural]
         steps.append((evidence, ranked))
     out = [_reading(*step) for step in steps]
     for i, (evidence, ranked) in enumerate(steps):
@@ -1016,6 +1018,26 @@ def _construct_plural(typed: str, ranked: list[dict], kept: dict) -> dict | None
     said = typed[:len(marked[0][0]) + len("".join(marked[0][1]))]
     found = noun_reader.construct_of(typed[len(said):])
     return _joined_onto(said, found, "PREP" if kept[front].endswith("_prep") else "CONJ", **{front: kept[front]}) if found else None
+
+
+def _sound_fem_plural(typed: str, disambiguator) -> dict | None:
+    """الْجَارَاتُ، مُسْرِعَاتٍ: a sound feminine plural the dictionary lacks is its singular with the ة made ات
+    (Alfiyya, باب المعرب والمبني: وما بتا وألف قد جمعا), so it is read as that singular is, by the dictionary
+    or else sarf's shapes, in the plural's number with its own typed ending: a damma its raf', a kasra its
+    jarr or nasb (يكسر في الجر وفي النصب معا)."""
+    marked = letters(typed)
+    if len(marked) < 5 or [letter for letter, _ in marked[-2:]] != ["ا", "ت"]:
+        return None
+    ending = "".join(sorted(marked[-1][1]))
+    singular = "".join(letter + "".join(sorted(marks)) for letter, marks in marked[:-2]) + "ة" + ending
+    ranked = (_ranked([singular], disambiguator) or [[]])[0]
+    found = best_reading(singular, [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "") and r.get("pos") in ("noun", "adj")
+                                    and r.get("gen") == "f" and r.get("num") == "s"]) or noun_reader.reading_of(singular)
+    if not found:
+        return None
+    case = "n" if marked[-1][1] & {"ُ", "ٌ"} else "g" if marked[-1][1] & {"ِ", "ٍ"} else "u"
+    return {**found, "diac": typed, "atbtok": typed, "num": "p", "gen": "f", "cas": case,
+            "pattern": (found.get("pattern") or "").replace("ة", "ات"), "gloss": (found.get("gloss") or "").replace("sg.", "pl.")}
 
 
 def _joined_noun(typed: str, letter: str, tag: str, **proclitic) -> dict | None:

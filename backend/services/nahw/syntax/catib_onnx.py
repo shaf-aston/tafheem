@@ -215,7 +215,8 @@ def _pronoun_cut_off(a: dict) -> dict:
         return a
     letters = dediac_ar(atbtok)
     starts = [i for i, ch in enumerate(atbtok) if dediac_ar(ch)]  # where each letter, not a mark, stands
-    for pronoun in _PRONOUN_LETTERS.get(enc.split("_")[0], ()):
+    # نون الوقاية comes before the ي of a verb or particle, never of a noun's own (دِينِي: دين_+ي)
+    for pronoun in ("ي",) if enc == "1s_poss" else _PRONOUN_LETTERS.get(enc.split("_")[0], ()):
         if letters.endswith(pronoun) and len(letters) > len(pronoun):
             cut = starts[len(letters) - len(pronoun)]
             return {**a, "atbtok": f"{atbtok[:cut]}_+{atbtok[cut:]}"}

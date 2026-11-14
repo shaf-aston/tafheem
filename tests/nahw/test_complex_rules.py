@@ -382,6 +382,16 @@ def test_a_jar_before_a_describing_khabar_hangs_on_it(sentence, invented):
     assert ("متعلق بـثابت" in tree_roles(analyze(sentence)["tree"]["tree"], "label")) is invented
 
 
+# a subject that does a verb's work itself, a masdar or a participle, is what the jar after it hangs on, not the khabar
+@needs_parser
+@pytest.mark.parametrize("sentence, label", [
+    ("السَّفَرُ إِلَى مَكَّةَ مُمْتِعٌ", "متعلق بـالسَّفَرُ"),
+    ("الْجَالِسُ فِي الدَّارِ مَسْرُورٌ", "متعلق بـالْجَالِسُ"),
+    ("زَيْدٌ فِي الدَّارِ جَالِسٌ", "متعلق بـجَالِسٌ"),
+])
+def test_a_jar_after_a_working_subject_stays_on_it(sentence, label):
+    assert label in tree_roles(analyze(sentence)["tree"]["tree"], "label")
+
 
 # a ظرف is منصوب, so a time or place word in raf' (السَّاعَةُ) or with its case unseen (الْعُلْيَا) is no ظرف and
 # stays the صفة of the noun before it, not hung on the khabar after it
@@ -391,6 +401,54 @@ def test_a_jar_before_a_describing_khabar_hangs_on_it(sentence, invented):
     ("الْيَدُ الْعُلْيَا الْمُنْفِقَةُ", "الْعُلْيَا", "صفة"),
 ])
 def test_a_time_or_place_word_out_of_nasb_is_no_zarf(sentence, word, role):
+    assert card(sentence, word)["role"] == role
+
+
+# a sound feminine plural's kasra is also its nasb (Alfiyya: وما بتا وألف قد جمعا يكسر في الجر وفي النصب معا), so an
+# indefinite ـات word after a definite noun, with or without its own object, is a حال; one agreeing with its noun stays its صفة;
+# after a verb of giving, active or passive, it is the second object, as a fatha word would be
+@needs_parser
+@pytest.mark.parametrize("sentence, word, role", [
+    ("رَأَيْتُ النِّسَاءَ حَامِلَاتٍ", "حَامِلَاتٍ", "حال"),
+    ("رَأَيْتُ النِّسَاءَ حَامِلَاتٍ الْجِرَارَ", "حَامِلَاتٍ", "حال"),
+    ("رَأَيْتُ الْمَرْأَةَ حَامِلَةً الْجَرَّةَ", "حَامِلَةً", "حال"),
+    ("مَرَرْتُ بِنِسَاءٍ مُسْلِمَاتٍ", "مُسْلِمَاتٍ", "صفة"),
+    ("أَعْطَيْتُ الْفُقَرَاءَ صَدَقَاتٍ", "صَدَقَاتٍ", "مفعول به"),
+    ("أُعْطِيَ الْفُقَرَاءُ صَدَقَاتٍ", "صَدَقَاتٍ", "مفعول به"),
+])
+def test_a_feminine_plurals_kasra_is_its_nasb_as_a_hal(sentence, word, role):
+    found = card(sentence, word)
+    assert found["role"] == role
+    assert ("نيابة عن الفتحة" in (found["sign"] or "")) is (role != "صفة" and "ات" in word)
+
+
+
+# a ـات plural the dictionary lacks reads as its singular with ة (الجارة، مسرعة), so its kasra is still its nasb; a
+# word whose singular is no word with ة (مَرْضَاة) is no such plural
+@needs_parser
+def test_an_unread_feminine_plural_reads_as_its_singular():
+    from backend.services.nahw.syntax import catib_onnx
+    from backend.services.sarf import morphology
+    assert card("جَاءَتِ الْجَارَاتُ مُسْرِعَاتٍ", "مُسْرِعَاتٍ")["role"] == "حال"
+    read = morphology.pick(["الْجَارَاتُ", "مُسْرِعَاتٍ", "مَرْضَاتِ"], catib_onnx.disambiguator())
+    assert [(r.get("num"), r.get("cas")) for r in read[:2]] == [("p", "n"), ("p", "g")]
+    assert read[2].get("num") != "p"
+
+
+# a word with tanween is never a مضاف, so the noun in nasb straight after a working participle is its object, however
+# the parser hung it; without tanween the noun after it is its مضاف إليه, and an indefinite state word stays a حال.
+# A ـات kasra is a jarr too, so after a participle in jarr it is its نعت, not its object
+@needs_parser
+@pytest.mark.parametrize("sentence, word, role", [
+    ("زَيْدٌ مُكْرِمٌ الطُّلَّابَ", "الطُّلَّابَ", "مفعول به"),
+    ("زَيْدٌ مُكْرِمٌ الطَّالِبَاتِ", "الطَّالِبَاتِ", "مفعول به"),
+    ("زَيْدٌ مُكْرِمُ الطَّالِبَاتِ", "الطَّالِبَاتِ", "مضاف إليه"),
+    ("زَيْدٌ قَادِمٌ مُسْرِعًا", "مُسْرِعًا", "حال"),
+    ("مَرَرْتُ بِرَجُلٍ مُكْرِمٍ الطَّالِبَاتِ", "الطَّالِبَاتِ", "مفعول به"),
+    ("مَرَرْتُ بِنِسَاءٍ صَالِحَاتٍ مُؤْمِنَاتٍ", "مُؤْمِنَاتٍ", "صفة"),
+    ("رَأَيْتُ طَالِبَاتٍ مُجْتَهِدَاتٍ مَاهِرَاتٍ", "مَاهِرَاتٍ", "صفة"),
+])
+def test_the_nasb_noun_after_a_tanween_participle_is_its_object(sentence, word, role):
     assert card(sentence, word)["role"] == role
 
 # لمّا before a past verb opens a condition (حرف وجود لوجود), its answer جواب لمّا; before a present verb
