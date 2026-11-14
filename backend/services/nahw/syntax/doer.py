@@ -52,3 +52,10 @@ def doer(token: dict, family: str | None, persons: list[str]) -> dict | None:
     said = DOER["hidden_said_by_family"].get(family, DOER["hidden_said"]) if hidden else DOER["attached_said"]
     pronoun = pronouns[0] if len(pronouns) == 1 else DOER["either"].format(one=pronouns[0], other=pronouns[1])
     return {"role": name, "tone": tone(name), "detail": said.format(pronoun=pronoun), "pronoun": pronoun, "hidden": hidden}
+
+
+def written_on(token: dict) -> bool:
+    """The verb's doer is a pronoun written onto it (أُمِرْتُ: the تُ), not hidden in it nor a word of its own."""
+    keys = persons(token, None)
+    return token.get("asp") in DOER["hidden"] and bool(keys) and all(key in DOER["pronoun"] for key in keys) \
+        and keys[0] not in DOER["hidden"][token["asp"]]

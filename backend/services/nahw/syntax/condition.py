@@ -71,6 +71,9 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         if (named[v] == NAMED.fil) == (frame.get("before") == "noun") or (
                 frame.get("before") == "noun" and v != i and bases[v]["pos"] not in ("NOM", "PROP") and not masdar(v)):
             return None
+        # لَمَّا سَارُوا: لمّا opens on a past verb; لَمَّا يَذْهَبْ is the jazm particle, no condition
+        if frame.get("before") == "past" and bases[v].get("asp") != "p":
+            return None
         # ما النافية is a particle; إذا before a verb is a ظرف, whatever the parser tagged it
         read = reading(bases[i])
         if read == "wonder":

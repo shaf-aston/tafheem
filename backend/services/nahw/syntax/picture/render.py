@@ -22,12 +22,13 @@ from backend.services.nahw.syntax.picture.names import (
     word_leaf,
 )
 from backend.services.nahw.syntax.picture.state import Picture
+from backend.services.text.arabic_text import strip_diacritics
 
 
 def find_doers(c: Picture) -> None:
     """Whose pronoun a verb's hidden doer is."""
     by_id, children_of, depth, described, drawn = c.by_id, c.children_of, c.depth, c.described, c.drawn
-    named, replies, role_of, typed_at = c.named, c.replies, c.role_of, c.typed_at
+    job_of, named, replies, role_of, typed_at = c.job_of, c.named, c.replies, c.role_of, c.typed_at
     seen: set[int] = set()
     chained: set[int] = set()  # a معطوف عليه already drawn apart from the list it heads
     # every verb no typed word is the doer of, outermost first, so a khabar's pronoun can
@@ -39,8 +40,9 @@ def find_doers(c: Picture) -> None:
     for token in sorted(drawn, key=lambda t: depth(t)):
         # قُومِي: the doer may be a pronoun written onto the verb, kept inside its leaf
         on_it = named[typed_at[token["id"]]].get("attached", []) if token["id"] in typed_at else []
+        # أَعْجَبَنِي أَنْ تَصْدُقَ: a unit whose job is the فاعل (the مصدر مؤول) is the doer as much as a word is
         if role_of[token["id"]] != NAMED.fil or any(
-                role_of[kid["id"]] in DOER["explicit"] for kid in drawn if kid["head"] == token["id"]) \
+                {role_of[kid["id"]], job_of.get(kid["id"])} & set(DOER["explicit"]) for kid in drawn if kid["head"] == token["id"]) \
                 or any(piece["role"] in DOER["explicit"] for piece in on_it):
             continue
         up = by_id.get(token["head"])
@@ -51,9 +53,27 @@ def find_doers(c: Picture) -> None:
             persons_of.get(up["id"]) if up and token["rel"] == "PRD" else None)
         if owner is None and any(is_inside(token, by_id[reply], children_of) for reply in replies):
             owner = [DOER["reply_to"]]  # the answer is said to the one who asked
+        # إِنْ تَزُرْنَا: a هي must go back to a noun said before it (ضمير الغائب لا بد له من مرجع متقدم); with none, the ت is أنتَ
+        if owner is None and not any(_could_be_meant(t) for t in c.tokens if t["id"] < token["id"]):
+            owner = [DOER["reply_to"]]
         persons_of[token["id"]] = _persons(token, owner)
     doer_of: dict[int, dict] = {}  # the doer drawn inside each typed verb, said on its card too
     c.chained, c.doer_of, c.persons_of, c.seen = chained, doer_of, persons_of, seen
+
+
+def _could_be_meant(token: dict) -> bool:
+    """A noun, or a pronoun of the third person, a hidden هي could go back to (not أنا in أعجبني, not أنتَ)."""
+    if token["pos"] not in ("NOM", "PROP"):
+        return False
+    if token.get("token_type") == "baseword":
+        return token.get("per", "na") in ("3", "na")
+    return token.get("base") in DOER["third_person"]
+
+
+def _counts_kam(jar: dict, up: dict | None) -> bool:
+    """مِن كتابٍ hung on كم: the تمييز of كم, hung on no word (roles.json kam_tamyeez)."""
+    frame = FRAMES["kam_tamyeez"]
+    return bool(up) and strip_diacritics(jar["form"]) in frame["particles"] and strip_diacritics(up["form"]) in frame["heads"]
 
 
 def draw(c: Picture) -> dict:
@@ -74,7 +94,7 @@ def draw(c: Picture) -> dict:
         the books say them: the verb, its doer, then the pronoun on it."""
         found = named[typed_at[token["id"]]] if token["id"] in typed_at else {}
         leaf = {**leaf, "hidden": True} if token["id"] in understood else leaf
-        attached = [{"role": finer_name(piece, piece["role"], piece["family"]), "tone": tone(piece["role"]),
+        attached = [{"role": name_of.get(piece["id"]) or finer_name(piece, piece["role"], piece["family"]), "tone": tone(piece["role"]),
                      "gap": piece["role"] is None}
                     for piece in found.get("attached", []) if piece["id"] not in split]
         doer = _doer(token, family_of[token["id"]], persons_of[token["id"]]) if token["id"] in persons_of else None
@@ -176,6 +196,8 @@ def draw(c: Picture) -> dict:
         # مِن نارٍ: a jar-majroor with a word to hang on is named by it, متعلق بـX
         if token["id"] in hung:
             label = FRAMES["attached"].format(word=kept["word"])
+        elif label == JAR_MAJROOR and _counts_kam(token, by_id.get(parent(token))):
+            job = FRAMES["kam_tamyeez"]["job"]
         elif label == JAR_MAJROOR and (up := parent(token)) in at:
             # فِي سَنَةٍ أَوْ فِي ثَلَاثِ سِنِينَ: hung on a حرف عطف, it is معطوف on the jar-majroor that
             # حرف follows, and hangs where that one hangs (the معطوف follows its معطوف عليه)
@@ -215,8 +237,8 @@ def draw(c: Picture) -> dict:
             "unsaid": [role_of[token["id"]] if token["id"] in named_by_unsaid else None for token in bases],  # the job on the card too
             # the picture's finer name (حرف ناسخ, فعل أمر, فعل مجهول) where it says more than the role
             "finer": [name_of.get(token["id"]) if name_of.get(token["id"]) != role_of[token["id"]] else None for token in bases],
-            # and of a pronoun drawn as its own word (the ك of كأنّكَ: اسم كأنّ)
-            "piece_names": {key: name_of[key] for key in split if name_of.get(key) not in (None, role_of[key])},
+            # and of a pronoun drawn as its own word (the ك of كأنّكَ: اسم كأنّ) or kept in its leaf (the ه of وجدوه: مفعول به أول)
+            "piece_names": {key: name for key, name in name_of.items() if key not in role_of or (key in split and name != role_of[key])},
             # the doer no typed word is (هو hidden in يكتبُ, the تاء of كتبتُ): the card says it as the picture draws it
             "doer": [doer_of.get(token["id"]) for token in bases],
             # ما read by its عائد (facts.ma_kind): the relative's job and case, or (None, None) for ما المصدرية

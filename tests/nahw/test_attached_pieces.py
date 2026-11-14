@@ -431,9 +431,10 @@ def test_the_shahada_draws_its_unsaid_khabar_and_names_its_badal(sentence):
 
 
 def test_another_noun_after_la_keeps_its_plain_badal():
-    """The تقدير is chosen for إله alone: لا رجلَ إلا زيدٌ draws no khabar of it."""
+    """The تقدير is chosen for إله alone: لا رجلَ إلا زيدٌ draws no khabar of it, and زيدٌ is the
+    excepted one, a part of those it is taken out of (بدل بعض من كل, as after any إلا)."""
     cards, leaves = analysed("لَا رَجُلَ إِلَّا زَيْدٌ")
-    assert "مَعْبُودٌ بِحَقٍّ" not in leaves and cards[-1]["reason"].endswith("بدل كل من كل")
+    assert "مَعْبُودٌ بِحَقٍّ" not in leaves and cards[-1]["reason"].endswith("بدل بعض من كل")
 
 
 @pytest.mark.parametrize("sentence, kind, job", [

@@ -48,10 +48,13 @@ def draw_conditions(c: Picture) -> None:
         if answer["id"] not in holder or any(is_inside(answer, unit, children_of) for unit in (opener, verb)):
             holder.setdefault(answer["id"], [answer])
             move_to(holder, answer, roots)
+        # لَوْلَا أَنَّكَ صَدِيقِي: the khabar no one writes (picture.unwritten), hung beside the masdar, follows it
+        beside = [take_from(holder, kid) for kid in list(children_of[opener["id"]])
+                  if found["condition"]["masdar"] and kid["id"] in c.understood]
         for unit in (opener, verb):
             take_from(holder, unit)
             del holder[unit["id"]]
-        opened[answer["id"]] = (opener, verb, *ties)
+        opened[answer["id"]] = (opener, verb, *beside, *ties)
     # مَنْ شاء فليصمه ومَن شاء أفطر: a condition has the front of its sentence, so the وَ
     # bringing a second one joins it beside the first, not inside the first one's answer
     for answer_id in opened:

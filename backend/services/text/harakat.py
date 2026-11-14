@@ -413,8 +413,14 @@ def past_passive_shape(word: str) -> bool:
     # the letter joined to the last takes the kasra (Alfiyya: فَأَوَّلَ الفِعْلِ اضْمُمَنْ وَالمُتَّصِلْ بِالآخِرِ
     # اكْسِرْ); those before it are sakin or take the first's damma (تُدُحْرِجَ، اُسْتُحْلِيَ، تُغُوفِلَ, Ibn
     # Aqil), so none before it has a fatha or an alif: سُلْطَانِيَ is a noun with ياء المتكلم on it
-    return kasra is not None and closes and not any(
-        "َ" in marks or letter == "ا" for letter, marks in inside[:kasra])
+    if kasra is None or not closes or any("َ" in marks or letter == "ا" for letter, marks in inside[:kasra]):
+        return False
+    # after the kasra comes the last root letter with the verb's own ending, then a pronoun: never a
+    # shadda (a doubled root's فُعِلَ merges, رُدَّ, no kasra left) nor a damma save before the plural's و
+    # (ضُرِبُوا); تُحِبُّكَ، يُكْرِمُكَ are the present's يُفْعِلُ with an object joined on
+    after = marked[kasra + 2:]
+    return not any(SHADDA in marks or ("ُ" in marks and (after[i + 1][0] if i + 1 < len(after) else "") != "و")
+                   for i, (_, marks) in enumerate(after))
 
 
 ROOT_PLACES = "فعل"  # in a shape (أَفْعَلَ), the letters that stand for the root's

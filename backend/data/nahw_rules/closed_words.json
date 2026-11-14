@@ -578,8 +578,8 @@
     "هل",
     "لو"
    ],
-   "conditional_particles": ["لو", "لولا", "لوما"],
-   "_conditional_particles": "the non-jussive conditional particles (Year 3 notes, zuroof p4: لولا، لوما، لو، أمّا are حروف). لو opens one before a verb; لولا and لوما before a noun only (roles.json condition `by_word`), and urge before a verb; أمّا comes before a noun and is not listed. Read with jazm's list by nahw_book.condition_of",
+   "conditional_particles": ["لو", "لولا", "لوما", "لما"],
+   "_conditional_particles": "the non-jussive conditional particles (Year 3 notes, zuroof p4: لولا، لوما، لو، أمّا are حروف). لو opens one before a verb; لولا and لوما before a noun only (roles.json condition `by_word`), and urge before a verb; لمّا before a past verb only (لمّا الحينية; before a present it is the jazm particle); أمّا comes before a noun and is not listed. Read with jazm's list by nahw_book.condition_of",
    "ambiguous": {
     "أما": "notification/detail 'as for' (أما ... فـ) vs أم + ما (interrogative) vs أما الاستفتاحية",
     "ألا": "notification 'lo!' vs exhortation 'why not' vs أن + لا (written together) vs أ + لا (question with negation)",

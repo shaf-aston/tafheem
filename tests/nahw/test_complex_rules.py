@@ -255,6 +255,13 @@ def test_a_sister_lends_its_name_to_what_it_governs(sentence, word, said, drawn)
     assert said in card(sentence, word)["reason"] and all(name in roles for name in drawn)
 
 
+@pytest.mark.parametrize("named, mother", [("خبر لعل", "خبر إن"), ("اسم كأن", "اسم إن"), ("خبر ليس", "خبر كان"), ("اسم عسى", "اسم كاد")])
+def test_a_sisters_name_keeps_its_mothers_colour(named, mother):
+    from backend.services.nahw.syntax.naming import role_key, tone
+    assert (tone(named), role_key(named)) == (tone(mother), role_key(mother)) != (None, None)
+    assert tone("حرف لعل") is None  # only a job the mother names: no such role, no colour
+
+
 # كلا وكلتا (Ibn Aqil V1 p55: وكلا إذا بمضمر مضافا وصلا): joined to a pronoun ملحق بالمثنى, its letters the sign; joined
 # to a noun like the مقصور, its vowel assumed on the alif; a true dual keeps its own sign.
 @needs_parser
@@ -267,3 +274,168 @@ def test_a_sister_lends_its_name_to_what_it_governs(sentence, word, said, drawn)
 ])
 def test_kila_is_a_dual_only_by_its_pronoun(sentence, word, sign):
     assert card(sentence, word)["sign"] == sign
+
+
+# تُحِبُّكَ opens on a damma with a kasra inside, like فُعِلَ, but the shadda after the kasra is the present's
+# doubled root (أَحَبَّ يُحِبُّ): never the past تَحَبَّكَ the passive shape once picked; a true فُعِلَ stays past
+@needs_parser
+@pytest.mark.parametrize("sentence, word, aspect", [
+    ("هِنْدٌ تُحِبُّكَ", "تُحِبُّكَ", "i"),
+    ("ضُرِبَ زَيْدٌ", "ضُرِبَ", "p"),
+])
+def test_a_present_with_a_kasra_inside_is_no_past_passive(sentence, word, aspect):
+    assert card(sentence, word)["aspect"] == aspect
+
+
+# a verb whose doer is a clause (أَنْ تَصْدُقَ، المصدر المؤول) hides no هو; with no doer after it, it does
+@needs_parser
+@pytest.mark.parametrize("sentence, hidden", [
+    ("أَعْجَبَنِي أَنْ تَصْدُقَ", False),
+    ("زَيْدٌ أَعْجَبَنِي", True),
+])
+def test_a_clause_doer_leaves_no_hidden_one(sentence, hidden):
+    assert ("ضمير مستتر" in card(sentence, "أَعْجَبَنِي")["reason"]) is hidden
+
+
+# a هي must go back to a noun said before it (ضمير الغائب لا بد له من مرجع متقدم): with none, the ت is أنتَ
+@needs_parser
+@pytest.mark.parametrize("sentence, word, doer", [
+    ("إِنْ تَزُرْنَا نُكْرِمْكَ", "تَزُرْنَا", "أنتَ"),
+    ("أَعْجَبَنِي أَنْ تَصْدُقَ", "تَصْدُقَ", "أنتَ"),
+    ("رَأَيْتُهَا تَكْتُبُ", "تَكْتُبُ", "أنتَ أو هي"),  # ـها before it: either
+    ("قَالَتْ هِنْدٌ إِنَّهَا تُحِبُّ الْعِلْمَ", "تُحِبُّ", "هي"),
+    ("هِنْدٌ تَصْدُقُ", "تَصْدُقُ", "هي"),
+])
+def test_ta_is_she_only_with_someone_to_go_back_to(sentence, word, doer):
+    assert re.search(rf"تقديره {doer}[.،]", card(sentence, word)["reason"])
+
+
+# a masdar hung on a passive verb is its نائب فاعل only when the verb has no deputy of its own: أُمِرْتُ's تُ is it
+@needs_parser
+@pytest.mark.parametrize("sentence, word, said", [
+    ("أُمِرْتُ أَنْ أَكُونَ صَادِقًا", "أُمِرْتُ", "ونائب فاعله ضمير متصل (أنا)"),
+    ("غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ", "مَا", "لأنه نائب فاعل"),
+])
+def test_a_masdar_is_the_deputy_only_with_none_on_the_verb(sentence, word, said):
+    assert said in card(sentence, word)["reason"]
+
+
+# the بدل after إلا in a denied whole sentence is بدل بعض من كل, pronoun or none: the one excepted is a part of
+# those it is taken out of; away from إلا a pronoun on a non-part still makes it اشتمال, none makes it كل من كل
+@needs_parser
+@pytest.mark.parametrize("sentence, word, kind", [
+    ("مَا رَأَيْتُ أَحَدًا فِي الْمَسْجِدِ إِلَّا إِمَامَهُ", "إِمَامَهُ", "بدل بعض من كل"),
+    ("مَا قَامَ أَحَدٌ إِلَّا زَيْدٌ", "زَيْدٌ", "بدل بعض من كل"),
+    ("أَعْجَبَنِي الْمُعَلِّمُ عِلْمُهُ", "عِلْمُهُ", "بدل اشتمال"),
+    ("جَاءَ أَخُوكَ زَيْدٌ", "زَيْدٌ", "بدل كل من كل"),
+])
+def test_the_badal_after_illa_is_a_part(sentence, word, kind):
+    assert card(sentence, word)["reason"].endswith(kind)
+
+
+# لولا + المصدر المؤول: the masdar is the مبتدأ and its خبر موجود is left out as after any noun; with no answer
+# written after it, the answer is left out too, told by the sentence before (جواب لولا محذوف دلّ عليه ما قبله)
+@needs_parser
+@pytest.mark.parametrize("sentence, khabar, unsaid", [
+    ("كَادَ الْقِطَارُ يَفُوتُنَا لَوْلَا أَنَّنَا أَسْرَعْنَا", True, True),
+    ("لَوْلَا أَنَّكَ صَدِيقِي لَعَاقَبْتُكَ", True, False),
+    ("لَوْلَا زَيْدٌ لَأَتَيْتُكَ", True, False),
+])
+def test_lawla_leaves_out_its_khabar_and_an_answer_said_before(sentence, khabar, unsaid):
+    tree = analyze(sentence)["tree"]["tree"]
+    roles = tree_roles(tree)
+    assert ("خبر" in roles) is khabar
+    assert ("دلّ عليه ما قبله" in tree_roles(tree, "detail")) is unsaid
+    assert roles.count("جواب لولا") == 1
+    assert [label for _, label in units(sentence)].count("جُمْلَةٌ شَرْطِيَّةٌ") == 1  # one condition, the خبر inside it
+
+
+# مِن after كم brings what it counts: the jar-majroor is its تمييز, hung on no word, and the verb after it is
+# said of كم as after كَمْ كِتَابًا: its خبر when it holds its own object back to كم, else كم is its object
+@needs_parser
+@pytest.mark.parametrize("sentence, said", [
+    ("كَمْ مِنْ كِتَابٍ قَرَأْتُهُ فَلَمْ أَفْهَمْ مِنْهُ شَيْئًا", [("مبتدأ", None), ("تمييز", "جَارٌّ وَمَجْرُوْرٌ"), ("خبر", "جُمْلَةٌ فِعْلِيَّةٌ")]),
+    ("كَمْ مِنْ رَجُلٍ جَاءَ", [("مبتدأ", None), ("تمييز", "جَارٌّ وَمَجْرُوْرٌ"), ("خبر", "جُمْلَةٌ فِعْلِيَّةٌ")]),
+    ("كَمْ مِنْ كِتَابٍ قَرَأْتُ", [("مفعول به", None), ("تمييز", "جَارٌّ وَمَجْرُوْرٌ")]),
+    ("كَمْ كِتَابًا قَرَأْتَهُ", [("مبتدأ", None), ("تمييز", None), ("خبر", "جُمْلَةٌ فِعْلِيَّةٌ")]),
+])
+def test_min_after_kam_brings_its_tamyeez(sentence, said):
+    tree = analyze(sentence)["tree"]["tree"]
+    top = [(kid.get("role"), kid.get("label") or None) for kid in tree["children"]]
+    if top and top[0][0] == "مفعول به":  # كم the object: it and its تمييز are one unit
+        top = [top[0]] + [(kid.get("role"), kid.get("label") or None) for kid in tree["children"][0]["children"][1:]]
+    assert [pair for pair in top if pair[0] in {"مبتدأ", "مفعول به", "تمييز", "خبر"}] == said
+    assert "متعلق بـكَمْ" not in tree_roles(tree, "label")
+
+
+# a jar-majroor or ظرف between a known subject and its وصف khabar hangs on that khabar (ظرف لغو), not on an
+# unwritten ثابت said as the subject's حال; with no such khabar, or after an unknown subject (its صفة), ثابت stays
+@needs_parser
+@pytest.mark.parametrize("sentence, invented", [
+    ("أَصْبَحَ الْجَوُّ بَعْدَ الْمَطَرِ لَطِيفًا نَسِيمُهُ", False),
+    ("زَيْدٌ فِي الدَّارِ جَالِسٌ", False),
+    ("إِنَّ زَيْدًا فِي الدَّارِ جَالِسٌ", False),
+    ("زَيْدٌ فِي الدَّارِ", True),
+    ("كَانَ رَجُلٌ مِنَ الْأَنْصَارِ صَالِحًا", True),
+])
+def test_a_jar_before_a_describing_khabar_hangs_on_it(sentence, invented):
+    assert ("متعلق بـثابت" in tree_roles(analyze(sentence)["tree"]["tree"], "label")) is invented
+
+
+
+# a ظرف is منصوب, so a time or place word in raf' (السَّاعَةُ) or with its case unseen (الْعُلْيَا) is no ظرف and
+# stays the صفة of the noun before it, not hung on the khabar after it
+@needs_parser
+@pytest.mark.parametrize("sentence, word, role", [
+    ("تِلْكَ السَّاعَةُ ثَمِينَةٌ", "السَّاعَةُ", "صفة"),
+    ("الْيَدُ الْعُلْيَا الْمُنْفِقَةُ", "الْعُلْيَا", "صفة"),
+])
+def test_a_time_or_place_word_out_of_nasb_is_no_zarf(sentence, word, role):
+    assert card(sentence, word)["role"] == role
+
+# لمّا before a past verb opens a condition (حرف وجود لوجود), its answer جواب لمّا; before a present verb
+# it is the jazm particle and opens none (لَمَّا يَذْهَبْ)
+@needs_parser
+@pytest.mark.parametrize("sentence, lamma, opens", [
+    ("فَلَمَّا سَارُوا فِيهِ وَجَدُوهُ طَوِيلًا", "فَلَمَّا", True),
+    ("لَمَّا جَاءَ زَيْدٌ أَكْرَمْتُهُ", "لَمَّا", True),
+    ("لَمَّا يَذْهَبْ زَيْدٌ", "لَمَّا", False),
+])
+def test_lamma_before_a_past_verb_opens_a_condition(sentence, lamma, opens):
+    roles = tree_roles(analyze(sentence)["tree"]["tree"])
+    assert ("جواب لمّا" in roles) is opens
+    assert [label for _, label in units(sentence)].count("جُمْلَةٌ شَرْطِيَّةٌ") == int(opens)
+    assert ("حرف نفي وجزم وقلب" in card(sentence, lamma)["reason"]) is not opens
+
+
+@needs_parser
+def test_lamma_opens_no_condition_on_a_present_verb_whatever_its_ending():
+    # the parser may read the verb in raf' (no jazm to show لمّا the particle): the tense alone says no condition
+    assert "جُمْلَةٌ شَرْطِيَّةٌ" not in [label for _, label in units("لَمَّا يَكْتُبُ زَيْدٌ يَفْرَحُ")]
+
+
+def drawn_roles(node: dict) -> list[str]:
+    """Every role in the picture, the parts drawn inside a leaf too (the ه of وجدوه)."""
+    return [r for r in [node.get("role"), *(part.get("role") for part in node.get("parts", []))] if r] + [
+        r for kid in node.get("children", []) for r in drawn_roles(kid)]
+
+
+# a verb of ظن or of giving: an object pronoun written onto it is nearer than any written word, so it is
+# the first object and the written one the second; with no pronoun the written words go in their order
+@needs_parser
+@pytest.mark.parametrize("sentence, first, second", [
+    ("وَجَدُوهُ طَوِيلًا", "وَجَدُوهُ", "طَوِيلًا"),
+    ("أَعْطَيْتُهُ كِتَابًا", "أَعْطَيْتُهُ", "كِتَابًا"),
+    ("ظَنَنْتُ الْمُعَلِّمَ حَاضِرًا", "الْمُعَلِّمَ", "حَاضِرًا"),
+])
+def test_the_pronoun_on_a_two_object_verb_is_its_first(sentence, first, second):
+    assert card(sentence, first)["reason"].split(". القاعدة")[0].endswith("مفعول به أول")
+    assert card(sentence, second)["reason"].split(". القاعدة")[0].endswith("مفعول به ثانٍ")
+    roles = drawn_roles(analyze(sentence)["tree"]["tree"])
+    assert roles.count("مفعول به أول") == roles.count("مفعول به ثانٍ") == 1
+
+
+@needs_parser
+def test_a_one_object_verb_keeps_its_plain_object():
+    assert card("ضَرَبْتُهُ", "ضَرَبْتُهُ")["reason"].split(". القاعدة")[0].endswith("مفعول به")
+    assert "مفعول به" in (roles := drawn_roles(analyze("ضَرَبْتُهُ")["tree"]["tree"])) and "مفعول به أول" not in roles

@@ -12,7 +12,7 @@ from typing import NamedTuple, TypedDict
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import (
     book_spelling, extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
-    book_map, book_merges, takes_object, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
+    book_map, book_merges, takes_object, frames, family_mother, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
 from backend.services.nahw.syntax import condition, facts, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
@@ -24,11 +24,18 @@ from backend.services.text.harakat import (
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
 ROLES = role_table()
 NAMED = named_roles()
+SISTER_FAMILIES = ("inna", "kana", "kaada")  # the families whose members lend their name to what they govern
 
 
 def _entry(role: str | None) -> tuple:
     # a recorded role is fully vowelled (نَائِبُ فَاعِلٍ); it is the same role
-    return ROLES.get(strip_diacritics(role or ""), (None, None))
+    plain = strip_diacritics(role or "")
+    if plain in ROLES:
+        return ROLES[plain]
+    # اسم كأن، خبر ليس: named for the sister that governs it, coloured as its mother's (اسم إن، خبر كان)
+    job, _, sister = plain.rpartition(" ")
+    mother = next((family_mother(family) for family in SISTER_FAMILIES if job and in_family(sister, family)), None)
+    return ROLES.get(f"{job} {mother}", (None, None))
 
 
 def role_key(role: str | None) -> str | None:
@@ -274,6 +281,8 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
     if role == NAMED.badal:
         if said := facts.excepted_after_la(token, s):
             return said[2]["badal"]  # لا إله إلا الله: no بدل كل من كل of the منصوب noun
+        if facts.after_illa(token, s):
+            return kinds["badal"]["baad"]  # ما قام أحدٌ إلا زيدٌ: the one excepted is a part of those it is taken out of
         pronoun = any(facts.attached_pronoun(k) for k in s.kids(token))
         if not pronoun:
             return kinds["badal"]["kul"]
