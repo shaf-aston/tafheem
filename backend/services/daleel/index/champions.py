@@ -105,22 +105,10 @@ def score(word: str, columns: Sequence[str], hits: int, corpus: Corpus) -> float
     found = sum(_count(text, word) for text in columns)
     if not found:
         return 0.0
-    length = sum(max(len(text) - 2, 0) for text in columns)
-    return -_idf(hits, corpus) * found * (_K1 + 1) / (found + _K1 * (1 - _B + _B * length / corpus.average_length))
-
-
-def ceiling(hits: int, corpus: Corpus) -> float:
-    """The most one word can add to any passage's score, however often the passage
-    holds it and however short it is: `score` only nears IDF * (k1 + 1).
-
-    Returned as a positive size; scores themselves are negative.
-    """
-    return _idf(hits, corpus) * (_K1 + 1)
-
-
-def _idf(hits: int, corpus: Corpus) -> float:
     idf = math.log((corpus.passages - hits + 0.5) / (hits + 0.5))
-    return idf if idf > 0 else 1e-6
+    idf = idf if idf > 0 else 1e-6
+    length = sum(max(len(text) - 2, 0) for text in columns)
+    return -idf * found * (_K1 + 1) / (found + _K1 * (1 - _B + _B * length / corpus.average_length))
 
 
 def _count(text: str, word: str) -> int:
