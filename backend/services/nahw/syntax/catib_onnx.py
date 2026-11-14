@@ -24,7 +24,7 @@ import numpy as np
 from tokenizers import Tokenizer
 
 from backend.config import data_path, get_settings
-from backend.services.nahw.syntax import decode
+from backend.services.nahw.syntax import decode, exact_int8
 from backend.services.nahw.syntax.mask import book_mask
 from backend.services.sarf.morphology import reading_lemma, reading_root
 from backend.services.text.harakat import NO_ANALYSIS, base_of, stuck_letters, typed_case, weak_last
@@ -119,7 +119,7 @@ def _load() -> _Parser:
         clitic_table = list(csv.DictReader(f))
 
     bpe = Tokenizer.from_file(str(d / "tokenizer.json"))
-    enc_sess = ort.InferenceSession(str(d / "encoder.onnx"), providers=["CPUExecutionProvider"])
+    enc_sess = exact_int8.session(d / "encoder.onnx")  # 8-bit: the same parse on every processor
     scorer_sess = ort.InferenceSession(str(d / "scorer.onnx"), providers=["CPUExecutionProvider"])
 
     # Imported here, not at module top: camel_tools pulls in pandas,

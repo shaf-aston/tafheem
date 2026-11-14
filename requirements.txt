@@ -40,7 +40,8 @@ simplemma>=2.0.0         # English lemmas, ran -> run, for dictionary search (se
 # only together with a fresh score_iraab --save-baseline. 1.32 needs Python 3.11+.
 onnxruntime==1.32.0
 # Writes the parser's BERT as an ONNX graph (scripts/nahw/build_disambig_onnx.py,
-# run by deploy/sync.sh); torch's exporter needs it. The app never imports it.
+# run by deploy/sync.sh); torch's exporter needs it. The app imports it only on an x86
+# processor without VNNI, to make the parser's 8-bit encoder exact (services/nahw/syntax/exact_int8.py).
 onnx>=1.17
 
 # ── Speech ────────────────────────────────────────────────────────────────────
