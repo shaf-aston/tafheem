@@ -84,6 +84,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - naat_after_its_noun: a word with ال hung before the indefinite word that heads a verbless sentence → the mubtada, that word its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - before_la: a noun hung on لا from before it → the mubtada, the لا clause its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - la_over_its_khabar: لا hung under the word after its noun → لا heads the pair, the noun its اسم, that word its خبر (`backend/services/nahw/syntax/repair/khabar.py`)
+- jar_off_particle: a جار ومجرور hung on إنّ or لا → on its وصف khabar, or the khabar itself (`backend/services/nahw/syntax/repair/khabar.py`)
 - hasr_khabar: a noun after إلا in a negated verbless clause → the khabar of the mubtada before it (`backend/services/nahw/syntax/repair/khabar.py`)
 - described_doer: a singular وصف after a negation or question word, then a raf' noun → the وصف heads the clause (مبتدأ), the noun its doer (`backend/services/nahw/syntax/repair/khabar.py`)
 - hal_clause: و + a raf' pronoun or noun + a verb or khabar → a hal clause, the noun its mubtada (`backend/services/nahw/syntax/repair/hal.py`)

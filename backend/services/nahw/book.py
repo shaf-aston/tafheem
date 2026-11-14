@@ -206,10 +206,14 @@ def family_mother(family: str) -> str:
     return _closed()["families"][family]["words"][0]
 
 
-def in_family(lemma: str, family: str) -> bool:
-    """The lemma is on any of the family's word lists (زال is kana's, behind a negation)."""
+def in_family(lemma: str, family: str, noun: bool = True) -> bool:
+    """The lemma is on any of the family's word lists (زال is kana's, behind a negation). A word
+    read as a particle (`noun` False) is on none of its noun lists: مِنْ is no مَنْ of a condition."""
     kept = _closed()["families"][family]
-    return any(is_one(lemma, family, part) for part, words in kept.items() if isinstance(words, list))
+    parts = [part for part, words in kept.items() if isinstance(words, list)]
+    if not noun and "conditional_nouns" in parts and is_one(lemma, family, "conditional_nouns"):
+        parts = [part for part in parts if part not in ("conditional_nouns", "words")]   # words holds them all
+    return any(is_one(lemma, family, part) for part in parts)
 
 
 ADVERB_FAMILIES = ("zarf_zaman", "zarf_makan")

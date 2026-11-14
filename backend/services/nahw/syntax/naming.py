@@ -260,8 +260,9 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
     if role == NAMED.mudaf_ilayh and (mudaf := s.by_id.get(governed_by.get(token["id"], -1))):
         if facts.listed(mudaf, "adad_mudaf"):
             return kinds["idafa"]["min"]  # ثلاثُ سنينَ: a number is a noun, though CAMeL tags it an adjective
-        if (facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ") and not facts.is_elative(mudaf):
-            return kinds["idafa"]["lafziyya"]  # حسنُ الوجهِ: the mudaf stays indefinite; أعلى صوتِه is not, it works on nothing
+        # حسنُ الوجهِ: the mudaf stays indefinite; أعلى صوتِه is not, it works on nothing, nor مُرَاجَعَةُ دُرُوسِكَ: a masdar is no وصف
+        if (facts.is_participle(mudaf) or mudaf.get("ud") == "ADJ") and not facts.is_elative(mudaf) and not facts.is_masdar(mudaf):
+            return kinds["idafa"]["lafziyya"]
         if facts.is_zarf(token, s):
             return kinds["idafa"]["fi"]  # مكرُ الليلِ
         bare = book_spelling(token["lemma"])
@@ -404,7 +405,7 @@ def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None =
     linked = set().union(onto or set(), *(said for other, said in zip(bases, shown)
                          if other["head"] == token["id"] or (onto is None and other["id"] == token["head"])))
     family = next((family for family, card in family_cards()
-                   if in_family(token["lemma"], family)
+                   if in_family(token["lemma"], family, noun=token["pos"] != "PRT")
                    # حبذا governs the doer written inside it (ذا), so shows its work on no other word
                    and (card.get("governs") in linked or doer_written_in(token["lemma"], family))), None)
     # سَاءَ الخبرُ زيدًا is a plain verb: ساء blames only with the one blamed after its doer (Ibn Aqil)

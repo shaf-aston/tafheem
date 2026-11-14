@@ -39,7 +39,8 @@ def place_clauses(c: Picture) -> None:
             job_of[token["id"]] = clause["job"]
             place_of[token["id"]] = in_place(clause["case"])
     # تحب أن تطوّق: أنْ and the verb hung on it are one masdar, doing the job أنْ hangs by
-    # (the parser's أنّ takes a noun, so a verb on it is the nasb أنْ whatever the card guessed)
+    # (the parser's أنّ takes a noun, so a verb on it is the nasb أنْ whatever the card guessed, unless the
+    # reader typed its shadda: أَنَّنَا أَسْرَعْنَا is أنّ, its اسم written on it and the verb its khabar)
     for token in drawn:
         # أكلتُ ما طبختَ: the relative ما does the job of the place it stands in
         if (kind_of_ma.get(token["id"]) == "relative" and (placed := job_by_place(token))
@@ -48,11 +49,14 @@ def place_clauses(c: Picture) -> None:
             ma_card[token["id"]] = placed
     for token in drawn:
         word = strip_diacritics(token["form"])
-        if (word in masdar["words"] and SHADDA not in token["form"] and (placed := job_by_place(token))
+        # أَنَّ with its pair is one masdar too (عَلِمْتُ أَنَّكَ نَاجِحٌ: علمتُ نجاحَك), the اسم hung on it; it keeps its own name
+        doubled = SHADDA in (token.get("typed") or token["form"])
+        if (word in masdar["words"] and (placed := job_by_place(token))
                 and kind_of_ma.get(token["id"], "masdar") == "masdar"
-                and any(t["head"] == token["id"] and role_of[t["id"]] == NAMED.fil for t in drawn)):
-            name_of[token["id"]] = (masdar["named_by_word"].get(word) or reading(token, "named")
-                                    or CARDS[masdar["family"]]["named"])
+                and any(t["head"] == token["id"] and (t["rel"] == "SBJ" if doubled else role_of[t["id"]] == NAMED.fil) for t in drawn)):
+            if not doubled:
+                name_of[token["id"]] = (masdar["named_by_word"].get(word) or reading(token, "named")
+                                        or CARDS[masdar["family"]]["named"])
             label_of[token["id"]] = masdar["label"]
             job_of[token["id"]], place_of[token["id"]] = placed[0], in_place(placed[1])
             if token["id"] in kind_of_ma:

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
-from backend.services.nahw.syntax.facts.word import is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
+from backend.services.nahw.syntax.facts.word import purpose, shows_nasb_by_kasra, is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, stays_adverb, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
@@ -116,8 +116,13 @@ def _object_of_participle(token: dict, head: dict) -> bool:
     if is_elative(head):
         return False
     rel, typed = token["rel"], typed_case_of(token)
-    if rel == "OBJ":  # يا سائقا الشاحنة typed bare: the head's tanween alif already made it the object, its case unseen
-        return typed_or_parsed_case(token) == "a" or (typed is None and typed_tanween(head))
+    # يا سائقا الشاحنة typed bare: the head's tanween alif already made it the object, its case unseen;
+    # رَافِعِينَ رَايَاتِهِمْ: a ـات plural's kasra is its nasb
+    if rel == "OBJ":
+        return typed_or_parsed_case(token) == "a" or shows_nasb_by_kasra(token) or (typed is None and typed_tanween(head))
+    # مُكْرِمٌ الطَّالِبَاتِ: a word with tanween is never a مضاف, so the ـات kasra after it is nasb
+    if rel == "IDF" and typed_tanween(head) and shows_nasb_by_kasra(token):
+        return True
     return typed == "a" and ((rel == "IDF" and not shows_jarr(token)) or (
         rel == "MOD" and (typed_or_parsed_case(head) != "a" or token.get("pos_camel") != "adj")
         and not (typed_or_parsed_case(head) == "a" and token.get("stt") == head.get("stt") == "d")
@@ -143,14 +148,6 @@ def stands_for_masdar(token: dict, verb: dict, s: Sentence) -> bool:
     the number of times, كل or بعض. Added to any other noun it is the object (أكلتُ كلَّ الطعامِ)."""
     return any(k["rel"] == "IDF" and (listed(k, "times_counted") or (is_masdar(k) and same_root(k, verb)))
                for k in s.kids(token))
-
-
-def purpose(token: dict, verb: dict) -> bool:
-    """قام الطلاب احترامًا: a masdar of the heart (a feeling or intent, reason_masdars) not of its verb's root,
-    in nasb and indefinite or a مضاف, gives the reason for the verb: its مفعول لأجله
-    (Tasheel 3.8.3 p73). Any other masdar there is a حال (جاء ركضًا)."""
-    return (listed(token, "reason_masdars") and not same_root(token, verb)
-            and typed_or_parsed_case(token) in (None, "a") and token.get("stt") in ("i", "c"))
 
 
 def wants_object(verb: dict, kids: list[dict]) -> bool:
@@ -306,7 +303,8 @@ def verb_place(token: dict, s: Sentence) -> str:
                 return "object"  # أكرم محمد خالدا، مَنْ عَمِلَ صَالِحًا: the describing word stands for its noun
             if is_participle(token) and same_root(token, head) and not on_doing_measure(token):
                 return "absolute"  # فَرِحَ فَرَحًا، ضَحِكَتْ ضَحِكًا: its own root off a doer's measure is the doing again
-            if is_participle(token) and not (rel == "OBJ" and names_a_thing(token)):
+            # أَهْدَى أَخِي الصَّغِيرَ خَمْسَةً مِنْهَا: a number counts, it describes no state (a حال is مشتق), whatever CAMeL tags it
+            if is_participle(token) and not (rel == "OBJ" and names_a_thing(token)) and not counts(token):
                 return "state"
             # لَا يَقْبِضُ الْعِلْمَ انْتِزَاعًا: a verb of one object that has it said (the first thing in nasb after it) takes no
             # second, so a masdar after it tells the doing again, its مفعول مطلق (Alfiyya, باب المفعول المطلق: المصدر اسم ما سوى الزمان من مدلولي الفعل)

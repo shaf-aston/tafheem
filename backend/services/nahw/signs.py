@@ -127,7 +127,8 @@ def _noun_sign(card: dict, before: dict | None, after: dict | None) -> str | Non
         return f"{on} {said['in_place'].format(place=said['place'][place])}" if place else on
     kind = kind_of(card["camel"], bool(after and after.get("role") == NAMED.mudaf_ilayh))
     if case != "mabni" and _after_la_jins(card, before, after):
-        # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show
+        # لا ضَرَرَ، لا قَلَمَيْنِ: built on what its nasb would show; لا طالبَ علمٍ, a مضاف, stays معرب منصوب
+        card["in_place"] = True  # its reason says so too (card_wording.names.pair)
         said = teacher_rules()["case_said"]
         on = said["la_jins_on"]
         # built, yet it stands where nasb would be: مبني على الفتح في محل نصب

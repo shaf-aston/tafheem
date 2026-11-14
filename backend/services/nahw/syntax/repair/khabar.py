@@ -227,6 +227,24 @@ def khabar_said_first(s: Sentence) -> None:
                 second["rel"] = "SBJ"
 
 
+def jar_off_particle(s: Sentence) -> None:
+    """لَا طَالِبَ عِلْمٍ مُتَكَاسِلٌ فِي هَذَا الْفَصْلِ: a جار ومجرور hangs on a verb or on what carries a verb's
+    sense (يتعلق بالفعل أو بما فيه معناه), never on إنّ or لا, which only govern their pair. One the parser
+    hung on such a particle hangs on its khabar where that is a وصف; with no khabar yet, it is the khabar."""
+    for particle in s.tokens:
+        if particle["pos"] != "PRT" or s.family(particle) != "inna":
+            continue
+        khabar = next((k for k in s.kids(particle) if k["rel"] == "PRD"), None)
+        for jar in s.kids(particle):
+            if jar["rel"] != "MOD" or not is_preposition(jar):
+                continue
+            if khabar and is_participle(khabar):
+                s.relink(jar, khabar["id"], "MOD")
+            elif not khabar:
+                jar["rel"] = "PRD"
+                khabar = jar
+
+
 def _in_shibh_jumla(token: dict, s: Sentence) -> bool:
     """A ظرف or a preposition: the head of a شبه جملة, which tells of nothing by a subject of its own."""
     return is_zarf(token, s) or is_preposition(token)

@@ -8,11 +8,12 @@ from backend.services.nahw.syntax.naming import NAMED
 
 
 def pair(cards: list[dict], roles: list[dict]) -> None:
-    """لا رجلَ: its governor names the pair (اسم لا، خبر لا)."""
+    """لا رجلَ: its governor names the pair (اسم لا، خبر لا); a noun built in the place
+    of its case (signs.settle) says so, one with a مضاف إليه (لا طالبَ علمٍ) is منصوب."""
     for card, found in zip(cards, roles):
         if card.get("role") in found.get("pair", {}):
             card["role"] = found["pair"][card["role"]]
-            card["said"] = Reason.read(reason(card["role"]))
+            card["said"] = Reason.read(reason(card["role"], mabni=bool(card.get("in_place"))))
 
 
 def printed(cards: list[dict], roles: list[dict]) -> None:

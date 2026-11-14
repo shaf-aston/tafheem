@@ -14,5 +14,6 @@ Rules for a fair run:
 | Date | File | Result | Open after the run |
 |---|---|---|---|
 | 2026-10-31 | [2026-10-31.md](2026-10-31.md) | 37/38 with vowels, 33/38 without | none of the 3 real mistakes (all fixed, PR 764) |
+| 2026-11-14 | [2026-11-14.md](2026-11-14.md) | complex set, local, Sonnet blind key: 147/152 → 152/152 | card and tree findings in its section 4 |
 
 Related: [live-check](../live-check/README.md) (answer keys: Quran, hadith, blind set).
