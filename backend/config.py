@@ -449,6 +449,11 @@ class Daleel(BaseSettings):
     # How many of each source's best passages a champion list keeps. A search wanting more per source
     # (past ~3x the default page) is asked the ordinary way. Written into the index, so changing it needs a rebuild.
     daleel_champion_depth: int = Field(default=64, gt=0)
+    # A champion word in at least this share of all passages is scored only where it can still change the page
+    # (index/max_score.py): its IDF is near zero, so it moves scores little but costs a score for every passage.
+    daleel_skip_word_share: float = Field(default=0.25, gt=0, le=1)
+    # Passages per source whose skipped words are counted from their text; past it FTS5 scores that source whole.
+    daleel_skip_text_most: int = Field(default=800, gt=0)
     # Books one search may name; a request naming hundreds is not a reader choosing.
     daleel_max_books: int = Field(default=40, gt=0)
     # Longer than the longest book name with room to spare; a longer one matches nothing.
