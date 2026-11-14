@@ -7,19 +7,19 @@ shafTheG/quran-ear@0034c0bd1dc1037b0571a5e8702d90128671fb7a, marked recordings n
   at the app's cut 0.000256: precision 0.05, recall 0.06, F1 0.05, right words red 2.2%
   best F1 0.07 at cut 0.010
 
-C:\Users\Shaf\Downloads\vibe-code-projs\aRABIC GRAMMAR TOOL\_wt-ear-letters\backend\data\models\finetune-ear\ear-tuned, IqraEval: 4,674 words, 955 slips
-  AUC 0.924 (95% 0.912 to 0.936)
-  at the app's cut 0.000256: precision 0.85, recall 0.66, F1 0.75, right words red 3.0%
+C:\Users\Shaf\Downloads\vibe-code-projs\aRABIC GRAMMAR TOOL\_wt-ear-v34\backend\data\models\finetune-ear\ear-tuned, IqraEval: 4,674 words, 955 slips
+  AUC 0.924 (95% 0.911 to 0.936)
+  at the app's cut 0.000256: precision 0.85, recall 0.65, F1 0.74, right words red 2.8%
   best F1 0.79 at cut 0.002
-C:\Users\Shaf\Downloads\vibe-code-projs\aRABIC GRAMMAR TOOL\_wt-ear-letters\backend\data\models\finetune-ear\ear-tuned, marked recordings never trained on: 1,635 words, 35 slips
-  AUC 0.641 (95% 0.540 to 0.744)
-  at the app's cut 0.000256: precision 0.00, recall 0.00, F1 0.00, right words red 0.8%
-  best F1 0.12 at cut 0.017
+C:\Users\Shaf\Downloads\vibe-code-projs\aRABIC GRAMMAR TOOL\_wt-ear-v34\backend\data\models\finetune-ear\ear-tuned, marked recordings never trained on: 1,635 words, 35 slips
+  AUC 0.625 (95% 0.516 to 0.725)
+  at the app's cut 0.000256: precision 0.00, recall 0.00, F1 0.00, right words red 0.9%
+  best F1 0.12 at cut 0.008
 
 IqraEval, auc change on 4,674 shared words: +0.001 to +0.010
-IqraEval, f1 change on 4,674 shared words: -0.051 to -0.013
-IqraEval, false_red change on 4,674 shared words: -0.048 to -0.035
-marked recordings never trained on, auc change on 1,635 shared words: +0.019 to +0.111
+IqraEval, f1 change on 4,674 shared words: -0.060 to -0.022
+IqraEval, false_red change on 4,674 shared words: -0.050 to -0.037
+marked recordings never trained on, auc change on 1,635 shared words: -0.003 to +0.103
 marked recordings never trained on, f1 change on 1,635 shared words: -0.128 to +0.000
-marked recordings never trained on, false_red change on 1,635 shared words: -0.022 to -0.008
-DROP: IqraEval: F1 surely lower: 0.745 vs 0.777, change -0.051 to -0.013
+marked recordings never trained on, false_red change on 1,635 shared words: -0.021 to -0.008
+DROP: IqraEval: F1 surely lower: 0.736 vs 0.777, change -0.060 to -0.022
