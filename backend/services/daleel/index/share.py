@@ -1,13 +1,10 @@
 """Each source's share of the matches: its best few, so one big book cannot fill the page.
 
-Four ways of cutting it, which pick the same passages:
+Three ways of cutting it, which pick the same passages:
 
 - `champions.best`, tried first: a common word's best passages were scored when
   the index was built, so they are read rather than worked out again. It says
   when it cannot be sure, and the next one answers instead.
-
-- `max_score.best`, tried next: the very commonest words (daleel_skip_word_share) are scored
-  only for the passages they could still lift onto the page.
 
 - `best_per_source`, the ordinary one. Every source's passages are one unbroken
   run of rowids, because the build writes one source after another, so which
@@ -28,7 +25,7 @@ from typing import Callable, NamedTuple
 
 from backend.services.text import fts
 
-from backend.services.daleel.index import champions, max_score
+from backend.services.daleel.index import champions
 from backend.services.daleel.index.connection import db, has_table
 from backend.services.daleel.index.row import COLUMNS, IndexedPassage
 
@@ -54,7 +51,7 @@ def fairly(
     156 sources kept their best passage that way and 149 do now. Putting
     passages holding every typed word first was tried too and kept only 121.
 
-    `lap` is told which way the scores were found, "lists", "skimmed" or "scored", so
+    `lap` is told which way the scores were found, "lists" or "scored", so
     the Server-Timing header says whether the champion lists answered.
     """
     match = " OR ".join(phrases)
@@ -109,16 +106,12 @@ def best_per_source(
 ) -> list[IndexedPassage]:
     """The `per_source` best-scored matches of each source, then those rows in full.
 
-    From the champion lists when they can answer exactly, else with the very
-    common words scored only where they matter (max_score), else by scoring
-    every match. All three pick the same passages.
+    From the champion lists when they can answer exactly, else by scoring every match.
     Handed back a source at a time in the order of their names, as the SQL
     version's window hands them back, so a tie later on falls the same way.
     """
     kept = champions.best(conn, phrases, per_source, spans.starts)
     lap("lists")  # the time spent asking them, answered or not
-    if kept is None and (kept := max_score.best(conn, phrases, per_source, spans.starts)) is not None:
-        lap("skimmed")
     if kept is None:
         kept = scored(conn, " OR ".join(phrases), per_source, spans)
         lap("scored")
