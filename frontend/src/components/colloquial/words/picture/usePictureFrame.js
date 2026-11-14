@@ -20,8 +20,9 @@ function measure(svg, art) {
   return { box: { w: rect.width, h: rect.height }, art: { x0: from.x, y0: from.y, x1: to.x, y1: to.y }, scale: ctm.a, px, unpx }
 }
 
-/** Re-measured whenever the picture changes size (a resize, a rotated phone, the window's height). */
-export default function usePictureFrame(svg, art, key) {
+/** Re-measured whenever the picture changes size (a resize, a rotated phone, the window's height).
+ * A new board is a new picture (WordPicture remounts it), so it is measured afresh. */
+export default function usePictureFrame(svg, art) {
   const [frame, setFrame] = useState(null)
   useLayoutEffect(() => {
     const el = svg.current
@@ -32,6 +33,6 @@ export default function usePictureFrame(svg, art, key) {
     const watch = new ResizeObserver(read)
     watch.observe(el)
     return () => watch.disconnect()
-  }, [svg, art, key])
+  }, [svg, art])
   return frame
 }

@@ -31,18 +31,20 @@ const lay = (art) => {
   stub('getBoundingClientRect', function rect() { return this.tagName?.toLowerCase() === 'svg' ? BOX : { ...BOX, width: 100, height: 40 } })
 }
 
+// Puts back what lay() changed: nothing measurable again.
+const unlay = () => {
+  while (saved.length) {
+    const [proto, name, was] = saved.pop()
+    if (was) Object.defineProperty(proto, name, was); else delete proto[name]
+  }
+}
+
 const explore = () => { window.history.replaceState({}, '', '/colloq/fusha/unit-23/lesson-01/words'); return render(<WordPicture words={body} />) }
 const tap = (container) => fireEvent.click(container.querySelector('circle[data-key]'))
 const callout = (container) => container.querySelector('[data-callout]')
 
 beforeEach(() => { globalThis.scrollTo = vi.fn() })
-afterEach(() => {
-  cleanup()
-  while (saved.length) {
-    const [proto, name, was] = saved.pop()
-    if (was) Object.defineProperty(proto, name, was); else delete proto[name]
-  }
-})
+afterEach(() => { cleanup(); unlay() })
 
 describe('Callout: the tapped dot’s word stands in the margin beside it', () => {
   it('stands against the drawing, outside it, inside the picture, and says its word', () => {
@@ -136,10 +138,7 @@ describe('Callout: the tapped dot’s word stands in the margin beside it', () =
     const first = explore()
     expect(callout(first.container)).toBeNull()
     cleanup()
-    while (saved.length) {
-      const [proto, name, was] = saved.pop()
-      if (was) Object.defineProperty(proto, name, was); else delete proto[name]
-    }
+    unlay()
     const { container } = explore()
     tap(container)
     expect(callout(container)).toBeNull()

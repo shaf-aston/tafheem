@@ -1,12 +1,13 @@
 // Learn the words on a drawing: a body, a map, a family tree, a house, a clock and
 // more. Explore first: tap any place and hear its name, see it in Arabic and English.
-// On a figure the word also stands in the margin beside its dot (Callout), never on the drawing; in Test a
-// wrong tap's word stands there too, so a phone scrolled down to the feet still sees what was tapped.
-// From the keyboard the picture is one Tab stop: the arrow keys go from place to place, in reading order.
 // Then Test: one word at a time, in Arabic with its sound; tap where it is. A right
 // tap turns the place green; a wrong one shakes and says what was tapped, and shows
 // the English as a hint; a second miss rings the right place, so a slip teaches. A warm-up like Match: nothing is filed
 // for review. The boards and their spots are lib/colloquial/wordPictures.js.
+//
+// On a figure the word explored (or, in Test, the word wrongly tapped) also stands beside its dot,
+// in the margin and never on the drawing (Callout), so the eye need not leave the dot. From the
+// keyboard the picture is one Tab stop: the arrow keys go from place to place, in reading order.
 import { useMemo, useRef, useState } from 'react'
 
 import settings from '../../../../config/colloquial-display.json'
@@ -28,6 +29,9 @@ import ThingArt from './ThingArt'
 import usePictureFrame from './usePictureFrame'
 
 const STEPS = [{ id: 'explore', label: 'Explore' }, { id: 'test', label: 'Test' }]
+
+// Arrow keys step through the places in reading order: on, or back.
+const MOVES = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }
 
 const fresh = (board) => ({
   queue: shuffled(board.spots.flatMap((s) => s.words.map((word) => ({ word, key: s.key }))), Math.random),
@@ -88,8 +92,8 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
   const [heard, setHeard] = useState(0)
   const svg = useRef(null)
   const art = useRef(null)
-  const frame = usePictureFrame(svg, art, board.id)
-  const [labelH, setLabelH] = useState(48)
+  const frame = usePictureFrame(svg, art)
+  const [labelH, setLabelH] = useState(48)   // a first guess at the label's height, until it is measured
   const [focusKey, setFocusKey] = useState(null)
   const exploring = step === 'explore'
   const ask = game.queue[game.at]
@@ -133,7 +137,6 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
     setFocusKey(next)
     ;[...svg.current.querySelectorAll('[role="button"][data-key]')].find((e) => e.dataset.key === next)?.focus()
   }
-  const MOVES = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }
 
   const answer = (key) => {
     if (exploring) {
@@ -184,7 +187,7 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
     <div className={split ? CANVAS : 'space-y-4'}>
       <div className="relative mx-auto w-full max-w-md">
       <svg ref={svg} viewBox={board.view.join(' ')} role="group" aria-label={`${board.label}: ${exploring ? 'tap a place to hear its name' : 'tap the place'}. Arrow keys go from place to place.`}
-        className={`w-full max-w-md max-h-[70vh] mx-auto block touch-manipulation cursor-pointer select-none ${split ? 'lg:max-h-[calc(100dvh-var(--app-header-h,0px)-5rem)]' : ''}`}
+        className={`w-full max-h-[70vh] block touch-manipulation cursor-pointer select-none ${split ? 'lg:max-h-[calc(100dvh-var(--app-header-h,0px)-5rem)]' : ''}`}
         onClick={(e) => answer(spotAt(e, board))}>
         <g ref={art}><Art board={board} /></g>
         {/* A led-out dot's line to its place, under the dots. */}
