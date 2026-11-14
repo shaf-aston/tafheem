@@ -479,3 +479,11 @@ def listed(token: dict, family: str, part: str = "words") -> bool:
     written = form.removeprefix("ال")
     lemma = token["lemma"] if not token["lemma"].endswith("ة") or token["lemma"][:-1] not in (written, written.removesuffix("ا")) else ""
     return any(is_one(spelling, family, part) for spelling in (lemma, form, bare) if spelling)
+
+
+def purpose(token: dict, verb: dict) -> bool:
+    """قام الطلاب احترامًا: a masdar of the heart (a feeling or intent, reason_masdars) not of its verb's root,
+    in nasb and indefinite or a مضاف, gives the reason for the verb: its مفعول لأجله
+    (Tasheel 3.8.3 p73). Any other masdar there is a حال (جاء ركضًا)."""
+    return (listed(token, "reason_masdars") and not same_root(token, verb)
+            and typed_or_parsed_case(token) in (None, "a") and token.get("stt") in ("i", "c"))

@@ -2,8 +2,8 @@
  "_comment": "What the teacher checks once a sentence is read (services/nahw/syntax/teacher.py). Each check has an on/off switch and the reason shown to the reader when it fires: 'ar' is the book's wording, 'en' the plain one. A word a check flags loses its name and is drawn as a gap, because a dash is better than a confident wrong name. Switch a check off here and rescore with backend/scripts/nahw/score_iraab.py.",
  "case_of_role": {
   "_comment": "The case each role takes (u = raf', a = nasb, i = jarr). A vowel the reader typed that says otherwise contradicts the role. The called noun (منادى) takes nasb only when it is the first word of an idafa. `a_when_unseen`: roles that take nasb when the ending shows no case (سِوَى, or the ـِينَ of الْمُجَاهِرِينَ, which is nasb or jarr alike).",
-  "u": ["فاعل", "نائب فاعل", "مبتدأ", "خبر", "اسم كان", "خبر إن", "اسم كاد"],
-  "a": ["مفعول به", "مفعول مطلق", "مفعول لأجله", "مفعول فيه", "مفعول معه", "حال", "تمييز", "اسم إن", "خبر كان"],
+  "u": ["فاعل", "نائب فاعل", "مبتدأ", "خبر", "اسم كان", "خبر إن", "اسم كاد", "خبر لا"],
+  "a": ["مفعول به", "مفعول مطلق", "مفعول لأجله", "مفعول فيه", "مفعول معه", "حال", "تمييز", "اسم إن", "اسم لا", "خبر كان"],
   "i": ["مجرور", "مضاف إليه"],
   "a_when_mudaf": ["منادى"],
   "a_when_unseen": ["مستثنى", "مستثنى منقطع"]
@@ -100,7 +100,7 @@
   "مبتدأ": "مرفوع لأنه مبتدأ. القاعدة: المبتدأ مرفوع",
   "اسم كان": "مرفوع لأنه اسم كان. القاعدة: كان وأخواتها ترفع الاسم",
   "اسم إن": "منصوب لأنه اسم إن. القاعدة: إن وأخواتها تنصب الاسم",
-  "اسم لا": "في محل نصب لأنه اسم لا. القاعدة: لا النافية للجنس تنصب الاسم",
+  "اسم لا": "منصوب لأنه اسم لا. القاعدة: لا النافية للجنس تنصب الاسم، والمفرد منه يُبنى على ما يُنصب به",
   "اسم كاد": "مرفوع لأنه اسم كاد. القاعدة: كاد وأخواتها ترفع الاسم",
   "خبر": "مرفوع لأنه خبر. القاعدة: الخبر مرفوع",
   "خبر كان": "منصوب لأنه خبر كان. القاعدة: كان وأخواتها تنصب الخبر",

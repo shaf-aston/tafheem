@@ -1268,7 +1268,7 @@
   },
   "masdar_patterns": {
    "ar": "أوزان المصدر",
-   "effect": "an indefinite accusative word of one of these shapes is a masdar (شُكْرًا، صَبْرًا، تَسْلِيمًا, إِكْرَامًا). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): the common Form I measures فَعْل، فُعْل، فِعْل، فَعَل، فُعُول، فِعَال، فُعَال، and Forms II and IV تَفْعِيل، إِفْعَال.",
+   "effect": "an indefinite accusative word of one of these shapes is a masdar (شُكْرًا، صَبْرًا، تَسْلِيمًا, إِكْرَامًا). Prefixes of the analyser's own pattern string (1 2 3 are the root letters): the common Form I measures فَعْل، فُعْل، فِعْل، فَعَل، فُعُول، فِعَال، فُعَال، Forms II and IV تَفْعِيل، إِفْعَال, and Form III مُفَاعَلَة (its ة kept: مُفَاعَل without it is the participle).",
    "words": [
     "1َ2ْ3",
     "1ُ2ْ3",
@@ -1282,7 +1282,8 @@
     "إِ1ْ2ا3",
     "ٱِ1ْتِ2ا3",
     "ٱِنْ1ِ2ا3",
-    "ٱِسْتِ1ْ2ا3"
+    "ٱِسْتِ1ْ2ا3",
+    "مُ1ا2َ3َة"
    ]
   },
   "ta_merges": {

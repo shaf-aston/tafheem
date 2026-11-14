@@ -1,7 +1,7 @@
 """What each unit does for the word above it, and which words open a clause."""
 from __future__ import annotations
 
-from backend.services.nahw.book import book_spelling, is_one, teacher_rules
+from backend.services.nahw.book import book_spelling, case_of, condition_of, is_one, teacher_rules
 from backend.services.nahw.syntax.facts import is_passive, is_preposition, is_verb, ma_kind
 from backend.services.nahw.syntax.naming import NAMED
 from backend.services.nahw.syntax.picture.names import FRAMES, SISTERS, command_name, finer_name
@@ -32,6 +32,9 @@ def give_jobs(c: Picture) -> None:
         governor = by_id.get(token["head"])
         if governor and is_preposition(governor):
             return masdar["after_preposition"]["job"], masdar["after_preposition"]["case"]
+        # لَوْلَا أَنَّنَا أَسْرَعْنَا: after لولا the masdar is its مبتدأ (roles.json condition by_word subject)
+        if governor and governor["pos"] == "PRT" and (frame := condition_of(governor["form"])) and frame.get("subject"):
+            return frame["subject"], case_of(frame["subject"])
         rel = token["rel"]
         if (governor and rel in ("SBJ", "OBJ") and is_passive(governor)
                 and not any(t["head"] == governor["id"] and t["rel"] in ("SBJ", "OBJ") and t is not token and t["pos"] != "PRT" for t in drawn)):
@@ -74,6 +77,8 @@ def give_names(c: Picture) -> None:
             name_of[token["id"]] = command_name(token, drawn, family_of) or printed_of.get(token["id"]) or NAMED.fil
     for key, pair in {**pair_of, **understood_pair}.items():
         name_of[key] = pair.get(role_of[key], name_of[key])
+        if job_of.get(key) == role_of[key]:
+            job_of[key] = name_of[key]  # لا طالبَ علمٍ: the unit the اسم heads is called اسم لا too
     name_of.update(dict.fromkeys(replies, said_verb["word"]))
     name_of.update(fronted)  # the question's verb, said no more than it is: unwritten
     # في البيت رجلٌ كريمٌ: a مبتدأ مؤخر heading its own unit is one as a whole, as on its own

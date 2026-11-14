@@ -32,6 +32,9 @@ fail until the engine is fixed); a row's "note" names the words with two valid a
 --set round3 is 100 more again (p001-p060 hadith, u001-u040 MSA), written and keyed blind the same way, scored before any fix.
 --set round4 is 100 more (x001-x060 hadith, y001-y040 MSA), written and keyed blind the same way, scored on the merged engine before any fix.
 --set round5 is 100 more (z001-z060 hadith, w001-w040 MSA), the same way, scored before the cleanup and any further fix.
+--set complex is 21 sentences (152 words) built to stack structures: a clause inside a clause, two-object
+verbs, لولا with أنّ, كم with من, participles with objects. Keyed blind by one reader who never saw the app;
+scored before any fix (docs/reports/nahw-accuracy/2026-11-14.md).
 --set matn is 100 harder sentences: 60 vowelled hadith matn clauses (bukhari, muslim) and 40 MSA
 sentences, keyed blind by two readers; where they differed the books settled it. A row's "also" gives,
 per word, the other answers the books accept, each scored right.
@@ -121,10 +124,10 @@ def held_out(name: str) -> list[dict]:
 
 
 SETS = {"books": book_sentences, "checked": checked_sentences, "fresh": fresh_sentences,
-        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery", "matn", "round2", "round3", "round4", "round5")},
+        **{name: partial(held_out, name) for name in ("exam", "hadith", "rules", "probe", "battery", "matn", "round2", "round3", "round4", "round5", "complex")},
         "blind": partial(fresh_sentences, "blind")}
 # the sets keyed one exact role per typed word, scored by score_exact
-EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery", "matn", "round2", "round3", "round4", "round5")
+EXACT = ("fresh", "exam", "hadith", "rules", "probe", "blind", "checked", "battery", "matn", "round2", "round3", "round4", "round5", "complex")
 BASELINE = DATA / "nahw_rules" / "score_baseline.json"
 
 

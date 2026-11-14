@@ -49,6 +49,9 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
     """A verb in jazm (its last letter stilled or the nun of the five verbs gone), any other
     verb, an indefinite noun (no ال, no name, no pronoun on it: رجلَ، عدوى), a definite one,
     a tool (a particle, or a word only a condition opens with: إذا is a ظرف, a noun), or nothing."""
+    # أَنَّنَا اجْتَهَدْنَا، إنه ذهب: a pronoun written onto the particle is the noun after it (its اسم), never past it
+    if (own := s.by_id.get(token["id"] + 1)) and facts.is_suffix(own):
+        return "noun"
     after = facts.next_word(token, s)
     if after is None:
         return "none"

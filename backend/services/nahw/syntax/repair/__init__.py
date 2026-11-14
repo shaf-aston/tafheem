@@ -14,7 +14,7 @@ from backend.services.nahw.syntax.repair.called import called, called_annexes
 from backend.services.nahw.syntax.repair.clause import amma_clause, doer_then_khabar, negated_conjunct, oath_clause
 from backend.services.nahw.syntax.repair.dua import counted_times, dua_clause
 from backend.services.nahw.syntax.repair.hal import elative_describes, hal_clause, naat_beside_its_noun, no_khabar_on_full_verb
-from backend.services.nahw.syntax.repair.khabar import after_pointer, before_la, hung_on_pronoun, majrur_of_jar, naat_after_its_noun, la_over_its_khabar, zarf_is_no_subject, khabar_said_first, described_doer, elative_specified, hasr_khabar, object_of_noun, relative_khabar, second_khabar, told_of_jar
+from backend.services.nahw.syntax.repair.khabar import after_pointer, jar_off_particle, before_la, hung_on_pronoun, majrur_of_jar, naat_after_its_noun, la_over_its_khabar, zarf_is_no_subject, khabar_said_first, described_doer, elative_specified, hasr_khabar, object_of_noun, relative_khabar, second_khabar, told_of_jar
 from backend.services.nahw.syntax.repair.nasab import nasab
 from backend.services.nahw.syntax.repair.number import compound_number
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, excepted_after_doer, first_object_owed, name_told_to, repeated_doer, doer_after_object, doer_first, late_doer, outer_doer, kana_subject, kana_fronted_khabar, kana_nasb_khabar, inna_object, inna_second_khabar, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
@@ -76,6 +76,7 @@ PASSES = (
     (naat_after_its_noun, "sentence"),
     (before_la, "sentence"),
     (la_over_its_khabar, "sentence"),
+    (jar_off_particle, "sentence"),
     (hasr_khabar, "sentence"),
     (described_doer, "sentence"),
     (hal_clause, "bases_sentence"),

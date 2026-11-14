@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import bare_letters
 from backend.services.nahw.book import ADVERB_FAMILIES, doer_written_in, extra_ba_on, frames, is_built_word, is_definite_kind, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
+from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, purpose, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -203,8 +203,10 @@ class Sentence:
         # رأى of the eye) is read in it, so the word in nasb after its object is that object's حال
         if is_one(verb["lemma"], "zanna", "one_object"):
             return False
+        # لَا تَتْرُكْ الدَّرْسَ خَوْفًا مِنَ التَّعَبِ: the second is what the first is said to be (أصلهما مبتدأ وخبر), so a masdar of
+        # the heart giving the reason (its مفعول لأجله) is no second object, and the verb is the plain one of one object
         return bool(first) and any(k["id"] > first["id"] and k["rel"] in ("OBJ", "MOD") and noun_tagged(k)
-                                   and typed_or_parsed_case(k) in (None, "a") for k in kids)
+                                   and typed_or_parsed_case(k) in (None, "a") and not purpose(k, verb) for k in kids)
 
     def noun_before(self, particle: dict) -> bool:
         """The particle follows a noun it can join to, which an oath و does not: the noun it

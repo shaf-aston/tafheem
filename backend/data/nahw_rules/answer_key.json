@@ -12,7 +12,7 @@
     "round2": "data/nahw_rules/round2_sentences.json",
     "round3": "data/nahw_rules/round3_sentences.json",
     "round4": "data/nahw_rules/round4_sentences.json",
-    "round5": "data/nahw_rules/round5_sentences.json"
+    "round5": "data/nahw_rules/round5_sentences.json", "complex": "data/nahw_rules/complex_sentences.json"
   },
   "families": {
     "fil": [

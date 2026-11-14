@@ -740,9 +740,11 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
                                          if not _bare_construct(r) and r.get("pos") != "noun_prop"]) or reading
     # أَوْعَى لَهُ مِنْهُ، أَعْظَمَ فِي نَفْسِي مِنْ صِدْقِي: the elative is followed by, or by what it governs and then, the مِنْ-phrase (Tashil V1 p132), so a word with the
     # elative's shape, read as a verb, straight before a preposition and a مِنْ within the next three words with no verb
-    # before it, is that elative; a doer (أَنْعَمَ اللَّهُ عَلَيَّ مِنْ نِعْمَةٍ) or an object straight after it keeps the verb
+    # before it, is that elative; a doer (أَنْعَمَ اللَّهُ عَلَيَّ مِنْ نِعْمَةٍ) or an object straight after it keeps the verb, and so does
+    # a verb after لم، لن، سوف (لَمْ أَفْهَمْ مِنْهُ شَيْئًا), where no noun stands (expects.json `only`)
     for i in range(len(out) - 1):
         if out[i].get("pos") == "verb" and out[i + 1].get("pos") == "prep" and _min_phrase_follows(out[i + 1:i + 4]) \
+                and not (i and expects.only_verb(tokens, out, i)) \
                 and (elative := _elative_reading(tokens[i], steps[i])):
             out[i] = elative
     # نصر زيد بكرا، زيد نصر بكرا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به).
