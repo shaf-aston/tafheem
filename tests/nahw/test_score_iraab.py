@@ -154,6 +154,15 @@ def test_the_check_fails_when_a_sentence_it_had_right_goes_wrong_whatever_the_to
     assert score_iraab.check(None, save=False) == 1
 
 
+def test_a_fallen_sentence_shows_the_parsers_own_links():
+    """So a sentence that falls on CI's machine only shows which near tie its numbers broke."""
+    from backend.config import get_settings
+    from backend.scripts.nahw.score_iraab import parser_links
+    links = parser_links("كَتَبَ زَيْدٌ")
+    assert re.fullmatch(r"1:كتب/\S+>0:\S+  2:زيد/\S+>1:SBJ", links), links
+    assert get_settings().show_parse is False
+
+
 def test_a_reader_that_breaks_says_so(monkeypatch):
     from backend.config import get_settings
     from backend.services.nahw import syntax
