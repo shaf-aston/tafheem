@@ -315,9 +315,8 @@ def _split_word(word: str, a: dict) -> list[dict]:
                         "guessed": NO_ANALYSIS in a.get("atbtok", "")})
         else:
             feats = _clitic_token_feats(tok, "prc" if tok.endswith("+") else "enc", a)
-            form = _as_written(form, word) if tok.startswith("+") else form
             out.append({
-                "form": form, "lemma": form, "base": form.strip("+"),
+                "form": form, "lemma": form, "base": form.strip("+"), "written": _as_written(form, word) if tok.startswith("+") else form,
                 "pos": catib6, "pos_camel": feats["pos_camel"], "ud": ud,
                 "asp": feats["asp"], "vox": feats["vox"],
                 "stt": feats["stt"], "cas": feats["cas"],
@@ -417,7 +416,15 @@ def parse(words: list[str], picks: list[dict]) -> list[dict]:
 
     heads, rels = _parse_forms(subtokens)
 
+    # the parser reads the pieces as it was trained on them (عند_+ني); the card and the column show them as written (+ي)
     return [
-        {"id": i + 1, **tok, "head": heads[i], "rel": rels[i]}
+        {"id": i + 1, **_shown(tok), "head": heads[i], "rel": rels[i]}
         for i, tok in enumerate(subtokens)
     ]
+
+
+def _shown(tok: dict) -> dict:
+    """A piece as the sentence writes it, the tokenisation's spelling kept only for the parser."""
+    written = tok.get("written")
+    rest = {key: value for key, value in tok.items() if key != "written"}
+    return {**rest, "form": written, "lemma": written, "base": written.strip("+")} if written and written != tok["form"] else rest

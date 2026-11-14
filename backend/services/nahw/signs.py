@@ -39,6 +39,9 @@ def kind_of(tag: dict, annexed: bool) -> str:
             return "attached_plural"  # عِشْرِينَ، أُولُو: they take its letters without being one
         if tag.get("number") == "p" and tag.get("gender") == "m" and (bare.endswith(("ون", "ين")) or _dropped_nun(tag, annexed)):
             return "sound_plural"
+        if is_one(tag.get("lemma") or "", "kila"):
+            # كِلَاهُمَا، كِلَيْهِمَا: ملحق بالمثنى joined to a pronoun; كِلَا الرَّجُلَيْنِ like the مقصور (closed_words kila)
+            return "attached_dual" if _has_pronoun(tag) else "on_alef"
         if is_one(strip_diacritics(tag["base"]), "compound_number", "dual"):
             return "attached_dual"  # اثْنَا، اثْنَيْ عَشَرَ: ملحق بالمثنى, its letters show the case (Tasheel 1.4.3 p10)
         if tag.get("number") == "d":

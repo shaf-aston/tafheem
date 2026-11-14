@@ -5,7 +5,7 @@ import re
 
 import pytest
 
-from tests.nahw_helpers import analyze, cards, needs_parser
+from tests.nahw_helpers import analyze, cards, needs_parser, tree_roles
 
 
 def card(sentence: str, word: str) -> dict:
@@ -160,7 +160,8 @@ def _pronoun_said(sentence: str, word: str) -> str:
 
 
 # The pronoun is named by the letters the word ends with: ي on a noun or particle (عندي، معي), ني on a verb, whose
-# ن is نون الوقاية (أكرمني).
+# ن is نون الوقاية (أكرمني). Only the name changes: the parser still reads the pieces as it was trained on them, so
+# بَعْدِي stays the ظرف of its verb, not a بدل of the word before it.
 @needs_parser
 @pytest.mark.parametrize("sentence, word, said", [
     ("عِنْدِي كِتَابٌ", "عِنْدِي", "ي"),
@@ -169,6 +170,11 @@ def _pronoun_said(sentence: str, word: str) -> str:
 ])
 def test_a_pronoun_is_named_by_its_written_letters(sentence, word, said):
     assert _pronoun_said(sentence, word) == said
+
+
+@needs_parser
+def test_the_written_name_leaves_the_parse_alone():
+    assert card("لَا تَتَّخِذُوهُمْ غَرَضًا بَعْدِي فَمَنْ أَحَبَّهُمْ", "بَعْدِي")["role"] == "مفعول فيه"
 
 
 def _parts(sentence: str, at: int) -> list:
@@ -221,12 +227,43 @@ def test_a_pronoun_on_lawla_is_its_mubtada(sentence, word, said, answer):
 
 
 # بِرَافِعِي رَايَاتِهِمْ: a sound masculine plural drops its ن to be مضاف (Ibn Aqil V1 p62: نون المثنى والمجموع تحذف
-# للإضافة), its ي still its sign; a singular whose own last letter is ي (قَاضِي) keeps its hidden kasra.
+# للإضافة), its ي still its sign; a singular whose own last letter is ي (قَاضِي) keeps its hidden kasra. Before a
+# name that shows no jarr (صَدِيقِي سَامِر) nothing says إضافة, and the ي stays "my".
 @needs_parser
 @pytest.mark.parametrize("sentence, word, sign", [
     ("مَرَرْتُ بِرَافِعِي رَايَاتِهِمْ", "بِرَافِعِي", "الياء، جمع مذكر سالم"),
     ("جَاءَ مُعَلِّمُو الْمَدْرَسَةِ", "مُعَلِّمُو", "الواو، جمع مذكر سالم"),
     ("مَرَرْتُ بِقَاضِي الْمَدِينَةِ", "بِقَاضِي", "كسرة مقدرة على الياء للثقل"),
+    ("هَذَا صَدِيقِي سَامِر", "صَدِيقِي", "فتحة مقدرة على ما قبل ياء المتكلم"),
 ])
 def test_a_plural_loses_its_nun_to_be_mudaf(sentence, word, sign):
+    assert card(sentence, word)["sign"] == sign
+
+
+# The two a sister of إنّ or كان governs are called after that sister, not the family's mother: a word (اسم ليت), a
+# pronoun written onto it (كَأَنَّهُ: «ه» اسم كأن) and a clause that is its khabar (يَنْزِلُ: خبر ليت), on the card and in
+# the tree alike; under the mother itself (إِنَّهُ) the name stays اسم إن.
+@needs_parser
+@pytest.mark.parametrize("sentence, word, said, drawn", [
+    ("كَأَنَّهُ أَسَدٌ", "كَأَنَّهُ", "في محل نصب اسم كأن", ["اسم كأن", "خبر كأن"]),
+    ("عَلِمْتُ أَنَّكَ نَاجِحٌ", "أَنَّكَ", "في محل نصب اسم أن", ["اسم أن", "خبر أن"]),
+    ("لَيْتَ الْمَطَرَ يَنْزِلُ", "الْمَطَرَ", "لأنه اسم ليت", ["اسم ليت", "خبر ليت"]),
+    ("إِنَّهُ كَرِيمٌ", "إِنَّهُ", "في محل نصب اسم إن", ["اسم إن", "خبر إن"]),
+])
+def test_a_sister_lends_its_name_to_what_it_governs(sentence, word, said, drawn):
+    roles = tree_roles(analyze(sentence)["tree"]["tree"])
+    assert said in card(sentence, word)["reason"] and all(name in roles for name in drawn)
+
+
+# كلا وكلتا (Ibn Aqil V1 p55: وكلا إذا بمضمر مضافا وصلا): joined to a pronoun ملحق بالمثنى, its letters the sign; joined
+# to a noun like the مقصور, its vowel assumed on the alif; a true dual keeps its own sign.
+@needs_parser
+@pytest.mark.parametrize("sentence, word, sign", [
+    ("رَأَيْتُ الرَّجُلَيْنِ كِلَيْهِمَا", "كِلَيْهِمَا", "الياء، ملحق بالمثنى"),
+    ("جَاءَ الرَّجُلَانِ كِلَاهُمَا", "كِلَاهُمَا", "الألف، ملحق بالمثنى"),
+    ("جَاءَ كِلَا الرَّجُلَيْنِ", "كِلَا", "ضمة مقدرة على الألف للتعذر"),
+    ("مَرَرْتُ بِكِلْتَا الْمَرْأَتَيْنِ", "بِكِلْتَا", "كسرة مقدرة على الألف للتعذر"),
+    ("جَاءَ الرَّجُلَانِ كِلَاهُمَا", "الرَّجُلَانِ", "الألف، مثنى"),
+])
+def test_kila_is_a_dual_only_by_its_pronoun(sentence, word, sign):
     assert card(sentence, word)["sign"] == sign

@@ -681,9 +681,10 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if out[i].get("enc0") == "1s_poss" and after.get("pos", "").startswith("noun") \
                 and (after.get("cas") == "g" or after.get("pos") == "noun_prop" and typed_case(tokens[i + 1]) is None):
             word, ranked = steps[i]
+            # a plural's dropped ن needs a jarr seen after it: before a caseless name (صَدِيقِي سَامِر) it stays "my"
             out[i] = best_reading(word, [r for r in ranked if r.get("enc0") != "1s_poss"
                                          and six_noun_case(base_of(word, r.get("atbtok")), r.get("lex") or "")]) \
-                or _construct_plural(word, ranked, out[i]) or out[i]
+                or (after.get("cas") == "g" and _construct_plural(word, ranked, out[i])) or out[i]
     # صِلْ مَنْ قَطَعَكَ، هَلْ نَضَجَ التِّينُ: a word after a governor that wants a verb (expects.json: لم، لن، هل،
     # a relative whose صلة is a sentence ...) which the typed vowels read as well as a verb (قَطَعَكَ the verb, or
     # the noun "your pieces") is that verb. A relative opening the sentence may be a question instead (مَنْ أَبُوكَ).

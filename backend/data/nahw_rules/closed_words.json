@@ -1396,6 +1396,11 @@
     "dual": ["اثنا", "اثني", "اثنتا", "اثنتي", "اثنان", "اثنتان", "اثنين", "اثنتين"],
     "second": ["عشر", "عشرة"]
   },
+  "kila": {
+    "ar": "كلا وكلتا",
+    "effect": "كلا and كلتا joined to a pronoun are ملحق بالمثنى and show their case by its letters (كلاهما in raf', كليهما in nasb and jarr); joined to a noun they are like the مقصور, written with the alif in every case and their vowel assumed on it (جاء كلا الرجلين، مررت بكلا الرجلين). Ibn Aqil V1 p55: بالألف ارفع المثنى وكلا إذا بمضمر مضافا وصلا.",
+    "words": ["كلا", "كلتا", "كلي", "كلتي"]
+  },
   "adad_mudaf": {
     "_hundreds": "`hundreds`: مائة written onto its unit as one word (ثلاثَمائةِ صفحةٍ): the unit wears the number's case, the مائة after it is its مضاف إليه, so the last vowel typed is the مائة's jarr.",
     "hundreds": ["مائة", "مئة"],

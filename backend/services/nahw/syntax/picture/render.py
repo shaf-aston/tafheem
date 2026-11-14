@@ -215,6 +215,8 @@ def draw(c: Picture) -> dict:
             "unsaid": [role_of[token["id"]] if token["id"] in named_by_unsaid else None for token in bases],  # the job on the card too
             # the picture's finer name (حرف ناسخ, فعل أمر, فعل مجهول) where it says more than the role
             "finer": [name_of.get(token["id"]) if name_of.get(token["id"]) != role_of[token["id"]] else None for token in bases],
+            # and of a pronoun drawn as its own word (the ك of كأنّكَ: اسم كأنّ)
+            "piece_names": {key: name_of[key] for key in split if name_of.get(key) not in (None, role_of[key])},
             # the doer no typed word is (هو hidden in يكتبُ, the تاء of كتبتُ): the card says it as the picture draws it
             "doer": [doer_of.get(token["id"]) for token in bases],
             # ما read by its عائد (facts.ma_kind): the relative's job and case, or (None, None) for ما المصدرية
