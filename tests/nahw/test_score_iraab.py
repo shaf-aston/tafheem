@@ -6,6 +6,7 @@ from backend.scripts.nahw.score_iraab import (
     sign_matches)
 from backend.services.nahw.syntax.naming import ROLES
 from backend.services.text.arabic_text import bare_letters, words
+from tests.nahw_helpers import needs_parser
 
 
 def test_longest_term_wins():
@@ -154,6 +155,7 @@ def test_the_check_fails_when_a_sentence_it_had_right_goes_wrong_whatever_the_to
     assert score_iraab.check(None, save=False) == 1
 
 
+@needs_parser
 def test_a_fallen_sentence_shows_the_parsers_own_links():
     """So a sentence that falls on CI's machine only shows which near tie its numbers broke."""
     from backend.config import get_settings
