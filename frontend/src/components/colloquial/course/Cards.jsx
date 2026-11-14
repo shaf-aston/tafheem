@@ -39,9 +39,12 @@ export function Card({ hue, onClick, twin, picture, ...lines }) {
   if (twin) {
     return (
       <div style={look} className="grid grid-cols-2 rounded-[var(--radius-lg)] border overflow-hidden">
-        <button type="button" onClick={onClick} aria-label={`${lines.title}: ${lines.note}`} className={half}><Lines hue={hue} {...lines} /></button>
-        <button type="button" onClick={twin.onClick} aria-label={`${lines.title}: ${twin.title} ${twin.kicker.toLowerCase()}`} className={`${half} border-s`} style={{ borderColor: look.borderColor }}>
+        {/* Each half is named by what it shows, so it can be asked for by voice (WCAG 2.5.3). */}
+        <button type="button" onClick={onClick} className={half}><Lines hue={hue} {...lines} /></button>
+        <button type="button" onClick={twin.onClick} className={`${half} border-s`} style={{ borderColor: look.borderColor }}>
           <Lines hue={hue} {...twin} />
+          {/* Heard, not seen: every topic has a Words half, and a list of them read aloud must say whose. */}
+          <span className="sr-only">, {lines.title}</span>
         </button>
       </div>
     )
@@ -103,7 +106,8 @@ export function UnitCard({ hue, unit, done = 0, onClick }) {
 export function WordUnitCard({ hue, unit, done = 0, onClick }) {
   const number = unitNumber(unit.unit)
   return (
-    <button type="button" onClick={onClick} style={lookOf(hue)} aria-label={`Unit ${number}: ${unit.title}`}
+    // Named by what it shows (its number, size, title and sample words), so it can be asked for by voice.
+    <button type="button" onClick={onClick} style={lookOf(hue)}
       className={`lift press text-start w-full flex flex-col px-5 py-4 rounded-[var(--radius-lg)] border`}>
       <span className="flex items-baseline justify-between gap-3 eyebrow">
         <span style={{ color: hue }}>Unit {number}</span>

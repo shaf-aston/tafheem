@@ -25,7 +25,9 @@ export default function TypedExercise({ exercise, value, onChange, status }) {
           onChange={(event) => onChange(event.target.value)}
           // In English, which a beginner can read, and saying which letters will be marked.
           placeholder={takesLatin(exercise.accepted) ? 'Type it in Arabic, or how it sounds' : 'Type it in Arabic letters'}
+          // The placeholder is English, in the interface face and size: in the Arabic face it ran off a phone's box.
           className={`w-full rounded-[var(--radius)] border bg-[var(--surface)] px-4 py-3
+            placeholder:font-[family-name:var(--font-ui)] placeholder:text-[length:var(--type-ui)] placeholder:text-[var(--text-faint)]
             transition-colors focus:border-[var(--border-hi)]
             ${answered ? 'opacity-70' : ''}`}
           style={{

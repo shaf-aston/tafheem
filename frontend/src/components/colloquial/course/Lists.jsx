@@ -120,7 +120,7 @@ export function TopicList({ dialect, unit, go }) {
               const i = from + n
               return (
                 <Card key={l.lesson} hue={hue} kicker={`Topic ${i + 1}${isSeen(record, dialect.key, unit.unit, l.lesson) ? ' · Seen' : ''}`} title={l.title} image={l.picture}
-                  note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words · Pictures · Cards · Quiz` : l.words ? 'Phrases' : undefined}
+                  note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words · Pictures · Cards · Quiz` : l.words ? `${l.phrases} phrases · practice` : undefined}
                   onClick={l.written ? () => open(i, !l.phrases) : undefined}
                   twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => open(i, true) }} />
               )

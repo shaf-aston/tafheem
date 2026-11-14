@@ -8,7 +8,7 @@ const FACE = `col-start-1 row-start-1 flex flex-col items-center justify-center 
   rounded-[var(--radius-md)] border transition-[transform,opacity] [backface-visibility:hidden]`
 const TURN = { transitionDuration: 'calc(var(--motion-base-ms) * 1ms)' }
 
-function Side({ item, label, flipped, hidden, back }) {
+function Side({ item, label, flipped, hidden, back, hint }) {
   return (
     <span
       aria-hidden={hidden}
@@ -19,6 +19,7 @@ function Side({ item, label, flipped, hidden, back }) {
       <ArabicText as="span" size="base" className="block text-[var(--text)]">{item.arabic}</ArabicText>
       <Spelling>{item.transliteration}</Spelling>
       <span className="type-small text-[var(--text)]">{item.english}</span>
+      {hint && <span className="type-micro text-[var(--text-faint)] mt-1">{hint}</span>}
     </span>
   )
 }
@@ -32,10 +33,9 @@ function PairCard({ pair, response }) {
       style={{ perspective: '900px' }}
       className={`press grid w-full rounded-[var(--radius-md)]`}
     >
-      <Side item={pair} label="Ask" flipped={flipped} hidden={flipped} back={false} />
-      <Side item={response} label="Answer" flipped={flipped} hidden={!flipped} back />
-      {/* The card reads its own face; this says it turns. */}
-      {!flipped && <span className="sr-only">Press to see the answer</span>}
+      {/* Said on the face, so it is seen as well as heard: a card that turns looks like any other card. */}
+      <Side item={pair} label="Ask" flipped={flipped} hidden={flipped} back={false} hint="Tap to see the answer" />
+      <Side item={response} label="Answer" flipped={flipped} hidden={!flipped} back hint="Tap to turn it back" />
     </button>
   )
 }

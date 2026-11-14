@@ -30,17 +30,22 @@ export default function Face({ phrase, index, arabicSize = 'base', showEnglish =
     </>
   )
   return (
-    <div className={`relative overflow-hidden ${drawn ? 'flex flex-col bg-[var(--surface-hi)]' : ''} ${className}`}>
+    // `isolate`: the number is lifted over the words' fade, and no further than the tile.
+    <div className={`relative isolate overflow-hidden ${drawn || !phrase.image ? 'flex flex-col' : ''} ${drawn ? 'bg-[var(--surface-hi)]' : ''} ${className}`}>
       {drawn
         ? <PhrasePicture phrase={phrase} alt={pictureAlt} eager={eager} className="flex-1 min-h-0 w-full pt-6!" />
         : <PhrasePicture phrase={phrase} alt={pictureAlt} eager={eager} className="absolute inset-0 w-full h-full" />}
       {!phrase.image && <div aria-hidden="true" className="absolute inset-0" style={{ background: tint(index) }} />}
-      {numbered && <span aria-hidden="true" className="absolute top-2 start-2 px-1.5 rounded-[var(--radius-xs)] bg-[var(--surface)]/85 type-micro tabular-nums text-[var(--text-dim)]">
+      {numbered && <span aria-hidden="true" className="absolute z-[var(--layer-raised)] top-2 start-2 px-1.5 rounded-[var(--radius-xs)] bg-[var(--surface)]/85 type-micro tabular-nums text-[var(--text-dim)]">
         {String(index + 1).padStart(2, '0')}
       </span>}
       {drawn
         ? <div className="relative px-3 pb-3 text-center">{words}</div>
-        : <div className="absolute inset-x-0 bottom-0 px-3 pb-3 pt-10 text-center" style={{ background: SCRIM }}>{words}</div>}
+        : phrase.image
+          ? <div className="absolute inset-x-0 bottom-0 px-3 pb-3 pt-10 text-center" style={{ background: SCRIM }}>{words}</div>
+          // No picture: the words are the tile, in its middle, not low under an empty tint that reads as a photo
+          // not yet loaded. In the flow, so a short tile grows to hold them rather than cut them.
+          : <div className="relative flex-1 flex flex-col items-center justify-center px-3 pt-8 pb-3 text-center">{words}</div>}
     </div>
   )
 }
