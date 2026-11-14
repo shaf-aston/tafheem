@@ -20,6 +20,8 @@ const SCRIM = `linear-gradient(to top, color-mix(in srgb, var(--bg) ${SCRIM_PERC
 // tile that has no spelling of its own beside it.
 export default function Face({ phrase, index, arabicSize = 'base', showEnglish = true, spelt = false, numbered = true, eager = false, className = '' }) {
   const drawn = phrase.image?.endsWith('.svg')
+  // The English is printed under the picture, so the picture says nothing more (said once, not twice).
+  const pictureAlt = showEnglish ? '' : phrase.english
   const words = (
     <>
       <ArabicText as="p" size={arabicSize} className="text-[var(--text)]">{phrase.arabic}</ArabicText>
@@ -30,10 +32,10 @@ export default function Face({ phrase, index, arabicSize = 'base', showEnglish =
   return (
     <div className={`relative overflow-hidden ${drawn ? 'flex flex-col bg-[var(--surface-hi)]' : ''} ${className}`}>
       {drawn
-        ? <PhrasePicture phrase={phrase} eager={eager} className="flex-1 min-h-0 w-full pt-6!" />
-        : <PhrasePicture phrase={phrase} eager={eager} className="absolute inset-0 w-full h-full" />}
+        ? <PhrasePicture phrase={phrase} alt={pictureAlt} eager={eager} className="flex-1 min-h-0 w-full pt-6!" />
+        : <PhrasePicture phrase={phrase} alt={pictureAlt} eager={eager} className="absolute inset-0 w-full h-full" />}
       {!phrase.image && <div aria-hidden="true" className="absolute inset-0" style={{ background: tint(index) }} />}
-      {numbered && <span className="absolute top-2 start-2 px-1.5 rounded-[var(--radius-xs)] bg-[var(--surface)]/85 type-micro tabular-nums text-[var(--text-dim)]">
+      {numbered && <span aria-hidden="true" className="absolute top-2 start-2 px-1.5 rounded-[var(--radius-xs)] bg-[var(--surface)]/85 type-micro tabular-nums text-[var(--text-dim)]">
         {String(index + 1).padStart(2, '0')}
       </span>}
       {drawn

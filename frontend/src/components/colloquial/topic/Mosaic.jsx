@@ -20,7 +20,7 @@ export default function Mosaic({ phrases, onOpen, start = 0, narrow = false }) {
             <button
               type="button"
               onClick={() => onOpen(start + i)}
-              aria-label={`${phrase.english} (${phrase.arabic})`}
+              // Named by the words it shows (Face), so a voice-control user can say what they see.
               className={`press group block w-full h-full rounded-[var(--radius-md)] border border-[var(--border)]
                 hover:border-[var(--border-hi)] overflow-hidden transition-colors`}
             >
