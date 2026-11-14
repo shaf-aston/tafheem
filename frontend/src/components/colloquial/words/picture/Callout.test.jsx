@@ -3,6 +3,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import spine from '../../../../../../backend/data/colloquial/spine.json'
+import { pictureBoards } from '../../../../lib/colloquial/wordPictures'
 import WordPicture from './WordPicture'
 
 vi.mock('../../../../lib/speech/speak', () => ({ speak: vi.fn(), prepare: vi.fn(), stop: vi.fn() }))
@@ -81,12 +82,53 @@ describe('Callout: the tapped dot’s word stands in the margin beside it', () =
     expect(container.querySelector('[aria-live="polite"]').textContent).toMatch(/\S/)
   })
 
-  it('stays away in Test, where the word is the question', () => {
+  it('in Test, a right tap shows nothing beside the dot; a wrong one shows the word tapped, in red, beside it', () => {
     lay({ x: 60, y: 10, width: 120, height: 280 })
     window.history.replaceState({}, '', '/colloq/fusha/unit-23/lesson-01/words?step=test')
     const { container } = render(<WordPicture words={body} />)
-    tap(container)
-    expect(callout(container)).toBeNull()
+    // The place holding the word asked for (a place can hold more than one word).
+    const board = pictureBoards(body)[0]
+    const asked = () => {
+      const arabic = container.querySelector('[aria-live="polite"] [lang="ar"]').textContent
+      return board.spots.find((spot) => spot.words.some((w) => w.arabic === arabic)).key
+    }
+    const dot = (key) => container.querySelector(`circle[data-key="${key}"]`)
+    const keys = [...container.querySelectorAll('circle[data-key]')].map((c) => c.dataset.key)
+    const wrongKey = keys.find((k) => k !== asked())
+    expect(callout(container)).toBeNull()                       // the question is not given away
+    fireEvent.click(dot(wrongKey))
+    const label = callout(container)
+    expect(label).not.toBeNull()
+    const tapped = board.spots.find((spot) => spot.key === wrongKey).words[0]
+    expect(label.textContent).toContain(tapped.english)         // what was tapped, so a phone scrolled low still sees it
+    expect(label.style.borderColor).toBe('var(--danger)')
+    fireEvent.click(dot(asked()))
+    expect(callout(container)).toBeNull()                       // right: nothing more to say beside it
+  })
+
+  it('is one Tab stop: the arrow keys go from place to place, in reading order, and the stop follows', () => {
+    const { container } = explore()
+    const places = () => [...container.querySelectorAll('[role="button"][data-key]')]
+    expect(places().filter((e) => e.getAttribute('tabindex') === '0')).toHaveLength(1)   // one stop, not one per dot
+    const first = places().find((e) => e.getAttribute('tabindex') === '0')
+    first.focus()
+    fireEvent.keyDown(first, { key: 'ArrowRight' })
+    const second = document.activeElement
+    expect(second).not.toBe(first)
+    expect(second.dataset.key).toBeTruthy()
+    expect(second.getAttribute('tabindex')).toBe('0')
+    expect(first.getAttribute('tabindex')).toBe('-1')
+    fireEvent.keyDown(second, { key: 'ArrowLeft' })
+    expect(document.activeElement).toBe(first)
+    fireEvent.keyDown(first, { key: 'ArrowLeft' })                 // round from the first to the last
+    const last = document.activeElement
+    fireEvent.keyDown(last, { key: 'Home' })
+    expect(document.activeElement).toBe(first)
+    fireEvent.keyDown(first, { key: 'End' })
+    expect(document.activeElement).toBe(last)
+    // Reading order: each place is no higher than the one before it on another row.
+    fireEvent.keyDown(last, { key: 'Enter' })
+    expect(container.querySelector('[aria-live="polite"]').textContent).toMatch(/\S/)   // Enter still says it
   })
 
   it('is not there before a tap, and stays away where nothing can be measured', () => {

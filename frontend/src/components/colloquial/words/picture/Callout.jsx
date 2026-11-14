@@ -6,8 +6,9 @@ import { useLayoutEffect, useRef } from 'react'
 
 import ArabicText from '../../../ui/text/ArabicText'
 
-/** `at` {x, y, w}: where it stands, in pixels from the picture's corner. `onHeight` tells the placer how tall it came out. */
-export default function Callout({ words, at, onHeight }) {
+/** `at` {x, y, w}: where it stands, in pixels from the picture's corner. `onHeight` tells the placer how tall it came out.
+ * `tone` is its edge: the accent for a word explored, the danger colour for a wrong tap in Test. */
+export default function Callout({ words, at, tone = 'var(--primary)', onHeight }) {
   const node = useRef(null)
   useLayoutEffect(() => {
     const el = node.current
@@ -22,8 +23,8 @@ export default function Callout({ words, at, onHeight }) {
   return (
     // Said again by the card, which is the live region: this is for the eye. It lets every tap through.
     <div ref={node} aria-hidden="true" data-callout
-      className="absolute pointer-events-none rounded-[var(--radius-sm)] border border-[var(--primary)] bg-[var(--surface)] px-1.5 py-1 text-center shadow-sm"
-      style={{ left: at.x, top: at.y, width: at.w }}>
+      className="absolute pointer-events-none rounded-[var(--radius-sm)] border bg-[var(--surface)] px-1.5 py-1 text-center shadow-sm"
+      style={{ left: at.x, top: at.y, width: at.w, borderColor: tone }}>
       {words.map((w) => (
         <div key={w.id}>
           <ArabicText as="p" size="base" className="text-[var(--text)] leading-tight">{w.arabic}</ArabicText>
