@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_known, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_known, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, is_masdar, zarf_in_nasb, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(s: Sentence) -> None:
@@ -243,6 +243,27 @@ def jar_off_particle(s: Sentence) -> None:
             elif not khabar:
                 jar["rel"] = "PRD"
                 khabar = jar
+
+
+def jar_on_its_khabar(s: Sentence) -> None:
+    """زَيْدٌ فِي الدَّارِ جَالِسٌ، أَصْبَحَ الْجَوُّ بَعْدَ الْمَطَرِ لَطِيفًا: a جار ومجرور or ظرف hangs on a verb or on what
+    carries a verb's sense (Mughni: لا بد من تعلقهما بالفعل أو ما يشبهه), so one the parser hung on a known subject,
+    with a وصف khabar of that subject after it, hangs on the khabar, not on a word no one writes said of the
+    subject (its حال). An unknown subject keeps it as its صفة (كان رجلٌ من الأنصار صالحًا), and a subject that does a
+    verb's work itself keeps it (السَّفَرُ إِلَى مَكَّةَ مُمْتِعٌ، الْجَالِسُ فِي الدَّارِ مَسْرُورٌ)."""
+    for jar in s.tokens:
+        subject = s.head(jar)
+        # a ظرف is منصوب: تِلْكَ السَّاعَةُ ثَمِينَةٌ (raf'), الْيَدُ الْعُلْيَا (case unseen) are no ظرف
+        if not (subject and jar["rel"] == "MOD" and (is_preposition(jar) or zarf_in_nasb(jar, s)) and subject["id"] < jar["id"]
+                and noun_tagged(subject) and is_known(subject, s) and not (is_masdar(subject) or works_as_verb(subject))):
+            continue
+        # the khabar is the subject's own (a مبتدأ), its governor's (كان، إنّ and their sisters), or the noun the
+        # parser hung the مبتدأ on as its subject (زيدٌ ... جالسٌ)
+        holder = subject if subject["rel"] == "---" else s.head(subject) if subject_link(subject) else None
+        khabar = holder if holder and noun_tagged(holder) and holder is not subject else next(
+            (k for k in s.kids(holder) if k["rel"] == "PRD"), None) if holder else None
+        if khabar and khabar["id"] > jar["id"] and is_participle(khabar):
+            s.relink(jar, khabar["id"], "MOD")
 
 
 def _in_shibh_jumla(token: dict, s: Sentence) -> bool:

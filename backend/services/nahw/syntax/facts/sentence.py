@@ -378,6 +378,12 @@ def excepted_from(illa: dict, s: Sentence) -> dict | None:
     return noun
 
 
+def after_illa(token: dict, s: Sentence) -> bool:
+    """The word written just before it is إلا of the exception (ما قام أحدٌ إلا زيدٌ)."""
+    words = [t for t in s.tokens if t["id"] < token["id"] and not is_suffix(t)]
+    return bool(words) and read_as(words[-1], "istithna")
+
+
 def excepted_after_la(token: dict, s: Sentence) -> tuple[dict, dict, dict] | None:
     """(اسم لا, إلا, its entry) when the word is the name straight after لا, its noun, then إلا,
     and that noun is one roles.json `exception_after_la` lists (لا إله إلا الله); no word between

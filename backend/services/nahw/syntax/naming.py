@@ -12,7 +12,7 @@ from typing import NamedTuple, TypedDict
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import (
     book_spelling, extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
-    book_map, book_merges, takes_object, frames, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
+    book_map, book_merges, takes_object, frames, family_mother, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
 from backend.services.nahw.syntax import condition, facts, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
@@ -24,11 +24,18 @@ from backend.services.text.harakat import (
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
 ROLES = role_table()
 NAMED = named_roles()
+SISTER_FAMILIES = ("inna", "kana", "kaada")  # the families whose members lend their name to what they govern
 
 
 def _entry(role: str | None) -> tuple:
     # a recorded role is fully vowelled (نَائِبُ فَاعِلٍ); it is the same role
-    return ROLES.get(strip_diacritics(role or ""), (None, None))
+    plain = strip_diacritics(role or "")
+    if plain in ROLES:
+        return ROLES[plain]
+    # اسم كأن، خبر ليس: named for the sister that governs it, coloured as its mother's (اسم إن، خبر كان)
+    job, _, sister = plain.rpartition(" ")
+    mother = next((family_mother(family) for family in SISTER_FAMILIES if job and in_family(sister, family)), None)
+    return ROLES.get(f"{job} {mother}", (None, None))
 
 
 def role_key(role: str | None) -> str | None:
@@ -157,7 +164,9 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
     cases = [_ending(role, token, _governor(bases, i), words[i + 1] if i + 1 < len(words) else "",
                      facts.puts_in_jarr(token, s), _lam_mood(token, before[i], i == 0))
              for i, (role, token) in enumerate(zip(named, bases))]
-    conditions = condition.find(bases, named, cases, before)
+    after = [[t["form"].strip("+") for t in tokens if t["id"] not in base_ids and not facts.is_prefix(t) and word_of.get(t["id"]) == i]
+             for i in range(len(bases))]
+    conditions = condition.find(bases, named, cases, before, after)
     for c in conditions:
         _jazm_by_condition(c, named, cases)
     take_their_ending(named, cases, bases, tokens)
@@ -272,6 +281,8 @@ def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: di
     if role == NAMED.badal:
         if said := facts.excepted_after_la(token, s):
             return said[2]["badal"]  # لا إله إلا الله: no بدل كل من كل of the منصوب noun
+        if facts.after_illa(token, s):
+            return kinds["badal"]["baad"]  # ما قام أحدٌ إلا زيدٌ: the one excepted is a part of those it is taken out of
         pronoun = any(facts.attached_pronoun(k) for k in s.kids(token))
         if not pronoun:
             return kinds["badal"]["kul"]
@@ -310,11 +321,13 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict], s: facts.Sentenc
     if frame["built"]:
         opener["case"] = "mabni"  # أينما: built, whatever vowel it ends on
     opener["condition"] = {"part": "opener", "verb": c["verb"], "answer": c["answer"], "tie_at": c["tie_at"],
-                           "kind": frame["opener"] if frame["noun"] else None}
-    if subject := frame.get("subject"):
-        # لولا زيدٌ: the noun after it is the مبتدأ, its khabar left out; the answer still answers
-        found[c["verb"]].update(role=subject, book=None)
-        found[c["verb"]]["condition"] = {"part": "subject", "opener": c["opener"], "family": frame["family"]}
+                           "kind": frame["opener"] if frame["noun"] else None, "masdar": c["masdar"]}
+    # لولا زيدٌ: the noun after it is the مبتدأ, its khabar left out; the answer still answers. A pronoun written
+    # on لولا is named so already (لَوْلَاكَ), and أنّ keeps its own name, its masdar the مبتدأ (لَوْلَا أَنَّكَ صَدِيقِي)
+    if (subject := frame.get("subject")) and c["verb"] != c["opener"]:
+        if not c["masdar"]:
+            found[c["verb"]].update(role=subject, book=None)
+        found[c["verb"]]["condition"] = {"part": "subject", "opener": c["opener"], "family": frame["family"], "masdar": c["masdar"]}
     for part in ("answer",) if subject else ("verb", "answer"):
         if c[part] is None:
             continue

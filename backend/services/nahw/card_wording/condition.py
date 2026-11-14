@@ -17,8 +17,10 @@ def condition(cards: list[dict], roles: list[dict]) -> None:
             continue
         if part.get("kind") and card.get("role") != part["kind"]:
             reason.front.insert(0, part["kind"])  # مَنْ: اسم شرط جازم، مبني في محل رفع لأنه مبتدأ
-        if part.get("part") == "subject" and (left := said["by_family"][part["family"]].get("subject")):
-            reason.extras.append(left)  # لولا زيدٌ: وخبره محذوف وجوبًا
+        # لولا زيدٌ: وخبره محذوف وجوبًا; لولا أنّك: the masdar from أنّ and its pair is the مبتدأ
+        if part.get("part") == "subject" and (left := said["by_family"][part["family"]].get(
+                "subject_masdar" if part.get("masdar") else "subject")):
+            reason.extras.append(left)
             continue
         if part.get("part") not in ("verb", "answer") or card.get("type") != "fi'l":
             continue

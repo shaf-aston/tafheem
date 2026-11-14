@@ -8,7 +8,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 """
 from __future__ import annotations
 
-from backend.services.text.arabic_text import strip_diacritics
+from backend.services.text.arabic_text import bare_letters, strip_diacritics
 from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, paused, plural_alef, typed_passive
 from backend.services.nahw.book import attention_off, book_words, case_of, family_cards, is_diptote, is_one, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
@@ -37,8 +37,11 @@ def kind_of(tag: dict, annexed: bool) -> str:
     if not has_tanween(word):
         if bare.endswith(("ون", "ين")) and _attached_plural(bare):
             return "attached_plural"  # عِشْرِينَ، أُولُو: they take its letters without being one
-        if tag.get("number") == "p" and tag.get("gender") == "m" and bare.endswith(("ون", "ين")):
+        if tag.get("number") == "p" and tag.get("gender") == "m" and (bare.endswith(("ون", "ين")) or _dropped_nun(tag, annexed)):
             return "sound_plural"
+        if is_one(tag.get("lemma") or "", "kila"):
+            # كِلَاهُمَا، كِلَيْهِمَا: ملحق بالمثنى joined to a pronoun; كِلَا الرَّجُلَيْنِ like the مقصور (closed_words kila)
+            return "attached_dual" if _has_pronoun(tag) else "on_alef"
         if is_one(strip_diacritics(tag["base"]), "compound_number", "dual"):
             return "attached_dual"  # اثْنَا، اثْنَيْ عَشَرَ: ملحق بالمثنى, its letters show the case (Tasheel 1.4.3 p10)
         if tag.get("number") == "d":
@@ -46,12 +49,12 @@ def kind_of(tag: dict, annexed: bool) -> str:
         # بِمَسَاجِدَ: a diptote, unless a مضاف إليه follows (CAMeL's construct state is no guide: a صفة after it reads as a مضاف إليه)
         if tag.get("case") in ("jarr", "nasb") and is_diptote(word, tag.get("pos", ""), tag.get("lemma") or "", attached=_has_pronoun(tag), annexed=annexed):
             return "diptote"
-        if tag.get("enclitic") != "1s_poss" and six_noun_case(tag["base"], tag.get("lemma") or ""):
+        if not _my(tag) and six_noun_case(tag["base"], tag.get("lemma") or ""):
             return "six_nouns"  # أَخًا has a tanween: not a مضاف, so the vowels show
     if drops_ya(word, tag.get("lemma") or ""):
         return "manqus_dropped"  # بِصَوْتٍ عَالٍ، قَاضٍ: the tanween took the ya's place, so the vowel is on the ya that went
-    if tag.get("enclitic") == "1s_poss":
-        return "before_ya"  # كِتَابِي: the kasra belongs to the ya, the case cannot show
+    if _my(tag):
+        return "before_ya"  # كِتَابِي، عِنْدِي: the kasra belongs to the ya, the case cannot show
     # ى is always an alef maqsura; a plain alef is one only on a weak root (العَصَا)
     weak = tag.get("weak_last")
     if (bare.endswith("ى") or (bare.endswith("ا") and weak)) and not _has_pronoun(tag) and not (len(marked) > 1 and marked[-2][1] & TANWEEN):
@@ -61,6 +64,20 @@ def kind_of(tag: dict, annexed: bool) -> str:
             SHADDA in marked[-1][1] or marked[-2][1] & {"َ", "ُ", SHADDA, SUKUN}):
         return "manqus"  # القَاضِي: a damma or kasra is too heavy for the ya, the fatha shows
     return "vowel"
+
+
+def _dropped_nun(tag: dict, annexed: bool) -> bool:
+    """مُعَلِّمُو الْمَدْرَسَةِ، مُعَلِّمِيهِمْ: a sound masculine plural drops its ن as a مضاف, to a noun or a pronoun
+    (Ibn Aqil V1 p62), and its و or ي still shows the case: the singular with only that letter after it. A broken
+    plural ending in a ي (مَبَانِيهَا) is no singular and a letter."""
+    base = strip_diacritics(tag.get("base") or "")
+    return (annexed or _has_pronoun(tag)) and base[-1:] in ("و", "ي") \
+        and bare_letters(base[:-1]) == bare_letters(strip_diacritics(tag.get("lemma") or ""))
+
+
+def _my(tag: dict) -> bool:
+    """كِتَابِي، عِنْدِي: ياء المتكلم on a noun. CAMeL names it 1s_poss on most, 1s_pron on a ظرف (عِنْدِي، لَدَيَّ)."""
+    return tag.get("enclitic") in ("1s_poss", "1s_pron")
 
 
 def _attached_plural(bare: str) -> bool:

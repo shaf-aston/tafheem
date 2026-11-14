@@ -376,15 +376,15 @@ def test_a_word_joined_in_front_is_split_with_its_own_tag(monkeypatch):
     assert [(t["form"], t["pos"]) for t in pieces] == [("ف+", "PRT"), ("ليست", "VRB")]
 
 
-@pytest.mark.parametrize("atbtok, lex, split", [
-    ("أَيّكُم", "أَيّ", ["أي", "+كم"]),  # filed with its pronoun unsplit: cut where the word's own letters end
-    ("أَيّكُم", "كُم", ["أيكم"]),  # the word's letters are not where it starts: left whole
+@pytest.mark.parametrize("atbtok, enc, split", [
+    ("أَيّكُم", "2mp_poss", ["أي", "+كم"]),  # filed with its pronoun unsplit: cut where the pronoun's own letters start
+    ("أَيّكُم", "3ms_poss", ["أيكم"]),  # the word does not end with that pronoun's letters (ه): left whole
 ])
-def test_a_word_filed_with_its_pronoun_unsplit_is_cut_after_its_own_letters(monkeypatch, atbtok, lex, split):
+def test_a_word_filed_with_its_pronoun_unsplit_is_cut_before_the_pronouns_letters(monkeypatch, atbtok, enc, split):
     from backend.services.nahw.syntax import catib_onnx
     monkeypatch.setattr(catib_onnx, "_clitic_token_feats", lambda tok, order, a: dict.fromkeys(
         ("pos_camel", "asp", "vox", "stt", "cas", "token_type"), "na"))
-    reading = {"atbtok": atbtok, "catib6": "", "ud": "", "pos": "pron_interrog", "lex": lex, "enc0": "2mp_poss"}
+    reading = {"atbtok": atbtok, "catib6": "", "ud": "", "pos": "pron_interrog", "lex": "أَيّ", "enc0": enc}
     assert [t["form"] for t in catib_onnx._split_word("أَيُّكُمْ", reading)] == split
 
 

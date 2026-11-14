@@ -431,9 +431,10 @@ def test_the_shahada_draws_its_unsaid_khabar_and_names_its_badal(sentence):
 
 
 def test_another_noun_after_la_keeps_its_plain_badal():
-    """The تقدير is chosen for إله alone: لا رجلَ إلا زيدٌ draws no khabar of it."""
+    """The تقدير is chosen for إله alone: لا رجلَ إلا زيدٌ draws no khabar of it, and زيدٌ is the
+    excepted one, a part of those it is taken out of (بدل بعض من كل, as after any إلا)."""
     cards, leaves = analysed("لَا رَجُلَ إِلَّا زَيْدٌ")
-    assert "مَعْبُودٌ بِحَقٍّ" not in leaves and cards[-1]["reason"].endswith("بدل كل من كل")
+    assert "مَعْبُودٌ بِحَقٍّ" not in leaves and cards[-1]["reason"].endswith("بدل بعض من كل")
 
 
 @pytest.mark.parametrize("sentence, kind, job", [
@@ -814,3 +815,14 @@ def test_a_waw_before_its_verb_opens_no_maful_maahu(sentence):
     """واو المعية follows a clause: with the verb after the و, the word after it is no مفعول معه."""
     from tests.nahw_helpers import cards
     assert cards(sentence)[0]["role"] == "مبتدأ"
+
+
+# a pronoun the dictionary left unsplit is cut off by its letters; نون الوقاية stands before a verb's ي, never a noun's
+@pytest.mark.parametrize("atbtok, enc, cut", [
+    ("دِينِي", "1s_poss", "دِينِ_+ي"),
+    ("يَزُورُنِي", "1s_dobj", "يَزُورُ_+نِي"),
+    ("يَفُوتُنَا", "1p_dobj", "يَفُوتُ_+نَا"),
+])
+def test_an_unsplit_pronoun_is_cut_by_its_letters(atbtok, enc, cut):
+    from backend.services.nahw.syntax.catib_onnx import _pronoun_cut_off
+    assert _pronoun_cut_off({"atbtok": atbtok, "enc0": enc})["atbtok"] == cut
