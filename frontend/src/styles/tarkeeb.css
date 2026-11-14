@@ -68,11 +68,13 @@
   /* Shrunk as a whole to fit the box (TarkeebDiagram's fitChart), never past
      the floor; --tk-fit is unset while the chart is measured at full size. */
   zoom: max(var(--arabic-chart-fit-min), var(--tk-fit, 1));
-  row-gap: var(--tk-gap);
+  row-gap: var(--tk-rowgap);
   font-family: var(--font-arabic);
   /* One faint line for everything that only leads the eye: a word's thread down to its name,
      and the fork from a word to the names inside it. Opaque, so two lines meeting do not darken. */
   --tk-gap: 0.85rem;
+  /* the gap between rows of names; apart from --tk-gap, which also spaces the words sideways */
+  --tk-rowgap: var(--tk-gap);
   --tk-line: color-mix(in srgb, var(--border-hi) 70%, var(--surface));
 }
 
@@ -118,7 +120,7 @@
 .tk-thread {
   justify-self: center;
   width: 1.5px;
-  margin-block: calc(var(--tk-gap) * -1);
+  margin-block: calc(var(--tk-rowgap) * -1);
   background: var(--tk-line);
 }
 
@@ -158,8 +160,8 @@
   justify-self: center;
   align-self: stretch;
   width: 1.5px;
-  margin-top: calc((var(--tk-gap) + 0.55rem) * -1);
-  min-height: calc(var(--tk-gap) + 0.55rem);
+  margin-top: calc((var(--tk-rowgap) + 0.55rem) * -1);
+  min-height: calc(var(--tk-rowgap) + 0.55rem);
   background: var(--tk-line);
 }
 .tk-forked > .tk-branch::before,
@@ -293,3 +295,27 @@
 /* the chart runs right to left: the first word's English hangs left from its right edge, the last's right from its left */
 .tk-word[data-edge='start'][data-gloss]::after { left: auto; right: 0; transform: none; }
 .tk-word[data-edge='end'][data-gloss]::after { left: 0; transform: none; }
+
+/* A phone: the chart is already at its smallest, so its height is what is left to give. Each
+   row of names stacks a name, a brace, its stem and the unit's name with air between; here
+   the air is tightened (rows, brace, line-height), the words and names keep their size and
+   the chart keeps its width. The room above the words is only for a hover's English, which
+   a touch screen never shows. */
+@media (max-width: 640px) {
+  .tk-grid { --tk-rowgap: 0.2rem; }
+  .tk-group { row-gap: 0.1rem; }
+  .tk-role, .tk-name { line-height: 1.2; }
+  .tk-name { padding-top: 0.15rem; }
+  .tk-brace { height: 0.55rem; }
+  .tk-brace::after { height: 0.4rem; }
+  .tk-text { line-height: 1.35; }
+  .tk-scroller { padding-bottom: 0.6rem; }
+  .tk-roles:has(.tk-says) { padding-bottom: calc(var(--arabic-small-rem) * 1.2rem); }
+  .tk-says { line-height: 1.2; }
+  /* the pronoun under a name stays 12px on screen however far the chart shrinks */
+  .tk-says { font-size: max(calc(var(--arabic-small-rem) * 1rem), calc(12px / max(var(--arabic-chart-fit-min), var(--tk-fit, 1)))); }
+}
+@media (max-width: 640px) and (hover: none) {
+  .tk-scroller { padding-top: 0.5rem; }
+  .tk-frame:has(.tk-dots) .tk-scroller { margin-top: -0.75rem; }
+}
