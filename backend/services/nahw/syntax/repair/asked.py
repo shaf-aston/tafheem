@@ -6,7 +6,7 @@ jar-majroor, a ظرف, a noun) is told of it (Tasheel, أسماء الاستفه
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import book_map, is_one, takes_object
+from backend.services.nahw.book import book_map, frames, is_one, takes_object
 from backend.services.nahw.syntax.facts import Sentence, holds_doer, is_passive, is_verb, subject_link, typed_case_of
 
 
@@ -72,6 +72,21 @@ def asked_before_verb(s: Sentence) -> None:
         elif is_passive(verb) or not takes_object(verb["lemma"]) or is_one(verb["lemma"], "intransitive_verbs"):
             if s.head(token) is verb:
                 _hang_under(s, verb, token, "MOD")
+
+
+def counted_by_min(s: Sentence) -> None:
+    """كَمْ مِنْ كِتَابٍ قَرَأْتُهُ: مِن brings what كم counts (roles.json kam_tamyeez), so the verb after it is said
+    of كم as it is after كَمْ كِتَابًا قَرَأْتَهُ, not of the counted noun: the parser hangs it on that noun as its
+    صفة, and كم is left with no خبر and no verb. It goes back on كم for asked_before_verb to place."""
+    frame = frames()["kam_tamyeez"]
+    for kam in s.tokens:
+        if strip_diacritics(kam["form"]) not in frame["heads"] or any(is_verb(k) for k in s.kids(kam)):
+            continue
+        jar = next((k for k in s.kids(kam) if k["id"] == kam["id"] + 1 and strip_diacritics(k["form"]) in frame["particles"]), None)
+        counted = next((k for k in s.kids(jar) if k["id"] > jar["id"]), None) if jar else None
+        verb = next((k for k in s.kids(counted) if is_verb(k) and k["rel"] == "MOD" and k["id"] > counted["id"]), None) if counted else None
+        if verb:
+            s.relink(verb, kam["id"], "MOD")
 
 
 def asked_of_kana(s: Sentence) -> None:

@@ -198,20 +198,40 @@ def _clitic_token_feats(token: str, order: str, stem: dict) -> dict:
     }
 
 
+# The letters of each attached pronoun by CAMeL's person (enc0 1p_dobj → نا): the one-person ي is
+# ني on a verb (نون الوقاية) and ي on a noun or particle.
+_PRONOUN_LETTERS = {"1s": ("ني", "ي"), "1p": ("نا",), "2ms": ("ك",), "2fs": ("ك",), "2d": ("كما",), "2mp": ("كم",),
+                    "2fp": ("كن",), "3ms": ("ه",), "3fs": ("ها",), "3d": ("هما",), "3mp": ("هم",), "3fp": ("هن",)}
+
+
 def _pronoun_cut_off(a: dict) -> dict:
-    """أَيّكُم: the dictionary files a few words with their attached pronoun (enc0) left unsplit; the
-    pronoun is cut off after the lemma's letters, as every other word's is (كِتاب_+كُم), so it stands
-    in the sentence as the word's مضاف إليه."""
+    """أَيّكُم، يَفُوتُنا: the dictionary files a few words with their attached pronoun (enc0) left unsplit;
+    the pronoun is cut off the end by its own letters, as every other word's is (كِتاب_+كُم، يَزُور_+نِي),
+    so it stands in the sentence as the word's مضاف إليه or object."""
     from camel_tools.utils.dediac import dediac_ar
 
-    atbtok, lex = a.get("atbtok") or "", dediac_ar(a.get("lex") or "")
-    if "_" in atbtok or not str(a.get("enc0", "")).endswith(("_poss", "_dobj", "_pron")):
+    atbtok, enc = a.get("atbtok") or "", str(a.get("enc0", ""))
+    if "_" in atbtok or not enc.endswith(("_poss", "_dobj", "_pron")):
         return a
+    letters = dediac_ar(atbtok)
     starts = [i for i, ch in enumerate(atbtok) if dediac_ar(ch)]  # where each letter, not a mark, stands
-    if len(starts) <= len(lex) or dediac_ar(atbtok[:starts[len(lex)]]) != lex:
-        return a
-    cut = starts[len(lex)]
-    return {**a, "atbtok": f"{atbtok[:cut]}_+{atbtok[cut:]}"}
+    # نون الوقاية comes before the ي of a verb or particle, never of a noun's own (دِينِي: دين_+ي)
+    for pronoun in ("ي",) if enc == "1s_poss" else _PRONOUN_LETTERS.get(enc.split("_")[0], ()):
+        if letters.endswith(pronoun) and len(letters) > len(pronoun):
+            cut = starts[len(letters) - len(pronoun)]
+            return {**a, "atbtok": f"{atbtok[:cut]}_+{atbtok[cut:]}"}
+    return a
+
+
+def _as_written(pronoun: str, word: str) -> str:
+    """عِنْدِي، مَعِي: the tokenisation files the one-person pronoun as +ني where the word writes only ي;
+    the pronoun is the letters the word ends with, so its card and its column say «ي»."""
+    from camel_tools.utils.dediac import dediac_ar
+
+    letters, written = pronoun.strip("+"), dediac_ar(word)
+    while letters and not written.endswith(letters):
+        letters = letters[1:]
+    return f"+{letters}" if letters else pronoun
 
 
 def _split_word(word: str, a: dict) -> list[dict]:
@@ -240,10 +260,11 @@ def _split_word(word: str, a: dict) -> list[dict]:
             "weak_last": weak_last(a), "base": base_of(word, a.get("atbtok")), **extra, "token_type": "baseword",
         }
 
-    if not a.get("catib6") and (cut := _pronoun_cut_off(a)) is not a:
-        # أَيّكُم: an entry with no tags of its own, its pronoun still a word: the word's coarse tag, then a noun's
-        coarse = _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
-        a = {**cut, "catib6": f"{coarse}+NOM", "ud": f"{coarse}+PRON"}
+    if "+" not in (a.get("catib6") or "") and (cut := _pronoun_cut_off(a)) is not a:
+        # أَيّكُم: an entry with no tags of its own, its pronoun still a word: the word's coarse tag, then a noun's;
+        # يَفُوتُنا: tagged as one verb, the verb keeps its tags and the pronoun is a noun
+        coarse = a.get("catib6") or _POS_TO_CATIB6.get(a.get("pos", ""), "NOM")
+        a = {**cut, "catib6": f"{coarse}+NOM", "ud": f"{a.get('ud', coarse) if a.get('catib6') else coarse}+PRON"}
     if not a.get("catib6") or "atbtok" not in a:
         # The analyzer found nothing for this word; its pick's own tag is all
         # there is, so it is reported as a single unsplit token.
@@ -296,7 +317,7 @@ def _split_word(word: str, a: dict) -> list[dict]:
         else:
             feats = _clitic_token_feats(tok, "prc" if tok.endswith("+") else "enc", a)
             out.append({
-                "form": form, "lemma": form, "base": form.strip("+"),
+                "form": form, "lemma": form, "base": form.strip("+"), "written": _as_written(form, word) if tok.startswith("+") else form,
                 "pos": catib6, "pos_camel": feats["pos_camel"], "ud": ud,
                 "asp": feats["asp"], "vox": feats["vox"],
                 "stt": feats["stt"], "cas": feats["cas"],
@@ -396,7 +417,15 @@ def parse(words: list[str], picks: list[dict]) -> list[dict]:
 
     heads, rels = _parse_forms(subtokens)
 
+    # the parser reads the pieces as it was trained on them (عند_+ني); the card and the column show them as written (+ي)
     return [
-        {"id": i + 1, **tok, "head": heads[i], "rel": rels[i]}
+        {"id": i + 1, **_shown(tok), "head": heads[i], "rel": rels[i]}
         for i, tok in enumerate(subtokens)
     ]
+
+
+def _shown(tok: dict) -> dict:
+    """A piece as the sentence writes it, the tokenisation's spelling kept only for the parser."""
+    written = tok.get("written")
+    rest = {key: value for key, value in tok.items() if key != "written"}
+    return {**rest, "form": written, "lemma": written, "base": written.strip("+")} if written and written != tok["form"] else rest

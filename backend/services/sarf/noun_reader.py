@@ -70,10 +70,14 @@ def _pronoun(marked: list[tuple[str, set]]) -> tuple[int, str]:
             continue
         if not marked[-size - 1][1] & VOWEL.keys():
             continue  # the word before the pronoun ends on its case vowel
-        # كَ is "you" said to a man, كِ to a woman; a bare ك is taken as the man's
-        name = _ENCLITIC.get(said) or _ENCLITIC["كِ" if "ِ" in marked[-1][1] else "كَ"]
-        return size, name
+        return size, pronoun_name(said, marked[-1][1])
     return 0, "0"
+
+
+def pronoun_name(said: str, last_marks: set) -> str:
+    """CAMeL's name for a joined pronoun by its letters, the vowels on its last letter telling
+    كَ "you" said to a man from كِ to a woman; a bare ك is taken as the man's."""
+    return _ENCLITIC.get(said) or _ENCLITIC["كِ" if "ِ" in last_marks else "كَ"]
 
 
 def _sound_ending(stem: list[tuple[str, set]]) -> tuple[int, str, str | None]:
@@ -128,3 +132,16 @@ def reading_of(word: str) -> dict | None:
                 "asp": "na", "vox": "na", "per": "na", "mod": "na",
                 "prc0": "Al_det" if definite else "0", "prc1": "0", "prc2": "0", "prc3": "0", "source": "sarf"}
     return None
+
+
+def construct_of(word: str) -> dict | None:
+    """رَافِعِي رَايَاتِهِمْ، مُعَلِّمُو الْمَدْرَسَةِ: a sound masculine plural or a dual is مضاف with its ن dropped
+    (Ibn Aqil V1 p62: نون المثنى والمجموع تحذف للإضافة), so the word is that plural or dual with the ن put back,
+    in إضافة; None when, the ن back, no sound ending or shape fits it."""
+    marked = letters(word)
+    if len(marked) < 4 or marked[-1][0] not in "وايى":
+        return None
+    whole = reading_of(word + ("نِ" if "َ" in marked[-2][1] else "نَ"))
+    if not whole or whole["num"] == "s":
+        return None
+    return {**whole, "diac": word, "atbtok": word, "stt": "c"}

@@ -16,6 +16,7 @@ from backend.services.nahw.syntax.facts import (
     shown_cases,
     typed_or_parsed_case,
 )
+from backend.services.nahw.syntax.condition import subject_id
 from backend.services.nahw.syntax.followers import FOLLOWERS
 from backend.services.nahw.syntax.naming import NAMED
 from backend.services.nahw.syntax.picture.hang import definite, hangs_under
@@ -173,16 +174,26 @@ def add_unwritten_verbs(c: Picture) -> None:
     for i, found in enumerate(named):
         opens = found.get("condition", {})
         frame = condition_of(bases[i]["form"]) if opens.get("part") == "opener" else None
-        if not frame or not frame.get("khabar") or opens.get("answer") is None or opens.get("verb") is None:
+        # كاد القطار يفوتنا لولا أننا أسرعنا: the khabar is left out with the answer unsaid too
+        if not frame or not frame.get("khabar") or opens.get("verb") is None:
             continue
-        noun = by_id[bases[opens["verb"]]["id"]]
-        if any(role_of.get(t["id"]) in khabars and t["head"] == noun["id"] for t in drawn):
+        noun = by_id[subject_id(i, found, bases)]
+        # a masdar's own خبر أنّ is inside it (لَوْلَا أَنَّنَا أَسْرَعْنَا), no khabar of the مبتدأ it stands as
+        if not opens.get("masdar") and any(role_of.get(t["id"]) in khabars and t["head"] == noun["id"] for t in drawn):
             continue
         # after the noun and the words hung under it (لولا رحمةُ اللهِ)
         start = drawn.index(noun)
         place = next((k for k in range(start, len(drawn)) if not hangs_under(drawn[k], noun, by_id)), len(drawn))
-        said_khabar = understand(frame["khabar"], NAMED.khabar, place, head=noun["id"], rel="PRD", pos="NOM", pos_camel="")
+        # a masdar's khabar stands beside it, not among the words it is made of
+        said_khabar = understand(frame["khabar"], NAMED.khabar, place, head=noun["head"] if opens.get("masdar") else noun["id"],
+                                 rel="PRD", pos="NOM", pos_camel="")
         detail_of[said_khabar["id"]] = frame["khabar_detail"]
+        # كاد القطار يفوتنا لولا أننا أسرعنا: no answer after it, a sentence before it tells what it is
+        opener = bases[i]
+        if opens.get("answer") is None and (unsaid := frame.get("answer_unsaid")) and drawn.index(opener) > 0:
+            end = next((k for k in range(drawn.index(said_khabar) + 1, len(drawn)) if not hangs_under(drawn[k], opener, by_id)), len(drawn))
+            answer = understand(unsaid["word"], frame["answer_named"], end, head=opener["id"], rel="---", pos="NOM", pos_camel="")
+            detail_of[answer["id"]] = unsaid["detail"]
     # بابُ الفاعلِ، كوبٌ كبيرٌ من القهوة: a noun phrase alone, its head in raf' or in no case shown,
     # with no verb, no khabar, no فاعل (أذاهبٌ زيدٌ: the doer stands for the khabar) and no question
     # word (أيوسفُ الفائزُ أم طارقٌ asks: أم is on the istifham list) in it, is a title or an

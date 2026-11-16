@@ -159,7 +159,7 @@ def test_the_picture_names_the_governor_of_kana(sentence: str, name: str):
     ("هِيَ تَكْتُبُ", "ضمير مستتر تقديره هي"),
     ("أَنْتِ تَكْتُبِينَ", "ضمير متصل (أنتِ)"),  # the ياء is the doer, not a hidden أنتَ أو هي
     ("تَكْتُبِينَ", "ضمير متصل (أنتِ)"),
-    ("تَكْتُبُ", "ضمير مستتر تقديره أنتَ أو هي"),  # nothing settles it
+    ("تَكْتُبُ", "ضمير مستتر تقديره أنتَ"),  # no noun before it for a هي to go back to
 ])
 def test_a_detached_pronoun_is_the_mubtada_and_settles_the_verbs_doer(sentence: str, doer: str):
     shown = _picture_roles(_syntax_read(sentence)["tree"]["tree"])

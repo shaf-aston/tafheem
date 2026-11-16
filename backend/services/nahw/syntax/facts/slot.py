@@ -44,10 +44,12 @@ def _typed_before_its_root(token: dict, s: Sentence) -> bool:
 def zarf_of_khabar(token: dict, s: Sentence) -> bool:
     """الأستاذُ عندَ البابِ: in a verbless sentence a place or time word with its mudaf ilayh
     is the khabar's maf'ul fihi (the khabar itself is understood, Tasheel 1.4.4 p13); so is one the reader
-    typed in nasb, a mubtada never being منصوب (اليومَ خمرٌ، غدًا سفرٌ)."""
+    typed in nasb, a mubtada never being منصوب (اليومَ خمرٌ، غدًا سفرٌ). So is one hung on إنّ or لا, which govern only
+    their pair, whatever verbs the rest of the sentence holds (إِلَّا أَنَّهُ لَا نَبِيَّ بَعْدِي)."""
     # المرءُ مع مَن أحبّ: a verb inside the مضاف إليه's صلة still leaves the sentence verbless at its root
     rests = token["rel"] == "---" and any(k["rel"] in SUBJECTS for k in s.kids(token))
-    return ((s.verbless or rests) and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
+    on_particle = token["rel"] == "MOD" and (head := s.head(token)) is not None and s.family(head) == "inna"
+    return ((s.verbless or rests or on_particle) and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
             and token["rel"] in ("---", "MOD", "PRD")
             and typed_or_parsed_case(token) in (None, "a")
             and (any(k["rel"] == "IDF" for k in s.kids(token)) or _typed_before_its_root(token, s)))
@@ -273,6 +275,8 @@ def verb_place(token: dict, s: Sentence) -> str:
         if (not before and typed in (None, "a") and token.get("stt") in ("i", "c")
                 and is_masdar(token, weak_or_doubled=False) and same_root(token, head)):
             return "absolute"  # يُطَهِّرَكُمْ تَطْهِيرًا: the verb's own masdar
+        # رَأَيْتُ النِّسَاءَ حَامِلَاتٍ: a ـات plural's kasra is its nasb (Alfiyya: يكسر في الجر وفي النصب معا)
+        nasb_shaped = typed in (None, "a") or shows_nasb_by_kasra(token)
         after_first = rel == "OBJ" and typed in (None, "a") and any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)
         # لا يُؤْتُونَ النَّاسَ نَقِيرًا: a verb of two objects keeps its second OBJ, so no state or tamyeez
         if after_first and (s.family(head) == "zanna" or is_one(head["lemma"], "two_objects_give")):
@@ -281,7 +285,7 @@ def verb_place(token: dict, s: Sentence) -> str:
         # the second منصوب, however the parser hung it (OBJ, MOD or TMZ). The deputy may be in the verb
         # (الطَّالِبُ أُعْطِيَ جَائِزَةً، أُعْطِيتُ): then a typed fatha is the second, never the deputy's raf'
         if (is_passive(head) and is_one(head["lemma"], "two_objects_give") and not before
-                and rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a")
+                and rel in ("OBJ", "MOD", "TMZ") and nasb_shaped
                 and (typed == "a" or any(t["rel"] in (*SUBJECTS, "OBJ") and t["id"] < token["id"] for t in siblings))):
             return "second_object"
         if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
@@ -292,7 +296,7 @@ def verb_place(token: dict, s: Sentence) -> str:
         # زَيْدٌ أَكْرَمَ ضَيْفًا: a verb said of the مبتدأ the sentence rests on holds its doer, the
         # pronoun back to it its khabar must carry (رابط جملة الخبر, Ibn Aqil on the Alfiyya)
         told = s.head(head)
-        if rel in ("OBJ", "MOD", "TMZ") and typed in (None, "a") and not before \
+        if rel in ("OBJ", "MOD", "TMZ") and nasb_shaped and not before \
                 and token.get("stt") == "i" and (told and told["rel"] == "---" or any(
                     t["rel"] in NOUN_LINKS or _doer_by_extra_ba(t, head)
                     or (t["id"] < token["id"] and verb_place(t, s) == "subject") for t in siblings)):
@@ -511,7 +515,8 @@ def _nominal_place(token: dict, s: Sentence) -> str:
         # a name is definite by itself (رأيت أخاك زيدًا): its tanween makes it no hal; an unknown
         # word the analyser filed as a name is still one if it has a hal's shape (مسرعًا)
         if unlike(token, head) and (is_state_word(token) or not is_name(token)):
-            return "state" if typed_or_parsed_case(token) == "a" else "predicate"
+            # رَأَيْتُ النِّسَاءَ حَامِلَاتٍ الْجِرَارَ: a ـات plural's kasra is its nasb, and a khabar is never in kasra
+            return "state" if typed_or_parsed_case(token) == "a" or shows_nasb_by_kasra(token) else "predicate"
         if told_of_subject(token, head):
             return "predicate"
         if indefinite_nasb(token):

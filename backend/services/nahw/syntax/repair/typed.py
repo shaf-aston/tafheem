@@ -8,7 +8,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
-from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_known, is_name, is_preposition, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
+from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_known, is_name, is_preposition, listed, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
 
 
 def typed_words(bases: list[dict], tokens: list[dict]) -> None:
@@ -59,7 +59,7 @@ def typed_words(bases: list[dict], tokens: list[dict]) -> None:
         noun = read_noun and (any(t["head"] == token["id"] and t.get("token_type") == "enc0" and t["rel"] != "OBJ" for t in tokens)
                               or i > 0 and is_one(bases[i - 1]["base"], "nida")
                               or token["rel"] == "IDF" or token["rel"] == "MOD" and head is not None and typed_or_parsed_case(head) == "i"
-                              or verb_reader.noun_marked(word, bases[i - 1]["base"] if i else "", token["lemma"]))
+                              or verb_reader.noun_marked(word, bases[i - 1]["base"] if i else "", token["lemma"], after))
         if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not noun:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
@@ -172,6 +172,15 @@ def jarr_after_mudaf(s: Sentence) -> None:
                 and (typed_case_of(before) is not None or is_built(before)) and not typed_tanween(before)
                 and not (typed_case_of(before) == "a" and puts_in_jarr(before, s))):
             _add_to(tokens, before, word)
+
+
+def number_after_one(s: Sentence) -> None:
+    """بِإِحْدَى ثَلَاثٍ: three to ten count a plural, added to it or after it (ثلاثةُ رجالٍ، رجالٌ ثلاثةٌ), so one typed in
+    jarr straight after a singular noun not known describes nothing of it: it is what that noun is added to."""
+    for before, word in pairwise(s.tokens):
+        if (word["head"] == before["id"] and word["rel"] == "MOD" and typed_case_of(word) == "i" and listed(word, "adad_mudaf")
+                and noun_tagged(before) and before.get("num") == "s" and not is_known(before, s)):
+            _add_to(s.tokens, before, word)
 
 
 def nunless_mudaf(tokens: list[dict]) -> None:

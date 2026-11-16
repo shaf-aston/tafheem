@@ -118,6 +118,15 @@ def test_the_passive_kasra_is_on_the_letter_joined_to_the_last():
         assert not harakat.past_passive_shape(word)
 
 
+def test_after_the_passive_kasra_comes_only_the_last_letter():
+    """The present يُفْعِلُ of a doubled or sound root (تُحِبُّكَ، يُحِبَّكَ، يُكْرِمُكَ) opens on a damma
+    with a kasra inside too; a shadda or a damma after that kasra says it is no فُعِلَ."""
+    for word in ("ضُرِبْنَ", "عُلِّمَ", "قُرِئَتْ"):
+        assert harakat.past_passive_shape(word)
+    for word in ("تُحِبُّكَ", "يُحِبَّكَ", "يُكْرِمُكَ"):
+        assert not harakat.past_passive_shape(word)
+
+
 def test_a_present_passive_is_read_before_its_plural_or_dual_ending():
     for word in ("يُعَلَّمُونَ", "يُكْتَبْنَ", "يُكْتَبَانِ", "يُكْتَبُ"):
         assert harakat.typed_passive(word, present=True)

@@ -54,6 +54,7 @@ had wholly right is wrong now, or when the reader broke on a sentence; CI runs i
 On an x86 processor without VNNI a few close sentences parse differently, so there
 each set may fall data/nahw_rules/score_check.json's few words short, and the
 baseline cannot be saved there.
+Each such sentence is printed with the parser's own links, so a fall on one machine only shows its near tie.
 --set checked is scored the same way here. After a change that rightly moves a
 score, --save-baseline writes the new counts and the wholly right sentences.
 
@@ -318,6 +319,22 @@ def score_exact(name: str, api: str | None, show: int) -> Counter:
     return Scores(stats["all"], whole=frozenset(whole))
 
 
+def parser_links(sentence: str) -> str:
+    """The parser's own links for a sentence, before any repair: where a sentence falls on one
+    machine only, the log shows which near tie that machine's numbers broke the other way."""
+    from backend.config import get_settings
+    from backend.services.nahw import iraab
+    settings = get_settings()
+    was, settings.show_parse = settings.show_parse, True
+    iraab._kept.cache_clear()
+    try:
+        parsed = (routed(sentence, None).get("parse") or {}).get("parsed", [])
+    finally:
+        settings.show_parse = was
+        iraab._kept.cache_clear()
+    return "  ".join(f"{t['id']}:{t['form']}/{t.get('pos_camel') or t.get('pos')}>{t['head']}:{t['rel']}" for t in parsed)
+
+
 def check(api: str | None, save: bool) -> int:
     """Each exact set against the baseline: 1 when any set names fewer words right, any sentence
     the baseline had wholly right is no longer so, or the reader broke on a sentence; else 0.
@@ -350,6 +367,10 @@ def check(api: str | None, save: bool) -> int:
         print("Fell below the baseline: " + ", ".join(f"{n} {b} -> {g}" for n, (b, g) in fell.items()))
     if lost:
         print("Right in the baseline, wrong now: " + ", ".join(f"{n} {' '.join(ids)}" for n, ids in lost.items()))
+        if not api:
+            lost_ids = {i for ids in lost.values() for i in ids}
+            for ex in (ex for name in lost for ex in SETS[name]() if ex["id"] in lost_ids):
+                print(f"{ex['id']:>6}  parsed  {parser_links(ex['sentence'])}")
     if fell or crashed or (lost and not slack):
         return 1
     if any(got[name] > base.get(name, 0) for name in EXACT) or any(

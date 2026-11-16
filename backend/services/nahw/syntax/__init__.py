@@ -112,6 +112,10 @@ def read(sentence: str, picks: list[dict]) -> dict:
         for word, finer in zip(found, drawn.pop("finer", [])):
             if finer and word["role"]:
                 word["name"] = finer
+        piece_names = drawn.pop("piece_names", {})
+        for piece in (piece for word in found for piece in word.get("attached", [])):
+            if piece["id"] in piece_names:
+                piece["name"] = piece_names[piece["id"]]
         # and the doer drawn inside a verb (ضمير مستتر تقديره هو), so its card says the same
         for word, doer in zip(found, drawn.pop("doer", [])):
             if doer and word["role"]:
