@@ -1,0 +1,4 @@
+{
+ "why": "score_iraab --check on an x86 processor without VNNI. The parser's encoder rounds its activations to 8 bits as it runs, and the float steps before that rounding differ by a last digit between processor kinds, so a few close sentences parse differently there (CI's AMD EPYC 7763: 2 words of ~11,000). The baseline is saved where the 8-bit products are exact (VNNI, ARM); elsewhere each set may fall this many words below it, and sentences no longer wholly right are printed but do not fail.",
+ "other_processor_slack_words": 2
+}
