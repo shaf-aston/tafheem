@@ -1,0 +1,145 @@
+{
+ "out": "2026-11-16-close-anywhere-v4.mp4",
+ "fonts": {
+  "black": "../../fonts/ArchivoBlack-Regular.ttf",
+  "regular_bold": "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
+ },
+ "segments": [
+  {
+   "src": "../../src/IMG_4712.MOV",
+   "in": 0.8,
+   "out": 5.6,
+   "zoom": 1.0,
+   "y": 0.4
+  },
+  {
+   "src": "../../src/IMG_4712.MOV",
+   "in": 5.86,
+   "out": 7.75,
+   "zoom": 1.14,
+   "y": 0.6
+  },
+  {
+   "src": "../../src/IMG_4712.MOV",
+   "in": 11.12,
+   "out": 12.9,
+   "zoom": 1.0,
+   "y": 0.45
+  },
+  {
+   "src": "../../src/IMG_4712.MOV",
+   "in": 18.08,
+   "out": 24.45,
+   "zoom": 1.14,
+   "y": 0.6
+  },
+  {
+   "src": "../../src/IMG_4712.MOV",
+   "in": 30.82,
+   "out": 35.6,
+   "zoom": 1.0,
+   "y": 0.45
+  }
+ ],
+ "hook": {
+  "until": 4.9,
+  "lines": [
+   {
+    "text": "Real closers",
+    "size": "big",
+    "at": 0.2
+   },
+   {
+    "text": "can close",
+    "size": "small",
+    "at": 0.2
+   },
+   {
+    "text": "anywhere",
+    "size": "big",
+    "ice": true,
+    "at": 0.2
+   },
+   {
+    "text": "you don't need",
+    "size": "small",
+    "at": 0.2
+   },
+   {
+    "text": "a desk",
+    "size": "big",
+    "at": 0.2
+   }
+  ]
+ },
+ "captions_from": 0,
+ "whisper_model": "small",
+ "keys": {
+  "everywhere": "white",
+  "walk": "white",
+  "skills": "ice",
+  "more": "white",
+  "simple": "white"
+ },
+ "cutaways": [
+  {
+   "src": "../../src/desk0054.mp4",
+   "from": 0.4,
+   "len": 1.0,
+   "at": 3.9,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/ca1.mp4",
+   "from": 0,
+   "len": 1.4,
+   "at": 5.4,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/lap0088.mp4",
+   "from": 2.0,
+   "len": 1.3,
+   "at": 8.6,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/ca2.mp4",
+   "from": 0,
+   "len": 0.9,
+   "at": 10.6,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/ca3.mp4",
+   "from": 0,
+   "len": 1.0,
+   "at": 12.0,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/ca4.mp4",
+   "from": 0,
+   "len": 0.9,
+   "at": 14.2,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/ca5.mp4",
+   "from": 0,
+   "len": 1.0,
+   "at": 16.0,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/ca6.mp4",
+   "from": 0,
+   "len": 1.27,
+   "at": 18.95,
+   "y": 0.5
+  }
+ ],
+ "hook_shade": true,
+ "tail": 0.6,
+ "cap_y": 0.72
+}

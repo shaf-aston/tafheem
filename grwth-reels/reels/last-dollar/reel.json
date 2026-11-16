@@ -1,0 +1,132 @@
+{
+ "out": "2026-11-16-last-dollar-v5.mp4",
+ "fonts": {
+  "black": "../../fonts/ArchivoBlack-Regular.ttf",
+  "regular_bold": "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
+ },
+ "segments": [
+  {
+   "src": "../../src/IMG_4702.mov",
+   "in": 1.0,
+   "out": 6.25,
+   "zoom": 1.0,
+   "y": 0.4
+  },
+  {
+   "src": "../../src/IMG_4702.mov",
+   "in": 9.05,
+   "out": 13.25,
+   "zoom": 1.14,
+   "y": 0.6
+  },
+  {
+   "src": "../../src/IMG_4702.mov",
+   "in": 14.4,
+   "out": 21.4,
+   "zoom": 1.0,
+   "y": 0.45
+  },
+  {
+   "src": "../../src/IMG_4702.mov",
+   "in": 32.9,
+   "out": 39.5,
+   "zoom": 1.14,
+   "y": 0.6
+  }
+ ],
+ "hook": {
+  "until": 5.2,
+  "lines": [
+   {
+    "text": "Taking the",
+    "size": "small",
+    "at": 0.15
+   },
+   {
+    "text": "last dollar",
+    "size": "big",
+    "at": 0.15,
+    "ice": true
+   },
+   {
+    "text": "from a single mother",
+    "size": "small",
+    "at": 0.15
+   },
+   {
+    "text": "does not make you",
+    "size": "small",
+    "at": 0.15
+   },
+   {
+    "text": "a good closer",
+    "size": "big",
+    "at": 0.15
+   }
+  ]
+ },
+ "captions_from": 0,
+ "whisper_model": "small",
+ "keys": {
+  "matrix": "white",
+  "conditioned": "white",
+  "true": "white",
+  "trap": "ice",
+  "gurus": "white",
+  "mindset": "ice"
+ },
+ "cutaways": [
+  {
+   "src": "../../mg/l1.mp4",
+   "from": 0,
+   "len": 0.9,
+   "at": 6.55,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/l2.mp4",
+   "from": 0,
+   "len": 1.1,
+   "at": 8.95,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/call0083.mp4",
+   "from": 0,
+   "len": 1.3,
+   "at": 11.58,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/l3.mp4",
+   "from": 0,
+   "len": 0.75,
+   "at": 15.7,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/l4.mp4",
+   "from": 0,
+   "len": 0.8,
+   "at": 18.35,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/l5.mp4",
+   "from": 0,
+   "len": 1.0,
+   "at": 20.35,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/l6.mp4",
+   "from": 0,
+   "len": 1.55,
+   "at": 22.05,
+   "y": 0.5
+  }
+ ],
+ "hook_shade": true,
+ "tail": 0.55,
+ "cap_y": 0.72
+}

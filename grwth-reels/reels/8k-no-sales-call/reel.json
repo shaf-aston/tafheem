@@ -1,0 +1,119 @@
+{
+ "out": "2026-11-16-8k-no-sales-call-v6.mp4",
+ "fonts": {
+  "black": "../../fonts/ArchivoBlack-Regular.ttf",
+  "regular_bold": "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
+ },
+ "segments": [
+  {
+   "src": "../../src/IMG_4708.MOV",
+   "in": 1.7,
+   "out": 7.5,
+   "zoom": 1.0,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/IMG_4708.MOV",
+   "in": 7.75,
+   "out": 11.7,
+   "zoom": 1.14,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/IMG_4708.MOV",
+   "in": 11.8,
+   "out": 17.9,
+   "zoom": 1.0,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/IMG_4708.MOV",
+   "in": 18.4,
+   "out": 24.95,
+   "zoom": 1.14,
+   "y": 0.5
+  }
+ ],
+ "hook": {
+  "until": 4.7,
+  "lines": [
+   {
+    "text": "$8,000",
+    "size": "big",
+    "at": 0.2,
+    "ice": true
+   },
+   {
+    "text": "collected in cash",
+    "size": "small",
+    "at": 0.2
+   },
+   {
+    "text": "without",
+    "size": "small",
+    "at": 0.2
+   },
+   {
+    "text": "a sales call",
+    "size": "big",
+    "at": 0.2
+   }
+  ]
+ },
+ "captions_from": 0,
+ "whisper_model": "small",
+ "keys": {
+  "cash": "white",
+  "journey": "ice",
+  "coaches": "white",
+  "terrible": "white",
+  "speed": "ice",
+  "human": "ice"
+ },
+ "cutaways": [
+  {
+   "src": "../../src/lapslide.mp4",
+   "from": 0.2,
+   "len": 1.9,
+   "at": 6.1,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/meet0025.mp4",
+   "from": 0.5,
+   "len": 1.3,
+   "at": 8.44,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/stg0363.mp4",
+   "from": 1.0,
+   "len": 1.6,
+   "at": 11.9,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/lap0088.mp4",
+   "from": 5.0,
+   "len": 1.3,
+   "at": 14.88,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/phones0046.mp4",
+   "from": 0.5,
+   "len": 1.4,
+   "at": 16.6,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/type0085c.mp4",
+   "from": 1.0,
+   "len": 1.8,
+   "at": 18.0,
+   "y": 0.5
+  }
+ ],
+ "hook_shade": true,
+ "cap_y": 0.72
+}

@@ -1,0 +1,119 @@
+{
+ "out": "2026-11-16-time-over-money-v3.mp4",
+ "fonts": {
+  "black": "../../fonts/ArchivoBlack-Regular.ttf",
+  "regular_bold": "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
+ },
+ "segments": [
+  {
+   "src": "../../src/IMG_4549.MOV",
+   "in": 3.35,
+   "out": 7.95,
+   "zoom": 1.0,
+   "y": 0.4
+  },
+  {
+   "src": "../../src/IMG_4549.MOV",
+   "in": 9.0,
+   "out": 14.6,
+   "zoom": 1.14,
+   "y": 0.55
+  },
+  {
+   "src": "../../src/IMG_4549.MOV",
+   "in": 15.0,
+   "out": 19.8,
+   "zoom": 1.0,
+   "y": 0.4
+  },
+  {
+   "src": "../../src/IMG_4549.MOV",
+   "in": 20.3,
+   "out": 25.2,
+   "zoom": 1.14,
+   "y": 0.55
+  }
+ ],
+ "hook": {
+  "until": 4.4,
+  "lines": [
+   {
+    "text": "Forget the",
+    "size": "small",
+    "at": 0.05
+   },
+   {
+    "text": "millions",
+    "size": "big",
+    "at": 0.05,
+    "ice": true
+   },
+   {
+    "text": "it's about",
+    "size": "small",
+    "at": 0.05
+   },
+   {
+    "text": "your time",
+    "size": "big",
+    "at": 0.05
+   }
+  ]
+ },
+ "captions_from": 0,
+ "whisper_model": "small",
+ "keys": {
+  "millions": "ice",
+  "watches": "white",
+  "cars": "white",
+  "matters": "white",
+  "cafe": "ice"
+ },
+ "cutaways": [
+  {
+   "src": "../../mg/t1.mp4",
+   "from": 0,
+   "len": 3.05,
+   "at": 5.65,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/t2.mp4",
+   "from": 0,
+   "len": 1.0,
+   "at": 11.25,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/drive0058.mp4",
+   "from": 0,
+   "len": 1.3,
+   "at": 12.96,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/t3.mp4",
+   "from": 0,
+   "len": 0.9,
+   "at": 14.4,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/t4.mp4",
+   "from": 0,
+   "len": 1.0,
+   "at": 16.55,
+   "y": 0.5
+  },
+  {
+   "src": "../../src/cafe0300.mp4",
+   "from": 0,
+   "len": 1.89,
+   "at": 18.56,
+   "y": 0.5
+  }
+ ],
+ "hook_shade": true,
+ "tail": 0.55,
+ "cap_y": 0.72
+}
