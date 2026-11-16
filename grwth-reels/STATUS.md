@@ -11,7 +11,7 @@
 | ihsan-excellence | 2026-11-16-ihsan-excellence-v5.mp4 |
 | time-over-money | 2026-11-16-time-over-money-v3.mp4 |
 
-All older versions in that folder are superseded. Nothing was deleted (brief forbids it).
+All older versions are in the subfolder "OLD VERSIONS - safe to delete" for you to delete. (ihsan v4 and last-dollar v4 were already deleted; they are in Frame.io Recently Deleted.)
 The ad folder ("Mustafa / shayan - Grwth Ad") has not been touched.
 
 ## What's been done
@@ -32,7 +32,7 @@ The ad folder ("Mustafa / shayan - Grwth Ad") has not been touched.
 2. time-over-money caption reads "none of that three matters" (transcription; confirm what he says).
 3. time-over-money cafe shot shows another person in silhouette; confirm OK to show.
 4. 8k uses a typing shot of a man in cap and beard; confirm OK to show.
-5. Old versions in "Reels - finished" can be deleted by you (or on your explicit say-so).
+5. Delete the folder "OLD VERSIONS - safe to delete" when ready.
 
 ## Rebuild
 cd reels/<name> && python reel_local.py cut reel.json && python reel_local.py render reel.json
