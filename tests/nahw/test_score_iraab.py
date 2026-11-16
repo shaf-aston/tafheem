@@ -129,6 +129,7 @@ def test_the_check_fails_on_a_drop_or_a_crash_and_passes_level(monkeypatch, tmp_
     base = {name: 10 for name in score_iraab.EXACT}
     (tmp_path / "b.json").write_text(__import__("json").dumps(base))
     monkeypatch.setattr(score_iraab, "BASELINE", tmp_path / "b.json")
+    monkeypatch.setattr(score_iraab.exact_int8, "fast_path_is_exact", lambda: True)
     scores = dict(base)
     crashes = {}
     monkeypatch.setattr(score_iraab, "score_exact",
@@ -145,6 +146,7 @@ def test_the_check_fails_when_a_sentence_it_had_right_goes_wrong_whatever_the_to
     base = {**{name: 10 for name in score_iraab.EXACT}, "whole": {"rules": ["r1", "r2"]}}
     (tmp_path / "b.json").write_text(__import__("json").dumps(base))
     monkeypatch.setattr(score_iraab, "BASELINE", tmp_path / "b.json")
+    monkeypatch.setattr(score_iraab.exact_int8, "fast_path_is_exact", lambda: True)
     whole = {"r1", "r2"}
     monkeypatch.setattr(score_iraab, "score_exact", lambda name, api, show: score_iraab.Scores(
         {"right": 10}, whole=frozenset(whole if name == "rules" else ())))
@@ -152,6 +154,26 @@ def test_the_check_fails_when_a_sentence_it_had_right_goes_wrong_whatever_the_to
     whole.discard("r2")
     whole.add("r3")  # one fixed, one broken: the same total
     assert score_iraab.check(None, save=False) == 1
+
+
+def test_without_vnni_the_check_allows_a_few_words_and_will_not_save(monkeypatch, tmp_path):
+    import json
+
+    from backend.scripts.nahw import score_iraab
+    slack = json.loads(score_iraab.CHECK_CONFIG.read_text(encoding="utf-8"))["other_processor_slack_words"]
+    base = {**{name: 10 for name in score_iraab.EXACT}, "whole": {"rules": ["r1"]}}
+    (tmp_path / "b.json").write_text(json.dumps(base))
+    monkeypatch.setattr(score_iraab, "BASELINE", tmp_path / "b.json")
+    monkeypatch.setattr(score_iraab.exact_int8, "fast_path_is_exact", lambda: False)
+    right = {"rules": 10 - slack}
+    monkeypatch.setattr(score_iraab, "score_exact", lambda name, api, show: score_iraab.Scores(
+        {"right": right.get(name, 10)}, whole=frozenset()))
+    assert score_iraab.check(None, save=False) == 0  # r1 lost and slack words short: printed, not failed
+    right["rules"] -= 1
+    assert score_iraab.check(None, save=False) == 1
+    assert score_iraab.check(None, save=True) == 1
+    assert json.loads((tmp_path / "b.json").read_text()) == base
+    assert score_iraab.check("http://app", save=False) == 1  # the server's processor: no slack
 
 
 def test_a_reader_that_breaks_says_so(monkeypatch):
