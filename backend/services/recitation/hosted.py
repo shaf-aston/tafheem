@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import io
 import logging
+import unicodedata
 import wave
 from functools import lru_cache
 
@@ -40,12 +41,10 @@ from backend.services.recitation.recording import kind_of
 
 log = logging.getLogger(__name__)
 
-# What the reader may be speaking. Groq works the language out for itself, which
-# is better than this machine can do, but "works it out" includes working it out
-# wrong: one English word has been heard as Urdu and written in Urdu letters. So
-# an answer in neither language is asked again, said to be Arabic, which is what
-# this app is mostly for. Full names because that is how the reply spells them.
-_EXPECTED = {"arabic": "ar", "english": "en"}
+# Each language config's `dictation_languages` may name: how Groq's reply spells it, and the alphabet its letters
+# are named for in Unicode. Groq picks the language itself, and about 1 single word in 10 it picks wrong (72 synthetic
+# search words, 2026-11-17: "Moses" as Japanese, رحمة as German, "mercy" as French).
+_LANGUAGES = {"ar": ("arabic", "ARABIC"), "en": ("english", "LATIN")}
 
 
 def is_available(key: str) -> bool:
@@ -56,7 +55,7 @@ def is_available(key: str) -> bool:
 def transcribe(audio: bytes, key: str, language: str | None = None, hint: str = "") -> str:
     """Words said, heard on `key`'s account. Raises rather than guessing.
 
-    `language`: hear it in that one; none lets Groq pick within the two above.
+    `language`: hear it in that one; none lets Groq pick, held to whisper.dictation_languages().
     `hint`: text Whisper reads first, sets register. Empty sends none.
     """
     said = []
@@ -69,14 +68,33 @@ def transcribe(audio: bytes, key: str, language: str | None = None, hint: str = 
     return " ".join(filter(None, said))
 
 
-def _hear(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str, str]:
-    """One piece heard and its language, asked again as Arabic if Groq took it for neither."""
-    heard, spoken = _ask(audio, key, language, hint)
-    if language or spoken in _EXPECTED.values():
+def _hear(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str, str | None]:
+    """One piece heard and its language. Unnamed, the answer is always in an allowed language and its alphabet."""
+    from backend.services.recitation import whisper
+
+    heard, spoken, _ = _ask(audio, key, language, hint)
+    allowed = whisper.dictation_languages()
+    if language or (spoken in allowed and _written_in(heard, spoken)):
         return heard, language or spoken
 
-    log.info("heard as %s, which is neither, so reading it again as Arabic", spoken)
-    return _ask(audio, key, "ar", hint)[0], "ar"
+    # Heard again in each allowed language. Named Arabic, "Moses" still came back in Japanese letters, so only an
+    # answer in its own alphabet counts; of those the surer wins (the 7 misheard words: every Arabic one stayed Arabic).
+    log.info("heard as %s, so hearing it again in %s", spoken, ", ".join(allowed))
+    kept = []
+    for code in allowed:
+        text, _, sure = _ask(audio, key, code, hint)
+        if _written_in(text, code):
+            kept.append((sure, text, code))
+    if not kept:
+        return "", None
+    _, heard, spoken = max(kept)
+    return heard, spoken
+
+
+def _written_in(text: str, code: str) -> bool:
+    """True when `text` has letters and every one is in `code`'s alphabet. Vowel marks and digits are not letters."""
+    letters = [c for c in text if c.isalpha()]
+    return bool(letters) and all(unicodedata.name(c, "").startswith(_LANGUAGES[code][1]) for c in letters)
 
 
 def _pieces(audio: bytes) -> list[bytes]:
@@ -124,8 +142,8 @@ def _client(api_key: str, timeout: float):
     return Groq(api_key=api_key, timeout=timeout, max_retries=0)
 
 
-def _ask(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str, str]:
-    """One request. The words, and the language they were taken to be in."""
+def _ask(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str, str, float]:
+    """One request. The words, the language they were taken to be in, and how sure (mean log-probability)."""
     settings = get_settings()
     client = _client(key, settings.listening_timeout_s)
 
@@ -139,11 +157,14 @@ def _ask(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str, 
     answer = client.audio.transcriptions.create(
         file=handle,
         model=settings.listening_model,
-        # Asked for so the reply says which language it decided on. Without it
+        # Asked for so the reply says which language it decided on, and how sure it was. Without it
         # the text comes back alone and there is nothing to check it against.
         response_format="verbose_json",
         **({"language": language} if language else {}),
         **({"prompt": hint} if hint else {}),
     )
     said = str(getattr(answer, "language", "") or "").strip().lower()
-    return (answer.text or "").strip(), _EXPECTED.get(said, said)
+    spoken = next((code for code, (name, _) in _LANGUAGES.items() if name == said), said)
+    segments = getattr(answer, "segments", None) or []
+    sure = sum(s["avg_logprob"] for s in segments) / len(segments) if segments else float("-inf")
+    return (answer.text or "").strip(), spoken, sure

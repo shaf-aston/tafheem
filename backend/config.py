@@ -285,6 +285,7 @@ class Listening(BaseSettings):
     recitation_language: str = "ar"
     # Pinning search boxes to Arabic wrote English words in Arabic letters ("knowledge" as نالج).
     # Choosing only from this list stops the guess drifting to Urdu or Persian. One name pins it again.
+    # Both ears read it; a new name also needs its spelling and alphabet in recitation/hosted.py _LANGUAGES.
     dictation_languages: str = "ar,en"
     # Default was 5, five times the work for the same ayah every time; matching needs close, not right. Most of the speed win.
     recitation_beam: int = Field(default=1, gt=0)
