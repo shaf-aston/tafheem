@@ -42,23 +42,18 @@ def build():
     learners = whole.filter(lambda who, ayah: who not in new_voices and ayah not in new_ayahs, input_columns=NAMES)
     # Every parquet clip taught avoids the held ayahs and the professional test's.
     skip = {canon(k) for k in new_ayahs | set(tests['professional']['ayah'])}
-    # Shares are of the final training set: learners are the rest, so each target is learners * share / learner share.
-    rest = 1 - S.TADABUR_SHARE - S.REPLAY_SHARE - S.TLOG_SHARE
+    # Every share is of what learners, Tadabur, replay and tlog make together; learners fill what those three leave.
+    made = len(learners) / (1 - S.TADABUR_SHARE - S.REPLAY_SHARE - S.TLOG_SHARE)
 
-    def fetched(src, share, rows):  # rows: sources.tadabur, replay or tlog
-        return Dataset.from_generator(sources.parquet_clips, gen_kwargs={
-            'rows': rows(skip, round(len(learners) * share / rest)), 'src': src})
+    def source(src, share, rows, clips):  # rows: sources.tadabur, slips, lone, ...; clips: parquet_ or phrase_clips
+        return Dataset.from_generator(clips, gen_kwargs={'rows': rows(skip, round(made * share)), 'src': src})
 
-    def phrases(src, share, rows):  # Iqra's: shares of what the sources above make, so they never shrink those
-        return Dataset.from_generator(sources.phrase_clips, gen_kwargs={
-            'rows': rows(skip, round(len(learners) / rest * share)), 'src': src})
-
-    spoken = phrases('iqra slips', S.IQRA_SLIPS_SHARE, sources.slips)
-    real = phrases('iqra real', S.IQRA_REAL_SHARE, sources.real_phrases)
-    lone = phrases('lone slips', S.LONE_SHARE, sources.lone)
-    big = fetched('tadabur', S.TADABUR_SHARE, sources.tadabur)
-    replay = fetched('replay', S.REPLAY_SHARE, sources.replay)
-    tlog = fetched('tlog', S.TLOG_SHARE, sources.tlog)
+    spoken = source('iqra slips', S.IQRA_SLIPS_SHARE, sources.slips, sources.phrase_clips)
+    real = source('iqra real', S.IQRA_REAL_SHARE, sources.real_phrases, sources.phrase_clips)
+    lone = source('lone slips', S.LONE_SHARE, sources.lone, sources.phrase_clips)
+    big = source('tadabur', S.TADABUR_SHARE, sources.tadabur, sources.parquet_clips)
+    replay = source('replay', S.REPLAY_SHARE, sources.replay, sources.parquet_clips)
+    tlog = source('tlog', S.TLOG_SHARE, sources.tlog, sources.parquet_clips)
     # Downloads out of the folder Kaggle hands back: cloud.py fetches it whole, and wants only the result.
     shutil.rmtree(parquet.CLIPS)
     shutil.rmtree(parquet.FILES, ignore_errors=True)

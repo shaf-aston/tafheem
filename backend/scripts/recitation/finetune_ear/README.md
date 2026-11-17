@@ -12,7 +12,7 @@ Every step runs from any checkout, on this PC or in a cloud session; nothing is 
 | 5. Serve | nothing to do | Oracle pulls master every 5 minutes and loads that revision (`services/recitation/whisper.py` `_engine`) |
 
 `--fetch` waits for the last run and fetches it. `--loop finetune_sounds` runs the sounds loop instead (`../finetune_sounds/README.md`). A run takes hours; watch it at the link `cloud.py` prints.
-`verdict.json` is rewritten after every step and a winner is saved the moment it wins, so a crash hours in keeps both (`done: false`). It records the library versions, the seed and every knob the run used.
+`verdict.json` is rewritten after every step and a winner is saved the moment it wins, so a crash hours in keeps both (`done: false`). It records the library versions and every knob in `settings.py` (`run.settings`).
 Every fetched run's `verdict.json` (with the untuned and champion versions it was judged against) and its full log are kept in `backend/data/models/finetune-ear-runs/<date>/`.
 To undo a ship: revert its "Serve the ear" commit on master. The message names the old version, and Hugging Face keeps every revision, so the server serves the old version again within 5 minutes.
 The server logs `loaded model=<repo@revision>` at start, and `/api/health` `recite_sure` names the model in use.
@@ -26,7 +26,7 @@ kernel-metadata.json   which Kaggle notebook, GPU, attached data (Tarteel v1)
 ear/                   runs on the GPU machine, in this order:
   run.py               the run: hold out tests, score untuned + champion, walk PLAN, write verdict.json
   split.py             which clips are held for the judge and which are taught (v13's seeded split)
-  parquet.py           reading big Hugging Face parquet sets cheaply, clips kept decoded (the sounds loop reuses it)
+  parquet.py           finding Kaggle's attached files; reading big Hugging Face parquet sets cheaply, clips kept decoded (the sounds loop reuses it)
   sources.py           where clips come from: learners, professionals, Tadabur, everyayah replay, tlog, Iqra phrases
   spread.py            which few of many files to read; cloud.py uses it too
   sound.py             recordings as 16 kHz numbers; training clips made harder (speed, room, noise, rough channel)

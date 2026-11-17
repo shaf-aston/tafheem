@@ -19,9 +19,9 @@ from . import settings as S
 
 def attached(marker):
     """The one file called `marker` under Kaggle's attached data; a missing or doubled one stops the run."""
-    found = list(Path('/kaggle/input').rglob(marker))
+    found = parquet.attached(marker, 'attach the dataset in kernel-metadata.json')
     if len(found) != 1:
-        raise SystemExit(f'expected one {marker} under /kaggle/input, found {len(found)}: attach the dataset in kernel-metadata.json')
+        raise SystemExit(f'expected one {marker}, found {len(found)}: {found}')
     return found[0]
 
 

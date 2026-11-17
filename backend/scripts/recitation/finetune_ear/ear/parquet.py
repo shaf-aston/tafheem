@@ -1,4 +1,6 @@
-"""Reading big Hugging Face parquet sets cheaply: index the small columns, choose rows, then fetch only their files."""
+"""Finding the files Kaggle attached, and reading big Hugging Face parquet sets cheaply: index the small
+columns, choose rows, then fetch only their files."""
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -10,6 +12,11 @@ from .sound import decoded
 from .spread import evenly
 
 FILES, CLIPS = S.OUT / 'parquet-files', S.OUT / 'parquet-clips'  # whole files while read; each wanted clip
+
+
+def attached(pattern, fix):
+    """Every file matching `pattern` in the attached datasets, sorted. None stops the run, saying `fix`."""
+    return sorted(S.INPUT.rglob(pattern)) or sys.exit(f'nothing matches {pattern} under {S.INPUT}: {fix}')
 
 
 def index(repo, want, columns, read):

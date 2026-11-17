@@ -16,7 +16,7 @@ from datasets import Audio, Dataset, load_dataset
 
 from . import settings as S
 from .judge import listen
-from .parquet import CLIPS, balanced, fetch, index, nonempty, saved
+from .parquet import CLIPS, attached, balanced, fetch, index, nonempty, saved
 from .sound import decoded, opened, sound_of
 from .spelling import as_heard
 from .text import IMLAEI, SAID, SAYABLE, SPELT, WRITABLE, ayahs_of, canon, letters
@@ -56,7 +56,7 @@ def _rows_of(name):
     """A source's clips, sound undecoded. Tarteel v1 is files plus a list, not a Hugging Face set."""
     if name != S.TARTEEL_V1:
         return load_dataset(name, split='train')
-    listing = next(Path('/kaggle/input').rglob('tusers_filtered.csv'))
+    listing = attached('tusers_filtered.csv', 'attach dhiauji/user-tarteel in kernel-metadata.json')[0]
     files = [line.split(',')[0].replace('\\', '/') for line in listing.read_text(encoding='utf-8').splitlines()[1:]]
     return Dataset.from_dict({'audio': [{'bytes': None, 'path': str(listing.parent / f)} for f in files]})
 
@@ -214,8 +214,11 @@ def held(name):
 def tlog_files():
     """The clips cloud.py --tlog copied up: tlog is gated, and Kaggle gives a run sent from the command line
     no secrets, so the run reads a private copy instead of Hugging Face."""
-    return sorted(Path('/kaggle/input').rglob('tlog-*.parquet')) or sys.exit(
-        f'no tlog copy attached: run cloud.py --tlog, which uploads {S.TLOG_COPY}')
+    return attached('tlog-*.parquet', f'run cloud.py --tlog, which uploads {S.TLOG_COPY}')
+
+
+def lone_files():
+    return attached('lone-*.parquet', f'run cloud.py --lone, which uploads {S.LONE_COPY}')
 
 
 def tlog(skip, target):
@@ -249,8 +252,7 @@ def tlog(skip, target):
 def lone(skip, target):
     """Professional ayahs with one sound cut out or swapped (ear_bench/spliced.py teach), each with what it now
     says, plus the untouched ayahs they came from. cloud.py --lone uploads them as LONE_COPY."""
-    files = sorted(Path('/kaggle/input').rglob('lone-*.parquet')) or sys.exit(
-        f'no lone slips attached: run cloud.py --lone, which uploads {S.LONE_COPY}')
+    files = lone_files()
     found = [(f, at, r['who'], r['said'], ' '.join(as_heard(r['page'])) if r['page'] else '') for f in files
              for at, r in enumerate(pq.read_table(f, columns=['ayah', 'who', 'said', 'page']).to_pylist())
              if canon(r['ayah']) not in skip and WRITABLE(r['said'])]
