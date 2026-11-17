@@ -61,8 +61,9 @@ class FakeGroq:
         self.asked.append(how)
         if self.fail:
             raise self.fail
-        text, language = self.replies.pop(0)
-        return type("Answer", (), {"text": text, "language": language})()
+        text, language, *sure = self.replies.pop(0)
+        segments = [{"avg_logprob": s} for s in sure]
+        return type("Answer", (), {"text": text, "language": language, "segments": segments})()
 
 
 @pytest.fixture
@@ -162,15 +163,22 @@ def test_a_recitation_is_named_as_arabic(groq):
     assert fake.asked[0]["language"] == "ar"
 
 
-def test_an_answer_in_neither_language_is_asked_again_as_arabic(groq):
-    """The nearest case nobody asks for: one word heard as Urdu, in Urdu letters.
+def test_a_word_heard_as_another_language_comes_back_in_an_allowed_one_and_its_alphabet(groq):
+    """Real Groq replies for a spoken "Moses": taken for Japanese, and asked as Arabic still written in Japanese."""
+    fake = groq([("モーズス", "Japanese"), ("モーズス", "Arabic", -0.52), ("Moses", "English", -0.85)])
+    assert hosted.transcribe(SOUND, KEY) == "Moses"
+    assert [how.get("language") for how in fake.asked] == [None, "ar", "en"]
 
-    Groq's model is much bigger than the one here and wanders far less, but
-    "much less often" is not "never", and this app is Arabic and English only.
-    """
-    fake = groq([("نالج", "Urdu"), ("علم", "Arabic")])
-    assert hosted.transcribe(SOUND, KEY) == "علم"
-    assert [how.get("language") for how in fake.asked] == [None, "ar"]
+
+def test_of_two_answers_in_their_own_alphabet_the_surer_wins(groq):
+    """Real replies for a spoken رحمة taken for German: the English one is Latin letters too, but less sure."""
+    groq([("Rahm.", "German"), ("رحم", "Arabic", -0.46), ("Rahm.", "English", -0.70)])
+    assert hosted.transcribe(SOUND, KEY) == "رحم"
+
+
+def test_nothing_in_an_allowed_alphabet_is_nothing_heard(groq):
+    groq([("モーズス", "Japanese"), ("モーズス", "Arabic", -0.5), ("モーズス", "English", -0.4)])
+    assert hosted.transcribe(SOUND, KEY) == ""
 
 
 def test_a_language_it_did_get_right_is_not_asked_twice(groq):

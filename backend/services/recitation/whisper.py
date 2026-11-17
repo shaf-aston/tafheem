@@ -217,7 +217,7 @@ def transcribe(audio: bytes, language: str | None = None, hint: str = "") -> str
 
 
 def dictation_languages() -> list[str]:
-    """The languages a spoken search may be in. Never empty."""
+    """The languages a spoken search may be in, for both ears. Never empty."""
     named = [
         name.strip().lower()
         for name in get_settings().dictation_languages.split(",")
