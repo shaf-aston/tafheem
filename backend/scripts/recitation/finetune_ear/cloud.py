@@ -101,7 +101,6 @@ def bundle(folder):
 def copy_tlog():
     """tlog is gated and Kaggle gives a run sent from here no secrets, so the clips a run hears go up as a
     private Kaggle dataset, fetched with this computer's own Hugging Face login. One file at a time on disk."""
-    import random
     import pyarrow as pa
     import pyarrow.parquet as pq
     from huggingface_hub import hf_hub_download, list_repo_files

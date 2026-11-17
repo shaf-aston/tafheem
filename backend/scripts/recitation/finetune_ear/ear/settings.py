@@ -12,6 +12,7 @@ NAME = f'tarteel-ai/whisper-{SIZE}-ar-quran'  # the untuned model every ear desc
 RATE = 16000
 LONGEST = 30 * RATE  # Whisper hears 30 seconds at most; a longer clip's text would be cut short
 OUT = Path.cwd()  # everything a run writes; Kaggle hands this folder back
+INPUT = Path('/kaggle/input')  # the datasets kernel-metadata.json attaches
 SEED = 7  # torch, numpy and LoRA's starting numbers, set once by run.py
 
 # The champion: the best tuned ear so far, "repo@revision". Every run starts from it and must beat it.
@@ -50,7 +51,7 @@ TARTEEL_V1 = 'tarteel-v1'  # attached on Kaggle as dhiauji/user-tarteel
 # Tadabur: 384k ayahs by 600+ reciters, 938 GB, CC BY-NC 4.0. Only a few files are read.
 TADABUR = 'FaisaI/tadabur'
 TADABUR_SHARDS = 28  # of 385 files, 1,000 ayahs and 2.4 GB each, spread evenly; 8 gave 7,478 usable, 4,796 taught
-TADABUR_SHARE = 0.4  # of the training clips; 0.25 (2026-11-05) gained new ayahs 0.46, within noise. Every ayah, 600+ voices
+TADABUR_SHARE = 0.4  # of what learners, Tadabur, replay and tlog make together; 0.25 (2026-11-05) gained new ayahs 0.46, within noise. Every ayah, 600+ voices
 TADABUR_TEST = 300  # clips of those reciters, at most
 TADABUR_SURAH_BASE = 1  # its surah_id counts from 0; checked against the printed ayah text
 # Replay: professional recitation mixed into training so the ear keeps hearing what it was first taught
@@ -58,7 +59,7 @@ TADABUR_SURAH_BASE = 1  # its surah_id counts from 0; checked against the printe
 # tarteel-ai/everyayah: 132 train files of 0.3 to 1.7 GB, mostly one reciter each, sorted by reciter.
 REPLAY = 'tarteel-ai/everyayah'
 REPLAY_SHARDS = 8  # files read, spread evenly; files holding only test reciters are skipped first
-REPLAY_SHARE = 0.1  # of the training clips; ~3,700, as many as 0.15 gave before Tadabur grew
+REPLAY_SHARE = 0.1  # as TADABUR_SHARE; ~3,700, as many as 0.15 gave before Tadabur grew
 # tlog: real app users on their own phones, 411 files of ~970 clips, one or two ayahs per file. Gated, and
 # Kaggle gives a run sent from the command line no secrets, so cloud.py --tlog copies the clips a run hears
 # from this computer into TLOG_COPY, a private Kaggle dataset; change the two numbers below, copy again.
@@ -69,7 +70,7 @@ TLOG = 'tarteel-ai/tlog'
 TLOG_COPY = 'shafeinhashmi/tlog-sample'
 TLOG_SHARDS = 30  # files copied, spread evenly, so ~60 ayahs
 TLOG_TRY = 200  # clips copied per file, picked at random, and heard
-TLOG_SHARE = 0.1  # of the training clips: wants ~3,700, the checker passes ~900 either way
+TLOG_SHARE = 0.1  # as TADABUR_SHARE: wants ~3,700, the checker passes ~900 either way
 TLOG_CHECKER = 'large-v3-turbo'
 
 # Iqra: IqraEval's challenge training sets (CC BY-NC 4.0, ungated). Their clips are phrases, so each carries its own text.
@@ -80,14 +81,14 @@ TLOG_CHECKER = 'large-v3-turbo'
 # the 'spoken slips' test.
 IQRA_SLIPS = 'IqraEval/Iqra_TTS'
 IQRA_SLIPS_SHARDS = 6  # of 13 files, 4,260 clips each
-IQRA_SLIPS_SHARE = 0.0  # of what the sources above make (not of the final set). 0.1 (v31), 0.2 (v32) both DROP:
+IQRA_SLIPS_SHARE = 0.0  # as TADABUR_SHARE, so it never shrinks those. 0.1 (v31), 0.2 (v32) both DROP:
 # its slipped clips hold 3 to 6+ changes each, never one (README). 0 still makes the 'spoken slips' test.
 IQRA_SLIPS_TEST = 300  # 'spoken slips' clips at most
 # Lone slips (v33): professional ayahs by reciters no test hears, each with ONE sound cut out or swapped, at a
 # place the phoneme ear timed and checked, taught with what it now says (ear_bench/spliced.py teach), plus the
 # untouched ayahs. Made on this PC and uploaded by cloud.py --lone; ayahs of the spliced test are never used.
 LONE_COPY = 'shafeinhashmi/lone-slips'
-LONE_SHARE = 0.2  # of what the sources above make, as IQRA_SLIPS_SHARE was
+LONE_SHARE = 0.2  # as TADABUR_SHARE
 # Slips kept per kind: wrong vowel length lands most often (47% of the build) and is already the
 # ear's best-caught kind, so it is held level with vowel and letter swaps (2026-11-11).
 LONE_KIND_CAP = 1200
@@ -100,7 +101,7 @@ SLIP_WEIGHT = 1.0
 # Real voices: 71,391 clips, fully vowelled. A quarter are Qur'an phrases, the rest everyday fusha ("متى تكون مشغولا").
 IQRA_REAL = 'IqraEval/Iqra_train'
 IQRA_REAL_SHARDS = 5  # of 29 files, ~2,460 clips each
-IQRA_REAL_SHARE = 0.16  # of what the sources above make
+IQRA_REAL_SHARE = 0.16  # as TADABUR_SHARE
 IQRA_QURAN_PART = 0.5  # of those, the part that is Qur'an phrases
 IQRA_PHRASE_MIN = 14  # letters a phrase needs before it counts as sitting inside the Qur'an (shorter match by chance)
 # The benched phrases (ear_bench/iqra.py), written into the bundle by cloud.py: never taught, so no ear has heard
