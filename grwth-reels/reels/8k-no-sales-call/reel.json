@@ -1,5 +1,5 @@
 {
- "out": "2026-11-16-8k-no-sales-call-v6.mp4",
+ "out": "2026-11-16-8k-no-sales-call-v7.mp4",
  "fonts": {
   "black": "../../fonts/ArchivoBlack-Regular.ttf",
   "regular_bold": "/usr/share/fonts/opentype/inter/Inter-Bold.otf"
@@ -7,31 +7,52 @@
  "segments": [
   {
    "src": "../../src/IMG_4708.MOV",
-   "in": 1.7,
-   "out": 7.5,
+   "in": 1.62,
+   "out": 31.17,
    "zoom": 1.0,
-   "y": 0.5
+   "y": 0.4
   },
   {
    "src": "../../src/IMG_4708.MOV",
-   "in": 7.75,
-   "out": 11.7,
-   "zoom": 1.14,
-   "y": 0.5
+   "in": 31.46,
+   "out": 38.61,
+   "zoom": 1.1,
+   "y": 0.55
   },
   {
    "src": "../../src/IMG_4708.MOV",
-   "in": 11.8,
-   "out": 17.9,
+   "in": 39.36,
+   "out": 40.25,
    "zoom": 1.0,
-   "y": 0.5
+   "y": 0.4
   },
   {
    "src": "../../src/IMG_4708.MOV",
-   "in": 18.4,
-   "out": 24.95,
-   "zoom": 1.14,
-   "y": 0.5
+   "in": 40.68,
+   "out": 41.39,
+   "zoom": 1.1,
+   "y": 0.55
+  },
+  {
+   "src": "../../src/IMG_4708.MOV",
+   "in": 41.62,
+   "out": 43.23,
+   "zoom": 1.0,
+   "y": 0.4
+  },
+  {
+   "src": "../../src/IMG_4708.MOV",
+   "in": 43.86,
+   "out": 47.79,
+   "zoom": 1.1,
+   "y": 0.55
+  },
+  {
+   "src": "../../src/IMG_4708.MOV",
+   "in": 48.02,
+   "out": 51.19,
+   "zoom": 1.0,
+   "y": 0.4
   }
  ],
  "hook": {
@@ -72,48 +93,56 @@
  },
  "cutaways": [
   {
-   "src": "../../src/lapslide.mp4",
-   "from": 0.2,
-   "len": 1.9,
-   "at": 6.1,
+   "src": "../../mg/e0.mp4",
+   "from": 0,
+   "len": 2.0,
+   "at": 8.27,
    "y": 0.5
   },
   {
-   "src": "../../src/meet0025.mp4",
-   "from": 0.5,
-   "len": 1.3,
-   "at": 8.44,
-   "y": 0.5
-  },
-  {
-   "src": "../../src/stg0363.mp4",
-   "from": 1.0,
+   "src": "../../mg/e1.mp4",
+   "from": 0,
    "len": 1.6,
-   "at": 11.9,
+   "at": 14.77,
    "y": 0.5
   },
   {
-   "src": "../../src/lap0088.mp4",
-   "from": 5.0,
-   "len": 1.3,
-   "at": 14.88,
+   "src": "../../mg/e2.mp4",
+   "from": 0,
+   "len": 2.0,
+   "at": 19.05,
    "y": 0.5
   },
   {
-   "src": "../../src/phones0046.mp4",
-   "from": 0.5,
-   "len": 1.4,
-   "at": 16.6,
+   "src": "../../mg/e5.mp4",
+   "from": 0,
+   "len": 1.6,
+   "at": 24.51,
    "y": 0.5
   },
   {
-   "src": "../../src/type0085c.mp4",
-   "from": 1.0,
+   "src": "../../mg/e6.mp4",
+   "from": 0,
    "len": 1.8,
-   "at": 18.0,
+   "at": 27.15,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/e3.mp4",
+   "from": 0,
+   "len": 2.0,
+   "at": 36.87,
+   "y": 0.5
+  },
+  {
+   "src": "../../mg/e4.mp4",
+   "from": 0,
+   "len": 1.8,
+   "at": 38.79,
    "y": 0.5
   }
  ],
  "hook_shade": true,
- "cap_y": 0.72
+ "cap_y": 0.72,
+ "tail": 0.6
 }
