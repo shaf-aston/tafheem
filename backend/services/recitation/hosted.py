@@ -73,9 +73,13 @@ def _hear(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str,
     from backend.services.recitation import whisper
 
     heard, spoken, _ = _ask(audio, key, language, hint)
+    if language:
+        return heard, language
     allowed = whisper.dictation_languages()
-    if language or (spoken in allowed and _written_in(heard, spoken)):
-        return heard, language or spoken
+    if spoken in allowed and _written_in(heard, spoken):
+        return heard, spoken
+    if not any(c.isalpha() for c in heard):
+        return heard, None  # silence or a number: no letters to judge, and asking again costs two requests
 
     # Heard again in each allowed language. Named Arabic, "Moses" still came back in Japanese letters, so only an
     # answer in its own alphabet counts; of those the surer wins (the 7 misheard words: every Arabic one stayed Arabic).
@@ -92,7 +96,10 @@ def _hear(audio: bytes, key: str, language: str | None, hint: str) -> tuple[str,
 
 
 def _written_in(text: str, code: str) -> bool:
-    """True when `text` has letters and every one is in `code`'s alphabet. Vowel marks and digits are not letters."""
+    """True when `text` has letters and every one is in `code`'s alphabet. Vowel marks and digits are not letters.
+
+    The alphabet is Unicode's: Persian and Urdu letters (پ, ک) are named ARABIC, so they pass as Arabic.
+    """
     letters = [c for c in text if c.isalpha()]
     return bool(letters) and all(unicodedata.name(c, "").startswith(_LANGUAGES[code][1]) for c in letters)
 
