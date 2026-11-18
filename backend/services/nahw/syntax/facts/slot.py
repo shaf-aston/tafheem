@@ -202,6 +202,10 @@ def verb_place(token: dict, s: Sentence) -> str:
     # زيدٌ ضاربٌ بكرًا: a word like the verb (شبه الفعل) takes its object as the verb does
     # (notes, المفعول به p0: a فعل or a شبه الفعل governs it)
     if head and not is_verb(head) and at_work(head, s):
+        # زيدٌ ضاربٌ ضربًا: the participle's own masdar is its مفعول مطلق, as the verb's is (Alfiyya: بمثله أو فعل أو وصف نصب)
+        if (token["id"] > head["id"] and typed in (None, "a") and token.get("stt") == "i"
+                and is_masdar(token, weak_or_doubled=False) and same_root(token, head)):
+            return "absolute"
         if _object_of_participle(token, head):
             return "object"
         if _doer_of_describer(token, head, s) or (s.described_doer and [head, token] == list(s.described_doer[1:])):

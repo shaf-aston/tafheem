@@ -221,7 +221,8 @@ def late_doer(s: Sentence) -> None:
 def outer_doer(s: Sentence) -> None:
     """شَارَكَتْ فِي الْقِمَّةِ الَّتِي اسْتَضَافَتْهَا الْعَاصِمَةُ إِحْدَى عَشْرَةَ دَوْلَةً: a verb has one doer (Tasheel 2.4.1), so
     a second raf' noun the parser hung on a verb that holds its doer already, in a clause that hangs below an earlier verb
-    with no doer, is that earlier verb's: the doer comes last, after the صلة (الفاعل المؤخر)."""
+    with no doer, is that earlier verb's: the doer comes last, after the صلة (الفاعل المؤخر). With no such verb, a relative
+    straight after the doer (أَعْجَبَنِي الْكِتَابُ مَا قَرَأْتُهُ) hangs on it, as the parser hangs a relative after its noun."""
     tokens = s.tokens
     for token in tokens:
         verb = s.head(token)
@@ -232,6 +233,8 @@ def outer_doer(s: Sentence) -> None:
         outer = s.climb(s.head(verb), lambda up: is_verb(up) and up["id"] < verb["id"])
         if outer and is_verb(outer) and not is_passive(outer) and not holds_doer(outer, s.kids(outer)):
             s.relink(token, outer["id"], "SBJ")
+        elif listed(token, "mawsul") and (doer := s.by_id.get(token["id"] - 1)) and doer["head"] == verb["id"] and subject_link(doer):
+            s.relink(token, doer["id"], "MOD")
 
 
 def verb_under_fronted_object(s: Sentence) -> None:

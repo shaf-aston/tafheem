@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import letters, vowel_agreement
 from backend.services.nahw.book import book_map, is_one
-from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, my_ya_dropped, is_suffix, is_verb, read_as, reading, takes_two_objects, typed_bare, typed_case_of
+from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, noun_tagged, my_ya_dropped, is_suffix, is_verb, read_as, reading, subject_link, takes_two_objects, typed_bare, typed_case_of
 from backend.services.nahw.syntax.facts.sentence import Sentence, busied, next_word, verb_above
 
 
@@ -96,6 +96,19 @@ def negates(token: dict, s: Sentence) -> bool:
     verb, before = s.by_id.get(token["id"] + 1), s.by_id.get(token["id"] - 1)
     while before and before.get("token_type") == "enc0":
         before = s.by_id.get(before["id"] - 1)
+    # الْخَيْرُ مَا اخْتَارَهُ اللَّهُ: a particle is told of nothing, so ما with a mubtada hung on it is the noun, its khabar,
+    # and the pronoun on the verb its عائد
+    if any(subject_link(k) and k["id"] < token["id"] for k in s.kids(token)):
+        return False
+    # أَعْجَبَنِي الْكِتَابُ مَا قَرَأْتُهُ: hung on the doer or object of a verb straight before it, ما is that noun's بدل, the ه
+    # its عائد, not a new sentence the noun is no part of
+    if before and token["rel"] == "MOD" and token["head"] == before["id"] and noun_tagged(before) \
+            and before["rel"] in ("SBJ", "OBJ") and (up := s.head(before)) and is_verb(up):
+        return False
+    # قَرَأَ الطَّالِبُ مَا كَتَبَهُ: hung on a verb before it as its doer or its only object, ما fills that place
+    if (up := s.head(token)) and is_verb(up) and up["id"] < token["id"] and (token["rel"] == "SBJ" or token["rel"] == "OBJ"
+                                                                           and not any(k["rel"] == "OBJ" and k is not token for k in s.kids(up))):
+        return False
     if before and is_verb(before) and (token["head"] == before["id"] and token["rel"] == "SBJ"
                                        or not any(k["rel"] == "OBJ" and k is not token for k in s.kids(before))):
         return False
