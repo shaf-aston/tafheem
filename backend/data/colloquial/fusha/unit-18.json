@@ -474,21 +474,6 @@
       "lesson": "lesson-02",
       "phrases": [
         {
-          "slot": "this-is-the-living-room",
-          "arabic": "هَذِهِ غُرْفَةُ الْجُلُوس",
-          "transliteration": "hadhihi ghurfatu al-juloos"
-        },
-        {
-          "slot": "where-is-the-kitchen",
-          "arabic": "أَيْنَ الْمَطْبَخ؟",
-          "transliteration": "ayna al-maTbakh?",
-          "reply": {
-            "arabic": "بِجَانِبِ غُرْفَةِ الْجُلُوس",
-            "transliteration": "bijaanibi ghurfati al-juloos",
-            "english": "Next to the living room."
-          }
-        },
-        {
           "slot": "how-many-bathrooms",
           "arabic": "كَمْ حَمَّامًا فِي الشَّقَّة؟",
           "transliteration": "kam Hammaaman fii ash-shaqqa?",
@@ -547,11 +532,6 @@
             "transliteration": "na3am, ya3malu jayyidan",
             "english": "Yes, it works well."
           }
-        },
-        {
-          "slot": "the-light-does-not-work",
-          "arabic": "الْمِصْبَاحُ لَا يَعْمَل",
-          "transliteration": "al-miSbaaHu laa ya3mal"
         },
         {
           "slot": "where-do-i-put-the-fridge",

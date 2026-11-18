@@ -439,11 +439,6 @@
           "transliteration": "lissa ma khallast it-tagreer"
         },
         {
-          "slot": "i-have-a-meeting-at-ten-o-clock",
-          "arabic": "عِنْدِي اجْتِمَاعْ الْسَّاعَة عَشَرَة",
-          "transliteration": "3indi ijtimaa3 is-saa3a 3ashara"
-        },
-        {
           "slot": "my-colleague-at-the-office-is-very-nice",
           "arabic": "زَمِيلِي بِالشُّغْلْ كَوَيِّس مَرَّة",
           "transliteration": "zameele bil-shughul kwayyis marra"
@@ -1929,11 +1924,6 @@
           "slot": "why-do-you-want-to-work-with-us-to-a-man",
           "arabic": "ليش تبغى تشتغل معانا؟",
           "transliteration": "leesh tibgha tishtaghil ma3aana?"
-        },
-        {
-          "slot": "i-speak-arabic-and-english",
-          "arabic": "أتكلّم عربي وإنجليزي",
-          "transliteration": "atkallam 3arabi w ingleezi"
         },
         {
           "slot": "what-are-your-strengths-to-a-man",

@@ -69,11 +69,6 @@
           "transliteration": "hal astatee3u ru2yata al-ghurfati awwalan?"
         },
         {
-          "slot": "where-s-the-elevator",
-          "arabic": "أَيْنَ الْمِصْعَد؟",
-          "transliteration": "ayna al-mis3ad?"
-        },
-        {
           "slot": "i-want-the-key-please",
           "arabic": "أُرِيدُ الْمِفْتَاحَ مِنْ فَضْلِك",
           "transliteration": "ureedu al-miftaa7a min fadlik"
@@ -143,7 +138,9 @@
         },
         {
           "speaker": "Guest",
-          "slot": "where-s-the-elevator"
+          "arabic": "أَيْنَ الْمِصْعَد؟",
+          "transliteration": "ayna al-mis3ad?",
+          "english": "Where's the elevator?"
         },
         {
           "speaker": "Clerk",
@@ -1352,11 +1349,6 @@
           "transliteration": "at-taa2iratu muta2akhkhiratun jiddan"
         },
         {
-          "slot": "i-missed-the-bus",
-          "arabic": "فَاتَتْنِي الْحَافِلَة",
-          "transliteration": "faatatnee al-7aafila"
-        },
-        {
           "slot": "i-couldn-t-find-my-passport",
           "arabic": "لَمْ أَجِدْ جَوَازَ سَفَرِي",
           "transliteration": "lam ajid jawaaza safaree"
@@ -2216,11 +2208,6 @@
             "transliteration": "na3am, tafaDDal",
             "english": "Yes, here you are."
           }
-        },
-        {
-          "slot": "the-weather-is-very-hot",
-          "arabic": "الْجَوُّ حَارٌّ جِدًّا",
-          "transliteration": "al-jawwu Haarrun jiddan"
         },
         {
           "slot": "drink-plenty-of-water",

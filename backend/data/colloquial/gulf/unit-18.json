@@ -473,21 +473,6 @@
       "lesson": "lesson-02",
       "phrases": [
         {
-          "slot": "this-is-the-living-room",
-          "arabic": "هَذِي الصَّالَة",
-          "transliteration": "hadhi iS-Saala"
-        },
-        {
-          "slot": "where-is-the-kitchen",
-          "arabic": "وِين المَطْبَخ؟",
-          "transliteration": "ween il-maTbakh?",
-          "reply": {
-            "arabic": "هَنَاك، جَنْب الصَّالَة",
-            "transliteration": "hanaak, jamb iS-Saala",
-            "english": "Over there, next to the hall."
-          }
-        },
-        {
           "slot": "how-many-bathrooms",
           "arabic": "كَم حَمَّام فِي الشِّقَّة؟",
           "transliteration": "kam 7ammaam fi ish-shigga?",
@@ -549,11 +534,6 @@
           }
         },
         {
-          "slot": "the-light-does-not-work",
-          "arabic": "الضُّو مَا يِشْتَغِل",
-          "transliteration": "iD-Daw ma yishtaghil"
-        },
-        {
           "slot": "where-do-i-put-the-fridge",
           "arabic": "وِين أَحُطّ الثَّلَّاجَة؟",
           "transliteration": "ween a7uTT ith-thallaaja?",
@@ -567,16 +547,21 @@
       "dialogue": [
         {
           "speaker": "Agent",
-          "slot": "this-is-the-living-room"
+          "arabic": "هَذِي الصَّالَة",
+          "transliteration": "hadhi iS-Saala",
+          "english": "This is the living room"
         },
         {
           "speaker": "Maha",
-          "slot": "where-is-the-kitchen"
+          "arabic": "وِين المَطْبَخ؟",
+          "transliteration": "ween il-maTbakh?",
+          "english": "Where is the kitchen?"
         },
         {
           "speaker": "Agent",
-          "slot": "where-is-the-kitchen",
-          "reply": true
+          "arabic": "هَنَاك، جَنْب الصَّالَة",
+          "transliteration": "hanaak, jamb iS-Saala",
+          "english": "Over there, next to the hall."
         },
         {
           "speaker": "Maha",

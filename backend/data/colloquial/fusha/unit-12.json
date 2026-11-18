@@ -1239,16 +1239,6 @@
           "transliteration": "hal ladayka raqmee?"
         },
         {
-          "slot": "thanks-a-lot",
-          "arabic": "شُكْرًا جَزِيلًا",
-          "transliteration": "shukran jazeelan",
-          "reply": {
-            "arabic": "عَفْوًا",
-            "transliteration": "3afwan",
-            "english": "You're welcome."
-          }
-        },
-        {
           "slot": "good-that-i-didn-t-waste-your-time",
           "arabic": "جَيِّدٌ أَنَّنِي لَمْ أُضَيِّعْ وَقْتَكَ",
           "transliteration": "jayyidun annanee lam udayyi3 waqtaka"
@@ -1308,12 +1298,15 @@
         },
         {
           "speaker": "Dina",
-          "slot": "thanks-a-lot"
+          "arabic": "شُكْرًا جَزِيلًا",
+          "transliteration": "shukran jazeelan",
+          "english": "Thanks a lot."
         },
         {
           "speaker": "Omar",
-          "slot": "thanks-a-lot",
-          "reply": true
+          "arabic": "عَفْوًا",
+          "transliteration": "3afwan",
+          "english": "You're welcome."
         },
         {
           "speaker": "Dina",

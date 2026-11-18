@@ -460,11 +460,6 @@
           "transliteration": "shu tan9a7ni aakhith?"
         },
         {
-          "slot": "how-much-does-this-cost",
-          "arabic": "بكم هذا؟",
-          "transliteration": "bikam haatha?"
-        },
-        {
           "slot": "is-there-a-dish-of-the-day",
           "arabic": "فِيه طَبَق الْيَوْم؟",
           "transliteration": "fii 6abag il yoom?"
@@ -1213,11 +1208,6 @@
           "slot": "can-i-have-the-receipt",
           "arabic": "مُمْكِن الْفَاتُورَة؟",
           "transliteration": "mumkin il faatoora?"
-        },
-        {
-          "slot": "is-there-a-discount-today",
-          "arabic": "فِيه خِصْم الْيَوْم؟",
-          "transliteration": "fii kha9m il yoom?"
         },
         {
           "slot": "bless-your-hands-the-food-was-delicious",

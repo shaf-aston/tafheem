@@ -876,11 +876,6 @@
           "slot": "we-ll-see-you-tomorrow-to-a-man",
           "arabic": "نِشُوفَك بَكْرَة",
           "transliteration": "nishoofak bukra"
-        },
-        {
-          "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "أِشُوفَك بَكْرَة",
-          "transliteration": "ashoofak bukra"
         }
       ],
       "dialogue": [
@@ -1231,11 +1226,6 @@
           "slot": "on-the-left",
           "arabic": "عَلَى يِسَارْك",
           "transliteration": "3ala yasarik"
-        },
-        {
-          "slot": "straight-ahead",
-          "arabic": "شُغُلْ مُسْتَقِيم",
-          "transliteration": "shuGhl mustaqeem"
         },
         {
           "slot": "near",
@@ -2063,11 +2053,6 @@
           "transliteration": "jinsiyyati sooriyya"
         },
         {
-          "slot": "where-do-you-live-to-a-man",
-          "arabic": "إنتَ ساكن فين؟",
-          "transliteration": "inta saakin feen?"
-        },
-        {
           "slot": "i-live-in-amman",
           "arabic": "أسكن في عمّان",
           "transliteration": "askun fi 3ammaan"
@@ -2132,7 +2117,9 @@
         },
         {
           "speaker": "Khaled",
-          "slot": "where-do-you-live-to-a-man"
+          "arabic": "إنتَ ساكن فين؟",
+          "transliteration": "inta saakin feen?",
+          "english": "Where do you live? (to a man)"
         },
         {
           "speaker": "Hassan",

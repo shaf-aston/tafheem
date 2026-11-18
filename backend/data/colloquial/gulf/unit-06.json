@@ -850,16 +850,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-much-is-this",
-          "arabic": "بِكَم هَذَا؟",
-          "transliteration": "bikam haadha?",
-          "reply": {
-            "arabic": "بِمِيَّة وَخَمْسِين",
-            "transliteration": "bi-miyya w khamsiin",
-            "english": "For a hundred and fifty."
-          }
-        },
-        {
           "slot": "it-s-very-expensive",
           "arabic": "غَالِي وَايِد",
           "transliteration": "ghaali waayid"

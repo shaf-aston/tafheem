@@ -89,9 +89,9 @@
       "lesson": "lesson-03",
       "sentences": [
         {
-          "slot": "three-brothers-one-sister",
-          "arabic": "أنا عندي تلات إخوات وأخت واحدة.",
-          "transliteration": "ana 3andi talat ekhwaat w okht wa7da."
+          "slot": "son-daughter-at-school",
+          "arabic": "ابني وبنتي في المدرسة.",
+          "transliteration": "ebni w benti fel-madrasa."
         },
         {
           "slot": "grandmother-lives-with-us",

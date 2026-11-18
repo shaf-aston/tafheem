@@ -71,16 +71,6 @@
           "transliteration": "marti"
         },
         {
-          "slot": "how-many-people-are-in-your-family-to-a-man",
-          "arabic": "كَمْ نَاسِ فِي أَهْلِك؟",
-          "transliteration": "kam naas fi ahlak?"
-        },
-        {
-          "slot": "i-have-a-brother-and-two-sisters",
-          "arabic": "عِنْدِي أَخِي وَخِتَيْن",
-          "transliteration": "3indi akhi w khiten"
-        },
-        {
           "slot": "are-you-married-to-a-man",
           "arabic": "إِنْتَ مِتْزَوِّج؟",
           "transliteration": "inta mitzawwij?"
@@ -111,11 +101,15 @@
         },
         {
           "speaker": "أَحْمَد",
-          "slot": "how-many-people-are-in-your-family-to-a-man"
+          "arabic": "كَمْ نَاسِ فِي أَهْلِك؟",
+          "transliteration": "kam naas fi ahlak?",
+          "english": "How many people are in your family? (to a man)"
         },
         {
           "speaker": "فَاطِمَة",
-          "slot": "i-have-a-brother-and-two-sisters"
+          "arabic": "عِنْدِي أَخِي وَخِتَيْن",
+          "transliteration": "3indi akhi w khiten",
+          "english": "I have a brother and two sisters."
         },
         {
           "speaker": "أَحْمَد",
@@ -471,16 +465,6 @@
           "transliteration": "shay"
         },
         {
-          "slot": "the-bill-please",
-          "arabic": "الْحِسَاب لَوْ سَمَحْت",
-          "transliteration": "il-hisaab law samaht"
-        },
-        {
-          "slot": "how-much-is-the-bill",
-          "arabic": "كَمْ الْحِسَاب؟",
-          "transliteration": "kam il-hisaab?"
-        },
-        {
           "slot": "to-your-health-said-to-someone-after-they-finish",
           "arabic": "صِحَّة وَعَافِيَة",
           "transliteration": "si77a w 3aafya",
@@ -562,7 +546,9 @@
         },
         {
           "speaker": "سَالِم",
-          "slot": "the-bill-please"
+          "arabic": "الْحِسَاب لَوْ سَمَحْت",
+          "transliteration": "il-hisaab law samaht",
+          "english": "The bill, please."
         },
         {
           "speaker": "الْخَادِم",
@@ -572,7 +558,9 @@
         },
         {
           "speaker": "سَالِم",
-          "slot": "how-much-is-the-bill"
+          "arabic": "كَمْ الْحِسَاب؟",
+          "transliteration": "kam il-hisaab?",
+          "english": "How much is the bill?"
         },
         {
           "speaker": "الْخَادِم",
@@ -839,16 +827,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-old-are-you-to-a-man",
-          "arabic": "كم عمرك؟",
-          "transliteration": "kam 3umrak?",
-          "reply": {
-            "arabic": "عمري ثلاثين سنة",
-            "transliteration": "3umri thalaatheen sana",
-            "english": "I am thirty years old."
-          }
-        },
-        {
           "slot": "i-am-married-male-speaker",
           "arabic": "أنا متزوج",
           "transliteration": "ana mitzawwij"
@@ -866,16 +844,6 @@
             "arabic": "ساكنين في جدة",
             "transliteration": "saakneen fi jedda",
             "english": "They live in Jeddah."
-          }
-        },
-        {
-          "slot": "what-is-your-job-to-a-man",
-          "arabic": "إيش شغلك؟",
-          "transliteration": "eesh shughlak?",
-          "reply": {
-            "arabic": "أنا مهندس",
-            "transliteration": "ana muhandis",
-            "english": "I am an engineer."
           }
         },
         {
@@ -917,12 +885,15 @@
       "dialogue": [
         {
           "speaker": "Hanan",
-          "slot": "how-old-are-you-to-a-man"
+          "arabic": "كم عمرك؟",
+          "transliteration": "kam 3umrak?",
+          "english": "How old are you? (to a man)"
         },
         {
           "speaker": "Abdullah",
-          "slot": "how-old-are-you-to-a-man",
-          "reply": true
+          "arabic": "عمري ثلاثين سنة",
+          "transliteration": "3umri thalaatheen sana",
+          "english": "I am thirty years old."
         },
         {
           "speaker": "Hanan",
@@ -1782,27 +1753,20 @@
           "slot": "my-neighbour-is-nice-male-neighbour",
           "arabic": "جاري طيب",
           "transliteration": "jaari Tayyib"
-        },
-        {
-          "slot": "which-city-are-you-from-to-a-man",
-          "arabic": "إنت من أي مدينة؟",
-          "transliteration": "inta min ayy madeena?",
-          "reply": {
-            "arabic": "أنا من مكة",
-            "transliteration": "ana min makka",
-            "english": "I am from Makkah."
-          }
         }
       ],
       "dialogue": [
         {
           "speaker": "Yasser",
-          "slot": "which-city-are-you-from-to-a-man"
+          "arabic": "إنت من أي مدينة؟",
+          "transliteration": "inta min ayy madeena?",
+          "english": "Which city are you from? (to a man)"
         },
         {
           "speaker": "Sultan",
-          "slot": "which-city-are-you-from-to-a-man",
-          "reply": true
+          "arabic": "أنا من مكة",
+          "transliteration": "ana min makka",
+          "english": "I am from Makkah."
         },
         {
           "speaker": "Yasser",

@@ -70,11 +70,6 @@
           "transliteration": "mumken shoof l-ghorfe abel?"
         },
         {
-          "slot": "where-s-the-elevator",
-          "arabic": "وَيْن المَصْعَد؟",
-          "transliteration": "ween l-mas3ad?"
-        },
-        {
           "slot": "i-want-the-key-please",
           "arabic": "بِدّي المِفْتاح لو سَمِحْت",
           "transliteration": "biddi l-muftaa7 law sama7t"
@@ -987,11 +982,6 @@
           "transliteration": "T-Tayyaara ta2akhkharet ktiir"
         },
         {
-          "slot": "i-missed-the-bus",
-          "arabic": "فاتْني الْبّاص",
-          "transliteration": "faatni l-baaS"
-        },
-        {
           "slot": "i-couldn-t-find-my-passport",
           "arabic": "ما لَقيت جَواز سَفَري",
           "transliteration": "ma la2eet jawaaz safari"
@@ -1740,11 +1730,6 @@
             "transliteration": "ee, tfaDDal",
             "english": "Yes, here you go"
           }
-        },
-        {
-          "slot": "the-weather-is-very-hot",
-          "arabic": "الجوّ شوب كتير",
-          "transliteration": "ij-jaww shoob ktiir"
         },
         {
           "slot": "drink-plenty-of-water",

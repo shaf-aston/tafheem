@@ -67,11 +67,6 @@
           "transliteration": "yenfa3 ashoof el-oDa el-awwel?"
         },
         {
-          "slot": "where-s-the-elevator",
-          "arabic": "الأَسَانْسِير فِين؟",
-          "transliteration": "el-asanseer feen?"
-        },
-        {
           "slot": "i-want-the-key-please",
           "arabic": "عَايِز الْمِفْتَاح مِن فَضْلَك",
           "transliteration": "3ayez el-muftaa7 min faDlak"
@@ -1152,11 +1147,6 @@
           "transliteration": "eT-Tayyaara et2akharit awi"
         },
         {
-          "slot": "i-missed-the-bus",
-          "arabic": "الأَتُوبِيس فَاتِني",
-          "transliteration": "el-otobees faatni"
-        },
-        {
           "slot": "i-couldn-t-find-my-passport",
           "arabic": "مَلَقِّيتِش الْبَاسْبُور",
           "transliteration": "ma la2eetesh el-basbor"
@@ -1957,11 +1947,6 @@
           }
         },
         {
-          "slot": "the-weather-is-very-hot",
-          "arabic": "الجَوّ حَرّ أَوِي",
-          "transliteration": "eg-gaww 7arr 2awi"
-        },
-        {
           "slot": "drink-plenty-of-water",
           "arabic": "اشْرَب مَيَّة كِتِير",
           "transliteration": "eshrab mayya kteer"
@@ -2031,7 +2016,9 @@
         },
         {
           "speaker": "هدى",
-          "slot": "the-weather-is-very-hot"
+          "arabic": "الجَوّ حَرّ أَوِي",
+          "transliteration": "eg-gaww 7arr 2awi",
+          "english": "The weather is very hot"
         },
         {
           "speaker": "هدى",

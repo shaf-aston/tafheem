@@ -68,16 +68,6 @@
           "transliteration": "mraati"
         },
         {
-          "slot": "how-many-people-are-in-your-family-to-a-man",
-          "arabic": "شْحَالْ دِيَالْ النَّاسْ فِعَائِلْتَك?",
-          "transliteration": "sh7aal dyal n-naas f 3aa2iltek?"
-        },
-        {
-          "slot": "i-have-a-brother-and-two-sisters",
-          "arabic": "عَنْدِي خُويَا وَاحِدْ وْجُوجْ خْوَاتْ",
-          "transliteration": "3andi khuya waa7ed w joj khwaat"
-        },
-        {
           "slot": "are-you-married-to-a-man",
           "arabic": "واش نتا مزوج?",
           "transliteration": "waash nta mzawwej?"
@@ -486,16 +476,6 @@
           "transliteration": "ataay"
         },
         {
-          "slot": "the-bill-please",
-          "arabic": "الحِسَابْ عَافَاكْ",
-          "transliteration": "l-7saab 3afaak"
-        },
-        {
-          "slot": "how-much-is-the-bill",
-          "arabic": "شْحَالْ الحِسَابْ?",
-          "transliteration": "sh7aal l-7saab?"
-        },
-        {
           "slot": "to-your-health-said-to-someone-after-they-finish",
           "arabic": "صْحَّة",
           "transliteration": "Sa77a",
@@ -851,16 +831,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-old-are-you-to-a-man",
-          "arabic": "شحال عندك ديال العام؟",
-          "transliteration": "sh7aal 3andek dyal l-3aam?",
-          "reply": {
-            "arabic": "عندي تلاتين عام",
-            "transliteration": "3andi tlateen 3aam",
-            "english": "I am thirty years old."
-          }
-        },
-        {
           "slot": "i-am-married-male-speaker",
           "arabic": "أنا مزوج",
           "transliteration": "ana mzawwej"
@@ -878,16 +848,6 @@
             "arabic": "كيسكنو فمراكش",
             "transliteration": "kaysekno f mrraksh",
             "english": "They live in Marrakech."
-          }
-        },
-        {
-          "slot": "what-is-your-job-to-a-man",
-          "arabic": "فاش كتخدم؟",
-          "transliteration": "faash katkhdem?",
-          "reply": {
-            "arabic": "أنا مهندس",
-            "transliteration": "ana mhendes",
-            "english": "I am an engineer."
           }
         },
         {
@@ -929,12 +889,15 @@
       "dialogue": [
         {
           "speaker": "Imane",
-          "slot": "how-old-are-you-to-a-man"
+          "arabic": "شحال عندك ديال العام؟",
+          "transliteration": "sh7aal 3andek dyal l-3aam?",
+          "english": "How old are you? (to a man)"
         },
         {
           "speaker": "Hamza",
-          "slot": "how-old-are-you-to-a-man",
-          "reply": true
+          "arabic": "عندي تلاتين عام",
+          "transliteration": "3andi tlateen 3aam",
+          "english": "I am thirty years old."
         },
         {
           "speaker": "Hamza",
@@ -1801,27 +1764,20 @@
           "slot": "my-neighbour-is-nice-male-neighbour",
           "arabic": "الجار ديالي مزيان",
           "transliteration": "l-jaar dyaali mezyaan"
-        },
-        {
-          "slot": "which-city-are-you-from-to-a-man",
-          "arabic": "من أي مدينة نتا؟",
-          "transliteration": "men ayy mdeena nta?",
-          "reply": {
-            "arabic": "أنا من فاس",
-            "transliteration": "ana men faas",
-            "english": "I am from Fes."
-          }
         }
       ],
       "dialogue": [
         {
           "speaker": "Rachid",
-          "slot": "which-city-are-you-from-to-a-man"
+          "arabic": "من أي مدينة نتا؟",
+          "transliteration": "men ayy mdeena nta?",
+          "english": "Which city are you from? (to a man)"
         },
         {
           "speaker": "Amine",
-          "slot": "which-city-are-you-from-to-a-man",
-          "reply": true
+          "arabic": "أنا من فاس",
+          "transliteration": "ana men faas",
+          "english": "I am from Fes."
         },
         {
           "speaker": "Rachid",

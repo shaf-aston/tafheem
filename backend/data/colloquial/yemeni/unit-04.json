@@ -414,11 +414,6 @@
           }
         },
         {
-          "slot": "how-much-does-this-cost",
-          "arabic": "كَم سِعِر هَذَا؟",
-          "transliteration": "kam si3ir haadha?"
-        },
-        {
           "slot": "is-there-a-dish-of-the-day",
           "arabic": "فِيهْ طَبَق الْيُوم؟",
           "transliteration": "fih 6abag il yoom?"
@@ -782,11 +777,6 @@
           "slot": "can-i-have-the-receipt",
           "arabic": "فِيهْ إِيصَال لِي؟",
           "transliteration": "fih iisal li?"
-        },
-        {
-          "slot": "is-there-a-discount-today",
-          "arabic": "فِيهْ خَصْم الْيُوم؟",
-          "transliteration": "fih khasm il yoom?"
         },
         {
           "slot": "bless-your-hands-the-food-was-delicious",

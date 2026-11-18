@@ -463,11 +463,6 @@
           }
         },
         {
-          "slot": "how-much-does-this-cost",
-          "arabic": "قِدّيش هَيْدَا؟",
-          "transliteration": "2addeesh hayda?"
-        },
-        {
           "slot": "is-there-a-dish-of-the-day",
           "arabic": "فِي صَحِن الْيَوم؟",
           "transliteration": "fee Sa7en l-yoom?"
@@ -1226,11 +1221,6 @@
           "slot": "can-i-have-the-receipt",
           "arabic": "بْتِعْطِينِي الْفَاتُورَة؟",
           "transliteration": "bta3teeni l faatoora?"
-        },
-        {
-          "slot": "is-there-a-discount-today",
-          "arabic": "فِي تَخْفِيض الْيَوم؟",
-          "transliteration": "fee takhfeed l-yoom?"
         },
         {
           "slot": "bless-your-hands-the-food-was-delicious",

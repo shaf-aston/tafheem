@@ -69,11 +69,6 @@
           "transliteration": "agdir ashoof l-ghorfe awwal?"
         },
         {
-          "slot": "where-s-the-elevator",
-          "arabic": "وَيْن الْمِصْعَد؟",
-          "transliteration": "ween l-mis3ad?"
-        },
-        {
           "slot": "i-want-the-key-please",
           "arabic": "أَشْتِي الْمِفْتاح لَو سَمَحْت",
           "transliteration": "ashti l-muftaa7 law sama7t"
@@ -1011,11 +1006,6 @@
           "transliteration": "T-Tayyaara ti2akhkharat qawi"
         },
         {
-          "slot": "i-missed-the-bus",
-          "arabic": "فاتنِي الْبَاص",
-          "transliteration": "faatni l-baaS"
-        },
-        {
           "slot": "i-couldn-t-find-my-passport",
           "arabic": "مَا لَقِيت الْجَواز بتاعِي",
           "transliteration": "ma la2eet l-jawaaz bta3i"
@@ -1762,11 +1752,6 @@
           }
         },
         {
-          "slot": "the-weather-is-very-hot",
-          "arabic": "الْجَوّ حَارّ قَوِي",
-          "transliteration": "al-jaww 7aarr gawi"
-        },
-        {
           "slot": "drink-plenty-of-water",
           "arabic": "اِشْرَب مَاء كَثِير",
           "transliteration": "ishrab maa2 katheer"
@@ -1790,7 +1775,9 @@
         },
         {
           "speaker": "هدى",
-          "slot": "the-weather-is-very-hot"
+          "arabic": "الْجَوّ حَارّ قَوِي",
+          "transliteration": "al-jaww 7aarr gawi",
+          "english": "The weather is very hot"
         },
         {
           "speaker": "هدى",

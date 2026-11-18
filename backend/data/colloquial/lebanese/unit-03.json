@@ -1801,11 +1801,6 @@
           "transliteration": "3andak asghar?"
         },
         {
-          "slot": "do-you-have-another-color-to-a-man",
-          "arabic": "عِنْدَك لُون تَانِي؟",
-          "transliteration": "3andak loon taani?"
-        },
-        {
           "slot": "this-one-is-nicer",
           "arabic": "هِيدا أَحْلَى",
           "transliteration": "hayda a7la"
@@ -1864,7 +1859,9 @@
         },
         {
           "speaker": "Rima",
-          "slot": "do-you-have-another-color-to-a-man"
+          "arabic": "عِنْدَك لُون تَانِي؟",
+          "transliteration": "3andak loon taani?",
+          "english": "Do you have another color? (to a man)"
         },
         {
           "speaker": "Abu Khalil",

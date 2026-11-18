@@ -862,16 +862,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-much-is-this",
-          "arabic": "بْشْحَالْ هَادَا؟",
-          "transliteration": "bsh7aal haada?",
-          "reply": {
-            "arabic": "بْمِيَة دِرْهَمْ",
-            "transliteration": "b-mya dirham",
-            "english": "A hundred dirhams."
-          }
-        },
-        {
           "slot": "it-s-very-expensive",
           "arabic": "غَالِي بْزَافْ",
           "transliteration": "ghaali bzzaf"

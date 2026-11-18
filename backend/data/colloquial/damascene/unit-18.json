@@ -443,21 +443,6 @@
       "lesson": "lesson-02",
       "phrases": [
         {
-          "slot": "this-is-the-living-room",
-          "arabic": "هَاد الصَّالُون",
-          "transliteration": "haad iS-Saaloon"
-        },
-        {
-          "slot": "where-is-the-kitchen",
-          "arabic": "وَيْن الْمَطْبَخ؟",
-          "transliteration": "ween il-maTbakh?",
-          "reply": {
-            "arabic": "جَنْب الصَّالُون",
-            "transliteration": "janb iS-Saaloon",
-            "english": "Next to the living room."
-          }
-        },
-        {
           "slot": "how-many-bathrooms",
           "arabic": "كَم حَمَّام بِالشَّقَّة؟",
           "transliteration": "kam 7ammaam bish-sha22a?",
@@ -518,11 +503,6 @@
           }
         },
         {
-          "slot": "the-light-does-not-work",
-          "arabic": "الضَّو مَا عَم يِشْتَغِل",
-          "transliteration": "iD-Daw ma 3am yishtaghel"
-        },
-        {
           "slot": "where-do-i-put-the-fridge",
           "arabic": "وَيْن فِيني حُطّ البَرَّاد؟",
           "transliteration": "ween feeni 7oTT il-braad?",
@@ -536,7 +516,9 @@
       "dialogue": [
         {
           "speaker": "Omar",
-          "slot": "this-is-the-living-room"
+          "arabic": "هَاد الصَّالُون",
+          "transliteration": "haad iS-Saaloon",
+          "english": "This is the living room"
         },
         {
           "speaker": "Yusuf",
@@ -555,12 +537,15 @@
         },
         {
           "speaker": "Yusuf",
-          "slot": "where-is-the-kitchen"
+          "arabic": "وَيْن الْمَطْبَخ؟",
+          "transliteration": "ween il-maTbakh?",
+          "english": "Where is the kitchen?"
         },
         {
           "speaker": "Omar",
-          "slot": "where-is-the-kitchen",
-          "reply": true
+          "arabic": "جَنْب الصَّالُون",
+          "transliteration": "janb iS-Saaloon",
+          "english": "Next to the living room."
         },
         {
           "speaker": "Yusuf",
@@ -596,7 +581,9 @@
         },
         {
           "speaker": "Yusuf",
-          "slot": "the-light-does-not-work"
+          "arabic": "الضَّو مَا عَم يِشْتَغِل",
+          "transliteration": "iD-Daw ma 3am yishtaghel",
+          "english": "The light does not work"
         },
         {
           "speaker": "Omar",

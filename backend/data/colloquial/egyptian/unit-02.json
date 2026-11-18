@@ -64,16 +64,6 @@
           "transliteration": "merati"
         },
         {
-          "slot": "how-many-people-are-in-your-family-to-a-man",
-          "arabic": "كَام فَرْد فِي عِيلَتَك؟",
-          "transliteration": "kaam fard fi 3eltak?"
-        },
-        {
-          "slot": "i-have-a-brother-and-two-sisters",
-          "arabic": "عِنْدِي أَخ وَأُخْتَيْن",
-          "transliteration": "3andi akh we okhteen"
-        },
-        {
           "slot": "are-you-married-to-a-man",
           "arabic": "إِنْتَ مِتْجَوِّز؟",
           "transliteration": "enta metgawwez?"
@@ -485,16 +475,6 @@
           "transliteration": "shaay"
         },
         {
-          "slot": "the-bill-please",
-          "arabic": "الْحِسَاب لَو سَمِحْت",
-          "transliteration": "el-7esaab law samaht"
-        },
-        {
-          "slot": "how-much-is-the-bill",
-          "arabic": "الْحِسَاب كَام؟",
-          "transliteration": "el-7esaab kaam?"
-        },
-        {
           "slot": "to-your-health-said-to-someone-after-they-finish",
           "arabic": "صِحَّة",
           "transliteration": "sa77a",
@@ -853,16 +833,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-old-are-you-to-a-man",
-          "arabic": "عِنْدَك كَام سَنَة؟",
-          "transliteration": "3andak kaam sana?",
-          "reply": {
-            "arabic": "عِنْدِي تَلَاتِين سَنَة",
-            "transliteration": "3andi talateen sana",
-            "english": "I am thirty years old."
-          }
-        },
-        {
           "slot": "i-am-married-male-speaker",
           "arabic": "أَنَا مِتْجَوِّز",
           "transliteration": "ana metgawwez"
@@ -880,16 +850,6 @@
             "arabic": "سَاكْنِين فِي إِسْكَنْدَرِيَّة",
             "transliteration": "saakneen fi eskenderiyya",
             "english": "They live in Alexandria."
-          }
-        },
-        {
-          "slot": "what-is-your-job-to-a-man",
-          "arabic": "بِتِشْتِغَل إِيه؟",
-          "transliteration": "betishteghel eih?",
-          "reply": {
-            "arabic": "أَنَا مُهَنْدِس",
-            "transliteration": "ana mohandes",
-            "english": "I am an engineer."
           }
         },
         {
@@ -931,12 +891,15 @@
       "dialogue": [
         {
           "speaker": "Mariam",
-          "slot": "how-old-are-you-to-a-man"
+          "arabic": "عِنْدَك كَام سَنَة؟",
+          "transliteration": "3andak kaam sana?",
+          "english": "How old are you? (to a man)"
         },
         {
           "speaker": "Hassan",
-          "slot": "how-old-are-you-to-a-man",
-          "reply": true
+          "arabic": "عِنْدِي تَلَاتِين سَنَة",
+          "transliteration": "3andi talateen sana",
+          "english": "I am thirty years old."
         },
         {
           "speaker": "Hassan",
@@ -981,12 +944,15 @@
         },
         {
           "speaker": "Mariam",
-          "slot": "what-is-your-job-to-a-man"
+          "arabic": "بِتِشْتِغَل إِيه؟",
+          "transliteration": "betishteghel eih?",
+          "english": "What do you do for work? (to a man)"
         },
         {
           "speaker": "Hassan",
-          "slot": "what-is-your-job-to-a-man",
-          "reply": true
+          "arabic": "أَنَا مُهَنْدِس",
+          "transliteration": "ana mohandes",
+          "english": "I am an engineer."
         },
         {
           "speaker": "Mariam",
@@ -1796,16 +1762,6 @@
           "slot": "my-neighbour-is-nice-male-neighbour",
           "arabic": "جَارِي طَيِّب",
           "transliteration": "gaari Tayyeb"
-        },
-        {
-          "slot": "which-city-are-you-from-to-a-man",
-          "arabic": "إِنْتَ مِن أَنْهِي مَدِينَة؟",
-          "transliteration": "enta min anhi medeena?",
-          "reply": {
-            "arabic": "أَنَا مِن المَنْصُورَة",
-            "transliteration": "ana min el-manSoora",
-            "english": "I am from Mansoura."
-          }
         }
       ],
       "dialogue": [
@@ -1833,12 +1789,15 @@
         },
         {
           "speaker": "Omar",
-          "slot": "which-city-are-you-from-to-a-man"
+          "arabic": "إِنْتَ مِن أَنْهِي مَدِينَة؟",
+          "transliteration": "enta min anhi medeena?",
+          "english": "Which city are you from? (to a man)"
         },
         {
           "speaker": "Tarek",
-          "slot": "which-city-are-you-from-to-a-man",
-          "reply": true
+          "arabic": "أَنَا مِن المَنْصُورَة",
+          "transliteration": "ana min el-manSoora",
+          "english": "I am from Mansoura."
         },
         {
           "speaker": "Omar",

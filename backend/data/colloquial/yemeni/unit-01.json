@@ -885,11 +885,6 @@
           "slot": "we-ll-see-you-tomorrow-to-a-man",
           "arabic": "نِشُوفَكَ بُكْرَة",
           "transliteration": "nishoofak bukra"
-        },
-        {
-          "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "شَاشُوفَكَ بُكْرَة",
-          "transliteration": "shaashoofak bukra"
         }
       ],
       "dialogue": [
@@ -1249,11 +1244,6 @@
           "slot": "on-the-left",
           "arabic": "عَلَى شِمَالَك",
           "transliteration": "3ala shimalik"
-        },
-        {
-          "slot": "straight-ahead",
-          "arabic": "عَلَى الطَّرِيق",
-          "transliteration": "3ala it-tareeq"
         },
         {
           "slot": "near",
@@ -2076,11 +2066,6 @@
           "slot": "my-nationality-is-syrian",
           "arabic": "جنسيتي سورية",
           "transliteration": "jinsiyyati sooriyya"
-        },
-        {
-          "slot": "where-do-you-live-to-a-man",
-          "arabic": "وين تسكن؟",
-          "transliteration": "ween tiskun?"
         },
         {
           "slot": "i-live-in-amman",

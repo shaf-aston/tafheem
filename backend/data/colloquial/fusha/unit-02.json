@@ -69,21 +69,6 @@
           "transliteration": "zawjatee"
         },
         {
-          "slot": "how-many-people-are-in-your-family-to-a-man",
-          "arabic": "كَمْ فَرْدًا فِي عَائِلَتِكَ؟",
-          "transliteration": "kam fardan fee 3aa2ilatika?",
-          "reply": {
-            "arabic": "فِي عَائِلَتِي خَمْسَةُ أَفْرَاد",
-            "transliteration": "fee 3aa2ilatee khamsatu afraad",
-            "english": "There are five people in my family."
-          }
-        },
-        {
-          "slot": "i-have-a-brother-and-two-sisters",
-          "arabic": "لِي أَخٌ وَأُخْتَان",
-          "transliteration": "lee akhun wa ukhtaan"
-        },
-        {
           "slot": "are-you-married-to-a-man",
           "arabic": "هَلْ أَنْتَ مُتَزَوِّج؟",
           "transliteration": "hal anta mutazawwij?",
@@ -124,7 +109,9 @@
         },
         {
           "speaker": "Khalid",
-          "slot": "i-have-a-brother-and-two-sisters"
+          "arabic": "لِي أَخٌ وَأُخْتَان",
+          "transliteration": "lee akhun wa ukhtaan",
+          "english": "I have a brother and two sisters."
         },
         {
           "speaker": "Muna",
@@ -467,21 +454,6 @@
           "transliteration": "shaay"
         },
         {
-          "slot": "the-bill-please",
-          "arabic": "الْحِسَابَ مِنْ فَضْلِكَ",
-          "transliteration": "al-7isaaba min fadlika"
-        },
-        {
-          "slot": "how-much-is-the-bill",
-          "arabic": "كَمْ هُوَ الْحِسَاب؟",
-          "transliteration": "kam huwa al-7isaab?",
-          "reply": {
-            "arabic": "الْحِسَاب خَمْسُونَ رِيَال",
-            "transliteration": "al-7isaab khamsoona riyaal",
-            "english": "The bill is fifty riyals."
-          }
-        },
-        {
           "slot": "to-your-health-said-to-someone-after-they-finish",
           "arabic": "صِحَّةً وَعَافِيَة",
           "transliteration": "si77atan wa 3aafiya"
@@ -560,12 +532,15 @@
         },
         {
           "speaker": "Adel",
-          "slot": "the-bill-please"
+          "arabic": "الْحِسَابَ مِنْ فَضْلِكَ",
+          "transliteration": "al-7isaaba min fadlika",
+          "english": "The bill, please."
         },
         {
           "speaker": "Jamal",
-          "slot": "how-much-is-the-bill",
-          "reply": true
+          "arabic": "الْحِسَاب خَمْسُونَ رِيَال",
+          "transliteration": "al-7isaab khamsoona riyaal",
+          "english": "The bill is fifty riyals."
         },
         {
           "speaker": "Nora",
@@ -804,16 +779,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-old-are-you-to-a-man",
-          "arabic": "كَمْ عُمْرُكَ؟",
-          "transliteration": "kam 3umruka?",
-          "reply": {
-            "arabic": "عُمْرِي ثَلَاثُونَ سَنَة",
-            "transliteration": "3umree thalaathoona sana",
-            "english": "I am thirty years old."
-          }
-        },
-        {
           "slot": "i-am-married-male-speaker",
           "arabic": "أَنَا مُتَزَوِّج",
           "transliteration": "anaa mutazawwij"
@@ -831,16 +796,6 @@
             "arabic": "تَسْكُنُ فِي جُدَّة",
             "transliteration": "taskunu fee Judda",
             "english": "They live in Jeddah."
-          }
-        },
-        {
-          "slot": "what-is-your-job-to-a-man",
-          "arabic": "مَاذَا تَعْمَلُ؟",
-          "transliteration": "maathaa ta3malu?",
-          "reply": {
-            "arabic": "أَنَا مُهَنْدِس",
-            "transliteration": "anaa muhandis",
-            "english": "I am an engineer."
           }
         },
         {
@@ -1630,16 +1585,6 @@
           "slot": "my-neighbour-is-nice-male-neighbour",
           "arabic": "جَارِي لَطِيف",
           "transliteration": "jaaree lateef"
-        },
-        {
-          "slot": "which-city-are-you-from-to-a-man",
-          "arabic": "مِنْ أَيِّ مَدِينَةٍ أَنْتَ؟",
-          "transliteration": "min ayyi madeenatin anta?",
-          "reply": {
-            "arabic": "أَنَا مِنْ مَدِينَةٍ صَغِيرَة",
-            "transliteration": "anaa min madeenatin sagheera",
-            "english": "I am from a small city."
-          }
         }
       ],
       "dialogue": [

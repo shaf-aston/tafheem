@@ -1017,16 +1017,6 @@
           }
         },
         {
-          "slot": "may-god-reward-you-with-good",
-          "arabic": "جَزَاكَ اللهُ خَيْرًا",
-          "transliteration": "jazaaka Allaahu khayran",
-          "reply": {
-            "arabic": "وَإِيَّاكَ",
-            "transliteration": "wa iyyaak",
-            "english": "And you too"
-          }
-        },
-        {
           "slot": "i-will-pray-the-sunnah-after-jumuah",
           "arabic": "هَصَلِّي السُّنَّة بَعْد الجُمْعَة",
           "transliteration": "haSalli es-sunna ba3d el-gum3a"

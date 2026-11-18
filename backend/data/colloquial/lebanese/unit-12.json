@@ -1303,16 +1303,6 @@
           }
         },
         {
-          "slot": "thanks-a-lot",
-          "arabic": "يِسْلِمُو كْتِير",
-          "transliteration": "yislamo ktiir",
-          "reply": {
-            "arabic": "وَلُو",
-            "transliteration": "wa law",
-            "english": "Not at all."
-          }
-        },
-        {
           "slot": "good-that-i-didn-t-waste-your-time",
           "arabic": "مِنِيح إِنِّي مَا ضَيّْعَت وَقْتَك",
           "transliteration": "mnii7 2inni ma dayya3t wa2tak"

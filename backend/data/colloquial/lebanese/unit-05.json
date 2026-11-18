@@ -61,11 +61,6 @@
           "transliteration": "hon mneeh, wa22ef."
         },
         {
-          "slot": "keep-the-change",
-          "arabic": "خَلِّي الْبَاقِي.",
-          "transliteration": "khalli el-ba2i."
-        },
-        {
           "slot": "is-there-a-taxi-nearby-here",
           "arabic": "فِي تَاكْسِي قْرِيب مِن هُون؟",
           "transliteration": "fi taksi 2reeb min hon?"
@@ -1601,34 +1596,9 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "taxi",
-          "arabic": "تَاكْسِي",
-          "transliteration": "taaksi"
-        },
-        {
           "slot": "bus",
           "arabic": "بَاص",
           "transliteration": "baas"
-        },
-        {
-          "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "بِدِّي رُوح عَالْمَدِينَة الْقَدِيمَة",
-          "transliteration": "biddi roo7 3al-madiine l-2adiime"
-        },
-        {
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "وَقِّف هُون لَو سَمَحْت",
-          "transliteration": "wa22ef hon law sama7t"
-        },
-        {
-          "slot": "how-much-is-the-fare",
-          "arabic": "قُدِيش الْأُجْرَة؟",
-          "transliteration": "2addeesh il-2ojra?"
-        },
-        {
-          "slot": "take-me-to-to-a-man",
-          "arabic": "خِدْنِي عـِ...",
-          "transliteration": "khedni 3a..."
         },
         {
           "slot": "are-you-free-asking-a-taxi-driver-if-available",
@@ -1701,7 +1671,9 @@
         },
         {
           "speaker": "Karim",
-          "slot": "how-much-is-the-fare"
+          "arabic": "قُدِيش الْأُجْرَة؟",
+          "transliteration": "2addeesh il-2ojra?",
+          "english": "How much is the fare?"
         },
         {
           "speaker": "Abu Ali",

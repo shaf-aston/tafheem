@@ -39,16 +39,6 @@
           "transliteration": "istayqadhtu mubakkiran"
         },
         {
-          "slot": "what-time-is-it-now",
-          "arabic": "كَمِ السَّاعَةُ الْآن؟",
-          "transliteration": "kami as-saa3atu al-aan?",
-          "reply": {
-            "arabic": "السَّاعَةُ السَّابِعَةُ وَالنِّصْف",
-            "transliteration": "as-saa3atu as-saabi3atu wan-nisf",
-            "english": "It's half past seven."
-          }
-        },
-        {
           "slot": "it-s-seven-o-clock",
           "arabic": "السَّاعَةُ السَّابِعَة",
           "transliteration": "as-saa3atu as-saabi3a"
@@ -113,7 +103,9 @@
         },
         {
           "speaker": "Mariam",
-          "slot": "what-time-is-it-now"
+          "arabic": "كَمِ السَّاعَةُ الْآن؟",
+          "transliteration": "kami as-saa3atu al-aan?",
+          "english": "What time is it now?"
         },
         {
           "speaker": "Yusuf",

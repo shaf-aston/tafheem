@@ -77,16 +77,6 @@
           "transliteration": "hna mzyan, wqef."
         },
         {
-          "slot": "keep-the-change",
-          "arabic": "الْبَاقِي لِيكْ.",
-          "transliteration": "l-baqi lik.",
-          "reply": {
-            "arabic": "اللَّهُ يْعَطِيكْ الصِّحَّة.",
-            "transliteration": "llah y3tik s-se77a.",
-            "english": "Thank you (God give you health)."
-          }
-        },
-        {
           "slot": "is-there-a-taxi-nearby-here",
           "arabic": "وَاشْ كَاينْ شِي طَاكْسِي قْرِيبْ مِنْ هَنَا؟",
           "transliteration": "wash kayn shi taksi qrib men hna?"
@@ -1643,39 +1633,9 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "taxi",
-          "arabic": "طاكسي",
-          "transliteration": "taksi"
-        },
-        {
           "slot": "bus",
           "arabic": "طوبيس",
           "transliteration": "tobis"
-        },
-        {
-          "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "بغيت نمشي للمدينة القديمة",
-          "transliteration": "bghit nmshi l-medina l-qdima"
-        },
-        {
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "وقف هنا عافاك",
-          "transliteration": "wqef hna 3afak"
-        },
-        {
-          "slot": "how-much-is-the-fare",
-          "arabic": "شحال خاصني نخلص؟",
-          "transliteration": "shhal khasni nkhles?",
-          "reply": {
-            "arabic": "خمسة وعشرين درهم.",
-            "transliteration": "khamsa w 3ashrin dirham.",
-            "english": "Twenty-five dirhams."
-          }
-        },
-        {
-          "slot": "take-me-to-to-a-man",
-          "arabic": "ديني للمحطة",
-          "transliteration": "dini l-mahatta"
         },
         {
           "slot": "are-you-free-asking-a-taxi-driver-if-available",
@@ -1748,7 +1708,9 @@
         },
         {
           "speaker": "كريم",
-          "slot": "i-want-to-go-to-the-old-city"
+          "arabic": "بغيت نمشي للمدينة القديمة",
+          "transliteration": "bghit nmshi l-medina l-qdima",
+          "english": "I want to go to the Old City."
         },
         {
           "speaker": "عبد الله",
@@ -1797,8 +1759,9 @@
         },
         {
           "speaker": "عبد الله",
-          "slot": "how-much-is-the-fare",
-          "reply": true
+          "arabic": "خمسة وعشرين درهم.",
+          "transliteration": "khamsa w 3ashrin dirham.",
+          "english": "Twenty-five dirhams."
         }
       ],
       "de_book": [

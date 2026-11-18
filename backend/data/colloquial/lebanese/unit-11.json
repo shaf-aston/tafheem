@@ -471,16 +471,6 @@
           }
         },
         {
-          "slot": "what-would-you-like-to-drink",
-          "arabic": "شُو بْتِحِبِّ تِشْرَب؟",
-          "transliteration": "shu bti7ebb tishrab?",
-          "reply": {
-            "arabic": "أَيِّ شِي، ما تِكَلَّف حالَك",
-            "transliteration": "2ayy shi, ma tkallef 7aalak",
-            "english": "Anything, don't go to trouble."
-          }
-        },
-        {
           "slot": "coffee-or-tea",
           "arabic": "قَهْوَة وِلَّا شاي؟",
           "transliteration": "2ahwe wella shaay?",
@@ -2179,11 +2169,6 @@
           }
         },
         {
-          "slot": "where-is-the-bathroom",
-          "arabic": "وَيْن الحَمَّام؟",
-          "transliteration": "ween el7ammaam?"
-        },
-        {
           "slot": "here-is-a-new-toothbrush-for-you",
           "arabic": "هَيْدِي فَرْشَايِة سْنَان جْدِيدِة إِلَك",
           "transliteration": "haydi farshaayet snaan jdiide elak"
@@ -2254,7 +2239,9 @@
         },
         {
           "speaker": "Hussein",
-          "slot": "where-is-the-bathroom"
+          "arabic": "وَيْن الحَمَّام؟",
+          "transliteration": "ween el7ammaam?",
+          "english": "Where is the bathroom?"
         },
         {
           "speaker": "Ziad",

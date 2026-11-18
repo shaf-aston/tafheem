@@ -821,16 +821,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-much-is-this",
-          "arabic": "بِكَمْ هَذَا؟",
-          "transliteration": "bikam haadhaa?",
-          "reply": {
-            "arabic": "بِخَمْسِينَ دِينَارًا",
-            "transliteration": "bikhamseena deenaaran",
-            "english": "For fifty dinars."
-          }
-        },
-        {
           "slot": "it-s-very-expensive",
           "arabic": "هَذَا غَالٍ جِدًّا",
           "transliteration": "haadhaa ghaalin jiddan"

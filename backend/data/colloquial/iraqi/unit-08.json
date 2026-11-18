@@ -460,11 +460,6 @@
           "transliteration": "ba3dani ma khallaSit it-tagreer"
         },
         {
-          "slot": "i-have-a-meeting-at-ten-o-clock",
-          "arabic": "عندي اجتماع الساعة عشرة",
-          "transliteration": "3indi ijtimaa3 is-saa3a 3ashra"
-        },
-        {
           "slot": "my-colleague-at-the-office-is-very-nice",
           "arabic": "زميلي بالشغل كلش حلو",
           "transliteration": "zameeli bish-shughul kullish Hilu"
@@ -2030,11 +2025,6 @@
           "transliteration": "leesh treed tishtughul wiyyaana?"
         },
         {
-          "slot": "i-speak-arabic-and-english",
-          "arabic": "أَحْچِي عَرَبِي وْإِنْگْلِيزِي",
-          "transliteration": "a7chi 3arabi w ingileezi"
-        },
-        {
           "slot": "what-are-your-strengths-to-a-man",
           "arabic": "شِنُو نُقَاط القُوَّة عِنْدَك؟",
           "transliteration": "shinu nugaaT il-guwwa 3indak?"
@@ -2123,7 +2113,9 @@
         },
         {
           "speaker": "Yaseen",
-          "slot": "i-speak-arabic-and-english"
+          "arabic": "أَحْچِي عَرَبِي وْإِنْگْلِيزِي",
+          "transliteration": "a7chi 3arabi w ingileezi",
+          "english": "I speak Arabic and English."
         },
         {
           "speaker": "Hameed",

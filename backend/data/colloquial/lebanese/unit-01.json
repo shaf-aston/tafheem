@@ -941,11 +941,6 @@
           "slot": "we-ll-see-you-tomorrow-to-a-man",
           "arabic": "مِنْشُوفَك بُكْرًا",
           "transliteration": "mnshoofak bukra"
-        },
-        {
-          "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "بِشُوفَك بُكْرًا",
-          "transliteration": "bshoofak bukra"
         }
       ],
       "dialogue": [
@@ -1317,11 +1312,6 @@
           "slot": "on-the-left",
           "arabic": "عَالْشِمَال",
           "transliteration": "3a-shmaal"
-        },
-        {
-          "slot": "straight-ahead",
-          "arabic": "دُغْرِي",
-          "transliteration": "dughri"
         },
         {
           "slot": "near",
@@ -2160,16 +2150,6 @@
           "transliteration": "jensiyyti sooriyye"
         },
         {
-          "slot": "where-do-you-live-to-a-man",
-          "arabic": "وَيْن ساكِن؟",
-          "transliteration": "wein saaken?",
-          "reply": {
-            "arabic": "ساكِن بِالحَمْرا",
-            "transliteration": "saaken bel-7amra",
-            "english": "I live in Hamra."
-          }
-        },
-        {
           "slot": "i-live-in-amman",
           "arabic": "أَنا ساكِن بْعَمَّان",
           "transliteration": "ana saaken b3ammaan"
@@ -2234,7 +2214,9 @@
         },
         {
           "speaker": "Rami",
-          "slot": "where-do-you-live-to-a-man"
+          "arabic": "وَيْن ساكِن؟",
+          "transliteration": "wein saaken?",
+          "english": "Where do you live? (to a man)"
         },
         {
           "speaker": "Hassan",
