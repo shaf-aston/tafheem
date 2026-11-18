@@ -544,6 +544,9 @@ class Hadith(BaseSettings):
     hadith_meaning_max_tokens: int = Field(default=128, gt=0)
     # Word and meaning rankings are merged by reciprocal rank: 1/(k + rank) summed.
     # 60 is the standard constant; larger flattens the difference between ranks.
+    # Measured against the yardstick's 81 (74 found, MRR 0.76) and all lower, so left out: meaning
+    # weighted 1.5-2x (65-72), k 10/30 (same), a boost for hadith retold in more books (72-73),
+    # retellings pooling their scores (66-72), one retelling per hadith (73), a softer length penalty (71-73).
     hadith_meaning_fusion_k: int = Field(default=60, gt=0)
     # After the model fails to load (no network for its first fetch), searches
     # answer by words alone for this long before loading is tried again.
