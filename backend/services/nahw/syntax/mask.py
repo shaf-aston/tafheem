@@ -194,7 +194,8 @@ def _ma_cancels_inna(toks, heads, rels) -> None:
     told of it the khabar. The parser takes the ما for a noun, its subject or its khabar (إنما لكل امرئ ما نوى), so
     the ما is a particle hung on the إنّ as a plain modifier: a noun hung on it is the mubtada, a jar the khabar."""
     for m, tok in enumerate(toks, 1):
-        particle = heads[m - 1]
+        # the ما is written onto the word before it, the sister, wherever the parser hung it (إِنَّمَا زَيْدٌ قَائِمٌ: on قائم)
+        particle = m - 1
         if strip_diacritics(tok.get("form", "")) != "+ما" or not particle \
                 or not is_one(toks[particle - 1]["lemma"].removesuffix("ما"), "inna"):
             continue

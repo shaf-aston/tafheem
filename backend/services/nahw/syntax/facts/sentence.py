@@ -212,8 +212,9 @@ class Sentence:
         if is_one(verb["lemma"], "zanna", "one_object"):
             return False
         # لَا تَتْرُكْ الدَّرْسَ خَوْفًا مِنَ التَّعَبِ: the second is what the first is said to be (أصلهما مبتدأ وخبر), so a masdar of
-        # the heart giving the reason (its مفعول لأجله) is no second object, and the verb is the plain one of one object
-        return bool(first) and any(k["id"] > first["id"] and k["rel"] in ("OBJ", "MOD") and noun_tagged(k)
+        # the heart giving the reason (its مفعول لأجله) is no second object, and the verb is the plain one of one object;
+        # جَعَلَ مِنْ بَعْدِ ضَعْفٍ قُوَّةً ثُمَّ: nor a joining word the parser tags a noun
+        return bool(first) and any(k["id"] > first["id"] and k["rel"] in ("OBJ", "MOD") and noun_tagged(k) and not read_as(k, "atf")
                                    and typed_or_parsed_case(k) in (None, "a") and not purpose(k, verb) for k in kids)
 
     def noun_before(self, particle: dict) -> bool:

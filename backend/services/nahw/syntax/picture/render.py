@@ -121,7 +121,7 @@ def draw(c: Picture) -> dict:
             return CONDITION
         if is_verb(token):
             return VERBAL
-        if family_of[token["id"]] == "inna":
+        if family_of[token["id"]] == "inna" or found.get("kaffa"):  # وَإِنَّمَا عَمْرٌو قَاعِدٌ: ما stops إنّ working, not opening
             return NOMINAL
         # وَأَطِيعُوا hung on its وَ: the joined sentence is what the وَ brings; a condition's answer is
         # drawn in the condition's own unit (وَمَنْ شَاءَ أَفْطَرَ), and a sentence with a place in its own (جَاءَ زَيْدٌ

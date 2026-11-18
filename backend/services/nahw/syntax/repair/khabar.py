@@ -272,7 +272,8 @@ def jar_off_particle(s: Sentence) -> None:
             continue
         khabar = next((k for k in s.kids(particle) if k["rel"] == "PRD"), None)
         for jar in s.kids(particle):
-            if jar["rel"] != "MOD" or not is_preposition(jar):
+            # وَإِنَّ عَمْرًا قَاعِدٌ: a و over a second إنّ joins two sentences; a jar works on a noun
+            if jar["rel"] != "MOD" or not is_preposition(jar) or not any(noun_tagged(k) for k in s.kids(jar)):
                 continue
             if khabar and is_participle(khabar):
                 s.relink(jar, khabar["id"], "MOD")

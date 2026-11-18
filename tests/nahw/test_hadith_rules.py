@@ -41,9 +41,14 @@ def role(sentence: str, word: str) -> str:
     ("إِنَّمَا عِنْدَ زَيْدٍ كِتَابٌ", "كِتَابٌ", "مبتدأ مؤخر"),
     ("وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى", "مَا", "مبتدأ مؤخر"),
     ("وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى", "وَإِنَّمَا", "كافة ومكفوفة"),
+    # the ما is كافة wherever the parser hung it (here on the khabar)
+    ("إِنَّمَا زَيْدٌ قَائِمٌ وَإِنَّمَا عَمْرٌو قَاعِدٌ", "زَيْدٌ", "مبتدأ"),
     # إنّ with no ما still governs
     ("إِنَّ الْعَدْلَ أَسَاسُ الْمُلْكِ", "الْعَدْلَ", "اسم إن"),
     ("إِنَّ فِي الدَّارِ زَيْدًا", "زَيْدًا", "اسم إن"),
+    # a second إنّ after و governs its own pair: the و joins, it is no jar, and إنّ is no إنْ of negation
+    ("إِنَّ زَيْدًا قَائِمٌ وَإِنَّ عَمْرًا قَاعِدٌ", "عَمْرًا", "اسم إن"),
+    ("زَيْدٌ قَائِمٌ وَإِنَّ عَمْرًا قَاعِدٌ", "عَمْرًا", "اسم إن"),
 ])
 def test_ma_on_inna_stops_it_working(sentence, word, said):
     assert role(sentence, word) == said
@@ -198,6 +203,51 @@ def groups(sentence: str) -> list[str]:
 ])
 def test_a_joined_khabar_keeps_its_job(sentence):
     assert "خبر" in groups(sentence)
+
+
+# A nominal sentence joined after a khabar is joined to the whole sentence: it stands beside the first, in no خبر
+# unit; one joined inside a صلة stays in it, and a حال stays with the khabar whose doer it tells the state of.
+@needs_parser
+@pytest.mark.parametrize("sentence, beside", [
+    ("زَيْدٌ قَائِمٌ وَعَمْرٌو قَاعِدٌ", True),
+    ("زَيْدٌ قَائِمٌ وَإِنَّمَا عَمْرٌو قَاعِدٌ", True),
+    ("إِنَّمَا زَيْدٌ قَائِمٌ وَإِنَّمَا عَمْرٌو قَاعِدٌ", True),
+    ("إِنَّ زَيْدًا قَائِمٌ وَإِنَّ عَمْرًا قَاعِدٌ", True),
+    ("زَيْدٌ قَائِمٌ وَإِنَّ عَمْرًا قَاعِدٌ", True),
+    ("زَيْدٌ فِي الدَّارِ وَهُوَ نَائِمٌ", True),
+    ("أَنْتَ صَادِقٌ وَأَنْتَ تَعْلَمُ", True),
+    ("إِنَّ زَيْدًا قَائِمٌ وَعَمْرٌو قَاعِدٌ", True),
+    ("إِنَّمَا زَيْدٌ قَائِمٌ وَعَمْرٌو قَاعِدٌ", True),
+    ("جَاءَ الَّذِي أُمُّهُ قَائِمَةٌ وَأَخُوهُ قَاعِدٌ", False),
+    ("زَيْدٌ يَجِيءُ وَهُوَ يَضْحَكُ", False),
+    # a khabar that is a sentence: the sentence joined after it joins it (books: معطوفة على جملة فأعذبهم)
+    ("فَأَمَّا الَّذِينَ كَفَرُوا فَأُعَذِّبُهُمْ عَذَابًا شَدِيدًا وَمَا لَهُمْ مِنْ نَاصِرِينَ", False),
+])
+def test_a_joined_nominal_sentence_stands_beside_the_first(sentence, beside):
+    tree = analyze(sentence)["tree"]
+    top, waw = tree["tree"]["children"], max(i for i, word in enumerate(tree["words"]) if strip_diacritics(word) == "و")
+    last = top[-1]
+    joined = last.get("word") is None and not last.get("role") and strip_diacritics(last.get("label") or "") == "جملة اسمية"
+    assert any(kid.get("word") == waw for kid in top + (last["children"] if joined else [])) == beside
+    assert not beside or joined and top[0].get("word") is not None  # the first sentence stays the top's own
+
+
+# إِنَّمَا: ما الكافة leaves إنّ working on nothing, so the مبتدأ after it stands beside its khabar in the إنّ's own
+# sentence (as اسم إنّ does), in no sentence box of its own, wherever the إنما stands
+@needs_parser
+@pytest.mark.parametrize("sentence, subject", [
+    ("إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ", "الْمُؤْمِنُونَ"),
+    ("إِنَّمَا زَيْدٌ قَائِمٌ وَعَمْرٌو قَاعِدٌ", "زَيْدٌ"),
+    ("زَيْدٌ قَائِمٌ وَإِنَّمَا عَمْرٌو قَاعِدٌ", "عَمْرٌو"),
+])
+def test_the_pair_after_inama_is_the_inna_sentence(sentence, subject):
+    tree = analyze(sentence)["tree"]
+    inna, at = [i for i, word in enumerate(tree["words"]) if strip_diacritics(word) == "إن"][0], tree["words"].index(subject)
+    def holder(node: dict) -> dict | None:
+        if any(kid.get("word") == at for kid in node.get("children", [])):
+            return node
+        return next(filter(None, (holder(kid) for kid in node.get("children", []))), None)
+    assert any(kid.get("word") == inna for kid in holder(tree["tree"])["children"])
 
 
 # A past verb's sentence after و is a حال only with قد (Ibn Aqil, باب الحال: الجملة الحالية; page unchecked); after a
