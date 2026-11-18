@@ -70,6 +70,7 @@ def built(tmp_path, monkeypatch):
         monkeypatch.setattr(module, "data_path", paths.__getitem__)
     monkeypatch.setattr(loader, "hadiths", lambda *_: [
         {"number": int(ref[:-1]), "part": ref[-1], "arabic": arabic} for ref, arabic in OURS.items()])
+    monkeypatch.setattr(loader, "arabic", lambda _c, number, part="": OURS.get(f"{number}{part}", ""))
     monkeypatch.setattr(loader, "collection_name", {"muslim": "Sahih Muslim"}.get)
     cache.write(cache.book_path("muslim", 24), BOOK)
     cache.write(cache.narrator_path(6659), MALIK)
@@ -131,7 +132,8 @@ def test_a_narrator_sheet_carries_grade_generation_and_his_circle(built):
     assert city["label_en"] == "Cities/Regions" and city["en"] and city["ar"] == sheet["city_ar"]
     assert all(b["en"] and b["ar"] for b in sheet["books"])
     assert built.get("/api/rijal/narrators/1").status_code == 404
-    assert built.get("/api/rijal/narrators/6659/hadith").json() == [{"collection": "muslim", "book": 24, "number": 1620, "part": "a", "opening": ""}]
+    assert built.get("/api/rijal/narrators/6659/hadith").json() == [{"collection": "muslim", "book": 24, "number": 1620, "part": "a",
+        "opening": "أَنَّ عُمَرَ بْنَ الْخَطَّابِ، قَالَ حَمَلْتُ عَلَى فَرَسٍ عَتِيقٍ فِي سَبِيلِ اللَّهِ …"}]
 
 
 def test_search_finds_a_narrator_by_unpointed_arabic_or_english(built):
