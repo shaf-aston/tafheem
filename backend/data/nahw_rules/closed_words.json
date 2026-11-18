@@ -205,6 +205,11 @@
    "_comment": "Nouns so vague that annexing them makes them no more definite (Ibn Aqil on the Alfiyya, باب الإضافة: غير ومثل وشبه; page unchecked). They name no doing, though their measure is a masdar's (مِثْل is فِعْل), so a جار or ظرف after one hangs on the word no one writes (وَمِثْلَهُ مَعَهُ: حال). Read by facts.masdar_at_work.",
    "words": ["مثل", "غير", "شبه"]
   },
+  "likeness_jarr": {
+   "ar": "كاف التشبيه",
+   "_comment": "The jarr kaf 'like' is not a letter a verb reaches what it works on through (ب، من، إلى، عن، على، في، اللام), so it never completes a masdar: after a noun it describes it, hanging on the word no one writes (مَوْجٍ كَالْجِبَالِ: صفة, as the Quranic Treebank has it at Hud 42). Read by picture.unwritten.",
+   "words": ["ك"]
+  },
   "describing_names": {
    "ar": "العلم المنقول عن صفة",
    "_comment": "Names taken over from a describing word (the Alfiyya on العلم: ومنه منقولٌ كفضلٍ وأسد). The dictionary reads خالد as 'immortal', never as a name, so after a verb that wants an object and has none the word is that name, the object, not a حال (أكرم محمد خالدا). Read by facts.stands_for_its_noun.",

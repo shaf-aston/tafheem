@@ -52,16 +52,18 @@ def test_a_jar_majroor_after_a_known_noun_or_a_verb_keeps_its_own_head():
 
 
 @pytest.mark.parametrize("sentence, head", [
-    ("رَأَيْتُ مَوْجًا كَالْجِبَالِ", "ثابت"),  # a bare Form I noun names a thing: the جار is its صفة
-    ("أَعْجَبَنِي حِرْصُ الْمُهَنْدِسِينَ عَلَى الْمَوَاعِيدِ", "حِرْصُ"),  # annexed, the same measure is a doing at work
-    ("الْحُكْمُ عَلَى الْمُتَّهَمِينَ عَادِلٌ", "الْحُكْمُ"),  # with ال, too
+    ("هَذَا حُبٌّ لِلْوَطَنِ", "حُبٌّ"),  # tanween does not stop a masdar working
+    ("أَعْجَبَنِي حِرْصُ الْمُهَنْدِسِينَ عَلَى الْمَوَاعِيدِ", "حِرْصُ"),  # annexed
+    ("الْحُكْمُ عَلَى الْمُتَّهَمِينَ عَادِلٌ", "الْحُكْمُ"),  # with ال
+    ("رَأَيْتُ مَوْجًا كَالْجِبَالِ", "ثابت"),  # the kaf 'like' completes no masdar: it describes
     ("جَاءَ الطَّالِبُ وَمِثْلُهُ مَعَهُ", "ثابت"),  # مِثْل has a masdar's measure and names no doing
 ])
-def test_what_hangs_after_a_noun_of_a_masdar_measure_hangs_on_it_only_when_it_is_a_doing(sentence, head):
-    """facts.masdar_at_work: Form I فَعْل is موج and حرص alike, so ال or annexing tells the doing apart."""
+def test_what_hangs_after_a_masdar_hangs_on_it_in_every_state_but_a_likeness_does_not(sentence, head):
+    """facts.masdar_at_work and likeness_jarr: a masdar works bare, annexed or with ال; ك after it is its صفة."""
     _, nodes = drawn(sentence)
     hung = [n["label"] for n in nodes if (n.get("label") or "").startswith("متعلق بـ")]
     assert hung == [f"متعلق بـ{head}"], hung
+
 
 @pytest.mark.parametrize("sentence, head", [
     ("جَاءَ الْخَلِيفَةُ عُمَرُ", "الخليفة"),

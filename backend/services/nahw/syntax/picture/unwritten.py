@@ -147,7 +147,7 @@ def add_unwritten_khabars(c: Picture) -> None:
     for held in [t for t in drawn if role_of[t["id"]] in kept["slot"] and t["id"] not in hung]:
         noun = by_id.get(held["head"])
         if (not noun or noun["id"] > held["id"] or noun["id"] in understood or not noun_tagged(noun) or not role_of[noun["id"]]
-                or is_describing(noun) or masdar_at_work(noun) or is_zarf(noun, sentence)):
+                or is_describing(noun) or (masdar_at_work(noun) and not listed(held, "likeness_jarr")) or is_zarf(noun, sentence)):
             continue
         known, case = definite(noun), typed_or_parsed_case(noun)
         if strip_diacritics(held["form"]) in kept["measured"]["particles"] and listed(noun, "tamyeez_head", "measures"):
