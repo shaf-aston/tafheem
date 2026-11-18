@@ -4,7 +4,7 @@ import pytest
 
 from backend.services.sarf.morphology import pick
 from backend.services.text.harakat import vowel_agreement
-from tests.nahw_helpers import analyze, card, needs_parser, tree_roles
+from tests.nahw_helpers import analyze, card, needs_camel, needs_parser, tree_roles
 
 
 def role(sentence: str, word: str) -> str:
@@ -158,6 +158,7 @@ def _case(words: list[str], word: str) -> str | None:
     return next(r for w, r in zip(words, pick(words)) if w == word).get("cas")
 
 
+@needs_camel
 def test_a_long_vowel_letter_carries_no_other_vowel():
     """أَبُوهُ: the و after a damma is that damma drawn long, so a reading that puts a fatha on it (أَبُوَهُ) contradicts
     what was typed; the six nouns' raf' is the reading kept. Siblings: أَبَاهُ (nasb), فِيهِ (a long ي)."""
@@ -177,6 +178,7 @@ def test_a_long_vowel_letter_carries_no_other_vowel():
     assert _case(["رَأَيْتُ", "أَبَاهُ"], "أَبَاهُ") == "a"
 
 
+@needs_camel
 def test_a_verb_reading_that_adds_a_shadda_is_not_taken():
     """جَاءَ الَّذِي أَبُوهُ: the vowelled word has no shadda, so the verb أَبُّوهُ is not a better fit than the noun."""
     words = ["جَاءَ", "الَّذِي", "أَبُوهُ", "قَائِمٌ"]
