@@ -557,8 +557,8 @@ def main(argv: list[str] | None = None) -> int:
     OUT.write_text(json.dumps(book, ensure_ascii=False, indent=1), encoding="utf-8")
 
     print(f"wrote {OUT}")
-    print(f"  {len(book)} roots, {sum(bool(v.get('english'))
-                                  for v in book.values())} with English")
+    with_english = sum(bool(v.get('english')) for v in book.values())
+    print(f"  {len(book)} roots, {with_english} with English")
     print(f"  {english_attached} glosses attached, {blanks_added} roots taken from the scan")
     if unplaced:
         print(f"  {len(unplaced)} headings not found in the text: {unplaced}")

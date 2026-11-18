@@ -9,6 +9,7 @@ Run from the project root:  venv/Scripts/python -m pytest tests -q
 from __future__ import annotations
 
 import logging
+import re
 import sqlite3
 
 import pytest
@@ -54,7 +55,7 @@ def test_it_matches_whole_words_and_not_the_inside_of_longer_ones(index):
         "WHERE word MATCH ? LIMIT 50", (f'fold:"{FI}"',),
     ).fetchall()
     assert rows
-    assert all(FI in text.split() for (text,) in rows)
+    assert all(FI in re.findall(r"\w+", text) for (text,) in rows)  # "في:" is still the word في
 
 
 def test_narrowing_to_a_source_is_part_of_the_lookup(index):
