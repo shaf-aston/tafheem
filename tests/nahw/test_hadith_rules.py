@@ -200,6 +200,18 @@ def test_a_joined_khabar_keeps_its_job(sentence):
     assert "خبر" in groups(sentence)
 
 
+# A past verb's sentence after و is a حال only with قد (Ibn Aqil, باب الحال: الجملة الحالية; page unchecked); after a
+# sentence begun with قد too, it is a second one joined to it, no حال.
+@needs_parser
+@pytest.mark.parametrize("sentence, hal", [
+    ("جَاءَ زَيْدٌ وَقَدْ تَعِبَ", True),
+    ("قَدْ أَفْلَحَ مَنْ زَكَّاهَا وَقَدْ خَابَ مَنْ دَسَّاهَا", False),
+    ("جَاءَ زَيْدٌ وَتَعِبَ", False),
+])
+def test_a_past_verb_after_waw_is_a_hal_only_with_qad(sentence, hal):
+    assert ("حال" in groups(sentence)) == hal
+
+
 # The clause after a relative is its صلة, with no place, though the relative be a مبتدأ; a word only the tagger
 # calls relative (كم) has none, and its clause is its خبر.
 @needs_parser
