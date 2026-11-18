@@ -17,7 +17,7 @@ from backend.services.nahw.syntax import condition, facts, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
 from backend.services.text.harakat import (
-    CASE_NAME, SUKUN, build_nun, five_verb_nun, letters, paused, stilled,
+    CASE_NAME, SUKUN, build_nun, doubled_last, five_verb_nun, letters, paused, stilled,
     typed_case, written_sizes)
 
 # Every role this module can name, with its card colour key and bracket tone
@@ -161,14 +161,16 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
     word_of = _typed_word_of(bases, tokens)
     before = [[t["form"].strip("+") for t in tokens if facts.is_prefix(t) and word_of.get(t["id"]) == i]
               for i in range(len(bases))]
-    # وَلِتَبْتَغُوا، لِتَرْضَى: لام التعليل is that same حرف جر, its verb behind a hidden أن the masdar it puts in jarr
+    # وَلِتَبْتَغُوا، لِتَرْضَى: لام التعليل is that same حرف جر, its verb behind a hidden أن the masdar it puts in jarr;
+    # a verb opens its sentence first in it, or first in the one a verb of saying holds (facts.said_verb)
+    moods = [facts.lam_mood(token, before[i], i == 0 or facts.said_verb(token, s)) for i, token in enumerate(bases)]
     for i, token in enumerate(bases):
-        if facts.is_verb(token) and facts.lam_mood(token, before[i], i == 0) == "nasb":
+        if facts.is_verb(token) and moods[i] == "nasb":
             lam = next(t for t in tokens if facts.is_prefix(t) and word_of.get(t["id"]) == i and t["form"].strip("+") == "ل")
             role_by_id[lam["id"]] = NAMED.harf_jarr
     named = [role_by_id[token["id"]] for token in bases]
     cases = [_ending(role, token, _governor(bases, i), words[i + 1] if i + 1 < len(words) else "",
-                     facts.puts_in_jarr(token, s), facts.lam_mood(token, before[i], i == 0))
+                     facts.puts_in_jarr(token, s), moods[i])
              for i, (role, token) in enumerate(zip(named, bases))]
     after = [[t["form"].strip("+") for t in tokens if t["id"] not in base_ids and not facts.is_prefix(t) and word_of.get(t["id"]) == i]
              for i in range(len(bases))]
@@ -437,7 +439,8 @@ def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None =
     """The family a particle or verb is named by (كان، إنّ): one whose list holds it and whose effect
     shows on a word linked to it. A listed word that governs nothing here (the لا of a plain negation)
     keeps its plain name, unless particles.stamp read it. A piece written onto a word (وَ، بِـ، لْـ)
-    works only on that word (`onto`, what it shows) and the words hung below it."""
+    works only on that word (`onto`, what it shows) and the words hung below it. The word a particle is hung
+    on is its work only when it stands after: لِيَغْفِرْ لَكَ, the jazm of the verb before لَكَ is not that لام's."""
     if family := facts.reading(token):
         return family
     # مَا رَبُّكَ بِظَلَّامٍ، لَسْتُ بِغَافِلٍ: ما الحجازية (Sentence._hijazi) and ليس, never تامة, are كان's
@@ -445,7 +448,7 @@ def _family(token: dict, bases: list[dict], shown: list[set], onto: set | None =
     if s and ((s.hijazi and token is s.hijazi[0]) or is_one(token["lemma"], "kana", "always_defective")):
         return s.family(token)
     linked = set().union(onto or set(), *(said for other, said in zip(bases, shown)
-                         if other["head"] == token["id"] or (onto is None and other["id"] == token["head"])))
+                         if other["head"] == token["id"] or (onto is None and token["id"] < other["id"] == token["head"])))
     family = next((family for family, card in family_cards()
                    if in_family(token["lemma"], family, noun=token["pos"] != "PRT")
                    # حبذا governs the doer written inside it (ذا), so shows its work on no other word
@@ -486,7 +489,7 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     A noun's case is the vowel typed on it, else its role's own. A kasra on ـات is nasb when
     its role takes nasb, or it has no role and nothing puts it in jarr, shown by the kasra (رأيت المعلماتِ)."""
     if role == NAMED.fil:
-        return "mabni" if is_mabni("verb", token.get("asp", "na"), token["base"]) or (not token.get("stuck_on") and build_nun(token["typed"])) else _mood(paused(token["typed"], after), token, before, lam)
+        return "mabni" if is_mabni("verb", token.get("asp", "na"), token["base"]) or build_nun(token["typed"], token.get("stuck_on", 0)) else _mood(paused(token["typed"], after), token, before, lam)
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
     if role == NAMED.munada and facts.my_ya_dropped(token):
@@ -532,6 +535,8 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
     if stilled(typed, stuck_on, token.get("weak_last")):
         return "jazm"
     shown = typed_case(typed, stuck_on)
+    if lam and doubled_last(typed, stuck_on):
+        return lam  # لِيَمُدَّ يَدَهُ: a doubled verb's fatha is its jussive's too, so the لام says which
     return CASE_NAME[shown] if shown in ("u", "a") else lam  # None: nothing shows (_followers_take_their_ending)
 
 

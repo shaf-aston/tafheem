@@ -794,10 +794,12 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
         if reading.get("pos") == "verb" and not any(r.get("pos") in NOUNISH for r in out[i + 1:i + 2]) \
                 and (name := _quran_name(tokens[i], _widened(tokens[i], steps[i][1]), bare=True)):
             out[i] = name
-    for i in range(1, len(out)):
-        if _wants_present(out[i - 1], out[i]) and (present := _present_reading(tokens[i], steps[i][1])):
+    for i in range(len(out)):
+        before = out[i - 1] if i else {}
+        if i and _wants_present(before, out[i]) and (present := _present_reading(tokens[i], steps[i][1])):
             out[i] = present
-        elif _one_taa_written(out[i - 1], out[i], tokens[i]) and not _la_before_a_past(out, i) and (present := _both_taas(out[i], tokens[i], disambiguator)):
+        elif _one_taa_written(before, out[i], tokens[i], i > 0 and expects.verb_after(tokens, out, i) == "nasb") \
+                and not _la_before_a_past(out, i) and (present := _both_taas(out[i], tokens[i], disambiguator)):
             out[i] = present
     for i, said in paused.items():
         out[i] = {**out[i], "said": said}
@@ -820,22 +822,27 @@ def _present_reading(token: str, ranked: list[dict]) -> dict | None:
     return best_reading(token, [r for r in _widened(token, ranked) if r.get("pos") == "verb" and r.get("asp") == "i"])
 
 
-def _one_taa_written(before: dict, reading: dict, token: str) -> bool:
+def _one_taa_written(before: dict, reading: dict, token: str, nasbed: bool = False) -> bool:
     """لَا تَحَاسَدُوا، وَلَا تَوَلَّوْا (8:20): a present verb of تَفَاعَلَ or تَفَعَّلَ opens with two تاءات, and
     one may go (Alfiyya, باب الإدغام: وَمَا بِتَاءَيْنِ ابْتُدِي قَدْ يُقْتَصَرْ فِيهِ عَلَى تَا; page unchecked), so
     تَتَحَاسَدُوا is written as the past تَحَاسَدُوا. After a particle that puts one present verb in jazm (لَا، لَمْ),
     a past of those forms whose ending is a dropped نون's (وا، ا) or the women's نون, stilled before it (تَحَاسَدْنَ),
     is that present (the Quranic Treebank: حَرْفُ نَهْيٍ before تَوَلَّوْا 8:20 and تَجَسَّسُوا 49:12). A particle that
     opens a condition, which a past follows too (مَا تَحَاسَدُوا، لَمَّا تَزَوَّجَا), and أَنْ leave it, as does a past
-    whose ending no present shares (فَلَا صَدَّقَ 75:31، تَبَيَّنَ)."""
+    whose ending no present shares (فَلَا صَدَّقَ 75:31، تَبَيَّنَ). So after لَنْ، كَيْ and the others no word but a
+    present follows (`nasbed`: expects.json nasb; لَنْ تَحَاسَدُوا), and under a kasra لام on the word itself, which
+    only a present stands after (لِتَعَارَفُوا 49:13, Quranic Treebank: لام التعليل), where the dictionary reads the
+    لَ of a past verb against the typed kasra."""
     lemma = strip_diacritics(before.get("lex") or "")
+    lam = token.startswith("لِ") and reading.get("prc1", "0") != "0"
     takes_a_past = book_words("jazm", "conditional_particles") | book_words("jazm", "conditional_nouns") \
         | book_words("ghair_amila_other", "conditional_particles")
     marked = letters(token)
     ending = bare_letters(token).endswith(("وا", "ا")) or (
         bare_letters(token).endswith("ن") and len(marked) > 1 and SUKUN in marked[-2][1])
-    return reading.get("pos") == "verb" and reading.get("asp") == "p" and lemma in book_words("jazm") - takes_a_past \
-        and str(reading.get("pattern") or "").startswith("تَ") and ending
+    return reading.get("pos") == "verb" and reading.get("asp") == "p" \
+        and (lam or nasbed or lemma in book_words("jazm") - takes_a_past) \
+        and str(reading.get("pattern") or "")[len("لَ") if lam else 0:].startswith("تَ") and ending
 
 
 def _la_before_a_past(out: list[dict], i: int) -> bool:
@@ -847,10 +854,12 @@ def _la_before_a_past(out: list[dict], i: int) -> bool:
 
 def _both_taas(past: dict, token: str, disambiguator=None) -> dict | None:
     """The present verb of a past written with one of its two تاءات (_one_taa_written). Both forms have the
-    past's own letters and vowels (تَحَاسَدُوا), so the reading keeps them and takes the present's grammar."""
-    ranked = (_ranked(["ت" + token], disambiguator) or [[]])[0]
+    past's own letters and vowels (تَحَاسَدُوا), so the reading keeps them and takes the present's grammar: the
+    present's spelling with the ت it lost taken out again. A kasra لام on the word stays before the ت (لِتَعَارَفُوا)."""
+    at = len("لِ") if token.startswith("لِ") else 0
+    ranked = (_ranked([token[:at] + "ت" + token[at:]], disambiguator) or [[]])[0]
     found = next((r for r in ranked if r.get("pos") == "verb" and r.get("asp") == "i" and r.get("lex") == past.get("lex")), None)
-    return found and {**found, **{key: past[key] for key in ("diac", "atbtok", "pattern", "lex", "root") if key in past}}
+    return found and {**found, **{key: found[key].replace("تَتَ", "تَ", 1) for key in ("diac", "atbtok", "pattern") if key in found}}
 
 
 def as_said(tokens: list[str], picks: list[dict]) -> list[str]:

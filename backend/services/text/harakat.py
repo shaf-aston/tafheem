@@ -218,11 +218,25 @@ def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str 
     return None
 
 
-def build_nun(word: str) -> str | None:
+def doubled_last(word: str, stuck_on: int = 0) -> bool:
+    """The last letter, before an attached pronoun's `stuck_on` letters, is doubled: a doubled verb's jussive then
+    takes a fatha as its nasb does (لَمْ يَرُدَّ، لِيَمُدَّ يَدَهُ: فُتح لالتقاء الساكنين), so the fatha shows no case."""
+    marked = letters(word)
+    marked = marked[:len(marked) - stuck_on]
+    return bool(marked) and SHADDA in marked[-1][1]
+
+
+def build_nun(word: str, after: int = 0) -> str | None:
     """The nun of emphasis (لَيَنْصُرَنَّ: doubled, a fatha on it and on the letter before)
     or of women (يَرْسُمْنَ: a sukun on the consonant before it), as typed; a bare nun,
-    a root's doubled nun (يَظُنُّ) or a long vowel's sukun (يَكُوْنَ) says neither."""
+    a root's doubled nun (يَظُنُّ) or a long vowel's sukun (يَكُوْنَ) says neither. `after` letters
+    at the end are an attached pronoun's, read past: لَيَكْتُبَنَّهُ. Before ني the nun of emphasis
+    and the pronoun's own nun are written as one doubled letter (لِيَلِيَنِّي، لَيَأْتِيَنِّي)."""
     marked = letters(word)
+    if after == 2 < len(marked) - 1 and marked[-1][0] == "ي" and marked[-2][0] == "ن" and SHADDA in marked[-2][1] \
+            and "َ" in marked[-3][1]:
+        return "emphasis"
+    marked = marked[:len(marked) - after]
     if len(marked) < 3 or marked[-1][0] != "ن" or "َ" not in marked[-1][1]:
         return None
     if SHADDA in marked[-1][1]:

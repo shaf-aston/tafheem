@@ -8,6 +8,7 @@ import pytest
 from backend.models.analyze import WordAnalysis
 from backend.services.nahw import iraab
 from backend.services.nahw.book import term_ar
+from backend.services.text.harakat import build_nun
 from tests.nahw_helpers import analysed, cards, NADA, needs_parser, NOMINAL, VERBAL, _ATTENTION, _read, _role
 
 pytestmark = needs_parser
@@ -358,6 +359,44 @@ def test_a_verb_whose_weak_last_letter_went_before_its_waw_is_read_by_the_letter
     assert words[-1]["role"] == "فعل" and "مجهول" not in words[-1]["reason"]
 
 
+@pytest.mark.parametrize("sentence, at, case, sign", [
+    # the nun of emphasis builds the verb on the fatha with an object pronoun after it too; before ني the two
+    # nuns are written as one doubled letter (لِيَلِيَنِّي مِنْكُمْ أُولُو الْأَحْلَامِ, Muslim)
+    ("لِيَكْتُبَنَّهُ زَيْدٌ", 0, "mabni", "مبني على الفتح"),
+    ("لِيَلِيَنِّي مِنْكُمْ أُولُو الْأَحْلَامِ", 0, "mabni", "مبني على الفتح"),
+    ("لَيَأْتِيَنِّي زَيْدٌ", 0, "mabni", "مبني على الفتح"),
+    ("لِيَضْرِبْنَهُ", 0, "mabni", "مبني على السكون"),  # the nun of women, read past its pronoun
+    ("يَظُنُّنِي زَيْدٌ", 0, "raf'", "ضمة"),  # a root's doubled nun, a damma on it: no nun of emphasis
+    ("يُكْرِمُنِي زَيْدٌ", 0, "raf'", "ضمة"),
+])
+def test_a_nun_on_a_verb_builds_it_past_its_pronoun(sentence: str, at: int, case: str, sign: str):
+    word = _read(sentence)["words"][at]
+    assert (word["case"], word["sign"]) == (case, sign), sentence
+
+
+@pytest.mark.parametrize("word, after, nun", [
+    ("لِيَلِيَنِّي", 2, "emphasis"),  # the nun of emphasis and ني's nun written as one
+    ("يَكْتُبَنَّنَا", 2, "emphasis"),  # before نا both are written
+    ("تَأْمَنَّا", 2, None),  # لَا تَأْمَنَّا (12:11): the root's ن merged with نا, no nun of emphasis
+])
+def test_only_ni_shares_its_nun_with_the_nun_of_emphasis(word: str, after: int, nun: str | None):
+    assert build_nun(word, after) == nun
+
+
+@pytest.mark.parametrize("sentence, at, case", [
+    # what a verb of saying says opens its own sentence, so a لِ opening it is لام الأمر (facts.said_verb)
+    ("قَالَ الْمُعَلِّمُ لِيَكْتُبُوا دُرُوسَهُمْ", 2, "jazm"),
+    ("جَاءَ الطُّلَّابُ لِيَكْتُبُوا دُرُوسَهُمْ", 2, "nasb"),  # nearest case: after a verb of coming, لام التعليل
+    # a doubled verb's jussive takes a fatha as its nasb does, so a لِ opening the sentence still says الأمر (harakat.doubled_last)
+    ("لِيَمُدَّ يَدَهُ", 0, "jazm"),
+    ("لِيَرُدَّهُ زَيْدٌ", 0, "jazm"),
+    ("جَاءَ لِيَرُدَّ الْكِتَابَ", 1, "nasb"),  # nearest case: after a clause, لام التعليل
+    ("لِيَغْفِرَ لَكَ اللَّهُ", 0, "nasb"),  # nearest case: a fatha on a single letter is nasb
+])
+def test_a_lam_opening_what_is_said_is_the_lam_of_command(sentence: str, at: int, case: str):
+    assert _read(sentence)["words"][at]["case"] == case, sentence
+
+
 def test_the_pronoun_on_a_verb_is_no_nun_of_the_five_verbs():
     # لا يَدْعُوهُ keeps its root و (not the dropped nun), لا تَأْكُلُونَهَا keeps its nun: neither is jussive
     assert [w["case"] for w in analysed("لَا يَدْعُوهُ زَيْدٌ")][1] == "raf'"
@@ -571,6 +610,12 @@ def test_a_verb_after_a_nasb_particle_is_the_present_one(sentence: str, at: int,
 @pytest.mark.parametrize("sentence, at, case, sign", [
     # تَتَحَاسَدُوا written with one of its two تاءات (Alfiyya, باب الإدغام): after لا، لم the present verb in jazm
     ("لَا تَحَاسَدُوا", 1, "jazm", "حذف النون"),
+    # after a nasb particle no past follows either (expects.json nasb), nor under a kasra لام on the word (49:13)
+    ("لَنْ تَحَاسَدُوا", 1, "nasb", "حذف النون"),
+    ("جِئْتُ كَيْ تَعَارَفُوا", 2, "nasb", "حذف النون"),
+    ("جَعَلْنَاكُمْ شُعُوبًا لِتَعَارَفُوا", 2, "nasb", "حذف النون"),
+    ("حَتَّى تَعَارَفُوا", 1, "mabni", "مبني على الضم"),  # nearest case: حتى takes a past too ("until they knew")
+    ("لَتَعَارَفُوا", 0, "mabni", "مبني على الضم"),  # nearest case: a fatha لام, the لام of an oath's answer, before a past
     ("لا تحاسدوا ولا تباغضوا", 1, "jazm", "حذف النون"),
     ("وَلَا تَوَلَّوْا عَنْهُ", 1, "jazm", "حذف النون"),  # 8:20, the Quranic Treebank's حرف نهي
     ("لَمْ تَنَازَعَا", 1, "jazm", "حذف النون"),
@@ -585,7 +630,7 @@ def test_a_verb_after_a_nasb_particle_is_the_present_one(sentence: str, at: int,
     ("فَلَمَّا تَبَيَّنَ لَهُ قَالَ", 1, "mabni", "مبني على الفتح"),  # nearest case: the ن is the root's, no women's
     ("لَا تَبَيَّنَ لَهُ", 1, "mabni", "مبني على الفتح"),
 ])
-def test_a_verb_with_one_of_its_two_taas_after_a_jazm_particle_is_the_present_one(sentence, at, case, sign):
+def test_a_verb_with_one_of_its_two_taas_after_a_particle_of_the_present_is_the_present_one(sentence, at, case, sign):
     verb = _read(sentence)["words"][at]
     assert (verb["case"], verb["sign"]) == (case, sign)
 

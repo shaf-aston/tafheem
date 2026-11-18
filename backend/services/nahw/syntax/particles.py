@@ -63,7 +63,8 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
         # أَنْ لَا تَطُوفِي: after a nasb particle the nun is gone for its nasb, so it shows no jazm
         before = s.by_id.get(token["id"] - 1)
         nasbed = bool(before and is_one(_lemma(before), "nasb_mudari", "before_a_present_verb"))
-        jazm = stilled(typed, stuck_on, weak) or _moved_still(after, s) \
+        # لِيَلِيَنِّي: a verb the nun of emphasis builds shows no jazm, the لام says it (facts.lam_mood)
+        jazm = stilled(typed, stuck_on, weak) or _moved_still(after, s) or _lam_on(after, s) == "jazm" \
             or (five_verb_nun(typed, stuck_on, weak) == "dropped" and not nasbed and _lam_on(after, s) != "nasb")
         return "verb_jazm" if jazm else "verb"
     if after["pos"] == "PRT" or ((cond := condition_of(_lemma(after))) and not cond["shared"]):

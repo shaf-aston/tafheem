@@ -900,9 +900,9 @@ def test_a_follower_of_the_called_ayyuha_follows_it_though_it_is_tagged_a_partic
     ("قد", "jarr", False),      # an oath's answer, no حرف جر
     ("لا", "jarr", False),
     ("في", "jarr", True),
-    ("ثم", "atf", True),        # on joins_mood and on the family's own list: still a member
+    ("ثم", "atf", True),
     ("يا", "nida", True),
-    ("وَ", "jazm", False),      # stands before إذن, no حرف جزم
+    ("و", "nasb_mudari", False),  # stands before إذن, no حرف نصب
     ("لم", "jazm", True),
 ])
 def test_a_list_of_the_words_round_a_family_makes_no_member_of_it(lemma: str, family: str, member: bool):
