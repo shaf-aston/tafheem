@@ -15,7 +15,8 @@
  * it comes back a beat after the box is left alone, so a pointer crossing between the two does not make
  * either jump (.search-beside in components.css). On a phone it stands under the box.
  * `places` (the PlaceStrip) stands under the box, always in view. While a search is showing, "← Books", the ✕ and Esc
- * all clear it and bring the books back.
+ * all clear it and bring the books back (`onLeave`, a step of its own). A search that shows hits is a place,
+ * "search/<words>" (`onSearched`), and one arriving (`incoming`, `arrival`: Back, reload, a link) is asked again.
  */
 import { useEffect, useEffectEvent, useState } from 'react'
 
@@ -41,12 +42,18 @@ import StatusNote, { CorrectedNote, NoteWord } from '../ui/feedback/StatusNote'
 import HadithCards from './HadithCards'
 import HadithOptions from './HadithOptions'
 
-export default function HadithSearchResults({ accent, onOpenBook, onNarrator, onHadith, places, beside, children }) {
+export default function HadithSearchResults({ accent, incoming = null, arrival, onSearched, onLeave, onOpenBook, onNarrator, onHadith, places, beside, children }) {
   const { collections, of } = useHadithCollections()
   const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
     historyKey: 'hadith-history',
     ask: searchHadith,
-    onVisit: (_, { reference }) => { if (reference && !reference.asked) open(reference.collection, null) },
+    // A search that only named a collection opens it, and is no step of its own: Back to it would open it again.
+    onFound: ({ reference }, { q }) => {
+      if (reference && !reference.asked) open(reference.collection, null)
+      else onSearched?.(q)
+    },
+    incoming,
+    arrival,
   })
 
   const narrators = useNarratorMatches(data?.query)
@@ -57,17 +64,23 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
   }
 
   const searching = mutation.isPending || mutation.isError || Boolean(data)
+  // The reader closing the search: the books come back, as a step Back can undo.
+  const leave = () => {
+    const was = searching
+    clear()
+    if (was) onLeave?.()
+  }
   const [focused, setFocused] = useState(false)
   const inUse = focused || searching || Boolean(query.trim())
 
   // Esc leaves the results for the books, unless a sheet is open: Esc closes that first.
-  const leave = useEffectEvent((event) => {
-    if (event.key === 'Escape' && !document.querySelector('dialog[open]')) clear()
+  const onEscape = useEffectEvent((event) => {
+    if (event.key === 'Escape' && !document.querySelector('dialog[open]')) leave()
   })
   useEffect(() => {
     if (!searching) return undefined
-    document.addEventListener('keydown', leave)
-    return () => document.removeEventListener('keydown', leave)
+    document.addEventListener('keydown', onEscape)
+    return () => document.removeEventListener('keydown', onEscape)
   }, [searching])
 
   return (
@@ -90,7 +103,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
           value={query}
           onChange={setQuery}
           onSubmit={submit}
-          onClear={clear}
+          onClear={leave}
           busy={mutation.isPending}
           accent={accent}
         >
@@ -109,14 +122,14 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
 
       {searching && (
         <div className="flex items-center gap-3">
-          <button type="button" onClick={clear} className="press tap type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors">
+          <button type="button" onClick={leave} className="press tap type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors">
             &larr; Books
           </button>
           <p className="flex-1 min-w-0 truncate type-small text-[var(--text-dim)] m-0">
             {/* The pill above already shows what was asked; here, only how much came back. */}
             {data ? `${data.hits.length} ${data.hits.length === 1 ? 'result' : 'results'}` : 'Searching…'}
           </p>
-          <CloseButton onClick={clear} aria-label="Close search" className="shrink-0" />
+          <CloseButton onClick={leave} aria-label="Close search" className="shrink-0" />
         </div>
       )}
 

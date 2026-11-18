@@ -44,7 +44,7 @@ describe('calm progress', () => {
     expect(days.filter((day) => day.getAttribute('aria-current') === 'date')).toHaveLength(1)
 
     const understanding = screen.getByRole('region', { name: 'How much you understand' })
-    const level = await screen.findByText(/^Lv 2 ·/)
+    const level = await screen.findByText(/^Sprout .*· step 2$/)
     const ranking = await screen.findByText('Global ranking: words learnt')
     expect(inOrder(week, understanding, level, ranking)).toBe(true)
   })
@@ -53,7 +53,7 @@ describe('calm progress', () => {
     renderScreen(<StatsRail name="amina" />, { routes: ROUTES })
     const week = screen.getByRole('region', { name: 'This week' })
     const understanding = screen.getByRole('region', { name: 'How much you understand' })
-    const level = await screen.findByText(/^Lv 2 ·/)
+    const level = await screen.findByText(/^Sprout .*· step 2$/)
     const streak = screen.getByText('Streak')
     expect(inOrder(week, understanding, level, streak)).toBe(true)
   })

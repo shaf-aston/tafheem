@@ -6,7 +6,7 @@
  * `ask` gets `{ q, ...more }` as `submit(q, more)` builds it. A search that
  * comes back is a place reached (lib/nav/journey.js): `place` names it, the typed
  * words unless the server spelt them its own way, and it goes in Recent and to
- * `onVisit(place, data)`. The Qur'an box first reads whether a line is a place
+ * `onVisit(place)`, and the answer to `onFound(data, asked)`. The Qur'an box first reads whether a line is a place
  * or words (lib/quranIntent), so it keeps its own.
  */
 import { useState } from 'react'
@@ -17,7 +17,10 @@ import { useHistory } from '../nav/useHistory'
 
 const typed = (_, { q }) => q
 
-export function useSearch({ historyKey, ask, place = typed, onVisit, incoming, arrival }) {
+// Only the place goes to `onVisit`: its second argument means "moves on within the same
+// step" (lib/nav/journey.js), and the answer handed there made every search take the
+// previous one's place, so back skipped it.
+export function useSearch({ historyKey, ask, place = typed, onVisit, onFound, incoming, arrival }) {
   const [query, setQuery] = useState(incoming ?? '')
   const { history, push: remember } = useHistory(historyKey)
 
@@ -26,15 +29,18 @@ export function useSearch({ historyKey, ask, place = typed, onVisit, incoming, a
     onSuccess: (data, asked) => {
       const reached = place(data, asked)
       remember({ q: reached })
-      onVisit?.(reached, data)
+      onVisit?.(reached)
+      onFound?.(data, asked)
     },
   })
 
   // Followed during the render, so the box never shows the old query for a frame.
   const { arrived, returning } = useArrival(arrival, mutation.isPending)
-  if (arrived && incoming) setQuery(incoming)
+  // An arrival with nothing (back to the tab's top page, the tab chosen again) empties it.
+  if (arrived) setQuery(incoming ?? '')
   useArrivalEffect(arrival, () => {
     if (incoming) mutation.mutate({ q: incoming })
+    else mutation.reset()
   })
 
   // A query handed in (a Recent chip, the microphone, a linked word) is put in
@@ -52,7 +58,7 @@ export function useSearch({ historyKey, ask, place = typed, onVisit, incoming, a
   }
 
   // Through a return the answer already read stays up until the new one lands.
-  const shown = useHeld(mutation.isPending ? undefined : mutation.data, returning)
+  const shown = useHeld(mutation.isPending ? undefined : mutation.data, returning && Boolean(incoming))
 
   return { query, setQuery, history, mutation, submit, clear, shown }
 }

@@ -22,7 +22,7 @@ export default function PlanReady({ plan, other, guest, onSwitch, copy }) {
   return (
     <div className="grow-card">
       <span className="grow-card-tag">{copy.label}</span>
-      <h3 className="type-title font-semibold">{copy['ready-title']}</h3>
+      <h2 className="type-title font-semibold">{copy['ready-title']}</h2>
       <dl className="grid gap-3">
         {[
           [copy['ready-level'], level.title],

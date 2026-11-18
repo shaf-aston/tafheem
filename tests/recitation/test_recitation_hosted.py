@@ -157,10 +157,11 @@ def test_the_fusha_switch_decides_the_hint(monkeypatch):
     assert hints[0]
 
 
-def test_a_recitation_is_named_as_arabic(groq):
-    fake = groq([("قل هو الله أحد", "Arabic")])
-    assert hosted.transcribe(SOUND, KEY, language="ar") == "قل هو الله أحد"
-    assert fake.asked[0]["language"] == "ar"
+def test_a_recitation_is_named_as_arabic_and_never_judged(groq):
+    """Named, the answer is taken as it comes: the alphabet check is for searches only."""
+    fake = groq([("モーズス", "Japanese")])
+    assert hosted.transcribe(SOUND, KEY, language="ar") == "モーズス"
+    assert [how["language"] for how in fake.asked] == ["ar"]
 
 
 def test_a_word_heard_as_another_language_comes_back_in_an_allowed_one_and_its_alphabet(groq):
@@ -171,9 +172,25 @@ def test_a_word_heard_as_another_language_comes_back_in_an_allowed_one_and_its_a
 
 
 def test_of_two_answers_in_their_own_alphabet_the_surer_wins(groq):
-    """Real replies for a spoken رحمة taken for German: the English one is Latin letters too, but less sure."""
+    """Real replies, no hint: a spoken رحمة taken for German, and "Moses" where English is the surer."""
     groq([("Rahm.", "German"), ("رحم", "Arabic", -0.46), ("Rahm.", "English", -0.70)])
     assert hosted.transcribe(SOUND, KEY) == "رحم"
+    groq([("Муса", "Japanese"), ("موسيس", "Arabic", -0.38), ("Moses", "English", -0.33)])
+    assert hosted.transcribe(SOUND, KEY) == "Moses"
+
+
+def test_an_allowed_language_in_the_wrong_alphabet_is_heard_again(groq):
+    fake = groq([("علم", "English"), ("علم", "Arabic", -0.3), ("Ilm.", "English", -0.9)])
+    assert hosted.transcribe(SOUND, KEY) == "علم"
+    assert len(fake.asked) == 3
+
+
+def test_silence_or_a_number_is_not_asked_again(groq):
+    """No letters, nothing to judge: asking twice more would spend the key's allowance on silence."""
+    for said in ("", "2024"):
+        fake = groq([(said, "Japanese")])
+        assert hosted.transcribe(SOUND, KEY) == said
+        assert len(fake.asked) == 1
 
 
 def test_nothing_in_an_allowed_alphabet_is_nothing_heard(groq):

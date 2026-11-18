@@ -63,6 +63,10 @@ export default function SimilarPanel({ accent, incoming, arrival, onVisit }) {
       setWanted(`${place.surah}:${place.ayah}`)
       choose(null)
       setStep('compare')
+    } else if (!incoming) {
+      choose(null)
+      setWanted(null)
+      setStep('compare')
     }
   }
 

@@ -160,7 +160,8 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
     <>
     <div className={split ? CONTROLS : 'space-y-4'}>
       {toolbar}
-      <div className="min-h-24 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 flex items-center justify-center gap-3 text-center" aria-live="polite">
+      {/* Where the word stands beside its dot (Callout), it is said there, with its speaker, and not again here. */}
+      {!(exploring && stand) && <div className="min-h-24 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 flex items-center justify-center gap-3 text-center" aria-live="polite">
         {exploring ? (
           pickedSpot ? <Said words={pickedSpot.words} hear={heard} />
             : <span className="type-body text-[var(--text-dim)]">Tap any place to hear its name</span>
@@ -182,7 +183,7 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
             <SpeakButton text={ask.word.arabic} />
           </>
         )}
-      </div>
+      </div>}
     </div>
     <div className={split ? CANVAS : 'space-y-4'}>
       <div className="relative mx-auto w-full max-w-md">
@@ -247,7 +248,7 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
           )
         })}
       </svg>
-      {stand && <Callout words={shownSpot.words} at={stand} tone={tone} onHeight={setLabelH} />}
+      {stand && <Callout words={shownSpot.words} at={stand} tone={tone} hear={exploring ? heard : 0} onHeight={setLabelH} />}
       </div>
       {!exploring && <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="type-small text-[var(--text-dim)]">

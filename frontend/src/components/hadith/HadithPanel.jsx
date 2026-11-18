@@ -11,7 +11,7 @@ import { useArrivalWhenReady } from '../../lib/nav/useArrival'
 import { useQueries, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { hadithBookQuery, hadithBooksQuery, hadithCollectionsQuery, narratorQuery, searchHadith, usulGuideQuery } from '../../api'
-import { BOOKSHELF_PLACE, bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from './hadithPlace'
+import { BOOKSHELF_PLACE, bookOf, listOf, nameOfPlace, NARRATORS_PLACE, narratorOf, narratorPlaceOf, parsePlace, placeOf, SCHOLARS_PLACE, searchOf, searchPlaceOf, shortOf, TERMS_PLACE, termsGroupOf, termsPlaceOf } from './hadithPlace'
 import { useHadithFavorites } from './favorites/useHadithFavorites'
 import { nearest, tabNow, trailFor, useJourney } from '../../lib/nav/journey'
 import { TRAIL_STEPS } from '../../lib/nav/session'
@@ -71,7 +71,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
 
   // A link with no book (muslim/2927) is read once its collection's books say the number is no book, and
   // search, which already reads "muslim 2927", has found which book holds it.
-  const pair = /^[^/]+\/\d+[a-z]?$/.test(incoming ?? '') && !narratorOf(incoming) && !listOf(incoming) ? incoming.split('/') : null
+  const pair = /^[^/]+\/\d+[a-z]?$/.test(incoming ?? '') && !narratorOf(incoming) && !listOf(incoming) && !searchOf(incoming) ? incoming.split('/') : null
   const books = useQuery({ ...hadithBooksQuery(pair?.[0]), enabled: Boolean(pair) })
   const short = shortOf(incoming, books.data)
   const found = useQuery({
@@ -92,7 +92,7 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
     setTermsGroup(termsGroupOf(incoming))
     if (asked) setPlace(asked)
     else if (collections.length) setPlace({ collection: collections[0].id, book: null, number: null, part: '' })
-    setMissed(Boolean(incoming) && !asked && !narratorOf(incoming) && !listOf(incoming))
+    setMissed(Boolean(incoming) && !asked && !narratorOf(incoming) && !listOf(incoming) && !searchOf(incoming))
   }
 
   // The header and the search box are the loaded page's own, inert until the
@@ -189,6 +189,10 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
 
       <HadithSearchResults
         accent={accent}
+        incoming={searchOf(incoming)}
+        arrival={arrival}
+        onSearched={(words) => onVisit?.(searchPlaceOf(words))}
+        onLeave={() => go(place ?? { collection, book: null, number: null, part: '' })}
         onNarrator={openNarrator}
         onHadith={openHadith}
         onOpenBook={(id, number) => go({ collection: id, book: number, number: null, part: '' })}

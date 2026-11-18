@@ -27,8 +27,8 @@ const SURAHS = 114
  */
 export const rowId = (name, index) => `${name}-row-${index}`
 
-/** The four groups, in the order they are shown. */
-export const GROUPS = { ayah: 'Open ayah', go: 'Go to', dict: 'Dictionary', ask: 'Analyse' }
+/** The five groups, in the order they are shown. */
+export const GROUPS = { ayah: 'Open ayah', go: 'Go to', dict: 'Dictionary', find: 'Find', ask: 'Analyse' }
 
 /** Does this tab answer to what was typed: its id, its English name, or its Arabic one. */
 function tabMatches(tab, term) {
@@ -125,13 +125,14 @@ export function classify(query, tabs) {
     return rows
   }
 
-  add(GROUPS.ask, 'nahw', term, term, 'Send it to the analyser')
+  // English: the analyser reads Arabic only, so a plain-English line goes where English is understood.
+  add(GROUPS.find, 'daleel', term, term, 'Find the evidence on this')
   return rows
 }
 
 /** The groups present in a result set, in display order, each with its rows. */
 export function grouped(rows) {
-  const order = [GROUPS.ayah, GROUPS.go, GROUPS.dict, GROUPS.ask]
+  const order = [GROUPS.ayah, GROUPS.go, GROUPS.dict, GROUPS.find, GROUPS.ask]
   return order
     .map((group) => ({ group, rows: rows.filter((row) => row.group === group) }))
     .filter((block) => block.rows.length > 0)

@@ -54,7 +54,7 @@ describe('Callout: the tapped dot’s word stands in the margin beside it', () =
     tap(container)
     const label = callout(container)
     expect(label).not.toBeNull()
-    expect(label.getAttribute('aria-hidden')).toBe('true')   // the card is the live region; this is for the eye
+    expect(label.getAttribute('aria-live')).toBe('polite')   // the word's one place: heard here too
     expect(label.textContent).toMatch(/\S/)
     const left = parseFloat(label.style.left)
     const width = parseFloat(label.style.width)
@@ -64,15 +64,15 @@ describe('Callout: the tapped dot’s word stands in the margin beside it', () =
     expect(container.querySelector('svg line[stroke="var(--primary)"]')).not.toBeNull()   // joined to its dot
   })
 
-  it('says the same word as the card, which keeps saying it', () => {
+  it('takes the place of the card: the word and its speaker are beside the dot, and the card above is gone', async () => {
     lay({ x: 60, y: 10, width: 120, height: 280 })
     const { container } = explore()
+    expect(container.querySelector('[aria-live="polite"]:not([data-callout])').textContent).toMatch(/Tap any place/)
     tap(container)
-    const card = container.querySelector('[aria-live="polite"]')
-    expect(card.textContent).toMatch(/\S/)
-    expect(screen.getByRole('button', { name: 'Say it aloud' })).toBeTruthy()
-    const english = callout(container).querySelector('p:last-child').textContent
-    expect(card.textContent).toContain(english)
+    const label = callout(container)
+    expect(label.querySelector('button[aria-label="Say it aloud"]')).not.toBeNull()   // it speaks there
+    expect(screen.getAllByRole('button', { name: 'Say it aloud' })).toHaveLength(1)    // and only there
+    expect(screen.queryByText(/Tap any place/)).toBeNull()                               // the card is not shown
   })
 
   it('stays away where the drawing fills its picture: no margin, so the card alone says the word', () => {
