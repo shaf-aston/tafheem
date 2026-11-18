@@ -72,11 +72,6 @@
           "transliteration": "agdar ashoof l-ghurfa awwal?"
         },
         {
-          "slot": "where-s-the-elevator",
-          "arabic": "وَين اَللِيفِت؟",
-          "transliteration": "ween l-lift?"
-        },
-        {
           "slot": "i-want-the-key-please",
           "arabic": "أَبي اَلمُفتاح لو سَمِحِت",
           "transliteration": "abi l-muftaa7 low samaHt"
@@ -1254,11 +1249,6 @@
           "transliteration": "iT-Tayyaara mit2akhkhira marra"
         },
         {
-          "slot": "i-missed-the-bus",
-          "arabic": "فاتِني اَلباص",
-          "transliteration": "faatni l-baaS"
-        },
-        {
           "slot": "i-couldn-t-find-my-passport",
           "arabic": "ما لَقيت جِوازي",
           "transliteration": "ma lageet jawaazi"
@@ -2150,11 +2140,6 @@
             "transliteration": "ee, fi sh-shanTa",
             "english": "Yes, in the bag"
           }
-        },
-        {
-          "slot": "the-weather-is-very-hot",
-          "arabic": "الْجَو وَايِد حَار",
-          "transliteration": "ij-jaw waayid 7aar"
         },
         {
           "slot": "drink-plenty-of-water",

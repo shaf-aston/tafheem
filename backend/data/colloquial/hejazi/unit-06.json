@@ -759,16 +759,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-much-is-this",
-          "arabic": "إِيش سِعْرُ هَذَا؟",
-          "transliteration": "eesh sir3 hadha?",
-          "reply": {
-            "arabic": "هَذَا بِأَلْفِين",
-            "transliteration": "hadha b-alfeen",
-            "english": "This is two thousand."
-          }
-        },
-        {
           "slot": "it-s-very-expensive",
           "arabic": "غَالِي مَرَّة",
           "transliteration": "ghali marra"

@@ -457,11 +457,6 @@
           "transliteration": "lessa ma khallasit et ta2reer"
         },
         {
-          "slot": "i-have-a-meeting-at-ten-o-clock",
-          "arabic": "عِنْدِي اجْتِمَاع السَّاعَة عَشْرَة",
-          "transliteration": "3andi ijtimaa3 es saa3a 3ashra"
-        },
-        {
           "slot": "my-colleague-at-the-office-is-very-nice",
           "arabic": "زَمِيلِي بِالشُّغْل كْتِير لَطِيف",
           "transliteration": "zameeli bish shoghol ktir lateef"
@@ -2038,11 +2033,6 @@
           "transliteration": "leish baddak teshteghel ma3na?"
         },
         {
-          "slot": "i-speak-arabic-and-english",
-          "arabic": "بِحْكي عَرَبي وْإِنْكْلِيزي",
-          "transliteration": "be7ki 3arabi w ingleezi"
-        },
-        {
           "slot": "what-are-your-strengths-to-a-man",
           "arabic": "شُو نِقاط القُوِّة عِنْدَك؟",
           "transliteration": "shu ne2aaT el-2uwwe 3andak?"
@@ -2138,7 +2128,9 @@
         },
         {
           "speaker": "Samer",
-          "slot": "i-speak-arabic-and-english"
+          "arabic": "بِحْكي عَرَبي وْإِنْكْلِيزي",
+          "transliteration": "be7ki 3arabi w ingleezi",
+          "english": "I speak Arabic and English."
         },
         {
           "speaker": "Khaled",

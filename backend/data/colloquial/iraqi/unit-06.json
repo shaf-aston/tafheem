@@ -830,16 +830,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-much-is-this",
-          "arabic": "بكم هذا؟",
-          "transliteration": "bikam haadha?",
-          "reply": {
-            "arabic": "بِعَشْرَة آلَاف",
-            "transliteration": "bi-3ashrat aalaaf",
-            "english": "Ten thousand."
-          }
-        },
-        {
           "slot": "it-s-very-expensive",
           "arabic": "هذا غالي هواية",
           "transliteration": "haadha ghaali hawaaya"

@@ -970,17 +970,6 @@
           }
         },
         {
-          "slot": "may-god-reward-you-with-good",
-          "arabic": "جَزَاكَ اللَّهُ خَيْرًا",
-          "transliteration": "jazaaka Allaahu khayran",
-          "english": "May Allah reward you with good (to a man)",
-          "reply": {
-            "arabic": "وَإِيَّاكَ",
-            "transliteration": "wa iyyaaka",
-            "english": "And you too."
-          }
-        },
-        {
           "slot": "i-will-pray-the-sunnah-after-jumuah",
           "arabic": "بَصَلِّي السُّنَّة بَعْد الجُمْعَة",
           "transliteration": "baSalli is-sunna ba3d ij-jum3a"
@@ -1030,12 +1019,15 @@
         },
         {
           "speaker": "Salem",
-          "slot": "may-god-reward-you-with-good"
+          "arabic": "جَزَاكَ اللَّهُ خَيْرًا",
+          "transliteration": "jazaaka Allaahu khayran",
+          "english": "May Allah reward you with good (to a man)"
         },
         {
           "speaker": "Worshipper",
-          "slot": "may-god-reward-you-with-good",
-          "reply": true
+          "arabic": "وَإِيَّاكَ",
+          "transliteration": "wa iyyaaka",
+          "english": "And you too."
         },
         {
           "speaker": "Khalid",

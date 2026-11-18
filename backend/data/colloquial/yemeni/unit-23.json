@@ -91,9 +91,9 @@
       "lesson": "lesson-03",
       "sentences": [
         {
-          "slot": "three-brothers-one-sister",
-          "arabic": "عندي ثلاثة إخوة وأخت وحدة.",
-          "transliteration": "3indi thalaatha ikhwa w ukht wa7da."
+          "slot": "son-daughter-at-school",
+          "arabic": "ولدي وبنتي في المدرسة.",
+          "transliteration": "waladi w binti fi l-madrasa."
         },
         {
           "slot": "grandmother-lives-with-us",

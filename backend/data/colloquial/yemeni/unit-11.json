@@ -410,16 +410,6 @@
           }
         },
         {
-          "slot": "what-would-you-like-to-drink",
-          "arabic": "إِيش اللَّي تِشْتِي تِشْرَب؟",
-          "transliteration": "eesh il-li tishti tishrab?",
-          "reply": {
-            "arabic": "شَيْ خَفِيف، قَهْوَة إِذَا فِي",
-            "transliteration": "shay khafiif, 2ahwa idha fi",
-            "english": "Something light, coffee if you have it."
-          }
-        },
-        {
           "slot": "coffee-or-tea",
           "arabic": "قَهْوَة وَلاَّ شَايْ؟",
           "transliteration": "2ahwa walla shay?",
@@ -1787,16 +1777,6 @@
           }
         },
         {
-          "slot": "where-is-the-bathroom",
-          "arabic": "أَيْن الْحَمَّام؟",
-          "transliteration": "ayn al-7ammaam?",
-          "reply": {
-            "arabic": "جَنْب الْغُرْفَة، عَلَى الْيَمِين",
-            "transliteration": "jamb al-ghurfa, 3ala l-yameen",
-            "english": "Next to the room, on the right."
-          }
-        },
-        {
           "slot": "here-is-a-new-toothbrush-for-you",
           "arabic": "هَذِي فُرْشَاة أَسْنَان جَدِيدَة لَك",
           "transliteration": "haadhi furshaat asnaan jadeeda lak"
@@ -1861,12 +1841,15 @@
         },
         {
           "speaker": "مراد",
-          "slot": "where-is-the-bathroom"
+          "arabic": "أَيْن الْحَمَّام؟",
+          "transliteration": "ayn al-7ammaam?",
+          "english": "Where is the bathroom?"
         },
         {
           "speaker": "عبدالله",
-          "slot": "where-is-the-bathroom",
-          "reply": true
+          "arabic": "جَنْب الْغُرْفَة، عَلَى الْيَمِين",
+          "transliteration": "jamb al-ghurfa, 3ala l-yameen",
+          "english": "Next to the room, on the right."
         },
         {
           "speaker": "عبدالله",

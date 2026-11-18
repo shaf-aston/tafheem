@@ -506,21 +506,6 @@
       "lesson": "lesson-02",
       "phrases": [
         {
-          "slot": "this-is-the-living-room",
-          "arabic": "هَذِي الصَّالَة",
-          "transliteration": "hadhi S-Saala"
-        },
-        {
-          "slot": "where-is-the-kitchen",
-          "arabic": "وِين المَطْبَخ؟",
-          "transliteration": "ween al-maTbakh?",
-          "reply": {
-            "arabic": "جَنْب الصَّالَة",
-            "transliteration": "janb aS-Saala",
-            "english": "Next to the living room."
-          }
-        },
-        {
           "slot": "how-many-bathrooms",
           "arabic": "كَم حَمَّام فِي الشَّقَّة؟",
           "transliteration": "kam 7ammaam fi sh-shaqqa?",
@@ -581,11 +566,6 @@
           }
         },
         {
-          "slot": "the-light-does-not-work",
-          "arabic": "الضَّوْء مَا يَشْتَغِلْش",
-          "transliteration": "ad-daw ma yishtaghilsh"
-        },
-        {
           "slot": "where-do-i-put-the-fridge",
           "arabic": "وِين أَحُطّ الثَّلَّاجَة؟",
           "transliteration": "ween a7uTT ath-thallaaja?",
@@ -599,7 +579,9 @@
       "dialogue": [
         {
           "speaker": "عمر",
-          "slot": "this-is-the-living-room"
+          "arabic": "هَذِي الصَّالَة",
+          "transliteration": "hadhi S-Saala",
+          "english": "This is the living room"
         },
         {
           "speaker": "يوسف",
@@ -622,12 +604,15 @@
         },
         {
           "speaker": "يوسف",
-          "slot": "where-is-the-kitchen"
+          "arabic": "وِين المَطْبَخ؟",
+          "transliteration": "ween al-maTbakh?",
+          "english": "Where is the kitchen?"
         },
         {
           "speaker": "عمر",
-          "slot": "where-is-the-kitchen",
-          "reply": true
+          "arabic": "جَنْب الصَّالَة",
+          "transliteration": "janb aS-Saala",
+          "english": "Next to the living room."
         },
         {
           "speaker": "يوسف",
@@ -666,7 +651,9 @@
         },
         {
           "speaker": "عمر",
-          "slot": "the-light-does-not-work"
+          "arabic": "الضَّوْء مَا يَشْتَغِلْش",
+          "transliteration": "ad-daw ma yishtaghilsh",
+          "english": "The light does not work"
         },
         {
           "speaker": "يوسف",

@@ -1195,7 +1195,6 @@
     "illness": {"english": "illness", "group": "health", "image": "emoji/1f912.svg"},
     "sick-person": {"english": "sick person", "group": "health"},
     "reassurance": {"english": "reassurance", "group": "health"},
-    "flowers": {"english": "flowers", "group": "nature", "search_term": "flowers nature landscape", "image": "emoji/1f490.svg"},
     "bouquet": {"english": "bouquet", "group": "shopping", "search_term": "bouquet"},
     "to-recover": {"english": "to recover", "group": "health"},
     "to-reassure": {"english": "to reassure", "group": "actions"},

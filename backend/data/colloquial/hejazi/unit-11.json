@@ -397,16 +397,6 @@
           }
         },
         {
-          "slot": "what-would-you-like-to-drink",
-          "arabic": "إِيش تَبْغَى تَشْرَب؟",
-          "transliteration": "eesh tabgha tashrab?",
-          "reply": {
-            "arabic": "شِي خَفِيف، قَهْوَة لَوْ سَمَحْت",
-            "transliteration": "shay khafiif, qahwah law sama7t",
-            "english": "Something light, coffee if you don't mind."
-          }
-        },
-        {
           "slot": "coffee-or-tea",
           "arabic": "قَهْوَة وَلا شَاي؟",
           "transliteration": "qahwah walla shay?",
@@ -1766,16 +1756,6 @@
           "transliteration": "tabgha shi taani?"
         },
         {
-          "slot": "where-is-the-bathroom",
-          "arabic": "فين الحمّام؟",
-          "transliteration": "feen il-7ammaam?",
-          "reply": {
-            "arabic": "أوّل باب على اليمين",
-            "transliteration": "awwal baab 3ala il-yimeen",
-            "english": "The first door on the right."
-          }
-        },
-        {
           "slot": "here-is-a-new-toothbrush-for-you",
           "arabic": "دي فرشة أسنان جديدة لك",
           "transliteration": "di furshat asnaan jideeda lak"
@@ -1849,12 +1829,15 @@
         },
         {
           "speaker": "يوسف",
-          "slot": "where-is-the-bathroom"
+          "arabic": "فين الحمّام؟",
+          "transliteration": "feen il-7ammaam?",
+          "english": "Where is the bathroom?"
         },
         {
           "speaker": "أبو خالد",
-          "slot": "where-is-the-bathroom",
-          "reply": true
+          "arabic": "أوّل باب على اليمين",
+          "transliteration": "awwal baab 3ala il-yimeen",
+          "english": "The first door on the right."
         },
         {
           "speaker": "أبو خالد",

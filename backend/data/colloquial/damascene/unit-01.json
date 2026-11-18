@@ -901,11 +901,6 @@
           "slot": "we-ll-see-you-tomorrow-to-a-man",
           "arabic": "مِنْشُوفِك بُكْرَا",
           "transliteration": "mnshoofak bukra"
-        },
-        {
-          "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "بِشُوفِك بُكْرَا",
-          "transliteration": "bshoofak bukra"
         }
       ],
       "dialogue": [
@@ -1265,11 +1260,6 @@
           "slot": "on-the-left",
           "arabic": "عَالْيَسَار",
           "transliteration": "3al-yasaar"
-        },
-        {
-          "slot": "straight-ahead",
-          "arabic": "عَالطُّول",
-          "transliteration": "3aT-tool"
         },
         {
           "slot": "near",
@@ -2115,16 +2105,6 @@
           "transliteration": "jinsiyyti sooriyye"
         },
         {
-          "slot": "where-do-you-live-to-a-man",
-          "arabic": "وَيْن سَاكِن؟",
-          "transliteration": "ween saaken?",
-          "reply": {
-            "arabic": "سَاكِن بِالمِزِّة",
-            "transliteration": "saaken bil-mazze",
-            "english": "I live in Mezzeh."
-          }
-        },
-        {
           "slot": "i-live-in-amman",
           "arabic": "بِسْكُن بْعَمَّان",
           "transliteration": "baskon b-3ammaan"
@@ -2177,7 +2157,9 @@
         },
         {
           "speaker": "Khaled",
-          "slot": "where-do-you-live-to-a-man"
+          "arabic": "وَيْن سَاكِن؟",
+          "transliteration": "ween saaken?",
+          "english": "Where do you live? (to a man)"
         },
         {
           "speaker": "Youssef",

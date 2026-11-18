@@ -469,16 +469,6 @@
           }
         },
         {
-          "slot": "what-would-you-like-to-drink",
-          "arabic": "شِتْرِيدْ تِشْرَبْ؟",
-          "transliteration": "shtriid tishrab?",
-          "reply": {
-            "arabic": "استكان چاي، لو سمحت",
-            "transliteration": "istikaan chaay, law samaht",
-            "english": "A glass of tea, please."
-          }
-        },
-        {
           "slot": "coffee-or-tea",
           "arabic": "قُهْوَةْ لُو چَاي؟",
           "transliteration": "gahwa lo chaay?",
@@ -2163,16 +2153,6 @@
           }
         },
         {
-          "slot": "where-is-the-bathroom",
-          "arabic": "وين التواليت؟",
-          "transliteration": "ween it-tuwaaleet?",
-          "reply": {
-            "arabic": "على يمينك",
-            "transliteration": "3ala yamiinak",
-            "english": "On your right."
-          }
-        },
-        {
           "slot": "here-is-a-new-toothbrush-for-you",
           "arabic": "هاي فرچة سنون جديدة إلك",
           "transliteration": "haay furchat sinoon jdeeda ilak"
@@ -2232,12 +2212,15 @@
         },
         {
           "speaker": "Kareem",
-          "slot": "where-is-the-bathroom"
+          "arabic": "وين التواليت؟",
+          "transliteration": "ween it-tuwaaleet?",
+          "english": "Where is the bathroom?"
         },
         {
           "speaker": "Hussein",
-          "slot": "where-is-the-bathroom",
-          "reply": true
+          "arabic": "على يمينك",
+          "transliteration": "3ala yamiinak",
+          "english": "On your right."
         },
         {
           "speaker": "Kareem",

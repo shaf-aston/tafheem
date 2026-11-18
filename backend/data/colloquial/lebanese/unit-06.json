@@ -857,16 +857,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-much-is-this",
-          "arabic": "قِدّيش هِيدَا؟",
-          "transliteration": "2addeesh hayda?",
-          "reply": {
-            "arabic": "هِيدَا بِخَمْسِين دُولَار",
-            "transliteration": "hayda b-khamsiin dolaar",
-            "english": "This is fifty dollars."
-          }
-        },
-        {
           "slot": "it-s-very-expensive",
           "arabic": "غَالِي كْتِير",
           "transliteration": "ghaali ktiir"

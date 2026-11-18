@@ -468,11 +468,6 @@
           }
         },
         {
-          "slot": "how-much-does-this-cost",
-          "arabic": "بْشْحَال هَادَا؟",
-          "transliteration": "bshhal haada?"
-        },
-        {
           "slot": "is-there-a-dish-of-the-day",
           "arabic": "وَاش كَايِن طَبْق الْيَوْم؟",
           "transliteration": "wash kayn 6ebq lyoum?"
@@ -1268,11 +1263,6 @@
           "slot": "can-i-have-the-receipt",
           "arabic": "واش ممكن تعطيني لفاكتورة؟",
           "transliteration": "wash mumkin ta3tiini lfaktura?"
-        },
-        {
-          "slot": "is-there-a-discount-today",
-          "arabic": "وَاش كَايِن شِي تَخْفِيض الْيَوْم؟",
-          "transliteration": "wash kayn shi takhfiid lyoum?"
         },
         {
           "slot": "bless-your-hands-the-food-was-delicious",

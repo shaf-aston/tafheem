@@ -74,16 +74,6 @@
           "transliteration": "hina tamam, gif."
         },
         {
-          "slot": "keep-the-change",
-          "arabic": "الْبَاقِي لَك.",
-          "transliteration": "al-baagi lak.",
-          "reply": {
-            "arabic": "اللَّهُ يُعْطِيكَ الصِّحَّة.",
-            "transliteration": "allah yu3tika as-siha.",
-            "english": "Thank you (God give you health)."
-          }
-        },
-        {
           "slot": "is-there-a-taxi-nearby-here",
           "arabic": "فيهْ تَاكْسِي قَرِيب مِنْ هِنَا؟",
           "transliteration": "feeh taksi gareeb min hina?",
@@ -1502,34 +1492,9 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "taxi",
-          "arabic": "تَاكْسِي",
-          "transliteration": "taaksi"
-        },
-        {
           "slot": "bus",
           "arabic": "بَاصْ",
           "transliteration": "baas"
-        },
-        {
-          "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "أَبْغَى أَرُوحْ الْبَلَدْ الْقَدِيمْ",
-          "transliteration": "abgha aroo7 il-balad il-gadeem"
-        },
-        {
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "وَقِّفْ هِنَا لُو سَمَحْتْ",
-          "transliteration": "waggif hina law sama7t"
-        },
-        {
-          "slot": "how-much-is-the-fare",
-          "arabic": "بِكَمْ الأُجْرَةْ؟",
-          "transliteration": "bikam il-ujra?"
-        },
-        {
-          "slot": "take-me-to-to-a-man",
-          "arabic": "خُذْنِي عِلَـ...",
-          "transliteration": "khudni 3ala..."
         },
         {
           "slot": "are-you-free-asking-a-taxi-driver-if-available",
@@ -1600,7 +1565,9 @@
         },
         {
           "speaker": "محمد",
-          "slot": "how-much-is-the-fare"
+          "arabic": "بِكَمْ الأُجْرَةْ؟",
+          "transliteration": "bikam il-ujra?",
+          "english": "How much is the fare?"
         },
         {
           "speaker": "أبو أحمد",

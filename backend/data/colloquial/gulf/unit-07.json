@@ -45,11 +45,6 @@
           "transliteration": "SaHeet badri"
         },
         {
-          "slot": "what-time-is-it-now",
-          "arabic": "كَم الساعَة الحِين؟",
-          "transliteration": "kam is-saa3a il-7een?"
-        },
-        {
           "slot": "it-s-seven-o-clock",
           "arabic": "الساعَة سَبْعَة",
           "transliteration": "is-saa3a sab3a"
@@ -116,7 +111,9 @@
         },
         {
           "speaker": "Khalid",
-          "slot": "what-time-is-it-now"
+          "arabic": "كَم الساعَة الحِين؟",
+          "transliteration": "kam is-saa3a il-7een?",
+          "english": "What time is it now?"
         },
         {
           "speaker": "Mariam",

@@ -467,11 +467,6 @@
           "transliteration": "shtinsa7ni aakhuz?"
         },
         {
-          "slot": "how-much-does-this-cost",
-          "arabic": "بِيش هَاي؟",
-          "transliteration": "beesh haay?"
-        },
-        {
           "slot": "is-there-a-dish-of-the-day",
           "arabic": "أَكُو طَبَق الْيَوْم؟",
           "transliteration": "aku 6abaq il yoom?"
@@ -1246,11 +1241,6 @@
           "slot": "can-i-have-the-receipt",
           "arabic": "أَگْدِر آخِذ الْوَصْل؟",
           "transliteration": "agdar aakhuz il wasil?"
-        },
-        {
-          "slot": "is-there-a-discount-today",
-          "arabic": "أَكُو تَخْفِيض الْيَوْم؟",
-          "transliteration": "aku takhfeed il yoom?"
         },
         {
           "slot": "bless-your-hands-the-food-was-delicious",

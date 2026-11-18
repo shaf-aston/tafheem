@@ -24,16 +24,6 @@
       "lesson": "lesson-01",
       "phrases": [
         {
-          "slot": "how-are-you-today-to-a-man",
-          "arabic": "كَيْفَكَ الْيَوْمَ؟",
-          "transliteration": "kayfak alyoom?"
-        },
-        {
-          "slot": "how-are-you-today-to-a-woman",
-          "arabic": "كَيْفِك الْيَوْمَ؟",
-          "transliteration": "kaynik alyoom?"
-        },
-        {
           "slot": "what-s-wrong-with-you-to-a-man",
           "arabic": "إِيش فِيكَ؟",
           "transliteration": "eesh fika?"
@@ -62,11 +52,6 @@
           "slot": "i-m-very-tired-m",
           "arabic": "أَنَا تَعْبَان قَوِي",
           "transliteration": "ana ta3baan gawi"
-        },
-        {
-          "slot": "i-m-hungry-i-want-to-eat-something",
-          "arabic": "أَنَا جَايِعْ، أَشْتِي آكُل حَاجْ",
-          "transliteration": "ana jaa3i, ashti aakol 7aaj"
         },
         {
           "slot": "i-m-worried-about-the-exam",
@@ -1135,11 +1120,6 @@
           "transliteration": "feeh 7add ysaa3idni?"
         },
         {
-          "slot": "this-isn-t-what-i-ordered-m",
-          "arabic": "هَذَا مَا هُوّْ اللِّي طَلَبْتِهْ",
-          "transliteration": "haadha ma hoo illi talabtiih"
-        },
-        {
           "slot": "there-s-a-mistake-in-the-bill",
           "arabic": "فِي غَلِطَةْ بِالْحِسَابْ",
           "transliteration": "fi ghali6a bil-7isab"
@@ -1478,11 +1458,6 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "thank-you-very-much",
-          "arabic": "مَشْكُور قَوِي",
-          "transliteration": "mashkoor gawi"
-        },
-        {
           "slot": "may-allah-reward-you-with-good-to-a-man",
           "arabic": "جَزَاكَ اللَّهُ خَيْرًا",
           "transliteration": "jazaaka llaahu khayran",
@@ -1511,21 +1486,6 @@
             "transliteration": "wa feek",
             "english": "And you."
           }
-        },
-        {
-          "slot": "congratulations",
-          "arabic": "مَبْرُوك",
-          "transliteration": "mabrook",
-          "reply": {
-            "arabic": "اللَّه يِبَارِك فِيك",
-            "transliteration": "allaah yibaarik feek",
-            "english": "May Allah bless you."
-          }
-        },
-        {
-          "slot": "congratulations-on-your-success",
-          "arabic": "مَبْرُوك النَّجَاح",
-          "transliteration": "mabrook an-najaa7"
         },
         {
           "slot": "masha-allah-excellent-work",
@@ -1561,12 +1521,13 @@
       "dialogue": [
         {
           "speaker": "صالح",
-          "slot": "congratulations-on-your-success"
+          "arabic": "مَبْرُوك النَّجَاح",
+          "transliteration": "mabrook an-najaa7",
+          "english": "Congratulations on your success."
         },
         {
           "speaker": "أمين",
-          "slot": "congratulations",
-          "reply": true
+          "slot": "may-allah-bless-you-to-a-man"
         },
         {
           "speaker": "صالح",
@@ -1627,7 +1588,9 @@
         },
         {
           "speaker": "أمين",
-          "slot": "thank-you-very-much"
+          "arabic": "مَشْكُور قَوِي",
+          "transliteration": "mashkoor gawi",
+          "english": "Thank you very much."
         }
       ],
       "de_book": [

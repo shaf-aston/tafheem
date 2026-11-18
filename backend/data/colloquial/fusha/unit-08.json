@@ -480,11 +480,6 @@
           "transliteration": "lam unhi at-taqreera ba3d"
         },
         {
-          "slot": "i-have-a-meeting-at-ten-o-clock",
-          "arabic": "عِنْدِي اجْتِمَاعٌ فِي السَّاعَةِ الْعَاشِرَة",
-          "transliteration": "3indee ijtimaa3un fee as-saa3ati al-3aashira"
-        },
-        {
           "slot": "my-colleague-at-the-office-is-very-nice",
           "arabic": "زَمِيلِي فِي الْمَكْتَبِ لَطِيفٌ جِدًّا",
           "transliteration": "zameelee fee al-maktabi lateefun jiddan"
@@ -2089,11 +2084,6 @@
           "slot": "why-do-you-want-to-work-with-us-to-a-man",
           "arabic": "لِمَاذَا تُرِيدُ أَنْ تَعْمَلَ مَعَنَا؟",
           "transliteration": "limaadhaa tureedu an ta3mala ma3anaa?"
-        },
-        {
-          "slot": "i-speak-arabic-and-english",
-          "arabic": "أَتَحَدَّثُ الْعَرَبِيَّةَ وَالْإِنْجِلِيزِيَّة",
-          "transliteration": "ata7addathu al-3arabiyya wa al-injileeziyya"
         },
         {
           "slot": "what-are-your-strengths-to-a-man",

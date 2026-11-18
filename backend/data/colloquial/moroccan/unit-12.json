@@ -1203,16 +1203,6 @@
           "transliteration": "wash 3andek nimiro dyali?"
         },
         {
-          "slot": "thanks-a-lot",
-          "arabic": "شُكْرَا بْزَاف",
-          "transliteration": "shukran bezzaf",
-          "reply": {
-            "arabic": "مَا كَايِن مِشْكِل",
-            "transliteration": "ma kayn mushkil",
-            "english": "No problem."
-          }
-        },
-        {
           "slot": "good-that-i-didn-t-waste-your-time",
           "arabic": "مَزْيَان بْلِي مَا ضِيعْتِش لِيك الْوَقْت",
           "transliteration": "mzyaan bli ma DayyaTsh lik l-weqt"

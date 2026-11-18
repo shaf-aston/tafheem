@@ -1632,11 +1632,6 @@
           "transliteration": "hal 3indaka asgharu min haadhaa?"
         },
         {
-          "slot": "do-you-have-another-color-to-a-man",
-          "arabic": "هَلْ عِنْدَكَ لَوْنٌ آخَر؟",
-          "transliteration": "hal 3indaka lawnun aakhar?"
-        },
-        {
           "slot": "this-one-is-nicer",
           "arabic": "هَذَا أَجْمَل",
           "transliteration": "haadhaa ajmal"
@@ -1691,7 +1686,9 @@
         },
         {
           "speaker": "Sami",
-          "slot": "do-you-have-another-color-to-a-man"
+          "arabic": "هَلْ عِنْدَكَ لَوْنٌ آخَر؟",
+          "transliteration": "hal 3indaka lawnun aakhar?",
+          "english": "Do you have another color? (to a man)"
         },
         {
           "speaker": "Mahmoud",

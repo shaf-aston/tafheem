@@ -1259,16 +1259,6 @@
           }
         },
         {
-          "slot": "thanks-a-lot",
-          "arabic": "مِشْكُورْ كِلِشْ",
-          "transliteration": "mashkuur kullish",
-          "reply": {
-            "arabic": "وَلَا يِهِمّْكْ",
-            "transliteration": "wala yhimmak",
-            "english": "Don't mention it."
-          }
-        },
-        {
           "slot": "good-that-i-didn-t-waste-your-time",
           "arabic": "زِينْ مَا ضَيَّعِتْ وَقِتَكْ",
           "transliteration": "zeen ma dhayya3it wakitak"

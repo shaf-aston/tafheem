@@ -254,10 +254,6 @@
             {
               "slot": "we-ll-see-you-tomorrow-to-a-man",
               "english": "We'll see you tomorrow. (to a man)"
-            },
-            {
-              "slot": "i-ll-see-you-tomorrow-to-a-man",
-              "english": "I'll see you tomorrow. (to a man)"
             }
           ],
           "words": ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "how-much", "how-many", "time", "hour", "minute", "clock", "now", "today", "tomorrow", "yesterday", "day", "week", "plan", "to-see"]
@@ -293,12 +289,6 @@
               "english": "On the left.",
               "search_term": "left arrow sign",
               "image": "unit-01/l04-p05-left-arrow-sign.jpg"
-            },
-            {
-              "slot": "straight-ahead",
-              "english": "Straight ahead.",
-              "search_term": "straight road ahead",
-              "image": "unit-01/l04-p06-straight-road-ahead.jpg"
             },
             {
               "slot": "near",
@@ -442,11 +432,6 @@
               "search_term": "Syria flag"
             },
             {
-              "slot": "where-do-you-live-to-a-man",
-              "english": "Where do you live? (to a man)",
-              "image": "emoji/1f3e0.svg"
-            },
-            {
               "slot": "i-live-in-amman",
               "english": "I live in Amman.",
               "search_term": "apartment buildings",
@@ -535,16 +520,6 @@
               "english": "My wife."
             },
             {
-              "slot": "how-many-people-are-in-your-family-to-a-man",
-              "english": "How many people are in your family? (to a man)",
-              "search_term": "family photo together"
-            },
-            {
-              "slot": "i-have-a-brother-and-two-sisters",
-              "english": "I have a brother and two sisters.",
-              "search_term": "siblings family photo"
-            },
-            {
               "slot": "are-you-married-to-a-man",
               "english": "Are you married? (to a man)"
             },
@@ -618,17 +593,6 @@
               "image": "unit-02/l02-p09-cup-of-tea.jpg"
             },
             {
-              "slot": "the-bill-please",
-              "english": "The bill, please.",
-              "search_term": "restaurant bill",
-              "image": "emoji/1f9fe.svg"
-            },
-            {
-              "slot": "how-much-is-the-bill",
-              "english": "How much is the bill?",
-              "image": "emoji/1f4b0.svg"
-            },
-            {
               "slot": "to-your-health-said-to-someone-after-they-finish",
               "english": "To your health. (said to someone after they finish eating or drinking)"
             },
@@ -645,10 +609,6 @@
           "title": "Describing My Family",
           "phrases": [
             {
-              "slot": "how-old-are-you-to-a-man",
-              "english": "How old are you? (to a man)"
-            },
-            {
               "slot": "i-am-married-male-speaker",
               "english": "I am married. (male speaker)"
             },
@@ -662,11 +622,6 @@
               "english": "Where does your family live?",
               "search_term": "family house",
               "image": "unit-02/l03-p04-family-house.jpg"
-            },
-            {
-              "slot": "what-is-your-job-to-a-man",
-              "english": "What do you do for work? (to a man)",
-              "image": "emoji/1f4bc.svg"
             },
             {
               "slot": "he-is-tall",
@@ -841,11 +796,6 @@
             {
               "slot": "my-neighbour-is-nice-male-neighbour",
               "english": "My neighbour is nice. (a male neighbour)"
-            },
-            {
-              "slot": "which-city-are-you-from-to-a-man",
-              "english": "Which city are you from? (to a man)",
-              "image": "emoji/1f3d9.svg"
             }
           ],
           "words": ["city", "village", "countryside", "neighbourhood", "street", "address", "house", "flat", "apartment-building", "masjid", "market", "neighbour", "near", "far", "to-reside", "to-move", "to-like", "calm", "year"]
@@ -1427,11 +1377,6 @@
               "english": "Do you have a smaller one? (to a man)"
             },
             {
-              "slot": "do-you-have-another-color-to-a-man",
-              "english": "Do you have another color? (to a man)",
-              "image": "emoji/1f3a8.svg"
-            },
-            {
               "slot": "this-one-is-nicer",
               "english": "This one is nicer."
             },
@@ -1578,12 +1523,6 @@
               "slot": "what-do-you-recommend-i-get",
               "english": "What do you recommend I get?",
               "search_term": "waiter recommending a dish to customer"
-            },
-            {
-              "slot": "how-much-does-this-cost",
-              "english": "How much does this cost?",
-              "search_term": "menu price tag",
-              "image": "emoji/1f3f7.svg"
             },
             {
               "slot": "is-there-a-dish-of-the-day",
@@ -1747,12 +1686,6 @@
               "english": "Can I have the receipt?",
               "search_term": "printed receipt in hand",
               "image": "emoji/1f9fe.svg"
-            },
-            {
-              "slot": "is-there-a-discount-today",
-              "english": "Is there a discount today?",
-              "search_term": "discount sign at restaurant",
-              "image": "emoji/1f3f7.svg"
             },
             {
               "slot": "bless-your-hands-the-food-was-delicious",
@@ -1963,11 +1896,6 @@
               "slot": "here-is-fine-stop",
               "english": "Here is fine, stop.",
               "image": "emoji/1f6d1.svg"
-            },
-            {
-              "slot": "keep-the-change",
-              "english": "Keep the change.",
-              "image": "emoji/1fa99.svg"
             },
             {
               "slot": "is-there-a-taxi-nearby-here",
@@ -2210,36 +2138,10 @@
           "title": "Getting Around",
           "phrases": [
             {
-              "slot": "taxi",
-              "english": "Taxi.",
-              "search_term": "yellow taxi car",
-              "image": "unit-05/l05-p01-yellow-taxi-car.jpg"
-            },
-            {
               "slot": "bus",
               "english": "Bus.",
               "search_term": "city bus",
               "image": "unit-05/l05-p02-city-bus.jpg"
-            },
-            {
-              "slot": "i-want-to-go-to-the-old-city",
-              "english": "I want to go to the Old City.",
-              "search_term": "old city street"
-            },
-            {
-              "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-              "english": "Stop here, please. (to a man, such as a taxi driver)",
-              "image": "emoji/1f6d1.svg"
-            },
-            {
-              "slot": "how-much-is-the-fare",
-              "english": "How much is the fare?",
-              "image": "emoji/1f4b0.svg"
-            },
-            {
-              "slot": "take-me-to-to-a-man",
-              "english": "Take me to... (to a man)",
-              "image": "emoji/1f695.svg"
             },
             {
               "slot": "are-you-free-asking-a-taxi-driver-if-available",
@@ -2423,11 +2325,6 @@
           "lesson": "lesson-03",
           "title": "Bargaining",
           "phrases": [
-            {
-              "slot": "how-much-is-this",
-              "english": "How much is this?",
-              "image": "emoji/1f3f7.svg"
-            },
             {
               "slot": "it-s-very-expensive",
               "english": "It's very expensive.",
@@ -2722,11 +2619,6 @@
               "english": "I woke up early.",
               "search_term": "alarm clock in the morning",
               "image": "unit-07/l01-p02-alarm-clock-in-the-morning.jpg"
-            },
-            {
-              "slot": "what-time-is-it-now",
-              "english": "What time is it now?",
-              "image": "emoji/1f570.svg"
             },
             {
               "slot": "it-s-seven-o-clock",
@@ -3244,12 +3136,6 @@
               "image": "emoji/1f4c4.svg"
             },
             {
-              "slot": "i-have-a-meeting-at-ten-o-clock",
-              "english": "I have a meeting at ten o'clock.",
-              "search_term": "clock on office wall",
-              "image": "unit-08/l02-p05-clock-on-office-wall.jpg"
-            },
-            {
               "slot": "my-colleague-at-the-office-is-very-nice",
               "english": "My colleague at the office is very nice.",
               "search_term": "empty open plan office desks",
@@ -3523,12 +3409,6 @@
             {
               "slot": "why-do-you-want-to-work-with-us-to-a-man",
               "english": "Why do you want to work with us? (to a man)"
-            },
-            {
-              "slot": "i-speak-arabic-and-english",
-              "english": "I speak Arabic and English.",
-              "search_term": "English Arabic dictionary",
-              "image": "emoji/1f4d6.svg"
             },
             {
               "slot": "what-are-your-strengths-to-a-man",
@@ -4514,12 +4394,6 @@
               "image": "unit-11/l02-p01-living-room-sofa.jpg"
             },
             {
-              "slot": "what-would-you-like-to-drink",
-              "english": "What would you like to drink?",
-              "search_term": "tray of tea glasses",
-              "image": "emoji/1fad6.svg"
-            },
-            {
               "slot": "coffee-or-tea",
               "english": "Coffee or tea?",
               "search_term": "cup of Arabic coffee",
@@ -4814,11 +4688,6 @@
               "english": "Do you need anything else?"
             },
             {
-              "slot": "where-is-the-bathroom",
-              "english": "Where is the bathroom?",
-              "image": "emoji/1f6be.svg"
-            },
-            {
               "slot": "here-is-a-new-toothbrush-for-you",
               "english": "Here is a new toothbrush for you.",
               "search_term": "toothbrush",
@@ -5103,10 +4972,6 @@
               "image": "emoji/1f522.svg"
             },
             {
-              "slot": "thanks-a-lot",
-              "english": "Thanks a lot."
-            },
-            {
               "slot": "good-that-i-didn-t-waste-your-time",
               "english": "Good that I didn't waste your time."
             },
@@ -5265,23 +5130,12 @@
     {
       "unit": "unit-13",
       "title": "Feelings and Opinions",
-      "cover": "thank-you-very-much",
+      "cover": "i-m-happy-today-m",
       "lessons": [
         {
           "lesson": "lesson-01",
           "title": "How I Feel",
           "phrases": [
-            {
-              "slot": "how-are-you-today-to-a-man",
-              "english": "How are you today? (to a man)",
-              "search_term": "two friends talking"
-            },
-            {
-              "slot": "how-are-you-today-to-a-woman",
-              "english": "How are you today? (to a woman)",
-              "search_term": "two women talking",
-              "image": "emoji/1f4ac.svg"
-            },
             {
               "slot": "what-s-wrong-with-you-to-a-man",
               "english": "What's wrong with you? (to a man)",
@@ -5315,12 +5169,6 @@
               "slot": "i-m-very-tired-m",
               "english": "I'm very tired. (m)",
               "search_term": "tired man yawning"
-            },
-            {
-              "slot": "i-m-hungry-i-want-to-eat-something",
-              "english": "I'm hungry, I want to eat something.",
-              "search_term": "hungry person looking at food",
-              "image": "emoji/1f37d.svg"
             },
             {
               "slot": "i-m-worried-about-the-exam",
@@ -5482,10 +5330,6 @@
               "english": "Can someone help me?"
             },
             {
-              "slot": "this-isn-t-what-i-ordered-m",
-              "english": "This isn't what I ordered. (m)"
-            },
-            {
               "slot": "there-s-a-mistake-in-the-bill",
               "english": "There's a mistake in the bill.",
               "search_term": "restaurant bill",
@@ -5534,12 +5378,6 @@
           "title": "Thanking and Praising",
           "phrases": [
             {
-              "slot": "thank-you-very-much",
-              "english": "Thank you very much.",
-              "search_term": "thank you card",
-              "image": "unit-13/l05-p01-thank-you-card.jpg"
-            },
-            {
               "slot": "may-allah-reward-you-with-good-to-a-man",
               "english": "May Allah reward you with good. (to a man)",
               "image": "emoji/1f932.svg"
@@ -5552,18 +5390,6 @@
             {
               "slot": "may-allah-bless-you-to-a-man",
               "english": "May Allah bless you. (to a man)"
-            },
-            {
-              "slot": "congratulations",
-              "english": "Congratulations!",
-              "search_term": "bouquet of flowers",
-              "image": "unit-13/l05-p05-bouquet-of-flowers.jpg"
-            },
-            {
-              "slot": "congratulations-on-your-success",
-              "english": "Congratulations on your success.",
-              "search_term": "graduation cap",
-              "image": "unit-13/l05-p06-graduation-cap.jpg"
             },
             {
               "slot": "masha-allah-excellent-work",
@@ -6261,7 +6087,7 @@
               "english": "We ask God to grant you wellbeing"
             }
           ],
-          "words": ["illness", "sick-person", "health", "hospital", "doctor", "rest", "reassurance", "flowers", "bouquet", "fruit", "to-visit", "to-recover", "to-reassure", "to-rest", "tired"]
+          "words": ["illness", "sick-person", "health", "hospital", "doctor", "rest", "reassurance", "flower", "bouquet", "fruit", "to-visit", "to-recover", "to-reassure", "to-rest", "tired"]
         },
         {
           "lesson": "lesson-10",
@@ -6510,12 +6336,6 @@
               "english": "Can I see the room first?"
             },
             {
-              "slot": "where-s-the-elevator",
-              "english": "Where's the elevator?",
-              "search_term": "hotel elevator",
-              "image": "emoji/1f6d7.svg"
-            },
-            {
               "slot": "i-want-the-key-please",
               "english": "I want the key please.",
               "search_term": "hotel room key card"
@@ -6552,11 +6372,6 @@
               "slot": "the-plane-is-very-delayed",
               "english": "The plane is very delayed.",
               "search_term": "airport departure board delay"
-            },
-            {
-              "slot": "i-missed-the-bus",
-              "english": "I missed the bus.",
-              "image": "emoji/1f68c.svg"
             },
             {
               "slot": "i-couldn-t-find-my-passport",
@@ -6735,11 +6550,6 @@
               "english": "Do you have sunscreen?",
               "search_term": "sunscreen bottle",
               "image": "emoji/1f9f4.svg"
-            },
-            {
-              "slot": "the-weather-is-very-hot",
-              "english": "The weather is very hot",
-              "image": "emoji/2600.svg"
             },
             {
               "slot": "drink-plenty-of-water",
@@ -7522,10 +7332,6 @@
               "image": "emoji/1f932.svg"
             },
             {
-              "slot": "may-god-reward-you-with-good",
-              "english": "May Allah reward you with good"
-            },
-            {
               "slot": "i-will-pray-the-sunnah-after-jumuah",
               "english": "I will pray the sunnah after the Friday prayer",
               "search_term": "shoe rack at mosque door"
@@ -7686,17 +7492,6 @@
           "title": "Rooms and Furniture",
           "phrases": [
             {
-              "slot": "this-is-the-living-room",
-              "english": "This is the living room",
-              "image": "emoji/1f6cb.svg"
-            },
-            {
-              "slot": "where-is-the-kitchen",
-              "english": "Where is the kitchen?",
-              "search_term": "kitchen",
-              "image": "unit-18/l02-p02-kitchen.jpg"
-            },
-            {
               "slot": "how-many-bathrooms",
               "english": "How many bathrooms are in the flat?",
               "image": "emoji/1f6bf.svg"
@@ -7739,11 +7534,6 @@
               "english": "Does the air conditioner work?",
               "search_term": "air conditioner",
               "image": "unit-18/l02-p10-air-conditioner.jpg"
-            },
-            {
-              "slot": "the-light-does-not-work",
-              "english": "The light does not work",
-              "image": "emoji/1f4a1.svg"
             },
             {
               "slot": "where-do-i-put-the-fridge",
@@ -8603,7 +8393,7 @@
           "phrases": [],
           "words": ["man", "woman", "boy", "girl", "teenager", "adult", "old-man", "old-woman", "child", "baby", "father", "mother", "parents", "son", "daughter", "brother", "sister", "grandfather", "grandmother", "uncle-paternal", "aunt-paternal", "uncle-maternal", "aunt-maternal", "cousin", "married", "single", "stepfather", "stepmother", "son-in-law", "daughter-in-law", "fiance", "widow", "widower", "divorced", "orphan", "friend", "neighbour", "guest", "stranger", "enemy", "visitor", "companion", "young-man", "young-woman", "human-being"],
           "sentences": [
-            {"slot": "three-brothers-one-sister", "english": "I have three brothers and one sister.", "uses": ["brother", "sister"]},
+            {"slot": "son-daughter-at-school", "english": "My son and my daughter are at school.", "uses": ["son", "daughter"]},
             {"slot": "grandmother-lives-with-us", "english": "My grandmother lives with us.", "uses": ["grandmother"]},
             {"slot": "paternal-uncle-doctor", "english": "My uncle on my father's side is a doctor.", "uses": ["uncle-paternal"]},
             {"slot": "married-or-single", "english": "Are you married, or are you single?", "uses": ["married", "single"]},
@@ -8691,9 +8481,9 @@
           "lesson": "lesson-04",
           "title": "Plants and Trees",
           "phrases": [],
-          "words": ["tree", "leaf", "flower", "flowers", "garden", "field-farm", "root", "branch", "trunk", "bud", "thorn", "petal", "bark", "palm-tree", "cedar", "olive-tree", "oak", "pine", "cypress", "willow", "rose", "jasmine", "lily", "violet", "sunflower", "carnation", "cactus", "bush", "reed", "vine", "bamboo", "grass", "plant", "seed", "to-plant", "to-water", "to-pick-fruit", "to-prune", "to-bloom", "to-wither", "fertiliser", "greenhouse", "flowerpot", "stem", "tulip", "daisy", "henna", "weeds"],
+          "words": ["tree", "leaf", "flower", "garden", "field-farm", "root", "branch", "trunk", "bud", "thorn", "petal", "bark", "palm-tree", "cedar", "olive-tree", "oak", "pine", "cypress", "willow", "rose", "jasmine", "lily", "violet", "sunflower", "carnation", "cactus", "bush", "reed", "vine", "bamboo", "grass", "plant", "seed", "to-plant", "to-water", "to-pick-fruit", "to-prune", "to-bloom", "to-wither", "fertiliser", "greenhouse", "flowerpot", "stem", "tulip", "daisy", "henna", "weeds"],
           "sentences": [
-            {"slot": "water-garden-flowers", "english": "Please water the flowers in the garden.", "uses": ["to-water", "flowers", "garden"]},
+            {"slot": "water-garden-flowers", "english": "Please water the flowers in the garden.", "uses": ["to-water", "flower", "garden"]},
             {"slot": "grandfather-olive-trees", "english": "My grandfather planted these olive trees.", "uses": ["olive-tree", "to-plant"]},
             {"slot": "rose-has-thorns", "english": "Be careful, the rose has thorns.", "uses": ["rose", "thorn"]},
             {"slot": "leaves-fall-autumn", "english": "The leaves fall from the trees in autumn.", "uses": ["leaf", "tree"]},
@@ -8806,7 +8596,7 @@
             {"slot": "apples-bananas-market", "english": "I bought apples and bananas from the market.", "uses": ["apple", "banana"]},
             {"slot": "peel-this-orange", "english": "Can you peel this orange for me?", "uses": ["orange-fruit"]},
             {"slot": "watermelon-in-summer", "english": "We eat watermelon every day in summer.", "uses": ["watermelon"]},
-            {"slot": "break-fast-dates", "english": "We break our fast with dates and water.", "uses": ["dates"]},
+            {"slot": "dates-figs-favourite", "english": "Dates and figs are my favourite fruit.", "uses": ["dates", "fig", "fruit"]},
             {"slot": "grapes-very-sweet", "english": "These grapes are very sweet.", "uses": ["grapes"]},
             {"slot": "pear-is-rotten", "english": "This pear is rotten, throw it away.", "uses": ["pear", "rotten"]}
           ]

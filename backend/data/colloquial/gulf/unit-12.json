@@ -1211,16 +1211,6 @@
           }
         },
         {
-          "slot": "thanks-a-lot",
-          "arabic": "يِعْطِيك اِلْعَافِيَة",
-          "transliteration": "y3aateek il-3aafya",
-          "reply": {
-            "arabic": "اللَّه يِعَافِيك",
-            "transliteration": "allah y3aafeek",
-            "english": "You're very welcome."
-          }
-        },
-        {
           "slot": "good-that-i-didn-t-waste-your-time",
           "arabic": "زَين إِنِّي مَا ضَيِّعْت وِقْتَك",
           "transliteration": "zeen inni ma dayya3t wagtak"

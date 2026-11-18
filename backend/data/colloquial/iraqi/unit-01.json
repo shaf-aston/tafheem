@@ -926,11 +926,6 @@
           "slot": "we-ll-see-you-tomorrow-to-a-man",
           "arabic": "نْشُوفَك بَاچِر إِنْ شَاءَ اَللَّهِ",
           "transliteration": "nshoofak baachir inshaallah"
-        },
-        {
-          "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "أَشُوفَك بَاچِر",
-          "transliteration": "ashoofak baachir"
         }
       ],
       "dialogue": [
@@ -1304,11 +1299,6 @@
           "slot": "on-the-left",
           "arabic": "عَلَى اَلشِّمَال",
           "transliteration": "3ash-shimaal"
-        },
-        {
-          "slot": "straight-ahead",
-          "arabic": "دُغْرِي",
-          "transliteration": "dughri"
         },
         {
           "slot": "near",
@@ -2155,16 +2145,6 @@
           "transliteration": "jinsiyyti sooriyya"
         },
         {
-          "slot": "where-do-you-live-to-a-man",
-          "arabic": "وِين سَاكِن؟",
-          "transliteration": "ween saakin?",
-          "reply": {
-            "arabic": "سَاكِن بِالمَنْصُور",
-            "transliteration": "saakin bil-manSoor",
-            "english": "I live in al-Mansour."
-          }
-        },
-        {
           "slot": "i-live-in-amman",
           "arabic": "آنِي سَاكِن بْعَمَّان",
           "transliteration": "aani saakin b-3ammaan"
@@ -2250,12 +2230,15 @@
         },
         {
           "speaker": "Yousef",
-          "slot": "where-do-you-live-to-a-man"
+          "arabic": "وِين سَاكِن؟",
+          "transliteration": "ween saakin?",
+          "english": "Where do you live? (to a man)"
         },
         {
           "speaker": "Mustafa",
-          "slot": "where-do-you-live-to-a-man",
-          "reply": true
+          "arabic": "سَاكِن بِالمَنْصُور",
+          "transliteration": "saakin bil-manSoor",
+          "english": "I live in al-Mansour."
         },
         {
           "speaker": "Mustafa",

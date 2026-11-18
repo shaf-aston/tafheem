@@ -95,9 +95,9 @@
       "lesson": "lesson-03",
       "sentences": [
         {
-          "slot": "three-brothers-one-sister",
-          "arabic": "عِنْدِي تْلَات إِخْوِة وْإِخْت وِحْدِة.",
-          "transliteration": "3endi tlett ekhwe w 2ekht wa7de."
+          "slot": "son-daughter-at-school",
+          "arabic": "إِبْنِي وْبِنْتِي بِالمَدْرَسِة.",
+          "transliteration": "2ebni w benti bil-madrase."
         },
         {
           "slot": "grandmother-lives-with-us",

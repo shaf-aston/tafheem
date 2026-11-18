@@ -1804,16 +1804,6 @@
           }
         },
         {
-          "slot": "do-you-have-another-color-to-a-man",
-          "arabic": "عِندَك لُون ثَانِي؟",
-          "transliteration": "3indak loon thaani?",
-          "reply": {
-            "arabic": "إِي، عِندِي أزْرَق وأحْمَر.",
-            "transliteration": "ee, 3indi azrag w a7mar.",
-            "english": "Yes, I have blue and red."
-          }
-        },
-        {
           "slot": "this-one-is-nicer",
           "arabic": "هَذَا أحْلَى",
           "transliteration": "haatha a7la"
@@ -1884,8 +1874,9 @@
         },
         {
           "speaker": "Abu Rashid",
-          "slot": "do-you-have-another-color-to-a-man",
-          "reply": true
+          "arabic": "إِي، عِندِي أزْرَق وأحْمَر.",
+          "transliteration": "ee, 3indi azrag w a7mar.",
+          "english": "Yes, I have blue and red."
         },
         {
           "speaker": "Sara",

@@ -69,11 +69,6 @@
           "transliteration": "hunaa jayyid, tawaqqaf"
         },
         {
-          "slot": "keep-the-change",
-          "arabic": "الْبَاقِي لَكَ",
-          "transliteration": "al-baaqee laka"
-        },
-        {
           "slot": "is-there-a-taxi-nearby-here",
           "arabic": "هَلْ تُوجَدُ سَيَّارَة أُجْرَة قَرِيبَة مِنْ هُنَا؟",
           "transliteration": "hal toojadu sayyaara ujra qareeba min hunaa?"
@@ -1541,34 +1536,9 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "taxi",
-          "arabic": "سَيَّارَةُ أُجْرَة",
-          "transliteration": "sayyaaratu ujra"
-        },
-        {
           "slot": "bus",
           "arabic": "حَافِلَة",
           "transliteration": "7aafila"
-        },
-        {
-          "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "أُرِيدُ الذَّهَابَ إِلَى الْمَدِينَةِ الْقَدِيمَة",
-          "transliteration": "ureedu adh-dhahaaba ilaa al-madeenati al-qadeema"
-        },
-        {
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "تَوَقَّفْ هُنَا، لَوْ سَمَحْتَ",
-          "transliteration": "tawaqqaf hunaa, law samahta"
-        },
-        {
-          "slot": "how-much-is-the-fare",
-          "arabic": "كَمِ الْأُجْرَة؟",
-          "transliteration": "kami al-ujra?"
-        },
-        {
-          "slot": "take-me-to-to-a-man",
-          "arabic": "أَوْصِلْنِي إِلَى",
-          "transliteration": "awsilnee ilaa"
         },
         {
           "slot": "are-you-free-asking-a-taxi-driver-if-available",
@@ -1619,7 +1589,9 @@
         },
         {
           "speaker": "Layla",
-          "slot": "i-want-to-go-to-the-old-city"
+          "arabic": "أُرِيدُ الذَّهَابَ إِلَى الْمَدِينَةِ الْقَدِيمَة",
+          "transliteration": "ureedu adh-dhahaaba ilaa al-madeenati al-qadeema",
+          "english": "I want to go to the Old City."
         },
         {
           "speaker": "Hamad",
@@ -1663,7 +1635,9 @@
         },
         {
           "speaker": "Layla",
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver"
+          "arabic": "تَوَقَّفْ هُنَا، لَوْ سَمَحْتَ",
+          "transliteration": "tawaqqaf hunaa, law samahta",
+          "english": "Stop here, please. (to a man, such as a taxi driver)"
         },
         {
           "speaker": "Hamad",
