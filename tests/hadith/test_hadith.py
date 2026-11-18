@@ -416,6 +416,20 @@ def test_a_name_in_the_chain_is_not_searched(db):
     assert [h.number for h in search.search("الصبر", 10).hits] == [5]
 
 
+def test_an_english_word_finds_its_kin_the_stemmer_keeps_apart(db):
+    """anger finds "do not get angry" (the stemmer makes anger and angri); a spelling few hadith hold is not kin."""
+    conn = sqlite3.connect(db)
+    rows = [(4 + i, "قال لا تغضب", "Do not get angry") for i in range(3)] + [(7, "قال", "a stray angr")]
+    conn.executemany("INSERT INTO hadith (collection_id, book_number, number, part, arabic, english) "
+                     "VALUES ('bukhari', 2, ?, '', ?, ?)", rows)
+    conn.execute("DELETE FROM hadith_fts"); conn.execute("DELETE FROM word"); conn.execute("DELETE FROM deletion")
+    index_text(conn)
+    conn.commit()
+    conn.close()
+    assert sorted(h.number for h in search.search("anger", 10).hits) == [4, 5, 6]
+    assert sorted(h.number for h in search.search("angry", 10).hits) == [4, 5, 6]
+
+
 def test_a_collection_and_number_opens_that_hadith(db):
     """'bukhari 2' is the hadith numbered 2, not a word search for 'bukhari'."""
     for typed in ("bukhari 2", "Sahih al-Bukhari 2", "bukhari:2", "bukari 2", "bukhary 2", "bukhari 2.", '"bukhari" 2'):
