@@ -16,19 +16,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "cat-and-small-dog",
+          "arabic": "عندنا قطة وكلب صغير.",
+          "transliteration": "3andena 2oTTa w kalb Soghayyar."
+        },
+        {
+          "slot": "feed-the-hens",
+          "arabic": "لو سمحت أكّل الفراخ كل يوم الصبح.",
+          "transliteration": "law sama7t akkel el-feraakh kol yoom eS-Sob7."
+        },
+        {
+          "slot": "uncle-milks-cow",
+          "arabic": "عمي بيحلب البقرة بدري الصبح.",
+          "transliteration": "3ammi beye7leb el-ba2ara badri eS-Sob7."
+        },
+        {
+          "slot": "shepherd-takes-sheep",
+          "arabic": "الراعي بياخد الخرفان للجبل.",
+          "transliteration": "er-raa3i beyaakhod el-khirfaan lel-gabal."
+        },
+        {
+          "slot": "camel-walks-desert",
+          "arabic": "الجمل يقدر يمشي أيام في الصحرا.",
+          "transliteration": "eg-gamal ye2dar yemshi ayyaam fiS-Sa7ra."
+        },
+        {
+          "slot": "horses-on-farm",
+          "arabic": "فيه حصنة في المزرعة بتاعتك؟",
+          "transliteration": "fee 7oSna fil-mazra3a betaa3tak?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "lion-tiger-zoo",
+          "arabic": "شفنا أسد ونمر في حديقة الحيوان.",
+          "transliteration": "shofna asad w nemr fi 7adee2et el-7ayawaan."
+        },
+        {
+          "slot": "elephant-biggest-animal",
+          "arabic": "الفيل هو أكبر حيوان هنا.",
+          "transliteration": "el-feel howwa akbar 7ayawaan hena."
+        },
+        {
+          "slot": "snake-under-rock",
+          "arabic": "خلي بالك، فيه تعبان تحت الصخرة.",
+          "transliteration": "khalli baalak, fee to3baan ta7t eS-Sakhra."
+        },
+        {
+          "slot": "monkey-took-banana",
+          "arabic": "القرد خد الموزة من إيدي.",
+          "transliteration": "el-2erd khad el-mooza men eedi."
+        },
+        {
+          "slot": "gazelle-runs-fast",
+          "arabic": "الغزال بيجري بسرعة أوي في الصحرا.",
+          "transliteration": "el-ghazaal beyegri be-sor3a awi fiS-Sa7ra."
+        },
+        {
+          "slot": "foxes-wolves-mountains",
+          "arabic": "فيه تعالب وديابة في الجبال دي؟",
+          "transliteration": "fee ta3aaleb w dyaaba fil-gebaal dee?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "bird-built-nest",
+          "arabic": "الطير بنى عشه في الشجرة.",
+          "transliteration": "eT-Teer bana 3ushsho fesh-shagara."
+        },
+        {
+          "slot": "falcon-flies-high",
+          "arabic": "الصقر بيطير عالي فوق الصحرا.",
+          "transliteration": "eS-Sa2r beyTeer 3aali foo2 eS-Sa7ra."
+        },
+        {
+          "slot": "mosquito-bit-me",
+          "arabic": "ناموسة عضتني امبارح بالليل.",
+          "transliteration": "namoosa 3aDDetni embaare7 bel-leil."
+        },
+        {
+          "slot": "many-fish-sea",
+          "arabic": "فيه سمك كتير في البحر ده.",
+          "transliteration": "fee samak keteer fil-ba7r da."
+        },
+        {
+          "slot": "bees-make-honey",
+          "arabic": "النحل بيعمل العسل من الورد.",
+          "transliteration": "en-na7l beye3mel el-3asal men el-ward."
+        },
+        {
+          "slot": "dolphins-turtle-boat",
+          "arabic": "شفنا دلافين وسلحفاة جنب المركب.",
+          "transliteration": "shofna dalafeen w sel7efa ganb el-markeb."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "water-garden-flowers",
+          "arabic": "لو سمحت اسقي الورد اللي في الجنينة.",
+          "transliteration": "law sama7t es2i el-ward elli fil-ganeena."
+        },
+        {
+          "slot": "grandfather-olive-trees",
+          "arabic": "جدي هو اللي زرع شجر الزيتون ده.",
+          "transliteration": "gaddi howwa elli zara3 shagar ez-zeitoon da."
+        },
+        {
+          "slot": "rose-has-thorns",
+          "arabic": "خلي بالك، الوردة الجوري فيها شوك.",
+          "transliteration": "khalli baalak, el-warda eg-goori feeha shook."
+        },
+        {
+          "slot": "leaves-fall-autumn",
+          "arabic": "ورق الشجر بيقع في الخريف.",
+          "transliteration": "wara2 esh-shagar beyo2a3 fil-khareef."
+        },
+        {
+          "slot": "palm-tree-dates",
+          "arabic": "النخلة دي بتطلّع بلح كتير.",
+          "transliteration": "en-nakhla dee betTalla3 bala7 keteer."
+        },
+        {
+          "slot": "pick-fruit-orchard",
+          "arabic": "إمتى بتقطفوا الفاكهة من البستان؟",
+          "transliteration": "emta bete2Tafu el-fakha men el-bostaan?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "hot-sun-desert",
+          "arabic": "الشمس حامية أوي في الصحرا.",
+          "transliteration": "esh-shams 7amya awi fiS-Sa7ra."
+        },
+        {
+          "slot": "moon-and-stars",
+          "arabic": "بُص على القمر والنجوم الليلة.",
+          "transliteration": "boSS 3ala el-2amar wen-nogoom el-leila."
+        },
+        {
+          "slot": "beach-every-friday",
+          "arabic": "بنروح الشاطئ كل جمعة.",
+          "transliteration": "benroo7 esh-shaaTe2 kol gom3a."
+        },
+        {
+          "slot": "mountain-slept-cave",
+          "arabic": "طلعوا الجبل وناموا في كهف.",
+          "transliteration": "Tel3o eg-gabal w naamo fi kahf."
+        },
+        {
+          "slot": "river-green-valley",
+          "arabic": "النهر بيعدي في الوادي الأخضر.",
+          "transliteration": "en-nahr beye3addi fil-waadi el-akhDar."
+        },
+        {
+          "slot": "no-clouds-sky",
+          "arabic": "مفيش ولا سحابة في السما النهارده.",
+          "transliteration": "mafeesh wala sa7aaba fes-sama en-naharda."
+        }
+      ]
     }
   ]
 }

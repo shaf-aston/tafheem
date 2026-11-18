@@ -16,13 +16,109 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "muslims-pray-five-times",
+          "arabic": "المسلمين بيصلّوا خمس مرات كل يوم.",
+          "transliteration": "el-moslemeen beySallu khamas marraat kol yoom."
+        },
+        {
+          "slot": "ramadan-fasting-obligatory",
+          "arabic": "صيام رمضان فرض على المسلم البالغ.",
+          "transliteration": "Seyaam ramaDaan farD 3ala el-moslem el-baaligh."
+        },
+        {
+          "slot": "grandfather-reads-quran",
+          "arabic": "جدي بيقرا القرآن كل يوم الصبح.",
+          "transliteration": "gaddi beye2ra el-2or2aan kol yoom eS-Sob7."
+        },
+        {
+          "slot": "hajj-with-parents",
+          "arabic": "هو راح الحج مع أبوه وأمه السنة اللي فاتت.",
+          "transliteration": "howwa raa7 el-7agg ma3a aboo w ommo es-sana elli faatet."
+        },
+        {
+          "slot": "zakat-helps-families",
+          "arabic": "الزكاة بتساعد العيلات الفقيرة اللي حوالينا.",
+          "transliteration": "ez-zakaa betsaa3ed el-3eelaat el-fa2eera elli 7awaleena."
+        },
+        {
+          "slot": "is-meat-halal",
+          "arabic": "اللحمة دي حلال؟ عايز أتأكد.",
+          "transliteration": "el-la7ma dee 7alaal? 3aayez at2akked."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "election-next-month",
+          "arabic": "الانتخابات هتبقى الشهر الجاي.",
+          "transliteration": "el-entekhabaat hateb2a esh-shahr eg-gaay."
+        },
+        {
+          "slot": "president-visited-hospital",
+          "arabic": "رئيس الجمهورية زار المستشفى الجديدة امبارح.",
+          "transliteration": "ra2ees eg-gomhooreyya zaar el-mostashfa eg-gedeeda embaare7."
+        },
+        {
+          "slot": "respect-the-law",
+          "arabic": "كل الناس لازم تحترم القانون.",
+          "transliteration": "kol en-naas laazem te7tarem el-qanoon."
+        },
+        {
+          "slot": "judge-announced-verdict",
+          "arabic": "القاضي أعلن الحكم النهارده الصبح.",
+          "transliteration": "el-2aaDi a3lan el-7ukm en-naharda eS-Sob7."
+        },
+        {
+          "slot": "citizen-duty-tax",
+          "arabic": "كل مواطن عليه واجب إنه يدفع الضريبة.",
+          "transliteration": "kol mowaaTen 3aleeh waageb enno yedfa3 eD-Dareeba."
+        },
+        {
+          "slot": "anthem-and-flag",
+          "arabic": "العيال غنّوا النشيد الوطني ورفعوا العلم.",
+          "transliteration": "el-3eyaal ghannu en-nasheed el-waTani w rafa3u el-3alam."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "history-geography-maths",
+          "arabic": "أنا بحب التاريخ والجغرافيا أكتر من الرياضيات.",
+          "transliteration": "ana ba7ebb et-tareekh wel-gheghrafya aktar men er-reyaaDeyyaat."
+        },
+        {
+          "slot": "chemistry-lab-experiment",
+          "arabic": "عملنا تجربة في معمل الكيمياء.",
+          "transliteration": "3amalna tagroba fi ma3mal el-keemya."
+        },
+        {
+          "slot": "novel-arab-writer",
+          "arabic": "هي قرت رواية حلوة لكاتب عربي.",
+          "transliteration": "heyya 2arat rewaaya 7elwa le-kaateb 3arabi."
+        },
+        {
+          "slot": "father-listens-radio",
+          "arabic": "أبويا بيسمع الراديو كل يوم الصبح.",
+          "transliteration": "abuya beyesma3 er-radyo kol yoom eS-Sob7."
+        },
+        {
+          "slot": "poetry-arab-culture",
+          "arabic": "الشعر جزء مهم من الثقافة العربية.",
+          "transliteration": "esh-she3r goz2 mohemm men es-sa2aafa el-3arabeyya."
+        },
+        {
+          "slot": "trade-and-economy",
+          "arabic": "التجارة مهمة أوي لاقتصاد بلدنا.",
+          "transliteration": "et-tegaara mohemma awi le-e2teSaad baladna."
+        }
+      ]
     }
   ]
 }

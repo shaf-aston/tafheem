@@ -22,16 +22,144 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "carry-heavy-bag",
+          "arabic": "وَاشْ تْقْدْرْ تْعَاوْنِّي نْشِيلْ هَادْ الصَّاكْ التّْقِيلْ؟",
+          "transliteration": "waash teqder t3aawenni nsheel haad S-Saak t-tqeel?"
+        },
+        {
+          "slot": "clean-table-sweep-floor",
+          "arabic": "نَقِّي الطّْبْلَة وْكْنْسْ الْأَرْضْ، عَافَاكْ.",
+          "transliteration": "neqqi T-Tebla w knes l-arD, 3afaak."
+        },
+        {
+          "slot": "pour-tea-fill-cup",
+          "arabic": "صُبّْ أَتَايْ وْعَمّْرْ لِيَّا الْكَاسْ، عَافَاكْ.",
+          "transliteration": "Sebb ataay w 3emmer liya l-kaas, 3afaak."
+        },
+        {
+          "slot": "children-run-jump",
+          "arabic": "الدّْرَارِي كَيْجْرِيوْ وْكَيْنْطّْوْ فْ الْجْنَانْ.",
+          "transliteration": "d-draari kayjriw w kayneTTu f l-jnaan."
+        },
+        {
+          "slot": "smell-then-taste",
+          "arabic": "أَجِي شُمّْ الْمَاكْلَة، وْمْنْ بْعْدْ دُوقْهَا.",
+          "transliteration": "aji shemm l-maakla, w men b3ed dooqha."
+        },
+        {
+          "slot": "listen-do-not-shout",
+          "arabic": "سْتَمْعْ لِلْأُسْتَاذْ وْمَا تْصْرْخْشْ.",
+          "transliteration": "stme3 l l-ustaad w ma tSrekhsh."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "study-every-evening",
+          "arabic": "كَنْقْرَا الْعَرْبِيَّة كُلّْ عْشِيَّة مْنْ بْعْدْ الْخْدْمَة.",
+          "transliteration": "kanqra l-3arbiyya kull 3shiyya men b3ed l-khedma."
+        },
+        {
+          "slot": "explain-lesson-again",
+          "arabic": "وَاشْ تْقْدْرْ تْشْرْحْ لِيَّا هَادْ الدَّرْسْ عَاوْدْ تَانِي، عَافَاكْ؟",
+          "transliteration": "waash teqder tshre7 liya haad d-ders 3aawed taani, 3afaak?"
+        },
+        {
+          "slot": "save-file-first",
+          "arabic": "حْفْظْ الْفِيشْيِي قْبْلْ مَا تْسْدّْ الْأُورْدِينَاتُورْ.",
+          "transliteration": "7feD l-feeshyi qbel ma tsedd l-ordinatoor."
+        },
+        {
+          "slot": "translated-the-letter",
+          "arabic": "هِيَ تَرْجْمَاتْ لِيَّا الْبْرَا لِلْإِنْجْلِيزِيَّة.",
+          "transliteration": "hiya terjmaat liya l-bra l l-ingleeziyya."
+        },
+        {
+          "slot": "sign-and-hand-over",
+          "arabic": "مْضِي هْنَا عَافَاكْ، وْنَاوْلْ الْأَوْرَاقْ.",
+          "transliteration": "mDi hna 3afaak, w naawel l-awraaq."
+        },
+        {
+          "slot": "remember-the-papers",
+          "arabic": "وَاشْ كَتْتْفَكّْرْ فِينْ حْطِّيتْ الْأَوْرَاقْ؟",
+          "transliteration": "waash kattfekker feen 7TTeet l-awraaq?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "come-repair-door",
+          "arabic": "وَاشْ تْقْدْرْ تْجِي غَدَّا وْتْصْلَحْ الْبَابْ؟",
+          "transliteration": "waash teqder tji ghedda w tSle7 l-baab?"
+        },
+        {
+          "slot": "show-how-to-use",
+          "arabic": "وَرِّينِي كِيفَاشْ نْسْتَعْمْلْ هَادْ الْمَاكِينَة.",
+          "transliteration": "werreeni kifaash nsta3mel haad l-maakeena."
+        },
+        {
+          "slot": "lend-me-pen",
+          "arabic": "وَاشْ تْقْدْرْ تْسَلّْفْنِي السْتِيلُو دْيَالْكْ شِي شْوِيَّة؟",
+          "transliteration": "waash teqder tsellefni s-steelo dyaalek shi shwiya?"
+        },
+        {
+          "slot": "lock-door-night",
+          "arabic": "مَا تْنْسَاشْ تْقْفْلْ الْبَابْ فْ اللِّيلْ.",
+          "transliteration": "ma tensaash teqfel l-baab f l-leel."
+        },
+        {
+          "slot": "plant-water-trees",
+          "arabic": "بَابَا كَيْغْرْسْ الشّْجَرْ وْكَيْسْقِيهْ كُلّْ صْبَاحْ.",
+          "transliteration": "baaba kayghres sh-shjar w kaysqeeh kull Sbaa7."
+        },
+        {
+          "slot": "started-building-house",
+          "arabic": "هُومَا بْدَاوْ يْبْنِيوْ دَارْ جْدِيدَة الْعَامْ اللِّي فَاتْ.",
+          "transliteration": "huma bdaaw ybniw daar jdeeda l-3aam lli faat."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "feel-tired-stay-home",
+          "arabic": "كَنْحْسّْ رَاسِي عْيَّانْ الْيُومْ، دَاكْ الشِّي عْلَاشْ غَادِي نْبْقَى فْ الدَّارْ.",
+          "transliteration": "kan7ess raasi 3iyyaan lyoom, daak sh-shi 3laash ghaadi nebqa f d-daar."
+        },
+        {
+          "slot": "love-respect-parents",
+          "arabic": "كَنْحْبّْ الْوَالِدِينْ دْيَالِي وْكَنْحْتَارْمْهُمْ بْزَّافْ.",
+          "transliteration": "kan7ebb l-waalideen dyaali w kan7taarmhom bzaaf."
+        },
+        {
+          "slot": "dont-worry",
+          "arabic": "مَا تْقْلْقْشْ، كُلْشِي غَادِي يْكُونْ مْزْيَانْ.",
+          "transliteration": "ma teqleqsh, kulshi ghaadi ykoon mezyaan."
+        },
+        {
+          "slot": "trust-do-not-lie",
+          "arabic": "كَنْتِيقْ فِيكْ، دَاكْ الشِّي عَافَاكْ مَا تْكْذْبْشْ عْلِيَّا.",
+          "transliteration": "kantiq feek, daak sh-shi 3afaak ma tkdebsh 3liya."
+        },
+        {
+          "slot": "promised-seems-busy",
+          "arabic": "هُوَ وْعْدْ بَاشْ يْجِي، وْلَكِنْ بَانْ لِيَّا مْشْغُولْ.",
+          "transliteration": "huwa w3ed baash yji, walaakin baan liya meshghool."
+        },
+        {
+          "slot": "hug-grandmother-eid",
+          "arabic": "هِيَ حْضْنَاتْ جْدّْتْهَا وْهْنَّاتْهَا بْالْعِيدْ.",
+          "transliteration": "hiya 7Dnaat jeddetha w hennaatha b l-3eed."
+        }
+      ]
     }
   ]
 }

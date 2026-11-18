@@ -21,19 +21,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "cat-and-small-dog",
+          "arabic": "عِنْدَنَا قِطَّةٌ وَكَلْبٌ صَغِيرٌ",
+          "transliteration": "3indanaa qittatun wa kalbun sagheer"
+        },
+        {
+          "slot": "feed-the-hens",
+          "arabic": "أَطْعِمِ الدَّجَاجَاتِ كُلَّ صَبَاحٍ، مِنْ فَضْلِكَ",
+          "transliteration": "at3imi ad-dajaajaati kulla sabaa7in, min fadlik"
+        },
+        {
+          "slot": "uncle-milks-cow",
+          "arabic": "عَمِّي يَحْلُبُ الْبَقَرَةَ فِي الصَّبَاحِ الْبَاكِرِ",
+          "transliteration": "3ammee ya7lubu al-baqarata fee as-sabaa7i al-baakir"
+        },
+        {
+          "slot": "shepherd-takes-sheep",
+          "arabic": "يَأْخُذُ الرَّاعِي الْخِرَافَ إِلَى الْجَبَلِ",
+          "transliteration": "ya2khudhu ar-raa3ee al-khiraafa ilaa al-jabal"
+        },
+        {
+          "slot": "camel-walks-desert",
+          "arabic": "يَسْتَطِيعُ الْجَمَلُ أَنْ يَمْشِيَ أَيَّامًا فِي الصَّحْرَاءِ",
+          "transliteration": "yastatee3u al-jamalu an yamshiya ayyaaman fee as-sa7raa2"
+        },
+        {
+          "slot": "horses-on-farm",
+          "arabic": "هَلْ تُوجَدُ أَحْصِنَةٌ فِي مَزْرَعَتِكَ؟",
+          "transliteration": "hal toojadu a7sinatun fee mazra3atik?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "lion-tiger-zoo",
+          "arabic": "رَأَيْنَا أَسَدًا وَنَمِرًا فِي حَدِيقَةِ الْحَيَوَانِ",
+          "transliteration": "ra2aynaa asadan wa namiran fee 7adeeqati al-7ayawaan"
+        },
+        {
+          "slot": "elephant-biggest-animal",
+          "arabic": "الْفِيلُ أَكْبَرُ حَيَوَانٍ هُنَا",
+          "transliteration": "al-feelu akbaru 7ayawaanin hunaa"
+        },
+        {
+          "slot": "snake-under-rock",
+          "arabic": "اِنْتَبِهْ، يُوجَدُ ثُعْبَانٌ تَحْتَ الصَّخْرَةِ",
+          "transliteration": "intabih, yoojadu thu3baanun ta7ta as-sakhra"
+        },
+        {
+          "slot": "monkey-took-banana",
+          "arabic": "أَخَذَ الْقِرْدُ الْمَوْزَةَ مِنْ يَدِي",
+          "transliteration": "akhadha al-qirdu al-mawzata min yadee"
+        },
+        {
+          "slot": "gazelle-runs-fast",
+          "arabic": "يَرْكُضُ الْغَزَالُ بِسُرْعَةٍ كَبِيرَةٍ فِي الصَّحْرَاءِ",
+          "transliteration": "yarkudu al-ghazaalu bisur3atin kabeeratin fee as-sa7raa2"
+        },
+        {
+          "slot": "foxes-wolves-mountains",
+          "arabic": "هَلْ تُوجَدُ ثَعَالِبُ وَذِئَابٌ فِي هَذِهِ الْجِبَالِ؟",
+          "transliteration": "hal toojadu tha3aalibu wa dhi2aabun fee haadhihi al-jibaal?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "bird-built-nest",
+          "arabic": "بَنَى الطَّائِرُ عُشَّهُ فِي الشَّجَرَةِ",
+          "transliteration": "banaa at-taa2iru 3ushshahu fee ash-shajara"
+        },
+        {
+          "slot": "falcon-flies-high",
+          "arabic": "يَطِيرُ الصَّقْرُ عَالِيًا فَوْقَ الصَّحْرَاءِ",
+          "transliteration": "yateeru as-saqru 3aaliyan fawqa as-sa7raa2"
+        },
+        {
+          "slot": "mosquito-bit-me",
+          "arabic": "عَضَّتْنِي بَعُوضَةٌ لَيْلَةَ أَمْسِ",
+          "transliteration": "3addatnee ba3oodatun laylata ams"
+        },
+        {
+          "slot": "many-fish-sea",
+          "arabic": "فِي هَذَا الْبَحْرِ سَمَكٌ كَثِيرٌ",
+          "transliteration": "fee haadhaa al-ba7ri samakun katheer"
+        },
+        {
+          "slot": "bees-make-honey",
+          "arabic": "يَصْنَعُ النَّحْلُ الْعَسَلَ مِنَ الزُّهُورِ",
+          "transliteration": "yasna3u an-na7lu al-3asala mina az-zuhoor"
+        },
+        {
+          "slot": "dolphins-turtle-boat",
+          "arabic": "رَأَيْنَا دَلَافِينَ وَسُلَحْفَاةً قُرْبَ الْقَارِبِ",
+          "transliteration": "ra2aynaa dalaafeena wa sula7faatan qurba al-qaarib"
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "water-garden-flowers",
+          "arabic": "اِسْقِ الْوَرْدَ فِي الْحَدِيقَةِ، مِنْ فَضْلِكَ",
+          "transliteration": "isqi al-warda fee al-7adeeqati, min fadlik"
+        },
+        {
+          "slot": "grandfather-olive-trees",
+          "arabic": "غَرَسَ جَدِّي هَذِهِ الزَّيْتُونَاتِ",
+          "transliteration": "gharasa jaddee haadhihi az-zaytoonaat"
+        },
+        {
+          "slot": "rose-has-thorns",
+          "arabic": "اِنْتَبِهْ، فِي الْوَرْدَةِ أَشْوَاكٌ",
+          "transliteration": "intabih, fee al-wardati ashwaak"
+        },
+        {
+          "slot": "leaves-fall-autumn",
+          "arabic": "تَسْقُطُ الْأَوْرَاقُ مِنَ الْأَشْجَارِ فِي الْخَرِيفِ",
+          "transliteration": "tasqutu al-awraaqu mina al-ashjaari fee al-khareef"
+        },
+        {
+          "slot": "palm-tree-dates",
+          "arabic": "هَذِهِ النَّخْلَةُ تُعْطِي تَمْرًا كَثِيرًا",
+          "transliteration": "haadhihi an-nakhlatu tu3tee tamran katheeraa"
+        },
+        {
+          "slot": "pick-fruit-orchard",
+          "arabic": "مَتَى تَقْطِفُ الْفَاكِهَةَ مِنَ الْبُسْتَانِ؟",
+          "transliteration": "mataa taqtifu al-faakihata mina al-bustaan?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "hot-sun-desert",
+          "arabic": "الشَّمْسُ حَارَّةٌ جِدًّا فِي الصَّحْرَاءِ",
+          "transliteration": "ash-shamsu 7aarratun jiddan fee as-sa7raa2"
+        },
+        {
+          "slot": "moon-and-stars",
+          "arabic": "اُنْظُرْ إِلَى الْقَمَرِ وَالنُّجُومِ اللَّيْلَةَ",
+          "transliteration": "unzur ilaa al-qamari wan-nujoomi al-layla"
+        },
+        {
+          "slot": "beach-every-friday",
+          "arabic": "نَذْهَبُ إِلَى الشَّاطِئِ كُلَّ جُمُعَةٍ",
+          "transliteration": "nadhhabu ilaa ash-shaati2i kulla jumu3a"
+        },
+        {
+          "slot": "mountain-slept-cave",
+          "arabic": "صَعِدُوا الْجَبَلَ وَنَامُوا فِي كَهْفٍ",
+          "transliteration": "sa3idoo al-jabala wa naamoo fee kahf"
+        },
+        {
+          "slot": "river-green-valley",
+          "arabic": "يَجْرِي النَّهْرُ فِي الْوَادِي الْأَخْضَرِ",
+          "transliteration": "yajree an-nahru fee al-waadee al-akhdar"
+        },
+        {
+          "slot": "no-clouds-sky",
+          "arabic": "لَا سَحَابَةَ فِي السَّمَاءِ الْيَوْمَ",
+          "transliteration": "laa sa7aabata fee as-samaa2i al-yawm"
+        }
+      ]
     }
   ]
 }

@@ -18,19 +18,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "plates-spoons-table",
+          "arabic": "حُطّ الصُّحُون وَالمَعَالِق عَلَى الطَّاوْلَة.",
+          "transliteration": "7uTT aS-Su7oon w al-ma3aalig 3ala T-Taawla."
+        },
+        {
+          "slot": "milk-in-fridge",
+          "arabic": "الحَلِيب فِي الثَّلَّاجَة.",
+          "transliteration": "al-7aleeb fi t-tallaaja."
+        },
+        {
+          "slot": "who-washes-dishes",
+          "arabic": "مِين حَيِغْسِل الصُّحُون اللَّيْلَة؟",
+          "transliteration": "meen 7ayighsil aS-Su7oon al-layla?"
+        },
+        {
+          "slot": "knife-and-fork",
+          "arabic": "مُمْكِن سِكِّين وَشُوكَة، لَوْ سَمَحْت؟",
+          "transliteration": "mumkin sikkeen w shooka, law sama7t?"
+        },
+        {
+          "slot": "pot-on-stove",
+          "arabic": "حُطّ الحَلَّة عَلَى المَوْقِد، لَوْ سَمَحْت.",
+          "transliteration": "7uTT al-7alla 3ala l-mawgid, law sama7t."
+        },
+        {
+          "slot": "glass-from-kitchen",
+          "arabic": "جِيب لِي كَاس مَيَّة مِن المَطْبَخ.",
+          "transliteration": "jeeb li kaas mayya min al-maTbakh."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "need-the-scissors",
+          "arabic": "فِين المَقَصّ؟ أَحْتَاجُه دَحِين.",
+          "transliteration": "feen al-magaSS? a7taaju da7een."
+        },
+        {
+          "slot": "hammer-and-nails",
+          "arabic": "نَاوِلْنِي الشَّاكُوش وَشْوَيَّة مَسَامِير، لَوْ سَمَحْت.",
+          "transliteration": "naawilni sh-shaakoosh w shwayyat masaameer, law sama7t."
+        },
+        {
+          "slot": "ladder-light-bulb",
+          "arabic": "اِمْسِك السُّلَّم لَيْن أَغَيِّر اللَّمْبَة.",
+          "transliteration": "imsik as-sullam layn aghayyir al-lamba."
+        },
+        {
+          "slot": "broom-mop-garage",
+          "arabic": "المِكْنَسَة وَالمَمْسَحَة فِي الكَرَاج.",
+          "transliteration": "al-miknasa w al-mamsa7a fi l-karaaj."
+        },
+        {
+          "slot": "more-paint-wall",
+          "arabic": "نِحْتَاج بُويَة زِيَادَة لِهَادَا الحِيط.",
+          "transliteration": "ni7taaj booya ziyaada li-haada l-7eeT."
+        },
+        {
+          "slot": "needle-and-thread",
+          "arabic": "عِنْدَك إِبْرَة وَخِيط؟",
+          "transliteration": "3indak ibra w khayT?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "borrow-pencil-eraser",
+          "arabic": "مُمْكِن أَسْتَلِف قَلَمَك الرَّصَاص وَالمَمْحَاة حَقَّتَك؟",
+          "transliteration": "mumkin astalif galamak ar-raSaaS w al-mam7aaya 7aggatak?"
+        },
+        {
+          "slot": "books-on-shelf",
+          "arabic": "رَجِّع الكُتُب عَلَى الرَّفّ.",
+          "transliteration": "rajji3 al-kutub 3ala r-raff."
+        },
+        {
+          "slot": "homework-in-notebook",
+          "arabic": "اُكْتُب الوَاجِب فِي دَفْتَرَك.",
+          "transliteration": "uktub al-waajib fi daftarak."
+        },
+        {
+          "slot": "word-in-dictionary",
+          "arabic": "دَوِّر عَلَى الكِلْمَة فِي القَامُوس.",
+          "transliteration": "dawwir 3ala l-kilma fi l-gaamoos."
+        },
+        {
+          "slot": "pen-no-ink",
+          "arabic": "قَلَمِي خِلِص حِبْرُه.",
+          "transliteration": "galami khiliS 7ibru."
+        },
+        {
+          "slot": "paper-desk-drawer",
+          "arabic": "الوَرَق فِي دُرْج المَكْتَب.",
+          "transliteration": "al-waraq fi durj al-maktab."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "bus-to-work",
+          "arabic": "أَنَا آخُذ البَاص لِلشُّغْل كُل يُوم.",
+          "transliteration": "ana aakhud al-baaS lish-shughl kull yoom."
+        },
+        {
+          "slot": "stop-traffic-light",
+          "arabic": "وَقِّف السَّيَّارَة عِنْد الإِشَارَة.",
+          "transliteration": "waggif as-sayyaara 3ind al-ishaara."
+        },
+        {
+          "slot": "fasten-seatbelt",
+          "arabic": "لَوْ سَمَحْت اِرْبُط حِزَام الأَمَان قَبْل مَا نِمْشِي.",
+          "transliteration": "law sama7t irbuT 7izaam al-amaan gabl ma nimshi."
+        },
+        {
+          "slot": "call-a-taxi",
+          "arabic": "اُطْلُب لِي تَاكْسِي، لَوْ سَمَحْت.",
+          "transliteration": "uTlub li taksi, law sama7t."
+        },
+        {
+          "slot": "bridge-near-port",
+          "arabic": "الكُوبْرِي الجَدِيد قَرِيب مِن المِينَاء.",
+          "transliteration": "al-koobri l-jadeed gareeb min al-meena."
+        },
+        {
+          "slot": "capital-buildings-streets",
+          "arabic": "العَاصِمَة فِيهَا مَبَانِي عَالْيَة كَتِير، وَشَوَارِع وَاسْعَة.",
+          "transliteration": "al-3aaSima feeha mabaani 3aalya katheer, w shawaari3 waas3a."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "football-every-friday",
+          "arabic": "نِلْعَب كُورَة كُل جُمْعَة بَعْد الصَّلَاة.",
+          "transliteration": "nil3ab koora kull jum3a ba3d aS-Salaa."
+        },
+        {
+          "slot": "team-won-match",
+          "arabic": "فَرِيقْنَا فَاز بِالمَاتْش أَمْس.",
+          "transliteration": "fareegna faaz bil-maatsh ams."
+        },
+        {
+          "slot": "goalkeeper-caught-ball",
+          "arabic": "حَارِس المَرْمَى لَحَق الكُرَة بِسُهُولَة.",
+          "transliteration": "7aaris al-marma la7ag al-kura bi-suhoola."
+        },
+        {
+          "slot": "who-scored-first",
+          "arabic": "مِين سَجَّل أَوَّل قُول؟",
+          "transliteration": "meen sajjal awwal gool?"
+        },
+        {
+          "slot": "play-chess",
+          "arabic": "تِعْرَف تِلْعَب شَطْرَنْج؟",
+          "transliteration": "ti3raf til3ab shaTranj?"
+        },
+        {
+          "slot": "coach-players-run",
+          "arabic": "المُدَرِّب قَال لِلَّاعِبِين يِجْرُوا أَكْتَر.",
+          "transliteration": "al-mudarrib gaal lil-laa3ibeen yijru aktar."
+        }
+      ]
     }
   ]
 }

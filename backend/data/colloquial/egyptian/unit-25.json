@@ -16,19 +16,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "plates-spoons-table",
+          "arabic": "حُط الأطباق والمعالق على الترابيزة.",
+          "transliteration": "7oTT el-aTbaa2 wel-ma3aale2 3ala et-trabeeza."
+        },
+        {
+          "slot": "milk-in-fridge",
+          "arabic": "اللبن في التلاجة.",
+          "transliteration": "el-laban fet-talaaga."
+        },
+        {
+          "slot": "who-washes-dishes",
+          "arabic": "مين هيغسل الصحون النهارده بالليل؟",
+          "transliteration": "meen hayeghsel eS-So7oon en-naharda bel-leil?"
+        },
+        {
+          "slot": "knife-and-fork",
+          "arabic": "ممكن سكينة وشوكة، لو سمحت؟",
+          "transliteration": "momken sekkeena w shoka, law sama7t?"
+        },
+        {
+          "slot": "pot-on-stove",
+          "arabic": "حُط الحلة على الموقد، لو سمحت.",
+          "transliteration": "7oTT el-7alla 3ala el-maw2ed, law sama7t."
+        },
+        {
+          "slot": "glass-from-kitchen",
+          "arabic": "هاتلي كوباية مية من المطبخ.",
+          "transliteration": "haatli kobbaayet mayya men el-maTbakh."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "need-the-scissors",
+          "arabic": "المقص فين؟ أنا محتاجه دلوقتي.",
+          "transliteration": "el-ma2aSS feen? ana me7tagoo delwa2ti."
+        },
+        {
+          "slot": "hammer-and-nails",
+          "arabic": "ناولني الشاكوش وشوية مسامير، لو سمحت.",
+          "transliteration": "nawelni esh-shaakoosh w shwayyet masameer, law sama7t."
+        },
+        {
+          "slot": "ladder-light-bulb",
+          "arabic": "امسك السلم على ما أغيّر اللمبة.",
+          "transliteration": "emsek es-sellem 3ala ma aghayyar el-lamba."
+        },
+        {
+          "slot": "broom-mop-garage",
+          "arabic": "المقشة والممسحة في الجراج.",
+          "transliteration": "el-ma2asha wel-mamsa7a feg-garaag."
+        },
+        {
+          "slot": "more-paint-wall",
+          "arabic": "محتاجين بوية أكتر للحيطة دي.",
+          "transliteration": "me7tageen booya aktar lel-7eeTa dee."
+        },
+        {
+          "slot": "needle-and-thread",
+          "arabic": "عندك إبرة وخيط؟",
+          "transliteration": "3andak ebra w kheiT?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "borrow-pencil-eraser",
+          "arabic": "ممكن أستلف القلم الرصاص والأستيكة بتوعك؟",
+          "transliteration": "momken astallef el-2alam er-roSaaS wel-astika betoo3ak?"
+        },
+        {
+          "slot": "books-on-shelf",
+          "arabic": "رجّع الكتب على الرف.",
+          "transliteration": "ragga3 el-kotob 3ala er-raff."
+        },
+        {
+          "slot": "homework-in-notebook",
+          "arabic": "اكتب الواجب في الكراسة بتاعتك.",
+          "transliteration": "ekteb el-waageb fel-karraasa betaa3tak."
+        },
+        {
+          "slot": "word-in-dictionary",
+          "arabic": "دوّر على الكلمة في القاموس.",
+          "transliteration": "dawwar 3ala el-kelma fel-2aamoos."
+        },
+        {
+          "slot": "pen-no-ink",
+          "arabic": "القلم بتاعي الحبر خلص منه.",
+          "transliteration": "el-2alam betaa3i el-7ebr kheleS meno."
+        },
+        {
+          "slot": "paper-desk-drawer",
+          "arabic": "الورق في درج المكتب.",
+          "transliteration": "el-wara2 fi dorg el-maktab."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "bus-to-work",
+          "arabic": "باخد الأتوبيس للشغل كل يوم.",
+          "transliteration": "baakhod el-otobees lesh-shoghl kol yoom."
+        },
+        {
+          "slot": "stop-traffic-light",
+          "arabic": "وقّف العربية عند الإشارة.",
+          "transliteration": "wa22af el-3arabeyya 3and el-eshaara."
+        },
+        {
+          "slot": "fasten-seatbelt",
+          "arabic": "لو سمحت اربط حزام الأمان قبل ما نمشي.",
+          "transliteration": "law sama7t orboT 7izaam el-amaan 2abl ma nemshi."
+        },
+        {
+          "slot": "call-a-taxi",
+          "arabic": "اطلبلي تاكسي، لو سمحت.",
+          "transliteration": "oTlobli taksi, law sama7t."
+        },
+        {
+          "slot": "bridge-near-port",
+          "arabic": "الكوبري الجديد قريب من الميناء.",
+          "transliteration": "el-kobri eg-gedeed 2orayyeb men el-meena."
+        },
+        {
+          "slot": "capital-buildings-streets",
+          "arabic": "العاصمة فيها مباني عالية كتير وشوارع واسعة.",
+          "transliteration": "el-3aaSema feeha mabaani 3alya keteer w shawaare3 waas3a."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "football-every-friday",
+          "arabic": "بنلعب كرة القدم كل جمعة بعد الصلاة.",
+          "transliteration": "benel3ab korat el-2adam kol gom3a ba3d eS-Salaa."
+        },
+        {
+          "slot": "team-won-match",
+          "arabic": "فريقنا فاز في الماتش امبارح.",
+          "transliteration": "fareeqna faaz fel-match embaare7."
+        },
+        {
+          "slot": "goalkeeper-caught-ball",
+          "arabic": "حارس المرمى لحق الكورة بسهولة.",
+          "transliteration": "7aares el-marma la7a2 el-koora be-sohoola."
+        },
+        {
+          "slot": "who-scored-first",
+          "arabic": "مين سجّل أول جون؟",
+          "transliteration": "meen saggel awwel goon?"
+        },
+        {
+          "slot": "play-chess",
+          "arabic": "إنت بتعرف تلعب شطرنج؟",
+          "transliteration": "enta bete3raf tel3ab shaTarang?"
+        },
+        {
+          "slot": "coach-players-run",
+          "arabic": "المدرب قال للاعيبة يجروا أكتر.",
+          "transliteration": "el-modarreb 2aal lel-la3eeba yegroo aktar."
+        }
+      ]
     }
   ]
 }

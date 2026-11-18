@@ -21,13 +21,109 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "muslims-pray-five-times",
+          "arabic": "يُصَلِّي الْمُسْلِمُونَ خَمْسَ مَرَّاتٍ كُلَّ يَوْمٍ",
+          "transliteration": "yusallee al-muslimoona khamsa marraatin kulla yawm"
+        },
+        {
+          "slot": "ramadan-fasting-obligatory",
+          "arabic": "صِيَامُ رَمَضَانَ فَرْضٌ عَلَى الْمُسْلِمِينَ الْبَالِغِينَ",
+          "transliteration": "siyaamu ramadaana fardun 3alaa al-muslimeena al-baaligheen"
+        },
+        {
+          "slot": "grandfather-reads-quran",
+          "arabic": "جَدِّي يَقْرَأُ الْقُرْآنَ كُلَّ صَبَاحٍ",
+          "transliteration": "jaddee yaqra2u al-qur2aana kulla sabaa7"
+        },
+        {
+          "slot": "hajj-with-parents",
+          "arabic": "أَدَّى الْحَجَّ مَعَ وَالِدَيْهِ الْعَامَ الْمَاضِيَ",
+          "transliteration": "addaa al-7ajja ma3a waalidayhi al-3aama al-maadee"
+        },
+        {
+          "slot": "zakat-helps-families",
+          "arabic": "الزَّكَاةُ تُسَاعِدُ الْأُسَرَ الْفَقِيرَةَ فِي مُجْتَمَعِنَا",
+          "transliteration": "az-zakaatu tusaa3idu al-usara al-faqeerata fee mujtama3inaa"
+        },
+        {
+          "slot": "is-meat-halal",
+          "arabic": "هَلْ هَذَا اللَّحْمُ حَلَالٌ؟ أُرِيدُ أَنْ أَتَأَكَّدَ",
+          "transliteration": "hal haadhaa al-la7mu 7alaal? ureedu an ata2akkad"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "election-next-month",
+          "arabic": "سَتَكُونُ الِانْتِخَابَاتُ فِي الشَّهْرِ الْقَادِمِ",
+          "transliteration": "satakoonu al-intikhaabaatu fee ash-shahri al-qaadim"
+        },
+        {
+          "slot": "president-visited-hospital",
+          "arabic": "زَارَ رَئِيسُ الْجُمْهُورِيَّةِ الْمُسْتَشْفَى الْجَدِيدَ أَمْسِ",
+          "transliteration": "zaara ra2eesu al-jumhooriyyati al-mustashfaa al-jadeeda ams"
+        },
+        {
+          "slot": "respect-the-law",
+          "arabic": "يَجِبُ عَلَى الْجَمِيعِ احْتِرَامُ الْقَانُونِ",
+          "transliteration": "yajibu 3alaa al-jamee3i i7tiraamu al-qaanoon"
+        },
+        {
+          "slot": "judge-announced-verdict",
+          "arabic": "أَعْلَنَ الْقَاضِي الْحُكْمَ هَذَا الصَّبَاحَ",
+          "transliteration": "a3lana al-qaadee al-7ukma haadhaa as-sabaa7"
+        },
+        {
+          "slot": "citizen-duty-tax",
+          "arabic": "مِنْ وَاجِبِ كُلِّ مُوَاطِنٍ أَنْ يَدْفَعَ الضَّرِيبَةَ",
+          "transliteration": "min waajibi kulli muwaatinin an yadfa3a ad-dareeba"
+        },
+        {
+          "slot": "anthem-and-flag",
+          "arabic": "غَنَّى الْأَطْفَالُ النَّشِيدَ الْوَطَنِيَّ وَرَفَعُوا الْعَلَمَ",
+          "transliteration": "ghannaa al-atfaalu an-nasheeda al-wataniyya wa rafa3oo al-3alam"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "history-geography-maths",
+          "arabic": "أُحِبُّ التَّارِيخَ وَالْجُغْرَافِيَا أَكْثَرَ مِنَ الرِّيَاضِيَّاتِ",
+          "transliteration": "u7ibbu at-taareekha wal-jughraafiyaa akthara mina ar-riyaadiyyaat"
+        },
+        {
+          "slot": "chemistry-lab-experiment",
+          "arabic": "أَجْرَيْنَا تَجْرِبَةً فِي مُخْتَبَرِ الْكِيمْيَاءِ",
+          "transliteration": "ajraynaa tajribatan fee mukhtabari al-keemyaa2"
+        },
+        {
+          "slot": "novel-arab-writer",
+          "arabic": "قَرَأَتْ رِوَايَةً جَمِيلَةً لِكَاتِبٍ عَرَبِيٍّ",
+          "transliteration": "qara2at riwaayatan jameelatan likaatibin 3arabiyy"
+        },
+        {
+          "slot": "father-listens-radio",
+          "arabic": "أَبِي يَسْتَمِعُ إِلَى الرَّادْيُو كُلَّ صَبَاحٍ",
+          "transliteration": "abee yastami3u ilaa ar-raadyoo kulla sabaa7"
+        },
+        {
+          "slot": "poetry-arab-culture",
+          "arabic": "الشِّعْرُ جُزْءٌ مُهِمٌّ مِنَ الثَّقَافَةِ الْعَرَبِيَّةِ",
+          "transliteration": "ash-shi3ru juz2un muhimmun mina ath-thaqaafati al-3arabiyya"
+        },
+        {
+          "slot": "trade-and-economy",
+          "arabic": "التِّجَارَةُ مُهِمَّةٌ جِدًّا لِاقْتِصَادِ بَلَدِنَا",
+          "transliteration": "at-tijaaratu muhimmatun jiddan liqtisaadi baladinaa"
+        }
+      ]
     }
   ]
 }

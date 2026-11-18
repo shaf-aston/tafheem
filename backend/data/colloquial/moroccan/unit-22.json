@@ -22,19 +22,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "river-very-deep",
+          "arabic": "رُدّْ بَالْكْ، الْوَادْ غَايْرْ بْزَّافْ هْنَا.",
+          "transliteration": "redd baalek, l-waad ghaayer bzaaf hna."
+        },
+        {
+          "slot": "library-quiet-street-loud",
+          "arabic": "الْمَكْتَبَة هَادْيَة، وْلَكِنْ الزّْنْقَة الصُّوتْ فِيهَا عَالِي.",
+          "transliteration": "l-maktaba haadya, walaakin z-zenqa S-Soot feeha 3aali."
+        },
+        {
+          "slot": "baby-asleep-awake",
+          "arabic": "وَاشْ الْبِيبِي رَاقْدْ وْلَّا بَاقِي فَايْقْ؟",
+          "transliteration": "waash l-beebi raaqed wlla baaqi faayeq?"
+        },
+        {
+          "slot": "messy-room-tidy",
+          "arabic": "الْبِيتْ دْيَالْكْ مْخَرْبْقَة، عَافَاكْ رْدّْهَا مْرَتّْبَة.",
+          "transliteration": "l-beet dyaalek mkherbqa, 3afaak reddha mrettba."
+        },
+        {
+          "slot": "famous-popular-market",
+          "arabic": "هَادْ السُّوقْ الْقْدِيمْ مَشْهُورْ بْزَّافْ وْشَعْبِي، وْالزُّوَّارْ كَيْحَبّْوهْ.",
+          "transliteration": "haad s-sooq l-qdeem mashhoor bzaaf w sha3bi, w z-zuwwaar kay7ebbooh."
+        },
+        {
+          "slot": "simple-useful-idea",
+          "arabic": "الْفِكْرَة بْسِيطَة وْلَكِنْ مْفِيدَة بْزَّافْ.",
+          "transliteration": "l-fikra beseeTa walaakin mfeeda bzaaf."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "lesson-easy-difficult",
+          "arabic": "الدَّرْسْ الْأَوَّلْ كَانْ سَهْلْ، وْلَكِنْ التَّانِي كَانْ صْعِيبْ.",
+          "transliteration": "d-ders l-awwel kaan sehl, walaakin t-taani kaan Se3eeb."
+        },
+        {
+          "slot": "car-slow-fast",
+          "arabic": "الطُّومُوبِيلْ دْيَالِي بْطِيئَة، وْالطُّومُوبِيلْ دْيَالُو سْرِيعَة.",
+          "transliteration": "T-Tomobeel dyaali bTee2a, w T-Tomobeel dyaalu sree3a."
+        },
+        {
+          "slot": "dirty-clean-clothes",
+          "arabic": "حْطّْ الْحْوَايْجْ الْوَسْخِينْ هْنَا، وْالنّْقِيِّينْ تْمَّا.",
+          "transliteration": "7eTT l-7waayej l-weskheen hna, w n-nqiyyeen temma."
+        },
+        {
+          "slot": "parking-allowed-forbidden",
+          "arabic": "وَاشْ مْسْمُوحْ تْوَقّْفْ الطُّومُوبِيلْ هْنَا، وْلَّا مْمْنُوعْ؟",
+          "transliteration": "waash msemoo7 tweqqef T-Tomobeel hna, wlla mamnoo3?"
+        },
+        {
+          "slot": "come-early-not-late",
+          "arabic": "أَجِي بَكْرِي غَدَّا، مَا تْكُونْشْ مْعَطّْلْ.",
+          "transliteration": "aji bekri ghedda, ma tkoonsh m3aTTel."
+        },
+        {
+          "slot": "polite-clever-son",
+          "arabic": "وْلْدْكْ مْؤَدَّبْ وْشَاطْرْ بْزَّافْ.",
+          "transliteration": "weldek mwedded w shaaTer bzaaf."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "red-or-blue-shirt",
+          "arabic": "وَاشْ بْغِيتِي الْقْمِيجَة الْحَمْرَا وْلَّا الزَّرْقَا؟",
+          "transliteration": "waash bghiti l-qmeeja l-7emra wlla z-zerqa?"
+        },
+        {
+          "slot": "light-blue-sky",
+          "arabic": "السّْمَا لُونْهَا أَزْرَقْ فَاتْحْ، وْالسّْحَابْ بْيَضْ.",
+          "transliteration": "s-smaa lonha azraq faate7, w s-s7aab byeD."
+        },
+        {
+          "slot": "table-wood-not-plastic",
+          "arabic": "هَادْ الطّْبْلَة دْيَالْ الْخْشَبْ، مَاشِي دْيَالْ الْبْلَاسْتِيكْ.",
+          "transliteration": "haad T-Tebla dyaal l-khshab, maashi dyaal l-blaastik."
+        },
+        {
+          "slot": "round-not-square-plate",
+          "arabic": "جِيبْ لِيَّا الصّْحْنْ الْمْدَوّْرْ، مَاشِي الْمْرَبّْعْ.",
+          "transliteration": "jeeb liya S-Se7n l-mdewwer, maashi l-mrebba3."
+        },
+        {
+          "slot": "gold-necklace-silver-ring",
+          "arabic": "الْعْقْدْ دْيَالْهَا دْ الدّْهَبْ، وْالْخَاتْمْ دْيَالْهَا دْ الْفْضَّة.",
+          "transliteration": "l-3eqd dyaalha d d-dheb, w l-khaatem dyaalha d l-feDDa."
+        },
+        {
+          "slot": "knife-very-sharp",
+          "arabic": "رُدّْ بَالْكْ، هَادْ السّْكِينْ حَادّْ بْزَّافْ.",
+          "transliteration": "redd baalek, haad s-skeen 7aadd bzaaf."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "happy-you-came",
+          "arabic": "أَنَا فَرْحَانْ بْزَّافْ حِيتْ جِيتِي.",
+          "transliteration": "ana fer7aan bzaaf 7eet jeeti."
+        },
+        {
+          "slot": "why-are-you-sad",
+          "arabic": "عْلَاشْ نْتَا حْزِينْ؟ آشْ وْقَعْ؟",
+          "transliteration": "3laash nta 7zeen? aash wqe3?"
+        },
+        {
+          "slot": "nervous-before-exam",
+          "arabic": "هِيَ مْتْوَتّْرَة قْبْلْ الْإِمْتِحَانْ دْيَالْ غَدَّا.",
+          "transliteration": "hiya mtewtra qbel l-imti7aan dyaal ghedda."
+        },
+        {
+          "slot": "father-proud-of-you",
+          "arabic": "بَّاكْ مْفْتَخْرْ بِيكْ بْزَّافْ.",
+          "transliteration": "baak mftakher beek bzaaf."
+        },
+        {
+          "slot": "not-angry-just-worried",
+          "arabic": "مَا تْكُونْشْ مْعَصّْبْ، غِيرْ كُنْتْ قَلْقَانْ عْلِيكْ.",
+          "transliteration": "ma tkoonsh m3aSSeb, gheer kunt qelqaan 3leek."
+        },
+        {
+          "slot": "laughed-until-tears",
+          "arabic": "ضْحْكْ حْتَّى خْرْجُو لِيهْ الدّْمُوعْ مْنْ عِينِيهْ.",
+          "transliteration": "Dke7 7ta khrju leeh d-dmoo3 men 3eeneeh."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "kind-honest-neighbour",
+          "arabic": "الْجَارْ دْيَالْنَا طَيّْبْ وْصَادْقْ.",
+          "transliteration": "l-jaar dyaalna Tayyeb w Saadeq."
+        },
+        {
+          "slot": "language-needs-patience",
+          "arabic": "تْعْلَّمْ شِي لُغَة خَاصّْهَا الصّْبْرْ بْزَّافْ.",
+          "transliteration": "t3ellem shi lugha khaaSSha S-Sber bzaaf."
+        },
+        {
+          "slot": "hard-working-helpful-student",
+          "arabic": "هِيَ طَالْبَة خْدَّامَة وْخْدُومَة.",
+          "transliteration": "hiya Taalba khdaama w khdooma."
+        },
+        {
+          "slot": "dont-be-selfish",
+          "arabic": "مَا تْكُونْشْ أَنَانِي، قْسْمْ الْمَاكْلَة مْعَ خُوكْ.",
+          "transliteration": "ma tkoonsh anaani, qsem l-maakla m3a khook."
+        },
+        {
+          "slot": "good-manners-important",
+          "arabic": "الْأَدَبْ مُهِمّْ فْ كُلّْ دَارْ.",
+          "transliteration": "ladab muhimm f kull daar."
+        },
+        {
+          "slot": "wise-humble-grandfather",
+          "arabic": "جَدِّي رَاجْلْ حْكِيمْ وْمْتْوَاضْعْ.",
+          "transliteration": "jeddi raajel 7keem w mtewaaDe3."
+        }
+      ]
     }
   ]
 }

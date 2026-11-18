@@ -21,19 +21,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "plates-spoons-table",
+          "arabic": "ضَعِ الصُّحُونَ وَالْمَلَاعِقَ عَلَى الطَّاوِلَةِ",
+          "transliteration": "da3i as-su7oona wal-malaa3iqa 3alaa at-taawila"
+        },
+        {
+          "slot": "milk-in-fridge",
+          "arabic": "الْحَلِيبُ فِي الثَّلَّاجَةِ",
+          "transliteration": "al-7aleebu fee ath-thallaaja"
+        },
+        {
+          "slot": "who-washes-dishes",
+          "arabic": "مَنْ سَيَغْسِلُ الْأَوَانِيَ اللَّيْلَةَ؟",
+          "transliteration": "man sayaghsilu al-awaaniya al-layla?"
+        },
+        {
+          "slot": "knife-and-fork",
+          "arabic": "هَلْ يُمْكِنُ أَنْ آخُذَ سِكِّينًا وَشَوْكَةً، مِنْ فَضْلِكَ؟",
+          "transliteration": "hal yumkinu an aakhudha sikkeenan wa shawkatan, min fadlik?"
+        },
+        {
+          "slot": "pot-on-stove",
+          "arabic": "ضَعِ الْقِدْرَ عَلَى الْمَوْقِدِ، مِنْ فَضْلِكَ",
+          "transliteration": "da3i al-qidra 3alaa al-mawqidi, min fadlik"
+        },
+        {
+          "slot": "glass-from-kitchen",
+          "arabic": "أَحْضِرْ لِي كَأْسَ مَاءٍ مِنَ الْمَطْبَخِ",
+          "transliteration": "a7dir lee ka2sa maa2in mina al-matbakh"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "need-the-scissors",
+          "arabic": "أَيْنَ الْمِقَصُّ؟ أَحْتَاجُهُ الْآنَ",
+          "transliteration": "ayna al-miqass? a7taajuhu al-aan"
+        },
+        {
+          "slot": "hammer-and-nails",
+          "arabic": "نَاوِلْنِي الْمِطْرَقَةَ وَبَعْضَ الْمَسَامِيرِ، مِنْ فَضْلِكَ",
+          "transliteration": "naawilnee al-mitraqata wa ba3da al-masaameeri, min fadlik"
+        },
+        {
+          "slot": "ladder-light-bulb",
+          "arabic": "أَمْسِكِ السُّلَّمَ بَيْنَمَا أُغَيِّرُ الْمِصْبَاحَ",
+          "transliteration": "amsiki as-sullama baynamaa ughayyiru al-misbaa7"
+        },
+        {
+          "slot": "broom-mop-garage",
+          "arabic": "الْمِكْنَسَةُ وَالْمِمْسَحَةُ فِي الْمَرْآبِ",
+          "transliteration": "al-miknasatu wal-mimsa7atu fee al-mar2aab"
+        },
+        {
+          "slot": "more-paint-wall",
+          "arabic": "نَحْتَاجُ إِلَى طِلَاءٍ أَكْثَرَ لِهَذَا الْجِدَارِ",
+          "transliteration": "na7taaju ilaa tilaa2in akthara lihaadhaa al-jidaar"
+        },
+        {
+          "slot": "needle-and-thread",
+          "arabic": "هَلْ عِنْدَكَ إِبْرَةٌ وَخَيْطٌ؟",
+          "transliteration": "hal 3indaka ibratun wa khayt?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "borrow-pencil-eraser",
+          "arabic": "هَلْ أَسْتَطِيعُ أَنْ أَسْتَعِيرَ قَلَمَ الرَّصَاصِ وَالْمِمْحَاةَ مِنْكَ؟",
+          "transliteration": "hal astatee3u an asta3eera qalama ar-rasaasi wal-mim7aata minka?"
+        },
+        {
+          "slot": "books-on-shelf",
+          "arabic": "أَعِدِ الْكُتُبَ إِلَى الرَّفِّ",
+          "transliteration": "a3idi al-kutuba ilaa ar-raff"
+        },
+        {
+          "slot": "homework-in-notebook",
+          "arabic": "اُكْتُبِ الْوَاجِبَ فِي دَفْتَرِكَ",
+          "transliteration": "uktubi al-waajiba fee daftarik"
+        },
+        {
+          "slot": "word-in-dictionary",
+          "arabic": "اِبْحَثْ عَنِ الْكَلِمَةِ فِي الْقَامُوسِ",
+          "transliteration": "ib7ath 3ani al-kalimati fee al-qaamoos"
+        },
+        {
+          "slot": "pen-no-ink",
+          "arabic": "لَمْ يَبْقَ حِبْرٌ فِي قَلَمِي",
+          "transliteration": "lam yabqa 7ibrun fee qalamee"
+        },
+        {
+          "slot": "paper-desk-drawer",
+          "arabic": "الْوَرَقُ فِي دُرْجِ الْمَكْتَبِ",
+          "transliteration": "al-waraqu fee durji al-maktab"
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "bus-to-work",
+          "arabic": "أَرْكَبُ الْحَافِلَةَ إِلَى الْعَمَلِ كُلَّ يَوْمٍ",
+          "transliteration": "arkabu al-7aafilata ilaa al-3amali kulla yawm"
+        },
+        {
+          "slot": "stop-traffic-light",
+          "arabic": "أَوْقِفِ السَّيَّارَةَ عِنْدَ إِشَارَةِ الْمُرُورِ",
+          "transliteration": "awqifi as-sayyaarata 3inda ishaarati al-muroor"
+        },
+        {
+          "slot": "fasten-seatbelt",
+          "arabic": "اِرْبِطْ حِزَامَ الْأَمَانِ قَبْلَ أَنْ نَنْطَلِقَ، مِنْ فَضْلِكَ",
+          "transliteration": "irbit 7izaama al-amaani qabla an nantaliqa, min fadlik"
+        },
+        {
+          "slot": "call-a-taxi",
+          "arabic": "اُطْلُبْ لِي تَاكْسِي، مِنْ فَضْلِكَ",
+          "transliteration": "utlub lee taaksee, min fadlik"
+        },
+        {
+          "slot": "bridge-near-port",
+          "arabic": "الْجِسْرُ الْجَدِيدُ قَرِيبٌ مِنَ الْمِينَاءِ",
+          "transliteration": "al-jisru al-jadeedu qareebun mina al-meenaa2"
+        },
+        {
+          "slot": "capital-buildings-streets",
+          "arabic": "فِي الْعَاصِمَةِ مَبَانٍ عَالِيَةٌ كَثِيرَةٌ وَشَوَارِعُ وَاسِعَةٌ",
+          "transliteration": "fee al-3aasimati mabaanin 3aaliyatun katheeratun wa shawaari3u waasi3a"
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "football-every-friday",
+          "arabic": "نَلْعَبُ كُرَةَ الْقَدَمِ كُلَّ جُمُعَةٍ بَعْدَ الصَّلَاةِ",
+          "transliteration": "nal3abu kurata al-qadami kulla jumu3atin ba3da as-salaah"
+        },
+        {
+          "slot": "team-won-match",
+          "arabic": "فَازَ فَرِيقُنَا بِالْمُبَارَاةِ أَمْسِ",
+          "transliteration": "faaza fareequnaa bil-mubaaraati ams"
+        },
+        {
+          "slot": "goalkeeper-caught-ball",
+          "arabic": "قَبَضَ حَارِسُ الْمَرْمَى عَلَى الْكُرَةِ بِسُهُولَةٍ",
+          "transliteration": "qabada 7aarisu al-marmaa 3alaa al-kurati bisuhoola"
+        },
+        {
+          "slot": "who-scored-first",
+          "arabic": "مَنْ سَجَّلَ الْهَدَفَ الْأَوَّلَ؟",
+          "transliteration": "man sajjala al-hadafa al-awwal?"
+        },
+        {
+          "slot": "play-chess",
+          "arabic": "هَلْ تَعْرِفُ كَيْفَ تَلْعَبُ الشَّطْرَنْجَ؟",
+          "transliteration": "hal ta3rifu kayfa tal3abu ash-shatranj?"
+        },
+        {
+          "slot": "coach-players-run",
+          "arabic": "طَلَبَ الْمُدَرِّبُ مِنَ اللَّاعِبِينَ أَنْ يَرْكُضُوا أَكْثَرَ",
+          "transliteration": "talaba al-mudarribu mina al-laa3ibeena an yarkudoo akthar"
+        }
+      ]
     }
   ]
 }

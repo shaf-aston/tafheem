@@ -18,19 +18,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "plates-spoons-table",
+          "arabic": "حُطّ الصحون والملاعق على الطاولة.",
+          "transliteration": "7uTT aS-Su7oon w al-malaa3ig 3ala T-Taawila."
+        },
+        {
+          "slot": "milk-in-fridge",
+          "arabic": "الحليب في الثلاجة.",
+          "transliteration": "al-7aleeb fi th-thallaaja."
+        },
+        {
+          "slot": "who-washes-dishes",
+          "arabic": "مين شيغسل الصحون الليلة؟",
+          "transliteration": "meen sha-yighsil aS-Su7oon al-layla?"
+        },
+        {
+          "slot": "knife-and-fork",
+          "arabic": "ممكن سكين وشوكة، لو سمحت؟",
+          "transliteration": "mumkin sikkeen w shawka, law samaht?"
+        },
+        {
+          "slot": "pot-on-stove",
+          "arabic": "حُطّ الحلّة على الموقد، لو سمحت.",
+          "transliteration": "7uTT al-7alla 3ala l-mawgid, law samaht."
+        },
+        {
+          "slot": "glass-from-kitchen",
+          "arabic": "هات لي كاس ماي من المطبخ.",
+          "transliteration": "haat li kaas maay min al-maTbakh."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "need-the-scissors",
+          "arabic": "فين المقص؟ أشتيه ذلحين.",
+          "transliteration": "feen al-magaSS? ashteeh dhal7een."
+        },
+        {
+          "slot": "hammer-and-nails",
+          "arabic": "ناولني المطرقة وشوية مسامير، لو سمحت.",
+          "transliteration": "naawilni l-maTraga w shuwayya masaameer, law samaht."
+        },
+        {
+          "slot": "ladder-light-bulb",
+          "arabic": "امسك السلّم لين أغيّر اللمبة.",
+          "transliteration": "imsik as-sullam layn aghayyir al-lamba."
+        },
+        {
+          "slot": "broom-mop-garage",
+          "arabic": "المكنسة والممسحة في الجراج.",
+          "transliteration": "al-miknasa w al-mamsa7a fi l-jaraaj."
+        },
+        {
+          "slot": "more-paint-wall",
+          "arabic": "نشتي دهان زيادة لذا الجدار.",
+          "transliteration": "nishti dihaan ziyaada li-dha l-jidaar."
+        },
+        {
+          "slot": "needle-and-thread",
+          "arabic": "معك إبرة وخيط؟",
+          "transliteration": "ma3ak ibra w khayT?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "borrow-pencil-eraser",
+          "arabic": "ممكن أتسلّف قلم الرصاص حقك والممحاة؟",
+          "transliteration": "mumkin atsallaf galam ar-raSaaS 7aggak w al-mam7aaya?"
+        },
+        {
+          "slot": "books-on-shelf",
+          "arabic": "رجّع الكتب على الرف.",
+          "transliteration": "rajji3 al-kutub 3ala r-raff."
+        },
+        {
+          "slot": "homework-in-notebook",
+          "arabic": "اكتب الواجب في دفترك.",
+          "transliteration": "uktub al-waajib fi daftarak."
+        },
+        {
+          "slot": "word-in-dictionary",
+          "arabic": "دوّر على الكلمة في القاموس.",
+          "transliteration": "dawwir 3ala l-kilma fi l-gaamoos."
+        },
+        {
+          "slot": "pen-no-ink",
+          "arabic": "قلمي ما عاد فيه حبر.",
+          "transliteration": "galami ma 3aad feeh 7ibr."
+        },
+        {
+          "slot": "paper-desk-drawer",
+          "arabic": "الورق في درج المكتب.",
+          "transliteration": "al-warag fi durj al-maktab."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "bus-to-work",
+          "arabic": "أركب الباص للشغل كل يوم.",
+          "transliteration": "arkab al-baaS lish-shughl kull yawm."
+        },
+        {
+          "slot": "stop-traffic-light",
+          "arabic": "وقّف السيارة عند الإشارة.",
+          "transliteration": "waggif as-sayyaara 3ind al-ishaara."
+        },
+        {
+          "slot": "fasten-seatbelt",
+          "arabic": "اربط حزام الأمان قبل ما نمشي، لو سمحت.",
+          "transliteration": "irbuT 7izaam al-amaan gabl ma nimshi, law samaht."
+        },
+        {
+          "slot": "call-a-taxi",
+          "arabic": "اطلب لي تاكسي، لو سمحت.",
+          "transliteration": "uTlub li taksi, law samaht."
+        },
+        {
+          "slot": "bridge-near-port",
+          "arabic": "الجسر الجديد جنب الميناء.",
+          "transliteration": "al-jisr aj-jadeed janb al-meena."
+        },
+        {
+          "slot": "capital-buildings-streets",
+          "arabic": "في العاصمة بنايات طويلة كثير، وشوارع واسعة.",
+          "transliteration": "fi l-3aaSima binaayaat Taweela katheer, w shawaari3 waas3a."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "football-every-friday",
+          "arabic": "نلعب كرة قدم كل جمعة بعد الصلاة.",
+          "transliteration": "nil3ab kurat gadam kull jum3a ba3d aS-Salaa."
+        },
+        {
+          "slot": "team-won-match",
+          "arabic": "فريقنا غلب في المباراة أمس.",
+          "transliteration": "fareegna ghalab fi l-mubaaraa ams."
+        },
+        {
+          "slot": "goalkeeper-caught-ball",
+          "arabic": "حارس المرمى لحق الكرة بسهولة.",
+          "transliteration": "7aaris al-marma la7ag al-kura bi-suhoola."
+        },
+        {
+          "slot": "who-scored-first",
+          "arabic": "مين سجّل أول هدف؟",
+          "transliteration": "meen sajjal awwal hadaf?"
+        },
+        {
+          "slot": "play-chess",
+          "arabic": "تعرف كيف تلعب شطرنج؟",
+          "transliteration": "ti3rif kayf til3ab shaTranj?"
+        },
+        {
+          "slot": "coach-players-run",
+          "arabic": "المدرّب قال للاعبين يركضوا أكثر.",
+          "transliteration": "al-mudarrib gaal lil-laa3ibeen yirkuDu akthar."
+        }
+      ]
     }
   ]
 }
