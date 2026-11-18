@@ -75,6 +75,16 @@
     {"q": "teaching others the quran", "kind": "loose", "english": "learns? the qur'?an and teach"},
     {"q": "العمل بالقصد", "kind": "loose", "arabic": "الاعمال بالني(ات|ه)"},
     {"q": "الابتسامة صدقة", "kind": "loose", "arabic": "تبسمك"},
-    {"q": "امراة دخلت النار في قطة", "kind": "loose", "english": "\\bcat\\b.{0,200}(hell|fire)|(hell|fire).{0,200}\\bcat\\b"}
+    {"q": "امراة دخلت النار في قطة", "kind": "loose", "english": "\\bcat\\b.{0,200}(hell|fire)|(hell|fire).{0,200}\\bcat\\b"},
+    {"q": "intention", "kind": "topic", "english": "(deeds|action|actions) (depends?|are) (up)?on the intention|deeds are (but |only )?by (the )?intention|actions are (to be )?(but |only )?(judged )?(only )?by (the )?intention"},
+    {"q": "anger", "kind": "topic", "english": "(do not|don't) (become|get|be) angry"},
+    {"q": "smile", "kind": "topic", "english": "smil\\w*.{0,60}(charity|sadaqa)"},
+    {"q": "neighbour", "kind": "topic", "english": "(gabriel|jibril)\\W.{0,80}neighbou?r"},
+    {"q": "cleanliness", "kind": "topic", "english": "(cleanliness|purity|purification) is half"},
+    {"q": "modesty", "kind": "topic", "english": "modesty is (a |one )?(part|branch)"},
+    {"q": "mother", "kind": "topic", "english": "your mother\\W{1,6}.{0,40}your mother\\W{1,6}.{0,40}your mother"},
+    {"q": "backbiting", "kind": "topic", "english": "(backbiting|back-biting).{0,160}(does not like|dislikes?|hate)"},
+    {"q": "easy", "kind": "topic", "english": "make things easy"},
+    {"q": "strong", "kind": "topic", "english": "strong is not the one|not the (one|person) who (overcomes|throws|wrestl)|strong.{0,60}wrestl|wrestl.{0,80}strong"}
   ]
 }
