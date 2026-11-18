@@ -116,7 +116,7 @@ def search(query: str, limit: int | None = None, collections: tuple[str, ...] = 
         content = _content(typed, settings)[:_MAX_TERMS]
         # An index built before dictionary forms were stored still answers, by spelling alone.
         forms = any(row[1] == "lemma" for row in conn.execute("PRAGMA table_info(hadith_fts)"))
-        terms, corrected, unmatched = _terms(conn, content, forms)
+        terms, corrected, unmatched = _terms(conn, content, forms, settings)
         rows, partial, pool = [], False, limit * _CHAPTER_SAMPLE_FACTOR
         if terms:
             rows = _rows(conn, " AND ".join(terms), only, params, pool)
@@ -150,12 +150,13 @@ def _content(typed, settings) -> list[tuple[str, str]]:
     return [(t, f) for t, f in typed if f not in framing] or typed
 
 
-def _terms(conn, content, forms: bool) -> tuple[list[str], list[tuple[str, str]], list[str]]:
+def _terms(conn, content, forms: bool, settings) -> tuple[list[str], list[tuple[str, str]], list[str]]:
     """Index terms for each word, swapping in the likeliest meant word where the typed one matches nothing."""
     terms, corrected, unmatched = [], [], []
     for typed, folded in content:
-        if _matches(conn, _term(folded, forms)):
-            terms.append(_term(folded, forms))
+        term = _term(folded, forms, _kin(conn, folded, settings))
+        if _matches(conn, term):
+            terms.append(term)
             continue
         lang = "ar" if has_arabic(folded) else "en"
         near = None if words.is_number(folded) else repair.nearest(conn, folded, lang)
@@ -165,6 +166,20 @@ def _terms(conn, content, forms: bool) -> tuple[list[str], list[tuple[str, str]]
         else:
             unmatched.append(typed)
     return terms, corrected, unmatched
+
+
+def _kin(conn, folded: str, settings) -> list[str]:
+    """English words one ending from `folded` that the stemmer keeps apart (anger, angry), where the hadith use them."""
+    if has_arabic(folded) or len(folded) < settings.hadith_kin_min_letters:
+        return []
+    swaps = [*settings.hadith_kin_endings, *((b, a) for a, b in settings.hadith_kin_endings)]
+    near = {folded[:len(folded) - len(a)] + b for a, b in swaps if folded.endswith(a)} - {folded}
+    near = [w for w in near if len(w) >= settings.hadith_kin_min_letters]
+    if not near:
+        return []
+    rows = conn.execute(f"SELECT spelling FROM word WHERE lang = 'en' AND n >= ? AND spelling IN ({','.join('?' * len(near))})",
+                        (settings.hadith_kin_min_hadith, *near)).fetchall()
+    return sorted(w for w, in rows)
 
 
 def _matches(conn, term: str) -> bool:
@@ -211,11 +226,11 @@ def _chapters(rows, top: int) -> list[Chapter]:
     return out
 
 
-def _term(folded: str, forms: bool = True) -> str:
-    """One folded word as an index term: as written, or its dictionary form, or a number however written."""
+def _term(folded: str, forms: bool = True, kin: list[str] = ()) -> str:
+    """One folded word as an index term: as written, or its dictionary form, or its kin, or a number however written."""
     if words.is_number(folded):
         return "(" + " OR ".join(fts.quoted(*p) for p in words.number_phrases(folded) if p) + ")"
-    alternatives = [fts.quoted(folded)]
+    alternatives = [fts.quoted(folded), *map(fts.quoted, kin)]
     if forms and has_arabic(folded):
         # A final ه may be a ة typed plainly (بالنيه for بالنية); both readings are asked.
         readings = (folded, folded[:-1] + "ة") if folded.endswith("ه") else (folded,)

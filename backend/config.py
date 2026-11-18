@@ -534,6 +534,12 @@ class Hadith(BaseSettings):
                                              "about", "regarding", "concerning", "حديث", "احاديث")
     # Chapters offered beside the hits, counted from where the hits fall.
     hadith_chapter_hints: int = 5
+    # English endings the index's stemmer keeps apart, swapped either way so a typed word also finds its kin:
+    # anger/angry, greed/greedy, patience/patient, envy/envious. Only a kin at least this long that at least this
+    # many hadith hold is searched, so a stray spelling ("angr") never is. -ful, -ness, -ing the stemmer joins already.
+    hadith_kin_endings: tuple[tuple[str, str], ...] = (("er", "ry"), ("", "y"), ("ce", "t"), ("y", "ious"))
+    hadith_kin_min_letters: int = Field(default=4, gt=0)
+    hadith_kin_min_hadith: int = Field(default=3, gt=0)
     # Search by meaning (services/hadith/meaning.py). Built from hadith_index_path by
     # scripts/hadith/build_hadith_meaning.py; absent means words alone. Chosen on the
     # yardstick: mpnet-base 64/70 (loose 17/22) vs MiniLM-L12 61 (14), e5-small 60,
@@ -544,7 +550,7 @@ class Hadith(BaseSettings):
     hadith_meaning_max_tokens: int = Field(default=128, gt=0)
     # Word and meaning rankings are merged by reciprocal rank: 1/(k + rank) summed.
     # 60 is the standard constant; larger flattens the difference between ranks.
-    # Measured against the yardstick's 81 (74 found, MRR 0.76) and all lower, so left out: meaning
+    # Measured against the yardstick's 81 (74 found then, MRR 0.76) and all lower, so left out: meaning
     # weighted 1.5-2x (65-72), k 10/30 (same), a boost for hadith retold in more books (72-73),
     # retellings pooling their scores (66-72), one retelling per hadith (73), a softer length penalty (71-73).
     hadith_meaning_fusion_k: int = Field(default=60, gt=0)
