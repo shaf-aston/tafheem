@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, written_nasb, attached_pronoun, noun_tagged
+from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, shows_nasb_by_kasra, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, written_nasb, attached_pronoun, noun_tagged
 from backend.services.nahw.syntax.facts.sentence import Sentence, describable_nouns, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
@@ -142,10 +142,12 @@ def _follows(token: dict, s: Sentence) -> str:
             and not has_tanween(token.get("typed")) and not listed(token, "tawkeed", "without_pronoun"):
         return "badal"
     # جاء الأميرُ خالدٌ: an indefinite word can be no صفة of a noun with ال; wearing that noun's
-    # raf' or jarr (a nasb one is its حال) where a verb stands over it, it is its بدل
+    # raf' or jarr (a nasb one is its حال) where a verb stands over it, it is its بدل. An ـات word's kasra is its
+    # nasb too (مَرَرْتُ بِالنِّسَاءِ حَامِلَاتٍ), so it may be the حال, which the slot decides
     if token["rel"] == "MOD" and head["id"] == token["id"] - 1 and head["form"].startswith("ال") \
             and has_tanween(token.get("typed")) and not is_verb(head) and verb_above(head, s) is not None \
-            and (shown := typed_case_of(token)) in ("u", "i") and shown == typed_case_of(head):
+            and (shown := typed_case_of(token)) in ("u", "i") and shown == typed_case_of(head) \
+            and not shows_nasb_by_kasra(token):
         return "badal"
     with_pronoun = any(k.get("pos_camel") == "pron" for k in s.kids(token))
     tawkeed_word = listed(token, "tawkeed", "with_pronoun" if with_pronoun else "without_pronoun")
@@ -165,8 +167,9 @@ def _follows(token: dict, s: Sentence) -> str:
         return "none"
     # الطالبُ الذي نجح، بِاسْمِ رَبِّكَ الَّذِي خَلَقَ: a relative straight after a known noun (with ال, or added to one)
     # is its صفة (one owed to a verb as its object went to it in repair.relative_owed: كافأ المديرُ الذي نجح)
+    # من and ما serve every gender and number, so no noun takes them as its صفة (closed_words mawsul `mubham`): there they are its بدل
     if listed(token, "mawsul") and is_known(head, s) and head in describable_nouns(token, s):
-        return "naat"
+        return "badal" if is_one(token["lemma"], "mawsul", "mubham") else "naat"
     mine, theirs = typed_or_parsed_case(token), typed_or_parsed_case(head)
     # الطفل الباكي typed bare: the parser hung a describing word straight after its noun, and no case is shown on it
     # for the two to disagree in, so its place under the noun stands

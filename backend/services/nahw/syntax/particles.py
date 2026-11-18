@@ -121,8 +121,13 @@ def _timed(token: dict, s: facts.Sentence) -> str:
     (سَأُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِعْ عَلَيْهِ صَبْرًا; Mughni, ما الاسمية)."""
     after, before = facts.next_word(token, s), s.by_id.get(token["id"] - 1)
     in_jarr = token["rel"] == "IDF" or bool(before and facts.is_preposition(before))
-    return "yes" if before and after and not in_jarr and is_one(
-        after["lemma"] or after["form"], "istithna_verbs", "timed_ma_before") else "no"
+    # أَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ: the relative ما describes no noun (closed_words mawsul `mubham`), so one the
+    # parser hung on a noun before it, a past verb after it, is the span of that verb; hung on a verb as neither its doer
+    # nor its object, it fills no noun's place there either (فَاتَّقُوا اللَّهَ مَا اسْتَطَعْتُمْ)
+    on_word = (token["rel"] == "MOD" and (word := s.head(token)) and word["id"] < token["id"]
+               and (facts.noun_tagged(word) or facts.is_verb(word)) and after and facts.is_verb(after) and not _is_present(after))
+    return "yes" if before and after and not in_jarr and (on_word or is_one(
+        after["lemma"] or after["form"], "istithna_verbs", "timed_ma_before")) else "no"
 
 
 def _answered(token: dict, s: facts.Sentence) -> str:

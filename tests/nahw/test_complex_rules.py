@@ -98,6 +98,19 @@ def test_a_masdar_is_no_participle():
     assert card("قَاتَلُوا مُقَاتَلَةً شَدِيدَةً", "مُقَاتَلَةً")["role"] == "مفعول مطلق"
 
 
+# a participle at work governs its own masdar as its verb does (Alfiyya: بمثله أو فعل أو وصف نصب); another noun after it
+# is its object, a describing word its state
+@needs_parser
+@pytest.mark.parametrize("sentence, word, role", [
+    ("زَيْدٌ ضَارِبٌ ضَرْبًا شَدِيدًا", "ضَرْبًا", "مفعول مطلق"),
+    ("الطَّالِبُ مُجْتَهِدٌ اجْتِهَادًا", "اجْتِهَادًا", "مفعول مطلق"),
+    ("زَيْدٌ ضَارِبٌ بَكْرًا", "بَكْرًا", "مفعول به"),
+    ("زَيْدٌ قَادِمٌ مُسْرِعًا", "مُسْرِعًا", "حال"),
+])
+def test_a_participles_own_masdar_is_its_mafool_mutlaq(sentence, word, role):
+    assert card(sentence, word)["role"] == role
+
+
 # اسم لا: a single noun or dual is built on what its nasb would show, in the place of nasb;
 # a مضاف (لا طالبَ علمٍ) stays معرب منصوب. The card's sign and its reason say the same.
 @needs_parser
@@ -388,6 +401,10 @@ def test_a_jar_before_a_describing_khabar_hangs_on_it(sentence, invented):
     ("السَّفَرُ إِلَى مَكَّةَ مُمْتِعٌ", "متعلق بـالسَّفَرُ"),
     ("الْجَالِسُ فِي الدَّارِ مَسْرُورٌ", "متعلق بـالْجَالِسُ"),
     ("زَيْدٌ فِي الدَّارِ جَالِسٌ", "متعلق بـجَالِسٌ"),
+    # فِعَال, the masdar of فاعَل, written with its alif bare
+    ("الْحِفَاظُ عَلَى الْبِيئَةِ ضَرُورِيٌّ", "متعلق بـالْحِفَاظُ"),
+    # a فِعَال plural is no masdar: the jar after it is the khabar
+    ("الرِّجَالُ فِي الدَّارِ", "متعلق بـثابت"),
 ])
 def test_a_jar_after_a_working_subject_stays_on_it(sentence, label):
     assert label in tree_roles(analyze(sentence)["tree"]["tree"], "label")
@@ -412,6 +429,9 @@ def test_a_time_or_place_word_out_of_nasb_is_no_zarf(sentence, word, role):
     ("رَأَيْتُ النِّسَاءَ حَامِلَاتٍ", "حَامِلَاتٍ", "حال"),
     ("رَأَيْتُ النِّسَاءَ حَامِلَاتٍ الْجِرَارَ", "حَامِلَاتٍ", "حال"),
     ("رَأَيْتُ الْمَرْأَةَ حَامِلَةً الْجَرَّةَ", "حَامِلَةً", "حال"),
+    # after a jar too: a describing ـات word is the حال, a name after a noun with ال stays its بدل
+    ("مَرَرْتُ بِالنِّسَاءِ حَامِلَاتٍ", "حَامِلَاتٍ", "حال"),
+    ("مَرَرْتُ بِالْأَمِيرِ خَالِدٍ", "خَالِدٍ", "بدل"),
     ("مَرَرْتُ بِنِسَاءٍ مُسْلِمَاتٍ", "مُسْلِمَاتٍ", "صفة"),
     ("أَعْطَيْتُ الْفُقَرَاءَ صَدَقَاتٍ", "صَدَقَاتٍ", "مفعول به"),
     ("أُعْطِيَ الْفُقَرَاءُ صَدَقَاتٍ", "صَدَقَاتٍ", "مفعول به"),
@@ -419,7 +439,7 @@ def test_a_time_or_place_word_out_of_nasb_is_no_zarf(sentence, word, role):
 def test_a_feminine_plurals_kasra_is_its_nasb_as_a_hal(sentence, word, role):
     found = card(sentence, word)
     assert found["role"] == role
-    assert ("نيابة عن الفتحة" in (found["sign"] or "")) is (role != "صفة" and "ات" in word)
+    assert ("نيابة عن الفتحة" in (found["sign"] or "")) is (role not in ("صفة", "بدل") and "ات" in word)
 
 
 
@@ -497,3 +517,67 @@ def test_the_pronoun_on_a_two_object_verb_is_its_first(sentence, first, second):
 def test_a_one_object_verb_keeps_its_plain_object():
     assert card("ضَرَبْتُهُ", "ضَرَبْتُهُ")["reason"].split(". القاعدة")[0].endswith("مفعول به")
     assert "مفعول به" in (roles := drawn_roles(analyze("ضَرَبْتُهُ")["tree"]["tree"])) and "مفعول به أول" not in roles
+
+
+# من and ما serve every gender and number, so no noun takes them as its صفة but its بدل; hung on a noun with a past verb after it,
+# ما is the span of that verb (ما المصدرية الظرفية: فاتقوا الله ما استطعتم). The relative stays where it fills a place.
+@needs_parser
+@pytest.mark.parametrize("sentence, at, role", [
+    ("أَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ", 4, "حرف"),
+    ("أَعْطَيْتُهُ مَا أَرَادَ", 1, "مفعول به"),
+    ("أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ", 4, "مضاف إليه"),
+    ("قَرَأْتُ الْكِتَابَ الَّذِي اشْتَرَيْتُهُ", 2, "صفة"),
+    ("رَأَيْتُ الرَّجُلَ مَنْ أَكْرَمْتُهُ", 2, "بدل"),
+    ("زُرْتُ صَدِيقِي مَنْ يُحِبُّنِي", 2, "بدل"),
+    ("فَاتَّقُوا اللَّهَ مَا اسْتَطَعْتُمْ", 2, "حرف"),
+    ("أَخَذْتُ مِنْهُ مَا أَعْطَانِي", 2, "مفعول به"),
+    ("لَكُمُ الْخِيَارُ مَا دُمْتُمْ هُنَا", 2, "حرف"),
+    ("فَرِحْتُ بِمَا قُلْتَ", 1, "مجرور"),
+])
+def test_ma_after_a_noun_is_no_sifa(sentence, at, role):
+    assert [w["role"] for w in analyze(sentence)["words"]][at] == role
+
+
+# a called noun takes no object, and a pronoun opening the sentence or the words after a call is the mubtada, so the
+# noun after it is its khabar (اللهم أنت ربي، هو الحي); inside a sentence, after إلا, the noun after it is its بدل.
+# The khabar of لا never stands before it, so a word hung on it from before is told of the noun before that word.
+@needs_parser
+@pytest.mark.parametrize("sentence, roles", [
+    ("اللَّهُمَّ أَنْتَ الْمَلِكُ", ["منادى", "مبتدأ", "خبر"]),
+    ("اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ خَلَقْتَنِي", ["منادى", "مبتدأ", "خبر", "حرف", "اسم لا", "حرف", "بدل", "فعل"]),
+    ("هُوَ الْحَيُّ لَا إِلَهَ إِلَّا هُوَ", ["مبتدأ", "خبر", "حرف", "اسم لا", "حرف", "بدل"]),
+    ("اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ",
+     ["منادى", "مبتدأ", "خبر", "حرف", "اسم لا", "حرف", "بدل", "فعل", "مبتدأ", "خبر", "مبتدأ", "حرف جر", "مجرور", "معطوف", "حرف", "فعل"]),
+    ("يَا رَبِّ أَنْتَ الْكَرِيمُ", ["حرف", "منادى", "مبتدأ", "خبر"]),
+    ("ذَلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ", ["مبتدأ", "صفة", "حرف", "اسم لا", "حرف جر"]),
+    ("اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى", ["منادى", "حرف", "فعل", "مفعول به"]),
+])
+def test_the_words_after_a_call_and_before_la(sentence, roles):
+    assert [w["role"] for w in analyze(sentence)["words"]] == roles
+
+
+# a particle is told of nothing: ما with a mubtada hung on it is the noun, its khabar, though the verb after it
+# carries a pronoun (its عائد); with no mubtada on it, before a verb with its object, ما negates
+@needs_parser
+@pytest.mark.parametrize("sentence, at, role", [
+    ("الْخَيْرُ مَا اخْتَارَهُ اللَّهُ", 1, "خبر"),
+    ("الْحَقُّ مَا شَهِدَتْ بِهِ الْأَعْدَاءُ", 1, "خبر"),
+    ("مَا رَأَيْتُهُ", 0, "حرف"),
+    ("الطَّالِبُ مَا فَهِمَ الدَّرْسَ", 1, "حرف"),
+    ("زَيْدٌ مَا رَأَيْتُهُ", 0, "مبتدأ"),
+])
+def test_ma_told_of_is_a_noun(sentence, at, role):
+    assert [w["role"] for w in analyze(sentence)["words"]][at] == role
+
+
+# a verb has one doer (Tasheel 2.4.1): a relative the parser hung as a second doer straight after the first follows it,
+# من and ما as its بدل; one the verb still owes as its object is that object, and a lone relative is the doer
+@needs_parser
+@pytest.mark.parametrize("sentence, at, role", [
+    ("سَرَّنِي الطَّالِبُ مَنْ نَجَحَ", 2, "بدل"),
+    ("جَاءَ الرَّجُلُ الَّذِي رَأَيْتُهُ", 2, "صفة"),
+    ("قَرَأَ الطَّالِبُ مَا كَتَبَهُ", 2, "مفعول به"),
+    ("أَعْجَبَنِي مَا قَرَأْتُهُ", 1, "فاعل"),
+])
+def test_a_verb_has_one_doer(sentence, at, role):
+    assert [w["role"] for w in analyze(sentence)["words"]][at] == role

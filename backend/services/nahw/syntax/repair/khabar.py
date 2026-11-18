@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import is_one
-from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_known, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, is_masdar, zarf_in_nasb, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.book import is_one, is_subject_pronoun
+from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_built, is_called_alone, is_known, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, is_masdar, zarf_in_nasb, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(s: Sentence) -> None:
@@ -86,6 +86,24 @@ def before_la(s: Sentence) -> None:
                 and subject_link(token) and la["head"] == 0):
             s.relink(token, 0, "---")
             s.relink(la, token["id"], "PRD")
+        # هُوَ الْحَيُّ لَا إِلَهَ إِلَّا هُوَ: nor does its khabar stand before it, so a word hung on it as one from before it,
+        # where لا is told of the noun before that word, is that noun's khabar, the لا sentence a second
+        elif (la and la["pos"] == "PRT" and strip_diacritics(la["form"]) == "لا" and token["id"] < la["id"] and token["rel"] == "PRD"
+                and (told := s.head(la)) and told["id"] < token["id"] and la["rel"] == "PRD" and noun_tagged(told)):
+            s.relink(token, told["id"], "PRD")
+            # its اسم stands straight after it: left with no subject, the noun there is that اسم
+            noun = s.by_id.get(la["id"] + 1)
+            if noun and noun["head"] == la["id"] and noun["rel"] == "PRD" and noun_tagged(noun) \
+                    and not any(subject_link(k) for k in s.kids(la)):
+                noun["rel"] = "SBJ"
+        # اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ: a raf' pronoun hung on لا from before it is no part of its sentence
+        # either; it is a mubtada, and the noun straight after it, hung on it, its khabar (a pronoun takes no صفة)
+        elif (la and la["pos"] == "PRT" and strip_diacritics(la["form"]) == "لا" and token["id"] < la["id"]
+                and subject_link(token) and is_subject_pronoun(token)
+                and (khabar := s.by_id.get(token["id"] + 1)) and khabar["head"] == token["id"] and noun_tagged(khabar)):
+            s.relink(khabar, la["head"], la["rel"])
+            s.relink(token, khabar["id"], "SBJ")
+            s.relink(la, khabar["id"], "MOD")
 
 
 def la_over_its_khabar(s: Sentence) -> None:
@@ -276,15 +294,26 @@ def object_of_noun(s: Sentence) -> None:
     المفعول به: a فعل or a شبه الفعل governs it), so a word the parser hung as the object of a
     plain noun opening the sentence, both typed in raf', is that noun's khabar. A noun in nasb
     hung there after an elative khabar is the elative's تمييز (Tasheel 3.10: أفعل التفضيل
-    ينصب التمييز), as the parser already hangs it when the opener is not between them."""
+    ينصب التمييز), as the parser already hangs it when the opener is not between them. Opening the
+    sentence behind its حرف جر (بِحَسْبِ ابْنِ آدَمَ لُقَيْمَاتٌ), the noun is told of no word: the raf' word
+    is the mubtada, as the parser hangs it when it does not make it an object."""
     tokens = s.tokens
     for token in tokens:
         opener = s.head(token)
-        if not (opener and token["rel"] == "OBJ" and opener["rel"] == "---" and opener["id"] < token["id"]
-                and not is_verb(opener) and not works_as_verb(opener)
-                and typed_case_of(opener) == typed_case_of(token) == "u"):
+        jar = s.head(opener) if opener and opener["rel"] == "OBJ" and typed_case_of(opener) == "i" else None
+        behind_jar = bool(jar and jar["rel"] == "---" and is_preposition(jar))
+        # اللَّهُمَّ أَنْتَ رَبِّي: a called noun takes no object either; a word hung on it as one, with its subject before it, is
+        # told of that subject, a sentence of its own after the call (hung on it as the parser hangs one after يا)
+        if (opener and token["rel"] == "OBJ" and is_called_alone(opener) and opener["id"] < token["id"]
+                and any(k["rel"] == "SBJ" and k["id"] < token["id"] for k in s.kids(token))):
+            token["rel"] = "MOD"
             continue
-        token["rel"] = "PRD"
+        # زَيْدٌ مَا رَأَيْتُهُ: a built word shows no case to forbid it (is_built)
+        if not (opener and token["rel"] == "OBJ" and opener["id"] < token["id"] and (typed_case_of(token) == "u" or is_built(token))
+                and not is_verb(opener) and not works_as_verb(opener)
+                and (behind_jar or opener["rel"] == "---" and typed_case_of(opener) == "u")):
+            continue
+        token["rel"] = "SBJ" if behind_jar else "PRD"
         if is_elative(token):
             for kid in s.kids(opener):
                 if kid["rel"] == "OBJ" and kid["id"] > token["id"] and typed_case_of(kid) == "a" and not is_known(kid, s):

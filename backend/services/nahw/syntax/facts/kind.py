@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import letters, vowel_agreement
 from backend.services.nahw.book import book_map, is_one
-from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, my_ya_dropped, is_suffix, is_verb, read_as, reading, takes_two_objects, typed_bare, typed_case_of
+from backend.services.nahw.syntax.facts.word import is_called_alone, is_called_noun, is_object_pronoun, my_ya_dropped, is_suffix, is_verb, read_as, reading, subject_link, takes_two_objects, typed_bare, typed_case_of
 from backend.services.nahw.syntax.facts.sentence import Sentence, busied, next_word, verb_above
 
 
@@ -96,6 +96,10 @@ def negates(token: dict, s: Sentence) -> bool:
     verb, before = s.by_id.get(token["id"] + 1), s.by_id.get(token["id"] - 1)
     while before and before.get("token_type") == "enc0":
         before = s.by_id.get(before["id"] - 1)
+    # الْخَيْرُ مَا اخْتَارَهُ اللَّهُ: a particle is told of nothing, so ما with a mubtada hung on it is the noun, its khabar,
+    # and the pronoun on the verb its عائد
+    if any(subject_link(k) and k["id"] < token["id"] for k in s.kids(token)):
+        return False
     if before and is_verb(before) and (token["head"] == before["id"] and token["rel"] == "SBJ"
                                        or not any(k["rel"] == "OBJ" and k is not token for k in s.kids(before))):
         return False

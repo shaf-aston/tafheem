@@ -64,7 +64,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - doer_first: a caseless name after a doer-less verb, then a second name → the first its doer, the second its object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - doer_after_object: a subject typed in nasb with a raf' word hung on it → the object, that word the doer (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - late_doer: a raf' noun hung as a نعت or مضاف إليه under a doer-less verb → that verb's doer, which may come last (`backend/services/nahw/syntax/repair/subject_clash.py`)
-- outer_doer: a second raf' noun on a verb that has its doer, below a doer-less verb → that verb's doer (`backend/services/nahw/syntax/repair/subject_clash.py`)
+- outer_doer: a second raf' noun on a verb that has its doer, below a doer-less verb → that verb's doer; else a relative straight after the doer → on the doer (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - verb_under_fronted_object: a verb with its doer, hung as the صفة of a nasb noun before it → the verb heads, the noun its object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - object_after_tanween: a nasb word hung as مضاف إليه on a participle with tanween → its object (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - described_after_tanween: a noun with tanween takes no مضاف إليه, so one hung so → its صفة (`backend/services/nahw/syntax/repair/typed.py`)
