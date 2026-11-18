@@ -9,6 +9,8 @@ import ArabicText from '../ui/text/ArabicText'
 import KeyHint from './KeyHint'
 
 // `hint` puts the moving number-key hint under the strip (Home).
+// `places`: how many places the strip always has. Until an open tab off the strip takes one more,
+// that place is kept empty, so the tab arriving there does not squeeze every other tab and move the row.
 // The first `fixed` tabs always show; the rest wait for md. The open tab always shows.
 const tierClass = (i, fixed) => (i < fixed ? '' : 'hidden md:flex')
 
@@ -18,7 +20,7 @@ const LINE_PX = 100
 // (components.css @supports), so there is nothing here to measure.
 const ANCHORED = globalThis.CSS?.supports?.('anchor-name: --tab-on') ?? false
 
-export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll, onHover, hint = false }) {
+export default function TabStrip({ tabs, fixed, places = tabs.length, active, colorOf, onSelect, onAll, onHover, hint = false }) {
   const list = useRef(null)
   const line = useRef(null)
   const placed = useRef(false)
@@ -103,6 +105,9 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
             </button>
           )
         })}
+        {tabs.length <= places && (
+          <span aria-hidden="true" className="min-w-[4.5rem] sm:min-w-[5.5rem]" style={{ flex: '1 1 0' }} />
+        )}
         {/* The lit underline (see the glide above). Its glow is the shared .glow
             utility, the same recipe as every other glow in the app. */}
         <span ref={line} aria-hidden="true" className="tab-glide glow" style={{ '--c': colorOf(active) }} />
@@ -114,14 +119,16 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
         title="All sections"
         aria-label="All sections"
         aria-haspopup="dialog"
-        className="tab-btn px-2 sm:px-3 text-[var(--text-faint)] hover:text-[var(--text)]"
+        className="tab-btn px-2 sm:px-3 flex items-center gap-1.5 type-small font-medium text-[var(--text-faint)] hover:text-[var(--text)]"
       >
+        {/* Named, as the phone's bar names it: a grid of squares alone did not say what it opens. */}
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
           <rect x="3" y="3" width="7" height="7" rx="1.5" />
           <rect x="14" y="3" width="7" height="7" rx="1.5" />
           <rect x="3" y="14" width="7" height="7" rx="1.5" />
           <rect x="14" y="14" width="7" height="7" rx="1.5" />
         </svg>
+        <span aria-hidden="true" className="hidden md:inline">All</span>
       </button>
     </div>
   )

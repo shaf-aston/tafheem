@@ -191,12 +191,16 @@
 }
 
 
+/* Each mark carries its tab's short name under it: a column of coloured marks alone said nothing
+   to someone who had not learnt them. */
 .cb-rail-chip {
   display: grid;
   place-items: center;
+  gap: 0.1rem;
   flex-shrink: 0;
-  width: var(--command-rail-w);
-  height: var(--command-rail-w);
+  min-width: var(--command-rail-w);
+  min-height: var(--command-rail-w);
+  padding: 0.25rem 0.2rem;
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
   color: color-mix(in srgb, var(--c) 55%, var(--text-faint));
@@ -207,6 +211,13 @@
     border-color calc(var(--motion-instant-ms) * 1ms) ease;
 }
 
+
+.cb-rail-name {
+  font-size: 0.625rem;
+  line-height: 1;
+  font-weight: 600;
+  white-space: nowrap;
+}
 
 .cb-rail-chip:hover,
 .cb-rail-chip:focus-visible,
