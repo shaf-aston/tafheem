@@ -184,6 +184,7 @@ def test_a_quran_name_in_a_verbs_shape(sentence, word, pos):
     # siblings: the dictionary's own spelling, and one it knows with the و seat, read as they were
     ("يَقْرَأُهُ", "قَرَأ"), ("رُؤُوسُهُمْ", "رَأْس"),
 ])
+@needs_camel
 def test_a_hamza_on_its_vowels_seat_is_read_on_the_stems(word, lemma):
     read = morphology.pick([word])[0]
     assert read["pos"] in ("verb", "noun") and read["lex"] == lemma and morphology.bare_letters(read["diac"])[-3:] == \
