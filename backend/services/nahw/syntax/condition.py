@@ -18,6 +18,7 @@ the conditions from here instead, so they agree.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
+from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import condition_of, frames, is_one, kaffa_sister, named_roles
 from backend.services.nahw.syntax.facts import reading
 
@@ -60,6 +61,10 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # a noun no relative or question word shares its letters with opens after a clause too, its answer
         # having come first (لَنْ نَتَرَاجَعَ مَهْمَا طَالَ الزَّمَنُ); so does لولا, which opens on a noun only, its
         # answer left out for the clause before it to tell (كَادَ الْقِطَارُ يَفُوتُنَا لَوْلَا أَنَّنَا أَسْرَعْنَا)
+        # لَقِيَ لَوْمًا: a built opener takes no tanween, so a word with one is the noun its letters spell (أيّ,
+        # the one conditional word declined, is no built opener and may take one)
+        if frame and frame["built"] and has_tanween(bases[i].get("typed") or ""):
+            return None
         if not frame or v >= len(bases) or (i and not joined(i) and frame.get("before") != "noun"
                                              and (frame["shared"] or not frame["noun"])):
             return None

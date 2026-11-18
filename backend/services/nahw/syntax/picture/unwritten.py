@@ -149,6 +149,12 @@ def add_unwritten_khabars(c: Picture) -> None:
         if (not noun or noun["id"] > held["id"] or noun["id"] in understood or not noun_tagged(noun) or not role_of[noun["id"]]
                 or is_describing(noun) or (masdar_at_work(noun) and not listed(held, "likeness_jarr")) or is_zarf(noun, sentence)):
             continue
+        # رَأَيْتُ رَجُلًا لِيَكْتُبَ: لام التعليل with its verb, the masdar behind a hidden أن, tells why the act was
+        # done, so it hangs on the verb the noun is in, never on a صفة of the noun
+        if any(t["head"] == held["id"] and is_verb(t) for t in drawn) and (verb := by_id.get(noun["head"])) and is_verb(verb):
+            moved = {**held, "head": verb["id"]}
+            drawn[drawn.index(held)], by_id[held["id"]] = moved, moved
+            continue
         known, case = definite(noun), typed_or_parsed_case(noun)
         if strip_diacritics(held["form"]) in kept["measured"]["particles"] and listed(noun, "tamyeez_head", "measures"):
             continue  # كوبٌ من القهوة: the tamyeez, not a description

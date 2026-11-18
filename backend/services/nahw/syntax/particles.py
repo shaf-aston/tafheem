@@ -63,12 +63,23 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
         # أَنْ لَا تَطُوفِي: after a nasb particle the nun is gone for its nasb, so it shows no jazm
         before = s.by_id.get(token["id"] - 1)
         nasbed = bool(before and is_one(_lemma(before), "nasb_mudari", "before_a_present_verb"))
-        jazm = stilled(typed, after["base"], stuck_on, weak) or _moved_still(after, s) \
-            or (five_verb_nun(typed, stuck_on, weak) == "dropped" and not nasbed)
+        # لِيَلِيَنِّي: a verb the nun of emphasis builds shows no jazm, the لام says it (facts.lam_mood)
+        jazm = stilled(typed, stuck_on, weak) or _moved_still(after, s) or _lam_on(after, s) == "jazm" \
+            or (five_verb_nun(typed, stuck_on, weak) == "dropped" and not nasbed and _lam_on(after, s) != "nasb")
         return "verb_jazm" if jazm else "verb"
     if after["pos"] == "PRT" or ((cond := condition_of(_lemma(after))) and not cond["shared"]):
         return "tool"
     return "noun" if facts.is_known(after, s) else "indefinite_noun"
+
+
+def _lam_on(verb: dict, s: facts.Sentence) -> str | None:
+    """The mood the لام written onto the verb gives it (facts.lam_mood): وَلِتَبْتَغُوا lost its nun to the
+    nasb of لام التعليل, not to the jazm of لام الأمر. Its pieces are those written straight before it. Read as
+    not opening the sentence: a لِ that opens it is still named by the jazm its verb's card gives (naming)."""
+    front: list[dict] = []
+    while (piece := s.by_id.get(verb["id"] - len(front) - 1)) and facts.is_prefix(piece):
+        front.insert(0, piece)
+    return facts.lam_mood(verb, [t["form"].strip("+") for t in front], opens=False)
 
 
 def _moved_still(verb: dict, s: facts.Sentence) -> bool:

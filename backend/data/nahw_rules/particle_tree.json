@@ -367,6 +367,14 @@
         ]
       },
       {
+        "branch": "هلا",
+        "book": "1.4.2 p8",
+        "_source": "urging only, never a condition: Ibn al-Hajib, al-Kafiya p55, حروف التحضيض (هلا، ألا، لولا، لوما: لها صدر الكلام، ويلزم الفعل لفظا أو تقديرا)",
+        "is": "هلا",
+        "role": "ghair_amila_other",
+        "named": "حرف عرض وتحضيض"
+      },
+      {
         "branch": "حتى",
         "book": "1.2 p3",
         "is": "حتى",

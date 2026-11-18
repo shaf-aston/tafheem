@@ -894,3 +894,17 @@ def test_a_follower_of_the_called_ayyuha_follows_it_though_it_is_tagged_a_partic
              {"id": 4, "form": "زيد", "pos": "NOM", "lemma": "زيد", "head": 1}]
     assert followers.followed(words[2], words, words) == 1
     assert followers.followed(words[3], words, words) == 1
+
+
+@pytest.mark.parametrize("lemma, family, member", [
+    ("قد", "jarr", False),      # an oath's answer, no حرف جر
+    ("لا", "jarr", False),
+    ("في", "jarr", True),
+    ("ثم", "atf", True),
+    ("يا", "nida", True),
+    ("و", "nasb_mudari", False),  # stands before إذن, no حرف نصب
+    ("لم", "jazm", True),
+])
+def test_a_list_of_the_words_round_a_family_makes_no_member_of_it(lemma: str, family: str, member: bool):
+    from backend.services.nahw.book import in_family
+    assert in_family(lemma, family) is member

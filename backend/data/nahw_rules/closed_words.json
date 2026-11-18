@@ -22,6 +22,7 @@
    "oath_only": ["و", "ت"],
    "_oath_answer": "what the answer to an oath opens with: the lam (والله لأضربن، والله لزيد قائم), قد (والله لقد قام), إن (والله إن زيدا قائم), and ما or لا for a negated one (والله ما يقوم زيد، ولا يقوم زيد) (Ibn Aqil, Sharh al-Alfiyya, vol 4 p42, bab al-qasam)",
    "oath_answer": ["ل", "قد", "إن", "ما", "لا"],
+   "not_members": ["oath_answer"],
    "words": [
     "ب",
     "ت",
@@ -197,8 +198,8 @@
   },
   "noun_describers": {
    "ar": "الصفة الغالبة",
-   "_comment": "Describing words used as nouns for the one they describe: مؤمن is a believer, صالح a good deed. Only such a word may stand for its noun left out (Ibn Aqil V3 p205, on the Alfiyya: وما من المنعوت والنعت عُقِل يجوز حذفه), so after a verb that wants an object and has none it is that object (مَنْ عَمِلَ صَالِحًا، وَمَنْ يَقْتُلْ مُؤْمِنًا). Any other describing word there is a حال (دَخَلَ الضَّيْفُ مُبْتَسِمًا). Kept: the participles the Quranic Treebank makes a verb's object at least twice and at least twice as often as its حال, by their lemma. Read by facts.stands_for_its_noun.",
-   "words": ["صالح", "مؤمن", "كافر", "ظالم", "محسن", "مجرم", "فاسق", "مسلم", "مشرك", "مفسد", "مسرف", "متقي", "متق", "صابر", "صادق", "شاكر", "خاسر", "كاذب", "منفق", "مقسط", "مجاهد", "مرسل", "ضال", "خائن", "منكر", "شهيد", "مقيم", "باقي", "باق", "سافل", "نبي"]
+   "_comment": "Describing words used as nouns for the one they describe: مؤمن is a believer, صالح a good deed. Only such a word may stand for its noun left out (Ibn Aqil V3 p205, on the Alfiyya: وما من المنعوت والنعت عُقِل يجوز حذفه), so after a verb that wants an object and has none it is that object (مَنْ عَمِلَ صَالِحًا، وَمَنْ يَقْتُلْ مُؤْمِنًا). Any other describing word there is a حال (دَخَلَ الضَّيْفُ مُبْتَسِمًا). Kept: the participles the Quranic Treebank makes a verb's object at least twice and at least twice as often as its حال, by their lemma, and طيب, which the Qur'an puts for the thing it describes (قُلْ لَا يَسْتَوِي الْخَبِيثُ وَالطَّيِّبُ 5:100، حَتَّى يَمِيزَ الْخَبِيثَ مِنَ الطَّيِّبِ 3:179) and the hadith for the object (لَا يَقْبَلُ إِلَّا طَيِّبًا). Read by facts.stands_for_its_noun.",
+   "words": ["صالح", "مؤمن", "كافر", "ظالم", "محسن", "مجرم", "فاسق", "مسلم", "مشرك", "مفسد", "مسرف", "متقي", "متق", "صابر", "صادق", "شاكر", "خاسر", "كاذب", "منفق", "مقسط", "مجاهد", "مرسل", "ضال", "خائن", "منكر", "شهيد", "مقيم", "باقي", "باق", "سافل", "نبي", "طيب"]
   },
   "vague_nouns": {
    "ar": "الأسماء المتوغلة في الإبهام",
@@ -466,6 +467,8 @@
    "idhan_after": ["و", "ف"],
    "idhan_between": ["لا"],
    "idhan_oath": ["و"],
+   "not_members": ["idhan_after", "idhan_between", "idhan_oath"],
+   "_not_members": "Lists of the words round إذن, not of the family: the و of وَلِيَعْلَمَ before a verb in nasb is no حرف نصب (book.in_family).",
    "_idhan": "إذن answers and gives the result (حرف جواب وجزاء); it also puts the present verb in nasb when it opens the answer (only و or ف before it) and the verb follows it directly, a negating لا or an oath (و and the sworn-by noun) allowed between (Tasheel 4.1.1 p99, Alfiyya). After و or ف it may work or not; when the verb shows its raf' (the nun of the five verbs kept, a damma) it has not worked. `idhan_after` is what may stand before it, `idhan_between` what may stand between it and the verb, `idhan_oath` the و of an oath (services/nahw/syntax/particles.py, the idhan tree).",
    "_before_a_present_verb": "the ones that settle an unvowelled present verb as منصوب when it comes straight after them; the rest need a reading of the sentence (services/nahw/syntax/naming.py)",
    "words": [
@@ -607,6 +610,8 @@
     "لو"
    ],
    "conditional_particles": ["لو", "لولا", "لوما", "لما"],
+   "_read_as": "a particle the dictionary has no particle reading of (CAMeL reads لوما only as لَوْم, blame) is read as its twin's, respelled: لوما is لولا's twin, both urging before a verb and both امتناع لوجود before a noun (Ibn al-Hajib, al-Kafiya p55, حروف التحضيض). Only where it opens its sentence, as these do (لها صدر الكلام, ibid.); a لومًا with tanween is the noun (morphology._twin_particle)",
+   "read_as": {"لوما": {"twin": "لولا", "twin_diac": "لَوْلا", "diac": "لَوْما"}},
    "_conditional_particles": "the non-jussive conditional particles (Year 3 notes, zuroof p4: لولا، لوما، لو، أمّا are حروف). لو opens one before a verb; لولا and لوما before a noun only (roles.json condition `by_word`), and urge before a verb; لمّا before a past verb only (لمّا الحينية; before a present it is the jazm particle); أمّا comes before a noun and is not listed. Read with jazm's list by nahw_book.condition_of",
    "ambiguous": {
     "أما": "notification/detail 'as for' (أما ... فـ) vs أم + ما (interrogative) vs أما الاستفتاحية",

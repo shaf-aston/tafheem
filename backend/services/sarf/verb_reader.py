@@ -20,6 +20,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from backend.services.sarf import conjugation
+from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import KASRA, SUKUN, letters, plural_alef, typed_case
 from backend.services.nahw.book import book_words, is_one, only_adverb
 
@@ -44,6 +45,12 @@ class Cell:
 @lru_cache(maxsize=1)
 def _config() -> dict:
     return json.loads(_READING.read_text(encoding="utf-8"))
+
+
+def mended(analysis: dict) -> dict:
+    """A verb reading with the lemma and root it is (reading.json `camel_lex`): CAMeL's رأى present under راوند."""
+    fix = _config()["camel_lex"].get(strip_diacritics(analysis.get("lex") or ""))
+    return {**analysis, **fix} if fix and analysis.get("pos") == "verb" else analysis
 
 
 def _fold(word: str) -> str:

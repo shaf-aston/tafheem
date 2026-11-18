@@ -518,6 +518,14 @@ def jarr_takes(token: dict, s: Sentence) -> bool:
     return not any(noun_tagged(t) and head["id"] < t["id"] < token["id"] for t in s.tokens)
 
 
+def said_verb(token: dict, s: Sentence) -> bool:
+    """قال المعلمُ لِيَكْتُبُوا دروسَهم: a verb a verb of saying (roles.json said_clause) holds after it opens
+    the sentence it says, its مقول القول, as if nothing stood before it (facts.lam_mood: لام الأمر)."""
+    head = s.head(token)
+    return (token["rel"] == "OBJ" and is_verb(token) and head is not None and is_verb(head)
+            and head["id"] < token["id"] and says(head["lemma"]))
+
+
 def quoted_head(token: dict, s: Sentence) -> bool:
     """قال الضيفُ سلامٌ عليكم، قال زيدٌ الجوُّ جميلٌ: a verb has one doer (Tasheel 2.4.1), so a raf'
     word a verb of saying (roles.json said_clause) holds after its doer is no second one but heads
