@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 
-import { DOCK, FIXED, LISTED, TABS, WIDE } from './tabs'
+import { DOCK, FIXED, HOME, LISTED, TABS, WIDE } from './tabs'
+import { loadUses, noteUse, orderByUse } from './used'
 import { useDock } from './dock'
 import { keepRecent, useStrip } from './recent'
 import { lastPlaceOn, onJump, ownsHome, startJourney, visit } from './journey'
@@ -81,12 +82,17 @@ export function useTabNavigation() {
 
   // A tab chosen with nothing in hand opens on the word it was last on, from
   // the journey, so glancing at another tab and coming back costs nothing; one
-  // still alive is simply shown again. Already there (the active tab clicked
-  // again): not a step, and the panel is left exactly as it is.
+  // still alive is simply shown again. The tab already open, chosen again, goes
+  // back to its own top page, the way a site's logo goes home: a step, so back
+  // returns to where it was. It used to do nothing, and there was no way back
+  // to a tab's start but the back arrow.
   const switchTab = useCallback((id, handed = null) => {
-    const value = handed ?? lastPlaceOn(id)
-    if (!visit(id, value)) return
-    show(id, value, handed != null)
+    const again = handed == null && id === activeRef.current
+    if (id !== activeRef.current) noteUse(id, LISTED)
+    const value = again ? null : handed ?? lastPlaceOn(id)
+    if (!visit(id, value) && !again) return
+    if (again) scrollToTop()
+    show(id, value, handed != null || again)
   }, [show])
 
   // Before paint, so the old tab's place never flashes on the new one. Skips
@@ -99,17 +105,29 @@ export function useTabNavigation() {
     return holdAt(top)
   }, [activeTab])
 
-  const strip = useStrip(LISTED, FIXED, WIDE, activeTab)
+  // The strip's places, from the tabs this reader opens most (lib/nav/used.js):
+  // worked out once per visit, so no tab moves while the app is open.
+  const [places] = useState(() => {
+    const ordered = orderByUse(LISTED, [...FIXED, ...WIDE], loadUses(LISTED), HOME)
+    return { fixed: ordered.slice(0, FIXED.length), seed: ordered.slice(FIXED.length) }
+  })
+  const strip = useStrip(LISTED, places.fixed, places.seed, activeTab)
   const [dock, placeInDock] = useDock(LISTED, DOCK)
 
   useTabShortcuts(strip, switchTab)
 
   // The trail and the browser's back arrow are the same list; this follows the
   // arrow: a step returned to is handed back to its panel exactly like a
-  // hand-off, which is what makes it load that word again. A step with no word is
-  // one too on a tab whose blank is its own home: back from a Grow lesson is Grow's page.
+  // hand-off, which is what makes it load that word again. A step with no word
+  // is one too when it is on the tab already open (back from a dialect is the
+  // list of dialects) or on a tab whose blank is its own home (back from a Grow
+  // lesson is Grow's page). Back onto another tab's blank shows it as it was left.
   useEffect(() => {
-    return onJump((step) => show(step.tab, step.value, step.value != null || ownsHome(step.tab)))
+    return onJump((step) => {
+      const arrive = step.value != null || step.tab === activeRef.current || ownsHome(step.tab)
+      if (step.value == null && step.tab === activeRef.current) scrollToTop()
+      show(step.tab, step.value, arrive)
+    })
   }, [show])
 
   // Each panel's own way to report where it got to, and how a round is going:

@@ -13,7 +13,7 @@ function deferred() {
   return { promise, answer }
 }
 
-function setup({ strict = false } = {}) {
+function setup({ strict = false, onVisit, onFound } = {}) {
   const client = new QueryClient({ defaultOptions: { mutations: { retry: false } } })
   const pending = []
   const ask = ({ q }) => {
@@ -24,7 +24,7 @@ function setup({ strict = false } = {}) {
   const result = {}
   const report = (now) => { result.current = now }
   function Probe() {
-    report(useSearch({ historyKey: 'test-history', ask, incoming: 'كتب', arrival: 1 }))
+    report(useSearch({ historyKey: 'test-history', ask, incoming: 'كتب', arrival: 1, onVisit, onFound }))
     return null
   }
   const tree = (mode) => {
@@ -42,6 +42,18 @@ function setup({ strict = false } = {}) {
 afterEach(cleanup)
 
 describe('useSearch', () => {
+  // A second argument to onVisit means "moves on within the same step": the answer
+  // there made each search replace the one before it, and back skipped it.
+  it('reports the place alone, and the answer to onFound', async () => {
+    const visits = []
+    const found = []
+    const { pending } = setup({ onVisit: (...args) => visits.push(args), onFound: (data) => found.push(data) })
+    await waitFor(() => expect(pending).toHaveLength(1))
+    await act(async () => pending[0].answer())
+    await waitFor(() => expect(visits).toEqual([['كتب']]))
+    expect(found).toEqual([{ query: 'كتب' }])
+  })
+
   // StrictMode mounts, unmounts and mounts again in development. The arrival's
   // request was started in the first mount and its answer never reached the box.
   it('lands an arriving word under StrictMode', async () => {

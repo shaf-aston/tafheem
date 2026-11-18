@@ -46,7 +46,7 @@ export default function HadithSearchResults({ accent, onOpenBook, onNarrator, on
   const { query, setQuery, history, mutation, submit, clear, shown: data } = useSearch({
     historyKey: 'hadith-history',
     ask: searchHadith,
-    onVisit: (_, { reference }) => { if (reference && !reference.asked) open(reference.collection, null) },
+    onFound: ({ reference }) => { if (reference && !reference.asked) open(reference.collection, null) },
   })
 
   const narrators = useNarratorMatches(data?.query)

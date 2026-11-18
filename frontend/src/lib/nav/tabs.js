@@ -96,9 +96,10 @@ export const TABS = [
 /** The tabs a person can browse to: strip, All sections, command bar, number keys. */
 export const LISTED = TABS.filter((tab) => !tab.hidden)
 
-// The strip: FIXED always shows, in this order, phones too. WIDE follows from md:
-// eight in all, each always in its place with its number key. An open tab off
-// the strip shows after them while it is open (lib/nav/recent.js).
+// The default strip: FIXED's five places always show, phones too; WIDE's three
+// follow from md. A reader's own strip fills the same eight places with the tabs
+// they open most (lib/nav/used.js); these are what a first visit sees. An open
+// tab off the strip shows after them while it is open (lib/nav/recent.js).
 export const FIXED = ['home', 'quran', 'nahw', 'sarf', 'dict']
 
 /** The tab the app opens on, and the group of All sections that holds only it. */

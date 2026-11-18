@@ -51,7 +51,7 @@ export function useSarf({ incoming, arrival, onVisit }) {
 
   // Through a return the last table stays up until the next one lands, so the
   // page keeps its height rather than collapsing for the length of a request.
-  const base = useHeld(mutation.data ?? preview, returning)
+  const base = useHeld(mutation.data ?? preview, returning && Boolean(incoming))
   // The AI is asked for the meaning, and it answers with a verb class too. That
   // class is a guess and the rules' own answer is not: asked about دعو the AI
   // said "Sahih (Salim)" where the rules say ناقص, and spreading the whole reply
@@ -77,8 +77,9 @@ export function useSarf({ incoming, arrival, onVisit }) {
   }, [mutation.data, fetchMeaning])
 
   // The box and the باب follow the word during the render.
-  if (arrived && incoming) {
-    setWord(incoming)
+  // One with nothing (back to the tab's top page) empties the box.
+  if (arrived) {
+    setWord(incoming ?? '')
     setPreview(null)
     setForm('')
   }
@@ -86,11 +87,10 @@ export function useSarf({ incoming, arrival, onVisit }) {
   // And it is conjugated, so the journey ends in an answer rather than in a
   // filled-in box. The previous word's swap and meaning go with it.
   useArrivalEffect(arrival, () => {
-    if (!incoming) return
     mutation.reset()
     swap.reset()
     meaning.reset()
-    mutation.mutate({ word: incoming })
+    if (incoming) mutation.mutate({ word: incoming })
   })
 
   // Typed or heard, a changed word drops the old answer and the old باب.
