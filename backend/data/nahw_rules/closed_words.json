@@ -156,6 +156,7 @@
     "ب"
    ],
    "named": "حرف جر زائد",
+   "letter": "الباء",
    "said": "اسم مجرور لفظًا بحرف الجر الزائد، {place} محلًا",
    "place_said": {"u": "مرفوع", "a": "منصوب"},
    "on": {
@@ -177,6 +178,17 @@
     }
    }
   },
+  "extra_min": {
+   "ar": "مِن الزائدة",
+   "_comment": "مِن written before an indefinite noun after a negation, or a question by هل (`asks`), where the noun holds a place of its own: the مبتدأ (ما لكم من إلهٍ غيرُه، هل من خالقٍ غيرُ الله), the doer of a verb whose object is already said (ما جاءنا من بشيرٍ), or the object of one whose doer is (ما اتخذ الله من ولدٍ، هل ترى من فطورٍ). The noun is مجرور in its letters and in its place's case (Mughni, من الزائدة: شرطها أن يسبقها نفي أو نهي أو استفهام بهل، وأن يكون مجرورها نكرة، فاعلًا أو مفعولًا به أو مبتدأ). Where the verb's doer could be its hidden pronoun (لم يخرج من بيتٍ) the مِن starts a place, a plain one. Read by facts.extra_min_place.",
+   "words": ["من"],
+   "asks": ["هل"],
+   "_comes": "A verb of coming, reaching or falling with no doer said, its object said or not (ما جاءنا من بشيرٍ، ما أتاهم من نذيرٍ، وما تسقط من ورقةٍ): what comes is the noun after مِن, its doer. Any other verb keeps its doer hidden, and مِن is its own (ما حذّرني من خطرٍ، لم يخرج من بيتٍ)",
+   "comes": ["جاء", "أتى", "بلغ", "وصل", "نزل", "سقط"],
+   "_from": "A verb of taking, hearing or getting has مِن as its own, where the thing comes from, not a زائدة one (ما أخذت من صديقٍ، ما سمعت من شيخٍ، ما اشتريت من سوقٍ); the verbs of coming are read the same once their doer is said (ما نزل من سماءٍ مطرٌ)",
+   "from": ["أخذ", "سمع", "اشترى", "تعلم", "طلب", "استفاد", "نال"],
+   "letter": "مِن"
+  },
   "intransitive_verbs": {
    "ar": "أفعال لازمة",
    "_comment": "Verbs that take no object (الفعل اللازم). After ما they leave no slot for a pronoun going back to ما (العائد), and a صلة with no عائد is ما المصدرية, never the relative (مغني اللبيب، ما المصدرية؛ شرح ابن عقيل، الموصول). Read by facts.ma_kind and repair.relative_owed: a relative after such a verb and its doer describes the doer (جاء الرجل الذي رأيته). The verbs of coming, escaping, falling, appearing and happening reach their place by a preposition, never by an object, like ذهب and خرج.",
@@ -187,6 +199,11 @@
    "ar": "الصفة الغالبة",
    "_comment": "Describing words used as nouns for the one they describe: مؤمن is a believer, صالح a good deed. Only such a word may stand for its noun left out (Ibn Aqil V3 p205, on the Alfiyya: وما من المنعوت والنعت عُقِل يجوز حذفه), so after a verb that wants an object and has none it is that object (مَنْ عَمِلَ صَالِحًا، وَمَنْ يَقْتُلْ مُؤْمِنًا). Any other describing word there is a حال (دَخَلَ الضَّيْفُ مُبْتَسِمًا). Kept: the participles the Quranic Treebank makes a verb's object at least twice and at least twice as often as its حال, by their lemma. Read by facts.stands_for_its_noun.",
    "words": ["صالح", "مؤمن", "كافر", "ظالم", "محسن", "مجرم", "فاسق", "مسلم", "مشرك", "مفسد", "مسرف", "متقي", "متق", "صابر", "صادق", "شاكر", "خاسر", "كاذب", "منفق", "مقسط", "مجاهد", "مرسل", "ضال", "خائن", "منكر", "شهيد", "مقيم", "باقي", "باق", "سافل", "نبي"]
+  },
+  "vague_nouns": {
+   "ar": "الأسماء المتوغلة في الإبهام",
+   "_comment": "Nouns so vague that annexing them makes them no more definite (Ibn Aqil on the Alfiyya, باب الإضافة: غير ومثل وشبه; page unchecked). They name no doing, though their measure is a masdar's (مِثْل is فِعْل), so a جار or ظرف after one hangs on the word no one writes (وَمِثْلَهُ مَعَهُ: حال). Read by facts.masdar_at_work.",
+   "words": ["مثل", "غير", "شبه"]
   },
   "describing_names": {
    "ar": "العلم المنقول عن صفة",
@@ -258,7 +275,7 @@
   },
   "kana": {
    "ar": "كان وأخواتها",
-   "card": {"named": "ناقص", "does": "يرفع الاسم وينصب الخبر", "governs": "kana", "_chart_as_comment": "A particle of the family is no فعل ناقص in the picture: the ما that works like ليس goes by its own name (Tasheel 1.9 n6 p23).", "chart_as": {"ما": "ما الحجازية"}},
+   "card": {"named": "ناقص", "does": "يرفع الاسم وينصب الخبر", "governs": "kana", "_chart_as_comment": "A particle of the family is no فعل ناقص in the picture: the ما that works like ليس goes by its own name (Tasheel 1.9 n6 p23).", "chart_as": {"ما": "ما الحجازية"}, "_named_as": "Its card names the ما a حرف نفي, not a ناقص (a verb's name)", "named_as": {"ما": "حرف نفي"}, "_rule_as": "A noun the ما governs is told the ما's rule, not كان وأخواتها's (Tasheel 1.9: ما الحجازية تعمل عمل ليس)", "rule_as": {"ما": "القاعدة: ما الحجازية تعمل عمل ليس فترفع الاسم وتنصب الخبر"}},
    "effect": "raf' the ism and nasb the khabar; all conjugated forms follow (كانوا، يكون، كن)",
    "words": [
     "كان",

@@ -6,7 +6,7 @@ import re
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
 from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, letters, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
-from backend.services.nahw.book import book_words, is_diptote, elative_shape, measure, participle_shape, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
+from backend.services.nahw.book import book_words, is_diptote, elative_shape, measure, participle_shape, stem_pattern, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
 # a root letter is what is left once the letters that come and go are removed
@@ -298,7 +298,7 @@ def same_case(token: dict, head: dict) -> bool:
     return bool(shown_cases(token) & shown_cases(head)) and not is_verb(head)
 
 
-def agrees(token: dict, head: dict) -> bool:
+def agrees(token: dict, head: dict, head_cases: set[str] | None = None) -> bool:
     """A na't matches its noun in case, in "the" and in number (Tasheel 3.10.1): a word in
     idafa counts as definite, so an indefinite word after a definite or construct noun does
     not agree; a dual describes only a dual (مُحَمَّدٌ وَعَلِيٌّ مُجْتَهِدَانِ: the khabar of both).
@@ -308,12 +308,14 @@ def agrees(token: dict, head: dict) -> bool:
     is definite by itself whatever its tag says (Ajrumiyya p14: والمعرفة خمسة أشياء … والاسم العلم), so a word
     showing tanween never describes it (شرب زيد الماء باردا); رَبِّ after لِلَّهِ shows none. Typed bare, a word
     ending ين is a dual or a plural alike (الزائرين اللطيفين), so it is no dual; a word of no
-    case at all, typed bare, has none to disagree in, nor has one after a noun showing none (مَالِ امْرِئٍ مُسْلِمٍ)."""
+    case at all, typed bare, has none to disagree in, nor has one after a noun showing none (مَالِ امْرِئٍ مُسْلِمٍ).
+    `head_cases`, when given, are the cases the noun stands in, its place's among them (facts.extra_min_case)."""
     dual = [t.get("num") == "d" and not (typed_bare(t) and t["form"].endswith("ين")) for t in (token, head) if noun_tagged(t)]
     known = head.get("stt") == "d" or head.get("stt") == "c" and head.get("mudaf", True)
     named = head.get("pos_camel") == "noun_prop" and (typed_tanween(token) or written_nasb(token))
     # الرجلُ الحاديَ عشرَ: a compound ordinal is built, so it stands in its noun's case by its place
-    in_case = same_case(token, head) or token.get("compound") == "ordinal" or typed_bare(token) and not (shown_cases(token) and shown_cases(head))
+    in_case = (same_case(token, head) if head_cases is None else bool(shown_cases(token) & head_cases)) \
+        or token.get("compound") == "ordinal" or typed_bare(token) and not (shown_cases(token) and shown_cases(head))
     return in_case and not (token.get("stt") == "i" and known or named) and len(set(dual)) < 2
 
 
@@ -478,10 +480,19 @@ def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
     """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا، خَطْوَةً), judged by the analyser's pattern.
     weak_or_doubled=False takes a doubled or hollow root's pattern as written, for a word with nothing else
     saying it is a doing: طَوْقًا is فَعْل, and a collar all the same; a single act (ـة) is a doing, so it is read through."""
-    pattern = (token.get("pattern") or "").removeprefix("ال")
+    pattern = stem_pattern(token.get("pattern") or "")
     shape = measure(pattern) if weak_or_doubled or strip_diacritics(pattern).endswith("ة") else pattern
     return token.get("pos_camel") == "noun" and shape.startswith(tuple(book_words("masdar_patterns")))
 
+
+def masdar_at_work(token: dict) -> bool:
+    """A masdar working as its verb does, so a جار after it hangs on it (الْحُكْمِ عَلَى الْمُتَّهَمِينَ، حِرْصُ الْمُهَنْدِسِينَ عَلَى
+    الْمَوَاعِيدِ). A noun of a Form I measure (فَعْل، فِعْل، فَعَل) names a thing as often as a doing (مَوْجٌ، مَلَأٌ، عَرَضٌ), so it
+    counts only with ال or a word it is annexed to; bare and indefinite, the جار after it is its صفة (رَجُلٌ مِنَ الْأَنْصَارِ).
+    The nouns steeped in vagueness (vague_nouns: مِثْل، غَيْر، شِبْه) name no doing at all."""
+    if not is_masdar(token) or listed(token, "vague_nouns"):
+        return False
+    return not measure(stem_pattern(token.get("pattern") or "")).startswith("1") or token.get("stt") in ("d", "c")
 
 def is_name(token: dict) -> bool:
     return token["pos"] == "PROP" or token.get("pos_camel") == "noun_prop"

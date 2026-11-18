@@ -55,6 +55,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - name_told_to: a name taken as a saying verb's object, straight after a jarr noun → that noun's بدل (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - repeated_doer: a raf' pronoun of the verb's own person right after it → the doer said again (توكيد) (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - kana_subject: a raf' noun right after كان/ليس, a predicate after it → كان's اسم, not its khabar (`backend/services/nahw/syntax/repair/subject_clash.py`)
+- kafa_doer: a زائدة باء straight after كفى, hung by the parser on the تمييز → كفى's doer (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - kana_fronted_khabar: a nasb noun right after كان made its اسم by the parser → its khabar (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - kana_nasb_khabar: a nasb noun after كان's اسم, hung as an object or modifier, while it has no khabar → that khabar (`backend/services/nahw/syntax/repair/subject_clash.py`)
 - inna_object: a noun in nasb (or ـات with its kasra: لَآيَاتٍ) the parser hung as إنّ's object (إِنَّ فِي ذَلِكَ لَآيَةً) → its اسم (`backend/services/nahw/syntax/repair/subject_clash.py`)

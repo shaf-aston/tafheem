@@ -116,7 +116,7 @@ def _tool_next(token: dict, s: facts.Sentence) -> str:
 
 def _timed(token: dict, s: facts.Sentence) -> str:
     """The word after it is لم or دام (data: istithna_verbs `timed_ma_before`) and it does not
-    open the sentence: ما المصدرية الظرفية, "as long as" (البيعان بالخيار ما لم يتفرقا). Added to a noun
+    open the sentence (دام aside): ما المصدرية الظرفية, "as long as" (البيعان بالخيار ما لم يتفرقا). Added to a noun
     before it, or after a preposition, it is in jarr: the ما of a noun, the relative, not a time word
     (سَأُنَبِّئُكَ بِتَأْوِيلِ مَا لَمْ تَسْتَطِعْ عَلَيْهِ صَبْرًا; Mughni, ما الاسمية)."""
     after, before = facts.next_word(token, s), s.by_id.get(token["id"] - 1)
@@ -128,7 +128,9 @@ def _timed(token: dict, s: facts.Sentence) -> str:
     on_word = (token["rel"] == "MOD" and (word := s.head(token)) and word["id"] < token["id"]
                and (facts.noun_tagged(word) or facts.is_verb(word)) and after and facts.is_verb(after) and not _is_present(after)
                and not any(facts.attached_pronoun(k) and strip_diacritics(k["form"]).strip("+") == "ه" for k in s.kids(after)))
-    return "yes" if before and after and not in_jarr and (on_word or is_one(
+    # ما دمت هنا فاجلس: دام governs only after this ما, so before it ما is never the negation, opening the sentence too
+    opens_dama = after and not before and is_one(after["lemma"], "kana", "needs_ma")
+    return "yes" if opens_dama or before and after and not in_jarr and (on_word or is_one(
         after["lemma"] or after["form"], "istithna_verbs", "timed_ma_before")) else "no"
 
 
@@ -163,7 +165,7 @@ def _fronted(token: dict, s: facts.Sentence) -> str:
     """ما في الدار أحدٌ، ما لك عليّ سلطانٌ: one or more جار ومجرور or ظرف straight after it, then a noun
     in raf': the khabar came first, so the noun is its مبتدأ مؤخر and the ما only negates; a ما with
     its khabar first does not work as ليس (Tasheel 1.9 n6 p23). A describing word there (وما عند الله
-    خيرٌ، باقٍ) is told of the ما, the relative, and is its khabar. Its majrur, and what is added to
+    خيرٌ، باقٍ) is told of the ما, the relative, and is its khabar, unless a صفة of its own makes it a thing named (ما له عاملٌ آخرُ). Its majrur, and what is added to
     it (في بيتِ زيدٍ), are in jarr; a joined one (فيه، عندي) is no word of its own. A مضاف إليه
     of a word inside it, in whatever case it shows (مَا بَيْنَ خَلْقِ آدَمَ ... خَلْقٌ: آدَمَ's fatha is its jarr) is inside it too."""
     words = [t for t in s.tokens if t["id"] > token["id"] and not facts.is_suffix(t)]
@@ -174,8 +176,16 @@ def _fronted(token: dict, s: facts.Sentence) -> str:
         inside.add(words[at]["id"])
         at += 1
     noun = words[at] if 0 < at < len(words) else None
-    return "yes" if noun and facts.noun_tagged(noun) and facts.typed_case_of(noun) == "u" \
-        and not facts.is_describing(noun) else "no"
+    # ما في الدار من رجلٍ، ما لي من صديقٍ في المدينة: a مِن after the first of them, before an indefinite noun, is
+    # زائدة and its noun the مبتدأ, whatever jar-majrur comes after it
+    drawn = not noun and any(t is not words[0] and facts.is_preposition(t) and is_one(t["lemma"], "extra_min") and any(
+        k["rel"] == "OBJ" and facts.noun_tagged(k) and not facts.is_known(k, s) for k in s.kids(t)) for t in words[:at])
+    # ما له عاملٌ آخرُ: a participle with a صفة of its own names a thing, the مبتدأ, not a khabar told of ما; an
+    # elative compares what ما is to something, so is told of it still (ما عند الله خيرٌ كثيرٌ)
+    described = noun and not facts.is_elative(noun) and any(k["rel"] == "MOD" and k["id"] > noun["id"] and facts.noun_tagged(k) and facts.agrees(k, noun)
+                             for k in s.kids(noun))
+    return "yes" if drawn or noun and facts.noun_tagged(noun) and facts.typed_case_of(noun) == "u" \
+        and (described or not facts.is_describing(noun)) else "no"
 
 
 def _opens(token: dict, s: facts.Sentence) -> str:

@@ -49,8 +49,9 @@ def test_question_word_with_a_kana_sister(sentence, roles):
 @pytest.mark.parametrize("sentence, roles", [
     ("كَمْ يَوْمًا سَافَرْتَ؟", ["مفعول فيه", "تمييز", "فعل"]),
     ("أَنَّى لَكَ هَذَا؟", ["خبر", "حرف جر", "مبتدأ"]),
-    ("هَلْ مِنْ مُجِيبٍ؟", ["حرف", "حرف جر", "مجرور"]),
-    ("مَا لَنَا مِنْ شَافِعٍ", ["–", "حرف جر", "حرف جر", "مجرور"]),
+    # مِن زائدة after هل or a negation: its noun is the مبتدأ, in jarr by the letter, raf' by its place
+    ("هَلْ مِنْ مُجِيبٍ؟", ["حرف", "حرف جر", "مبتدأ"]),
+    ("مَا لَنَا مِنْ شَافِعٍ", ["حرف", "حرف جر", "حرف جر", "مبتدأ"]),
 ])
 def test_kam_time_anna_and_noun_after_min(sentence, roles):
     assert _roles(sentence) == roles

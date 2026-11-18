@@ -74,6 +74,15 @@ def extra_ba_named() -> str:
     return _closed()["families"]["extra_ba"]["named"]
 
 
+def extra_min_letter() -> str:
+    """مِن: how a card names the زائدة مِن (the باء's own is extra_ba `letter`)."""
+    return _closed()["families"]["extra_min"]["letter"]
+
+
+def extra_ba_letter() -> str:
+    return _closed()["families"]["extra_ba"]["letter"]
+
+
 def extra_ba_said(place: str) -> str:
     """The card's line for a word under a زائدة باء whose place is in this case (u / a)."""
     family = _closed()["families"]["extra_ba"]
@@ -273,13 +282,24 @@ def is_diptote(typed: str, pos: str, lemma: str, *, attached: bool, annexed: boo
             and not (attached or annexed or is_mabni(pos) or is_one(lemma, "tamyeez_head")))
 
 
+# the letters a joined word (و، ف، ب، ك، ل) and ال put before the analyser's pattern (وَبِال1ا2ِ3ِ، لِل1َ2ِي3ِ): no
+# measure starts with them, its own letters being the root's digits or زوائد of سألتمونيها on a measure's start
+_PROCLITICS = re.compile(r"^(?:[وف]َ)?(?:[بك]ِ|كَ|لِ)?(?:ال|ل(?=\d))?")
+
+
+def stem_pattern(pattern: str) -> str:
+    """The analyser's pattern without the joined words and ال before it: the word's own measure. A pattern with no 1
+    spells its first root letter out (وَ2َ3َ for وَجَدَ، لِلأَ2ْ3ِ): a joined و or ل can't be told from that letter, so it stays whole."""
+    return _PROCLITICS.sub("", pattern, count=1) if "1" in pattern else pattern
+
+
 def measure(pattern: str) -> str:
     """The analyser's pattern laid back on its measure: a doubled root writes its last two
     radicals as one shadda'd 2 (حُبّ 1ُ2ِّ → 1ُ2ْ3), a hollow one keeps its weak middle letter
     in place of the 2 (نَوْم 1َوْ3 → 1َ2ْ3), a last radical hamza keeps its seat in place of the 3
     (قَارِئ 1ا2ِئ → 1ا2ِ3، مَقْرُوء مَ1ْ2ُوء → مَ1ْ2ُو3), a weak last radical before the ة of a single act keeps its seat
     too (خَطْوَة 1َ2ْوَة → 1َ2ْ3َة)."""
-    pattern = pattern.removeprefix("ال")
+    pattern = stem_pattern(pattern)
     if "3" not in pattern and "2" in pattern:
         pattern = re.sub(r"(?<=2)([\u064b-\u0652]*[اوي]?)[ءأإئؤ]", r"\g<1>3", pattern, count=1)
     if "3" not in pattern and "2" in pattern:

@@ -11,7 +11,7 @@ from typing import NamedTuple, TypedDict
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import (
-    book_spelling, extra_ba_named, extra_ba_on, is_extra_ba, kaffa_sister,
+    book_spelling, extra_ba_named, extra_ba_on, extra_min_letter, is_extra_ba, kaffa_sister,
     book_map, book_merges, takes_object, frames, family_mother, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
 from backend.services.nahw.syntax import condition, facts, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
@@ -111,6 +111,7 @@ class FoundEntry(TypedDict, total=False):
     condition: Condition  # its part in a شرط
     pair: dict[str, str]  # لا رجلَ: role → the name its governor gives the pair
     extra_ba: str  # u / a: the place's case under a زائدة باء
+    extra_letter: str  # مِن: the زائد letter's name where it is not the باء
     by_place: bool  # the case is its place's, not the one its letters show (the teacher skips the typed check)
     kaffa: str  # إنما: the إن sister the كافة ما is on
     gap: Gap  # set by the teacher: the rule a dashed role broke
@@ -242,6 +243,9 @@ def _extra_ba(n: Named) -> None:
         if not (rule and is_extra_ba(ba["form"])
                 and (hijazi or (entry["role"] == NAMED.majroor and ba["rel"] == rule["rel"]))):
             continue
+        # لَيْسَ بِالْبَيْتِ أَحَدٌ: a place with ال after the باء is a plain jar-majrur, the khabar put first, not one behind a زائدة
+        if rule["role"] != NAMED.fail and not facts.khabar_behind_ba(ba, token):
+            continue
         # كفى بالمرء كذبًا أن يحدّث: another doer (a subject, or the masdar أن makes) leaves the باء a plain one
         if rule.get("alone") and any(t["id"] != ba["id"] and t["head"] == verb["id"] and t["rel"] == "SBJ" for t in tokens) \
                 or rule.get("alone") and any(t["id"] > token["id"] and strip_diacritics(t["lemma"]) in frames()["masdar"]["words"]
@@ -253,6 +257,26 @@ def _extra_ba(n: Named) -> None:
             if piece["id"] == ba["id"]:
                 piece["named"] = extra_ba_named()  # حرف جر زائد
 
+
+def _extra_min(n: Named) -> None:
+    """ما لكم من إلهٍ، ما جاءنا من بشيرٍ: مِن is زائدة and the indefinite noun it draws holds its place, the مبتدأ, the
+    verb's doer or its object (facts.extra_min_place; data: closed_words extra_min). Like the زائدة باء, the noun keeps
+    the jarr it shows, its role is its place, and the مِن is named a زائد."""
+    found, bases, s = n.found, n.bases, n.s
+    index = {token["id"]: i for i, token in enumerate(bases)}
+    for i, token in enumerate(bases):
+        if not (place := facts.extra_min_place(token, s)):
+            continue
+        noun = facts.extra_min_noun(token, s)
+        if noun["id"] not in index:
+            continue
+        verb = s.head(token) if place != "mubtada" else None
+        # ما كان له من وليٍّ: the doer's place under كان is its اسم (roles doer.by_family)
+        role = frames()["doer"]["by_family"].get(s.family(verb)) if verb and place == "fail" else None
+        found[index[noun["id"]]].update(role=role or getattr(NAMED, place), governor=index.get(verb["id"]) if verb else None,
+                                        extra_ba="a" if place == "mafool_bih" else "u", extra_letter=extra_min_letter(),
+                                        by_place=True)
+        found[i]["named"] = extra_ba_named()  # حرف جر زائد
 
 
 def _kind_said(role: str | None, token: dict, s: facts.Sentence, governed_by: dict[int, int]) -> str | None:
@@ -537,4 +561,4 @@ def _compound_number(n: Named) -> None:
             n.found[i]["role"], n.found[i]["case"] = n.found[i - 1]["role"], n.found[i - 1]["case"]
 
 
-FINISHES = (_pair, _extra_ba, _kaffa, _excepted_after_la, _compound_number)
+FINISHES = (_pair, _extra_ba, _extra_min, _kaffa, _excepted_after_la, _compound_number)

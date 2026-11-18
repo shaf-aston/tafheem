@@ -29,7 +29,7 @@ from backend.services.text.arabic_text import strip_diacritics
 def find_doers(c: Picture) -> None:
     """Whose pronoun a verb's hidden doer is."""
     by_id, children_of, depth, described, drawn = c.by_id, c.children_of, c.depth, c.described, c.drawn
-    job_of, named, replies, role_of, typed_at = c.job_of, c.named, c.replies, c.role_of, c.typed_at
+    behind, job_of, named, replies, role_of, typed_at = c.behind, c.job_of, c.named, c.replies, c.role_of, c.typed_at
     seen: set[int] = set()
     chained: set[int] = set()  # a معطوف عليه already drawn apart from the list it heads
     # every verb no typed word is the doer of, outermost first, so a khabar's pronoun can
@@ -41,9 +41,11 @@ def find_doers(c: Picture) -> None:
     for token in sorted(drawn, key=lambda t: depth(t)):
         # قُومِي: the doer may be a pronoun written onto the verb, kept inside its leaf
         on_it = named[typed_at[token["id"]]].get("attached", []) if token["id"] in typed_at else []
-        # أَعْجَبَنِي أَنْ تَصْدُقَ: a unit whose job is the فاعل (the مصدر مؤول) is the doer as much as a word is
+        # أَعْجَبَنِي أَنْ تَصْدُقَ: a unit whose job is the فاعل (the مصدر مؤول) is the doer as much as a word is;
+        # ما جاءنا من بشيرٍ: a noun behind a زائد letter (naming `extra_ba`) hangs on the verb through its letter
         if role_of[token["id"]] != NAMED.fil or any(
-                {role_of[kid["id"]], job_of.get(kid["id"])} & set(DOER["explicit"]) for kid in drawn if kid["head"] == token["id"]) \
+                {role_of[kid["id"]], job_of.get(kid["id"])} & set(DOER["explicit"]) for kid in drawn
+                if token["id"] == by_id[behind.get(kid["id"], kid["id"])]["head"]) \
                 or any(piece["role"] in DOER["explicit"] for piece in on_it):
             continue
         up = by_id.get(token["head"])

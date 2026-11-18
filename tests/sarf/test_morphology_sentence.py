@@ -175,3 +175,17 @@ def test_a_noun_takes_the_qurans_noun_lemma_not_its_verbs():
 ])
 def test_a_quran_name_in_a_verbs_shape(sentence, word, pos):
     assert _pos_of(sentence, word) == pos
+
+
+@pytest.mark.parametrize("word, lemma", [
+    # a hamza the vowels seat on و (its damma after a fatha) the dictionary writes on the stem's alif (يقرأه):
+    # the word is read there and spelled on the typed seat, with a particle on it too
+    ("يَقْرَؤُهُ", "قَرَأ"), ("يَمْلَؤُهُ", "مَلَأ"), ("فَيَقْرَؤُهُ", "قَرَأ"),
+    # siblings: the dictionary's own spelling, and one it knows with the و seat, read as they were
+    ("يَقْرَأُهُ", "قَرَأ"), ("رُؤُوسُهُمْ", "رَأْس"),
+])
+def test_a_hamza_on_its_vowels_seat_is_read_on_the_stems(word, lemma):
+    read = morphology.pick([word])[0]
+    assert read["pos"] in ("verb", "noun") and read["lex"] == lemma and morphology.bare_letters(read["diac"])[-3:] == \
+        morphology.bare_letters(word)[-3:]
+

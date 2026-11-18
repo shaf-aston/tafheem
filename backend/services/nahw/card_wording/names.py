@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from backend.services.nahw.card_wording.reason import Reason
-from backend.services.nahw.book import reason
+from backend.services.nahw.book import family_cards, reason
 from backend.services.nahw.syntax import teacher
 from backend.services.nahw.syntax.naming import NAMED
 
@@ -24,11 +24,15 @@ def printed(cards: list[dict], roles: list[dict]) -> None:
 
 
 def sister(cards: list[dict], roles: list[dict]) -> None:
-    """اسم ليس: the reason names the sister the picture names, not the family's mother (لأنه اسم كان)."""
+    """اسم ليس: the reason names the sister the picture names, not the family's mother (لأنه اسم كان); a
+    particle working as the family does tells its own rule (اسم ما: ما الحجازية تعمل عمل ليس)."""
+    rule_as = {word: rule for _, family in family_cards() for word, rule in family.get("rule_as", {}).items()}
     for card, found in zip(cards, roles):
         if (name := found.get("name")) and (said := card.get("said")) and card.get("role") \
                 and name.split()[0] == card["role"].split()[0]:
             said.rename(card["role"], name)
+            if said.says(name) and said.rule and (rule := rule_as.get(name.split()[-1])):
+                said.rule = rule
 
 
 def tool(cards: list[dict], roles: list[dict]) -> None:

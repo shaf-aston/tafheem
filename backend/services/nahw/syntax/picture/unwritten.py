@@ -9,6 +9,7 @@ from backend.services.nahw.syntax.facts import (
     is_describing,
     is_masdar,
     is_preposition,
+    masdar_at_work,
     is_verb,
     is_zarf,
     listed,
@@ -61,21 +62,31 @@ def add_unwritten_khabars(c: Picture) -> None:
         written.insert(place, -1 - len(understood))
         understood.add(word["id"])
         return word
-    for held in [t for t in drawn if role_of[t["id"]] in kept["slot"]]:
+    # ما لكم من إلهٍ، ليس زيدٌ بقائمٍ: a زائد letter (naming `extra_ba`) is no unit in a khabar slot; its noun holds
+    # the place, standing (with the letter, which it never leaves) where the letter stands. With no other unit
+    # (هل من خالقٍ) no khabar is drawn for it
+    behind = {token["id"]: token["head"] for token, found in zip(bases, named)
+              if found.get("extra_ba") and token["head"] in by_id and is_preposition(by_id[token["head"]])}
+    def stand(word: dict) -> dict:
+        return by_id[behind[word["id"]]] if word["id"] in behind else word
+    for held in [t for t in drawn if role_of[t["id"]] in kept["slot"] and t["id"] not in behind.values()]:
         # فَهِجْرَتُهُ إِلَى مَا: the word hung on the unit as its subject is its subject before any hung beside it (فَمَنْ)
-        subject = next((s for s in sorted(drawn, key=lambda s: not (s["head"] == held["id"] and s["rel"] == "SBJ"))
-                        if role_of[s["id"]] in kept["khabar_of"] and s is not held
-                        # الذي في الدار: the unit a relative holds is its صلة; لهم ما يشاءون: one a relative hangs on is its khabar
-                        and ("rel" not in s.get("pos_camel", "") or s["head"] == held["id"])
-                        and (held["head"] == s["id"] or s["head"] == held["id"] or (
-                            held["head"] == s["head"] and s["head"] in by_id))), None)
-        if not subject or subject["id"] in beings or any(role_of[k["id"]] in khabars and (k["id"] == subject["head"] or k["head"] in (
+        noun = next((s for s in sorted(drawn, key=lambda s: not (s["head"] == held["id"] and s["rel"] == "SBJ"))
+                     if role_of[s["id"]] in kept["khabar_of"] and s is not held
+                     # الذي في الدار: the unit a relative holds is its صلة; لهم ما يشاءون: one a relative hangs on is its khabar
+                     and ("rel" not in s.get("pos_camel", "") or s["head"] == held["id"])
+                     and (held["head"] == (u := stand(s))["id"] or u["head"] == held["id"] or (
+                         held["head"] == u["head"] and u["head"] in by_id))), None)
+        if not noun or noun["id"] in beings:
+            continue
+        subject, role = stand(noun), role_of[noun["id"]]
+        if any(role_of[k["id"]] in khabars and (k["id"] == subject["head"] or k["head"] in (
                 subject["id"], subject["head"])) for k in drawn):
             continue
         # كوبٌ كبيرٌ من القهوة: مِن on an indefinite measure brings the tamyeez (roles.json
         # understood.measured), a word that describes the measure, not its khabar
-        if strip_diacritics(held["form"]) in kept["measured"]["particles"] and not definite(subject) \
-                and listed(subject, "tamyeez_head", "measures"):
+        if strip_diacritics(held["form"]) in kept["measured"]["particles"] and not definite(noun) \
+                and listed(noun, "tamyeez_head", "measures"):
             continue
         # the books write مبتدأ، خبر (ثابت)، ق (ثابت) side by side, so the khabar sits beside
         # the unit; a subject the unit headed (the لِ of الحمدُ لله) comes out beside them too
@@ -97,27 +108,27 @@ def add_unwritten_khabars(c: Picture) -> None:
             held = {**held, "head": subject["head"]}
             drawn[[t["id"] for t in drawn].index(held["id"])], by_id[held["id"]] = held, held
         place = next(i for i, t in enumerate(drawn) if t["id"] == held["id"])
-        khabar = kept["khabar_of"][role_of[subject["id"]]]
+        khabar = kept["khabar_of"][role]
         # voweled for its place: the case its subject's khabar stands in (ثَابِتٌ، ثَابِتًا)
-        case = (clause_of(role_of[subject["id"]]) or {}).get("case", "u")
+        case = (clause_of(role) or {}).get("case", "u")
         said_word = understand(kept["voweled"] + kept["tanween"][case], khabar, place,
                                head=subject["id"] if inside else held["head"], rel="PRD", pos="NOM", pos_camel="",
                                lemma=kept["word"])
-        understood_pair[said_word["id"]] = pair_of.get(subject["id"], {})
+        understood_pair[said_word["id"]] = pair_of.get(noun["id"], {})
         # فَلَهُ أَجْرٌ، زَيْدٌ عِنْدَهُ كِتَابٌ: a nominal sentence inside another (an answer, a khabar, a صفة, what is said)
         # is one unit, so its مبتدأ and the unit hang under the khabar no one writes, which heads it as a written one
         # would (زيدٌ أبوه عالمٌ); a sentence on its own, or one a particle governs (إنما), keeps its halves side by side.
         # A joining و governs nothing, so the sentence it brings is one unit too (خَرَجَ زَيْدٌ وَنَحْنُ فِي الطَّرِيقِ)
         head = by_id.get(said_word["head"])
-        if role_of[subject["id"]] == NAMED.mubtada and not inside and (
+        if role == NAMED.mubtada and not inside and (
                 {subject["id"], held["id"]} & answers or head and (head["pos"] != "PRT" or is_one(head["form"], "atf"))):
             for word in (subject, held):
                 moved = {**by_id[word["id"]], "head": said_word["id"]}
                 drawn[[t["id"] for t in drawn].index(word["id"])], by_id[word["id"]] = moved, moved
             said_word["rel"] = held["rel"]  # قال زيدٌ له أجرٌ: the sentence hangs where its unit hung (the said OBJ)
         at = [t["id"] for t in drawn]
-        if at.index(said_word["id"]) < at.index(subject["id"]) and role_of[subject["id"]] in kept["fronted"]:
-            fronted |= {said_word["id"]: kept["fronted"][khabar], subject["id"]: kept["fronted"][role_of[subject["id"]]]}
+        if at.index(said_word["id"]) < at.index(subject["id"]) and role in kept["fronted"]:
+            fronted |= {said_word["id"]: kept["fronted"][khabar], noun["id"]: kept["fronted"][role]}
         hung.add(held["id"])
     # لا إله إلا الله: the khabar left out because it is known, between the noun and إلا
     # (roles.json exception_after_la), the name after إلا standing for its hidden pronoun
@@ -136,7 +147,7 @@ def add_unwritten_khabars(c: Picture) -> None:
     for held in [t for t in drawn if role_of[t["id"]] in kept["slot"] and t["id"] not in hung]:
         noun = by_id.get(held["head"])
         if (not noun or noun["id"] > held["id"] or noun["id"] in understood or not noun_tagged(noun) or not role_of[noun["id"]]
-                or is_describing(noun) or is_masdar(noun) or is_zarf(noun, sentence)):
+                or is_describing(noun) or masdar_at_work(noun) or is_zarf(noun, sentence)):
             continue
         known, case = definite(noun), typed_or_parsed_case(noun)
         if strip_diacritics(held["form"]) in kept["measured"]["particles"] and listed(noun, "tamyeez_head", "measures"):
@@ -148,7 +159,7 @@ def add_unwritten_khabars(c: Picture) -> None:
                                drawn.index(held), head=noun["id"], rel="MOD", pos="NOM", pos_camel="", lemma=kept["word"])
         hung.add(held["id"])
     c.fronted, c.hung, c.kept, c.khabars, c.mubdal_minhu = fronted, hung, kept, khabars, mubdal_minhu
-    c.pair_of, c.sentence, c.understand, c.understood = pair_of, sentence, understand, understood
+    c.behind, c.pair_of, c.sentence, c.understand, c.understood = behind, pair_of, sentence, understand, understood
     c.understood_pair = understood_pair
 
 

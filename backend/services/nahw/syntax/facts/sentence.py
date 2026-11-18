@@ -3,7 +3,7 @@ but belong to no single axis: the verb above a word, the noun before it, what a 
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import ADVERB_FAMILIES, doer_written_in, extra_ba_on, frames, is_built_word, is_definite_kind, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says
+from backend.services.nahw.book import ADVERB_FAMILIES, doer_written_in, extra_ba_on, frames, is_built_word, is_definite_kind, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says, takes_object
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, purpose, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer, may_be_nasb
 
@@ -35,6 +35,68 @@ def khabar_behind_ba(ba: dict, noun: dict) -> bool:
     jar-majrur (ما زيدٌ بالبيت), while an annexed one is the khabar still (أَلَسْتُ بِرَبِّكُمْ)."""
     return is_prefix(ba) and is_extra_ba(ba["form"]) and noun_tagged(noun) \
         and (noun.get("stt") != "d" or is_participle(noun))
+
+
+def extra_min_place(min_: dict, s: "Sentence") -> str | None:
+    """مِن الزائدة (closed_words extra_min): after a negation or هل, مِن before an indefinite noun holding a place of its own.
+    The place, a roles.json id: `mubtada` with no verb over it (ما لكم من إلهٍ), `fail` on كان and its sisters or a verb of coming
+    with no doer said (ما كان له من وليٍّ، ما جاءنا من بشيرٍ), `mafool_bih` on one taking an object whose doer is said (ما اتخذ الله من ولدٍ، هل ترى من فطورٍ).
+    None for a plain مِن: hung on a noun (شيءٌ من طعامٍ), before a known noun, or where the doer may be the verb's
+    hidden pronoun and the مِن starts a place (لم يخرج من بيتٍ)."""
+    if not (is_preposition(min_) and is_one(min_["lemma"], "extra_min")):
+        return None
+    noun, head = extra_min_noun(min_, s), s.head(min_)
+    # the negation (ليس too) or هل is said in the مِن's own clause: no other verb, relative or إلا between (لا أعرف ما في الدار من متاعٍ)
+    over = [t for t in s.tokens if t["id"] < min_["id"] and (is_one(t["lemma"], "extra_min", "asks") or (t["pos"] == "PRT" or is_verb(t))
+            and is_one(t["lemma"], "negation") and not read_as(t, "inna") and not opens_condition(t, s)) and not any(t["id"] < b["id"] < min_["id"] and (
+            is_verb(b) and b is not head or "pron_rel" in b.get("pos_camel", "") or is_one(b["lemma"], "istithna")) for b in s.tokens)]
+    # its noun is an indefinite one that takes a case: never a built word or adverb (لم يأت من قبلُ، من هناك)
+    if not noun or is_known(noun, s) or is_built(noun) or is_built_zarf(noun) or noun.get("pos_camel", "").startswith("adv") or not over:
+        return None
+    if not head or not is_verb(head):
+        # a ظرف holds the khabar put first (ما عندي من مالٍ); any other noun the مِن is hung on is told of by it
+        return None if head and noun_tagged(head) and not is_zarf(head, s) else "mubtada"
+    kids = [k for k in s.kids(head) if k is not min_]
+    # a doer said, or one hidden that goes back to the مبتدأ the verb tells of (زيدٌ لم يكن من قريةٍ), unless a
+    # pronoun on the verb is the one going back (زيدٌ ما جاءه من أحدٍ)
+    told = s.head(head)
+    doer = any(k["rel"] == "SBJ" and noun_tagged(k) for k in kids) or head.get("per") in ("1", "2") or bool(
+        told and told["head"] == 0 and told["id"] < head["id"] and noun_tagged(told) and not any(attached_pronoun(k) for k in kids))
+    # كان and its sisters say their اسم there (ما كان له من وليٍّ، ليس لي من مالٍ), and a verb of coming its doer,
+    # with an object or none (ما جاءنا من بشيرٍ، وما تسقط من ورقةٍ); the family names the place
+    if not doer and (s.family(head) == "kana" or is_one(head["lemma"], "extra_min", "comes")):
+        return "fail"
+    if any(k["rel"] == "OBJ" for k in kids):
+        return None
+    # a verb of coming or taking from has مِن as its own, where from (ما نزل من سماءٍ مطرٌ، ما أخذت من صديقٍ)
+    own = is_one(head["lemma"], "extra_min", "comes") or is_one(head["lemma"], "extra_min", "from")
+    return "mafool_bih" if doer and takes_object(head["lemma"]) and not own else None
+
+
+def opens_condition(token: dict, s: "Sentence") -> bool:
+    """إنْ the شرط (إن جاءك رجلٌ فأكرمه): a verb right after it and no إلا later, which marks the negating إنْ (إن يتبعون إلا الظن)."""
+    after = s.by_id.get(token["id"] + 1)
+    return is_one(token["lemma"], "jazm", "conditional_particles") and bool(after) and is_verb(after) \
+        and not any(t["id"] > token["id"] and is_one(t["lemma"], "istithna") for t in s.tokens)
+
+
+def extra_min_noun(min_: dict, s: "Sentence") -> dict | None:
+    """The noun a مِن draws, a word of its own (not a pronoun joined to it)."""
+    return next((k for k in s.kids(min_) if k["rel"] == "OBJ" and noun_tagged(k) and not is_suffix(k)), None)
+
+
+def extra_min_of(noun: dict, s: "Sentence") -> dict | None:
+    """The زائدة مِن the noun comes after, which stands (with it) in the noun's place: ما جاءنا من بشيرٍ."""
+    min_ = s.head(noun)
+    return min_ if min_ and noun["rel"] == "OBJ" and extra_min_place(min_, s) else None
+
+
+def extra_min_case(noun: dict, s: "Sentence") -> str | None:
+    """The case the noun after a زائدة مِن stands in by its place (raf' as a مبتدأ or فاعل, nasb as an object), beside
+    the jarr it shows; its تابع may wear either (Mughni, مِن الزائدة: هل من خالقٍ غيرُ الله, غيرُ on the place)."""
+    min_ = s.head(noun)
+    place = extra_min_place(min_, s) if min_ and noun["rel"] == "OBJ" else None
+    return ("a" if place == "mafool_bih" else "u") if place else None
 
 
 class Sentence:
@@ -157,6 +219,12 @@ class Sentence:
     def _has_particle(self, verb: dict, family: str, part: str = "words") -> bool:
         return any(k["pos"] == "PRT" and is_one(k["lemma"], family, part) for k in self.kids(verb))
 
+    def _ma_before(self, verb: dict) -> bool:
+        """دام governs only right after its ما (ما دمت حيا), whichever of the two the parser hung on the other."""
+        before = self.by_id.get(verb["id"] - 1)
+        return bool(before) and before["pos"] == "PRT" and is_one(before["lemma"], "kana", "like_laysa") \
+            and (before["head"] == verb["id"] or verb["head"] == before["id"])
+
     def _completed_by_present_verb(self, verb: dict) -> bool:
         """كاد يموت, أوشك أن ينتهي: a present verb, bare or behind أن, finishes the clause."""
         for kid in self.kids(verb):
@@ -179,7 +247,7 @@ class Sentence:
             return None
         if (is_one(lemma, "kana")
                 or (is_one(lemma, "kana", "needs_negation") and self._has_particle(word, "negation"))
-                or (is_one(lemma, "kana", "needs_ma") and self._has_particle(word, "kana", "like_laysa"))) \
+                or (is_one(lemma, "kana", "needs_ma") and self._ma_before(word))) \
                 and not self._stands_alone(word):
             return "kana"
         # جَعَلَ زَيْدٌ يَكْتُبُ: a verb of starting governs a noun and a present verb; جَعَلَ مِنْ بَعْدِ قُوَّةٍ ضَعْفًا يَخْلُقُ: one with

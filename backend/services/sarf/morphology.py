@@ -638,7 +638,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [jarred]
         if sister := _inna_short_me(evidence) or _noun_only_particle(evidence):
             ranked = [sister]
-        if not _agreeing(evidence, ranked) and (seated := _hamza_written_waw(evidence, disambiguator)):
+        if not _agreeing(evidence, ranked) and (seated := _hamza_written_waw(evidence, disambiguator)
+                                                or _hamza_stem_seat(evidence, disambiguator)):
             ranked = [seated]
         if answer := _answer_command(tokens[:i], token, evidence, ranked):
             ranked = [answer]
@@ -1114,6 +1115,32 @@ def _hamza_written_waw(typed: str, disambiguator=None) -> dict | None:
         return None
     found = best_reading(seated, (_ranked([seated], disambiguator) or [[]])[0])
     return found and {**found, "diac": found["diac"].replace("ؤ", "و"), "atbtok": found["atbtok"].replace("ؤ", "و")}
+
+
+def _hamza_stem_seat(typed: str, disambiguator=None) -> dict | None:
+    """يَقْرَؤُهُ: a hamza the vowels around it seat on و or ي (its damma after a fatha), the dictionary may write on the
+    stem's alif only (يقرأه); no reading fitting, the word is read on the alif and spelled on the typed seat.
+    The I-verb أَفْعَلُ is none: the elative has its letters and vowels (يَؤُمُّ الْقَوْمَ أَقْرَؤُهُمْ), so the
+    seat cannot tell the two apart and the word is left to the noun's reading."""
+    for at, (letter, _) in enumerate(letters(typed)):
+        if letter not in "ؤئ":
+            continue
+        on_alif = "".join("أ" + "".join(marks) if i == at else c + "".join(marks) for i, (c, marks) in enumerate(letters(typed)))
+        seated = [r for r in (_ranked([on_alif], disambiguator) or [[]])[0] if r.get("per") != "1"
+                 and NO_ANALYSIS not in r.get("atbtok", "") and [c for c, _ in letters(r.get("diac", ""))][at:at + 1] == ["أ"]]
+        if found := best_reading(on_alif, seated):
+            return {**found, "diac": _reseated(found["diac"], at, letter), "atbtok": _reseated(found["atbtok"], at, letter)}
+    return None
+
+
+def _reseated(spelled: str, at: int, seat: str) -> str:
+    """The word with its `at`-th letter (its marks and CAMeL's _ + not counted) put on `seat`."""
+    seen = -1
+    for i, c in enumerate(spelled):
+        seen += c.isalpha()
+        if seen == at:
+            return spelled[:i] + seat + spelled[i + 1:]
+    return spelled
 
 
 def _added(reading: dict, typed: str) -> int:
