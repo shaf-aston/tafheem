@@ -213,7 +213,7 @@
 
 
 .cb-rail-name {
-  font-size: 0.625rem;
+  font-size: var(--type-tiny);
   line-height: 1;
   font-weight: 600;
   white-space: nowrap;
