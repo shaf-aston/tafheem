@@ -158,12 +158,17 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
                                      or is_one(t["lemma"], "jarr") and is_one(kid["lemma"], "nasb_mudari")
                                      for kid in tokens if kid["head"] == t["id"]):
             role_by_id[t["id"]] = NAMED.harf_jarr
-    named = [role_by_id[token["id"]] for token in bases]
     word_of = _typed_word_of(bases, tokens)
     before = [[t["form"].strip("+") for t in tokens if facts.is_prefix(t) and word_of.get(t["id"]) == i]
               for i in range(len(bases))]
+    # وَلِتَبْتَغُوا، لِتَرْضَى: لام التعليل is that same حرف جر, its verb behind a hidden أن the masdar it puts in jarr
+    for i, token in enumerate(bases):
+        if facts.is_verb(token) and facts.lam_mood(token, before[i], i == 0) == "nasb":
+            lam = next(t for t in tokens if facts.is_prefix(t) and word_of.get(t["id"]) == i and t["form"].strip("+") == "ل")
+            role_by_id[lam["id"]] = NAMED.harf_jarr
+    named = [role_by_id[token["id"]] for token in bases]
     cases = [_ending(role, token, _governor(bases, i), words[i + 1] if i + 1 < len(words) else "",
-                     facts.puts_in_jarr(token, s), _lam_mood(token, before[i], i == 0))
+                     facts.puts_in_jarr(token, s), facts.lam_mood(token, before[i], i == 0))
              for i, (role, token) in enumerate(zip(named, bases))]
     after = [[t["form"].strip("+") for t in tokens if t["id"] not in base_ids and not facts.is_prefix(t) and word_of.get(t["id"]) == i]
              for i in range(len(bases))]
@@ -475,17 +480,6 @@ def _governor(bases: list[dict], i: int) -> dict | None:
     return before
 
 
-def _lam_mood(token: dict, front: list[str], opens: bool) -> str | None:
-    """The mood a لام written onto a present verb gives it: a sukun (فَلْيَصُمْهُ) or opening the sentence
-    (لِيُنْفِقْ) is لام الأمر, jazm; a kasra after a clause is لام التعليل, nasb (لِيُضِلُّوا). A fatha or a bare لام settles nothing."""
-    if "ل" not in front:
-        return None
-    marks = letters(token["typed"])[front.index("ل")][1]
-    if SUKUN in marks or (opens and "ِ" in marks):
-        return "jazm"
-    return "nasb" if "ِ" in marks else None
-
-
 def _ending(role: str | None, token: dict, before: dict | None, after: str, jarred: bool,
             lam: str | None = None) -> str | None:
     """What to print under the word: a case for a noun or a present verb, else mabni.
@@ -525,7 +519,7 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
     leaves, a weak last letter gone (لم يَدْعُ، لا تَنْسَ) or the five verbs' nun gone
     with a jazm or nasb particle before (لا تَسُبُّوا). Then the ending the reader typed,
     on the verb's own last letter (يُفَقِّهْهُ), else the mood of a لام written onto it
-    (_lam_mood), else None: nothing shows, and the verb it is joined to decides, else raf'.
+    (facts.lam_mood), else None: nothing shows, and the verb it is joined to decides, else raf'.
     `typed` is the word as paused on (harakat.paused); `before` the base token before it."""
     particle = before["base"] if before else ""
     dropped_nun = five_verb_nun(typed, token.get("stuck_on", 0), token.get("weak_last")) == "dropped"
@@ -535,7 +529,7 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
                 or (read == family and named in {m["named"] for m in book_merges(family).values()}):
             return case
     stuck_on = token.get("stuck_on", 0)
-    if stilled(typed, token["base"], stuck_on, token.get("weak_last")):
+    if stilled(typed, stuck_on, token.get("weak_last")):
         return "jazm"
     shown = typed_case(typed, stuck_on)
     return CASE_NAME[shown] if shown in ("u", "a") else lam  # None: nothing shows (_followers_take_their_ending)

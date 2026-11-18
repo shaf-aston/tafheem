@@ -566,3 +566,86 @@ def test_an_object_put_before_its_verb(sentence: str, at: int, role: str, govern
 def test_a_verb_after_a_nasb_particle_is_the_present_one(sentence: str, at: int, want: tuple):
     card = cards(sentence)[at]
     assert (card["role"], card["case"]) == want
+
+
+@pytest.mark.parametrize("sentence, at, case, sign", [
+    # تَتَحَاسَدُوا written with one of its two تاءات (Alfiyya, باب الإدغام): after لا، لم the present verb in jazm
+    ("لَا تَحَاسَدُوا", 1, "jazm", "حذف النون"),
+    ("لا تحاسدوا ولا تباغضوا", 1, "jazm", "حذف النون"),
+    ("وَلَا تَوَلَّوْا عَنْهُ", 1, "jazm", "حذف النون"),  # 8:20, the Quranic Treebank's حرف نهي
+    ("لَمْ تَنَازَعَا", 1, "jazm", "حذف النون"),
+    ("الطُّلَّابُ تَحَاسَدُوا", 1, "mabni", "مبني على الضم"),  # nearest case: no particle, the past verb
+    ("مَا تَحَاسَدُوا", 1, "mabni", "مبني على الضم"),  # nearest case: ما negates a past as well
+    ("بَعْدَ أَنْ تَحَاسَدُوا", 2, "mabni", "مبني على الضم"),  # nearest case: أَنْ takes a past too
+    ("لَا تَنَازَعَ زَيْدٌ", 1, "mabni", "مبني على الفتح"),  # nearest case: no present ends so
+    ("لَا صَدَّقُوا وَلَا صَلَّوْا", 1, "mabni", "مبني على الضم"),  # nearest case: a past with no تاء of its own
+    ("فَلَا تَابُوا وَلَا تَذَكَّرُوا", 3, "mabni", "مبني على الضم"),  # nearest case: لا said again over pasts (75:31)
+    ("لَا تَحَاسَدْنَ", 1, "mabni", "مبني على السكون"),  # the women's nun, stilled before it: the present, built
+    ("لَمَّا تَزَوَّجَا سَافَرَا", 1, "mabni", "مبني على الفتح"),  # nearest case: لَمَّا opens a past too ("when")
+    ("فَلَمَّا تَبَيَّنَ لَهُ قَالَ", 1, "mabni", "مبني على الفتح"),  # nearest case: the ن is the root's, no women's
+    ("لَا تَبَيَّنَ لَهُ", 1, "mabni", "مبني على الفتح"),
+])
+def test_a_verb_with_one_of_its_two_taas_after_a_jazm_particle_is_the_present_one(sentence, at, case, sign):
+    verb = _read(sentence)["words"][at]
+    assert (verb["case"], verb["sign"]) == (case, sign)
+
+
+@pytest.mark.parametrize("sentence, at, case, sign", [
+    ("لَا يَعْنِيهِ", 1, "raf'", "ضمة مقدرة على الياء للثقل"),  # the ي before the pronoun is the verb's: no jazm, لا only negates
+    ("لا يعنيه", 1, "raf'", "ضمة مقدرة على الياء للثقل"),
+    ("زَيْدٌ يَدْعُوهُ", 1, "raf'", "ضمة مقدرة على الواو للثقل"),  # its و is no plural's
+    ("لَمْ يَدْعُهُ", 1, "jazm", "حذف حرف العلة"),  # the weak letter gone before the pronoun
+    ("لَا تَرْمِهِ", 1, "jazm", "حذف حرف العلة"),
+    ("الطُّلَّابُ يَكْتُبُونَهُ", 1, "raf'", "ثبوت النون"),  # the five verbs' nun before a pronoun
+    ("لَنْ يَكْتُبُوهُ", 1, "nasb", "حذف النون"),
+    ("لَنْ يَكْتُبَهَا", 1, "nasb", "فتحة"),  # the ا is the pronoun's, not the pair's
+    ("يَهْدِيهِمْ رَبُّهُمْ", 0, "raf'", "ضمة مقدرة على الياء للثقل"),
+    ("يَرْضَاهُ اللَّهُ", 0, "raf'", "ضمة مقدرة على الألف للتعذر"),
+    ("لَمْ يَأْتِنَا أَحَدٌ", 1, "jazm", "حذف حرف العلة"),
+    ("لَمْ يَرْمِهِ أَحَدٌ", 1, "jazm", "حذف حرف العلة"),
+    ("يُؤْتُونَهُ", 0, "raf'", "ثبوت النون"),
+    ("لَمْ يَضْرِبُوهُ", 1, "jazm", "حذف النون"),
+    # on a weak last letter the ا before a pronoun is the root's (يرضى), no pair's: no nun to drop
+    ("لَنْ يَرْضَاهُ أَحَدٌ", 1, "nasb", "فتحة مقدرة على الألف للتعذر"),
+    ("لَنْ يَخْشَاهُمَا", 1, "nasb", "فتحة مقدرة على الألف للتعذر"),
+    ("لَا يَرْضَاهُ أَحَدٌ", 1, "raf'", "ضمة مقدرة على الألف للتعذر"),  # so لا only negates
+    ("لَنْ يَرْضَيَا", 1, "nasb", "حذف النون"),  # nearest case: the pair's ا after the ي
+    # a و left bare before a pronoun after jazm or nasb is the group's: one doer's goes (لم يَدْعُهُ) or takes a fatha
+    ("لَا تَنْسَوْهُ", 1, "jazm", "حذف النون"),
+    ("لَمْ يَرْمُوهُ أَحَدٌ", 1, "jazm", "حذف النون"),
+    ("لَنْ يَرْمُوهُ", 1, "nasb", "حذف النون"),
+    ("لَنْ يَدْعُوَهُ", 1, "nasb", "فتحة"),  # nearest case: the fatha on و makes it one doer's
+    ("لَوْمَا تَأْتِينَا بِالْمَلَائِكَةِ", 1, "raf'", "ضمة مقدرة على الياء للثقل"),  # 15:7: an urging particle governs nothing
+])
+def test_a_present_verb_shows_its_case_on_its_own_letters_before_an_attached_pronoun(sentence, at, case, sign):
+    """harakat.stilled and signs._present_sign read the verb less its pronoun: يَعْنِيهِ keeps its ي, يَكْتُبُونَهُ its nun."""
+    verb = _read(sentence)["words"][at]
+    assert (verb["case"], verb["sign"]) == (case, sign)
+
+
+@pytest.mark.parametrize("sentence, index, named, role, case", [
+    # حروف التحضيض (Kafiya p55: هلا، ألا، لولا، لوما، لها صدر الكلام، ويلزم الفعل): urging before a verb
+    ("هَلَّا تَدْرُسُ", 0, "حرف عرض وتحضيض", "حرف", "mabni"),
+    ("لَوْمَا تَأْتِينَا بِالْمَلَائِكَةِ", 0, "حرف عرض وتحضيض", "حرف", "mabni"),  # 15:7, read as its twin لولا
+    ("لَوْمَا زَيْدٌ لَهَلَكَ عَمْرٌو", 0, "حرف امتناع لوجود", "حرف", "mabni"),  # before a noun, as لولا is
+    ("لَقِيَ لَوْمًا شَدِيدًا", 1, None, "مفعول به", "nasb"),  # nearest case: a tanween makes it the noun (blame)
+    ("لَقِيَ لَوْمًا شَدِيدًا", 2, None, "صفة", "nasb"),
+    ("رَأَيْتُ لَوْمًا كَثِيرًا", 1, None, "مفعول به", "nasb"),
+])
+def test_an_urging_particle_is_named_so_and_one_with_a_tanween_is_the_noun_its_letters_spell(
+        sentence: str, index: int, named: str | None, role: str, case: str):
+    word = _read(sentence)["words"][index]
+    assert (word.get("named"), word["role"], word["case"]) == (named, role, case)
+
+
+@pytest.mark.parametrize("sentence, index, case, sign", [
+    # CAMeL files رأى's present under راوند (rhubarb); mended, its dropped hamza leaves a weak last letter
+    ("لَمْ يَرَهُ أَحَدٌ", 1, "jazm", "حذف حرف العلة"),
+    ("لَمْ يَرَ زَيْدٌ عَمْرًا", 1, "jazm", "حذف حرف العلة"),
+    ("أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ", 1, "jazm", "حذف حرف العلة"),
+    ("زَيْدٌ يَرَى الْهِلَالَ", 1, "raf'", "ضمة مقدرة على الألف للتعذر"),
+    ("رَأَيْتُ زَيْدًا", 0, "mabni", "مبني على السكون"),  # nearest case: the past keeps its hamza
+])
+def test_the_present_of_raa_has_a_weak_last_letter(sentence: str, index: int, case: str, sign: str):
+    verb = _read(sentence)["words"][index]
+    assert (verb["case"], verb["sign"]) == (case, sign)

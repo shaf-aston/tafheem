@@ -219,7 +219,8 @@ def in_family(lemma: str, family: str, noun: bool = True) -> bool:
     """The lemma is on any of the family's word lists (زال is kana's, behind a negation). A word
     read as a particle (`noun` False) is on none of its noun lists: مِنْ is no مَنْ of a condition."""
     kept = _closed()["families"][family]
-    parts = [part for part, words in kept.items() if isinstance(words, list)]
+    helpers = {"not_members", *kept.get("not_members", ())}  # lists of the words round them (إذن's و), not theirs
+    parts = [part for part, words in kept.items() if isinstance(words, list) and part not in helpers]
     if not noun and "conditional_nouns" in parts and is_one(lemma, family, "conditional_nouns"):
         parts = [part for part in parts if part not in ("conditional_nouns", "words")]   # words holds them all
     return any(is_one(lemma, family, part) for part in parts)

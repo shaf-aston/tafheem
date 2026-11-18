@@ -3,7 +3,8 @@ sentence (أكل الطعام), a noun the parser added to a verb (شرب الم
 it (شرب زيد الماء), and a name a verb of saying took as its object (لِأَبِيهِ آزَرَ)."""
 import pytest
 
-from backend.services.nahw.book import takes_object
+from backend.scripts.nahw.build_verb_objects import STEMS
+from backend.services.nahw.book import book_file, takes_object
 from backend.services.nahw.syntax.facts import Sentence, agrees, shown_cases, stands_for_its_noun
 from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, doer_first, name_told_to
 from tests.nahw.test_naming import VERB, token
@@ -75,9 +76,33 @@ def test_only_a_word_used_as_a_noun_or_a_name_stands_for_the_noun_it_describes(f
 
 
 @pytest.mark.parametrize("verb, takes", [("أَكْرَم", True), ("عَمِل", True), ("ضَرَب", True),
-                                         ("جاء", False), ("رَجَع", False), ("قَعَد", False)])
+                                         ("جاء", False), ("رَجَع", False), ("قَعَد", False),
+                                         # the treebank gave these as written (يقبل، يولج، ملكت), asked for by their past
+                                         ("قَبِل", True), ("أَوْلَج", True), ("مَلَك", True),
+                                         # يَصْلَى النَّارَ is صَلِيَ (burn in), not صَلَّى (pray), which takes none
+                                         ("صَلِي", True), ("صَلَّى", False),
+                                         # طَمِعَ in the Qur'an is given only a clause (أَنْ يُؤْمِنُوا), a noun through في
+                                         ("طَمِع", False)])
 def test_a_verb_takes_an_object_when_the_quran_gives_it_a_noun_object_a_third_of_the_time(verb, takes):
     assert takes_object(verb) is takes
+
+
+def test_the_verbs_that_take_an_object_are_listed_by_their_past_not_as_the_treebank_wrote_them():
+    listed = set(book_file("verb_objects.json")["verbs"])
+    assert not listed & set(STEMS)
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, last", [
+    ("لَا يَقْبَلُ اللَّهُ إِلَّا صَالِحًا", "مفعول به"),  # what is left after إلا fills the verb's empty object
+    ("إِنَّ اللَّهَ طَيِّبٌ لَا يَقْبَلُ إِلَّا طَيِّبًا", "مفعول به"),  # a good (thing), as صالح is a good deed
+    ("زَيْدٌ لَا يَأْكُلُ إِلَّا جَالِسًا", "حال"),  # a state word stands for no noun
+    ("عَاشَ زَيْدٌ طَيِّبًا", "حال"),  # a verb that takes no object keeps its hal
+    ("صَلَّى زَيْدٌ صَادِقًا", "حال"),
+    ("طَمِعَ زَيْدٌ صَادِقًا", "حال"),
+])
+def test_a_describing_word_after_illa_is_the_object_a_verb_wants_or_else_its_hal(sentence, last):
+    assert roles(sentence)[-1] == last
 
 
 @needs_parser

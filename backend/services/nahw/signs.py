@@ -9,7 +9,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, paused, plural_alef, typed_passive
+from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, own_letters, paused, plural_alef, typed_case, typed_passive
 from backend.services.nahw.book import attention_off, book_words, case_of, family_cards, is_diptote, is_one, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
@@ -240,39 +240,52 @@ def _built_on(card: dict, aspect: str) -> str | None:
         verb = _without_object(word) if _has_object(card["camel"]) else word
         if strip_diacritics(verb).endswith(("وا", "ا", "ي")):
             return sign("jazm", "five_verbs")  # اُكْتُبُوا، اُكْتُبَا، اُكْتُبِي: the five verbs' nun is gone
-        if _dropped_weak(card):
-            return sign("jazm", "dropped_weak")  # اِسْقِ
+        if _dropped_weak(verb, card):
+            return sign("jazm", "dropped_weak")  # اِسْقِ، اِسْقِهِ
         return said["nun_on"]["emphasis"] if nun == "emphasis" else said["command_on"]
     return said["nun_on"].get(nun)
 
 
 def _present_sign(card: dict, case: str) -> str | None:
-    word = card["word"]
-    nun = None if _has_pronoun(card["camel"]) else five_verb_nun(word)  # لن يَكْتُبَهَا: the ا is the pronoun's
+    """Read off the verb as typed less its attached pronoun's letters, as its case is:
+    لن يَكْتُبَهَا ends in the pronoun's ا, يَكْتُبُونَهُ keeps its nun, يَعْنِيهِ its ي."""
+    word, tag = card["word"], card["camel"]
+    stuck_on, weak_last = _pronoun_letters(word) if _has_pronoun(tag) else 0, tag.get("weak_last")
+    nun = five_verb_nun(word, stuck_on, weak_last)
     if nun and (case == "raf'") == (nun == "kept"):
         return sign(case, "five_verbs")
-    if card["camel"].get("weak_last"):
-        if case == "jazm" and _dropped_weak(card):
+    if weak_last:
+        verb = own_letters(word, 0, stuck_on)
+        # لا تَنْسَوْهُ، لن يَرْمُوهُ: one doer's و goes in jazm (لم يَدْعُهُ) and takes a fatha in nasb (لن يَدْعُوَهُ),
+        # so a و left bare before a pronoun there is the group's, its nun gone
+        if case in ("jazm", "nasb") and stuck_on and strip_diacritics(verb).endswith("و") \
+                and typed_case(word, stuck_on) != "a":
+            return sign(case, "five_verbs")
+        if case == "jazm" and _dropped_weak(verb, card):
             return sign(case, "dropped_weak")  # لم يَبْكِ: the weak letter went
-        weak_end = _WEAK_END.get(strip_diacritics(word)[-1:])
+        weak_end = _WEAK_END.get(strip_diacritics(verb)[-1:])
         if weak_end and case != "jazm":
             return sign(case, weak_end)  # يَهْدِي: the damma is too heavy for the ya
     return sign(case)
 
 
-def _dropped_weak(card: dict) -> bool:
-    return drops_weak(card["camel"]["base"], card["camel"].get("weak_last"))
+def _dropped_weak(verb: str, card: dict) -> bool:
+    """Read off the verb as typed less its pronoun: CAMeL's base for يَأْتِنَا is no guide."""
+    return drops_weak(verb, card["camel"].get("weak_last"))
 
 
 def _without_object(word: str) -> str:
     """The verb or particle with its attached pronoun (and that pronoun's marks) cut off: رَمَيْتُهُ → رَمَيْتُ,
     ضَرَبُوهُ → ضَرَبُوا، إِنَّهُ → إِنَّ."""
+    return plural_alef(own_letters(word, 0, _pronoun_letters(word)))
+
+
+def _pronoun_letters(word: str) -> int:
+    """How many letters at the word's end are an attached pronoun's: the longest one a verb can carry, so هما
+    is not read as ه, with at least two letters left before it."""
     bare = strip_diacritics(word)
-    # the object pronouns a verb can carry, longest first so هما is not read as ه
-    pronoun = next((p for p in sorted(book_words("damir_muttasil", "on_verbs"), key=len, reverse=True)
-                    if bare.endswith(p) and len(bare) > len(p) + 1), "")
-    marked = letters(word)[:len(bare) - len(pronoun)]
-    return plural_alef("".join(letter + "".join(sorted(marks)) for letter, marks in marked))
+    return next((len(p) for p in sorted(book_words("damir_muttasil", "on_verbs"), key=len, reverse=True)
+                 if bare.endswith(p) and len(bare) > len(p) + 1), 0)
 
 
 def _past_ending(word: str) -> str:

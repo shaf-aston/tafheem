@@ -23,7 +23,7 @@ from backend.services.sarf import engine, expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
 from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
-from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
+from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SUKUN, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -428,7 +428,7 @@ def _analyses(word: str) -> list[dict]:
     except Exception as exc:
         logger.debug("CAMeL analyze error for '%s': %s", word, exc)
         return []
-    return sorted(analyses, key=lambda a: -a.get(_LIKELIHOOD, _NEVER_SEEN))
+    return sorted(map(verb_reader.mended, analyses), key=lambda a: -a.get(_LIKELIHOOD, _NEVER_SEEN))
 
 
 def _analyze_word_camel_only(word: str) -> dict[str, Any] | None:
@@ -599,7 +599,7 @@ def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:
     the MLE; None when neither reads."""
     for reader in filter(None, (disambiguator, engine.mle)):
         try:
-            return [[scored.analysis for scored in word.analyses] for word in reader.disambiguate(tokens)]
+            return [[verb_reader.mended(scored.analysis) for scored in word.analyses] for word in reader.disambiguate(tokens)]
         except Exception as exc:
             logger.warning("CAMeL disambiguation failed: %s", exc)
     return None
@@ -636,7 +636,7 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             ranked = [oath]
         if jarred := _jarred_ma(evidence):
             ranked = [jarred]
-        if sister := _inna_short_me(evidence) or _noun_only_particle(evidence):
+        if sister := _inna_short_me(evidence) or _noun_only_particle(evidence) or _twin_particle(evidence, i == 0):
             ranked = [sister]
         if not _agreeing(evidence, ranked) and (seated := _hamza_written_waw(evidence, disambiguator)
                                                 or _hamza_stem_seat(evidence, disambiguator)):
@@ -797,6 +797,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     for i in range(1, len(out)):
         if _wants_present(out[i - 1], out[i]) and (present := _present_reading(tokens[i], steps[i][1])):
             out[i] = present
+        elif _one_taa_written(out[i - 1], out[i], tokens[i]) and not _la_before_a_past(out, i) and (present := _both_taas(out[i], tokens[i], disambiguator)):
+            out[i] = present
     for i, said in paused.items():
         out[i] = {**out[i], "said": said}
     for i, (evidence, ranked) in enumerate(steps):
@@ -816,6 +818,39 @@ def _present_reading(token: str, ranked: list[dict]) -> dict | None:
     "he made read"), and a past verb is never what a nasb particle works on. The present reading the typed
     vowels do not contradict is the word; None where no such reading exists (أَنْ جَاءَ)."""
     return best_reading(token, [r for r in _widened(token, ranked) if r.get("pos") == "verb" and r.get("asp") == "i"])
+
+
+def _one_taa_written(before: dict, reading: dict, token: str) -> bool:
+    """لَا تَحَاسَدُوا، وَلَا تَوَلَّوْا (8:20): a present verb of تَفَاعَلَ or تَفَعَّلَ opens with two تاءات, and
+    one may go (Alfiyya, باب الإدغام: وَمَا بِتَاءَيْنِ ابْتُدِي قَدْ يُقْتَصَرْ فِيهِ عَلَى تَا; page unchecked), so
+    تَتَحَاسَدُوا is written as the past تَحَاسَدُوا. After a particle that puts one present verb in jazm (لَا، لَمْ),
+    a past of those forms whose ending is a dropped نون's (وا، ا) or the women's نون, stilled before it (تَحَاسَدْنَ),
+    is that present (the Quranic Treebank: حَرْفُ نَهْيٍ before تَوَلَّوْا 8:20 and تَجَسَّسُوا 49:12). A particle that
+    opens a condition, which a past follows too (مَا تَحَاسَدُوا، لَمَّا تَزَوَّجَا), and أَنْ leave it, as does a past
+    whose ending no present shares (فَلَا صَدَّقَ 75:31، تَبَيَّنَ)."""
+    lemma = strip_diacritics(before.get("lex") or "")
+    takes_a_past = book_words("jazm", "conditional_particles") | book_words("jazm", "conditional_nouns") \
+        | book_words("ghair_amila_other", "conditional_particles")
+    marked = letters(token)
+    ending = bare_letters(token).endswith(("وا", "ا")) or (
+        bare_letters(token).endswith("ن") and len(marked) > 1 and SUKUN in marked[-2][1])
+    return reading.get("pos") == "verb" and reading.get("asp") == "p" and lemma in book_words("jazm") - takes_a_past \
+        and str(reading.get("pattern") or "").startswith("تَ") and ending
+
+
+def _la_before_a_past(out: list[dict], i: int) -> bool:
+    """فَلَا صَدَّقَ وَلَا صَلَّى (75:31): a لا said again over past verbs denies each, so the one after it is a
+    past too (فَلَا تَابُوا وَلَا تَذَكَّرُوا), not a present that lost a ت (_one_taa_written)."""
+    return any(out[j].get("pos") == "verb" and out[j].get("asp") == "p" and strip_diacritics(out[j - 1].get("lex") or "") == "لا"
+               for j in range(1, i - 1))
+
+
+def _both_taas(past: dict, token: str, disambiguator=None) -> dict | None:
+    """The present verb of a past written with one of its two تاءات (_one_taa_written). Both forms have the
+    past's own letters and vowels (تَحَاسَدُوا), so the reading keeps them and takes the present's grammar."""
+    ranked = (_ranked(["ت" + token], disambiguator) or [[]])[0]
+    found = next((r for r in ranked if r.get("pos") == "verb" and r.get("asp") == "i" and r.get("lex") == past.get("lex")), None)
+    return found and {**found, **{key: past[key] for key in ("diac", "atbtok", "pattern", "lex", "root") if key in past}}
 
 
 def as_said(tokens: list[str], picks: list[dict]) -> list[str]:
@@ -1085,6 +1120,26 @@ def _inna_short_me(typed: str) -> dict | None:
     return reading if best_reading(typed, [reading]) else None
 
 
+def _particle_reading(particle: str) -> dict | None:
+    """The dictionary's particle reading of a bare particle, or its twin's respelled where it has none
+    (ghair_amila_other `read_as`: لوما read as لولا)."""
+    twin = book_map("ghair_amila_other", "read_as").get(particle)
+    own = next((r for r in _analyses(twin["twin"] if twin else particle) if r.get("catib6") == "PRT"), None)
+    if not (own and twin):
+        return own
+    return {key: value.replace(twin["twin_diac"], twin["diac"]) if isinstance(value, str) else value
+            for key, value in own.items()}
+
+
+def _twin_particle(typed: str, opens: bool) -> dict | None:
+    """لَوْمَا تَأْتِينَا: a particle the dictionary reads only as a noun (لَوْم) is its twin's reading, where it
+    opens its sentence (لها صدر الكلام) and its typed marks fit that reading; لَوْمًا with tanween is the noun."""
+    if not opens or has_tanween(typed) or bare_letters(typed) not in book_map("ghair_amila_other", "read_as"):
+        return None
+    reading = _particle_reading(bare_letters(typed))
+    return reading if reading and best_reading(typed, [reading]) else None
+
+
 def _noun_only_particle(typed: str) -> dict | None:
     """لَوْلَاكَ، لَوْلَاهُ، لَوْلَايَ: لولا and لوما (حرف امتناع لوجود) open only on a noun (condition `before`), so a
     pronoun written on one is that noun, its مبتدأ (Ibn Aqil, الابتداء: لولاي ولولاك ولولاه); never لَ + the verb وَلَّى."""
@@ -1093,7 +1148,7 @@ def _noun_only_particle(typed: str) -> dict | None:
         said = bare[len(particle):]
         own = (condition_of(particle) or {}).get("before") == "noun" and bare.startswith(particle) \
             and said in book_words("damir_muttasil", "on_nouns") \
-            and next((r for r in _analyses(particle) if r.get("catib6") == "PRT"), None)
+            and _particle_reading(particle)
         if not own:
             continue
         pronoun = "".join(letter + "".join(sorted(marks)) for letter, marks in marked[len(particle):])

@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_ya, has_tanween, letters, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
+from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw.book import book_words, is_diptote, elative_shape, measure, participle_shape, stem_pattern, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
@@ -108,6 +108,24 @@ def read_as(token: dict, family: str) -> bool:
     if read := reading(token):
         return read == family
     return family not in token.get("judged", ()) and is_one(token["lemma"], family)
+
+
+def lam_mood(token: dict, front: list[str], opens: bool) -> str | None:
+    """The mood a لام written onto a present verb gives it: a sukun (فَلْيَصُمْهُ) or a kasra opening the sentence
+    (لِيُنْفِقْ) is لام الأمر, jazm; a kasra after a clause is لام التعليل, nasb (لِيُضِلُّوا). So is a kasra behind a
+    joined و even at the start: the Qur'an stills لام الأمر after و and ف (وَلْيَتَّقِ، فَلْيَصُمْهُ, 26 and 48 times) and
+    every kasra one after و there is التعليل (وَلِتُكْمِلُوا، وَلِيُمَحِّصَ، وَلِتَبْتَغُوا). So is one opening the sentence
+    before a weak last letter still written (لِتَرْضَى: the command is لِتَرْضَ). A fatha or a bare لام settles nothing.
+    Read by Hafs: a reading with the kasra kept after و (وَلِيُوفُوا نُذُورَهُمْ, Abu Amr 22:29) shows التعليل here."""
+    if "ل" not in front:
+        return None
+    marks = letters(token["typed"])[front.index("ل")][1]
+    stuck, typed = token.get("stuck_on", 0), token["typed"]
+    keeps_weak = bool(token.get("weak_last")) and not drops_weak(strip_diacritics(own_letters(typed, 0, stuck)), True) \
+        and five_verb_nun(typed, stuck, True) != "dropped"
+    if SUKUN in marks or (opens and front[0] == "ل" and "ِ" in marks and not keeps_weak):
+        return "jazm"
+    return "nasb" if "ِ" in marks else None
 
 
 def takes_two_objects(verb: dict) -> bool:

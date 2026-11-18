@@ -185,12 +185,13 @@ def drops_weak(base: str, weak_last: bool) -> bool:
     return bool(weak_last) and bare[-1:] not in WEAK_ENDS and not bare.endswith(HIDDEN_CASE)
 
 
-def stilled(word: str, base: str, stuck_on: int = 0, weak_last: bool = False) -> bool:
+def stilled(word: str, stuck_on: int = 0, weak_last: bool = False) -> bool:
     """A present verb that shows jazm by its own ending: its last letter stilled (an attached
-    pronoun after it aside: تُكْرِمْهُ) or a weak last letter gone (لم يَدْعُ). `base` is the word
-    without its joined letters; the nun of the five verbs is five_verb_nun's."""
+    pronoun after it aside: تُكْرِمْهُ) or a weak last letter gone (لم يَدْعُ، لم يَدْعُهُ). Both are read
+    off the word as typed, less the pronoun's letters, so لا يَعْنِيهِ keeps its ي; the nun of the five
+    verbs is five_verb_nun's."""
     own = letters(word)[:len(letters(word)) - stuck_on]
-    return bool(own) and SUKUN in own[-1][1] or drops_weak(base[:len(base) - stuck_on], weak_last)
+    return bool(own) and (SUKUN in own[-1][1] or drops_weak("".join(letter for letter, _ in own), weak_last))
 
 
 def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str | None:
@@ -201,12 +202,13 @@ def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str 
 
     `stuck_on` letters at the end are an attached pronoun's, not the verb's (لن يَكْتُبَهَا
     ends in the pronoun's ا). The group's silent ا goes before a pronoun, so a verb left
-    ending in و is the dropped nun (لا تَأْكُلُوهَا) unless its root ends in و (يَدْعُوهُ)."""
+    ending in و is the dropped nun (لا تَأْكُلُوهَا) unless its root ends in و (يَدْعُوهُ). On a root
+    whose last letter is weak an ا after neither ي nor و is that letter (لن يَرْضَاهُ), no pair's."""
     stem = own_letters(word, 0, stuck_on)
     bare, shown = strip_diacritics(stem), typed_case(word, stuck_on)  # not bare_letters: it folds يقرأ's أ into an alef
     if stuck_on and bare.endswith("و") and len(bare) >= 4 and not weak_last:
         return "dropped"
-    if shown == "u" or len(bare) < 4:
+    if shown == "u" or len(bare) < 4 or (weak_last and bare.endswith("ا") and bare[-2] not in "يو"):
         return None
     if bare.endswith(HIDDEN_CASE):
         return "kept"
