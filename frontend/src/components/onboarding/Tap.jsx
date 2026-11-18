@@ -11,7 +11,7 @@ export default function Tap({ step, index, picked, onPick, copy }) {
   return (
     <div className="grow-card">
       <span className="grow-card-tag">{step.tag} · {index + 1}/{step.items.length}</span>
-      <h3 className="type-title font-semibold" dir="auto">{item.question}</h3>
+      <h2 className="type-title font-semibold" dir="auto">{item.question}</h2>
       <div className={`grow-options ${arabic ? 'grow-options-ar' : ''}`} role="radiogroup" aria-label={item.question}>
         {item.options.map((text, at) => (
           <button key={text} type="button" role="radio" aria-checked={at === picked} disabled={picked !== undefined}

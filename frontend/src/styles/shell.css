@@ -266,11 +266,11 @@
   flex: 1; min-width: 0; min-height: var(--layout-tap); padding: .375rem .875rem;
   border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--surface);
   color: var(--text); font: inherit; font-size: var(--type-small);
-  transition: border-color calc(var(--motion-instant-ms) * 1ms) ease;
+  transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
 }
 /* Brought into view above the phone's tab bar, not under it, when a field takes the cursor. */
 .footer-note input, .footer-note button { scroll-margin-block-end: calc(var(--layout-nav) + env(safe-area-inset-bottom, 0px) + 1rem); }
-.footer-note input:not([type="checkbox"]):focus-visible { outline: none; border-color: var(--c); }
+.footer-note input:not([type="checkbox"]):focus-visible { outline: none; border-color: var(--c); box-shadow: 0 0 0 1px var(--c); }
 .footer-note input[aria-invalid="true"] { border-color: var(--danger); }
 .footer-note .footer-note-more > input { flex: 0 1 16rem; }
 .footer-note .footer-note-check { display: inline-flex; align-items: center; gap: .4rem; cursor: pointer; }
