@@ -886,11 +886,6 @@
           "slot": "we-ll-see-you-tomorrow-to-a-man",
           "arabic": "سَنَرَاكَ غَدًا",
           "transliteration": "sanaraaka ghadan"
-        },
-        {
-          "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "سَأَرَاكَ غَدًا",
-          "transliteration": "sa2araaka ghadan"
         }
       ],
       "dialogue": [
@@ -1243,11 +1238,6 @@
           "slot": "on-the-left",
           "arabic": "عَلَى يَسَارِكَ",
           "transliteration": "3alaa yasaarika"
-        },
-        {
-          "slot": "straight-ahead",
-          "arabic": "إِلَى الْأَمَام",
-          "transliteration": "ilaa al-amaam"
         },
         {
           "slot": "near",
@@ -2001,11 +1991,6 @@
           "slot": "my-nationality-is-syrian",
           "arabic": "جِنْسِيَّتِي سُورِيَّة",
           "transliteration": "jinsiyyatee sooriyya"
-        },
-        {
-          "slot": "where-do-you-live-to-a-man",
-          "arabic": "أَيْنَ تَسْكُنُ؟",
-          "transliteration": "ayna taskunu?"
         },
         {
           "slot": "i-live-in-amman",

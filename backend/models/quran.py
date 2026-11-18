@@ -44,6 +44,10 @@ class RootOccurrence(BaseModel):
     surah: int
     ayah: int
     arabic: str
+    # Which word of the ayah it is (1-based), and the whole ayah, so a list of one root's
+    # places reads as places, not the same word fifty times.
+    word: int = 0
+    ayah_text: str = ""
     grammar: list[str] = Field(default_factory=list)
 
 

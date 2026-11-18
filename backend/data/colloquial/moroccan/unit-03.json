@@ -1780,16 +1780,6 @@
           }
         },
         {
-          "slot": "do-you-have-another-color-to-a-man",
-          "arabic": "واش عندك شي لون خور؟",
-          "transliteration": "wash 3andek shi lon khor?",
-          "reply": {
-            "arabic": "أه، عندي زرق.",
-            "transliteration": "ah, 3andi zreq.",
-            "english": "Yes, I have blue."
-          }
-        },
-        {
           "slot": "this-one-is-nicer",
           "arabic": "هادا أزين",
           "transliteration": "hada azyan"
@@ -1832,7 +1822,9 @@
         },
         {
           "speaker": "سلمى",
-          "slot": "do-you-have-another-color-to-a-man"
+          "arabic": "واش عندك شي لون خور؟",
+          "transliteration": "wash 3andek shi lon khor?",
+          "english": "Do you have another color? (to a man)"
         },
         {
           "speaker": "إدريس",

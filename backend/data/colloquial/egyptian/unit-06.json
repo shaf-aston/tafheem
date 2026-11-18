@@ -854,16 +854,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-much-is-this",
-          "arabic": "بِكَام دَه؟",
-          "transliteration": "bikaam da?",
-          "reply": {
-            "arabic": "بِخَمْسُمِيّة جِنِيه",
-            "transliteration": "be-khamsumiyyet ginee",
-            "english": "Five hundred pounds."
-          }
-        },
-        {
           "slot": "it-s-very-expensive",
           "arabic": "دَه غَالِي أَوِي",
           "transliteration": "da ghaali awi",

@@ -86,16 +86,6 @@
           }
         },
         {
-          "slot": "where-s-the-elevator",
-          "arabic": "فِين كَاين لَّاسَانْسُور؟",
-          "transliteration": "fin kayn l-asansor?",
-          "reply": {
-            "arabic": "هنا على اليمين",
-            "transliteration": "hna 3la l-yemiin",
-            "english": "Here on the right."
-          }
-        },
-        {
           "slot": "i-want-the-key-please",
           "arabic": "عافاك، بغيت المفتاح",
           "transliteration": "3afak, bghit l-mftaa7",
@@ -183,7 +173,9 @@
         },
         {
           "speaker": "Nour",
-          "slot": "where-s-the-elevator"
+          "arabic": "فِين كَاين لَّاسَانْسُور؟",
+          "transliteration": "fin kayn l-asansor?",
+          "english": "Where's the elevator?"
         },
         {
           "speaker": "Receptionist",
@@ -1394,16 +1386,6 @@
           }
         },
         {
-          "slot": "i-missed-the-bus",
-          "arabic": "فاتني الكار",
-          "transliteration": "faatni l-kaar",
-          "reply": {
-            "arabic": "كَاين وَاحِد تَانِي مِن بْعَد سَاعَة",
-            "transliteration": "kayn wa7ed taani mn b3d saa3a",
-            "english": "There's another one in an hour."
-          }
-        },
-        {
           "slot": "i-couldn-t-find-my-passport",
           "arabic": "ما لقيتش الباسبور ديالي",
           "transliteration": "ma lqiitsh l-pasapor dyaali",
@@ -1539,8 +1521,9 @@
         },
         {
           "speaker": "Agent",
-          "slot": "i-missed-the-bus",
-          "reply": true
+          "arabic": "كَاين وَاحِد تَانِي مِن بْعَد سَاعَة",
+          "transliteration": "kayn wa7ed taani mn b3d saa3a",
+          "english": "There's another one in an hour."
         },
         {
           "speaker": "Karim",
@@ -2314,11 +2297,6 @@
           }
         },
         {
-          "slot": "the-weather-is-very-hot",
-          "arabic": "الْجّْو سْخُون بْزَّاف",
-          "transliteration": "j-jaww skhoon bzzaaf"
-        },
-        {
           "slot": "drink-plenty-of-water",
           "arabic": "شْرَب بْزَّاف دْيَال الْمَا",
           "transliteration": "shreb bzzaaf dyaal l-maa"
@@ -2336,7 +2314,9 @@
         },
         {
           "speaker": "Youssef",
-          "slot": "the-weather-is-very-hot"
+          "arabic": "الْجّْو سْخُون بْزَّاف",
+          "transliteration": "j-jaww skhoon bzzaaf",
+          "english": "The weather is very hot"
         },
         {
           "speaker": "Salma",

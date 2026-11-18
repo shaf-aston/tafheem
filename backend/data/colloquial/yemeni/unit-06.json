@@ -739,16 +739,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-much-is-this",
-          "arabic": "كم هذا؟",
-          "transliteration": "kam haadha?",
-          "reply": {
-            "arabic": "بخمسة آلاف",
-            "transliteration": "bi-khamsa aalaf",
-            "english": "Five thousand."
-          }
-        },
-        {
           "slot": "it-s-very-expensive",
           "arabic": "غالي كثير",
           "transliteration": "ghaali kathiir"

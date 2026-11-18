@@ -952,16 +952,6 @@
             "transliteration": "inshaallah",
             "english": "God willing."
           }
-        },
-        {
-          "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "أَشُوفَك بَاجِر",
-          "transliteration": "ashoofak baachir",
-          "reply": {
-            "arabic": "إِن شَاءَ اللَّهُ",
-            "transliteration": "inshaallah",
-            "english": "God willing."
-          }
         }
       ],
       "dialogue": [
@@ -1335,11 +1325,6 @@
           "slot": "on-the-left",
           "arabic": "عَلَى الْيَسَار",
           "transliteration": "3ala l-yasaar"
-        },
-        {
-          "slot": "straight-ahead",
-          "arabic": "عَلَى طُول",
-          "transliteration": "3ala Tool"
         },
         {
           "slot": "near",
@@ -2191,11 +2176,6 @@
           "transliteration": "jinsiyyti sooriyya"
         },
         {
-          "slot": "where-do-you-live-to-a-man",
-          "arabic": "وِين سَاكِن؟",
-          "transliteration": "ween saakin?"
-        },
-        {
           "slot": "i-live-in-amman",
           "arabic": "سَاكِن فِي عَمَّان",
           "transliteration": "saakin fi 3ammaan"
@@ -2288,7 +2268,9 @@
         },
         {
           "speaker": "Saeed",
-          "slot": "where-do-you-live-to-a-man"
+          "arabic": "وِين سَاكِن؟",
+          "transliteration": "ween saakin?",
+          "english": "Where do you live? (to a man)"
         },
         {
           "speaker": "Yousef",

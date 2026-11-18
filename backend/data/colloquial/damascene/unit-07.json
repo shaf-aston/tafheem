@@ -40,11 +40,6 @@
           "transliteration": "fi2it bderi"
         },
         {
-          "slot": "what-time-is-it-now",
-          "arabic": "قَدِّيش السَّاعَة هَلَق؟",
-          "transliteration": "addeesh is-saa3a halla2?"
-        },
-        {
           "slot": "it-s-seven-o-clock",
           "arabic": "السَّاعَة سَبْعَة",
           "transliteration": "is-saa3a sab3a"
@@ -111,7 +106,9 @@
         },
         {
           "speaker": "Samer",
-          "slot": "what-time-is-it-now"
+          "arabic": "قَدِّيش السَّاعَة هَلَق؟",
+          "transliteration": "addeesh is-saa3a halla2?",
+          "english": "What time is it now?"
         },
         {
           "speaker": "Lina",

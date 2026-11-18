@@ -1701,16 +1701,6 @@
           }
         },
         {
-          "slot": "do-you-have-another-color-to-a-man",
-          "arabic": "عِنْدَك لُون تَانِي؟",
-          "transliteration": "3andak loon taani?",
-          "reply": {
-            "arabic": "أَيْوَه، فِيه أَزْرَق وَأَحْمَر.",
-            "transliteration": "aywa, feeh azra2 w-a7mar.",
-            "english": "Yes, there is blue and red."
-          }
-        },
-        {
           "slot": "this-one-is-nicer",
           "arabic": "دَه أَحْلَى",
           "transliteration": "da a7la"
@@ -1775,12 +1765,15 @@
         },
         {
           "speaker": "منى",
-          "slot": "do-you-have-another-color-to-a-man"
+          "arabic": "عِنْدَك لُون تَانِي؟",
+          "transliteration": "3andak loon taani?",
+          "english": "Do you have another color? (to a man)"
         },
         {
           "speaker": "عم سيد",
-          "slot": "do-you-have-another-color-to-a-man",
-          "reply": true
+          "arabic": "أَيْوَه، فِيه أَزْرَق وَأَحْمَر.",
+          "transliteration": "aywa, feeh azra2 w-a7mar.",
+          "english": "Yes, there is blue and red."
         },
         {
           "speaker": "منى",

@@ -434,11 +434,6 @@
           "transliteration": "ma khallaSt it-tagreer ba3d"
         },
         {
-          "slot": "i-have-a-meeting-at-ten-o-clock",
-          "arabic": "عندي اجتماع الساعة عشرة",
-          "transliteration": "3indi ijtimaa3 is-saa3a 3ashara"
-        },
-        {
           "slot": "my-colleague-at-the-office-is-very-nice",
           "arabic": "زميلي بالمكتب شخص تمام",
           "transliteration": "zameeli bil-maktab shakhS tammaam"
@@ -1897,11 +1892,6 @@
           "slot": "why-do-you-want-to-work-with-us-to-a-man",
           "arabic": "للمه تشتي تشتغل معانا؟",
           "transliteration": "lilmah tishti tishtaghil ma3aana?"
-        },
-        {
-          "slot": "i-speak-arabic-and-english",
-          "arabic": "أتكلم عربي وإنجليزي",
-          "transliteration": "atkallam 3arabi w ingleezi"
         },
         {
           "slot": "what-are-your-strengths-to-a-man",

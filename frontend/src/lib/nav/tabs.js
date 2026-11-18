@@ -21,6 +21,7 @@ import { nameOf } from '../grow/growPlace'
 import { growOpen } from '../grow/growOpen'
 import grow from '../../config/worlds.json'
 import { quranOpen } from '../quran/quranOpen'
+import { placeName } from '../quran/surahRef'
 import { similarOpen } from '../similar/similarOpen'
 
 const HomePanel = panel(() => import('../../components/home/HomePanel'))
@@ -53,6 +54,8 @@ const MapPanel = panel(() => import('../../components/map/MapPanel'))
 // `ownsHealth`: draws its own offline state, so the app-wide backend banner stays off it.
 // `ownHome`: opened with nothing in hand it shows a page of its own (Grow's home), so the journey keeps that
 //   as a step and back returns to it, rather than filling it in with the first place (lib/nav/journey.js).
+// `search`: its value is something typed and asked, not a place read on to. A bare address opens its
+//   empty box rather than the last thing asked; a reading tab (Quran, Memorise) opens where you stopped.
 // `hidden`: reachable by URL only (journey and the panel mapping read TABS), left out of
 //   everything a person browses; those read LISTED.
 // Home is first, so it is where a visit with no saved place opens.
@@ -72,13 +75,13 @@ const GROW_MODULES = grow.worlds.map((world) => world.module).filter((module) =>
 
 export const TABS = [
   { id: 'home',   label: 'Home',       short: 'Home',   arabic: 'البداية', emblem: 'home', Component: HomePanel, ownsHealth: true, blurb: "Where you left off, your progress, and every tab", group: 'start' },
-  { id: 'nahw',   label: 'Nahw',       short: 'Nahw',   arabic: 'نحو',    emblem: 'nahw', Component: NahwPanel,   study: true, half: true, blurb: "Type a sentence: every word's role and the reason", group: 'arabic' },
-  { id: 'sarf',   label: 'Sarf',       short: 'Sarf',   arabic: 'صرف',    emblem: 'sarf', Component: SarfPanel,   study: true, half: true, blurb: "Conjugate any root, or read a verb back", group: 'arabic' },
-  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', emblem: 'quran', Component: QuranPanel, open: quranOpen, study: true, blurb: "Read, search and study the Qur'an word by word", group: 'read' },
+  { id: 'nahw',   label: 'Nahw',       short: 'Nahw',   arabic: 'نحو',    emblem: 'nahw', Component: NahwPanel,   study: true, half: true, search: true, blurb: "Type a sentence: every word's role and the reason", group: 'arabic' },
+  { id: 'sarf',   label: 'Sarf',       short: 'Sarf',   arabic: 'صرف',    emblem: 'sarf', Component: SarfPanel,   study: true, half: true, search: true, blurb: "Conjugate any root, or read a verb back", group: 'arabic' },
+  { id: 'quran',  label: 'Quran',      short: 'Quran',  arabic: 'القرآن', emblem: 'quran', Component: QuranPanel, open: quranOpen, study: true, place: placeName, blurb: "Read, search and study the Qur'an word by word", group: 'read' },
   // Daleel finds a passage, Dictionary a word: reached for together.
-  { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   emblem: 'daleel', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, blurb: "Find the passage that speaks to your question", group: 'read' },
-  { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', emblem: 'hadith', Component: HadithPanel, open: hadithOpen, study: true, blurb: "Search hadith, with narrators and grading", group: 'read' },
-  { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  emblem: 'dict', Component: DictionaryPanel, study: true, blurb: "Look up an Arabic word, root or meaning", group: 'arabic' },
+  { id: 'daleel', label: 'Daleel',     short: 'Daleel', arabic: 'دليل',   emblem: 'daleel', Component: DaleelPanel, open: load(daleelBooksQuery), study: true, search: true, blurb: "Find the passage that speaks to your question", group: 'read' },
+  { id: 'hadith', label: 'Hadith',     short: 'Hadith', arabic: 'الحديث', emblem: 'hadith', Component: HadithPanel, open: hadithOpen, study: true, search: true, blurb: "Search hadith, with narrators and grading", group: 'read' },
+  { id: 'dict',   label: 'Dictionary', short: 'Dict',   arabic: 'قاموس',  emblem: 'dict', Component: DictionaryPanel, study: true, search: true, blurb: "Look up an Arabic word, root or meaning", group: 'arabic' },
   { id: 'mem',    label: 'Memorise',   short: 'Mem',    arabic: 'حفظ',    emblem: 'mem', Component: MemorisePanel, open: memoriseOpen, study: true, blurb: "Learn verses by heart and check your recital", group: 'practise' },
   // Similar verses, متشابهات: telling look-alike ayat apart, next to learning them by heart.
   { id: 'similar', label: 'Similar',        short: 'Similar', arabic: 'متشابهات', emblem: 'similar', Component: SimilarPanel, open: similarOpen, study: true, blurb: "Tell look-alike verses apart, and drill the wording", group: 'practise' },

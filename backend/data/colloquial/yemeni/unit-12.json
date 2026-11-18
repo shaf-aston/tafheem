@@ -1160,16 +1160,6 @@
           }
         },
         {
-          "slot": "thanks-a-lot",
-          "arabic": "شُكْرًا كَثِير",
-          "transliteration": "shukran katheer",
-          "reply": {
-            "arabic": "الله يُحْفِظَك",
-            "transliteration": "allah yuhfithak",
-            "english": "You're very welcome."
-          }
-        },
-        {
           "slot": "good-that-i-didn-t-waste-your-time",
           "arabic": "زَيِّن إِنِّي مَا ضَيَّعْتُ وِقْتَك",
           "transliteration": "zayin inni ma dayya3t wagtak"

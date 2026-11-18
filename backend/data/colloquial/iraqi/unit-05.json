@@ -79,16 +79,6 @@
           "transliteration": "hnaa zeen, waggif."
         },
         {
-          "slot": "keep-the-change",
-          "arabic": "خَلِّي الْبَاقِي.",
-          "transliteration": "khalli el-baagi.",
-          "reply": {
-            "arabic": "الْلَّهْ يِخَلِّيكْ.",
-            "transliteration": "allaah ykhalleek.",
-            "english": "God keep you."
-          }
-        },
-        {
           "slot": "is-there-a-taxi-nearby-here",
           "arabic": "أَكُو تَكْسِي گْرِيب مِنْ هِنَا؟",
           "transliteration": "aku taksi gireeb min hnaa?",
@@ -1610,34 +1600,9 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "taxi",
-          "arabic": "تَكْسِي",
-          "transliteration": "taksi"
-        },
-        {
           "slot": "bus",
           "arabic": "بَاص",
           "transliteration": "baas"
-        },
-        {
-          "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "أَرِيد أرُوح لِلْمَدِينَة الْقَدِيمَة",
-          "transliteration": "areed aroo7 lil-madeena il-gadeema"
-        },
-        {
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "وگّف هنا، لو سمحت",
-          "transliteration": "wagguf hnaa, law sama7t"
-        },
-        {
-          "slot": "how-much-is-the-fare",
-          "arabic": "شْكَد الِأُجْرَة؟",
-          "transliteration": "shgad il-ujra?"
-        },
-        {
-          "slot": "take-me-to-to-a-man",
-          "arabic": "خِذْنِي لـ",
-          "transliteration": "khudhni l-"
         },
         {
           "slot": "are-you-free-asking-a-taxi-driver-if-available",
@@ -1736,7 +1701,9 @@
         },
         {
           "speaker": "Ahmed",
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver"
+          "arabic": "وگّف هنا، لو سمحت",
+          "transliteration": "wagguf hnaa, law sama7t",
+          "english": "Stop here, please. (to a man, such as a taxi driver)"
         },
         {
           "speaker": "Driver",

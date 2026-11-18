@@ -479,21 +479,6 @@
       "lesson": "lesson-02",
       "phrases": [
         {
-          "slot": "this-is-the-living-room",
-          "arabic": "هَادَا هُوَ الصَّالُون",
-          "transliteration": "haada huwa ssaaloon"
-        },
-        {
-          "slot": "where-is-the-kitchen",
-          "arabic": "فِين الْكُوزِينَة؟",
-          "transliteration": "fin lkoozeena?",
-          "reply": {
-            "arabic": "حْدَا الصَّالُون",
-            "transliteration": "7da ssaaloon",
-            "english": "Next to the living room."
-          }
-        },
-        {
           "slot": "how-many-bathrooms",
           "arabic": "شْحَال فِيهَا مْن بِيت الْمَا؟",
           "transliteration": "sh7aal fiha mn beet lmaa?",
@@ -554,11 +539,6 @@
           }
         },
         {
-          "slot": "the-light-does-not-work",
-          "arabic": "الضُّو مَا كَيْخْدَمْش",
-          "transliteration": "DDow ma kaykhdemsh"
-        },
-        {
           "slot": "where-do-i-put-the-fridge",
           "arabic": "فِين نْحَطّ التَّلَّاجَة؟",
           "transliteration": "fin n7eTT ttellaaja?",
@@ -572,7 +552,9 @@
       "dialogue": [
         {
           "speaker": "Omar",
-          "slot": "this-is-the-living-room"
+          "arabic": "هَادَا هُوَ الصَّالُون",
+          "transliteration": "haada huwa ssaaloon",
+          "english": "This is the living room"
         },
         {
           "speaker": "Youssef",
@@ -591,12 +573,15 @@
         },
         {
           "speaker": "Youssef",
-          "slot": "where-is-the-kitchen"
+          "arabic": "فِين الْكُوزِينَة؟",
+          "transliteration": "fin lkoozeena?",
+          "english": "Where is the kitchen?"
         },
         {
           "speaker": "Omar",
-          "slot": "where-is-the-kitchen",
-          "reply": true
+          "arabic": "حْدَا الصَّالُون",
+          "transliteration": "7da ssaaloon",
+          "english": "Next to the living room."
         },
         {
           "speaker": "Youssef",

@@ -440,16 +440,6 @@
           }
         },
         {
-          "slot": "what-would-you-like-to-drink",
-          "arabic": "أشْنو بْغِيتِي تْشْرَب؟",
-          "transliteration": "ashnu bghiti tshrab?",
-          "reply": {
-            "arabic": "أتَّاي، عَافَاك",
-            "transliteration": "ataay, 3aafaak",
-            "english": "Tea, please."
-          }
-        },
-        {
           "slot": "coffee-or-tea",
           "arabic": "قَهْوَة وَلَّا أتَّاي؟",
           "transliteration": "qahwa wlla ataay?",
@@ -2042,16 +2032,6 @@
           "transliteration": "waash khaaSSek shi 7aaja khra?"
         },
         {
-          "slot": "where-is-the-bathroom",
-          "arabic": "فين كاين بيت الما؟",
-          "transliteration": "feen kayn beet l-maa?",
-          "reply": {
-            "arabic": "حدا الكوزينة، على ليمن",
-            "transliteration": "7da l-koozeena, 3la leemen",
-            "english": "Next to the kitchen, on the right."
-          }
-        },
-        {
           "slot": "here-is-a-new-toothbrush-for-you",
           "arabic": "ها شيتة ديال السنان جديدة ليك",
           "transliteration": "haa sheeta dyaal s-snaan jdeeda leek"
@@ -2124,12 +2104,15 @@
         },
         {
           "speaker": "Amine",
-          "slot": "where-is-the-bathroom"
+          "arabic": "فين كاين بيت الما؟",
+          "transliteration": "feen kayn beet l-maa?",
+          "english": "Where is the bathroom?"
         },
         {
           "speaker": "Rachid",
-          "slot": "where-is-the-bathroom",
-          "reply": true
+          "arabic": "حدا الكوزينة، على ليمن",
+          "transliteration": "7da l-koozeena, 3la leemen",
+          "english": "Next to the kitchen, on the right."
         },
         {
           "speaker": "Amine",

@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { rootBabsQuery } from '../../api'
 import { plainPronunciation } from '../../lib/speech/pronounce'
+import { isArabic } from '../../lib/text/arabicText'
 import { useSetting } from '../../lib/store/settings'
 
 import SenseBands from './SenseBands'
@@ -34,7 +35,11 @@ export default function WordEntry({ data, accent, onGo, onLookup }) {
   const [refs, setRefs] = useState(false)
   if (data.results.length === 0) {
     return (
-      <EmptyState>No entries. Try the bare root, without prefixes or endings.</EmptyState>
+      <EmptyState>
+        {isArabic(data.query ?? '')
+          ? 'No entries. Try the bare root, without prefixes or endings.'
+          : 'No English meaning matched. Check the spelling, or try one plain word, like patience or book.'}
+      </EmptyState>
     )
   }
 

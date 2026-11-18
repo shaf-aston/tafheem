@@ -452,11 +452,6 @@
           "transliteration": "lil7een ma khallaSt it-tagreer"
         },
         {
-          "slot": "i-have-a-meeting-at-ten-o-clock",
-          "arabic": "عِنْدِي اجْتِمَاع الساعَة عَشْرَة",
-          "transliteration": "3indi ijtimaa3 is-saa3a 3ashra"
-        },
-        {
           "slot": "my-colleague-at-the-office-is-very-nice",
           "arabic": "زَمِيلِي فِي الشُّغْل وَاجِد طَيِّب",
           "transliteration": "zameeli fish-shughul waajid Tayyib"
@@ -1992,11 +1987,6 @@
           "slot": "why-do-you-want-to-work-with-us-to-a-man",
           "arabic": "لِيش تَبِي تِشْتَغِل وِيَّانَا؟",
           "transliteration": "leesh tibi tishtaghil wiyyaana?"
-        },
-        {
-          "slot": "i-speak-arabic-and-english",
-          "arabic": "أَتْكَلَّم عَرَبِي وْإِنْجْلِيزِي",
-          "transliteration": "atkallam 3arabi w injleezi"
         },
         {
           "slot": "what-are-your-strengths-to-a-man",

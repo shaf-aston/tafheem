@@ -24,21 +24,6 @@
       "lesson": "lesson-01",
       "phrases": [
         {
-          "slot": "how-are-you-today-to-a-man",
-          "arabic": "كَيْفَ حَالُكَ الْيَوْم؟",
-          "transliteration": "kayfa 7aaluka al-yawm?",
-          "reply": {
-            "arabic": "بِخَيْر، الْحَمْدُ لِلَّه",
-            "transliteration": "bikhayr, al7amdu lillaah",
-            "english": "Fine, thank God."
-          }
-        },
-        {
-          "slot": "how-are-you-today-to-a-woman",
-          "arabic": "كَيْفَ حَالُكِ الْيَوْم؟",
-          "transliteration": "kayfa 7aaluki al-yawm?"
-        },
-        {
           "slot": "what-s-wrong-with-you-to-a-man",
           "arabic": "مَا بِكَ؟",
           "transliteration": "maa bika?",
@@ -74,11 +59,6 @@
           "transliteration": "anaa mut3ab jiddan"
         },
         {
-          "slot": "i-m-hungry-i-want-to-eat-something",
-          "arabic": "أَنَا جَائِع، أُرِيدُ أَنْ آكُلَ شَيْئًا",
-          "transliteration": "anaa jaa2i3, ureedu an aakula shay2an"
-        },
-        {
           "slot": "i-m-worried-about-the-exam",
           "arabic": "أَنَا قَلِق بِشَأْنِ الِامْتِحَان",
           "transliteration": "anaa qaliq bishaa2ni al-imti7aan"
@@ -97,7 +77,9 @@
       "dialogue": [
         {
           "speaker": "Omar",
-          "slot": "how-are-you-today-to-a-woman"
+          "arabic": "كَيْفَ حَالُكِ الْيَوْم؟",
+          "transliteration": "kayfa 7aaluki al-yawm?",
+          "english": "How are you today? (to a woman)"
         },
         {
           "speaker": "Huda",
@@ -1177,11 +1159,6 @@
           "transliteration": "hal yumkinu li2a7adin an yusaa3idanee?"
         },
         {
-          "slot": "this-isn-t-what-i-ordered-m",
-          "arabic": "هَذَا لَيْسَ مَا طَلَبْتُه",
-          "transliteration": "haadhaa laysa maa talabtuhu"
-        },
-        {
           "slot": "there-s-a-mistake-in-the-bill",
           "arabic": "هُنَاكَ خَطَأ فِي الْفَاتُورَة",
           "transliteration": "hunaaka khata2un fee al-faatoora",
@@ -1547,11 +1524,6 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "thank-you-very-much",
-          "arabic": "شُكْرًا جَزِيلًا",
-          "transliteration": "shukran jazeelan"
-        },
-        {
           "slot": "may-allah-reward-you-with-good-to-a-man",
           "arabic": "جَزَاكَ اللَّهُ خَيْرًا",
           "transliteration": "jazaaka allaahu khayran",
@@ -1580,21 +1552,6 @@
             "transliteration": "wafeeka baaraka allaah",
             "english": "And may He bless you too."
           }
-        },
-        {
-          "slot": "congratulations",
-          "arabic": "مَبْرُوك",
-          "transliteration": "mabrook",
-          "reply": {
-            "arabic": "بَارَكَ اللَّهُ فِيكَ",
-            "transliteration": "baaraka allaahu feeka",
-            "english": "May Allah bless you."
-          }
-        },
-        {
-          "slot": "congratulations-on-your-success",
-          "arabic": "مَبْرُوك عَلَى النَّجَاح",
-          "transliteration": "mabrook 3alaa an-najaa7"
         },
         {
           "slot": "masha-allah-excellent-work",

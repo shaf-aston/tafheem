@@ -76,16 +76,6 @@
           "transliteration": "hena kwayyes, wa22af."
         },
         {
-          "slot": "keep-the-change",
-          "arabic": "خَلّي الْبَاقِي.",
-          "transliteration": "khalli el-ba2i.",
-          "reply": {
-            "arabic": "رَبّنَا يِخَلّيك.",
-            "transliteration": "rabbena yekhalleek.",
-            "english": "Thank you (God keep you)."
-          }
-        },
-        {
           "slot": "is-there-a-taxi-nearby-here",
           "arabic": "فِيه تَاكْسِي قَرِيب مِن هِنَا؟",
           "transliteration": "feeh taksi 2areeb min hena?",
@@ -1620,39 +1610,9 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "taxi",
-          "arabic": "تَاكْسِي",
-          "transliteration": "taaksi"
-        },
-        {
           "slot": "bus",
           "arabic": "أُتُوبِيس",
           "transliteration": "otoobiis"
-        },
-        {
-          "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "عَايِز أَرُوح مِصْر القَدِيمَة",
-          "transliteration": "3ayez aroo7 maSr el-2adeema"
-        },
-        {
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "وَقِّف هُنَا لَو سَمَحْت",
-          "transliteration": "wa22ef hena law samaht"
-        },
-        {
-          "slot": "how-much-is-the-fare",
-          "arabic": "الأَجْرَة كَام؟",
-          "transliteration": "el-ogra kaam?",
-          "reply": {
-            "arabic": "تَلَاتِين جِنِيه.",
-            "transliteration": "talateen ginee.",
-            "english": "Thirty pounds."
-          }
-        },
-        {
-          "slot": "take-me-to-to-a-man",
-          "arabic": "وَدِّينِي عَلَى",
-          "transliteration": "wadeeni 3ala"
         },
         {
           "slot": "are-you-free-asking-a-taxi-driver-if-available",
@@ -1738,8 +1698,9 @@
         },
         {
           "speaker": "السواق",
-          "slot": "how-much-is-the-fare",
-          "reply": true
+          "arabic": "تَلَاتِين جِنِيه.",
+          "transliteration": "talateen ginee.",
+          "english": "Thirty pounds."
         },
         {
           "speaker": "كريم",

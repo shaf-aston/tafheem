@@ -1235,16 +1235,6 @@
           }
         },
         {
-          "slot": "thanks-a-lot",
-          "arabic": "شُكْرَاً أَوِي",
-          "transliteration": "shukran 2awi",
-          "reply": {
-            "arabic": "الْعَفْو",
-            "transliteration": "el-3afw",
-            "english": "You're welcome."
-          }
-        },
-        {
           "slot": "good-that-i-didn-t-waste-your-time",
           "arabic": "كُوَيِّس إِنِّي مَاضَيِّعْتِش وَقْتَك",
           "transliteration": "kwayyis enni ma-dayya3tesh wa2tak"

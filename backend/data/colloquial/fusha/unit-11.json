@@ -408,16 +408,6 @@
           "transliteration": "ijlis wastari7 qaleelan"
         },
         {
-          "slot": "what-would-you-like-to-drink",
-          "arabic": "مَاذَا تُرِيدُ أَنْ تَشْرَب؟",
-          "transliteration": "maadhaa tureedu an tashrab?",
-          "reply": {
-            "arabic": "أُرِيدُ كَأْسَ شَاي",
-            "transliteration": "ureedu ka2sa shaay",
-            "english": "I'd like a glass of tea."
-          }
-        },
-        {
           "slot": "coffee-or-tea",
           "arabic": "قَهْوَةٌ أَمْ شَاي؟",
           "transliteration": "qahwatun am shaay?",
@@ -1870,11 +1860,6 @@
           "slot": "do-you-need-anything-else",
           "arabic": "هَلْ تَحْتَاجُ إِلَى شَيْءٍ آخَر؟",
           "transliteration": "hal ta7taaju ilaa shay2in aakhar?"
-        },
-        {
-          "slot": "where-is-the-bathroom",
-          "arabic": "أَيْنَ الْحَمَّام؟",
-          "transliteration": "ayna al-7ammaam?"
         },
         {
           "slot": "here-is-a-new-toothbrush-for-you",

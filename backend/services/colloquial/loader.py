@@ -280,6 +280,33 @@ def _laid(outline: dict, written: dict, words: dict, same: frozenset = frozenset
     return unit, faults + _unit_faults(unit)
 
 
+# The same line in other words is still the same line: contractions spelt out, punctuation and case dropped.
+_SPELT_OUT = ((r"n't\b", " not"), (r"'re\b", " are"), (r"'m\b", " am"), (r"'ll\b", " will"), (r"'s\b", " is"),
+              (r"\bcolour", "color"))
+
+
+def _line(english: str) -> str:
+    text = str(english or "").lower().replace("’", "'")
+    for find, put in _SPELT_OUT:
+        text = re.sub(find, put, text)
+    return " ".join(re.sub(r"[^a-z ]", " ", text).split())
+
+
+def course_faults(outlines: list[dict]) -> list[str]:
+    """A phrase or example sentence is taught once in the whole course: the second topic to teach
+    it wastes the learner's time and splits its practice history. Names both topics."""
+    said, first = [], {}
+    for outline in outlines:
+        for lesson in outline["lessons"]:
+            where = f"{outline['unit']}/{lesson['lesson']}"
+            for line in (lesson.get("phrases") or []) + (lesson.get("sentences") or []):
+                key = _line(line.get("english"))
+                if key in first:
+                    said.append(f"spine {where} teaches {line.get('english')!r} again, already taught in {first[key]}")
+                first.setdefault(key, where)
+    return said
+
+
 def spine() -> list[dict]:
     """The course outline's units, read from disk each call (the app's copy is cached in _content)."""
     return json.loads((data_path("colloquial_dir") / "spine.json").read_text(encoding="utf-8"))["units"]
@@ -306,7 +333,7 @@ def _content() -> dict:
     manifest = json.loads((root / "dialects.json").read_text(encoding="utf-8"))
     outlines = spine()
     meanings = wordlist.meanings()
-    dialects, broken = [], wordlist.outline_faults(outlines, meanings)
+    dialects, broken = [], wordlist.outline_faults(outlines, meanings) + course_faults(outlines)
     for dialect in sorted(manifest["dialects"], key=lambda d: d["order"]):
         folder = root / dialect["folder"]
         said = wordlist.said_in(dialect["folder"])

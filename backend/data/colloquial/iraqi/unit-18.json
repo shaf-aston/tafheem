@@ -453,21 +453,6 @@
       "lesson": "lesson-02",
       "phrases": [
         {
-          "slot": "this-is-the-living-room",
-          "arabic": "هَاي غُرفَة الضُّيُوف",
-          "transliteration": "haay ghurfat iD-Dyoof"
-        },
-        {
-          "slot": "where-is-the-kitchen",
-          "arabic": "وِين المَطبَخ؟",
-          "transliteration": "ween il-maTbakh?",
-          "reply": {
-            "arabic": "جَنِب غُرفَة الضُّيُوف",
-            "transliteration": "janib ghurfat iD-Dyoof",
-            "english": "Next to the living room."
-          }
-        },
-        {
           "slot": "how-many-bathrooms",
           "arabic": "چَم حَمَّام بِالشِّقَّة؟",
           "transliteration": "cham 7ammaam bish-shigga?",
@@ -528,11 +513,6 @@
           }
         },
         {
-          "slot": "the-light-does-not-work",
-          "arabic": "الضَّوّ ما يِشتَغِل",
-          "transliteration": "iD-Daw ma yishtighil"
-        },
-        {
           "slot": "where-do-i-put-the-fridge",
           "arabic": "وِين أَحُطّ الثَّلَّاجَة؟",
           "transliteration": "ween a7uTT ith-thallaaja?",
@@ -546,7 +526,9 @@
       "dialogue": [
         {
           "speaker": "Omar",
-          "slot": "this-is-the-living-room"
+          "arabic": "هَاي غُرفَة الضُّيُوف",
+          "transliteration": "haay ghurfat iD-Dyoof",
+          "english": "This is the living room"
         },
         {
           "speaker": "Yusuf",
@@ -569,12 +551,15 @@
         },
         {
           "speaker": "Yusuf",
-          "slot": "where-is-the-kitchen"
+          "arabic": "وِين المَطبَخ؟",
+          "transliteration": "ween il-maTbakh?",
+          "english": "Where is the kitchen?"
         },
         {
           "speaker": "Omar",
-          "slot": "where-is-the-kitchen",
-          "reply": true
+          "arabic": "جَنِب غُرفَة الضُّيُوف",
+          "transliteration": "janib ghurfat iD-Dyoof",
+          "english": "Next to the living room."
         },
         {
           "speaker": "Yusuf",

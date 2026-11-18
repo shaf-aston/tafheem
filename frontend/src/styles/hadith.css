@@ -86,6 +86,19 @@
   .search-beside[data-answered] .search-beside-shelf { max-height: 0; }
 }
 
+/* In the search tab's grid (.panel-search, components.css) the box has the title's line, as on every
+   search tab, so the shelf no longer shares a row with it: it stands under both, full width, and does
+   not fold on focus. It still goes once answers are up. */
+@media (min-width: 64rem) {
+  .panel-search .search-beside,
+  .panel-search .search-beside-main { display: contents; }
+  .panel-search .search-beside .search-beside-shelf {
+    grid-column: 1 / -1; max-width: none; max-height: none; overflow: visible;
+    opacity: 1; visibility: visible; transition: none;
+  }
+  .panel-search .search-beside[data-answered] .search-beside-shelf { display: none; }
+}
+
 
 /* The hadith collections as spines on a shelf (hadith/books/HadithCollectionPicker).
    Each spine stands on the shelf's edge; pointed at it lifts, opened it tips out

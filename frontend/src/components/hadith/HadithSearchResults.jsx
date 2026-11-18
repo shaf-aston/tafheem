@@ -83,8 +83,10 @@ export default function HadithSearchResults({ accent, incoming = null, arrival, 
     return () => document.removeEventListener('keydown', onEscape)
   }, [searching])
 
+  // search-flow: inside the panel's .panel-search grid this root steps aside, so the box can take the
+  // title's line as every search tab's does (styles/components.css, styles/hadith.css).
   return (
-    <div className="space-y-3">
+    <div className="search-flow space-y-3">
 
       <div className="search-beside" data-in-use={inUse || undefined} data-answered={searching || undefined}>
       {/* Focus is watched on this wrapper, so moving between the box, its clear button and the

@@ -1,7 +1,7 @@
 import { Activity, useCallback, useEffect, useRef, useState } from 'react'
 import { QueryClientProvider } from '@tanstack/react-query'
 
-import { DOCK, FIXED, GROUPS, HOME, LISTED, TABS, accentOf } from './lib/nav/tabs'
+import { DOCK, FIXED, GROUPS, HOME, LISTED, TABS, WIDE, accentOf } from './lib/nav/tabs'
 import { queryClient } from './lib/api/queryClient'
 import { firstThese, idle, inTurn } from './lib/api/warm'
 import { useHealth } from './lib/api/useHealth'
@@ -160,7 +160,7 @@ function AppContent() {
 
         {/* Phones get the tabs at the bottom instead (BottomNav). */}
         <div className="shell hidden sm:block">
-          <TabStrip tabs={strip} fixed={FIXED.length} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} hint={activeTab === HOME} />
+          <TabStrip tabs={strip} fixed={FIXED.length} places={FIXED.length + WIDE.length} active={activeTab} colorOf={accentOf} onSelect={switchTab} onAll={() => setSectionsOpen(true)} onHover={openTab} hint={activeTab === HOME} />
         </div>
       </header>
 

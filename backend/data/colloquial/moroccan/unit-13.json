@@ -23,26 +23,6 @@
       "lesson": "lesson-01",
       "phrases": [
         {
-          "slot": "how-are-you-today-to-a-man",
-          "arabic": "كِيدَايِر اليَوْم؟",
-          "transliteration": "kidayer lyoom?",
-          "reply": {
-            "arabic": "لاَبَّاس، الْحَمْدُ لِلّه",
-            "transliteration": "labaas, l7amdulillah",
-            "english": "Fine, thank God."
-          }
-        },
-        {
-          "slot": "how-are-you-today-to-a-woman",
-          "arabic": "كِيدَايِرَة اليَوْم؟",
-          "transliteration": "kidayra lyoom?",
-          "reply": {
-            "arabic": "بْخِير، شُكْرَا",
-            "transliteration": "bkheer, shukran",
-            "english": "Well, thanks."
-          }
-        },
-        {
           "slot": "what-s-wrong-with-you-to-a-man",
           "arabic": "مَالَك؟",
           "transliteration": "maalek?",
@@ -76,11 +56,6 @@
           "slot": "i-m-very-tired-m",
           "arabic": "أَنَا عَيَّان بْزَاف",
           "transliteration": "ana 3ayyaan bzaaf"
-        },
-        {
-          "slot": "i-m-hungry-i-want-to-eat-something",
-          "arabic": "أَنَا جِيعَان، بْغِيت نَاكُل شِي حَاجَة",
-          "transliteration": "ana jii3aan, bghit naakul shi 7aaja"
         },
         {
           "slot": "i-m-worried-about-the-exam",
@@ -1228,16 +1203,6 @@
           "transliteration": "wash shi wa7ed yqder y3awnni?"
         },
         {
-          "slot": "this-isn-t-what-i-ordered-m",
-          "arabic": "هادشي ماشي هو لي طلبت",
-          "transliteration": "haadshi maashi huwa li Tlebt",
-          "reply": {
-            "arabic": "سْمَح لِيَا، غَادِي نْبَدْلُو لِيك",
-            "transliteration": "sme7 lia, ghaadi nbeddlu lik",
-            "english": "Sorry, I'll change it for you."
-          }
-        },
-        {
           "slot": "there-s-a-mistake-in-the-bill",
           "arabic": "كاينة غلطة فالحساب",
           "transliteration": "kayna ghalTa fl7saab"
@@ -1291,7 +1256,9 @@
         },
         {
           "speaker": "Yassine",
-          "slot": "this-isn-t-what-i-ordered-m"
+          "arabic": "هادشي ماشي هو لي طلبت",
+          "transliteration": "haadshi maashi huwa li Tlebt",
+          "english": "This isn't what I ordered. (m)"
         },
         {
           "speaker": "Hassan",
@@ -1599,16 +1566,6 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "thank-you-very-much",
-          "arabic": "شكرا بزاف",
-          "transliteration": "shukran bzaaf",
-          "reply": {
-            "arabic": "العفو",
-            "transliteration": "l-3afw",
-            "english": "You're welcome."
-          }
-        },
-        {
           "slot": "may-allah-reward-you-with-good-to-a-man",
           "arabic": "جَزَاكَ اللَّهُ خَيْرًا",
           "transliteration": "jazaaka Allaahu khayran",
@@ -1627,21 +1584,6 @@
           "slot": "may-allah-bless-you-to-a-man",
           "arabic": "الله يبارك فيك",
           "transliteration": "Allaah ybaarek feek"
-        },
-        {
-          "slot": "congratulations",
-          "arabic": "مبروك!",
-          "transliteration": "mabrook!",
-          "reply": {
-            "arabic": "الله يبارك فيك",
-            "transliteration": "Allaah ybaarek feek",
-            "english": "May Allah bless you."
-          }
-        },
-        {
-          "slot": "congratulations-on-your-success",
-          "arabic": "مبروك عليك النجاح",
-          "transliteration": "mabrook 3leek n-njaa7"
         },
         {
           "slot": "masha-allah-excellent-work",
@@ -1683,7 +1625,9 @@
       "dialogue": [
         {
           "speaker": "Hassan",
-          "slot": "congratulations-on-your-success"
+          "arabic": "مبروك عليك النجاح",
+          "transliteration": "mabrook 3leek n-njaa7",
+          "english": "Congratulations on your success."
         },
         {
           "speaker": "Yassine",
@@ -1697,12 +1641,15 @@
         },
         {
           "speaker": "Yassine",
-          "slot": "thank-you-very-much"
+          "arabic": "شكرا بزاف",
+          "transliteration": "shukran bzaaf",
+          "english": "Thank you very much."
         },
         {
           "speaker": "Hassan",
-          "slot": "thank-you-very-much",
-          "reply": true
+          "arabic": "العفو",
+          "transliteration": "l-3afw",
+          "english": "You're welcome."
         },
         {
           "speaker": "Yassine",

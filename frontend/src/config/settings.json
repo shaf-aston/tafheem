@@ -44,7 +44,7 @@
       "key": "study-size",
       "section": "Reading",
       "label": "Study text size",
-      "help": "Arabic and English in Quran, tarkeeb, i'raab and sarf. Nothing else moves.",
+      "help": "Arabic and English in the Qur'an and the grammar views (sentence parts, word endings, word forms). Nothing else moves.",
       "type": "choice",
       "css": "--study-zoom",
       "default": "normal",
@@ -57,8 +57,8 @@
     {
       "key": "fusha",
       "section": "Dictation",
-      "label": "Prefer Fusha",
-      "help": "Dictation leans to classical Arabic. Off: any Arabic.",
+      "label": "Prefer classical Arabic (Fusha)",
+      "help": "Spoken words are written as classical Arabic. Off: any Arabic, dialect too.",
       "type": "switch",
       "default": true
     },

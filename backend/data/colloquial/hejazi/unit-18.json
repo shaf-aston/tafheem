@@ -472,21 +472,6 @@
       "lesson": "lesson-02",
       "phrases": [
         {
-          "slot": "this-is-the-living-room",
-          "arabic": "دي الصالة",
-          "transliteration": "di iS-Saala"
-        },
-        {
-          "slot": "where-is-the-kitchen",
-          "arabic": "فين المطبخ؟",
-          "transliteration": "feen il-maTbakh?",
-          "reply": {
-            "arabic": "جنب الصالة",
-            "transliteration": "jamb iS-Saala",
-            "english": "Next to the living room."
-          }
-        },
-        {
           "slot": "how-many-bathrooms",
           "arabic": "كم حمّام في الشقّة؟",
           "transliteration": "kam 7ammaam fish-shigga?",
@@ -547,11 +532,6 @@
           }
         },
         {
-          "slot": "the-light-does-not-work",
-          "arabic": "الضو ما يشتغل",
-          "transliteration": "iD-Daww ma yishtaghal"
-        },
-        {
           "slot": "where-do-i-put-the-fridge",
           "arabic": "فين أحط الثلاجة؟",
           "transliteration": "feen a7uTT it-tallaaja?",
@@ -571,7 +551,9 @@
         },
         {
           "speaker": "Omar",
-          "slot": "this-is-the-living-room"
+          "arabic": "دي الصالة",
+          "transliteration": "di iS-Saala",
+          "english": "This is the living room"
         },
         {
           "speaker": "Yusuf",
@@ -590,12 +572,15 @@
         },
         {
           "speaker": "Yusuf",
-          "slot": "where-is-the-kitchen"
+          "arabic": "فين المطبخ؟",
+          "transliteration": "feen il-maTbakh?",
+          "english": "Where is the kitchen?"
         },
         {
           "speaker": "Omar",
-          "slot": "where-is-the-kitchen",
-          "reply": true
+          "arabic": "جنب الصالة",
+          "transliteration": "jamb iS-Saala",
+          "english": "Next to the living room."
         },
         {
           "speaker": "Yusuf",
@@ -634,7 +619,9 @@
         },
         {
           "speaker": "Omar",
-          "slot": "the-light-does-not-work"
+          "arabic": "الضو ما يشتغل",
+          "transliteration": "iD-Daww ma yishtaghal",
+          "english": "The light does not work"
         },
         {
           "speaker": "Yusuf",

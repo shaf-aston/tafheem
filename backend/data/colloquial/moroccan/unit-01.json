@@ -936,11 +936,6 @@
           "slot": "we-ll-see-you-tomorrow-to-a-man",
           "arabic": "نْشُوفُوك غَدَّا",
           "transliteration": "nshoofook ghedda"
-        },
-        {
-          "slot": "i-ll-see-you-tomorrow-to-a-man",
-          "arabic": "نْشُوفَك غَدَّا",
-          "transliteration": "nshoofek ghedda"
         }
       ],
       "dialogue": [
@@ -1311,11 +1306,6 @@
           "slot": "on-the-left",
           "arabic": "عَلَى الشِّمَال",
           "transliteration": "3la shmaal"
-        },
-        {
-          "slot": "straight-ahead",
-          "arabic": "نِيشَان",
-          "transliteration": "neeshaan"
         },
         {
           "slot": "near",
@@ -2148,16 +2138,6 @@
           "transliteration": "ljensiyya dyaali sooriyya"
         },
         {
-          "slot": "where-do-you-live-to-a-man",
-          "arabic": "فِين سَاكَن؟",
-          "transliteration": "feen saaken?",
-          "reply": {
-            "arabic": "سَاكَن فَالرّْبَاط",
-            "transliteration": "saaken f rrbaaT",
-            "english": "I live in Rabat."
-          }
-        },
-        {
           "slot": "i-live-in-amman",
           "arabic": "أَنَا سَاكَن فْعَمَّان",
           "transliteration": "ana saaken f 3ammaan"
@@ -2226,7 +2206,9 @@
         },
         {
           "speaker": "Youssef",
-          "slot": "where-do-you-live-to-a-man"
+          "arabic": "فِين سَاكَن؟",
+          "transliteration": "feen saaken?",
+          "english": "Where do you live? (to a man)"
         },
         {
           "speaker": "Karim",

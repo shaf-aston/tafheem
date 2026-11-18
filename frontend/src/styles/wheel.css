@@ -21,8 +21,10 @@
 .wheel-pill:hover:not(:disabled) { border-color: var(--border-hi); }
 
 
-/* Disabled reads by its dashed edge, not by fading the words: half-opacity text-dim measured 3.3:1 on the card. */
-.wheel-pill:disabled { color: var(--text-dim); border-style: dashed; cursor: not-allowed; }
+/* Disabled reads by its dashed edge, no fill and no open-me arrows, not by fading the words: half-opacity
+   text-dim measured 3.3:1 on the card. The dashed edge alone sat beside working pills looking just like them. */
+.wheel-pill:disabled { color: var(--text-dim); background: transparent; border-style: dashed; cursor: not-allowed; }
+.wheel-pill:disabled svg { visibility: hidden; }
 
 
 .wheel-card {

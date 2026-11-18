@@ -1,7 +1,7 @@
 /**
  * What the command line found, with the rail beside it.
  *
- * The rail is the seven tabs as their own letter, each in its own colour, and
+ * The rail is the tabs as their own mark and short name, each in its own colour, and
  * it is the reason this is a component rather than a list inside the bar: every
  * command line shows the same rows the same way, and two copies of this would
  * have drifted apart the first time a group was renamed.
@@ -44,6 +44,7 @@ export default function CommandResults({
             style={{ '--c': colorOf(tab.id) }}
           >
             <TabMark tab={tab} />
+            <span className="cb-rail-name" aria-hidden="true">{tab.short}</span>
           </button>
         ))}
       </div>

@@ -78,16 +78,6 @@
           "transliteration": "hini tamam, waggif."
         },
         {
-          "slot": "keep-the-change",
-          "arabic": "الْبَاقِي لَك.",
-          "transliteration": "el-ba2i lak.",
-          "reply": {
-            "arabic": "اللَّه يُعْطِيك الصِّحَّة.",
-            "transliteration": "allah y3teek es-sa77a.",
-            "english": "May God give you health."
-          }
-        },
-        {
           "slot": "is-there-a-taxi-nearby-here",
           "arabic": "فِيه تَاكْسِي قَرِيب مِن هِنِي؟",
           "transliteration": "feeh taksi 2areeb min hini?",
@@ -1487,34 +1477,9 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "taxi",
-          "arabic": "تَاكْسِي",
-          "transliteration": "taaksi"
-        },
-        {
           "slot": "bus",
           "arabic": "بَاص",
           "transliteration": "baas"
-        },
-        {
-          "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "أَشْتِي أَرْوَح الْمَدِينَة الْقَدِيمَة",
-          "transliteration": "ashti aro7 il-madiina il-qadiima"
-        },
-        {
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "وَقِّفْ هُنَا لَو سَمَحْتَ",
-          "transliteration": "wa2if huna law sama7t"
-        },
-        {
-          "slot": "how-much-is-the-fare",
-          "arabic": "كَمْ الأُجْرَة؟",
-          "transliteration": "kam il-ujra?"
-        },
-        {
-          "slot": "take-me-to-to-a-man",
-          "arabic": "وَدِّينِي لـ...",
-          "transliteration": "waddeeni li..."
         },
         {
           "slot": "are-you-free-asking-a-taxi-driver-if-available",
@@ -1565,7 +1530,9 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "slot": "i-want-to-go-to-the-old-city"
+          "arabic": "أَشْتِي أَرْوَح الْمَدِينَة الْقَدِيمَة",
+          "transliteration": "ashti aro7 il-madiina il-qadiima",
+          "english": "I want to go to the Old City."
         },
         {
           "speaker": "أَبُو قَاسِم",
@@ -1583,7 +1550,9 @@
         },
         {
           "speaker": "مُحَمَّد",
-          "slot": "how-much-is-the-fare"
+          "arabic": "كَمْ الأُجْرَة؟",
+          "transliteration": "kam il-ujra?",
+          "english": "How much is the fare?"
         },
         {
           "speaker": "أَبُو قَاسِم",

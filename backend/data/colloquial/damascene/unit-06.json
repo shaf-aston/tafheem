@@ -763,16 +763,6 @@
       "lesson": "lesson-03",
       "phrases": [
         {
-          "slot": "how-much-is-this",
-          "arabic": "قَدِّيش هَادْ؟",
-          "transliteration": "addeesh haad?",
-          "reply": {
-            "arabic": "هَادْ بِخَمْسَة آلاَف",
-            "transliteration": "haad bi-khamse aalaaf",
-            "english": "This is five thousand."
-          }
-        },
-        {
           "slot": "it-s-very-expensive",
           "arabic": "غَالِي كْتِير",
           "transliteration": "ghaali ktiir"

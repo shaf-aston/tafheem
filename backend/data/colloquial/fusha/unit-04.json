@@ -463,11 +463,6 @@
           "transliteration": "maadha tansa7unee an aakhudh?"
         },
         {
-          "slot": "how-much-does-this-cost",
-          "arabic": "بِكَمْ هَذَا؟",
-          "transliteration": "bikam haadha?"
-        },
-        {
           "slot": "is-there-a-dish-of-the-day",
           "arabic": "هَلْ يُوجَدُ طَبَقُ الْيَوْم؟",
           "transliteration": "hal yoojadu tabaqu al-yawm?"
@@ -1231,11 +1226,6 @@
           "slot": "can-i-have-the-receipt",
           "arabic": "هَلْ أَسْتَطِيعُ أَنْ آخُذَ الْإِيصَال؟",
           "transliteration": "hal astatee3u an aakhudha al-eesaal?"
-        },
-        {
-          "slot": "is-there-a-discount-today",
-          "arabic": "هَلْ يُوجَدُ خَصْم الْيَوْم؟",
-          "transliteration": "hal yoojadu khasm al-yawm?"
         },
         {
           "slot": "bless-your-hands-the-food-was-delicious",

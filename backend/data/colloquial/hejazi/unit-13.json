@@ -26,26 +26,6 @@
       "lesson": "lesson-01",
       "phrases": [
         {
-          "slot": "how-are-you-today-to-a-man",
-          "arabic": "كيفَك اليوم؟",
-          "transliteration": "keefak alyoom?",
-          "reply": {
-            "arabic": "الحمد لله، بخير",
-            "transliteration": "il7amdulillah, bkheer",
-            "english": "Very good, thank God."
-          }
-        },
-        {
-          "slot": "how-are-you-today-to-a-woman",
-          "arabic": "كيفِك اليوم؟",
-          "transliteration": "keefik alyoom?",
-          "reply": {
-            "arabic": "الحمد لله، تمام",
-            "transliteration": "il7amdulillah, tamaam",
-            "english": "Fine, thank God."
-          }
-        },
-        {
           "slot": "what-s-wrong-with-you-to-a-man",
           "arabic": "إيش فيك؟",
           "transliteration": "eesh feek?",
@@ -79,11 +59,6 @@
           "slot": "i-m-very-tired-m",
           "arabic": "أنا تعبان مرة",
           "transliteration": "ana ta3baan marra"
-        },
-        {
-          "slot": "i-m-hungry-i-want-to-eat-something",
-          "arabic": "أنا جوعان، أبغى آكل حاجة",
-          "transliteration": "ana joo3aan, abgha aakil haja"
         },
         {
           "slot": "i-m-worried-about-the-exam",
@@ -1220,11 +1195,6 @@
           "transliteration": "hadd yigdar ysaa3idni?"
         },
         {
-          "slot": "this-isn-t-what-i-ordered-m",
-          "arabic": "دا مو اللي طلبته",
-          "transliteration": "da mu illi talabtah"
-        },
-        {
           "slot": "there-s-a-mistake-in-the-bill",
           "arabic": "فيه غلط بالحساب",
           "transliteration": "fee ghalat bil-7isaab"
@@ -1585,16 +1555,6 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "thank-you-very-much",
-          "arabic": "مشكور مرّة",
-          "transliteration": "mashkoor marra",
-          "reply": {
-            "arabic": "العفو",
-            "transliteration": "il-3afw",
-            "english": "You're welcome."
-          }
-        },
-        {
           "slot": "may-allah-reward-you-with-good-to-a-man",
           "arabic": "جزاك الله خيرًا",
           "transliteration": "jazaak allaahu khayran",
@@ -1613,21 +1573,6 @@
           "slot": "may-allah-bless-you-to-a-man",
           "arabic": "الله يبارك فيك",
           "transliteration": "allah yibaarik feek"
-        },
-        {
-          "slot": "congratulations",
-          "arabic": "مبروك!",
-          "transliteration": "mabrook!",
-          "reply": {
-            "arabic": "الله يبارك فيك، عقبالك",
-            "transliteration": "allah yibaarik feek, 3ugbaalak",
-            "english": "May Allah bless you, may the same come to you."
-          }
-        },
-        {
-          "slot": "congratulations-on-your-success",
-          "arabic": "مبروك النجاح",
-          "transliteration": "mabrook in-najaa7"
         },
         {
           "slot": "masha-allah-excellent-work",
@@ -1663,12 +1608,15 @@
       "dialogue": [
         {
           "speaker": "أبو سعد",
-          "slot": "thank-you-very-much"
+          "arabic": "مشكور مرّة",
+          "transliteration": "mashkoor marra",
+          "english": "Thank you very much."
         },
         {
           "speaker": "أحمد",
-          "slot": "thank-you-very-much",
-          "reply": true
+          "arabic": "العفو",
+          "transliteration": "il-3afw",
+          "english": "You're welcome."
         },
         {
           "speaker": "أبو سعد",
@@ -1678,12 +1626,15 @@
         },
         {
           "speaker": "أحمد",
-          "slot": "congratulations"
+          "arabic": "مبروك!",
+          "transliteration": "mabrook!",
+          "english": "Congratulations!"
         },
         {
           "speaker": "أبو سعد",
-          "slot": "congratulations",
-          "reply": true
+          "arabic": "الله يبارك فيك، عقبالك",
+          "transliteration": "allah yibaarik feek, 3ugbaalak",
+          "english": "May Allah bless you, may the same come to you."
         },
         {
           "speaker": "أحمد",

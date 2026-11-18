@@ -45,16 +45,6 @@
           "transliteration": "gumit badri"
         },
         {
-          "slot": "what-time-is-it-now",
-          "arabic": "شكد الساعة هسة؟",
-          "transliteration": "shgad is-saa3a hessa?",
-          "reply": {
-            "arabic": "الساعَة سَبْعَة",
-            "transliteration": "is-saa3a sab3a",
-            "english": "It's seven o'clock."
-          }
-        },
-        {
           "slot": "it-s-seven-o-clock",
           "arabic": "الساعَة سَبْعَة",
           "transliteration": "is-saa3a sab3a"
@@ -133,7 +123,9 @@
         },
         {
           "speaker": "Zainab",
-          "slot": "what-time-is-it-now"
+          "arabic": "شكد الساعة هسة؟",
+          "transliteration": "shgad is-saa3a hessa?",
+          "english": "What time is it now?"
         },
         {
           "speaker": "Ali",

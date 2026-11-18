@@ -79,16 +79,6 @@
           "transliteration": "hini zeen, waggef."
         },
         {
-          "slot": "keep-the-change",
-          "arabic": "الْبَاقِي لَكْ.",
-          "transliteration": "el-baagi lak.",
-          "reply": {
-            "arabic": "الله يُعْطِيكَ الْعَافِيَةِ.",
-            "transliteration": "allah y3teek el-3aafya.",
-            "english": "Thank you (God give you strength)."
-          }
-        },
-        {
           "slot": "is-there-a-taxi-nearby-here",
           "arabic": "فِيهِ تَاكْسِي قَرِيبِ مِنْ هِنِي؟",
           "transliteration": "feeh taksi gareeb min hini?",
@@ -1647,39 +1637,9 @@
       "lesson": "lesson-05",
       "phrases": [
         {
-          "slot": "taxi",
-          "arabic": "تَاكْسِي",
-          "transliteration": "taaksi"
-        },
-        {
           "slot": "bus",
           "arabic": "بَاص",
           "transliteration": "baas"
-        },
-        {
-          "slot": "i-want-to-go-to-the-old-city",
-          "arabic": "أَبِي أرُوح البَلَد القَدِيم",
-          "transliteration": "abi aroo7 il-balad il-gadeem"
-        },
-        {
-          "slot": "stop-here-please-to-a-man-such-as-a-taxi-driver",
-          "arabic": "وَقِّف هِنِي لُو سَمَحْت",
-          "transliteration": "waggif hini law sama7t"
-        },
-        {
-          "slot": "how-much-is-the-fare",
-          "arabic": "بِكَم الأجْرَة؟",
-          "transliteration": "bikam il-ojra?",
-          "reply": {
-            "arabic": "عَلَى العَدَّاد.",
-            "transliteration": "3ala l-3addaad.",
-            "english": "By the meter."
-          }
-        },
-        {
-          "slot": "take-me-to-to-a-man",
-          "arabic": "وَدِّينِي لـ...",
-          "transliteration": "waddeeni li..."
         },
         {
           "slot": "are-you-free-asking-a-taxi-driver-if-available",
@@ -1761,12 +1721,15 @@
         },
         {
           "speaker": "Khalid",
-          "slot": "how-much-is-the-fare"
+          "arabic": "بِكَم الأجْرَة؟",
+          "transliteration": "bikam il-ojra?",
+          "english": "How much is the fare?"
         },
         {
           "speaker": "Abu Saeed",
-          "slot": "how-much-is-the-fare",
-          "reply": true
+          "arabic": "عَلَى العَدَّاد.",
+          "transliteration": "3ala l-3addaad.",
+          "english": "By the meter."
         },
         {
           "speaker": "Khalid",

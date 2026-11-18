@@ -346,6 +346,24 @@ def name_of(word: str) -> str | None:
     return _names_by_bare_letters().get(arabic_text.bare_letters(word))
 
 
+def _texts_of(places: set[tuple[int, int]]) -> dict[tuple[int, int], str]:
+    """The words of just these ayat, in one query: a root's places span many surahs,
+    and reading each whole surah (ayah_texts) for one ayah would be most of the cost."""
+    if not places:
+        return {}
+    pairs = " OR ".join("(surah = ? AND ayah = ?)" for _ in places)
+    rows = _db().execute(
+        f"""SELECT surah, ayah, group_concat(word_text, ' ') AS text FROM (
+               SELECT surah, ayah, word, group_concat(form, '') AS word_text FROM (
+                   SELECT surah, ayah, word, segment, form FROM segment
+                   WHERE {pairs} ORDER BY surah, ayah, word, segment
+               ) GROUP BY surah, ayah, word ORDER BY surah, ayah, word
+           ) GROUP BY surah, ayah""",
+        [n for place in places for n in place],
+    ).fetchall()
+    return {(row["surah"], row["ayah"]): row["text"] for row in rows}
+
+
 def occurrences_of_root(root: str, limit: int) -> dict:
     """Where a root appears in the Qur'an, and which words are built from it.
 
@@ -368,6 +386,8 @@ def occurrences_of_root(root: str, limit: int) -> dict:
            WHERE root = ? AND root <> '' ORDER BY surah, ayah, word LIMIT ?""",
         (root, limit),
     ).fetchall()
+    # The whole ayah each word sits in: one word alone (رَحِيمِ, رَحِيمِ...) cannot tell the places apart.
+    texts = _texts_of({(p["surah"], p["ayah"]) for p in places})
 
     return {
         "root": root,
@@ -381,6 +401,8 @@ def occurrences_of_root(root: str, limit: int) -> dict:
                 "surah": p["surah"],
                 "ayah": p["ayah"],
                 "arabic": p["form"],
+                "word": p["word"],
+                "ayah_text": texts.get((p["surah"], p["ayah"]), ""),
                 "grammar": describe(p["pos"], p["features"], root),
             }
             for p in places

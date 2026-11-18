@@ -445,16 +445,6 @@
           "transliteration": "ijlis, irtaa7 shwayy"
         },
         {
-          "slot": "what-would-you-like-to-drink",
-          "arabic": "شُو تِبْغِي تِشْرَب؟",
-          "transliteration": "shu tabghi tishrab?",
-          "reply": {
-            "arabic": "شَي بَارِد لَو سَمَحْت",
-            "transliteration": "shay baarid law sama7t",
-            "english": "Something cold please."
-          }
-        },
-        {
           "slot": "coffee-or-tea",
           "arabic": "قَهْوَة وَلَّا شَاي؟",
           "transliteration": "gahwa willa shaay?",
@@ -2048,16 +2038,6 @@
             "arabic": "لا، مشكور، كل شي موجود",
             "transliteration": "laa, mashkoor, kill shay mawjood",
             "english": "No, thanks, everything is here."
-          }
-        },
-        {
-          "slot": "where-is-the-bathroom",
-          "arabic": "وين الحمّام؟",
-          "transliteration": "ween il-7ammaam?",
-          "reply": {
-            "arabic": "على يمينك",
-            "transliteration": "3ala yimeenak",
-            "english": "On your right."
           }
         },
         {
