@@ -5,7 +5,7 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
 from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, manqus_tanween, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, shows_nasb_by_kasra, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, written_nasb, attached_pronoun, noun_tagged
-from backend.services.nahw.syntax.facts.sentence import Sentence, describable_nouns, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
+from backend.services.nahw.syntax.facts.sentence import Sentence, describable_nouns, excepted_from, extra_min_case, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
 
@@ -206,7 +206,9 @@ def _follows(token: dict, s: Sentence) -> str:
     # السُّفْلَى: a مقصور noun shows no case, so any its noun wears is its own
     # الرجلُ الحاديَ عشرَ: a compound ordinal is built and shows none, its place its noun's
     # مَاضٍ: a منقوص with its tanween shows raf' or jarr, and is held to its noun by those
-    if bare_describer or (mine or case_unseen(token) or manqus_tanween(token)) and shown_cases(token) & shown_cases(head) \
+    # هَلْ مِنْ خَالِقٍ غَيْرُ اللَّهِ: after a زائدة مِن the noun stands in its place's case too, which its صفة may wear
+    head_cases = shown_cases(head) | ({place} if (place := extra_min_case(head, s)) else set())
+    if bare_describer or (mine or case_unseen(token) or manqus_tanween(token)) and shown_cases(token) & head_cases \
             or token.get("compound") == "ordinal":
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
         # (شَعِيرًا has the فعيل shape, so the morphology's adjective tag tells, not the shape)
@@ -219,7 +221,7 @@ def _follows(token: dict, s: Sentence) -> str:
         # (خَاتَمُ فِضَّةٍ جَمِيلٌ with no verb: the khabar, told_of_lone_mubtada); unless the word shows its nasb by its written
         # alif (a bare كِتَابُ طَالِبٍ جَدِيدًا leaves the hal open); a bare جَدِيدَة shows no case, so it is the صفة
         unknown_head = {**head, "stt": "i"} if head.get("stt") == "c" and not written_nasb(token) and verb_above(token, s) and not is_known(head, s) else head
-        return "naat" if agrees(token, unknown_head) and not measure and not governed else "none"
+        return "naat" if agrees(token, unknown_head, head_cases) and not measure and not governed else "none"
     # لا رجلَ حاضرٌ (khabar) and a hal or tamyeez in nasb are not followers
     if told_of_subject(token, head) or indefinite_nasb(token):
         return "none"

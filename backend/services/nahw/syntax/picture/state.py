@@ -11,7 +11,7 @@ class Picture:
 
     __slots__ = ("words", "tokens", "named", "bases", "by_id", "columns", "drawn", "role_of", "split",
         "typed_at", "why_of", "written", "joins", "after_noun", "at", "fronted", "hung", "kept", "khabars",
-        "mubdal_minhu", "pair_of", "said", "sentence", "understand", "understood", "understood_pair",
+        "mubdal_minhu", "behind", "pair_of", "said", "sentence", "understand", "understood", "understood_pair",
         "detail_of", "named_by_unsaid", "opens", "replies", "said_verb", "job_by_place", "job_of",
         "kind_of_ma", "ma_card", "masdar", "nominal", "family_of", "framed", "label_of", "name_of", "place_of",
         "clauses", "described", "in_place", "children_of", "depth", "parent", "pulled", "roots", "opened",

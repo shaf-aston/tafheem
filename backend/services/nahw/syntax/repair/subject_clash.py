@@ -1,7 +1,7 @@
 """Repair 2: a word hung on a verb's subject that the typed vowels forbid there is the verb's object."""
 from __future__ import annotations
 
-from backend.services.nahw.book import extra_ba_on, is_mabni, is_one, is_subject_pronoun, says
+from backend.services.nahw.book import extra_ba_on, is_extra_ba, is_mabni, is_one, is_subject_pronoun, says
 from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import (
     Sentence, is_suffix, verb_tagged, stays_adverb, is_built, is_name, khabar_behind_ba, has_added, indefinite_nasb, typed_tanween, is_describing, is_state_word, is_verb, is_preposition, is_zarf, typed_bare, listed, same_root, shows_jarr, shows_nasb_by_kasra, typed_case_of, typed_or_parsed_case, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, is_passive, works_as_verb, previous_noun, shown_cases, place_time, next_word)
@@ -374,6 +374,17 @@ def kana_subject(s: Sentence) -> None:
         if rule and ba["rel"] == "MOD" and verb["id"] < ba["id"] and khabar_behind_ba(ba, noun) \
                 and not any(k["rel"] == rule["rel"] or (subject_link(k) and k["id"] > ba["id"]) for k in s.kids(verb)):
             ba["rel"] = rule["rel"]
+
+
+def kafa_doer(s: Sentence) -> None:
+    """كَفَى بِاللَّهِ وَكِيلًا: a باء straight after كفى, with nothing else its doer, carries that doer (closed_words extra_ba
+    `on`, `alone`), though the parser hung it on the تمييز after it."""
+    for ba in s.tokens:
+        verb = s.by_id.get(ba["id"] - 1)
+        rule = verb and is_verb(verb) and extra_ba_on(verb["lemma"])
+        if rule and rule.get("alone") and is_preposition(ba) and is_extra_ba(ba["form"]) and ba["head"] != verb["id"] \
+                and not any(subject_link(k) for k in s.kids(verb)):
+            s.relink(ba, verb["id"], rule["rel"])
 
 
 def kana_fronted_khabar(s: Sentence) -> None:

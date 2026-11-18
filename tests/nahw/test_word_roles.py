@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import pytest
 from backend.services.nahw import iraab
+from backend.services.nahw.book import stem_pattern
 from tests.nahw_helpers import analysed, cards, NADA, needs_parser, parsed_as, _read, _role
 
 pytestmark = needs_parser
@@ -154,7 +155,8 @@ def test_the_word_after_a_restricting_illa_takes_the_place_the_sentence_leaves(s
     ("ما أكرم زيد عمرا", ["حرف", "فعل", "فاعل", "مفعول به"]),
     ("مَا أُكْرِمَ زَيْدٌ", ["حرف", "فعل مجهول", "نائب فاعل"]),  # the typed damma says it is not the wonder shape
     ("مَا أَعْطَى الرَّجُلَ كِتَابًا", ["حرف", "فعل", "مفعول به", "مفعول به"]),  # two objects: not the wonder form
-    ("ما أنزل الله بها من سلطان", ["حرف", "فعل", "فاعل", "حرف جر", "حرف جر", "مجرور"]),  # أنزل gives no comparative
+    # أنزل gives no comparative; سلطان after a زائدة مِن is the object, in jarr by the letter
+    ("ما أنزل الله بها من سلطان", ["حرف", "فعل", "فاعل", "حرف جر", "حرف جر", "مفعول به"]),
     ("مَا أَجْمَلَهَا", ["مبتدأ", "فعل"]),  # the pronoun on the verb is its one object
     ("مَا أَعْظَمَكَ", ["مبتدأ", "فعل"]),
     ("ما أحلاها", ["مبتدأ", "فعل"]),
@@ -1032,3 +1034,16 @@ def test_a_pronoun_on_a_preposition_governs_nothing(sentence: str, expected: lis
 ])
 def test_a_waw_the_quran_writes_for_a_hamza_reads_as_that_hamza(sentence: str, at: int, pos: str):
     assert iraab.analyze(sentence)["words"][at]["camel"]["pos"] == pos
+
+
+@pytest.mark.parametrize("pattern, shape", [
+    ("وَبِال1ا2ِ3ِ", "1ا2ِ3ِ"), ("لِل1َ2ِي3ِ", "1َ2ِي3ِ"), ("فَال1ا2ِ3ُ", "1ا2ِ3ُ"), ("كَال1ا2ِ3ِ", "1ا2ِ3ِ"),
+    ("وَ1ا2ِ3ٌ", "1ا2ِ3ٌ"), ("ال1ا2ِ3ُ", "1ا2ِ3ُ"),
+    # siblings: a measure's own letters stay (مُ، مَ، تَ، اِسْتَ)
+    ("مُ1َ2ِّ3ٌ", "مُ1َ2ِّ3ٌ"), ("مَ1ْ2ُو3ٌ", "مَ1ْ2ُو3ٌ"), ("تَ1َ2ُّ3ٌ", "تَ1َ2ُّ3ٌ"), ("اِسْتِ1ْ2َا3ٌ", "اِسْتِ1ْ2َا3ٌ"),
+    # a first root letter spelled out (no 1): its و or ل is the root's own (وَجَدَ، وَعْدٌ، لِلأَمْرِ)
+    ("وَ2َ3َ", "وَ2َ3َ"), ("وَ2ْ3ٌ", "وَ2ْ3ٌ"), ("لِلأَ2ْ3ِ", "لِلأَ2ْ3ِ"),
+])
+def test_a_joined_word_before_the_pattern_is_no_part_of_its_measure(pattern, shape):
+    # وَالْعَالِمُ، بِالْبَخِيلِ: the analyser writes و، ف، ب، ك، ل and ال into the pattern; the measure is the word's own
+    assert stem_pattern(pattern) == shape

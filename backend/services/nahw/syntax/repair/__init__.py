@@ -17,7 +17,7 @@ from backend.services.nahw.syntax.repair.hal import elative_describes, hal_claus
 from backend.services.nahw.syntax.repair.khabar import after_pointer, jar_off_particle, masdar_khabar, jar_on_its_khabar, before_la, hung_on_pronoun, majrur_of_jar, naat_after_its_noun, known_pair_in_order, naat_not_subject, la_over_its_khabar, zarf_is_no_subject, khabar_said_first, described_doer, elative_specified, hasr_khabar, name_not_told_by_ma, object_of_noun, relative_khabar, khabar_after_silah, second_khabar, sentence_khabar, tawkeed_before_khabar, told_of_jar
 from backend.services.nahw.syntax.repair.nasab import nasab
 from backend.services.nahw.syntax.repair.number import compound_number
-from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, pronoun_on_its_verb, excepted_after_doer, first_object_owed, name_told_to, repeated_doer, doer_after_object, doer_first, late_doer, outer_doer, kana_subject, kana_fronted_khabar, kana_nasb_khabar, inna_object, inna_second_khabar, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
+from backend.services.nahw.syntax.repair.subject_clash import added_to_verb, pronoun_on_its_verb, excepted_after_doer, first_object_owed, name_told_to, repeated_doer, doer_after_object, doer_first, late_doer, outer_doer, kana_subject, kafa_doer, kana_fronted_khabar, kana_nasb_khabar, inna_object, inna_second_khabar, object_past_verb, relative_owed, verb_under_fronted_object, object_after_tanween, subject_clash, zanna_pair, praise_specified
 from backend.services.nahw.syntax.repair.typed import adverb_only, described_after_tanween, described_known, emphasis_lam_opener, jarr_after_mudaf, number_after_one, nunless_mudaf, since_jarr, typed_words
 
 
@@ -47,6 +47,7 @@ PASSES = (
     (name_told_to, "sentence"),
     (repeated_doer, "sentence"),
     (kana_subject, "sentence"),
+    (kafa_doer, "sentence"),
     (kana_fronted_khabar, "sentence"),
     (kana_nasb_khabar, "sentence"),
     (inna_object, "sentence"),

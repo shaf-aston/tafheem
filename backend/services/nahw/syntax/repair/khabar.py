@@ -259,13 +259,13 @@ def khabar_after_silah(s: Sentence) -> None:
 
 def majrur_of_jar(s: Sentence) -> None:
     """هَلْ مِنْ مُجِيبٍ، مَا لَنَا مِنْ شَافِعٍ: the noun written straight after a preposition word of its own (not a letter joined to the noun: لَآيَاتٍ) is its
-    مجرور; where the parser hung it as a subject of the preposition (or of the word before it), it is the
-    preposition's object, and told_of_jar then reads what is said of it."""
+    مجرور; where the parser hung it as a subject, of whatever word (وَمَا لَهُ فِي الْآخِرَةِ مِنْ خَلَاقٍ: of ما), while the
+    preposition has none, it is the preposition's object unless typed in raf' or nasb, and told_of_jar then reads what is said of it."""
     tokens = s.tokens
     for jar in tokens:
         noun = next((t for t in tokens if t["id"] == jar["id"] + 1), None)
         if (noun and is_preposition(jar) and not is_prefix(jar) and noun_tagged(noun) and not is_verb(noun) and noun["rel"] == "SBJ"
-                and noun["head"] in (jar["id"], jar["head"]) and not any(k["rel"] == "OBJ" for k in s.kids(jar))):
+                and typed_case_of(noun) in (None, "i") and not any(k["rel"] == "OBJ" for k in s.kids(jar))):
             s.relink(noun, jar["id"], "OBJ")
 
 

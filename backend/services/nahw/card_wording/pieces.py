@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw.card_wording.reason import Reason
 from backend.services.nahw.syntax.facts import reading
-from backend.services.nahw.book import attention_off, attention_said, case_of, extra_ba_named, extra_ba_said, family_cards, kaffa_card, teacher_rules
+from backend.services.nahw.book import attention_off, attention_said, case_of, extra_ba_letter, extra_ba_named, extra_ba_said, family_cards, kaffa_card, teacher_rules
 
 
 def pieces(cards: list[dict], roles: list[dict]) -> None:
@@ -50,7 +50,7 @@ def extra_ba(cards: list[dict], roles: list[dict]) -> None:
             continue
         # the باء's own line takes the lead; the rule the place follows and anything after it stay
         reason.lead, reason.because, reason.front, reason.extras = \
-            f"الباء {extra_ba_named()}، {extra_ba_said(place)} ", card.get("name") or card["role"], [], []
+            f"{found.get('extra_letter') or extra_ba_letter()} {extra_ba_named()}، {extra_ba_said(place)} ", card.get("name") or card["role"], [], []
         card["case"] = "jarr"
 
 
