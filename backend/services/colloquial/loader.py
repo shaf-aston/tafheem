@@ -207,7 +207,7 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None, same:
             said.append(f"lesson {plan['lesson']!r} lists its own vocabulary; a dialect's words live in {wordlist.FILE}")
         vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}", same)
         said.extend(faults)
-        vocabulary = _mark_met(vocabulary, f"{outline['unit']}/{plan['lesson']}")
+        vocabulary = _mark_met(vocabulary, f"{outline.get('unit')}/{plan['lesson']}")
         # A topic of opposites lists them two by two, each word beside its other.
         ids = plan.get("words") or []
         pairs = [ids[i:i + 2] for i in range(0, len(ids), 2)] if plan.get("pairs") else None
