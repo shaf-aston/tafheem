@@ -99,9 +99,9 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
   // collections arrive, so only the skeleton below them is replaced.
   if (isPending) {
     return (
-      <div className="panel">
+      <div className="panel panel-search">
         <SectionHeader tab="hadith" nameOf={named} />
-        <div inert>
+        <div inert className="search-flow">
           <HadithSearchResults accent={accent} onNarrator={noop} onHadith={noop} onOpenBook={noop}>
             <AnalyzerSkeleton />
           </HadithSearchResults>
@@ -179,8 +179,9 @@ export default function HadithPanel({ accent, incoming, arrival, onVisit, onGo }
     )
   }
 
+  // panel-search: the box stands beside the title on a wide screen, as on every other search tab.
   return (
-    <div className="panel">
+    <div className="panel panel-search">
       <SectionHeader tab="hadith" nameOf={named} />
 
       {missed && (

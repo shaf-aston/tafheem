@@ -583,7 +583,7 @@
     },
     "device": {
       "choice": "system",
-      "label": "Device",
+      "label": "Same as device",
       "light": "parchment",
       "dark": "ink"
     },

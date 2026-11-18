@@ -76,7 +76,9 @@ export default function BottomNav({ tabs, dock: ids, active, colorOf, onSelect, 
         <span className={`bottom-nav-mark ${elsewhere ? 'bottom-nav-on' : ''}`} aria-hidden="true">
           {here ? <TabMark tab={here} /> : <Icon name="all" />}
         </span>
-        {here ? here.short : 'All'}
+        {/* Always named All: the open tab's mark lights above it, and its name is the page's own
+            title. Named after the tab, the one way to every other tab lost its name. */}
+        All
       </button>
       <button type="button" onClick={onMe} aria-haspopup="dialog" aria-label="Me: your progress and account" className={`${item} text-[var(--text-dim)]`}>
         <span className="bottom-nav-mark" aria-hidden="true"><Icon name="me" /></span>
