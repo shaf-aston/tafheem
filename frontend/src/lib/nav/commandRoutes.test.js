@@ -71,16 +71,16 @@ describe('classify', () => {
     expect(rows[0]).toMatchObject({ group: GROUPS.ask, tabId: 'nahw' })
   })
 
-  it('never ends on nothing: plain English still lands somewhere', () => {
+  it('never ends on nothing: plain English goes where English is read, never to the Arabic-only analyser', () => {
     const rows = classify('what is a mubtada', TABS)
-    expect(rows.length).toBeGreaterThan(0)
-    expect(rows.at(-1).tabId).toBe('nahw')
+    expect(rows.map((row) => row.tabId)).toEqual(['daleel'])
+    expect(rows.every((row) => row.group === GROUPS.find)).toBe(true)
   })
 
   it('lists a matching tab before the fallback', () => {
     const rows = classify('qui', TABS)
     expect(rows[0]).toMatchObject({ group: GROUPS.go, tabId: 'quiz' })
-    expect(rows.at(-1).group).toBe(GROUPS.ask)
+    expect(rows.at(-1).group).toBe(GROUPS.find)
   })
 })
 
@@ -109,7 +109,7 @@ describe('ghostFor', () => {
 describe('grouped', () => {
   it('keeps the display order and drops empty groups', () => {
     expect(grouped(classify('@قول', TABS)).map((block) => block.group)).toEqual([GROUPS.dict])
-    expect(grouped(classify('qui', TABS)).map((block) => block.group)).toEqual([GROUPS.go, GROUPS.ask])
+    expect(grouped(classify('qui', TABS)).map((block) => block.group)).toEqual([GROUPS.go, GROUPS.find])
   })
 })
 

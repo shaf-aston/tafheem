@@ -75,4 +75,18 @@ describe('SearchBox', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Clear search' }))
     expect(onClear).toHaveBeenCalledTimes(1)
   })
+
+  it('an Arabic-only box holds back Latin letters and says why, instead of sending them to fail', () => {
+    const onSubmit = vi.fn()
+    box({ value: 'hello', arabic: true, onSubmit })
+    fireEvent.keyDown(screen.getByLabelText(/Word/), { key: 'Enter' })
+    expect(onSubmit).not.toHaveBeenCalled()
+    expect(screen.getByRole('status').textContent).toMatch(/Arabic letters/)
+    expect(screen.getByRole('button', { name: 'Search' }).disabled).toBe(true)
+    cleanup()
+    box({ value: 'كتب', arabic: true, onSubmit })
+    fireEvent.keyDown(screen.getByLabelText(/Word/), { key: 'Enter' })
+    expect(onSubmit).toHaveBeenCalledTimes(1)
+    expect(screen.queryByRole('status')).toBeNull()
+  })
 })

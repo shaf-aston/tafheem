@@ -66,7 +66,9 @@ export default function SearchBox({
 }) {
   const rtl = arabic || isArabic(value)
   const filtering = !onSubmit
-  const ready = value.trim() && !disabled
+  // An Arabic-only box would send Latin letters to a reader that turns them away; say so here, before Enter.
+  const wrongScript = arabic && Boolean(value.trim()) && !isArabic(value)
+  const ready = value.trim() && !disabled && !wrongScript
   const Field = multiline ? 'textarea' : 'input'
   const said = hint ?? (verb && !filtering ? `Enter to ${verb}${children ? ', or say it' : ''}` : null)
 
@@ -93,11 +95,13 @@ export default function SearchBox({
               if (multiline && e.shiftKey) return
               if (filtering) return
               e.preventDefault()
-              onSubmit()
+              if (!wrongScript) onSubmit()
             }}
             placeholder={placeholder}
             dir={rtl ? 'rtl' : 'ltr'}
             lang={rtl ? 'ar' : 'en'}
+            aria-invalid={wrongScript || undefined}
+            aria-describedby={wrongScript ? `${id}-script` : undefined}
             style={{ '--c': accent }}
             className={`search-field w-full rounded-[var(--radius-md)] p-4 bg-[var(--surface)]
               border border-[var(--border-hi)] text-[var(--text)]
@@ -157,6 +161,12 @@ export default function SearchBox({
 
         {children}
       </div>
+
+      {wrongScript && (
+        <p id={`${id}-script`} role="status" className="type-small text-[var(--text-dim)]">
+          This box reads Arabic letters. For a question in English, try Daleel.
+        </p>
+      )}
     </div>
   )
 }
