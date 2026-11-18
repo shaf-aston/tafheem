@@ -55,13 +55,18 @@ def test_a_jar_majroor_after_a_known_noun_or_a_verb_keeps_its_own_head():
     ("أَصَابَهُ شَكٌّ مِنْهُ", "شَكٌّ"),  # a doing the Qur'an hangs a جار on works bare
     ("أَعْجَبَنِي حِرْصُ الْمُهَنْدِسِينَ عَلَى الْمَوَاعِيدِ", "حِرْصُ"),  # annexed
     ("الْحُكْمُ عَلَى الْمُتَّهَمِينَ عَادِلٌ", "الْحُكْمُ"),  # with ال
+    ("الصَّبْرُ عَلَى الْأَذَى جَمِيلٌ", "الصَّبْرُ"),  # with ال, a short Form I masdar off the list
+    ("هَذَا خُرُوجٌ مِنَ الْأَزْمَةِ", "خُرُوجٌ"),  # bare, a Form I measure with a long vowel: a doing
+    ("هَذِهِ بُيُوتٌ مِنْ طِينٍ", "ثابت"),  # a plural of a masdar's measure (فُعُول) names no doing
+    ("قَرَأْتُ قِسْمًا مِنَ الْكِتَابِ", "ثابت"),  # a short Form I noun off the list names a thing
     ("سَمِعْتُ تَسْبِيحًا كَالرَّعْدِ", "ثابت"),  # the kaf 'like' completes no masdar: it describes
     ("رَأَيْتُ بَيْتًا فِي الْقَرْيَةِ", "ثابت"),  # a bare Form I noun names a thing
     ("هَذَا ثَوْبٌ مِنْ حَرِيرٍ", "ثابت"),
     ("جَاءَ الطَّالِبُ وَمِثْلُهُ مَعَهُ", "ثابت"),  # مِثْل has a masdar's measure and names no doing
 ])
 def test_what_hangs_after_a_masdar_hangs_on_it_in_every_state_but_a_likeness_does_not(sentence, head):
-    """facts.masdar_at_work and likeness_jarr: a masdar works annexed, with ال or, a listed doing, bare; ك after it is its صفة."""
+    """facts.masdar_at_work and likeness_jarr: a masdar works annexed, with ال or bare, but a short Form I one bare only when it
+    is a listed doing; a plural never; ك after it is its صفة."""
     _, nodes = drawn(sentence)
     hung = [n["label"] for n in nodes if (n.get("label") or "").startswith("متعلق بـ")]
     assert hung == [f"متعلق بـ{head}"], hung

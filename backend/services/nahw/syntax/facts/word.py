@@ -487,14 +487,16 @@ def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
 
 def masdar_at_work(token: dict) -> bool:
     """A masdar working as its verb does, so a جار after it hangs on it (الْحُكْمِ عَلَى الْمُتَّهَمِينَ، حِرْصُ الْمُهَنْدِسِينَ عَلَى
-    الْمَوَاعِيدِ). It works bare as with ال or annexed (the Alfiyya, إعمال المصدر: مُضَافًا اَوْ مُجَرَّدًا اَوْ مَعَ أَلْ; page unchecked),
-    but a noun of a Form I measure (فَعْل، فِعْل، فَعَل) names a thing as often as a doing (بَيْتٌ، ثَوْبٌ، مَلَأٌ، عَرَضٌ), so bare and
-    indefinite it counts only when it is one of the doings the Qur'an hangs a جار on so (working_masdars: فِي شَكٍّ مِمَّا);
-    otherwise the جار after it is its صفة (رَجُلٌ مِنَ الْأَنْصَارِ). The nouns steeped in vagueness (vague_nouns: مِثْل، غَيْر، شِبْه) name no doing at all."""
-    if not is_masdar(token) or listed(token, "vague_nouns"):
+    الْمَوَاعِيدِ، دُخُولٌ إِلَى الْمَسْجِدِ). It works bare as with ال or annexed (the Alfiyya, إعمال المصدر: مُضَافًا اَوْ مُجَرَّدًا اَوْ
+    مَعَ أَلْ; page unchecked), but a short Form I measure, with no long vowel (فَعْل، فُعْل، فِعْل، فَعَل), names a thing as often as a
+    doing (بَيْتٌ، ثَوْبٌ، مَلَأٌ، عَرَضٌ), so bare and indefinite it counts only when it is one of the doings the Qur'an hangs a جار
+    on so (working_masdars: فِي شَكٍّ مِمَّا); otherwise the جار after it is its صفة (رَجُلٌ مِنَ الْأَنْصَارِ). A plural (بُيُوتٌ مِنْ
+    طِينٍ) and the nouns steeped in vagueness (vague_nouns: مِثْل، غَيْر، شِبْه) name no doing at all."""
+    if not is_masdar(token) or token.get("num") == "p" or listed(token, "vague_nouns"):
         return False
-    form_one = measure(stem_pattern(token.get("pattern") or "")).startswith("1")
-    return not form_one or token.get("stt") in ("d", "c") or listed(token, "working_masdars")
+    shape = measure(stem_pattern(token.get("pattern") or ""))
+    short_form_one = shape.startswith("1") and not any(long in shape for long in ("َا", "ُو", "ِي"))
+    return not short_form_one or token.get("stt") in ("d", "c") or listed(token, "working_masdars")
 
 
 def is_name(token: dict) -> bool:

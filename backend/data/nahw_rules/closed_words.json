@@ -207,8 +207,8 @@
   },
   "working_masdars": {
    "ar": "مصادر عاملة",
-   "_comment": "Masdars of a Form I measure that work bare and indefinite, a جار after them hanging on them (فِي شَكٍّ مِمَّا، بِظُلْمٍ). A Form I noun names a thing as often as a doing (بَيْتٌ فِي الْقَرْيَةِ: صفة), so only these count. Kept: the masdars the Quranic Treebank (data/tarkeeb) hangs a جار on while bare at least twice; left out of those: خير (an elative), غفل (a participle, بِغَافِلٍ), بشر (بَشَرٌ is a man) and سرمد (a time). Read by facts.masdar_at_work.",
-   "words": ["شك", "فتنة", "بعد", "حق", "فضل", "ظلم", "رحمة", "علم", "حسد", "حكم", "بر", "مسح", "قسم"]
+   "_comment": "Masdars of a short Form I measure (فَعْل، فُعْل، فِعْل، فَعَل) that work bare and indefinite, a جار after them hanging on them (فِي شَكٍّ مِمَّا، بِظُلْمٍ). Such a noun names a thing as often as a doing (بَيْتٌ فِي الْقَرْيَةِ: صفة), so only these count. Kept: the masdars the Quranic Treebank (data/tarkeeb) hangs a جار on while bare in at least two ayat (شك، فتنة، حق، فضل، ظلم 5 each, بعد 4, رحمة 2); left out of those: خير (an elative), غفل (a participle, بِغَافِلٍ), بشر (بَشَرٌ is a man), سرمد (a time) and بر (بَرًّا بِوَالِدَيْهِ 19:14, 19:32 is the adjective بَرّ). Matched by letters, so a short list keeps a homograph (عَلَم، قِسْم، حَكَم) from counting. Gaps: حب (حُبًّا لِلَّهِ, one ayah) and صبر. Read by facts.masdar_at_work.",
+   "words": ["شك", "فتنة", "بعد", "حق", "فضل", "ظلم", "رحمة"]
   },
   "likeness_jarr": {
    "ar": "كاف التشبيه",
