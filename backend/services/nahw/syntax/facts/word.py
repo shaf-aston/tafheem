@@ -57,6 +57,11 @@ def verb_tagged(token: dict) -> bool:
     return token["pos"].startswith("VRB")
 
 
+def tenseless_noun(token: dict) -> bool:
+    """A "verb" the parser tagged with no tense that CAMeL reads as a noun or adjective is that noun (اللهُ أكبرُ، وَهُوَ أَسْرَعُ)."""
+    return verb_tagged(token) and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun")
+
+
 def present_verb_tagged(token: dict) -> bool:
     """The parser tagged the word a present-tense verb."""
     return verb_tagged(token) and token.get("asp") == "i"
@@ -250,6 +255,8 @@ def shown_cases(token: dict) -> set[str]:
     three for a مقصور noun whose case is unseen, or a name whose case neither its vowels nor its reading show (آزر)."""
     if case_unseen(token) or token.get("pos_camel") == "noun_prop" and typed_or_parsed_case(token) is None:
         return {"u", "a", "i"}
+    if manqus_tanween(token):
+        return {"u", "i"}
     shown = typed_or_parsed_case(token)
     if shows_nasb_by_kasra(token) or shown == "a" and shows_jarr(token):
         return {shown, "a", "i"}
@@ -258,13 +265,31 @@ def shown_cases(token: dict) -> set[str]:
 
 def is_preposition(token: dict) -> bool:
     """A particle of the book's list of حروف الجر, or one the parser tags a preposition; a word
-    particles.stamp read one way (حتى before إذا is no جر) is what that reading says."""
+    particles.stamp read one way (حتى before إذا is no جر) is what that reading says. A و the parser tags
+    a joining word is واو القسم (وَاللَّهِ) only on a word that may be in jarr: on one typed in raf' or nasb
+    (وَخُلُقُهُ حَسَنٌ) it joins, since a جار leaves its word in jarr."""
     read = reading(token)
-    return token["pos"] == "PRT" and (read == "jarr" if read else token.get("pos_camel") == "prep" or read_as(token, "jarr"))
+    return token["pos"] == "PRT" and (read == "jarr" if read else token.get("pos_camel") == "prep"
+                                      or (token.get("pos_camel") != "conj" or token.get("case") in (None, "i")) and read_as(token, "jarr"))
+
+
+def manqus_tanween(token: dict) -> bool:
+    """قَاضٍ، مَاضٍ: a منقوص typed with its tanween is spelled alike in raf' and jarr (its nasb keeps the ya: قَاضِيًا)."""
+    return drops_ya(token.get("typed") or "", token["lemma"])
+
+
+def may_be_nasb(token: dict, typed_only: bool = False) -> bool:
+    """The word's ending allows nasb: typed (or, unless typed_only, parsed) in nasb, or its case unseen. Not a منقوص
+    typed with its tanween (قَاضٍ): its nasb keeps the ya (قَاضِيًا), so it is raf' or jarr only."""
+    case = typed_case_of(token) if typed_only else typed_or_parsed_case(token)
+    return case in (None, "a") and not manqus_tanween(token)
 
 
 def typed_or_parsed_case(token: dict) -> str | None:
-    """What the reader typed first, the parser's guess second."""
+    """What the reader typed first, the parser's guess second. A منقوص typed with its tanween is one of two cases,
+    so the guess, read off those same letters, says no more than the letters do."""
+    if manqus_tanween(token):
+        return None
     return typed_case_of(token) or CAMEL_CASE.get(token.get("cas"))
 
 
@@ -486,4 +511,4 @@ def purpose(token: dict, verb: dict) -> bool:
     in nasb and indefinite or a مضاف, gives the reason for the verb: its مفعول لأجله
     (Tasheel 3.8.3 p73). Any other masdar there is a حال (جاء ركضًا)."""
     return (listed(token, "reason_masdars") and not same_root(token, verb)
-            and typed_or_parsed_case(token) in (None, "a") and token.get("stt") in ("i", "c"))
+            and may_be_nasb(token) and token.get("stt") in ("i", "c"))

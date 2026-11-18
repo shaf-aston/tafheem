@@ -78,6 +78,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - elative_specified: an indefinite nasb noun hung on an elative as مضاف إليه → its تمييز (`backend/services/nahw/syntax/repair/khabar.py`)
 - after_pointer: an indefinite word hung as the صفة of a definite opener (هذا، زيد) → that opener's khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - relative_khabar: a known opener, then مَنْ/ما with its صلة and nothing else said → the relative is its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
+- khabar_after_silah: a known opener, الذي and a whole nominal صلة, then a raf' word in the الذي's gender and number → the opener's khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - name_not_told_by_ma: a person's name, ما, then a verb holding the ه back to the name → ما negates, the verb the khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - majrur_of_jar: the noun straight after a preposition that the parser hung as a subject (هَلْ مِنْ مُجِيبٍ) → the preposition's majrur (`backend/services/nahw/syntax/repair/khabar.py`)
 - hung_on_pronoun: a word hung on a pronoun joined to a preposition (بِكُمُ الْأُمَمَ) → the same link on the جار ومجرور's head (`backend/services/nahw/syntax/repair/khabar.py`)
@@ -85,14 +86,19 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - zarf_is_no_subject: a place or time word hung as the subject of the indefinite noun after it → that noun's شبه جملة, the khabar said first (`backend/services/nahw/syntax/repair/khabar.py`)
 - khabar_said_first: two khabars hung on a pair-governing particle, a place or time word then an indefinite noun → the noun is its name (`backend/services/nahw/syntax/repair/khabar.py`)
 - second_khabar: an adjective hung on an adjective khabar → a second khabar, not its صفة (`backend/services/nahw/syntax/repair/khabar.py`)
+- known_pair_in_order: a known khabar (or إنّ's lone noun) before its own subject, no ظرف or verb-like word → the مبتدأ, the subject its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - naat_after_its_noun: a word with ال hung before the indefinite word that heads a verbless sentence → the mubtada, that word its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
+- naat_not_subject: a word with ال hung as the subject of a known subject before it, in its case → its صفة (`backend/services/nahw/syntax/repair/khabar.py`)
 - before_la: a noun hung on لا from before it → the mubtada, the لا clause its khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - la_over_its_khabar: لا hung under the word after its noun → لا heads the pair, the noun its اسم, that word its خبر (`backend/services/nahw/syntax/repair/khabar.py`)
 - jar_off_particle: a جار ومجرور hung on إنّ or لا → on its وصف khabar, or the khabar itself (`backend/services/nahw/syntax/repair/khabar.py`)
+- masdar_khabar: إنما العدل أن يسمع → أن + verb hung on إنّ's noun, no khabar yet → it is the khabar (`backend/services/nahw/syntax/repair/khabar.py`)
 - jar_on_its_khabar: a جار ومجرور between a known مبتدأ and its وصف khabar → hangs on the khabar (`backend/services/nahw/syntax/repair/khabar.py`)
+- tawkeed_before_khabar: زيد نفسه حاضر → نفس/كل/جميع + pronoun, khabar fits the noun → توكيد (`backend/services/nahw/syntax/repair/khabar.py`)
+- sentence_khabar: زيد أبوه عالم → a word with the مبتدأ's pronoun heads its khabar sentence (`backend/services/nahw/syntax/repair/khabar.py`)
 - hasr_khabar: a noun after إلا in a negated verbless clause → the khabar of the mubtada before it (`backend/services/nahw/syntax/repair/khabar.py`)
 - described_doer: a singular وصف after a negation or question word, then a raf' noun → the وصف heads the clause (مبتدأ), the noun its doer (`backend/services/nahw/syntax/repair/khabar.py`)
-- hal_clause: و + a raf' pronoun or noun + a verb or khabar → a hal clause, the noun its mubtada (`backend/services/nahw/syntax/repair/hal.py`)
+- hal_clause: و + a raf' pronoun or noun + a verb or khabar → a hal clause, the noun its mubtada, the و hung on the verb (`backend/services/nahw/syntax/repair/hal.py`)
 - oath_clause: opening و + a relative or jarr noun, the clause answered by a lam, لا, ما, قد or إن → the oath (`backend/services/nahw/syntax/repair/clause.py`)
 - amma_clause: أما + one noun + a فاء answer → the noun is the mubtada, the answer its khabar, a verb it was doer of its صلة (`backend/services/nahw/syntax/repair/clause.py`)
 - negated_conjunct: و + لا + a known noun hung on the لا → joined to the noun before the و, the لا only stressing the negation (`backend/services/nahw/syntax/repair/clause.py`)
@@ -109,6 +115,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 Book links, in order (switches in `backend/data/nahw_rules/closed_words.json` → `vetoes`):
 
 <!-- list:links -->
+- relative_by_list: بالذي نجح → الذي، التي … (mawsul `only`, not من/ما/أي) are relatives whatever the tagger said
 - pointer_heads_its_noun: هذا الكتابُ → the pointer takes the pair's place
 - ma_cancels_inna: إنّما → ما stops إنّ working
 - listed_preposition_takes_majrur: رُبَّ رجلٍ → listed word becomes حرف جر

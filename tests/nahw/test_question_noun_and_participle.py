@@ -56,7 +56,7 @@ def test_after_negation_and_illa_the_noun_is_the_khabar(sentence, roles):
 
 def _tok(id, form, pos, head, rel, **feats):
     return {"id": id, "form": form, "lemma": form, "pos": pos, "head": head, "rel": rel, "token_type": "baseword",
-            "ud": "", "pos_camel": "verb" if pos == "VRB" else "noun", "vox": "na", "asp": "p" if pos == "VRB" else "na",
+            "ud": "", "pos_camel": {"VRB": "verb", "PRT": "part"}.get(pos, "noun"), "vox": "na", "asp": "p" if pos == "VRB" else "na",
             "stt": "i", "cas": "u", "base": form, **feats}
 
 

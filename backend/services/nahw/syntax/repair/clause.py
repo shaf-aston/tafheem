@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from backend.services.nahw.book import is_one
+from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.syntax.facts import Sentence, is_known, is_preposition, is_suffix, is_verb, noun_tagged, stays_adverb, typed_case_of
 
 
@@ -69,7 +70,7 @@ def negated_conjunct(s: Sentence) -> None:
     for waw in tokens:
         la, noun, before = s.by_id.get(waw["id"] + 1), s.by_id.get(waw["id"] + 2), s.head(waw)
         if (waw["pos"] == "PRT" and waw["lemma"].strip("+") == "و" and before and noun_tagged(before) and la and noun
-                and is_one(la["lemma"], "negation") and la["head"] == waw["id"] and noun["head"] == la["id"]
+                and strip_diacritics(la["lemma"]) == "لا" and la["head"] == waw["id"] and noun["head"] == la["id"]
                 and noun["rel"] == "SBJ" and noun_tagged(noun) and not is_verb(noun) and is_known(noun, s)):
             s.relink(noun, waw["id"], "OBJ")
             s.relink(la, noun["id"], "MOD")

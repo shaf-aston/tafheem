@@ -57,6 +57,40 @@ def group_into_units(c: Picture) -> None:
     if pulled:
         children_of[top["id"]] = [kid for kid in children_of[top["id"]] if kid not in subjects]
         roots = subjects + roots
+    # إِنَّمَا زَيْدٌ قَائِمٌ: ما الكافة leaves إنّ working on nothing, so the pair is the إنّ's own sentence: the مبتدأ
+    # right after the ما stands beside its khabar under the إنّ (as اسم إنّ does), not inside a sentence of its own
+    for particle in [t for t in drawn if t["id"] in c.typed_at and c.named[c.typed_at[t["id"]]].get("kaffa")]:
+        for khabar in list(children_of[particle["id"]]):
+            subjects = [kid for kid in children_of[khabar["id"]] if role_of[kid["id"]] == NAMED.mubtada and min(
+                t["id"] for t in drawn if t is kid or is_inside(t, kid, children_of)) == particle["id"] + 2]
+            children_of[khabar["id"]] = [kid for kid in children_of[khabar["id"]] if kid not in subjects]
+            children_of[particle["id"]] += subjects
+    # زَيْدٌ قَائِمٌ وَعَمْرٌو قَاعِدٌ، زَيْدٌ فِي الدَّارِ وَهُوَ نَائِمٌ، إِنَّمَا زَيْدٌ قَائِمٌ وَعَمْرٌو قَاعِدٌ: a nominal sentence
+    # (a مبتدأ with its khabar, or إنّ and its pair) the و brings after a unit of the first sentence is joined to that
+    # whole sentence, not to the unit the parser hung it on: so it and its و stand beside that unit. Inside a clause
+    # (a صلة) the clause is the sentence it joins.
+    def nominal(token: dict) -> bool:
+        kids = children_of[token["id"]]
+        return c.family_of[token["id"]] == "inna" or any(role_of[t["id"]] == NAMED.mubtada for t in kids) \
+            or token["pos"] == "PRT" and any(nominal(t) for t in kids)
+    def is_waw(token: dict) -> bool:
+        return token["pos"] == "PRT" and token["lemma"].strip("+") == "و"
+    def home_of(token: dict) -> dict | None:
+        return next((t for t in drawn if token in children_of[t["id"]]), None)
+    # the khabar a word, not a sentence (فَأُعَذِّبُهُمْ... وَمَا لَهُمْ مِنْ نَاصِرِينَ: a sentence joins the sentence before it;
+    # a verb is named فعل), or a jar hung on the khabar no one writes (زَيْدٌ فِي الدَّارِ)
+    def word_khabar(token: dict) -> bool:
+        return (role_of[token["id"]] in c.khabars or token["id"] in c.hung) and (token in roots or home_of(token) in roots)
+    for unit in [t for t in drawn if word_khabar(t)]:
+        for head in [kid for kid in children_of[unit["id"]] if nominal(kid)]:
+            first = min(t["id"] for t in drawn if t is head or is_inside(t, head, children_of))
+            waw = head if is_waw(head) else next((kid for kid in children_of[unit["id"]] if kid["id"] == first - 1 and is_waw(kid)), None)
+            if waw is None:  # وَلَوْ أَنَّ لِلَّذِينَ ظَلَمُوا...: what لو opens stays under it
+                continue
+            home = home_of(unit)
+            for moved in [head] if waw is head else [waw, head]:
+                children_of[unit["id"]].remove(moved)
+                (children_of[home["id"]] if home else roots).append(moved)
     # هل أنتَ تكتبُ، ما أنتَ إلا بشر، مَنْ أنتَ في المدينة: a unit typed wholly before or after the unit it
     # hangs in, with a word of another unit between them, cannot sit inside that unit and keep the
     # order typed, so it goes up to the unit above until no such word stands between

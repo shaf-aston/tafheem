@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
-from backend.services.nahw.syntax.facts.word import purpose, shows_nasb_by_kasra, is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
+from backend.services.nahw.syntax.facts.word import manqus_tanween, may_be_nasb, purpose, shows_nasb_by_kasra, is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, stays_adverb, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
@@ -27,12 +27,6 @@ def _doer_by_extra_ba(token: dict, verb: dict) -> bool:
     return bool(rule and rule["role"] == NAMED.fail and token["rel"] == rule["rel"] and is_extra_ba(token["form"]))
 
 
-def completes_kaada(token: dict, s: Sentence) -> bool:
-    """The present verb that finishes a كاد-type verb; its clause is that verb's khabar."""
-    head = s.head(token)
-    return bool(head and is_verb(token) and s.family(head) == "kaada")
-
-
 def _typed_before_its_root(token: dict, s: Sentence) -> bool:
     """A time or place word typed in nasb, hung on the sentence's own head after it (not under a governor,
     where a word such as سحرًا is a plain noun: إنَّ مِنَ الْبَيَانِ لَسِحْرًا)."""
@@ -51,7 +45,7 @@ def zarf_of_khabar(token: dict, s: Sentence) -> bool:
     on_particle = token["rel"] == "MOD" and (head := s.head(token)) is not None and s.family(head) == "inna"
     return ((s.verbless or rests or on_particle) and is_zarf(token, s) and "interrog" not in token.get("pos_camel", "")
             and token["rel"] in ("---", "MOD", "PRD")
-            and typed_or_parsed_case(token) in (None, "a")
+            and may_be_nasb(token)
             and (any(k["rel"] == "IDF" for k in s.kids(token)) or _typed_before_its_root(token, s)))
 
 
@@ -73,20 +67,20 @@ def place_time(token: dict, s: Sentence) -> bool:
         return True
     # مسافرٌ غدًا: a participle works like its verb
     # كُلَّمَا جَاءَ زَيْدٌ أَكْرَمْتُهُ: its own verb hung on it, whatever link it has to the verb above
-    opens_verb = typed_or_parsed_case(token) in (None, "a") and any(
+    opens_verb = may_be_nasb(token) and any(
         is_verb(k) and k["id"] > token["id"] for k in s.kids(token))
     # مَنْ يَقُمْ لَيْلَةَ الْقَدْرِ: a verb that is لازم (closed_words `intransitive_verbs`) leaves a time word typed in nasb no object to be
     # يَسِيرُ مِائَةَ عَامٍ: a number counting a time word is that zarf wherever the parser hung it (Awdah V2 p231); لَأَقْضِيَنَّ بَيْنَكُمَا:
     # so is a place word the reader put in nasb, no verb takes it as an object (Tasheel 3.2 p67)
     if head and is_verb(head) and token["rel"] == "OBJ" and (
             typed_case_of(token) == "a" and (counts(token) and is_zarf(token, s) or is_one(head["lemma"], "intransitive_verbs"))
-            or typed_case_of(token) in (None, "a") and listed(token, "zarf_makan")):
+            or may_be_nasb(token, typed_only=True) and listed(token, "zarf_makan")):
         return True
     # صَدَقَةٌ كُلَّ يَوْمٍ تَطْلُعُ فِيهِ الشَّمْسُ: a doer is never in nasb, so a time or place word the reader put in nasb that the parser hung as one is the zarf
     if head and is_verb(head) and token["rel"] == "SBJ" and typed_case_of(token) == "a":
         return True
     if head and works_as_verb(head) and (is_verb(head) or token["rel"] == "MOD"):
-        return token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") or opens_verb
+        return token["rel"] in ("MOD", "IDF") and may_be_nasb(token, typed_only=True) or opens_verb
     # وَقْفِ التَّصْعِيدِ بَيْنَ الطَّرَفَيْنِ، لَا هِجْرَةَ بَعْدَ الْفَتْحِ: hung on a noun or on لا, a time or place word the
     # reader put in nasb is still the zarf, as a noun's مضاف إليه or نعت is never put in nasb for it
     return opens_verb or bool(head and zarf_in_nasb(token, s))
@@ -162,7 +156,8 @@ def wants_object(verb: dict, kids: list[dict]) -> bool:
     (قتل زيد عمرا ظالما), as one that seldom takes a noun does (جاء زيد راكبا، فَتَقْعُدَ مَذْمُومًا) and a passive
     (قُتِلَ مَظْلُومًا)."""
     return (not is_passive(verb) and takes_object(verb["lemma"]) and not is_one(verb["lemma"], "intransitive_verbs")
-            and not any(k["rel"] == "OBJ" and not is_verb(k) for k in kids))  # a verb the parser hung as its OBJ (إِلَّا رَعَى) is no object
+            # a verb the parser hung as its OBJ (إِلَّا رَعَى) is no object, nor a jar (مَنْ عَمِلَ صَالِحًا فَلَهُ أَجْرٌ: the answer's لَهُ)
+            and not any(k["rel"] == "OBJ" and not is_verb(k) and k["pos"] != "PRT" for k in kids))
 
 
 def busied_before(token: dict, s: Sentence) -> bool:
@@ -186,7 +181,7 @@ def verb_place(token: dict, s: Sentence) -> str:
     absolute object (same root), a hal or a tamyeez."""
     if place_time(token, s):
         return "place_time"
-    if s.head(token) and listed(token, "verbless_masdars") and token.get("stt") == "i" and typed_or_parsed_case(token) in (None, "a") and token["rel"] != "PRD":
+    if s.head(token) and listed(token, "verbless_masdars") and token.get("stt") == "i" and may_be_nasb(token) and token["rel"] != "PRD":
         # مجتهداتٌ جِدًّا: a heard masdar whose verb is never said (جَدَّ جِدًّا); a lone one (شكرًا) gets its drawn verb
         # (understood.verb); not the khabar of كان (كَانَ الْعَيْنُ حَقًّا)
         return "absolute"
@@ -203,7 +198,7 @@ def verb_place(token: dict, s: Sentence) -> str:
     # (notes, المفعول به p0: a فعل or a شبه الفعل governs it)
     if head and not is_verb(head) and at_work(head, s):
         # زيدٌ ضاربٌ ضربًا: the participle's own masdar is its مفعول مطلق, as the verb's is (Alfiyya: بمثله أو فعل أو وصف نصب)
-        if (token["id"] > head["id"] and typed in (None, "a") and token.get("stt") == "i"
+        if (token["id"] > head["id"] and may_be_nasb(token, typed_only=True) and token.get("stt") == "i"
                 and is_masdar(token, weak_or_doubled=False) and same_root(token, head)):
             return "absolute"
         if _object_of_participle(token, head):
@@ -241,8 +236,10 @@ def verb_place(token: dict, s: Sentence) -> str:
             told = s.head(head)
             # حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ: a doer said earlier (أَحَدُكُمْ) is the one the verb's hidden pronoun goes back to;
             # a passive verb has no such doer (فَجُمِعَ مِنَ التَّبَرُّعَاتِ مَا يَكْفِي: the relative is its deputy)
-            said = not is_passive(head) and any(subject_link(t) and noun_tagged(t) and t["id"] < head["id"] for t in s.tokens)
-            if not (holds_doer(head, siblings) or said or (told and noun_tagged(told) and told["id"] < head["id"])):
+            said = not is_passive(head) and any((subject_link(t) or t["rel"] == "---") and noun_tagged(t) and t["id"] < head["id"] for t in s.tokens)
+            # زَيْدٌ قَالَ يَسْعَدُ مَنْ صَدَقَ: a verb that takes no object has no place for the relative but its doer's
+            takes = not is_one(head["lemma"], "intransitive_verbs")
+            if not (holds_doer(head, siblings) or (takes and (said or (told and noun_tagged(told) and told["id"] < head["id"])))):
                 return "subject"
             if not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings):
                 return "object"
@@ -276,12 +273,12 @@ def verb_place(token: dict, s: Sentence) -> str:
                 and not (is_state_word(token) and not stands_for_its_noun(token))
                 and not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)):
             return "object"
-        if (not before and typed in (None, "a") and token.get("stt") in ("i", "c")
+        if (not before and may_be_nasb(token, typed_only=True) and token.get("stt") in ("i", "c")
                 and is_masdar(token, weak_or_doubled=False) and same_root(token, head)):
             return "absolute"  # يُطَهِّرَكُمْ تَطْهِيرًا: the verb's own masdar
         # رَأَيْتُ النِّسَاءَ حَامِلَاتٍ: a ـات plural's kasra is its nasb (Alfiyya: يكسر في الجر وفي النصب معا)
-        nasb_shaped = typed in (None, "a") or shows_nasb_by_kasra(token)
-        after_first = rel == "OBJ" and typed in (None, "a") and any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)
+        nasb_shaped = may_be_nasb(token, typed_only=True) or shows_nasb_by_kasra(token)
+        after_first = rel == "OBJ" and may_be_nasb(token, typed_only=True) and any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings)
         # لا يُؤْتُونَ النَّاسَ نَقِيرًا: a verb of two objects keeps its second OBJ, so no state or tamyeez
         if after_first and (s.family(head) == "zanna" or is_one(head["lemma"], "two_objects_give")):
             return "second_object"
@@ -295,7 +292,7 @@ def verb_place(token: dict, s: Sentence) -> str:
         if not before and rel in ("OBJ", "MOD", "TMZ") and purpose(token, head):
             return "purpose"
         # اشْتَرَتِ الْمَكْتَبَةُ خَمْسَةً وَعِشْرِينَ كِتَابًا: a number is a noun the tamyeez counts, never a state, though CAMeL tags it an adjective
-        if counts(token) and rel == "OBJ" and typed in (None, "a") and not after_first:
+        if counts(token) and rel == "OBJ" and may_be_nasb(token, typed_only=True) and not after_first:
             return "object"
         # زَيْدٌ أَكْرَمَ ضَيْفًا: a verb said of the مبتدأ the sentence rests on holds its doer, the
         # pronoun back to it its khabar must carry (رابط جملة الخبر, Ibn Aqil on the Alfiyya)
@@ -335,6 +332,9 @@ def verb_place(token: dict, s: Sentence) -> str:
                 # hal or tamyeez, so its fatha makes it the object (unless it is the verb's own masdar)
                 or (rel == "MOD" and typed == "a" and token.get("stt") in ("d", "c") and is_plain_noun(token)
                     and not same_root(token, head))):
+            # أَعْطَى زَيْدًا قَاضٍ: a منقوص with tanween hung on a verb is no jarr, and its nasb would keep the ya (قَاضِيًا), so it is raf'
+            if typed is None and manqus_tanween(token):
+                typed = "u"
             if typed in ("u", "a"):  # damma stands for the doer (or its deputy), fatha is the done-to
                 # طُوِّقَ طَوْقًا: under a passive verb the first object became the deputy, so
                 # a fatha left is the second (أُعْطِيَ الولدُ الكتابَ)

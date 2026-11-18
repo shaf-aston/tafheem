@@ -21,6 +21,13 @@ def draw_conditions(c: Picture) -> None:
             continue
         condition = condition_of(bases[i]["form"])
         opener, verb, answer = bases[i], by_id[subject_id(i, found, bases)], bases[found["condition"]["answer"]]
+        # فَهُوَ نَاجِحٌ، فَلَهُ أَجْرٌ: the answer is the sentence its first word is in, so a مبتدأ (or a jar) the tying
+        # letter is written on answers through the khabar heading that sentence (picture.unwritten)
+        while (up := by_id.get(by_id[answer["id"]]["head"])) and up["id"] in c.nominal and up["id"] not in (opener["id"], verb["id"]):
+            answer = up
+        # the مبتدأ the top khabar was drawn beside (picture.units) is inside the answer, which is one sentence
+        for kid in [k for k in roots if k["id"] != answer["id"] and by_id[k["id"]]["head"] == answer["id"]]:
+            move_to(holder, kid, children_of[answer["id"]])
         if not condition["noun"]:
             name_of[opener["id"]] = condition["opener"]  # إن: حرف شرط جازم; a noun keeps its place
         # فَلْيَصُمْهُ، لأمرتُ: the letter written onto the answer ties it to the condition, so it
@@ -63,14 +70,14 @@ def draw_conditions(c: Picture) -> None:
         outer = next((a for a in opened if up and is_inside(up, by_id[a], children_of)), None)
         if up and outer is not None and up["id"] in holder:
             move_to(holder, up, holder[outer])
-    # وَمَنْ يُشْرِكْ: a particle typed before the opener, which the parser hung on the answer, comes
-    # before the whole condition, so it stands at the front of the condition's unit, not in the answer
+    # وَمَنْ يُشْرِكْ: a particle typed before the opener, which the parser hung on the answer (or on the opener: فَمَنْ),
+    # comes before the whole condition, so it stands at the front of the condition's unit, not in the answer
     for answer_id, (opener, *_) in opened.items():
-        for kid in [k for k in children_of[answer_id] if k["pos"] == "PRT" and at[k["id"]] < at[opener["id"]]]:
+        for kid in [k for k in children_of[answer_id] + children_of[opener["id"]] if k["pos"] == "PRT" and at[k["id"]] < at[opener["id"]]]:
             opened[answer_id] += (take_from(holder, kid),)
     # a مبتدأ drawn beside its khabar unit heads no sentence, nor does that khabar: each keeps its
     # job under the sentence, a مبتدأ with words of its own too (كِتَابُ الطَّالِبِ جَدِيدٌ، لَزَيْدٌ أَفْضَلُ); so is
     # any half of a sentence drawn in several halves side by side (رَجُلٌ كَرِيمٌ فِي الدَّارِ: the مبتدأ unit beside
     # its unwritten خبر ثابت): the sentence is all of them, none is it alone
-    root = None if pulled or len(roots) > 1 else roots[0]
+    root = None if len(roots) > 1 or pulled else roots[0]
     c.opened, c.root = opened, root

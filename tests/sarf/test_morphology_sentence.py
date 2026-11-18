@@ -128,6 +128,17 @@ def test_a_command_with_its_object_written_on_is_split_off_the_pronoun(word: str
 
 
 @needs_camel
+@pytest.mark.parametrize("sentence, word, pos", [
+    ("رَكِبُوا الْفُلْكَ", "الْفُلْكَ", "noun"),
+    ("اِلْتَقَطَهُ بَعْضُ السَّيَّارَةِ", "اِلْتَقَطَهُ", "verb"),
+])
+def test_a_word_the_dictionary_reads_only_with_the_article_is_no_command(sentence: str, word: str, pos: str):
+    # الْفُلْكَ: the dictionary has فَلَك only, its vowels not the ones typed; ال is a sign of the noun, so the word is
+    # no command of a verb it has no record of (اُلْفُلْ + كَ); اِلْتَقَطَهُ, a verb it has, stays one
+    assert _pos_of(sentence, word) == pos
+
+
+@needs_camel
 def test_a_command_the_table_reads_with_no_one_past_is_named_by_its_own_letters():
     # فَاقْبَلْهَا: the table's closest cells name no one past, so the word is the verb alone, its فَ and هَا peeled off
     tag = morphology.analyze_sentence("فَاقْبَلْهَا")[0]

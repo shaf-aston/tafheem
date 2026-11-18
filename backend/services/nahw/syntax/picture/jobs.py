@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw.book import book_spelling, case_of, condition_of, is_one, teacher_rules
 from backend.services.nahw.syntax.doer import written_on
-from backend.services.nahw.syntax.facts import is_passive, is_preposition, is_verb, ma_kind
+from backend.services.nahw.syntax.facts import is_participle, is_passive, is_preposition, is_verb, listed, ma_kind
 from backend.services.nahw.syntax.naming import NAMED
 from backend.services.nahw.syntax.picture.names import FRAMES, SISTERS, command_name, finer_name
 from backend.services.nahw.syntax.picture.state import Picture
@@ -22,8 +22,8 @@ def give_jobs(c: Picture) -> None:
     # before it under it (زيدٌ أبوه عالمٌ): verbal or nominal, it is drawn as a sentence
     # (hung on a word other than that مبتدأ: the parser can draw the two pointing at each other)
     nominal = {token["id"] for token in drawn if role_of[token["id"]] == NAMED.khabar and any(
-        t["head"] == token["id"] and t["id"] < token["id"] and role_of[t["id"]] == NAMED.mubtada
-        and token["head"] != t["id"] for t in drawn)}
+        t["head"] == token["id"] and t["id"] < token["id"]
+        and role_of[t["id"]] == NAMED.mubtada and token["head"] != t["id"] for t in drawn)}
     opens = {token["id"] for token in drawn if role_of[token["id"]] == NAMED.fil} | nominal
     # أكلتُ ما طبختَ: a ما whose صلة has room for its عائد is the relative, whatever the tagger
     # guessed; سرّني ما قمتَ: one with none is ما المصدرية (facts.ma_kind)
@@ -38,6 +38,13 @@ def give_jobs(c: Picture) -> None:
         if governor and governor["pos"] == "PRT" and (frame := condition_of(governor["form"])) and frame.get("subject"):
             return frame["subject"], case_of(frame["subject"])
         rel = token["rel"]
+        # وَأَنْ تَصُومُوا خَيْرٌ لَكُمْ، لَكَ مَا تُرِيدُ: a doer is a verb's or a participle's (Tasheel 2.4.1), so a unit
+        # hung as the subject of a noun or a jar is its مبتدأ, and that word its khabar; إِنَّمَا الْعَدْلُ أَنْ يُسْمَعَ:
+        # unless that noun is the مبتدأ said before it (of two known words the first is the مبتدأ), when it is the خبر
+        if rel == "SBJ" and not (governor and (is_verb(governor) or is_participle(governor))):
+            said_first = governor and governor["id"] < token["id"] and role_of.get(governor["id"]) == NAMED.mubtada
+            job = NAMED.khabar if said_first else NAMED.mubtada
+            return job, case_of(job)
         if (governor and rel in ("SBJ", "OBJ") and is_passive(governor)
                 and not any(t["head"] == governor["id"] and t["rel"] in ("SBJ", "OBJ") and t is not token and t["pos"] != "PRT" for t in drawn)
                 # أُمِرْتُ أَنْ أَكُونَ: the تُ written onto the verb is its deputy, so the masdar is no نائب فاعل
@@ -55,11 +62,21 @@ def give_jobs(c: Picture) -> None:
                     role_of[verb["id"]] = NAMED.fil  # بما تُرِكَ العملُ: the verb is no صفة of ما
         elif kind == "relative":
             token["pos"], token["pos_camel"] = "NOM", "pron_rel"
-    # جاء الذي نجح: the clause after a relative is its صلة, with no place of its own
-    for token in drawn:
+    # جاء الذي نجح: the clause after a relative is its صلة, with no place of its own; كَمْ مِنْ كِتَابٍ قَرَأْتُهُ:
+    # a word the tagger calls relative but no book lists as one (closed_words mawsul) has none. A relative has one
+    # صلة: a later clause hung on it is one too only when joined to it by و، أو، ثم (وَهُوَ الَّذِي سَخَّرَ ... وَتَرَى
+    # الْفُلْكَ); else it tells of the relative (الَّذِي يَقْرَأُ كَثِيرًا يَزْدَادُ عِلْمُهُ، فَأَمَّا الَّذِينَ كَفَرُوا فَأُعَذِّبُهُمْ: its khabar)
+    def joined(clause: dict, relative: dict) -> bool:
+        return any(t["head"] == clause["id"] and relative["id"] < t["id"] < clause["id"] and is_one(t["form"], "atf", "joins_mood")
+                   for t in drawn)
+    with_silah: set[int] = set()
+    for token in sorted(drawn, key=lambda t: t["id"]):
         up = next((t for t in drawn if t["id"] == token["head"]), None)
-        if up and "rel" in up.get("pos_camel", "") and not up.get("reading") and up["id"] < token["id"] and token["id"] in opens                 and "condition" not in named[typed_at.get(up["id"], 0)]:
+        if up and "rel" in up.get("pos_camel", "") and listed(up, "mawsul") and not up.get("reading") and up["id"] < token["id"] \
+                and token["id"] in opens and "condition" not in named[typed_at.get(up["id"], 0)] \
+                and (up["id"] not in with_silah or joined(token, up)):
             job_of[token["id"]] = NAMED.silah
+            with_silah.add(up["id"])
     c.job_by_place, c.job_of, c.kind_of_ma, c.ma_card = job_by_place, job_of, kind_of_ma, ma_card
     c.masdar, c.nominal, c.opens = masdar, nominal, opens
 

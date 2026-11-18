@@ -703,11 +703,16 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # a name the dictionary files, typed with vowels (هَلْ سَامِر مَوْجُود), stays a name while it fits them: its own vowels are only
             # partly marked, so a verb that marks more of them is not a better fit
             name = out[i].get("pos") == "noun_prop" and not no_vowels_typed([word])
-            if said is not None and (here is None or not name and said >= here):
+            # nor one that puts on a shadda the vowelled word lacks while the reading kept puts on none (أَبُوهُ is
+            # "his father", not أَبُّوهُ): the writing shows every letter (الأصل عدم الزيادة)
+            added = verb and not no_vowels_typed([word]) and _added(verb, word) > max(_added(out[i], word), 0)
+            if said is not None and not added and (here is None or not name and said >= here):
                 out[i] = verb
     # أَكْرَمَ مُصْطَفَى يَحْيَى: nothing before the sentence's first word puts it in nasb, so a typed fatha
-    # the past verb reads as well as a noun's nasb (the elative أَكْرَمَ, here before a name showing no case) is that verb
-    if out and out[0].get("cas") == "a" and typed_case(tokens[0]) == "a":
+    # the past verb reads as well as a noun's nasb (the elative أَكْرَمَ, here before a name showing no case) is that verb;
+    # with a pronoun on it the case is the vowel before the pronoun (خَلَقَكُمْ: not the noun خَلَق "worn" in nasb)
+    pronoun = "".join(p[1:] for p in strip_diacritics(out[0].get("atbtok") or "").split("_") if p.startswith("+")) if out else ""
+    if out and out[0].get("cas") == "a" and typed_case(tokens[0], len(pronoun)) == "a":
         word, ranked = steps[0]
         verb = best_reading(word, [r for r in _widened(tokens[0], ranked) if r.get("pos") == "verb" and r.get("asp") == "p"])
         if verb and best_reading(word, [verb, out[0]]) is verb:
@@ -887,6 +892,10 @@ def _table_verb(typed: str, evidence: str, ranked: list[dict], bare: bool = Fals
     object pronoun written on (اِهْدِنَا) is split here. A word typed with no vowel (`bare`), which the dictionary has
     no reading of, is read off the table too, where its root is one the books file (dictionary.roots.spelling)."""
     from backend.services.dictionary import roots  # it reads with this module
+    # الْفُلْكَ: a word the dictionary reads only as a noun with the article (فَلَك) is that noun with its vowels unknown;
+    # ال is a sign of the noun (Ibn Aqil, علامات الاسم: أل; page unchecked), not the front of a command it has no record of
+    if (had := [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")]) and all(r.get("bw", "").startswith("ال/DET+") for r in had):
+        return None
     if (sarf := verb_reader.reading_of(typed, _seen_verb, roots.spelling if bare else None)) and (sarf.get("asp") != "c" or "+" in sarf.get("atbtok", "")) \
             and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
         return {"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}  # its past, else the verb's own letters

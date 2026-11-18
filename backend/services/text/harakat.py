@@ -231,6 +231,7 @@ def build_nun(word: str) -> str | None:
 # The vowel a mark writes, so a fatha and a fathatan on the same letter still
 # disagree (one is definite, one is not) while a missing mark agrees with anything.
 # The dagger alef is a fatha said long: لٰكِنْ is what a reader types as لَكِنْ.
+_PRONOUNS = {"ه", "ها", "هما", "هم", "هن", "ك", "كما", "كم", "كن", "ي", "نا"}  # attached to a noun
 _MARK = {"َ": "a", "ُ": "u", "ِ": "i", "ً": "an", "ٌ": "un", "ٍ": "in", SUKUN: "o", DAGGER_ALEF: "a"}
 
 
@@ -262,8 +263,18 @@ def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
         # the أَفْعَل its letters also spell
         return None
     agreed = doubled = 0
-    for (_, said), (_, read) in zip(mine, theirs):
+    before: set = set()
+    for at, ((letter, said), (_, read)) in enumerate(zip(mine, theirs)):
         said_v, read_v = {_MARK[m] for m in said if m in _MARK}, {_MARK[m] for m in read if m in _MARK}
+        # أَبُوهُ: a و typed bare after a damma, with only an attached pronoun after it, is that damma drawn long, the
+        # six nouns' sign of raf' (Ajrumiyya: الواو علامة للرفع في الأسماء الخمسة), so CAMeL's nasb or jarr written on
+        # it (أَبُوَهُ) does not fit; its raf' it writes as a damma (أَبُوُهُ). A و inside the stem may be a consonant
+        # with its fatha left off (مُواطِن، مُوظَّف), a last و may take a verb's nasb (لَنْ يَدْعُوَ), and a ي a vowel
+        # of its own (لِيَ)
+        if (not said and bare_letters(letter) == "و" and "".join(bare_letters(c) for c, _ in mine[at + 1:]) in _PRONOUNS
+                and {_MARK[m] for m in before if m in _MARK} == {"u"} and read_v - {"u", "o"}):
+            return None
+        before = said
         if not said or not read:
             continue
         if said_v and read_v and said_v != read_v:

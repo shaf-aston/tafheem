@@ -8,16 +8,16 @@ from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
-from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_known, is_name, is_preposition, listed, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, verb_tagged, works_as_verb
+from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_known, is_name, is_preposition, listed, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, tenseless_noun, verb_tagged, works_as_verb
 
 
 def typed_words(bases: list[dict], tokens: list[dict]) -> None:
     """Reads what was typed into each base word (`typed`, set by `correct`): its vowels, and its kind and tense where they or the book say otherwise."""
     for i, token in enumerate(bases):
         word = token["typed"]
-        # a tenseless "verb" CAMeL reads as a noun or adjective is that noun (اللهُ أكبرُ); a word the book lists only as a ظرف,
+        # a tenseless "verb" CAMeL reads as a noun is that noun (facts.tenseless_noun); a word the book lists only as a ظرف,
         # or only as a conditional noun (مَهْمَا: Tasheel, the jazm conditionals other than إن and إذما are nouns), is a noun
-        if ((verb_tagged(token) and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun"))
+        if (tenseless_noun(token)
                 or (token["pos"] == "PRT" and (only_adverb(token["lemma"]) or _only_conditional_noun(token["lemma"])))):
             token["pos"] = "NOM"
         # مُنْذُ أَمْسِ: the letters of a time word built on one ending are that word, never the command they spell
@@ -171,7 +171,13 @@ def jarr_after_mudaf(s: Sentence) -> None:
                 # كَمْ كِتَابٍ قَرَأْتُ: a built word never takes tanween, so كم الخبرية adds its noun too
                 and (typed_case_of(before) is not None or is_built(before)) and not typed_tanween(before)
                 and not (typed_case_of(before) == "a" and puts_in_jarr(before, s))):
+            head, rel = word["head"], word["rel"]
             _add_to(tokens, before, word)
+            # ثُمَّ جَعَلَ مِنْ بَعْدِ قُوَّةٍ ضَعْفًا: the verb's object the parser saw is a مضاف إليه, and a word in nasb it hung on
+            # it described nothing of it (a نعت wears its noun's case, Tasheel 3.10.1): it is the object in its place
+            owed = next((k for k in tokens if k["head"] == word["id"] and k["rel"] == "MOD" and noun_tagged(k) and typed_case_of(k) == "a"), None)
+            if owed and rel == "OBJ" and verb_tagged(s.by_id[head]):
+                owed["head"], owed["rel"] = head, rel
 
 
 def number_after_one(s: Sentence) -> None:

@@ -15,5 +15,7 @@ Rules for a fair run:
 |---|---|---|---|
 | 2026-10-31 | [2026-10-31.md](2026-10-31.md) | 37/38 with vowels, 33/38 without | none of the 3 real mistakes (all fixed, PR 764) |
 | 2026-11-14 | [2026-11-14.md](2026-11-14.md) | complex set, local, Sonnet blind key: 147/152 → 152/152 | card and tree findings in its section 4 |
+| 2026-11-18 | [2026-11-18.md](2026-11-18.md) | near ties, 2 of 3 open gaps closed, bug hunt 149/149 + 10 probe faults fixed | فِعَال masdar gap (reverted) |
+| 2026-11-18 | [2026-11-18-hadith.md](2026-11-18-hadith.md) | إنما hadith fixed; nested-sentence hunt: 9 faults fixed, every mutant killed | 8 sentences in its section 4 |
 
 Related: [live-check](../live-check/README.md) (answer keys: Quran, hadith, blind set).

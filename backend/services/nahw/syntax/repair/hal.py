@@ -4,7 +4,7 @@ masdar that agrees with it is its na't."""
 from __future__ import annotations
 
 from backend.services.nahw.book import is_one, is_plain_noun, is_subject_pronoun
-from backend.services.nahw.syntax.facts import Sentence, describes, indefinite_nasb, is_elative, is_verb, noun_tagged, same_root, typed_case_of
+from backend.services.nahw.syntax.facts import Sentence, may_be_nasb, describes, indefinite_nasb, is_elative, is_verb, noun_tagged, same_root, typed_case_of
 
 # the verbs that take a خبر or a second object (closed_words families): any other verb takes neither
 _TOLD_BY = (("kana", "words"), ("kana", "needs_negation"), ("kana", "needs_ma"), ("kaada", "words"), ("zanna", "words"))
@@ -38,13 +38,25 @@ def hal_clause(bases: list[dict], s: Sentence) -> None:
         if is_verb(after) and (subject["head"] in (waw["id"], waw["head"]) or after["head"] == subject["id"]):
             s.relink(after, waw["id"], "OBJ")
             s.relink(subject, after["id"], "SBJ")
+            _waw_on_verb(waw, s)
         elif (subject["rel"] == "SBJ" and told and noun_tagged(told) and not is_verb(told)
                 and told["id"] > subject["id"] and told["head"] != waw["id"]
                 and typed_case_of(told) in (None, "u")):
+            if waw["head"] == told["id"]:  # رَأَيْتُ زَيْدًا وَهُوَ رَاكِبٌ: the و hung on the khabar it brings
+                s.relink(waw, told["head"], waw["rel"])
             s.relink(told, waw["id"], "OBJ")
+            _waw_on_verb(waw, s)
         elif subject["rel"] == "SBJ" and told is waw and (clause := s.head(waw)) and clause["head"] == 0 and clause["id"] < waw["id"]                 and (khabar := next((k for k in s.kids(waw) if k["id"] > subject["id"] and k["rel"] in ("OBJ", "PRD")
                                      and noun_tagged(k) and not is_verb(k) and typed_case_of(k) in (None, "u")), None)):
             s.relink(subject, khabar["id"], subject["rel"])
+
+
+def _waw_on_verb(waw: dict, s: Sentence) -> None:
+    """كَادَ زَيْدٌ وَهُوَ صَغِيرٌ يَمُوتُ: the و that brings a sentence joins no noun to the noun before it; it hangs on
+    the verb that noun hangs on (its doer or object), the sentence telling the state it was in (Tasheel 3.7)."""
+    noun = s.head(waw)
+    if noun and (verb := s.head(noun)) and is_verb(verb):
+        s.relink(waw, verb["id"], "MOD")
 
 
 def _opens_clause(noun: dict) -> bool:
@@ -89,5 +101,5 @@ def elative_describes(s: Sentence) -> None:
     for token in tokens:
         noun = s.by_id.get(token["id"] - 1)
         if (noun and token["head"] != noun["id"] and noun_tagged(token) and is_elative(token) and is_plain_noun(noun)
-                and noun.get("stt") == "i" and typed_case_of(noun) in ("a", "i") and typed_case_of(token) in (None, "a")):
+                and noun.get("stt") == "i" and typed_case_of(noun) in ("a", "i") and may_be_nasb(token, typed_only=True)):
             s.relink(token, noun["id"], "MOD")
