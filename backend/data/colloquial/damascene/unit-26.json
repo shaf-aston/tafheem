@@ -22,16 +22,144 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "apples-bananas-market",
+          "arabic": "اِشْتَرَيْت تُفَّاح وْمُوز مِن السُّوق.",
+          "transliteration": "ishtareit tuffaa7 w mooz mn is-soo2."
+        },
+        {
+          "slot": "peel-this-orange",
+          "arabic": "فِيك تْقَشِّرْلِي هَالبُرْتْقَالَة؟",
+          "transliteration": "fiik t2ashsherli hal-burtu2aale?"
+        },
+        {
+          "slot": "watermelon-in-summer",
+          "arabic": "مِنَاكُل بَطِّيخ كِلّ يَوْم بِالصِّيف.",
+          "transliteration": "minaakol baTTeekh kill yoom biS-Seif."
+        },
+        {
+          "slot": "break-fast-dates",
+          "arabic": "مِنِفْطُر عَالتَّمِر وِالمَيّ.",
+          "transliteration": "minifTor 3at-tamer w il-mayy."
+        },
+        {
+          "slot": "grapes-very-sweet",
+          "arabic": "هَالعِنَب كْتِير حِلُو.",
+          "transliteration": "hal-3inab ktiir 7ilu."
+        },
+        {
+          "slot": "pear-is-rotten",
+          "arabic": "هَالإِنْجَاصَة مْعَفّْنِة، كِبّْهَا.",
+          "transliteration": "hal-injaaSa m3affane, kibba."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "cut-onion-garlic",
+          "arabic": "قَطِّع البَصَل وِالتُّوم شَقَف زْغَار.",
+          "transliteration": "2aTTe3 il-baSal w it-toom sha2af zghaar."
+        },
+        {
+          "slot": "tomatoes-cucumbers-salad",
+          "arabic": "بِدْنَا بَنَدُورَة وْخْيَار لَلسَّلَطَة.",
+          "transliteration": "badna banadoora w khyaar las-salaTa."
+        },
+        {
+          "slot": "potatoes-in-oven",
+          "arabic": "حُطّ البَطَاطَا بِالفُرْن سَاعَة.",
+          "transliteration": "7oTT il-baTaaTa bil-forn saa3a."
+        },
+        {
+          "slot": "mint-in-tea",
+          "arabic": "بِدَّك نَعْنَع بِالشَّاي؟",
+          "transliteration": "baddak na3na3 bish-shaay?"
+        },
+        {
+          "slot": "lentil-soup-winter",
+          "arabic": "إِمِّي بْتِعْمِل شُورْبِة عَدَس بِالشِّتِي.",
+          "transliteration": "immi bta3mel shoorbet 3adas bish-shiti."
+        },
+        {
+          "slot": "aubergine-and-okra",
+          "arabic": "مَا بْحِبّ البَاذِنْجَان، بَسْ بْمُوت بِالبَامْيِة.",
+          "transliteration": "ma ba7ebb il-baadinjaan, bass bmoot bil-baamye."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "rice-and-flour",
+          "arabic": "بِدْنَا كِيلُو رِزّ وْشْوَيِّة طْحِين.",
+          "transliteration": "badna keelo rizz w shwayyet Ta7een."
+        },
+        {
+          "slot": "cheese-olive-oil",
+          "arabic": "بَاكُل خِبْز مَع جِبْنِة وْزِيت زِيتُون.",
+          "transliteration": "baakol khibz ma3 jibne w zeit zeetoon."
+        },
+        {
+          "slot": "children-drink-milk",
+          "arabic": "الوْلَاد بْيِشْرَبُوا حَلِيب كِلّ يَوْم الصُّبْح.",
+          "transliteration": "il-wlaad byishrabu 7aleeb kill yoom iS-Sib7."
+        },
+        {
+          "slot": "honey-with-yoghurt",
+          "arabic": "العَسَل مَع اللَّبَن كْتِير طَيِّب عَالفْطُور.",
+          "transliteration": "il-3asal ma3 il-laban ktiir Tayyeb 3al-fToor."
+        },
+        {
+          "slot": "pistachios-almonds-top",
+          "arabic": "حُطّ شْوَيِّة فُسْتُق حَلَبِي وْلُوز مِن فُوق.",
+          "transliteration": "7oTT shwayyet fustu2 7alabi w looz min foo2."
+        },
+        {
+          "slot": "cumin-cinnamon-meat",
+          "arabic": "حُطّ شْوَي كَمُّون وْقِرْفِة عَاللَّحْمِة.",
+          "transliteration": "7oTT shway kammoon w 2irfe 3al-la7me."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "chicken-or-fish",
+          "arabic": "بِدَّك جَاج وَلَّا سَمَك عَالعَشَا؟",
+          "transliteration": "baddak jaaj walla samak 3al-3asha?"
+        },
+        {
+          "slot": "two-shawarma-no-onion",
+          "arabic": "سَنْدْوِيشْتَين شَاوِرْمَا بْلَا بَصَل، لَو سَمَحْت.",
+          "transliteration": "sandweeshteen shaawirma bala baSal, law sama7t."
+        },
+        {
+          "slot": "kofta-minced-meat",
+          "arabic": "مِنِعْمِل الكَفْتَة مِن لَحْمِة مَفْرُومِة وْبَقْدُونِس.",
+          "transliteration": "mni3mel il-kafta min la7me mafroome w ba2doones."
+        },
+        {
+          "slot": "kunafa-after-dinner",
+          "arabic": "بَعْد العَشَا أَكَلْنَا كُنَافِة.",
+          "transliteration": "ba3d il-3asha akalna kunaafe."
+        },
+        {
+          "slot": "olives-omelette-breakfast",
+          "arabic": "دَايْماً مْنَاكُل زِيتُون وْعِجِّة عَالفْطُور.",
+          "transliteration": "daayman mnaakol zeitoon w 3ijje 3al-fToor."
+        },
+        {
+          "slot": "stew-black-pepper",
+          "arabic": "اليَخْنِة بَدّْهَا مِلِح وْفِلْفِل أَسْوَد كَمَان.",
+          "transliteration": "il-yakhne badda mil7 w filfil aswad kamaan."
+        }
+      ]
     }
   ]
 }

@@ -34,6 +34,12 @@ class Phrase(Word):
     image: str = ""
 
 
+class Sentence(Word):
+    """An example sentence of a word topic: a spine slot, said by the dialect. `uses`: the topic's word ids in it."""
+    slot: str
+    uses: list[str] = []
+
+
 class DialogueLine(Phrase):
     speaker: str
 
@@ -50,6 +56,8 @@ class VocabWord(Word):
     category: str = ""
     # A picture of the word, under images/, when one was chosen; shared by every dialect.
     image: str = ""
+    # Taught by an earlier topic (course order): met before, so shown apart from this topic's new words.
+    met: bool = False
 
 
 class ComingLesson(BaseModel):
@@ -68,6 +76,8 @@ class Lesson(BaseModel):
     written: Literal[True] = True
     # A topic that is only a word list has just its vocabulary.
     phrases: list[Phrase] = []
+    # A word topic's example sentences: its words said in full, everyday sentences, after the words.
+    sentences: list[Sentence] = []
     dialogue: list[DialogueLine] = []
     de_book: list[Drill] = []
     vocabulary: list[VocabWord] = []
@@ -119,7 +129,10 @@ class TopicCard(BaseModel):
     section: str | None = None
     written: bool
     words: int = 0
+    # Of `words`, those no earlier topic taught: what this topic teaches new.
+    new_words: int = 0
     phrases: int = 0
+    sentences: int = 0
     # Its first picture, phrase or word, for the card.
     picture: str | None = None
 

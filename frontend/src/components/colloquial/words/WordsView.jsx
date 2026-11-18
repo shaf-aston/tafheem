@@ -17,6 +17,7 @@ import WordGallery from './WordGallery'
 import WordMatch from './WordMatch'
 import WordPairs from './WordPairs'
 import WordReview from './WordReview'
+import WordSentences from './WordSentences'
 import WordPicture from './picture/WordPicture'
 import { pictureBoards } from '../../../lib/colloquial/wordPictures'
 
@@ -25,11 +26,14 @@ const WIDE = new Set(['browse', 'review'])
 // 'picture' was a mode of its own once; the drawing is in Browse now, so an old link to it opens there.
 const MODE_IDS = [...MODES.map((m) => m.id), 'picture']
 
-export default function WordsView({ unit, at }) {
+// `start`: a way of learning to open on (from a quick button), else the one on the address, else Browse.
+export default function WordsView({ unit, at, start = null }) {
   const lesson = unit.lessons[at]
   const words = lesson.vocabulary
   // The mode rides on the address (?words=cards in a shared link), so a reload or a link keeps it.
-  const [mode, setModeNow] = useState(() => readViewParam('words', MODE_IDS) ?? 'browse')
+  const [mode, setModeNow] = useState(() => (MODE_IDS.includes(start) ? start : null) ?? readViewParam('words', MODE_IDS) ?? 'browse')
+  // A mode opened from a quick button rides on the address too, so a reload keeps it.
+  useEffect(() => { if (MODE_IDS.includes(start) && start !== 'browse') writeViewParams({ words: start }) }, [start])
   // A mode picked here rises in, as an answer to the tap; the first arrives with its screen (ui/display/Screen.jsx).
   const [picked, setPicked] = useState(false)
   const setMode = (next) => { setModeNow(next); setPicked(true); writeViewParams({ words: next === 'browse' ? '' : next }) }
@@ -40,6 +44,7 @@ export default function WordsView({ unit, at }) {
   const record = summaryQuery(WORDS_MODULE)
   useEffect(() => { warm(client, summaryQuery(WORDS_MODULE)) }, [client])
   const shown = mode === 'picture' ? 'browse' : mode
+  const fresh = words.filter((w) => !w.met).length
   // Where the words have a drawing (the body, a house, the countries: lib/colloquial/wordPictures.js) Browse
   // opens with it, so they are met on it as well as in a list.
   const drawn = useMemo(() => pictureBoards(words).length > 0, [words])
@@ -54,7 +59,7 @@ export default function WordsView({ unit, at }) {
       {/* Headed like a phrase topic (topic/TopicView.jsx), so every topic says its own name, not only the trail. */}
       <header className={`w-full space-y-4 ${shown === 'browse' && drawn ? '' : 'max-w-xl mx-auto'}`}>
         <div>
-          <p className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
+          <p className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {fresh} new words{words.length > fresh ? ` · ${words.length - fresh} met before` : ''}</p>
           <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
         </div>
         <div {...onHover(client, record)}>
@@ -71,9 +76,16 @@ export default function WordsView({ unit, at }) {
             <WordPicture words={words}>
               <SpellingKey keys={unit.transliteration_key} />
               {lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} narrow />}
+              {/* The words first, then the same words in sentences. */}
+              <WordSentences sentences={lesson.sentences} narrow />
             </WordPicture>
           )
-          : (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />))}
+          : (
+            <div className="space-y-8">
+              {lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />}
+              <WordSentences sentences={lesson.sentences} />
+            </div>
+          ))}
         {shown === 'cards' && <WordCards words={words} />}
         {shown === 'match' && <WordMatch words={words} />}
         {shown === 'quiz' && <Practice exercises={drills} />}

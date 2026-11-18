@@ -18,19 +18,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "cat-and-small-dog",
+          "arabic": "عندنا قطة وكلب صغير.",
+          "transliteration": "3indana gaTTa w kalb Sagheer."
+        },
+        {
+          "slot": "feed-the-hens",
+          "arabic": "أطعم الدجاج كل صباح، لو سمحت.",
+          "transliteration": "aT3im ad-dijaaj kull Sabaa7, law samaht."
+        },
+        {
+          "slot": "uncle-milks-cow",
+          "arabic": "عمي يحلب البقرة الصباح بدري.",
+          "transliteration": "3ammi yi7lib al-bagara aS-Sabaa7 badri."
+        },
+        {
+          "slot": "shepherd-takes-sheep",
+          "arabic": "الراعي يسير بالغنم للجبل.",
+          "transliteration": "ar-raa3i yiseer bil-ghanam lil-jabal."
+        },
+        {
+          "slot": "camel-walks-desert",
+          "arabic": "الجمل يقدر يمشي أيام في الصحراء.",
+          "transliteration": "al-jamal yigdar yimshi ayyaam fi S-Sa7raa."
+        },
+        {
+          "slot": "horses-on-farm",
+          "arabic": "فيه أحصنة في مزرعتكم؟",
+          "transliteration": "feeh a7Sina fi mazra3atkum?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "lion-tiger-zoo",
+          "arabic": "شفنا أسد ونمر في حديقة الحيوانات.",
+          "transliteration": "shifna asad w namir fi 7adeegat al-7ayawaanaat."
+        },
+        {
+          "slot": "elephant-biggest-animal",
+          "arabic": "الفيل أكبر حيوان هنا.",
+          "transliteration": "al-feel akbar 7ayawaan huna."
+        },
+        {
+          "slot": "snake-under-rock",
+          "arabic": "انتبه، فيه حية تحت الحجر.",
+          "transliteration": "intabih, feeh 7ayya ta7t al-7ajar."
+        },
+        {
+          "slot": "monkey-took-banana",
+          "arabic": "القرد شلّ الموزة من يدي.",
+          "transliteration": "al-gird shall al-mawza min yadi."
+        },
+        {
+          "slot": "gazelle-runs-fast",
+          "arabic": "الغزال يركض سريع قوي في الصحراء.",
+          "transliteration": "al-ghazaal yirkuD saree3 gawi fi S-Sa7raa."
+        },
+        {
+          "slot": "foxes-wolves-mountains",
+          "arabic": "فيه ثعالب وذياب في ذي الجبال؟",
+          "transliteration": "feeh tha3aalib w dhiyaab fi dhi l-jibaal?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "bird-built-nest",
+          "arabic": "الطير بنى عشّه في الشجرة.",
+          "transliteration": "aT-Teer bana 3ushshah fi sh-shajara."
+        },
+        {
+          "slot": "falcon-flies-high",
+          "arabic": "الصقر يطير عالي فوق الصحراء.",
+          "transliteration": "aS-Sagr yiTeer 3aali foog aS-Sa7raa."
+        },
+        {
+          "slot": "mosquito-bit-me",
+          "arabic": "عضّتني ناموسة البارحة.",
+          "transliteration": "3aDDatni naamoosa al-baari7a."
+        },
+        {
+          "slot": "many-fish-sea",
+          "arabic": "فيه سمك كثير في ذا البحر.",
+          "transliteration": "feeh samak katheer fi dha l-ba7r."
+        },
+        {
+          "slot": "bees-make-honey",
+          "arabic": "النحل يسوّي العسل من الورد.",
+          "transliteration": "an-na7l yisawwi l-3asal min al-ward."
+        },
+        {
+          "slot": "dolphins-turtle-boat",
+          "arabic": "شفنا دلافين وسلحفاة جنب القارب.",
+          "transliteration": "shifna dalaafeen w sulu7faa janb al-gaarib."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "water-garden-flowers",
+          "arabic": "اسقِ الورد في البستان، لو سمحت.",
+          "transliteration": "isgi l-ward fi l-bustaan, law samaht."
+        },
+        {
+          "slot": "grandfather-olive-trees",
+          "arabic": "جدي زرع ذي الزيتونات.",
+          "transliteration": "jaddi zara3 dhi z-zeetoonaat."
+        },
+        {
+          "slot": "rose-has-thorns",
+          "arabic": "انتبه، الورد الجوري فيه شوك.",
+          "transliteration": "intabih, al-ward al-joori feeh shook."
+        },
+        {
+          "slot": "leaves-fall-autumn",
+          "arabic": "الورق يطيح من الشجر في الخريف.",
+          "transliteration": "al-warag yiTee7 min ash-shajar fi l-khareef."
+        },
+        {
+          "slot": "palm-tree-dates",
+          "arabic": "ذي النخلة تعطي تمر كثير.",
+          "transliteration": "dhi n-nakhla ti3Ti tamr katheer."
+        },
+        {
+          "slot": "pick-fruit-orchard",
+          "arabic": "إمتى تقطفوا الفاكهة من البستان؟",
+          "transliteration": "imta tigTifu l-faakiha min al-bustaan?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "hot-sun-desert",
+          "arabic": "الشمس حامية قوي في الصحراء.",
+          "transliteration": "ash-shams 7aamya gawi fi S-Sa7raa."
+        },
+        {
+          "slot": "moon-and-stars",
+          "arabic": "شُف القمر والنجوم الليلة.",
+          "transliteration": "shuf al-gamar w an-njoom al-layla."
+        },
+        {
+          "slot": "beach-every-friday",
+          "arabic": "نسير الشاطئ كل جمعة.",
+          "transliteration": "nseer ash-shaaTi2 kull jum3a."
+        },
+        {
+          "slot": "mountain-slept-cave",
+          "arabic": "طلعوا الجبل وناموا في كهف.",
+          "transliteration": "Tala3u l-jabal w naamu fi kahf."
+        },
+        {
+          "slot": "river-green-valley",
+          "arabic": "النهر يجري في الوادي الأخضر.",
+          "transliteration": "an-nahr yijri fi l-waadi l-akhDar."
+        },
+        {
+          "slot": "no-clouds-sky",
+          "arabic": "ما فيش غيم في السما اليوم.",
+          "transliteration": "ma feesh ghaym fi s-sama al-yawm."
+        }
+      ]
     }
   ]
 }

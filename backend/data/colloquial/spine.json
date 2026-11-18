@@ -4281,7 +4281,7 @@
               "image": "emoji/1f4f1.svg"
             }
           ],
-          "words": ["outing", "trip", "picnic", "walk", "park", "garden", "balcony", "home", "mountain", "river", "sea", "promenade", "forecast", "idea", "errand", "outside", "pleasant", "nice", "to-go-out", "to-stay", "to-postpone", "to-cancel", "to-depend"]
+          "words": ["outing", "trip", "picnic", "walk", "park", "garden", "balcony", "home", "mountain", "river", "sea", "promenade", "forecast", "idea", "errand", "outside", "nice", "to-go-out", "to-stay", "to-postpone", "to-cancel", "to-depend"]
         },
         {
           "lesson": "lesson-05",
@@ -4501,7 +4501,7 @@
               "english": "You went to trouble for us (said appreciatively about hospitality)."
             }
           ],
-          "words": ["guest", "host", "neighbour", "home", "flat", "door", "doorbell", "entrance", "hall", "living-room", "bathroom", "shoes", "gift", "car", "address", "incense", "invitation", "visit", "to-visit", "to-welcome", "to-enter", "to-sit", "to-knock", "to-park", "to-take-off", "to-wash", "honour"]
+          "words": ["guest", "host", "neighbour", "home", "flat", "door", "doorbell", "entrance", "hall", "living-room", "bathroom", "shoes", "gift", "car", "address", "incense", "invitation", "visit", "to-visit", "to-welcome", "to-enter", "to-sit", "to-knock", "to-park", "to-take-off", "to-wash", "honour", "to-shake-hands"]
         },
         {
           "lesson": "lesson-02",
@@ -4850,7 +4850,7 @@
               "english": "May Allah honour you, you honoured me greatly."
             }
           ],
-          "words": ["overnight-stay", "night", "room", "bed", "bedding", "mattress", "pillow", "blanket", "towel", "toothbrush", "key", "bathroom", "dawn", "dawn-prayer", "to-sleep", "to-wake-up", "to-wake-someone", "clean", "comfortable", "cold"]
+          "words": ["overnight-stay", "night", "room", "bed", "bedding", "mattress", "pillow", "blanket", "towel", "toothbrush", "key", "bathroom", "dawn", "dawn-prayer", "to-sleep", "to-wake-up", "to-wake-someone", "clean", "comfortable", "cold", "bed-sheet", "comb", "shampoo", "to-snore", "to-yawn"]
         }
       ]
     },
@@ -4991,7 +4991,7 @@
               "image": "emoji/1f4de.svg"
             }
           ],
-          "words": ["meeting", "appointment", "place", "cafe", "masjid", "metro", "roundabout", "entrance", "address", "hour", "quarter", "morning", "evening", "before", "after", "late", "on-time", "together", "exactly", "in-front-of", "next-to", "to-meet", "to-wait", "to-go", "to-arrive"]
+          "words": ["meeting", "appointment", "place", "cafe", "masjid", "metro", "roundabout", "entrance", "address", "hour", "quarter", "morning", "evening", "before", "after", "late", "on-time", "together", "exactly", "in-front-of", "next-to", "to-meet", "to-wait", "to-go", "to-arrive", "to-be-late"]
         },
         {
           "lesson": "lesson-03",
@@ -5185,7 +5185,7 @@
               "english": "I'll reply to you later."
             }
           ],
-          "words": ["message", "voice-message", "photo", "location", "group", "app", "internet", "network", "battery", "to-send", "to-receive", "to-write", "to-read", "to-reply", "to-charge", "weak"]
+          "words": ["message", "voice-message", "photo", "location", "group", "app", "internet", "network", "battery", "to-send", "to-receive", "to-write", "to-read", "to-reply", "to-charge", "weak", "wi-fi", "password", "notification", "to-forward", "to-block", "phone-contact"]
         },
         {
           "lesson": "lesson-06",
@@ -6001,7 +6001,7 @@
               "english": "I ask God to keep him safe for you both"
             }
           ],
-          "words": ["newborn", "baby", "child", "infant", "mother", "father", "grandfather", "cradle", "aqiqah", "birth-delivery", "pregnant", "safety", "gift", "name", "to-name", "to-visit", "to-raise", "safe"]
+          "words": ["newborn", "baby", "child", "mother", "father", "grandfather", "cradle", "aqiqah", "birth-delivery", "pregnant", "safety", "gift", "name", "to-name", "to-visit", "to-raise", "safe"]
         },
         {
           "lesson": "lesson-06",
@@ -6261,7 +6261,7 @@
               "english": "We ask God to grant you wellbeing"
             }
           ],
-          "words": ["illness", "sick-person", "health", "good-health", "hospital", "doctor", "rest", "reassurance", "flowers", "bouquet", "fruit", "to-visit", "to-recover", "to-reassure", "to-rest", "tired"]
+          "words": ["illness", "sick-person", "health", "hospital", "doctor", "rest", "reassurance", "flowers", "bouquet", "fruit", "to-visit", "to-recover", "to-reassure", "to-rest", "tired"]
         },
         {
           "lesson": "lesson-10",
@@ -6397,7 +6397,7 @@
               "image": "unit-15/l02-p12-paper-bus-ticket.jpg"
             }
           ],
-          "section": "Getting there",
+          "section": "Getting there and staying",
           "words": ["ticket", "booking", "bus", "train", "ship", "seat", "class-travel", "ticket-window", "counter", "queue", "card", "discount", "offer", "refund", "visa", "traveller", "student", "date", "one-way", "round-trip", "outward-trip", "return-trip", "to-book", "to-confirm", "to-pay", "to-leave", "confirmed"]
         },
         {
@@ -6465,7 +6465,7 @@
               "english": "Welcome."
             }
           ],
-          "section": "Getting there",
+          "section": "Getting there and staying",
           "words": ["airport", "plane", "flight", "gate", "check-in", "customs", "border", "passport", "visa", "ticket", "bag", "suitcase", "baggage", "weight", "take-off", "landing", "tourism", "to-declare", "to-depart", "to-stay", "overweight"]
         },
         {
@@ -6535,8 +6535,8 @@
               "search_term": "hotel room interior"
             }
           ],
-          "section": "Staying",
-          "words": ["hotel", "room", "night", "bed", "bathroom", "lift", "key", "reception", "breakfast", "pool", "service", "room-service", "luggage", "passport", "price", "single", "double", "free-available", "empty", "to-book", "to-stay", "to-check-out"]
+          "section": "Getting there and staying",
+          "words": ["hotel", "room", "night", "bed", "bathroom", "lift", "key", "reception", "breakfast", "pool", "service", "room-service", "luggage", "passport", "price", "single", "double", "free-available", "empty", "to-book", "to-stay", "to-check-out", "receptionist"]
         },
         {
           "lesson": "lesson-04",
@@ -6604,7 +6604,7 @@
               "english": "May God make up for it, God willing it'll work out."
             }
           ],
-          "section": "Staying",
+          "section": "Getting there and staying",
           "words": ["problem", "complaint", "help", "delay", "breakdown", "insurance", "police", "embassy", "office", "employee", "agency", "lost-items", "flight", "booking", "bag", "passport", "to-lose", "to-miss", "to-cancel", "to-wait", "to-help", "to-steal", "broken", "lost", "delayed", "missing", "out-of-order"]
         },
         {
@@ -6899,7 +6899,7 @@
               "english": "We came back safe, thank God"
             }
           ],
-          "words": ["holiday", "leave", "trip", "plan", "photo", "camera", "memory", "view", "sunset", "sea", "beach", "house", "family", "phone", "to-travel", "to-take-photo", "to-enjoy", "to-send", "to-return", "enjoyable", "calm", "beautiful"]
+          "words": ["holiday", "leave", "trip", "plan", "photo", "camera", "memory", "view", "sunset", "sea", "beach", "house", "family", "phone", "to-travel", "to-take-photo", "to-enjoy", "to-send", "to-return", "enjoyable", "calm", "beautiful", "photo-album", "to-film", "budget", "destination", "to-save-money"]
         }
       ]
     },
@@ -6970,7 +6970,7 @@
               "english": "Why didn't you come yesterday?"
             }
           ],
-          "words": ["yesterday", "day-before-yesterday", "last-night", "morning", "afternoon", "evening", "night", "sunset", "late", "early", "before", "after", "then", "suddenly", "finally", "to-wake-up", "to-sleep", "to-stay-up", "to-go", "to-go-out", "to-come-back", "to-arrive", "to-meet", "to-buy", "to-forget", "to-visit", "to-study", "to-eat", "to-see", "to-happen", "restaurant", "cinema", "work", "errand", "tired"]
+          "words": ["yesterday", "day-before-yesterday", "last-night", "morning", "afternoon", "evening", "night", "sunset", "late", "early", "before", "after", "then", "suddenly", "finally", "to-wake-up", "to-sleep", "to-stay-up", "to-go", "to-go-out", "to-come-back", "to-arrive", "to-meet", "to-buy", "to-forget", "to-visit", "to-study", "to-eat", "to-see", "to-happen", "restaurant", "cinema", "work", "errand", "tired", "to-have-breakfast", "to-have-lunch", "to-have-dinner", "midnight"]
         },
         {
           "lesson": "lesson-02",
@@ -7248,7 +7248,7 @@
               "english": "I came back tired but happy."
             }
           ],
-          "words": ["journey", "road", "distance", "train", "station", "ticket", "suitcase", "hotel", "photo", "city", "country", "sea", "mountain", "field-farm", "window", "arrival", "departure", "to-travel", "to-pack", "to-stay", "to-try", "to-take", "tiring", "local", "green"]
+          "words": ["journey", "road", "distance", "train", "station", "ticket", "suitcase", "hotel", "photo", "city", "country", "sea", "mountain", "field-farm", "window", "arrival", "departure", "to-travel", "to-pack", "to-stay", "to-try", "to-take", "tiring", "local", "green", "to-get-lost"]
         },
         {
           "lesson": "lesson-06",
@@ -7314,7 +7314,7 @@
               "image": "emoji/1f389.svg"
             }
           ],
-          "words": ["good-news", "joy", "luck", "opportunity", "promotion", "job", "exam", "house", "hospital", "blessing", "congratulations", "to-pass", "to-celebrate", "to-be-glad", "happy", "good", "great"]
+          "words": ["good-news", "joy", "luck", "opportunity", "promotion", "job", "exam", "house", "hospital", "blessing", "congratulations", "to-pass", "to-celebrate", "to-be-glad", "happy", "good", "great", "scholarship", "pay-rise"]
         }
       ]
     },
@@ -7391,7 +7391,7 @@
               "image": "emoji/1f932.svg"
             }
           ],
-          "words": ["prayer", "masjid", "adhan", "iqamah", "imam", "muezzin", "congregation", "qibla", "minaret", "prayer-mat", "rakah", "entrance", "to-pray", "to-join", "to-miss", "to-complete", "near", "late"]
+          "words": ["prayer", "masjid", "adhan", "iqamah", "imam", "muezzin", "congregation", "qibla", "minaret", "prayer-mat", "rakah", "entrance", "to-pray", "to-join", "to-miss", "to-complete", "near", "late", "noon-prayer", "afternoon-prayer", "night-prayer"]
         },
         {
           "lesson": "lesson-02",
@@ -7752,7 +7752,7 @@
               "image": "unit-18/l02-p12-white-refrigerator.jpg"
             }
           ],
-          "words": ["living-room", "kitchen", "bathroom", "balcony", "room", "sofa", "chair", "table", "bed", "wardrobe", "cupboard", "fridge", "curtains", "air-conditioner", "light", "to-work", "spacious", "new"]
+          "words": ["living-room", "kitchen", "bathroom", "balcony", "room", "sofa", "chair", "table", "bed", "wardrobe", "cupboard", "fridge", "curtains", "air-conditioner", "light", "to-work", "spacious", "new", "armchair", "cushion", "sink", "dining-room", "vacuum-cleaner", "clothes-iron"]
         },
         {
           "lesson": "lesson-03",
@@ -8194,7 +8194,7 @@
             }
           ],
           "section": "Emergencies",
-          "words": ["help", "rescue", "emergency", "danger", "fire", "fire-service", "ambulance", "police", "doctor", "hospital", "emergency-number", "to-call", "to-help", "to-hurry", "to-wait", "nearest"]
+          "words": ["help", "rescue", "emergency", "danger", "fire", "fire-service", "ambulance", "police", "doctor", "hospital", "emergency-number", "to-call", "to-help", "to-hurry", "to-wait", "nearest", "thief", "smoke", "fire-extinguisher", "to-faint", "to-drown", "to-rescue"]
         },
         {
           "lesson": "lesson-05",
@@ -8343,44 +8343,86 @@
         {
           "lesson": "lesson-01",
           "title": "Little Words",
-          "section": "Small words",
           "phrases": [],
-          "words": ["i", "you", "he", "she", "we", "you-two", "you-plural", "they-two", "they", "this", "that", "these", "those", "who-relative", "that-conjunction", "here", "there", "who", "what", "where", "when", "why", "how", "which", "whose", "how-many", "how-much", "from-where", "yes-no-question", "is-not", "o-calling"]
+          "words": ["i", "you", "he", "she", "we", "you-two", "you-plural", "they-two", "they", "this", "that", "these", "those", "who-relative", "that-conjunction", "here", "there", "who", "what", "where", "when", "why", "how", "which", "whose", "how-many", "how-much", "from-where", "yes-no-question", "is-not", "o-calling", "any", "self"],
+          "sentences": [
+            {"slot": "where-house-who-lives", "english": "Where is your house, and who lives there?", "uses": ["where", "who"]},
+            {"slot": "what-is-this-that", "english": "What is this, and what is that?", "uses": ["what", "this", "that"]},
+            {"slot": "how-many-children", "english": "How many children do they have?", "uses": ["how-many", "they"]},
+            {"slot": "we-here-he-not", "english": "We are here, but he is not there.", "uses": ["we", "here", "is-not"]},
+            {"slot": "why-she-left-early", "english": "Why did she leave the house so early?", "uses": ["why", "she"]},
+            {"slot": "where-from-when-arrive", "english": "Where are you from, and when did you arrive?", "uses": ["from-where", "when", "you"]}
+          ]
         },
         {
           "lesson": "lesson-02",
           "title": "Joining and Placing",
-          "section": "Small words",
           "phrases": [],
-          "words": ["in", "on", "under", "above", "between", "around", "inside", "middle", "in-front-of", "behind", "next-to", "opposite", "outside", "to", "from", "with", "without", "at", "for", "with-using", "about", "until", "since", "during", "before", "after", "like-as", "except", "and", "but", "or", "because", "if", "so-therefore", "then", "when-in-sentence", "while", "despite", "in-order-to"]
+          "words": ["in", "on", "under", "above", "between", "around", "inside", "middle", "in-front-of", "behind", "next-to", "opposite", "outside", "to", "from", "with", "without", "at", "for", "with-using", "about", "until", "since", "during", "before", "after", "like-as", "except", "and", "but", "or", "because", "if", "so-therefore", "then", "when-in-sentence", "while", "despite", "in-order-to", "towards", "against", "even", "through"],
+          "sentences": [
+            {"slot": "keys-under-table", "english": "Put the keys under the table, please.", "uses": ["under"]},
+            {"slot": "bag-next-to-door", "english": "The bag is next to the door, behind the chair.", "uses": ["next-to", "behind"]},
+            {"slot": "tea-milk-no-sugar", "english": "I drink tea with milk but without sugar.", "uses": ["with", "but", "without"]},
+            {"slot": "home-until-evening", "english": "We stayed at home until the evening because of the rain.", "uses": ["at", "until", "because"]},
+            {"slot": "wash-hands-before-after", "english": "Wash your hands before and after eating.", "uses": ["before", "after"]},
+            {"slot": "shop-opposite-mosque", "english": "The shop is opposite the mosque, between the bank and the school.", "uses": ["opposite", "between"]}
+          ]
         },
         {
           "lesson": "lesson-03",
           "title": "How Often, How Much",
-          "section": "Small words",
           "phrases": [],
-          "words": ["always", "often", "sometimes", "usually", "rarely", "never", "once", "twice", "again", "already", "still", "immediately", "every-day", "only", "very", "extremely", "almost", "a-little", "a-lot", "more", "less", "enough", "exactly", "completely", "partly", "especially", "at-least", "also", "all", "some", "most", "several", "whole", "something", "nothing", "everything", "everyone", "no-one", "half"]
+          "words": ["always", "often", "sometimes", "usually", "rarely", "never", "once", "twice", "again", "already", "still", "immediately", "every-day", "only", "very", "extremely", "almost", "a-little", "a-lot", "more", "less", "enough", "exactly", "completely", "partly", "especially", "at-least", "also", "all", "some", "most", "several", "whole", "something", "nothing", "everything", "everyone", "no-one", "half", "someone", "really", "probably", "approximately"],
+          "sentences": [
+            {"slot": "always-early-sometimes-late", "english": "I always wake up early, but sometimes I am late.", "uses": ["always", "sometimes"]},
+            {"slot": "father-never-coffee", "english": "My father never drinks coffee at night.", "uses": ["never"]},
+            {"slot": "eat-little-more", "english": "Please eat a little more, there is enough food.", "uses": ["a-little", "more", "enough"]},
+            {"slot": "still-at-work", "english": "Is he still at work, or has he already left?", "uses": ["still", "already"]},
+            {"slot": "visit-once-week", "english": "We visit our grandmother once a week, usually on Friday.", "uses": ["once", "usually"]},
+            {"slot": "almost-everyone-came", "english": "Almost everyone came, and the whole house was very full.", "uses": ["almost", "everyone", "whole"]}
+          ]
         },
         {
           "lesson": "lesson-04",
           "title": "Numbers Beyond Ten",
-          "section": "Numbers and dates",
           "phrases": [],
-          "words": ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "two-hundred", "thousand", "million", "billion", "first", "second-2nd", "third-3rd", "fourth-4th", "fifth-5th", "sixth-6th", "seventh-7th", "eighth-8th", "ninth-9th", "tenth-10th", "last", "quarter", "one-third", "two-thirds", "three-quarters", "plus", "minus", "to-count", "per-cent"]
+          "words": ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred", "two-hundred", "thousand", "million", "billion", "first", "second-2nd", "third-3rd", "fourth-4th", "fifth-5th", "sixth-6th", "seventh-7th", "eighth-8th", "ninth-9th", "tenth-10th", "last", "quarter", "one-third", "two-thirds", "three-quarters", "plus", "minus", "to-count", "per-cent", "times-multiplied", "divided-by", "equals"],
+          "sentences": [
+            {"slot": "son-twelve-years", "english": "My son is twelve years old.", "uses": ["twelve"]},
+            {"slot": "fifteen-students-class", "english": "There are fifteen students in our class.", "uses": ["fifteen"]},
+            {"slot": "flat-third-floor", "english": "Our flat is on the third floor.", "uses": ["third-3rd"]},
+            {"slot": "thousand-people-wedding", "english": "More than a thousand people came to the wedding.", "uses": ["thousand"]},
+            {"slot": "count-to-twenty", "english": "Count to twenty, then open your eyes.", "uses": ["to-count", "twenty"]},
+            {"slot": "first-and-last", "english": "He came first in the race, and I came last.", "uses": ["first", "last"]}
+          ]
         },
         {
           "lesson": "lesson-05",
           "title": "Amounts and Measures",
-          "section": "Numbers and dates",
           "phrases": [],
-          "words": ["many", "few", "both", "each", "part", "zero", "pair", "dozen", "fraction", "too-much", "somewhat", "litre", "metre", "kilometre", "centimetre", "gram", "tonne", "length", "width", "height", "double", "extra", "previous", "kilo", "piece", "bottle"]
+          "words": ["many", "few", "both", "each", "part", "zero", "pair", "dozen", "fraction", "somewhat", "litre", "metre", "kilometre", "centimetre", "gram", "tonne", "length", "width", "height", "double", "extra", "previous", "kilo", "piece", "bottle", "quantity", "packet"],
+          "sentences": [
+            {"slot": "two-kilos-tomatoes", "english": "Give me two kilos of tomatoes, please.", "uses": ["kilo"]},
+            {"slot": "bottle-of-water", "english": "Take a bottle of water with you.", "uses": ["bottle"]},
+            {"slot": "too-much-sugar", "english": "There is too much sugar in this tea.", "uses": ["extra"]},
+            {"slot": "both-brothers-far", "english": "Both of my brothers live far away.", "uses": ["both"]},
+            {"slot": "each-child-piece", "english": "Each child took one piece of cake.", "uses": ["each", "piece"]},
+            {"slot": "room-length-width", "english": "The room is four metres in length and three in width.", "uses": ["metre", "length", "width"]}
+          ]
         },
         {
           "lesson": "lesson-06",
           "title": "Months of the Year",
-          "section": "Numbers and dates",
           "phrases": [],
-          "words": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "muharram", "safar", "rabi-al-awwal", "rabi-al-akhir", "jumada-al-ula", "jumada-al-akhira", "rajab", "shaban", "ramadan", "shawwal", "dhu-al-qadah", "dhu-al-hijjah", "month", "year", "date", "calendar", "gregorian", "hijri", "century", "date-of-birth", "daily", "weekly", "monthly", "yearly", "last-month", "this-month", "next-month", "last-year", "this-year", "next-year"]
+          "words": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "muharram", "safar", "rabi-al-awwal", "rabi-al-akhir", "jumada-al-ula", "jumada-al-akhira", "rajab", "shaban", "ramadan", "shawwal", "dhu-al-qadah", "dhu-al-hijjah", "month", "year", "date", "calendar", "gregorian", "hijri", "century", "date-of-birth", "daily", "weekly", "monthly", "yearly", "last-month", "this-month", "next-month", "last-year", "this-year", "next-year", "decade"],
+          "sentences": [
+            {"slot": "ramadan-march-this-year", "english": "Ramadan starts in March this year.", "uses": ["ramadan", "march", "this-year"]},
+            {"slot": "birth-tenth-may", "english": "My date of birth is the tenth of May.", "uses": ["date-of-birth", "may"]},
+            {"slot": "school-starts-september", "english": "School starts in September every year.", "uses": ["september", "year"]},
+            {"slot": "hajj-dhu-al-hijjah", "english": "Hajj is in the month of Dhu al-Hijjah.", "uses": ["dhu-al-hijjah", "month"]},
+            {"slot": "travel-next-month-july", "english": "We will travel next month, in July.", "uses": ["next-month", "july"]},
+            {"slot": "hijri-or-gregorian", "english": "Do you use the Hijri or the Gregorian calendar?", "uses": ["hijri", "gregorian", "calendar"]}
+          ]
         }
       ]
     },
@@ -8391,30 +8433,58 @@
         {
           "lesson": "lesson-01",
           "title": "More Doing Words",
-          "section": "Everyday actions",
           "phrases": [],
-          "words": ["to-carry", "to-lift", "to-hold", "to-pick-up", "to-push", "to-pull", "to-throw", "to-tie", "to-fold", "to-pour", "to-fill", "to-empty", "to-cut", "to-draw", "to-clean", "to-sweep", "to-wipe", "to-collect", "to-hide", "to-stand-up", "to-jump", "to-run", "to-climb", "to-bend", "to-kick", "to-clap", "to-wave", "to-sneeze", "to-laugh", "to-smile", "to-look-at", "to-notice", "to-touch", "to-smell", "to-taste", "to-listen", "to-hear", "to-shout", "to-whisper", "to-call-out", "to-sing", "to-count"]
+          "words": ["to-carry", "to-lift", "to-hold", "to-pick-up", "to-push", "to-pull", "to-throw", "to-tie", "to-fold", "to-pour", "to-fill", "to-empty", "to-cut", "to-draw", "to-clean", "to-sweep", "to-wipe", "to-collect", "to-hide", "to-stand-up", "to-jump", "to-run", "to-climb", "to-bend", "to-kick", "to-clap", "to-wave", "to-sneeze", "to-look-at", "to-notice", "to-touch", "to-smell", "to-taste", "to-listen", "to-hear", "to-shout", "to-whisper", "to-call-out", "to-sing", "to-lie-down", "to-cover", "to-dry", "to-chew", "to-swallow", "to-scratch"],
+          "sentences": [
+            {"slot": "carry-heavy-bag", "english": "Can you help me carry this heavy bag?", "uses": ["to-carry"]},
+            {"slot": "clean-table-sweep-floor", "english": "Please clean the table and sweep the floor.", "uses": ["to-clean", "to-sweep"]},
+            {"slot": "pour-tea-fill-cup", "english": "Pour the tea and fill my cup, please.", "uses": ["to-pour", "to-fill"]},
+            {"slot": "children-run-jump", "english": "The children run and jump in the garden.", "uses": ["to-run", "to-jump"]},
+            {"slot": "smell-then-taste", "english": "Come and smell the food, then taste it.", "uses": ["to-smell", "to-taste"]},
+            {"slot": "listen-do-not-shout", "english": "Listen to the teacher and do not shout.", "uses": ["to-listen", "to-shout"]}
+          ]
         },
         {
           "lesson": "lesson-02",
           "title": "Doing Words for Work and Study",
-          "section": "Everyday actions",
           "phrases": [],
-          "words": ["to-study", "to-learn", "to-teach", "to-explain", "to-practise", "to-translate", "to-revise", "to-correct", "to-summarise", "to-discuss", "to-concentrate", "to-submit", "to-print", "to-save", "to-delete", "to-organise", "to-arrange", "to-attach", "to-download", "to-update", "to-manage", "to-hand-in", "to-sign", "to-apply", "to-cooperate", "to-hire", "to-resign", "to-earn", "to-invest", "to-think", "to-remember", "to-imagine", "to-realise", "to-compare", "to-calculate", "to-analyse", "to-solve", "to-conclude", "to-invent", "to-improve"]
+          "words": ["to-study", "to-learn", "to-teach", "to-explain", "to-practise", "to-translate", "to-revise", "to-correct", "to-summarise", "to-discuss", "to-concentrate", "to-submit", "to-print", "to-save", "to-delete", "to-organise", "to-arrange", "to-attach", "to-download", "to-update", "to-manage", "to-hand-in", "to-sign", "to-apply", "to-cooperate", "to-hire", "to-resign", "to-earn", "to-invest", "to-think", "to-remember", "to-imagine", "to-realise", "to-compare", "to-calculate", "to-analyse", "to-solve", "to-conclude", "to-invent", "to-improve", "to-copy", "to-type", "to-describe", "to-train"],
+          "sentences": [
+            {"slot": "study-every-evening", "english": "I study Arabic every evening after work.", "uses": ["to-study"]},
+            {"slot": "explain-lesson-again", "english": "Can you explain this lesson again, please?", "uses": ["to-explain"]},
+            {"slot": "save-file-first", "english": "Save the file before you close the computer.", "uses": ["to-save"]},
+            {"slot": "translated-the-letter", "english": "She translated the letter into English for me.", "uses": ["to-translate"]},
+            {"slot": "sign-and-hand-over", "english": "Please sign here and hand over the papers.", "uses": ["to-sign", "to-hand-in"]},
+            {"slot": "remember-the-papers", "english": "Do you remember where I put the papers?", "uses": ["to-remember"]}
+          ]
         },
         {
           "lesson": "lesson-03",
           "title": "Making, Moving and Handling",
-          "section": "Handling and feeling",
           "phrases": [],
-          "words": ["to-come", "to-make", "to-do", "to-start", "to-use", "to-follow", "to-lead", "to-show", "to-gather", "to-spend", "to-lend", "to-repair", "to-build", "to-catch", "to-shake", "to-squeeze", "to-press", "to-tear", "to-stretch", "to-separate", "to-fix-fasten", "to-dig", "to-saw", "to-paint", "to-sew", "to-glue", "to-lock", "to-harvest", "to-plant", "to-water", "to-protect", "to-warn", "to-escape", "to-burn", "to-destroy"]
+          "words": ["to-come", "to-make", "to-do", "to-start", "to-use", "to-follow", "to-lead", "to-show", "to-gather", "to-spend", "to-lend", "to-repair", "to-build", "to-catch", "to-shake", "to-squeeze", "to-press", "to-tear", "to-stretch", "to-separate", "to-fix-fasten", "to-dig", "to-saw", "to-paint", "to-sew", "to-glue", "to-lock", "to-harvest", "to-protect", "to-warn", "to-escape", "to-burn", "to-destroy", "to-deliver", "to-replace", "to-install", "to-heat-up", "to-iron"],
+          "sentences": [
+            {"slot": "come-repair-door", "english": "Can you come tomorrow and repair the door?", "uses": ["to-come", "to-repair"]},
+            {"slot": "show-how-to-use", "english": "Show me how to use this machine.", "uses": ["to-show", "to-use"]},
+            {"slot": "lend-me-pen", "english": "Could you lend me your pen for a moment?", "uses": ["to-lend"]},
+            {"slot": "lock-door-night", "english": "Don't forget to lock the door at night.", "uses": ["to-lock"]},
+            {"slot": "mother-sews-brother-paints", "english": "My mother is sewing, and my brother is painting the wall.", "uses": ["to-sew", "to-paint"]},
+            {"slot": "started-building-house", "english": "They started to build a new house last year.", "uses": ["to-start", "to-build"]}
+          ]
         },
         {
           "lesson": "lesson-04",
           "title": "Mind and Heart Verbs",
-          "section": "Handling and feeling",
           "phrases": [],
-          "words": ["to-feel", "to-love", "to-hate", "to-fear", "to-worry", "to-envy", "to-wish", "to-believe", "to-doubt", "to-suppose", "to-guess", "to-wonder", "to-seem", "to-become", "to-remain", "to-belong", "to-contain", "to-deserve", "to-promise", "to-lie-untruth", "to-trust", "to-betray", "to-refuse", "to-admit", "to-deny", "to-obey", "to-fight", "to-defend", "to-attack", "to-quarrel", "to-punish", "to-blame", "to-threaten", "to-congratulate", "to-support", "to-care", "to-respect", "to-hug", "to-kiss"]
+          "words": ["to-feel", "to-love", "to-hate", "to-fear", "to-worry", "to-envy", "to-wish", "to-believe", "to-doubt", "to-suppose", "to-guess", "to-wonder", "to-seem", "to-become", "to-remain", "to-belong", "to-contain", "to-deserve", "to-promise", "to-lie-untruth", "to-trust", "to-betray", "to-refuse", "to-admit", "to-deny", "to-obey", "to-fight", "to-defend", "to-attack", "to-quarrel", "to-punish", "to-blame", "to-threaten", "to-congratulate", "to-support", "to-care", "to-respect", "to-hug", "to-kiss", "to-hope", "to-allow", "to-prevent", "to-get-angry", "to-joke", "to-get-used-to"],
+          "sentences": [
+            {"slot": "feel-tired-stay-home", "english": "I feel tired today, so I will stay home.", "uses": ["to-feel"]},
+            {"slot": "love-respect-parents", "english": "I love my parents and respect them very much.", "uses": ["to-love", "to-respect"]},
+            {"slot": "dont-worry", "english": "Don't worry, everything will be fine.", "uses": ["to-worry"]},
+            {"slot": "trust-do-not-lie", "english": "I trust you, so please do not lie to me.", "uses": ["to-trust", "to-lie-untruth"]},
+            {"slot": "promised-seems-busy", "english": "He promised to come, but he seems busy.", "uses": ["to-promise", "to-seem"]},
+            {"slot": "hug-grandmother-eid", "english": "She hugged her grandmother and congratulated her on Eid.", "uses": ["to-hug", "to-congratulate"]}
+          ]
         }
       ]
     },
@@ -8425,38 +8495,73 @@
         {
           "lesson": "lesson-01",
           "title": "Describing Words",
-          "section": "Describing",
           "phrases": [],
-          "words": ["deep", "shallow", "narrow", "quiet", "loud", "audible", "faint", "awake", "asleep", "healthy", "tidy", "messy", "hidden", "temporary", "permanent", "famous", "popular", "common", "rare", "special", "normal", "modern", "public", "private", "general", "main", "official", "personal", "international", "foreign", "false", "fake", "simple", "complicated", "necessary", "useful", "similar"]
+          "words": ["deep", "shallow", "narrow", "quiet", "loud", "audible", "faint", "awake", "asleep", "healthy", "tidy", "messy", "hidden", "temporary", "permanent", "famous", "popular", "common", "rare", "special", "normal", "modern", "public", "private", "general", "main", "official", "personal", "international", "foreign", "false", "fake", "simple", "complicated", "necessary", "useful", "similar", "real", "suitable"],
+          "sentences": [
+            {"slot": "river-very-deep", "english": "Be careful, the river is very deep here.", "uses": ["deep"]},
+            {"slot": "library-quiet-street-loud", "english": "The library is quiet, but the street is loud.", "uses": ["quiet", "loud"]},
+            {"slot": "baby-asleep-awake", "english": "Is the baby asleep or still awake?", "uses": ["asleep", "awake"]},
+            {"slot": "messy-room-tidy", "english": "Your room is messy, please make it tidy.", "uses": ["messy", "tidy"]},
+            {"slot": "famous-popular-market", "english": "This old market is very famous and popular with visitors.", "uses": ["famous", "popular"]},
+            {"slot": "simple-useful-idea", "english": "The idea is simple but very useful.", "uses": ["simple", "useful"]}
+          ]
         },
         {
           "lesson": "lesson-02",
           "title": "Opposites",
-          "section": "Describing",
           "pairs": true,
           "phrases": [],
-          "words": ["easy", "difficult", "rich", "poor", "clean", "dirty", "fast", "slow", "high", "low", "beautiful", "ugly", "soft", "hard", "thick", "thin-not-thick", "alive", "dead", "same", "different", "possible", "impossible", "allowed", "forbidden", "noisy", "calm", "generous", "stingy", "brave", "cowardly", "polite", "rude", "clever", "stupid", "top", "bottom", "inside", "outside", "early", "late", "war", "peace", "male", "female"]
+          "words": ["easy", "difficult", "rich", "poor", "clean", "dirty", "fast", "slow", "high", "low", "beautiful", "ugly", "soft", "hard", "thick", "thin-not-thick", "alive", "dead", "same", "different", "possible", "impossible", "allowed", "forbidden", "noisy", "calm", "generous", "stingy", "brave", "cowardly", "polite", "rude", "clever", "stupid", "top", "bottom", "early", "late", "war", "peace", "male", "female", "boring", "interesting"],
+          "sentences": [
+            {"slot": "lesson-easy-difficult", "english": "The first lesson was easy, but the second was difficult.", "uses": ["easy", "difficult"]},
+            {"slot": "car-slow-fast", "english": "My car is slow, and his car is fast.", "uses": ["slow", "fast"]},
+            {"slot": "dirty-clean-clothes", "english": "Put the dirty clothes here and the clean ones there.", "uses": ["dirty", "clean"]},
+            {"slot": "parking-allowed-forbidden", "english": "Is parking allowed here, or is it forbidden?", "uses": ["allowed", "forbidden"]},
+            {"slot": "come-early-not-late", "english": "Come early tomorrow, do not be late.", "uses": ["early", "late"]},
+            {"slot": "polite-clever-son", "english": "Your son is very polite and clever.", "uses": ["polite", "clever"]}
+          ]
         },
         {
           "lesson": "lesson-03",
           "title": "Colours, Shapes and Materials",
-          "section": "Describing",
           "phrases": [],
-          "words": ["red", "blue", "green", "yellow", "orange", "pink", "brown", "black", "white", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "sharp", "smooth", "rough", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric"]
+          "words": ["red", "blue", "green", "yellow", "orange", "pink", "brown", "black", "white", "grey", "purple", "gold-colour", "silver-colour", "turquoise", "light-blue", "navy-blue", "colourful", "shape", "circle", "square-shape", "triangle", "rectangle", "line-shape", "point", "cube", "long", "round", "flat-level", "straight", "sharp", "smooth", "rough", "wood", "glass-material", "iron", "steel", "plastic", "metal", "paper", "leather", "rubber", "silver", "gold", "stone", "fabric", "beige", "oval", "marble", "clay", "cardboard", "aluminium"],
+          "sentences": [
+            {"slot": "red-or-blue-shirt", "english": "Do you want the red shirt or the blue one?", "uses": ["red", "blue"]},
+            {"slot": "light-blue-sky", "english": "The sky is light blue and the clouds are white.", "uses": ["light-blue", "white"]},
+            {"slot": "table-wood-not-plastic", "english": "This table is made of wood, not plastic.", "uses": ["wood", "plastic"]},
+            {"slot": "round-not-square-plate", "english": "Bring me the round plate, not the square one.", "uses": ["round", "square-shape"]},
+            {"slot": "gold-necklace-silver-ring", "english": "Her necklace is gold and her ring is silver.", "uses": ["gold", "silver"]},
+            {"slot": "knife-very-sharp", "english": "Be careful, this knife is very sharp.", "uses": ["sharp"]}
+          ]
         },
         {
           "lesson": "lesson-04",
           "title": "Feelings",
-          "section": "Feelings and character",
           "phrases": [],
-          "words": ["happy", "sad", "angry", "upset", "scared", "worried", "bored", "lonely", "embarrassed", "excited", "proud", "shy", "relaxed", "jealous", "surprised", "amazed", "shocked", "nervous", "confused", "curious", "hopeful", "optimistic", "disappointed", "desperate", "confident", "satisfied", "love", "hate", "sorrow", "pity", "envy", "shame", "regret", "longing", "relief", "to-smile", "to-laugh", "tears", "to-sigh", "to-tremble"]
+          "words": ["happy", "sad", "angry", "upset", "scared", "worried", "bored", "lonely", "embarrassed", "excited", "proud", "shy", "relaxed", "jealous", "surprised", "amazed", "shocked", "nervous", "confused", "curious", "hopeful", "optimistic", "disappointed", "desperate", "confident", "satisfied", "love", "hate", "sorrow", "pity", "envy", "shame", "regret", "longing", "relief", "to-smile", "to-laugh", "tears", "to-sigh", "to-tremble", "happiness", "anxiety"],
+          "sentences": [
+            {"slot": "happy-you-came", "english": "I am very happy because you came.", "uses": ["happy"]},
+            {"slot": "why-are-you-sad", "english": "Why are you sad? What happened?", "uses": ["sad"]},
+            {"slot": "nervous-before-exam", "english": "She is nervous before the exam tomorrow.", "uses": ["nervous"]},
+            {"slot": "father-proud-of-you", "english": "Your father is very proud of you.", "uses": ["proud"]},
+            {"slot": "not-angry-just-worried", "english": "Don't be angry, I was only worried about you.", "uses": ["angry", "worried"]},
+            {"slot": "laughed-until-tears", "english": "He laughed until tears came from his eyes.", "uses": ["to-laugh", "tears"]}
+          ]
         },
         {
           "lesson": "lesson-05",
           "title": "Character and Manners",
-          "section": "Feelings and character",
           "phrases": [],
-          "words": ["kind", "honest", "patient-calm", "stubborn", "hard-working", "patience", "respect", "generosity", "loyal", "humble", "wise", "trustworthy", "helpful", "gentle", "sincere", "fair", "merciful", "noble", "liar", "coward", "fool", "arrogant", "selfish", "greedy", "envious", "cruel", "unjust", "cunning", "manners", "morals", "honesty", "loyalty", "humility", "justice", "wisdom", "dignity", "modesty"]
+          "words": ["kind", "honest", "patient-calm", "stubborn", "hard-working", "patience", "respect", "generosity", "loyal", "humble", "wise", "trustworthy", "helpful", "gentle", "sincere", "fair", "merciful", "noble", "liar", "coward", "fool", "arrogant", "selfish", "greedy", "envious", "cruel", "unjust", "cunning", "manners", "morals", "honesty", "loyalty", "humility", "wisdom", "dignity", "modesty", "respectful", "sociable", "careless", "spoiled", "hypocrite"],
+          "sentences": [
+            {"slot": "kind-honest-neighbour", "english": "Our neighbour is kind and honest.", "uses": ["kind", "honest"]},
+            {"slot": "language-needs-patience", "english": "Learning a language needs a lot of patience.", "uses": ["patience"]},
+            {"slot": "hard-working-helpful-student", "english": "She is a hard-working and helpful student.", "uses": ["hard-working", "helpful"]},
+            {"slot": "dont-be-selfish", "english": "Don't be selfish, share the food with your brother.", "uses": ["selfish"]},
+            {"slot": "good-manners-important", "english": "Good manners are important in every home.", "uses": ["manners"]},
+            {"slot": "wise-humble-grandfather", "english": "My grandfather is a wise and humble man.", "uses": ["wise", "humble"]}
+          ]
         }
       ]
     },
@@ -8467,37 +8572,72 @@
         {
           "lesson": "lesson-01",
           "title": "The Body, Head to Toe",
-          "section": "The body",
           "phrases": [],
-          "words": ["head", "face", "hair", "forehead", "eyebrow", "eye", "ear", "nose", "cheek", "mouth", "lip", "tongue", "tooth", "chin", "beard", "shoulder", "arm", "elbow", "wrist", "hand", "palm-hand", "finger", "thumb", "fingernail", "thigh", "knee", "leg", "ankle", "foot", "heel", "body", "skin", "neck", "chest", "back", "stomach", "bone", "heart", "lung", "liver", "kidney", "brain", "blood", "vein", "muscle"]
+          "words": ["head", "face", "hair", "forehead", "eyebrow", "eye", "ear", "nose", "cheek", "mouth", "lip", "tongue", "tooth", "chin", "beard", "shoulder", "arm", "elbow", "wrist", "hand", "palm-hand", "finger", "thumb", "fingernail", "thigh", "knee", "leg", "ankle", "foot", "heel", "body", "skin", "neck", "chest", "back", "stomach", "bone", "heart", "lung", "liver", "kidney", "brain", "blood", "vein", "muscle", "toe", "waist", "hip", "moustache", "eyelash", "jaw"],
+          "sentences": [
+            {"slot": "head-hurts-today", "english": "My head hurts a lot today.", "uses": ["head"]},
+            {"slot": "wash-face-hands", "english": "Wash your face and hands before you eat.", "uses": ["face", "hand"]},
+            {"slot": "brush-teeth-daily", "english": "Brush your teeth every morning and every night.", "uses": ["tooth"]},
+            {"slot": "fell-broke-arm", "english": "He fell and broke his arm.", "uses": ["arm"]},
+            {"slot": "back-knee-hurt", "english": "My back and my knee hurt after the walk.", "uses": ["back", "knee"]},
+            {"slot": "long-hair-brown-eyes", "english": "Her hair is long and her eyes are brown.", "uses": ["hair", "eye"]}
+          ]
         },
         {
           "lesson": "lesson-02",
           "title": "Clothes and Accessories",
-          "section": "The body",
           "phrases": [],
-          "words": ["dress", "shirt", "trousers", "jeans", "skirt", "shorts", "jacket", "jumper", "coat", "suit", "uniform", "hat", "scarf", "glove", "sock", "shoe", "boots", "pocket", "button", "zip", "sleeve", "collar", "pyjamas", "underwear", "vest", "nightgown", "slippers", "sandals", "shoelace", "robe", "abaya", "thobe", "turban", "keffiyeh", "headscarf", "belt", "glasses", "necklace", "bracelet", "earring", "watch", "handbag", "tie"]
+          "words": ["dress", "shirt", "trousers", "jeans", "skirt", "shorts", "jacket", "jumper", "coat", "suit", "uniform", "hat", "scarf", "glove", "sock", "shoe", "boots", "pocket", "button", "zip", "sleeve", "collar", "pyjamas", "underwear", "vest", "nightgown", "slippers", "sandals", "shoelace", "robe", "abaya", "thobe", "turban", "keffiyeh", "headscarf", "belt", "glasses", "necklace", "bracelet", "earring", "watch", "handbag", "tie", "t-shirt", "blouse", "tracksuit", "jewellery", "backpack"],
+          "sentences": [
+            {"slot": "wear-your-coat", "english": "Wear your coat, it is cold outside.", "uses": ["coat"]},
+            {"slot": "shoes-too-small", "english": "These shoes are too small for me.", "uses": ["shoe"]},
+            {"slot": "white-thobe-friday", "english": "He wears a white thobe on Friday.", "uses": ["thobe"]},
+            {"slot": "seen-my-glasses", "english": "Have you seen my glasses anywhere?", "uses": ["glasses"]},
+            {"slot": "button-fell-off-shirt", "english": "A button fell off my shirt.", "uses": ["button", "shirt"]},
+            {"slot": "new-headscarf-abaya", "english": "She bought a new headscarf and a black abaya.", "uses": ["headscarf", "abaya"]}
+          ]
         },
         {
           "lesson": "lesson-03",
           "title": "Men, Women and Relatives",
-          "section": "People",
           "phrases": [],
-          "words": ["man", "woman", "boy", "girl", "teenager", "adult", "old-man", "old-woman", "child", "baby", "father", "mother", "parents", "son", "daughter", "brother", "sister", "grandfather", "grandmother", "uncle-paternal", "aunt-paternal", "uncle-maternal", "aunt-maternal", "cousin", "married", "single", "stepfather", "stepmother", "son-in-law", "daughter-in-law", "fiance", "widow", "widower", "divorced", "orphan", "friend", "neighbour", "guest", "stranger", "enemy", "foreigner", "visitor", "citizen", "companion"]
+          "words": ["man", "woman", "boy", "girl", "teenager", "adult", "old-man", "old-woman", "child", "baby", "father", "mother", "parents", "son", "daughter", "brother", "sister", "grandfather", "grandmother", "uncle-paternal", "aunt-paternal", "uncle-maternal", "aunt-maternal", "cousin", "married", "single", "stepfather", "stepmother", "son-in-law", "daughter-in-law", "fiance", "widow", "widower", "divorced", "orphan", "friend", "neighbour", "guest", "stranger", "enemy", "visitor", "companion", "young-man", "young-woman", "human-being"],
+          "sentences": [
+            {"slot": "three-brothers-one-sister", "english": "I have three brothers and one sister.", "uses": ["brother", "sister"]},
+            {"slot": "grandmother-lives-with-us", "english": "My grandmother lives with us.", "uses": ["grandmother"]},
+            {"slot": "paternal-uncle-doctor", "english": "My uncle on my father's side is a doctor.", "uses": ["uncle-paternal"]},
+            {"slot": "married-or-single", "english": "Are you married, or are you single?", "uses": ["married", "single"]},
+            {"slot": "neighbour-came-guest", "english": "Our neighbour came as a guest last night.", "uses": ["neighbour", "guest"]},
+            {"slot": "cousin-baby-girl", "english": "My cousin had a baby girl yesterday.", "uses": ["cousin", "baby", "girl"]}
+          ]
         },
         {
           "lesson": "lesson-04",
           "title": "Jobs and Trades",
-          "section": "People",
           "phrases": [],
-          "words": ["teacher", "engineer", "nurse", "lawyer", "accountant", "journalist", "manager", "cook", "baker", "police-officer", "secretary", "merchant", "worker", "tailor", "carpenter", "mechanic", "builder", "house-painter", "barber", "cleaner", "blacksmith", "gardener", "singer", "writer", "artist", "actor", "poet", "photographer", "soldier", "judge", "firefighter", "minister", "ambassador", "student", "professor", "researcher", "scientist", "doctor", "veterinarian", "midwife", "paramedic", "guide", "flight-attendant", "porter"]
+          "words": ["teacher", "engineer", "nurse", "lawyer", "accountant", "journalist", "manager", "cook", "baker", "police-officer", "secretary", "merchant", "worker", "tailor", "carpenter", "mechanic", "builder", "house-painter", "barber", "cleaner", "blacksmith", "gardener", "singer", "writer", "artist", "actor", "poet", "photographer", "firefighter", "student", "professor", "researcher", "scientist", "doctor", "veterinarian", "midwife", "paramedic", "guide", "flight-attendant", "porter", "programmer", "translator", "housewife", "fisherman", "postman", "technician"],
+          "sentences": [
+            {"slot": "engineer-and-teacher", "english": "My father is an engineer and my mother is a teacher.", "uses": ["engineer", "teacher"]},
+            {"slot": "call-the-doctor", "english": "Call the doctor, the child is very sick.", "uses": ["doctor"]},
+            {"slot": "car-to-mechanic", "english": "I took the car to the mechanic yesterday.", "uses": ["mechanic"]},
+            {"slot": "barber-cut-hair", "english": "The barber cut my hair short.", "uses": ["barber"]},
+            {"slot": "wants-to-be-lawyer", "english": "She wants to become a lawyer after university.", "uses": ["lawyer"]},
+            {"slot": "student-asked-professor", "english": "The student asked the professor a question.", "uses": ["student", "professor"]}
+          ]
         },
         {
           "lesson": "lesson-05",
           "title": "Countries and Nationalities",
-          "section": "People",
           "phrases": [],
-          "words": ["country", "syria", "lebanon", "jordan", "palestine", "iraq", "saudi-arabia", "egypt", "morocco", "britain", "america", "kuwait", "qatar", "bahrain", "uae", "oman", "yemen", "libya", "tunisia", "algeria", "sudan", "turkey", "pakistan", "india", "indonesia", "germany", "france", "china", "japan", "nationality", "arab-nationality", "syrian", "egyptian", "palestinian", "saudi", "iraqi", "moroccan", "yemeni", "pakistani", "turkish", "indian", "indonesian", "british", "american", "french"]
+          "words": ["country", "syria", "lebanon", "jordan", "palestine", "iraq", "saudi-arabia", "egypt", "morocco", "britain", "america", "kuwait", "qatar", "bahrain", "uae", "oman", "yemen", "libya", "tunisia", "algeria", "sudan", "turkey", "pakistan", "india", "indonesia", "germany", "france", "china", "japan", "nationality", "arab-nationality", "syrian", "egyptian", "palestinian", "saudi", "iraqi", "moroccan", "yemeni", "pakistani", "turkish", "indian", "indonesian", "british", "american", "french", "lebanese", "jordanian", "kuwaiti", "emirati", "sudanese", "algerian"],
+          "sentences": [
+            {"slot": "from-syria-wife-egyptian", "english": "I am from Syria, and my wife is Egyptian.", "uses": ["syria", "egyptian"]},
+            {"slot": "what-is-your-nationality", "english": "What is your nationality, and where do you live?", "uses": ["nationality"]},
+            {"slot": "visited-morocco-tunisia", "english": "We visited Morocco and Tunisia last summer.", "uses": ["morocco", "tunisia"]},
+            {"slot": "brother-studies-britain", "english": "My brother studies in Britain.", "uses": ["britain"]},
+            {"slot": "jordan-next-to-palestine", "english": "Jordan is next to Palestine and Iraq.", "uses": ["jordan", "palestine", "iraq"]},
+            {"slot": "pilgrims-saudi-arabia", "english": "Many pilgrims travel to Saudi Arabia every year.", "uses": ["saudi-arabia"]}
+          ]
         }
       ]
     },
@@ -8508,37 +8648,72 @@
         {
           "lesson": "lesson-01",
           "title": "Farm and Pet Animals",
-          "section": "Animals",
           "phrases": [],
-          "words": ["animal", "cow", "bull", "sheep", "goat", "horse", "donkey", "mule", "camel", "buffalo", "hen", "rooster", "duck", "goose", "turkey-bird", "pet", "cat", "dog", "rabbit", "cage", "calf", "lamb", "kid-young-goat", "foal", "puppy", "chick", "farm", "stable", "flock", "shepherd", "to-feed", "to-milk", "tail", "horn", "hoof"]
+          "words": ["animal", "cow", "bull", "sheep", "goat", "horse", "donkey", "mule", "camel", "buffalo", "hen", "rooster", "duck", "goose", "turkey-bird", "pet", "cat", "dog", "rabbit", "cage", "calf", "lamb", "kid-young-goat", "foal", "puppy", "chick", "farm", "stable", "flock", "shepherd", "to-feed", "to-milk", "tail", "horn", "hoof", "kitten", "ram", "paw", "fur"],
+          "sentences": [
+            {"slot": "cat-and-small-dog", "english": "We have a cat and a small dog.", "uses": ["cat", "dog"]},
+            {"slot": "feed-the-hens", "english": "Please feed the hens every morning.", "uses": ["to-feed", "hen"]},
+            {"slot": "uncle-milks-cow", "english": "My uncle milks the cow early in the morning.", "uses": ["to-milk", "cow"]},
+            {"slot": "shepherd-takes-sheep", "english": "The shepherd takes the sheep to the mountain.", "uses": ["shepherd", "sheep"]},
+            {"slot": "camel-walks-desert", "english": "The camel can walk for days in the desert.", "uses": ["camel"]},
+            {"slot": "horses-on-farm", "english": "Are there horses on your farm?", "uses": ["horse", "farm"]}
+          ]
         },
         {
           "lesson": "lesson-02",
           "title": "Wild Animals",
-          "section": "Animals",
           "phrases": [],
-          "words": ["lion", "lioness", "tiger", "cheetah", "wolf", "fox", "bear", "elephant", "monkey", "deer", "gazelle", "giraffe", "zebra", "hippopotamus", "rhinoceros", "kangaroo", "squirrel", "hedgehog", "mouse-animal", "bat-animal", "hyena", "frog", "snake", "crocodile", "lizard", "chameleon", "venom", "wild-animal", "zoo", "predator", "prey", "hunter", "to-hunt"]
+          "words": ["lion", "lioness", "tiger", "cheetah", "wolf", "fox", "bear", "elephant", "monkey", "deer", "gazelle", "giraffe", "zebra", "hippopotamus", "rhinoceros", "kangaroo", "squirrel", "hedgehog", "mouse-animal", "bat-animal", "hyena", "frog", "snake", "crocodile", "lizard", "chameleon", "venom", "wild-animal", "zoo", "predator", "prey", "hunter", "to-hunt", "leopard", "rat", "gorilla", "jackal"],
+          "sentences": [
+            {"slot": "lion-tiger-zoo", "english": "We saw a lion and a tiger at the zoo.", "uses": ["lion", "tiger", "zoo"]},
+            {"slot": "elephant-biggest-animal", "english": "The elephant is the biggest animal here.", "uses": ["elephant"]},
+            {"slot": "snake-under-rock", "english": "Be careful, there is a snake under the rock.", "uses": ["snake"]},
+            {"slot": "monkey-took-banana", "english": "The monkey took the banana from my hand.", "uses": ["monkey"]},
+            {"slot": "gazelle-runs-fast", "english": "The gazelle runs very fast in the desert.", "uses": ["gazelle"]},
+            {"slot": "foxes-wolves-mountains", "english": "Are there foxes and wolves in these mountains?", "uses": ["fox", "wolf"]}
+          ]
         },
         {
           "lesson": "lesson-03",
           "title": "Birds, Insects and Sea Life",
-          "section": "Animals",
           "phrases": [],
-          "words": ["bird", "eagle", "falcon", "pigeon", "parrot", "sparrow", "owl", "crow", "peacock", "ostrich", "seagull", "wing", "feather", "beak", "nest", "to-fly", "egg", "fly-insect", "mosquito", "bee", "ant", "butterfly", "spider", "locust", "cockroach", "wasp", "scorpion", "to-bite", "sea", "fish", "whale", "dolphin", "shark", "crab", "turtle", "octopus", "jellyfish", "squid", "coral", "pearl", "fin", "shell"]
+          "words": ["bird", "eagle", "falcon", "pigeon", "parrot", "sparrow", "owl", "crow", "peacock", "ostrich", "seagull", "wing", "feather", "beak", "nest", "to-fly", "egg", "fly-insect", "mosquito", "bee", "ant", "butterfly", "spider", "locust", "cockroach", "wasp", "scorpion", "to-bite", "sea", "whale", "dolphin", "shark", "crab", "turtle", "octopus", "jellyfish", "squid", "coral", "pearl", "fin", "shell", "worm", "snail", "louse", "penguin", "swan", "nightingale"],
+          "sentences": [
+            {"slot": "bird-built-nest", "english": "The bird built its nest in the tree.", "uses": ["bird", "nest"]},
+            {"slot": "falcon-flies-high", "english": "The falcon flies high above the desert.", "uses": ["falcon", "to-fly"]},
+            {"slot": "mosquito-bit-me", "english": "A mosquito bit me last night.", "uses": ["mosquito", "to-bite"]},
+            {"slot": "many-fish-sea", "english": "There are many fish in this sea.", "uses": ["sea"]},
+            {"slot": "bees-make-honey", "english": "Bees make honey from flowers.", "uses": ["bee"]},
+            {"slot": "dolphins-turtle-boat", "english": "We saw dolphins and a turtle near the boat.", "uses": ["dolphin", "turtle"]}
+          ]
         },
         {
           "lesson": "lesson-04",
           "title": "Plants and Trees",
-          "section": "Plants and land",
           "phrases": [],
-          "words": ["tree", "leaf", "flower", "flowers", "garden", "field-farm", "root", "branch", "trunk", "bud", "thorn", "petal", "bark", "palm-tree", "cedar", "olive-tree", "oak", "pine", "cypress", "willow", "rose", "jasmine", "lily", "violet", "sunflower", "carnation", "cactus", "bush", "reed", "vine", "bamboo", "grass", "plant", "seed", "to-plant", "to-water", "to-pick-fruit", "to-prune", "to-bloom", "to-wither", "fertiliser", "greenhouse", "flowerpot", "fruit", "orchard", "stone-of-fruit"]
+          "words": ["tree", "leaf", "flower", "flowers", "garden", "field-farm", "root", "branch", "trunk", "bud", "thorn", "petal", "bark", "palm-tree", "cedar", "olive-tree", "oak", "pine", "cypress", "willow", "rose", "jasmine", "lily", "violet", "sunflower", "carnation", "cactus", "bush", "reed", "vine", "bamboo", "grass", "plant", "seed", "to-plant", "to-water", "to-pick-fruit", "to-prune", "to-bloom", "to-wither", "fertiliser", "greenhouse", "flowerpot", "stem", "tulip", "daisy", "henna", "weeds"],
+          "sentences": [
+            {"slot": "water-garden-flowers", "english": "Please water the flowers in the garden.", "uses": ["to-water", "flowers", "garden"]},
+            {"slot": "grandfather-olive-trees", "english": "My grandfather planted these olive trees.", "uses": ["olive-tree", "to-plant"]},
+            {"slot": "rose-has-thorns", "english": "Be careful, the rose has thorns.", "uses": ["rose", "thorn"]},
+            {"slot": "leaves-fall-autumn", "english": "The leaves fall from the trees in autumn.", "uses": ["leaf", "tree"]},
+            {"slot": "palm-tree-dates", "english": "This palm tree gives a lot of dates.", "uses": ["palm-tree"]},
+            {"slot": "pick-fruit-orchard", "english": "When do you pick the fruit from the orchard?", "uses": ["to-pick-fruit"]}
+          ]
         },
         {
           "lesson": "lesson-05",
           "title": "Land and Sky",
-          "section": "Plants and land",
           "phrases": [],
-          "words": ["sky", "sun", "moon", "star", "planet", "cloud", "rainbow", "horizon", "sunrise", "earth", "world", "continent", "mountain", "hill", "valley", "desert", "oasis", "island", "forest", "cave", "volcano", "earthquake", "rock", "stone", "soil", "sand", "river", "lake", "ocean", "waterfall", "spring-water", "well-water", "gulf", "coast", "beach", "wave"]
+          "words": ["sky", "sun", "moon", "star", "planet", "cloud", "rainbow", "horizon", "sunrise", "earth", "world", "continent", "mountain", "hill", "valley", "desert", "oasis", "island", "forest", "cave", "volcano", "earthquake", "rock", "soil", "sand", "river", "lake", "ocean", "waterfall", "spring-water", "well-water", "gulf", "coast", "beach", "wave", "nature", "outer-space", "universe", "peak", "hail", "stream"],
+          "sentences": [
+            {"slot": "hot-sun-desert", "english": "The sun is very hot in the desert.", "uses": ["sun", "desert"]},
+            {"slot": "moon-and-stars", "english": "Look at the moon and the stars tonight.", "uses": ["moon", "star"]},
+            {"slot": "beach-every-friday", "english": "We go to the beach every Friday.", "uses": ["beach"]},
+            {"slot": "mountain-slept-cave", "english": "They climbed the mountain and slept in a cave.", "uses": ["mountain", "cave"]},
+            {"slot": "river-green-valley", "english": "The river runs through the green valley.", "uses": ["river", "valley"]},
+            {"slot": "no-clouds-sky", "english": "There are no clouds in the sky today.", "uses": ["cloud", "sky"]}
+          ]
         }
       ]
     },
@@ -8549,37 +8724,72 @@
         {
           "lesson": "lesson-01",
           "title": "Kitchen and Tableware",
-          "section": "At home",
           "phrases": [],
-          "words": ["pot", "frying-pan", "ladle", "plate", "bowl", "spoon", "fork", "knife", "glass-cup", "cup", "oven", "kitchen", "tap", "cooker", "dishes", "fridge", "cupboard", "table", "cutting-board", "colander", "grater", "peeler", "whisk", "tongs", "lid", "can-opener", "kettle", "stove", "blender", "microwave", "toaster", "freezer", "dishwasher", "tablecloth", "teaspoon", "straw", "toothpick", "salt-shaker", "sugar-bowl", "jar", "tin", "lunch-box", "water-bottle"]
+          "words": ["pot", "frying-pan", "ladle", "plate", "bowl", "spoon", "fork", "knife", "glass-cup", "cup", "oven", "kitchen", "tap", "cooker", "dishes", "fridge", "cupboard", "table", "cutting-board", "colander", "grater", "peeler", "whisk", "tongs", "lid", "can-opener", "kettle", "stove", "blender", "microwave", "toaster", "freezer", "dishwasher", "tablecloth", "teaspoon", "straw", "toothpick", "salt-shaker", "sugar-bowl", "jar", "tin", "lunch-box", "water-bottle", "thermos", "saucer", "sieve", "rolling-pin", "apron", "washing-up-liquid"],
+          "sentences": [
+            {"slot": "plates-spoons-table", "english": "Put the plates and spoons on the table.", "uses": ["plate", "spoon", "table"]},
+            {"slot": "milk-in-fridge", "english": "The milk is in the fridge.", "uses": ["fridge"]},
+            {"slot": "who-washes-dishes", "english": "Who will wash the dishes tonight?", "uses": ["dishes"]},
+            {"slot": "knife-and-fork", "english": "Can I have a knife and fork, please?", "uses": ["knife", "fork"]},
+            {"slot": "pot-on-stove", "english": "Put the pot on the stove, please.", "uses": ["pot", "stove"]},
+            {"slot": "glass-from-kitchen", "english": "Bring me a glass of water from the kitchen.", "uses": ["glass-cup", "kitchen"]}
+          ]
         },
         {
           "lesson": "lesson-02",
           "title": "Tools and Hardware",
-          "section": "At home",
           "phrases": [],
-          "words": ["scissors", "adhesive-tape", "saw", "drill", "spanner", "axe", "shovel", "pliers", "measuring-tape", "chisel", "screw", "hammer", "nail", "screwdriver", "ladder", "toolbox", "bulb", "rope", "chain", "wire", "thread", "needle", "hook", "bucket", "broom", "mop", "sponge", "hose", "wood", "iron", "metal", "paint", "cement", "brick", "wall", "ceiling", "garage", "heater", "toilet", "fence", "socket", "plug", "switch", "cable"]
+          "words": ["scissors", "adhesive-tape", "saw", "drill", "spanner", "axe", "shovel", "pliers", "measuring-tape", "chisel", "screw", "hammer", "nail", "screwdriver", "ladder", "toolbox", "bulb", "rope", "chain", "wire", "thread", "needle", "hook", "bucket", "broom", "mop", "sponge", "hose", "paint", "cement", "brick", "wall", "ceiling", "garage", "heater", "toilet", "fence", "socket", "plug", "switch", "cable", "torch", "paintbrush", "pipe", "tile"],
+          "sentences": [
+            {"slot": "need-the-scissors", "english": "Where are the scissors? I need them now.", "uses": ["scissors"]},
+            {"slot": "hammer-and-nails", "english": "Pass me the hammer and some nails, please.", "uses": ["hammer", "nail"]},
+            {"slot": "ladder-light-bulb", "english": "Hold the ladder while I change the light bulb.", "uses": ["ladder", "bulb"]},
+            {"slot": "broom-mop-garage", "english": "The broom and the mop are in the garage.", "uses": ["broom", "mop", "garage"]},
+            {"slot": "more-paint-wall", "english": "We need more paint for this wall.", "uses": ["paint", "wall"]},
+            {"slot": "needle-and-thread", "english": "Do you have a needle and thread?", "uses": ["needle", "thread"]}
+          ]
         },
         {
           "lesson": "lesson-03",
           "title": "School and Office Things",
-          "section": "Out and about",
           "phrases": [],
-          "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "encyclopedia", "paper", "envelope", "school-bag", "ruler", "glue", "stapler", "paper-clip", "folder", "calculator", "calendar", "printer", "bell", "desk", "chair", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket"]
+          "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "envelope", "school-bag", "ruler", "glue", "stapler", "paper-clip", "folder", "calculator", "printer", "bell", "desk", "chair", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket", "keyboard", "computer-mouse", "marker", "coloured-pencils", "photocopier", "form"],
+          "sentences": [
+            {"slot": "borrow-pencil-eraser", "english": "Can I borrow your pencil and eraser?", "uses": ["pencil", "eraser"]},
+            {"slot": "books-on-shelf", "english": "Put the books back on the shelf.", "uses": ["book", "shelf"]},
+            {"slot": "homework-in-notebook", "english": "Write the homework in your notebook.", "uses": ["notebook"]},
+            {"slot": "word-in-dictionary", "english": "Look for the word in the dictionary.", "uses": ["dictionary"]},
+            {"slot": "pen-no-ink", "english": "My pen has no ink left.", "uses": ["pen", "ink"]},
+            {"slot": "paper-desk-drawer", "english": "The paper is in the desk drawer.", "uses": ["desk", "drawer"]}
+          ]
         },
         {
           "lesson": "lesson-04",
           "title": "City, Roads and Vehicles",
-          "section": "Out and about",
           "phrases": [],
-          "words": ["car", "bus", "taxi", "motorbike", "bicycle", "truck", "helicopter", "tractor", "train", "ship", "tyre", "road", "traffic-light", "roundabout", "engine", "wheel", "steering-wheel", "brake", "seatbelt", "car-horn", "windscreen", "headlight", "fuel", "tunnel", "highway", "pavement", "junction", "pedestrian-crossing", "parking", "driving-licence", "city", "street", "bridge", "port", "capital", "building", "tower", "skyscraper", "factory", "fountain", "court", "prison", "cemetery"]
+          "words": ["car", "bus", "taxi", "motorbike", "bicycle", "truck", "helicopter", "tractor", "train", "ship", "tyre", "road", "traffic-light", "roundabout", "engine", "wheel", "steering-wheel", "brake", "seatbelt", "car-horn", "windscreen", "headlight", "fuel", "tunnel", "highway", "pavement", "junction", "pedestrian-crossing", "parking", "driving-licence", "city", "street", "bridge", "port", "capital", "building", "tower", "skyscraper", "factory", "fountain", "court", "prison", "cemetery", "petrol-station", "area-district", "van", "car-boot", "number-plate"],
+          "sentences": [
+            {"slot": "bus-to-work", "english": "I take the bus to work every day.", "uses": ["bus"]},
+            {"slot": "stop-traffic-light", "english": "Stop the car at the traffic light.", "uses": ["car", "traffic-light"]},
+            {"slot": "fasten-seatbelt", "english": "Please fasten your seatbelt before we leave.", "uses": ["seatbelt"]},
+            {"slot": "call-a-taxi", "english": "Call a taxi for me, please.", "uses": ["taxi"]},
+            {"slot": "bridge-near-port", "english": "The new bridge is near the port.", "uses": ["bridge", "port"]},
+            {"slot": "capital-buildings-streets", "english": "The capital has many tall buildings and wide streets.", "uses": ["capital", "building", "street"]}
+          ]
         },
         {
           "lesson": "lesson-05",
           "title": "Sport and Games",
-          "section": "Out and about",
           "phrases": [],
-          "words": ["sport", "football", "team", "player", "match", "stadium", "pitch", "ball", "race", "to-run", "to-win", "tennis", "basketball", "volleyball", "wrestling", "boxing", "karate", "running", "gymnastics", "coach", "referee", "champion", "goalkeeper", "captain", "supporter", "medal", "trophy", "points", "tournament", "victory", "defeat", "to-throw", "to-catch", "to-lift", "to-push", "to-pull", "to-hit", "to-score", "to-lose", "chess", "backgammon", "cards", "domino", "puzzle"]
+          "words": ["sport", "football", "team", "player", "match", "stadium", "pitch", "ball", "race", "to-win", "tennis", "basketball", "volleyball", "wrestling", "boxing", "karate", "running", "gymnastics", "coach", "referee", "champion", "goalkeeper", "captain", "supporter", "medal", "trophy", "points", "tournament", "victory", "defeat", "to-hit", "to-score", "to-lose", "chess", "backgammon", "cards", "domino", "puzzle", "horse-riding", "cycling", "draw-tie", "whistle", "doll", "swing"],
+          "sentences": [
+            {"slot": "football-every-friday", "english": "We play football every Friday after prayer.", "uses": ["football"]},
+            {"slot": "team-won-match", "english": "Our team won the match yesterday.", "uses": ["team", "to-win", "match"]},
+            {"slot": "goalkeeper-caught-ball", "english": "The goalkeeper caught the ball easily.", "uses": ["goalkeeper", "ball"]},
+            {"slot": "who-scored-first", "english": "Who scored the first goal?", "uses": ["to-score"]},
+            {"slot": "play-chess", "english": "Do you know how to play chess?", "uses": ["chess"]},
+            {"slot": "coach-players-run", "english": "The coach told the players to run more.", "uses": ["coach", "player"]}
+          ]
         }
       ]
     },
@@ -8590,30 +8800,58 @@
         {
           "lesson": "lesson-01",
           "title": "Fruit",
-          "section": "Fresh",
           "phrases": [],
-          "words": ["fruit", "apple", "banana", "orange-fruit", "mandarin", "lemon", "pear", "peach", "apricot", "plum", "cherry", "grapes", "strawberry", "blueberry", "mulberry", "watermelon", "melon", "mango", "pineapple", "kiwi", "papaya", "guava", "avocado", "coconut", "quince", "fig", "pomegranate", "dates", "dried-fruit", "raisins", "dried-figs", "dried-apricots", "peel", "stone-of-fruit", "seed", "fruit-salad", "orchard", "rotten"]
+          "words": ["fruit", "apple", "banana", "orange-fruit", "mandarin", "lemon", "pear", "peach", "apricot", "plum", "cherry", "grapes", "strawberry", "blueberry", "mulberry", "watermelon", "melon", "mango", "pineapple", "kiwi", "papaya", "guava", "avocado", "coconut", "quince", "fig", "pomegranate", "dates", "dried-fruit", "raisins", "dried-figs", "dried-apricots", "peel", "stone-of-fruit", "fruit-salad", "orchard", "rotten", "lime", "grapefruit", "prickly-pear", "loquat", "raspberry"],
+          "sentences": [
+            {"slot": "apples-bananas-market", "english": "I bought apples and bananas from the market.", "uses": ["apple", "banana"]},
+            {"slot": "peel-this-orange", "english": "Can you peel this orange for me?", "uses": ["orange-fruit"]},
+            {"slot": "watermelon-in-summer", "english": "We eat watermelon every day in summer.", "uses": ["watermelon"]},
+            {"slot": "break-fast-dates", "english": "We break our fast with dates and water.", "uses": ["dates"]},
+            {"slot": "grapes-very-sweet", "english": "These grapes are very sweet.", "uses": ["grapes"]},
+            {"slot": "pear-is-rotten", "english": "This pear is rotten, throw it away.", "uses": ["pear", "rotten"]}
+          ]
         },
         {
           "lesson": "lesson-02",
           "title": "Vegetables and Herbs",
-          "section": "Fresh",
           "phrases": [],
-          "words": ["vegetables", "tomato", "cucumber", "onion", "spring-onion", "garlic", "potato", "sweet-potato", "carrot", "radish", "beetroot", "turnip", "pumpkin", "courgette", "aubergine", "bell-pepper", "chilli-pepper", "okra", "mushroom", "sweet-corn", "lettuce", "cabbage", "cauliflower", "broccoli", "spinach", "celery", "leek", "herbs", "parsley", "coriander", "mint", "dill", "thyme", "basil", "rocket", "ginger", "peas", "beans", "fava-beans", "lentils", "chickpeas"]
+          "words": ["vegetables", "tomato", "cucumber", "onion", "spring-onion", "garlic", "potato", "sweet-potato", "carrot", "radish", "beetroot", "turnip", "pumpkin", "courgette", "aubergine", "bell-pepper", "chilli-pepper", "okra", "mushroom", "sweet-corn", "lettuce", "cabbage", "cauliflower", "broccoli", "spinach", "celery", "leek", "herbs", "parsley", "coriander", "mint", "dill", "thyme", "basil", "rocket", "ginger", "peas", "beans", "fava-beans", "lentils", "chickpeas", "molokhia", "vine-leaves", "green-beans", "artichoke", "sage", "chard"],
+          "sentences": [
+            {"slot": "cut-onion-garlic", "english": "Cut the onion and the garlic into small pieces.", "uses": ["onion", "garlic"]},
+            {"slot": "tomatoes-cucumbers-salad", "english": "We need tomatoes and cucumbers for the salad.", "uses": ["tomato", "cucumber"]},
+            {"slot": "potatoes-in-oven", "english": "Put the potatoes in the oven for an hour.", "uses": ["potato"]},
+            {"slot": "mint-in-tea", "english": "Do you want mint in your tea?", "uses": ["mint"]},
+            {"slot": "lentil-soup-winter", "english": "My mother makes lentil soup in winter.", "uses": ["lentils"]},
+            {"slot": "aubergine-and-okra", "english": "I don't like aubergine, but I love okra.", "uses": ["aubergine", "okra"]}
+          ]
         },
         {
           "lesson": "lesson-03",
           "title": "Pantry, Grains and Dairy",
-          "section": "Pantry and plate",
           "phrases": [],
-          "words": ["grains", "wheat", "barley", "oats", "rice", "flour", "semolina", "bulgur", "freekeh", "couscous", "vermicelli", "nuts", "almond", "walnut", "pistachio", "peanut", "hazelnut", "cashew", "pine-nuts", "sesame", "black-seed", "milk", "yoghurt", "labneh", "cheese", "cream", "butter", "ghee", "vinegar", "yeast", "jam", "honey", "tahini", "molasses", "olive-oil", "pickles", "chocolate", "cinnamon", "cumin", "turmeric", "sumac"]
+          "words": ["grains", "wheat", "barley", "oats", "rice", "flour", "semolina", "bulgur", "freekeh", "couscous", "vermicelli", "nuts", "almond", "walnut", "pistachio", "peanut", "hazelnut", "cashew", "pine-nuts", "sesame", "black-seed", "milk", "yoghurt", "labneh", "cheese", "cream", "butter", "ghee", "vinegar", "yeast", "jam", "honey", "tahini", "molasses", "olive-oil", "pickles", "chocolate", "cinnamon", "cumin", "turmeric", "sumac", "tomato-paste", "mayonnaise", "baking-powder", "vanilla", "rose-water", "aniseed"],
+          "sentences": [
+            {"slot": "rice-and-flour", "english": "We need a kilo of rice and some flour.", "uses": ["rice", "flour"]},
+            {"slot": "cheese-olive-oil", "english": "I eat bread with cheese and olive oil.", "uses": ["cheese", "olive-oil"]},
+            {"slot": "children-drink-milk", "english": "The children drink milk every morning.", "uses": ["milk"]},
+            {"slot": "honey-with-yoghurt", "english": "Honey with yoghurt is very good for breakfast.", "uses": ["honey", "yoghurt"]},
+            {"slot": "pistachios-almonds-top", "english": "Put some pistachios and almonds on top.", "uses": ["pistachio", "almond"]},
+            {"slot": "cumin-cinnamon-meat", "english": "Add a little cumin and cinnamon to the meat.", "uses": ["cumin", "cinnamon"]}
+          ]
         },
         {
           "lesson": "lesson-04",
           "title": "Meat, Fish and Dishes",
-          "section": "Pantry and plate",
           "phrases": [],
-          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "meatballs", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding"]
+          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding", "kibbeh", "ful-medames", "maqluba", "kabsa", "halva", "manakish"],
+          "sentences": [
+            {"slot": "chicken-or-fish", "english": "Do you want chicken or fish for dinner?", "uses": ["chicken", "fish"]},
+            {"slot": "two-shawarma-no-onion", "english": "Two shawarma sandwiches, please, without onion.", "uses": ["shawarma"]},
+            {"slot": "kofta-minced-meat", "english": "We make kofta from minced meat and parsley.", "uses": ["kofta", "minced-meat"]},
+            {"slot": "kunafa-after-dinner", "english": "After dinner we ate kunafa.", "uses": ["kunafa"]},
+            {"slot": "olives-omelette-breakfast", "english": "We always have olives and an omelette at breakfast.", "uses": ["olives", "omelette"]},
+            {"slot": "stew-black-pepper", "english": "The stew needs more salt and black pepper.", "uses": ["stew", "black-pepper"]}
+          ]
         }
       ]
     },
@@ -8624,23 +8862,44 @@
         {
           "lesson": "lesson-01",
           "title": "Faith and Worship",
-          "section": "Faith",
           "phrases": [],
-          "words": ["islam", "muslim", "faith", "believer", "god", "oneness-of-god", "angel", "prophet", "messenger", "revelation", "quran", "soul", "destiny", "day-of-judgement", "hereafter", "paradise", "hellfire", "worship", "to-worship", "shahada", "pillar", "prayer", "to-pray", "bowing", "prostration", "fasting", "zakat", "hajj", "remembrance", "repentance", "to-repent", "seeking-forgiveness", "trust-in-god", "piety", "patience", "ruling", "sharia", "obligatory", "recommended", "permissible", "disliked", "forbidden-by-religion", "halal", "sunnah", "sins"]
+          "words": ["islam", "muslim", "faith", "believer", "god", "oneness-of-god", "angel", "prophet", "messenger", "revelation", "quran", "soul", "destiny", "day-of-judgement", "hereafter", "paradise", "hellfire", "worship", "to-worship", "shahada", "pillar", "prayer", "to-pray", "bowing", "prostration", "fasting", "zakat", "hajj", "remembrance", "repentance", "to-repent", "seeking-forgiveness", "trust-in-god", "piety", "ruling", "sharia", "obligatory", "recommended", "permissible", "disliked", "forbidden-by-religion", "halal", "sunnah", "sins", "noon-prayer", "afternoon-prayer", "night-prayer", "religion", "umrah", "hadith"],
+          "sentences": [
+            {"slot": "muslims-pray-five-times", "english": "Muslims pray five times every day.", "uses": ["muslim", "to-pray"]},
+            {"slot": "ramadan-fasting-obligatory", "english": "Fasting in Ramadan is obligatory for adult Muslims.", "uses": ["fasting", "obligatory", "muslim"]},
+            {"slot": "grandfather-reads-quran", "english": "My grandfather reads the Qur'an every morning.", "uses": ["quran"]},
+            {"slot": "hajj-with-parents", "english": "He went on Hajj with his parents last year.", "uses": ["hajj"]},
+            {"slot": "zakat-helps-families", "english": "Zakat helps poor families in our community.", "uses": ["zakat"]},
+            {"slot": "is-meat-halal", "english": "Is this meat halal? I want to check.", "uses": ["halal"]}
+          ]
         },
         {
           "lesson": "lesson-02",
           "title": "Government and Law",
-          "section": "Society",
           "phrases": [],
-          "words": ["government", "state", "republic", "parliament", "constitution", "politics", "president", "prime-minister", "minister", "king", "ambassador", "judge", "law", "lawsuit", "verdict", "sentence", "crime", "guilty", "innocent", "to-arrest", "justice", "citizen", "foreigner", "refugee", "homeland", "nation", "flag", "anthem", "freedom", "duty", "entitlement", "tax", "responsibility", "election", "vote", "political-party", "majority", "campaign", "ballot-box", "army", "soldier", "officer", "security", "weapon"]
+          "words": ["government", "state", "republic", "parliament", "constitution", "politics", "president", "prime-minister", "minister", "king", "ambassador", "judge", "law", "lawsuit", "verdict", "sentence", "crime", "guilty", "innocent", "to-arrest", "justice", "citizen", "foreigner", "refugee", "homeland", "nation", "flag", "anthem", "freedom", "duty", "entitlement", "tax", "responsibility", "election", "vote", "political-party", "majority", "campaign", "ballot-box", "army", "soldier", "officer", "security", "weapon", "ministry", "municipality", "prince", "kingdom", "independence", "corruption"],
+          "sentences": [
+            {"slot": "election-next-month", "english": "The election will be next month.", "uses": ["election"]},
+            {"slot": "president-visited-hospital", "english": "The president visited the new hospital yesterday.", "uses": ["president"]},
+            {"slot": "respect-the-law", "english": "Everyone must respect the law.", "uses": ["law"]},
+            {"slot": "judge-announced-verdict", "english": "The judge announced the verdict this morning.", "uses": ["judge", "verdict"]},
+            {"slot": "citizen-duty-tax", "english": "Every citizen has a duty to pay tax.", "uses": ["citizen", "duty", "tax"]},
+            {"slot": "anthem-and-flag", "english": "The children sang the national anthem and raised the flag.", "uses": ["anthem", "flag"]}
+          ]
         },
         {
           "lesson": "lesson-03",
           "title": "Knowledge, Culture and Media",
-          "section": "Society",
           "phrases": [],
-          "words": ["history", "geography", "mathematics", "science", "physics", "chemistry", "biology", "art", "knowledge", "encyclopedia", "principal", "thesis", "research", "experiment", "laboratory", "discovery", "invention", "scientist", "culture", "tradition", "custom", "heritage", "society", "community", "tribe", "literature", "poetry", "poet", "novel", "writer", "theatre", "media", "radio", "advert", "broadcast", "channel", "magazine", "business", "trade", "economy", "debt", "industry", "import", "export"]
+          "words": ["history", "geography", "mathematics", "science", "physics", "chemistry", "biology", "art", "knowledge", "encyclopedia", "principal", "thesis", "research", "experiment", "laboratory", "discovery", "invention", "culture", "tradition", "custom", "heritage", "society", "community", "tribe", "literature", "poetry", "novel", "theatre", "media", "radio", "advert", "broadcast", "channel", "magazine", "business", "trade", "economy", "debt", "industry", "import", "export", "education", "medicine-subject", "engineering", "programme-tv", "article", "unemployment"],
+          "sentences": [
+            {"slot": "history-geography-maths", "english": "I like history and geography more than mathematics.", "uses": ["history", "geography", "mathematics"]},
+            {"slot": "chemistry-lab-experiment", "english": "We did an experiment in the chemistry laboratory.", "uses": ["experiment", "chemistry", "laboratory"]},
+            {"slot": "novel-arab-writer", "english": "She read a beautiful novel by an Arab writer.", "uses": ["novel"]},
+            {"slot": "father-listens-radio", "english": "My father listens to the radio every morning.", "uses": ["radio"]},
+            {"slot": "poetry-arab-culture", "english": "Poetry is an important part of Arab culture.", "uses": ["poetry", "culture"]},
+            {"slot": "trade-and-economy", "english": "Trade is very important for our country's economy.", "uses": ["trade", "economy"]}
+          ]
         }
       ]
     }

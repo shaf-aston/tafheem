@@ -22,13 +22,109 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "muslims-pray-five-times",
+          "arabic": "المُسْلْمِين بْيْصَلُّوا خَمِس مَرَّات كِلّ يُوم.",
+          "transliteration": "el-muslmeen bySallo khames marraat kell yom."
+        },
+        {
+          "slot": "ramadan-fasting-obligatory",
+          "arabic": "صِيَام رَمَضَان فَرْض عَلَى المُسْلْمِين البَالْغِين.",
+          "transliteration": "Siyaam ramaDaan farD 3ala el-muslmeen el-baalgheen."
+        },
+        {
+          "slot": "grandfather-reads-quran",
+          "arabic": "جِدِّي بْيِقْرَا القُرْآن كِلّ يُوم الصُّبْح.",
+          "transliteration": "jeddi bye2ra el-2ur2aan kell yom eS-Sob7."
+        },
+        {
+          "slot": "hajj-with-parents",
+          "arabic": "رَاح عَالحَجّ مَع أَهْلُو السِّنِة المَاضْيِة.",
+          "transliteration": "raa7 3al-7ajj ma3 ahlo es-sene el-maaDye."
+        },
+        {
+          "slot": "zakat-helps-families",
+          "arabic": "الزَّكَاة بِتْسَاعِد العِيَل الفَقِيرَة بِمُجْتَمَعْنَا.",
+          "transliteration": "ez-zakaat betsaa3ed el-3iyal el-fa2eera b-mujtama3na."
+        },
+        {
+          "slot": "is-meat-halal",
+          "arabic": "هَاللَّحْمِة حَلَال؟ بِدِّي إِتْأَكَّد.",
+          "transliteration": "hal-la7me 7alaal? baddi et2akkad."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "election-next-month",
+          "arabic": "الانْتِخَابَات رَح تْكُون الشَّهْر الجَايِ.",
+          "transliteration": "el-entikhaabaat ra7 tkoon esh-shahr ej-jaay."
+        },
+        {
+          "slot": "president-visited-hospital",
+          "arabic": "رَئِيس الجُمْهُورِيِّة زَار المُسْتَشْفَى الجْدِيد مْبَارِح.",
+          "transliteration": "ra2ees ej-jumhooriyye zaar el-mustashfa ej-jdeed mbaare7."
+        },
+        {
+          "slot": "respect-the-law",
+          "arabic": "الكِلّ لَازِم يِحْتِرْم القَانُون.",
+          "transliteration": "el-kell laazem ye7tirem el-2aanoon."
+        },
+        {
+          "slot": "judge-announced-verdict",
+          "arabic": "القَاضِي أَعْلَن الحُكْم اليُوم الصُّبْح.",
+          "transliteration": "el-2aaDi a3lan el-7ukm el-yom eS-Sob7."
+        },
+        {
+          "slot": "citizen-duty-tax",
+          "arabic": "كِلّ مُوَاطِن عَلَيه وَاجِب يِدْفَع الضَّرِيبِة.",
+          "transliteration": "kell muwaaTen 3aleih waajeb yedfa3 eD-Dareebe."
+        },
+        {
+          "slot": "anthem-and-flag",
+          "arabic": "الوْلَاد غَنُّوا النَّشِيد الوَطَنِي وْرَفْعُوا العَلَم.",
+          "transliteration": "el-wlaad ghanno en-nasheed el-waTani w rafa3o el-3alam."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "history-geography-maths",
+          "arabic": "بْحِبّ التَّارِيخ وِالجُغْرَافْيَا أَكْتَر مِن الرِّيَاضِيَّات.",
+          "transliteration": "b7ebb et-taareekh w ej-jughraafya aktar men er-riyaaDiyyaat."
+        },
+        {
+          "slot": "chemistry-lab-experiment",
+          "arabic": "عْمِلْنَا تَجْرُبِة بِمِخْبَر الكِيمْيَاء.",
+          "transliteration": "3melna tajrobe b-mekhbar el-keemya."
+        },
+        {
+          "slot": "novel-arab-writer",
+          "arabic": "قَرِت رِوَايِة حِلْوِة لَكَاتِب عَرَبِي.",
+          "transliteration": "2aret riwaaye 7elwe la-kaateb 3arabi."
+        },
+        {
+          "slot": "father-listens-radio",
+          "arabic": "بَيِّي بْيِسْمَع الرَّادْيُو كِلّ يُوم الصُّبْح.",
+          "transliteration": "bayyi byesma3 er-raadyo kell yom eS-Sob7."
+        },
+        {
+          "slot": "poetry-arab-culture",
+          "arabic": "الشِّعِر جِزْء مْهِمّ مِن الثَّقَافِة العَرَبِيِّة.",
+          "transliteration": "esh-shi3er jez2 mhemm men et-ta2aafe el-3arabiyye."
+        },
+        {
+          "slot": "trade-and-economy",
+          "arabic": "التِّجَارَة كْتِير مْهِمِّة لَاقْتِصَاد بَلَدْنَا.",
+          "transliteration": "et-tijaara kteer mhemme la-e2tiSaad baladna."
+        }
+      ]
     }
   ]
 }

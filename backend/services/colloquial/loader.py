@@ -101,7 +101,9 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     said = []
     if not str(lesson.get("title") or "").strip():
         said.append(f"{name} has no title")
-    if not lesson.get("phrases"):  # a word list: its words are all it teaches
+    for at, sentence in enumerate(lesson.get("sentences") or [], 1):
+        said.extend(_phrase_faults(sentence, f"{name} sentence {at}"))
+    if not lesson.get("phrases"):  # a word list: its words (and their sentences) are all it teaches
         return said
     for part in ("phrases", "dialogue", "exercises"):
         if not lesson.get(part):
@@ -133,7 +135,41 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     return said
 
 
-def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tuple[dict, list[str]]:
+@lru_cache(maxsize=1)
+def _first_taught() -> dict[str, str]:
+    """Each word id's first topic in course order ("unit-01/lesson-02"): a word is new there, and met
+    before in every later topic that lists it. One answer for every dialect, from the spine alone."""
+    first: dict[str, str] = {}
+    for unit in spine():
+        for lesson in unit["lessons"]:
+            for one in lesson.get("words") or []:
+                first.setdefault(one, f"{unit['unit']}/{lesson['lesson']}")
+    return first
+
+
+def _mark_met(vocabulary: list[dict], where: str) -> list[dict]:
+    """A topic's words, each saying whether an earlier topic already taught it."""
+    first = _first_taught()
+    return [{**word, "met": first.get(word["id"], where) != where} for word in vocabulary]
+
+
+def _sentences(plan: dict, lesson: dict) -> tuple[list[dict], list[str]]:
+    """A word topic's example sentences: the spine gives each slot's English (and the word ids it
+    uses), the dialect says it. Like phrases, every slot or none is a fault: a written topic says them all."""
+    name, said = f"lesson {plan['lesson']!r}", []
+    given = [one.get("slot") for one in lesson.get("sentences") or []]
+    for twice in sorted({slot for slot in given if given.count(slot) > 1}, key=str):
+        said.append(f"{name} says the sentence {twice!r} twice")
+    by_slot = {one.get("slot"): one for one in lesson.get("sentences") or []}
+    slots = [one["slot"] for one in plan.get("sentences") or []]
+    for extra in sorted(set(by_slot) - set(slots), key=str):
+        said.append(f"{name} says the sentence {extra!r}, which spine.json does not have")
+    for missing in (slot for slot in slots if slot not in by_slot):
+        said.append(f"{name} does not say the sentence {missing!r}")
+    return [{**one, **by_slot[one["slot"]]} for one in plan.get("sentences") or [] if one["slot"] in by_slot], said
+
+
+def _fill(outline: dict, written: dict, dialect_words: dict | None = None, same: frozenset = frozenset()) -> tuple[dict, list[str]]:
     """One dialect's unit file laid onto its spine unit: the unit a learner sees.
 
     The spine gives the titles, the sections, the order, each phrase's English and picture; the
@@ -165,15 +201,18 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
         phrases = [{**slot, **words[slot["slot"]]} for slot in plan["phrases"] if slot["slot"] in words]
         dialogue, faults = _say_slots(lesson, phrases, f"lesson {plan['lesson']!r}")
         said.extend(faults)
+        sentences, faults = _sentences(plan, lesson)
+        said.extend(faults)
         if "vocabulary" in lesson:
             said.append(f"lesson {plan['lesson']!r} lists its own vocabulary; a dialect's words live in {wordlist.FILE}")
-        vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}")
+        vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}", same)
         said.extend(faults)
+        vocabulary = _mark_met(vocabulary, f"{outline.get('unit')}/{plan['lesson']}")
         # A topic of opposites lists them two by two, each word beside its other.
         ids = plan.get("words") or []
         pairs = [ids[i:i + 2] for i in range(0, len(ids), 2)] if plan.get("pairs") else None
         filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases,
-                       "dialogue": dialogue, "vocabulary": vocabulary, "written": True,
+                       "dialogue": dialogue, "sentences": sentences, "vocabulary": vocabulary, "written": True,
                        **({"pairs": pairs} if pairs else {})})
     return {**written, "title": outline["title"], "cover": outline.get("cover"), "lessons": _spelt(filled)}, said
 
@@ -235,9 +274,9 @@ def _unit_faults(unit: dict) -> list[str]:
     return said
 
 
-def _laid(outline: dict, written: dict, words: dict) -> tuple[dict, list[str]]:
+def _laid(outline: dict, written: dict, words: dict, same: frozenset = frozenset()) -> tuple[dict, list[str]]:
     """A unit file laid onto its spine unit and checked: the one way a unit is read, in the app and in the scripts."""
-    unit, faults = _fill(outline, written, words)
+    unit, faults = _fill(outline, written, words, same)
     return unit, faults + _unit_faults(unit)
 
 
@@ -252,7 +291,7 @@ def unit_faults(folder: str, name: str, written: dict | None = None, words: dict
     if written is None:
         written = json.loads((data_path("colloquial_dir") / folder / f"{name}.json").read_text(encoding="utf-8"))
     outline = next(one for one in spine() if one["unit"] == name)
-    return _laid(outline, written, wordlist.said_in(folder) if words is None else words)[1]
+    return _laid(outline, written, wordlist.said_in(folder) if words is None else words, wordlist.homonyms(folder))[1]
 
 
 @lru_cache(maxsize=1)
@@ -290,7 +329,7 @@ def _content() -> dict:
                                            "section": lesson.get("section"), "written": False}
                                           for lesson in outline["lessons"]]})
                 continue
-            unit, faults = _laid(outline, written[outline["unit"]], said)
+            unit, faults = _laid(outline, written[outline["unit"]], said, wordlist.homonyms(dialect["folder"]))
             if faults:
                 broken.append(f"{dialect['key']}/{outline['unit']}: " + "; ".join(faults))
             units.append({**unit, "written": True})
@@ -341,7 +380,9 @@ def _card(dialect: dict) -> dict:
     """A dialect's card, through schema.DialectCard: its fields are named there only."""
     units = [{**u, "cover": _cover(u), **_words_only(u),
               "lessons": [{**lesson, "words": len(lesson.get("vocabulary") or []),
-                           "phrases": len(lesson.get("phrases") or []), "picture": _picture(lesson)}
+                           "new_words": sum(1 for w in lesson.get("vocabulary") or [] if not w.get("met")),
+                           "phrases": len(lesson.get("phrases") or []), "sentences": len(lesson.get("sentences") or []),
+                           "picture": _picture(lesson)}
                           for lesson in u["lessons"]]}
              for u in dialect["units"]]
     return schema.DialectCard.model_validate({**dialect, "units": units}).model_dump()

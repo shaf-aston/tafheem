@@ -25,19 +25,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "head-hurts-today",
+          "arabic": "رَاسِي يُوجَعْنِي وَايِد الْيُوم.",
+          "transliteration": "raasi yooja3ni waayid il-yoom."
+        },
+        {
+          "slot": "wash-face-hands",
+          "arabic": "اغْسِل وِجْهَك وْإِيدَيْنَك قَبِل لَا تَاكِل.",
+          "transliteration": "ighsil wijhak w eedeenak gabil la taakil."
+        },
+        {
+          "slot": "brush-teeth-daily",
+          "arabic": "فَرِّش أَسْنَانَك كِل صَبَاح وْكِل لِيل.",
+          "transliteration": "farrish asnaanak kill Sabaa7 w kill leel."
+        },
+        {
+          "slot": "fell-broke-arm",
+          "arabic": "طَاح وْكَسَر ذِرَاعَه.",
+          "transliteration": "Taa7 w kasar dhiraa3a."
+        },
+        {
+          "slot": "back-knee-hurt",
+          "arabic": "ظَهْرِي وْرِكْبْتِي يُوجْعُونِي بَعَد الْمَشْي.",
+          "transliteration": "Dhahri w rikbati yooj3ooni ba3ad il-mashi."
+        },
+        {
+          "slot": "long-hair-brown-eyes",
+          "arabic": "شَعَرْهَا طَوِيل، وْعْيُونْهَا بُنِّيَّة.",
+          "transliteration": "sha3arha Taweel, w 3yoonha bunniyya."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "wear-your-coat",
+          "arabic": "الْبَس الْكُوت، الْجَو بَارِد بَرَّا.",
+          "transliteration": "ilbas il-koot, il-jaw baarid barra."
+        },
+        {
+          "slot": "shoes-too-small",
+          "arabic": "هَالْكَنَادِر وَايِد صْغِيرَة عَلَيّ.",
+          "transliteration": "hal-kanaadir waayid Sgheera 3alay."
+        },
+        {
+          "slot": "white-thobe-friday",
+          "arabic": "يِلْبَس ثُوب أَبْيَض يُوم الْجُمْعَة.",
+          "transliteration": "yilbas thoob abyaD yoom il-jum3a."
+        },
+        {
+          "slot": "seen-my-glasses",
+          "arabic": "شِفْت نَظَّارْتِي فِي أَي مَكَان؟",
+          "transliteration": "shift naDhDhaarti fi ay makaan?"
+        },
+        {
+          "slot": "button-fell-off-shirt",
+          "arabic": "طَاح زِرّ مِن قَمِيصِي.",
+          "transliteration": "Taa7 zirr min gameeSi."
+        },
+        {
+          "slot": "new-headscarf-abaya",
+          "arabic": "شْتَرَت شِيلَة جْدِيدَة وْعَبَايَة سُودَا.",
+          "transliteration": "shtarat shayla jideeda w 3abaaya sooda."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "three-brothers-one-sister",
+          "arabic": "عِنْدِي ثَلَاث خْوَان وْأُخْت وَحْدَة.",
+          "transliteration": "3indi thalaath khwaan w ukht wa7da."
+        },
+        {
+          "slot": "grandmother-lives-with-us",
+          "arabic": "جَدِّتِي تِسْكِن وِيَّانَا.",
+          "transliteration": "jaddati tiskin wiyyaana."
+        },
+        {
+          "slot": "paternal-uncle-doctor",
+          "arabic": "عَمِّي دَخْتَر.",
+          "transliteration": "3ammi dakhtar."
+        },
+        {
+          "slot": "married-or-single",
+          "arabic": "إِنْت مِتْزَوِّج وَلَّا أَعْزَب؟",
+          "transliteration": "inta mitzawwij walla a3zab?"
+        },
+        {
+          "slot": "neighbour-came-guest",
+          "arabic": "جَارْنَا جَانَا ضِيف الْبَارْحَة فِي اللِّيل.",
+          "transliteration": "jaarna jaana Deef il-baar7a fil-leel."
+        },
+        {
+          "slot": "cousin-baby-girl",
+          "arabic": "بِنْت عَمِّي جَابَت بِيبِي، صَبِيَّة، الْبَارْحَة.",
+          "transliteration": "bint 3ammi jaabat beebi, Sabiyya, il-baar7a."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "engineer-and-teacher",
+          "arabic": "أُبُوي مُهَنْدِس، وْأُمِّي مُدَرِّسَة.",
+          "transliteration": "uboy muhandis, w ummi mudarrisa."
+        },
+        {
+          "slot": "call-the-doctor",
+          "arabic": "اتَّصِل عَلَى الدَّخْتَر، الْوَلَد وَايِد مَرِيض.",
+          "transliteration": "ittaSil 3ala id-dakhtar, il-walad waayid mareeD."
+        },
+        {
+          "slot": "car-to-mechanic",
+          "arabic": "وَدِّيت السَّيَّارَة لِلْمِيكَانِيكِي الْبَارْحَة.",
+          "transliteration": "waddeet is-sayyaara lil-meekaneeki il-baar7a."
+        },
+        {
+          "slot": "barber-cut-hair",
+          "arabic": "الْحَلَّاق قَصّ شَعْرِي قَصِير.",
+          "transliteration": "il-7allaag gaSS sha3ri gaSeer."
+        },
+        {
+          "slot": "wants-to-be-lawyer",
+          "arabic": "هِي تَبِي تْصِير مُحَامْيَة بَعَد الْجَامْعَة.",
+          "transliteration": "hiya tabi tSeer mu7aamya ba3ad ij-jaam3a."
+        },
+        {
+          "slot": "student-asked-professor",
+          "arabic": "الطَّالِب سَأَل الْأُسْتَاذ الْجَامِعِي سُؤَال.",
+          "transliteration": "iT-Taalib sa2al il-ustaadh ij-jaami3i su2aal."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "from-syria-wife-egyptian",
+          "arabic": "أَنَا مِن سُورْيَا، وْحُرْمَتِي مَصْرِيَّة.",
+          "transliteration": "ana min sooriya, w 7urmati maSriyya."
+        },
+        {
+          "slot": "what-is-your-nationality",
+          "arabic": "شُو جِنْسِيَّتَك؟ وْوِين تِسْكِن؟",
+          "transliteration": "shu jinsiyyatak? w ween tiskin?"
+        },
+        {
+          "slot": "visited-morocco-tunisia",
+          "arabic": "زِرْنَا الْمَغْرِب وْتُونِس الصِّيف اللِّي فَات.",
+          "transliteration": "zirna il-maghrib w toonis iS-Seef illi faat."
+        },
+        {
+          "slot": "brother-studies-britain",
+          "arabic": "خُوي يِدْرِس فِي بْرِيطَانْيَا.",
+          "transliteration": "khooy yidris fi breeTaanya."
+        },
+        {
+          "slot": "jordan-next-to-palestine",
+          "arabic": "الْأُرْدُن جَنْب فِلَسْطِين وَالْعِرَاق.",
+          "transliteration": "il-urdun janb filasTeen wil-3iraag."
+        },
+        {
+          "slot": "pilgrims-saudi-arabia",
+          "arabic": "وَايِد حُجَّاج يْسَافْرُون لِلسَّعُودِيَّة كِل سَنَة.",
+          "transliteration": "waayid 7ujjaaj ysaafroon lis-sa3oodiyya kill sana."
+        }
+      ]
     }
   ]
 }

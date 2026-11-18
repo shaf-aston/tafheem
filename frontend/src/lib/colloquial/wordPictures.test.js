@@ -53,14 +53,19 @@ describe('pictureBoards', () => {
   })
 
   it('lays a grid board out with only the panels taught, each keeping its place in the set', () => {
-    const [week] = pictureBoards(wordsOf(['friday', 'saturday', 'sunday']))
+    // Six of the seven days (a board needs least-picture-words): Thursday is not taught, so its panel is left out.
+    const [week] = pictureBoards(wordsOf(['friday', 'saturday', 'sunday', 'monday', 'tuesday', 'wednesday']))
     expect(week.id).toBe('week')
-    expect(week.spots.map((s) => [s.key, s.order])).toEqual([['sunday', 1], ['friday', 6], ['saturday', 7]])
-    expect(week.view).toEqual([0, 0, 150, 72])
+    expect(week.spots.map((s) => [s.key, s.order])).toEqual([['sunday', 1], ['monday', 2], ['tuesday', 3], ['wednesday', 4], ['friday', 6], ['saturday', 7]])
+    expect(week.view).toEqual([0, 0, 300, 72])
+  })
+
+  it('offers no board that places fewer of the topic’s words than least-picture-words', () => {
+    expect(pictureBoards(wordsOf(['friday', 'saturday', 'sunday']))).toEqual([])
   })
 
   it('puts "in" and "inside" on one panel', () => {
-    const [where] = pictureBoards(wordsOf(['in', 'inside', 'on', 'under']))
+    const [where] = pictureBoards(wordsOf(['in', 'inside', 'on', 'under', 'above', 'behind', 'next-to']))
     expect(where.spots[1].words.map((w) => w.id)).toEqual(['in', 'inside'])
   })
 

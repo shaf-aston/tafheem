@@ -26,13 +26,109 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "muslims-pray-five-times",
+          "arabic": "المُسْلِمِين يْصَلُّون خَمِس مَرَّات كُل يُوم.",
+          "transliteration": "il-muslimeen ySalloon khamis marraat kull yoom."
+        },
+        {
+          "slot": "ramadan-fasting-obligatory",
+          "arabic": "صِيَام رَمَضَان فَرْض عَلَى المُسْلِم البَالِغ.",
+          "transliteration": "Siyaam ramaDaan farD 3ala il-muslim il-baaligh."
+        },
+        {
+          "slot": "grandfather-reads-quran",
+          "arabic": "جِدِّي يِقْرَا القُرْآن كُل صُبُح.",
+          "transliteration": "jiddi yigra il-guraan kull Subu7."
+        },
+        {
+          "slot": "hajj-with-parents",
+          "arabic": "رَاح لِلْحَجّ وِيَّا أَهْلَه السَّنَة اللِّي فَاتَت.",
+          "transliteration": "raa7 lil-7ajj wiyya ahla is-sana illi faatat."
+        },
+        {
+          "slot": "zakat-helps-families",
+          "arabic": "الزَّكَاة تْسَاعِد العَوَايِل الفَگِيرَة بْمَنْطِقَتْنَا.",
+          "transliteration": "iz-zakaat tsaa3id il-3awaayil il-fageera b-manTigatna."
+        },
+        {
+          "slot": "is-meat-halal",
+          "arabic": "هَاللَّحَم حَلَال؟ أَرِيد أَتْأَكَّد.",
+          "transliteration": "hal-la7am 7alaal? areed at2akkad."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "election-next-month",
+          "arabic": "الانْتِخَابَات رَاح تْصِير الشَّهَر الجَّاي.",
+          "transliteration": "il-intikhaabaat raa7 tSeer ish-shahar ij-jaay."
+        },
+        {
+          "slot": "president-visited-hospital",
+          "arabic": "رَئِيس الجُّمْهُورِيَّة زَار المُسْتَشْفَى الجّْدِيد البَارْحَة.",
+          "transliteration": "ra2ees ij-jumhooriyya zaar il-mustashfa ij-jdeed il-baar7a."
+        },
+        {
+          "slot": "respect-the-law",
+          "arabic": "الكُلّ لَازِم يِحْتِرْمُون القَانُون.",
+          "transliteration": "il-kull laazim yi7tirmoon il-gaanoon."
+        },
+        {
+          "slot": "judge-announced-verdict",
+          "arabic": "الگَاضِي أَعْلَن الحُكُم اليُوم الصُّبُح.",
+          "transliteration": "il-gaaDi a3lan il-7ukum il-yoom iS-Subu7."
+        },
+        {
+          "slot": "citizen-duty-tax",
+          "arabic": "كُل مُوَاطِن عَلِيه وَاجِب يِدْفَع الضَّرِيبَة.",
+          "transliteration": "kull muwaaTin 3alee waajib yidfa3 iD-Dareeba."
+        },
+        {
+          "slot": "anthem-and-flag",
+          "arabic": "الجّْهَال غَنَّوْا النَّشِيد الوَطَنِي وْرِفْعَوْا العَلَم.",
+          "transliteration": "ij-jihhaal ghannaw in-nasheed il-waTani w-rif3aw il-3alam."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "history-geography-maths",
+          "arabic": "آنِي أَحِبّ التَّارِيخ وِالجُّغْرَافْيَة أَكْثَر مِن الرِّيَاضِيَّات.",
+          "transliteration": "aani a7ibb it-taareekh wij-jughraafiya akthar min ir-riyaaDiyyaat."
+        },
+        {
+          "slot": "chemistry-lab-experiment",
+          "arabic": "سَوَّيْنَا تَجْرُبَة بْمُخْتَبَر الكِيمْيَاء.",
+          "transliteration": "sawweena tijriba b-mukhtabar il-keemyaa."
+        },
+        {
+          "slot": "novel-arab-writer",
+          "arabic": "قِرَت رِوَايَة حِلْوَة لِكَاتِب عَرَبِي.",
+          "transliteration": "girat riwaaya 7ilwa li-kaatib 3arabi."
+        },
+        {
+          "slot": "father-listens-radio",
+          "arabic": "أَبُويَه يِسْمَع الرَّادْيُو كُل صُبُح.",
+          "transliteration": "abooya yisma3 ir-raadyo kull Subu7."
+        },
+        {
+          "slot": "poetry-arab-culture",
+          "arabic": "الشِّعِر جُزْء مُهِمّ مِن الثَّقَافَة العَرَبِيَّة.",
+          "transliteration": "ish-shi3ir juz2 muhimm min ith-thagaafa il-3arabiyya."
+        },
+        {
+          "slot": "trade-and-economy",
+          "arabic": "التِّجَارَة كُلِّش مُهِمَّة لِاقْتِصَاد بَلَدْنَا.",
+          "transliteration": "it-tijaara kullish muhimma l-igtiSaad baladna."
+        }
+      ]
     }
   ]
 }

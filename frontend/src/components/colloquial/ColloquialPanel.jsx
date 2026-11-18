@@ -28,11 +28,12 @@ import { markSeen } from '../../lib/colloquial/seen'
 
 const BLURB = TABS.find((t) => t.id === 'colloq')?.blurb
 
-function Topic({ dialect, unit, at, words }) {
+// `mode` opens a word list straight in one way of learning it (cards, quiz), from a quick button.
+function Topic({ dialect, unit, at, words, mode, onWords }) {
   const { data, isPending, isError, error, refetch } = useQuery(colloquialUnitQuery(dialect, unit))
   if (isPending) return <AnalyzerSkeleton />
   if (isError) return <ErrorAlert title="Could not load the lessons" fallback="The Colloquial lessons could not be reached." error={error} onRetry={refetch} />
-  return words || !data.lessons[at].phrases.length ? <WordsView unit={data} at={at} /> : <TopicView unit={data} at={at} />
+  return words || !data.lessons[at].phrases.length ? <WordsView unit={data} at={at} start={mode} /> : <TopicView unit={data} at={at} onWords={onWords} />
 }
 
 // The next topic the dialect has written, so a learner flows on instead of climbing back out.
@@ -106,11 +107,12 @@ export default function ColloquialPanel({ incoming, arrival, onVisit }) {
       {catalogue.data && (
         <Screen id={placeOf(place, dialects) ?? 'top'} depth={!dialect ? 0 : !unit ? 1 : lessonAt === null ? 2 : 3}>
           {!dialect && <DialectList dialects={dialects} go={go} />}
-          {dialect && !unit && <UnitList dialect={dialect} go={go} />}
+          {dialect && !unit && <UnitList dialect={dialect} dialects={dialects} go={go} />}
           {unit && lessonAt === null && <TopicList dialect={dialect} unit={unit} go={go} />}
           {unit && lessonAt !== null && (
             <>
-              <Topic dialect={dialect.key} unit={unit.unit} at={lessonAt} words={words} />
+              <Topic dialect={dialect.key} unit={unit.unit} at={lessonAt} words={words} mode={place?.mode}
+                onWords={(mode) => go({ dialect: dialect.key, unit: unit.unit, at: lessonAt, words: true, mode })} />
               <NextTopic unit={unit} at={lessonAt} onGo={(next) => go({ dialect: dialect.key, unit: unit.unit, at: next, words: false })} />
             </>
           )}

@@ -21,22 +21,214 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "where-house-who-lives",
+          "arabic": "أَيْنَ بَيْتُكَ، وَمَنْ يَسْكُنُ فِيهِ؟",
+          "transliteration": "ayna baytuka, wa man yaskunu feehi?"
+        },
+        {
+          "slot": "what-is-this-that",
+          "arabic": "مَا هَذَا، وَمَا ذَلِكَ؟",
+          "transliteration": "maa haadhaa, wa maa dhaalika?"
+        },
+        {
+          "slot": "how-many-children",
+          "arabic": "كَمْ وَلَدًا عِنْدَهُمْ؟",
+          "transliteration": "kam waladan 3indahum?"
+        },
+        {
+          "slot": "we-here-he-not",
+          "arabic": "نَحْنُ هُنَا، لَكِنَّهُ لَيْسَ هُنَاكَ",
+          "transliteration": "na7nu hunaa, laakinnahu laysa hunaak"
+        },
+        {
+          "slot": "why-she-left-early",
+          "arabic": "لِمَاذَا خَرَجَتْ هِيَ مِنَ الْبَيْتِ مُبَكِّرًا هَكَذَا؟",
+          "transliteration": "limaadhaa kharajat hiya mina al-bayti mubakkiran haakadhaa?"
+        },
+        {
+          "slot": "where-from-when-arrive",
+          "arabic": "مِنْ أَيْنَ أَنْتَ، وَمَتَى وَصَلْتَ؟",
+          "transliteration": "min ayna anta, wa mataa wasalta?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "keys-under-table",
+          "arabic": "ضَعِ الْمَفَاتِيحَ تَحْتَ الطَّاوِلَةِ، مِنْ فَضْلِكَ",
+          "transliteration": "da3i al-mafaateeha ta7ta at-taawilati, min fadlik"
+        },
+        {
+          "slot": "bag-next-to-door",
+          "arabic": "الْحَقِيبَةُ بِجَانِبِ الْبَابِ، خَلْفَ الْكُرْسِيِّ",
+          "transliteration": "al-7aqeebatu bijaanibi al-baabi, khalfa al-kursiyy"
+        },
+        {
+          "slot": "tea-milk-no-sugar",
+          "arabic": "أَشْرَبُ الشَّايَ مَعَ الْحَلِيبِ، لَكِنْ بِدُونِ سُكَّرٍ",
+          "transliteration": "ashrabu ash-shaaya ma3a al-7aleebi, laakin bidooni sukkar"
+        },
+        {
+          "slot": "home-until-evening",
+          "arabic": "بَقِينَا عِنْدَنَا فِي الْبَيْتِ حَتَّى الْمَسَاءِ لِأَنَّ الْمَطَرَ كَانَ يَنْزِلُ",
+          "transliteration": "baqeenaa 3indanaa fee al-bayti 7attaa al-masaa2i li2anna al-matara kaana yanzil"
+        },
+        {
+          "slot": "wash-hands-before-after",
+          "arabic": "اِغْسِلْ يَدَيْكَ قَبْلَ الْأَكْلِ وَبَعْدَهُ",
+          "transliteration": "ighsil yadayka qabla al-akli wa ba3dah"
+        },
+        {
+          "slot": "shop-opposite-mosque",
+          "arabic": "الْمَحَلُّ مُقَابِلَ الْمَسْجِدِ، بَيْنَ الْبَنْكِ وَالْمَدْرَسَةِ",
+          "transliteration": "al-ma7allu muqaabila al-masjidi, bayna al-banki wal-madrasa"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "always-early-sometimes-late",
+          "arabic": "أَسْتَيْقِظُ دَائِمًا مُبَكِّرًا، لَكِنِّي أَتَأَخَّرُ أَحْيَانًا",
+          "transliteration": "astayqizu daa2iman mubakkiran, laakinnee ata2akhkharu a7yaanaa"
+        },
+        {
+          "slot": "father-never-coffee",
+          "arabic": "أَبِي لَا يَشْرَبُ الْقَهْوَةَ فِي اللَّيْلِ أَبَدًا",
+          "transliteration": "abee laa yashrabu al-qahwata fee al-layli abadaa"
+        },
+        {
+          "slot": "eat-little-more",
+          "arabic": "كُلْ أَكْثَرَ قَلِيلًا مِنْ فَضْلِكَ، فَالطَّعَامُ كَافٍ",
+          "transliteration": "kul akthara qaleelan min fadlika, fat-ta3aamu kaafin"
+        },
+        {
+          "slot": "still-at-work",
+          "arabic": "هَلْ مَا زَالَ فِي الْعَمَلِ، أَمْ خَرَجَ بِالْفِعْلِ؟",
+          "transliteration": "hal maa zaala fee al-3amali, am kharaja bil-fi3l?"
+        },
+        {
+          "slot": "visit-once-week",
+          "arabic": "نَزُورُ جَدَّتَنَا مَرَّةً فِي الْأُسْبُوعِ، عَادَةً يَوْمَ الْجُمُعَةِ",
+          "transliteration": "nazooru jaddatanaa marratan fee al-usboo3i, 3aadatan yawma al-jumu3a"
+        },
+        {
+          "slot": "almost-everyone-came",
+          "arabic": "جَاءَ الْجَمِيعُ تَقْرِيبًا، وَكَانَ الْبَيْتُ مُمْتَلِئًا بِالْكَامِلِ",
+          "transliteration": "jaa2a al-jamee3u taqreeban, wa kaana al-baytu mumtali2an bil-kaamil"
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "son-twelve-years",
+          "arabic": "عُمْرُ ابْنِي اثْنَا عَشَرَ عَامًا",
+          "transliteration": "3umru ibnee ithnaa 3ashara 3aamaa"
+        },
+        {
+          "slot": "fifteen-students-class",
+          "arabic": "فِي فَصْلِنَا خَمْسَةَ عَشَرَ طَالِبًا",
+          "transliteration": "fee faslinaa khamsata 3ashara taalibaa"
+        },
+        {
+          "slot": "flat-third-floor",
+          "arabic": "شَقَّتُنَا فِي الطَّابِقِ الثَّالِثِ",
+          "transliteration": "shaqqatunaa fee at-taabiqi ath-thaalith"
+        },
+        {
+          "slot": "thousand-people-wedding",
+          "arabic": "جَاءَ أَكْثَرُ مِنْ أَلْفِ شَخْصٍ إِلَى الْعُرْسِ",
+          "transliteration": "jaa2a aktharu min alfi shakhsin ilaa al-3urs"
+        },
+        {
+          "slot": "count-to-twenty",
+          "arabic": "عُدَّ إِلَى عِشْرِينَ، ثُمَّ افْتَحْ عَيْنَيْكَ",
+          "transliteration": "3udda ilaa 3ishreena, thumma ifta7 3aynayk"
+        },
+        {
+          "slot": "first-and-last",
+          "arabic": "جَاءَ هُوَ الْأَوَّلَ فِي السِّبَاقِ، وَجِئْتُ أَنَا الْآخِرَ",
+          "transliteration": "jaa2a huwa al-awwala fee as-sibaaqi, wa ji2tu anaa al-aakhir"
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "two-kilos-tomatoes",
+          "arabic": "أَعْطِنِي كِيلُوَيْنِ مِنَ الطَّمَاطِمِ، مِنْ فَضْلِكَ",
+          "transliteration": "a3tinee keeloowayni mina at-tamaatimi, min fadlik"
+        },
+        {
+          "slot": "bottle-of-water",
+          "arabic": "خُذْ مَعَكَ زُجَاجَةَ مَاءٍ",
+          "transliteration": "khudh ma3aka zujaajata maa2"
+        },
+        {
+          "slot": "too-much-sugar",
+          "arabic": "وُضِعَ السُّكَّرُ فِي هَذَا الشَّايِ بِإِفْرَاطٍ",
+          "transliteration": "wudi3a as-sukkaru fee haadhaa ash-shaayi bi-ifraat"
+        },
+        {
+          "slot": "both-brothers-far",
+          "arabic": "أَخَوَايَ كِلَاهُمَا يَسْكُنَانِ بَعِيدًا",
+          "transliteration": "akhawaaya kilaahumaa yaskunaani ba3eedaa"
+        },
+        {
+          "slot": "each-child-piece",
+          "arabic": "أَخَذَ كُلُّ وَاحِدٍ مِنَ الْأَطْفَالِ قِطْعَةً وَاحِدَةً مِنَ الْكَعْكِ",
+          "transliteration": "akhadha kullu waa7idin mina al-atfaali qit3atan waa7idatan mina al-ka3k"
+        },
+        {
+          "slot": "room-length-width",
+          "arabic": "طُولُ الْغُرْفَةِ أَرْبَعَةُ أَمْتَارٍ، وَعَرْضُهَا ثَلَاثَةٌ",
+          "transliteration": "toolu al-ghurfati arba3atu amtaarin, wa 3arduhaa thalaatha"
+        }
+      ]
     },
     {
-      "lesson": "lesson-06"
+      "lesson": "lesson-06",
+      "sentences": [
+        {
+          "slot": "ramadan-march-this-year",
+          "arabic": "يَبْدَأُ رَمَضَانُ فِي مَارِسَ هَذَا الْعَامَ",
+          "transliteration": "yabda2u ramadaanu fee maarisa haadhaa al-3aam"
+        },
+        {
+          "slot": "birth-tenth-may",
+          "arabic": "تَارِيخُ مِيلَادِي الْعَاشِرُ مِنْ مَايُو",
+          "transliteration": "taareekhu meelaadee al-3aashiru min maayoo"
+        },
+        {
+          "slot": "school-starts-september",
+          "arabic": "تَبْدَأُ الْمَدْرَسَةُ فِي سِبْتَمْبَرَ كُلَّ سَنَةٍ",
+          "transliteration": "tabda2u al-madrasatu fee sibtambara kulla sana"
+        },
+        {
+          "slot": "hajj-dhu-al-hijjah",
+          "arabic": "الْحَجُّ فِي شَهْرِ ذِي الْحِجَّةِ",
+          "transliteration": "al-7ajju fee shahri dhil-7ijja"
+        },
+        {
+          "slot": "travel-next-month-july",
+          "arabic": "سَنُسَافِرُ الشَّهْرَ الْقَادِمَ، فِي يُولْيُو",
+          "transliteration": "sanusaafiru ash-shahra al-qaadima, fee yoolyoo"
+        },
+        {
+          "slot": "hijri-or-gregorian",
+          "arabic": "هَلْ تَسْتَخْدِمُ التَّقْوِيمَ الْهِجْرِيَّ أَمِ الْمِيلَادِيَّ؟",
+          "transliteration": "hal tastakhdimu at-taqweema al-hijriyya ami al-meelaadiyy?"
+        }
+      ]
     }
   ]
 }

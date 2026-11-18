@@ -19,12 +19,26 @@ const renderWithProviders = (node) => render(<QueryClientProvider client={new Qu
 afterEach(cleanup)
 
 describe('WordGallery', () => {
-  it('shows every word as a tile under its heading, numbered on across headings', () => {
+  it('shows every word as a tile, numbered on; three words a group is too few for headings', () => {
     renderWithProviders(<WordGallery words={words} />)
-    expect(screen.getByRole('heading', { name: 'colours' })).toBeTruthy()
-    expect(screen.getByRole('heading', { name: 'materials' })).toBeTruthy()
+    expect(screen.queryByRole('heading', { name: 'colours' })).toBeNull()
     expect(screen.getAllByRole('button')).toHaveLength(6)
     expect(screen.getByText('04')).toBeTruthy()
+  })
+
+  it('heads the words by group when every group is big enough, numbering on across them', () => {
+    const big = (category, n) => Array.from({ length: n }, (_, i) => ({ id: `${category}${i}`, arabic: `ك${i}`, english: `${category} ${i}`, category }))
+    renderWithProviders(<WordGallery words={[...big('colours', 6), ...big('materials', 6)]} />)
+    expect(screen.getByRole('heading', { name: 'colours' })).toBeTruthy()
+    expect(screen.getByRole('heading', { name: 'materials' })).toBeTruthy()
+    expect(screen.getByText('07')).toBeTruthy()
+  })
+
+  it('the words met in an earlier topic are folded under the new ones, not tiled again', () => {
+    renderWithProviders(<WordGallery words={words.map((w, i) => (i < 2 ? { ...w, met: true } : w))} />)
+    const tiles = screen.getAllByRole('button').filter((b) => !b.closest('details'))
+    expect(tiles).toHaveLength(4)                                            // the new words' tiles
+    expect(screen.getByText(/Words you’ve met/).closest('details').textContent).toContain('red')
   })
 
   it('opens a tile in the sheet and steps on into the next heading', () => {

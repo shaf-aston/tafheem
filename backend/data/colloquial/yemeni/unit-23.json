@@ -18,19 +18,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "head-hurts-today",
+          "arabic": "راسي يوجعني قوي اليوم.",
+          "transliteration": "raasi yooja3ni gawi al-yawm."
+        },
+        {
+          "slot": "wash-face-hands",
+          "arabic": "اغسل وجهك ويديك قبل ما تاكل.",
+          "transliteration": "ighsil wajhak w yadayk gabl ma taakul."
+        },
+        {
+          "slot": "brush-teeth-daily",
+          "arabic": "نظّف أسنانك كل صباح وكل ليلة.",
+          "transliteration": "naZZif asnaanak kull Sabaa7 w kull layla."
+        },
+        {
+          "slot": "fell-broke-arm",
+          "arabic": "طاح وكسر ذراعه.",
+          "transliteration": "Taa7 w kasar dhiraa3ah."
+        },
+        {
+          "slot": "back-knee-hurt",
+          "arabic": "ظهري وركبتي يوجعوني بعد المشي.",
+          "transliteration": "Zahri w rukbati yooja3ooni ba3d al-mashi."
+        },
+        {
+          "slot": "long-hair-brown-eyes",
+          "arabic": "شعرها طويل، وعيونها بنّية.",
+          "transliteration": "sha3arha Taweel, w 3uyoonha bunniyya."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "wear-your-coat",
+          "arabic": "البس معطفك، الدنيا برد برّا.",
+          "transliteration": "ilbas mi3Tafak, ad-dunya bard barra."
+        },
+        {
+          "slot": "shoes-too-small",
+          "arabic": "ذي الجزمة صغيرة عليّ قوي.",
+          "transliteration": "dhi l-jazma Sagheera 3alayya gawi."
+        },
+        {
+          "slot": "white-thobe-friday",
+          "arabic": "يلبس ثوب أبيض يوم الجمعة.",
+          "transliteration": "yilbas thawb abyaD yawm al-jum3a."
+        },
+        {
+          "slot": "seen-my-glasses",
+          "arabic": "شفت نظارتي في أي مكان؟",
+          "transliteration": "shift naZZaarti fi ayy makaan?"
+        },
+        {
+          "slot": "button-fell-off-shirt",
+          "arabic": "طاح زرّ من قميصي.",
+          "transliteration": "Taa7 zirr min gameeSi."
+        },
+        {
+          "slot": "new-headscarf-abaya",
+          "arabic": "اشترت حجاب جديد وعباية سوداء.",
+          "transliteration": "ishtarat 7ijaab jadeed w 3abaaya sooda."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "three-brothers-one-sister",
+          "arabic": "عندي ثلاثة إخوة وأخت وحدة.",
+          "transliteration": "3indi thalaatha ikhwa w ukht wa7da."
+        },
+        {
+          "slot": "grandmother-lives-with-us",
+          "arabic": "جدتي ساكنة معانا.",
+          "transliteration": "jaddati saakna ma3aana."
+        },
+        {
+          "slot": "paternal-uncle-doctor",
+          "arabic": "عمي دكتور.",
+          "transliteration": "3ammi duktoor."
+        },
+        {
+          "slot": "married-or-single",
+          "arabic": "انت متزوّج ولا أعزب؟",
+          "transliteration": "inta mutazawwij walla a3zab?"
+        },
+        {
+          "slot": "neighbour-came-guest",
+          "arabic": "جارنا جا عندنا ضيف البارحة.",
+          "transliteration": "jaarna jaa 3indana Dayf al-baari7a."
+        },
+        {
+          "slot": "cousin-baby-girl",
+          "arabic": "ولد عمي رزقه الله أمس ببيبي صبية.",
+          "transliteration": "walad 3ammi razagah allaah ams bi-beebi Sabiyya."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "engineer-and-teacher",
+          "arabic": "أبوي مهندس، وأمي مدرّسة.",
+          "transliteration": "abooy muhandis, w ummi mudarrisa."
+        },
+        {
+          "slot": "call-the-doctor",
+          "arabic": "اتصل بالدكتور، الطفل مريض قوي.",
+          "transliteration": "ittaSil bid-duktoor, aT-Tifl mareeD gawi."
+        },
+        {
+          "slot": "car-to-mechanic",
+          "arabic": "ودّيت السيارة للميكانيكي أمس.",
+          "transliteration": "waddeet as-sayyaara lil-mikaaneeki ams."
+        },
+        {
+          "slot": "barber-cut-hair",
+          "arabic": "الحلّاق قصّ شعري قصير.",
+          "transliteration": "al-7allaag gaSS sha3ari gaSeer."
+        },
+        {
+          "slot": "wants-to-be-lawyer",
+          "arabic": "هي تشتي تكون محامية بعد الجامعة.",
+          "transliteration": "hiyya tishti tkoon mu7aamiya ba3d al-jaam3a."
+        },
+        {
+          "slot": "student-asked-professor",
+          "arabic": "الطالب سأل الأستاذ سؤال.",
+          "transliteration": "aT-Taalib sa2al al-ustaadh su2aal."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "from-syria-wife-egyptian",
+          "arabic": "أنا من سوريا، ومرتي مصرية.",
+          "transliteration": "ana min sooriya, w marati miSriyya."
+        },
+        {
+          "slot": "what-is-your-nationality",
+          "arabic": "إيش جنسيتك، وفين ساكن؟",
+          "transliteration": "eesh jinsiyyatak, w feen saakin?"
+        },
+        {
+          "slot": "visited-morocco-tunisia",
+          "arabic": "زرنا المغرب وتونس الصيف اللي فات.",
+          "transliteration": "zurna l-maghrib w toonis aS-Seef illi faat."
+        },
+        {
+          "slot": "brother-studies-britain",
+          "arabic": "أخوي يدرس في بريطانيا.",
+          "transliteration": "akhooy yidrus fi briTaaniya."
+        },
+        {
+          "slot": "jordan-next-to-palestine",
+          "arabic": "الأردن جنب فلسطين والعراق.",
+          "transliteration": "al-urdun janb filasTeen w al-3iraag."
+        },
+        {
+          "slot": "pilgrims-saudi-arabia",
+          "arabic": "حجّاج كثير يسافروا السعودية كل سنة.",
+          "transliteration": "7ujjaaj katheer yisaafiru s-sa3oodiyya kull sana."
+        }
+      ]
     }
   ]
 }

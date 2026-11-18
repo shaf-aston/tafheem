@@ -18,16 +18,144 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "carry-heavy-bag",
+          "arabic": "تقدر تساعدني أشيل ذي الشنطة الثقيلة؟",
+          "transliteration": "tigdar tisaa3idni ashiil dhi sh-shanTa ath-thageela?"
+        },
+        {
+          "slot": "clean-table-sweep-floor",
+          "arabic": "نظّف الطاولة واكنس الأرض، لو سمحت.",
+          "transliteration": "naZZif aT-Taawila w iknis al-arD, law samaht."
+        },
+        {
+          "slot": "pour-tea-fill-cup",
+          "arabic": "كُبّ الشاي واملا كاسي، لو سمحت.",
+          "transliteration": "kubb ash-shaay w imla kaasi, law samaht."
+        },
+        {
+          "slot": "children-run-jump",
+          "arabic": "الجهال يركضوا ويقفزوا في الحديقة.",
+          "transliteration": "al-juhhaal yirkuDu w yigfizu fi l-7adeega."
+        },
+        {
+          "slot": "smell-then-taste",
+          "arabic": "تعال شُمّ الأكل، وبعدين ذوقه.",
+          "transliteration": "ta3aal shumm al-akl, w ba3deen dhoogah."
+        },
+        {
+          "slot": "listen-do-not-shout",
+          "arabic": "استمع للأستاذ ولا تصرخش.",
+          "transliteration": "istami3 lil-ustaadh w la tiSrakhsh."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "study-every-evening",
+          "arabic": "أدرس عربي كل مسا بعد الشغل.",
+          "transliteration": "adrus 3arabi kull masa ba3d ash-shughl."
+        },
+        {
+          "slot": "explain-lesson-again",
+          "arabic": "تقدر تشرح ذا الدرس مرة ثانية، لو سمحت؟",
+          "transliteration": "tigdar tishra7 dha d-dars marra thaanya, law samaht?"
+        },
+        {
+          "slot": "save-file-first",
+          "arabic": "احفظ الملف قبل ما تقفل الكمبيوتر.",
+          "transliteration": "i7faZ al-milaff gabl ma tigfil al-kombyootar."
+        },
+        {
+          "slot": "translated-the-letter",
+          "arabic": "هي ترجمت لي الرسالة بالإنجليزي.",
+          "transliteration": "hiyya tarjamat li r-risaala bil-ingileezi."
+        },
+        {
+          "slot": "sign-and-hand-over",
+          "arabic": "وقّع هنا وناولني الأوراق، لو سمحت.",
+          "transliteration": "wagga3 huna w naawilni l-awraag, law samaht."
+        },
+        {
+          "slot": "remember-the-papers",
+          "arabic": "تتذكّر فين حطّيت الأوراق؟",
+          "transliteration": "titdhakkar feen 7aTTeet al-awraag?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "come-repair-door",
+          "arabic": "تقدر تجي بكرة وتصلّح الباب؟",
+          "transliteration": "tigdar tiji bukra w tSalli7 al-baab?"
+        },
+        {
+          "slot": "show-how-to-use",
+          "arabic": "ورّني كيف أستعمل ذي المكينة.",
+          "transliteration": "warrini kayf asta3mil dhi l-makeena."
+        },
+        {
+          "slot": "lend-me-pen",
+          "arabic": "ممكن تسلّفني قلمك شوية؟",
+          "transliteration": "mumkin tsallifni galamak shuwayya?"
+        },
+        {
+          "slot": "lock-door-night",
+          "arabic": "لا تنساش تقفل الباب بالليل.",
+          "transliteration": "la tinsaash tigfil al-baab bil-layl."
+        },
+        {
+          "slot": "mother-sews-brother-paints",
+          "arabic": "أمّي تخيط، وأخي يصبغ الجدار.",
+          "transliteration": "ummi tikheeT, w akhi yiSbagh al-jidaar."
+        },
+        {
+          "slot": "started-building-house",
+          "arabic": "هم بدوا يبنوا بيت جديد السنة اللي فاتت.",
+          "transliteration": "hum badaw yibnu bayt jadeed as-sana lli faatat."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "feel-tired-stay-home",
+          "arabic": "أحس إني تعبان اليوم، عشان كذا شجلس في البيت.",
+          "transliteration": "a7iss inni ta3baan al-yawm, 3ashaan kadha sha-jlis fi l-bayt."
+        },
+        {
+          "slot": "love-respect-parents",
+          "arabic": "أحب أبوي وأمي وأحترمهم قوي.",
+          "transliteration": "a7ibb abooy w ummi w a7tarimhum gawi."
+        },
+        {
+          "slot": "dont-worry",
+          "arabic": "لا تقلقش، كل شي شيكون تمام.",
+          "transliteration": "la tiglagsh, kull shi sha-ykoon tamaam."
+        },
+        {
+          "slot": "trust-do-not-lie",
+          "arabic": "أنا واثق فيك، فلا تكذبش عليّ.",
+          "transliteration": "ana waathig feek, fa la tikdhibsh 3alayya."
+        },
+        {
+          "slot": "promised-seems-busy",
+          "arabic": "وعد إنه شيجي، لكن بان عليه مشغول.",
+          "transliteration": "wa3ad innah sha-yiji, laakin baan 3alayh mashghool."
+        },
+        {
+          "slot": "hug-grandmother-eid",
+          "arabic": "حضنت جدتها وباركت لها بالعيد.",
+          "transliteration": "7aDanat jaddat-ha w baarakat laha bil-3eed."
+        }
+      ]
     }
   ]
 }
