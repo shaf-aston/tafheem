@@ -46,7 +46,7 @@ function Words({ words }) {
   )
 }
 
-function Scene({ unit, lesson, number, place }) {
+function Scene({ unit, lesson, number, place, onWords }) {
   const [open, setOpen] = useState(null)
   // The practice sits several screens down a phone; one tap from the top takes you to it.
   const practice = useRef(null)
@@ -61,6 +61,11 @@ function Scene({ unit, lesson, number, place }) {
           </div>
           <div className="flex flex-wrap gap-2">
             <SmallButton onClick={() => scrollToEl(practice.current, 'top')} className="type-ui px-4 py-2">Practice ↓</SmallButton>
+            {/* The topic's words, straight into cards or a quiz: one tap from here, not back out to the unit. */}
+            {onWords && lesson.vocabulary.length > 0 && <>
+              <SmallButton onClick={() => onWords('cards')} className="type-ui px-4 py-2">Word cards</SmallButton>
+              <SmallButton onClick={() => onWords('quiz')} className="type-ui px-4 py-2">Word quiz</SmallButton>
+            </>}
             <WordBank unit={unit} at={number - 1} />
           </div>
         </header>
@@ -108,11 +113,11 @@ function Scene({ unit, lesson, number, place }) {
 }
 
 // One topic of a unit; the panel above owns which unit and topic are open.
-export default function TopicView({ unit, at }) {
+export default function TopicView({ unit, at, onWords }) {
   return (
     <div className="max-w-3xl lg:max-w-6xl mx-auto">
       <Scene unit={unit} lesson={unit.lessons[at]} number={at + 1}
-        place={{ dialect: unit.dialect_key, unit: unit.unit, lesson: unit.lessons[at].lesson }} />
+        place={{ dialect: unit.dialect_key, unit: unit.unit, lesson: unit.lessons[at].lesson }} onWords={onWords} />
     </div>
   )
 }

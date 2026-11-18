@@ -26,11 +26,14 @@ const WIDE = new Set(['browse', 'review'])
 // 'picture' was a mode of its own once; the drawing is in Browse now, so an old link to it opens there.
 const MODE_IDS = [...MODES.map((m) => m.id), 'picture']
 
-export default function WordsView({ unit, at }) {
+// `start`: a way of learning to open on (from a quick button), else the one on the address, else Browse.
+export default function WordsView({ unit, at, start = null }) {
   const lesson = unit.lessons[at]
   const words = lesson.vocabulary
   // The mode rides on the address (?words=cards in a shared link), so a reload or a link keeps it.
-  const [mode, setModeNow] = useState(() => readViewParam('words', MODE_IDS) ?? 'browse')
+  const [mode, setModeNow] = useState(() => (MODE_IDS.includes(start) ? start : null) ?? readViewParam('words', MODE_IDS) ?? 'browse')
+  // A mode opened from a quick button rides on the address too, so a reload keeps it.
+  useEffect(() => { if (MODE_IDS.includes(start) && start !== 'browse') writeViewParams({ words: start }) }, [start])
   // A mode picked here rises in, as an answer to the tap; the first arrives with its screen (ui/display/Screen.jsx).
   const [picked, setPicked] = useState(false)
   const setMode = (next) => { setModeNow(next); setPicked(true); writeViewParams({ words: next === 'browse' ? '' : next }) }

@@ -41,11 +41,24 @@ export function Card({ hue, onClick, twin, picture, ...lines }) {
       <div style={look} className="grid grid-cols-2 rounded-[var(--radius-lg)] border overflow-hidden">
         {/* Each half is named by what it shows, so it can be asked for by voice (WCAG 2.5.3). */}
         <button type="button" onClick={onClick} className={half}><Lines hue={hue} {...lines} /></button>
-        <button type="button" onClick={twin.onClick} className={`${half} border-s`} style={{ borderColor: look.borderColor }}>
-          <Lines hue={hue} {...twin} />
-          {/* Heard, not seen: every topic has a Words half, and a list of them read aloud must say whose. */}
-          <span className="sr-only">, {lines.title}</span>
-        </button>
+        <div className="border-s flex flex-col" style={{ borderColor: look.borderColor }}>
+          <button type="button" onClick={twin.onClick} className={`${half} flex-1`}>
+            <Lines hue={hue} {...twin} />
+            {/* Heard, not seen: every topic has a Words half, and a list of them read aloud must say whose. */}
+            <span className="sr-only">, {lines.title}</span>
+          </button>
+          {/* Straight into a way of learning them, beside the list itself. */}
+          {twin.actions && (
+            <span className="flex gap-1.5 px-5 pb-4 -mt-2">
+              {twin.actions.map((a) => (
+                <button key={a.label} type="button" onClick={a.onClick}
+                  className="press type-small font-medium px-2.5 py-1 min-h-8 rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--surface)]/70 text-[var(--text)] hover:border-[var(--border-hi)]">
+                  {a.label}<span className="sr-only"> the words of {lines.title}</span>
+                </button>
+              ))}
+            </span>
+          )}
+        </div>
       </div>
     )
   }

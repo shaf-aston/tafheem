@@ -18,20 +18,26 @@ const unitsNote = (units) => {
   return written === units.length ? `${written} units` : `${written} of ${units.length} units`
 }
 
-export function DialectList({ dialects, go }) {
-  const hue = colorFor('tab', 'colloq')
-  // Where this device was last, if that topic is still there: one tap back to it.
+// Where this device was last, if that topic is still there: one tap back to it. On the dialect list,
+// and on a dialect's own page when the last topic is in it, so a learner arriving there resumes too.
+function Continue({ dialects, go, only = null }) {
   const { last } = useSeen()
   const back = parsePlace(last, dialects)
-  const backDialect = back && dialects.find((d) => d.key === back.dialect)
+  if (!back || typeof back.at !== 'number' || (only && back.dialect !== only)) return null
+  const backDialect = dialects.find((d) => d.key === back.dialect)
+  return (
+    <div className="sm:max-w-md">
+      <Card hue={colorFor('tab', 'colloq')} kicker="Continue where you left off" title={nameOfPlace(last, dialects)}
+        note={`${backDialect.label} · Unit ${unitNumber(back.unit)}`} onClick={() => go(back)} />
+    </div>
+  )
+}
+
+export function DialectList({ dialects, go }) {
+  const hue = colorFor('tab', 'colloq')
   return (
     <div className="space-y-4">
-      {back && typeof back.at === 'number' && (
-        <div className="sm:max-w-md">
-          <Card hue={hue} kicker="Continue where you left off" title={nameOfPlace(last, dialects)}
-            note={`${backDialect.label} · Unit ${unitNumber(back.unit)}`} onClick={() => go(back)} />
-        </div>
-      )}
+      <Continue dialects={dialects} go={go} />
       <Grid>
         {dialects.map((d) => (
           <Card key={d.key} hue={hue} kicker={d.where} title={d.label} gloss={d.gloss} arabic={d.arabic}
@@ -53,7 +59,7 @@ const SHELVES = [
 ]
 const shelfOf = (u) => (u.samples?.length ? 'words' : 'talk')
 
-export function UnitList({ dialect, go }) {
+export function UnitList({ dialect, dialects = [dialect], go }) {
   const record = useSeen()
   const card = (u) => {
     const done = seenInUnit(record, dialect.key, u.unit)
@@ -66,9 +72,11 @@ export function UnitList({ dialect, go }) {
           note={u.written ? topicsNote(u.lessons.length, done) : 'Coming'} onClick={open} />
   }
   const shelves = SHELVES.map((s) => ({ ...s, units: dialect.units.filter((u) => shelfOf(u) === s.key) })).filter((s) => s.units.length)
-  if (shelves.length < 2) return <Grid>{dialect.units.map(card)}</Grid>
+  const resume = <Continue dialects={dialects} go={go} only={dialect.key} />
+  if (shelves.length < 2) return <div className="space-y-4">{resume}<Grid>{dialect.units.map(card)}</Grid></div>
   return (
     <div className="space-y-6">
+      {resume}
       {shelves.map((s) => (
         <section key={s.key} className="space-y-2" aria-labelledby={`shelf-${s.key}`}>
           <div className="flex flex-wrap items-baseline gap-x-3">
@@ -105,7 +113,7 @@ function UnitWordBank({ dialect, unit }) {
 export function TopicList({ dialect, unit, go }) {
   const record = useSeen()
   const hue = colorAt('unit', unitNumber(unit.unit))
-  const open = (at, words) => go({ dialect: dialect.key, unit: unit.unit, at, words })
+  const open = (at, words, mode) => go({ dialect: dialect.key, unit: unit.unit, at, words, ...(mode ? { mode } : {}) })
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-3">
@@ -122,7 +130,9 @@ export function TopicList({ dialect, unit, go }) {
                 <Card key={l.lesson} hue={hue} kicker={`Topic ${i + 1}${isSeen(record, dialect.key, unit.unit, l.lesson) ? ' · Seen' : ''}`} title={l.title} image={l.picture}
                   note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words${l.sentences ? ` · ${l.sentences} sentences` : ''} · Pictures · Cards · Quiz` : l.words ? `${l.phrases} phrases · practice` : undefined}
                   onClick={l.written ? () => open(i, !l.phrases) : undefined}
-                  twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, note: 'Cards · quiz', onClick: () => open(i, true) }} />
+                  twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, onClick: () => open(i, true),
+                    // Straight to a way of learning them: one tap, not the list and then a tab.
+                    actions: [{ label: 'Cards', onClick: () => open(i, true, 'cards') }, { label: 'Quiz', onClick: () => open(i, true, 'quiz') }] }} />
               )
             })}
           </Grid>

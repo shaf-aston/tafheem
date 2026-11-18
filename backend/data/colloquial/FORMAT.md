@@ -100,8 +100,8 @@ A dialect gives its Arabic in its own `<dialect>/words.json`, once per id:
   and shows each word beside its pair. It must list an even number.
 - A topic with `"phrases": []` in the spine is a word list: no phrases, conversation or exercises, only its words,
   learnt as cards, match, quiz and review. A unit made only of word lists needs no challenge.
-- Units 20 to 27 are word units: one theme each, its topics in `section`s that read as
-  its sub-themes (small words, numbers and dates; animals, plants and land ...). Put a new
+- Units 20 to 27 are word units: one theme each, its topics one plain run with no `section`
+  headings (a heading over two or three topics is clutter, not a guide). Put a new
   word topic in the unit of its theme, and start a new unit only for a new theme. The
   phrase units keep their own word lists: a word taught by a phrase topic and by a word
   unit is one id in both.
