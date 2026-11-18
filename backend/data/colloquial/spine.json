@@ -89,7 +89,7 @@
               "image": "unit-01/l01-p14-world-map-pin.jpg"
             }
           ],
-          "words": ["name", "hello", "welcome", "peace", "morning", "evening", "night", "i", "you", "what", "where", "how", "from", "also", "good", "fine", "great", "to-meet", "to-greet"]
+          "words": ["name", "hello", "welcome", "peace", "morning", "evening", "night", "i", "you", "what", "where", "how", "from", "also", "good", "fine", "excellent", "to-meet", "to-greet"]
         },
         {
           "lesson": "lesson-02",
@@ -532,7 +532,7 @@
               "english": "I'm still single. (male speaker)"
             }
           ],
-          "words": ["family", "mother", "father", "parents", "brother", "sister", "son", "daughter", "husband", "wife", "grandfather", "grandmother", "grandson", "granddaughter", "uncle-paternal", "aunt-paternal", "uncle-maternal", "aunt-maternal", "cousin", "nephew", "niece", "father-in-law", "mother-in-law", "brother-in-law", "sister-in-law", "twin", "baby", "child", "married", "single", "to-marry", "wedding"]
+          "words": ["family", "mother", "father", "parents", "brother", "sister", "son", "daughter", "husband", "wife", "grandfather", "grandmother", "grandson", "granddaughter", "uncle-paternal", "aunt-paternal", "uncle-maternal", "aunt-maternal", "cousin", "nephew", "niece", "father-in-law", "mother-in-law", "brother-in-law", "sister-in-law", "twin", "baby", "child", "married", "single", "to-get-married", "wedding"]
         },
         {
           "lesson": "lesson-02",
@@ -658,7 +658,7 @@
               "search_term": "grandparents with grandchild"
             }
           ],
-          "words": ["tall", "short", "big", "small", "old", "young", "older", "younger", "fat", "thin", "strong", "beautiful", "blond", "dark-skinned", "bald", "weak", "kind", "clever", "calm", "cheerful", "funny", "generous", "shy", "polite", "lazy", "hard-working", "serious", "patient-calm", "stubborn", "short-tempered", "talkative", "naughty", "honest", "brave", "strict", "year", "job", "to-work", "to-live"]
+          "words": ["long", "short", "big", "small", "old", "young", "bigger", "smaller", "fat", "thin", "strong", "beautiful", "blond", "dark-skinned", "bald", "weak", "kind", "clever", "calm", "cheerful", "funny", "generous", "shy", "polite", "lazy", "diligent", "serious", "patient-calm", "stubborn", "short-tempered", "talkative", "naughty", "honest", "brave", "strict", "year", "job", "to-work", "to-live"]
         },
         {
           "lesson": "lesson-04",
@@ -733,7 +733,7 @@
               "image": "unit-02/l04-p12-empty-dining-table.jpg"
             }
           ],
-          "words": ["breakfast", "lunch", "dinner", "meal", "meat", "salt", "bread", "dining-table", "table", "kitchen", "plate", "bowl", "spoon", "fork", "knife", "glass-cup", "napkin", "to-cook", "to-eat", "to-help", "ready", "full-eaten", "delicious", "more"]
+          "words": ["breakfast", "lunch", "dinner", "meal", "meat", "salt", "bread", "dining-table", "table", "kitchen", "plate", "bowl", "spoon", "fork", "knife", "glass-cup", "napkin", "to-cook", "to-eat", "to-help", "ready", "full", "delicious", "more"]
         },
         {
           "lesson": "lesson-05",
@@ -1026,7 +1026,7 @@
               "image": "unit-02/l08-p12-mirror.jpg"
             }
           ],
-          "words": ["bed", "sofa", "chair", "table", "wardrobe", "carpet", "mirror", "lamp", "fridge", "television", "fan", "curtains", "clock", "pillow", "blanket", "washing-machine", "cooker", "remote-control", "key", "light", "window", "to-turn-on", "to-turn-off", "to-open", "to-close", "to-need"]
+          "words": ["bed", "sofa", "chair", "table", "wardrobe", "carpet", "mirror", "bulb", "fridge", "television", "fan", "curtains", "clock", "pillow", "blanket", "washing-machine", "cooker", "remote-control", "key", "light", "window", "to-turn-on", "to-turn-off", "to-open", "to-close", "to-need"]
         }
       ]
     },
@@ -1621,7 +1621,7 @@
               "image": "unit-04/l03-p12-two-identical-meals.jpg"
             }
           ],
-          "words": ["to-order", "reservation", "table", "meal", "portion", "hummus", "fattoush", "tabbouleh", "shawarma", "pasta", "samosa", "sandwich", "soup", "salad", "bread", "onion", "water", "plate", "dish-meal", "cup", "glass-cup", "ready", "quick", "same", "extra", "enough", "without", "to-repeat", "to-wait"]
+          "words": ["to-order", "booking", "table", "meal", "portion", "hummus", "fattoush", "tabbouleh", "shawarma", "pasta", "samosa", "sandwich", "soup", "salad", "bread", "onion", "water", "plate", "dish-meal", "cup", "glass-cup", "ready", "fast", "same", "extra", "enough", "without", "to-repeat", "to-wait"]
         },
         {
           "lesson": "lesson-04",
@@ -1766,7 +1766,7 @@
               "image": "emoji/1f6cd.svg"
             }
           ],
-          "words": ["restaurant", "shawarma", "falafel", "sandwich", "pizza", "burger", "fries", "chicken", "ice-cream", "sauce", "ketchup", "cola", "ice", "bag", "box", "container", "size", "large", "medium", "small", "fast", "halal", "takeaway", "delivery", "kids-meal", "to-take", "to-eat"]
+          "words": ["restaurant", "shawarma", "falafel", "sandwich", "pizza", "burger", "fries", "chicken", "ice-cream", "sauce", "ketchup", "cola", "ice", "bag", "box", "container", "size", "big", "medium", "small", "fast", "halal", "takeaway", "delivery", "kids-meal", "to-take", "to-eat"]
         },
         {
           "lesson": "lesson-06",
@@ -1834,7 +1834,7 @@
               "english": "Next time it's on us."
             }
           ],
-          "words": ["invitation", "guest", "host", "party", "occasion", "gift", "honour", "generosity", "generous", "house", "hand", "right-direction", "to-invite", "to-sit", "to-enter", "to-thank", "to-eat", "full-eaten", "delicious", "more", "tea", "dessert", "next-time"]
+          "words": ["invitation", "guest", "host", "party", "occasion", "gift", "honour", "generosity", "generous", "house", "hand", "right-direction", "to-invite", "to-sit", "to-enter", "to-thank", "to-eat", "full", "delicious", "more", "tea", "dessert", "next-time"]
         }
       ]
     },
@@ -2055,7 +2055,7 @@
               "search_term": "empty bus interior"
             }
           ],
-          "words": ["bus", "microbus", "bus-stop", "station", "ticket", "seat", "number", "route", "direction", "roundabout", "passenger", "driver", "fare", "crowded", "empty", "free-available", "next", "to-get-on", "to-get-off", "to-wait", "to-stop"]
+          "words": ["bus", "microbus", "bus-stop", "station", "ticket", "seat", "number", "route", "direction", "roundabout", "passenger", "driver", "fare", "crowded", "empty", "free-available", "next", "to-ride", "to-get-off", "to-wait", "to-stop"]
         },
         {
           "lesson": "lesson-04",
@@ -2180,7 +2180,7 @@
               "image": "emoji/1f689.svg"
             }
           ],
-          "words": ["taxi", "bus", "microbus", "train", "metro", "tram", "aeroplane", "bicycle", "motorbike", "car", "on-foot", "station", "airport", "ticket", "road", "bridge", "traffic", "traffic-jam", "petrol", "speed", "trip", "journey", "driver", "route", "distance", "fare", "square", "old-town", "free-available", "occupied", "to-stop", "to-arrive", "to-travel", "to-take", "to-wait", "to-drop-off"]
+          "words": ["taxi", "bus", "microbus", "train", "metro", "tram", "aeroplane", "bicycle", "motorbike", "car", "on-foot", "station", "airport", "ticket", "road", "bridge", "traffic", "traffic-jam", "petrol", "speed", "trip", "journey", "driver", "route", "distance", "fare", "square", "old-town", "free-available", "busy", "to-stop", "to-arrive", "to-travel", "to-take", "to-wait", "to-drop-off"]
         }
       ]
     },
@@ -2253,7 +2253,7 @@
               "image": "unit-06/l01-p12-pair-of-sneakers-on-a-shelf.jpg"
             }
           ],
-          "words": ["dress", "shirt", "trousers", "coat", "suit", "shoe", "trainers", "sock", "size", "fitting-room", "fabric", "cotton", "to-try-on", "to-fit", "big", "small", "tight", "loose", "wide"]
+          "words": ["dress", "shirt", "trousers", "coat", "suit", "shoe", "trainers", "sock", "size", "fitting-room", "fabric", "cotton", "to-try-on", "to-fit", "big", "small", "narrow", "loose", "wide"]
         },
         {
           "lesson": "lesson-02",
@@ -2381,7 +2381,7 @@
               "image": "emoji/1f9fe.svg"
             }
           ],
-          "words": ["price", "cheap", "expensive", "discount", "offer", "sale", "quality", "total", "profit", "loss", "thousand", "half", "free-of-charge", "reasonable", "final", "to-bargain", "to-agree", "to-pay", "to-cost", "to-lose-money"]
+          "words": ["price", "cheap", "expensive", "discount", "offer", "sale", "quality", "total", "profit", "loss", "thousand", "half", "free-of-charge", "reasonable", "final", "to-bargain", "to-agree", "to-pay", "to-cost", "to-lose"]
         },
         {
           "lesson": "lesson-04",
@@ -2523,7 +2523,7 @@
               "image": "emoji/1f6aa.svg"
             }
           ],
-          "words": ["mall", "shop", "floor", "lift", "escalator", "stairs", "entrance", "exit", "food-court", "prayer-room", "shopping-bag", "sale", "cashier", "to-park", "open", "closed"]
+          "words": ["mall", "shop", "floor", "lift", "escalator", "stairs", "entrance", "exit", "food-court", "prayer-ground", "shopping-bag", "sale", "cashier", "to-park", "open", "closed"]
         },
         {
           "lesson": "lesson-06",
@@ -2672,7 +2672,7 @@
               "image": "emoji/2744.svg"
             }
           ],
-          "words": ["morning", "dawn", "alarm-clock", "to-wake-up", "to-wash", "to-shower", "to-get-dressed", "to-leave", "face", "teeth", "toothbrush", "toothpaste", "soap", "towel", "clothes", "breakfast", "coffee", "work", "working-hours", "early", "sleepy", "cold"]
+          "words": ["morning", "dawn", "alarm-clock", "to-wake-up", "to-wash", "to-shower", "to-wear", "to-leave", "face", "teeth", "toothbrush", "toothpaste", "soap", "towel", "clothes", "breakfast", "coffee", "work", "working-hours", "early", "sleepy", "cold"]
         },
         {
           "lesson": "lesson-02",
@@ -2745,7 +2745,7 @@
               "image": "emoji/2705.svg"
             }
           ],
-          "words": ["noon", "afternoon", "lunch", "meeting", "office", "employee", "email", "computer", "task", "job", "pen", "break", "to-work", "to-finish", "to-eat", "to-call", "to-rest", "to-study", "to-come-back", "to-go", "tired", "hungry", "busy"]
+          "words": ["noon", "afternoon", "lunch", "meeting", "office", "employee", "email", "computer", "task", "job", "pen", "break", "to-work", "to-finish", "to-eat", "to-call", "to-rest", "to-study", "to-return", "to-go", "tired", "hungry", "busy"]
         },
         {
           "lesson": "lesson-03",
@@ -3646,7 +3646,7 @@
               "image": "emoji/2764-fe0f-200d-1fa79.svg"
             }
           ],
-          "words": ["doctor", "nurse", "patient", "clinic", "appointment", "examination", "check-up", "test", "x-ray", "injection", "surgery", "diagnosis", "treatment", "temperature", "blood-pressure", "breath", "week", "serious", "high", "dangerous", "to-breathe", "to-examine", "to-come-back"]
+          "words": ["doctor", "nurse", "patient", "clinic", "appointment", "examination", "check-up", "test", "x-ray", "injection", "surgery", "diagnosis", "treatment", "temperature", "blood-pressure", "breath", "week", "serious", "high", "dangerous", "to-breathe", "to-examine", "to-return"]
         },
         {
           "lesson": "lesson-04",
@@ -4381,7 +4381,7 @@
               "english": "You went to trouble for us (said appreciatively about hospitality)."
             }
           ],
-          "words": ["guest", "host", "neighbour", "home", "flat", "door", "doorbell", "entrance", "hall", "living-room", "bathroom", "shoes", "gift", "car", "address", "incense", "invitation", "visit", "to-visit", "to-welcome", "to-enter", "to-sit", "to-knock", "to-park", "to-take-off", "to-wash", "honour", "to-shake-hands"]
+          "words": ["guest", "host", "neighbour", "home", "flat", "door", "bell", "entrance", "hall", "living-room", "bathroom", "shoes", "gift", "car", "address", "incense", "invitation", "visit", "to-visit", "to-welcome", "to-enter", "to-sit", "to-knock", "to-park", "to-take-off", "to-wash", "honour", "to-shake-hands"]
         },
         {
           "lesson": "lesson-02",
@@ -5123,7 +5123,7 @@
               "image": "unit-12/l06-p12-wifi-router.jpg"
             }
           ],
-          "words": ["video-call", "call", "conversation", "video", "camera", "screen", "microphone", "headphones", "link", "router", "sound", "internet", "to-hear", "to-see", "to-share", "to-turn-on", "to-turn-off", "to-join", "to-leave", "clear", "weak", "choppy", "frozen"]
+          "words": ["video-call", "call", "conversation", "video", "camera", "screen", "microphone", "headphones", "link", "router", "voice", "internet", "to-hear", "to-see", "to-share", "to-turn-on", "to-turn-off", "to-join", "to-leave", "clear", "weak", "choppy", "frozen"]
         }
       ]
     },
@@ -5186,7 +5186,7 @@
               "search_term": "friends greeting at door"
             }
           ],
-          "words": ["happy", "sad", "angry", "upset", "worried", "scared", "tired", "bored", "lonely", "stressed", "embarrassed", "shy", "excited", "relaxed", "glad", "hungry", "fed-up", "feeling", "exam"]
+          "words": ["happy", "sad", "angry", "upset", "worried", "afraid", "tired", "bored", "lonely", "stressed", "embarrassed", "shy", "excited", "comfortable", "glad", "hungry", "fed-up", "feeling", "exam"]
         },
         {
           "lesson": "lesson-02",
@@ -6087,7 +6087,7 @@
               "english": "We ask God to grant you wellbeing"
             }
           ],
-          "words": ["illness", "sick-person", "health", "hospital", "doctor", "rest", "reassurance", "flower", "bouquet", "fruit", "to-visit", "to-recover", "to-reassure", "to-rest", "tired"]
+          "words": ["illness", "patient", "health", "hospital", "doctor", "rest", "reassurance", "flower", "bouquet", "fruit", "to-visit", "to-recover", "to-reassure", "to-rest", "tired"]
         },
         {
           "lesson": "lesson-10",
@@ -6292,7 +6292,7 @@
             }
           ],
           "section": "Getting there and staying",
-          "words": ["airport", "plane", "flight", "gate", "check-in", "customs", "border", "passport", "visa", "ticket", "bag", "suitcase", "baggage", "weight", "take-off", "landing", "tourism", "to-declare", "to-depart", "to-stay", "overweight"]
+          "words": ["airport", "aeroplane", "flight", "gate", "check-in", "customs", "border", "passport", "visa", "ticket", "bag", "suitcase", "baggage", "weight", "take-off", "landing", "tourism", "to-declare", "to-depart", "to-stay", "overweight"]
         },
         {
           "lesson": "lesson-01",
@@ -6420,7 +6420,7 @@
             }
           ],
           "section": "Getting there and staying",
-          "words": ["problem", "complaint", "help", "delay", "breakdown", "insurance", "police", "embassy", "office", "employee", "agency", "lost-items", "flight", "booking", "bag", "passport", "to-lose", "to-miss", "to-cancel", "to-wait", "to-help", "to-steal", "broken", "lost", "delayed", "missing", "out-of-order"]
+          "words": ["problem", "complaint", "help", "delay", "breakdown", "insurance", "police", "embassy", "office", "employee", "agency", "lost-items", "flight", "booking", "bag", "passport", "to-lose", "to-miss", "to-cancel", "to-wait", "to-help", "to-steal", "broken", "lost", "late", "missing", "out-of-order"]
         },
         {
           "lesson": "lesson-05",
@@ -6495,7 +6495,7 @@
               "search_term": "scenic landscape view"
             }
           ],
-          "words": ["tourist", "guide", "tour", "museum", "castle", "masjid", "old-city", "ruins", "antiquities", "landmark", "view", "map", "photo", "entry-ticket", "opening-hours", "entrance", "to-visit", "to-take-photo", "old", "ancient", "beautiful"]
+          "words": ["tourist", "guide", "tour", "museum", "citadel", "masjid", "old-city", "ruins", "antiquities", "landmark", "view", "map", "photo", "entry-ticket", "opening-hours", "entrance", "to-visit", "to-take-photo", "old", "old-not-new", "beautiful"]
         },
         {
           "lesson": "lesson-06",
@@ -6638,7 +6638,7 @@
               "image": "emoji/1f381.svg"
             }
           ],
-          "words": ["souvenir", "gift", "box", "soap", "silk", "copper", "scarf", "perfume", "oud-oil", "bottle", "prayer-rug", "spices", "dates", "price", "wooden", "handmade", "traditional", "small", "to-buy", "to-wrap"]
+          "words": ["souvenir", "gift", "box", "soap", "silk", "copper", "scarf", "perfume", "oud-oil", "bottle", "prayer-mat", "spices", "dates", "price", "wooden", "handmade", "traditional", "small", "to-buy", "to-wrap"]
         },
         {
           "lesson": "lesson-08",
@@ -6780,7 +6780,7 @@
               "english": "Why didn't you come yesterday?"
             }
           ],
-          "words": ["yesterday", "day-before-yesterday", "last-night", "morning", "afternoon", "evening", "night", "sunset", "late", "early", "before", "after", "then", "suddenly", "finally", "to-wake-up", "to-sleep", "to-stay-up", "to-go", "to-go-out", "to-come-back", "to-arrive", "to-meet", "to-buy", "to-forget", "to-visit", "to-study", "to-eat", "to-see", "to-happen", "restaurant", "cinema", "work", "errand", "tired", "to-have-breakfast", "to-have-lunch", "to-have-dinner", "midnight"]
+          "words": ["yesterday", "day-before-yesterday", "last-night", "morning", "afternoon", "evening", "night", "sunset", "late", "early", "before", "after", "then", "suddenly", "finally", "to-wake-up", "to-sleep", "to-stay-up", "to-go", "to-go-out", "to-return", "to-arrive", "to-meet", "to-buy", "to-forget", "to-visit", "to-study", "to-eat", "to-see", "to-happen", "restaurant", "cinema", "work", "errand", "tired", "to-have-breakfast", "to-have-lunch", "to-have-dinner", "midnight"]
         },
         {
           "lesson": "lesson-02",
@@ -7124,7 +7124,7 @@
               "image": "emoji/1f389.svg"
             }
           ],
-          "words": ["good-news", "joy", "luck", "opportunity", "promotion", "job", "exam", "house", "hospital", "blessing", "congratulations", "to-pass", "to-celebrate", "to-be-glad", "happy", "good", "great", "scholarship", "pay-rise"]
+          "words": ["good-news", "joy", "luck", "opportunity", "promotion", "job", "exam", "house", "hospital", "blessing", "congratulations", "to-pass", "to-celebrate", "to-be-glad", "happy", "good", "excellent", "scholarship", "pay-rise"]
         }
       ]
     },
@@ -7687,7 +7687,7 @@
               "english": "A neighbour has a right over us"
             }
           ],
-          "words": ["neighbour", "doorman", "floor", "noise", "respect", "ladder", "mail", "rubbish", "tea", "food", "to-live", "to-borrow", "to-help", "to-cooperate", "to-apologise", "to-receive", "to-visit", "to-move", "ill", "next-door"]
+          "words": ["neighbour", "doorman", "floor", "noise", "respect", "ladder", "mail", "rubbish", "tea", "food", "to-live", "to-borrow", "to-help", "to-cooperate", "to-apologise", "to-receive", "to-visit", "to-move", "sick", "next-door"]
         }
       ]
     },
@@ -8252,7 +8252,7 @@
           "lesson": "lesson-03",
           "title": "Making, Moving and Handling",
           "phrases": [],
-          "words": ["to-come", "to-make", "to-do", "to-start", "to-use", "to-follow", "to-lead", "to-show", "to-gather", "to-spend", "to-lend", "to-repair", "to-build", "to-catch", "to-shake", "to-squeeze", "to-press", "to-tear", "to-stretch", "to-separate", "to-fix-fasten", "to-dig", "to-saw", "to-paint", "to-sew", "to-glue", "to-lock", "to-harvest", "to-protect", "to-warn", "to-escape", "to-burn", "to-destroy", "to-deliver", "to-replace", "to-install", "to-heat-up", "to-iron"],
+          "words": ["to-come", "to-make", "to-do", "to-start", "to-use", "to-follow", "to-lead", "to-show", "to-gather", "to-spend", "to-lend", "to-repair", "to-build", "to-catch", "to-shake", "to-squeeze", "to-press", "to-tear", "to-stretch", "to-separate", "to-fix-fasten", "to-dig", "to-saw", "to-paint", "to-sew", "to-glue", "to-lock", "to-harvest", "to-protect", "to-warn", "to-escape", "to-burn", "to-destroy", "to-deliver", "to-exchange", "to-install", "to-heat-up", "to-iron"],
           "sentences": [
             {"slot": "come-repair-door", "english": "Can you come tomorrow and repair the door?", "uses": ["to-come", "to-repair"]},
             {"slot": "show-how-to-use", "english": "Show me how to use this machine.", "uses": ["to-show", "to-use"]},
@@ -8286,10 +8286,10 @@
           "lesson": "lesson-01",
           "title": "Describing Words",
           "phrases": [],
-          "words": ["deep", "shallow", "narrow", "quiet", "loud", "audible", "faint", "awake", "asleep", "healthy", "tidy", "messy", "hidden", "temporary", "permanent", "famous", "popular", "common", "rare", "special", "normal", "modern", "public", "private", "general", "main", "official", "personal", "international", "foreign", "false", "fake", "simple", "complicated", "necessary", "useful", "similar", "real", "suitable"],
+          "words": ["deep", "shallow", "narrow", "calm", "loud", "audible", "faint", "awake", "asleep", "healthy", "tidy", "messy", "hidden", "temporary", "permanent", "famous", "popular", "common", "rare", "special", "normal", "modern", "public", "private", "general", "main", "official", "personal", "international", "foreign", "wrong", "fake", "simple", "complicated", "necessary", "useful", "similar", "real", "suitable"],
           "sentences": [
             {"slot": "river-very-deep", "english": "Be careful, the river is very deep here.", "uses": ["deep"]},
-            {"slot": "library-quiet-street-loud", "english": "The library is quiet, but the street is loud.", "uses": ["quiet", "loud"]},
+            {"slot": "library-quiet-street-loud", "english": "The library is quiet, but the street is loud.", "uses": ["calm", "loud"]},
             {"slot": "baby-asleep-awake", "english": "Is the baby asleep or still awake?", "uses": ["asleep", "awake"]},
             {"slot": "messy-room-tidy", "english": "Your room is messy, please make it tidy.", "uses": ["messy", "tidy"]},
             {"slot": "famous-popular-market", "english": "This old market is very famous and popular with visitors.", "uses": ["famous", "popular"]},
@@ -8329,7 +8329,7 @@
           "lesson": "lesson-04",
           "title": "Feelings",
           "phrases": [],
-          "words": ["happy", "sad", "angry", "upset", "scared", "worried", "bored", "lonely", "embarrassed", "excited", "proud", "shy", "relaxed", "jealous", "surprised", "amazed", "shocked", "nervous", "confused", "curious", "hopeful", "optimistic", "disappointed", "desperate", "confident", "satisfied", "love", "hate", "sorrow", "pity", "envy", "shame", "regret", "longing", "relief", "to-smile", "to-laugh", "tears", "to-sigh", "to-tremble", "happiness", "anxiety"],
+          "words": ["happy", "sad", "angry", "upset", "afraid", "worried", "bored", "lonely", "embarrassed", "excited", "proud", "shy", "comfortable", "jealous", "surprised", "amazed", "shocked", "nervous", "confused", "curious", "hopeful", "optimistic", "disappointed", "desperate", "confident", "satisfied", "love", "hate", "sadness", "pity", "envy", "shame", "regret", "longing", "relief", "to-smile", "to-laugh", "tears", "to-sigh", "to-tremble", "happiness", "anxiety"],
           "sentences": [
             {"slot": "happy-you-came", "english": "I am very happy because you came.", "uses": ["happy"]},
             {"slot": "why-are-you-sad", "english": "Why are you sad? What happened?", "uses": ["sad"]},
@@ -8343,11 +8343,11 @@
           "lesson": "lesson-05",
           "title": "Character and Manners",
           "phrases": [],
-          "words": ["kind", "honest", "patient-calm", "stubborn", "hard-working", "patience", "respect", "generosity", "loyal", "humble", "wise", "trustworthy", "helpful", "gentle", "sincere", "fair", "merciful", "noble", "liar", "coward", "fool", "arrogant", "selfish", "greedy", "envious", "cruel", "unjust", "cunning", "manners", "morals", "honesty", "loyalty", "humility", "wisdom", "dignity", "modesty", "respectful", "sociable", "careless", "spoiled", "hypocrite"],
+          "words": ["kind", "honest", "patient-calm", "stubborn", "diligent", "patience", "respect", "generosity", "loyal", "humble", "wise", "trustworthy", "helpful", "gentle", "sincere", "fair", "merciful", "noble", "liar", "cowardly", "fool", "arrogant", "selfish", "greedy", "envious", "cruel", "unjust", "cunning", "manners", "morals", "honesty", "loyalty", "humility", "wisdom", "dignity", "modesty", "respectful", "sociable", "careless", "spoiled", "hypocrite"],
           "sentences": [
             {"slot": "kind-honest-neighbour", "english": "Our neighbour is kind and honest.", "uses": ["kind", "honest"]},
             {"slot": "language-needs-patience", "english": "Learning a language needs a lot of patience.", "uses": ["patience"]},
-            {"slot": "hard-working-helpful-student", "english": "She is a hard-working and helpful student.", "uses": ["hard-working", "helpful"]},
+            {"slot": "hard-working-helpful-student", "english": "She is a hard-working and helpful student.", "uses": ["diligent", "helpful"]},
             {"slot": "dont-be-selfish", "english": "Don't be selfish, share the food with your brother.", "uses": ["selfish"]},
             {"slot": "good-manners-important", "english": "Good manners are important in every home.", "uses": ["manners"]},
             {"slot": "wise-humble-grandfather", "english": "My grandfather is a wise and humble man.", "uses": ["wise", "humble"]}
@@ -8543,7 +8543,7 @@
           "lesson": "lesson-03",
           "title": "School and Office Things",
           "phrases": [],
-          "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "envelope", "school-bag", "ruler", "glue", "stapler", "paper-clip", "folder", "calculator", "printer", "bell", "desk", "chair", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket", "keyboard", "computer-mouse", "marker", "coloured-pencils", "photocopier", "form"],
+          "words": ["pencil", "pen", "ink", "eraser", "pencil-sharpener", "pencil-case", "chalk", "book", "textbook", "notebook", "dictionary", "atlas", "globe", "envelope", "school-bag", "ruler", "glue", "stapler", "paper-clip", "file", "calculator", "printer", "bell", "desk", "chair", "shelf", "bookcase", "drawer", "whiteboard", "blackboard", "notice-board", "wastebasket", "keyboard", "computer-mouse", "marker", "coloured-pencils", "photocopier", "form"],
           "sentences": [
             {"slot": "borrow-pencil-eraser", "english": "Can I borrow your pencil and eraser?", "uses": ["pencil", "eraser"]},
             {"slot": "books-on-shelf", "english": "Put the books back on the shelf.", "uses": ["book", "shelf"]},
@@ -8633,7 +8633,7 @@
           "lesson": "lesson-04",
           "title": "Meat, Fish and Dishes",
           "phrases": [],
-          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding", "kibbeh", "ful-medames", "maqluba", "kabsa", "halva", "manakish"],
+          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "turkey-bird", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding", "kibbeh", "ful-medames", "maqluba", "kabsa", "halva", "manakish"],
           "sentences": [
             {"slot": "chicken-or-fish", "english": "Do you want chicken or fish for dinner?", "uses": ["chicken", "fish"]},
             {"slot": "two-shawarma-no-onion", "english": "Two shawarma sandwiches, please, without onion.", "uses": ["shawarma"]},
@@ -8667,12 +8667,12 @@
           "lesson": "lesson-02",
           "title": "Government and Law",
           "phrases": [],
-          "words": ["government", "state", "republic", "parliament", "constitution", "politics", "president", "prime-minister", "minister", "king", "ambassador", "judge", "law", "lawsuit", "verdict", "sentence", "crime", "guilty", "innocent", "to-arrest", "justice", "citizen", "foreigner", "refugee", "homeland", "nation", "flag", "anthem", "freedom", "duty", "entitlement", "tax", "responsibility", "election", "vote", "political-party", "majority", "campaign", "ballot-box", "army", "soldier", "officer", "security", "weapon", "ministry", "municipality", "prince", "kingdom", "independence", "corruption"],
+          "words": ["government", "state", "republic", "parliament", "constitution", "politics", "president", "prime-minister", "minister", "king", "ambassador", "judge", "law", "lawsuit", "ruling", "sentence", "crime", "guilty", "innocent", "to-arrest", "justice", "citizen", "foreign", "refugee", "homeland", "nation", "flag", "anthem", "freedom", "duty", "entitlement", "tax", "responsibility", "election", "vote", "political-party", "majority", "campaign", "ballot-box", "army", "soldier", "officer", "security", "weapon", "ministry", "municipality", "prince", "kingdom", "independence", "corruption"],
           "sentences": [
             {"slot": "election-next-month", "english": "The election will be next month.", "uses": ["election"]},
             {"slot": "president-visited-hospital", "english": "The president visited the new hospital yesterday.", "uses": ["president"]},
             {"slot": "respect-the-law", "english": "Everyone must respect the law.", "uses": ["law"]},
-            {"slot": "judge-announced-verdict", "english": "The judge announced the verdict this morning.", "uses": ["judge", "verdict"]},
+            {"slot": "judge-announced-verdict", "english": "The judge announced the verdict this morning.", "uses": ["judge", "ruling"]},
             {"slot": "citizen-duty-tax", "english": "Every citizen has a duty to pay tax.", "uses": ["citizen", "duty", "tax"]},
             {"slot": "anthem-and-flag", "english": "The children sang the national anthem and raised the flag.", "uses": ["anthem", "flag"]}
           ]
