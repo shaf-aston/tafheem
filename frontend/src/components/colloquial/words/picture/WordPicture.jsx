@@ -5,14 +5,16 @@
 // the English as a hint; a second miss rings the right place, so a slip teaches. A warm-up like Match: nothing is filed
 // for review. The boards and their spots are lib/colloquial/wordPictures.js.
 //
-// On a figure the word explored (or, in Test, the word wrongly tapped) also stands beside its dot,
-// in the margin and never on the drawing (Callout), so the eye need not leave the dot. From the
-// keyboard the picture is one Tab stop: the arrow keys go from place to place, in reading order.
+// One pattern for every board (picture/README.md): the drawing with a rail on its right, where the word
+// explored (or, in Test, the word wrongly tapped) stands level with its place, joined to it by a line
+// (Callout, lib/colloquial/labelRail.js); and one layout, the picture beside its controls on a wide
+// screen, over them on a phone, wherever the picture is used. From the keyboard the picture is one Tab
+// stop: the arrow keys go from place to place, in reading order.
 import { useMemo, useRef, useState } from 'react'
 
 import settings from '../../../../config/colloquial-display.json'
 import { readViewParam, writeViewParams } from '../../../../lib/nav/tabUrl'
-import { placeCallout } from '../../../../lib/colloquial/calloutPlace'
+import { anchorOf, placeInRail, railView } from '../../../../lib/colloquial/labelRail'
 import { pictureBoards } from '../../../../lib/colloquial/wordPictures'
 import { shuffled } from '../../../../lib/text/shuffle'
 import ArabicText from '../../../ui/text/ArabicText'
@@ -26,7 +28,7 @@ import MapArt from './MapArt'
 import PanelArt from './PanelArt'
 import SceneArt from './SceneArt'
 import ThingArt from './ThingArt'
-import usePictureFrame from './usePictureFrame'
+import usePictureSize from './usePictureSize'
 
 const STEPS = [{ id: 'explore', label: 'Explore' }, { id: 'test', label: 'Test' }]
 
@@ -56,44 +58,24 @@ function spotAt(event, board) {
   return best?.key ?? null
 }
 
-// A place's words, all of them: "in" and "inside" share one panel.
-function Said({ words, hear }) {
-  return (
-    <div className="space-y-1">
-      {words.map((w) => (
-        <div key={w.id} className="flex items-center justify-center gap-3">
-          <div>
-            <ArabicText as="p" size="xl" className="text-[var(--text)]">{w.arabic}</ArabicText>
-            <Spelling className="block">{w.transliteration}</Spelling>
-            <p className="type-small text-[var(--text-dim)]">{w.english}</p>
-          </div>
-          {/* Only the first word is said on a tap; the others wait for their button. */}
-          <SpeakButton text={w.arabic} hear={w === words[0] ? hear : 0} />
-        </div>
-      ))}
-    </div>
-  )
-}
-
 function Art({ board }) {
   if (board.art === 'map') return <MapArt view={board.view} keys={board.spots.map((s) => s.key)} />
   // Each draws only the boards it knows, and nothing for the rest.
   return <><BodyArt art={board.art} /><SceneArt board={board} /><PanelArt board={board} /><ThingArt art={board.art} /></>
 }
 
-// Beside the words on a wide screen (`split`) the drawing is held in view, as tall as the window allows,
-// and the picker and the question are held to its right, so the whole of the exercise is on screen at once.
+// On a wide screen the drawing is held in view, as tall as the window allows, and the picker and the
+// question are held to its right, so the whole of the exercise is on screen at once; on a phone, stacked.
 const CONTROLS = 'space-y-4 lg:col-start-2 lg:row-start-1 lg:sticky lg:top-[var(--app-header-h,0px)] lg:z-10 lg:bg-[color-mix(in_oklab,var(--bg)_88%,transparent)] lg:backdrop-blur-md lg:pt-4 lg:pb-2'
 const CANVAS = 'space-y-2 max-w-xl mx-auto w-full lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-[calc(var(--app-header-h,0px)+1rem)]'
 
-function Board({ board, step = 'test', toolbar = null, split = false }) {
+function Board({ board, step = 'test', toolbar = null }) {
   const [game, setGame] = useState(() => fresh(board))
   const [picked, setPicked] = useState(null)
   const [heard, setHeard] = useState(0)
   const svg = useRef(null)
-  const art = useRef(null)
-  const frame = usePictureFrame(svg, art)
-  const [labelH, setLabelH] = useState(48)   // a first guess at the label's height, until it is measured
+  const size = usePictureSize(svg)
+  const [labelH, setLabelH] = useState(0)   // the label's height in pixels, once measured
   const [focusKey, setFocusKey] = useState(null)
   const exploring = step === 'explore'
   const ask = game.queue[game.at]
@@ -105,22 +87,10 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
   const shownSpot = exploring ? pickedSpot : game.wrong ? tappedSpot : null
   const tone = exploring ? 'var(--primary)' : 'var(--danger)'
 
-  // Where that word can stand beside its dot, if the drawing leaves a margin (a figure does, a house does not).
-  // No margin, nothing measurable (a test) or something in the way: null, and the card says it alone.
-  const stand = useMemo(() => {
-    if (!shownSpot || shownSpot.area || !frame) return null
-    const { px, scale } = frame
-    const seg = (from, to) => { const a = px(...from), b = px(...to); return { x0: a.x, y0: a.y, x1: b.x, y1: b.y } }
-    return placeCallout({
-      box: frame.box, art: frame.art, height: labelH,
-      dot: { ...px(shownSpot.x, shownSpot.y), r: r * 1.3 * scale },
-      others: board.spots.filter((s) => s !== shownSpot).map((s) => (s.area
-        ? seg([s.area[0], s.area[1]], [s.area[0] + s.area[2], s.area[1] + s.area[3]])
-        : { ...px(s.x, s.y), r: r * scale })),
-      lines: board.spots.filter((s) => s.to).map((s) => seg([s.x, s.y], s.to)),
-    })
-  }, [shownSpot, frame, labelH, board, r])
-  const joint = stand && frame.unpx(stand.line.x, stand.line.y)
+  // The picture is the board's view with the rail on its right; the word stands there, level with its place.
+  const shown = railView(board.view)
+  const stand = shownSpot ? placeInRail(board.view, shownSpot, size ? labelH * (shown[2] / size.w) : 0) : null
+  const anchor = shownSpot && anchorOf(shownSpot)
 
   // The places in reading order (row by row, left to right), for the arrow keys. One of them holds the Tab stop:
   // the last one reached, or the first.
@@ -158,13 +128,12 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
 
   return (
     <>
-    <div className={split ? CONTROLS : 'space-y-4'}>
+    <div className={CONTROLS}>
       {toolbar}
-      {/* Where the word stands beside its dot (Callout), it is said there, with its speaker, and not again here. */}
-      {!(exploring && stand) && <div className="min-h-24 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 flex items-center justify-center gap-3 text-center" aria-live="polite">
+      {/* In Explore the card only invites the first tap: from then on the word is said beside its place (Callout). */}
+      {!(exploring && pickedSpot) && <div className="min-h-24 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-4 flex items-center justify-center gap-3 text-center" aria-live="polite">
         {exploring ? (
-          pickedSpot ? <Said words={pickedSpot.words} hear={heard} />
-            : <span className="type-body text-[var(--text-dim)]">Tap any place to hear its name</span>
+          <span className="type-body text-[var(--text-dim)]">Tap any place to hear its name</span>
         ) : done ? (
           <span className="type-body font-medium text-[var(--text)]">All found · {game.slips} {game.slips === 1 ? 'slip' : 'slips'}</span>
         ) : (
@@ -185,12 +154,12 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
         )}
       </div>}
     </div>
-    <div className={split ? CANVAS : 'space-y-4'}>
-      <div className="relative mx-auto w-full max-w-md">
-      <svg ref={svg} viewBox={board.view.join(' ')} role="group" aria-label={`${board.label}: ${exploring ? 'tap a place to hear its name' : 'tap the place'}. Arrow keys go from place to place.`}
-        className={`w-full max-h-[70vh] block touch-manipulation cursor-pointer select-none ${split ? 'lg:max-h-[calc(100dvh-var(--app-header-h,0px)-5rem)]' : ''}`}
+    <div className={CANVAS}>
+      <div className="relative mx-auto w-full">
+      <svg ref={svg} viewBox={shown.join(' ')} role="group" aria-label={`${board.label}: ${exploring ? 'tap a place to hear its name' : 'tap the place'}. Arrow keys go from place to place.`}
+        className="w-full max-h-[70vh] lg:max-h-[calc(100dvh-var(--app-header-h,0px)-5rem)] block touch-manipulation cursor-pointer select-none"
         onClick={(e) => answer(spotAt(e, board))}>
-        <g ref={art}><Art board={board} /></g>
+        <Art board={board} />
         {/* A led-out dot's line to its place, under the dots. */}
         {board.spots.filter((s) => s.to).map((s) => (
           <g key={`${s.key}-to`} aria-hidden="true" stroke="var(--text-dim)" strokeWidth={r / 6}>
@@ -199,7 +168,7 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
           </g>
         ))}
         {/* The line from the tapped dot to its word, under the dots. */}
-        {stand && <line aria-hidden="true" className="pointer-events-none" x1={shownSpot.x} y1={shownSpot.y} x2={joint.x} y2={joint.y}
+        {stand && <line aria-hidden="true" className="pointer-events-none" x1={anchor.x} y1={anchor.y} x2={stand.line.x} y2={stand.line.y}
           stroke={tone} strokeWidth={r / 5} strokeLinecap="round" />}
         {/* After the misses run out, a ring around the place being asked for. */}
         {!exploring && ask && game.misses >= SHOW_AFTER && (() => {
@@ -248,7 +217,7 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
           )
         })}
       </svg>
-      {stand && <Callout words={shownSpot.words} at={stand} tone={tone} hear={exploring ? heard : 0} onHeight={setLabelH} />}
+      {stand && <Callout words={shownSpot.words} at={stand} view={shown} tone={tone} hear={exploring ? heard : 0} onHeight={setLabelH} />}
       </div>
       {!exploring && <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="type-small text-[var(--text-dim)]">
@@ -262,7 +231,7 @@ function Board({ board, step = 'test', toolbar = null, split = false }) {
   )
 }
 
-// `children` are what sits beside the drawing on a wide screen (the words); with none, it is the drawing alone.
+// `children` sit under the controls, beside the drawing on a wide screen (a topic's words); optional.
 export default function WordPicture({ words, children }) {
   const boards = useMemo(() => pictureBoards(words), [words])
   // Which picture, and Explore or Test, ride on the address like the mode does (?board=outfit&step=test),
@@ -273,7 +242,6 @@ export default function WordPicture({ words, children }) {
   const setStep = (next) => { setStepNow(next); writeViewParams({ step: next === 'explore' ? '' : next }) }
   const board = boards.find((b) => b.id === id) ?? boards[0]
   if (!board) return null
-  const split = children != null
   const toolbar = (
       <div className="flex flex-wrap items-center justify-between gap-3">
         {boards.length > 1 ? (
@@ -284,9 +252,9 @@ export default function WordPicture({ words, children }) {
       </div>
   )
   return (
-    <div className={split ? 'space-y-4 lg:grid lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:items-start lg:gap-x-8 lg:space-y-0' : 'space-y-4'}>
-      <Board key={`${board.id}-${step}`} board={board} step={step} toolbar={toolbar} split={split} />
-      {split && <div className="min-w-0 space-y-4 lg:col-start-2 lg:row-start-2">{children}</div>}
+    <div className="space-y-4 lg:grid lg:grid-cols-[minmax(0,32rem)_minmax(0,1fr)] lg:items-start lg:gap-x-8 lg:space-y-0">
+      <Board key={`${board.id}-${step}`} board={board} step={step} toolbar={toolbar} />
+      {children != null && <div className="min-w-0 space-y-4 lg:col-start-2 lg:row-start-2">{children}</div>}
     </div>
   )
 }
