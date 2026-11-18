@@ -70,6 +70,14 @@ def outline_faults(spine: list[dict], known: dict) -> list[str]:
                 said.append(f"{where} teaches its words in pairs, but has {len(ids)}, one left over")
             said += [f"{where} teaches {one!r}, which {FILE} does not have" for one in ids if one not in known]
             used.update(ids)
+            # A word topic's example sentences: each has English, its own slot, and uses only this topic's words.
+            slots = [one.get("slot") for one in lesson.get("sentences") or []]
+            said += [f"{where} has the sentence slot {one!r} twice" for one in sorted({x for x in slots if slots.count(x) > 1}, key=str)]
+            for one in lesson.get("sentences") or []:
+                if not (str(one.get("slot") or "").strip() and str(one.get("english") or "").strip()):
+                    said.append(f"{where} has a sentence with no slot or no English")
+                said += [f"{where} sentence {one.get('slot')!r} uses {w!r}, which this topic does not teach"
+                         for w in one.get("uses") or [] if w not in ids]
     for one, meaning in known.items():
         if not (str(meaning.get("english") or "").strip() and str(meaning.get("group") or "").strip()):
             said.append(f"{FILE} {one!r} has no english or no group")

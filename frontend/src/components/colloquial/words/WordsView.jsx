@@ -17,6 +17,7 @@ import WordGallery from './WordGallery'
 import WordMatch from './WordMatch'
 import WordPairs from './WordPairs'
 import WordReview from './WordReview'
+import WordSentences from './WordSentences'
 import WordPicture from './picture/WordPicture'
 import { pictureBoards } from '../../../lib/colloquial/wordPictures'
 
@@ -71,9 +72,16 @@ export default function WordsView({ unit, at }) {
             <WordPicture words={words}>
               <SpellingKey keys={unit.transliteration_key} />
               {lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} narrow />}
+              {/* The words first, then the same words in sentences. */}
+              <WordSentences sentences={lesson.sentences} narrow />
             </WordPicture>
           )
-          : (lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />))}
+          : (
+            <div className="space-y-8">
+              {lesson.pairs ? <WordPairs words={words} pairs={lesson.pairs} /> : <WordGallery words={words} />}
+              <WordSentences sentences={lesson.sentences} />
+            </div>
+          ))}
         {shown === 'cards' && <WordCards words={words} />}
         {shown === 'match' && <WordMatch words={words} />}
         {shown === 'quiz' && <Practice exercises={drills} />}

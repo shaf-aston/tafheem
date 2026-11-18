@@ -101,7 +101,9 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     said = []
     if not str(lesson.get("title") or "").strip():
         said.append(f"{name} has no title")
-    if not lesson.get("phrases"):  # a word list: its words are all it teaches
+    for at, sentence in enumerate(lesson.get("sentences") or [], 1):
+        said.extend(_phrase_faults(sentence, f"{name} sentence {at}"))
+    if not lesson.get("phrases"):  # a word list: its words (and their sentences) are all it teaches
         return said
     for part in ("phrases", "dialogue", "exercises"):
         if not lesson.get(part):
@@ -131,6 +133,22 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
         seen_ids.add(given)
         said.extend(f"{where} {why}" for why in registry.faults(exercise))
     return said
+
+
+def _sentences(plan: dict, lesson: dict) -> tuple[list[dict], list[str]]:
+    """A word topic's example sentences: the spine gives each slot's English (and the word ids it
+    uses), the dialect says it. Like phrases, every slot or none is a fault: a written topic says them all."""
+    name, said = f"lesson {plan['lesson']!r}", []
+    given = [one.get("slot") for one in lesson.get("sentences") or []]
+    for twice in sorted({slot for slot in given if given.count(slot) > 1}, key=str):
+        said.append(f"{name} says the sentence {twice!r} twice")
+    by_slot = {one.get("slot"): one for one in lesson.get("sentences") or []}
+    slots = [one["slot"] for one in plan.get("sentences") or []]
+    for extra in sorted(set(by_slot) - set(slots), key=str):
+        said.append(f"{name} says the sentence {extra!r}, which spine.json does not have")
+    for missing in (slot for slot in slots if slot not in by_slot):
+        said.append(f"{name} does not say the sentence {missing!r}")
+    return [{**one, **by_slot[one["slot"]]} for one in plan.get("sentences") or [] if one["slot"] in by_slot], said
 
 
 def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tuple[dict, list[str]]:
@@ -165,6 +183,8 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
         phrases = [{**slot, **words[slot["slot"]]} for slot in plan["phrases"] if slot["slot"] in words]
         dialogue, faults = _say_slots(lesson, phrases, f"lesson {plan['lesson']!r}")
         said.extend(faults)
+        sentences, faults = _sentences(plan, lesson)
+        said.extend(faults)
         if "vocabulary" in lesson:
             said.append(f"lesson {plan['lesson']!r} lists its own vocabulary; a dialect's words live in {wordlist.FILE}")
         vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}")
@@ -173,7 +193,7 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
         ids = plan.get("words") or []
         pairs = [ids[i:i + 2] for i in range(0, len(ids), 2)] if plan.get("pairs") else None
         filled.append({**lesson, "title": plan["title"], "section": plan.get("section"), "phrases": phrases,
-                       "dialogue": dialogue, "vocabulary": vocabulary, "written": True,
+                       "dialogue": dialogue, "sentences": sentences, "vocabulary": vocabulary, "written": True,
                        **({"pairs": pairs} if pairs else {})})
     return {**written, "title": outline["title"], "cover": outline.get("cover"), "lessons": _spelt(filled)}, said
 
@@ -341,7 +361,8 @@ def _card(dialect: dict) -> dict:
     """A dialect's card, through schema.DialectCard: its fields are named there only."""
     units = [{**u, "cover": _cover(u), **_words_only(u),
               "lessons": [{**lesson, "words": len(lesson.get("vocabulary") or []),
-                           "phrases": len(lesson.get("phrases") or []), "picture": _picture(lesson)}
+                           "phrases": len(lesson.get("phrases") or []), "sentences": len(lesson.get("sentences") or []),
+                           "picture": _picture(lesson)}
                           for lesson in u["lessons"]]}
              for u in dialect["units"]]
     return schema.DialectCard.model_validate({**dialect, "units": units}).model_dump()
