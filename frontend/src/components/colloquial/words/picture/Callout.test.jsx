@@ -21,7 +21,6 @@ const DRAWING = 100 / (1 + RAIL)
 beforeEach(() => { globalThis.scrollTo = vi.fn() })
 afterEach(cleanup)
 
-<<<<<<< HEAD
 describe('a picture board says a tapped place’s word beside it, the same on every board', () => {
   it('before a tap there is no label, and the card invites one', () => {
     const { container } = at()
@@ -40,35 +39,6 @@ describe('a picture board says a tapped place’s word beside it, the same on ev
     expect(screen.getAllByRole('button', { name: 'Say it aloud' })).toHaveLength(1)  // its speaker, the only one
     expect(screen.queryByText('Tap any place to hear its name')).toBeNull()
     expect(container.querySelector(`svg line[stroke="var(--primary)"]`)).not.toBeNull()   // joined to its place
-=======
-describe('Callout: the tapped dot’s word stands in the margin beside it', () => {
-  it('stands against the drawing, outside it, inside the picture, and says its word', () => {
-    // The drawing runs 60 to 180 across a 240-unit view: 120px to 360px of 480, 120px of margin each side.
-    lay({ x: 60, y: 10, width: 120, height: 280 })
-    const { container } = explore()
-    tap(container)
-    const label = callout(container)
-    expect(label).not.toBeNull()
-    expect(label.getAttribute('aria-live')).toBe('polite')   // the word's one place: heard here too
-    expect(label.textContent).toMatch(/\S/)
-    const left = parseFloat(label.style.left)
-    const width = parseFloat(label.style.width)
-    expect(left >= 360 || left + width <= 120).toBe(true)   // not on the drawing
-    expect(left).toBeGreaterThanOrEqual(0)
-    expect(left + width).toBeLessThanOrEqual(480)           // not outside the picture
-    expect(container.querySelector('svg line[stroke="var(--primary)"]')).not.toBeNull()   // joined to its dot
-  })
-
-  it('takes the place of the card: the word and its speaker are beside the dot, and the card above is gone', async () => {
-    lay({ x: 60, y: 10, width: 120, height: 280 })
-    const { container } = explore()
-    expect(container.querySelector('[aria-live="polite"]:not([data-callout])').textContent).toMatch(/Tap any place/)
-    tap(container)
-    const label = callout(container)
-    expect(label.querySelector('button[aria-label="Say it aloud"]')).not.toBeNull()   // it speaks there
-    expect(screen.getAllByRole('button', { name: 'Say it aloud' })).toHaveLength(1)    // and only there
-    expect(screen.queryByText(/Tap any place/)).toBeNull()                               // the card is not shown
->>>>>>> origin/master
   })
 
   it('every place on the board gets its label, not only those with room beside them', () => {

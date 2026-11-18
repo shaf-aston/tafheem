@@ -6,18 +6,12 @@ import { useLayoutEffect, useRef } from 'react'
 import SpeakButton from '../../../ui/buttons/SpeakButton'
 import ArabicText from '../../../ui/text/ArabicText'
 
-<<<<<<< HEAD
 const pct = (n) => `${n * 100}%`
 
 /** `at` {x, y, w}: where it stands, in the board's units; `view`: the picture's view (with its rail).
  * `tone` is its edge: the accent for a word explored, the danger colour for a wrong tap in Test.
  * `hear` says the first word on each rise; `onHeight` tells the board how tall it came out, in pixels. */
 export default function Callout({ words, at, view, tone = 'var(--primary)', hear = 0, compact = false, onHeight }) {
-=======
-/** `at` {x, y, w}: where it stands, in pixels from the picture's corner. `onHeight` tells the placer how tall it came out.
- * `tone` is its edge: the accent for a word explored, the danger colour for a wrong tap in Test. */
-export default function Callout({ words, at, tone = 'var(--primary)', hear = 0, onHeight }) {
->>>>>>> origin/master
   const node = useRef(null)
   useLayoutEffect(() => {
     const el = node.current
@@ -31,10 +25,6 @@ export default function Callout({ words, at, tone = 'var(--primary)', hear = 0, 
   }, [onHeight, words])
   const [vx, vy, vw, vh] = view
   return (
-<<<<<<< HEAD
-=======
-    // Where it stands, the card above is not shown: this is the word's one place, its live region and its speaker.
->>>>>>> origin/master
     // Taps pass through it to the picture, except on the speaker.
     <div ref={node} aria-live="polite" data-callout
       className="absolute pointer-events-none rounded-[var(--radius-sm)] border bg-[var(--surface)] px-1.5 py-1 text-center shadow-sm"
