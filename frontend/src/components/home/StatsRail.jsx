@@ -60,14 +60,14 @@ function Facts({ name }) {
   )
 }
 
-/** Level, rank and the bar to the next one: XpCard's top line, without the path. */
+/** Rank, step and the bar to the next one: XpCard's top line, without the path. */
 function Level({ rewards }) {
   if (!rewards) return <Skeleton className="h-12 w-full" />
   const rank = rankOf(rewards.level)
   return (
     <div className="space-y-2" style={{ '--xp-tone': colorFor('tab', 'grow') }}>
       <p className="type-small font-semibold text-[var(--text)]">
-        {fill(copy.level, { n: rewards.level })} · {rank.en} <span dir="rtl">{rank.ar}</span>
+        {rank.en} <span dir="rtl">{rank.ar}</span> · {fill(copy.level, { n: rewards.level })}
       </p>
       <div className="xp-bar" role="progressbar" aria-valuemin={0} aria-valuemax={rewards.need} aria-valuenow={rewards.into}>
         <span style={{ '--xp-share': shareOf(rewards) }} />

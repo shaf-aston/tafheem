@@ -32,8 +32,8 @@
   "stats": {
     "_comment": "The progress column beside Home's tiles (wide screens) and the small button that opens the profile instead (phones). {n}, {next} are filled in by the code.",
     "title": "Your progress",
-    "level": "Lv {n}",
-    "xp-left": "{n} XP to level {next}",
+    "level": "step {n}",
+    "xp-left": "{n} XP to step {next}",
     "streak": "Streak",
     "days-one": "{n} day",
     "days-many": "{n} days",

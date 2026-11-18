@@ -1,6 +1,6 @@
 /**
- * Level and XP, in the profile the header's level opens: a bar that fills on
- * sight, what is left to the next level, and the growth path from Seed to Fruit
+ * Rank and XP, in the profile the header's ring opens: a bar that fills on
+ * sight, what is left to the next step, and the growth path from Seed to Fruit
  * with you on it, shown at once rather than behind a tap. No box of its own: it
  * sits in the profile's quieter detail, below this week and understanding.
  */
@@ -24,7 +24,7 @@ export default function XpCard({ rewards }) {
       style={{ '--xp-tone': tone }}>
       <div className="flex items-baseline justify-between gap-2">
         <span className="font-semibold text-[var(--text)]">
-          Lv {rewards.level} · {rank.en} <span dir="rtl">{rank.ar}</span>
+          {rank.en} <span dir="rtl">{rank.ar}</span> · step {rewards.level}
         </span>
         <span className="type-small tabular-nums text-[var(--text-dim)]"><Odometer value={rewards.into} /> / {rewards.need} XP</span>
       </div>
@@ -32,7 +32,7 @@ export default function XpCard({ rewards }) {
         <span style={{ '--xp-share': share }} />
       </div>
       <div className="type-small text-[var(--text-faint)]">
-        {rewards.need - rewards.into} XP to level {rewards.level + 1} · <Odometer value={rewards.xp} /> XP in all
+        {rewards.need - rewards.into} XP to step {rewards.level + 1} · <Odometer value={rewards.xp} /> XP in all
       </div>
       <ol className="xp-path" aria-label="Ranks">
         {config.ranks.map((r, i) => {
@@ -42,14 +42,14 @@ export default function XpCard({ rewards }) {
               <span className="xp-dot" aria-hidden="true" />
               <span className="font-semibold" dir="rtl">{r.ar}</span>
               <span className="type-small">{r.en}</span>
-              <span className="type-small tabular-nums">Lv {r.from}</span>
+              <span className="type-small tabular-nums">step {r.from}</span>
             </li>
           )
         })}
       </ol>
       {next && (
         <div className="type-small text-[var(--text-dim)]">
-          Next rank: {next.en} <span dir="rtl">{next.ar}</span> at level {next.from}
+          Next rank: {next.en} <span dir="rtl">{next.ar}</span> at step {next.from}
         </div>
       )}
     </div>
