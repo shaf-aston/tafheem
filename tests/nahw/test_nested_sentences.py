@@ -4,7 +4,7 @@ import pytest
 
 from backend.services.sarf.morphology import pick
 from backend.services.text.harakat import vowel_agreement
-from tests.nahw_helpers import card, needs_parser
+from tests.nahw_helpers import analyze, card, needs_parser, tree_roles
 
 
 def role(sentence: str, word: str) -> str:
@@ -183,3 +183,26 @@ def test_a_verb_reading_that_adds_a_shadda_is_not_taken():
     read = next(r for w, r in zip(words, pick(words)) if w == "أَبُوهُ")
     assert not read.get("pos", "").startswith("verb")
     assert next(r for w, r in zip(["الَّذِي", "يَكْتُبُ"], pick(["الَّذِي", "يَكْتُبُ"])) if w == "يَكْتُبُ")["pos"] == "verb"
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, state", [
+    # a nominal sentence a و brings after a verb's sentence is one unit, the state its doer or object was in;
+    # the و governs nothing, so the sentence stays whole whatever its khabar is (a jar too)
+    ("خَرَجَ زَيْدٌ وَنَحْنُ فِي الطَّرِيقِ", True),
+    ("رَأَيْتُ زَيْدًا وَهُوَ رَاكِبٌ", True),
+    ("كَادَ زَيْدٌ وَهُوَ صَغِيرٌ يَمُوتُ", True),
+    ("جَاءَ زَيْدٌ وَالشَّمْسُ طَالِعَةٌ", True),
+    # siblings: after a nominal sentence the و joins a second one; a lone noun after it is joined to the doer
+    ("زَيْدٌ قَائِمٌ وَعَمْرٌو فِي الدَّارِ", False),
+    ("جَاءَ زَيْدٌ وَعَمْرٌو", False),
+])
+def test_a_sentence_after_waw_tells_the_state(sentence, state):
+    roles = tree_roles(analyze(sentence)["tree"]["tree"])
+    assert ("واو الحال" in roles and "حال" in roles) is state
+
+
+@needs_parser
+def test_a_joined_nominal_sentence_is_one_unit():
+    tree = analyze("زَيْدٌ قَائِمٌ وَعَمْرٌو فِي الدَّارِ")["tree"]["tree"]
+    assert tree_roles(tree, "label").count("جُمْلَةٌ اِسْمِيَّةٌ") == 2

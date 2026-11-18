@@ -1,7 +1,7 @@
 """The khabar, صفة or حال that no one writes: a word of its own, drawn hidden."""
 from __future__ import annotations
 
-from backend.services.nahw.book import clause_of, condition_of, says
+from backend.services.nahw.book import clause_of, condition_of, is_one, says
 from backend.services.nahw.syntax.facts import (
     Sentence,
     asked_verb,
@@ -106,10 +106,11 @@ def add_unwritten_khabars(c: Picture) -> None:
         understood_pair[said_word["id"]] = pair_of.get(subject["id"], {})
         # فَلَهُ أَجْرٌ، زَيْدٌ عِنْدَهُ كِتَابٌ: a nominal sentence inside another (an answer, a khabar, a صفة, what is said)
         # is one unit, so its مبتدأ and the unit hang under the khabar no one writes, which heads it as a written one
-        # would (زيدٌ أبوه عالمٌ); a sentence on its own, or one a particle governs (إنما), keeps its halves side by side
+        # would (زيدٌ أبوه عالمٌ); a sentence on its own, or one a particle governs (إنما), keeps its halves side by side.
+        # A joining و governs nothing, so the sentence it brings is one unit too (خَرَجَ زَيْدٌ وَنَحْنُ فِي الطَّرِيقِ)
         head = by_id.get(said_word["head"])
         if role_of[subject["id"]] == NAMED.mubtada and not inside and (
-                {subject["id"], held["id"]} & answers or head and head["pos"] != "PRT"):
+                {subject["id"], held["id"]} & answers or head and (head["pos"] != "PRT" or is_one(head["form"], "atf"))):
             for word in (subject, held):
                 moved = {**by_id[word["id"]], "head": said_word["id"]}
                 drawn[[t["id"] for t in drawn].index(word["id"])], by_id[word["id"]] = moved, moved
