@@ -8,7 +8,8 @@
 import { useEffect, useRef } from 'react'
 
 import { useDismiss } from '../../lib/hooks/useDismiss'
-import { caseLabel } from '../../lib/nahw/grammarTerms'
+import { caseGloss, caseLabel, roleGloss } from '../../lib/nahw/grammarTerms'
+import Gloss from '../grammar/Gloss'
 import { roleVar } from '../../lib/nahw/roleColors'
 import ArabicText from '../ui/text/ArabicText'
 import CloseButton from '../ui/buttons/CloseButton'
@@ -42,6 +43,7 @@ export default function WordPeek({ word, english, at, onClose, onMore, onLookup 
         <span style={{ color: roleVar(word.role_key) }}>{word.name ?? word.role}</span>
         {word.case && <span className="text-[var(--text-dim)]"> · {caseLabel(word.case)}{word.sign ? ` (${word.sign})` : ''}</span>}
       </p>
+      <Gloss>{[roleGloss(word.name) || roleGloss(word.role), caseGloss(word.case)].filter(Boolean).join(' · ')}</Gloss>
       {word.reason && <p className="type-label text-[var(--text-dim)] leading-relaxed" dir="rtl" lang="ar">{reasonOnly(word.reason)}</p>}
       <div className="flex gap-3 pt-1 type-label">
         <button type="button" className="underline text-[var(--text-dim)] hover:text-[var(--text)]" onClick={onMore}>Full card</button>

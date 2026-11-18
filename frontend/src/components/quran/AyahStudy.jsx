@@ -19,7 +19,8 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import { getQuranTarkeeb, quranAyahQuery, similarSurahQuery } from '../../api'
-import { posLabel } from '../../lib/nahw/grammarTerms'
+import { posGloss, posLabel } from '../../lib/nahw/grammarTerms'
+import Gloss from '../grammar/Gloss'
 import { posColor } from '../../lib/nahw/roleColors'
 import { fill } from '../../lib/similar/similar'
 import similarCopy from '../../config/similar.json'
@@ -199,6 +200,7 @@ function WordChip({ word, index, open, onToggle }) {
       {word.pos && (
         <ArabicText size="tiny" style={{ color: 'var(--c)' }}>{posLabel(word.pos)}</ArabicText>
       )}
+      <Gloss>{posGloss(word.pos)}</Gloss>
       {word.meaning && (
         <span className="type-small text-[var(--text-dim)] max-w-[7rem] text-center" lang="en" dir="ltr">
           {word.meaning}

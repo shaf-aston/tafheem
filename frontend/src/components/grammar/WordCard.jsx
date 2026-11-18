@@ -15,7 +15,8 @@
 import { useEffect, useRef } from 'react'
 
 import { useDismiss } from '../../lib/hooks/useDismiss'
-import { caseLabel, isUnnamed, typeLabel } from '../../lib/nahw/grammarTerms'
+import { caseGloss, caseLabel, isUnnamed, typeGloss, typeLabel } from '../../lib/nahw/grammarTerms'
+import Gloss from './Gloss'
 import { roleVar } from '../../lib/nahw/roleColors'
 import { scrollToEl } from '../../lib/motion/scrollToEl'
 import ArabicText from '../ui/text/ArabicText'
@@ -98,8 +99,8 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
       {(word.root || word.type || word.case || word.sign) && (
         <div className="grid grid-cols-2 gap-2.5 type-small">
           {word.root && <Detail label="Root" value={word.root} arabic />}
-          {word.type && <Detail label="Type" value={typeLabel(word.type)} arabic />}
-          {word.case && <Detail label="Case" value={caseLabel(word.case)} arabic />}
+          {word.type && <Detail label="Type" value={typeLabel(word.type)} gloss={typeGloss(word.type)} arabic />}
+          {word.case && <Detail label="Case" value={caseLabel(word.case)} gloss={caseGloss(word.case)} arabic />}
           {word.sign && <Detail label="Sign" value={word.sign} arabic />}
         </div>
       )}
@@ -136,13 +137,14 @@ export default function WordCard({ word, onClose, onGo, exclude }) {
   )
 }
 
-function Detail({ label, value, arabic }) {
+function Detail({ label, value, gloss, arabic }) {
   return (
     <div className="rounded-[var(--radius-sm)] p-3 bg-[var(--surface-hi)]">
       <div className="eyebrow mb-1">{label}</div>
       {arabic
         ? <ArabicText className="text-[var(--text)]">{value}</ArabicText>
         : <div className="text-[var(--text)]">{value}</div>}
+      <Gloss className="block">{gloss}</Gloss>
     </div>
   )
 }

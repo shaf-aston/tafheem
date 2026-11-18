@@ -46,8 +46,12 @@ export const mostlyArabic = (text) =>
  * against the real word lists and matched not one extra word, it would only add
  * ways for two different words to collide.
  */
-export const bareForm = (text) =>
-  (text ?? '').replace(DIACRITICS_ALL, '').replace(ALIF_FORMS, 'ا')
+export const bareForm = (text) => unvowelled(text).replace(ALIF_FORMS, 'ا')
+
+/** The letters with their vowel marks taken off, and nothing else: كأن stays apart from كان. */
+export function unvowelled(text) {
+  return (text ?? '').replace(DIACRITICS_ALL, '')
+}
 
 // Punctuation is a break between words, never part of one, except an apostrophe
 // between two letters (don't, Mu'adh). The same rule as the backend's

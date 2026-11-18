@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 
-import { isUnnamed, caseLabel, caseFrom } from '../../../lib/nahw/grammarTerms'
+import { isUnnamed, caseLabel, caseFrom, roleGloss } from '../../../lib/nahw/grammarTerms'
+import Gloss from '../../grammar/Gloss'
 import { arc } from '../../../lib/nahw/govArc'
 import { roleVar } from '../../../lib/nahw/roleColors'
 import ArabicText from '../../ui/text/ArabicText'
@@ -82,13 +83,14 @@ export default function WordGrid({ words, onClick, governs, picked, corner }) {
               bg-[var(--surface-hi)] border"
           >
             <ArabicText className="text-glow leading-tight">{word.word}</ArabicText>
-            {/* The term alone. What it means is in the glossary at the foot
-                of the page, once, not under every tag. */}
+            {/* The term, and two or three words of English saying what it names. What it
+                means in full is in the glossary at the foot of the page, once. */}
             {word.role && (
               <span className="type-tiny px-2 py-0.5 rounded-full role-tag">
                 {word.name ?? word.role}
               </span>
             )}
+            {word.role && <Gloss>{roleGloss(word.name) || roleGloss(word.role)}</Gloss>}
             {word.case && (
               <ArabicText size="tiny" className="text-[var(--text-faint)]">{caseLabel(word.case)}</ArabicText>
             )}
