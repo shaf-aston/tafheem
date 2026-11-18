@@ -61,6 +61,8 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
     historyKey: 'dict-history',
     ask: ({ q }) => (isSentence(q) ? translateSentence(q) : searchDictionary(q, languageOf(q))),
     place: (data) => data.query,
+    // A word with no entries is not kept in Recent; a translated sentence has no entry list and always is.
+    kept: (data) => !data.results || data.results.length > 0,
     onVisit,
     incoming,
     arrival,

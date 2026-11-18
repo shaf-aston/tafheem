@@ -89,4 +89,17 @@ describe('SearchBox', () => {
     expect(onSubmit).toHaveBeenCalledTimes(1)
     expect(screen.getByRole('status').textContent).toBe('')
   })
+
+  it('digits alone are held back too, but not pointed at an English search', () => {
+    const onSubmit = vi.fn()
+    box({ value: '123', arabic: true, onSubmit })
+    fireEvent.keyDown(screen.getByLabelText(/Word/), { key: 'Enter' })
+    expect(onSubmit).not.toHaveBeenCalled()
+    const said = screen.getByRole('status').textContent
+    expect(said).toMatch(/Type an Arabic word/)
+    expect(said).not.toMatch(/English/)
+    cleanup()
+    box({ value: 'hello', arabic: true, onSubmit })
+    expect(screen.getByRole('status').textContent).toMatch(/English/)
+  })
 })

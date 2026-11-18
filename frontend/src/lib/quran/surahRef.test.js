@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import surahs from './surahs.json'
-import { CLOSE, ayahProblem, firstAyah, placeProblem, placesNamed, readSurahRef, surahsNamed } from './surahRef'
+import { CLOSE, ayahProblem, firstAyah, placeName, placeProblem, placesNamed, readSurahRef, surahOf, surahsNamed } from './surahRef'
 
 const top = (text) => readSurahRef(text).matches[0]
 
@@ -124,5 +124,17 @@ describe('placeProblem', () => {
 describe('firstAyah', () => {
   it.each([['2:30-37', '2:30'], ['9:40', '9:40'], ['105', '105:1']])('%s opens on %s', (ref, ayah) => {
     expect(firstAyah(ref)).toBe(ayah)
+  })
+})
+
+describe('a whole surah as a place', () => {
+  it('is a bare number in range, and reads as its name', () => {
+    expect(surahOf('2')).toBe(2)
+    expect(surahOf('115')).toBeNull()
+    expect(surahOf('0')).toBeNull()
+    expect(surahOf('2:255')).toBeNull()
+    expect(surahOf('رحم')).toBeNull()
+    expect(placeName('2')).toBe('Surah Al-Baqarah')
+    expect(placeName('2:255')).toBe('2:255')
   })
 })

@@ -32,6 +32,8 @@ let snapshot = { steps: [], at: -1 }
 let tabIds = []
 // Tabs whose page with nothing in hand is a place of its own (Grow's home, its worlds below it), not an empty box.
 let homeTabs = new Set()
+// Tabs whose value is something typed and asked (`search` in tabs.js): a bare address there is the empty box.
+let searchTabs = new Set()
 // Whether the reader has pressed or clicked anything since landing on the step we are on.
 // A place reported with no input in between is the tab filling itself in (Memorise opening
 // on its first page), so it takes a blank step's place. One the reader chose is a step of
@@ -75,14 +77,15 @@ export function stepOnto(steps, at, place, over = false, chosen = false) {
  *   2. the saved current step is this address (no usable history.state). Same.
  *   3. neither: a pasted or typed link. It is a new place, so it goes after the
  *      current step like any visit.
- * A bare address (a tab, no word) means "the app", not "a blank": it opens on
- * the tab's last word, the way a bookmark should. No saved path: the address
- * is step zero.
+ * A bare address (a tab, no word) on a reading tab opens where the reader
+ * stopped, the way a bookmark should. On a search tab (`asks`) it is the empty
+ * box: a word typed days ago is not what someone opening the Dictionary wants
+ * back. No saved path: the address is step zero.
  */
-export function resume(saved, asked, stateStep) {
+export function resume(saved, asked, stateStep, asks = false) {
   if (!saved) return { steps: [asked], at: 0 }
   const { steps, at } = saved
-  const here = asked.value ? asked : { tab: asked.tab, value: lastOn(steps, at, asked.tab) }
+  const here = asked.value || asks ? asked : { tab: asked.tab, value: lastOn(steps, at, asked.tab) }
   if (Number.isInteger(stateStep) && samePlace(steps[stateStep], here)) return { steps, at: stateStep }
   if (samePlace(steps[at], here)) return { steps, at }
   return stepOnto(steps, at, here)
@@ -97,6 +100,7 @@ export function startJourney(tabs) {
   if (tabIds.length) return placeNow()
   tabIds = tabs.map((tab) => tab.id)
   homeTabs = new Set(tabs.filter((tab) => tab.ownHome).map((tab) => tab.id))
+  searchTabs = new Set(tabs.filter((tab) => tab.search).map((tab) => tab.id))
   land(loadSession(tabIds), tabs)
   const touch = () => { touched = true }
   window.addEventListener('pointerdown', touch, true)
@@ -133,7 +137,7 @@ export const placeNow = () => snapshot.steps[snapshot.at] ?? null
 function land(saved, tabs) {
   const asked = readRouteFromUrl(tabs)
   const wanted = asked.tab ? asked : (saved?.steps[saved.at] ?? { tab: tabs[0].id, value: null })
-  const landed = resume(saved, wanted, readStateFromHistory().step)
+  const landed = resume(saved, wanted, readStateFromHistory().step, searchTabs.has(wanted.tab))
   const here = landed.steps[landed.at]
   writeTabToUrl(here.tab, here.value, { replace: true, state: { step: landed.at } })
   set(landed)

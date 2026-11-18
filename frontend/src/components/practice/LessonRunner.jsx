@@ -5,8 +5,8 @@
  * Cards are the exercise registry's; answers save like the Quiz's. Three right in a row shows a run; the end screen
  * sums the XP the server reported, how many were right first time, and how long the lesson took, recaps what was missed,
  * and offers the next lesson (`next`: its title and `go`) when there is one. Enter presses the footer's button (Check or
- * Continue), also from an answer option, and takes the focus once an answer is checked; leaving mid-lesson asks first
- * (focus in the question, Escape to stay), since it starts over. `onLeave` is the way on from the end screen; `onQuit`,
+ * Continue), also from an answer option, and takes the focus once an answer is checked; leaving once past the first card
+ * asks first (focus in the question, Escape to stay), since it starts over: cards only read, with nothing asked, count too. `onLeave` is the way on from the end screen; `onQuit`,
  * when given, is where the × goes instead (the Quiz rests there rather than dealing the next lesson). `guest`: nobody is
  * logged in, so the end screen says the XP is this device's until they log in. `waitToFocus`: the runner is there
  * before anyone chose it (the Quiz's Basics), so the app's bars only step aside once the first card is answered.
@@ -124,7 +124,7 @@ export default function LessonRunner({ cards: first, accent, rewards, guest = fa
   return (
     <div className="grow-lesson" style={{ '--w': accent }}>
       <div className="grow-lesson-top">
-        <button ref={x} type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (tally.asked ? setLeaving(true) : onQuit())}>
+        <button ref={x} type="button" className="grow-x" aria-label={say('Leave the lesson')} onClick={() => (at || tally.asked ? setLeaving(true) : onQuit())}>
           <span aria-hidden="true">×</span>
         </button>
         <Segments count={cards.length} marks={marks} at={at} />

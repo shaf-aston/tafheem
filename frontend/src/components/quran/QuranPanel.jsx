@@ -14,7 +14,7 @@ import { useState } from 'react'
 import { useMutation } from '../../lib/api/useMutation'
 
 import { getQuranRoot, searchQuran } from '../../api'
-import { AYAH_REF, FIRST_SURAH, LAST_SURAH, isAyah } from '../../lib/quran/surahRef'
+import { AYAH_REF, isAyah, placeName, surahOf } from '../../lib/quran/surahRef'
 import { useArrival, useArrivalEffect } from '../../lib/nav/useArrival'
 import { useHistory } from '../../lib/nav/useHistory'
 import { isArabic } from '../../lib/text/arabicText'
@@ -36,16 +36,14 @@ import RecentRow from '../ui/inputs/RecentRow'
 import { AnalyzerSkeleton } from '../ui/feedback/Skeleton'
 import { CorrectedNote } from '../ui/feedback/StatusNote'
 
-const SURAH_ONLY = /^\d+$/
-const surahStart = (value) =>
-  SURAH_ONLY.test(value ?? '') && Number(value) >= FIRST_SURAH && Number(value) <= LAST_SURAH ? `${value}:1` : null
-
 export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit }) {
-  // What arrived from another tab, if it was an ayah address; anything else is a root.
-  // A bare surah number (/quran/1, a link someone typed) is that surah from its first
-  // ayah: it was looked up as a root, found nothing, and left the tab empty.
-  const address = AYAH_REF.exec(surahStart(incoming) ?? incoming ?? '')
-  const arrived = address && { surah: Number(address[1]), ayah: Number(address[2]) }
+  // What arrived from another tab, if it was a place; anything else is a root. A bare
+  // surah number (/quran/2: a surah opened to read, or a link someone typed) opens that
+  // surah to read, as it was left; it was once looked up as a root and left the tab empty.
+  const address = AYAH_REF.exec(incoming ?? '')
+  const arrived = address
+    ? { surah: Number(address[1]), ayah: Number(address[2]) }
+    : surahOf(incoming) && { surah: surahOf(incoming), ayah: null }
 
   // The one box: a place or the words. What it is read as is lib/quranIntent's.
   const [query, setQuery] = useState('')
@@ -143,7 +141,12 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
       })),
     )
   }
-  const readSurah = (n) => { setShowMatches(false); setAt({ surah: n, ayah: null }) }
+  // A surah opened to read is a place too, so back returns to it and the address can be kept.
+  const readSurah = (n) => {
+    setShowMatches(false)
+    setAt({ surah: n, ayah: null })
+    onVisit?.(String(n))
+  }
 
   const openResult = (place) => {
     setShowMatches(false)
@@ -160,7 +163,7 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
 
   return (
     <div className="panel panel-search">
-      <SectionHeader tab="quran" />
+      <SectionHeader tab="quran" nameOf={placeName} />
 
       <QuestionForm>
       <QuranSearchBar
@@ -302,6 +305,26 @@ function SearchResults({ results, onSelect, accent }) {
 
 // `folded` shuts everything under the "appears N times" line, for a root that
 // comes along with a word search rather than being the thing asked for.
+// A root's place as a few words either side of it, the word itself marked: fifty rows of the
+// same word alone could not be told apart. Older answers carry no ayah, and show the word.
+const AROUND = 4
+function InContext({ place }) {
+  const words = place.ayah_text ? place.ayah_text.split(' ') : []
+  const at = place.word - 1
+  if (!words[at]) return <ArabicText className="text-[var(--text)]">{place.arabic}</ArabicText>
+  const from = Math.max(0, at - AROUND)
+  const to = Math.min(words.length, at + AROUND + 1)
+  return (
+    <ArabicText className="text-[var(--text-dim)] min-w-0">
+      {from > 0 && '… '}
+      {words.slice(from, at).join(' ')}{' '}
+      <mark className="bg-transparent text-[var(--c)] font-semibold">{words[at]}</mark>{' '}
+      {words.slice(at + 1, to).join(' ')}
+      {to < words.length && ' …'}
+    </ArabicText>
+  )
+}
+
 function RootView({ data, accent, onGo, onOpenAyah, onClose, folded = false }) {
   const shown = data.occurrences.length
 
@@ -373,7 +396,7 @@ function RootView({ data, accent, onGo, onOpenAyah, onClose, folded = false }) {
                 rounded-[var(--radius-md)] bg-[var(--surface)] border border-[var(--border)]
                 hover:border-[var(--c)] transition-colors"
             >
-              <ArabicText className="text-[var(--text)]">{o.arabic}</ArabicText>
+              <InContext place={o} />
               <span className="type-tiny text-[var(--text-faint)] font-mono shrink-0">
                 {o.surah}:{o.ayah}
               </span>

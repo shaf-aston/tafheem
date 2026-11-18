@@ -68,6 +68,10 @@ export default function SearchBox({
   const filtering = !onSubmit
   // An Arabic-only box would send Latin letters to a reader that turns them away; say so here, before Enter.
   const wrongScript = arabic && Boolean(value.trim()) && !isArabic(value)
+  // Latin letters are most likely a question in English; digits or marks alone are not, so they are not sent to Daleel.
+  const scriptNote = /\p{L}/u.test(value)
+    ? 'This box reads Arabic letters. For a question in English, try Daleel.'
+    : 'This box reads Arabic letters. Type an Arabic word or sentence.'
   const ready = value.trim() && !disabled && !wrongScript
   const Field = multiline ? 'textarea' : 'input'
   const said = hint ?? (verb && !filtering ? `Enter to ${verb}${children ? ', or say it' : ''}` : null)
@@ -165,7 +169,7 @@ export default function SearchBox({
       {/* Always present in an Arabic-only box, so a screen reader is already listening when the words land. */}
       {arabic && (
         <p id={`${id}-script`} role="status" className="type-small text-[var(--text-dim)] empty:hidden">
-          {wrongScript ? 'This box reads Arabic letters. For a question in English, try Daleel.' : ''}
+          {wrongScript ? scriptNote : ''}
         </p>
       )}
     </div>

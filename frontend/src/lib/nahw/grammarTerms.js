@@ -1,12 +1,13 @@
 /**
  * The grammar terms the app prints, read from grammar.json. Its only reader.
  *
- * A tag says the Arabic term and nothing else: مبتدأ, not "Mubtada' (مبتدأ):
- * subject of a nominal sentence. Nominative case". Someone reading nahw knows
- * the words, and someone who does not opens the glossary at the foot of the
- * page once, rather than meeting the same paragraph on every hover.
+ * A tag leads with the Arabic term, مبتدأ, and two or three words of English under
+ * it ("topic"), not "Mubtada' (مبتدأ): subject of a nominal sentence. Nominative
+ * case": a learner is not left guessing what the tag names, and what it means in
+ * full is in the glossary at the foot of the page, once, not on every word.
  */
 import config from '../../config/grammar.json'
+import { unvowelled } from '../text/arabicText'
 
 const CASES = config.cases
 const TYPES = config.types
@@ -52,3 +53,26 @@ export const GLOSSARY = config.sections.map(({ title, from, terms }) => ({
 
 /** The word a word takes its case from, as an index: its عامل, or the word a تابع follows. Undefined for neither. */
 export const caseFrom = (word) => word.governor ?? word.follows ?? undefined
+
+// The roles' English, keyed by spelling alone: the analyser writes a role fully vowelled (نَائِبُ فَاعِلٍ).
+const ROLE_EN = new Map(Object.entries(config.roles).filter(([key]) => !key.startsWith('_')).map(([ar, en]) => [unvowelled(ar), en]))
+
+/**
+ * A role in two or three English words, or '' for one not listed. A role named for a sister
+ * of كان or إن (خبر ليس، اسم كأن) is not each listed: it is said by its job, "news" or "subject".
+ */
+export const roleGloss = (role) => {
+  const plain = unvowelled(String(role ?? '').trim())
+  if (ROLE_EN.has(plain)) return ROLE_EN.get(plain)
+  const job = plain.split(' ')[0]
+  return job === 'اسم' && plain.includes(' ') ? 'subject' : job === 'خبر' ? ROLE_EN.get(job) : ''
+}
+
+/** A backend case string's English ("nominative"), or ''. */
+export const caseGloss = (key) => CASES[String(key ?? '').split(' ')[0]]?.en ?? ''
+
+/** A backend word type's English ("noun"), or ''. */
+export const typeGloss = (key) => TYPES[key]?.en ?? ''
+
+/** A corpus part-of-speech code's English ("noun"), or ''. */
+export const posGloss = (tag) => typeGloss(config.corpus_pos[tag] ?? tag)
