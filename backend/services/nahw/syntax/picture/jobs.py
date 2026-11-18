@@ -21,9 +21,8 @@ def give_jobs(c: Picture) -> None:
     # a clause inside the sentence is headed by its verb, or by a khabar with its own مبتدأ
     # before it under it (زيدٌ أبوه عالمٌ): verbal or nominal, it is drawn as a sentence
     # (hung on a word other than that مبتدأ: the parser can draw the two pointing at each other)
-    # (a khabar no one writes heads one whichever side its مبتدأ is on: picture.unwritten)
     nominal = {token["id"] for token in drawn if role_of[token["id"]] == NAMED.khabar and any(
-        t["head"] == token["id"] and (t["id"] < token["id"] or token["id"] in c.understood)
+        t["head"] == token["id"] and t["id"] < token["id"]
         and role_of[t["id"]] == NAMED.mubtada and token["head"] != t["id"] for t in drawn)}
     opens = {token["id"] for token in drawn if role_of[token["id"]] == NAMED.fil} | nominal
     # أكلتُ ما طبختَ: a ما whose صلة has room for its عائد is the relative, whatever the tagger
@@ -65,19 +64,14 @@ def give_jobs(c: Picture) -> None:
             token["pos"], token["pos_camel"] = "NOM", "pron_rel"
     # جاء الذي نجح: the clause after a relative is its صلة, with no place of its own; كَمْ مِنْ كِتَابٍ قَرَأْتُهُ:
     # a word the tagger calls relative but no book lists as one (closed_words mawsul) has none. A relative has one
-    # صلة: a later clause hung on it is one too only when joined to it by و، أو، ثم (atf joins_mood); else it tells
-    # of the relative (وَالَّذِينَ جَاءُوا ... يَقُولُونَ، فَأَمَّا الَّذِينَ كَفَرُوا فَأُعَذِّبُهُمْ: its khabar)
-    def joined(clause: dict, relative: dict) -> bool:
-        found = named[typed_at[clause["id"]]] if clause["id"] in typed_at else {}
-        return any(t["head"] == clause["id"] and relative["id"] < t["id"] < clause["id"] and is_one(t["form"], "atf", "joins_mood")
-                   for t in drawn) \
-            or any(piece["before"] and is_one(piece["form"], "atf", "joins_mood") for piece in found.get("attached", []))
+    # صلة: a later clause hung on it tells of the relative (الَّذِي يَقْرَأُ كَثِيرًا يَزْدَادُ عِلْمُهُ، فَأَمَّا الَّذِينَ كَفَرُوا فَأُعَذِّبُهُمْ:
+    # its khabar); a clause joined to the صلة hangs on the صلة's verb, not on the relative
     with_silah: set[int] = set()
     for token in sorted(drawn, key=lambda t: t["id"]):
         up = next((t for t in drawn if t["id"] == token["head"]), None)
         if up and "rel" in up.get("pos_camel", "") and listed(up, "mawsul") and not up.get("reading") and up["id"] < token["id"] \
                 and token["id"] in opens and "condition" not in named[typed_at.get(up["id"], 0)] \
-                and (up["id"] not in with_silah or joined(token, up)):
+                and up["id"] not in with_silah:
             job_of[token["id"]] = NAMED.silah
             with_silah.add(up["id"])
     c.job_by_place, c.job_of, c.kind_of_ma, c.ma_card = job_by_place, job_of, kind_of_ma, ma_card

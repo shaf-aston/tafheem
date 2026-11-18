@@ -79,5 +79,5 @@ def draw_conditions(c: Picture) -> None:
     # job under the sentence, a مبتدأ with words of its own too (كِتَابُ الطَّالِبِ جَدِيدٌ، لَزَيْدٌ أَفْضَلُ); so is
     # any half of a sentence drawn in several halves side by side (رَجُلٌ كَرِيمٌ فِي الدَّارِ: the مبتدأ unit beside
     # its unwritten خبر ثابت): the sentence is all of them, none is it alone
-    root = None if len(roots) > 1 or pulled and not opened else roots[0]
+    root = None if len(roots) > 1 or pulled else roots[0]
     c.opened, c.root = opened, root

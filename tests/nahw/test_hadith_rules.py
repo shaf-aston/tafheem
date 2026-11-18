@@ -281,6 +281,9 @@ def test_a_hal_sentence_is_no_joined_sentence(sentence):
     ("مَرَرْتُ بِالَّذِي نَجَحَ", "صلة", "جملة فعلية"),
     ("كَمْ مِنْ كِتَابٍ قَرَأْتُهُ فَلَمْ أَفْهَمْ مِنْهُ شَيْئًا", "خبر", "جملة فعلية"),
     ("مَرَرْتُ بِرَجُلٍ نَجَحَ", "صفة", "جملة فعلية"),
+    # a relative has one صلة: a second clause hung on it tells of it
+    ("الَّذِي يَقْرَأُ كَثِيرًا يَزْدَادُ عِلْمُهُ", "خبر", "جملة فعلية"),
+    ("الَّذِي يَقْرَأُ وَيَكْتُبُ يَنْجَحُ", "خبر", "جملة فعلية"),
 ])
 def test_a_relatives_clause_is_its_silah(sentence, job, label):
     assert (job, label) in plain(sentence)
@@ -374,6 +377,15 @@ def test_tawkeed_before_a_khabar(sentence, word, said):
 ])
 def test_the_answer_is_the_sentence_its_first_word_is_in(sentence, label):
     assert ("جواب الشرط", label) in plain(sentence)
+
+
+# A particle typed before the condition's opener (وَمَنْ، فَمَنْ) comes before the whole condition: it stands at the
+# front of the condition's unit beside the opener, wherever the parser hung it, in no box of its own with the opener.
+@needs_parser
+@pytest.mark.parametrize("sentence", ["وَمَنْ يُشْرِكْ بِاللَّهِ فَقَدْ ضَلَّ", "فَمَنْ وَجَدَ مَلْجَأً فَلْيَعُذْ بِهِ"])
+def test_a_particle_before_the_opener_fronts_the_condition(sentence):
+    tree = analyze(sentence)["tree"]
+    assert [kid.get("word") for kid in tree["tree"]["children"][:2]] == [0, 1]
 
 
 # The whole hadith: كان with a jar on its known اسم is ناقصة; a diptote (دُنْيَا) shows no case and still takes
