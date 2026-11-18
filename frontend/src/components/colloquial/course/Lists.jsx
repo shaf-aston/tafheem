@@ -128,9 +128,9 @@ export function TopicList({ dialect, unit, go }) {
               const i = from + n
               return (
                 <Card key={l.lesson} hue={hue} kicker={`Topic ${i + 1}${isSeen(record, dialect.key, unit.unit, l.lesson) ? ' · Seen' : ''}`} title={l.title} image={l.picture}
-                  note={!l.written ? 'Coming' : !l.phrases ? `${l.words} words${l.sentences ? ` · ${l.sentences} sentences` : ''} · Pictures · Cards · Quiz` : l.words ? `${l.phrases} phrases · practice` : undefined}
+                  note={!l.written ? 'Coming' : !l.phrases ? `${l.new_words ?? l.words} new words${l.sentences ? ` · ${l.sentences} sentences` : ''} · Pictures · Cards · Quiz` : l.words ? `${l.phrases} phrases · practice` : undefined}
                   onClick={l.written ? () => open(i, !l.phrases) : undefined}
-                  twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.words} to learn`, onClick: () => open(i, true),
+                  twin={l.written && l.phrases > 0 && l.words > 0 && { kicker: 'Words', title: `${l.new_words ?? l.words} new words`, onClick: () => open(i, true),
                     // Straight to a way of learning them: one tap, not the list and then a tab.
                     actions: [{ label: 'Cards', onClick: () => open(i, true, 'cards') }, { label: 'Quiz', onClick: () => open(i, true, 'quiz') }] }} />
               )

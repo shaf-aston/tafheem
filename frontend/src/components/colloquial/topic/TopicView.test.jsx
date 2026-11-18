@@ -32,7 +32,7 @@ describe('TopicView', () => {
     draw(lesson())
     expect(screen.getByRole('heading', { level: 2, name: 'Greetings' })).toBeTruthy()
     const heads = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent)
-    expect(heads).toEqual(['2 words for this topic', 'Hear it said', 'Ask and answer', 'Practice'])
+    expect(heads).toEqual(['2 new words', 'Hear it said', 'Ask and answer', 'Practice'])
     expect(screen.getByText('People greet warmly.')).toBeTruthy()
   })
 
@@ -46,14 +46,22 @@ describe('TopicView', () => {
   it('a long word list shows a few and the rest a tap away', () => {
     draw(lesson({ vocabulary: Array.from({ length: 9 }, (_, i) => word(i + 1)) }))
     expect(screen.queryByText('word 9')).toBeNull()
-    fireEvent.click(screen.getByRole('button', { name: 'Show all 9 words' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Show all 9 new words' }))
     expect(screen.getByText('word 9')).toBeTruthy()
     expect(screen.queryByRole('button', { name: /Show all 9/ })).toBeNull()
   })
 
+  it('counts only the words new here, and folds the ones an earlier topic taught under them', () => {
+    draw(lesson({ vocabulary: [word(1), { ...word(2), met: true }] }))
+    expect(screen.getByRole('heading', { level: 3, name: '1 new word · 1 met before' })).toBeTruthy()
+    const met = screen.getByText(/Words you’ve met/).closest('details')
+    expect(met.open).toBe(false)                         // folded away: not taught twice
+    expect(met.textContent).toContain('word 2')
+  })
+
   it('a topic with no words has no word section', () => {
     draw(lesson({ vocabulary: [] }))
-    expect(screen.queryByText(/words for this topic/)).toBeNull()
+    expect(screen.queryByText(/new words?/)).toBeNull()
   })
 
   it('a phrase opens in a sheet that closes again', () => {

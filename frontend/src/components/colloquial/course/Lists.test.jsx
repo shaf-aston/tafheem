@@ -64,7 +64,7 @@ describe('a unit’s topic cards, as a new learner reads them', () => {
 
   it('says what a topic holds, as its Words half does: a count, and that there is practice', () => {
     expect(html()).toContain('14 phrases · practice')
-    expect(html()).toContain('3 to learn')
+    expect(html()).toContain('3 new words')
   })
 
   it('names each half by what it shows (no hidden name to differ), and the Words half says whose words they are', () => {

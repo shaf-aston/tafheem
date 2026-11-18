@@ -135,6 +135,24 @@ def _lesson_faults(lesson: dict, seen_ids: set[str]) -> list[str]:
     return said
 
 
+@lru_cache(maxsize=1)
+def _first_taught() -> dict[str, str]:
+    """Each word id's first topic in course order ("unit-01/lesson-02"): a word is new there, and met
+    before in every later topic that lists it. One answer for every dialect, from the spine alone."""
+    first: dict[str, str] = {}
+    for unit in spine():
+        for lesson in unit["lessons"]:
+            for one in lesson.get("words") or []:
+                first.setdefault(one, f"{unit['unit']}/{lesson['lesson']}")
+    return first
+
+
+def _mark_met(vocabulary: list[dict], where: str) -> list[dict]:
+    """A topic's words, each saying whether an earlier topic already taught it."""
+    first = _first_taught()
+    return [{**word, "met": first.get(word["id"], where) != where} for word in vocabulary]
+
+
 def _sentences(plan: dict, lesson: dict) -> tuple[list[dict], list[str]]:
     """A word topic's example sentences: the spine gives each slot's English (and the word ids it
     uses), the dialect says it. Like phrases, every slot or none is a fault: a written topic says them all."""
@@ -189,6 +207,7 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
             said.append(f"lesson {plan['lesson']!r} lists its own vocabulary; a dialect's words live in {wordlist.FILE}")
         vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}")
         said.extend(faults)
+        vocabulary = _mark_met(vocabulary, f"{outline['unit']}/{plan['lesson']}")
         # A topic of opposites lists them two by two, each word beside its other.
         ids = plan.get("words") or []
         pairs = [ids[i:i + 2] for i in range(0, len(ids), 2)] if plan.get("pairs") else None
@@ -361,6 +380,7 @@ def _card(dialect: dict) -> dict:
     """A dialect's card, through schema.DialectCard: its fields are named there only."""
     units = [{**u, "cover": _cover(u), **_words_only(u),
               "lessons": [{**lesson, "words": len(lesson.get("vocabulary") or []),
+                           "new_words": sum(1 for w in lesson.get("vocabulary") or [] if not w.get("met")),
                            "phrases": len(lesson.get("phrases") or []), "sentences": len(lesson.get("sentences") or []),
                            "picture": _picture(lesson)}
                           for lesson in u["lessons"]]}

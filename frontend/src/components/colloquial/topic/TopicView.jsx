@@ -12,6 +12,7 @@ import Sheet from './Sheet'
 import SpellingKey from '../parts/SpellingKey'
 import WordBank from '../words/WordBank'
 import WordGrid from '../words/WordGrid'
+import { splitMet } from '../../../lib/colloquial/metWords'
 import WordPicture from '../words/picture/WordPicture'
 import { pictureBoards } from '../../../lib/colloquial/wordPictures'
 import { scrollToEl } from '../../../lib/motion/scrollToEl'
@@ -31,15 +32,23 @@ function Act({ kicker, title, children }) {
 // The first few words, the rest a tap away (config/colloquial-display.json words-preview).
 const PREVIEW = settings['words-preview']
 
+// "12 new words · 7 met before": what this topic teaches, and what it uses from earlier topics.
+const wordsTitle = (vocabulary) => {
+  const [fresh, met] = splitMet(vocabulary)
+  return `${fresh.length} new ${fresh.length === 1 ? 'word' : 'words'}${met.length ? ` · ${met.length} met before` : ''}`
+}
+
+// The preview is of the new words; the ones met in earlier topics stay folded under them either way.
 function Words({ words }) {
-  const [all, setAll] = useState(words.length <= PREVIEW)
+  const [fresh, met] = splitMet(words)
+  const [all, setAll] = useState(fresh.length <= PREVIEW)
   return (
     <>
-      <WordGrid words={all ? words : words.slice(0, PREVIEW)} />
+      <WordGrid words={all ? words : [...fresh.slice(0, PREVIEW), ...met]} />
       {!all && (
         <button type="button" onClick={() => setAll(true)}
           className={`press w-full py-3 rounded-[var(--radius-md)] border border-[var(--border)] type-ui text-[var(--text-dim)] hover:text-[var(--text)] hover:border-[var(--border-hi)]`}>
-          Show all {words.length} words
+          Show all {fresh.length} new words
         </button>
       )}
     </>
@@ -75,7 +84,7 @@ function Scene({ unit, lesson, number, place, onWords }) {
       {/* Phrases first, then the topic's words on their own: a learner needs far
           more single words than any set of phrases can carry. */}
       {lesson.vocabulary?.length > 0 && (
-        <Act kicker="Words" title={`${lesson.vocabulary.length} words for this topic`}>
+        <Act kicker="Words" title={wordsTitle(lesson.vocabulary)}>
           <Words words={lesson.vocabulary} />
         </Act>
       )}

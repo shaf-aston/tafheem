@@ -56,6 +56,8 @@ class VocabWord(Word):
     category: str = ""
     # A picture of the word, under images/, when one was chosen; shared by every dialect.
     image: str = ""
+    # Taught by an earlier topic (course order): met before, so shown apart from this topic's new words.
+    met: bool = False
 
 
 class ComingLesson(BaseModel):
@@ -127,6 +129,8 @@ class TopicCard(BaseModel):
     section: str | None = None
     written: bool
     words: int = 0
+    # Of `words`, those no earlier topic taught: what this topic teaches new.
+    new_words: int = 0
     phrases: int = 0
     sentences: int = 0
     # Its first picture, phrase or word, for the card.

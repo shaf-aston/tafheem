@@ -1,19 +1,16 @@
 // Words under their category headings, shared by the word bank and a topic's word grid.
 import settings from '../../config/colloquial-display.json'
 
-// A heading needs this many words in the list; a word whose category has fewer joins the heading before it.
+// Headings, or none: a list is headed by its categories only when every category has this many
+// words. One heading over two words beside one over twenty is clutter, so then the list is one run.
 const MIN_UNDER_HEADING = settings['least-under-heading']
 
-// Rows under their category heading, in the order written; uncategorised rows sit under none.
+// Rows under their category heading, in the order written ([heading, rows] pairs); one unheaded run
+// ('' as its heading) when any category is too small, or when the rows have no categories.
 export function grouped(rows) {
-  const size = new Map()
-  for (const r of rows) size.set(r.category ?? '', (size.get(r.category ?? '') ?? 0) + 1)
+  if (!rows.length) return []
   const by = new Map()
-  let heading = ''
-  for (const r of rows) {
-    const own = r.category ?? ''
-    heading = size.get(own) < MIN_UNDER_HEADING && heading ? heading : own
-    by.set(heading, [...(by.get(heading) ?? []), r])
-  }
-  return [...by]
+  for (const r of rows) by.set(r.category ?? '', [...(by.get(r.category ?? '') ?? []), r])
+  const headed = by.size > 1 && [...by].every(([heading, group]) => heading && group.length >= MIN_UNDER_HEADING)
+  return headed ? [...by] : [['', rows]]
 }

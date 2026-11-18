@@ -44,6 +44,7 @@ export default function WordsView({ unit, at, start = null }) {
   const record = summaryQuery(WORDS_MODULE)
   useEffect(() => { warm(client, summaryQuery(WORDS_MODULE)) }, [client])
   const shown = mode === 'picture' ? 'browse' : mode
+  const fresh = words.filter((w) => !w.met).length
   // Where the words have a drawing (the body, a house, the countries: lib/colloquial/wordPictures.js) Browse
   // opens with it, so they are met on it as well as in a list.
   const drawn = useMemo(() => pictureBoards(words).length > 0, [words])
@@ -58,7 +59,7 @@ export default function WordsView({ unit, at, start = null }) {
       {/* Headed like a phrase topic (topic/TopicView.jsx), so every topic says its own name, not only the trail. */}
       <header className={`w-full space-y-4 ${shown === 'browse' && drawn ? '' : 'max-w-xl mx-auto'}`}>
         <div>
-          <p className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {words.length} words</p>
+          <p className="eyebrow text-[var(--text-faint)]">Topic {at + 1} · {fresh} new words{words.length > fresh ? ` · ${words.length - fresh} met before` : ''}</p>
           <h2 className="type-figure font-semibold text-[var(--text)]">{lesson.title}</h2>
         </div>
         <div {...onHover(client, record)}>
