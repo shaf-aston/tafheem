@@ -486,12 +486,15 @@ def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
 
 
 def masdar_at_work(token: dict) -> bool:
-    """A masdar working as its verb does, so a جار after it hangs on it (الْحُكْمِ عَلَى الْمُتَّهَمِينَ، حُبٌّ لِلْوَطَنِ). It works
-    with tanween as with ال or annexed (the Alfiyya, إعمال المصدر: بِفِعْلِهِ الْمَصْدَرَ أَلْحِقْ فِي الْعَمَلْ ... مُضَافًا اَوْ
-    مُجَرَّدًا اَوْ مَعَ أَلْ; page unchecked). The nouns steeped in vagueness (vague_nouns: مِثْل، غَيْر، شِبْه) name no doing at all:
-    those with their middle letter still, for مَثَلٌ (a parable) and شَبَهٌ (a likeness) are other words of the same letters."""
-    vague = listed(token, "vague_nouns") and stem_pattern(token.get("pattern") or "")[3:4] == SUKUN
-    return is_masdar(token) and not vague
+    """A masdar working as its verb does, so a جار after it hangs on it (الْحُكْمِ عَلَى الْمُتَّهَمِينَ، حِرْصُ الْمُهَنْدِسِينَ عَلَى
+    الْمَوَاعِيدِ). It works bare as with ال or annexed (the Alfiyya, إعمال المصدر: مُضَافًا اَوْ مُجَرَّدًا اَوْ مَعَ أَلْ; page unchecked),
+    but a noun of a Form I measure (فَعْل، فِعْل، فَعَل) names a thing as often as a doing (بَيْتٌ، ثَوْبٌ، مَلَأٌ، عَرَضٌ), so bare and
+    indefinite it counts only when it is one of the doings the Qur'an hangs a جار on so (working_masdars: فِي شَكٍّ مِمَّا);
+    otherwise the جار after it is its صفة (رَجُلٌ مِنَ الْأَنْصَارِ). The nouns steeped in vagueness (vague_nouns: مِثْل، غَيْر، شِبْه) name no doing at all."""
+    if not is_masdar(token) or listed(token, "vague_nouns"):
+        return False
+    form_one = measure(stem_pattern(token.get("pattern") or "")).startswith("1")
+    return not form_one or token.get("stt") in ("d", "c") or listed(token, "working_masdars")
 
 
 def is_name(token: dict) -> bool:

@@ -205,6 +205,11 @@
    "_comment": "Nouns so vague that annexing them makes them no more definite (Ibn Aqil on the Alfiyya, باب الإضافة: غير ومثل وشبه; page unchecked). They name no doing, though their measure is a masdar's (مِثْل is فِعْل), so a جار or ظرف after one hangs on the word no one writes (وَمِثْلَهُ مَعَهُ: حال). Read by facts.masdar_at_work.",
    "words": ["مثل", "غير", "شبه"]
   },
+  "working_masdars": {
+   "ar": "مصادر عاملة",
+   "_comment": "Masdars of a Form I measure that work bare and indefinite, a جار after them hanging on them (فِي شَكٍّ مِمَّا، بِظُلْمٍ). A Form I noun names a thing as often as a doing (بَيْتٌ فِي الْقَرْيَةِ: صفة), so only these count. Kept: the masdars the Quranic Treebank (data/tarkeeb) hangs a جار on while bare at least twice; left out of those: خير (an elative), غفل (a participle, بِغَافِلٍ), بشر (بَشَرٌ is a man) and سرمد (a time). Read by facts.masdar_at_work.",
+   "words": ["شك", "فتنة", "بعد", "حق", "فضل", "ظلم", "رحمة", "علم", "حسد", "حكم", "بر", "مسح", "قسم"]
+  },
   "likeness_jarr": {
    "ar": "كاف التشبيه",
    "_comment": "The jarr kaf 'like' is not a letter a verb reaches what it works on through (ب، من، إلى، عن، على، في، اللام), so it never completes a masdar: after a noun it describes it, hanging on the word no one writes (مَوْجٍ كَالْجِبَالِ: صفة, as the Quranic Treebank has it at Hud 42). Read by picture.unwritten.",
