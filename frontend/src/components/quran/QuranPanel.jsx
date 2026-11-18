@@ -95,14 +95,24 @@ export default function QuranPanel({ accent, incoming, arrival, onGo, onVisit })
   // `arrived` above is the ayah address this word parses into, if any; this is
   // whether it has just come in.
   const { arrived: justCame } = useArrival(arrival)
-  if (justCame && incoming) {
+  // One with nothing (back to the tab's top page, the Qur'an chosen again) is the surah list.
+  if (justCame) {
     setHeard(null)
-    if (arrived) setShowMatches(false)
+    if (arrived || !incoming) setShowMatches(false)
     setAt(arrived)
+    if (!incoming) {
+      setQuery('')
+      setAsked(null)
+    }
   }
 
   useArrivalEffect(arrival, () => {
-    if (!incoming) return
+    if (!incoming) {
+      search.reset()
+      rootLookup.reset()
+      wordRoot.reset()
+      return
+    }
     if (arrived) visit(arrived)
     else lookupRoot(incoming)
   })

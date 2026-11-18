@@ -49,10 +49,15 @@ export const termsGroupOf = (q) => {
 }
 export const listOf = (q) => (termsGroupOf(q) != null ? TERMS_PLACE : LISTS.includes(q) ? q : null)
 
+// A search is the place "search/<words>", so Back, reload and a shared link come back to its hits.
+const SEARCH = 'search'
+export const searchOf = (q) => (q?.startsWith(`${SEARCH}/`) ? q.slice(SEARCH.length + 1) || null : null)
+export const searchPlaceOf = (words) => `${SEARCH}/${words}`
+
 // The (collection, book) a place string names, before the collections are known to check it; null if none.
 export function bookOf(q) {
   const [collection, book] = (q ?? '').split('/')
-  return collection !== 'narrator' && !LISTS.includes(collection) && /^\d+$/.test(book ?? '') ? [collection, Number(book)] : null
+  return collection !== 'narrator' && collection !== SEARCH && !LISTS.includes(collection) && /^\d+$/.test(book ?? '') ? [collection, Number(book)] : null
 }
 
 export const placeOf = (collection, book, number, part = '') => (
@@ -68,6 +73,7 @@ export function nameOfPlace(q, collections = [], nameOf = () => null, groupName 
   if (q === BOOKSHELF_PLACE) return 'Bookshelf'
   if (listOf(q) === TERMS_PLACE) return groupName(termsGroupOf(q)) || 'Terms'
   if (narratorOf(q)) return nameOf(narratorOf(q)) || 'A narrator'
+  if (searchOf(q)) return `“${searchOf(q)}”`
   const [id, book, hadith] = q.split('/')
   const found = collections.find((c) => c.id === id)
   const name = found ? found.short || found.name : id

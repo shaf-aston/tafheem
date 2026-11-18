@@ -32,6 +32,11 @@ let snapshot = { steps: [], at: -1 }
 let tabIds = []
 // Tabs whose page with nothing in hand is a place of its own (Grow's home, its worlds below it), not an empty box.
 let homeTabs = new Set()
+// Whether the reader has pressed or clicked anything since landing on the step we are on.
+// A place reported with no input in between is the tab filling itself in (Memorise opening
+// on its first page), so it takes a blank step's place. One the reader chose is a step of
+// its own, so back from it lands on the tab's top page rather than out of the site.
+let touched = false
 
 // The one write point: every change to the path is saved here, including a
 // back press, so a reload after going back lands on the step gone back to.
@@ -45,15 +50,17 @@ function set(next) {
 
 /**
  * The path with `place` reached from step `at`: it goes next, and what was ahead is dropped.
- * A tab opened with nothing, then given a place on that same tab, is one step: the
- * blank one is filled in, or back would land on a page that looks unchanged. Not on a
- * tab whose blank is its own home (`ownHome` in tabs.js): back from a lesson lands on Grow's own page.
+ * A tab opened with nothing, then given a place on that same tab before the reader did
+ * anything (`chosen` false), is one step: the tab filled itself in, and back onto the blank
+ * would only fill it in again. A place the reader chose keeps the blank behind it: that is
+ * the tab's own top page, where back should land, and merging it once sent back out of the
+ * site. Not on a tab whose blank is its own home (`ownHome` in tabs.js) either way.
  * `over`: the place only moves on within what the tab is already showing (the next page of the
  * same surah), so on the same tab it takes the step's place instead of adding one.
  */
-function stepOnto(steps, at, place, over = false) {
+export function stepOnto(steps, at, place, over = false, chosen = false) {
   const here = steps[at]
-  const blank = here && here.tab === place.tab && (over || (!here.value && !homeTabs.has(place.tab)))
+  const blank = here && here.tab === place.tab && (over || (!chosen && !here.value && !homeTabs.has(place.tab)))
   const walked = [...steps.slice(0, blank ? at : at + 1), place]
   return { steps: walked, at: walked.length - 1 }
 }
@@ -91,8 +98,12 @@ export function startJourney(tabs) {
   tabIds = tabs.map((tab) => tab.id)
   homeTabs = new Set(tabs.filter((tab) => tab.ownHome).map((tab) => tab.id))
   land(loadSession(tabIds), tabs)
+  const touch = () => { touched = true }
+  window.addEventListener('pointerdown', touch, true)
+  window.addEventListener('keydown', touch, true)
 
   window.addEventListener('popstate', (event) => {
+    touched = false
     const step = event.state?.step
     // The entry is one of ours only if its step is this address. An index
     // alone is not enough: history from before the path expired carries step
@@ -144,7 +155,8 @@ export function onJump(listener) {
  */
 export function visit(tab, value = null, { over = false } = {}) {
   if (samePlace(snapshot.steps[snapshot.at], { tab, value })) return false
-  const next = stepOnto(snapshot.steps, snapshot.at, { tab, value }, over)
+  const next = stepOnto(snapshot.steps, snapshot.at, { tab, value }, over, touched)
+  touched = false
   writeTabToUrl(tab, value, { replace: next.at === snapshot.at, state: { step: next.at } })
   set(next)
   return true

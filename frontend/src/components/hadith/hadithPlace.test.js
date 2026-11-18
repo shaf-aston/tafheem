@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { bookOf, listOf, nameOfPlace, narratorOf, narratorPlaceOf, parsePlace, placeOf, shortOf } from './hadithPlace'
+import { bookOf, listOf, nameOfPlace, narratorOf, narratorPlaceOf, parsePlace, placeOf, searchOf, searchPlaceOf, shortOf } from './hadithPlace'
 
 const collections = [{ id: 'bukhari', name: 'Sahih al-Bukhari' }]
 
@@ -81,5 +81,21 @@ describe('nameOfPlace', () => {
     expect(nameOfPlace('terms', collections, undefined, title)).toBe('Terms')
     expect(nameOfPlace('narrator/4396', collections)).toBe('A narrator')
     expect(nameOfPlace('narrator/4396', collections, (id) => (id === '4396' ? 'Abu Huraira' : null))).toBe('Abu Huraira')
+  })
+})
+
+describe('a search as a place', () => {
+  it('round-trips the words, spaces and slashes kept, and is no book, list or collection', () => {
+    expect(searchOf(searchPlaceOf('prayer at night'))).toBe('prayer at night')
+    expect(searchOf(searchPlaceOf('2/3'))).toBe('2/3')
+    expect(searchOf('search/')).toBeNull()
+    expect(searchOf('bukhari/1')).toBeNull()
+    expect(bookOf('search/12')).toBeNull()
+    expect(listOf('search/prayer')).toBeNull()
+    expect(parsePlace('search/prayer', collections)).toBeNull()
+  })
+
+  it('reads as the words asked on the trail', () => {
+    expect(nameOfPlace('search/prayer', collections)).toBe('“prayer”')
   })
 })

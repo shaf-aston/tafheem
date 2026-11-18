@@ -20,6 +20,7 @@ import { checkAccount } from '../../lib/learner/accountCheck'
 import { getProfile, takeLoggedOutNote } from '../../lib/learner/profile'
 
 import { useRewards } from '../../lib/learner/useRewards'
+import { rankOf } from '../../lib/learner/rewards'
 import LevelRing from './LevelRing'
 import LogInButton from './LogInButton'
 import ProfileDialog from './ProfileDialog'
@@ -39,8 +40,8 @@ export default function ProfileButton() {
     return (
       <span className="flex items-center gap-1.5 shrink-0">
         {/* A bare number in a ring beside Log in read as a count of something; on a wide header it is named.
-            Hidden from a screen reader, which hears the ring's own "Level 1, Seed". */}
-        {rewards && <span aria-hidden="true" className="type-small text-[var(--text-faint)] max-lg:hidden">Level</span>}
+            Hidden from a screen reader, which hears the ring's own "Seed, step 1". */}
+        {rewards && <span aria-hidden="true" className="type-small text-[var(--text-faint)] max-lg:hidden">{rankOf(rewards.level).en}</span>}
         <LevelRing rewards={rewards} gain={gain} />
         <LogInButton quiet />
         {noted && above(<ProfileDialog onClose={() => setNoted(false)} />)}

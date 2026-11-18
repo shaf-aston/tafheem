@@ -184,7 +184,11 @@ function browserAt(search) {
     replaceState: vi.fn((state, _title, url) => { entries[index] = { state, url: new URL(String(url), entries[index].url) } }),
     go: vi.fn((delta) => { index += delta; pop() }),
   }
-  const addEventListener = vi.fn((type, listener) => { if (type === 'popstate') popped.push(listener) })
+  const touches = []
+  const addEventListener = vi.fn((type, listener) => {
+    if (type === 'popstate') popped.push(listener)
+    else touches.push(listener)
+  })
   const data = new Map()
   vi.stubGlobal('window', { location, history, addEventListener })
   vi.stubGlobal('history', history)
@@ -196,6 +200,8 @@ function browserAt(search) {
   return {
     history,
     addEventListener,
+    /** The reader presses something on the page. */
+    touch: () => touches.forEach((listener) => listener()),
     /** The arrow lands on an entry this session did not write, as one from an expired path would be. */
     arrive(state, entrySearch) {
       entries.splice(index + 1)
@@ -244,7 +250,7 @@ describe('the journey and the back arrow', () => {
   it('listens to the arrow once however many times it is started', async () => {
     const { browser, journey } = await freshJourney('?tab=dict&q=a')
     expect(journey.startJourney(JOURNEY_TABS)).toEqual({ tab: 'dict', value: 'a' })
-    expect(browser.addEventListener).toHaveBeenCalledTimes(1)
+    expect(browser.addEventListener.mock.calls.filter(([type]) => type === 'popstate')).toHaveLength(1)
   })
 
   it('treats a visit to where we already are as no step, and writes nothing', async () => {
@@ -271,6 +277,28 @@ describe('the journey and the back arrow', () => {
     expect(browser.history.replaceState).toHaveBeenCalledTimes(1)
     expect(browser.history.pushState).not.toHaveBeenCalled()
     expect(browser.history.state.step).toBe(0)
+  })
+
+  // Colloquial opened, a dialect clicked: back lands on the list of dialects, not out of the site.
+  it('keeps a tab opened with nothing as a step once the reader chooses a place on it', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict')
+    browser.touch()
+    expect(journey.visit('dict', 'a')).toBe(true)
+    expect(browser.history.pushState).toHaveBeenCalledTimes(1)
+    expect(browser.history.state.step).toBe(1)
+    browser.history.go(-1)
+    expect(journey.placeNow()).toEqual({ tab: 'dict', value: null })
+  })
+
+  it('fills in the blank again after a back press, until the reader does something', async () => {
+    const { browser, journey } = await freshJourney('?tab=dict')
+    browser.touch()
+    journey.visit('dict', 'a')
+    browser.history.go(-1)
+    browser.history.pushState.mockClear()
+    journey.visit('dict', 'b')
+    expect(browser.history.pushState).not.toHaveBeenCalled()
+    expect(journey.placeNow()).toEqual({ tab: 'dict', value: 'b' })
   })
 
   it('takes the place of the step it moves on from when it only moves on within it', async () => {

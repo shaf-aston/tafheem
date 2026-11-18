@@ -36,7 +36,7 @@ const say = sayIn('en')
 const HELD = { level: 1, into: 0, need: 1, streak: 0, xpToday: 0 }
 
 /**
- * Level, streak and goal as one slim strip: "Seed بذرة · 3-day streak · 20 / 50 XP
+ * Rank, streak and goal as one slim strip: "Seed بذرة · 3-day streak · 20 / 50 XP
  * today". Beside today's lesson on a wide screen it stands as a column; on a
  * phone, one line under it. The goal's picker is behind a press on the goal, so
  * the strip is a line and not a panel. Nothing when the record could not be read.
@@ -48,10 +48,10 @@ function Growth({ rewards: record, pending }) {
   return (
     <dl className="grow-strip rise-in" data-pending={record ? undefined : ''} aria-hidden={record ? undefined : true}>
       <div className="grow-strip-item">
-        <dt>{say('Level {level}', { level: rewards.level })}</dt>
+        <dt>{say('Rank')}</dt>
         <dd>
           <span>{rank.en} <ArabicText size="sm">{rank.ar}</ArabicText></span>
-          <span className="grow-lesson-bar" aria-hidden="true" title={say('{into} / {need} XP to the next level', rewards)}>
+          <span className="grow-lesson-bar" aria-hidden="true" title={say('{into} / {need} XP to step {next}', { ...rewards, next: rewards.level + 1 })}>
             <i style={{ width: `${100 * shareOf(rewards)}%` }} />
           </span>
         </dd>

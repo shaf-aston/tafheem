@@ -12,7 +12,7 @@ export default function Question({ step, answer, onPick, copy }) {
   return (
     <div className="grow-card">
       <span className="grow-card-tag">{step.tag}</span>
-      <h3 className="type-title font-semibold">{step.question}</h3>
+      <h2 className="type-title font-semibold">{step.question}</h2>
       {hint && <p className="grow-card-ask">{hint}</p>}
       <div className="grow-options" role={step.multi ? 'group' : 'radiogroup'} aria-label={step.question}>
         {step.options.map((option) => {

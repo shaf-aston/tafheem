@@ -199,7 +199,7 @@ function LessonDone({ tally, took, missed, marks, accent, rewards, guest, next, 
       </dl>
       {rewards && (
         <div className="grow-done-level">
-          <span>{say('Level {level}', { level: rewards.level })} · {rankOf(rewards.level).en}</span>
+          <span>{rankOf(rewards.level).en} · {say('step {level}', { level: rewards.level })}</span>
           <span className="tabular-nums">{rewards.into} / {rewards.need}</span>
           <span className="grow-lesson-bar" aria-hidden="true"><i style={{ width: `${100 * shareOf(rewards)}%` }} /></span>
         </div>
