@@ -154,7 +154,7 @@ def test_a_world_is_served_whole_and_only_by_its_name():
             if card["kind"] == "difference":
                 assert len({p["school"] for p in card["positions"]}) >= 2, card["id"]
     assert len(ids) == len(set(ids))
-    for name in ("nowhere", "x..y", "Prayer", "prayer%2F..%2Fprayer"):
+    for name in ("nowhere", "x..y", "Prayer", "prayer%2F..%2Fprayer", "x" * 600):
         assert client.get(f"/api/grow/worlds/{name}").status_code == 404, name
 
 
