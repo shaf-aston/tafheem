@@ -169,7 +169,7 @@ def _sentences(plan: dict, lesson: dict) -> tuple[list[dict], list[str]]:
     return [{**one, **by_slot[one["slot"]]} for one in plan.get("sentences") or [] if one["slot"] in by_slot], said
 
 
-def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tuple[dict, list[str]]:
+def _fill(outline: dict, written: dict, dialect_words: dict | None = None, same: frozenset = frozenset()) -> tuple[dict, list[str]]:
     """One dialect's unit file laid onto its spine unit: the unit a learner sees.
 
     The spine gives the titles, the sections, the order, each phrase's English and picture; the
@@ -205,7 +205,7 @@ def _fill(outline: dict, written: dict, dialect_words: dict | None = None) -> tu
         said.extend(faults)
         if "vocabulary" in lesson:
             said.append(f"lesson {plan['lesson']!r} lists its own vocabulary; a dialect's words live in {wordlist.FILE}")
-        vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}")
+        vocabulary, faults = wordlist.bank(plan.get("words") or [], dialect_words or {}, f"lesson {plan['lesson']!r}", same)
         said.extend(faults)
         vocabulary = _mark_met(vocabulary, f"{outline['unit']}/{plan['lesson']}")
         # A topic of opposites lists them two by two, each word beside its other.
@@ -274,9 +274,9 @@ def _unit_faults(unit: dict) -> list[str]:
     return said
 
 
-def _laid(outline: dict, written: dict, words: dict) -> tuple[dict, list[str]]:
+def _laid(outline: dict, written: dict, words: dict, same: frozenset = frozenset()) -> tuple[dict, list[str]]:
     """A unit file laid onto its spine unit and checked: the one way a unit is read, in the app and in the scripts."""
-    unit, faults = _fill(outline, written, words)
+    unit, faults = _fill(outline, written, words, same)
     return unit, faults + _unit_faults(unit)
 
 
@@ -291,7 +291,7 @@ def unit_faults(folder: str, name: str, written: dict | None = None, words: dict
     if written is None:
         written = json.loads((data_path("colloquial_dir") / folder / f"{name}.json").read_text(encoding="utf-8"))
     outline = next(one for one in spine() if one["unit"] == name)
-    return _laid(outline, written, wordlist.said_in(folder) if words is None else words)[1]
+    return _laid(outline, written, wordlist.said_in(folder) if words is None else words, wordlist.homonyms(folder))[1]
 
 
 @lru_cache(maxsize=1)
@@ -329,7 +329,7 @@ def _content() -> dict:
                                            "section": lesson.get("section"), "written": False}
                                           for lesson in outline["lessons"]]})
                 continue
-            unit, faults = _laid(outline, written[outline["unit"]], said)
+            unit, faults = _laid(outline, written[outline["unit"]], said, wordlist.homonyms(dialect["folder"]))
             if faults:
                 broken.append(f"{dialect['key']}/{outline['unit']}: " + "; ".join(faults))
             units.append({**unit, "written": True})

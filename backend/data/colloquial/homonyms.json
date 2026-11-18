@@ -1,0 +1,12 @@
+{
+  "_about": "Two words of one topic may share their letters only when they are the same word in this dialect: one form, two meanings, both taught. Listed here per dialect.",
+  "homonyms": {
+    "egyptian": [["north", "left"], ["bicycle", "wheel"]],
+    "damascene": [["north", "left"]],
+    "lebanese": [["north", "left"]],
+    "gulf": [["boy", "son"]],
+    "moroccan": [["boy", "son"], ["girl", "daughter"]],
+    "iraqi": [["north", "left"]],
+    "yemeni": [["north", "left"], ["boy", "son"]]
+  }
+}

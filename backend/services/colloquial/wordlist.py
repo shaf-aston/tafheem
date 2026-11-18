@@ -23,6 +23,7 @@ from backend.services.colloquial.knobs import knob
 
 FILE = "words.json"
 GROUPS = "groups.json"
+HOMONYMS = "homonyms.json"
 _ARABIC = re.compile(r"[؀-ۿ]")
 _NOT_ARABIC = re.compile(r"[^؀-ۿ\s/]")
 
@@ -41,6 +42,29 @@ def meanings() -> dict:
 def groups() -> set[str]:
     """Every heading a word may sit under; a word naming any other is a typo or a new heading to list first."""
     return set(json.loads((data_path("colloquial_dir") / GROUPS).read_text(encoding="utf-8"))["groups"])
+
+
+@lru_cache(maxsize=None)
+def homonyms(folder: str) -> frozenset:
+    """A dialect's true homonyms: pairs of ids that are one form with two meanings, both taught
+    (Egyptian شمال is north and left). Only these may share their letters within a topic."""
+    path = data_path("colloquial_dir") / HOMONYMS
+    listed = json.loads(path.read_text(encoding="utf-8"))["homonyms"].get(folder, []) if path.exists() else []
+    return frozenset(frozenset(pair) for pair in listed)
+
+
+# What a learner's eye compares: the letters, without vowel marks, with the spellings people swap.
+_MARKS = re.compile(r"[\u064B-\u0652\u0670\u0640]")
+_SAME = str.maketrans({"ة": "ه", "ى": "ي", "أ": "ا", "إ": "ا", "آ": "ا"})
+
+
+def _letters(form: str) -> str:
+    return " ".join(_MARKS.sub("", form).translate(_SAME).split())
+
+
+def _told_apart(one: str, other: str) -> bool:
+    """Same letters, still two words a learner can tell apart: both carry vowel marks, and the marks differ."""
+    return bool(_MARKS.search(one) and _MARKS.search(other)) and " ".join(one.split()) != " ".join(other.split())
 
 
 def said_in(folder: str) -> dict:
@@ -76,6 +100,8 @@ def outline_faults(spine: list[dict], known: dict) -> list[str]:
             for one in lesson.get("sentences") or []:
                 if not (str(one.get("slot") or "").strip() and str(one.get("english") or "").strip()):
                     said.append(f"{where} has a sentence with no slot or no English")
+                if not one.get("uses"):
+                    said.append(f"{where} sentence {one.get('slot')!r} names no word of its topic in `uses`")
                 said += [f"{where} sentence {one.get('slot')!r} uses {w!r}, which this topic does not teach"
                          for w in one.get("uses") or [] if w not in ids]
     for one, meaning in known.items():
@@ -111,7 +137,7 @@ def _word_faults(word: dict, where: str) -> list[str]:
     return said
 
 
-def bank(ids: list[str], said: dict, where: str) -> tuple[list[dict], list[str]]:
+def bank(ids: list[str], said: dict, where: str, same: frozenset = frozenset()) -> tuple[list[dict], list[str]]:
     """A topic's words in one dialect: all of them, or none yet. Never half."""
     ids = [one for one in ids if one in meanings()]
     missing = [one for one in ids if one not in said]
@@ -123,11 +149,17 @@ def bank(ids: list[str], said: dict, where: str) -> tuple[list[dict], list[str]]
               "image": meanings()[one].get("image", ""),
               "arabic": said[one].get("arabic"), "transliteration": said[one].get("transliteration")}
              for one in ids]
-    faults, seen = [], set()
+    # Two words of one topic never look the same to the learner: not the same letters, unless their
+    # vowel marks tell them apart or the dialect lists them as one word with two meanings (`same`).
+    faults, seen = [], {}
     for word in words:
         name = f"{where} word {word['id']!r}"
         faults += _word_faults(word, name)
-        if word["arabic"] in seen:
-            faults.append(f"{name} repeats {word['arabic']!r}")
-        seen.add(word["arabic"])
+        for form in str(word["arabic"] or "").split(" / "):
+            other = seen.get(_letters(form))
+            if other and other[0] != word["id"] and not _told_apart(form, other[1]) \
+                    and frozenset((word["id"], other[0])) not in same:
+                faults.append(f"{name} looks the same as {other[0]!r} ({form!r}); mark the vowels that tell them apart, "
+                              f"or list the two in {HOMONYMS} if they are one word")
+            seen.setdefault(_letters(form), (word["id"], form))
     return words, faults

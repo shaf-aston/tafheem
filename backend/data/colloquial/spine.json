@@ -4281,7 +4281,7 @@
               "image": "emoji/1f4f1.svg"
             }
           ],
-          "words": ["outing", "trip", "picnic", "walk", "park", "garden", "balcony", "home", "mountain", "river", "sea", "promenade", "forecast", "idea", "errand", "outside", "pleasant", "nice", "to-go-out", "to-stay", "to-postpone", "to-cancel", "to-depend"]
+          "words": ["outing", "trip", "picnic", "walk", "park", "garden", "balcony", "home", "mountain", "river", "sea", "promenade", "forecast", "idea", "errand", "outside", "nice", "to-go-out", "to-stay", "to-postpone", "to-cancel", "to-depend"]
         },
         {
           "lesson": "lesson-05",
@@ -6001,7 +6001,7 @@
               "english": "I ask God to keep him safe for you both"
             }
           ],
-          "words": ["newborn", "baby", "child", "infant", "mother", "father", "grandfather", "cradle", "aqiqah", "birth-delivery", "pregnant", "safety", "gift", "name", "to-name", "to-visit", "to-raise", "safe"]
+          "words": ["newborn", "baby", "child", "mother", "father", "grandfather", "cradle", "aqiqah", "birth-delivery", "pregnant", "safety", "gift", "name", "to-name", "to-visit", "to-raise", "safe"]
         },
         {
           "lesson": "lesson-06",
@@ -6261,7 +6261,7 @@
               "english": "We ask God to grant you wellbeing"
             }
           ],
-          "words": ["illness", "sick-person", "health", "good-health", "hospital", "doctor", "rest", "reassurance", "flowers", "bouquet", "fruit", "to-visit", "to-recover", "to-reassure", "to-rest", "tired"]
+          "words": ["illness", "sick-person", "health", "hospital", "doctor", "rest", "reassurance", "flowers", "bouquet", "fruit", "to-visit", "to-recover", "to-reassure", "to-rest", "tired"]
         },
         {
           "lesson": "lesson-10",
@@ -8400,11 +8400,11 @@
           "lesson": "lesson-05",
           "title": "Amounts and Measures",
           "phrases": [],
-          "words": ["many", "few", "both", "each", "part", "zero", "pair", "dozen", "fraction", "too-much", "somewhat", "litre", "metre", "kilometre", "centimetre", "gram", "tonne", "length", "width", "height", "double", "extra", "previous", "kilo", "piece", "bottle", "quantity", "packet"],
+          "words": ["many", "few", "both", "each", "part", "zero", "pair", "dozen", "fraction", "somewhat", "litre", "metre", "kilometre", "centimetre", "gram", "tonne", "length", "width", "height", "double", "extra", "previous", "kilo", "piece", "bottle", "quantity", "packet"],
           "sentences": [
             {"slot": "two-kilos-tomatoes", "english": "Give me two kilos of tomatoes, please.", "uses": ["kilo"]},
             {"slot": "bottle-of-water", "english": "Take a bottle of water with you.", "uses": ["bottle"]},
-            {"slot": "too-much-sugar", "english": "There is too much sugar in this tea.", "uses": ["too-much"]},
+            {"slot": "too-much-sugar", "english": "There is too much sugar in this tea.", "uses": ["extra"]},
             {"slot": "both-brothers-far", "english": "Both of my brothers live far away.", "uses": ["both"]},
             {"slot": "each-child-piece", "english": "Each child took one piece of cake.", "uses": ["each", "piece"]},
             {"slot": "room-length-width", "english": "The room is four metres in length and three in width.", "uses": ["metre", "length", "width"]}
@@ -8843,7 +8843,7 @@
           "lesson": "lesson-04",
           "title": "Meat, Fish and Dishes",
           "phrases": [],
-          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "meatballs", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding", "kibbeh", "ful-medames", "maqluba", "kabsa", "halva", "manakish"],
+          "words": ["meat", "beef", "minced-meat", "chicken", "fish", "kofta", "shawarma", "kebab", "stew", "omelette", "pie", "dough", "snack", "olives", "black-pepper", "mutton", "camel-meat", "sausage", "steak", "turkey-meat", "duck-meat", "chicken-breast", "seafood", "shrimp", "tuna", "salmon", "sardines", "oyster", "saffron", "paprika", "cloves", "nutmeg", "candy", "kunafa", "maamoul", "turkish-delight", "caramel", "milk-pudding", "kibbeh", "ful-medames", "maqluba", "kabsa", "halva", "manakish"],
           "sentences": [
             {"slot": "chicken-or-fish", "english": "Do you want chicken or fish for dinner?", "uses": ["chicken", "fish"]},
             {"slot": "two-shawarma-no-onion", "english": "Two shawarma sandwiches, please, without onion.", "uses": ["shawarma"]},
