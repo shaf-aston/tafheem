@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_built, is_called_alone, is_known, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, is_masdar, zarf_in_nasb, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_built, is_called_alone, is_known, is_name, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, is_masdar, zarf_in_nasb, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(s: Sentence) -> None:
@@ -151,6 +151,24 @@ def after_pointer(s: Sentence) -> None:
                 and head["id"] > token["id"] and head.get("pos_camel") in ("noun", "adj")
                 and not is_known(head, s) and typed_case_of(head) != "a"):
             token["rel"] = "SBJ"
+
+
+def name_not_told_by_ma(s: Sentence) -> None:
+    """زَيْدٌ مَا رَأَيْتُهُ: ما is for what has no mind (Ibn Aqil, al-mawsul al-mushtarak; page unchecked), so a person's
+    name opening the clause is told of by no relative ما: ما straight after it, a verb straight after ما holding the ه
+    that goes back to the name, negates that verb, and the verb's clause is the name's khabar, hung as the parser hangs
+    زَيْدٌ لَمْ أَرَهُ (the verb on the name, the negation on the verb)."""
+    for ma in s.tokens:
+        name, verb = s.by_id.get(ma["id"] - 1), s.by_id.get(ma["id"] + 1)
+        if not (name and verb and strip_diacritics(ma["form"]) == "ما" and ma["pos"] != "PRT" and is_name(name) and is_verb(verb)
+                and (ma["head"] == name["id"] or name["head"] == ma["id"]) and verb["head"] == ma["id"]
+                and any(attached_pronoun(k) and strip_diacritics(k["form"]).strip("+") == "ه" for k in s.kids(verb))):
+            continue
+        if name["head"] == ma["id"]:
+            s.relink(name, ma["head"], ma["rel"])
+        s.relink(verb, name["id"], "---")
+        s.relink(ma, verb["id"], "MOD")
+        ma["pos"], ma["pos_camel"] = "PRT", "part_neg"
 
 
 def relative_khabar(s: Sentence) -> None:

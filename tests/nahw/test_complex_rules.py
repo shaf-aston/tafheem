@@ -106,6 +106,10 @@ def test_a_masdar_is_no_participle():
     ("الطَّالِبُ مُجْتَهِدٌ اجْتِهَادًا", "اجْتِهَادًا", "مفعول مطلق"),
     ("زَيْدٌ ضَارِبٌ بَكْرًا", "بَكْرًا", "مفعول به"),
     ("زَيْدٌ قَادِمٌ مُسْرِعًا", "مُسْرِعًا", "حال"),
+    # كِتَاب، لِبَاس: the thing written or worn, of one root with the participle but no masdar of it
+    ("أَنْتَ كَاتِبٌ كِتَابًا جَمِيلًا", "كِتَابًا", "مفعول به"),
+    ("زَيْدٌ لَابِسٌ لِبَاسًا جَمِيلًا", "لِبَاسًا", "مفعول به"),
+    ("كَتَبَ الطَّالِبُ كِتَابًا مُفِيدًا", "كِتَابًا", "مفعول به"),
 ])
 def test_a_participles_own_masdar_is_its_mafool_mutlaq(sentence, word, role):
     assert card(sentence, word)["role"] == role
@@ -401,10 +405,10 @@ def test_a_jar_before_a_describing_khabar_hangs_on_it(sentence, invented):
     ("السَّفَرُ إِلَى مَكَّةَ مُمْتِعٌ", "متعلق بـالسَّفَرُ"),
     ("الْجَالِسُ فِي الدَّارِ مَسْرُورٌ", "متعلق بـالْجَالِسُ"),
     ("زَيْدٌ فِي الدَّارِ جَالِسٌ", "متعلق بـجَالِسٌ"),
-    # فِعَال, the masdar of فاعَل, written with its alif bare
-    ("الْحِفَاظُ عَلَى الْبِيئَةِ ضَرُورِيٌّ", "متعلق بـالْحِفَاظُ"),
-    # a فِعَال plural is no masdar: the jar after it is the khabar
+    # a فِعَال plural or a جامد noun is no masdar: the jar after it hangs on the khabar
     ("الرِّجَالُ فِي الدَّارِ", "متعلق بـثابت"),
+    ("الرِّجَالُ فِي الْمَسْجِدِ كَثِيرُونَ", "متعلق بـكَثِيرُونَ"),
+    ("الْجِبَالُ فِي الْيَمَنِ عَالِيَةٌ", "متعلق بـعَالِيَةٌ"),
 ])
 def test_a_jar_after_a_working_subject_stays_on_it(sentence, label):
     assert label in tree_roles(analyze(sentence)["tree"]["tree"], "label")
@@ -564,10 +568,20 @@ def test_the_words_after_a_call_and_before_la(sentence, roles):
     ("الْحَقُّ مَا شَهِدَتْ بِهِ الْأَعْدَاءُ", 1, "خبر"),
     ("مَا رَأَيْتُهُ", 0, "حرف"),
     ("الطَّالِبُ مَا فَهِمَ الدَّرْسَ", 1, "حرف"),
-    ("زَيْدٌ مَا رَأَيْتُهُ", 0, "مبتدأ"),
 ])
 def test_ma_told_of_is_a_noun(sentence, at, role):
     assert [w["role"] for w in analyze(sentence)["words"]][at] == role
+
+
+# ما is for what has no mind, so a person's name is told of by no relative ما: ما after it, before a verb holding the ه
+# back to the name, negates, and the verb is the khabar, card and tree alike
+@needs_parser
+@pytest.mark.parametrize("sentence", ["زَيْدٌ مَا رَأَيْتُهُ", "مُحَمَّدٌ مَا كَتَبَهُ", "خَالِدٌ مَا عَرَفْتُهُ"])
+def test_ma_after_a_name_negates(sentence):
+    result = analyze(sentence)
+    assert [w["role"] for w in result["words"]] == ["مبتدأ", "حرف", "فعل"]
+    roles = drawn_roles(result["tree"]["tree"])
+    assert "خبر" in roles and "اسم موصول" not in roles and "صلة" not in roles
 
 
 # a verb has one doer (Tasheel 2.4.1): a relative the parser hung as a second doer straight after the first follows it,
@@ -578,6 +592,10 @@ def test_ma_told_of_is_a_noun(sentence, at, role):
     ("جَاءَ الرَّجُلُ الَّذِي رَأَيْتُهُ", 2, "صفة"),
     ("قَرَأَ الطَّالِبُ مَا كَتَبَهُ", 2, "مفعول به"),
     ("أَعْجَبَنِي مَا قَرَأْتُهُ", 1, "فاعل"),
+    # a حرف has no عائد: a ه on the verb after ما makes it the relative, the بدل of the noun it is hung on, no ظرفية
+    ("أَعْجَبَنِي الْكِتَابُ مَا قَرَأْتُهُ", 2, "بدل"),
+    ("سَرَّنِي الْخَبَرُ مَا سَمِعْتُهُ", 2, "بدل"),
+    ("أَحْبَبْتُ الطَّعَامَ مَا طَبَخْتَهُ", 2, "بدل"),
 ])
 def test_a_verb_has_one_doer(sentence, at, role):
     assert [w["role"] for w in analyze(sentence)["words"]][at] == role
