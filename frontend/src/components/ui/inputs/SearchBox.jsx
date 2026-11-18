@@ -162,9 +162,10 @@ export default function SearchBox({
         {children}
       </div>
 
-      {wrongScript && (
-        <p id={`${id}-script`} role="status" className="type-small text-[var(--text-dim)]">
-          This box reads Arabic letters. For a question in English, try Daleel.
+      {/* Always present in an Arabic-only box, so a screen reader is already listening when the words land. */}
+      {arabic && (
+        <p id={`${id}-script`} role="status" className="type-small text-[var(--text-dim)] empty:hidden">
+          {wrongScript ? 'This box reads Arabic letters. For a question in English, try Daleel.' : ''}
         </p>
       )}
     </div>

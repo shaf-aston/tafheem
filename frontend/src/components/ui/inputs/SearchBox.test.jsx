@@ -87,6 +87,6 @@ describe('SearchBox', () => {
     box({ value: 'كتب', arabic: true, onSubmit })
     fireEvent.keyDown(screen.getByLabelText(/Word/), { key: 'Enter' })
     expect(onSubmit).toHaveBeenCalledTimes(1)
-    expect(screen.queryByRole('status')).toBeNull()
+    expect(screen.getByRole('status').textContent).toBe('')
   })
 })
