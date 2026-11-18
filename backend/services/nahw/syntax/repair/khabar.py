@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import frames, is_one, is_subject_pronoun
+from backend.services.nahw.book import frames, is_one, kaffa_sister, is_subject_pronoun
 from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_built, is_called_alone, is_known, is_name, is_suffix, listed, noun_tagged, reaches_pronoun, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, is_masdar, zarf_in_nasb, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
@@ -35,6 +35,38 @@ def naat_after_its_noun(s: Sentence) -> None:
                 and not is_known(head, s) and is_known(token, s)):
             s.relink(token, 0, "---")
             s.relink(head, token["id"], "PRD")
+
+
+def known_pair_in_order(s: Sentence) -> None:
+    """إِنَّمَا زَيْدٌ الْقَائِمُ، إِنَّمَا وَلِيُّكُمُ اللَّهُ: a known noun said first is the مبتدأ; where the second is known
+    too, nothing but their order tells them apart (Ibn Aqil, تقديم المبتدأ وجوبًا إذا تساويا تعريفًا: page unchecked), and
+    where it is not, the less known is the khabar. So a known khabar the parser put before a subject of its own is
+    the مبتدأ, and that subject its khabar. A word that works as a verb keeps its doer (إِنَّمَا الْقَائِمُ أَبُوهُ); one said
+    after its subject is in order already (الْمُسْلِمُ مَنْ سَلِمَ); ما that may be نافية is no noun to weigh (مَا جَزَاؤُهُ إِلَّا سَجْنُهُ).
+    A khabar tells of one مبتدأ, so one with another subject is no pair (أَنَا سَيِّدُ وَلَدِ آدَمَ وَأَوَّلُ مَنْ يَنْشَقُّ)."""
+    for told in s.tokens:
+        first = s.head(told)
+        # the first hung as the khabar, or as the subject of an إنّ stopped by ما that has no khabar (إِنَّمَا أَخُوكَ زَيْدٌ)
+        particle = s.head(first) if first and first["rel"] == "SBJ" else None
+        no_khabar = particle and particle["pos"] == "PRT" and kaffa_sister(particle["lemma"]) and not any(k["rel"] == "PRD" for k in s.kids(particle))
+        if (first and told["rel"] == "SBJ" and first["id"] < told["id"] and (first["rel"] in ("PRD", "---") or no_khabar)
+                and not is_one(first["lemma"], "negation") and works_as_verb(first) is None and not is_zarf(first, s)
+                and is_known(first, s) and not any(k["rel"] == "SBJ" and k is not told for k in s.kids(first))):
+            s.relink(told, first["head"], "PRD" if no_khabar else first["rel"])
+            s.relink(first, told["id"], "SBJ")
+
+
+def naat_not_subject(s: Sentence) -> None:
+    """إِنَّمَا زَيْدٌ الْكَرِيمُ قَائِمٌ: a word with ال straight after a known noun that is itself a subject, in its
+    case, is its صفة (a نعت follows its noun in التعريف and in case, Tasheel 3.10.1): a subject's word is told of, it
+    tells nothing, and a name or plain noun works on no doer of its own (القائمُ أبوه زيدٌ: a participle does)."""
+    for token in s.tokens:
+        noun = s.head(token)
+        if (noun and token["rel"] == "SBJ" and noun["rel"] == "SBJ" and noun["id"] == token["id"] - 1
+                and token.get("stt") == "d" and noun_tagged(token) and not is_verb(token)
+                and noun_tagged(noun) and is_known(noun, s) and not is_describing(noun) and works_as_verb(noun) is None
+                and typed_or_parsed_case(token) == typed_or_parsed_case(noun)):
+            token["rel"] = "MOD"
 
 
 def hasr_khabar(s: Sentence) -> None:
@@ -200,6 +232,29 @@ def relative_khabar(s: Sentence) -> None:
             continue
         s.relink(relative, noun["head"], noun["rel"])
         s.relink(noun, relative["id"], "SBJ")
+
+
+def khabar_after_silah(s: Sentence) -> None:
+    """الرَّجُلُ الَّذِي أَبُوهُ عَالِمٌ كَرِيمٌ، زَيْدٌ الَّذِي أُمُّهُ كَرِيمَةٌ نَاجِحٌ: a known word opening the clause, a الذي
+    hung on it as its صفة, and a صلة that is a whole sentence (a مبتدأ and its khabar): the raf' word
+    closing the clause, agreeing with that known word, is told of it (its khabar), not more of the صلة, or the
+    clause tells nothing (الكلام ما أفاد). The الذي already wears the noun's gender and number as the language
+    treats it (الطُّلَّابُ الَّذِينَ: men; الْكُتُبُ الَّتِي: a plural not of people, feminine one), so the khabar must wear
+    the same: كِرَامٌ is told of الطلاب, كَرِيمٌ only describes the word inside the صلة."""
+    words = [t for t in s.tokens if not is_suffix(t)]
+    last = words[-1] if words else None
+    for relative in s.tokens:
+        noun, said = s.head(relative), s.head(last) if last else None
+        if not (noun and said and noun["head"] == 0 and relative["rel"] == "MOD" and "pron_rel" in relative.get("pos_camel", "")
+                and noun_tagged(noun) and not is_verb(noun)):
+            continue
+        # the word it hangs on is a khabar inside the صلة (or a sentence joined to it), its own مبتدأ before it
+        if not (any(k["rel"] == "SBJ" and k["id"] < said["id"] for k in s.kids(said))
+                and noun_tagged(last) and not is_verb(last)
+                and typed_or_parsed_case(last) in (None, "u") and (last.get("gen"), last.get("num")) == (relative.get("gen"), relative.get("num"))):
+            continue
+        s.relink(last, 0, "---")
+        s.relink(noun, last["id"], "SBJ")
 
 
 def majrur_of_jar(s: Sentence) -> None:
@@ -400,14 +455,14 @@ def tawkeed_before_khabar(s: Sentence) -> None:
 
 def sentence_khabar(s: Sentence) -> None:
     """زَيْدٌ أَبُوهُ عَالِمٌ، زَيْدٌ عِنْدَهُ كِتَابٌ: a khabar can be a sentence of its own, tied to its مبتدأ by a pronoun that
-    returns to it (the رابط). So after a known مبتدأ opening a verbless sentence, a word holding such a pronoun heads a
+    returns to it (the رابط). So after a مبتدأ opening a verbless sentence, a word holding such a pronoun heads a
     sentence that is its khabar: a noun told of by the word after it (أبوه عالمٌ، أبوه في الدار, both raf'), or a ظرف or جار
     ومجرور said before the noun it tells of (عنده كتابٌ، في بيته ضيفٌ، عنده الكتابُ). Known and known, the first is the مبتدأ
     (Ibn Aqil, al-ibtida: يجب تقديم المبتدأ إذا كانا معرفتين; page unchecked), so the noun after it never makes it a خبر
     said first. A توكيد (نفسُه، كلُّهم) is no مبتدأ, nor is a وصف told of (زيدٌ في بيته نائمٌ: the jar is نائم's)."""
     words = [t for t in s.tokens if not is_suffix(t)] if s.verbless else []
-    if len(words) < 3 or not (noun_tagged(first := words[0]) and is_known(first, s)) \
-            or typed_or_parsed_case(first) not in (None, "u"):
+    # a noun in nasb or jarr is no مبتدأ (غَدًا عِنْدَهُ امْتِحَانٌ: a ظرف)
+    if len(words) < 3 or not noun_tagged(first := words[0]) or typed_or_parsed_case(first) not in (None, "u"):
         return
     second = words[1]
     if not reaches_pronoun(second, s):

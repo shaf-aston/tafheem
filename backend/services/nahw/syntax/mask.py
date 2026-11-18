@@ -15,7 +15,7 @@ import numpy as np
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import is_one, is_plain_noun, is_subject_pronoun, vetoes
 from backend.services.text.harakat import CAMEL_CASE
-from backend.services.nahw.syntax.facts import attached_pronoun, case_unseen, noun_tagged, tenseless_noun, verb_tagged
+from backend.services.nahw.syntax.facts import attached_pronoun, case_unseen, listed, noun_tagged, tenseless_noun, verb_tagged
 
 
 def _verb_subject_follows(toks, add_rel) -> None:
@@ -164,18 +164,25 @@ def _inner_sentence(toks, heads, rels) -> None:
     the khabar of the noun before it or as the صلة of a relative (Tasheel 1.4.4 p11). The
     parser draws it three ways; it is written as the khabar hung on that noun (PRD) with
     its mubtada under it (SBJ), as a verb's clause is. Only after the first noun of a
-    sentence with no verb, or straight after a relative, so a hal is never caught."""
-    verbless = not any(verb_tagged(t) for t in toks)
+    sentence with no other verb, or straight after a relative, so a hal is never caught. The khabar may be a verb
+    (زَيْدٌ أَبُوهُ يَكْتُبُ): the noun opens the verb's clause as its mubtada, as it does an indefinite noun's. The pronoun
+    ties the sentence to the word before it (the رابط), so it is one that can stand for it, a third person's: in زَيْدٌ
+    أَخُوكَ عَالِمٌ the كَ is the one spoken to, and أخوك is no sentence's مبتدأ."""
     for n2 in range(2, len(toks) - 1):  # 1-based: noun, its pronoun, the khabar
         noun, pronoun, khabar, before = toks[n2 - 1], toks[n2], toks[n2 + 1], toks[n2 - 2]
         n1, n3 = n2 - 1, n2 + 2
-        # the noun's typed case is under its pronoun's vowel, so the reading's case is used
+        # the noun's typed case is under its pronoun's vowel, so the reading's case is used. Before a verb, a توكيد
+        # (زَيْدٌ نَفْسُهُ يَكْتُبُ) is no مبتدأ: the verb tells of the noun it stresses (before a noun khabar, the khabar's
+        # agreement decides, tawkeed_before_khabar: الْقَوْمُ كُلُّهُمْ حَاضِرٌ)
         if not (is_plain_noun(noun) and noun.get("stt") == "c" and CAMEL_CASE.get(noun.get("cas")) not in ("a", "i")
-                and attached_pronoun(pronoun)
-                and noun_tagged(khabar) and khabar.get("stt") == "i" and _case(khabar) == "u"):
+                and attached_pronoun(pronoun) and is_one(pronoun["form"], "damir_muttasil", "absent")
+                and (noun_tagged(khabar) and khabar.get("stt") == "i" and _case(khabar) == "u"
+                     or verb_tagged(khabar) and not tenseless_noun(khabar) and not listed(noun, "tawkeed", "with_pronoun"))):
             continue
         relative = "rel" in before.get("pos_camel", "")
-        first = verbless and n1 == 1 and noun_tagged(before) and not before.get("form", "").startswith("+")
+        verbless = not any(verb_tagged(t) for i, t in enumerate(toks, 1) if i != n3)
+        # a noun in nasb or jarr is no مبتدأ (غَدًا أَخُوهُ يُسَافِرُ: a ظرف; زَيْدًا أَبُوهُ يَضْرِبُ: the verb's object said first)
+        first = verbless and n1 == 1 and noun_tagged(before) and _case(before) not in ("a", "i") and not before.get("form", "").startswith("+")
         if relative and (above(heads, n1, n2) or above(heads, n1, n3)):
             continue  # the relative hangs inside the sentence: its own place is not known
         if first:
@@ -192,7 +199,8 @@ def _ma_cancels_inna(toks, heads, rels) -> None:
     """إنّما زيدٌ قائمٌ: the ما joined to إنّ or a sister is ما الكافة, a particle that stops
     it working (Tasheel 1.8 n4 p21); the noun after the pair is the mubtada and what is
     told of it the khabar. The parser takes the ما for a noun, its subject or its khabar (إنما لكل امرئ ما نوى), so
-    the ما is a particle hung on the إنّ as a plain modifier: a noun hung on it is the mubtada, a jar the khabar."""
+    the ما is a particle hung on the إنّ as a plain modifier, and what was hung on it the mubtada (a jar said first
+    is turned to the khabar by the repair passes, as after any إنّ)."""
     for m, tok in enumerate(toks, 1):
         # the ما is written onto the word before it, the sister, wherever the parser hung it (إِنَّمَا زَيْدٌ قَائِمٌ: on قائم)
         particle = m - 1
@@ -201,8 +209,8 @@ def _ma_cancels_inna(toks, heads, rels) -> None:
             continue
         for n, h in enumerate(heads, 1):
             if h == m:
-                # a noun under it is the mubtada (فَإِنَّمَا الْعَدْلُ أَنْ يُسْمَعَ), a jar its khabar said first (إنما لكل امرئ)
-                heads[n - 1], rels[n - 1] = particle, "PRD" if toks[n - 1].get("pos_camel") == "prep" else "SBJ"
+                # a noun under it is the mubtada (فَإِنَّمَا الْعَدْلُ أَنْ يُسْمَعَ)
+                heads[n - 1], rels[n - 1] = particle, "SBJ"
         rels[m - 1] = "MOD"
         tok.update(pos="PRT", pos_camel="part")
         # إِنَّمَا فِي الدَّارِ زَيْدٌ، إِنَّمَا عِنْدَ زَيْدٍ كِتَابٌ: the jar or ظرف said first, hung on the noun the parser

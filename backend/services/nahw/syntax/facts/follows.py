@@ -4,7 +4,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, shows_nasb_by_kasra, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, written_nasb, attached_pronoun, noun_tagged
+from backend.services.nahw.syntax.facts.word import case_shown, case_unseen, manqus_tanween, is_nasab, listed, agrees, indefinite_nasb, is_called_noun, is_describing, is_light, shows_nasb_by_kasra, is_participle, is_verb, same_case, subject_link, read_as, takes_two_objects, shown_cases, told_of_subject, typed_bare, typed_case_of, typed_or_parsed_case, written_nasb, attached_pronoun, noun_tagged
 from backend.services.nahw.syntax.facts.sentence import Sentence, describable_nouns, excepted_from, is_known, at_work, next_word, place_case, praised_noun, previous_noun, quoted_head, told_of_lone_mubtada, verb_above, zarf_in_nasb
 from backend.services.nahw.syntax.facts.kind import joins_clauses, calling_head
 
@@ -40,6 +40,10 @@ def stands_for(token: dict, s: Sentence) -> bool:
     # noun opens a sentence of its own (a حال) and stands for nothing
     after = next_word(token, s)
     if after and mine and noun_tagged(after) and after.get("stt") == "i" and typed_or_parsed_case(after) == mine:
+        return False
+    # زَيْدٌ أَبُوهُ يَكْتُبُ: nor one hung as the subject of a verb after it: a doer never stands before its verb,
+    # so the noun opens that verb's sentence as its mubtada (Tasheel 1.4.4 p11)
+    if (head := s.head(token)) and token["rel"] == "SBJ" and is_verb(head) and head["id"] > token["id"]:
         return False
     verb = verb_above(before, s)
     # ارتدى المحارب درعه typed bare: a doer straight before it leaves its verb its object, which this word is
@@ -201,7 +205,9 @@ def _follows(token: dict, s: Sentence) -> str:
         return "naat" if head["pos"] == "PROP" or head.get("stt") == "c" else "badal"
     # السُّفْلَى: a مقصور noun shows no case, so any its noun wears is its own
     # الرجلُ الحاديَ عشرَ: a compound ordinal is built and shows none, its place its noun's
-    if bare_describer or (mine or case_unseen(token)) and shown_cases(token) & shown_cases(head) or token.get("compound") == "ordinal":
+    # مَاضٍ: a منقوص with its tanween shows raf' or jarr, and is held to its noun by those
+    if bare_describer or (mine or case_unseen(token) or manqus_tanween(token)) and shown_cases(token) & shown_cases(head) \
+            or token.get("compound") == "ordinal":
         # كوبًا لبنًا: after a measure a plain noun is its tamyeez; only a describing word is a na't
         # (شَعِيرًا has the فعيل shape, so the morphology's adjective tag tells, not the shape)
         measure = listed(head, "tamyeez_head") and token.get("pos_camel") != "adj"

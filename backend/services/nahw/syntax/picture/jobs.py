@@ -64,14 +64,17 @@ def give_jobs(c: Picture) -> None:
             token["pos"], token["pos_camel"] = "NOM", "pron_rel"
     # جاء الذي نجح: the clause after a relative is its صلة, with no place of its own; كَمْ مِنْ كِتَابٍ قَرَأْتُهُ:
     # a word the tagger calls relative but no book lists as one (closed_words mawsul) has none. A relative has one
-    # صلة: a later clause hung on it tells of the relative (الَّذِي يَقْرَأُ كَثِيرًا يَزْدَادُ عِلْمُهُ، فَأَمَّا الَّذِينَ كَفَرُوا فَأُعَذِّبُهُمْ:
-    # its khabar); a clause joined to the صلة hangs on the صلة's verb, not on the relative
+    # صلة: a later clause hung on it is one too only when joined to it by و، أو، ثم (وَهُوَ الَّذِي سَخَّرَ ... وَتَرَى
+    # الْفُلْكَ); else it tells of the relative (الَّذِي يَقْرَأُ كَثِيرًا يَزْدَادُ عِلْمُهُ، فَأَمَّا الَّذِينَ كَفَرُوا فَأُعَذِّبُهُمْ: its khabar)
+    def joined(clause: dict, relative: dict) -> bool:
+        return any(t["head"] == clause["id"] and relative["id"] < t["id"] < clause["id"] and is_one(t["form"], "atf", "joins_mood")
+                   for t in drawn)
     with_silah: set[int] = set()
     for token in sorted(drawn, key=lambda t: t["id"]):
         up = next((t for t in drawn if t["id"] == token["head"]), None)
         if up and "rel" in up.get("pos_camel", "") and listed(up, "mawsul") and not up.get("reading") and up["id"] < token["id"] \
                 and token["id"] in opens and "condition" not in named[typed_at.get(up["id"], 0)] \
-                and up["id"] not in with_silah:
+                and (up["id"] not in with_silah or joined(token, up)):
             job_of[token["id"]] = NAMED.silah
             with_silah.add(up["id"])
     c.job_by_place, c.job_of, c.kind_of_ma, c.ma_card = job_by_place, job_of, kind_of_ma, ma_card

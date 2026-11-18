@@ -703,7 +703,10 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             # a name the dictionary files, typed with vowels (هَلْ سَامِر مَوْجُود), stays a name while it fits them: its own vowels are only
             # partly marked, so a verb that marks more of them is not a better fit
             name = out[i].get("pos") == "noun_prop" and not no_vowels_typed([word])
-            if said is not None and (here is None or not name and said >= here):
+            # nor one that puts on a shadda the vowelled word lacks while the reading kept puts on none (أَبُوهُ is
+            # "his father", not أَبُّوهُ): the writing shows every letter (الأصل عدم الزيادة)
+            added = verb and not no_vowels_typed([word]) and _added(verb, word) > max(_added(out[i], word), 0)
+            if said is not None and not added and (here is None or not name and said >= here):
                 out[i] = verb
     # أَكْرَمَ مُصْطَفَى يَحْيَى: nothing before the sentence's first word puts it in nasb, so a typed fatha
     # the past verb reads as well as a noun's nasb (the elative أَكْرَمَ, here before a name showing no case) is that verb;

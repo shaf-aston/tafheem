@@ -32,6 +32,29 @@ def role(sentence: str, word: str) -> str:
     return said.get("name") or said["role"]
 
 
+@needs_parser
+def test_the_ma_on_inna_is_a_particle_in_the_tree():
+    """إِنَّمَا يَشْفِي اللَّهُ: the ما is a حرف (كافة), shown as one in the tree, never a word with no job."""
+    found = {}
+    def walk(node):
+        if node.get("word") is not None:
+            found[node["word"]] = node.get("role")
+        for child in node.get("children", []):
+            walk(child)
+    walk(analyze("إِنَّمَا يَشْفِي اللَّهُ")["tree"]["tree"])
+    assert found[1] == "حرف"
+
+
+@needs_parser
+def test_a_sentence_after_its_jar_describes_nothing_it_hangs_on():
+    """A sentence placed by the word it joins (the جواب الشرط) takes that place alone: no حال of a word in another
+    clause (بحسب ابن آدم ... فثلث لطعامه), and a verb's sentence joined by لكن is no حال of the jar before it."""
+    assert ("جواب الشرط", "جملة اسمية", "في محل جزم") in placed(
+        "بِحَسْبِ ابْنِ آدَمَ لُقَيْمَاتٌ يُقِمْنَ صُلْبَهُ فَإِنْ كَانَ لَا مَحَالَةَ فَثُلُثٌ لِطَعَامِهِ")
+    assert all(job != "حال" for job, _, _ in placed(
+        "إِنَّ اللَّهَ لَا يَنْظُرُ إِلَى أَجْسَادِكُمْ وَلَا إِلَى صُوَرِكُمْ وَلَكِنْ يَنْظُرُ إِلَى قُلُوبِكُمْ"))
+
+
 # ما on إنّ stops it working (كافة): the noun after is a مبتدأ, a jar said first the khabar, the noun after it the مبتدأ.
 @needs_parser
 @pytest.mark.parametrize("sentence, word, said", [

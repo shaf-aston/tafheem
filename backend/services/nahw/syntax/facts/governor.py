@@ -3,7 +3,7 @@ inna, kana, kaada, zanna, the called or the excepting particle)."""
 from __future__ import annotations
 
 from backend.services.nahw.book import is_one, is_plain_noun, six_noun_case
-from backend.services.nahw.syntax.facts.word import is_built, is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_tanween, typed_or_parsed_case, unlike, subject_link, NOUN_LINKS
+from backend.services.nahw.syntax.facts.word import is_built, may_be_nasb, is_verb, works_as_verb, shows_jarr, told_of_subject, typed_case_of, typed_tanween, typed_or_parsed_case, unlike, subject_link, NOUN_LINKS
 from backend.services.nahw.syntax.facts.sentence import Sentence, jarr_takes, verb_above
 from backend.services.nahw.syntax.facts.kind import calling_head
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
@@ -70,7 +70,7 @@ def _governing(token: dict, s: Sentence) -> tuple[str, dict | None]:
             and not ("dem" in token.get("pos_camel", "") and s.verbless):
         return "idafa", head
     # ظن الولد الأمر سهلا: a modifier after the first object is the verb's second
-    second = (rel == "MOD" and under_verb and typed in (None, "a") and s.family(head) == "zanna"
+    second = (rel == "MOD" and under_verb and may_be_nasb(token, typed_only=True) and s.family(head) == "zanna"
               and any(k["rel"] == "OBJ" and k["id"] < token["id"] for k in s.kids(head)))
     # كان الطفلُ يلعب: the parser may hang كان's noun on it as a modifier
     named_by_kana = rel == "MOD" and under_verb and typed != "a" and s.family(head) == "kana" \

@@ -5,7 +5,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import bare_letters
 from backend.services.nahw.book import ADVERB_FAMILIES, doer_written_in, extra_ba_on, frames, is_built_word, is_definite_kind, is_extra_ba, is_mabni, is_one, is_subject_pronoun, only_adverb, says
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, purpose, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer
+from backend.services.nahw.syntax.facts.word import SUBJECTS, case_unseen, is_passive, listed, NOUN_LINKS, is_prefix, is_suffix, is_called_noun, is_light, is_preposition, is_verb, read_as, same_case, typed_or_parsed_case, noun_tagged, is_participle, describes, is_built, works_as_verb, typed_bare, typed_case_of, indefinite_nasb, purpose, is_name, present_verb_tagged, subject_link, attached_pronoun, holds_doer, may_be_nasb
 
 
 def praised_noun(token: dict, s: "Sentence") -> bool:
@@ -70,7 +70,8 @@ class Sentence:
         mubtada and the وصف its khabar (إن في سوى الإفراد طِبقًا استقر), left to the other rules."""
         words = [t for t in self.tokens if not is_suffix(t)]
         return next(((lead, wasf, doer) for lead, wasf, doer in zip(words, words[1:], words[2:])
-                     if (is_one(lead["lemma"], "negation") or is_one(lead["lemma"], "istifham"))
+                     # أُمُّهُ: a word the parser reads a plain noun is no particle, though its letters spell أَمْ
+                     if (is_one(lead["lemma"], "negation") or is_one(lead["lemma"], "istifham")) and lead.get("pos_camel") != "noun"
                      and not any(is_verb(t) for t in words[words.index(lead):])
                      and is_participle(wasf) and wasf.get("stt") == "i" and wasf.get("num") in ("s", None)
                      and typed_or_parsed_case(wasf) in ("u", None)
@@ -197,7 +198,7 @@ class Sentence:
         return not is_one(verb["lemma"], "kana", "always_defective") \
             and all(k["rel"] in SUBJECTS or k["pos"] == "PRT" and k["rel"] == "MOD" for k in kids) \
             and not any(k["rel"] in SUBJECTS and is_known(k, self) and any(
-                j["rel"] == "MOD" and j["id"] > k["id"] and is_preposition(j) and j.get("pos_camel") != "conj"
+                j["rel"] == "MOD" and j["id"] > k["id"] and is_preposition(j)
                 for j in self.kids(k)) for k in kids)
 
     def _two_objects(self, verb: dict) -> bool:
@@ -215,7 +216,7 @@ class Sentence:
         # the heart giving the reason (its مفعول لأجله) is no second object, and the verb is the plain one of one object;
         # جَعَلَ مِنْ بَعْدِ ضَعْفٍ قُوَّةً ثُمَّ: nor a joining word the parser tags a noun
         return bool(first) and any(k["id"] > first["id"] and k["rel"] in ("OBJ", "MOD") and noun_tagged(k) and not read_as(k, "atf")
-                                   and typed_or_parsed_case(k) in (None, "a") and not purpose(k, verb) for k in kids)
+                                   and may_be_nasb(k) and not purpose(k, verb) for k in kids)
 
     def noun_before(self, particle: dict) -> bool:
         """The particle follows a noun it can join to, which an oath و does not: the noun it
@@ -370,7 +371,8 @@ def is_known(token: dict, s: Sentence) -> bool:
     (Ibn Aqil V3 p43: it narrows the first, makes it definite only when the second is: غلام امرأة، غلام زيد)."""
     if token.get("stt") == "d" or (is_name(token) and not token.get("guessed")) or is_definite_kind(token.get("pos_camel", "")):
         return True
-    added = next((k for k in s.kids(token) if k["rel"] == "IDF"), None) if token.get("stt") == "c" else None
+    # a pronoun written onto a noun is its مضاف إليه, however the parser linked it (وَلِيُّ+كُمْ: OBJ)
+    added = next((k for k in s.kids(token) if k["rel"] == "IDF" or attached_pronoun(k)), None) if token.get("stt") == "c" else None
     return bool(added) and is_known(added, s)
 
 
@@ -486,7 +488,7 @@ def zarf_in_nasb(token: dict, s: Sentence) -> bool:
     (Tasheel 3.2 p67). Not a built word (أَيْنَ الْكِتَابُ: the khabar), one whose case is unseen (الْيَدُ الْعُلْيَا: a صفة), nor what a number counts
     (ثَلَاثِ سِنِينَ: the number's مضاف إليه)."""
     bare_place = typed_bare(token) and only_adverb(token["lemma"]) and listed(token, "zarf_makan")         and any(k["rel"] == "IDF" for k in s.kids(token))
-    return (token["rel"] in ("MOD", "IDF") and typed_case_of(token) in (None, "a") and (bare_place or not typed_bare(token))
+    return (token["rel"] in ("MOD", "IDF") and may_be_nasb(token, typed_only=True) and (bare_place or not typed_bare(token))
             and not is_built(token) and not case_unseen(token) and is_zarf(token, s)
             and not (s.head(token) and listed(s.head(token), "adad_mudaf")))
 
