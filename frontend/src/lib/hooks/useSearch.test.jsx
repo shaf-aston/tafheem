@@ -13,7 +13,7 @@ function deferred() {
   return { promise, answer }
 }
 
-function setup({ strict = false, onVisit, onFound } = {}) {
+function setup({ strict = false, onVisit, onFound, kept } = {}) {
   const client = new QueryClient({ defaultOptions: { mutations: { retry: false } } })
   const pending = []
   const ask = ({ q }) => {
@@ -24,7 +24,7 @@ function setup({ strict = false, onVisit, onFound } = {}) {
   const result = {}
   const report = (now) => { result.current = now }
   function Probe() {
-    report(useSearch({ historyKey: 'test-history', ask, incoming: 'كتب', arrival: 1, onVisit, onFound }))
+    report(useSearch({ historyKey: 'test-history', ask, incoming: 'كتب', arrival: 1, onVisit, onFound, kept }))
     return null
   }
   const tree = (mode) => {
@@ -52,6 +52,16 @@ describe('useSearch', () => {
     await act(async () => pending[0].answer())
     await waitFor(() => expect(visits).toEqual([['كتب']]))
     expect(found).toEqual([{ query: 'كتب' }])
+  })
+
+  it('a search kept() turns away is still a place, but not a Recent chip', async () => {
+    localStorage.clear()
+    const visits = []
+    const { result, pending } = setup({ onVisit: (place) => visits.push(place), kept: () => false })
+    await waitFor(() => expect(pending).toHaveLength(1))
+    await act(async () => pending[0].answer())
+    await waitFor(() => expect(visits).toEqual(['كتب']))
+    expect(result.current.history).toEqual([])
   })
 
   // StrictMode mounts, unmounts and mounts again in development. The arrival's

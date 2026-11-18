@@ -1,20 +1,63 @@
 {
-  "_comment": "The grammar terms the app names, in one place. On a tag the Arabic term stands alone: مبتدأ, منصوب. Its English is here, in the glossary at the foot of the Nahw page. 'types' and 'cases' are keyed by the string the backend sends and also give the tags their Arabic. 'sections' are the glossary itself, titled and ordered by Tasheel al-Nahw's own chapters; a section with 'from' lists that group above, then its own terms. Terms the teacher's notes (backend/data/nahw_notes) mark and explain sit in the chapter they belong to; أنواع الإعراب and الموصولات الحرفية are the notes' own topics. One entry per idea: a label that is a form of another (اسم ليس, اسم كان مؤخر) is named in that entry's meaning, not given its own. tests/nahw/test_picture_rules.py checks every role, tarkeeb term and label in the book's worked examples has an entry or is named in one. lib/nahw/grammarTerms.js is the only reader.",
+  "_comment": "The grammar terms the app names, in one place. On a tag the Arabic term leads (مبتدأ, منصوب) with two or three words of English under it ('en', and 'roles'), for a reader still learning the terms; what each means is here, in the glossary at the foot of the Nahw page. 'types' and 'cases' are keyed by the string the backend sends and also give the tags their Arabic. 'sections' are the glossary itself, titled and ordered by Tasheel al-Nahw's own chapters; a section with 'from' lists that group above, then its own terms. Terms the teacher's notes (backend/data/nahw_notes) mark and explain sit in the chapter they belong to; أنواع الإعراب and الموصولات الحرفية are the notes' own topics. One entry per idea: a label that is a form of another (اسم ليس, اسم كان مؤخر) is named in that entry's meaning, not given its own. tests/nahw/test_picture_rules.py checks every role, tarkeeb term and label in the book's worked examples has an entry or is named in one. lib/nahw/grammarTerms.js is the only reader.",
 
   "types": {
-    "ism":   { "arabic": "اسم",  "meaning": "A noun: a person, thing, place, quality or name. It takes case endings." },
-    "fi'l":  { "arabic": "فعل",  "meaning": "A verb: something done, in past, present or command form. The past form never changes its ending; the present one does." },
-    "harf":  { "arabic": "حرف",  "meaning": "A particle: a small word with no meaning of its own until joined to others, such as في, و, لم. Its ending never changes." },
-    "damir": { "arabic": "ضمير", "meaning": "A pronoun: هو, أنت, or one attached to a word like the ـه in كتابه. It is a kind of اسم." },
-    "zarf":  { "arabic": "ظرف",  "meaning": "A word for when or where: قبل, عند, فوق. It is a kind of اسم." }
+    "ism":   { "arabic": "اسم",  "en": "noun", "meaning": "A noun: a person, thing, place, quality or name. It takes case endings." },
+    "fi'l":  { "arabic": "فعل",  "en": "verb", "meaning": "A verb: something done, in past, present or command form. The past form never changes its ending; the present one does." },
+    "harf":  { "arabic": "حرف",  "en": "particle", "meaning": "A particle: a small word with no meaning of its own until joined to others, such as في, و, لم. Its ending never changes." },
+    "damir": { "arabic": "ضمير", "en": "pronoun", "meaning": "A pronoun: هو, أنت, or one attached to a word like the ـه in كتابه. It is a kind of اسم." },
+    "zarf":  { "arabic": "ظرف",  "en": "when / where word", "meaning": "A word for when or where: قبل, عند, فوق. It is a kind of اسم." }
   },
 
   "cases": {
-    "raf'":  { "arabic": "مرفوع", "meaning": "The ending for a subject: a ضمة on one noun, و on a sound masculine plural." },
-    "nasb":  { "arabic": "منصوب", "meaning": "The ending for an object and for what comes after إن: a فتحة on one noun." },
-    "jarr":  { "arabic": "مجرور", "meaning": "The ending after a preposition or as the second word of a مضاف pair: a كسرة on one noun." },
-    "jazm":  { "arabic": "مجزوم", "meaning": "The ending of a present verb after لم, the لا that forbids, the لام of command and their like: a سكون, or a dropped final letter. A verb in this state is a فعل مجزوم." },
-    "mabni": { "arabic": "مبني", "meaning": "Fixed. The ending never changes whatever the word is doing: past verbs, pronouns, particles." }
+    "raf'":  { "arabic": "مرفوع", "en": "nominative", "meaning": "The ending for a subject: a ضمة on one noun, و on a sound masculine plural." },
+    "nasb":  { "arabic": "منصوب", "en": "accusative", "meaning": "The ending for an object and for what comes after إن: a فتحة on one noun." },
+    "jarr":  { "arabic": "مجرور", "en": "genitive", "meaning": "The ending after a preposition or as the second word of a مضاف pair: a كسرة on one noun." },
+    "jazm":  { "arabic": "مجزوم", "en": "jussive", "meaning": "The ending of a present verb after لم, the لا that forbids, the لام of command and their like: a سكون, or a dropped final letter. A verb in this state is a فعل مجزوم." },
+    "mabni": { "arabic": "مبني", "en": "fixed ending", "meaning": "Fixed. The ending never changes whatever the word is doing: past verbs, pronouns, particles." }
+  },
+
+  "roles": {
+    "_comment": "A role in two or three plain English words, printed small under its Arabic tag. Keyed as the analyser writes it, without harakat. A role named for a sister (اسم كأن، خبر ليس) takes its job's English (lib/nahw/grammarTerms.js roleGloss).",
+    "فعل":          "verb",
+    "فاعل":         "doer",
+    "نائب فاعل":    "stand-in doer",
+    "مبتدأ":        "topic",
+    "اسم كان":      "subject of kāna",
+    "اسم إن":       "subject of inna",
+    "اسم كاد":      "subject of kāda",
+    "اسم لا":       "subject of lā",
+    "خبر":          "news",
+    "خبر كان":      "news of kāna",
+    "خبر إن":       "news of inna",
+    "خبر كاد":      "news of kāda",
+    "خبر لا":       "news of lā",
+    "مفعول به":     "object",
+    "مفعول مطلق":   "the verb's own noun",
+    "مفعول لأجله":  "reason",
+    "مفعول فيه":    "when / where",
+    "مفعول معه":    "along with",
+    "حال":          "state",
+    "تمييز":        "specifier",
+    "منادى":        "one called",
+    "مستثنى":       "exception",
+    "مستثنى منقطع": "exception, apart",
+    "صفة":          "describer",
+    "موصوف":        "described",
+    "معطوف":        "joined on",
+    "معطوف عليه":   "joined to",
+    "توكيد":        "emphasis",
+    "بدل":          "substitute",
+    "مبدل منه":     "replaced",
+    "متبوع":        "followed",
+    "مضاف":         "owned (… of)",
+    "مضاف إليه":    "owner (of …)",
+    "حرف":          "particle",
+    "حرف جر":       "preposition",
+    "مجرور":        "after a preposition",
+    "اسم موصول":    "relative word",
+    "صلة":          "relative clause",
+    "اسم شرط جازم": "condition word"
   },
 
   "sections": [

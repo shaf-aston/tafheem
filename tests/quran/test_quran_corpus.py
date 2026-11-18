@@ -154,3 +154,11 @@ def test_a_word_typed_with_no_marks_is_every_spelling_of_its_letters():
 ])
 def test_a_name_is_known_by_letters_the_quran_spells_no_other_word_with(word, lemma):
     assert quran_corpus.name_of(word) == lemma
+
+
+def test_root_places_carry_their_whole_ayah():
+    """A root's list is many copies of one word; the ayah around each is what tells them apart."""
+    first = quran_corpus.occurrences_of_root("رحم", limit=3)["occurrences"][0]
+    assert (first["surah"], first["ayah"]) == (1, 1)
+    assert first["arabic"] in first["ayah_text"].split(" ")[first["word"] - 1]
+    assert first["ayah_text"] == dict(quran_corpus.ayah_texts(1))[1]

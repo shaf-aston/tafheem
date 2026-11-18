@@ -138,6 +138,18 @@ describe('lesson runner', () => {
     expect(went).toEqual(['left'])
   })
 
+  it('asks before leaving once past a card only read, with nothing asked yet', () => {
+    const teach = (id) => ({ kind: 'teach', id, tag: 'New word', ar: 'كِتَاب', en: `book ${id}` })
+    const went = []
+    renderScreen(<LessonRunner cards={[teach('a'), teach('b'), choose('c')]} accent="#26c" onLeave={() => went.push('left')} />, {
+      routes: { 'POST /progress/attempts': { earned: 0 } },
+    })
+    fireEvent.click(screen.getByRole('button', { name: 'Continue' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Leave the lesson' }))
+    expect(screen.getByRole('alertdialog')).toBeTruthy()
+    expect(went).toEqual([])
+  })
+
   it('holds focus mode while the lesson runs, and gives it back on the end screen and on leaving', () => {
     const focus = () => document.documentElement.dataset.focus
     const { unmount } = renderScreen(<LessonRunner cards={[choose('a')]} accent="#26c" onLeave={() => {}} />,

@@ -93,6 +93,16 @@ describe('resume', () => {
       .toEqual({ steps: [...STEPS.slice(0, 4), { tab: 'quran', value: '2:255' }], at: 4 })
   })
 
+  it('a bare address on a search tab opens its empty box, after where the reader was', () => {
+    expect(resume(saved, { tab: 'dict', value: null }, undefined, true))
+      .toEqual({ steps: [...STEPS, { tab: 'dict', value: null }], at: 5 })
+  })
+
+  it('a reload of a search tab\'s empty box sits on it', () => {
+    const steps = [...STEPS, { tab: 'dict', value: null }]
+    expect(resume({ steps, at: 5 }, { tab: 'dict', value: null }, 5, true)).toEqual({ steps, at: 5 })
+  })
+
   it('a bare address on a tab never reached opens blank', () => {
     expect(resume(saved, { tab: 'sarf', value: null }, undefined))
       .toEqual({ steps: [...STEPS, { tab: 'sarf', value: null }], at: 5 })

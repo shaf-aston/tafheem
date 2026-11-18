@@ -23,6 +23,15 @@ export const LAST_SURAH = surahs.length
 /** "1:3" as every tab writes an ayah. */
 export const AYAH_REF = /^(\d+):(\d+)$/
 
+/** A whole surah as a place ("2", how the Quran tab writes one opened to read): its number, or null. */
+export const surahOf = (value) => {
+  const n = /^\d+$/.test(value ?? '') ? Number(value) : 0
+  return n >= FIRST_SURAH && n <= LAST_SURAH ? n : null
+}
+
+/** The Quran tab's place as a reader says it: a surah by its name, an ayah or a root as written. */
+export const placeName = (value) => (surahOf(value) ? `Surah ${surahs[surahOf(value) - 1].en}` : value)
+
 /** An ayah that is really in the Qur'an, so a mistyped one is never remembered. */
 export const isAyah = ({ surah, ayah }) => ayah >= 1 && ayah <= (surahs[surah - 1]?.ayahs ?? 0)
 
