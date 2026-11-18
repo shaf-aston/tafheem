@@ -88,8 +88,14 @@ function Board({ board, step = 'test', toolbar = null }) {
   const tone = exploring ? 'var(--primary)' : 'var(--danger)'
 
   // The picture is the board's view with the rail on its right; the word stands there, level with its place.
-  const shown = railView(board.view)
-  const stand = shownSpot ? placeInRail(board.view, shownSpot, size ? labelH * (shown[2] / size.w) : 0) : null
+  // The label's height in the board's units (the picture's width is fixed, so its scale is too), and the
+  // picture grown to hold it on a short board.
+  const unitsPerPx = size ? railView(board.view)[2] / size.w : 0
+  const labelUnits = shownSpot ? labelH * unitsPerPx : 0
+  const shown = railView(board.view, labelUnits)
+  const stand = shownSpot ? placeInRail(board.view, shownSpot, labelUnits) : null
+  // A narrow rail (a phone) takes the smaller Arabic, so a word wraps less.
+  const compact = size ? size.w * (shown[2] - board.view[2]) / shown[2] < 140 : false
   const anchor = shownSpot && anchorOf(shownSpot)
 
   // The places in reading order (row by row, left to right), for the arrow keys. One of them holds the Tab stop:
@@ -217,7 +223,7 @@ function Board({ board, step = 'test', toolbar = null }) {
           )
         })}
       </svg>
-      {stand && <Callout words={shownSpot.words} at={stand} view={shown} tone={tone} hear={exploring ? heard : 0} onHeight={setLabelH} />}
+      {stand && <Callout words={shownSpot.words} at={stand} view={shown} tone={tone} hear={exploring ? heard : 0} compact={compact} onHeight={setLabelH} />}
       </div>
       {!exploring && <div className="flex flex-wrap items-center justify-between gap-3">
         <span className="type-small text-[var(--text-dim)]">

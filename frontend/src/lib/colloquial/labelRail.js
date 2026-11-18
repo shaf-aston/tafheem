@@ -20,8 +20,10 @@ const GAP = 0.06
 // shorter than a label, so the picture is given room below it for the rail to hold one.
 export const LEAST_TALL = 0.32
 
-/** The board's view with the rail added on its right, and no shorter than a label needs. */
-export const railView = ([x, y, w, h]) => [x, y, w * (1 + RAIL), Math.max(h, w * (1 + RAIL) * LEAST_TALL)]
+/** The board's view with the rail added on its right, no shorter than a label needs: `least` is the shown
+ * label's height in the board's units, so a short board (a strip, a map) grows room below it for a tall
+ * label on a narrow phone. The width never depends on it, so the scale does not either. */
+export const railView = ([x, y, w, h], least = 0) => [x, y, w * (1 + RAIL), Math.max(h, w * (1 + RAIL) * LEAST_TALL, least)]
 
 /** The point a place's word is joined to: a dot's centre, or the middle of an area's right edge. */
 export const anchorOf = (spot) => (spot.area
@@ -36,7 +38,7 @@ const clamp = (n, lo, hi) => Math.min(Math.max(n, lo), Math.max(lo, hi))
  */
 export function placeInRail(view, spot, height = 0) {
   const [vx, vy, vw] = view
-  const vh = railView(view)[3]
+  const vh = railView(view, height)[3]
   const rail = vw * RAIL
   const gap = rail * GAP
   const anchor = anchorOf(spot)

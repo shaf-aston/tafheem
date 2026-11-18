@@ -18,6 +18,14 @@ describe('the label rail: every board says its tapped word in the same place', (
     expect(at.y + 100).toBeLessThanOrEqual(h)                        // inside the picture, not spilling off it
   })
 
+  it('grows a short board to hold a tall label, never changing its width', () => {
+    const [, , w, h] = railView([0, 0, 360, 100], 300)
+    expect(h).toBe(300)
+    expect(w).toBe(railView([0, 0, 360, 100])[2])
+    const at = placeInRail([0, 0, 360, 100], { x: 10, y: 90 }, 300)
+    expect(at.y).toBe(0)                                             // the whole label inside the grown picture
+  })
+
   it('stands the word in the rail, beyond the drawing, inside the widened picture', () => {
     for (const spot of [{ x: 10, y: 200 }, { x: 290, y: 5 }, { area: [0, 0, 100, 100] }, { area: [200, 300, 100, 100] }]) {
       const at = placeInRail(view, spot, 60)

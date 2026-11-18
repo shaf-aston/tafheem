@@ -11,7 +11,7 @@ const pct = (n) => `${n * 100}%`
 /** `at` {x, y, w}: where it stands, in the board's units; `view`: the picture's view (with its rail).
  * `tone` is its edge: the accent for a word explored, the danger colour for a wrong tap in Test.
  * `hear` says the first word on each rise; `onHeight` tells the board how tall it came out, in pixels. */
-export default function Callout({ words, at, view, tone = 'var(--primary)', hear = 0, onHeight }) {
+export default function Callout({ words, at, view, tone = 'var(--primary)', hear = 0, compact = false, onHeight }) {
   const node = useRef(null)
   useLayoutEffect(() => {
     const el = node.current
@@ -31,7 +31,7 @@ export default function Callout({ words, at, view, tone = 'var(--primary)', hear
       style={{ left: pct((at.x - vx) / vw), top: pct((at.y - vy) / vh), width: pct(at.w / vw), borderColor: tone }}>
       {words.map((w) => (
         <div key={w.id}>
-          <ArabicText as="p" size="base" className="text-[var(--text)] leading-tight">{w.arabic}</ArabicText>
+          <ArabicText as="p" size={compact ? 'sm' : 'base'} className="text-[var(--text)] leading-tight">{w.arabic}</ArabicText>
           <p className="type-micro text-[var(--text-dim)] leading-tight break-words">{w.english}</p>
           {/* Only the first word is said on a tap (`hear`); the others wait for their button. */}
           <SpeakButton text={w.arabic} hear={w === words[0] ? hear : 0} className="pointer-events-auto mx-auto mt-0.5" />
