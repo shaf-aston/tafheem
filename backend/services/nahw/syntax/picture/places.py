@@ -90,8 +90,10 @@ def place_clauses(c: Picture) -> None:
     after_waw, sure = FRAMES["clause_after_waw"], book_map("ghair_amila_other", "before_past")
     def with_qad(verb: dict) -> bool:
         return any(t["head"] == verb["id"] and t["id"] < verb["id"] and strip_diacritics(t["form"]) in sure for t in drawn)
+    # وَأَمَّا الْعَمَلُ فَقَدْ نَجَحَ: a sentence أمّا brings is one part of a detailing (حرف شرط وتفصيل), no حال
     def states(token: dict, waw: dict) -> bool:
-        return token["id"] in nominal or is_verb(token) and with_qad(token) and not with_qad(by_id.get(waw["head"], waw))
+        return (token["id"] in nominal or is_verb(token) and with_qad(token) and not with_qad(by_id.get(waw["head"], waw))) \
+            and not any(waw["id"] < t["id"] < token["id"] and is_one(t["form"], "ghair_amila_other", "detail") for t in drawn)
     for token in drawn:
         waw = by_id.get(token["head"])
         if waw and states(token, waw) and token["id"] not in place_of and waw["pos"] == "PRT" and is_prefix(waw) \

@@ -201,15 +201,26 @@ def test_a_joined_khabar_keeps_its_job(sentence):
 
 
 # A past verb's sentence after و is a حال only with قد (Ibn Aqil, باب الحال: الجملة الحالية; page unchecked); after a
-# sentence begun with قد too, it is a second one joined to it, no حال.
+# sentence begun with قد too, it is a second one joined to it, no حال; nor is one أمّا brings (a part of a detailing).
 @needs_parser
 @pytest.mark.parametrize("sentence, hal", [
     ("جَاءَ زَيْدٌ وَقَدْ تَعِبَ", True),
     ("قَدْ أَفْلَحَ مَنْ زَكَّاهَا وَقَدْ خَابَ مَنْ دَسَّاهَا", False),
     ("جَاءَ زَيْدٌ وَتَعِبَ", False),
+    ("أَمَّا الْمَشْرُوعُ فَقَدْ تَعَثَّرَ وَأَمَّا الْعَمَلُ فَقَدْ نَجَحَ", False),
+    ("جَاءَ زَيْدٌ وَهُوَ يَضْحَكُ", True),
 ])
 def test_a_past_verb_after_waw_is_a_hal_only_with_qad(sentence, hal):
     assert ("حال" in groups(sentence)) == hal
+
+
+# The واو الحال and its حال stand beside the verb's other words, in no unnamed sentence of their own.
+@needs_parser
+@pytest.mark.parametrize("sentence", ["جَاءَ زَيْدٌ وَقَدْ تَعِبَ", "لِمَ تُؤْذُونَنِي وَقَدْ تَعْلَمُونَ أَنِّي رَسُولُ اللَّهِ"])
+def test_a_hal_sentence_is_no_joined_sentence(sentence):
+    top = analyze(sentence)["tree"]["tree"]
+    sentences = [kid for kid in top["children"] if kid.get("word") is None and "جُمْلَةٌ" in (kid.get("label") or "")]
+    assert [kid.get("role") for kid in sentences] == ["حال"]
 
 
 # The clause after a relative is its صلة, with no place, though the relative be a مبتدأ; a word only the tagger

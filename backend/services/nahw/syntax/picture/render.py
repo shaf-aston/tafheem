@@ -199,7 +199,12 @@ def draw(c: Picture) -> dict:
         # (وَهُوَ الَّذِي سَخَّرَ: a khabar with its صلة under it is a relative with its صلة, a unit as anywhere)
         lone_khabar = role == NAMED.khabar and token["id"] in nominal and not any(
             role_of[kid["id"]] == NAMED.mubtada for kid in kids) and NAMED.silah not in kid_roles
-        label = label_of.get(token["id"]) or ("" if own is None or lone_khabar else own or (
+        # أَمَّا الْمَشْرُوعُ فَقَدْ تَعَثَّرَ: a مبتدأ with its own خبر hung under it, away from the top, heads a nominal
+        # sentence, not a unit of its own words: what the sentence does is its place's (a khabar no one writes, after
+        # لولا, leaves the noun's own unit: picture.unwritten)
+        holds_khabar = token is not root and role == NAMED.mubtada and any(
+            job_of[kid["id"]] == NAMED.khabar and kid["id"] not in understood for kid in kids)
+        label = label_of.get(token["id"]) or (NOMINAL if holds_khabar else "" if own is None or lone_khabar else own or (
             top_label if token is root and token["id"] not in opened
             else NOMINAL if token["id"] in clauses & nominal
             else VERBAL if token["id"] in clauses or role == NAMED.fil else kind_of(token)))
