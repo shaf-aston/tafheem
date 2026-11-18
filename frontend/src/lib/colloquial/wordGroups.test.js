@@ -7,23 +7,24 @@ const MIN = settings['least-under-heading']
 const run = (category, n) => Array.from({ length: n }, (_, i) => ({ id: `${category ?? 'none'}-${i}`, category }))
 
 describe('grouped', () => {
-  it('keeps the order written, each category once, under its own heading', () => {
-    const rows = [...run('a', MIN), ...run('b', MIN)]
-    expect(grouped(rows).map(([heading, words]) => [heading, words.length])).toEqual([['a', MIN], ['b', MIN]])
+  it('heads a list by its categories when every one is big enough, in the order written', () => {
+    const rows = [...run('a', MIN), ...run('b', MIN + 3)]
+    expect(grouped(rows).map(([heading, words]) => [heading, words.length])).toEqual([['a', MIN], ['b', MIN + 3]])
   })
 
-  it('a category too small for a heading joins the heading before it', () => {
-    const rows = [...run('a', MIN), ...run('tiny', MIN - 1)]
+  it('one category too small, and the whole list is one plain run: no heading over two or three words', () => {
+    const rows = [...run('family', 3), ...run('furniture', 20)]
     const out = grouped(rows)
-    expect(out.map(([heading]) => heading)).toEqual(['a'])
-    expect(out[0][1]).toHaveLength(MIN + MIN - 1)
+    expect(out).toHaveLength(1)
+    expect(out[0][0]).toBe('')
+    expect(out[0][1]).toEqual(rows)   // nothing lost, nothing reordered
   })
 
-  it('a small category with nothing before it still has its own heading', () => {
-    expect(grouped(run('tiny', MIN - 1)).map(([heading]) => heading)).toEqual(['tiny'])
+  it('a single category needs no heading', () => {
+    expect(grouped(run('a', MIN * 2)).map(([heading]) => heading)).toEqual([''])
   })
 
-  it('words with no category sit under no heading', () => {
+  it('words with no category sit under no heading, and no words is no run', () => {
     expect(grouped(run(undefined, 2))).toEqual([['', run(undefined, 2)]])
     expect(grouped([])).toEqual([])
   })

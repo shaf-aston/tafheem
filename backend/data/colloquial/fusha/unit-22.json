@@ -21,19 +21,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "river-very-deep",
+          "arabic": "اِنْتَبِهْ، النَّهْرُ عَمِيقٌ جِدًّا هُنَا",
+          "transliteration": "intabih, an-nahru 3ameequn jiddan hunaa"
+        },
+        {
+          "slot": "library-quiet-street-loud",
+          "arabic": "الْمَكْتَبَةُ هَادِئَةٌ، لَكِنَّ الصَّوْتَ فِي الشَّارِعِ عَالٍ",
+          "transliteration": "al-maktabatu haadi2atun, laakinna as-sawta fee ash-shaari3i 3aalin"
+        },
+        {
+          "slot": "baby-asleep-awake",
+          "arabic": "هَلِ الطِّفْلُ نَائِمٌ أَمْ مَا زَالَ مُسْتَيْقِظًا؟",
+          "transliteration": "hali at-tiflu naa2imun am maa zaala mustayqizaa?"
+        },
+        {
+          "slot": "messy-room-tidy",
+          "arabic": "غُرْفَتُكَ مُبَعْثَرَةٌ، اِجْعَلْهَا مُرَتَّبَةً مِنْ فَضْلِكَ",
+          "transliteration": "ghurfatuka muba3tharatun, ij3alhaa murattabatan min fadlik"
+        },
+        {
+          "slot": "famous-popular-market",
+          "arabic": "هَذَا السُّوقُ الْقَدِيمُ مَشْهُورٌ جِدًّا وَشَعْبِيٌّ عِنْدَ الزُّوَّارِ",
+          "transliteration": "haadhaa as-sooqu al-qadeemu mashhoorun jiddan wa sha3biyyun 3inda az-zuwwaar"
+        },
+        {
+          "slot": "simple-useful-idea",
+          "arabic": "الْفِكْرَةُ بَسِيطَةٌ لَكِنَّهَا مُفِيدَةٌ جِدًّا",
+          "transliteration": "al-fikratu baseetatun laakinnahaa mufeedatun jiddaa"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "lesson-easy-difficult",
+          "arabic": "كَانَ الدَّرْسُ الْأَوَّلُ سَهْلًا، لَكِنَّ الثَّانِيَ كَانَ صَعْبًا",
+          "transliteration": "kaana ad-darsu al-awwalu sahlan, laakinna ath-thaaniya kaana sa3baa"
+        },
+        {
+          "slot": "car-slow-fast",
+          "arabic": "سَيَّارَتِي بَطِيئَةٌ، وَسَيَّارَتُهُ سَرِيعَةٌ",
+          "transliteration": "sayyaaratee batee2atun, wa sayyaaratuhu saree3a"
+        },
+        {
+          "slot": "dirty-clean-clothes",
+          "arabic": "ضَعِ الْمَلَابِسَ الْمُتَّسِخَةَ هُنَا وَالنَّظِيفَةَ هُنَاكَ",
+          "transliteration": "da3i al-malaabisa al-muttasikhata hunaa wan-nazeefata hunaak"
+        },
+        {
+          "slot": "parking-allowed-forbidden",
+          "arabic": "هَلِ الْوُقُوفُ مَسْمُوحٌ هُنَا، أَمْ هُوَ مَمْنُوعٌ؟",
+          "transliteration": "hali al-wuqoofu masmoo7un hunaa, am huwa mamnoo3?"
+        },
+        {
+          "slot": "come-early-not-late",
+          "arabic": "تَعَالَ مُبَكِّرًا غَدًا، وَلَا تَأْتِ مُتَأَخِّرًا",
+          "transliteration": "ta3aala mubakkiran ghadan, wa laa ta2ti muta2akhkhiraa"
+        },
+        {
+          "slot": "polite-clever-son",
+          "arabic": "ابْنُكَ مُهَذَّبٌ وَذَكِيٌّ جِدًّا",
+          "transliteration": "ibnuka muhadhdhabun wa dhakiyyun jiddaa"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "red-or-blue-shirt",
+          "arabic": "هَلْ تُرِيدُ الْقَمِيصَ الْأَحْمَرَ أَمِ الْأَزْرَقَ؟",
+          "transliteration": "hal tureedu al-qameesa al-a7mara ami al-azraq?"
+        },
+        {
+          "slot": "light-blue-sky",
+          "arabic": "السَّمَاءُ سَمَاوِيَّةٌ وَالْغُيُومُ بَيْضَاءُ",
+          "transliteration": "as-samaa2u samaawiyyatun wal-ghuyoomu baydaa2"
+        },
+        {
+          "slot": "table-wood-not-plastic",
+          "arabic": "هَذِهِ الطَّاوِلَةُ مِنَ الْخَشَبِ، وَلَيْسَتْ مِنَ الْبِلَاسْتِيكِ",
+          "transliteration": "haadhihi at-taawilatu mina al-khashabi, wa laysat mina al-plaasteek"
+        },
+        {
+          "slot": "round-not-square-plate",
+          "arabic": "أَحْضِرْ لِي الصَّحْنَ الْمُسْتَدِيرَ، لَا الْمُرَبَّعَ",
+          "transliteration": "a7dir lee as-sa7na al-mustadeera, laa al-murabba3"
+        },
+        {
+          "slot": "gold-necklace-silver-ring",
+          "arabic": "قِلَادَتُهَا مِنَ الذَّهَبِ وَخَاتَمُهَا مِنَ الْفِضَّةِ",
+          "transliteration": "qilaadatuhaa mina adh-dhahabi wa khaatamuhaa mina al-fidda"
+        },
+        {
+          "slot": "knife-very-sharp",
+          "arabic": "اِنْتَبِهْ، هَذِهِ السِّكِّينُ حَادَّةٌ جِدًّا",
+          "transliteration": "intabih, haadhihi as-sikkeenu 7aaddatun jiddaa"
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "happy-you-came",
+          "arabic": "أَنَا سَعِيدٌ جِدًّا لِأَنَّكَ جِئْتَ",
+          "transliteration": "anaa sa3eedun jiddan li2annaka ji2t"
+        },
+        {
+          "slot": "why-are-you-sad",
+          "arabic": "لِمَاذَا أَنْتَ حَزِينٌ؟ مَاذَا حَدَثَ؟",
+          "transliteration": "limaadhaa anta 7azeen? maadhaa 7adath?"
+        },
+        {
+          "slot": "nervous-before-exam",
+          "arabic": "هِيَ مُضْطَرِبَةٌ قَبْلَ امْتِحَانِ الْغَدِ",
+          "transliteration": "hiya mudtaribatun qabla imti7aani al-ghad"
+        },
+        {
+          "slot": "father-proud-of-you",
+          "arabic": "أَبُوكَ فَخُورٌ بِكَ جِدًّا",
+          "transliteration": "abooka fakhoorun bika jiddaa"
+        },
+        {
+          "slot": "not-angry-just-worried",
+          "arabic": "لَا تَكُنْ غَاضِبًا، كُنْتُ قَلِقًا عَلَيْكَ فَقَطْ",
+          "transliteration": "laa takun ghaadiban, kuntu qaliqan 3alayka faqat"
+        },
+        {
+          "slot": "laughed-until-tears",
+          "arabic": "ضَحِكَ حَتَّى نَزَلَتِ الدُّمُوعُ مِنْ عَيْنَيْهِ",
+          "transliteration": "da7ika 7attaa nazalati ad-dumoo3u min 3aynayh"
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "kind-honest-neighbour",
+          "arabic": "جَارُنَا لَطِيفٌ وَصَادِقٌ",
+          "transliteration": "jaarunaa lateefun wa saadiq"
+        },
+        {
+          "slot": "language-needs-patience",
+          "arabic": "تَعَلُّمُ لُغَةٍ يَحْتَاجُ إِلَى صَبْرٍ كَثِيرٍ",
+          "transliteration": "ta3allumu lughatin ya7taaju ilaa sabrin katheer"
+        },
+        {
+          "slot": "hard-working-helpful-student",
+          "arabic": "هِيَ طَالِبَةٌ مُجْتَهِدَةٌ وَخَدُومَةٌ",
+          "transliteration": "hiya taalibatun mujtahidatun wa khadooma"
+        },
+        {
+          "slot": "dont-be-selfish",
+          "arabic": "لَا تَكُنْ أَنَانِيًّا، شَارِكْ أَخَاكَ الطَّعَامَ",
+          "transliteration": "laa takun anaaniyyan, shaarik akhaaka at-ta3aam"
+        },
+        {
+          "slot": "good-manners-important",
+          "arabic": "الْأَدَبُ الْحَسَنُ مُهِمٌّ فِي كُلِّ بَيْتٍ",
+          "transliteration": "al-adabu al-7asanu muhimmun fee kulli bayt"
+        },
+        {
+          "slot": "wise-humble-grandfather",
+          "arabic": "جَدِّي رَجُلٌ حَكِيمٌ وَمُتَوَاضِعٌ",
+          "transliteration": "jaddee rajulun 7akeemun wa mutawaadi3"
+        }
+      ]
     }
   ]
 }

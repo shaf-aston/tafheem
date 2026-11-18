@@ -16,19 +16,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "river-very-deep",
+          "arabic": "خلي بالك، النهر عميق أوي هنا.",
+          "transliteration": "khalli baalak, en-nahr 3ameeq awi hena."
+        },
+        {
+          "slot": "library-quiet-street-loud",
+          "arabic": "المكتبة هادية، بس الشارع صوته عالي.",
+          "transliteration": "el-maktaba hadya, bass esh-shaare3 Sooto 3aali."
+        },
+        {
+          "slot": "baby-asleep-awake",
+          "arabic": "البيبي نايم ولا لسه صاحي؟",
+          "transliteration": "el-bebi naayem walla lessa Saa7i?"
+        },
+        {
+          "slot": "messy-room-tidy",
+          "arabic": "أوضتك مبعثرة، لو سمحت خليها مرتّبة.",
+          "transliteration": "ooDtak meba3tara, law sama7t khalleeha merattaba."
+        },
+        {
+          "slot": "famous-popular-market",
+          "arabic": "السوق القديم ده مشهور أوي، وشعبي والزوار بيحبوه.",
+          "transliteration": "es-soo2 el-2adeem da mashhoor awi, w sha3bi wez-zowwaar beye7ebbooh."
+        },
+        {
+          "slot": "simple-useful-idea",
+          "arabic": "الفكرة بسيطة، بس مفيدة جداً.",
+          "transliteration": "el-fekra baseeTa, bass mofeeda gedan."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "lesson-easy-difficult",
+          "arabic": "الدرس الأول كان سهل، بس التاني كان صعب.",
+          "transliteration": "ed-dars el-awwel kaan sahl, bass et-taani kaan Sa3b."
+        },
+        {
+          "slot": "car-slow-fast",
+          "arabic": "عربيتي بطيئة، وعربيته سريعة.",
+          "transliteration": "3arabeyyeti baTee2a, w 3arabeyyeto saree3a."
+        },
+        {
+          "slot": "dirty-clean-clothes",
+          "arabic": "حُط الهدوم الوسخة هنا، والنضيفة هناك.",
+          "transliteration": "7oTT el-hedoom el-weskha hena, wen-naDeefa henaak."
+        },
+        {
+          "slot": "parking-allowed-forbidden",
+          "arabic": "الركن هنا مسموح ولا ممنوع؟",
+          "transliteration": "er-rakn hena masmoo7 walla mamnoo3?"
+        },
+        {
+          "slot": "come-early-not-late",
+          "arabic": "تعالى بدري بكره، متبقاش متأخر.",
+          "transliteration": "ta3aala badri bokra, matb2aash met2akhkhar."
+        },
+        {
+          "slot": "polite-clever-son",
+          "arabic": "ابنك مؤدب وشاطر أوي.",
+          "transliteration": "ebnak mo2addab w shaaTer awi."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "red-or-blue-shirt",
+          "arabic": "عايز القميص الأحمر ولا الأزرق؟",
+          "transliteration": "3aayez el-2ameeS el-a7mar walla el-azra2?"
+        },
+        {
+          "slot": "light-blue-sky",
+          "arabic": "السما لونها سماوي، والسحاب أبيض.",
+          "transliteration": "es-sama lonha samaawi, wes-sa7aab abyaD."
+        },
+        {
+          "slot": "table-wood-not-plastic",
+          "arabic": "الترابيزة دي خشب، مش بلاستيك.",
+          "transliteration": "et-trabeeza dee khashab, mish blastik."
+        },
+        {
+          "slot": "round-not-square-plate",
+          "arabic": "هاتلي الطبق المدوّر، مش المربع.",
+          "transliteration": "haatli eT-Taba2 el-medawwar, mish el-morabba3."
+        },
+        {
+          "slot": "gold-necklace-silver-ring",
+          "arabic": "السلسلة بتاعتها دهب، والخاتم فضة.",
+          "transliteration": "es-selsela betaa3et-ha dahab, wel-khaatem feDDa."
+        },
+        {
+          "slot": "knife-very-sharp",
+          "arabic": "خلي بالك، السكينة دي حادة أوي.",
+          "transliteration": "khalli baalak, es-sekkeena dee 7adda awi."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "happy-you-came",
+          "arabic": "أنا مبسوط أوي عشان إنت جيت.",
+          "transliteration": "ana mabsooT awi 3ashaan enta geet."
+        },
+        {
+          "slot": "why-are-you-sad",
+          "arabic": "إنت حزين ليه؟ حصل إيه؟",
+          "transliteration": "enta 7azeen leeh? 7aSal eeh?"
+        },
+        {
+          "slot": "nervous-before-exam",
+          "arabic": "هي متوترة قبل امتحان بكره.",
+          "transliteration": "heyya metwattara 2abl emte7aan bokra."
+        },
+        {
+          "slot": "father-proud-of-you",
+          "arabic": "أبوك فخور بيك جداً.",
+          "transliteration": "abook fakhoor beek gedan."
+        },
+        {
+          "slot": "not-angry-just-worried",
+          "arabic": "متبقاش غضبان، أنا بس كنت قلقان عليك.",
+          "transliteration": "matb2aash ghaDbaan, ana bass kont 2al2aan 3aleek."
+        },
+        {
+          "slot": "laughed-until-tears",
+          "arabic": "ضحك لحد ما الدموع نزلت من عينيه.",
+          "transliteration": "Da7ak la7add ma ed-domoo3 nezlet men 3eneeh."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "kind-honest-neighbour",
+          "arabic": "جارنا طيب وصادق.",
+          "transliteration": "gaarna Tayyeb w Saade2."
+        },
+        {
+          "slot": "language-needs-patience",
+          "arabic": "تعلّم اللغة محتاج صبر كتير.",
+          "transliteration": "ta3allom el-logha me7taag Sabr keteer."
+        },
+        {
+          "slot": "hard-working-helpful-student",
+          "arabic": "هي طالبة مجتهدة وخدومة.",
+          "transliteration": "heyya Taalba mogtahda w khadooma."
+        },
+        {
+          "slot": "dont-be-selfish",
+          "arabic": "متبقاش أناني، قسّم الأكل مع أخوك.",
+          "transliteration": "matb2aash anaani, 2assem el-akl ma3a akhook."
+        },
+        {
+          "slot": "good-manners-important",
+          "arabic": "الأدب مهم في كل بيت.",
+          "transliteration": "el-adab mohemm fi kol beit."
+        },
+        {
+          "slot": "wise-humble-grandfather",
+          "arabic": "جدي راجل حكيم ومتواضع.",
+          "transliteration": "gaddi raagel 7akeem w metwaaDe3."
+        }
+      ]
     }
   ]
 }

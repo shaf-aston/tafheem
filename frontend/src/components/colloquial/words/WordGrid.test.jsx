@@ -10,7 +10,7 @@ describe('WordGrid', () => {
       word('bread', 'food', 'words/bread.jpg'), word('rice', 'food'), word('salt', 'food'),
       word('cup', 'home'), word('plate', 'home'), word('spoon', 'home'),
     ]} />)
-    expect(html.match(/<h4/g)).toHaveLength(2)
+    expect(html.match(/<h4/g)).toBeNull()   // three words a group: one plain run, no headings
     expect(html.match(/<li/g)).toHaveLength(6)
     expect(html.match(/<img/g)).toHaveLength(1)
     expect(html).toContain('words/bread.jpg')

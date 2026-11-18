@@ -10,6 +10,7 @@
  * Keyed by word id (backend/data/colloquial/words.json), the same in every dialect.
  * A word with no spot is only left out of the picture; the cards still teach it.
  */
+import settings from '../../config/colloquial-display.json'
 import shapes from './countryShapes.json'
 import { project, viewOf } from './countryMap'
 import { PANELS, SCENES, panelBoard, sceneBoard } from './sceneBoards'
@@ -65,8 +66,9 @@ const MAPS = [
   { id: 'africa', label: 'North Africa', codes: ['EG', 'LY', 'TN', 'DZ', 'MA', 'SD'] },
 ]
 
-// Fewer words than this on a board and it is no game, only a label.
-const LEAST = 3
+// Fewer of the topic's words than this on a board and it is not shown: a whole house drawn for
+// three dots teaches little (config/colloquial-display.json least-picture-words).
+const LEAST = settings['least-picture-words']
 
 const mapBoard = ({ codes, ...board }, words) => {
   const spots = codes.map((code) => {

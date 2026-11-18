@@ -16,16 +16,144 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "apples-bananas-market",
+          "arabic": "اشتريت تفاح وموز من السوق.",
+          "transliteration": "eshtareet toffaa7 w mooz men es-soo2."
+        },
+        {
+          "slot": "peel-this-orange",
+          "arabic": "ممكن تقشرلي البرتقانة دي؟",
+          "transliteration": "momken te2ashsharli el-borto2aana dee?"
+        },
+        {
+          "slot": "watermelon-in-summer",
+          "arabic": "بناكل بطيخ كل يوم في الصيف.",
+          "transliteration": "benaakol baTTeekh kol yoom fiS-Seif."
+        },
+        {
+          "slot": "break-fast-dates",
+          "arabic": "بنفطر على تمر ومية.",
+          "transliteration": "benefTar 3ala tamr w mayya."
+        },
+        {
+          "slot": "grapes-very-sweet",
+          "arabic": "العنب ده حلو أوي.",
+          "transliteration": "el-3eneb da 7elw awi."
+        },
+        {
+          "slot": "pear-is-rotten",
+          "arabic": "الكمثرى دي بايظة، ارميها.",
+          "transliteration": "el-kommetra dee bayza, ermeeha."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "cut-onion-garlic",
+          "arabic": "قطّع البصل والتوم حتت صغيرة.",
+          "transliteration": "2aTTa3 el-baSal wet-toom 7etat Soghayyara."
+        },
+        {
+          "slot": "tomatoes-cucumbers-salad",
+          "arabic": "محتاجين طماطم وخيار للسلطة.",
+          "transliteration": "me7tageen TamaaTem w khiyaar les-salaTa."
+        },
+        {
+          "slot": "potatoes-in-oven",
+          "arabic": "حُط البطاطس في الفرن ساعة.",
+          "transliteration": "7oTT el-baTaaTes fel-forn saa3a."
+        },
+        {
+          "slot": "mint-in-tea",
+          "arabic": "عايز نعناع في الشاي؟",
+          "transliteration": "3aayez na3naa3 fesh-shaay?"
+        },
+        {
+          "slot": "lentil-soup-winter",
+          "arabic": "أمي بتعمل شوربة عدس في الشتا.",
+          "transliteration": "ommi bete3mel shorbet 3ads fesh-shita."
+        },
+        {
+          "slot": "aubergine-and-okra",
+          "arabic": "أنا مبحبش البتنجان، بس بموت في البامية.",
+          "transliteration": "ana maba7ebbesh el-betengaan, bass bamoot fel-bamya."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "rice-and-flour",
+          "arabic": "محتاجين كيلو رز وشوية دقيق.",
+          "transliteration": "me7tageen keelo rozz w shwayyet de2ee2."
+        },
+        {
+          "slot": "cheese-olive-oil",
+          "arabic": "باكل العيش بالجبنة وزيت الزيتون.",
+          "transliteration": "baakol el-3eish bel-gebna w zeit ez-zeitoon."
+        },
+        {
+          "slot": "children-drink-milk",
+          "arabic": "العيال بيشربوا لبن كل يوم الصبح.",
+          "transliteration": "el-3eyaal beyeshrabo laban kol yoom eS-Sob7."
+        },
+        {
+          "slot": "honey-with-yoghurt",
+          "arabic": "العسل مع الزبادي حلو أوي على الفطار.",
+          "transliteration": "el-3asal ma3a ez-zabaadi 7elw awi 3al-feTaar."
+        },
+        {
+          "slot": "pistachios-almonds-top",
+          "arabic": "حُط شوية فستق ولوز من فوق.",
+          "transliteration": "7oTT shwayyet fosto2 w looz men foo2."
+        },
+        {
+          "slot": "cumin-cinnamon-meat",
+          "arabic": "حُط شوية كمون وقرفة على اللحمة.",
+          "transliteration": "7oTT shwayyet kammoon w 2erfa 3ala el-la7ma."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "chicken-or-fish",
+          "arabic": "عايز فراخ ولا سمك على العشا؟",
+          "transliteration": "3aayez feraakh walla samak 3al-3asha?"
+        },
+        {
+          "slot": "two-shawarma-no-onion",
+          "arabic": "اتنين ساندوتش شاورما، لو سمحت، من غير بصل.",
+          "transliteration": "etneen sandawetsh shawerma, law sama7t, men gheer baSal."
+        },
+        {
+          "slot": "kofta-minced-meat",
+          "arabic": "بنعمل الكفتة من لحمة مفرومة وبقدونس.",
+          "transliteration": "bene3mel el-kofta men la7ma mafrooma w ba2doones."
+        },
+        {
+          "slot": "kunafa-after-dinner",
+          "arabic": "بعد العشا كلنا كنافة.",
+          "transliteration": "ba3d el-3asha kalna konaafa."
+        },
+        {
+          "slot": "olives-omelette-breakfast",
+          "arabic": "دايماً بناكل زيتون وعجة على الفطار.",
+          "transliteration": "daayman benaakol zeitoon w 3egga 3al-feTaar."
+        },
+        {
+          "slot": "stew-black-pepper",
+          "arabic": "اليخنة محتاجة ملح وفلفل أسود أكتر.",
+          "transliteration": "el-yekhna me7taaga mal7 w filfil eswed aktar."
+        }
+      ]
     }
   ]
 }

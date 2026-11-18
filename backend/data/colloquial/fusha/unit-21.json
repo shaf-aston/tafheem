@@ -21,16 +21,144 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "carry-heavy-bag",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تُسَاعِدَنِي فِي حَمْلِ هَذِهِ الْحَقِيبَةِ الثَّقِيلَةِ؟",
+          "transliteration": "hal yumkinuka an tusaa3idanee fee 7amli haadhihi al-7aqeebati ath-thaqeela?"
+        },
+        {
+          "slot": "clean-table-sweep-floor",
+          "arabic": "نَظِّفِ الطَّاوِلَةَ وَاكْنُسِ الْأَرْضَ، مِنْ فَضْلِكَ",
+          "transliteration": "nazzifi at-taawilata waknusi al-arda, min fadlik"
+        },
+        {
+          "slot": "pour-tea-fill-cup",
+          "arabic": "صُبَّ الشَّايَ وَامْلَأْ كُوبِي، مِنْ فَضْلِكَ",
+          "transliteration": "subba ash-shaaya wamla2 koobee, min fadlik"
+        },
+        {
+          "slot": "children-run-jump",
+          "arabic": "الْأَطْفَالُ يَرْكُضُونَ وَيَقْفِزُونَ فِي الْحَدِيقَةِ",
+          "transliteration": "al-atfaalu yarkudoona wa yaqfizoona fee al-7adeeqa"
+        },
+        {
+          "slot": "smell-then-taste",
+          "arabic": "تَعَالَ شُمَّ الطَّعَامَ، ثُمَّ ذُقْهُ",
+          "transliteration": "ta3aala shumma at-ta3aama, thumma dhuqh"
+        },
+        {
+          "slot": "listen-do-not-shout",
+          "arabic": "اِسْتَمِعْ إِلَى الْمُعَلِّمِ وَلَا تَصْرُخْ",
+          "transliteration": "istami3 ilaa al-mu3allimi wa laa tasrukh"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "study-every-evening",
+          "arabic": "أَدْرُسُ الْعَرَبِيَّةَ كُلَّ مَسَاءٍ بَعْدَ الْعَمَلِ",
+          "transliteration": "adrusu al-3arabiyyata kulla masaa2in ba3da al-3amal"
+        },
+        {
+          "slot": "explain-lesson-again",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تَشْرَحَ هَذَا الدَّرْسَ مَرَّةً أُخْرَى، مِنْ فَضْلِكَ؟",
+          "transliteration": "hal yumkinuka an tashra7a haadhaa ad-darsa marratan ukhraa, min fadlik?"
+        },
+        {
+          "slot": "save-file-first",
+          "arabic": "اِحْفَظِ الْمَلَفَّ قَبْلَ أَنْ تُغْلِقَ الْحَاسُوبَ",
+          "transliteration": "i7fazi al-malaffa qabla an tughliqa al-7aasoob"
+        },
+        {
+          "slot": "translated-the-letter",
+          "arabic": "تَرْجَمَتْ لِي الرِّسَالَةَ إِلَى الْإِنْجِلِيزِيَّةِ",
+          "transliteration": "tarjamat lee ar-risaalata ilaa al-injileeziyya"
+        },
+        {
+          "slot": "sign-and-hand-over",
+          "arabic": "وَقِّعْ هُنَا وَسَلِّمِ الْأَوْرَاقَ، مِنْ فَضْلِكَ",
+          "transliteration": "waqqi3 hunaa wa sallimi al-awraaqa, min fadlik"
+        },
+        {
+          "slot": "remember-the-papers",
+          "arabic": "هَلْ تَتَذَكَّرُ أَيْنَ وَضَعْتُ الْأَوْرَاقَ؟",
+          "transliteration": "hal tatadhakkaru ayna wada3tu al-awraaq?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "come-repair-door",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تَجِيءَ غَدًا وَتُصْلِحَ الْبَابَ؟",
+          "transliteration": "hal yumkinuka an tajee2a ghadan wa tusli7a al-baab?"
+        },
+        {
+          "slot": "show-how-to-use",
+          "arabic": "أَظْهِرْ لِي كَيْفَ أَسْتَخْدِمُ هَذِهِ الْآلَةَ",
+          "transliteration": "azhir lee kayfa astakhdimu haadhihi al-aala"
+        },
+        {
+          "slot": "lend-me-pen",
+          "arabic": "هَلْ يُمْكِنُكَ أَنْ تُعِيرَنِي قَلَمَكَ لَحْظَةً؟",
+          "transliteration": "hal yumkinuka an tu3eeranee qalamaka la7za?"
+        },
+        {
+          "slot": "lock-door-night",
+          "arabic": "لَا تَنْسَ أَنْ تُقْفِلَ الْبَابَ فِي اللَّيْلِ",
+          "transliteration": "laa tansa an tuqfila al-baaba fee al-layl"
+        },
+        {
+          "slot": "mother-sews-brother-paints",
+          "arabic": "أُمِّي تَخِيطُ، وَأَخِي يَدْهَنُ الْجِدَارَ.",
+          "transliteration": "ummi takheeTu, wa akhi yadhanu al-jidaar."
+        },
+        {
+          "slot": "started-building-house",
+          "arabic": "بَدَؤُوا يَبْنُونَ بَيْتًا جَدِيدًا السَّنَةَ الْمَاضِيَةَ",
+          "transliteration": "bada2oo yabnoona baytan jadeedan as-sanata al-maadiya"
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "feel-tired-stay-home",
+          "arabic": "أَشْعُرُ بِالتَّعَبِ الْيَوْمَ، لِذَلِكَ سَأَبْقَى فِي الْبَيْتِ",
+          "transliteration": "ash3uru bit-ta3abi al-yawma, lidhaalika sa2abqaa fee al-bayt"
+        },
+        {
+          "slot": "love-respect-parents",
+          "arabic": "أُحِبُّ وَالِدَيَّ وَأَحْتَرِمُهُمَا كَثِيرًا",
+          "transliteration": "u7ibbu waalidayya wa a7tarimuhumaa katheeraa"
+        },
+        {
+          "slot": "dont-worry",
+          "arabic": "لَا تَقْلَقْ، كُلُّ شَيْءٍ سَيَكُونُ بِخَيْرٍ",
+          "transliteration": "laa taqlaq, kullu shay2in sayakoonu bikhayr"
+        },
+        {
+          "slot": "trust-do-not-lie",
+          "arabic": "أَنَا أَثِقُ بِكَ، فَلَا تَكْذِبْ عَلَيَّ مِنْ فَضْلِكَ",
+          "transliteration": "anaa athiqu bika, fa laa takdhib 3alayya min fadlik"
+        },
+        {
+          "slot": "promised-seems-busy",
+          "arabic": "وَعَدَ أَنْ يَأْتِيَ، لَكِنْ يَبْدُو أَنَّهُ مَشْغُولٌ",
+          "transliteration": "wa3ada an ya2tiya, laakin yabdoo annahu mashghool"
+        },
+        {
+          "slot": "hug-grandmother-eid",
+          "arabic": "عَانَقَتْ جَدَّتَهَا وَهَنَّأَتْهَا بِالْعِيدِ",
+          "transliteration": "3aanaqat jaddatahaa wa hanna2at-haa bil-3eed"
+        }
+      ]
     }
   ]
 }

@@ -223,7 +223,7 @@
                         "split": "timed",
                         "children": [
                           {
-                            "branch": "ما المصدرية الظرفية قبل لم ودام",
+                            "branch": "ما المصدرية الظرفية قبل لم ودام، أو بعد اسم قبل فعل ماض",
                             "book": "1.2 p3",
                             "is": "yes",
                             "role": "ghair_amila_other",

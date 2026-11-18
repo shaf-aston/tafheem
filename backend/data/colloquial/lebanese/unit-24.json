@@ -22,19 +22,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "cat-and-small-dog",
+          "arabic": "عِنْدْنَا بِسِّة وْكَلْب زْغِير.",
+          "transliteration": "3endna bisse w kalb zgheer."
+        },
+        {
+          "slot": "feed-the-hens",
+          "arabic": "مِن فَضْلَك طَعْمِي الدْجَاج كِلّ يُوم الصُّبْح.",
+          "transliteration": "min faDlak Ta3mi ed-djaaj kell yom eS-Sob7."
+        },
+        {
+          "slot": "uncle-milks-cow",
+          "arabic": "عَمِّي بْيِحْلُب البَقَرَة بَكِّير الصُّبْح.",
+          "transliteration": "3ammi bye7lob el-ba2ara bakkeer eS-Sob7."
+        },
+        {
+          "slot": "shepherd-takes-sheep",
+          "arabic": "الرَّاعِي بْيَاخُد الخِرْفَان عَالجَبَل.",
+          "transliteration": "er-raa3i byaakhod el-khirfaan 3al-jabal."
+        },
+        {
+          "slot": "camel-walks-desert",
+          "arabic": "الجَمَل فِيه يِمْشِي أَيَّام بِالصَّحْرَاء.",
+          "transliteration": "ej-jamal fee yemshi ayyaam biS-Sa7raa."
+        },
+        {
+          "slot": "horses-on-farm",
+          "arabic": "فِي أَحْصِنِة بِمَزْرَعْتَك؟",
+          "transliteration": "fi a7Sine b-mazra3tak?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "lion-tiger-zoo",
+          "arabic": "شِفْنَا أَسَد وْنِمِر بِحَدِيقَة الحَيَوَان.",
+          "transliteration": "shefna asad w nemer b-7adee2et el-7ayawaan."
+        },
+        {
+          "slot": "elephant-biggest-animal",
+          "arabic": "الفِيل أَكْبَر حَيَوَان هُون.",
+          "transliteration": "el-feel akbar 7ayawaan hoon."
+        },
+        {
+          "slot": "snake-under-rock",
+          "arabic": "اِنْتِبِه، فِي حَيِّة تَحْت الصَّخْرَة.",
+          "transliteration": "ntebeh, fi 7ayye ta7t eS-Sakhra."
+        },
+        {
+          "slot": "monkey-took-banana",
+          "arabic": "القِرْد أَخَد المَوْزَة مِن إِيدِي.",
+          "transliteration": "el-2erd akhad el-mooze men eedi."
+        },
+        {
+          "slot": "gazelle-runs-fast",
+          "arabic": "الغَزَال بْيِرْكُض كْتِير سَرِيع بِالصَّحْرَاء.",
+          "transliteration": "el-ghazaal byerkoD kteer saree3 biS-Sa7raa."
+        },
+        {
+          "slot": "foxes-wolves-mountains",
+          "arabic": "فِي ثَعَالِب وْدْيَاب بِهَالجْبَال؟",
+          "transliteration": "fi ta3aaleb w dyaab b-hal-jbaal?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "bird-built-nest",
+          "arabic": "الطَّير عِمِل عَشُّو بِالشَّجْرَة.",
+          "transliteration": "eT-Teer 3emel 3ashsho bish-shajara."
+        },
+        {
+          "slot": "falcon-flies-high",
+          "arabic": "الصَّقِر بْيِطِير عَالِي فُوق الصَّحْرَاء.",
+          "transliteration": "eS-Sa2er byeTeer 3aali foo2 eS-Sa7raa."
+        },
+        {
+          "slot": "mosquito-bit-me",
+          "arabic": "نَامُوسِة عَضِّتْنِي مْبَارِح بِاللَّيْل.",
+          "transliteration": "naamoose 3aDDetni mbaare7 bil-layl."
+        },
+        {
+          "slot": "many-fish-sea",
+          "arabic": "فِي سَمَك كْتِير بِهَالبَحِر.",
+          "transliteration": "fi samak kteer b-hal-ba7er."
+        },
+        {
+          "slot": "bees-make-honey",
+          "arabic": "النَّحِل بْيِعْمِل عَسَل مِن الزْهُور.",
+          "transliteration": "en-na7el bye3mel 3asal men ez-zhoor."
+        },
+        {
+          "slot": "dolphins-turtle-boat",
+          "arabic": "شِفْنَا دَلَافِين وْسِلْحْفَاة حَدّ القَارِب.",
+          "transliteration": "shefna dalaafeen w sel7efe 7add el-2aareb."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "water-garden-flowers",
+          "arabic": "مِن فَضْلَك اِسْقِي الوَرْد بِالجْنِينِة.",
+          "transliteration": "min faDlak es2i el-ward bil-jneene."
+        },
+        {
+          "slot": "grandfather-olive-trees",
+          "arabic": "جِدِّي زَرَع هَالزَّيْتُونَات.",
+          "transliteration": "jeddi zara3 haz-zeetoonaat."
+        },
+        {
+          "slot": "rose-has-thorns",
+          "arabic": "اِنْتِبِه، الوَرْدِة فِيهَا شُوك.",
+          "transliteration": "ntebeh, el-warde feeha shok."
+        },
+        {
+          "slot": "leaves-fall-autumn",
+          "arabic": "الوَرَق بْيُوقَع عَن الشَّجَر بِالخَرِيف.",
+          "transliteration": "el-wara2 byoo2a3 3an esh-shajar bil-khareef."
+        },
+        {
+          "slot": "palm-tree-dates",
+          "arabic": "هَالنَّخْلِة بْتِعْطِي تَمِر كْتِير.",
+          "transliteration": "han-nakhle bte3Ti tamer kteer."
+        },
+        {
+          "slot": "pick-fruit-orchard",
+          "arabic": "إِيمْتَى بْتِقْطُف الفَوَاكِه مِن البُسْتَان؟",
+          "transliteration": "eimta bte2Tof el-fawaake men el-bostaan?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "hot-sun-desert",
+          "arabic": "الشَّمْس كْتِير حَامْيِة بِالصَّحْرَاء.",
+          "transliteration": "esh-shams kteer 7aamye biS-Sa7raa."
+        },
+        {
+          "slot": "moon-and-stars",
+          "arabic": "طَلِّع عَالقَمَر وِالنّْجُوم اللَّيْلِة.",
+          "transliteration": "Talle3 3al-2amar w en-njoom el-layle."
+        },
+        {
+          "slot": "beach-every-friday",
+          "arabic": "مْنِرُوح عَالبْلَاج كِلّ جِمْعَة.",
+          "transliteration": "mnrou7 3al-plaaj kell jem3a."
+        },
+        {
+          "slot": "mountain-slept-cave",
+          "arabic": "طِلْعُوا عَالجَبَل وْنَامُوا بِمْغَارَة.",
+          "transliteration": "Tel3o 3al-jabal w naamo b-mghaara."
+        },
+        {
+          "slot": "river-green-valley",
+          "arabic": "النَّهْر بْيِمْشِي بِنُصّ الوَادِي الأَخْضَر.",
+          "transliteration": "en-nahr byemshi b-noSS el-waadi el-akhDar."
+        },
+        {
+          "slot": "no-clouds-sky",
+          "arabic": "مَا فِي غَيْم بِالسَّمَا اليُوم.",
+          "transliteration": "ma fi ghaym bis-sama el-yom."
+        }
+      ]
     }
   ]
 }

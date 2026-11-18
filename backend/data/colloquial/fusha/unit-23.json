@@ -21,19 +21,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "head-hurts-today",
+          "arabic": "رَأْسِي يُؤْلِمُنِي كَثِيرًا الْيَوْمَ",
+          "transliteration": "ra2see yu2limunee katheeran al-yawm"
+        },
+        {
+          "slot": "wash-face-hands",
+          "arabic": "اِغْسِلْ وَجْهَكَ وَيَدَيْكَ قَبْلَ أَنْ تَأْكُلَ",
+          "transliteration": "ighsil wajhaka wa yadayka qabla an ta2kul"
+        },
+        {
+          "slot": "brush-teeth-daily",
+          "arabic": "نَظِّفْ أَسْنَانَكَ كُلَّ صَبَاحٍ وَكُلَّ لَيْلَةٍ",
+          "transliteration": "nazzif asnaanaka kulla sabaa7in wa kulla layla"
+        },
+        {
+          "slot": "fell-broke-arm",
+          "arabic": "سَقَطَ وَكَسَرَ ذِرَاعَهُ",
+          "transliteration": "saqata wa kasara dhiraa3ah"
+        },
+        {
+          "slot": "back-knee-hurt",
+          "arabic": "ظَهْرِي وَرُكْبَتِي يُؤْلِمَانِنِي بَعْدَ الْمَشْيِ",
+          "transliteration": "zahree wa rukbatee yu2limaaninee ba3da al-mashy"
+        },
+        {
+          "slot": "long-hair-brown-eyes",
+          "arabic": "شَعْرُهَا طَوِيلٌ وَعَيْنَاهَا بُنِّيَّتَانِ",
+          "transliteration": "sha3ruhaa taweelun wa 3aynaahaa bunniyyataan"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "wear-your-coat",
+          "arabic": "اِلْبَسْ مِعْطَفَكَ، الْجَوُّ بَارِدٌ فِي الْخَارِجِ",
+          "transliteration": "ilbas mi3tafaka, al-jawwu baaridun fee al-khaarij"
+        },
+        {
+          "slot": "shoes-too-small",
+          "arabic": "هَذَا الْحِذَاءُ صَغِيرٌ جِدًّا عَلَيَّ",
+          "transliteration": "haadhaa al-7idhaa2u sagheerun jiddan 3alayy"
+        },
+        {
+          "slot": "white-thobe-friday",
+          "arabic": "يَلْبَسُ ثَوْبًا أَبْيَضَ يَوْمَ الْجُمُعَةِ",
+          "transliteration": "yalbasu thawban abyada yawma al-jumu3a"
+        },
+        {
+          "slot": "seen-my-glasses",
+          "arabic": "هَلْ رَأَيْتَ نَظَّارَتِي فِي أَيِّ مَكَانٍ؟",
+          "transliteration": "hal ra2ayta nazzaaratee fee ayyi makaan?"
+        },
+        {
+          "slot": "button-fell-off-shirt",
+          "arabic": "سَقَطَ زِرٌّ مِنْ قَمِيصِي",
+          "transliteration": "saqata zirrun min qameesee"
+        },
+        {
+          "slot": "new-headscarf-abaya",
+          "arabic": "اِشْتَرَتْ حِجَابًا جَدِيدًا وَعَبَاءَةً سَوْدَاءَ",
+          "transliteration": "ishtarat 7ijaaban jadeedan wa 3abaa2atan sawdaa2"
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "three-brothers-one-sister",
+          "arabic": "لِي ثَلَاثَةُ إِخْوَةٍ وَأُخْتٌ وَاحِدَةٌ",
+          "transliteration": "lee thalaathatu ikhwatin wa ukhtun waa7ida"
+        },
+        {
+          "slot": "grandmother-lives-with-us",
+          "arabic": "جَدَّتِي تَسْكُنُ مَعَنَا",
+          "transliteration": "jaddatee taskunu ma3anaa"
+        },
+        {
+          "slot": "paternal-uncle-doctor",
+          "arabic": "عَمِّي طَبِيبٌ",
+          "transliteration": "3ammee tabeeb"
+        },
+        {
+          "slot": "married-or-single",
+          "arabic": "هَلْ أَنْتَ مُتَزَوِّجٌ أَمْ أَعْزَبُ؟",
+          "transliteration": "hal anta mutazawwijun am a3zab?"
+        },
+        {
+          "slot": "neighbour-came-guest",
+          "arabic": "جَاءَنَا جَارُنَا ضَيْفًا لَيْلَةَ أَمْسِ",
+          "transliteration": "jaa2anaa jaarunaa dayfan laylata ams"
+        },
+        {
+          "slot": "cousin-baby-girl",
+          "arabic": "اِبْنَةُ عَمِّي وَلَدَتْ أَمْسِ، وَالرَّضِيعُ بِنْتٌ",
+          "transliteration": "ibnatu 3ammee waladat amsi, war-radee3u bint"
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "engineer-and-teacher",
+          "arabic": "أَبِي مُهَنْدِسٌ وَأُمِّي مُعَلِّمَةٌ",
+          "transliteration": "abee muhandisun wa ummee mu3allima"
+        },
+        {
+          "slot": "call-the-doctor",
+          "arabic": "اِتَّصِلْ بِالطَّبِيبِ، الطِّفْلُ مَرِيضٌ جِدًّا",
+          "transliteration": "ittasil bit-tabeebi, at-tiflu mareedun jiddaa"
+        },
+        {
+          "slot": "car-to-mechanic",
+          "arabic": "أَخَذْتُ السَّيَّارَةَ إِلَى الْمِيكَانِيكِيِّ أَمْسِ",
+          "transliteration": "akhadhtu as-sayyaarata ilaa al-meekaaneekiyyi ams"
+        },
+        {
+          "slot": "barber-cut-hair",
+          "arabic": "قَصَّ الْحَلَّاقُ شَعْرِي قَصِيرًا",
+          "transliteration": "qassa al-7allaaqu sha3ree qaseeraa"
+        },
+        {
+          "slot": "wants-to-be-lawyer",
+          "arabic": "تُرِيدُ أَنْ تُصْبِحَ مُحَامِيَةً بَعْدَ الْجَامِعَةِ",
+          "transliteration": "tureedu an tusbi7a mu7aamiyatan ba3da al-jaami3a"
+        },
+        {
+          "slot": "student-asked-professor",
+          "arabic": "سَأَلَ الطَّالِبُ الْأُسْتَاذَ سُؤَالًا",
+          "transliteration": "sa2ala at-taalibu al-ustaadha su2aalaa"
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "from-syria-wife-egyptian",
+          "arabic": "أَنَا مِنْ سُورِيَا، وَزَوْجَتِي مِصْرِيَّةٌ",
+          "transliteration": "anaa min sooriyaa, wa zawjatee misriyya"
+        },
+        {
+          "slot": "what-is-your-nationality",
+          "arabic": "مَا جِنْسِيَّتُكَ، وَأَيْنَ تَسْكُنُ؟",
+          "transliteration": "maa jinsiyyatuka, wa ayna taskun?"
+        },
+        {
+          "slot": "visited-morocco-tunisia",
+          "arabic": "زُرْنَا الْمَغْرِبَ وَتُونِسَ فِي الصَّيْفِ الْمَاضِي",
+          "transliteration": "zurnaa al-maghriba wa toonisa fee as-sayfi al-maadee"
+        },
+        {
+          "slot": "brother-studies-britain",
+          "arabic": "أَخِي يَدْرُسُ فِي بَرِيطَانِيَا",
+          "transliteration": "akhee yadrusu fee bareetaaniyaa"
+        },
+        {
+          "slot": "jordan-next-to-palestine",
+          "arabic": "الْأُرْدُنُّ بِجَانِبِ فِلَسْطِينَ وَالْعِرَاقِ",
+          "transliteration": "al-urdunnu bijaanibi filasteena wal-3iraaq"
+        },
+        {
+          "slot": "pilgrims-saudi-arabia",
+          "arabic": "يُسَافِرُ حُجَّاجٌ كَثِيرُونَ إِلَى السُّعُودِيَّةِ كُلَّ عَامٍ",
+          "transliteration": "yusaafiru 7ujjaajun katheeroona ilaa as-su3oodiyyati kulla 3aam"
+        }
+      ]
     }
   ]
 }

@@ -7,6 +7,8 @@ import { useState } from 'react'
 import { grouped } from '../../../lib/colloquial/wordGroups'
 import Mosaic from '../topic/Mosaic'
 import Sheet from '../topic/Sheet'
+import { splitMet } from '../../../lib/colloquial/metWords'
+import MetWords from './MetWords'
 
 // Each heading's words split into its pictured run and its plain run, in that order.
 const runs = (words) => grouped(words).map(([category, group]) => [
@@ -14,8 +16,10 @@ const runs = (words) => grouped(words).map(([category, group]) => [
   [group.filter((w) => w.image), group.filter((w) => !w.image)].filter((run) => run.length),
 ])
 
-export default function WordGallery({ words, narrow = false }) {
+// The topic's new words as the mosaic; the ones an earlier topic taught, folded away under it.
+export default function WordGallery({ words: all, narrow = false }) {
   const [open, setOpen] = useState(null)
+  const [words, met] = splitMet(all)
   const sections = runs(words)
   // The sheet steps through the words in the order they are shown.
   const shown = sections.flatMap(([, parts]) => parts.flat())
@@ -34,6 +38,7 @@ export default function WordGallery({ words, narrow = false }) {
           })}
         </section>
       ))}
+      <MetWords words={met} open={!words.length} />
       {open !== null && <Sheet phrases={shown} at={open} onAt={setOpen} onClose={() => setOpen(null)} noun="word" />}
     </div>
   )

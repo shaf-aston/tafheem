@@ -18,22 +18,214 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "where-house-who-lives",
+          "arabic": "فين بيتك، ومين ساكن فيه؟",
+          "transliteration": "feen baytak, w meen saakin feeh?"
+        },
+        {
+          "slot": "what-is-this-that",
+          "arabic": "إيش ذا، وإيش ذاك؟",
+          "transliteration": "eesh dhaa, w eesh dhaak?"
+        },
+        {
+          "slot": "how-many-children",
+          "arabic": "هم كم معاهم جُهّال؟",
+          "transliteration": "hum kam ma3aahum juhhaal?"
+        },
+        {
+          "slot": "we-here-he-not",
+          "arabic": "إحنا هنا، لكن هو مش هناك.",
+          "transliteration": "i7na huna, laakin huwa mish hunaak."
+        },
+        {
+          "slot": "why-she-left-early",
+          "arabic": "ليش هي خرجت من البيت بدري قوي؟",
+          "transliteration": "leesh hiyya kharajat min al-bayt badri gawi?"
+        },
+        {
+          "slot": "where-from-when-arrive",
+          "arabic": "انت من فين، وإمتى وصلت؟",
+          "transliteration": "inta min feen, w imta waSalt?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "keys-under-table",
+          "arabic": "حُطّ المفاتيح تحت الطاولة، لو سمحت.",
+          "transliteration": "7uTT al-mafaatee7 ta7t aT-Taawila, law samaht."
+        },
+        {
+          "slot": "bag-next-to-door",
+          "arabic": "الشنطة جنب الباب، ورا الكرسي.",
+          "transliteration": "ash-shanTa janb al-baab, wara al-kursi."
+        },
+        {
+          "slot": "tea-milk-no-sugar",
+          "arabic": "أشرب الشاي مع حليب، لكن بدون سكّر.",
+          "transliteration": "ashrab ash-shaay ma3 7aleeb, laakin bidoon sukkar."
+        },
+        {
+          "slot": "home-until-evening",
+          "arabic": "جلسنا عندنا في البيت لين المسا، لأن كانت تمطر.",
+          "transliteration": "jalasna 3indana fi l-bayt layn al-masa, li2ann kaanat timTir."
+        },
+        {
+          "slot": "wash-hands-before-after",
+          "arabic": "اغسل يديك قبل الأكل وبعده.",
+          "transliteration": "ighsil yadayk gabl al-akl w ba3dah."
+        },
+        {
+          "slot": "shop-opposite-mosque",
+          "arabic": "الدكان مقابل الجامع، بين البنك والمدرسة.",
+          "transliteration": "ad-dukkaan mugaabil al-jaami3, bayn al-bank w al-madrasa."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "always-early-sometimes-late",
+          "arabic": "دوم أقوم بدري، لكن ساعات أتأخّر.",
+          "transliteration": "dawm agoom badri, laakin saa3aat at2akhkhar."
+        },
+        {
+          "slot": "father-never-coffee",
+          "arabic": "أبوي ما يشربش قهوة بالليل أبداً.",
+          "transliteration": "abooy ma yishrabsh gahwa bil-layl abadan."
+        },
+        {
+          "slot": "eat-little-more",
+          "arabic": "كُل شوية زيادة الله يحفظك، الأكل كفاية.",
+          "transliteration": "kul shuwayya ziyaada allaah yi7faZak, al-akl kifaaya."
+        },
+        {
+          "slot": "still-at-work",
+          "arabic": "هو لسا في الشغل، ولا قد خرج من قبل؟",
+          "transliteration": "huwa lissa fi sh-shughl, walla gad kharaj min gabl?"
+        },
+        {
+          "slot": "visit-once-week",
+          "arabic": "نزور جدتنا مرة واحدة في الأسبوع، عادةً يوم الجمعة.",
+          "transliteration": "nizoor jaddatna marra waa7ida fi l-usboo3, 3aadatan yawm al-jum3a."
+        },
+        {
+          "slot": "almost-everyone-came",
+          "arabic": "تقريباً الكل وصلوا، والبيت كامل كان مليان قوي.",
+          "transliteration": "tagreeban al-kull waSalu, w al-bayt kaamil kaan malyaan gawi."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "son-twelve-years",
+          "arabic": "ابني عمره اثنعش سنة.",
+          "transliteration": "ibni 3umrah ithna3sh sana."
+        },
+        {
+          "slot": "fifteen-students-class",
+          "arabic": "في صفّنا خمسطعش طالب.",
+          "transliteration": "fi Saffana khamasTa3sh Taalib."
+        },
+        {
+          "slot": "flat-third-floor",
+          "arabic": "شقّتنا في الدور الثالث.",
+          "transliteration": "shaggatna fi d-door ath-thaalith."
+        },
+        {
+          "slot": "thousand-people-wedding",
+          "arabic": "أكثر من ألف نفر حضروا العرس.",
+          "transliteration": "akthar min alf nafar 7aDaru al-3irs."
+        },
+        {
+          "slot": "count-to-twenty",
+          "arabic": "عُدّ لين عشرين، وبعدين افتح عيونك.",
+          "transliteration": "3udd layn 3ishreen, w ba3deen ifta7 3uyoonak."
+        },
+        {
+          "slot": "first-and-last",
+          "arabic": "هو جا الأول في السباق، وأنا جيت الآخر.",
+          "transliteration": "huwa jaa al-awwal fi s-sibaag, w ana jeet al-aakhir."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "two-kilos-tomatoes",
+          "arabic": "عطني كيلوين طماطم، لو سمحت.",
+          "transliteration": "3aTni keeloyn Tamaatim, law samaht."
+        },
+        {
+          "slot": "bottle-of-water",
+          "arabic": "خذ معك قنينة ماي.",
+          "transliteration": "khudh ma3ak gunniinat maay."
+        },
+        {
+          "slot": "too-much-sugar",
+          "arabic": "في ذا الشاي سكّر زيادة.",
+          "transliteration": "fi dha sh-shaay sukkar ziyaada."
+        },
+        {
+          "slot": "both-brothers-far",
+          "arabic": "إخواني الاثنين ساكنين بعيد.",
+          "transliteration": "ikhwaani l-ithneen saakineen ba3eed."
+        },
+        {
+          "slot": "each-child-piece",
+          "arabic": "كل واحد من الجهال أخذ قطعة كيك وحدة.",
+          "transliteration": "kull waa7id min al-juhhaal akhadh giT3at keek wa7da."
+        },
+        {
+          "slot": "room-length-width",
+          "arabic": "الغرفة أربعة متر في الطول، وثلاثة في العرض.",
+          "transliteration": "al-ghurfa arba3a mitr fi T-Tool, w thalaatha fi l-3arD."
+        }
+      ]
     },
     {
-      "lesson": "lesson-06"
+      "lesson": "lesson-06",
+      "sentences": [
+        {
+          "slot": "ramadan-march-this-year",
+          "arabic": "رمضان يبدأ في مارس هذه السنة.",
+          "transliteration": "ramaDaan yibda2 fi maaris hadhi as-sana."
+        },
+        {
+          "slot": "birth-tenth-may",
+          "arabic": "تاريخ الميلاد حقي عشرة مايو.",
+          "transliteration": "taareekh al-meelaad 7aggi 3ashara maayo."
+        },
+        {
+          "slot": "school-starts-september",
+          "arabic": "المدرسة تبدأ في سبتمبر كل سنة.",
+          "transliteration": "al-madrasa tibda2 fi sibtambir kull sana."
+        },
+        {
+          "slot": "hajj-dhu-al-hijjah",
+          "arabic": "الحج في شهر ذو الحجة.",
+          "transliteration": "al-7ajj fi shahr dhu al-7ijja."
+        },
+        {
+          "slot": "travel-next-month-july",
+          "arabic": "شَنسافر الشهر الجاي، في يوليو.",
+          "transliteration": "sha-nsaafir ash-shahr aj-jaay, fi yoolyo."
+        },
+        {
+          "slot": "hijri-or-gregorian",
+          "arabic": "انت تستعمل التقويم الهجري ولا الميلادي؟",
+          "transliteration": "inta tista3mil at-tagweem al-hijri walla al-meelaadi?"
+        }
+      ]
     }
   ]
 }

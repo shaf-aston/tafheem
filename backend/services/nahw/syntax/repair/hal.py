@@ -32,6 +32,9 @@ def hal_clause(bases: list[dict], s: Sentence) -> None:
         fa = s.by_id.get(after["id"] - 1)
         if fa and fa["pos"] == "PRT" and fa["lemma"].strip("+") == "ف":
             continue
+        # وَنَحْنُ الْقُضَاةَ نَلْتَزِمُ: a word may stand between; a pronoun takes no صفة, so a verb hung on it is its khabar
+        if not is_verb(after) and is_subject_pronoun(subject) and subject["head"] in (waw["id"], waw["head"]):
+            after = next((k for k in s.kids(subject) if is_verb(k) and k["id"] > subject["id"]), after)
         if is_verb(after) and (subject["head"] in (waw["id"], waw["head"]) or after["head"] == subject["id"]):
             s.relink(after, waw["id"], "OBJ")
             s.relink(subject, after["id"], "SBJ")

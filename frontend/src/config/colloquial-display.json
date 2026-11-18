@@ -4,11 +4,17 @@
   "_comment-match-board": "The most pairs one Match board shows. More words than this split into several evenly sized rounds.",
   "match-board": 5,
 
-  "_comment-least-under-heading": "A heading in a word bank needs this many words; a smaller group joins the heading before it.",
-  "least-under-heading": 3,
+  "_comment-least-under-heading": "Words are headed by their group only when every group in the list has this many; otherwise one plain run. A heading over two or three words beside one over twenty is clutter, not a guide.",
+  "least-under-heading": 6,
 
   "_comment-words-preview": "How many of a phrase topic's words show before 'Show all': the full grid is several screens on a phone, and the conversation and practice below it are the topic's main work.",
   "words-preview": 6,
+
+  "_comment-label-rail": "Every picture board has a rail on its right, this share of the drawing's width, where a tapped place's word stands level with it. Empty space, so a word never covers the drawing, on any board.",
+  "label-rail": 0.42,
+
+  "_comment-least-picture-words": "A picture board is shown only when it can place at least this many of the topic's words: a whole house drawn for three dots teaches little.",
+  "least-picture-words": 6,
 
   "_comment-misses-before-shown": "On a Picture board's Test, how many wrong taps on one word before its place is ringed for the learner.",
   "misses-before-shown": 2,

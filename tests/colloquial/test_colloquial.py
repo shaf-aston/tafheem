@@ -175,7 +175,8 @@ def test_a_topic_with_no_words_said_yet_is_coming_but_half_is_caught(monkeypatch
 
 
 def test_a_word_twice_in_one_topic_is_caught(monkeypatch):
-    assert any("repeats" in why for why in bank_faults(words_said(*EIGHT[:7], "بيت"), monkeypatch=monkeypatch)[1])
+    # The same word twice in a topic looks the same to the learner (wordlist.bank).
+    assert any("looks the same as" in why for why in bank_faults(words_said(*EIGHT[:7], "بيت"), monkeypatch=monkeypatch)[1])
 
 
 def test_a_latin_or_cyrillic_letter_in_a_word_is_caught(monkeypatch):

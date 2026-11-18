@@ -22,22 +22,214 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "where-house-who-lives",
+          "arabic": "وَيْن بَيْتَك، وْمِين سَاكِن فِيه؟",
+          "transliteration": "wein beitak, w meen saaken fee?"
+        },
+        {
+          "slot": "what-is-this-that",
+          "arabic": "شُو هَيْدَا، وْشُو هَيْدَاك؟",
+          "transliteration": "shu heyda, w shu heydaak?"
+        },
+        {
+          "slot": "how-many-children",
+          "arabic": "هِنِّن كَم وَلَد عِنْدُن؟",
+          "transliteration": "hinne kam walad 3endon?"
+        },
+        {
+          "slot": "we-here-he-not",
+          "arabic": "نِحْنَا هُون، بَسّ هُوِّي مِش هُونِيك.",
+          "transliteration": "ne7na hoon, bass huwwe mish hooneek."
+        },
+        {
+          "slot": "why-she-left-early",
+          "arabic": "لَيْش هِيِّي فَلِّت مِن البَيْت هَالقَدّ بَكِّير؟",
+          "transliteration": "leish hiyye fallet min el-beit hal-2add bakkeer?"
+        },
+        {
+          "slot": "where-from-when-arrive",
+          "arabic": "إِنْتَ مِن وَيْن، وْإِيمْتَى وْصِلْت؟",
+          "transliteration": "inte min wein, w eimta wSelt?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "keys-under-table",
+          "arabic": "حُطّ المَفَاتِيح تَحْت الطَّاوْلِة، إِذَا بِتْرِيد.",
+          "transliteration": "7oTT el-mafaatee7 ta7et eT-Taawle, iza bitreed."
+        },
+        {
+          "slot": "bag-next-to-door",
+          "arabic": "الشَّنْطَة جَنْب البَاب، وَرَا الكِرْسِي.",
+          "transliteration": "esh-shanTa janb el-baab, wara el-kersi."
+        },
+        {
+          "slot": "tea-milk-no-sugar",
+          "arabic": "بِشْرَب الشَّاي مَع حَلِيب، بَسّ بِلَا سُكَّر.",
+          "transliteration": "bishrab esh-shaay ma3 7aleeb, bass bala sukkar."
+        },
+        {
+          "slot": "home-until-evening",
+          "arabic": "ضَلَّيْنَا عِنْدْنَا بِالبَيْت لَحَدّ المَسَا لَأَنُّو كَانِت عَم تِشْتِي.",
+          "transliteration": "Dallayna 3endna bil-beit la7add el-masa la2anno kaanet 3am teshti."
+        },
+        {
+          "slot": "wash-hands-before-after",
+          "arabic": "غَسِّل إِيدَيْك قَبْل الأَكِل وْبَعْدُو.",
+          "transliteration": "ghassel eedeik 2abl el-akel w ba3do."
+        },
+        {
+          "slot": "shop-opposite-mosque",
+          "arabic": "المَحَلّ مُقَابِل الجَامِع، بَين البَنْك وِالمَدْرَسِة.",
+          "transliteration": "el-ma7all mu2aabel ej-jaame3, bein el-bank w el-madrase."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "always-early-sometimes-late",
+          "arabic": "دَايْماً بُوعَى بَكِّير، بَسّ أَحْيَاناً بِتْأَخَّر.",
+          "transliteration": "daayman boo3a bakkeer, bass a7yaanan bit2akhkhar."
+        },
+        {
+          "slot": "father-never-coffee",
+          "arabic": "بَيِّي مَا بْيِشْرَب قَهْوِة بِاللَّيْل أَبَداً.",
+          "transliteration": "bayyi ma byeshrab 2ahwe bil-layl 2abadan."
+        },
+        {
+          "slot": "eat-little-more",
+          "arabic": "مِن فَضْلَك كُول شْوَيّ أَكْتَر، فِي أَكِل كْفَايِة.",
+          "transliteration": "min faDlak kool shwayy aktar, fi akel kfaaye."
+        },
+        {
+          "slot": "still-at-work",
+          "arabic": "هُوِّي لِسَّا بِالشِّغِل، وَلَّا خَلَص فَلّ؟",
+          "transliteration": "huwwe lissa bish-shighel, walla khalaS fall?"
+        },
+        {
+          "slot": "visit-once-week",
+          "arabic": "مْنِزُور تِيتَا مَرَّة وَاحْدِة بِالأُسْبُوع، عَادَةً نْهَار الجِمْعَة.",
+          "transliteration": "mnezoor teeta marra waa7de bil-esboo3, 3aadatan nhaar ej-jem3a."
+        },
+        {
+          "slot": "almost-everyone-came",
+          "arabic": "تَقْرِيباً الكِلّ إِجَا، وْالبَيْت كَامِل كَان كْتِير مَلْيَان.",
+          "transliteration": "ta2reeban el-kell eja, w el-beit kaamel kaan kteer malyaan."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "son-twelve-years",
+          "arabic": "اِبْنِي عُمْرُو تْنَعْش سِنِة.",
+          "transliteration": "ebni 3omro tna3sh sene."
+        },
+        {
+          "slot": "fifteen-students-class",
+          "arabic": "فِي خَمِسْتَعْش طَالِب بِصَفّْنَا.",
+          "transliteration": "fi khamsta3sh Taaleb b-Saffna."
+        },
+        {
+          "slot": "flat-third-floor",
+          "arabic": "شَقِّتْنَا بِالطَّابِق التَّالِت.",
+          "transliteration": "sha22etna biT-Taabe2 et-taaleth."
+        },
+        {
+          "slot": "thousand-people-wedding",
+          "arabic": "أَكْتَر مِن أَلْف شَخْص إِجُوا عَالعِرْس.",
+          "transliteration": "aktar min alf shakhS eju 3al-3ers."
+        },
+        {
+          "slot": "count-to-twenty",
+          "arabic": "عِدّ لَعِشْرِين، وْبَعْدَين فْتَاح عْيُونَك.",
+          "transliteration": "3edd la-3ishreen, w ba3dein ftaa7 3yoonak."
+        },
+        {
+          "slot": "first-and-last",
+          "arabic": "هُوِّي طِلِع الأَوَّل بِالسّْبَاق، وْأَنَا طْلِعْت الأَخِير.",
+          "transliteration": "huwwe Tele3 el-awwal bis-sbaa2, w ana Tle3t el-akheer."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "two-kilos-tomatoes",
+          "arabic": "عْطِينِي تْنَين كِيلُو بَنَدُورَة، إِذَا بِتْرِيد.",
+          "transliteration": "3Teeni tnein keelo banadoora, iza bitreed."
+        },
+        {
+          "slot": "bottle-of-water",
+          "arabic": "خُود مَعَك قْنِينِة مَيّ.",
+          "transliteration": "khood ma3ak 2neenet mayy."
+        },
+        {
+          "slot": "too-much-sugar",
+          "arabic": "فِي سُكَّر كْتِير زْيَادِة بِهَالشَّاي.",
+          "transliteration": "fi sukkar kteer ziyaade b-hash-shaay."
+        },
+        {
+          "slot": "both-brothers-far",
+          "arabic": "إِخْوِتِي الاتْنَين سَاكْنِين بْعِيد.",
+          "transliteration": "ekhwete el-tneen saaknin b3eed."
+        },
+        {
+          "slot": "each-child-piece",
+          "arabic": "كِلّ وَاحَد مِن الوْلَاد أَخَد قِطْعَة كَاتُو.",
+          "transliteration": "kell waa7ad min el-wlaad akhad 2eT3a gaato."
+        },
+        {
+          "slot": "room-length-width",
+          "arabic": "الأُوضَة طُولَا أَرْبْعَة مِتْر وْعَرْضَا تْلَاتِة.",
+          "transliteration": "el-ooDa Toola arb3a metr w 3arDa tlaate."
+        }
+      ]
     },
     {
-      "lesson": "lesson-06"
+      "lesson": "lesson-06",
+      "sentences": [
+        {
+          "slot": "ramadan-march-this-year",
+          "arabic": "رَمَضَان بْيِبْلَش بِآذَار هَالسِّنِة.",
+          "transliteration": "ramaDaan byeblash b-aazaar has-sane."
+        },
+        {
+          "slot": "birth-tenth-may",
+          "arabic": "تَارِيخ الوِلَادِة تَبَعِي عَشْرَة أَيَّار.",
+          "transliteration": "tareekh el-welaade taba3i 3ashra ayyaar."
+        },
+        {
+          "slot": "school-starts-september",
+          "arabic": "المَدْرَسِة بْتِبْلَش بِأَيْلُول كِلّ سِنِة.",
+          "transliteration": "el-madrase btiblash b-eilool kell sane."
+        },
+        {
+          "slot": "hajj-dhu-al-hijjah",
+          "arabic": "الحَجّ بِشَهْر ذُو الحِجِّة.",
+          "transliteration": "el-7ajj b-shahr zu l-7ijje."
+        },
+        {
+          "slot": "travel-next-month-july",
+          "arabic": "رَح نْسَافِر الشَّهْر الجَايِ، بِتَمُّوز.",
+          "transliteration": "ra7 nsaafer esh-shahr ej-jaay, b-tammooz."
+        },
+        {
+          "slot": "hijri-or-gregorian",
+          "arabic": "بْتِسْتَعْمِل الرُّوزْنَامِة الهِجْرِيِّة وَلَّا المِيلَادِيِّة؟",
+          "transliteration": "btesta3mel er-roozname el-hijriyye walla el-meelaadiyye?"
+        }
+      ]
     }
   ]
 }

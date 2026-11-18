@@ -12,6 +12,7 @@ import Sheet from './Sheet'
 import SpellingKey from '../parts/SpellingKey'
 import WordBank from '../words/WordBank'
 import WordGrid from '../words/WordGrid'
+import { splitMet } from '../../../lib/colloquial/metWords'
 import WordPicture from '../words/picture/WordPicture'
 import { pictureBoards } from '../../../lib/colloquial/wordPictures'
 import { scrollToEl } from '../../../lib/motion/scrollToEl'
@@ -31,22 +32,30 @@ function Act({ kicker, title, children }) {
 // The first few words, the rest a tap away (config/colloquial-display.json words-preview).
 const PREVIEW = settings['words-preview']
 
+// "12 new words · 7 met before": what this topic teaches, and what it uses from earlier topics.
+const wordsTitle = (vocabulary) => {
+  const [fresh, met] = splitMet(vocabulary)
+  return `${fresh.length} new ${fresh.length === 1 ? 'word' : 'words'}${met.length ? ` · ${met.length} met before` : ''}`
+}
+
+// The preview is of the new words; the ones met in earlier topics stay folded under them either way.
 function Words({ words }) {
-  const [all, setAll] = useState(words.length <= PREVIEW)
+  const [fresh, met] = splitMet(words)
+  const [all, setAll] = useState(fresh.length <= PREVIEW)
   return (
     <>
-      <WordGrid words={all ? words : words.slice(0, PREVIEW)} />
+      <WordGrid words={all ? words : [...fresh.slice(0, PREVIEW), ...met]} />
       {!all && (
         <button type="button" onClick={() => setAll(true)}
           className={`press w-full py-3 rounded-[var(--radius-md)] border border-[var(--border)] type-ui text-[var(--text-dim)] hover:text-[var(--text)] hover:border-[var(--border-hi)]`}>
-          Show all {words.length} words
+          Show all {fresh.length} new words
         </button>
       )}
     </>
   )
 }
 
-function Scene({ unit, lesson, number, place }) {
+function Scene({ unit, lesson, number, place, onWords }) {
   const [open, setOpen] = useState(null)
   // The practice sits several screens down a phone; one tap from the top takes you to it.
   const practice = useRef(null)
@@ -61,6 +70,11 @@ function Scene({ unit, lesson, number, place }) {
           </div>
           <div className="flex flex-wrap gap-2">
             <SmallButton onClick={() => scrollToEl(practice.current, 'top')} className="type-ui px-4 py-2">Practice ↓</SmallButton>
+            {/* The topic's words, straight into cards or a quiz: one tap from here, not back out to the unit. */}
+            {onWords && lesson.vocabulary.length > 0 && <>
+              <SmallButton onClick={() => onWords('cards')} className="type-ui px-4 py-2">Word cards</SmallButton>
+              <SmallButton onClick={() => onWords('quiz')} className="type-ui px-4 py-2">Word quiz</SmallButton>
+            </>}
             <WordBank unit={unit} at={number - 1} />
           </div>
         </header>
@@ -70,7 +84,7 @@ function Scene({ unit, lesson, number, place }) {
       {/* Phrases first, then the topic's words on their own: a learner needs far
           more single words than any set of phrases can carry. */}
       {lesson.vocabulary?.length > 0 && (
-        <Act kicker="Words" title={`${lesson.vocabulary.length} words for this topic`}>
+        <Act kicker="Words" title={wordsTitle(lesson.vocabulary)}>
           <Words words={lesson.vocabulary} />
         </Act>
       )}
@@ -108,11 +122,11 @@ function Scene({ unit, lesson, number, place }) {
 }
 
 // One topic of a unit; the panel above owns which unit and topic are open.
-export default function TopicView({ unit, at }) {
+export default function TopicView({ unit, at, onWords }) {
   return (
     <div className="max-w-3xl lg:max-w-6xl mx-auto">
       <Scene unit={unit} lesson={unit.lessons[at]} number={at + 1}
-        place={{ dialect: unit.dialect_key, unit: unit.unit, lesson: unit.lessons[at].lesson }} />
+        place={{ dialect: unit.dialect_key, unit: unit.unit, lesson: unit.lessons[at].lesson }} onWords={onWords} />
     </div>
   )
 }

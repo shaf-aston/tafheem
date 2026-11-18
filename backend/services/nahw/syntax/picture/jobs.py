@@ -29,9 +29,10 @@ def give_jobs(c: Picture) -> None:
     # guessed; سرّني ما قمتَ: one with none is ما المصدرية (facts.ma_kind)
     masdar = FRAMES["masdar"]
     def job_by_place(token: dict) -> tuple[str, str] | None:
-        """The job a ما or masdar unit does: a حرف جر's مجرور, else by the relation it hangs by."""
+        """The job a ما or masdar unit does: a حرف جر's مجرور (its object: لكم الخيار ما دمتم, hung on ل, is no second one),
+        else by the relation it hangs by."""
         governor = by_id.get(token["head"])
-        if governor and is_preposition(governor):
+        if governor and is_preposition(governor) and token["rel"] == "OBJ":
             return masdar["after_preposition"]["job"], masdar["after_preposition"]["case"]
         # لَوْلَا أَنَّنَا أَسْرَعْنَا: after لولا the masdar is its مبتدأ (roles.json condition by_word subject)
         if governor and governor["pos"] == "PRT" and (frame := condition_of(governor["form"])) and frame.get("subject"):

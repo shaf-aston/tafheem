@@ -18,19 +18,179 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "river-very-deep",
+          "arabic": "اِنْتَبِه، النَّهْر هِنَا عَمِيق مَرَّة.",
+          "transliteration": "intabih, an-nahr hina 3ameeg marra."
+        },
+        {
+          "slot": "library-quiet-street-loud",
+          "arabic": "المَكْتَبَة هَادْيَة، بَس الشَّارِع صُوتُه عَالِي.",
+          "transliteration": "al-maktaba haadya, bas ash-shaari3 Sootu 3aali."
+        },
+        {
+          "slot": "baby-asleep-awake",
+          "arabic": "البِيبِي نَايِم، وَلَّا لِسَّا صَاحِي؟",
+          "transliteration": "al-beebi naayim, walla lissa Saa7i?"
+        },
+        {
+          "slot": "messy-room-tidy",
+          "arabic": "أُوضْتَك مُبَعْثَرَة، لَوْ سَمَحْت خَلِّيهَا مُرَتَّبَة.",
+          "transliteration": "ooDtak mib3athra, law sama7t khalleeha mrattaba."
+        },
+        {
+          "slot": "famous-popular-market",
+          "arabic": "هَادَا السُّوق القَدِيم مَشْهُور مَرَّة، وَشَعْبِي عِنْد الزُّوَّار.",
+          "transliteration": "haada s-soog al-gadeem mashhoor marra, w sha3bi 3ind az-zuwwaar."
+        },
+        {
+          "slot": "simple-useful-idea",
+          "arabic": "الفِكْرَة بَسِيطَة، بَس مُفِيدَة مَرَّة.",
+          "transliteration": "al-fikra baseeTa, bas mufeeda marra."
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "lesson-easy-difficult",
+          "arabic": "الدَّرْس الأَوَّل كَان سَهْل، بَس الثَّانِي كَان صَعْب.",
+          "transliteration": "ad-dars al-awwal kaan sahl, bas ath-thaani kaan Sa3b."
+        },
+        {
+          "slot": "car-slow-fast",
+          "arabic": "سَيَّارْتِي بَطِيئَة، وَسَيَّارْتُه سَرِيعَة.",
+          "transliteration": "sayyaarti baTee2a, w sayyaartu saree3a."
+        },
+        {
+          "slot": "dirty-clean-clothes",
+          "arabic": "حُطّ المَلَابِس الوِسْخَة هِنَا، وَالنَّظِيفَة هِنَاك.",
+          "transliteration": "7uTT al-malaabis al-wiskha hina, w an-naZeefa hinaak."
+        },
+        {
+          "slot": "parking-allowed-forbidden",
+          "arabic": "الوُقُوف مَسْمُوح هِنَا، وَلَّا مَمْنُوع؟",
+          "transliteration": "al-wuguuf masmoo7 hina, walla mamnoo3?"
+        },
+        {
+          "slot": "come-early-not-late",
+          "arabic": "تَعَال بَدْرِي بُكْرَة، لَا تِجِي مِتْأَخِّر.",
+          "transliteration": "ta3aal badri bukra, la tiji mit2akhkhir."
+        },
+        {
+          "slot": "polite-clever-son",
+          "arabic": "وَلَدَك مُؤَدَّب مَرَّة وَشَاطِر.",
+          "transliteration": "waladak mu2addab marra w shaaTir."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "red-or-blue-shirt",
+          "arabic": "تِبْغَى القَمِيص الأَحْمَر، وَلَّا الأَزْرَق؟",
+          "transliteration": "tibgha l-gameeS al-a7mar, walla l-azrag?"
+        },
+        {
+          "slot": "light-blue-sky",
+          "arabic": "السَّمَا لَوْنَهَا أَزْرَق فَاتِح، وَالغَيْم أَبْيَض.",
+          "transliteration": "as-sama loonaha azrag faati7, w al-ghaym abyaD."
+        },
+        {
+          "slot": "table-wood-not-plastic",
+          "arabic": "هَادِي الطَّاوْلَة مِن خَشَب، مُو بَلَاسْتِيك.",
+          "transliteration": "haadi T-Taawla min khashab, mu blaastik."
+        },
+        {
+          "slot": "round-not-square-plate",
+          "arabic": "جِيب لِي الصَّحْن المُدَوَّر، مُو المُرَبَّع.",
+          "transliteration": "jeeb li S-Sa7n al-mdawwar, mu al-murabba3."
+        },
+        {
+          "slot": "gold-necklace-silver-ring",
+          "arabic": "عُقْدَهَا دَهَب، وَخَاتِمْهَا فِضَّة.",
+          "transliteration": "3ugdaha dahab, w khaatimha fiDDa."
+        },
+        {
+          "slot": "knife-very-sharp",
+          "arabic": "اِنْتَبِه، هَادِي السِّكِّين حَادَّة مَرَّة.",
+          "transliteration": "intabih, haadi s-sikkeen 7aadda marra."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "happy-you-came",
+          "arabic": "أَنَا مَبْسُوط مَرَّة لِأَنَّك جِيت.",
+          "transliteration": "ana mabsooT marra li2annak jeet."
+        },
+        {
+          "slot": "why-are-you-sad",
+          "arabic": "لِيش إِنْتَ حَزِين؟ إِيش صَار؟",
+          "transliteration": "leesh inta 7azeen? eesh Saar?"
+        },
+        {
+          "slot": "nervous-before-exam",
+          "arabic": "هِيَّ مِتْوَتِّرَة قَبْل الاِمْتِحَان بُكْرَة.",
+          "transliteration": "hiyya mitwattira gabl al-imti7aan bukra."
+        },
+        {
+          "slot": "father-proud-of-you",
+          "arabic": "أَبُوك فَخُور فِيك مَرَّة.",
+          "transliteration": "abook fakhoor feek marra."
+        },
+        {
+          "slot": "not-angry-just-worried",
+          "arabic": "لَا تِكُون مُعَصَّب، أَنَا بَس كُنْت قَلْقَان عَلَيْك.",
+          "transliteration": "la tkoon mu3aSSab, ana bas kunt galgaan 3alayk."
+        },
+        {
+          "slot": "laughed-until-tears",
+          "arabic": "ضِحِك لَيْن نَزَلَت الدُّمُوع مِن عُيُونُه.",
+          "transliteration": "Di7ik layn nazalat ad-dmoo3 min 3uyoonu."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "kind-honest-neighbour",
+          "arabic": "جَارْنَا طَيِّب وَصَادِق.",
+          "transliteration": "jaarna Tayyib w Saadig."
+        },
+        {
+          "slot": "language-needs-patience",
+          "arabic": "تَعَلُّم اللُّغَة يِبْغَالُه صَبْر كَتِير.",
+          "transliteration": "ta3allum al-lugha yibghaalu Sabr katheer."
+        },
+        {
+          "slot": "hard-working-helpful-student",
+          "arabic": "هِيَّ طَالْبَة مُجْتَهِدَة وَخَدُومَة.",
+          "transliteration": "hiyya Taalba mujtahida w khadooma."
+        },
+        {
+          "slot": "dont-be-selfish",
+          "arabic": "لَا تِكُون أَنَانِي، قَسِّم الأَكْل مَع أَخُوك.",
+          "transliteration": "la tkoon anaani, gassim al-akl ma3 akhook."
+        },
+        {
+          "slot": "good-manners-important",
+          "arabic": "الأَدَب مُهِمّ فِي كُل بَيْت.",
+          "transliteration": "al-adab muhimm fi kull bayt."
+        },
+        {
+          "slot": "wise-humble-grandfather",
+          "arabic": "جِدِّي رَجَّال حَكِيم وَمِتْوَاضِع.",
+          "transliteration": "jiddi rajjaal 7akeem w mitwaaDi3."
+        }
+      ]
     }
   ]
 }

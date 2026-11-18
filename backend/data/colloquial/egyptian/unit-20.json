@@ -16,22 +16,214 @@
   },
   "lessons": [
     {
-      "lesson": "lesson-01"
+      "lesson": "lesson-01",
+      "sentences": [
+        {
+          "slot": "where-house-who-lives",
+          "arabic": "بيتك فين، ومين ساكن فيه؟",
+          "transliteration": "beitak feen, w meen saaken feeh?"
+        },
+        {
+          "slot": "what-is-this-that",
+          "arabic": "إيه ده، وإيه ده اللي هناك؟",
+          "transliteration": "eeh da, w eeh da elli henaak?"
+        },
+        {
+          "slot": "how-many-children",
+          "arabic": "هما عندهم كام عيّل؟",
+          "transliteration": "homma 3andohom kaam 3ayyel?"
+        },
+        {
+          "slot": "we-here-he-not",
+          "arabic": "إحنا هنا، بس هو مش هناك.",
+          "transliteration": "e7na hena, bass howwa mish henaak."
+        },
+        {
+          "slot": "why-she-left-early",
+          "arabic": "هي خرجت من البيت بدري كده ليه؟",
+          "transliteration": "heyya kharaget men el-beit badri keda leeh?"
+        },
+        {
+          "slot": "where-from-when-arrive",
+          "arabic": "إنت منين، ووصلت إمتى؟",
+          "transliteration": "enta menneen, w weSelt emta?"
+        }
+      ]
     },
     {
-      "lesson": "lesson-02"
+      "lesson": "lesson-02",
+      "sentences": [
+        {
+          "slot": "keys-under-table",
+          "arabic": "حُط المفاتيح تحت الترابيزة، لو سمحت.",
+          "transliteration": "7oTT el-mafatee7 ta7t et-trabeeza, law sama7t."
+        },
+        {
+          "slot": "bag-next-to-door",
+          "arabic": "الشنطة جنب الباب، ورا الكرسي.",
+          "transliteration": "esh-shanTa ganb el-baab, wara el-korsi."
+        },
+        {
+          "slot": "tea-milk-no-sugar",
+          "arabic": "أنا بشرب الشاي مع اللبن، بس من غير سكر.",
+          "transliteration": "ana bashrab esh-shaay ma3a el-laban, bass men gheer sokkar."
+        },
+        {
+          "slot": "home-until-evening",
+          "arabic": "فضلنا قاعدين عندنا في البيت لحد المسا، لأن الدنيا كانت بتمطر.",
+          "transliteration": "faDalna 2a3deen 3andena fil-beit la7add el-masa, le2enn ed-donya kaanet betmaTTar."
+        },
+        {
+          "slot": "wash-hands-before-after",
+          "arabic": "اغسل إيديك قبل الأكل وبعده.",
+          "transliteration": "eghsel eedeek 2abl el-akl w ba3do."
+        },
+        {
+          "slot": "shop-opposite-mosque",
+          "arabic": "المحل قصاد الجامع، بين البنك والمدرسة.",
+          "transliteration": "el-ma7all 2oSaad eg-gaame3, been el-bank wel-madrasa."
+        }
+      ]
     },
     {
-      "lesson": "lesson-03"
+      "lesson": "lesson-03",
+      "sentences": [
+        {
+          "slot": "always-early-sometimes-late",
+          "arabic": "أنا دايماً بصحى بدري، بس ساعات بتأخر.",
+          "transliteration": "ana daayman baS7a badri, bass sa3aat bat2akhkhar."
+        },
+        {
+          "slot": "father-never-coffee",
+          "arabic": "أبويا مبيشربش قهوة بالليل أبداً.",
+          "transliteration": "abuya mabyeshrabsh 2ahwa bel-leil abadan."
+        },
+        {
+          "slot": "eat-little-more",
+          "arabic": "من فضلك كُل شوية أكتر، فيه أكل كفاية.",
+          "transliteration": "men faDlak kol shwayya aktar, fee akl kefaaya."
+        },
+        {
+          "slot": "still-at-work",
+          "arabic": "هو لسه في الشغل، ولا خلاص مشي؟",
+          "transliteration": "howwa lessa fesh-shoghl, walla khalaaS meshi?"
+        },
+        {
+          "slot": "visit-once-week",
+          "arabic": "بنزور تيتة مرة في الأسبوع، عادةً يوم الجمعة.",
+          "transliteration": "benzoor teita marra fil-esboo3, 3aadatan yoom eg-gom3a."
+        },
+        {
+          "slot": "almost-everyone-came",
+          "arabic": "تقريباً كل الناس جم، والبيت كان مليان بالكامل.",
+          "transliteration": "ta2reeban kol en-naas gom, wel-beit kaan malyaan bel-kaamel."
+        }
+      ]
     },
     {
-      "lesson": "lesson-04"
+      "lesson": "lesson-04",
+      "sentences": [
+        {
+          "slot": "son-twelve-years",
+          "arabic": "ابني عنده اتناشر سنة.",
+          "transliteration": "ebni 3ando etnaashar sana."
+        },
+        {
+          "slot": "fifteen-students-class",
+          "arabic": "في فصلنا خمستاشر طالب.",
+          "transliteration": "fi faSlena khamastaashar Taaleb."
+        },
+        {
+          "slot": "flat-third-floor",
+          "arabic": "شقتنا في الدور التالت.",
+          "transliteration": "sha22etna fed-door et-taalet."
+        },
+        {
+          "slot": "thousand-people-wedding",
+          "arabic": "أكتر من ألف واحد جم الفرح.",
+          "transliteration": "aktar men alf waa7ed gom el-fara7."
+        },
+        {
+          "slot": "count-to-twenty",
+          "arabic": "عِد لحد عشرين، وبعدين افتح عينيك.",
+          "transliteration": "3edd la7add 3ashreen, w ba3deen efta7 3eneek."
+        },
+        {
+          "slot": "first-and-last",
+          "arabic": "هو طلع الأول في السباق، وأنا طلعت الأخير.",
+          "transliteration": "howwa Tele3 el-awwel fes-sebaa2, w ana Tele3t el-akheer."
+        }
+      ]
     },
     {
-      "lesson": "lesson-05"
+      "lesson": "lesson-05",
+      "sentences": [
+        {
+          "slot": "two-kilos-tomatoes",
+          "arabic": "إديني اتنين كيلو طماطم، لو سمحت.",
+          "transliteration": "eddeeni etneen keelo TamaaTem, law sama7t."
+        },
+        {
+          "slot": "bottle-of-water",
+          "arabic": "خُد إزازة مية معاك.",
+          "transliteration": "khod ezaazet mayya ma3aak."
+        },
+        {
+          "slot": "too-much-sugar",
+          "arabic": "الشاي ده فيه سكر زيادة.",
+          "transliteration": "esh-shaay da fee sokkar ziyaada."
+        },
+        {
+          "slot": "both-brothers-far",
+          "arabic": "إخواتي الاتنين ساكنين بعيد.",
+          "transliteration": "ekhwaati el-etneen sakneen be3eed."
+        },
+        {
+          "slot": "each-child-piece",
+          "arabic": "كل واحد من العيال خد حتة كيكة.",
+          "transliteration": "kol waa7ed men el-3eyaal khad 7ettet keika."
+        },
+        {
+          "slot": "room-length-width",
+          "arabic": "الأوضة طولها أربعة متر، وعرضها تلاتة.",
+          "transliteration": "el-ooDa Tolha arba3a metr, w 3arDaha talaata."
+        }
+      ]
     },
     {
-      "lesson": "lesson-06"
+      "lesson": "lesson-06",
+      "sentences": [
+        {
+          "slot": "ramadan-march-this-year",
+          "arabic": "رمضان السنة دي هيبدأ في مارس.",
+          "transliteration": "ramaDaan es-sana dee hayebda2 fi maares."
+        },
+        {
+          "slot": "birth-tenth-may",
+          "arabic": "تاريخ ميلادي عشرة مايو.",
+          "transliteration": "tareekh meelaadi 3ashara mayo."
+        },
+        {
+          "slot": "school-starts-september",
+          "arabic": "المدارس بتبدأ في سبتمبر كل سنة.",
+          "transliteration": "el-madaares btebda2 fi sebtamber kol sana."
+        },
+        {
+          "slot": "hajj-dhu-al-hijjah",
+          "arabic": "الحج بيكون في شهر ذو الحجة.",
+          "transliteration": "el-7agg beykoon fi shahr zel-7egga."
+        },
+        {
+          "slot": "travel-next-month-july",
+          "arabic": "هنسافر الشهر الجاي، في يوليو.",
+          "transliteration": "hansaafer esh-shahr eg-gaay, fi yolyo."
+        },
+        {
+          "slot": "hijri-or-gregorian",
+          "arabic": "إنت بتستخدم التقويم الهجري ولا الميلادي؟",
+          "transliteration": "enta betestakhdem et-ta2weem el-hegri walla el-meelaadi?"
+        }
+      ]
     }
   ]
 }
