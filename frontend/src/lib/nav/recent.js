@@ -1,7 +1,8 @@
 /**
  * The tab strip, and which tabs stay alive. App sees only useStrip and keepRecent.
  *
- * The strip's tabs keep their places: the fixed tabs, then the seed's, always in the same order, so a
+ * Which tabs fill the places is the reader's own use (lib/nav/used.js), worked out once per visit.
+ * Within a visit the strip's tabs keep their places: the fixed tabs, then the seed's, always in the same order, so a
  * tab is always where it was and keeps its number key. It used to swap the oldest seed tab out for each
  * new one opened, so one place showed Daleel on one screen and Quiz on the next. A tab off the strip
  * that is open shows after them while it is open, so the strip still says where you are.

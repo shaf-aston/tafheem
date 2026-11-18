@@ -10,7 +10,7 @@ import KeyHint from './KeyHint'
 
 // `hint` puts the moving number-key hint under the strip (Home).
 // The first `fixed` tabs always show; the rest wait for md. The open tab always shows.
-const tierClass = (i, fixed) => (i < fixed ? '' : 'hidden md:block')
+const tierClass = (i, fixed) => (i < fixed ? '' : 'hidden md:flex')
 
 // The underline's own width in px (styles/components.css .tab-glide); scaleX stretches it to each tab.
 const LINE_PX = 100
@@ -88,14 +88,16 @@ export default function TabStrip({ tabs, fixed, active, colorOf, onSelect, onAll
                 flex: tab.half ? '0.5 1 0' : '1 1 0',
               }}
               className={`tab-btn relative ${selected ? '' : tierClass(i, fixed)} ${tab.half ? 'min-w-[3rem] sm:min-w-[3.5rem]' : 'min-w-[4.5rem] sm:min-w-[5.5rem]'}
-                py-1.5 px-0.5 sm:px-2 type-body font-medium leading-tight grid justify-items-center ${selected ? '' : 'tab-idle'}`}
+                py-1.5 px-0.5 sm:px-2 type-body font-medium leading-tight flex items-baseline justify-center gap-2 whitespace-nowrap ${selected ? '' : 'tab-idle'}`}
             >
               <span className="sm:hidden">{tab.short}</span>
               <span className="hidden sm:inline">{tab.label}</span>
-              {/* Under the English, not beside it: side by side, a row of eight
-                  tabs ran into one line of words with no gap to read between.
-                  Stacked, each tab is its own column, and the Arabic fits from md. */}
-              <ArabicText size="sm" className="text-[var(--text-faint)] hidden md:block">
+              {/* Beside the English, and only where there is room for it: stacked
+                  under it, the strip was two lines tall and the header 117px of
+                  every screen. Narrower, a row of eight tabs side by side ran into
+                  one line of words with no gap to read between, so below xl the
+                  strip is English alone; each page's own title still carries the Arabic. */}
+              <ArabicText size="sm" className="text-[var(--text-faint)] hidden xl:inline leading-tight">
                 {tab.arabic}
               </ArabicText>
             </button>

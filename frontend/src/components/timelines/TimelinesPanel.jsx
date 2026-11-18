@@ -45,7 +45,7 @@ export default function TimelinesPanel({ accent, incoming, arrival, onGo, onVisi
   const [missed, setMissed] = useState(false)
   if (useArrivalWhenReady(arrival, Boolean(data))) {
     const asked = parsePlace(incoming, data.sections)
-    if (asked) setPlace(asked)
+    if (asked || !incoming) setPlace(asked)
     setMissed(Boolean(incoming) && !asked)
   }
 

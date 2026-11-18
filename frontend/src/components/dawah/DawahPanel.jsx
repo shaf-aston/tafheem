@@ -54,6 +54,11 @@ export default function DawahPanel({ accent, incoming, arrival, onGo, onVisit })
     if (home) {
       setTopicId(home.id)
       setQuestionId(incoming)
+    } else if (!incoming) {
+      // Back to the tab's top page, or Dawah chosen again: the topics.
+      setTopicId(null)
+      setQuestionId(null)
+      setQuery('')
     }
   }
 

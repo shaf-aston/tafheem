@@ -69,10 +69,11 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
 
   // A sentence arriving on the open tab (command bar, back arrow) is the one to
   // analyse, same as arriving with the tab. Remounting for it re-faded the page.
+  // One with nothing (back to the tab's top page, Nahw chosen again) empties the box.
   const { arrived } = useArrival(arrival)
-  if (arrived && incoming) {
+  if (arrived) {
     setFromExample(null)
-    setView('analyse')
+    if (incoming) setView('analyse')
   }
 
   // Not remembered: coming back to an empty box beats losing the drawer they were reading.
@@ -104,7 +105,7 @@ export default function NahwPanel({ accent, incoming, arrival, onGo, onVisit, on
         // Keyed by the sentence, so a new one starts fresh. The page's extras ride
         // in as `more`, rows in the same list as the sentence's own.
         <IraabAnalyzer
-          key={fromExample ?? incoming ?? 'typed'}
+          key={fromExample ?? incoming ?? `typed-${arrival}`}
           accent={accent}
           onGo={onGo}
           onVisit={onVisit}
