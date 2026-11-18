@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.book import is_one, is_subject_pronoun
-from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_built, is_called_alone, is_known, is_name, noun_tagged, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, is_masdar, zarf_in_nasb, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
+from backend.services.nahw.book import frames, is_one, is_subject_pronoun
+from backend.services.nahw.syntax.facts import Sentence, attached_pronoun, is_built, is_called_alone, is_known, is_name, is_suffix, listed, noun_tagged, reaches_pronoun, read_as, is_describing, is_elative, is_participle, is_prefix, is_preposition, is_verb, is_zarf, is_masdar, zarf_in_nasb, shows_jarr, typed_case_of, typed_or_parsed_case, subject_link, works_as_verb
 
 
 def second_khabar(s: Sentence) -> None:
@@ -281,6 +281,28 @@ def jar_off_particle(s: Sentence) -> None:
                 khabar = jar
 
 
+def masdar_khabar(s: Sentence) -> None:
+    """فَإِنَّمَا الْعَدْلُ أَنْ يُسْمَعَ الطَّرَفَانِ، إِنَّ الْخَيْرَ أَنْ تَصْدُقَ: أنْ with its verb is one masdar (roles frames
+    masdar), a noun in all but its letters: it describes no noun before it, and works on none. So one the parser hung on
+    the noun إنّ (or إنما) is told of, where that particle has no khabar yet, is that khabar; and الْخَيْرُ أَنْ تَصْدُقَ:
+    a noun the parser hung on أنْ as its subject from before it, the masdar heading the sentence, is the مبتدأ, the
+    masdar its khabar."""
+    words = frames()["masdar"]["words"]
+    def is_masdar_unit(token: dict) -> bool:
+        return token["pos"] == "PRT" and strip_diacritics(token["lemma"]) in words and any(is_verb(v) for v in s.kids(token))
+    for masdar in [t for t in s.tokens if t["head"] == 0 and is_masdar_unit(t)]:
+        if noun := next((k for k in s.kids(masdar) if k["rel"] == "SBJ" and k["id"] < masdar["id"] and noun_tagged(k)), None):
+            s.relink(noun, 0, "---")
+            s.relink(masdar, noun["id"], "PRD")
+    for particle in s.tokens:
+        if particle["pos"] != "PRT" or not is_one(particle["form"], "inna") or any(k["rel"] == "PRD" for k in s.kids(particle)):
+            continue
+        for subject in [k for k in s.kids(particle) if k["rel"] == "SBJ" and noun_tagged(k)]:
+            if masdar := next((k for k in s.kids(subject) if k["rel"] == "MOD" and is_masdar_unit(k)), None):
+                s.relink(masdar, particle["id"], "PRD")
+                break
+
+
 def jar_on_its_khabar(s: Sentence) -> None:
     """زَيْدٌ فِي الدَّارِ جَالِسٌ، أَصْبَحَ الْجَوُّ بَعْدَ الْمَطَرِ لَطِيفًا: a جار ومجرور or ظرف hangs on a verb or on what
     carries a verb's sense (Mughni: لا بد من تعلقهما بالفعل أو ما يشبهه), so one the parser hung on a known subject,
@@ -349,3 +371,65 @@ def elative_specified(s: Sentence) -> None:
         if head and token["rel"] == "IDF" and is_elative(head) and typed_case_of(token) == "a" \
                 and not is_known(token, s) and not shows_jarr(token):
             token["rel"] = "TMZ"
+
+
+# the attached pronoun's letters, by the number and gender it stands for
+_PRONOUN_KIND = {"ه": ("s", "m"), "ها": ("s", "f"), "هما": ("d", None), "هم": ("p", "m"), "هن": ("p", "f")}
+
+
+def tawkeed_before_khabar(s: Sentence) -> None:
+    """زَيْدٌ نَفْسُهُ حَاضِرٌ، الْقَوْمُ كُلُّهُمْ حَاضِرُونَ: نفس، عين، كل، جميع، كلا with a pronoun back to the noun just before
+    it is that noun's توكيد معنوي (Ajrumiyya, at-tawkeed: النفس والعين وكل وأجمع; page unchecked), so the khabar after it
+    is the noun's, not its own. Told of in the noun's number and gender, through the pronoun (حاضرون of هم, not of
+    the single كل); else it is a مبتدأ with the noun as a sentence over it: زيدٌ نفسُه طيبةٌ (his soul is good),
+    القومُ كلُّهم حاضرٌ (each of them)."""
+    if not s.verbless:
+        return
+    for token in s.tokens:
+        before, told = s.by_id.get(token["id"] - 1), s.head(token)
+        pronoun = next((k for k in s.kids(token) if attached_pronoun(k) and k["rel"] == "IDF"), None)
+        kind = pronoun and _PRONOUN_KIND.get(strip_diacritics(pronoun["form"]).lstrip("+"))
+        if not (kind and before and told and listed(token, "tawkeed", "with_pronoun") and token["rel"] == "SBJ"
+                and told["id"] > token["id"] and noun_tagged(before) and is_known(before, s) and not is_verb(before)):
+            continue
+        num, gen = kind
+        if told.get("num") == num and gen in (None, told.get("gen")):
+            s.relink(token, before["id"], "MOD")
+
+
+def sentence_khabar(s: Sentence) -> None:
+    """زَيْدٌ أَبُوهُ عَالِمٌ، زَيْدٌ عِنْدَهُ كِتَابٌ: a khabar can be a sentence of its own, tied to its مبتدأ by a pronoun that
+    returns to it (the رابط). So after a known مبتدأ opening a verbless sentence, a word holding such a pronoun heads a
+    sentence that is its khabar: a noun told of by the word after it (أبوه عالمٌ، أبوه في الدار, both raf'), or a ظرف or جار
+    ومجرور said before the noun it tells of (عنده كتابٌ، في بيته ضيفٌ، عنده الكتابُ). Known and known, the first is the مبتدأ
+    (Ibn Aqil, al-ibtida: يجب تقديم المبتدأ إذا كانا معرفتين; page unchecked), so the noun after it never makes it a خبر
+    said first. A توكيد (نفسُه، كلُّهم) is no مبتدأ, nor is a وصف told of (زيدٌ في بيته نائمٌ: the jar is نائم's)."""
+    words = [t for t in s.tokens if not is_suffix(t)] if s.verbless else []
+    if len(words) < 3 or not (noun_tagged(first := words[0]) and is_known(first, s)) \
+            or typed_or_parsed_case(first) not in (None, "u"):
+        return
+    second = words[1]
+    if not reaches_pronoun(second, s):
+        return
+    # the word told of comes after the second word's own phrase, its مجرور and مضاف إليه (له أخٌ: the parser can hang أخ on ل too)
+    phrase, queue = {second["id"]}, [second]
+    while queue:
+        for kid in s.kids(queue.pop()):
+            if kid["rel"] in ("OBJ", "IDF") and kid["id"] not in phrase:
+                phrase.add(kid["id"])
+                queue.append(kid)
+    told = next((t for t in words if t["id"] > max(phrase)), None)
+    if not told:
+        return
+    shibh = is_preposition(second) or is_zarf(second, s)
+    if shibh and noun_tagged(told) and not (is_describing(told) or works_as_verb(told)) \
+            and typed_or_parsed_case(told) in (None, "u"):
+        s.relink(first, 0, "---")
+        s.relink(second, first["id"], "PRD")
+        s.relink(told, second["id"], "SBJ")
+    elif not shibh and noun_tagged(second) and not is_describing(second) and typed_or_parsed_case(second) in (None, "u") \
+            and not listed(second, "tawkeed", "with_pronoun") and (
+                is_preposition(told) or is_zarf(told, s) or noun_tagged(told) and typed_or_parsed_case(told) in (None, "u")):
+        s.relink(first, 0, "---")
+        s.relink(told, first["id"], "PRD")
+        s.relink(second, told["id"], "SBJ")

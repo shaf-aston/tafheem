@@ -181,16 +181,24 @@ class Sentence:
                 or (is_one(lemma, "kana", "needs_ma") and self._has_particle(word, "kana", "like_laysa"))) \
                 and not self._stands_alone(word):
             return "kana"
-        if is_one(lemma, "kaada") and self._completed_by_present_verb(word):
+        # جَعَلَ زَيْدٌ يَكْتُبُ: a verb of starting governs a noun and a present verb; جَعَلَ مِنْ بَعْدِ قُوَّةٍ ضَعْفًا يَخْلُقُ: one with
+        # an object of its own is the plain verb (جعل: made), and the present verb after it begins afresh
+        if is_one(lemma, "kaada") and self._completed_by_present_verb(word) and not any(
+                k["rel"] == "OBJ" and noun_tagged(k) and typed_or_parsed_case(k) != "u" for k in self.kids(word)):
             return "kaada"
         return "zanna" if is_one(lemma, "zanna") and self._two_objects(word) else None
 
     def _stands_alone(self, verb: dict) -> bool:
         """وَإِنْ كَانَ ذُو عُسْرَةٍ، أَصْبَحْنَا: with no خبر, كان and its sisters are تامة and take a
         فاعل like any verb (Ibn Aqil on كان التامة); كان في الدار رجل: the خبر may come first, a phrase.
-        ليس is never تامة: it has no meaning of being without its خبر."""
+        ليس is never تامة: it has no meaning of being without its خبر. فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا: a jar the
+        parser hung on a known اسم describes nothing (a known noun takes no صفة), so it is the خبر (repair.kana_subject); a وَ joining a second اسم is none (مَا دَامَتِ السَّمَاوَاتُ وَالْأَرْضُ)."""
+        kids = self.kids(verb)
         return not is_one(verb["lemma"], "kana", "always_defective") \
-            and all(k["rel"] in SUBJECTS or k["pos"] == "PRT" and k["rel"] == "MOD" for k in self.kids(verb))
+            and all(k["rel"] in SUBJECTS or k["pos"] == "PRT" and k["rel"] == "MOD" for k in kids) \
+            and not any(k["rel"] in SUBJECTS and is_known(k, self) and any(
+                j["rel"] == "MOD" and j["id"] > k["id"] and is_preposition(j) and j.get("pos_camel") != "conj"
+                for j in self.kids(k)) for k in kids)
 
     def _two_objects(self, verb: dict) -> bool:
         """ظن الولدُ الأمرَ سهلًا: an object and a second word in nasb after it, or an أنّ
@@ -301,11 +309,11 @@ def busied(verb: dict, s: Sentence) -> bool:
     غُلَامُهُ), and زيدًا stays the object put first. The pronoun is one of the one away, as that noun is (رَبَّنَا
     ظَلَمْنَا أَنْفُسَنَا: نا is the speakers', and ربنا is called)."""
     return any((_absent_pronoun(k) and not subject_link(k))
-               or ((is_preposition(k) or (k["rel"] == "OBJ" and typed_or_parsed_case(k) != "u")) and _reaches_pronoun(k, s))
+               or ((is_preposition(k) or (k["rel"] == "OBJ" and typed_or_parsed_case(k) != "u")) and reaches_pronoun(k, s))
                for k in s.kids(verb))
 
 
-def _reaches_pronoun(word: dict, s: Sentence) -> bool:
+def reaches_pronoun(word: dict, s: Sentence) -> bool:
     """A pronoun hangs below the word through its مجرور or مضاف إليه, however deep (غلامِ صاحبِه)."""
     seen, below = set(), [word]
     while below:

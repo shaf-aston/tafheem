@@ -57,6 +57,11 @@ def verb_tagged(token: dict) -> bool:
     return token["pos"].startswith("VRB")
 
 
+def tenseless_noun(token: dict) -> bool:
+    """A "verb" the parser tagged with no tense that CAMeL reads as a noun or adjective is that noun (اللهُ أكبرُ، وَهُوَ أَسْرَعُ)."""
+    return verb_tagged(token) and token.get("asp") == "na" and token.get("pos_camel") in ("adj", "noun")
+
+
 def present_verb_tagged(token: dict) -> bool:
     """The parser tagged the word a present-tense verb."""
     return verb_tagged(token) and token.get("asp") == "i"

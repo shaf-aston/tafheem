@@ -12,7 +12,7 @@ gives, live in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters
-from backend.services.nahw.book import book_words, case_of, is_one, is_subject_pronoun, roles_keyed, teacher_rules
+from backend.services.nahw.book import book_words, case_of, frames, is_one, is_subject_pronoun, roles_keyed, teacher_rules
 from backend.services.nahw.syntax.facts import (
     Sentence, is_built, is_built_zarf, is_called_noun, is_object_pronoun, is_zarf, is_passive, is_verb, shows_nasb_by_kasra, takes_tamyeez, typed_case_of, noun_tagged)
 from backend.services.nahw.syntax.followers import FOLLOWERS
@@ -90,8 +90,13 @@ def _typed_case_fits_role(bases, tokens, roles):
 
 
 def _khabar_needs_mubtada(bases, tokens, roles):
-    if not any(role in SUBJECTS for role in roles):
-        yield from (i for i, role in enumerate(roles) if role == NAMED.khabar)
+    """أَنْ تَصْدُقَ خَيْرٌ: a مصدر مؤول (أنْ، ما with its verb) hung as a khabar's subject is its مبتدأ (picture.jobs job_by_place)."""
+    if any(role in SUBJECTS for role in roles):
+        return
+    for i, role in enumerate(roles):
+        if role == NAMED.khabar and not any(b["head"] == bases[i]["id"] and b["rel"] == "SBJ"
+                                             and b["form"] in frames()["masdar"]["words"] for b in bases):
+            yield i
 
 
 def _ism_inna_needs_inna(bases, tokens, roles):

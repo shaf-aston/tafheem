@@ -34,6 +34,23 @@ def cards(sentence: str) -> list[dict]:
     return analyze(sentence)["words"]
 
 
+def card(sentence: str, word: str) -> dict:
+    return next(c for c in cards(sentence) if c["word"] == word)
+
+
+def units(sentence: str) -> list[tuple]:
+    """(job, label) of every labelled unit in the picture, outermost first."""
+    found = []
+
+    def walk(node):
+        if node.get("label"):
+            found.append((node.get("role"), node["label"]))
+        for child in node.get("children", []):
+            walk(child)
+    walk(analyze(sentence)["tree"]["tree"])
+    return found
+
+
 @contextmanager
 def parsed_as(form: str | int, head: str | int | None = None, rel: str | None = None):
     """Inside it, the parser hangs the word typed `form` (or the token with that id) on the word `head` (or the token with that id) and/or by `rel`, as

@@ -222,8 +222,8 @@ def _pair(n: Named) -> None:
 def _kaffa(n: Named) -> None:
     """إنما، كأنما: a particle that is an إن sister with ما written onto it (data: closed_words
     inna `kaffa`) leaves the sister on its entry; card_wording names the pair."""
-    for entry, typed in zip(n.found, n.words):
-        if entry["role"] == NAMED.harf and (sister := kaffa_sister(typed)):
+    for entry, base in zip(n.found, n.bases):
+        if entry["role"] == NAMED.harf and (sister := kaffa_sister(base["lemma"])):  # وَإِنَّمَا: the و is a word of its own
             entry["kaffa"] = sister
 
 

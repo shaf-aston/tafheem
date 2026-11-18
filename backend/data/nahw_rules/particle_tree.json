@@ -551,6 +551,16 @@
         ]
       },
       {
+        "branch": "ثم العاطفة",
+        "book": "3.10.4 p95",
+        "is": "ثم",
+        "role": "atf",
+        "retag": {
+          "pos": "PRT",
+          "pos_camel": "conj"
+        }
+      },
+      {
         "branch": "الواو",
         "book": "3.10.4 p95",
         "is": "و",

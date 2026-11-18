@@ -5,24 +5,7 @@ import re
 
 import pytest
 
-from tests.nahw_helpers import analyze, cards, needs_parser, tree_roles
-
-
-def card(sentence: str, word: str) -> dict:
-    return next(c for c in cards(sentence) if c["word"] == word)
-
-
-def units(sentence: str) -> list[tuple]:
-    """(job, label) of every labelled unit in the picture, outermost first."""
-    found = []
-
-    def walk(node):
-        if node.get("label"):
-            found.append((node.get("role"), node["label"]))
-        for child in node.get("children", []):
-            walk(child)
-    walk(analyze(sentence)["tree"]["tree"])
-    return found
+from tests.nahw_helpers import analyze, card, cards, needs_parser, tree_roles, units
 
 
 # A governor joined to و/ف (فلم، ولن) still governs the verb after it: يجزم ويَنصب.

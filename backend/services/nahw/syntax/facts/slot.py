@@ -27,12 +27,6 @@ def _doer_by_extra_ba(token: dict, verb: dict) -> bool:
     return bool(rule and rule["role"] == NAMED.fail and token["rel"] == rule["rel"] and is_extra_ba(token["form"]))
 
 
-def completes_kaada(token: dict, s: Sentence) -> bool:
-    """The present verb that finishes a كاد-type verb; its clause is that verb's khabar."""
-    head = s.head(token)
-    return bool(head and is_verb(token) and s.family(head) == "kaada")
-
-
 def _typed_before_its_root(token: dict, s: Sentence) -> bool:
     """A time or place word typed in nasb, hung on the sentence's own head after it (not under a governor,
     where a word such as سحرًا is a plain noun: إنَّ مِنَ الْبَيَانِ لَسِحْرًا)."""
@@ -162,7 +156,8 @@ def wants_object(verb: dict, kids: list[dict]) -> bool:
     (قتل زيد عمرا ظالما), as one that seldom takes a noun does (جاء زيد راكبا، فَتَقْعُدَ مَذْمُومًا) and a passive
     (قُتِلَ مَظْلُومًا)."""
     return (not is_passive(verb) and takes_object(verb["lemma"]) and not is_one(verb["lemma"], "intransitive_verbs")
-            and not any(k["rel"] == "OBJ" and not is_verb(k) for k in kids))  # a verb the parser hung as its OBJ (إِلَّا رَعَى) is no object
+            # a verb the parser hung as its OBJ (إِلَّا رَعَى) is no object, nor a jar (مَنْ عَمِلَ صَالِحًا فَلَهُ أَجْرٌ: the answer's لَهُ)
+            and not any(k["rel"] == "OBJ" and not is_verb(k) and k["pos"] != "PRT" for k in kids))
 
 
 def busied_before(token: dict, s: Sentence) -> bool:
@@ -241,8 +236,10 @@ def verb_place(token: dict, s: Sentence) -> str:
             told = s.head(head)
             # حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ: a doer said earlier (أَحَدُكُمْ) is the one the verb's hidden pronoun goes back to;
             # a passive verb has no such doer (فَجُمِعَ مِنَ التَّبَرُّعَاتِ مَا يَكْفِي: the relative is its deputy)
-            said = not is_passive(head) and any(subject_link(t) and noun_tagged(t) and t["id"] < head["id"] for t in s.tokens)
-            if not (holds_doer(head, siblings) or said or (told and noun_tagged(told) and told["id"] < head["id"])):
+            said = not is_passive(head) and any((subject_link(t) or t["rel"] == "---") and noun_tagged(t) and t["id"] < head["id"] for t in s.tokens)
+            # زَيْدٌ قَالَ يَسْعَدُ مَنْ صَدَقَ: a verb that takes no object has no place for the relative but its doer's
+            takes = not is_one(head["lemma"], "intransitive_verbs")
+            if not (holds_doer(head, siblings) or (takes and (said or (told and noun_tagged(told) and told["id"] < head["id"])))):
                 return "subject"
             if not any(t["rel"] == "OBJ" and t["id"] < token["id"] for t in siblings):
                 return "object"

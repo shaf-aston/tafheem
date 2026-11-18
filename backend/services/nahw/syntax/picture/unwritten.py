@@ -43,6 +43,13 @@ def add_unwritten_khabars(c: Picture) -> None:
     hung: set[int] = set()
     fronted: dict[int, str] = {}  # في البيت رجلٌ: the khabar said before its مبتدأ, by id
     khabars = {*kept["khabar_of"].values(), NAMED.khabar_kaada}
+    # the words a condition's answer starts at: the answer is a sentence of its own, inside the condition
+    answers = {bases[k]["id"] for found in named if (k := found.get("condition", {}).get("answer")) is not None
+               and found["condition"]["part"] == "opener"}
+    # لَوْلَا حِرْصُ زَيْدٍ عَلَى الدَّرْسِ: the مبتدأ after لولا has its khabar, a being, always left out (below), so a
+    # jar after it is no second khabar but hangs where it hangs
+    beings = {subject_id(i, found, bases) for i, found in enumerate(named) if (opens := found.get("condition", {})).get("part") == "opener"
+              and opens.get("verb") is not None and (condition_of(bases[i]["form"]) or {}).get("khabar")}
     def understand(text: str, role: str, place: int, **word) -> dict:
         """A word no one writes: its own column before `place`, a role, drawn hidden."""
         word = {"id": max(by_id) + 1, "form": text, **word}
@@ -55,10 +62,14 @@ def add_unwritten_khabars(c: Picture) -> None:
         understood.add(word["id"])
         return word
     for held in [t for t in drawn if role_of[t["id"]] in kept["slot"]]:
-        subject = next((s for s in drawn if role_of[s["id"]] in kept["khabar_of"] and s is not held
-                        and "rel" not in s.get("pos_camel", "") and (held["head"] == s["id"] or s["head"] == held["id"] or (
+        # فَهِجْرَتُهُ إِلَى مَا: the word hung on the unit as its subject is its subject before any hung beside it (فَمَنْ)
+        subject = next((s for s in sorted(drawn, key=lambda s: not (s["head"] == held["id"] and s["rel"] == "SBJ"))
+                        if role_of[s["id"]] in kept["khabar_of"] and s is not held
+                        # الذي في الدار: the unit a relative holds is its صلة; لهم ما يشاءون: one a relative hangs on is its khabar
+                        and ("rel" not in s.get("pos_camel", "") or s["head"] == held["id"])
+                        and (held["head"] == s["id"] or s["head"] == held["id"] or (
                             held["head"] == s["head"] and s["head"] in by_id))), None)
-        if not subject or any(role_of[k["id"]] in khabars and (k["id"] == subject["head"] or k["head"] in (
+        if not subject or subject["id"] in beings or any(role_of[k["id"]] in khabars and (k["id"] == subject["head"] or k["head"] in (
                 subject["id"], subject["head"])) for k in drawn):
             continue
         # كوبٌ كبيرٌ من القهوة: مِن on an indefinite measure brings the tamyeez (roles.json
@@ -90,8 +101,19 @@ def add_unwritten_khabars(c: Picture) -> None:
         # voweled for its place: the case its subject's khabar stands in (ثَابِتٌ، ثَابِتًا)
         case = (clause_of(role_of[subject["id"]]) or {}).get("case", "u")
         said_word = understand(kept["voweled"] + kept["tanween"][case], khabar, place,
-                               head=subject["id"] if inside else held["head"], rel="PRD", pos="NOM", pos_camel="")
+                               head=subject["id"] if inside else held["head"], rel="PRD", pos="NOM", pos_camel="",
+                               lemma=kept["word"])
         understood_pair[said_word["id"]] = pair_of.get(subject["id"], {})
+        # فَلَهُ أَجْرٌ، زَيْدٌ عِنْدَهُ كِتَابٌ: a nominal sentence inside another (an answer, a khabar, a صفة, what is said)
+        # is one unit, so its مبتدأ and the unit hang under the khabar no one writes, which heads it as a written one
+        # would (زيدٌ أبوه عالمٌ); a sentence on its own, or one a particle governs (إنما), keeps its halves side by side
+        head = by_id.get(said_word["head"])
+        if role_of[subject["id"]] == NAMED.mubtada and not inside and (
+                {subject["id"], held["id"]} & answers or head and head["pos"] != "PRT"):
+            for word in (subject, held):
+                moved = {**by_id[word["id"]], "head": said_word["id"]}
+                drawn[[t["id"] for t in drawn].index(word["id"])], by_id[word["id"]] = moved, moved
+            said_word["rel"] = held["rel"]  # قال زيدٌ له أجرٌ: the sentence hangs where its unit hung (the said OBJ)
         at = [t["id"] for t in drawn]
         if at.index(said_word["id"]) < at.index(subject["id"]) and role_of[subject["id"]] in kept["fronted"]:
             fronted |= {said_word["id"]: kept["fronted"][khabar], subject["id"]: kept["fronted"][role_of[subject["id"]]]}

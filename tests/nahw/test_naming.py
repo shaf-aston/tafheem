@@ -230,7 +230,6 @@ def test_kaada_takes_a_ism_and_leaves_its_present_verb_a_verb():
             token(2, "المريض", "مريض", "NOM", 1, "SBJ", stt="d", cas="n"),
             token(3, "يموت", "مات", "VRB", 1, "PRD", vox="a", asp="i")]
     assert roles(["كَادَ", "الْمَرِيضُ", "يَمُوتُ"], toks) == ["فعل", "اسم كاد", "فعل"]
-    assert facts.completes_kaada(toks[2], facts.Sentence(toks)) and not facts.completes_kaada(toks[0], facts.Sentence(toks))
     # أخذ with a noun object is the ordinary verb 'took', not a commencement verb
     toks = [token(1, "أخذ", "أخذ", "VRB", 0, "---", **VERB),
             token(2, "الولد", "ولد", "NOM", 1, "SBJ", stt="d", cas="n"),

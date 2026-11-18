@@ -3,10 +3,11 @@ from __future__ import annotations
 
 from backend.services.nahw.book import is_one, tarkeeb_rules
 from backend.services.nahw.syntax.doer import DOER, doer as _doer, person_key as _person, persons as _persons
-from backend.services.nahw.syntax.facts import completes_kaada, is_particle, is_preposition, is_verb
+from backend.services.nahw.syntax.facts import is_particle, is_preposition, is_verb, listed
 from backend.services.nahw.syntax.naming import NAMED, tone
 from backend.services.nahw.syntax.picture.hang import is_inside, quieted, unbracket
 from backend.services.nahw.syntax.picture.names import (
+    ATF,
     CONDITION,
     FOLLOWED,
     FRAMES,
@@ -84,11 +85,15 @@ def draw(c: Picture) -> dict:
     label_of, ma_card, mubdal_minhu, name_of, named = c.label_of, c.ma_card, c.mubdal_minhu, c.name_of, c.named
     named_by_unsaid, nominal, opened, parent = c.named_by_unsaid, c.nominal, c.opened, c.parent
     persons_of, place_of, role_of, root, roots = c.persons_of, c.place_of, c.role_of, c.root, c.roots
-    seen, sentence, split, typed_at, understood = c.seen, c.sentence, c.split, c.typed_at, c.understood
+    seen, split, typed_at, understood = c.seen, c.split, c.typed_at, c.understood
     why_of, words, written = c.why_of, c.words, c.written
     def said_of(token: dict) -> str | None:
         """What the books say of a unit beyond its job: its place (في محل نصب), then whose it is (حال من «الله»)."""
         return " ".join(filter(None, (place_of.get(token["id"]), detail_of.get(token["id"])))) or None
+    def placeless(token: dict) -> bool:
+        """فَمِنَ النَّاسِ مَنْ يَقُولُ، وَهُوَ الَّذِي سَخَّرَ: a nominal sentence no rule gave a place (begun afresh) does
+        no job; the name its khabar has (خبر، خبر مقدم) is that word's own, not the sentence's."""
+        return token["id"] not in place_of and job_of[token["id"]] in (role_of[token["id"]], name_of[token["id"]])
     def pieces(token: dict, leaf: dict) -> dict:
         """The leaf with what is written after a verb (ـها) and its doer, in the order
         the books say them: the verb, its doer, then the pronoun on it."""
@@ -119,9 +124,11 @@ def draw(c: Picture) -> dict:
         if family_of[token["id"]] == "inna":
             return NOMINAL
         # وَأَطِيعُوا hung on its وَ: the joined sentence is what the وَ brings; a condition's answer is
-        # drawn in the condition's own unit (وَمَنْ شَاءَ أَفْطَرَ), so the وَ beside it names nothing
+        # drawn in the condition's own unit (وَمَنْ شَاءَ أَفْطَرَ), and a sentence with a place in its own (جَاءَ زَيْدٌ
+        # وَقَدْ تَعِبَ: a حال), so the وَ beside either names nothing
         if token["pos"] == "PRT":
-            return next((kind for kid in children_of[token["id"]] if kid["id"] not in opened and (kind := kind_of(kid))), "")
+            return next((kind for kid in children_of[token["id"]]
+                         if kid["id"] not in opened and kid["id"] not in clauses and (kind := kind_of(kid))), "")
         return ""
     def node(token: dict) -> dict:
         # the parser can hand back two words pointing at each other; a word already
@@ -138,16 +145,24 @@ def draw(c: Picture) -> dict:
                         "detail": said_of(token), "children": [leaf]}
             return {"detail": detail_of[token["id"]], **leaf} if token["id"] in detail_of else leaf
         kid_roles = [job_of[kid["id"]] for kid in kids if job_of[kid["id"]]]
-        if token is root and role_of[token["id"]] and token["id"] not in opened and (own := unit_label(token, kid_roles, kids)) and not names_a_sentence(own):
+        # فَهُوَ حَسْبُهُ: a khabar heading a sentence inside another, its مبتدأ under it, is a unit with its own words
+        # too, the sentence holding both (as at the top), the sentence doing the job
+        inner = (token is not root or token["id"] in opened) and token["id"] in nominal and any(role_of[kid["id"]] == NAMED.mubtada for kid in kids)
+        if (token is root and token["id"] not in opened or inner) and role_of[token["id"]] \
+                and (own := unit_label(token, kid_roles, kids)) and not names_a_sentence(own):
             # كِتَابُ الطَّالِبِ جَدِيدٌ: the مضاف heads its unit, but the خبر hangs outside it;
             # the sentence holds both, the unit as a whole is the مبتدأ
             if beside := [kid for kid in kids if job_of[kid["id"]] not in UNIT_CHILDREN]:
                 children_of[token["id"]] = [kid for kid in kids if kid not in beside]
                 seen.discard(token["id"])
                 whole = {**node(token), "role": role_of[token["id"]], "tone": tone(role_of[token["id"]])}
+                if inner:
+                    whole["detail"] = None  # the place is the sentence's, not its khabar's
                 seen.update(kid["id"] for kid in beside)
                 inside = [(index, whole), *((at[kid["id"]], unit(kid)) for kid in beside)]
-                return {"role": None, "label": top_label, "tone": None, "detail": None,
+                job = job_of[token["id"]] if inner and not placeless(token) else None
+                return {"role": job, "label": NOMINAL if inner else top_label, "tone": job and (tone(job) or whole["tone"]),
+                        "detail": said_of(token) if inner else None,
                         "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
         # جاء زيدٌ وعمرٌو، وَإِقَامِ الصَّلَاةِ وَإِيتَاءِ الزَّكَاةِ: the word the معطوفات are joined on, with what is its
         # own (its مضاف إليه, its صفة), is the معطوف عليه; the job belongs to the whole list, drawn above all of it
@@ -164,7 +179,9 @@ def draw(c: Picture) -> dict:
             first = {**first, **own, **({"parts": [{**first["parts"][0], **own}, *first["parts"][1:]]} if first.get("parts") else {})}
             seen.update(kid["id"] for kid in rest)
             inside = [(index, first), *((at[kid["id"]], unit(kid)) for kid in rest)]
-            job = None if token is root or is_particle(token) else job_of[token["id"]]
+            # أَلَا لَهُ الْحُكْمُ وَهُوَ أَسْرَعُ: sentences begun afresh, joined, do no job either
+            job = None if token is root or is_particle(token) or token["id"] in nominal and placeless(token) \
+                and any(role_of[kid["id"]] == NAMED.mubtada for kid in kids) else job_of[token["id"]]
             label = top_label if token is root and token["id"] not in opened else ""
             return {"role": job, "label": label, "tone": tone(job), "detail": said_of(token),
                     "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
@@ -179,39 +196,51 @@ def draw(c: Picture) -> dict:
         inside.append((index, pieces(token, word_leaf(index, role, why, None if why else head_name))))
         # الطالبُ مجتهدٌ في المدرسة: a خبر whose مبتدأ is drawn beside it is a word with its
         # jar-majroor, not a sentence
+        # (وَهُوَ الَّذِي سَخَّرَ: a khabar with its صلة under it is a relative with its صلة, a unit as anywhere)
         lone_khabar = role == NAMED.khabar and token["id"] in nominal and not any(
-            role_of[kid["id"]] == NAMED.mubtada for kid in kids)
+            role_of[kid["id"]] == NAMED.mubtada for kid in kids) and NAMED.silah not in kid_roles
         label = label_of.get(token["id"]) or ("" if own is None or lone_khabar else own or (
             top_label if token is root and token["id"] not in opened
             else NOMINAL if token["id"] in clauses & nominal
             else VERBAL if token["id"] in clauses or role == NAMED.fil else kind_of(token)))
         # A particle's name is what it is, not a job for the unit it heads: the
         # parser gives no job for a jar-majroor or a clause under إِذَا, so none
-        # is written rather than calling the whole unit a حرف. The clause a كاد-type
-        # verb is finished by is that verb's khabar as a whole.
-        job = NAMED.khabar_kaada if completes_kaada(token, sentence) else (
+        # is written rather than calling the whole unit a حرف (كاد's khabar clause: picture.places).
+        job = (
             job_of[token["id"]] if token["id"] in framed
             else None if token is root or is_particle(token) or job_of[token["id"]] == NAMED.fil
+            or label == NOMINAL and placeless(token)
             else job_of[token["id"]])
         # مِن نارٍ: a jar-majroor with a word to hang on is named by it, متعلق بـX
         if token["id"] in hung:
             label = FRAMES["attached"].format(word=kept["word"])
         elif label == JAR_MAJROOR and _counts_kam(token, by_id.get(parent(token))):
             job = FRAMES["kam_tamyeez"]["job"]
+        elif label == JAR_MAJROOR and (up := by_id.get(parent(token))) and up["id"] < token["id"] \
+                and "rel" in up.get("pos_camel", "") and listed(up, "mawsul") \
+                and not any(kid["id"] in clauses for kid in children_of[up["id"]]):
+            # جَاءَ الَّذِي فِي الدَّارِ، بُعْثِرَ مَا فِي الْقُبُورِ: a jar after a relative on the book's list is its صلة,
+            # hung on a word no one writes; a relative has one صلة (الَّذِينَ أَنْعَمَ اللَّهُ عَلَيْهِمْ مِنَ النَّبِيِّينَ)
+            job, label = NAMED.silah, FRAMES["after_relative"]
         elif label == JAR_MAJROOR and (up := parent(token)) in at:
             # فِي سَنَةٍ أَوْ فِي ثَلَاثِ سِنِينَ: hung on a حرف عطف, it is معطوف on the jar-majroor that
             # حرف follows, and hangs where that one hangs (the معطوف follows its معطوف عليه)
             # A حرف عطف at the root follows nothing: no word to look at, so no loop.
+            # إِلَى دُنْيَا ... أَوْ إِلَى امْرَأَةٍ: so on the word no one writes, when that one hangs on it
+            word = None
             while is_one(by_id[up]["form"], "atf") and (followed := by_id.get(parent(by_id[up]))) \
                     and is_preposition(followed) and parent(followed) in at:
                 job, up = NAMED.matoof, parent(followed)
-            label = FRAMES["attached"].format(word=columns[at[up]])
-        return {"role": job,
-                "label": label,
-                "tone": tone(job) or tone(role),
-                "detail": said_of(token),
-                # right to left, so the picture reads in the order they were typed
-                "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
+                if followed["id"] in hung:
+                    word = kept["word"]
+                    break
+            label = FRAMES["attached"].format(word=word or columns[at[up]])
+        children = [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]  # right to left, as typed
+        # ذَهَبَ زَيْدٌ وَجَاءَ عَمْرٌو، فَلْيَشْكُرِ اللَّهَ: the sentence a حرف brings is named once, with the حرف in it, not again inside
+        if joins(token) and name_of[token["id"]] == ATF and (inner := next((kid for kid in children if kid.get("word") is None), None)) \
+                and inner.get("label") == label and not inner.get("role") and not inner.get("detail"):
+            children = [part for kid in children for part in (inner["children"] if kid is inner else [kid])]
+        return {"role": job, "label": label, "tone": tone(job) or tone(role), "detail": said_of(token), "children": children}
     # the parser can leave a sentence as two loose halves; they are still one
     # sentence, so they are drawn side by side under it rather than one dropped
     def unit(token: dict) -> dict:
