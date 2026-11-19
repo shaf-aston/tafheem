@@ -19,7 +19,7 @@ export default function SoundedWrong({ className = '' }) {
     const { saved } = await leaveFeedback({
       module: 'voice',
       item: heard.text.slice(0, 200),
-      message: `sounded wrong (${heard.voice}, ${heard.speed}${heard.accent ? `, ${heard.accent}` : ''})`,
+      message: `sounded wrong (${heard.voice}, ${heard.speed}${heard.accent ? `, ${heard.accent}` : ''}${heard.cast ? ` ${heard.cast}` : ''})`,
     })
     setState(saved ? 'sent' : 'failed')
   }

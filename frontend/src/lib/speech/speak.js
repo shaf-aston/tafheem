@@ -6,7 +6,9 @@
  * word is never silent while any voice can reach it.
  *
  * An accent (a Colloquial dialect's key) asks the server for that dialect's own
- * speaker, and skips the reciters: a Qur'an reciter is not a Damascene.
+ * speaker, and skips the reciters: a Qur'an reciter is not a Damascene. A cast (a
+ * dialogue line's seat, `woman-1`) picks which of its speakers, so each person in a
+ * scene keeps one voice of their own sex.
  *
  * Recordings share lib/quran/ayahAudio.js's one player, so a word stops an ayah and
  * an ayah stops a word: never two sounds at once.
@@ -44,9 +46,10 @@ async function playFile(url) {
 
 // Only what differs from the server's defaults is sent, so a word's address (and
 // the browser's and the edge's copy of it) stays the same as before speeds existed.
-function serverUrl(text, accent, speed = 'normal') {
+function serverUrl(text, { accent, cast } = {}, speed = 'normal') {
   const url = `${config.voices.server.url}?text=${encodeURIComponent(text)}&voice=${config.voices.server.version}`
-  return url + (accent ? `&accent=${encodeURIComponent(accent)}` : '') + (speed !== 'normal' ? `&speed=${speed}` : '')
+  return url + (accent ? `&accent=${encodeURIComponent(accent)}` : '') + (accent && cast ? `&cast=${encodeURIComponent(cast)}` : '')
+    + (speed !== 'normal' ? `&speed=${speed}` : '')
 }
 
 // The last word said and when, so a second press soon after can be said slower.
@@ -84,10 +87,10 @@ export function pickVoice(voices, cfg = config) {
 
 /** Each voice resolves to { done } once sound has started, rejects if it cannot. */
 const VOICES = {
-  person: async (text, accent) => playFile(accent ? null : await recordingOf(text, 'person')),
-  recorded: async (text, accent) => playFile(accent ? null : await recordingOf(text)),
-  server: (text, accent, speed) => playFile(serverUrl(text, accent, speed)),
-  browser: async (text, _accent, speed) => {
+  person: async (text, { accent }) => playFile(accent ? null : await recordingOf(text, 'person')),
+  recorded: async (text, { accent }) => playFile(accent ? null : await recordingOf(text)),
+  server: (text, who, speed) => playFile(serverUrl(text, who, speed)),
+  browser: async (text, _who, speed) => {
     const synth = globalThis.speechSynthesis
     if (!synth) throw new Error('no device voice')
     // Never guess a voice: an Android with no Arabic pack spells the letters in English.
@@ -114,7 +117,7 @@ const VOICES = {
 }
 
 /**
- * Say `text`, in `accent` when given. Resolves as soon as a voice starts, to { id, done },
+ * Say `text`, in `accent` when given, by its `cast` there. Resolves as soon as a voice starts, to { id, done },
  * where `done` settles when it falls quiet. Rejects if no voice could say it.
  */
 let latest = 0
@@ -123,13 +126,13 @@ let heard = null
 /** The last thing a voice actually said, and which voice at what speed: what a "sounded wrong" report files. */
 export const lastHeard = () => heard
 
-export async function speak(text, { accent } = {}) {
+export async function speak(text, { accent, cast } = {}) {
   const turn = ++latest
   const speed = speedFor(text)
   for (const id of config.order) {
     try {
-      const { done } = await VOICES[id](text, accent, speed)
-      heard = { text, voice: id, speed, accent: accent ?? null }
+      const { done } = await VOICES[id](text, { accent, cast }, speed)
+      heard = { text, voice: id, speed, accent: accent ?? null, cast: cast ?? null }
       return { id, done }
     } catch (err) {
       // Cut off by a newer press or an ayah, not unable: the next voice must not talk over it.
@@ -145,14 +148,14 @@ export async function speak(text, { accent } = {}) {
  * need nothing. Once per text; a failure just leaves the press to make it.
  */
 const prepared = new Set()
-export async function prepare(text, { accent } = {}) {
+export async function prepare(text, { accent, cast } = {}) {
   const speed = settingOf('voice-speed')
-  const key = `${accent ?? ''}|${speed}|${text}`
+  const key = `${accent ?? ''}|${cast ?? ''}|${speed}|${text}`
   if (prepared.has(key)) return
   prepared.add(key)
   if (!accent && await anyRecordingOf(text)) return
   // Marked as ahead, so a word actually pressed is made before it on the server.
-  fetch(serverUrl(text, accent, speed), { headers: { 'X-Speak-Ahead': '1' } }).catch(() => prepared.delete(key))
+  fetch(serverUrl(text, { accent, cast }, speed), { headers: { 'X-Speak-Ahead': '1' } }).catch(() => prepared.delete(key))
 }
 
 export function stop() {

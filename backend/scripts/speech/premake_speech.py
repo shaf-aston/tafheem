@@ -22,8 +22,8 @@ from pathlib import Path
 
 from backend.config import get_settings
 from backend.services import speech
+from backend.services.colloquial import loader as colloquial
 
-COURSE = Path(__file__).resolve().parents[2] / "data" / "colloquial"
 # The quiz's files, as the page loads them (frontend lib/speech/speak.js and QuizExample.jsx).
 WORDS = Path(__file__).resolve().parents[3] / "frontend" / "public" / "words"
 
@@ -35,21 +35,24 @@ def spoken_sentence(arabic: str) -> str:
 
 def said() -> list[tuple[str, str | None]]:
     """Every distinct (text, voice) the server can be asked for, tidied as the route tidies it.
-    A dialect's lines go to its own speaker (dialects.json `voice`), the rest to the usual order (None)."""
+    A dialect's lines go to its own speakers (colloquial.voice_of: a dialogue line by its cast,
+    the rest by the dialect's first man), everything else to the usual order (None)."""
     found: set[tuple[str, str | None]] = set()
 
-    def walk(value, voice: str | None) -> None:
+    def walk(value, accent: str) -> None:
         if isinstance(value, dict):
             if isinstance(value.get("arabic"), str):
-                found.add((speech.tidy(value["arabic"]), voice))
+                found.add((speech.tidy(value["arabic"]), colloquial.voice_of(accent, value.get("cast"))))
             value = list(value.values())
         if isinstance(value, list):
             for item in value:
-                walk(item, voice)
+                walk(item, accent)
 
-    voices = {d["folder"]: d.get("voice") for d in json.loads((COURSE / "dialects.json").read_text(encoding="utf-8"))["dialects"]}
-    for unit in sorted(COURSE.glob("*/*.json")):
-        walk(json.loads(unit.read_text(encoding="utf-8")), voices.get(unit.parent.name))
+    # The course as the page gets it, so a line's cast is the one the page sends.
+    for dialect in colloquial.catalogue()["dialects"]:
+        for card in dialect["units"]:
+            if card["written"]:
+                walk(colloquial.unit(dialect["key"], card["unit"]), dialect["key"])
 
     # A quiz word with a reciter's recording plays that from quran.com, never this voice.
     recorded = json.loads((WORDS / "word_audio.json").read_text(encoding="utf-8"))
