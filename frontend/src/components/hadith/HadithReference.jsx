@@ -15,7 +15,7 @@ export default function HadithReference({ name, number, part = '', book, inBook 
           <dt>{label}</dt>
           <dd className="m-0 tabular-nums">
             {href
-              ? <a href={href} target="_blank" rel="noreferrer" className="underline decoration-dotted underline-offset-2 hover:text-[var(--text-dim)]">{value}</a>
+              ? <a href={href} target="_blank" rel="noreferrer" className="inline-flex items-center min-h-[var(--layout-pointer-tap)] underline decoration-dotted underline-offset-2 hover:text-[var(--text-dim)]">{value}</a>
               : value}
           </dd>
         </div>

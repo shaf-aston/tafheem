@@ -47,13 +47,13 @@ export default function InstallBanner() {
   const { kind } = state
   if (!stripOpen(state)) return null
   return (
-    <div className="shell sm:hidden pt-2">
+    <aside aria-label="Install the app" className="shell sm:hidden pt-2">
       <div className="flex items-center gap-3 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-hi)] px-3 py-2 type-small">
         <InstallSteps kind={kind} />
         <button type="button" onClick={dismissInstall} aria-label="Not now" className="tap shrink-0 px-1 text-[var(--text-dim)]">
           ✕
         </button>
       </div>
-    </div>
+    </aside>
   )
 }

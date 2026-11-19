@@ -77,12 +77,12 @@ function Goal({ xpToday }) {
       <dt>{say('Today')}</dt>
       <dd>
         <details className="grow-goal-pick">
-          <summary aria-label={say('Daily goal: {goal} XP. Change it', { goal })}>
+          <summary className="tap" aria-label={say('Daily goal: {goal} XP. Change it', { goal })}>
             <Odometer value={xpToday} /> {met ? say('XP · goal met') : say('/ {goal} XP', { goal })}
           </summary>
           <span className="grow-goals" role="radiogroup" aria-label={say('Daily goal')}>
             {GOALS.map((each) => (
-              <button key={each} type="button" role="radio" aria-checked={each === picked} className="grow-goal"
+              <button key={each} type="button" role="radio" aria-checked={each === picked} className="grow-goal tap"
                 onClick={(event) => { pick(each); event.currentTarget.closest('details').open = false }}>
                 {each}
               </button>

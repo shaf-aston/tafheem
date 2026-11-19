@@ -56,9 +56,9 @@ export default function Chip({
           borderColor: `color-mix(in srgb, ${accent} 45%, var(--border))`,
           color: `color-mix(in srgb, ${accent} 80%, var(--text))`,
         }}
-        className="press type-tiny leading-none rounded-full inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap
+        className={`press ${href || onClick ? 'tap' : ''} type-tiny leading-none rounded-full inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap
           px-2 py-1 border bg-[color-mix(in_srgb,var(--surface-hi)_70%,transparent)]
-          hover:bg-[var(--surface-hi)] transition-colors"
+          hover:bg-[var(--surface-hi)] transition-colors`}
       >
         <span className="w-[5px] h-[5px] rounded-full bg-current" aria-hidden="true" />
         {children}

@@ -99,7 +99,7 @@ export default function HadithList({ collection, book, focus, onBack, accent, on
               aria-label="Go to hadith number"
               placeholder="Go to #"
               onChange={() => setMissing(false)}
-              className="type-small w-24 h-[var(--layout-chip)] px-3 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--c)]"
+              className="text-[length:max(var(--field-floor),var(--type-small))] w-24 h-[var(--layout-chip)] px-3 rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] outline-none focus:border-[var(--c)]"
               style={{ '--c': accent }}
             />
           </form>

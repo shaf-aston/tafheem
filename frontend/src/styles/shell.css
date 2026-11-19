@@ -265,7 +265,7 @@
 .footer-note input:not([type="checkbox"]) {
   flex: 1; min-width: 0; min-height: var(--layout-tap); padding: .375rem .875rem;
   border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--surface);
-  color: var(--text); font: inherit; font-size: var(--type-small);
+  color: var(--text); font: inherit; font-size: max(var(--field-floor), var(--type-small));
   transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
 }
 /* Brought into view above the phone's tab bar, not under it, when a field takes the cursor. */
