@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import json
 import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from backend.config import get_settings
@@ -74,6 +75,8 @@ def lines() -> list[str]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=0, help="stop after this many lines (0 = all)")
+    parser.add_argument("--workers", type=int, default=6,
+                        help="lines asked at once; the online voices answer in parallel, this machine's own voice still takes one at a time")
     parser.add_argument("--again", default="", help="make again every line holding any of these letters")
     args = parser.parse_args()
     todo = said()
@@ -81,13 +84,23 @@ def main() -> None:
     for text, _voice in todo:
         if any(letter in text for letter in args.again):
             speech.forget(text)
+    if args.workers < 1:
+        parser.error("--workers must be 1 or more")
     start = time.monotonic()
-    for done, (text, voice) in enumerate(todo, 1):
-        speech.say(text, pressed=False, first=voice)
-        if done % 100 == 0 or done == len(todo):
-            spent = time.monotonic() - start
-            print(f"{done}/{len(todo)} lines, {spent / 60:.0f} min, ~{spent / done * (len(todo) - done) / 3600:.1f} h left", flush=True)
+    already = sum(any(speech.stored(v, text).exists() for v in speech.order(voice)) for text, voice in todo)
+    print(f"{already}/{len(todo)} lines already stored", flush=True)
 
+    def make(pair: tuple[str, str | None]) -> None:
+        try:
+            speech.say(pair[0], pressed=False, first=pair[1])
+        except RuntimeError:  # no voice right now: a tap makes it later, the run goes on
+            print(f"skipped {pair[0]!r}: no voice could say it", flush=True)
+
+    with ThreadPoolExecutor(args.workers) as pool:
+        for done, _ in enumerate(pool.map(make, todo), 1):
+            if done % 100 == 0 or done == len(todo):
+                spent = time.monotonic() - start
+                print(f"{done}/{len(todo)} lines, {spent / 60:.0f} min, ~{spent / done * (len(todo) - done) / 3600:.1f} h left", flush=True)
 
 if __name__ == "__main__":
     main()

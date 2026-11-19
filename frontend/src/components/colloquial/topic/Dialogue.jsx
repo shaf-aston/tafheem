@@ -1,11 +1,13 @@
 // The dialogue as a stage: two speakers, one on each side, lines appearing as you tap through.
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ArabicText from '../../ui/text/ArabicText'
 import PrimaryButton from '../../ui/buttons/PrimaryButton'
 import SmallButton from '../../ui/buttons/SmallButton'
 import SpeakButton from '../../ui/buttons/SpeakButton'
 import Spelling from '../parts/Spelling'
+import { useAccent } from '../../../lib/theme/accent'
+import { prepare } from '../../../lib/speech/speak'
 
 const SIDE_TINT = ['--primary', '--warn']
 const TINT_PERCENT = 18
@@ -53,6 +55,11 @@ export default function Dialogue({ lines }) {
   const side = (name) => Math.min(names.indexOf(name), SIDE_TINT.length - 1)
   const live = shown ? lines[shown - 1].speaker : null
   const done = shown === lines.length
+  const accent = useAccent()
+  // The line shown and the one Next brings are made ahead, so a phone's first tap plays at once.
+  useEffect(() => {
+    for (const line of lines.slice(Math.max(shown - 1, 0), shown + 1)) prepare(line.arabic, { accent, cast: line.cast })
+  }, [lines, shown, accent])
 
   return (
     <div className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] overflow-hidden">
