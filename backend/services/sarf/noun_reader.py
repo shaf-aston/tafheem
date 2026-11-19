@@ -32,12 +32,13 @@ _SOUND_ENDINGS = {("ُ", "و", "َ"): ("p", "n"), ("ِ", "ي", "َ"): ("p", "u")
 
 @lru_cache(maxsize=1)
 def _shapes() -> list[tuple[str, str, str]]:
-    """(shape in فعل letters, the analyser's digit pattern, part of speech), the elative first."""
+    """(shape in فعل letters, the analyser's digit pattern, part of speech), the elative first, then the masdars and
+    the doer's and done-to's participles (الصَّادِقُ الْمَصْدُوقُ: a مَفْعُول the dictionary lacks is no guessed name)."""
     elative = [(shape.replace("1", "ف").replace("2", "ع") + "ل", shape + "3", "adj")
                for shape in book_words("elative_patterns")]
     masdars, participles = [], []
     for form in json.loads(_PATTERNS.read_text(encoding="utf-8"))["forms"].values():
-        for key, kept, pos in (("masdar", masdars, "noun"), ("fail", participles, "adj")):
+        for key, kept, pos in (("masdar", masdars, "noun"), ("fail", participles, "adj"), ("maful", participles, "adj")):
             shape = form.get(key) or ""
             # إِقَامَة، اِسْتِقَامَة: a hollow root's masdar of إِفْعَال or اِسْتِفْعَال drops its middle letter, its fatha
             # moved onto the first (الإعلال بالنقل والحذف), a ة in its place; before a مضاف إليه the ة may fall too
@@ -122,7 +123,11 @@ def reading_of(word: str) -> dict | None:
     for shape, pattern, pos in _shapes() + (_sound_shapes() if peeled else []):
         if not fits_shape(shaped, shape):
             continue
-        typed_stem = "".join(letter + "".join(sorted(marks)) for letter, marks in stem)
+        # the stem as the dictionary writes it: an ال kept on the word, the sun letter its shadda (الْمُضَمَّرَ: المُضَمَّرَ),
+        # and a ة with the case on it (الْمُنْفِقَةُ: المُنْفِقَةُ, as الكَبِيرَةُ)
+        own = letters(word)[2:] if definite else letters(word)
+        typed_stem = ("ال" if definite else "") + "".join(letter + "".join(sorted(marks))
+                                                         for letter, marks in own[:len(stem) + feminine])
         rest = "".join(letter + "".join(sorted(marks)) for letter, marks in marked[len(stem):])  # its pronoun, or its peeled ending
         return {"pos": pos, "diac": word, "lex": "".join(letter for letter, _ in stem), "pattern": ("ال" if definite else "") + pattern + ("ة" if feminine else ""),
                 "atbtok": f"{typed_stem}_+{rest}" if size else typed_stem + (rest if peeled else ""),

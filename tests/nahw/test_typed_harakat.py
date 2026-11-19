@@ -95,9 +95,9 @@ def test_tamyeez_al_nisba_follows_its_verbs_only():
 
 
 def test_past_passive_shape_is_read_from_the_vowels_alone():
-    for word in ("قُرِئَ", "قُرِئَتِ", "سُئِلَ", "بُنِيَ", "أُكِلَ", "ضُرِبَ"):
+    for word in ("قُرِئَ", "قُرِئَتِ", "سُئِلَ", "بُنِيَ", "أُكِلَ", "ضُرِبَ", "أُقِيمَ", "نُسِيَ"):
         assert harakat.past_passive_shape(word)
-    for word in ("كَتَبَ", "الْكِتَابُ", "قُرَيْشٌ", "كتب"):  # active, a noun, a name, bare
+    for word in ("كَتَبَ", "الْكِتَابُ", "قُرَيْشٌ", "كتب", "تُعِينَ", "يُقِيمَ"):  # active, a noun, a name, bare, أَفْعَلَ's present
         assert not harakat.past_passive_shape(word)
 
 
@@ -124,6 +124,10 @@ def test_after_the_passive_kasra_comes_only_the_last_letter():
     for word in ("ضُرِبْنَ", "عُلِّمَ", "قُرِئَتْ"):
         assert harakat.past_passive_shape(word)
     for word in ("تُحِبُّكَ", "يُحِبَّكَ", "يُكْرِمُكَ"):
+        assert not harakat.past_passive_shape(word)
+    # the last root letter is sakin before a doer's moving pronoun (ضُرِبْنَ، أُكْرِمْتَ); before an object's
+    # (أُكْرِمْكَ، أُعْلِمْهُ) that sukun is the jussive's
+    for word in ("أُكْرِمْكَ", "أُعْلِمْهُ"):
         assert not harakat.past_passive_shape(word)
 
 

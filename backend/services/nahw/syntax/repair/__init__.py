@@ -11,7 +11,7 @@ from backend.services.nahw.syntax.facts import Sentence, base_tokens
 from backend.services.nahw.syntax.repair.answer import untied_command
 from backend.services.nahw.syntax.repair.asked import asked_anna, asked_before_verb, counted_by_min, asked_of_kana, asked_man, man_before_verb
 from backend.services.nahw.syntax.repair.called import called, called_annexes
-from backend.services.nahw.syntax.repair.clause import amma_clause, doer_then_khabar, negated_conjunct, oath_clause
+from backend.services.nahw.syntax.repair.clause import amma_clause, doer_then_khabar, negated_conjunct, oath_clause, said_again
 from backend.services.nahw.syntax.repair.dua import counted_times, dua_clause
 from backend.services.nahw.syntax.repair.hal import elative_describes, hal_clause, naat_beside_its_noun, no_khabar_on_full_verb
 from backend.services.nahw.syntax.repair.khabar import after_pointer, jar_off_particle, masdar_khabar, jar_on_its_khabar, before_la, hung_on_pronoun, majrur_of_jar, naat_after_its_noun, known_pair_in_order, naat_not_subject, la_over_its_khabar, zarf_is_no_subject, khabar_said_first, described_doer, elative_specified, hasr_khabar, name_not_told_by_ma, object_of_noun, relative_khabar, khabar_after_silah, second_khabar, sentence_khabar, tawkeed_before_khabar, told_of_jar
@@ -95,6 +95,7 @@ PASSES = (
     (oath_clause, "sentence"),
     (amma_clause, "sentence"),
     (negated_conjunct, "sentence"),
+    (said_again, "sentence"),
     (doer_then_khabar, "sentence"),
     (no_khabar_on_full_verb, "sentence"),
     (naat_beside_its_noun, "sentence"),

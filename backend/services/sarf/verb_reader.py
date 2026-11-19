@@ -211,7 +211,7 @@ def past(cell: Cell) -> str:
     return dict(conjugation.row_cells(cell.root, cell.form, 0))["madi"]
 
 
-def command(word: str, governed: bool = False, root: str = "", vouched: bool = False) -> Cell | None:
+def command(word: str, governed: bool = False, root: str = "", vouched: bool = False, answers: bool = False) -> Cell | None:
     """The command this typed word is (اِجْلِسِي، ارْحَمُوا، قُمْ), or None.
 
     `root` is the one the dictionary read the word with, if any: where sarf finds
@@ -221,6 +221,9 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
     and without one the jussive's spelling cannot stand (أَقِمْ alone is a command).
     `vouched` says the sentence shows a verb where no vowel was typed (repair.typed),
     so the bare letters are read too (اكتبي درسك).
+    `answers` says the word is past the first and agrees with the present read: a jussive the typed vowels fit as closely
+    is that jussive, a command's answer
+    (اسْتَغْفِرُونِي أَغْفِرْ لَكُمْ: أَغْفِرْ, I forgive), so it is no command; أَكْرِمْ fits only the command (أُكْرِمْ is the jussive).
     Of what is left, the closest readings must all be a command to the same person;
     تَحَاسَدُوا is also a past verb, so the dictionary keeps its say.
     """
@@ -232,6 +235,8 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
         return None
     found = dict(_scored(word))
     found = {c: score for c, score in found.items() if c.root == root} or found
+    if answers and found and any(c.column == "jussive" and score == min(found.values()) for c, score in found.items()):
+        return None
     found = {c: score for c, score in found.items() if c.column != "jussive"}
     if not found:
         return None

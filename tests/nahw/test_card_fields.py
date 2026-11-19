@@ -668,6 +668,103 @@ def test_a_present_verb_shows_its_case_on_its_own_letters_before_an_attached_pro
     assert (verb["case"], verb["sign"]) == (case, sign)
 
 
+@pytest.mark.parametrize("sentence, at, case, sign", [
+    # جواب الطلب: a jussive straight after a command is its answer, a present in jazm, not a second command
+    ("فَاسْتَغْفِرُونِي أَغْفِرْ لَكُمْ", 1, "jazm", "سكون"),
+    ("فَاسْتَهْدُونِي أَهْدِكُمْ", 1, "jazm", "حذف حرف العلة"),
+    ("زُرْنِي أُكْرِمْكَ", 1, "jazm", "سكون"),
+    ("أَكْرِمْ زَيْدًا", 0, "mabni", "مبني على السكون"),  # nearest case: a command opening the sentence stays one
+    ("رَبِّ اغْفِرْ لِي", 1, "mabni", "مبني على السكون"),  # nearest case: after a منادى the command stays one
+    ("زُرْنِي أَكْرِمْ زَيْدًا", 1, "mabni", "مبني على السكون"),  # nearest case: أَفْعِلْ with fatha is a command, not أُفْعِلْ
+    # أُفْعِلْ after لَمْ is the present in jazm: its sukun is no past passive's (أُكْرِمَ)
+    ("لَمْ أُكْرِمْكَ", 1, "jazm", "سكون"),
+    ("لَمْ أُكْرِمْ زَيْدًا", 1, "jazm", "سكون"),
+    ("لَمَّا أُكْرِمَ زَيْدٌ", 1, "mabni", "مبني على الفتح"),  # nearest case: لَمَّا "when" takes the past
+    ("لِمَ تَرَكَ الصَّلَاةَ", 1, "mabni", "مبني على الفتح"),  # nearest case: لِمَ "why", spelled as لَمْ, takes the past
+    ("لِمَ أُخْرِجَ زَيْدٌ", 1, "mabni", "مبني على الفتح"),
+    # nearest cases: a command after قَالَ, a call, or joined by ف or و is a command, not an answer
+    ("قَالَ أَمْسِكْ عَلَيْكَ لِسَانَكَ", 1, "mabni", "مبني على السكون"),
+    ("اللَّهُمَّ أصْلِحْ لِي دِينِي", 1, "mabni", "مبني على السكون"),
+    ("قُمْ فَأَمْسِكْ عَلَيْكَ لِسَانَكَ", 1, "mabni", "مبني على السكون"),
+    ("اُسْكُتْ وَأَمْسِكْ عَلَيْكَ لِسَانَكَ", 1, "mabni", "مبني على السكون"),
+    # nearest cases: a أَفْعَلَ the dictionary knows (أَمْسَكَ، أَنْزَلَ) is its own command beside another; a shared root is the answer
+    ("اسْكُتْ أَمْسِكْ", 1, "mabni", "مبني على السكون"),
+    ("قُلْ أَمْسِكْ لِسَانَكَ", 1, "mabni", "مبني على السكون"),
+    ("قُمْ أَنْزِلِ الْمَتَاعَ", 1, "mabni", "مبني على السكون"),
+    ("اجْلِسْ أَجْلِسْ", 1, "jazm", "سكون"),
+    ("قُمْ فَأَنْذِرْ", 1, "mabni", "مبني على السكون"),  # 74:2: the ف CAMeL splits off is no part of the command
+    # nearest case: bare لم and a past no present of its root spells is لِمَ "why"
+    ("لم ترك الصلاة", 1, "mabni", "مبني على الفتح"),
+])
+def test_a_jussive_after_a_command_or_lam_is_a_present_in_jazm(sentence, at, case, sign):
+    """repair/typed.py reads جواب الطلب; morphology._wants_present and harakat.past_passive_shape keep أُفْعِلْ present."""
+    verb = _read(sentence)["words"][at]
+    assert (verb["case"], verb["sign"]) == (case, sign)
+
+
+@pytest.mark.parametrize("sentence, at, case, sign", [
+    # a معطوف wears its معطوف عليه's case, its kasra on ـات a nasb too: where its و hangs on the verb (it follows the
+    # verb's object), and after a built word, which stands in its role's case (إيّا is the object pronoun)
+    ("رَأَيْتُ زَيْدًا وَالْمُسْلِمَاتِ", 2, "nasb", "كسرة، نيابة عن الفتحة، جمع مؤنث سالم"),
+    ("رَأَيْتُ هَؤُلَاءِ وَالْمُسْلِمَاتِ", 2, "nasb", "كسرة، نيابة عن الفتحة، جمع مؤنث سالم"),
+    ("جاء زيد والمسلمات", 2, "raf'", "ضمة"),  # joined to the doer before its و, untyped: it shares the doer's raf'
+    ("ضرب زيد عمرا وبكر", 3, "nasb", "فتحة"),  # joined to the nearest, the object
+    ("ضرب عمرا زيد والمسلمات", 3, "raf'", "ضمة"),  # the object first: the nearest is the doer
+    ("إِيَّاكَ وَالْمُسْلِمَاتِ", 1, "nasb", "كسرة، نيابة عن الفتحة، جمع مؤنث سالم"),
+    ("وَإِيَّاكُمْ وَمُحْدَثَاتِ الْأُمُورِ", 1, "nasb", "كسرة، نيابة عن الفتحة، جمع مؤنث سالم"),
+    ("مَرَرْتُ بِزَيْدٍ وَالْمُسْلِمَاتِ", 2, "jarr", "كسرة"),  # nearest case: after a مجرور the kasra is jarr
+    ("مَرَرْتُ بِهَذَا وَالْمُسْلِمَاتِ", 2, "jarr", "كسرة"),
+])
+def test_a_follower_wears_the_case_of_the_word_it_follows(sentence, at, case, sign):
+    """followers.followed finds the معطوف عليه past a verb or إيّا; take_their_ending reads a built word's place."""
+    word = _read(sentence)["words"][at]
+    assert (word["case"], word["sign"]) == (case, sign)
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    # a past passive the dictionary lacks, behind a joined ف or و: the particle's fatha is no part of فُعِلَ
+    ("فَأُتِيَ بِرَجُلٍ", 0, "فعل مجهول"),
+    ("فَسُحِبَ عَلَى وَجْهِهِ", 0, "فعل مجهول"),
+    ("وَقُتِلَ زَيْدٌ", 0, "فعل مجهول"),
+    ("فَسَحَبَ زَيْدٌ الْحَبْلَ", 0, "فعل"),  # nearest case: the active past opens on a fatha
+    ("فَأُقِيمَتِ الصَّلَاةُ", 0, "فعل مجهول"),  # أَقَامَ's فُعِلَ opens on أ, a long ي after its kasra
+])
+def test_a_past_passive_behind_a_joined_particle_is_a_verb(sentence, at, role):
+    """morphology._passive_shape_past_joined reads فُعِلَ past the joined ف or و."""
+    verb = _read(sentence)["words"][at]
+    assert (verb["role"], verb["case"]) == (role, "mabni")
+
+
+@pytest.mark.parametrize("sentence, at, case, sign", [
+    # on ت ي ن the shape of أُقِيمَ is the present of أَفْعَلَ (harakat.past_passive_shape), and with one doer a last ن is the root's,
+    # its vowel the case (naming._mood), no nun of the five verbs: joined by ف to a verb in nasb it takes the nasb
+    ("أَرْجُو أَنْ تَأْتِيَ فَتُعِينَ أَخَاكَ", 3, "nasb", "فتحة"),
+    ("أُرِيدُ أَنْ تَقُومَ فَتَكُونَ مَعَنَا", 3, "nasb", "فتحة"),
+    ("لَمْ يَأْتِ فَيُعِينَ أَخَاهُ", 2, "nasb", "فتحة"),
+    ("هُوَ يُعِينُ أَخَاهُ", 1, "raf'", "ضمة"),
+    ("أَنْتِ تَكْتُبِينَ الدَّرْسَ", 1, "raf'", "ثبوت النون"),  # nearest case: أَنْتِ's ي, its nun the five verbs'
+    ("أَنْتُمْ تُعِينُونَ إِخْوَانَكُمْ", 1, "raf'", "ثبوت النون"),
+    ("لَنْ نُعِينَ الظَّالِمَ", 1, "nasb", "فتحة"),  # the five verbs open on ي or ت: نُفْعِلُ's last ن is the root's
+    ("نُعِينَ أَخَانَا", 0, "nasb", "فتحة"),  # with no particle too, as يُعِينَ: the fatha typed on it is its case
+    ("يُعِينَ أَخَاهُ", 0, "nasb", "فتحة"),
+])
+def test_a_present_verb_on_a_root_ending_in_nun_shows_its_case_on_that_nun(sentence, at, case, sign):
+    verb = _read(sentence)["words"][at]
+    assert (verb["role"], verb["case"], verb["sign"]) == ("فعل", case, sign)
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    # a letter typed with a sukun is not doubled: فَصُمْ is the command "fast", never صُمّ "deaf" (a doubled ميم)
+    ("فَصُمْ", 0, "فعل"),
+    ("فَنَمْ", 0, "فعل"),
+    ("فَصُمْهُ", 0, "فعل"),
+    ("هُمْ صُمٌّ", 1, "خبر"),  # nearest case: typed doubled, the adjective stays
+])
+def test_a_letter_typed_still_is_never_doubled(sentence, at, role):
+    """harakat.vowel_agreement: a sukun typed where the reading has a shadda rules that reading out."""
+    assert _read(sentence)["words"][at]["role"] == role
+
+
 @pytest.mark.parametrize("sentence, index, named, role, case", [
     # حروف التحضيض (Kafiya p55: هلا، ألا، لولا، لوما، لها صدر الكلام، ويلزم الفعل): urging before a verb
     ("هَلَّا تَدْرُسُ", 0, "حرف عرض وتحضيض", "حرف", "mabni"),
@@ -694,3 +791,31 @@ def test_an_urging_particle_is_named_so_and_one_with_a_tanween_is_the_noun_its_l
 def test_the_present_of_raa_has_a_weak_last_letter(sentence: str, index: int, case: str, sign: str):
     verb = _read(sentence)["words"][index]
     assert (verb["case"], verb["sign"]) == (case, sign)
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    # a doer name the parser hung on the verb as a modifier, showing raf', with the noun in nasb hung on it: the doer
+    # comes first, the nasb noun is the verb's object (a نعت or بدل would wear the name's case)
+    ("شَدَّ زَيْدٌ الْحَبْلَ شَدًّا", 2, "مفعول به"),
+    ("ضَرَبَ زَيْدٌ عَمْرًا ضَرْبًا", 2, "مفعول به"),
+    ("قَرَأَ مُحَمَّدٌ الْكِتَابَ", 2, "مفعول به"),
+])
+def test_a_nasb_noun_after_a_doer_name_is_the_verbs_object(sentence, at, role):
+    """repair/subject_clash.doer_first takes the name whatever link the parser gave it to the verb."""
+    assert _role(sentence, at) == role
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    # a word on the elative's shape typed with a fatha, first or after a ما, before a مِنْ-phrase: no عامل stands
+    # before it to set a noun in nasb, so it is the past verb; after إِنَّ or a كان-verb it may be the noun in nasb
+    ("أَصْبَحَ مِنْ عِبَادِي مُؤْمِنٌ", 0, "فعل"),
+    ("مَا أَصْبَحَ مِنْهُمْ أَحَدٌ", 1, "فعل"),
+    ("إِنَّمَا أَصْبَحَ مِنْهُمْ رَجُلٌ", 1, "فعل"),
+    ("إِنَّ أَكْرَمَ مِنْكُمْ زَيْدٌ", 1, "اسم إن"),
+    ("لَيْسَ شَيْءٌ أَعْظَمَ مِنْ ذَلِكَ", 2, "خبر كان"),
+    # the dual pronoun هُمَا ends in ما but is no ما: the verb it is written on sets the noun in nasb
+    ("أَعْطَيْتُهُمَا أَكْثَرَ مِنْ حَقِّهِمَا", 1, "مفعول به"),
+])
+def test_a_fatha_with_nothing_to_set_it_in_nasb_is_the_past_verbs(sentence, at, role):
+    """morphology.pick leaves the verb read where its elative rule finds no عامل of nasb before the word."""
+    assert _role(sentence, at) == role

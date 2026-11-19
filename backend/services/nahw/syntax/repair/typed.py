@@ -4,6 +4,7 @@ from __future__ import annotations
 from itertools import pairwise
 
 from backend.services.sarf import verb_reader
+from backend.services.sarf.morphology import is_listed_verb
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
@@ -63,6 +64,16 @@ def typed_words(bases: list[dict], tokens: list[dict]) -> None:
         if (verb or token.get("pos_camel") in ("noun", "noun_prop")) and not built and not noun:
             governed = i > 0 and any(is_one(bases[i - 1]["base"], family, "before_a_present_verb")
                                      for family in ("jazm", "nasb_mudari"))
+            # اسْتَغْفِرُونِي أَغْفِرْ لَكُمْ: straight after a command, with no و or ف to join it, a jussive the typed vowels fit as
+            # closely as a command, where they agree with what the dictionary read, is the jussive: the command's answer
+            # (جواب الطلب, Ibn Aqil V4 p34, page unchecked: وبعد غير النفي جزما اعتمد), not a second command أَغْفِرْ "make
+            # forgive", a verb (أَغْفَرَ) the dictionary does not know (verb_reader.command). Where it knows the أَفْعَلَ the
+            # letters spell, two commands stand side by side as well (اسْكُتْ أَمْسِكْ عَلَيْكَ لِسَانَكَ، قُمْ أَنْزِلِ الْمَتَاعَ), and the
+            # command stays unless the two share a root, the speaker doing what he bids (اجْلِسْ أَجْلِسْ). أَكْرِمْ زَيْدًا, its vowels
+            # against the present read (أَكْرُمُ), stays a command, and so does one after قَالَ or a call (قَالَ أَمْسِكْ، اللَّهُمَّ
+            # أَصْلِحْ) or joined (قُمْ فَأَمْسِكْ: after ف it would be nasb)
+            answers = i > 0 and agrees and bases[i - 1].get("asp") == "c" and not token["front"] and (
+                not is_listed_verb(token["base"]) or bases[i - 1].get("root") == token.get("root"))
             # with no vowel typed, the sentence vouches for a verb: the dictionary has no reading at all
             # (اكتبي: it lists no command to a woman), or the parser hung an object on what it read as an
             # elative, which takes none (Ashmuni V2 p312: لا ينصب المفعول به): ارفعي صوتك
@@ -72,12 +83,13 @@ def typed_words(bases: list[dict], tokens: list[dict]) -> None:
             if token["stuck_on"]:
                 own = plural_alef(own)  # اُكْتُبُوهُ is اُكْتُبُوا with its object
             cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
-                         if (found := verb_reader.command(form, governed, token.get("root", ""), vouched))
+                         if (found := verb_reader.command(form, governed, token.get("root", ""), vouched, answers))
                          and (not (read_noun or read_past) or vouched or verb_reader.typed_fully(form, found))), None)
             if cell:  # the person is sarf's: the reading may have taken اقبل for "I accept"
                 token.update(asp="c", per=cell.person, gen=cell.gender, num=cell.number)
-                if not verb:  # آتِ ذَا الْقُرْبَى: the noun read (آتٍ, one coming) gives way to the verb, آتَى of two objects
-                    token["lemma"] = verb_reader.past(cell)
+                # the verb is sarf's: آتِ ذَا الْقُرْبَى is آتَى of two objects, not the noun آتٍ (one coming), and صُمْ، قُمْ are
+                # صَامَ، قَامَ, not صَمَّ "be deaf", قَمَّ "sweep"
+                token.update(lemma=verb_reader.past(cell), root=cell.root)
                 # قُومِي: the ي a noun reading split off as "my" is the command's doer, a pronoun only ever
                 # in raf' (Awdah V1 p85: ما يختص بمحل الرفع ... وياء المخاطبة كقومي)
                 for kid in tokens:

@@ -17,7 +17,8 @@ from __future__ import annotations
 from collections.abc import Callable, Hashable
 from typing import TypeVar
 
-from backend.services.nahw.book import is_one, is_subject_pronoun, named_roles, roles_keyed
+from backend.services.nahw.book import case_of, is_one, is_subject_pronoun, named_roles, roles_keyed
+from backend.services.text.harakat import CASE_NAME
 from backend.services.nahw.syntax import facts
 
 FOLLOWERS = roles_keyed("tabi", "sifah")
@@ -39,11 +40,19 @@ def followed(token: dict, bases: list[dict], tokens: list[dict], named: list | N
     at = {t["id"]: i for i, t in enumerate(bases)}
     by_id = {t["id"]: t for t in tokens}
     head = by_id.get(token["head"])
-    while head and (head["id"] not in at or facts.is_particle(head)):
+    # إيّا, which the parser tags a particle, is the object pronoun: a معطوف stops on it (إِيَّاكَ وَالْأَسَدَ)
+    while head and (head["id"] not in at or facts.is_particle(head) and not facts.is_object_pronoun(head)):
         head = by_id.get(head["head"])
     if head is None:
         return None
     i = at.get(token["id"])
+    # رَأَيْتُ زَيْدًا وَالْمُسْلِمَاتِ: a معطوف whose و hangs on the verb is joined to the nearest noun before the و that
+    # the verb governs, its doer or its object, and shares its case (Tasheel 3.10: the معطوف shares its معطوف عليه's case)
+    joiner = by_id.get(token["head"])
+    if named and i is not None and named[i] == NAMED.matoof and facts.is_verb(head) and joiner and facts.is_particle(joiner):
+        if (governed := [n for n, t in enumerate(bases) if t["head"] == head["id"] and t["rel"] in ("SBJ", "OBJ")
+                         and t["id"] < joiner["id"] and not facts.is_verb(t)]):
+            return governed[-1]
     if named is None or i is None or named[i] not in LEANING + (NAMED.badal,):
         return at[head["id"]]
     return _matboo(i, at[head["id"]], bases, tokens, named)
@@ -100,9 +109,11 @@ def take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[
     joined (atf `joins_mood`) to a verb in nasb or jazm, is in that mood too (أَنْ تَبَرُّوا وَتَتَّقُوا); any other is raf'."""
     for i, (role, token) in enumerate(zip(named, bases)):
         head = followed(token, bases, tokens, named) if role in FOLLOWERS else None
-        if head is not None and cases[head] != "mabni" and (cases[i] is None or (cases[head] == "nasb" and facts.shows_nasb_by_kasra(token))
-                                                             or (cases[head] == "jarr" and facts.shows_jarr(token))):
-            cases[i] = cases[head]
+        # إِيَّاكُمْ وَمُحْدَثَاتِ الْأُمُورِ: a built word stands in its role's case, which its follower shows
+        case = None if head is None else cases[head] if cases[head] != "mabni" else CASE_NAME.get(case_of(named[head] or "", bases[head]["mudaf"]))
+        if case and (cases[i] is None or (case == "nasb" and facts.shows_nasb_by_kasra(token))
+                     or (case == "jarr" and facts.shows_jarr(token))):
+            cases[i] = case
     by_id = {t["id"]: t for t in tokens}
     for i, (role, token) in enumerate(zip(named, bases)):  # the verbs after every noun, as they were two passes
         if role == NAMED.fil and cases[i] is None:

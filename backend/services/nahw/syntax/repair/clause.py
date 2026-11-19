@@ -1,4 +1,4 @@
-"""Repair 7: clauses a particle opens or a speaker leaves short, that the parser reads as a plain sentence: an oath over a relative or a noun, أمّا and its answer, a noun joined after وَلَا, a khabar after the doer."""
+"""Repair 7: clauses a particle opens or a speaker leaves short, that the parser reads as a plain sentence: an oath over a relative or a noun, أمّا and its answer, a noun joined after وَلَا, a noun said again after و, a khabar after the doer."""
 from __future__ import annotations
 
 from backend.services.nahw.book import is_one
@@ -75,6 +75,42 @@ def negated_conjunct(s: Sentence) -> None:
             s.relink(noun, waw["id"], "OBJ")
             s.relink(la, noun["id"], "MOD")
 
+
+def said_again(s: Sentence) -> None:
+    """الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى وَالْيَدُ الْعُلْيَا الْمُنْفِقَةُ وَالسُّفْلَى السَّائِلَةُ: a noun after a و
+    that says again in full what the sentence already named, a noun with its صفة (اليد العليا) or a صفة standing for
+    the noun it described (السفلى), speaks of that thing anew (التقسيم): it opens its own sentence, a مبتدأ (Ajrumiyya,
+    المبتدأ والخبر; page unchecked), and the word in raf' after it is its خبر, what is newly said of it. In another case
+    it is joined (رَأَيْتُ الْيَدَ السُّفْلَى وَالسُّفْلَى السَّائِلَةَ), and a noun alone said again (جَاءَ الرَّجُلُ الطَّوِيلُ
+    وَالرَّجُلُ الْقَصِيرُ) is a second thing, joined, its صفة its own. So is a noun with a word of otherness after it
+    (وَالطَّالِبُ الْمُجْتَهِدُ الْآخَرُ): another thing, not the first said again, the word its صفة wherever the parser hung it.
+    Nor is a noun with a raf' word after the phrase (الرَّجُلُ الصَّالِحُ وَالرَّجُلُ الصَّالِحُ الْغَنِيُّ سَوَاءٌ): that word is the
+    خبر the two share, so the noun is joined to the first.
+    The parser hangs the noun on the و as a joined word and the new word on it as one more صفة; the new word goes
+    under the و, the noun under it as its مبتدأ."""
+    for waw in s.tokens:
+        noun = s.by_id.get(waw["id"] + 1)
+        if not (waw["pos"] == "PRT" and waw["lemma"].strip("+") == "و" and noun):
+            continue
+        earlier = [t for t in s.tokens if t["id"] < waw["id"] and noun_tagged(t)]
+        said = {t["lemma"] for t in earlier}
+        described_by = {t["lemma"] for t in earlier if t["rel"] == "MOD" and (owner := s.head(t)) and noun_tagged(owner)}
+        # the noun's own words after it, and the one the parser may have made the noun's head (its خبر)
+        phrase = [noun]
+        while (nxt := s.by_id.get(phrase[-1]["id"] + 1)) and (nxt["head"] == noun["id"] or noun["head"] == nxt["id"]):
+            phrase.append(nxt)
+        *again, new = phrase
+        if again and is_one(new["lemma"], "otherness"):
+            s.relink(noun, waw["id"], "OBJ")
+            s.relink(new, noun["id"], "MOD")
+            continue
+        # only a sentence that opens with a noun is divided so: after a verb (جَاءَ الرَّجُلُ
+        # الطَّوِيلُ وَالرَّجُلُ الطَّوِيلُ نَفْسُهُ) the noun said again is joined to its doer, its words its صفات
+        shared = (after := s.by_id.get(new["id"] + 1)) and noun_tagged(after) and typed_case_of(after) in ("u", None)
+        if (len(again) > 1 or again and noun["lemma"] in described_by) and all(t["lemma"] in said for t in again) \
+                and typed_case_of(new) == "u" and noun_tagged(s.tokens[0]) and not shared:
+            s.relink(new, waw["id"], "OBJ")
+            s.relink(noun, new["id"], "SBJ")
 
 
 def doer_then_khabar(s: Sentence) -> None:

@@ -449,6 +449,15 @@ def same_root(token: dict, other: dict) -> bool:
     return _skeleton(token["lemma"]) == _skeleton(other["lemma"])
 
 
+def hollow_or_doubled_first_form(verb: dict) -> bool:
+    """A hollow or doubled verb of Form I (فَعَلَ, no letter added), told by its lemma: a hollow one writes its middle ا
+    for the root's و or ي (صَامَ from صوم، قَالَ from قول), a doubled one its two last letters as one (مَدَّ). A sound verb (كَتَبَ)
+    or one of a longer form (طَوَّقَ; حَاجَّ, Form III, its ا added to حجج) is none, so its فَعْل may still name a thing
+    (كِتَابًا، طَوْقًا)."""
+    lemma = strip_diacritics(verb.get("lemma") or "")
+    return len(lemma) == 2 or (len(lemma) == 3 and lemma[1] == "ا" and (verb.get("root") or "")[1:2] in ("و", "ي"))
+
+
 def on_doing_measure(token: dict) -> bool:
     """On the measure of a doer or a done-to (closed_words participle_patterns `doing`), not a صفة مشبهة's."""
     return measure(token.get("pattern") or "").startswith(tuple(book_words("participle_patterns", "doing")))

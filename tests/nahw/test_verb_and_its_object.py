@@ -239,3 +239,18 @@ def test_a_word_showing_tanween_never_describes_a_name_whatever_its_tag():
     lord = token(2, "رب", "رب", "NOM", 1, "MOD", typed="رَبِّ", cas="g", stt="i", pos_camel="noun")
     allah = {**name, "typed": "لِلَّهِ", "cas": "g"}  # رَبِّ shows no tanween: nothing says it is indefinite
     assert not agrees(cold, {**name, "typed": "زَيْدٌ"}) and agrees(cold, {**man, "typed": "رَجُلٌ"}) and agrees(lord, allah)
+
+
+@needs_parser
+@pytest.mark.parametrize("sentence, said", [
+    # a built word's last vowel is its build, no case: ذَلِكَ's fatha makes it no object, so under كان it is the اسم
+    ("كَانَ ذَلِكَ حَقًّا", ["فعل", "اسم كان", "خبر كان"]),
+    ("أَصْبَحَ ذَلِكَ وَاضِحًا", ["فعل", "اسم كان", "خبر كان"]),
+    ("كَيْفَ يَكُونُ ذَلِكَ", ["خبر كان", "فعل", "اسم كان"]),
+    ("كَانَ أَنْتَ مُسَافِرًا", ["فعل", "اسم كان", "خبر كان"]),
+    ("فَعَلَ ذَلِكَ زَيْدٌ", ["فعل", "مفعول به", "فاعل"]),  # with the doer after it, it is the object
+    ("رَأَيْتُ ذَلِكَ", ["فعل", "مفعول به"]),             # the verb holds its doer
+])
+def test_a_built_words_last_vowel_tells_no_case(sentence, said):
+    """facts.slot.verb_place reads no case off a built word's last vowel."""
+    assert roles(sentence) == said

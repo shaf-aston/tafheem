@@ -158,7 +158,7 @@ def doer_first(s: Sentence) -> None:
         first = s.head(token)
         verb = s.head(first) if first else None
         if verb and is_verb(verb) and not own_doer(verb) and token["rel"] in ("---", "OBJ") \
-                and first["rel"] in ("SBJ", "OBJ", "---") and first["id"] < token["id"] \
+                and first["rel"] in ("SBJ", "OBJ", "MOD", "---") and first["id"] < token["id"] \
                 and is_name(first) and typed_case_of(first) in (None, "u") and noun_tagged(token) \
                 and (is_name(token) and token.get("stt") != "d" and typed_case_of(token) is typed_case_of(first) is None
                      or typed_or_parsed_case(token) == "a") \

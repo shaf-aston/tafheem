@@ -77,3 +77,12 @@ def test_a_matoof_follows_across_its_waw_as_linked():
     words = [_w(1, "زَيْدٌ", "PROP", 0), _w(2, "وَ", "PRT", 1), _w(3, "عَمْرٌو", "PROP", 2)]
     bases = [words[0], words[2]]
     assert followed(words[2], bases, words, [NAMED.fail, ATF]) == 0
+
+
+
+def test_a_matoof_on_the_verbs_waw_follows_the_nearest_noun_the_verb_governs():
+    # ضَرَبَ أَحَدٌ عَمْرًا وَزَيْدًا: the و hangs on the verb; the معطوف shares the case of the nearest noun the verb governs
+    words = [_w(1, "ضَرَبَ", "VRB", 0, rel="---"), _w(2, "أَحَدٌ", "NOM", 1, rel="SBJ"), _w(3, "عَمْرًا", "PROP", 1, rel="OBJ"),
+             _w(4, "وَ", "PRT", 1, rel="MOD"), _w(5, "زَيْدًا", "PROP", 4, rel="OBJ")]
+    assert followed(words[4], words, words, [NAMED.fil, NAMED.fail, NAMED.mafool_bih, NAMED.harf, ATF]) == 2
+    assert followed(words[4], words, words) == 0  # the parser's link, when no roles are given
