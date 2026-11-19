@@ -99,7 +99,7 @@ export default function DictionaryPanel({ accent, incoming, arrival, onGo, onVis
           id="dict-input"
           label="Arabic or English"
           verb="search"
-          placeholder="Search كتب or book"
+          placeholder="كتب or book"
           value={query}
           onChange={setQuery}
           onSubmit={submit}

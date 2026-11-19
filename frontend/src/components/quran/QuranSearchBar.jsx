@@ -37,7 +37,7 @@ export default function QuranSearchBar({ value, onChange, onClear, onOpen, onSea
         id="quran-search"
         label="Surah, ayah or Arabic text"
         hint="Enter to search, or recite it"
-        placeholder="Nisa 45, 2:255 or الحمد لله"
+        placeholder="2:255 or الحمد"
         value={value}
         onChange={onChange}
         onSubmit={submit}
