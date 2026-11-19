@@ -12,6 +12,7 @@ import THEME from '../../config/theme.json'
 export const DEVICE_KEYS = Object.freeze({
   profile: PROFILE.storageKey,
   guest: PROFILE.deviceKey,
+  outbox: PROFILE.outbox.key,
   recorder: 'recorder-key',
   installDismissed: 'install-dismissed',
   themeHint: THEME.themes['hint-key'],

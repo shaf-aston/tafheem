@@ -1,6 +1,24 @@
+import offline from '../../config/offline.json'
+
+// A command to start the server helps only on the machine the server would run on.
+const OWN_MACHINE = ['localhost', '127.0.0.1'].includes(globalThis.location?.hostname)
+
+/**
+ * The words for a request that got no answer at all, or null when it did get one. With no
+ * signal that is the reader's connection, not the server, and says so in their words.
+ */
+function unreached(error) {
+  if (error?.response?.status) return null
+  if (globalThis.navigator?.onLine === false) return offline.copy['needs-signal']
+  if (error?.code === 'ERR_NETWORK' || error?.message?.toLowerCase().includes('network')) {
+    return OWN_MACHINE ? "Can't reach the backend. Is it running? Try: python -m uvicorn backend.main:app --reload" : offline.copy.unreached
+  }
+  return null
+}
+
 /** Extract a user-facing message from an axios/fetch error. */
 export function errorMessage(error, fallback = 'An unexpected error occurred.') {
-  return error?.response?.data?.detail || error?.message || fallback
+  return error?.response?.data?.detail || unreached(error) || error?.message || fallback
 }
 
 export function errorStatus(error) {
@@ -28,12 +46,7 @@ export function smartError(error, fallback = 'Request failed.') {
   const detail = error?.response?.data?.detail
 
   // Network-level failure, no HTTP response at all
-  if (!status) {
-    if (error?.code === 'ERR_NETWORK' || error?.message?.toLowerCase().includes('network')) {
-      return "Can't reach the backend. Is it running? Try: python -m uvicorn backend.main:app --reload"
-    }
-    return error?.message || fallback
-  }
+  if (!status) return unreached(error) || error?.message || fallback
 
   if (status === 404) return detail || 'Not found. Check the reference numbers and try again.'
   if (status === 422) return detail || "The server couldn't process that input. Check your Arabic text."

@@ -27,6 +27,8 @@
     "ready": "✓ On this phone",
     "failed": "Didn't finish. Try again with a signal.",
     "offline-title": "You're offline",
-    "offline-body": "What's saved on this phone still opens. The rest comes back with a signal."
+    "offline-body": "What's saved on this phone still opens. The rest comes back with a signal.",
+    "needs-signal": "No signal. This needs the internet; what you opened before still works.",
+    "unreached": "Can't reach the server right now. Try again in a moment."
   }
 }

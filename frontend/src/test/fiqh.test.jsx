@@ -82,6 +82,7 @@ describe('fiqh', () => {
   })
 
   it('still shows and plays the lessons when the record cannot be read', async () => {
+    localStorage.clear() // no copy kept from an earlier visit (lib/learner/lastRecord.js) to stand in
     renderScreen(<GrowPanel incoming="fiqh/tahara" />, { routes: { 'GET /progress/summary': () => { throw new Error('down') } } })
     expect(await screen.findByText(/Your progress could not be loaded/, {}, { timeout: 4000 })).toBeTruthy()
     expect(screen.getByText('Wudu: fard, sunnah, mustahabb')).toBeTruthy()

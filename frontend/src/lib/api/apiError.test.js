@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
-import { retryServerErrors, smartError } from './apiError'
+import { errorMessage, retryServerErrors, smartError } from './apiError'
 
 const failure = (status, detail) => ({ response: { status, data: detail ? { detail } : {} } })
 
@@ -22,8 +22,27 @@ describe('smartError', () => {
     expect(smartError(failure(503))).toMatch(/starting up/)
   })
 
-  it('names the backend when there was no response at all', () => {
-    expect(smartError({ code: 'ERR_NETWORK' })).toMatch(/reach the backend/)
+  it('says the server could not be reached when there was no response at all, with no command for a visitor', () => {
+    expect(smartError({ code: 'ERR_NETWORK' })).toMatch(/reach the server/)
+    expect(smartError({ code: 'ERR_NETWORK' })).not.toMatch(/uvicorn/)
+  })
+
+  it("blames no signal, not the server, when the phone has none", () => {
+    vi.stubGlobal('navigator', { onLine: false })
+    expect(smartError({ code: 'ERR_NETWORK' })).toMatch(/No signal/)
+    expect(errorMessage(new Error('Network Error'))).toMatch(/No signal/)
+    vi.unstubAllGlobals()
+  })
+})
+
+describe('errorMessage', () => {
+  it("never shows a bare 'Network Error'", () => {
+    expect(errorMessage(new Error('Network Error'))).toMatch(/reach the server/)
+  })
+
+  it('keeps what the server said, and other messages as they are', () => {
+    expect(errorMessage(failure(422, 'Not Arabic.'))).toBe('Not Arabic.')
+    expect(errorMessage(new Error('Bad JSON'))).toBe('Bad JSON')
   })
 })
 
