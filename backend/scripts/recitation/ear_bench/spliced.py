@@ -15,8 +15,13 @@ clearly there before (peak share HEARD), is not after (under GONE), and a swappe
 is. Judging the whole ayah fails: the phoneme ear, like the word ear, fills a missing
 letter back in from the words around it. The untouched clips are the right words.
 
+The control: every slip's spot cut and joined again with no sound changed, so an ear that
+reds these hears the cut, not the letter (controls() below).
+
     python -m backend.scripts.recitation.ear_bench.spliced build   # ~1 h, downloads ~600 ayahs
     python -m backend.scripts.recitation.ear_bench.spliced score [--model repo@rev]
+    python -m backend.scripts.recitation.ear_bench.spliced control # ~10 min, needs build
+    python -m backend.scripts.recitation.ear_bench.spliced score --set control [--model repo@rev]
 then letters.py --set spliced prints the breakdown.
 """
 from __future__ import annotations
@@ -41,6 +46,7 @@ from backend.services.recitation.spelling import as_heard
 
 FOLDER = DOWNLOADS / "spliced"
 META = FOLDER / "slips.jsonl"
+CONTROLS = FOLDER / "controls.jsonl"
 RECITERS = ("Husary_128kbps", "Minshawy_Murattal_128kbps", "Alafasy_128kbps")
 SR, HOP, FADE = 16000, 320, 80  # the phoneme ear hears one frame per 320 samples; 5 ms crossfade
 CAP = 20          # slips per (kind, letter, context) cell, each on a different word
@@ -344,20 +350,69 @@ def build(reciters=RECITERS, folder=FOLDER, skip=frozenset(), cap=CAP, clips=CLI
     print(dict(tried))
 
 
+def controls() -> None:
+    """Two clips per slip into CONTROLS, at the slip's own spot with nothing said differently:
+    `rejoined`, the sound cut out and put straight back (a seam at each edge), and `same sound`,
+    another clear saying of that sound by the same voice put in its place (a swap's seams, the
+    same letter). The untouched recordings are re-timed from their saved clips."""
+    ref = json.loads(data_path("recitation_sounds_reference_path").read_text(encoding="utf-8"))
+    vocab = json.loads((data_path("recitation_sounds_path") / "vocab.json").read_text(encoding="utf-8"))
+    rows = [json.loads(line) for line in META.open(encoding="utf-8")]
+    slips_of: dict[str, list[dict]] = {}
+    for r in rows:
+        if r["k"] is not None:
+            slips_of.setdefault(r["id"].split("#")[0], []).append(r)
+    donors: dict[tuple, list] = {}  # (voice, sound, next sound) -> [(clip, position, samples)]
+    made, skipped = [], Counter()
+    for r in rows:
+        if r["k"] is not None or r["id"] not in slips_of:
+            continue
+        who = r["id"].split("/")[0]
+        with wave.open(io.BytesIO(audio_of(r))) as f:
+            sound = np.frombuffer(f.readframes(f.getnframes()), "<i2").astype(np.float32) / 32767
+        flat = [p for w in ref[r["key"]] for p in w]
+        lp = logits(sound)
+        spans = align(lp, [vocab[p] for p in flat])
+        if spans is None:
+            skipped["timing lost"] += len(slips_of[r["id"]])
+            continue
+        post = np.exp(lp)
+        for i, (p, (a, b)) in enumerate(zip(flat, spans)):
+            if post[a:b, vocab[p]].max() >= HEARD:
+                donors.setdefault((who, p, flat[i + 1] if i + 1 < len(flat) else None), []).append(
+                    (r["id"], i, sound[a * HOP:b * HOP]))
+        for slip in slips_of[r["id"]]:
+            k = int(slip["id"].split("#")[1])
+            a, b = spans[k][0] * HOP, spans[k][1] * HOP
+            after = flat[k + 1] if k + 1 < len(flat) else None
+            pool = [d for d in donors.get((who, flat[k], after), []) if d[:2] != (r["id"], k)]
+            for name, edited in (("rejoined", joined(sound[:a], sound[a:b], sound[b:])),
+                                 ("same sound", joined(sound[:a], pool[len(pool) // 2][2], sound[b:]) if pool else None)):
+                if edited is None:
+                    skipped[f"no other saying: {name}"] += 1
+                    continue
+                cid = f"{slip['id']}~{name.replace(' ', '-')}"
+                made.append({**slip, "id": cid, "kind": name})
+                (FOLDER / "clips" / f"{who}-{r['key'].replace(':', '_')}-{cid.split('#')[1]}.wav").write_bytes(
+                    wav_bytes(edited))
+    CONTROLS.write_text("".join(json.dumps(m, ensure_ascii=False) + "\n" for m in made), encoding="utf-8")
+    print(f"wrote {len(made)} controls to {CONTROLS}", dict(skipped))
+
+
 def audio_of(row: dict) -> bytes:
     who, rest = row["id"].split("/")
     key, _, k = rest.partition("#")
     return (FOLDER / "clips" / f"{who}-{key.replace(':', '_')}{'-' + k if k else ''}.wav").read_bytes()
 
 
-def scored_path(model: str):
-    return pieces_path(model).with_name("spliced-" + pieces_path(model).name)
+def scored_path(model: str, which: str = "spliced"):
+    return pieces_path(model).with_name(f"{which}-" + pieces_path(model).name)
 
 
-def score(model: str) -> None:
-    path = scored_path(model)
+def score(model: str, which: str = "spliced") -> None:
+    path = scored_path(model, which)
     done = {json.loads(line)["id"] for line in path.open(encoding="utf-8")} if path.exists() else set()
-    rows = [json.loads(line) for line in META.open(encoding="utf-8")]
+    rows = [json.loads(line) for line in (CONTROLS if which == "control" else META).open(encoding="utf-8")]
     with path.open("a", encoding="utf-8") as kept:
         for n, row in enumerate(rows):
             if row["id"] in done:
@@ -370,15 +425,18 @@ def score(model: str) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("step", choices=("build", "teach", "score"))
+    parser.add_argument("step", choices=("build", "teach", "control", "score"))
     parser.add_argument("--model", default=get_settings().recitation_model)
+    parser.add_argument("--set", choices=("spliced", "control"), default="spliced", help="score: which clips")
     args = parser.parse_args()
     if args.step == "build":
         build()
     elif args.step == "teach":
         build(TEACH, TAUGHT, skip=untaught(), cap=TEACH_CAP, clips=TEACH_CLIPS, teach=True)
+    elif args.step == "control":
+        controls()
     else:
-        score(args.model)
+        score(args.model, args.set)
 
 
 def untaught() -> set[str]:
