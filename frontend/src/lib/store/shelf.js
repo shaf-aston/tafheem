@@ -7,7 +7,7 @@
  * for one person moving between a phone and a laptop. The guest has no shelf
  * on the server: a guest is one device, so it stays on that device.
  */
-import { api } from '../../api'
+import { api } from '../../api/client'
 import CONFIG from '../../config/profile.json'
 import { getProfile, profileHeaders } from '../learner/profile'
 import { fillShelf, onChange, shelfOf } from './stored'
