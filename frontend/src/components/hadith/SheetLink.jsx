@@ -8,7 +8,7 @@ export default function SheetLink({ onClick, accent, children }) {
     <button
       type="button"
       onClick={onClick}
-      className="press type-small text-[var(--text-dim)] hover:text-[var(--c)] underline underline-offset-4 decoration-dotted"
+      className="press tap type-small text-[var(--text-dim)] hover:text-[var(--c)] underline underline-offset-4 decoration-dotted"
       style={{ '--c': accent }}
     >
       {children}

@@ -24,7 +24,7 @@
 
 /* ── home: level, streak, today's XP as one slim strip ── */
 .grow-strip {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 14px;
   padding: 10px 14px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border);
 }
 /* Laid out while the record is read, so the worlds below do not move when it lands. */
@@ -35,8 +35,13 @@
 .grow-strip-item dd { display: grid; gap: 4px; font-size: var(--type-ui); font-weight: 700; color: var(--text); }
 .grow-strip-item dd .grow-lesson-bar { height: 5px; }
 .grow-strip-item[data-met] dd { color: var(--c); }
-.grow-goal-pick > summary { cursor: pointer; list-style: none; text-decoration: underline dotted; text-underline-offset: 3px; }
+.grow-goal-pick > summary { display: flex; align-items: center; cursor: pointer; list-style: none; text-decoration: underline dotted; text-underline-offset: 3px; }
 .grow-goal-pick > summary::-webkit-details-marker { display: none; }
+/* A finger-sized target that still sits on its line: the extra height spills
+   evenly above and below, so TODAY's value lines up with STREAK's. */
+@media (pointer: coarse) {
+  .grow-goal-pick > summary { margin-block: calc((1lh - var(--layout-tap)) / 2); }
+}
 .grow-goal-pick[open] > .grow-goals { margin-top: 6px; }
 
 /* ── home: the worlds on labelled shelves ── */
@@ -221,8 +226,9 @@
 }
 
 /* ── home: the daily goal and its three choices ── */
-.grow-goals { display: flex; gap: 4px; }
-.grow-goal { min-width: 36px; min-height: 28px; padding: 0 8px; border-radius: var(--radius-pill); font-size: var(--type-small); font-weight: 700; color: var(--text-dim); border: 1px solid var(--border); }
+/* Wraps rather than poking past a phone's edge: the strip's last column is narrow. */
+.grow-goals { display: flex; flex-wrap: wrap; gap: 4px; }
+.grow-goal { min-width: 36px; padding: 0 8px; border-radius: var(--radius-pill); font-size: var(--type-small); font-weight: 700; color: var(--text-dim); border: 1px solid var(--border); }
 .grow-goal[aria-checked='true'] { color: var(--on-accent); background: var(--c); border-color: var(--c); }
 
 /* ── hadith: teach line, whole text, the gap ── */

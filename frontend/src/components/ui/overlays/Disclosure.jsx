@@ -46,7 +46,7 @@ const Disclosure = forwardRef(function Disclosure(
       <summary
         // list-none kills the browser's triangle in every engine, ours is drawn
         // below so that it can rotate and take the accent colour with it.
-        className={`list-none cursor-pointer select-none flex items-center gap-2 transition-colors
+        className={`tap list-none cursor-pointer select-none flex items-center gap-2 transition-colors
           ${TONE[tone] ?? TONE.quiet}
           ${ruled ? 'py-3' : ''}`}
       >

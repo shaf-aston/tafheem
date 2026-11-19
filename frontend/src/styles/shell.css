@@ -260,12 +260,12 @@
 /* The footer's note (components/shell/FooterNote.jsx): one centred line, quiet until used.
    Plain classes, not utilities, because the landing page's reset zeroes utility padding. */
 .footer-note { display: grid; gap: .5rem; width: 100%; max-width: 46rem; margin: 1.25rem auto 0; padding-inline: 1rem; color: var(--text-dim); font-size: var(--type-small); }
-.footer-note .footer-note-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .5rem .75rem; }
+.footer-note .footer-note-row { display: flex; flex-wrap: wrap; min-width: 0; align-items: center; justify-content: center; gap: .5rem .75rem; }
 .footer-note .footer-note-field { display: flex; align-items: center; gap: .375rem; flex: 0 1 24rem; min-width: 0; }
 .footer-note input:not([type="checkbox"]) {
   flex: 1; min-width: 0; min-height: var(--layout-tap); padding: .375rem .875rem;
   border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--surface);
-  color: var(--text); font: inherit; font-size: var(--type-small);
+  color: var(--text); font: inherit; font-size: max(var(--field-floor), var(--type-small));
   transition: border-color calc(var(--motion-instant-ms) * 1ms) ease, box-shadow calc(var(--motion-instant-ms) * 1ms) ease;
 }
 /* Brought into view above the phone's tab bar, not under it, when a field takes the cursor. */

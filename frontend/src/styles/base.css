@@ -125,3 +125,14 @@ select option {
   outline-offset: 2px;
 }
 
+
+/* A phone's Safari zooms the whole page in when a field under 16px takes the
+   focus, and leaves it zoomed. A field drawn smaller than body text sets its
+   size as max(var(--field-floor), its own size): nothing on a mouse, 16px on a
+   touch screen, so a tap on it keeps the page where it was. Big fields (the
+   Arabic boxes) are untouched. */
+:root { --field-floor: 0px; }
+@media (pointer: coarse) {
+  :root { --field-floor: 16px; }
+}
+

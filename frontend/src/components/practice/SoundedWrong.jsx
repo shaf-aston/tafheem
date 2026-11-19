@@ -28,7 +28,7 @@ export default function SoundedWrong({ className = '' }) {
       type="button"
       onClick={send}
       disabled={state === 'sending' || state === 'sent'}
-      className={`type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors disabled:cursor-default ${className}`}
+      className={`tap type-small text-[var(--text-faint)] hover:text-[var(--text)] transition-colors disabled:cursor-default ${className}`}
     >
       {{ sent: 'Thanks, noted', failed: 'Couldn’t send, tap again', unheard: 'Play it first' }[state] ?? 'Sounded wrong?'}
     </button>

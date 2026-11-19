@@ -89,7 +89,8 @@ export default function Trail({ nameOf = (value) => value }) {
                 data-step={where}
                 title={nameOf(step.value)}
                 onClick={() => jumpTo(step.index)}
-                className={`${WEIGHT[where]} hover:text-[var(--c)] hover:opacity-100
+                // At least pointer-tap tall, the negative margin keeping the line its own height.
+                className={`${WEIGHT[where]} inline-flex items-center min-h-[var(--layout-pointer-tap)] -my-1 hover:text-[var(--c)] hover:opacity-100
                   transition-colors`}
               >
                 <Step text={nameOf(step.value)} />
