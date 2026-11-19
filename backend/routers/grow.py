@@ -22,7 +22,7 @@ from backend.config import data_path
 from backend.models.grow import GrowPath, GrowUnit, GrowWorld
 
 router = APIRouter(prefix="/api/grow", tags=["grow"])
-WORLD_ID = re.compile(r"[a-z-]+")  # a folder's name, never a path
+WORLD_ID = re.compile(r"[a-z-]{1,64}")  # a folder's name, never a path, never longer than a file name may be
 
 
 def _read(path: Path) -> dict:

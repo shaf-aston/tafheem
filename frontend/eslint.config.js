@@ -69,7 +69,7 @@ export default defineConfig([
       'no-restricted-syntax': ['error',
         { selector: "JSXOpeningElement[name.name='select']", message: 'Use ui/inputs/WheelPicker, the one dropdown.' },
         ...[
-          [CLASS_Z, 'A bare z-<n>: use z-[var(--layer-...)] from theme.json layer.'],
+          [CLASS_Z, 'A bare z-<n>: use a theme.json layer, as z-[var(--layer-header)].'],
           [CLASS_TEXT, 'Tailwind text-xs/sm/base/lg/xl: use the type-label/ui/lead/heading/title classes (styles/text.css).'],
         ].flatMap(([pattern, message]) => ['Literal', 'TemplateElement'].map((node) => ({
           selector: `JSXAttribute[name.name='className'] ${node}[${node === 'Literal' ? 'value' : 'value.raw'}=${pattern}]`,
