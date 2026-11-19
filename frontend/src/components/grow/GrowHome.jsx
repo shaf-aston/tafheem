@@ -78,7 +78,8 @@ function Goal({ xpToday }) {
       <dd>
         <details className="grow-goal-pick">
           <summary className="tap" aria-label={say('Daily goal: {goal} XP. Change it', { goal })}>
-            <Odometer value={xpToday} /> {met ? say('XP · goal met') : say('/ {goal} XP', { goal })}
+            {/* One span, so the flex summary keeps the space between number and words. */}
+            <span><Odometer value={xpToday} /> {met ? say('XP · goal met') : say('/ {goal} XP', { goal })}</span>
           </summary>
           <span className="grow-goals" role="radiogroup" aria-label={say('Daily goal')}>
             {GOALS.map((each) => (

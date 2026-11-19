@@ -260,7 +260,7 @@
 /* The footer's note (components/shell/FooterNote.jsx): one centred line, quiet until used.
    Plain classes, not utilities, because the landing page's reset zeroes utility padding. */
 .footer-note { display: grid; gap: .5rem; width: 100%; max-width: 46rem; margin: 1.25rem auto 0; padding-inline: 1rem; color: var(--text-dim); font-size: var(--type-small); }
-.footer-note .footer-note-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .5rem .75rem; }
+.footer-note .footer-note-row { display: flex; flex-wrap: wrap; min-width: 0; align-items: center; justify-content: center; gap: .5rem .75rem; }
 .footer-note .footer-note-field { display: flex; align-items: center; gap: .375rem; flex: 0 1 24rem; min-width: 0; }
 .footer-note input:not([type="checkbox"]) {
   flex: 1; min-width: 0; min-height: var(--layout-tap); padding: .375rem .875rem;

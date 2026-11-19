@@ -24,7 +24,7 @@
 
 /* ── home: level, streak, today's XP as one slim strip ── */
 .grow-strip {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 14px;
   padding: 10px 14px; border-radius: var(--radius-md); background: var(--surface); border: 1px solid var(--border);
 }
 /* Laid out while the record is read, so the worlds below do not move when it lands. */
@@ -37,6 +37,11 @@
 .grow-strip-item[data-met] dd { color: var(--c); }
 .grow-goal-pick > summary { display: flex; align-items: center; cursor: pointer; list-style: none; text-decoration: underline dotted; text-underline-offset: 3px; }
 .grow-goal-pick > summary::-webkit-details-marker { display: none; }
+/* A finger-sized target that still sits on its line: the extra height spills
+   evenly above and below, so TODAY's value lines up with STREAK's. */
+@media (pointer: coarse) {
+  .grow-goal-pick > summary { margin-block: calc((1lh - var(--layout-tap)) / 2); }
+}
 .grow-goal-pick[open] > .grow-goals { margin-top: 6px; }
 
 /* ── home: the worlds on labelled shelves ── */
