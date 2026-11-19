@@ -14,7 +14,7 @@ from typing import Callable
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import (
-    PRESENT_PREFIX, SHADDA, SUKUN, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
+    PRESENT_PREFIX, SHADDA, SUKUN, doubled_last, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
 from backend.services.sarf.morphology import has_comparative
 from backend.services.nahw.book import (
     book_file, book_map, book_spelling, book_words, condition_of, family_cards, is_mabni, is_one, says)
@@ -62,10 +62,15 @@ def _what_follows(token: dict, s: facts.Sentence) -> str:
         stuck_on, weak = after.get("stuck_on", 0), after.get("weak_last")
         # أَنْ لَا تَطُوفِي: after a nasb particle the nun is gone for its nasb, so it shows no jazm
         before = s.by_id.get(token["id"] - 1)
-        nasbed = bool(before and is_one(_lemma(before), "nasb_mudari", "before_a_present_verb"))
+        bases = [t for t in s.tokens if "typed" in t]  # the words the reader typed (repair.correct)
+        nasbed = bool(before and is_one(_lemma(before), "nasb_mudari", "before_a_present_verb")) \
+            or (after in bases and facts.stressed_nasb(bases, bases.index(after)) is not None)  # لَنْ يَرُدَّ وَلَا يَمُدَّ
         # لِيَلِيَنِّي: a verb the nun of emphasis builds shows no jazm, the لام says it (facts.lam_mood)
+        # لَا تَمُدَّ يَدَكَ: a doubled verb's jussive wears a fatha too (harakat.doubled_last), so with no nasb particle before it
+        # (أَنْ لَا تَمُدَّ) the لا forbids: no negation puts a verb in nasb
+        shows_jazm = five_verb_nun(typed, stuck_on, weak) == "dropped" or doubled_last(typed, stuck_on, fatha=True)
         jazm = stilled(typed, stuck_on, weak) or _moved_still(after, s) or _lam_on(after, s) == "jazm" \
-            or (five_verb_nun(typed, stuck_on, weak) == "dropped" and not nasbed and _lam_on(after, s) != "nasb")
+            or (shows_jazm and not nasbed and _lam_on(after, s) != "nasb")
         return "verb_jazm" if jazm else "verb"
     if after["pos"] == "PRT" or ((cond := condition_of(_lemma(after))) and not cond["shared"]):
         return "tool"
@@ -319,6 +324,25 @@ def _restricted(token: dict, s: facts.Sentence) -> str:
         t["id"] > token["id"] and not facts.is_suffix(t) and is_one(t["lemma"], "hasr") for t in s.tokens) else "no"
 
 
+def _negates_a_verb(token: dict, s: facts.Sentence) -> str:
+    """A particle comes after it and a present verb after that: a conditional إنْ takes its negation (لم، لا) between it
+    and its verb (فَإِنْ لَمْ تَفْعَلُوا، إِنْ لَا تَفْعَلُوهُ: Mughni, إنْ الشرطية; page unchecked), so the condition opens on
+    the negated verb. Without a verb there is no condition (إِنْ لَا رَيْبَ فِيهِ)."""
+    after = facts.next_word(token, s)
+    verb = facts.next_word(after, s) if after else None
+    return "yes" if after and after["pos"] == "PRT" and verb and facts.is_verb(verb) and _is_present(verb) else "no"
+
+
+def _one_clause_restricted(token: dict, s: facts.Sentence) -> str:
+    """An إلا of restriction comes after it with no second verb between (إِنْ أَرَدْنَا إِلَّا الْحُسْنَى، إِنْ نَحْنُ إِلَّا
+    بَشَرٌ): one clause, negated and restricted, so the إنْ is the negation (Mughni, إنْ النافية; page unchecked). A
+    condition needs a clause and its answer, so a second verb before the إلا is that answer (إِنْ جَاءَ زَيْدٌ لَمْ يَبْقَ
+    إِلَّا عَمْرٌو)."""
+    rest = [t for t in s.tokens if t["id"] > token["id"] and not facts.is_suffix(t)]
+    until = next((at for at, t in enumerate(rest) if is_one(t["lemma"], "hasr")), None)
+    return "yes" if until is not None and sum(map(facts.is_verb, rest[:until])) <= 1 else "no"
+
+
 def _starts(token: dict, s: facts.Sentence) -> str:
     """It opens its clause: nothing before it, or a و or ف written onto it (data: nasb_mudari
     `idhan_after`), as in فَإِذًا after the sentence it answers; زيدٌ إذن يَنجحُ is not."""
@@ -396,6 +420,8 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "wonder": (("yes", "no"), _wonder),
     "asks": (("yes", "no"), _asks),
     "restricted": (("yes", "no"), _restricted),
+    "one_clause_restricted": (("yes", "no"), _one_clause_restricted),
+    "negates_a_verb": (("yes", "no"), _negates_a_verb),
     "starts": (("yes", "no"), _starts),
     "shows": (("nasb", "raf", "other", "none"), _shows),
 }
@@ -572,6 +598,19 @@ def _retagged() -> frozenset[str]:
     return frozenset(child["is"] for child in _tree()["children"] if any("retag" in leaf for leaf in leaves(child)))
 
 
+def _read(token: dict, found: walker.Walked) -> None:
+    retag = found.leaf.get("retag", {})
+    token["reading"] = {"family": found.role, "named": found.leaf.get("named"), "kind": found.leaf.get("kind", "harf"),
+                        "book": found.book, "sense": found.leaf.get("sense", retag.get("pos_camel"))}
+    token.update(retag)
+
+
+def negates(token: dict) -> None:
+    """Read a لا the tree took for the prohibition as the negation before a verb, whatever the verb after it
+    shows: its leaf's reading, when what stands round it (syntax.condition) shows it asks for nothing."""
+    _read(token, walker.walk({"word": "لا", "next": "verb"}, _tree()))
+
+
 def stamp(tokens: list[dict]) -> None:
     """Stamp each listed word's reading on its token: {family, named, kind, book, sense}, and the
     families the tree judges for it as `judged`. A word no leaf took (a و that opens no
@@ -588,11 +627,7 @@ def stamp(tokens: list[dict]) -> None:
             token["lemma"] = word  # إِذًا is إذن, to every list
         values = {"word": word, **{axis: answer(token, s) for axis, (_, answer) in AXES.items()}}
         if found := walker.walk(values, _tree()):
-            retag = found.leaf.get("retag", {})
-            token["reading"] = {"family": found.role, "named": found.leaf.get("named"),
-                                "kind": found.leaf.get("kind", "harf"), "book": found.book,
-                                "sense": found.leaf.get("sense", retag.get("pos_camel"))}
-            token.update(retag)
+            _read(token, found)
     _merged(tokens, s)
     _emphasis_lam(tokens, s)
     _qad_names_its_sense(tokens, s)

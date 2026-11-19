@@ -194,7 +194,7 @@
    "ar": "أفعال لازمة",
    "_comment": "Verbs that take no object (الفعل اللازم). After ما they leave no slot for a pronoun going back to ما (العائد), and a صلة with no عائد is ما المصدرية, never the relative (مغني اللبيب، ما المصدرية؛ شرح ابن عقيل، الموصول). Read by facts.ma_kind and repair.relative_owed: a relative after such a verb and its doer describes the doer (جاء الرجل الذي رأيته). The verbs of coming, escaping, falling, appearing and happening reach their place by a preposition, never by an object, like ذهب and خرج.",
    "_cleanliness": "توضأ، تطهر، اغتسل: a verb of cleanliness takes no object (Alfiyya, Ibn Aqil, bab ta'addi al-fi'l wa luzumih: وما اقتضى نظافة أو دنسا أو عرضا)",
-   "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي", "جاء", "نجا", "سقط", "هرب", "طار", "ظهر", "غاب", "مرض", "فاز", "حدث", "نما", "طال", "سعد", "توضأ", "تطهر", "اغتسل"]
+   "words": ["قام", "جلس", "نام", "نجح", "حضر", "فرح", "ضحك", "مات", "سافر", "غضب", "قعد", "ذهب", "خرج", "رجع", "صبر", "بكى", "مشى", "عاش", "سكت", "بقي", "جاء", "نجا", "سقط", "هرب", "طار", "ظهر", "غاب", "مرض", "فاز", "حدث", "نما", "طال", "سعد", "توضأ", "تطهر", "اغتسل", "قر"]
   },
   "noun_describers": {
    "ar": "الصفة الغالبة",
@@ -396,6 +396,8 @@
    ],
    "_one_object": "`one_object`: the verbs of `ambiguous` the book reads in their sense taking one object (رأى of the eye; وجد it keys with two, وجدت العلم نافعًا, Tasheel 3.8.1 p71), read in that sense unless an أنّ clause stands for both objects: a name after their object names it again, its بدل (Tasheel 3.10.3 p94: رأيت أخاك زيدًا), a word in nasb is its حال (رأيت صديقك مسرعًا), not a second object.",
    "one_object": ["رأى"],
+   "_changing": "`changing`: the verbs of turning (أفعال التحويل), which make a thing become another and know or think nothing, so no أنْ after them is أنّ lightened (naming._idle). جعل and هب are of the heart too and stay out of it (Ibn Aqil on the Alfiyya, ظن وأخواتها; page unchecked).",
+   "changing": ["صير", "اتخذ", "تخذ", "رد", "ترك"],
    "ambiguous": {
     "علم": "zanna-type 'knew that X was Y' (two objects) vs 'knew X' (one object) vs noun 'flag / science' vs the passive/intensive form 'taught'",
     "رأى": "zanna-type 'considered' (two objects) vs 'saw with the eye' (one object)",
@@ -458,9 +460,10 @@
   },
   "nasb_mudari": {
    "ar": "نواصب الفعل المضارع",
-   "card": {"named": "حرف نصب", "does": "ينصب الفعل المضارع", "governs": "nasb"},
+   "card": {"named": "حرف نصب", "does": "ينصب الفعل المضارع", "governs": "nasb", "idle_as": {"أن": "حرف مصدري مهمل"}, "light_as": {"أن": "أن المخففة من الثقيلة، حرف"}},
+   "_light_as": "an أن telling what a verb of the heart (the zanna family) knows or thinks, a verb in raf' after it, is أنّ lightened, its noun the unsaid ضمير الشأن and the clause its khabar (20:89 أَفَلَا يَرَوْنَ أَلَّا يَرْجِعُ إِلَيْهِمْ قَوْلًا; Ibn Aqil on the Alfiyya, وإن تخفف أنّ فاسمها استكن; page unchecked): named so where an idle one is `idle_as` (naming._idle).",
    "effect": "puts the present verb after it in nasb (fatha; the nun of the five verbs is dropped)",
-   "before_a_present_verb": ["أن", "لن", "كي", "لكي", "كيلا", "لئلا", "حتى"],
+   "before_a_present_verb": ["أن", "لن", "كي", "لكي", "كيلا", "لكيلا", "لئلا", "حتى"],
    "merges": {"ألا": {"named": "حرف نصب ومصدر", "tail": "negation"}},
    "_merges": "a word written with a shadda on its lam is أن (this family) with the nun merged into a following لا: أَلَّا = أَنْ + لا. `named` is the name of the head, `tail` the family the piece after it works as (particles.stamp).",
    "tanween_spells": {"إذا": "إذن"},
@@ -485,6 +488,7 @@
     "واو المعية",
     "لكي",
     "كيلا",
+    "لكيلا",
     "لئلا"
    ],
    "ambiguous": {
@@ -501,7 +505,7 @@
   },
   "jazm": {
    "ar": "جوازم الفعل المضارع",
-   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"إن": "حرف شرط جازم", "ل": "حرف جزم، لام الأمر", "لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}, "chart_as": {"ل": "لام الأمر", "لا": "لا الناهية"}, "verb_as": {"ل": "فعل مضارع للأمر", "لا": "فعل مضارع للنهي"}},
+   "card": {"named": "حرف جزم", "does": "يجزم الفعل المضارع", "governs": "jazm", "named_as": {"إن": "حرف شرط جازم", "ل": "حرف جزم، لام الأمر", "لا": "لا الناهية، حرف", "لم": "حرف نفي وجزم وقلب", "لما": "حرف نفي وجزم وقلب"}, "chart_as": {"ل": "لام الأمر", "لا": "لا الناهية"}, "verb_as": {"ل": "فعل مضارع للأمر", "لا": "فعل مضارع للنهي"}, "idle_as": {"لم": "حرف نفي وقلب مهمل"}},
    "effect": "puts the present verb after it in jazm (sukun; nun of the five verbs dropped; a weak last letter dropped); conditionals govern two verbs, the condition and the result",
    "before_a_present_verb": ["لم", "لما"],
    "conditional_particles": ["إن", "إذما"],
@@ -554,7 +558,7 @@
   },
   "negation": {
    "ar": "حروف النفي",
-   "card": {"named": "حرف نفي", "does": "", "named_as": {"لا": "لا النافية", "ما": "ما النافية"}},
+   "card": {"named": "حرف نفي", "does": "", "named_as": {"لا": "لا النافية", "ما": "ما النافية", "إن": "إن النافية"}},
    "effect": "negates the sentence; some govern (لن، لم، لما، لات), and ما and لا act like ليس in some sentences (see family kana in tarkeeb.json)",
    "words": [
     "ما",

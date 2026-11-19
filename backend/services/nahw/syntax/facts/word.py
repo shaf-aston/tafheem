@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, TANWEEN, PRESENT_PREFIX, KASRA, SHADDA, SUKUN, build_nun, doubled_last, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
+from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, CASE_NAME, VOWEL, stilled, TANWEEN, PRESENT_PREFIX, FATHA, KASRA, SHADDA, SUKUN, build_nun, doubled_last, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, merged_nun, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
 from backend.services.nahw.book import book_words, is_diptote, elative_shape, measure, participle_shape, stem_pattern, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
@@ -512,10 +512,28 @@ def works_as_verb(token: dict) -> str | None:
 def is_masdar(token: dict, weak_or_doubled: bool = True) -> bool:
     """A noun of a masdar measure (شُكْرًا، حُبًّا، نَوْمًا، خَطْوَةً), judged by the analyser's pattern.
     weak_or_doubled=False takes a doubled or hollow root's pattern as written, for a word with nothing else
-    saying it is a doing: طَوْقًا is فَعْل, and a collar all the same; a single act (ـة) is a doing, so it is read through."""
+    saying it is a doing: طَوْقًا is فَعْل, and a collar all the same; a single act (ـة) is a doing, so it is read through.
+    A doubled root's فُعْلة is taken for a thing made, not the doing (names_what_is_made: سُنَّة)."""
     pattern = stem_pattern(token.get("pattern") or "")
     shape = measure(pattern) if weak_or_doubled or strip_diacritics(pattern).endswith("ة") else pattern
-    return token.get("pos_camel") == "noun" and shape.startswith(tuple(book_words("masdar_patterns")))
+    return token.get("pos_camel") == "noun" and shape.startswith(tuple(book_words("masdar_patterns"))) and not names_what_is_made(token)
+
+
+def names_what_is_made(token: dict) -> bool:
+    """A doubled root's فُعْلة (سُنَّة، حُجَّة، خُطَّة): such a verb, when it takes an object, has فَعْل for masdar (سَنَّ سَنًّا، حَجَّ
+    حَجًّا، خَطَّ خَطًّا; one that takes none has others: فَرَّ فِرَارًا، مَرَّ مُرُورًا), its single
+    act فَعْلة and its manner فِعْلة (Ibn Aqil on the Alfiyya, وفَعْلة لمرة كجلسه % وفِعْلة لهيئة كجلسه, vol 3, page unchecked), so a ة after a
+    damma is, as a rule, no measure of the doing but names a thing: سَنَّ سُنَّةً is the way laid down, not the laying of it (a
+    rare one is heard as a masdar too: قَرَّتْ عَيْنُهُ قُرَّةً). Told by the root, its last two letters one: any other root's فُعْلة
+    may be heard as its doing (قَدَرَ قُدْرَةً، قَوِيَ قُوَّةً، جَادَ جُودَةً). is_masdar asks it, so every reading of a masdar
+    (the مفعول مطلق, an idafa's head, a mubtada) takes such a word for a plain noun. A vowel the reader typed on the first
+    letter outranks the analyser's guess, shadda typed or not (حَجَّ حَجَّةً، حَجةً: one act, not the حُجَّة argued)."""
+    root, pattern = strip_diacritics(token.get("root") or ""), stem_pattern(token.get("pattern") or "")
+    if not (len(root) == 3 and root[1] == root[2] and pattern.startswith("1\u064f") and "ة" in pattern):
+        return False
+    marked = letters(token.get("typed") or "")
+    typed = next((marks for (letter, marks), (after, _) in zip(marked, marked[1:]) if (letter, after) == tuple(root[:2])), set())
+    return not typed & {FATHA, KASRA}
 
 
 def masdar_at_work(token: dict) -> bool:
@@ -561,3 +579,39 @@ def purpose(token: dict, verb: dict) -> bool:
     (Tasheel 3.8.3 p73). Any other masdar there is a حال (جاء ركضًا)."""
     return (listed(token, "reason_masdars") and not same_root(token, verb)
             and may_be_nasb(token) and token.get("stt") in ("i", "c"))
+
+
+def five_verbs(token: dict) -> bool:
+    """One of the five verbs (يَفْعَلَانِ، تَفْعَلُونَ، تَفْعَلِينَ: Ibn Aqil, الأمثلة الخمسة; page unchecked), by its doer."""
+    return token.get("per") in ("2", "3") and token.get("num") in ("d", "p") or (token.get("per"), token.get("gen")) == ("2", "f")
+
+
+def typed_mood(typed: str, token: dict) -> str | None:
+    """The mood a present verb's typed ending shows by itself: jazm when stilled (لَمْ يَكْتُبْ، لَمْ يَدْعُ), else the case of
+    the vowel on its last letter, else None. A verb none of the five has no nun of theirs, so a last ن is the root's own and
+    its vowel is the case (فَتَكُونَ، نُعِينَ), none when a pronoun follows it (يُعِينُنِي: the pronoun's vowel is no case)."""
+    stuck_on = token.get("stuck_on", 0)
+    if stilled(typed, stuck_on, token.get("weak_last")):
+        return "jazm"
+    shown = typed_case(typed, stuck_on)
+    if shown is None and not five_verbs(token):
+        shown = next((VOWEL[mark] for mark in letters(own_letters(typed, 0, stuck_on))[-1][1] if mark in VOWEL), None)
+    return CASE_NAME[shown] if shown in ("u", "a") else None
+
+
+def stressed_nasb(bases: list[dict], i: int) -> dict | None:
+    """The nasb particle a ولا before word i only stresses: a لا joined on after a verb that particle governs, the same doer's,
+    stresses its negation (لا زائدة لتوكيد النفي), so it governs this verb too (لَنْ يَرُدَّ وَلَا يَمُدَّ). The reading taken is
+    that a verb of another doer starts its own sentence (لَنْ أَحْضُرَ وَلَا تَنْتَظِرُونِي: the لا forbids), and one typed with an
+    ending other than nasb's is no nasb (وَلَا تَقُلْ، وَلَا تَنْتَظِرُنِي), nor one of the five verbs typed keeping its nun (وَلَا
+    تَقْرَءُونَ، وَلَا تَأْمُرُونِّي: نون الرفع); any other negation governs or not by itself (وَلَمْ يَكْتُبْ، وَمَا أَدْرِي). `bases`
+    are the words the reader typed."""
+    if i < 3 or strip_diacritics(bases[i - 1].get("typed") or "") != "ولا":
+        return None
+    this, verb = bases[i], next((k for k in range(i - 2, 0, -1) if is_verb(bases[k])), None)
+    typed, stuck_on = this["typed"], this.get("stuck_on", 0)
+    kept_nun = five_verbs(this) and (five_verb_nun(typed, stuck_on, this.get("weak_last")) == "kept" or merged_nun(typed, stuck_on))
+    if verb is None or any(bases[verb].get(k) != this.get(k) for k in ("per", "num", "gen")) \
+            or typed_mood(typed, this) not in (None, "nasb") or kept_nun:
+        return None
+    return bases[verb - 1] if is_one(bases[verb - 1]["base"], "nasb_mudari", "before_a_present_verb") else None

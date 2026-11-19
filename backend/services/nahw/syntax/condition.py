@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
-from backend.services.nahw.book import condition_of, frames, is_one, kaffa_sister, named_roles
+from backend.services.nahw.book import book_spelling, condition_of, frames, is_one, kaffa_sister, named_roles, says
 from backend.services.nahw.syntax.facts import reading
 
 NAMED = named_roles()
@@ -33,16 +33,22 @@ def subject_id(i: int, found: dict, bases: list[dict]) -> int:
 
 def find(bases: list[dict], named: list[str | None], cases: list[str | None],
          before: list[list[str]], after: list[list[str]]) -> list[dict]:
-    """Each condition, in typed order: {opener, verb, answer, tie, tie_at, frame}, the first
+    """Each condition, in typed order: {opener, verb, answer, tie, tie_at, frame, masdar, negations}, the first
     three typed-word indexes (`answer` None for a particle whose answer is not found, as لو
     with its answer left unsaid; `tie_at` the word the tying letter is written on, which is
-    not the answer's own when a particle stands in front of it: فَلَا تُكْرِمْهُ). `before` is
+    not the answer's own when a particle stands in front of it: فَلَا تُكْرِمْهُ; `negations` the لا that negates there,
+    see negations; `masdar` whether the opener and its verb make a masdar). `before` is
     the letters written onto each word ahead of it (وَ، فَ), bare, and `after` those written after it (ـكَ)."""
     index = {base["id"]: k for k, base in enumerate(bases)}
 
     def joined(i: int) -> bool:
-        return any(is_one(piece, "atf") for piece in before[i]) or (
-            i > 0 and named[i - 1] in (NAMED.harf, None) and is_one(bases[i - 1]["form"], "atf"))
+        """A joiner is written on the word, or on the particle before it (إِنْ تَدْرُسْ وَلَا تَكْسَلْ تَنْجَحْ), or is that
+        particle. A word read as other than a joiner (particles.stamp) joins nothing: لا العاطفة joins a single word, never
+        a verb (إِنْ تَدْرُسْ لَا تَرْسُبْ: the لا negates the answer)."""
+        if any(is_one(piece, "atf") for piece in before[i]):
+            return True
+        return i > 0 and named[i - 1] in (NAMED.harf, None) and (any(is_one(piece, "atf") for piece in before[i - 1]) or (
+            is_one(bases[i - 1]["form"], "atf") and reading(bases[i - 1]) in (None, "atf")))
 
     def verb_at(i: int) -> int:
         """The فعل الشرط's index: straight after the opener, or past a particle hung on it
@@ -55,6 +61,12 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
             return k + 1
         return k
 
+    def tells(i: int) -> bool:
+        """Word i leads what a verb of saying before it tells, no other verb between (قُلْ إِنْ كُنْتُمْ تُحِبُّونَ اللَّهَ فَاتَّبِعُونِي،
+        قَالَ الْمُعَلِّمُ إِنْ تَدْرُسْ لَا تَرْسُبْ): the مقول القول is a sentence of its own, so a word leading it leads a clause."""
+        v = next((k for k in reversed(range(i)) if named[k] == NAMED.fil), None)
+        return v is not None and says(bases[v]["lemma"])
+
     def opens(i: int) -> dict | None:
         frame = condition_of(bases[i]["form"])
         v = verb_at(i)
@@ -65,7 +77,7 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # the one conditional word declined, is no built opener and may take one)
         if frame and frame["built"] and has_tanween(bases[i].get("typed") or ""):
             return None
-        if not frame or v >= len(bases) or (i and not joined(i) and frame.get("before") != "noun"
+        if not frame or v >= len(bases) or (i and not joined(i) and not tells(i) and frame.get("before") != "noun"
                                              and (frame["shared"] or not frame["noun"])):
             return None
         # إنما: the lemma is the pair, a ما الكافة cut off the إنّ sister it stops, so no إنْ of a condition
@@ -108,6 +120,27 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         fixed, form = frame["fixed_verbs"], strip_diacritics(bases[k]["form"])
         return bases[k].get("asp") != "p" or form in fixed["words"] or any(is_one(form, f) for f in fixed["families"])
 
+    def said(k: int, opener: int) -> bool:
+        """Word k is what a verb of saying inside the condition says, its مقول القول (وَإِذَا قِيلَ لَهُمْ لَا تُفْسِدُوا فِي الْأَرْضِ
+        قَالُوا): a sentence of its own, never the condition's answer nor its clause. A verb of saying before the opener
+        says the whole condition (قَالَ الْمُعَلِّمُ إِنْ تَدْرُسْ لَا تَرْسُبْ), so it hides nothing inside it. A verb joined on to
+        a said one is said with it, the معطوف sharing its place (إِنْ قُلْتَ لَهُ لَا تَكْذِبْ وَلَا تَسْرِقْ غَضِبَ)."""
+        if any(named[v] == NAMED.fil and says(bases[v]["lemma"]) and under(k, v) for v in range(opener + 1, k)):
+            return True
+        last = next((v for v in reversed(range(opener + 1, k)) if named[v] == NAMED.fil), None)
+        return last is not None and joined(k) and said(last, opener)
+
+    def negations(frame: dict, opener: int, verb: int, answer: int | None, end: int) -> list[int]:
+        """The لا a prohibition would take before the condition's verb, a verb joined to it, or an answer no ف ties: what
+        asks is never a condition's clause, nor its answer unless a ف ties it (Ibn Aqil V4, page unchecked: وأقرن بفا حتما جوابا لو جعل
+        شرطا), so that لا negates. One before a said verb asks inside what is said (قِيلَ لَهُمْ لَا تُفْسِدُوا). Only a
+        condition that puts its verbs in jazm leaves the jazm to it: after إذا or لو none but the لا gives it, so that one forbids
+        (إِذَا جَاءَ زَيْدٌ لَا تُكَلِّمْهُ)."""
+        if frame["family"] != "jazm":
+            return []
+        return [k for k in range(opener + 1, end) if book_spelling(bases[k]["lemma"]) == "لا" and reading(bases[k]) == "jazm"
+                and k + 1 < len(bases) and not said(k + 1, opener) and (k + 1 in (verb, answer) or joined(k + 1))]
+
     def clause_head(k: int) -> int:
         """The word an answer begun at k is the sentence of: a particle in front of its
         clause (فَلَا تُكْرِمْهُ، فَقَدْ فَازَ) answers through the word it hangs on."""
@@ -125,8 +158,13 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
                 break
             if not (frame.get("before") == "noun" and under(k, verb)):  # أَنَّنَا أَسْرَعْنَا: the masdar's own verb answers nothing
                 span.append(k)
-        verbs = [k for k in span if named[k] == NAMED.fil]
-        tied = [(k, letter) for k in span if (letter := next((t for t in frame["ties"] if t in before[k]), None))]
+        verbs = [k for k in span if named[k] == NAMED.fil and not said(k, i)]
+        # إِنْ تَدْرُسُوا فَتَجْتَهِدُوا يُحِبَّكُمُ: a present verb after the ف showing jazm or nasb stands between the two clauses
+        # (Ibn Aqil V4, page unchecked: وجزم أو نصب لفعل إثر فا ... بالجملتين اكتنفا); one the ف ties as the answer is a noun clause's
+        # khabar, its مبتدأ unsaid, so in raf' (V4, page unchecked: وأقرن بفا حتما جوابا لو جعل شرطا ... لم ينجعل). A لام on it bids (فَلْيَصُمْهُ)
+        between = {k for k in verbs if cases[k] in ("jazm", "nasb") and "ل" not in before[k]}
+        tied = [(k, letter) for k in span if k not in between
+                and (letter := next((t for t in frame["ties"] if t in before[k]), None))]
         # the first word the tying letter is written on is the answer (فَلَهُ، فَإِنَّ، فَهُوَ، فَلَا، فَقَدْ):
         # a noun sentence or a particle is one whatever follows, a plain past verb only where nothing
         # shares its letters with a relative or a question word. A later tied clause is joined on to
@@ -143,6 +181,7 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         # a present verb in jazm right after مَنْ is never a relative's: it opens a condition
         if answer is None and frame["shared"] and not (cases[verb] == "jazm" and span):
             continue  # مَنْ جاءَ؟ : no answer, so the relative or the question word
+        end = tie_at if tie else verb + 1 if answer is None else answer
         found.append({"opener": i, "verb": verb, "answer": answer, "tie": tie, "tie_at": tie_at, "frame": frame,
-                      "masdar": verb != i and masdar(verb)})
+                      "masdar": verb != i and masdar(verb), "negations": negations(frame, i, verb, answer, end)})
     return found

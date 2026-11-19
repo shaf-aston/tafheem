@@ -1,7 +1,7 @@
 """Repair 1 after the book's links: what the reader typed overrides the parser's kind and tense."""
 from __future__ import annotations
 
-from itertools import pairwise
+from itertools import pairwise, takewhile
 
 from backend.services.sarf import verb_reader
 from backend.services.sarf.morphology import is_listed_verb
@@ -34,8 +34,9 @@ def typed_words(bases: list[dict], tokens: list[dict]) -> None:
         # its place; so is one sarf read off its shape, whose ـينَ is nasb or jarr alike (noun_reader)
         elif (verb_tagged(token) or token.get("cas") == "u") and _participle_plural(word):
             token.update(pos="NOM", pos_camel="adj", asp="na", cas=_plural_case(word, token, tokens))
-        # letters at the end that belong to an attached pronoun, then at the front that are joined words (وَ، فَ، لِـ)
-        token["stuck_on"] = stuck_letters(t for t in tokens if t["head"] == token["id"])
+        # letters at the end that belong to an attached pronoun, written straight after the word (the لا of أَلَّا, which the
+        # parser may hang on the verb after it, is أنْ's: أَلَّا يَقْدِرُونَ), then at the front that are joined words (وَ، فَ، لِـ)
+        token["stuck_on"] = stuck_letters(takewhile(lambda t: t["form"].startswith("+"), (t for t in tokens if t["id"] > token["id"])))
         token["front"] = max(0, len(letters(word)) - token["stuck_on"] - len(token["base"]))
         # نِعْمَ الْوَكِيلُ: a verb of praise or blame typed with its fatha is that past verb, whatever the reading; typed bare,
         # the word straight before a noun with ال is that verb, whose doer is such a noun (Ibn Aqil V2, باب نعم وبئس)
