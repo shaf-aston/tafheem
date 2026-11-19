@@ -103,6 +103,7 @@ Before labels are chosen, the book's masks rule labels out (`backend/services/na
 - oath_clause: opening و + a relative or jarr noun, the clause answered by a lam, لا, ما, قد or إن → the oath (`backend/services/nahw/syntax/repair/clause.py`)
 - amma_clause: أما + one noun + a فاء answer → the noun is the mubtada, the answer its khabar, a verb it was doer of its صلة (`backend/services/nahw/syntax/repair/clause.py`)
 - negated_conjunct: و + لا + a known noun hung on the لا → joined to the noun before the و, the لا only stressing the negation (`backend/services/nahw/syntax/repair/clause.py`)
+- said_again: و + a noun said again in full + a word in raf' → its own sentence, the noun its مبتدأ, the word its خبر (`backend/services/nahw/syntax/repair/clause.py`)
 - doer_then_khabar: a verb with a pronoun object, a doer and a second raf' noun → the second is the khabar of a left-out مبتدأ (`backend/services/nahw/syntax/repair/clause.py`)
 - no_khabar_on_full_verb: an indefinite nasb word hung as the خبر of a full verb → a modifier, so a hal (`backend/services/nahw/syntax/repair/hal.py`)
 - naat_beside_its_noun: an indefinite word right after the verb's own masdar it agrees with → that masdar's صفة (`backend/services/nahw/syntax/repair/hal.py`)

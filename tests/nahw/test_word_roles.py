@@ -7,6 +7,9 @@ from __future__ import annotations
 import pytest
 from backend.services.nahw import iraab
 from backend.services.nahw.book import stem_pattern
+from backend.services.nahw.syntax.facts import Sentence
+from backend.services.nahw.syntax.facts.word import hollow_or_doubled_first_form
+from backend.services.nahw.syntax.repair.clause import said_again
 from tests.nahw_helpers import analysed, cards, NADA, needs_parser, parsed_as, _read, _role
 
 pytestmark = needs_parser
@@ -277,6 +280,44 @@ def test_a_doubled_or_hollow_root_still_reads_as_a_masdar_measure():
     assert iraab.analyze("أَحْبَبْتُهُ كُلَّ الْحُبِّ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
     assert iraab.analyze("قُلْتُ بَعْضَ الْقَوْلِ", recorded=False)["words"][1]["role"] == "مفعول مطلق"
     assert iraab.analyze("مَدَدْتُ كُلَّ الْحَبْلِ", recorded=False)["words"][1]["role"] == "مفعول به"
+
+
+@pytest.mark.parametrize("sentence, at, role", [
+    # a hollow or doubled Form I verb's own short masdar names the doing, whoever does it: past, own doer or command
+    ("صَامَ زَيْدٌ صَوْمَ دَاوُدَ", 2, "مفعول مطلق"),
+    ("قَالَ زَيْدٌ قَوْلًا", 2, "مفعول مطلق"),
+    ("صُمْتُ صَوْمًا", 1, "مفعول مطلق"),
+    ("صُمْ صَوْمًا", 1, "مفعول مطلق"),  # صُمْ is صَامَ's, not صَمَّ "be deaf" the noun read had
+    ("قُمْ قِيَامًا", 1, "مفعول مطلق"),  # قُمْ is قَامَ's, not قَمَّ "sweep" the dictionary read
+    ("قُلْ قَوْلًا", 1, "مفعول مطلق"),
+    ("أَنْ تُطَوَّقَ طَوْقًا", 2, "مفعول به"),  # nearest case: after Form II (طَوَّقَ, masdar تَطْوِيق) طَوْق is a collar
+    ("كَتَبْنَا كِتَابًا", 1, "مفعول به"),  # nearest case: a sound root's masdar shape may name a thing (a book)
+    ("اُكْتُبْ كِتَابًا", 1, "مفعول به"),
+    ("كَانَ زَيْدٌ كَوْنًا", 2, "خبر كان"),  # nearest case: كان and its sisters take a خبر
+    ("صَارَ الْمَاءُ صَيْرًا", 2, "خبر كان"),
+])
+def test_a_hollow_or_doubled_form_one_verbs_own_masdar_is_the_maful_mutlaq(sentence, at, role):
+    """facts.slot: hollow_or_doubled_first_form (word.py) lets the masdar read through its weak letter; repair/typed gives a command sarf's root."""
+    assert _role(sentence, at) == role
+
+
+@pytest.mark.parametrize("lemma, root, first_form", [
+    ("صام", "صوم", True), ("قال", "قول", True), ("باع", "بيع", True),  # hollow: the ا stands for the root's و or ي
+    ("مد", "مدد", True),  # doubled: its last two letters written as one
+    ("حاج", "حجج", False),  # Form III of a doubled root: its ا is added, no root letter
+    ("كتب", "كتب", False), ("سأل", "سأل", False),
+])
+def test_a_hollow_verbs_alif_stands_for_its_roots_weak_letter(lemma, root, first_form):
+    assert hollow_or_doubled_first_form({"lemma": lemma, "root": root}) is first_form
+
+
+def test_a_lone_noun_after_waw_is_never_hung_on_itself():
+    """repair/clause.said_again: with no word after the noun there is no phrase said again (جَاءَ رَجُلٌ وَآخَرُ)."""
+    tokens = [{"id": i, "head": head, "rel": rel, "pos": pos, "pos_camel": camel, "lemma": lemma, "form": lemma}
+              for i, head, rel, pos, camel, lemma in [(1, 0, "---", "VRB", "verb", "جاء"), (2, 1, "SBJ", "NOM", "noun", "رجل"),
+                                                       (3, 2, "MOD", "PRT", "conj", "و+"), (4, 3, "OBJ", "NOM", "adj", "آخر")]]
+    said_again(Sentence(tokens))
+    assert [(t["head"], t["rel"]) for t in tokens] == [(0, "---"), (1, "SBJ"), (2, "MOD"), (3, "OBJ")]
 
 
 def test_a_prayer_noun_is_the_said_only_after_a_verb_of_saying():
@@ -1047,3 +1088,28 @@ def test_a_waw_the_quran_writes_for_a_hamza_reads_as_that_hamza(sentence: str, a
 def test_a_joined_word_before_the_pattern_is_no_part_of_its_measure(pattern, shape):
     # وَالْعَالِمُ، بِالْبَخِيلِ: the analyser writes و، ف، ب، ك، ل and ال into the pattern; the measure is the word's own
     assert stem_pattern(pattern) == shape
+
+
+@pytest.mark.parametrize("sentence, roles", [
+    # a noun with its صفة named again after و, then a new known word: its own sentence, that word its خبر (repair/clause.said_again)
+    ("الْيَدُ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى وَالْيَدُ الْعُلْيَا الْمُنْفِقَةُ وَالسُّفْلَى السَّائِلَةُ",
+     {6: "مبتدأ", 8: "خبر", 9: "مبتدأ", 10: "خبر"}),  # السفلى the صفة said of the first اليد, standing for it
+    ("الْمُؤْمِنُ الْقَوِيُّ خَيْرٌ مِنَ الْمُؤْمِنِ الضَّعِيفِ وَالْمُؤْمِنُ الْقَوِيُّ الصَّابِرُ", {6: "مبتدأ", 8: "خبر"}),
+    ("جَاءَ الرَّجُلُ الطَّوِيلُ وَالرَّجُلُ الْقَصِيرُ", {3: "معطوف", 4: "صفة"}),  # the noun alone again: a second man, joined
+    ("جَاءَ الرَّجُلُ وَالْمَرْأَةُ الطَّوِيلَةُ الْكَرِيمَةُ", {2: "معطوف", 4: "صفة"}),  # a thing not named before: joined
+    ("مَرَرْتُ بِالْيَدِ الْعُلْيَا وَالْيَدِ الْعُلْيَا الْمُنْفِقَةِ", {3: "معطوف", 5: "صفة"}),  # in jarr: joined, no مبتدأ
+    ("مررت باليد العليا واليد العليا المنفقة", {3: "معطوف"}),  # no case typed: nothing shows a مبتدأ
+    ("رَأَيْتُ الْيَدَ السُّفْلَى وَالسُّفْلَى السَّائِلَةَ", {3: "معطوف", 4: "صفة"}),  # in nasb: joined, its case hidden on its ا
+    # after a verbal sentence the noun said again is joined to the doer, its words its صفات, never a new مبتدأ
+    ("جَاءَ الطَّالِبُ الْمُجْتَهِدُ وَالطَّالِبُ الْمُجْتَهِدُ الْآخَرُ", {3: "معطوف", 4: "صفة", 5: "صفة"}),
+    ("جَاءَ الرَّجُلُ الطَّوِيلُ وَالرَّجُلُ الطَّوِيلُ نَفْسُهُ", {3: "معطوف", 5: "توكيد"}),
+    # opened by إنّ and its اسم the sentence divides the same (the parser divides it there, said_again never needed);
+    # a word of otherness (الآخر) makes a second thing, joined
+    ("إِنَّ الْيَدَ الْعُلْيَا خَيْرٌ مِنَ الْيَدِ السُّفْلَى وَالْيَدُ الْعُلْيَا الْمُنْفِقَةُ", {7: "مبتدأ", 9: "خبر"}),
+    ("الطَّالِبُ الْمُجْتَهِدُ نَاجِحٌ وَالطَّالِبُ الْمُجْتَهِدُ الْآخَرُ", {3: "معطوف", 4: "صفة", 5: "صفة"}),
+    # a raf' word after the phrase is the خبر the two share: the noun is joined, its words its صفات
+    ("الرَّجُلُ الصَّالِحُ وَالرَّجُلُ الصَّالِحُ الْغَنِيُّ سَوَاءٌ", {2: "معطوف", 4: "صفة", 5: "خبر"}),
+])
+def test_a_noun_said_again_after_waw_opens_its_own_sentence(sentence: str, roles: dict[int, str]):
+    words = _read(sentence)["words"]
+    assert {at: words[at]["role"] for at in roles} == roles, sentence

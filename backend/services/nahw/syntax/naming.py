@@ -17,7 +17,7 @@ from backend.services.nahw.syntax import condition, facts, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
 from backend.services.text.harakat import (
-    CASE_NAME, SUKUN, build_nun, doubled_last, five_verb_nun, letters, paused, stilled,
+    CASE_NAME, SUKUN, VOWEL, build_nun, doubled_last, five_verb_nun, letters, own_letters, paused, stilled,
     typed_case, written_sizes)
 
 # Every role this module can name, with its card colour key and bracket tone
@@ -535,6 +535,12 @@ def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) 
     if stilled(typed, stuck_on, token.get("weak_last")):
         return "jazm"
     shown = typed_case(typed, stuck_on)
+    five = token.get("per") in ("2", "3") and token.get("num") in ("d", "p") or (token.get("per"), token.get("gen")) == ("2", "f")
+    if shown is None and not five:
+        # فَتَكُونَ، فَتُعِينَ، نُعِينَ: a verb none of the five (يَفْعَلَانِ، تَفْعَلُونَ، تَفْعَلِينَ: Ibn Aqil, الأمثلة الخمسة; page
+        # unchecked) has no nun of theirs, so a last ن is the root's own and the vowel on the last letter is the case (none when a
+        # pronoun follows it, يُعِينُنِي: the pronoun's vowel is no case)
+        shown = next((VOWEL[mark] for mark in letters(own_letters(typed, 0, stuck_on))[-1][1] if mark in VOWEL), None)
     if lam and doubled_last(typed, stuck_on):
         return lam  # لِيَمُدَّ يَدَهُ: a doubled verb's fatha is its jussive's too, so the لام says which
     return CASE_NAME[shown] if shown in ("u", "a") else lam  # None: nothing shows (_followers_take_their_ending)

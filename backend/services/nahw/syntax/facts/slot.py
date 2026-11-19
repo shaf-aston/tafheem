@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import book_map, condition_of, extra_ba_on, is_extra_ba, is_mabni, is_one, is_plain_noun, is_subject_pronoun, named_roles, takes_object
-from backend.services.nahw.syntax.facts.word import manqus_tanween, may_be_nasb, purpose, shows_nasb_by_kasra, is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
+from backend.services.nahw.syntax.facts.word import manqus_tanween, may_be_nasb, purpose, shows_nasb_by_kasra, is_built, is_describing, shown_cases, case_unseen, is_elative, is_name, stands_for_its_noun, is_suffix, works_as_verb, listed, indefinite_nasb, is_deputy, is_masdar, hollow_or_doubled_first_form, is_object_pronoun, is_participle, names_a_thing, on_doing_measure, is_passive, is_preposition, is_state_word, is_verb, read_as, same_root, shows_jarr, state_or_specification, told_of_subject, typed_case_of, typed_or_parsed_case, typed_tanween, unlike, attached_pronoun, noun_tagged, subject_link, holds_doer, own_doer, NOUN_LINKS, SUBJECTS
 from backend.services.nahw.syntax.facts.sentence import Sentence, at_work, is_built_zarf, stays_adverb, counts, is_zarf, zarf_in_nasb, busied, jarr_takes, praised_noun, quoted_head, told_of_lone_mubtada, verb_above
 from backend.services.nahw.syntax.facts.follows import verb_joined_by_waw
 
@@ -191,7 +191,7 @@ def verb_place(token: dict, s: Sentence) -> str:
         return "accompaniment"
     head = s.head(token)
     rel = token["rel"]
-    typed = typed_case_of(token)
+    typed = None if is_built(token) else typed_case_of(token)  # كَانَ ذَلِكَ حَقًّا: a built word's last vowel is its build, no case
     if masdar_object(token, s):
         return "object"
     # زيدٌ ضاربٌ بكرًا: a word like the verb (شبه الفعل) takes its object as the verb does
@@ -256,6 +256,12 @@ def verb_place(token: dict, s: Sentence) -> str:
             return "none"  # its place is inside the sentence it heads (_nominal_place)
         if praised_noun(token, s):
             return "none"  # نِعْمَ الْخُلُقُ الْوَفَاءُ: the one praised is no second doer (_nominal_place: مبتدأ)
+        if (not before and may_be_nasb(token, typed_only=True) and token.get("stt") in ("i", "c") and hollow_or_doubled_first_form(head)
+                and same_root(token, head) and is_masdar(token) and s.family(head) != "kana"):
+            # صُمْ صَوْمًا، قُلْتُ قَوْلًا، صَامَ صَوْمَ دَاوُدَ: a hollow or doubled Form I verb's own masdar names the doing alone, so it
+            # is the verb's own masdar whoever does it; a sound one may name a thing (كَتَبْنَا كِتَابًا), left to the rules below; كان and
+            # its sisters take a خبر in nasb (كَانَ زَيْدٌ كَوْنًا)
+            return "absolute"
         if head.get("asp") == "c" and rel in (*NOUN_LINKS, "---") and typed != "u":
             return "object"  # قل الحق: a command's doer is always the hidden أنت (Tasheel 2.4.1 p30)
         if not before and typed != "u" and (listed(token, "times_counted") or stands_for_masdar(token, head, s)):

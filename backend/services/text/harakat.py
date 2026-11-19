@@ -295,6 +295,8 @@ def vowel_agreement(typed: str, reading: str) -> tuple[int, int] | None:
             continue
         if said_v and read_v and said_v != read_v:
             return None
+        if SUKUN in said and SHADDA in read and SHADDA not in said:
+            return None  # صُمْ: a letter typed still is not doubled, so it is no صُمّ (deaf)
         agreed += len(said_v & read_v) + (SHADDA in said and SHADDA in read)
         doubled += (SHADDA in said) != (SHADDA in read)
     return agreed, doubled
@@ -446,6 +448,14 @@ def past_passive_shape(word: str) -> bool:
     # shadda (a doubled root's فُعِلَ merges, رُدَّ, no kasra left) nor a damma save before the plural's و
     # (ضُرِبُوا); تُحِبُّكَ، يُكْرِمُكَ are the present's يُفْعِلُ with an object joined on
     after = marked[kasra + 2:]
+    # a long ي after the kasra is a hollow root's: its فُعِلَ of أَفْعَلَ opens on أ (أُقِيمَ), and on ت ي ن the shape is
+    # the present of أَفْعَلَ (تُعِينَ، يُقِيمَ، نُرِيدَ), for a hollow فَعَلَ's own فُعِلَ is قِيلَ
+    if marked[0][0] in "تين" and len(after) > 1 and after[0][0] == "ي" and not after[0][1] - {SUKUN}:
+        return False
+    # that last root letter is sakin only before a doer's pronoun that moves (ضُرِبْتُ، ضُرِبْنَا، ضُرِبْنَ, Ibn Aqil:
+    # page unchecked); before an object's (أُكْرِمْكَ، أُعْلِمْهُ) it is the jussive's sukun on أُفْعِلْ, a present
+    if len(after) > 1 and SUKUN in after[0][1] and after[1][0] not in "تن":
+        return False
     return not any(SHADDA in marks or ("ُ" in marks and (after[i + 1][0] if i + 1 < len(after) else "") != "و")
                    for i, (_, marks) in enumerate(after))
 

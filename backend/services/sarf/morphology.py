@@ -23,7 +23,7 @@ from backend.services.sarf import engine, expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
 from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
-from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SUKUN, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
+from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SUKUN, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, own_letters, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -244,8 +244,12 @@ def _as_command(word: str, a: dict, before: str, after: str, after_read: str = "
         return a  # يَا رَبِّ، رَبِّ اغْفِرْ لِي: a noun called, not رَبَّى's command; عَلَى مَالِ: a noun in jarr
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
     root = root_in_arabic(a.get("root") or "", a.get("lex") or "", word)  # a verb or a noun, so rooted
+    # فَأَنْذِرْ: the letters CAMeL files as joined before (فَ+) are no part of the command; the table reads the verb's own
+    # (base_of keeps the word whole where CAMeL's split does not fit the letters typed)
+    front = sum(len(p) - 1 for p in strip_diacritics(a.get("atbtok") or "").split("_") if p.endswith("+"))
+    own = own_letters(word, front, 0) if front and base_of(word, a.get("atbtok")) != strip_diacritics(word) else word
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
-    cell = verb_reader.command(word, governed, root) or verb_reader.command(paused(word, after), governed, root)
+    cell = verb_reader.command(own, governed, root) or verb_reader.command(paused(own, after), governed, root)
     if cell is None:
         return a
     return {**a, "pos": "verb", "asp": "c", "mod": "na", "vox": "a", "per": cell.person,
@@ -431,6 +435,13 @@ def _analyses(word: str) -> list[dict]:
     return sorted(map(verb_reader.mended, analyses), key=lambda a: -a.get(_LIKELIHOOD, _NEVER_SEEN))
 
 
+def is_listed_verb(word: str) -> bool:
+    """The bare letters are a verb's own lemma in the dictionary (أَمْسَكَ، أَنْزَلَ، أَجْلَسَ), not only some
+    other verb's form: أغفر is only غَفَرَ's أَغْفِرُ, for the dictionary knows no أَغْفَرَ."""
+    bare = strip_diacritics(word)
+    return any(a.get("pos") == "verb" and strip_diacritics(a.get("lex") or "") == bare for a in _analyses(bare))
+
+
 def _analyze_word_camel_only(word: str) -> dict[str, Any] | None:
     """Word-level CAMeL Analyzer with diacritic-guided best-analysis selection."""
     if engine.camel is None:
@@ -583,7 +594,7 @@ def _reading(word: str, readings: list[dict]) -> dict:
     real = [r for r in readings if NO_ANALYSIS not in r.get("atbtok", "")]
     verbs = [r for r in readings
              if r.get("pos") == "verb" and bare_letters(r.get("diac", "")) == bare_letters(word)]
-    if past_passive_shape(word) and verbs:
+    if _passive_shape_past_joined(word) and verbs:
         # the shape is a past verb's: اسْتُعْمِلَ, which CAMeL lacks, is its active اِسْتَعْمَلَ
         # with the voice read off the vowels, never أَسْتَعْمِلُ
         return next((r for r in verbs if r.get("asp") == "p"), verbs[0])
@@ -592,6 +603,14 @@ def _reading(word: str, readings: list[dict]) -> dict:
     same = [r for r in real if [bare_letters(c) for c, _ in letters(r.get("diac", ""))] == [bare_letters(c) for c, _ in letters(word)]]
     # with none agreeing, one spelled as typed (حِجَارَةٌ, which the dictionary has only as حَجّارَةٌ)
     return best_reading(word, same) or nearest_reading(word, same) or best_reading(word, real) or (same or readings)[0]
+
+
+def _passive_shape_past_joined(word: str) -> bool:
+    """فُعِلَ by its vowels, past a joined و or ف that carries its own fatha (فَسُحِبَ، فَأُتِيَ، وَقُتِلَ): that fatha
+    is the particle's, so the shape is read on the letters after it."""
+    marked = letters(word)
+    return past_passive_shape(word) or len(marked) > 3 and marked[0][0] in "فو" and marked[0][1] == {_FATHA} \
+        and past_passive_shape(own_letters(word, 1, 0))
 
 
 def _ranked(tokens: list[str], disambiguator) -> list[list[dict]] | None:
@@ -751,10 +770,15 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     # أَوْعَى لَهُ مِنْهُ، أَعْظَمَ فِي نَفْسِي مِنْ صِدْقِي: the elative is followed by, or by what it governs and then, the مِنْ-phrase (Tashil V1 p132), so a word with the
     # elative's shape, read as a verb, straight before a preposition and a مِنْ within the next three words with no verb
     # before it, is that elative; a doer (أَنْعَمَ اللَّهُ عَلَيَّ مِنْ نِعْمَةٍ) or an object straight after it keeps the verb, and so does
-    # a verb after لم، لن، سوف (لَمْ أَفْهَمْ مِنْهُ شَيْئًا), where no noun stands (expects.json `only`)
+    # a verb after لم، لن، سوف (لَمْ أَفْهَمْ مِنْهُ شَيْئًا), where no noun stands (expects.json `only`), and a word typed with a fatha
+    # first or after a ما, نافية، موصولة، كافة alike (أَصْبَحَ مِنْ عِبَادِي مُؤْمِنٌ، مَا أَصْبَحَ مِنْهُمْ أَحَدٌ): a noun there has no
+    # عامل before it to set it in nasb, so the fatha is the past verb's. The dual pronoun هُمَا، كُمَا is no ما: a verb with it
+    # takes the noun as its object (أَعْطَيْتُهُمَا أَكْثَرَ مِنْ حَقِّهِمَا)
     for i in range(len(out) - 1):
         if out[i].get("pos") == "verb" and out[i + 1].get("pos") == "prep" and _min_phrase_follows(out[i + 1:i + 4]) \
                 and not (i and expects.only_verb(tokens, out, i)) \
+                and not (typed_case(tokens[i]) == "a" and (not i or bare_letters(tokens[i - 1]).endswith("ما")
+                                                       and not (out[i - 1].get("enc0") or "").startswith(("2d", "3d")))) \
                 and (elative := _elative_reading(tokens[i], steps[i])):
             out[i] = elative
     # نصر زيد بكرا، زيد نصر بكرا: every منصوب has its عامل (Ibn Aqil on the Alfiyya, المفعول به).
@@ -796,7 +820,8 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
             out[i] = name
     for i in range(len(out)):
         before = out[i - 1] if i else {}
-        if i and _wants_present(before, out[i]) and (present := _present_reading(tokens[i], steps[i][1])):
+        if i and (wants := _wants_present(before, out[i])) and (present := _present_reading(tokens[i], steps[i][1])) \
+                and (wants == "nasb" or reading_root(present) == reading_root(out[i])):
             out[i] = present
         elif _one_taa_written(before, out[i], tokens[i], i > 0 and expects.verb_after(tokens, out, i) == "nasb") \
                 and not _la_before_a_past(out, i) and (present := _both_taas(out[i], tokens[i], disambiguator)):
@@ -809,10 +834,19 @@ def pick(tokens: list[str], disambiguator=None) -> list[dict[str, Any]]:
     return out
 
 
-def _wants_present(before: dict, reading: dict) -> bool:
-    """A past verb straight after أَنْ، لَنْ، كَيْ ...: the particles that put a present verb in nasb."""
-    return reading.get("pos") == "verb" and reading.get("asp") == "p" \
-        and is_one(strip_diacritics(before.get("diac", "")), "nasb_mudari", "before_a_present_verb")
+def _wants_present(before: dict, reading: dict) -> str | None:
+    """The mood a particle straight before a past verb reading wants a present in: "nasb" after أَنْ، لَنْ، كَيْ ...;
+    "jazm" after لَمْ, which never comes before a past (لَمْ أُكْرِمْ زَيْدًا: أُكْرِمْ is أُفْعِلُ's jazm, not the passive past),
+    so pick takes the present only of the same verb, its root the past's: letters no present of that verb spells are
+    the past after لِمَ ("why", لِ + مَا), spelled as لَمْ is (لِمَ تَرَكَ الصَّلَاةَ, typed bare too). لَمَّا comes before a past
+    too, as "when" (لَمَّا جَاءَ), so a past after it stays; the particle is told by its lemma."""
+    if reading.get("pos") != "verb" or reading.get("asp") != "p":
+        return None
+    if is_one(strip_diacritics(before.get("diac", "")), "nasb_mudari", "before_a_present_verb"):
+        return "nasb"
+    jazm = strip_diacritics(before.get("lex", ""))
+    return "jazm" if is_one(jazm, "jazm", "before_a_present_verb") \
+        and jazm not in book_words("ghair_amila_other", "conditional_particles") else None
 
 
 def _present_reading(token: str, ranked: list[dict]) -> dict | None:
