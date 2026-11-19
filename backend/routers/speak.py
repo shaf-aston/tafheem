@@ -1,4 +1,4 @@
-"""Say an Arabic word aloud: GET /api/speak?text=...&accent=... returns its sound.
+"""Say an Arabic word aloud: GET /api/speak?text=...&accent=...&cast=... returns its sound.
 
 Thin: it checks the text, hands it to services/speech.py and sets how long the
 browser may keep the answer. A GET, so the page's own audio player can play the
@@ -31,7 +31,7 @@ _everyone = PerMinute("speech_all_per_minute")  # until the origin gate, an addr
 
 @router.get("")
 async def speak(request: Request, text: str = Query(..., min_length=1), accent: str | None = None,
-                speed: str = "normal") -> Response:
+                cast: str | None = None, speed: str = "normal") -> Response:
     text = speech.tidy(text)
     settings = get_settings()
     if len(text) > settings.speech_max_chars:
@@ -44,11 +44,12 @@ async def speak(request: Request, text: str = Query(..., min_length=1), accent: 
         raise HTTPException(429, "Too many words at once; try again in a minute")
     if _everyone.too_many("everyone", cost):
         raise HTTPException(429, "The voice is busy right now; try again in a minute")
-    # A Colloquial dialect is said by a speaker of it (dialects.json `voice`).
+    # A Colloquial dialect is said by a speaker of it (dialects.json `voices`); a dialogue
+    # line by the one of its speaker's sex and seat in the scene (`cast`, loader._cast).
     try:
-        first = colloquial.voice_of(accent) if accent else None
+        first = colloquial.voice_of(accent, cast) if accent else None
     except KeyError as exc:
-        raise HTTPException(422, "Unknown accent") from exc
+        raise HTTPException(422, "Unknown accent or cast") from exc
     # A named speed only (speak.json `speeds`), so no one can ask for a new file per decimal place.
     if speed not in speech.SPEEDS:
         raise HTTPException(422, "Unknown speed")

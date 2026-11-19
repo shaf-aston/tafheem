@@ -71,7 +71,28 @@ def _say_slots(lesson: dict, phrases: list[dict], where: str) -> tuple[list[dict
                 continue
         lines.append({**{field: one.get(field) for field in ("arabic", "transliteration", "english")},
                       "speaker": line.get("speaker"), "slot": line["slot"]})
-    return lines, said
+    return _cast(lines), said
+
+
+# A line's seat in its scene: the speaker's sex and how many of that sex spoke before them.
+CAST = re.compile(r"(man|woman)-(\d)")
+
+
+@lru_cache(maxsize=1)
+def _women() -> frozenset[str]:
+    """Every dialogue speaker who is a woman (speakers.json); every other speaker is a man."""
+    return frozenset(json.loads((data_path("colloquial_dir") / "speakers.json").read_text(encoding="utf-8"))["women"])
+
+
+def _cast(lines: list[dict]) -> list[dict]:
+    """Each line with its `cast`: `woman-1` is the second woman to speak in this scene, so two
+    women in one scene are given two voices, and a speaker keeps hers to the end of it."""
+    seats: dict[str, str] = {}
+    for line in lines:
+        if line["speaker"] not in seats:
+            sex = "woman" if line["speaker"] in _women() else "man"
+            seats[line["speaker"]] = f"{sex}-{sum(seat.startswith(sex) for seat in seats.values())}"
+    return [{**line, "cast": seats[line["speaker"]]} for line in lines]
 
 
 _SAID_TO = re.compile(r"^(.*)\((?:to )?a (man|woman)\)\s*$")
@@ -435,12 +456,18 @@ def catalogue() -> dict:
     }
 
 
-def voice_of(dialect: str) -> str | None:
-    """Who says `dialect`'s lines aloud (dialects.json `voice`), or None for the default voice.
-    An unknown dialect is a KeyError."""
+def voice_of(dialect: str, cast: str | None = None) -> str | None:
+    """Who says a line of `dialect` aloud: from its dialects.json `voices`, the list for the line's
+    sex at its seat (`cast`, from _cast), wrapping round a short list; a line with no cast, a phrase,
+    is said by the first man's. None when that sex has no voice there: the default voice reads it.
+    An unknown dialect or a cast not shaped like _cast's is a KeyError."""
+    seat = CAST.fullmatch(cast or "man-0")
+    if seat is None:
+        raise KeyError(f"no cast {cast!r}")
     for known in _content()["dialects"]:
         if known["key"] == dialect:
-            return known.get("voice")
+            voices = known.get("voices", {}).get(seat[1])
+            return voices[int(seat[2]) % len(voices)] if voices else None
     raise KeyError(f"no dialect {dialect!r}")
 
 

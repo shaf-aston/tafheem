@@ -584,7 +584,7 @@ def test_a_rule_that_is_not_a_whole_number_above_zero_is_refused(tmp_path, value
 def test_every_dialect_field_reaches_the_page_or_is_named_as_the_servers():
     # The card is built through schema.DialectCard, which drops what it does not name.
     # So a new dialects.json field is either added there or named here as the server's own.
-    servers_own = {"folder", "order", "voice"}
+    servers_own = {"folder", "order", "voices"}
     entries = json.loads((data_path("colloquial_dir") / "dialects.json").read_text(encoding="utf-8"))["dialects"]
     for entry in entries:
         assert set(entry) - set(schema.DialectCard.model_fields) <= servers_own, entry["key"]

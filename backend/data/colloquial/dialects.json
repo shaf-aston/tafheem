@@ -1,6 +1,6 @@
 {
-  "_about": "Every spoken dialect the Colloquial tab offers. A dialect is a folder of unit files beside this one, nothing more: adding one is a folder and a line here, with no code change anywhere. `voice` is who says its lines aloud: a native speaker of it (services/speech.py `voice_named`); without one, the Fusha voice reads them.",
-  "_voice": "edge:<speaker> is a Microsoft neural voice from that country, `edge-tts --list-voices` lists them. The Fusha voice stays behind it for when it cannot be reached.",
+  "_about": "Every spoken dialect the Colloquial tab offers. A dialect is a folder of unit files beside this one, nothing more: adding one is a folder and a line here, with no code change anywhere. `voices` is who says its lines aloud, native speakers of it (services/speech.py `voice_named`), a list for each of `man` and `woman`; a line goes to the list for its speaker (speakers.json) and one name always to the same voice in it, so two characters of one sex mostly sound like two people. A sex with no list is read by the Fusha voice.",
+  "_voice": "edge:<speaker> is a Microsoft neural voice from that country, `edge-tts --list-voices` lists them: one man and one woman a country, so a second voice of a sex is borrowed from a neighbour. The Fusha voice stays behind them for when they cannot be reached.",
   "_places": "countries is where a dialect is spoken, as ISO 3166 alpha-2 codes; cities are the ones its `where` names, each at [longitude, latitude]. The dialect card draws them as a small map (frontend components/ui/CountryMap.jsx). `where` is a short line, a place and no more, so the card's top line holds it; `gloss`, where given, is the dialect's other name, set in italics beside its own.",
   "dialects": [
     {
@@ -12,7 +12,8 @@
       "where": "Every Arab country",
       "countries": ["DZ", "BH", "KM", "DJ", "EG", "IQ", "JO", "KW", "LB", "LY", "MR", "MA", "OM", "PS", "QA", "SA", "SO", "SD", "SY", "TN", "AE", "YE"],
       "cities": [],
-      "order": 0
+      "order": 0,
+      "voices": {"woman": ["edge:ar-SA-ZariyahNeural"]}
     },
     {
       "key": "damascene",
@@ -28,7 +29,7 @@
         }
       ],
       "order": 2,
-      "voice": "edge:ar-SY-LaithNeural"
+      "voices": {"man": ["edge:ar-SY-LaithNeural", "edge:ar-JO-TaimNeural"], "woman": ["edge:ar-SY-AmanyNeural", "edge:ar-JO-SanaNeural"]}
     },
     {
       "key": "egyptian",
@@ -44,7 +45,7 @@
         }
       ],
       "order": 1,
-      "voice": "edge:ar-EG-ShakirNeural"
+      "voices": {"man": ["edge:ar-EG-ShakirNeural"], "woman": ["edge:ar-EG-SalmaNeural"]}
     },
     {
       "key": "lebanese",
@@ -60,7 +61,7 @@
         }
       ],
       "order": 3,
-      "voice": "edge:ar-LB-RamiNeural"
+      "voices": {"man": ["edge:ar-LB-RamiNeural", "edge:ar-SY-LaithNeural"], "woman": ["edge:ar-LB-LaylaNeural", "edge:ar-SY-AmanyNeural"]}
     },
     {
       "key": "gulf",
@@ -80,7 +81,7 @@
         }
       ],
       "order": 4,
-      "voice": "edge:ar-AE-HamdanNeural"
+      "voices": {"man": ["edge:ar-AE-HamdanNeural", "edge:ar-KW-FahedNeural", "edge:ar-BH-AliNeural"], "woman": ["edge:ar-AE-FatimaNeural", "edge:ar-KW-NouraNeural", "edge:ar-BH-LailaNeural"]}
     },
     {
       "key": "iraqi",
@@ -96,7 +97,7 @@
         }
       ],
       "order": 6,
-      "voice": "edge:ar-IQ-BasselNeural"
+      "voices": {"man": ["edge:ar-IQ-BasselNeural"], "woman": ["edge:ar-IQ-RanaNeural"]}
     },
     {
       "key": "moroccan",
@@ -116,7 +117,7 @@
         }
       ],
       "order": 5,
-      "voice": "edge:ar-MA-JamalNeural"
+      "voices": {"man": ["edge:ar-MA-JamalNeural"], "woman": ["edge:ar-MA-MounaNeural"]}
     },
     {
       "key": "hejazi",
@@ -140,7 +141,7 @@
         }
       ],
       "order": 7,
-      "voice": "edge:ar-SA-HamedNeural"
+      "voices": {"man": ["edge:ar-SA-HamedNeural"], "woman": ["edge:ar-SA-ZariyahNeural"]}
     },
     {
       "key": "yemeni",
@@ -156,7 +157,7 @@
         }
       ],
       "order": 8,
-      "voice": "edge:ar-YE-SalehNeural"
+      "voices": {"man": ["edge:ar-YE-SalehNeural"], "woman": ["edge:ar-YE-MaryamNeural"]}
     }
   ]
 }
