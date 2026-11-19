@@ -12,7 +12,7 @@
 import { useCallback } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
-import { fetchAccount, fetchLeaderboard, fetchOverview, fetchReviewItems, fetchSummary, recordAttempt } from './progress'
+import { fetchAccount, fetchLeaderboard, fetchOverview, fetchReviewItems, fetchSummary, recordAttempt, sendWaitingAnswers } from './progress'
 
 const RECORD = 'record'
 
@@ -66,4 +66,20 @@ export function useRecord() {
   const file = useCallback((answer) => fileAnswer(client, answer), [client])
   const refresh = useCallback((module) => refreshModule(client, module), [client])
   return { file, refresh }
+}
+
+/**
+ * Send the answers that waited for a signal (lib/learner/outbox.js): now, when the signal comes back, and when the
+ * app comes back on screen (a phone does not always say the signal is back). Once any land, every view of the record
+ * is re-read, so the XP and Review they earned show.
+ */
+export function keepSendingWaiting(client) {
+  const send = () => sendWaitingAnswers().then((landed) => {
+    if (landed) client.invalidateQueries({ queryKey: [RECORD] })
+  })
+  addEventListener('online', send)
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') send()
+  })
+  send()
 }

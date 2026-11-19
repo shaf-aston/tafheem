@@ -26,6 +26,8 @@ import { DEVICE_KEYS, forgetDevice, readDevice, store, writeDevice } from './dev
 // The device's own keys and calls live in ./device; they are part of this module's surface as before.
 export { DEVICE_KEYS, forgetDevice, readDevice, writeDevice }
 const DEVICE_ONLY = new Set(Object.values(DEVICE_KEYS))
+// The server's last record, copied per person (lib/learner/lastRecord.js): the device's, never anyone's shelf.
+const DEVICE_PREFIX = PROFILE.lastRecord.prefix
 
 // Usernames never hold "@" (services/learner/username.py), and no bare key starts with it.
 const MARK = '@'
@@ -44,7 +46,7 @@ function ownKeys(name = owner()) {
       const head = filed('', name)
       return all.filter((key) => key?.startsWith(head)).map((key) => key.slice(head.length))
     }
-    return all.filter((key) => key && !key.startsWith(MARK) && !DEVICE_ONLY.has(key))
+    return all.filter((key) => key && !key.startsWith(MARK) && !DEVICE_ONLY.has(key) && !key.startsWith(DEVICE_PREFIX))
   } catch {
     return []
   }

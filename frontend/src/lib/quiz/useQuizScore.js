@@ -43,7 +43,8 @@ export function useQuizScore(setup) {
       ms,
       context: { bank: bankId, group: groupId, direction, word: asked.answerWord },
     }).then((result) => {
-      setSaving(result.saved)
+      // An answer waiting for a signal is kept, not lost: nothing to warn about.
+      setSaving(result.saved || !!result.waiting)
       // The answer just changed two numbers on screen: what is owed, on the
       // Review control, and the reading at the foot of the page. Both are
       // re-read; the words of the round being played are not, so the question

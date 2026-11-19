@@ -16,6 +16,8 @@
  */
 import { api } from '../../api'
 import { logOut, profileHeaders } from './profile'
+import { forgetRecords, keepRecord, lastRecord } from './lastRecord'
+import { forgetWaiting, hold, sendWaiting, worthRetrying } from './outbox'
 import { announce, tz } from './rewards'
 
 const BASE = '/progress'
@@ -27,23 +29,37 @@ const headers = (name) => ({ headers: profileHeaders(name) })
 /** Resolves whether the server took it; never rejects (offline or refused is false). */
 const landed = (request) => request.then(() => true, () => false)
 
+const postAttempt = (body, who) => api.post(`${BASE}/attempts`, body, { headers: who })
+
 /**
  * File one answer. Resolves `{ saved, earned }` (earned XP); never rejects.
+ * With no signal it resolves `{ saved: false, waiting: true }`: the answer waits on
+ * this device (lib/learner/outbox.js) and goes when the signal is back.
  *
  * `ms` is how long the answer took. Send it as measured, however long: which
  * timings are honest enough to average is the store's rule, not the page's.
  */
 export async function recordAttempt({ module, item, correct, ms, context }) {
+  const body = { module, item, correct, ms, context, tz: tz() }
+  // Whose it is, fixed now: a waiting answer stays this person's if someone else logs in before it goes.
+  const who = profileHeaders()
   let response
   try {
-    response = await api.post(`${BASE}/attempts`, { module, item, correct, ms, context, tz: tz() })
-  } catch {
-    return { saved: false }
+    response = await postAttempt(body, who)
+  } catch (error) {
+    if (!worthRetrying(error)) return { saved: false }
+    hold(body, who)
+    return { saved: false, waiting: true }
   }
   // Tell the XP display (lib/learner/rewards.js).
   announce(response.data)
+  // This one landed, so the signal is back: send any that waited.
+  sendWaitingAnswers()
   return { saved: true, earned: response.data?.earned ?? 0 }
 }
+
+/** Send the answers waiting on this device; resolves how many landed. Never rejects. */
+export const sendWaitingAnswers = () => sendWaiting(postAttempt).catch(() => 0)
 
 /**
  * Delete every saved answer, so Review empties too. Never rejects: the wipe
@@ -51,6 +67,8 @@ export async function recordAttempt({ module, item, correct, ms, context }) {
  * backend was there to hear.
  */
 export async function forgetProgress() {
+  forgetWaiting()
+  forgetRecords()
   return { deleted: await landed(api.delete(BASE)) }
 }
 
@@ -127,9 +145,19 @@ export const fetchLeaderboard = (module, circle) =>
 export const setPublic = (isPublic) =>
   api.put(`${BASE}/account/public`, { public: isPublic }).then((r) => r.data)
 
-/** Every item answered in this module, with its record. Throws, for react-query. */
-export const fetchSummary = (module) =>
-  api.get(`${BASE}/summary`, { params: { module } }).then((r) => r.data.items)
+/** Every item answered in this module, with its record; with no signal, the copy last kept here (lib/learner/lastRecord.js). Throws, for react-query. */
+export async function fetchSummary(module) {
+  try {
+    const rows = (await api.get(`${BASE}/summary`, { params: { module } })).data.items
+    keepRecord(module, rows)
+    return rows
+  } catch (error) {
+    // No signal, or the server down: the record as last seen here, so a lesson can still be planned.
+    const last = worthRetrying(error) && lastRecord(module)
+    if (last) return last
+    throw error
+  }
+}
 
 /** Just the items due for review now, longest-waiting first. Throws, for react-query. */
 export const fetchReviewItems = (module) =>

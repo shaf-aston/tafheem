@@ -6,6 +6,7 @@ import {
   fetchReviewItems, fetchSummary, forgetProgress, inviteMember, leaveFeedback, moveCircle, recordAttempt, removeMember, logIn, signUp,
   firstCode, logOutHere, logOutOthers, needsCode, newRecoveryCode,
 } from './progress'
+import { waiting } from './outbox'
 
 afterEach(() => vi.restoreAllMocks())
 
@@ -18,10 +19,14 @@ describe('filing an answer', () => {
     expect(result).toEqual({ saved: true, earned: 0 })
   })
 
-  it('never throws when there is no backend, so the round carries on', async () => {
+  it('never throws when there is no signal, and keeps the answer to send later', async () => {
+    const data = new Map()
+    vi.stubGlobal('localStorage', { getItem: (k) => data.get(k) ?? null, setItem: (k, v) => data.set(k, v), removeItem: (k) => data.delete(k) })
     vi.spyOn(api, 'post').mockRejectedValue(new Error('Network Error'))
     await expect(recordAttempt({ module: 'quiz', item: 'train', correct: true }))
-      .resolves.toEqual({ saved: false })
+      .resolves.toEqual({ saved: false, waiting: true })
+    expect(waiting().map((one) => one.body.item)).toEqual(['train'])
+    vi.unstubAllGlobals()
   })
 
   it('reports a refusal rather than swallowing it', async () => {
@@ -30,6 +35,7 @@ describe('filing an answer', () => {
     vi.spyOn(api, 'post').mockRejectedValue(refused(422))
     const result = await recordAttempt({ module: 'quiz', item: 'train', correct: true })
     expect(result).toEqual({ saved: false })
+    expect(waiting()).toEqual([])
   })
 
   it('sends what the store needs, with the name in a header and not the body', async () => {
