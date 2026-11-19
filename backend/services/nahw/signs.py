@@ -9,7 +9,7 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, own_letters, paused, plural_alef, typed_case, typed_passive
+from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, merged_nun, own_letters, pair_before_emphasis, paused, plural_alef, typed_case, typed_passive
 from backend.services.nahw.book import attention_off, book_words, case_of, family_cards, is_diptote, is_one, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
 
 NAMED = named_roles()
@@ -252,7 +252,12 @@ def _present_sign(card: dict, case: str) -> str | None:
     word, tag = card["word"], card["camel"]
     stuck_on, weak_last = _pronoun_letters(word) if _has_pronoun(tag) else 0, tag.get("weak_last")
     nun = five_verb_nun(word, stuck_on, weak_last)
-    if nun and (case == "raf'") == (nun == "kept"):
+    # أَتُحَاجُّونِّي، هُمْ يَدْعُونِّي: the five verbs' nun merged into ني's, kept in raf' and gone in nasb or jazm (the ن left is
+    # ني's own); one doer's root may end in that nun (يَخُونِّي: خَانَ), its case then shown on it
+    root_nun = tag.get("number") == "s" and (tag.get("root") or "").endswith("ن")
+    # لَتَذْهَبَانِّ: in raf' too the pair's nun goes before the nun of emphasis, and the verb is in raf' by it
+    if (nun and (case == "raf'") == (nun == "kept")) or (case == "raf'" and pair_before_emphasis(word, stuck_on)) \
+            or (merged_nun(word, stuck_on) and not root_nun):
         return sign(case, "five_verbs")
     if weak_last:
         verb = own_letters(word, 0, stuck_on)

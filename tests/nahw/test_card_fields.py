@@ -6,9 +6,9 @@ from __future__ import annotations
 
 import pytest
 from backend.models.analyze import WordAnalysis
-from backend.services.nahw import iraab
+from backend.services.nahw import iraab, signs
 from backend.services.nahw.book import term_ar
-from backend.services.text.harakat import build_nun
+from backend.services.text.harakat import build_nun, five_verb_nun, merged_nun
 from tests.nahw_helpers import analysed, cards, NADA, needs_parser, NOMINAL, VERBAL, _ATTENTION, _read, _role
 
 pytestmark = needs_parser
@@ -143,6 +143,67 @@ CARDS = [
     ("جَاءَ الَّذِي نَجَحَ", 1, "reason", "مبني في محل رفع"),
     ("لَا تَكْذِبْ", 0, "reason", "لا الناهية"),
     ("لَا يَكْذِبُ المُؤْمِنُ", 0, "reason", "لا النافية"),
+    # a doubled verb's fatha after لا is its jussive's (harakat.doubled_last): no negation puts a verb in nasb, so the لا forbids
+    ("لَا تَمُدَّ يَدَكَ", 0, "reason", "لا الناهية"),
+    ("لَا تَمُدَّ يَدَكَ", 1, "name", "فعل مضارع للنهي"),
+    ("أَنْ لَا تَمُدَّ يَدَكَ", 1, "reason", "لا النافية"),  # nearest case: after أن the fatha is its nasb
+    ("لَنْ يَرُدَّ وَلَا يَمُدَّ يَدَهُ", 2, "reason", "لا النافية"),  # and after لن's verb, whose negation the لا stresses
+    ("لَنْ يَرُدَّ وَلَا تَمُدَّ يَدَكَ", 2, "reason", "لا الناهية"),  # nearest case: another doer, the لا forbids
+    # a prohibition asks, and what asks is never in a condition's clause, nor its answer unless a ف ties it (Ibn Aqil V4, page unchecked)
+    ("إِنْ تَدْرُسْ لَا تَرْسُبْ", 2, "reason", "لا النافية"),
+    ("إِنْ تَدْرُسْ لَا تَرْسُبْ", 3, "name", "جواب الشرط"),
+    ("إِنْ تَجْتَهِدُوا لَا تَخِيبُوا", 2, "reason", "لا النافية"),
+    ("مَنْ لَا يَرْحَمْ لَا يُرْحَمْ", 1, "reason", "لا النافية"),
+    ("مَنْ لَا يَرْحَمْ لَا يُرْحَمْ", 1, "book", "تسهيل النحو"),  # its book named as any particle's, not a raw section number
+    ("مَنْ لَا يَرْحَمْ لَا يُرْحَمْ", 3, "reason", "لا النافية"),
+    ("مَنْ لَا يَرْحَمْ لَا يُرْحَمْ", 4, "reason", "جواب الشرط"),
+    ("إِنْ تَدْرُسْ وَلَا تَكْسَلْ تَنْجَحْ", 2, "reason", "لا النافية"),  # joined to the condition's verb, in its clause
+    ("إِنْ تَدْرُسْ وَلَا تَكْسَلْ تَنْجَحْ", 4, "name", "جواب الشرط"),  # the و joins تكسل on: the answer is after it
+    ("مَنْ لَمْ يَشْكُرِ النَّاسَ لَمْ يَشْكُرِ اللَّهَ", 1, "name", "حرف نفي وجزم وقلب"),  # nearest case: another jazm particle
+    ("مَنْ لَمْ يَشْكُرِ النَّاسَ لَمْ يَشْكُرِ اللَّهَ", 4, "name", "حرف نفي وجزم وقلب"),  # keeps its own name
+    ("إِنْ قَصَّرْتَ فَلَا تَحْزَنْ", 2, "reason", "لا الناهية"),  # nearest case: tied by its ف, the answer may ask
+    ("لَا تَكْذِبْ وَلَا تَظْلِمْ", 2, "reason", "لا الناهية"),  # nearest case: no condition
+    # nearest case: what a verb of saying says (مقول القول) is a sentence of its own, neither the clause nor the answer
+    ("وَإِذَا قِيلَ لَهُمْ لَا تُفْسِدُوا فِي الْأَرْضِ قَالُوا", 3, "reason", "لا الناهية"),  # 2:11
+    ("وَإِذَا قِيلَ لَهُمْ لَا تُفْسِدُوا فِي الْأَرْضِ قَالُوا", 7, "name", "جواب الشرط"),
+    ("مَنْ قَالَ لَا تَفْعَلْ فَقَدْ نَصَحَ", 2, "reason", "لا الناهية"),
+    ("إِنْ قُلْتَ لَهُ لَا تَكْذِبْ غَضِبَ", 3, "reason", "لا الناهية"),
+    ("إِنْ قُلْتَ لَهُ لَا تَكْذِبْ غَضِبَ", 5, "name", "جواب الشرط"),
+    ("إِنْ قُلْتَ لَهُ لَا تَكْذِبْ وَلَا تَسْرِقْ غَضِبَ", 5, "reason", "لا الناهية"),  # a verb joined on to a said one is said too
+    # a verb of saying before the opener says the whole condition: the condition opens its sentence and the rule holds there
+    ("قَالَ الْمُعَلِّمُ إِنْ تَدْرُسْ لَا تَرْسُبْ", 2, "name", "حرف شرط جازم"),
+    ("قَالَ الْمُعَلِّمُ إِنْ تَدْرُسْ لَا تَرْسُبْ", 4, "reason", "لا النافية"),
+    ("قَالَ الْمُعَلِّمُ إِنْ تَدْرُسْ لَا تَرْسُبْ", 5, "name", "جواب الشرط"),
+    ("قَالَ زَيْدٌ إِنْ جَاءَ عَمْرٌو أَكْرَمْتُهُ", 5, "name", "جواب الشرط"),
+    ("قَالَ إِنَّ زَيْدًا قَائِمٌ", 1, "name", "حرف ناسخ مشبه بالفعل"),  # nearest case: إنّ, no condition
+    # an إلا after إنْ with no second verb between: one clause, negated and restricted (Mughni, إنْ النافية; page unchecked)
+    ("إِنْ أَرَدْنَا إِلَّا الْحُسْنَى", 0, "name", "إن النافية"),  # 9:107
+    ("قَالُوا إِنْ أَرَدْنَا إِلَّا الْحُسْنَى", 1, "name", "إن النافية"),
+    ("قَالُوا إِنْ نَحْنُ إِلَّا بَشَرٌ", 1, "name", "إن النافية"),
+    ("إِنْ جَاءَ زَيْدٌ لَمْ يَبْقَ إِلَّا عَمْرٌو", 4, "name", "جواب الشرط"),  # nearest case: a second verb, the answer
+    # a conditional إنْ takes لم or لا before its verb (فَإِنْ لَمْ تَفْعَلُوا، إِلَّا تَفْعَلُوهُ)
+    ("إِنْ لَمْ تَدْرُسْ تَرْسُبْ", 0, "name", "حرف شرط جازم"),
+    ("إِنْ لَمْ تَدْرُسْ تَرْسُبْ", 2, "name", "فعل الشرط"),
+    ("إِنْ لَمْ تَدْرُسْ تَرْسُبْ", 3, "name", "جواب الشرط"),
+    ("إِنْ لَا تَفْعَلُوهُ تَكُنْ فِتْنَةٌ", 3, "name", "جواب الشرط"),
+    ("إِنْ زَيْدًا قَائِمٌ", 0, "name", "حرف ناسخ مشبه بالفعل"),  # nearest case: a noun after it, the إنّ lightened
+    # after إذا nothing but the لا puts the verb in jazm, so that لا forbids
+    ("إِذَا جَاءَ زَيْدٌ لَا تُكَلِّمْهُ", 3, "reason", "لا الناهية"),
+    # a particle left idle before a verb in raf' governs nothing: it is named for the work it still does
+    ("يَوْمَ الصُّلَيْفَاءِ لَمْ يُوفُونَ بِالْجَارِ", 2, "reason", "حرف نفي وقلب مهمل"),
+    ("أَنْ تَقْرَآنِ عَلَى أَسْمَاءَ وَيْحَكُمَا", 0, "reason", "حرف مصدري مهمل"),
+    ("لَمْ تُكَلِّمُونِّي فِي الْأَمْرِ", 0, "name", "حرف نفي وقلب مهمل"),
+    ("أَرَدْتُ أَنْ يَكْتُبُونَ الدَّرْسَ", 1, "name", "حرف مصدري مهمل"),  # a root with no ن of its own: the five verbs' nun
+    ("عَلِمْتُ أَنْ يَكْتُبُونَ الدَّرْسَ", 1, "name", "أن المخففة من الثقيلة"),  # what a verb of the heart knows: أنّ lightened
+    ("أَرَدْتُ أَنْ يَخُونَ", 1, "name", "حرف نصب"),  # nearest case: the nun may be the root's (خَانَ), one doer's verb in nasb
+    ("لَنْ يَكْتُبُونَ", 0, "name", "حرف نصب"),  # nearest case: لن is never left idle
+    ("أَرَدْتُ أَنْ يَبْنِيَانِ", 1, "name", "حرف مصدري مهمل"),  # a root ending ي, but only the pair's nun takes a kasra
+    ("أَرَدْتُ أَنْ يَبْنِيَانِهِ", 1, "name", "حرف مصدري مهمل"),  # the pair's nun before a pronoun written on it
+    ("لَنْ يَبْنِيَانِ", 0, "name", "حرف نصب"),  # nearest case: not even before the pair's nun
+    ("ظَنَنْتُ أَنْ يَكْتُبُونَ الدَّرْسَ", 1, "name", "أن المخففة من الثقيلة"),
+    ("اتَّخَذْتُ أَنْ يَكْتُبُونَ الدَّرْسَ", 1, "name", "حرف مصدري مهمل"),  # nearest case: a verb of turning knows nothing
+    ("لَمْ يَكْتُبُوا", 0, "reason", "يجزم الفعل المضارع"),  # nearest case: the nun dropped, the لم governs
+    ("يُرِيدُ أَنْ يَكْتُبَ", 1, "reason", "ينصب الفعل المضارع"),
     ("كِتَابِي جَدِيدٌ", 0, "sign", "ضمة مقدرة على ما قبل ياء المتكلم"),
     ("قَرَأْتُ فِي كِتَابِي", 2, "sign", "كسرة مقدرة"),
     ("جَاءَ الفَتَى", 1, "sign", "ضمة مقدرة على الألف"),
@@ -156,6 +217,9 @@ CARDS = [
     ("لَنْ يَكْتُبَا", 1, "sign", "حذف النون"),
     ("لَمْ تَكْتُبِي", 1, "sign", "حذف النون"),
     ("لَنْ يَمْشِيَ", 1, "sign", "فتحة"),                 # nearest case: the ي is the root's
+    ("لِكَيْلَا تَأْسَوْا عَلَى مَا فَاتَكُمْ", 1, "sign", "حذف النون"),  # 57:23: كيلا with the لام of reason written on it
+    ("لَنْ تَقْرَآ الْكِتَابَ", 1, "sign", "حذف النون"),  # an آ is a hamza and the pair's alif after it
+    ("أَنْتُمَا تَقْرَآنِ الْكِتَابَ", 1, "sign", "ثبوت النون"),
     # signs found wrong by the hadith and rules sets (score_iraab --set hadith / rules)
     ("لَا تَسُبُّوا أَصْحَابِي", 1, "sign", "حذف النون"),     # the dropped nun after لا
     ("اِحْفَظُوا الدَّرْسَ", 0, "sign", "مبني على حذف النون"),
@@ -209,12 +273,17 @@ CARDS = [
 ]
 
 
-@pytest.mark.parametrize("sentence, index, wrong", [
-    ("اِهْدِنَا الصِّرَاطَ", 0, "حذف النون"),
-    ("هُوَ يَظُنُّ ذَلِكَ", 1, "مبني"),                       # a root's doubled nun is no nun of emphasis
+@pytest.mark.parametrize("sentence, index, field, wrong", [
+    ("اِهْدِنَا الصِّرَاطَ", 0, "sign", "حذف النون"),
+    ("هُوَ يَظُنُّ ذَلِكَ", 1, "sign", "مبني"),                       # a root's doubled nun is no nun of emphasis
+    # لو after a verb of wishing is the masdar particle the verb takes (2:109): it opens no condition
+    ("وَدَّ كَثِيرٌ مِنْ أَهْلِ الْكِتَابِ لَوْ يَرُدُّونَكُمْ", 6, "name", "الشرط"),
+    ("أُحِبُّ لَوْ تَزُورُنِي", 2, "name", "الشرط"),
+    # a condition opens on a verb: إنْ before a negation with no verb after it opens none
+    ("إِنْ لَا رَيْبَ فِيهِ", 0, "name", "شرط"),
 ])
-def test_card_sign_is_not(sentence: str, index: int, wrong: str):
-    assert wrong not in (_read(sentence)["words"][index]["sign"] or "")
+def test_card_field_is_not(sentence: str, index: int, field: str, wrong: str):
+    assert wrong not in (_read(sentence)["words"][index][field] or "")
 
 
 @pytest.mark.parametrize("sentence, index, field, expected", CARDS)
@@ -374,6 +443,179 @@ def test_a_nun_on_a_verb_builds_it_past_its_pronoun(sentence: str, at: int, case
     assert (word["case"], word["sign"]) == (case, sign), sentence
 
 
+@pytest.mark.parametrize("sentence, at, case, sign", [
+    # the kept nun and ني's نون الوقاية written as one doubled nun after the group's long vowel (6:80، 39:64)
+    ("أَتُحَاجُّونِّي فِي اللَّهِ", 0, "raf'", "ثبوت النون"),
+    ("أَفَغَيْرَ اللَّهِ تَأْمُرُونِّي", 2, "raf'", "ثبوت النون"),
+    ("تَأْمُرُونَنِي", 0, "raf'", "ثبوت النون"),  # both nuns written
+    ("هُمْ يَدْعُونِّي", 1, "raf'", "ثبوت النون"),  # read as one doer, but دَعَا has no ن to merge: the kept one
+    ("لَا تَنْسَوْنِي", 1, "jazm", "حذف النون"),  # nearest case: one bare nun, the pronoun's: the verb's went
+    ("لَا تُكَلِّمُونِّي فِي الْأَمْرِ", 1, "raf'", "ثبوت النون"),  # two nuns, so the verb's is kept: the لا denies, no ناهية
+    # after لم too: a root's own ن after a long letter is a hollow verb's, whose long letter jazm drops (لَمْ يَخُنِّي)
+    ("لَمْ تُكَلِّمُونِّي فِي الْأَمْرِ", 1, "raf'", "ثبوت النون"),
+    ("لَنْ تُكَلِّمُونِّي فِي الْأَمْرِ", 1, "nasb", "حذف النون"),  # nearest case: a nasb particle takes the nun, the ن left is ني's
+    ("لَا تُكَلِّمُونِي فِي الْأَمْرِ", 1, "jazm", "حذف النون"),  # nearest case: the pronoun's nun alone, the ناهية's jazm
+    ("هُوَ يُعِينِّي عَلَى الْعَمَلِ", 1, "raf'", "ضمة مقدرة"),  # nearest case: after a ي, أَعَانَ's own nun merged into ني's
+])
+def test_the_five_verbs_nun_merged_into_the_pronouns_is_kept(sentence: str, at: int, case: str, sign: str):
+    word = _read(sentence)["words"][at]
+    assert (word["case"], word["sign"][:len(sign)]) == (case, sign), sentence
+
+
+@pytest.mark.parametrize("word, merged", [
+    ("أَتُحَاجُّونِّي", True),  # the kept nun and ني's written as one, after the group's long و (6:80)
+    ("يُكْرِمَانِّي", True),  # after the pair's ا
+    ("لَيَدْعُوَنِّي", False),  # nearest case: a fatha on the و makes it the root's, the doubled nun emphasis's
+    ("يُعِينِّي", False),  # after a ي the nun may be the root's own (أَعَانَ)
+    ("تَنْسَوْنِي", False),  # one nun only, the pronoun's
+])
+def test_a_doubled_nun_before_ni_merges_two_only_after_a_long_vowel(word: str, merged: bool):
+    assert merged_nun(word, 2) is merged
+    assert not merged or five_verb_nun(word, 2, False) is None  # the word alone never says whose nun it is: the root does
+
+
+@pytest.mark.parametrize("sentence, at, case, sign", [
+    # the pair's nun goes before the nun of emphasis (توالي الأمثال), so after a لا of prohibition the verb is in jazm by its loss
+    ("وَلَا تَتَّبِعَانِّ سَبِيلَ الَّذِينَ لَا يَعْلَمُونَ", 1, "jazm", "حذف النون"),  # 10:89
+    ("هُمَا يَتَّبِعَانِ السَّبِيلَ", 1, "raf'", "ثبوت النون"),  # nearest case: no nun of emphasis, the pair's own kept
+    ("وَاللَّهِ لَتَذْهَبَانِّ", 1, "raf'", "ثبوت النون"),  # nearest case: in raf' too it goes, so three nuns do not meet
+])
+def test_the_pairs_nun_goes_before_the_nun_of_emphasis(sentence: str, at: int, case: str, sign: str):
+    word = _read(sentence)["words"][at]
+    assert (word["case"], word["sign"]) == (case, sign), sentence
+
+
+@pytest.mark.parametrize("number, root, five", [
+    ("p", "وخي", True),  # يَخُونِّي read as the group of وَخَى: their kept nun merged into ني's
+    ("s", "خون", False),  # nearest case: one doer of خَانَ, the nun his root's own
+])
+def test_a_merged_nun_shows_the_five_verbs_raf_only_when_the_root_has_no_nun(number: str, root: str, five: bool):
+    # a card as the analyser gives it, so the sign is read whichever reading it settles on
+    card = {"word": "يَخُونِّي", "camel": {"number": number, "root": root, "enclitic": "1s_dobj", "weak_last": number == "p"}}
+    assert (signs._present_sign(card, "raf'") == "ثبوت النون") is five
+
+
+@pytest.mark.parametrize("sentence, at, case, sign", [
+    # فاء السببية answering a pure negation or request: the present after it in nasb by a hidden أن (Ibn Aqil vol 4
+    # p11-12: لا يقضى عليهم فيموتوا، ولا تطغوا فيه فيحل)
+    ("وَلَا تَنَازَعُوا فَتَفْشَلُوا", 2, "nasb", "حذف النون"),
+    ("لَا يُقْضَى عَلَيْهِمْ فَيَمُوتُوا", 3, "nasb", "حذف النون"),
+    ("ذَاكِرُوا فَتَنْجَحُوا", 1, "nasb", "حذف النون"),
+    ("هُمْ يَكْتُبُونَ فَيَتَعَلَّمُونَ", 2, "raf'", "ثبوت النون"),  # nearest case: the nun kept, a ف of sequence
+    ("فَلْيَصُومُوا", 0, "jazm", "حذف النون"),  # nearest case: a لام الأمر between the ف and the verb
+    ("لَا تَكْذِبِي فَتَخْسَرِي", 2, "nasb", "حذف النون"),  # the you-feminine verb: its ت after the ف
+    ("إِنْ تَجْتَهِدُوا فَتَنْجَحُونَ", 2, "raf'", "ثبوت النون"),  # the nun kept: the ف ties the answer, a noun clause (V4, page unchecked)
+    ("لَا تَكْذِبْ فَتَكُونَ مِنَ الْخَاسِرِينَ", 2, "nasb", "فتحة"),  # nearest case: one doer, the ن كَانَ's own
+    ("وَلَا تَقْرَبَا هَذِهِ الشَّجَرَةَ فَتَكُونَا مِنَ الظَّالِمِينَ", 4, "nasb", "حذف النون"),  # 2:35, the pair's nun gone
+])
+def test_a_present_verb_whose_nun_went_after_a_fa_is_in_nasb(sentence: str, at: int, case: str, sign: str):
+    word = _read(sentence)["words"][at]
+    assert (word["case"], word["sign"][:len(sign)]) == (case, sign), sentence  # the ضمة's place follows it
+
+
+@pytest.mark.parametrize("sentence, at, case", [
+    # a present verb after a ف between the condition and its answer is in nasb or jazm (Ibn Aqil V4, page unchecked), so it is no
+    # answer: the ف ties only an answer that could not be a condition (V4, page unchecked), and the answer comes after it
+    ("إِنْ تَدْرُسُوا فَتَجْتَهِدُوا يُحِبَّكُمُ الْمُعَلِّمُ", 2, "nasb"),
+    ("إِنْ تَدْرُسْ فَتَفْهَمَ تَنْجَحْ", 2, "nasb"),  # the fatha the reader typed stands
+    ("مَنْ يَدْرُسْ فَيَنْجَحَ يَفْرَحْ", 2, "nasb"),
+    ("إِنْ تَدْرُسْ فَتَسْتَعِدَّ تَنْجَحْ", 2, "nasb"),  # a doubled verb's fatha after the ف: nasb, so no answer either
+])
+def test_a_verb_after_fa_between_the_condition_and_its_answer_is_no_answer(sentence: str, at: int, case: str):
+    words = _read(sentence)["words"]
+    assert words[at]["case"] == case, sentence
+    assert words[at + 1].get("name") == "جواب الشرط" and words[at + 1]["case"] == "jazm", sentence
+
+
+@pytest.mark.parametrize("sentence, at, case", [
+    # a لا joined on after a verb under لن only stresses the negation (لا زائدة لتوكيد النفي): لن governs this verb too
+    ("لَنْ تَكْتُبُوا وَلَا تَقْرَءُوا", 3, "nasb"),
+    ("لَنْ تَكْتُبُوا وَلَا تَقْرَءُونَ", 3, "raf'"),  # nearest case: one keeping its nun is in raf', the لا only negating
+    ("لَنْ تُكَلِّمُونِي وَلَا تَأْمُرُونِّي", 3, "raf'"),  # so too a nun merged into ني's
+    ("لَنْ يَرُدَّ الْكِتَابَ وَلَا يَمُدَّ يَدَهُ", 4, "nasb"),  # past the first verb's object
+    ("لَمْ يَرُدَّ وَلَا يَمُدَّ", 3, "jazm"),  # nearest case: under لم, jazm both
+    ("اكْتُبُوا وَلَا تَنْسَوْا", 2, "jazm"),  # nearest case: no nasb particle before, the لا forbids
+    ("لَنْ أَكْتُبَ الْيَوْمَ لَا تَنْتَظِرُونِي", 4, "jazm"),  # nearest case: no و joins it, a new clause the لا forbids
+    ("لَنْ تَكْتُبُوا الْيَوْمَ لَا تَنْتَظِرُوا", 4, "jazm"),  # so too to the same person
+    ("لَنْ أَحْضُرَ وَلَا تَنْتَظِرُونِي", 3, "jazm"),  # nearest case: to another person the لا forbids
+    ("لَنْ تَكْتُبُوا وَلَا تَنْتَظِرِي", 3, "jazm"),  # so to another number or gender
+    ("لَنْ أَذْهَبَ وَلَا يَدْرِي", 3, "raf'"),  # so to another person, showing nothing: a plain negation
+    ("لَنْ تَخْرُجَ وَلَا تَقُلْ شَيْئًا", 3, "jazm"),  # nearest case: a jussive shown on the verb says the لا forbids
+    ("لَنْ تَذْهَبَ هِنْدٌ وَلَا تَنْتَظِرُنِي", 4, "raf'"),  # and a damma shown, that it only negates
+    ("لَمْ يَذْهَبْ وَلَا يَدْرِي", 3, "raf'"),  # nearest case: after لم the لا stresses no nasb, and negates by itself
+    ("لَنْ يَذْهَبَ زَيْدٌ وَلَمْ يَكْتُبْ", 4, "jazm"),  # nearest case: another negation governs by itself
+    ("لَنْ أَذْهَبَ وَمَا أَدْرِي", 3, "raf'"),  # nearest case: ما governs no present verb and opens a clause of its own
+    ("لَمْ يَذْهَبْ وَمَا يَدْرِي", 3, "raf'"),
+])
+def test_a_wa_la_after_a_verb_under_lan_takes_lans_nasb(sentence: str, at: int, case: str):
+    assert _read(sentence)["words"][at]["case"] == case, sentence
+
+
+@pytest.mark.parametrize("sentence, at, name", [
+    # the five verbs keep their nun only in raf', whatever comes before it
+    ("إِنْ تَجْتَهِدُوا فَتَنْجَحُونَ", 2, "جواب الشرط"),  # after a ف, a noun clause's khabar, the answer (Ibn Aqil V4, page unchecked)
+    ("لَمْ يَذْهَبُوا وَيَكْتُبُونَ", 2, None),  # nearest case: after a و, by a jussive, it is no jussive joined on
+    ("أَلَّا يَقْدِرُونَ عَلَى شَيْءٍ", 1, None),  # 57:29: before it the أنْ lightened from أنّ, which governs no verb
+    ("أَنْ تَقْرَآنِ عَلَى أَسْمَاءَ وَيْحَكُمَا", 1, None),  # only the pair's nun takes a kasra: an أن left idle (Ibn Aqil; page unchecked)
+    ("يَوْمَ الصُّلَيْفَاءِ لَمْ يُوفُونَ بِالْجَارِ", 3, None),  # a لم left idle (Ibn Aqil; page unchecked)
+])
+def test_a_five_verb_keeping_its_nun_is_in_raf(sentence: str, at: int, name: str | None):
+    word = _read(sentence)["words"][at]
+    assert (word.get("name"), word["case"]) == (name, "raf'"), sentence
+
+
+@pytest.mark.parametrize("sentence, at, case", [
+    # after a particle that governs a present verb by itself a kept nun is the root's own (لَنْ يَخُونَ: خَانَ), however the
+    # analyser counted the doers
+    ("لَنْ يَخُونَ الْأَمِينُ", 1, "nasb"),
+    ("يُرِيدُ أَنْ يَخُونَكَ", 2, "nasb"),
+    ("أَخْشَى أَنْ يَحِينَ الْوَقْتُ", 2, "nasb"),
+    ("لَمْ يَكْتُبُوا", 1, "jazm"),  # nearest case: the nun dropped
+])
+def test_a_kept_nun_after_a_governing_particle_is_the_roots(sentence: str, at: int, case: str):
+    assert _read(sentence)["words"][at]["case"] == case, sentence
+
+
+@pytest.mark.parametrize("sentence, at", [
+    ("إِنْ جَاءَ زَيْدٌ فَلْيَجْلِسْ", 3),  # a لام-command after the ف is the answer itself, never a verb between (Ibn Aqil V4, page unchecked)
+    ("إِنْ تَدْرُسْ فَلْتَنْجَحْ", 2),
+    ("إِنْ قَامَ زَيْدٌ فَلْيَقُمْ عَمْرٌو", 3),
+])
+def test_a_lam_command_after_fa_is_the_conditions_answer(sentence: str, at: int):
+    """condition.find: a verb its لام commands answers the condition; only a bare one after ف or و may stand between."""
+    word = _read(sentence)["words"][at]
+    assert (word.get("name"), word["case"]) == ("جواب الشرط", "jazm"), sentence
+
+
+@pytest.mark.parametrize("sentence, at, case", [
+    # a doubled verb's jussive takes the fatha its nasb does (لَمْ يَرُدَّ: فُتح لالتقاء الساكنين): with no particle, ف or لام
+    # before it no hidden أن can stand, so the fatha shows a jussive, the answer of a condition or a request
+    ("إِنْ تَدْرُسُوا يُحِبَّكُمُ الْمُعَلِّمُ", 2, "jazm"),
+    ("ازْهَدْ فِي الدُّنْيَا يُحِبَّكَ اللَّهُ", 3, "jazm"),
+    ("لَا تَكْذِبْ فَيَضُرَّكَ", 2, "nasb"),  # nearest case: after a ف, فاء السببية
+    ("أُحِبُّ أَنْ يَرُدَّ الْكِتَابَ", 2, "nasb"),  # after أن
+    ("هُوَ يُحِبُّ الْخَيْرَ", 1, "raf'"),  # a damma typed
+    ("لَا تَرُدَّ السَّائِلَ", 1, "jazm"),  # no negation puts a verb in nasb: the لا forbids
+    ("لَا تُضَارَّ وَالِدَةٌ بِوَلَدِهَا", 1, "jazm"),  # 2:233
+    ("اللَّهُمَّ لَا تَرُدَّنِي خَائِبًا", 2, "jazm"),  # the fatha read off the verb's own letter, past its ني
+    ("لِيَرُدَّنِي إِلَى بَيْتِي", 0, "jazm"),  # a لام of command says which
+    # after a joining word the verb it is joined to says which
+    ("أُرِيدُ أَنْ أَقْرَأَ وَأَرُدَّ الْكِتَابَ", 3, "nasb"),
+    ("لَمْ يَقْرَأْ وَيَرُدَّ الْكِتَابَ", 2, "jazm"),
+    ("أُرِيدُ أَنْ أَقْرَأَ ثُمَّ أَرُدَّ الْكِتَابَ", 4, "nasb"),  # ثم, which the parser takes for a noun
+    ("لَمْ يَقْرَأْ ثُمَّ يَرُدَّ الْكِتَابَ", 3, "jazm"),
+    # nearest cases: joined to no verb in nasb or jazm, or after إِذَنْ, the fatha is nasb, a hidden أن's
+    ("لَأَلْزَمَنَّكَ أَوْ تَرُدَّ حَقِّي", 2, "nasb"),
+    ("إِذَنْ أُحِبَّكَ", 1, "nasb"),
+    ("إِذًا أُحِبَّكَ", 1, "nasb"),  # إذن written with a tanween (particles.stamp)
+    ("لِكَيْلَا تَضِلَّ", 1, "nasb"),
+    ("تُبْ إِلَيْهِ يُحِبَّكَ", 2, "jazm"),  # nearest case: after a preposition, the answer of a request
+    ("لَنْ يَرُدَّ وَلَا يَمُدَّ يَدَهُ", 3, "nasb"),  # the لا only stresses لن's negation
+])
+def test_a_doubled_verbs_fatha_after_a_verb_a_noun_or_la_is_a_jussive(sentence: str, at: int, case: str):
+    assert _read(sentence)["words"][at]["case"] == case, sentence
+
+
 @pytest.mark.parametrize("word, after, nun", [
     ("لِيَلِيَنِّي", 2, "emphasis"),  # the nun of emphasis and ني's nun written as one
     ("يَكْتُبَنَّنَا", 2, "emphasis"),  # before نا both are written
@@ -392,6 +634,7 @@ def test_only_ni_shares_its_nun_with_the_nun_of_emphasis(word: str, after: int, 
     ("لِيَرُدَّهُ زَيْدٌ", 0, "jazm"),
     ("جَاءَ لِيَرُدَّ الْكِتَابَ", 1, "nasb"),  # nearest case: after a clause, لام التعليل
     ("لِيَغْفِرَ لَكَ اللَّهُ", 0, "nasb"),  # nearest case: a fatha on a single letter is nasb
+    ("لِيَرُدُّ الْمَالَ", 0, "jazm"),  # whatever vowel the doubled letter wears, the لام says which
 ])
 def test_a_lam_opening_what_is_said_is_the_lam_of_command(sentence: str, at: int, case: str):
     assert _read(sentence)["words"][at]["case"] == case, sentence

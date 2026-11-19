@@ -7,18 +7,18 @@ quoted once, in this package's `__init__.py`.
 """
 from __future__ import annotations
 
+from collections.abc import Sequence
 from typing import NamedTuple, TypedDict
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.nahw.book import (
     book_spelling, extra_ba_named, extra_ba_on, extra_min_letter, is_extra_ba, kaffa_sister,
     book_map, book_merges, takes_object, frames, family_mother, book_path, case_of, teacher_rules, family_cards, in_family, is_mabni, is_one, needs_praised, doer_written_in, named_roles, role_table, unseen_case)
-from backend.services.nahw.syntax import condition, facts, walker
+from backend.services.nahw.syntax import condition, facts, particles, walker
 from backend.services.nahw.syntax.followers import FOLLOWERS, followed, take_their_ending
 from backend.services.nahw.syntax.facts import base_tokens  # re-exported: teacher and tree read it from here
 from backend.services.text.harakat import (
-    CASE_NAME, SUKUN, VOWEL, build_nun, doubled_last, five_verb_nun, letters, own_letters, paused, stilled,
-    typed_case, written_sizes)
+    CASE_NAME, KASRA, SUKUN, build_nun, doubled_last, five_verb_nun, letters, merged_nun, paused, typed_case, written_sizes)
 
 # Every role this module can name, with its card colour key and bracket tone
 # (data/nahw_rules/roles.json); a role missing there is left uncoloured.
@@ -170,7 +170,7 @@ def roles(words: list[str], tokens: list[dict]) -> list[FoundEntry]:
             role_by_id[lam["id"]] = NAMED.harf_jarr
     named = [role_by_id[token["id"]] for token in bases]
     cases = [_ending(role, token, _governor(bases, i), words[i + 1] if i + 1 < len(words) else "",
-                     facts.puts_in_jarr(token, s), moods[i])
+                     facts.puts_in_jarr(token, s), moods[i], before[i])
              for i, (role, token) in enumerate(zip(named, bases))]
     after = [[t["form"].strip("+") for t in tokens if t["id"] not in base_ids and not facts.is_prefix(t) and word_of.get(t["id"]) == i]
              for i in range(len(bases))]
@@ -359,6 +359,9 @@ def _conditioned(found: list[dict], c: dict, bases: list[dict], s: facts.Sentenc
         if not c["masdar"]:
             found[c["verb"]].update(role=subject, book=None)
         found[c["verb"]]["condition"] = {"part": "subject", "opener": c["opener"], "family": frame["family"], "masdar": c["masdar"]}
+    for k in c["negations"]:  # مَنْ لَا يَرْحَمْ لَا يُرْحَمْ: no prohibition, and the condition puts its verbs in jazm
+        particles.negates(bases[k])
+        found[k].update(family=facts.reading(bases[k]), named=facts.reading(bases[k], "named"))
     for part in ("answer",) if subject else ("verb", "answer"):
         if c[part] is None:
             continue
@@ -475,21 +478,22 @@ def opens_with_verb(roles: list[str | None]) -> bool:
 def _governor(bases: list[dict], i: int) -> dict | None:
     """The word before word i that may govern it. A لا straight after a nasb particle is
     the plain negation, which governs nothing: أَنْ لَا تَطُوفِي، لِكَيْ لَا يَعْلَمَ are
-    in nasb by the particle before it, not in jazm by a لا of prohibition."""
+    in nasb by the particle before it, not in jazm by a لا of prohibition; so too a و لا after its verb."""
     before = bases[i - 1] if i else None
-    if (before and i > 1 and is_one(before["base"], "negation")
-            and is_one(bases[i - 2]["base"], "nasb_mudari", "before_a_present_verb")):
+    if not (before and i > 1 and is_one(before["base"], "negation")):
+        return before
+    if is_one(bases[i - 2]["base"], "nasb_mudari", "before_a_present_verb"):
         return bases[i - 2]
-    return before
+    return facts.stressed_nasb(bases, i) or before  # لَنْ يَرُدَّ وَلَا يَمُدَّ
 
 
 def _ending(role: str | None, token: dict, before: dict | None, after: str, jarred: bool,
-            lam: str | None = None) -> str | None:
+            lam: str | None = None, front: Sequence[str] = ()) -> str | None:
     """What to print under the word: a case for a noun or a present verb, else mabni.
     A noun's case is the vowel typed on it, else its role's own. A kasra on ـات is nasb when
     its role takes nasb, or it has no role and nothing puts it in jarr, shown by the kasra (رأيت المعلماتِ)."""
     if role == NAMED.fil:
-        return "mabni" if is_mabni("verb", token.get("asp", "na"), token["base"]) or build_nun(token["typed"], token.get("stuck_on", 0)) else _mood(paused(token["typed"], after), token, before, lam)
+        return "mabni" if is_mabni("verb", token.get("asp", "na"), token["base"]) or build_nun(token["typed"], token.get("stuck_on", 0)) else _mood(paused(token["typed"], after), token, before, lam, front)
     if role in (NAMED.harf, NAMED.harf_jarr):
         return "mabni"
     if role == NAMED.munada and facts.my_ya_dropped(token):
@@ -516,34 +520,65 @@ def _ending(role: str | None, token: dict, before: dict | None, after: str, jarr
     return CASE_NAME.get(facts.typed_case_of(token) or case_of(role or "", token["mudaf"]) or unseen_case(role))
 
 
-def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None) -> str | None:
-    """A present verb's case, the governor first (the book's عامل): a particle that
-    settles it by itself (لم يكتب، لن يذهب), or one of the shapes only jazm or nasb
-    leaves, a weak last letter gone (لم يَدْعُ، لا تَنْسَ) or the five verbs' nun gone
-    with a jazm or nasb particle before (لا تَسُبُّوا). Then the ending the reader typed,
-    on the verb's own last letter (يُفَقِّهْهُ), else the mood of a لام written onto it
-    (facts.lam_mood), else None: nothing shows, and the verb it is joined to decides, else raf'.
+def _idle_card(word: str) -> dict | None:
+    """The card of a governor some Arabs leave idle (closed_words.json card `idle_as`: أن، لم), by its book spelling."""
+    return next((card for family, card in family_cards() if word in card.get("idle_as", {}) and is_one(word, family)), None)
+
+
+def _mood(typed: str, token: dict, before: dict | None, lam: str | None = None, front: Sequence[str] = ()) -> str | None:
+    """A present verb's case, the governor first (the book's عامل), in this order:
+    the five verbs keeping their nun, raf'; a particle that settles it by itself (لم يكتب، لن يذهب), or one of the shapes
+    only jazm or nasb leaves, a weak last letter gone (لم يَدْعُ، لا تَنْسَ) or the five verbs' nun gone, after a jazm or nasb
+    particle (لا تَسُبُّوا); that nun gone, or a doubled verb's fatha, with a ف written onto the verb: فاء السببية, nasb by a
+    hidden أن (وَلَا تَنَازَعُوا فَتَفْشَلُوا; Ibn Aqil on the Alfiyya, وبعد فا جواب نفي أو طلب, vol 4 p11-12). The text is
+    trusted there: the nun goes after such a ف only in the answer of a request or a negation, so no check looks for one;
+    the other reading, a ف joining the verb to a jussive (لَمْ يَذْهَبُوا فَيَنْدَمُوا), is a second tarkeeb, not given. Then the ending
+    the reader typed, on the verb's own last letter (يُفَقِّهْهُ), a doubled verb's fatha by what stands before it, else the
+    mood of a لام written onto it (facts.lam_mood), else None: nothing shows, and the verb it is joined to decides, else raf'.
     `typed` is the word as paused on (harakat.paused); `before` the base token before it."""
-    particle = before["base"] if before else ""
-    dropped_nun = five_verb_nun(typed, token.get("stuck_on", 0), token.get("weak_last")) == "dropped"
+    particle, stuck_on = before["base"] if before else "", token.get("stuck_on", 0)
+    nun = five_verb_nun(typed, stuck_on, token.get("weak_last"))
+    nasbs = is_one(particle, "nasb_mudari", "before_a_present_verb")
+    # لَمْ تُكَلِّمُونِّي: before ني the five verbs' kept nun may merge into the pronoun's (harakat.merged_nun), a nun no
+    # governor took; a root's own ن there is a hollow verb's, one doer's (يَخُونِّي: خَانَ), so none of the five verbs
+    nun = "kept" if merged_nun(typed, stuck_on) else nun
+    # the five verbs keep their nun only in raf' (يَكْتُبُونَ، تَكْتُبِينَ), so a kept one leaves the particle before it no work: a
+    # jazm particle some leave idle (لَمْ يُوفُونَ بِالْجَارِ, Ibn Aqil; page unchecked) or one that never governs a verb so (لا
+    # النافية), and after a ف the verb is a noun clause's khabar, the answer (إِنْ تَجْتَهِدُوا فَتَنْجَحُونَ). A nasb particle is left
+    # idle only by those who leave أن so (card `idle_as`; أَنْ تَقْرَآنِ، Ibn Aqil; page unchecked; or it is أنّ lightened: _idle),
+    # and only where the nun cannot be the root's own: a nun with a fatha may end a root (يَخُونَ: خَانَ, one doer, in nasb), and
+    # the analyser may take such a root for a weak one's plural (وَخَى), so a root ending ن، و or ي leaves the nun in doubt;
+    # the pair's nun alone takes a kasra. No one leaves لن idle: لَنْ يَكْتُبَانِ stays nasb, the nun a slip
+    marked = letters(typed)[: len(letters(typed)) - stuck_on]
+    pair_nun = bool(marked) and marked[-1][0] == "ن" and KASRA in marked[-1][1]
+    nun_may_be_roots = (token.get("root") or "")[-1:] in ("ن", "و", "ي")
+    if facts.five_verbs(token) and nun == "kept" and (not nasbs or _idle_card(book_spelling(particle)) is not None and (
+            pair_nun or not nun_may_be_roots)):
+        return "raf'"
+    dropped_nun = nun == "dropped"
     read, named = facts.reading(before), facts.reading(before, "named")  # أَلَّا: the nasb أنْ with a لا merged in
     for family, case in (("jazm", "jazm"), ("nasb_mudari", "nasb")):
         if is_one(particle, family, "before_a_present_verb") or (dropped_nun and is_one(particle, family)) \
                 or (read == family and named in {m["named"] for m in book_merges(family).values()}):
             return case
-    stuck_on = token.get("stuck_on", 0)
-    if stilled(typed, stuck_on, token.get("weak_last")):
+    # لَمْ يَرُدَّ: a doubled verb's jussive takes the fatha its nasb does (harakat.doubled_last), so that fatha shows neither
+    doubled = doubled_last(typed, stuck_on, fatha=True)
+    if (dropped_nun or doubled) and front and front[-1] == "ف":
+        return "nasb"
+    typed_mood = facts.typed_mood(typed, token)
+    if typed_mood == "jazm":
         return "jazm"
-    shown = typed_case(typed, stuck_on)
-    five = token.get("per") in ("2", "3") and token.get("num") in ("d", "p") or (token.get("per"), token.get("gen")) == ("2", "f")
-    if shown is None and not five:
-        # فَتَكُونَ، فَتُعِينَ، نُعِينَ: a verb none of the five (يَفْعَلَانِ، تَفْعَلُونَ، تَفْعَلِينَ: Ibn Aqil, الأمثلة الخمسة; page
-        # unchecked) has no nun of theirs, so a last ن is the root's own and the vowel on the last letter is the case (none when a
-        # pronoun follows it, يُعِينُنِي: the pronoun's vowel is no case)
-        shown = next((VOWEL[mark] for mark in letters(own_letters(typed, 0, stuck_on))[-1][1] if mark in VOWEL), None)
     if lam and doubled_last(typed, stuck_on):
-        return lam  # لِيَمُدَّ يَدَهُ: a doubled verb's fatha is its jussive's too, so the لام says which
-    return CASE_NAME[shown] if shown in ("u", "a") else lam  # None: nothing shows (_followers_take_their_ending)
+        return lam  # the لام says which, whatever vowel the doubled letter wears (لِيَمُدَّ يَدَهُ، لِيَرُدَّنِي، لِيَرُدُّ)
+    if doubled:
+        if is_one(particle, "jazm"):
+            return "jazm"  # a لا: no negation puts a verb in nasb, so لَا تَمُدَّ يَدَكَ is its prohibition
+        if front or is_one(particle, "atf"):
+            return None  # joined on (وَيَرُدَّ، ثُمَّ يَرُدَّ): the verb it is joined to decides (followers)
+        # straight after a verb or a noun, with no hidden أن before it, the fatha is its jussive's: the answer of a condition or a
+        # request (إِنْ تَدْرُسُوا يُحِبَّكُمُ الْمُعَلِّمُ، ازْهَدْ فِي الدُّنْيَا يُحِبَّكَ اللَّهُ); after another particle, its nasb's (إِذَنْ أُحِبَّكَ)
+        return "nasb" if is_one(particle, "nasb_mudari") or read == "nasb_mudari" else "jazm"  # إِذًا: إذن (particles.stamp)
+    return typed_mood or lam  # None: nothing shows (_followers_take_their_ending)
 
 
 # run in this order once every word is named; each adds keys to the entries, never a role to a
@@ -566,4 +601,24 @@ def _compound_number(n: Named) -> None:
             n.found[i]["role"], n.found[i]["case"] = n.found[i - 1]["role"], n.found[i - 1]["case"]
 
 
-FINISHES = (_pair, _extra_ba, _extra_min, _kaffa, _excepted_after_la, _compound_number)
+def _idle(n: Named) -> None:
+    """لَمْ يُوفُونَ بِالْجَارِ، أَنْ تَقْرَآنِ: a particle left idle before a verb it leaves in raf' (_mood) governs nothing, so it
+    is named for the work it still does (closed_words.json card `idle_as`): لم negates and turns the time past, أن makes
+    a masdar, as the particles that govern nothing are (ghair_amila_other). An أنْ telling what a verb of the heart knows
+    or thinks is no idle masdar particle but أنّ lightened (card `light_as`: عَلِمْتُ أَنْ يَكْتُبُونَ)."""
+    for i, (entry, base, verb) in enumerate(zip(n.found, n.bases, n.found[1:])):
+        if entry["role"] != NAMED.harf or verb["role"] != NAMED.fil or verb["case"] != CASE_NAME["u"]:
+            continue
+        word = book_spelling(base["lemma"])
+        if (card := _idle_card(word)) is None:
+            continue
+        # a verb of knowing or thinking, not one of turning (zanna `changing`: صَيَّرَ، اتَّخَذَ)
+        knower = next((b for b in reversed(n.bases[:i]) if facts.is_verb(b)), None)
+        light = word in card.get("light_as", {}) and knower is not None and is_one(knower["lemma"], "zanna") \
+            and not is_one(knower["lemma"], "zanna", "changing")
+        named = card["light_as" if light else "idle_as"][word]
+        base["reading"] = {"family": "ghair_amila_other", "named": named, "kind": "harf", "book": None}
+        entry.update(family="ghair_amila_other", named=named)
+
+
+FINISHES = (_pair, _extra_ba, _extra_min, _kaffa, _excepted_after_la, _compound_number, _idle)

@@ -8,7 +8,7 @@ import pytest
 from backend.services.nahw import iraab
 from backend.services.nahw.book import stem_pattern
 from backend.services.nahw.syntax.facts import Sentence
-from backend.services.nahw.syntax.facts.word import hollow_or_doubled_first_form
+from backend.services.nahw.syntax.facts.word import hollow_or_doubled_first_form, names_what_is_made
 from backend.services.nahw.syntax.repair.clause import said_again
 from tests.nahw_helpers import analysed, cards, NADA, needs_parser, parsed_as, _read, _role
 
@@ -295,6 +295,20 @@ def test_a_doubled_or_hollow_root_still_reads_as_a_masdar_measure():
     ("اُكْتُبْ كِتَابًا", 1, "مفعول به"),
     ("كَانَ زَيْدٌ كَوْنًا", 2, "خبر كان"),  # nearest case: كان and its sisters take a خبر
     ("صَارَ الْمَاءُ صَيْرًا", 2, "خبر كان"),
+    # its فُعْلة names a thing (Ibn Aqil V3 p132: فَعْلة the one act, فِعْلة the manner): the way laid down, not the laying
+    ("مَنْ سَنَّ فِي الْإِسْلَامِ سُنَّةً حَسَنَةً", 4, "مفعول به"),
+    ("سَنَّ الْمَلِكُ سُنَّةً جَدِيدَةً", 2, "مفعول به"),
+    ("خَطَّ الْمُهَنْدِسُ خُطَّةً", 2, "مفعول به"),  # hung on the noun before it, it still names the thing made
+    ("حَجَّ الرَّجُلُ حَجَّةً", 2, "مفعول مطلق"),  # nearest case: a fatha typed on its first letter, the one act (فَعْلة)
+    ("حَجَّ الرَّجُلُ حَجةً", 2, "مفعول مطلق"),  # its shadda left off
+    ("قَرَّتْ عَيْنُهُ قُرَّةً", 2, "مفعول مطلق"),  # nearest case: a verb that takes no object makes no thing
+    ("مَدَّ مَدًّا", 1, "مفعول مطلق"),  # nearest case: the same doubled root's فَعْل is the doing
+    ("قَالَ قَوْلَةً", 1, "مفعول مطلق"),  # nearest case: a hollow root's فَعْلة is the one act
+    ("مَاتَ مِيتَةً جَاهِلِيَّةً", 1, "مفعول مطلق"),  # nearest case: its فِعْلة the manner
+    ("قَدَرَ قُدْرَةً", 1, "مفعول مطلق"),  # nearest case: a sound root's فُعْلة is its doing
+    ("قَوِيَ الرَّجُلُ قُوَّةً", 2, "مفعول مطلق"),  # nearest case: a weak root's فُعْلة, its last two letters not one
+    ("جَادَ الثَّوْبُ جُودَةً", 2, "مفعول مطلق"),  # nearest case: a hollow root's
+    ("رَأَيْتُهُ رُؤْيَةً", 1, "مفعول مطلق"),  # nearest case: a weak-last root's too
 ])
 def test_a_hollow_or_doubled_form_one_verbs_own_masdar_is_the_maful_mutlaq(sentence, at, role):
     """facts.slot: hollow_or_doubled_first_form (word.py) lets the masdar read through its weak letter; repair/typed gives a command sarf's root."""
@@ -309,6 +323,15 @@ def test_a_hollow_or_doubled_form_one_verbs_own_masdar_is_the_maful_mutlaq(sente
 ])
 def test_a_hollow_verbs_alif_stands_for_its_roots_weak_letter(lemma, root, first_form):
     assert hollow_or_doubled_first_form({"lemma": lemma, "root": root}) is first_form
+
+
+@pytest.mark.parametrize("root, pattern, made", [
+    ("سنن", "1ُ2َّةً", True), ("حجج", "1ُ2َّةً", True),  # a doubled root's فُعْلة names a thing: سُنَّة، حُجَّة
+    ("مدد", "1َ2َّةً", False),  # nearest case: its فَعْلة is the single act (مَدَّةً)
+    ("قوي", "1ُ2َّةً", False), ("جود", "1ُو3َةً", False),  # nearest case: another root's فُعْلة may be its doing (قُوَّة، جُودَة)
+])
+def test_only_a_doubled_roots_fuala_is_kept_from_the_maful_mutlaq(root, pattern, made):
+    assert names_what_is_made({"root": root, "pattern": pattern}) is made
 
 
 def test_a_lone_noun_after_waw_is_never_hung_on_itself():

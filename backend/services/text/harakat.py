@@ -12,6 +12,7 @@ from backend.services.text.arabic_text import bare_letters, strip_diacritics
 VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
 TANWEEN = {"ً", "ٌ", "ٍ"}
 SUKUN = "ْ"
+FATHA = "َ"
 KASRA = "ِ"
 SHADDA = "ّ"
 SHADDA_SUKUN = SHADDA + SUKUN
@@ -203,27 +204,53 @@ def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str 
     `stuck_on` letters at the end are an attached pronoun's, not the verb's (لن يَكْتُبَهَا
     ends in the pronoun's ا). The group's silent ا goes before a pronoun, so a verb left
     ending in و is the dropped nun (لا تَأْكُلُوهَا) unless its root ends in و (يَدْعُوهُ). On a root
-    whose last letter is weak an ا after neither ي nor و is that letter (لن يَرْضَاهُ), no pair's."""
+    whose last letter is weak an ا after neither ي nor و is that letter (لن يَرْضَاهُ), no pair's. A merged nun
+    (merged_nun) is neither: only the verb's root tells. A ف، و، ل or س written onto the verb comes before its
+    present letter (فَتَنْدَمِي)."""
+    if merged_nun(word, stuck_on):
+        return None
     stem = own_letters(word, 0, stuck_on)
-    bare, shown = strip_diacritics(stem), typed_case(word, stuck_on)  # not bare_letters: it folds يقرأ's أ into an alef
+    # not bare_letters: it folds يقرأ's أ into an alef. An آ is a hamza and the pair's alif after it (تَقْرَآنِ، لَنْ تَقْرَآ)
+    bare, shown = strip_diacritics(stem).replace("آ", "ءا"), typed_case(word, stuck_on)
     if stuck_on and bare.endswith("و") and len(bare) >= 4 and not weak_last:
         return "dropped"
     if shown == "u" or len(bare) < 4 or (weak_last and bare.endswith("ا") and bare[-2] not in "يو"):
         return None
+    if pair_before_emphasis(word, stuck_on):
+        return "dropped"
     if bare.endswith(HIDDEN_CASE):
         return "kept"
     # تَجْزِي، تَأْتِي: on a root whose last letter is weak the ي is that letter, kept in raf'
-    if bare.endswith(("وا", "ا")) or (bare.startswith("ت") and bare.endswith("ي") and shown != "a" and not weak_last):
+    if bare.endswith(("وا", "ا")) or (bare.lstrip("فولس").startswith("ت") and bare.endswith("ي") and shown != "a" and not weak_last):
         return "dropped"
     return None
 
 
-def doubled_last(word: str, stuck_on: int = 0) -> bool:
+def pair_before_emphasis(word: str, stuck_on: int = 0) -> bool:
+    """The pair's ا with the nun of emphasis doubled after it (وَلَا تَتَّبِعَانِّ، لَتَذْهَبَانِّ): the pair's own nun is never
+    written before it, gone in jazm or nasb by the governor, and in raf' so that three nuns do not meet (تَوَالِي الأَمْثَال;
+    page unchecked), the verb in raf' by that unwritten nun."""
+    stem = own_letters(word, 0, stuck_on)
+    return strip_diacritics(stem).endswith("ان") and SHADDA in letters(stem)[-1][1]
+
+
+def merged_nun(word: str, stuck_on: int = 0) -> bool:
+    """Before ني (`stuck_on` 2), one doubled nun after a long و or ا: the kept nun of the five verbs and the pronoun's
+    نون الوقاية written as one (أَتُحَاجُّونِّي، تَأْمُرُونِّي: نون الرفع مدغمة في نون الوقاية; page unchecked), or a root's own
+    last ن (يَخُونِّي، يَصُونِّي: خَانَ، صَانَ), which only the verb's root tells apart. A vowel on the و makes it the
+    root's and the nun emphasis's (لَيَدْعُوَنِّي); after a ي the nun is as likely the root's (يُعِينِّي: أَعَانَ)."""
+    marked = letters(word)
+    return stuck_on == 2 < len(marked) - 1 and marked[-2][0] == "ن" and SHADDA in marked[-2][1] \
+        and marked[-3][0] in "وا" and marked[-3][1] <= {SUKUN}
+
+
+def doubled_last(word: str, stuck_on: int = 0, fatha: bool = False) -> bool:
     """The last letter, before an attached pronoun's `stuck_on` letters, is doubled: a doubled verb's jussive then
-    takes a fatha as its nasb does (لَمْ يَرُدَّ، لِيَمُدَّ يَدَهُ: فُتح لالتقاء الساكنين), so the fatha shows no case."""
+    takes a fatha as its nasb does (لَمْ يَرُدَّ، لِيَمُدَّ يَدَهُ: فُتح لالتقاء الساكنين), so the fatha shows no case. With `fatha`,
+    that fatha is typed on it, read off the letter itself, as a pronoun ي hides it from typed_case (لِيَرُدَّنِي)."""
     marked = letters(word)
     marked = marked[:len(marked) - stuck_on]
-    return bool(marked) and SHADDA in marked[-1][1]
+    return bool(marked) and ({SHADDA, FATHA} if fatha else {SHADDA}) <= marked[-1][1]
 
 
 def build_nun(word: str, after: int = 0) -> str | None:

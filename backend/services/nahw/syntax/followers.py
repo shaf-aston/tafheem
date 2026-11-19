@@ -18,7 +18,7 @@ from collections.abc import Callable, Hashable
 from typing import TypeVar
 
 from backend.services.nahw.book import case_of, is_one, is_subject_pronoun, named_roles, roles_keyed
-from backend.services.text.harakat import CASE_NAME
+from backend.services.text.harakat import CASE_NAME, doubled_last
 from backend.services.nahw.syntax import facts
 
 FOLLOWERS = roles_keyed("tabi", "sifah")
@@ -106,7 +106,8 @@ def chain_first(start: Key, joined_on: Callable[[Key], Key | None]) -> Key:
 def take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[dict]) -> None:
     """In order, so a chain follows too. A follower with no vowel typed wears the case of the word it follows
     (اليدُ العليا); its kasra on ـات is also nasb, a diptote's fatha also jarr. A present verb showing nothing,
-    joined (atf `joins_mood`) to a verb in nasb or jazm, is in that mood too (أَنْ تَبَرُّوا وَتَتَّقُوا); any other is raf'."""
+    joined (atf `joins_mood`) to a verb in nasb or jazm, is in that mood too (أَنْ تَبَرُّوا وَتَتَّقُوا، لَمْ يَقْرَأْ ثُمَّ يَرُدَّ); any other
+    is raf', but for a doubled verb's typed fatha, which is never raf' (لَأَلْزَمَنَّكَ أَوْ تَرُدَّ حَقِّي: nasb by a hidden أن)."""
     for i, (role, token) in enumerate(zip(named, bases)):
         head = followed(token, bases, tokens, named) if role in FOLLOWERS else None
         # إِيَّاكُمْ وَمُحْدَثَاتِ الْأُمُورِ: a built word stands in its role's case, which its follower shows
@@ -118,5 +119,10 @@ def take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[
     for i, (role, token) in enumerate(zip(named, bases)):  # the verbs after every noun, as they were two passes
         if role == NAMED.fil and cases[i] is None:
             joiner = by_id.get(token["head"])
-            head = followed(token, bases, tokens) if joiner and joiner["pos"] == "PRT" and is_one(joiner["lemma"], "atf", "joins_mood") else None
-            cases[i] = cases[head] if head is not None and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm") else "raf'"
+            # from the joining word, which the parser may take for a noun (ثم), to the verb it joins this one to
+            head = followed(joiner, bases, tokens) if joiner and is_one(joiner["lemma"], "atf", "joins_mood") else None
+            # لَنْ أَذْهَبَ وَمَا أَدْرِي: a negation that leaves the verb showing nothing governs no present verb (ما، إنْ) and opens a
+            # clause of its own, so the verb is in raf' and joins no mood (a لا that stresses لن's negation hands it لن: naming._governor)
+            own = i and is_one(bases[i - 1]["base"], "negation")
+            joined = head is not None and not own and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm")
+            cases[i] = cases[head] if joined else "nasb" if doubled_last(token["typed"], token.get("stuck_on", 0), fatha=True) else "raf'"
