@@ -14,10 +14,10 @@ from typing import Callable
 
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import (
-    PRESENT_PREFIX, SHADDA, SUKUN, doubled_last, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
+    DAMMA, PRESENT_PREFIX, SHADDA, SUKUN, doubled_last, fits_shape, five_verb_nun, letters, own_letters, stilled, typed_case)
 from backend.services.sarf.morphology import has_comparative
 from backend.services.nahw.book import (
-    book_file, book_map, book_spelling, book_words, condition_of, family_cards, is_mabni, is_one, says)
+    book_file, book_map, book_spelling, book_words, condition_of, family_cards, in_family, is_mabni, is_one, is_subject_pronoun, says)
 from backend.services.nahw.syntax import facts, walker
 from backend.services.nahw.syntax.mask import above
 
@@ -333,6 +333,72 @@ def _negates_a_verb(token: dict, s: facts.Sentence) -> str:
     return "yes" if after and after["pos"] == "PRT" and verb and facts.is_verb(verb) and _is_present(verb) else "no"
 
 
+def _differing_lam(token: dict, s: facts.Sentence) -> str:
+    """A ناسخ verb comes after it (كان، كاد، ظن and their sisters) and a لام of emphasis on that verb's own خبر: the
+    إنْ is the lightened إنّ, idle, and the لام tells it from the negating إنْ (Alfiyya, إنّ وأخواتها: وتلزم اللام إذا ما
+    تهمل ... والفعل إن لم يك ناسخا فلا تلفيه غالبا بإن ذي موصلا; Mughni V1 p37, إن المكسورة الخفيفة):
+    وَإِنْ وَجَدْنَا أَكْثَرَهُمْ لَفَاسِقِينَ، وَإِنْ كَادُوا لَيَفْتِنُونَكَ. The لام sits on that خبر itself, never after a و
+    (وَلَقَدْ وَعَدْتُكَ opens another sentence). The clause ends at a ف, at إنّ or a sister of it, or at a خبر the verb
+    already holds (`_holds_khabar`): a لام after that opens another clause, as the answer of an oath left unsaid does (وَاللَّهِ إِنْ
+    كَانَ زَيْدٌ صَادِقًا لَقَدْ ظَلَمْنَاهُ), so the condition stands. A لام with no fatha typed on it is told only on a
+    جار (`is_emphasis_lam`), so unvowelled text may read the condition."""
+    verb = facts.next_word(token, s)
+    if not (verb and any(in_family(verb["lemma"], kin) for kin in ("kana", "kaada", "zanna"))):
+        return "no"
+    if _what_follows(token, s) == "verb_jazm":
+        return "no"  # إِنْ تَكُنْ لَصَادِقًا، إِنْ تَكُونُوا لَصَادِقِينَ: the lightened إنّ governs nothing, so a present verb after it is in raf' (وَإِنْ يَكَادُ)
+    tokens = s.tokens
+    for i in range(tokens.index(verb) + 1, len(tokens)):
+        if _holds_khabar(verb, tokens[i], s) or tokens[i]["form"] == "ف+" or is_one(tokens[i]["lemma"], "inna"):
+            return "no"
+        if facts.is_emphasis_lam(tokens, i):
+            return "yes" if tokens[i - 1]["form"] != "و+" and _lam_tells(tokens[i], tokens[i + 1], s) else "no"
+    return "no"
+
+
+def _holds_khabar(verb: dict, word: dict, s: facts.Sentence) -> bool:
+    """The word fills the ناسخ's خبر: a noun or a verb the parser hangs on it as its خبر (a جار there may be only
+    what comes before the خبر, إِنْ كُنَّا عَنْ عِبَادَتِكُمْ لَغَافِلِينَ), or where each family puts that خبر as
+    a word of its own: كاد's present verb (Alfiyya, أفعال المقاربة: ككان كاد وعسى لكن ندر غير مضارع لهذين خبر) and
+    ظنّ's second object, a noun neither a ظرف nor a مصدر of the verb's own root (وَإِنْ ظَنَنْتُهُ ظَنًّا لَصَادِقًا).
+    Any other word hung on كان is a فضلة of its clause, a حال or a ظرف (وَإِنْ كَانُوا جَمِيعًا لَمُحْضَرِينَ)."""
+    if word["head"] != verb["id"]:
+        return False
+    if word["rel"] == "PRD":
+        return facts.noun_tagged(word) or facts.is_verb(word)
+    if word["rel"] != "MOD":
+        return False
+    if in_family(verb["lemma"], "kaada"):
+        return facts.is_verb(word)
+    return in_family(verb["lemma"], "zanna") and facts.noun_tagged(word) and not (
+        facts.is_zarf(word, s) or facts.same_root(word, verb))
+
+
+def _lam_tells(lam: dict, word: dict, s: facts.Sentence) -> bool:
+    """The differing لام sits on the ناسخ's own خبر: a noun, a جار, or a present verb (Mughni V1 p37), in the case the
+    ناسخ gives that خبر. So a noun typed in raf' is not it, nor a detached pronoun of raf' (لَأَنْتَ أَكْرَمُ النَّاسِ),
+    since a pronoun in كان's خبر is كُنْتُهُ or كان إيّاه (Alfiyya, النكرة والمعرفة: في كنته الخلف انتمى); nor a جار
+    with a مبتدأ of its own, which opens a new nominal clause (وَاللَّهِ إِنْ رَأَيْتَهُ لَفِي ذَلِكَ عِبْرَةٌ); nor a
+    present verb whose last letter is still or doubled without a damma, so not in raf': the nun of emphasis, heavy or
+    light (لَيَنْدَمَنَّ، لَيَفْعَلَانِّ، لَيَخْرُجَنْ), while a root's own doubled letter in raf' takes a damma (لَيَظُنُّ).
+    On that nun, on قد or on a past verb (لَقَدْ ظَلَمْنَاهُ، لَنِعْمَ) it is the لام that answers an oath (وَإِنْ كَانَ
+    ذَلِكَ لَأَضْرِبَنَّهُ: كان complete, no خبر)."""
+    if facts.is_verb(word):
+        last = letters(own_letters(word.get("typed") or "", 0, word.get("stuck_on", 0)))
+        marks = last[-1][1] if last else set()
+        return facts.present_verb_tagged(word) and not (SUKUN in marks or (SHADDA in marks and DAMMA not in marks))
+    if facts.is_preposition(word):
+        return not any(kid["rel"] == "SBJ" for kid in s.kids(lam))  # the parser hangs that مبتدأ on the لام
+    return facts.noun_tagged(word) and facts.typed_case_of(word) != "u" and not is_subject_pronoun(word)
+
+
+def _merged_in_la(token: dict, s: facts.Sentence) -> str:
+    """إلّا before a verb in jazm is إنْ merged into لا (إِلَّا تَنْصُرُوهُ), its hamza written below for the kasra of إنْ.
+    Written without that hamza (الا تعبدوا) the word may as well be أَلَّا, أنْ merged into لا, whose verb loses its nun
+    for nasb as the jussive does for jazm: only the reader's spelling tells the two apart."""
+    return "yes" if _what_follows(token, s) == "verb_jazm" and "إ" in (token.get("typed") or token["form"]) else "no"
+
+
 def _one_clause_restricted(token: dict, s: facts.Sentence) -> str:
     """An إلا of restriction comes after it with no second verb between (إِنْ أَرَدْنَا إِلَّا الْحُسْنَى، إِنْ نَحْنُ إِلَّا
     بَشَرٌ): one clause, negated and restricted, so the إنْ is the negation (Mughni, إنْ النافية; page unchecked). A
@@ -422,6 +488,8 @@ AXES: dict[str, tuple[tuple[str, ...], Callable[[dict, facts.Sentence], str]]] =
     "restricted": (("yes", "no"), _restricted),
     "one_clause_restricted": (("yes", "no"), _one_clause_restricted),
     "negates_a_verb": (("yes", "no"), _negates_a_verb),
+    "differing_lam": (("yes", "no"), _differing_lam),
+    "merged_in_la": (("yes", "no"), _merged_in_la),
     "starts": (("yes", "no"), _starts),
     "shows": (("nasb", "raf", "other", "none"), _shows),
 }
@@ -494,7 +562,8 @@ def _hasr_frees_its_words(tokens: list[dict]) -> None:
     """لا تعبدوا إلا الله: the إلا of restriction excepts nothing, so the word the parser hung on
     it belongs to the verb above it, as in ما ضربتُ إلا زيدًا (Tasheel 3.8.7 p85). It takes the place
     the verb leaves open, so one in raf' under a verb with no doer yet is that doer whatever the
-    parser hung it as (ما أنقذ الغريقَ إلا فتًى جريءٌ: فتى shows its raf' on its نعت)."""
+    parser hung it as (ما أنقذ الغريقَ إلا فتًى جريءٌ: فتى shows its raf' on its نعت). A كان sister takes no object:
+    its word is one of its own two, as _kana_place reads it."""
     s = facts.Sentence(tokens)
     for particle in tokens:
         verb = s.head(particle)
@@ -502,8 +571,28 @@ def _hasr_frees_its_words(tokens: list[dict]) -> None:
             open_doer = not facts.own_doer(verb) and not facts.holds_doer(verb, s.kids(verb))
             for kid in s.kids(particle):
                 kid["head"] = verb["id"]
-                if open_doer and kid["rel"] == "OBJ" and _typed_raf(kid, s):
+                if kid["rel"] != "OBJ":
+                    continue
+                if in_family(verb["lemma"], "kana"):
+                    _kana_place(verb, kid, s)
+                elif open_doer and _typed_raf(kid, s):
                     kid["rel"] = "SBJ"
+
+
+def _kana_place(verb: dict, word: dict, s: facts.Sentence) -> None:
+    """كان raises its اسم and puts its خبر in nasb (Tasheel 1.9), so the word its restricting إلا hands it is its
+    خبر (إِنْ كَانَتْ إِلَّا صَيْحَةً وَاحِدَةً), unless the reader typed it in raf': then it is the اسم, and a noun the
+    parser made the اسم is the خبر put before it (وَمَا كَانَ جَوَابَهُمْ إِلَّا قَوْلُهُمْ). A verb that holds its خبر already
+    has its two words (وَلَا يَزَالُونَ مُخْتَلِفِينَ إِلَّا مَنْ رَحِمَ رَبُّكَ): the word after إلا is no خبر of it."""
+    if any(k["rel"] == "PRD" for k in s.kids(verb)):
+        return
+    ism = next((k for k in s.kids(verb) if k["rel"] == "SBJ"), None)
+    if _typed_raf(word, s):
+        if ism:
+            ism["rel"] = "PRD"
+        word["rel"] = "SBJ"
+    else:
+        word["rel"] = "PRD"
 
 
 def _typed_raf(word: dict, s: facts.Sentence) -> bool:
@@ -601,7 +690,8 @@ def _retagged() -> frozenset[str]:
 def _read(token: dict, found: walker.Walked) -> None:
     retag = found.leaf.get("retag", {})
     token["reading"] = {"family": found.role, "named": found.leaf.get("named"), "kind": found.leaf.get("kind", "harf"),
-                        "book": found.book, "sense": found.leaf.get("sense", retag.get("pos_camel"))}
+                        "book": found.book, "sense": found.leaf.get("sense", retag.get("pos_camel")),
+                        "spells": found.leaf.get("spells")}
     token.update(retag)
 
 

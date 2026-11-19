@@ -360,3 +360,20 @@ def test_a_describing_word_in_another_case_is_no_sifah_of_the_known_noun_before_
     toks = sentence("n")  # raf' after a nasb noun: it describes some other noun, and stays as the parser hung it
     described_known(facts.Sentence(toks))
     assert (toks[2]["head"], toks[2]["rel"]) == (1, "OBJ")
+
+
+def test_a_lam_after_the_fa_of_the_answer_is_no_differing_lam():
+    # إن كان ذلك فلفي كتاب: the ف opens the condition's answer, so the لام on what follows answers it, not كان's
+    # خبر (the tokenizer keeps فَلَفِي one word today; split, the لام and the جار are tokens of their own)
+    from backend.services.nahw.syntax.particles import AXES
+    differing = AXES["differing_lam"][1]
+    toks = [token(1, "إن", "إن", "PRT", 0, "---"),
+            token(2, "كان", "كان", "VRB", 1, "OBJ", typed="كَانَ", **VERB),
+            token(3, "ذلك", "ذلك", "NOM", 2, "SBJ"),
+            clitic(4, "ف+", 5, "MOD"),
+            token(5, "ل+", "ل", "PRT", 6, "MOD", token_type="prc1", pos_camel="part"),
+            token(6, "في", "في", "PRT", 0, "---", typed="لَفِي", pos_camel="prep"),
+            token(7, "كتاب", "كتاب", "NOM", 6, "OBJ", typed="كِتَابٍ")]
+    assert differing(toks[0], facts.Sentence(toks)) == "no"
+    without_fa = [t for t in toks if t["form"] != "ف+"]
+    assert differing(without_fa[0], facts.Sentence(without_fa)) == "yes"
