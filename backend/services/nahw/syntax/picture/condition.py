@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw.book import condition_of
 from backend.services.nahw.syntax.condition import subject_id
+from backend.services.nahw.syntax.facts import reading, spelled
 from backend.services.nahw.syntax.picture.hang import is_inside, move_to, take_from
 from backend.services.nahw.syntax.picture.state import Picture
 
@@ -19,7 +20,7 @@ def draw_conditions(c: Picture) -> None:
     for i, found in enumerate(named):
         if found.get("condition", {}).get("part") != "opener" or found["condition"]["answer"] is None:
             continue
-        condition = condition_of(bases[i]["form"])
+        condition = condition_of(spelled(bases[i]))
         opener, verb, answer = bases[i], by_id[subject_id(i, found, bases)], bases[found["condition"]["answer"]]
         # فَهُوَ نَاجِحٌ، فَلَهُ أَجْرٌ: the answer is the sentence its first word is in, so a مبتدأ (or a jar) the tying
         # letter is written on answers through the khabar heading that sentence (picture.unwritten)
@@ -29,7 +30,8 @@ def draw_conditions(c: Picture) -> None:
         for kid in [k for k in roots if k["id"] != answer["id"] and by_id[k["id"]]["head"] == answer["id"]]:
             move_to(holder, kid, children_of[answer["id"]])
         if not condition["noun"]:
-            name_of[opener["id"]] = condition["opener"]  # إن: حرف شرط جازم; a noun keeps its place
+            # إن: حرف شرط جازم; a noun keeps its place; إِلَّا تَنْصُرُوهُ, إنْ merged into لا, is named as its reading says
+            name_of[opener["id"]] = reading(opener, "named") if reading(opener, "spells") else condition["opener"]
         # فَلْيَصُمْهُ، لأمرتُ: the letter written onto the answer ties it to the condition, so it
         # stands beside the answer's sentence in the condition's unit, not inside that sentence
         ties = []

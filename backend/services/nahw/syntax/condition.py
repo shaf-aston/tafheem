@@ -20,7 +20,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.book import book_spelling, condition_of, frames, is_one, kaffa_sister, named_roles, says
-from backend.services.nahw.syntax.facts import reading
+from backend.services.nahw.syntax.facts import reading, spelled
 
 NAMED = named_roles()
 
@@ -68,7 +68,7 @@ def find(bases: list[dict], named: list[str | None], cases: list[str | None],
         return v is not None and says(bases[v]["lemma"])
 
     def opens(i: int) -> dict | None:
-        frame = condition_of(bases[i]["form"])
+        frame = condition_of(spelled(bases[i]))
         v = verb_at(i)
         # a noun no relative or question word shares its letters with opens after a clause too, its answer
         # having come first (لَنْ نَتَرَاجَعَ مَهْمَا طَالَ الزَّمَنُ); so does لولا, which opens on a noun only, its

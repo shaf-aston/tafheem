@@ -101,6 +101,13 @@ def reading(token: dict | None, key: str = "family") -> str | None:
     return ((token or {}).get("reading") or {}).get(key)
 
 
+def spelled(token: dict) -> str:
+    """The word as the book lists it for its reading (the reading's `spells`, particle_tree.json), else its form. A word
+    written as two merged is looked up as the one that works: إِلَّا before a jussive verb is إنْ merged into لا, so it
+    opens a condition as إن does (إِلَّا تَنْصُرُوهُ فَقَدْ نَصَرَهُ اللَّهُ: Mughni V1 p33, إن المكسورة الخفيفة)."""
+    return reading(token, "spells") or token["form"]
+
+
 def read_as(token: dict, family: str) -> bool:
     """The word works as one of this family: by the one reading particles.stamp gave it
     (لا before a bare noun in nasb is the لا of genus, never a joining word), else by the

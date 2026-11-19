@@ -13,6 +13,7 @@ VOWEL = {"ً": "a", "ٌ": "u", "ٍ": "i", "َ": "a", "ُ": "u", "ِ": "i"}
 TANWEEN = {"ً", "ٌ", "ٍ"}
 SUKUN = "ْ"
 FATHA = "َ"
+DAMMA = "ُ"
 KASRA = "ِ"
 SHADDA = "ّ"
 SHADDA_SUKUN = SHADDA + SUKUN
