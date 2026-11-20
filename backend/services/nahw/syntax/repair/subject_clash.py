@@ -280,9 +280,11 @@ def object_after_tanween(s: Sentence) -> None:
         # زَيْدٌ مُكْرِمٌ الطُّلَّابَ / الطَّالِبَاتِ: hung instead on the word the participle itself hangs on, a word in nasb
         # straight after it is still its object: the tanween makes it no مضاف إليه, and its nasb against the participle's
         # raf' or jarr no نعت (a ـات kasra is a jarr too, so it shows nasb only against a raf': طَالِبَاتٍ مُجْتَهِدَاتٍ مَاهِرَاتٍ
-        # stays a نعت); the participle's own root stays its مفعول مطلق
+        # stays a نعت); the participle's own root stays its مفعول مطلق. Not a participle that is already a verb's
+        # doer (جَاءَ طَالِبٌ مَاشِيًا): a word in nasb after an indefinite doer is its حال, and the doer takes no object
         before = s.by_id.get(token["id"] - 1)
-        if (before and head and token["rel"] == "MOD" and before["head"] == head["id"] and works_as_verb(before) == "active"
+        if (before and head and token["rel"] == "MOD" and before["head"] == head["id"] and before["rel"] != "SBJ"
+                and works_as_verb(before) == "active"
                 and typed_tanween(before) and typed_case_of(before) in ("u", "i") and noun_tagged(token)
                 and (typed_case_of(token) == "a" or shows_nasb_by_kasra(token) and typed_case_of(before) == "u")
                 and not same_root(token, before)):
