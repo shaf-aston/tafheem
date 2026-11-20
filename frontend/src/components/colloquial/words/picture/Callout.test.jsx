@@ -93,4 +93,19 @@ describe('a picture board says a tapped place’s word beside it, the same on ev
     fireEvent.keyDown(first, { key: 'Enter' })
     expect(label(container)).not.toBeNull()   // Enter says it, beside it
   })
+
+  it('leaves the browser its shortcuts: Alt+Left (Back), Cmd/Ctrl+arrows, Ctrl+Home and Shift+arrows move nothing', () => {
+    const { container } = at()
+    const first = [...container.querySelectorAll('[role="button"][data-key]')].find((e) => e.getAttribute('tabindex') === '0')
+    first.focus()
+    for (const mods of [{ altKey: true }, { ctrlKey: true }, { metaKey: true }, { shiftKey: true }]) {
+      for (const key of ['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp', 'Home', 'End']) {
+        // fireEvent returns false when a handler called preventDefault: the browser's shortcut was taken
+        expect(fireEvent.keyDown(first, { key, ...mods })).toBe(true)
+        expect(document.activeElement).toBe(first)
+      }
+    }
+    expect(fireEvent.keyDown(first, { key: 'ArrowRight' })).toBe(false)   // the plain key is still ours
+    expect(document.activeElement).not.toBe(first)
+  })
 })
