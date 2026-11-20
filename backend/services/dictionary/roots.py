@@ -74,6 +74,17 @@ def _book_opened() -> bool:
     return root_meaning.status() == root_meaning.READY
 
 
+def weak_letter_named(root: str, word: str = "") -> bool:
+    """A hollow root's weak letter is known, not CAMeL's guess (it writes the letter # and reads it و: بَاعَ as بوع,
+    though يَبِيعُ is بيع), when the Qur'an's corpus files `word` under this root, or files the root and not its twin
+    with the other letter (خوف, and no خيف). سور and سير are both filed, so a bare سَارَ's letter is left to its باب
+    (يَسِيرُ: سير). With no corpus built (CI, a fresh checkout) every hollow letter is a guess."""
+    if _key(_corpus(quran_corpus.root_of, word, default=None) or "") == _key(root):
+        return True
+    twin = root[:1] + {"و": "ي", "ي": "و"}.get(root[1:2], root[1:2]) + root[2:]
+    return _key(root) in _corpus_roots() and (twin == root or _key(twin) not in _corpus_roots())
+
+
 def _key(root: str) -> str:
     """Letters compared across books: ءتي, أتي and اتي are one root."""
     return bare_letters(normalize_root(root)).replace("ء", "ا")

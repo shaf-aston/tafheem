@@ -20,7 +20,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from backend.services.sarf import conjugation
-from backend.services.text.arabic_text import strip_diacritics
+from backend.services.text.arabic_text import hamzah_folded, strip_diacritics
 from backend.services.text.harakat import KASRA, SUKUN, letters, plural_alef, typed_case
 from backend.services.nahw.book import book_words, is_one, only_adverb
 
@@ -58,8 +58,8 @@ def _fold(word: str) -> str:
 
 
 def _letters_of(root: str) -> list[str]:
-    """A root's letters in any order, its weak و and ي as one."""
-    return sorted(root.replace("ي", "و"))
+    """A root's letters in any order, its weak و and ي as one, its hamzah on any seat (أخذ، ءخذ)."""
+    return sorted(hamzah_folded(root).replace("ي", "و"))
 
 
 def _read_words(column: str, row: int, word: str, form: str) -> list[tuple[str, str]]:
@@ -211,7 +211,28 @@ def past(cell: Cell) -> str:
     return dict(conjugation.row_cells(cell.root, cell.form, 0))["madi"]
 
 
-def command(word: str, governed: bool = False, root: str = "", vouched: bool = False, answers: bool = False) -> Cell | None:
+def jussive(cell: Cell) -> str:
+    """The cell's verb as the jussive for "he" (يَقِفْ), the word its command is cut from."""
+    return dict(conjugation.row_cells(cell.root, cell.form, 0))["nahy"].split(" ")[-1]
+
+
+def _said(cells: list[Cell], said: Callable[[str, str], bool] | None) -> list[Cell]:
+    """The cells, less the commands the dictionary never says where it says some. A command is its jussive with the
+    present's letter taken off (يَقِفْ: قِفْ; Hamalawi, Shadha al-Arf, page unchecked), so of the roots its letters fit
+    (قِفْ: وقف، قيف), its own are those whose jussive the dictionary has (`said`: يَقِفْ is وَقَفَ's), and of the بابs
+    one jussive serves (يَقِفُ is ضَرَبَ's and حَسِبَ's), its own is the one whose past it has (وَقَفَ, not وَقِفَ). Where it
+    has none of the jussives it tells nothing: a past alone may be another root's on a باب that root never takes
+    (كِلْ: أَكَلَ is no ضَرَبَ, where كَالَ يَكِيلُ's jussive is unlisted)."""
+    commands = [c for c in cells if c.column == "amr"]
+    said_ones = [c for c in commands if said(jussive(c), c.root)] if said else []
+    if not said_ones:
+        return cells
+    commands = [c for c in said_ones if said(past(c), c.root)] or said_ones
+    return [c for c in cells if c.column != "amr" or c in commands]
+
+
+def command(word: str, governed: bool = False, root: str = "", vouched: bool = False, answers: bool = False,
+            said: Callable[[str, str], bool] | None = None) -> Cell | None:
     """The command this typed word is (اِجْلِسِي، ارْحَمُوا، قُمْ), or None.
 
     `root` is the one the dictionary read the word with, if any: where sarf finds
@@ -221,6 +242,8 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
     and without one the jussive's spelling cannot stand (أَقِمْ alone is a command).
     `vouched` says the sentence shows a verb where no vowel was typed (repair.typed),
     so the bare letters are read too (اكتبي درسك).
+    `said` says whether the dictionary has a verb (يَقِفْ، وَقَفَ) of a root: it narrows the roots the letters fit where
+    `root` is none of them, and the بابs of the root kept (_said).
     `answers` says the word is past the first and agrees with the present read: a jussive the typed vowels fit as closely
     is that jussive, a command's answer
     (اسْتَغْفِرُونِي أَغْفِرْ لَكُمْ: أَغْفِرْ, I forgive), so it is no command; أَكْرِمْ fits only the command (أُكْرِمْ is the jussive).
@@ -233,8 +256,9 @@ def command(word: str, governed: bool = False, root: str = "", vouched: bool = F
         # without its vowels a word fits a command and much else (الله، البر); the last
         # letter's alone is no help either, it is the case or a sukun of pausing (اللهِ)
         return None
-    found = dict(_scored(word))
-    found = {c: score for c, score in found.items() if c.root == root} or found
+    scored = dict(_scored(word))
+    rooted = [c for c in scored if hamzah_folded(c.root) == hamzah_folded(root)]
+    found = {c: scored[c] for c in _said(rooted or list(scored), said)}
     if answers and found and any(c.column == "jussive" and score == min(found.values()) for c, score in found.items()):
         return None
     found = {c: score for c, score in found.items() if c.column != "jussive"}
@@ -298,7 +322,8 @@ def known_as(word: str) -> str | None:
     return None
 
 
-def reading_of(word: str, known: Callable[[str], bool] | None = None, rooted: Callable[[str], bool] | None = None) -> dict | None:
+def reading_of(word: str, known: Callable[[str], bool] | None = None, rooted: Callable[[str], bool] | None = None,
+               said: Callable[[str, str], bool] | None = None) -> dict | None:
     """A verb the dictionary cannot read even as the table spells it (يَسْتَعْتِبُوا), read off
     the table in the dictionary's own features (reading.json `camel`): {pos, asp, vox, ...}.
     None unless the closest cells agree on its tense and voice. What they do not agree on is
@@ -309,7 +334,8 @@ def reading_of(word: str, known: Callable[[str], bool] | None = None, rooted: Ca
     `rooted` says whether a root is one a book files: given, the word is read bare, with no vowel typed, off every
     cell the table has for its letters (يعجز: يَعْجِزُ، يُعْجَزُ), of the roots the books file, and of those the sound
     roots (every radical written in the word) before the weak and doubled, which the table spells the same way for
-    any letters (انفروا is نفر, not the VII of فري)."""
+    any letters (انفروا is نفر, not the VII of فري).
+    `said` narrows a command's roots as in `command` (ضَعْهُ is وضع's, not ضاع's)."""
     for front, rest, closest in _cuts(word, bare=bool(rooted)):
         if rooted:
             written = Counter(letter for letter, _ in letters(word))
@@ -319,9 +345,10 @@ def reading_of(word: str, known: Callable[[str], bool] | None = None, rooted: Ca
                 continue
         if known:
             seen = [c for c in closest if known(past(c))]
-            if not seen and (split := _with_object(word, known)) and known(split.get("lex", "")):
+            if not seen and (split := _with_object(word, known, said)) and known(split.get("lex", "")):
                 return split
             closest = seen or closest
+        closest = _said(closest, said)
         # تُضَارُّونَ: a doubled letter takes the same marks in the active and the passive, and the voice is then
         # the active's (the passive is the marked form); cells that differ in tense are still no reading
         if len({tuple((k, v) for k, v in _config()["camel"][c.column].items() if k != "vox") for c in closest}) != 1:
@@ -330,14 +357,14 @@ def reading_of(word: str, known: Callable[[str], bool] | None = None, rooted: Ca
                   "lex": past(c), "weak_last": c.root[-1:] in "وي"} for c in closest]
         return {"pos": "verb", "vox": "a", **{key: value for key, value in cells[0].items() if all(c[key] == value for c in cells)},
                 **(pieces(front, rest) if front else {})}
-    return _with_object(word, known)
+    return _with_object(word, known, said)
 
 
 # a long letter and the vowel before it that makes it long (اُكْتُبِي، اُكْتُبُوا، اُكْتُبَا)
 _LENGTHENS = {"ي": KASRA, "و": "ُ", "ا": "َ"}
 
 
-def _with_object(word: str, known: Callable[[str], bool] | None = None) -> dict | None:
+def _with_object(word: str, known: Callable[[str], bool] | None = None, said: Callable[[str, str], bool] | None = None) -> dict | None:
     """reading_of a verb with its object pronoun written on (ظَلَمَكَ is ظَلَمَ + كَ), the table
     holding the verb alone: the longest pronoun first, the verb before it voweled to its end."""
     marked = letters(word)
@@ -348,7 +375,7 @@ def _with_object(word: str, known: Callable[[str], bool] | None = None) -> dict 
         # اُكْتُبِيهِ، اُكْتُبُوهُ: a doer written as a long letter ends the verb on the vowel before it, and
         # the plural's alef, written only at the word's end, comes back (plural_alef)
         voweled = verb[-1][1] or _LENGTHENS.get(verb[-1][0]) in verb[-2][1]
-        if not voweled or not (found := reading_of(plural_alef(_spell(verb)), known)):
+        if not voweled or not (found := reading_of(plural_alef(_spell(verb)), known, said=said)):
             continue
         person = _ENCLITIC.get("".join(c for c, _ in pronoun)) or _ENCLITIC["كِ" if "ِ" in pronoun[-1][1] else "كَ"]
         joined = found.get("catib6", "").count("PRT")  # فَاهْدِنَا: the فَ the table read the verb behind
