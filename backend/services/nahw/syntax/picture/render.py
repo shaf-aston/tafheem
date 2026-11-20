@@ -218,8 +218,10 @@ def draw(c: Picture) -> dict:
             else None if token is root or is_particle(token) or job_of[token["id"]] == NAMED.fil
             or label == NOMINAL and placeless(token)
             else job_of[token["id"]])
-        # مِن نارٍ: a jar-majroor with a word to hang on is named by it, متعلق بـX
-        if token["id"] in hung:
+        # مِن نارٍ: a jar-majroor with a word to hang on is named by it, متعلق بـX; an oath's on the verb no one says (picture.oath)
+        if token["id"] in c.sworn:
+            label = FRAMES["oath"]["attached"]
+        elif token["id"] in hung:
             label = FRAMES["attached"].format(word=kept["word"])
         elif label == JAR_MAJROOR and _counts_kam(token, by_id.get(parent(token))):
             job = FRAMES["kam_tamyeez"]["job"]
@@ -259,7 +261,8 @@ def draw(c: Picture) -> dict:
         inside = [(at[t["id"]], node(t)) for t in (*beside, token)]
         return {"role": None, "label": CONDITION, "tone": None, "detail": None,
                 "children": [drawn for _, drawn in sorted(inside, key=lambda pair: pair[0])]}
-    top_label = sentence_label(role_of, drawn, named)
+    # وَاللَّهِ، لَئِنْ: the oath's verb, unsaid (أُقْسِمُ), heads the sentence its answer stands in (picture.oath)
+    top_label = VERBAL if any(job_of[t["id"]] == FRAMES["oath"]["answer"] for t in roots) else sentence_label(role_of, drawn, named)
     drawn = sorted(((at[part["id"]], unit(part)) for part in roots), key=lambda pair: pair[0])
     tree = drawn[0][1] if len(drawn) == 1 else None
     # a phrase alone (محمد بن عبد الله): its head has no job, nothing makes it a sentence

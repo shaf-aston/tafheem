@@ -217,7 +217,7 @@ def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str 
         return "dropped"
     if shown == "u" or len(bare) < 4 or (weak_last and bare.endswith("ا") and bare[-2] not in "يو"):
         return None
-    if pair_before_emphasis(word, stuck_on):
+    if five_before_emphasis(word, stuck_on):
         return "dropped"
     if bare.endswith(HIDDEN_CASE):
         return "kept"
@@ -227,12 +227,27 @@ def five_verb_nun(word: str, stuck_on: int = 0, weak_last: bool = False) -> str 
     return None
 
 
-def pair_before_emphasis(word: str, stuck_on: int = 0) -> bool:
-    """The pair's ا with the nun of emphasis doubled after it (وَلَا تَتَّبِعَانِّ، لَتَذْهَبَانِّ): the pair's own nun is never
-    written before it, gone in jazm or nasb by the governor, and in raf' so that three nuns do not meet (تَوَالِي الأَمْثَال;
-    page unchecked), the verb in raf' by that unwritten nun."""
+def five_before_emphasis(word: str, stuck_on: int = 0, five: bool = False) -> bool:
+    """The five verbs' own nun, never written before the nun of emphasis: gone in jazm or nasb by the governor, and in raf'
+    so that three nuns do not meet (تَوَالِي الأَمْثَال; page unchecked), the verb in raf' by that unwritten nun. The pair's ا
+    stays, the nun of emphasis doubled after it with a kasra (وَلَا تَتَّبِعَانِّ، لَتَذْهَبَانِّ); the men's و goes too, the two
+    sukuns meeting, and leaves its damma before the nun (لَيَقُولُنَّ، لَتُبْعَثُنَّ), unless a fatha before it keeps it with that
+    damma (لَتَرَوُنَّ), as the one woman's ي keeps its kasra (تَرَيِنَّ; Alfiyya, نونا التوكيد, page unchecked). A doubled root's
+    own nun follows its first root letter (لَنْ يَظُنَّ), the men's at least two: their dropped ي's kasra (تَقُولِنَّ) is as
+    a doubled root's (لَنْ تَطْمَئِنَّ), which only the verb's doer tells: `five`, the doer one of the five verbs
+    (book.five_verbs), whose endings follow a root's own ن (تَظُنُّونَ), so any such doubled ن is the nun of emphasis."""
     stem = own_letters(word, 0, stuck_on)
-    return strip_diacritics(stem).endswith("ان") and SHADDA in letters(stem)[-1][1]
+    marked = letters(stem)
+    if strip_diacritics(stem).endswith("ان") and SHADDA in marked[-1][1]:
+        return True
+    if len(marked) < 3 or marked[-1][0] != "ن" or not {SHADDA, "َ"} <= marked[-1][1]:
+        return False
+    letter, marks = marked[-2]
+    if five and "َ" not in marks:
+        return True
+    if "َ" in marked[-3][1] and (letter == "و" and "ُ" in marks or letter == "ي" and "ِ" in marks):
+        return True
+    return "ُ" in marks and len(strip_diacritics(stem).lstrip("فولس")) >= 4
 
 
 def merged_nun(word: str, stuck_on: int = 0) -> bool:
@@ -396,7 +411,10 @@ def nearest_reading(typed: str, readings: list[dict]) -> dict | None:
 
 def _without_ending(marked: list[tuple[str, set]]) -> list[tuple[str, set]]:
     """The letters of a present verb before its plural or dual ending: the stem of
-    يُعَلَّمُونَ and يُكْتَبَانِ, or of يُكْتَبْنَ (a nun after a bare letter)."""
+    يُعَلَّمُونَ and يُكْتَبَانِ, or of يُكْتَبْنَ (a nun after a bare letter), or before the doubled nun of
+    emphasis, after a vowel (لَنُخْرِجَنَّ is active, لَيُسْجَنَنَّ، لَتُبْعَثُنَّ passive by the letter before)."""
+    if len(marked) > 1 and marked[-1][0] == "ن" and {SHADDA, "َ"} <= marked[-1][1] and marked[-2][1] & {"َ", "ُ", "ِ"}:
+        return marked[:-1]
     if "".join(letter for letter, _ in marked[-2:]) in HIDDEN_CASE:
         return marked[:-2]
     if marked[-1][0] == "ن" and SUKUN in marked[-2][1]:

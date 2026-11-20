@@ -5,8 +5,8 @@ from __future__ import annotations
 import re
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, CASE_NAME, VOWEL, stilled, TANWEEN, PRESENT_PREFIX, FATHA, KASRA, SHADDA, SUKUN, build_nun, doubled_last, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, merged_nun, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
-from backend.services.nahw.book import book_words, is_diptote, elative_shape, measure, participle_shape, stem_pattern, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
+from backend.services.text.harakat import CAMEL_CASE, CASE_LETTER, CASE_NAME, VOWEL, stilled, TANWEEN, PRESENT_PREFIX, FATHA, KASRA, SHADDA, SUKUN, build_nun, doubled_last, drops_weak, drops_ya, five_before_emphasis, five_verb_nun, has_tanween, letters, merged_nun, vowel_agreement, own_letters, opens_active, past_passive_shape, typed_case, typed_passive
+from backend.services.nahw.book import book_words, five_verbs as book_five_verbs, reseated, is_diptote, elative_shape, measure, participle_shape, stem_pattern, is_fem_plural, is_mabni, is_object_stem, is_one, six_noun_case
 
 
 # a root letter is what is left once the letters that come and go are removed
@@ -104,8 +104,10 @@ def reading(token: dict | None, key: str = "family") -> str | None:
 def spelled(token: dict) -> str:
     """The word as the book lists it for its reading (the reading's `spells`, particle_tree.json), else its form. A word
     written as two merged is looked up as the one that works: إِلَّا before a jussive verb is إنْ merged into لا, so it
-    opens a condition as إن does (إِلَّا تَنْصُرُوهُ فَقَدْ نَصَرَهُ اللَّهُ: Mughni V1 p33, إن المكسورة الخفيفة)."""
-    return reading(token, "spells") or token["form"]
+    opens a condition as إن does (إِلَّا تَنْصُرُوهُ فَقَدْ نَصَرَهُ اللَّهُ: Mughni V1 p33, إن المكسورة الخفيفة). A hamza a letter
+    joined on moved onto ئ is the word on its alif (book.reseated: لَئِنْ)."""
+    form = token["form"]
+    return reading(token, "spells") or reseated(form, token["lemma"])
 
 
 def read_as(token: dict, family: str) -> bool:
@@ -589,17 +591,28 @@ def purpose(token: dict, verb: dict) -> bool:
 
 
 def five_verbs(token: dict) -> bool:
-    """One of the five verbs (يَفْعَلَانِ، تَفْعَلُونَ، تَفْعَلِينَ: Ibn Aqil, الأمثلة الخمسة; page unchecked), by its doer."""
-    return token.get("per") in ("2", "3") and token.get("num") in ("d", "p") or (token.get("per"), token.get("gen")) == ("2", "f")
+    """One of the five verbs, by its doer (book.five_verbs)."""
+    return book_five_verbs(token.get("per"), token.get("num"), token.get("gen"))
+
+
+def five_emphasised(typed: str, token: dict) -> bool:
+    """One of the five verbs ending in the nun of emphasis, its own nun gone before it (harakat.five_before_emphasis:
+    لَيَقُولُنَّ، تَقُولِنَّ، لَتَذْهَبَانِّ). A doubled root's ن never ends one of the five, whose endings follow it (تَظُنُّونَ، لَمْ
+    تَظُنِّي), so the fatha on that nun is neither a case nor a doubled verb's jussive (لَنْ يَظُنَّ)."""
+    return five_verbs(token) and five_before_emphasis(typed, token.get("stuck_on", 0), five=True)
 
 
 def typed_mood(typed: str, token: dict) -> str | None:
     """The mood a present verb's typed ending shows by itself: jazm when stilled (لَمْ يَكْتُبْ، لَمْ يَدْعُ), else the case of
     the vowel on its last letter, else None. A verb none of the five has no nun of theirs, so a last ن is the root's own and
-    its vowel is the case (فَتَكُونَ، نُعِينَ), none when a pronoun follows it (يُعِينُنِي: the pronoun's vowel is no case)."""
+    its vowel is the case (فَتَكُونَ، نُعِينَ), none when a pronoun follows it (يُعِينُنِي: the pronoun's vowel is no case). One of
+    the five ending in the nun of emphasis lost its own nun before it (five_emphasised: لَتَقُولِنَّ), so that nun's fatha is
+    no case either."""
     stuck_on = token.get("stuck_on", 0)
     if stilled(typed, stuck_on, token.get("weak_last")):
         return "jazm"
+    if five_emphasised(typed, token):
+        return None
     shown = typed_case(typed, stuck_on)
     if shown is None and not five_verbs(token):
         shown = next((VOWEL[mark] for mark in letters(own_letters(typed, 0, stuck_on))[-1][1] if mark in VOWEL), None)

@@ -9,7 +9,7 @@ from __future__ import annotations
 from backend.services.text.arabic_text import strip_diacritics
 from backend.services.text.harakat import five_verb_nun
 from backend.services.nahw.book import frames, verb_aspect
-from backend.services.nahw.syntax.facts import is_passive
+from backend.services.nahw.syntax.facts import five_emphasised, is_passive
 from backend.services.nahw.syntax.naming import tone
 
 DOER = frames()["doer"]
@@ -32,8 +32,11 @@ def persons(token: dict, owner: list[str] | None) -> list[str]:
         return [DOER["prefix_says"][letter]]
     if token.get("asp") == "i" and token.get("per", "na") not in DOER["prefix_person"].get(letter, token.get("per", "na")):
         return []  # the reading's person is not one its letter allows
-    # تَكْتُبِينَ: the ياء is the doer (أنتِ), so the reading's own person stands, not the bare ت that is أنتَ or هي
-    if token.get("asp") == "i" and token.get("num") == "s" and letter == "ت" and not five_verb_nun(token.get("typed") or "", token.get("stuck_on", 0), token.get("weak_last")):
+    # تَكْتُبِينَ: the ياء is the doer (أنتِ), so the reading's own person stands, not the bare ت that is أنتَ or هي; so too
+    # before the nun of emphasis, where the ياء and its nun are gone and the kasra left shows it (لَتَقُولِنَّ)
+    typed = token.get("typed") or ""
+    if token.get("asp") == "i" and token.get("num") == "s" and letter == "ت" \
+            and not (five_verb_nun(typed, token.get("stuck_on", 0), token.get("weak_last")) or five_emphasised(typed, token)):
         both = DOER["ta_prefix"]
         # the subject's person settles it: a ت said of a third person is هي (هِنْدٌ تَكْتُبُ)
         return [key for key in both if key[0] in {o[0] for o in owner or []}] or both

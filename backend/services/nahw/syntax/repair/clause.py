@@ -15,8 +15,23 @@ def oath_clause(s: Sentence) -> None:
     tokens = s.tokens
     root = next((t for t in tokens if t["head"] == 0), None)
     relative = sworn_by(s)
-    if not (root and relative and root["id"] > relative["id"]):
+    if not (root and relative):
         return
+    if root["id"] <= relative["id"]:
+        # تَاللَّهِ لَأَكِيدَنَّ أَصْنَامَكُمْ: the parser made the oath letter or the noun sworn by the head; the answer
+        # opens on the word after that noun and its مضاف إليه (وَرَبِّ الْكَعْبَةِ), so its clause is the word its
+        # opening particle is on (a لام the parser made the head of its verb hangs on it), or that particle
+        opener = s.by_id.get(relative["id"] + 1)
+        while opener and opener["rel"] == "IDF" and opener["head"] == opener["id"] - 1:
+            opener = s.by_id.get(opener["id"] + 1)
+        if is_sworn_relative(relative) or not (opener and opener["pos"] == "PRT" and is_one(opener["lemma"], "jarr", "oath_answer")):
+            return
+        on = s.head(opener)
+        under = next((k for k in s.kids(opener) if k["id"] > opener["id"] and is_verb(k)), None)
+        root = on if on and on["id"] > opener["id"] else under or opener
+        s.relink(root, 0, "---")
+        if root is under:
+            s.relink(opener, root["id"], "MOD")
     first = tokens[tokens.index(relative) - 1]
     sworn_relative = is_sworn_relative(relative)
     # the answer is a particle under the main clause, or the clause's own head (فَوَالَّذِي لَا إِلَهَ غَيْرُهُ إِنَّ أَحَدَكُمْ)

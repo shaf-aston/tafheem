@@ -107,7 +107,8 @@ def take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[
     """In order, so a chain follows too. A follower with no vowel typed wears the case of the word it follows
     (اليدُ العليا); its kasra on ـات is also nasb, a diptote's fatha also jarr. A present verb showing nothing,
     joined (atf `joins_mood`) to a verb in nasb or jazm, is in that mood too (أَنْ تَبَرُّوا وَتَتَّقُوا، لَمْ يَقْرَأْ ثُمَّ يَرُدَّ); any other
-    is raf', but for a doubled verb's typed fatha, which is never raf' (لَأَلْزَمَنَّكَ أَوْ تَرُدَّ حَقِّي: nasb by a hidden أن)."""
+    is raf', but for a doubled verb's typed fatha, which is never raf' (لَأَلْزَمَنَّكَ أَوْ تَرُدَّ حَقِّي: nasb by a hidden أن); the nun of
+    emphasis on one of the five verbs is no doubled root letter (facts.five_emphasised: لَيَقُولُنَّ is raf')."""
     for i, (role, token) in enumerate(zip(named, bases)):
         head = followed(token, bases, tokens, named) if role in FOLLOWERS else None
         # إِيَّاكُمْ وَمُحْدَثَاتِ الْأُمُورِ: a built word stands in its role's case, which its follower shows
@@ -125,4 +126,5 @@ def take_their_ending(named: list, cases: list, bases: list[dict], tokens: list[
             # clause of its own, so the verb is in raf' and joins no mood (a لا that stresses لن's negation hands it لن: naming._governor)
             own = i and is_one(bases[i - 1]["base"], "negation")
             joined = head is not None and not own and named[head] == NAMED.fil and cases[head] in ("nasb", "jazm")
-            cases[i] = cases[head] if joined else "nasb" if doubled_last(token["typed"], token.get("stuck_on", 0), fatha=True) else "raf'"
+            doubled = doubled_last(token["typed"], token.get("stuck_on", 0), fatha=True) and not facts.five_emphasised(token["typed"], token)
+            cases[i] = cases[head] if joined else "nasb" if doubled else "raf'"

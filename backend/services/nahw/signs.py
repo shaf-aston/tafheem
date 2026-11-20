@@ -9,8 +9,8 @@ one. The words printed are the book's, in data/nahw_rules/teacher.json.
 from __future__ import annotations
 
 from backend.services.text.arabic_text import bare_letters, strip_diacritics
-from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, merged_nun, own_letters, pair_before_emphasis, paused, plural_alef, typed_case, typed_passive
-from backend.services.nahw.book import attention_off, book_words, case_of, family_cards, is_diptote, is_one, is_fem_plural, named_roles, reason, six_noun_case, teacher_rules
+from backend.services.text.harakat import CASE_LETTER, SHADDA, SUKUN, TANWEEN, build_nun, drops_weak, drops_ya, five_verb_nun, has_tanween, letters, merged_nun, own_letters, five_before_emphasis, paused, plural_alef, typed_case, typed_passive
+from backend.services.nahw.book import attention_off, book_words, case_of, family_cards, five_verbs, is_diptote, is_one, is_fem_plural, named_roles, reason, reseated, six_noun_case, teacher_rules
 
 NAMED = named_roles()
 # The noun tables a present verb ending in a weak letter borrows (يَهْدِي، يَدْعُو، يَسْعَى)
@@ -116,11 +116,11 @@ def settle(cards: list[dict]) -> list[dict]:
 
 def _family_said(card: dict) -> dict | None:
     """{named, does} of the family the word governs as (iraab.cards sets it),
-    by the member's own name where the book gives one (لم حرف نفي وجزم وقلب)."""
+    by the member's own name where the book gives one (لم حرف نفي وجزم وقلب; لَئِنْ's إنْ by book.reseated)."""
     family = dict(family_cards()).get(card.get("family"))
     if not family:
         return None
-    named = card.get("named") or family.get("named_as", {}).get(card["camel"]["base"], family["named"])
+    named = card.get("named") or family.get("named_as", {}).get(reseated(card["camel"]["base"], card["camel"]["lemma"]), family["named"])
     return {"named": named, "does": family["does"]}
 
 
@@ -218,7 +218,8 @@ def _verb(card: dict) -> dict:
     voiced = f"{tense} {said['passive']}" if aspect != "c" and (
         card["camel"].get("vox") == "p" or typed_passive(card["word"], aspect == "i", stuck_on, card["camel"].get("weak_last"))) else tense
     told = said["verb_by_family"].format(tense=voiced, state=state, **family).rstrip("، ") if family else f"{voiced} {state}"
-    return {"sign": shown, "reason": f"{told}. {reason(tense)}"}
+    rule = said["present_built_rule"][built_on] if aspect == "i" and built_on else reason(tense)  # لَيَكْتُبَنَّ، يَكْتُبْنَ
+    return {"sign": shown, "reason": f"{told}. {rule}"}
 
 
 def _built_on(card: dict, aspect: str) -> str | None:
@@ -255,9 +256,10 @@ def _present_sign(card: dict, case: str) -> str | None:
     # أَتُحَاجُّونِّي، هُمْ يَدْعُونِّي: the five verbs' nun merged into ني's, kept in raf' and gone in nasb or jazm (the ن left is
     # ني's own); one doer's root may end in that nun (يَخُونِّي: خَانَ), its case then shown on it
     root_nun = tag.get("number") == "s" and (tag.get("root") or "").endswith("ن")
-    # لَتَذْهَبَانِّ: in raf' too the pair's nun goes before the nun of emphasis, and the verb is in raf' by it
-    if (nun and (case == "raf'") == (nun == "kept")) or (case == "raf'" and pair_before_emphasis(word, stuck_on)) \
-            or (merged_nun(word, stuck_on) and not root_nun):
+    # لَتَذْهَبَانِّ، لَيَقُولُنَّ: in raf' too the five verbs' nun goes before the nun of emphasis, and the verb is in raf' by it
+    if case == "raf'" and five_before_emphasis(word, stuck_on, five_verbs(tag.get("person"), tag.get("number"), tag.get("gender"))):
+        return sign(case, "five_verbs_emphasised")
+    if (nun and (case == "raf'") == (nun == "kept")) or (merged_nun(word, stuck_on) and not root_nun):
         return sign(case, "five_verbs")
     if weak_last:
         verb = own_letters(word, 0, stuck_on)
