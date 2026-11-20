@@ -23,6 +23,12 @@ def _pos_of(sentence: str, word: str) -> str:
 
 
 @needs_camel
+def test_a_reading_the_typed_vowels_contradict_gives_the_command_no_root():
+    # كِلْ is كَالَ يَكِيلُ's command; CAMeL's كُلْ (أكل) carries a damma the typed kasra rules out
+    assert morphology.analyze_sentence("كِلْ لَنَا")[0]["root"] == "كيل"
+
+
+@needs_camel
 def test_homograph_reads_as_verb_when_the_sentence_needs_one():
     # ذهب on its own ranks as the noun "gold"; only the sentence makes it a verb.
     assert _pos_of(VERB_SENTENCE, "ذهب") == "verb"
@@ -139,10 +145,14 @@ def test_a_word_the_dictionary_reads_only_with_the_article_is_no_command(sentenc
 
 
 @needs_camel
-def test_a_command_the_table_reads_with_no_one_past_is_named_by_its_own_letters():
-    # فَاقْبَلْهَا: the table's closest cells name no one past, so the word is the verb alone, its فَ and هَا peeled off
-    tag = morphology.analyze_sentence("فَاقْبَلْهَا")[0]
-    assert tag["lemma"] == "اقبل"
+@pytest.mark.parametrize("sentence, lemma", [
+    # فَاذْخَرْهَا: يَذْخَرُ is فَتَحَ's and سَمِعَ's, and the dictionary has neither past, so the closest cells name no
+    # one past: the word is the verb alone, its فَ and هَا peeled off
+    ("فَاذْخَرْهَا", "اذخر"),
+    ("فَاقْبَلْهَا", "قبل"),   # nearest case: of the two, the dictionary has قَبِلَ, so the past settles it
+])
+def test_a_command_the_table_reads_with_no_one_past_is_named_by_its_own_letters(sentence: str, lemma: str):
+    assert morphology.analyze_sentence(sentence)[0]["lemma"] == lemma
 
 
 @needs_camel
@@ -190,3 +200,12 @@ def test_a_hamza_on_its_vowels_seat_is_read_on_the_stems(word, lemma):
     assert read["pos"] in ("verb", "noun") and read["lex"] == lemma and morphology.bare_letters(read["diac"])[-3:] == \
         morphology.bare_letters(word)[-3:]
 
+
+
+@needs_camel
+@pytest.mark.parametrize("sentence, root", [
+    ("قِفْ هُنَا", "وقف"), ("ضَعْ يَدَكَ", "وضع"), ("كُلِي", "أكل"),    # a command alone: the root its jussive is
+    ("ضَعْهُ هُنَا", "وضع"), ("عِدْنِي خَيْرًا", "وعد"),               # nearest: with its object on, read from the table
+])
+def test_a_command_whose_first_letter_fell_is_read_on_its_own_root(sentence: str, root: str):
+    assert morphology.analyze_sentence(sentence)[0]["root"] == root   # not ضوع، كول، عدن

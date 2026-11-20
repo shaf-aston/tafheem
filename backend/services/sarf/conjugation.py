@@ -204,9 +204,52 @@ def _check(radicals: str, form: str) -> dict:
         )
     if wanted == 4 and kind(radicals) not in rules["quadriliteral-kinds"]:
         raise ValueError(f"This root is {root_type(radicals)}, and its four-letter rules are not built yet.")
+    if not takes(radicals, form):
+        why = "none does: خَافَ يَخَافُ is سَمِعَ, its alif hiding a kasra" if _bab_code(form) == "a~a" else {
+            "و": "its و comes back as the present's damma (يَقُولُ)",
+            "ي": "its ي comes back as the present's kasra (يَبِيعُ)"}[radicals[1]]
+        raise ValueError(f"A hollow root with {radicals[1]} never takes {shape['label']}; {why}.")
     if kind(radicals) not in conjugates() and not _mahmuz_weak_built(radicals, form):
         raise ValueError(f"This root is {root_type(radicals)}, and its rules are not built yet.")
     return shape
+
+
+def takes(radicals: str, form: str) -> bool:
+    """These root letters can be conjugated on this باب: a hollow root only on one its weak letter allows (hollow_takes)."""
+    return kind(radicals) != "ajwaf" or radicals[1] not in babs()["hollow"] or hollow_takes(radicals[1], _bab_code(form))
+
+
+def weak_told(radicals: str, form: str) -> str:
+    """A hollow root's letters as this باب tells its weak letter: the present's vowel is that letter's own (يَبِيعُ: بيع،
+    يَقُولُ: قول; hollow_takes), and the letters alone rarely name it (the dictionary writes ب.#.ع and reads it بوع; قال
+    may be قَالَ يَقُولُ or قَالَ يَقِيلُ). Any other root, or a باب neither letter takes, comes back as it is."""
+    other = radicals[0] + {"و": "ي", "ي": "و"}.get(radicals[1], radicals[1]) + radicals[2:]
+    return other if not takes(radicals, form) and takes(other, form) else radicals
+
+
+def letters_for(radicals: str, form: str, either_weak: bool) -> str:
+    """The letters this باب conjugates: a hollow root's weak letter as the باب tells it when the letter is only a guess
+    (`either_weak`: بوع on ضَرَبَ is بيع, weak_told), as it is when known (roots.weak_letter_named)."""
+    return weak_told(radicals, form) if either_weak else radicals
+
+
+def forms_for(radicals: str, either_weak: bool = False) -> dict[str, str]:
+    """The أبواب these root letters can take: id -> label (قول has no ضَرَبَ). When its weak letter is only a guess
+    (`either_weak`), a hollow root takes those of either letter, though never فَتَحَ."""
+    return {key: label for key, label in forms(len(radicals)).items()
+            if takes(letters_for(radicals, key, either_weak), key)}
+
+
+def _bab_code(form: str) -> str:
+    """The babs.json code (a~u) of a Form I باب key (I-nasara); "" for any other form."""
+    return next((code for code, bab in babs()["babs"].items() if bab["form_key"] == form), "")
+
+
+def hollow_takes(weak: str, bab: str) -> bool:
+    """A hollow root with this weak letter can take this Form I باب (babs.json code, a~u): the letter rules out one
+    present vowel (babs.json "hollow": قول is never يَقِيلُ, بيع never يَبُوعُ), and no hollow root has a fatha on both
+    (babs.json "_hollow_alif": خَافَ يَخَافُ is سَمِعَ, never فَتَحَ). Any other form ("") is not Form I's to rule out."""
+    return not bab.endswith("~" + babs()["hollow"][weak]) and bab != "a~a"
 
 
 def _mahmuz_weak_built(radicals: str, form: str) -> bool:
@@ -426,6 +469,7 @@ def resolve_form(
     is_noun: bool,
     requested: str | None = None,
     known: str | None = None,
+    either_weak: bool = False,
 ) -> tuple[str | None, str | None]:
     """Which باب to conjugate this word in, or the reason it has no table.
 
@@ -443,6 +487,8 @@ def resolve_form(
     the three names one, there is no table and no guess: the note says no
     dictionary records the bab and leaves the picker for the reader. This is
     the only place that chain is written; nothing else should reimplement it.
+    A `known` باب the root's letters refuse is passed over (Lane's خَفَتَ is no خَافَ), judged on the letter that باب
+    tells when the weak one is a guess (`either_weak`: بَاعَ on ضَرَبَ is بيع).
     """
     if len(radicals) not in (3, 4):
         return None, "Only three- and four-letter roots are conjugated, try the bare root, like كتب."
@@ -472,6 +518,6 @@ def resolve_form(
             f"Its root {radicals} does conjugate, enter the root itself to see it."
         )
 
-    if form := (requested or known or identify(word, radicals)):
+    if form := (requested or (known if known and takes(letters_for(radicals, known, either_weak), known) else None) or identify(word, radicals)):
         return form, None
     return None, f"No dictionary here records which باب {word} takes. Choose one below to see its table."

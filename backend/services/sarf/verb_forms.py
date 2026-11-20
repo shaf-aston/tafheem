@@ -120,13 +120,12 @@ def _ask(sources: dict, word: str) -> list[tuple[list[dict], str]]:
 def _hollow_babs(verbs: list[dict], weak: str) -> list[dict]:
     """The Form I verbs a hollow past names, keeping only babs this root can take.
 
-    babs.json's "hollow" table says which present vowel the weak letter rules
-    out: Lane files بَاعَ once for بيع and بوع with both babs, and this is
-    what splits them.
+    The weak letter rules out one present vowel (conjugation.hollow_takes):
+    Lane files بَاعَ once for بيع and بوع with both babs, and this is what
+    splits them.
     """
-    ruled_out = "~" + conjugation.babs()["hollow"][weak]
     return [
-        {**verb, "babs": [c for c in verb.get("babs") or [] if not c.endswith(ruled_out)]}
+        {**verb, "babs": [c for c in verb.get("babs") or [] if conjugation.hollow_takes(weak, c)]}
         for verb in verbs if verb["form"] == "I"
     ]
 

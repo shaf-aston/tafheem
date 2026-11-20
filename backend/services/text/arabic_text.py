@@ -190,6 +190,14 @@ def normalize_root(text: str) -> str:
     return _NOT_ROOT_LETTER_RE.sub("", strip_diacritics(text))
 
 
+_ONE_HAMZAH = str.maketrans(dict.fromkeys("أإؤئآ", "ء"))
+
+
+def hamzah_folded(root: str) -> str:
+    """The root with its hamzah one letter on whatever seat it is written: sarf's table spells أمر، the dictionary ءمر."""
+    return root.translate(_ONE_HAMZAH)
+
+
 def doubled_twin(root: str) -> str | None:
     """The other way a doubled root is written: مدد in full, مد as the books head it.
 

@@ -107,6 +107,55 @@ def test_a_weak_root_is_conjugated_the_way_the_book_prints_it(
     assert conjugation.conjugate(radicals, form)["rows"][0]["cells"]["madi"] == expected
 
 
+@pytest.mark.parametrize("radicals, form, why", [
+    ("قول", "I-daraba", "و comes back as the present's damma"), ("قول", "I-hasiba", "damma"),   # يَقُولُ
+    ("بيع", "I-nasara", "ي comes back as the present's kasra"), ("بيع", "I-karuma", "kasra"),   # يَبِيعُ
+    ("خوف", "I-fataha", "سَمِعَ"), ("هيب", "I-fataha", "سَمِعَ"),   # خَافَ يَخَافُ، هَابَ يَهَابُ: the alif hides a kasra
+])
+def test_a_hollow_root_is_refused_the_bab_its_weak_letter_rules_out(radicals: str, form: str, why: str) -> None:
+    with pytest.raises(ValueError, match=f"never takes.*{why}"):
+        conjugation.conjugate(radicals, form)
+
+
+@pytest.mark.parametrize("radicals, form, madi, mudari", [
+    ("قول", "I-nasara", "قَالَ", "يَقُوْلُ"), ("بيع", "I-daraba", "بَاعَ", "يَبِيْعُ"),
+    ("خوف", "I-samia", "خَافَ", "يَخَافُ"), ("هيب", "I-samia", "هَابَ", "يَهَابُ"),
+    ("طول", "I-karuma", "طَالَ", "يَطُوْلُ"),   # طَالَ يَطُولُ: the و's own damma
+    ("وعد", "I-daraba", "وَعَدَ", "يَعِدُ"),    # a مثال root: its و is the first letter, so no bab is ruled out
+    ("قول", "IV", "أَقَالَ", "يُقِيْلُ"), ("فيد", "IV", "أَفَادَ", "يُفِيْدُ"),  # nearest: past Form I, no bab to rule out
+])
+def test_a_root_is_conjugated_on_the_babs_its_letters_allow(radicals: str, form: str, madi: str, mudari: str) -> None:
+    cells = conjugation.conjugate(radicals, form)["rows"][0]["cells"]
+    assert (cells["madi"], cells["mudari"]) == (madi, mudari)
+
+
+def test_the_babs_offered_for_a_root_are_those_its_letters_allow() -> None:
+    assert "I-nasara" in conjugation.forms_for("قول") and not {"I-daraba", "I-fataha"} & set(conjugation.forms_for("قول"))
+    guessed = conjugation.forms_for("قول", either_weak=True)   # قَالَ يَقِيلُ is قيل: either letter's أبواب
+    assert {"I-nasara", "I-daraba"} <= set(guessed) and "I-fataha" not in guessed
+    assert conjugation.forms_for("قال") == conjugation.forms(3)   # an alif names no weak letter: refused later, not here
+    assert conjugation.forms_for("كتب") == conjugation.forms(3)   # a sound root: every three-letter باب
+    assert conjugation.forms_for("دحرج") == conjugation.forms(4)
+
+
+def test_a_hollow_roots_weak_letter_is_the_one_the_bab_allows() -> None:
+    assert conjugation.weak_told("بوع", "I-daraba") == "بيع"      # يَبِيعُ: the dictionary's ب.#.ع read بوع
+    assert conjugation.weak_told("قول", "I-nasara") == "قول"
+    assert conjugation.weak_told("خوف", "I-fataha") == "خوف"      # neither letter takes فَتَحَ: refused as it is
+    assert conjugation.weak_told("خوف", "I-samia") == "خوف"       # both take سَمِعَ (خَافَ يَخَافُ، هَابَ يَهَابُ): kept
+    assert conjugation.weak_told("وعد", "I-daraba") == "وعد"      # nearest: a مثال root has no hollow letter
+
+
+def test_a_bab_a_source_names_that_the_root_refuses_is_not_taken() -> None:
+    assert conjugation.resolve_form("خَافَ", "خوف", False, None, "I-daraba")[0] is None   # Lane's خَفَتَ, not خَافَ
+    assert conjugation.resolve_form("قَالَ", "قول", False, None, "I-nasara") == ("I-nasara", None)
+
+
+def test_a_root_with_two_weak_letters_together_is_refused_as_not_built_on_any_bab() -> None:
+    with pytest.raises(ValueError, match="not built"):  # طَوَى is لفيف مقرون, not a hollow root
+        conjugation.conjugate("طوي", "I-daraba")
+
+
 @pytest.mark.parametrize("radicals", ["قال", "رمى"])
 def test_an_alif_hides_which_letter_it_is_so_the_root_is_asked_for(radicals: str) -> None:
     """قال is not a root: the alif stands for a و or a ي and the letters do not

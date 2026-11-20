@@ -18,12 +18,12 @@ import re
 from typing import Any, NamedTuple
 
 from backend.config import get_settings
-from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, has_arabic, shown_root, strip_diacritics, words
+from backend.services.text.arabic_text import HAS_PYARABIC, bare_letters, hamzah_folded, has_arabic, shown_root, strip_diacritics, words
 from backend.services.sarf import engine, expects, noun_reader
 from backend.services.sarf import verb_reader
 from backend.services.quran import corpus as quran_corpus
 from backend.services.nahw.book import book_map, book_words, condition_of, elative_shape, is_built_word, is_mabni, is_one, participle_shape, sakt_off, six_noun_case
-from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SUKUN, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, own_letters, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
+from backend.services.text.harakat import CAMEL_CASE, CASE_NAME, NO_ANALYSIS, SHADDA, SUKUN, TANWEEN, base_of, best_reading, has_tanween, nearest_reading, own_letters, past_passive_shape, weak_last, moved_for_wasl, no_vowels_typed, paused, stuck_letters, typed_case, unread, vowel_agreement, letters
 
 logger = logging.getLogger(__name__)
 
@@ -243,13 +243,15 @@ def _as_command(word: str, a: dict, before: str, after: str, after_read: str = "
     if a.get("pos") != "verb" and (verb_reader.called(before, after, after_read) or verb_reader.noun_marked(word, before, a.get("lex") or "", after)):
         return a  # يَا رَبِّ، رَبِّ اغْفِرْ لِي: a noun called, not رَبَّى's command; عَلَى مَالِ: a noun in jarr
     governed = any(is_one(before, family, "before_a_present_verb") for family in ("jazm", "nasb_mudari"))
-    root = root_in_arabic(a.get("root") or "", a.get("lex") or "", word)  # a verb or a noun, so rooted
+    # a verb or a noun, so rooted; a reading the typed vowels contradict tells nothing of the word's root (كِلْ is no كُلْ)
+    root = root_in_arabic(a.get("root") or "", a.get("lex") or "", word) \
+        if vowel_agreement(word, a.get("diac") or "") is not None else ""
     # فَأَنْذِرْ: the letters CAMeL files as joined before (فَ+) are no part of the command; the table reads the verb's own
     # (base_of keeps the word whole where CAMeL's split does not fit the letters typed)
     front = sum(len(p) - 1 for p in strip_diacritics(a.get("atbtok") or "").split("_") if p.endswith("+"))
     own = own_letters(word, front, 0) if front and base_of(word, a.get("atbtok")) != strip_diacritics(word) else word
     # the kasra before hamzat al-wasl is the word's own (سَمِّ اللَّهَ) or a paused sukun (أَقِمِ الصَّلَاةَ)
-    cell = verb_reader.command(own, governed, root) or verb_reader.command(paused(own, after), governed, root)
+    cell = verb_reader.command(own, governed, root, said=has_verb) or verb_reader.command(paused(own, after), governed, root, said=has_verb)
     if cell is None:
         return a
     return {**a, "pos": "verb", "asp": "c", "mod": "na", "vox": "a", "per": cell.person,
@@ -412,6 +414,28 @@ def _seen_verb(past: str) -> bool:
     return any(a.get("pos") == "verb" and a.get(_LIKELIHOOD, _NEVER_SEEN) > _NEVER_SEEN
                and strip_diacritics(a["lex"]).translate(_WASL) == strip_diacritics(past)
                and vowel_agreement(past, a["lex"]) is not None for a in _analyses(past))
+
+
+def has_verb(verb: str, root: str) -> bool:
+    """The dictionary's training text has this verb (يَقِفْ، وَقَفَ) of this root (وقف) as typed: every letter, its
+    hamzah's seat too (أَكَلَ is not آكُلُ), a shadda as the letter it doubles (وَرِثَ is not وَرَّثَ), and every vowel
+    both write. A present is listed with no mood ending (يَقِف), so a jussive is matched as its present."""
+    return any(a.get("pos") == "verb" and a.get(_LIKELIHOOD, _NEVER_SEEN) > _NEVER_SEEN
+               and _listed_root(a, root) and _spelled_as(verb, a.get("diac") or "")
+               for a in _analyses(strip_diacritics(verb)))
+
+
+def _listed_root(a: dict, root: str) -> bool:
+    """The reading is of `root`, its hamzah on any seat (يَأْمُرُ's ءمر is أمر) and its weak letter either و or ي: the
+    dictionary writes every weak letter # and never says which (بَاعَ and قَالَ alike: ب.#.ع، ق.#.ل), where reading_root
+    writes it و (بَاعَ: بوع)."""
+    return reading_root(a).replace("ي", "و") == hamzah_folded(root).replace("ي", "و")
+
+
+def _spelled_as(typed: str, listed: str) -> bool:
+    """`typed` is the word the dictionary lists: the same letters and shaddas, and no vowel either writes differently."""
+    return strip_diacritics(listed) == strip_diacritics(typed) and listed.count(SHADDA) == typed.count(SHADDA) \
+        and vowel_agreement(typed, listed) is not None
 
 
 _WASL = str.maketrans("ٱ", "ا")  # the dictionary writes a past's hamzat al-wasl so (ٱِسْتَغْفَر)
@@ -975,7 +999,7 @@ def _table_verb(typed: str, evidence: str, ranked: list[dict], bare: bool = Fals
     # ال is a sign of the noun (Ibn Aqil, علامات الاسم: أل; page unchecked), not the front of a command it has no record of
     if (had := [r for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")]) and all(r.get("bw", "").startswith("ال/DET+") for r in had):
         return None
-    if (sarf := verb_reader.reading_of(typed, _seen_verb, roots.spelling if bare else None)) and (sarf.get("asp") != "c" or "+" in sarf.get("atbtok", "")) \
+    if (sarf := verb_reader.reading_of(typed, _seen_verb, roots.spelling if bare else None, has_verb)) and (sarf.get("asp") != "c" or "+" in sarf.get("atbtok", "")) \
             and all(r.get("asp") != sarf.get("asp") for r in ranked if NO_ANALYSIS not in r.get("atbtok", "")):
         return {"lex": base_of(evidence, sarf.get("atbtok")), **sarf, "diac": evidence}  # its past, else the verb's own letters
 

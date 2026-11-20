@@ -3,6 +3,8 @@ import pytest
 
 from backend.services.sarf import conjugation
 from backend.services.sarf import verb_reader
+from backend.services.sarf.morphology import has_verb
+from tests.nahw_helpers import needs_camel
 
 
 @pytest.mark.parametrize("radicals", ["كتب", "قول", "سير", "دعو", "رمي", "وعد", "مدد", "وقي", "أمر", "أخذ", "سأل", "قرأ", "دخل", "صبر", "ثبت", "سكن", "وهب"])
@@ -172,3 +174,68 @@ def test_a_present_ending_on_a_hamzah_is_read_from_its_table():
     # يُكَافَأُ: the last hamzah sits on the fatha before it (Marah al-Arwah), so the table holds it and the word is a verb
     assert any(c.root == "كفأ" and c.column == "mudari-passive" for c in verb_reader.read("يُكَافَأُ"))
     assert not any(c.root == "كفأ" for c in verb_reader.read("يُكَافَؤُ"))  # nearest case: on its own damma it is no cell
+
+
+@needs_camel
+@pytest.mark.parametrize("word, root", [
+    ("قِفْ", "وقف"), ("صِلْ", "وصل"), ("عِدْ", "وعد"), ("رِدْ", "ورد"),  # a kasra: يَقِفْ is وَقَفَ's (no يَقِيفُ)
+    ("ضَعْ", "وضع"), ("هَبْ", "وهب"), ("دَعْ", "ودع"),   # a fatha: يَضَعْ is وَضَعَ's; ضَاعَ makes يَضِعْ
+    ("سَلْ", "سأل"), ("كُلْ", "أكل"), ("خُذْ", "أخذ"),   # a hamzah dropped, not a weak letter: يَسْأَلْ، يَأْكُلْ، يَأْخُذْ
+    ("قُمْ", "قوم"), ("بِعْ", "بيع"), ("زِدْ", "زيد"), ("خَفْ", "خوف"), ("نَمْ", "نوم"),  # nearest: hollow stays hollow
+    ("سِلْ", "سيل"), ("كِلْ", "كيل"), ("مِرْ", "مير"), ("هِمْ", "هيم"),  # not سأل، أكل، أمر، وهم on a kasra باب
+])
+def test_a_command_is_the_root_whose_jussive_the_dictionary_has(word: str, root: str):
+    cell = verb_reader.command(word, said=has_verb)
+    assert cell and cell.root == root
+
+
+@needs_camel
+@pytest.mark.parametrize("word, form, past", [("قِفْ", "I-daraba", "وَقَفَ"), ("ضَعْ", "I-fataha", "وَضَعَ"),
+                                             ("رِثْ", "I-hasiba", "وَرِثَ"),   # not the Form II وَرَّثَ
+                                             ("كُلْ", "I-nasara", "أَكَلَ"), ("خُذْ", "I-nasara", "أَخَذَ")])  # not آكُلُ، آخُذُ
+def test_of_the_babs_one_jussive_serves_the_command_is_the_one_whose_past_the_dictionary_has(word, form, past):
+    cell = verb_reader.command(word, said=has_verb)  # يَقِفُ is ضَرَبَ's and حَسِبَ's: وَقَفَ, not وَقِفَ
+    assert (cell.form, verb_reader.past(cell)) == (form, past)
+
+
+@needs_camel
+def test_a_root_the_dictionary_gives_beats_the_jussive_check():
+    assert verb_reader.command("قِفْ", root="قيف", said=has_verb).root == "قيف"
+    assert verb_reader.command("مُرْ", root="ءمر", said=has_verb).root == "أمر"  # the dictionary writes its hamzah ء
+    assert verb_reader.command("مُرْ", root="أمر", said=lambda verb, root: root == "مور").root == "أمر"  # on its seat
+    assert verb_reader.past(verb_reader.command("مُرْ", root="ءمر", said=has_verb)) == "أَمَرَ"  # its باب settled too
+    assert verb_reader.command("خُذَا", root="ءخذ", said=has_verb).form == "I-nasara"  # a dual, one person either way
+    assert verb_reader.command("كِلْ", root="ءكل", said=has_verb).root == "أكل"  # the root given, though كيل fits
+
+
+@needs_camel
+@pytest.mark.parametrize("verb, root, said", [
+    ("يَعِدْ", "وعد", True), ("يَعِدْ", "سعد", False),       # the letters fit both; the dictionary's root is وعد
+    ("يَأْمُرْ", "أمر", True), ("يَسْأَلْ", "سأل", True),    # a hamzah on any seat is the dictionary's #
+    ("يُتَرْجِمْ", "ترج", False), ("يُتَرْجِمْ", "ترجم", True),  # a root is all its letters, not the first three
+    ("وَقَفَ", "وقف", True), ("وَقِفَ", "وقف", False),        # its vowels as typed
+    ("أَكُلَ", "أكل", False), ("وَرَثَ", "ورث", False),       # its hamzah's seat (not آكُلُ) and shadda (not وَرَّثَ) too
+    ("مَكْتَبٌ", "كتب", False),                              # a noun of the root is no verb
+    ("بَاعَ", "بيع", True), ("يَبِعْ", "بيع", True),           # its # a ي as well as a و (ب.#.ع)
+    ("رَمَى", "رمي", True),                                 # a ي the dictionary's lemma settles
+    ("يَقِفْ", "قيف", False),                               # only where the # stands: #.ق.ف is وقف's
+])
+def test_the_dictionary_has_a_verb_of_a_root_only_with_its_letters_and_vowels(verb: str, root: str, said: bool):
+    assert has_verb(verb, root) is said
+
+
+def test_the_dictionarys_check_drops_only_commands_and_keeps_them_all_where_it_drops_every_one():
+    cells = [verb_reader.Cell("وقف", "I-daraba", "amr", "2", "m", "s"), verb_reader.Cell("قيف", "I-daraba", "amr", "2", "m", "s"),
+             verb_reader.Cell("قيف", "I-daraba", "mudari", "3", "m", "s")]
+    assert verb_reader._said(cells, lambda verb, root: root == "وقف") == [cells[0], cells[2]]  # a present is never dropped
+    assert verb_reader._said(cells, lambda verb, root: False) == cells   # nothing said: nothing to narrow by
+    present = [*cells[:2], verb_reader.Cell("سعد", "I-fataha", "mudari", "3", "m", "s")]
+    assert verb_reader._said(present, lambda verb, root: root == "سعد") == present  # a present said is no command said
+    assert verb_reader._said(cells, None) == cells
+    assert verb_reader._said(cells, lambda verb, root: verb == "قَافَ") == cells  # a past alone says nothing
+
+
+@needs_camel
+def test_a_command_with_its_object_on_is_read_with_the_same_root():
+    assert verb_reader.reading_of("ضَعْهُ", said=has_verb)["root"] == "وضع"   # not ضاع
+    assert verb_reader.reading_of("قُلْهُ", said=has_verb)["root"] == "قول"
