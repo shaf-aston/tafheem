@@ -6,7 +6,7 @@ from itertools import pairwise, takewhile
 from backend.services.sarf import verb_reader
 from backend.services.sarf.morphology import is_listed_verb
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.text.harakat import has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
+from backend.services.text.harakat import FATHA, has_tanween, letters, merged_prefix, own_letters, paused, plural_alef, stuck_letters, typed_case, vowel_agreement
 from backend.services.nahw.book import book_words, condition_of, is_built_word, is_one, only_adverb
 from backend.services.nahw.syntax.mask import above
 from backend.services.nahw.syntax.facts import SUBJECTS, Sentence, has_added, is_built, is_describing, is_elative, is_emphasis_lam, is_known, is_name, is_preposition, listed, noun_tagged, puts_in_jarr, shown_cases, stays_adverb, typed_case_of, typed_or_parsed_case, typed_tanween, tenseless_noun, verb_tagged, works_as_verb
@@ -81,9 +81,15 @@ def typed_words(bases: list[dict], tokens: list[dict]) -> None:
             vouched = token.get("guessed") or (is_elative(token) and any(
                 t["head"] == token["id"] and t["rel"] == "OBJ" for t in tokens))
             own = own_letters(word, token["front"], token["stuck_on"]) if verb or token.get("pos_camel") == "noun_prop" else word
+            # فَأَجِرْهُ: a فَ or وَ the reading kept as the word's own (فاجِر) is tried off it as well, last. The joining فَ and
+            # وَ are built on a fatha (Ibn Hisham, Qatr al-Nada, page unchecked), so a ف or و typed with another vowel is the
+            # word's own (فُتِحَ الْبَابُ: passive, no تِحْ joined by ف); and a past the reading takes with the vowels typed keeps
+            # its first letter, as it keeps its tense above (وَضَعُوا، فَرِحُوا: no ضَعُوا، رِحُوا joined on)
+            first, marks = letters(word)[0]
+            cut = (own_letters(word, 1, token["stuck_on"]),) if first in "فو" and marks <= {FATHA} and not read_past else ()
             if token["stuck_on"]:
-                own = plural_alef(own)  # اُكْتُبُوهُ is اُكْتُبُوا with its object
-            cell = next((found for form in dict.fromkeys((word, paused(word, after), own))
+                own, *cut = map(plural_alef, (own, *cut))  # اُكْتُبُوهُ is اُكْتُبُوا with its object
+            cell = next((found for form in dict.fromkeys((word, paused(word, after), own, *cut))
                          if (found := verb_reader.command(form, governed, token.get("root", ""), vouched, answers))
                          and (not (read_noun or read_past) or vouched or verb_reader.typed_fully(form, found))), None)
             if cell:  # the person is sarf's: the reading may have taken اقبل for "I accept"

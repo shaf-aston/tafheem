@@ -74,6 +74,17 @@ def test_a_typed_sukun_or_vowel_is_an_answer_when_choosing_a_reading():
     assert harakat.best_reading("أَبُوْهُ", [{"diac": "أَبُوه"}, {"diac": "أَبُّوهُ"}]) == {"diac": "أَبُوه"}
     assert harakat.best_reading("أَبُوْهُ", [{"diac": "أَبُّوهُ"}, {"diac": "أَبُوه"}]) == {"diac": "أَبُوه"}  # whatever the order
     assert harakat.vowel_agreement("أَبُوْهُ", "أَبُّوهُ") is not None  # a dropped shadda is no contradiction
+    # an alif is never voweled: a hamza typed with a vowel is no ا of the reading (فَأَجِرْهُ is no فاجِرُهُ), as an ا typed
+    # bare is (قَالَ), and so is a hamza a reading writes (فَأَجَرَهُ: the vowel then decides)
+    assert harakat.vowel_agreement("فَأَجِرْهُ", "فاجِره") is None
+    assert harakat.vowel_agreement("أَسْتَغْفِرُ", "اسْتَغْفِر") is None
+    assert harakat.vowel_agreement("قَالَ", "قالَ") is not None
+    assert harakat.vowel_agreement("فَأَجِرْهُ", "فَأَجَرَهُ") is None
+    assert harakat.vowel_agreement("فَأَجِرْهُ", "فَأَجِره") is not None
+    # a hamza typed with a sukun may be softened to the reading's ا (تخفيف الهمزة: رَاس، يَاكُل), and an ا a reading
+    # voweled is a hamza written bare, no alif
+    assert harakat.vowel_agreement("رَأْسُهُ", "راسُه") is not None
+    assert harakat.vowel_agreement("أَحْمَدُ", "اَحْمَدُ") is not None
 
 
 def after_doer(word, *, participle, verb_lemma="جاء", **feats):

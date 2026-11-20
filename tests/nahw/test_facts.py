@@ -377,3 +377,33 @@ def test_a_lam_after_the_fa_of_the_answer_is_no_differing_lam():
     assert differing(toks[0], facts.Sentence(toks)) == "no"
     without_fa = [t for t in toks if t["form"] != "ف+"]
     assert differing(without_fa[0], facts.Sentence(without_fa)) == "yes"
+
+
+def _oath(*words):
+    """Tokens for words given as (form, lemma, pos, typed): each hangs on the last, a verb."""
+    last = len(words) + 1
+    toks = [token(i, f, lemma, pos, last, "MOD", typed=typed) for i, (f, lemma, pos, typed) in enumerate(words, 1)]
+    return toks + [token(last, "قام", "قام", "VRB", 0, "---", typed="قَامَ", **VERB)]
+
+
+def test_sworn_by_needs_an_oath_letter_and_the_jarr_it_puts():
+    sworn = _oath(("و+", "و+", "PRT", None), ("الله", "الله", "NOM", "اللَّهِ"))
+    assert facts.sworn_by(facts.Sentence(sworn)) is sworn[1]  # وَاللَّهِ
+    behind_fa = _oath(("ف+", "ف+", "PRT", None), ("و+", "و+", "PRT", None), ("الله", "الله", "NOM", "اللَّهِ"))
+    assert facts.sworn_by(facts.Sentence(behind_fa)) is behind_fa[2]  # فَوَاللَّهِ
+    assert facts.sworn_by(facts.Sentence(_oath(("و+", "و+", "PRT", None), ("الله", "الله", "NOM", "اللَّهُ")))) is None
+    assert facts.sworn_by(facts.Sentence(_oath(("في", "في", "PRT", "فِي"), ("الدار", "دار", "NOM", "الدَّارِ")))) is None
+
+
+def test_a_sworn_relative_is_no_conditional_noun():
+    assert facts.is_sworn_relative({"lemma": "الذي"})  # وَالَّذِي نَفْسِي بِيَدِهِ
+    assert not facts.is_sworn_relative({"lemma": "من"})  # وَمَنْ يَتَّقِ اللَّهَ: a condition
+
+
+def test_a_roots_nun_merged_into_ni_still_takes_the_stressed_nasb():
+    """لَنْ يَظْلِمَنِي وَلَا يَخُونِّي: the ولا only stresses لن's negation, so لن governs يخونّي too. Its doubled nun is خان's own
+    ن with نون الوقاية, no kept nun of the five verbs (harakat.merged_nun): one doer, a singular, has none of theirs."""
+    verb = {"pos": "VRB", "asp": "i", "per": "3", "num": "s", "gen": "m"}
+    bases = [{"base": "لن", "typed": "لَنْ", "pos": "PRT"}, dict(verb, typed="يَظْلِمَنِي", stuck_on=2),
+             {"typed": "وَلَا", "pos": "PRT"}, dict(verb, typed="يَخُونِّي", stuck_on=2)]
+    assert facts.stressed_nasb(bases, 3) is bases[0]  # nearest case, the five verbs' merged nun: test_card_fields تَأْمُرُونِّي

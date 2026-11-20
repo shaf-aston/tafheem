@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from backend.services.nahw.book import is_one
 from backend.services.text.arabic_text import strip_diacritics
-from backend.services.nahw.syntax.facts import Sentence, is_known, is_preposition, is_suffix, is_verb, noun_tagged, stays_adverb, typed_case_of
+from backend.services.nahw.syntax.facts import Sentence, is_known, is_sworn_relative, is_preposition, is_suffix, is_verb, noun_tagged, stays_adverb, sworn_by, typed_case_of
 
 
 def oath_clause(s: Sentence) -> None:
@@ -14,15 +14,11 @@ def oath_clause(s: Sentence) -> None:
     لا, ما, قد, إن; Ibn Aqil vol 4 p42): without one the و resumes (وَالَّذِينَ هُمْ عَنِ اللَّغْوِ مُعْرِضُونَ)."""
     tokens = s.tokens
     root = next((t for t in tokens if t["head"] == 0), None)
-    # فَوَالَّذِي: a فاء ties the oath to what came before (Ibn Aqil vol 4 p42), so the و is the next piece
-    lead = int(bool(tokens) and tokens[0]["pos"] == "PRT" and tokens[0]["lemma"].strip("+") == "ف")
-    first, relative = (tokens + [None, None, None])[lead:lead + 2]
-    if not (root and first and relative and first["pos"] == "PRT" and is_one(first["lemma"], "jarr", "oath_only")
-            and root["id"] > relative["id"]):
+    relative = sworn_by(s)
+    if not (root and relative and root["id"] > relative["id"]):
         return
-    sworn_relative = is_one(relative["lemma"], "mawsul") and not is_one(relative["lemma"], "jazm", "conditional_nouns")
-    if not (sworn_relative or noun_tagged(relative) and typed_case_of(relative) == "i"):
-        return
+    first = tokens[tokens.index(relative) - 1]
+    sworn_relative = is_sworn_relative(relative)
     # the answer is a particle under the main clause, or the clause's own head (فَوَالَّذِي لَا إِلَهَ غَيْرُهُ إِنَّ أَحَدَكُمْ)
     if not (is_one(root["lemma"], "jarr", "oath_answer") or any(
             k["pos"] == "PRT" and k["id"] < root["id"] and is_one(k["lemma"], "jarr", "oath_answer") for k in s.kids(root))):
