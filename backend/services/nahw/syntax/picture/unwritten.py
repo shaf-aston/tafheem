@@ -23,7 +23,7 @@ from backend.services.nahw.syntax.followers import FOLLOWERS
 from backend.services.nahw.syntax.naming import NAMED
 from backend.services.nahw.syntax.picture.hang import definite, hangs_under
 from backend.services.nahw.syntax.picture.names import FRAMES
-from backend.services.text.arabic_text import strip_diacritics
+from backend.services.text.arabic_text import has_al, strip_diacritics
 from backend.services.text.harakat import has_tanween
 from backend.services.nahw.syntax.picture.state import Picture
 
@@ -186,7 +186,7 @@ def add_unwritten_verbs(c: Picture) -> None:
         verb = understand(text, NAMED.fil, drawn.index(noun), pos="VRB", pos_camel="", base=text, asp="na", **place)
         # شكرًا: the unwritten verb's own masdar; الصِّدْقَ الصِّدْقَ: one with ال urged on the
         # hearer is the object of an unwritten الزم (الإغراء, Tasheel 3.8.1)
-        masdar = (is_masdar(noun) or listed(noun, "verbless_masdars")) and not strip_diacritics(noun["form"]).startswith("ال")
+        masdar = (is_masdar(noun) or listed(noun, "verbless_masdars")) and not has_al(noun["form"])
         role_of[noun["id"]] = said_verb["noun"]["masdar" if masdar else "other"]
         why_of[noun["id"]] = None  # the dash was for a case no job fitted; now one does
         under = {**noun, "head": verb["id"]}
